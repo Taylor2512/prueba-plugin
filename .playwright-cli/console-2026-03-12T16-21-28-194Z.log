@@ -1,0 +1,11 @@
+Total messages: 7 (Errors: 1, Warnings: 3)
+Returning 4 messages for level "warning"
+
+[WARNING] ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition. @ http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[WARNING] ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath. @ http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[WARNING] [@pdfme/ui] Viewer component is deprecated and will be removed in a future version. @ http://localhost:4173/vendor/pdfme/ui/dist/esm/Viewer.js:9
+Error: Cannot update an unmounted root.
+    at ReactDOMHydrationRoot.render.ReactDOMRoot.render (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:20605:19)
+    at Form.render (http://localhost:4173/vendor/pdfme/ui/dist/esm/Form.js:51:28)
+    at http://localhost:4173/vendor/pdfme/ui/dist/esm/class.js:31:12
+    at http://localhost:4173/vendor/pdfme/ui/dist/esm/helper.js:47:26

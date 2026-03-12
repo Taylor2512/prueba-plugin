@@ -1,0 +1,36 @@
+Total messages: 9 (Errors: 3, Warnings: 3)
+Returning 6 messages for level "warning"
+
+[WARNING] ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition. @ http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[WARNING] ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath. @ http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[ERROR] Warning: Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx?t=1773332576818:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx?t=1773332576818:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[WARNING] [@pdfme/ui] Viewer component is deprecated and will be removed in a future version. @ http://localhost:4173/vendor/pdfme/ui/dist/esm/Viewer.js:9
+[ERROR] Warning: Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx?t=1773332576818:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520

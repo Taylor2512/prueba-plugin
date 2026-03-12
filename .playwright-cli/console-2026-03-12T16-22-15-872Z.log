@@ -1,0 +1,33 @@
+Total messages: 9 (Errors: 3, Warnings: 3)
+Returning 3 messages for level "error"
+
+[ERROR] Warning: Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx?t=1773332511313:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx?t=1773332511313:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx?t=1773332511313:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520

@@ -1,0 +1,54 @@
+{
+  "name": "@pdfme/generator",
+  "version": "0.0.0",
+  "sideEffects": false,
+  "author": "hand-dot",
+  "license": "MIT",
+  "keywords": [
+    "pdf",
+    "pdf-generation",
+    "pdf-designer",
+    "pdf-viewer",
+    "typescript",
+    "react"
+  ],
+  "description": "TypeScript base PDF generator and React base UI. Open source, developed by the community, and completely free to use under the MIT license!",
+  "homepage": "https://pdfme.com",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:pdfme/pdfme.git"
+  },
+  "bugs": {
+    "url": "https://github.com/pdfme/pdfme/issues"
+  },
+  "main": "./dist/cjs/index.js",
+  "module": "./dist/esm/index.js",
+  "types": "./src/index.ts",
+  "exports": {
+    ".": {
+      "types": "./src/index.ts",
+      "import": "./dist/esm/index.js",
+      "require": "./dist/cjs/index.js"
+    }
+  },
+  "files": [
+    "dist",
+    "src"
+  ],
+  "scripts": {
+    "build": "rm -rf dist && npm run build:esm && npm run build:cjs",
+    "build:esm": "npm exec -- esbuild $(find src \\( -name '*.ts' -o -name '*.tsx' \\)) --outdir=dist/esm --outbase=src --format=esm --platform=neutral --target=es2020 --sourcemap",
+    "build:cjs": "npm exec -- esbuild $(find src \\( -name '*.ts' -o -name '*.tsx' \\)) --outdir=dist/cjs --outbase=src --format=cjs --platform=neutral --target=es2020 --sourcemap"
+  },
+  "dependencies": {
+    "@pdfme/pdf-lib": "*",
+    "fontkit": "^2.0.2"
+  },
+  "peerDependencies": {
+    "@pdfme/common": "*",
+    "@pdfme/schemas": "*"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

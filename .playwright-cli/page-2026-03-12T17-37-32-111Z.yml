@@ -1,0 +1,54 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - link "Home" [ref=e5] [cursor=pointer]:
+      - /url: /
+    - link "About" [ref=e6] [cursor=pointer]:
+      - /url: /about
+    - link "PDFME Lab" [ref=e7] [cursor=pointer]:
+      - /url: /pdfme
+  - main [ref=e10]:
+    - generic [ref=e12]:
+      - heading "Laboratorio PDFME" [level=1] [ref=e13]
+      - paragraph [ref=e14]: "Esta página agrupa funcionalidades documentadas: UI (`Designer`, `Form`, `Viewer`), generación (`generate`) y conversión (`pdf2size`, `pdf2img`, `img2pdf`)."
+    - generic [ref=e15]:
+      - generic:
+        - button "☰" [ref=e16] [cursor=pointer]
+        - option "designer" [selected]
+        - option "form"
+        - option "viewer"
+        - option "Estructura - Tabla (table)"
+        - option "Fechas - Fecha (date)"
+        - option "Fechas - Fecha y hora (dateTime)"
+        - option "Fechas - Hora (time)"
+        - option "General - code128 (code128)"
+        - option "General - code39 (code39)"
+        - option "General - ean13 (ean13)"
+        - option "General - ean8 (ean8)"
+        - option "General - ellipse (ellipse)"
+        - option "General - gs1datamatrix (gs1datamatrix)"
+        - option "General - image (image)"
+        - option "General - itf14 (itf14)"
+        - option "General - japanpost (japanpost)"
+        - option "General - line (line)"
+        - option "General - nw7 (nw7)"
+        - option "General - pdf417 (pdf417)"
+        - option "General - qrcode (qrcode)"
+        - option "General - rectangle (rectangle)"
+        - option "General - svg (svg)"
+        - option "General - Texto (text)" [selected]
+        - option "General - Texto con variables (multiVariableText)"
+        - option "General - upca (upca)"
+        - option "General - upce (upce)"
+        - option "Opciones - Casilla de verificación (checkbox)"
+        - option "Opciones - Desplegable (select)"
+        - option "Opciones - Opción única (radioGroup)"
+      - generic [ref=e19]:
+        - article [ref=e20]:
+          - heading "PDF generado" [level=3] [ref=e21]
+          - paragraph [ref=e22]: Aún no se generó un PDF.
+        - article [ref=e23]:
+          - heading "Imágenes (pdf2img)" [level=3] [ref=e24]
+          - paragraph [ref=e25]: No hay imágenes convertidas.
+        - article [ref=e26]:
+          - heading "PDF reconstruido (img2pdf)" [level=3] [ref=e27]
+          - paragraph [ref=e28]: "Ejecuta `pdf2img` y luego `img2pdf` para ver este resultado."

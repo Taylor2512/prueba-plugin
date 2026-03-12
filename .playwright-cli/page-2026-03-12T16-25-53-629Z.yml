@@ -1,0 +1,425 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - link "Home" [ref=e5] [cursor=pointer]:
+      - /url: /
+    - link "About" [ref=e6] [cursor=pointer]:
+      - /url: /about
+    - link "PDFME Lab" [ref=e7] [cursor=pointer]:
+      - /url: /pdfme
+  - main [ref=e10]:
+    - generic [ref=e12]:
+      - heading "Laboratorio PDFME" [level=1] [ref=e13]
+      - paragraph [ref=e14]: "Esta página agrupa funcionalidades documentadas: UI (`Designer`, `Form`, `Viewer`), generación (`generate`) y conversión (`pdf2size`, `pdf2img`, `img2pdf`)."
+    - generic [ref=e15]:
+      - complementary [ref=e16]:
+        - heading "Control" [level=2] [ref=e17]
+        - generic [ref=e18]:
+          - text: Modo UI
+          - combobox "Modo UI" [ref=e19]:
+            - option "designer" [selected]
+            - option "form"
+            - option "viewer"
+        - generic [ref=e20]:
+          - text: Tipo de schema para insertar
+          - combobox "Tipo de schema para insertar" [ref=e21]:
+            - option "Estructura - Tabla (table)"
+            - option "Fechas - Fecha (date)"
+            - option "Fechas - Fecha y hora (dateTime)"
+            - option "Fechas - Hora (time)"
+            - option "General - code128 (code128)"
+            - option "General - code39 (code39)"
+            - option "General - ean13 (ean13)"
+            - option "General - ean8 (ean8)"
+            - option "General - ellipse (ellipse)"
+            - option "General - gs1datamatrix (gs1datamatrix)"
+            - option "General - image (image)"
+            - option "General - itf14 (itf14)"
+            - option "General - japanpost (japanpost)"
+            - option "General - line (line)"
+            - option "General - nw7 (nw7)"
+            - option "General - pdf417 (pdf417)"
+            - option "General - qrcode (qrcode)"
+            - option "General - rectangle (rectangle)"
+            - option "General - svg (svg)"
+            - option "General - Texto (text)" [selected]
+            - option "General - Texto con variables (multiVariableText)"
+            - option "General - upca (upca)"
+            - option "General - upce (upce)"
+            - option "Opciones - Casilla de verificación (checkbox)"
+            - option "Opciones - Desplegable (select)"
+            - option "Opciones - Opción única (radioGroup)"
+        - generic [ref=e22]:
+          - button "Reiniciar template" [ref=e23] [cursor=pointer]
+          - button "Generar PDF" [ref=e24] [cursor=pointer]
+        - heading "Acciones DesignerRuntimeApi" [level=3] [ref=e25]
+        - generic [ref=e26]:
+          - button "Undo" [ref=e27] [cursor=pointer]
+          - button "Redo" [ref=e28] [cursor=pointer]
+          - button "Fit Width" [ref=e29] [cursor=pointer]
+          - button "Fit Page" [ref=e30] [cursor=pointer]
+          - button "Prev Page" [ref=e31] [cursor=pointer]
+          - button "Next Page" [ref=e32] [cursor=pointer]
+          - button "Toggle Sidebar" [ref=e33] [cursor=pointer]
+          - button "Add Schema" [ref=e34] [cursor=pointer]
+          - button "Prefill Demo" [ref=e35] [cursor=pointer]
+        - heading "Conversión" [level=3] [ref=e36]
+        - generic [ref=e37]:
+          - button "pdf2size" [disabled] [ref=e38]
+          - button "pdf2img" [disabled] [ref=e39]
+          - button "img2pdf" [disabled] [ref=e40]
+        - paragraph [ref=e41]: Listo para probar funcionalidades de pdfme
+      - generic [ref=e42]:
+        - generic [ref=e45]:
+          - generic [ref=e48]:
+            - generic [ref=e50]: DISEÑADOR
+            - generic [ref=e51]: CAMPOS PERSONALIZADOS
+            - tablist "Tipos de campo" [ref=e52]:
+              - tab "Campos estándar" [selected] [ref=e53]:
+                - img [ref=e54]
+                - generic [ref=e56]: Campos estándar
+              - tab "Campos personalizados" [ref=e57]:
+                - img [ref=e58]
+                - generic [ref=e61]: Campos personalizados
+              - tab "Herramientas de prerrellenado" [ref=e62]:
+                - img [ref=e63]
+                - generic [ref=e65]: Herramientas de prerrellenado
+            - generic [ref=e67]:
+              - generic [ref=e68]:
+                - img [ref=e70]
+                - textbox "Buscar schema, tipo o categoria..." [ref=e73]
+              - generic [ref=e75]:
+                - button "All" [ref=e76] [cursor=pointer]:
+                  - generic [ref=e77]: All
+                - button "Fav (0)" [ref=e78] [cursor=pointer]:
+                  - generic [ref=e79]: Fav (0)
+                - button "Recent (0)" [ref=e80] [cursor=pointer]:
+                  - generic [ref=e81]: Recent (0)
+                - button "Vista compacta" [ref=e82] [cursor=pointer]:
+                  - generic [ref=e83]: Vista compacta
+            - generic [ref=e84]:
+              - generic [ref=e85]:
+                - generic [ref=e86]:
+                  - generic [ref=e87]: General
+                  - generic [ref=e88]: "18"
+                - generic [ref=e89]:
+                  - generic [ref=e92]:
+                    - button "code128 code128 General · base · designer · form · viewer" [ref=e93] [cursor=pointer]:
+                      - generic "code128" [ref=e95]:
+                        - img [ref=e96]
+                      - generic [ref=e97]:
+                        - generic [ref=e98]: code128
+                        - generic [ref=e99]: General · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e102]:
+                    - button "code39 code39 General · base · designer · form · viewer" [ref=e103] [cursor=pointer]:
+                      - generic "code39" [ref=e105]:
+                        - img [ref=e106]
+                      - generic [ref=e107]:
+                        - generic [ref=e108]: code39
+                        - generic [ref=e109]: General · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e112]:
+                    - button "ean13 ean13 General · base · designer · form · viewer" [ref=e113] [cursor=pointer]:
+                      - generic "ean13" [ref=e115]:
+                        - img [ref=e116]
+                      - generic [ref=e117]:
+                        - generic [ref=e118]: ean13
+                        - generic [ref=e119]: General · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e122]:
+                    - button "ean8 ean8 General · base · designer · form · viewer" [ref=e123] [cursor=pointer]:
+                      - generic "ean8" [ref=e125]:
+                        - img [ref=e126]
+                      - generic [ref=e127]:
+                        - generic [ref=e128]: ean8
+                        - generic [ref=e129]: General · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e132]:
+                    - button "ellipse ellipse General · base · designer · form · viewer" [ref=e133] [cursor=pointer]:
+                      - generic "ellipse" [ref=e135]:
+                        - img [ref=e136]
+                      - generic [ref=e138]:
+                        - generic [ref=e139]: ellipse
+                        - generic [ref=e140]: General · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e143]:
+                    - button "gs1datamatrix gs1datamatrix General · base · designer · form · viewer" [ref=e144] [cursor=pointer]:
+                      - generic "gs1datamatrix" [ref=e146]:
+                        - img [ref=e147]
+                      - generic [ref=e148]:
+                        - generic [ref=e149]: gs1datamatrix
+                        - generic [ref=e150]: General · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e153]:
+                    - button "image image General · base · designer · form · viewer" [ref=e154] [cursor=pointer]:
+                      - generic "image" [ref=e156]:
+                        - img [ref=e157]
+                      - generic [ref=e161]:
+                        - generic [ref=e162]: image
+                        - generic [ref=e163]: General · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e166]:
+                    - button "itf14 itf14 General · base · designer · form · viewer" [ref=e167] [cursor=pointer]:
+                      - generic "itf14" [ref=e169]:
+                        - img [ref=e170]
+                      - generic [ref=e171]:
+                        - generic [ref=e172]: itf14
+                        - generic [ref=e173]: General · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e176]:
+                    - button "japanpost japanpost General · base · designer · form · viewer" [ref=e177] [cursor=pointer]:
+                      - generic "japanpost" [ref=e179]:
+                        - img [ref=e180]
+                      - generic [ref=e181]:
+                        - generic [ref=e182]: japanpost
+                        - generic [ref=e183]: General · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e186]:
+                    - button "line line General · base · designer · form · viewer" [ref=e187] [cursor=pointer]:
+                      - generic "line" [ref=e189]:
+                        - img [ref=e190]
+                      - generic [ref=e191]:
+                        - generic [ref=e192]: line
+                        - generic [ref=e193]: General · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e196]:
+                    - button "nw7 nw7 General · base · designer · form · viewer" [ref=e197] [cursor=pointer]:
+                      - generic "nw7" [ref=e199]:
+                        - img [ref=e200]
+                      - generic [ref=e201]:
+                        - generic [ref=e202]: nw7
+                        - generic [ref=e203]: General · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e206]:
+                    - button "pdf417 pdf417 General · base · designer · form · viewer" [ref=e207] [cursor=pointer]:
+                      - generic "pdf417" [ref=e209]:
+                        - img [ref=e210]
+                      - generic [ref=e211]:
+                        - generic [ref=e212]: pdf417
+                        - generic [ref=e213]: General · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e216]:
+                    - button "qrcode qrcode General · base · designer · form · viewer" [ref=e217] [cursor=pointer]:
+                      - generic "qrcode" [ref=e219]:
+                        - img [ref=e220]
+                      - generic [ref=e226]:
+                        - generic [ref=e227]: qrcode
+                        - generic [ref=e228]: General · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e231]:
+                    - button "rectangle rectangle General · base · designer · form · viewer" [ref=e232] [cursor=pointer]:
+                      - generic "rectangle" [ref=e234]:
+                        - img [ref=e235]
+                      - generic [ref=e237]:
+                        - generic [ref=e238]: rectangle
+                        - generic [ref=e239]: General · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e242]:
+                    - button "svg svg General · base · designer · form · viewer" [ref=e243] [cursor=pointer]:
+                      - generic "svg" [ref=e245]:
+                        - img [ref=e246]
+                      - generic [ref=e250]:
+                        - generic [ref=e251]: svg
+                        - generic [ref=e252]: General · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e255]:
+                    - button "text text General · base · designer · form · viewer" [ref=e256] [cursor=pointer]:
+                      - generic "text" [ref=e258]:
+                        - img [ref=e259]
+                      - generic [ref=e264]:
+                        - generic [ref=e265]: text
+                        - generic [ref=e266]: General · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e269]:
+                    - button "upca upca General · base · designer · form · viewer" [ref=e270] [cursor=pointer]:
+                      - generic "upca" [ref=e272]:
+                        - img [ref=e273]
+                      - generic [ref=e274]:
+                        - generic [ref=e275]: upca
+                        - generic [ref=e276]: General · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e279]:
+                    - button "upce upce General · base · designer · form · viewer" [ref=e280] [cursor=pointer]:
+                      - generic "upce" [ref=e282]:
+                        - img [ref=e283]
+                      - generic [ref=e284]:
+                        - generic [ref=e285]: upce
+                        - generic [ref=e286]: General · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+              - generic [ref=e287]:
+                - generic [ref=e288]:
+                  - generic [ref=e289]: Opciones
+                  - generic [ref=e290]: "3"
+                - generic [ref=e291]:
+                  - generic [ref=e294]:
+                    - button "checkbox checkbox Opciones · base · designer · form · viewer" [ref=e295] [cursor=pointer]:
+                      - generic "checkbox" [ref=e297]:
+                        - img [ref=e298]
+                      - generic [ref=e301]:
+                        - generic [ref=e302]: checkbox
+                        - generic [ref=e303]: Opciones · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e306]:
+                    - button "radioGroup radioGroup Opciones · base · designer · form · viewer" [ref=e307] [cursor=pointer]:
+                      - generic "radioGroup" [ref=e309]:
+                        - img [ref=e310]
+                      - generic [ref=e313]:
+                        - generic [ref=e314]: radioGroup
+                        - generic [ref=e315]: Opciones · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e318]:
+                    - button "select select Opciones · base · designer · form · viewer" [ref=e319] [cursor=pointer]:
+                      - generic "select" [ref=e321]:
+                        - img [ref=e322]
+                      - generic [ref=e324]:
+                        - generic [ref=e325]: select
+                        - generic [ref=e326]: Opciones · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+              - generic [ref=e327]:
+                - generic [ref=e328]:
+                  - generic [ref=e329]: Fechas
+                  - generic [ref=e330]: "3"
+                - generic [ref=e331]:
+                  - generic [ref=e334]:
+                    - button "date date Fechas · base · designer · form · viewer" [ref=e335] [cursor=pointer]:
+                      - generic "date" [ref=e337]:
+                        - img [ref=e338]
+                      - generic [ref=e340]:
+                        - generic [ref=e341]: date
+                        - generic [ref=e342]: Fechas · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e345]:
+                    - button "dateTime dateTime Fechas · base · designer · form · viewer" [ref=e346] [cursor=pointer]:
+                      - generic "dateTime" [ref=e348]:
+                        - img [ref=e349]
+                      - generic [ref=e353]:
+                        - generic [ref=e354]: dateTime
+                        - generic [ref=e355]: Fechas · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+                  - generic [ref=e358]:
+                    - button "time time Fechas · base · designer · form · viewer" [ref=e359] [cursor=pointer]:
+                      - generic "time" [ref=e361]:
+                        - img [ref=e362]
+                      - generic [ref=e365]:
+                        - generic [ref=e366]: time
+                        - generic [ref=e367]: Fechas · base · designer · form · viewer
+                    - button "Marcar favorito": ★
+              - generic [ref=e368]:
+                - generic [ref=e369]:
+                  - generic [ref=e370]: Estructura
+                  - generic [ref=e371]: "1"
+                - generic [ref=e375]:
+                  - button "table table Estructura · base · designer · viewer · layout" [ref=e376] [cursor=pointer]:
+                    - generic "table" [ref=e378]:
+                      - img [ref=e379]
+                    - generic [ref=e381]:
+                      - generic [ref=e382]: table
+                      - generic [ref=e383]: Estructura · base · designer · viewer · layout
+                  - button "Marcar favorito": ★
+          - generic [ref=e384]:
+            - generic [ref=e385]:
+              - generic [ref=e386]:
+                - button [ref=e387] [cursor=pointer]:
+                  - img [ref=e389]
+                - strong [ref=e391]: 100%
+                - button [ref=e392] [cursor=pointer]:
+                  - img [ref=e394]
+                - generic [ref=e395] [cursor=pointer]:
+                  - generic [ref=e397]:
+                    - combobox [ref=e399]
+                    - generic "100%" [ref=e400]
+                  - generic:
+                    - img:
+                      - img
+              - button [ref=e401] [cursor=pointer]:
+                - img [ref=e402]
+            - generic [ref=e407]:
+              - generic [ref=e409]:
+                - button "Campos" [ref=e410] [cursor=pointer]
+                - button "Detalle" [disabled] [ref=e411]
+                - button "Docs" [ref=e412] [cursor=pointer]
+              - generic [ref=e413]:
+                - generic [ref=e414]:
+                  - generic [ref=e415]:
+                    - img [ref=e416]
+                    - strong [ref=e420]: Documentos
+                    - button [ref=e421] [cursor=pointer]:
+                      - img [ref=e423]
+                  - separator [ref=e424]
+                - generic [ref=e426]:
+                  - button "Agregar documentoAdjunta otro PDF o una nueva página al flujo actual" [ref=e427]:
+                    - img [ref=e430]
+                    - generic [ref=e431]:
+                      - strong [ref=e433]: Agregar documento
+                      - text: Adjunta otro PDF o una nueva página al flujo actual
+                  - button "1 Documento 1 210 x 297 mm" [ref=e434]:
+                    - generic [ref=e436]: "1"
+                    - generic [ref=e437]:
+                      - strong [ref=e439]: Documento 1
+                      - generic [ref=e440]: 210 x 297 mm
+              - generic [ref=e441]:
+                - generic [ref=e442]:
+                  - generic [ref=e443]:
+                    - generic [ref=e445]:
+                      - generic [ref=e446]:
+                        - img [ref=e447]
+                        - strong [ref=e452]: Lista de campos
+                      - generic [ref=e453]: 4/4
+                    - generic [ref=e455]:
+                      - img [ref=e457]
+                      - textbox "Buscar campo..." [ref=e460]
+                  - separator [ref=e462]
+                - generic [ref=e463]:
+                  - list [ref=e464]:
+                    - listitem [ref=e465]:
+                      - generic [ref=e466]:
+                        - button [ref=e467] [cursor=pointer]:
+                          - img [ref=e469]
+                        - generic "text" [ref=e478]:
+                          - img [ref=e479]
+                        - text: title
+                        - img [ref=e485]
+                    - listitem [ref=e488]:
+                      - generic [ref=e489]:
+                        - button [ref=e490] [cursor=pointer]:
+                          - img [ref=e492]
+                        - generic "text" [ref=e501]:
+                          - img [ref=e502]
+                        - text: full_name
+                    - listitem [ref=e507]:
+                      - generic [ref=e508]:
+                        - button [ref=e509] [cursor=pointer]:
+                          - img [ref=e511]
+                        - generic "text" [ref=e520]:
+                          - img [ref=e521]
+                        - text: email
+                    - listitem [ref=e526]:
+                      - generic [ref=e527]:
+                        - button [ref=e528] [cursor=pointer]:
+                          - img [ref=e530]
+                        - generic "text" [ref=e539]:
+                          - img [ref=e540]
+                        - text: notes
+                  - status [ref=e545]
+                - button "Actualizar en bloque el nombre de los campos" [ref=e547] [cursor=pointer]:
+                  - generic [ref=e548]: Actualizar en bloque el nombre de los campos
+            - generic [ref=e551]:
+              - generic "Solo lectura" [ref=e554]:
+                - generic [ref=e557]: Demo PDFME
+              - generic "full_name" [ref=e559]:
+                - generic [ref=e562]: Nombre completo
+              - generic "email" [ref=e564]:
+                - generic [ref=e567]: Correo
+              - generic "notes" [ref=e569]:
+                - generic [ref=e572]: Notas
+          - status [ref=e573]
+        - generic [ref=e574]:
+          - article [ref=e575]:
+            - heading "PDF generado" [level=3] [ref=e576]
+            - paragraph [ref=e577]: Aún no se generó un PDF.
+          - article [ref=e578]:
+            - heading "Imágenes (pdf2img)" [level=3] [ref=e579]
+            - paragraph [ref=e580]: No hay imágenes convertidas.
+          - article [ref=e581]:
+            - heading "PDF reconstruido (img2pdf)" [level=3] [ref=e582]
+            - paragraph [ref=e583]: "Ejecuta `pdf2img` y luego `img2pdf` para ver este resultado."

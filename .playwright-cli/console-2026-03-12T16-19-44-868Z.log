@@ -1,0 +1,1891 @@
+Total messages: 190 (Errors: 189, Warnings: 1)
+Returning 189 messages for level "error"
+
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: render(...): It looks like the React-rendered content of the root container was removed without using React. This is not supported and will cause errors. Instead, call root.unmount() to empty a root's container.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] The above error occurred in the <AppContextProvider> component:
+
+    at AppContextProvider (http://localhost:4173/vendor/pdfme/ui/dist/esm/components/AppContextProvider.js:39:3)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:13625
+[ERROR] Warning: Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+[ERROR] Warning: Attempted to synchronously unmount a root while React was already rendering. React cannot finish unmounting the root until the current render has completed, which may lead to a race condition.%s 
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5) @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:520
+NotFoundError: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.
+    at removeChildFromContainer (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:8114:23)
+    at commitDeletionEffectsOnFiber (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17063:21)
+    at recursivelyTraverseDeletionEffects (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17041:13)
+    at commitDeletionEffectsOnFiber (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17132:15)
+    at recursivelyTraverseDeletionEffects (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17041:13)
+    at commitDeletionEffectsOnFiber (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17132:15)
+    at recursivelyTraverseDeletionEffects (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17041:13)
+    at commitDeletionEffectsOnFiber (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17162:15)
+    at recursivelyTraverseDeletionEffects (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17041:13)
+    at commitDeletionEffectsOnFiber (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17162:15)
+NotFoundError: Failed to execute 'removeChild' on 'Node': The node to be removed is not a child of this node.
+    at removeChildFromContainer (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:8114:23)
+    at commitDeletionEffectsOnFiber (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17063:21)
+    at recursivelyTraverseDeletionEffects (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17041:13)
+    at commitDeletionEffectsOnFiber (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17132:15)
+    at recursivelyTraverseDeletionEffects (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17041:13)
+    at commitDeletionEffectsOnFiber (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17132:15)
+    at recursivelyTraverseDeletionEffects (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17041:13)
+    at commitDeletionEffectsOnFiber (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17162:15)
+    at recursivelyTraverseDeletionEffects (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17041:13)
+    at commitDeletionEffectsOnFiber (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17162:15)

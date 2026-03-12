@@ -1,0 +1,87 @@
+[     421ms] [WARNING] ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition. @ http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[     421ms] [WARNING] ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath. @ http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[  807813ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:5176/vendor/pdfme/ui/dist/esm/components/Designer/RightSidebar/layout.js?t=1773337901541:0
+[  807819ms] [ERROR] [hmr] Failed to reload /vendor/pdfme/ui/dist/esm/components/Designer/RightSidebar/layout.js. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:5176/@vite/client:270
+[  808586ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:5176/vendor/pdfme/ui/dist/esm/components/Designer/LeftSidebarGroup.js?t=1773337901541:0
+[  808607ms] [ERROR] [hmr] Failed to reload /vendor/pdfme/ui/dist/esm/components/Designer/LeftSidebarGroup.js. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:5176/@vite/client:270
+[  808926ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:5176/vendor/pdfme/ui/dist/esm/styles/final-classes.css?t=1773337902428:0
+[  808959ms] [ERROR] [hmr] Failed to reload /vendor/pdfme/ui/dist/esm/styles/final-classes.css. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:5176/@vite/client:270
+[  808978ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:5176/vendor/pdfme/ui/dist/esm/components/Designer/RightSidebar/layout.js?t=1773337902508:0
+[  809007ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:5176/vendor/pdfme/ui/dist/esm/components/Designer/RightSidebar/layout.js?t=1773337902618:0
+[  809034ms] [ERROR] [hmr] Failed to reload /vendor/pdfme/ui/dist/esm/components/Designer/RightSidebar/layout.js. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:5176/@vite/client:270
+[  809075ms] [ERROR] [hmr] Failed to reload /vendor/pdfme/ui/dist/esm/components/Designer/RightSidebar/layout.js. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:5176/@vite/client:270
+[  809275ms] [WARNING] ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition. @ http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[  809275ms] [WARNING] ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath. @ http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[  809296ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:5176/vendor/pdfme/ui/dist/esm/index.js:0
+[  809321ms] Failed to fetch dynamically imported module: http://127.0.0.1:5176/src/pages/Pdfme.jsx?t=1773337902633
+[  809322ms] Failed to fetch dynamically imported module: http://127.0.0.1:5176/src/pages/Pdfme.jsx?t=1773337902633
+[  809299ms] [ERROR] The above error occurred in one of your React components:
+
+    at Lazy
+    at Suspense
+    at RenderedRoute (http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://127.0.0.1:5176/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:13625
+[  809323ms] Failed to fetch dynamically imported module: http://127.0.0.1:5176/src/pages/Pdfme.jsx?t=1773337902633
+[  813552ms] [WARNING] ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition. @ http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[  813552ms] [WARNING] ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath. @ http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[  959049ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:5176/vendor/pdfme/ui/dist/esm/styles/final-classes.css?t=1773338052428:0
+[  959069ms] [ERROR] [hmr] Failed to reload /vendor/pdfme/ui/dist/esm/styles/final-classes.css. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:5176/@vite/client:270
+[  961239ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:5176/vendor/pdfme/ui/dist/esm/components/Designer/RightSidebar/layout.js?t=1773338052517:0
+[  961246ms] [ERROR] [hmr] Failed to reload /vendor/pdfme/ui/dist/esm/components/Designer/RightSidebar/layout.js. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:5176/@vite/client:270
+[  962445ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:5176/vendor/pdfme/ui/dist/esm/components/Designer/LeftSidebarGroup.js?t=1773338052862:0
+[  962454ms] [ERROR] [hmr] Failed to reload /vendor/pdfme/ui/dist/esm/components/Designer/LeftSidebarGroup.js. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:5176/@vite/client:270
+[  962591ms] [WARNING] ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition. @ http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[  962591ms] [WARNING] ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath. @ http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[  962615ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:5176/vendor/pdfme/ui/dist/esm/index.js:0
+[  962836ms] Failed to fetch dynamically imported module: http://127.0.0.1:5176/src/pages/Pdfme.jsx?t=1773337902633
+[  962837ms] Failed to fetch dynamically imported module: http://127.0.0.1:5176/src/pages/Pdfme.jsx?t=1773337902633
+[  962617ms] [ERROR] The above error occurred in one of your React components:
+
+    at Lazy
+    at Suspense
+    at RenderedRoute (http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://127.0.0.1:5176/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:13625
+[  962839ms] Failed to fetch dynamically imported module: http://127.0.0.1:5176/src/pages/Pdfme.jsx?t=1773337902633
+[  965642ms] [WARNING] ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition. @ http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[  965642ms] [WARNING] ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath. @ http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[  965687ms] [ERROR] Failed to load resource: the server responded with a status of 500 (Internal Server Error) @ http://127.0.0.1:5176/vendor/pdfme/ui/dist/esm/index.js:0
+[  965752ms] Failed to fetch dynamically imported module: http://127.0.0.1:5176/src/pages/Pdfme.jsx?t=1773337902633
+[  965753ms] Failed to fetch dynamically imported module: http://127.0.0.1:5176/src/pages/Pdfme.jsx?t=1773337902633
+[  965692ms] [ERROR] The above error occurred in one of your React components:
+
+    at Lazy
+    at Suspense
+    at RenderedRoute (http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://127.0.0.1:5176/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:13625
+[  965753ms] Failed to fetch dynamically imported module: http://127.0.0.1:5176/src/pages/Pdfme.jsx?t=1773337902633
+[  966254ms] [WARNING] ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition. @ http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[  966254ms] [WARNING] ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath. @ http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[ 1375235ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:5176/vendor/pdfme/ui/dist/esm/styles/final-classes.css?t=1773338468523:0
+[ 1375243ms] [ERROR] [hmr] Failed to reload /vendor/pdfme/ui/dist/esm/styles/final-classes.css. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:5176/@vite/client:270
+[ 1378054ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:5176/vendor/pdfme/ui/dist/esm/components/Designer/RightSidebar/layout.js?t=1773338468600:0
+[ 1378054ms] [ERROR] Failed to load resource: the server responded with a status of 404 (Not Found) @ http://127.0.0.1:5176/vendor/pdfme/ui/dist/esm/components/Designer/LeftSidebarGroup.js?t=1773338468697:0
+[ 1378062ms] [ERROR] [hmr] Failed to reload /vendor/pdfme/ui/dist/esm/components/Designer/RightSidebar/layout.js. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:5176/@vite/client:270
+[ 1378063ms] [ERROR] [hmr] Failed to reload /vendor/pdfme/ui/dist/esm/components/Designer/LeftSidebarGroup.js. This could be due to syntax errors or importing non-existent modules. (see errors above) @ http://127.0.0.1:5176/@vite/client:270
+[ 1381331ms] [WARNING] ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition. @ http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[ 1381331ms] [WARNING] ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath. @ http://127.0.0.1:5176/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379

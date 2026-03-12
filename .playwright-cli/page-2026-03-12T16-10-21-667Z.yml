@@ -1,0 +1,13 @@
+- generic [ref=e3]:
+  - generic [ref=e4]: "[plugin:vite:import-analysis] Failed to resolve import \"/src/components/ContentCustomForm/core/infra/pdfme/schemaRegistry.js\" from \"vendor/pdfme/ui/dist/esm/components/Designer/LeftSidebar.js\". Does the file exist?"
+  - generic [ref=e5]: ../../../../src/components/Designer/LeftSidebar.tsx:23:141
+  - generic [ref=e6]: "18 | import { mergeClassNames } from \"./shared/className.js\"; 19 | import { builtInSchemaDefinitions, flatSchemaPlugins } from \"@pdfme/schemas\"; 20 | import { getCustomSchemaDefinitions, subscribeCustomSchemaDefinitions, upsertCustomSchemaDefinition, createCustomSchemaFromDefinition } from \"/src/components/ContentCustomForm/core/infra/pdfme/schemaRegistry.js\"; | ^ 21 | const schemaTypeCategoryMap = { 22 | text: \"Texto\","
+  - generic [ref=e7]: at formatError (file:///Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/node_modules/vite/dist/node/chunks/dep-3e87c7b2.js:40359:46) at TransformContext.error (file:///Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/node_modules/vite/dist/node/chunks/dep-3e87c7b2.js:40355:19) at normalizeUrl (file:///Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/node_modules/vite/dist/node/chunks/dep-3e87c7b2.js:37222:33) at async TransformContext.transform (file:///Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/node_modules/vite/dist/node/chunks/dep-3e87c7b2.js:37355:47) at async Object.transform (file:///Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/node_modules/vite/dist/node/chunks/dep-3e87c7b2.js:40612:30) at async loadAndTransform (file:///Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/node_modules/vite/dist/node/chunks/dep-3e87c7b2.js:36998:29
+  - generic [ref=e8]:
+    - text: Click outside or fix the code to dismiss.
+    - text: You can also disable this overlay by setting
+    - code [ref=e9]: server.hmr.overlay
+    - text: to
+    - code [ref=e10]: "false"
+    - text: in
+    - code [ref=e11]: vite.config.js.

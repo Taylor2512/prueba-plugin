@@ -1,0 +1,88 @@
+- generic [ref=e3]:
+  - navigation [ref=e4]:
+    - link "Home" [ref=e5] [cursor=pointer]:
+      - /url: /
+    - link "About" [ref=e6] [cursor=pointer]:
+      - /url: /about
+    - link "PDFME Lab" [ref=e7] [cursor=pointer]:
+      - /url: /pdfme
+  - main [ref=e10]:
+    - generic [ref=e12]:
+      - heading "Laboratorio PDFME" [level=1] [ref=e13]
+      - paragraph [ref=e14]: "Esta página agrupa funcionalidades documentadas: UI (`Designer`, `Form`, `Viewer`), generación (`generate`) y conversión (`pdf2size`, `pdf2img`, `img2pdf`)."
+    - generic [ref=e15]:
+      - complementary [ref=e16]:
+        - heading "Control" [level=2] [ref=e17]
+        - generic [ref=e18]:
+          - text: Modo UI
+          - combobox "Modo UI" [ref=e19]:
+            - option "designer" [selected]
+            - option "form"
+            - option "viewer"
+        - generic [ref=e20]:
+          - text: Tipo de schema para insertar
+          - combobox "Tipo de schema para insertar" [ref=e21]:
+            - option "Estructura - Tabla (table)"
+            - option "Fechas - Fecha (date)"
+            - option "Fechas - Fecha y hora (dateTime)"
+            - option "Fechas - Hora (time)"
+            - option "General - code128 (code128)"
+            - option "General - code39 (code39)"
+            - option "General - ean13 (ean13)"
+            - option "General - ean8 (ean8)"
+            - option "General - ellipse (ellipse)"
+            - option "General - gs1datamatrix (gs1datamatrix)"
+            - option "General - image (image)"
+            - option "General - itf14 (itf14)"
+            - option "General - japanpost (japanpost)"
+            - option "General - line (line)"
+            - option "General - nw7 (nw7)"
+            - option "General - pdf417 (pdf417)"
+            - option "General - qrcode (qrcode)"
+            - option "General - rectangle (rectangle)"
+            - option "General - svg (svg)"
+            - option "General - Texto (text)" [selected]
+            - option "General - Texto con variables (multiVariableText)"
+            - option "General - upca (upca)"
+            - option "General - upce (upce)"
+            - option "Opciones - Casilla de verificación (checkbox)"
+            - option "Opciones - Desplegable (select)"
+            - option "Opciones - Opción única (radioGroup)"
+        - generic [ref=e22]:
+          - button "Reiniciar template" [ref=e23] [cursor=pointer]
+          - button "Generar PDF" [ref=e24] [cursor=pointer]
+        - heading "Acciones DesignerRuntimeApi" [level=3] [ref=e25]
+        - generic [ref=e26]:
+          - button "Undo" [ref=e27] [cursor=pointer]
+          - button "Redo" [ref=e28] [cursor=pointer]
+          - button "Fit Width" [ref=e29] [cursor=pointer]
+          - button "Fit Page" [ref=e30] [cursor=pointer]
+          - button "Prev Page" [ref=e31] [cursor=pointer]
+          - button "Next Page" [ref=e32] [cursor=pointer]
+          - button "Toggle Sidebar" [ref=e33] [cursor=pointer]
+          - button "Add Schema" [ref=e34] [cursor=pointer]
+          - button "Prefill Demo" [ref=e35] [cursor=pointer]
+        - heading "Conversión" [level=3] [ref=e36]
+        - generic [ref=e37]:
+          - button "pdf2size" [ref=e38] [cursor=pointer]
+          - button "pdf2img" [ref=e39] [cursor=pointer]
+          - button "img2pdf" [ref=e40] [cursor=pointer]
+        - paragraph [ref=e41]: img2pdf completado
+        - generic [ref=e56]:
+          - heading "Tamaño de páginas (mm)" [level=4] [ref=e57]
+          - list [ref=e58]:
+            - listitem [ref=e59]: "Página 1: 210.01 x 297.01"
+      - generic [ref=e44]:
+        - article [ref=e45]:
+          - heading "PDF generado" [level=3] [ref=e46]
+          - iframe [ref=e54]:
+            
+          - button "Descargar PDF" [ref=e55] [cursor=pointer]
+        - article [ref=e48]:
+          - heading "Imágenes (pdf2img)" [level=3] [ref=e49]
+          - img "Página 1" [ref=e61]
+        - article [ref=e51]:
+          - heading "PDF reconstruido (img2pdf)" [level=3] [ref=e52]
+          - iframe [ref=e62]:
+            
+          - button "Descargar Roundtrip PDF" [ref=e63] [cursor=pointer]

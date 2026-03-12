@@ -1,0 +1,44 @@
+[     135ms] [WARNING] ⚠️ React Router Future Flag Warning: React Router will begin wrapping state updates in `React.startTransition` in v7. You can use the `v7_startTransition` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_starttransition. @ http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[     135ms] [WARNING] ⚠️ React Router Future Flag Warning: Relative route resolution within Splat routes is changing in v7. You can use the `v7_relativeSplatPath` future flag to opt-in early. For more information, see https://reactrouter.com/v6/upgrading/future#v7_relativesplatpath. @ http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4379
+[    2458ms] Error: Cannot update an unmounted root.
+    at ReactDOMHydrationRoot.render.ReactDOMRoot.render (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:20605:19)
+    at Form.render (http://localhost:4173/vendor/pdfme/ui/dist/esm/Form.js:51:28)
+    at http://localhost:4173/vendor/pdfme/ui/dist/esm/class.js:31:12
+    at http://localhost:4173/vendor/pdfme/ui/dist/esm/helper.js:47:26
+[    2768ms] [WARNING] [@pdfme/ui] Viewer component is deprecated and will be removed in a future version. @ http://localhost:4173/vendor/pdfme/ui/dist/esm/Viewer.js:9
+[   29937ms] Error: Cannot update an unmounted root.
+    at ReactDOMHydrationRoot.render.ReactDOMRoot.render (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:20605:19)
+    at Designer.render (http://localhost:4173/vendor/pdfme/ui/dist/esm/Designer.js:158:10)
+    at Designer.updateTemplate (http://localhost:4173/vendor/pdfme/ui/dist/esm/Designer.js:27:10)
+    at http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx?t=1773332511313:139:14
+    at commitHookEffectListMount (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:16463:34)
+    at commitPassiveMountOnFiber (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17704:19)
+    at commitPassiveMountEffects_complete (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17677:17)
+    at commitPassiveMountEffects_begin (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17667:15)
+    at commitPassiveMountEffects (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17657:11)
+    at flushPassiveEffectsImpl (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:19010:11)
+[   29919ms] [ERROR] The above error occurred in the <PdfmeLabPage> component:
+
+    at PdfmeLabPage (http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx?t=1773332511313:29:24)
+    at Pdfme
+    at Suspense
+    at RenderedRoute (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4074:5)
+    at Routes (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4543:5)
+    at div
+    at App
+    at Router (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:4486:15)
+    at BrowserRouter (http://localhost:4173/node_modules/.vite/deps/react-router-dom.js?v=667b2466:5230:5)
+
+Consider adding an error boundary to your tree to customize error handling behavior.
+Visit https://reactjs.org/link/error-boundaries to learn more about error boundaries. @ http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:13625
+[   29954ms] Error: Cannot update an unmounted root.
+    at ReactDOMHydrationRoot.render.ReactDOMRoot.render (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:20605:19)
+    at Designer.render (http://localhost:4173/vendor/pdfme/ui/dist/esm/Designer.js:158:10)
+    at Designer.updateTemplate (http://localhost:4173/vendor/pdfme/ui/dist/esm/Designer.js:27:10)
+    at http://localhost:4173/src/features/pdfme/PdfmeLabPage.jsx?t=1773332511313:139:14
+    at commitHookEffectListMount (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:16463:34)
+    at commitPassiveMountOnFiber (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17704:19)
+    at commitPassiveMountEffects_complete (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17677:17)
+    at commitPassiveMountEffects_begin (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17667:15)
+    at commitPassiveMountEffects (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:17657:11)
+    at flushPassiveEffectsImpl (http://localhost:4173/node_modules/.vite/deps/chunk-YQ5RYRPE.js?v=667b2466:19010:11)
