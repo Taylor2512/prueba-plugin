@@ -19,7 +19,6 @@ import LeftSidebarCustomFieldModal, {
 import { mergeClassNames } from './shared/className.js';
 import { builtInSchemaDefinitions, flatSchemaPlugins } from '@pdfme/schemas';
 import type { SchemaDefinition } from '@pdfme/schemas';
-// @ts-expect-error pdfme/ui consumes the app runtime registry from outside the package boundary.
 import {
   getCustomSchemaDefinitions,
   subscribeCustomSchemaDefinitions,
@@ -688,6 +687,25 @@ const LeftSidebar = ({
       .slice(0, 6) as CatalogSchemaItem[];
   }, [activeTab, groupedPlugins, recentPlugins]);
 
+  useEffect(() => {
+    if (activeTab === 'custom') return;
+    setCollapsedCategories((prev) => {
+      const next: Record<string, boolean> = { ...prev };
+      if (normalizedSearch) {
+        groupedPlugins.forEach(({ category }) => {
+          next[category] = false;
+        });
+        return next;
+      }
+      groupedPlugins.forEach(({ category }, index) => {
+        if (typeof next[category] === 'undefined') {
+          next[category] = index > 1;
+        }
+      });
+      return next;
+    });
+  }, [activeTab, groupedPlugins, normalizedSearch]);
+
   const updateCustomDraft = <K extends keyof CustomFieldDef>(key: K, value: CustomFieldDef[K]) => {
     setCustomDraft((prev) => ({ ...prev, [key]: value }));
   };
@@ -741,6 +759,8 @@ const LeftSidebar = ({
     setCustomModalOpen(false);
     setCustomDraft(makeDefaultCustomField());
   };
+
+  const [sidebarExpanded, setSidebarExpanded] = useState(false);
 
   const isPanel = variant === 'panel';
   const resolvedViewportWidth =
@@ -1150,12 +1170,27 @@ const LeftSidebar = ({
     </div>
   ) : null;
 
+  const isDiscoveryMode = activeTab !== 'custom' && !normalizedSearch && quickFilter === 'all';
+
   return (
     <div
       className={sidebarClass}
       data-sidebar-variant={variant}
       data-sidebar-detached={detached ? 'true' : 'false'}
-      data-sidebar-presentation={resolvedPresentation}>
+      data-sidebar-presentation={resolvedPresentation}
+      data-active-tab={activeTab}
+      data-has-search={normalizedSearch ? 'true' : 'false'}
+      data-discovery-mode={isDiscoveryMode ? 'true' : 'false'}
+      data-expanded={sidebarExpanded ? 'true' : 'false'}>
+      <button
+        type="button"
+        className={`${DESIGNER_CLASSNAME}left-sidebar-toggle-btn`}
+        aria-label={sidebarExpanded ? 'Cerrar panel de diseño' : 'Abrir panel de diseño'}
+        aria-expanded={sidebarExpanded}
+        onClick={() => setSidebarExpanded(prev => !prev)}
+      >
+        {sidebarExpanded ? '✕' : '⊞'}
+      </button>
       {useLayoutFrame ? (
         <SidebarFrame className={`${DESIGNER_CLASSNAME}left-sidebar-frame`}>
           <SidebarShell

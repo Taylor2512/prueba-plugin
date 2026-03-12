@@ -524,7 +524,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
   const zoomTier = zoomPercent < 80 ? 'low' : zoomPercent > 140 ? 'high' : 'medium';
   const activePageSchemaCount = (schemasList[pageCursor] || []).length;
   const selectionState = editing ? 'editing' : activeElements.length > 0 ? 'selected' : hoveringSchemaId ? 'hover' : 'idle';
-  const selectionCountState = activeElements.length > 1 ? 'multi' : activeElements.length === 1 ? 'single' : 'none';
+  const selectionCountState = activeElements.length > 1 ? 'multiple' : activeElements.length === 1 ? 'single' : 'none';
 
   useEffect(() => {
     paperRefs.current.forEach((paper, index) => {

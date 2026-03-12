@@ -16,8 +16,6 @@ const Paper = (props: {
 }) => {
   const {
     paperRefs,
-    scale,
-    size,
     schemasList,
     pageSizes,
     backgrounds,
@@ -40,23 +38,15 @@ const Paper = (props: {
         const pageSize = pageSizes[paperIndex];
         const paperSize = { width: pageSize.width * ZOOM, height: pageSize.height * ZOOM };
 
-        // We want to center the content within the available viewport, but transform: scale()
-        // must be done from the top-left or CSS crops off left-hand content as you zoom in.
-        // However, we want to display the content centrally, so we apply a left indent for
-        // when the content does not exceed its container
-        const leftCenteringIndent =
-          paperSize.width * scale + rulerHeight < size.width
-            ? `${(size.width / scale - paperSize.width) / 2}px`
-            : `${rulerHeight}px`;
-
-        // Rulers are drawn above/before the top of each page, so each Paper div must have
-        // a top offset considering them.
-        let pageTop = paperIndex > 0 ? (rulerHeight + PAGE_GAP) * (paperIndex + 1) : rulerHeight;
-
-        if (!hasRulers) {
-          // If no rulers (i.e. Preview/Form) then we'll add an initial gap at the top of the first page
-          pageTop += PAGE_GAP * 2;
-        }
+        // Keep page geometry explicit so the canvas never collapses to a tiny height.
+        // Layout is handled by flow (column stack), so we only need deterministic size + top gap.
+        const pageTopGap = hasRulers
+          ? paperIndex === 0
+            ? rulerHeight
+            : rulerHeight + PAGE_GAP
+          : paperIndex === 0
+            ? PAGE_GAP * 2
+            : PAGE_GAP;
 
         return (
           <div
@@ -75,6 +65,12 @@ const Paper = (props: {
               ) {
                 document.activeElement.blur();
               }
+            }}
+            style={{
+              position: 'relative',
+              width: `${paperSize.width + rulerHeight}px`,
+              height: `${paperSize.height + rulerHeight}px`,
+              marginTop: `${pageTopGap}px`,
             }}
             className={UI_CLASSNAME + "div-auto"}
           >

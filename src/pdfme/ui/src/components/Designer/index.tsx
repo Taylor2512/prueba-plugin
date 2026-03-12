@@ -232,8 +232,9 @@ const TemplateEditor = ({
     220,
     Math.min(rightSidebarWidthRaw, Math.floor(viewportWidth * (viewportWidth <= 768 ? 0.86 : 0.42))),
   );
+  // Canvas-first baseline: sidebars overlay the stage unless reserveSpace is explicitly enabled.
   const shouldReserveRightSidebarSpace =
-    (!rightSidebarDetached || rightSidebarReserveSpace) && rightSidebarPresentation === 'docked';
+    rightSidebarReserveSpace === true && rightSidebarPresentation === 'docked';
   const rightSidebarWidth = shouldReserveRightSidebarSpace ? responsiveRightSidebarWidthRaw : 0;
   const parsedLeftSidebarWidth = Number(options.leftSidebarWidth);
   const defaultSidebarWidth = leftSidebarVariant === 'panel' ? 240 : LEFT_SIDEBAR_WIDTH;
@@ -255,7 +256,7 @@ const TemplateEditor = ({
   );
   const shouldReserveLeftSidebarSpace =
     leftSidebarVisible &&
-    (!leftSidebarDetached || leftSidebarReserveSpace) &&
+    leftSidebarReserveSpace === true &&
     leftSidebarPresentation === 'docked';
   const leftSidebarWidth = shouldReserveLeftSidebarSpace ? responsiveLeftSidebarWidthRaw : 0;
 
@@ -269,6 +270,25 @@ const TemplateEditor = ({
   const [isSchemaDragging, setIsSchemaDragging] = useState(false);
   const [isDraggingOverCanvas, setIsDraggingOverCanvas] = useState(false);
   const [activeDragData, setActiveDragData] = useState<{ schema: Schema; type: string } | null>(null);
+  const [isIdle, setIsIdle] = useState(false);
+  const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  // Wix-inspired idle detection: after 4s of no interaction, mark UI as idle to reduce chrome
+  useEffect(() => {
+    const IDLE_DELAY = 4000;
+    const resetIdle = () => {
+      setIsIdle(false);
+      if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+      idleTimerRef.current = setTimeout(() => setIsIdle(true), IDLE_DELAY);
+    };
+    const events = ['mousemove', 'mousedown', 'keydown', 'touchstart', 'wheel'];
+    events.forEach((e) => document.addEventListener(e, resetIdle, { passive: true }));
+    resetIdle();
+    return () => {
+      events.forEach((e) => document.removeEventListener(e, resetIdle));
+      if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
+    };
+  }, []);
 
   useEffect(() => {
     ensureDesignerThemeStyles();
@@ -894,6 +914,8 @@ const TemplateEditor = ({
   const pageManipulation = isBlankPdf(template.basePdf)
     ? { addPageAfter: handleAddPageAfter, removePage: handleRemovePage }
     : {};
+  const stageSelectionState = activeElements.length > 0 ? 'selected' : hoveringSchemaId ? 'hover' : 'idle';
+  const stageSelectionCount = activeElements.length > 1 ? 'multiple' : activeElements.length === 1 ? 'single' : 'none';
   const documentItems = useMemo<DesignerDocumentItem[]>(
     () =>
       pageSizes.map((pageSize, index) => ({
@@ -1127,8 +1149,19 @@ const TemplateEditor = ({
           data-left-sidebar-detached={leftSidebarDetached ? 'true' : 'false'}
           data-left-sidebar-layout={leftSidebarUseLayout ? 'frame' : 'default'}
           data-right-sidebar-detached={rightSidebarDetached ? 'true' : 'false'}
+          data-sidebar-open={sidebarOpen ? 'true' : 'false'}
+          data-selection-state={stageSelectionState}
+          data-selection-count={stageSelectionCount}
+          data-is-dragging={isSchemaDragging ? 'true' : 'false'}
           data-schema-dragging={isSchemaDragging ? 'true' : 'false'}
-          data-schema-over-canvas={isDraggingOverCanvas ? 'true' : 'false'}>
+          data-schema-over-canvas={isDraggingOverCanvas ? 'true' : 'false'}
+          data-is-idle={isIdle ? 'true' : 'false'}
+          data-ui-state={
+            isSchemaDragging ? 'dragging'
+              : activeElements.length > 0 ? 'editing'
+                : hoveringSchemaId ? 'hovering'
+                  : 'idle'
+          }>
           <CtlBar
             size={sizeExcSidebars}
             pageCursor={pageCursor}

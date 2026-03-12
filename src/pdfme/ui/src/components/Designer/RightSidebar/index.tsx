@@ -198,6 +198,8 @@ const Sidebar = (props: RightSidebarProps) => {
       )}
       data-sidebar-detached={detached ? 'true' : 'false'}
       data-sidebar-presentation={actualPresentation}
+      data-sidebar-open={sidebarOpen ? 'true' : 'false'}
+      data-panel-mode={resolvedPanelMode}
       data-sidebar-mode={resolvedPanelMode}>
       <div
         className={mergeClassNames(DESIGNER_CLASSNAME + 'right-sidebar-content', props.classNames?.content)}

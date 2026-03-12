@@ -8,6 +8,8 @@ import { createInitialPdfmeTemplate } from './template'
 import { createObjectUrl, revokeObjectUrls, downloadUrl } from './utils/binary'
 
 const MODES = ['designer', 'form', 'viewer']
+const UX_MODES = ['default', 'canvas-first']
+const UX_MODE_STORAGE_KEY = 'pdfme.lab.ux-mode'
 const getErrorMessage = (error) => (error instanceof Error ? error.message : 'Error inesperado')
 
 export default function PdfmeLabPage() {
@@ -22,6 +24,7 @@ export default function PdfmeLabPage() {
   const [inputs, setInputs] = useState(getInputFromTemplate(initialTemplate))
   const [mode, setMode] = useState('designer')
   const [schemaType, setSchemaType] = useState('text')
+  const [uxMode, setUxMode] = useState('canvas-first')
   const [busy, setBusy] = useState(false)
   const [status, setStatus] = useState('Listo para probar funcionalidades de pdfme')
 
@@ -32,6 +35,23 @@ export default function PdfmeLabPage() {
   const [roundtripPdfUrl, setRoundtripPdfUrl] = useState('')
   const [isControlPanelPinned, setIsControlPanelPinned] = useState(false)
   const canRunDesignerActions = mode === 'designer' && !busy
+
+  useEffect(() => {
+    const searchParams = new URLSearchParams(window.location.search)
+    const modeFromQuery = searchParams.get('ux')
+    const modeFromStorage = window.localStorage.getItem(UX_MODE_STORAGE_KEY)
+    const candidate = [modeFromQuery, modeFromStorage].find((value) => UX_MODES.includes(String(value)))
+    if (candidate) {
+      setUxMode(candidate)
+      return
+    }
+    setUxMode('canvas-first')
+  }, [])
+
+  useEffect(() => {
+    if (!UX_MODES.includes(uxMode)) return
+    window.localStorage.setItem(UX_MODE_STORAGE_KEY, uxMode)
+  }, [uxMode])
 
   const clearDerivedResults = ({ clearGeneratedPdf = false } = {}) => {
     if (clearGeneratedPdf) {
@@ -309,7 +329,7 @@ export default function PdfmeLabPage() {
   }
 
   return (
-    <main className="pdfme-page">
+    <main className="pdfme-page" data-ux-mode={uxMode}>
       <header className="pdfme-header">
         <div>
           <h1>Laboratorio PDFME</h1>
@@ -344,6 +364,22 @@ export default function PdfmeLabPage() {
               disabled={busy}
             >
               {MODES.map((item) => (
+                <option key={item} value={item}>
+                  {item}
+                </option>
+              ))}
+            </select>
+          </label>
+
+          <label>
+            UX Mode
+            <select
+              data-testid="ux-mode-select"
+              value={uxMode}
+              onChange={(e) => setUxMode(e.target.value)}
+              disabled={busy}
+            >
+              {UX_MODES.map((item) => (
                 <option key={item} value={item}>
                   {item}
                 </option>
@@ -410,8 +446,8 @@ export default function PdfmeLabPage() {
           </aside>
         </div>
 
-        <section className="pdfme-workspace">
-          <div ref={containerRef} className="pdfme-canvas" />
+        <section className="pdfme-workspace" data-ux-mode={uxMode}>
+          <div ref={containerRef} className="pdfme-canvas" data-ux-mode={uxMode} />
 
           <div className="pdfme-output-grid">
             <article className="pdfme-output-card">

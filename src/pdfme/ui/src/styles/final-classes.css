@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+
+
 .pdfme-designer-root {
   position: relative;
   width: var(--pdfme-root-width, auto);
@@ -1631,8 +1634,6 @@
    Estética: Técnico-editorial oscuro con acentos en ámbar
    ============================================================ */
 
-@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
-
 /* ── Variables ───────────────────────────────────────────── */
 :root {
   /* Color palette */
@@ -1775,32 +1776,145 @@ body {
 .pdfme-grid {
   flex: 1;
   display: grid;
-  grid-template-columns: auto 1fr;
+  grid-template-columns: 1fr;
   overflow: hidden;
   min-height: 0;
+  position: relative;
 }
 
-/* ── Control panel dock ──────────────────────────────────── */
+/* ── Control panel dock — Wix-style overlay ──────────────── */
 .pdfme-panel-dock {
-  width: 260px;
-  background: var(--bg-elevated);
-  border-right: 1px solid var(--border-subtle);
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 200;
+  width: auto;
+  overflow: visible;
+  background: transparent;
+  border: none;
+  pointer-events: none;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
 }
 
+/* Trigger tab — always visible on left edge */
 .pdfme-panel-trigger {
-  display: none; /* hide hamburger when panel is inline */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: auto;
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 28px;
+  min-height: 84px;
+  border: 1px solid var(--border-soft);
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+  background: var(--bg-elevated);
+  color: var(--text-secondary);
+  cursor: pointer;
+  font-size: 15px;
+  font-family: var(--font-ui);
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.12);
+  transition: background 0.2s ease, box-shadow 0.2s ease, color 0.2s ease;
+  z-index: 10;
+  padding: 0;
+  line-height: 1;
+  writing-mode: horizontal-tb;
 }
 
+.pdfme-panel-trigger:hover {
+  background: var(--accent-dim);
+  color: var(--accent);
+  border-color: rgba(240, 165, 0, 0.35);
+  box-shadow: 2px 0 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Tooltip legend on trigger hover */
+.pdfme-panel-trigger::after {
+  content: 'Controles';
+  position: absolute;
+  left: calc(100% + 10px);
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(15, 23, 42, 0.96);
+  color: #f0f3f9;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 5px 10px;
+  font-size: 11.5px;
+  font-family: var(--font-ui);
+  font-weight: 500;
+  white-space: nowrap;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.15s ease 0.25s;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  z-index: 20;
+}
+
+.pdfme-panel-trigger:hover::after {
+  opacity: 1;
+}
+
+/* When panel is open — suppress trigger tooltip & reposition trigger */
+.pdfme-panel-dock.is-pinned .pdfme-panel-trigger {
+  top: 12px;
+  left: 224px; /* = panel-width(260) - trigger-width(28) - gap(8) */
+  transform: none;
+  min-height: 28px;
+  width: 28px;
+  border-radius: 6px;
+  border: 1px solid var(--border-soft);
+  background: var(--bg-hover);
+  color: var(--text-secondary);
+  box-shadow: none;
+  font-size: 12px;
+  z-index: 20;
+}
+
+.pdfme-panel-dock.is-pinned .pdfme-panel-trigger::after {
+  display: none;
+}
+
+.pdfme-panel-dock.is-pinned .pdfme-panel-trigger:hover {
+  background: var(--bg-surface);
+  color: #ef4444;
+}
+
+/* Panel: hidden overlay, slides in from left on click */
 .pdfme-panel {
-  padding: 18px 16px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 260px;
+  padding: 54px 16px 18px; /* top padding leaves room for close button */
   overflow-y: auto;
-  flex: 1;
+  flex: none;
+  pointer-events: none;
+  transform: translateX(-100%);
+  opacity: 0;
+  background: var(--bg-elevated);
+  border-right: 1px solid var(--border-subtle);
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.18);
+  z-index: 5;
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), opacity 220ms ease;
   scrollbar-width: thin;
   scrollbar-color: var(--border-soft) transparent;
 }
+
+/* Panel visible when dock is pinned */
+.pdfme-panel-dock.is-pinned .pdfme-panel {
+  transform: translateX(0);
+  opacity: 1;
+  pointer-events: auto;
+}
+
 
 .pdfme-panel h2 {
   font-family: var(--font-mono);
@@ -2516,7 +2630,6 @@ button[data-testid]:disabled {
 
 /* ── Responsive ──────────────────────────────────────────── */
 @media (max-width: 900px) {
-  .pdfme-panel-dock { width: 220px; }
   .pdfme-output-grid { grid-template-columns: 1fr; }
 }
 
@@ -2579,4 +2692,1116 @@ button[data-testid]:disabled {
 /* Right sidebar stays out of layout flow */
 .app-shell .pdfme-designer-right-sidebar {
   position: absolute;
+}
+
+/* ============================================================
+   PDFME LAB v3 — Canvas First (Wix-inspired, feature-flagged)
+   ============================================================ */
+.pdfme-page[data-ux-mode='canvas-first'] {
+  --bg: #0e1117;
+  --bg-2: #13171f;
+  --bg-3: #181d27;
+  --bg-4: #1d2333;
+  --surface: #242b3d;
+  --line: rgba(255, 255, 255, 0.06);
+  --line-2: rgba(255, 255, 255, 0.10);
+  --line-3: rgba(255, 255, 255, 0.16);
+  --amber: #f5a623;
+  --amber-dim: rgba(245, 166, 35, 0.12);
+  --amber-border: rgba(245, 166, 35, 0.28);
+  --t1: #f0f3f9;
+  --t2: #8b95aa;
+  --t3: #525c70;
+  --ls-collapsed: 52px;
+  --ls-expanded: 272px;
+  --rs-width: 268px;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-workspace {
+  background: var(--bg);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root {
+  --pdfme-root-bg: var(--bg);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar {
+  position: absolute ;
+  top: 0 ;
+  left: 0 ;
+  bottom: 0 ;
+  z-index: 80 ;
+  width: var(--ls-collapsed) ;
+  min-width: 0 ;
+  max-width: none ;
+  overflow: hidden ;
+  transition: width 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Expand sidebar when toggle button is clicked (data-expanded) */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-expanded='true'] {
+  width: var(--ls-expanded) ;
+  overflow: visible ;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-shell {
+  width: var(--ls-expanded) ;
+  background: var(--bg-2) ;
+  border-right: 1px solid var(--line) ;
+  box-shadow: 4px 0 24px rgba(0, 0, 0, 0.4) ;
+  padding: 0 ;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-content {
+  padding: 0 ;
+}
+
+/* ── Left sidebar Wix-style toggle button ──────────────────── */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-toggle-btn {
+  position: absolute ;
+  top: 8px ;
+  right: -36px ;
+  z-index: 90 ;
+  display: flex ;
+  align-items: center ;
+  justify-content: center ;
+  width: 32px ;
+  height: 32px ;
+  border: 1px solid var(--line-2) ;
+  border-radius: 0 8px 8px 0 ;
+  background: var(--bg-3) ;
+  color: var(--amber) ;
+  cursor: pointer ;
+  font-size: 15px ;
+  transition: background 0.2s ease, border-color 0.2s ease, color 0.2s ease ;
+  box-shadow: 2px 0 10px rgba(0, 0, 0, 0.35) ;
+  padding: 0 ;
+  line-height: 1 ;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-toggle-btn:hover {
+  background: var(--bg-4) ;
+  border-color: var(--amber-border) ;
+  color: var(--amber) ;
+  box-shadow: 2px 0 16px rgba(0, 0, 0, 0.5) ;
+}
+
+/* Tooltip on toggle button hover (only when collapsed) */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-expanded='false'] .pdfme-designer-left-sidebar-toggle-btn::after,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar:not([data-expanded='true']) .pdfme-designer-left-sidebar-toggle-btn::after {
+  content: 'Diseñador' ;
+  position: absolute ;
+  left: calc(100% + 10px) ;
+  top: 50% ;
+  transform: translateY(-50%) ;
+  background: rgba(15, 23, 42, 0.96) ;
+  color: #f0f3f9 ;
+  border: 1px solid rgba(255, 255, 255, 0.1) ;
+  border-radius: 6px ;
+  padding: 5px 10px ;
+  font-size: 11.5px ;
+  font-family: 'DM Sans', sans-serif ;
+  font-weight: 500 ;
+  white-space: nowrap ;
+  pointer-events: none ;
+  opacity: 0 ;
+  transition: opacity 0.15s ease 0.25s ;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4) ;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar:not([data-expanded='true']) .pdfme-designer-left-sidebar-toggle-btn:hover::after {
+  opacity: 1 ;
+}
+
+/* When expanded, toggle button acts as close (✕), positioned at top-right of panel */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-expanded='true'] .pdfme-designer-left-sidebar-toggle-btn {
+  right: 8px ;
+  border-radius: 6px ;
+  border-color: var(--line) ;
+  color: var(--t2) ;
+  font-size: 12px ;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-expanded='true'] .pdfme-designer-left-sidebar-toggle-btn:hover {
+  color: #ef4444 ;
+  border-color: rgba(239, 68, 68, 0.3) ;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-dock-header {
+  height: 42px ;
+  min-height: 42px ;
+  margin: 0 ;
+  padding: 0 16px 0 14px ;
+  border-bottom: 1px solid var(--line) ;
+  background: var(--bg-3) ;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-dock-header::before {
+  content: '⊞';
+  font-size: 16px;
+  color: var(--amber);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-dock-title,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-dock-section-title,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-tablist,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-search-wrap,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-group-title-label,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-group-title-count {
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-expanded='true'] .pdfme-designer-left-sidebar-dock-title,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-expanded='true'] .pdfme-designer-left-sidebar-dock-section-title,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-expanded='true'] .pdfme-designer-left-sidebar-tablist,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-expanded='true'] .pdfme-designer-left-sidebar-search-wrap,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-expanded='true'] .pdfme-designer-left-sidebar-group-title-label,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-expanded='true'] .pdfme-designer-left-sidebar-group-title-count {
+  opacity: 1;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-discovery-mode='true'] .pdfme-designer-left-sidebar-chip-row {
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transform: translateY(-4px);
+  transition: max-height 180ms ease, opacity 160ms ease, transform 180ms ease;
+  pointer-events: none;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-discovery-mode='true'][data-expanded='true'] .pdfme-designer-left-sidebar-chip-row,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-has-search='true'] .pdfme-designer-left-sidebar-chip-row {
+  max-height: 72px;
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-group-items {
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 320ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-expanded='true'] .pdfme-designer-left-sidebar-group-items,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-has-search='true'] .pdfme-designer-left-sidebar-group-items {
+  max-height: 2200px;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-plugin-btn[data-view-mode='compact'] {
+  min-height: 0 ;
+  padding: 6px 8px ;
+  border: 1px solid var(--line) ;
+  border-radius: 6px ;
+  background: var(--bg-4) ;
+  flex-direction: row ;
+  justify-content: flex-start ;
+  gap: 7px ;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-plugin-btn[data-view-mode='compact']:hover {
+  border-color: var(--amber-border) ;
+  background: var(--surface) ;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-plugin-btn[data-view-mode='compact'] > div {
+  width: 20px ;
+  height: 20px ;
+  border-radius: 3px ;
+  border: 0 ;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-plugin-btn[data-view-mode='compact'] .pdfme-designer-plugin-btn-label-title {
+  color: var(--t2) ;
+  font-size: 9.5px ;
+  text-align: left ;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage .pdfme-ui-control-bar {
+  min-height: 38px ;
+  height: 38px ;
+  padding: 0 12px ;
+  background: var(--bg-3) ;
+  border-bottom: 1px solid var(--line) ;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage .pdfme-ui-control-bar .pdfme-ui-pager {
+  opacity: 0;
+  max-width: 0;
+  overflow: hidden;
+  transition: opacity 140ms ease, max-width 180ms ease;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage:hover .pdfme-ui-control-bar .pdfme-ui-pager,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage:focus-within .pdfme-ui-control-bar .pdfme-ui-pager,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-selection-state='selected'] .pdfme-ui-control-bar .pdfme-ui-pager,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-is-dragging='true'] .pdfme-ui-control-bar .pdfme-ui-pager {
+  opacity: 1;
+  max-width: 180px;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-canvas {
+  overflow: auto ;
+  padding: 20px 20px 20px calc(var(--ls-collapsed) + 20px) ;
+  background: radial-gradient(ellipse at 30% 20%, rgba(245, 166, 35, 0.03) 0%, transparent 60%), var(--bg) ;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-expanded='true'] ~ .pdfme-designer-stage .pdfme-designer-canvas {
+  padding-left: calc(var(--ls-expanded) + 20px) ;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-right-sidebar {
+  position: absolute ;
+  top: 0 ;
+  right: 0 ;
+  bottom: 0 ;
+  width: var(--rs-width) ;
+  transform: translateX(100%) ;
+  opacity: 0 ;
+  pointer-events: none ;
+  transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1), opacity 220ms ease ;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage:hover .pdfme-designer-right-sidebar,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage:focus-within .pdfme-designer-right-sidebar,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-schema-over-canvas='true'] .pdfme-designer-right-sidebar,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-selection-state='selected'] .pdfme-designer-right-sidebar,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-sidebar-open='true'] .pdfme-designer-right-sidebar,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-right-sidebar[data-panel-mode='detail'] {
+  transform: translateX(0) ;
+  opacity: 1 ;
+  pointer-events: auto ;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-right-sidebar-content {
+  background: var(--bg-2) ;
+  border-left: 1px solid var(--line) ;
+  border-radius: 0 ;
+}
+
+/* ============================================================
+   WIX-INSPIRED PROGRESSIVE DISCLOSURE — v2
+   Estrategia: mostrar solo lo necesario según contexto/evento.
+   El canvas es protagonista; el chrome aparece cuando se necesita.
+   ============================================================ */
+
+/* ── Variables de velocidad de animación ──────────────────── */
+:root {
+  --wix-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --wix-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --wix-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --wix-reveal-dur: 220ms;
+  --wix-hide-dur: 180ms;
+  --wix-idle-opacity: 0.25;
+  --wix-hover-delay: 80ms;
+}
+
+/* ══════════════════════════════════════════════════════════
+   1. IDLE STATE — Reducción de chrome tras inactividad
+   Activado por data-is-idle='true' en el .pdfme-designer-stage
+   ══════════════════════════════════════════════════════════ */
+
+/* Cuando el usuario lleva 4s sin interactuar, la barra de control se desvanece */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-is-idle='true'] .pdfme-ui-control-bar {
+  opacity: var(--wix-idle-opacity) ;
+  transition: opacity 600ms ease ;
+}
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-is-idle='true'] .pdfme-ui-control-bar:hover {
+  opacity: 1 ;
+  transition: opacity 120ms ease ;
+}
+
+/* El panel de control lateral también se reduce */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-grid:has(.pdfme-designer-stage[data-is-idle='true']) .pdfme-panel-dock {
+  opacity: 0.35 ;
+  transition: opacity 600ms ease ;
+}
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-grid:has(.pdfme-designer-stage[data-is-idle='true']) .pdfme-panel-dock:hover {
+  opacity: 1 ;
+  transition: opacity 120ms ease ;
+}
+
+/* ══════════════════════════════════════════════════════════
+   2. EDITING/FOCUS MODE — Modo enfoque al seleccionar elemento
+   Activado por data-ui-state='editing' en el stage
+   ══════════════════════════════════════════════════════════ */
+
+/* Al editar un elemento, el panel lateral de control se retira visualmente */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-grid:has(.pdfme-designer-stage[data-ui-state='editing']) .pdfme-panel-dock {
+  opacity: 0.28 ;
+  pointer-events: none ;
+  transition: opacity 280ms ease ;
+}
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-grid:has(.pdfme-designer-stage[data-ui-state='editing']) .pdfme-panel-dock:hover {
+  opacity: 0.85 ;
+  pointer-events: auto ;
+  transition: opacity 120ms ease ;
+}
+
+/* La barra de control cobra más vida al editar */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-ui-state='editing'] .pdfme-ui-control-bar {
+  opacity: 1 ;
+  background: var(--bg-3) ;
+  border-bottom: 1px solid var(--amber-border) ;
+  box-shadow: 0 0 0 1px var(--amber-border), 0 4px 12px rgba(0,0,0,0.35) ;
+}
+
+/* Indicador sutil: el canvas borde brillante cuando hay selección activa */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-ui-state='editing'] .pdfme-designer-canvas {
+  background: radial-gradient(ellipse at 50% 0%, rgba(245, 166, 35, 0.05) 0%, transparent 50%),
+              radial-gradient(ellipse at 30% 20%, rgba(245, 166, 35, 0.03) 0%, transparent 60%),
+              var(--bg) ;
+}
+
+/* ══════════════════════════════════════════════════════════
+   3. DRAG MODE — Cuando se arrastra un schema desde el sidebar
+   Activado por data-ui-state='dragging' en el stage
+   ══════════════════════════════════════════════════════════ */
+
+/* La barra de control desaparece durante el drag para no distraer */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-ui-state='dragging'] .pdfme-ui-control-bar {
+  opacity: 0 ;
+  pointer-events: none ;
+  transition: opacity 150ms ease ;
+}
+
+/* El canvas indica que es una zona de soltar */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-schema-over-canvas='true'] .pdfme-designer-canvas {
+  outline: 2px dashed rgba(245, 166, 35, 0.6) ;
+  outline-offset: -4px ;
+}
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-schema-over-canvas='true'] .pdfme-designer-canvas [data-canvas-page='true'] {
+  border-color: rgba(245, 166, 35, 0.65) ;
+  box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.18), 0 14px 34px rgba(0, 0, 0, 0.42) ;
+  transition: border-color 120ms ease, box-shadow 120ms ease ;
+}
+
+/* ══════════════════════════════════════════════════════════
+   4. PANEL DOCK — Colapsado en canvas-first por defecto
+   El panel de control se convierte en un rail estrecho
+   ══════════════════════════════════════════════════════════ */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-panel-dock {
+  width: 0 ;
+  overflow: hidden ;
+  border-right: 0 ;
+  opacity: 0 ;
+  pointer-events: none ;
+  transition:
+    width 320ms var(--wix-ease-out),
+    opacity 220ms ease ;
+}
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-panel-dock.is-pinned {
+  width: 220px ;
+  opacity: 1 ;
+  pointer-events: auto ;
+  border-right: 1px solid var(--pdfme-dark-border-subtle) ;
+}
+
+/* FAB para mostrar el panel — botón flotante esquina inferior izquierda */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-panel-trigger {
+  display: flex ;
+  position: fixed ;
+  bottom: 18px ;
+  left: 68px ;
+  z-index: 200 ;
+  width: 36px ;
+  height: 36px ;
+  align-items: center ;
+  justify-content: center ;
+  border-radius: 50% ;
+  border: 1px solid var(--pdfme-dark-border-soft) ;
+  background: var(--pdfme-dark-elevated) ;
+  color: var(--pdfme-dark-text-muted) ;
+  cursor: pointer ;
+  font-size: 15px ;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.4) ;
+  transition: all 160ms ease ;
+  pointer-events: auto ;
+}
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-panel-trigger:hover {
+  background: var(--pdfme-dark-surface) ;
+  color: var(--pdfme-dark-text) ;
+  border-color: var(--pdfme-dark-border-strong) ;
+  transform: scale(1.08) ;
+}
+
+/* Cuando el panel está expandido, el FAB queda al lado del panel */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-panel-dock.is-pinned ~ .pdfme-workspace .pdfme-panel-trigger,
+.pdfme-page[data-ux-mode='canvas-first']:has(.pdfme-panel-dock.is-pinned) .pdfme-panel-trigger {
+  left: calc(220px + 68px + 6px) ;
+}
+
+/* ══════════════════════════════════════════════════════════
+   5. SIDEBAR IZQUIERDO — Icono rail mejorado con indicadores
+   Cuando está colapsado (52px), muestra indicadores de categoría
+   ══════════════════════════════════════════════════════════ */
+
+/* Rail de iconos: borde ámbar izquierdo al hover de la página */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar::before {
+  content: '';
+  position: absolute ;
+  left: 0 ;
+  top: 42px ;
+  bottom: 0 ;
+  width: 2px ;
+  background: linear-gradient(180deg,
+    rgba(245, 166, 35, 0.0) 0%,
+    rgba(245, 166, 35, 0.5) 30%,
+    rgba(245, 166, 35, 0.5) 70%,
+    rgba(245, 166, 35, 0.0) 100%
+  ) ;
+  opacity: 0 ;
+  transition: opacity 200ms ease ;
+}
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-expanded='true']::before {
+  opacity: 1 ;
+}
+
+/* Dot indicadores por categoría cuando colapsado — generados via CSS counter */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar:not([data-expanded='true']) .pdfme-designer-left-sidebar-group-title {
+  display: flex ;
+  align-items: center ;
+  justify-content: center ;
+  margin: 0 ;
+  padding: 5px 0 ;
+  border-bottom: 0 ;
+  cursor: default ;
+}
+
+/* Cada categoría muestra un punto de color cuando está colapsada */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar:not([data-expanded='true']) .pdfme-designer-left-sidebar-group-title::after {
+  content: '' ;
+  display: block ;
+  width: 6px ;
+  height: 6px ;
+  border-radius: 50% ;
+  background: rgba(245, 166, 35, 0.55) ;
+  border: 1px solid rgba(245, 166, 35, 0.3) ;
+  transition: transform 160ms ease ;
+}
+
+/* Tooltip lateral al hover del indicador */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar:not([data-expanded='true']) .pdfme-designer-left-sidebar-group-title-label {
+  position: absolute ;
+  left: 56px ;
+  background: var(--bg-3) ;
+  border: 1px solid var(--line-2) ;
+  border-radius: 6px ;
+  padding: 3px 8px ;
+  font-size: 10px ;
+  font-weight: 700 ;
+  letter-spacing: 0.06em ;
+  color: var(--t2) ;
+  white-space: nowrap ;
+  opacity: 0 ;
+  pointer-events: none ;
+  transform: translateX(-4px) ;
+  transition: opacity 150ms ease, transform 150ms ease ;
+  z-index: 999 ;
+}
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar:not([data-expanded='true']) .pdfme-designer-left-sidebar-group-title:hover .pdfme-designer-left-sidebar-group-title-label {
+  opacity: 1 ;
+  transform: translateX(0) ;
+}
+
+/* El header del dock colapsa a un botón de ícono */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar:not([data-expanded='true']) .pdfme-designer-left-sidebar-dock-header {
+  justify-content: center ;
+  padding: 0 ;
+  margin-bottom: 4px ;
+  padding-bottom: 4px ;
+}
+
+/* ══════════════════════════════════════════════════════════
+   6. SIDEBAR DERECHO — Peek retardado al deseleccionar
+   El panel no desaparece inmediatamente, da tiempo de procesar
+   ══════════════════════════════════════════════════════════ */
+
+/* Animación de entrada suave con spring */
+@keyframes wix-slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(16px) scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+}
+
+@keyframes wix-slide-out-right {
+  from {
+    opacity: 1;
+    transform: translateX(0) scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: translateX(16px) scale(0.97);
+  }
+}
+
+/* Sidebar derecho se muestra con spring animation */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage:has(.pdfme-designer-canvas[data-selection-state='selected']) .pdfme-designer-right-sidebar,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-ui-state='editing'] .pdfme-designer-right-sidebar {
+  animation: wix-slide-in-right 260ms var(--wix-ease-out) forwards ;
+}
+
+/* Zona invisible "peek" de 16px al borde derecho del canvas
+   para que el usuario no pierda el acceso al sidebar al mover el cursor */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-right-sidebar::after {
+  content: '' ;
+  position: absolute ;
+  top: 0 ;
+  left: -20px ;
+  width: 20px ;
+  height: 100% ;
+  background: transparent ;
+}
+
+/* ══════════════════════════════════════════════════════════
+   7. BARRA DE CONTROL — Contextual show/hide
+   Muestra herramientas adicionales según el estado
+   ══════════════════════════════════════════════════════════ */
+
+/* En canvas-first, la barra no es sticky sino flotante sobre el canvas */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage .pdfme-ui-control-bar {
+  border-radius: 10px ;
+  margin: 8px auto 0 ;
+  width: max-content ;
+  max-width: calc(100% - 80px) ;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.35), 0 0 0 1px var(--line-2) ;
+  transition: opacity 200ms ease, box-shadow 200ms ease ;
+  position: sticky ;
+  top: 8px ;
+  z-index: 50 ;
+}
+
+/* Cuando el sidebar izquierdo está expandido, el control bar se desplaza */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-expanded='true'] ~ .pdfme-designer-stage .pdfme-ui-control-bar {
+  margin-left: calc(var(--ls-expanded) - var(--ls-collapsed) + 8px) ;
+}
+
+/* ══════════════════════════════════════════════════════════
+   8. HOVER sobre elemento del canvas — Quick action micro-toolbar
+   Cuando data-ui-state='hovering', el elemento muestra acciones rápidas
+   ══════════════════════════════════════════════════════════ */
+
+/* El moveable control-box se hace más visible en hover state */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-ui-state='hovering'] .moveable-control-box {
+  --moveable-color: rgba(245, 166, 35, 0.85) ;
+}
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-ui-state='hovering'] .moveable-control-box .moveable-control {
+  background: rgba(245, 166, 35, 0.9) ;
+  border-color: rgba(255, 255, 255, 0.95) ;
+  box-shadow: 0 0 0 2px rgba(245, 166, 35, 0.35) ;
+}
+
+/* En editing state, los controles de moveable son más prominentes */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-ui-state='editing'] .moveable-control-box {
+  --moveable-color: var(--amber) ;
+}
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-ui-state='editing'] .moveable-control-box .moveable-control {
+  width: 10px ;
+  height: 10px ;
+  background: var(--amber) ;
+  border-color: #fff ;
+  box-shadow: 0 0 0 2px rgba(245, 166, 35, 0.4), 0 2px 6px rgba(0,0,0,0.4) ;
+}
+
+/* ══════════════════════════════════════════════════════════
+   9. CANVAS EMPTY STATE — Indicador contextual de arrastre
+   Aparece como guía visual cuando no hay elementos
+   ══════════════════════════════════════════════════════════ */
+@keyframes wix-pulse-border {
+  0%, 100% { border-color: rgba(245, 166, 35, 0.25); }
+  50%       { border-color: rgba(245, 166, 35, 0.65); }
+}
+
+/* El canvas vacío pulsa sutilmente cuando hay drag activo */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-ui-state='dragging'] .pdfme-designer-canvas-empty-state-card {
+  animation: wix-pulse-border 1.4s ease-in-out infinite ;
+  background: rgba(245, 166, 35, 0.05) ;
+  color: rgba(245, 166, 35, 0.8) ;
+}
+
+/* ══════════════════════════════════════════════════════════
+   10. BÚSQUEDA ACTIVA — Colapsa controles irrelevantes
+   Cuando data-has-search='true' en la sidebar, solo se muestra el catálogo
+   ══════════════════════════════════════════════════════════ */
+
+/* Al activar búsqueda, la sidebar se expande automáticamente */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-has-search='true'] {
+  width: var(--ls-expanded) ;
+}
+
+/* Los tabs de navegación se ocultan durante la búsqueda activa */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-has-search='true'] .pdfme-designer-left-sidebar-tablist {
+  opacity: 0.4 ;
+  pointer-events: none ;
+  max-height: 0 ;
+  overflow: hidden ;
+  margin-bottom: 0 ;
+  transition: all 160ms ease ;
+}
+
+/* El título de sección desaparece para dar más espacio */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-has-search='true'] .pdfme-designer-left-sidebar-dock-section-title {
+  opacity: 0 ;
+  max-height: 0 ;
+  overflow: hidden ;
+  margin-bottom: 0 ;
+  transition: all 160ms ease ;
+}
+
+/* ══════════════════════════════════════════════════════════
+   11. SCROLLBAR — In-canvas, ultra-minimal
+   Solo visible al interactuar con el scroll
+   ══════════════════════════════════════════════════════════ */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-canvas::-webkit-scrollbar {
+  width: 4px ;
+  height: 4px ;
+}
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-canvas::-webkit-scrollbar-track {
+  background: transparent ;
+}
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-canvas::-webkit-scrollbar-thumb {
+  background: rgba(245, 166, 35, 0.2) ;
+  border-radius: 99px ;
+}
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-canvas:hover::-webkit-scrollbar-thumb {
+  background: rgba(245, 166, 35, 0.4) ;
+}
+
+/* ══════════════════════════════════════════════════════════
+   12. SNAP LINES — Solo visibles en dragging/editing
+   ══════════════════════════════════════════════════════════ */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-snap-lines {
+  opacity: 0 ;
+  transition: opacity 100ms ease ;
+}
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-ui-state='editing'] .pdfme-designer-snap-lines,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-ui-state='dragging'] .pdfme-designer-snap-lines {
+  opacity: 1 ;
+}
+
+/* ══════════════════════════════════════════════════════════
+   13. TRANSITION MEJORADO — Animación de página de documento
+   ══════════════════════════════════════════════════════════ */
+@keyframes wix-page-appear {
+  from {
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+    filter: blur(1px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-canvas [data-canvas-page='true'] {
+  animation: wix-page-appear 340ms var(--wix-ease-out) ;
+}
+
+/* ══════════════════════════════════════════════════════════
+   14. MODO DEFAULT — Mejoras al modo no canvas-first
+   También aplica Wix-like progressive disclosure al modo default
+   ══════════════════════════════════════════════════════════ */
+
+/* Ocultación contextual del sidebar derecho en modo default */
+.pdfme-designer-root .pdfme-designer-stage[data-ui-state='idle'] .pdfme-designer-right-sidebar {
+  transition-delay: 800ms ;
+}
+.pdfme-designer-root .pdfme-designer-stage[data-ui-state='editing'] .pdfme-designer-right-sidebar,
+.pdfme-designer-root .pdfme-designer-stage[data-ui-state='hovering'] .pdfme-designer-right-sidebar,
+.pdfme-designer-root .pdfme-designer-stage[data-schema-over-canvas='true'] .pdfme-designer-right-sidebar {
+  transition-delay: 0ms ;
+}
+
+/* Atenuación suave del panel dock en modo default cuando se edita */
+.pdfme-designer-root .pdfme-grid:has(.pdfme-designer-stage[data-ui-state='editing']) .pdfme-panel-dock {
+  opacity: 0.5 ;
+  transition: opacity 400ms ease ;
+}
+.pdfme-designer-root .pdfme-grid:has(.pdfme-designer-stage[data-ui-state='editing']) .pdfme-panel-dock:hover {
+  opacity: 1 ;
+  transition: opacity 150ms ease ;
+}
+
+/* ══════════════════════════════════════════════════════════
+   15. GUÍAS de RULER — Se atenúan cuando no se interactúa
+   ══════════════════════════════════════════════════════════ */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-guides-ruler {
+  opacity: 0.4 ;
+  transition: opacity 300ms ease ;
+}
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-canvas:hover .pdfme-designer-guides-ruler,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-stage[data-ui-state='editing'] .pdfme-designer-guides-ruler {
+  opacity: 1 ;
+}
+
+/* ══════════════════════════════════════════════════════════
+   16. CHIP FILTERS — Ocultos por defecto, reveal on hover
+   Reduce el ruido visual en el sidebar
+   ══════════════════════════════════════════════════════════ */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-chip-row {
+  overflow: hidden ;
+  max-height: 0 ;
+  opacity: 0 ;
+  margin-bottom: 0 ;
+  pointer-events: none ;
+  transition: max-height 220ms var(--wix-ease-out), opacity 180ms ease, margin-bottom 220ms ease ;
+}
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-expanded='true'] .pdfme-designer-left-sidebar-chip-row,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-has-search='true'] .pdfme-designer-left-sidebar-chip-row {
+  max-height: 40px ;
+  opacity: 1 ;
+  margin-bottom: 6px ;
+  pointer-events: auto ;
+}
+
+/* Override canvas-first chip row (was conflicting with the discovery mode override) */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-discovery-mode='true'] .pdfme-designer-left-sidebar-chip-row {
+  max-height: 0 ;
+  opacity: 0 ;
+  pointer-events: none ;
+}
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-discovery-mode='true']:hover .pdfme-designer-left-sidebar-chip-row,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-discovery-mode='true']:focus-within .pdfme-designer-left-sidebar-chip-row,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-has-search='true'] .pdfme-designer-left-sidebar-chip-row {
+  max-height: 40px ;
+  opacity: 1 ;
+  pointer-events: auto ;
+}
+
+/* ============================================================
+   DEFAULT MODE — Left sidebar anchored left with trigger behavior
+   ============================================================ */
+.pdfme-page[data-ux-mode='default'] .pdfme-designer-root .pdfme-designer-left-sidebar[data-sidebar-variant='compact'] {
+  --ls-default-collapsed: 44px;
+  --ls-default-expanded: 272px;
+  position: absolute ;
+  top: 0 ;
+  left: 0 ;
+  bottom: 0 ;
+  z-index: 80 ;
+  width: var(--ls-default-collapsed) ;
+  min-width: var(--ls-default-collapsed) ;
+  max-width: var(--ls-default-collapsed) ;
+  overflow: hidden ;
+  transition: width 220ms cubic-bezier(0.16, 1, 0.3, 1) ;
+}
+
+.pdfme-page[data-ux-mode='default'] .pdfme-designer-root .pdfme-designer-left-sidebar[data-sidebar-variant='compact'][data-expanded='true'],
+.pdfme-page[data-ux-mode='default'] .pdfme-designer-root .pdfme-designer-left-sidebar[data-sidebar-variant='compact']:hover,
+.pdfme-page[data-ux-mode='default'] .pdfme-designer-root .pdfme-designer-left-sidebar[data-sidebar-variant='compact']:focus-within,
+.pdfme-page[data-ux-mode='default'] .pdfme-designer-root .pdfme-designer-left-sidebar[data-sidebar-variant='compact'][data-has-search='true'] {
+  width: var(--ls-default-expanded) ;
+  min-width: var(--ls-default-expanded) ;
+  max-width: var(--ls-default-expanded) ;
+}
+
+.pdfme-page[data-ux-mode='default'] .pdfme-designer-root .pdfme-designer-left-sidebar[data-sidebar-variant='compact'] .pdfme-designer-left-sidebar-content,
+.pdfme-page[data-ux-mode='default'] .pdfme-designer-root .pdfme-designer-left-sidebar[data-sidebar-variant='compact'] .pdfme-designer-left-sidebar-shell {
+  width: var(--ls-default-expanded) ;
+}
+
+.pdfme-page[data-ux-mode='default'] .pdfme-designer-root .pdfme-designer-left-sidebar[data-sidebar-variant='compact']:not([data-expanded='true']):not(:hover):not(:focus-within)[data-has-search='false'] .pdfme-designer-left-sidebar-content {
+  opacity: 0 ;
+  pointer-events: none ;
+}
+
+.pdfme-page[data-ux-mode='default'] .pdfme-designer-root .pdfme-designer-left-sidebar-toggle-btn {
+  position: absolute ;
+  top: 50% ;
+  right: 6px ;
+  transform: translate(100%, -50%) ;
+  width: 28px ;
+  min-height: 84px ;
+  border-radius: 0 10px 10px 0 ;
+  border: 1px solid rgba(148, 163, 184, 0.28) ;
+  background: rgba(15, 23, 42, 0.92) ;
+  color: #e2e8f0 ;
+  box-shadow: 0 4px 14px rgba(2, 6, 23, 0.28) ;
+  z-index: 85 ;
+}
+
+.pdfme-page[data-ux-mode='default'] .pdfme-designer-root .pdfme-designer-left-sidebar[data-expanded='true'] .pdfme-designer-left-sidebar-toggle-btn {
+  transform: translate(100%, -50%) rotate(180deg) ;
+}
+
+/* ============================================================
+   LAYOUT SAFETY OVERRIDES
+   Prevent canvas shrink caused by legacy width:auto rules.
+   ============================================================ */
+.pdfme-canvas[data-ux-mode] .pdfme-designer-root {
+  width: 100% ;
+  min-width: 0 ;
+  height: 100% ;
+  min-height: 0 ;
+}
+
+.pdfme-canvas[data-ux-mode] .pdfme-designer-background {
+  width: 100% ;
+  min-width: 0 ;
+  height: 100% ;
+  min-height: 0 ;
+  display: flex ;
+  position: relative ;
+  overflow: hidden ;
+}
+
+.pdfme-canvas[data-ux-mode] .pdfme-designer-stage {
+  flex: 1 1 auto ;
+  width: 100% ;
+  min-width: 0 ;
+  min-height: 0 ;
+}
+
+.pdfme-canvas[data-ux-mode] .pdfme-designer-canvas {
+  width: 100% ;
+  min-width: 0 ;
+  flex: 1 1 auto ;
+}
+
+/* ============================================================
+   PATCH v4 — Correcciones para el estado visible en screenshot
+   ============================================================ */
+
+/* 1. Página PDF: forzar blanco y visible sin depender de data-ux-mode
+   El runtime inyecta inline style con width/height; no forzar aspect-ratio
+   que conflictuaría con esas dimensiones inline.
+─────────────────────────────────────────────────────────────────────── */
+.app-shell .pdfme-designer-root .pdfme-designer-canvas [data-canvas-page='true'] {
+  background: #ffffff !important;
+  box-shadow:
+    0 2px 8px rgba(0, 0, 0, 0.35),
+    0 16px 48px rgba(0, 0, 0, 0.55),
+    0 0 0 1px rgba(255, 255, 255, 0.12) !important;
+  border: none !important;
+  border-radius: 3px !important;
+  /* No forzar aspect-ratio cuando hay inline styles — el runtime controla */
+  aspect-ratio: unset !important;
+  /* Tampoco limitar height: el runtime ya da las dimensiones exactas */
+  max-height: none !important;
+}
+
+/* 2. Padding indicators: amber suave, no rojo */
+.app-shell .pdfme-designer-root .pdfme-designer-canvas [data-canvas-page='true'] > .pdfme-designer-padding {
+  background: rgba(240, 165, 0, 0.08) !important;
+  mix-blend-mode: normal !important;
+  opacity: 1 !important;
+}
+
+/* 3. Canvas background: dot-grid atmosférico oscuro */
+.app-shell .pdfme-designer-root .pdfme-designer-canvas {
+  background:
+    radial-gradient(circle at center, rgba(240, 165, 0, 0.025) 0%, transparent 65%),
+    linear-gradient(rgba(255,255,255,0.022) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.022) 1px, transparent 1px),
+    #1a1f2b !important;
+  background-size: 100% 100%, 24px 24px, 24px 24px !important;
+  background-position: center, 0 0, 0 0 !important;
+  padding: 20px !important;
+  align-items: flex-start !important;
+  justify-content: center !important;
+}
+
+/* 4. Header compacto — reduce altura para dar más espacio al canvas */
+.app-shell .pdfme-header {
+  padding: 10px 20px 9px !important;
+}
+
+.app-shell .pdfme-header h1 {
+  font-size: 13px !important;
+  margin: 0 !important;
+}
+
+.app-shell .pdfme-header p {
+  display: none !important; /* ocultar descripción larga para ganar altura */
+}
+
+/* 5. Zoom bar flotante — superpuesta al canvas (no ocupa fila del grid)
+   La pdfme-ui-control-bar ya está como sticky top:0 por las clases base.
+   La reposicionamos como overlay floating pill.
+─────────────────────────────────────────────────────────────────────── */
+.app-shell .pdfme-designer-root .pdfme-designer-stage {
+  position: relative !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-ui-control-bar {
+  position: absolute !important;
+  top: 12px !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  width: auto !important;
+  min-width: 0 !important;
+  min-height: 32px !important;
+  height: 32px !important;
+  border-radius: 100px !important;
+  padding: 0 12px !important;
+  z-index: 60 !important;
+  background: rgba(13, 15, 19, 0.88) !important;
+  backdrop-filter: blur(12px) !important;
+  border: 1px solid rgba(255, 255, 255, 0.1) !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 1px 0 rgba(255,255,255,0.05) inset !important;
+  /* Por defecto semitransparente; opaco al hover */
+  opacity: 0.65 !important;
+  transition: opacity 0.2s ease !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-ui-control-bar:hover,
+.app-shell .pdfme-designer-root .pdfme-designer-stage:hover .pdfme-ui-control-bar {
+  opacity: 1 !important;
+}
+
+/* El canvas no necesita top padding para la barra ya que está absolute */
+.app-shell .pdfme-designer-root .pdfme-designer-stage {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 0 !important;
+  height: 100% !important;
+  overflow: hidden !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-canvas {
+  flex: 1 1 auto !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: auto !important;
+}
+
+/* 6. Grid del pdfme: canvas ocupa todo el ancho (sin columna extra) */
+.app-shell .pdfme-grid {
+  grid-template-columns: 1fr !important;
+  position: relative !important;
+}
+
+/* 7. Workspace y canvas: altura total */
+.app-shell .pdfme-workspace {
+  flex: 1 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.app-shell .pdfme-canvas {
+  flex: 1 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+.app-shell .pdfme-designer-root {
+  width: 100% !important;
+  height: 100% !important;
+  min-height: 0 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.app-shell .pdfme-designer-background {
+  flex: 1 !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+  display: flex !important;
+  position: relative !important;
+}
+
+/* 8. Right sidebar: posición absoluta over canvas */
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar {
+  position: absolute !important;
+  top: 52px !important;
+  right: 10px !important;
+  bottom: 10px !important;
+  width: clamp(244px, 18vw, 300px) !important;
+  z-index: 70 !important;
+}
+
+/* 9. Left sidebar: width fijo, sin overflow que tape el canvas */
+.app-shell .pdfme-designer-root .pdfme-designer-background {
+  flex-direction: row !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar {
+  flex-shrink: 0 !important;
+  position: relative !important;
+  z-index: 10 !important;
+  overflow: hidden !important;
+  transition: width 220ms cubic-bezier(0.16, 1, 0.3, 1) !important;
+}
+
+/* 10. Empty state: centrada y visible */
+.app-shell .pdfme-designer-root .pdfme-designer-canvas-empty-state-card {
+  background: rgba(10, 13, 20, 0.82) !important;
+  backdrop-filter: blur(8px) !important;
+  border: 1px dashed rgba(240, 165, 0, 0.3) !important;
+  color: rgba(139, 147, 168, 0.9) !important;
+  font-size: 12px !important;
+  padding: 14px 20px !important;
+  border-radius: 10px !important;
+  max-width: 300px !important;
+  text-align: center !important;
+  line-height: 1.6 !important;
+}
+
+/* 11. Output grid: compacto, 3 columnas iguales */
+.app-shell .pdfme-output-grid {
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 8px !important;
+  padding: 10px 16px !important;
+  flex-shrink: 0 !important;
+}
+
+.app-shell .pdfme-output-card {
+  padding: 10px 12px !important;
+}
+
+/* 12. Rulers: dark theme compatible */
+.app-shell .pdfme-designer-root .pdfme-designer-guides-corner {
+  background: #1a1f2b !important;
+  border-color: rgba(255,255,255,0.08) !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-guides-ruler-horizontal {
+  border-bottom-color: rgba(255,255,255,0.08) !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-guides-ruler-vertical {
+  border-right-color: rgba(255,255,255,0.08) !important;
+}
+
+/* 13. Zoom buttons consistentes */
+.app-shell .pdfme-designer-root .pdfme-ui-zoom-out,
+.app-shell .pdfme-designer-root .pdfme-ui-zoom-in {
+  color: #e2e8f0 !important;
+  background: transparent !important;
+  border: none !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-ui-control-bar .ant-typography,
+.app-shell .pdfme-designer-root .pdfme-ui-control-bar .ant-btn,
+.app-shell .pdfme-designer-root .pdfme-ui-control-bar .ant-select-selection-item,
+.app-shell .pdfme-designer-root .pdfme-ui-control-bar .ant-select-arrow {
+  color: #dbe3ef !important;
+}
+
+/* 14. Plugin buttons compact: aplicar overrides inline */
+.app-shell .pdfme-designer-root .pdfme-designer-plugin-btn[data-view-mode='compact'] {
+  background: #1f2534 !important;
+  border-color: rgba(255,255,255,0.07) !important;
+  color: #c9d2df !important;
+  min-height: 36px !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-plugin-btn[data-view-mode='compact']:hover {
+  background: #2a3142 !important;
+  border-color: rgba(240,165,0,0.35) !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-plugin-btn[data-view-mode='compact'] .pdfme-designer-plugin-btn-label-title {
+  color: #c9d2df !important;
 }
