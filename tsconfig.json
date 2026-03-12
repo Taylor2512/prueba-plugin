@@ -1,31 +1,50 @@
 {
   "compilerOptions": {
     "target": "ES2020",
-    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "lib": [
+      "ES2020",
+      "DOM",
+      "DOM.Iterable"
+    ],
     "module": "ESNext",
     "moduleResolution": "Bundler",
     "jsx": "react-jsx",
-
     "strict": false,
     "noImplicitAny": false,
-
     "allowJs": true,
     "checkJs": false,
     "noEmit": true,
-
     "skipLibCheck": true,
     "isolatedModules": true,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-
     "baseUrl": ".",
     "paths": {
-      "@/*": ["src/*"]
+      "@/*": [
+        "src/*"
+      ],
+      "@pdfme/*": [
+        "src/pdfme/*/src"
+      ],
+      "@pdfme/converter": [
+        "src/pdfme/converter/src/index.browser.ts"
+      ],
+      "@pdfme/pdf-lib": [
+        "src/pdfme/pdf-lib/src"
+      ]
     },
-
-    "types": ["vite/client", "node"]
+    "types": [
+      "vite/client",
+      "node"
+    ]
   },
-  "include": ["src", "vite.config.*"],
-  "exclude": ["dist", "node_modules"]
+  "include": [
+    "src",
+    "vite.config.*"
+  ],
+  "exclude": [
+    "dist",
+    "node_modules"
+  ]
 }
