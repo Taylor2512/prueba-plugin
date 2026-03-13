@@ -10,7 +10,6 @@ import {
   UIOptions,
 } from '@pdfme/common';
 import { theme as antdTheme } from 'antd';
-import { Asterisk, Lock, LockOpen, Trash2 } from 'lucide-react';
 import { SELECTABLE_CLASSNAME, UI_CLASSNAME } from '../constants.js';
 import { PluginsRegistry, OptionsContext, I18nContext, CacheContext } from '../contexts.js';
 import { resolveSchemaTone } from './Designer/shared/schemaTone.js';
@@ -29,9 +28,6 @@ type RendererProps = Omit<
   isActive?: boolean;
   isHovering?: boolean;
   isEditing?: boolean;
-  onDeleteSchema?: () => void;
-  onToggleRequired?: () => void;
-  onToggleReadOnly?: () => void;
 };
 
 type ReRenderCheckProps = {
@@ -157,83 +153,6 @@ const useRerenderDependencies = (arg: ReRenderCheckProps) => {
   }, [value, mode, scale, schema, optionStr, plugin]);
 };
 
-const QuickActionButton = ({
-  label,
-  active = false,
-  onClick,
-  children,
-}: {
-  label: string;
-  active?: boolean;
-  onClick: () => void;
-  children: React.ReactNode;
-}) => (
-  <button
-    type="button"
-    aria-label={label}
-    title={label}
-    className={UI_CLASSNAME + 'schema-toolbar-btn'}
-    data-active={active ? 'true' : 'false'}
-    onMouseDown={(event) => {
-      event.preventDefault();
-      event.stopPropagation();
-    }}
-    onClick={(event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      onClick();
-    }}>
-    {children}
-  </button>
-);
-
-const QuickActions = ({
-  selectable,
-  isVisible,
-  required,
-  readOnly,
-  onDeleteSchema,
-  onToggleRequired,
-  onToggleReadOnly,
-}: {
-  selectable: boolean;
-  isVisible: boolean;
-  required?: boolean;
-  readOnly?: boolean;
-  onDeleteSchema?: () => void;
-  onToggleRequired?: () => void;
-  onToggleReadOnly?: () => void;
-}) => {
-  if (!selectable || !isVisible) return null;
-  if (!onDeleteSchema && !onToggleRequired && !onToggleReadOnly) return null;
-
-  return (
-    <div className={UI_CLASSNAME + 'schema-toolbar'}>
-      {onToggleRequired ? (
-        <QuickActionButton
-          label={required ? 'Quitar requerido' : 'Marcar como requerido'}
-          active={Boolean(required)}
-          onClick={onToggleRequired}>
-          <Asterisk size={12} />
-        </QuickActionButton>
-      ) : null}
-      {onToggleReadOnly ? (
-        <QuickActionButton
-          label={readOnly ? 'Desbloquear campo' : 'Bloquear campo'}
-          active={Boolean(readOnly)}
-          onClick={onToggleReadOnly}>
-          {readOnly ? <Lock size={12} /> : <LockOpen size={12} />}
-        </QuickActionButton>
-      ) : null}
-      {onDeleteSchema ? (
-        <QuickActionButton label="Eliminar campo" onClick={onDeleteSchema}>
-          <Trash2 size={12} />
-        </QuickActionButton>
-      ) : null}
-    </div>
-  );
-};
-
 const Wrapper = ({
   children,
   outline,
@@ -243,9 +162,6 @@ const Wrapper = ({
   isActive = false,
   isHovering = false,
   isEditing = false,
-  onDeleteSchema,
-  onToggleRequired,
-  onToggleReadOnly,
 }: RendererProps & { children: ReactNode }) => {
   const styleSchema = schema as DesignerStyleAwareSchema;
   const schemaClassName =
@@ -311,16 +227,6 @@ const Wrapper = ({
       data-schema-readonly={schema.readOnly ? 'true' : 'false'}
       data-schema-required={schema.required ? 'true' : 'false'}
       data-schema-selectable={selectable ? 'true' : 'false'}>
-      <QuickActions
-        selectable={selectable}
-        isVisible={showQuickActions}
-        required={schema.required}
-        readOnly={schema.readOnly}
-        onDeleteSchema={onDeleteSchema}
-        onToggleRequired={onToggleRequired}
-        onToggleReadOnly={onToggleReadOnly}
-      />
-      {schema.required && <span className={UI_CLASSNAME + "span-auto"}>*</span>}
       {children}
     </div>
   );

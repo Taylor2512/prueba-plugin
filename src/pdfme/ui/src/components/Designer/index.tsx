@@ -19,6 +19,8 @@ import PluginIcon from './PluginIcon.js';
 import RightSidebarDefault from './RightSidebar/index.js';
 import LeftSidebarDefault from './LeftSidebar.js';
 import Canvas from './Canvas/index.js';
+import { createSelectionCommands } from './shared/selectionCommands.js';
+import type { InteractionState } from './shared/interactionState.js';
 import { Trash2, Plus } from 'lucide-react';
 import {
   RULER_HEIGHT,
@@ -276,6 +278,18 @@ const TemplateEditor = ({
 
   const [hoveringSchemaId, setHoveringSchemaId] = useState<string | null>(null);
   const [activeElements, setActiveElements] = useState<HTMLElement[]>([]);
+  const [interactionState, setInteractionState] = useState<InteractionState>({
+    phase: 'idle',
+    selectionCount: 0,
+    hasSelection: false,
+    isHovering: false,
+    isDragging: false,
+    isResizing: false,
+    isRotating: false,
+  });
+  const handleInteractionStateChange = useCallback((next: InteractionState) => {
+    setInteractionState(next);
+  }, []);
   const [schemasList, setSchemasList] = useState<SchemaForUI[][]>([[]] as SchemaForUI[][]);
   const [pageCursor, setPageCursor] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(options.zoomLevel ?? 1);
@@ -287,7 +301,12 @@ const TemplateEditor = ({
   const [isIdle, setIsIdle] = useState(false);
   const [uploadedDocuments, setUploadedDocuments] = useState<UploadedPdfDocument[]>([]);
   const [activeDocumentId, setActiveDocumentId] = useState<string | null>(null);
+  const [rightSidebarViewMode, setRightSidebarViewMode] = useState<'auto' | 'fields' | 'detail' | 'docs'>('auto');
   const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const openPropertiesPanel = useCallback(() => {
+    setSidebarOpen(true);
+    setRightSidebarViewMode('detail');
+  }, []);
 
   useEffect(() => {
     if (!activeElements.length) return;
@@ -432,6 +451,34 @@ const TemplateEditor = ({
     [commitSchemas, pageCursor, schemasList, pluginsRegistry, pageSizes, template.basePdf],
   );
 
+  const currentPageSize = useMemo(
+    () => pageSizes[pageCursor] ?? { width: 0, height: 0 },
+    [pageCursor, pageSizes],
+  );
+  const selectionCommands = useMemo(
+    () =>
+      createSelectionCommands({
+        activeElements,
+        schemasList,
+        pageCursor,
+        pageSize: currentPageSize,
+        changeSchemas,
+        commitSchemas,
+        removeSchemas,
+        onOpenProperties: openPropertiesPanel,
+      }),
+    [
+      activeElements,
+      schemasList,
+      pageCursor,
+      currentPageSize,
+      changeSchemas,
+      commitSchemas,
+      removeSchemas,
+      openPropertiesPanel,
+    ],
+  );
+
   useInitEvents({
     pageCursor,
     pageSizes,
@@ -447,6 +494,7 @@ const TemplateEditor = ({
     setSchemasList,
     onEdit,
     onEditEnd,
+    selectionCommands,
   });
 
   const updateTemplate = useCallback(async (newTemplate: Template) => {
@@ -913,6 +961,11 @@ const TemplateEditor = ({
         isDraggingOverCanvas,
         activeSchemaIds: activeElements.map((element) => element.id),
         hoveringSchemaId,
+        interactionPhase: interactionState.phase,
+        interactionCount: interactionState.selectionCount,
+        isDragging: interactionState.isDragging,
+        isResizing: interactionState.isResizing,
+        isRotating: interactionState.isRotating,
       },
     }),
     [
@@ -1094,8 +1147,6 @@ const TemplateEditor = ({
   const pageManipulation = isBlankPdf(template.basePdf)
     ? { addPageAfter: handleAddPageAfter, removePage: handleRemovePage }
     : {};
-  const stageSelectionState = activeElements.length > 0 ? 'selected' : hoveringSchemaId ? 'hover' : 'idle';
-  const stageSelectionCount = activeElements.length > 1 ? 'multiple' : activeElements.length === 1 ? 'single' : 'none';
   const pageItems = useMemo<DesignerDocumentItem[]>(() => {
     if (uploadedDocuments.length > 0) {
       return uploadedDocuments.flatMap((doc, docIndex) => {
@@ -1263,6 +1314,9 @@ const TemplateEditor = ({
       }}
       showDocumentsRail={pageItems.length > 0 || uploadedDocumentItems.length > 0}
       autoFocusDetail={true}
+      viewMode={rightSidebarViewMode}
+      onViewModeChange={(mode) => setRightSidebarViewMode(mode)}
+      selectionCommands={selectionCommands}
       className={
         [
           typeof options.rightSidebarClassName === 'string' ? options.rightSidebarClassName : '',
@@ -1404,17 +1458,23 @@ const TemplateEditor = ({
           data-left-sidebar-layout={leftSidebarUseLayout ? 'frame' : 'default'}
           data-right-sidebar-detached={rightSidebarDetached ? 'true' : 'false'}
           data-sidebar-open={sidebarOpen ? 'true' : 'false'}
-          data-selection-state={stageSelectionState}
-          data-selection-count={stageSelectionCount}
           data-is-dragging={isSchemaDragging ? 'true' : 'false'}
           data-schema-dragging={isSchemaDragging ? 'true' : 'false'}
           data-schema-over-canvas={isDraggingOverCanvas ? 'true' : 'false'}
           data-is-idle={isIdle ? 'true' : 'false'}
+          data-interaction-phase={interactionState.phase}
+          data-interaction-count={String(interactionState.selectionCount)}
+          data-interaction-dragging={interactionState.isDragging ? 'true' : 'false'}
+          data-interaction-resizing={interactionState.isResizing ? 'true' : 'false'}
+          data-interaction-rotating={interactionState.isRotating ? 'true' : 'false'}
           data-ui-state={
-            isSchemaDragging ? 'dragging'
-              : activeElements.length > 0 ? 'editing'
-                : hoveringSchemaId ? 'hovering'
-                  : 'idle'
+            interactionState.isDragging
+              ? 'dragging'
+              : interactionState.isResizing
+                ? 'resizing'
+                : interactionState.isRotating
+                  ? 'rotating'
+                  : interactionState.phase
           }>
           <CtlBar
             size={sizeExcSidebars}
@@ -1466,8 +1526,10 @@ const TemplateEditor = ({
             styleOverrides={designerEngine.canvas?.styleOverrides}
             classNames={designerEngine.canvas?.classNames}
             useDefaultStyles={designerEngine.canvas?.useDefaultStyles ?? true}
-            components={designerEngine.canvas?.components}
-            bridge={componentBridge}
+          components={designerEngine.canvas?.components}
+          bridge={componentBridge}
+          selectionCommands={selectionCommands}
+          onInteractionStateChange={handleInteractionStateChange}
           />
         </div>
         <DragOverlay zIndex={1000} className={DESIGNER_CLASSNAME + "dragoverlay-auto"}>

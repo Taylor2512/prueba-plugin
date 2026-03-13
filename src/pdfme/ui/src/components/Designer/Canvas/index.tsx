@@ -37,6 +37,10 @@ import Padding from './Padding.js';
 import StaticSchema from '../../StaticSchema.js';
 import SnapLines, { computeSnapResult, SnapLine } from './SnapLines.js';
 import { resolveSchemaTone } from '../shared/schemaTone.js';
+import { deriveInteractionState } from '../shared/interactionState.js';
+import type { InteractionState } from '../shared/interactionState.js';
+import type { SelectionCommandSet } from '../shared/selectionCommands.js';
+import CanvasOverlayManager from './overlays/CanvasOverlayManager.js';
 
 const mm2px = (mm: number) => mm * 3.7795275591;
 
@@ -221,6 +225,8 @@ export interface CanvasProps {
   useDefaultStyles?: boolean;
   components?: CanvasComponentSlots;
   bridge?: DesignerComponentBridge;
+  selectionCommands?: SelectionCommandSet;
+  onInteractionStateChange?: (state: InteractionState) => void;
 }
 
 const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
@@ -241,13 +247,15 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     paperRefs,
     sidebarOpen,
     sidebarWidth = 0,
-    preserveSidebarSpace = true,
-    featureToggles,
-    styleOverrides,
-    classNames,
-    useDefaultStyles = true,
-    components,
-  } = props;
+  preserveSidebarSpace = true,
+  featureToggles,
+  styleOverrides,
+  classNames,
+  useDefaultStyles = true,
+  components,
+  selectionCommands,
+  onInteractionStateChange,
+} = props;
   const SelectoSlot = components?.Selecto || Selecto;
   const SnapLinesSlot = components?.SnapLines || SnapLines;
   const GuidesSlot = components?.Guides || Guides;
@@ -276,6 +284,9 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
   const [snapLines, setSnapLines] = useState<SnapLine[]>([]);
   const snapRafRef = useRef<number | null>(null);
   const snapLinesKeyRef = useRef<string>('');
+  const [isDragging, setIsDragging] = useState(false);
+  const [isResizing, setIsResizing] = useState(false);
+  const [isRotating, setIsRotating] = useState(false);
 
   const prevSchemas = usePrevious(schemasList[pageCursor]);
 
@@ -370,6 +381,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
   };
 
   const onDragEnd = ({ target }: { target: HTMLElement | SVGElement }) => {
+    setIsDragging(false);
     const { top, left } = target.style;
     changeSchemas(buildPositionChanges(target.id, top, left));
     setSnapLines([]);
@@ -388,6 +400,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
   };
 
   const onRotateEnd = ({ target }: { target: HTMLElement | SVGElement }) => {
+    setIsRotating(false);
     const normalizedRotate = parseRotateFromTransform(target.style.transform);
     changeSchemas([{ key: 'rotate', value: normalizedRotate, schemaId: target.id }]);
   };
@@ -401,6 +414,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
   };
 
   const onResizeEnd = ({ target }: { target: HTMLElement | SVGElement }) => {
+    setIsResizing(false);
     const { id, style } = target;
     const { width, height, top, left } = style;
     changeSchemas(buildSizeAndPositionChanges(id, width, height, top, left));
@@ -481,6 +495,10 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     setEditing(true);
   };
 
+  const handleDragStart = () => setIsDragging(true);
+  const handleResizeStart = () => setIsResizing(true);
+  const handleRotateStart = () => setIsRotating(true);
+
   const rotatable = useMemo(() => {
     const selectedSchemas = (schemasList[pageCursor] || []).filter((s) =>
       activeElements.map((ae) => ae.id).includes(s.id),
@@ -534,8 +552,17 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
   const zoomPercent = Math.max(1, Math.round(scale * 100));
   const zoomTier = zoomPercent < 80 ? 'low' : zoomPercent > 140 ? 'high' : 'medium';
   const activePageSchemaCount = (schemasList[pageCursor] || []).length;
-  const selectionState = editing ? 'editing' : activeElements.length > 0 ? 'selected' : hoveringSchemaId ? 'hover' : 'idle';
-  const selectionCountState = activeElements.length > 1 ? 'multiple' : activeElements.length === 1 ? 'single' : 'none';
+  const interactionState = deriveInteractionState({
+    activeElements,
+    hoveringSchemaId,
+    editing,
+    isDragging,
+    isResizing,
+    isRotating,
+  });
+  useEffect(() => {
+    onInteractionStateChange?.(interactionState);
+  }, [interactionState, onInteractionStateChange]);
 
   useEffect(() => {
     paperRefs.current.forEach((paper, index) => {
@@ -556,8 +583,11 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
       data-zoom-tier={zoomTier}
       data-active-page={pageCursor}
       data-active-page-empty={(activePageSchemaCount === 0).toString()}
-      data-selection-state={selectionState}
-      data-selection-count={selectionCountState}
+      data-interaction-phase={interactionState.phase}
+      data-interaction-count={String(interactionState.selectionCount)}
+      data-interaction-dragging={interactionState.isDragging ? 'true' : 'false'}
+      data-interaction-resizing={interactionState.isResizing ? 'true' : 'false'}
+      data-interaction-rotating={interactionState.isRotating ? 'true' : 'false'}
       ref={ref}>
       {feature.selecto ? (
         <SelectoSlot
@@ -624,14 +654,6 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
               setIsPressShiftKey(false);
             }
           }}
-        />
-      ) : null}
-      {feature.snapLines && snapLines.length > 0 ? (
-        <SnapLinesSlot
-          className={classNames?.snapLines}
-          useDefaultStyles={useDefaultStyles}
-          palette={styleOverrides?.snapLines}
-          lines={snapLines}
         />
       ) : null}
       <Paper
@@ -722,12 +744,15 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
                   keepRatio={isPressShiftKey}
                   rotatable={rotatable}
                   onDrag={onDrag}
+                  onDragStart={handleDragStart}
                   onDragEnd={onDragEnd}
                   onDragGroupEnd={onDragEnds}
                   onRotate={onRotate}
+                  onRotateStart={handleRotateStart}
                   onRotateEnd={onRotateEnd}
                   onRotateGroupEnd={onRotateEnds}
                   onResize={onResize}
+                  onResizeStart={handleResizeStart}
                   onResizeEnd={onResizeEnd}
                   onResizeGroupEnd={onResizeEnds}
                   onClick={onClickMoveable}
@@ -787,13 +812,6 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
               isActive={isActive}
               isHovering={isHovering}
               isEditing={editing && isActive}
-              onDeleteSchema={() => removeSchemas([schema.id])}
-              onToggleRequired={() =>
-                changeSchemas([{ key: 'required', value: !schema.required, schemaId: schema.id }])
-              }
-              onToggleReadOnly={() =>
-                changeSchemas([{ key: 'readOnly', value: !schema.readOnly, schemaId: schema.id }])
-              }
               outline={`1px ${hoveringSchemaId === schema.id ? 'solid' : 'dashed'} ${schema.readOnly && hoveringSchemaId !== schema.id
                 ? 'transparent'
                 : resolveSchemaTone(schema, token.colorPrimary)
@@ -802,6 +820,16 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
             />
           );
         }}
+      />
+      <CanvasOverlayManager
+        activeElements={activeElements}
+        schemasList={schemasList}
+        pageCursor={pageCursor}
+        snapLines={snapLines}
+        SnapLinesSlot={SnapLinesSlot}
+        selectionCommands={selectionCommands}
+        interactionState={interactionState}
+        featureSnapLines={feature.snapLines}
       />
     </div>
   );

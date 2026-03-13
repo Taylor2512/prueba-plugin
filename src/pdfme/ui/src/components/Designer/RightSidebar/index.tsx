@@ -11,6 +11,7 @@ import DetailView from './DetailView/index.js';
 import { SidebarFrame } from './layout.js';
 import DocumentsRail, { DocumentsRailProps } from './DocumentsRail.js';
 import { mergeClassNames } from '../shared/className.js';
+import type { SelectionCommandSet } from '../shared/selectionCommands.js';
 
 export type RightSidebarProps = SidebarProps & {
   width?: number;
@@ -47,6 +48,7 @@ export type RightSidebarProps = SidebarProps & {
   documentsAccessMode?: 'always' | 'tab';
   onViewModeChange?: (mode: 'fields' | 'detail' | 'docs') => void;
   contextHeader?: React.ReactNode | ((ctx: { mode: 'list' | 'detail' | 'bulk' | 'docs'; activeCount: number }) => React.ReactNode);
+  selectionCommands?: SelectionCommandSet;
   components?: {
     listView?: typeof ListView;
     detailView?: typeof DetailView;
@@ -188,7 +190,11 @@ const Sidebar = (props: RightSidebarProps) => {
   ) : resolvedPanelMode === 'detail' && hasActiveSchema ? (
     <div
       className={mergeClassNames(toDesignerCustomClassName(props.classNames?.detailView))}>
-      <DetailViewComponent {...props} activeSchema={getLastActiveSchema()} />
+      <DetailViewComponent
+        {...props}
+        activeSchema={getLastActiveSchema()}
+        selectionCommands={props.selectionCommands}
+      />
     </div>
   ) : (
     <ListViewComponent

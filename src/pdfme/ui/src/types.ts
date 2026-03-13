@@ -1,6 +1,7 @@
 import type { SchemaForUI, Size, ChangeSchemas, BasePdf } from '@pdfme/common';
 import type { SchemaDesignerConfig } from './designerEngine.js';
 import type { DesignerDocumentItem } from './components/Designer/RightSidebar/DocumentsRail.js';
+import type { InteractionPhase } from './components/Designer/shared/interactionState.js';
 
 export type DesignerSidebarPresentation = 'docked' | 'overlay' | 'auto';
 
@@ -25,18 +26,23 @@ export type SidebarProps = {
 
 export type DesignerComponentBridge = {
   runtime: DesignerRuntimeApi;
-  view: {
-    pageCursor: number;
-    totalPages: number;
-    zoomLevel: number;
-    viewportMode: 'manual' | 'fit-width' | 'fit-page' | 'actual-size' | 'auto';
-    sidebarOpen: boolean;
-    isSchemaDragging: boolean;
-    isDraggingOverCanvas: boolean;
-    activeSchemaIds: string[];
-    hoveringSchemaId: string | null;
+    view: {
+      pageCursor: number;
+      totalPages: number;
+      zoomLevel: number;
+      viewportMode: 'manual' | 'fit-width' | 'fit-page' | 'actual-size' | 'auto';
+      sidebarOpen: boolean;
+      isSchemaDragging: boolean;
+      isDraggingOverCanvas: boolean;
+      activeSchemaIds: string[];
+      hoveringSchemaId: string | null;
+      interactionPhase: InteractionPhase;
+      interactionCount: number;
+      isDragging: boolean;
+      isResizing: boolean;
+      isRotating: boolean;
+    };
   };
-};
 
 export type DesignerDocumentsBridge = {
   items: DesignerDocumentItem[];

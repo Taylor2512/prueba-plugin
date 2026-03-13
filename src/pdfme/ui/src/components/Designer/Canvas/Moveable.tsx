@@ -20,10 +20,13 @@ type Props = {
   onDrag: ({ target, left, top }: OnDrag) => void;
   onDragEnd: ({ target }: { target: HTMLElement | SVGElement }) => void;
   onDragGroupEnd: ({ targets }: { targets: (HTMLElement | SVGElement)[] }) => void;
+  onDragStart?: ({ target, left, top }: OnDrag) => void;
   onRotate: ({ target, rotate }: OnRotate) => void;
+  onRotateStart?: ({ target, rotate }: OnRotate) => void;
   onRotateEnd: ({ target }: OnRotateEnd) => void;
   onRotateGroupEnd: ({ targets }: { targets: (HTMLElement | SVGElement)[] }) => void;
   onResize: ({ target, width, height, direction }: OnResize) => void;
+  onResizeStart?: ({ target, width, height, direction }: OnResize) => void;
   onResizeEnd: ({ target }: { target: HTMLElement | SVGElement }) => void;
   onResizeGroupEnd: ({ targets }: { targets: (HTMLElement | SVGElement)[] }) => void;
   onClick: (e: OnClick) => void;
@@ -74,18 +77,27 @@ const Moveable = (props: Props, ref: Ref<MoveableComponent>) => {
       verticalGuidelines={props.verticalGuidelines}
       keepRatio={props.keepRatio}
       onRotate={props.onRotate}
+      onRotateStart={props.onRotateStart}
       onRotateEnd={props.onRotateEnd}
+      onRotateGroupStart={({ events }: { events: OnRotate[] }) => {
+        events.forEach((event) => props.onRotateStart?.(event));
+      }}
       onRotateGroup={({ events }: { events: OnRotate[] }) => {
         events.forEach(props.onRotate);
       }}
       onRotateGroupEnd={props.onRotateGroupEnd}
       onDrag={props.onDrag}
+      onDragStart={props.onDragStart}
+      onDragGroupStart={({ events }: { events: OnDrag[] }) => {
+        events.forEach((event) => props.onDragStart?.(event));
+      }}
       onDragGroup={({ events }: { events: OnDrag[] }) => {
         events.forEach(props.onDrag);
       }}
       onDragEnd={props.onDragEnd}
       onDragGroupEnd={props.onDragGroupEnd}
       onResize={props.onResize}
+      onResizeStart={props.onResizeStart}
       onResizeGroup={({ events }: { events: OnResize[] }) => {
         events.forEach(props.onResize);
       }}

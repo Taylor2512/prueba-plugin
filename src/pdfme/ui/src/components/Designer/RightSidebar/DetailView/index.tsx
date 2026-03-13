@@ -87,6 +87,8 @@ const ColorPickerWidget = ({
   );
 };
 
+import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
+
 type DetailViewProps = Pick<
   SidebarProps,
   | 'size'
@@ -99,6 +101,7 @@ type DetailViewProps = Pick<
   | 'deselectSchema'
 > & {
   activeSchema: SchemaForUI;
+  selectionCommands?: SelectionCommandSet;
 };
 
 const DetailView = (props: DetailViewProps) => {
@@ -154,7 +157,14 @@ const DetailView = (props: DetailViewProps) => {
 
   useEffect(() => {
     const newWidgets: typeof widgets = {
-      AlignWidget: (p) => <AlignWidget {...p} {...props} options={options} />,
+      AlignWidget: (p) => (
+        <AlignWidget
+          {...p}
+          {...props}
+          options={options}
+          selectionCommands={props.selectionCommands}
+        />
+      ),
       Divider: () => (
         <Divider className={`${DESIGNER_CLASSNAME}detail-view-divider`} />
       ),

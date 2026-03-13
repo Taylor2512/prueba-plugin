@@ -21,6 +21,7 @@ import {
   initShortCuts,
   destroyShortCuts,
 } from './helper.js';
+import type { SelectionCommandSet } from './components/Designer/shared/selectionCommands.js';
 import { RULER_HEIGHT } from './constants.js';
 
 export const usePrevious = <T>(value: T) => {
@@ -243,6 +244,7 @@ interface UseInitEventsParams {
   setSchemasList: React.Dispatch<React.SetStateAction<SchemaForUI[][]>>;
   onEdit: (targets: HTMLElement[]) => void;
   onEditEnd: () => void;
+  selectionCommands?: SelectionCommandSet;
 }
 
 export const useInitEvents = ({
@@ -260,7 +262,8 @@ export const useInitEvents = ({
   setSchemasList,
   onEdit,
   onEditEnd,
-}: UseInitEventsParams) => {
+  selectionCommands,
+}: UseInitEventsParams & { selectionCommands?: SelectionCommandSet }) => {
   const copiedSchemas = useRef<SchemaForUI[] | null>(null);
 
   const initEvents = useCallback(() => {
@@ -319,7 +322,7 @@ export const useInitEvents = ({
       undo: () => timeTravel('undo'),
       save: () =>
         onSaveTemplate && onSaveTemplate(schemasList2template(schemasList, template.basePdf)),
-      remove: () => removeSchemas(getActiveSchemas().map((s) => s.id)),
+      remove: () => (selectionCommands?.deleteSelection ? selectionCommands.deleteSelection() : removeSchemas(getActiveSchemas().map((s) => s.id))),
       esc: onEditEnd,
       selectAll: () => onEdit(schemasList[pageCursor].map((s) => document.getElementById(s.id)!)),
     });
