@@ -1371,7 +1371,7 @@
   align-content: flex-start ;
   gap: 12px ;
   width: max-content ;
-  min-width: min(100%, 794px) ;
+  min-width: 0 ;
   margin: 0 auto ;
 }
 
@@ -1381,9 +1381,9 @@
 }
 
 .pdfme-designer-root .pdfme-designer-canvas [data-canvas-page='true'] {
-  width: min(100%, 794px) ;
-  max-width: 794px ;
-  aspect-ratio: 210 / 297;
+  width: auto ;
+  max-width: none ;
+  aspect-ratio: unset;
   min-height: 0 ;
   max-height: none ;
   margin: 0 auto ;

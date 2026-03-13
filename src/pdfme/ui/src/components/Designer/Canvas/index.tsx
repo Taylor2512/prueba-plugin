@@ -65,6 +65,12 @@ const dedupeById = <T extends { id: string }>(items: T[]) => {
     return true;
   });
 };
+const getPaddingMm = (basePdf: BasePdf): [number, number, number, number] => {
+  if (!isBlankPdf(basePdf)) return [0, 0, 0, 0];
+  const [top, right, bottom, left] = basePdf.padding;
+  return [top, right, bottom, left];
+};
+const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
 const SelectionActionsOverlay = ({
   activeElements: aes,
@@ -320,36 +326,16 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
 
   const onDrag = ({ target, top, left }: OnDrag) => {
     const { width: _width, height: _height } = target.style;
-    const targetWidth = fmt(_width);
-    const targetHeight = fmt(_height);
+    const targetWidthMm = fmt(_width);
+    const targetHeightMm = fmt(_height);
     const actualTop = top / ZOOM;
     const actualLeft = left / ZOOM;
-    const { width: pageWidth, height: pageHeight } = pageSizes[pageCursor];
-    let topPadding = 0;
-    let rightPadding = 0;
-    let bottomPadding = 0;
-    let leftPadding = 0;
-
-    if (isBlankPdf(basePdf)) {
-      const [t, r, b, l] = basePdf.padding;
-      topPadding = t * ZOOM;
-      rightPadding = r;
-      bottomPadding = b;
-      leftPadding = l * ZOOM;
-    }
-
-    const clampTop = (value: number) => {
-      if (value + targetHeight > pageHeight - bottomPadding) {
-        return pageHeight - targetHeight - bottomPadding;
-      }
-      return value < topPadding ? topPadding : value;
-    };
-    const clampLeft = (value: number) => {
-      if (value + targetWidth > pageWidth - rightPadding) {
-        return pageWidth - targetWidth - rightPadding;
-      }
-      return value < leftPadding ? leftPadding : value;
-    };
+    const { width: pageWidthMm, height: pageHeightMm } = pageSizes[pageCursor];
+    const [paddingTopMm, paddingRightMm, paddingBottomMm, paddingLeftMm] = getPaddingMm(basePdf);
+    const minY = paddingTopMm;
+    const minX = paddingLeftMm;
+    const maxY = Math.max(minY, pageHeightMm - paddingBottomMm - targetHeightMm);
+    const maxX = Math.max(minX, pageWidthMm - paddingRightMm - targetWidthMm);
 
     const currentSchemas = schemasList[pageCursor] || [];
     const others = currentSchemas
@@ -359,13 +345,13 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     const snapResult = isPressAltKey
       ? { snapped: { x: actualLeft, y: actualTop }, lines: [] as SnapLine[] }
       : computeSnapResult(
-        { x: actualLeft, y: actualTop, width: targetWidth, height: targetHeight },
-        { width: pageWidth, height: pageHeight },
+        { x: actualLeft, y: actualTop, width: targetWidthMm, height: targetHeightMm },
+        { width: pageWidthMm, height: pageHeightMm },
         others,
       );
 
-    const nextTop = clampTop(snapResult.snapped.y);
-    const nextLeft = clampLeft(snapResult.snapped.x);
+    const nextTop = clamp(snapResult.snapped.y, minY, maxY);
+    const nextLeft = clamp(snapResult.snapped.x, minX, maxX);
     target.style.top = `${nextTop * ZOOM}px`;
     target.style.left = `${nextLeft * ZOOM}px`;
 
