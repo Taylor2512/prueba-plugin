@@ -136,7 +136,6 @@ const Preview = ({
         const targetSchema = schemasList[pageCursor].find((s) => s.id === schema.id) as SchemaForUI;
         if (!targetSchema) return;
 
-        // @ts-expect-error Dynamic property assignment
         targetSchema[_key] = value as string;
       }
     });

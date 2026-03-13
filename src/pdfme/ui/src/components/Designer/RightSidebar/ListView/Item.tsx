@@ -206,7 +206,9 @@ const Item = React.memo(
         onMouseEnter={() => { setIsHovered(true); onMouseEnter?.(); }}
         onMouseLeave={() => { setIsHovered(false); onMouseLeave?.(); }}
         ref={ref}
-        className={DESIGNER_CLASSNAME + 'list-view-item'}>
+        className={DESIGNER_CLASSNAME + 'list-view-item'}
+        style={{ '--type-accent': typeAccent } as React.CSSProperties}
+        data-schema-type={schemaType}>
         <div
           className={DESIGNER_CLASSNAME + 'list-view-item-content'}
           {...props}

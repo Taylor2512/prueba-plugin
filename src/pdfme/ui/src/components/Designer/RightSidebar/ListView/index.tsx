@@ -103,7 +103,8 @@ const ListView = (
           />
         ) : (
           <SelectableSortableContainer
-            schemas={filteredSchemas}
+            allSchemas={schemas}
+            visibleSchemas={filteredSchemas}
             hoveringSchemaId={hoveringSchemaId}
             onChangeHoveringSchemaId={onChangeHoveringSchemaId}
             onSortEnd={onSortEnd}

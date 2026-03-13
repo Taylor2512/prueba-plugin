@@ -120,7 +120,7 @@ export const propPanel: PropPanel<MultiVariableTextSchema> = {
     type: 'multiVariableText',
     text: 'Add text here using {} for variables ',
     width: 50,
-    height: 15,
+    height: 11,
     content: '{}',
     variables: [],
   },

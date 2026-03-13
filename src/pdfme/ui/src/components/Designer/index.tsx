@@ -19,7 +19,13 @@ import RightSidebarDefault from './RightSidebar/index.js';
 import LeftSidebarDefault from './LeftSidebar.js';
 import Canvas from './Canvas/index.js';
 import { Trash2, Plus } from 'lucide-react';
-import { RULER_HEIGHT, RIGHT_SIDEBAR_WIDTH, LEFT_SIDEBAR_WIDTH, DESIGNER_CLASSNAME } from '../../constants.js';
+import {
+  RULER_HEIGHT,
+  RIGHT_SIDEBAR_WIDTH,
+  LEFT_SIDEBAR_WIDTH,
+  DESIGNER_CLASSNAME,
+  SELECTABLE_CLASSNAME,
+} from '../../constants.js';
 import { I18nContext, OptionsContext, PluginsRegistry } from '../../contexts.js';
 import {
   schemasList2template,
@@ -44,7 +50,6 @@ import {
   getSchemaDesignerConfig,
   mergeSchemaDesignerConfig,
 } from '../../designerEngine.js';
-
 const DESIGNER_THEME_STYLE_ID = DESIGNER_CLASSNAME + 'theme-base';
 
 const DESIGNER_THEME_CSS = `
@@ -273,6 +278,32 @@ const TemplateEditor = ({
   const [isIdle, setIsIdle] = useState(false);
   const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
+  useEffect(() => {
+    if (!activeElements.length) return;
+
+    const activePaper = paperRefs.current[pageCursor];
+    if (!activePaper) return;
+
+    const nextActive = activeElements
+      .map((element) => document.getElementById(element.id))
+      .filter((element): element is HTMLElement => Boolean(element))
+      .filter((element) => {
+        if (!element.classList.contains(SELECTABLE_CLASSNAME)) return false;
+        return element === activePaper || activePaper.contains(element);
+      });
+
+    const hasChanged =
+      nextActive.length !== activeElements.length ||
+      nextActive.some((element, index) => element !== activeElements[index]);
+
+    if (!hasChanged) return;
+    setActiveElements(nextActive);
+
+    if (nextActive.length === 0) {
+      setHoveringSchemaId(null);
+    }
+  }, [activeElements, pageCursor, schemasList]);
+
   // Wix-inspired idle detection: after 4s of no interaction, mark UI as idle to reduce chrome
   useEffect(() => {
     const IDLE_DELAY = 4000;
@@ -436,20 +467,37 @@ const TemplateEditor = ({
     const ensureMiddleValue = (min: number, value: number, max: number) =>
       Math.min(Math.max(min, value), max);
 
+    const rawWidth = Number(defaultSchema.width);
+    const rawHeight = Number(defaultSchema.height);
+    const minHeightByType = defaultSchema.type === 'line' ? 0.5 : 4;
+    const minWidth = 4;
+    const maxWidth = Math.max(minWidth, pageSize.width - paddingLeft - paddingRight);
+    const maxHeight = Math.max(minHeightByType, pageSize.height - paddingTop - paddingBottom);
+    const safeWidth = round(
+      Math.min(maxWidth, Number.isFinite(rawWidth) && rawWidth > 0 ? rawWidth : 45),
+      2,
+    );
+    const safeHeight = round(
+      Math.min(maxHeight, Number.isFinite(rawHeight) && rawHeight > 0 ? rawHeight : 10),
+      2,
+    );
+
     let s = {
       id: uuid(),
       ...defaultSchema,
+      width: safeWidth,
+      height: safeHeight,
       name: newSchemaName(i18n('field')),
       position: {
         x: ensureMiddleValue(
           paddingLeft,
           defaultSchema.position.x,
-          pageSize.width - paddingRight - defaultSchema.width,
+          pageSize.width - paddingRight - safeWidth,
         ),
         y: ensureMiddleValue(
           paddingTop,
           defaultSchema.position.y,
-          pageSize.height - paddingBottom - defaultSchema.height,
+          pageSize.height - paddingBottom - safeHeight,
         ),
       },
       required: defaultSchema.readOnly
@@ -483,13 +531,17 @@ const TemplateEditor = ({
     (defaultSchema: Schema) => {
       const pageSize = pageSizes[pageCursor];
       if (!pageSize) return;
-      const schemaWidth = Number(defaultSchema?.width) || 45;
-      const schemaHeight = Number(defaultSchema?.height) || 10;
+      const schemaWidth = Number(defaultSchema?.width);
+      const schemaHeight = Number(defaultSchema?.height);
+      const safeWidth = Number.isFinite(schemaWidth) && schemaWidth > 0 ? schemaWidth : 45;
+      const safeHeight = Number.isFinite(schemaHeight) && schemaHeight > 0 ? schemaHeight : 10;
       const centered = {
         ...defaultSchema,
+        width: safeWidth,
+        height: safeHeight,
         position: {
-          x: round(Math.max(0, (pageSize.width - schemaWidth) / 2), 2),
-          y: round(Math.max(0, (pageSize.height - schemaHeight) / 2), 2),
+          x: round(Math.max(0, (pageSize.width - safeWidth) / 2), 2),
+          y: round(Math.max(0, (pageSize.height - safeHeight) / 2), 2),
         },
       } as Schema;
       addSchema(centered);
@@ -1205,11 +1257,11 @@ const TemplateEditor = ({
         <DragOverlay zIndex={1000} className={DESIGNER_CLASSNAME + "dragoverlay-auto"}>
           {activeDragData ? (
             <div
-              className={DESIGNER_CLASSNAME + "div-auto"}
+              className={DESIGNER_CLASSNAME + "drag-preview-root"}
             >
               {isDraggingOverCanvas ? (
                 /* MODO LIENZO: Muestra el recuadro del esquema con el + arriba al centro */
-                (<div className={DESIGNER_CLASSNAME + "div-auto"}>
+                (<div className={DESIGNER_CLASSNAME + "drag-preview-canvas"}>
                   <Renderer
                     schema={{
                       ...cloneDeep(activeDragData.schema),
@@ -1228,7 +1280,7 @@ const TemplateEditor = ({
                   />
                   {/* Plus Icon at Top Center */}
                   <div
-                    className={DESIGNER_CLASSNAME + "div-auto"}
+                    className={DESIGNER_CLASSNAME + "drag-preview-plus-badge"}
                   >
                     <Plus size={16} strokeWidth={3} />
                   </div>
@@ -1236,7 +1288,7 @@ const TemplateEditor = ({
               ) : (
                 /* MODO ICONO: Muestra el icono del plugin con un badge */
                 (<div
-                  className={DESIGNER_CLASSNAME + "div-auto"}
+                  className={DESIGNER_CLASSNAME + "drag-preview-icon"}
                 >
                   {pluginsRegistry.findByType(activeDragData.type) ? (
                     <PluginIcon
@@ -1246,7 +1298,7 @@ const TemplateEditor = ({
                     />
                   ) : null}
                   <div
-                    className={DESIGNER_CLASSNAME + "div-auto"}
+                    className={DESIGNER_CLASSNAME + "drag-preview-plus-badge"}
                   >
                     <Plus size={14} strokeWidth={3} />
                   </div>
@@ -1255,19 +1307,6 @@ const TemplateEditor = ({
             </div>
           ) : null}
         </DragOverlay>
-        <style dangerouslySetInnerHTML={{
-          __html: `
-          @keyframes ccf-drag-pulse {
-            0% { transform: scale(${scale / zoomLevel}) rotate(-2deg); }
-            50% { transform: scale(${(scale / zoomLevel) * 1.1}) rotate(2deg); }
-            100% { transform: scale(${scale / zoomLevel}) rotate(-2deg); }
-          }
-          @keyframes ccf-drag-float {
-            0% { transform: scale(${scale / zoomLevel}) translateY(0px); }
-            50% { transform: scale(${scale / zoomLevel}) translateY(-8px); }
-            100% { transform: scale(${scale / zoomLevel}) translateY(0px); }
-          }
-        `}} />
       </DndContext>
     </Root>
   );

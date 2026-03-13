@@ -24,7 +24,7 @@ import {
 import type { DesignerComponentBridge } from '../../../types.js';
 import { PluginsRegistry } from '../../../contexts.js';
 import { X } from 'lucide-react';
-import { RULER_HEIGHT, DESIGNER_CLASSNAME } from '../../../constants.js';
+import { RULER_HEIGHT, DESIGNER_CLASSNAME, SELECTABLE_CLASSNAME } from '../../../constants.js';
 import { usePrevious } from '../../../hooks.js';
 import { round, flatten, uuid } from '../../../helper.js';
 import Paper from '../../Paper.js';
@@ -57,6 +57,14 @@ const buildSizeAndPositionChanges = (schemaId: string, width: string, height: st
   { key: 'position.y', value: fmt(top), schemaId },
   { key: 'position.x', value: fmt(left), schemaId },
 ];
+const dedupeById = <T extends { id: string }>(items: T[]) => {
+  const seen = new Set<string>();
+  return items.filter((item) => {
+    if (!item?.id || seen.has(item.id)) return false;
+    seen.add(item.id);
+    return true;
+  });
+};
 
 const SelectionActionsOverlay = ({
   activeElements: aes,
@@ -88,7 +96,10 @@ const SelectionActionsOverlay = ({
   );
 
   return (
-    <div className={DESIGNER_CLASSNAME + 'selection-actions'}>
+    <div
+      className={DESIGNER_CLASSNAME + 'selection-actions'}
+      style={{ position: 'absolute', top: resolvedTop, left: resolvedLeft, width: overlayWidth, height: overlayHeight }}
+    >
       {selectionCount > 1 ? (
         <span
           className={DESIGNER_CLASSNAME + "span-auto"}
@@ -348,10 +359,10 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     const snapResult = isPressAltKey
       ? { snapped: { x: actualLeft, y: actualTop }, lines: [] as SnapLine[] }
       : computeSnapResult(
-          { x: actualLeft, y: actualTop, width: targetWidth, height: targetHeight },
-          { width: pageWidth, height: pageHeight },
-          others,
-        );
+        { x: actualLeft, y: actualTop, width: targetWidth, height: targetHeight },
+        { width: pageWidth, height: pageHeight },
+        others,
+      );
 
     const nextTop = clampTop(snapResult.snapped.y);
     const nextLeft = clampLeft(snapResult.snapped.x);
@@ -512,6 +523,20 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     if (!activePaper || !(target instanceof Node)) return false;
     return target === activePaper || activePaper.contains(target);
   };
+  const normalizeActiveTargets = useCallback(
+    (targets: HTMLElement[]) => {
+      const activePaper = paperRefs.current[pageCursor];
+      if (!activePaper) return [];
+      return dedupeById(
+        targets.filter((target) => {
+          if (!(target instanceof HTMLElement)) return false;
+          if (!target.classList.contains(SELECTABLE_CLASSNAME)) return false;
+          return target === activePaper || activePaper.contains(target);
+        }),
+      );
+    },
+    [pageCursor, paperRefs],
+  );
 
   const safeCanvasWidth = Number.isFinite(size.width) ? Math.max(0, size.width) : 0;
   const safeCanvasHeight = Number.isFinite(size.height) ? Math.max(0, size.height) : 0;
@@ -549,70 +574,71 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
       data-selection-count={selectionCountState}
       ref={ref}>
       {feature.selecto ? (
-      <SelectoSlot
-        container={paperRefs.current[pageCursor]}
-        continueSelect={isPressShiftKey}
-        className={classNames?.selecto}
-        useDefaultStyles={useDefaultStyles}
-        selectionStyle={styleOverrides?.selectoSelection}
-        onDragStart={(e) => {
-          // Use type assertion to safely access inputEvent properties
-          const inputEvent = e.inputEvent as MouseEvent | TouchEvent;
-          const target = inputEvent.target as Element | null;
-          const isInsidePaper = isEventInsideActivePaper(target);
-          if (!isInsidePaper) {
-            return;
-          }
-          const isMoveableElement = moveable.current?.isMoveableElement(target as Element);
+        <SelectoSlot
+          container={paperRefs.current[pageCursor]}
+          continueSelect={isPressShiftKey}
+          className={classNames?.selecto}
+          useDefaultStyles={useDefaultStyles}
+          selectionStyle={styleOverrides?.selectoSelection}
+          onDragStart={(e) => {
+            // Use type assertion to safely access inputEvent properties
+            const inputEvent = e.inputEvent as MouseEvent | TouchEvent;
+            const target = inputEvent.target as Element | null;
+            const isInsidePaper = isEventInsideActivePaper(target);
+            if (!isInsidePaper) {
+              return;
+            }
+            const isMoveableElement = moveable.current?.isMoveableElement(target as Element);
 
-          if ((inputEvent.type === 'touchstart' && e.isTrusted) || isMoveableElement) {
-            e.stop();
-          }
+            if ((inputEvent.type === 'touchstart' && e.isTrusted) || isMoveableElement) {
+              e.stop();
+            }
 
-          if (paperRefs.current[pageCursor] === target) {
-            onEdit([]);
-          }
+            if (paperRefs.current[pageCursor] === target) {
+              onEdit([]);
+            }
 
-          // Check if the target is an HTMLElement and has an id property
-          const targetElement = target as HTMLElement | null;
-          if (targetElement && targetElement.id === DELETE_BTN_ID) {
-            removeSchemas(activeElements.map((ae) => ae.id));
-          }
-        }}
-        onSelect={(e) => {
-          // Use type assertions to safely access properties
-          const inputEvent = e.inputEvent as MouseEvent | TouchEvent;
-          const target = inputEvent.target as Element | null;
-          const isInsidePaper = isEventInsideActivePaper(target);
-          if (!isInsidePaper) {
-            return;
-          }
-          const added = e.added as HTMLElement[];
-          const removed = e.removed as HTMLElement[];
-          const selected = e.selected as HTMLElement[];
+            // Check if the target is an HTMLElement and has an id property
+            const targetElement = target as HTMLElement | null;
+            if (targetElement && targetElement.id === DELETE_BTN_ID) {
+              removeSchemas(activeElements.map((ae) => ae.id));
+            }
+          }}
+          onSelect={(e) => {
+            // Use type assertions to safely access properties
+            const inputEvent = e.inputEvent as MouseEvent | TouchEvent;
+            const target = inputEvent.target as Element | null;
+            const isInsidePaper = isEventInsideActivePaper(target);
+            if (!isInsidePaper) {
+              return;
+            }
+            const added = e.added as HTMLElement[];
+            const removed = e.removed as HTMLElement[];
+            const selected = e.selected as HTMLElement[];
 
-          const isClick = inputEvent.type === 'mousedown';
-          let newActiveElements: HTMLElement[] = isClick ? selected : [];
+            const isClick = inputEvent.type === 'mousedown';
+            let newActiveElements: HTMLElement[] = isClick ? selected : [];
 
-          if (!isClick && added.length > 0) {
-            newActiveElements = activeElements.concat(added);
-          }
-          if (!isClick && removed.length > 0) {
-            newActiveElements = activeElements.filter((ae) => !removed.includes(ae));
-          }
-          onEdit(newActiveElements);
+            if (!isClick && added.length > 0) {
+              newActiveElements = activeElements.concat(added);
+            }
+            if (!isClick && removed.length > 0) {
+              newActiveElements = activeElements.filter((ae) => !removed.includes(ae));
+            }
+            const normalizedSelection = normalizeActiveTargets(newActiveElements);
+            onEdit(normalizedSelection);
 
-          if (newActiveElements != activeElements) {
-            setEditing(false);
-          }
+            if (normalizedSelection != activeElements) {
+              setEditing(false);
+            }
 
-          // For MacOS CMD+SHIFT+3/4 screenshots where the keydown event is never received, check mouse too
-          const mouseEvent = inputEvent as MouseEvent;
-          if (mouseEvent && typeof mouseEvent.shiftKey === 'boolean' && !mouseEvent.shiftKey) {
-            setIsPressShiftKey(false);
-          }
-        }}
-      />
+            // For MacOS CMD+SHIFT+3/4 screenshots where the keydown event is never received, check mouse too
+            const mouseEvent = inputEvent as MouseEvent;
+            if (mouseEvent && typeof mouseEvent.shiftKey === 'boolean' && !mouseEvent.shiftKey) {
+              setIsPressShiftKey(false);
+            }
+          }}
+        />
       ) : null}
       {feature.snapLines && snapLines.length > 0 ? (
         <SnapLinesSlot
@@ -725,8 +751,10 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
           </>
         )}
         renderSchema={({ schema, index }) => {
+          const isActive = activeElements.map((ae) => ae.id).includes(schema.id);
+          const isHovering = hoveringSchemaId === schema.id;
           const mode =
-            editing && activeElements.map((ae) => ae.id).includes(schema.id)
+            editing && isActive
               ? 'designer'
               : 'viewer';
 
@@ -760,21 +788,30 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
               onChange={
                 (schemasList[pageCursor] || []).some((s) => s.id === schema.id)
                   ? (arg) => {
-                      // Use type assertion to safely handle the argument
-                      type ChangeArg = { key: string; value: unknown };
-                      const args = Array.isArray(arg) ? (arg as ChangeArg[]) : [arg as ChangeArg];
-                      changeSchemas(
-                        args.map(({ key, value }) => ({ key, value, schemaId: schema.id })),
-                      );
-                    }
+                    // Use type assertion to safely handle the argument
+                    type ChangeArg = { key: string; value: unknown };
+                    const args = Array.isArray(arg) ? (arg as ChangeArg[]) : [arg as ChangeArg];
+                    changeSchemas(
+                      args.map(({ key, value }) => ({ key, value, schemaId: schema.id })),
+                    );
+                  }
                   : undefined
               }
               stopEditing={() => setEditing(false)}
-              outline={`1px ${hoveringSchemaId === schema.id ? 'solid' : 'dashed'} ${
-                schema.readOnly && hoveringSchemaId !== schema.id
-                  ? 'transparent'
-                  : resolveSchemaTone(schema, token.colorPrimary)
-              }`}
+              isActive={isActive}
+              isHovering={isHovering}
+              isEditing={editing && isActive}
+              onDeleteSchema={() => removeSchemas([schema.id])}
+              onToggleRequired={() =>
+                changeSchemas([{ key: 'required', value: !schema.required, schemaId: schema.id }])
+              }
+              onToggleReadOnly={() =>
+                changeSchemas([{ key: 'readOnly', value: !schema.readOnly, schemaId: schema.id }])
+              }
+              outline={`1px ${hoveringSchemaId === schema.id ? 'solid' : 'dashed'} ${schema.readOnly && hoveringSchemaId !== schema.id
+                ? 'transparent'
+                : resolveSchemaTone(schema, token.colorPrimary)
+                }`}
               scale={scale}
             />
           );

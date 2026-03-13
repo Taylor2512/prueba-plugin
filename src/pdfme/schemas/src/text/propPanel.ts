@@ -31,10 +31,10 @@ const UseDynamicFontSize = (props: PropPanelWidgetProps) => {
   checkbox.onchange = (e: Event) => {
     const val = (e.target as HTMLInputElement).checked
       ? {
-          min: DEFAULT_DYNAMIC_MIN_FONT_SIZE,
-          max: DEFAULT_DYNAMIC_MAX_FONT_SIZE,
-          fit: DEFAULT_DYNAMIC_FIT,
-        }
+        min: DEFAULT_DYNAMIC_MIN_FONT_SIZE,
+        max: DEFAULT_DYNAMIC_MAX_FONT_SIZE,
+        fit: DEFAULT_DYNAMIC_FIT,
+      }
       : undefined;
     changeSchemas([{ key: 'dynamicFontSize', value: val, schemaId: activeSchema.id }]);
   };
@@ -164,7 +164,7 @@ export const propPanel: PropPanel<TextSchema> = {
     content: 'Type Something...',
     position: { x: 0, y: 0 },
     width: 45,
-    height: 10,
+    height: 7,
     // If the value of "rotate" is set to undefined or not set at all, rotation will be disabled in the UI.
     // Check this document: https://pdfme.com//docs/custom-schemas#learning-how-to-create-from-pdfmeschemas-code
     rotate: 0,

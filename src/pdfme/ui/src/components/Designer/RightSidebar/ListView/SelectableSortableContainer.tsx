@@ -24,18 +24,27 @@ import ListViewDragOverlay from './ListViewDragOverlay.js';
 const SelectableSortableContainer = (
   props: Pick<
     SidebarProps,
-    'schemas' | 'onEdit' | 'onSortEnd' | 'hoveringSchemaId' | 'onChangeHoveringSchemaId'
-  >,
+    'onEdit' | 'onSortEnd' | 'hoveringSchemaId' | 'onChangeHoveringSchemaId'
+  > & { allSchemas: SchemaForUI[]; visibleSchemas: SchemaForUI[] },
 ) => {
-  const { schemas, onEdit, onSortEnd, hoveringSchemaId, onChangeHoveringSchemaId } = props;
+  const { allSchemas, visibleSchemas, onEdit, onSortEnd, hoveringSchemaId, onChangeHoveringSchemaId } = props;
   const [selectedSchemas, setSelectedSchemas] = useState<SchemaForUI[]>([]);
-  const [dragOverlaidItems, setClonedItems] = useState<SchemaForUI[] | null>(null);
   const [activeId, setActiveId] = useState<string | null>(null);
   const pluginsRegistry = useContext(PluginsRegistry);
   const sensors = useSensors(
     useSensor(PointerSensor, { activationConstraint: { distance: 15 } }),
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
   );
+
+  const mergeVisibleOrder = (nextVisibleOrder: SchemaForUI[]) => {
+    const visibleIdSet = new Set(visibleSchemas.map((schema) => schema.id));
+    const orderedVisible = [...nextVisibleOrder];
+
+    return allSchemas.map((schema) => {
+      if (!visibleIdSet.has(schema.id)) return schema;
+      return orderedVisible.shift() || schema;
+    });
+  };
 
   const isItemSelected = (itemId: string): boolean =>
     selectedSchemas.map((i) => i.id).includes(itemId);
@@ -46,7 +55,8 @@ const SelectableSortableContainer = (
         const newSelectedSchemas = selectedSchemas.filter((item) => item.id !== id);
         setSelectedSchemas(newSelectedSchemas);
       } else {
-        const newSelectedItem = schemas.find((schema) => schema.id === id)!;
+        const newSelectedItem = visibleSchemas.find((schema) => schema.id === id);
+        if (!newSelectedItem) return;
         const newSelectedSchemas = selectedSchemas.concat(newSelectedItem);
         setSelectedSchemas(newSelectedSchemas);
       }
@@ -58,7 +68,7 @@ const SelectableSortableContainer = (
   const getPluginIcon = (inSchema: string | SchemaForUI): ReactNode => {
     // Get schema by ID or use directly
     const thisSchema =
-      typeof inSchema === 'string' ? schemas.find((schema) => schema.id === inSchema) : inSchema;
+      typeof inSchema === 'string' ? allSchemas.find((schema) => schema.id === inSchema) : inSchema;
 
     if (!thisSchema) return <></>;
 
@@ -84,61 +94,60 @@ const SelectableSortableContainer = (
       collisionDetection={closestCorners}
       onDragStart={({ active }) => {
         setActiveId(String(active.id));
-        setClonedItems(schemas);
 
         if (!isItemSelected(String(active.id))) {
           const newSelectedSchemas: SchemaForUI[] = [];
           setSelectedSchemas(newSelectedSchemas);
-        } else if (selectedSchemas.length > 0) {
-          onSortEnd(
-            selectedSchemas.reduce((ret, selectedItem) => {
-              if (selectedItem.id === String(active.id)) {
-                return ret;
-              }
-              return ret.filter((schema) => schema !== selectedItem);
-            }, schemas),
-          );
         }
       }}
       onDragEnd={({ active, over }) => {
         const overId = over?.id || '';
+        if (!overId) {
+          setActiveId(null);
+          return;
+        }
 
-        const activeIndex = schemas.map((i) => i.id).indexOf(String(active.id));
-        const overIndex = schemas.map((i) => i.id).indexOf(String(overId));
+        const activeIndex = visibleSchemas.map((i) => i.id).indexOf(String(active.id));
+        const overIndex = visibleSchemas.map((i) => i.id).indexOf(String(overId));
+
+        if (activeIndex < 0 || overIndex < 0) {
+          setActiveId(null);
+          return;
+        }
 
         if (selectedSchemas.length) {
-          let newSchemas = [...schemas];
-          newSchemas = arrayMove(newSchemas, activeIndex, overIndex);
-          newSchemas.splice(
+          let reorderedVisible = [...visibleSchemas];
+          reorderedVisible = arrayMove(reorderedVisible, activeIndex, overIndex);
+          const selectedIds = new Set(
+            selectedSchemas.filter((item) => item.id !== activeId).map((item) => item.id),
+          );
+          const trailingSelected = reorderedVisible.filter((item) => selectedIds.has(item.id));
+          reorderedVisible = reorderedVisible.filter((item) => !selectedIds.has(item.id));
+          reorderedVisible.splice(
             overIndex + 1,
             0,
-            ...selectedSchemas.filter((item) => item.id !== activeId),
+            ...trailingSelected,
           );
-          onSortEnd(newSchemas);
+          onSortEnd(mergeVisibleOrder(reorderedVisible));
           setSelectedSchemas([]);
         } else if (activeIndex !== overIndex) {
-          onSortEnd(arrayMove(schemas, activeIndex, overIndex));
+          onSortEnd(mergeVisibleOrder(arrayMove(visibleSchemas, activeIndex, overIndex)));
         }
 
         setActiveId(null);
       }}
       onDragCancel={() => {
-        if (dragOverlaidItems) {
-          onSortEnd(dragOverlaidItems);
-        }
-
         setActiveId(null);
-        setClonedItems(null);
       }}
     >
       <>
-        <SortableContext items={schemas} strategy={verticalListSortingStrategy}>
+        <SortableContext items={visibleSchemas} strategy={verticalListSortingStrategy}>
           <ul className={DESIGNER_CLASSNAME + 'list-view-items-wrapper'}>
-            {schemas.map((schema) => (
+            {visibleSchemas.map((schema) => (
               <SelectableSortableItem
                 key={schema.id}
                 schema={schema}
-                schemas={schemas}
+                schemas={allSchemas}
                 isSelected={isItemSelected(schema.id) || activeId === schema.id}
                 isHovering={schema.id === hoveringSchemaId}
                 onEdit={onEdit}
@@ -151,7 +160,7 @@ const SelectableSortableContainer = (
         </SortableContext>
         <ListViewDragOverlay
           activeId={activeId}
-          schemas={schemas}
+          schemas={allSchemas}
           selectedSchemas={selectedSchemas}
           renderIcon={getPluginIcon}
         />

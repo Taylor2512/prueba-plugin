@@ -4,6 +4,8 @@ import {
   Template,
   DesignerProps,
   SchemaForUI,
+  BLANK_A4_PDF,
+  px2mm,
   checkDesignerProps,
   checkTemplate,
   PDFME_VERSION,
@@ -15,6 +17,81 @@ import AppContextProvider from './components/AppContextProvider.js';
 import type { DesignerRuntimeApi } from './types.js';
 import type { SchemaDesignerConfig } from './designerEngine.js';
 
+const ensureDesignerTemplate = (template: Template): Template => {
+  const basePdf = (template as Partial<Template>)?.basePdf;
+  const hasBasePdf =
+    (typeof basePdf === 'string' && basePdf.trim().length > 0) ||
+    (typeof basePdf === 'object' && basePdf !== null);
+
+  const schemas = Array.isArray(template.schemas) && template.schemas.length > 0 ? template.schemas : [[]];
+  const round2 = (value: number) => Math.round(value * 100) / 100;
+  const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+  const toMmIfLikelyPx = (value: number, referenceMm: number) => {
+    if (!Number.isFinite(value)) return value;
+    if (value > referenceMm * 1.25) {
+      const converted = px2mm(value);
+      if (Number.isFinite(converted) && converted > 0) return converted;
+    }
+    return value;
+  };
+
+  if (hasBasePdf) {
+    return { ...template, schemas };
+  }
+
+  // If the consumer starts Designer without a real base PDF, normalize schema geometry
+  // so values that were accidentally stored in px do not render as oversized mm values.
+  const normalizedSchemas = schemas.map((page) =>
+    (Array.isArray(page) ? page : []).map((schema) => {
+      const fallbackWidth = 45;
+      const fallbackHeight = 12;
+      const pageWidth = BLANK_A4_PDF.width;
+      const pageHeight = BLANK_A4_PDF.height;
+
+      const widthRaw = Number((schema as SchemaForUI).width);
+      const heightRaw = Number((schema as SchemaForUI).height);
+      const xRaw = Number((schema as SchemaForUI).position?.x ?? 0);
+      const yRaw = Number((schema as SchemaForUI).position?.y ?? 0);
+
+      const widthMm = toMmIfLikelyPx(widthRaw, pageWidth);
+      const heightMm = toMmIfLikelyPx(heightRaw, pageHeight);
+
+      const safeWidth = clamp(
+        Number.isFinite(widthMm) && widthMm > 0 ? widthMm : fallbackWidth,
+        1,
+        pageWidth - 1,
+      );
+      const safeHeight = clamp(
+        Number.isFinite(heightMm) && heightMm > 0 ? heightMm : fallbackHeight,
+        0.5,
+        pageHeight - 1,
+      );
+
+      const xMm = toMmIfLikelyPx(xRaw, pageWidth);
+      const yMm = toMmIfLikelyPx(yRaw, pageHeight);
+
+      const maxX = Math.max(0, pageWidth - safeWidth);
+      const maxY = Math.max(0, pageHeight - safeHeight);
+
+      return {
+        ...(schema as SchemaForUI),
+        width: round2(safeWidth),
+        height: round2(safeHeight),
+        position: {
+          x: round2(clamp(Number.isFinite(xMm) ? xMm : 0, 0, maxX)),
+          y: round2(clamp(Number.isFinite(yMm) ? yMm : 0, 0, maxY)),
+        },
+      } as SchemaForUI;
+    }),
+  );
+
+  return {
+    ...template,
+    basePdf: cloneDeep(BLANK_A4_PDF),
+    schemas: normalizedSchemas,
+  };
+};
+
 class Designer extends BaseUIClass {
   private onSaveTemplateCallback?: (template: Template) => void;
   private onChangeTemplateCallback?: (template: Template) => void;
@@ -23,8 +100,12 @@ class Designer extends BaseUIClass {
   private runtimeApi: DesignerRuntimeApi | null = null;
 
   constructor(props: DesignerProps) {
-    super(props);
-    checkDesignerProps(props);
+    const safeProps = {
+      ...props,
+      template: ensureDesignerTemplate(props.template),
+    } as DesignerProps;
+    super(safeProps);
+    checkDesignerProps(safeProps);
   }
 
   public saveTemplate() {
@@ -35,11 +116,12 @@ class Designer extends BaseUIClass {
   }
 
   public updateTemplate(template: Template) {
-    checkTemplate(template);
+    const safeTemplate = ensureDesignerTemplate(template);
+    checkTemplate(safeTemplate);
     if (!this.domContainer) throw Error(DESTROYED_ERR_MSG);
-    this.template = cloneDeep(template);
+    this.template = cloneDeep(safeTemplate);
     if (this.onChangeTemplateCallback) {
-      this.onChangeTemplateCallback(template);
+      this.onChangeTemplateCallback(this.template);
     }
     this.render();
   }
@@ -223,7 +305,7 @@ class Designer extends BaseUIClass {
         options={this.getOptions()}
       >
         <DesignerComponent
-          template={this.template}
+          template={ensureDesignerTemplate(this.template)}
           onApiReady={(api) => {
             this.runtimeApi = api;
           }}
