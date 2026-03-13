@@ -1178,8 +1178,11 @@ const TemplateEditor = ({
         ? createPortal(detachedSidebarNode, leftSidebarContainer)
         : detachedSidebarNode
       : null;
+  const rightSidebarDomId = DESIGNER_CLASSNAME + 'right-sidebar-panel';
+
   const rightSidebarNode = (
     <RightSidebar
+      rootId={rightSidebarDomId}
       hoveringSchemaId={hoveringSchemaId}
       onChangeHoveringSchemaId={onChangeHoveringSchemaId}
       height={canvasRef.current ? canvasRef.current.clientHeight : 0}
@@ -1259,6 +1262,7 @@ const TemplateEditor = ({
         emptyTitle: 'Sin paginas disponibles',
       }}
       showDocumentsRail={pageItems.length > 0 || uploadedDocumentItems.length > 0}
+      autoFocusDetail={true}
       className={
         [
           typeof options.rightSidebarClassName === 'string' ? options.rightSidebarClassName : '',
@@ -1426,11 +1430,13 @@ const TemplateEditor = ({
             <button
               type="button"
               className={DESIGNER_CLASSNAME + 'right-sidebar-toggle-btn'}
+              aria-controls={rightSidebarDomId}
               aria-label={sidebarOpen ? 'Ocultar panel derecho' : 'Mostrar panel derecho'}
               aria-expanded={sidebarOpen ? 'true' : 'false'}
+              title={sidebarOpen ? 'Ocultar panel derecho' : 'Mostrar panel derecho'}
               onClick={() => setSidebarOpen((prev) => !prev)}
             >
-              {sidebarOpen ? '›' : '‹ Campos'}
+              {sidebarOpen ? '›' : '‹'}
             </button>
           ) : null}
 

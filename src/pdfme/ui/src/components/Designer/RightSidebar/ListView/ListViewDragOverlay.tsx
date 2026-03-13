@@ -28,10 +28,11 @@ const ListViewDragOverlay = ({ activeId, schemas, selectedSchemas, renderIcon }:
           <Item
             icon={renderIcon(activeId)}
             value={activeSchema.name}
+            title={activeSchema.name}
             required={activeSchema.required}
             readOnly={activeSchema.readOnly}
             dragOverlay
-            className={DESIGNER_CLASSNAME + "item-auto"}
+            className={DESIGNER_CLASSNAME + 'item-auto'}
           />
         </ul>
         <ul className={DESIGNER_CLASSNAME + "ul-auto"}>
@@ -42,10 +43,11 @@ const ListViewDragOverlay = ({ activeId, schemas, selectedSchemas, renderIcon }:
                 icon={renderIcon(item)}
                 key={item.id}
                 value={item.name}
+                title={item.name}
                 required={item.required}
                 readOnly={item.readOnly}
                 dragOverlay
-                className={DESIGNER_CLASSNAME + "item-auto"}
+                className={DESIGNER_CLASSNAME + 'item-auto'}
               />
             ))}
         </ul>

@@ -20,6 +20,7 @@ export type RightSidebarProps = SidebarProps & {
   viewportWidth?: number;
   useLayoutFrame?: boolean;
   className?: string;
+  rootId?: string;
   useDefaultStyles?: boolean;
   preserveCanvasSpace?: boolean;
   documentsRailMode?: 'split' | 'stacked' | 'auto';
@@ -106,11 +107,13 @@ const Sidebar = (props: RightSidebarProps) => {
 
   useEffect(() => {
     if (requestedViewMode !== 'auto') return;
-    if (activeSchemaCount === 1 && props.autoFocusDetail && internalViewMode === 'fields') {
+
+    if (activeSchemaCount === 1 && props.autoFocusDetail && internalViewMode !== 'detail') {
       setInternalViewMode('detail');
       props.onViewModeChange?.('detail');
       return;
     }
+
     if (activeSchemaCount !== 1 && internalViewMode === 'detail') {
       setInternalViewMode('fields');
       props.onViewModeChange?.('fields');
@@ -127,7 +130,7 @@ const Sidebar = (props: RightSidebarProps) => {
           : 'list';
 
   const shouldRenderDocumentsRail =
-    Boolean(pagesBridge) && (props.documentsAccessMode !== 'tab' || resolvedViewMode !== 'docs');
+    resolvedViewMode === 'docs' && Boolean(docsBridge || pagesBridge);
 
   const contentColumns =
     resolvedPanelMode === 'docs'
@@ -163,15 +166,15 @@ const Sidebar = (props: RightSidebarProps) => {
     : undefined;
 
   const contentNode = resolvedPanelMode === 'docs' ? (
-    docsBridge ? (
+    docsBridge || pagesBridge ? (
       <DocumentsRailComponent
-        items={docsBridge.items || []}
-        selectedId={docsBridge.selectedId || null}
-        onSelect={docsBridge.onSelect}
-        onAdd={docsBridge.onAdd}
-        onUploadPdf={docsBridge.onUploadPdf}
-        title={docsBridge.title}
-        emptyTitle={docsBridge.emptyTitle}
+        items={(docsBridge?.items || pagesBridge?.items) || []}
+        selectedId={(docsBridge?.selectedId || pagesBridge?.selectedId) || null}
+        onSelect={docsBridge?.onSelect || pagesBridge?.onSelect}
+        onAdd={docsBridge?.onAdd || pagesBridge?.onAdd}
+        onUploadPdf={docsBridge?.onUploadPdf || pagesBridge?.onUploadPdf}
+        title={docsBridge?.title || pagesBridge?.title}
+        emptyTitle={docsBridge?.emptyTitle || pagesBridge?.emptyTitle}
         useDefaultStyles={props.useDefaultStyles}
         density={documentsRailMode === 'stacked' ? 'compact' : 'default'}
         className={DESIGNER_CLASSNAME + "documentsrailcomponent-auto"}
@@ -196,6 +199,10 @@ const Sidebar = (props: RightSidebarProps) => {
 
   return (
     <div
+      id={props.rootId}
+      role="complementary"
+      aria-label="Panel derecho del diseñador"
+      aria-hidden={sidebarOpen ? 'false' : 'true'}
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'right-sidebar',
         detached ? DESIGNER_CLASSNAME + 'right-sidebar-detached' : '',
@@ -226,6 +233,8 @@ const Sidebar = (props: RightSidebarProps) => {
                     disabled={disabled}
                     className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn'}
                     data-active={isActive ? 'true' : 'false'}
+                    title={mode === 'fields' ? 'Campos del documento' : mode === 'detail' ? 'Detalle del campo seleccionado' : 'Documentos y páginas'}
+                    aria-label={mode === 'fields' ? 'Abrir panel Campos' : mode === 'detail' ? 'Abrir panel Detalle' : 'Abrir panel Docs'}
                     onClick={() => {
                       if (requestedViewMode === 'auto') setInternalViewMode(mode);
                       props.onViewModeChange?.(mode);

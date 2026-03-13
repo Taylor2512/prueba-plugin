@@ -74,6 +74,7 @@ const SelectableSortableItem = ({
       icon={thisPlugin && <PluginIcon plugin={thisPlugin} label={pluginLabel} size={20} />}
       value={schema.name}
       schemaType={schema.type}
+      className={DESIGNER_CLASSNAME + 'item-auto'}
       status={status}
       title={title}
       required={schema.required}
@@ -84,7 +85,6 @@ const SelectableSortableItem = ({
       transform={transform}
       fadeIn={mountedWhileDragging}
       listeners={newListeners}
-      className={DESIGNER_CLASSNAME + "item-auto"}
     />
   );
 };

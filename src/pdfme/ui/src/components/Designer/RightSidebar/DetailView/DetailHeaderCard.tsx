@@ -1,6 +1,6 @@
 import React from 'react';
 import type { SchemaForUI } from '@pdfme/common';
-import { Badge, Tag } from 'antd';
+import { Badge, Tag, Tooltip } from 'antd';
 import { resolveSchemaTone } from '../../shared/schemaTone.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 
@@ -17,12 +17,16 @@ const DetailHeaderCard = ({ activeSchema }: DetailHeaderCardProps) => {
     <div className={DESIGNER_CLASSNAME + 'detail-header-card'}>
       <div className={DESIGNER_CLASSNAME + 'detail-header-card-head'}>
         <Badge color={tone} />
-        <span className={DESIGNER_CLASSNAME + 'detail-header-card-title'}>
-          {schemaName}
-        </span>
-        <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-tag-base'}>
-          {schemaType}
-        </Tag>
+        <Tooltip title={schemaName}>
+          <span className={DESIGNER_CLASSNAME + 'detail-header-card-title'}>
+            {schemaName}
+          </span>
+        </Tooltip>
+        <Tooltip title={`Tipo: ${schemaType}`}>
+          <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-tag-base'}>
+            {schemaType}
+          </Tag>
+        </Tooltip>
         {activeSchema.required ? (
           <Tag color="error" className={DESIGNER_CLASSNAME + 'detail-header-card-tag'}>
             Requerido
@@ -45,7 +49,9 @@ const DetailHeaderCard = ({ activeSchema }: DetailHeaderCardProps) => {
             <div className={DESIGNER_CLASSNAME + 'detail-header-card-stat-label'}>
               {item.label}
             </div>
-            <div className={DESIGNER_CLASSNAME + 'detail-header-card-stat-value'}>{item.value}</div>
+            <Tooltip title={`${item.label}: ${item.value}`}>
+              <div className={DESIGNER_CLASSNAME + 'detail-header-card-stat-value'}>{item.value}</div>
+            </Tooltip>
           </div>
         ))}
       </div>

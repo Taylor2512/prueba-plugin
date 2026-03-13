@@ -4,6 +4,7 @@ import { I18nContext } from '../../../../contexts.js';
 import { GripVertical, CircleAlert, Lock, Eye, EyeOff, Trash2 } from 'lucide-react';
 import { Button, Typography, Tooltip } from 'antd';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
+import { mergeClassNames } from '../../shared/className.js';
 
 const { Text } = Typography;
 
@@ -30,16 +31,6 @@ const SCHEMA_TYPE_COLORS: Record<string, string> = {
 };
 const getTypeColor = (type?: string) => (type ? (SCHEMA_TYPE_COLORS[type] ?? '#888') : '#888');
 
-const iconButtonBaseStyle: React.CSSProperties = {
-  background: 'none',
-  border: 'none',
-  cursor: 'pointer',
-  padding: '2px 3px',
-  borderRadius: 4,
-  display: 'flex',
-  alignItems: 'center',
-  transition: 'opacity 0.15s',
-};
 
 // Define prop types for Item component
 interface Props {
@@ -49,6 +40,8 @@ interface Props {
   schemaType?: string;
   /** Optional icon to display */
   icon?: React.ReactNode;
+  /** Optional custom className */
+  className?: string;
   /** Custom styles for the item */
   style?: React.CSSProperties;
   /** Status indicator for the item */
@@ -103,11 +96,13 @@ const ItemStatusLabel = ({
   const statusText = status === 'is-warning' ? noKeyNameLabel : value;
 
   return (
-    <span className={DESIGNER_CLASSNAME + 'list-view-item-status'}>
-      <CircleAlert size={14} />
-      {statusText}
-      {status === 'is-danger' ? notUniqueLabel : ''}
-    </span>
+    <Tooltip title={status === 'is-danger' ? `${String(statusText)} ${notUniqueLabel}` : String(statusText)}>
+      <span className={DESIGNER_CLASSNAME + 'list-view-item-status'}>
+        <CircleAlert size={14} />
+        {statusText}
+        {status === 'is-danger' ? notUniqueLabel : ''}
+      </span>
+    </Tooltip>
   );
 };
 
@@ -127,26 +122,38 @@ const ItemActions = ({
   isHovered?: boolean;
 }) => (
   <div className={DESIGNER_CLASSNAME + 'list-view-item-actions'}>
-    {readOnly && <Lock size={13} className={DESIGNER_CLASSNAME + 'list-view-item-lock'} />}
-    {required && <span className={DESIGNER_CLASSNAME + 'list-view-item-required'}>*</span>}
-    {onToggleVisibility && (
-      <button
-        onClick={(e) => { e.stopPropagation(); onToggleVisibility(); }}
-        title={hidden ? 'Mostrar' : 'Ocultar'}
-        className={DESIGNER_CLASSNAME + "button-auto"}
-      >
-        {hidden ? <EyeOff size={13} /> : <Eye size={13} />}
-      </button>
-    )}
-    {onDelete && isHovered && (
-      <button
-        onClick={(e) => { e.stopPropagation(); onDelete(); }}
-        title="Eliminar campo"
-        className={DESIGNER_CLASSNAME + "button-auto"}
-      >
-        <Trash2 size={13} />
-      </button>
-    )}
+    {readOnly ? (
+      <Tooltip title="Solo lectura" placement="top">
+        <Lock size={13} className={DESIGNER_CLASSNAME + 'list-view-item-lock'} />
+      </Tooltip>
+    ) : null}
+    {required ? (
+      <Tooltip title="Campo requerido" placement="top">
+        <span className={DESIGNER_CLASSNAME + 'list-view-item-required'}>*</span>
+      </Tooltip>
+    ) : null}
+    {onToggleVisibility ? (
+      <Tooltip title={hidden ? 'Mostrar campo en el lienzo' : 'Ocultar campo del lienzo'} placement="top">
+        <button
+          onClick={(e) => { e.stopPropagation(); onToggleVisibility(); }}
+          title={hidden ? 'Mostrar' : 'Ocultar'}
+          className={DESIGNER_CLASSNAME + "button-auto"}
+        >
+          {hidden ? <EyeOff size={13} /> : <Eye size={13} />}
+        </button>
+      </Tooltip>
+    ) : null}
+    {onDelete && isHovered ? (
+      <Tooltip title="Eliminar campo" placement="top">
+        <button
+          onClick={(e) => { e.stopPropagation(); onDelete(); }}
+          title="Eliminar campo"
+          className={DESIGNER_CLASSNAME + "button-auto"}
+        >
+          <Trash2 size={13} />
+        </button>
+      </Tooltip>
+    ) : null}
   </div>
 );
 
@@ -166,6 +173,7 @@ const Item = React.memo(
       onToggleVisibility,
       onDelete,
       style,
+      className,
       dragOverlay,
       onClick,
       onMouseEnter,
@@ -200,14 +208,23 @@ const Item = React.memo(
 
     const { x, y, scaleX, scaleY } = transform || { x: 0, y: 0, scaleX: 1, scaleY: 1 };
     const typeAccent = getTypeColor(schemaType);
+    const normalizedValue =
+      typeof value === 'string' || typeof value === 'number' ? String(value) : undefined;
+    const valueTooltip = normalizedValue || title || '';
+    const dragStyle: React.CSSProperties = {
+      transform: `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0) scale(${scaleX}, ${scaleY})`,
+      transition,
+      ...style,
+      '--type-accent': typeAccent,
+    } as React.CSSProperties;
 
     return (
       <li
         onMouseEnter={() => { setIsHovered(true); onMouseEnter?.(); }}
         onMouseLeave={() => { setIsHovered(false); onMouseLeave?.(); }}
         ref={ref}
-        className={DESIGNER_CLASSNAME + 'list-view-item'}
-        style={{ '--type-accent': typeAccent } as React.CSSProperties}
+        className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item', className)}
+        style={dragStyle}
         data-schema-type={schemaType}>
         <div
           className={DESIGNER_CLASSNAME + 'list-view-item-content'}
@@ -220,7 +237,8 @@ const Item = React.memo(
           <div className={DESIGNER_CLASSNAME + 'list-view-item-icon'}>{icon}</div>
           <Text
             className={DESIGNER_CLASSNAME + 'list-view-item-value'}
-            title={title || ''}>
+            title={valueTooltip}
+            ellipsis={{ tooltip: valueTooltip }}>
             <ItemStatusLabel
               value={value}
               status={status}

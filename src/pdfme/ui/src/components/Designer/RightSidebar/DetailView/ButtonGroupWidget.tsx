@@ -1,5 +1,5 @@
 import { DESIGNER_CLASSNAME } from "../../../../constants.js";
-import { Button, Form, theme } from 'antd';
+import { Button, Form, Tooltip, theme } from 'antd';
 import React from 'react';
 import type { PropPanelWidgetProps, SchemaForUI } from '@pdfme/common';
 interface ButtonConfig {
@@ -60,13 +60,14 @@ const ButtonGroupWidget = (props: PropPanelWidgetProps) => {
         {(schema.buttons as ButtonConfig[]).map((btn: ButtonConfig, index: number) => {
           const active = isActive(btn);
           return (
-            <Button
-              type={active ? 'primary' : 'default'}
-              onClick={() => apply(btn)}
-              key={index}
-              icon={svgIcon(btn.icon)}
-              className={DESIGNER_CLASSNAME + "button-auto"}
-            />
+            <Tooltip key={index} title={btn.key} placement="top">
+              <Button
+                type={active ? 'primary' : 'default'}
+                onClick={() => apply(btn)}
+                icon={svgIcon(btn.icon)}
+                className={DESIGNER_CLASSNAME + "button-auto"}
+              />
+            </Tooltip>
           );
         })}
       </div>
