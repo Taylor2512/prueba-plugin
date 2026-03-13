@@ -1,6 +1,6 @@
 import React from 'react';
 import { Button, Empty, Typography } from 'antd';
-import { FilePlus2, FileText, Plus } from 'lucide-react';
+import { FilePlus2, FileText, FileUp, Plus } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../constants.js';
 import { SidebarBody, SidebarFrame, SidebarHeader } from './layout.js';
 import { mergeClassNames } from '../shared/className.js';
@@ -22,6 +22,7 @@ export type DocumentsRailProps = {
   selectedId?: string | null;
   onSelect?: (id: string) => void;
   onAdd?: () => void;
+  onUploadPdf?: () => void;
   title?: React.ReactNode;
   emptyTitle?: React.ReactNode;
   className?: string;
@@ -47,8 +48,9 @@ const DocumentsRail = ({
   selectedId,
   onSelect,
   onAdd,
-  title = 'Documentos',
-  emptyTitle = 'Sin documentos disponibles',
+  onUploadPdf,
+  title = 'Paginas',
+  emptyTitle = 'Sin paginas disponibles',
   className,
   style,
   useDefaultStyles = true,
@@ -58,17 +60,17 @@ const DocumentsRail = ({
   const isCompact = density === 'compact';
   const rootStyle = useDefaultStyles
     ? {
-        minWidth: 0,
-        gap: 0,
-        borderRadius: 14,
-      }
+      minWidth: 0,
+      gap: 0,
+      borderRadius: 14,
+    }
     : {};
 
   return (
     <SidebarFrame
       className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail', className)}>
       <SidebarHeader>
-        <div className={DESIGNER_CLASSNAME + "div-auto"}>
+        <div className={DESIGNER_CLASSNAME + 'documents-rail-header'}>
           <FileText size={15} className={DESIGNER_CLASSNAME + "filetext-auto"} />
           <Text strong className={DESIGNER_CLASSNAME + "text-auto"}>
             {title}
@@ -82,42 +84,54 @@ const DocumentsRail = ({
               className={DESIGNER_CLASSNAME + "button-auto"}
             />
           ) : null}
+          {onUploadPdf ? (
+            <Button
+              size="small"
+              type="text"
+              icon={<FileUp size={14} />}
+              onClick={onUploadPdf}
+              className={DESIGNER_CLASSNAME + "button-auto"}
+            >
+              Subir PDF
+            </Button>
+          ) : null}
         </div>
       </SidebarHeader>
       <SidebarBody>
         {items.length === 0 ? (
           <Empty
             image={Empty.PRESENTED_IMAGE_SIMPLE}
-            description={<span className={DESIGNER_CLASSNAME + "span-auto"}>{emptyTitle}</span>}
+            description={<span className={DESIGNER_CLASSNAME + 'documents-empty-title'}>{emptyTitle}</span>}
           >
             {onAdd ? (
               <Button size="small" type="default" icon={<FilePlus2 size={14} />} onClick={onAdd}>
                 Agregar
               </Button>
             ) : null}
+            {onUploadPdf ? (
+              <Button size="small" type="default" icon={<FileUp size={14} />} onClick={onUploadPdf}>
+                Subir PDF
+              </Button>
+            ) : null}
           </Empty>
         ) : (
-          <div className={DESIGNER_CLASSNAME + "div-auto"}>
+          <div className={DESIGNER_CLASSNAME + 'documents-rail-items'}>
             {onAdd && showInlineAddCard ? (
               <button
                 type="button"
                 onClick={onAdd}
                 className={DESIGNER_CLASSNAME + 'documents-rail-item'}>
-                <div
-                  className={DESIGNER_CLASSNAME + "div-auto"}
-                >
-                  <div
-                    className={DESIGNER_CLASSNAME + "div-auto"}
-                  >
+                <div className={DESIGNER_CLASSNAME + 'documents-rail-leading'}>
+                  <div className={DESIGNER_CLASSNAME + 'documents-rail-preview'}>
                     <Plus size={18} />
                   </div>
                 </div>
-                <div className={DESIGNER_CLASSNAME + "div-auto"}>
+                <div className={DESIGNER_CLASSNAME + 'documents-rail-meta'}>
                   <Text strong className={DESIGNER_CLASSNAME + "text-auto"}>
-                    Agregar documento
+                    Agregar pagina
                   </Text>
                   <Text type="secondary" className={DESIGNER_CLASSNAME + "text-auto"}>
-                    Adjunta otro PDF o una nueva página al flujo actual
+                    Crea una nueva pagina en el flujo actual
                   </Text>
                 </div>
               </button>
@@ -131,25 +145,26 @@ const DocumentsRail = ({
                   disabled={item.disabled}
                   onClick={() => onSelect?.(item.id)}
                   className={DESIGNER_CLASSNAME + 'documents-rail-item'}>
-                  <div className={DESIGNER_CLASSNAME + "div-auto"}>
+                  <div className={DESIGNER_CLASSNAME + 'documents-rail-leading'}>
                     {item.previewSrc ? (
-                      <div
-                        className={DESIGNER_CLASSNAME + "div-auto"}
-                      />
+                      <div className={DESIGNER_CLASSNAME + 'documents-rail-preview'}>
+                        <img
+                          src={item.previewSrc}
+                          alt={item.name}
+                          className={DESIGNER_CLASSNAME + 'documents-rail-preview-image'}
+                          loading="lazy"
+                        />
+                      </div>
                     ) : (
-                      <div
-                        className={DESIGNER_CLASSNAME + "div-auto"}
-                      >
+                      <div className={DESIGNER_CLASSNAME + 'documents-rail-preview'}>
                         <FileText size={20} />
                       </div>
                     )}
-                    <div
-                      className={DESIGNER_CLASSNAME + "div-auto"}
-                    >
+                    <div className={DESIGNER_CLASSNAME + 'documents-rail-page-label'}>
                       {item.pageLabel || `${index + 1}`}
                     </div>
                   </div>
-                  <div className={DESIGNER_CLASSNAME + "div-auto"}>
+                  <div className={DESIGNER_CLASSNAME + 'documents-rail-meta'}>
                     <Text strong ellipsis={{ tooltip: item.name }} className={DESIGNER_CLASSNAME + "text-auto"}>
                       {item.name}
                     </Text>

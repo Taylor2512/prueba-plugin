@@ -6,11 +6,15 @@ import { flatSchemaPlugins, builtInSchemaDefinitions } from '@pdfme/schemas'
 import { pdf2img, pdf2size, img2pdf } from '@pdfme/converter'
 import { createInitialPdfmeTemplate } from './template'
 import { createObjectUrl, revokeObjectUrls, downloadUrl } from './utils/binary'
-
-const MODES = ['designer', 'form', 'viewer']
-const UX_MODES = ['default', 'canvas-first']
-const UX_MODE_STORAGE_KEY = 'pdfme.lab.ux-mode'
-const getErrorMessage = (error) => (error instanceof Error ? error.message : 'Error inesperado')
+import {
+  MODES,
+  UX_MODES,
+  UX_MODE_STORAGE_KEY,
+  getErrorMessage,
+  isValidUxMode,
+  resolveInitialUxMode,
+  formatPageStatus,
+} from './domain/labState'
 
 export default function PdfmeLabPage() {
   const containerRef = useRef(null)
@@ -37,19 +41,12 @@ export default function PdfmeLabPage() {
   const canRunDesignerActions = mode === 'designer' && !busy
 
   useEffect(() => {
-    const searchParams = new URLSearchParams(window.location.search)
-    const modeFromQuery = searchParams.get('ux')
     const modeFromStorage = window.localStorage.getItem(UX_MODE_STORAGE_KEY)
-    const candidate = [modeFromQuery, modeFromStorage].find((value) => UX_MODES.includes(String(value)))
-    if (candidate) {
-      setUxMode(candidate)
-      return
-    }
-    setUxMode('canvas-first')
+    setUxMode(resolveInitialUxMode({ search: window.location.search, storedMode: modeFromStorage }))
   }, [])
 
   useEffect(() => {
-    if (!UX_MODES.includes(uxMode)) return
+    if (!isValidUxMode(uxMode)) return
     window.localStorage.setItem(UX_MODE_STORAGE_KEY, uxMode)
   }, [uxMode])
 
@@ -111,9 +108,7 @@ export default function PdfmeLabPage() {
         setTemplate(nextTemplate)
       })
       designer.onPageChange((pageInfo) => {
-        const current = Math.max(1, Number(pageInfo?.currentPage || 1))
-        const total = Math.max(1, Number(pageInfo?.totalPages || 1))
-        setStatus(`Página ${current} / ${total}`)
+        setStatus(formatPageStatus(pageInfo))
       })
       instanceRef.current = designer
     }
@@ -149,7 +144,7 @@ export default function PdfmeLabPage() {
     const instance = instanceRef.current
     if (!instance) return
     instance.updateTemplate(cloneDeep(template))
-  }, [template])
+  }, [mode, template])
 
   useEffect(() => {
     const instance = instanceRef.current

@@ -387,7 +387,7 @@ Check this document: https://pdfme.com/docs/custom-schemas`);
 
   return (
     <Wrapper {...props}>
-      <div ref={ref} className={UI_CLASSNAME + "div-auto"} style={FILL_STYLE} />
+      <div ref={ref} style={FILL_STYLE} />
     </Wrapper>
   );
 };

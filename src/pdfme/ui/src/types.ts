@@ -43,6 +43,9 @@ export type DesignerDocumentsBridge = {
   selectedId: string | null;
   onSelect: (id: string) => void;
   onAdd?: () => void;
+  onUploadPdf?: () => void;
+  title?: string;
+  emptyTitle?: string;
 };
 
 export type DesignerRuntimeApi = {

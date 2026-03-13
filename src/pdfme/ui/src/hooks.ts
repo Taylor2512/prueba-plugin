@@ -37,11 +37,22 @@ const getScale = (n: number, paper: number) =>
 
 type UIPreProcessorProps = { template: Template; size: Size; zoomLevel: number; maxZoom: number };
 
+type PreprocessedPdfCache = {
+  key: unknown;
+  maxZoom: number;
+  backgrounds: string[];
+  pageSizes: { width: number; height: number }[];
+  paperWidth: number;
+  paperHeight: number;
+};
+
 export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreProcessorProps) => {
   const [backgrounds, setBackgrounds] = useState<string[]>([]);
   const [pageSizes, setPageSizes] = useState<Size[]>([]);
   const [scale, setScale] = useState(0);
   const [error, setError] = useState<Error | null>(null);
+  const requestIdRef = useRef(0);
+  const preprocessedCacheRef = useRef<PreprocessedPdfCache | null>(null);
 
   const init = async (prop: { template: Template; size: Size }) => {
     const {
@@ -63,22 +74,39 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
           'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj+P///38ACfsD/QVDRcoAAAAASUVORK5CYII=',
       );
       _pageSizes = schemas.map(() => ({ width, height }));
+      preprocessedCacheRef.current = null;
     } else {
-      const _basePdf = await getB64BasePdf(basePdf);
+      const cached = preprocessedCacheRef.current;
+      if (cached && cached.key === basePdf && cached.maxZoom === maxZoom) {
+        _pageSizes = cached.pageSizes;
+        paperWidth = cached.paperWidth;
+        paperHeight = cached.paperHeight;
+        _backgrounds = cached.backgrounds;
+      } else {
+        const _basePdf = await getB64BasePdf(basePdf);
 
-      const uint8Array = b64toUint8Array(_basePdf);
-      // Create a new ArrayBuffer copy to avoid detachment issues
-      const pdfArrayBuffer = new ArrayBuffer(uint8Array.byteLength);
-      new Uint8Array(pdfArrayBuffer).set(uint8Array);
+        const uint8Array = b64toUint8Array(_basePdf);
+        // Create a new ArrayBuffer copy to avoid detachment issues
+        const pdfArrayBuffer = new ArrayBuffer(uint8Array.byteLength);
+        new Uint8Array(pdfArrayBuffer).set(uint8Array);
 
-      const [_pages, imgBuffers] = await Promise.all([
-        pdf2size(pdfArrayBuffer),
-        pdf2img(pdfArrayBuffer.slice(), { scale: maxZoom }),
-      ]);
-      _pageSizes = _pages;
-      paperWidth = _pageSizes[0].width * ZOOM;
-      paperHeight = _pageSizes[0].height * ZOOM;
-      _backgrounds = imgBuffers.map(arrayBufferToBase64);
+        const [_pages, imgBuffers] = await Promise.all([
+          pdf2size(pdfArrayBuffer),
+          pdf2img(pdfArrayBuffer.slice(), { scale: maxZoom }),
+        ]);
+        _pageSizes = _pages;
+        paperWidth = _pageSizes[0].width * ZOOM;
+        paperHeight = _pageSizes[0].height * ZOOM;
+        _backgrounds = imgBuffers.map(arrayBufferToBase64);
+        preprocessedCacheRef.current = {
+          key: basePdf,
+          maxZoom,
+          backgrounds: _backgrounds,
+          pageSizes: _pageSizes,
+          paperWidth,
+          paperHeight,
+        };
+      }
     }
 
     const _scale = Math.min(
@@ -93,18 +121,32 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
     };
   };
 
+  const isBlankBasePdf = isBlankPdf(template.basePdf);
+  const blankSchemaPages = isBlankBasePdf ? template.schemas.length : 0;
+
   useEffect(() => {
+    requestIdRef.current += 1;
+    const requestId = requestIdRef.current;
     init({ template, size })
       .then(({ pageSizes, scale, backgrounds }) => {
+        if (requestId !== requestIdRef.current) return;
         setPageSizes(pageSizes);
         setScale(scale);
         setBackgrounds(backgrounds);
+        setError(null);
       })
       .catch((err: Error) => {
+        if (requestId !== requestIdRef.current) return;
         setError(err);
         console.error('[@pdfme/ui]', err);
       });
-  }, [template, size]);
+
+    return () => {
+      if (requestId === requestIdRef.current) {
+        requestIdRef.current += 1;
+      }
+    };
+  }, [blankSchemaPages, isBlankBasePdf, size.width, size.height, template.basePdf, maxZoom]);
 
   return {
     backgrounds,

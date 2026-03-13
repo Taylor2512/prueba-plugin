@@ -102,14 +102,20 @@ const ListView = (
             className={DESIGNER_CLASSNAME + 'list-view-bulk-textarea'}
           />
         ) : (
-          <SelectableSortableContainer
-            allSchemas={schemas}
-            visibleSchemas={filteredSchemas}
-            hoveringSchemaId={hoveringSchemaId}
-            onChangeHoveringSchemaId={onChangeHoveringSchemaId}
-            onSortEnd={onSortEnd}
-            onEdit={onEdit}
-          />
+          filteredSchemas.length > 0 ? (
+            <SelectableSortableContainer
+              allSchemas={schemas}
+              visibleSchemas={filteredSchemas}
+              hoveringSchemaId={hoveringSchemaId}
+              onChangeHoveringSchemaId={onChangeHoveringSchemaId}
+              onSortEnd={onSortEnd}
+              onEdit={onEdit}
+            />
+          ) : (
+            <div className={DESIGNER_CLASSNAME + 'list-view-empty'}>
+              No hay campos que coincidan con los filtros actuales.
+            </div>
+          )
         )}
       </SidebarBody>
       <SidebarFooter>

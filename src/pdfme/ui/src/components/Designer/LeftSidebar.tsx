@@ -28,52 +28,86 @@ import {
 
 const schemaTypeCategoryMap: Record<string, string> = {
   text: 'Texto',
-  multiVariableText: 'Texto',
-  image: 'Medios',
-  svg: 'Medios',
+  multivariabletext: 'Texto',
+  image: 'Imagen y medios',
+  svg: 'Imagen y medios',
+  signature: 'Firma',
   line: 'Estructura',
   table: 'Estructura',
   rectangle: 'Estructura',
   ellipse: 'Estructura',
-  checkbox: 'Seleccion',
-  radioGroup: 'Seleccion',
-  select: 'Seleccion',
+  checkbox: 'Selección',
+  radiogroup: 'Selección',
+  select: 'Selección',
   date: 'Fecha y hora',
-  dateTime: 'Fecha y hora',
+  datetime: 'Fecha y hora',
   time: 'Fecha y hora',
-  qrcode: 'Codigos',
-  ean13: 'Codigos',
-  ean8: 'Codigos',
-  code39: 'Codigos',
-  code128: 'Codigos',
-  itf14: 'Codigos',
-  upca: 'Codigos',
-  upce: 'Codigos',
-  gs1datamatrix: 'Codigos',
-  pdf417: 'Codigos',
-  japanpost: 'Codigos',
-  nw7: 'Codigos',
-  signature: 'Firma',
+  qrcode: 'QR y códigos',
+  ean13: 'QR y códigos',
+  ean8: 'QR y códigos',
+  code39: 'QR y códigos',
+  code128: 'QR y códigos',
+  itf14: 'QR y códigos',
+  upca: 'QR y códigos',
+  upce: 'QR y códigos',
+  gs1datamatrix: 'QR y códigos',
+  pdf417: 'QR y códigos',
+  japanpost: 'QR y códigos',
+  nw7: 'QR y códigos',
+};
+
+const categoryAliases: Record<string, string> = {
+  texto: 'Texto',
+  text: 'Texto',
+  imagen: 'Imagen y medios',
+  imagenes: 'Imagen y medios',
+  imágenes: 'Imagen y medios',
+  image: 'Imagen y medios',
+  media: 'Imagen y medios',
+  medios: 'Imagen y medios',
+  estructura: 'Estructura',
+  selection: 'Selección',
+  seleccion: 'Selección',
+  'selección': 'Selección',
+  opciones: 'Selección',
+  fecha: 'Fecha y hora',
+  fechas: 'Fecha y hora',
+  datetime: 'Fecha y hora',
+  codigos: 'QR y códigos',
+  'códigos': 'QR y códigos',
+  barcode: 'QR y códigos',
+  barcodes: 'QR y códigos',
+  qr: 'QR y códigos',
+  firma: 'Firma',
+  signatures: 'Firma',
+  general: 'General',
 };
 
 const categoryOrder = [
-  'Firma',
-  'Contactos',
-  'General',
-  'Opciones',
-  'Fechas',
-  'Scheduling y servicios',
-  'Pagos',
-  'Botones',
-  'Elementos de estilo',
   'Texto',
-  'Medios',
-  'Estructura',
-  'Seleccion',
+  'Imagen y medios',
   'Fecha y hora',
-  'Codigos',
-  'Códigos',
+  'QR y códigos',
+  'Firma',
+  'Selección',
+  'Estructura',
+  'General',
 ];
+
+const normalizeCatalogCategory = (value: string): string => {
+  const normalized = String(value || '').trim();
+  if (!normalized) return '';
+  const key = normalized.toLowerCase();
+  return categoryAliases[key] || normalized;
+};
+
+const resolveCatalogCategory = (schemaType: string, schemaCategory?: string, customCategory?: string): string => {
+  const custom = normalizeCatalogCategory(String(customCategory || ''));
+  if (custom) return custom;
+  const declared = normalizeCatalogCategory(String(schemaCategory || ''));
+  if (declared) return declared;
+  return schemaTypeCategoryMap[String(schemaType || '').toLowerCase()] || 'General';
+};
 const PREFILL_SCHEMA_TYPES = new Set([
   'text',
   'multivariabletext',
@@ -550,11 +584,7 @@ const LeftSidebar = ({
         const normalizedType = type.toLowerCase();
         const builtInDefinition = builtInDefinitionsByType.get(normalizedType);
         const customCategory = customCategoryByLabel.get(String(label || '').trim());
-        const category =
-          customCategory ||
-          String(builtInDefinition?.category || '').trim() ||
-          schemaTypeCategoryMap[type] ||
-          'General';
+        const category = resolveCatalogCategory(type, String(builtInDefinition?.category || ''), customCategory);
         const tags = (builtInDefinition?.tags || []).map((tag) => String(tag));
         const capabilities = (builtInDefinition?.capabilities || []).map((capability) => String(capability));
         const builtInDescription = String(
@@ -733,8 +763,7 @@ const LeftSidebar = ({
     if (!normalizedName) return;
     const nextField = { ...customDraft, id: `custom-${Date.now()}`, name: normalizedName };
     const mappedType = nextField.type === 'email' || nextField.type === 'name' ? 'text' : nextField.type;
-    const normalizedCategory =
-      schemaTypeCategoryMap[mappedType] || schemaTypeCategoryMap[nextField.type] || 'General';
+    const normalizedCategory = resolveCatalogCategory(mappedType, '');
     const autoFillSource =
       nextField.type === 'email'
         ? 'recipient.email'

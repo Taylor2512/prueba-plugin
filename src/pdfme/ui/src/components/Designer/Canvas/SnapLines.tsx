@@ -83,7 +83,6 @@ const SnapLines = ({
                 className={cn(
                   `${DESIGNER_CLASSNAME}snap-line`,
                   `${DESIGNER_CLASSNAME}snap-line-horizontal`,
-                  `${DESIGNER_CLASSNAME}div-auto`,
                 )}
                 data-is-center={isCenter(line) ? 'true' : 'false'}
                 style={{
@@ -103,7 +102,6 @@ const SnapLines = ({
                   className={cn(
                     `${DESIGNER_CLASSNAME}snap-label`,
                     `${DESIGNER_CLASSNAME}snap-label-horizontal`,
-                    `${DESIGNER_CLASSNAME}span-auto`,
                   )}
                   style={{
                     position: 'absolute',
@@ -133,7 +131,6 @@ const SnapLines = ({
               className={cn(
                 `${DESIGNER_CLASSNAME}snap-line`,
                 `${DESIGNER_CLASSNAME}snap-line-vertical`,
-                `${DESIGNER_CLASSNAME}div-auto`,
               )}
               data-is-center={isCenter(line) ? 'true' : 'false'}
               style={{
@@ -153,7 +150,6 @@ const SnapLines = ({
                 className={cn(
                   `${DESIGNER_CLASSNAME}snap-label`,
                   `${DESIGNER_CLASSNAME}snap-label-vertical`,
-                  `${DESIGNER_CLASSNAME}span-auto`,
                 )}
                 style={{
                   position: 'absolute',

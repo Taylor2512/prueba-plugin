@@ -1,4 +1,3 @@
-import { UI_CLASSNAME } from "../constants.js";
 import React from 'react';
 import { LoaderCircle } from 'lucide-react';
 import { theme } from 'antd';
@@ -36,8 +35,8 @@ const Spinner: React.FC = () => {
   return (
     <>
       <style>{keyframes}</style>
-      <div className={UI_CLASSNAME + "div-auto"}>
-        <LoaderCircle size={50} className={UI_CLASSNAME + "loadercircle-auto"} />
+      <div style={containerStyle}>
+        <LoaderCircle size={50} style={loaderStyle} />
       </div>
     </>
   );

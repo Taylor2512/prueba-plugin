@@ -38,6 +38,7 @@ export type RightSidebarProps = SidebarProps & {
   };
   bridge?: DesignerComponentBridge;
   documents?: DesignerDocumentsBridge;
+  pages?: DesignerDocumentsBridge;
   showDocumentsRail?: boolean;
   viewMode?: 'auto' | 'fields' | 'detail' | 'docs';
   autoFocusDetail?: boolean;
@@ -87,7 +88,7 @@ const Sidebar = (props: RightSidebarProps) => {
   const activeSchemaCount = activeSchemas.length;
   const [internalViewMode, setInternalViewMode] = useState<'fields' | 'detail' | 'docs'>('fields');
   const requestedViewMode = props.viewMode || 'auto';
-  const showDocumentsRail = props.showDocumentsRail !== false && Boolean(props.documents);
+  const showDocumentsRail = props.showDocumentsRail !== false && (Boolean(props.pages) || Boolean(props.documents));
   const actualPresentation = useMemo<DesignerSidebarPresentation>(() => {
     if (props.presentation === 'overlay') return 'overlay';
     if (props.presentation === 'docked') return 'docked';
@@ -100,6 +101,8 @@ const Sidebar = (props: RightSidebarProps) => {
   }, [props.documentsRailMode, responsiveBreakpoint, viewportWidth]);
   const resolvedViewMode: 'fields' | 'detail' | 'docs' =
     requestedViewMode !== 'auto' ? requestedViewMode : internalViewMode;
+  const pagesBridge = props.pages || props.documents;
+  const docsBridge = props.documents;
 
   useEffect(() => {
     if (requestedViewMode !== 'auto') return;
@@ -124,7 +127,7 @@ const Sidebar = (props: RightSidebarProps) => {
           : 'list';
 
   const shouldRenderDocumentsRail =
-    showDocumentsRail && (props.documentsAccessMode !== 'tab' || resolvedViewMode === 'docs');
+    Boolean(pagesBridge) && (props.documentsAccessMode !== 'tab' || resolvedViewMode !== 'docs');
 
   const contentColumns =
     resolvedPanelMode === 'docs'
@@ -160,12 +163,15 @@ const Sidebar = (props: RightSidebarProps) => {
     : undefined;
 
   const contentNode = resolvedPanelMode === 'docs' ? (
-    shouldRenderDocumentsRail ? (
+    docsBridge ? (
       <DocumentsRailComponent
-        items={props.documents?.items || []}
-        selectedId={props.documents?.selectedId || null}
-        onSelect={props.documents?.onSelect}
-        onAdd={props.documents?.onAdd}
+        items={docsBridge.items || []}
+        selectedId={docsBridge.selectedId || null}
+        onSelect={docsBridge.onSelect}
+        onAdd={docsBridge.onAdd}
+        onUploadPdf={docsBridge.onUploadPdf}
+        title={docsBridge.title}
+        emptyTitle={docsBridge.emptyTitle}
         useDefaultStyles={props.useDefaultStyles}
         density={documentsRailMode === 'stacked' ? 'compact' : 'default'}
         className={DESIGNER_CLASSNAME + "documentsrailcomponent-auto"}
@@ -210,7 +216,7 @@ const Sidebar = (props: RightSidebarProps) => {
           <div className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-wrap'}>
             <div className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher'}>
               {(['fields', 'detail', 'docs'] as const).map((mode) => {
-                if (mode === 'docs' && !showDocumentsRail) return null;
+                if (mode === 'docs' && !docsBridge) return null;
                 const disabled = mode === 'detail' && activeSchemaCount !== 1;
                 const isActive = resolvedViewMode === mode;
                 return (
@@ -240,10 +246,13 @@ const Sidebar = (props: RightSidebarProps) => {
             <div className={DESIGNER_CLASSNAME + 'right-sidebar-layout-grid'}>
               {shouldRenderDocumentsRail && resolvedPanelMode !== 'docs' ? (
                 <DocumentsRailComponent
-                  items={props.documents?.items || []}
-                  selectedId={props.documents?.selectedId || null}
-                  onSelect={props.documents?.onSelect}
-                  onAdd={props.documents?.onAdd}
+                  items={pagesBridge?.items || []}
+                  selectedId={pagesBridge?.selectedId || null}
+                  onSelect={pagesBridge?.onSelect}
+                  onAdd={pagesBridge?.onAdd}
+                  onUploadPdf={pagesBridge?.onUploadPdf}
+                  title={pagesBridge?.title}
+                  emptyTitle={pagesBridge?.emptyTitle}
                   useDefaultStyles={props.useDefaultStyles}
                   density={documentsRailMode === 'stacked' ? 'compact' : 'default'}
                   className={DESIGNER_CLASSNAME + "documentsrailcomponent-auto"}
@@ -256,10 +265,13 @@ const Sidebar = (props: RightSidebarProps) => {
           <>
             {shouldRenderDocumentsRail && resolvedPanelMode !== 'docs' ? (
               <DocumentsRailComponent
-                items={props.documents?.items || []}
-                selectedId={props.documents?.selectedId || null}
-                onSelect={props.documents?.onSelect}
-                onAdd={props.documents?.onAdd}
+                items={pagesBridge?.items || []}
+                selectedId={pagesBridge?.selectedId || null}
+                onSelect={pagesBridge?.onSelect}
+                onAdd={pagesBridge?.onAdd}
+                onUploadPdf={pagesBridge?.onUploadPdf}
+                title={pagesBridge?.title}
+                emptyTitle={pagesBridge?.emptyTitle}
                 useDefaultStyles={props.useDefaultStyles}
                 density={documentsRailMode === 'stacked' ? 'compact' : 'default'}
                 className={DESIGNER_CLASSNAME + "documentsrailcomponent-auto"}

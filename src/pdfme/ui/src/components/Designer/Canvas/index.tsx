@@ -108,7 +108,7 @@ const SelectionActionsOverlay = ({
     >
       {selectionCount > 1 ? (
         <span
-          className={DESIGNER_CLASSNAME + "span-auto"}
+          className={DESIGNER_CLASSNAME + 'selection-actions-count'}
         >
           {selectionCount}
         </span>

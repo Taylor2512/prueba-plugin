@@ -54,9 +54,9 @@ const SVGIcon = ({ svgString, size, styles, label }: {
 
   return (
     <div
+      style={styles}
       title={label}
       dangerouslySetInnerHTML={{ __html: processedSVG }}
-      className={DESIGNER_CLASSNAME + "div-auto"}
     />
   );
 };

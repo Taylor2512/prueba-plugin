@@ -1,4 +1,3 @@
-import { UI_CLASSNAME } from "../constants.js";
 import React from 'react';
 import { Size } from '@pdfme/common';
 import { theme, Typography, Button } from 'antd';
@@ -25,7 +24,7 @@ const UnitButton: React.FC<UnitButtonProps> = ({ type, onClick, disabled, textSt
 
   return (
     <Button type="text" onClick={onClick} disabled={disabled}>
-      <Icon className={UI_CLASSNAME + "icon-auto"} />
+      <Icon style={{ color: textStyle.color }} />
     </Button>
   );
 };
@@ -61,12 +60,19 @@ const UnitPager = ({ size, unitCursor, unitNum, setUnitCursor }: Props) => {
   };
 
   return (
-    <div className={UI_CLASSNAME + "div-auto"}>
+    <div style={{ position: 'absolute', ...size }}>
       <div
-        className={UI_CLASSNAME + "div-auto"}
+        style={{
+          position: 'sticky',
+          width: '100%',
+          zIndex: 1,
+          top: `calc(50% - ${(buttonWrapStyle.height as number) / 2}px)`,
+          display: 'flex',
+          alignItems: 'center',
+        }}
       >
         {unitCursor > 0 && (
-          <div className={UI_CLASSNAME + "div-auto"}>
+          <div style={{ left: '1rem', marginLeft: '1rem', ...buttonWrapStyle }}>
             <UnitButton
               type="doubleLeft"
               onClick={() => setUnitCursor(0)}
@@ -79,16 +85,16 @@ const UnitPager = ({ size, unitCursor, unitNum, setUnitCursor }: Props) => {
               disabled={unitCursor <= 0}
               textStyle={textStyle}
             />
-            <Text strong className={UI_CLASSNAME + "text-auto"}>
+            <Text strong style={textStyle}>
               {unitCursor + 1}/{unitNum}
             </Text>
           </div>
         )}
         {unitCursor + 1 < unitNum && (
           <div
-            className={UI_CLASSNAME + "div-auto"}
+            style={{ right: '1rem', marginLeft: 'auto', marginRight: '1rem', ...buttonWrapStyle }}
           >
-            <Text strong className={UI_CLASSNAME + "text-auto"}>
+            <Text strong style={textStyle}>
               {unitCursor + 1}/{unitNum}
             </Text>
             <UnitButton

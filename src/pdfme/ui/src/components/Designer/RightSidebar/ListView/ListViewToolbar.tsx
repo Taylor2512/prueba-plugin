@@ -33,79 +33,79 @@ const ListViewToolbar = ({
   const densityStyles =
     useDefaultStyles === false
       ? {
-          container: {} as React.CSSProperties,
-          header: {} as React.CSSProperties,
-          titleWrap: {} as React.CSSProperties,
-          title: {} as React.CSSProperties,
-          counter: {} as React.CSSProperties,
-          searchWrap: {} as React.CSSProperties,
-          input: {} as React.CSSProperties,
-          empty: {} as React.CSSProperties,
-        }
+        container: {} as React.CSSProperties,
+        header: {} as React.CSSProperties,
+        titleWrap: {} as React.CSSProperties,
+        title: {} as React.CSSProperties,
+        counter: {} as React.CSSProperties,
+        searchWrap: {} as React.CSSProperties,
+        input: {} as React.CSSProperties,
+        empty: {} as React.CSSProperties,
+      }
       : {
-          container: {
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 6,
-            minWidth: 0,
-            width: '100%',
-          } as const,
-          header: {
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
-            minWidth: 0,
-            width: '100%',
-          } as const,
-          titleWrap: {
-            display: 'flex',
-            alignItems: 'center',
-            gap: 8,
-            minWidth: 0,
-            flex: 1,
-          } as const,
-          title: {
-            flex: 1,
-            minWidth: 0,
-            whiteSpace: 'nowrap',
-            overflow: 'hidden',
-            textOverflow: 'ellipsis',
-          } as const,
-          counter: {
-            flexShrink: 0,
-            fontSize: 10,
-            border: '1px solid rgba(15,23,42,0.1)',
-            borderRadius: 999,
-            padding: '0 6px',
-            lineHeight: '18px',
-          } as const,
-          searchWrap: {
-            padding: '6px 10px 4px',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 6,
-            minWidth: 0,
-          } as const,
-          input: { borderRadius: 7, fontSize: 12, height: 30, minWidth: 0 } as const,
-          empty: { fontSize: 11, textAlign: 'center', padding: '7px 0' } as const,
-        };
+        container: {
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 6,
+          minWidth: 0,
+          width: '100%',
+        } as const,
+        header: {
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+          minWidth: 0,
+          width: '100%',
+        } as const,
+        titleWrap: {
+          display: 'flex',
+          alignItems: 'center',
+          gap: 8,
+          minWidth: 0,
+          flex: 1,
+        } as const,
+        title: {
+          flex: 1,
+          minWidth: 0,
+          whiteSpace: 'nowrap',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
+        } as const,
+        counter: {
+          flexShrink: 0,
+          fontSize: 10,
+          border: '1px solid rgba(15,23,42,0.1)',
+          borderRadius: 999,
+          padding: '0 6px',
+          lineHeight: '18px',
+        } as const,
+        searchWrap: {
+          padding: '6px 10px 4px',
+          display: 'flex',
+          flexDirection: 'column',
+          gap: 6,
+          minWidth: 0,
+        } as const,
+        input: { borderRadius: 7, fontSize: 12, height: 30, minWidth: 0 } as const,
+        empty: { fontSize: 11, textAlign: 'center', padding: '7px 0' } as const,
+      };
 
   return (
-    <div className={DESIGNER_CLASSNAME + "div-auto"}>
+    <div className={DESIGNER_CLASSNAME + 'list-view-toolbar'}>
       <div className={DESIGNER_CLASSNAME + 'sidebar-header'}>
-        <div className={DESIGNER_CLASSNAME + "div-auto"}>
-          <div className={DESIGNER_CLASSNAME + "div-auto"}>
+        <div className={DESIGNER_CLASSNAME + 'sidebar-header-content'}>
+          <div className={DESIGNER_CLASSNAME + 'sidebar-header-title'}>
             <Layers size={15} className={DESIGNER_CLASSNAME + "layers-auto"} />
             <Text strong className={DESIGNER_CLASSNAME + 'list-view-title'}>
               Lista de campos
             </Text>
           </div>
-          <Text type="secondary" className={DESIGNER_CLASSNAME + "text-auto"}>
-            {filteredCount}/{totalCount}
+          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-counter'}>
+            {filteredCount} de {totalCount}
           </Text>
         </div>
       </div>
-      <div className={DESIGNER_CLASSNAME + "div-auto"}>
+      <div className={DESIGNER_CLASSNAME + 'list-view-toolbar-controls'}>
         <Input
           size="small"
           allowClear
@@ -126,12 +126,12 @@ const ListViewToolbar = ({
           />
         ) : null}
         {hasActiveSearch && filteredCount === 0 ? (
-          <Text type="secondary" className={DESIGNER_CLASSNAME + "text-auto"}>
+          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-subtitle'}>
             Sin resultados
           </Text>
         ) : null}
         {hasActiveSearch && filteredCount > 0 ? (
-          <Text type="secondary" className={DESIGNER_CLASSNAME + "text-auto"}>
+          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-subtitle'}>
             Mostrando {filteredCount} coincidencias
           </Text>
         ) : null}

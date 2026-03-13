@@ -55,7 +55,7 @@ const ButtonGroupWidget = (props: PropPanelWidgetProps) => {
   return (
     <Form.Item>
       <div
-        className={DESIGNER_CLASSNAME + "div-auto"}
+        className={DESIGNER_CLASSNAME + 'button-group'}
       >
         {(schema.buttons as ButtonConfig[]).map((btn: ButtonConfig, index: number) => {
           const active = isActive(btn);

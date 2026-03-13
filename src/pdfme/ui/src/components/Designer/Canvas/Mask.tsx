@@ -14,7 +14,22 @@ export type MaskProps = Size & {
 const Mask = ({ width, height, className, style, maskColor, blur = 1 }: MaskProps) => {
   const { token } = theme.useToken();
 
-  return (<div className={mergeClassNames(DESIGNER_CLASSNAME + 'mask', className)} />);
+  return (
+    <div
+      className={mergeClassNames(DESIGNER_CLASSNAME + 'mask', className)}
+      style={{
+        position: 'absolute',
+        top: -RULER_HEIGHT,
+        left: -RULER_HEIGHT,
+        zIndex: 100,
+        width,
+        height,
+        background: maskColor || token.colorBgMask,
+        backdropFilter: `blur(${blur}px)`,
+        ...style,
+      }}
+    />
+  );
 };
 
 export default Mask;

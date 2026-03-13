@@ -120,9 +120,6 @@ class Designer extends BaseUIClass {
     checkTemplate(safeTemplate);
     if (!this.domContainer) throw Error(DESTROYED_ERR_MSG);
     this.template = cloneDeep(safeTemplate);
-    if (this.onChangeTemplateCallback) {
-      this.onChangeTemplateCallback(this.template);
-    }
     this.render();
   }
 

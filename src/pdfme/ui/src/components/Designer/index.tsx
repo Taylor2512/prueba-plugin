@@ -13,6 +13,7 @@ import {
   px2mm,
 } from '@pdfme/common';
 import { DndContext, DragOverlay } from '@dnd-kit/core';
+import { pdf2size } from '@pdfme/converter';
 import Renderer from '../Renderer.js';
 import PluginIcon from './PluginIcon.js';
 import RightSidebarDefault from './RightSidebar/index.js';
@@ -115,6 +116,12 @@ const scaleDragPosAdjustment = (adjustment: number, scale: number): number => {
 };
 
 type ViewportMode = 'manual' | 'fit-width' | 'fit-page' | 'actual-size' | 'auto';
+type UploadedPdfDocument = {
+  id: string;
+  name: string;
+  template: Template;
+  pageCount: number;
+};
 
 const normalizeViewportMode = (mode: unknown): ViewportMode => {
   if (
@@ -179,6 +186,8 @@ const TemplateEditor = ({
   const future = useRef<SchemaForUI[][]>([]);
   const canvasRef = useRef<HTMLDivElement>(null);
   const paperRefs = useRef<HTMLDivElement[]>([]);
+  const pdfUploadInputRef = useRef<HTMLInputElement>(null);
+  const internalTemplateSyncRef = useRef(false);
 
   const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
@@ -276,6 +285,8 @@ const TemplateEditor = ({
   const [isDraggingOverCanvas, setIsDraggingOverCanvas] = useState(false);
   const [activeDragData, setActiveDragData] = useState<{ schema: Schema; type: string } | null>(null);
   const [isIdle, setIsIdle] = useState(false);
+  const [uploadedDocuments, setUploadedDocuments] = useState<UploadedPdfDocument[]>([]);
+  const [activeDocumentId, setActiveDocumentId] = useState<string | null>(null);
   const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -325,7 +336,7 @@ const TemplateEditor = ({
     ensureDesignerThemeStyles();
   }, []);
 
-  const { backgrounds, pageSizes, scale, error, refresh } = useUIPreProcessor({
+  const { backgrounds, pageSizes, scale, error } = useUIPreProcessor({
     template,
     size,
     zoomLevel,
@@ -393,6 +404,7 @@ const TemplateEditor = ({
       const _schemasList = cloneDeep(schemasList);
       _schemasList[pageCursor] = newSchemas;
       setSchemasList(_schemasList);
+      internalTemplateSyncRef.current = true;
       onChangeTemplate(schemasList2template(_schemasList, template.basePdf));
     },
     [template, schemasList, pageCursor, onChangeTemplate],
@@ -700,6 +712,7 @@ const TemplateEditor = ({
     const updatedSchemas = cloneDeep(schemasList);
     updatedSchemas[pageCursor] = past.current.pop()!;
     setSchemasList(updatedSchemas);
+    internalTemplateSyncRef.current = true;
     onChangeTemplate(schemasList2template(updatedSchemas, template.basePdf));
     onEditEnd();
   }, [onChangeTemplate, onEditEnd, pageCursor, schemasList, template.basePdf]);
@@ -710,6 +723,7 @@ const TemplateEditor = ({
     const updatedSchemas = cloneDeep(schemasList);
     updatedSchemas[pageCursor] = future.current.pop()!;
     setSchemasList(updatedSchemas);
+    internalTemplateSyncRef.current = true;
     onChangeTemplate(schemasList2template(updatedSchemas, template.basePdf));
     onEditEnd();
   }, [onChangeTemplate, onEditEnd, pageCursor, schemasList, template.basePdf]);
@@ -796,6 +810,7 @@ const TemplateEditor = ({
 
       if (touched > 0) {
         setSchemasList(nextSchemasList);
+        internalTemplateSyncRef.current = true;
         onChangeTemplate(schemasList2template(nextSchemasList, template.basePdf));
       }
 
@@ -850,6 +865,7 @@ const TemplateEditor = ({
           designerEngine,
         );
         setSchemasList(next);
+        internalTemplateSyncRef.current = true;
         onChangeTemplate(schemasList2template(next, template.basePdf));
         return true;
       },
@@ -922,12 +938,12 @@ const TemplateEditor = ({
     return Boolean(data?.schema && data?.type);
   };
 
-  const updatePage = async (sl: SchemaForUI[][], newPageCursor: number) => {
+  const updatePage = (sl: SchemaForUI[][], newPageCursor: number) => {
+    setSchemasList(sl);
     setPageCursor(newPageCursor);
     const newTemplate = schemasList2template(sl, template.basePdf);
+    internalTemplateSyncRef.current = true;
     onChangeTemplate(newTemplate);
-    await updateTemplate(newTemplate);
-    void refresh(newTemplate);
 
     // Notify page change with updated total pages
     onPageCursorChange(newPageCursor, sl.length);
@@ -946,16 +962,128 @@ const TemplateEditor = ({
 
     const _schemasList = cloneDeep(schemasList);
     _schemasList.splice(pageCursor, 1);
-    void updatePage(_schemasList, pageCursor - 1);
+    updatePage(_schemasList, pageCursor - 1);
   };
 
   const handleAddPageAfter = () => {
     const _schemasList = cloneDeep(schemasList);
     _schemasList.splice(pageCursor + 1, 0, []);
-    void updatePage(_schemasList, pageCursor + 1);
+    updatePage(_schemasList, pageCursor + 1);
   };
 
+  const handleUploadPdfClick = useCallback(() => {
+    pdfUploadInputRef.current?.click();
+  }, []);
+
+  const handlePdfUploadChange = useCallback(
+    async (event: React.ChangeEvent<HTMLInputElement>) => {
+      const input = event.currentTarget;
+      const file = input.files?.[0];
+      if (!file) {
+        input.value = '';
+        return;
+      }
+
+      const isPdf = file.type === 'application/pdf' || /\.pdf$/i.test(file.name);
+      if (!isPdf) {
+        window.alert('Selecciona un archivo PDF valido.');
+        input.value = '';
+        return;
+      }
+
+      try {
+        const buffer = await file.arrayBuffer();
+        const pdfPages = await pdf2size(buffer.slice(0));
+        const targetPageCount = Math.max(1, pdfPages.length || 1);
+        const normalizedSchemas = cloneDeep(schemasList);
+        if (normalizedSchemas.length > targetPageCount) {
+          normalizedSchemas.length = targetPageCount;
+        }
+        while (normalizedSchemas.length < targetPageCount) {
+          normalizedSchemas.push([]);
+        }
+        const uploadedBasePdf = await new Promise<string>((resolve, reject) => {
+          const reader = new FileReader();
+          reader.onload = () => {
+            if (typeof reader.result === 'string') {
+              resolve(reader.result);
+              return;
+            }
+            reject(new Error('Invalid PDF data'));
+          };
+          reader.onerror = () => reject(reader.error || new Error('Failed to read PDF file'));
+          reader.readAsDataURL(file);
+        });
+        const nextTemplate = schemasList2template(normalizedSchemas, uploadedBasePdf);
+        const safePageCursor = Math.max(0, Math.min(pageCursor, targetPageCount - 1));
+        const newDocumentId = uuid();
+        const docName = file.name?.trim() || `Documento ${uploadedDocuments.length + 1}`;
+
+        setUploadedDocuments((prev) =>
+          prev.concat({
+            id: newDocumentId,
+            name: docName,
+            template: nextTemplate,
+            pageCount: targetPageCount,
+          }),
+        );
+        setActiveDocumentId(newDocumentId);
+        setSchemasList(normalizedSchemas);
+        internalTemplateSyncRef.current = true;
+        onChangeTemplate(nextTemplate);
+        setPageCursor(safePageCursor);
+        onPageCursorChange(safePageCursor, normalizedSchemas.length);
+        onEditEnd();
+      } catch (uploadError) {
+        console.error('Failed to load uploaded PDF', uploadError);
+        window.alert('No se pudo cargar el PDF.');
+      } finally {
+        input.value = '';
+      }
+    },
+    [onChangeTemplate, onEditEnd, onPageCursorChange, pageCursor, schemasList, uploadedDocuments.length],
+  );
+
   useEffect(() => {
+    if (isBlankPdf(template.basePdf)) return;
+    const targetPageCount = pageSizes.length;
+    if (!Number.isFinite(targetPageCount) || targetPageCount <= 0) return;
+    if (schemasList.length === targetPageCount) return;
+
+    const normalizedSchemas = cloneDeep(schemasList);
+    if (normalizedSchemas.length > targetPageCount) {
+      normalizedSchemas.length = targetPageCount;
+    }
+    while (normalizedSchemas.length < targetPageCount) {
+      normalizedSchemas.push([]);
+    }
+
+    setSchemasList(normalizedSchemas);
+    setPageCursor((prev) => Math.max(0, Math.min(prev, targetPageCount - 1)));
+  }, [pageSizes.length, schemasList, template.basePdf]);
+
+  useEffect(() => {
+    if (!activeDocumentId) return;
+    setUploadedDocuments((prev) => {
+      const idx = prev.findIndex((doc) => doc.id === activeDocumentId);
+      if (idx < 0) return prev;
+      const current = prev[idx];
+      if (current.template === template && current.pageCount === pageSizes.length) return prev;
+      const next = [...prev];
+      next[idx] = {
+        ...current,
+        template,
+        pageCount: Math.max(1, pageSizes.length || template.schemas.length || 1),
+      };
+      return next;
+    });
+  }, [activeDocumentId, pageSizes.length, template]);
+
+  useEffect(() => {
+    if (internalTemplateSyncRef.current) {
+      internalTemplateSyncRef.current = false;
+      return;
+    }
     void updateTemplate(template);
   }, [template, updateTemplate]);
 
@@ -968,20 +1096,41 @@ const TemplateEditor = ({
     : {};
   const stageSelectionState = activeElements.length > 0 ? 'selected' : hoveringSchemaId ? 'hover' : 'idle';
   const stageSelectionCount = activeElements.length > 1 ? 'multiple' : activeElements.length === 1 ? 'single' : 'none';
-  const documentItems = useMemo<DesignerDocumentItem[]>(
+  const pageItems = useMemo<DesignerDocumentItem[]>(() => {
+    if (uploadedDocuments.length > 0) {
+      return uploadedDocuments.flatMap((doc, docIndex) => {
+        const pageTotal = Math.max(1, doc.pageCount || 1);
+        return Array.from({ length: pageTotal }).map((_, pageIndex) => ({
+          id: `${doc.id}::page-${pageIndex + 1}`,
+          name: `${doc.name} · Pagina ${pageIndex + 1}`,
+          pageLabel: `${docIndex + 1}.${pageIndex + 1}`,
+          selected: doc.id === activeDocumentId && pageIndex === pageCursor,
+        }));
+      });
+    }
+
+    return pageSizes.map((pageSize, index) => ({
+      id: `page-${index + 1}`,
+      name: `Pagina ${index + 1}`,
+      pageLabel: `${index + 1}`,
+      previewSrc: backgrounds[index] || null,
+      selected: index === pageCursor,
+      meta:
+        Number.isFinite(pageSize?.width) && Number.isFinite(pageSize?.height)
+          ? `${round(pageSize.width, 1)} x ${round(pageSize.height, 1)} mm`
+          : undefined,
+    }));
+  }, [activeDocumentId, backgrounds, pageCursor, pageSizes, uploadedDocuments]);
+  const uploadedDocumentItems = useMemo<DesignerDocumentItem[]>(
     () =>
-      pageSizes.map((pageSize, index) => ({
-        id: `page-${index + 1}`,
-        name: `Documento ${index + 1}`,
+      uploadedDocuments.map((doc, index) => ({
+        id: doc.id,
+        name: doc.name || `Documento ${index + 1}`,
         pageLabel: `${index + 1}`,
-        previewSrc: backgrounds[index] || null,
-        selected: index === pageCursor,
-        meta:
-          Number.isFinite(pageSize?.width) && Number.isFinite(pageSize?.height)
-            ? `${round(pageSize.width, 1)} x ${round(pageSize.height, 1)} mm`
-            : undefined,
+        selected: doc.id === activeDocumentId,
+        meta: `${doc.pageCount} pagina${doc.pageCount === 1 ? '' : 's'}`,
       })),
-    [backgrounds, pageCursor, pageSizes],
+    [activeDocumentId, uploadedDocuments],
   );
   const { className: leftSidebarEngineClassName, ...leftSidebarEngineProps } = leftSidebarEngine || {};
   const { className: rightSidebarEngineClassName, ...rightSidebarEngineProps } = rightSidebarEngine || {};
@@ -1059,15 +1208,57 @@ const TemplateEditor = ({
       viewportWidth={viewportWidth}
       useLayoutFrame={rightSidebarUseLayout}
       documents={{
-        items: documentItems,
-        selectedId: documentItems[pageCursor]?.id || null,
+        items: uploadedDocumentItems,
+        selectedId: activeDocumentId,
         onSelect: (id) => {
-          const pageIndex = documentItems.findIndex((item) => item.id === id);
+          const targetDoc = uploadedDocuments.find((doc) => doc.id === id);
+          if (!targetDoc) return;
+          setActiveDocumentId(targetDoc.id);
+          void updateTemplate(targetDoc.template);
+          internalTemplateSyncRef.current = true;
+          onChangeTemplate(targetDoc.template);
+          setPageCursor(0);
+          onPageCursorChange(0, targetDoc.template.schemas.length);
+          onEditEnd();
+        },
+        onUploadPdf: handleUploadPdfClick,
+        title: 'Documentos',
+        emptyTitle: 'Sin documentos subidos',
+      }}
+      pages={{
+        items: pageItems,
+        selectedId: pageItems.find((item) => item.selected)?.id || null,
+        onSelect: (id) => {
+          if (id.includes('::page-')) {
+            const [docId, pageRef] = id.split('::page-');
+            const targetPageIndex = Math.max(0, Number(pageRef) - 1);
+            const targetDoc = uploadedDocuments.find((doc) => doc.id === docId);
+            if (!targetDoc) return;
+
+            if (docId !== activeDocumentId) {
+              setActiveDocumentId(docId);
+              void updateTemplate(targetDoc.template);
+              internalTemplateSyncRef.current = true;
+              onChangeTemplate(targetDoc.template);
+              setPageCursor(targetPageIndex);
+              onPageCursorChange(targetPageIndex, targetDoc.template.schemas.length);
+              onEditEnd();
+              return;
+            }
+
+            setPageCursorWithScroll(targetPageIndex);
+            return;
+          }
+
+          const pageIndex = pageItems.findIndex((item) => item.id === id);
           if (pageIndex >= 0) setPageCursorWithScroll(pageIndex);
         },
         onAdd: pageManipulation.addPageAfter,
+        onUploadPdf: handleUploadPdfClick,
+        title: 'Paginas',
+        emptyTitle: 'Sin paginas disponibles',
       }}
-      showDocumentsRail={documentItems.length > 0}
+      showDocumentsRail={pageItems.length > 0 || uploadedDocumentItems.length > 0}
       className={
         [
           typeof options.rightSidebarClassName === 'string' ? options.rightSidebarClassName : '',
@@ -1099,6 +1290,13 @@ const TemplateEditor = ({
 
   return (
     <Root size={size} scale={scale}>
+      <input
+        ref={pdfUploadInputRef}
+        type="file"
+        accept="application/pdf,.pdf"
+        style={{ display: 'none' }}
+        onChange={handlePdfUploadChange}
+      />
       <DndContext
         onDragStart={(event) => {
           if (!isSchemaDragActive(event?.active)) return;
@@ -1223,6 +1421,18 @@ const TemplateEditor = ({
             setZoomLevel={setZoomLevel}
             {...pageManipulation}
           />
+
+          {!rightSidebarDetached ? (
+            <button
+              type="button"
+              className={DESIGNER_CLASSNAME + 'right-sidebar-toggle-btn'}
+              aria-label={sidebarOpen ? 'Ocultar panel derecho' : 'Mostrar panel derecho'}
+              aria-expanded={sidebarOpen ? 'true' : 'false'}
+              onClick={() => setSidebarOpen((prev) => !prev)}
+            >
+              {sidebarOpen ? '›' : '‹ Campos'}
+            </button>
+          ) : null}
 
           {!rightSidebarDetached ? rightSidebarNode : null}
 
