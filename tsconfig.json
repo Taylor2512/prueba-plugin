@@ -36,11 +36,13 @@
     },
     "types": [
       "vite/client",
-      "node"
+      "node",
+      "vitest/globals"
     ]
   },
   "include": [
     "src",
+    "tests",
     "vite.config.*"
   ],
   "exclude": [
