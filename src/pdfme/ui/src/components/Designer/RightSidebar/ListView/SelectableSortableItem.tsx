@@ -4,7 +4,6 @@ import { SchemaForUI } from '@pdfme/common';
 import { PluginsRegistry, I18nContext } from '../../../../contexts.js';
 import Item from './Item.js';
 import { useMountStatus } from '../../../../hooks.js';
-import { theme } from 'antd';
 import PluginIcon from '../../PluginIcon.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 
@@ -30,8 +29,6 @@ const SelectableSortableItem = ({
   onMouseEnter,
   onMouseLeave,
 }: Props) => {
-  const { token } = theme.useToken();
-
   const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
   const { setNodeRef, listeners, isDragging, isSorting, transform, transition } = useSortable({
@@ -62,8 +59,16 @@ const SelectableSortableItem = ({
   }
 
   const selectedStyle = isSelected
-    ? { background: token.colorPrimary, opacity: isSorting || isDragging ? 0.5 : 1 }
-    : ({} as React.CSSProperties);
+    ? {
+        background: 'rgba(240, 165, 0, 0.10)',
+        boxShadow: 'inset 0 0 0 1px rgba(240, 165, 0, 0.18)',
+        opacity: isSorting || isDragging ? 0.72 : 1,
+      }
+    : isHovering
+      ? {
+          background: 'rgba(255, 255, 255, 0.03)',
+        }
+      : ({} as React.CSSProperties);
 
   return (
     <Item
@@ -83,6 +88,7 @@ const SelectableSortableItem = ({
       sorting={isSorting}
       transition={transition}
       transform={transform}
+      style={{ ...style, ...selectedStyle }}
       fadeIn={mountedWhileDragging}
       listeners={newListeners}
     />

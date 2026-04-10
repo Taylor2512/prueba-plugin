@@ -49,8 +49,8 @@ const DocumentsRail = ({
   onSelect,
   onAdd,
   onUploadPdf,
-  title = 'Paginas',
-  emptyTitle = 'Sin paginas disponibles',
+  title = 'Páginas',
+  emptyTitle = 'Sin páginas disponibles',
   className,
   style,
   useDefaultStyles = true,
@@ -105,7 +105,7 @@ const DocumentsRail = ({
           >
             {onAdd ? (
               <Button size="small" type="default" icon={<FilePlus2 size={14} />} onClick={onAdd}>
-                Agregar
+                Agregar página
               </Button>
             ) : null}
             {onUploadPdf ? (
@@ -128,10 +128,10 @@ const DocumentsRail = ({
                 </div>
                 <div className={DESIGNER_CLASSNAME + 'documents-rail-meta'}>
                   <Text strong className={DESIGNER_CLASSNAME + "text-auto"}>
-                    Agregar pagina
+                    Agregar página
                   </Text>
                   <Text type="secondary" className={DESIGNER_CLASSNAME + "text-auto"}>
-                    Crea una nueva pagina en el flujo actual
+                    Crea una nueva página en el flujo actual
                   </Text>
                 </div>
               </button>

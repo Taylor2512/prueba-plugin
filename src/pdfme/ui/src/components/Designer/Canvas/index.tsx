@@ -527,20 +527,17 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     if (!activePaper || !(target instanceof Node)) return false;
     return target === activePaper || activePaper.contains(target);
   };
-  const normalizeActiveTargets = useCallback(
-    (targets: HTMLElement[]) => {
-      const activePaper = paperRefs.current[pageCursor];
-      if (!activePaper) return [];
-      return dedupeById(
-        targets.filter((target) => {
-          if (!(target instanceof HTMLElement)) return false;
-          if (!target.classList.contains(SELECTABLE_CLASSNAME)) return false;
-          return target === activePaper || activePaper.contains(target);
-        }),
-      );
-    },
-    [pageCursor, paperRefs],
-  );
+  const normalizeActiveTargets = (targets: HTMLElement[]) => {
+    const activePaper = paperRefs.current[pageCursor];
+    if (!activePaper) return [];
+    return dedupeById(
+      targets.filter((target) => {
+        if (!(target instanceof HTMLElement)) return false;
+        if (!target.classList.contains(SELECTABLE_CLASSNAME)) return false;
+        return target === activePaper || activePaper.contains(target);
+      }),
+    );
+  };
 
   const safeCanvasWidth = Number.isFinite(size.width) ? Math.max(0, size.width) : 0;
   const safeCanvasHeight = Number.isFinite(size.height) ? Math.max(0, size.height) : 0;
@@ -688,7 +685,12 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
                   .join(' ')}
               >
                 <div className={DESIGNER_CLASSNAME + 'canvas-empty-state-card'}>
-                  Arrastra un campo desde el panel izquierdo para comenzar a diseñar esta página.
+                  <span className={DESIGNER_CLASSNAME + 'canvas-empty-state-title'}>
+                    Esta página todavía no tiene campos
+                  </span>
+                  <span className={DESIGNER_CLASSNAME + 'canvas-empty-state-hint'}>
+                    Arrastra un campo del catálogo izquierdo para empezar a construir el documento.
+                  </span>
                 </div>
               </div>
             ) : null}

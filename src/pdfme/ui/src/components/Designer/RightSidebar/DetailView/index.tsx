@@ -575,8 +575,8 @@ const DetailView = (props: DetailViewProps) => {
       <SidebarBody>
         <DetailHeaderCard activeSchema={activeSchema} />
         <DetailSectionCard
-          title={typedI18n('editField')}
-          description="Ajusta identidad, tamaño, posición y comportamiento del campo sin salir del documento."
+          title="Propiedades del campo"
+          description="Ajusta identidad, tamaño, posición y comportamiento sin salir del documento."
         >
           <div className={`${DESIGNER_CLASSNAME}detail-view-form-shell`}>
             <FormRenderComponent

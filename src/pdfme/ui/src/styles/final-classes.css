@@ -5553,3 +5553,928 @@ button[data-testid]:disabled {
   align-items: center ;
   gap: 4px ;
 }
+
+/* ============================================================
+   PDFME LAB POLISH v2
+   Hierarchy normalization for the stable editor shell
+   ============================================================ */
+
+.app-shell .pdfme-designer-root .pdfme-ui-control-bar {
+  min-height: 44px ;
+  height: auto ;
+  padding: 6px 10px ;
+  width: max-content ;
+  max-width: calc(100% - 24px) ;
+  margin: 6px auto 0 ;
+  gap: 12px ;
+  justify-content: space-between ;
+  border-radius: 14px ;
+  border: 1px solid var(--pdfme-dark-border-subtle) ;
+  background: linear-gradient(180deg, rgba(22, 25, 33, 0.96) 0%, rgba(17, 21, 29, 0.98) 100%) ;
+  box-shadow:
+    0 8px 24px rgba(2, 6, 23, 0.32),
+    0 0 0 1px rgba(255, 255, 255, 0.03) ;
+  backdrop-filter: blur(14px) saturate(1.05) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-ui-control-bar-context {
+  display: flex ;
+  flex-direction: column ;
+  min-width: 0 ;
+  gap: 1px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-ui-control-bar-kicker {
+  font-size: 9px ;
+  font-weight: 700 ;
+  letter-spacing: 0.12em ;
+  text-transform: uppercase ;
+  color: var(--pdfme-dark-text-muted) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-ui-control-bar-page {
+  font-size: 13px ;
+  font-weight: 700 ;
+  color: var(--pdfme-dark-text) ;
+  line-height: 1.1 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-ui-control-bar-subtext {
+  font-size: 10px ;
+  color: var(--pdfme-dark-text-muted) ;
+  line-height: 1.1 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-ui-control-bar-actions {
+  display: inline-flex ;
+  align-items: center ;
+  gap: 8px ;
+  flex-wrap: wrap ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-ui-pager,
+.app-shell .pdfme-designer-root .pdfme-ui-zoom {
+  gap: 3px ;
+  padding: 3px 5px ;
+  border-radius: 10px ;
+  border: 1px solid var(--pdfme-dark-border-subtle) ;
+  background: #1b2030 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-ui-control-bar .ant-typography {
+  margin: 0 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-ui-control-bar .ant-select .ant-select-selector {
+  border-color: var(--pdfme-dark-border-soft) ;
+  background: #11151d ;
+  border-radius: 8px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-shell {
+  background: linear-gradient(180deg, rgba(22, 25, 33, 0.98) 0%, rgba(17, 21, 29, 0.98) 100%) ;
+  border: 1px solid var(--pdfme-dark-border-subtle) ;
+  border-radius: 14px ;
+  box-shadow: 0 12px 30px rgba(2, 6, 23, 0.36) ;
+  padding: 10px 10px 8px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-dock-header {
+  margin-bottom: 8px ;
+  padding-bottom: 8px ;
+  border-bottom: 1px solid var(--pdfme-dark-border-subtle) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-dock-title {
+  color: var(--pdfme-dark-text-muted) ;
+  font-size: 9px ;
+  letter-spacing: 0.12em ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-dock-section-title {
+  margin-bottom: 8px ;
+  padding: 7px 10px ;
+  border: 1px solid rgba(240, 165, 0, 0.18) ;
+  border-radius: 999px ;
+  background: var(--pdfme-dark-accent-dim) ;
+  color: var(--pdfme-dark-accent) ;
+  font-size: 9.5px ;
+  letter-spacing: 0.11em ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-tablist {
+  margin: 0 0 8px ;
+  padding: 4px ;
+  border-radius: 12px ;
+  border: 1px solid var(--pdfme-dark-border-subtle) ;
+  background: #1b2030 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-tab-btn {
+  height: 32px ;
+  min-height: 32px ;
+  border-radius: 8px ;
+  border: 1px solid transparent ;
+  color: var(--pdfme-dark-text-muted) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-tab-btn:hover {
+  background: rgba(255, 255, 255, 0.03) ;
+  color: var(--pdfme-dark-text) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-tab-btn-active {
+  background: rgba(240, 165, 0, 0.11) ;
+  border-color: rgba(240, 165, 0, 0.22) ;
+  box-shadow: inset 0 0 0 1px rgba(240, 165, 0, 0.08) ;
+  color: var(--pdfme-dark-accent) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-search-wrap {
+  padding: 4px 0 8px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-search {
+  background: #11151d ;
+  border: 1px solid var(--pdfme-dark-border-soft) ;
+  border-radius: 10px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-chip-row {
+  gap: 6px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-filter-btn {
+  min-height: 26px ;
+  border-radius: 999px ;
+  padding: 0 10px ;
+  font-size: 10px ;
+  font-weight: 700 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-main {
+  padding-right: 2px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-group {
+  margin-bottom: 10px ;
+  padding-bottom: 10px ;
+  border-bottom: 1px solid var(--pdfme-dark-border-subtle) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-group-title {
+  margin-bottom: 6px ;
+  padding: 4px 2px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-group-title-label {
+  color: var(--pdfme-dark-text-muted) ;
+  font-size: 10px ;
+  letter-spacing: 0.06em ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-group-title-count {
+  border: 1px solid rgba(240, 165, 0, 0.16) ;
+  background: rgba(240, 165, 0, 0.10) ;
+  color: var(--pdfme-dark-accent) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-group-items,
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-group-items {
+  gap: 6px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-plugin-btn[data-view-mode='compact'] {
+  min-height: 40px ;
+  border-radius: 10px ;
+  border: 1px solid var(--pdfme-dark-border-subtle) ;
+  background: #1f2534 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-plugin-btn[data-view-mode='compact'] > div {
+  background: #242b3a ;
+  border-color: rgba(255, 255, 255, 0.08) ;
+  color: #b6c0d1 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-plugin-btn[data-view-mode='compact'] .pdfme-designer-plugin-btn-label-title {
+  color: #d7dfeb ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-plugin-btn[data-view-mode='compact']:hover {
+  background: #2a3142 ;
+  border-color: rgba(240, 165, 0, 0.34) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-canvas {
+  padding: 56px 16px 16px ;
+  background: radial-gradient(circle at top, rgba(255, 255, 255, 0.04), rgba(15, 18, 25, 0.04) 18%, rgba(13, 15, 19, 0.98) 62%) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-canvas [data-canvas-page='true'] {
+  border-radius: 4px ;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.06),
+    0 4px 16px rgba(0, 0, 0, 0.36),
+    0 24px 64px rgba(0, 0, 0, 0.58) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-canvas-empty-state {
+  display: flex ;
+  align-items: center ;
+  justify-content: center ;
+  padding: 20px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-canvas-empty-state-card {
+  max-width: 360px ;
+  padding: 14px 16px ;
+  border-radius: 14px ;
+  border: 1px solid rgba(240, 165, 0, 0.22) ;
+  background: rgba(17, 21, 29, 0.94) ;
+  color: var(--pdfme-dark-text) ;
+  box-shadow: 0 16px 32px rgba(2, 6, 23, 0.35) ;
+  text-align: left ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-canvas-empty-state-title {
+  display: block ;
+  margin-bottom: 4px ;
+  font-size: 13px ;
+  font-weight: 700 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-canvas-empty-state-hint {
+  display: block ;
+  font-size: 11.5px ;
+  color: var(--pdfme-dark-text-muted) ;
+  line-height: 1.45 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-selection-actions {
+  background: rgba(17, 21, 29, 0.96) ;
+  border: 1px solid var(--pdfme-dark-border-subtle) ;
+  border-radius: 10px ;
+  box-shadow:
+    0 8px 24px rgba(0, 0, 0, 0.58),
+    0 0 0 1px rgba(0, 0, 0, 0.28),
+    inset 0 1px 0 rgba(255, 255, 255, 0.04) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar {
+  top: 54px ;
+  right: 10px ;
+  bottom: 10px ;
+  width: var(--pdfme-rs-width) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-content {
+  border: 1px solid var(--pdfme-dark-border-subtle) ;
+  border-radius: 14px ;
+  background: linear-gradient(180deg, rgba(22, 25, 33, 0.96) 0%, rgba(17, 21, 29, 0.98) 100%) ;
+  box-shadow: 0 16px 36px rgba(2, 6, 23, 0.44) ;
+  backdrop-filter: blur(14px) saturate(1.05) ;
+  overflow: hidden ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-panel-switcher-wrap {
+  padding: 8px 8px 0 ;
+  border-bottom: 1px solid var(--pdfme-dark-border-subtle) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-panel-switcher {
+  gap: 0 ;
+  padding: 3px ;
+  border: 1px solid var(--pdfme-dark-border-subtle) ;
+  border-radius: 12px ;
+  background: #1b2030 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-panel-switcher-btn {
+  flex: 1 ;
+  height: 32px ;
+  padding: 0 8px ;
+  border-radius: 8px ;
+  border: 1px solid transparent ;
+  color: var(--pdfme-dark-text-muted) ;
+  text-transform: uppercase ;
+  letter-spacing: 0.06em ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-panel-switcher-btn:hover {
+  background: rgba(255, 255, 255, 0.03) ;
+  color: var(--pdfme-dark-text) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-panel-switcher-btn[data-active='true'] {
+  background: rgba(240, 165, 0, 0.11) ;
+  border-color: rgba(240, 165, 0, 0.22) ;
+  color: var(--pdfme-dark-accent) ;
+  box-shadow: inset 0 0 0 1px rgba(240, 165, 0, 0.08) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-frame {
+  border: none ;
+  border-bottom: 1px solid var(--pdfme-dark-border-subtle) ;
+  border-radius: 0 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-header {
+  padding: 8px 10px 0 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-header .ant-divider {
+  margin: 6px 0 0 ;
+  border-color: var(--pdfme-dark-border-subtle) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-body {
+  padding: 0 ;
+  overflow-y: auto ;
+  overflow-x: hidden ;
+  scrollbar-gutter: stable both-edges ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-footer {
+  padding: 8px 10px ;
+  border-top: 1px solid var(--pdfme-dark-border-subtle) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-sidebar-header-content {
+  align-items: flex-start ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-sidebar-header-title {
+  gap: 6px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-list-view-title.ant-typography {
+  font-size: 10.5px ;
+  font-weight: 700 ;
+  letter-spacing: 0.08em ;
+  text-transform: uppercase ;
+  color: var(--pdfme-dark-text-muted) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-list-view-counter {
+  min-width: 64px ;
+  padding: 1px 8px ;
+  border-radius: 999px ;
+  border: 1px solid rgba(240, 165, 0, 0.22) ;
+  background: var(--pdfme-dark-accent-dim) ;
+  color: var(--pdfme-dark-accent) ;
+  font-size: 10px ;
+  font-weight: 700 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-header .ant-input-affix-wrapper,
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-header .ant-select .ant-select-selector {
+  background: #11151d ;
+  border-color: var(--pdfme-dark-border-soft) ;
+  border-radius: 10px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-header .ant-input-affix-wrapper:focus-within {
+  border-color: var(--pdfme-dark-accent) ;
+  box-shadow: 0 0 0 2px var(--pdfme-dark-accent-dim) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-header .ant-input,
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-header .ant-select-selection-item,
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-header .ant-select-arrow {
+  color: var(--pdfme-dark-text) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-list-view-toolbar-controls {
+  gap: 6px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-list-view-subtitle {
+  color: var(--pdfme-dark-text-muted) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-list-view-empty {
+  min-height: 96px ;
+  padding: 12px ;
+  border-radius: 12px ;
+  border: 1px dashed rgba(240, 165, 0, 0.18) ;
+  background: rgba(17, 21, 29, 0.92) ;
+  color: var(--pdfme-dark-text-muted) ;
+  text-align: left ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-list-view-item {
+  border-bottom: 1px solid var(--pdfme-dark-border-subtle) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-list-view-item::before {
+  opacity: 0.68 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-list-view-item:hover {
+  background: #1f2534 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-list-view-item-content {
+  min-height: 34px ;
+  gap: 8px ;
+  padding: 0 10px 0 12px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-list-view-item-value.ant-typography {
+  color: var(--pdfme-dark-text) ;
+  font-size: 12px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-list-view-item-actions {
+  opacity: 0.62 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-list-view-item:hover .pdfme-designer-list-view-item-actions {
+  opacity: 1 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-list-view-item-lock {
+  color: var(--pdfme-dark-accent) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-list-view-item-required {
+  color: #f87171 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-list-view-item .pdfme-designer-button-auto {
+  border-radius: 4px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-header-card,
+.app-shell .pdfme-designer-root .pdfme-designer-detail-section-card {
+  margin: 8px ;
+  padding: 10px 12px ;
+  border-radius: 14px ;
+  border: 1px solid var(--pdfme-dark-border-subtle) ;
+  background: rgba(17, 21, 29, 0.92) ;
+  box-shadow: 0 10px 24px rgba(2, 6, 23, 0.22) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-header-card-head {
+  margin-bottom: 8px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-header-card-title {
+  font-size: 13.5px ;
+  color: var(--pdfme-dark-text) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-header-card-stat {
+  border: 1px solid var(--pdfme-dark-border-subtle) ;
+  background: #1b2030 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-header-card-stat-label {
+  color: var(--pdfme-dark-text-muted) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-header-card-stat-value {
+  color: var(--pdfme-dark-text) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-section-card-title {
+  color: var(--pdfme-dark-text) ;
+  font-size: 12px ;
+  letter-spacing: 0.05em ;
+  text-transform: uppercase ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-section-card-description {
+  color: var(--pdfme-dark-text-muted) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-view-form-shell {
+  margin-top: 4px ;
+  padding-bottom: 12px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-view .ant-form-item-label > label {
+  color: var(--pdfme-dark-text-muted) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-view .ant-input,
+.app-shell .pdfme-designer-root .pdfme-designer-detail-view .ant-input-affix-wrapper,
+.app-shell .pdfme-designer-root .pdfme-designer-detail-view .ant-select .ant-select-selector {
+  background: #11151d ;
+  border-color: var(--pdfme-dark-border-soft) ;
+  color: var(--pdfme-dark-text) ;
+  border-radius: 10px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-view .ant-input-affix-wrapper:focus-within {
+  border-color: var(--pdfme-dark-accent) ;
+  box-shadow: 0 0 0 2px var(--pdfme-dark-accent-dim) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-view .ant-divider {
+  border-color: var(--pdfme-dark-border-subtle) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-view .ant-btn:not(.pdfme-designer-back-button):not(.pdfme-designer-align-btn) {
+  background: #1f2534 ;
+  border-color: var(--pdfme-dark-border-soft) ;
+  color: var(--pdfme-dark-text-muted) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-documents-rail-header {
+  gap: 8px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-documents-rail-item {
+  gap: 8px ;
+  padding: 6px 10px ;
+  min-height: 38px ;
+  border-bottom: 1px solid var(--pdfme-dark-border-subtle) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-documents-rail-item:hover {
+  background: #1f2534 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-documents-rail-item:first-of-type {
+  opacity: 0.74 ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-documents-rail-item:first-of-type:hover {
+  background: rgba(240, 165, 0, 0.10) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-documents-rail-leading {
+  min-width: 36px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-documents-rail-preview {
+  width: 22px ;
+  height: 26px ;
+  border-color: rgba(255, 255, 255, 0.08) ;
+  background: rgba(255, 255, 255, 0.04) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-documents-rail-page-label {
+  color: var(--pdfme-dark-text-muted) ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-documents-rail-meta .ant-typography strong {
+  color: var(--pdfme-dark-text) ;
+  font-size: 12px ;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-documents-rail-meta .ant-typography-secondary,
+.app-shell .pdfme-designer-root .pdfme-designer-documents-empty-title {
+  color: var(--pdfme-dark-text-muted) ;
+}
+
+/* ============================================================
+   LEFT SIDEBAR OVERLAY CATALOG — canvas-first polish
+   ============================================================ */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  z-index: 92;
+  width: 52px;
+  min-width: 52px;
+  max-width: 52px;
+  overflow: hidden;
+  transition: width 280ms cubic-bezier(0.16, 1, 0.3, 1), min-width 280ms cubic-bezier(0.16, 1, 0.3, 1), max-width 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar[data-left-sidebar-expanded='true'] {
+  width: 280px;
+  min-width: 280px;
+  max-width: 280px;
+  overflow: visible;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-shell {
+  width: 280px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(circle at top left, rgba(245, 166, 35, 0.08), transparent 34%),
+    linear-gradient(180deg, rgba(16, 20, 28, 0.98), rgba(11, 14, 20, 0.98));
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 10px 0 28px rgba(0, 0, 0, 0.34);
+  backdrop-filter: blur(16px);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-toggle-btn {
+  z-index: 96;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-dock-header {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-height: 44px;
+  padding: 12px 14px 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(20, 24, 34, 0.82);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-dock-kicker {
+  color: rgba(210, 219, 236, 0.56);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-dock-title {
+  color: var(--pdfme-dark-text);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-control-band {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px 10px 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(14, 18, 26, 0.86);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-tablist {
+  padding: 4px;
+  gap: 6px;
+  border-radius: 14px;
+  background: rgba(31, 37, 52, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-tab-btn {
+  min-height: 34px;
+  border-radius: 10px;
+  background: transparent;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-search-wrap {
+  margin: 0;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-search {
+  height: 34px;
+  border-radius: 10px;
+  background: rgba(17, 21, 29, 0.96);
+  border-color: rgba(255, 255, 255, 0.08);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-search:focus,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-search:focus-within {
+  border-color: rgba(245, 166, 35, 0.42);
+  box-shadow: 0 0 0 2px rgba(245, 166, 35, 0.12);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-chip-row {
+  gap: 8px;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-filter-btn {
+  height: 28px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: rgba(25, 30, 42, 0.92);
+  color: rgba(219, 226, 239, 0.76);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-filter-btn.ant-btn-primary {
+  background: linear-gradient(180deg, rgba(245, 166, 35, 0.98), rgba(224, 142, 16, 0.98));
+  border-color: rgba(245, 166, 35, 0.42);
+  color: #111827;
+  box-shadow: 0 8px 18px rgba(245, 166, 35, 0.2);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-main {
+  padding: 10px;
+  gap: 10px;
+  overflow: auto;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-group {
+  margin: 0;
+  padding: 10px;
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(18, 22, 31, 0.9);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-group-title {
+  margin-bottom: 10px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-group-title-label {
+  color: rgba(226, 232, 240, 0.72);
+  font-size: 10.5px;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-group-title-count {
+  min-width: 22px;
+  height: 20px;
+  padding: 0 7px;
+  border-radius: 999px;
+  background: rgba(31, 37, 52, 0.92);
+  color: rgba(226, 232, 240, 0.72);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-group-items {
+  display: grid;
+  gap: 8px;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-plugin-wrap {
+  position: relative;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-plugin-btn,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-custom-item {
+  width: 100%;
+  min-height: 46px;
+  padding: 10px 36px 10px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: linear-gradient(180deg, rgba(29, 35, 49, 0.98), rgba(21, 25, 36, 0.98));
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.14);
+  align-items: flex-start;
+  justify-content: flex-start;
+  text-align: left;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-plugin-btn:hover,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-custom-item:hover {
+  border-color: rgba(245, 166, 35, 0.26);
+  background: linear-gradient(180deg, rgba(35, 42, 58, 0.98), rgba(24, 28, 40, 0.98));
+  box-shadow: 0 12px 22px rgba(0, 0, 0, 0.22);
+  transform: translateY(-1px);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-plugin-btn[data-view-mode='compact'] {
+  min-height: 44px;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-plugin-btn[data-view-mode='rich'] {
+  min-height: 72px;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-plugin-btn > div,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-custom-item-icon {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  min-height: 22px;
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-plugin-btn-label,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-custom-item-copy {
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+  min-width: 0;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-plugin-btn-label-title,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-custom-item-label {
+  color: var(--pdfme-dark-text);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-plugin-btn-label-meta,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-custom-item-meta {
+  color: rgba(203, 213, 225, 0.72);
+  font-size: 10.5px;
+  line-height: 1.35;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-plugin-btn-label-desc,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-custom-item-desc {
+  color: rgba(226, 232, 240, 0.54);
+  font-size: 10.5px;
+  line-height: 1.35;
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-plugin-favorite-toggle {
+  position: absolute;
+  top: 8px;
+  right: 8px;
+  width: 20px;
+  height: 20px;
+  min-width: 20px;
+  padding: 0;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.04);
+  color: rgba(203, 213, 225, 0.45);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-plugin-favorite-toggle[data-active='true'] {
+  color: #f5a623;
+  background: rgba(245, 166, 35, 0.12);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-custom-item {
+  justify-content: flex-start;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-empty {
+  padding: 18px 8px;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar-empty .ant-empty-description {
+  color: rgba(203, 213, 225, 0.68);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-canvas {
+  padding-left: 20px;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-left-sidebar-expanded='true'] ~ .pdfme-designer-stage .pdfme-designer-canvas {
+  padding-left: 20px;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar ~ .pdfme-designer-stage .pdfme-ui-control-bar {
+  margin-left: 0;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-background {
+  position: relative;
+  overflow: hidden;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-root {
+  position: relative;
+  overflow: hidden;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-background .pdfme-designer-left-sidebar {
+  position: absolute;
+  inset: 0 auto 0 0;
+  z-index: 92;
+  width: 48px;
+  min-width: 48px;
+  max-width: 48px;
+  overflow: hidden;
+  flex: 0 0 auto;
+  transition:
+    width 280ms cubic-bezier(0.16, 1, 0.3, 1),
+    min-width 280ms cubic-bezier(0.16, 1, 0.3, 1),
+    max-width 280ms cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-background .pdfme-designer-left-sidebar[data-left-sidebar-expanded='true'] {
+  width: 232px;
+  min-width: 232px;
+  max-width: 232px;
+  overflow: visible;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-background .pdfme-designer-left-sidebar-shell {
+  width: 232px;
+  height: 100%;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-background .pdfme-designer-stage {
+  margin-left: 0;
+  width: 100%;
+  min-width: 0;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-background .pdfme-ui-control-bar {
+  margin-left: 0;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-background .pdfme-designer-canvas {
+  padding-left: 0;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-background .pdfme-designer-left-sidebar[data-left-sidebar-expanded='true'] ~ .pdfme-designer-stage .pdfme-designer-canvas {
+  padding-left: 0;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-background .pdfme-designer-left-sidebar-toggle-btn {
+  z-index: 96;
+}

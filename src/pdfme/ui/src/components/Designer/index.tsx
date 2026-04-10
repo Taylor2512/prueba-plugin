@@ -1140,10 +1140,6 @@ const TemplateEditor = ({
     void updateTemplate(template);
   }, [template, updateTemplate]);
 
-  if (error) {
-    // Pass the error directly to ErrorScreen
-    return <ErrorScreen size={size} error={error} />;
-  }
   const pageManipulation = isBlankPdf(template.basePdf)
     ? { addPageAfter: handleAddPageAfter, removePage: handleRemovePage }
     : {};
@@ -1183,6 +1179,10 @@ const TemplateEditor = ({
       })),
     [activeDocumentId, uploadedDocuments],
   );
+  if (error) {
+    // Pass the error directly to ErrorScreen
+    return <ErrorScreen size={size} error={error} />;
+  }
   const { className: leftSidebarEngineClassName, ...leftSidebarEngineProps } = leftSidebarEngine || {};
   const { className: rightSidebarEngineClassName, ...rightSidebarEngineProps } = rightSidebarEngine || {};
 
@@ -1276,8 +1276,8 @@ const TemplateEditor = ({
           onEditEnd();
         },
         onUploadPdf: handleUploadPdfClick,
-        title: 'Documentos',
-        emptyTitle: 'Sin documentos subidos',
+        title: 'Documentos cargados',
+        emptyTitle: 'Todavía no hay documentos cargados. Sube un PDF para empezar.',
       }}
       pages={{
         items: pageItems,
@@ -1309,8 +1309,8 @@ const TemplateEditor = ({
         },
         onAdd: pageManipulation.addPageAfter,
         onUploadPdf: handleUploadPdfClick,
-        title: 'Paginas',
-        emptyTitle: 'Sin paginas disponibles',
+        title: 'Páginas del documento',
+        emptyTitle: 'Este documento aún no tiene páginas. Agrega una página para empezar.',
       }}
       showDocumentsRail={pageItems.length > 0 || uploadedDocumentItems.length > 0}
       autoFocusDetail={true}
@@ -1453,6 +1453,7 @@ const TemplateEditor = ({
         <div
           className={`${DESIGNER_CLASSNAME}stage`}
           data-left-sidebar={leftSidebarVisible ? 'visible' : 'hidden'}
+          data-left-sidebar-mode={shouldReserveLeftSidebarSpace ? 'docked' : 'overlay'}
           data-left-sidebar-variant={leftSidebarVariant}
           data-left-sidebar-detached={leftSidebarDetached ? 'true' : 'false'}
           data-left-sidebar-layout={leftSidebarUseLayout ? 'frame' : 'default'}
@@ -1483,6 +1484,7 @@ const TemplateEditor = ({
             setPageCursor={setPageCursorWithScroll}
             zoomLevel={zoomLevel}
             setZoomLevel={setZoomLevel}
+            setZoom={setZoomExternal}
             {...pageManipulation}
           />
 

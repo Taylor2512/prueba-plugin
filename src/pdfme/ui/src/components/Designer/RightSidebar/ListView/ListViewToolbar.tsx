@@ -88,24 +88,24 @@ const ListViewToolbar = ({
         } as const,
         input: { borderRadius: 7, fontSize: 12, height: 30, minWidth: 0 } as const,
         empty: { fontSize: 11, textAlign: 'center', padding: '7px 0' } as const,
-      };
+  };
 
   return (
-    <div className={DESIGNER_CLASSNAME + 'list-view-toolbar'}>
-      <div className={DESIGNER_CLASSNAME + 'sidebar-header'}>
-        <div className={DESIGNER_CLASSNAME + 'sidebar-header-content'}>
-          <div className={DESIGNER_CLASSNAME + 'sidebar-header-title'}>
+    <div className={DESIGNER_CLASSNAME + 'list-view-toolbar'} style={densityStyles.container}>
+      <div className={DESIGNER_CLASSNAME + 'sidebar-header'} style={densityStyles.header}>
+        <div className={DESIGNER_CLASSNAME + 'sidebar-header-content'} style={densityStyles.titleWrap}>
+          <div className={DESIGNER_CLASSNAME + 'sidebar-header-title'} style={densityStyles.title}>
             <Layers size={15} className={DESIGNER_CLASSNAME + "layers-auto"} />
             <Text strong className={DESIGNER_CLASSNAME + 'list-view-title'}>
-              Lista de campos
+              Campos del documento
             </Text>
           </div>
-          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-counter'}>
-            {filteredCount} de {totalCount}
+          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-counter'} style={densityStyles.counter}>
+            {filteredCount} visibles de {totalCount}
           </Text>
         </div>
       </div>
-      <div className={DESIGNER_CLASSNAME + 'list-view-toolbar-controls'}>
+      <div className={DESIGNER_CLASSNAME + 'list-view-toolbar-controls'} style={densityStyles.searchWrap}>
         <Input
           size="small"
           allowClear
@@ -114,6 +114,7 @@ const ListViewToolbar = ({
           value={searchQuery}
           onChange={(e) => onChangeSearch(e.target.value)}
           className={DESIGNER_CLASSNAME + "input-auto"}
+          style={densityStyles.input}
         />
         {schemaTypes.length > 2 ? (
           <Select
@@ -126,12 +127,12 @@ const ListViewToolbar = ({
           />
         ) : null}
         {hasActiveSearch && filteredCount === 0 ? (
-          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-subtitle'}>
+          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-subtitle'} style={densityStyles.empty}>
             Sin resultados
           </Text>
         ) : null}
         {hasActiveSearch && filteredCount > 0 ? (
-          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-subtitle'}>
+          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-subtitle'} style={densityStyles.empty}>
             Mostrando {filteredCount} coincidencias
           </Text>
         ) : null}

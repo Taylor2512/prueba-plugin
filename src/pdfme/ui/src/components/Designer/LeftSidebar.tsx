@@ -380,18 +380,20 @@ const SidebarShell = ({
     className={`${DESIGNER_CLASSNAME}left-sidebar-shell`}
   >
     <div className={`${DESIGNER_CLASSNAME}left-sidebar-dock-header`}>
-      <span className={`${DESIGNER_CLASSNAME}left-sidebar-dock-title`}>DISEÑADOR</span>
+      <span className={`${DESIGNER_CLASSNAME}left-sidebar-dock-kicker`}>Diseñador</span>
+      <span className={`${DESIGNER_CLASSNAME}left-sidebar-dock-title`}>Catálogo de campos</span>
     </div>
-    <div className={`${DESIGNER_CLASSNAME}left-sidebar-dock-section-title`}>CAMPOS PERSONALIZADOS</div>
-    <LeftSidebarTabs
-      tabs={tabs}
-      activeTab={activeTab}
-      onChangeTab={onChangeTab}
-      renderTabIcon={renderTabIcon}
-    />
-    {searchNode ? (
-      <div className={`${DESIGNER_CLASSNAME}left-sidebar-search-wrap`}>{searchNode}</div>
-    ) : null}
+    <div className={`${DESIGNER_CLASSNAME}left-sidebar-control-band`}>
+      <LeftSidebarTabs
+        tabs={tabs}
+        activeTab={activeTab}
+        onChangeTab={onChangeTab}
+        renderTabIcon={renderTabIcon}
+      />
+      {searchNode ? (
+        <div className={`${DESIGNER_CLASSNAME}left-sidebar-search-wrap`}>{searchNode}</div>
+      ) : null}
+    </div>
     <div
       className={`${DESIGNER_CLASSNAME}left-sidebar-main`}
     >
@@ -701,6 +703,7 @@ const LeftSidebar = ({
     quickFilter,
     activeCapabilities,
     parsedQuery,
+    searchTerms,
   ]);
 
   const recentCatalogItems = useMemo(() => {
@@ -884,10 +887,17 @@ const LeftSidebar = ({
                     {highlightTerm(label, searchTerms)}
                   </span>
                   {isPanel || resolvedViewMode === 'rich' ? (
-                    <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-meta'}>
-                      {highlightTerm(metaLine, searchTerms)}
-                      {capabilityHint ? ` · ${capabilityHint}` : ''}
-                    </span>
+                    <>
+                      <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-meta'}>
+                        {highlightTerm(metaLine, searchTerms)}
+                        {capabilityHint ? ` · ${capabilityHint}` : ''}
+                      </span>
+                      {pluginDescription ? (
+                        <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-desc'}>
+                          {pluginDescription}
+                        </span>
+                      ) : null}
+                    </>
                   ) : null}
                 </span>
                 {isFavorite ? (
@@ -993,6 +1003,11 @@ const LeftSidebar = ({
                   {definition.autoFillSource ? ' · autofill' : ''}
                   {definition.defaultValue ? ' · default' : ''}
                 </span>
+                {resolvedViewMode === 'rich' ? (
+                  <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-desc`}>
+                    {definition.category || 'Campo personalizado'}
+                  </span>
+                ) : null}
               </span>
             </Button>
           </Tooltip>
@@ -1119,7 +1134,7 @@ const LeftSidebar = ({
           type={quickFilter === 'all' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('all')}
         >
-          All
+          Todo
         </Button>
         <Button
           className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
@@ -1127,7 +1142,7 @@ const LeftSidebar = ({
           type={quickFilter === 'favorites' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('favorites')}
         >
-          Fav ({favoritePlugins.size})
+          Favoritos ({favoritePlugins.size})
         </Button>
         <Button
           className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
@@ -1135,7 +1150,7 @@ const LeftSidebar = ({
           type={quickFilter === 'recent' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('recent')}
         >
-          Recent ({recentPlugins.length})
+          Recientes ({recentPlugins.length})
         </Button>
         {showCatalogViewSwitcher ? (
           <Button
@@ -1146,7 +1161,7 @@ const LeftSidebar = ({
               onCatalogViewModeChange?.(nextMode);
             }}
           >
-            {resolvedViewMode === 'compact' ? 'Vista rica' : 'Vista compacta'}
+            {resolvedViewMode === 'compact' ? 'Vista detallada' : 'Vista compacta'}
           </Button>
         ) : null}
       </div>
@@ -1206,6 +1221,8 @@ const LeftSidebar = ({
       className={sidebarClass}
       data-sidebar-variant={variant}
       data-sidebar-detached={detached ? 'true' : 'false'}
+      data-left-sidebar-mode={resolvedPresentation}
+      data-left-sidebar-expanded={sidebarExpanded ? 'true' : 'false'}
       data-sidebar-presentation={resolvedPresentation}
       data-active-tab={activeTab}
       data-has-search={normalizedSearch ? 'true' : 'false'}

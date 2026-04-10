@@ -109,6 +109,7 @@ type CtlBarProps = {
   setPageCursor: (page: number) => void;
   zoomLevel: number;
   setZoomLevel: (zoom: number) => void;
+  setZoom?: (zoom: number) => void;
   addPageAfter?: () => void;
   removePage?: () => void;
 };
@@ -123,10 +124,12 @@ const CtlBar = (props: CtlBarProps) => {
     setPageCursor,
     zoomLevel,
     setZoomLevel,
+    setZoom,
     addPageAfter,
     removePage,
   } = props;
   void _size;
+  const zoomChangeHandler = setZoom ?? setZoomLevel;
 
   const contextMenuItems: MenuProps['items'] = [];
   if (addPageAfter) {
@@ -144,11 +147,22 @@ const CtlBar = (props: CtlBarProps) => {
 
   return (
     <div className={UI_CLASSNAME + 'control-bar'}>
-      {pageNum > 1 && (
-        <Pager pageCursor={pageCursor} pageNum={pageNum} setPageCursor={setPageCursor} />
-      )}
-      <Zoom zoomLevel={zoomLevel} setZoomLevel={setZoomLevel} />
-      {contextMenuItems.length > 0 && <ContextMenu items={contextMenuItems} />}
+      <div className={UI_CLASSNAME + 'control-bar-context'}>
+        <span className={UI_CLASSNAME + 'control-bar-kicker'}>Página activa</span>
+        <Text strong className={UI_CLASSNAME + 'control-bar-page'}>
+          {pageCursor + 1}
+        </Text>
+        <span className={UI_CLASSNAME + 'control-bar-subtext'}>
+          {pageNum > 1 ? `de ${pageNum}` : 'página única'}
+        </span>
+      </div>
+      <div className={UI_CLASSNAME + 'control-bar-actions'}>
+        {pageNum > 1 && (
+          <Pager pageCursor={pageCursor} pageNum={pageNum} setPageCursor={setPageCursor} />
+        )}
+        <Zoom zoomLevel={zoomLevel} setZoomLevel={zoomChangeHandler} />
+        {contextMenuItems.length > 0 && <ContextMenu items={contextMenuItems} />}
+      </div>
     </div>
   );
 };

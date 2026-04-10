@@ -113,7 +113,7 @@ const ListView = (
             />
           ) : (
             <div className={DESIGNER_CLASSNAME + 'list-view-empty'}>
-              No hay campos que coincidan con los filtros actuales.
+              No hay campos que coincidan con los filtros actuales. Limpia la búsqueda o cambia el tipo.
             </div>
           )
         )}
