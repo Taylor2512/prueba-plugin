@@ -3,9 +3,6 @@ import type { ThemeConfig } from 'antd';
 export const defaultTheme: ThemeConfig = {
   token: {
     colorPrimary: '#38a0ff',
-    overlayToolbarBg: 'rgba(15, 23, 42, 0.9)',
-    overlayBadgeBg: 'rgba(15, 23, 42, 0.85)',
-    overlayMetricBg: 'rgba(15, 23, 42, 0.9)',
   },
   components: {
     Form: {
@@ -34,9 +31,6 @@ export const sisadTheme: ThemeConfig = {
     colorBorder: '#d9d9e8',
     borderRadius: 10,
     fontFamily: "'Open Sans', sans-serif",
-    overlayToolbarBg: 'rgba(15, 23, 42, 0.9)',
-    overlayBadgeBg: 'rgba(15, 23, 42, 0.85)',
-    overlayMetricBg: 'rgba(15, 23, 42, 0.9)',
   },
   components: {
     Button: {
