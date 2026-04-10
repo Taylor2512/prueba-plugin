@@ -444,51 +444,7 @@ export default function PdfmeLabPage() {
         <section className="pdfme-workspace" data-ux-mode={uxMode}>
           <div ref={containerRef} className="pdfme-canvas" data-ux-mode={uxMode} />
 
-          <div className="pdfme-output-grid">
-            <article className="pdfme-output-card">
-              <h3>PDF generado</h3>
-              {generatedPdfUrl ? (
-                <>
-                  <iframe title="PDF generado" src={generatedPdfUrl} />
-                  <button type="button" onClick={() => downloadUrl(generatedPdfUrl, 'pdfme-output.pdf')}>
-                    Descargar PDF
-                  </button>
-                </>
-              ) : (
-                <p>Aún no se generó un PDF.</p>
-              )}
-            </article>
-
-            <article className="pdfme-output-card">
-              <h3>Imágenes (pdf2img)</h3>
-              {images.length > 0 ? (
-                <div className="pdfme-images">
-                  {images.map((url, index) => (
-                    <img key={`img-${index}`} src={url} alt={`Página ${index + 1}`} />
-                  ))}
-                </div>
-              ) : (
-                <p>No hay imágenes convertidas.</p>
-              )}
-            </article>
-
-            <article className="pdfme-output-card">
-              <h3>PDF reconstruido (img2pdf)</h3>
-              {roundtripPdfUrl ? (
-                <>
-                  <iframe title="PDF reconstruido" src={roundtripPdfUrl} />
-                  <button
-                    type="button"
-                    onClick={() => downloadUrl(roundtripPdfUrl, 'pdfme-roundtrip.pdf')}
-                  >
-                    Descargar Roundtrip PDF
-                  </button>
-                </>
-              ) : (
-                <p>Ejecuta `pdf2img` y luego `img2pdf` para ver este resultado.</p>
-              )}
-            </article>
-          </div>
+       
         </section>
       </section>
     </main>
