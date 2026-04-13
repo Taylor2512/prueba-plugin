@@ -324,6 +324,7 @@ export default function PdfmeLabPage() {
   }
 
   return (
+    <div className="app-shell">
     <main className="pdfme-page" data-ux-mode={uxMode}>
       <header className="pdfme-header">
         <div>
@@ -448,5 +449,6 @@ export default function PdfmeLabPage() {
         </section>
       </section>
     </main>
+    </div>
   )
 }

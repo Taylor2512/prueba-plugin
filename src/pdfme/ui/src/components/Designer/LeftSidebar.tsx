@@ -846,6 +846,7 @@ const LeftSidebar = ({
       .filter(Boolean)
       .join(' · ');
     const capabilityHint = item.capabilities.slice(0, 3).join(' · ');
+    const shouldShowCapabilityHint = isPanel && resolvedViewMode === 'rich' && capabilityHint;
 
     return (
       <Draggable key={draggableId} draggableId={draggableId} scale={scale} basePdf={basePdf} plugin={plugin}>
@@ -895,7 +896,7 @@ const LeftSidebar = ({
                   <>
                     <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-meta'}>
                       {highlightTerm(metaLine, searchTerms)}
-                      {capabilityHint ? ` · ${capabilityHint}` : ''}
+                      {shouldShowCapabilityHint ? ` · ${capabilityHint}` : ''}
                     </span>
                     {isPanel && pluginDescription ? (
                       <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-desc'}>

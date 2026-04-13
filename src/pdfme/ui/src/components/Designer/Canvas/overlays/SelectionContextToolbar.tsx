@@ -1,59 +1,87 @@
 import React from 'react';
+import type { SchemaForUI } from '@pdfme/common';
 import {
-  Trash2,
-  Copy,
-  Asterisk,
-  Lock,
-  ArrowUp,
-  ArrowDown,
-  AlignLeft,
-  AlignCenter,
-  AlignJustify,
-} from 'lucide-react';
+  buildSelectionQuickActions,
+} from './canvasContextMenuActions.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
-
-const buttonConfig = [
-  { id: 'duplicate', label: 'Duplicar', icon: <Copy size={14} />, action: (cmd: SelectionCommandSet) => cmd.duplicateSelection() },
-  { id: 'delete', label: 'Eliminar', icon: <Trash2 size={14} />, action: (cmd: SelectionCommandSet) => cmd.deleteSelection() },
-  { id: 'required', label: 'Requerido', icon: <Asterisk size={14} />, action: (cmd: SelectionCommandSet) => cmd.toggleRequired() },
-  { id: 'readonly', label: 'Solo lectura', icon: <Lock size={14} />, action: (cmd: SelectionCommandSet) => cmd.toggleReadOnly() },
-  { id: 'bring-forward', label: 'Traer al frente', icon: <ArrowUp size={14} />, action: (cmd: SelectionCommandSet) => cmd.bringForward() },
-  { id: 'send-back', label: 'Enviar atrás', icon: <ArrowDown size={14} />, action: (cmd: SelectionCommandSet) => cmd.sendBackward() },
-  { id: 'align', label: 'Alinear', icon: <AlignLeft size={14} />, action: (cmd: SelectionCommandSet) => cmd.alignSelection('center') },
-  { id: 'distribute', label: 'Distribuir', icon: <AlignJustify size={14} />, action: (cmd: SelectionCommandSet) => cmd.distributeSelection('horizontal') },
-  { id: 'properties', label: 'Propiedades', icon: <AlignCenter size={14} />, action: (cmd: SelectionCommandSet) => cmd.openProperties() },
-];
+import type { InteractionState } from '../../shared/interactionState.js';
 
 type SelectionContextToolbarProps = {
-  position: { top: number; left: number } | null;
+  position: { top: number; left: number; width: number; height: number } | null;
   commands?: SelectionCommandSet;
   activeElements: HTMLElement[];
+  activeSchemas: SchemaForUI[];
+  interactionState: InteractionState;
+  contextMenuOpen?: boolean;
 };
 
-const SelectionContextToolbar = ({ position, commands, activeElements }: SelectionContextToolbarProps) => {
+const SelectionContextToolbar = ({
+  position,
+  commands,
+  activeElements,
+  activeSchemas,
+  interactionState,
+  contextMenuOpen = false,
+}: SelectionContextToolbarProps) => {
   if (!position || !commands || !activeElements.length) return null;
+  if (['editing', 'dragging', 'resizing', 'rotating'].includes(interactionState.phase)) return null;
+  if (contextMenuOpen) return null;
+
+  const selectionCount = interactionState.selectionCount;
+  const allReadOnly = activeSchemas.length > 0 && activeSchemas.every((schema) => schema.readOnly);
+  const allRequired = activeSchemas.length > 0 && activeSchemas.every((schema) => schema.required);
+  const statusBadges: string[] = [];
+
+  if (selectionCount > 1) {
+    statusBadges.push(`${selectionCount} elementos`);
+  }
+  if (allRequired) {
+    statusBadges.push('Requerido');
+  }
+  if (allReadOnly) {
+    statusBadges.push('Solo lectura');
+  }
+
+  const buttonConfig = buildSelectionQuickActions(commands, allReadOnly);
 
   return (
     <div
       className="pdfme-ui-selection-context-toolbar"
+      data-selection-count={String(selectionCount)}
+      data-interaction-phase={interactionState.phase}
       style={{
         top: `${position.top}px`,
         left: `${position.left}px`,
+        maxWidth: 'min(100%, 292px)',
       }}
     >
-      {buttonConfig.map((btn) => (
-        <button
-          key={btn.id}
-          type="button"
-          title={btn.label}
-          onClick={(event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            btn.action(commands);
-          }}>
-          {btn.icon}
-        </button>
-      ))}
+      {selectionCount > 1 ? (
+        <span className="pdfme-ui-selection-context-toolbar-count">{selectionCount}</span>
+      ) : null}
+      <div className="pdfme-ui-selection-context-toolbar-actions">
+        {buttonConfig.map((btn) => (
+          <button
+            key={btn.id}
+            type="button"
+            title={btn.label}
+            aria-label={btn.label}
+            data-active={btn.active ? 'true' : 'false'}
+            onClick={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              btn.onSelect?.();
+            }}>
+            {btn.icon}
+          </button>
+        ))}
+      </div>
+      {statusBadges.length > 0 ? (
+        <div className="pdfme-ui-selection-context-toolbar-badges">
+          {statusBadges.map((badge) => (
+            <span key={badge}>{badge}</span>
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 };

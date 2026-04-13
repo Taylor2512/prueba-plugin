@@ -77,40 +77,6 @@
   pointer-events: auto;
 }
 
-/* Keep schema quick-actions out of layout flow even when app-shell scoped styles are not loaded */
-.pdfme-ui-schema-toolbar {
-  position: absolute;
-  top: -10px;
-  left: 50%;
-  transform: translate(-50%, -100%);
-  display: inline-flex;
-  align-items: center;
-  gap: 4px;
-  opacity: 0;
-  pointer-events: none;
-  z-index: 35;
-}
-
-.pdfme-ui-custom-selectable[data-schema-active='true'] .pdfme-ui-schema-toolbar,
-.pdfme-ui-custom-selectable[data-schema-hovering='true'] .pdfme-ui-schema-toolbar,
-.pdfme-ui-custom-selectable[data-schema-editing='true'] .pdfme-ui-schema-toolbar {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.pdfme-ui-schema-toolbar-btn {
-  pointer-events: auto;
-}
-
-.pdfme-designer-selection-actions {
-  pointer-events: none;
-  z-index: 25;
-}
-
-.pdfme-designer-selection-actions .ant-btn {
-  pointer-events: auto;
-}
-
 .pdfme-ui-control-bar {
   position: sticky;
   top: 0;
@@ -821,7 +787,8 @@
   flex: 1 1 0%;
   flex-direction: column;
   border-radius: 10px;
-  border: 1px solid rgba(15, 23, 42, 0.08);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(17, 21, 29, 0.92);
   overflow: hidden;
 }
 
@@ -836,7 +803,7 @@
   padding: clamp(6px, 1.4vw, var(--pdfme-rs-v-padding, 8px))
     clamp(8px, 2.2vw, var(--pdfme-rs-h-padding, 16px))
     0;
-  background: #ffffff;
+  background: transparent;
 }
 
 .pdfme-designer-right-sidebar-layout-header-divider {
@@ -856,8 +823,8 @@
   gap: clamp(6px, 1.6vw, var(--pdfme-rs-v-padding, 8px));
   padding: clamp(6px, 1.6vw, calc(var(--pdfme-rs-h-padding, 16px) / 2))
     clamp(8px, 2.4vw, var(--pdfme-rs-h-padding, 16px));
-  border-top: 1px solid rgba(15, 23, 42, 0.08);
-  background: #ffffff;
+  border-top: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(17, 21, 29, 0.92);
 }
 
 .pdfme-designer-right-sidebar-layout-body {
@@ -893,8 +860,8 @@
   gap: 4px;
   padding: 2px;
   border-radius: 10px;
-  border: 1px solid rgba(15, 23, 42, 0.08);
-  background: #f8fafc;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: #1b2030;
 }
 
 .pdfme-designer-right-sidebar-panel-switcher-btn {
@@ -905,15 +872,15 @@
   font-size: 11.5px;
   font-weight: 600;
   background: transparent;
-  color: #64748b;
+  color: #a1acc4;
   cursor: pointer;
   transition: all 0.15s ease;
 }
 
 .pdfme-designer-right-sidebar-panel-switcher-btn[data-active='true'] {
-  background: #ffffff;
-  color: #4338ca;
-  box-shadow: 0 1px 3px rgba(15, 23, 42, 0.08);
+  background: rgba(240, 165, 0, 0.12);
+  color: #f0a500;
+  box-shadow: inset 0 0 0 1px rgba(240, 165, 0, 0.16);
 }
 
 .pdfme-designer-right-sidebar-panel-switcher-btn:disabled {
@@ -3312,7 +3279,7 @@ button[data-testid]:disabled {
 
 /* Cuando el sidebar izquierdo está expandido, el control bar se desplaza */
 .pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-expanded='true'] ~ .pdfme-designer-stage .pdfme-ui-control-bar {
-  margin-left: calc(var(--ls-expanded) - var(--ls-collapsed) + 8px) ;
+  margin-left: 0 ;
 }
 
 /* ══════════════════════════════════════════════════════════
@@ -4476,374 +4443,6 @@ button[data-testid]:disabled {
   opacity: 1  ;
 }
 
-/* ── Selection actions: floating command pill ────────────────── */
-.app-shell .pdfme-designer-root .pdfme-designer-selection-actions {
-  display: flex ;
-  align-items: center ;
-  justify-content: center ;
-  gap: 3px ;
-  padding: 3px 5px ;
-  background: var(--bg-elevated, #161921) ;
-  border: 1px solid rgba(255, 255, 255, 0.10) ;
-  border-radius: 8px ;
-  box-shadow:
-    0 6px 20px rgba(0, 0, 0, 0.65),
-    0 0 0 1px rgba(0, 0, 0, 0.4),
-    inset 0 1px 0 rgba(255, 255, 255, 0.05) ;
-  z-index: 25 ;
-  animation: sa-pop 130ms cubic-bezier(0.34, 1.56, 0.64, 1) both ;
-}
-
-@keyframes sa-pop {
-  from { opacity: 0 ; transform: scale(0.85) translateY(4px) ; }
-  to   { opacity: 1 ; transform: scale(1)    translateY(0) ; }
-}
-
-/* Count badge in the selection actions pill */
-.app-shell .pdfme-designer-root .pdfme-designer-selection-actions .pdfme-ui-span-auto {
-  position: static  ;
-  display: inline-flex  ;
-  align-items: center ;
-  justify-content: center ;
-  min-width: 18px ;
-  height: 18px ;
-  padding: 0 4px ;
-  background: rgba(240, 165, 0, 0.16) ;
-  border-radius: 4px ;
-  color: var(--accent, #f0a500) ;
-  font-size: 10px ;
-  font-weight: 700 ;
-  font-variant-numeric: tabular-nums ;
-  line-height: 1 ;
-  top: unset  ;
-  left: unset  ;
-  pointer-events: none ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-designer-selection-actions .pdfme-designer-selection-actions-count {
-  position: static  ;
-  display: inline-flex  ;
-  align-items: center ;
-  justify-content: center ;
-  min-width: 18px ;
-  height: 18px ;
-  padding: 0 4px ;
-  background: rgba(240, 165, 0, 0.16) ;
-  border-radius: 4px ;
-  color: var(--accent, #f0a500) ;
-  font-size: 10px ;
-  font-weight: 700 ;
-  font-variant-numeric: tabular-nums ;
-  line-height: 1 ;
-  pointer-events: none ;
-}
-
-/* Delete button inside the pill */
-.app-shell .pdfme-designer-root .pdfme-designer-delete-button.ant-btn {
-  display: inline-flex  ;
-  align-items: center  ;
-  justify-content: center  ;
-  width: 24px  ;
-  height: 24px  ;
-  min-width: 24px  ;
-  padding: 0  ;
-  border-color: transparent  ;
-  background: transparent  ;
-  color: var(--text-muted, #8892a4)  ;
-  border-radius: 6px  ;
-  box-shadow: none  ;
-  transition: color 110ms ease, background 110ms ease  ;
-}
-.app-shell .pdfme-designer-root .pdfme-designer-delete-button.ant-btn:hover {
-  color: #f87171  ;
-  background: rgba(239, 68, 68, 0.15)  ;
-  border-color: rgba(239, 68, 68, 0.28)  ;
-}
-.app-shell .pdfme-designer-root .pdfme-designer-delete-button.ant-btn:active {
-  transform: scale(0.90)  ;
-}
-
-/* ── Schema elements: hover ring + title tooltip ─────────────── */
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable {
-  --schema-tone: #38a0ff ;
-  --schema-outline: 1px solid transparent ;
-  position: relative ;
-  display: block ;
-  isolation: isolate ;
-  cursor: pointer ;
-  outline: var(--schema-outline) ;
-  outline-offset: 1px ;
-  border-radius: 6px ;
-  transition:
-    transform 120ms ease,
-    box-shadow 160ms ease,
-    outline-color 100ms ease,
-    outline-offset 100ms ease ;
-  box-shadow: 0 0 0 0 transparent ;
-}
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable:hover {
-  transform: translateY(-1px) ;
-  outline-color: var(--schema-tone) ;
-  outline-offset: 2px ;
-  box-shadow: 0 10px 22px -18px rgba(15, 23, 42, 0.95) ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable {
-  position: relative ;
-  z-index: 1 ;
-  border-radius: inherit ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-readonly='true'] {
-  outline-style: dashed ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-readonly='true']:hover {
-  box-shadow: 0 10px 22px -18px rgba(15, 23, 42, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.04) inset ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-selectable='false'] {
-  cursor: default ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-schema-toolbar {
-  position: absolute ;
-  top: -10px ;
-  left: 50% ;
-  transform: translate(-50%, -100%) ;
-  z-index: 35 ;
-  display: inline-flex ;
-  align-items: center ;
-  gap: 4px ;
-  padding: 4px ;
-  border-radius: 999px ;
-  background: rgba(15, 23, 42, 0.94) ;
-  border: 1px solid rgba(255, 255, 255, 0.08) ;
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.28) ;
-  opacity: 0 ;
-  pointer-events: none ;
-  transition: opacity 120ms ease, transform 120ms ease ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-active='true'] .pdfme-ui-schema-toolbar,
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-hovering='true'] .pdfme-ui-schema-toolbar,
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-editing='true'] .pdfme-ui-schema-toolbar {
-  opacity: 1 ;
-  pointer-events: auto ;
-  transform: translate(-50%, calc(-100% - 2px)) ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-schema-toolbar-btn {
-  width: 22px ;
-  height: 22px ;
-  min-width: 22px ;
-  display: inline-flex ;
-  align-items: center ;
-  justify-content: center ;
-  border-radius: 999px ;
-  border: 1px solid transparent ;
-  background: transparent ;
-  color: rgba(226, 232, 240, 0.78) ;
-  cursor: pointer ;
-  padding: 0 ;
-  transition: background 120ms ease, color 120ms ease, border-color 120ms ease, transform 120ms ease ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-schema-toolbar-btn:hover {
-  background: rgba(255, 255, 255, 0.08) ;
-  color: #ffffff ;
-  border-color: rgba(255, 255, 255, 0.10) ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-schema-toolbar-btn:active {
-  transform: scale(0.92) ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-schema-toolbar-btn[data-active='true'] {
-  background: color-mix(in srgb, var(--schema-tone) 18%, rgba(255,255,255,0.03)) ;
-  color: var(--schema-tone) ;
-  border-color: color-mix(in srgb, var(--schema-tone) 32%, rgba(255,255,255,0.05)) ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-schema-toolbar-btn[aria-label='Eliminar campo']:hover {
-  color: #f87171 ;
-  border-color: rgba(248, 113, 113, 0.24) ;
-  background: rgba(248, 113, 113, 0.12) ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-active='true'] {
-  outline-color: var(--schema-tone) ;
-  outline-style: solid ;
-  outline-width: 1.5px ;
-  outline-offset: 2px ;
-  transform: translateY(-1px) ;
-  box-shadow: 0 14px 26px -22px color-mix(in srgb, var(--schema-tone) 45%, rgba(15, 23, 42, 0.95)) ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-active='true']::before {
-  opacity: 0.65 ;
-  transform: scale(1) ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-active='true']::after {
-  opacity: 1 ;
-  transform: translateY(0) scale(1) ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-editing='true'] {
-  outline-width: 2px ;
-  outline-offset: 3px ;
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--schema-tone) 20%, transparent),
-    0 18px 34px -24px color-mix(in srgb, var(--schema-tone) 55%, rgba(15, 23, 42, 0.92)) ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-editing='true']::before {
-  opacity: 0.9 ;
-  inset: -5px ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-editing='true']::after {
-  background: color-mix(in srgb, rgba(15, 23, 42, 0.92) 76%, var(--schema-tone) 24%) ;
-  border-color: color-mix(in srgb, var(--schema-tone) 45%, rgba(255,255,255,0.1)) ;
-  color: #ffffff ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-hovering='true']:not([data-schema-active='true']) {
-  outline-color: color-mix(in srgb, var(--schema-tone) 72%, transparent) ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-readonly='true'][data-schema-active='true'] {
-  outline-style: dashed ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-readonly='true'][data-schema-editing='true'] {
-  box-shadow:
-    0 0 0 1px rgba(251, 191, 36, 0.28),
-    0 18px 34px -24px rgba(251, 191, 36, 0.35) ;
-}
-
-/* Tone frame around the schema */
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable::before {
-  content: '' ;
-  position: absolute ;
-  inset: -4px ;
-  z-index: 0 ;
-  border-radius: 9px ;
-  border: 1px solid var(--schema-tone) ;
-  opacity: 0 ;
-  pointer-events: none ;
-  transition: opacity 130ms ease, transform 130ms ease ;
-  transform: scale(0.985) ;
-}
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable:hover::before {
-  opacity: 0.5 ;
-  transform: scale(1) ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-state='editing']:hover::before,
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-state='active']:hover::before {
-  opacity: 0.92 ;
-}
-
-/* Field-name label above element on hover */
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-caption]::after {
-  content: attr(data-schema-caption) ;
-  position: absolute ;
-  bottom: calc(100% + 5px) ;
-  left: 0 ;
-  z-index: 30 ;
-  background: rgba(22, 25, 33, 0.96) ;
-  border: 1px solid rgba(255, 255, 255, 0.09) ;
-  border-left: 2px solid var(--schema-tone) ;
-  border-radius: 6px ;
-  color: #cbd5e1 ;
-  font-size: 10px ;
-  font-weight: 600 ;
-  font-family: var(--font-ui, ui-sans-serif, system-ui, sans-serif) ;
-  letter-spacing: 0.02em ;
-  padding: 3px 8px ;
-  white-space: nowrap ;
-  max-width: 220px ;
-  overflow: hidden ;
-  text-overflow: ellipsis ;
-  pointer-events: none ;
-  opacity: 0 ;
-  transform: translateY(3px) ;
-  transition: opacity 120ms ease 60ms, transform 120ms ease 60ms ;
-}
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable:hover::after {
-  opacity: 1 ;
-  transform: translateY(0) ;
-}
-
-/* Small badge with semantic state/type */
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-badge]::after {
-  content: attr(data-schema-badge) ;
-  position: absolute ;
-  top: -9px ;
-  right: -9px ;
-  z-index: 32 ;
-  min-height: 18px ;
-  padding: 0 6px ;
-  display: inline-flex ;
-  align-items: center ;
-  justify-content: center ;
-  border-radius: 999px ;
-  background: rgba(15, 23, 42, 0.92) ;
-  border: 1px solid rgba(255, 255, 255, 0.10) ;
-  color: var(--schema-tone) ;
-  font-size: 9px ;
-  font-weight: 700 ;
-  line-height: 1 ;
-  letter-spacing: 0.06em ;
-  text-transform: uppercase ;
-  white-space: nowrap ;
-  opacity: 0 ;
-  pointer-events: none ;
-  transform: translateY(2px) scale(0.98) ;
-  transition: opacity 120ms ease, transform 120ms ease ;
-}
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable:hover::after {
-  opacity: 1 ;
-  transform: translateY(0) scale(1) ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-state='editing']::after {
-  content: 'editando' ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-state='active'][data-schema-readonly='true']::after {
-  content: 'bloqueado' ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-readonly='true']::after {
-  color: #fbbf24 ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-required='true']::after {
-  color: #fb7185 ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-span-auto {
-  top: -8px ;
-  left: -8px ;
-  width: 16px ;
-  height: 16px ;
-  display: grid ;
-  place-items: center ;
-  border-radius: 999px ;
-  background: #ef4444 ;
-  color: #ffffff ;
-  font-size: 11px ;
-  font-weight: 800 ;
-  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3) ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-required='true']:hover .pdfme-ui-span-auto {
-  transform: scale(1.04) ;
-}
-
 /* Type-specific canvas affordances */
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable::before {
   content: '' ;
@@ -5808,16 +5407,6 @@ button[data-testid]:disabled {
   font-size: 11.5px ;
   color: var(--pdfme-dark-text-muted) ;
   line-height: 1.45 ;
-}
-
-.app-shell .pdfme-designer-root .pdfme-designer-selection-actions {
-  background: rgba(17, 21, 29, 0.96) ;
-  border: 1px solid var(--pdfme-dark-border-subtle) ;
-  border-radius: 10px ;
-  box-shadow:
-    0 8px 24px rgba(0, 0, 0, 0.58),
-    0 0 0 1px rgba(0, 0, 0, 0.28),
-    inset 0 1px 0 rgba(255, 255, 255, 0.04) ;
 }
 
 .app-shell .pdfme-designer-root .pdfme-designer-right-sidebar {

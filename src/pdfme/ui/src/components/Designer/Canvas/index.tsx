@@ -10,7 +10,7 @@ import React,
   forwardRef,
   useCallback,
 } from 'react';
-import { theme, Button } from 'antd';
+import { theme } from 'antd';
 import MoveableComponent, { OnDrag, OnRotate, OnResize } from 'react-moveable';
 import {
   ZOOM,
@@ -23,10 +23,9 @@ import {
 } from '@pdfme/common';
 import type { DesignerComponentBridge } from '../../../types.js';
 import { PluginsRegistry } from '../../../contexts.js';
-import { X } from 'lucide-react';
 import { RULER_HEIGHT, DESIGNER_CLASSNAME, SELECTABLE_CLASSNAME } from '../../../constants.js';
 import { usePrevious } from '../../../hooks.js';
-import { round, flatten, uuid } from '../../../helper.js';
+import { round, flatten } from '../../../helper.js';
 import Paper from '../../Paper.js';
 import Renderer from '../../Renderer.js';
 import Selecto from './Selecto.js';
@@ -41,10 +40,10 @@ import { deriveInteractionState } from '../shared/interactionState.js';
 import type { InteractionState } from '../shared/interactionState.js';
 import type { SelectionCommandSet } from '../shared/selectionCommands.js';
 import CanvasOverlayManager from './overlays/CanvasOverlayManager.js';
+import CanvasContextMenu from './overlays/CanvasContextMenu.js';
 
 const mm2px = (mm: number) => mm * 3.7795275591;
 
-const DELETE_BTN_ID = uuid();
 const fmt4Num = (prop: string) => Number(prop.replace('px', ''));
 const fmt = (prop: string) => round(fmt4Num(prop) / ZOOM, 2);
 const isTopLeftResize = (d: string) => d === '-1,-1' || d === '-1,0' || d === '0,-1';
@@ -76,59 +75,11 @@ const getPaddingMm = (basePdf: BasePdf): [number, number, number, number] => {
 };
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
 
-const SelectionActionsOverlay = ({
-  activeElements: aes,
-  paperSize,
-  onDelete,
-}: {
-  activeElements: HTMLElement[];
-  paperSize: Size;
-  onDelete: () => void;
-}) => {
-  const { token } = theme.useToken();
-  if (!aes.length) return null;
-
-  const top = Math.min(...aes.map(({ style }) => fmt4Num(style.top)));
-  const left = Math.min(...aes.map(({ style }) => fmt4Num(style.left)));
-  const right = Math.max(...aes.map(({ style }) => fmt4Num(style.left) + fmt4Num(style.width)));
-  const bottom = Math.max(...aes.map(({ style }) => fmt4Num(style.top) + fmt4Num(style.height)));
-  const selectionCount = aes.length;
-
-  const overlayWidth = selectionCount > 1 ? 72 : 44;
-  const overlayHeight = 30;
-  const defaultTop = top - overlayHeight - 8;
-  const shouldFlipBelow = defaultTop < 6;
-  const resolvedTop = shouldFlipBelow ? Math.min(paperSize.height - overlayHeight - 6, bottom + 8) : defaultTop;
-  const desiredLeft = right + 8;
-  const resolvedLeft = Math.max(
-    6,
-    Math.min(paperSize.width - overlayWidth - 6, desiredLeft > paperSize.width - overlayWidth ? left - overlayWidth - 8 : desiredLeft),
-  );
-
-  return (
-    <div
-      className={DESIGNER_CLASSNAME + 'selection-actions'}
-      style={{ position: 'absolute', top: resolvedTop, left: resolvedLeft, width: overlayWidth, height: overlayHeight }}
-    >
-      {selectionCount > 1 ? (
-        <span
-          className={DESIGNER_CLASSNAME + 'selection-actions-count'}
-        >
-          {selectionCount}
-        </span>
-      ) : null}
-      <Button
-        id={DELETE_BTN_ID}
-        aria-label="Eliminar selección"
-        className={DESIGNER_CLASSNAME + 'delete-button'}
-        onClick={(event) => {
-          event.stopPropagation();
-          onDelete();
-        }}>
-        <X size={14} className={DESIGNER_CLASSNAME + "x-auto"} />
-      </Button>
-    </div>
-  );
+type CanvasContextMenuState = {
+  mode: 'empty' | 'single' | 'multi';
+  x: number;
+  y: number;
+  targetIds: string[];
 };
 
 interface GuidesInterface {
@@ -214,7 +165,6 @@ export interface CanvasProps {
   activeElements: HTMLElement[];
   onEdit: (targets: HTMLElement[]) => void;
   changeSchemas: ChangeSchemas;
-  removeSchemas: (ids: string[]) => void;
   paperRefs: MutableRefObject<HTMLDivElement[]>;
   sidebarOpen: boolean;
   sidebarWidth?: number;
@@ -225,6 +175,10 @@ export interface CanvasProps {
   useDefaultStyles?: boolean;
   components?: CanvasComponentSlots;
   bridge?: DesignerComponentBridge;
+  canvasActions?: {
+    addPageAfter?: () => void;
+    uploadPdf?: () => void;
+  };
   selectionCommands?: SelectionCommandSet;
   onInteractionStateChange?: (state: InteractionState) => void;
 }
@@ -242,19 +196,17 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     hoveringSchemaId,
     onEdit,
     changeSchemas,
-    removeSchemas,
     onChangeHoveringSchemaId,
     paperRefs,
-    sidebarOpen,
-    sidebarWidth = 0,
-  preserveSidebarSpace = true,
-  featureToggles,
-  styleOverrides,
-  classNames,
-  useDefaultStyles = true,
-  components,
-  selectionCommands,
-  onInteractionStateChange,
+    featureToggles,
+    styleOverrides,
+    classNames,
+    useDefaultStyles = true,
+    components,
+    bridge,
+    canvasActions,
+    selectionCommands,
+    onInteractionStateChange,
 } = props;
   const SelectoSlot = components?.Selecto || Selecto;
   const SnapLinesSlot = components?.SnapLines || SnapLines;
@@ -270,7 +222,6 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     padding: featureToggles?.padding !== false,
     mask: featureToggles?.mask !== false,
     moveable: featureToggles?.moveable !== false,
-    deleteButton: featureToggles?.deleteButton !== false,
   };
   const { token } = theme.useToken();
   const pluginsRegistry = useContext(PluginsRegistry);
@@ -287,6 +238,8 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
   const [isDragging, setIsDragging] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
   const [isRotating, setIsRotating] = useState(false);
+  const [contextMenu, setContextMenu] = useState<CanvasContextMenuState | null>(null);
+  const [pendingContextMenu, setPendingContextMenu] = useState<CanvasContextMenuState | null>(null);
 
   const prevSchemas = usePrevious(schemasList[pageCursor]);
 
@@ -498,6 +451,51 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
   const handleDragStart = () => setIsDragging(true);
   const handleResizeStart = () => setIsResizing(true);
   const handleRotateStart = () => setIsRotating(true);
+  const handleCanvasContextMenu = (event: React.MouseEvent<HTMLDivElement>) => {
+    const target = event.target as Element | null;
+    if (!target) return;
+
+    const activePaper = paperRefs.current[pageCursor];
+    const selectableTarget = target.closest?.(`.${SELECTABLE_CLASSNAME}`) as HTMLElement | null;
+    const isSelectableTarget = Boolean(selectableTarget && activePaper?.contains(selectableTarget));
+
+    event.preventDefault();
+    event.stopPropagation();
+
+    if (isSelectableTarget && selectableTarget) {
+      const isTargetAlreadySelected = activeElements.some((element) => element.id === selectableTarget.id);
+      const targetIds = isTargetAlreadySelected
+        ? activeElements.map((element) => element.id)
+        : [selectableTarget.id];
+      const mode = targetIds.length > 1 ? 'multi' : 'single';
+
+      if (!isTargetAlreadySelected) {
+        setPendingContextMenu({
+          mode,
+          x: event.clientX,
+          y: event.clientY,
+          targetIds,
+        });
+        onEdit([selectableTarget]);
+        return;
+      }
+
+      setContextMenu({
+        mode,
+        x: event.clientX,
+        y: event.clientY,
+        targetIds,
+      });
+      return;
+    }
+
+    setContextMenu({
+      mode: 'empty',
+      x: event.clientX,
+      y: event.clientY,
+      targetIds: [],
+    });
+  };
 
   const rotatable = useMemo(() => {
     const selectedSchemas = (schemasList[pageCursor] || []).filter((s) =>
@@ -539,13 +537,68 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     );
   };
 
-  const safeCanvasWidth = Number.isFinite(size.width) ? Math.max(0, size.width) : 0;
-  const safeCanvasHeight = Number.isFinite(size.height) ? Math.max(0, size.height) : 0;
-  const safeSidebarOffset =
-    preserveSidebarSpace && sidebarOpen && sidebarWidth > 0
-      ? Math.max(0, Math.min(sidebarWidth, Math.max(0, safeCanvasWidth - 120)))
-      : 0;
-  const effectiveCanvasWidth = Math.max(0, safeCanvasWidth - safeSidebarOffset);
+  const closeContextMenu = useCallback(() => {
+    setContextMenu(null);
+    setPendingContextMenu(null);
+  }, []);
+
+  const handleInsertField = useCallback(() => {
+    bridge?.runtime.addSchemaByType('text');
+  }, [bridge]);
+
+  const handlePaste = useCallback(async () => {
+    if (typeof navigator === 'undefined' || !navigator.clipboard?.readText) return;
+    const clipboardText = (await navigator.clipboard.readText().catch(() => '')).trim();
+    if (!clipboardText || !bridge?.runtime) return;
+    const normalized = clipboardText.replace(/^['"]|['"]$/g, '').trim();
+    const knownTypes = new Set(['text', 'multiVariableText', 'date', 'dateTime', 'time', 'checkbox', 'radioGroup', 'select']);
+    if (knownTypes.has(normalized)) {
+      bridge.runtime.addSchemaByType(normalized);
+      return;
+    }
+    try {
+      const parsed = JSON.parse(clipboardText) as { type?: unknown };
+      if (typeof parsed?.type === 'string' && knownTypes.has(parsed.type)) {
+        bridge.runtime.addSchemaByType(parsed.type);
+      }
+    } catch {
+      // Ignore clipboard content that isn't a schema payload.
+    }
+  }, [bridge]);
+
+  const canvasContextMenuExternalActions = useMemo(
+    () => ({
+      onInsertField: handleInsertField,
+      onPaste: handlePaste,
+      onAddPage: canvasActions?.addPageAfter,
+      onOpenCatalog: () => bridge?.runtime.setSidebarOpen(true),
+      onUploadOrReplacePdf: canvasActions?.uploadPdf,
+      onOpenGroupProperties: selectionCommands?.openProperties,
+    }),
+    [bridge, canvasActions?.addPageAfter, canvasActions?.uploadPdf, handleInsertField, handlePaste, selectionCommands],
+  );
+  const hasClipboardData = typeof navigator !== 'undefined' && Boolean(navigator.clipboard?.readText);
+
+  useEffect(() => {
+    if (!pendingContextMenu) return;
+    const pendingIds = pendingContextMenu.targetIds.join('|');
+    const currentIds = activeElements.map((element) => element.id).join('|');
+    if (pendingIds === currentIds) {
+      setContextMenu(pendingContextMenu);
+      setPendingContextMenu(null);
+    } else if (currentIds) {
+      setPendingContextMenu(null);
+    }
+  }, [activeElements, pendingContextMenu]);
+
+  useEffect(() => {
+    if (!contextMenu || contextMenu.mode === 'empty') return;
+    const currentIds = activeElements.map((element) => element.id).join('|');
+    if (currentIds !== contextMenu.targetIds.join('|')) {
+      closeContextMenu();
+    }
+  }, [activeElements, closeContextMenu, contextMenu]);
+
   const zoomPercent = Math.max(1, Math.round(scale * 100));
   const zoomTier = zoomPercent < 80 ? 'low' : zoomPercent > 140 ? 'high' : 'medium';
   const activePageSchemaCount = (schemasList[pageCursor] || []).length;
@@ -576,6 +629,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
       className={[DESIGNER_CLASSNAME + 'canvas', classNames?.canvasContainer]
         .filter(Boolean)
         .join(' ')}
+      onContextMenu={handleCanvasContextMenu}
       data-zoom-percent={zoomPercent}
       data-zoom-tier={zoomTier}
       data-active-page={pageCursor}
@@ -611,11 +665,6 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
               onEdit([]);
             }
 
-            // Check if the target is an HTMLElement and has an id property
-            const targetElement = target as HTMLElement | null;
-            if (targetElement && targetElement.id === DELETE_BTN_ID) {
-              removeSchemas(activeElements.map((ae) => ae.id));
-            }
           }}
           onSelect={(e) => {
             // Use type assertions to safely access properties
@@ -641,7 +690,10 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
             const normalizedSelection = normalizeActiveTargets(newActiveElements);
             onEdit(normalizedSelection);
 
-            if (normalizedSelection != activeElements) {
+            const selectionChanged =
+              normalizedSelection.length !== activeElements.length ||
+              normalizedSelection.some((element, index) => element.id !== activeElements[index]?.id);
+            if (selectionChanged) {
               setEditing(false);
             }
 
@@ -663,13 +715,6 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
         hasRulers={true}
         renderPaper={({ index, paperSize }) => (
           <>
-            {!editing && activeElements.length > 0 && pageCursor === index && feature.deleteButton ? (
-              <SelectionActionsOverlay
-                activeElements={activeElements}
-                paperSize={paperSize}
-                onDelete={() => removeSchemas(activeElements.map((ae) => ae.id))}
-              />
-            ) : null}
             {feature.padding ? (
               <PaddingSlot
                 basePdf={basePdf}
@@ -827,11 +872,22 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
         activeElements={activeElements}
         schemasList={schemasList}
         pageCursor={pageCursor}
+        pageSize={pageSizes[pageCursor] ?? { width: 0, height: 0 }}
         snapLines={snapLines}
         SnapLinesSlot={SnapLinesSlot}
         selectionCommands={selectionCommands}
         interactionState={interactionState}
         featureSnapLines={feature.snapLines}
+        contextMenuOpen={Boolean(contextMenu)}
+      />
+      <CanvasContextMenu
+        open={Boolean(contextMenu)}
+        mode={contextMenu?.mode || 'empty'}
+        position={contextMenu ? { x: contextMenu.x, y: contextMenu.y } : null}
+        commands={selectionCommands}
+        externalActions={canvasContextMenuExternalActions}
+        hasClipboardData={hasClipboardData}
+        onClose={closeContextMenu}
       />
     </div>
   );

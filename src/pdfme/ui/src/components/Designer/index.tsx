@@ -631,9 +631,13 @@ const TemplateEditor = ({
   };
 
   const setPageCursorWithScroll = useCallback(
-    (targetPage: number) => {
+    (targetPageOrUpdater: number | ((currentPage: number) => number)) => {
       if (!canvasRef.current || schemasList.length === 0) return;
 
+      const targetPage =
+        typeof targetPageOrUpdater === 'function'
+          ? targetPageOrUpdater(pageCursor)
+          : targetPageOrUpdater;
       const safePage = Math.max(0, Math.min(targetPage, schemasList.length - 1));
       canvasRef.current.scrollTop = getPagesScrollTopByIndex(pageSizes, safePage, scale);
       setPageCursor(safePage);
@@ -881,8 +885,8 @@ const TemplateEditor = ({
       getCanvasMetrics,
       setPage: (page: number) => setPageCursorWithScroll(Math.max(0, page - 1)),
       getPage: () => pageCursor + 1,
-      nextPage: () => setPageCursorWithScroll(pageCursor + 1),
-      prevPage: () => setPageCursorWithScroll(pageCursor - 1),
+      nextPage: () => setPageCursorWithScroll((currentPage) => currentPage + 1),
+      prevPage: () => setPageCursorWithScroll((currentPage) => currentPage - 1),
       centerPage: (page?: number) => {
         const targetPage = resolveTargetPageIndex(page);
         setPageCursorWithScroll(targetPage);
@@ -1519,17 +1523,20 @@ const TemplateEditor = ({
             activeElements={activeElements}
             schemasList={schemasList}
             changeSchemas={changeSchemas}
-            removeSchemas={removeSchemas}
             sidebarOpen={sidebarOpen}
             sidebarWidth={rightSidebarWidth}
             preserveSidebarSpace={shouldReserveRightSidebarSpace}
             onEdit={onEdit}
             featureToggles={designerEngine.canvas?.featureToggles}
             styleOverrides={designerEngine.canvas?.styleOverrides}
-            classNames={designerEngine.canvas?.classNames}
-            useDefaultStyles={designerEngine.canvas?.useDefaultStyles ?? true}
+          classNames={designerEngine.canvas?.classNames}
+          useDefaultStyles={designerEngine.canvas?.useDefaultStyles ?? true}
           components={designerEngine.canvas?.components}
           bridge={componentBridge}
+          canvasActions={{
+            addPageAfter: pageManipulation.addPageAfter,
+            uploadPdf: handleUploadPdfClick,
+          }}
           selectionCommands={selectionCommands}
           onInteractionStateChange={handleInteractionStateChange}
           />

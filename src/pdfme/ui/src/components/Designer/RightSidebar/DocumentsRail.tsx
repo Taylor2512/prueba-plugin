@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Empty, Typography } from 'antd';
-import { FilePlus2, FileText, FileUp, Plus } from 'lucide-react';
+import { Button, Typography } from 'antd';
+import { FileText, FileUp, Plus } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../constants.js';
 import { SidebarBody, SidebarFrame, SidebarHeader } from './layout.js';
 import { mergeClassNames } from '../shared/className.js';
@@ -46,6 +46,11 @@ const DocumentsRail = ({
   density = 'default',
   showInlineAddCard = true,
 }: DocumentsRailProps) => {
+  const hasItems = items.length > 0;
+  const canUpload = typeof onUploadPdf === 'function';
+  const canAdd = typeof onAdd === 'function';
+  const canAddPage = canAdd && hasItems;
+
   return (
     <div
       className={DESIGNER_CLASSNAME + 'documents-rail-wrapper'}
@@ -58,140 +63,155 @@ const DocumentsRail = ({
           className,
         )}>
         <SidebarHeader>
-        <div className={DESIGNER_CLASSNAME + 'documents-rail-header'}>
-          <div className={DESIGNER_CLASSNAME + 'documents-rail-header-title'}>
-            <FileText size={14} className={DESIGNER_CLASSNAME + 'filetext-auto'} />
-            <Text strong className={DESIGNER_CLASSNAME + 'text-auto'}>
-              {title}
-            </Text>
-            <Text type="secondary" className={DESIGNER_CLASSNAME + 'documents-rail-count'}>
-              {items.length}
-            </Text>
-          </div>
-          {onAdd ? (
-            <Button
-              size="small"
-              type="text"
-              icon={<Plus size={14} />}
-              onClick={onAdd}
-              className={DESIGNER_CLASSNAME + "button-auto"}
-            />
-          ) : null}
-          {onUploadPdf ? (
-            <Button
-              size="small"
-              type="text"
-              icon={<FileUp size={14} />}
-              onClick={onUploadPdf}
-              className={DESIGNER_CLASSNAME + "button-auto"}
-            >
-              Subir PDF
-            </Button>
-          ) : null}
-        </div>
-        <Text type="secondary" className={DESIGNER_CLASSNAME + 'documents-rail-subtitle'}>
-          Gestiona el documento activo y sus páginas asociadas.
-        </Text>
-      </SidebarHeader>
-      <SidebarBody>
-        {items.length === 0 ? (
-          <div className={DESIGNER_CLASSNAME + 'documents-rail-empty'}>
-            <Empty
-              image={Empty.PRESENTED_IMAGE_SIMPLE}
-              description={<span className={DESIGNER_CLASSNAME + 'documents-empty-title'}>{emptyTitle}</span>}
-            />
-            <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-actions'}>
-              {onUploadPdf ? (
-                <Button size="small" type="default" icon={<FileUp size={14} />} onClick={onUploadPdf}>
+          <div className={DESIGNER_CLASSNAME + 'documents-rail-header'}>
+            <div className={DESIGNER_CLASSNAME + 'documents-rail-header-title'}>
+              <FileText size={14} className={DESIGNER_CLASSNAME + 'filetext-auto'} />
+              <Text strong className={DESIGNER_CLASSNAME + 'text-auto'}>
+                {title}
+              </Text>
+              <Text type="secondary" className={DESIGNER_CLASSNAME + 'documents-rail-count'}>
+                {items.length}
+              </Text>
+            </div>
+            <div className={DESIGNER_CLASSNAME + 'documents-rail-header-actions'}>
+              {canUpload ? (
+                <Button
+                  size="small"
+                  type="text"
+                  htmlType="button"
+                  icon={<FileUp size={14} />}
+                  onClick={onUploadPdf}
+                  className={DESIGNER_CLASSNAME + 'documents-rail-action ' + DESIGNER_CLASSNAME + "button-auto"}
+                >
                   Subir PDF
                 </Button>
               ) : null}
-              {onAdd ? (
-                <Button size="small" type="primary" icon={<FilePlus2 size={14} />} onClick={onAdd}>
-                  Agregar página
-                </Button>
+              {canAddPage ? (
+                <Button
+                  size="small"
+                  type="text"
+                  htmlType="button"
+                  icon={<Plus size={14} />}
+                  onClick={onAdd}
+                  className={DESIGNER_CLASSNAME + 'documents-rail-action ' + DESIGNER_CLASSNAME + "button-auto"}
+                  title="Agregar página"
+                  aria-label="Agregar página"
+                />
               ) : null}
             </div>
           </div>
-        ) : (
-          <div className={DESIGNER_CLASSNAME + 'documents-rail-items'}>
-            {onAdd && showInlineAddCard ? (
-              <button
-                type="button"
-                onClick={onAdd}
-                className={DESIGNER_CLASSNAME + 'documents-rail-item'}>
-                <div className={DESIGNER_CLASSNAME + 'documents-rail-leading'}>
-                  <div className={DESIGNER_CLASSNAME + 'documents-rail-preview'}>
-                    <Plus size={18} />
-                  </div>
-                </div>
-                <div className={DESIGNER_CLASSNAME + 'documents-rail-meta'}>
-                  <Text strong className={DESIGNER_CLASSNAME + "text-auto"}>
-                    Agregar página
-                  </Text>
-                  <Text type="secondary" className={DESIGNER_CLASSNAME + "text-auto"}>
-                    Crea una nueva página en el flujo actual
-                  </Text>
-                </div>
-              </button>
-            ) : null}
-            {items.map((item, index) => {
-              const isSelected = item.selected ?? item.id === selectedId;
-              return (
+          <Text type="secondary" className={DESIGNER_CLASSNAME + 'documents-rail-subtitle'}>
+            Gestiona el documento activo y sus páginas asociadas.
+          </Text>
+        </SidebarHeader>
+        <SidebarBody>
+          {!hasItems ? (
+            <div className={DESIGNER_CLASSNAME + 'documents-rail-empty'}>
+              <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-icon'}>
+                <FileText size={18} />
+              </div>
+              <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-copy'}>
+                <Text strong className={DESIGNER_CLASSNAME + 'documents-empty-title'}>
+                  {emptyTitle}
+                </Text>
+                <Text type="secondary" className={DESIGNER_CLASSNAME + 'documents-rail-empty-hint'}>
+                  Sube un PDF para habilitar edición de páginas y navegación documental.
+                </Text>
+              </div>
+              <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-actions'}>
+                {canUpload ? (
+                  <Button
+                    size="small"
+                    type="default"
+                    htmlType="button"
+                    icon={<FileUp size={14} />}
+                    onClick={onUploadPdf}
+                    className={DESIGNER_CLASSNAME + 'documents-rail-empty-upload'}
+                  >
+                    Subir PDF
+                  </Button>
+                ) : null}
+              </div>
+            </div>
+          ) : (
+            <div className={DESIGNER_CLASSNAME + 'documents-rail-items'}>
+              {canAdd && showInlineAddCard ? (
                 <button
-                  key={item.id}
                   type="button"
-                  disabled={item.disabled}
-                  onClick={() => onSelect?.(item.id)}
-                  className={mergeClassNames(
-                    DESIGNER_CLASSNAME + 'documents-rail-item',
-                    isSelected ? DESIGNER_CLASSNAME + 'documents-rail-item-active' : '',
-                  )}
-                  data-active={isSelected ? 'true' : 'false'}>
+                  onClick={onAdd}
+                  className={DESIGNER_CLASSNAME + 'documents-rail-item'}>
                   <div className={DESIGNER_CLASSNAME + 'documents-rail-leading'}>
-                    {item.previewSrc ? (
-                      <div className={DESIGNER_CLASSNAME + 'documents-rail-preview'}>
-                        <img
-                          src={item.previewSrc}
-                          alt={item.name}
-                          className={DESIGNER_CLASSNAME + 'documents-rail-preview-image'}
-                          loading="lazy"
-                        />
-                      </div>
-                    ) : (
-                      <div className={DESIGNER_CLASSNAME + 'documents-rail-preview'}>
-                        <FileText size={20} />
-                      </div>
-                    )}
-                    <div className={DESIGNER_CLASSNAME + 'documents-rail-page-label'}>
-                      {item.pageLabel || `${index + 1}`}
+                    <div className={DESIGNER_CLASSNAME + 'documents-rail-preview'}>
+                      <Plus size={18} />
                     </div>
                   </div>
                   <div className={DESIGNER_CLASSNAME + 'documents-rail-meta'}>
-                    <Text strong ellipsis={{ tooltip: item.name }} className={DESIGNER_CLASSNAME + "text-auto"}>
-                      {item.name}
+                    <Text strong className={DESIGNER_CLASSNAME + "text-auto"}>
+                      Agregar página
                     </Text>
-                    <div className={DESIGNER_CLASSNAME + 'documents-rail-meta-row'}>
-                      <Text type="secondary" ellipsis={{ tooltip: item.pageLabel || `${index + 1}` }} className={DESIGNER_CLASSNAME + "text-auto"}>
-                        Página {item.pageLabel || `${index + 1}`}
-                      </Text>
-                      {isSelected ? (
-                        <span className={DESIGNER_CLASSNAME + 'documents-rail-active-badge'}>
-                          Activo
-                        </span>
-                      ) : null}
-                    </div>
-                    {item.meta ? (
-                      <Text type="secondary" ellipsis={{ tooltip: item.meta }} className={DESIGNER_CLASSNAME + "text-auto"}>
-                        {item.meta}
-                      </Text>
-                    ) : null}
+                    <Text type="secondary" className={DESIGNER_CLASSNAME + "text-auto"}>
+                      Crea una nueva página dentro del documento activo
+                    </Text>
                   </div>
                 </button>
-              );
-            })}
-          </div>
-        )}
+              ) : null}
+              {items.map((item, index) => {
+                const isSelected = item.selected ?? item.id === selectedId;
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    disabled={item.disabled}
+                    onClick={() => onSelect?.(item.id)}
+                    className={mergeClassNames(
+                      DESIGNER_CLASSNAME + 'documents-rail-item',
+                      isSelected ? DESIGNER_CLASSNAME + 'documents-rail-item-active' : '',
+                    )}
+                    data-active={isSelected ? 'true' : 'false'}>
+                    <div className={DESIGNER_CLASSNAME + 'documents-rail-leading'}>
+                      {item.previewSrc ? (
+                        <div className={DESIGNER_CLASSNAME + 'documents-rail-preview'}>
+                          <img
+                            src={item.previewSrc}
+                            alt={item.name}
+                            className={DESIGNER_CLASSNAME + 'documents-rail-preview-image'}
+                            loading="lazy"
+                          />
+                        </div>
+                      ) : (
+                        <div className={DESIGNER_CLASSNAME + 'documents-rail-preview'}>
+                          <FileText size={20} />
+                        </div>
+                      )}
+                      <div className={DESIGNER_CLASSNAME + 'documents-rail-page-label'}>
+                        {item.pageLabel || `${index + 1}`}
+                      </div>
+                    </div>
+                    <div className={DESIGNER_CLASSNAME + 'documents-rail-meta'}>
+                      <Text strong ellipsis={{ tooltip: item.name }} className={DESIGNER_CLASSNAME + "text-auto"}>
+                        {item.name}
+                      </Text>
+                      <div className={DESIGNER_CLASSNAME + 'documents-rail-meta-row'}>
+                        <Text type="secondary" ellipsis={{ tooltip: item.pageLabel || `${index + 1}` }} className={DESIGNER_CLASSNAME + "text-auto"}>
+                          Página {item.pageLabel || `${index + 1}`}
+                        </Text>
+                        {isSelected ? (
+                          <span className={DESIGNER_CLASSNAME + 'documents-rail-active-badge'}>
+                            Activo
+                          </span>
+                        ) : null}
+                      </div>
+                      {item.meta ? (
+                        <Text type="secondary" ellipsis={{ tooltip: item.meta }} className={DESIGNER_CLASSNAME + "text-auto"}>
+                          {item.meta}
+                        </Text>
+                      ) : null}
+                    </div>
+                  </button>
+                );
+              })}
+            </div>
+          )}
         </SidebarBody>
       </SidebarFrame>
     </div>

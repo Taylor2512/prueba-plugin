@@ -1,9 +1,8 @@
 import React, { useMemo } from 'react';
-import type { SchemaForUI } from '@pdfme/common';
+import type { SchemaForUI, Size } from '@pdfme/common';
 import type { SnapLine } from '../SnapLines.js';
 import SelectionContextToolbar from './SelectionContextToolbar.js';
 import InlineMetricsOverlay from './InlineMetricsOverlay.js';
-import SelectionBadgesOverlay from './SelectionBadgesOverlay.js';
 import SnapFeedbackOverlay from './SnapFeedbackOverlay.js';
 import { useFloatingToolbarPosition } from './useFloatingToolbarPosition.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
@@ -20,11 +19,13 @@ type CanvasOverlayManagerProps = {
   activeElements: HTMLElement[];
   schemasList: SchemaForUI[][];
   pageCursor: number;
+  pageSize: Size;
   snapLines: SnapLine[];
   SnapLinesSlot: SnapLinesSlot;
   selectionCommands?: SelectionCommandSet;
   interactionState: InteractionState;
   featureSnapLines: boolean;
+  contextMenuOpen?: boolean;
   className?: string;
 };
 
@@ -33,15 +34,17 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
     activeElements,
     schemasList,
     pageCursor,
+    pageSize,
     snapLines,
     SnapLinesSlot,
     selectionCommands,
     interactionState,
     featureSnapLines,
+    contextMenuOpen = false,
     className,
   } = props;
 
-  const selectionBounds = useFloatingToolbarPosition(activeElements);
+  const selectionBounds = useFloatingToolbarPosition(activeElements, pageSize);
 
   const activeSchemas = useMemo(() => {
     const ids = activeElements.map((element) => element.id);
@@ -54,13 +57,11 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
         position={selectionBounds}
         commands={selectionCommands}
         activeElements={activeElements}
+        activeSchemas={activeSchemas}
+        interactionState={interactionState}
+        contextMenuOpen={contextMenuOpen}
       />
       <InlineMetricsOverlay bounds={selectionBounds} />
-      <SelectionBadgesOverlay
-        bounds={selectionBounds}
-        selectionCount={interactionState.selectionCount}
-        activeSchemas={activeSchemas}
-      />
       <SnapFeedbackOverlay bounds={selectionBounds} snapLines={snapLines} />
       {featureSnapLines ? (
         <SnapLinesSlot lines={snapLines} />

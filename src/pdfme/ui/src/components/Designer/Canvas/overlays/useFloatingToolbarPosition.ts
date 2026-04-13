@@ -1,13 +1,18 @@
 import { useMemo } from 'react';
+import { resolveCenteredFloatingSurfacePosition } from './floatingSurfaceGeometry.js';
 
 type Bounds = { top: number; left: number; right: number; bottom: number };
+type PageSize = { width: number; height: number };
 
 const parsePx = (value: string | undefined) => {
   if (!value) return 0;
   return Number(value.replace('px', '')) || 0;
 };
 
-export const useFloatingToolbarPosition = (activeElements: HTMLElement[]) =>
+const TOOLBAR_WIDTH = 212;
+const TOOLBAR_HEIGHT = 34;
+
+export const useFloatingToolbarPosition = (activeElements: HTMLElement[], pageSize: PageSize) =>
   useMemo(() => {
     if (!activeElements.length) return null;
 
@@ -30,11 +35,19 @@ export const useFloatingToolbarPosition = (activeElements: HTMLElement[]) =>
 
     const width = bounds.right - bounds.left;
     const height = bounds.bottom - bounds.top;
+    const safePageWidth = Number.isFinite(pageSize.width) ? Math.max(0, pageSize.width) : 0;
+    const safePageHeight = Number.isFinite(pageSize.height) ? Math.max(0, pageSize.height) : 0;
+
+    const { top, left } = resolveCenteredFloatingSurfacePosition(
+      bounds,
+      { width: TOOLBAR_WIDTH, height: TOOLBAR_HEIGHT },
+      { width: safePageWidth, height: safePageHeight },
+    );
 
     return {
-      top: Math.max(0, bounds.top - 38),
-      left: bounds.right + 6,
+      top,
+      left,
       width,
       height,
     };
-  }, [activeElements]);
+  }, [activeElements, pageSize.height, pageSize.width]);
