@@ -105,9 +105,11 @@ const normalizeCatalogCategory = (value: string): string => {
 const resolveCatalogCategory = (schemaType: string, schemaCategory?: string, customCategory?: string): string => {
   const custom = normalizeCatalogCategory(String(customCategory || ''));
   if (custom) return custom;
+  const typeMapped = schemaTypeCategoryMap[String(schemaType || '').toLowerCase()] || 'General';
   const declared = normalizeCatalogCategory(String(schemaCategory || ''));
-  if (declared) return declared;
-  return schemaTypeCategoryMap[String(schemaType || '').toLowerCase()] || 'General';
+  if (!declared) return typeMapped;
+  if (declared === 'General' && typeMapped !== 'General') return typeMapped;
+  return declared;
 };
 const PREFILL_SCHEMA_TYPES = new Set([
   'text',
@@ -735,9 +737,9 @@ const LeftSidebar = ({
         });
         return next;
       }
-      groupedPlugins.forEach(({ category }, index) => {
+      groupedPlugins.forEach(({ category }) => {
         if (typeof next[category] === 'undefined') {
-          next[category] = index > 1;
+          next[category] = false;
         }
       });
       return next;
@@ -1054,6 +1056,14 @@ const LeftSidebar = ({
             category={category}
             count={items.length}
             viewMode={resolvedViewMode}
+            collapsed={Boolean(collapsedCategories[category])}
+            collapsible
+            onToggle={() =>
+              setCollapsedCategories((prev) => ({
+                ...prev,
+                [category]: !prev[category],
+              }))
+            }
             items={
               collapsedCategories[category]
                 ? []
