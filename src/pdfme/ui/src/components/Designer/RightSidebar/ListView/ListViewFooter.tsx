@@ -1,6 +1,8 @@
 import React from 'react';
-import { Button, Tooltip } from 'antd';
+import { Button, Typography, Tooltip } from 'antd';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
+
+const { Text } = Typography;
 
 type Props = {
   bulkMode: boolean;
@@ -17,21 +19,26 @@ type Props = {
 
 const ListViewFooter = ({ bulkMode, hasSchemas, onCommit, onCancel, onStartBulk, labels }: Props) =>
   bulkMode ? (
-    <>
-      <Button
-        className={DESIGNER_CLASSNAME + 'bulk-commit'}
-        size="small"
-        type="primary"
-        onClick={onCommit}>
-        {labels.commitBulkUpdateFieldName}
-      </Button>
-      <Button
-        className={DESIGNER_CLASSNAME + 'bulk-cancel'}
-        size="small"
-        onClick={onCancel}>
-        {labels.cancel}
-      </Button>
-    </>
+    <div className={DESIGNER_CLASSNAME + 'bulk-footer'}>
+      <Text type="secondary" className={DESIGNER_CLASSNAME + 'bulk-footer-hint'}>
+        Cambios masivos pendientes
+      </Text>
+      <div className={DESIGNER_CLASSNAME + 'bulk-footer-actions'}>
+        <Button
+          className={DESIGNER_CLASSNAME + 'bulk-commit'}
+          size="small"
+          type="primary"
+          onClick={onCommit}>
+          {labels.commitBulkUpdateFieldName}
+        </Button>
+        <Button
+          className={DESIGNER_CLASSNAME + 'bulk-cancel'}
+          size="small"
+          onClick={onCancel}>
+          {labels.cancel}
+        </Button>
+      </div>
+    </div>
   ) : (
     <Tooltip title={labels.bulkUpdateFieldName} placement="top">
       <Button
@@ -40,7 +47,7 @@ const ListViewFooter = ({ bulkMode, hasSchemas, onCommit, onCancel, onStartBulk,
         type="text"
         onClick={onStartBulk}
         disabled={!hasSchemas}>
-        <u>{labels.bulkUpdateFieldName}</u>
+        {labels.bulkUpdateFieldName}
       </Button>
     </Tooltip>
   );

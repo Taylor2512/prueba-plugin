@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Select, Typography } from 'antd';
+import { Button, Input, Select, Typography } from 'antd';
 import { Layers, Search } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 
@@ -14,8 +14,11 @@ type Props = {
   filteredCount: number;
   totalCount: number;
   hasActiveSearch: boolean;
-  onChangeSearch: (value: string) => void;
-  onChangeType: (value: string) => void;
+  hasSchemas: boolean;
+  onChangeSearch: (_value: string) => void;
+  onChangeType: (_value: string) => void;
+  onStartBulk: () => void;
+  onClearFilters: () => void;
   useDefaultStyles?: boolean;
 };
 
@@ -26,8 +29,11 @@ const ListViewToolbar = ({
   filteredCount,
   totalCount,
   hasActiveSearch,
+  hasSchemas,
   onChangeSearch,
   onChangeType,
+  onStartBulk,
+  onClearFilters,
   useDefaultStyles,
 }: Props) => {
   const densityStyles =
@@ -38,104 +44,142 @@ const ListViewToolbar = ({
         titleWrap: {} as React.CSSProperties,
         title: {} as React.CSSProperties,
         counter: {} as React.CSSProperties,
+        subtitle: {} as React.CSSProperties,
         searchWrap: {} as React.CSSProperties,
         input: {} as React.CSSProperties,
         empty: {} as React.CSSProperties,
+        actions: {} as React.CSSProperties,
       }
       : {
-        container: {
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 6,
-          minWidth: 0,
-          width: '100%',
-        } as const,
-        header: {
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          minWidth: 0,
-          width: '100%',
-        } as const,
-        titleWrap: {
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          minWidth: 0,
-          flex: 1,
-        } as const,
-        title: {
-          flex: 1,
-          minWidth: 0,
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-        } as const,
-        counter: {
-          flexShrink: 0,
-          fontSize: 10,
-          border: '1px solid rgba(15,23,42,0.1)',
-          borderRadius: 999,
-          padding: '0 6px',
-          lineHeight: '18px',
-        } as const,
-        searchWrap: {
-          padding: '6px 10px 4px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 6,
-          minWidth: 0,
-        } as const,
-        input: { borderRadius: 7, fontSize: 12, height: 30, minWidth: 0 } as const,
-        empty: { fontSize: 11, textAlign: 'center', padding: '7px 0' } as const,
-  };
+          container: {
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 10,
+            minWidth: 0,
+            width: '100%',
+          } as const,
+          header: {
+            display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: 'space-between',
+            gap: 10,
+            minWidth: 0,
+            width: '100%',
+          } as const,
+          titleWrap: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: 3,
+            minWidth: 0,
+            flex: 1,
+          } as const,
+          title: {
+            minWidth: 0,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+          } as const,
+          counter: {
+            flexShrink: 0,
+            fontSize: 9.5,
+            letterSpacing: '0.05em',
+            textTransform: 'uppercase',
+            border: '1px solid rgba(148, 163, 184, 0.18)',
+            borderRadius: 999,
+            padding: '0 7px',
+            lineHeight: '18px',
+          } as const,
+          subtitle: {
+            fontSize: 11,
+            lineHeight: 1.35,
+            maxWidth: '100%',
+          } as const,
+          searchWrap: {
+            padding: '0',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 8,
+            minWidth: 0,
+          } as const,
+          input: { borderRadius: 10, fontSize: 12, height: 32, minWidth: 0 } as const,
+          empty: { fontSize: 11, textAlign: 'left', padding: '0' } as const,
+          actions: {
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 6,
+            flexShrink: 0,
+          } as const,
+      };
+
+  const subtitle = hasActiveSearch
+    ? filteredCount === 0
+      ? 'Sin coincidencias. Ajusta filtros o limpia la búsqueda.'
+      : `Mostrando ${filteredCount} coincidencias`
+    : 'Gestiona nombres, orden y visibilidad';
 
   return (
     <div className={DESIGNER_CLASSNAME + 'list-view-toolbar'} style={densityStyles.container}>
       <div className={DESIGNER_CLASSNAME + 'sidebar-header'} style={densityStyles.header}>
         <div className={DESIGNER_CLASSNAME + 'sidebar-header-content'} style={densityStyles.titleWrap}>
           <div className={DESIGNER_CLASSNAME + 'sidebar-header-title'} style={densityStyles.title}>
-            <Layers size={15} className={DESIGNER_CLASSNAME + "layers-auto"} />
+            <Layers size={14} className={DESIGNER_CLASSNAME + 'layers-auto'} />
             <Text strong className={DESIGNER_CLASSNAME + 'list-view-title'}>
               Campos del documento
             </Text>
+            <Text
+              type="secondary"
+              className={DESIGNER_CLASSNAME + 'list-view-counter'}
+              style={densityStyles.counter}>
+              {filteredCount}/{totalCount}
+            </Text>
           </div>
-          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-counter'} style={densityStyles.counter}>
-            {filteredCount} visibles de {totalCount}
+          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-subtitle'} style={densityStyles.subtitle}>
+            {subtitle}
           </Text>
         </div>
+        {hasSchemas ? (
+          <Button
+            type="text"
+            size="small"
+            onClick={onStartBulk}
+            className={DESIGNER_CLASSNAME + 'bulk-update'}>
+            Renombrar
+          </Button>
+        ) : null}
       </div>
       <div className={DESIGNER_CLASSNAME + 'list-view-toolbar-controls'} style={densityStyles.searchWrap}>
         <Input
           size="small"
           allowClear
-          placeholder="Buscar campo..."
-          prefix={<Search size={12} className={DESIGNER_CLASSNAME + "search-auto"} />}
+          placeholder="Buscar campo, tipo o categoría"
+          prefix={<Search size={12} className={DESIGNER_CLASSNAME + 'search-auto'} />}
           value={searchQuery}
           onChange={(e) => onChangeSearch(e.target.value)}
-          className={DESIGNER_CLASSNAME + "input-auto"}
+          className={DESIGNER_CLASSNAME + 'input-auto'}
           style={densityStyles.input}
         />
-        {schemaTypes.length > 2 ? (
-          <Select
-            size="small"
-            value={typeFilter}
-            onChange={onChangeType}
-            options={schemaTypes}
-            popupMatchSelectWidth={false}
-            className={DESIGNER_CLASSNAME + "select-auto"}
-          />
-        ) : null}
-        {hasActiveSearch && filteredCount === 0 ? (
-          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-subtitle'} style={densityStyles.empty}>
-            Sin resultados
-          </Text>
-        ) : null}
-        {hasActiveSearch && filteredCount > 0 ? (
-          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-subtitle'} style={densityStyles.empty}>
-            Mostrando {filteredCount} coincidencias
-          </Text>
-        ) : null}
+        <div className={DESIGNER_CLASSNAME + 'list-view-toolbar-row'}>
+          {schemaTypes.length > 2 ? (
+            <Select
+              size="small"
+              value={typeFilter}
+              onChange={onChangeType}
+              options={schemaTypes}
+              popupMatchSelectWidth={false}
+              className={DESIGNER_CLASSNAME + 'select-auto'}
+            />
+          ) : null}
+          {hasActiveSearch ? (
+            <Button
+              type="text"
+              size="small"
+              onClick={onClearFilters}
+              className={DESIGNER_CLASSNAME + 'list-view-clear-filters'}>
+              Limpiar
+            </Button>
+          ) : null}
+        </div>
       </div>
     </div>
   );

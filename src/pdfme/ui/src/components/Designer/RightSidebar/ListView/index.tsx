@@ -2,7 +2,7 @@ import React, { useContext, useState, useMemo } from 'react';
 import type { SidebarProps } from '../../../../types.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { I18nContext } from '../../../../contexts.js';
-import { Input } from 'antd';
+import { Button, Input, Typography } from 'antd';
 import SelectableSortableContainer from './SelectableSortableContainer.js';
 import { SidebarBody, SidebarFooter, SidebarFrame, SidebarHeader } from '../layout.js';
 import { mergeClassNames } from '../../shared/className.js';
@@ -10,6 +10,7 @@ import ListViewToolbar from './ListViewToolbar.js';
 import ListViewFooter from './ListViewFooter.js';
 
 const { TextArea } = Input;
+const { Text } = Typography;
 
 const ListView = (
   props: Pick<
@@ -79,19 +80,25 @@ const ListView = (
     <SidebarFrame
       className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view', props.className)}>
       {!isBulkUpdateFieldNamesMode ? (
-        <SidebarHeader>
-          <ListViewToolbar
-            searchQuery={searchQuery}
-            typeFilter={typeFilter}
-            schemaTypes={schemaTypes}
-            filteredCount={filteredSchemas.length}
-            totalCount={schemas.length}
-            hasActiveSearch={hasActiveSearch}
-            onChangeSearch={setSearchQuery}
-            onChangeType={setTypeFilter}
-            useDefaultStyles={props.useDefaultStyles}
-          />
-        </SidebarHeader>
+      <SidebarHeader>
+        <ListViewToolbar
+          searchQuery={searchQuery}
+          typeFilter={typeFilter}
+          schemaTypes={schemaTypes}
+          filteredCount={filteredSchemas.length}
+          totalCount={schemas.length}
+          hasActiveSearch={hasActiveSearch}
+          hasSchemas={schemas.length > 0}
+          onChangeSearch={setSearchQuery}
+          onChangeType={setTypeFilter}
+          onStartBulk={startBulk}
+          onClearFilters={() => {
+            setSearchQuery('');
+            setTypeFilter('all');
+          }}
+          useDefaultStyles={props.useDefaultStyles}
+        />
+      </SidebarHeader>
       ) : null}
       <SidebarBody>
         {isBulkUpdateFieldNamesMode ? (
@@ -113,25 +120,44 @@ const ListView = (
             />
           ) : (
             <div className={DESIGNER_CLASSNAME + 'list-view-empty'}>
-              No hay campos que coincidan con los filtros actuales. Limpia la búsqueda o cambia el tipo.
+              <Text strong className={DESIGNER_CLASSNAME + 'list-view-empty-title'}>
+                No hay campos que coincidan
+              </Text>
+              <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-empty-hint'}>
+                Limpia la búsqueda, cambia el tipo o vuelve a la vista general del catálogo.
+              </Text>
+              {hasActiveSearch ? (
+                <Button
+                  size="small"
+                  type="default"
+                  onClick={() => {
+                    setSearchQuery('');
+                    setTypeFilter('all');
+                  }}
+                  className={DESIGNER_CLASSNAME + 'list-view-empty-action'}>
+                  Limpiar filtros
+                </Button>
+              ) : null}
             </div>
           )
         )}
       </SidebarBody>
-      <SidebarFooter>
-        <ListViewFooter
-          bulkMode={isBulkUpdateFieldNamesMode}
-          hasSchemas={schemas.length > 0}
-          onCommit={commitBulk}
-          onCancel={() => setIsBulkUpdateFieldNamesMode(false)}
-          onStartBulk={startBulk}
-          labels={{
-            bulkUpdateFieldName: i18n('bulkUpdateFieldName'),
-            commitBulkUpdateFieldName: i18n('commitBulkUpdateFieldName'),
-            cancel: i18n('cancel'),
-          }}
-        />
-      </SidebarFooter>
+      {isBulkUpdateFieldNamesMode ? (
+        <SidebarFooter>
+          <ListViewFooter
+            bulkMode={isBulkUpdateFieldNamesMode}
+            hasSchemas={schemas.length > 0}
+            onCommit={commitBulk}
+            onCancel={() => setIsBulkUpdateFieldNamesMode(false)}
+            onStartBulk={startBulk}
+            labels={{
+              bulkUpdateFieldName: i18n('bulkUpdateFieldName'),
+              commitBulkUpdateFieldName: i18n('commitBulkUpdateFieldName'),
+              cancel: i18n('cancel'),
+            }}
+          />
+        </SidebarFooter>
+      ) : null}
     </SidebarFrame>
   );
 };

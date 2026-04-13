@@ -3,6 +3,7 @@ import { Schema, Plugin, BasePdf, getFallbackFontName } from '@pdfme/common';
 import { cloneDeep } from '@pdfme/common';
 import { Button, Tooltip } from 'antd';
 import { useDraggable } from '@dnd-kit/core';
+import { PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../constants.js';
 import { setFontNameRecursively } from '../../helper.js';
 import { OptionsContext, PluginsRegistry } from '../../contexts.js';
@@ -306,17 +307,21 @@ const highlightTerm = (value: string, terms: string[]) => {
   if (!escaped.length) return value;
   const matcher = new RegExp(`(${escaped.join('|')})`, 'ig');
   const parts = value.split(matcher);
+  let cursor = 0;
   return (
     <>
-      {parts.map((part, index) =>
-        terms.some((term) => term && part.toLowerCase() === term.toLowerCase()) ? (
-          <mark key={`${part}-${index}`} className={DESIGNER_CLASSNAME + 'left-sidebar-highlight'}>
+      {parts.map((part) => {
+        const start = cursor;
+        cursor += part.length;
+        const isMatch = terms.some((term) => term && part.toLowerCase() === term.toLowerCase());
+        return isMatch ? (
+          <mark key={`${part}-${start}`} className={DESIGNER_CLASSNAME + 'left-sidebar-highlight'}>
             {part}
           </mark>
         ) : (
-          <React.Fragment key={`${part}-${index}`}>{part}</React.Fragment>
-        ),
-      )}
+          <React.Fragment key={`${part}-${start}`}>{part}</React.Fragment>
+        );
+      })}
     </>
   );
 };
@@ -456,7 +461,7 @@ const LeftSidebar = ({
   const [search, setSearch] = useState('');
   const [activeTab, setActiveTab] = useState<LeftSidebarTab>('standard');
   const [customModalOpen, setCustomModalOpen] = useState(false);
-  const [customDraft, setCustomDraft] = useState<CustomFieldDef>(makeDefaultCustomField());
+  const [customDraft, setCustomDraft] = useState<CustomFieldDef>(() => makeDefaultCustomField());
   const [runtimeCustomDefinitions, setRuntimeCustomDefinitions] = useState<RuntimeCustomSchemaDefinition[]>(
     () => getCustomSchemaDefinitions() as RuntimeCustomSchemaDefinition[],
   );
@@ -1231,11 +1236,11 @@ const LeftSidebar = ({
       <button
         type="button"
         className={`${DESIGNER_CLASSNAME}left-sidebar-toggle-btn`}
-        aria-label={sidebarExpanded ? 'Cerrar panel de diseño' : 'Abrir panel de diseño'}
+        aria-label={sidebarExpanded ? 'Cerrar catálogo de campos' : 'Abrir catálogo de campos'}
         aria-expanded={sidebarExpanded}
         onClick={() => setSidebarExpanded(prev => !prev)}
       >
-        {sidebarExpanded ? '✕' : '⊞'}
+        {sidebarExpanded ? <PanelLeftClose size={16} strokeWidth={2.2} /> : <PanelLeftOpen size={16} strokeWidth={2.2} />}
       </button>
       {useLayoutFrame ? (
         <SidebarFrame className={`${DESIGNER_CLASSNAME}left-sidebar-frame`}>

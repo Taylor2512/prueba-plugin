@@ -11,8 +11,8 @@ interface Props {
   isSelected: boolean;
   isHovering?: boolean;
   style?: React.CSSProperties;
-  onSelect: (id: string, isShiftSelect: boolean) => void;
-  onEdit: (id: string) => void;
+  onSelect: (_id: string, _isShiftSelect: boolean) => void;
+  onEdit: (_id: string) => void;
   schema: SchemaForUI;
   schemas: SchemaForUI[];
   onMouseEnter: () => void;
@@ -58,18 +58,6 @@ const SelectableSortableItem = ({
     title = i18n('fieldMustUniq');
   }
 
-  const selectedStyle = isSelected
-    ? {
-        background: 'rgba(240, 165, 0, 0.10)',
-        boxShadow: 'inset 0 0 0 1px rgba(240, 165, 0, 0.18)',
-        opacity: isSorting || isDragging ? 0.72 : 1,
-      }
-    : isHovering
-      ? {
-          background: 'rgba(255, 255, 255, 0.03)',
-        }
-      : ({} as React.CSSProperties);
-
   return (
     <Item
       ref={setNodeRef}
@@ -88,7 +76,9 @@ const SelectableSortableItem = ({
       sorting={isSorting}
       transition={transition}
       transform={transform}
-      style={{ ...style, ...selectedStyle }}
+      selected={isSelected}
+      hovered={isHovering}
+      style={style}
       fadeIn={mountedWhileDragging}
       listeners={newListeners}
     />

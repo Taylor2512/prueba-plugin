@@ -1,5 +1,5 @@
 import { useForm } from 'form-render';
-import React, { useRef, useContext, useState, useEffect, useCallback } from 'react';
+import React, { useContext, useState, useEffect, useCallback } from 'react';
 import type {
   Dict,
   ChangeSchemaItem,
@@ -21,7 +21,7 @@ import ButtonGroupWidget from './ButtonGroupWidget.js';
 import DetailHeaderCard from './DetailHeaderCard.js';
 import DetailSectionCard from './DetailSectionCard.js';
 import { InternalNamePath, ValidateErrorEntity } from 'rc-field-form/es/interface.js';
-import { SidebarBody, SidebarFrame, SidebarHeader, SIDEBAR_H_PADDING_PX } from '../layout.js';
+import { SidebarBody, SidebarFrame, SidebarHeader } from '../layout.js';
 
 // Import FormRender as a default import
 import FormRenderComponent from 'form-render';
@@ -42,8 +42,8 @@ const ColorPickerWidget = ({
   normalizeHex,
 }: {
   value: unknown;
-  onChange?: (v: string) => void;
-  normalizeHex: (v: unknown) => string;
+  onChange?: (_nextValue: string) => void;
+  normalizeHex: (_nextValue: unknown) => string;
 }) => {
   const currentColor = typeof value === 'string' ? value : '#000000';
   const hex = normalizeHex(currentColor);
@@ -124,7 +124,7 @@ const DetailView = (props: DetailViewProps) => {
   );
 
   const [widgets, setWidgets] = useState<{
-    [key: string]: (props: PropPanelWidgetProps) => React.JSX.Element;
+    [key: string]: (_widgetProps: PropPanelWidgetProps) => React.JSX.Element;
   }>({});
 
   const normalizeColorHex = useCallback((value: unknown): string => {
@@ -154,6 +154,8 @@ const DetailView = (props: DetailViewProps) => {
     }
     return '#000000';
   }, []);
+
+  const optionsKey = JSON.stringify(options);
 
   useEffect(() => {
     const newWidgets: typeof widgets = {
@@ -193,9 +195,9 @@ const DetailView = (props: DetailViewProps) => {
       });
     }
     setWidgets(newWidgets);
-  }, [activeSchema, normalizeColorHex, pluginsRegistry, JSON.stringify(options), token]);
+  }, [activeSchema, normalizeColorHex, options, pluginsRegistry, optionsKey, props, token, typedI18n]);
 
-  useEffect(() => form.resetFields(), [activeSchema.id]);
+  useEffect(() => form.resetFields(), [activeSchema.id, form]);
 
   useEffect(() => {
     // Create a type-safe copy of the schema with editable property
@@ -204,30 +206,21 @@ const DetailView = (props: DetailViewProps) => {
     const readOnly = typeof values.readOnly === 'boolean' ? values.readOnly : false;
     values.editable = !readOnly;
     form.setValues(values);
-  }, [activeSchema]);
+  }, [activeSchema, form]);
 
-  useEffect(() => {
-    uniqueSchemaName.current = (value: string): boolean => {
+  const validateUniqueSchemaName = useCallback(
+    (_: unknown, value: string): boolean => {
       for (const page of schemasList) {
-        for (const s of Object.values(page)) {
-          if (s.name === value && s.id !== activeSchema.id) {
+        for (const schema of Object.values(page)) {
+          if (schema.name === value && schema.id !== activeSchema.id) {
             return false;
           }
         }
       }
       return true;
-    };
-  }, [schemasList, activeSchema]);
-
-  // Reference to a function that validates schema name uniqueness
-  const uniqueSchemaName = useRef(
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    (_unused: string): boolean => true,
+    },
+    [schemasList, activeSchema.id],
   );
-
-  // Use proper type for validator function parameter
-  const validateUniqueSchemaName = (_: unknown, value: string): boolean =>
-    uniqueSchemaName.current(value);
 
   // Calculate padding values once
   const [paddingTop, paddingRight, paddingBottom, paddingLeft] = isBlankPdf(basePdf)
@@ -350,130 +343,121 @@ const DetailView = (props: DetailViewProps) => {
   // Calculate max values considering padding
   const maxWidth = pageSize.width - paddingLeft - paddingRight;
   const maxHeight = pageSize.height - paddingTop - paddingBottom;
-
-  // Create a type-safe schema object
-  const propPanelSchema: PropPanelSchema = {
+  const buildSectionSchema = (properties: Record<string, Partial<Schema>>): PropPanelSchema => ({
     type: 'object',
     column: 2,
-    properties: {
-      type: {
-        title: typedI18n('type'),
-        type: 'string',
-        widget: 'select',
-        props: { options: typeOptions },
-        required: true,
-        span: 12,
-      },
-      name: {
-        title: typedI18n('fieldName'),
-        type: 'string',
-        required: true,
-        span: 12,
-        rules: [
-          {
-            validator: validateUniqueSchemaName,
-            message: typedI18n('validation.uniqueName'),
-          },
-        ],
-        props: { autoComplete: 'off' },
-      },
-      editable: {
-        title: typedI18n('editable'),
-        type: 'boolean',
-        span: 8,
-        hidden: typeof defaultSchema.readOnly !== 'undefined',
-      },
-      required: {
-        title: typedI18n('required'),
-        type: 'boolean',
-        span: 16,
-        hidden: '{{!formData.editable}}',
-      },
-      '-': { type: 'void', widget: 'Divider' },
-      align: { title: typedI18n('align'), type: 'void', widget: 'AlignWidget' },
-      position: {
-        type: 'object',
-        widget: 'card',
-        properties: {
-          x: {
-            title: 'X',
-            type: 'number',
-            widget: 'inputNumber',
-            required: true,
-            span: 8,
-            min: paddingLeft,
-            max: pageSize.width - paddingRight,
-            rules: [
-              {
-                validator: (_: unknown, value: number) => validatePosition(_, value, 'x'),
-                message: typedI18n('validation.outOfBounds'),
-              },
-            ],
-          },
-          y: {
-            title: 'Y',
-            type: 'number',
-            widget: 'inputNumber',
-            required: true,
-            span: 8,
-            min: paddingTop,
-            max: pageSize.height - paddingBottom,
-            rules: [
-              {
-                validator: (_: unknown, value: number) => validatePosition(_, value, 'y'),
-                message: typedI18n('validation.outOfBounds'),
-              },
-            ],
-          },
+    properties,
+  });
+
+  const identitySchema = buildSectionSchema({
+    type: {
+      title: typedI18n('type'),
+      type: 'string',
+      widget: 'select',
+      props: { options: typeOptions },
+      required: true,
+      span: 12,
+    },
+    name: {
+      title: typedI18n('fieldName'),
+      type: 'string',
+      required: true,
+      span: 12,
+      rules: [
+        {
+          validator: validateUniqueSchemaName,
+          message: typedI18n('validation.uniqueName'),
+        },
+      ],
+      props: { autoComplete: 'off' },
+    },
+  });
+
+  const behaviorSchema = buildSectionSchema({
+    editable: {
+      title: typedI18n('editable'),
+      type: 'boolean',
+      span: 10,
+      hidden: typeof defaultSchema.readOnly !== 'undefined',
+    },
+    required: {
+      title: typedI18n('required'),
+      type: 'boolean',
+      span: 14,
+      hidden: '{{!formData.editable}}',
+    },
+  });
+
+  const layoutSchema = buildSectionSchema({
+    align: { title: typedI18n('align'), type: 'void', widget: 'AlignWidget' },
+  });
+
+  const geometrySchema = buildSectionSchema({
+    position: {
+      type: 'object',
+      widget: 'card',
+      properties: {
+        x: {
+          title: 'X',
+          type: 'number',
+          widget: 'inputNumber',
+          required: true,
+          span: 8,
+          min: paddingLeft,
+          max: pageSize.width - paddingRight,
+          rules: [
+            {
+              validator: (_: unknown, value: number) => validatePosition(_, value, 'x'),
+              message: typedI18n('validation.outOfBounds'),
+            },
+          ],
+        },
+        y: {
+          title: 'Y',
+          type: 'number',
+          widget: 'inputNumber',
+          required: true,
+          span: 8,
+          min: paddingTop,
+          max: pageSize.height - paddingBottom,
+          rules: [
+            {
+              validator: (_: unknown, value: number) => validatePosition(_, value, 'y'),
+              message: typedI18n('validation.outOfBounds'),
+            },
+          ],
         },
       },
-      width: {
-        title: typedI18n('width'),
-        type: 'number',
-        widget: 'inputNumber',
-        required: true,
-        span: 6,
-        props: { min: 0, max: maxWidth },
-        rules: [
-          {
-            validator: (_: unknown, value: number) => validatePosition(_, value, 'width'),
-            message: typedI18n('validation.outOfBounds'),
-          },
-        ],
-      },
-      height: {
-        title: typedI18n('height'),
-        type: 'number',
-        widget: 'inputNumber',
-        required: true,
-        span: 6,
-        props: { min: 0, max: maxHeight },
-        rules: [
-          {
-            validator: (_: unknown, value: number) => validatePosition(_, value, 'height'),
-            message: typedI18n('validation.outOfBounds'),
-          },
-        ],
-      },
-      rotate: {
-        title: typedI18n('rotate'),
-        type: 'number',
-        widget: 'inputNumber',
-        disabled: typeof defaultSchema.rotate === 'undefined',
-        max: 360,
-        props: { min: 0 },
-        span: 6,
-      },
-      opacity: {
-        title: typedI18n('opacity'),
-        type: 'number',
-        widget: 'inputNumber',
-        disabled: typeof defaultSchema.opacity === 'undefined',
-        props: { step: 0.1, min: 0, max: 1 },
-        span: 6,
-      },
     },
-  };
+    width: {
+      title: typedI18n('width'),
+      type: 'number',
+      widget: 'inputNumber',
+      required: true,
+      span: 6,
+      props: { min: 0, max: maxWidth },
+      rules: [
+        {
+          validator: (_: unknown, value: number) => validatePosition(_, value, 'width'),
+          message: typedI18n('validation.outOfBounds'),
+        },
+      ],
+    },
+    height: {
+      title: typedI18n('height'),
+      type: 'number',
+      widget: 'inputNumber',
+      required: true,
+      span: 6,
+      props: { min: 0, max: maxHeight },
+      rules: [
+        {
+          validator: (_: unknown, value: number) => validatePosition(_, value, 'height'),
+          message: typedI18n('validation.outOfBounds'),
+        },
+      ],
+    },
+  });
 
   const replaceColorWidget = (schemaNode: unknown): unknown => {
     if (!schemaNode || typeof schemaNode !== 'object') return schemaNode;
@@ -496,64 +480,60 @@ const DetailView = (props: DetailViewProps) => {
     return nextNode;
   };
 
-  // Create a safe copy of the properties
-  const safeProperties = { ...propPanelSchema.properties };
+  const pluginProps =
+    typeof activePropPanelSchema === 'function'
+      ? (() => {
+          const { size, schemas, pageSize, changeSchemas, activeElements, deselectSchema, activeSchema } =
+            props;
+          const propPanelProps = {
+            size,
+            schemas,
+            pageSize,
+            changeSchemas,
+            activeElements,
+            deselectSchema,
+            activeSchema,
+          };
 
-  if (typeof activePropPanelSchema === 'function') {
-    // Create a new object without the schemasList property
-    const { size, schemas, pageSize, changeSchemas, activeElements, deselectSchema, activeSchema } =
-      props;
-    const propPanelProps = {
-      size,
-      schemas,
-      pageSize,
-      changeSchemas,
-      activeElements,
-      deselectSchema,
-      activeSchema,
-    };
+          const functionResult = activePropPanelSchema({
+            ...propPanelProps,
+            options,
+            theme: token,
+            i18n: typedI18n,
+          });
 
-    // Use the typedI18n function to avoid type issues
-    const functionResult = activePropPanelSchema({
-      ...propPanelProps,
-      options,
-      theme: token,
-      i18n: typedI18n,
-    });
-
-    // Safely handle the result
-    const apps = functionResult && typeof functionResult === 'object' ? functionResult : {};
-
-    // Create a divider if needed
-    const dividerObj =
-      Object.keys(apps).length === 0 ? {} : { '--': { type: 'void', widget: 'Divider' } };
-
-    // Assign properties safely - use type assertion to satisfy TypeScript
-    propPanelSchema.properties = {
-      ...safeProperties,
-      ...(dividerObj as Record<string, Partial<Schema>>),
-      ...(apps as Record<string, Partial<Schema>>),
-    };
-  } else {
-    // Handle non-function case
-    const apps =
-      activePropPanelSchema && typeof activePropPanelSchema === 'object'
+          return functionResult && typeof functionResult === 'object' ? functionResult : {};
+        })()
+      : activePropPanelSchema && typeof activePropPanelSchema === 'object'
         ? activePropPanelSchema
         : {};
 
-    // Create a divider if needed
-    const dividerObj =
-      Object.keys(apps).length === 0 ? {} : { '--': { type: 'void', widget: 'Divider' } };
+  const advancedProperties = {
+    rotate: {
+      title: typedI18n('rotate'),
+      type: 'number',
+      widget: 'inputNumber',
+      disabled: typeof defaultSchema.rotate === 'undefined',
+      max: 360,
+      props: { min: 0 },
+      span: 12,
+    },
+    opacity: {
+      title: typedI18n('opacity'),
+      type: 'number',
+      widget: 'inputNumber',
+      disabled: typeof defaultSchema.opacity === 'undefined',
+      props: { step: 0.1, min: 0, max: 1 },
+      span: 12,
+    },
+    ...(pluginProps as Record<string, Partial<Schema>>),
+  };
 
-    // Assign properties safely - use type assertion to satisfy TypeScript
-    propPanelSchema.properties = {
-      ...safeProperties,
-      ...(dividerObj as Record<string, Partial<Schema>>),
-      ...(apps as Record<string, Partial<Schema>>),
-    };
-  }
-
-  const normalizedPropPanelSchema = replaceColorWidget(propPanelSchema) as PropPanelSchema;
+  const normalizedIdentitySchema = replaceColorWidget(identitySchema) as PropPanelSchema;
+  const normalizedBehaviorSchema = replaceColorWidget(behaviorSchema) as PropPanelSchema;
+  const normalizedLayoutSchema = replaceColorWidget(layoutSchema) as PropPanelSchema;
+  const normalizedGeometrySchema = replaceColorWidget(geometrySchema) as PropPanelSchema;
+  const normalizedAdvancedSchema = replaceColorWidget(buildSectionSchema(advancedProperties)) as PropPanelSchema;
 
   return (
     <SidebarFrame className={DESIGNER_CLASSNAME + 'detail-view'}>
@@ -575,13 +555,69 @@ const DetailView = (props: DetailViewProps) => {
       <SidebarBody>
         <DetailHeaderCard activeSchema={activeSchema} />
         <DetailSectionCard
-          title="Propiedades del campo"
-          description="Ajusta identidad, tamaño, posición y comportamiento sin salir del documento."
+          title="Identidad"
+          description="Nombre visible y tipo del campo."
         >
           <div className={`${DESIGNER_CLASSNAME}detail-view-form-shell`}>
             <FormRenderComponent
               form={form}
-              schema={normalizedPropPanelSchema}
+              schema={normalizedIdentitySchema}
+              widgets={widgets}
+              watch={{ '#': handleWatch }}
+              locale="en-US"
+            />
+          </div>
+        </DetailSectionCard>
+        <DetailSectionCard
+          title="Comportamiento"
+          description="Controla edición, obligatoriedad y permisos del campo."
+        >
+          <div className={`${DESIGNER_CLASSNAME}detail-view-form-shell`}>
+            <FormRenderComponent
+              form={form}
+              schema={normalizedBehaviorSchema}
+              widgets={widgets}
+              watch={{ '#': handleWatch }}
+              locale="en-US"
+            />
+          </div>
+        </DetailSectionCard>
+        <DetailSectionCard
+          title="Alineación y layout"
+          description="Alinea el contenido según el comportamiento esperado del componente."
+        >
+          <div className={`${DESIGNER_CLASSNAME}detail-view-form-shell`}>
+            <FormRenderComponent
+              form={form}
+              schema={normalizedLayoutSchema}
+              widgets={widgets}
+              watch={{ '#': handleWatch }}
+              locale="en-US"
+            />
+          </div>
+        </DetailSectionCard>
+        <DetailSectionCard
+          title="Geometría"
+          description="Ubicación y dimensiones del campo en la página."
+        >
+          <div className={`${DESIGNER_CLASSNAME}detail-view-form-shell`}>
+            <FormRenderComponent
+              form={form}
+              schema={normalizedGeometrySchema}
+              widgets={widgets}
+              watch={{ '#': handleWatch }}
+              locale="en-US"
+            />
+          </div>
+        </DetailSectionCard>
+        <DetailSectionCard
+          title="Estilo avanzado"
+          description="Rotación, opacidad y propiedades especiales del plugin."
+        >
+          <div className={`${DESIGNER_CLASSNAME}detail-view-form-shell`}>
+            <FormRenderComponent
+              form={form}
+              schema={normalizedAdvancedSchema}
               widgets={widgets}
               watch={{ '#': handleWatch }}
               locale="en-US"

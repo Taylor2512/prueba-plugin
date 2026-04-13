@@ -20,7 +20,7 @@ export type DesignerDocumentItem = {
 export type DocumentsRailProps = {
   items: DesignerDocumentItem[];
   selectedId?: string | null;
-  onSelect?: (id: string) => void;
+  onSelect?: (_id: string) => void;
   onAdd?: () => void;
   onUploadPdf?: () => void;
   title?: React.ReactNode;
@@ -30,17 +30,6 @@ export type DocumentsRailProps = {
   useDefaultStyles?: boolean;
   density?: 'default' | 'compact';
   showInlineAddCard?: boolean;
-};
-
-const previewBoxBaseStyle: React.CSSProperties = {
-  position: 'relative',
-  height: 116,
-  borderRadius: 12,
-  border: '1px solid rgba(15, 23, 42, 0.08)',
-  background:
-    'linear-gradient(180deg, rgba(248, 250, 252, 0.96) 0%, rgba(241, 245, 249, 0.98) 100%)',
-  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.75)',
-  overflow: 'hidden',
 };
 
 const DocumentsRail = ({
@@ -57,24 +46,28 @@ const DocumentsRail = ({
   density = 'default',
   showInlineAddCard = true,
 }: DocumentsRailProps) => {
-  const isCompact = density === 'compact';
-  const rootStyle = useDefaultStyles
-    ? {
-      minWidth: 0,
-      gap: 0,
-      borderRadius: 14,
-    }
-    : {};
-
   return (
-    <SidebarFrame
-      className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail', className)}>
-      <SidebarHeader>
+    <div
+      className={DESIGNER_CLASSNAME + 'documents-rail-wrapper'}
+      style={style}>
+      <SidebarFrame
+        className={mergeClassNames(
+          DESIGNER_CLASSNAME + 'documents-rail',
+          density === 'compact' ? DESIGNER_CLASSNAME + 'documents-rail-compact' : '',
+          useDefaultStyles ? DESIGNER_CLASSNAME + 'documents-rail-default' : '',
+          className,
+        )}>
+        <SidebarHeader>
         <div className={DESIGNER_CLASSNAME + 'documents-rail-header'}>
-          <FileText size={15} className={DESIGNER_CLASSNAME + "filetext-auto"} />
-          <Text strong className={DESIGNER_CLASSNAME + "text-auto"}>
-            {title}
-          </Text>
+          <div className={DESIGNER_CLASSNAME + 'documents-rail-header-title'}>
+            <FileText size={14} className={DESIGNER_CLASSNAME + 'filetext-auto'} />
+            <Text strong className={DESIGNER_CLASSNAME + 'text-auto'}>
+              {title}
+            </Text>
+            <Text type="secondary" className={DESIGNER_CLASSNAME + 'documents-rail-count'}>
+              {items.length}
+            </Text>
+          </div>
           {onAdd ? (
             <Button
               size="small"
@@ -96,24 +89,30 @@ const DocumentsRail = ({
             </Button>
           ) : null}
         </div>
+        <Text type="secondary" className={DESIGNER_CLASSNAME + 'documents-rail-subtitle'}>
+          Gestiona el documento activo y sus páginas asociadas.
+        </Text>
       </SidebarHeader>
       <SidebarBody>
         {items.length === 0 ? (
-          <Empty
-            image={Empty.PRESENTED_IMAGE_SIMPLE}
-            description={<span className={DESIGNER_CLASSNAME + 'documents-empty-title'}>{emptyTitle}</span>}
-          >
-            {onAdd ? (
-              <Button size="small" type="default" icon={<FilePlus2 size={14} />} onClick={onAdd}>
-                Agregar página
-              </Button>
-            ) : null}
-            {onUploadPdf ? (
-              <Button size="small" type="default" icon={<FileUp size={14} />} onClick={onUploadPdf}>
-                Subir PDF
-              </Button>
-            ) : null}
-          </Empty>
+          <div className={DESIGNER_CLASSNAME + 'documents-rail-empty'}>
+            <Empty
+              image={Empty.PRESENTED_IMAGE_SIMPLE}
+              description={<span className={DESIGNER_CLASSNAME + 'documents-empty-title'}>{emptyTitle}</span>}
+            />
+            <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-actions'}>
+              {onUploadPdf ? (
+                <Button size="small" type="default" icon={<FileUp size={14} />} onClick={onUploadPdf}>
+                  Subir PDF
+                </Button>
+              ) : null}
+              {onAdd ? (
+                <Button size="small" type="primary" icon={<FilePlus2 size={14} />} onClick={onAdd}>
+                  Agregar página
+                </Button>
+              ) : null}
+            </div>
+          </div>
         ) : (
           <div className={DESIGNER_CLASSNAME + 'documents-rail-items'}>
             {onAdd && showInlineAddCard ? (
@@ -144,7 +143,11 @@ const DocumentsRail = ({
                   type="button"
                   disabled={item.disabled}
                   onClick={() => onSelect?.(item.id)}
-                  className={DESIGNER_CLASSNAME + 'documents-rail-item'}>
+                  className={mergeClassNames(
+                    DESIGNER_CLASSNAME + 'documents-rail-item',
+                    isSelected ? DESIGNER_CLASSNAME + 'documents-rail-item-active' : '',
+                  )}
+                  data-active={isSelected ? 'true' : 'false'}>
                   <div className={DESIGNER_CLASSNAME + 'documents-rail-leading'}>
                     {item.previewSrc ? (
                       <div className={DESIGNER_CLASSNAME + 'documents-rail-preview'}>
@@ -168,6 +171,16 @@ const DocumentsRail = ({
                     <Text strong ellipsis={{ tooltip: item.name }} className={DESIGNER_CLASSNAME + "text-auto"}>
                       {item.name}
                     </Text>
+                    <div className={DESIGNER_CLASSNAME + 'documents-rail-meta-row'}>
+                      <Text type="secondary" ellipsis={{ tooltip: item.pageLabel || `${index + 1}` }} className={DESIGNER_CLASSNAME + "text-auto"}>
+                        Página {item.pageLabel || `${index + 1}`}
+                      </Text>
+                      {isSelected ? (
+                        <span className={DESIGNER_CLASSNAME + 'documents-rail-active-badge'}>
+                          Activo
+                        </span>
+                      ) : null}
+                    </div>
                     {item.meta ? (
                       <Text type="secondary" ellipsis={{ tooltip: item.meta }} className={DESIGNER_CLASSNAME + "text-auto"}>
                         {item.meta}
@@ -179,8 +192,9 @@ const DocumentsRail = ({
             })}
           </div>
         )}
-      </SidebarBody>
-    </SidebarFrame>
+        </SidebarBody>
+      </SidebarFrame>
+    </div>
   );
 };
 

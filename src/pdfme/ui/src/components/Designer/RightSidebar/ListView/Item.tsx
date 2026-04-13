@@ -74,6 +74,10 @@ interface Props {
   transition?: string;
   /** Transform data for the item */
   transform?: { x: number; y: number; scaleX: number; scaleY: number } | null;
+  /** Whether the row is selected or part of an active multi-selection */
+  selected?: boolean;
+  /** Whether the row is being hovered */
+  hovered?: boolean;
   /** Whether to fade the item in */
   fadeIn?: boolean;
   /** Drag listeners from dnd-kit */
@@ -178,15 +182,14 @@ const Item = React.memo(
       onClick,
       onMouseEnter,
       onMouseLeave,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       dragging,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       fadeIn,
       listeners,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       sorting,
       transition,
       transform,
+      selected,
+      hovered,
       ...props
     },
     ref,
@@ -225,11 +228,25 @@ const Item = React.memo(
         ref={ref}
         className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item', className)}
         style={dragStyle}
+        data-dragging={dragging ? 'true' : 'false'}
+        data-sorting={sorting ? 'true' : 'false'}
+        data-fade-in={fadeIn ? 'true' : 'false'}
+        data-selected={selected ? 'true' : 'false'}
+        data-hovered={hovered ? 'true' : 'false'}
         data-schema-type={schemaType}>
         <div
           className={DESIGNER_CLASSNAME + 'list-view-item-content'}
           {...props}
-          onClick={onClick}>
+          role="button"
+          tabIndex={0}
+          aria-label={valueTooltip}
+          onClick={onClick}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              onClick?.();
+            }
+          }}>
           <Button
             {...listeners}
             className={DESIGNER_CLASSNAME + 'list-view-item-grip'}
