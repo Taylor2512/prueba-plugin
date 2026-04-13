@@ -5,7 +5,6 @@ import type {
   ChangeSchemaItem,
   SchemaForUI,
   PropPanelWidgetProps,
-  PropPanelSchema,
   Schema,
 } from '@pdfme/common';
 import { isBlankPdf } from '@pdfme/common';
@@ -14,80 +13,16 @@ import { ArrowLeft } from 'lucide-react';
 import { I18nContext, PluginsRegistry, OptionsContext } from '../../../../contexts.js';
 import { debounce } from '../../../../helper.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { theme, Typography, Button, Divider, Input, Popover, Tooltip } from 'antd';
-import AlignWidget from './AlignWidget.js';
-import WidgetRenderer from './WidgetRenderer.js';
-import ButtonGroupWidget from './ButtonGroupWidget.js';
-import DetailHeaderCard from './DetailHeaderCard.js';
-import DetailSectionCard from './DetailSectionCard.js';
+import { theme, Typography, Button, Tooltip } from 'antd';
 import { InternalNamePath, ValidateErrorEntity } from 'rc-field-form/es/interface.js';
 import { SidebarBody, SidebarFrame, SidebarHeader } from '../layout.js';
-
-// Import FormRender as a default import
-import FormRenderComponent from 'form-render';
+import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
+import DetailHeaderCard from './DetailHeaderCard.js';
+import DetailFormSection from './DetailFormSection.js';
+import { buildInspectorSchemas } from './detailSchemas.js';
+import { buildDetailWidgets } from './detailWidgets.js';
 
 const { Text } = Typography;
-
-// Wix-like preset palette for the native colour picker
-const COLOR_PRESETS = [
-  '#000000', '#ffffff', '#f5f5f5', '#e0e0e0',
-  '#ef4444', '#f97316', '#eab308', '#22c55e',
-  '#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4',
-  '#1e3a5f', '#7c3aed', '#065f46', '#78350f',
-];
-
-const ColorPickerWidget = ({
-  value,
-  onChange,
-  normalizeHex,
-}: {
-  value: unknown;
-  onChange?: (_nextValue: string) => void;
-  normalizeHex: (_nextValue: unknown) => string;
-}) => {
-  const currentColor = typeof value === 'string' ? value : '#000000';
-  const hex = normalizeHex(currentColor);
-
-  const swatches = (
-    <div className={DESIGNER_CLASSNAME + 'color-picker-swatches'}>
-      {COLOR_PRESETS.map((preset) => (
-        <Tooltip key={preset} title={preset} placement="top">
-          <button
-            onClick={() => onChange?.(preset)}
-            onMouseEnter={(e) => { (e.currentTarget.style.transform = 'scale(1.2)'); }}
-            onMouseLeave={(e) => { (e.currentTarget.style.transform = 'scale(1)'); }}
-            className={DESIGNER_CLASSNAME + "button-auto"}
-          />
-        </Tooltip>
-      ))}
-    </div>
-  );
-
-  return (
-    <div className={`${DESIGNER_CLASSNAME}color-picker-container`}>
-      <Popover content={swatches} trigger="click" placement="bottomLeft">
-        <button
-          title="Elegir color"
-          className={DESIGNER_CLASSNAME + "button-auto"}
-        />
-      </Popover>
-      <input
-        type="color"
-        className={`${DESIGNER_CLASSNAME}color-picker-input`}
-        value={hex}
-        onChange={(e) => onChange?.(e.target.value)}
-        aria-label="Color picker" />
-      <Input
-        className={`${DESIGNER_CLASSNAME}color-picker-hex`}
-        value={currentColor}
-        onChange={(e) => onChange?.(e.target.value)}
-        placeholder="#000000"
-        size="small" />
-    </div>
-  );
-};
-
-import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 
 type DetailViewProps = Pick<
   SidebarProps,
@@ -106,26 +41,22 @@ type DetailViewProps = Pick<
 
 const DetailView = (props: DetailViewProps) => {
   const { token } = theme.useToken();
-
   const { schemasList, changeSchemas, deselectSchema, activeSchema, pageSize, basePdf } = props;
   const form = useForm();
-
   const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
   const options = useContext(OptionsContext);
 
-  // Define a type-safe i18n function that accepts string keys
   const typedI18n = useCallback(
     (key: string): string => {
-      // Use a type assertion to handle the union type constraint
       return typeof i18n === 'function' ? i18n(key as keyof Dict) : key;
     },
     [i18n],
   );
 
-  const [widgets, setWidgets] = useState<{
-    [key: string]: (_widgetProps: PropPanelWidgetProps) => React.JSX.Element;
-  }>({});
+  const [widgets, setWidgets] = useState<
+    Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element>
+  >({});
 
   const normalizeColorHex = useCallback((value: unknown): string => {
     if (typeof value !== 'string') return '#000000';
@@ -140,6 +71,7 @@ const DetailView = (props: DetailViewProps) => {
       }
       return `#${raw}`;
     }
+
     const rgbMatch = value
       .replace(/\s+/g, '')
       .match(/^rgba?\((\d{1,3}),(\d{1,3}),(\d{1,3})(?:,[0-9.]+)?\)$/i);
@@ -158,51 +90,21 @@ const DetailView = (props: DetailViewProps) => {
   const optionsKey = JSON.stringify(options);
 
   useEffect(() => {
-    const newWidgets: typeof widgets = {
-      AlignWidget: (p) => (
-        <AlignWidget
-          {...p}
-          {...props}
-          options={options}
-          selectionCommands={props.selectionCommands}
-        />
-      ),
-      Divider: () => (
-        <Divider className={`${DESIGNER_CLASSNAME}detail-view-divider`} />
-      ),
-      ButtonGroup: (p) => <ButtonGroupWidget {...p} {...props} options={options} />,
-      nativeColor: (p) => (
-        <ColorPickerWidget
-          value={p.value}
-          onChange={p.onChange}
-          normalizeHex={normalizeColorHex}
-        />
-      ),
-    };
-    for (const plugin of pluginsRegistry.values()) {
-      const widgets = plugin.propPanel.widgets || {};
-      Object.entries(widgets).forEach(([widgetKey, widgetValue]) => {
-        newWidgets[widgetKey] = (p) => (
-          <WidgetRenderer
-            {...p}
-            {...props}
-            options={options}
-            theme={token}
-            i18n={typedI18n}
-            widget={widgetValue}
-          />
-        );
-      });
-    }
+    const newWidgets = buildDetailWidgets({
+      pluginsRegistry,
+      options,
+      token,
+      typedI18n,
+      normalizeColorHex,
+      props,
+    });
     setWidgets(newWidgets);
-  }, [activeSchema, normalizeColorHex, options, pluginsRegistry, optionsKey, props, token, typedI18n]);
+  }, [activeSchema.id, normalizeColorHex, options, pluginsRegistry, optionsKey, props, token, typedI18n]);
 
   useEffect(() => form.resetFields(), [activeSchema.id, form]);
 
   useEffect(() => {
-    // Create a type-safe copy of the schema with editable property
     const values: Record<string, unknown> = { ...activeSchema };
-    // Safely access and set properties
     const readOnly = typeof values.readOnly === 'boolean' ? values.readOnly : false;
     values.editable = !readOnly;
     form.setValues(values);
@@ -222,12 +124,10 @@ const DetailView = (props: DetailViewProps) => {
     [schemasList, activeSchema.id],
   );
 
-  // Calculate padding values once
   const [paddingTop, paddingRight, paddingBottom, paddingLeft] = isBlankPdf(basePdf)
     ? basePdf.padding
     : [0, 0, 0, 0];
 
-  // Cross-field validation: only checks when both fields are individually valid
   const validatePosition = (_: unknown, value: number, fieldName: string): boolean => {
     const formValues = form.getValues() as Record<string, unknown>;
     const position = formValues.position as { x: number; y: number } | undefined;
@@ -253,7 +153,6 @@ const DetailView = (props: DetailViewProps) => {
     return true;
   };
 
-  // Use explicit type for debounce function that matches the expected signature
   const handleWatch = debounce(function (...args: unknown[]) {
     const formSchema = args[0] as Record<string, unknown>;
     const formAndSchemaValuesDiffer = (formValue: unknown, schemaValue: unknown): boolean => {
@@ -269,7 +168,6 @@ const DetailView = (props: DetailViewProps) => {
 
       let value = formSchema[key];
       if (formAndSchemaValuesDiffer(value, (activeSchema as Record<string, unknown>)[key])) {
-        // FIXME memo: https://github.com/pdfme/pdfme/pull/367#issuecomment-1857468274
         if (value === null && ['rotate', 'opacity'].includes(key)) {
           value = undefined;
         }
@@ -288,7 +186,6 @@ const DetailView = (props: DetailViewProps) => {
     }
 
     if (changes.length) {
-      // Only commit these schema changes if they have passed form validation
       form
         .validateFields()
         .then(() => changeSchemas(changes))
@@ -313,175 +210,26 @@ const DetailView = (props: DetailViewProps) => {
     throw Error(`[@pdfme/ui] Failed to find plugin used for ${activeSchema.type}`);
   }
 
-  const activePropPanelSchema = activePlugin.propPanel.schema;
   const typeOptions: Array<{ label: string; value: string | undefined }> = [];
-
   pluginsRegistry.entries().forEach(([label, plugin]) => {
     typeOptions.push({ label, value: plugin.propPanel.defaultSchema?.type ?? undefined });
   });
 
-  // Create a safe empty schema as fallback
   const emptySchema: Record<string, unknown> = {};
-
-  // Safely access the default schema with proper null checking
   const defaultSchema: Record<string, unknown> = activePlugin?.propPanel?.defaultSchema
-    ? // Create a safe copy of the schema
-    (() => {
-      const result: Record<string, unknown> = {};
-
-      // Only copy properties that exist on the object
-      for (const key in activePlugin.propPanel.defaultSchema) {
-        if (Object.prototype.hasOwnProperty.call(activePlugin.propPanel.defaultSchema, key)) {
-          result[key] = (activePlugin.propPanel.defaultSchema as Record<string, unknown>)[key];
+    ? (() => {
+        const result: Record<string, unknown> = {};
+        for (const key in activePlugin.propPanel.defaultSchema) {
+          if (Object.prototype.hasOwnProperty.call(activePlugin.propPanel.defaultSchema, key)) {
+            result[key] = (activePlugin.propPanel.defaultSchema as Record<string, unknown>)[key];
+          }
         }
-      }
-
-      return result;
-    })()
+        return result;
+      })()
     : emptySchema;
 
-  // Calculate max values considering padding
-  const maxWidth = pageSize.width - paddingLeft - paddingRight;
-  const maxHeight = pageSize.height - paddingTop - paddingBottom;
-  const buildSectionSchema = (properties: Record<string, Partial<Schema>>): PropPanelSchema => ({
-    type: 'object',
-    column: 2,
-    properties,
-  });
-
-  const identitySchema = buildSectionSchema({
-    type: {
-      title: typedI18n('type'),
-      type: 'string',
-      widget: 'select',
-      props: { options: typeOptions },
-      required: true,
-      span: 12,
-    },
-    name: {
-      title: typedI18n('fieldName'),
-      type: 'string',
-      required: true,
-      span: 12,
-      rules: [
-        {
-          validator: validateUniqueSchemaName,
-          message: typedI18n('validation.uniqueName'),
-        },
-      ],
-      props: { autoComplete: 'off' },
-    },
-  });
-
-  const behaviorSchema = buildSectionSchema({
-    editable: {
-      title: typedI18n('editable'),
-      type: 'boolean',
-      span: 10,
-      hidden: typeof defaultSchema.readOnly !== 'undefined',
-    },
-    required: {
-      title: typedI18n('required'),
-      type: 'boolean',
-      span: 14,
-      hidden: '{{!formData.editable}}',
-    },
-  });
-
-  const layoutSchema = buildSectionSchema({
-    align: { title: typedI18n('align'), type: 'void', widget: 'AlignWidget' },
-  });
-
-  const geometrySchema = buildSectionSchema({
-    position: {
-      type: 'object',
-      widget: 'card',
-      properties: {
-        x: {
-          title: 'X',
-          type: 'number',
-          widget: 'inputNumber',
-          required: true,
-          span: 8,
-          min: paddingLeft,
-          max: pageSize.width - paddingRight,
-          rules: [
-            {
-              validator: (_: unknown, value: number) => validatePosition(_, value, 'x'),
-              message: typedI18n('validation.outOfBounds'),
-            },
-          ],
-        },
-        y: {
-          title: 'Y',
-          type: 'number',
-          widget: 'inputNumber',
-          required: true,
-          span: 8,
-          min: paddingTop,
-          max: pageSize.height - paddingBottom,
-          rules: [
-            {
-              validator: (_: unknown, value: number) => validatePosition(_, value, 'y'),
-              message: typedI18n('validation.outOfBounds'),
-            },
-          ],
-        },
-      },
-    },
-    width: {
-      title: typedI18n('width'),
-      type: 'number',
-      widget: 'inputNumber',
-      required: true,
-      span: 6,
-      props: { min: 0, max: maxWidth },
-      rules: [
-        {
-          validator: (_: unknown, value: number) => validatePosition(_, value, 'width'),
-          message: typedI18n('validation.outOfBounds'),
-        },
-      ],
-    },
-    height: {
-      title: typedI18n('height'),
-      type: 'number',
-      widget: 'inputNumber',
-      required: true,
-      span: 6,
-      props: { min: 0, max: maxHeight },
-      rules: [
-        {
-          validator: (_: unknown, value: number) => validatePosition(_, value, 'height'),
-          message: typedI18n('validation.outOfBounds'),
-        },
-      ],
-    },
-  });
-
-  const replaceColorWidget = (schemaNode: unknown): unknown => {
-    if (!schemaNode || typeof schemaNode !== 'object') return schemaNode;
-    const node = schemaNode as Record<string, unknown>;
-    const nextNode: Record<string, unknown> = { ...node };
-
-    if (nextNode.widget === 'color') {
-      nextNode.widget = 'nativeColor';
-    }
-
-    if (nextNode.properties && typeof nextNode.properties === 'object') {
-      const propsObj = nextNode.properties as Record<string, unknown>;
-      const nextProps: Record<string, unknown> = {};
-      Object.entries(propsObj).forEach(([propKey, propValue]) => {
-        nextProps[propKey] = replaceColorWidget(propValue);
-      });
-      nextNode.properties = nextProps;
-    }
-
-    return nextNode;
-  };
-
   const pluginProps =
-    typeof activePropPanelSchema === 'function'
+    typeof activePlugin.propPanel.schema === 'function'
       ? (() => {
           const { size, schemas, pageSize, changeSchemas, activeElements, deselectSchema, activeSchema } =
             props;
@@ -494,46 +242,35 @@ const DetailView = (props: DetailViewProps) => {
             deselectSchema,
             activeSchema,
           };
-
-          const functionResult = activePropPanelSchema({
+          const functionResult = activePlugin.propPanel.schema({
             ...propPanelProps,
             options,
             theme: token,
             i18n: typedI18n,
           });
-
           return functionResult && typeof functionResult === 'object' ? functionResult : {};
         })()
-      : activePropPanelSchema && typeof activePropPanelSchema === 'object'
-        ? activePropPanelSchema
+      : activePlugin.propPanel.schema && typeof activePlugin.propPanel.schema === 'object'
+        ? activePlugin.propPanel.schema
         : {};
 
-  const advancedProperties = {
-    rotate: {
-      title: typedI18n('rotate'),
-      type: 'number',
-      widget: 'inputNumber',
-      disabled: typeof defaultSchema.rotate === 'undefined',
-      max: 360,
-      props: { min: 0 },
-      span: 12,
-    },
-    opacity: {
-      title: typedI18n('opacity'),
-      type: 'number',
-      widget: 'inputNumber',
-      disabled: typeof defaultSchema.opacity === 'undefined',
-      props: { step: 0.1, min: 0, max: 1 },
-      span: 12,
-    },
-    ...(pluginProps as Record<string, Partial<Schema>>),
-  };
-
-  const normalizedIdentitySchema = replaceColorWidget(identitySchema) as PropPanelSchema;
-  const normalizedBehaviorSchema = replaceColorWidget(behaviorSchema) as PropPanelSchema;
-  const normalizedLayoutSchema = replaceColorWidget(layoutSchema) as PropPanelSchema;
-  const normalizedGeometrySchema = replaceColorWidget(geometrySchema) as PropPanelSchema;
-  const normalizedAdvancedSchema = replaceColorWidget(buildSectionSchema(advancedProperties)) as PropPanelSchema;
+  const maxWidth = pageSize.width - paddingLeft - paddingRight;
+  const maxHeight = pageSize.height - paddingTop - paddingBottom;
+  const sectionSchemas = buildInspectorSchemas({
+    typedI18n,
+    typeOptions,
+    defaultSchema,
+    pluginProps: pluginProps as Record<string, Partial<Schema>>,
+    pageSize,
+    paddingTop,
+    paddingRight,
+    paddingBottom,
+    paddingLeft,
+    maxWidth,
+    maxHeight,
+    validateUniqueSchemaName,
+    validatePosition,
+  });
 
   return (
     <SidebarFrame className={DESIGNER_CLASSNAME + 'detail-view'}>
@@ -554,83 +291,53 @@ const DetailView = (props: DetailViewProps) => {
       </SidebarHeader>
       <SidebarBody>
         <DetailHeaderCard activeSchema={activeSchema} />
-        <DetailSectionCard
+        <DetailFormSection
           title="Identidad"
           description="Nombre visible y tipo del campo."
-        >
-          <div className={`${DESIGNER_CLASSNAME}detail-view-form-shell`}>
-            <FormRenderComponent
-              form={form}
-              schema={normalizedIdentitySchema}
-              widgets={widgets}
-              watch={{ '#': handleWatch }}
-              locale="en-US"
-            />
-          </div>
-        </DetailSectionCard>
-        <DetailSectionCard
+          schema={sectionSchemas.identity}
+          form={form}
+          widgets={widgets}
+          watchHandler={handleWatch}
+        />
+        <DetailFormSection
           title="Comportamiento"
-          description="Controla edición, obligatoriedad y permisos del campo."
-        >
-          <div className={`${DESIGNER_CLASSNAME}detail-view-form-shell`}>
-            <FormRenderComponent
-              form={form}
-              schema={normalizedBehaviorSchema}
-              widgets={widgets}
-              watch={{ '#': handleWatch }}
-              locale="en-US"
-            />
-          </div>
-        </DetailSectionCard>
-        <DetailSectionCard
-          title="Alineación y layout"
-          description="Alinea el contenido según el comportamiento esperado del componente."
-        >
-          <div className={`${DESIGNER_CLASSNAME}detail-view-form-shell`}>
-            <FormRenderComponent
-              form={form}
-              schema={normalizedLayoutSchema}
-              widgets={widgets}
-              watch={{ '#': handleWatch }}
-              locale="en-US"
-            />
-          </div>
-        </DetailSectionCard>
-        <DetailSectionCard
-          title="Geometría"
-          description="Ubicación y dimensiones del campo en la página."
-        >
-          <div className={`${DESIGNER_CLASSNAME}detail-view-form-shell`}>
-            <FormRenderComponent
-              form={form}
-              schema={normalizedGeometrySchema}
-              widgets={widgets}
-              watch={{ '#': handleWatch }}
-              locale="en-US"
-            />
-          </div>
-        </DetailSectionCard>
-        <DetailSectionCard
+          description="Controla edicion, obligatoriedad y permisos del campo."
+          schema={sectionSchemas.behavior}
+          form={form}
+          widgets={widgets}
+          watchHandler={handleWatch}
+        />
+        <DetailFormSection
+          title="Alineacion y layout"
+          description="Alinea el contenido segun el comportamiento esperado del componente."
+          schema={sectionSchemas.layout}
+          form={form}
+          widgets={widgets}
+          watchHandler={handleWatch}
+        />
+        <DetailFormSection
+          title="Geometria"
+          description="Ubicacion y dimensiones del campo en la pagina."
+          schema={sectionSchemas.geometry}
+          form={form}
+          widgets={widgets}
+          watchHandler={handleWatch}
+        />
+        <DetailFormSection
           title="Estilo avanzado"
-          description="Rotación, opacidad y propiedades especiales del plugin."
-        >
-          <div className={`${DESIGNER_CLASSNAME}detail-view-form-shell`}>
-            <FormRenderComponent
-              form={form}
-              schema={normalizedAdvancedSchema}
-              widgets={widgets}
-              watch={{ '#': handleWatch }}
-              locale="en-US"
-            />
-          </div>
-        </DetailSectionCard>
+          description="Rotacion, opacidad y propiedades especiales del plugin."
+          schema={sectionSchemas.advanced}
+          form={form}
+          widgets={widgets}
+          watchHandler={handleWatch}
+        />
       </SidebarBody>
     </SidebarFrame>
   );
 };
 
 const propsAreUnchanged = (prevProps: DetailViewProps, nextProps: DetailViewProps) => {
-  return JSON.stringify(prevProps.activeSchema) == JSON.stringify(nextProps.activeSchema);
+  return JSON.stringify(prevProps.activeSchema) === JSON.stringify(nextProps.activeSchema);
 };
 
 export default React.memo(DetailView, propsAreUnchanged);

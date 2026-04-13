@@ -2,8 +2,8 @@
    ARCHIVO UNIFICADO DE CÓDIGO PARA ANÁLISIS CON IA
    =====================================================================
    Carpeta origen: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
-   Fecha de generación: 2026-04-10T18:58:38.037Z
-   Total de archivos incluidos: 310
+   Fecha de generación: 2026-04-13T14:24:28.365Z
+   Total de archivos incluidos: 313
    Extensiones incluidas: .tsx, .ts, .jsx, .js
    Objetivo: consolidar código fuente con contexto estructural para análisis
    ===================================================================== */
@@ -309,17 +309,20 @@
 0297. src/pdfme/ui/src/components/Designer/Canvas/overlays/useFloatingToolbarPosition.ts
 0298. src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/AlignWidget.tsx
 0299. src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx
-0300. src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx
-0301. src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx
-0302. src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/index.tsx
-0303. src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx
-0304. src/pdfme/ui/src/components/Designer/RightSidebar/ListView/index.tsx
-0305. src/pdfme/ui/src/components/Designer/RightSidebar/ListView/Item.tsx
-0306. src/pdfme/ui/src/components/Designer/RightSidebar/ListView/ListViewDragOverlay.tsx
-0307. src/pdfme/ui/src/components/Designer/RightSidebar/ListView/ListViewFooter.tsx
-0308. src/pdfme/ui/src/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx
-0309. src/pdfme/ui/src/components/Designer/RightSidebar/ListView/SelectableSortableContainer.tsx
-0310. src/pdfme/ui/src/components/Designer/RightSidebar/ListView/SelectableSortableItem.tsx
+0300. src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx
+0301. src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx
+0302. src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/detailSchemas.ts
+0303. src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx
+0304. src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/detailWidgets.tsx
+0305. src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/index.tsx
+0306. src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx
+0307. src/pdfme/ui/src/components/Designer/RightSidebar/ListView/index.tsx
+0308. src/pdfme/ui/src/components/Designer/RightSidebar/ListView/Item.tsx
+0309. src/pdfme/ui/src/components/Designer/RightSidebar/ListView/ListViewDragOverlay.tsx
+0310. src/pdfme/ui/src/components/Designer/RightSidebar/ListView/ListViewFooter.tsx
+0311. src/pdfme/ui/src/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx
+0312. src/pdfme/ui/src/components/Designer/RightSidebar/ListView/SelectableSortableContainer.tsx
+0313. src/pdfme/ui/src/components/Designer/RightSidebar/ListView/SelectableSortableItem.tsx
 
 /* =====================================================================
    INICIO DEL CÓDIGO UNIFICADO
@@ -28188,7 +28191,7 @@ export default AppContextProvider;
 // Ruta relativa: src/pdfme/ui/src/components/CtlBar.tsx
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/CtlBar.tsx
 // Extensión: .tsx
-// Líneas aproximadas: 157
+// Líneas aproximadas: 171
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
 // ====================================================================
 
@@ -28303,6 +28306,7 @@ type CtlBarProps = {
   setPageCursor: (page: number) => void;
   zoomLevel: number;
   setZoomLevel: (zoom: number) => void;
+  setZoom?: (zoom: number) => void;
   addPageAfter?: () => void;
   removePage?: () => void;
 };
@@ -28317,10 +28321,12 @@ const CtlBar = (props: CtlBarProps) => {
     setPageCursor,
     zoomLevel,
     setZoomLevel,
+    setZoom,
     addPageAfter,
     removePage,
   } = props;
   void _size;
+  const zoomChangeHandler = setZoom ?? setZoomLevel;
 
   const contextMenuItems: MenuProps['items'] = [];
   if (addPageAfter) {
@@ -28338,11 +28344,22 @@ const CtlBar = (props: CtlBarProps) => {
 
   return (
     <div className={UI_CLASSNAME + 'control-bar'}>
-      {pageNum > 1 && (
-        <Pager pageCursor={pageCursor} pageNum={pageNum} setPageCursor={setPageCursor} />
-      )}
-      <Zoom zoomLevel={zoomLevel} setZoomLevel={setZoomLevel} />
-      {contextMenuItems.length > 0 && <ContextMenu items={contextMenuItems} />}
+      <div className={UI_CLASSNAME + 'control-bar-context'}>
+        <span className={UI_CLASSNAME + 'control-bar-kicker'}>Página activa</span>
+        <Text strong className={UI_CLASSNAME + 'control-bar-page'}>
+          {pageCursor + 1}
+        </Text>
+        <span className={UI_CLASSNAME + 'control-bar-subtext'}>
+          {pageNum > 1 ? `de ${pageNum}` : 'página única'}
+        </span>
+      </div>
+      <div className={UI_CLASSNAME + 'control-bar-actions'}>
+        {pageNum > 1 && (
+          <Pager pageCursor={pageCursor} pageNum={pageNum} setPageCursor={setPageCursor} />
+        )}
+        <Zoom zoomLevel={zoomLevel} setZoomLevel={zoomChangeHandler} />
+        {contextMenuItems.length > 0 && <ContextMenu items={contextMenuItems} />}
+      </div>
     </div>
   );
 };
@@ -45471,7 +45488,7 @@ export { default as DesignerPluginIcon } from './PluginIcon.js';
 // Ruta relativa: src/pdfme/ui/src/components/Designer/index.tsx
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/index.tsx
 // Extensión: .tsx
-// Líneas aproximadas: 1594
+// Líneas aproximadas: 1596
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
 // ====================================================================
 
@@ -46617,10 +46634,6 @@ const TemplateEditor = ({
     void updateTemplate(template);
   }, [template, updateTemplate]);
 
-  if (error) {
-    // Pass the error directly to ErrorScreen
-    return <ErrorScreen size={size} error={error} />;
-  }
   const pageManipulation = isBlankPdf(template.basePdf)
     ? { addPageAfter: handleAddPageAfter, removePage: handleRemovePage }
     : {};
@@ -46660,6 +46673,10 @@ const TemplateEditor = ({
       })),
     [activeDocumentId, uploadedDocuments],
   );
+  if (error) {
+    // Pass the error directly to ErrorScreen
+    return <ErrorScreen size={size} error={error} />;
+  }
   const { className: leftSidebarEngineClassName, ...leftSidebarEngineProps } = leftSidebarEngine || {};
   const { className: rightSidebarEngineClassName, ...rightSidebarEngineProps } = rightSidebarEngine || {};
 
@@ -46753,8 +46770,8 @@ const TemplateEditor = ({
           onEditEnd();
         },
         onUploadPdf: handleUploadPdfClick,
-        title: 'Documentos',
-        emptyTitle: 'Sin documentos subidos',
+        title: 'Documentos cargados',
+        emptyTitle: 'Todavía no hay documentos cargados. Sube un PDF para empezar.',
       }}
       pages={{
         items: pageItems,
@@ -46786,8 +46803,8 @@ const TemplateEditor = ({
         },
         onAdd: pageManipulation.addPageAfter,
         onUploadPdf: handleUploadPdfClick,
-        title: 'Paginas',
-        emptyTitle: 'Sin paginas disponibles',
+        title: 'Páginas del documento',
+        emptyTitle: 'Este documento aún no tiene páginas. Agrega una página para empezar.',
       }}
       showDocumentsRail={pageItems.length > 0 || uploadedDocumentItems.length > 0}
       autoFocusDetail={true}
@@ -46930,6 +46947,7 @@ const TemplateEditor = ({
         <div
           className={`${DESIGNER_CLASSNAME}stage`}
           data-left-sidebar={leftSidebarVisible ? 'visible' : 'hidden'}
+          data-left-sidebar-mode={shouldReserveLeftSidebarSpace ? 'docked' : 'overlay'}
           data-left-sidebar-variant={leftSidebarVariant}
           data-left-sidebar-detached={leftSidebarDetached ? 'true' : 'false'}
           data-left-sidebar-layout={leftSidebarUseLayout ? 'frame' : 'default'}
@@ -46960,6 +46978,7 @@ const TemplateEditor = ({
             setPageCursor={setPageCursorWithScroll}
             zoomLevel={zoomLevel}
             setZoomLevel={setZoomLevel}
+            setZoom={setZoomExternal}
             {...pageManipulation}
           />
 
@@ -47078,7 +47097,7 @@ export default TemplateEditor;
 // Ruta relativa: src/pdfme/ui/src/components/Designer/LeftSidebar.tsx
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/LeftSidebar.tsx
 // Extensión: .tsx
-// Líneas aproximadas: 1261
+// Líneas aproximadas: 1283
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
 // ====================================================================
 
@@ -47087,6 +47106,7 @@ import { Schema, Plugin, BasePdf, getFallbackFontName } from '@pdfme/common';
 import { cloneDeep } from '@pdfme/common';
 import { Button, Tooltip } from 'antd';
 import { useDraggable } from '@dnd-kit/core';
+import { PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../constants.js';
 import { setFontNameRecursively } from '../../helper.js';
 import { OptionsContext, PluginsRegistry } from '../../contexts.js';
@@ -47390,17 +47410,21 @@ const highlightTerm = (value: string, terms: string[]) => {
   if (!escaped.length) return value;
   const matcher = new RegExp(`(${escaped.join('|')})`, 'ig');
   const parts = value.split(matcher);
+  let cursor = 0;
   return (
     <>
-      {parts.map((part, index) =>
-        terms.some((term) => term && part.toLowerCase() === term.toLowerCase()) ? (
-          <mark key={`${part}-${index}`} className={DESIGNER_CLASSNAME + 'left-sidebar-highlight'}>
+      {parts.map((part) => {
+        const start = cursor;
+        cursor += part.length;
+        const isMatch = terms.some((term) => term && part.toLowerCase() === term.toLowerCase());
+        return isMatch ? (
+          <mark key={`${part}-${start}`} className={DESIGNER_CLASSNAME + 'left-sidebar-highlight'}>
             {part}
           </mark>
         ) : (
-          <React.Fragment key={`${part}-${index}`}>{part}</React.Fragment>
-        ),
-      )}
+          <React.Fragment key={`${part}-${start}`}>{part}</React.Fragment>
+        );
+      })}
     </>
   );
 };
@@ -47464,18 +47488,20 @@ const SidebarShell = ({
     className={`${DESIGNER_CLASSNAME}left-sidebar-shell`}
   >
     <div className={`${DESIGNER_CLASSNAME}left-sidebar-dock-header`}>
-      <span className={`${DESIGNER_CLASSNAME}left-sidebar-dock-title`}>DISEÑADOR</span>
+      <span className={`${DESIGNER_CLASSNAME}left-sidebar-dock-kicker`}>Diseñador</span>
+      <span className={`${DESIGNER_CLASSNAME}left-sidebar-dock-title`}>Catálogo de campos</span>
     </div>
-    <div className={`${DESIGNER_CLASSNAME}left-sidebar-dock-section-title`}>CAMPOS PERSONALIZADOS</div>
-    <LeftSidebarTabs
-      tabs={tabs}
-      activeTab={activeTab}
-      onChangeTab={onChangeTab}
-      renderTabIcon={renderTabIcon}
-    />
-    {searchNode ? (
-      <div className={`${DESIGNER_CLASSNAME}left-sidebar-search-wrap`}>{searchNode}</div>
-    ) : null}
+    <div className={`${DESIGNER_CLASSNAME}left-sidebar-control-band`}>
+      <LeftSidebarTabs
+        tabs={tabs}
+        activeTab={activeTab}
+        onChangeTab={onChangeTab}
+        renderTabIcon={renderTabIcon}
+      />
+      {searchNode ? (
+        <div className={`${DESIGNER_CLASSNAME}left-sidebar-search-wrap`}>{searchNode}</div>
+      ) : null}
+    </div>
     <div
       className={`${DESIGNER_CLASSNAME}left-sidebar-main`}
     >
@@ -47538,7 +47564,7 @@ const LeftSidebar = ({
   const [search, setSearch] = useState('');
   const [activeTab, setActiveTab] = useState<LeftSidebarTab>('standard');
   const [customModalOpen, setCustomModalOpen] = useState(false);
-  const [customDraft, setCustomDraft] = useState<CustomFieldDef>(makeDefaultCustomField());
+  const [customDraft, setCustomDraft] = useState<CustomFieldDef>(() => makeDefaultCustomField());
   const [runtimeCustomDefinitions, setRuntimeCustomDefinitions] = useState<RuntimeCustomSchemaDefinition[]>(
     () => getCustomSchemaDefinitions() as RuntimeCustomSchemaDefinition[],
   );
@@ -47785,6 +47811,7 @@ const LeftSidebar = ({
     quickFilter,
     activeCapabilities,
     parsedQuery,
+    searchTerms,
   ]);
 
   const recentCatalogItems = useMemo(() => {
@@ -47967,11 +47994,18 @@ const LeftSidebar = ({
                   <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-title'}>
                     {highlightTerm(label, searchTerms)}
                   </span>
-                  {isPanel || resolvedViewMode === 'rich' ? (
+                {isPanel || resolvedViewMode === 'rich' ? (
+                  <>
                     <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-meta'}>
                       {highlightTerm(metaLine, searchTerms)}
                       {capabilityHint ? ` · ${capabilityHint}` : ''}
                     </span>
+                    {isPanel && pluginDescription ? (
+                      <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-desc'}>
+                        {pluginDescription}
+                      </span>
+                    ) : null}
+                  </>
                   ) : null}
                 </span>
                 {isFavorite ? (
@@ -48077,6 +48111,11 @@ const LeftSidebar = ({
                   {definition.autoFillSource ? ' · autofill' : ''}
                   {definition.defaultValue ? ' · default' : ''}
                 </span>
+                {resolvedViewMode === 'rich' ? (
+                  <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-desc`}>
+                    {definition.category || 'Campo personalizado'}
+                  </span>
+                ) : null}
               </span>
             </Button>
           </Tooltip>
@@ -48203,7 +48242,7 @@ const LeftSidebar = ({
           type={quickFilter === 'all' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('all')}
         >
-          All
+          Todo
         </Button>
         <Button
           className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
@@ -48211,7 +48250,7 @@ const LeftSidebar = ({
           type={quickFilter === 'favorites' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('favorites')}
         >
-          Fav ({favoritePlugins.size})
+          Favoritos ({favoritePlugins.size})
         </Button>
         <Button
           className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
@@ -48219,7 +48258,7 @@ const LeftSidebar = ({
           type={quickFilter === 'recent' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('recent')}
         >
-          Recent ({recentPlugins.length})
+          Recientes ({recentPlugins.length})
         </Button>
         {showCatalogViewSwitcher ? (
           <Button
@@ -48230,7 +48269,7 @@ const LeftSidebar = ({
               onCatalogViewModeChange?.(nextMode);
             }}
           >
-            {resolvedViewMode === 'compact' ? 'Vista rica' : 'Vista compacta'}
+            {resolvedViewMode === 'compact' ? 'Vista detallada' : 'Vista compacta'}
           </Button>
         ) : null}
       </div>
@@ -48290,6 +48329,8 @@ const LeftSidebar = ({
       className={sidebarClass}
       data-sidebar-variant={variant}
       data-sidebar-detached={detached ? 'true' : 'false'}
+      data-left-sidebar-mode={resolvedPresentation}
+      data-left-sidebar-expanded={sidebarExpanded ? 'true' : 'false'}
       data-sidebar-presentation={resolvedPresentation}
       data-active-tab={activeTab}
       data-has-search={normalizedSearch ? 'true' : 'false'}
@@ -48298,11 +48339,11 @@ const LeftSidebar = ({
       <button
         type="button"
         className={`${DESIGNER_CLASSNAME}left-sidebar-toggle-btn`}
-        aria-label={sidebarExpanded ? 'Cerrar panel de diseño' : 'Abrir panel de diseño'}
+        aria-label={sidebarExpanded ? 'Cerrar catálogo de campos' : 'Abrir catálogo de campos'}
         aria-expanded={sidebarExpanded}
         onClick={() => setSidebarExpanded(prev => !prev)}
       >
-        {sidebarExpanded ? '✕' : '⊞'}
+        {sidebarExpanded ? <PanelLeftClose size={16} strokeWidth={2.2} /> : <PanelLeftOpen size={16} strokeWidth={2.2} />}
       </button>
       {useLayoutFrame ? (
         <SidebarFrame className={`${DESIGNER_CLASSNAME}left-sidebar-frame`}>
@@ -48820,7 +48861,7 @@ const LeftSidebarSearch = ({
   <Input
     size="small"
     allowClear
-    placeholder="Buscar schema, tipo o categoria..."
+    placeholder="Buscar campo, tipo o categoría..."
     prefix={<Search size={14} />}
     value={value}
     onChange={(event) => onChange(event.target.value)}
@@ -49272,7 +49313,7 @@ export default Guides;
 // Ruta relativa: src/pdfme/ui/src/components/Designer/Canvas/index.tsx
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/Canvas/index.tsx
 // Extensión: .tsx
-// Líneas aproximadas: 838
+// Líneas aproximadas: 840
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
 // ====================================================================
 
@@ -49805,20 +49846,17 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     if (!activePaper || !(target instanceof Node)) return false;
     return target === activePaper || activePaper.contains(target);
   };
-  const normalizeActiveTargets = useCallback(
-    (targets: HTMLElement[]) => {
-      const activePaper = paperRefs.current[pageCursor];
-      if (!activePaper) return [];
-      return dedupeById(
-        targets.filter((target) => {
-          if (!(target instanceof HTMLElement)) return false;
-          if (!target.classList.contains(SELECTABLE_CLASSNAME)) return false;
-          return target === activePaper || activePaper.contains(target);
-        }),
-      );
-    },
-    [pageCursor, paperRefs],
-  );
+  const normalizeActiveTargets = (targets: HTMLElement[]) => {
+    const activePaper = paperRefs.current[pageCursor];
+    if (!activePaper) return [];
+    return dedupeById(
+      targets.filter((target) => {
+        if (!(target instanceof HTMLElement)) return false;
+        if (!target.classList.contains(SELECTABLE_CLASSNAME)) return false;
+        return target === activePaper || activePaper.contains(target);
+      }),
+    );
+  };
 
   const safeCanvasWidth = Number.isFinite(size.width) ? Math.max(0, size.width) : 0;
   const safeCanvasHeight = Number.isFinite(size.height) ? Math.max(0, size.height) : 0;
@@ -49966,7 +50004,12 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
                   .join(' ')}
               >
                 <div className={DESIGNER_CLASSNAME + 'canvas-empty-state-card'}>
-                  Arrastra un campo desde el panel izquierdo para comenzar a diseñar esta página.
+                  <span className={DESIGNER_CLASSNAME + 'canvas-empty-state-title'}>
+                    Esta página todavía no tiene campos
+                  </span>
+                  <span className={DESIGNER_CLASSNAME + 'canvas-empty-state-hint'}>
+                    Arrastra un campo del catálogo izquierdo para empezar a construir el documento.
+                  </span>
                 </div>
               </div>
             ) : null}
@@ -50834,7 +50877,7 @@ export function computeSnapResult(
 // Ruta relativa: src/pdfme/ui/src/components/Designer/RightSidebar/DocumentsRail.tsx
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/RightSidebar/DocumentsRail.tsx
 // Extensión: .tsx
-// Líneas aproximadas: 188
+// Líneas aproximadas: 202
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
 // ====================================================================
 
@@ -50860,7 +50903,7 @@ export type DesignerDocumentItem = {
 export type DocumentsRailProps = {
   items: DesignerDocumentItem[];
   selectedId?: string | null;
-  onSelect?: (id: string) => void;
+  onSelect?: (_id: string) => void;
   onAdd?: () => void;
   onUploadPdf?: () => void;
   title?: React.ReactNode;
@@ -50872,49 +50915,42 @@ export type DocumentsRailProps = {
   showInlineAddCard?: boolean;
 };
 
-const previewBoxBaseStyle: React.CSSProperties = {
-  position: 'relative',
-  height: 116,
-  borderRadius: 12,
-  border: '1px solid rgba(15, 23, 42, 0.08)',
-  background:
-    'linear-gradient(180deg, rgba(248, 250, 252, 0.96) 0%, rgba(241, 245, 249, 0.98) 100%)',
-  boxShadow: 'inset 0 1px 0 rgba(255,255,255,0.75)',
-  overflow: 'hidden',
-};
-
 const DocumentsRail = ({
   items,
   selectedId,
   onSelect,
   onAdd,
   onUploadPdf,
-  title = 'Paginas',
-  emptyTitle = 'Sin paginas disponibles',
+  title = 'Páginas',
+  emptyTitle = 'Sin páginas disponibles',
   className,
   style,
   useDefaultStyles = true,
   density = 'default',
   showInlineAddCard = true,
 }: DocumentsRailProps) => {
-  const isCompact = density === 'compact';
-  const rootStyle = useDefaultStyles
-    ? {
-      minWidth: 0,
-      gap: 0,
-      borderRadius: 14,
-    }
-    : {};
-
   return (
-    <SidebarFrame
-      className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail', className)}>
-      <SidebarHeader>
+    <div
+      className={DESIGNER_CLASSNAME + 'documents-rail-wrapper'}
+      style={style}>
+      <SidebarFrame
+        className={mergeClassNames(
+          DESIGNER_CLASSNAME + 'documents-rail',
+          density === 'compact' ? DESIGNER_CLASSNAME + 'documents-rail-compact' : '',
+          useDefaultStyles ? DESIGNER_CLASSNAME + 'documents-rail-default' : '',
+          className,
+        )}>
+        <SidebarHeader>
         <div className={DESIGNER_CLASSNAME + 'documents-rail-header'}>
-          <FileText size={15} className={DESIGNER_CLASSNAME + "filetext-auto"} />
-          <Text strong className={DESIGNER_CLASSNAME + "text-auto"}>
-            {title}
-          </Text>
+          <div className={DESIGNER_CLASSNAME + 'documents-rail-header-title'}>
+            <FileText size={14} className={DESIGNER_CLASSNAME + 'filetext-auto'} />
+            <Text strong className={DESIGNER_CLASSNAME + 'text-auto'}>
+              {title}
+            </Text>
+            <Text type="secondary" className={DESIGNER_CLASSNAME + 'documents-rail-count'}>
+              {items.length}
+            </Text>
+          </div>
           {onAdd ? (
             <Button
               size="small"
@@ -50936,24 +50972,30 @@ const DocumentsRail = ({
             </Button>
           ) : null}
         </div>
+        <Text type="secondary" className={DESIGNER_CLASSNAME + 'documents-rail-subtitle'}>
+          Gestiona el documento activo y sus páginas asociadas.
+        </Text>
       </SidebarHeader>
       <SidebarBody>
         {items.length === 0 ? (
-          <Empty
-            image={Empty.PRESENTED_IMAGE_SIMPLE}
-            description={<span className={DESIGNER_CLASSNAME + 'documents-empty-title'}>{emptyTitle}</span>}
-          >
-            {onAdd ? (
-              <Button size="small" type="default" icon={<FilePlus2 size={14} />} onClick={onAdd}>
-                Agregar
-              </Button>
-            ) : null}
-            {onUploadPdf ? (
-              <Button size="small" type="default" icon={<FileUp size={14} />} onClick={onUploadPdf}>
-                Subir PDF
-              </Button>
-            ) : null}
-          </Empty>
+          <div className={DESIGNER_CLASSNAME + 'documents-rail-empty'}>
+            <Empty
+              image={Empty.PRESENTED_IMAGE_SIMPLE}
+              description={<span className={DESIGNER_CLASSNAME + 'documents-empty-title'}>{emptyTitle}</span>}
+            />
+            <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-actions'}>
+              {onUploadPdf ? (
+                <Button size="small" type="default" icon={<FileUp size={14} />} onClick={onUploadPdf}>
+                  Subir PDF
+                </Button>
+              ) : null}
+              {onAdd ? (
+                <Button size="small" type="primary" icon={<FilePlus2 size={14} />} onClick={onAdd}>
+                  Agregar página
+                </Button>
+              ) : null}
+            </div>
+          </div>
         ) : (
           <div className={DESIGNER_CLASSNAME + 'documents-rail-items'}>
             {onAdd && showInlineAddCard ? (
@@ -50968,10 +51010,10 @@ const DocumentsRail = ({
                 </div>
                 <div className={DESIGNER_CLASSNAME + 'documents-rail-meta'}>
                   <Text strong className={DESIGNER_CLASSNAME + "text-auto"}>
-                    Agregar pagina
+                    Agregar página
                   </Text>
                   <Text type="secondary" className={DESIGNER_CLASSNAME + "text-auto"}>
-                    Crea una nueva pagina en el flujo actual
+                    Crea una nueva página en el flujo actual
                   </Text>
                 </div>
               </button>
@@ -50984,7 +51026,11 @@ const DocumentsRail = ({
                   type="button"
                   disabled={item.disabled}
                   onClick={() => onSelect?.(item.id)}
-                  className={DESIGNER_CLASSNAME + 'documents-rail-item'}>
+                  className={mergeClassNames(
+                    DESIGNER_CLASSNAME + 'documents-rail-item',
+                    isSelected ? DESIGNER_CLASSNAME + 'documents-rail-item-active' : '',
+                  )}
+                  data-active={isSelected ? 'true' : 'false'}>
                   <div className={DESIGNER_CLASSNAME + 'documents-rail-leading'}>
                     {item.previewSrc ? (
                       <div className={DESIGNER_CLASSNAME + 'documents-rail-preview'}>
@@ -51008,6 +51054,16 @@ const DocumentsRail = ({
                     <Text strong ellipsis={{ tooltip: item.name }} className={DESIGNER_CLASSNAME + "text-auto"}>
                       {item.name}
                     </Text>
+                    <div className={DESIGNER_CLASSNAME + 'documents-rail-meta-row'}>
+                      <Text type="secondary" ellipsis={{ tooltip: item.pageLabel || `${index + 1}` }} className={DESIGNER_CLASSNAME + "text-auto"}>
+                        Página {item.pageLabel || `${index + 1}`}
+                      </Text>
+                      {isSelected ? (
+                        <span className={DESIGNER_CLASSNAME + 'documents-rail-active-badge'}>
+                          Activo
+                        </span>
+                      ) : null}
+                    </div>
                     {item.meta ? (
                       <Text type="secondary" ellipsis={{ tooltip: item.meta }} className={DESIGNER_CLASSNAME + "text-auto"}>
                         {item.meta}
@@ -51019,8 +51075,9 @@ const DocumentsRail = ({
             })}
           </div>
         )}
-      </SidebarBody>
-    </SidebarFrame>
+        </SidebarBody>
+      </SidebarFrame>
+    </div>
   );
 };
 
@@ -52298,6 +52355,58 @@ export default ButtonGroupWidget;
 
 // ====================================================================
 // ARCHIVO #300
+// Ruta relativa: src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx
+// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx
+// Extensión: .tsx
+// Líneas aproximadas: 39
+// Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
+// ====================================================================
+
+import React from 'react';
+import type { PropPanelSchema, PropPanelWidgetProps } from '@pdfme/common';
+import type { useForm } from 'form-render';
+import { DESIGNER_CLASSNAME } from '../../../../constants.js';
+import DetailSectionCard from './DetailSectionCard.js';
+import FormRenderComponent from 'form-render';
+
+type DetailFormSectionProps = {
+  title: string;
+  description: string;
+  schema: PropPanelSchema;
+  form: ReturnType<typeof useForm>;
+  widgets: Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element>;
+  watchHandler: (...args: unknown[]) => void;
+};
+
+const DetailFormSection = ({
+  title,
+  description,
+  schema,
+  form,
+  widgets,
+  watchHandler,
+}: DetailFormSectionProps) => (
+  <DetailSectionCard title={title} description={description}>
+    <div className={`${DESIGNER_CLASSNAME}detail-view-form-shell`}>
+      <FormRenderComponent
+        form={form}
+        schema={schema}
+        widgets={widgets}
+        watch={{ '#': watchHandler }}
+        locale="en-US"
+      />
+    </div>
+  </DetailSectionCard>
+);
+
+export default DetailFormSection;
+
+
+// ========================== FIN DE src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx ==========================
+
+
+// ====================================================================
+// ARCHIVO #301
 // Ruta relativa: src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx
 // Extensión: .tsx
@@ -52373,7 +52482,220 @@ export default DetailHeaderCard;
 
 
 // ====================================================================
-// ARCHIVO #301
+// ARCHIVO #302
+// Ruta relativa: src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/detailSchemas.ts
+// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/detailSchemas.ts
+// Extensión: .ts
+// Líneas aproximadas: 200
+// Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
+// ====================================================================
+
+import type { PropPanelSchema, Schema } from '@pdfme/common';
+
+type BuildInspectorSchemasParams = {
+  typedI18n: (key: string) => string;
+  typeOptions: Array<{ label: string; value: string | undefined }>;
+  defaultSchema: Record<string, unknown>;
+  pluginProps: Record<string, Partial<Schema>>;
+  pageSize: { width: number; height: number };
+  paddingTop: number;
+  paddingRight: number;
+  paddingBottom: number;
+  paddingLeft: number;
+  maxWidth: number;
+  maxHeight: number;
+  validateUniqueSchemaName: (_: unknown, value: string) => boolean;
+  validatePosition: (_: unknown, value: number, fieldName: string) => boolean;
+};
+
+const buildSectionSchema = (properties: Record<string, Partial<Schema>>): PropPanelSchema => ({
+  type: 'object',
+  column: 2,
+  properties,
+});
+
+const replaceColorWidget = (schemaNode: unknown): unknown => {
+  if (!schemaNode || typeof schemaNode !== 'object') return schemaNode;
+  const node = schemaNode as Record<string, unknown>;
+  const nextNode: Record<string, unknown> = { ...node };
+
+  if (nextNode.widget === 'color') {
+    nextNode.widget = 'nativeColor';
+  }
+
+  if (nextNode.properties && typeof nextNode.properties === 'object') {
+    const propsObj = nextNode.properties as Record<string, unknown>;
+    const nextProps: Record<string, unknown> = {};
+    Object.entries(propsObj).forEach(([propKey, propValue]) => {
+      nextProps[propKey] = replaceColorWidget(propValue);
+    });
+    nextNode.properties = nextProps;
+  }
+
+  return nextNode;
+};
+
+export const buildInspectorSchemas = ({
+  typedI18n,
+  typeOptions,
+  defaultSchema,
+  pluginProps,
+  pageSize,
+  paddingTop,
+  paddingRight,
+  paddingBottom,
+  paddingLeft,
+  maxWidth,
+  maxHeight,
+  validateUniqueSchemaName,
+  validatePosition,
+}: BuildInspectorSchemasParams) => {
+  const identitySchema = buildSectionSchema({
+    type: {
+      title: typedI18n('type'),
+      type: 'string',
+      widget: 'select',
+      props: { options: typeOptions },
+      required: true,
+      span: 12,
+    },
+    name: {
+      title: typedI18n('fieldName'),
+      type: 'string',
+      required: true,
+      span: 12,
+      rules: [
+        {
+          validator: validateUniqueSchemaName,
+          message: typedI18n('validation.uniqueName'),
+        },
+      ],
+      props: { autoComplete: 'off' },
+    },
+  });
+
+  const behaviorSchema = buildSectionSchema({
+    editable: {
+      title: typedI18n('editable'),
+      type: 'boolean',
+      span: 10,
+      hidden: typeof defaultSchema.readOnly !== 'undefined',
+    },
+    required: {
+      title: typedI18n('required'),
+      type: 'boolean',
+      span: 14,
+      hidden: '{{!formData.editable}}',
+    },
+  });
+
+  const layoutSchema = buildSectionSchema({
+    align: { title: typedI18n('align'), type: 'void', widget: 'AlignWidget' },
+  });
+
+  const geometrySchema = buildSectionSchema({
+    position: {
+      type: 'object',
+      widget: 'card',
+      properties: {
+        x: {
+          title: 'X',
+          type: 'number',
+          widget: 'inputNumber',
+          required: true,
+          span: 8,
+          min: paddingLeft,
+          max: pageSize.width - paddingRight,
+          rules: [
+            {
+              validator: (_: unknown, value: number) => validatePosition(_, value, 'x'),
+              message: typedI18n('validation.outOfBounds'),
+            },
+          ],
+        },
+        y: {
+          title: 'Y',
+          type: 'number',
+          widget: 'inputNumber',
+          required: true,
+          span: 8,
+          min: paddingTop,
+          max: pageSize.height - paddingBottom,
+          rules: [
+            {
+              validator: (_: unknown, value: number) => validatePosition(_, value, 'y'),
+              message: typedI18n('validation.outOfBounds'),
+            },
+          ],
+        },
+      },
+    },
+    width: {
+      title: typedI18n('width'),
+      type: 'number',
+      widget: 'inputNumber',
+      required: true,
+      span: 6,
+      props: { min: 0, max: maxWidth },
+      rules: [
+        {
+          validator: (_: unknown, value: number) => validatePosition(_, value, 'width'),
+          message: typedI18n('validation.outOfBounds'),
+        },
+      ],
+    },
+    height: {
+      title: typedI18n('height'),
+      type: 'number',
+      widget: 'inputNumber',
+      required: true,
+      span: 6,
+      props: { min: 0, max: maxHeight },
+      rules: [
+        {
+          validator: (_: unknown, value: number) => validatePosition(_, value, 'height'),
+          message: typedI18n('validation.outOfBounds'),
+        },
+      ],
+    },
+  });
+
+  const advancedProperties = {
+    rotate: {
+      title: typedI18n('rotate'),
+      type: 'number',
+      widget: 'inputNumber',
+      disabled: typeof defaultSchema.rotate === 'undefined',
+      max: 360,
+      props: { min: 0 },
+      span: 12,
+    },
+    opacity: {
+      title: typedI18n('opacity'),
+      type: 'number',
+      widget: 'inputNumber',
+      disabled: typeof defaultSchema.opacity === 'undefined',
+      props: { step: 0.1, min: 0, max: 1 },
+      span: 12,
+    },
+    ...pluginProps,
+  };
+
+  return {
+    identity: replaceColorWidget(identitySchema) as PropPanelSchema,
+    behavior: replaceColorWidget(behaviorSchema) as PropPanelSchema,
+    layout: replaceColorWidget(layoutSchema) as PropPanelSchema,
+    geometry: replaceColorWidget(geometrySchema) as PropPanelSchema,
+    advanced: replaceColorWidget(buildSectionSchema(advancedProperties)) as PropPanelSchema,
+  };
+};
+
+
+// ========================== FIN DE src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/detailSchemas.ts ==========================
+
+
+// ====================================================================
+// ARCHIVO #303
 // Ruta relativa: src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx
 // Extensión: .tsx
@@ -52416,50 +52738,39 @@ export default DetailSectionCard;
 
 
 // ====================================================================
-// ARCHIVO #302
-// Ruta relativa: src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/index.tsx
-// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/index.tsx
+// ARCHIVO #304
+// Ruta relativa: src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/detailWidgets.tsx
+// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/detailWidgets.tsx
 // Extensión: .tsx
-// Líneas aproximadas: 601
+// Líneas aproximadas: 132
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
 // ====================================================================
 
-import { useForm } from 'form-render';
-import React, { useRef, useContext, useState, useEffect, useCallback } from 'react';
-import type {
-  Dict,
-  ChangeSchemaItem,
-  SchemaForUI,
-  PropPanelWidgetProps,
-  PropPanelSchema,
-  Schema,
-} from '@pdfme/common';
-import { isBlankPdf } from '@pdfme/common';
-import type { SidebarProps } from '../../../../types.js';
-import { ArrowLeft } from 'lucide-react';
-import { I18nContext, PluginsRegistry, OptionsContext } from '../../../../contexts.js';
-import { debounce } from '../../../../helper.js';
+import React from 'react';
+import type { PropPanelWidgetProps } from '@pdfme/common';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { theme, Typography, Button, Divider, Input, Popover, Tooltip } from 'antd';
+import { Divider, Input, Popover, Tooltip } from 'antd';
 import AlignWidget from './AlignWidget.js';
-import WidgetRenderer from './WidgetRenderer.js';
 import ButtonGroupWidget from './ButtonGroupWidget.js';
-import DetailHeaderCard from './DetailHeaderCard.js';
-import DetailSectionCard from './DetailSectionCard.js';
-import { InternalNamePath, ValidateErrorEntity } from 'rc-field-form/es/interface.js';
-import { SidebarBody, SidebarFrame, SidebarHeader, SIDEBAR_H_PADDING_PX } from '../layout.js';
+import WidgetRenderer from './WidgetRenderer.js';
 
-// Import FormRender as a default import
-import FormRenderComponent from 'form-render';
-
-const { Text } = Typography;
-
-// Wix-like preset palette for the native colour picker
 const COLOR_PRESETS = [
-  '#000000', '#ffffff', '#f5f5f5', '#e0e0e0',
-  '#ef4444', '#f97316', '#eab308', '#22c55e',
-  '#3b82f6', '#8b5cf6', '#ec4899', '#06b6d4',
-  '#1e3a5f', '#7c3aed', '#065f46', '#78350f',
+  '#000000',
+  '#ffffff',
+  '#f5f5f5',
+  '#e0e0e0',
+  '#ef4444',
+  '#f97316',
+  '#eab308',
+  '#22c55e',
+  '#3b82f6',
+  '#8b5cf6',
+  '#ec4899',
+  '#06b6d4',
+  '#1e3a5f',
+  '#7c3aed',
+  '#065f46',
+  '#78350f',
 ];
 
 const ColorPickerWidget = ({
@@ -52468,8 +52779,8 @@ const ColorPickerWidget = ({
   normalizeHex,
 }: {
   value: unknown;
-  onChange?: (v: string) => void;
-  normalizeHex: (v: unknown) => string;
+  onChange?: (_nextValue: string) => void;
+  normalizeHex: (_nextValue: unknown) => string;
 }) => {
   const currentColor = typeof value === 'string' ? value : '#000000';
   const hex = normalizeHex(currentColor);
@@ -52480,9 +52791,13 @@ const ColorPickerWidget = ({
         <Tooltip key={preset} title={preset} placement="top">
           <button
             onClick={() => onChange?.(preset)}
-            onMouseEnter={(e) => { (e.currentTarget.style.transform = 'scale(1.2)'); }}
-            onMouseLeave={(e) => { (e.currentTarget.style.transform = 'scale(1)'); }}
-            className={DESIGNER_CLASSNAME + "button-auto"}
+            onMouseEnter={(e) => {
+              e.currentTarget.style.transform = 'scale(1.2)';
+            }}
+            onMouseLeave={(e) => {
+              e.currentTarget.style.transform = 'scale(1)';
+            }}
+            className={DESIGNER_CLASSNAME + 'button-auto'}
           />
         </Tooltip>
       ))}
@@ -52492,28 +52807,115 @@ const ColorPickerWidget = ({
   return (
     <div className={`${DESIGNER_CLASSNAME}color-picker-container`}>
       <Popover content={swatches} trigger="click" placement="bottomLeft">
-        <button
-          title="Elegir color"
-          className={DESIGNER_CLASSNAME + "button-auto"}
-        />
+        <button title="Elegir color" className={DESIGNER_CLASSNAME + 'button-auto'} />
       </Popover>
       <input
         type="color"
         className={`${DESIGNER_CLASSNAME}color-picker-input`}
         value={hex}
         onChange={(e) => onChange?.(e.target.value)}
-        aria-label="Color picker" />
+        aria-label="Color picker"
+      />
       <Input
         className={`${DESIGNER_CLASSNAME}color-picker-hex`}
         value={currentColor}
         onChange={(e) => onChange?.(e.target.value)}
         placeholder="#000000"
-        size="small" />
+        size="small"
+      />
     </div>
   );
 };
 
+type BuildWidgetsParams = {
+  pluginsRegistry: {
+    values: () => Iterable<{
+      propPanel: {
+        widgets?: Record<string, (props: PropPanelWidgetProps) => void>;
+      };
+    }>;
+  };
+  options: unknown;
+  token: unknown;
+  typedI18n: (key: string) => string;
+  normalizeColorHex: (value: unknown) => string;
+  props: Record<string, unknown>;
+};
+
+export const buildDetailWidgets = ({
+  pluginsRegistry,
+  options,
+  token,
+  typedI18n,
+  normalizeColorHex,
+  props,
+}: BuildWidgetsParams): Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element> => {
+  const widgets: Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element> = {
+    AlignWidget: (p) => <AlignWidget {...p} {...props} options={options} selectionCommands={props.selectionCommands} />,
+    Divider: () => <Divider className={`${DESIGNER_CLASSNAME}detail-view-divider`} />,
+    ButtonGroup: (p) => <ButtonGroupWidget {...p} {...props} options={options} />,
+    nativeColor: (p) => (
+      <ColorPickerWidget value={p.value} onChange={p.onChange} normalizeHex={normalizeColorHex} />
+    ),
+  };
+
+  for (const plugin of pluginsRegistry.values()) {
+    const pluginWidgets = plugin.propPanel.widgets || {};
+    Object.entries(pluginWidgets).forEach(([widgetKey, widgetValue]) => {
+      widgets[widgetKey] = (p) => (
+        <WidgetRenderer
+          {...p}
+          {...props}
+          options={options}
+          theme={token}
+          i18n={typedI18n}
+          widget={widgetValue}
+        />
+      );
+    });
+  }
+
+  return widgets;
+};
+
+
+// ========================== FIN DE src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/detailWidgets.tsx ==========================
+
+
+// ====================================================================
+// ARCHIVO #305
+// Ruta relativa: src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/index.tsx
+// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/index.tsx
+// Extensión: .tsx
+// Líneas aproximadas: 344
+// Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
+// ====================================================================
+
+import { useForm } from 'form-render';
+import React, { useContext, useState, useEffect, useCallback } from 'react';
+import type {
+  Dict,
+  ChangeSchemaItem,
+  SchemaForUI,
+  PropPanelWidgetProps,
+  Schema,
+} from '@pdfme/common';
+import { isBlankPdf } from '@pdfme/common';
+import type { SidebarProps } from '../../../../types.js';
+import { ArrowLeft } from 'lucide-react';
+import { I18nContext, PluginsRegistry, OptionsContext } from '../../../../contexts.js';
+import { debounce } from '../../../../helper.js';
+import { DESIGNER_CLASSNAME } from '../../../../constants.js';
+import { theme, Typography, Button, Tooltip } from 'antd';
+import { InternalNamePath, ValidateErrorEntity } from 'rc-field-form/es/interface.js';
+import { SidebarBody, SidebarFrame, SidebarHeader } from '../layout.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
+import DetailHeaderCard from './DetailHeaderCard.js';
+import DetailFormSection from './DetailFormSection.js';
+import { buildInspectorSchemas } from './detailSchemas.js';
+import { buildDetailWidgets } from './detailWidgets.js';
+
+const { Text } = Typography;
 
 type DetailViewProps = Pick<
   SidebarProps,
@@ -52532,26 +52934,22 @@ type DetailViewProps = Pick<
 
 const DetailView = (props: DetailViewProps) => {
   const { token } = theme.useToken();
-
   const { schemasList, changeSchemas, deselectSchema, activeSchema, pageSize, basePdf } = props;
   const form = useForm();
-
   const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
   const options = useContext(OptionsContext);
 
-  // Define a type-safe i18n function that accepts string keys
   const typedI18n = useCallback(
     (key: string): string => {
-      // Use a type assertion to handle the union type constraint
       return typeof i18n === 'function' ? i18n(key as keyof Dict) : key;
     },
     [i18n],
   );
 
-  const [widgets, setWidgets] = useState<{
-    [key: string]: (props: PropPanelWidgetProps) => React.JSX.Element;
-  }>({});
+  const [widgets, setWidgets] = useState<
+    Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element>
+  >({});
 
   const normalizeColorHex = useCallback((value: unknown): string => {
     if (typeof value !== 'string') return '#000000';
@@ -52566,6 +52964,7 @@ const DetailView = (props: DetailViewProps) => {
       }
       return `#${raw}`;
     }
+
     const rgbMatch = value
       .replace(/\s+/g, '')
       .match(/^rgba?\((\d{1,3}),(\d{1,3}),(\d{1,3})(?:,[0-9.]+)?\)$/i);
@@ -52581,86 +52980,47 @@ const DetailView = (props: DetailViewProps) => {
     return '#000000';
   }, []);
 
+  const optionsKey = JSON.stringify(options);
+
   useEffect(() => {
-    const newWidgets: typeof widgets = {
-      AlignWidget: (p) => (
-        <AlignWidget
-          {...p}
-          {...props}
-          options={options}
-          selectionCommands={props.selectionCommands}
-        />
-      ),
-      Divider: () => (
-        <Divider className={`${DESIGNER_CLASSNAME}detail-view-divider`} />
-      ),
-      ButtonGroup: (p) => <ButtonGroupWidget {...p} {...props} options={options} />,
-      nativeColor: (p) => (
-        <ColorPickerWidget
-          value={p.value}
-          onChange={p.onChange}
-          normalizeHex={normalizeColorHex}
-        />
-      ),
-    };
-    for (const plugin of pluginsRegistry.values()) {
-      const widgets = plugin.propPanel.widgets || {};
-      Object.entries(widgets).forEach(([widgetKey, widgetValue]) => {
-        newWidgets[widgetKey] = (p) => (
-          <WidgetRenderer
-            {...p}
-            {...props}
-            options={options}
-            theme={token}
-            i18n={typedI18n}
-            widget={widgetValue}
-          />
-        );
-      });
-    }
+    const newWidgets = buildDetailWidgets({
+      pluginsRegistry,
+      options,
+      token,
+      typedI18n,
+      normalizeColorHex,
+      props,
+    });
     setWidgets(newWidgets);
-  }, [activeSchema, normalizeColorHex, pluginsRegistry, JSON.stringify(options), token]);
+  }, [activeSchema.id, normalizeColorHex, options, pluginsRegistry, optionsKey, props, token, typedI18n]);
 
-  useEffect(() => form.resetFields(), [activeSchema.id]);
+  useEffect(() => form.resetFields(), [activeSchema.id, form]);
 
   useEffect(() => {
-    // Create a type-safe copy of the schema with editable property
     const values: Record<string, unknown> = { ...activeSchema };
-    // Safely access and set properties
     const readOnly = typeof values.readOnly === 'boolean' ? values.readOnly : false;
     values.editable = !readOnly;
     form.setValues(values);
-  }, [activeSchema]);
+  }, [activeSchema, form]);
 
-  useEffect(() => {
-    uniqueSchemaName.current = (value: string): boolean => {
+  const validateUniqueSchemaName = useCallback(
+    (_: unknown, value: string): boolean => {
       for (const page of schemasList) {
-        for (const s of Object.values(page)) {
-          if (s.name === value && s.id !== activeSchema.id) {
+        for (const schema of Object.values(page)) {
+          if (schema.name === value && schema.id !== activeSchema.id) {
             return false;
           }
         }
       }
       return true;
-    };
-  }, [schemasList, activeSchema]);
-
-  // Reference to a function that validates schema name uniqueness
-  const uniqueSchemaName = useRef(
-    // eslint-disable-next-line @typescript-eslint/no-unused-vars
-    (_unused: string): boolean => true,
+    },
+    [schemasList, activeSchema.id],
   );
 
-  // Use proper type for validator function parameter
-  const validateUniqueSchemaName = (_: unknown, value: string): boolean =>
-    uniqueSchemaName.current(value);
-
-  // Calculate padding values once
   const [paddingTop, paddingRight, paddingBottom, paddingLeft] = isBlankPdf(basePdf)
     ? basePdf.padding
     : [0, 0, 0, 0];
 
-  // Cross-field validation: only checks when both fields are individually valid
   const validatePosition = (_: unknown, value: number, fieldName: string): boolean => {
     const formValues = form.getValues() as Record<string, unknown>;
     const position = formValues.position as { x: number; y: number } | undefined;
@@ -52686,7 +53046,6 @@ const DetailView = (props: DetailViewProps) => {
     return true;
   };
 
-  // Use explicit type for debounce function that matches the expected signature
   const handleWatch = debounce(function (...args: unknown[]) {
     const formSchema = args[0] as Record<string, unknown>;
     const formAndSchemaValuesDiffer = (formValue: unknown, schemaValue: unknown): boolean => {
@@ -52702,7 +53061,6 @@ const DetailView = (props: DetailViewProps) => {
 
       let value = formSchema[key];
       if (formAndSchemaValuesDiffer(value, (activeSchema as Record<string, unknown>)[key])) {
-        // FIXME memo: https://github.com/pdfme/pdfme/pull/367#issuecomment-1857468274
         if (value === null && ['rotate', 'opacity'].includes(key)) {
           value = undefined;
         }
@@ -52721,7 +53079,6 @@ const DetailView = (props: DetailViewProps) => {
     }
 
     if (changes.length) {
-      // Only commit these schema changes if they have passed form validation
       form
         .validateFields()
         .then(() => changeSchemas(changes))
@@ -52746,240 +53103,67 @@ const DetailView = (props: DetailViewProps) => {
     throw Error(`[@pdfme/ui] Failed to find plugin used for ${activeSchema.type}`);
   }
 
-  const activePropPanelSchema = activePlugin.propPanel.schema;
   const typeOptions: Array<{ label: string; value: string | undefined }> = [];
-
   pluginsRegistry.entries().forEach(([label, plugin]) => {
     typeOptions.push({ label, value: plugin.propPanel.defaultSchema?.type ?? undefined });
   });
 
-  // Create a safe empty schema as fallback
   const emptySchema: Record<string, unknown> = {};
-
-  // Safely access the default schema with proper null checking
   const defaultSchema: Record<string, unknown> = activePlugin?.propPanel?.defaultSchema
-    ? // Create a safe copy of the schema
-    (() => {
-      const result: Record<string, unknown> = {};
-
-      // Only copy properties that exist on the object
-      for (const key in activePlugin.propPanel.defaultSchema) {
-        if (Object.prototype.hasOwnProperty.call(activePlugin.propPanel.defaultSchema, key)) {
-          result[key] = (activePlugin.propPanel.defaultSchema as Record<string, unknown>)[key];
+    ? (() => {
+        const result: Record<string, unknown> = {};
+        for (const key in activePlugin.propPanel.defaultSchema) {
+          if (Object.prototype.hasOwnProperty.call(activePlugin.propPanel.defaultSchema, key)) {
+            result[key] = (activePlugin.propPanel.defaultSchema as Record<string, unknown>)[key];
+          }
         }
-      }
-
-      return result;
-    })()
+        return result;
+      })()
     : emptySchema;
 
-  // Calculate max values considering padding
-  const maxWidth = pageSize.width - paddingLeft - paddingRight;
-  const maxHeight = pageSize.height - paddingTop - paddingBottom;
-
-  // Create a type-safe schema object
-  const propPanelSchema: PropPanelSchema = {
-    type: 'object',
-    column: 2,
-    properties: {
-      type: {
-        title: typedI18n('type'),
-        type: 'string',
-        widget: 'select',
-        props: { options: typeOptions },
-        required: true,
-        span: 12,
-      },
-      name: {
-        title: typedI18n('fieldName'),
-        type: 'string',
-        required: true,
-        span: 12,
-        rules: [
-          {
-            validator: validateUniqueSchemaName,
-            message: typedI18n('validation.uniqueName'),
-          },
-        ],
-        props: { autoComplete: 'off' },
-      },
-      editable: {
-        title: typedI18n('editable'),
-        type: 'boolean',
-        span: 8,
-        hidden: typeof defaultSchema.readOnly !== 'undefined',
-      },
-      required: {
-        title: typedI18n('required'),
-        type: 'boolean',
-        span: 16,
-        hidden: '{{!formData.editable}}',
-      },
-      '-': { type: 'void', widget: 'Divider' },
-      align: { title: typedI18n('align'), type: 'void', widget: 'AlignWidget' },
-      position: {
-        type: 'object',
-        widget: 'card',
-        properties: {
-          x: {
-            title: 'X',
-            type: 'number',
-            widget: 'inputNumber',
-            required: true,
-            span: 8,
-            min: paddingLeft,
-            max: pageSize.width - paddingRight,
-            rules: [
-              {
-                validator: (_: unknown, value: number) => validatePosition(_, value, 'x'),
-                message: typedI18n('validation.outOfBounds'),
-              },
-            ],
-          },
-          y: {
-            title: 'Y',
-            type: 'number',
-            widget: 'inputNumber',
-            required: true,
-            span: 8,
-            min: paddingTop,
-            max: pageSize.height - paddingBottom,
-            rules: [
-              {
-                validator: (_: unknown, value: number) => validatePosition(_, value, 'y'),
-                message: typedI18n('validation.outOfBounds'),
-              },
-            ],
-          },
-        },
-      },
-      width: {
-        title: typedI18n('width'),
-        type: 'number',
-        widget: 'inputNumber',
-        required: true,
-        span: 6,
-        props: { min: 0, max: maxWidth },
-        rules: [
-          {
-            validator: (_: unknown, value: number) => validatePosition(_, value, 'width'),
-            message: typedI18n('validation.outOfBounds'),
-          },
-        ],
-      },
-      height: {
-        title: typedI18n('height'),
-        type: 'number',
-        widget: 'inputNumber',
-        required: true,
-        span: 6,
-        props: { min: 0, max: maxHeight },
-        rules: [
-          {
-            validator: (_: unknown, value: number) => validatePosition(_, value, 'height'),
-            message: typedI18n('validation.outOfBounds'),
-          },
-        ],
-      },
-      rotate: {
-        title: typedI18n('rotate'),
-        type: 'number',
-        widget: 'inputNumber',
-        disabled: typeof defaultSchema.rotate === 'undefined',
-        max: 360,
-        props: { min: 0 },
-        span: 6,
-      },
-      opacity: {
-        title: typedI18n('opacity'),
-        type: 'number',
-        widget: 'inputNumber',
-        disabled: typeof defaultSchema.opacity === 'undefined',
-        props: { step: 0.1, min: 0, max: 1 },
-        span: 6,
-      },
-    },
-  };
-
-  const replaceColorWidget = (schemaNode: unknown): unknown => {
-    if (!schemaNode || typeof schemaNode !== 'object') return schemaNode;
-    const node = schemaNode as Record<string, unknown>;
-    const nextNode: Record<string, unknown> = { ...node };
-
-    if (nextNode.widget === 'color') {
-      nextNode.widget = 'nativeColor';
-    }
-
-    if (nextNode.properties && typeof nextNode.properties === 'object') {
-      const propsObj = nextNode.properties as Record<string, unknown>;
-      const nextProps: Record<string, unknown> = {};
-      Object.entries(propsObj).forEach(([propKey, propValue]) => {
-        nextProps[propKey] = replaceColorWidget(propValue);
-      });
-      nextNode.properties = nextProps;
-    }
-
-    return nextNode;
-  };
-
-  // Create a safe copy of the properties
-  const safeProperties = { ...propPanelSchema.properties };
-
-  if (typeof activePropPanelSchema === 'function') {
-    // Create a new object without the schemasList property
-    const { size, schemas, pageSize, changeSchemas, activeElements, deselectSchema, activeSchema } =
-      props;
-    const propPanelProps = {
-      size,
-      schemas,
-      pageSize,
-      changeSchemas,
-      activeElements,
-      deselectSchema,
-      activeSchema,
-    };
-
-    // Use the typedI18n function to avoid type issues
-    const functionResult = activePropPanelSchema({
-      ...propPanelProps,
-      options,
-      theme: token,
-      i18n: typedI18n,
-    });
-
-    // Safely handle the result
-    const apps = functionResult && typeof functionResult === 'object' ? functionResult : {};
-
-    // Create a divider if needed
-    const dividerObj =
-      Object.keys(apps).length === 0 ? {} : { '--': { type: 'void', widget: 'Divider' } };
-
-    // Assign properties safely - use type assertion to satisfy TypeScript
-    propPanelSchema.properties = {
-      ...safeProperties,
-      ...(dividerObj as Record<string, Partial<Schema>>),
-      ...(apps as Record<string, Partial<Schema>>),
-    };
-  } else {
-    // Handle non-function case
-    const apps =
-      activePropPanelSchema && typeof activePropPanelSchema === 'object'
-        ? activePropPanelSchema
+  const pluginProps =
+    typeof activePlugin.propPanel.schema === 'function'
+      ? (() => {
+          const { size, schemas, pageSize, changeSchemas, activeElements, deselectSchema, activeSchema } =
+            props;
+          const propPanelProps = {
+            size,
+            schemas,
+            pageSize,
+            changeSchemas,
+            activeElements,
+            deselectSchema,
+            activeSchema,
+          };
+          const functionResult = activePlugin.propPanel.schema({
+            ...propPanelProps,
+            options,
+            theme: token,
+            i18n: typedI18n,
+          });
+          return functionResult && typeof functionResult === 'object' ? functionResult : {};
+        })()
+      : activePlugin.propPanel.schema && typeof activePlugin.propPanel.schema === 'object'
+        ? activePlugin.propPanel.schema
         : {};
 
-    // Create a divider if needed
-    const dividerObj =
-      Object.keys(apps).length === 0 ? {} : { '--': { type: 'void', widget: 'Divider' } };
-
-    // Assign properties safely - use type assertion to satisfy TypeScript
-    propPanelSchema.properties = {
-      ...safeProperties,
-      ...(dividerObj as Record<string, Partial<Schema>>),
-      ...(apps as Record<string, Partial<Schema>>),
-    };
-  }
-
-  const normalizedPropPanelSchema = replaceColorWidget(propPanelSchema) as PropPanelSchema;
+  const maxWidth = pageSize.width - paddingLeft - paddingRight;
+  const maxHeight = pageSize.height - paddingTop - paddingBottom;
+  const sectionSchemas = buildInspectorSchemas({
+    typedI18n,
+    typeOptions,
+    defaultSchema,
+    pluginProps: pluginProps as Record<string, Partial<Schema>>,
+    pageSize,
+    paddingTop,
+    paddingRight,
+    paddingBottom,
+    paddingLeft,
+    maxWidth,
+    maxHeight,
+    validateUniqueSchemaName,
+    validatePosition,
+  });
 
   return (
     <SidebarFrame className={DESIGNER_CLASSNAME + 'detail-view'}>
@@ -53000,27 +53184,53 @@ const DetailView = (props: DetailViewProps) => {
       </SidebarHeader>
       <SidebarBody>
         <DetailHeaderCard activeSchema={activeSchema} />
-        <DetailSectionCard
-          title={typedI18n('editField')}
-          description="Ajusta identidad, tamaño, posición y comportamiento del campo sin salir del documento."
-        >
-          <div className={`${DESIGNER_CLASSNAME}detail-view-form-shell`}>
-            <FormRenderComponent
-              form={form}
-              schema={normalizedPropPanelSchema}
-              widgets={widgets}
-              watch={{ '#': handleWatch }}
-              locale="en-US"
-            />
-          </div>
-        </DetailSectionCard>
+        <DetailFormSection
+          title="Identidad"
+          description="Nombre visible y tipo del campo."
+          schema={sectionSchemas.identity}
+          form={form}
+          widgets={widgets}
+          watchHandler={handleWatch}
+        />
+        <DetailFormSection
+          title="Comportamiento"
+          description="Controla edicion, obligatoriedad y permisos del campo."
+          schema={sectionSchemas.behavior}
+          form={form}
+          widgets={widgets}
+          watchHandler={handleWatch}
+        />
+        <DetailFormSection
+          title="Alineacion y layout"
+          description="Alinea el contenido segun el comportamiento esperado del componente."
+          schema={sectionSchemas.layout}
+          form={form}
+          widgets={widgets}
+          watchHandler={handleWatch}
+        />
+        <DetailFormSection
+          title="Geometria"
+          description="Ubicacion y dimensiones del campo en la pagina."
+          schema={sectionSchemas.geometry}
+          form={form}
+          widgets={widgets}
+          watchHandler={handleWatch}
+        />
+        <DetailFormSection
+          title="Estilo avanzado"
+          description="Rotacion, opacidad y propiedades especiales del plugin."
+          schema={sectionSchemas.advanced}
+          form={form}
+          widgets={widgets}
+          watchHandler={handleWatch}
+        />
       </SidebarBody>
     </SidebarFrame>
   );
 };
 
 const propsAreUnchanged = (prevProps: DetailViewProps, nextProps: DetailViewProps) => {
-  return JSON.stringify(prevProps.activeSchema) == JSON.stringify(nextProps.activeSchema);
+  return JSON.stringify(prevProps.activeSchema) === JSON.stringify(nextProps.activeSchema);
 };
 
 export default React.memo(DetailView, propsAreUnchanged);
@@ -53030,7 +53240,7 @@ export default React.memo(DetailView, propsAreUnchanged);
 
 
 // ====================================================================
-// ARCHIVO #303
+// ARCHIVO #306
 // Ruta relativa: src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx
 // Extensión: .tsx
@@ -53076,11 +53286,11 @@ export default WidgetRenderer;
 
 
 // ====================================================================
-// ARCHIVO #304
+// ARCHIVO #307
 // Ruta relativa: src/pdfme/ui/src/components/Designer/RightSidebar/ListView/index.tsx
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/RightSidebar/ListView/index.tsx
 // Extensión: .tsx
-// Líneas aproximadas: 140
+// Líneas aproximadas: 166
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
 // ====================================================================
 
@@ -53088,7 +53298,7 @@ import React, { useContext, useState, useMemo } from 'react';
 import type { SidebarProps } from '../../../../types.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { I18nContext } from '../../../../contexts.js';
-import { Input } from 'antd';
+import { Button, Input, Typography } from 'antd';
 import SelectableSortableContainer from './SelectableSortableContainer.js';
 import { SidebarBody, SidebarFooter, SidebarFrame, SidebarHeader } from '../layout.js';
 import { mergeClassNames } from '../../shared/className.js';
@@ -53096,6 +53306,7 @@ import ListViewToolbar from './ListViewToolbar.js';
 import ListViewFooter from './ListViewFooter.js';
 
 const { TextArea } = Input;
+const { Text } = Typography;
 
 const ListView = (
   props: Pick<
@@ -53165,19 +53376,25 @@ const ListView = (
     <SidebarFrame
       className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view', props.className)}>
       {!isBulkUpdateFieldNamesMode ? (
-        <SidebarHeader>
-          <ListViewToolbar
-            searchQuery={searchQuery}
-            typeFilter={typeFilter}
-            schemaTypes={schemaTypes}
-            filteredCount={filteredSchemas.length}
-            totalCount={schemas.length}
-            hasActiveSearch={hasActiveSearch}
-            onChangeSearch={setSearchQuery}
-            onChangeType={setTypeFilter}
-            useDefaultStyles={props.useDefaultStyles}
-          />
-        </SidebarHeader>
+      <SidebarHeader>
+        <ListViewToolbar
+          searchQuery={searchQuery}
+          typeFilter={typeFilter}
+          schemaTypes={schemaTypes}
+          filteredCount={filteredSchemas.length}
+          totalCount={schemas.length}
+          hasActiveSearch={hasActiveSearch}
+          hasSchemas={schemas.length > 0}
+          onChangeSearch={setSearchQuery}
+          onChangeType={setTypeFilter}
+          onStartBulk={startBulk}
+          onClearFilters={() => {
+            setSearchQuery('');
+            setTypeFilter('all');
+          }}
+          useDefaultStyles={props.useDefaultStyles}
+        />
+      </SidebarHeader>
       ) : null}
       <SidebarBody>
         {isBulkUpdateFieldNamesMode ? (
@@ -53199,25 +53416,44 @@ const ListView = (
             />
           ) : (
             <div className={DESIGNER_CLASSNAME + 'list-view-empty'}>
-              No hay campos que coincidan con los filtros actuales.
+              <Text strong className={DESIGNER_CLASSNAME + 'list-view-empty-title'}>
+                No hay campos que coincidan
+              </Text>
+              <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-empty-hint'}>
+                Limpia la búsqueda, cambia el tipo o vuelve a la vista general del catálogo.
+              </Text>
+              {hasActiveSearch ? (
+                <Button
+                  size="small"
+                  type="default"
+                  onClick={() => {
+                    setSearchQuery('');
+                    setTypeFilter('all');
+                  }}
+                  className={DESIGNER_CLASSNAME + 'list-view-empty-action'}>
+                  Limpiar filtros
+                </Button>
+              ) : null}
             </div>
           )
         )}
       </SidebarBody>
-      <SidebarFooter>
-        <ListViewFooter
-          bulkMode={isBulkUpdateFieldNamesMode}
-          hasSchemas={schemas.length > 0}
-          onCommit={commitBulk}
-          onCancel={() => setIsBulkUpdateFieldNamesMode(false)}
-          onStartBulk={startBulk}
-          labels={{
-            bulkUpdateFieldName: i18n('bulkUpdateFieldName'),
-            commitBulkUpdateFieldName: i18n('commitBulkUpdateFieldName'),
-            cancel: i18n('cancel'),
-          }}
-        />
-      </SidebarFooter>
+      {isBulkUpdateFieldNamesMode ? (
+        <SidebarFooter>
+          <ListViewFooter
+            bulkMode={isBulkUpdateFieldNamesMode}
+            hasSchemas={schemas.length > 0}
+            onCommit={commitBulk}
+            onCancel={() => setIsBulkUpdateFieldNamesMode(false)}
+            onStartBulk={startBulk}
+            labels={{
+              bulkUpdateFieldName: i18n('bulkUpdateFieldName'),
+              commitBulkUpdateFieldName: i18n('commitBulkUpdateFieldName'),
+              cancel: i18n('cancel'),
+            }}
+          />
+        </SidebarFooter>
+      ) : null}
     </SidebarFrame>
   );
 };
@@ -53229,11 +53465,11 @@ export default ListView;
 
 
 // ====================================================================
-// ARCHIVO #305
+// ARCHIVO #308
 // Ruta relativa: src/pdfme/ui/src/components/Designer/RightSidebar/ListView/Item.tsx
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/RightSidebar/ListView/Item.tsx
 // Extensión: .tsx
-// Líneas aproximadas: 268
+// Líneas aproximadas: 285
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
 // ====================================================================
 
@@ -53313,6 +53549,10 @@ interface Props {
   transition?: string;
   /** Transform data for the item */
   transform?: { x: number; y: number; scaleX: number; scaleY: number } | null;
+  /** Whether the row is selected or part of an active multi-selection */
+  selected?: boolean;
+  /** Whether the row is being hovered */
+  hovered?: boolean;
   /** Whether to fade the item in */
   fadeIn?: boolean;
   /** Drag listeners from dnd-kit */
@@ -53417,15 +53657,14 @@ const Item = React.memo(
       onClick,
       onMouseEnter,
       onMouseLeave,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       dragging,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       fadeIn,
       listeners,
-      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       sorting,
       transition,
       transform,
+      selected,
+      hovered,
       ...props
     },
     ref,
@@ -53464,11 +53703,25 @@ const Item = React.memo(
         ref={ref}
         className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item', className)}
         style={dragStyle}
+        data-dragging={dragging ? 'true' : 'false'}
+        data-sorting={sorting ? 'true' : 'false'}
+        data-fade-in={fadeIn ? 'true' : 'false'}
+        data-selected={selected ? 'true' : 'false'}
+        data-hovered={hovered ? 'true' : 'false'}
         data-schema-type={schemaType}>
         <div
           className={DESIGNER_CLASSNAME + 'list-view-item-content'}
           {...props}
-          onClick={onClick}>
+          role="button"
+          tabIndex={0}
+          aria-label={valueTooltip}
+          onClick={onClick}
+          onKeyDown={(event) => {
+            if (event.key === 'Enter' || event.key === ' ') {
+              event.preventDefault();
+              onClick?.();
+            }
+          }}>
           <Button
             {...listeners}
             className={DESIGNER_CLASSNAME + 'list-view-item-grip'}
@@ -53510,7 +53763,7 @@ export default Item;
 
 
 // ====================================================================
-// ARCHIVO #306
+// ARCHIVO #309
 // Ruta relativa: src/pdfme/ui/src/components/Designer/RightSidebar/ListView/ListViewDragOverlay.tsx
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/RightSidebar/ListView/ListViewDragOverlay.tsx
 // Extensión: .tsx
@@ -53584,17 +53837,19 @@ export default ListViewDragOverlay;
 
 
 // ====================================================================
-// ARCHIVO #307
+// ARCHIVO #310
 // Ruta relativa: src/pdfme/ui/src/components/Designer/RightSidebar/ListView/ListViewFooter.tsx
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/RightSidebar/ListView/ListViewFooter.tsx
 // Extensión: .tsx
-// Líneas aproximadas: 49
+// Líneas aproximadas: 56
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
 // ====================================================================
 
 import React from 'react';
-import { Button, Tooltip } from 'antd';
+import { Button, Typography, Tooltip } from 'antd';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
+
+const { Text } = Typography;
 
 type Props = {
   bulkMode: boolean;
@@ -53611,21 +53866,26 @@ type Props = {
 
 const ListViewFooter = ({ bulkMode, hasSchemas, onCommit, onCancel, onStartBulk, labels }: Props) =>
   bulkMode ? (
-    <>
-      <Button
-        className={DESIGNER_CLASSNAME + 'bulk-commit'}
-        size="small"
-        type="primary"
-        onClick={onCommit}>
-        {labels.commitBulkUpdateFieldName}
-      </Button>
-      <Button
-        className={DESIGNER_CLASSNAME + 'bulk-cancel'}
-        size="small"
-        onClick={onCancel}>
-        {labels.cancel}
-      </Button>
-    </>
+    <div className={DESIGNER_CLASSNAME + 'bulk-footer'}>
+      <Text type="secondary" className={DESIGNER_CLASSNAME + 'bulk-footer-hint'}>
+        Cambios masivos pendientes
+      </Text>
+      <div className={DESIGNER_CLASSNAME + 'bulk-footer-actions'}>
+        <Button
+          className={DESIGNER_CLASSNAME + 'bulk-commit'}
+          size="small"
+          type="primary"
+          onClick={onCommit}>
+          {labels.commitBulkUpdateFieldName}
+        </Button>
+        <Button
+          className={DESIGNER_CLASSNAME + 'bulk-cancel'}
+          size="small"
+          onClick={onCancel}>
+          {labels.cancel}
+        </Button>
+      </div>
+    </div>
   ) : (
     <Tooltip title={labels.bulkUpdateFieldName} placement="top">
       <Button
@@ -53634,7 +53894,7 @@ const ListViewFooter = ({ bulkMode, hasSchemas, onCommit, onCancel, onStartBulk,
         type="text"
         onClick={onStartBulk}
         disabled={!hasSchemas}>
-        <u>{labels.bulkUpdateFieldName}</u>
+        {labels.bulkUpdateFieldName}
       </Button>
     </Tooltip>
   );
@@ -53646,16 +53906,16 @@ export default ListViewFooter;
 
 
 // ====================================================================
-// ARCHIVO #308
+// ARCHIVO #311
 // Ruta relativa: src/pdfme/ui/src/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx
 // Extensión: .tsx
-// Líneas aproximadas: 144
+// Líneas aproximadas: 189
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
 // ====================================================================
 
 import React from 'react';
-import { Input, Select, Typography } from 'antd';
+import { Button, Input, Select, Typography } from 'antd';
 import { Layers, Search } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 
@@ -53670,8 +53930,11 @@ type Props = {
   filteredCount: number;
   totalCount: number;
   hasActiveSearch: boolean;
-  onChangeSearch: (value: string) => void;
-  onChangeType: (value: string) => void;
+  hasSchemas: boolean;
+  onChangeSearch: (_value: string) => void;
+  onChangeType: (_value: string) => void;
+  onStartBulk: () => void;
+  onClearFilters: () => void;
   useDefaultStyles?: boolean;
 };
 
@@ -53682,8 +53945,11 @@ const ListViewToolbar = ({
   filteredCount,
   totalCount,
   hasActiveSearch,
+  hasSchemas,
   onChangeSearch,
   onChangeType,
+  onStartBulk,
+  onClearFilters,
   useDefaultStyles,
 }: Props) => {
   const densityStyles =
@@ -53694,103 +53960,142 @@ const ListViewToolbar = ({
         titleWrap: {} as React.CSSProperties,
         title: {} as React.CSSProperties,
         counter: {} as React.CSSProperties,
+        subtitle: {} as React.CSSProperties,
         searchWrap: {} as React.CSSProperties,
         input: {} as React.CSSProperties,
         empty: {} as React.CSSProperties,
+        actions: {} as React.CSSProperties,
       }
       : {
-        container: {
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 6,
-          minWidth: 0,
-          width: '100%',
-        } as const,
-        header: {
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          minWidth: 0,
-          width: '100%',
-        } as const,
-        titleWrap: {
-          display: 'flex',
-          alignItems: 'center',
-          gap: 8,
-          minWidth: 0,
-          flex: 1,
-        } as const,
-        title: {
-          flex: 1,
-          minWidth: 0,
-          whiteSpace: 'nowrap',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-        } as const,
-        counter: {
-          flexShrink: 0,
-          fontSize: 10,
-          border: '1px solid rgba(15,23,42,0.1)',
-          borderRadius: 999,
-          padding: '0 6px',
-          lineHeight: '18px',
-        } as const,
-        searchWrap: {
-          padding: '6px 10px 4px',
-          display: 'flex',
-          flexDirection: 'column',
-          gap: 6,
-          minWidth: 0,
-        } as const,
-        input: { borderRadius: 7, fontSize: 12, height: 30, minWidth: 0 } as const,
-        empty: { fontSize: 11, textAlign: 'center', padding: '7px 0' } as const,
+          container: {
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 10,
+            minWidth: 0,
+            width: '100%',
+          } as const,
+          header: {
+            display: 'flex',
+            alignItems: 'flex-start',
+            justifyContent: 'space-between',
+            gap: 10,
+            minWidth: 0,
+            width: '100%',
+          } as const,
+          titleWrap: {
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'flex-start',
+            gap: 3,
+            minWidth: 0,
+            flex: 1,
+          } as const,
+          title: {
+            minWidth: 0,
+            display: 'flex',
+            alignItems: 'center',
+            gap: 8,
+          } as const,
+          counter: {
+            flexShrink: 0,
+            fontSize: 9.5,
+            letterSpacing: '0.05em',
+            textTransform: 'uppercase',
+            border: '1px solid rgba(148, 163, 184, 0.18)',
+            borderRadius: 999,
+            padding: '0 7px',
+            lineHeight: '18px',
+          } as const,
+          subtitle: {
+            fontSize: 11,
+            lineHeight: 1.35,
+            maxWidth: '100%',
+          } as const,
+          searchWrap: {
+            padding: '0',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 8,
+            minWidth: 0,
+          } as const,
+          input: { borderRadius: 10, fontSize: 12, height: 32, minWidth: 0 } as const,
+          empty: { fontSize: 11, textAlign: 'left', padding: '0' } as const,
+          actions: {
+            display: 'inline-flex',
+            alignItems: 'center',
+            gap: 6,
+            flexShrink: 0,
+          } as const,
       };
 
+  const subtitle = hasActiveSearch
+    ? filteredCount === 0
+      ? 'Sin coincidencias. Ajusta filtros o limpia la búsqueda.'
+      : `Mostrando ${filteredCount} coincidencias`
+    : 'Gestiona nombres, orden y visibilidad';
+
   return (
-    <div className={DESIGNER_CLASSNAME + 'list-view-toolbar'}>
-      <div className={DESIGNER_CLASSNAME + 'sidebar-header'}>
-        <div className={DESIGNER_CLASSNAME + 'sidebar-header-content'}>
-          <div className={DESIGNER_CLASSNAME + 'sidebar-header-title'}>
-            <Layers size={15} className={DESIGNER_CLASSNAME + "layers-auto"} />
+    <div className={DESIGNER_CLASSNAME + 'list-view-toolbar'} style={densityStyles.container}>
+      <div className={DESIGNER_CLASSNAME + 'sidebar-header'} style={densityStyles.header}>
+        <div className={DESIGNER_CLASSNAME + 'sidebar-header-content'} style={densityStyles.titleWrap}>
+          <div className={DESIGNER_CLASSNAME + 'sidebar-header-title'} style={densityStyles.title}>
+            <Layers size={14} className={DESIGNER_CLASSNAME + 'layers-auto'} />
             <Text strong className={DESIGNER_CLASSNAME + 'list-view-title'}>
-              Lista de campos
+              Campos del documento
+            </Text>
+            <Text
+              type="secondary"
+              className={DESIGNER_CLASSNAME + 'list-view-counter'}
+              style={densityStyles.counter}>
+              {filteredCount}/{totalCount}
             </Text>
           </div>
-          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-counter'}>
-            {filteredCount} de {totalCount}
+          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-subtitle'} style={densityStyles.subtitle}>
+            {subtitle}
           </Text>
         </div>
+        {hasSchemas ? (
+          <Button
+            type="text"
+            size="small"
+            onClick={onStartBulk}
+            className={DESIGNER_CLASSNAME + 'bulk-update'}>
+            Renombrar
+          </Button>
+        ) : null}
       </div>
-      <div className={DESIGNER_CLASSNAME + 'list-view-toolbar-controls'}>
+      <div className={DESIGNER_CLASSNAME + 'list-view-toolbar-controls'} style={densityStyles.searchWrap}>
         <Input
           size="small"
           allowClear
-          placeholder="Buscar campo..."
-          prefix={<Search size={12} className={DESIGNER_CLASSNAME + "search-auto"} />}
+          placeholder="Buscar campo, tipo o categoría"
+          prefix={<Search size={12} className={DESIGNER_CLASSNAME + 'search-auto'} />}
           value={searchQuery}
           onChange={(e) => onChangeSearch(e.target.value)}
-          className={DESIGNER_CLASSNAME + "input-auto"}
+          className={DESIGNER_CLASSNAME + 'input-auto'}
+          style={densityStyles.input}
         />
-        {schemaTypes.length > 2 ? (
-          <Select
-            size="small"
-            value={typeFilter}
-            onChange={onChangeType}
-            options={schemaTypes}
-            popupMatchSelectWidth={false}
-            className={DESIGNER_CLASSNAME + "select-auto"}
-          />
-        ) : null}
-        {hasActiveSearch && filteredCount === 0 ? (
-          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-subtitle'}>
-            Sin resultados
-          </Text>
-        ) : null}
-        {hasActiveSearch && filteredCount > 0 ? (
-          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-subtitle'}>
-            Mostrando {filteredCount} coincidencias
-          </Text>
-        ) : null}
+        <div className={DESIGNER_CLASSNAME + 'list-view-toolbar-row'}>
+          {schemaTypes.length > 2 ? (
+            <Select
+              size="small"
+              value={typeFilter}
+              onChange={onChangeType}
+              options={schemaTypes}
+              popupMatchSelectWidth={false}
+              className={DESIGNER_CLASSNAME + 'select-auto'}
+            />
+          ) : null}
+          {hasActiveSearch ? (
+            <Button
+              type="text"
+              size="small"
+              onClick={onClearFilters}
+              className={DESIGNER_CLASSNAME + 'list-view-clear-filters'}>
+              Limpiar
+            </Button>
+          ) : null}
+        </div>
       </div>
     </div>
   );
@@ -53803,7 +54108,7 @@ export default ListViewToolbar;
 
 
 // ====================================================================
-// ARCHIVO #309
+// ARCHIVO #312
 // Ruta relativa: src/pdfme/ui/src/components/Designer/RightSidebar/ListView/SelectableSortableContainer.tsx
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/RightSidebar/ListView/SelectableSortableContainer.tsx
 // Extensión: .tsx
@@ -53989,11 +54294,11 @@ export default SelectableSortableContainer;
 
 
 // ====================================================================
-// ARCHIVO #310
+// ARCHIVO #313
 // Ruta relativa: src/pdfme/ui/src/components/Designer/RightSidebar/ListView/SelectableSortableItem.tsx
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/pdfme/ui/src/components/Designer/RightSidebar/ListView/SelectableSortableItem.tsx
 // Extensión: .tsx
-// Líneas aproximadas: 93
+// Líneas aproximadas: 89
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
 // ====================================================================
 
@@ -54003,7 +54308,6 @@ import { SchemaForUI } from '@pdfme/common';
 import { PluginsRegistry, I18nContext } from '../../../../contexts.js';
 import Item from './Item.js';
 import { useMountStatus } from '../../../../hooks.js';
-import { theme } from 'antd';
 import PluginIcon from '../../PluginIcon.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 
@@ -54011,8 +54315,8 @@ interface Props {
   isSelected: boolean;
   isHovering?: boolean;
   style?: React.CSSProperties;
-  onSelect: (id: string, isShiftSelect: boolean) => void;
-  onEdit: (id: string) => void;
+  onSelect: (_id: string, _isShiftSelect: boolean) => void;
+  onEdit: (_id: string) => void;
   schema: SchemaForUI;
   schemas: SchemaForUI[];
   onMouseEnter: () => void;
@@ -54029,8 +54333,6 @@ const SelectableSortableItem = ({
   onMouseEnter,
   onMouseLeave,
 }: Props) => {
-  const { token } = theme.useToken();
-
   const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
   const { setNodeRef, listeners, isDragging, isSorting, transform, transition } = useSortable({
@@ -54060,10 +54362,6 @@ const SelectableSortableItem = ({
     title = i18n('fieldMustUniq');
   }
 
-  const selectedStyle = isSelected
-    ? { background: token.colorPrimary, opacity: isSorting || isDragging ? 0.5 : 1 }
-    : ({} as React.CSSProperties);
-
   return (
     <Item
       ref={setNodeRef}
@@ -54082,6 +54380,9 @@ const SelectableSortableItem = ({
       sorting={isSorting}
       transition={transition}
       transform={transform}
+      selected={isSelected}
+      hovered={isHovering}
+      style={style}
       fadeIn={mountedWhileDragging}
       listeners={newListeners}
     />
@@ -59060,8 +59361,11 @@ prueba-plugin
 │   │   │       │   │   │   ├── DetailView
 │   │   │       │   │   │   │   ├── AlignWidget.tsx
 │   │   │       │   │   │   │   ├── ButtonGroupWidget.tsx
+│   │   │       │   │   │   │   ├── DetailFormSection.tsx
 │   │   │       │   │   │   │   ├── DetailHeaderCard.tsx
+│   │   │       │   │   │   │   ├── detailSchemas.ts
 │   │   │       │   │   │   │   ├── DetailSectionCard.tsx
+│   │   │       │   │   │   │   ├── detailWidgets.tsx
 │   │   │       │   │   │   │   ├── hooks
 │   │   │       │   │   │   │   ├── index.tsx
 │   │   │       │   │   │   │   └── WidgetRenderer.tsx

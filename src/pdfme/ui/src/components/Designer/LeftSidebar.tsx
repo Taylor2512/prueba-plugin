@@ -891,18 +891,18 @@ const LeftSidebar = ({
                   <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-title'}>
                     {highlightTerm(label, searchTerms)}
                   </span>
-                  {isPanel || resolvedViewMode === 'rich' ? (
-                    <>
-                      <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-meta'}>
-                        {highlightTerm(metaLine, searchTerms)}
-                        {capabilityHint ? ` · ${capabilityHint}` : ''}
+                {isPanel || resolvedViewMode === 'rich' ? (
+                  <>
+                    <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-meta'}>
+                      {highlightTerm(metaLine, searchTerms)}
+                      {capabilityHint ? ` · ${capabilityHint}` : ''}
+                    </span>
+                    {isPanel && pluginDescription ? (
+                      <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-desc'}>
+                        {pluginDescription}
                       </span>
-                      {pluginDescription ? (
-                        <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-desc'}>
-                          {pluginDescription}
-                        </span>
-                      ) : null}
-                    </>
+                    ) : null}
+                  </>
                   ) : null}
                 </span>
                 {isFavorite ? (

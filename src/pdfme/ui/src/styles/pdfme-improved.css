@@ -710,9 +710,9 @@ body { margin: 0; font-family: var(--font-ui); background: var(--bg-base); color
 
 .pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-expanded='true'],
 .pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-left-sidebar-expanded='true'] {
-  width: 232px !important;
-  min-width: 232px !important;
-  max-width: 232px !important;
+  width: 224px !important;
+  min-width: 224px !important;
+  max-width: 224px !important;
   overflow: visible !important;
 }
 
@@ -732,8 +732,139 @@ body { margin: 0; font-family: var(--font-ui); background: var(--bg-base); color
 }
 
 .pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-shell {
-  width: 232px !important;
+  width: 224px !important;
   height: 100% !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-dock-header {
+  min-height: 34px !important;
+  padding: 9px 10px 8px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-dock-kicker {
+  font-size: 9px !important;
+  letter-spacing: 0.14em !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-dock-title {
+  font-size: 12px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-control-band {
+  gap: 8px !important;
+  padding: 8px 8px 10px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-tablist {
+  padding: 3px !important;
+  gap: 4px !important;
+  border-radius: 12px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-tab-btn {
+  min-height: 30px !important;
+  border-radius: 9px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-search {
+  height: 30px !important;
+  border-radius: 9px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-chip-row {
+  gap: 6px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-filter-btn {
+  height: 26px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-main {
+  padding: 8px !important;
+  gap: 8px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-group {
+  padding: 8px !important;
+  border-radius: 12px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-group-title {
+  margin-bottom: 8px !important;
+  padding-bottom: 6px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-group-title-label {
+  font-size: 9.5px !important;
+  letter-spacing: 0.14em !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-group-title-count {
+  min-width: 20px !important;
+  height: 18px !important;
+  padding: 0 6px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-group-items {
+  gap: 6px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-plugin-btn,
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-custom-item {
+  min-height: 38px !important;
+  padding: 8px 30px 8px 10px !important;
+  border-radius: 11px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-plugin-btn[data-view-mode='compact'] {
+  min-height: 38px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-plugin-btn[data-view-mode='rich'] {
+  min-height: 58px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-plugin-btn > div,
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-custom-item-icon {
+  width: 20px !important;
+  height: 20px !important;
+  min-width: 20px !important;
+  min-height: 20px !important;
+  border-radius: 6px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-plugin-btn-label,
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-custom-item-copy {
+  gap: 1px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-plugin-btn-label-title,
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-custom-item-label {
+  font-size: 12px !important;
+  line-height: 1.15 !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-plugin-btn-label-meta,
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-custom-item-meta {
+  font-size: 9.5px !important;
+  line-height: 1.2 !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-plugin-btn-label-desc,
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-custom-item-desc {
+  display: none !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-plugin-favorite-toggle {
+  top: 6px !important;
+  right: 6px !important;
+  width: 18px !important;
+  height: 18px !important;
+  min-width: 18px !important;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar-empty {
+  padding: 12px 6px !important;
 }
 
 .pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-stage {
