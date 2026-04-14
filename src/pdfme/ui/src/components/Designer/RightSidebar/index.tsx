@@ -233,8 +233,7 @@ const Sidebar = (props: RightSidebarProps) => {
         className={mergeClassNames(DESIGNER_CLASSNAME + 'right-sidebar-content', props.classNames?.content)}
         data-sidebar-open={sidebarOpen ? 'true' : 'false'}
         data-docs-mode={documentsRailMode}
-        data-panel-mode={resolvedPanelMode}
-        data-ui-rev="2026-04">
+        data-panel-mode={resolvedPanelMode}>
         {props.showDocumentsAsTab !== false ? (
           <div className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-wrap'}>
             <div className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher'}>
