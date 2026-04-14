@@ -2,6 +2,7 @@ import Designer from './Designer.js';
 import Form from './Form.js';
 import Viewer from './Viewer.js';
 import { DesignerEngineBuilder } from './designerEngine.js';
+import './styles/foundation.css';
 import './styles/final-classes.css';
 import './styles/pdfme-improved.css';
 import './styles/canvas-interactions.css';

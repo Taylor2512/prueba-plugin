@@ -336,20 +336,7 @@ export default function PdfmeLabPage() {
       </header>
 
       <section className="pdfme-grid">
-        <div className={`pdfme-panel-dock ${isControlPanelPinned ? 'is-pinned' : ''}`}>
-          <button
-            type="button"
-            className="pdfme-panel-trigger"
-            aria-expanded={isControlPanelPinned}
-            aria-controls="pdfme-control-panel"
-            onClick={() => setIsControlPanelPinned((prev) => !prev)}
-            title={isControlPanelPinned ? 'Ocultar controles' : 'Mostrar controles'}
-          >
-            {isControlPanelPinned ? '✕' : '☰'}
-          </button>
-    
-        </div>
-
+       
         <section className="pdfme-workspace" data-ux-mode={uxMode}>
           <div ref={containerRef} className="pdfme-canvas" data-ux-mode={uxMode} />
 

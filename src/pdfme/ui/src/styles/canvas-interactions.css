@@ -45,9 +45,9 @@
   min-height: 20px;
   padding: 0 8px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  color: rgba(248, 250, 252, 0.9);
+  background: rgba(15, 23, 42, 0.9);
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  color: #e2e8f0;
   font-size: 10px;
   line-height: 18px;
   letter-spacing: 0.01em;
@@ -55,9 +55,9 @@
 }
 
 .pdfme-ui-selection-context-toolbar-chip.is-primary {
-  background: rgba(245, 166, 35, 0.14);
-  border-color: rgba(245, 166, 35, 0.26);
-  color: #ffd38b;
+  background: rgba(245, 166, 35, 0.46);
+  border-color: rgba(245, 166, 35, 0.58);
+  color: #2b1600;
   font-weight: 600;
 }
 
@@ -101,9 +101,9 @@
 }
 
 .pdfme-ui-selection-context-toolbar button[data-active='true'] {
-  background: rgba(245, 166, 35, 0.18);
-  color: #ffd38b;
-  border-color: rgba(245, 166, 35, 0.32);
+  background: rgba(245, 166, 35, 0.46);
+  color: #2b1600;
+  border-color: rgba(245, 166, 35, 0.58);
   box-shadow: 0 0 0 1px rgba(245, 166, 35, 0.08) inset;
 }
 
@@ -112,9 +112,9 @@
 }
 
 .pdfme-ui-selection-context-toolbar button[data-danger='true']:hover:not(:disabled) {
-  background: rgba(248, 113, 113, 0.14);
+  background: rgba(185, 28, 28, 0.85);
   border-color: rgba(248, 113, 113, 0.24);
-  color: #fff0f0;
+  color: #ffffff;
 }
 
 .pdfme-ui-selection-context-toolbar-action-icon {
@@ -132,10 +132,6 @@
   text-overflow: ellipsis;
 }
 
-.pdfme-ui-canvas-context-menu {
-  max-height: min(60vh, 360px);
-}
-
 .pdfme-ui-inline-metrics {
   position: absolute;
   padding: 4px 8px;
@@ -149,7 +145,7 @@
 .pdfme-ui-snap-feedback {
   position: absolute;
   padding: 4px 8px;
-  background: rgba(59, 130, 246, 0.95);
+  background: rgba(29, 78, 216, 0.96);
   color: #ffffff;
   border-radius: 6px;
   font-size: 11px;
@@ -250,8 +246,8 @@
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-schema-toolbar-btn:hover {
-  background: rgba(255, 255, 255, 0.08);
-  color: #ffffff;
+  background: rgba(30, 41, 59, 0.95);
+  color: #f8fafc;
   border-color: rgba(255, 255, 255, 0.1);
 }
 
@@ -266,9 +262,9 @@
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-schema-toolbar-btn[aria-label='Eliminar campo']:hover {
-  color: #f87171;
+  color: #ffffff;
   border-color: rgba(248, 113, 113, 0.24);
-  background: rgba(248, 113, 113, 0.12);
+  background: rgba(185, 28, 28, 0.82);
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-active='true'] {
@@ -428,7 +424,7 @@
   display: grid;
   place-items: center;
   border-radius: 999px;
-  background: #ef4444;
+  background: #b91c1c;
   color: #ffffff;
   font-size: 11px;
   font-weight: 800;
@@ -461,7 +457,7 @@
   gap: 5px;
   width: 284px;
   max-width: min(100vw - 16px, 304px);
-  max-height: min(72vh, 420px);
+  max-height: min(60vh, 360px);
   overflow: auto;
   padding: 7px;
   border-radius: 13px;
@@ -539,9 +535,9 @@
 }
 
 .pdfme-ui-canvas-context-menu-item.is-danger:hover:not(:disabled) {
-  background: rgba(239, 68, 68, 0.16);
+  background: rgba(185, 28, 28, 0.9);
   border-color: rgba(239, 68, 68, 0.24);
-  color: #fff1f2;
+  color: #ffffff;
 }
 
 .pdfme-ui-canvas-context-menu-item-icon {
