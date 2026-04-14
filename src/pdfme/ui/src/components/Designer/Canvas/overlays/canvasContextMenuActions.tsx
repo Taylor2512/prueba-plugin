@@ -40,7 +40,9 @@ export type CanvasContextMenuItem = {
   label: string;
   icon?: React.ReactNode;
   disabled?: boolean;
+  disabledReason?: string;
   danger?: boolean;
+  hidden?: boolean;
   onSelect?: () => void;
 };
 
@@ -64,7 +66,15 @@ type BuildContextMenuGroupsArgs = {
   commands?: SelectionCommandSet;
   externalActions?: CanvasContextMenuExternalActions;
   hasClipboardData?: boolean;
+  selectionCount?: number;
+  activeReadOnly?: boolean;
+  activeRequired?: boolean;
 };
+
+const compactItems = <T,>(items: Array<T | null | undefined>) => items.filter(Boolean) as T[];
+
+const resolveToggleLabel = (active: boolean | undefined, activeLabel: string, inactiveLabel: string) =>
+  (active ? activeLabel : inactiveLabel).trim();
 
 const commandItem = (
   id: string,
@@ -72,14 +82,17 @@ const commandItem = (
   icon: React.ReactNode,
   command?: () => void,
   extra?: Partial<CanvasContextMenuItem>,
-): CanvasContextMenuItem => ({
-  id,
-  label,
-  icon,
-  disabled: !command || extra?.disabled,
-  onSelect: command,
-  ...extra,
-});
+): CanvasContextMenuItem | null => {
+  if (!command) return null;
+  return {
+    id,
+    label,
+    icon,
+    disabled: Boolean(extra?.disabled),
+    onSelect: command,
+    ...extra,
+  };
+};
 
 export const buildSelectionQuickActions = (
   commands?: SelectionCommandSet,
@@ -116,29 +129,40 @@ export const buildSelectionQuickActions = (
 export const buildCanvasContextMenuGroups = (
   args: BuildContextMenuGroupsArgs,
 ): CanvasContextMenuGroup[] => {
-  const { mode, commands, externalActions, hasClipboardData = false } = args;
+  const {
+    mode,
+    commands,
+    externalActions,
+    hasClipboardData = false,
+    selectionCount = 0,
+    activeReadOnly = false,
+    activeRequired = false,
+  } = args;
 
   if (mode === 'empty') {
-    return [
+    return compactItems<CanvasContextMenuGroup>([
       {
         id: 'canvas-create',
         label: 'Inserción',
-        items: [
+        items: compactItems([
           commandItem('insert-field', 'Insertar campo', <Plus size={14} />, externalActions?.onInsertField),
           commandItem(
             'paste',
             'Pegar',
             <ClipboardPaste size={14} />,
             externalActions?.onPaste,
-            { disabled: !hasClipboardData || !externalActions?.onPaste },
+            {
+              disabled: !hasClipboardData,
+              disabledReason: hasClipboardData ? undefined : 'El portapapeles no tiene contenido compatible',
+            },
           ),
           commandItem('add-page', 'Añadir página', <FilePlus2 size={14} />, externalActions?.onAddPage),
-        ],
+        ]),
       },
       {
         id: 'canvas-assets',
         label: 'Documento',
-        items: [
+        items: compactItems([
           commandItem('open-catalog', 'Abrir catálogo', <PanelLeftOpen size={14} />, externalActions?.onOpenCatalog),
           commandItem(
             'upload-pdf',
@@ -146,9 +170,9 @@ export const buildCanvasContextMenuGroups = (
             <Upload size={14} />,
             externalActions?.onUploadOrReplacePdf,
           ),
-        ],
+        ]),
       },
-    ];
+    ]).filter((group) => group.items.length > 0);
   }
 
   if (mode === 'single') {
@@ -156,36 +180,50 @@ export const buildCanvasContextMenuGroups = (
       {
         id: 'single-main',
         label: 'Edición',
-        items: [
+        items: compactItems([
           commandItem('duplicate', 'Duplicar', <Copy size={14} />, commands?.duplicateSelection),
           commandItem('delete', 'Eliminar', <Trash2 size={14} />, commands?.deleteSelection, { danger: true }),
-        ],
+        ]),
       },
       {
         id: 'single-order',
         label: 'Orden',
-        items: [
-          commandItem('lock', 'Bloquear / desbloquear', <Lock size={14} />, commands?.toggleReadOnly),
+        items: compactItems([
+          commandItem(
+            'lock',
+            resolveToggleLabel(activeReadOnly, 'Desbloquear', 'Bloquear'),
+            <Lock size={14} />,
+            commands?.toggleReadOnly,
+            { active: activeReadOnly },
+          ),
           commandItem('bring-forward', 'Traer al frente', <ArrowUpToLine size={14} />, commands?.bringForward),
           commandItem('send-backward', 'Enviar atrás', <ArrowDownToLine size={14} />, commands?.sendBackward),
-          commandItem('required', 'Activar requerido', <Asterisk size={14} />, commands?.toggleRequired),
-        ],
+          commandItem(
+            'required',
+            resolveToggleLabel(activeRequired, 'Quitar requerido', 'Activar requerido'),
+            <Asterisk size={14} />,
+            commands?.toggleRequired,
+            { active: activeRequired },
+          ),
+        ]),
       },
       {
         id: 'single-inspector',
         label: 'Inspector',
-        items: [
+        items: compactItems([
           commandItem('open-properties', 'Abrir propiedades', <SlidersHorizontal size={14} />, commands?.openProperties),
-        ],
+        ]),
       },
-    ];
+    ].filter((group) => group.items.length > 0);
   }
+
+  const canDistribute = selectionCount >= 3;
 
   return [
     {
       id: 'multi-align',
       label: 'Alinear',
-      items: [
+      items: compactItems([
         commandItem(
           'align-left',
           'Alinear izquierda',
@@ -222,47 +260,61 @@ export const buildCanvasContextMenuGroups = (
           <AlignEndHorizontal size={14} />,
           commands ? () => commands.alignSelection('bottom') : undefined,
         ),
-      ],
+      ]),
     },
     {
       id: 'multi-distribute',
       label: 'Distribuir',
-      items: [
+      items: compactItems([
         commandItem(
           'distribute-horizontal',
           'Distribuir horizontal',
           <AlignHorizontalSpaceAround size={14} />,
           commands ? () => commands.distributeSelection('horizontal') : undefined,
+          {
+            disabled: !canDistribute,
+            disabledReason: canDistribute ? undefined : 'Selecciona al menos 3 elementos',
+          },
         ),
         commandItem(
           'distribute-vertical',
           'Distribuir vertical',
           <AlignVerticalSpaceAround size={14} />,
           commands ? () => commands.distributeSelection('vertical') : undefined,
+          {
+            disabled: !canDistribute,
+            disabledReason: canDistribute ? undefined : 'Selecciona al menos 3 elementos',
+          },
         ),
-      ],
+      ]),
     },
     {
       id: 'multi-main',
       label: 'Selección',
-      items: [
-        commandItem('lock-multi', 'Bloquear / desbloquear', <Lock size={14} />, commands?.toggleReadOnly),
+      items: compactItems([
+        commandItem(
+          'lock-multi',
+          resolveToggleLabel(activeReadOnly, 'Desbloquear', 'Bloquear'),
+          <Lock size={14} />,
+          commands?.toggleReadOnly,
+          { active: activeReadOnly },
+        ),
         commandItem('delete-multi', 'Eliminar selección', <Trash2 size={14} />, commands?.deleteSelection, {
           danger: true,
         }),
-      ],
+      ]),
     },
     {
       id: 'multi-inspector',
       label: 'Inspector',
-      items: [
+      items: compactItems([
         commandItem(
           'open-group-properties',
-          'Abrir propiedades',
+          selectionCount > 1 ? 'Propiedades del grupo' : 'Abrir propiedades',
           <SlidersHorizontal size={14} />,
           externalActions?.onOpenGroupProperties || commands?.openProperties,
         ),
-      ],
+      ]),
     },
-  ];
+  ].filter((group) => group.items.length > 0);
 };

@@ -22,7 +22,9 @@ const DetailSectionCard = ({ title, description, children }: DetailSectionCardPr
         </div>
       ) : null}
     </div>
-    {children}
+    <div className={DESIGNER_CLASSNAME + 'detail-section-card-body'}>
+      {children}
+    </div>
   </section>
 );
 

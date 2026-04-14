@@ -578,6 +578,15 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     [bridge, canvasActions?.addPageAfter, canvasActions?.uploadPdf, handleInsertField, handlePaste, selectionCommands],
   );
   const hasClipboardData = typeof navigator !== 'undefined' && Boolean(navigator.clipboard?.readText);
+  const contextMenuSelectionSchemas = useMemo(() => {
+    if (!contextMenu) return [];
+    const targetIds = new Set(contextMenu.targetIds);
+    return (schemasList[pageCursor] || []).filter((schema) => targetIds.has(schema.id));
+  }, [contextMenu, pageCursor, schemasList]);
+  const contextMenuSelectionReadOnly = contextMenuSelectionSchemas.length > 0
+    && contextMenuSelectionSchemas.every((schema) => schema.readOnly);
+  const contextMenuSelectionRequired = contextMenuSelectionSchemas.length > 0
+    && contextMenuSelectionSchemas.every((schema) => schema.required);
 
   useEffect(() => {
     if (!pendingContextMenu) return;
@@ -887,6 +896,9 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
         commands={selectionCommands}
         externalActions={canvasContextMenuExternalActions}
         hasClipboardData={hasClipboardData}
+        selectionCount={contextMenu?.targetIds.length}
+        activeReadOnly={contextMenuSelectionReadOnly}
+        activeRequired={contextMenuSelectionRequired}
         onClose={closeContextMenu}
       />
     </div>

@@ -1402,6 +1402,44 @@ body { margin: 0; font-family: var(--font-ui); background: var(--bg-base); color
   background: rgba(17, 21, 29, 0.92);
 }
 
+/* Right sidebar: ensure a stable flex layout so inner body can scroll correctly */
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-content {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-frame {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-grid {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-overflow-scrolling: touch;
+}
+
 .app-shell .pdfme-designer-root .pdfme-designer-sidebar-header-content {
   align-items: flex-start;
 }
@@ -2204,12 +2242,34 @@ body { margin: 0; font-family: var(--font-ui); background: var(--bg-base); color
   box-shadow: 0 8px 20px rgba(2, 6, 23, 0.20) !important;
 }
 
+.pdfme-designer-root .pdfme-designer-detail-section-card {
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 10px !important;
+  min-height: 0 !important;
+}
+
 .pdfme-designer-root .pdfme-designer-detail-header-card-stats {
   gap: 6px;
 }
 
 .pdfme-designer-root .pdfme-designer-detail-header-card-stat {
   padding: 7px 8px;
+}
+
+.pdfme-designer-root .pdfme-designer-detail-section-card-body {
+  display: grid !important;
+  gap: 10px !important;
+  min-height: 0 !important;
+  max-height: min(30vh, 300px) !important;
+  overflow: auto !important;
+  padding-right: 4px !important;
+  scrollbar-gutter: stable both-edges !important;
+  overscroll-behavior: contain !important;
+}
+
+.pdfme-designer-root .pdfme-designer-detail-view .pdfme-designer-detail-section-card {
+  scroll-margin-top: 10px !important;
 }
 
 /* ========================================

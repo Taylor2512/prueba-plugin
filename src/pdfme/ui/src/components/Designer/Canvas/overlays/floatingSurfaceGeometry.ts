@@ -40,6 +40,46 @@ export const resolveCenteredFloatingSurfacePosition = (
   return { top, left };
 };
 
+export const resolveSelectionToolbarPosition = (
+  bounds: SelectionBounds,
+  surfaceSize: FloatingSurfaceSize,
+  viewportSize: ViewportSize,
+) => {
+  const gap = FLOATING_SURFACE_EDGE_GAP;
+  const selectionWidth = Math.max(0, bounds.right - bounds.left);
+  const selectionHeight = Math.max(0, bounds.bottom - bounds.top);
+  const centeredTop = bounds.top + selectionHeight / 2 - surfaceSize.height / 2;
+  const clampTop = (value: number) =>
+    Math.min(Math.max(gap, value), Math.max(gap, viewportSize.height - surfaceSize.height - gap));
+  const clampLeft = (value: number) =>
+    Math.min(Math.max(gap, value), Math.max(gap, viewportSize.width - surfaceSize.width - gap));
+
+  const rightLeft = bounds.right + gap;
+  const leftLeft = bounds.left - surfaceSize.width - gap;
+  const fitsRight = rightLeft + surfaceSize.width <= viewportSize.width - gap;
+  const fitsLeft = leftLeft >= gap;
+
+  if (fitsRight) {
+    return {
+      top: clampTop(centeredTop),
+      left: clampLeft(rightLeft),
+    };
+  }
+
+  if (fitsLeft) {
+    return {
+      top: clampTop(centeredTop),
+      left: clampLeft(leftLeft),
+    };
+  }
+
+  const centeredLeft = bounds.left + selectionWidth / 2 - surfaceSize.width / 2;
+  return {
+    top: clampTop(bounds.top - surfaceSize.height - gap >= gap ? bounds.top - surfaceSize.height - gap : bounds.bottom + gap),
+    left: clampLeft(centeredLeft),
+  };
+};
+
 export const resolveAnchoredFloatingSurfacePosition = (
   anchor: { x: number; y: number },
   surfaceSize: FloatingSurfaceSize,

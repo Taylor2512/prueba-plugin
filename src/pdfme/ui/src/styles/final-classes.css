@@ -1410,10 +1410,10 @@
    Dark editorial UI with amber accent
    ============================================================ */
 .app-shell {
-  --pdfme-dark-bg: #0d0f13;
-  --pdfme-dark-elevated: #161921;
-  --pdfme-dark-surface: #1e2330;
-  --pdfme-dark-hover: #252b3a;
+  --pdfme-dark-bg: #f2f2f2;
+  --pdfme-dark-elevated: #ffffff;
+  --pdfme-dark-surface: #ffffff;;
+  --pdfme-dark-hover: #ffffff;;
   --pdfme-dark-border-subtle: rgba(255, 255, 255, 0.08);
   --pdfme-dark-border-soft: rgba(255, 255, 255, 0.14);
   --pdfme-dark-text: #e8ecf2;

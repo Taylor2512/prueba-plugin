@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef } from 'react';
+import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
 import { createPortal } from 'react-dom';
 import {
   CanvasContextMenuMode,
@@ -20,8 +20,17 @@ export type CanvasContextMenuProps = {
   commands?: SelectionCommandSet;
   externalActions?: CanvasContextMenuExternalActions;
   hasClipboardData?: boolean;
+  selectionCount?: number;
+  activeReadOnly?: boolean;
+  activeRequired?: boolean;
   onClose?: () => void;
   className?: string;
+};
+
+const MENU_DIMENSIONS: Record<CanvasContextMenuMode, { width: number; height: number }> = {
+  empty: { width: 272, height: 224 },
+  single: { width: 272, height: 264 },
+  multi: { width: 288, height: 304 },
 };
 
 const CanvasContextMenu = ({
@@ -31,10 +40,14 @@ const CanvasContextMenu = ({
   commands,
   externalActions,
   hasClipboardData = false,
+  selectionCount = 0,
+  activeReadOnly = false,
+  activeRequired = false,
   onClose,
   className = '',
 }: CanvasContextMenuProps) => {
   const menuRef = useRef<HTMLDivElement | null>(null);
+  const [resolvedPosition, setResolvedPosition] = useState<CanvasContextMenuPosition | null>(null);
   const groups = useMemo(
     () =>
       buildCanvasContextMenuGroups({
@@ -42,8 +55,11 @@ const CanvasContextMenu = ({
         commands,
         externalActions,
         hasClipboardData,
+        selectionCount,
+        activeReadOnly,
+        activeRequired,
       }),
-    [mode, commands, externalActions, hasClipboardData],
+    [mode, commands, externalActions, hasClipboardData, selectionCount, activeReadOnly, activeRequired],
   );
 
   useEffect(() => {
@@ -66,17 +82,47 @@ const CanvasContextMenu = ({
     firstEnabledItem?.focus();
   }, [open, mode]);
 
-  if (!open || !position || typeof document === 'undefined') return null;
-
   const viewportWidth = typeof window !== 'undefined' ? window.innerWidth : 0;
   const viewportHeight = typeof window !== 'undefined' ? window.innerHeight : 0;
-  const MENU_WIDTH = 272;
-  const MENU_HEIGHT = 320;
-  const { top, left } = resolveAnchoredFloatingSurfacePosition(
-    position,
-    { width: MENU_WIDTH, height: MENU_HEIGHT },
-    { width: viewportWidth, height: viewportHeight },
-  );
+  const estimatedSize = MENU_DIMENSIONS[mode];
+  const estimatedPosition = useMemo(() => {
+    if (!position) return null;
+    return resolveAnchoredFloatingSurfacePosition(
+      position,
+      estimatedSize,
+      { width: viewportWidth, height: viewportHeight },
+    );
+  }, [estimatedSize, position, viewportHeight, viewportWidth]);
+
+  useLayoutEffect(() => {
+    if (!open || !position) return;
+    const menuNode = menuRef.current;
+    if (!menuNode || typeof window === 'undefined') return;
+
+    const rect = menuNode.getBoundingClientRect();
+    const measuredSize = {
+      width: Math.max(rect.width, estimatedSize.width),
+      height: Math.max(rect.height, estimatedSize.height),
+    };
+    const nextPosition = resolveAnchoredFloatingSurfacePosition(
+      position,
+      measuredSize,
+      { width: window.innerWidth, height: window.innerHeight },
+    );
+
+    setResolvedPosition((current) => {
+      if (current && current.top === nextPosition.top && current.left === nextPosition.left) {
+        return current;
+      }
+      return nextPosition;
+    });
+  }, [estimatedSize, open, position, groups]);
+
+  if (!open || !position || typeof document === 'undefined') return null;
+  const menuPosition = resolvedPosition ?? estimatedPosition ?? {
+    top: position.y,
+    left: position.x,
+  };
 
   const focusMenuItem = (delta: number) => {
     const menuNode = menuRef.current;
@@ -100,14 +146,25 @@ const CanvasContextMenu = ({
         ref={menuRef}
         role="menu"
         aria-orientation="vertical"
-        aria-label="Canvas context menu"
+        aria-label={
+          mode === 'empty'
+            ? 'Menú contextual del canvas vacío'
+            : mode === 'multi'
+              ? 'Menú contextual de selección múltiple'
+              : 'Menú contextual del esquema'
+        }
+        data-mode={mode}
+        data-selection-count={String(selectionCount)}
+        data-selection-kind={selectionCount > 1 ? 'multi' : 'single'}
         className={`pdfme-ui-canvas-context-menu ${className}`.trim()}
         style={{
-          top: `${top}px`,
-          left: `${left}px`,
+          top: `${menuPosition.top}px`,
+          left: `${menuPosition.left}px`,
+          visibility: 'visible',
         }}
         onContextMenu={(event) => event.preventDefault()}
         onMouseDown={(event) => event.stopPropagation()}
+        onPointerDownCapture={(event) => event.stopPropagation()}
         onKeyDown={(event) => {
           if (event.key === 'ArrowDown') {
             event.preventDefault();
@@ -129,28 +186,31 @@ const CanvasContextMenu = ({
             {group.label ? (
               <div className="pdfme-ui-canvas-context-menu-group-label">{group.label}</div>
             ) : null}
-            {group.items.map((item) => {
-              const disabled = Boolean(item.disabled);
-              return (
-                <button
-                  key={item.id}
-                  type="button"
-                  role="menuitem"
-                  className={`pdfme-ui-canvas-context-menu-item${item.danger ? ' is-danger' : ''}`}
-                  disabled={disabled}
-                  onClick={(event) => {
-                    event.preventDefault();
-                    event.stopPropagation();
-                    if (disabled) return;
-                    item.onSelect?.();
-                    onClose?.();
-                  }}
-                >
-                  <span className="pdfme-ui-canvas-context-menu-item-icon">{item.icon}</span>
-                  <span className="pdfme-ui-canvas-context-menu-item-label">{item.label}</span>
-                </button>
-              );
-            })}
+            {group.items
+              .filter((item) => !item.hidden)
+              .map((item) => {
+                const disabled = Boolean(item.disabled);
+                return (
+                  <button
+                    key={item.id}
+                    type="button"
+                    role="menuitem"
+                    className={`pdfme-ui-canvas-context-menu-item${item.danger ? ' is-danger' : ''}`}
+                    disabled={disabled}
+                    title={item.disabled && item.disabledReason ? item.disabledReason : item.label}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      if (disabled) return;
+                      item.onSelect?.();
+                      onClose?.();
+                    }}
+                  >
+                    <span className="pdfme-ui-canvas-context-menu-item-icon">{item.icon}</span>
+                    <span className="pdfme-ui-canvas-context-menu-item-label">{item.label}</span>
+                  </button>
+                );
+              })}
             {groupIndex < groups.length - 1 ? (
               <div className="pdfme-ui-canvas-context-menu-divider" aria-hidden="true" />
             ) : null}

@@ -5,10 +5,9 @@ import { generate } from '@pdfme/generator'
 import { flatSchemaPlugins, builtInSchemaDefinitions } from '@pdfme/schemas'
 import { pdf2img, pdf2size, img2pdf } from '@pdfme/converter'
 import { createInitialPdfmeTemplate } from './template'
-import { createObjectUrl, revokeObjectUrls, downloadUrl } from './utils/binary'
+import { createObjectUrl, revokeObjectUrls } from './utils/binary'
 import {
-  MODES,
-  UX_MODES,
+
   UX_MODE_STORAGE_KEY,
   getErrorMessage,
   isValidUxMode,
@@ -348,98 +347,7 @@ export default function PdfmeLabPage() {
           >
             {isControlPanelPinned ? '✕' : '☰'}
           </button>
-          <aside id="pdfme-control-panel" className="pdfme-panel">
-          <h2>Control</h2>
-
-          <label>
-            Modo UI
-            <select
-              data-testid="mode-select"
-              value={mode}
-              onChange={(e) => handleModeChange(e.target.value)}
-              disabled={busy}
-            >
-              {MODES.map((item) => (
-                <option key={item} value={item}>
-                  {item}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label>
-            UX Mode
-            <select
-              data-testid="ux-mode-select"
-              value={uxMode}
-              onChange={(e) => setUxMode(e.target.value)}
-              disabled={busy}
-            >
-              {UX_MODES.map((item) => (
-                <option key={item} value={item}>
-                  {item}
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <label>
-            Tipo de schema para insertar
-            <select
-              data-testid="schema-select"
-              value={schemaType}
-              onChange={(e) => setSchemaType(e.target.value)}
-              disabled={busy}
-            >
-              {schemaCatalog.map((item) => (
-                <option key={`${item.type}-${item.key}`} value={item.type}>
-                  {item.category} - {item.label} ({item.type})
-                </option>
-              ))}
-            </select>
-          </label>
-
-          <div className="pdfme-actions">
-            <button data-testid="btn-reset-template" type="button" onClick={resetTemplate} disabled={busy}>Reiniciar template</button>
-            <button data-testid="btn-generate-pdf" type="button" onClick={generatePdf} disabled={busy}>Generar PDF</button>
-          </div>
-
-          <h3>Acciones DesignerRuntimeApi</h3>
-          <div className="pdfme-actions">
-            <button data-testid="btn-undo" type="button" onClick={() => runDesignerAction('undo')} disabled={!canRunDesignerActions}>Undo</button>
-            <button data-testid="btn-redo" type="button" onClick={() => runDesignerAction('redo')} disabled={!canRunDesignerActions}>Redo</button>
-            <button data-testid="btn-fit-width" type="button" onClick={() => runDesignerAction('fitWidth')} disabled={!canRunDesignerActions}>Fit Width</button>
-            <button data-testid="btn-fit-page" type="button" onClick={() => runDesignerAction('fitPage')} disabled={!canRunDesignerActions}>Fit Page</button>
-            <button data-testid="btn-prev-page" type="button" onClick={() => runDesignerAction('prevPage')} disabled={!canRunDesignerActions}>Prev Page</button>
-            <button data-testid="btn-next-page" type="button" onClick={() => runDesignerAction('nextPage')} disabled={!canRunDesignerActions}>Next Page</button>
-            <button data-testid="btn-add-page" type="button" onClick={addBlankPage} disabled={busy}>Add Page</button>
-            <button data-testid="btn-toggle-sidebar" type="button" onClick={() => runDesignerAction('toggleSidebar')} disabled={!canRunDesignerActions}>Toggle Sidebar</button>
-            <button data-testid="btn-add-schema" type="button" onClick={() => runDesignerAction('addSchema')} disabled={!canRunDesignerActions}>Add Schema</button>
-            <button data-testid="btn-prefill-demo" type="button" onClick={() => runDesignerAction('prefillDemo')} disabled={!canRunDesignerActions}>Prefill Demo</button>
-          </div>
-
-          <h3>Conversión</h3>
-          <div className="pdfme-actions">
-            <button data-testid="btn-pdf2size" type="button" onClick={runPdf2Size} disabled={!generatedPdfBytes || busy}>pdf2size</button>
-            <button data-testid="btn-pdf2img" type="button" onClick={runPdf2Img} disabled={!generatedPdfBytes || busy}>pdf2img</button>
-            <button data-testid="btn-img2pdf" type="button" onClick={runImg2Pdf} disabled={images.length === 0 || busy}>img2pdf</button>
-          </div>
-
-          <p className="pdfme-status">{status}</p>
-
-          {pdfSizes.length > 0 && (
-            <div className="pdfme-results">
-              <h4>Tamaño de páginas (mm)</h4>
-              <ul>
-                {pdfSizes.map((item, index) => (
-                  <li key={`size-${index}`}>
-                    Página {index + 1}: {item.width.toFixed(2)} x {item.height.toFixed(2)}
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
-          </aside>
+    
         </div>
 
         <section className="pdfme-workspace" data-ux-mode={uxMode}>
