@@ -731,20 +731,32 @@ const LeftSidebar = ({
     if (activeTab === 'custom') return;
     setCollapsedCategories((prev) => {
       const next: Record<string, boolean> = { ...prev };
+      const categoryKeys = groupedPlugins.map(({ category }) => category);
+
       if (normalizedSearch) {
-        groupedPlugins.forEach(({ category }) => {
+        categoryKeys.forEach((category) => {
           next[category] = false;
         });
         return next;
       }
-      groupedPlugins.forEach(({ category }) => {
-        if (typeof next[category] === 'undefined') {
-          next[category] = false;
+
+      // In discovery mode, initialize as accordion to reduce visual noise.
+      if (quickFilter === 'all') {
+        const hasKnownState = categoryKeys.some((category) => next[category] !== undefined);
+        if (!hasKnownState) {
+          categoryKeys.forEach((category, index) => {
+            next[category] = index !== 0;
+          });
+          return next;
         }
+      }
+
+      categoryKeys.forEach((category) => {
+        next[category] ??= quickFilter === 'all';
       });
       return next;
     });
-  }, [activeTab, groupedPlugins, normalizedSearch]);
+  }, [activeTab, groupedPlugins, normalizedSearch, quickFilter]);
 
   const updateCustomDraft = <K extends keyof CustomFieldDef>(key: K, value: CustomFieldDef[K]) => {
     setCustomDraft((prev) => ({ ...prev, [key]: value }));
@@ -1059,10 +1071,21 @@ const LeftSidebar = ({
             collapsed={Boolean(collapsedCategories[category])}
             collapsible
             onToggle={() =>
-              setCollapsedCategories((prev) => ({
-                ...prev,
-                [category]: !prev[category],
-              }))
+              setCollapsedCategories((prev) => {
+                const next: Record<string, boolean> = { ...prev };
+                const currentIsCollapsed = Boolean(prev[category]);
+
+                if (!normalizedSearch && quickFilter === 'all') {
+                  groupedPlugins.forEach(({ category: otherCategory }) => {
+                    next[otherCategory] = true;
+                  });
+                  next[category] = currentIsCollapsed === false;
+                  return next;
+                }
+
+                next[category] = !currentIsCollapsed;
+                return next;
+              })
             }
             items={
               collapsedCategories[category]
@@ -1158,7 +1181,7 @@ const LeftSidebar = ({
           type={quickFilter === 'favorites' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('favorites')}
         >
-          Favoritos ({favoritePlugins.size})
+          Fav ({favoritePlugins.size})
         </Button>
         <Button
           className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
@@ -1166,7 +1189,7 @@ const LeftSidebar = ({
           type={quickFilter === 'recent' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('recent')}
         >
-          Recientes ({recentPlugins.length})
+          Rec ({recentPlugins.length})
         </Button>
         {showCatalogViewSwitcher ? (
           <Button
@@ -1177,7 +1200,7 @@ const LeftSidebar = ({
               onCatalogViewModeChange?.(nextMode);
             }}
           >
-            {resolvedViewMode === 'compact' ? 'Vista detallada' : 'Vista compacta'}
+            {resolvedViewMode === 'compact' ? 'Detalle' : 'Compacta'}
           </Button>
         ) : null}
       </div>
@@ -1237,6 +1260,7 @@ const LeftSidebar = ({
       className={sidebarClass}
       data-sidebar-variant={variant}
       data-sidebar-detached={detached ? 'true' : 'false'}
+      data-sidebar-collapsed={sidebarExpanded ? 'false' : 'true'}
       data-left-sidebar-mode={resolvedPresentation}
       data-left-sidebar-expanded={sidebarExpanded ? 'true' : 'false'}
       data-sidebar-presentation={resolvedPresentation}
@@ -1248,6 +1272,7 @@ const LeftSidebar = ({
         type="button"
         className={`${DESIGNER_CLASSNAME}left-sidebar-toggle-btn`}
         aria-label={sidebarExpanded ? 'Cerrar catálogo de campos' : 'Abrir catálogo de campos'}
+        title={sidebarExpanded ? 'Cerrar catálogo de campos' : 'Abrir catálogo de campos'}
         aria-expanded={sidebarExpanded}
         onClick={() => setSidebarExpanded(prev => !prev)}
       >

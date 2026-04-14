@@ -322,6 +322,7 @@ const DetailView = (props: DetailViewProps) => {
           form={form}
           widgets={widgets}
           watchHandler={handleWatch}
+          defaultCollapsed
         />
         <DetailFormSection
           title="Estilo avanzado"
@@ -330,6 +331,7 @@ const DetailView = (props: DetailViewProps) => {
           form={form}
           widgets={widgets}
           watchHandler={handleWatch}
+          defaultCollapsed
         />
       </SidebarBody>
     </SidebarFrame>

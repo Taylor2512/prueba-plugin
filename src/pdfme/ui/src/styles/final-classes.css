@@ -3682,6 +3682,31 @@ button[data-testid]:disabled {
   transform: translate(100%, -50%) rotate(180deg) ;
 }
 
+/* Compact and manageable sidebar controls */
+.pdfme-designer-left-sidebar-search-stack .pdfme-designer-left-sidebar-chip-row {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.pdfme-designer-left-sidebar-search-stack .pdfme-designer-left-sidebar-filter-btn {
+  min-width: 0;
+  padding-inline: 8px;
+}
+
+.pdfme-designer-left-sidebar-group-title[data-collapsed='true'] {
+  border-bottom-color: transparent;
+}
+
+.pdfme-designer-left-sidebar-group-title[data-collapsed='true'] .pdfme-designer-left-sidebar-group-title-count {
+  opacity: 0.75;
+}
+
+.pdfme-designer-left-sidebar-group-items[data-collapsed='true'] {
+  display: none;
+}
+
 /* ============================================================
    LAYOUT SAFETY OVERRIDES
    Prevent canvas shrink caused by legacy width:auto rules.
@@ -5671,6 +5696,79 @@ button[data-testid]:disabled {
 }
 
 /* ============================================================
+   RIGHT SIDEBAR MODULARITY — clearer tabs + collapsible detail sections
+   ============================================================ */
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-panel-switcher-btn-content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-panel-switcher-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.75;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-panel-switcher-btn[data-active='true'] .pdfme-designer-right-sidebar-panel-switcher-btn-icon {
+  opacity: 1;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-panel-switcher-btn-label {
+  line-height: 1;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-section-card-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-section-card-head-main {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+  flex: 1;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-section-card-toggle {
+  width: 22px;
+  height: 22px;
+  min-width: 22px;
+  border-radius: 6px;
+  border: 1px solid var(--fc-color-114);
+  background: transparent;
+  color: var(--pdfme-dark-text-muted);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: transform 140ms ease, color 140ms ease, border-color 140ms ease, background 140ms ease;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-section-card-toggle:hover {
+  color: var(--pdfme-dark-text);
+  border-color: var(--fc-color-141);
+  background: var(--fc-color-122);
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-section-card[data-collapsed='true'] .pdfme-designer-detail-section-card-toggle {
+  transform: rotate(-90deg);
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-section-card-body[data-collapsed='true'] {
+  display: none;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-detail-section-card[data-collapsed='false'] .pdfme-designer-detail-view-form-shell {
+  margin-top: 6px;
+}
+
+/* ============================================================
    LEFT SIDEBAR OVERLAY CATALOG — canvas-first polish
    ============================================================ */
 .pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-root .pdfme-designer-left-sidebar {
@@ -6023,4 +6121,85 @@ button[data-testid]:disabled {
 
 .pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-background .pdfme-designer-left-sidebar-toggle-btn {
   z-index: 96;
+}
+
+/* Collapsed-state polish for left sidebar */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-sidebar-collapsed='true'] {
+  background: linear-gradient(180deg, var(--fc-color-116), var(--fc-color-117));
+  border-right: 1px solid var(--fc-color-114);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-sidebar-collapsed='true'] .pdfme-designer-left-sidebar-shell {
+  border-right-color: transparent;
+  box-shadow: none;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-sidebar-collapsed='true'] .pdfme-designer-left-sidebar-toggle-btn {
+  border-color: var(--fc-color-113);
+  box-shadow: 0 10px 24px var(--fc-color-116);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-sidebar-collapsed='true'] .pdfme-designer-left-sidebar-group-title {
+  position: relative;
+  min-height: 18px;
+  padding: 6px 0;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-sidebar-collapsed='true'] .pdfme-designer-left-sidebar-group-title::before {
+  content: '';
+  position: absolute;
+  left: 18px;
+  right: 18px;
+  bottom: 0;
+  border-bottom: 1px solid var(--fc-color-104);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-sidebar-collapsed='true'] .pdfme-designer-left-sidebar-group-title::after {
+  width: 8px;
+  height: 8px;
+  border: 1px solid var(--fc-color-113);
+  background: linear-gradient(180deg, var(--fc-color-106), var(--fc-color-107));
+  box-shadow: 0 0 0 2px var(--fc-color-108);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-sidebar-collapsed='true'] .pdfme-designer-left-sidebar-group-title:hover::after,
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-sidebar-collapsed='true'] .pdfme-designer-left-sidebar-group-title:focus-visible::after {
+  transform: scale(1.15);
+  border-color: var(--amber-border);
+  box-shadow: 0 0 0 2px var(--fc-color-109), 0 0 0 4px var(--fc-color-110);
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-sidebar-collapsed='true'] .pdfme-designer-left-sidebar-group-title[data-collapsed='true']::after {
+  background: linear-gradient(180deg, var(--fc-color-111), var(--fc-color-112));
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-sidebar-collapsed='true'] .pdfme-designer-left-sidebar-group-title-label {
+  margin-left: 2px;
+  box-shadow: 0 10px 24px var(--fc-color-116);
+}
+
+.pdfme-page[data-ux-mode='default'] .pdfme-designer-root .pdfme-designer-left-sidebar[data-sidebar-variant='compact'][data-sidebar-collapsed='true'] {
+  background: linear-gradient(180deg, var(--fc-color-116), var(--fc-color-117));
+  border-right: 1px solid var(--color-border-24);
+}
+
+/* Keep toggle button fully visible when sidebar is collapsed */
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-sidebar-collapsed='true'] {
+  overflow: visible;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-sidebar-collapsed='true'] .pdfme-designer-left-sidebar-content {
+  overflow: hidden;
+}
+
+.pdfme-page[data-ux-mode='canvas-first'] .pdfme-designer-left-sidebar[data-sidebar-collapsed='true'] .pdfme-designer-left-sidebar-toggle-btn {
+  right: -14px;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-background .pdfme-designer-left-sidebar[data-sidebar-collapsed='true'] {
+  overflow: visible;
+}
+
+.pdfme-canvas[data-ux-mode='canvas-first'] .pdfme-designer-background .pdfme-designer-left-sidebar[data-sidebar-collapsed='true'] .pdfme-designer-left-sidebar-content {
+  overflow: hidden;
 }

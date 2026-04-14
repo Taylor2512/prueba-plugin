@@ -12,6 +12,7 @@ type DetailFormSectionProps = {
   form: ReturnType<typeof useForm>;
   widgets: Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element>;
   watchHandler: (...args: unknown[]) => void;
+  defaultCollapsed?: boolean;
 };
 
 const DetailFormSection = ({
@@ -21,8 +22,9 @@ const DetailFormSection = ({
   form,
   widgets,
   watchHandler,
+  defaultCollapsed = false,
 }: DetailFormSectionProps) => (
-  <DetailSectionCard title={title} description={description}>
+  <DetailSectionCard title={title} description={description} defaultCollapsed={defaultCollapsed}>
     <div className={`${DESIGNER_CLASSNAME}detail-view-form-shell`}>
       <FormRenderComponent
         form={form}

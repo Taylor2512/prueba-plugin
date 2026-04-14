@@ -12,6 +12,7 @@ import { SidebarFrame } from './layout.js';
 import DocumentsRail, { DocumentsRailProps } from './DocumentsRail.js';
 import { mergeClassNames } from '../shared/className.js';
 import type { SelectionCommandSet } from '../shared/selectionCommands.js';
+import { Layers, SlidersHorizontal, FileText } from 'lucide-react';
 
 export type RightSidebarProps = SidebarProps & {
   width?: number;
@@ -61,6 +62,34 @@ const toDesignerCustomClassName = (value?: string) => {
   const normalized = value.trim();
   if (!normalized) return '';
   return `${DESIGNER_CLASSNAME}custom-${normalized}`;
+};
+
+type SidebarModeMeta = {
+  shortLabel: string;
+  icon: React.ReactNode;
+  title: string;
+  ariaLabel: string;
+};
+
+const sidebarModeMeta: Record<'fields' | 'detail' | 'docs', SidebarModeMeta> = {
+  fields: {
+    shortLabel: 'Campos',
+    icon: <Layers size={14} />,
+    title: 'Campos del documento',
+    ariaLabel: 'Abrir panel Campos',
+  },
+  detail: {
+    shortLabel: 'Detalle',
+    icon: <SlidersHorizontal size={14} />,
+    title: 'Detalle del campo seleccionado',
+    ariaLabel: 'Abrir panel Detalle',
+  },
+  docs: {
+    shortLabel: 'Docs',
+    icon: <FileText size={14} />,
+    title: 'Documentos y páginas',
+    ariaLabel: 'Abrir panel Docs',
+  },
 };
 
 const Sidebar = (props: RightSidebarProps) => {
@@ -165,7 +194,11 @@ const Sidebar = (props: RightSidebarProps) => {
     )
   ) : resolvedPanelMode === 'detail' && hasActiveSchema ? (
     <div
-      className={mergeClassNames(toDesignerCustomClassName(props.classNames?.detailView))}>
+      className={mergeClassNames(
+        DESIGNER_CLASSNAME + 'detail-view-host',
+        DESIGNER_CLASSNAME + 'custom-detailView',
+        toDesignerCustomClassName(props.classNames?.detailView),
+      )}>
       <DetailViewComponent
         {...props}
         activeSchema={getLastActiveSchema()}
@@ -200,7 +233,8 @@ const Sidebar = (props: RightSidebarProps) => {
         className={mergeClassNames(DESIGNER_CLASSNAME + 'right-sidebar-content', props.classNames?.content)}
         data-sidebar-open={sidebarOpen ? 'true' : 'false'}
         data-docs-mode={documentsRailMode}
-        data-panel-mode={resolvedPanelMode}>
+        data-panel-mode={resolvedPanelMode}
+        data-ui-rev="2026-04">
         {props.showDocumentsAsTab !== false ? (
           <div className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-wrap'}>
             <div className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher'}>
@@ -208,6 +242,7 @@ const Sidebar = (props: RightSidebarProps) => {
                 if (mode === 'docs' && !showDocumentsRail) return null;
                 const disabled = mode === 'detail' && activeSchemaCount !== 1;
                 const isActive = resolvedViewMode === mode;
+                const modeMeta = sidebarModeMeta[mode];
                 return (
                   <button
                     key={`rs-mode-${mode}`}
@@ -215,14 +250,17 @@ const Sidebar = (props: RightSidebarProps) => {
                     disabled={disabled}
                     className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn'}
                     data-active={isActive ? 'true' : 'false'}
-                    title={mode === 'fields' ? 'Campos del documento' : mode === 'detail' ? 'Detalle del campo seleccionado' : 'Documentos y páginas'}
-                    aria-label={mode === 'fields' ? 'Abrir panel Campos' : mode === 'detail' ? 'Abrir panel Detalle' : 'Abrir panel Docs'}
+                    title={modeMeta.title}
+                    aria-label={modeMeta.ariaLabel}
                     onClick={() => {
                       if (requestedViewMode === 'auto') setInternalViewMode(mode);
                       props.onViewModeChange?.(mode);
                     }}
                   >
-                    {mode === 'fields' ? 'Campos' : mode === 'detail' ? 'Detalle' : 'Docs'}
+                    <span className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn-content'}>
+                      <span className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn-icon'}>{modeMeta.icon}</span>
+                      <span className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn-label'}>{modeMeta.shortLabel}</span>
+                    </span>
                   </button>
                 );
               })}

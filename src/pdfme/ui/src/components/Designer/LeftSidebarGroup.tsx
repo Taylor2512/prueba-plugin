@@ -22,39 +22,44 @@ export const LeftSidebarGroup = ({
   collapsed = false,
   collapsible = false,
   onToggle,
-}: LeftSidebarGroupProps) => (
-  <section className={`${DESIGNER_CLASSNAME}left-sidebar-group`}>
-    <div
-      className={`${DESIGNER_CLASSNAME}left-sidebar-group-title`}
-      role={collapsible ? 'button' : undefined}
-      tabIndex={collapsible ? 0 : undefined}
-      aria-expanded={collapsible ? String(!collapsed) : undefined}
-      aria-label={collapsible ? `Alternar categoría ${category}` : undefined}
-      onClick={collapsible ? onToggle : undefined}
-      onKeyDown={
-        collapsible
-          ? (event) => {
-            if (event.key === 'Enter' || event.key === ' ') {
-              event.preventDefault();
-              onToggle?.();
-            }
-          }
-          : undefined
-      }
-    >
+}: LeftSidebarGroupProps) => {
+  const titleContent = (
+    <>
       <span className={`${DESIGNER_CLASSNAME}left-sidebar-group-title-label`}>{category}</span>
       <span className={`${DESIGNER_CLASSNAME}left-sidebar-group-title-count`}>
         {typeof count === 'number' ? count : items.length}
       </span>
-    </div>
-    <div
-      className={`${DESIGNER_CLASSNAME}left-sidebar-group-items`}
-      data-view-mode={viewMode}
-    >
-      {items}
-    </div>
-  </section>
-);
+    </>
+  );
+
+  return (
+    <section className={`${DESIGNER_CLASSNAME}left-sidebar-group`}>
+      {collapsible ? (
+        <button
+          type="button"
+          className={`${DESIGNER_CLASSNAME}left-sidebar-group-title`}
+          data-collapsed={collapsed ? 'true' : 'false'}
+          aria-expanded={String(!collapsed)}
+          aria-label={`Alternar categoría ${category}`}
+          onClick={onToggle}
+        >
+          {titleContent}
+        </button>
+      ) : (
+        <div className={`${DESIGNER_CLASSNAME}left-sidebar-group-title`} data-collapsed={collapsed ? 'true' : 'false'}>
+          {titleContent}
+        </div>
+      )}
+      <div
+        className={`${DESIGNER_CLASSNAME}left-sidebar-group-items`}
+        data-view-mode={viewMode}
+        data-collapsed={collapsed ? 'true' : 'false'}
+      >
+        {items}
+      </div>
+    </section>
+  );
+};
 
 type LeftSidebarEmptyStateProps = {
   description: string;
