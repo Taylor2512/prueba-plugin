@@ -10,7 +10,7 @@ const Root = ({ size, scale, children }: Props, ref: Ref<HTMLDivElement>) => {
   const font = useContext(FontContext);
 
   useEffect(() => {
-    if (!document || !document.fonts) return;
+    if (!document?.fonts) return;
     const fontFaces = Object.entries(font).map(
       ([key, { data }]) =>
         new FontFace(key, typeof data === 'string' ? `url(${data})` : (data as BufferSource), {

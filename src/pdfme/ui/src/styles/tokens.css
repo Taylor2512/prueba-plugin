@@ -1,0 +1,382 @@
+/* ========================================
+   PDFME DESIGN TOKENS
+   Unified color, spacing, typography, and effect tokens
+   Used across all CSS layers: foundation, final-classes, pdfme-improved, canvas-interactions
+   ======================================== */
+
+:root {
+  /* ── COLOR PALETTE ───────────────────────────────────────── */
+  
+  /* Neutral - White backgrounds */
+  --color-white: #ffffff;
+  --color-bg-base: #f8fbff;
+  --color-bg-elevated: #ffffff;
+  --color-bg-surface: #f8fbff;
+  --color-bg-hover: #eef3fa;
+  --color-bg-active: #e7eef9;
+  --color-bg-2: #edf2f8;
+  --color-bg-3: #e7edf5;
+  --color-bg-4: #dde6f1;
+  
+  /* Neutral - Gray scale */
+  --color-gray-50: #f8fafc;
+  --color-gray-100: #f1f5f9;
+  --color-gray-200: #e2e8f0;
+  --color-gray-300: #cbd5e1;
+  --color-gray-400: #94a3b8;
+  --color-gray-500: #64748b;
+  --color-gray-600: #475569;
+  --color-gray-700: #334155;
+  --color-gray-800: #1e293b;
+  --color-gray-900: #0f172a;
+  
+  /* Text hierarchy */
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #334155;
+  --color-text-muted: #64748b;
+  --color-text-inverse: #ffffff;
+  
+  /* Accent - Primary brand */
+  --color-accent: #f0a500;
+  --color-accent-dim: rgba(240, 165, 0, 0.15);
+  --color-accent-glow: rgba(240, 165, 0, 0.08);
+  --color-accent-hover: #d49400;
+  
+  /* Accent - Secondary (Purple) */
+  --color-accent-purple: #7c3aed;
+  --color-accent-purple-light: #a78bfa;
+  --color-accent-purple-dim: rgba(124, 58, 237, 0.15);
+  
+  /* Status - Error/Danger */
+  --color-danger: #ef4444;
+  --color-danger-light: #f87171;
+  --color-danger-pale: #fef2f2;
+  --color-danger-dim: rgba(239, 68, 68, 0.15);
+  
+  /* Status - Warning */
+  --color-warning: #f59e0b;
+  --color-warning-light: #fbbf24;
+  --color-warning-dim: rgba(245, 158, 11, 0.15);
+  
+  /* Status - Success */
+  --color-success: #22c55e;
+  --color-success-light: #4ade80;
+  --color-success-dim: rgba(34, 197, 94, 0.15);
+  
+  /* Status - Info */
+  --color-info: #2563eb;
+  --color-info-light: #38a0ff;
+  --color-info-dim: rgba(37, 99, 235, 0.15);
+  
+  /* Schema interaction tone */
+  --color-schema-tone: #38a0ff;
+  --color-schema-tone-dim: rgba(56, 160, 255, 0.15);
+  
+  /* Border colors */
+  --color-border-subtle: rgba(148, 163, 184, 0.18);
+  --color-border-soft: rgba(148, 163, 184, 0.25);
+  --color-border-medium: rgba(148, 163, 184, 0.35);
+  --color-border-strong: rgba(148, 163, 184, 0.5);
+  
+  /* Border color variants with different opacities */
+  --color-border-08: rgba(148, 163, 184, 0.08);
+  --color-border-10: rgba(148, 163, 184, 0.10);
+  --color-border-12: rgba(148, 163, 184, 0.12);
+  --color-border-14: rgba(148, 163, 184, 0.14);
+  --color-border-16: rgba(148, 163, 184, 0.16);
+  --color-border-18: rgba(148, 163, 184, 0.18);
+  --color-border-20: rgba(148, 163, 184, 0.20);
+  --color-border-22: rgba(148, 163, 184, 0.22);
+  --color-border-24: rgba(148, 163, 184, 0.24);
+  --color-border-25: rgba(148, 163, 184, 0.25);
+  --color-border-28: rgba(148, 163, 184, 0.28);
+  --color-border-30: rgba(148, 163, 184, 0.30);
+  --color-border-35: rgba(148, 163, 184, 0.35);
+  --color-border-40: rgba(148, 163, 184, 0.40);
+  --color-border-45: rgba(148, 163, 184, 0.45);
+  --color-border-50: rgba(148, 163, 184, 0.50);
+  
+  /* Gray scale with opacity */
+  --color-gray-900-04: rgba(15, 23, 42, 0.04);
+  --color-gray-900-05: rgba(15, 23, 42, 0.05);
+  --color-gray-900-06: rgba(15, 23, 42, 0.06);
+  --color-gray-900-07: rgba(15, 23, 42, 0.07);
+  --color-gray-900-08: rgba(15, 23, 42, 0.08);
+  --color-gray-900-10: rgba(15, 23, 42, 0.10);
+  --color-gray-900-12: rgba(15, 23, 42, 0.12);
+  --color-gray-900-14: rgba(15, 23, 42, 0.14);
+  --color-gray-900-16: rgba(15, 23, 42, 0.16);
+  --color-gray-900-20: rgba(15, 23, 42, 0.20);
+  --color-gray-900-22: rgba(15, 23, 42, 0.22);
+  --color-gray-900-24: rgba(15, 23, 42, 0.24);
+  --color-gray-900-35: rgba(15, 23, 42, 0.35);
+  --color-gray-900-42: rgba(15, 23, 42, 0.42);
+  --color-gray-900-44: rgba(15, 23, 42, 0.44);
+  --color-gray-900-78: rgba(15, 23, 42, 0.78);
+  --color-gray-900-92: rgba(15, 23, 42, 0.92);
+  --color-gray-900-96: rgba(15, 23, 42, 0.96);
+  
+  /* Gray-100 with opacity (light backgrounds) */
+  --color-gray-100-80: rgba(241, 245, 249, 0.80);
+  --color-gray-100-85: rgba(241, 245, 249, 0.85);
+  --color-gray-100-90: rgba(241, 245, 249, 0.90);
+  
+  /* Gray-50 with opacity */
+  --color-gray-50-80: rgba(248, 250, 252, 0.80);
+  --color-gray-50-85: rgba(248, 250, 252, 0.85);
+  --color-gray-50-90: rgba(248, 250, 252, 0.90);
+  
+  /* Gray-200 with opacity */
+  --color-gray-200-45: rgba(226, 232, 240, 0.45);
+  --color-gray-200-60: rgba(226, 232, 240, 0.60);
+  --color-gray-200-65: rgba(226, 232, 240, 0.65);
+  --color-gray-200-80: rgba(226, 232, 240, 0.80);
+  --color-gray-200-90: rgba(226, 232, 240, 0.90);
+  
+  /* Purple-200 with opacity (light backgrounds) */
+  --color-purple-200-20: rgba(237, 233, 254, 0.20);
+  --color-purple-200-60: rgba(237, 233, 254, 0.60);
+  --color-purple-200-65: rgba(237, 233, 254, 0.65);
+  --color-purple-200-70: rgba(237, 233, 254, 0.70);
+  --color-purple-200-80: rgba(237, 233, 254, 0.80);
+  --color-purple-200-85: rgba(237, 233, 254, 0.85);
+  --color-purple-200-90: rgba(237, 233, 254, 0.90);
+  
+  /* Purple-100 with opacity (very light backgrounds) */
+  --color-purple-100-60: rgba(245, 243, 255, 0.60);
+  --color-purple-100-70: rgba(245, 243, 255, 0.70);
+  --color-purple-100-90: rgba(245, 243, 255, 0.90);
+  
+  /* Indigo-200 with opacity */
+  --color-indigo-200-65: rgba(224, 231, 255, 0.65);
+  
+  /* Gray-500 with opacity */
+  --color-gray-500-45: rgba(100, 116, 139, 0.45);
+  --color-gray-500-55: rgba(100, 116, 139, 0.55);
+  --color-gray-500-78: rgba(100, 116, 139, 0.78);
+  --color-gray-500-82: rgba(100, 116, 139, 0.82);
+  
+  /* Gray-600 with opacity */
+  --color-gray-600-78: rgba(71, 85, 105, 0.78);
+  --color-gray-600-82: rgba(71, 85, 105, 0.82);
+  --color-gray-600-92: rgba(71, 85, 105, 0.92);
+  
+  /* White with opacity */
+  --color-white-02: rgba(255, 255, 255, 0.02);
+  --color-white-03: rgba(255, 255, 255, 0.03);
+  --color-white-04: rgba(255, 255, 255, 0.04);
+  --color-white-06: rgba(255, 255, 255, 0.06);
+  --color-white-08: rgba(255, 255, 255, 0.08);
+  --color-white-10: rgba(255, 255, 255, 0.10);
+  --color-white-14: rgba(255, 255, 255, 0.14);
+  --color-white-18: rgba(255, 255, 255, 0.18);
+  --color-white-20: rgba(255, 255, 255, 0.20);
+  --color-white-35: rgba(255, 255, 255, 0.35);
+  --color-white-60: rgba(255, 255, 255, 0.60);
+  --color-white-65: rgba(255, 255, 255, 0.65);
+  --color-white-70: rgba(255, 255, 255, 0.70);
+  --color-white-80: rgba(255, 255, 255, 0.80);
+  --color-white-85: rgba(255, 255, 255, 0.85);
+  --color-white-90: rgba(255, 255, 255, 0.90);
+  --color-white-92: rgba(255, 255, 255, 0.92);
+  --color-white-96: rgba(255, 255, 255, 0.96);
+  --color-white-98: rgba(255, 255, 255, 0.98);
+  
+  /* Accent color with opacity */
+  --color-accent-08: rgba(240, 165, 0, 0.08);
+  --color-accent-10: rgba(240, 165, 0, 0.10);
+  --color-accent-11: rgba(240, 165, 0, 0.11);
+  --color-accent-12: rgba(240, 165, 0, 0.12);
+  --color-accent-14: rgba(240, 165, 0, 0.14);
+  --color-accent-15: rgba(240, 165, 0, 0.15);
+  --color-accent-16: rgba(240, 165, 0, 0.16);
+  --color-accent-18: rgba(240, 165, 0, 0.18);
+  --color-accent-20: rgba(240, 165, 0, 0.20);
+  --color-accent-22: rgba(240, 165, 0, 0.22);
+  --color-accent-24: rgba(240, 165, 0, 0.24);
+  --color-accent-28: rgba(240, 165, 0, 0.28);
+  --color-accent-30: rgba(240, 165, 0, 0.30);
+  --color-accent-34: rgba(240, 165, 0, 0.34);
+  --color-accent-35: rgba(240, 165, 0, 0.35);
+  --color-accent-36: rgba(240, 165, 0, 0.36);
+  --color-accent-40: rgba(240, 165, 0, 0.40);
+  --color-accent-42: rgba(240, 165, 0, 0.42);
+  --color-accent-46: rgba(240, 165, 0, 0.46);
+  --color-accent-50: rgba(240, 165, 0, 0.50);
+  
+  /* Purple accent with opacity */
+  --color-purple-08: rgba(124, 58, 237, 0.08);
+  --color-purple-10: rgba(124, 58, 237, 0.10);
+  --color-purple-12: rgba(124, 58, 237, 0.12);
+  --color-purple-15: rgba(124, 58, 237, 0.15);
+  --color-purple-18: rgba(124, 58, 237, 0.18);
+  --color-purple-20: rgba(124, 58, 237, 0.20);
+  --color-purple-22: rgba(124, 58, 237, 0.22);
+  --color-purple-25: rgba(124, 58, 237, 0.25);
+  --color-purple-30: rgba(124, 58, 237, 0.30);
+  --color-purple-32: rgba(124, 58, 237, 0.32);
+  --color-purple-38: rgba(124, 58, 237, 0.38);
+  --color-purple-40: rgba(124, 58, 237, 0.40);
+  
+  /* Danger with opacity */
+  --color-danger-16: rgba(239, 68, 68, 0.16);
+  --color-danger-32: rgba(239, 68, 68, 0.32);
+  --color-danger-35: rgba(239, 68, 68, 0.35);
+  
+  /* Info/Blue with opacity */
+  --color-info-35: rgba(37, 99, 235, 0.35);
+  --color-info-55: rgba(59, 130, 246, 0.55);
+  
+  /* Warning/Amber with opacity */
+  --color-warning-40: rgba(245, 158, 11, 0.40);
+  
+  /* Dark theme colors */
+  --color-dark-bg: #161921;
+  --color-dark-surface: #1e2330;
+  --color-dark-hover: #252b3a;
+  --color-dark-active: #2c3347;
+  --color-dark-border-subtle: rgba(255, 255, 255, 0.06);
+  --color-dark-border-soft: rgba(255, 255, 255, 0.10);
+  --color-dark-border-strong: rgba(255, 255, 255, 0.18);
+  --color-dark-text: #e8ecf2;
+  --color-dark-text-muted: #8b93a8;
+  --color-dark-accent: #f0a500;
+  --color-dark-accent-dim: rgba(240, 165, 0, 0.15);
+  
+  /* ── SPACING TOKENS ───────────────────────────────────────── */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  
+  /* ── BORDER RADIUS TOKENS ─────────────────────────────────── */
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-full: 999px;
+  
+  /* ── TYPOGRAPHY TOKENS ────────────────────────────────────── */
+  --font-family-ui: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-family-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
+  
+  --font-size-xs: 9px;
+  --font-size-sm: 10px;
+  --font-size-base: 11px;
+  --font-size-md: 12px;
+  --font-size-lg: 13px;
+  --font-size-xl: 14px;
+  --font-size-2xl: 15px;
+  --font-size-3xl: 16px;
+  
+  --font-weight-normal: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+  
+  --line-height-tight: 1.2;
+  --line-height-normal: 1.4;
+  --line-height-relaxed: 1.5;
+  
+  --letter-spacing-tight: -0.01em;
+  --letter-spacing-normal: 0;
+  --letter-spacing-wide: 0.02em;
+  --letter-spacing-wider: 0.05em;
+  --letter-spacing-widest: 0.1em;
+  
+  /* ── SHADOW TOKENS ───────────────────────────────────────── */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
+  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
+  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+  --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.25);
+  
+  /* Dark theme shadows */
+  --shadow-dark-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
+  --shadow-dark-md: 0 4px 16px rgba(0, 0, 0, 0.5);
+  --shadow-dark-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
+  
+  /* Shadow with opacity variants */
+  --shadow-gray-04: 0 1px 2px rgba(15, 23, 42, 0.04);
+  --shadow-gray-05: 0 1px 4px rgba(15, 23, 42, 0.05);
+  --shadow-gray-06: 0 2px 6px rgba(15, 23, 42, 0.06);
+  --shadow-gray-07: 0 1px 3px rgba(15, 23, 42, 0.07);
+  --shadow-gray-08: 0 10px 24px rgba(15, 23, 42, 0.08);
+  --shadow-gray-10: 0 8px 22px rgba(15, 23, 42, 0.10);
+  --shadow-gray-12: 0 10px 24px rgba(15, 23, 42, 0.12);
+  --shadow-gray-14: 0 10px 24px rgba(15, 23, 42, 0.14);
+  --shadow-gray-20: 0 14px 32px rgba(15, 23, 42, 0.20);
+  --shadow-gray-22: 0 10px 24px rgba(2, 6, 23, 0.22);
+  
+  /* Dark theme shadow variants */
+  --shadow-dark-42: 0 14px 34px rgba(0, 0, 0, 0.42);
+  --shadow-dark-45: 0 10px 28px rgba(0, 0, 0, 0.45);
+  
+  /* Accent glow shadows */
+  --shadow-accent-08: 0 2px 8px rgba(240, 165, 0, 0.08);
+  --shadow-accent-10: 0 2px 6px rgba(124, 58, 237, 0.08);
+  --shadow-purple-10: 0 2px 8px rgba(124, 58, 237, 0.10);
+  --shadow-purple-12: 0 1px 4px rgba(124, 58, 237, 0.12);
+  
+  /* ── Z-INDEX TOKENS ───────────────────────────────────────── */
+  --z-base: 0;
+  --z-dropdown: 100;
+  --z-sticky: 200;
+  --z-overlay: 300;
+  --z-modal: 400;
+  --z-toast: 500;
+  
+  /* ── TRANSITION TOKENS ────────────────────────────────────── */
+  --transition-fast: 100ms ease;
+  --transition-normal: 150ms ease;
+  --transition-slow: 300ms ease;
+  
+  /* ── BACKDROP BLUR TOKENS ─────────────────────────────────── */
+  --blur-sm: blur(4px);
+  --blur-md: blur(8px);
+  --blur-lg: blur(16px);
+}
+
+/* Legacy alias mappings for backward compatibility */
+:root {
+  --pdfme-dark-bg: var(--color-dark-bg);
+  --pdfme-dark-elevated: var(--color-dark-surface);
+  --pdfme-dark-surface: var(--color-dark-surface);
+  --pdfme-dark-hover: var(--color-dark-hover);
+  --pdfme-dark-border-subtle: var(--color-dark-border-subtle);
+  --pdfme-dark-border-soft: var(--color-dark-border-soft);
+  --pdfme-dark-text: var(--color-dark-text);
+  --pdfme-dark-text-muted: var(--color-dark-text-muted);
+  --pdfme-dark-accent: var(--color-dark-accent);
+  --pdfme-dark-accent-dim: var(--color-dark-accent-dim);
+  --pdfme-dark-radius: var(--radius-md);
+  
+  --bg-base: var(--color-bg-base);
+  --bg-elevated: var(--color-dark-bg);
+  --bg-surface: var(--color-dark-surface);
+  --bg-hover: var(--color-dark-hover);
+  --bg-active: var(--color-dark-active);
+  --border-subtle: var(--color-dark-border-subtle);
+  --border-soft: var(--color-dark-border-soft);
+  --border-strong: var(--color-dark-border-strong);
+  --text-primary: var(--color-dark-text);
+  --text-secondary: var(--color-dark-text-muted);
+  --text-muted: var(--color-dark-text-muted);
+  --accent: var(--color-dark-accent);
+  --accent-dim: var(--color-dark-accent-dim);
+  --accent-glow: var(--color-accent-glow);
+  --font-ui: var(--font-family-ui);
+  --font-mono: var(--font-family-mono);
+  --transition: var(--transition-normal);
+  --radius-sm: var(--radius-sm);
+  --radius-md: var(--radius-md);
+  --radius-lg: var(--radius-lg);
+  --shadow-sm: var(--shadow-dark-sm);
+  --shadow-md: var(--shadow-dark-md);
+  --shadow-lg: var(--shadow-dark-lg);
+}

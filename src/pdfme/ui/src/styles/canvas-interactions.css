@@ -1,40 +1,37 @@
 /* ============================================================
    Canvas Interactions Layer
    Scope: overlays, schema quick actions, selection toolbars
+   Uses tokens.css for all colors, spacing, typography
    ============================================================ */
 
 .pdfme-ui-canvas-overlay-manager {
   position: absolute;
   inset: 0;
   pointer-events: none;
-  z-index: 30;
+  z-index: var(--z-overlay);
 }
 
 .pdfme-ui-selection-context-toolbar {
   position: absolute;
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: var(--space-2);
   min-width: 224px;
-  padding: 8px;
-  background:
-    linear-gradient(180deg, rgba(20, 26, 39, 0.96), rgba(13, 18, 28, 0.94)),
-    rgba(15, 23, 42, 0.94);
-  border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  box-shadow:
-    0 18px 38px rgba(0, 0, 0, 0.36),
-    0 0 0 1px rgba(0, 0, 0, 0.26) inset;
-  backdrop-filter: blur(12px);
+  padding: var(--space-2);
+  background: linear-gradient(180deg, var(--color-bg-elevated), var(--color-bg-surface));
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--color-border-soft);
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: var(--blur-md);
   pointer-events: auto;
-  color: #ffffff;
-  font-size: 11px;
+  color: var(--color-text-primary);
+  font-size: var(--font-size-base);
 }
 
 .pdfme-ui-selection-context-toolbar-summary {
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: var(--space-1);
   align-items: center;
   min-height: 18px;
 }
@@ -43,34 +40,34 @@
   display: inline-flex;
   align-items: center;
   min-height: 20px;
-  padding: 0 8px;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.9);
-  border: 1px solid rgba(148, 163, 184, 0.3);
-  color: #e2e8f0;
-  font-size: 10px;
+  padding: 0 var(--space-2);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-hover);
+  border: 1px solid var(--color-border-medium);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
   line-height: 18px;
-  letter-spacing: 0.01em;
+  letter-spacing: var(--letter-spacing-wide);
   white-space: nowrap;
 }
 
 .pdfme-ui-selection-context-toolbar-chip.is-primary {
-  background: rgba(245, 166, 35, 0.46);
-  border-color: rgba(245, 166, 35, 0.58);
-  color: #2b1600;
-  font-weight: 600;
+  background: var(--color-warning-dim);
+  border-color: var(--color-warning);
+  color: var(--color-text-primary);
+  font-weight: var(--font-weight-semibold);
 }
 
 .pdfme-ui-selection-context-toolbar-actions {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 5px;
+  gap: var(--space-1);
 }
 
 .pdfme-ui-selection-context-toolbar button {
   min-height: 30px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--color-border-medium);
+  background: var(--color-bg-surface);
   color: inherit;
   border-radius: 9px;
   padding: 6px 7px;
@@ -78,20 +75,15 @@
   display: inline-flex;
   align-items: center;
   justify-content: flex-start;
-  gap: 8px;
-  font-size: 11px;
+  gap: var(--space-2);
+  font-size: var(--font-size-base);
   line-height: 1;
-  transition:
-    background 120ms ease,
-    border-color 120ms ease,
-    color 120ms ease,
-    transform 120ms ease,
-    box-shadow 120ms ease;
+  transition: var(--transition-fast) background, var(--transition-fast) border-color, var(--transition-fast) color, var(--transition-fast) transform, var(--transition-fast) box-shadow;
 }
 
 .pdfme-ui-selection-context-toolbar button:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.09);
-  border-color: rgba(255, 255, 255, 0.14);
+  background: var(--color-bg-hover);
+  border-color: var(--color-border-strong);
   transform: translateY(-1px);
 }
 
@@ -101,20 +93,20 @@
 }
 
 .pdfme-ui-selection-context-toolbar button[data-active='true'] {
-  background: rgba(245, 166, 35, 0.46);
-  color: #2b1600;
-  border-color: rgba(245, 166, 35, 0.58);
-  box-shadow: 0 0 0 1px rgba(245, 166, 35, 0.08) inset;
+  background: var(--color-accent-dim);
+  color: var(--color-text-primary);
+  border-color: var(--color-accent);
+  box-shadow: inset 0 0 0 1px var(--color-accent-glow);
 }
 
 .pdfme-ui-selection-context-toolbar button[data-danger='true'] {
-  color: #ffd5d5;
+  color: var(--color-danger-light);
 }
 
 .pdfme-ui-selection-context-toolbar button[data-danger='true']:hover:not(:disabled) {
-  background: rgba(185, 28, 28, 0.85);
-  border-color: rgba(248, 113, 113, 0.24);
-  color: #ffffff;
+  background: var(--color-danger);
+  border-color: var(--color-danger-light);
+  color: var(--color-text-inverse);
 }
 
 .pdfme-ui-selection-context-toolbar-action-icon {
@@ -134,38 +126,38 @@
 
 .pdfme-ui-inline-metrics {
   position: absolute;
-  padding: 4px 8px;
-  background: rgba(30, 41, 59, 0.9);
-  color: #f8fafc;
-  border-radius: 999px;
-  font-size: 11px;
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-gray-800);
+  color: var(--color-gray-50);
+  border-radius: var(--radius-full);
+  font-size: var(--font-size-base);
   pointer-events: none;
 }
 
 .pdfme-ui-snap-feedback {
   position: absolute;
-  padding: 4px 8px;
-  background: rgba(29, 78, 216, 0.96);
-  color: #ffffff;
-  border-radius: 6px;
-  font-size: 11px;
+  padding: var(--space-1) var(--space-2);
+  background: var(--color-info);
+  color: var(--color-text-inverse);
+  border-radius: var(--radius-md);
+  font-size: var(--font-size-base);
   pointer-events: none;
 }
 
 .pdfme-designer-stage[data-interaction-phase='dragging'] .pdfme-ui-control-bar,
 .pdfme-designer-stage[data-interaction-phase='resizing'] .pdfme-ui-control-bar,
 .pdfme-designer-stage[data-interaction-phase='rotating'] .pdfme-ui-control-bar {
-  background: rgba(15, 23, 42, 0.9);
+  background: var(--color-bg-elevated);
 }
 
 .pdfme-designer-stage[data-interaction-phase='selected-single'] .pdfme-ui-control-bar,
 .pdfme-designer-stage[data-interaction-phase='selected-multi'] .pdfme-ui-control-bar {
-  box-shadow: 0 0 12px rgba(15, 23, 42, 0.35);
+  box-shadow: 0 0 12px var(--color-gray-800);
 }
 
 /* Schema interaction affordances */
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable {
-  --schema-tone: #38a0ff;
+  --schema-tone: var(--color-schema-tone);
   --schema-outline: 1px solid transparent;
   position: relative;
   display: block;
@@ -173,12 +165,8 @@
   cursor: pointer;
   outline: var(--schema-outline);
   outline-offset: 1px;
-  border-radius: 6px;
-  transition:
-    transform 120ms ease,
-    box-shadow 160ms ease,
-    outline-color 100ms ease,
-    outline-offset 100ms ease;
+  border-radius: var(--radius-md);
+  transition: var(--transition-fast) transform, var(--transition-normal) box-shadow, var(--transition-fast) outline-color, var(--transition-fast) outline-offset;
   box-shadow: 0 0 0 0 transparent;
   z-index: 1;
 }
@@ -187,7 +175,7 @@
   transform: translateY(-1px);
   outline-color: var(--schema-tone);
   outline-offset: 2px;
-  box-shadow: 0 10px 22px -18px rgba(15, 23, 42, 0.95);
+  box-shadow: 0 10px 22px -18px var(--color-gray-900);
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-readonly='true'] {
@@ -195,7 +183,7 @@
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-readonly='true']:hover {
-  box-shadow: 0 10px 22px -18px rgba(15, 23, 42, 0.95), 0 0 0 1px rgba(255, 255, 255, 0.04) inset;
+  box-shadow: 0 10px 22px -18px var(--color-gray-900), inset 0 0 0 1px var(--color-gray-100);
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-selectable='false'] {
@@ -210,15 +198,15 @@
   z-index: 35;
   display: inline-flex;
   align-items: center;
-  gap: 4px;
-  padding: 4px;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.94);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-  box-shadow: 0 10px 24px rgba(15, 23, 42, 0.28);
+  gap: var(--space-1);
+  padding: var(--space-1);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-soft);
+  box-shadow: var(--shadow-lg);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 120ms ease, transform 120ms ease;
+  transition: var(--transition-fast) opacity, var(--transition-fast) transform;
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-active='true'] .pdfme-ui-schema-toolbar,
@@ -236,19 +224,19 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
+  border-radius: var(--radius-full);
   border: 1px solid transparent;
   background: transparent;
-  color: rgba(226, 232, 240, 0.78);
+  color: var(--color-gray-600);
   cursor: pointer;
   padding: 0;
-  transition: background 120ms ease, color 120ms ease, border-color 120ms ease, transform 120ms ease;
+  transition: var(--transition-fast) background, var(--transition-fast) color, var(--transition-fast) border-color, var(--transition-fast) transform;
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-schema-toolbar-btn:hover {
-  background: rgba(30, 41, 59, 0.95);
-  color: #f8fafc;
-  border-color: rgba(255, 255, 255, 0.1);
+  background: var(--color-bg-hover);
+  color: var(--color-text-primary);
+  border-color: var(--color-border-medium);
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-schema-toolbar-btn:active {
@@ -256,15 +244,15 @@
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-schema-toolbar-btn[data-active='true'] {
-  background: color-mix(in srgb, var(--schema-tone) 18%, rgba(255, 255, 255, 0.03));
+  background: var(--color-schema-tone-dim);
   color: var(--schema-tone);
-  border-color: color-mix(in srgb, var(--schema-tone) 32%, rgba(255, 255, 255, 0.05));
+  border-color: var(--color-schema-tone-dim);
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-schema-toolbar-btn[aria-label='Eliminar campo']:hover {
-  color: #ffffff;
-  border-color: rgba(248, 113, 113, 0.24);
-  background: rgba(185, 28, 28, 0.82);
+  color: var(--color-text-inverse);
+  border-color: var(--color-danger-light);
+  background: var(--color-danger);
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-active='true'] {
@@ -273,7 +261,7 @@
   outline-width: 1.5px;
   outline-offset: 2px;
   transform: translateY(-1px);
-  box-shadow: 0 14px 26px -22px color-mix(in srgb, var(--schema-tone) 45%, rgba(15, 23, 42, 0.95));
+  box-shadow: 0 14px 26px -22px var(--color-gray-900);
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-active='true']::before {
@@ -289,9 +277,7 @@
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-editing='true'] {
   outline-width: 2px;
   outline-offset: 3px;
-  box-shadow:
-    0 0 0 1px color-mix(in srgb, var(--schema-tone) 20%, transparent),
-    0 18px 34px -24px color-mix(in srgb, var(--schema-tone) 55%, rgba(15, 23, 42, 0.92));
+  box-shadow: 0 0 0 1px var(--color-schema-tone-dim), 0 18px 34px -24px var(--color-gray-800);
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-editing='true']::before {
@@ -300,13 +286,13 @@
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-editing='true']::after {
-  background: color-mix(in srgb, rgba(15, 23, 42, 0.92) 76%, var(--schema-tone) 24%);
-  border-color: color-mix(in srgb, var(--schema-tone) 45%, rgba(255, 255, 255, 0.1));
-  color: #ffffff;
+  background: var(--color-gray-800);
+  border-color: var(--color-schema-tone);
+  color: var(--color-text-inverse);
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-hovering='true']:not([data-schema-active='true']) {
-  outline-color: color-mix(in srgb, var(--schema-tone) 72%, transparent);
+  outline-color: var(--color-schema-tone-dim);
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-readonly='true'][data-schema-active='true'] {
@@ -314,9 +300,7 @@
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-readonly='true'][data-schema-editing='true'] {
-  box-shadow:
-    0 0 0 1px rgba(251, 191, 36, 0.28),
-    0 18px 34px -24px rgba(251, 191, 36, 0.35);
+  box-shadow: 0 0 0 1px var(--color-warning), 0 18px 34px -24px var(--color-warning-dim);
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable::before {
@@ -328,7 +312,7 @@
   border: 1px solid var(--schema-tone);
   opacity: 0;
   pointer-events: none;
-  transition: opacity 130ms ease, transform 130ms ease;
+  transition: var(--transition-normal) opacity, var(--transition-normal) transform;
   transform: scale(0.985);
 }
 
@@ -348,16 +332,16 @@
   bottom: calc(100% + 5px);
   left: 0;
   z-index: 30;
-  background: rgba(22, 25, 33, 0.96);
-  border: 1px solid rgba(255, 255, 255, 0.09);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-medium);
   border-left: 2px solid var(--schema-tone);
-  border-radius: 6px;
-  color: #cbd5e1;
-  font-size: 10px;
-  font-weight: 600;
-  font-family: var(--font-ui, ui-sans-serif, system-ui, sans-serif);
-  letter-spacing: 0.02em;
-  padding: 3px 8px;
+  border-radius: var(--radius-md);
+  color: var(--color-text-secondary);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  font-family: var(--font-family-ui);
+  letter-spacing: var(--letter-spacing-wide);
+  padding: 3px var(--space-2);
   white-space: nowrap;
   max-width: 220px;
   overflow: hidden;
@@ -365,7 +349,7 @@
   pointer-events: none;
   opacity: 0;
   transform: translateY(3px);
-  transition: opacity 120ms ease 60ms, transform 120ms ease 60ms;
+  transition: var(--transition-fast) opacity 60ms, var(--transition-fast) transform 60ms;
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable:hover::after {
@@ -384,12 +368,12 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  border-radius: 999px;
-  background: rgba(15, 23, 42, 0.92);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-medium);
   color: var(--schema-tone);
-  font-size: 9px;
-  font-weight: 700;
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
   line-height: 1;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -397,7 +381,7 @@
   opacity: 0;
   pointer-events: none;
   transform: translateY(2px) scale(0.98);
-  transition: opacity 120ms ease, transform 120ms ease;
+  transition: var(--transition-fast) opacity, var(--transition-fast) transform;
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-state='editing']::after {
@@ -409,11 +393,11 @@
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-readonly='true']::after {
-  color: #fbbf24;
+  color: var(--color-warning);
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-required='true']::after {
-  color: #fb7185;
+  color: var(--color-danger-light);
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-span-auto {
@@ -423,12 +407,12 @@
   height: 16px;
   display: grid;
   place-items: center;
-  border-radius: 999px;
-  background: #b91c1c;
-  color: #ffffff;
-  font-size: 11px;
+  border-radius: var(--radius-full);
+  background: var(--color-danger);
+  color: var(--color-text-inverse);
+  font-size: var(--font-size-base);
   font-weight: 800;
-  box-shadow: 0 4px 10px rgba(239, 68, 68, 0.3);
+  box-shadow: 0 4px 10px var(--color-danger-dim);
 }
 
 .app-shell .pdfme-designer-root .pdfme-ui-custom-selectable[data-schema-required='true']:hover .pdfme-ui-span-auto {
@@ -454,20 +438,18 @@
   z-index: 1201;
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: var(--space-1);
   width: 284px;
   max-width: min(100vw - 16px, 304px);
   max-height: min(60vh, 360px);
   overflow: auto;
   padding: 7px;
   border-radius: 13px;
-  border: 1px solid rgba(148, 163, 184, 0.18);
-  background: rgba(15, 23, 42, 0.96);
-  box-shadow:
-    0 20px 45px rgba(15, 23, 42, 0.35),
-    0 0 0 1px rgba(255, 255, 255, 0.03);
-  backdrop-filter: blur(14px);
-  color: #e2e8f0;
+  border: 1px solid var(--color-border-medium);
+  background: linear-gradient(180deg, var(--color-bg-elevated), var(--color-bg-surface));
+  box-shadow: var(--shadow-xl);
+  backdrop-filter: var(--blur-lg);
+  color: var(--color-text-primary);
 }
 
 .pdfme-ui-canvas-context-menu[data-mode='empty'] {
@@ -481,14 +463,14 @@
 .pdfme-ui-canvas-context-menu-group {
   display: flex;
   flex-direction: column;
-  gap: 4px;
+  gap: var(--space-1);
 }
 
 .pdfme-ui-canvas-context-menu-group-label {
-  padding: 0 4px 2px;
-  color: rgba(203, 213, 225, 0.72);
-  font-size: 9px;
-  font-weight: 700;
+  padding: 0 var(--space-1) 2px;
+  color: var(--color-text-muted);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
   letter-spacing: 0.12em;
   text-transform: uppercase;
 }
@@ -496,32 +478,28 @@
 .pdfme-ui-canvas-context-menu-item {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: var(--space-2);
   width: 100%;
   min-height: 32px;
   padding: 7px 9px;
   border: 1px solid transparent;
-  border-radius: 10px;
-  background: rgba(255, 255, 255, 0.03);
+  border-radius: var(--radius-lg);
+  background: var(--color-bg-surface);
   color: inherit;
-  font-size: 12px;
+  font-size: var(--font-size-md);
   text-align: left;
   cursor: pointer;
-  transition:
-    background 120ms ease,
-    border-color 120ms ease,
-    transform 120ms ease,
-    color 120ms ease;
+  transition: var(--transition-fast) background, var(--transition-fast) border-color, var(--transition-fast) transform, var(--transition-fast) color;
 }
 
 .pdfme-ui-canvas-context-menu-item:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.08);
-  border-color: rgba(255, 255, 255, 0.08);
+  background: var(--color-bg-hover);
+  border-color: var(--color-border-soft);
   transform: translateX(1px);
 }
 
 .pdfme-ui-canvas-context-menu-item:focus-visible {
-  outline: 2px solid rgba(245, 166, 35, 0.55);
+  outline: 2px solid var(--color-accent-dim);
   outline-offset: 1px;
 }
 
@@ -531,13 +509,13 @@
 }
 
 .pdfme-ui-canvas-context-menu-item.is-danger {
-  color: #fecaca;
+  color: var(--color-danger);
 }
 
 .pdfme-ui-canvas-context-menu-item.is-danger:hover:not(:disabled) {
-  background: rgba(185, 28, 28, 0.9);
-  border-color: rgba(239, 68, 68, 0.24);
-  color: #ffffff;
+  background: var(--color-danger-dim);
+  border-color: var(--color-danger-light);
+  color: var(--color-text-inverse);
 }
 
 .pdfme-ui-canvas-context-menu-item-icon {
@@ -557,6 +535,6 @@
 
 .pdfme-ui-canvas-context-menu-divider {
   height: 1px;
-  margin: 4px 0;
-  background: rgba(148, 163, 184, 0.14);
+  margin: var(--space-1) 0;
+  background: var(--color-border-subtle);
 }

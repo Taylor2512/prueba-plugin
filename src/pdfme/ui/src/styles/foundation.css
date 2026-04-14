@@ -11,7 +11,7 @@
 
 .pdfme-ui-text-auto {
   color: inherit;
-  line-height: 1.2;
+  line-height: var(--line-height-tight);
 }
 
 .pdfme-ui-icon-auto {
@@ -26,12 +26,12 @@
 }
 
 .pdfme-ui-span-auto {
-  color: #ef4444;
+  color: var(--color-danger);
   position: absolute;
   top: -12px;
   left: -12px;
-  font-size: 18px;
-  font-weight: 700;
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
   line-height: 1;
   pointer-events: none;
 }
