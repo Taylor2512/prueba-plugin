@@ -1,0 +1,401 @@
+/* ========================================
+   PDFME GLOBAL STYLES - Dark Theme Overrides
+   Location: src/pdfme/ui/src/styles/pdfme-improved.css
+   
+   NOTE: Base styles are defined in final-classes.css.
+   This file contains only theme-specific overrides.
+   ======================================== */
+
+:root {
+  --bg-base: hsl(0, 0%, 100%);
+  --bg-elevated: #161921;
+  --bg-surface: #1e2330;
+  --bg-hover: #252b3a;
+  --bg-active: #2c3347;
+  --bg-2: #1a1d24;
+  --bg-3: #232730;
+  --bg-4: #1d2333;
+  --surface: #242b3d;
+  --border-subtle: rgba(255,255,255,0.06);
+  --border-soft: rgba(255,255,255,0.10);
+  --border-strong: rgba(255,255,255,0.18);
+  --line: rgba(255, 255, 255, 0.06);
+  --line-2: rgba(255, 255, 255, 0.10);
+  --line-3: rgba(255, 255, 255, 0.16);
+  --amber-border: rgba(245, 166, 35, 0.28);
+  --amber: #f5a623;
+  --accent: #f0a500;
+  --accent-dim: rgba(240,165,0,0.15);
+  --accent-glow: rgba(240,165,0,0.08);
+  --text-primary: #e8ecf2;
+  --text-secondary: #8b93a8;
+  --text-muted: #525b72;
+  --text-accent: #f0a500;
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --shadow-sm: 0 1px 3px rgba(0,0,0,0.4);
+  --shadow-md: 0 4px 16px rgba(0,0,0,0.5);
+  --shadow-lg: 0 8px 32px rgba(0,0,0,0.6);
+  --font-ui: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+  --transition: 0.15s ease;
+}
+
+/* ========================================
+   DARK THEME OVERRIDES
+   Only override base styles for dark theme
+   ======================================== */
+.pdfme-designer-root { 
+  background: #1a1d24;
+}
+.pdfme-designer-background { background: transparent; }
+.pdfme-designer-canvas { background: var(--bg-base); }
+.pdfme-designer-stage { background: var(--bg-base); }
+.pdfme-ui-control-bar { background: var(--bg-elevated); border-bottom: 1px solid var(--border-subtle); }
+.pdfme-designer-left-sidebar { background: var(--bg-elevated); color: var(--text-primary); }
+.pdfme-designer-right-sidebar { background: var(--bg-elevated); }
+.pdfme-designer-right-sidebar-content { background: var(--bg-elevated); }
+
+/* ========================================
+   CANVAS-FIRST MODE - Overlay sidebar
+   ======================================== */
+
+/* ========================================
+   SIDEBAR + MODAL SOURCE OF TRUTH
+   - Stable scroll by panel
+   - Unified visual hierarchy
+   ======================================== */
+.app-shell .pdfme-grid,
+.app-shell .pdfme-workspace,
+.app-shell .pdfme-canvas,
+.app-shell .pdfme-designer-root,
+.app-shell .pdfme-designer-background,
+.app-shell .pdfme-designer-stage {
+  min-height: 0 !important;
+}
+
+.app-shell .pdfme-panel-dock {
+  display: flex !important;
+  flex-direction: column !important;
+  min-height: 0 !important;
+  overflow: hidden !important;
+}
+
+.app-shell .pdfme-panel {
+  flex: 1 !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding-right: 4px !important;
+  scrollbar-gutter: stable both-edges !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-content,
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-shell {
+  min-height: 0 !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-control-band {
+  flex-shrink: 0 !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-main {
+  flex: 1 !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding-right: 6px !important;
+  scrollbar-gutter: stable both-edges !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-group {
+  margin-bottom: 10px !important;
+  padding: 8px !important;
+  border: 1px solid rgba(255, 255, 255, 0.06) !important;
+  border-radius: 12px !important;
+  background: linear-gradient(180deg, rgba(24, 29, 39, 0.92), rgba(18, 22, 31, 0.9)) !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-group-title {
+  margin-bottom: 8px !important;
+  padding: 0 2px 8px !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07) !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-group-title-label {
+  color: #dbe3f2 !important;
+  font-size: 10px !important;
+  letter-spacing: 0.1em !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-group-title-count {
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  color: #9eacc7 !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-group-items {
+  gap: 7px !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-plugin-wrap {
+  border-color: rgba(255, 255, 255, 0.08) !important;
+  border-radius: 10px !important;
+  background: rgba(25, 31, 43, 0.9) !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-left-sidebar-plugin-wrap:hover {
+  border-color: rgba(240, 165, 0, 0.28) !important;
+  box-shadow: inset 0 0 0 1px rgba(240, 165, 0, 0.1) !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-plugin-btn-label-title {
+  color: #eaf0fb !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-plugin-btn-label-meta,
+.app-shell .pdfme-designer-root .pdfme-designer-custom-item-meta {
+  color: #9eacc7 !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-content,
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-grid,
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-frame,
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-body {
+  min-height: 0 !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-content {
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-frame,
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  flex: 1 !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-body {
+  flex: 1 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  scrollbar-gutter: stable both-edges !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-header {
+  flex-shrink: 0 !important;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-footer {
+  flex-shrink: 0 !important;
+}
+
+.pdfme-designer-custom-field-modal .ant-modal-content {
+  background: linear-gradient(180deg, rgba(22, 25, 33, 0.98), rgba(16, 19, 27, 0.98)) !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  border-radius: 14px !important;
+  box-shadow: 0 18px 42px rgba(0, 0, 0, 0.52) !important;
+}
+
+.pdfme-designer-custom-field-modal .ant-modal-header {
+  background: transparent !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  margin-bottom: 0 !important;
+  padding: 16px 18px 12px !important;
+}
+
+.pdfme-designer-custom-field-modal .ant-modal-title,
+.pdfme-designer-custom-field-modal .ant-modal-close {
+  color: #edf3ff !important;
+}
+
+.pdfme-designer-custom-field-modal .ant-modal-body {
+  padding: 0 !important;
+}
+
+.pdfme-designer-custom-field-form {
+  display: flex !important;
+  flex-direction: column !important;
+  max-height: min(78vh, 760px) !important;
+  min-height: 0 !important;
+}
+
+.pdfme-designer-custom-field-form-scroll {
+  flex: 1 !important;
+  min-height: 0 !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  padding: 14px 16px 10px !important;
+  scrollbar-gutter: stable both-edges !important;
+}
+
+.pdfme-designer-custom-field-section {
+  margin: 0 0 10px !important;
+  padding: 10px 12px !important;
+  border-radius: 12px !important;
+  border: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(17, 21, 29, 0.92) !important;
+}
+
+.pdfme-designer-custom-field-section h4,
+.pdfme-designer-custom-field-section-legend {
+  margin: 0 0 8px !important;
+  color: #f0f5ff !important;
+  font-size: 11px !important;
+  letter-spacing: 0.08em !important;
+  text-transform: uppercase !important;
+  font-weight: 700 !important;
+}
+
+.pdfme-designer-custom-field-section-legend {
+  padding: 0 6px !important;
+}
+
+.pdfme-designer-custom-field-grid {
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 10px !important;
+}
+
+.pdfme-designer-custom-field-control {
+  min-width: 0 !important;
+}
+
+.pdfme-designer-custom-field-label {
+  display: inline-block !important;
+  margin-bottom: 6px !important;
+  color: #9fb0cd !important;
+  font-size: 11px !important;
+}
+
+.pdfme-designer-custom-field-control .ant-input,
+.pdfme-designer-custom-field-select {
+  width: 100% !important;
+  min-height: 34px !important;
+  border-radius: 10px !important;
+  border: 1px solid rgba(255, 255, 255, 0.13) !important;
+  background: #10151f !important;
+  color: #e8eef9 !important;
+}
+
+.pdfme-designer-custom-field-select {
+  padding: 0 10px !important;
+}
+
+.pdfme-designer-custom-field-control .ant-input:focus,
+.pdfme-designer-custom-field-control .ant-input:focus-visible,
+.pdfme-designer-custom-field-select:focus,
+.pdfme-designer-custom-field-select:focus-visible {
+  outline: none !important;
+  border-color: rgba(240, 165, 0, 0.6) !important;
+  box-shadow: 0 0 0 2px rgba(240, 165, 0, 0.2) !important;
+}
+
+.pdfme-designer-custom-field-inline-checks {
+  margin-top: 8px !important;
+  display: grid !important;
+  grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  gap: 6px 10px !important;
+}
+
+.pdfme-designer-custom-field-checkbox {
+  display: inline-flex !important;
+  align-items: center !important;
+  gap: 6px !important;
+  color: #d7e2f5 !important;
+  min-height: 24px !important;
+}
+
+.pdfme-designer-custom-field-checkbox input[type='checkbox'] {
+  accent-color: #f0a500 !important;
+}
+
+.pdfme-designer-custom-field-checkbox input[type='checkbox']:focus-visible {
+  outline: 2px solid rgba(240, 165, 0, 0.5) !important;
+  outline-offset: 2px !important;
+}
+
+.pdfme-designer-custom-field-footer {
+  position: sticky !important;
+  bottom: 0 !important;
+  z-index: 1 !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+  gap: 8px !important;
+  padding: 12px 16px 14px !important;
+  border-top: 1px solid rgba(255, 255, 255, 0.08) !important;
+  background: rgba(15, 19, 27, 0.96) !important;
+}
+
+.pdfme-designer-custom-field-footer .ant-btn {
+  min-height: 32px !important;
+  border-radius: 10px !important;
+}
+
+.pdfme-designer-custom-field-footer .ant-btn-primary {
+  background: #f0a500 !important;
+  border-color: #f0a500 !important;
+  color: #11151d !important;
+  font-weight: 700 !important;
+}
+
+.pdfme-designer-custom-field-footer .ant-btn-default {
+  border-color: rgba(255, 255, 255, 0.16) !important;
+  color: #c6d2e8 !important;
+  background: rgba(255, 255, 255, 0.02) !important;
+}
+
+@media (max-width: 768px) {
+  .pdfme-designer-custom-field-form {
+    max-height: 84vh !important;
+  }
+
+  .pdfme-designer-custom-field-grid,
+  .pdfme-designer-custom-field-inline-checks {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+}
+
+/* ============================================================
+   Canvas-first final polish: compact docs rail + safer toggle
+   ============================================================ */
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-frame {
+  background: transparent;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-right-sidebar-layout-header {
+  background: rgba(17, 21, 29, 0.98);
+  border-bottom: 1px solid var(--pdfme-dark-border-subtle);
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-documents-rail {
+  background: linear-gradient(180deg, rgba(22, 25, 33, 0.98) 0%, rgba(16, 19, 27, 0.98) 100%);
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-documents-rail .pdfme-designer-right-sidebar-layout-header {
+  padding-bottom: 8px;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-documents-rail-header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.app-shell .pdfme-designer-root .pdfme-designer-documents-rail-empty {
+  margin: 8px;
+  padding: 12px;
+  display: grid;
+  gap: 10px;
+  justify-items: start;
+  border-radius: 12px;
+  border: 1px solid rgba(240, 165, 0, 0.18);
+  background: rgba(17, 21, 29, 0.96);
+  box-shadow: 0 12px 28px rgba(2, 6, 23, 0.24);
+}
+
+/* (file truncated in backup for brevity) */
