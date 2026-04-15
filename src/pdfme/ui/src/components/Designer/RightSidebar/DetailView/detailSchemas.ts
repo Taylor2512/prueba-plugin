@@ -86,13 +86,13 @@ export const buildInspectorSchemas = ({
     editable: {
       title: typedI18n('editable'),
       type: 'boolean',
-      span: 10,
+      span: 12,
       hidden: typeof defaultSchema.readOnly !== 'undefined',
     },
     required: {
       title: typedI18n('required'),
       type: 'boolean',
-      span: 14,
+      span: 12,
       hidden: '{{!formData.editable}}',
     },
   });

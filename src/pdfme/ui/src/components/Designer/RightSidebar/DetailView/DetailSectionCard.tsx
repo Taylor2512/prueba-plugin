@@ -3,6 +3,7 @@ import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { ChevronDown } from 'lucide-react';
 
 type DetailSectionCardProps = {
+  sectionKey?: string;
   title: string;
   description?: string;
   children: React.ReactNode;
@@ -11,6 +12,7 @@ type DetailSectionCardProps = {
 };
 
 const DetailSectionCard = ({
+  sectionKey,
   title,
   description,
   children,
@@ -22,6 +24,7 @@ const DetailSectionCard = ({
   return (
     <section
       className={DESIGNER_CLASSNAME + 'detail-section-card'}
+      data-section={sectionKey}
       data-collapsible={collapsible ? 'true' : 'false'}
       data-collapsed={collapsed ? 'true' : 'false'}>
       <div className={DESIGNER_CLASSNAME + 'detail-section-card-head'}>

@@ -292,6 +292,7 @@ const DetailView = (props: DetailViewProps) => {
       <SidebarBody>
         <DetailHeaderCard activeSchema={activeSchema} />
         <DetailFormSection
+          sectionKey="identity"
           title="Identidad"
           description="Nombre visible y tipo del campo."
           schema={sectionSchemas.identity}
@@ -300,6 +301,7 @@ const DetailView = (props: DetailViewProps) => {
           watchHandler={handleWatch}
         />
         <DetailFormSection
+          sectionKey="behavior"
           title="Comportamiento"
           description="Controla edicion, obligatoriedad y permisos del campo."
           schema={sectionSchemas.behavior}
@@ -308,6 +310,7 @@ const DetailView = (props: DetailViewProps) => {
           watchHandler={handleWatch}
         />
         <DetailFormSection
+          sectionKey="layout"
           title="Alineacion y layout"
           description="Alinea el contenido segun el comportamiento esperado del componente."
           schema={sectionSchemas.layout}
@@ -316,6 +319,7 @@ const DetailView = (props: DetailViewProps) => {
           watchHandler={handleWatch}
         />
         <DetailFormSection
+          sectionKey="geometry"
           title="Geometria"
           description="Ubicacion y dimensiones del campo en la pagina."
           schema={sectionSchemas.geometry}
@@ -325,6 +329,7 @@ const DetailView = (props: DetailViewProps) => {
           defaultCollapsed
         />
         <DetailFormSection
+          sectionKey="advanced"
           title="Estilo avanzado"
           description="Rotacion, opacidad y propiedades especiales del plugin."
           schema={sectionSchemas.advanced}

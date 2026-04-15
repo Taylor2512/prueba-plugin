@@ -6,6 +6,7 @@ import DetailSectionCard from './DetailSectionCard.js';
 import FormRenderComponent from 'form-render';
 
 type DetailFormSectionProps = {
+  sectionKey?: string;
   title: string;
   description: string;
   schema: PropPanelSchema;
@@ -16,6 +17,7 @@ type DetailFormSectionProps = {
 };
 
 const DetailFormSection = ({
+  sectionKey,
   title,
   description,
   schema,
@@ -24,7 +26,12 @@ const DetailFormSection = ({
   watchHandler,
   defaultCollapsed = false,
 }: DetailFormSectionProps) => (
-  <DetailSectionCard title={title} description={description} defaultCollapsed={defaultCollapsed}>
+  <DetailSectionCard
+    sectionKey={sectionKey}
+    title={title}
+    description={description}
+    defaultCollapsed={defaultCollapsed}
+  >
     <div className={`${DESIGNER_CLASSNAME}detail-view-form-shell`}>
       <FormRenderComponent
         form={form}
