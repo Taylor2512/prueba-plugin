@@ -98,9 +98,13 @@ const ItemStatusLabel = ({
   if (!status) return <>{value}</>;
 
   const statusText = status === 'is-warning' ? noKeyNameLabel : value;
+  const tooltipText =
+    typeof statusText === 'string' || typeof statusText === 'number'
+      ? String(statusText)
+      : noKeyNameLabel;
 
   return (
-    <Tooltip title={status === 'is-danger' ? `${String(statusText)} ${notUniqueLabel}` : String(statusText)}>
+    <Tooltip title={status === 'is-danger' ? `${tooltipText} ${notUniqueLabel}` : tooltipText}>
       <span className={DESIGNER_CLASSNAME + 'list-view-item-status'}>
         <CircleAlert size={14} />
         {statusText}
@@ -223,8 +227,6 @@ const Item = React.memo(
 
     return (
       <li
-        onMouseEnter={() => { setIsHovered(true); onMouseEnter?.(); }}
-        onMouseLeave={() => { setIsHovered(false); onMouseLeave?.(); }}
         ref={ref}
         className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item', className)}
         style={dragStyle}
@@ -234,19 +236,24 @@ const Item = React.memo(
         data-selected={selected ? 'true' : 'false'}
         data-hovered={hovered ? 'true' : 'false'}
         data-schema-type={schemaType}>
-        <div
-          className={DESIGNER_CLASSNAME + 'list-view-item-content'}
-          {...props}
-          role="button"
-          tabIndex={0}
+        <button
+          type="button"
+          className={DESIGNER_CLASSNAME + 'list-view-item-hit-target'}
           aria-label={valueTooltip}
+          onMouseEnter={() => { setIsHovered(true); onMouseEnter?.(); }}
+          onMouseLeave={() => { setIsHovered(false); onMouseLeave?.(); }}
           onClick={onClick}
           onKeyDown={(event) => {
             if (event.key === 'Enter' || event.key === ' ') {
               event.preventDefault();
               onClick?.();
             }
-          }}>
+          }}
+        />
+        <div
+          className={DESIGNER_CLASSNAME + 'list-view-item-content'}
+          {...props}
+          aria-hidden="true">
           <Button
             {...listeners}
             className={DESIGNER_CLASSNAME + 'list-view-item-grip'}

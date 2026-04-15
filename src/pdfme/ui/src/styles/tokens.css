@@ -1,24 +1,16 @@
-/* ========================================
-   PDFME DESIGN TOKENS
-   Unified color, spacing, typography, and effect tokens
-   Used across all CSS layers: foundation, final-classes, pdfme-improved, canvas-interactions
-   ======================================== */
-
 :root {
   /* ── COLOR PALETTE ───────────────────────────────────────── */
-  
-  /* Neutral - White backgrounds */
+
   --color-white: #ffffff;
-  --color-bg-base: #f8fbff;
+  --color-bg-base: #f8fafc;
   --color-bg-elevated: #ffffff;
-  --color-bg-surface: #f8fbff;
-  --color-bg-hover: #eef3fa;
-  --color-bg-active: #e7eef9;
-  --color-bg-2: #edf2f8;
-  --color-bg-3: #e7edf5;
-  --color-bg-4: #dde6f1;
-  
-  /* Neutral - Gray scale */
+  --color-bg-surface: #f1f5f9;
+  --color-bg-hover: #e8eef5;
+  --color-bg-active: #dde6f0;
+  --color-bg-2: #eef2f7;
+  --color-bg-3: #e2eaf2;
+  --color-bg-4: #ccd6e4;
+
   --color-gray-50: #f8fafc;
   --color-gray-100: #f1f5f9;
   --color-gray-200: #e2e8f0;
@@ -29,56 +21,47 @@
   --color-gray-700: #334155;
   --color-gray-800: #1e293b;
   --color-gray-900: #0f172a;
-  
-  /* Text hierarchy */
+
   --color-text-primary: #0f172a;
   --color-text-secondary: #334155;
   --color-text-muted: #64748b;
   --color-text-inverse: #ffffff;
-  
-  /* Accent - Primary brand */
-  --color-accent: #f0a500;
-  --color-accent-dim: rgba(240, 165, 0, 0.15);
-  --color-accent-glow: rgba(240, 165, 0, 0.08);
-  --color-accent-hover: #d49400;
-  
-  /* Accent - Secondary (Purple) */
-  --color-accent-purple: #7c3aed;
-  --color-accent-purple-light: #a78bfa;
-  --color-accent-purple-dim: rgba(124, 58, 237, 0.15);
-  
-  /* Status - Error/Danger */
+
+  /* Indigo-based primary — modern, Docusaurus-inspired */
+  --color-accent: #f59e0b;
+  --color-accent-dim: rgba(245, 158, 11, 0.15);
+  --color-accent-glow: rgba(245, 158, 11, 0.08);
+  --color-accent-hover: #d97706;
+
+  --color-primary: #4338ca;
+  --color-primary-light: #6366f1;
+  --color-primary-dim: rgba(67, 56, 202, 0.15);
+
   --color-danger: #ef4444;
   --color-danger-light: #f87171;
   --color-danger-pale: #fef2f2;
   --color-danger-dim: rgba(239, 68, 68, 0.15);
-  
-  /* Status - Warning */
+
   --color-warning: #f59e0b;
   --color-warning-light: #fbbf24;
   --color-warning-dim: rgba(245, 158, 11, 0.15);
-  
-  /* Status - Success */
-  --color-success: #22c55e;
-  --color-success-light: #4ade80;
-  --color-success-dim: rgba(34, 197, 94, 0.15);
-  
-  /* Status - Info */
-  --color-info: #2563eb;
-  --color-info-light: #38a0ff;
-  --color-info-dim: rgba(37, 99, 235, 0.15);
-  
-  /* Schema interaction tone */
-  --color-schema-tone: #38a0ff;
-  --color-schema-tone-dim: rgba(56, 160, 255, 0.15);
-  
-  /* Border colors */
-  --color-border-subtle: rgba(148, 163, 184, 0.18);
-  --color-border-soft: rgba(148, 163, 184, 0.25);
-  --color-border-medium: rgba(148, 163, 184, 0.35);
-  --color-border-strong: rgba(148, 163, 184, 0.5);
-  
-  /* Border color variants with different opacities */
+
+  --color-success: #10b981;
+  --color-success-light: #34d399;
+  --color-success-dim: rgba(16, 185, 129, 0.15);
+
+  --color-info: #4338ca;
+  --color-info-light: #6366f1;
+  --color-info-dim: rgba(67, 56, 202, 0.15);
+
+  --color-schema-tone: #4338ca;
+  --color-schema-tone-dim: rgba(67, 56, 202, 0.15);
+
+  --color-border-subtle: rgba(148, 163, 184, 0.16);
+  --color-border-soft: rgba(148, 163, 184, 0.22);
+  --color-border-medium: rgba(148, 163, 184, 0.32);
+  --color-border-strong: rgba(148, 163, 184, 0.48);
+
   --color-border-08: rgba(148, 163, 184, 0.08);
   --color-border-10: rgba(148, 163, 184, 0.10);
   --color-border-12: rgba(148, 163, 184, 0.12);
@@ -95,8 +78,7 @@
   --color-border-40: rgba(148, 163, 184, 0.40);
   --color-border-45: rgba(148, 163, 184, 0.45);
   --color-border-50: rgba(148, 163, 184, 0.50);
-  
-  /* Gray scale with opacity */
+
   --color-gray-900-04: rgba(15, 23, 42, 0.04);
   --color-gray-900-05: rgba(15, 23, 42, 0.05);
   --color-gray-900-06: rgba(15, 23, 42, 0.06);
@@ -112,56 +94,44 @@
   --color-gray-900-35: rgba(15, 23, 42, 0.35);
   --color-gray-900-42: rgba(15, 23, 42, 0.42);
   --color-gray-900-44: rgba(15, 23, 42, 0.44);
-  --color-gray-900-78: rgba(15, 23, 42, 0.78);
-  --color-gray-900-92: rgba(15, 23, 42, 0.92);
-  --color-gray-900-96: rgba(15, 23, 42, 0.96);
-  
-  /* Gray-100 with opacity (light backgrounds) */
+
   --color-gray-100-80: rgba(241, 245, 249, 0.80);
   --color-gray-100-85: rgba(241, 245, 249, 0.85);
   --color-gray-100-90: rgba(241, 245, 249, 0.90);
-  
-  /* Gray-50 with opacity */
+
   --color-gray-50-80: rgba(248, 250, 252, 0.80);
   --color-gray-50-85: rgba(248, 250, 252, 0.85);
   --color-gray-50-90: rgba(248, 250, 252, 0.90);
-  
-  /* Gray-200 with opacity */
+
   --color-gray-200-45: rgba(226, 232, 240, 0.45);
   --color-gray-200-60: rgba(226, 232, 240, 0.60);
   --color-gray-200-65: rgba(226, 232, 240, 0.65);
   --color-gray-200-80: rgba(226, 232, 240, 0.80);
   --color-gray-200-90: rgba(226, 232, 240, 0.90);
-  
-  /* Purple-200 with opacity (light backgrounds) */
-  --color-purple-200-20: rgba(237, 233, 254, 0.20);
-  --color-purple-200-60: rgba(237, 233, 254, 0.60);
-  --color-purple-200-65: rgba(237, 233, 254, 0.65);
-  --color-purple-200-70: rgba(237, 233, 254, 0.70);
-  --color-purple-200-80: rgba(237, 233, 254, 0.80);
-  --color-purple-200-85: rgba(237, 233, 254, 0.85);
-  --color-purple-200-90: rgba(237, 233, 254, 0.90);
-  
-  /* Purple-100 with opacity (very light backgrounds) */
-  --color-purple-100-60: rgba(245, 243, 255, 0.60);
-  --color-purple-100-70: rgba(245, 243, 255, 0.70);
-  --color-purple-100-90: rgba(245, 243, 255, 0.90);
-  
-  /* Indigo-200 with opacity */
-  --color-indigo-200-65: rgba(224, 231, 255, 0.65);
-  
-  /* Gray-500 with opacity */
+
+  --color-primary-100-60: rgba(238, 236, 255, 0.60);
+  --color-primary-100-70: rgba(238, 236, 255, 0.70);
+  --color-primary-100-90: rgba(238, 236, 255, 0.90);
+
+  --color-primary-200-20: rgba(199, 210, 254, 0.20);
+  --color-primary-200-60: rgba(199, 210, 254, 0.60);
+  --color-primary-200-65: rgba(199, 210, 254, 0.65);
+  --color-primary-200-70: rgba(199, 210, 254, 0.70);
+  --color-primary-200-80: rgba(199, 210, 254, 0.80);
+  --color-primary-200-85: rgba(199, 210, 254, 0.85);
+  --color-primary-200-90: rgba(199, 210, 254, 0.90);
+
+  --color-indigo-200-65: rgba(199, 210, 254, 0.65);
+
   --color-gray-500-45: rgba(100, 116, 139, 0.45);
   --color-gray-500-55: rgba(100, 116, 139, 0.55);
   --color-gray-500-78: rgba(100, 116, 139, 0.78);
   --color-gray-500-82: rgba(100, 116, 139, 0.82);
-  
-  /* Gray-600 with opacity */
+
   --color-gray-600-78: rgba(71, 85, 105, 0.78);
   --color-gray-600-82: rgba(71, 85, 105, 0.82);
   --color-gray-600-92: rgba(71, 85, 105, 0.92);
-  
-  /* White with opacity */
+
   --color-white-02: rgba(255, 255, 255, 0.02);
   --color-white-03: rgba(255, 255, 255, 0.03);
   --color-white-04: rgba(255, 255, 255, 0.04);
@@ -181,148 +151,119 @@
   --color-white-92: rgba(255, 255, 255, 0.92);
   --color-white-96: rgba(255, 255, 255, 0.96);
   --color-white-98: rgba(255, 255, 255, 0.98);
-  
-  /* Accent color with opacity */
-  --color-accent-08: rgba(240, 165, 0, 0.08);
-  --color-accent-10: rgba(240, 165, 0, 0.10);
-  --color-accent-11: rgba(240, 165, 0, 0.11);
-  --color-accent-12: rgba(240, 165, 0, 0.12);
-  --color-accent-14: rgba(240, 165, 0, 0.14);
-  --color-accent-15: rgba(240, 165, 0, 0.15);
-  --color-accent-16: rgba(240, 165, 0, 0.16);
-  --color-accent-18: rgba(240, 165, 0, 0.18);
-  --color-accent-20: rgba(240, 165, 0, 0.20);
-  --color-accent-22: rgba(240, 165, 0, 0.22);
-  --color-accent-24: rgba(240, 165, 0, 0.24);
-  --color-accent-28: rgba(240, 165, 0, 0.28);
-  --color-accent-30: rgba(240, 165, 0, 0.30);
-  --color-accent-34: rgba(240, 165, 0, 0.34);
-  --color-accent-35: rgba(240, 165, 0, 0.35);
-  --color-accent-36: rgba(240, 165, 0, 0.36);
-  --color-accent-40: rgba(240, 165, 0, 0.40);
-  --color-accent-42: rgba(240, 165, 0, 0.42);
-  --color-accent-46: rgba(240, 165, 0, 0.46);
-  --color-accent-50: rgba(240, 165, 0, 0.50);
-  
-  /* Purple accent with opacity */
-  --color-purple-08: rgba(124, 58, 237, 0.08);
-  --color-purple-10: rgba(124, 58, 237, 0.10);
-  --color-purple-12: rgba(124, 58, 237, 0.12);
-  --color-purple-15: rgba(124, 58, 237, 0.15);
-  --color-purple-18: rgba(124, 58, 237, 0.18);
-  --color-purple-20: rgba(124, 58, 237, 0.20);
-  --color-purple-22: rgba(124, 58, 237, 0.22);
-  --color-purple-25: rgba(124, 58, 237, 0.25);
-  --color-purple-30: rgba(124, 58, 237, 0.30);
-  --color-purple-32: rgba(124, 58, 237, 0.32);
-  --color-purple-38: rgba(124, 58, 237, 0.38);
-  --color-purple-40: rgba(124, 58, 237, 0.40);
-  
-  /* Danger with opacity */
+
+  --color-accent-08: rgba(245, 158, 11, 0.08);
+  --color-accent-10: rgba(245, 158, 11, 0.10);
+  --color-accent-11: rgba(245, 158, 11, 0.11);
+  --color-accent-12: rgba(245, 158, 11, 0.12);
+  --color-accent-14: rgba(245, 158, 11, 0.14);
+  --color-accent-15: rgba(245, 158, 11, 0.15);
+  --color-accent-16: rgba(245, 158, 11, 0.16);
+  --color-accent-18: rgba(245, 158, 11, 0.18);
+  --color-accent-20: rgba(245, 158, 11, 0.20);
+  --color-accent-22: rgba(245, 158, 11, 0.22);
+  --color-accent-24: rgba(245, 158, 11, 0.24);
+  --color-accent-28: rgba(245, 158, 11, 0.28);
+  --color-accent-30: rgba(245, 158, 11, 0.30);
+  --color-accent-34: rgba(245, 158, 11, 0.34);
+  --color-accent-35: rgba(245, 158, 11, 0.35);
+  --color-accent-36: rgba(245, 158, 11, 0.36);
+  --color-accent-40: rgba(245, 158, 11, 0.40);
+  --color-accent-42: rgba(245, 158, 11, 0.42);
+  --color-accent-46: rgba(245, 158, 11, 0.46);
+  --color-accent-50: rgba(245, 158, 11, 0.50);
+
+  --color-primary-08: rgba(67, 56, 202, 0.08);
+  --color-primary-10: rgba(67, 56, 202, 0.10);
+  --color-primary-12: rgba(67, 56, 202, 0.12);
+  --color-primary-15: rgba(67, 56, 202, 0.15);
+  --color-primary-18: rgba(67, 56, 202, 0.18);
+  --color-primary-20: rgba(67, 56, 202, 0.20);
+  --color-primary-22: rgba(67, 56, 202, 0.22);
+  --color-primary-25: rgba(67, 56, 202, 0.25);
+  --color-primary-30: rgba(67, 56, 202, 0.30);
+  --color-primary-32: rgba(67, 56, 202, 0.32);
+  --color-primary-38: rgba(67, 56, 202, 0.38);
+  --color-primary-40: rgba(67, 56, 202, 0.40);
+
   --color-danger-16: rgba(239, 68, 68, 0.16);
   --color-danger-32: rgba(239, 68, 68, 0.32);
   --color-danger-35: rgba(239, 68, 68, 0.35);
-  
-  /* Info/Blue with opacity */
-  --color-info-35: rgba(37, 99, 235, 0.35);
-  --color-info-55: rgba(59, 130, 246, 0.55);
-  
-  /* Warning/Amber with opacity */
+
+  --color-info-35: rgba(67, 56, 202, 0.35);
+  --color-info-55: rgba(99, 102, 241, 0.55);
+
   --color-warning-40: rgba(245, 158, 11, 0.40);
-  
-  /* Dark theme colors */
-  --color-dark-bg: #161921;
-  --color-dark-surface: #1e2330;
-  --color-dark-hover: #252b3a;
-  --color-dark-active: #2c3347;
-  --color-dark-border-subtle: rgba(255, 255, 255, 0.06);
-  --color-dark-border-soft: rgba(255, 255, 255, 0.10);
-  --color-dark-border-strong: rgba(255, 255, 255, 0.18);
-  --color-dark-text: #e8ecf2;
-  --color-dark-text-muted: #8b93a8;
-  --color-dark-accent: #f0a500;
-  --color-dark-accent-dim: rgba(240, 165, 0, 0.15);
-  
+
   /* ── SPACING TOKENS ───────────────────────────────────────── */
-  --space-1: 4px;
-  --space-2: 8px;
-  --space-3: 12px;
-  --space-4: 16px;
-  --space-5: 20px;
-  --space-6: 24px;
-  --space-8: 32px;
-  --space-10: 40px;
-  --space-12: 48px;
-  
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-10: 2.5rem;
+  --space-12: 3rem;
+
   /* ── BORDER RADIUS TOKENS ─────────────────────────────────── */
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 12px;
-  --radius-xl: 16px;
-  --radius-full: 999px;
-  
+  --radius-sm: 0.3125rem;
+  --radius-md: 0.5rem;
+  --radius-lg: 0.875rem;
+  --radius-xl: 1.25rem;
+  --radius-full: 999rem;
+
   /* ── TYPOGRAPHY TOKENS ────────────────────────────────────── */
   --font-family-ui: 'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-family-mono: 'JetBrains Mono', 'Fira Code', Consolas, monospace;
-  
-  --font-size-xs: 9px;
-  --font-size-sm: 10px;
-  --font-size-base: 11px;
-  --font-size-md: 12px;
-  --font-size-lg: 13px;
-  --font-size-xl: 14px;
-  --font-size-2xl: 15px;
-  --font-size-3xl: 16px;
-  
+
+  --font-size-xs: 0.5625rem;
+  --font-size-sm: 0.625rem;
+  --font-size-base: 0.6875rem;
+  --font-size-md: 0.75rem;
+  --font-size-lg: 0.8125rem;
+  --font-size-xl: 0.875rem;
+  --font-size-2xl: 0.9375rem;
+  --font-size-3xl: 1rem;
+
   --font-weight-normal: 400;
   --font-weight-medium: 500;
   --font-weight-semibold: 600;
   --font-weight-bold: 700;
-  
-  --line-height-tight: 1.2;
-  --line-height-normal: 1.4;
-  --line-height-relaxed: 1.5;
-  
+
+  --line-height-tight: 1.25;
+  --line-height-normal: 1.45;
+  --line-height-relaxed: 1.6;
+
   --letter-spacing-tight: -0.01em;
   --letter-spacing-normal: 0;
   --letter-spacing-wide: 0.02em;
   --letter-spacing-wider: 0.05em;
   --letter-spacing-widest: 0.1em;
-  
+
   /* ── SHADOW TOKENS ───────────────────────────────────────── */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
-  --shadow-2xl: 0 25px 50px rgba(0, 0, 0, 0.25);
-  
-  /* Dark theme shadows */
-  --shadow-dark-sm: 0 1px 3px rgba(0, 0, 0, 0.4);
-  --shadow-dark-md: 0 4px 16px rgba(0, 0, 0, 0.5);
-  --shadow-dark-lg: 0 8px 32px rgba(0, 0, 0, 0.6);
-  
-  /* Shadow with opacity variants */
-  --shadow-gray-04: 0 1px 2px rgba(15, 23, 42, 0.04);
-  --shadow-gray-05: 0 1px 4px rgba(15, 23, 42, 0.05);
-  --shadow-gray-06: 0 2px 6px rgba(15, 23, 42, 0.06);
-  --shadow-gray-07: 0 1px 3px rgba(15, 23, 42, 0.07);
-  --shadow-gray-08: 0 10px 24px rgba(15, 23, 42, 0.08);
-  --shadow-gray-10: 0 8px 22px rgba(15, 23, 42, 0.10);
-  --shadow-gray-12: 0 10px 24px rgba(15, 23, 42, 0.12);
-  --shadow-gray-14: 0 10px 24px rgba(15, 23, 42, 0.14);
-  --shadow-gray-20: 0 14px 32px rgba(15, 23, 42, 0.20);
-  --shadow-gray-22: 0 10px 24px rgba(2, 6, 23, 0.22);
-  
-  /* Dark theme shadow variants */
-  --shadow-dark-42: 0 14px 34px rgba(0, 0, 0, 0.42);
-  --shadow-dark-45: 0 10px 28px rgba(0, 0, 0, 0.45);
-  
-  /* Accent glow shadows */
-  --shadow-accent-08: 0 2px 8px rgba(240, 165, 0, 0.08);
-  --shadow-accent-10: 0 2px 6px rgba(124, 58, 237, 0.08);
-  --shadow-purple-10: 0 2px 8px rgba(124, 58, 237, 0.10);
-  --shadow-purple-12: 0 1px 4px rgba(124, 58, 237, 0.12);
-  
+  --shadow-sm: 0 0.0625rem 0.1875rem rgba(15, 23, 42, 0.06), 0 0.0625rem 0.125rem rgba(15, 23, 42, 0.04);
+  --shadow-md: 0 0.25rem 0.5rem rgba(15, 23, 42, 0.08), 0 0.125rem 0.25rem rgba(15, 23, 42, 0.05);
+  --shadow-lg: 0 0.625rem 1.25rem rgba(15, 23, 42, 0.10), 0 0.25rem 0.5rem rgba(15, 23, 42, 0.06);
+  --shadow-xl: 0 1.25rem 2rem rgba(15, 23, 42, 0.14), 0 0.5rem 1rem rgba(15, 23, 42, 0.08);
+  --shadow-2xl: 0 1.5625rem 3.5rem rgba(15, 23, 42, 0.22), 0 0.75rem 1.5rem rgba(15, 23, 42, 0.12);
+
+  --shadow-gray-04: 0 0.0625rem 0.125rem rgba(15, 23, 42, 0.04);
+  --shadow-gray-05: 0 0.0625rem 0.25rem rgba(15, 23, 42, 0.05);
+  --shadow-gray-06: 0 0.125rem 0.375rem rgba(15, 23, 42, 0.06);
+  --shadow-gray-07: 0 0.0625rem 0.1875rem rgba(15, 23, 42, 0.07);
+  --shadow-gray-08: 0 0.625rem 1.5rem rgba(15, 23, 42, 0.08);
+  --shadow-gray-10: 0 0.5rem 1.375rem rgba(15, 23, 42, 0.10);
+  --shadow-gray-12: 0 0.625rem 1.5rem rgba(15, 23, 42, 0.12);
+  --shadow-gray-14: 0 0.625rem 1.75rem rgba(15, 23, 42, 0.14);
+  --shadow-gray-20: 0 0.875rem 2rem rgba(15, 23, 42, 0.20);
+  --shadow-gray-22: 0 0.625rem 1.5rem rgba(2, 6, 23, 0.22);
+
+  --shadow-accent-08: 0 0.125rem 0.5rem rgba(245, 158, 11, 0.08);
+  --shadow-accent-10: 0 0.125rem 0.375rem rgba(67, 56, 202, 0.08);
+  --shadow-primary-10: 0 0.125rem 0.5rem rgba(67, 56, 202, 0.14);
+  --shadow-primary-12: 0 0.25rem 0.75rem rgba(67, 56, 202, 0.18);
+
   /* ── Z-INDEX TOKENS ───────────────────────────────────────── */
   --z-base: 0;
   --z-dropdown: 100;
@@ -330,53 +271,112 @@
   --z-overlay: 300;
   --z-modal: 400;
   --z-toast: 500;
-  
-  /* ── TRANSITION TOKENS ────────────────────────────────────── */
-  --transition-fast: 100ms ease;
-  --transition-normal: 150ms ease;
-  --transition-slow: 300ms ease;
-  
-  /* ── BACKDROP BLUR TOKENS ─────────────────────────────────── */
-  --blur-sm: blur(4px);
-  --blur-md: blur(8px);
-  --blur-lg: blur(16px);
-}
 
-/* Legacy alias mappings for backward compatibility */
-:root {
-  --pdfme-dark-bg: var(--color-dark-bg);
-  --pdfme-dark-elevated: var(--color-dark-surface);
-  --pdfme-dark-surface: var(--color-dark-surface);
-  --pdfme-dark-hover: var(--color-dark-hover);
-  --pdfme-dark-border-subtle: var(--color-dark-border-subtle);
-  --pdfme-dark-border-soft: var(--color-dark-border-soft);
-  --pdfme-dark-text: var(--color-dark-text);
-  --pdfme-dark-text-muted: var(--color-dark-text-muted);
-  --pdfme-dark-accent: var(--color-dark-accent);
-  --pdfme-dark-accent-dim: var(--color-dark-accent-dim);
-  --pdfme-dark-radius: var(--radius-md);
-  
+  /* ── TRANSITION TOKENS ────────────────────────────────────── */
+  --transition-fast: 150ms ease-out;
+  --transition-normal: 200ms ease-out;
+  --transition-slow: 320ms ease-out;
+
+  /* ── BACKDROP BLUR TOKENS ─────────────────────────────────── */
+  --blur-sm: blur(0.25rem);
+  --blur-md: blur(0.5rem);
+  --blur-lg: blur(1rem);
+
+  /* ── SEMANTIC TOKENS ─────────────────────────────────────── */
   --bg-base: var(--color-bg-base);
-  --bg-elevated: var(--color-dark-bg);
-  --bg-surface: var(--color-dark-surface);
-  --bg-hover: var(--color-dark-hover);
-  --bg-active: var(--color-dark-active);
-  --border-subtle: var(--color-dark-border-subtle);
-  --border-soft: var(--color-dark-border-soft);
-  --border-strong: var(--color-dark-border-strong);
-  --text-primary: var(--color-dark-text);
-  --text-secondary: var(--color-dark-text-muted);
-  --text-muted: var(--color-dark-text-muted);
-  --accent: var(--color-dark-accent);
-  --accent-dim: var(--color-dark-accent-dim);
+  --bg-elevated: var(--color-bg-elevated);
+  --bg-surface: var(--color-bg-surface);
+  --bg-hover: var(--color-bg-hover);
+  --bg-active: var(--color-bg-active);
+
+  --border-subtle: var(--color-border-subtle);
+  --border-soft: var(--color-border-soft);
+  --border-strong: var(--color-border-strong);
+
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --text-muted: var(--color-text-muted);
+
+  --accent: var(--color-accent);
+  --accent-dim: var(--color-accent-dim);
   --accent-glow: var(--color-accent-glow);
+
+  /* ── COMPAT ALIASES (@deprecated, keep until migration) ─── */
+  /* @deprecated use --font-family-ui */
   --font-ui: var(--font-family-ui);
+  /* @deprecated use --font-family-mono */
   --font-mono: var(--font-family-mono);
+  /* @deprecated use --transition-normal */
   --transition: var(--transition-normal);
-  --radius-sm: var(--radius-sm);
-  --radius-md: var(--radius-md);
-  --radius-lg: var(--radius-lg);
-  --shadow-sm: var(--shadow-dark-sm);
-  --shadow-md: var(--shadow-dark-md);
-  --shadow-lg: var(--shadow-dark-lg);
+
+  /* ── APP SHELL DARK TOKENS (legacy compat) ──────────────── */
+  --pdfme-dark-bg: var(--color-gray-900);
+  --pdfme-dark-surface: var(--color-gray-800);
+  --pdfme-dark-elevated: var(--color-gray-700);
+  --pdfme-dark-hover: var(--color-gray-600);
+  --pdfme-dark-text: var(--color-gray-50);
+  --pdfme-dark-text-muted: var(--color-gray-300);
+  --pdfme-dark-border-subtle: var(--color-border-24);
+  --pdfme-dark-border-soft: var(--color-border-35);
+  --pdfme-dark-accent: var(--color-accent);
+  --pdfme-dark-accent-dim: var(--color-accent-16);
+  --pdfme-dark-radius: var(--radius-md);
+
+  /* ── RUNTIME/PDFME LAYOUT TOKENS ─────────────────────────── */
+  --pdfme-root-width: auto;
+  --pdfme-root-height: auto;
+  --pdfme-root-bg: var(--color-bg-base);
+  --pdfme-preview-width: auto;
+  --pdfme-preview-height: auto;
+  --pdfme-guides-corner-bg: var(--color-gray-100);
+  --pdfme-mask-bg: var(--color-gray-900-08);
+  --pdfme-mask-blur: 0.0625rem;
+  --pdfme-left-sidebar-draggable-opacity: 1;
+  --pdfme-left-sidebar-draggable-scale: 1;
+  --pdfme-rs-v-padding: 0.5rem;
+  --pdfme-rs-h-padding: 1rem;
+  --pdfme-rs-content-columns: minmax(0, 1fr);
+  --pdfme-rs-content-rows: none;
+  --pdfme-rs-layout-columns: minmax(0, 1fr);
+  --pdfme-rs-layout-rows: none;
+  --pdfme-rs-gap: 0.875rem;
+  --pdfme-rs-width: clamp(15.5rem, 20vw, 20rem);
+  --pdfme-stage-inline-gap: clamp(1.25rem, 2.6vw, 2rem);
+  --pdfme-stage-top-gap: 4.25rem;
+  --pdfme-stage-right-dock-width: clamp(15.25rem, 18vw, 18.75rem);
+  --pdfme-stage-right-dock-gap: 1.125rem;
+
+  /* ── CANVAS-FIRST STATE TOKENS ───────────────────────────── */
+  --bg: var(--color-bg-base);
+  --bg-2: var(--color-bg-elevated);
+  --bg-3: var(--color-white-96);
+  --bg-4: var(--color-white);
+  --surface: var(--color-white);
+  --line: var(--color-border-20);
+  --line-2: var(--color-border-30);
+  --amber: var(--color-info);
+  --amber-dim: var(--color-info-dim);
+  --amber-border: var(--color-info-35);
+  --t2: var(--color-text-primary);
+  --rs-width: clamp(15.5rem, 18vw, 16.75rem);
+  --ls-collapsed: 3.25rem;
+  --ls-expanded: 17rem;
+  --ls-default-collapsed: 3rem;
+  --ls-default-expanded: clamp(17rem, 22vw, 20rem);
+
+  /* ── INTERACTION TOKENS ──────────────────────────────────── */
+  --moveable-color: var(--color-primary);
+  --schema-tone: var(--color-schema-tone);
+  --schema-outline: 0.0625rem solid transparent;
+  --wix-ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --wix-ease-in: cubic-bezier(0.4, 0, 1, 1);
+  --wix-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+  --wix-reveal-dur: 220ms;
+  --wix-hide-dur: 180ms;
+  --wix-idle-opacity: 0.55;
+  --wix-hover-delay: 80ms;
+
+  /* ── FOCUS RING TOKEN ────────────────────────────────────── */
+  --focus-ring: 0 0 0 0.1875rem rgba(67, 56, 202, 0.28);
+  --focus-ring-danger: 0 0 0 0.1875rem rgba(239, 68, 68, 0.24);
 }

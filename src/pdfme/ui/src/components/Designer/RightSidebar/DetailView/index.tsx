@@ -289,8 +289,11 @@ const DetailView = (props: DetailViewProps) => {
           {typedI18n('editField')}
         </Text>
       </SidebarHeader>
-      <SidebarBody>
+      <SidebarBody tabIndex={0} aria-label="Secciones del detalle del campo">
         <DetailHeaderCard activeSchema={activeSchema} />
+        <div
+          className={DESIGNER_CLASSNAME + 'detail-view-sections'}
+        >
         <DetailFormSection
           sectionKey="identity"
           title="Identidad"
@@ -338,6 +341,7 @@ const DetailView = (props: DetailViewProps) => {
           watchHandler={handleWatch}
           defaultCollapsed
         />
+        </div>
       </SidebarBody>
     </SidebarFrame>
   );

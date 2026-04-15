@@ -104,36 +104,8 @@ const DocumentsRail = ({
             Gestiona el documento activo y sus páginas asociadas.
           </Text>
         </SidebarHeader>
-        <SidebarBody>
-          {!hasItems ? (
-            <div className={DESIGNER_CLASSNAME + 'documents-rail-empty'}>
-              <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-icon'}>
-                <FileText size={18} />
-              </div>
-              <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-copy'}>
-                <Text strong className={DESIGNER_CLASSNAME + 'documents-empty-title'}>
-                  {emptyTitle}
-                </Text>
-                <Text type="secondary" className={DESIGNER_CLASSNAME + 'documents-rail-empty-hint'}>
-                  Sube un PDF para habilitar edición de páginas y navegación documental.
-                </Text>
-              </div>
-              <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-actions'}>
-                {canUpload ? (
-                  <Button
-                    size="small"
-                    type="default"
-                    htmlType="button"
-                    icon={<FileUp size={14} />}
-                    onClick={onUploadPdf}
-                    className={DESIGNER_CLASSNAME + 'documents-rail-empty-upload'}
-                  >
-                    Subir PDF
-                  </Button>
-                ) : null}
-              </div>
-            </div>
-          ) : (
+        <SidebarBody tabIndex={0} aria-label="Lista de páginas del documento">
+          {hasItems ? (
             <div className={DESIGNER_CLASSNAME + 'documents-rail-items'}>
               {canAdd && showInlineAddCard ? (
                 <button
@@ -146,10 +118,10 @@ const DocumentsRail = ({
                     </div>
                   </div>
                   <div className={DESIGNER_CLASSNAME + 'documents-rail-meta'}>
-                    <Text strong className={DESIGNER_CLASSNAME + "text-auto"}>
+                    <Text strong className={DESIGNER_CLASSNAME + 'text-auto'}>
                       Agregar página
                     </Text>
-                    <Text type="secondary" className={DESIGNER_CLASSNAME + "text-auto"}>
+                    <Text type="secondary" className={DESIGNER_CLASSNAME + 'text-auto'}>
                       Crea una nueva página dentro del documento activo
                     </Text>
                   </div>
@@ -188,11 +160,11 @@ const DocumentsRail = ({
                       </div>
                     </div>
                     <div className={DESIGNER_CLASSNAME + 'documents-rail-meta'}>
-                      <Text strong ellipsis={{ tooltip: item.name }} className={DESIGNER_CLASSNAME + "text-auto"}>
+                      <Text strong ellipsis={{ tooltip: item.name }} className={DESIGNER_CLASSNAME + 'text-auto'}>
                         {item.name}
                       </Text>
                       <div className={DESIGNER_CLASSNAME + 'documents-rail-meta-row'}>
-                        <Text type="secondary" ellipsis={{ tooltip: item.pageLabel || `${index + 1}` }} className={DESIGNER_CLASSNAME + "text-auto"}>
+                        <Text type="secondary" ellipsis={{ tooltip: item.pageLabel || `${index + 1}` }} className={DESIGNER_CLASSNAME + 'text-auto'}>
                           Página {item.pageLabel || `${index + 1}`}
                         </Text>
                         {isSelected ? (
@@ -202,7 +174,7 @@ const DocumentsRail = ({
                         ) : null}
                       </div>
                       {item.meta ? (
-                        <Text type="secondary" ellipsis={{ tooltip: item.meta }} className={DESIGNER_CLASSNAME + "text-auto"}>
+                        <Text type="secondary" ellipsis={{ tooltip: item.meta }} className={DESIGNER_CLASSNAME + 'text-auto'}>
                           {item.meta}
                         </Text>
                       ) : null}
@@ -210,6 +182,34 @@ const DocumentsRail = ({
                   </button>
                 );
               })}
+            </div>
+          ) : (
+            <div className={DESIGNER_CLASSNAME + 'documents-rail-empty'}>
+              <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-icon'}>
+                <FileText size={18} />
+              </div>
+              <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-copy'}>
+                <Text strong className={DESIGNER_CLASSNAME + 'documents-empty-title'}>
+                  {emptyTitle}
+                </Text>
+                <Text type="secondary" className={DESIGNER_CLASSNAME + 'documents-rail-empty-hint'}>
+                  Sube un PDF para habilitar edición de páginas y navegación documental.
+                </Text>
+              </div>
+              <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-actions'}>
+                {canUpload ? (
+                  <Button
+                    size="small"
+                    type="default"
+                    htmlType="button"
+                    icon={<FileUp size={14} />}
+                    onClick={onUploadPdf}
+                    className={DESIGNER_CLASSNAME + 'documents-rail-empty-upload'}
+                  >
+                    Subir PDF
+                  </Button>
+                ) : null}
+              </div>
             </div>
           )}
         </SidebarBody>

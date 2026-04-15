@@ -19,7 +19,7 @@ const DetailSectionCard = ({
   collapsible = true,
   defaultCollapsed = false,
 }: DetailSectionCardProps) => {
-  const [collapsed, setCollapsed] = React.useState(defaultCollapsed);
+  const [collapsed, setCollapsed] = React.useState(() => defaultCollapsed);
 
   return (
     <section
@@ -27,7 +27,14 @@ const DetailSectionCard = ({
       data-section={sectionKey}
       data-collapsible={collapsible ? 'true' : 'false'}
       data-collapsed={collapsed ? 'true' : 'false'}>
-      <div className={DESIGNER_CLASSNAME + 'detail-section-card-head'}>
+      <div
+        className={DESIGNER_CLASSNAME + 'detail-section-card-head'}
+        role={collapsible ? 'button' : undefined}
+        tabIndex={collapsible ? 0 : undefined}
+        aria-expanded={collapsible ? String(!collapsed) : undefined}
+        onClick={collapsible ? () => setCollapsed((prev) => !prev) : undefined}
+        onKeyDown={collapsible ? (e) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setCollapsed((prev) => !prev); } } : undefined}
+      >
         <div className={DESIGNER_CLASSNAME + 'detail-section-card-head-main'}>
           <div
             className={DESIGNER_CLASSNAME + 'detail-section-card-title'}
@@ -42,14 +49,12 @@ const DetailSectionCard = ({
           ) : null}
         </div>
         {collapsible ? (
-          <button
-            type="button"
+          <span
             className={DESIGNER_CLASSNAME + 'detail-section-card-toggle'}
-            aria-label={collapsed ? `Expandir sección ${title}` : `Colapsar sección ${title}`}
-            aria-expanded={String(!collapsed)}
-            onClick={() => setCollapsed((prev) => !prev)}>
-            <ChevronDown size={14} />
-          </button>
+            aria-hidden="true"
+          >
+            <ChevronDown size={12} />
+          </span>
         ) : null}
       </div>
       <div className={DESIGNER_CLASSNAME + 'detail-section-card-body'} data-collapsed={collapsed ? 'true' : 'false'}>

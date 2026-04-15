@@ -92,6 +92,8 @@ const sidebarModeMeta: Record<'fields' | 'detail' | 'docs', SidebarModeMeta> = {
   },
 };
 
+const sidebarModes = ['fields', 'detail', 'docs'] as const;
+
 const Sidebar = (props: RightSidebarProps) => {
   const { sidebarOpen, activeElements, schemas } = props;
   const detached = Boolean(props.detached);
@@ -134,6 +136,16 @@ const Sidebar = (props: RightSidebarProps) => {
     requestedViewMode !== 'auto' ? requestedViewMode : internalViewMode;
   const pagesBridge = props.pages || props.documents;
   const docsBridge = props.documents;
+  const panelIdByMode: Record<'fields' | 'detail' | 'docs', string> = {
+    fields: 'pdfme-right-sidebar-panel-fields',
+    detail: 'pdfme-right-sidebar-panel-detail',
+    docs: 'pdfme-right-sidebar-panel-docs',
+  };
+  const tabIdByMode: Record<'fields' | 'detail' | 'docs', string> = {
+    fields: 'pdfme-right-sidebar-tab-fields',
+    detail: 'pdfme-right-sidebar-tab-detail',
+    docs: 'pdfme-right-sidebar-tab-docs',
+  };
 
   useEffect(() => {
     if (requestedViewMode !== 'auto') return;
@@ -170,6 +182,31 @@ const Sidebar = (props: RightSidebarProps) => {
         : { minHeight: 0 }),
     }
     : undefined;
+
+  const handlePanelSwitcherKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (requestedViewMode !== 'auto') return;
+
+    const currentIndex = sidebarModes.indexOf(resolvedViewMode);
+    if (currentIndex < 0) return;
+
+    let nextIndex = currentIndex;
+    if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
+      nextIndex = (currentIndex + 1) % sidebarModes.length;
+    } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
+      nextIndex = (currentIndex - 1 + sidebarModes.length) % sidebarModes.length;
+    } else if (event.key === 'Home') {
+      nextIndex = 0;
+    } else if (event.key === 'End') {
+      nextIndex = sidebarModes.length - 1;
+    } else {
+      return;
+    }
+
+    event.preventDefault();
+    const nextMode = sidebarModes[nextIndex];
+    setInternalViewMode(nextMode);
+    props.onViewModeChange?.(nextMode);
+  };
 
   const contentNode = resolvedPanelMode === 'docs' ? (
     docsBridge || pagesBridge ? (
@@ -213,9 +250,8 @@ const Sidebar = (props: RightSidebarProps) => {
   );
 
   return (
-    <div
+    <aside
       id={props.rootId}
-      role="complementary"
       aria-label="Panel derecho del diseñador"
       aria-hidden={sidebarOpen ? 'false' : 'true'}
       className={mergeClassNames(
@@ -236,7 +272,14 @@ const Sidebar = (props: RightSidebarProps) => {
         data-panel-mode={resolvedPanelMode}>
         {props.showDocumentsAsTab !== false ? (
           <div className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-wrap'}>
-            <div className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher'}>
+            <div
+              className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher'}
+              role="tablist"
+              tabIndex={0}
+              aria-label="Panel derecho"
+              aria-orientation="horizontal"
+              onKeyDown={handlePanelSwitcherKeyDown}
+            >
               {(['fields', 'detail', 'docs'] as const).map((mode) => {
                 if (mode === 'docs' && !showDocumentsRail) return null;
                 const disabled = mode === 'detail' && activeSchemaCount !== 1;
@@ -248,7 +291,11 @@ const Sidebar = (props: RightSidebarProps) => {
                     type="button"
                     disabled={disabled}
                     className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn'}
+                    role="tab"
                     data-active={isActive ? 'true' : 'false'}
+                    aria-selected={isActive ? 'true' : 'false'}
+                    aria-controls={panelIdByMode[mode]}
+                    id={tabIdByMode[mode]}
                     title={modeMeta.title}
                     aria-label={modeMeta.ariaLabel}
                     onClick={() => {
@@ -270,7 +317,12 @@ const Sidebar = (props: RightSidebarProps) => {
           </div>
         ) : null}
         {useLayoutFrame ? (
-          <SidebarFrame className={DESIGNER_CLASSNAME + 'right-sidebar-frame'}>
+          <SidebarFrame
+            className={DESIGNER_CLASSNAME + 'right-sidebar-frame'}
+            role="tabpanel"
+            aria-labelledby={tabIdByMode[resolvedPanelMode]}
+            id={panelIdByMode[resolvedPanelMode]}
+          >
             <div className={DESIGNER_CLASSNAME + 'right-sidebar-layout-grid'}>
               {shouldRenderDocumentsRail && resolvedPanelMode !== 'docs' ? (
                 <DocumentsRailComponent
@@ -311,7 +363,7 @@ const Sidebar = (props: RightSidebarProps) => {
           </>
         )}
       </div>
-    </div>
+    </aside>
   );
 };
 

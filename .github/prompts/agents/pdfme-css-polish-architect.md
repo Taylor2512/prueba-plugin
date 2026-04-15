@@ -15,7 +15,7 @@ You are a senior visual architect specialized in CSS consolidation and UI polish
 - Do not touch TypeScript or JSX
 - Keep pdfme-improved.css as the primary UX layer when possible
 - Keep final-classes.css focused on structural/vendor support
-- Avoid unnecessary !important
+- Avoid unnecessary 
 
 ## Required response structure
 1. Objetivo

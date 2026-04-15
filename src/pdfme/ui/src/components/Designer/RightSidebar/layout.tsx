@@ -7,38 +7,48 @@ export const SIDEBAR_H_PADDING_PX = 16;
 export const SIDEBAR_V_PADDING_PX = 8;
 export const SIDEBAR_HEADER_HEIGHT = 60;
 
-type SectionProps = {
+type SectionProps = React.HTMLAttributes<HTMLDivElement> & {
   children: React.ReactNode;
 };
 type SidebarFrameProps = SectionProps & {
   className?: string;
 };
 
-export const SidebarFrame = ({ children, className }: SidebarFrameProps) => (
+export const SidebarFrame = ({ children, className, ...props }: SidebarFrameProps) => (
   <div
     className={mergeClassNames(DESIGNER_CLASSNAME + 'right-sidebar-layout-frame', className)}
+    {...props}
   >
     {children}
   </div>
 );
 
-export const SidebarHeader = ({ children }: SectionProps) => (
-  <div className={DESIGNER_CLASSNAME + 'right-sidebar-layout-header'}>
+export const SidebarHeader = ({ children, className, ...props }: SectionProps) => (
+  <div
+    className={mergeClassNames(DESIGNER_CLASSNAME + 'right-sidebar-layout-header', className)}
+    {...props}
+  >
     {children}
     <Divider className={DESIGNER_CLASSNAME + 'right-sidebar-layout-header-divider'} />
   </div>
 );
 
-export const SidebarBody = ({ children }: SectionProps) => (
-  <div className={DESIGNER_CLASSNAME + 'right-sidebar-layout-body'}>
+export const SidebarBody = ({ children, className, ...props }: SectionProps) => (
+  <div
+    className={mergeClassNames(DESIGNER_CLASSNAME + 'right-sidebar-layout-body', className)}
+    {...props}
+  >
     {children}
   </div>
 );
 
 
 
-export const SidebarFooter = ({ children }: SectionProps) => (
-  <div className={DESIGNER_CLASSNAME + 'right-sidebar-layout-footer'}>
+export const SidebarFooter = ({ children, className, ...props }: SectionProps) => (
+  <div
+    className={mergeClassNames(DESIGNER_CLASSNAME + 'right-sidebar-layout-footer', className)}
+    {...props}
+  >
     {children}
   </div>
 );

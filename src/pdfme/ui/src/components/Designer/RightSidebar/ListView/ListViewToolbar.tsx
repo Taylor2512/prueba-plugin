@@ -36,6 +36,18 @@ const ListViewToolbar = ({
   onClearFilters,
   useDefaultStyles,
 }: Props) => {
+  const subtitle = (() => {
+    if (!hasActiveSearch) {
+      return 'Gestiona nombres, orden y visibilidad';
+    }
+
+    if (filteredCount === 0) {
+      return 'Sin coincidencias. Ajusta filtros o limpia la búsqueda.';
+    }
+
+    return `Mostrando ${filteredCount} coincidencias`;
+  })();
+
   const densityStyles =
     useDefaultStyles === false
       ? {
@@ -111,12 +123,6 @@ const ListViewToolbar = ({
             flexShrink: 0,
           } as const,
       };
-
-  const subtitle = hasActiveSearch
-    ? filteredCount === 0
-      ? 'Sin coincidencias. Ajusta filtros o limpia la búsqueda.'
-      : `Mostrando ${filteredCount} coincidencias`
-    : 'Gestiona nombres, orden y visibilidad';
 
   return (
     <div className={DESIGNER_CLASSNAME + 'list-view-toolbar'} style={densityStyles.container}>

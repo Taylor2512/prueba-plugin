@@ -23,7 +23,6 @@ const ListView = (
     | 'changeSchemas'
   > & {
     className?: string;
-    style?: React.CSSProperties;
     useDefaultStyles?: boolean;
   },
 ) => {
@@ -34,6 +33,14 @@ const ListView = (
   const [fieldNamesValue, setFieldNamesValue] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [typeFilter, setTypeFilter] = useState<string>('all');
+
+  const normalizeText = (value: unknown) => {
+    if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
+      return String(value).trim().toLowerCase();
+    }
+
+    return '';
+  };
 
   // Collect unique schema types for the filter dropdown
   const schemaTypes = useMemo(() => {
@@ -47,17 +54,18 @@ const ListView = (
   // Filter schemas by search query and type
   const filteredSchemas = useMemo(() => {
     return schemas.filter((s) => {
-      const matchesSearch = !searchQuery || s.name.toLowerCase().includes(searchQuery.toLowerCase());
-      const matchesType = typeFilter === 'all' || s.type === typeFilter;
+      const query = normalizeText(searchQuery);
+      const matchesSearch =
+        query.length === 0 ||
+        [s.name, s.type, s.id].some((value) => normalizeText(value).includes(query));
+      const matchesType = typeFilter === 'all' || normalizeText(s.type) === normalizeText(typeFilter);
       return matchesSearch && matchesType;
     });
   }, [schemas, searchQuery, typeFilter]);
 
   const commitBulk = () => {
     const names = fieldNamesValue.split('\n');
-    if (names.length !== schemas.length) {
-      alert(i18n('errorBulkUpdateFieldName'));
-    } else {
+    if (names.length === schemas.length) {
       changeSchemas(
         names.map((value, index) => ({
           key: 'name',
@@ -66,7 +74,10 @@ const ListView = (
         })),
       );
       setIsBulkUpdateFieldNamesMode(false);
+      return;
     }
+
+    alert(i18n('errorBulkUpdateFieldName'));
   };
 
   const startBulk = () => {
@@ -75,11 +86,14 @@ const ListView = (
   };
 
   const hasActiveSearch = searchQuery !== '' || typeFilter !== 'all';
+  const showToolbar = !isBulkUpdateFieldNamesMode;
+  const showEmptyState = !isBulkUpdateFieldNamesMode && filteredSchemas.length === 0;
+  const showList = !isBulkUpdateFieldNamesMode && filteredSchemas.length > 0;
 
   return (
     <SidebarFrame
       className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view', props.className)}>
-      {!isBulkUpdateFieldNamesMode ? (
+      {showToolbar ? (
       <SidebarHeader>
         <ListViewToolbar
           searchQuery={searchQuery}
@@ -100,7 +114,7 @@ const ListView = (
         />
       </SidebarHeader>
       ) : null}
-      <SidebarBody>
+      <SidebarBody tabIndex={0} aria-label="Lista de campos del documento">
         {isBulkUpdateFieldNamesMode ? (
           <TextArea
             wrap="off"
@@ -108,39 +122,39 @@ const ListView = (
             onChange={(e) => setFieldNamesValue(e.target.value)}
             className={DESIGNER_CLASSNAME + 'list-view-bulk-textarea'}
           />
-        ) : (
-          filteredSchemas.length > 0 ? (
-            <SelectableSortableContainer
-              allSchemas={schemas}
-              visibleSchemas={filteredSchemas}
-              hoveringSchemaId={hoveringSchemaId}
-              onChangeHoveringSchemaId={onChangeHoveringSchemaId}
-              onSortEnd={onSortEnd}
-              onEdit={onEdit}
-            />
-          ) : (
-            <div className={DESIGNER_CLASSNAME + 'list-view-empty'}>
-              <Text strong className={DESIGNER_CLASSNAME + 'list-view-empty-title'}>
-                No hay campos que coincidan
-              </Text>
-              <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-empty-hint'}>
-                Limpia la búsqueda, cambia el tipo o vuelve a la vista general del catálogo.
-              </Text>
-              {hasActiveSearch ? (
-                <Button
-                  size="small"
-                  type="default"
-                  onClick={() => {
-                    setSearchQuery('');
-                    setTypeFilter('all');
-                  }}
-                  className={DESIGNER_CLASSNAME + 'list-view-empty-action'}>
-                  Limpiar filtros
-                </Button>
-              ) : null}
-            </div>
-          )
-        )}
+        ) : null}
+        {showList ? (
+          <SelectableSortableContainer
+            allSchemas={schemas}
+            visibleSchemas={filteredSchemas}
+            hoveringSchemaId={hoveringSchemaId}
+            onChangeHoveringSchemaId={onChangeHoveringSchemaId}
+            onSortEnd={onSortEnd}
+            onEdit={onEdit}
+          />
+        ) : null}
+        {showEmptyState ? (
+          <div className={DESIGNER_CLASSNAME + 'list-view-empty'}>
+            <Text strong className={DESIGNER_CLASSNAME + 'list-view-empty-title'}>
+              No hay campos que coincidan
+            </Text>
+            <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-empty-hint'}>
+              Limpia la búsqueda, cambia el tipo o vuelve a la vista general del catálogo.
+            </Text>
+            {hasActiveSearch ? (
+              <Button
+                size="small"
+                type="default"
+                onClick={() => {
+                  setSearchQuery('');
+                  setTypeFilter('all');
+                }}
+                className={DESIGNER_CLASSNAME + 'list-view-empty-action'}>
+                Limpiar filtros
+              </Button>
+            ) : null}
+          </div>
+        ) : null}
       </SidebarBody>
       {isBulkUpdateFieldNamesMode ? (
         <SidebarFooter>
