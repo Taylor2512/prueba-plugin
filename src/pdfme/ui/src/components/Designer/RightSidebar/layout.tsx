@@ -16,7 +16,11 @@ type SidebarFrameProps = SectionProps & {
 
 export const SidebarFrame = ({ children, className, ...props }: SidebarFrameProps) => (
   <div
-    className={mergeClassNames(DESIGNER_CLASSNAME + 'right-sidebar-layout-frame', className)}
+    className={mergeClassNames(
+      DESIGNER_CLASSNAME + 'sidebar-frame',
+      DESIGNER_CLASSNAME + 'right-sidebar-layout-frame',
+      className,
+    )}
     {...props}
   >
     {children}

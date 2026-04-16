@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect, useMemo } from 'react';
+import React, { useContext, useState, useEffect, useMemo, useCallback } from 'react';
 import { Schema, Plugin, BasePdf, getFallbackFontName } from '@pdfme/common';
 import { cloneDeep } from '@pdfme/common';
 import { Button, Tooltip } from 'antd';
@@ -21,11 +21,10 @@ import { mergeClassNames } from './shared/className.js';
 import { builtInSchemaDefinitions, flatSchemaPlugins } from '@pdfme/schemas';
 import type { SchemaDefinition } from '@pdfme/schemas';
 import {
-  getCustomSchemaDefinitions,
-  subscribeCustomSchemaDefinitions,
   upsertCustomSchemaDefinition,
   createCustomSchemaFromDefinition,
 } from './schemaRegistry.js';
+import useLeftSidebarCatalogState from './useLeftSidebarCatalogState.js';
 
 const schemaTypeCategoryMap: Record<string, string> = {
   text: 'Texto',
@@ -153,9 +152,9 @@ type ActiveRecipientOption = {
   massiveId?: string | null;
 };
 
-type CatalogViewMode = 'compact' | 'rich';
-type CatalogQuickFilter = 'all' | 'favorites' | 'recent';
-type CatalogCapability = 'designer' | 'content' | 'layout' | 'selection' | 'prefill' | 'dynamic';
+export type CatalogViewMode = 'compact' | 'rich';
+export type CatalogQuickFilter = 'all' | 'favorites' | 'recent';
+export type CatalogCapability = 'designer' | 'content' | 'layout' | 'selection' | 'prefill' | 'dynamic';
 const SHOW_ADVANCED_CATALOG_CONTROLS = false;
 
 type CatalogSchemaItem = {
@@ -173,30 +172,78 @@ type CatalogSchemaItem = {
   definitionId?: string;
 };
 
-const makeDefaultCustomField = (): CustomFieldDef => ({
-  id: `custom-${Date.now()}`,
-  name: '',
-  type: 'text',
-  initialValue: '',
-  required: false,
-  readOnly: false,
-  shared: false,
-  collaborative: false,
-  font: '__DEFAULT__',
-  fontColor: '__DEFAULT__',
-  fontSize: '__DEFAULT__',
-  bold: false,
-  italic: false,
-  underline: false,
-  fixedWidth: false,
-  maskAsterisks: false,
-  width: '',
-  height: '',
-  maxChars: '',
-  validation: 'None',
-  helpText: '',
-  autoPlaceText: '',
-});
+type SidebarButtonsProps = {
+  activeTab: LeftSidebarTab;
+  variant: 'compact' | 'panel';
+  groupedPlugins: Array<{ category: string; items: CatalogSchemaItem[] }>;
+  recentCatalogItems: CatalogSchemaItem[];
+  collapsedCategories: Record<string, boolean>;
+  quickFilter: CatalogQuickFilter;
+  normalizedSearch: string;
+  resolvedViewMode: CatalogViewMode;
+  hasPlugins: boolean;
+  filteredCustomDefinitions: RuntimeCustomSchemaDefinition[];
+  renderPluginButton: (item: CatalogSchemaItem) => React.ReactNode;
+  renderCustomFieldItem: (definition: RuntimeCustomSchemaDefinition) => React.ReactNode;
+  resolvePlugin: (pluginType: string) => Plugin<Schema> | null | undefined;
+  onOpenCreate: () => void;
+  onToggleCategory: (category: string) => void;
+};
+
+const SidebarButtons = ({
+  activeTab,
+  variant,
+  groupedPlugins,
+  recentCatalogItems,
+  collapsedCategories,
+  quickFilter,
+  normalizedSearch,
+  resolvedViewMode,
+  hasPlugins,
+  filteredCustomDefinitions,
+  renderPluginButton,
+  renderCustomFieldItem,
+  resolvePlugin,
+  onOpenCreate,
+  onToggleCategory,
+}: SidebarButtonsProps) => (
+  <>
+    {activeTab === 'custom' ? (
+      <LeftSidebarCustomPanel
+        definitions={filteredCustomDefinitions}
+        variant={variant}
+        onOpenCreate={onOpenCreate}
+        resolvePlugin={resolvePlugin}
+        renderDraggableItem={renderCustomFieldItem}
+      />
+    ) : !hasPlugins ? (
+      <LeftSidebarEmptyState description="Sin resultados" />
+    ) : null}
+    {activeTab !== 'custom' && quickFilter === 'all' && !normalizedSearch && recentCatalogItems.length > 0 ? (
+      <LeftSidebarGroup
+        key="__recent"
+        category="Recientes"
+        count={recentCatalogItems.length}
+        viewMode={resolvedViewMode}
+        items={recentCatalogItems.map(renderPluginButton)}
+      />
+    ) : null}
+    {activeTab !== 'custom'
+      ? groupedPlugins.map(({ category, items }) => (
+        <LeftSidebarGroup
+          key={category}
+          category={category}
+          count={items.length}
+          viewMode={resolvedViewMode}
+          collapsed={Boolean(collapsedCategories[category])}
+          collapsible
+          onToggle={() => onToggleCategory(category)}
+          items={collapsedCategories[category] ? [] : items.map(renderPluginButton)}
+        />
+      ))
+      : null}
+  </>
+);
 
 const SUPPORTED_CAPABILITIES: CatalogCapability[] = [
   'designer',
@@ -212,7 +259,7 @@ const tokenize = (value: string) =>
     .toLowerCase()
     .split(/\s+/)
     .map((part) => part.trim())
-    .filter(Boolean);
+    .filter((part): part is string => Boolean(part));
 
 const parseSearchQuery = (query: string) => {
   const rawTokens = tokenize(query);
@@ -303,7 +350,7 @@ const buildFallbackPluginEntries = (): [string, Plugin<Schema>][] => {
 const highlightTerm = (value: string, terms: string[]) => {
   if (!value || !terms.length) return value;
   const escaped = terms
-    .filter(Boolean)
+    .filter((term): term is string => Boolean(term))
     .sort((a, b) => b.length - a.length)
     .map((term) => term.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'));
   if (!escaped.length) return value;
@@ -384,7 +431,10 @@ const SidebarShell = ({
   children: React.ReactNode;
 }) => (
   <div
-    className={`${DESIGNER_CLASSNAME}left-sidebar-shell`}
+    className={mergeClassNames(
+      `${DESIGNER_CLASSNAME}left-sidebar-shell`,
+      `${DESIGNER_CLASSNAME}sidebar-surface`,
+    )}
   >
     <div className={`${DESIGNER_CLASSNAME}left-sidebar-dock-header`}>
       <span className={`${DESIGNER_CLASSNAME}left-sidebar-dock-kicker`}>Diseñador</span>
@@ -459,64 +509,32 @@ const LeftSidebar = ({
 }: LeftSidebarProps) => {
   const pluginsRegistry = useContext(PluginsRegistry);
   const options = useContext(OptionsContext) as Record<string, unknown>;
-  const [isDragging, setIsDragging] = useState(false);
-  const [search, setSearch] = useState('');
-  const [activeTab, setActiveTab] = useState<LeftSidebarTab>('standard');
-  const [customModalOpen, setCustomModalOpen] = useState(false);
-  const [customDraft, setCustomDraft] = useState<CustomFieldDef>(() => makeDefaultCustomField());
-  const [runtimeCustomDefinitions, setRuntimeCustomDefinitions] = useState<RuntimeCustomSchemaDefinition[]>(
-    () => getCustomSchemaDefinitions() as RuntimeCustomSchemaDefinition[],
-  );
-  const [favoritePlugins, setFavoritePlugins] = useState<Set<string>>(() => {
-    if (typeof window === 'undefined') return new Set();
-    try {
-      const stored = window.localStorage.getItem('pdfme:fav-plugins');
-      return stored ? new Set(JSON.parse(stored)) : new Set();
-    } catch {
-      return new Set();
-    }
-  });
-  const [recentPlugins, setRecentPlugins] = useState<string[]>(() => {
-    if (typeof window === 'undefined') return [];
-    try {
-      const stored = window.localStorage.getItem('pdfme:recent-plugins');
-      const parsed = stored ? (JSON.parse(stored) as string[]) : [];
-      return Array.isArray(parsed) ? parsed.slice(0, 8) : [];
-    } catch {
-      return [];
-    }
-  });
-  const [quickFilter, setQuickFilter] = useState<CatalogQuickFilter>('all');
-  const [activeCapabilities, setActiveCapabilities] = useState<Set<CatalogCapability>>(new Set());
-  const [internalViewMode, setInternalViewMode] = useState<CatalogViewMode>(catalogViewMode || 'compact');
-  const resolvedViewMode = catalogViewMode || internalViewMode;
-  const [collapsedCategories, setCollapsedCategories] = useState<Record<string, boolean>>({});
-
-  useEffect(() => {
-    if (catalogViewMode) {
-      setInternalViewMode(catalogViewMode);
-    }
-  }, [catalogViewMode]);
-
-  useEffect(() => {
-    const handleMouseUp = () => {
-      if (isDragging) {
-        setIsDragging(false);
-      }
-    };
-
-    document.addEventListener('mouseup', handleMouseUp);
-
-    return () => {
-      document.removeEventListener('mouseup', handleMouseUp);
-    };
-  }, [isDragging]);
-
-  useEffect(() => {
-    return subscribeCustomSchemaDefinitions(() => {
-      setRuntimeCustomDefinitions(getCustomSchemaDefinitions() as RuntimeCustomSchemaDefinition[]);
-    });
-  }, []);
+  const {
+    isDragging,
+    setIsDragging,
+    search,
+    setSearch,
+    activeTab,
+    setActiveTab,
+    customModalOpen,
+    setCustomModalOpen,
+    customDraft,
+    setCustomDraft,
+    runtimeCustomDefinitions,
+    favoritePlugins,
+    setFavoritePlugins,
+    recentPlugins,
+    setRecentPlugins,
+    quickFilter,
+    setQuickFilter,
+    activeCapabilities,
+    setActiveCapabilities,
+    resolvedViewMode,
+    collapsedCategories,
+    setCollapsedCategories,
+    saveRecentPlugins,
+    markRecent,
+  } = useLeftSidebarCatalogState({ catalogViewMode });
 
   const normalizedSearch = search.trim().toLowerCase();
   const parsedQuery = useMemo(() => parseSearchQuery(normalizedSearch), [normalizedSearch]);
@@ -527,20 +545,6 @@ const LeftSidebar = ({
     );
   }, []);
 
-  const saveRecentPlugins = (next: string[]) => {
-    const normalized = next.filter(Boolean).slice(0, 8);
-    setRecentPlugins(normalized);
-    if (typeof window !== 'undefined') {
-      window.localStorage.setItem('pdfme:recent-plugins', JSON.stringify(normalized));
-    }
-  };
-
-  const markRecent = (pluginType: string) => {
-    const normalized = String(pluginType || '').trim();
-    if (!normalized) return;
-    const next = [normalized, ...recentPlugins.filter((type) => type !== normalized)];
-    saveRecentPlugins(next);
-  };
   const plugins = useMemo(() => {
     const registryEntries = pluginsRegistry
       .entries()
@@ -560,7 +564,7 @@ const LeftSidebar = ({
           definition.autoFillSource ? 'autofill' : '',
           definition.defaultValue ? 'default' : '',
         ]
-          .filter(Boolean)
+          .filter((part): part is string => Boolean(part))
           .join(' ')
           .toLowerCase();
         return target.includes(normalizedSearch);
@@ -722,8 +726,10 @@ const LeftSidebar = ({
       });
     });
     return recentPlugins
-      .map((pluginType) => byType.get(pluginType))
-      .filter(Boolean)
+      .flatMap((pluginType) => {
+        const item = byType.get(pluginType);
+        return item ? [item] : [];
+      })
       .slice(0, 6) as CatalogSchemaItem[];
   }, [activeTab, groupedPlugins, recentPlugins]);
 
@@ -808,10 +814,31 @@ const LeftSidebar = ({
       },
     });
     setCustomModalOpen(false);
-    setCustomDraft(makeDefaultCustomField());
+    setCustomDraft({
+      id: `custom-${Date.now()}`,
+      name: '',
+      type: 'text',
+      initialValue: '',
+      required: false,
+      readOnly: false,
+      shared: false,
+      collaborative: false,
+      font: '__DEFAULT__',
+      fontColor: '__DEFAULT__',
+      fontSize: '__DEFAULT__',
+      bold: false,
+      italic: false,
+      underline: false,
+      fixedWidth: false,
+      maskAsterisks: false,
+      width: '',
+      height: '',
+      maxChars: '',
+      validation: 'None',
+      helpText: '',
+      autoPlaceText: '',
+    });
   };
-
-  const [sidebarExpanded, setSidebarExpanded] = useState(false);
 
   const isPanel = variant === 'panel';
   const resolvedViewportWidth =
@@ -822,7 +849,14 @@ const LeftSidebar = ({
         : 1280;
   const resolvedPresentation =
     presentation === 'auto' ? (resolvedViewportWidth <= responsiveBreakpoint ? 'overlay' : 'docked') : presentation;
+  const [sidebarExpanded, setSidebarExpanded] = useState(() => resolvedPresentation === 'docked');
   const showSearchInput = showSearch ?? isPanel;
+
+  useEffect(() => {
+    if (resolvedPresentation === 'overlay') {
+      setSidebarExpanded(false);
+    }
+  }, [resolvedPresentation]);
   const sidebarClass = mergeClassNames(
     `${DESIGNER_CLASSNAME}left-sidebar`,
     `${DESIGNER_CLASSNAME}left-sidebar-${variant}`,
@@ -857,7 +891,7 @@ const LeftSidebar = ({
     };
     const pluginDescription = item.description;
     const metaLine = [item.category, item.source === 'builtin' ? 'base' : 'custom']
-      .filter(Boolean)
+      .filter((part): part is string => Boolean(part))
       .join(' · ');
     const capabilityHint = item.capabilities.slice(0, 3).join(' · ');
     const shouldShowCapabilityHint = isPanel && resolvedViewMode === 'rich' && capabilityHint;
@@ -1036,66 +1070,25 @@ const LeftSidebar = ({
     );
   };
 
-  const renderButtons = () => (
-    <>
-      {activeTab === 'custom'
-        ? (
-          <LeftSidebarCustomPanel
-            definitions={filteredCustomDefinitions}
-            variant={variant}
-            onOpenCreate={() => setCustomModalOpen(true)}
-            resolvePlugin={(pluginType) => pluginsRegistry.findByType(pluginType)}
-            renderDraggableItem={renderCustomFieldItem}
-          />
-        )
-        : plugins.length === 0 ? (
-          <LeftSidebarEmptyState description="Sin resultados" />
-        )
-          : null}
-      {activeTab !== 'custom' && quickFilter === 'all' && !normalizedSearch && recentCatalogItems.length > 0 ? (
-        <LeftSidebarGroup
-          key="__recent"
-          category="Recientes"
-          count={recentCatalogItems.length}
-          viewMode={resolvedViewMode}
-          items={recentCatalogItems.map(renderPluginButton)}
-        />
-      ) : null}
-      {activeTab !== 'custom'
-        ? groupedPlugins.map(({ category, items }) => (
-          <LeftSidebarGroup
-            key={category}
-            category={category}
-            count={items.length}
-            viewMode={resolvedViewMode}
-            collapsed={Boolean(collapsedCategories[category])}
-            collapsible
-            onToggle={() =>
-              setCollapsedCategories((prev) => {
-                const next: Record<string, boolean> = { ...prev };
-                const currentIsCollapsed = Boolean(prev[category]);
+  const toggleCategory = useCallback(
+    (category: string) => {
+      setCollapsedCategories((prev) => {
+        const next: Record<string, boolean> = { ...prev };
+        const currentIsCollapsed = Boolean(prev[category]);
 
-                if (!normalizedSearch && quickFilter === 'all') {
-                  groupedPlugins.forEach(({ category: otherCategory }) => {
-                    next[otherCategory] = true;
-                  });
-                  next[category] = currentIsCollapsed === false;
-                  return next;
-                }
+        if (!normalizedSearch && quickFilter === 'all') {
+          groupedPlugins.forEach(({ category: otherCategory }) => {
+            next[otherCategory] = true;
+          });
+          next[category] = currentIsCollapsed === false;
+          return next;
+        }
 
-                next[category] = !currentIsCollapsed;
-                return next;
-              })
-            }
-            items={
-              collapsedCategories[category]
-                ? []
-                : items.map(renderPluginButton)
-            }
-          />
-        ))
-        : null}
-    </>
+        next[category] = !currentIsCollapsed;
+        return next;
+      });
+    },
+    [groupedPlugins, normalizedSearch, quickFilter],
   );
 
   const renderTabIcon = (tab: LeftSidebarTab) => {
@@ -1270,7 +1263,10 @@ const LeftSidebar = ({
       data-expanded={sidebarExpanded ? 'true' : 'false'}>
       <button
         type="button"
-        className={`${DESIGNER_CLASSNAME}left-sidebar-toggle-btn`}
+        className={mergeClassNames(
+          `${DESIGNER_CLASSNAME}sidebar-toggle-btn`,
+          `${DESIGNER_CLASSNAME}left-sidebar-toggle-btn`,
+        )}
         aria-label={sidebarExpanded ? 'Cerrar catálogo de campos' : 'Abrir catálogo de campos'}
         title={sidebarExpanded ? 'Cerrar catálogo de campos' : 'Abrir catálogo de campos'}
         aria-expanded={sidebarExpanded}
@@ -1287,7 +1283,23 @@ const LeftSidebar = ({
             renderTabIcon={renderTabIcon}
             searchNode={searchNode}
           >
-            {renderButtons()}
+            <SidebarButtons
+              activeTab={activeTab}
+              variant={variant}
+              groupedPlugins={groupedPlugins}
+              recentCatalogItems={recentCatalogItems}
+              collapsedCategories={collapsedCategories}
+              quickFilter={quickFilter}
+              normalizedSearch={normalizedSearch}
+              resolvedViewMode={resolvedViewMode}
+              hasPlugins={plugins.length > 0}
+              filteredCustomDefinitions={filteredCustomDefinitions}
+              renderPluginButton={renderPluginButton}
+              renderCustomFieldItem={renderCustomFieldItem}
+              resolvePlugin={(pluginType) => pluginsRegistry.findByType(pluginType)}
+              onOpenCreate={() => setCustomModalOpen(true)}
+              onToggleCategory={toggleCategory}
+            />
           </SidebarShell>
         </SidebarFrame>
       ) : (
@@ -1300,7 +1312,23 @@ const LeftSidebar = ({
             renderTabIcon={renderTabIcon}
             searchNode={searchNode}
           >
-            {renderButtons()}
+            <SidebarButtons
+              activeTab={activeTab}
+              variant={variant}
+              groupedPlugins={groupedPlugins}
+              recentCatalogItems={recentCatalogItems}
+              collapsedCategories={collapsedCategories}
+              quickFilter={quickFilter}
+              normalizedSearch={normalizedSearch}
+              resolvedViewMode={resolvedViewMode}
+              hasPlugins={plugins.length > 0}
+              filteredCustomDefinitions={filteredCustomDefinitions}
+              renderPluginButton={renderPluginButton}
+              renderCustomFieldItem={renderCustomFieldItem}
+              resolvePlugin={(pluginType) => pluginsRegistry.findByType(pluginType)}
+              onOpenCreate={() => setCustomModalOpen(true)}
+              onToggleCategory={toggleCategory}
+            />
           </SidebarShell>
         </div>
       )}

@@ -101,7 +101,7 @@ const DocumentsRail = ({
             </div>
           </div>
           <Text type="secondary" className={DESIGNER_CLASSNAME + 'documents-rail-subtitle'}>
-            Gestiona el documento activo y sus páginas asociadas.
+            Sube un PDF para trabajar con páginas y documentos.
           </Text>
         </SidebarHeader>
         <SidebarBody tabIndex={0} aria-label="Lista de páginas del documento">
@@ -184,32 +184,32 @@ const DocumentsRail = ({
               })}
             </div>
           ) : (
-            <div className={DESIGNER_CLASSNAME + 'documents-rail-empty'}>
+          <div className={DESIGNER_CLASSNAME + 'documents-rail-empty'}>
               <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-icon'}>
-                <FileText size={18} />
+                <FileText size={16} />
               </div>
               <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-copy'}>
                 <Text strong className={DESIGNER_CLASSNAME + 'documents-empty-title'}>
                   {emptyTitle}
                 </Text>
                 <Text type="secondary" className={DESIGNER_CLASSNAME + 'documents-rail-empty-hint'}>
-                  Sube un PDF para habilitar edición de páginas y navegación documental.
+                  Sube un PDF para empezar.
                 </Text>
               </div>
-              <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-actions'}>
-                {canUpload ? (
+              {canUpload ? (
+                <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-actions'}>
                   <Button
                     size="small"
                     type="default"
                     htmlType="button"
-                    icon={<FileUp size={14} />}
+                    icon={<FileUp size={13} />}
                     onClick={onUploadPdf}
                     className={DESIGNER_CLASSNAME + 'documents-rail-empty-upload'}
                   >
                     Subir PDF
                   </Button>
-                ) : null}
-              </div>
+                </div>
+              ) : null}
             </div>
           )}
         </SidebarBody>

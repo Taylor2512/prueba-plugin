@@ -1,151 +1,59 @@
-import React, { useRef, useState, useEffect, useContext } from 'react';
-import {
-  Template,
-  SchemaForUI,
-  PreviewProps,
-  Size,
-  getDynamicTemplate,
-  replacePlaceholders,
-} from '@pdfme/common';
-import { getDynamicHeightsForTable } from '@pdfme/schemas/utils';
+import React from 'react';
+import { SchemaForUI, PreviewProps, Size, replacePlaceholders } from '@pdfme/common';
+import { theme } from 'antd';
 import UnitPager from './UnitPager.js';
 import Root from './Root.js';
-import StaticSchema from './StaticSchema.js';
 import ErrorScreen from './ErrorScreen.js';
 import CtlBar from './CtlBar.js';
 import Paper from './Paper.js';
 import Renderer from './Renderer.js';
-import { useUIPreProcessor, useScrollPageCursor } from '../hooks.js';
-import { FontContext, OptionsContext } from '../contexts.js';
-import { template2SchemasList, getPagesScrollTopByIndex, useMaxZoom } from '../helper.js';
+import usePreviewRuntime from './usePreviewRuntime';
+import type { FormJsonEnvelope } from '../designerEngine.js';
 import { UI_CLASSNAME } from '../constants.js';
-import { theme } from 'antd';
-
-const _cache = new Map<string | number, unknown>();
 
 const Preview = ({
   template,
   inputs,
   size,
   onChangeInput,
+  onChangeInputs,
+  onFormJsonChange,
   onPageChange,
 }: Omit<PreviewProps, 'domContainer'> & {
-  onChangeInput?: (args: { index: number; value: string; name: string }) => void;
-  onPageChange?: (pageInfo: { currentPage: number; totalPages: number }) => void;
+  onChangeInput?: (_args: { index: number; value: string; name: string }) => void;
+  onChangeInputs?: (_args: { index: number; values: Record<string, string> }) => void;
+  onFormJsonChange?: (_json: FormJsonEnvelope | null) => void;
+  onPageChange?: (_pageInfo: { currentPage: number; totalPages: number }) => void;
   size: Size;
 }) => {
   const { token } = theme.useToken();
-
-  const font = useContext(FontContext);
-  const options = useContext(OptionsContext);
-  const maxZoom = useMaxZoom();
-
-  const containerRef = useRef<HTMLDivElement>(null);
-  const paperRefs = useRef<HTMLDivElement[]>([]);
-
-  const [unitCursor, setUnitCursor] = useState(0);
-  const [pageCursor, setPageCursor] = useState(0);
-  const [zoomLevel, setZoomLevel] = useState(options.zoomLevel ?? 1);
-  const [schemasList, setSchemasList] = useState<SchemaForUI[][]>([[]] as SchemaForUI[][]);
-
-  const { backgrounds, pageSizes, scale, error, refresh } = useUIPreProcessor({
-    template,
-    size,
+  const {
+    containerRef,
+    paperRefs,
+    unitCursor,
+    setUnitCursor,
+    pageCursor,
+    setPageCursor,
     zoomLevel,
-    maxZoom,
-  });
-
-  const isForm = Boolean(onChangeInput);
-
-  const input = inputs[unitCursor];
-
-  const init = (template: Template, inputOverride?: Record<string, string>) => {
-    const currentInput = inputOverride ?? input;
-    const options = { font };
-    getDynamicTemplate({
-      template,
-      input: currentInput,
-      options,
-      _cache,
-      getDynamicHeights: (value, args) => {
-        switch (args.schema.type) {
-          case 'table':
-            return getDynamicHeightsForTable(value, args);
-          default:
-            return Promise.resolve([args.schema.height]);
-        }
-      },
-    })
-      .then(async (dynamicTemplate) => {
-        const sl = await template2SchemasList(dynamicTemplate);
-        setSchemasList(sl);
-        await refresh(dynamicTemplate);
-      })
-      .catch((err) => console.error(`[@pdfme/ui] `, err));
-  };
-
-  // Update component state only when _options_ changes
-  // Ignore exhaustive useEffect dependency warnings here
-  useEffect(() => {
-    if (typeof options.zoomLevel === 'number' && options.zoomLevel !== zoomLevel) {
-      setZoomLevel(options.zoomLevel);
-    }
-    // eslint-disable-next-line
-  }, [options]);
-
-  useEffect(() => {
-    if (unitCursor > inputs.length - 1) {
-      setUnitCursor(inputs.length - 1);
-    }
-
-    init(template);
-  }, [template, inputs, size]);
-
-  useScrollPageCursor({
-    ref: containerRef,
+    setZoomLevel,
+    schemasList,
+    backgrounds,
     pageSizes,
     scale,
-    pageCursor,
-    onChangePageCursor: (p) => {
-      setPageCursor(p);
-      if (onPageChange) {
-        onPageChange({ currentPage: p, totalPages: schemasList.length });
-      }
-    },
+    error,
+    input,
+    isForm,
+    handleOnChangeRenderer,
+    getPagesScrollTopByIndex,
+  } = usePreviewRuntime({
+    template,
+    inputs,
+    size,
+    onChangeInput,
+    onChangeInputs,
+    onFormJsonChange,
+    onPageChange,
   });
-
-  const handleChangeInput = ({ name, value }: { name: string; value: string }) =>
-    onChangeInput && onChangeInput({ index: unitCursor, name, value });
-
-  const handleOnChangeRenderer = (args: { key: string; value: unknown }[], schema: SchemaForUI) => {
-    let isNeedInit = false;
-    let newInputValue: string | undefined;
-
-    args.forEach(({ key: _key, value }) => {
-      if (_key === 'content') {
-        const newValue = value as string;
-        const oldValue = (input?.[schema.name] as string) || '';
-        if (newValue === oldValue) return;
-        handleChangeInput({ name: schema.name, value: newValue });
-        // TODO Improve this to allow schema types to determine whether the execution of getDynamicTemplate is required.
-        if (schema.type === 'table') {
-          isNeedInit = true;
-          newInputValue = newValue;
-        }
-      } else {
-        const targetSchema = schemasList[pageCursor].find((s) => s.id === schema.id) as SchemaForUI;
-        if (!targetSchema) return;
-
-        targetSchema[_key] = value as string;
-      }
-    });
-    if (isNeedInit && newInputValue !== undefined) {
-      // Pass the updated input directly to recalculate with new value
-      const updatedInput = { ...input, [schema.name]: newInputValue };
-      init(template, updatedInput);
-    }
-    setSchemasList([...schemasList]);
-  };
 
   if (error) {
     return <ErrorScreen size={size} error={error} />;
@@ -159,10 +67,12 @@ const Preview = ({
         pageNum={schemasList.length}
         setPageCursor={(p) => {
           if (!containerRef.current) return;
-          containerRef.current.scrollTop = getPagesScrollTopByIndex(pageSizes, p, scale);
-          setPageCursor(p);
+          const nextPage = typeof p === 'function' ? p(pageCursor) : p;
+          if (!Number.isFinite(nextPage)) return;
+          containerRef.current.scrollTop = getPagesScrollTopByIndex(pageSizes, nextPage, scale);
+          setPageCursor(nextPage);
           if (onPageChange) {
-            onPageChange({ currentPage: p, totalPages: schemasList.length });
+            onPageChange({ currentPage: nextPage, totalPages: schemasList.length });
           }
         }}
         zoomLevel={zoomLevel}
@@ -182,6 +92,7 @@ const Preview = ({
           schemasList={schemasList}
           pageSizes={pageSizes}
           backgrounds={backgrounds}
+          renderPaper={() => null}
           renderSchema={({ schema, index }) => {
             if ((schema as SchemaForUI & { hidden?: boolean }).hidden === true) {
               return null;
@@ -193,17 +104,26 @@ const Preview = ({
               (schema as SchemaForUI & { ownerColor?: string; borderColor?: string }).ownerColor ||
               (schema as SchemaForUI & { ownerColor?: string; borderColor?: string }).borderColor ||
               token.colorPrimary;
-            const value = schema.readOnly
-              ? hasInputValue
-                ? String(inputValue)
-                : replacePlaceholders({
-                    content: schema.content || '',
-                    variables: { ...input, totalPages: schemasList.length, currentPage: index + 1 },
-                    schemas: schemasList,
-                  })
-              : hasInputValue
-                ? String(inputValue)
-                : '';
+            let value = '';
+            if (schema.readOnly) {
+              if (hasInputValue) {
+                value = String(inputValue);
+              } else {
+                value = replacePlaceholders({
+                  content: schema.content || '',
+                  variables: { ...input, totalPages: schemasList.length, currentPage: index + 1 },
+                  schemas: schemasList,
+                });
+              }
+            } else if (hasInputValue) {
+              value = String(inputValue);
+            }
+
+            let outline = 'transparent';
+            if (isForm) {
+              outline = schema.readOnly ? `1px solid ${schemaTone}` : `1px dashed ${schemaTone}`;
+            }
+
             return (
               <Renderer
                 key={schema.id}
@@ -217,22 +137,11 @@ const Preview = ({
                   const args = Array.isArray(arg) ? arg : [arg];
                   handleOnChangeRenderer(args, schema);
                 }}
-                outline={
-                  isForm ? (schema.readOnly ? `1px solid ${schemaTone}` : `1px dashed ${schemaTone}`) : 'transparent'
-                }
+                outline={outline}
                 scale={scale}
               />
             );
           }}
-          renderPaper={({ index }) => (
-            <StaticSchema
-              template={template}
-              scale={scale}
-              input={input}
-              totalPages={schemasList.length}
-              currentPage={index + 1}
-            />
-          )}
         />
       </div>
     </Root>

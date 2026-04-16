@@ -6,11 +6,16 @@ import {
 
 type Bounds = { top: number; left: number; right: number; bottom: number };
 type PageSize = { width: number; height: number };
+type SurfaceSize = { width: number; height: number };
 
-const TOOLBAR_WIDTH = 324;
-const TOOLBAR_HEIGHT = 112;
+const TOOLBAR_WIDTH = 384;
+const TOOLBAR_HEIGHT = 224;
 
-export const useFloatingToolbarPosition = (activeElements: HTMLElement[], pageSize: PageSize) =>
+export const useFloatingToolbarPosition = (
+  activeElements: HTMLElement[],
+  pageSize: PageSize,
+  surfaceSize: SurfaceSize = { width: TOOLBAR_WIDTH, height: TOOLBAR_HEIGHT },
+) =>
   useMemo(() => {
     if (!activeElements.length) return null;
 
@@ -48,7 +53,6 @@ export const useFloatingToolbarPosition = (activeElements: HTMLElement[], pageSi
     const safePageWidth = Number.isFinite(pageSize.width) ? Math.max(0, pageSize.width) : 0;
     const safePageHeight = Number.isFinite(pageSize.height) ? Math.max(0, pageSize.height) : 0;
 
-    const surfaceSize = { width: TOOLBAR_WIDTH, height: TOOLBAR_HEIGHT };
     const viewportSize = {
       width: Math.max(safePageWidth, canvasRect.width),
       height: Math.max(safePageHeight, canvasRect.height),
@@ -64,4 +68,4 @@ export const useFloatingToolbarPosition = (activeElements: HTMLElement[], pageSi
       width,
       height,
     };
-  }, [activeElements, pageSize.height, pageSize.width]);
+  }, [activeElements, pageSize.height, pageSize.width, surfaceSize.height, surfaceSize.width]);

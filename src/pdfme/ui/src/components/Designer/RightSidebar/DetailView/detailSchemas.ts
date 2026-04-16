@@ -58,7 +58,7 @@ export const buildInspectorSchemas = ({
   validateUniqueSchemaName,
   validatePosition,
 }: BuildInspectorSchemasParams) => {
-  const identitySchema = buildSectionSchema({
+  const generalSchema = buildSectionSchema({
     type: {
       title: typedI18n('type'),
       type: 'string',
@@ -82,26 +82,11 @@ export const buildInspectorSchemas = ({
     },
   });
 
-  const behaviorSchema = buildSectionSchema({
-    editable: {
-      title: typedI18n('editable'),
-      type: 'boolean',
-      span: 12,
-      hidden: typeof defaultSchema.readOnly !== 'undefined',
-    },
-    required: {
-      title: typedI18n('required'),
-      type: 'boolean',
-      span: 12,
-      hidden: '{{!formData.editable}}',
-    },
-  });
-
-  const layoutSchema = buildSectionSchema({
+  const styleSchema = buildSectionSchema({
     align: { title: typedI18n('align'), type: 'void', widget: 'AlignWidget' },
   });
 
-  const geometrySchema = buildSectionSchema({
+  const layoutSchema = buildSectionSchema({
     position: {
       type: 'object',
       widget: 'card',
@@ -168,6 +153,29 @@ export const buildInspectorSchemas = ({
     },
   });
 
+  const dataSchema = buildSectionSchema({
+    editable: {
+      title: typedI18n('editable'),
+      type: 'boolean',
+      span: 12,
+      hidden: typeof defaultSchema.readOnly !== 'undefined',
+    },
+    schemaConnections: {
+      title: typedI18n('schemaConnections'),
+      type: 'void',
+      widget: 'SchemaConnectionsWidget',
+    },
+  });
+
+  const validationSchema = buildSectionSchema({
+    required: {
+      title: typedI18n('required'),
+      type: 'boolean',
+      span: 12,
+      hidden: '{{!formData.editable}}',
+    },
+  });
+
   const advancedProperties = {
     rotate: {
       title: typedI18n('rotate'),
@@ -190,10 +198,11 @@ export const buildInspectorSchemas = ({
   };
 
   return {
-    identity: replaceColorWidget(identitySchema) as PropPanelSchema,
-    behavior: replaceColorWidget(behaviorSchema) as PropPanelSchema,
+    general: replaceColorWidget(generalSchema) as PropPanelSchema,
+    style: replaceColorWidget(styleSchema) as PropPanelSchema,
     layout: replaceColorWidget(layoutSchema) as PropPanelSchema,
-    geometry: replaceColorWidget(geometrySchema) as PropPanelSchema,
+    data: replaceColorWidget(dataSchema) as PropPanelSchema,
+    validation: replaceColorWidget(validationSchema) as PropPanelSchema,
     advanced: replaceColorWidget(buildSectionSchema(advancedProperties)) as PropPanelSchema,
   };
 };

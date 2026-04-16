@@ -16,9 +16,10 @@ import { DndContext, DragOverlay } from '@dnd-kit/core';
 import { pdf2size } from '@pdfme/converter';
 import Renderer from '../Renderer.js';
 import PluginIcon from './PluginIcon.js';
-import RightSidebarDefault from './RightSidebar/index.js';
+import RightSidebarDefault from './RightSidebar/RightSidebar.js';
 import LeftSidebarDefault from './LeftSidebar.js';
-import Canvas from './Canvas/index.js';
+import Canvas from './Canvas/Canvas.js';
+import type { CanvasFeatureToggles } from './Canvas/Canvas.js';
 import { createSelectionCommands } from './shared/selectionCommands.js';
 import type { InteractionState } from './shared/interactionState.js';
 import { Trash2, Plus } from 'lucide-react';
@@ -295,6 +296,34 @@ const TemplateEditor = ({
   const [zoomLevel, setZoomLevel] = useState(options.zoomLevel ?? 1);
   const [sidebarOpen, setSidebarOpen] = useState(options.sidebarOpen ?? true);
   const [viewportMode, setViewportMode] = useState<ViewportMode>('manual');
+  const [canvasFeatureOverrides, setCanvasFeatureOverrides] = useState<Partial<CanvasFeatureToggles>>({});
+  const canvasFeatureToggles = useMemo<CanvasFeatureToggles>(
+    () => ({
+      selecto: canvasFeatureOverrides.selecto ?? designerEngine.canvas?.featureToggles?.selecto ?? true,
+      snapLines: canvasFeatureOverrides.snapLines ?? designerEngine.canvas?.featureToggles?.snapLines ?? true,
+      guides: canvasFeatureOverrides.guides ?? designerEngine.canvas?.featureToggles?.guides ?? true,
+      padding: canvasFeatureOverrides.padding ?? designerEngine.canvas?.featureToggles?.padding ?? true,
+      mask: canvasFeatureOverrides.mask ?? designerEngine.canvas?.featureToggles?.mask ?? true,
+      moveable: canvasFeatureOverrides.moveable ?? designerEngine.canvas?.featureToggles?.moveable ?? true,
+      deleteButton: canvasFeatureOverrides.deleteButton ?? designerEngine.canvas?.featureToggles?.deleteButton ?? true,
+    }),
+    [
+      canvasFeatureOverrides.deleteButton,
+      canvasFeatureOverrides.guides,
+      canvasFeatureOverrides.mask,
+      canvasFeatureOverrides.moveable,
+      canvasFeatureOverrides.padding,
+      canvasFeatureOverrides.selecto,
+      canvasFeatureOverrides.snapLines,
+      designerEngine.canvas?.featureToggles?.deleteButton,
+      designerEngine.canvas?.featureToggles?.guides,
+      designerEngine.canvas?.featureToggles?.mask,
+      designerEngine.canvas?.featureToggles?.moveable,
+      designerEngine.canvas?.featureToggles?.padding,
+      designerEngine.canvas?.featureToggles?.selecto,
+      designerEngine.canvas?.featureToggles?.snapLines,
+    ],
+  );
   const [isSchemaDragging, setIsSchemaDragging] = useState(false);
   const [isDraggingOverCanvas, setIsDraggingOverCanvas] = useState(false);
   const [activeDragData, setActiveDragData] = useState<{ schema: Schema; type: string } | null>(null);
@@ -897,6 +926,11 @@ const TemplateEditor = ({
       highlightField: focusFieldExternal,
       addSchema: (schema: Schema) => addSchemaAtCenter(cloneDeep(schema)),
       addSchemaByType,
+      duplicatePage: handleDuplicatePageAfter,
+      setCanvasFeatureToggle: (key: keyof CanvasFeatureToggles, value: boolean) => {
+      setCanvasFeatureOverrides((prev) => ({ ...prev, [key]: Boolean(value) }));
+      },
+      getCanvasFeatureToggles: () => ({ ...canvasFeatureToggles }),
       getSchemaConfig: (schemaIdOrName, matcher = 'id') => {
         const location = findSchemaLocation(schemaIdOrName, matcher);
         if (!location) return null;
@@ -927,6 +961,8 @@ const TemplateEditor = ({
       applyExternalPrefill,
       addSchemaAtCenter,
       addSchemaByType,
+      canvasFeatureToggles,
+      handleDuplicatePageAfter,
       applyViewportMode,
       designerEngine,
       findSchemaLocation,
@@ -1013,20 +1049,33 @@ const TemplateEditor = ({
     }, 0);
   };
 
-  const handleRemovePage = () => {
+  function handleRemovePage() {
     if (pageCursor === 0) return;
     if (!window.confirm(i18n('removePageConfirm'))) return;
 
     const _schemasList = cloneDeep(schemasList);
     _schemasList.splice(pageCursor, 1);
     updatePage(_schemasList, pageCursor - 1);
-  };
+  }
 
-  const handleAddPageAfter = () => {
+  function handleAddPageAfter() {
     const _schemasList = cloneDeep(schemasList);
     _schemasList.splice(pageCursor + 1, 0, []);
     updatePage(_schemasList, pageCursor + 1);
-  };
+  }
+
+  function handleDuplicatePageAfter() {
+    const _schemasList = cloneDeep(schemasList);
+    _schemasList.splice(pageCursor + 1, 0, cloneDeep(_schemasList[pageCursor] || []));
+    updatePage(_schemasList, pageCursor + 1);
+  }
+
+  const handleToggleCanvasFeature = useCallback((key: keyof CanvasFeatureToggles) => {
+    setCanvasFeatureOverrides((prev) => ({
+      ...prev,
+      [key]: !prev[key],
+    }));
+  }, []);
 
   const handleUploadPdfClick = useCallback(() => {
     pdfUploadInputRef.current?.click();
@@ -1489,22 +1538,26 @@ const TemplateEditor = ({
             zoomLevel={zoomLevel}
             setZoomLevel={setZoomLevel}
             setZoom={setZoomExternal}
-            {...pageManipulation}
+            addPageAfter={handleAddPageAfter}
+            duplicatePageAfter={handleDuplicatePageAfter}
+            removePage={pageManipulation.removePage}
+            onUndo={undoExternal}
+            onRedo={redoExternal}
+            onFitWidth={() => applyViewportMode('fit-width')}
+            onFitPage={() => applyViewportMode('fit-page')}
+            onToggleSidebar={() => setSidebarOpen((prev) => !prev)}
+            sidebarOpen={sidebarOpen}
+            documentStatus={isIdle ? 'Listo' : 'Editando'}
+            onSave={() => onSaveTemplate(template)}
+            featureToggles={{
+              guides: canvasFeatureToggles.guides,
+              snapLines: canvasFeatureToggles.snapLines,
+              padding: canvasFeatureToggles.padding,
+            }}
+            onToggleFeature={handleToggleCanvasFeature}
           />
 
-          {!rightSidebarDetached ? (
-            <button
-              type="button"
-              className={DESIGNER_CLASSNAME + 'right-sidebar-toggle-btn'}
-              aria-controls={rightSidebarDomId}
-              aria-label={sidebarOpen ? 'Ocultar panel derecho' : 'Mostrar panel derecho'}
-              aria-expanded={sidebarOpen ? 'true' : 'false'}
-              title={sidebarOpen ? 'Ocultar panel derecho' : 'Mostrar panel derecho'}
-              onClick={() => setSidebarOpen((prev) => !prev)}
-            >
-              {sidebarOpen ? '›' : '‹'}
-            </button>
-          ) : null}
+
 
           {!rightSidebarDetached ? rightSidebarNode : null}
 
@@ -1527,7 +1580,7 @@ const TemplateEditor = ({
             sidebarWidth={rightSidebarWidth}
             preserveSidebarSpace={shouldReserveRightSidebarSpace}
             onEdit={onEdit}
-            featureToggles={designerEngine.canvas?.featureToggles}
+            featureToggles={canvasFeatureToggles}
             styleOverrides={designerEngine.canvas?.styleOverrides}
           classNames={designerEngine.canvas?.classNames}
           useDefaultStyles={designerEngine.canvas?.useDefaultStyles ?? true}

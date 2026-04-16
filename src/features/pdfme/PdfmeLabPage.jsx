@@ -24,20 +24,82 @@ export default function PdfmeLabPage() {
 
   const initialTemplate = useMemo(() => createInitialPdfmeTemplate(), [])
   const [template, setTemplate] = useState(initialTemplate)
-  const [inputs, setInputs] = useState(getInputFromTemplate(initialTemplate))
-  const [mode, setMode] = useState('designer')
-  const [schemaType, setSchemaType] = useState('text')
-  const [uxMode, setUxMode] = useState('canvas-first')
-  const [busy, setBusy] = useState(false)
-  const [status, setStatus] = useState('Listo para probar funcionalidades de pdfme')
-
-  const [generatedPdfUrl, setGeneratedPdfUrl] = useState('')
-  const [generatedPdfBytes, setGeneratedPdfBytes] = useState(null)
-  const [pdfSizes, setPdfSizes] = useState([])
-  const [images, setImages] = useState([])
-  const [roundtripPdfUrl, setRoundtripPdfUrl] = useState('')
-  const [isControlPanelPinned, setIsControlPanelPinned] = useState(false)
+  const [inputs, setInputs] = useState(() => getInputFromTemplate(initialTemplate))
+  const [uiState, setUiState] = useState({
+    mode: 'designer',
+    schemaType: 'text',
+    uxMode: 'canvas-first',
+    busy: false,
+    status: 'Listo para probar funcionalidades de pdfme',
+    isControlPanelPinned: false,
+  })
+  const [resultsState, setResultsState] = useState({
+    generatedPdfUrl: '',
+    generatedPdfBytes: null,
+    pdfSizes: [],
+    images: [],
+    roundtripPdfUrl: '',
+  })
+  const {
+    mode,
+    schemaType,
+    uxMode,
+    busy,
+    status,
+    isControlPanelPinned,
+  } = uiState
+  const {
+    generatedPdfUrl,
+    generatedPdfBytes,
+    pdfSizes,
+    images,
+    roundtripPdfUrl,
+  } = resultsState
   const canRunDesignerActions = mode === 'designer' && !busy
+
+  const setMode = (nextMode) => {
+    setUiState((prev) => ({ ...prev, mode: nextMode }))
+  }
+
+  const setSchemaType = (nextSchemaType) => {
+    setUiState((prev) => ({ ...prev, schemaType: nextSchemaType }))
+  }
+
+  const setUxMode = (nextUxMode) => {
+    setUiState((prev) => ({ ...prev, uxMode: nextUxMode }))
+  }
+
+  const setBusy = (nextBusy) => {
+    setUiState((prev) => ({ ...prev, busy: nextBusy }))
+  }
+
+  const setStatus = (nextStatus) => {
+    setUiState((prev) => ({ ...prev, status: nextStatus }))
+  }
+
+  const setIsControlPanelPinned = (nextPinned) => {
+    setUiState((prev) => ({ ...prev, isControlPanelPinned: nextPinned }))
+  }
+
+  const setGeneratedPdfUrl = (nextGeneratedPdfUrl) => {
+    setResultsState((prev) => ({ ...prev, generatedPdfUrl: nextGeneratedPdfUrl }))
+  }
+
+  const setGeneratedPdfBytes = (nextGeneratedPdfBytes) => {
+    setResultsState((prev) => ({ ...prev, generatedPdfBytes: nextGeneratedPdfBytes }))
+  }
+
+  const setPdfSizes = (nextPdfSizes) => {
+    setResultsState((prev) => ({ ...prev, pdfSizes: nextPdfSizes }))
+  }
+
+  const setImages = (nextImages) => {
+    setResultsState((prev) => ({ ...prev, images: nextImages }))
+  }
+
+  const setRoundtripPdfUrl = (nextRoundtripPdfUrl) => {
+    setResultsState((prev) => ({ ...prev, roundtripPdfUrl: nextRoundtripPdfUrl }))
+  }
 
   useEffect(() => {
     const modeFromStorage = window.localStorage.getItem(UX_MODE_STORAGE_KEY)
@@ -325,15 +387,7 @@ export default function PdfmeLabPage() {
   return (
     <div className="app-shell">
     <main className="pdfme-page" data-ux-mode={uxMode}>
-      <header className="pdfme-header">
-        <div>
-          <h1>Laboratorio PDFME</h1>
-          <p>
-            Esta página agrupa funcionalidades documentadas: UI (`Designer`, `Form`, `Viewer`),
-            generación (`generate`) y conversión (`pdf2size`, `pdf2img`, `img2pdf`).
-          </p>
-        </div>
-      </header>
+    
 
       <section className="pdfme-grid">
        

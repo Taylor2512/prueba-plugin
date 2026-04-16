@@ -12,8 +12,9 @@ type DetailFormSectionProps = {
   schema: PropPanelSchema;
   form: ReturnType<typeof useForm>;
   widgets: Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element>;
-  watchHandler: (...args: unknown[]) => void;
+  watchHandler: (..._args: unknown[]) => void;
   defaultCollapsed?: boolean;
+  resetToken?: string;
 };
 
 const DetailFormSection = ({
@@ -25,8 +26,10 @@ const DetailFormSection = ({
   widgets,
   watchHandler,
   defaultCollapsed = false,
+  resetToken,
 }: DetailFormSectionProps) => (
   <DetailSectionCard
+    key={resetToken || sectionKey || title}
     sectionKey={sectionKey}
     title={title}
     description={description}

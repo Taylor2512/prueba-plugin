@@ -1,4 +1,5 @@
 import React, { useState, useContext, ReactNode } from 'react';
+import { useEffect, useMemo } from 'react';
 import {
   closestCorners,
   DndContext,
@@ -25,9 +26,21 @@ const SelectableSortableContainer = (
   props: Pick<
     SidebarProps,
     'onEdit' | 'onSortEnd' | 'hoveringSchemaId' | 'onChangeHoveringSchemaId'
-  > & { allSchemas: SchemaForUI[]; visibleSchemas: SchemaForUI[] },
+  > & {
+    allSchemas: SchemaForUI[];
+    visibleSchemas: SchemaForUI[];
+    activeSchemaIds: string[];
+  },
 ) => {
-  const { allSchemas, visibleSchemas, onEdit, onSortEnd, hoveringSchemaId, onChangeHoveringSchemaId } = props;
+  const {
+    allSchemas,
+    visibleSchemas,
+    activeSchemaIds,
+    onEdit,
+    onSortEnd,
+    hoveringSchemaId,
+    onChangeHoveringSchemaId,
+  } = props;
   const [selectedSchemas, setSelectedSchemas] = useState<SchemaForUI[]>([]);
   const [activeId, setActiveId] = useState<string | null>(null);
   const pluginsRegistry = useContext(PluginsRegistry);
@@ -46,8 +59,18 @@ const SelectableSortableContainer = (
     });
   };
 
-  const isItemSelected = (itemId: string): boolean =>
-    selectedSchemas.map((i) => i.id).includes(itemId);
+  const controlledSelectedIdSet = useMemo(() => new Set(activeSchemaIds), [activeSchemaIds]);
+  const selectedIdSet = useMemo(
+    () => new Set([...activeSchemaIds, ...selectedSchemas.map((schema) => schema.id)]),
+    [activeSchemaIds, selectedSchemas],
+  );
+  const isItemSelected = (itemId: string): boolean => selectedIdSet.has(itemId);
+
+  useEffect(() => {
+    if (activeId) return;
+    const externalSelected = visibleSchemas.filter((schema) => controlledSelectedIdSet.has(schema.id));
+    setSelectedSchemas(externalSelected);
+  }, [activeId, controlledSelectedIdSet, visibleSchemas]);
 
   const onSelectionChanged = (id: string, isShiftSelect: boolean) => {
     if (isShiftSelect) {
@@ -96,8 +119,7 @@ const SelectableSortableContainer = (
         setActiveId(String(active.id));
 
         if (!isItemSelected(String(active.id))) {
-          const newSelectedSchemas: SchemaForUI[] = [];
-          setSelectedSchemas(newSelectedSchemas);
+          setSelectedSchemas([]);
         }
       }}
       onDragEnd={({ active, over }) => {

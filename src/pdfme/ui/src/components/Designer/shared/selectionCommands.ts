@@ -18,6 +18,7 @@ export type DistributeType = 'vertical' | 'horizontal';
 export type SelectionCommandSet = {
   deleteSelection: () => void;
   duplicateSelection: () => void;
+  toggleHidden?: () => void;
   toggleRequired: () => void;
   toggleReadOnly: () => void;
   bringForward: () => void;
@@ -25,6 +26,12 @@ export type SelectionCommandSet = {
   alignSelection: (type: AlignType) => void;
   distributeSelection: (type: DistributeType) => void;
   openProperties: () => void;
+  groupSelection?: () => void;
+  ungroupSelection?: () => void;
+  copyStyle?: () => void;
+  pasteStyle?: () => void;
+  renameLabel?: () => void;
+  editTextInline?: () => void;
 };
 
 export type SelectionCommandsContext = {
@@ -106,6 +113,16 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     context.changeSchemas(ops);
   };
 
+  const toggleHidden = () => {
+    if (!hasSelection) return;
+    const ops = getActiveSchemas(context).map((schema) => ({
+      key: 'hidden',
+      value: !((schema as SchemaForUI & { hidden?: boolean }).hidden === true),
+      schemaId: schema.id,
+    }));
+    context.changeSchemas(ops);
+  };
+
   const bringForward = () => {
     if (!hasSelection) return;
     const current = getPageSchemas(context);
@@ -181,9 +198,35 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     context.onOpenProperties();
   };
 
+  const renameLabel = () => {
+    if (!hasSelection) return;
+    const activeSchemas = getActiveSchemas(context);
+    if (activeSchemas.length !== 1) return;
+    const schema = activeSchemas[0];
+    const currentName = typeof schema.name === 'string' ? schema.name : '';
+    const nextName = window.prompt('Renombrar etiqueta', currentName);
+    if (nextName === null) return;
+    const trimmed = nextName.trim();
+    if (!trimmed || trimmed === currentName.trim()) return;
+    context.changeSchemas([{ key: 'name', value: trimmed, schemaId: schema.id }]);
+  };
+
+  const editTextInline = () => {
+    if (!hasSelection) return;
+    const activeSchemas = getActiveSchemas(context);
+    if (activeSchemas.length !== 1) return;
+    const schema = activeSchemas[0];
+    const currentContent = typeof schema.content === 'string' ? schema.content : '';
+    const nextContent = window.prompt('Editar texto', currentContent);
+    if (nextContent === null) return;
+    if (nextContent === currentContent) return;
+    context.changeSchemas([{ key: 'content', value: nextContent, schemaId: schema.id }]);
+  };
+
   return {
     deleteSelection,
     duplicateSelection,
+    toggleHidden,
     toggleRequired,
     toggleReadOnly,
     bringForward,
@@ -191,5 +234,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     alignSelection,
     distributeSelection,
     openProperties,
+    renameLabel,
+    editTextInline,
   };
 };

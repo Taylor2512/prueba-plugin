@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import type { SchemaForUI, Size } from '@pdfme/common';
 import type { SnapLine } from '../SnapLines.js';
 import SelectionContextToolbar from './SelectionContextToolbar.js';
@@ -6,6 +6,7 @@ import InlineMetricsOverlay from './InlineMetricsOverlay.js';
 import SnapFeedbackOverlay from './SnapFeedbackOverlay.js';
 import { useFloatingToolbarPosition } from './useFloatingToolbarPosition.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
+import type { SelectionToolbarMode } from './canvasContextMenuActions.js';
 import type { InteractionState } from '../../shared/interactionState.js';
 
 export type SnapLinesSlot = React.ComponentType<{
@@ -29,6 +30,10 @@ type CanvasOverlayManagerProps = {
   className?: string;
 };
 
+const MICRO_TOOLBAR_SIZE = { width: 288, height: 160 };
+const COMPACT_TOOLBAR_SIZE = { width: 384, height: 224 };
+const EXPANDED_TOOLBAR_SIZE = { width: 512, height: 360 };
+
 const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
   const {
     activeElements,
@@ -44,7 +49,22 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
     className,
   } = props;
 
-  const selectionBounds = useFloatingToolbarPosition(activeElements, pageSize);
+  const [toolbarMode, setToolbarMode] = useState<SelectionToolbarMode>(
+    interactionState.selectionCount > 1 ? 'expanded' : 'micro',
+  );
+
+  useEffect(() => {
+    setToolbarMode(interactionState.selectionCount > 1 ? 'expanded' : 'micro');
+  }, [interactionState.selectionCount]);
+
+  const toolbarSize =
+    toolbarMode === 'expanded' ? EXPANDED_TOOLBAR_SIZE : toolbarMode === 'compact' ? COMPACT_TOOLBAR_SIZE : MICRO_TOOLBAR_SIZE;
+
+  const selectionBounds = useFloatingToolbarPosition(
+    activeElements,
+    pageSize,
+    toolbarSize,
+  );
 
   const activeSchemas = useMemo(() => {
     const ids = activeElements.map((element) => element.id);
@@ -60,6 +80,8 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
         activeSchemas={activeSchemas}
         interactionState={interactionState}
         contextMenuOpen={contextMenuOpen}
+        toolbarMode={toolbarMode}
+        onToolbarModeChange={setToolbarMode}
       />
       <InlineMetricsOverlay bounds={selectionBounds} />
       <SnapFeedbackOverlay bounds={selectionBounds} snapLines={snapLines} />

@@ -30,6 +30,56 @@ export type SchemaPrefillConfig = {
   headers?: Record<string, string>;
 };
 
+export type SchemaHttpAuthConfig = {
+  mode?: 'inherit' | 'manual';
+  type?: 'bearer' | 'basic' | 'apiKey' | 'custom';
+  headerName?: string;
+  headerValue?: string;
+  token?: string;
+  username?: string;
+  password?: string;
+};
+
+export type SchemaHttpClientConfig = {
+  inheritSystem?: boolean;
+  baseURL?: string;
+  timeoutMs?: number;
+  withCredentials?: boolean;
+  headers?: Record<string, string>;
+  auth?: SchemaHttpAuthConfig;
+};
+
+export type SchemaPersistenceConfig = {
+  enabled?: boolean;
+  mode?: 'local' | 'remote' | 'hybrid';
+  key?: string;
+  includeHidden?: boolean;
+  includeMeta?: boolean;
+};
+
+export type SchemaRequestConfig = {
+  enabled?: boolean;
+  endpoint?: string;
+  method?: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+  requestMode?: 'read' | 'submit' | 'sync' | 'options';
+  http?: SchemaHttpClientConfig;
+  headers?: Record<string, string>;
+  params?: Record<string, string>;
+  requestMapping?: Record<string, string>;
+  responseMapping?: Record<string, string>;
+  timeoutMs?: number;
+};
+
+export type SchemaFormJsonConfig = {
+  enabled?: boolean;
+  collect?: boolean;
+  format?: 'nested' | 'flat';
+  rootKey?: string;
+  includeEmpty?: boolean;
+  includeHidden?: boolean;
+  includeMeta?: boolean;
+};
+
 export type SchemaIntegrationConfig = {
   provider: string;
   operation?: string;
@@ -42,6 +92,9 @@ export type SchemaIntegrationConfig = {
 export type SchemaDesignerConfig = {
   identity?: SchemaIdentity;
   prefill?: SchemaPrefillConfig;
+  persistence?: SchemaPersistenceConfig;
+  api?: SchemaRequestConfig;
+  form?: SchemaFormJsonConfig;
   integrations?: SchemaIntegrationConfig[];
   metadata?: Record<string, unknown>;
 };
@@ -56,6 +109,9 @@ export type SchemaCreationHook = (schema: SchemaForUI, context: SchemaCreationCo
 export type SchemaIdentityFactory = (schema: SchemaForUI, context: SchemaCreationContext) => SchemaIdentity;
 
 export type DesignerEngine = {
+  http?: {
+    axios?: SchemaHttpClientConfig;
+  };
   renderers?: {
     leftSidebar?: React.ComponentType<LeftSidebarProps>;
     rightSidebar?: React.ComponentType<RightSidebarProps>;
@@ -112,6 +168,11 @@ const cloneDesignerEngine = (engine: DesignerEngine = {}): DesignerEngine => ({
             }
           : undefined,
       }
+      : undefined,
+  http: engine.http
+    ? {
+        axios: engine.http.axios ? cloneDeep(engine.http.axios) : undefined,
+      }
     : undefined,
   schema: engine.schema
     ? {
@@ -125,6 +186,51 @@ const cloneDesignerEngine = (engine: DesignerEngine = {}): DesignerEngine => ({
 
 const asRecord = (value: unknown): Record<string, unknown> | null =>
   value && typeof value === 'object' ? (value as Record<string, unknown>) : null;
+
+const mergeRecord = <T extends Record<string, unknown>>(current?: T, patch?: Partial<T>): T => ({
+  ...(current || {}),
+  ...(patch || {}),
+}) as T;
+
+const mergeHttpAuthConfig = (
+  current?: SchemaHttpAuthConfig,
+  patch?: SchemaHttpAuthConfig,
+): SchemaHttpAuthConfig | undefined => {
+  if (!current && !patch) return undefined;
+  return {
+    ...(current || {}),
+    ...(patch || {}),
+  };
+};
+
+const mergeHttpClientConfig = (
+  current?: SchemaHttpClientConfig,
+  patch?: SchemaHttpClientConfig,
+): SchemaHttpClientConfig | undefined => {
+  if (!current && !patch) return undefined;
+  return {
+    ...(current || {}),
+    ...(patch || {}),
+    headers: mergeRecord(current?.headers, patch?.headers),
+    auth: mergeHttpAuthConfig(current?.auth, patch?.auth),
+  };
+};
+
+const mergeRequestConfig = (
+  current?: SchemaRequestConfig,
+  patch?: SchemaRequestConfig,
+): SchemaRequestConfig | undefined => {
+  if (!current && !patch) return undefined;
+  return {
+    ...(current || {}),
+    ...(patch || {}),
+    http: mergeHttpClientConfig(current?.http, patch?.http),
+    headers: mergeRecord(current?.headers, patch?.headers),
+    params: mergeRecord(current?.params, patch?.params),
+    requestMapping: mergeRecord(current?.requestMapping, patch?.requestMapping),
+    responseMapping: mergeRecord(current?.responseMapping, patch?.responseMapping),
+  };
+};
 
 export const resolveDesignerEngine = (options: UIOptions | Record<string, unknown> | undefined): DesignerEngine => {
   const rawOptions = asRecord(options);
@@ -173,11 +279,444 @@ export const mergeSchemaDesignerConfig = <T extends Schema | SchemaForUI>(
       ...patch,
       identity: { ...(current.identity || {}), ...(patch.identity || {}) },
       prefill: { ...(current.prefill || {}), ...(patch.prefill || {}) },
+      persistence: { ...(current.persistence || {}), ...(patch.persistence || {}) },
+      api: mergeRequestConfig(current.api, patch.api),
+      form: { ...(current.form || {}), ...(patch.form || {}) },
       metadata: { ...(current.metadata || {}), ...(patch.metadata || {}) },
       integrations: patch.integrations || current.integrations,
     },
     engine,
   );
+};
+
+export const resolveDesignerHttpClientConfig = (
+  schemaConfig?: SchemaDesignerConfig | null,
+  engine?: DesignerEngine,
+): SchemaHttpClientConfig | undefined => {
+  const systemConfig = engine?.http?.axios;
+  const schemaConfigHttp = schemaConfig?.api?.http;
+  if (!systemConfig && !schemaConfigHttp) return undefined;
+  if (!schemaConfigHttp) return cloneDeep(systemConfig);
+  if (schemaConfigHttp.inheritSystem === false || !systemConfig) {
+    return cloneDeep(schemaConfigHttp);
+  }
+
+  return {
+    ...(cloneDeep(systemConfig) || {}),
+    ...(cloneDeep(schemaConfigHttp) || {}),
+    headers: {
+      ...(systemConfig?.headers || {}),
+      ...(schemaConfigHttp.headers || {}),
+    },
+    auth: schemaConfigHttp.auth?.mode === 'inherit' ? cloneDeep(systemConfig?.auth) : cloneDeep(schemaConfigHttp.auth || systemConfig?.auth),
+  };
+};
+
+export type SchemaDataFieldSnapshot = {
+  schema: SchemaForUI;
+  config: SchemaDesignerConfig | null;
+};
+
+export type SchemaDataSnapshot = {
+  pageIndex: number;
+  totalPages: number;
+  unitIndex: number;
+  currentInput: Record<string, string>;
+  fields: SchemaDataFieldSnapshot[];
+};
+
+export type ResolvedSchemaRequest = {
+  schemaId: string;
+  schemaName: string;
+  source: 'api' | 'prefill';
+  requestMode: 'read' | 'submit' | 'sync' | 'options';
+  method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
+  url: string;
+  headers: Record<string, string>;
+  params: Record<string, string>;
+  body?: unknown;
+  timeoutMs?: number;
+  withCredentials?: boolean;
+};
+
+export type FormJsonEnvelope = {
+  data: Record<string, unknown>;
+  meta: {
+    format: 'nested' | 'flat';
+    rootKey: string;
+    pageIndex: number;
+    totalPages: number;
+    unitIndex: number;
+    schemaCount: number;
+    generatedAt: number;
+  };
+};
+
+export type SchemaDataRuntimeAdapter = {
+  readPersistedValue: (storageKey: string) => string | null;
+  writePersistedValue: (storageKey: string, value: string) => void;
+  resolveRequest: (field: SchemaDataFieldSnapshot, snapshot: SchemaDataSnapshot) => ResolvedSchemaRequest | null;
+  executeRequest: (request: ResolvedSchemaRequest) => Promise<unknown>;
+  mapResponseToValues: (
+    response: unknown,
+    field: SchemaDataFieldSnapshot,
+    request: ResolvedSchemaRequest,
+    snapshot: SchemaDataSnapshot,
+  ) => Record<string, string>;
+  buildFormJson: (snapshot: SchemaDataSnapshot) => FormJsonEnvelope | null;
+};
+
+type RuntimeAdapterArgs = {
+  engine?: DesignerEngine;
+  storage?: Pick<Storage, 'getItem' | 'setItem' | 'removeItem'>;
+  fetchImpl?: typeof fetch;
+  now?: () => number;
+};
+
+const toBase64 = (value: string): string => {
+  if (typeof globalThis.btoa === 'function') return globalThis.btoa(value);
+  if (typeof Buffer !== 'undefined') return Buffer.from(value, 'utf-8').toString('base64');
+  return value;
+};
+
+const safeRecordPathParts = (path: string): string[] =>
+  String(path || '')
+    .split('.')
+    .map((part) => part.trim())
+    .filter(Boolean);
+
+const getByPath = (target: unknown, path: string): unknown => {
+  const parts = safeRecordPathParts(path);
+  if (parts.length === 0) return undefined;
+  return parts.reduce<unknown>((acc, part) => {
+    if (!acc || typeof acc !== 'object') return undefined;
+    return (acc as Record<string, unknown>)[part];
+  }, target);
+};
+
+const setByPath = (target: Record<string, unknown>, path: string, value: unknown) => {
+  const parts = safeRecordPathParts(path);
+  if (parts.length === 0) return;
+  let cursor: Record<string, unknown> = target;
+  parts.forEach((part, index) => {
+    if (index === parts.length - 1) {
+      cursor[part] = value;
+      return;
+    }
+    const next = cursor[part];
+    if (!next || typeof next !== 'object' || Array.isArray(next)) {
+      cursor[part] = {};
+    }
+    cursor = cursor[part] as Record<string, unknown>;
+  });
+};
+
+const isEmptyRuntimeValue = (value: unknown): boolean => {
+  if (value === undefined || value === null) return true;
+  if (typeof value === 'string') return value.trim().length === 0;
+  if (Array.isArray(value)) return value.length === 0;
+  if (typeof value === 'object') return Object.keys(value as Record<string, unknown>).length === 0;
+  return false;
+};
+
+const buildQueryString = (params?: Record<string, string>): string => {
+  if (!params) return '';
+  const entries = Object.entries(params).filter(([, value]) => value !== undefined && value !== null && `${value}`.length > 0);
+  if (entries.length === 0) return '';
+  const searchParams = new URLSearchParams();
+  entries.forEach(([key, value]) => searchParams.set(key, String(value)));
+  return searchParams.toString();
+};
+
+const buildResolvedHeaders = (
+  requestHeaders?: Record<string, string>,
+  auth?: SchemaHttpAuthConfig,
+  systemHeaders?: Record<string, string>,
+): Record<string, string> => {
+  const headers = {
+    ...(systemHeaders || {}),
+    ...(requestHeaders || {}),
+  };
+
+  if (!auth || auth.mode === 'inherit') return headers;
+
+  const type = auth.type || 'bearer';
+  if (type === 'bearer' && auth.token) {
+    headers[auth.headerName || 'Authorization'] = auth.headerValue || `Bearer ${auth.token}`;
+  } else if (type === 'basic' && (auth.username || auth.password)) {
+    headers[auth.headerName || 'Authorization'] = `Basic ${toBase64(`${auth.username || ''}:${auth.password || ''}`)}`;
+  } else if (type === 'apiKey' && auth.headerName && (auth.headerValue || auth.token)) {
+    headers[auth.headerName] = auth.headerValue || auth.token || '';
+  } else if (auth.headerName && (auth.headerValue || auth.token)) {
+    headers[auth.headerName] = auth.headerValue || auth.token || '';
+  }
+
+  return headers;
+};
+
+const buildRequestBodyFromMapping = (input: Record<string, string>, mapping?: Record<string, string>) => {
+  if (!mapping || Object.keys(mapping).length === 0) {
+    return Object.fromEntries(
+      Object.entries(input).map(([key, value]) => [key, value]),
+    );
+  }
+
+  const body: Record<string, unknown> = {};
+  Object.entries(mapping).forEach(([fieldName, path]) => {
+    const value = input[fieldName];
+    if (value === undefined || value === null || `${value}`.length === 0) return;
+    if (!path) {
+      body[fieldName] = value;
+      return;
+    }
+    setByPath(body, path, value);
+  });
+  return body;
+};
+
+const buildValuesFromResponse = (
+  response: unknown,
+  mapping?: Record<string, string>,
+): Record<string, string> => {
+  const result: Record<string, string> = {};
+  if (!response || typeof response !== 'object') return result;
+
+  if (mapping && Object.keys(mapping).length > 0) {
+    Object.entries(mapping).forEach(([responsePath, fieldName]) => {
+      if (!fieldName) return;
+      const value = getByPath(response, responsePath);
+      if (value === undefined || value === null) return;
+      result[fieldName] = String(value);
+    });
+    return result;
+  }
+
+  Object.entries(response as Record<string, unknown>).forEach(([key, value]) => {
+    if (value === undefined || value === null) return;
+    if (typeof value === 'object') return;
+    result[key] = String(value);
+  });
+  return result;
+};
+
+const resolveRuntimeEndpoint = (
+  endpoint?: string,
+  baseURL?: string,
+  params?: Record<string, string>,
+): string | null => {
+  const rawEndpoint = String(endpoint || '').trim();
+  if (!rawEndpoint) return null;
+  const query = buildQueryString(params);
+  const url = (() => {
+    try {
+      if (baseURL) return new URL(rawEndpoint, baseURL);
+      if (typeof window !== 'undefined' && window.location?.origin) return new URL(rawEndpoint, window.location.origin);
+      return new URL(rawEndpoint);
+    } catch {
+      return null;
+    }
+  })();
+  if (!url) return null;
+  if (query) {
+    query.split('&').forEach((pair) => {
+      const [key, value = ''] = pair.split('=');
+      if (key) url.searchParams.set(decodeURIComponent(key), decodeURIComponent(value));
+    });
+  }
+  return url.toString();
+};
+
+const isFormEnabled = (config?: SchemaDesignerConfig | null): boolean => Boolean(config?.form?.enabled && config?.form?.collect !== false);
+const isPersistenceEnabled = (config?: SchemaDesignerConfig | null): boolean => Boolean(config?.persistence?.enabled);
+const isRemoteRuntimeEnabled = (config?: SchemaDesignerConfig | null): boolean => Boolean(config?.api?.enabled || (config?.prefill?.enabled && config?.prefill?.strategy === 'api'));
+
+export const createSchemaDataRuntimeAdapter = ({
+  engine,
+  storage,
+  fetchImpl,
+  now = () => Date.now(),
+}: RuntimeAdapterArgs = {}): SchemaDataRuntimeAdapter => {
+  const safeStorage =
+    storage ||
+    (typeof window !== 'undefined' && window.localStorage
+      ? window.localStorage
+      : {
+          getItem: () => null,
+          setItem: () => undefined,
+          removeItem: () => undefined,
+        });
+
+  const executeRequest = async (request: ResolvedSchemaRequest): Promise<unknown> => {
+    const fetchFn = fetchImpl || (typeof globalThis.fetch === 'function' ? globalThis.fetch.bind(globalThis) : undefined);
+    if (!fetchFn) {
+      throw new Error('[@pdfme/ui] No fetch implementation available for schema runtime requests.');
+    }
+
+    const controller = typeof AbortController !== 'undefined' ? new AbortController() : null;
+    const timeout = typeof request.timeoutMs === 'number' && request.timeoutMs > 0 ? request.timeoutMs : undefined;
+    const setTimeoutFn = typeof globalThis.setTimeout === 'function' ? globalThis.setTimeout.bind(globalThis) : undefined;
+    const clearTimeoutFn =
+      typeof globalThis.clearTimeout === 'function' ? globalThis.clearTimeout.bind(globalThis) : undefined;
+    const timer = timeout && controller && setTimeoutFn ? setTimeoutFn(() => controller.abort(), timeout) : null;
+
+    try {
+      const response = await fetchFn(request.url, {
+        method: request.method,
+        headers: request.headers,
+        body: request.body === undefined ? undefined : JSON.stringify(request.body),
+        credentials: request.withCredentials ? 'include' : 'same-origin',
+        signal: controller?.signal,
+      });
+
+      if (!response.ok) {
+        const errorBody = await response.text().catch(() => '');
+        throw new Error(`HTTP ${response.status} ${response.statusText}${errorBody ? ` - ${errorBody}` : ''}`);
+      }
+
+      const contentType = response.headers.get('content-type') || '';
+      if (contentType.includes('application/json')) {
+        return response.json();
+      }
+      return response.text();
+    } finally {
+      if (timer && clearTimeoutFn) clearTimeoutFn(timer);
+    }
+  };
+
+  return {
+    readPersistedValue(storageKey) {
+      try {
+        return safeStorage.getItem(storageKey);
+      } catch {
+        return null;
+      }
+    },
+    writePersistedValue(storageKey, value) {
+      try {
+        safeStorage.setItem(storageKey, value);
+      } catch {
+        // Ignore storage failures to keep the editor responsive.
+      }
+    },
+    resolveRequest(field, snapshot) {
+      const config = field.config;
+      const apiConfig = config?.api;
+      const prefillConfig = config?.prefill;
+      const source = apiConfig?.enabled ? 'api' : prefillConfig?.enabled && prefillConfig.strategy === 'api' ? 'prefill' : null;
+      if (!source) return null;
+
+      const requestMode = source === 'api' ? apiConfig?.requestMode || 'read' : 'read';
+      const requestConfig = source === 'api' ? apiConfig : undefined;
+      const httpConfig = resolveDesignerHttpClientConfig(config, engine);
+      const endpoint =
+        (source === 'api' ? requestConfig?.endpoint : prefillConfig?.endpoint) ||
+        requestConfig?.endpoint ||
+        prefillConfig?.endpoint;
+      const url = resolveRuntimeEndpoint(endpoint, httpConfig?.baseURL, requestConfig?.params || undefined);
+      if (!url) return null;
+
+      const headers = buildResolvedHeaders(
+        {
+          ...(httpConfig?.headers || {}),
+          ...(requestConfig?.headers || {}),
+          ...(source === 'prefill' ? (prefillConfig?.headers || {}) : {}),
+        },
+        httpConfig?.auth,
+        undefined,
+      );
+
+      const method = (requestConfig?.method || prefillConfig?.method || (requestMode === 'submit' ? 'POST' : 'GET')) as
+        | 'GET'
+        | 'POST'
+        | 'PUT'
+        | 'PATCH'
+        | 'DELETE';
+      const body =
+        method === 'GET' || method === 'DELETE'
+          ? undefined
+          : buildRequestBodyFromMapping(snapshot.currentInput, requestConfig?.requestMapping || prefillConfig?.mapping);
+
+      return {
+        schemaId: field.schema.id,
+        schemaName: field.schema.name,
+        source,
+        requestMode,
+        method,
+        url,
+        headers,
+        params: requestConfig?.params || {},
+        body,
+        timeoutMs: requestConfig?.timeoutMs || httpConfig?.timeoutMs,
+        withCredentials: Boolean(httpConfig?.withCredentials),
+      };
+    },
+    executeRequest,
+    mapResponseToValues(response, field, request) {
+      const config = field.config;
+      const responseMapping = config?.api?.responseMapping || config?.prefill?.mapping;
+      return buildValuesFromResponse(response, responseMapping && Object.keys(responseMapping).length > 0 ? responseMapping : undefined);
+    },
+    buildFormJson(snapshot) {
+      const activeFields = snapshot.fields.filter(({ config }) => isFormEnabled(config));
+      if (activeFields.length === 0) return null;
+
+      const referenceConfig = activeFields.find(({ config }) => config?.form)?.config?.form || {};
+      const format = referenceConfig.format || 'nested';
+      const rootKey = (referenceConfig.rootKey || 'formData').trim() || 'formData';
+      const includeEmpty = Boolean(referenceConfig.includeEmpty);
+      const includeHidden = Boolean(referenceConfig.includeHidden);
+      const includeMeta = Boolean(referenceConfig.includeMeta);
+
+      const data: Record<string, unknown> = {};
+      const nestedRoot: Record<string, unknown> = {};
+
+      activeFields.forEach(({ schema, config }) => {
+        const fieldConfig = config?.form;
+        if (!fieldConfig) return;
+        if (!fieldConfig.collect) return;
+
+        const hidden = Boolean((schema as SchemaForUI & { hidden?: boolean }).hidden);
+        if (hidden && !includeHidden) return;
+
+        const value = snapshot.currentInput[schema.name] ?? schema.content ?? '';
+        if (!includeEmpty && isEmptyRuntimeValue(value)) return;
+
+        if (format === 'flat') {
+          data[schema.name] = value;
+          return;
+        }
+
+        setByPath(nestedRoot, schema.name, value);
+      });
+
+      if (format === 'nested') {
+        data[rootKey] = nestedRoot;
+      }
+
+      if (includeMeta) {
+        data._meta = {
+          pageIndex: snapshot.pageIndex,
+          totalPages: snapshot.totalPages,
+          unitIndex: snapshot.unitIndex,
+          schemaCount: activeFields.length,
+          generatedAt: now(),
+        };
+      }
+
+      return {
+        data,
+        meta: {
+          format,
+          rootKey,
+          pageIndex: snapshot.pageIndex,
+          totalPages: snapshot.totalPages,
+          unitIndex: snapshot.unitIndex,
+          schemaCount: activeFields.length,
+          generatedAt: now(),
+        },
+      };
+    },
+  };
 };
 
 export const attachSchemaIdentity = (
@@ -267,6 +806,14 @@ export class DesignerEngineBuilder {
 
   withCanvasUseDefaultStyles(useDefaultStyles: boolean) {
     this.engine.canvas = { ...(this.engine.canvas || {}), useDefaultStyles };
+    return this;
+  }
+
+  withHttpAxiosConfig(axios: SchemaHttpClientConfig) {
+    this.engine.http = {
+      ...(this.engine.http || {}),
+      axios: mergeHttpClientConfig(this.engine.http?.axios, axios),
+    };
     return this;
   }
 

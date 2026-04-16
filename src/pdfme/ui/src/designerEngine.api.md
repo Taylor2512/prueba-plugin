@@ -6,7 +6,7 @@ Desacoplar el diseñador en piezas reutilizables para poder usar solo lo necesar
 - canvas por slots
 - feature flags
 - estilos por `className`/`styleOverrides`
-- metadata de schema (identidad, prefill e integraciones)
+- metadata de schema (identidad, prefill, persistencia, API y formularios JSON)
 
 ## Builder
 
@@ -33,6 +33,10 @@ const engine = new DesignerEngineBuilder()
     canvasContainer: { background: '#f8fafc' },
     moveable: { color: '#7c3aed' },
     snapLines: { lineColor: '#0ea5e9', centerColor: '#ef4444' },
+  })
+  .withHttpAxiosConfig({
+    inheritSystem: true,
+    headers: { 'X-App': 'sisadbeta' },
   })
   .withSchemaConfigStorageKey('__designer')
   .withAutoAttachIdentity(true)
@@ -66,6 +70,9 @@ Cada schema puede guardar config en `__designer` (o la key que definas):
   __designer: {
     identity: { id, key, namespace, version, tags },
     prefill: { enabled, strategy, sourceKey, resolverId, endpoint, method, mapping, headers },
+    persistence: { enabled, mode, key, includeHidden, includeMeta },
+    api: { enabled, endpoint, method, requestMode, http, headers, params, requestMapping, responseMapping, timeoutMs },
+    form: { enabled, collect, format, rootKey, includeEmpty, includeHidden, includeMeta },
     integrations: [{ provider, operation, endpoint, authRef, params, enabled }],
     metadata: { className, style }
   }

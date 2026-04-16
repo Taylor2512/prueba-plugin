@@ -23,6 +23,7 @@ export type CanvasContextMenuProps = {
   selectionCount?: number;
   activeReadOnly?: boolean;
   activeRequired?: boolean;
+  activeHidden?: boolean;
   onClose?: () => void;
   className?: string;
 };
@@ -43,6 +44,7 @@ const CanvasContextMenu = ({
   selectionCount = 0,
   activeReadOnly = false,
   activeRequired = false,
+  activeHidden = false,
   onClose,
   className = '',
 }: CanvasContextMenuProps) => {
@@ -58,8 +60,9 @@ const CanvasContextMenu = ({
         selectionCount,
         activeReadOnly,
         activeRequired,
+        activeHidden,
       }),
-    [mode, commands, externalActions, hasClipboardData, selectionCount, activeReadOnly, activeRequired],
+    [mode, commands, externalActions, hasClipboardData, selectionCount, activeReadOnly, activeRequired, activeHidden],
   );
 
   useEffect(() => {

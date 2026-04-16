@@ -5,6 +5,7 @@ import { Divider, Input, Popover, Tooltip } from 'antd';
 import AlignWidget from './AlignWidget.js';
 import ButtonGroupWidget from './ButtonGroupWidget.js';
 import WidgetRenderer from './WidgetRenderer.js';
+import SchemaConnectionsWidget from './SchemaConnectionsWidget.js';
 
 const COLOR_PRESETS = [
   '#000000',
@@ -109,6 +110,7 @@ export const buildDetailWidgets = ({
     nativeColor: (p) => (
       <ColorPickerWidget value={p.value} onChange={p.onChange} normalizeHex={normalizeColorHex} />
     ),
+    SchemaConnectionsWidget: (p) => <SchemaConnectionsWidget {...p} {...props} />,
   };
 
   for (const plugin of pluginsRegistry.values()) {

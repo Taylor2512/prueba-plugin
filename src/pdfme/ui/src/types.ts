@@ -88,6 +88,17 @@ export type DesignerRuntimeApi = {
   highlightField: (fieldName: string) => void;
   addSchema: (schema: SchemaForUI) => void;
   addSchemaByType: (schemaType: string) => void;
+  duplicatePage?: () => void;
+  setCanvasFeatureToggle?: (key: 'selecto' | 'snapLines' | 'guides' | 'padding' | 'mask' | 'moveable' | 'deleteButton', value: boolean) => void;
+  getCanvasFeatureToggles?: () => {
+    selecto?: boolean;
+    snapLines?: boolean;
+    guides?: boolean;
+    padding?: boolean;
+    mask?: boolean;
+    moveable?: boolean;
+    deleteButton?: boolean;
+  };
   getSchemaConfig: (
     schemaIdOrName: string,
     matcher?: 'id' | 'name' | 'identity' | 'prefill-source',

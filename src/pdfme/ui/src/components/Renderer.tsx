@@ -28,6 +28,7 @@ type RendererProps = Omit<
   isActive?: boolean;
   isHovering?: boolean;
   isEditing?: boolean;
+  onDoubleClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
 };
 
 type ReRenderCheckProps = {
@@ -162,6 +163,7 @@ const Wrapper = ({
   isActive = false,
   isHovering = false,
   isEditing = false,
+  onDoubleClick,
 }: RendererProps & { children: ReactNode }) => {
   const styleSchema = schema as DesignerStyleAwareSchema;
   const schemaClassName =
@@ -173,8 +175,11 @@ const Wrapper = ({
   const schemaType = typeof schema.type === 'string' && schema.type.trim() ? schema.type.trim() : 'schema';
   const schemaTitle = getSchemaTitle(schema);
   const schemaTone = resolveSchemaTone(schema, selectable ? '#38a0ff' : '#94a3b8');
+  const schemaHidden = (schema as SchemaForUI & { hidden?: boolean }).hidden === true;
   const schemaCaption = `${schemaName} · ${schemaType}`;
-  const schemaBadge = schema.readOnly
+  const schemaBadge = schemaHidden
+    ? 'oculto'
+    : schema.readOnly
     ? 'solo lectura'
     : schema.required
       ? 'requerido'
@@ -224,9 +229,16 @@ const Wrapper = ({
       data-schema-active={isActive ? 'true' : 'false'}
       data-schema-hovering={isHovering ? 'true' : 'false'}
       data-schema-editing={isEditing ? 'true' : 'false'}
+      data-schema-hidden={schemaHidden ? 'true' : 'false'}
       data-schema-readonly={schema.readOnly ? 'true' : 'false'}
       data-schema-required={schema.required ? 'true' : 'false'}
-      data-schema-selectable={selectable ? 'true' : 'false'}>
+      data-schema-selectable={selectable ? 'true' : 'false'}
+      onDoubleClick={(event) => {
+        if (!selectable) return;
+        event.preventDefault();
+        event.stopPropagation();
+        onDoubleClick?.(event);
+      }}>
       {children}
     </div>
   );

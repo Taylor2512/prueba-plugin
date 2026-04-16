@@ -8,8 +8,18 @@ type SnapFeedbackOverlayProps = {
 
 const SnapFeedbackOverlay = ({ bounds, snapLines }: SnapFeedbackOverlayProps) => {
   if (!bounds || !snapLines.length) return null;
-  const labelLine = snapLines.find((line) => line.label && line.label !== 'center');
-  if (!labelLine) return null;
+  const labels = snapLines
+    .map((line) => line.label)
+    .filter((label): label is string => Boolean(label));
+  if (!labels.length) return null;
+
+  const primaryLabel = labels.includes('center')
+    ? 'Alineado al centro'
+    : labels.find((label) => label !== 'center') || labels[0];
+  const secondaryLabels = labels
+    .filter((label) => label !== 'center' && label !== primaryLabel)
+    .slice(0, 2);
+
   return (
     <div
       className="pdfme-ui-snap-feedback"
@@ -17,7 +27,10 @@ const SnapFeedbackOverlay = ({ bounds, snapLines }: SnapFeedbackOverlayProps) =>
         top: `${bounds.top - 52}px`,
         left: `${bounds.left}px`,
       }}>
-      {labelLine.label}
+      <span className="pdfme-ui-snap-feedback-primary">{primaryLabel}</span>
+      {secondaryLabels.length > 0 ? (
+        <span className="pdfme-ui-snap-feedback-secondary">{secondaryLabels.join(' · ')}</span>
+      ) : null}
     </div>
   );
 };

@@ -9,26 +9,26 @@ export { default as DesignerLeftSidebarCustomPanel } from './LeftSidebarCustomPa
 export type { RuntimeCustomSchemaDefinition } from './LeftSidebarCustomPanel.js';
 export { default as DesignerLeftSidebarCustomFieldModal } from './LeftSidebarCustomFieldModal.js';
 export type { CustomFieldDef } from './LeftSidebarCustomFieldModal.js';
-export { default as DesignerRightSidebar } from './RightSidebar/index.js';
-export type { RightSidebarProps } from './RightSidebar/index.js';
+export { default as DesignerRightSidebar } from './RightSidebar/RightSidebar.js';
+export type { RightSidebarProps } from './RightSidebar/RightSidebar.js';
 export { default as DesignerDocumentsRail } from './RightSidebar/DocumentsRail.js';
 export type { DocumentsRailProps, DesignerDocumentItem } from './RightSidebar/DocumentsRail.js';
-export { default as DesignerRightSidebarListView } from './RightSidebar/ListView/index.js';
+export { default as DesignerRightSidebarListView } from './RightSidebar/ListView/ListView.js';
 export { default as DesignerRightSidebarListViewToolbar } from './RightSidebar/ListView/ListViewToolbar.js';
 export { default as DesignerRightSidebarListViewFooter } from './RightSidebar/ListView/ListViewFooter.js';
 export { default as DesignerRightSidebarListViewDragOverlay } from './RightSidebar/ListView/ListViewDragOverlay.js';
-export { default as DesignerRightSidebarDetailView } from './RightSidebar/DetailView/index.js';
+export { default as DesignerRightSidebarDetailView } from './RightSidebar/DetailView/DetailView.js';
 export { default as DesignerDetailHeaderCard } from './RightSidebar/DetailView/DetailHeaderCard.js';
 export { default as DesignerDetailSectionCard } from './RightSidebar/DetailView/DetailSectionCard.js';
 export * from './RightSidebar/layout.js';
-export { default as DesignerCanvas } from './Canvas/index.js';
+export { default as DesignerCanvas } from './Canvas/Canvas.js';
 export type {
   CanvasProps,
   CanvasClassNames,
   CanvasComponentSlots,
   CanvasFeatureToggles,
   CanvasStyleOverrides,
-} from './Canvas/index.js';
+} from './Canvas/Canvas.js';
 export { default as DesignerGuides } from './Canvas/Guides.js';
 export type { GuidesProps, GuidesPalette } from './Canvas/Guides.js';
 export { default as DesignerMask } from './Canvas/Mask.js';

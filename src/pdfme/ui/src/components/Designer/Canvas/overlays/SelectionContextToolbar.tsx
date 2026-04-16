@@ -1,10 +1,12 @@
 import React from 'react';
 import type { SchemaForUI } from '@pdfme/common';
 import {
-  buildSelectionQuickActions,
+  buildSelectionToolbarModel,
+  type SelectionToolbarMode,
 } from './canvasContextMenuActions.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import type { InteractionState } from '../../shared/interactionState.js';
+import { Loader2 } from 'lucide-react';
 
 type SelectionContextToolbarProps = {
   position: { top: number; left: number; width: number; height: number } | null;
@@ -13,17 +15,9 @@ type SelectionContextToolbarProps = {
   activeSchemas: SchemaForUI[];
   interactionState: InteractionState;
   contextMenuOpen?: boolean;
-};
-
-const formatSchemaType = (value?: string | null) => {
-  if (!value) return null;
-  return value
-    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
-    .replace(/[_-]+/g, ' ')
-    .split(/\s+/)
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
-    .join(' ')
-    .trim();
+  toolbarMode?: SelectionToolbarMode;
+  defaultToolbarMode?: SelectionToolbarMode;
+  onToolbarModeChange?: (mode: SelectionToolbarMode) => void;
 };
 
 const SelectionContextToolbar = ({
@@ -33,54 +27,57 @@ const SelectionContextToolbar = ({
   activeSchemas,
   interactionState,
   contextMenuOpen = false,
+  toolbarMode,
+  defaultToolbarMode,
+  onToolbarModeChange,
 }: SelectionContextToolbarProps) => {
+  const [internalToolbarMode, setInternalToolbarMode] = React.useState<SelectionToolbarMode>(
+    defaultToolbarMode ?? (interactionState.selectionCount > 1 ? 'expanded' : 'micro'),
+  );
+
+  React.useEffect(() => {
+    const nextMode = defaultToolbarMode ?? (interactionState.selectionCount > 1 ? 'expanded' : 'micro');
+    setInternalToolbarMode(nextMode);
+  }, [activeSchemas[0]?.id, defaultToolbarMode, interactionState.selectionCount]);
+
+  const resolvedToolbarMode = toolbarMode ?? internalToolbarMode;
+  const isExpanded = resolvedToolbarMode === 'expanded';
+  const isMicro = resolvedToolbarMode === 'micro';
+  const nextToolbarMode: SelectionToolbarMode = isMicro ? 'compact' : isExpanded ? 'compact' : 'expanded';
+  const toggleLabel = isMicro ? 'Compacto' : isExpanded ? 'Menos' : 'Expandir';
+
+  const selectionCount = interactionState.selectionCount;
+  const toolbarModel = buildSelectionToolbarModel({
+    commands,
+    activeSchemas,
+    selectionCount,
+    interactionPhase: interactionState.phase,
+    mode: resolvedToolbarMode,
+  });
+
   if (!position || !commands || !activeElements.length) return null;
   if (['editing', 'dragging', 'resizing', 'rotating'].includes(interactionState.phase)) return null;
   if (contextMenuOpen) return null;
 
-  const selectionCount = interactionState.selectionCount;
-  const primarySchema = activeSchemas[0];
-  const allReadOnly = activeSchemas.length > 0 && activeSchemas.every((schema) => schema.readOnly);
-  const allRequired = activeSchemas.length > 0 && activeSchemas.every((schema) => schema.required);
-
-  const buttonConfig = buildSelectionQuickActions(commands, allReadOnly);
-
-  const summaryChips: string[] = [];
-
-  if (selectionCount > 1) {
-    summaryChips.push(`${selectionCount} elementos`);
-    summaryChips.push('Selección múltiple');
-  } else {
-    const name = primarySchema?.name?.trim();
-    const type = formatSchemaType(primarySchema?.type);
-    if (name) summaryChips.push(name);
-    if (type) summaryChips.push(type);
-    if (!summaryChips.length) summaryChips.push('Campo activo');
-  }
-
-  if (allRequired) {
-    summaryChips.push('Requerido');
-  }
-  if (allReadOnly) {
-    summaryChips.push('Solo lectura');
-  }
-
   return (
     <div
       className="pdfme-ui-selection-context-toolbar"
+      role="toolbar"
+      aria-label="Barra contextual de edición"
       data-selection-count={String(selectionCount)}
       data-interaction-phase={interactionState.phase}
-      data-selection-kind={selectionCount > 1 ? 'multi' : 'single'}
+      data-selection-kind={toolbarModel.kind}
+      data-toolbar-mode={resolvedToolbarMode}
       style={{
         top: `${position.top}px`,
         left: `${position.left}px`,
-        maxWidth: 'min(100%, 324px)',
+        width: isExpanded ? 'min(100%, 32rem)' : isMicro ? 'min(100%, 18rem)' : 'min(100%, 24rem)',
       }}
     >
       <div className="pdfme-ui-selection-context-toolbar-summary" aria-label="Resumen de selección">
-        {summaryChips.map((chip, index) => (
+        {toolbarModel.summaryChips.map((chip, index) => (
           <span
-            key={`${chip}-${index}`}
+            key={`summary-${chip}`}
             className={[
               'pdfme-ui-selection-context-toolbar-chip',
               index === 0 ? 'is-primary' : '',
@@ -89,19 +86,49 @@ const SelectionContextToolbar = ({
             {chip}
           </span>
         ))}
+        <button
+          type="button"
+          className="pdfme-ui-selection-context-toolbar-toggle"
+          aria-label={toggleLabel}
+          aria-pressed={isExpanded ? 'true' : 'false'}
+          onMouseDown={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+          }}
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            const nextMode = nextToolbarMode;
+            setInternalToolbarMode(nextMode);
+            onToolbarModeChange?.(nextMode);
+          }}
+        >
+          {toggleLabel}
+        </button>
       </div>
+      {!isMicro && toolbarModel.stateChips.length > 0 ? (
+        <div className="pdfme-ui-selection-context-toolbar-state" aria-label="Estado de la selección">
+          {toolbarModel.stateChips.map((chip) => (
+            <span key={`state-${chip}`} className="pdfme-ui-selection-context-toolbar-state-chip">
+              {chip}
+            </span>
+          ))}
+        </div>
+      ) : null}
 
       <div className="pdfme-ui-selection-context-toolbar-actions" role="group" aria-label="Acciones rápidas">
-        {buttonConfig.map((btn) => (
+        {toolbarModel.primaryActions.map((btn) => (
           <button
             key={btn.id}
             type="button"
-            title={btn.label}
+            title={btn.disabled && btn.disabledReason ? btn.disabledReason : btn.label}
             aria-label={btn.label}
             aria-pressed={btn.active ? 'true' : 'false'}
             data-active={btn.active ? 'true' : 'false'}
             data-danger={btn.danger ? 'true' : 'false'}
-            disabled={!btn.onSelect}
+            data-loading={btn.loading ? 'true' : 'false'}
+            disabled={btn.disabled || !btn.onSelect || btn.loading}
+            aria-busy={btn.loading ? 'true' : 'false'}
             onMouseDown={(event) => {
               event.preventDefault();
               event.stopPropagation();
@@ -113,12 +140,51 @@ const SelectionContextToolbar = ({
             }}
           >
             <span className="pdfme-ui-selection-context-toolbar-action-icon" aria-hidden="true">
-              {btn.icon}
+              {btn.loading ? <Loader2 size={14} className="pdfme-ui-selection-context-toolbar-spinner" /> : btn.icon}
             </span>
             <span className="pdfme-ui-selection-context-toolbar-action-label">{btn.label}</span>
           </button>
         ))}
       </div>
+      {isExpanded && toolbarModel.secondarySections.length > 0 ? (
+        <div className="pdfme-ui-selection-context-toolbar-sections" aria-label="Acciones avanzadas">
+          {toolbarModel.secondarySections.map((section) => (
+            <section key={section.id} className="pdfme-ui-selection-context-toolbar-section">
+              <div className="pdfme-ui-selection-context-toolbar-section-label">{section.label}</div>
+              <div className="pdfme-ui-selection-context-toolbar-section-actions" role="group" aria-label={section.label}>
+                {section.items.map((btn) => (
+                  <button
+                    key={btn.id}
+                    type="button"
+                    title={btn.disabled && btn.disabledReason ? btn.disabledReason : btn.label}
+                    aria-label={btn.label}
+                    aria-pressed={btn.active ? 'true' : 'false'}
+                    data-active={btn.active ? 'true' : 'false'}
+                    data-danger={btn.danger ? 'true' : 'false'}
+                    data-loading={btn.loading ? 'true' : 'false'}
+                    disabled={btn.disabled || !btn.onSelect || btn.loading}
+                    aria-busy={btn.loading ? 'true' : 'false'}
+                    onMouseDown={(event) => {
+                      event.preventDefault();
+                      event.stopPropagation();
+                    }}
+                    onClick={(event) => {
+                      event.preventDefault();
+                      event.stopPropagation();
+                      btn.onSelect?.();
+                    }}
+                  >
+                    <span className="pdfme-ui-selection-context-toolbar-action-icon" aria-hidden="true">
+                      {btn.loading ? <Loader2 size={14} className="pdfme-ui-selection-context-toolbar-spinner" /> : btn.icon}
+                    </span>
+                    <span className="pdfme-ui-selection-context-toolbar-action-label">{btn.label}</span>
+                  </button>
+                ))}
+              </div>
+            </section>
+          ))}
+        </div>
+      ) : null}
     </div>
   );
 };
