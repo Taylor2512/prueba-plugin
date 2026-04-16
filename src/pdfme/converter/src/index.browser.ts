@@ -1,7 +1,4 @@
 import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf';
-// Keep API and worker on the same legacy build to avoid runtime version mismatches.
-// eslint-disable-next-line import/no-unresolved
-// @ts-ignore - Vite-style asset URL imports are resolved by the bundler, not by TypeScript.
 import PDFJSWorkerUrl from 'pdfjs-dist/legacy/build/pdf.worker.min.js?url';
 import { pdf2img as _pdf2img, Pdf2ImgOptions } from './pdf2img.js';
 import { pdf2size as _pdf2size, Pdf2SizeOptions } from './pdf2size.js';

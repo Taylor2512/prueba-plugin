@@ -22,6 +22,9 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
   const [draft, setDraft] = useState(session?.value ?? '');
   const [committed, setCommitted] = useState(false);
   const inputRef = useRef<any>(null);
+  const sessionLabel = session?.target === 'name' ? 'Etiqueta visible' : 'Texto del campo';
+  const sessionHint = 'Enter guarda · Escape cancela · blur confirma';
+  const inputPlaceholder = session?.target === 'name' ? 'Nombre del campo' : 'Escribe el contenido';
 
   useEffect(() => {
     setDraft(session?.value ?? '');
@@ -96,27 +99,24 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
   return (
     <div
       className="pdfme-ui-inline-edit-overlay"
-      role="presentation"
       style={{
         top: `${dimensions.top}px`,
         left: `${dimensions.left}px`,
         width: `${dimensions.width}px`,
         minHeight: `${dimensions.height}px`,
       }}
-      onMouseDown={(event) => {
-        event.stopPropagation();
-      }}
     >
       <div className="pdfme-ui-inline-edit-overlay-header">
         <span className="pdfme-ui-inline-edit-overlay-kicker">
-          {session.target === 'name' ? 'Etiqueta' : 'Texto'}
+          {sessionLabel}
         </span>
-        <span className="pdfme-ui-inline-edit-overlay-hint">Enter guarda · Escape cancela</span>
+        <span className="pdfme-ui-inline-edit-overlay-hint">{sessionHint}</span>
       </div>
       {session.multiline ? (
         <Input.TextArea
           {...sharedProps}
           ref={inputRef as any}
+          placeholder={inputPlaceholder}
           autoSize={{ minRows: 3, maxRows: 8 }}
           className="pdfme-ui-inline-edit-overlay-input"
         />
@@ -124,6 +124,7 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
         <Input
           {...sharedProps}
           ref={inputRef as any}
+          placeholder={inputPlaceholder}
           className="pdfme-ui-inline-edit-overlay-input"
         />
       )}

@@ -22,7 +22,7 @@ import Canvas from './Canvas/Canvas.js';
 import type { CanvasFeatureToggles } from './Canvas/Canvas.js';
 import { createSelectionCommands } from './shared/selectionCommands.js';
 import type { InteractionState } from './shared/interactionState.js';
-import { Trash2, Plus } from 'lucide-react';
+import { Plus } from 'lucide-react';
 import {
   RULER_HEIGHT,
   RIGHT_SIDEBAR_WIDTH,
@@ -484,6 +484,11 @@ const TemplateEditor = ({
     () => pageSizes[pageCursor] ?? { width: 0, height: 0 },
     [pageCursor, pageSizes],
   );
+  const requestInlineEdit = useCallback((request: { schemaId: string; target: 'content' | 'name' }) => {
+    (canvasRef.current as (HTMLDivElement & {
+      openInlineEdit?: (inlineEditRequest: { schemaId: string; target: 'content' | 'name' }) => void;
+    }) | null)?.openInlineEdit?.(request);
+  }, []);
   const selectionCommands = useMemo(
     () =>
       createSelectionCommands({
@@ -495,6 +500,7 @@ const TemplateEditor = ({
         commitSchemas,
         removeSchemas,
         onOpenProperties: openPropertiesPanel,
+        requestInlineEdit,
       }),
     [
       activeElements,
@@ -505,6 +511,7 @@ const TemplateEditor = ({
       commitSchemas,
       removeSchemas,
       openPropertiesPanel,
+      requestInlineEdit,
     ],
   );
 

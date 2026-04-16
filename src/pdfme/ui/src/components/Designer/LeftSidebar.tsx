@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect, useMemo, useCallback } from 'react';
-import { Schema, Plugin, BasePdf, getFallbackFontName } from '@pdfme/common';
-import { cloneDeep } from '@pdfme/common';
-import { Button, Tooltip } from 'antd';
+import { Schema, Plugin, BasePdf, getFallbackFontName, cloneDeep } from '@pdfme/common';
+import { Button } from 'antd';
 import { useDraggable } from '@dnd-kit/core';
 import { PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../constants.js';
@@ -184,7 +183,7 @@ type SidebarButtonsProps = {
   hasPlugins: boolean;
   filteredCustomDefinitions: RuntimeCustomSchemaDefinition[];
   renderPluginButton: (item: CatalogSchemaItem) => React.ReactNode;
-  renderCustomFieldItem: (definition: RuntimeCustomSchemaDefinition) => React.ReactNode;
+  renderCustomFieldItem: (definition: RuntimeCustomSchemaDefinition, plugin: Plugin<Schema>) => React.ReactNode;
   resolvePlugin: (pluginType: string) => Plugin<Schema> | null | undefined;
   onOpenCreate: () => void;
   onToggleCategory: (category: string) => void;
@@ -530,6 +529,7 @@ const LeftSidebar = ({
     activeCapabilities,
     setActiveCapabilities,
     resolvedViewMode,
+    setInternalViewMode,
     collapsedCategories,
     setCollapsedCategories,
     saveRecentPlugins,
@@ -737,13 +737,17 @@ const LeftSidebar = ({
     if (activeTab === 'custom') return;
     setCollapsedCategories((prev) => {
       const next: Record<string, boolean> = { ...prev };
+      let changed = false;
       const categoryKeys = groupedPlugins.map(({ category }) => category);
 
       if (normalizedSearch) {
         categoryKeys.forEach((category) => {
-          next[category] = false;
+          if (next[category] !== false) {
+            next[category] = false;
+            changed = true;
+          }
         });
-        return next;
+        return changed ? next : prev;
       }
 
       // In discovery mode, initialize as accordion to reduce visual noise.
@@ -751,16 +755,23 @@ const LeftSidebar = ({
         const hasKnownState = categoryKeys.some((category) => next[category] !== undefined);
         if (!hasKnownState) {
           categoryKeys.forEach((category, index) => {
-            next[category] = index !== 0;
+            const nextValue = index !== 0;
+            if (next[category] !== nextValue) {
+              next[category] = nextValue;
+              changed = true;
+            }
           });
-          return next;
+          return changed ? next : prev;
         }
       }
 
       categoryKeys.forEach((category) => {
-        next[category] ??= quickFilter === 'all';
+        if (next[category] === undefined) {
+          next[category] = quickFilter === 'all';
+          changed = true;
+        }
       });
-      return next;
+      return changed ? next : prev;
     });
   }, [activeTab, groupedPlugins, normalizedSearch, quickFilter]);
 
@@ -895,51 +906,43 @@ const LeftSidebar = ({
       .join(' · ');
     const capabilityHint = item.capabilities.slice(0, 3).join(' · ');
     const shouldShowCapabilityHint = isPanel && resolvedViewMode === 'rich' && capabilityHint;
+    const tooltipText = [
+      label,
+      pluginType,
+      pluginDescription,
+      metaLine,
+      item.tags.length ? `Tags: ${item.tags.slice(0, 4).join(', ')}` : '',
+      capabilityHint ? `Capacidades: ${capabilityHint}` : '',
+    ]
+      .filter((part): part is string => Boolean(part))
+      .join(' • ');
 
     return (
       <Draggable key={draggableId} draggableId={draggableId} scale={scale} basePdf={basePdf} plugin={plugin}>
         {({ listeners, attributes, isDragging: draggableActive }) => (
-          <Tooltip
-            title={
-              <div className={DESIGNER_CLASSNAME + 'left-sidebar-tooltip'}>
-                <div className={DESIGNER_CLASSNAME + 'left-sidebar-tooltip-row'}>
-                  <PluginIcon plugin={plugin} label={label} size={20} />
-                  <div className={DESIGNER_CLASSNAME + 'left-sidebar-tooltip-title'}>
-                    {highlightTerm(label, searchTerms)}
-                  </div>
-                </div>
-                <div className={DESIGNER_CLASSNAME + 'left-sidebar-tooltip-desc'}>{pluginDescription}</div>
-                <div className={DESIGNER_CLASSNAME + 'left-sidebar-tooltip-meta'}>Tipo: {pluginType}</div>
-                {item.tags.length ? (
-                  <div className={DESIGNER_CLASSNAME + 'left-sidebar-tooltip-meta'}>
-                    Tags: {item.tags.slice(0, 4).join(', ')}
-                  </div>
-                ) : null}
-              </div>
-            }
-          >
-            <div className={DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap'}>
-              <Button
-                className={buttonClass}
-                data-schema-type={pluginType}
-                data-schema-label={label}
-                data-view-mode={resolvedViewMode}
-                data-is-panel={isPanel ? 'true' : 'false'}
-                {...listeners}
-                {...attributes}
-                onClick={() => {
-                  if (draggableActive) return;
-                  if (typeof onSchemaClick === 'function') {
-                    onSchemaClick(cloneDeep(plugin.propPanel.defaultSchema), pluginType);
-                    markRecent(pluginType);
-                  }
-                }}
-              >
-                <PluginIcon plugin={plugin} label={label} />
-                <span className={`${DESIGNER_CLASSNAME}plugin-btn-label`}>
-                  <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-title'}>
-                    {highlightTerm(label, searchTerms)}
-                  </span>
+          <div className={DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap'}>
+            <Button
+              className={buttonClass}
+              data-schema-type={pluginType}
+              data-schema-label={label}
+              data-view-mode={resolvedViewMode}
+              data-is-panel={isPanel ? 'true' : 'false'}
+              title={tooltipText}
+              {...listeners}
+              {...attributes}
+              onClick={() => {
+                if (draggableActive) return;
+                if (typeof onSchemaClick === 'function') {
+                  onSchemaClick(cloneDeep(plugin.propPanel.defaultSchema), pluginType);
+                  markRecent(pluginType);
+                }
+              }}
+            >
+              <PluginIcon plugin={plugin} label={label} />
+              <span className={`${DESIGNER_CLASSNAME}plugin-btn-label`}>
+                <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-title'}>
+                  {highlightTerm(label, searchTerms)}
+                </span>
                 {isPanel || resolvedViewMode === 'rich' ? (
                   <>
                     <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-meta'}>
@@ -952,28 +955,27 @@ const LeftSidebar = ({
                       </span>
                     ) : null}
                   </>
-                  ) : null}
-                </span>
-                {isFavorite ? (
-                  <span className={DESIGNER_CLASSNAME + 'plugin-favorite-indicator'}>
-                    ★
-                  </span>
                 ) : null}
-              </Button>
-              <button
-                type="button"
-                aria-label="Marcar favorito"
-                className={DESIGNER_CLASSNAME + 'plugin-favorite-toggle'}
-                data-active={isFavorite ? 'true' : 'false'}
-                onClick={(e) => {
-                  e.stopPropagation();
-                  toggleFavorite(pluginType);
-                }}
-              >
-                ★
-              </button>
-            </div>
-          </Tooltip>
+              </span>
+              {isFavorite ? (
+                <span className={DESIGNER_CLASSNAME + 'plugin-favorite-indicator'}>
+                  ★
+                </span>
+              ) : null}
+            </Button>
+            <button
+              type="button"
+              aria-label="Marcar favorito"
+              className={DESIGNER_CLASSNAME + 'plugin-favorite-toggle'}
+              data-active={isFavorite ? 'true' : 'false'}
+              onClick={(e) => {
+                e.stopPropagation();
+                toggleFavorite(pluginType);
+              }}
+            >
+              ★
+            </button>
+          </div>
         )}
       </Draggable>
     );
@@ -1006,65 +1008,53 @@ const LeftSidebar = ({
         schemaFactory={createSchemaInstance}
       >
         {({ listeners, attributes, isDragging: draggableActive }) => (
-          <Tooltip
-            title={
-              <div className={DESIGNER_CLASSNAME + 'left-sidebar-tooltip'}>
-                <div className={DESIGNER_CLASSNAME + 'left-sidebar-tooltip-row'}>
-                  <PluginIcon plugin={plugin} label={definition.label} size={20} />
-                  <div className={DESIGNER_CLASSNAME + 'left-sidebar-tooltip-title'}>{definition.label}</div>
-                </div>
-                <div className={DESIGNER_CLASSNAME + 'left-sidebar-tooltip-desc'}>
-                  {definition.pluginType}
-                  {definition.autoFillSource ? ` • Autofill: ${definition.autoFillSource}` : ''}
-                </div>
-                {definition.defaultValue ? (
-                  <div className={DESIGNER_CLASSNAME + 'left-sidebar-tooltip-meta'}>
-                    Valor por defecto: {definition.defaultValue}
-                  </div>
-                ) : null}
-              </div>
-            }
+          <Button
+            className={mergeClassNames(
+              `${DESIGNER_CLASSNAME}left-sidebar-custom-item`,
+              `${DESIGNER_CLASSNAME}plugin-${definition.pluginType}`,
+              `${DESIGNER_CLASSNAME}plugin-btn`,
+              `${DESIGNER_CLASSNAME}plugin-btn-${variant}`,
+            )}
+            data-schema-type={definition.pluginType}
+            data-schema-label={definition.label}
+            title={[
+              definition.label,
+              definition.pluginType,
+              definition.autoFillSource ? `Autofill: ${definition.autoFillSource}` : '',
+              definition.defaultValue ? `Default: ${definition.defaultValue}` : '',
+            ]
+              .filter(Boolean)
+              .join(' • ')}
+            {...listeners}
+            {...attributes}
+            onClick={() => {
+              if (draggableActive) return;
+              if (typeof onSchemaClick === 'function') {
+                const schema = createSchemaInstance();
+                if (!schema) return;
+                onSchemaClick(cloneDeep(schema), definition.pluginType);
+                markRecent(definition.pluginType);
+              }
+            }}
+            data-view-mode={resolvedViewMode}
           >
-            <Button
-              className={mergeClassNames(
-                `${DESIGNER_CLASSNAME}left-sidebar-custom-item`,
-                `${DESIGNER_CLASSNAME}plugin-${definition.pluginType}`,
-                `${DESIGNER_CLASSNAME}plugin-btn`,
-                `${DESIGNER_CLASSNAME}plugin-btn-${variant}`,
-              )}
-              data-schema-type={definition.pluginType}
-              data-schema-label={definition.label}
-              {...listeners}
-              {...attributes}
-              onClick={() => {
-                if (draggableActive) return;
-                if (typeof onSchemaClick === 'function') {
-                  const schema = createSchemaInstance();
-                  if (!schema) return;
-                  onSchemaClick(cloneDeep(schema), definition.pluginType);
-                  markRecent(definition.pluginType);
-                }
-              }}
-              data-view-mode={resolvedViewMode}
-            >
-              <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-icon`}>
-                <PluginIcon plugin={plugin} label={definition.label} />
+            <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-icon`}>
+              <PluginIcon plugin={plugin} label={definition.label} />
+            </span>
+            <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-copy`}>
+              <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-label`}>{definition.label}</span>
+              <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-meta`}>
+                {definition.pluginType}
+                {definition.autoFillSource ? ' · autofill' : ''}
+                {definition.defaultValue ? ' · default' : ''}
               </span>
-              <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-copy`}>
-                <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-label`}>{definition.label}</span>
-                <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-meta`}>
-                  {definition.pluginType}
-                  {definition.autoFillSource ? ' · autofill' : ''}
-                  {definition.defaultValue ? ' · default' : ''}
+              {resolvedViewMode === 'rich' ? (
+                <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-desc`}>
+                  {definition.category || 'Campo personalizado'}
                 </span>
-                {resolvedViewMode === 'rich' ? (
-                  <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-desc`}>
-                    {definition.category || 'Campo personalizado'}
-                  </span>
-                ) : null}
-              </span>
-            </Button>
-          </Tooltip>
+              ) : null}
+            </span>
+          </Button>
         )}
       </Draggable>
     );
@@ -1332,13 +1322,15 @@ const LeftSidebar = ({
           </SidebarShell>
         </div>
       )}
-      <LeftSidebarCustomFieldModal
-        open={customModalOpen}
-        draft={customDraft}
-        onCancel={() => setCustomModalOpen(false)}
-        onSave={handleSaveCustomField}
-        onChange={updateCustomDraft}
-      />
+      {customModalOpen ? (
+        <LeftSidebarCustomFieldModal
+          open={customModalOpen}
+          draft={customDraft}
+          onCancel={() => setCustomModalOpen(false)}
+          onSave={handleSaveCustomField}
+          onChange={updateCustomDraft}
+        />
+      ) : null}
     </div>
   );
 };

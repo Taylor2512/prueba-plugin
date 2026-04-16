@@ -314,21 +314,43 @@ const DetailView = (props: DetailViewProps) => {
   );
 };
 
-const schemaFingerprint = (schema: SchemaForUI) =>
-  [
-    schema.id,
-    schema.name,
-    schema.type,
-    schema.content,
-    schema.width,
-    schema.height,
-    schema.required ? '1' : '0',
-    schema.readOnly ? '1' : '0',
-    schema.rotate ?? '',
-    schema.opacity ?? '',
-    schema.position?.x ?? '',
-    schema.position?.y ?? '',
+const schemaFingerprint = (schema: SchemaForUI) => {
+  const coreKeys = new Set([
+    'id',
+    'name',
+    'type',
+    'content',
+    'width',
+    'height',
+    'required',
+    'readOnly',
+    'rotate',
+    'opacity',
+    'position',
+  ]);
+  const rawSchema = schema as SchemaForUI & Record<string, unknown>;
+  const extraFingerprint = Object.keys(rawSchema)
+    .filter((key) => !coreKeys.has(key))
+    .sort()
+    .map((key) => `${key}:${JSON.stringify(rawSchema[key])}`)
+    .join('|');
+
+  return [
+    rawSchema.id,
+    rawSchema.name,
+    rawSchema.type,
+    rawSchema.content,
+    rawSchema.width,
+    rawSchema.height,
+    rawSchema.required ? '1' : '0',
+    rawSchema.readOnly ? '1' : '0',
+    rawSchema.rotate ?? '',
+    rawSchema.opacity ?? '',
+    rawSchema.position?.x ?? '',
+    rawSchema.position?.y ?? '',
+    extraFingerprint,
   ].join('|');
+};
 
 const propsAreUnchanged = (prevProps: DetailViewProps, nextProps: DetailViewProps) =>
   schemaFingerprint(prevProps.activeSchema) === schemaFingerprint(nextProps.activeSchema);

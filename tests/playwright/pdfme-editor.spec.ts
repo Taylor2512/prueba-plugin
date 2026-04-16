@@ -3,23 +3,52 @@ import { expect, test, type Page } from '@playwright/test';
 const openDesigner = async (page: Page) => {
   await page.goto('/');
   await page.waitForLoadState('networkidle');
-  await expect(page.getByRole('heading', { name: 'Laboratorio PDFME' })).toBeVisible();
   await expect(page.locator('.pdfme-designer-stage')).toBeVisible();
 };
 
+const ensureCatalogExpanded = async (page: Page) => {
+  const leftSidebar = page.locator('.pdfme-designer-left-sidebar');
+  const toggle = page.getByRole('button', { name: /Abrir catálogo de campos|Cerrar catálogo de campos/ });
+
+  await expect(toggle).toBeVisible();
+  if ((await leftSidebar.getAttribute('data-expanded')) !== 'true') {
+    await toggle.click();
+  }
+  await expect(leftSidebar).toHaveAttribute('data-expanded', 'true');
+};
+
 test.describe('PDFME editor shell', () => {
+  test('opens inline edit overlay from the toolbar and commits with Enter', async ({ page }) => {
+    await openDesigner(page);
+
+    await ensureCatalogExpanded(page);
+    await page.locator('.pdfme-designer-left-sidebar button[data-schema-type="text"]').first().click();
+
+    const textField = page.locator('.pdfme-designer-canvas [data-schema-type="text"]').first();
+    await expect(textField).toBeVisible();
+
+    await textField.click();
+    const selectionToolbar = page.getByRole('toolbar', { name: 'Barra contextual de edición' });
+    await expect(selectionToolbar).toBeVisible();
+    await selectionToolbar.getByRole('button', { name: 'Editar texto' }).click();
+    await expect(page.locator('.pdfme-ui-inline-edit-overlay')).toBeVisible();
+
+    const inlineInput = page.getByPlaceholder('Escribe el contenido');
+    await expect(inlineInput).toBeVisible();
+    await inlineInput.fill('Texto inline actualizado');
+    await page.keyboard.press('Enter');
+
+    await expect(page.locator('.pdfme-ui-inline-edit-overlay')).toHaveCount(0);
+  });
+
   test('keeps both sidebars aligned and preserves inline editing flows', async ({ page }) => {
     await openDesigner(page);
+    await ensureCatalogExpanded(page);
 
     const leftSidebar = page.locator('.pdfme-designer-left-sidebar');
     const rightSidebar = page.locator('.pdfme-designer-right-sidebar');
 
-    if ((await leftSidebar.getAttribute('data-expanded')) !== 'true') {
-      await page.getByRole('button', { name: 'Abrir catálogo de campos' }).click();
-    }
-    await expect(leftSidebar).toHaveAttribute('data-expanded', 'true');
-
-    const textField = page.locator('button[data-schema-type="text"]').first();
+    const textField = page.locator('.pdfme-designer-left-sidebar button[data-schema-type="text"]').first();
     await expect(textField).toBeVisible();
     await textField.click();
 

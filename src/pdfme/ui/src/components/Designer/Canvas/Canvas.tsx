@@ -7,6 +7,7 @@ import React,
   useRef,
   useState,
   useEffect,
+  useImperativeHandle,
   forwardRef,
   useCallback,
 } from 'react';
@@ -38,7 +39,10 @@ import SnapLines, { computeSnapResult, SnapLine } from './SnapLines.js';
 import { resolveSchemaTone } from '../shared/schemaTone.js';
 import { deriveInteractionState } from '../shared/interactionState.js';
 import type { InteractionState } from '../shared/interactionState.js';
-import type { SelectionCommandSet } from '../shared/selectionCommands.js';
+import {
+  type InlineEditTarget,
+  type SelectionCommandSet,
+} from '../shared/selectionCommands.js';
 import CanvasOverlayManager from './overlays/CanvasOverlayManager.js';
 import CanvasContextMenu from './overlays/CanvasContextMenu.js';
 import InlineEditOverlay, { type InlineEditSession } from './overlays/InlineEditOverlay.js';
@@ -248,6 +252,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
   });
   const contextMenu = contextMenuState.contextMenu;
   const pendingContextMenu = contextMenuState.pendingContextMenu;
+  const rootRef = useRef<HTMLDivElement>(null);
   const setContextMenu = useCallback((next: CanvasContextMenuState | null) => {
     setContextMenuState((prev) => ({ ...prev, contextMenu: next }));
   }, []);
@@ -277,13 +282,13 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
   };
 
   const initEvents = useCallback(() => {
-    window.addEventListener('keydown', onKeydown);
-    window.addEventListener('keyup', onKeyup);
+    globalThis.addEventListener('keydown', onKeydown);
+    globalThis.addEventListener('keyup', onKeyup);
   }, []);
 
   const destroyEvents = useCallback(() => {
-    window.removeEventListener('keydown', onKeydown);
-    window.removeEventListener('keyup', onKeyup);
+    globalThis.removeEventListener('keydown', onKeydown);
+    globalThis.removeEventListener('keyup', onKeyup);
   }, []);
 
   useEffect(() => {
@@ -298,7 +303,6 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
   }, [initEvents, destroyEvents]);
 
   useEffect(() => {
-    moveable.current?.updateRect();
     if (!prevSchemas) {
       return;
     }
@@ -478,23 +482,40 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     };
   }, []);
 
+  const resolveInlineEditTarget = useCallback((schemaId: string, target?: InlineEditTarget) => {
+    if (target) return target;
+    const schema = (schemasList[pageCursor] || []).find((item) => item.id === schemaId);
+    if (!schema) return 'content';
+    const content = String(schema.content || '');
+    const contentDrivenTypes = new Set(['text', 'multivariabletext']);
+    if (contentDrivenTypes.has(schema.type) || content.length > 0) {
+      return 'content';
+    }
+    return 'name';
+  }, [pageCursor, schemasList]);
+
   const startInlineEdit = useCallback(
-    (schemaId: string, targetRect: HTMLElement) => {
+    (schemaId: string, targetRect: HTMLElement, target?: InlineEditTarget) => {
       const schema = (schemasList[pageCursor] || []).find((item) => item.id === schemaId);
-      if (!schema) return;
-      const target = typeof schema.content === 'string' ? 'content' : 'name';
-      const value = target === 'content' ? String(schema.content || '') : String(schema.name || '');
+      if (!schema) {
+        selectionCommands?.openProperties?.();
+        return;
+      }
+      const resolvedTarget = resolveInlineEditTarget(schemaId, target);
+      const value = resolvedTarget === 'content' ? String(schema.content || '') : String(schema.name || '');
       setInlineEditSession({
         schemaId,
-        target,
+        target: resolvedTarget,
         value,
         rect: resolveInlineEditRect(targetRect),
-        multiline: target === 'content' && (schema.type === 'multivariabletext' || value.includes('\n')),
+        multiline: resolvedTarget === 'content' && (schema.type === 'multivariabletext' || value.includes('\n')),
       });
       setEditing(true);
-      onEdit([(targetRect as HTMLElement)]);
+      setContextMenu(null);
+      setPendingContextMenu(null);
+      onEdit([targetRect]);
     },
-    [onEdit, pageCursor, resolveInlineEditRect, schemasList],
+    [onEdit, pageCursor, resolveInlineEditRect, resolveInlineEditTarget, schemasList, selectionCommands],
   );
 
   const finishInlineEdit = useCallback(
@@ -508,7 +529,8 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
         setEditing(false);
         return;
       }
-      if (String((currentSchema as Record<string, unknown>)[key] ?? '') === nextValue) {
+        const currentValue = key === 'content' ? String(currentSchema.content || '') : String(currentSchema.name || '');
+        if (currentValue === nextValue) {
         setInlineEditSession(null);
         setEditing(false);
         return;
@@ -525,13 +547,54 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     setEditing(false);
   }, []);
 
+  useImperativeHandle(ref, () => {
+    const node = rootRef.current;
+    if (!node) return null as unknown as HTMLDivElement;
+
+    const imperativeNode = node as HTMLDivElement & {
+      openInlineEdit?: (request: { schemaId: string; target: InlineEditTarget }) => void;
+      cancelInlineEdit?: () => void;
+    };
+
+    imperativeNode.openInlineEdit = (request) => {
+      const targetElement = document.getElementById(request.schemaId);
+      node.dataset.inlineEditRequest = `${request.schemaId}:${request.target}`;
+      if (!targetElement) {
+        selectionCommands?.openProperties?.();
+        return;
+      }
+      const schema = (schemasList[pageCursor] || []).find((item) => item.id === request.schemaId);
+      if (!schema) {
+        selectionCommands?.openProperties?.();
+        return;
+      }
+      const resolvedTarget = resolveInlineEditTarget(request.schemaId, request.target);
+      const value = resolvedTarget === 'content' ? String(schema.content || '') : String(schema.name || '');
+      setInlineEditSession({
+        schemaId: request.schemaId,
+        target: resolvedTarget,
+        value,
+        rect: resolveInlineEditRect(targetElement),
+        multiline: resolvedTarget === 'content' && (schema.type === 'multivariabletext' || value.includes('\n')),
+      });
+      setEditing(true);
+      setContextMenu(null);
+      setPendingContextMenu(null);
+    };
+    imperativeNode.cancelInlineEdit = cancelInlineEdit;
+    return imperativeNode;
+  }, [cancelInlineEdit, selectionCommands, startInlineEdit]);
+
   const onClickMoveable = useCallback(() => {
     if (!activeElements[0]) return;
     const schemaId = activeElements[0].id;
     const target = document.getElementById(schemaId);
-    if (!target) return;
-    startInlineEdit(schemaId, target);
-  }, [activeElements, startInlineEdit]);
+    if (!target) {
+      selectionCommands?.openProperties?.();
+      return;
+    }
+    startInlineEdit(schemaId, target, 'content');
+  }, [activeElements, selectionCommands, startInlineEdit]);
 
   const handleDragStart = () => setIsDragging(true);
   const handleResizeStart = () => setIsResizing(true);
@@ -711,7 +774,16 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
   });
   useEffect(() => {
     onInteractionStateChange?.(interactionState);
-  }, [interactionState, onInteractionStateChange]);
+  }, [
+    interactionState.phase,
+    interactionState.selectionCount,
+    interactionState.hasSelection,
+    interactionState.isHovering,
+    interactionState.isDragging,
+    interactionState.isResizing,
+    interactionState.isRotating,
+    onInteractionStateChange,
+  ]);
 
   useEffect(() => {
     paperRefs.current.forEach((paper, index) => {
@@ -738,7 +810,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
       data-interaction-dragging={interactionState.isDragging ? 'true' : 'false'}
       data-interaction-resizing={interactionState.isResizing ? 'true' : 'false'}
       data-interaction-rotating={interactionState.isRotating ? 'true' : 'false'}
-      ref={ref}>
+      ref={rootRef}>
       {!editing && feature.selecto ? (
         <SelectoSlot
           container={paperRefs.current[pageCursor]}
@@ -989,7 +1061,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
         onCancel={cancelInlineEdit}
       />
       <CanvasContextMenu
-        open={Boolean(contextMenu)}
+        open={Boolean(contextMenu) && !editing}
         mode={contextMenu?.mode || 'empty'}
         position={contextMenu ? { x: contextMenu.x, y: contextMenu.y } : null}
         commands={selectionCommands}

@@ -15,6 +15,32 @@ export type AlignType =
 
 export type DistributeType = 'vertical' | 'horizontal';
 
+export const INLINE_EDIT_REQUEST_EVENT = 'pdfme-designer-inline-edit-request';
+
+export type InlineEditTarget = 'content' | 'name';
+
+export type InlineEditRequest = {
+  schemaId: string;
+  target: InlineEditTarget;
+};
+
+type InlineEditRequestHandler = (_request: InlineEditRequest) => void;
+
+let inlineEditRequestHandler: InlineEditRequestHandler | null = null;
+
+export const setInlineEditRequestHandler = (handler: InlineEditRequestHandler | null) => {
+  inlineEditRequestHandler = handler;
+  return () => {
+    if (inlineEditRequestHandler === handler) {
+      inlineEditRequestHandler = null;
+    }
+  };
+};
+
+export const emitInlineEditRequest = (request: InlineEditRequest) => {
+  inlineEditRequestHandler?.(request);
+};
+
 export type SelectionCommandSet = {
   deleteSelection: () => void;
   duplicateSelection: () => void;
@@ -32,6 +58,7 @@ export type SelectionCommandSet = {
   pasteStyle?: () => void;
   renameLabel?: () => void;
   editTextInline?: () => void;
+  requestInlineEdit?: (_request: InlineEditRequest) => void;
 };
 
 export type SelectionCommandsContext = {
@@ -43,6 +70,7 @@ export type SelectionCommandsContext = {
   commitSchemas: (next: SchemaForUI[]) => void;
   removeSchemas: (ids: string[]) => void;
   onOpenProperties: () => void;
+  requestInlineEdit?: (_request: InlineEditRequest) => void;
 };
 
 const getActiveIds = (elements: HTMLElement[]) => elements.map((element) => element.id);
@@ -117,7 +145,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     if (!hasSelection) return;
     const ops = getActiveSchemas(context).map((schema) => ({
       key: 'hidden',
-      value: !((schema as SchemaForUI & { hidden?: boolean }).hidden === true),
+      value: (schema as SchemaForUI & { hidden?: boolean }).hidden !== true,
       schemaId: schema.id,
     }));
     context.changeSchemas(ops);
@@ -142,14 +170,13 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
   const alignSelection = (type: AlignType) => {
     if (!hasSelection) return;
     const schemas = getActiveSchemas(context);
-    const page = getPageSchemas(context);
     const isVertical = ['left', 'center', 'right'].includes(type);
     const tgtPos = isVertical ? 'x' : 'y';
     const tgtSize = isVertical ? 'width' : 'height';
-    const { min, max } = getPageBounds(schemas, tgtPos as 'x' | 'y', tgtSize as 'width' | 'height');
+    const { min, max } = getPageBounds(schemas, tgtPos, tgtSize);
 
     let basePos = min;
-    let adjust = 0;
+    let adjust: (value: number) => number = () => 0;
     if (['center', 'middle'].includes(type)) {
       basePos = (min + max) / 2;
       adjust = (value: number) => value / 2;
@@ -175,7 +202,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     const isVertical = type === 'vertical';
     const tgtPos = isVertical ? 'y' : 'x';
     const tgtSize = isVertical ? 'height' : 'width';
-    const { min, max } = getPageBounds(schemas, tgtPos as 'x' | 'y', tgtSize as 'width' | 'height');
+    const { min, max } = getPageBounds(schemas, tgtPos, tgtSize);
     const totalSize = schemas.reduce((sum, schema) => sum + (schema[tgtSize] ?? 0), 0);
     const span = max - min;
     const gap = (span - totalSize) / (schemas.length - 1);
@@ -198,29 +225,19 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     context.onOpenProperties();
   };
 
-  const renameLabel = () => {
+  const requestInlineEdit = (target: InlineEditTarget) => {
     if (!hasSelection) return;
     const activeSchemas = getActiveSchemas(context);
     if (activeSchemas.length !== 1) return;
-    const schema = activeSchemas[0];
-    const currentName = typeof schema.name === 'string' ? schema.name : '';
-    const nextName = window.prompt('Renombrar etiqueta', currentName);
-    if (nextName === null) return;
-    const trimmed = nextName.trim();
-    if (!trimmed || trimmed === currentName.trim()) return;
-    context.changeSchemas([{ key: 'name', value: trimmed, schemaId: schema.id }]);
+    context.requestInlineEdit?.({ schemaId: activeSchemas[0].id, target });
+  };
+
+  const renameLabel = () => {
+    requestInlineEdit('name');
   };
 
   const editTextInline = () => {
-    if (!hasSelection) return;
-    const activeSchemas = getActiveSchemas(context);
-    if (activeSchemas.length !== 1) return;
-    const schema = activeSchemas[0];
-    const currentContent = typeof schema.content === 'string' ? schema.content : '';
-    const nextContent = window.prompt('Editar texto', currentContent);
-    if (nextContent === null) return;
-    if (nextContent === currentContent) return;
-    context.changeSchemas([{ key: 'content', value: nextContent, schemaId: schema.id }]);
+    requestInlineEdit('content');
   };
 
   return {

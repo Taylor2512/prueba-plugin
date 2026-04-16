@@ -66,6 +66,104 @@ const getMissingFields = (
   return missing;
 };
 
+const describeBoolean = (value?: boolean) => (value ? 'Sí' : 'No');
+
+const describePersistence = (persistence: SchemaPersistenceConfig) => {
+  if (!persistence.enabled) return 'Inactiva';
+  return [
+    persistence.mode || 'local',
+    persistence.key ? `key=${persistence.key}` : 'sin clave',
+    `ocultos ${describeBoolean(Boolean(persistence.includeHidden))}`,
+    `meta ${describeBoolean(Boolean(persistence.includeMeta))}`,
+  ].join(' · ');
+};
+
+const describeFormJson = (formJson: SchemaFormJsonConfig) => {
+  if (!formJson.enabled) return 'Inactivo';
+  return [
+    formJson.format || 'nested',
+    formJson.rootKey ? `root=${formJson.rootKey}` : 'sin raíz',
+    `vacíos ${describeBoolean(Boolean(formJson.includeEmpty))}`,
+    `ocultos ${describeBoolean(Boolean(formJson.includeHidden))}`,
+  ].join(' · ');
+};
+
+const describeHttpAuth = (auth?: SchemaHttpAuthConfig) => {
+  if (auth?.mode !== 'manual') return 'Auth heredada';
+  const header = auth.headerName ? `header=${auth.headerName}` : 'sin header';
+  return `${auth.type || 'manual'} · ${header}`;
+};
+
+const describeApi = (
+  api: NonNullable<SchemaDesignerConfig['api']>,
+  resolvedHttpClient: ReturnType<typeof resolveDesignerHttpClientConfig>,
+) => {
+  if (!api.enabled) return 'Inactiva';
+  return [
+    api.method || 'GET',
+    api.endpoint || 'sin endpoint',
+    resolvedHttpClient?.inheritSystem === false ? 'Axios local' : 'Axios sistema',
+    describeHttpAuth(resolvedHttpClient?.auth),
+  ].join(' · ');
+};
+
+const applyAuthPreset = (
+  type: SchemaHttpAuthConfig['type'] | undefined,
+  current: SchemaHttpAuthConfig | undefined,
+): SchemaHttpAuthConfig => {
+  const nextType = type || 'bearer';
+
+  if (nextType === 'basic') {
+    return {
+      ...current,
+      mode: 'manual',
+      type: nextType,
+      headerName: current?.headerName || 'Authorization',
+      token: '',
+      headerValue: undefined,
+      username: current?.username || '',
+      password: current?.password || '',
+    };
+  }
+
+  if (nextType === 'apiKey') {
+    return {
+      ...current,
+      mode: 'manual',
+      type: nextType,
+      headerName: current?.headerName || 'X-API-Key',
+      headerValue: current?.headerValue || current?.token || '',
+      token: undefined,
+      username: undefined,
+      password: undefined,
+    };
+  }
+
+  if (nextType === 'custom') {
+    return {
+      ...current,
+      mode: 'manual',
+      type: nextType,
+      headerName: current?.headerName || 'Authorization',
+      headerValue: current?.headerValue || current?.token || '',
+      token: undefined,
+      username: undefined,
+      password: undefined,
+    };
+  }
+
+  return {
+    ...current,
+    mode: 'manual',
+    type: nextType,
+    headerName: current?.headerName || 'Authorization',
+    token: current?.token || current?.headerValue || '',
+    headerValue: undefined,
+    username: undefined,
+    password: undefined,
+  };
+};
+
 const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
   const { schemaConfig, designerEngine, updateSchemaConfig } = props;
   const [validationState, setValidationState] = useState<'idle' | 'ok' | 'warning'>('idle');
@@ -148,6 +246,15 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
     [api.http?.auth, updateApiHttp],
   );
 
+  const updateApiAuthType = useCallback(
+    (type: SchemaHttpAuthConfig['type']) => {
+      updateApiHttp({
+        auth: applyAuthPreset(type, api.http?.auth),
+      });
+    },
+    [api.http?.auth, updateApiHttp],
+  );
+
   const updateFormJson = useCallback(
     (patch: Partial<SchemaFormJsonConfig>) => {
       updateSchemaConfig?.({
@@ -213,6 +320,9 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
   const validationTag = useMemo(() => buildValidationTag(validationState), [validationState]);
 
   const headerTags = runtimeStatusTags.slice(0, 4);
+  const persistenceSummary = describePersistence(persistence);
+  const formJsonSummary = describeFormJson(formJson);
+  const apiSummary = describeApi(api, resolvedHttpClient);
 
   const items = [
     {
@@ -227,44 +337,66 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
       ),
       children: (
         <Space direction="vertical" size={8} style={{ width: '100%' }}>
+          <div className={`${DESIGNER_CLASSNAME}schema-config-summary`}>
+            <div className={`${DESIGNER_CLASSNAME}schema-config-summary-text`}>{persistenceSummary}</div>
+          </div>
           <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
             <span>Guardar datos ingresados</span>
             <Switch checked={Boolean(persistence.enabled)} onChange={(checked) => updatePersistence({ enabled: checked })} />
           </div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-              <span>Modo</span>
-              <Select
-                size="small"
-                value={persistence.mode || 'local'}
-                onChange={(value) => updatePersistence({ mode: value })}
-                options={[
-                  { label: 'Local', value: 'local' },
-                  { label: 'Remoto', value: 'remote' },
-                  { label: 'Híbrido', value: 'hybrid' },
-                ]}
-              />
-            </div>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-              <span>Clave de almacenamiento</span>
-              <Input
-                size="small"
-                value={persistence.key || ''}
-                placeholder="campo.identificador"
-                onChange={(event) => updatePersistence({ key: event.target.value })}
-              />
-            </div>
-          </div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-inline-checks`}>
-            <div>
-              <Switch checked={Boolean(persistence.includeHidden)} onChange={(checked) => updatePersistence({ includeHidden: checked })} />
-              <span>Incluir ocultos</span>
-            </div>
-            <div>
-              <Switch checked={Boolean(persistence.includeMeta)} onChange={(checked) => updatePersistence({ includeMeta: checked })} />
-              <span>Incluir metadatos</span>
-            </div>
-          </div>
+          <Collapse
+            ghost
+            className={`${DESIGNER_CLASSNAME}schema-config-collapse schema-config-nested-collapse`}
+            defaultActiveKey={[]}
+            items={[
+              {
+                key: 'persistence-basic',
+                label: 'Opciones básicas',
+                children: (
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                      <span>Modo</span>
+                      <Select
+                        size="small"
+                        value={persistence.mode || 'local'}
+                        onChange={(value) => updatePersistence({ mode: value })}
+                        options={[
+                          { label: 'Local', value: 'local' },
+                          { label: 'Remoto', value: 'remote' },
+                          { label: 'Híbrido', value: 'hybrid' },
+                        ]}
+                      />
+                    </div>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                      <span>Clave de almacenamiento</span>
+                      <Input
+                        size="small"
+                        value={persistence.key || ''}
+                        placeholder="campo.identificador"
+                        onChange={(event) => updatePersistence({ key: event.target.value })}
+                      />
+                    </div>
+                  </div>
+                ),
+              },
+              {
+                key: 'persistence-advanced',
+                label: 'Opciones avanzadas',
+                children: (
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-inline-checks`}>
+                    <div>
+                      <Switch checked={Boolean(persistence.includeHidden)} onChange={(checked) => updatePersistence({ includeHidden: checked })} />
+                      <span>Incluir ocultos</span>
+                    </div>
+                    <div>
+                      <Switch checked={Boolean(persistence.includeMeta)} onChange={(checked) => updatePersistence({ includeMeta: checked })} />
+                      <span>Incluir metadatos</span>
+                    </div>
+                  </div>
+                ),
+              },
+            ]}
+          />
         </Space>
       ),
     },
@@ -280,6 +412,9 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
       ),
       children: (
         <Space direction="vertical" size={8} style={{ width: '100%' }}>
+          <div className={`${DESIGNER_CLASSNAME}schema-config-summary`}>
+            <div className={`${DESIGNER_CLASSNAME}schema-config-summary-text`}>{formJsonSummary}</div>
+          </div>
           <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
             <span>Activar salida JSON</span>
             <Switch checked={Boolean(formJson.enabled)} onChange={(checked) => updateFormJson({ enabled: checked })} />
@@ -288,43 +423,62 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
             <span>Recolectar valores</span>
             <Switch checked={Boolean(formJson.collect)} onChange={(checked) => updateFormJson({ collect: checked })} />
           </div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-              <span>Formato</span>
-              <Select
-                size="small"
-                value={formJson.format || 'nested'}
-                onChange={(value) => updateFormJson({ format: value })}
-                options={[
-                  { label: 'Anidado', value: 'nested' },
-                  { label: 'Plano', value: 'flat' },
-                ]}
-              />
-            </div>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-              <span>Raíz JSON</span>
-              <Input
-                size="small"
-                value={formJson.rootKey || ''}
-                placeholder="formData"
-                onChange={(event) => updateFormJson({ rootKey: event.target.value })}
-              />
-            </div>
-          </div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-inline-checks`}>
-            <div>
-              <Switch checked={Boolean(formJson.includeEmpty)} onChange={(checked) => updateFormJson({ includeEmpty: checked })} />
-              <span>Incluir vacíos</span>
-            </div>
-            <div>
-              <Switch checked={Boolean(formJson.includeHidden)} onChange={(checked) => updateFormJson({ includeHidden: checked })} />
-              <span>Incluir ocultos</span>
-            </div>
-            <div>
-              <Switch checked={Boolean(formJson.includeMeta)} onChange={(checked) => updateFormJson({ includeMeta: checked })} />
-              <span>Incluir meta</span>
-            </div>
-          </div>
+          <Collapse
+            ghost
+            className={`${DESIGNER_CLASSNAME}schema-config-collapse schema-config-nested-collapse`}
+            defaultActiveKey={[]}
+            items={[
+              {
+                key: 'form-json-basic',
+                label: 'Salida principal',
+                children: (
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                      <span>Formato</span>
+                      <Select
+                        size="small"
+                        value={formJson.format || 'nested'}
+                        onChange={(value) => updateFormJson({ format: value })}
+                        options={[
+                          { label: 'Anidado', value: 'nested' },
+                          { label: 'Plano', value: 'flat' },
+                        ]}
+                      />
+                    </div>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                      <span>Raíz JSON</span>
+                      <Input
+                        size="small"
+                        value={formJson.rootKey || ''}
+                        placeholder="formData"
+                        onChange={(event) => updateFormJson({ rootKey: event.target.value })}
+                      />
+                    </div>
+                  </div>
+                ),
+              },
+              {
+                key: 'form-json-advanced',
+                label: 'Opciones avanzadas',
+                children: (
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-inline-checks`}>
+                    <div>
+                      <Switch checked={Boolean(formJson.includeEmpty)} onChange={(checked) => updateFormJson({ includeEmpty: checked })} />
+                      <span>Incluir vacíos</span>
+                    </div>
+                    <div>
+                      <Switch checked={Boolean(formJson.includeHidden)} onChange={(checked) => updateFormJson({ includeHidden: checked })} />
+                      <span>Incluir ocultos</span>
+                    </div>
+                    <div>
+                      <Switch checked={Boolean(formJson.includeMeta)} onChange={(checked) => updateFormJson({ includeMeta: checked })} />
+                      <span>Incluir meta</span>
+                    </div>
+                  </div>
+                ),
+              },
+            ]}
+          />
         </Space>
       ),
     },
@@ -340,6 +494,9 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
       ),
       children: (
         <Space direction="vertical" size={8} style={{ width: '100%' }}>
+          <div className={`${DESIGNER_CLASSNAME}schema-config-summary`}>
+            <div className={`${DESIGNER_CLASSNAME}schema-config-summary-text`}>{apiSummary}</div>
+          </div>
           <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
             <span>Consultar API</span>
             <Switch checked={Boolean(api.enabled)} onChange={(checked) => updateApi({ enabled: checked })} />
@@ -434,79 +591,107 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
             </div>
           </div>
           {api.http?.auth?.mode === 'manual' ? (
-            <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                <span>Tipo de token</span>
-                <Select
-                  size="small"
-                  value={api.http?.auth?.type || 'bearer'}
-                  onChange={(value) => updateApiAuth({ type: value })}
-                  options={[
-                    { label: 'Bearer', value: 'bearer' },
-                    { label: 'Basic', value: 'basic' },
-                    { label: 'API Key', value: 'apiKey' },
-                    { label: 'Custom', value: 'custom' },
-                  ]}
-                />
-              </div>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                <span>Nombre del header</span>
-                <Input
-                  size="small"
-                  value={api.http?.auth?.headerName || ''}
-                  placeholder="Authorization"
-                  onChange={(event) => updateApiAuth({ headerName: event.target.value })}
-                />
-              </div>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                <span>Valor / token</span>
-                <Input
-                  size="small"
-                  value={api.http?.auth?.token || api.http?.auth?.headerValue || ''}
-                  placeholder="Bearer ..."
-                  onChange={(event) => {
-                    if ((api.http?.auth?.type || 'bearer') === 'apiKey') {
-                      updateApiAuth({ headerValue: event.target.value });
-                    } else {
-                      updateApiAuth({ token: event.target.value });
-                    }
-                  }}
-                />
-              </div>
-            </div>
+            <Collapse
+              ghost
+              className={`${DESIGNER_CLASSNAME}schema-config-collapse schema-config-nested-collapse`}
+              defaultActiveKey={[]}
+              items={[
+                {
+                  key: 'api-auth',
+                  label: 'Autenticación manual',
+                  children: (
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
+                      <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                        <span>Tipo de token</span>
+                        <Select
+                          size="small"
+                          value={api.http?.auth?.type || 'bearer'}
+                          onChange={(value) => updateApiAuthType(value)}
+                          options={[
+                            { label: 'Bearer', value: 'bearer' },
+                            { label: 'Basic', value: 'basic' },
+                            { label: 'API Key', value: 'apiKey' },
+                            { label: 'Custom', value: 'custom' },
+                          ]}
+                        />
+                      </div>
+                      <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                        <span>Nombre del header</span>
+                        <Input
+                          size="small"
+                          value={api.http?.auth?.headerName || ''}
+                          placeholder="Authorization"
+                          onChange={(event) => updateApiAuth({ headerName: event.target.value })}
+                        />
+                      </div>
+                      <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                        <span>Valor / token</span>
+                        <Input
+                          size="small"
+                          value={api.http?.auth?.token || api.http?.auth?.headerValue || ''}
+                          placeholder="Bearer ..."
+                          onChange={(event) => {
+                            if ((api.http?.auth?.type || 'bearer') === 'apiKey') {
+                              updateApiAuth({ headerValue: event.target.value });
+                            } else {
+                              updateApiAuth({ token: event.target.value });
+                            }
+                          }}
+                        />
+                      </div>
+                    </div>
+                  ),
+                },
+              ]}
+            />
           ) : null}
           <Divider className={`${DESIGNER_CLASSNAME}schema-config-divider`} />
-          <PairEditor
-            title="Encabezados personalizados"
-            description="Se mezclan con los heredados del sistema y pueden sobrescribir valores."
-            values={api.http?.headers}
-            onChange={(next) => updateApiHttp({ headers: next })}
-            placeholderKey="Header"
-            placeholderValue="Valor"
-          />
-          <PairEditor
-            title="Parámetros"
-            description="Parámetros de consulta para la petición."
-            values={api.params}
-            onChange={(next) => updateApi({ params: next })}
-            placeholderKey="Clave"
-            placeholderValue="Valor"
-          />
-          <PairEditor
-            title="Mapeo de entrada"
-            description="Relaciona datos del schema con el body/payload de salida."
-            values={api.requestMapping}
-            onChange={(next) => updateApi({ requestMapping: next })}
-            placeholderKey="Campo"
-            placeholderValue="Ruta"
-          />
-          <PairEditor
-            title="Mapeo de respuesta"
-            description="Extrae o transforma la respuesta para rellenar el schema."
-            values={api.responseMapping}
-            onChange={(next) => updateApi({ responseMapping: next })}
-            placeholderKey="Ruta"
-            placeholderValue="Campo"
+          <Collapse
+            ghost
+            className={`${DESIGNER_CLASSNAME}schema-config-collapse schema-config-nested-collapse`}
+            defaultActiveKey={[]}
+            items={[
+              {
+                key: 'api-advanced',
+                label: 'Encabezados, parámetros y mapeos',
+                children: (
+                  <Space direction="vertical" size={10} style={{ width: '100%' }}>
+                    <PairEditor
+                      title="Encabezados personalizados"
+                      description="Se mezclan con los heredados del sistema y pueden sobrescribir valores."
+                      values={api.http?.headers}
+                      onChange={(next) => updateApiHttp({ headers: next })}
+                      placeholderKey="Header"
+                      placeholderValue="Valor"
+                    />
+                    <PairEditor
+                      title="Parámetros"
+                      description="Parámetros de consulta para la petición."
+                      values={api.params}
+                      onChange={(next) => updateApi({ params: next })}
+                      placeholderKey="Clave"
+                      placeholderValue="Valor"
+                    />
+                    <PairEditor
+                      title="Mapeo de entrada"
+                      description="Relaciona datos del schema con el body/payload de salida."
+                      values={api.requestMapping}
+                      onChange={(next) => updateApi({ requestMapping: next })}
+                      placeholderKey="Campo"
+                      placeholderValue="Ruta"
+                    />
+                    <PairEditor
+                      title="Mapeo de respuesta"
+                      description="Extrae o transforma la respuesta para rellenar el schema."
+                      values={api.responseMapping}
+                      onChange={(next) => updateApi({ responseMapping: next })}
+                      placeholderKey="Ruta"
+                      placeholderValue="Campo"
+                    />
+                  </Space>
+                ),
+              },
+            ]}
           />
           {resolvedHttpClient ? (
             <div className={`${DESIGNER_CLASSNAME}schema-config-summary`}>

@@ -1996,6 +1996,18 @@ body {
   /* tighten vertical spacing inside collapse panels */
 }
 
+.pdfme-designer-schema-config-nested-collapse {
+  gap: 0.1875rem;
+}
+
+.pdfme-designer-schema-config-nested-collapse > .ant-collapse-item > .ant-collapse-header {
+  padding-block: 0.3125rem;
+}
+
+.pdfme-designer-schema-config-nested-collapse > .ant-collapse-item > .ant-collapse-content > .ant-collapse-content-box {
+  padding-top: 0.3125rem;
+}
+
 .pdfme-designer-schema-config-section-head {
   gap: 0.5rem;
 }

@@ -40,23 +40,29 @@ export const PairEditor = ({
   placeholderValue: string;
 }) => {
   const [rows, setRows] = useState<Pair[]>(() => toPairs(values));
+  const [latestRows, setLatestRows] = useState<Pair[]>(() => toPairs(values));
 
   useEffect(() => {
-    setRows(toPairs(values));
+    const nextRows = toPairs(values);
+    setRows(nextRows);
+    setLatestRows(nextRows);
   }, [values]);
 
   const commit = useCallback(
     (nextRows: Pair[]) => {
       setRows(nextRows);
+      setLatestRows(nextRows);
       onChange(toRecord(nextRows));
     },
     [onChange],
   );
 
   const updateRow = (index: number, key: 'key' | 'value', value: string) => {
-    setRows((prev) =>
-      prev.map((row, rowIndex) => (rowIndex === index ? { ...row, [key]: value } : row)),
-    );
+    setRows((prev) => {
+      const nextRows = prev.map((row, rowIndex) => (rowIndex === index ? { ...row, [key]: value } : row));
+      setLatestRows(nextRows);
+      return nextRows;
+    });
   };
 
   return (
@@ -70,7 +76,7 @@ export const PairEditor = ({
           size="small"
           type="text"
           icon={<Plus size={14} />}
-          onClick={() => commit([...(rows || []), { id: `pair-${Date.now()}-${rows.length}`, key: '', value: '' }])}
+          onClick={() => commit([...(latestRows || []), { id: `pair-${Date.now()}-${latestRows.length}`, key: '', value: '' }])}
         >
           Añadir
         </Button>
@@ -86,14 +92,14 @@ export const PairEditor = ({
               value={row.key}
               placeholder={placeholderKey}
               onChange={(event) => updateRow(index, 'key', event.target.value)}
-              onBlur={() => commit(rows)}
+              onBlur={() => commit(latestRows)}
             />
             <Input
               size="small"
               value={row.value}
               placeholder={placeholderValue}
               onChange={(event) => updateRow(index, 'value', event.target.value)}
-              onBlur={() => commit(rows)}
+              onBlur={() => commit(latestRows)}
             />
             <Button
               size="small"
@@ -101,7 +107,7 @@ export const PairEditor = ({
               danger
               icon={<Trash2 size={13} />}
               onClick={() => {
-                const next = rows.filter((_, rowIndex) => rowIndex !== index);
+                const next = latestRows.filter((_, rowIndex) => rowIndex !== index);
                 commit(next);
               }}
             />

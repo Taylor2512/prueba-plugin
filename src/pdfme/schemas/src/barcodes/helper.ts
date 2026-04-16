@@ -1,5 +1,4 @@
 import { b64toUint8Array } from '@pdfme/common';
-// @ts-ignore - bwip-js ships runtime JS used by the bundler in this vendor package.
 import bwipjs, { RenderOptions } from 'bwip-js';
 import { Buffer } from 'buffer';
 import { BARCODE_TYPES, DEFAULT_BARCODE_INCLUDETEXT } from './constants.js';

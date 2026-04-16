@@ -25,12 +25,12 @@ import type { SelectionCommandSet } from './components/Designer/shared/selection
 import { RULER_HEIGHT } from './constants.js';
 
 export const usePrevious = <T>(value: T) => {
-  const ref = useRef<T | null>(null);
+  const [previous, setPrevious] = useState<T | null>(null);
   useEffect(() => {
-    ref.current = value;
-  });
+    setPrevious(value);
+  }, [value]);
 
-  return ref.current;
+  return previous;
 };
 
 const getScale = (n: number, paper: number) =>
