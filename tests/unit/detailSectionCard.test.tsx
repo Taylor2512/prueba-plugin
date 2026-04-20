@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import DetailSectionCard from '../../src/components/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.js';
+import DetailSectionCard from '../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.js';
 
 describe('DetailSectionCard', () => {
   it('resets the collapsed state when the reset token changes', () => {
@@ -11,7 +11,7 @@ describe('DetailSectionCard', () => {
       </DetailSectionCard>,
     );
 
-    const toggle = screen.getByRole('button', { name: 'General' });
+    const toggle = screen.getByRole('button', { name: /General/ });
     expect(toggle).toHaveAttribute('aria-expanded', 'true');
     expect(screen.getByText('Contenido general')).toBeVisible();
 
@@ -25,7 +25,7 @@ describe('DetailSectionCard', () => {
       </DetailSectionCard>,
     );
 
-    expect(screen.getByRole('button', { name: 'General' })).toHaveAttribute('aria-expanded', 'true');
+    expect(screen.getByRole('button', { name: /General/ })).toHaveAttribute('aria-expanded', 'true');
     expect(screen.getByText('Contenido general')).toBeVisible();
   });
 });

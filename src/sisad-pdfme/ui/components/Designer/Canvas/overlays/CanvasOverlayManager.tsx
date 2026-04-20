@@ -54,7 +54,8 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
   );
 
   useEffect(() => {
-    setToolbarMode(interactionState.selectionCount > 1 ? 'expanded' : 'micro');
+    const nextMode = interactionState.selectionCount > 1 ? 'expanded' : 'micro';
+    setToolbarMode((prev) => (prev === nextMode ? prev : nextMode));
   }, [interactionState.selectionCount]);
 
   const toolbarSize =
@@ -67,8 +68,8 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
   );
 
   const activeSchemas = useMemo(() => {
-    const ids = activeElements.map((element) => element.id);
-    return schemasList[pageCursor]?.filter((schema) => ids.includes(schema.id)) || [];
+    const ids = new Set(activeElements.map((element) => element.id));
+    return schemasList[pageCursor]?.filter((schema) => ids.has(schema.id)) || [];
   }, [activeElements, pageCursor, schemasList]);
 
   return (
@@ -92,4 +93,4 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
   );
 };
 
-export default CanvasOverlayManager;
+export default React.memo(CanvasOverlayManager);

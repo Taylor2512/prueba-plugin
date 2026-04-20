@@ -501,10 +501,38 @@ export const changeSchemas = (args: {
   commitSchemas: (newSchemas: SchemaForUI[]) => void;
 }) => {
   const { objs, schemas, basePdf, pluginsRegistry, pageSize, commitSchemas } = args;
-  const newSchemas = objs.reduce((acc, { key, value, schemaId }) => {
-    const tgt = acc.find((s) => s.id === schemaId);
-    if (!tgt) return acc;
-    // Assign to reference
+  const schemaLocationById = new Map<string, { pageIndex: number; schemaIndex: number }>();
+  schemas.forEach((page, pageIndex) => {
+    page.forEach((schema, schemaIndex) => {
+      schemaLocationById.set(schema.id, { pageIndex, schemaIndex });
+    });
+  });
+
+  const newSchemas = schemas.slice();
+  const clonedPages = new Set<number>();
+  const clonedSchemas = new Map<string, SchemaForUI>();
+
+  const ensurePageClone = (pageIndex: number) => {
+    if (clonedPages.has(pageIndex)) return;
+    newSchemas[pageIndex] = newSchemas[pageIndex].slice();
+    clonedPages.add(pageIndex);
+  };
+
+  const ensureSchemaClone = (schemaId: string, pageIndex: number, schemaIndex: number) => {
+    const existingClone = clonedSchemas.get(schemaId);
+    if (existingClone) return existingClone;
+    ensurePageClone(pageIndex);
+    const clone = cloneDeep(newSchemas[pageIndex][schemaIndex]);
+    clonedSchemas.set(schemaId, clone);
+    newSchemas[pageIndex][schemaIndex] = clone;
+    return clone;
+  };
+
+  for (const { key, value, schemaId } of objs) {
+    const location = schemaLocationById.get(schemaId);
+    if (!location) continue;
+
+    const tgt = ensureSchemaClone(schemaId, location.pageIndex, location.schemaIndex);
     set(tgt, key, value);
 
     if (key === 'type') {
@@ -512,9 +540,8 @@ export const changeSchemas = (args: {
     } else if (['position.x', 'position.y', 'width', 'height'].includes(key)) {
       handlePositionSizeChange(tgt, key, value, basePdf, pageSize);
     }
+  }
 
-    return acc;
-  }, cloneDeep(schemas));
   commitSchemas(newSchemas);
 };
 

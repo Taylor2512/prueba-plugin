@@ -10,22 +10,22 @@ import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 interface Props {
   isSelected: boolean;
   isHovering?: boolean;
+  isNameDuplicate?: boolean;
   style?: React.CSSProperties;
   onSelect: (_id: string, _isShiftSelect: boolean) => void;
   onEdit: (_id: string) => void;
   schema: SchemaForUI;
-  schemas: SchemaForUI[];
   onMouseEnter: () => void;
   onMouseLeave: () => void;
 }
 const SelectableSortableItem = ({
   isSelected,
   isHovering,
+  isNameDuplicate,
   style,
   onSelect,
   onEdit,
   schema,
-  schemas,
   onMouseEnter,
   onMouseLeave,
 }: Props) => {
@@ -42,12 +42,15 @@ const SelectableSortableItem = ({
     onClick: (event: React.MouseEvent) => onSelect(schema.id, event.shiftKey),
   };
 
-  const [pluginLabel, thisPlugin] = pluginsRegistry.findWithLabelByType(schema.type);
+  const [pluginLabel, thisPlugin] = React.useMemo(
+    () => pluginsRegistry.findWithLabelByType(schema.type),
+    [pluginsRegistry, schema.type],
+  );
 
   let status: undefined | 'is-warning' | 'is-danger';
   if (!schema.name) {
     status = 'is-warning';
-  } else if (schemas.find((s) => schema.name && s.name === schema.name && s.id !== schema.id)) {
+  } else if (isNameDuplicate) {
     status = 'is-danger';
   }
 

@@ -9,6 +9,7 @@ type DetailSectionCardProps = {
   children: React.ReactNode;
   collapsible?: boolean;
   defaultCollapsed?: boolean;
+  resetToken?: unknown;
 };
 
 type SectionTextProps = {
@@ -70,9 +71,14 @@ const DetailSectionCard = ({
   children,
   collapsible = true,
   defaultCollapsed = false,
+  resetToken,
 }: DetailSectionCardProps) => {
   const [collapsed, setCollapsed] = React.useState(() => defaultCollapsed);
   const bodyId = `${sectionKey || title}`.toLowerCase().replaceAll(/[^a-z0-9]+/g, '-');
+
+  React.useEffect(() => {
+    setCollapsed(defaultCollapsed);
+  }, [defaultCollapsed, resetToken]);
 
   return (
     <section

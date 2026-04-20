@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
-import InlineEditOverlay, { type InlineEditSession } from '../../src/components/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.js';
+import InlineEditOverlay, { type InlineEditSession } from '../../src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.js';
 
 describe('InlineEditOverlay', () => {
   const baseSession: InlineEditSession = {

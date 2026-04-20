@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback, useMemo } from 'react';
 import { ConfigProvider as ThemeConfigProvider } from 'antd';
 import { I18nContext, FontContext, PluginsRegistry, OptionsContext } from '../contexts.js';
 import { i18n, getDict } from '../i18n.js';
@@ -46,25 +46,33 @@ const deepMerge = <T extends Record<string, unknown>, U extends Record<string, u
 };
 
 const AppContextProvider = ({ children, lang, font, plugins, options }: Props) => {
-  let theme = options.themePreset === 'sisad' ? sisadTheme : defaultTheme;
-  if (options.theme) {
-    theme = deepMerge(
-      theme as unknown as Record<string, unknown>,
-      options.theme as unknown as Record<string, unknown>,
-    ) as typeof theme;
-  }
+  const theme = useMemo(() => {
+    let nextTheme = options.themePreset === 'sisad' ? sisadTheme : defaultTheme;
+    if (options.theme) {
+      nextTheme = deepMerge(
+        nextTheme as unknown as Record<string, unknown>,
+        options.theme as unknown as Record<string, unknown>,
+      ) as typeof nextTheme;
+    }
+    return nextTheme;
+  }, [options.theme, options.themePreset]);
 
-  let dict = getDict(lang);
-  if (options.labels) {
-    dict = deepMerge(
-      dict as unknown as Record<string, unknown>,
-      options.labels as unknown as Record<string, unknown>,
-    ) as typeof dict;
-  }
+  const dict = useMemo(() => {
+    let nextDict = getDict(lang);
+    if (options.labels) {
+      nextDict = deepMerge(
+        nextDict as unknown as Record<string, unknown>,
+        options.labels as unknown as Record<string, unknown>,
+      ) as typeof nextDict;
+    }
+    return nextDict;
+  }, [lang, options.labels]);
+
+  const translate = useCallback((key: keyof Dict) => i18n(key, dict), [dict]);
 
   return (
     <ThemeConfigProvider theme={theme}>
-      <I18nContext.Provider value={(key: keyof Dict) => i18n(key, dict)}>
+      <I18nContext.Provider value={translate}>
         <FontContext.Provider value={font}>
           <PluginsRegistry.Provider value={plugins}>
             <OptionsContext.Provider value={options}>{children}</OptionsContext.Provider>

@@ -5,7 +5,7 @@ import {
   getSchemaDesignerConfig,
   resolveDesignerHttpClientConfig,
   createSchemaDataRuntimeAdapter,
-} from '../../src/components/sisad-pdfme/ui/designerEngine.js';
+} from '../../src/sisad-pdfme/ui/designerEngine.js';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 
 describe('designerEngine config', () => {

@@ -1,7 +1,6 @@
 import React from 'react';
 import { isBlankPdf, replacePlaceholders, Template } from '@sisad-pdfme/common';
 import Renderer from './Renderer.js';
-import { uuid } from '../helper.js';
 
 const StaticSchema = (props: {
   template: Template;
@@ -18,12 +17,16 @@ const StaticSchema = (props: {
     currentPage,
   } = props;
   if (!isBlankPdf(basePdf) || !basePdf.staticSchema) return null;
+  const staticSchemaEntries = basePdf.staticSchema.map((schema, index) => ({
+    ...schema,
+    id: schema.id || `static-schema-${index}-${schema.name || schema.type || 'field'}`,
+  }));
   return (
     <>
-      {basePdf.staticSchema.map((schema) => (
+      {staticSchemaEntries.map((schema) => (
         <Renderer
-          key={schema.name}
-          schema={{ ...schema, id: uuid() }}
+          key={schema.id}
+          schema={schema}
           basePdf={basePdf}
           value={
             schema.readOnly
@@ -47,4 +50,4 @@ const StaticSchema = (props: {
   );
 };
 
-export default StaticSchema;
+export default React.memo(StaticSchema);

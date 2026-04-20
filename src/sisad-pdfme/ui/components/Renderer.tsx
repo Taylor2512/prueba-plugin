@@ -309,4 +309,20 @@ Check this document: https://sisad-pdfme.com/docs/custom-schemas`);
     </Wrapper>
   );
 };
-export default Renderer;
+
+const areRendererPropsEqual = (prev: RendererProps, next: RendererProps) => {
+  return (
+    prev.basePdf === next.basePdf &&
+    prev.schema === next.schema &&
+    prev.value === next.value &&
+    prev.outline === next.outline &&
+    prev.scale === next.scale &&
+    prev.selectable === next.selectable &&
+    prev.isActive === next.isActive &&
+    prev.isHovering === next.isHovering &&
+    prev.isEditing === next.isEditing &&
+    prev.mode === next.mode
+  );
+};
+
+export default React.memo(Renderer, areRendererPropsEqual);

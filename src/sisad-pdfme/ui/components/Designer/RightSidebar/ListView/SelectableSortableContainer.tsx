@@ -64,6 +64,14 @@ const SelectableSortableContainer = (
     () => new Set([...activeSchemaIds, ...selectedSchemas.map((schema) => schema.id)]),
     [activeSchemaIds, selectedSchemas],
   );
+  const duplicateNameSet = useMemo(() => {
+    const counts = new Map<string, number>();
+    allSchemas.forEach((schema) => {
+      if (!schema.name) return;
+      counts.set(schema.name, (counts.get(schema.name) || 0) + 1);
+    });
+    return new Set([...counts.entries()].filter(([, count]) => count > 1).map(([name]) => name));
+  }, [allSchemas]);
   const isItemSelected = (itemId: string): boolean => selectedIdSet.has(itemId);
 
   useEffect(() => {
@@ -169,9 +177,9 @@ const SelectableSortableContainer = (
               <SelectableSortableItem
                 key={schema.id}
                 schema={schema}
-                schemas={allSchemas}
                 isSelected={isItemSelected(schema.id) || activeId === schema.id}
                 isHovering={schema.id === hoveringSchemaId}
+                isNameDuplicate={Boolean(schema.name && duplicateNameSet.has(schema.name))}
                 onEdit={onEdit}
                 onSelect={onSelectionChanged}
                 onMouseEnter={() => onChangeHoveringSchemaId(schema.id)}

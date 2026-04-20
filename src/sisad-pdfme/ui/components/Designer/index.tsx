@@ -155,6 +155,30 @@ const normalizeViewportMode = (mode: unknown): ViewportMode => {
   return 'manual';
 };
 
+const cloneSchemasListShallow = (schemasList: SchemaForUI[][]) => schemasList.slice();
+
+const replacePageSchemas = (
+  schemasList: SchemaForUI[][],
+  pageIndex: number,
+  nextPageSchemas: SchemaForUI[],
+) => {
+  const next = cloneSchemasListShallow(schemasList);
+  next[pageIndex] = nextPageSchemas;
+  return next;
+};
+
+const insertPageSchemas = (schemasList: SchemaForUI[][], pageIndex: number, pageSchemas: SchemaForUI[] = []) => {
+  const next = cloneSchemasListShallow(schemasList);
+  next.splice(pageIndex, 0, pageSchemas);
+  return next;
+};
+
+const removePageSchemas = (schemasList: SchemaForUI[][], pageIndex: number) => {
+  const next = cloneSchemasListShallow(schemasList);
+  next.splice(pageIndex, 1);
+  return next;
+};
+
 const isValidZoom = (zoom: unknown): zoom is number =>
   typeof zoom === 'number' && Number.isFinite(zoom);
 
@@ -296,6 +320,10 @@ const TemplateEditor = ({
 
   const [hoveringSchemaId, setHoveringSchemaId] = useState<string | null>(null);
   const [activeElements, setActiveElements] = useState<HTMLElement[]>([]);
+  const activeElementIds = useMemo(
+    () => activeElements.map((element) => element.id),
+    [activeElements],
+  );
   const [interactionState, setInteractionState] = useState<InteractionState>({
     phase: 'idle',
     selectionCount: 0,
@@ -461,6 +489,10 @@ const TemplateEditor = ({
   }, []);
 
   const activeBasePdf = visibleTemplate.basePdf;
+  const currentPageSchemas = useMemo(
+    () => schemasList[pageCursor] || [],
+    [pageCursor, schemasList],
+  );
   const pushTemplateUpdate = useCallback(
     (nextTemplate: Template) => {
       setVisibleTemplate(nextTemplate);
@@ -535,34 +567,33 @@ const TemplateEditor = ({
     (newSchemas: SchemaForUI[]) => {
       future.current = [];
       past.current.push(cloneDeep(schemasList[pageCursor]));
-      const _schemasList = cloneDeep(schemasList);
-      _schemasList[pageCursor] = newSchemas;
-      setSchemasList(_schemasList);
-      pushTemplateUpdate(schemasList2template(_schemasList, activeBasePdf));
+      const nextSchemasList = replacePageSchemas(schemasList, pageCursor, newSchemas);
+      setSchemasList(nextSchemasList);
+      pushTemplateUpdate(schemasList2template(nextSchemasList, activeBasePdf));
     },
     [activeBasePdf, pageCursor, pushTemplateUpdate, schemasList],
   );
 
   const removeSchemas = useCallback(
     (ids: string[]) => {
-      commitSchemas(schemasList[pageCursor].filter((schema) => !ids.includes(schema.id)));
+      commitSchemas(currentPageSchemas.filter((schema) => !ids.includes(schema.id)));
       onEditEnd();
     },
-    [schemasList, pageCursor, commitSchemas],
+    [commitSchemas, currentPageSchemas, onEditEnd],
   );
 
   const changeSchemas: ChangeSchemas = useCallback(
     (objs) => {
       _changeSchemas({
         objs,
-        schemas: schemasList[pageCursor],
+        schemas: currentPageSchemas,
         basePdf: activeBasePdf,
         pluginsRegistry,
         pageSize: pageSizes[pageCursor],
         commitSchemas,
       });
     },
-    [activeBasePdf, commitSchemas, pageCursor, pageSizes, pluginsRegistry, schemasList],
+    [activeBasePdf, commitSchemas, currentPageSchemas, pageCursor, pageSizes, pluginsRegistry],
   );
 
   const currentPageSize = useMemo(
@@ -721,7 +752,7 @@ const TemplateEditor = ({
     s = applySchemaCreationHook(s, creationContext, designerEngine);
     s = attachSchemaIdentity(s, creationContext, designerEngine);
 
-    commitSchemas(schemasList[pageCursor].concat(s));
+    commitSchemas(currentPageSchemas.concat(s));
     setTimeout(() => {
       const element = document.getElementById(s.id);
       if (!element) return;
@@ -902,23 +933,21 @@ const TemplateEditor = ({
 
   const undoExternal = useCallback(() => {
     if (past.current.length <= 0) return;
-    future.current.push(cloneDeep(schemasList[pageCursor]));
-    const updatedSchemas = cloneDeep(schemasList);
-    updatedSchemas[pageCursor] = past.current.pop()!;
+    future.current.push(cloneDeep(currentPageSchemas));
+    const updatedSchemas = replacePageSchemas(schemasList, pageCursor, past.current.pop()!);
     setSchemasList(updatedSchemas);
     pushTemplateUpdate(schemasList2template(updatedSchemas, activeBasePdf));
     onEditEnd();
-  }, [activeBasePdf, onEditEnd, pageCursor, pushTemplateUpdate, schemasList]);
+  }, [activeBasePdf, currentPageSchemas, onEditEnd, pageCursor, pushTemplateUpdate, schemasList]);
 
   const redoExternal = useCallback(() => {
     if (future.current.length <= 0) return;
-    past.current.push(cloneDeep(schemasList[pageCursor]));
-    const updatedSchemas = cloneDeep(schemasList);
-    updatedSchemas[pageCursor] = future.current.pop()!;
+    past.current.push(cloneDeep(currentPageSchemas));
+    const updatedSchemas = replacePageSchemas(schemasList, pageCursor, future.current.pop()!);
     setSchemasList(updatedSchemas);
     pushTemplateUpdate(schemasList2template(updatedSchemas, activeBasePdf));
     onEditEnd();
-  }, [activeBasePdf, onEditEnd, pageCursor, pushTemplateUpdate, schemasList]);
+  }, [activeBasePdf, currentPageSchemas, onEditEnd, pageCursor, pushTemplateUpdate, schemasList]);
 
   const focusFieldExternal = useCallback(
     (fieldName: string) => {
@@ -975,7 +1004,7 @@ const TemplateEditor = ({
       const entries = Object.entries(payload);
       if (entries.length === 0) return 0;
 
-      const nextSchemasList = cloneDeep(schemasList);
+      const nextSchemasList = cloneSchemasListShallow(schemasList);
       let touched = 0;
 
       nextSchemasList.forEach((page) => {
@@ -1054,7 +1083,8 @@ const TemplateEditor = ({
         const target = schemasList[location.pageIndex]?.[location.schemaIndex];
         if (!target) return false;
 
-        const next = cloneDeep(schemasList);
+        const next = cloneSchemasListShallow(schemasList);
+        next[location.pageIndex] = next[location.pageIndex].slice();
         next[location.pageIndex][location.schemaIndex] = mergeSchemaDesignerConfig(
           target,
           patch || {},
@@ -1107,7 +1137,7 @@ const TemplateEditor = ({
         sidebarOpen,
         isSchemaDragging,
         isDraggingOverCanvas,
-        activeSchemaIds: activeElements.map((element) => element.id),
+        activeSchemaIds: activeElementIds,
         hoveringSchemaId,
         interactionPhase: interactionState.phase,
         interactionCount: interactionState.selectionCount,
@@ -1117,7 +1147,7 @@ const TemplateEditor = ({
       },
     }),
     [
-      activeElements,
+      activeElementIds,
       hoveringSchemaId,
       isDraggingOverCanvas,
       isSchemaDragging,
@@ -1160,21 +1190,18 @@ const TemplateEditor = ({
     if (pageCursor === 0) return;
     if (!window.confirm(i18n('removePageConfirm'))) return;
 
-    const _schemasList = cloneDeep(schemasList);
-    _schemasList.splice(pageCursor, 1);
-    updatePage(_schemasList, pageCursor - 1);
+    const nextSchemasList = removePageSchemas(schemasList, pageCursor);
+    updatePage(nextSchemasList, pageCursor - 1);
   }
 
   function handleAddPageAfter() {
-    const _schemasList = cloneDeep(schemasList);
-    _schemasList.splice(pageCursor + 1, 0, []);
-    updatePage(_schemasList, pageCursor + 1);
+    const nextSchemasList = insertPageSchemas(schemasList, pageCursor + 1, []);
+    updatePage(nextSchemasList, pageCursor + 1);
   }
 
   function handleDuplicatePageAfter() {
-    const _schemasList = cloneDeep(schemasList);
-    _schemasList.splice(pageCursor + 1, 0, cloneDeep(_schemasList[pageCursor] || []));
-    updatePage(_schemasList, pageCursor + 1);
+    const nextSchemasList = insertPageSchemas(schemasList, pageCursor + 1, cloneDeep(currentPageSchemas));
+    updatePage(nextSchemasList, pageCursor + 1);
   }
 
   const handleToggleCanvasFeature = useCallback((key: keyof CanvasFeatureToggles) => {
@@ -1218,7 +1245,7 @@ const TemplateEditor = ({
         const buffer = await file.arrayBuffer();
         const pdfPages = await pdf2size(buffer.slice(0));
         const targetPageCount = Math.max(1, pdfPages.length || 1);
-        const normalizedSchemas = cloneDeep(schemasList);
+        const normalizedSchemas = schemasList.map((page) => page.slice());
         if (normalizedSchemas.length > targetPageCount) {
           normalizedSchemas.length = targetPageCount;
         }
@@ -1291,7 +1318,7 @@ const TemplateEditor = ({
     if (!Number.isFinite(targetPageCount) || targetPageCount <= 0) return;
     if (schemasList.length === targetPageCount) return;
 
-    const normalizedSchemas = cloneDeep(schemasList);
+    const normalizedSchemas = schemasList.map((page) => page.slice());
     if (normalizedSchemas.length > targetPageCount) {
       normalizedSchemas.length = targetPageCount;
     }
@@ -1582,7 +1609,7 @@ const TemplateEditor = ({
             pointerY >= pageRect.top &&
             pointerY <= pageRect.bottom;
 
-          setIsDraggingOverCanvas(isOverCanvas);
+          setIsDraggingOverCanvas((prev) => (prev === isOverCanvas ? prev : isOverCanvas));
         }}
         onDragCancel={() => {
           setIsSchemaDragging(false);

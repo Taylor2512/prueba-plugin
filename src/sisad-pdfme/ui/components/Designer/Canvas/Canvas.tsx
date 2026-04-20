@@ -261,6 +261,24 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
   }, []);
 
   const prevSchemas = usePrevious(schemasList[pageCursor]);
+  const currentPageSchemas = useMemo(
+    () => schemasList[pageCursor] || [],
+    [pageCursor, schemasList],
+  );
+  const activeElementIds = useMemo(() => activeElements.map((element) => element.id), [activeElements]);
+  const activeElementIdSet = useMemo(() => new Set(activeElementIds), [activeElementIds]);
+  const currentPageSchemaIdSet = useMemo(
+    () => new Set(currentPageSchemas.map((schema) => schema.id)),
+    [currentPageSchemas],
+  );
+  const placeholderVariables = useMemo(
+    () =>
+      Object.fromEntries(
+        schemasList.flat().map(({ name, content = '' }) => [name, content]),
+      ) as Record<string, string>,
+    [schemasList],
+  );
+  const paperTemplate = useMemo(() => ({ schemas: schemasList, basePdf }), [basePdf, schemasList]);
 
   const onKeydown = (e: KeyboardEvent) => {
     if (e.shiftKey || e.altKey) {
@@ -328,9 +346,9 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     const maxY = Math.max(minY, pageHeightMm - paddingBottomMm - targetHeightMm);
     const maxX = Math.max(minX, pageWidthMm - paddingRightMm - targetWidthMm);
 
-    const currentSchemas = schemasList[pageCursor] || [];
+    const currentSchemas = currentPageSchemas;
     const others = currentSchemas
-      .filter((s) => !activeElements.map((ae) => ae.id).includes(s.id))
+      .filter((s) => !activeElementIdSet.has(s.id))
       .map((s) => ({ x: s.position.x, y: s.position.y, width: s.width, height: s.height }));
 
     const snapResult = modifierKeys.alt
@@ -484,7 +502,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
 
   const resolveInlineEditTarget = useCallback((schemaId: string, target?: InlineEditTarget) => {
     if (target) return target;
-    const schema = (schemasList[pageCursor] || []).find((item) => item.id === schemaId);
+    const schema = currentPageSchemas.find((item) => item.id === schemaId);
     if (!schema) return 'content';
     const content = String(schema.content || '');
     const contentDrivenTypes = new Set(['text', 'multivariabletext']);
@@ -492,11 +510,11 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
       return 'content';
     }
     return 'name';
-  }, [pageCursor, schemasList]);
+  }, [currentPageSchemas]);
 
   const startInlineEdit = useCallback(
     (schemaId: string, targetRect: HTMLElement, target?: InlineEditTarget) => {
-      const schema = (schemasList[pageCursor] || []).find((item) => item.id === schemaId);
+      const schema = currentPageSchemas.find((item) => item.id === schemaId);
       if (!schema) {
         selectionCommands?.openProperties?.();
         return;
@@ -515,7 +533,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
       setPendingContextMenu(null);
       onEdit([targetRect]);
     },
-    [onEdit, pageCursor, resolveInlineEditRect, resolveInlineEditTarget, schemasList, selectionCommands],
+    [currentPageSchemas, onEdit, resolveInlineEditRect, resolveInlineEditTarget, selectionCommands],
   );
 
   const finishInlineEdit = useCallback(
@@ -523,7 +541,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
       if (!inlineEditSession) return;
       const schemaId = inlineEditSession.schemaId;
       const key = inlineEditSession.target === 'content' ? 'content' : 'name';
-      const currentSchema = (schemasList[pageCursor] || []).find((item) => item.id === schemaId);
+      const currentSchema = currentPageSchemas.find((item) => item.id === schemaId);
       if (!currentSchema) {
         setInlineEditSession(null);
         setEditing(false);
@@ -539,7 +557,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
       setInlineEditSession(null);
       setEditing(false);
     },
-    [changeSchemas, inlineEditSession, pageCursor, schemasList],
+    [changeSchemas, currentPageSchemas, inlineEditSession],
   );
 
   const cancelInlineEdit = useCallback(() => {
@@ -563,7 +581,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
         selectionCommands?.openProperties?.();
         return;
       }
-      const schema = (schemasList[pageCursor] || []).find((item) => item.id === request.schemaId);
+      const schema = currentPageSchemas.find((item) => item.id === request.schemaId);
       if (!schema) {
         selectionCommands?.openProperties?.();
         return;
@@ -583,7 +601,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     };
     imperativeNode.cancelInlineEdit = cancelInlineEdit;
     return imperativeNode;
-  }, [cancelInlineEdit, selectionCommands, startInlineEdit]);
+  }, [cancelInlineEdit, currentPageSchemas, resolveInlineEditRect, resolveInlineEditTarget, selectionCommands]);
 
   const onClickMoveable = useCallback(() => {
     if (!activeElements[0]) return;
@@ -611,9 +629,9 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     event.stopPropagation();
 
     if (isSelectableTarget && selectableTarget) {
-      const isTargetAlreadySelected = activeElements.some((element) => element.id === selectableTarget.id);
+      const isTargetAlreadySelected = activeElementIdSet.has(selectableTarget.id);
       const targetIds = isTargetAlreadySelected
-        ? activeElements.map((element) => element.id)
+        ? activeElementIds
         : [selectableTarget.id];
       const mode = targetIds.length > 1 ? 'multi' : 'single';
 
@@ -646,9 +664,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
   };
 
   const rotatable = useMemo(() => {
-    const selectedSchemas = (schemasList[pageCursor] || []).filter((s) =>
-      activeElements.map((ae) => ae.id).includes(s.id),
-    );
+    const selectedSchemas = currentPageSchemas.filter((s) => activeElementIdSet.has(s.id));
     const schemaTypes = selectedSchemas.map((s) => s.type);
     const uniqueSchemaTypes = [...new Set(schemaTypes)];
 
@@ -666,7 +682,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
       const matchingSchema = defaultSchemas.find((ds) => ds && 'type' in ds && ds.type === type);
       return matchingSchema && 'rotate' in matchingSchema;
     });
-  }, [activeElements, pageCursor, schemasList, pluginsRegistry]);
+  }, [activeElementIdSet, currentPageSchemas, pluginsRegistry]);
 
   const isEventInsideActivePaper = (target: EventTarget | null) => {
     const activePaper = paperRefs.current[pageCursor];
@@ -729,8 +745,8 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
   const contextMenuSelectionSchemas = useMemo(() => {
     if (!contextMenu) return [];
     const targetIds = new Set(contextMenu.targetIds);
-    return (schemasList[pageCursor] || []).filter((schema) => targetIds.has(schema.id));
-  }, [contextMenu, pageCursor, schemasList]);
+    return currentPageSchemas.filter((schema) => targetIds.has(schema.id));
+  }, [contextMenu, currentPageSchemas]);
   const contextMenuSelectionReadOnly = contextMenuSelectionSchemas.length > 0
     && contextMenuSelectionSchemas.every((schema) => schema.readOnly);
   const contextMenuSelectionRequired = contextMenuSelectionSchemas.length > 0
@@ -741,7 +757,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
   useEffect(() => {
     if (!pendingContextMenu) return;
     const pendingIds = pendingContextMenu.targetIds.join('|');
-    const currentIds = activeElements.map((element) => element.id).join('|');
+    const currentIds = activeElementIds.join('|');
     setContextMenuState((prev) => {
       if (pendingIds === currentIds) {
         return { contextMenu: pendingContextMenu, pendingContextMenu: null };
@@ -751,19 +767,19 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
       }
       return prev;
     });
-  }, [activeElements, pendingContextMenu]);
+  }, [activeElementIds, pendingContextMenu]);
 
   useEffect(() => {
     if (!contextMenu || contextMenu.mode === 'empty') return;
-    const currentIds = activeElements.map((element) => element.id).join('|');
+    const currentIds = activeElementIds.join('|');
     if (currentIds !== contextMenu.targetIds.join('|')) {
       closeContextMenu();
     }
-  }, [activeElements, closeContextMenu, contextMenu]);
+  }, [activeElementIds, closeContextMenu, contextMenu]);
 
   const zoomPercent = Math.max(1, Math.round(scale * 100));
   const zoomTier = zoomPercent < 80 ? 'low' : zoomPercent > 140 ? 'high' : 'medium';
-  const activePageSchemaCount = (schemasList[pageCursor] || []).length;
+  const activePageSchemaCount = currentPageSchemas.length;
   const interactionState = deriveInteractionState({
     activeElements,
     hoveringSchemaId,
@@ -911,10 +927,8 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
               </div>
             ) : null}
             <StaticSchema
-              template={{ schemas: schemasList, basePdf }}
-              input={Object.fromEntries(
-                schemasList.flat().map(({ name, content = '' }) => [name, content]),
-              )}
+              template={paperTemplate}
+              input={placeholderVariables}
               scale={scale}
               totalPages={schemasList.length}
               currentPage={index + 1}
@@ -980,7 +994,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
           </>
         )}
         renderSchema={({ schema, index }) => {
-          const isActive = activeElements.map((ae) => ae.id).includes(schema.id);
+          const isActive = activeElementIdSet.has(schema.id);
           const isHovering = hoveringSchemaId === schema.id;
           const mode =
             editing && isActive
@@ -992,13 +1006,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
 
           if (mode !== 'designer' && schema.readOnly) {
             const variables = {
-              ...schemasList.flat().reduce(
-                (acc, currSchema) => {
-                  acc[currSchema.name] = currSchema.content || '';
-                  return acc;
-                },
-                {} as Record<string, string>,
-              ),
+              ...placeholderVariables,
               totalPages: schemasList.length,
               currentPage: index + 1,
             };
@@ -1015,7 +1023,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
               onChangeHoveringSchemaId={onChangeHoveringSchemaId}
               mode={mode}
               onChange={
-                (schemasList[pageCursor] || []).some((s) => s.id === schema.id)
+                currentPageSchemaIdSet.has(schema.id)
                   ? (arg) => {
                     // Use type assertion to safely handle the argument
                     type ChangeArg = { key: string; value: unknown };

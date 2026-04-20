@@ -108,9 +108,10 @@ const Sidebar = (props: RightSidebarProps) => {
   const DocumentsRailComponent = props.components?.documentsRail || DocumentsRail;
   const ListViewComponent = props.components?.listView || ListView;
   const DetailViewComponent = props.components?.detailView || DetailView;
+  const activeSchemaIdSet = useMemo(() => new Set(activeElements.map((ae) => ae.id)), [activeElements]);
   const activeSchemas = useMemo(
-    () => schemas.filter((s) => activeElements.map((ae) => ae.id).includes(s.id)),
-    [schemas, activeElements],
+    () => schemas.filter((s) => activeSchemaIdSet.has(s.id)),
+    [activeSchemaIdSet, schemas],
   );
   const activeSchemaIds = useMemo(() => activeElements.map((ae) => ae.id), [activeElements]);
   const getActiveSchemas = () => activeSchemas;
@@ -374,4 +375,4 @@ const Sidebar = (props: RightSidebarProps) => {
   );
 };
 
-export default Sidebar;
+export default React.memo(Sidebar);
