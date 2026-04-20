@@ -1,5 +1,7 @@
 # SISAD PDFME — README técnico mejorado
 
+> Resumen ejecutivo. Para navegar la documentación viva usa [docs/README.md](README.md) y, para la verdad del código actual, el [índice de verdad actual](90-indice-verdad-actual.md).
+
 ## Qué es
 
 SISAD PDFME es una plataforma para diseñar, visualizar, capturar, convertir y generar PDFs con un editor visual configurable. Incluye:
@@ -148,3 +150,10 @@ const engine = new DesignerEngineBuilder()
 ## Objetivo de evolución
 
 Aunque el proyecto nació como modificación de pdfme, hoy debe documentarse y evolucionar como plataforma propia. Toda nueva funcionalidad debería entrar bajo el namespace `sisad-pdfme` y con documentación alineada al código real.
+
+## Dónde seguir
+
+- [docs/README.md](README.md)
+- [90-indice-verdad-actual.md](90-indice-verdad-actual.md)
+- [91-indice-conceptual.md](91-indice-conceptual.md)
+- [93-indice-roadmap-plataforma.md](93-indice-roadmap-plataforma.md)

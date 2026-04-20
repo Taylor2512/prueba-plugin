@@ -1,8 +1,10 @@
-# Segunda tanda de documentación técnica por áreas concretas
+# Índice conceptual
 
 ## Objetivo
 
-Esta segunda tanda reorganiza la documentación del proyecto **sisad-pdfme** por áreas funcionales concretas, con foco en arquitectura, contratos, runtime, canvas, inspector, colaboración y pruebas.
+Esta capa reorganiza la documentación del proyecto **sisad-pdfme** por áreas funcionales concretas, con foco en arquitectura, contratos, runtime, canvas, inspector, colaboración y pruebas.
+
+Es **conceptual y de lectura rápida**. Cuando necesites la verdad exacta del código, salta directamente a [90-indice-verdad-actual.md](90-indice-verdad-actual.md).
 
 A diferencia de la primera entrega, aquí el contenido está separado por subsistemas reales del código. La intención es que cada documento pueda ser leído por una persona distinta del equipo según su responsabilidad:
 
@@ -25,12 +27,12 @@ Esta tanda se construyó a partir de:
 
 ## Mapa de documentos
 
-1. `01-ARQUITECTURA-PLATAFORMA-Y-ENGINE.md`
-2. `02-CANVAS-OVERLAYS-E-INTERACCIONES.md`
-3. `03-PANEL-DERECHO-DETALLE-Y-WIDGETS.md`
-4. `04-SCHEMA-CONFIG-PERSISTENCIA-API-FORMJSON.md`
-5. `05-COLABORACION-SINCRONIZACION-Y-COMENTARIOS.md`
-6. `06-TESTING-CALIDAD-Y-HOJA-DE-RUTA.md`
+1. `20-architecture-platform-engine.md`
+2. `21-canvas-interactions.md`
+3. `22-inspector-right-panel.md`
+4. `23-schema-config-persistence-api-formjson.md`
+5. `24-collaboration-sync-comments.md`
+6. `25-testing-quality-roadmap.md`
 
 ## Lectura recomendada
 
@@ -80,3 +82,9 @@ Después de leer estos documentos, el equipo debería poder:
 3. implementar nuevos widgets sin romper arquitectura
 4. extender persistencia, API o colaboración con menos riesgo
 5. planificar renombre futuro a una marca de plataforma más vendible
+
+## Relación con la capa actual
+
+- Esta capa explica el mapa mental.
+- La capa `01-10` documenta los contratos reales del código en `src/sisad-pdfme`.
+- Si hay diferencia entre ambas, el código y la capa `01-10` mandan.

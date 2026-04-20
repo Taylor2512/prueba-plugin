@@ -1,5 +1,7 @@
 # Documentación Markdown Unificada
 
+> Archivo generado automáticamente. No es la fuente de verdad del proyecto. Para la documentación viva usa [docs/README.md](docs/README.md), [docs/90-indice-verdad-actual.md](docs/90-indice-verdad-actual.md) y [docs/reference/README.md](docs/reference/README.md).
+
 **Carpeta origen:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin`  
 **Fecha de generación:** `2026-04-20T19:58:31.356Z`  
 **Total de archivos incluidos:** `110`  

@@ -1,4 +1,6 @@
-# Sexta tanda — packaging, publicación y consumo externo
+# Índice roadmap de empaquetado
+
+> Estado: roadmap operativo. Esta tanda explica cómo debería empaquetarse y publicarse la plataforma; no describe un estado ya implementado.
 
 Esta tanda se enfoca en convertir `sisad-pdfme` en una plataforma distribuible y reusable, con foco en:
 
@@ -11,12 +13,9 @@ Esta tanda se enfoca en convertir `sisad-pdfme` en una plataforma distribuible y
 
 ## Archivos incluidos
 
-- `01-paquetizacion-y-estructura-de-modulos.md`
-- `02-entrypoints-exports-y-surface-api.md`
-- `03-build-esm-cjs-y-generacion-de-tipos.md`
-- `04-ejemplos-de-consumo-externo.md`
-- `05-publicacion-registry-privado-y-versionado.md`
-- `06-checklist-de-release-y-soporte.md`
+- `35-packaging-roadmap.md`
+- `36-commercial-adoption-checklist.md`
+- `37-platform-pdf-migration-plan.md`
 
 ## Resultado esperado
 
@@ -28,3 +27,9 @@ Dejar documentado cómo pasar del repositorio actual a una distribución modular
 - `@platform/pdf/schemas`
 - `@platform/pdf/contracts`
 - `@platform/pdf/collaboration`
+
+## Cómo leerla
+
+- Lee primero la cuarta tanda para distinguir realidad actual de roadmap.
+- Usa esta tanda para diseñar empaquetado y publicación futura.
+- Si algo describe `packages/*` o exports nuevos, trátalo como propuesta.
