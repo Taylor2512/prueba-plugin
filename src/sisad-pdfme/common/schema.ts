@@ -98,6 +98,41 @@ export const ColorType = z.enum(['rgb', 'cmyk']).optional();
 
 export const Size = z.object({ height: z.number(), width: z.number() });
 
+export const SchemaCommentReply = z
+  .object({
+    id: z.string(),
+    authorId: z.string().optional(),
+    authorName: z.string().optional(),
+    timestamp: z.number(),
+    text: z.string(),
+    resolved: z.boolean().optional(),
+  })
+  .passthrough();
+
+export const SchemaComment = z
+  .object({
+    id: z.string(),
+    authorId: z.string().optional(),
+    authorName: z.string().optional(),
+    timestamp: z.number(),
+    text: z.string(),
+    resolved: z.boolean().optional(),
+    replies: z.array(SchemaCommentReply).optional(),
+  })
+  .passthrough();
+
+export const CommentAnchor = z
+  .object({
+    id: z.string(),
+    schemaUid: z.string().optional(),
+    fileId: z.string().optional(),
+    pageNumber: z.number().int().positive().optional(),
+    x: z.number().optional(),
+    y: z.number().optional(),
+    resolved: z.boolean().optional(),
+  })
+  .passthrough();
+
 export const Schema = z
   .object({
     schemaUid: z.string().optional(),
@@ -119,6 +154,9 @@ export const Schema = z
         sessionId: z.string().optional(),
       })
       .optional(),
+    comments: z.array(SchemaComment).optional(),
+    commentAnchors: z.array(CommentAnchor).optional(),
+    commentsAnchors: z.array(CommentAnchor).optional(),
     name: z.string(),
     type: z.string(),
     content: z.string().optional(),

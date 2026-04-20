@@ -10,6 +10,9 @@ import {
   Schema,
   Font,
   SchemaForUI,
+  SchemaComment,
+  SchemaCommentReply,
+  CommentAnchor,
   BasePdf,
   BlankPdf,
   CustomPdf,
@@ -173,6 +176,9 @@ export type Mode = z.infer<typeof Mode>;
 export type Size = z.infer<typeof Size>;
 export type Schema = z.infer<typeof Schema>;
 export type SchemaForUI = z.infer<typeof SchemaForUI>;
+export type SchemaCommentReply = z.infer<typeof SchemaCommentReply>;
+export type SchemaComment = z.infer<typeof SchemaComment>;
+export type CommentAnchor = z.infer<typeof CommentAnchor>;
 
 /**
  * Represents the Font type definition.

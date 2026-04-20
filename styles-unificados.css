@@ -2,7 +2,7 @@
    ARCHIVO UNIFICADO DE ESTILOS CSS
    =====================================================================
    Carpeta origen: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
-   Fecha de generación: 2026-04-20T17:53:13.409Z
+   Fecha de generación: 2026-04-20T19:58:50.014Z
    Total de archivos incluidos: 3
    Extensiones incluidas: .css
    Objetivo: consolidar estilos CSS respetando un orden estable de cascada
@@ -10099,6 +10099,7 @@ body {
    │   │       │   └── tokens.css
    │   │       └── types
    │   └── types
+   ├── styles-unificados.css
    ├── test-results
    │   ├── pdfme-editor-PDFME-editor--0453f-lbar-and-commits-with-Enter-chromium
    │   └── pdfme-editor-PDFME-editor--aaaee-serves-inline-editing-flows-chromium

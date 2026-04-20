@@ -44,6 +44,7 @@ import { useUIPreProcessor, useScrollPageCursor, useInitEvents } from '../../hoo
 import Root from '../Root.js';
 import ErrorScreen from '../ErrorScreen.js';
 import CtlBar from '../CtlBar.js';
+import { applyCollaborationEvent, useCollaborationSync } from '../../collaboration.js';
 import type { DesignerDocumentItem } from './RightSidebar/DocumentsRail.js';
 import type { DesignerRuntimeApi, DesignerSidebarPresentation } from '../../types.js';
 import { resolveSchemaTone } from './shared/schemaTone.js';
@@ -232,6 +233,7 @@ const TemplateEditor = ({
   const paperRefs = useRef<HTMLDivElement[]>([]);
   const pdfUploadInputRef = useRef<HTMLInputElement>(null);
   const internalTemplateSyncRef = useRef(false);
+  const pendingCollaborativeTemplateRef = useRef<Template | null>(null);
   const documentSchemasCacheRef = useRef<Map<string, SchemaForUI[][]>>(new Map());
 
   const i18n = useContext(I18nContext);
@@ -508,6 +510,27 @@ const TemplateEditor = ({
     },
     [onChangeTemplate],
   );
+  const handleCollaborationEvent = useCallback(
+    (event: Parameters<typeof applyCollaborationEvent>[1]) => {
+      setSchemasList((prev) => {
+        const next = applyCollaborationEvent(prev, event);
+        if (next !== prev) {
+          pendingCollaborativeTemplateRef.current = schemasList2template(next, activeBasePdf);
+        }
+        return next;
+      });
+    },
+    [activeBasePdf],
+  );
+  const collaborationSync = useCollaborationSync({
+    enabled: Boolean(designerEngine.collaboration?.enabled && designerEngine.collaboration?.url),
+    url: designerEngine.collaboration?.url,
+    protocols: designerEngine.collaboration?.protocols,
+    sessionId: designerEngine.collaboration?.sessionId || activeDocumentId || 'local',
+    actorId: designerEngine.collaboration?.actorId,
+    reconnectMs: designerEngine.collaboration?.reconnectMs,
+    onEvent: handleCollaborationEvent,
+  });
 
   const { backgrounds, pageSizes, scale, error } = useUIPreProcessor({
     template: visibleTemplate,
@@ -1144,6 +1167,7 @@ const TemplateEditor = ({
         pageCursor,
         totalPages: schemasList.length,
         zoomLevel,
+        collaborationStatus: collaborationSync.status,
         viewportMode,
         sidebarOpen,
         isSchemaDragging,
@@ -1168,6 +1192,7 @@ const TemplateEditor = ({
       sidebarOpen,
       viewportMode,
       zoomLevel,
+      collaborationSync.status,
     ],
   );
 
@@ -1256,78 +1281,85 @@ const TemplateEditor = ({
   const handlePdfUploadChange = useCallback(
     async (event: React.ChangeEvent<HTMLInputElement>) => {
       const input = event.currentTarget;
-      const file = input.files?.[0];
-      if (!file) {
+      const files = Array.from(input.files || []);
+      if (files.length === 0) {
         input.value = '';
         return;
       }
 
-      const isPdf = file.type === 'application/pdf' || /\.pdf$/i.test(file.name);
-      if (!isPdf) {
-        window.alert('Selecciona un archivo PDF valido.');
-        input.value = '';
-        return;
+      for (let i = 0; i < files.length; i++) {
+        const file = files[i];
+        if (!file) continue;
+
+        const isPdf = file.type === 'application/pdf' || /\.pdf$/i.test(file.name);
+        if (!isPdf) {
+          window.alert(`Selecciona un archivo PDF valido: ${file.name}`);
+          continue;
+        }
+
+        try {
+          const buffer = await file.arrayBuffer();
+          const pdfPages = await pdf2size(buffer.slice(0));
+          const targetPageCount = Math.max(1, pdfPages.length || 1);
+          const normalizedSchemas = schemasList.map((page) => page.slice());
+          if (normalizedSchemas.length > targetPageCount) {
+            normalizedSchemas.length = targetPageCount;
+          }
+          while (normalizedSchemas.length < targetPageCount) {
+            normalizedSchemas.push([]);
+          }
+          const uploadedBasePdf = await new Promise<string>((resolve, reject) => {
+            const reader = new FileReader();
+            reader.onload = () => {
+              if (typeof reader.result === 'string') {
+                resolve(reader.result);
+                return;
+              }
+              reject(new Error('Invalid PDF data'));
+            };
+            reader.onerror = () => reject(reader.error || new Error('Failed to read PDF file'));
+            reader.readAsDataURL(file);
+          });
+          const nextTemplate = normalizeTemplateSchemaPages(
+            schemasList2template(normalizedSchemas, uploadedBasePdf),
+            targetPageCount,
+          );
+          const safePageCursor = Math.max(0, Math.min(pageCursor, targetPageCount - 1));
+          const newDocumentId = uuid();
+          const docName = file.name?.trim() || `Documento ${uploadedDocuments.length + 1}`;
+
+          setUploadedDocuments((prev) =>
+            prev.concat({
+              id: newDocumentId,
+              name: docName,
+              template: nextTemplate,
+              pageCount: targetPageCount,
+            }),
+          );
+          documentSchemasCacheRef.current.set(newDocumentId, normalizedSchemas);
+
+          if (i === 0) {
+            setActiveDocumentId(newDocumentId);
+            emitActiveDocumentChange({
+              id: newDocumentId,
+              name: docName,
+              template: nextTemplate,
+              pageCount: targetPageCount,
+            });
+            setVisibleTemplate(nextTemplate);
+            setSchemasList(normalizedSchemas);
+            pushTemplateUpdate(nextTemplate);
+            setPageCursor(safePageCursor);
+            onPageCursorChange(safePageCursor, normalizedSchemas.length);
+            onEditEnd();
+          }
+        } catch (uploadError) {
+          console.error('Failed to load uploaded PDF', uploadError);
+          window.alert('No se pudo cargar el PDF.');
+        }
       }
 
-      try {
-        const buffer = await file.arrayBuffer();
-        const pdfPages = await pdf2size(buffer.slice(0));
-        const targetPageCount = Math.max(1, pdfPages.length || 1);
-        const normalizedSchemas = schemasList.map((page) => page.slice());
-        if (normalizedSchemas.length > targetPageCount) {
-          normalizedSchemas.length = targetPageCount;
-        }
-        while (normalizedSchemas.length < targetPageCount) {
-          normalizedSchemas.push([]);
-        }
-        const uploadedBasePdf = await new Promise<string>((resolve, reject) => {
-          const reader = new FileReader();
-          reader.onload = () => {
-            if (typeof reader.result === 'string') {
-              resolve(reader.result);
-              return;
-            }
-            reject(new Error('Invalid PDF data'));
-          };
-          reader.onerror = () => reject(reader.error || new Error('Failed to read PDF file'));
-          reader.readAsDataURL(file);
-        });
-        const nextTemplate = normalizeTemplateSchemaPages(
-          schemasList2template(normalizedSchemas, uploadedBasePdf),
-          targetPageCount,
-        );
-        const safePageCursor = Math.max(0, Math.min(pageCursor, targetPageCount - 1));
-        const newDocumentId = uuid();
-        const docName = file.name?.trim() || `Documento ${uploadedDocuments.length + 1}`;
-
-        setUploadedDocuments((prev) =>
-          prev.concat({
-            id: newDocumentId,
-            name: docName,
-            template: nextTemplate,
-            pageCount: targetPageCount,
-          }),
-        );
-        setActiveDocumentId(newDocumentId);
-        documentSchemasCacheRef.current.set(newDocumentId, normalizedSchemas);
-        emitActiveDocumentChange({
-          id: newDocumentId,
-          name: docName,
-          template: nextTemplate,
-          pageCount: targetPageCount,
-        });
-        setVisibleTemplate(nextTemplate);
-        setSchemasList(normalizedSchemas);
-        pushTemplateUpdate(nextTemplate);
-        setPageCursor(safePageCursor);
-        onPageCursorChange(safePageCursor, normalizedSchemas.length);
-        onEditEnd();
-      } catch (uploadError) {
-        console.error('Failed to load uploaded PDF', uploadError);
-        window.alert('No se pudo cargar el PDF.');
-      } finally {
-        input.value = '';
-      }
+      input.value = '';
     },
     [
       emitActiveDocumentChange,
@@ -1388,6 +1420,13 @@ const TemplateEditor = ({
     setVisibleTemplate(normalizedIncomingTemplate);
     void updateTemplate(normalizedIncomingTemplate);
   }, [template, updateTemplate]);
+
+  useEffect(() => {
+    const nextTemplate = pendingCollaborativeTemplateRef.current;
+    if (!nextTemplate) return;
+    pendingCollaborativeTemplateRef.current = null;
+    pushTemplateUpdate(nextTemplate);
+  }, [pushTemplateUpdate, schemasList]);
 
   const pageManipulation = isBlankPdf(activeBasePdf)
     ? { addPageAfter: handleAddPageAfter, removePage: handleRemovePage }
@@ -1596,6 +1635,7 @@ const TemplateEditor = ({
         ref={pdfUploadInputRef}
         type="file"
         accept="application/pdf,.pdf"
+        multiple
         style={{ display: 'none' }}
         onChange={handlePdfUploadChange}
       />

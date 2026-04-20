@@ -30,6 +30,7 @@ export type DesignerComponentBridge = {
       pageCursor: number;
       totalPages: number;
       zoomLevel: number;
+      collaborationStatus?: 'idle' | 'connecting' | 'open' | 'closed' | 'error';
       viewportMode: 'manual' | 'fit-width' | 'fit-page' | 'actual-size' | 'auto';
       sidebarOpen: boolean;
       isSchemaDragging: boolean;

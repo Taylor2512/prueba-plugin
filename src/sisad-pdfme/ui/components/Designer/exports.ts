@@ -20,7 +20,15 @@ export { default as DesignerRightSidebarListViewDragOverlay } from './RightSideb
 export { default as DesignerRightSidebarDetailView } from './RightSidebar/DetailView/DetailView.js';
 export { default as DesignerDetailHeaderCard } from './RightSidebar/DetailView/DetailHeaderCard.js';
 export { default as DesignerDetailSectionCard } from './RightSidebar/DetailView/DetailSectionCard.js';
-export * from './RightSidebar/layout.js';
+export {
+  SidebarBody,
+  SidebarFooter,
+  SidebarFrame,
+  SidebarHeader,
+  SIDEBAR_H_PADDING_PX,
+  SIDEBAR_HEADER_HEIGHT,
+  SIDEBAR_V_PADDING_PX,
+} from './RightSidebar/layout.js';
 export { default as DesignerCanvas } from './Canvas/Canvas.js';
 export type {
   CanvasProps,

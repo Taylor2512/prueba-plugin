@@ -13,6 +13,10 @@ import type {
   ChangeSchemaItem,
   ChangeSchemas,
   SchemaPageArray,
+  SchemaAssignments,
+  SchemaComment,
+  SchemaCommentReply,
+  CommentAnchor,
   PropPanel,
   PropPanelSchema,
   PropPanelWidgetProps,
@@ -43,7 +47,6 @@ import type {
 } from './types.js';
 import {
   cloneDeep,
-  buildSchemaAssignments,
   getFallbackFontName,
   getDefaultFont,
   getB64BasePdf,
@@ -64,6 +67,8 @@ import {
   getInputFromTemplate,
   isBlankPdf,
 } from './helper.js';
+import { buildSchemaAssignments } from './collaboration.js';
+import type { SchemaAssignments } from './collaboration.js';
 import { getDynamicTemplate } from './dynamicTemplate.js';
 import { replacePlaceholders } from './expression.js';
 import { pluginRegistry } from './pluginRegistry.js';

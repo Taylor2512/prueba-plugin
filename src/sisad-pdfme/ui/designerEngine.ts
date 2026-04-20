@@ -28,6 +28,35 @@ export type SchemaCollaborativeLock = {
   sessionId?: string;
 };
 
+export type SchemaCommentReply = {
+  id: string;
+  authorId?: string;
+  authorName?: string;
+  timestamp: number;
+  text: string;
+  resolved?: boolean;
+};
+
+export type SchemaComment = {
+  id: string;
+  authorId?: string;
+  authorName?: string;
+  timestamp: number;
+  text: string;
+  resolved?: boolean;
+  replies?: SchemaCommentReply[];
+};
+
+export type SchemaCommentAnchor = {
+  id: string;
+  schemaUid?: string;
+  fileId?: string | null;
+  pageNumber?: number;
+  x?: number;
+  y?: number;
+  resolved?: boolean;
+};
+
 export type SchemaCollaborativeMetadata = {
   schemaUid?: string;
   fileId?: string | null;
@@ -41,6 +70,18 @@ export type SchemaCollaborativeMetadata = {
   updatedAt?: number;
   state?: SchemaCollaborativeState;
   lock?: SchemaCollaborativeLock;
+  comments?: SchemaComment[];
+  commentAnchors?: SchemaCommentAnchor[];
+  commentsAnchors?: SchemaCommentAnchor[];
+};
+
+export type CollaborationSyncConfig = {
+  enabled?: boolean;
+  url?: string;
+  protocols?: string | string[];
+  sessionId?: string;
+  actorId?: string;
+  reconnectMs?: number;
 };
 
 export type SchemaPrefillConfig = {
@@ -163,6 +204,7 @@ export type DesignerEngine = {
     identityFactory?: SchemaIdentityFactory;
     onCreate?: SchemaCreationHook;
   };
+  collaboration?: CollaborationSyncConfig;
 };
 
 type LeftSidebarEngineProps = NonNullable<DesignerEngine['sidebars']>['left'];
@@ -212,6 +254,7 @@ const cloneDesignerEngine = (engine: DesignerEngine = {}): DesignerEngine => ({
         onCreate: engine.schema.onCreate,
       }
     : undefined,
+  collaboration: engine.collaboration ? { ...engine.collaboration } : undefined,
 });
 
 const asRecord = (value: unknown): Record<string, unknown> | null =>
@@ -328,6 +371,13 @@ export const resolveSchemaCollaborativeMetadata = (
     lock: rawSchema.lock && typeof rawSchema.lock === 'object'
       ? mergeCollaborationLock(undefined, rawSchema.lock as SchemaCollaborativeLock)
       : undefined,
+    comments: Array.isArray(rawSchema.comments) ? (rawSchema.comments as SchemaComment[]) : undefined,
+    commentAnchors: Array.isArray(rawSchema.commentAnchors)
+      ? (rawSchema.commentAnchors as SchemaCommentAnchor[])
+      : undefined,
+    commentsAnchors: Array.isArray(rawSchema.commentsAnchors)
+      ? (rawSchema.commentsAnchors as SchemaCommentAnchor[])
+      : undefined,
   };
 
   const config = getSchemaDesignerConfig(schema, engine);
@@ -372,15 +422,15 @@ export const refreshSchemaCollaborativeMetadata = (
   const collaborative = resolveSchemaCollaborativeMetadata(schema, engine) || {};
   return applySchemaCollaborativeDefaults(
     {
-    ...schema,
-    schemaUid: collaborative.schemaUid || schema.id,
-    fileId: collaborative.fileId ?? context.fileId ?? undefined,
-    fileTemplateId: collaborative.fileTemplateId ?? context.fileId ?? undefined,
-    pageNumber: context.pageNumber ?? collaborative.pageNumber ?? context.pageIndex + 1,
-    ownerRecipientId: collaborative.ownerRecipientId ?? context.ownerRecipientId,
-    ownerRecipientIds: collaborative.ownerRecipientIds,
-    createdBy: collaborative.createdBy ?? context.actorId,
-    lastModifiedBy: context.actorId ?? collaborative.lastModifiedBy,
+      ...schema,
+      schemaUid: collaborative.schemaUid || schema.id,
+      fileId: collaborative.fileId ?? context.fileId ?? undefined,
+      fileTemplateId: collaborative.fileTemplateId ?? context.fileId ?? undefined,
+      pageNumber: context.pageNumber ?? collaborative.pageNumber ?? context.pageIndex + 1,
+      ownerRecipientId: collaborative.ownerRecipientId ?? context.ownerRecipientId,
+      ownerRecipientIds: collaborative.ownerRecipientIds,
+      createdBy: collaborative.createdBy ?? context.actorId,
+      lastModifiedBy: context.actorId ?? collaborative.lastModifiedBy,
       createdAt: collaborative.createdAt ?? context.timestamp,
       updatedAt: context.timestamp,
       state: collaborative.state || 'draft',
@@ -994,6 +1044,11 @@ export class DesignerEngineBuilder {
 
   withAutoAttachIdentity(autoAttachIdentity: boolean) {
     this.engine.schema = { ...(this.engine.schema || {}), autoAttachIdentity };
+    return this;
+  }
+
+  withCollaboration(collaboration: CollaborationSyncConfig) {
+    this.engine.collaboration = { ...(this.engine.collaboration || {}), ...(collaboration || {}) };
     return this;
   }
 

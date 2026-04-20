@@ -42,8 +42,13 @@ const DetailViewContent = ({
       activeSchema.createdAt ||
       activeSchema.updatedAt ||
       activeSchema.state ||
-      activeSchema.lock,
+      activeSchema.lock ||
+      activeSchema.comments?.length ||
+      activeSchema.commentAnchors?.length ||
+      activeSchema.commentsAnchors?.length,
   );
+  const commentCount = activeSchema.comments?.length || 0;
+  const anchorCount = activeSchema.commentAnchors?.length || activeSchema.commentsAnchors?.length || 0;
   const configTags = [
     schemaConfig?.persistence?.enabled ? { label: 'Guardar', color: 'processing' as const } : null,
     schemaConfig?.api?.enabled ? { label: 'API', color: 'blue' as const } : null,
@@ -92,6 +97,16 @@ const DetailViewContent = ({
             ) : null}
             {activeSchema.state ? (
               <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>Estado: {activeSchema.state}</span>
+            ) : null}
+            {commentCount > 0 ? (
+              <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
+                Comentarios: {commentCount}
+              </span>
+            ) : null}
+            {anchorCount > 0 ? (
+              <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
+                Anchors: {anchorCount}
+              </span>
             ) : null}
           </div>
         ) : null}
