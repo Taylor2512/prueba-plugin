@@ -36,6 +36,7 @@ export const buildSchemaAssignments = (schemas: SchemaPageArray): SchemaAssignme
         schemaUid?: string;
         fileId?: string;
         fileTemplateId?: string;
+        pageNumber?: number;
         ownerRecipientId?: string;
         ownerRecipientIds?: string[] | string;
       };
@@ -43,7 +44,11 @@ export const buildSchemaAssignments = (schemas: SchemaPageArray): SchemaAssignme
       if (!schemaUid) return;
 
       const fileId = String(rawSchema.fileId || rawSchema.fileTemplateId || 'default').trim() || 'default';
-      const pageKey = String(pageIndex);
+      const pageKey = String(
+        Number.isFinite(rawSchema.pageNumber as number) && Number(rawSchema.pageNumber) > 0
+          ? Math.trunc(Number(rawSchema.pageNumber))
+          : pageIndex + 1,
+      );
       const recipientIds = normalizeRecipientIds(
         rawSchema.ownerRecipientIds || rawSchema.ownerRecipientId || '__unassigned__',
       );

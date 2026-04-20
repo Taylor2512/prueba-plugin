@@ -139,12 +139,14 @@ export const Schema = z
     fileId: z.string().optional(),
     fileTemplateId: z.string().optional(),
     pageNumber: z.number().int().positive().optional(),
+    ownerMode: z.enum(['single', 'multi', 'shared']).optional(),
     ownerRecipientId: z.string().optional(),
     ownerRecipientIds: z.array(z.string()).optional(),
     createdBy: z.string().optional(),
     lastModifiedBy: z.string().optional(),
     createdAt: z.number().optional(),
     updatedAt: z.number().optional(),
+    commentsCount: z.number().int().nonnegative().optional(),
     state: z.enum(['draft', 'locked', 'merged']).optional(),
     lock: z
       .object({
@@ -157,6 +159,7 @@ export const Schema = z
     comments: z.array(SchemaComment).optional(),
     commentAnchors: z.array(CommentAnchor).optional(),
     commentsAnchors: z.array(CommentAnchor).optional(),
+    saveValue: z.boolean().optional(),
     name: z.string(),
     type: z.string(),
     content: z.string().optional(),

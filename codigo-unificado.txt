@@ -2,7 +2,7 @@
    ARCHIVO UNIFICADO DE CÓDIGO PARA ANÁLISIS CON IA
    =====================================================================
    Carpeta origen: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
-   Fecha de generación: 2026-04-20T19:58:42.785Z
+   Fecha de generación: 2026-04-20T21:36:44.817Z
    Total de archivos incluidos: 336
    Extensiones incluidas: .tsx, .ts, .jsx, .js
    Objetivo: consolidar código fuente con contexto estructural para análisis
@@ -65843,8 +65843,7 @@ prueba-plugin
 ├── .vfsmeta
 │   └── index
 ├── docs
-│   └── editor
-│       └── adr
+│   └── reference
 ├── merge-css-from-folder.js
 ├── merge-md-from-folder.js
 ├── merge-react-from-folder.js

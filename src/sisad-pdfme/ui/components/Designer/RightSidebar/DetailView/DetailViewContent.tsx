@@ -41,13 +41,16 @@ const DetailViewContent = ({
       activeSchema.lastModifiedBy ||
       activeSchema.createdAt ||
       activeSchema.updatedAt ||
+      activeSchema.commentsCount ||
       activeSchema.state ||
+      activeSchema.ownerMode ||
+      activeSchema.saveValue === false ||
       activeSchema.lock ||
       activeSchema.comments?.length ||
       activeSchema.commentAnchors?.length ||
       activeSchema.commentsAnchors?.length,
   );
-  const commentCount = activeSchema.comments?.length || 0;
+  const commentCount = activeSchema.commentsCount || activeSchema.comments?.length || 0;
   const anchorCount = activeSchema.commentAnchors?.length || activeSchema.commentsAnchors?.length || 0;
   const configTags = [
     schemaConfig?.persistence?.enabled ? { label: 'Guardar', color: 'processing' as const } : null,
@@ -97,6 +100,12 @@ const DetailViewContent = ({
             ) : null}
             {activeSchema.state ? (
               <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>Estado: {activeSchema.state}</span>
+            ) : null}
+            {activeSchema.ownerMode ? (
+              <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>OwnerMode: {activeSchema.ownerMode}</span>
+            ) : null}
+            {activeSchema.saveValue === false ? (
+              <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>No guarda valor</span>
             ) : null}
             {commentCount > 0 ? (
               <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>

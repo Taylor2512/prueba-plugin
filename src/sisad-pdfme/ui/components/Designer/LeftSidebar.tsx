@@ -1078,7 +1078,7 @@ const LeftSidebar = ({
         return next;
       });
     },
-    [groupedPlugins, normalizedSearch, quickFilter],
+    [groupedPlugins, normalizedSearch, quickFilter, setCollapsedCategories],
   );
 
   const renderTabIcon = (tab: LeftSidebarTab) => {

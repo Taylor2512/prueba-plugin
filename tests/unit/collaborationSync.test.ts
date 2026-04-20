@@ -76,8 +76,8 @@ describe('collaboration sync helpers', () => {
       ],
     ]);
 
-    expect(assignments['recipient-1']['file-1']['0']).toEqual(['uid-a']);
-    expect(assignments['recipient-1']['file-1']['1']).toEqual(['uid-b']);
-    expect(assignments['recipient-2']['file-1']['1']).toEqual(['uid-b']);
+    expect(assignments['recipient-1']['file-1']['1']).toEqual(['uid-a']);
+    expect(assignments['recipient-1']['file-1']['2']).toEqual(['uid-b']);
+    expect(assignments['recipient-2']['file-1']['2']).toEqual(['uid-b']);
   });
 });

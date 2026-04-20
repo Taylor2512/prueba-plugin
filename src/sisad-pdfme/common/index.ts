@@ -115,6 +115,7 @@ export type {
   Size,
   Schema,
   SchemaForUI,
+  SchemaAssignments,
   Font,
   ColorType,
   BasePdf,

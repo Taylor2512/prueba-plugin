@@ -62,17 +62,20 @@ export type SchemaCollaborativeMetadata = {
   fileId?: string | null;
   fileTemplateId?: string | null;
   pageNumber?: number;
+  ownerMode?: 'single' | 'multi' | 'shared';
   ownerRecipientId?: string | null;
   ownerRecipientIds?: string[];
   createdBy?: string | null;
   lastModifiedBy?: string | null;
   createdAt?: number;
   updatedAt?: number;
+  commentsCount?: number;
   state?: SchemaCollaborativeState;
   lock?: SchemaCollaborativeLock;
   comments?: SchemaComment[];
   commentAnchors?: SchemaCommentAnchor[];
   commentsAnchors?: SchemaCommentAnchor[];
+  saveValue?: boolean;
 };
 
 export type CollaborationSyncConfig = {
@@ -357,6 +360,10 @@ export const resolveSchemaCollaborativeMetadata = (
     fileId: typeof rawSchema.fileId === 'string' ? rawSchema.fileId : undefined,
     fileTemplateId: typeof rawSchema.fileTemplateId === 'string' ? rawSchema.fileTemplateId : undefined,
     pageNumber: typeof rawSchema.pageNumber === 'number' ? rawSchema.pageNumber : undefined,
+    ownerMode:
+      rawSchema.ownerMode === 'single' || rawSchema.ownerMode === 'multi' || rawSchema.ownerMode === 'shared'
+        ? rawSchema.ownerMode
+        : undefined,
     ownerRecipientId: typeof rawSchema.ownerRecipientId === 'string' ? rawSchema.ownerRecipientId : undefined,
     ownerRecipientIds: Array.isArray(rawSchema.ownerRecipientIds)
       ? normalizeRecipientIds(rawSchema.ownerRecipientIds as string[])
@@ -365,6 +372,7 @@ export const resolveSchemaCollaborativeMetadata = (
     lastModifiedBy: typeof rawSchema.lastModifiedBy === 'string' ? rawSchema.lastModifiedBy : undefined,
     createdAt: typeof rawSchema.createdAt === 'number' ? rawSchema.createdAt : undefined,
     updatedAt: typeof rawSchema.updatedAt === 'number' ? rawSchema.updatedAt : undefined,
+    commentsCount: typeof rawSchema.commentsCount === 'number' ? rawSchema.commentsCount : undefined,
     state: rawSchema.state === 'draft' || rawSchema.state === 'locked' || rawSchema.state === 'merged'
       ? rawSchema.state
       : undefined,
@@ -378,6 +386,7 @@ export const resolveSchemaCollaborativeMetadata = (
     commentsAnchors: Array.isArray(rawSchema.commentsAnchors)
       ? (rawSchema.commentsAnchors as SchemaCommentAnchor[])
       : undefined,
+    saveValue: typeof rawSchema.saveValue === 'boolean' ? rawSchema.saveValue : undefined,
   };
 
   const config = getSchemaDesignerConfig(schema, engine);
@@ -396,6 +405,14 @@ export const applySchemaCollaborativeDefaults = (
   const ownerRecipientIds = normalizeRecipientIds(
     context.ownerRecipientIds ?? collaborative.ownerRecipientIds ?? collaborative.ownerRecipientId,
   );
+  const ownerMode =
+    collaborative.ownerMode ||
+    (ownerRecipientIds.length > 1 ? 'multi' : ownerRecipientIds.length === 1 ? 'single' : undefined);
+  const commentsCount = typeof collaborative.commentsCount === 'number'
+    ? collaborative.commentsCount
+    : Array.isArray(collaborative.comments)
+      ? collaborative.comments.length
+      : 0;
 
   return {
     ...schema,
@@ -403,13 +420,16 @@ export const applySchemaCollaborativeDefaults = (
     fileId: collaborative.fileId ?? context.fileId ?? undefined,
     fileTemplateId: collaborative.fileTemplateId ?? context.fileId ?? undefined,
     pageNumber: collaborative.pageNumber ?? context.pageNumber ?? context.pageIndex + 1,
+    ownerMode,
     ownerRecipientId: collaborative.ownerRecipientId ?? context.ownerRecipientId ?? ownerRecipientIds?.[0],
     ownerRecipientIds: ownerRecipientIds,
     createdBy: collaborative.createdBy ?? context.actorId,
     lastModifiedBy: collaborative.lastModifiedBy ?? context.actorId ?? context.ownerRecipientId,
     createdAt: collaborative.createdAt ?? timestamp,
     updatedAt: timestamp,
+    commentsCount,
     state: collaborative.state || 'draft',
+    saveValue: typeof collaborative.saveValue === 'boolean' ? collaborative.saveValue : true,
     lock: undefined,
   } as SchemaForUI;
 };
@@ -433,7 +453,21 @@ export const refreshSchemaCollaborativeMetadata = (
       lastModifiedBy: context.actorId ?? collaborative.lastModifiedBy,
       createdAt: collaborative.createdAt ?? context.timestamp,
       updatedAt: context.timestamp,
+      ownerMode:
+        collaborative.ownerMode ||
+        (Array.isArray(collaborative.ownerRecipientIds) && collaborative.ownerRecipientIds.length > 1
+          ? 'multi'
+          : Array.isArray(collaborative.ownerRecipientIds) && collaborative.ownerRecipientIds.length === 1
+            ? 'single'
+            : undefined),
+      commentsCount:
+        typeof collaborative.commentsCount === 'number'
+          ? collaborative.commentsCount
+          : Array.isArray(collaborative.comments)
+            ? collaborative.comments.length
+            : 0,
       state: collaborative.state || 'draft',
+      saveValue: typeof collaborative.saveValue === 'boolean' ? collaborative.saveValue : true,
       lock: undefined,
     } as SchemaForUI,
     context,
@@ -737,8 +771,6 @@ const resolveRuntimeEndpoint = (
 };
 
 const isFormEnabled = (config?: SchemaDesignerConfig | null): boolean => Boolean(config?.form?.enabled && config?.form?.collect !== false);
-const isPersistenceEnabled = (config?: SchemaDesignerConfig | null): boolean => Boolean(config?.persistence?.enabled);
-const isRemoteRuntimeEnabled = (config?: SchemaDesignerConfig | null): boolean => Boolean(config?.api?.enabled || (config?.prefill?.enabled && config?.prefill?.strategy === 'api'));
 
 export const createSchemaDataRuntimeAdapter = ({
   engine,

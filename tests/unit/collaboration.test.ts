@@ -31,10 +31,13 @@ describe('collaboration metadata', () => {
     expect(next.pageNumber).toBe(3);
     expect(next.ownerRecipientId).toBe('recipient-1');
     expect(next.ownerRecipientIds).toEqual(['recipient-1', 'recipient-2']);
+    expect(next.ownerMode).toBe('multi');
     expect(next.createdBy).toBe('user-new');
     expect(next.lastModifiedBy).toBe('user-new');
     expect(next.createdAt).toBe(1700000000123);
     expect(next.updatedAt).toBe(1700000000123);
+    expect(next.commentsCount).toBe(0);
+    expect(next.saveValue).toBe(true);
     expect(next.state).toBe('locked');
     expect(next.lock).toBeUndefined();
   });
@@ -79,7 +82,7 @@ describe('collaboration metadata', () => {
       ],
     ]);
 
-    expect(assignments['recipient-1']['file-a']['0']).toEqual(['uid-a', 'uid-b']);
-    expect(assignments['recipient-2']['file-a']['0']).toEqual(['uid-b']);
+    expect(assignments['recipient-1']['file-a']['1']).toEqual(['uid-a', 'uid-b']);
+    expect(assignments['recipient-2']['file-a']['1']).toEqual(['uid-b']);
   });
 });

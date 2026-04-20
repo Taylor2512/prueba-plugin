@@ -105,6 +105,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
   const ownerRecipientIds = normalizeRecipientIds(
     collaborative.ownerRecipientIds || collaborative.ownerRecipientId || activeSchema.ownerRecipientIds || activeSchema.ownerRecipientId,
   );
+  const ownerMode = collaborative.ownerMode || (ownerRecipientIds.length > 1 ? 'multi' : ownerRecipientIds.length === 1 ? 'single' : undefined);
   const lock = collaborative.lock || activeSchema.lock || {};
   const comments = normalizeComments(activeSchema.comments || collaborative.comments);
   const anchors = normalizeAnchors(
@@ -141,6 +142,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
   const updateComments = (nextComments: SchemaComment[]) => {
     commit({
       comments: nextComments,
+      commentsCount: nextComments.length,
     });
   };
 
@@ -191,9 +193,16 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
       <div className={`${DESIGNER_CLASSNAME}schema-collaboration-widget-summary`}>
         <Space size={[6, 6]} wrap>
           <Tag color="default">{schemaUid || 'sin schemaUid'}</Tag>
+          {ownerMode ? <Tag color="default">Owner {ownerMode}</Tag> : null}
           <Tag color={ownerRecipientIds.length > 0 ? 'processing' : 'warning'} icon={<Users2 size={12} />}>
             {ownerRecipientIds.length > 0 ? `${ownerRecipientIds.length} owner(s)` : 'Sin owner'}
           </Tag>
+          <Tag color={collaborative.saveValue === false || activeSchema.saveValue === false ? 'warning' : 'success'}>
+            {collaborative.saveValue === false || activeSchema.saveValue === false ? 'No guardar valor' : 'Guardar valor'}
+          </Tag>
+          {(typeof collaborative.commentsCount === 'number' ? collaborative.commentsCount : comments.length) > 0 ? (
+            <Tag color="blue">Comentarios: {typeof collaborative.commentsCount === 'number' ? collaborative.commentsCount : comments.length}</Tag>
+          ) : null}
           {hasLock ? (
             <Tag color="error" icon={<Lock size={12} />}>
               Bloqueo activo
@@ -235,6 +244,14 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
             value={state}
             options={STATE_OPTIONS}
             onChange={(value) => updateState(value)}
+          />
+        </div>
+        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>ownerMode</div>
+          <Input
+            value={ownerMode || ''}
+            onChange={(event) => commit({ ownerMode: event.target.value || undefined })}
+            placeholder="single / multi / shared"
           />
         </div>
       </div>
