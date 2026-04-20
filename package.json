@@ -83,7 +83,7 @@
         "vitest": "^0.34.0"
     },
     "overrides": {
-        "@pdfme/converter": {
+        "@sisad-pdfme/converter": {
             "pdfjs-dist": "2.16.105"
         }
     }

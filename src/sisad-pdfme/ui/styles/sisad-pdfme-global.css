@@ -1,0 +1,4220 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
+@import './tokens.css';
+
+:root {
+  /* ── Shorthand aliases used throughout sisad-pdfme-global ─────────── */
+  --bg-hover: var(--color-bg-hover);
+  --bg-active: var(--color-bg-active);
+  --border-subtle: var(--color-border-subtle);
+  --border-soft: var(--color-border-soft);
+  --border-strong: var(--color-border-strong);
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --text-muted: var(--color-text-muted);
+  --transition: 180ms ease;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  font-family: var(--font-family-ui);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  color: var(--text-primary);
+  background: var(--color-bg-base);
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+}
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--border-soft);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--border-strong);
+}
+
+.app-shell {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--color-bg-base);
+}
+
+.main-nav {
+  display: flex;
+  align-items: center;
+  gap: 0;
+  min-height: 2.75rem;
+  padding: 0 1rem;
+  background: var(--color-bg-elevated);
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+  z-index: 100;
+  position: relative;
+}
+
+.main-nav::before {
+  content: 'PDFME';
+  font-family: var(--font-family-mono);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  color: var(--color-primary);
+  margin-right: 1.5rem;
+}
+
+.main-nav a {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 0.875rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-size: 0.78125rem;
+  font-weight: 500;
+  border-bottom: 2px solid transparent;
+  transition: color var(--transition), border-color var(--transition);
+}
+
+.main-nav a:hover {
+  color: var(--text-primary);
+}
+
+.main-nav a:last-child {
+  color: var(--color-primary);
+  border-bottom-color: var(--color-primary);
+}
+
+.sisad-pdfme-page {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--color-bg-base);
+}
+
+.sisad-pdfme-header {
+  padding: 0.75rem 1rem;
+  background: var(--color-bg-elevated);
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.sisad-pdfme-header h1 {
+  margin: 0;
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+.sisad-pdfme-header p {
+  margin: 0.1875rem 0 0;
+  max-width: 43.75rem;
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.sisad-pdfme-grid {
+  position: relative;
+  flex: 1 1 auto;
+  display: grid;
+  grid-template-columns: 1fr;
+  min-height: 0;
+  overflow: hidden;
+}
+
+.sisad-pdfme-workspace,
+.sisad-pdfme-canvas,
+.sisad-pdfme-designer-root,
+.sisad-pdfme-designer-background,
+.sisad-pdfme-designer-stage {
+  min-height: 0;
+}
+
+.sisad-pdfme-workspace {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  background: var(--color-bg-base);
+}
+
+.sisad-pdfme-canvas,
+.sisad-pdfme-designer-root,
+.sisad-pdfme-designer-background {
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+.sisad-pdfme-designer-root {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: var(--sisad-pdfme-root-width, auto);
+  height: var(--sisad-pdfme-root-height, auto);
+  background: var(--sisad-pdfme-root-bg);
+}
+
+.sisad-pdfme-designer-background {
+  position: relative;
+  display: flex;
+  width: 100%;
+  height: 100%;
+  background: transparent;
+}
+
+.sisad-pdfme-ui-preview-scroll {
+  position: relative;
+  width: var(--sisad-pdfme-preview-width, auto);
+  height: var(--sisad-pdfme-preview-height, auto);
+  overflow: auto;
+}
+
+.sisad-pdfme-ui-error-screen {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  height: 100%;
+}
+
+.sisad-pdfme-ui-error-screen-body {
+  width: 100%;
+  max-width: min(32.5rem, calc(100% - 1.5rem));
+}
+
+.sisad-pdfme-ui-control-bar {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: calc(100% - 0.75rem);
+  min-height: 2.375rem;
+  margin: 0.3125rem auto 0;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.75rem;
+  background: linear-gradient(180deg, var(--color-white), var(--color-gray-50));
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(0.875rem);
+  flex-wrap: wrap;
+}
+
+.sisad-pdfme-ui-control-bar-context {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-width: 0;
+  flex: 1 1 auto;
+  flex-wrap: wrap;
+}
+
+.sisad-pdfme-ui-control-bar-kicker {
+  display: none;
+}
+
+.sisad-pdfme-ui-control-bar-page {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  line-height: 1.1;
+}
+
+.sisad-pdfme-ui-control-bar-subtext {
+  font-size: 0.5625rem;
+  color: var(--color-gray-400);
+  line-height: 1;
+}
+
+.sisad-pdfme-ui-control-bar-title-row {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  min-width: 0;
+}
+
+.sisad-pdfme-ui-control-bar-status-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.0625rem;
+  padding: 0 0.3125rem;
+  border-radius: 999px;
+  background: var(--color-primary-08);
+  color: var(--color-primary);
+  font-size: 0.5rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.sisad-pdfme-ui-control-bar-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  flex: 2 1 auto;
+}
+
+.sisad-pdfme-ui-pager,
+.sisad-pdfme-ui-zoom {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+  padding: 0.125rem 0.25rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 0.5rem;
+  background: var(--color-gray-100);
+}
+
+.sisad-pdfme-ui-control-bar-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+  padding: 0.125rem 0.25rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 0.5rem;
+  background: var(--color-gray-100);
+}
+
+.sisad-pdfme-ui-control-bar-icon-btn,
+.sisad-pdfme-ui-control-bar-text-btn {
+  border-color: transparent;
+  box-shadow: none;
+}
+
+.sisad-pdfme-ui-control-bar-icon-btn {
+  width: 1.5rem;
+  height: 1.5rem;
+  min-width: 1.5rem;
+  padding: 0;
+}
+
+.sisad-pdfme-ui-control-bar-text-btn {
+  height: 1.5rem;
+  padding: 0 0.375rem;
+  font-size: 0.71875rem;
+}
+
+.sisad-pdfme-ui-control-bar-page-select {
+  min-width: 7.5rem;
+}
+
+.sisad-pdfme-ui-context-menu {
+  margin-left: auto;
+}
+
+.sisad-pdfme-ui-control-bar .ant-typography {
+  margin: 0 2px;
+  font-size: 0.71875rem;
+  color: var(--text-primary);
+}
+
+.sisad-pdfme-ui-control-bar .ant-btn,
+.sisad-pdfme-ui-control-bar .ant-select-selection-item,
+.sisad-pdfme-ui-control-bar .ant-select-arrow {
+  color: var(--text-primary);
+}
+
+.sisad-pdfme-ui-control-bar .ant-btn:disabled {
+  color: var(--color-gray-200-45);
+}
+
+.sisad-pdfme-ui-control-bar .ant-select .ant-select-selector {
+  min-width: 4rem;
+  border-radius: 0.375rem;
+  background: var(--color-border-12);
+  border-color: var(--border-soft);
+}
+
+.sisad-pdfme-ui-control-bar .ant-select.sisad-pdfme-ui-control-bar-page-select .ant-select-selector {
+  min-width: 7.5rem;
+}
+
+.sisad-pdfme-ui-zoom-out,
+.sisad-pdfme-ui-zoom-in,
+.sisad-pdfme-ui-page-prev,
+.sisad-pdfme-ui-page-next {
+  width: 1.25rem;
+  height: 1.25rem;
+  min-width: 1.25rem;
+  padding: 0;
+  border: 1px solid transparent;
+  border-radius: 0.375rem;
+  background: transparent;
+  color: var(--text-secondary);
+  transition: all var(--transition-fast);
+}
+
+/* Zoom select compact */
+.sisad-pdfme-ui-zoom .sisad-pdfme-ui-zoom-select .ant-select-selector,
+.sisad-pdfme-ui-zoom .ant-select-selector {
+  min-width: 3.625rem;
+  font-size: 0.6875rem;
+}
+
+.sisad-pdfme-ui-zoom-out:hover,
+.sisad-pdfme-ui-zoom-in:hover,
+.sisad-pdfme-ui-page-prev:hover,
+.sisad-pdfme-ui-page-next:hover {
+  border-color: var(--color-primary-30);
+  background: var(--color-primary-08);
+  color: var(--color-primary);
+}
+
+.sisad-pdfme-ui-control-bar-icon-btn[data-active='true'] {
+  color: var(--color-primary);
+  background: var(--color-primary-08);
+}
+
+.sisad-pdfme-ui-control-bar-icon-btn:hover:not(:disabled),
+.sisad-pdfme-ui-control-bar-text-btn:hover:not(:disabled) {
+  border-color: var(--color-primary-30);
+  background: var(--color-primary-08);
+  color: var(--color-primary);
+}
+
+.sisad-pdfme-ui-control-bar-menu-item {
+  display: block;
+  width: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sisad-pdfme-ui-control-bar-menu-item:focus-visible {
+  outline: none;
+}
+
+.sisad-pdfme-designer-guides-corner {
+  background: var(--sisad-pdfme-guides-corner-bg);
+  border-right: 1px solid var(--color-border-16);
+  border-bottom: 1px solid var(--color-border-16);
+}
+
+.sisad-pdfme-designer-guides-ruler {
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.sisad-pdfme-designer-guides-ruler-horizontal {
+  border-bottom: 1px solid var(--color-border-16);
+}
+
+.sisad-pdfme-designer-guides-ruler-vertical {
+  border-right: 1px solid var(--color-border-16);
+}
+
+.sisad-pdfme-designer-guides-ruler .scena-guides-text,
+.sisad-pdfme-designer-guides-ruler .scena-guides-number {
+  font-size: 0.625rem;
+  opacity: 0.82;
+}
+
+.sisad-pdfme-designer-guides-ruler .scena-guides-guide.scena-guides-adder {
+  opacity: 0.72;
+}
+
+.sisad-pdfme-designer-snap-lines {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  pointer-events: none;
+}
+
+.sisad-pdfme-designer-snap-line,
+.sisad-pdfme-designer-snap-label {
+  position: absolute;
+  pointer-events: none;
+}
+
+.sisad-pdfme-designer-snap-line[data-is-center="true"] {
+  filter: drop-shadow(0 0 2px var(--color-danger-32));
+}
+
+.sisad-pdfme-designer-snap-label {
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.sisad-pdfme-designer-mask {
+  background: var(--sisad-pdfme-mask-bg);
+  backdrop-filter: blur(var(--sisad-pdfme-mask-blur));
+  transition: opacity 0.2s ease;
+  cursor: not-allowed;
+}
+
+.sisad-pdfme-designer-left-sidebar {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  width: var(--sisad-pdfme-ls-width);
+  max-width: var(--sisad-pdfme-ls-width);
+  background: var(--color-bg-elevated);
+  border-right: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+  transition:
+    width 220ms var(--wix-ease-out),
+    max-width 220ms var(--wix-ease-out),
+    opacity 150ms ease,
+    transform 220ms var(--wix-ease-out);
+}
+
+.sisad-pdfme-designer-sidebar-frame,
+.sisad-pdfme-designer-left-sidebar-frame,
+.sisad-pdfme-designer-left-sidebar-content {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+}
+
+.sisad-pdfme-designer-sidebar-surface,
+.sisad-pdfme-designer-left-sidebar-shell {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  padding: 0.625rem 0.5rem 0.5rem;
+  background: linear-gradient(180deg, var(--color-white), var(--color-gray-50));
+  border: 1px solid var(--color-border-25);
+  border-radius: 0.875rem;
+  box-shadow: var(--shadow-gray-08);
+  backdrop-filter: blur(0.875rem) saturate(1.05);
+  overflow: hidden;
+}
+
+.sisad-pdfme-designer-left-sidebar-content {
+  height: 100%;
+  padding: 0.625rem 0.5rem 0.625rem 0.625rem;
+  box-sizing: border-box;
+}
+
+.sisad-pdfme-designer-left-sidebar-dock-header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1px;
+  margin-bottom: 0.5rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.sisad-pdfme-designer-left-sidebar-dock-kicker {
+  font-size: 0.5625rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--color-gray-400);
+}
+
+.sisad-pdfme-designer-left-sidebar-dock-title {
+  font-size: 0.625rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.sisad-pdfme-designer-left-sidebar-dock-section-title {
+  margin-bottom: 0.5rem;
+  padding: 0.4375rem 0.625rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 62.4375rem;
+  background: var(--color-bg-elevated);
+  font-size: 0.59375rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+  color: var(--text-primary);
+}
+
+.sisad-pdfme-designer-left-sidebar-control-band,
+.sisad-pdfme-designer-left-sidebar-search-stack {
+  display: grid;
+  gap: 0.375rem;
+  margin-bottom: 0.5rem;
+}
+
+/* Tab list: icon-only pill tabs, active gets bg + underline ─────── */
+.sisad-pdfme-designer-left-sidebar-tablist {
+  display: flex;
+  align-items: center;
+  gap: 0.1875rem;
+  width: 100%;
+  min-width: 0;
+  margin: 0 0 0.4375rem;
+  padding: 0.1875rem;
+  list-style: none;
+  overflow: hidden;
+  background: var(--color-gray-100-60);
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.875rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-tab {
+  flex: 1;
+  min-width: 0;
+}
+
+.sisad-pdfme-designer-left-sidebar-tab-btn {
+  position: relative;
+  width: 100%;
+  min-width: 0;
+  height: 2rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid transparent;
+  border-radius: 0.625rem;
+  background: transparent;
+  color: var(--color-gray-500);
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.sisad-pdfme-designer-left-sidebar-tab-btn svg {
+  width: 1rem;
+  height: 1rem;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.sisad-pdfme-designer-left-sidebar-tab-btn:hover {
+  background: var(--color-bg-elevated);
+  color: var(--text-primary);
+}
+
+.sisad-pdfme-designer-left-sidebar-tab-btn:hover svg {
+  transform: scale(1.1);
+}
+
+.sisad-pdfme-designer-left-sidebar-tab-btn-active {
+  background: var(--color-bg-elevated);
+  border-color: var(--color-border-14);
+  color: var(--color-primary);
+  box-shadow:
+    0 1px 3px var(--color-gray-900-05),
+    inset 0 1px 0 var(--color-white-80);
+}
+
+/* Bottom accent line for active tab */
+.sisad-pdfme-designer-left-sidebar-tab-btn-active::after {
+  content: '';
+  position: absolute;
+  bottom: 3px;
+  left: 25%;
+  right: 25%;
+  height: 2px;
+  border-radius: 1px;
+  background: var(--color-primary);
+  animation: rs-tab-indicator 160ms var(--wix-ease-out) both;
+}
+
+/* Labels hidden — tooltips from `title` attribute provide context */
+.sisad-pdfme-designer-left-sidebar-tab-label {
+  display: none;
+}
+
+.sisad-pdfme-designer-left-sidebar-search[data-use-default-style="true"] {
+  width: 100%;
+  min-height: 2rem;
+  box-sizing: border-box;
+  border: 1px solid var(--color-border-28);
+  border-radius: 0.625rem;
+  background: var(--color-white);
+  font-size: 0.75rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sisad-pdfme-designer-left-sidebar-search[data-use-default-style="true"]:focus {
+  outline: none;
+  border-color: var(--color-primary-40);
+  box-shadow: 0 0 0 2px var(--color-primary-08);
+}
+
+.sisad-pdfme-designer-left-sidebar-search-wrap {
+  padding: 0.25rem 0;
+}
+
+.sisad-pdfme-designer-left-sidebar-search-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+/* Chip filters: pill-shaped, uniform, tight row ─────────────────── */
+.sisad-pdfme-designer-left-sidebar-chip-row {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: nowrap;
+  overflow-x: auto;
+  scrollbar-width: none;
+  padding-bottom: 1px;
+}
+
+.sisad-pdfme-designer-left-sidebar-chip-row::-webkit-scrollbar {
+  display: none;
+}
+
+.sisad-pdfme-designer-left-sidebar-filter-btn {
+  min-height: 1.3125rem;
+  height: 1.3125rem;
+  padding: 0 0.5rem;
+  border-radius: 999px;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.sisad-pdfme-designer-left-sidebar-filter-btn:hover {
+  transform: translateY(-0.5px);
+  box-shadow: 0 2px 4px var(--color-primary-10);
+}
+
+.sisad-pdfme-designer-left-sidebar-main {
+  min-height: 0;
+  flex: 1 1 auto;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding-right: 0.25rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-30) transparent;
+}
+
+.sisad-pdfme-designer-left-sidebar-main::-webkit-scrollbar {
+  width: 0.1875rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-main::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sisad-pdfme-designer-left-sidebar-main::-webkit-scrollbar-thumb {
+  background: var(--color-border-35);
+  border-radius: 0.1875rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-group {
+  margin-bottom: 0.625rem;
+  padding-bottom: 0.5rem;
+  border-bottom: 1px solid var(--color-gray-200-90);
+}
+
+.sisad-pdfme-designer-left-sidebar-group:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.sisad-pdfme-designer-left-sidebar-group-title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.375rem;
+  width: 100%;
+  margin-bottom: 0.375rem;
+  padding: 0.25rem 0.375rem;
+  border: none;
+  border-bottom: 1px solid var(--color-border-20);
+  background: transparent;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sisad-pdfme-designer-left-sidebar-group-title:hover {
+  background: var(--color-primary-08);
+}
+
+.sisad-pdfme-designer-left-sidebar-group-title-label {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-gray-700);
+}
+
+.sisad-pdfme-designer-left-sidebar-group-title-count {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 1rem;
+  height: 0.9375rem;
+  padding: 0 0.25rem;
+  border: 1px solid var(--color-primary-20);
+  border-radius: 62.4375rem;
+  background: var(--color-primary-200-85);
+  color: var(--color-primary);
+  font-size: 0.5625rem;
+  font-weight: 700;
+}
+
+.sisad-pdfme-designer-left-sidebar-group-items {
+  display: grid;
+  gap: 0.375rem;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.sisad-pdfme-designer-left-sidebar-group-items[data-collapsed="true"] {
+  display: none;
+}
+
+.sisad-pdfme-designer-left-sidebar-group-items[data-view-mode="rich"] {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+/* ── Compact mode: 2 equal columns, each card is a vertical tile ─ */
+.sisad-pdfme-designer-left-sidebar-group-items[data-view-mode="compact"] {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.3125rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-highlight {
+  padding: 0 1px;
+  background: var(--color-warning-40);
+  border-radius: 2px;
+}
+
+.sisad-pdfme-designer-left-sidebar-draggable-shell {
+  opacity: var(--sisad-pdfme-left-sidebar-draggable-opacity, 1);
+  transform: scale(var(--sisad-pdfme-left-sidebar-draggable-scale, 1));
+  transition: opacity 120ms ease, transform 120ms ease;
+}
+
+.sisad-pdfme-designer-left-sidebar-draggable-shell[data-dragging="true"] {
+  opacity: 0.36;
+  transform: scale(0.96);
+}
+
+.sisad-pdfme-designer-left-sidebar-plugin-wrap,
+.sisad-pdfme-designer-plugin-wrap {
+  position: relative;
+  display: grid;
+  align-items: stretch;
+  min-width: 0;
+}
+
+.sisad-pdfme-designer-plugin-btn[data-view-mode="rich"] {
+  width: 100%;
+  min-height: 3rem;
+  padding: 0.4375rem 0.5625rem;
+  gap: 0.5625rem;
+  justify-content: flex-start;
+  border: 1px solid var(--color-border-20);
+  border-radius: 0.5625rem;
+  background: var(--color-gray-50);
+  cursor: grab;
+  transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
+}
+
+.sisad-pdfme-designer-plugin-btn[data-view-mode="rich"]:hover {
+  border-color: var(--color-primary-30);
+  background: var(--color-primary-200-20);
+  box-shadow: 0 2px 0.375rem var(--color-primary-08);
+}
+
+/* ── Compact card: vertical tile layout (icon → label stacked) ───── */
+.sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] {
+  width: 100%;
+  min-height: 4rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+  padding: 0.5rem 0.3125rem 0.4375rem;
+  border: 1px solid var(--color-border-22);
+  border-radius: 0.625rem;
+  background: var(--color-white);
+  cursor: grab;
+  box-shadow: 0 1px 3px var(--color-gray-900-04);
+  overflow: hidden;
+  text-align: center;
+  transition:
+    border-color 150ms ease,
+    background 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+}
+
+.sisad-pdfme-designer-plugin-btn[data-view-mode="compact"]:hover {
+  border-color: var(--color-primary-30);
+  background: linear-gradient(180deg, var(--color-primary-100-90), var(--color-primary-200-20));
+  box-shadow: 0 3px 8px var(--color-primary-10);
+  transform: translateY(-1px);
+}
+
+/* Icon wrapper inside compact card */
+.sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] > div {
+  width: 1.875rem;
+  height: 1.875rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 0.5rem;
+  background: linear-gradient(180deg, var(--color-gray-50), var(--color-gray-100-80));
+  border: 1px solid var(--color-border-14);
+  box-shadow: inset 0 1px 0 var(--color-white-80);
+  transition: background 150ms ease, border-color 150ms ease;
+}
+
+.sisad-pdfme-designer-plugin-btn[data-view-mode="compact"]:hover > div {
+  background: linear-gradient(180deg, var(--color-primary-200-20), var(--color-primary-100-60));
+  border-color: var(--color-primary-25);
+}
+
+.sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] > div svg {
+  width: 1rem;
+  height: 1rem;
+  color: var(--color-gray-600);
+  transition: color 150ms ease;
+}
+
+.sisad-pdfme-designer-plugin-btn[data-view-mode="compact"]:hover > div svg {
+  color: var(--color-primary);
+}
+
+.sisad-pdfme-designer-plugin-btn[data-view-mode="compact"]:active,
+.sisad-pdfme-designer-plugin-btn[data-view-mode="rich"]:active {
+  cursor: grabbing;
+}
+
+/* Label container: centered below icon in compact mode */
+.sisad-pdfme-designer-plugin-btn-label {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1px;
+  min-width: 0;
+  width: 100%;
+}
+
+/* Title — allows wrapping in compact (2 lines max), no ellipsis */
+.sisad-pdfme-designer-plugin-btn-label-title {
+  min-width: 0;
+  width: 100%;
+  overflow: hidden;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  white-space: normal;
+  font-size: 0.5625rem;
+  font-weight: 600;
+  color: var(--color-gray-700);
+  text-transform: capitalize;
+  text-align: center;
+  line-height: 1.3;
+  word-break: break-word;
+  transition: color 150ms ease;
+}
+
+.sisad-pdfme-designer-plugin-btn[data-view-mode="compact"]:hover .sisad-pdfme-designer-plugin-btn-label-title {
+  color: var(--color-primary);
+}
+
+/* In rich mode: left-aligned, single-line */
+.sisad-pdfme-designer-plugin-btn[data-view-mode="rich"] .sisad-pdfme-designer-plugin-btn-label {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.sisad-pdfme-designer-plugin-btn[data-view-mode="rich"] .sisad-pdfme-designer-plugin-btn-label-title {
+  text-align: left;
+  -webkit-line-clamp: 1;
+  font-size: 0.75rem;
+  color: var(--color-gray-900);
+  white-space: nowrap;
+  word-break: normal;
+}
+
+.sisad-pdfme-designer-plugin-btn-label-meta {
+  font-size: 0.59375rem;
+  font-weight: 500;
+  color: var(--color-gray-500);
+  letter-spacing: 0.02em;
+}
+
+.sisad-pdfme-designer-plugin-text {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.5rem;
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+}
+
+.sisad-pdfme-designer-plugin-btn-compact {
+  min-height: 2.5rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem 0.5rem;
+}
+
+
+.sisad-pdfme-designer-plugin-btn[data-view-mode="rich"] .sisad-pdfme-designer-plugin-btn-label-title {
+  font-size: 0.75rem;
+  color: var(--color-gray-900);
+}
+
+.sisad-pdfme-designer-plugin-btn[data-view-mode="rich"] .sisad-pdfme-designer-plugin-btn-label-meta {
+  display: none;
+}
+
+/* ── Favorite toggle — corner star, no content overlap ────────── */
+.sisad-pdfme-designer-plugin-favorite-toggle {
+  position: absolute;
+  top: 0.1875rem;
+  right: 0.1875rem;
+  width: 1rem;
+  height: 1rem;
+  display: grid;
+  place-items: center;
+  border: 1px solid var(--color-border-30);
+  border-radius: var(--radius-sm);
+  background: var(--color-white-92);
+  backdrop-filter: blur(4px);
+  color: var(--color-gray-400);
+  font-size: 0.5rem;
+  line-height: 1;
+  opacity: 0;
+  pointer-events: none;
+  z-index: 2;
+  transition:
+    opacity 120ms ease,
+    background 120ms ease,
+    color 120ms ease,
+    border-color 120ms ease,
+    transform 120ms ease;
+}
+
+.sisad-pdfme-designer-left-sidebar-plugin-wrap:hover .sisad-pdfme-designer-plugin-favorite-toggle {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Favorite is active: always visible, colored */
+.sisad-pdfme-designer-plugin-favorite-toggle[data-active="true"] {
+  opacity: 1;
+  pointer-events: auto;
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 1px 4px var(--color-primary-20);
+}
+
+.sisad-pdfme-designer-plugin-favorite-toggle:hover {
+  transform: scale(1.15);
+  border-color: var(--color-primary-30);
+  color: var(--color-primary);
+  background: var(--color-primary-200-20);
+}
+
+.sisad-pdfme-designer-plugin-favorite-toggle[data-active="true"]:hover {
+  background: var(--color-primary-hover, var(--color-primary-light));
+  border-color: var(--color-primary-light);
+  color: var(--color-white);
+}
+
+/* ── Favorite indicator INSIDE the button (★ inline) ────────── */
+/* Hide the inline star since toggle button handles it externally */
+.sisad-pdfme-designer-plugin-favorite-indicator {
+  display: none;
+}
+
+.sisad-pdfme-designer-stage {
+  flex: 1 1 auto;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.sisad-pdfme-designer-canvas {
+  position: relative;
+  flex: 1 1 auto;
+  width: 100%;
+  min-width: 0;
+  height: 100%;
+  max-width: 100%;
+  overflow: auto;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 3.5rem 1rem 1rem;
+  box-sizing: border-box;
+  overscroll-behavior: contain;
+  background:
+    radial-gradient(circle at center, var(--color-border-12) 0%, transparent 65%),
+    linear-gradient(var(--color-border-16) 1px, transparent 1px),
+    linear-gradient(90deg, var(--color-border-16) 1px, transparent 1px),
+    var(--color-bg-base);
+  background-size: 100% 100%, 1.5rem 1.5rem, 1.5rem 1.5rem;
+}
+
+.sisad-pdfme-designer-canvas>*,
+.sisad-pdfme-designer-canvas>[data-paper-root='true'] {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  align-content: flex-start;
+  width: auto;
+  height: auto;
+  min-width: 0;
+  min-height: 0;
+  margin: 0;
+  position: relative;
+}
+
+.sisad-pdfme-designer-canvas>*>*,
+.sisad-pdfme-designer-canvas>[data-paper-root='true']>[data-paper-page='true'] {
+  width: max-content;
+  height: max-content;
+  min-width: 1px;
+  min-height: 1px;
+  margin: 0;
+  position: relative;
+}
+
+.sisad-pdfme-designer-canvas-empty-state {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.25rem;
+  pointer-events: none;
+}
+
+.sisad-pdfme-designer-canvas-empty-state-card {
+  max-width: 22.5rem;
+  padding: 0.875rem 1rem;
+  border: 1px dashed var(--border-subtle);
+  border-radius: 0.875rem;
+  background: linear-gradient(180deg, var(--color-white), var(--color-bg-2));
+  color: var(--text-primary);
+  box-shadow: 0 0.75rem 1.75rem var(--color-gray-900-08);
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page="true"] {
+  position: relative;
+  display: block;
+  flex: none;
+  width: auto;
+  min-width: 1px;
+  min-height: 1px;
+  max-width: none;
+  max-height: none;
+  margin: 0 auto;
+  overflow: hidden;
+  isolation: isolate;
+  background: var(--color-white);
+  border: 1px solid var(--border-soft);
+  border-radius: 0.25rem;
+  box-shadow:
+    0 0 0 1px var(--border-subtle),
+    0 0.5rem 1.5rem var(--color-gray-900-08),
+    0 1.25rem 3rem var(--color-gray-900-06);
+}
+
+.sisad-pdfme-designer-canvas[data-zoom-tier="low"] [data-canvas-page="true"] {
+  min-height: 0;
+  max-height: none;
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page="true"]>.sisad-pdfme-designer-custom-undefined {
+  display: none;
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page="true"]>.sisad-pdfme-designer-padding {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+  background: var(--color-border-12);
+  opacity: 1;
+  mix-blend-mode: multiply;
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page="true"] .scena-guides-manager {
+  backdrop-filter: blur(0.0125rem);
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page="true"] .scena-guides-guide-origin {
+  background: transparent;
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page="true"] .scena-guides-guide.scena-guides-adder {
+  background: var(--color-info-55);
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box {
+  --moveable-color: var(--color-info);
+  z-index: 12;
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-line {
+  background-color: var(--moveable-color);
+  opacity: 0.95;
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-control {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 62.4375rem;
+  border: 1px solid var(--color-white);
+  background: var(--moveable-color);
+  box-shadow: 0 0 0 1px var(--color-bg-elevated), 0 1px 0.25rem var(--color-gray-900-22);
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-origin {
+  width: 0.4375rem;
+  height: 0.4375rem;
+  border-radius: 62.4375rem;
+  background: var(--color-warning);
+  border: 1px solid var(--color-white);
+}
+
+.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-rotation-line {
+  border-color: var(--moveable-color);
+  opacity: 0.9;
+}
+
+.sisad-pdfme-designer-right-sidebar {
+  position: absolute;
+  top: 0;
+  right: 0.75rem;
+  bottom: 0;
+  width: var(--sisad-pdfme-rs-width);
+  z-index: 70;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  min-height: 0;
+  border-radius: 1rem 0 0 1rem;
+  border-left: 1px solid var(--border-subtle);
+  background: linear-gradient(180deg, var(--color-white) 0%, var(--color-gray-50) 100%);
+  box-shadow: -0.75rem 0 2rem var(--color-gray-900-06);
+  opacity: 0;
+  transform: translateX(calc(100% + var(--sisad-pdfme-rs-gap)));
+  pointer-events: none;
+  transition: transform 180ms ease, opacity 150ms ease;
+}
+
+.sisad-pdfme-designer-stage[data-sidebar-open="true"] .sisad-pdfme-designer-right-sidebar {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+}
+
+.sisad-pdfme-designer-stage[data-sidebar-open="true"] .sisad-pdfme-designer-canvas {
+  padding-right: calc(var(--sisad-pdfme-rs-width) + 1.25rem);
+}
+
+.sisad-pdfme-designer-right-sidebar-content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  padding: 0.4375rem 0.4375rem 0.5rem;
+}
+
+.sisad-pdfme-designer-right-sidebar-content.sisad-pdfme-designer-sidebar-surface {
+  border-radius: 0;
+  border: 0;
+  box-shadow: none;
+  backdrop-filter: none;
+}
+
+/* ── SIDEBAR TOGGLE BUTTON (shared base) ────────────────────────
+   .sisad-pdfme-designer-sidebar-toggle-btn       → generic (e.g. left sidebar)
+   .sisad-pdfme-designer-right-sidebar-toggle-btn → right sidebar specific
+   When rendered inside the sidebar panel it is position:static (see below).
+   ────────────────────────────────────────────────────────────── */
+.sisad-pdfme-designer-sidebar-toggle-btn,
+.sisad-pdfme-designer-right-sidebar-toggle-btn {
+  min-width: 1.625rem;
+  height: 1.625rem;
+  padding: 0 var(--space-2);
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-elevated);
+  color: var(--text-secondary);
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--shadow-sm);
+  transition:
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.sisad-pdfme-designer-sidebar-toggle-btn:hover,
+.sisad-pdfme-designer-right-sidebar-toggle-btn:hover {
+  border-color: var(--color-primary-25);
+  color: var(--color-primary);
+  box-shadow: var(--shadow-md);
+}
+
+/* ── LEFT SIDEBAR TOGGLE BUTTON ─────────────────────────────── */
+.sisad-pdfme-designer-left-sidebar-toggle-btn {
+  position: absolute;
+  top: 1rem;
+  right: calc(-1 * (var(--sisad-pdfme-ls-rail-width) / 3));
+  z-index: 90;
+  min-width: 1.625rem;
+  height: 1.625rem;
+  padding: 0;
+  transition:
+    right 220ms var(--wix-ease-out),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    opacity 150ms ease,
+    transform 220ms var(--wix-ease-out);
+}
+
+.sisad-pdfme-designer-left-sidebar-toggle-btn:hover {
+  border-color: var(--color-primary-25);
+  color: var(--color-primary);
+}
+
+.sisad-pdfme-designer-left-sidebar[data-sidebar-collapsed="true"] .sisad-pdfme-designer-left-sidebar-toggle-btn {
+  right: 0.5rem;
+}
+
+.sisad-pdfme-designer-left-sidebar[data-sidebar-collapsed="true"] {
+  width: var(--sisad-pdfme-ls-rail-width);
+  max-width: var(--sisad-pdfme-ls-rail-width);
+  overflow: hidden;
+}
+
+.sisad-pdfme-designer-left-sidebar[data-sidebar-collapsed="true"] .sisad-pdfme-designer-left-sidebar-shell,
+.sisad-pdfme-designer-left-sidebar[data-sidebar-collapsed="true"] .sisad-pdfme-designer-left-sidebar-content,
+.sisad-pdfme-designer-left-sidebar[data-sidebar-collapsed="true"] .sisad-pdfme-designer-left-sidebar-frame {
+  opacity: 0;
+  pointer-events: none;
+  visibility: hidden;
+  transform: translateX(-0.5rem);
+}
+
+.sisad-pdfme-designer-right-sidebar-panel-switcher-wrap {
+  padding: 0.375rem 0.4375rem 0;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.sisad-pdfme-designer-right-sidebar-panel-switcher {
+  display: flex;
+  gap: 0;
+  width: 100%;
+  padding: 0.125rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.625rem;
+  background: var(--color-bg-surface);
+}
+
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn {
+  flex: 1;
+  height: 1.625rem;
+  padding: 0 0.375rem;
+  border: 1px solid transparent;
+  border-radius: 0.4375rem;
+  background: transparent;
+  color: var(--text-primary);
+  font-size: 0.59375rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn:hover {
+  background: var(--color-border-12);
+}
+
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn[data-active="true"] {
+  background: var(--color-primary-dim);
+  border-color: var(--color-primary-08);
+  color: var(--text-primary);
+}
+
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn:disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+}
+
+.sisad-pdfme-designer-right-sidebar-layout-grid {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+.sisad-pdfme-designer-right-sidebar-layout-frame {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  border: none;
+  border-bottom: 1px solid var(--border-subtle);
+  background: var(--color-bg-elevated);
+}
+
+.sisad-pdfme-designer-right-sidebar-layout-header {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  flex-shrink: 0;
+  padding: 0.375rem 0.5rem 0;
+  background: var(--color-white);
+  border-bottom: 1px solid var(--color-border-16);
+}
+
+.sisad-pdfme-designer-sidebar-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-width: 0;
+  width: 100%;
+}
+
+.sisad-pdfme-designer-sidebar-header-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-width: 0;
+}
+
+.sisad-pdfme-designer-sidebar-header-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-width: 0;
+}
+
+.sisad-pdfme-designer-right-sidebar-layout-header-divider {
+  margin-top: 0.3125rem;
+  margin-bottom: 0;
+  opacity: 0.6;
+}
+
+.sisad-pdfme-designer-right-sidebar-layout-body {
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 0.375rem 0.5rem 0.5rem;
+  overscroll-behavior: contain;
+  scrollbar-gutter: stable both-edges;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-25) transparent;
+}
+
+.sisad-pdfme-designer-right-sidebar-layout-body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.sisad-pdfme-designer-right-sidebar-layout-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sisad-pdfme-designer-right-sidebar-layout-body::-webkit-scrollbar-thumb {
+  background: var(--color-border-25);
+  border-radius: 2px;
+}
+
+.sisad-pdfme-designer-right-sidebar-layout-footer {
+  position: sticky;
+  bottom: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem 0.75rem;
+  border-top: 1px solid var(--color-border-12);
+  background: var(--color-white);
+}
+
+.sisad-pdfme-designer-right-sidebar-layout-body:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+.sisad-pdfme-designer-detail-view-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-height: 0;
+}
+
+.sisad-pdfme-designer-detail-view,
+.sisad-pdfme-designer-detail-view-host,
+.sisad-pdfme-designer-list-view {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  height: 100%;
+}
+
+.sisad-pdfme-designer-detail-view-form-shell {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  width: 100%;
+}
+
+.sisad-pdfme-designer-detail-view-form-shell .fr-form,
+.sisad-pdfme-designer-detail-view-form-shell .ant-form {
+  width: 100%;
+  min-width: 0;
+}
+
+/* Reset ant grid gutters inside the form shell using high specificity */
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell .ant-row {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell .ant-col {
+  padding-left: 0.1875rem;
+  padding-right: 0.1875rem;
+}
+
+/* Compact ant-form-item inside right sidebar */
+.sisad-pdfme-designer-right-sidebar .ant-form-item {
+  margin-bottom: 0.4375rem;
+}
+
+.sisad-pdfme-designer-right-sidebar .ant-form-item-label {
+  padding-bottom: 0.125rem;
+}
+
+.sisad-pdfme-designer-right-sidebar .ant-form-item-label>label {
+  font-size: 0.625rem;
+  font-weight: 600;
+  color: var(--color-gray-600);
+  letter-spacing: 0.02em;
+}
+
+.sisad-pdfme-designer-right-sidebar .ant-input,
+.sisad-pdfme-designer-right-sidebar .ant-input-number-input {
+  font-size: 0.71875rem;
+}
+
+.sisad-pdfme-designer-right-sidebar .ant-select-selection-item {
+  font-size: 0.71875rem;
+}
+
+.sisad-pdfme-designer-detail-header-card {
+  margin-bottom: 0.375rem;
+  padding: 0.5rem 0.625rem;
+  border: 1px solid var(--color-border-18);
+  border-radius: 0.875rem;
+  background:
+    radial-gradient(circle at top right, var(--color-primary-200-20), transparent 38%),
+    linear-gradient(180deg, var(--color-white), var(--color-gray-50));
+  box-shadow: 0 0.375rem 1rem var(--color-gray-900-06);
+}
+
+.sisad-pdfme-designer-detail-header-card-head {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  gap: 0.375rem;
+  margin-bottom: 0.25rem;
+}
+
+.sisad-pdfme-designer-detail-header-card-title-wrap {
+  display: flex;
+  flex: 1 1 auto;
+  min-width: 0;
+  flex-direction: row;
+  align-items: center;
+  gap: 0.375rem;
+  flex-wrap: wrap;
+}
+
+.sisad-pdfme-designer-detail-header-card-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.2rem;
+}
+
+.sisad-pdfme-designer-detail-header-card-state-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.sisad-pdfme-designer-detail-header-card-state-tag {
+  margin-inline-end: 0;
+}
+
+.sisad-pdfme-designer-detail-header-card-title {
+  min-width: 0;
+  font-size: 0.8125rem;
+  font-weight: 750;
+  color: var(--color-gray-900);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.sisad-pdfme-designer-detail-header-card-tag-base,
+.sisad-pdfme-designer-detail-header-card-tag {
+  margin-inline-end: 0;
+}
+
+.sisad-pdfme-designer-detail-header-card-tags {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.375rem;
+  margin-left: auto;
+}
+
+.sisad-pdfme-designer-detail-header-card-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.sisad-pdfme-designer-detail-header-card-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.1875rem 0.5rem;
+  border: 1px solid var(--color-border-12);
+  border-radius: 0.5rem;
+  background: linear-gradient(180deg, var(--color-gray-100-80), var(--color-white));
+}
+
+.sisad-pdfme-designer-detail-header-card-stat-label {
+  font-size: 0.5625rem;
+  font-weight: 700;
+  color: var(--color-gray-600-78);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.sisad-pdfme-designer-detail-header-card-stat-value {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+}
+
+.sisad-pdfme-designer-detail-section-card {
+  margin-bottom: 0.1875rem;
+  border: 1px solid var(--color-border-12);
+  border-radius: 0.625rem;
+  overflow: hidden;
+  background: var(--color-bg-elevated);
+}
+
+.sisad-pdfme-designer-detail-section-card[data-collapsed="true"] {
+  margin-bottom: 1px;
+}
+
+.sisad-pdfme-designer-schema-config-widget {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  min-height: 0;
+  padding: 0.375rem;
+  border: 1px solid var(--color-border-12);
+  border-radius: 0.75rem;
+  background:
+    linear-gradient(180deg, var(--color-gray-50), var(--color-white) 36%),
+    var(--color-white);
+}
+
+.sisad-pdfme-designer-detail-view-context-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+.sisad-pdfme-designer-detail-view-context-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.125rem;
+  padding: 0 0.4375rem;
+  border-radius: 999px;
+  background: var(--color-gray-100-80);
+  color: var(--color-gray-700);
+  font-size: 0.59375rem;
+  font-weight: 700;
+  letter-spacing: 0.01em;
+}
+
+.sisad-pdfme-designer-schema-config-header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.375rem;
+  padding: 0 0 0.25rem;
+  border-bottom: 1px solid var(--color-border-12);
+}
+
+.sisad-pdfme-designer-schema-config-section-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.sisad-pdfme-designer-schema-config-widget-title,
+.sisad-pdfme-designer-schema-config-section-title,
+.sisad-pdfme-designer-schema-config-pair-editor-title,
+.sisad-pdfme-designer-detail-view-title {
+  font-size: 0.75rem;
+  font-weight: 750;
+  color: var(--color-gray-900);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+
+.sisad-pdfme-designer-schema-config-section-head-main {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  min-width: 0;
+}
+
+.sisad-pdfme-designer-schema-config-section-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 0.3125rem;
+  background: var(--color-gray-100-80);
+  color: var(--color-gray-700);
+}
+
+.sisad-pdfme-designer-schema-config-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.375rem;
+}
+
+.sisad-pdfme-designer-schema-config-tags .ant-tag,
+.sisad-pdfme-designer-schema-config-summary-row .ant-tag,
+.sisad-pdfme-designer-schema-config-section-state {
+  margin-inline-end: 0;
+  border: 1px solid var(--color-border-12);
+  border-radius: 999px;
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.sisad-pdfme-designer-schema-config-tags .ant-tag {
+  padding: 0 0.45rem;
+  min-height: 1.5rem;
+  display: inline-flex;
+  align-items: center;
+}
+
+.sisad-pdfme-designer-schema-config-summary-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  align-items: center;
+  padding: 0;
+}
+
+.sisad-pdfme-designer-schema-config-summary-tag {
+  max-width: 100%;
+}
+
+.sisad-pdfme-designer-schema-config-help {
+  margin-top: 0.0625rem;
+  font-size: 0.625rem;
+  line-height: 1.25;
+  color: var(--color-gray-600-78);
+}
+
+.sisad-pdfme-designer-schema-config-summary {
+  position: relative;
+  overflow: hidden;
+  padding: 0.3125rem 0.5rem 0.3125rem 0.625rem;
+  border-radius: 0.625rem;
+  background: linear-gradient(180deg, var(--color-gray-100-80), var(--color-white));
+  border: 1px solid var(--color-border-12);
+}
+
+.sisad-pdfme-designer-schema-config-summary::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 0.25rem;
+  background: linear-gradient(180deg, var(--color-primary), var(--color-primary-30));
+}
+
+.sisad-pdfme-designer-schema-config-summary-text {
+  font-size: 0.6875rem;
+  line-height: 1.35;
+  color: var(--color-gray-600-78);
+}
+
+.sisad-pdfme-designer-schema-config-switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 1.625rem;
+  padding: 0.1875rem 0.4375rem;
+  border: 1px solid var(--color-border-12);
+  border-radius: 0.5rem;
+  background: var(--color-gray-100-60);
+  font-size: 0.75rem;
+  color: var(--color-gray-700);
+}
+
+.sisad-pdfme-designer-schema-config-switch-row span:first-child {
+  font-weight: 600;
+}
+
+.sisad-pdfme-designer-schema-config-grid-2 {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.25rem;
+}
+
+.sisad-pdfme-designer-right-sidebar[data-panel-mode='detail'] .sisad-pdfme-designer-right-sidebar-layout-body {
+  padding-top: 0.375rem;
+}
+
+.sisad-pdfme-designer-right-sidebar[data-panel-mode='detail'] .sisad-pdfme-designer-detail-view-title {
+  letter-spacing: -0.02em;
+}
+
+.sisad-pdfme-designer-right-sidebar[data-panel-mode='detail'] .sisad-pdfme-designer-detail-section-card-head {
+  padding-top: 0.4375rem;
+  padding-bottom: 0.4375rem;
+}
+
+.sisad-pdfme-designer-right-sidebar[data-panel-mode='detail'] .sisad-pdfme-designer-detail-section-card-title {
+  font-size: 0.6875rem;
+}
+
+.sisad-pdfme-designer-right-sidebar[data-panel-mode='detail'] .sisad-pdfme-designer-detail-section-card-description {
+  font-size: 0.625rem;
+}
+
+.sisad-pdfme-designer-schema-config-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1875rem;
+  min-width: 0;
+  font-size: 0.6875rem;
+  color: var(--color-gray-600-78);
+}
+
+.sisad-pdfme-designer-schema-config-field>span {
+  display: inline-flex;
+  align-items: center;
+  min-height: 0.875rem;
+  font-weight: 500;
+}
+
+.sisad-pdfme-designer-schema-config-inline-checks {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.375rem;
+}
+
+.sisad-pdfme-designer-schema-config-inline-checks>div {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-height: 1.375rem;
+  padding: 0.125rem 0.375rem;
+  border: 1px solid var(--color-border-12);
+  border-radius: 999px;
+  background: var(--color-white);
+  font-size: 0.6875rem;
+  color: var(--color-gray-700);
+}
+
+.sisad-pdfme-designer-schema-config-inline-checks label {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: 0.6875rem;
+  color: var(--color-gray-700);
+}
+
+.sisad-pdfme-designer-schema-config-pair-editor {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3125rem;
+  padding: 0.375rem;
+  border: 1px solid var(--color-border-12);
+  border-radius: 0.625rem;
+  background: var(--color-white);
+}
+
+.sisad-pdfme-designer-schema-config-pair-editor-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.375rem;
+}
+
+.sisad-pdfme-designer-schema-config-pair-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.sisad-pdfme-designer-schema-config-pair-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.2fr) auto;
+  gap: 0.25rem;
+  align-items: center;
+  padding: 0.25rem;
+  border: 1px solid var(--color-border-12);
+  border-radius: 0.5rem;
+  background: var(--color-gray-50);
+}
+
+.sisad-pdfme-designer-schema-config-empty {
+  padding: 0.3125rem 0.5rem;
+  border-radius: 0.5rem;
+  border: 1px dashed var(--color-border-12);
+  background: var(--color-gray-100-60);
+  color: var(--color-gray-600-78);
+  font-size: 0.6875rem;
+}
+
+.sisad-pdfme-designer-schema-config-divider {
+  margin: 0.25rem 0;
+}
+
+.sisad-pdfme-designer-schema-config-collapse {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+/* Override ant-collapse inside schema config using direct descendant specificity */
+.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item {
+  overflow: hidden;
+  border: 1px solid var(--color-border-12);
+  border-radius: 0.625rem;
+  background: linear-gradient(180deg, var(--color-white), var(--color-gray-50));
+}
+
+.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item > .ant-collapse-header {
+  padding: 0.375rem 0.5rem;
+}
+
+.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item > .ant-collapse-content {
+  border-top: 1px solid var(--color-border-12);
+}
+
+.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item > .ant-collapse-content > .ant-collapse-content-box {
+  padding: 0.375rem 0.5rem;
+}
+
+.sisad-pdfme-designer-schema-config-collapse .ant-space-item {
+  /* tighten vertical spacing inside collapse panels */
+}
+
+.sisad-pdfme-designer-schema-config-nested-collapse {
+  gap: 0.1875rem;
+}
+
+.sisad-pdfme-designer-schema-config-nested-collapse > .ant-collapse-item > .ant-collapse-header {
+  padding-block: 0.3125rem;
+}
+
+.sisad-pdfme-designer-schema-config-nested-collapse > .ant-collapse-item > .ant-collapse-content > .ant-collapse-content-box {
+  padding-top: 0.3125rem;
+}
+
+.sisad-pdfme-designer-schema-config-section-head {
+  gap: 0.5rem;
+}
+
+.sisad-pdfme-designer-schema-config-section-head-main {
+  gap: 0.375rem;
+}
+
+.sisad-pdfme-designer-schema-config-section-title {
+  font-size: 0.75rem;
+  font-weight: 750;
+  color: var(--color-gray-900);
+}
+
+.sisad-pdfme-designer-schema-config-section-icon {
+  border: 1px solid var(--color-border-12);
+  background: linear-gradient(180deg, var(--color-white), var(--color-gray-100-60));
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+
+.sisad-pdfme-designer-schema-config-section-state {
+  padding: 0.125rem 0.375rem;
+  font-size: 0.5625rem;
+  background: var(--color-gray-100-80);
+  color: var(--color-gray-600);
+}
+
+.sisad-pdfme-designer-schema-config-section-state[data-active='true'] {
+  background: var(--color-primary-200-20);
+  border-color: var(--color-primary-30);
+  color: var(--color-primary);
+}
+
+@media (max-width: 820px) {
+
+  .sisad-pdfme-designer-schema-config-grid-2,
+  .sisad-pdfme-designer-schema-config-pair-row {
+    grid-template-columns: 1fr;
+  }
+
+  .sisad-pdfme-designer-schema-config-tags {
+    justify-content: flex-start;
+  }
+
+  .sisad-pdfme-designer-schema-config-widget {
+    padding: 0.625rem;
+  }
+
+  .sisad-pdfme-designer-schema-config-switch-row {
+    padding: 0.45rem 0.55rem;
+  }
+}
+
+.sisad-pdfme-designer-detail-section-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.375rem;
+  width: 100%;
+  padding: 0.3125rem 0.5rem;
+  border: none;
+  border-radius: 0.5rem;
+  background: linear-gradient(180deg, var(--color-gray-50), var(--color-white));
+  cursor: pointer;
+  transition: background 0.12s ease;
+}
+
+.sisad-pdfme-designer-detail-section-card-head[role='button'],
+.sisad-pdfme-designer-detail-section-card-head[type='button'] {
+  appearance: none;
+  font: inherit;
+  text-align: left;
+}
+
+.sisad-pdfme-designer-detail-section-card-head:hover {
+  background: var(--color-gray-100-80);
+}
+
+.sisad-pdfme-designer-detail-section-card-head:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 1px;
+}
+
+.sisad-pdfme-designer-detail-section-card-head-main {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  min-width: 0;
+  flex: 1;
+}
+
+.sisad-pdfme-designer-detail-section-card-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.625rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  color: var(--color-gray-600);
+}
+
+.sisad-pdfme-designer-detail-section-card-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.5625rem;
+  line-height: 1.3;
+  color: var(--color-gray-400);
+}
+
+.sisad-pdfme-designer-detail-section-card-toggle {
+  width: 0.9375rem;
+  height: 0.9375rem;
+  min-width: 0.9375rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border-20);
+  border-radius: 0.25rem;
+  background: transparent;
+  color: var(--color-gray-500);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: transform 150ms ease, color 120ms ease, border-color 120ms ease, background 120ms ease;
+}
+
+.sisad-pdfme-designer-detail-section-card-toggle:hover {
+  border-color: var(--color-primary-30);
+  color: var(--color-primary);
+  background: var(--color-primary-200-20);
+}
+
+.sisad-pdfme-designer-detail-section-card[data-collapsed="true"] .sisad-pdfme-designer-detail-section-card-toggle {
+  transform: rotate(-90deg);
+}
+
+.sisad-pdfme-designer-detail-section-card-body {
+  padding: 0 0.5rem;
+}
+
+.sisad-pdfme-designer-detail-section-card-body[data-collapsed="true"] {
+  display: none;
+}
+
+.sisad-pdfme-designer-detail-section-card-body[data-collapsed="false"] {
+  padding-top: 0.375rem;
+  padding-bottom: 0.4375rem;
+}
+
+.sisad-pdfme-designer-detail-view-title {
+  font-size: 0.75rem;
+  font-weight: 750;
+  letter-spacing: -0.01em;
+  color: var(--color-gray-900);
+}
+
+@media (max-width: 1280px) {
+  .sisad-pdfme-designer-right-sidebar {
+    width: clamp(18rem, 24vw, 22.5rem);
+  }
+}
+
+@media (max-width: 820px) {
+  .sisad-pdfme-designer-right-sidebar {
+    border-radius: 0;
+  }
+
+  .sisad-pdfme-designer-right-sidebar-content {
+    padding: 0.5rem;
+  }
+
+  .sisad-pdfme-designer-detail-header-card,
+  .sisad-pdfme-designer-schema-config-summary,
+  .sisad-pdfme-designer-detail-section-card {
+    border-radius: 0.75rem;
+  }
+}
+
+.ant-divider-horizontal {
+  border-color: var(--border-subtle);
+  margin: 0.5rem 0;
+}
+
+.ant-typography {
+  color: var(--text-primary);
+}
+
+.ant-typography-secondary {
+  color: var(--text-muted);
+}
+
+.ant-btn {
+  font-family: var(--font-family-ui);
+  border-radius: var(--radius-sm);
+  transition: all var(--transition-normal);
+}
+
+.ant-btn-default:not(.sisad-pdfme-designer-left-sidebar-filter-btn) {
+  background: var(--color-bg-surface);
+  border-color: var(--border-soft);
+  color: var(--text-secondary);
+}
+
+.ant-btn-default:not(.sisad-pdfme-designer-left-sidebar-filter-btn):hover {
+  background: var(--bg-hover);
+  border-color: var(--border-strong);
+  color: var(--text-primary);
+}
+
+.ant-btn-text {
+  background: transparent;
+  color: var(--text-secondary);
+}
+
+.ant-btn-text:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.ant-input-affix-wrapper {
+  background: var(--color-bg-surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-sm);
+  color: var(--text-primary);
+  transition: border-color var(--transition-normal), box-shadow var(--transition-normal);
+}
+
+.ant-input-affix-wrapper:hover {
+  border-color: var(--border-strong);
+}
+
+.ant-input-affix-wrapper-focused,
+.ant-input-affix-wrapper:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.1875rem var(--color-primary-dim);
+}
+
+.ant-input {
+  background: transparent;
+  color: var(--text-primary);
+  font-family: var(--font-family-ui);
+  font-size: 0.75rem;
+}
+
+.ant-input::placeholder {
+  color: var(--text-muted);
+}
+
+.ant-select-selector {
+  background: var(--color-bg-surface);
+  border-color: var(--border-soft);
+  color: var(--text-primary);
+  border-radius: var(--radius-sm);
+}
+
+.ant-select-selection-item {
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  font-family: var(--font-family-ui);
+}
+
+.sisad-pdfme-output-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+  padding: 0.625rem 1rem;
+  background: var(--color-bg-base);
+  border-top: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+}
+
+.sisad-pdfme-output-card {
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-elevated);
+  transition: border-color var(--transition-normal);
+}
+
+.sisad-pdfme-output-card:hover {
+  border-color: var(--border-soft);
+}
+
+.sisad-pdfme-output-card h3 {
+  margin: 0 0 0.375rem;
+  font-size: 0.6875rem;
+  font-weight: 600;
+  font-family: var(--font-family-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+.sisad-pdfme-output-card p {
+  margin: 0;
+  font-size: 0.71875rem;
+  line-height: 1.5;
+  color: var(--text-muted);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(0.25rem);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.sisad-pdfme-panel {
+  animation: fadeIn 0.2s ease;
+}
+
+.sisad-pdfme-designer-list-view-empty {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 16px;
+  border: 1px dashed var(--color-border-30);
+  border-radius: 8px;
+  background: var(--color-gray-50);
+  text-align: center;
+}
+
+.sisad-pdfme-designer-list-view-empty-title {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.sisad-pdfme-designer-list-view-empty-hint {
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  line-height: 1.45;
+}
+
+.sisad-pdfme-designer-list-view-title {
+  font-size: 0.65625rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.sisad-pdfme-designer-list-view-counter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 2.5rem;
+  padding: 2px 8px;
+  border-radius: 999px;
+  border: 1px solid var(--color-primary-20);
+  background: var(--color-primary-200-85);
+  color: var(--color-primary);
+  font-size: 0.625rem;
+  font-weight: 700;
+}
+
+.sisad-pdfme-designer-list-view-subtitle {
+  font-size: 0.65625rem;
+  color: var(--text-secondary);
+}
+
+.sisad-pdfme-designer-list-view-toolbar {
+  display: grid;
+  gap: 8px;
+}
+
+.sisad-pdfme-designer-list-view-toolbar-controls {
+  display: grid;
+  gap: 6px;
+}
+
+.sisad-pdfme-designer-list-view-toolbar-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sisad-pdfme-designer-list-view {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+}
+
+@media (max-width: 64rem) {
+  .sisad-pdfme-designer-right-sidebar {
+    width: min(20rem, calc(100vw - 2rem));
+  }
+}
+
+@media (max-width: 56.25rem) {
+  .sisad-pdfme-output-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+.sisad-pdfme-designer-custom-field-modal .ant-modal-content {
+  overflow: hidden;
+  border: 1px solid var(--border-subtle);
+  border-radius: 1rem;
+  background: linear-gradient(180deg, var(--color-white), var(--color-gray-50));
+  box-shadow: var(--shadow-lg);
+}
+
+.sisad-pdfme-designer-custom-field-modal .ant-modal-header {
+  padding: 1rem 1.125rem 0.875rem;
+  border-bottom: 1px solid var(--color-border-12);
+  background: transparent;
+}
+
+.sisad-pdfme-designer-custom-field-modal .ant-modal-title {
+  font-size: 0.9375rem;
+  font-weight: 700;
+  letter-spacing: -0.01em;
+  color: var(--text-primary);
+}
+
+.sisad-pdfme-designer-custom-field-modal .ant-modal-close {
+  top: 0.875rem;
+  inset-inline-end: 0.875rem;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.625rem;
+  color: var(--text-secondary);
+  transition:
+    background var(--transition),
+    color var(--transition),
+    transform var(--transition);
+}
+
+.sisad-pdfme-designer-custom-field-modal .ant-modal-close:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+.sisad-pdfme-designer-custom-field-modal .ant-modal-close:active {
+  transform: scale(0.96);
+}
+
+.sisad-pdfme-designer-custom-field-modal .ant-modal-body {
+  padding: 0;
+}
+
+.sisad-pdfme-designer-custom-field-form {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  max-height: min(78vh, 48rem);
+}
+
+.sisad-pdfme-designer-custom-field-form-scroll {
+  display: grid;
+  gap: 0.875rem;
+  padding: 1rem 1.125rem 0.875rem;
+  overflow: auto;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-25) transparent;
+}
+
+.sisad-pdfme-designer-custom-field-form-scroll::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.sisad-pdfme-designer-custom-field-form-scroll::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sisad-pdfme-designer-custom-field-form-scroll::-webkit-scrollbar-thumb {
+  background: var(--color-border-25);
+  border-radius: 0.1875rem;
+}
+
+.sisad-pdfme-designer-custom-field-section {
+  margin: 0;
+  padding: 0.875rem 0.9375rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.9375rem;
+  background: linear-gradient(180deg, var(--color-white), var(--color-gray-50));
+  box-shadow: 0 0.5rem 1.125rem var(--color-gray-900-04);
+}
+
+.sisad-pdfme-designer-custom-field-section>h4,
+.sisad-pdfme-designer-custom-field-section-legend {
+  margin: 0 0 0.75rem;
+  padding: 0;
+  color: var(--color-gray-700);
+  font-size: 0.6875rem;
+  font-weight: 800;
+  letter-spacing: 0.1em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.sisad-pdfme-designer-custom-field-section-legend {
+  display: inline-flex;
+  align-items: center;
+  max-width: 100%;
+  padding: 0 0.375rem;
+  margin: 0 -0.375rem 0.75rem;
+  background: inherit;
+}
+
+.sisad-pdfme-designer-custom-field-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.75rem;
+}
+
+.sisad-pdfme-designer-custom-field-control {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  min-width: 0;
+}
+
+.sisad-pdfme-designer-custom-field-label {
+  color: var(--text-secondary);
+  font-size: 0.6875rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.sisad-pdfme-designer-custom-field-label::after {
+  color: var(--color-danger);
+}
+
+.sisad-pdfme-designer-custom-field-modal .ant-input,
+.sisad-pdfme-designer-custom-field-modal .sisad-pdfme-designer-custom-field-select {
+  min-height: 2.25rem;
+  padding: 0.375rem 0.75rem;
+  border: 1px solid var(--border-soft);
+  border-radius: 0.7rem;
+  background: var(--color-bg-surface);
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    background var(--transition);
+}
+
+.sisad-pdfme-designer-custom-field-modal .ant-input:hover,
+.sisad-pdfme-designer-custom-field-modal .sisad-pdfme-designer-custom-field-select:hover {
+  border-color: var(--border-strong);
+}
+
+.sisad-pdfme-designer-custom-field-modal .ant-input:focus,
+.sisad-pdfme-designer-custom-field-modal .ant-input-focused,
+.sisad-pdfme-designer-custom-field-modal .sisad-pdfme-designer-custom-field-select:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 0.1875rem var(--color-primary-dim);
+  background: var(--color-white);
+}
+
+.sisad-pdfme-designer-custom-field-modal .ant-input::placeholder {
+  color: var(--text-muted);
+}
+
+.sisad-pdfme-designer-custom-field-select {
+  width: 100%;
+  appearance: none;
+  padding-right: 2rem;
+}
+
+.sisad-pdfme-designer-custom-field-checkbox {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  min-width: 0;
+  padding: 0.625rem 0.75rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.75rem;
+  background: var(--color-bg-surface);
+  transition:
+    border-color var(--transition),
+    background var(--transition),
+    box-shadow var(--transition);
+}
+
+.sisad-pdfme-designer-custom-field-checkbox:hover {
+  border-color: var(--border-strong);
+  background: var(--bg-hover);
+}
+
+.sisad-pdfme-designer-custom-field-checkbox input {
+  width: 1rem;
+  height: 1rem;
+  margin: 0.0625rem 0 0;
+  flex: 0 0 auto;
+  accent-color: var(--color-primary);
+  cursor: pointer;
+}
+
+.sisad-pdfme-designer-custom-field-checkbox label {
+  min-width: 0;
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  line-height: 1.35;
+  cursor: pointer;
+}
+
+.sisad-pdfme-designer-custom-field-inline-checks {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+  margin-top: 0.75rem;
+}
+
+.sisad-pdfme-designer-custom-field-footer {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.625rem;
+  padding: 0.875rem 1.125rem 1.125rem;
+  border-top: 1px solid var(--border-subtle);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), var(--color-white));
+  backdrop-filter: blur(0.75rem);
+}
+
+.sisad-pdfme-designer-custom-field-footer .ant-btn {
+  min-width: 5.5rem;
+  height: 2.25rem;
+  border-radius: 0.7rem;
+  font-weight: 600;
+}
+
+.sisad-pdfme-designer-custom-field-footer .ant-btn-default {
+  background: var(--color-bg-surface);
+}
+
+.sisad-pdfme-designer-custom-field-footer .ant-btn-primary {
+  box-shadow: 0 0.5rem 1rem var(--color-primary-15);
+}
+
+.sisad-pdfme-designer-custom-field-footer .ant-btn:disabled {
+  box-shadow: none;
+}
+
+@media (max-width: 52rem) {
+  .sisad-pdfme-designer-custom-field-form {
+    max-height: min(82vh, 52rem);
+  }
+
+  .sisad-pdfme-designer-custom-field-grid,
+  .sisad-pdfme-designer-custom-field-inline-checks {
+    grid-template-columns: 1fr;
+  }
+
+  .sisad-pdfme-designer-custom-field-footer {
+    flex-direction: column-reverse;
+    align-items: stretch;
+  }
+
+  .sisad-pdfme-designer-custom-field-footer .ant-btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 48rem) {
+  .sisad-pdfme-ui-control-bar {
+    gap: 0.25rem;
+    padding: 0.25rem 0.5rem;
+  }
+
+  .sisad-pdfme-designer-left-sidebar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 20;
+    width: 0;
+    overflow: hidden;
+    transition: width 0.22s var(--wix-ease-out);
+  }
+
+  .sisad-pdfme-designer-left-sidebar[data-expanded="true"] {
+    width: 15rem;
+    overflow: visible;
+  }
+
+  .sisad-pdfme-designer-right-sidebar {
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    z-index: 20;
+    width: 0;
+    overflow: hidden;
+    transition: width 0.22s var(--wix-ease-out);
+  }
+
+  .sisad-pdfme-designer-right-sidebar[data-sidebar-open="true"] {
+    width: 16rem;
+    overflow: visible;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .sisad-pdfme-designer-right-sidebar,
+  .sisad-pdfme-panel-dock,
+  .sisad-pdfme-panel-trigger,
+  .sisad-pdfme-designer-left-sidebar-toggle-btn,
+  .sisad-pdfme-designer-left-sidebar-chip-row {
+    animation: none;
+    transition-duration: 1ms;
+  }
+}
+
+/* ── LEFT SIDEBAR COMPACT VARIANT ───────────────────────────────── */
+.sisad-pdfme-designer-left-sidebar-compact {
+  min-width: var(--sisad-pdfme-ls-rail-width);
+}
+
+/* ── RIGHT SIDEBAR TOGGLE — stage (floating) variant ─────────────
+   Overrides the shared base to be absolutely positioned when
+   the toggle is rendered in the stage (outside the panel).
+   ─────────────────────────────────────────────────────────────── */
+.sisad-pdfme-designer-stage > .sisad-pdfme-designer-right-sidebar-toggle-btn {
+  position: absolute;
+  top: 3.75rem;
+  right: 0.75rem;
+  z-index: 71;
+}
+
+/* ── LIST VIEW ITEM STRUCTURE ──────────────────────────────── */
+.sisad-pdfme-designer-list-view-items-wrapper {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.sisad-pdfme-designer-list-view-item {
+  position: relative;
+  border-bottom: 1px solid var(--color-border-subtle);
+  transition: background 100ms ease;
+}
+
+.sisad-pdfme-designer-list-view-item:hover {
+  background: var(--color-bg-hover);
+}
+
+.sisad-pdfme-designer-list-view-item-hit-target {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+}
+
+.sisad-pdfme-designer-list-view-item-content {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.25rem 0.5rem;
+  min-height: 2.125rem;
+}
+
+.sisad-pdfme-designer-list-view-item-grip {
+  width: 1.25rem;
+  height: 1.25rem;
+  min-width: 1.25rem;
+  padding: 0;
+  border: none;
+  background: transparent;
+  color: var(--color-text-muted);
+  cursor: grab;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0.6;
+  transition: opacity 120ms ease;
+}
+
+.sisad-pdfme-designer-list-view-item-grip:hover {
+  opacity: 1;
+}
+
+.sisad-pdfme-designer-list-view-item-grip:active {
+  cursor: grabbing;
+}
+
+.sisad-pdfme-designer-list-view-item-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  flex-shrink: 0;
+}
+
+.sisad-pdfme-designer-list-view-item-value {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.75rem;
+  color: var(--color-text-primary);
+}
+
+.sisad-pdfme-designer-list-view-item-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.125rem;
+  opacity: 0;
+  transition: opacity 120ms ease;
+}
+
+.sisad-pdfme-designer-list-view-item:hover .sisad-pdfme-designer-list-view-item-actions {
+  opacity: 1;
+}
+
+/* ── BULK UPDATE BUTTON ─────────────────────────────────── */
+.sisad-pdfme-designer-bulk-update {
+  font-size: 0.6875rem;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+}
+
+.sisad-pdfme-designer-bulk-update:hover {
+  color: var(--color-primary);
+}
+
+/* ── INPUT AUTO ──────────────────────────────────────────── */
+.sisad-pdfme-designer-input-auto {
+  width: 100%;
+  min-height: 2rem;
+}
+
+/* ── SEARCH AUTO ────────────────────────────────────────── */
+.sisad-pdfme-designer-search-auto {
+  color: var(--color-text-muted);
+}
+
+/* ── LAYERS AUTO ───────────────────────────────────────── */
+.sisad-pdfme-designer-layers-auto {
+  color: var(--color-text-muted);
+}
+
+/* ── ITEM AUTO ─────────────────────────────────────────── */
+.sisad-pdfme-designer-item-auto {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.375rem;
+  cursor: pointer;
+}
+
+.sisad-pdfme-designer-item-auto:hover {
+  background: var(--color-bg-hover);
+}
+
+/* ── CANVAS EMPTY STATE TITLE & HINT ──────────────────── */
+.sisad-pdfme-designer-canvas-empty-state-title {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.sisad-pdfme-designer-canvas-empty-state-hint {
+  display: block;
+  font-size: 0.6875rem;
+  color: var(--color-text-secondary);
+  line-height: 1.45;
+}
+
+/* ── RIGHT SIDEBAR TOGGLE INSIDE PANEL ───────────────────────────────
+   The toggle lives in the right sidebar panel header.
+   It inherits its base styles from .sisad-pdfme-designer-sidebar-toggle-btn
+   defined above and only overrides the positional specifics.
+   ─────────────────────────────────────────────────────────────────── */
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-right-sidebar-toggle-btn {
+  position: static;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   DOCUMENTS RAIL
+   ═══════════════════════════════════════════════════════════════════ */
+
+.sisad-pdfme-designer-documents-rail-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
+  flex: 1 1 auto;
+}
+
+.sisad-pdfme-designer-documents-rail {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  overflow: hidden;
+}
+
+/* ── Header ── */
+.sisad-pdfme-designer-documents-rail-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.375rem;
+  padding-bottom: 0.25rem;
+}
+
+.sisad-pdfme-designer-documents-rail-header-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3125rem;
+  min-width: 0;
+  flex: 1;
+}
+
+.sisad-pdfme-designer-documents-rail-header-title svg {
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.sisad-pdfme-designer-documents-rail-header-title .ant-typography {
+  font-size: 0.71875rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.sisad-pdfme-designer-documents-rail-count {
+  font-size: 0.625rem;
+  padding: 0.0625rem 0.3125rem;
+  border-radius: 999px;
+  background: var(--color-gray-100-80);
+  border: 1px solid var(--color-border-12);
+  line-height: 1.4;
+}
+
+.sisad-pdfme-designer-documents-rail-header-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.125rem;
+  flex-shrink: 0;
+}
+
+/* Use the .ant-btn wrapper's specificity instead of !important */
+.sisad-pdfme-designer-documents-rail .sisad-pdfme-designer-documents-rail-action.ant-btn {
+  height: 1.5rem;
+  padding: 0 0.4375rem;
+  font-size: 0.625rem;
+}
+
+.sisad-pdfme-designer-documents-rail-subtitle {
+  display: block;
+  font-size: 0.5625rem;
+  color: var(--color-gray-400);
+  line-height: 1.4;
+  margin-top: 0.125rem;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ── Empty State ── */
+.sisad-pdfme-designer-documents-rail-empty {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 0.75rem;
+  text-align: center;
+}
+
+.sisad-pdfme-designer-documents-rail-empty-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.625rem;
+  background: var(--color-gray-100-80);
+  border: 1px solid var(--color-border-12);
+  color: var(--color-gray-400);
+  flex-shrink: 0;
+}
+
+.sisad-pdfme-designer-documents-rail-empty-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1875rem;
+}
+
+.sisad-pdfme-designer-documents-empty-title {
+  font-size: 0.71875rem;
+  font-weight: 700;
+  color: var(--color-gray-800);
+  line-height: 1.3;
+}
+
+.sisad-pdfme-designer-documents-rail-empty-hint {
+  font-size: 0.5625rem;
+  color: var(--color-gray-400);
+  line-height: 1.4;
+}
+
+.sisad-pdfme-designer-documents-rail-empty-actions {
+  margin-top: 0.125rem;
+}
+
+/* Use wrapper specificity to override ant-btn dimensions */
+.sisad-pdfme-designer-documents-rail-empty-actions .sisad-pdfme-designer-documents-rail-empty-upload.ant-btn {
+  height: 1.625rem;
+  font-size: 0.6875rem;
+  border-radius: 0.5rem;
+}
+
+/* ── Item list ── */
+.sisad-pdfme-designer-documents-rail-items {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1875rem;
+  padding: 0.25rem 0;
+}
+
+.sisad-pdfme-designer-documents-rail-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.3125rem 0.5rem;
+  border: 1px solid transparent;
+  border-radius: 0.5rem;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  transition: background 0.1s ease, border-color 0.1s ease;
+}
+
+.sisad-pdfme-designer-documents-rail-item:hover {
+  background: var(--color-bg-hover);
+  border-color: var(--color-border-12);
+}
+
+.sisad-pdfme-designer-documents-rail-item-active {
+  background: var(--color-primary-08);
+  border-color: var(--color-primary-25, rgba(22, 119, 255, 0.25));
+}
+
+.sisad-pdfme-designer-documents-rail-leading {
+  flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.125rem;
+}
+
+.sisad-pdfme-designer-documents-rail-preview {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2.5rem;
+  border: 1px solid var(--color-border-16);
+  border-radius: 0.25rem;
+  background: var(--color-white);
+  color: var(--color-gray-400);
+  overflow: hidden;
+}
+
+.sisad-pdfme-designer-documents-rail-preview-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.sisad-pdfme-designer-documents-rail-page-label {
+  font-size: 0.4375rem;
+  font-weight: 600;
+  color: var(--color-gray-500);
+  text-align: center;
+  letter-spacing: 0.03em;
+}
+
+.sisad-pdfme-designer-documents-rail-meta {
+  display: flex;
+  flex-direction: column;
+  gap: 0.0625rem;
+  min-width: 0;
+  flex: 1;
+}
+
+/* Higher specificity via the rail wrapper removes the need for !important */
+.sisad-pdfme-designer-documents-rail .sisad-pdfme-designer-documents-rail-meta .ant-typography {
+  font-size: 0.6875rem;
+  line-height: 1.3;
+}
+
+.sisad-pdfme-designer-documents-rail-meta-row {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.sisad-pdfme-designer-documents-rail-active-badge {
+  display: inline-flex;
+  align-items: center;
+  padding: 0 0.25rem;
+  border-radius: 999px;
+  background: var(--color-primary-08);
+  color: var(--color-primary);
+  font-size: 0.4375rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ═══════════════════════════════════════════════════════════════════
+   ANIMATION SYSTEM — Global keyframes + Right Sidebar enhancements
+   All timings use tokens (--wix-ease-out, --transition-fast, etc.)
+   ═══════════════════════════════════════════════════════════════════ */
+
+/* ── Global Keyframes ────────────────────────────────────────────── */
+
+@keyframes rs-slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(1.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes rs-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(0.375rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rs-scale-in {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes rs-panel-switch {
+  from {
+    opacity: 0;
+    transform: translateY(0.25rem) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+@keyframes rs-header-card-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(-0.25rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rs-section-reveal {
+  from {
+    opacity: 0;
+    transform: translateY(0.1875rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes rs-tab-indicator {
+  from {
+    transform: scaleX(0);
+    opacity: 0;
+  }
+  to {
+    transform: scaleX(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rs-badge-pop {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.12);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+@keyframes rs-spinner {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes rs-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+@keyframes rs-pulse-ring {
+  0% {
+    box-shadow: 0 0 0 0 var(--color-primary-20);
+  }
+  60% {
+    box-shadow: 0 0 0 0.375rem transparent;
+  }
+  100% {
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+@keyframes rs-section-collapse {
+  from {
+    opacity: 1;
+    max-height: 62.5rem;
+  }
+  to {
+    opacity: 0;
+    max-height: 0;
+  }
+}
+
+@keyframes rs-stagger-in {
+  from {
+    opacity: 0;
+    transform: translateX(0.5rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* ── Right Sidebar — entrance animation ─────────────────────────── */
+
+.sisad-pdfme-designer-right-sidebar[data-sidebar-open="true"] {
+  animation: rs-slide-in 220ms var(--wix-ease-out) both;
+}
+
+/* Surface refinement with subtle depth */
+.sisad-pdfme-designer-right-sidebar-content.sisad-pdfme-designer-sidebar-surface {
+  position: relative;
+  overflow: hidden;
+}
+
+/* Ambient top glow for premium feel */
+.sisad-pdfme-designer-right-sidebar-content.sisad-pdfme-designer-sidebar-surface::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-primary-20) 30%,
+    var(--color-primary-30) 50%,
+    var(--color-primary-20) 70%,
+    transparent 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.8;
+}
+
+/* ── Panel Switcher — refined tab bar ───────────────────────────── */
+
+.sisad-pdfme-designer-right-sidebar-panel-switcher-wrap {
+  padding: 0.375rem 0.4375rem 0.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+  flex-shrink: 0;
+  overflow: hidden;
+}
+
+.sisad-pdfme-designer-right-sidebar-panel-switcher {
+  position: relative;
+  display: flex;
+  gap: 0.125rem;
+  width: 100%;
+  padding: 0.1875rem;
+  border: 1px solid var(--border-subtle);
+  border-radius: 0.625rem;
+  background: var(--color-bg-surface);
+}
+
+/* Animated tab button */
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn {
+  position: relative;
+  flex: 1;
+  height: 1.75rem;
+  padding: 0 0.375rem;
+  border: 1px solid transparent;
+  border-radius: 0.4375rem;
+  background: transparent;
+  color: var(--text-secondary);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    transform var(--transition-fast);
+  overflow: hidden;
+}
+
+/* Ripple pseudo for tab buttons */
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: var(--color-primary-08);
+  opacity: 0;
+  transition: opacity var(--transition-fast);
+}
+
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn:hover::before {
+  opacity: 1;
+}
+
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn:hover {
+  color: var(--text-primary);
+}
+
+/* Active tab — sliding background */
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn[data-active="true"] {
+  background: var(--color-bg-elevated);
+  border-color: var(--color-border-12);
+  color: var(--color-primary);
+  box-shadow:
+    0 1px 3px var(--color-gray-900-06),
+    inset 0 1px 0 var(--color-white-80);
+  transform: translateY(-0.5px);
+}
+
+/* Active tab top accent line */
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn[data-active="true"]::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 20%;
+  right: 20%;
+  height: 2px;
+  border-radius: 0 0 2px 2px;
+  background: var(--color-primary);
+  animation: rs-tab-indicator 180ms var(--wix-ease-out) both;
+}
+
+/* Btn content layout */
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn-content {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  opacity: 0.75;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn[data-active="true"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn-icon {
+  opacity: 1;
+  color: var(--color-primary);
+}
+
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn:hover .sisad-pdfme-designer-right-sidebar-panel-switcher-btn-icon {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn-label {
+  display: inline-block;
+  line-height: 1;
+}
+
+/* ── Panel content — animated entry ─────────────────────────────── */
+
+.sisad-pdfme-designer-detail-view-host,
+.sisad-pdfme-designer-custom-detailView {
+  animation: rs-panel-switch 200ms var(--wix-ease-out) both;
+}
+
+/* ── Layout frame improvements ───────────────────────────────────── */
+
+.sisad-pdfme-designer-right-sidebar-layout-frame {
+  border: none;
+  background: transparent;
+}
+
+/* ── Layout header — back btn + title ───────────────────────────── */
+
+.sisad-pdfme-designer-right-sidebar-layout-header {
+  align-items: center;
+  gap: 0.375rem;
+  padding: 0.3125rem 0.4375rem 0.25rem;
+  background: var(--color-bg-elevated);
+  border-bottom: 1px solid var(--color-border-12);
+  flex-shrink: 0;
+  animation: rs-header-card-reveal 180ms var(--wix-ease-out) both;
+}
+
+/* Back button polish */
+.sisad-pdfme-designer-back-button {
+  color: var(--text-muted);
+  border-radius: var(--radius-md);
+  transition:
+    color var(--transition-fast),
+    background var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.sisad-pdfme-designer-back-button:hover {
+  color: var(--color-primary);
+  background: var(--color-primary-08);
+  transform: translateX(-1px);
+}
+
+.sisad-pdfme-designer-back-button:active {
+  transform: translateX(-2px) scale(0.96);
+}
+
+/* ── Detail header card — premium skin ──────────────────────────── */
+
+.sisad-pdfme-designer-detail-header-card {
+  position: relative;
+  margin-bottom: 0.375rem;
+  padding: 0.5rem 0.625rem;
+  border: 1px solid var(--color-border-18);
+  border-radius: 0.875rem;
+  background:
+    radial-gradient(circle at top right, var(--color-primary-200-20), transparent 55%),
+    linear-gradient(180deg, var(--color-white), var(--color-gray-50));
+  box-shadow:
+    0 0.25rem 0.75rem var(--color-gray-900-06),
+    inset 0 1px 0 var(--color-white-80);
+  overflow: hidden;
+  transition:
+    box-shadow var(--transition-normal),
+    border-color var(--transition-normal);
+  animation: rs-header-card-reveal 220ms var(--wix-ease-out) both;
+}
+
+/* Subtle left accent */
+.sisad-pdfme-designer-detail-header-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  border-radius: 0.875rem 0 0 0.875rem;
+  background: linear-gradient(180deg, var(--color-primary), var(--color-primary-30));
+}
+
+.sisad-pdfme-designer-detail-header-card:hover {
+  box-shadow:
+    0 0.375rem 1rem var(--color-gray-900-08),
+    inset 0 1px 0 var(--color-white-80);
+  border-color: var(--color-border-24);
+}
+
+/* Title refinement */
+.sisad-pdfme-designer-detail-header-card-title {
+  min-width: 0;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  line-height: 1.2;
+  letter-spacing: -0.015em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* Stat cells — animated on mount */
+.sisad-pdfme-designer-detail-header-card-stat {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  padding: 0.1875rem 0.5rem;
+  border: 1px solid var(--color-border-12);
+  border-radius: 0.5rem;
+  background: linear-gradient(180deg, var(--color-gray-100-80), var(--color-white));
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+  animation: rs-scale-in 200ms var(--wix-ease-out) both;
+}
+
+.sisad-pdfme-designer-detail-header-card-stat:hover {
+  background: linear-gradient(180deg, var(--color-primary-200-20), var(--color-primary-100-60));
+  border-color: var(--color-primary-25);
+  transform: translateY(-1px);
+}
+
+.sisad-pdfme-designer-detail-header-card-stat-value {
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--color-gray-900);
+  font-family: var(--font-family-mono);
+}
+
+.sisad-pdfme-designer-detail-header-card-stat-label {
+  font-size: 0.5rem;
+  font-weight: 700;
+  color: var(--color-gray-500);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* State tags row */
+.sisad-pdfme-designer-detail-header-card-state-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
+}
+
+/* Badge pop in for state tags */
+.sisad-pdfme-designer-detail-header-card-state-tag {
+  animation: rs-badge-pop 260ms var(--wix-spring) both;
+}
+
+/* ── Context strip chips ─────────────────────────────────────────── */
+
+.sisad-pdfme-designer-detail-view-context-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  margin-bottom: 0.25rem;
+  animation: rs-fade-up 180ms var(--wix-ease-out) both;
+  animation-delay: 40ms;
+}
+
+.sisad-pdfme-designer-detail-view-context-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.0625rem;
+  padding: 0 0.4375rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--color-primary-08), var(--color-primary-15));
+  border: 1px solid var(--color-primary-20);
+  color: var(--color-primary);
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition:
+    background var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.sisad-pdfme-designer-detail-view-context-chip:hover {
+  background: linear-gradient(135deg, var(--color-primary-15), var(--color-primary-25));
+  transform: translateY(-0.5px);
+}
+
+/* ── Section cards — staggered animation ────────────────────────── */
+
+.sisad-pdfme-designer-detail-view-sections {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1875rem;
+  min-height: 0;
+}
+
+/* Each section gets a stagger via nth-child */
+.sisad-pdfme-designer-detail-section-card {
+  margin-bottom: 0.1875rem;
+  border: 1px solid var(--color-border-12);
+  border-radius: 0.625rem;
+  overflow: hidden;
+  background: var(--color-bg-elevated);
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+  animation: rs-section-reveal 220ms var(--wix-ease-out) both;
+}
+
+.sisad-pdfme-designer-detail-section-card:nth-child(1) { animation-delay: 30ms; }
+.sisad-pdfme-designer-detail-section-card:nth-child(2) { animation-delay: 65ms; }
+.sisad-pdfme-designer-detail-section-card:nth-child(3) { animation-delay: 100ms; }
+.sisad-pdfme-designer-detail-section-card:nth-child(4) { animation-delay: 135ms; }
+.sisad-pdfme-designer-detail-section-card:nth-child(5) { animation-delay: 165ms; }
+.sisad-pdfme-designer-detail-section-card:nth-child(6) { animation-delay: 190ms; }
+
+.sisad-pdfme-designer-detail-section-card:hover {
+  border-color: var(--color-border-20);
+  box-shadow: 0 1px 4px var(--color-gray-900-04);
+}
+
+/* Section head — hover lift */
+.sisad-pdfme-designer-detail-section-card-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.375rem;
+  width: 100%;
+  padding: 0.3125rem 0.5rem;
+  border: none;
+  border-radius: 0;
+  background: linear-gradient(
+    180deg,
+    var(--color-gray-50) 0%,
+    var(--color-white) 100%
+  );
+  cursor: pointer;
+  transition: background var(--transition-fast);
+  user-select: none;
+}
+
+.sisad-pdfme-designer-detail-section-card-head:hover {
+  background: linear-gradient(180deg, var(--color-primary-08), var(--color-primary-200-20));
+}
+
+.sisad-pdfme-designer-detail-section-card-head:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: -2px;
+}
+
+/* Toggle icon animation */
+.sisad-pdfme-designer-detail-section-card-toggle {
+  width: 1rem;
+  height: 1rem;
+  min-width: 1rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border-20);
+  border-radius: 0.25rem;
+  background: transparent;
+  color: var(--color-gray-500);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition:
+    transform 200ms var(--wix-ease-out),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.sisad-pdfme-designer-detail-section-card-toggle:hover {
+  border-color: var(--color-primary-30);
+  color: var(--color-primary);
+  background: var(--color-primary-200-20);
+}
+
+.sisad-pdfme-designer-detail-section-card[data-collapsed="true"] .sisad-pdfme-designer-detail-section-card-toggle {
+  transform: rotate(-90deg);
+}
+
+/* Section body reveal */
+.sisad-pdfme-designer-detail-section-card-body[data-collapsed="false"] {
+  animation: rs-fade-up 160ms var(--wix-ease-out) both;
+  padding-top: 0.375rem;
+  padding-bottom: 0.4375rem;
+}
+
+/* ── Section card titles & descriptions ─────────────────────────── */
+
+.sisad-pdfme-designer-detail-section-card-title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.5625rem;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-gray-600);
+  line-height: 1.3;
+}
+
+.sisad-pdfme-designer-detail-section-card-description {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.5rem;
+  line-height: 1.3;
+  color: var(--color-gray-400);
+  margin-top: 1px;
+}
+
+/* ── Align widget — compact icon grid ───────────────────────────── */
+
+.sisad-pdfme-designer-align-widget-grid {
+  display: grid;
+  grid-template-columns: repeat(8, 1fr);
+  gap: 0.1875rem;
+  width: 100%;
+}
+
+.sisad-pdfme-designer-align-btn {
+  min-height: 1.75rem;
+  padding: 0;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-16);
+  background: var(--color-bg-surface);
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+  will-change: transform;
+}
+
+.sisad-pdfme-designer-align-btn:hover:not(:disabled) {
+  background: var(--color-primary-08);
+  border-color: var(--color-primary-25);
+  color: var(--color-primary);
+  transform: translateY(-1px) scale(1.05);
+  box-shadow: 0 2px 6px var(--color-primary-12);
+  z-index: 1;
+}
+
+.sisad-pdfme-designer-align-btn:active:not(:disabled) {
+  transform: translateY(0) scale(0.96);
+  box-shadow: none;
+}
+
+.sisad-pdfme-designer-align-btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.sisad-pdfme-designer-align-btn:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
+}
+
+/* ── Button group (formatter toolbar) ───────────────────────────── */
+
+.sisad-pdfme-designer-button-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.1875rem;
+  width: 100%;
+}
+
+.sisad-pdfme-designer-button-auto {
+  min-height: 1.625rem;
+  min-width: 1.625rem;
+  padding: 0 0.25rem;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--color-border-16);
+  background: var(--color-bg-surface);
+  color: var(--text-secondary);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+  will-change: transform;
+}
+
+.sisad-pdfme-designer-button-auto:hover:not(:disabled) {
+  background: var(--color-primary-08);
+  border-color: var(--color-primary-25);
+  color: var(--color-primary);
+  transform: translateY(-1px);
+  box-shadow: 0 2px 5px var(--color-primary-12);
+}
+
+.sisad-pdfme-designer-button-auto:active:not(:disabled) {
+  transform: translateY(0) scale(0.95);
+  box-shadow: none;
+}
+
+/* Primary variant (solid) */
+.sisad-pdfme-designer-button-auto.ant-btn-primary {
+  background: linear-gradient(180deg, var(--color-primary-light), var(--color-primary));
+  border-color: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 1px 3px var(--color-primary-20);
+}
+
+.sisad-pdfme-designer-button-auto.ant-btn-primary:hover:not(:disabled) {
+  background: linear-gradient(180deg, var(--color-primary), var(--color-primary));
+  border-color: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 3px 8px var(--color-primary-25);
+  transform: translateY(-1px);
+}
+
+/* ── Color picker widget ─────────────────────────────────────────── */
+
+.sisad-pdfme-designer-color-picker-container {
+  display: flex;
+  align-items: center;
+  gap: 0.3125rem;
+  width: 100%;
+}
+
+/* Color swatch button */
+.sisad-pdfme-designer-color-picker-container > .sisad-pdfme-designer-button-auto {
+  flex-shrink: 0;
+  width: 1.75rem;
+  height: 1.75rem;
+  min-width: 1.75rem;
+  border-radius: var(--radius-md);
+  border: 2px solid var(--color-border-30);
+  padding: 0;
+  cursor: pointer;
+  transition:
+    border-color var(--transition-fast),
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast);
+  will-change: transform;
+}
+
+.sisad-pdfme-designer-color-picker-container > .sisad-pdfme-designer-button-auto:hover {
+  border-color: var(--color-primary-40);
+  transform: scale(1.08);
+  box-shadow: 0 2px 8px var(--color-gray-900-16);
+}
+
+.sisad-pdfme-designer-color-picker-container > .sisad-pdfme-designer-button-auto:active {
+  transform: scale(0.96);
+}
+
+/* Hidden native color input */
+.sisad-pdfme-designer-color-picker-input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  opacity: 0;
+  pointer-events: none;
+}
+
+/* Hex text input */
+.sisad-pdfme-designer-color-picker-hex {
+  flex: 1;
+  min-width: 0;
+  font-family: var(--font-family-mono);
+  font-size: 0.6875rem;
+  letter-spacing: 0.02em;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.sisad-pdfme-designer-color-picker-hex:focus {
+  outline: none;
+  border-color: var(--color-primary-40);
+  box-shadow: 0 0 0 2px var(--color-primary-10);
+}
+
+/* ── Schema config widget animations ────────────────────────────── */
+
+.sisad-pdfme-designer-schema-config-widget {
+  animation: rs-fade-up 180ms var(--wix-ease-out) both;
+  animation-delay: 80ms;
+}
+
+/* Summary block */
+.sisad-pdfme-designer-schema-config-summary {
+  position: relative;
+  overflow: hidden;
+  padding: 0.3125rem 0.5rem 0.3125rem 0.75rem;
+  border-radius: 0.625rem;
+  background: linear-gradient(180deg, var(--color-gray-100-80), var(--color-white));
+  border: 1px solid var(--color-border-12);
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.sisad-pdfme-designer-schema-config-summary::before {
+  content: '';
+  position: absolute;
+  inset: 0 auto 0 0;
+  width: 3px;
+  background: linear-gradient(180deg, var(--color-primary), var(--color-primary-30));
+  border-radius: 0.625rem 0 0 0.625rem;
+  transition: background var(--transition-fast);
+}
+
+/* State active coloring */
+.sisad-pdfme-designer-schema-config-section-state[data-active="true"] {
+  background: linear-gradient(135deg, var(--color-primary-200-20), var(--color-primary-200-60));
+  border-color: var(--color-primary-30);
+  color: var(--color-primary);
+  animation: rs-badge-pop 200ms var(--wix-spring) both;
+}
+
+/* Section icon micro-animation */
+.sisad-pdfme-designer-schema-config-section-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 0.3125rem;
+  border: 1px solid var(--color-border-12);
+  background: linear-gradient(180deg, var(--color-white), var(--color-gray-100-60));
+  box-shadow: inset 0 1px 0 var(--color-white-60);
+  color: var(--color-gray-700);
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.ant-collapse-item:hover .sisad-pdfme-designer-schema-config-section-icon {
+  background: linear-gradient(180deg, var(--color-primary-200-20), var(--color-primary-100-60));
+  color: var(--color-primary);
+  transform: scale(1.08);
+}
+
+/* Collapse item hover */
+.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item {
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item:hover {
+  border-color: var(--color-border-20);
+  background: linear-gradient(180deg, var(--color-bg-hover), var(--color-white));
+}
+
+/* Switch row animations */
+.sisad-pdfme-designer-schema-config-switch-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  min-height: 1.75rem;
+  padding: 0.25rem 0.5rem;
+  border: 1px solid var(--color-border-12);
+  border-radius: 0.5rem;
+  background: var(--color-gray-100-60);
+  font-size: 0.75rem;
+  color: var(--color-gray-700);
+  transition:
+    background var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.sisad-pdfme-designer-schema-config-switch-row:hover {
+  background: var(--color-gray-200-45);
+  border-color: var(--color-border-18);
+}
+
+/* ── Form fields within right sidebar ───────────────────────────── */
+
+/* Input focus transitions */
+.sisad-pdfme-designer-right-sidebar .ant-input,
+.sisad-pdfme-designer-right-sidebar .ant-input-number-input {
+  font-size: 0.71875rem;
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast),
+    background var(--transition-fast);
+}
+
+.sisad-pdfme-designer-right-sidebar .ant-input:focus,
+.sisad-pdfme-designer-right-sidebar .ant-input-number-input:focus {
+  background: var(--color-white);
+}
+
+/* Input number stepper polish */
+.sisad-pdfme-designer-right-sidebar .ant-input-number {
+  transition:
+    border-color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.sisad-pdfme-designer-right-sidebar .ant-input-number:hover {
+  border-color: var(--color-primary-30);
+}
+
+.sisad-pdfme-designer-right-sidebar .ant-input-number:focus-within {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-10);
+}
+
+/* Select hover highlight */
+.sisad-pdfme-designer-right-sidebar .ant-select:hover .ant-select-selector {
+  border-color: var(--color-primary-30);
+}
+
+.sisad-pdfme-designer-right-sidebar .ant-select-focused .ant-select-selector {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 2px var(--color-primary-10);
+}
+
+/* Checkbox label spacing */
+.sisad-pdfme-designer-right-sidebar .ant-checkbox-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.375rem;
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  cursor: pointer;
+  transition: color var(--transition-fast);
+}
+
+.sisad-pdfme-designer-right-sidebar .ant-checkbox-wrapper:hover {
+  color: var(--text-primary);
+}
+
+/* ── Right sidebar scrollbar refinement ─────────────────────────── */
+
+.sisad-pdfme-designer-right-sidebar-layout-body {
+  scrollbar-gutter: stable both-edges;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-border-22) transparent;
+}
+
+.sisad-pdfme-designer-right-sidebar-layout-body::-webkit-scrollbar {
+  width: 3px;
+}
+
+.sisad-pdfme-designer-right-sidebar-layout-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.sisad-pdfme-designer-right-sidebar-layout-body::-webkit-scrollbar-thumb {
+  background: var(--color-border-25);
+  border-radius: 3px;
+  transition: background var(--transition-fast);
+}
+
+.sisad-pdfme-designer-right-sidebar-layout-body:hover::-webkit-scrollbar-thumb {
+  background: var(--color-border-40);
+}
+
+/* ── Left sidebar toggle animation ──────────────────────────────── */
+
+.sisad-pdfme-designer-left-sidebar-toggle-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid var(--color-border-medium);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-elevated);
+  color: var(--text-secondary);
+  box-shadow: var(--shadow-sm);
+  cursor: pointer;
+}
+
+/* ── Control bar — improved transitions ─────────────────────────── */
+
+.sisad-pdfme-ui-control-bar {
+  transition:
+    background var(--transition-normal),
+    box-shadow var(--transition-normal),
+    opacity var(--transition-fast);
+}
+
+/* Control bar buttons ripple */
+.sisad-pdfme-ui-control-bar-icon-btn,
+.sisad-pdfme-ui-control-bar-text-btn {
+  transition:
+    background var(--transition-fast),
+    color var(--transition-fast),
+    border-color var(--transition-fast),
+    transform var(--transition-fast);
+}
+
+.sisad-pdfme-ui-control-bar-icon-btn:hover:not(:disabled),
+.sisad-pdfme-ui-control-bar-text-btn:hover:not(:disabled) {
+  transform: scale(1.04);
+}
+
+.sisad-pdfme-ui-control-bar-icon-btn:active:not(:disabled),
+.sisad-pdfme-ui-control-bar-text-btn:active:not(:disabled) {
+  transform: scale(0.96);
+}
+
+/* ── Left sidebar draggable plugin cards — hover lift ───────────── */
+
+.sisad-pdfme-designer-plugin-btn[data-view-mode="rich"],
+.sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] {
+  transition:
+    border-color 150ms ease,
+    background 150ms ease,
+    box-shadow 150ms ease,
+    transform 150ms ease;
+}
+
+.sisad-pdfme-designer-plugin-btn[data-view-mode="rich"]:hover {
+  transform: translateY(-1px);
+}
+
+.sisad-pdfme-designer-plugin-btn[data-view-mode="compact"]:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 3px 8px var(--color-primary-10);
+}
+
+/* ── List view items — micro animation ──────────────────────────── */
+
+.sisad-pdfme-designer-list-view-item {
+  transition:
+    background 100ms ease,
+    transform 120ms ease;
+}
+
+.sisad-pdfme-designer-list-view-item:hover {
+  transform: translateX(1px);
+}
+
+/* ── Detail section stagger for panel switches ───────────────────── */
+
+/* When the panel has data-panel-mode="fields" */
+.sisad-pdfme-designer-right-sidebar[data-panel-mode="fields"] .sisad-pdfme-designer-right-sidebar-layout-body > * {
+  animation: rs-stagger-in 180ms var(--wix-ease-out) both;
+}
+
+/* ── Right sidebar close (transitioning out) ────────────────────── */
+
+.sisad-pdfme-designer-right-sidebar:not([data-sidebar-open="true"]) {
+  animation: none;
+  transition: transform 180ms ease, opacity 150ms ease;
+}
+
+/* ── Reduced motion overrides ────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .sisad-pdfme-designer-right-sidebar[data-sidebar-open="true"],
+  .sisad-pdfme-designer-detail-view-host,
+  .sisad-pdfme-designer-detail-header-card,
+  .sisad-pdfme-designer-detail-header-card-stat,
+  .sisad-pdfme-designer-detail-header-card-state-tag,
+  .sisad-pdfme-designer-detail-view-context-strip,
+  .sisad-pdfme-designer-detail-section-card,
+  .sisad-pdfme-designer-detail-section-card-body[data-collapsed="false"],
+  .sisad-pdfme-designer-schema-config-widget,
+  .sisad-pdfme-designer-right-sidebar-layout-header,
+  .sisad-pdfme-designer-schema-config-section-state[data-active="true"] {
+    animation: none;
+    transition-duration: 1ms;
+  }
+
+  .sisad-pdfme-designer-align-btn:hover:not(:disabled),
+  .sisad-pdfme-designer-button-auto:hover:not(:disabled),
+  .sisad-pdfme-designer-detail-header-card-stat:hover,
+  .sisad-pdfme-designer-plugin-btn[data-view-mode="rich"]:hover,
+  .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"]:hover,
+  .sisad-pdfme-designer-list-view-item:hover {
+    transform: none;
+  }
+}

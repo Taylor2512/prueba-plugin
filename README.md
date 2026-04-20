@@ -1,6 +1,6 @@
 # sisadbeta (Vite)
 
-Proyecto Vite con integración local de `pdfme`.
+Proyecto Vite con integración local de `sisad-pdfme`.
 
 ## Ejecutar
 
@@ -11,9 +11,9 @@ npm run dev
 
 ## Página de laboratorio PDFME
 
-Abre `http://localhost:5173/pdfme` para probar:
+Abre `http://localhost:5173/sisad-pdfme` para probar:
 
-- `@pdfme/ui`: `Designer`, `Form`, `Viewer`
-- `@pdfme/generator`: `generate`
-- `@pdfme/converter`: `pdf2size`, `pdf2img`, `img2pdf`
-- `@pdfme/schemas`: catálogo y alta dinámica de schemas
+- `@sisad-pdfme/ui`: `Designer`, `Form`, `Viewer`
+- `@sisad-pdfme/generator`: `generate`
+- `@sisad-pdfme/converter`: `pdf2size`, `pdf2img`, `img2pdf`
+- `@sisad-pdfme/schemas`: catálogo y alta dinámica de schemas

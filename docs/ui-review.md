@@ -17,7 +17,7 @@ Date: 2026-03-14
 
 ## Suggested next iteration
 - Extract `FloatingToolbar` and `SidebarCard` fully across components.
-- Introduce CSS tokens in `pdfme-improved.css` and migrate local rules.
+- Introduce CSS tokens in `sisad-pdfme-improved.css` and migrate local rules.
 - Create small library of microcomponents: `BadgeChip`, `FloatingToolbar`, `SidebarCard`, `IconButton`.
 
 ## Quick checklist for maintainers

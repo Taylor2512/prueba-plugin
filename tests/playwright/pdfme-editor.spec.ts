@@ -3,11 +3,11 @@ import { expect, test, type Page } from '@playwright/test';
 const openDesigner = async (page: Page) => {
   await page.goto('/');
   await page.waitForLoadState('networkidle');
-  await expect(page.locator('.pdfme-designer-stage')).toBeVisible();
+  await expect(page.locator('.sisad-pdfme-designer-stage')).toBeVisible();
 };
 
 const ensureCatalogExpanded = async (page: Page) => {
-  const leftSidebar = page.locator('.pdfme-designer-left-sidebar');
+  const leftSidebar = page.locator('.sisad-pdfme-designer-left-sidebar');
   const toggle = page.getByRole('button', { name: /Abrir catálogo de campos|Cerrar catálogo de campos/ });
 
   await expect(toggle).toBeVisible();
@@ -22,33 +22,33 @@ test.describe('PDFME editor shell', () => {
     await openDesigner(page);
 
     await ensureCatalogExpanded(page);
-    await page.locator('.pdfme-designer-left-sidebar button[data-schema-type="text"]').first().click();
+    await page.locator('.sisad-pdfme-designer-left-sidebar button[data-schema-type="text"]').first().click();
 
-    const textField = page.locator('.pdfme-designer-canvas [data-schema-type="text"]').first();
+    const textField = page.locator('.sisad-pdfme-designer-canvas [data-schema-type="text"]').first();
     await expect(textField).toBeVisible();
 
     await textField.click();
     const selectionToolbar = page.getByRole('toolbar', { name: 'Barra contextual de edición' });
     await expect(selectionToolbar).toBeVisible();
     await selectionToolbar.getByRole('button', { name: 'Editar texto' }).click();
-    await expect(page.locator('.pdfme-ui-inline-edit-overlay')).toBeVisible();
+    await expect(page.locator('.sisad-pdfme-ui-inline-edit-overlay')).toBeVisible();
 
     const inlineInput = page.getByPlaceholder('Escribe el contenido');
     await expect(inlineInput).toBeVisible();
     await inlineInput.fill('Texto inline actualizado');
     await page.keyboard.press('Enter');
 
-    await expect(page.locator('.pdfme-ui-inline-edit-overlay')).toHaveCount(0);
+    await expect(page.locator('.sisad-pdfme-ui-inline-edit-overlay')).toHaveCount(0);
   });
 
   test('keeps both sidebars aligned and preserves inline editing flows', async ({ page }) => {
     await openDesigner(page);
     await ensureCatalogExpanded(page);
 
-    const leftSidebar = page.locator('.pdfme-designer-left-sidebar');
-    const rightSidebar = page.locator('.pdfme-designer-right-sidebar');
+    const leftSidebar = page.locator('.sisad-pdfme-designer-left-sidebar');
+    const rightSidebar = page.locator('.sisad-pdfme-designer-right-sidebar');
 
-    const textField = page.locator('.pdfme-designer-left-sidebar button[data-schema-type="text"]').first();
+    const textField = page.locator('.sisad-pdfme-designer-left-sidebar button[data-schema-type="text"]').first();
     await expect(textField).toBeVisible();
     await textField.click();
 
@@ -77,7 +77,7 @@ test.describe('PDFME editor shell', () => {
     );
 
     if ((await rightSidebar.getAttribute('data-sidebar-open')) !== 'true') {
-      await page.locator('.pdfme-designer-right-sidebar-toggle-btn').click();
+      await page.locator('.sisad-pdfme-designer-right-sidebar-toggle-btn').click();
     }
     await expect(rightSidebar).toHaveAttribute('data-sidebar-open', 'true');
 
@@ -98,28 +98,28 @@ test.describe('PDFME editor shell', () => {
       'aria-selected',
       'true',
     );
-    await expect(page.locator('.pdfme-designer-detail-view')).toBeVisible();
-    await expect(page.locator('.pdfme-designer-detail-header-card .pdfme-designer-detail-header-card-title')).toContainText('campo1');
-    await expect(page.locator('.pdfme-designer-detail-header-card .pdfme-designer-detail-header-card-tag-base')).toContainText('text');
-    await expect(page.locator('.pdfme-designer-detail-header-card').getByText('Solo lectura')).toBeVisible();
-    await expect(page.locator('.pdfme-designer-detail-view').getByText('General', { exact: true })).toBeVisible();
-    await expect(page.locator('.pdfme-designer-detail-view').getByText('Estilo', { exact: true })).toBeVisible();
-    await expect(page.locator('.pdfme-designer-detail-view').getByText('Validación', { exact: true })).toBeVisible();
-    await expect(page.locator('.pdfme-designer-detail-view').getByText('Avanzado', { exact: true })).toBeVisible();
+    await expect(page.locator('.sisad-pdfme-designer-detail-view')).toBeVisible();
+    await expect(page.locator('.sisad-pdfme-designer-detail-header-card .sisad-pdfme-designer-detail-header-card-title')).toContainText('campo1');
+    await expect(page.locator('.sisad-pdfme-designer-detail-header-card .sisad-pdfme-designer-detail-header-card-tag-base')).toContainText('text');
+    await expect(page.locator('.sisad-pdfme-designer-detail-header-card').getByText('Solo lectura')).toBeVisible();
+    await expect(page.locator('.sisad-pdfme-designer-detail-view').getByText('General', { exact: true })).toBeVisible();
+    await expect(page.locator('.sisad-pdfme-designer-detail-view').getByText('Estilo', { exact: true })).toBeVisible();
+    await expect(page.locator('.sisad-pdfme-designer-detail-view').getByText('Validación', { exact: true })).toBeVisible();
+    await expect(page.locator('.sisad-pdfme-designer-detail-view').getByText('Avanzado', { exact: true })).toBeVisible();
 
     await expect(page.locator('[data-section="style"][data-collapsed="true"]')).toBeVisible();
     await page.getByRole('button', { name: /Expandir sección Estilo/ }).click();
     await expect(page.locator('[data-section="style"][data-collapsed="false"]')).toBeVisible();
-    await expect(page.locator('.pdfme-designer-align-widget-grid')).toBeVisible();
+    await expect(page.locator('.sisad-pdfme-designer-align-widget-grid')).toBeVisible();
 
     await expect(page.locator('[data-section="data"][data-collapsed="true"]')).toBeVisible();
     await page.getByRole('button', { name: /Expandir sección Datos/ }).click();
     await expect(page.locator('[data-section="data"][data-collapsed="false"]')).toBeVisible();
 
-    await expect(page.locator('.pdfme-designer-schema-config-widget')).toBeVisible();
-    await expect(page.locator('.pdfme-designer-schema-config-summary-text')).toContainText('Sin validar');
+    await expect(page.locator('.sisad-pdfme-designer-schema-config-widget')).toBeVisible();
+    await expect(page.locator('.sisad-pdfme-designer-schema-config-summary-text')).toContainText('Sin validar');
     await page.getByRole('button', { name: 'Validar' }).click();
-    await expect(page.locator('.pdfme-designer-schema-config-summary-text')).toContainText('Activa la API para probar la conexión.');
+    await expect(page.locator('.sisad-pdfme-designer-schema-config-summary-text')).toContainText('Activa la API para probar la conexión.');
 
     await page.getByRole('tab', { name: 'Abrir panel Docs' }).click();
     await expect(page.getByRole('tab', { name: 'Abrir panel Docs' })).toHaveAttribute(
@@ -131,7 +131,7 @@ test.describe('PDFME editor shell', () => {
     await page.getByRole('tab', { name: 'Abrir panel Campos' }).click();
     await expect(rightSidebar).toHaveAttribute('data-panel-mode', 'list');
 
-    await page.locator('.pdfme-designer-right-sidebar-toggle-btn').click();
+    await page.locator('.sisad-pdfme-designer-right-sidebar-toggle-btn').click();
     await expect(rightSidebar).toHaveAttribute('data-sidebar-open', 'false');
 
     await page.getByRole('button', { name: 'Cerrar catálogo de campos' }).click();

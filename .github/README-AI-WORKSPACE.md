@@ -4,7 +4,7 @@ Este workspace fue generado para guiar asistentes, agentes y modelos hacia una v
 
 ## Visión del producto
 
-Construir un editor PDF moderno sobre React y pdfme modificado con una experiencia tipo Wix/Figma/DocuSign:
+Construir un editor PDF moderno sobre React y sisad-pdfme modificado con una experiencia tipo Wix/Figma/DocuSign:
 
 - canvas dominante
 - paneles compactos y contextuales
@@ -38,5 +38,5 @@ Construir un editor PDF moderno sobre React y pdfme modificado con una experienc
 - comandos unificados
 - persistencia de estado UI
 - estilos unificados y tokens de diseño
-- compatibilidad con pdfme modificado
+- compatibilidad con sisad-pdfme modificado
 

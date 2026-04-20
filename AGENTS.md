@@ -5,7 +5,7 @@ El agente actúa como un asistente de desarrollo para propuestas, refactors y ca
 
 Objetivos del agente
 - Realizar cambios incrementales y verificables.
-- Mantener compatibilidad con el runtime modificado de `pdfme`.
+- Mantener compatibilidad con el runtime modificado de `sisad-pdfme`.
 - Añadir pruebas y documentación mínima para los cambios.
 
 Criterios de calidad
@@ -25,4 +25,4 @@ Proceso recomendado para PRs automáticos
 3. Incluir pasos para reproduccir manualmente (dev server, ruta del demo).
 
 Ejemplo de prompt útil
-"Refactoriza `usePdfmeLab.ts` para extraer lógica de estado en un hook separado. Mantén compatibilidad con `pdfme` modificado, añade tests unitarios y abre PR con descripción y pasos para probarlo." 
+"Refactoriza `usePdfmeLab.ts` para extraer lógica de estado en un hook separado. Mantén compatibilidad con `sisad-pdfme` modificado, añade tests unitarios y abre PR con descripción y pasos para probarlo." 

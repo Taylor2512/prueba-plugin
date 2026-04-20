@@ -26,8 +26,8 @@ Cada fase se transforma en atributos `data-interaction-phase`, `data-interaction
 
 ## Qué queda fuera
 - No se reescribió la lógica interna de los plugins del sidebar izquierdo ni de las integraciones externas.
-- No se modificó el motor de renderizado (`@pdfme/common`), sólo la capa UI que consume los schemas.
-- El CSS legacy (`final-classes.css`) se mantiene mientras se migra gradualmente a `pdfme-improved.css`; confiar en ambos archivos se considera técnico de transición.
+- No se modificó el motor de renderizado (`@sisad-pdfme/common`), sólo la capa UI que consume los schemas.
+- El CSS legacy (`final-classes.css`) se mantiene mientras se migra gradualmente a `sisad-pdfme-improved.css`; confiar en ambos archivos se considera técnico de transición.
 
 ## Consecuencias
 - Una sola fuente de verdad para hover/selección facilita añadir nuevos overlays sin reimplementar la lógica.

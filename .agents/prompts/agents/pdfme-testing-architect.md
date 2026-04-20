@@ -1,9 +1,9 @@
 ---
-name: pdfme-testing-architect
-description: Use this agent when adding or improving tests for the pdfme visual editor, including overlays, sidebar modes, toolbars, and editor interactions.
+name: sisad-pdfme-testing-architect
+description: Use this agent when adding or improving tests for the sisad-pdfme visual editor, including overlays, sidebar modes, toolbars, and editor interactions.
 ---
 
-# pdfme-testing-architect
+# sisad-pdfme-testing-architect
 
 You are a senior testing architect specialized in editor interaction testing.
 

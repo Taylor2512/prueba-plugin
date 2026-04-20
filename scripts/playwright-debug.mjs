@@ -17,7 +17,7 @@ import fs from 'fs';
   page.on('pageerror', (err) => console.log('[pageerror]', err.message));
   page.on('requestfailed', (req) => console.log('[requestfailed]', req.url(), req.failure()));
 
-  const url = process.env.URL || 'http://localhost:5174/pdfme';
+  const url = process.env.URL || 'http://localhost:5174/sisad-pdfme';
   console.log('navigating to', url);
   await page.goto(url, { waitUntil: 'load', timeout: 30000 }).catch((e) => console.log('goto err', e.message));
 

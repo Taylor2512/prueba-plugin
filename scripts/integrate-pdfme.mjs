@@ -3,7 +3,7 @@ import path from 'path'
 import { fileURLToPath } from 'url'
 
 const root = process.cwd()
-const vendorBase = path.join(root, 'vendor', 'pdfme')
+const vendorBase = path.join(root, 'vendor', 'sisad-pdfme')
 const destBase = path.join(root, 'src', '_pdfme')
 
 function copyDir(src, dest) {
@@ -23,12 +23,12 @@ function copyDir(src, dest) {
 }
 
 if (!fs.existsSync(vendorBase)) {
-  console.error('vendor/pdfme not found at', vendorBase)
+  console.error('vendor/sisad-pdfme not found at', vendorBase)
   process.exit(1)
 }
 
 const packages = fs.readdirSync(vendorBase).filter(d => fs.statSync(path.join(vendorBase, d)).isDirectory())
-console.log('Found pdfme packages:', packages.join(', '))
+console.log('Found sisad-pdfme packages:', packages.join(', '))
 
 for (const pkg of packages) {
   const srcDir = path.join(vendorBase, pkg, 'src')
@@ -41,4 +41,4 @@ for (const pkg of packages) {
   copyDir(srcDir, path.join(destDir, 'src'))
 }
 
-console.log('Integration complete. You can now import @pdfme/* from src/_pdfme/<pkg>/src')
+console.log('Integration complete. You can now import @sisad-pdfme/* from src/_pdfme/<pkg>/src')

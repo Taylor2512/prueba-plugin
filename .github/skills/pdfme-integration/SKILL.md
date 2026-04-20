@@ -1,15 +1,15 @@
 # Skill: PDFME Integration
 
 ## Enfoque
-Integrar y extender `pdfme` modificado de forma controlada.
+Integrar y extender `sisad-pdfme` modificado de forma controlada.
 
 ## Recordatorios
 - Preferir adaptadores en lugar de modificar el runtime directamente.
 - Encapsular APIs internas y centralizar eventos.
-- No mezclar integración de `pdfme` con decisiones de layout de la app.
+- No mezclar integración de `sisad-pdfme` con decisiones de layout de la app.
 
 ## Buenas prácticas
-- Añadir adaptadores o puentes en `src/pdfme` cuando sea necesario.
+- Añadir adaptadores o puentes en `src/sisad-pdfme` cuando sea necesario.
 - Mantener las pruebas que cubran conversiones y serialización.
 
 ## Ejemplos de tareas

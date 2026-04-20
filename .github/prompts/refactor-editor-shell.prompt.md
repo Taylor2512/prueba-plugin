@@ -1,9 +1,9 @@
 # Prompt: Refactor del shell del editor
 
-Actúa como arquitecto frontend senior experto en React, canvas, pdfme y editores visuales.
+Actúa como arquitecto frontend senior experto en React, canvas, sisad-pdfme y editores visuales.
 
 ## Contexto
-Existe un editor PDF construido con React y pdfme modificado. El estado actual mezcla lógica de laboratorio, runtime del diseñador, resultados de conversión y layout visual. El objetivo es evolucionarlo a un producto con UX compacta tipo Wix.
+Existe un editor PDF construido con React y sisad-pdfme modificado. El estado actual mezcla lógica de laboratorio, runtime del diseñador, resultados de conversión y layout visual. El objetivo es evolucionarlo a un producto con UX compacta tipo Wix.
 
 ## Objetivo
 Refactorizar el shell principal del editor para separar:

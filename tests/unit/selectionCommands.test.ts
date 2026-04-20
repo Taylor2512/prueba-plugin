@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest';
-import type { SchemaForUI } from '@pdfme/common';
-import { createSelectionCommands } from '../../src/pdfme/ui/src/components/Designer/shared/selectionCommands.js';
+import type { SchemaForUI } from '@sisad-pdfme/common';
+import { createSelectionCommands } from '../../src/components/sisad-pdfme/ui/components/Designer/shared/selectionCommands.js';
 
 describe('selectionCommands inline edit bridge', () => {
   const schema = {

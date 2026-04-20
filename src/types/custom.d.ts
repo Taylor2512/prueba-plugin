@@ -12,8 +12,8 @@ declare module '*.worker.js?url' {
     export default value;
 }
 
-// Fallback for local pdfme packages while TS resolves path mappings
-declare module '@pdfme/*' {
+// Fallback for local sisad-pdfme packages while TS resolves path mappings
+declare module '@sisad-pdfme/*' {
     const whatever: any;
     export = whatever;
 }

@@ -8,12 +8,12 @@ Este plan está organizado en 7 fases ejecutables. Cada fase indica objetivo, ar
 
 	- Implementar un hook centralizado que derive y exponga el estado de interacción del canvas (fase, ids ancla, bounding rects, flags de transform) a partir de `activeElements`, `hoveringSchemaId` y los eventos de Moveable.
 
-	- `ui/src/components/Designer/Canvas/index.tsx` (conectar hook y exponer eventos/ref)
-	- `ui/src/components/Renderer.tsx` (exponer `getElementRect(id)` y emitir `onHover/onLeave` si hace falta)
-	- `ui/src/types.ts` (añadir/ajustar tipos: InteractionPhase, InteractionFlags, AnchorRect)
+	- `ui/components/Designer/Canvas/index.tsx` (conectar hook y exponer eventos/ref)
+	- `ui/components/Renderer.tsx` (exponer `getElementRect(id)` y emitir `onHover/onLeave` si hace falta)
+	- `ui/types.ts` (añadir/ajustar tipos: InteractionPhase, InteractionFlags, AnchorRect)
 
-	- `ui/src/components/Designer/Canvas/interaction/useInteractionState.ts`
-	- `ui/src/components/Designer/Canvas/interaction/types.ts`
+	- `ui/components/Designer/Canvas/interaction/useInteractionState.ts`
+	- `ui/components/Designer/Canvas/interaction/types.ts`
 
 	- `Moveable.tsx` callbacks (onDragStart/onDrag/onDragEnd, onResize, onRotate)
 	- `selectionCommands.ts` para consumo posterior
@@ -31,7 +31,7 @@ Este plan está organizado en 7 fases ejecutables. Cada fase indica objetivo, ar
 
 
 ## Fase 2: Overlay Manager
-	- `ui/src/components/Designer/Canvas/Moveable.tsx` (asegurar que emite bounding rects/preview events)
+	- `ui/components/Designer/Canvas/Moveable.tsx` (asegurar que emite bounding rects/preview events)
 
 	- `useInteractionState` (Fase 1)
 	- overlays existentes: `InlineMetricsOverlay.tsx`, `SelectionBadgesOverlay.tsx`, `SnapFeedbackOverlay.tsx`
@@ -58,13 +58,13 @@ Este plan está organizado en 7 fases ejecutables. Cada fase indica objetivo, ar
 	- Implementar una Floating Toolbar portalizada con acciones claves (duplicate, delete, align, open details) integradas con `selectionCommands`.
 
 - Archivos a tocar
-	- `ui/src/components/Designer/Canvas/index.tsx` (punto de anclaje / API)
-	- `ui/src/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx`
-	- `ui/src/components/Designer/RightSidebar/index.tsx` (exponer `openFromCanvas(schemaId)` si no existe)
+	- `ui/components/Designer/Canvas/index.tsx` (punto de anclaje / API)
+	- `ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx`
+	- `ui/components/Designer/RightSidebar/index.tsx` (exponer `openFromCanvas(schemaId)` si no existe)
 
 - Archivos a crear
-	- `ui/src/components/Designer/Canvas/overlays/FloatingToolbar.tsx`
-	- `ui/src/components/Designer/Canvas/overlays/ContextualToolbar.tsx` (opcional para multi-select)
+	- `ui/components/Designer/Canvas/overlays/FloatingToolbar.tsx`
+	- `ui/components/Designer/Canvas/overlays/ContextualToolbar.tsx` (opcional para multi-select)
 
 - Dependencias
 	- `selectionCommands.ts`
@@ -93,12 +93,12 @@ Este plan está organizado en 7 fases ejecutables. Cada fase indica objetivo, ar
 	- Pulir y optimizar overlays inline: métricas (InlineMetricsOverlay) y badges (SelectionBadgesOverlay) mostrando estado y acciones rápidas.
 
 - Archivos a tocar
-	- `ui/src/components/Renderer.tsx` (asegurar data attributes / hooks)
-	- `ui/src/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx`
-	- `ui/src/components/Designer/Canvas/overlays/SelectionBadgesOverlay.tsx`
+	- `ui/components/Renderer.tsx` (asegurar data attributes / hooks)
+	- `ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx`
+	- `ui/components/Designer/Canvas/overlays/SelectionBadgesOverlay.tsx`
 
 - Archivos a crear
-	- Opcional: `ui/src/components/Designer/Canvas/overlays/BadgeButton.tsx` para botones reutilizables
+	- Opcional: `ui/components/Designer/Canvas/overlays/BadgeButton.tsx` para botones reutilizables
 
 - Dependencias
 	- `useInteractionState`, `Moveable.tsx`
@@ -126,11 +126,11 @@ Este plan está organizado en 7 fases ejecutables. Cada fase indica objetivo, ar
 	- Extender `CtlBar.tsx` o añadir `ContextualTopBar` para mostrar acciones de alto nivel cuando hay multi-select (group, align, distribute, z-order).
 
 - Archivos a tocar
-	- `ui/src/components/CtlBar.tsx`
-	- `ui/src/components/Designer/Canvas/index.tsx` (pasar estado a CtlBar)
+	- `ui/components/CtlBar.tsx`
+	- `ui/components/Designer/Canvas/index.tsx` (pasar estado a CtlBar)
 
 - Archivos a crear
-	- Opcional: `ui/src/components/Designer/Canvas/overlays/ContextualTopBar.tsx` si se separa de `CtlBar`
+	- Opcional: `ui/components/Designer/Canvas/overlays/ContextualTopBar.tsx` si se separa de `CtlBar`
 
 - Dependencias
 	- `useInteractionState`, `selectionCommands.ts`
@@ -158,11 +158,11 @@ Este plan está organizado en 7 fases ejecutables. Cada fase indica objetivo, ar
 	- Añadir `QuickDetail` mode en `RightSidebar` para edición rápida desde el canvas y mantener el `DetailView` completo para edición avanzada.
 
 - Archivos a tocar
-	- `ui/src/components/Designer/RightSidebar/index.tsx`
-	- `ui/src/components/Designer/RightSidebar/DetailView/index.tsx`
+	- `ui/components/Designer/RightSidebar/index.tsx`
+	- `ui/components/Designer/RightSidebar/DetailView/index.tsx`
 
 - Archivos a crear
-	- `ui/src/components/Designer/RightSidebar/QuickDetailView.tsx`
+	- `ui/components/Designer/RightSidebar/QuickDetailView.tsx`
 
 - Dependencias
 	- `useInteractionState`, `selectionCommands.ts`, `changeSchemas` API
@@ -187,15 +187,15 @@ Este plan está organizado en 7 fases ejecutables. Cada fase indica objetivo, ar
 ## Fase 7: Limpieza CSS
 
 - Objetivo
-	- Consolidar reglas en `pdfme-improved.css` y sanear `final-classes.css`; crear estilos específicos para overlays y controles.
+	- Consolidar reglas en `sisad-pdfme-improved.css` y sanear `final-classes.css`; crear estilos específicos para overlays y controles.
 
 - Archivos a tocar
 	- `final-classes.css`
-	- `pdfme-improved.css`
-	- estilos inline de componentes en `ui/src/components/*` cuando sea necesario
+	- `sisad-pdfme-improved.css`
+	- estilos inline de componentes en `ui/components/*` cuando sea necesario
 
 - Archivos a crear
-	- `ui/src/components/Designer/Canvas/overlays/controls.css` (scoped styles para controles)
+	- `ui/components/Designer/Canvas/overlays/controls.css` (scoped styles para controles)
 
 - Dependencias
 	- Tokens de tema existentes (colors, spacing, motion)

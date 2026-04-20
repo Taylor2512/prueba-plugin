@@ -33,4 +33,4 @@ for (const pkg of pkgs) {
     process.exit(2)
   }
 }
-console.log('pdfme build complete')
+console.log('sisad-pdfme build complete')

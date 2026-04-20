@@ -1,7 +1,7 @@
 import React from 'react';
 import { fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
-import DetailSectionCard from '../../src/pdfme/ui/src/components/Designer/RightSidebar/DetailView/DetailSectionCard.js';
+import DetailSectionCard from '../../src/components/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.js';
 
 describe('DetailSectionCard', () => {
   it('resets the collapsed state when the reset token changes', () => {

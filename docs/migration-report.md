@@ -1,25 +1,25 @@
-# Migration Report — centralizing pdfme designer code
+# Migration Report — centralizing sisad-pdfme designer code
 
 Date: 2026-03-16
 
 Summary
-- Goal: consolidate designer/business logic and UI under `src/pdfme`.
-- Phase 1 & 2 (completed): moved core runtime hook, domain, utils, template, page and `ControlPanel` into `src/pdfme` and updated imports.
+- Goal: consolidate designer/business logic and UI under `src/sisad-pdfme`.
+- Phase 1 & 2 (completed): moved core runtime hook, domain, utils, template, page and `ControlPanel` into `src/sisad-pdfme` and updated imports.
 
-Files added under `src/pdfme`
-- `src/pdfme/hooks/usePdfmeLab.js` (migrated from `src/features/pdfme/usePdfmeLab.js`)
-- `src/pdfme/domain/labState.js` (migrated)
-- `src/pdfme/utils/binary.js` (migrated)
-- `src/pdfme/template.js` (migrated)
-- `src/pdfme/pages/PdfmeLabPage.jsx` (migrated from features)
-- `src/pdfme/ui/src/components/ControlPanel.jsx` (moved from `src/components/ui`)
+Files added under `src/sisad-pdfme`
+- `src/sisad-pdfme/hooks/usePdfmeLab.js` (migrated from `src/features/sisad-pdfme/usePdfmeLab.js`)
+- `src/sisad-pdfme/domain/labState.js` (migrated)
+- `src/sisad-pdfme/utils/binary.js` (migrated)
+- `src/sisad-pdfme/template.js` (migrated)
+- `src/sisad-pdfme/pages/PdfmeLabPage.jsx` (migrated from features)
+- `src/sisad-pdfme/ui/components/ControlPanel.jsx` (moved from `src/components/ui`)
 
 Files removed (original locations)
-- `src/features/pdfme/usePdfmeLab.js`
-- `src/features/pdfme/domain/labState.js`
-- `src/features/pdfme/utils/binary.js`
-- `src/features/pdfme/template.js`
-- `src/features/pdfme/PdfmeLabPage.jsx`
+- `src/features/sisad-pdfme/usePdfmeLab.js`
+- `src/features/sisad-pdfme/domain/labState.js`
+- `src/features/sisad-pdfme/utils/binary.js`
+- `src/features/sisad-pdfme/template.js`
+- `src/features/sisad-pdfme/PdfmeLabPage.jsx`
 - `src/components/ui/ControlPanel.jsx`
 
 Verification
@@ -27,12 +27,12 @@ Verification
 
 Notes & rationale
 - Only designer-specific UI (e.g., `ControlPanel`) and runtime logic were moved. Generic UI components in `src/components/ui` (e.g., `InlineCode`, `FeatureList`, `TechBadge`, `SectionCard`) were left in place as they are app-wide.
-- Imports were updated so pages now import designer artifacts from `src/pdfme` paths.
+- Imports were updated so pages now import designer artifacts from `src/sisad-pdfme` paths.
 
 Next recommended steps (proposed)
-1. Move remaining designer-specific components still outside `src/pdfme` (none detected except `ControlPanel` which is already moved). Verify by searching for references to `../components/ui/ControlPanel` (done).
-2. Consolidate designer styles into `src/pdfme/ui/src/styles/` and minimize global CSS coupling; migrate rules from `src/styles/global.css` that are designer-specific.
-3. Move any page-level E2E tests or Playwright helpers that target designer flows under `tests/playwright` to `src/pdfme/tests/playwright` or keep them grouped but update paths if needed.
+1. Move remaining designer-specific components still outside `src/sisad-pdfme` (none detected except `ControlPanel` which is already moved). Verify by searching for references to `../components/ui/ControlPanel` (done).
+2. Consolidate designer styles into `src/sisad-pdfme/ui/styles/` and minimize global CSS coupling; migrate rules from `src/styles/global.css` that are designer-specific.
+3. Move any page-level E2E tests or Playwright helpers that target designer flows under `tests/playwright` to `src/sisad-pdfme/tests/playwright` or keep them grouped but update paths if needed.
 4. Run full E2E test suite (`npm run test:e2e`) in CI or locally after migrating assets to validate runtime behavior.
 
 Commands

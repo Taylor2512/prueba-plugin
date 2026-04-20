@@ -25,14 +25,14 @@
       "@/*": [
         "src/*"
       ],
-      "@pdfme/*": [
-        "src/pdfme/*/src"
+      "@sisad-pdfme/*": [
+        "src/components/sisad-pdfme/*/src"
       ],
-      "@pdfme/converter": [
-        "src/pdfme/converter/src/index.browser.ts"
+      "@sisad-pdfme/converter": [
+        "src/components/sisad-pdfme/converter/index.browser.ts"
       ],
-      "@pdfme/pdf-lib": [
-        "src/pdfme/pdf-lib/src"
+      "@sisad-pdfme/pdf-lib": [
+        "src/components/sisad-pdfme/pdf-lib"
       ]
     },
     "types": [
