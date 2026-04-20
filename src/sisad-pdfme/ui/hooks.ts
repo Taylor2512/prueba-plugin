@@ -24,6 +24,7 @@ import {
 import type { SelectionCommandSet } from './components/Designer/shared/selectionCommands.js';
 import { RULER_HEIGHT } from './constants.js';
 import { DEFAULT_SCHEMA_CONFIG_STORAGE_KEY } from './designerEngine.js';
+import { applySchemaCollaborativeDefaults, type SchemaCreationContext } from './designerEngine.js';
 
 export function usePrevious<T>(value: T) {
   const [previous, setPrevious] = useState<T | null>(null);
@@ -262,6 +263,7 @@ interface UseInitEventsParams {
   onEdit: (targets: HTMLElement[]) => void;
   onEditEnd: () => void;
   selectionCommands?: SelectionCommandSet;
+  collaborationContext?: Pick<SchemaCreationContext, 'fileId' | 'actorId' | 'ownerRecipientId' | 'ownerRecipientIds'>;
 }
 
 export const useInitEvents = ({
@@ -280,6 +282,7 @@ export const useInitEvents = ({
   onEdit,
   onEditEnd,
   selectionCommands,
+  collaborationContext,
 }: UseInitEventsParams & { selectionCommands?: SelectionCommandSet }) => {
   const copiedSchemas = useRef<SchemaForUI[] | null>(null);
 
@@ -334,6 +337,20 @@ export const useInitEvents = ({
             name,
             position,
           });
+          const nextCollaborative = applySchemaCollaborativeDefaults(
+            cloned,
+            {
+              pageIndex: pageCursor,
+              pageNumber: pageCursor + 1,
+              totalPages: schemasList.length,
+              timestamp: Date.now(),
+              fileId: collaborationContext?.fileId || null,
+              actorId: collaborationContext?.actorId || null,
+              ownerRecipientId: collaborationContext?.ownerRecipientId || null,
+              ownerRecipientIds: collaborationContext?.ownerRecipientIds,
+            },
+          );
+          Object.assign(cloned, nextCollaborative, { state: 'draft', lock: undefined });
           const designerConfig = cloned?.[DEFAULT_SCHEMA_CONFIG_STORAGE_KEY];
           if (designerConfig && typeof designerConfig === 'object') {
             cloned[DEFAULT_SCHEMA_CONFIG_STORAGE_KEY] = {
@@ -376,6 +393,8 @@ export const useInitEvents = ({
     copiedSchemas,
     onEdit,
     onEditEnd,
+    selectionCommands,
+    collaborationContext,
   ]);
 
   const destroyEvents = useCallback(() => {

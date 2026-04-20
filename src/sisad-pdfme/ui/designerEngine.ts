@@ -19,6 +19,30 @@ export type SchemaIdentity = {
   tags?: string[];
 };
 
+export type SchemaCollaborativeState = 'draft' | 'locked' | 'merged';
+
+export type SchemaCollaborativeLock = {
+  lockedBy?: string;
+  lockedAt?: number;
+  reason?: string;
+  sessionId?: string;
+};
+
+export type SchemaCollaborativeMetadata = {
+  schemaUid?: string;
+  fileId?: string | null;
+  fileTemplateId?: string | null;
+  pageNumber?: number;
+  ownerRecipientId?: string | null;
+  ownerRecipientIds?: string[];
+  createdBy?: string | null;
+  lastModifiedBy?: string | null;
+  createdAt?: number;
+  updatedAt?: number;
+  state?: SchemaCollaborativeState;
+  lock?: SchemaCollaborativeLock;
+};
+
 export type SchemaPrefillConfig = {
   enabled?: boolean;
   strategy?: 'manual' | 'payload' | 'api';
@@ -96,6 +120,7 @@ export type SchemaDesignerConfig = {
   api?: SchemaRequestConfig;
   form?: SchemaFormJsonConfig;
   integrations?: SchemaIntegrationConfig[];
+  collaboration?: SchemaCollaborativeMetadata;
   metadata?: Record<string, unknown>;
 };
 
@@ -105,6 +130,9 @@ export type SchemaCreationContext = {
   timestamp: number;
   pageNumber?: number;
   fileId?: string | null;
+  actorId?: string | null;
+  ownerRecipientId?: string | null;
+  ownerRecipientIds?: string[];
 };
 
 export type SchemaCreationHook = (schema: SchemaForUI, context: SchemaCreationContext) => SchemaForUI;
@@ -234,6 +262,135 @@ const mergeRequestConfig = (
   };
 };
 
+const normalizeRecipientIds = (value?: string[] | string | null): string[] | undefined => {
+  if (Array.isArray(value)) {
+    const normalized = value.map((entry) => String(entry || '').trim()).filter(Boolean);
+    return normalized.length > 0 ? Array.from(new Set(normalized)) : undefined;
+  }
+
+  if (typeof value === 'string') {
+    const normalized = value
+      .split(',')
+      .map((entry) => entry.trim())
+      .filter(Boolean);
+    return normalized.length > 0 ? Array.from(new Set(normalized)) : undefined;
+  }
+
+  return undefined;
+};
+
+const mergeCollaborationLock = (
+  current?: SchemaCollaborativeLock,
+  patch?: SchemaCollaborativeLock,
+): SchemaCollaborativeLock | undefined => {
+  if (!current && !patch) return undefined;
+  return {
+    ...(current || {}),
+    ...(patch || {}),
+  };
+};
+
+export const mergeSchemaCollaborativeMetadata = (
+  current?: SchemaCollaborativeMetadata,
+  patch?: Partial<SchemaCollaborativeMetadata>,
+): SchemaCollaborativeMetadata | undefined => {
+  if (!current && !patch) return undefined;
+
+  return {
+    ...(current || {}),
+    ...(patch || {}),
+    ownerRecipientIds: normalizeRecipientIds(patch?.ownerRecipientIds ?? current?.ownerRecipientIds),
+    lock: mergeCollaborationLock(current?.lock, patch?.lock),
+  };
+};
+
+export const resolveSchemaCollaborativeMetadata = (
+  schema: SchemaForUI,
+  engine?: DesignerEngine,
+): SchemaCollaborativeMetadata | undefined => {
+  const rawSchema = schema as SchemaForUI & Record<string, unknown>;
+  const fromFields: SchemaCollaborativeMetadata = {
+    schemaUid: typeof rawSchema.schemaUid === 'string' ? rawSchema.schemaUid : undefined,
+    fileId: typeof rawSchema.fileId === 'string' ? rawSchema.fileId : undefined,
+    fileTemplateId: typeof rawSchema.fileTemplateId === 'string' ? rawSchema.fileTemplateId : undefined,
+    pageNumber: typeof rawSchema.pageNumber === 'number' ? rawSchema.pageNumber : undefined,
+    ownerRecipientId: typeof rawSchema.ownerRecipientId === 'string' ? rawSchema.ownerRecipientId : undefined,
+    ownerRecipientIds: Array.isArray(rawSchema.ownerRecipientIds)
+      ? normalizeRecipientIds(rawSchema.ownerRecipientIds as string[])
+      : undefined,
+    createdBy: typeof rawSchema.createdBy === 'string' ? rawSchema.createdBy : undefined,
+    lastModifiedBy: typeof rawSchema.lastModifiedBy === 'string' ? rawSchema.lastModifiedBy : undefined,
+    createdAt: typeof rawSchema.createdAt === 'number' ? rawSchema.createdAt : undefined,
+    updatedAt: typeof rawSchema.updatedAt === 'number' ? rawSchema.updatedAt : undefined,
+    state: rawSchema.state === 'draft' || rawSchema.state === 'locked' || rawSchema.state === 'merged'
+      ? rawSchema.state
+      : undefined,
+    lock: rawSchema.lock && typeof rawSchema.lock === 'object'
+      ? mergeCollaborationLock(undefined, rawSchema.lock as SchemaCollaborativeLock)
+      : undefined,
+  };
+
+  const config = getSchemaDesignerConfig(schema, engine);
+  const fromConfig = config?.collaboration ? cloneDeep(config.collaboration) : undefined;
+  const merged = mergeSchemaCollaborativeMetadata(fromFields, fromConfig);
+  return merged || undefined;
+};
+
+export const applySchemaCollaborativeDefaults = (
+  schema: SchemaForUI,
+  context: SchemaCreationContext,
+  engine?: DesignerEngine,
+): SchemaForUI => {
+  const collaborative = resolveSchemaCollaborativeMetadata(schema, engine) || {};
+  const timestamp = context.timestamp;
+  const ownerRecipientIds = normalizeRecipientIds(
+    context.ownerRecipientIds ?? collaborative.ownerRecipientIds ?? collaborative.ownerRecipientId,
+  );
+
+  return {
+    ...schema,
+    schemaUid: collaborative.schemaUid || schema.id,
+    fileId: collaborative.fileId ?? context.fileId ?? undefined,
+    fileTemplateId: collaborative.fileTemplateId ?? context.fileId ?? undefined,
+    pageNumber: collaborative.pageNumber ?? context.pageNumber ?? context.pageIndex + 1,
+    ownerRecipientId: collaborative.ownerRecipientId ?? context.ownerRecipientId ?? ownerRecipientIds?.[0],
+    ownerRecipientIds: ownerRecipientIds,
+    createdBy: collaborative.createdBy ?? context.actorId,
+    lastModifiedBy: collaborative.lastModifiedBy ?? context.actorId ?? context.ownerRecipientId,
+    createdAt: collaborative.createdAt ?? timestamp,
+    updatedAt: timestamp,
+    state: collaborative.state || 'draft',
+    lock: undefined,
+  } as SchemaForUI;
+};
+
+export const refreshSchemaCollaborativeMetadata = (
+  schema: SchemaForUI,
+  context: SchemaCreationContext,
+  engine?: DesignerEngine,
+): SchemaForUI => {
+  const collaborative = resolveSchemaCollaborativeMetadata(schema, engine) || {};
+  return applySchemaCollaborativeDefaults(
+    {
+    ...schema,
+    schemaUid: collaborative.schemaUid || schema.id,
+    fileId: collaborative.fileId ?? context.fileId ?? undefined,
+    fileTemplateId: collaborative.fileTemplateId ?? context.fileId ?? undefined,
+    pageNumber: context.pageNumber ?? collaborative.pageNumber ?? context.pageIndex + 1,
+    ownerRecipientId: collaborative.ownerRecipientId ?? context.ownerRecipientId,
+    ownerRecipientIds: collaborative.ownerRecipientIds,
+    createdBy: collaborative.createdBy ?? context.actorId,
+    lastModifiedBy: context.actorId ?? collaborative.lastModifiedBy,
+      createdAt: collaborative.createdAt ?? context.timestamp,
+      updatedAt: context.timestamp,
+      state: collaborative.state || 'draft',
+      lock: undefined,
+    } as SchemaForUI,
+    context,
+    engine,
+  );
+};
+
 export const resolveDesignerEngine = (options: UIOptions | Record<string, unknown> | undefined): DesignerEngine => {
   const rawOptions = asRecord(options);
   if (!rawOptions) return {};
@@ -284,6 +441,7 @@ export const mergeSchemaDesignerConfig = <T extends Schema | SchemaForUI>(
       persistence: { ...(current.persistence || {}), ...(patch.persistence || {}) },
       api: mergeRequestConfig(current.api, patch.api),
       form: { ...(current.form || {}), ...(patch.form || {}) },
+      collaboration: mergeSchemaCollaborativeMetadata(current.collaboration, patch.collaboration),
       metadata: { ...(current.metadata || {}), ...(patch.metadata || {}) },
       integrations: patch.integrations || current.integrations,
     },

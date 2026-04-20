@@ -100,6 +100,25 @@ export const Size = z.object({ height: z.number(), width: z.number() });
 
 export const Schema = z
   .object({
+    schemaUid: z.string().optional(),
+    fileId: z.string().optional(),
+    fileTemplateId: z.string().optional(),
+    pageNumber: z.number().int().positive().optional(),
+    ownerRecipientId: z.string().optional(),
+    ownerRecipientIds: z.array(z.string()).optional(),
+    createdBy: z.string().optional(),
+    lastModifiedBy: z.string().optional(),
+    createdAt: z.number().optional(),
+    updatedAt: z.number().optional(),
+    state: z.enum(['draft', 'locked', 'merged']).optional(),
+    lock: z
+      .object({
+        lockedBy: z.string().optional(),
+        lockedAt: z.number().optional(),
+        reason: z.string().optional(),
+        sessionId: z.string().optional(),
+      })
+      .optional(),
     name: z.string(),
     type: z.string(),
     content: z.string().optional(),

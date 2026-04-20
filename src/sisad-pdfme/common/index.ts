@@ -43,6 +43,7 @@ import type {
 } from './types.js';
 import {
   cloneDeep,
+  buildSchemaAssignments,
   getFallbackFontName,
   getDefaultFont,
   getB64BasePdf,
@@ -78,6 +79,7 @@ export {
   ZOOM,
   DEFAULT_FONT_NAME,
   cloneDeep,
+  buildSchemaAssignments,
   getFallbackFontName,
   getDefaultFont,
   getB64BasePdf,

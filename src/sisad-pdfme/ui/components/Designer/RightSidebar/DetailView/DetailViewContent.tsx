@@ -14,7 +14,7 @@ type DetailViewContentProps = {
   schemaConfig: SchemaDesignerConfig | null;
   deselectSchema: () => void;
   form: ReturnType<typeof useForm>;
-  sectionSchemas: Record<'general' | 'style' | 'layout' | 'data' | 'validation' | 'advanced', PropPanelSchema>;
+  sectionSchemas: Record<'general' | 'style' | 'layout' | 'data' | 'collaboration' | 'validation' | 'advanced', PropPanelSchema>;
   widgets: Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element>;
   watchHandler: (..._args: unknown[]) => void;
 };
@@ -30,6 +30,19 @@ const DetailViewContent = ({
 }: DetailViewContentProps) => {
   const hasSchemaConfig = Boolean(
     schemaConfig?.persistence?.enabled || schemaConfig?.api?.enabled || schemaConfig?.form?.enabled || schemaConfig?.prefill?.enabled,
+  );
+  const hasCollaborativeConfig = Boolean(
+    activeSchema.schemaUid ||
+      activeSchema.fileId ||
+      activeSchema.fileTemplateId ||
+      activeSchema.ownerRecipientId ||
+      activeSchema.ownerRecipientIds?.length ||
+      activeSchema.createdBy ||
+      activeSchema.lastModifiedBy ||
+      activeSchema.createdAt ||
+      activeSchema.updatedAt ||
+      activeSchema.state ||
+      activeSchema.lock,
   );
   const configTags = [
     schemaConfig?.persistence?.enabled ? { label: 'Guardar', color: 'processing' as const } : null,
@@ -64,6 +77,22 @@ const DetailViewContent = ({
                 {tag.label}
               </span>
             ))}
+          </div>
+        ) : null}
+        {hasCollaborativeConfig ? (
+          <div className={DESIGNER_CLASSNAME + 'detail-view-context-strip'}>
+            <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>Colaboración</span>
+            {activeSchema.ownerRecipientId ? (
+              <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>Owner: {activeSchema.ownerRecipientId}</span>
+            ) : null}
+            {activeSchema.fileId || activeSchema.fileTemplateId ? (
+              <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
+                Archivo: {activeSchema.fileId || activeSchema.fileTemplateId}
+              </span>
+            ) : null}
+            {activeSchema.state ? (
+              <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>Estado: {activeSchema.state}</span>
+            ) : null}
           </div>
         ) : null}
         <div className={DESIGNER_CLASSNAME + 'detail-view-sections'}>
@@ -103,6 +132,17 @@ const DetailViewContent = ({
             title="Datos"
             description="Comportamiento semántico y edición."
             schema={sectionSchemas.data}
+            form={form}
+            widgets={widgets}
+            watchHandler={watchHandler}
+            defaultCollapsed
+            resetToken={activeSchema.id}
+          />
+          <DetailFormSection
+            sectionKey="collaboration"
+            title="Colaboración"
+            description="Propietario, bloqueo, auditoría y trazabilidad."
+            schema={sectionSchemas.collaboration}
             form={form}
             widgets={widgets}
             watchHandler={watchHandler}

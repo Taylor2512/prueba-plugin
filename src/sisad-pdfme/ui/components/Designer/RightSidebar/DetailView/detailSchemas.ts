@@ -167,6 +167,14 @@ export const buildInspectorSchemas = ({
     },
   });
 
+  const collaborationSchema = buildSectionSchema({
+    collaboration: {
+      title: 'Colaboración',
+      type: 'void',
+      widget: 'SchemaCollaborationWidget',
+    },
+  });
+
   const validationSchema = buildSectionSchema({
     required: {
       title: typedI18n('required'),
@@ -202,6 +210,7 @@ export const buildInspectorSchemas = ({
     style: replaceColorWidget(styleSchema) as PropPanelSchema,
     layout: replaceColorWidget(layoutSchema) as PropPanelSchema,
     data: replaceColorWidget(dataSchema) as PropPanelSchema,
+    collaboration: replaceColorWidget(collaborationSchema) as PropPanelSchema,
     validation: replaceColorWidget(validationSchema) as PropPanelSchema,
     advanced: replaceColorWidget(buildSectionSchema(advancedProperties)) as PropPanelSchema,
   };

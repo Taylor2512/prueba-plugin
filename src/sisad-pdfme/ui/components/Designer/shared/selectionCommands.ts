@@ -5,7 +5,11 @@ import {
   cloneDeep,
 } from '@sisad-pdfme/common';
 import { uuid, round } from '../../../helper.js';
-import { DEFAULT_SCHEMA_CONFIG_STORAGE_KEY } from '../../../designerEngine.js';
+import {
+  DEFAULT_SCHEMA_CONFIG_STORAGE_KEY,
+  applySchemaCollaborativeDefaults,
+  type SchemaCreationContext,
+} from '../../../designerEngine.js';
 export type AlignType =
   | 'left'
   | 'center'
@@ -72,6 +76,7 @@ export type SelectionCommandsContext = {
   removeSchemas: (ids: string[]) => void;
   onOpenProperties: () => void;
   requestInlineEdit?: (_request: InlineEditRequest) => void;
+  collaborationContext?: Pick<SchemaCreationContext, 'fileId' | 'actorId' | 'ownerRecipientId' | 'ownerRecipientIds'>;
 };
 
 const getActiveIds = (elements: HTMLElement[]) => elements.map((element) => element.id);
@@ -119,6 +124,20 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
         x: clampToPage((schema.position?.x ?? 0) + 6, context.pageSize.width - (schema.width ?? 0)),
         y: clampToPage((schema.position?.y ?? 0) + 6, context.pageSize.height - (schema.height ?? 0)),
       };
+      const nextCollaborative = applySchemaCollaborativeDefaults(
+        clone,
+        {
+          pageIndex: context.pageCursor,
+          pageNumber: context.pageCursor + 1,
+          totalPages: context.schemasList.length,
+          timestamp: Date.now(),
+          fileId: context.collaborationContext?.fileId || null,
+          actorId: context.collaborationContext?.actorId || null,
+          ownerRecipientId: context.collaborationContext?.ownerRecipientId || null,
+          ownerRecipientIds: context.collaborationContext?.ownerRecipientIds,
+        },
+      );
+      Object.assign(clone, nextCollaborative, { state: 'draft', lock: undefined });
 
       const designerConfig = (clone as SchemaForUI & Record<string, unknown>)[DEFAULT_SCHEMA_CONFIG_STORAGE_KEY];
       if (designerConfig && typeof designerConfig === 'object') {

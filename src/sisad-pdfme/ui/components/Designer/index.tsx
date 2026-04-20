@@ -51,6 +51,7 @@ import {
   resolveDesignerEngine,
   attachSchemaIdentity,
   applySchemaCreationHook,
+  applySchemaCollaborativeDefaults,
   getSchemaDesignerConfig,
   mergeSchemaDesignerConfig,
 } from '../../designerEngine.js';
@@ -400,6 +401,12 @@ const TemplateEditor = ({
   const [activeDocumentId, setActiveDocumentId] = useState<string | null>(
     () => initialActiveDocumentId,
   );
+  const collaborationContext = useMemo(
+    () => ({
+      fileId: activeDocumentId || null,
+    }),
+    [activeDocumentId],
+  );
   const [rightSidebarViewMode, setRightSidebarViewMode] = useState<'auto' | 'fields' | 'detail' | 'docs'>('auto');
   const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const openPropertiesPanel = useCallback(() => {
@@ -617,6 +624,7 @@ const TemplateEditor = ({
         removeSchemas,
         onOpenProperties: openPropertiesPanel,
         requestInlineEdit,
+        collaborationContext,
       }),
     [
       activeElements,
@@ -628,6 +636,7 @@ const TemplateEditor = ({
       removeSchemas,
       openPropertiesPanel,
       requestInlineEdit,
+      collaborationContext,
     ],
   );
 
@@ -647,6 +656,7 @@ const TemplateEditor = ({
     onEdit,
     onEditEnd,
     selectionCommands,
+    collaborationContext,
   });
 
   const updateTemplate = useCallback(async (newTemplate: Template) => {
@@ -751,6 +761,7 @@ const TemplateEditor = ({
     };
     s = applySchemaCreationHook(s, creationContext, designerEngine);
     s = attachSchemaIdentity(s, creationContext, designerEngine);
+    s = applySchemaCollaborativeDefaults(s, creationContext, designerEngine);
 
     commitSchemas(currentPageSchemas.concat(s));
     setTimeout(() => {
@@ -1200,7 +1211,24 @@ const TemplateEditor = ({
   }
 
   function handleDuplicatePageAfter() {
-    const nextSchemasList = insertPageSchemas(schemasList, pageCursor + 1, cloneDeep(currentPageSchemas));
+    const duplicatedPageSchemas = cloneDeep(currentPageSchemas).map((schema) =>
+      applySchemaCollaborativeDefaults(
+        schema,
+        {
+          fileId: activeDocumentId || null,
+          pageIndex: pageCursor + 1,
+          pageNumber: pageCursor + 2,
+          totalPages: schemasList.length + 1,
+          timestamp: Date.now(),
+        },
+        designerEngine,
+      ),
+    );
+    duplicatedPageSchemas.forEach((schema) => {
+      schema.state = 'draft';
+      schema.lock = undefined;
+    });
+    const nextSchemasList = insertPageSchemas(schemasList, pageCursor + 1, duplicatedPageSchemas);
     updatePage(nextSchemasList, pageCursor + 1);
   }
 
