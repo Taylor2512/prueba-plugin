@@ -8,6 +8,7 @@ import { SidebarBody, SidebarFooter, SidebarFrame, SidebarHeader } from '../layo
 import { mergeClassNames } from '../../shared/className.js';
 import ListViewToolbar from './ListViewToolbar.js';
 import ListViewFooter from './ListViewFooter.js';
+import { filterSchemasForCollaborationView } from '../../../../collaborationContext.js';
 
 const { TextArea } = Input;
 const { Text } = Typography;
@@ -21,6 +22,7 @@ const ListView = (
     | 'hoveringSchemaId'
     | 'onChangeHoveringSchemaId'
     | 'changeSchemas'
+    | 'collaborationContext'
   > & {
     activeSchemaIds: string[];
     className?: string;
@@ -35,12 +37,17 @@ const ListView = (
     onChangeHoveringSchemaId,
     changeSchemas,
     activeSchemaIds,
+    collaborationContext,
   } = props;
   const i18n = useContext(I18nContext);
   const [isBulkUpdateFieldNamesMode, setIsBulkUpdateFieldNamesMode] = useState(false);
   const [fieldNamesValue, setFieldNamesValue] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [typeFilter, setTypeFilter] = useState<string>('all');
+  const viewSchemas = useMemo(
+    () => filterSchemasForCollaborationView(schemas, collaborationContext),
+    [collaborationContext, schemas],
+  );
 
   const normalizeText = (value: unknown) => {
     if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
@@ -52,16 +59,16 @@ const ListView = (
 
   // Collect unique schema types for the filter dropdown
   const schemaTypes = useMemo(() => {
-    const types = Array.from(new Set(schemas.map((s) => s.type)));
+    const types = Array.from(new Set(viewSchemas.map((s) => s.type)));
     return [
       { value: 'all', label: 'Todos los tipos' },
       ...types.map((t) => ({ value: t, label: t })),
     ];
-  }, [schemas]);
+  }, [viewSchemas]);
 
   // Filter schemas by search query and type
   const filteredSchemas = useMemo(() => {
-    return schemas.filter((s) => {
+    return viewSchemas.filter((s) => {
       const query = normalizeText(searchQuery);
       const matchesSearch =
         query.length === 0 ||
@@ -69,16 +76,16 @@ const ListView = (
       const matchesType = typeFilter === 'all' || normalizeText(s.type) === normalizeText(typeFilter);
       return matchesSearch && matchesType;
     });
-  }, [schemas, searchQuery, typeFilter]);
+  }, [viewSchemas, searchQuery, typeFilter]);
 
   const commitBulk = () => {
     const names = fieldNamesValue.split('\n');
-    if (names.length === schemas.length) {
+    if (names.length === viewSchemas.length) {
       changeSchemas(
         names.map((value, index) => ({
           key: 'name',
           value,
-          schemaId: schemas[index].id,
+          schemaId: viewSchemas[index].id,
         })),
       );
       setIsBulkUpdateFieldNamesMode(false);
@@ -89,7 +96,7 @@ const ListView = (
   };
 
   const startBulk = () => {
-    setFieldNamesValue(schemas.map((s) => s.name).join('\n'));
+    setFieldNamesValue(viewSchemas.map((s) => s.name).join('\n'));
     setIsBulkUpdateFieldNamesMode(true);
   };
 
@@ -108,9 +115,9 @@ const ListView = (
           typeFilter={typeFilter}
           schemaTypes={schemaTypes}
           filteredCount={filteredSchemas.length}
-          totalCount={schemas.length}
+          totalCount={viewSchemas.length}
           hasActiveSearch={hasActiveSearch}
-          hasSchemas={schemas.length > 0}
+          hasSchemas={viewSchemas.length > 0}
           onChangeSearch={setSearchQuery}
           onChangeType={setTypeFilter}
           onStartBulk={startBulk}
@@ -140,6 +147,7 @@ const ListView = (
             onSortEnd={onSortEnd}
             onEdit={onEdit}
             activeSchemaIds={activeSchemaIds}
+            collaborationContext={collaborationContext}
           />
         ) : null}
         {showEmptyState ? (
@@ -169,7 +177,7 @@ const ListView = (
         <SidebarFooter>
           <ListViewFooter
             bulkMode={isBulkUpdateFieldNamesMode}
-            hasSchemas={schemas.length > 0}
+            hasSchemas={viewSchemas.length > 0}
             onCommit={commitBulk}
             onCancel={() => setIsBulkUpdateFieldNamesMode(false)}
             onStartBulk={startBulk}

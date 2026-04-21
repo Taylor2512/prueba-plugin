@@ -14,6 +14,7 @@ import {
   type SchemaPersistenceConfig,
 } from '../../../../designerEngine.js';
 import { PairEditor, SectionHeader } from './SchemaConnectionsShared.js';
+import { getMissingConnectionFields } from './schemaConnectionsValidation.js';
 
 type ConfigWidgetProps = PropPanelWidgetProps & {
   schemaConfig?: SchemaDesignerConfig | null;
@@ -43,27 +44,6 @@ const buildValidationTag = (validationState: 'idle' | 'ok' | 'warning') => {
   }
 
   return null;
-};
-
-const getMissingFields = (
-  persistence: SchemaPersistenceConfig,
-  api: NonNullable<SchemaDesignerConfig['api']>,
-  resolvedHttpClient: ReturnType<typeof resolveDesignerHttpClientConfig>,
-) => {
-  const missing: string[] = [];
-
-  if (persistence.enabled && !String(persistence.key || '').trim()) missing.push('storageKey');
-  if (api.enabled && !String(api.endpoint || '').trim()) missing.push('endpoint');
-  if (api.enabled && resolvedHttpClient?.inheritSystem === false && !String(resolvedHttpClient?.baseURL || '').trim()) {
-    missing.push('baseURL');
-  }
-  if (api.enabled && resolvedHttpClient?.auth?.mode === 'manual') {
-    const hasToken = Boolean(resolvedHttpClient.auth?.token || resolvedHttpClient.auth?.headerValue);
-    const hasHeader = Boolean(resolvedHttpClient.auth?.headerName);
-    if (!hasToken || !hasHeader) missing.push('auth');
-  }
-
-  return missing;
 };
 
 const describeBoolean = (value?: boolean) => (value ? 'Sí' : 'No');
@@ -274,7 +254,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
       return;
     }
 
-    const missing = getMissingFields(persistence, api, resolvedHttpClient);
+    const missing = getMissingConnectionFields(persistence, api, formJson, resolvedHttpClient);
 
     if (missing.length === 0) {
       setValidationState('ok');
@@ -739,6 +719,11 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
         {api.enabled && !api.endpoint ? (
           <Tag color="warning" className={`${DESIGNER_CLASSNAME}schema-config-summary-tag`}>
             Falta endpoint
+          </Tag>
+        ) : null}
+        {formJson.enabled && formJson.collect && !formJson.rootKey ? (
+          <Tag color="warning" className={`${DESIGNER_CLASSNAME}schema-config-summary-tag`}>
+            Falta raíz JSON
           </Tag>
         ) : null}
       </div>

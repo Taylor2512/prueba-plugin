@@ -76,7 +76,10 @@ export type SelectionCommandsContext = {
   removeSchemas: (ids: string[]) => void;
   onOpenProperties: () => void;
   requestInlineEdit?: (_request: InlineEditRequest) => void;
-  collaborationContext?: Pick<SchemaCreationContext, 'fileId' | 'actorId' | 'ownerRecipientId' | 'ownerRecipientIds'>;
+  collaborationContext?: Pick<
+    SchemaCreationContext,
+    'fileId' | 'actorId' | 'ownerRecipientId' | 'ownerRecipientIds' | 'ownerRecipientName' | 'ownerColor' | 'userColor'
+  >;
 };
 
 const getActiveIds = (elements: HTMLElement[]) => elements.map((element) => element.id);
@@ -135,6 +138,9 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
           actorId: context.collaborationContext?.actorId || null,
           ownerRecipientId: context.collaborationContext?.ownerRecipientId || null,
           ownerRecipientIds: context.collaborationContext?.ownerRecipientIds,
+          ownerRecipientName: context.collaborationContext?.ownerRecipientName || null,
+          ownerColor: context.collaborationContext?.ownerColor || null,
+          userColor: context.collaborationContext?.userColor || null,
         },
       );
       Object.assign(clone, nextCollaborative, { state: 'draft', lock: undefined });

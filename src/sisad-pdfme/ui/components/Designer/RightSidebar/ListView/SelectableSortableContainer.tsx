@@ -25,7 +25,7 @@ import ListViewDragOverlay from './ListViewDragOverlay.js';
 const SelectableSortableContainer = (
   props: Pick<
     SidebarProps,
-    'onEdit' | 'onSortEnd' | 'hoveringSchemaId' | 'onChangeHoveringSchemaId'
+    'onEdit' | 'onSortEnd' | 'hoveringSchemaId' | 'onChangeHoveringSchemaId' | 'collaborationContext'
   > & {
     allSchemas: SchemaForUI[];
     visibleSchemas: SchemaForUI[];
@@ -40,6 +40,7 @@ const SelectableSortableContainer = (
     onSortEnd,
     hoveringSchemaId,
     onChangeHoveringSchemaId,
+    collaborationContext,
   } = props;
   const [selectedSchemas, setSelectedSchemas] = useState<SchemaForUI[]>([]);
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -184,6 +185,7 @@ const SelectableSortableContainer = (
                 onSelect={onSelectionChanged}
                 onMouseEnter={() => onChangeHoveringSchemaId(schema.id)}
                 onMouseLeave={() => onChangeHoveringSchemaId(null)}
+                collaborationContext={collaborationContext}
               />
             ))}
           </ul>

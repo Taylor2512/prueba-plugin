@@ -1,22 +1,32 @@
 import React, { useMemo } from 'react';
-import type { PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
-import { Button, Divider, Input, InputNumber, Select, Space, Switch, Tag } from 'antd';
+import {
+  createSchemaComment,
+  createSchemaCommentAnchor,
+  normalizeRecipientIds as normalizeRecipientIdsShared,
+  removeById,
+  type PropPanelWidgetProps,
+  type SchemaForUI,
+} from '@sisad-pdfme/common';
+import { Button, Collapse, Divider, Input, InputNumber, Select, Space, Switch, Tag } from 'antd';
 import { Lock, ShieldCheck, Users2 } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
+import {
+  buildEffectiveCollaborationContext,
+  resolveSchemaCollaborationState,
+} from '../../../../collaborationContext.js';
 import {
   resolveSchemaCollaborativeMetadata,
   type DesignerEngine,
   type SchemaComment,
   type SchemaCommentAnchor,
+  type SchemaCollaborativeLock,
   type SchemaCollaborativeState,
-  type SchemaDesignerConfig,
 } from '../../../../designerEngine.js';
 
 type CollaborationWidgetProps = PropPanelWidgetProps & {
   activeSchema: SchemaForUI;
   changeSchemas: (_objs: { key: string; value: unknown; schemaId: string }[]) => void;
   designerEngine?: DesignerEngine;
-  schemaConfig?: SchemaDesignerConfig | null;
 };
 
 const STATE_OPTIONS: Array<{ label: string; value: SchemaCollaborativeState }> = [
@@ -25,37 +35,10 @@ const STATE_OPTIONS: Array<{ label: string; value: SchemaCollaborativeState }> =
   { label: 'Fusionado', value: 'merged' },
 ];
 
-const normalizeRecipientIds = (value: unknown): string[] => {
-  if (Array.isArray(value)) {
-    return Array.from(
-      new Set(
-        value
-          .map((entry) => String(entry || '').trim())
-          .filter(Boolean),
-      ),
-    );
-  }
+export { normalizeRecipientIds } from '@sisad-pdfme/common';
 
-  if (typeof value === 'string') {
-    return Array.from(
-      new Set(
-        value
-          .split(',')
-          .map((entry) => entry.trim())
-          .filter(Boolean),
-      ),
-    );
-  }
-
-  return [];
-};
-
-const joinRecipientIds = (value: unknown): string => normalizeRecipientIds(value).join(', ');
-
-const createId = (prefix: string) =>
-  typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
-    ? `${prefix}-${crypto.randomUUID()}`
-    : `${prefix}-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+export const joinRecipientIds = (value: unknown): string =>
+  normalizeRecipientIdsShared(value as string[] | string | null | undefined).join(', ');
 
 const normalizeComments = (value: unknown): SchemaComment[] =>
   Array.isArray(value)
@@ -67,30 +50,334 @@ const normalizeAnchors = (value: unknown): SchemaCommentAnchor[] =>
     ? (value as SchemaCommentAnchor[])
     : [];
 
-const createComment = (): SchemaComment => ({
-  id: createId('comment'),
-  authorId: '',
-  authorName: '',
-  timestamp: Date.now(),
-  text: '',
-  resolved: false,
-  replies: [],
-});
-
-const createAnchor = (schemaUid?: string, fileId?: string | null, pageNumber?: number): SchemaCommentAnchor => ({
-  id: createId('anchor'),
-  schemaUid,
-  fileId: fileId || undefined,
-  pageNumber,
-  x: 0,
-  y: 0,
-  resolved: false,
-});
-
 const buildStateTag = (state?: SchemaCollaborativeState) => {
   if (state === 'locked') return { label: 'Bloqueado', color: 'error' as const };
   if (state === 'merged') return { label: 'Fusionado', color: 'success' as const };
   return { label: 'Borrador', color: 'default' as const };
+};
+
+export const resolveOwnerMode = (ownerRecipientIds: string[]) => {
+  if (ownerRecipientIds.length > 1) return 'multi' as const;
+  if (ownerRecipientIds.length === 1) return 'single' as const;
+  return undefined;
+};
+
+type CollaborationCommentsSectionProps = {
+  comments: SchemaComment[];
+  commentCount: number;
+  onAddComment: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onUpdateComment: (commentIndex: number, patch: Partial<SchemaComment>) => void;
+  onUpdateReply: (
+    commentIndex: number,
+    replyIndex: number,
+    patch: Partial<NonNullable<SchemaComment['replies']>[number]>,
+  ) => void;
+  onDeleteComment: (commentIndex: number) => void;
+};
+
+const CollaborationCommentsSection = ({
+  comments,
+  commentCount,
+  onAddComment,
+  onUpdateComment,
+  onUpdateReply,
+  onDeleteComment,
+}: CollaborationCommentsSectionProps) => (
+  <Collapse
+    className={`${DESIGNER_CLASSNAME}schema-config-collapse`}
+    ghost
+    defaultActiveKey={commentCount === 0 ? ['comments'] : []}
+    items={[
+      {
+        key: 'comments',
+        label: (
+          <Space size={6} align="center">
+            <span className={`${DESIGNER_CLASSNAME}schema-collaboration-widget-title`}>Comentarios</span>
+            <Tag color={commentCount > 0 ? 'blue' : 'default'}>{commentCount}</Tag>
+          </Space>
+        ),
+        extra: (
+          <Button size="small" type="primary" onClick={onAddComment}>
+            Agregar comentario
+          </Button>
+        ),
+        children: (
+          <div className={`${DESIGNER_CLASSNAME}schema-collaboration-comments-list`}>
+            {comments.length === 0 ? (
+              <div className={`${DESIGNER_CLASSNAME}schema-config-empty`}>Sin comentarios</div>
+            ) : null}
+            {comments.map((comment, commentIndex) => (
+              <div key={comment.id} className={`${DESIGNER_CLASSNAME}schema-collaboration-comment-card`}>
+                <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Autor</div>
+                    <Input
+                      value={comment.authorName || ''}
+                      onChange={(event) => onUpdateComment(commentIndex, { authorName: event.target.value })}
+                      placeholder="Nombre del autor"
+                    />
+                  </div>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>ID autor</div>
+                    <Input
+                      value={comment.authorId || ''}
+                      onChange={(event) => onUpdateComment(commentIndex, { authorId: event.target.value })}
+                      placeholder="user-1"
+                    />
+                  </div>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Timestamp</div>
+                    <InputNumber
+                      className={`${DESIGNER_CLASSNAME}schema-config-number`}
+                      value={comment.timestamp}
+                      onChange={(value) => onUpdateComment(commentIndex, { timestamp: typeof value === 'number' ? value : Date.now() })}
+                    />
+                  </div>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Resuelto</div>
+                    <Switch
+                      checked={Boolean(comment.resolved)}
+                      onChange={(checked) => onUpdateComment(commentIndex, { resolved: checked })}
+                    />
+                  </div>
+                </div>
+                <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Texto</div>
+                  <Input.TextArea
+                    value={comment.text}
+                    onChange={(event) => onUpdateComment(commentIndex, { text: event.target.value })}
+                    placeholder="Escribe un comentario"
+                    autoSize={{ minRows: 2, maxRows: 5 }}
+                  />
+                </div>
+                <div className={`${DESIGNER_CLASSNAME}schema-collaboration-comment-actions`}>
+                  <Button
+                    size="small"
+                    onClick={() =>
+                      onUpdateComment(commentIndex, {
+                        replies: [...(comment.replies || []), {
+                          id: createId('reply'),
+                          authorId: '',
+                          authorName: '',
+                          timestamp: Date.now(),
+                          text: '',
+                          resolved: false,
+                        }],
+                      })
+                    }
+                  >
+                    Agregar respuesta
+                  </Button>
+                  <Button size="small" danger onClick={() => onDeleteComment(commentIndex)}>
+                    Eliminar
+                  </Button>
+                </div>
+                <div className={`${DESIGNER_CLASSNAME}schema-collaboration-comment-replies`}>
+                  {(comment.replies || []).map((reply, replyIndex) => (
+                    <div key={reply.id} className={`${DESIGNER_CLASSNAME}schema-collaboration-comment-reply`}>
+                      <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
+                        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Autor</div>
+                          <Input
+                            value={reply.authorName || ''}
+                            onChange={(event) => onUpdateReply(commentIndex, replyIndex, { authorName: event.target.value })}
+                            placeholder="Nombre"
+                          />
+                        </div>
+                        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Resuelto</div>
+                          <Switch
+                            checked={Boolean(reply.resolved)}
+                            onChange={(checked) => onUpdateReply(commentIndex, replyIndex, { resolved: checked })}
+                          />
+                        </div>
+                      </div>
+                      <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                        <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Respuesta</div>
+                        <Input.TextArea
+                          value={reply.text}
+                          onChange={(event) => onUpdateReply(commentIndex, replyIndex, { text: event.target.value })}
+                          autoSize={{ minRows: 2, maxRows: 4 }}
+                        />
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        ),
+      },
+    ]}
+  />
+);
+
+type CollaborationAnchorsSectionProps = {
+  anchors: SchemaCommentAnchor[];
+  anchorCount: number;
+  onAddAnchor: (event: React.MouseEvent<HTMLButtonElement>) => void;
+  onDeleteAnchor: (anchorIndex: number) => void;
+  onUpdateAnchors: (nextAnchors: SchemaCommentAnchor[]) => void;
+};
+
+const CollaborationAnchorsSection = ({
+  anchors,
+  anchorCount,
+  onAddAnchor,
+  onDeleteAnchor,
+  onUpdateAnchors,
+}: CollaborationAnchorsSectionProps) => (
+  <Collapse
+    className={`${DESIGNER_CLASSNAME}schema-config-collapse`}
+    ghost
+    defaultActiveKey={anchorCount === 0 ? ['anchors'] : []}
+    items={[
+      {
+        key: 'anchors',
+        label: (
+          <Space size={6} align="center">
+            <span className={`${DESIGNER_CLASSNAME}schema-collaboration-widget-title`}>Anchors</span>
+            <Tag color={anchorCount > 0 ? 'cyan' : 'default'}>{anchorCount}</Tag>
+          </Space>
+        ),
+        extra: (
+          <Button size="small" onClick={onAddAnchor}>
+            Agregar anchor
+          </Button>
+        ),
+        children: (
+          <div className={`${DESIGNER_CLASSNAME}schema-collaboration-comments-list`}>
+            {anchors.length === 0 ? (
+              <div className={`${DESIGNER_CLASSNAME}schema-config-empty`}>Sin anchors</div>
+            ) : null}
+            {anchors.map((anchor, anchorIndex) => (
+              <div key={anchor.id} className={`${DESIGNER_CLASSNAME}schema-collaboration-comment-card`}>
+                <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>fileId</div>
+                    <Input
+                      value={anchor.fileId || ''}
+                      onChange={(event) =>
+                        onUpdateAnchors(
+                          anchors.map((item, index) =>
+                            index === anchorIndex ? { ...item, fileId: event.target.value || undefined } : item,
+                          ),
+                        )
+                      }
+                    />
+                  </div>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>pageNumber</div>
+                    <InputNumber
+                      className={`${DESIGNER_CLASSNAME}schema-config-number`}
+                      min={1}
+                      value={anchor.pageNumber}
+                      onChange={(value) =>
+                        onUpdateAnchors(
+                          anchors.map((item, index) =>
+                            index === anchorIndex
+                              ? { ...item, pageNumber: typeof value === 'number' ? value : undefined }
+                              : item,
+                          ),
+                        )
+                      }
+                    />
+                  </div>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>x</div>
+                    <InputNumber
+                      className={`${DESIGNER_CLASSNAME}schema-config-number`}
+                      value={anchor.x}
+                      onChange={(value) =>
+                        onUpdateAnchors(
+                          anchors.map((item, index) =>
+                            index === anchorIndex ? { ...item, x: typeof value === 'number' ? value : undefined } : item,
+                          ),
+                        )
+                      }
+                    />
+                  </div>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>y</div>
+                    <InputNumber
+                      className={`${DESIGNER_CLASSNAME}schema-config-number`}
+                      value={anchor.y}
+                      onChange={(value) =>
+                        onUpdateAnchors(
+                          anchors.map((item, index) =>
+                            index === anchorIndex ? { ...item, y: typeof value === 'number' ? value : undefined } : item,
+                          ),
+                        )
+                      }
+                    />
+                  </div>
+                </div>
+                <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Resuelto</div>
+                  <Switch
+                    checked={Boolean(anchor.resolved)}
+                    onChange={(checked) =>
+                      onUpdateAnchors(
+                        anchors.map((item, index) => (index === anchorIndex ? { ...item, resolved: checked } : item)),
+                      )
+                    }
+                  />
+                </div>
+                <div className={`${DESIGNER_CLASSNAME}schema-collaboration-comment-actions`}>
+                  <Button size="small" danger onClick={() => onDeleteAnchor(anchorIndex)}>
+                    Eliminar
+                  </Button>
+                </div>
+              </div>
+            ))}
+          </div>
+        ),
+      },
+    ]}
+  />
+);
+
+type CollaborationLockSectionProps = {
+  isVisible: boolean;
+  lock?: SchemaCollaborativeLock;
+  onChangeLock: (patch: Partial<SchemaCollaborativeLock>) => void;
+};
+
+const CollaborationLockSection = ({ isVisible, lock, onChangeLock }: CollaborationLockSectionProps) => {
+  if (!isVisible) return null;
+
+  return (
+    <>
+      <Divider className={`${DESIGNER_CLASSNAME}schema-config-divider`} />
+      <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
+        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Bloqueado por</div>
+          <Input
+            value={String(lock?.lockedBy || '')}
+            onChange={(event) => onChangeLock({ ...lock, lockedBy: event.target.value || undefined })}
+            placeholder="user-2"
+          />
+        </div>
+        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Bloqueado en</div>
+          <InputNumber
+            className={`${DESIGNER_CLASSNAME}schema-config-number`}
+            value={typeof lock?.lockedAt === 'number' ? lock.lockedAt : undefined}
+            onChange={(value) => onChangeLock({ ...lock, lockedAt: typeof value === 'number' ? value : undefined })}
+          />
+        </div>
+      </div>
+      <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+        <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Motivo</div>
+        <Input.TextArea
+          value={String(lock?.reason || '')}
+          onChange={(event) => onChangeLock({ ...lock, reason: event.target.value || undefined })}
+          placeholder="Edición concurrente"
+          autoSize={{ minRows: 2, maxRows: 4 }}
+        />
+      </div>
+    </>
+  );
 };
 
 const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
@@ -99,19 +386,42 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
     () => resolveSchemaCollaborativeMetadata(activeSchema, designerEngine) || {},
     [activeSchema, designerEngine],
   );
+  const collaborationContext = useMemo(
+    () =>
+      buildEffectiveCollaborationContext(
+        designerEngine?.collaboration,
+        String(activeSchema.fileId || collaborative.fileId || activeSchema.fileTemplateId || collaborative.fileTemplateId || '') || null,
+      ),
+    [
+      activeSchema.fileId,
+      activeSchema.fileTemplateId,
+      collaborative.fileId,
+      collaborative.fileTemplateId,
+      designerEngine,
+    ],
+  );
 
   const schemaUid = collaborative.schemaUid || activeSchema.id;
   const state = collaborative.state || 'draft';
-  const ownerRecipientIds = normalizeRecipientIds(
+  const ownerRecipientIds = normalizeRecipientIdsShared(
     collaborative.ownerRecipientIds || collaborative.ownerRecipientId || activeSchema.ownerRecipientIds || activeSchema.ownerRecipientId,
   );
-  const ownerMode = collaborative.ownerMode || (ownerRecipientIds.length > 1 ? 'multi' : ownerRecipientIds.length === 1 ? 'single' : undefined);
-  const lock = collaborative.lock || activeSchema.lock || {};
+  const resolvedSchemaState = resolveSchemaCollaborationState(activeSchema, collaborationContext);
+  const ownerMode = collaborative.ownerMode || resolvedSchemaState.ownerMode || resolveOwnerMode(ownerRecipientIds);
+  const lock = collaborative.lock || activeSchema.lock;
   const comments = normalizeComments(activeSchema.comments || collaborative.comments);
   const anchors = normalizeAnchors(
     activeSchema.commentAnchors || activeSchema.commentsAnchors || collaborative.commentAnchors || collaborative.commentsAnchors,
   );
+  const commentCount = typeof collaborative.commentsCount === 'number' ? collaborative.commentsCount : comments.length;
+  const anchorCount = anchors.length;
   const stateTag = buildStateTag(state);
+  const recipientOptions = collaborationContext.recipientOptions || [];
+  const hasRecipientOptions = recipientOptions.length > 0;
+  const recipientSelectOptions = recipientOptions.map((recipient) => ({
+    label: recipient.role ? `${recipient.name} · ${recipient.role}` : recipient.name,
+    value: recipient.id,
+  }));
 
   const commit = (patch: Record<string, unknown>) => {
     changeSchemas(
@@ -123,18 +433,30 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
     );
   };
 
-  const updateRecipientIds = (value: string) => {
-    const nextRecipientIds = normalizeRecipientIds(value);
+  const updateRecipientIds = (value: string[] | string) => {
+    const nextRecipientIds = normalizeRecipientIdsShared(value as string[] | string | null | undefined);
+    const nextPrimaryRecipientId = nextRecipientIds[0];
+    const nextPrimaryRecipient =
+      recipientOptions.find((recipient) => recipient.id === nextPrimaryRecipientId) || null;
+    const nextOwnerMode =
+      nextRecipientIds.length === 0
+        ? undefined
+        : nextRecipientIds.length === recipientOptions.length && recipientOptions.length > 1
+          ? 'shared'
+          : resolveOwnerMode(nextRecipientIds);
     commit({
       ownerRecipientIds: nextRecipientIds,
-      ownerRecipientId: nextRecipientIds[0],
+      ownerRecipientId: nextPrimaryRecipientId,
+      ownerRecipientName: nextPrimaryRecipient?.name || undefined,
+      ownerColor: nextPrimaryRecipient?.color || undefined,
+      ownerMode: nextOwnerMode,
     });
   };
 
   const updateState = (nextState: SchemaCollaborativeState) => {
     commit({
       state: nextState,
-      lock: nextState === 'locked' ? lock || {} : undefined,
+      lock: nextState === 'locked' ? { ...lock } : undefined,
     });
   };
 
@@ -152,6 +474,46 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
       commentsAnchors: nextAnchors,
     });
   };
+
+  const handleAddComment = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    updateComments([
+      ...comments,
+      createSchemaComment('', {
+        authorId: collaborationContext.activeRecipientId || collaborative.createdBy || activeSchema.createdBy,
+        authorName: collaborationContext.activeRecipient?.name || resolvedOwnerLabel,
+        authorColor: effectiveAuthorColor || null,
+      }),
+    ]);
+  };
+
+  const handleAddAnchor = (event: React.MouseEvent<HTMLButtonElement>) => {
+    event.stopPropagation();
+    updateAnchors([
+      ...anchors,
+      createSchemaCommentAnchor(
+        {
+          schemaUid,
+          fileId: activeSchema.fileId || collaborative.fileId,
+          pageNumber: activeSchema.pageNumber || collaborative.pageNumber,
+          x: 0,
+          y: 0,
+        },
+        {
+          authorId: collaborationContext.activeRecipientId || collaborative.createdBy || activeSchema.createdBy,
+          authorColor: effectiveAuthorColor || null,
+        },
+      ),
+    ]);
+  };
+
+  const authorOptions = recipientSelectOptions;
+  const resolvedOwnerLabel =
+    resolvedSchemaState.ownerRecipientName ||
+    collaborationContext.recipientNameMap.get(resolvedSchemaState.ownerRecipientId || '') ||
+    resolvedSchemaState.ownerRecipientId ||
+    'Sin owner';
+  const effectiveAuthorColor = resolvedSchemaState.userColor || resolvedSchemaState.ownerColor || undefined;
 
   const updateComment = (commentIndex: number, patch: Partial<SchemaComment>) => {
     updateComments(
@@ -194,15 +556,30 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
         <Space size={[6, 6]} wrap>
           <Tag color="default">{schemaUid || 'sin schemaUid'}</Tag>
           {ownerMode ? <Tag color="default">Owner {ownerMode}</Tag> : null}
+          <Tag
+            color={resolvedSchemaState.isShared ? 'purple' : resolvedSchemaState.isOwnerOther ? 'gold' : 'processing'}
+          >
+            {resolvedSchemaState.isShared
+              ? 'Compartido'
+              : resolvedSchemaState.isOwnerOther
+                ? 'Pertenece a otro usuario'
+                : resolvedSchemaState.isOwnerActive
+                  ? 'Owner activo'
+                  : resolvedOwnerLabel}
+          </Tag>
           <Tag color={ownerRecipientIds.length > 0 ? 'processing' : 'warning'} icon={<Users2 size={12} />}>
             {ownerRecipientIds.length > 0 ? `${ownerRecipientIds.length} owner(s)` : 'Sin owner'}
           </Tag>
+          {effectiveAuthorColor ? (
+            <Tag color="default" style={{ borderColor: effectiveAuthorColor, color: effectiveAuthorColor }}>
+              Autor {resolvedSchemaState.createdBy || 'sin asignar'}
+            </Tag>
+          ) : null}
           <Tag color={collaborative.saveValue === false || activeSchema.saveValue === false ? 'warning' : 'success'}>
             {collaborative.saveValue === false || activeSchema.saveValue === false ? 'No guardar valor' : 'Guardar valor'}
           </Tag>
-          {(typeof collaborative.commentsCount === 'number' ? collaborative.commentsCount : comments.length) > 0 ? (
-            <Tag color="blue">Comentarios: {typeof collaborative.commentsCount === 'number' ? collaborative.commentsCount : comments.length}</Tag>
-          ) : null}
+          {commentCount > 0 ? <Tag color="blue">Comentarios: {commentCount}</Tag> : null}
+          {anchorCount > 0 ? <Tag color="cyan">Anchors: {anchorCount}</Tag> : null}
           {hasLock ? (
             <Tag color="error" icon={<Lock size={12} />}>
               Bloqueo activo
@@ -258,18 +635,47 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
 
       <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
         <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Owner principal</div>
-        <Input
-          value={activeSchema.ownerRecipientId || collaborative.ownerRecipientId || ''}
-          onChange={(event) => commit({ ownerRecipientId: event.target.value || undefined })}
-          placeholder="recipient-1"
-        />
+        {hasRecipientOptions ? (
+          <Select
+            value={activeSchema.ownerRecipientId || collaborative.ownerRecipientId || undefined}
+            options={recipientSelectOptions}
+            onChange={(value) => updateRecipientIds([value])}
+            placeholder="Selecciona un owner"
+            allowClear
+            onClear={() => updateRecipientIds([])}
+          />
+        ) : (
+          <Input
+            value={activeSchema.ownerRecipientId || collaborative.ownerRecipientId || ''}
+            onChange={(event) => commit({ ownerRecipientId: event.target.value || undefined })}
+            placeholder="recipient-1"
+          />
+        )}
       </div>
       <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
         <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Co-propietarios</div>
+        {hasRecipientOptions ? (
+          <Select
+            mode="multiple"
+            value={ownerRecipientIds}
+            options={recipientSelectOptions}
+            onChange={(value) => updateRecipientIds(value)}
+            placeholder="Selecciona owners"
+          />
+        ) : (
+          <Input
+            value={joinRecipientIds(ownerRecipientIds)}
+            onChange={(event) => updateRecipientIds(event.target.value)}
+            placeholder="recipient-1, recipient-2"
+          />
+        )}
+      </div>
+      <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+        <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Owner visible</div>
         <Input
-          value={joinRecipientIds(ownerRecipientIds)}
-          onChange={(event) => updateRecipientIds(event.target.value)}
-          placeholder="recipient-1, recipient-2"
+          value={resolvedOwnerLabel}
+          onChange={(event) => commit({ ownerRecipientName: event.target.value || undefined })}
+          placeholder="Nombre visible del owner"
         />
       </div>
 
@@ -278,19 +684,45 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
       <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
         <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
           <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Creado por</div>
-          <Input
-            value={activeSchema.createdBy || collaborative.createdBy || ''}
-            onChange={(event) => commit({ createdBy: event.target.value || undefined })}
-            placeholder="user-1"
-          />
+          {hasRecipientOptions ? (
+            <Select
+              value={activeSchema.createdBy || collaborative.createdBy || undefined}
+              options={authorOptions}
+              onChange={(value) => {
+                const nextAuthor = recipientOptions.find((recipient) => recipient.id === value) || null;
+                commit({
+                  createdBy: value || undefined,
+                  userColor: nextAuthor?.color || collaborative.userColor || undefined,
+                });
+              }}
+              placeholder="Selecciona autor"
+              allowClear
+            />
+          ) : (
+            <Input
+              value={activeSchema.createdBy || collaborative.createdBy || ''}
+              onChange={(event) => commit({ createdBy: event.target.value || undefined })}
+              placeholder="user-1"
+            />
+          )}
         </div>
         <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
           <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Modificado por</div>
-          <Input
-            value={activeSchema.lastModifiedBy || collaborative.lastModifiedBy || ''}
-            onChange={(event) => commit({ lastModifiedBy: event.target.value || undefined })}
-            placeholder="user-1"
-          />
+          {hasRecipientOptions ? (
+            <Select
+              value={activeSchema.lastModifiedBy || collaborative.lastModifiedBy || undefined}
+              options={authorOptions}
+              onChange={(value) => commit({ lastModifiedBy: value || undefined })}
+              placeholder="Selecciona editor"
+              allowClear
+            />
+          ) : (
+            <Input
+              value={activeSchema.lastModifiedBy || collaborative.lastModifiedBy || ''}
+              onChange={(event) => commit({ lastModifiedBy: event.target.value || undefined })}
+              placeholder="user-1"
+            />
+          )}
         </div>
         <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
           <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Creado</div>
@@ -308,266 +740,48 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
             onChange={(value) => commit({ updatedAt: typeof value === 'number' ? value : undefined })}
           />
         </div>
+        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Color owner</div>
+          <Input
+            value={activeSchema.ownerColor || collaborative.ownerColor || resolvedSchemaState.ownerColor || ''}
+            onChange={(event) => commit({ ownerColor: event.target.value || undefined })}
+            placeholder="#2563EB"
+          />
+        </div>
+        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Color autor</div>
+          <Input
+            value={activeSchema.userColor || collaborative.userColor || resolvedSchemaState.userColor || ''}
+            onChange={(event) => commit({ userColor: event.target.value || undefined })}
+            placeholder="#2563EB"
+          />
+        </div>
       </div>
 
-      {hasLock ? (
-        <>
-          <Divider className={`${DESIGNER_CLASSNAME}schema-config-divider`} />
-          <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Bloqueado por</div>
-              <Input
-                value={String(lock?.lockedBy || '')}
-                onChange={(event) => commit({ lock: { ...(lock || {}), lockedBy: event.target.value || undefined } })}
-                placeholder="user-2"
-              />
-            </div>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Bloqueado en</div>
-              <InputNumber
-                className={`${DESIGNER_CLASSNAME}schema-config-number`}
-                value={typeof lock?.lockedAt === 'number' ? lock.lockedAt : undefined}
-                onChange={(value) => commit({ lock: { ...(lock || {}), lockedAt: typeof value === 'number' ? value : undefined } })}
-              />
-            </div>
-          </div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Motivo</div>
-            <Input.TextArea
-              value={String(lock?.reason || '')}
-              onChange={(event) => commit({ lock: { ...(lock || {}), reason: event.target.value || undefined } })}
-              placeholder="Edición concurrente"
-              autoSize={{ minRows: 2, maxRows: 4 }}
-            />
-          </div>
-        </>
-      ) : null}
+      <CollaborationLockSection
+        isVisible={hasLock}
+        lock={lock}
+        onChangeLock={(patch) => commit({ lock: patch })}
+      />
 
       <Divider className={`${DESIGNER_CLASSNAME}schema-config-divider`} />
-      <div className={`${DESIGNER_CLASSNAME}schema-collaboration-comments-head`}>
-        <div>
-          <div className={`${DESIGNER_CLASSNAME}schema-collaboration-widget-title`}>Comentarios</div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>
-            Hilos persistibles por campo y anotaciones básicas para sincronización futura.
-          </div>
-        </div>
-        <Button size="small" type="primary" onClick={() => updateComments([...comments, createComment()])}>
-          Agregar comentario
-        </Button>
-      </div>
-      <div className={`${DESIGNER_CLASSNAME}schema-collaboration-comments-list`}>
-        {comments.length === 0 ? (
-          <div className={`${DESIGNER_CLASSNAME}schema-config-empty`}>Sin comentarios</div>
-        ) : null}
-        {comments.map((comment, commentIndex) => (
-          <div key={comment.id} className={`${DESIGNER_CLASSNAME}schema-collaboration-comment-card`}>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Autor</div>
-                <Input
-                  value={comment.authorName || ''}
-                  onChange={(event) => updateComment(commentIndex, { authorName: event.target.value })}
-                  placeholder="Nombre del autor"
-                />
-              </div>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>ID autor</div>
-                <Input
-                  value={comment.authorId || ''}
-                  onChange={(event) => updateComment(commentIndex, { authorId: event.target.value })}
-                  placeholder="user-1"
-                />
-              </div>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Timestamp</div>
-                <InputNumber
-                  className={`${DESIGNER_CLASSNAME}schema-config-number`}
-                  value={comment.timestamp}
-                  onChange={(value) => updateComment(commentIndex, { timestamp: typeof value === 'number' ? value : Date.now() })}
-                />
-              </div>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Resuelto</div>
-                <Switch
-                  checked={Boolean(comment.resolved)}
-                  onChange={(checked) => updateComment(commentIndex, { resolved: checked })}
-                />
-              </div>
-            </div>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Texto</div>
-              <Input.TextArea
-                value={comment.text}
-                onChange={(event) => updateComment(commentIndex, { text: event.target.value })}
-                placeholder="Escribe un comentario"
-                autoSize={{ minRows: 2, maxRows: 5 }}
-              />
-            </div>
-            <div className={`${DESIGNER_CLASSNAME}schema-collaboration-comment-actions`}>
-              <Button
-                size="small"
-                onClick={() =>
-                  updateComment(commentIndex, {
-                    replies: [...(comment.replies || []), {
-                      id: createId('reply'),
-                      authorId: '',
-                      authorName: '',
-                      timestamp: Date.now(),
-                      text: '',
-                      resolved: false,
-                    }],
-                  })
-                }
-              >
-                Agregar respuesta
-              </Button>
-              <Button
-                size="small"
-                danger
-                onClick={() => updateComments(comments.filter((_, index) => index !== commentIndex))}
-              >
-                Eliminar
-              </Button>
-            </div>
-            <div className={`${DESIGNER_CLASSNAME}schema-collaboration-comment-replies`}>
-              {(comment.replies || []).map((reply, replyIndex) => (
-                <div key={reply.id} className={`${DESIGNER_CLASSNAME}schema-collaboration-comment-reply`}>
-                  <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Autor</div>
-                      <Input
-                        value={reply.authorName || ''}
-                        onChange={(event) => updateReply(commentIndex, replyIndex, { authorName: event.target.value })}
-                        placeholder="Nombre"
-                      />
-                    </div>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Resuelto</div>
-                      <Switch
-                        checked={Boolean(reply.resolved)}
-                        onChange={(checked) => updateReply(commentIndex, replyIndex, { resolved: checked })}
-                      />
-                    </div>
-                  </div>
-                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Respuesta</div>
-                    <Input.TextArea
-                      value={reply.text}
-                      onChange={(event) => updateReply(commentIndex, replyIndex, { text: event.target.value })}
-                      autoSize={{ minRows: 2, maxRows: 4 }}
-                    />
-                  </div>
-                </div>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
+      <CollaborationCommentsSection
+        comments={comments}
+        commentCount={commentCount}
+        onAddComment={handleAddComment}
+        onUpdateComment={updateComment}
+        onUpdateReply={updateReply}
+        onDeleteComment={(commentIndex) => updateComments(removeById(comments, comments[commentIndex]?.id || ''))}
+      />
 
       <Divider className={`${DESIGNER_CLASSNAME}schema-config-divider`} />
-      <div className={`${DESIGNER_CLASSNAME}schema-collaboration-comments-head`}>
-        <div>
-          <div className={`${DESIGNER_CLASSNAME}schema-collaboration-widget-title`}>Anchors</div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>
-            Marcadores para comentarios globales o posicionados en el documento.
-          </div>
-        </div>
-        <Button
-          size="small"
-          onClick={() => updateAnchors([...anchors, createAnchor(schemaUid, activeSchema.fileId || collaborative.fileId, activeSchema.pageNumber || collaborative.pageNumber)])}
-        >
-          Agregar anchor
-        </Button>
-      </div>
-      <div className={`${DESIGNER_CLASSNAME}schema-collaboration-comments-list`}>
-        {anchors.length === 0 ? (
-          <div className={`${DESIGNER_CLASSNAME}schema-config-empty`}>Sin anchors</div>
-        ) : null}
-        {anchors.map((anchor, anchorIndex) => (
-          <div key={anchor.id} className={`${DESIGNER_CLASSNAME}schema-collaboration-comment-card`}>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>fileId</div>
-                <Input
-                  value={anchor.fileId || ''}
-                  onChange={(event) =>
-                    updateAnchors(
-                      anchors.map((item, index) =>
-                        index === anchorIndex ? { ...item, fileId: event.target.value || undefined } : item,
-                      ),
-                    )
-                  }
-                />
-              </div>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>pageNumber</div>
-                <InputNumber
-                  className={`${DESIGNER_CLASSNAME}schema-config-number`}
-                  min={1}
-                  value={anchor.pageNumber}
-                  onChange={(value) =>
-                    updateAnchors(
-                      anchors.map((item, index) =>
-                        index === anchorIndex
-                          ? { ...item, pageNumber: typeof value === 'number' ? value : undefined }
-                          : item,
-                      ),
-                    )
-                  }
-                />
-              </div>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>x</div>
-                <InputNumber
-                  className={`${DESIGNER_CLASSNAME}schema-config-number`}
-                  value={anchor.x}
-                  onChange={(value) =>
-                    updateAnchors(
-                      anchors.map((item, index) =>
-                        index === anchorIndex ? { ...item, x: typeof value === 'number' ? value : undefined } : item,
-                      ),
-                    )
-                  }
-                />
-              </div>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>y</div>
-                <InputNumber
-                  className={`${DESIGNER_CLASSNAME}schema-config-number`}
-                  value={anchor.y}
-                  onChange={(value) =>
-                    updateAnchors(
-                      anchors.map((item, index) =>
-                        index === anchorIndex ? { ...item, y: typeof value === 'number' ? value : undefined } : item,
-                      ),
-                    )
-                  }
-                />
-              </div>
-            </div>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Resuelto</div>
-              <Switch
-                checked={Boolean(anchor.resolved)}
-                onChange={(checked) =>
-                  updateAnchors(
-                    anchors.map((item, index) => (index === anchorIndex ? { ...item, resolved: checked } : item)),
-                  )
-                }
-              />
-            </div>
-            <div className={`${DESIGNER_CLASSNAME}schema-collaboration-comment-actions`}>
-              <Button
-                size="small"
-                danger
-                onClick={() => updateAnchors(anchors.filter((_, index) => index !== anchorIndex))}
-              >
-                Eliminar
-              </Button>
-            </div>
-          </div>
-        ))}
-      </div>
+      <CollaborationAnchorsSection
+        anchors={anchors}
+        anchorCount={anchorCount}
+        onAddAnchor={handleAddAnchor}
+        onDeleteAnchor={(anchorIndex) => updateAnchors(removeById(anchors, anchors[anchorIndex]?.id || ''))}
+        onUpdateAnchors={updateAnchors}
+      />
     </div>
   );
 };

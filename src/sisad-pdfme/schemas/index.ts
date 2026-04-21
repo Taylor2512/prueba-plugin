@@ -12,15 +12,16 @@ import time from './date/time.js';
 import select from './select/index.js';
 import radioGroup from './radioGroup/index.js';
 import checkbox from './checkbox/index.js';
+import signature from './signature/index.js';
 import { flattenSchemaPlugins, listSchemaDefinitions } from './schemaBuilder.js';
 import type { SchemaPluginMap } from './schemaBuilder.js';
 
-const builtInPlugins = { Text: text };
 const schemaPlugins: SchemaPluginMap = {
   text,
   multiVariableText,
   image,
   svg,
+  signature,
   table,
   barcodes,
   line,
@@ -34,6 +35,7 @@ const schemaPlugins: SchemaPluginMap = {
   checkbox,
 };
 const flatSchemaPlugins = flattenSchemaPlugins(schemaPlugins);
+const builtInPlugins = flatSchemaPlugins;
 const builtInSchemaDefinitions = listSchemaDefinitions(schemaPlugins);
 const builtInSchemaDefinitionsByType = Object.fromEntries(
   builtInSchemaDefinitions.map((definition) => [definition.type, definition]),
@@ -50,6 +52,7 @@ export {
   multiVariableText,
   image,
   svg,
+  signature,
   table,
   barcodes,
   line,

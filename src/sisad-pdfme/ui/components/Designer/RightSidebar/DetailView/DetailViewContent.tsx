@@ -28,28 +28,6 @@ const DetailViewContent = ({
   widgets,
   watchHandler,
 }: DetailViewContentProps) => {
-  const hasSchemaConfig = Boolean(
-    schemaConfig?.persistence?.enabled || schemaConfig?.api?.enabled || schemaConfig?.form?.enabled || schemaConfig?.prefill?.enabled,
-  );
-  const hasCollaborativeConfig = Boolean(
-    activeSchema.schemaUid ||
-      activeSchema.fileId ||
-      activeSchema.fileTemplateId ||
-      activeSchema.ownerRecipientId ||
-      activeSchema.ownerRecipientIds?.length ||
-      activeSchema.createdBy ||
-      activeSchema.lastModifiedBy ||
-      activeSchema.createdAt ||
-      activeSchema.updatedAt ||
-      activeSchema.commentsCount ||
-      activeSchema.state ||
-      activeSchema.ownerMode ||
-      activeSchema.saveValue === false ||
-      activeSchema.lock ||
-      activeSchema.comments?.length ||
-      activeSchema.commentAnchors?.length ||
-      activeSchema.commentsAnchors?.length,
-  );
   const commentCount = activeSchema.commentsCount || activeSchema.comments?.length || 0;
   const anchorCount = activeSchema.commentAnchors?.length || activeSchema.commentsAnchors?.length || 0;
   const configTags = [
@@ -58,6 +36,18 @@ const DetailViewContent = ({
     schemaConfig?.form?.enabled ? { label: 'Form JSON', color: 'success' as const } : null,
     schemaConfig?.prefill?.enabled ? { label: 'Prefill', color: 'gold' as const } : null,
   ].filter(Boolean) as Array<{ label: string; color?: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue' }>;
+  const collaborationTags = [
+    activeSchema.ownerRecipientId ? { label: `Owner: ${activeSchema.ownerRecipientId}` } : null,
+    activeSchema.fileId || activeSchema.fileTemplateId
+      ? { label: `Archivo: ${activeSchema.fileId || activeSchema.fileTemplateId}` }
+      : null,
+    activeSchema.state ? { label: `Estado: ${activeSchema.state}` } : null,
+    activeSchema.ownerMode ? { label: `OwnerMode: ${activeSchema.ownerMode}` } : null,
+    activeSchema.saveValue === false ? { label: 'No guarda valor' } : null,
+    commentCount > 0 ? { label: `Comentarios: ${commentCount}` } : null,
+    anchorCount > 0 ? { label: `Anchors: ${anchorCount}` } : null,
+  ].filter(Boolean) as Array<{ label: string }>;
+  const contextTags = [...configTags, ...collaborationTags];
 
   return (
     <SidebarFrame className={DESIGNER_CLASSNAME + 'detail-view'}>
@@ -78,45 +68,13 @@ const DetailViewContent = ({
       </SidebarHeader>
       <SidebarBody tabIndex={0} aria-label="Secciones del detalle del campo">
         <DetailHeaderCard activeSchema={activeSchema} configTags={configTags} />
-        {hasSchemaConfig ? (
+        {contextTags.length > 0 ? (
           <div className={DESIGNER_CLASSNAME + 'detail-view-context-strip'}>
-            {configTags.map((tag) => (
+            {contextTags.map((tag) => (
               <span key={tag.label} className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
                 {tag.label}
               </span>
             ))}
-          </div>
-        ) : null}
-        {hasCollaborativeConfig ? (
-          <div className={DESIGNER_CLASSNAME + 'detail-view-context-strip'}>
-            <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>Colaboración</span>
-            {activeSchema.ownerRecipientId ? (
-              <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>Owner: {activeSchema.ownerRecipientId}</span>
-            ) : null}
-            {activeSchema.fileId || activeSchema.fileTemplateId ? (
-              <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-                Archivo: {activeSchema.fileId || activeSchema.fileTemplateId}
-              </span>
-            ) : null}
-            {activeSchema.state ? (
-              <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>Estado: {activeSchema.state}</span>
-            ) : null}
-            {activeSchema.ownerMode ? (
-              <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>OwnerMode: {activeSchema.ownerMode}</span>
-            ) : null}
-            {activeSchema.saveValue === false ? (
-              <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>No guarda valor</span>
-            ) : null}
-            {commentCount > 0 ? (
-              <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-                Comentarios: {commentCount}
-              </span>
-            ) : null}
-            {anchorCount > 0 ? (
-              <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-                Anchors: {anchorCount}
-              </span>
-            ) : null}
           </div>
         ) : null}
         <div className={DESIGNER_CLASSNAME + 'detail-view-sections'}>

@@ -2,6 +2,8 @@ import React, { useContext } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { SchemaForUI } from '@sisad-pdfme/common';
 import { PluginsRegistry, I18nContext } from '../../../../contexts.js';
+import { resolveSchemaCollaborationState } from '../../../../collaborationContext.js';
+import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
 import Item from './Item.js';
 import { useMountStatus } from '../../../../hooks.js';
 import PluginIcon from '../../PluginIcon.js';
@@ -17,6 +19,7 @@ interface Props {
   schema: SchemaForUI;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
+  collaborationContext?: EffectiveCollaborationContext;
 }
 const SelectableSortableItem = ({
   isSelected,
@@ -28,6 +31,7 @@ const SelectableSortableItem = ({
   schema,
   onMouseEnter,
   onMouseLeave,
+  collaborationContext,
 }: Props) => {
   const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
@@ -46,6 +50,25 @@ const SelectableSortableItem = ({
     () => pluginsRegistry.findWithLabelByType(schema.type),
     [pluginsRegistry, schema.type],
   );
+  const collaborationState = React.useMemo(
+    () => resolveSchemaCollaborationState(schema, collaborationContext),
+    [collaborationContext, schema],
+  );
+  const collaborationColor = collaborationState.userColor || collaborationState.ownerColor || undefined;
+  const collaborationBadges = React.useMemo(() => {
+    const items: Array<{ label: string; color?: string }> = [];
+    if (collaborationState.isShared) {
+      items.push({ label: 'Compartido', color: collaborationColor });
+    } else if (collaborationState.isOwnerOther) {
+      items.push({ label: 'Ajeno', color: collaborationColor });
+    } else if (collaborationState.isOwnerActive) {
+      items.push({ label: 'Propio', color: collaborationColor });
+    }
+    if (collaborationState.ownerRecipientName) {
+      items.push({ label: collaborationState.ownerRecipientName, color: collaborationColor });
+    }
+    return items.slice(0, 2);
+  }, [collaborationColor, collaborationState]);
 
   let status: undefined | 'is-warning' | 'is-danger';
   if (!schema.name) {
@@ -84,6 +107,8 @@ const SelectableSortableItem = ({
       style={style}
       fadeIn={mountedWhileDragging}
       listeners={newListeners}
+      accentColor={collaborationColor}
+      metaBadges={collaborationBadges}
     />
   );
 };

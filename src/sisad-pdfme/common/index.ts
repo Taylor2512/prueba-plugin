@@ -31,7 +31,30 @@ export {
   getInputFromTemplate,
   isBlankPdf,
 } from './helper.js';
-export { buildSchemaAssignments } from './collaboration.js';
+export {
+  buildSchemaAssignments,
+  buildUserSchemaAssignments,
+  createSchemaComment,
+  createSchemaCommentAnchor,
+  filterSchemasByAuthorView,
+  normalizeRecipientIds,
+  removeById,
+  resolveSchemaAuthorId,
+  schemaMatchesAuthorView,
+  SHARED_ASSIGNMENTS_BUCKET,
+  upsertById,
+  validateCollaborativeSchemas,
+} from './collaboration.js';
+export {
+  findSchemaByUid,
+  addAnchorToSchema,
+  addCommentToSchema,
+  addCommentWithAnchorToTemplate,
+  updateCommentInSchema,
+  deleteCommentFromSchema,
+  resolveCommentInSchema,
+  filterCommentsByFileAndPage,
+} from './comments.js';
 export type { SchemaAssignments } from './collaboration.js';
 export { getDynamicTemplate } from './dynamicTemplate.js';
 export { replacePlaceholders } from './expression.js';

@@ -1,7 +1,7 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { cloneDeep, getInputFromTemplate } from '@sisad-pdfme/common'
+import { cloneDeep, getInputFromTemplate, validateCollaborativeSchemas } from '@sisad-pdfme/common'
 import { Designer, Form, Viewer, DesignerEngineBuilder } from '@sisad-pdfme/ui'
 import { generate } from '@sisad-pdfme/generator'
 import { flatSchemaPlugins, builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
@@ -16,6 +16,10 @@ import {
   resolveInitialUxMode,
   formatPageStatus,
 } from './domain/labState.js'
+import {
+  decorateCollaborationUsers,
+  decorateTemplateWithCollaboration,
+} from './domain/collaborationAppearance.js'
 import { PageHeader, ResultsPanel, CompactControls } from '../implements'
 
 const fallbackExample = getLabExamples()[0]
@@ -44,18 +48,29 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
     [exampleId],
   )
   const collaboration = example?.collaboration || null
-  const collaborationUsers = collaboration?.users || []
+  const collaborationUsers = useMemo(
+    () => decorateCollaborationUsers(collaboration?.users || []),
+    [collaboration?.users],
+  )
   const collaborationSessionId = collaboration?.sessionId || example?.id || ''
   const [activeCollaboratorId, setActiveCollaboratorId] = useState(
     collaboration?.activeUserId || collaborationUsers[0]?.id || '',
   )
+  const [isGlobalView, setIsGlobalView] = useState(Boolean(collaboration?.isGlobalView))
   const activeCollaborator =
     collaborationUsers.find((user) => user.id === activeCollaboratorId) || collaborationUsers[0] || null
   const designerEngineOptions = useMemo(() => {
     const collaborationConfig = {
       enabled: Boolean(collaborationSessionId),
+      provider: 'yjs',
       sessionId: collaborationSessionId,
       actorId: activeCollaborator?.id || collaboration?.activeUserId || collaborationUsers[0]?.id || 'local',
+      actorColor: activeCollaborator?.color || null,
+      recipientOptions: collaborationUsers,
+      users: collaborationUsers,
+      activeRecipientId: activeCollaborator?.id || collaboration?.activeUserId || collaborationUsers[0]?.id || null,
+      activeUserId: activeCollaborator?.id || collaboration?.activeUserId || collaborationUsers[0]?.id || null,
+      isGlobalView,
     }
 
     return new DesignerEngineBuilder()
@@ -67,9 +82,30 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
       })
       .withCollaboration(collaborationConfig)
       .buildOptions({ lang: 'es' })
-  }, [activeCollaborator?.id, collaboration?.activeUserId, collaborationSessionId, collaborationUsers])
+  }, [
+    activeCollaborator?.color,
+    activeCollaborator?.id,
+    collaboration?.activeUserId,
+    collaborationSessionId,
+    collaborationUsers,
+    isGlobalView,
+  ])
+  const runtimeOptions = useMemo(
+    () => cloneDeep(example?.runtimeOptions || {}),
+    [example],
+  )
+  const commonOptions = useMemo(
+    () => ({
+      ...runtimeOptions,
+      ...designerEngineOptions,
+    }),
+    [designerEngineOptions, runtimeOptions],
+  )
 
-  const initialTemplate = useMemo(() => cloneDeep(example?.template || createInitialPdfmeTemplate()), [example])
+  const initialTemplate = useMemo(
+    () => decorateTemplateWithCollaboration(example?.template || createInitialPdfmeTemplate(), collaborationUsers),
+    [collaborationUsers, example],
+  )
   const initialInputs = useMemo(
     () => cloneDeep(example?.inputs || getInputFromTemplate(initialTemplate)),
     [example, initialTemplate],
@@ -102,10 +138,14 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   useEffect(() => {
     setActiveCollaboratorId(collaboration?.activeUserId || collaborationUsers[0]?.id || '')
   }, [collaboration?.activeUserId, collaborationUsers, example?.id])
+  useEffect(() => {
+    setIsGlobalView(Boolean(collaboration?.isGlobalView))
+  }, [collaboration?.isGlobalView, example?.id])
 
   const pageMetrics = [
     { label: 'Estado', value: busy ? 'Procesando' : 'Listo' },
     { label: 'Modo', value: MODE_LABELS[mode] || mode },
+    { label: 'Vista', value: isGlobalView ? 'Global' : activeCollaborator?.name || 'Usuario activo' },
     { label: 'UX', value: uxMode },
     { label: 'Páginas', value: template.schemas.length },
   ]
@@ -189,7 +229,7 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
       domContainer: containerRef.current,
       template: cloneDeep(template),
       plugins: flatSchemaPlugins,
-      options: designerEngineOptions,
+      options: commonOptions,
     }
 
     if (mode === 'designer') {
@@ -200,7 +240,7 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
         }
       })
       designer.onChangeTemplate((nextTemplate) => {
-        setTemplate(nextTemplate)
+        setTemplate(decorateTemplateWithCollaboration(nextTemplate, collaborationUsers))
       })
       designer.onPageChange((pageInfo) => {
         setStatus(formatPageStatus(pageInfo))
@@ -233,7 +273,13 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [designerEngineOptions, mode])
+  }, [mode])
+
+  useEffect(() => {
+    const instance = instanceRef.current
+    if (!instance) return
+    instance.updateOptions(commonOptions)
+  }, [commonOptions])
 
   useEffect(() => {
     const instance = instanceRef.current
@@ -301,6 +347,11 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   }
 
   const generatePdf = async () => {
+    const collaborationValidation = validateCollaborativeSchemas(template.schemas || [])
+    if (!collaborationValidation.valid) {
+      setStatus(`Faltan metadatos colaborativos: ${collaborationValidation.issues.map((issue) => `${issue.schemaUid}:${issue.reason}`).join(', ')}`)
+      return
+    }
     setBusy(true)
     setStatus('Generando PDF...')
     clearDerivedResults()
@@ -399,7 +450,7 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   }
 
   const resetTemplate = () => {
-    const nextTemplate = cloneDeep(example.template || createInitialPdfmeTemplate())
+    const nextTemplate = cloneDeep(initialTemplate)
     setTemplate(nextTemplate)
     setInputs(cloneDeep(example.inputs || getInputFromTemplate(nextTemplate)))
     clearDerivedResults({ clearGeneratedPdf: true })
@@ -429,6 +480,8 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
         collaborationUsers={collaborationUsers}
         activeCollaborator={activeCollaborator}
         onActiveCollaboratorChange={setActiveCollaboratorId}
+        isGlobalView={isGlobalView}
+        onToggleGlobalView={setIsGlobalView}
         status={status}
         backLink={
           <Link className="sisad-pdfme-lab-inline-link" to="/">

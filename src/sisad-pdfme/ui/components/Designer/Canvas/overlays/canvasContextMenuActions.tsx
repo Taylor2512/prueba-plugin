@@ -5,6 +5,7 @@ import {
   FilePlus2,
   PanelLeftOpen,
   Upload,
+  MessageSquare,
   Copy,
   Trash2,
   Lock,
@@ -53,6 +54,7 @@ export type CanvasContextMenuExternalActions = {
   onOpenCatalog?: () => void;
   onUploadOrReplacePdf?: () => void;
   onOpenGroupProperties?: () => void;
+  onCreateComment?: () => void;
 };
 
 export type CanvasContextMenuItem = {
@@ -658,6 +660,7 @@ export const buildCanvasContextMenuGroups = (
         label: 'Edición',
         items: compactItems([
           commandItem('duplicate', 'Duplicar', <Copy size={14} />, commands?.duplicateSelection),
+          commandItem('add-comment', 'Agregar comentario', <MessageSquare size={14} />, externalActions?.onCreateComment),
           commandItem('delete', 'Eliminar', <Trash2 size={14} />, commands?.deleteSelection, { danger: true }),
         ]),
       },

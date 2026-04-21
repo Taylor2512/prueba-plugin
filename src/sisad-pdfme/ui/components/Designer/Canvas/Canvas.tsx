@@ -171,6 +171,7 @@ export interface CanvasProps {
   onEdit: (targets: HTMLElement[]) => void;
   changeSchemas: ChangeSchemas;
   paperRefs: MutableRefObject<HTMLDivElement[]>;
+  renderedSchemasList?: SchemaForUI[][];
   sidebarOpen: boolean;
   sidebarWidth?: number;
   preserveSidebarSpace?: boolean;
@@ -198,6 +199,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     size,
     activeElements,
     schemasList,
+    renderedSchemasList,
     hoveringSchemaId,
     onEdit,
     changeSchemas,
@@ -260,10 +262,11 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     setContextMenuState((prev) => ({ ...prev, pendingContextMenu: next }));
   }, []);
 
-  const prevSchemas = usePrevious(schemasList[pageCursor]);
+  const renderedPageSchemasList = renderedSchemasList || schemasList;
+  const prevSchemas = usePrevious(renderedPageSchemasList[pageCursor]);
   const currentPageSchemas = useMemo(
-    () => schemasList[pageCursor] || [],
-    [pageCursor, schemasList],
+    () => renderedPageSchemasList[pageCursor] || [],
+    [pageCursor, renderedPageSchemasList],
   );
   const activeElementIds = useMemo(() => activeElements.map((element) => element.id), [activeElements]);
   const activeElementIdSet = useMemo(() => new Set(activeElementIds), [activeElementIds]);
@@ -278,7 +281,10 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
       ) as Record<string, string>,
     [schemasList],
   );
-  const paperTemplate = useMemo(() => ({ schemas: schemasList, basePdf }), [basePdf, schemasList]);
+  const paperTemplate = useMemo(
+    () => ({ schemas: renderedPageSchemasList, basePdf }),
+    [basePdf, renderedPageSchemasList],
+  );
 
   const onKeydown = (e: KeyboardEvent) => {
     if (e.shiftKey || e.altKey) {
@@ -326,12 +332,12 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     }
 
     const prevSchemaKeys = JSON.stringify(prevSchemas[pageCursor] || {});
-    const schemaKeys = JSON.stringify(schemasList[pageCursor] || {});
+    const schemaKeys = JSON.stringify(renderedPageSchemasList[pageCursor] || {});
 
     if (prevSchemaKeys === schemaKeys) {
       moveable.current?.updateRect();
     }
-  }, [pageCursor, schemasList, prevSchemas]);
+  }, [pageCursor, renderedPageSchemasList, prevSchemas]);
 
   const onDrag = ({ target, top, left }: OnDrag) => {
     const { width: _width, height: _height } = target.style;
@@ -738,8 +744,17 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
       onOpenCatalog: () => bridge?.runtime.setSidebarOpen(true),
       onUploadOrReplacePdf: canvasActions?.uploadPdf,
       onOpenGroupProperties: selectionCommands?.openProperties,
+      onCreateComment: () => {
+        try {
+          if (typeof window === 'undefined' || !contextMenu) return;
+          const detail = { x: contextMenu.x, y: contextMenu.y, page: pageCursor };
+          window.dispatchEvent(new CustomEvent('sisad-pdfme:create-comment', { detail }));
+        } finally {
+          closeContextMenu();
+        }
+      },
     }),
-    [bridge, canvasActions?.addPageAfter, canvasActions?.uploadPdf, handleInsertField, handlePaste, selectionCommands],
+    [bridge, canvasActions?.addPageAfter, canvasActions?.uploadPdf, handleInsertField, handlePaste, selectionCommands, contextMenu, pageCursor, closeContextMenu],
   );
   const hasClipboardData = typeof navigator !== 'undefined' && Boolean(navigator.clipboard?.readText);
   const contextMenuSelectionSchemas = useMemo(() => {
@@ -896,7 +911,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
         paperRefs={paperRefs}
         scale={scale}
         size={size}
-        schemasList={schemasList}
+        schemasList={renderedPageSchemasList}
         pageSizes={pageSizes}
         backgrounds={backgrounds}
         hasRulers={true}
@@ -910,7 +925,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
                 opacity={styleOverrides?.padding?.opacity}
               />
             ) : null}
-            {pageCursor === index && (schemasList[index] || []).length === 0 ? (
+            {pageCursor === index && (renderedPageSchemasList[index] || []).length === 0 ? (
               <div
                 className={[DESIGNER_CLASSNAME + 'canvas-empty-state', classNames?.emptyState]
                   .filter(Boolean)
@@ -1052,9 +1067,10 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
       />
       <CanvasOverlayManager
         activeElements={activeElements}
-        schemasList={schemasList}
+        schemasList={renderedPageSchemasList}
         pageCursor={pageCursor}
         pageSize={pageSizes[pageCursor] ?? { width: 0, height: 0 }}
+        scale={scale}
         snapLines={snapLines}
         SnapLinesSlot={SnapLinesSlot}
         selectionCommands={selectionCommands}

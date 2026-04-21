@@ -8,6 +8,7 @@ import { useFloatingToolbarPosition } from './useFloatingToolbarPosition.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import type { SelectionToolbarMode } from './canvasContextMenuActions.js';
 import type { InteractionState } from '../../shared/interactionState.js';
+import CommentsOverlay from './CommentsOverlay.js';
 
 export type SnapLinesSlot = React.ComponentType<{
   lines: SnapLine[];
@@ -21,6 +22,7 @@ type CanvasOverlayManagerProps = {
   schemasList: SchemaForUI[][];
   pageCursor: number;
   pageSize: Size;
+  scale?: number;
   snapLines: SnapLine[];
   SnapLinesSlot: SnapLinesSlot;
   selectionCommands?: SelectionCommandSet;
@@ -89,6 +91,8 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
       {featureSnapLines ? (
         <SnapLinesSlot lines={snapLines} />
       ) : null}
+      {/* Comments overlay (pins, click handlers) */}
+      <CommentsOverlay schemas={schemasList[pageCursor] || []} scale={props.scale || 1} pageIndex={pageCursor} />
     </div>
   );
 };

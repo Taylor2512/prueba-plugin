@@ -1,8 +1,22 @@
 import { cloneDeep, getInputFromTemplate } from '@sisad-pdfme/common'
-import { checkbox, select, text } from '@sisad-pdfme/schemas'
+import { checkbox, select, text, signature } from '@sisad-pdfme/schemas'
 import { createInitialPdfmeTemplate } from '../template.js'
+import { decorateCollaborationUsers, decorateTemplateWithCollaboration } from '../domain/collaborationAppearance.js'
 
 const BASE_COLLABORATION_TIMESTAMP = 1713570000000
+
+const getTemplatePdfUrl = (fileName) => `/templates/${encodeURIComponent(fileName)}`
+
+const LAB_PDFS = {
+  basic: getTemplatePdfUrl('sample-a4.pdf'),
+  enterprise: getTemplatePdfUrl('CONVENIO DE CRÉDITO.pdf'),
+  routingPrimary: getTemplatePdfUrl('Declaración de tratamiento de datos personales.pdf'),
+  routingSecondary: getTemplatePdfUrl(
+    'CERTIFICADO DE CULMINACIÓN DE MALLA CURRICULAR-MONTENEGRO ARELLANO JHONN TAYLOR-Malla.pdf',
+  ),
+  multiuser: getTemplatePdfUrl('Jhonn_Taylor_Montenegro_CV_ES.pdf'),
+  generator: getTemplatePdfUrl('sample-multilingual-text.pdf'),
+}
 
 const createSchema = (baseSchema, overrides = {}) => ({
   ...cloneDeep(baseSchema),
@@ -34,9 +48,38 @@ const createCheckboxSchema = (overrides = {}) =>
     ...overrides,
   })
 
-const createTemplate = (schemas) => ({
-  ...createInitialPdfmeTemplate(),
-  schemas,
+const createSignatureSchema = (overrides = {}) =>
+  createSchema(signature.propPanel.defaultSchema, {
+    position: { x: 18, y: 88 },
+    width: 60,
+    height: 24,
+    ...overrides,
+  })
+
+const createTemplate = (schemas, options = {}) => {
+  const initialTemplate = createInitialPdfmeTemplate()
+  const nextSchemas = cloneDeep(Array.isArray(schemas) && schemas.length > 0 ? schemas : [[]])
+  const safePageCount = Math.max(1, Number(options.pageCount || nextSchemas.length) || nextSchemas.length || 1)
+
+  while (nextSchemas.length < safePageCount) {
+    nextSchemas.push([])
+  }
+
+  return {
+    ...initialTemplate,
+    basePdf: options.basePdf || initialTemplate.basePdf,
+    schemas: nextSchemas,
+  }
+}
+
+const createUploadedDocument = ({ id, name, pdfFileName, pageCount, schemas }) => ({
+  id,
+  name,
+  pageCount,
+  template: createTemplate(schemas, {
+    basePdf: getTemplatePdfUrl(pdfFileName),
+    pageCount,
+  }),
 })
 
 const createCommentAnchor = ({ schemaUid, fileId, pageNumber, x = 0, y = 0 }) => ({
@@ -61,7 +104,7 @@ const createCollaboration = (activeUserId, users, metadata = {}) => ({
   actorId: metadata.actorId || activeUserId,
   sessionId: metadata.sessionId || `lab-${activeUserId}`,
   enabled: metadata.enabled ?? true,
-  users,
+  users: decorateCollaborationUsers(users),
 })
 
 const createExample = ({
@@ -74,8 +117,19 @@ const createExample = ({
   initialSchemaType = 'text',
   collaboration = null,
   template,
+  runtimeOptions = null,
 }) => {
-  const safeTemplate = cloneDeep(template)
+  const safeCollaboration = collaboration ? cloneDeep(collaboration) : null
+  const safeTemplate = decorateTemplateWithCollaboration(template, safeCollaboration?.users || [])
+  const safeRuntimeOptions = runtimeOptions
+    ? cloneDeep({
+        ...runtimeOptions,
+        uploadedDocuments: (runtimeOptions.uploadedDocuments || []).map((document) => ({
+          ...document,
+          template: decorateTemplateWithCollaboration(document.template, safeCollaboration?.users || []),
+        })),
+      })
+    : null
 
   return {
     id,
@@ -85,9 +139,10 @@ const createExample = ({
     status,
     defaultMode,
     initialSchemaType,
-    collaboration: collaboration ? cloneDeep(collaboration) : null,
+    collaboration: safeCollaboration,
     template: safeTemplate,
     inputs: getInputFromTemplate(safeTemplate),
+    runtimeOptions: safeRuntimeOptions,
   }
 }
 
@@ -111,8 +166,15 @@ const basicDesignerTemplate = createTemplate([
       ownerRecipientId: 'basic-user-2',
       ...createAuditMetadata('basic-user-1', 'basic-user-2', 45000),
     }),
+    createSignatureSchema({
+      schemaUid: 'basic-signature',
+      name: 'signature',
+      ownerMode: 'single',
+      ownerRecipientId: 'basic-user-1',
+      ...createAuditMetadata('basic-user-1', 'basic-user-1', 90000),
+    }),
   ],
-])
+], { basePdf: LAB_PDFS.basic, pageCount: 3 })
 
 const enterpriseCollaborationTemplate = createTemplate([
   [
@@ -160,9 +222,9 @@ const enterpriseCollaborationTemplate = createTemplate([
       y: 42,
     }),
   ],
-])
+], { basePdf: LAB_PDFS.enterprise, pageCount: 2 })
 
-const multiDocumentRoutingTemplate = createTemplate([
+const multiDocumentPrimarySchemas = [
   [
     createTextSchema({
       schemaUid: 'multi-contract-name',
@@ -179,15 +241,19 @@ const multiDocumentRoutingTemplate = createTemplate([
       schemaUid: 'multi-contract-date',
       fileId: 'file-contract-a',
       fileTemplateId: 'file-contract-a',
-      pageNumber: 1,
       ownerRecipientId: 'recipient-1',
       ownerMode: 'single',
       ...createAuditMetadata('routing-user-1', 'recipient-1', 45000),
       name: 'contract_date',
       content: '2026-05-01',
-      y: 40,
+      y: 24,
     }),
   ],
+  [],
+]
+
+const multiDocumentSecondarySchemas = [
+  [],
   [
     createTextSchema({
       schemaUid: 'multi-annex-name',
@@ -210,10 +276,37 @@ const multiDocumentRoutingTemplate = createTemplate([
       ...createAuditMetadata('routing-user-1', 'recipient-2', 135000),
       name: 'annex_sign',
       content: 'Firmado',
-      y: 40,
+      y: 24,
     }),
   ],
-])
+]
+
+// Merge primary and secondary schemas into a single template view for the routing example
+const multiDocumentRoutingTemplate = createTemplate(
+  multiDocumentPrimarySchemas.map((page, idx) => page.concat(multiDocumentSecondarySchemas[idx] || [])),
+  {
+    basePdf: LAB_PDFS.routingPrimary,
+    pageCount: 2,
+  },
+)
+
+const multiDocumentRoutingDocuments = [
+  createUploadedDocument({
+    id: 'file-contract-a',
+    name: 'Declaración de datos',
+    pdfFileName: 'Declaración de tratamiento de datos personales.pdf',
+    pageCount: 2,
+    schemas: multiDocumentPrimarySchemas,
+  }),
+  createUploadedDocument({
+    id: 'file-contract-b',
+    name: 'Certificado académico',
+    pdfFileName:
+      'CERTIFICADO DE CULMINACIÓN DE MALLA CURRICULAR-MONTENEGRO ARELLANO JHONN TAYLOR-Malla.pdf',
+    pageCount: 2,
+    schemas: multiDocumentSecondarySchemas,
+  }),
+]
 
 const multiuserCollaborationTemplate = createTemplate([
   [
@@ -236,6 +329,7 @@ const multiuserCollaborationTemplate = createTemplate([
       fileId: 'multiuser-contract',
       name: 'team_note',
       content: 'Legal review in progress',
+      ownerRecipientId: 'legal-user-1',
       ownerMode: 'multi',
       ownerRecipientIds: ['sales-user-1', 'legal-user-1'],
       ...createAuditMetadata('sales-user-1', 'legal-user-1', 30000),
@@ -307,7 +401,7 @@ const multiuserCollaborationTemplate = createTemplate([
       y: 40,
     }),
   ],
-])
+], { basePdf: LAB_PDFS.multiuser, pageCount: 2 })
 
 const generatorRuntimeTemplate = createTemplate([
   [
@@ -353,20 +447,20 @@ const generatorRuntimeTemplate = createTemplate([
       ...createAuditMetadata('generator-user-1', 'generator-user-2', 90000),
     }),
   ],
-])
+], { basePdf: LAB_PDFS.generator, pageCount: 3 })
 
 const LAB_EXAMPLES = [
   createExample({
     id: 'basic-designer',
     path: '/lab/basic-designer',
     title: 'Editor básico',
-    description: 'Arranca en modo designer con una plantilla mínima para crear y mover campos.',
-    status: 'Listo para editar el template base',
+    description: 'Arranca en modo designer sobre un PDF real para crear, mover y revisar campos.',
+    status: 'Listo para editar sobre sample-a4.pdf',
     defaultMode: 'designer',
     initialSchemaType: 'text',
     collaboration: createCollaboration('basic-user-1', [
-      { id: 'basic-user-1', name: 'Diseño', role: 'owner', team: 'lab-team' },
-      { id: 'basic-user-2', name: 'QA', role: 'reviewer', team: 'lab-team' },
+      { id: 'basic-user-1', name: 'Diseño', role: 'owner', team: 'lab-team', color: '#2563EB' },
+      { id: 'basic-user-2', name: 'QA', role: 'reviewer', team: 'lab-team', color: '#D946EF' },
     ], { sessionId: 'basic-designer-session', actorId: 'basic-user-1' }),
     template: basicDesignerTemplate,
   }),
@@ -374,14 +468,14 @@ const LAB_EXAMPLES = [
     id: 'enterprise-collaboration',
     path: '/lab/enterprise-collaboration',
     title: 'Enterprise con colaboración',
-    description: 'Incluye owners, comentarios y bloqueo para revisar contratos multiusuario.',
-    status: 'Preparado para probar metadatos colaborativos',
+    description: 'Incluye owners, comentarios y bloqueo sobre un convenio real para revisar contratos multiusuario.',
+    status: 'Preparado para probar metadatos colaborativos sobre PDF real',
     defaultMode: 'designer',
     initialSchemaType: 'text',
     collaboration: createCollaboration('ops-user-1', [
-      { id: 'sales-user-1', name: 'Equipo de Ventas', role: 'editor', team: 'sales-team' },
-      { id: 'legal-user-1', name: 'Equipo Legal', role: 'reviewer', team: 'legal-team' },
-      { id: 'ops-user-1', name: 'Operaciones', role: 'admin', team: 'ops-team' },
+      { id: 'sales-user-1', name: 'Equipo de Ventas', role: 'editor', team: 'sales-team', color: '#2563EB' },
+      { id: 'legal-user-1', name: 'Equipo Legal', role: 'reviewer', team: 'legal-team', color: '#D946EF' },
+      { id: 'ops-user-1', name: 'Operaciones', role: 'admin', team: 'ops-team', color: '#F97316' },
     ], { sessionId: 'enterprise-collaboration-session', actorId: 'ops-user-1' }),
     template: enterpriseCollaborationTemplate,
   }),
@@ -389,29 +483,33 @@ const LAB_EXAMPLES = [
     id: 'multi-document-routing',
     path: '/lab/multi-document-routing',
     title: 'Multidocumento y destinatarios',
-    description: 'Distribuye schemas por archivo, página y destinatario para flujos de entrega.',
-    status: 'Listo para validar asignaciones por destinatario',
+    description: 'Distribuye schemas por archivo, página y destinatario con dos PDFs precargados.',
+    status: 'Listo para validar asignaciones por documento, página y destinatario',
     defaultMode: 'designer',
     initialSchemaType: 'text',
     collaboration: createCollaboration('recipient-1', [
-      { id: 'recipient-1', name: 'Cliente Principal', role: 'signer' },
-      { id: 'recipient-2', name: 'Avalista', role: 'signer' },
-      { id: 'routing-user-1', name: 'Mesa de entrega', role: 'coordinator' },
+      { id: 'recipient-1', name: 'Cliente Principal', role: 'signer', color: '#2563EB' },
+      { id: 'recipient-2', name: 'Avalista', role: 'signer', color: '#D946EF' },
+      { id: 'routing-user-1', name: 'Mesa de entrega', role: 'coordinator', color: '#F97316' },
     ], { sessionId: 'multi-document-routing-session', actorId: 'routing-user-1' }),
     template: multiDocumentRoutingTemplate,
+    runtimeOptions: {
+      activeDocumentId: 'file-contract-a',
+      uploadedDocuments: multiDocumentRoutingDocuments,
+    },
   }),
   createExample({
     id: 'multiuser-collaboration',
     path: '/lab/multiuser-collaboration',
     title: 'Colaboración multiusuario',
-    description: 'Muestra ownership individual, grupal y compartido con registro de usuarios y roles.',
-    status: 'Listo para validar ownership por usuario y grupos',
+    description: 'Muestra ownership individual, grupal y compartido sobre un PDF real con registro de usuarios y roles.',
+    status: 'Listo para validar ownership por usuario y grupos sobre PDF real',
     defaultMode: 'designer',
     initialSchemaType: 'text',
     collaboration: createCollaboration('sales-user-1', [
-      { id: 'sales-user-1', name: 'Ventas Ejecutivas', role: 'owner', team: 'sales-team' },
-      { id: 'legal-user-1', name: 'Revisor Legal', role: 'reviewer', team: 'legal-team' },
-      { id: 'ops-user-1', name: 'Operaciones', role: 'approver', team: 'ops-team' },
+      { id: 'sales-user-1', name: 'Ventas Ejecutivas', role: 'owner', team: 'sales-team', color: '#2563EB' },
+      { id: 'legal-user-1', name: 'Revisor Legal', role: 'reviewer', team: 'legal-team', color: '#D946EF' },
+      { id: 'ops-user-1', name: 'Operaciones', role: 'approver', team: 'ops-team', color: '#F97316' },
     ], { sessionId: 'multiuser-collaboration-session', actorId: 'sales-user-1' }),
     template: multiuserCollaborationTemplate,
   }),
@@ -419,13 +517,13 @@ const LAB_EXAMPLES = [
     id: 'generator-runtime',
     path: '/lab/generator-runtime',
     title: 'Generación y conversión',
-    description: 'Arranca en modo form para probar generate, pdf2size, pdf2img e img2pdf.',
-    status: 'Listo para generar PDF y probar conversiones',
+    description: 'Arranca en modo form sobre un PDF real para probar generate, pdf2size, pdf2img e img2pdf.',
+    status: 'Listo para generar PDF y probar conversiones sobre documento real',
     defaultMode: 'form',
     initialSchemaType: 'select',
     collaboration: createCollaboration('generator-user-1', [
-      { id: 'generator-user-1', name: 'Formulario', role: 'owner', team: 'automation-team' },
-      { id: 'generator-user-2', name: 'Conversión', role: 'reviewer', team: 'automation-team' },
+      { id: 'generator-user-1', name: 'Formulario', role: 'owner', team: 'automation-team', color: '#2563EB' },
+      { id: 'generator-user-2', name: 'Conversión', role: 'reviewer', team: 'automation-team', color: '#D946EF' },
     ], { sessionId: 'generator-runtime-session', actorId: 'generator-user-1' }),
     template: generatorRuntimeTemplate,
   }),
@@ -435,6 +533,7 @@ const cloneExample = (example) => ({
   ...example,
   template: cloneDeep(example.template),
   inputs: cloneDeep(example.inputs),
+  runtimeOptions: cloneDeep(example.runtimeOptions),
 })
 
 export const getLabExamples = () => LAB_EXAMPLES.map(cloneExample)

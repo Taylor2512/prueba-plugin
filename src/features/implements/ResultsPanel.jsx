@@ -9,7 +9,6 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
       <summary className="sisad-pdfme-lab-results-summary">
         <div className="sisad-pdfme-lab-section-heading sisad-pdfme-lab-section-heading-tight">
           <h2 id="lab-results-title">Resultados</h2>
-          <p>Salida de generación y conversión.</p>
         </div>
         <span className="sisad-pdfme-lab-results-badge">{hasGeneratedArtifacts ? 'Visible' : 'Oculto'}</span>
       </summary>

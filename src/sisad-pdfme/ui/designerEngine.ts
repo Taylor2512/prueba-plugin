@@ -2,6 +2,11 @@ import { cloneDeep, Schema, SchemaForUI, UIOptions } from '@sisad-pdfme/common';
 import type React from 'react';
 import type { LeftSidebarProps } from './components/Designer/LeftSidebar';
 import type { RightSidebarProps } from './components/Designer/RightSidebar/index';
+import {
+  normalizeCollaborationRecipients,
+  resolveOwnerMode,
+  type CollaborationRecipientOption,
+} from './collaborationContext.js';
 import type {
   CanvasClassNames,
   CanvasComponentSlots,
@@ -32,6 +37,7 @@ export type SchemaCommentReply = {
   id: string;
   authorId?: string;
   authorName?: string;
+  authorColor?: string | null;
   timestamp: number;
   text: string;
   resolved?: boolean;
@@ -41,6 +47,7 @@ export type SchemaComment = {
   id: string;
   authorId?: string;
   authorName?: string;
+  authorColor?: string | null;
   timestamp: number;
   text: string;
   resolved?: boolean;
@@ -52,10 +59,48 @@ export type SchemaCommentAnchor = {
   schemaUid?: string;
   fileId?: string | null;
   pageNumber?: number;
+  authorId?: string;
+  authorColor?: string | null;
   x?: number;
   y?: number;
   resolved?: boolean;
 };
+
+export type CollaborationPresence = {
+  userId: string;
+  name?: string | null;
+  color?: string | null;
+  role?: string | null;
+  activeDocumentId?: string | null;
+  activePage?: number | null;
+  activeSchemaIds?: string[];
+  interactionPhase?: string | null;
+  updatedAt: number;
+};
+
+export type CollaborationHistoryEventType =
+  | 'schema.created'
+  | 'schema.updated'
+  | 'schema.deleted'
+  | 'comment.created'
+  | 'comment.updated'
+  | 'comment.deleted'
+  | 'lock.changed';
+
+export type CollaborationHistoryEntry = {
+  id: string;
+  type: CollaborationHistoryEventType;
+  schemaId?: string;
+  schemaUid?: string;
+  fileId?: string | null;
+  pageIndex?: number;
+  actorId?: string | null;
+  actorColor?: string | null;
+  timestamp: number;
+  payload?: Record<string, unknown>;
+};
+
+export type CollaborationProviderName = 'legacy' | 'yjs';
 
 export type SchemaCollaborativeMetadata = {
   schemaUid?: string;
@@ -65,10 +110,14 @@ export type SchemaCollaborativeMetadata = {
   ownerMode?: 'single' | 'multi' | 'shared';
   ownerRecipientId?: string | null;
   ownerRecipientIds?: string[];
+  ownerRecipientName?: string | null;
+  ownerColor?: string | null;
+  userColor?: string | null;
   createdBy?: string | null;
   lastModifiedBy?: string | null;
   createdAt?: number;
   updatedAt?: number;
+  lastModifiedAt?: number;
   commentsCount?: number;
   state?: SchemaCollaborativeState;
   lock?: SchemaCollaborativeLock;
@@ -83,7 +132,16 @@ export type CollaborationSyncConfig = {
   url?: string;
   protocols?: string | string[];
   sessionId?: string;
+  provider?: CollaborationProviderName;
   actorId?: string;
+  actorColor?: string | null;
+  recipientOptions?: CollaborationRecipientOption[];
+  users?: CollaborationRecipientOption[];
+  activeRecipientId?: string | null;
+  activeUserId?: string | null;
+  isGlobalView?: boolean;
+  presence?: CollaborationPresence[];
+  history?: CollaborationHistoryEntry[];
   reconnectMs?: number;
 };
 
@@ -177,6 +235,9 @@ export type SchemaCreationContext = {
   actorId?: string | null;
   ownerRecipientId?: string | null;
   ownerRecipientIds?: string[];
+  ownerRecipientName?: string | null;
+  ownerColor?: string | null;
+  userColor?: string | null;
 };
 
 export type SchemaCreationHook = (schema: SchemaForUI, context: SchemaCreationContext) => SchemaForUI;
@@ -257,7 +318,15 @@ const cloneDesignerEngine = (engine: DesignerEngine = {}): DesignerEngine => ({
         onCreate: engine.schema.onCreate,
       }
     : undefined,
-  collaboration: engine.collaboration ? { ...engine.collaboration } : undefined,
+  collaboration: engine.collaboration
+    ? {
+        ...engine.collaboration,
+        recipientOptions: normalizeCollaborationRecipients(
+          engine.collaboration.recipientOptions || engine.collaboration.users,
+        ),
+        users: normalizeCollaborationRecipients(engine.collaboration.users),
+      }
+    : undefined,
 });
 
 const asRecord = (value: unknown): Record<string, unknown> | null =>
@@ -308,10 +377,10 @@ const mergeRequestConfig = (
   };
 };
 
-const normalizeRecipientIds = (value?: string[] | string | null): string[] | undefined => {
+const normalizeRecipientIds = (value?: string[] | string | null): string[] => {
   if (Array.isArray(value)) {
     const normalized = value.map((entry) => String(entry || '').trim()).filter(Boolean);
-    return normalized.length > 0 ? Array.from(new Set(normalized)) : undefined;
+    return normalized.length > 0 ? Array.from(new Set(normalized)) : [];
   }
 
   if (typeof value === 'string') {
@@ -319,10 +388,10 @@ const normalizeRecipientIds = (value?: string[] | string | null): string[] | und
       .split(',')
       .map((entry) => entry.trim())
       .filter(Boolean);
-    return normalized.length > 0 ? Array.from(new Set(normalized)) : undefined;
+    return normalized.length > 0 ? Array.from(new Set(normalized)) : [];
   }
 
-  return undefined;
+  return [];
 };
 
 const mergeCollaborationLock = (
@@ -368,10 +437,14 @@ export const resolveSchemaCollaborativeMetadata = (
     ownerRecipientIds: Array.isArray(rawSchema.ownerRecipientIds)
       ? normalizeRecipientIds(rawSchema.ownerRecipientIds as string[])
       : undefined,
+    ownerRecipientName: typeof rawSchema.ownerRecipientName === 'string' ? rawSchema.ownerRecipientName : undefined,
+    ownerColor: typeof rawSchema.ownerColor === 'string' ? rawSchema.ownerColor : undefined,
+    userColor: typeof rawSchema.userColor === 'string' ? rawSchema.userColor : undefined,
     createdBy: typeof rawSchema.createdBy === 'string' ? rawSchema.createdBy : undefined,
     lastModifiedBy: typeof rawSchema.lastModifiedBy === 'string' ? rawSchema.lastModifiedBy : undefined,
     createdAt: typeof rawSchema.createdAt === 'number' ? rawSchema.createdAt : undefined,
     updatedAt: typeof rawSchema.updatedAt === 'number' ? rawSchema.updatedAt : undefined,
+    lastModifiedAt: typeof rawSchema.lastModifiedAt === 'number' ? rawSchema.lastModifiedAt : undefined,
     commentsCount: typeof rawSchema.commentsCount === 'number' ? rawSchema.commentsCount : undefined,
     state: rawSchema.state === 'draft' || rawSchema.state === 'locked' || rawSchema.state === 'merged'
       ? rawSchema.state
@@ -405,14 +478,18 @@ export const applySchemaCollaborativeDefaults = (
   const ownerRecipientIds = normalizeRecipientIds(
     context.ownerRecipientIds ?? collaborative.ownerRecipientIds ?? collaborative.ownerRecipientId,
   );
-  const ownerMode =
-    collaborative.ownerMode ||
-    (ownerRecipientIds.length > 1 ? 'multi' : ownerRecipientIds.length === 1 ? 'single' : undefined);
+  const ownerMode = resolveOwnerMode(collaborative.ownerMode, ownerRecipientIds);
   const commentsCount = typeof collaborative.commentsCount === 'number'
     ? collaborative.commentsCount
     : Array.isArray(collaborative.comments)
       ? collaborative.comments.length
       : 0;
+  const ownerRecipientId = collaborative.ownerRecipientId ?? context.ownerRecipientId ?? ownerRecipientIds[0];
+  const ownerRecipientName = collaborative.ownerRecipientName ?? context.ownerRecipientName ?? null;
+  const ownerColor = collaborative.ownerColor ?? context.ownerColor ?? null;
+  const userColor = collaborative.userColor ?? context.userColor ?? ownerColor;
+  const createdBy = collaborative.createdBy ?? context.actorId;
+  const lastModifiedBy = context.actorId ?? collaborative.lastModifiedBy ?? ownerRecipientId;
 
   return {
     ...schema,
@@ -421,12 +498,16 @@ export const applySchemaCollaborativeDefaults = (
     fileTemplateId: collaborative.fileTemplateId ?? context.fileId ?? undefined,
     pageNumber: collaborative.pageNumber ?? context.pageNumber ?? context.pageIndex + 1,
     ownerMode,
-    ownerRecipientId: collaborative.ownerRecipientId ?? context.ownerRecipientId ?? ownerRecipientIds?.[0],
+    ownerRecipientId,
     ownerRecipientIds: ownerRecipientIds,
-    createdBy: collaborative.createdBy ?? context.actorId,
-    lastModifiedBy: collaborative.lastModifiedBy ?? context.actorId ?? context.ownerRecipientId,
+    ownerRecipientName,
+    ownerColor,
+    userColor,
+    createdBy,
+    lastModifiedBy,
     createdAt: collaborative.createdAt ?? timestamp,
     updatedAt: timestamp,
+    lastModifiedAt: timestamp,
     commentsCount,
     state: collaborative.state || 'draft',
     saveValue: typeof collaborative.saveValue === 'boolean' ? collaborative.saveValue : true,
@@ -449,17 +530,15 @@ export const refreshSchemaCollaborativeMetadata = (
       pageNumber: context.pageNumber ?? collaborative.pageNumber ?? context.pageIndex + 1,
       ownerRecipientId: collaborative.ownerRecipientId ?? context.ownerRecipientId,
       ownerRecipientIds: collaborative.ownerRecipientIds,
+      ownerRecipientName: collaborative.ownerRecipientName ?? context.ownerRecipientName,
+      ownerColor: collaborative.ownerColor ?? context.ownerColor,
+      userColor: collaborative.userColor ?? context.userColor ?? collaborative.ownerColor ?? context.ownerColor,
       createdBy: collaborative.createdBy ?? context.actorId,
       lastModifiedBy: context.actorId ?? collaborative.lastModifiedBy,
       createdAt: collaborative.createdAt ?? context.timestamp,
       updatedAt: context.timestamp,
-      ownerMode:
-        collaborative.ownerMode ||
-        (Array.isArray(collaborative.ownerRecipientIds) && collaborative.ownerRecipientIds.length > 1
-          ? 'multi'
-          : Array.isArray(collaborative.ownerRecipientIds) && collaborative.ownerRecipientIds.length === 1
-            ? 'single'
-            : undefined),
+      lastModifiedAt: context.timestamp,
+      ownerMode: resolveOwnerMode(collaborative.ownerMode, collaborative.ownerRecipientIds || []),
       commentsCount:
         typeof collaborative.commentsCount === 'number'
           ? collaborative.commentsCount
@@ -1080,7 +1159,14 @@ export class DesignerEngineBuilder {
   }
 
   withCollaboration(collaboration: CollaborationSyncConfig) {
-    this.engine.collaboration = { ...(this.engine.collaboration || {}), ...(collaboration || {}) };
+    this.engine.collaboration = {
+      ...(this.engine.collaboration || {}),
+      ...(collaboration || {}),
+      recipientOptions: normalizeCollaborationRecipients(
+        collaboration?.recipientOptions || collaboration?.users || this.engine.collaboration?.recipientOptions,
+      ),
+      users: normalizeCollaborationRecipients(collaboration?.users || this.engine.collaboration?.users),
+    };
     return this;
   }
 

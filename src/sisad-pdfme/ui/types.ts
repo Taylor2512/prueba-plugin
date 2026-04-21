@@ -1,5 +1,6 @@
 import type { SchemaForUI, Size, ChangeSchemas, BasePdf } from '@sisad-pdfme/common';
 import type { SchemaDesignerConfig } from './designerEngine';
+import type { EffectiveCollaborationContext } from './collaborationContext';
 import type { DesignerDocumentItem } from './components/Designer/RightSidebar/DocumentsRail';
 import type { InteractionPhase } from './components/Designer/shared/interactionState';
 
@@ -22,6 +23,7 @@ export type SidebarProps = {
   deselectSchema: () => void;
   sidebarOpen: boolean;
   setSidebarOpen: (sidebarOpen: boolean) => void;
+  collaborationContext?: EffectiveCollaborationContext;
 };
 
 export type DesignerComponentBridge = {
@@ -31,6 +33,8 @@ export type DesignerComponentBridge = {
       totalPages: number;
       zoomLevel: number;
       collaborationStatus?: 'idle' | 'connecting' | 'open' | 'closed' | 'error';
+      collaborationPresenceCount?: number;
+      collaborationHistoryCount?: number;
       viewportMode: 'manual' | 'fit-width' | 'fit-page' | 'actual-size' | 'auto';
       sidebarOpen: boolean;
       isSchemaDragging: boolean;

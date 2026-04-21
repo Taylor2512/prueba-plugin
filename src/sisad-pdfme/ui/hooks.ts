@@ -253,6 +253,7 @@ interface UseInitEventsParams {
   activeElements: HTMLElement[];
   template: Template;
   schemasList: SchemaForUI[][];
+  visibleSchemasList?: SchemaForUI[][];
   changeSchemas: ChangeSchemas;
   commitSchemas: (newSchemas: SchemaForUI[]) => void;
   removeSchemas: (ids: string[]) => void;
@@ -263,7 +264,10 @@ interface UseInitEventsParams {
   onEdit: (targets: HTMLElement[]) => void;
   onEditEnd: () => void;
   selectionCommands?: SelectionCommandSet;
-  collaborationContext?: Pick<SchemaCreationContext, 'fileId' | 'actorId' | 'ownerRecipientId' | 'ownerRecipientIds'>;
+  collaborationContext?: Pick<
+    SchemaCreationContext,
+    'fileId' | 'actorId' | 'ownerRecipientId' | 'ownerRecipientIds' | 'ownerRecipientName' | 'ownerColor' | 'userColor'
+  >;
 }
 
 export const useInitEvents = ({
@@ -272,6 +276,7 @@ export const useInitEvents = ({
   activeElements,
   template,
   schemasList,
+  visibleSchemasList,
   changeSchemas,
   commitSchemas,
   removeSchemas,
@@ -348,6 +353,9 @@ export const useInitEvents = ({
               actorId: collaborationContext?.actorId || null,
               ownerRecipientId: collaborationContext?.ownerRecipientId || null,
               ownerRecipientIds: collaborationContext?.ownerRecipientIds,
+              ownerRecipientName: collaborationContext?.ownerRecipientName || null,
+              ownerColor: collaborationContext?.ownerColor || null,
+              userColor: collaborationContext?.userColor || null,
             },
           );
           Object.assign(cloned, nextCollaborative, { state: 'draft', lock: undefined });
@@ -375,7 +383,12 @@ export const useInitEvents = ({
         onSaveTemplate && onSaveTemplate(schemasList2template(schemasList, template.basePdf)),
       remove: () => (selectionCommands?.deleteSelection ? selectionCommands.deleteSelection() : removeSchemas(getActiveSchemas().map((s) => s.id))),
       esc: onEditEnd,
-      selectAll: () => onEdit(schemasList[pageCursor].map((s) => document.getElementById(s.id)!)),
+      selectAll: () =>
+        onEdit(
+          (visibleSchemasList?.[pageCursor] || schemasList[pageCursor])
+            .map((schema) => document.getElementById(schema.id))
+            .filter((element): element is HTMLElement => Boolean(element)),
+        ),
     });
   }, [
     template,
@@ -385,6 +398,7 @@ export const useInitEvents = ({
     changeSchemas,
     commitSchemas,
     schemasList,
+    visibleSchemasList,
     onSaveTemplate,
     removeSchemas,
     past,

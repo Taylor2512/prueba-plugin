@@ -13,6 +13,10 @@ import DocumentsRail, { DocumentsRailProps } from './DocumentsRail.js';
 import { mergeClassNames } from '../shared/className.js';
 import type { SelectionCommandSet } from '../shared/selectionCommands.js';
 import { Layers, SlidersHorizontal, FileText } from 'lucide-react';
+import {
+  resolveRightSidebarContextHeader,
+  type RightSidebarContextHeader,
+} from './contextHeader.js';
 
 export type RightSidebarProps = SidebarProps & {
   width?: number;
@@ -48,7 +52,7 @@ export type RightSidebarProps = SidebarProps & {
   showDocumentsAsTab?: boolean;
   documentsAccessMode?: 'always' | 'tab';
   onViewModeChange?: (_mode: 'fields' | 'detail' | 'docs') => void;
-  contextHeader?: React.ReactNode | ((_ctx: { mode: 'list' | 'detail' | 'bulk' | 'docs'; activeCount: number }) => React.ReactNode);
+  contextHeader?: RightSidebarContextHeader;
   selectionCommands?: SelectionCommandSet;
   components?: {
     listView?: typeof ListView;
@@ -175,6 +179,10 @@ const Sidebar = (props: RightSidebarProps) => {
 
   const shouldRenderDocumentsRail =
     resolvedViewMode === 'docs' && Boolean(docsBridge || pagesBridge);
+  const contextHeaderNode = resolveRightSidebarContextHeader(props.contextHeader, {
+    mode: resolvedPanelMode,
+    activeCount: activeSchemaCount,
+  });
 
   const documentsRailStyle: React.CSSProperties | undefined = showDocumentsRail
     ? {
@@ -278,57 +286,58 @@ const Sidebar = (props: RightSidebarProps) => {
         data-sidebar-open={sidebarOpen ? 'true' : 'false'}
         data-docs-mode={documentsRailMode}
         data-panel-mode={resolvedPanelMode}>
-        {props.showDocumentsAsTab !== false ? (
+        {props.showDocumentsAsTab !== false || contextHeaderNode ? (
           <div className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-wrap'}>
-            <div
-              className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher'}
-              role="tablist"
-              tabIndex={0}
-              aria-label="Panel derecho"
-              aria-orientation="horizontal"
-              onKeyDown={handlePanelSwitcherKeyDown}
-            >
-              {(['fields', 'detail', 'docs'] as const).map((mode) => {
-                if (mode === 'docs' && !showDocumentsRail) return null;
-                const disabled = mode === 'detail' && activeSchemaCount !== 1;
-                const isActive = resolvedViewMode === mode;
-                const modeMeta = sidebarModeMeta[mode];
-                return (
-                  <button
-                    key={`rs-mode-${mode}`}
-                    type="button"
-                    disabled={disabled}
-                    className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn'}
-                    role="tab"
-                    data-active={isActive ? 'true' : 'false'}
-                    aria-selected={isActive ? 'true' : 'false'}
-                    aria-controls={panelIdByMode[mode]}
-                    id={tabIdByMode[mode]}
-                    title={modeMeta.title}
-                    aria-label={modeMeta.ariaLabel}
-                    onClick={() => {
-                      if (requestedViewMode === 'auto') setInternalViewMode(mode);
-                      props.onViewModeChange?.(mode);
-                    }}
-                  >
-                    <span className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn-content'}>
-                      <span className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn-icon'}>{modeMeta.icon}</span>
-                      <span className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn-label'}>{modeMeta.shortLabel}</span>
-                    </span>
-                  </button>
-                );
-              })}
-            </div>
-            {typeof props.contextHeader === 'function'
-              ? props.contextHeader({ mode: resolvedPanelMode, activeCount: activeSchemaCount })
-              : props.contextHeader || null}
+            {props.showDocumentsAsTab !== false ? (
+              <div
+                className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher'}
+                role="tablist"
+                tabIndex={0}
+                aria-label="Panel derecho"
+                aria-orientation="horizontal"
+                onKeyDown={handlePanelSwitcherKeyDown}
+              >
+                {(['fields', 'detail', 'docs'] as const).map((mode) => {
+                  if (mode === 'docs' && !showDocumentsRail) return null;
+                  const disabled = mode === 'detail' && activeSchemaCount !== 1;
+                  const isActive = resolvedViewMode === mode;
+                  const modeMeta = sidebarModeMeta[mode];
+                  return (
+                    <button
+                      key={`rs-mode-${mode}`}
+                      type="button"
+                      disabled={disabled}
+                      className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn'}
+                      role="tab"
+                      data-active={isActive ? 'true' : 'false'}
+                      aria-selected={isActive ? 'true' : 'false'}
+                      aria-controls={panelIdByMode[mode]}
+                      id={tabIdByMode[mode]}
+                      title={modeMeta.title}
+                      aria-label={modeMeta.ariaLabel}
+                      onClick={() => {
+                        if (requestedViewMode === 'auto') setInternalViewMode(mode);
+                        props.onViewModeChange?.(mode);
+                      }}
+                    >
+                      <span className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn-content'}>
+                        <span className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn-icon'}>{modeMeta.icon}</span>
+                        <span className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn-label'}>{modeMeta.shortLabel}</span>
+                      </span>
+                    </button>
+                  );
+                })}
+              </div>
+            ) : null}
+            {contextHeaderNode}
           </div>
         ) : null}
         {useLayoutFrame ? (
           <SidebarFrame
             className={DESIGNER_CLASSNAME + 'right-sidebar-frame'}
             role="tabpanel"
-            aria-labelledby={tabIdByMode[resolvedPanelMode]}
+            aria-labelledby={props.showDocumentsAsTab !== false ? tabIdByMode[resolvedPanelMode] : undefined}
+            aria-label={props.showDocumentsAsTab !== false ? undefined : sidebarModeMeta[resolvedPanelMode].title}
             id={panelIdByMode[resolvedPanelMode]}
           >
             <div className={DESIGNER_CLASSNAME + 'right-sidebar-layout-grid'}>
