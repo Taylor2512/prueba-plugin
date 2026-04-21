@@ -1,28 +1,28 @@
-AGENTS.md — Coding agent guidance for prueba-plugin
+# AGENTS
 
-Rol del agente
-El agente actúa como un asistente de desarrollo para propuestas, refactors y cambios dentro de este repositorio. Antes de aplicar cambios significativos, debe proponer un plan breve (archivos a tocar, pruebas necesarias, riesgos) y obtener confirmación humana si el alcance es amplio.
+Este repositorio usa un workspace neutral para múltiples proveedores de IA. La fuente de verdad está en `.ai/`. Los adaptadores de proveedor como GitHub Copilot, Codex, Claude, Gemini, Kilo y Antigravity deben leer o derivar desde ese espacio neutral, no inventar instrucciones paralelas.
 
-Objetivos del agente
-- Realizar cambios incrementales y verificables.
-- Mantener compatibilidad con el runtime modificado de `sisad-pdfme`.
-- Añadir pruebas y documentación mínima para los cambios.
+## Objetivo
+Coordinar subagentes, prompts, skills, reglas e instrucciones para evolucionar este fork de SISAD PDF editor sin perder coherencia técnica.
 
-Criterios de calidad
-- El proyecto debe compilar y las pruebas relevantes deben pasar.
-- No introducir breaking changes en las APIs públicas sin un plan de migración.
-- Mantener accesibilidad y ergonomía del canvas (soporte teclado, focus, labels).
+## Principios
+- Priorizar la arquitectura real del repositorio, no la del pdfme original.
+- Mantener foco en engine, canvas, overlays, sidebars, schemas, generator y converter.
+- Diseñar con ahorro de espacio, progressive disclosure y widgets contextuales.
+- Favorecer cambios pequeños, testeables y documentados.
+- Mantener compatibilidad con múltiples proveedores de IA.
 
-Prioridades
-1. Compatibilidad runtime y seguridad de datos.
-2. Accesibilidad y UX del canvas.
-3. Rendimiento y estabilidad.
-4. Documentación y tests.
+## Dónde mirar primero
+- `.ai/agents`
+- `.ai/prompts`
+- `.ai/skills`
+- `.ai/instructions`
+- `.ai/rules/global-rules.md`
+- `docs/90-indice-verdad-actual.md`
+- `docs/96-sisad-pdfme-overview.md`
 
-Proceso recomendado para PRs automáticos
-1. Proponer un plan corto en el PR description.
-2. Crear una rama por tarea y ejecutar tests en CI.
-3. Incluir pasos para reproduccir manualmente (dev server, ruta del demo).
-
-Ejemplo de prompt útil
-"Refactoriza `usePdfmeLab.ts` para extraer lógica de estado en un hook separado. Mantén compatibilidad con `sisad-pdfme` modificado, añade tests unitarios y abre PR con descripción y pasos para probarlo." 
+## Flujo recomendado
+1. Elegir subagente por dominio.
+2. Cargar skill relevante.
+3. Ejecutar prompt de tarea.
+4. Validar con tests y documentación.

@@ -1,0 +1,784 @@
+.sisad-pdfme-lab-landing,
+.sisad-pdfme-lab-page {
+  min-height: 100vh;
+  padding: clamp(0.6rem, 1vw, 1rem);
+  width: 100%;
+  color: #0f172a;
+  background:
+    radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 30%),
+    radial-gradient(circle at top right, rgba(244, 114, 182, 0.12), transparent 28%),
+    linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
+}
+
+.sisad-pdfme-lab-hero,
+.sisad-pdfme-lab-toolbar,
+.sisad-pdfme-lab-results,
+.sisad-pdfme-lab-card-grid,
+.sisad-pdfme-lab-workspace {
+  width: min(1400px, 100%);
+  margin: 0 auto 0.7rem auto;
+}
+
+.sisad-pdfme-lab-hero,
+.sisad-pdfme-lab-toolbar,
+.sisad-pdfme-lab-results,
+.sisad-pdfme-lab-workspace,
+.sisad-pdfme-lab-card,
+.sisad-pdfme-lab-result-card {
+  border: 1px solid rgba(148, 163, 184, 0.25);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.88);
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(12px);
+}
+
+.sisad-pdfme-lab-hero {
+  display: grid;
+  gap: 0.45rem;
+  padding: 0.45rem 0.6rem;
+  align-items: start;
+}
+
+.sisad-pdfme-lab-page-topbar {
+  display: grid;
+  grid-template-columns: minmax(0, 1.7fr) minmax(18rem, 1fr);
+  gap: 0.45rem 0.65rem;
+  align-items: start;
+}
+
+.sisad-pdfme-lab-page-copy {
+  display: grid;
+  gap: 0.2rem;
+  align-content: start;
+  min-width: 0;
+}
+
+.sisad-pdfme-lab-kicker {
+  margin: 0 0 0.25rem 0;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: #475569;
+}
+
+.sisad-pdfme-lab-hero h1,
+.sisad-pdfme-lab-page h1,
+.sisad-pdfme-lab-section-heading h2 {
+  margin: 0;
+  line-height: 1.05;
+}
+
+.sisad-pdfme-lab-hero h1,
+.sisad-pdfme-lab-page h1 {
+  font-size: clamp(1.2rem, 2vw, 1.8rem);
+  letter-spacing: -0.04em;
+}
+
+.sisad-pdfme-lab-page-rail {
+  display: grid;
+  gap: 0.35rem;
+  align-items: start;
+  min-width: 0;
+}
+
+.sisad-pdfme-lab-page-context {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.4rem 0.55rem;
+  align-items: center;
+  min-width: 0;
+}
+
+.sisad-pdfme-lab-page-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.25rem 0.35rem;
+  padding: 0.35rem 0.45rem;
+  border-radius: 14px;
+  background: rgba(248, 250, 252, 0.62);
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  min-width: 0;
+}
+
+.sisad-pdfme-lab-page-linkRow {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.sisad-pdfme-lab-page-controls {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+  align-items: center;
+  justify-content: flex-end;
+  min-width: 0;
+}
+
+.sisad-pdfme-lab-page-controls .sisad-pdfme-lab-summary-label {
+  margin-bottom: 0;
+}
+
+.sisad-pdfme-lab-status-inline {
+  margin: 0;
+  padding: 0.28rem 0.5rem;
+  background: rgba(15, 23, 42, 0.04);
+  border-radius: 10px;
+}
+
+.sisad-pdfme-lab-hero-text,
+.sisad-pdfme-lab-description,
+.sisad-pdfme-lab-section-heading p {
+  margin: 0.2rem 0 0;
+  color: #334155;
+  line-height: 1.32;
+  font-size: 0.92rem;
+}
+
+.sisad-pdfme-lab-hero-summary,
+.sisad-pdfme-lab-hero-metrics,
+.sisad-pdfme-lab-page-metrics {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0.35rem;
+  align-self: start;
+  margin: 0;
+  padding: 0;
+}
+
+.sisad-pdfme-lab-page-metrics {
+  grid-template-columns: repeat(auto-fit, minmax(6.4rem, 1fr));
+}
+
+.sisad-pdfme-lab-hero-summary > div,
+.sisad-pdfme-lab-hero-metric,
+.sisad-pdfme-lab-page-metric {
+  min-width: 0;
+  padding: 0.38rem 0.5rem;
+  border-radius: 12px;
+  background: linear-gradient(180deg, rgba(248, 250, 252, 0.95), rgba(226, 232, 240, 0.9));
+  border: 1px solid rgba(148, 163, 184, 0.22);
+}
+
+.sisad-pdfme-lab-summary-label {
+  display: block;
+  margin-bottom: 0.2rem;
+  font-size: 0.64rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+.sisad-pdfme-lab-hero-summary strong,
+.sisad-pdfme-lab-hero-metric dd,
+.sisad-pdfme-lab-page-metric dd {
+  font-size: 0.92rem;
+  color: #0f172a;
+  margin: 0.1rem 0 0;
+  font-weight: 700;
+}
+
+.sisad-pdfme-lab-collaboration {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.25rem 0.4rem;
+  min-width: 0;
+  padding: 0.28rem 0.4rem;
+  border-radius: 14px;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  background: rgba(248, 250, 252, 0.72);
+}
+
+.sisad-pdfme-lab-collaboration-title {
+  margin-bottom: 0;
+  white-space: nowrap;
+}
+
+.sisad-pdfme-lab-collaboration-select-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 0;
+  margin-left: auto;
+}
+
+.sisad-pdfme-lab-collaboration-select-label {
+  font-size: 0.64rem;
+  font-weight: 700;
+  color: #475569;
+  white-space: nowrap;
+}
+
+.sisad-pdfme-lab-collaboration-select {
+  min-width: 7.4rem;
+}
+
+.sisad-pdfme-lab-collaboration-chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+  align-items: center;
+  flex: 1 1 10rem;
+  min-width: 0;
+}
+
+.sisad-pdfme-lab-card-grid {
+  display: block;
+}
+
+.sisad-pdfme-lab-section-heading {
+  margin-bottom: 0.7rem;
+}
+
+.sisad-pdfme-lab-card-list,
+.sisad-pdfme-lab-results-grid {
+  display: grid;
+  gap: 0.65rem;
+  grid-template-columns: repeat(auto-fit, minmax(14rem, 1fr));
+}
+
+.sisad-pdfme-lab-card,
+.sisad-pdfme-lab-result-card {
+  padding: 0.7rem 0.8rem;
+}
+
+.sisad-pdfme-lab-card-topline,
+.sisad-pdfme-lab-meta,
+.sisad-pdfme-lab-toolbar-heading {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+}
+
+.sisad-pdfme-lab-toolbar-heading {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sisad-pdfme-lab-toolbar-grid {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.sisad-pdfme-lab-meta {
+  margin-top: 0;
+  align-items: center;
+}
+
+.sisad-pdfme-lab-chip {
+  display: inline-flex;
+  align-items: center;
+  border-radius: 999px;
+  padding: 0.28rem 0.55rem;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #1d4ed8;
+  background: rgba(219, 234, 254, 0.95);
+}
+
+.sisad-pdfme-lab-chip-muted {
+  color: #475569;
+  background: rgba(226, 232, 240, 0.95);
+}
+
+.sisad-pdfme-lab-card h3,
+.sisad-pdfme-lab-result-card h3 {
+  margin: 0.45rem 0 0.3rem 0;
+  font-size: 0.9rem;
+}
+
+.sisad-pdfme-lab-card-actions {
+  margin-top: 0.45rem;
+}
+
+.sisad-pdfme-lab-card-link,
+.sisad-pdfme-lab-inline-link {
+  color: #1d4ed8;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.sisad-pdfme-lab-toolbar {
+  padding: 0.55rem 0.65rem 0.7rem;
+}
+
+.sisad-pdfme-compact-controls-panel {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.sisad-pdfme-compact-controls {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  align-items: center;
+}
+
+.sisad-pdfme-compact-icon-button {
+  width: 32px;
+  height: 32px;
+  border-radius: 9px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: rgba(255, 255, 255, 0.92);
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+  color: #334155;
+  box-shadow: 0 1px 0 rgba(15, 23, 42, 0.02);
+}
+
+.sisad-pdfme-compact-icon-button.is-active,
+.sisad-pdfme-compact-icon-button:hover:not(:disabled) {
+  border-color: rgba(59, 130, 246, 0.28);
+  background: #eff6ff;
+  color: #1d4ed8;
+}
+
+.sisad-pdfme-popover {
+  position: relative;
+  display: inline-flex;
+}
+
+.sisad-pdfme-popover[data-align='start'] .sisad-pdfme-popover-panel {
+  left: 0;
+  right: auto;
+}
+
+.sisad-pdfme-popover-panel {
+  position: absolute;
+  right: 0;
+  top: 42px;
+  min-width: 16rem;
+  max-width: 18rem;
+  background: rgba(255, 255, 255, 0.98);
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  border-radius: 14px;
+  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
+  padding: 0.45rem;
+  z-index: 40;
+  display: grid;
+  gap: 0.45rem;
+}
+
+.sisad-pdfme-popover-custom {
+  display: grid;
+  gap: 0.35rem;
+}
+
+.sisad-pdfme-popover-section {
+  display: grid;
+  gap: 0.3rem;
+  padding: 0.42rem;
+  border-radius: 12px;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  background: rgba(248, 250, 252, 0.86);
+}
+
+.sisad-pdfme-popover-section-quiet {
+  background: rgba(255, 255, 255, 0.86);
+}
+
+.sisad-pdfme-popover-section-label {
+  font-size: 0.64rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #64748b;
+}
+
+.sisad-pdfme-popover-label {
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: #334155;
+}
+
+.sisad-pdfme-popover-select {
+  min-height: 2rem;
+  padding: 0 0.55rem;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 10px;
+  background: #fff;
+  color: #0f172a;
+}
+
+.sisad-pdfme-popover-action {
+  min-height: 2rem;
+  padding: 0.28rem 0.55rem;
+  border-radius: 10px;
+  border: 1px solid rgba(148, 163, 184, 0.26);
+  background: #fff;
+  color: #0f172a;
+  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+}
+
+.sisad-pdfme-popover-action.is-active {
+  background: #eff6ff;
+  border-color: rgba(59, 130, 246, 0.28);
+  color: #1d4ed8;
+}
+
+.sisad-pdfme-popover-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.25rem;
+}
+
+.sisad-pdfme-popover-action:hover:not(:disabled),
+.sisad-pdfme-popover-action.is-destructive:hover:not(:disabled),
+.sisad-pdfme-popover-item:hover:not(:disabled) {
+  background: #eff6ff;
+}
+
+.sisad-pdfme-popover-action.is-destructive {
+  color: #b91c1c;
+}
+
+.sisad-pdfme-popover-action:disabled,
+.sisad-pdfme-popover-item:disabled,
+.sisad-pdfme-compact-icon-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+.sisad-pdfme-popover-item {
+  display: grid;
+  width: 100%;
+  gap: 0.12rem;
+  text-align: left;
+  padding: 0.4rem 0.55rem;
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.sisad-pdfme-popover-item.is-active {
+  background: #eff6ff;
+  border-color: rgba(59, 130, 246, 0.18);
+}
+
+.sisad-pdfme-popover-item.is-destructive {
+  color: #b91c1c;
+}
+
+.sisad-pdfme-popover-item-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: inherit;
+}
+
+.sisad-pdfme-popover-item-description {
+  font-size: 0.68rem;
+  color: #64748b;
+}
+
+.sisad-pdfme-lab-control-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.28rem;
+  align-items: center;
+  flex: 1 1 15rem;
+  min-width: 0;
+}
+
+.sisad-pdfme-lab-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #334155;
+  margin-top: 0;
+}
+
+.sisad-pdfme-lab-select,
+.sisad-pdfme-lab-button {
+  min-height: 1.9rem;
+  border-radius: 9px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: #fff;
+  color: #0f172a;
+}
+
+.sisad-pdfme-lab-select {
+  padding: 0 0.55rem;
+}
+
+.sisad-pdfme-lab-button {
+  padding: 0.28rem 0.55rem;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.sisad-pdfme-lab-button:hover:not(:disabled),
+.sisad-pdfme-lab-card-link:hover,
+.sisad-pdfme-lab-inline-link:hover {
+  filter: brightness(0.92);
+}
+
+.sisad-pdfme-lab-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.sisad-pdfme-lab-button.is-active {
+  border-color: rgba(29, 78, 216, 0.5);
+  background: rgba(219, 234, 254, 0.95);
+  color: #1d4ed8;
+}
+
+.sisad-pdfme-lab-status {
+  margin-top: 0.4rem;
+  padding: 0.42rem 0.55rem;
+  border-radius: 10px;
+  background: #ffffff;
+  border: 1px solid rgba(148, 163, 184, 0.16);
+  color: #0f172a;
+}
+
+.sisad-pdfme-lab-image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.75rem;
+}
+
+.sisad-pdfme-lab-image-card {
+  margin: 0;
+  padding: 0.5rem;
+  border-radius: 14px;
+  background: #fff;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.sisad-pdfme-lab-image-card img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+}
+
+.sisad-pdfme-lab-image-card figcaption {
+  margin-top: 0.5rem;
+  font-size: 0.82rem;
+  color: #475569;
+}
+
+.sisad-pdfme-lab-workspace {
+  padding: 0.35rem 0 0.6rem;
+}
+
+.sisad-pdfme-lab-canvas-shell {
+  border-radius: 18px;
+  overflow: hidden;
+  border: 1px solid rgba(148, 163, 184, 0.22);
+  background: #fff;
+  min-height: clamp(30rem, 72vh, 56rem);
+}
+
+.sisad-pdfme-lab-page .sisad-pdfme-canvas {
+  min-height: clamp(30rem, 72vh, 56rem);
+}
+
+.sisad-pdfme-lab-results {
+  width: min(1400px, 100%);
+  padding: 0;
+  overflow: hidden;
+}
+
+.sisad-pdfme-lab-results-summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  justify-content: space-between;
+  align-items: center;
+  gap: 0.45rem;
+  padding: 0.55rem 0.7rem;
+  list-style: none;
+  cursor: pointer;
+}
+
+.sisad-pdfme-lab-results-summary::-webkit-details-marker {
+  display: none;
+}
+
+.sisad-pdfme-lab-results[open] .sisad-pdfme-lab-results-summary {
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+}
+
+.sisad-pdfme-lab-results-body {
+  padding: 0.5rem 0.65rem 0.7rem;
+}
+
+.sisad-pdfme-lab-results-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.5rem;
+  padding: 0.2rem 0.45rem;
+  border-radius: 999px;
+  background: rgba(219, 234, 254, 0.95);
+  color: #1d4ed8;
+  font-size: 0.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.sisad-pdfme-lab-landing .sisad-pdfme-lab-card-grid {
+  margin-top: 0.7rem;
+}
+
+.sisad-pdfme-lab-advanced-tools {
+  margin-top: 0.2rem;
+  padding: 0.45rem 0.55rem 0.5rem;
+  border: 1px solid rgba(148, 163, 184, 0.2);
+  border-radius: 16px;
+  background: rgba(248, 250, 252, 0.82);
+}
+
+.sisad-pdfme-lab-advanced-tools-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.45rem;
+  cursor: pointer;
+  list-style: none;
+  font-weight: 700;
+  color: #0f172a;
+}
+
+.sisad-pdfme-lab-advanced-tools-summary::-webkit-details-marker {
+  display: none;
+}
+
+.sisad-pdfme-lab-advanced-tools-body {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0.45rem;
+}
+
+@media (max-width: 900px) {
+  .sisad-pdfme-lab-hero,
+  .sisad-pdfme-lab-page-topbar,
+  .sisad-pdfme-lab-toolbar-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sisad-pdfme-lab-page-context,
+  .sisad-pdfme-lab-page-rail {
+    grid-template-columns: 1fr;
+  }
+
+  .sisad-pdfme-lab-page-metrics {
+    grid-template-columns: repeat(auto-fit, minmax(7.5rem, 1fr));
+  }
+
+  .sisad-pdfme-lab-toolbar-grid {
+    flex-direction: column;
+  }
+
+  .sisad-pdfme-lab-hero {
+    padding: 0.5rem 0.55rem 0.6rem;
+  }
+
+  .sisad-pdfme-lab-page-copy {
+    gap: 0.32rem;
+  }
+
+  .sisad-pdfme-lab-hero h1,
+  .sisad-pdfme-lab-page h1 {
+    font-size: clamp(1.15rem, 6vw, 1.55rem);
+  }
+
+  .sisad-pdfme-lab-description,
+  .sisad-pdfme-lab-hero-text,
+  .sisad-pdfme-lab-section-heading p {
+    line-height: 1.32;
+    margin-top: 0.2rem;
+  }
+
+  .sisad-pdfme-lab-hero-summary > div,
+  .sisad-pdfme-lab-hero-metric,
+  .sisad-pdfme-lab-page-metric {
+    padding: 0.42rem 0.5rem;
+  }
+
+  .sisad-pdfme-lab-page-linkRow {
+    justify-content: flex-start;
+  }
+
+  .sisad-pdfme-lab-page-controls {
+    justify-content: flex-start;
+  }
+
+  .sisad-pdfme-lab-page-actions {
+    justify-content: flex-start;
+  }
+
+  .sisad-pdfme-lab-card-list,
+  .sisad-pdfme-lab-results-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .sisad-pdfme-lab-toolbar,
+  .sisad-pdfme-lab-results,
+  .sisad-pdfme-lab-workspace,
+  .sisad-pdfme-lab-card-grid {
+    margin-bottom: 0.7rem;
+  }
+
+  .sisad-pdfme-lab-results-summary {
+    grid-template-columns: 1fr;
+    align-items: start;
+  }
+
+  .sisad-pdfme-lab-results-summary .sisad-pdfme-lab-section-heading p {
+    display: none;
+  }
+
+  .sisad-pdfme-lab-toolbar {
+    padding: 0.55rem 0.6rem 0.65rem;
+  }
+
+  .sisad-pdfme-lab-button,
+  .sisad-pdfme-lab-select {
+    min-height: 1.85rem;
+  }
+
+  .sisad-pdfme-lab-advanced-tools {
+    padding: 0.5rem 0.55rem 0.55rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .sisad-pdfme-lab-collaboration {
+    gap: 0.22rem;
+    align-items: flex-start;
+  }
+
+  .sisad-pdfme-lab-collaboration-select {
+    min-width: 100%;
+  }
+
+  .sisad-pdfme-lab-collaboration-select-wrap {
+    margin-left: 0;
+    width: 100%;
+  }
+
+  .sisad-pdfme-lab-hero-summary,
+  .sisad-pdfme-lab-hero-metrics,
+  .sisad-pdfme-lab-page-metrics {
+    gap: 0.3rem;
+  }
+
+  .sisad-pdfme-lab-page-actions {
+    gap: 0.25rem;
+    padding: 0.35rem 0.45rem;
+  }
+
+  .sisad-pdfme-lab-advanced-tools-summary {
+    align-items: start;
+  }
+}
+
