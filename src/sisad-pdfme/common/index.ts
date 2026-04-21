@@ -1,5 +1,5 @@
-import { PDFME_VERSION } from './version.js';
-import {
+export { PDFME_VERSION } from './version.js';
+export {
   MM_TO_PT_RATIO,
   PT_TO_MM_RATIO,
   PT_TO_PX_RATIO,
@@ -9,11 +9,37 @@ import {
   ZOOM,
   DEFAULT_FONT_NAME,
 } from './constants.js';
-import type {
+export {
+  cloneDeep,
+  getFallbackFontName,
+  getDefaultFont,
+  getB64BasePdf,
+  b64toUint8Array,
+  checkFont,
+  checkInputs,
+  checkUIOptions,
+  checkTemplate,
+  checkUIProps,
+  checkPreviewProps,
+  checkDesignerProps,
+  checkGenerateProps,
+  mm2pt,
+  pt2mm,
+  pt2px,
+  px2mm,
+  isHexValid,
+  getInputFromTemplate,
+  isBlankPdf,
+} from './helper.js';
+export { buildSchemaAssignments } from './collaboration.js';
+export type { SchemaAssignments } from './collaboration.js';
+export { getDynamicTemplate } from './dynamicTemplate.js';
+export { replacePlaceholders } from './expression.js';
+export { pluginRegistry } from './pluginRegistry.js';
+export type {
   ChangeSchemaItem,
   ChangeSchemas,
   SchemaPageArray,
-  SchemaAssignments,
   SchemaComment,
   SchemaCommentReply,
   CommentAnchor,
@@ -45,100 +71,3 @@ import type {
   PreviewProps,
   DesignerProps,
 } from './types.js';
-import {
-  cloneDeep,
-  getFallbackFontName,
-  getDefaultFont,
-  getB64BasePdf,
-  b64toUint8Array,
-  checkFont,
-  checkInputs,
-  checkUIOptions,
-  checkTemplate,
-  checkUIProps,
-  checkPreviewProps,
-  checkDesignerProps,
-  checkGenerateProps,
-  mm2pt,
-  pt2mm,
-  pt2px,
-  px2mm,
-  isHexValid,
-  getInputFromTemplate,
-  isBlankPdf,
-} from './helper.js';
-import { buildSchemaAssignments } from './collaboration.js';
-import type { SchemaAssignments } from './collaboration.js';
-import { getDynamicTemplate } from './dynamicTemplate.js';
-import { replacePlaceholders } from './expression.js';
-import { pluginRegistry } from './pluginRegistry.js';
-
-export {
-  PDFME_VERSION,
-  MM_TO_PT_RATIO,
-  PT_TO_MM_RATIO,
-  PT_TO_PX_RATIO,
-  BLANK_PDF,
-  BLANK_A4_PDF,
-  CUSTOM_A4_PDF,
-  ZOOM,
-  DEFAULT_FONT_NAME,
-  cloneDeep,
-  buildSchemaAssignments,
-  getFallbackFontName,
-  getDefaultFont,
-  getB64BasePdf,
-  b64toUint8Array,
-  mm2pt,
-  pt2mm,
-  pt2px,
-  px2mm,
-  isHexValid,
-  getInputFromTemplate,
-  isBlankPdf,
-  getDynamicTemplate,
-  replacePlaceholders,
-  checkFont,
-  checkInputs,
-  checkUIOptions,
-  checkTemplate,
-  checkUIProps,
-  checkPreviewProps,
-  checkDesignerProps,
-  checkGenerateProps,
-  pluginRegistry,
-};
-
-export type {
-  Lang,
-  Dict,
-  Size,
-  Schema,
-  SchemaForUI,
-  SchemaAssignments,
-  Font,
-  ColorType,
-  BasePdf,
-  BlankPdf,
-  CustomPdf,
-  Template,
-  CommonOptions,
-  GeneratorOptions,
-  Plugin,
-  Plugins,
-  PluginRegistry,
-  GenerateProps,
-  UIOptions,
-  UIProps,
-  PreviewProps,
-  DesignerProps,
-  ChangeSchemaItem,
-  ChangeSchemas,
-  SchemaPageArray,
-  PropPanel,
-  PropPanelSchema,
-  PropPanelWidgetProps,
-  PDFRenderProps,
-  UIRenderProps,
-  Mode,
-};

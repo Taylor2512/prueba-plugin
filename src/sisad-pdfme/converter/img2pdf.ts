@@ -70,8 +70,11 @@ export async function img2pdf(
         const pageHeight = size ? mm2pt(size.height) : imgHeight;
         page.setSize(pageWidth, pageHeight);
 
-        // Convert margins from mm to points
-        const [topMargin, rightMargin, bottomMargin, leftMargin] = margin.map(mm2pt);
+        // Convert margins from mm to points with explicit numeric typing.
+        const topMargin = mm2pt(margin[0]);
+        const rightMargin = mm2pt(margin[1]);
+        const bottomMargin = mm2pt(margin[2]);
+        const leftMargin = mm2pt(margin[3]);
 
         // Calculate available space for the image after applying margins
         const availableWidth = pageWidth - leftMargin - rightMargin;

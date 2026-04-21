@@ -22,7 +22,7 @@ La solución se organiza alrededor de un núcleo modular:
 src/
   features/
     sisad-pdfme/
-      PdfmeLabPage.jsx
+      SisadPdfmeExample.jsx
       template.js
       domain/
       utils/
@@ -134,12 +134,12 @@ El uso de sidebars, secciones colapsables, toolbar contextual, overlays y `desig
 
 ### A. Renombrado final de plataforma
 
-Aunque ya existe `sisad-pdfme`, la estructura todavía conserva conceptos heredados como `PdfmeLabPage` y algunos nombres históricos en pruebas y docs. Conviene evolucionar a una marca y namespace de plataforma definitiva si el objetivo es vender o reutilizar.
+Aunque ya existe `sisad-pdfme`, la estructura todavía conserva conceptos heredados como `SisadPdfmeExample` y algunos nombres históricos en pruebas y docs. Conviene evolucionar a una marca y namespace de plataforma definitiva si el objetivo es vender o reutilizar.
 
 Sugerencia:
 
 - `src/sisad-pdfme` → `src/platform/pdf` o `src/sisad-pdf`
-- `PdfmeLabPage` → `PdfStudioPage`
+- `SisadPdfmeExample` → `PdfStudioPage`
 - `Designer` → `PdfEditor`
 - `Form` → `PdfFormRuntime`
 - `Viewer` → `PdfViewer`

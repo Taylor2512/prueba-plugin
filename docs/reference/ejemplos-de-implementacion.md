@@ -1,5 +1,26 @@
 # Ejemplos de implementación e integración
 
+## Ejemplos vivos del laboratorio SISAD
+
+Los ejemplos consumidos por la pantalla de laboratorio viven en:
+
+- `src/features/sisad-pdfme/example.pdf.jsx`
+- `src/features/sisad-pdfme/examples/labExamples.js`
+
+Los presets actuales cubren cuatro escenarios concretos:
+
+- `basic-designer`
+- `enterprise-collaboration`
+- `multi-document-routing`
+- `generator-runtime`
+
+Cada preset se puede usar como plantilla de referencia para:
+
+- diseñador básico
+- colaboración con comentarios y locks
+- scoping por documento y página
+- flujo de generación / conversión
+
 ## 1. Editor mínimo
 
 ```tsx
