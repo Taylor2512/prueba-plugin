@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { buildSchemaAssignments } from '@sisad-pdfme/common'
+import { buildSchemaAssignments, buildUserSchemaAssignments, SHARED_ASSIGNMENTS_BUCKET } from '@sisad-pdfme/common'
 import {
   getLabExampleById,
   getLabExampleByPath,
@@ -50,7 +50,6 @@ describe('sisad-pdfme lab examples', () => {
     const example = getLabExampleById('multi-document-routing')
 
     const assignments = buildSchemaAssignments(example?.template.schemas || [])
-
     expect(assignments['recipient-1']['file-contract-a']['1']).toEqual([
       'multi-contract-name',
       'multi-contract-date',
@@ -70,18 +69,40 @@ describe('sisad-pdfme lab examples', () => {
       'legal-user-1',
       'ops-user-1',
     ])
+    expect(example?.collaboration?.users?.map((user) => user.color)).toEqual([
+      '#2563EB',
+      '#D946EF',
+      '#F97316',
+    ])
     expect(example?.template.schemas[1][0].ownerMode).toBe('shared')
     expect(example?.template.schemas[1][0].ownerRecipientIds).toEqual([
       'sales-user-1',
       'legal-user-1',
       'ops-user-1',
     ])
+    expect(example?.template.schemas[0][0].ownerColor).toBe('#2563EB')
+    expect(example?.template.schemas[0][1].ownerColor).toBe('#D946EF')
+    expect(example?.template.schemas[1][1].ownerColor).toBe('#F97316')
 
     const assignments = buildSchemaAssignments(example?.template.schemas || [])
 
     expect(assignments['sales-user-1']['multiuser-contract']['2']).toContain('multiuser-shared-summary')
     expect(assignments['legal-user-1']['multiuser-contract']['2']).toContain('multiuser-shared-summary')
     expect(assignments['ops-user-1']['multiuser-contract']['2']).toContain('multiuser-shared-summary')
+
+    const userAssignments = buildUserSchemaAssignments(example?.template.schemas || [])
+
+    expect(userAssignments['sales-user-1']['multiuser-contract']['1']).toEqual([
+      'multiuser-owner-name',
+      'multiuser-team-note',
+    ])
+    expect(userAssignments['legal-user-1']['multiuser-contract']['2']).toEqual([
+      'multiuser-locked-approval',
+    ])
+    expect(userAssignments[SHARED_ASSIGNMENTS_BUCKET]['multiuser-contract']['2']).toEqual([
+      'multiuser-shared-summary',
+    ])
+    expect(userAssignments['ops-user-1']).toBeUndefined()
   })
 
   it('keeps generator example ready for form runtime and custom options', () => {

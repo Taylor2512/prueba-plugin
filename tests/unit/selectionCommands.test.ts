@@ -30,6 +30,15 @@ describe('selectionCommands inline edit bridge', () => {
       removeSchemas,
       onOpenProperties,
       requestInlineEdit,
+      collaborationContext: {
+        fileId: 'file-1',
+        actorId: 'sales-user-1',
+        ownerRecipientId: 'sales-user-1',
+        ownerRecipientIds: ['sales-user-1', 'legal-user-1'],
+        ownerRecipientName: 'Ventas Ejecutivas',
+        ownerColor: '#2563EB',
+        userColor: '#2563EB',
+      },
     });
 
     return { commands, requestInlineEdit, changeSchemas, commitSchemas, removeSchemas, onOpenProperties };
@@ -51,5 +60,28 @@ describe('selectionCommands inline edit bridge', () => {
 
     expect(requestInlineEdit).toHaveBeenCalledTimes(1);
     expect(requestInlineEdit).toHaveBeenCalledWith({ schemaId: 'schema-1', target: 'content' });
+  });
+
+  it('duplicates the active selection with collaboration metadata from context and clears locks', () => {
+    const { commands, commitSchemas } = createContext();
+
+    commands.duplicateSelection();
+
+    expect(commitSchemas).toHaveBeenCalledTimes(1);
+    const nextSchemas = commitSchemas.mock.calls[0][0] as SchemaForUI[];
+    expect(nextSchemas).toHaveLength(2);
+    const clone = nextSchemas[1];
+
+    expect(clone.id).not.toBe('schema-1');
+    expect(clone.schemaUid).toBe(clone.id);
+    expect(clone.name).toBe('campo-1 copy');
+    expect(clone.fileId).toBe('file-1');
+    expect(clone.ownerRecipientId).toBe('sales-user-1');
+    expect(clone.ownerRecipientIds).toEqual(['sales-user-1', 'legal-user-1']);
+    expect(clone.ownerRecipientName).toBe('Ventas Ejecutivas');
+    expect(clone.ownerColor).toBe('#2563EB');
+    expect(clone.userColor).toBe('#2563EB');
+    expect(clone.state).toBe('draft');
+    expect(clone.lock).toBeUndefined();
   });
 });

@@ -62,6 +62,23 @@ test.describe('PDFME editor shell', () => {
     await expectCanvasToStartEarly(page, 520);
   });
 
+  test('adds a signature schema from the catalog on the basic designer route', async ({ page }) => {
+    await openDesigner(page);
+    await ensureCatalogExpanded(page);
+
+    const contextHeader = page.getByLabel('Contexto activo del editor');
+    await expect(contextHeader).toContainText('Campos: 3');
+
+    await page.getByRole('button', { name: 'Alternar categoría Firma' }).click();
+
+    await page.locator('.sisad-pdfme-designer-left-sidebar [data-schema-type="signature"]').first().click();
+
+    const signatureFields = page.locator('.sisad-pdfme-designer-canvas [data-schema-type="signature"]');
+    await expect(signatureFields).toHaveCount(2);
+    await expect(signatureFields.first()).toBeVisible();
+    await expect(contextHeader).toContainText('Campos: 4');
+  });
+
   test('keeps both sidebars mounted and toggleable on the basic designer route', async ({ page }) => {
     await openDesigner(page);
     await ensureCatalogExpanded(page);
@@ -82,6 +99,50 @@ test.describe('PDFME editor shell', () => {
     await expect(leftSidebar).toHaveAttribute('data-expanded', 'false');
   });
 
+  test('shows the compact editor context header on the basic designer route', async ({ page }) => {
+    await openDesigner(page);
+    await ensureCatalogExpanded(page);
+
+    const contextHeader = page.getByLabel('Contexto activo del editor');
+    await expect(contextHeader).toBeVisible();
+    await expect(contextHeader).toContainText('Documento: sample-a4.pdf');
+    await expect(contextHeader).toContainText('Página: 1/3');
+    await expect(contextHeader).toContainText('Campos: 3');
+    await expect(contextHeader).toContainText('Usuario: basic-user-1');
+  });
+
+  test('lists the active base PDF in docs on the basic designer route', async ({ page }) => {
+    await openDesigner(page);
+
+    await page.getByRole('tab', { name: 'Abrir panel Docs' }).click();
+    await expect(page.getByText('Documento activo')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'sample-a4.pdf' })).toBeVisible();
+    await expect(page.getByText('3 paginas')).toBeVisible();
+  });
+
+  test('seeds the docs rail with real PDFs on the multi-document route', async ({ page }) => {
+    await openDesigner(page, '/lab/multi-document-routing');
+
+    const contextHeader = page.getByLabel('Contexto activo del editor');
+    await expect(contextHeader).toContainText('Página: 1/4');
+    await expect(contextHeader).toContainText('Docs: 2');
+
+    await page.getByRole('tab', { name: 'Abrir panel Docs' }).click();
+    await expect(page.getByText('Documentos cargados')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Declaración de datos' })).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Certificado académico' })).toBeVisible();
+
+    await page.getByRole('button', { name: 'Certificado académico' }).click();
+    await expect(contextHeader).toContainText('Documento: Certificado académico');
+    await expect(contextHeader).toContainText('Página: 1/4');
+
+    await page.getByRole('button', { name: 'Declaración de datos' }).click();
+    await expect(contextHeader).toContainText('Documento: Declaración de datos');
+
+    await page.getByRole('button', { name: 'Página siguiente' }).click();
+    await expect(contextHeader).toContainText('Página: 2/4');
+  });
+
   test('opens the generator runtime example route', async ({ page }) => {
     await openLabRoute(page, '/lab/generator-runtime');
     await expect(page.getByRole('heading', { name: 'Generación y conversión' })).toBeVisible();
@@ -94,9 +155,55 @@ test.describe('PDFME editor shell', () => {
     await openLabRoute(page, '/lab/multiuser-collaboration');
 
     await expect(page.getByRole('heading', { name: 'Colaboración multiusuario' })).toBeVisible();
-    await expect(page.locator('.sisad-pdfme-lab-collaboration')).toContainText('Participantes');
+    const collaboration = page.locator('.sisad-pdfme-lab-collaboration-disclosure');
+    await expect(collaboration).toContainText('Participantes');
+    await collaboration.locator('summary').click();
     await expect(page.getByRole('combobox', { name: 'Seleccionar usuario activo' })).toHaveValue('sales-user-1');
-    await expect(page.locator('.sisad-pdfme-lab-collaboration')).toContainText('Ventas Ejecutivas');
+    await expect(page.getByRole('combobox', { name: 'Seleccionar vista activa' })).toHaveValue('user');
+    await expect(collaboration.locator('.sisad-pdfme-lab-collaboration-chips .sisad-pdfme-lab-chip')).toHaveCount(3);
+    const contextHeader = page.getByLabel('Contexto activo del editor');
+    await expect(contextHeader).toContainText('Usuario: sales-user-1');
+    await expect(contextHeader).toContainText('Vista: Ventas Ejecutivas');
+
+    await page.getByRole('combobox', { name: 'Seleccionar usuario activo' }).selectOption('legal-user-1');
+    await expect(contextHeader).toContainText('Usuario: legal-user-1');
+    await expect(contextHeader).toContainText('Vista: Revisor Legal');
+
+    await page.getByRole('combobox', { name: 'Seleccionar vista activa' }).selectOption('global');
+    await expect(contextHeader).toContainText('Vista: Global');
     await expectCanvasToStartEarly(page, 520);
+  });
+
+  test('filters canvas fields by active user view and clears hidden selection', async ({ page }) => {
+    await openLabRoute(page, '/lab/multiuser-collaboration');
+
+    const collaboration = page.locator('.sisad-pdfme-lab-collaboration-disclosure');
+    await collaboration.locator('summary').click();
+
+    const contextHeader = page.getByLabel('Contexto activo del editor');
+    const sharedField = page.getByText('Visible to all collaborators');
+    const lockedField = page.getByText('Locked for final approval');
+    await page.getByRole('button', { name: 'Página siguiente' }).click();
+
+    await expect(contextHeader).toContainText('Página: 2/2');
+    await expect(contextHeader).toContainText('Campos: 1/2');
+    await expect(sharedField).toBeVisible();
+    await expect(lockedField).toBeHidden();
+
+    await page.getByRole('combobox', { name: 'Seleccionar vista activa' }).selectOption('global');
+    await expect(contextHeader).toContainText('Vista: Global');
+    await expect(contextHeader).toContainText('Campos: 2/2');
+    await expect(sharedField).toBeVisible();
+    await expect(lockedField).toBeVisible();
+
+    await lockedField.click();
+    await expect(contextHeader).toContainText('Selección: 1');
+
+    await page.getByRole('combobox', { name: 'Seleccionar vista activa' }).selectOption('user');
+    await expect(contextHeader).toContainText('Vista: Ventas Ejecutivas');
+    await expect(contextHeader).toContainText('Campos: 1/2');
+    await expect(contextHeader).not.toContainText('Selección: 1');
+    await expect(sharedField).toBeVisible();
+    await expect(lockedField).toBeHidden();
   });
 });

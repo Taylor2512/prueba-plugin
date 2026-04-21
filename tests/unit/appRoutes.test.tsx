@@ -21,7 +21,7 @@ describe('app routes', () => {
     renderApp()
 
     expect(screen.getByRole('heading', { name: 'Rutas de ejemplo para probar casos de uso reales' })).toBeInTheDocument()
-    expect(screen.getAllByRole('link', { name: 'Abrir ejemplo' })[0]).toHaveAttribute('href', '/lab/basic-designer')
+    expect(screen.getAllByRole('link', { name: /Abrir ejemplo/ })[0]).toHaveAttribute('href', '/lab/basic-designer')
   })
 
   it('mounts the example page for a lab route', () => {
