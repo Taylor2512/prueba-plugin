@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { formatPageStatus, isValidUxMode, resolveInitialUxMode, MODES, UX_MODES } from '../../src/features/sisad-pdfme/domain/labState.js'
+import { formatPageStatus, isValidUxMode, resolveInitialUxMode, MODES, UX_MODES } from '../../src/features/pdfcomponent/domain/labState.js'
 
 describe('labState helpers', () => {
   it('validates runtime modes and resolves query priority over storage', () => {

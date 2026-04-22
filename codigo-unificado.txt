@@ -54,15 +54,15 @@
 0042. tests/unit/signatureSchema.test.ts
 0043. tests/unit/staticSchema.test.tsx
 0044. tests/unit/textSchema.test.ts
-0045. src/features/implements/CaseCard.jsx
-0046. src/features/implements/CaseGrid.jsx
-0047. src/features/implements/CompactControls.jsx
-0048. src/features/implements/Hero.jsx
-0049. src/features/implements/IconButton.jsx
-0050. src/features/implements/index.js
-0051. src/features/implements/PageHeader.jsx
-0052. src/features/implements/PopoverMenu.jsx
-0053. src/features/implements/ResultsPanel.jsx
+0045. src/features/sisad-pdfme/CaseCard.jsx
+0046. src/features/sisad-pdfme/CaseGrid.jsx
+0047. src/features/sisad-pdfme/CompactControls.jsx
+0048. src/features/sisad-pdfme/Hero.jsx
+0049. src/features/sisad-pdfme/IconButton.jsx
+0050. src/features/sisad-pdfme/index.js
+0051. src/features/sisad-pdfme/PageHeader.jsx
+0052. src/features/sisad-pdfme/PopoverMenu.jsx
+0053. src/features/sisad-pdfme/ResultsPanel.jsx
 0054. src/features/sisad-pdfme/example.pdf.jsx
 0055. src/features/sisad-pdfme/LabLandingPage.jsx
 0056. src/features/sisad-pdfme/PdfmeLabPage.jsx
@@ -4926,7 +4926,7 @@ import {
   Hero,
   PageHeader,
   ResultsPanel,
-} from '../../src/features/implements/index.js';
+} from '../../src/features/sisad-pdfme/index.js';
 
 describe('lab shell components', () => {
   it('renders hero metrics and case cards for the landing page', () => {
@@ -6533,8 +6533,8 @@ describe('text schema plugin', () => {
 
 // ====================================================================
 // ARCHIVO #45
-// Ruta relativa: src/features/implements/CaseCard.jsx
-// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/implements/CaseCard.jsx
+// Ruta relativa: src/features/sisad-pdfme/CaseCard.jsx
+// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/sisad-pdfme/CaseCard.jsx
 // Extensión: .jsx
 // Líneas aproximadas: 34
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
@@ -6575,13 +6575,13 @@ CaseCard.propTypes = {
 }
 
 
-// ========================== FIN DE src/features/implements/CaseCard.jsx ==========================
+// ========================== FIN DE src/features/sisad-pdfme/CaseCard.jsx ==========================
 
 
 // ====================================================================
 // ARCHIVO #46
-// Ruta relativa: src/features/implements/CaseGrid.jsx
-// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/implements/CaseGrid.jsx
+// Ruta relativa: src/features/sisad-pdfme/CaseGrid.jsx
+// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/sisad-pdfme/CaseGrid.jsx
 // Extensión: .jsx
 // Líneas aproximadas: 20
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
@@ -6608,13 +6608,13 @@ CaseGrid.propTypes = {
 }
 
 
-// ========================== FIN DE src/features/implements/CaseGrid.jsx ==========================
+// ========================== FIN DE src/features/sisad-pdfme/CaseGrid.jsx ==========================
 
 
 // ====================================================================
 // ARCHIVO #47
-// Ruta relativa: src/features/implements/CompactControls.jsx
-// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/implements/CompactControls.jsx
+// Ruta relativa: src/features/sisad-pdfme/CompactControls.jsx
+// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/sisad-pdfme/CompactControls.jsx
 // Extensión: .jsx
 // Líneas aproximadas: 155
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
@@ -6776,13 +6776,13 @@ CompactControls.propTypes = {
 }
 
 
-// ========================== FIN DE src/features/implements/CompactControls.jsx ==========================
+// ========================== FIN DE src/features/sisad-pdfme/CompactControls.jsx ==========================
 
 
 // ====================================================================
 // ARCHIVO #48
-// Ruta relativa: src/features/implements/Hero.jsx
-// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/implements/Hero.jsx
+// Ruta relativa: src/features/sisad-pdfme/Hero.jsx
+// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/sisad-pdfme/Hero.jsx
 // Extensión: .jsx
 // Líneas aproximadas: 38
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
@@ -6827,13 +6827,13 @@ Hero.propTypes = {
 }
 
 
-// ========================== FIN DE src/features/implements/Hero.jsx ==========================
+// ========================== FIN DE src/features/sisad-pdfme/Hero.jsx ==========================
 
 
 // ====================================================================
 // ARCHIVO #49
-// Ruta relativa: src/features/implements/IconButton.jsx
-// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/implements/IconButton.jsx
+// Ruta relativa: src/features/sisad-pdfme/IconButton.jsx
+// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/sisad-pdfme/IconButton.jsx
 // Extensión: .jsx
 // Líneas aproximadas: 46
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
@@ -6886,13 +6886,13 @@ IconButton.propTypes = {
 }
 
 
-// ========================== FIN DE src/features/implements/IconButton.jsx ==========================
+// ========================== FIN DE src/features/sisad-pdfme/IconButton.jsx ==========================
 
 
 // ====================================================================
 // ARCHIVO #50
-// Ruta relativa: src/features/implements/index.js
-// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/implements/index.js
+// Ruta relativa: src/features/sisad-pdfme/index.js
+// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/sisad-pdfme/index.js
 // Extensión: .js
 // Líneas aproximadas: 9
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
@@ -6908,13 +6908,13 @@ export { default as PopoverMenu } from './PopoverMenu.jsx'
 export { default as CompactControls } from './CompactControls.jsx'
 
 
-// ========================== FIN DE src/features/implements/index.js ==========================
+// ========================== FIN DE src/features/sisad-pdfme/index.js ==========================
 
 
 // ====================================================================
 // ARCHIVO #51
-// Ruta relativa: src/features/implements/PageHeader.jsx
-// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/implements/PageHeader.jsx
+// Ruta relativa: src/features/sisad-pdfme/PageHeader.jsx
+// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/sisad-pdfme/PageHeader.jsx
 // Extensión: .jsx
 // Líneas aproximadas: 209
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
@@ -7130,13 +7130,13 @@ CollaborationSection.propTypes = {
 }
 
 
-// ========================== FIN DE src/features/implements/PageHeader.jsx ==========================
+// ========================== FIN DE src/features/sisad-pdfme/PageHeader.jsx ==========================
 
 
 // ====================================================================
 // ARCHIVO #52
-// Ruta relativa: src/features/implements/PopoverMenu.jsx
-// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/implements/PopoverMenu.jsx
+// Ruta relativa: src/features/sisad-pdfme/PopoverMenu.jsx
+// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/sisad-pdfme/PopoverMenu.jsx
 // Extensión: .jsx
 // Líneas aproximadas: 112
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
@@ -7255,13 +7255,13 @@ PopoverMenu.propTypes = {
 }
 
 
-// ========================== FIN DE src/features/implements/PopoverMenu.jsx ==========================
+// ========================== FIN DE src/features/sisad-pdfme/PopoverMenu.jsx ==========================
 
 
 // ====================================================================
 // ARCHIVO #53
-// Ruta relativa: src/features/implements/ResultsPanel.jsx
-// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/implements/ResultsPanel.jsx
+// Ruta relativa: src/features/sisad-pdfme/ResultsPanel.jsx
+// Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/sisad-pdfme/ResultsPanel.jsx
 // Extensión: .jsx
 // Líneas aproximadas: 84
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
@@ -7352,7 +7352,7 @@ ResultsPanel.propTypes = {
 }
 
 
-// ========================== FIN DE src/features/implements/ResultsPanel.jsx ==========================
+// ========================== FIN DE src/features/sisad-pdfme/ResultsPanel.jsx ==========================
 
 
 // ====================================================================
@@ -7382,7 +7382,7 @@ export { default } from './PdfmeLabPage.jsx'
 import React from 'react'
 import PropTypes from 'prop-types'
 import { getLabExamples } from './examples/labExamples.js'
-import { Hero, CaseGrid } from '../implements'
+import { Hero, CaseGrid } from '../sisad-pdfme'
 
 const defaultExamples = getLabExamples()
 
@@ -7463,7 +7463,7 @@ import {
   decorateCollaborationUsers,
   decorateTemplateWithCollaboration,
 } from './domain/collaborationAppearance.js'
-import { PageHeader, ResultsPanel, CompactControls } from '../implements'
+import { PageHeader, ResultsPanel, CompactControls } from '../sisad-pdfme'
 
 const fallbackExample = getLabExamples()[0]
 const sortSchemaDefinitions = (definitions) =>

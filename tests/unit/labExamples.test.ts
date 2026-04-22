@@ -4,7 +4,7 @@ import {
   getLabExampleById,
   getLabExampleByPath,
   getLabExamples,
-} from '../../src/features/sisad-pdfme/examples/labExamples.js'
+} from '../../src/features/pdfcomponent/examples/labExamples.js'
 
 describe('sisad-pdfme lab examples', () => {
   it('exposes the documented example catalog', () => {

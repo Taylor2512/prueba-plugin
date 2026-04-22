@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { buildCollaboratorChipStyle } from '../sisad-pdfme/domain/collaborationAppearance.js'
+import { buildCollaboratorChipStyle } from './domain/collaborationAppearance.js'
 
 const EMPTY_ARRAY = []
 

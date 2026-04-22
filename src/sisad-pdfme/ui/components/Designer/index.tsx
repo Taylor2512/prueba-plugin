@@ -57,7 +57,7 @@ import { applyCollaborationEvent, diffCollaborationEvents, useCollaborationSync 
 import type { DesignerDocumentItem } from './RightSidebar/DocumentsRail.js';
 import type { DesignerRuntimeApi, DesignerSidebarPresentation } from '../../types.js';
 import { resolveSchemaTone } from './shared/schemaTone.js';
-import { buildCollaboratorChipStyle } from '../../../../features/sisad-pdfme/domain/collaborationAppearance.js';
+import { buildCollaboratorChipStyle } from '../../../../features/pdfcomponent/domain/collaborationAppearance.js';
 import { buildEffectiveCollaborationContext, filterSchemasForCollaborationView } from '../../collaborationContext.js';
 import type { RightSidebarContextHeader, RightSidebarContextHeaderContext } from './RightSidebar/contextHeader.js';
 import {

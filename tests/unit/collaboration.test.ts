@@ -20,7 +20,7 @@ import {
   resolveCollaboratorById,
   resolveSchemaOwnerColor,
   withAlpha,
-} from '../../src/features/sisad-pdfme/domain/collaborationAppearance.js';
+} from '../../src/features/pdfcomponent/domain/collaborationAppearance.js';
 
 describe('collaboration metadata', () => {
   it('initializes collaborative fields for newly created schemas without keeping stale locks', () => {

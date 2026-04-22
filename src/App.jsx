@@ -1,9 +1,9 @@
 import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
-import LabLandingPage from './features/sisad-pdfme/LabLandingPage.jsx'
-import PdfmeLabPage from './features/sisad-pdfme/PdfmeLabPage.jsx'
-import { getLabExamples } from './features/sisad-pdfme/examples/labExamples.js'
-import './features/sisad-pdfme/labRoutes.css'
+import LabLandingPage from './features/pdfcomponent/LabLandingPage.jsx'
+import PdfmeLabPage from './features/pdfcomponent/PdfmeLabPage.jsx'
+import { getLabExamples } from './features/pdfcomponent/examples/labExamples.js'
+import './features/pdfcomponent/labRoutes.css'
 
 const labExamples = getLabExamples()
 
