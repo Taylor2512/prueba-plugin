@@ -7,18 +7,18 @@ export default defineConfig({
   resolve: {
     alias: {
       '@': path.resolve(__dirname, 'src'),
-      // Local pdfme packages (integrated under src/pdfme)
-      '@pdfme/common': path.resolve(__dirname, 'src/pdfme/common/src'),
-      '@pdfme/ui': path.resolve(__dirname, 'src/pdfme/ui/src'),
-      '@pdfme/generator': path.resolve(__dirname, 'src/pdfme/generator/src'),
-      '@pdfme/schemas': path.resolve(__dirname, 'src/pdfme/schemas/src'),
+      // Local sisad-pdfme packages (integrated under src/sisad-pdfme)
+      '@sisad-pdfme/common': path.resolve(__dirname, 'src/sisad-pdfme/common'),
+      '@sisad-pdfme/ui': path.resolve(__dirname, 'src/sisad-pdfme/ui'),
+      '@sisad-pdfme/generator': path.resolve(__dirname, 'src/sisad-pdfme/generator'),
+      '@sisad-pdfme/schemas': path.resolve(__dirname, 'src/sisad-pdfme/schemas'),
       // Point to the browser entry so Vite resolves a file, not a directory
-      '@pdfme/converter': path.resolve(__dirname, 'src/pdfme/converter/src/index.browser.ts'),
-      '@pdfme/pdf-lib': path.resolve(__dirname, 'src/pdfme/pdf-lib/src'),
+      '@sisad-pdfme/converter': path.resolve(__dirname, 'src/sisad-pdfme/converter/index.browser.ts'),
+      '@sisad-pdfme/pdf-lib': path.resolve(__dirname, 'src/sisad-pdfme/pdf-lib'),
     }
   },
   server: {
-    port: 5173,
+    port: 5174,
     host: true
   }
 })

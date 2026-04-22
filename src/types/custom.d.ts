@@ -11,9 +11,3 @@ declare module '*.worker.js?url' {
     const value: string;
     export default value;
 }
-
-// Fallback for local pdfme packages while TS resolves path mappings
-declare module '@pdfme/*' {
-    const whatever: any;
-    export = whatever;
-}

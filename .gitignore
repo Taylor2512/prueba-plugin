@@ -21,7 +21,7 @@ build/
 out/
 lib/
 *.tgz
-
+/**/.playwright-cli/**
 # Vite / cache
 .vite/
 .vite_cache/

@@ -47,6 +47,11 @@ module.exports = [
       '.vite/**',
       'public/**',
       'coverage/**',
+      'src/sisad-pdfme/pdf-lib/**',
+      'src/sisad-pdfme/common/**',
+      'src/sisad-pdfme/converter/**',
+      'src/sisad-pdfme/generator/**',
+      'src/sisad-pdfme/schemas/**',
       '*.min.js',
       '*.map',
     ],
@@ -87,10 +92,10 @@ module.exports = [
       // project-specific overrides
       'react/react-in-jsx-scope': 'off',
       'react/jsx-uses-react': 'off',
-      'no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      'no-unused-vars': ['warn', { args: 'none', ignoreRestSiblings: true }],
       'import/no-unresolved': 'warn',
       '@typescript-eslint/no-explicit-any': 'warn',
-      '@typescript-eslint/no-unused-vars': ['warn', { argsIgnorePattern: '^_' }],
+      '@typescript-eslint/no-unused-vars': ['warn', { args: 'none', ignoreRestSiblings: true }],
       'jsx-a11y/anchor-is-valid': 'off',
       // Relax some rules that are noisy for this codebase and/or covered by TypeScript
       'react-hooks/set-state-in-effect': 'off',
@@ -107,5 +112,15 @@ module.exports = [
   {
     files: ['**/*.js', '**/*.jsx'],
     rules: {},
+  },
+
+  {
+    files: ['**/*.d.ts'],
+    rules: {
+      'no-unused-vars': 'off',
+      '@typescript-eslint/no-unused-vars': 'off',
+      '@typescript-eslint/no-explicit-any': 'off',
+      'import/no-unresolved': 'off',
+    },
   },
 ];

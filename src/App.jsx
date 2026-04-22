@@ -1,30 +1,25 @@
-import React, { Suspense, lazy } from 'react'
-import { Routes, Route, Link } from 'react-router-dom'
-import Home from './pages/Home'
-import About from './pages/About'
-const Pdfme = lazy(() => import('./pages/Pdfme'))
+import React from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import LabLandingPage from './features/sisad-pdfme/LabLandingPage.jsx'
+import PdfmeLabPage from './features/sisad-pdfme/PdfmeLabPage.jsx'
+import { getLabExamples } from './features/sisad-pdfme/examples/labExamples.js'
+import './features/sisad-pdfme/labRoutes.css'
+
+const labExamples = getLabExamples()
 
 export default function App() {
   return (
-    <div className="app-shell">
-      <nav className="main-nav">
-        <Link to="/">Home</Link>
-        <Link to="/about">About</Link>
-        <Link to="/pdfme">PDFME Lab</Link>
-      </nav>
-
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/about" element={<About />} />
+    <Routes>
+      <Route path="/" element={<LabLandingPage examples={labExamples} />} />
+      <Route path="/lab" element={<LabLandingPage examples={labExamples} />} />
+      {labExamples.map((example) => (
         <Route
-          path="/pdfme"
-          element={(
-            <Suspense fallback={<main><p>Cargando PDFME Lab...</p></main>}>
-              <Pdfme />
-            </Suspense>
-          )}
+          key={example.id}
+          path={example.path}
+          element={<PdfmeLabPage key={example.id} exampleId={example.id} />}
         />
-      </Routes>
-    </div>
+      ))}
+      <Route path="*" element={<Navigate to="/" replace />} />
+    </Routes>
   )
 }

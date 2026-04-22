@@ -3,7 +3,7 @@ import playwright from 'playwright';
 (async () => {
   const browser = await playwright.chromium.launch();
   const page = await browser.newPage();
-  const url = process.env.URL || 'http://localhost:5174/pdfme';
+  const url = process.env.URL || 'http://localhost:5174/sisad-pdfme';
   console.log('goto', url);
   await page.goto(url, { waitUntil: 'load' });
   // select designer mode

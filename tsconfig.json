@@ -1,8 +1,8 @@
 {
   "compilerOptions": {
-    "target": "ES2020",
+    "target": "ES2022",
     "lib": [
-      "ES2020",
+      "ES2022",
       "DOM",
       "DOM.Iterable"
     ],
@@ -19,19 +19,32 @@
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
+    "ignoreDeprecations": "6.0",
     "baseUrl": ".",
     "paths": {
       "@/*": [
         "src/*"
       ],
-      "@pdfme/*": [
-        "src/pdfme/*/src"
+      "@sisad-pdfme/*": [
+        "src/sisad-pdfme/*"
       ],
-      "@pdfme/converter": [
-        "src/pdfme/converter/src/index.browser.ts"
+      "@sisad-pdfme/common": [
+        "src/sisad-pdfme/common/index.ts"
       ],
-      "@pdfme/pdf-lib": [
-        "src/pdfme/pdf-lib/src"
+      "@sisad-pdfme/converter": [
+        "src/sisad-pdfme/converter/index.browser.ts"
+      ],
+      "@sisad-pdfme/generator": [
+        "src/sisad-pdfme/generator/index.ts"
+      ],
+      "@sisad-pdfme/schemas": [
+        "src/sisad-pdfme/schemas/index.ts"
+      ],
+      "@sisad-pdfme/pdf-lib": [
+        "src/sisad-pdfme/pdf-lib/index.ts"
+      ],
+      "@sisad-pdfme/ui": [
+        "src/sisad-pdfme/ui/index.ts"
       ]
     },
     "types": [
@@ -43,7 +56,8 @@
   "include": [
     "src",
     "tests",
-    "vite.config.*"
+    "vite.config.*",
+    "playwright.config.ts"
   ],
   "exclude": [
     "dist",

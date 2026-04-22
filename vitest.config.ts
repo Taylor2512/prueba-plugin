@@ -4,12 +4,12 @@ import { resolve } from 'path';
 export default defineConfig({
   resolve: {
     alias: {
-      '@pdfme/common': resolve(__dirname, 'src/pdfme/common/src'),
-      '@pdfme/converter': resolve(__dirname, 'src/pdfme/converter/src/index.browser.ts'),
-      '@pdfme/generator': resolve(__dirname, 'src/pdfme/generator/src'),
-      '@pdfme/schemas': resolve(__dirname, 'src/pdfme/schemas/src'),
-      '@pdfme/pdf-lib': resolve(__dirname, 'src/pdfme/pdf-lib/src'),
-      '@pdfme/ui': resolve(__dirname, 'src/pdfme/ui/src'),
+      '@sisad-pdfme/common': resolve(__dirname, 'src/sisad-pdfme/common'),
+      '@sisad-pdfme/converter': resolve(__dirname, 'src/sisad-pdfme/converter/index.browser.ts'),
+      '@sisad-pdfme/generator': resolve(__dirname, 'src/sisad-pdfme/generator'),
+      '@sisad-pdfme/schemas': resolve(__dirname, 'src/sisad-pdfme/schemas'),
+      '@sisad-pdfme/pdf-lib': resolve(__dirname, 'src/sisad-pdfme/pdf-lib'),
+      '@sisad-pdfme/ui': resolve(__dirname, 'src/sisad-pdfme/ui'),
     },
   },
   test: {

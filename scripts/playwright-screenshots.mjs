@@ -9,17 +9,17 @@ await fs.promises.mkdir(OUT, { recursive: true });
 const browser = await chromium.launch({ headless: true });
 const page = await browser.newPage({ viewport: { width: 1400, height: 900 } });
 
-const routes = ['/', '/pdfme', '/about'];
+const routes = ['/', '/sisad-pdfme', '/about'];
 for (const route of routes) {
   const url = `${BASE}${route}`;
   try {
     console.log('Capturing', url);
     await page.goto(url, { waitUntil: 'networkidle' , timeout: 30000});
     await page.waitForTimeout(500);
-    // If we're on the pdfme route, try to open the right sidebar via the toggle
-    if (route === '/pdfme') {
+    // If we're on the sisad-pdfme route, try to open the right sidebar via the toggle
+    if (route === '/sisad-pdfme') {
       try {
-        const toggle = await page.$('.pdfme-designer-right-sidebar-toggle-btn');
+        const toggle = await page.$('.sisad-pdfme-designer-right-sidebar-toggle-btn');
         if (toggle) {
           await toggle.click();
           await page.waitForTimeout(300);

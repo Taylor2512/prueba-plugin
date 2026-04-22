@@ -1,0 +1,31 @@
+{
+  "project": "pdf-editor-react-sisad-pdfme",
+  "vision": {
+    "product": "Editor PDF moderno tipo Wix/Figma/DocuSign",
+    "priorities": [
+      "canvas dominante",
+      "UI compacta",
+      "arquitectura modular",
+      "runtime desacoplado",
+      "paneles contextuales",
+      "extensibilidad",
+      "consistencia visual"
+    ]
+  },
+  "folders": {
+    "agents": ".github/agents",
+    "instructions": ".github/instructions",
+    "prompts": ".github/prompts",
+    "skills": ".github/skills"
+  },
+  "suggestedExecutionOrder": [
+    "frontend-pdf-architect.agent.md",
+    "frontend-editor.instructions.md",
+    "editor-product-vision.skill.md",
+    "refactor-editor-shell.prompt.md",
+    "split-monolithic-hook.prompt.md",
+    "create-command-bus.prompt.md",
+    "compact-wix-style-ui.prompt.md",
+    "unify-css-architecture.prompt.md"
+  ]
+}
