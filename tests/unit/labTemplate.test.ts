@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { createInitialPdfmeTemplate } from '../../src/features/sisad-pdfme/template.js'
+import { createInitialPdfmeTemplate } from '../../src/features/pdfcomponent/template.js'
 
 describe('lab template', () => {
   it('creates a blank template with a single page bucket', () => {

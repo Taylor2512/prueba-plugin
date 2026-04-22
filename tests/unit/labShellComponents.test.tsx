@@ -9,7 +9,7 @@ import {
   Hero,
   PageHeader,
   ResultsPanel,
-} from '../../src/features/implements/index.js';
+} from '../../src/features/pdfcomponent/index.js';
 
 describe('lab shell components', () => {
   it('renders hero metrics and case cards for the landing page', () => {

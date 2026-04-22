@@ -10,14 +10,7 @@
     linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
 }
 
-.sisad-pdfme-lab-hero,
-.sisad-pdfme-lab-toolbar,
-.sisad-pdfme-lab-results,
-.sisad-pdfme-lab-card-grid,
-.sisad-pdfme-lab-workspace {
-  width: min(1400px, 100%);
-  margin: 0 auto 0.7rem auto;
-}
+
 
 .sisad-pdfme-lab-hero,
 .sisad-pdfme-lab-toolbar,
