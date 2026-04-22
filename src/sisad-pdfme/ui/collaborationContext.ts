@@ -15,12 +15,14 @@ export type EffectiveCollaborationContext = Pick<
   'fileId' | 'actorId' | 'ownerRecipientId' | 'ownerRecipientIds' | 'ownerRecipientName' | 'ownerColor' | 'userColor'
 > & {
   actorColor?: string | null;
+  activeRecipientRole?: string | null;
   recipientOptions: CollaborationRecipientOption[];
   recipientColorMap: Map<string, string>;
   recipientNameMap: Map<string, string>;
   activeRecipientId: string | null;
   activeRecipient: CollaborationRecipientOption | null;
   isGlobalView: boolean;
+  canEditStructure: boolean;
 };
 
 export type ResolvedSchemaCollaborationState = {
@@ -110,6 +112,7 @@ export const buildEffectiveCollaborationContext = (
   const { recipientOptions, activeRecipient, activeRecipientId } = resolveActiveRecipient(collaboration);
   const actorId = normalizeNullableText(collaboration?.actorId) || activeRecipientId;
   const actorColor = normalizeNullableText(collaboration?.actorColor) || activeRecipient?.color || null;
+  const activeRecipientRole = normalizeNullableText(activeRecipient?.role);
   const ownerRecipientId = activeRecipientId || actorId || null;
   const ownerColor = activeRecipient?.color || actorColor || null;
 
@@ -127,7 +130,9 @@ export const buildEffectiveCollaborationContext = (
     recipientNameMap: buildRecipientNameMap(recipientOptions),
     activeRecipientId,
     activeRecipient,
+    activeRecipientRole,
     isGlobalView: collaboration?.isGlobalView === true,
+    canEditStructure: !['reviewer', 'viewer'].includes(activeRecipientRole || ''),
   };
 };
 

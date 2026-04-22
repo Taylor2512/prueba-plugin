@@ -72,6 +72,50 @@ describe('designerEngine config', () => {
     expect(config?.form?.format).toBe('flat');
   });
 
+  it('merges collaborative inspector patches without dropping existing collaboration metadata', () => {
+    const engine = new DesignerEngineBuilder().build();
+    const nextSchema = mergeSchemaDesignerConfig(
+      {
+        ...schema,
+        __designer: {
+          collaboration: {
+            schemaUid: 'schema-uid-1',
+            ownerRecipientId: 'owner-1',
+            ownerRecipientIds: ['owner-1', 'owner-2'],
+            commentsCount: 2,
+            comments: [
+              {
+                id: 'comment-1',
+                authorId: 'reviewer-1',
+                timestamp: 1700000000000,
+                text: 'Revisar este campo',
+                resolved: false,
+              },
+            ],
+          },
+          metadata: {
+            label: 'original',
+          },
+        },
+      } as SchemaForUI,
+      {
+        api: {
+          enabled: true,
+          endpoint: '/fields/options',
+        },
+      },
+      engine,
+    );
+
+    const config = getSchemaDesignerConfig(nextSchema, engine);
+    expect(config?.collaboration?.schemaUid).toBe('schema-uid-1');
+    expect(config?.collaboration?.ownerRecipientIds).toEqual(['owner-1', 'owner-2']);
+    expect(config?.collaboration?.commentsCount).toBe(2);
+    expect(config?.collaboration?.comments?.[0]?.authorId).toBe('reviewer-1');
+    expect(config?.metadata?.label).toBe('original');
+    expect(config?.api?.enabled).toBe(true);
+  });
+
   it('inherits Axios config from the designer engine and merges schema headers/auth', () => {
     const engine = new DesignerEngineBuilder()
       .withHttpAxiosConfig({

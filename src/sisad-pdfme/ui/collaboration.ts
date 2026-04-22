@@ -32,6 +32,36 @@ export type CollaborationEvent =
       timestamp?: number;
     }
   | {
+      type: 'comment.created';
+      schemaId: string;
+      comment: SchemaComment;
+      anchor?: SchemaCommentAnchor;
+      pageIndex?: number;
+      actorId?: string;
+      sessionId?: string;
+      timestamp?: number;
+    }
+  | {
+      type: 'comment.updated';
+      schemaId: string;
+      comment: SchemaComment;
+      anchor?: SchemaCommentAnchor;
+      pageIndex?: number;
+      actorId?: string;
+      sessionId?: string;
+      timestamp?: number;
+    }
+  | {
+      type: 'comment.deleted';
+      schemaId: string;
+      commentId: string;
+      anchorId?: string;
+      pageIndex?: number;
+      actorId?: string;
+      sessionId?: string;
+      timestamp?: number;
+    }
+  | {
       type: 'delete';
       schemaId: string;
       pageIndex?: number;
@@ -247,8 +277,12 @@ const createHistoryEntryFromEvent = (event: CollaborationEvent): CollaborationHi
         ? 'schema.created'
         : event.type === 'delete'
           ? 'schema.deleted'
-          : event.type === 'comment'
+          : event.type === 'comment' || event.type === 'comment.created'
             ? 'comment.created'
+            : event.type === 'comment.updated'
+              ? 'comment.updated'
+              : event.type === 'comment.deleted'
+                ? 'comment.deleted'
             : event.type === 'lock' || event.type === 'unlock'
               ? 'lock.changed'
               : 'schema.updated',
@@ -263,6 +297,16 @@ const createHistoryEntryFromEvent = (event: CollaborationEvent): CollaborationHi
         ? cloneDeep(event.patch)
         : event.type === 'create'
           ? { schemaUid: event.schema.schemaUid, pageNumber: event.schema.pageNumber }
+          : event.type === 'comment' || event.type === 'comment.created' || event.type === 'comment.updated'
+            ? {
+                commentId: event.comment?.id,
+                schemaId: event.schemaId,
+                pageNumber: event.comment?.anchor?.pageNumber || event.anchor?.pageNumber || event.pageIndex,
+                text: event.comment?.text,
+                resolved: event.comment?.resolved,
+              }
+          : event.type === 'comment.deleted'
+            ? { commentId: event.commentId, anchorId: event.anchorId }
           : undefined,
   };
 };
@@ -278,6 +322,160 @@ const diffSchemaPatch = (before: SchemaForUI, after: SchemaForUI) => {
     }
   });
   return patch;
+};
+
+const commentSignature = (comment: SchemaComment) =>
+  JSON.stringify({
+    ...comment,
+    anchor: comment.anchor
+      ? {
+          ...comment.anchor,
+          resolved: Boolean(comment.anchor.resolved),
+        }
+      : undefined,
+    replies: Array.isArray(comment.replies) ? comment.replies : [],
+  });
+
+const commentCollectionSignature = (comments: SchemaComment[] = [], anchors: SchemaCommentAnchor[] = []) =>
+  JSON.stringify({
+    comments: comments.map((comment) => commentSignature(comment)),
+    anchors: anchors.map((anchor) =>
+      JSON.stringify({
+        ...anchor,
+        resolved: Boolean(anchor.resolved),
+      }),
+    ),
+  });
+
+const collectCommentLifecycleEvents = (
+  before: SchemaForUI,
+  after: SchemaForUI,
+  metadata: Pick<CollaborationEvent, 'actorId' | 'sessionId' | 'timestamp'>,
+  pageIndex?: number,
+): CollaborationEvent[] => {
+  const previousComments = Array.isArray(before.comments) ? before.comments : [];
+  const nextComments = Array.isArray(after.comments) ? after.comments : [];
+  const previousById = new Map(previousComments.map((comment) => [comment.id, comment] as const));
+  const nextById = new Map(nextComments.map((comment) => [comment.id, comment] as const));
+  const events: CollaborationEvent[] = [];
+
+  previousById.forEach((previousComment, commentId) => {
+    if (nextById.has(commentId)) return;
+    events.push({
+      type: 'comment.deleted',
+      schemaId: after.id,
+      commentId,
+      anchorId: previousComment.anchor?.id || commentId,
+      pageIndex,
+      actorId: metadata.actorId,
+      sessionId: metadata.sessionId,
+      timestamp: metadata.timestamp,
+    });
+  });
+
+  nextById.forEach((nextComment, commentId) => {
+    const previousComment = previousById.get(commentId);
+    if (!previousComment) {
+      events.push({
+        type: 'comment.created',
+        schemaId: after.id,
+        comment: cloneDeep(nextComment),
+        anchor: nextComment.anchor ? cloneDeep(nextComment.anchor) : undefined,
+        pageIndex,
+        actorId: metadata.actorId,
+        sessionId: metadata.sessionId,
+        timestamp: metadata.timestamp,
+      });
+      return;
+    }
+
+    if (commentSignature(previousComment) === commentSignature(nextComment)) return;
+    events.push({
+      type: 'comment.updated',
+      schemaId: after.id,
+      comment: cloneDeep(nextComment),
+      anchor: nextComment.anchor ? cloneDeep(nextComment.anchor) : undefined,
+      pageIndex,
+      actorId: metadata.actorId,
+      sessionId: metadata.sessionId,
+      timestamp: metadata.timestamp,
+    });
+  });
+
+  return events;
+};
+
+const buildCommentCollectionsFromEvent = (
+  event: Extract<CollaborationEvent, { type: 'comment' | 'comment.created' | 'comment.updated' | 'comment.deleted' }>,
+  currentComments: SchemaComment[] = [],
+  currentAnchors: SchemaCommentAnchor[] = [],
+): {
+  comments: SchemaComment[];
+  anchors: SchemaCommentAnchor[];
+  commentsCount: number;
+} => {
+  const nextComments = currentComments.slice();
+  const nextAnchors = currentAnchors.slice();
+
+  if (event.type !== 'comment.deleted' && !event.comment) {
+    return {
+      comments: nextComments,
+      anchors: nextAnchors,
+      commentsCount: nextComments.length,
+    };
+  }
+
+  if (event.type === 'comment.deleted') {
+    return {
+      comments: nextComments.filter((comment) => comment.id !== event.commentId),
+      anchors: nextAnchors.filter((anchor) => anchor.id !== (event.anchorId || event.commentId)),
+      commentsCount: Math.max(0, nextComments.filter((comment) => comment.id !== event.commentId).length),
+    };
+  }
+
+  const nextComment = cloneDeep(event.comment);
+  const eventAnchor = cloneDeep(event.anchor || nextComment.anchor);
+  if (eventAnchor && !nextComment.anchor) {
+    nextComment.anchor = cloneDeep(eventAnchor);
+  }
+  if (eventAnchor && !eventAnchor.id) {
+    eventAnchor.id = nextComment.id;
+  }
+
+  const commentIndex = nextComments.findIndex((comment) => comment.id === nextComment.id);
+  if (commentIndex < 0 || event.type === 'comment.created' || event.type === 'comment' || event.type === 'comment.updated') {
+    if (commentIndex < 0) {
+      nextComments.push(nextComment);
+    } else {
+      nextComments[commentIndex] = nextComment;
+    }
+  }
+
+  if (eventAnchor) {
+    const anchorIndex = nextAnchors.findIndex((anchor) => anchor.id === eventAnchor.id);
+    const resolvedAnchor = {
+      ...eventAnchor,
+      id: eventAnchor.id || nextComment.id,
+    } as SchemaCommentAnchor;
+    if (anchorIndex < 0) {
+      nextAnchors.push(resolvedAnchor);
+    } else {
+      nextAnchors[anchorIndex] = resolvedAnchor;
+    }
+    const commentAtIndex = nextComments.findIndex((comment) => comment.id === nextComment.id);
+    if (commentAtIndex >= 0) {
+      nextComments[commentAtIndex] = {
+        ...nextComments[commentAtIndex],
+        anchor: cloneDeep(resolvedAnchor),
+      } as SchemaComment;
+    }
+  }
+
+  return {
+    comments: nextComments,
+    anchors: nextAnchors,
+    commentsCount: nextComments.length,
+  };
 };
 
 export const applyCollaborationEvent = (
@@ -358,30 +556,39 @@ export const applyCollaborationEvent = (
     return nextSchemasList;
   }
 
-  if (event.type === 'comment') {
-    if (!event.schemaId || (!event.comment && !event.anchor)) return schemasList;
+  if (event.type === 'comment' || event.type === 'comment.created' || event.type === 'comment.updated' || event.type === 'comment.deleted') {
+    if (!event.schemaId) return schemasList;
     for (let i = 0; i < nextSchemasList.length; i += 1) {
       const updated = updateSchemaOnPage(i, event.schemaId, (schema) => {
         if (isStaleEvent(schema, event.timestamp)) return schema;
-        const comments = Array.isArray(schema.comments) ? schema.comments.slice() : [];
-        if (event.comment) {
-          const nextComment = cloneDeep(event.comment);
-          comments.splice(0, comments.length, ...upsertById(comments, nextComment));
-        }
-        const anchors = Array.isArray(schema.commentAnchors) ? schema.commentAnchors.slice() : [];
-        if (event.anchor) {
-          const nextAnchor = cloneDeep(event.anchor);
-          anchors.splice(0, anchors.length, ...upsertById(anchors, nextAnchor));
-        }
+        const currentComments = Array.isArray(schema.comments) ? schema.comments : [];
+        const currentAnchors = Array.isArray(schema.commentAnchors) ? schema.commentAnchors : [];
+        const { comments, anchors, commentsCount } = buildCommentCollectionsFromEvent(
+          event,
+          currentComments,
+          currentAnchors,
+        );
+        const nextUpdatedAt = event.timestamp || schema.updatedAt;
+        const nextLastModifiedAt = event.timestamp || schema.lastModifiedAt;
+        const nextLastModifiedBy = event.actorId || schema.lastModifiedBy;
+        const currentCount = typeof schema.commentsCount === 'number' ? schema.commentsCount : currentComments.length;
+        const hasCommentStateChanges =
+          commentsCount !== currentCount ||
+          commentCollectionSignature(currentComments, currentAnchors) !== commentCollectionSignature(comments, anchors);
+        const hasMetadataChanges =
+          schema.updatedAt !== nextUpdatedAt ||
+          schema.lastModifiedAt !== nextLastModifiedAt ||
+          schema.lastModifiedBy !== nextLastModifiedBy;
+        if (!hasCommentStateChanges && !hasMetadataChanges) return schema;
         return {
           ...schema,
           comments,
           commentAnchors: anchors,
           commentsAnchors: anchors,
-          commentsCount: comments.length,
-          updatedAt: event.timestamp || schema.updatedAt,
-          lastModifiedAt: event.timestamp || schema.lastModifiedAt,
-          lastModifiedBy: event.actorId || schema.lastModifiedBy,
+          commentsCount,
+          updatedAt: nextUpdatedAt,
+          lastModifiedAt: nextLastModifiedAt,
+          lastModifiedBy: nextLastModifiedBy,
         };
       });
       if (updated) break;
@@ -465,16 +672,48 @@ export const diffCollaborationEvents = (
     }
 
     const patch = diffSchemaPatch(previousEntry.schema, nextEntry.schema);
-    if (Object.keys(patch).length === 0 && previousEntry.pageIndex === nextEntry.pageIndex) return;
-    events.push({
-      type: 'update',
-      schemaId,
-      patch,
-      pageIndex: nextEntry.pageIndex,
-      actorId: metadata.actorId,
-      sessionId: metadata.sessionId,
-      timestamp,
-    });
+    const schemaPatch = { ...(patch as Partial<SchemaForUI>) } as Partial<SchemaForUI>;
+    delete (schemaPatch as Partial<SchemaForUI> & {
+      comments?: SchemaComment[];
+      commentAnchors?: SchemaCommentAnchor[];
+      commentsAnchors?: SchemaCommentAnchor[];
+      commentsCount?: number;
+    }).comments;
+    delete (schemaPatch as Partial<SchemaForUI> & {
+      comments?: SchemaComment[];
+      commentAnchors?: SchemaCommentAnchor[];
+      commentsAnchors?: SchemaCommentAnchor[];
+      commentsCount?: number;
+    }).commentAnchors;
+    delete (schemaPatch as Partial<SchemaForUI> & {
+      comments?: SchemaComment[];
+      commentAnchors?: SchemaCommentAnchor[];
+      commentsAnchors?: SchemaCommentAnchor[];
+      commentsCount?: number;
+    }).commentsAnchors;
+    delete (schemaPatch as Partial<SchemaForUI> & {
+      comments?: SchemaComment[];
+      commentAnchors?: SchemaCommentAnchor[];
+      commentsAnchors?: SchemaCommentAnchor[];
+      commentsCount?: number;
+    }).commentsCount;
+    const commentEvents = collectCommentLifecycleEvents(previousEntry.schema, nextEntry.schema, metadata, nextEntry.pageIndex);
+    const hasSchemaPatch = Object.keys(schemaPatch).length > 0;
+    const pageChanged = previousEntry.pageIndex !== nextEntry.pageIndex;
+
+    if (hasSchemaPatch || pageChanged) {
+      events.push({
+        type: 'update',
+        schemaId,
+        patch: schemaPatch,
+        pageIndex: nextEntry.pageIndex,
+        actorId: metadata.actorId,
+        sessionId: metadata.sessionId,
+        timestamp,
+      });
+    }
+
+    events.push(...commentEvents);
   });
 
   return events;
@@ -719,9 +958,55 @@ export const createYjsCollaborationProvider = ({
     const handleCommentChanges = (event: Y.YMapEvent<CommentsStoreEntry>, transaction: Y.Transaction) => {
       if (transaction.origin === localOrigin) return;
       event.changes.keys.forEach((change, schemaId) => {
-        if (change.action === 'delete') return;
         const nextEntry = commentsMap.get(schemaId);
-        if (!nextEntry) return;
+        const previousEntry = (change.oldValue as CommentsStoreEntry | undefined) || undefined;
+        const previousSchema = {
+          id: schemaId,
+          name: schemaId,
+          type: 'text',
+          comments: cloneDeep(previousEntry?.comments || []),
+          commentAnchors: cloneDeep(previousEntry?.commentAnchors || previousEntry?.commentsAnchors || []),
+          commentsAnchors: cloneDeep(previousEntry?.commentsAnchors || previousEntry?.commentAnchors || []),
+          commentsCount:
+            typeof previousEntry?.commentsCount === 'number'
+              ? previousEntry.commentsCount
+              : Array.isArray(previousEntry?.comments)
+                ? previousEntry.comments.length
+                : 0,
+          position: { x: 0, y: 0 },
+          width: 1,
+          height: 1,
+        } as SchemaForUI;
+        const nextSchema = {
+          id: schemaId,
+          name: schemaId,
+          type: 'text',
+          comments: cloneDeep(nextEntry?.comments || []),
+          commentAnchors: cloneDeep(nextEntry?.commentAnchors || nextEntry?.commentsAnchors || []),
+          commentsAnchors: cloneDeep(nextEntry?.commentsAnchors || nextEntry?.commentAnchors || []),
+          commentsCount:
+            typeof nextEntry?.commentsCount === 'number'
+              ? nextEntry.commentsCount
+              : Array.isArray(nextEntry?.comments)
+                ? nextEntry.comments.length
+                : 0,
+          position: { x: 0, y: 0 },
+          width: 1,
+          height: 1,
+        } as SchemaForUI;
+
+        const commentEvents = collectCommentLifecycleEvents(
+          previousSchema,
+          nextSchema,
+          { sessionId: safeSessionId, timestamp: Date.now() },
+        );
+
+        if (commentEvents.length > 0) {
+          commentEvents.forEach((listenerEvent) => eventListeners.forEach((listener) => listener(listenerEvent)));
+          return;
+        }
+
+        if (change.action === 'delete' || !nextEntry) return;
         eventListeners.forEach((listener) =>
           listener({
             type: 'update',
@@ -926,25 +1211,38 @@ export const createYjsCollaborationProvider = ({
         return;
       }
 
-      if (event.type === 'comment') {
+      if (event.type === 'comment' || event.type === 'comment.created' || event.type === 'comment.updated' || event.type === 'comment.deleted') {
         if (!event.schemaId) return;
         const current = commentsMap.get(event.schemaId) || {};
-        const nextComments = Array.isArray(current.comments) ? current.comments.slice() : [];
-        const nextAnchors = Array.isArray(current.commentAnchors || current.commentsAnchors)
+        const currentComments = Array.isArray(current.comments) ? current.comments.slice() : [];
+        const currentAnchors = Array.isArray(current.commentAnchors || current.commentsAnchors)
           ? cloneDeep(current.commentAnchors || current.commentsAnchors || [])
           : [];
-        if (event.comment && !nextComments.some((comment) => comment.id === event.comment?.id)) {
-          nextComments.push(cloneDeep(event.comment));
-        }
-        if (event.anchor && !nextAnchors.some((anchor) => anchor.id === event.anchor?.id)) {
-          nextAnchors.push(cloneDeep(event.anchor));
-        }
+        const { comments: nextComments, anchors: nextAnchors, commentsCount } = buildCommentCollectionsFromEvent(
+          event,
+          currentComments,
+          currentAnchors,
+        );
         commentsMap.set(event.schemaId, {
           comments: nextComments,
           commentAnchors: nextAnchors,
           commentsAnchors: nextAnchors,
-          commentsCount: nextComments.length,
+          commentsCount,
         });
+
+        const currentEntry = schemasMap.get(event.schemaId);
+        if (currentEntry) {
+          schemasMap.set(event.schemaId, {
+            ...currentEntry,
+            schema: {
+              ...currentEntry.schema,
+              updatedAt: timestamp,
+              lastModifiedAt: timestamp,
+              lastModifiedBy: event.actorId || safeActorId,
+            },
+          });
+        }
+
         appendHistory(createHistoryEntryFromEvent({ ...event, timestamp }));
         return;
       }

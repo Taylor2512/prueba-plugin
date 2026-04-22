@@ -110,6 +110,7 @@ type BuildContextMenuGroupsArgs = {
   activeReadOnly?: boolean;
   activeRequired?: boolean;
   activeHidden?: boolean;
+  canEditStructure?: boolean;
 };
 
 const compactItems = <T,>(items: Array<T | null | undefined>) => items.filter(Boolean) as T[];
@@ -240,25 +241,29 @@ const buildSelectionToolbarStateChips = (
   ].filter((chip): chip is string => Boolean(chip));
 };
 
-const getSelectionStyleActions = (commands?: SelectionCommandSet, activeReadOnly = false) => [
+const getSelectionStyleActions = (commands?: SelectionCommandSet, activeReadOnly = false, canEditStructure = true) => [
   toolbarAction('copy-style', 'Copiar estilo', <Paintbrush size={14} />, commands?.copyStyle, {
     disabled: !hasAction(commands?.copyStyle),
     disabledReason: 'Todavía no está conectado el portapapeles de estilos',
   }),
   toolbarAction('paste-style', 'Pegar estilo', <ClipboardPaste size={14} />, commands?.pasteStyle, {
-    disabled: !hasAction(commands?.pasteStyle),
-    disabledReason: 'Todavía no está conectado el portapapeles de estilos',
+    disabled: !canEditStructure || !hasAction(commands?.pasteStyle),
+    disabledReason: !canEditStructure ? 'El rol actual solo permite revisar y comentar' : 'Todavía no está conectado el portapapeles de estilos',
   }),
   toolbarAction(
     'readonly',
     activeReadOnly ? 'Desbloquear' : 'Bloquear',
     <Lock size={14} />,
     commands?.toggleReadOnly,
-    { active: activeReadOnly },
+    {
+      active: activeReadOnly,
+      disabled: !canEditStructure || !hasAction(commands?.toggleReadOnly),
+      disabledReason: !canEditStructure ? 'El rol actual solo permite revisar y comentar' : undefined,
+    },
   ),
 ];
 
-const getSelectionVisibilityAction = (commands?: SelectionCommandSet, activeHidden = false) =>
+const getSelectionVisibilityAction = (commands?: SelectionCommandSet, activeHidden = false, canEditStructure = true) =>
   toolbarAction(
     'hidden',
     activeHidden ? 'Mostrar' : 'Ocultar',
@@ -266,50 +271,50 @@ const getSelectionVisibilityAction = (commands?: SelectionCommandSet, activeHidd
     commands?.toggleHidden,
     {
       active: activeHidden,
-      disabled: !hasAction(commands?.toggleHidden),
-      disabledReason: 'El runtime aún no sincroniza ocultar/mostrar en el lienzo',
+      disabled: !canEditStructure || !hasAction(commands?.toggleHidden),
+      disabledReason: !canEditStructure ? 'El rol actual solo permite revisar y comentar' : 'El runtime aún no sincroniza ocultar/mostrar en el lienzo',
     },
   );
 
-const getSelectionInlineAction = (commands?: SelectionCommandSet, kind?: SelectionToolbarSelectionKind) => {
+const getSelectionInlineAction = (commands?: SelectionCommandSet, kind?: SelectionToolbarSelectionKind, canEditStructure = true) => {
   if (kind === 'text') {
     return toolbarAction('edit-inline', 'Editar texto', <Type size={14} />, commands?.editTextInline, {
-      disabled: !hasAction(commands?.editTextInline),
-      disabledReason: 'La edición inline todavía depende del runtime del canvas',
+      disabled: !canEditStructure || !hasAction(commands?.editTextInline),
+      disabledReason: !canEditStructure ? 'El rol actual solo permite revisar y comentar' : 'La edición inline todavía depende del runtime del canvas',
     });
   }
 
   return null;
 };
 
-const getSelectionOrderingActions = (commands?: SelectionCommandSet) => [
+const getSelectionOrderingActions = (commands?: SelectionCommandSet, canEditStructure = true) => [
   toolbarAction('bring-forward', 'Traer al frente', <ArrowUpToLine size={14} />, commands?.bringForward, {
-    disabled: !hasAction(commands?.bringForward),
+    disabled: !canEditStructure || !hasAction(commands?.bringForward),
   }),
   toolbarAction('send-backward', 'Enviar atrás', <ArrowDownToLine size={14} />, commands?.sendBackward, {
-    disabled: !hasAction(commands?.sendBackward),
+    disabled: !canEditStructure || !hasAction(commands?.sendBackward),
   }),
 ];
 
-const getSelectionAlignmentActions = (commands?: SelectionCommandSet) => [
-  toolbarAction('align-left', 'Izquierda', <AlignStartVertical size={14} />, commands ? () => commands.alignSelection('left') : undefined),
-  toolbarAction('align-center', 'Centro', <AlignCenterVertical size={14} />, commands ? () => commands.alignSelection('center') : undefined),
-  toolbarAction('align-right', 'Derecha', <AlignEndVertical size={14} />, commands ? () => commands.alignSelection('right') : undefined),
-  toolbarAction('align-top', 'Arriba', <AlignStartHorizontal size={14} />, commands ? () => commands.alignSelection('top') : undefined),
-  toolbarAction('align-middle', 'Medio', <AlignCenterHorizontal size={14} />, commands ? () => commands.alignSelection('middle') : undefined),
-  toolbarAction('align-bottom', 'Abajo', <AlignEndHorizontal size={14} />, commands ? () => commands.alignSelection('bottom') : undefined),
+const getSelectionAlignmentActions = (commands?: SelectionCommandSet, canEditStructure = true) => [
+  toolbarAction('align-left', 'Izquierda', <AlignStartVertical size={14} />, commands ? () => commands.alignSelection('left') : undefined, { disabled: !canEditStructure }),
+  toolbarAction('align-center', 'Centro', <AlignCenterVertical size={14} />, commands ? () => commands.alignSelection('center') : undefined, { disabled: !canEditStructure }),
+  toolbarAction('align-right', 'Derecha', <AlignEndVertical size={14} />, commands ? () => commands.alignSelection('right') : undefined, { disabled: !canEditStructure }),
+  toolbarAction('align-top', 'Arriba', <AlignStartHorizontal size={14} />, commands ? () => commands.alignSelection('top') : undefined, { disabled: !canEditStructure }),
+  toolbarAction('align-middle', 'Medio', <AlignCenterHorizontal size={14} />, commands ? () => commands.alignSelection('middle') : undefined, { disabled: !canEditStructure }),
+  toolbarAction('align-bottom', 'Abajo', <AlignEndHorizontal size={14} />, commands ? () => commands.alignSelection('bottom') : undefined, { disabled: !canEditStructure }),
 ];
 
-const getSelectionDistributionActions = (commands?: SelectionCommandSet, selectionCount = 0) => {
+const getSelectionDistributionActions = (commands?: SelectionCommandSet, selectionCount = 0, canEditStructure = true) => {
   const canDistribute = selectionCount >= 3;
   return [
     toolbarAction('distribute-horizontal', 'Horizontal', <AlignHorizontalSpaceAround size={14} />, commands ? () => commands.distributeSelection('horizontal') : undefined, {
-      disabled: !canDistribute,
-      disabledReason: canDistribute ? undefined : 'Selecciona al menos 3 elementos',
+      disabled: !canEditStructure || !canDistribute,
+      disabledReason: !canEditStructure ? 'El rol actual solo permite revisar y comentar' : canDistribute ? undefined : 'Selecciona al menos 3 elementos',
     }),
     toolbarAction('distribute-vertical', 'Vertical', <AlignVerticalSpaceAround size={14} />, commands ? () => commands.distributeSelection('vertical') : undefined, {
-      disabled: !canDistribute,
-      disabledReason: canDistribute ? undefined : 'Selecciona al menos 3 elementos',
+      disabled: !canEditStructure || !canDistribute,
+      disabledReason: !canEditStructure ? 'El rol actual solo permite revisar y comentar' : canDistribute ? undefined : 'Selecciona al menos 3 elementos',
     }),
   ];
 };
@@ -318,6 +323,7 @@ const getSelectionGroupingActions = (
   commands?: SelectionCommandSet,
   selectionKind?: SelectionToolbarSelectionKind,
   selectionCount = 0,
+  canEditStructure = true,
 ) => {
   const canGroup = selectionCount > 1;
   const groupSupported = Boolean(commands?.groupSelection);
@@ -325,28 +331,28 @@ const getSelectionGroupingActions = (
 
   return [
     toolbarAction('group', 'Agrupar', <Group size={14} />, commands?.groupSelection, {
-      disabled: !canGroup || !groupSupported,
-      disabledReason: !canGroup ? 'Selecciona al menos 2 elementos' : 'Agrupar todavía no está implementado',
+      disabled: !canEditStructure || !canGroup || !groupSupported,
+      disabledReason: !canEditStructure ? 'El rol actual solo permite revisar y comentar' : !canGroup ? 'Selecciona al menos 2 elementos' : 'Agrupar todavía no está implementado',
     }),
     toolbarAction('ungroup', 'Desagrupar', <Ungroup size={14} />, commands?.ungroupSelection, {
-      disabled: selectionKind !== 'group' || !ungroupSupported,
-      disabledReason: selectionKind !== 'group' ? 'Solo aplica sobre un grupo' : 'Desagrupar todavía no está implementado',
+      disabled: !canEditStructure || selectionKind !== 'group' || !ungroupSupported,
+      disabledReason: !canEditStructure ? 'El rol actual solo permite revisar y comentar' : selectionKind !== 'group' ? 'Solo aplica sobre un grupo' : 'Desagrupar todavía no está implementado',
     }),
   ];
 };
 
-const getSelectionDataActions = (commands?: SelectionCommandSet, activeSchemas: SchemaForUI[] = []) => {
+const getSelectionDataActions = (commands?: SelectionCommandSet, activeSchemas: SchemaForUI[] = [], canEditStructure = true) => {
   const activeSchema = activeSchemas[0];
   const isFormField = Boolean(activeSchema && isFormFieldType(normalizeTypeKey(activeSchema.type)));
   return [
     toolbarAction('required', resolveToggleLabel(activeSchema?.required, 'Quitar obligatorio', 'Marcar obligatorio'), <SquareCheckBig size={14} />, commands?.toggleRequired, {
       active: Boolean(activeSchema?.required),
-      disabled: !isFormField,
-      disabledReason: isFormField ? undefined : 'Solo aplica a campos de formulario',
+      disabled: !canEditStructure || !isFormField,
+      disabledReason: !canEditStructure ? 'El rol actual solo permite revisar y comentar' : isFormField ? undefined : 'Solo aplica a campos de formulario',
     }),
     toolbarAction('rename-label', 'Renombrar etiqueta', <Type size={14} />, commands?.renameLabel, {
-      disabled: !isFormField || !hasAction(commands?.renameLabel),
-      disabledReason: isFormField ? 'El renombrado debe conectarse al inspector' : 'Solo aplica a campos de formulario',
+      disabled: !canEditStructure || !isFormField || !hasAction(commands?.renameLabel),
+      disabledReason: !canEditStructure ? 'El rol actual solo permite revisar y comentar' : isFormField ? 'El renombrado debe conectarse al inspector' : 'Solo aplica a campos de formulario',
     }),
   ];
 };
@@ -365,6 +371,7 @@ export const buildSelectionToolbarModel = (args: {
     interactionPhase,
     mode = selectionCount > 1 ? 'expanded' : 'compact',
   } = args;
+  const canEditStructure = commands?.canEditStructure !== false;
 
   const kind = resolveSelectionToolbarKind(activeSchemas);
   const allReadOnly = activeSchemas.length > 0 && activeSchemas.every((schema) => schema.readOnly);
@@ -394,19 +401,19 @@ export const buildSelectionToolbarModel = (args: {
     quickActions.push(
       ...compactItems([
         toolbarAction('duplicate', 'Duplicar', <Copy size={14} />, commands?.duplicateSelection, {
-          disabled: !hasAction(commands?.duplicateSelection),
+          disabled: !canEditStructure || !hasAction(commands?.duplicateSelection),
         }),
         toolbarAction('delete', 'Eliminar', <Trash2 size={14} />, commands?.deleteSelection, {
           danger: true,
-          disabled: !hasAction(commands?.deleteSelection),
+          disabled: !canEditStructure || !hasAction(commands?.deleteSelection),
         }),
         toolbarAction('readonly', allReadOnly ? 'Desbloquear' : 'Bloquear', <Lock size={14} />, commands?.toggleReadOnly, {
           active: allReadOnly,
-          disabled: !hasAction(commands?.toggleReadOnly),
+          disabled: !canEditStructure || !hasAction(commands?.toggleReadOnly),
         }),
-        getSelectionVisibilityAction(commands, allHidden),
+        getSelectionVisibilityAction(commands, allHidden, canEditStructure),
         toolbarAction('properties', 'Propiedades', <Settings2 size={14} />, commands?.openProperties, {
-          disabled: !hasAction(commands?.openProperties),
+          disabled: !canEditStructure || !hasAction(commands?.openProperties),
         }),
       ]),
     );
@@ -416,58 +423,58 @@ export const buildSelectionToolbarModel = (args: {
         {
           id: 'align',
           label: 'Alineación',
-          items: getSelectionAlignmentActions(commands),
+          items: getSelectionAlignmentActions(commands, canEditStructure),
         },
         {
           id: 'distribute',
           label: 'Distribuir',
-          items: getSelectionDistributionActions(commands, selectionCount),
+          items: getSelectionDistributionActions(commands, selectionCount, canEditStructure),
         },
         {
           id: 'grouping',
           label: 'Grupo',
-          items: getSelectionGroupingActions(commands, kind, selectionCount),
+          items: getSelectionGroupingActions(commands, kind, selectionCount, canEditStructure),
         },
         {
           id: 'ordering',
           label: 'Orden',
-          items: getSelectionOrderingActions(commands),
+          items: getSelectionOrderingActions(commands, canEditStructure),
         },
       );
     }
   } else {
     const microPrimary = compactItems([
-      getSelectionInlineAction(commands, kind),
+      getSelectionInlineAction(commands, kind, canEditStructure),
       toolbarAction('duplicate', 'Duplicar', <Copy size={14} />, commands?.duplicateSelection, {
-        disabled: !hasAction(commands?.duplicateSelection),
+        disabled: !canEditStructure || !hasAction(commands?.duplicateSelection),
       }),
       toolbarAction('properties', 'Propiedades', <Settings2 size={14} />, commands?.openProperties, {
-        disabled: !hasAction(commands?.openProperties),
+        disabled: !canEditStructure || !hasAction(commands?.openProperties),
       }),
     ]);
     const compactPrimary = compactItems([
-      getSelectionInlineAction(commands, kind),
+      getSelectionInlineAction(commands, kind, canEditStructure),
       isFormField
         ? toolbarAction('required', activeSchema?.required ? 'Quitar obligatorio' : 'Marcar obligatorio', <SquareCheckBig size={14} />, commands?.toggleRequired, {
             active: Boolean(activeSchema?.required),
-            disabled: !hasAction(commands?.toggleRequired),
+            disabled: !canEditStructure || !hasAction(commands?.toggleRequired),
           })
         : null,
       toolbarAction('duplicate', 'Duplicar', <Copy size={14} />, commands?.duplicateSelection, {
-        disabled: !hasAction(commands?.duplicateSelection),
+        disabled: !canEditStructure || !hasAction(commands?.duplicateSelection),
       }),
       toolbarAction('delete', 'Eliminar', <Trash2 size={14} />, commands?.deleteSelection, {
         danger: true,
-        disabled: !hasAction(commands?.deleteSelection),
+        disabled: !canEditStructure || !hasAction(commands?.deleteSelection),
       }),
       toolbarAction('properties', 'Propiedades', <Settings2 size={14} />, commands?.openProperties, {
-        disabled: !hasAction(commands?.openProperties),
+        disabled: !canEditStructure || !hasAction(commands?.openProperties),
       }),
       toolbarAction('readonly', allReadOnly ? 'Desbloquear' : 'Bloquear', <Lock size={14} />, commands?.toggleReadOnly, {
         active: allReadOnly,
-        disabled: !hasAction(commands?.toggleReadOnly),
+        disabled: !canEditStructure || !hasAction(commands?.toggleReadOnly),
       }),
-      getSelectionVisibilityAction(commands, allHidden),
+      getSelectionVisibilityAction(commands, allHidden, canEditStructure),
     ]);
 
     quickActions.push(...(mode === 'micro' ? microPrimary : compactPrimary.slice(0, 5)));
@@ -479,15 +486,15 @@ export const buildSelectionToolbarModel = (args: {
             id: 'state',
             label: 'Estado',
             items: compactItems([
-              getSelectionVisibilityAction(commands, allHidden),
+              getSelectionVisibilityAction(commands, allHidden, canEditStructure),
               toolbarAction('readonly', allReadOnly ? 'Desbloquear' : 'Bloquear', <Lock size={14} />, commands?.toggleReadOnly, {
                 active: allReadOnly,
-                disabled: !hasAction(commands?.toggleReadOnly),
+                disabled: !canEditStructure || !hasAction(commands?.toggleReadOnly),
               }),
               isFormField
                 ? toolbarAction('required', allRequired ? 'Quitar obligatorio' : 'Marcar obligatorio', <SquareCheckBig size={14} />, commands?.toggleRequired, {
                     active: allRequired,
-                    disabled: !hasAction(commands?.toggleRequired),
+                    disabled: !canEditStructure || !hasAction(commands?.toggleRequired),
                   })
                 : null,
             ]),
@@ -495,19 +502,19 @@ export const buildSelectionToolbarModel = (args: {
           {
             id: 'style',
             label: 'Estilo',
-            items: getSelectionStyleActions(commands, allReadOnly),
+            items: getSelectionStyleActions(commands, allReadOnly, canEditStructure),
           },
           isFormField
             ? {
                 id: 'data',
                 label: 'Datos',
-                items: getSelectionDataActions(commands, activeSchemas),
+                items: getSelectionDataActions(commands, activeSchemas, canEditStructure),
               }
             : null,
           {
             id: 'ordering',
             label: 'Orden',
-            items: getSelectionOrderingActions(commands),
+            items: getSelectionOrderingActions(commands, canEditStructure),
           },
         ]),
       );
@@ -516,7 +523,7 @@ export const buildSelectionToolbarModel = (args: {
         secondarySections.unshift({
           id: 'editing',
           label: 'Edición',
-          items: compactItems([getSelectionInlineAction(commands, kind)]),
+          items: compactItems([getSelectionInlineAction(commands, kind, canEditStructure)]),
         });
       }
 
@@ -530,7 +537,7 @@ export const buildSelectionToolbarModel = (args: {
               disabledReason: 'No hay un portapapeles de estilo conectado',
             }),
             toolbarAction('paste-style', 'Pegar estilo', <ClipboardPaste size={14} />, commands?.pasteStyle, {
-              disabled: !hasAction(commands?.pasteStyle),
+              disabled: !canEditStructure || !hasAction(commands?.pasteStyle),
               disabledReason: 'No hay un portapapeles de estilo conectado',
             }),
           ]),
@@ -580,6 +587,7 @@ export const buildSelectionQuickActions = (
     label: 'Duplicar',
     icon: <Copy size={14} />,
     onSelect: commands?.duplicateSelection,
+    disabled: commands?.canEditStructure === false,
   },
   {
     id: 'delete',
@@ -587,6 +595,7 @@ export const buildSelectionQuickActions = (
     icon: <Trash2 size={14} />,
     danger: true,
     onSelect: commands?.deleteSelection,
+    disabled: commands?.canEditStructure === false,
   },
   {
     id: 'readonly',
@@ -594,6 +603,7 @@ export const buildSelectionQuickActions = (
     icon: <Lock size={14} />,
     active: activeReadOnly,
     onSelect: commands?.toggleReadOnly,
+    disabled: commands?.canEditStructure === false,
   },
   {
     id: 'properties',
@@ -615,6 +625,7 @@ export const buildCanvasContextMenuGroups = (
     activeReadOnly = false,
     activeRequired = false,
     activeHidden = false,
+    canEditStructure = true,
   } = args;
 
   if (mode === 'empty') {
@@ -623,18 +634,34 @@ export const buildCanvasContextMenuGroups = (
         id: 'canvas-create',
         label: 'Inserción',
         items: compactItems([
-          commandItem('insert-field', 'Insertar campo', <Plus size={14} />, externalActions?.onInsertField),
+          commandItem(
+            'insert-field',
+            'Insertar campo',
+            <Plus size={14} />,
+            externalActions?.onInsertField,
+            {
+              disabled: !canEditStructure,
+              disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+            },
+          ),
           commandItem(
             'paste',
             'Pegar',
             <ClipboardPaste size={14} />,
             externalActions?.onPaste,
             {
-              disabled: !hasClipboardData,
-              disabledReason: hasClipboardData ? undefined : 'El portapapeles no tiene contenido compatible',
+              disabled: !canEditStructure || !hasClipboardData,
+              disabledReason: !canEditStructure
+                ? 'El rol actual solo permite revisar y comentar'
+                : hasClipboardData
+                  ? undefined
+                  : 'El portapapeles no tiene contenido compatible',
             },
           ),
-          commandItem('add-page', 'Añadir página', <FilePlus2 size={14} />, externalActions?.onAddPage),
+          commandItem('add-page', 'Añadir página', <FilePlus2 size={14} />, externalActions?.onAddPage, {
+            disabled: !canEditStructure,
+            disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+          }),
         ]),
       },
       {
@@ -647,6 +674,10 @@ export const buildCanvasContextMenuGroups = (
             'Reemplazar PDF',
             <Upload size={14} />,
             externalActions?.onUploadOrReplacePdf,
+            {
+              disabled: !canEditStructure,
+              disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+            },
           ),
         ]),
       },
@@ -659,9 +690,16 @@ export const buildCanvasContextMenuGroups = (
         id: 'single-main',
         label: 'Edición',
         items: compactItems([
-          commandItem('duplicate', 'Duplicar', <Copy size={14} />, commands?.duplicateSelection),
+          commandItem('duplicate', 'Duplicar', <Copy size={14} />, commands?.duplicateSelection, {
+            disabled: !canEditStructure,
+            disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+          }),
           commandItem('add-comment', 'Agregar comentario', <MessageSquare size={14} />, externalActions?.onCreateComment),
-          commandItem('delete', 'Eliminar', <Trash2 size={14} />, commands?.deleteSelection, { danger: true }),
+          commandItem('delete', 'Eliminar', <Trash2 size={14} />, commands?.deleteSelection, {
+            danger: true,
+            disabled: !canEditStructure,
+            disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+          }),
         ]),
       },
       {
@@ -673,22 +711,40 @@ export const buildCanvasContextMenuGroups = (
             activeHidden ? 'Mostrar' : 'Ocultar',
             activeHidden ? <EyeOff size={14} /> : <Eye size={14} />,
             commands?.toggleHidden,
+            {
+              disabled: !canEditStructure,
+              disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+            },
           ),
           commandItem(
             'lock',
             resolveToggleLabel(activeReadOnly, 'Desbloquear', 'Bloquear'),
             <Lock size={14} />,
             commands?.toggleReadOnly,
-            { active: activeReadOnly },
+            {
+              active: activeReadOnly,
+              disabled: !canEditStructure,
+              disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+            },
           ),
-          commandItem('bring-forward', 'Traer al frente', <ArrowUpToLine size={14} />, commands?.bringForward),
-          commandItem('send-backward', 'Enviar atrás', <ArrowDownToLine size={14} />, commands?.sendBackward),
+          commandItem('bring-forward', 'Traer al frente', <ArrowUpToLine size={14} />, commands?.bringForward, {
+            disabled: !canEditStructure,
+            disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+          }),
+          commandItem('send-backward', 'Enviar atrás', <ArrowDownToLine size={14} />, commands?.sendBackward, {
+            disabled: !canEditStructure,
+            disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+          }),
           commandItem(
             'required',
             resolveToggleLabel(activeRequired, 'Quitar requerido', 'Activar requerido'),
             <Asterisk size={14} />,
             commands?.toggleRequired,
-            { active: activeRequired },
+            {
+              active: activeRequired,
+              disabled: !canEditStructure,
+              disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+            },
           ),
         ]),
       },
@@ -696,7 +752,16 @@ export const buildCanvasContextMenuGroups = (
         id: 'single-inspector',
         label: 'Inspector',
         items: compactItems([
-          commandItem('open-properties', 'Abrir propiedades', <SlidersHorizontal size={14} />, commands?.openProperties),
+          commandItem(
+            'open-properties',
+            'Abrir propiedades',
+            <SlidersHorizontal size={14} />,
+            commands?.openProperties,
+            {
+              disabled: !canEditStructure,
+              disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+            },
+          ),
         ]),
       },
     ].filter((group) => group.items.length > 0);
@@ -708,45 +773,51 @@ export const buildCanvasContextMenuGroups = (
     {
       id: 'multi-align',
       label: 'Alinear',
-      items: compactItems([
-        commandItem(
-          'align-left',
-          'Alinear izquierda',
-          <AlignStartVertical size={14} />,
-          commands ? () => commands.alignSelection('left') : undefined,
-        ),
-        commandItem(
-          'align-center',
-          'Alinear centro',
-          <AlignCenterVertical size={14} />,
-          commands ? () => commands.alignSelection('center') : undefined,
-        ),
-        commandItem(
-          'align-right',
-          'Alinear derecha',
-          <AlignEndVertical size={14} />,
-          commands ? () => commands.alignSelection('right') : undefined,
-        ),
-        commandItem(
-          'align-top',
-          'Alinear arriba',
-          <AlignStartHorizontal size={14} />,
-          commands ? () => commands.alignSelection('top') : undefined,
-        ),
-        commandItem(
-          'align-middle',
-          'Alinear medio',
-          <AlignCenterHorizontal size={14} />,
-          commands ? () => commands.alignSelection('middle') : undefined,
-        ),
-        commandItem(
-          'align-bottom',
-          'Alinear abajo',
-          <AlignEndHorizontal size={14} />,
-          commands ? () => commands.alignSelection('bottom') : undefined,
-        ),
-      ]),
-    },
+        items: compactItems([
+          commandItem(
+            'align-left',
+            'Alinear izquierda',
+            <AlignStartVertical size={14} />,
+            commands ? () => commands.alignSelection('left') : undefined,
+            { disabled: !canEditStructure, disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar' },
+          ),
+          commandItem(
+            'align-center',
+            'Alinear centro',
+            <AlignCenterVertical size={14} />,
+            commands ? () => commands.alignSelection('center') : undefined,
+            { disabled: !canEditStructure, disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar' },
+          ),
+          commandItem(
+            'align-right',
+            'Alinear derecha',
+            <AlignEndVertical size={14} />,
+            commands ? () => commands.alignSelection('right') : undefined,
+            { disabled: !canEditStructure, disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar' },
+          ),
+          commandItem(
+            'align-top',
+            'Alinear arriba',
+            <AlignStartHorizontal size={14} />,
+            commands ? () => commands.alignSelection('top') : undefined,
+            { disabled: !canEditStructure, disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar' },
+          ),
+          commandItem(
+            'align-middle',
+            'Alinear medio',
+            <AlignCenterHorizontal size={14} />,
+            commands ? () => commands.alignSelection('middle') : undefined,
+            { disabled: !canEditStructure, disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar' },
+          ),
+          commandItem(
+            'align-bottom',
+            'Alinear abajo',
+            <AlignEndHorizontal size={14} />,
+            commands ? () => commands.alignSelection('bottom') : undefined,
+            { disabled: !canEditStructure, disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar' },
+          ),
+        ]),
+      },
     {
       id: 'multi-distribute',
       label: 'Distribuir',
@@ -757,8 +828,8 @@ export const buildCanvasContextMenuGroups = (
           <AlignHorizontalSpaceAround size={14} />,
           commands ? () => commands.distributeSelection('horizontal') : undefined,
           {
-            disabled: !canDistribute,
-            disabledReason: canDistribute ? undefined : 'Selecciona al menos 3 elementos',
+            disabled: !canEditStructure || !canDistribute,
+            disabledReason: !canEditStructure ? 'El rol actual solo permite revisar y comentar' : canDistribute ? undefined : 'Selecciona al menos 3 elementos',
           },
         ),
         commandItem(
@@ -767,31 +838,41 @@ export const buildCanvasContextMenuGroups = (
           <AlignVerticalSpaceAround size={14} />,
           commands ? () => commands.distributeSelection('vertical') : undefined,
           {
-            disabled: !canDistribute,
-            disabledReason: canDistribute ? undefined : 'Selecciona al menos 3 elementos',
+            disabled: !canEditStructure || !canDistribute,
+            disabledReason: !canEditStructure ? 'El rol actual solo permite revisar y comentar' : canDistribute ? undefined : 'Selecciona al menos 3 elementos',
           },
         ),
       ]),
     },
-      {
-        id: 'multi-main',
-        label: 'Selección',
-        items: compactItems([
-          commandItem(
-            activeHidden ? 'show-multi' : 'hide-multi',
-            activeHidden ? 'Mostrar' : 'Ocultar',
-            activeHidden ? <EyeOff size={14} /> : <Eye size={14} />,
-            commands?.toggleHidden,
-          ),
-          commandItem(
-            'lock-multi',
-            resolveToggleLabel(activeReadOnly, 'Desbloquear', 'Bloquear'),
-            <Lock size={14} />,
-            commands?.toggleReadOnly,
-          { active: activeReadOnly },
+    {
+      id: 'multi-main',
+      label: 'Selección',
+      items: compactItems([
+        commandItem(
+          activeHidden ? 'show-multi' : 'hide-multi',
+          activeHidden ? 'Mostrar' : 'Ocultar',
+          activeHidden ? <EyeOff size={14} /> : <Eye size={14} />,
+          commands?.toggleHidden,
+          {
+            disabled: !canEditStructure,
+            disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+          },
+        ),
+        commandItem(
+          'lock-multi',
+          resolveToggleLabel(activeReadOnly, 'Desbloquear', 'Bloquear'),
+          <Lock size={14} />,
+          commands?.toggleReadOnly,
+          {
+            active: activeReadOnly,
+            disabled: !canEditStructure,
+            disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+          },
         ),
         commandItem('delete-multi', 'Eliminar selección', <Trash2 size={14} />, commands?.deleteSelection, {
           danger: true,
+          disabled: !canEditStructure,
+          disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
         }),
       ]),
     },
@@ -804,6 +885,10 @@ export const buildCanvasContextMenuGroups = (
           selectionCount > 1 ? 'Propiedades del grupo' : 'Abrir propiedades',
           <SlidersHorizontal size={14} />,
           externalActions?.onOpenGroupProperties || commands?.openProperties,
+          {
+            disabled: !canEditStructure,
+            disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+          },
         ),
       ]),
     },

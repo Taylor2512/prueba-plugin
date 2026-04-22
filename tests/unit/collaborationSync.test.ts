@@ -79,6 +79,34 @@ describe('collaboration sync helpers', () => {
     expect(next[0][0].content).toBe('Actual');
   });
 
+  it('keeps schema update events idempotent when the same patch is applied twice', () => {
+    const schema = {
+      id: 'schema-1',
+      name: 'field-a',
+      type: 'text',
+      content: 'Actual',
+      updatedAt: 1700000003000,
+      lastModifiedAt: 1700000003000,
+      lastModifiedBy: 'user-1',
+    } as SchemaForUI;
+
+    const source = [[schema]];
+    const event = {
+      type: 'update',
+      schemaId: 'schema-1',
+      actorId: 'user-1',
+      timestamp: 1700000003000,
+      patch: { content: 'Actual', updatedAt: 1700000003000, lastModifiedAt: 1700000003000, lastModifiedBy: 'user-1' },
+    } as const;
+
+    const next = applyCollaborationEvent(source, event);
+    const repeated = applyCollaborationEvent(next, event);
+
+    expect(next).toBe(source);
+    expect(repeated).toBe(next);
+    expect(repeated[0][0].content).toBe('Actual');
+  });
+
   it('deduplicates remote comments by id and updates audit metadata', () => {
     const schema = {
       id: 'schema-1',
@@ -115,6 +143,162 @@ describe('collaboration sync helpers', () => {
     expect(next[0][0].commentsCount).toBe(1);
     expect(next[0][0].lastModifiedBy).toBe('user-2');
     expect(next[0][0].lastModifiedAt).toBe(1700000004000);
+  });
+
+  it('keeps repeated comment lifecycle events idempotent', () => {
+    const schema = {
+      id: 'schema-1',
+      name: 'field-a',
+      type: 'text',
+      comments: [],
+      commentAnchors: [],
+      commentsCount: 0,
+    } as SchemaForUI;
+
+    const source = [[schema]];
+    const event = {
+      type: 'comment.created',
+      schemaId: 'schema-1',
+      actorId: 'user-1',
+      timestamp: 1700000007000,
+      comment: {
+        id: 'comment-1',
+        authorId: 'user-1',
+        authorName: 'User 1',
+        timestamp: 1700000007000,
+        text: 'Need review',
+        anchor: {
+          id: 'comment-1',
+          fileId: 'file-a',
+          pageNumber: 2,
+          x: 12,
+          y: 24,
+        },
+      },
+      anchor: {
+        id: 'comment-1',
+        fileId: 'file-a',
+        pageNumber: 2,
+        x: 12,
+        y: 24,
+      },
+    } as const;
+
+    const next = applyCollaborationEvent(source, event);
+    const repeated = applyCollaborationEvent(next, event);
+
+    expect(next[0][0].comments).toHaveLength(1);
+    expect(next[0][0].commentAnchors).toHaveLength(1);
+    expect(repeated).toBe(next);
+    expect(repeated[0][0].comments).toHaveLength(1);
+    expect(repeated[0][0].commentAnchors).toHaveLength(1);
+  });
+
+  it('emits explicit comment lifecycle events and keeps anchors in sync when they are applied', () => {
+    const before = [[{
+      id: 'schema-1',
+      name: 'field-a',
+      type: 'text',
+      comments: [],
+      commentAnchors: [],
+    } as SchemaForUI]];
+    const after = [[{
+      id: 'schema-1',
+      name: 'field-a',
+      type: 'text',
+      comments: [
+        {
+          id: 'comment-1',
+          authorId: 'user-1',
+          authorName: 'User 1',
+          timestamp: 1700000007000,
+          text: 'Need review',
+          anchor: {
+            id: 'comment-1',
+            fileId: 'file-a',
+            pageNumber: 2,
+            x: 12,
+            y: 24,
+          },
+        },
+      ],
+      commentAnchors: [
+        {
+          id: 'comment-1',
+          fileId: 'file-a',
+          pageNumber: 2,
+          x: 12,
+          y: 24,
+        },
+      ],
+      commentsCount: 1,
+    } as SchemaForUI]];
+
+    const events = diffCollaborationEvents(before, after, {
+      actorId: 'user-1',
+      sessionId: 'session-1',
+      timestamp: 1700000007000,
+    });
+
+    expect(events).toEqual([
+      expect.objectContaining({
+        type: 'comment.created',
+        schemaId: 'schema-1',
+        comment: expect.objectContaining({
+          id: 'comment-1',
+          anchor: expect.objectContaining({
+            id: 'comment-1',
+            fileId: 'file-a',
+            pageNumber: 2,
+          }),
+        }),
+      }),
+    ]);
+
+    const updated = applyCollaborationEvent(after, {
+      type: 'comment.updated',
+      schemaId: 'schema-1',
+      actorId: 'user-2',
+      timestamp: 1700000008000,
+      comment: {
+        id: 'comment-1',
+        authorId: 'user-1',
+        authorName: 'User 1',
+        timestamp: 1700000008000,
+        text: 'Reviewed',
+        resolved: true,
+        anchor: {
+          id: 'comment-1',
+          fileId: 'file-a',
+          pageNumber: 2,
+          x: 12,
+          y: 24,
+          resolved: true,
+        },
+      },
+    });
+
+    expect(updated[0][0].comments?.[0]).toEqual(expect.objectContaining({
+      text: 'Reviewed',
+      resolved: true,
+    }));
+    expect(updated[0][0].commentAnchors?.[0]).toEqual(expect.objectContaining({
+      id: 'comment-1',
+      resolved: true,
+    }));
+
+    const deleted = applyCollaborationEvent(updated, {
+      type: 'comment.deleted',
+      schemaId: 'schema-1',
+      commentId: 'comment-1',
+      anchorId: 'comment-1',
+      actorId: 'user-2',
+      timestamp: 1700000009000,
+    });
+
+    expect(deleted[0][0].comments).toHaveLength(0);
+    expect(deleted[0][0].commentAnchors).toHaveLength(0);
+    expect(deleted[0][0].commentsCount).toBe(0);
   });
 
   it('groups assignments by recipient, file and page', () => {

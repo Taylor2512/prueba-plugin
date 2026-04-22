@@ -1,5 +1,14 @@
 # Colaboración, ownership, destinatarios y sincronización
 
+## Fase crítica: contrato aditivo vigente
+
+Esta referencia define la semántica vigente para la fase crítica multiusuario/multidocumento sin cambios breaking:
+
+- se mantiene `buildSchemaAssignments` (recipient/file/page);
+- se mantiene `buildUserSchemaAssignments` (author/file/page);
+- se agrega `buildUserRecipientAssignments` (author+recipient/file/page);
+- `__shared__` permanece como bucket técnico complementario para visibilidad compartida.
+
 ## Introducción
 
 La versión reciente de SISAD PDFME ya incorpora piezas de colaboración en `common/collaboration.ts` y `ui/collaboration.ts`. Esto cambia el alcance del producto: deja de ser solo un diseñador local y pasa a ser base para experiencias multiusuario y multi-destinatario.
@@ -28,6 +37,23 @@ La función `buildSchemaAssignments` agrupa por:
 
 Las pruebas muestran agrupación determinista por destinatario, archivo y página.
 
+### Asignaciones por autor y destinatario (nuevo helper)
+
+Helper:
+
+- `buildUserRecipientAssignments(schemas, options?)`
+
+Forma:
+
+- `assignments[userId][recipientId][fileId][pageNumber] = schemaUid[]`
+
+Notas de contrato:
+
+- `pageNumber` se mantiene 1-based;
+- `ownerMode: 'shared'` puede reflejarse además en `assignments[userId].__shared__[fileId][pageNumber]`;
+- `__shared__` separa visibilidad compartida de la autoría real del schema;
+- deduplicación por `schemaUid` dentro de cada bucket de página.
+
 ### Eventos colaborativos
 `applyCollaborationEvent` procesa eventos como updates sobre schemas.
 
@@ -41,11 +67,25 @@ Las pruebas muestran agrupación determinista por destinatario, archivo y págin
 ## Flujo posible
 
 1. usuario A inserta schema;
-2. engine adjunta identidad;
+2. engine adjunta identidad y contexto colaborativo;
 3. defaults colaborativos aplican ownerRecipientId;
 4. el cambio se serializa;
 5. otro cliente recibe evento y ejecuta `applyCollaborationEvent`;
 6. se reconstruyen assignments.
+
+## Unificación de creación/duplicación/pegado
+
+La fase crítica establece una ruta única de contexto colaborativo para todas las operaciones de creación:
+
+- create desde catálogo/context menu;
+- duplicate de selección;
+- paste entre páginas/documentos.
+
+Reglas:
+
+- `duplicate`: regenera `schemaUid/id`, conserva configuración funcional, reasigna `createdBy/userColor` al usuario activo;
+- `paste`: actualiza `fileId/pageNumber` destino, conserva metadata no conflictiva;
+- `delete`: elimina schema + anchors/comments asociados y emite evento de sincronización.
 
 ## Ejemplo de evento
 
@@ -130,3 +170,12 @@ function reconcileRemotePatch(localSchema, patch) {
 - recarga del template;
 - reordenamiento por página;
 - visibilidad por destinatario.
+
+## Política Playwright de consola
+
+Para pruebas E2E de colaboración:
+
+- fallar en `console.error` y `pageerror`;
+- usar allowlist explícita para ruido externo conocido;
+- no ocultar errores del dominio `sisad-pdfme`;
+- verificar flujos multiusuario/multidocumento con comentarios anclados y cambios de vista (`Usuario activo`/`Global`).

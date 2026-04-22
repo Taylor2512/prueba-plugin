@@ -8,8 +8,9 @@ import { uuid, round } from '../../../helper.js';
 import {
   DEFAULT_SCHEMA_CONFIG_STORAGE_KEY,
   applySchemaCollaborativeDefaults,
-  type SchemaCreationContext,
+  createSchemaCreationContext,
 } from '../../../designerEngine.js';
+import type { EffectiveCollaborationContext } from '../../../collaborationContext.js';
 export type AlignType =
   | 'left'
   | 'center'
@@ -47,6 +48,7 @@ export const emitInlineEditRequest = (request: InlineEditRequest) => {
 };
 
 export type SelectionCommandSet = {
+  canEditStructure?: boolean;
   deleteSelection: () => void;
   duplicateSelection: () => void;
   toggleHidden?: () => void;
@@ -77,8 +79,15 @@ export type SelectionCommandsContext = {
   onOpenProperties: () => void;
   requestInlineEdit?: (_request: InlineEditRequest) => void;
   collaborationContext?: Pick<
-    SchemaCreationContext,
-    'fileId' | 'actorId' | 'ownerRecipientId' | 'ownerRecipientIds' | 'ownerRecipientName' | 'ownerColor' | 'userColor'
+    EffectiveCollaborationContext,
+    | 'fileId'
+    | 'actorId'
+    | 'ownerRecipientId'
+    | 'ownerRecipientIds'
+    | 'ownerRecipientName'
+    | 'ownerColor'
+    | 'userColor'
+    | 'canEditStructure'
   >;
 };
 
@@ -108,14 +117,17 @@ const clampToPage = (value: number, max: number) => Math.min(Math.max(value, 0),
 export const createSelectionCommands = (context: SelectionCommandsContext): SelectionCommandSet => {
   const activeIds = getActiveIds(context.activeElements);
   const hasSelection = activeIds.length > 0;
+  const canEditStructure = context.collaborationContext?.canEditStructure !== false;
+
+  const guardStructureEdit = () => canEditStructure;
 
   const deleteSelection = () => {
-    if (!hasSelection) return;
+    if (!hasSelection || !guardStructureEdit()) return;
     context.removeSchemas(activeIds);
   };
 
   const duplicateSelection = () => {
-    if (!hasSelection) return;
+    if (!hasSelection || !guardStructureEdit()) return;
     const existing = getPageSchemas(context);
     const clones = getActiveSchemas(context).map((schema) => {
       const clone = cloneDeep(schema);
@@ -129,19 +141,21 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
       };
       const nextCollaborative = applySchemaCollaborativeDefaults(
         clone,
-        {
+        createSchemaCreationContext({
           pageIndex: context.pageCursor,
           pageNumber: context.pageCursor + 1,
           totalPages: context.schemasList.length,
-          timestamp: Date.now(),
           fileId: context.collaborationContext?.fileId || null,
-          actorId: context.collaborationContext?.actorId || null,
-          ownerRecipientId: context.collaborationContext?.ownerRecipientId || null,
-          ownerRecipientIds: context.collaborationContext?.ownerRecipientIds,
-          ownerRecipientName: context.collaborationContext?.ownerRecipientName || null,
-          ownerColor: context.collaborationContext?.ownerColor || null,
-          userColor: context.collaborationContext?.userColor || null,
-        },
+          timestamp: Date.now(),
+          collaboration: {
+            actorId: context.collaborationContext?.actorId || null,
+            ownerRecipientId: context.collaborationContext?.ownerRecipientId || null,
+            ownerRecipientIds: context.collaborationContext?.ownerRecipientIds,
+            ownerRecipientName: context.collaborationContext?.ownerRecipientName || null,
+            ownerColor: context.collaborationContext?.ownerColor || null,
+            userColor: context.collaborationContext?.userColor || null,
+          },
+        }),
       );
       Object.assign(clone, nextCollaborative, { state: 'draft', lock: undefined });
 
@@ -163,7 +177,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
   };
 
   const toggleRequired = () => {
-    if (!hasSelection) return;
+    if (!hasSelection || !guardStructureEdit()) return;
     const ops = getActiveSchemas(context).map((schema) => ({
       key: 'required',
       value: !schema.required,
@@ -173,7 +187,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
   };
 
   const toggleReadOnly = () => {
-    if (!hasSelection) return;
+    if (!hasSelection || !guardStructureEdit()) return;
     const ops = getActiveSchemas(context).map((schema) => ({
       key: 'readOnly',
       value: !schema.readOnly,
@@ -183,7 +197,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
   };
 
   const toggleHidden = () => {
-    if (!hasSelection) return;
+    if (!hasSelection || !guardStructureEdit()) return;
     const ops = getActiveSchemas(context).map((schema) => ({
       key: 'hidden',
       value: (schema as SchemaForUI & { hidden?: boolean }).hidden !== true,
@@ -193,7 +207,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
   };
 
   const bringForward = () => {
-    if (!hasSelection) return;
+    if (!hasSelection || !guardStructureEdit()) return;
     const current = getPageSchemas(context);
     const selected = current.filter((schema) => activeIds.includes(schema.id));
     const remaining = current.filter((schema) => !activeIds.includes(schema.id));
@@ -201,7 +215,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
   };
 
   const sendBackward = () => {
-    if (!hasSelection) return;
+    if (!hasSelection || !guardStructureEdit()) return;
     const current = getPageSchemas(context);
     const selected = current.filter((schema) => activeIds.includes(schema.id));
     const remaining = current.filter((schema) => !activeIds.includes(schema.id));
@@ -209,7 +223,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
   };
 
   const alignSelection = (type: AlignType) => {
-    if (!hasSelection) return;
+    if (!hasSelection || !guardStructureEdit()) return;
     const schemas = getActiveSchemas(context);
     const isVertical = ['left', 'center', 'right'].includes(type);
     const tgtPos = isVertical ? 'x' : 'y';
@@ -237,7 +251,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
   };
 
   const distributeSelection = (type: DistributeType) => {
-    if (!hasSelection) return;
+    if (!hasSelection || !guardStructureEdit()) return;
     const schemas = getActiveSchemas(context);
     if (schemas.length < 3) return;
     const isVertical = type === 'vertical';
@@ -267,7 +281,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
   };
 
   const requestInlineEdit = (target: InlineEditTarget) => {
-    if (!hasSelection) return;
+    if (!hasSelection || !guardStructureEdit()) return;
     const activeSchemas = getActiveSchemas(context);
     if (activeSchemas.length !== 1) return;
     context.requestInlineEdit?.({ schemaId: activeSchemas[0].id, target });
@@ -282,6 +296,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
   };
 
   return {
+    canEditStructure,
     deleteSelection,
     duplicateSelection,
     toggleHidden,

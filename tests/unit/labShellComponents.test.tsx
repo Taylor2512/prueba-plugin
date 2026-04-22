@@ -31,7 +31,7 @@ describe('lab shell components', () => {
     expect(screen.getByText('5')).toBeVisible();
 
     render(
-      <MemoryRouter>
+      <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <CaseCard
           example={{
             id: 'basic-designer',
@@ -52,7 +52,7 @@ describe('lab shell components', () => {
 
   it('renders a grid with one card per example', () => {
     render(
-      <MemoryRouter>
+      <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <CaseGrid
           examples={[
             {
@@ -81,7 +81,7 @@ describe('lab shell components', () => {
 
   it('renders an empty grid without cards when there are no examples', () => {
     render(
-      <MemoryRouter>
+      <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <CaseGrid />
       </MemoryRouter>,
     );
@@ -91,7 +91,7 @@ describe('lab shell components', () => {
 
   it('omits case cards when the example is missing', () => {
     render(
-      <MemoryRouter>
+      <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
         <CaseCard example={null} />
       </MemoryRouter>,
     );

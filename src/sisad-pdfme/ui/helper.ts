@@ -494,21 +494,23 @@ const handleTypeChange = (
 
 export const changeSchemas = (args: {
   objs: { key: string; value: unknown; schemaId: string }[];
-  schemas: SchemaForUI[];
+  schemas: SchemaForUI[] | SchemaForUI[][];
   basePdf: BasePdf;
   pluginsRegistry: PluginRegistry;
   pageSize: { width: number; height: number };
-  commitSchemas: (newSchemas: SchemaForUI[]) => void;
+  commitSchemas: (newSchemas: SchemaForUI[] | SchemaForUI[][]) => void;
 }) => {
   const { objs, schemas, basePdf, pluginsRegistry, pageSize, commitSchemas } = args;
+  const isNestedPageArray = Array.isArray(schemas[0]);
+  const pages = (isNestedPageArray ? (schemas as SchemaForUI[][]) : [schemas as SchemaForUI[]]) as SchemaForUI[][];
   const schemaLocationById = new Map<string, { pageIndex: number; schemaIndex: number }>();
-  schemas.forEach((page, pageIndex) => {
+  pages.forEach((page, pageIndex) => {
     page.forEach((schema, schemaIndex) => {
       schemaLocationById.set(schema.id, { pageIndex, schemaIndex });
     });
   });
 
-  const newSchemas = schemas.slice();
+  const newSchemas = pages.slice();
   const clonedPages = new Set<number>();
   const clonedSchemas = new Map<string, SchemaForUI>();
 
@@ -542,7 +544,7 @@ export const changeSchemas = (args: {
     }
   }
 
-  commitSchemas(newSchemas);
+  commitSchemas(isNestedPageArray ? newSchemas : newSchemas[0] || []);
 };
 
 export const useMaxZoom = () => {

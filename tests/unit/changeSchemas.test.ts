@@ -65,4 +65,44 @@ describe('changeSchemas', () => {
     expect(nextSchemas[0][0].content).toBe('updated');
     expect(page0Schema0.content).toBe('a');
   });
+
+  it('accepts a flat page array without crashing when called from the designer inspector', () => {
+    const page0Schema0 = {
+      id: 'schema-0',
+      name: 'field-0',
+      type: 'text',
+      content: 'a',
+      position: { x: 10, y: 10 },
+      width: 20,
+      height: 10,
+    } as SchemaForUI;
+    const page0Schema1 = {
+      id: 'schema-1',
+      name: 'field-1',
+      type: 'text',
+      content: 'b',
+      position: { x: 30, y: 10 },
+      width: 20,
+      height: 10,
+    } as SchemaForUI;
+
+    const commitSchemas = vi.fn();
+
+    changeSchemas({
+      objs: [{ key: 'collaboration.ownerMode', value: 'shared', schemaId: 'schema-1' }],
+      schemas: [page0Schema0, page0Schema1],
+      basePdf: { width: 210, height: 297, padding: [0, 0, 0, 0] } as BasePdf,
+      pluginsRegistry: createPluginRegistry(),
+      pageSize: { width: 210, height: 297 },
+      commitSchemas,
+    });
+
+    expect(commitSchemas).toHaveBeenCalledTimes(1);
+    const nextSchemas = commitSchemas.mock.calls[0][0] as SchemaForUI[];
+    expect(Array.isArray(nextSchemas)).toBe(true);
+    expect(nextSchemas).toHaveLength(2);
+    expect(nextSchemas[1].collaboration?.ownerMode).toBe('shared');
+    expect(nextSchemas[0]).toBe(page0Schema0);
+    expect(page0Schema1.collaboration?.ownerMode).toBeUndefined();
+  });
 });

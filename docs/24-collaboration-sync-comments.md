@@ -1,5 +1,16 @@
 # Colaboración, sincronización y comentarios
 
+## Actualización crítica (multiusuario/multidocumento)
+
+Esta fase documenta cambios **aditivos** (sin ruptura de compatibilidad) sobre el subsistema colaborativo:
+
+- se conserva `buildSchemaAssignments` y `buildUserSchemaAssignments`;
+- se agrega `buildUserRecipientAssignments`;
+- se mantiene `__shared__` como bucket técnico para visibilidad compartida;
+- se unifica creación/duplicación/pegado de schemas con contexto colaborativo común;
+- se consolida comentarios anclados en canvas + sync;
+- se endurece Playwright para fallar en errores reales de consola.
+
 ## 1. Estado actual
 
 La base de código ya tiene soporte explícito para colaboración. Esto ya no es una intención futura; está codificado en:
@@ -9,6 +20,22 @@ La base de código ya tiene soporte explícito para colaboración. Esto ya no es
 - tests de colaboración y sync
 - `SchemaCollaborationWidget`
 - metadatos en `SchemaDesignerConfig`
+
+## 1.1 Contrato nuevo de asignaciones por autor y destinatario
+
+Nuevo helper aditivo:
+
+- `buildUserRecipientAssignments(schemas, options?)`
+
+Forma canónica:
+
+- `assignments[userId][recipientId][fileId][pageNumber] = schemaUid[]`
+
+Reglas:
+
+- `pageNumber` se documenta como 1-based en el contrato;
+- si un schema es compartido (`ownerMode: 'shared'`), además de su autoría normal también puede entrar en el bucket técnico `__shared__`;
+- el bucket `__shared__` es de visibilidad compartida, no reemplaza la autoría real del schema.
 
 ## 2. Qué cubre la colaboración
 
@@ -73,6 +100,14 @@ Aunque la estructura completa debe seguir documentándose directamente desde có
 
 La presencia de `comments`, `commentAnchors` y `commentsAnchors` en el schema activo indica que el modelo ya contempla anotaciones asociadas a posiciones o elementos concretos.
 
+### Integración operativa requerida
+
+- Acción de canvas: `Agregar comentario` desde menú contextual.
+- Anchor persistente con: `schemaUid`, `fileId`, `pageNumber`, `x`, `y`, `authorId`, `authorColor`.
+- Comentario persistente con identidad completa del autor.
+- Sync por eventos: `comment.created`, `comment.updated`, `comment.deleted`.
+- Operaciones `upsert/remove` por `id` para evitar duplicados y drift entre UI y sincronización.
+
 ### Casos de uso
 - revisión interna
 - aprobación por rol
@@ -95,11 +130,31 @@ No todo schema locked tiene owner distinto, y no todo owner implica lock.
 
 La configuración de colaboración ya vive en `DesignerEngine`, lo cual es correcto. La estrategia de sync no debería colgar del inspector ni del widget. Debe venir del engine como política de plataforma.
 
+### Unificación de operaciones rápidas (creación/duplicación/pegado)
+
+La fase crítica fija una única ruta de contexto colaborativo para:
+
+- crear schema desde catálogo o menú contextual;
+- duplicar selección;
+- pegar en otra página o documento.
+
+Reglas mínimas:
+
+- `duplicate`: nuevo `schemaUid/id`, preserva config funcional, reasigna `createdBy/userColor` al usuario activo;
+- `paste`: actualiza `fileId/pageNumber` al destino, preserva metadata no conflictiva;
+- `delete`: elimina schema y comentarios/anclas asociados, y emite evento de sync.
+
 ## 9. Pruebas existentes
 
 El proyecto ya tiene:
 - `collaboration.test.ts`
 - `collaborationSync.test.ts`
+
+### Política Playwright (obligatoria en esta fase)
+
+- Fallar test ante `console.error` y `pageerror`.
+- Mantener allowlist explícita para ruido externo conocido (por ejemplo extensiones del navegador o third-party ajeno al dominio).
+- No permitir silenciamiento global de consola.
 
 Eso significa que la colaboración ya debe tratarse como feature seria y no como experimento.
 

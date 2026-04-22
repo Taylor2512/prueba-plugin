@@ -119,6 +119,7 @@ export const SchemaComment = z
     timestamp: z.number(),
     text: z.string(),
     resolved: z.boolean().optional(),
+    anchor: z.lazy(() => CommentAnchor).optional(),
     replies: z.array(SchemaCommentReply).optional(),
   })
   .passthrough();

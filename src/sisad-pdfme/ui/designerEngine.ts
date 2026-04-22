@@ -51,6 +51,7 @@ export type SchemaComment = {
   timestamp: number;
   text: string;
   resolved?: boolean;
+  anchor?: SchemaCommentAnchor;
   replies?: SchemaCommentReply[];
 };
 
@@ -238,6 +239,67 @@ export type SchemaCreationContext = {
   ownerRecipientName?: string | null;
   ownerColor?: string | null;
   userColor?: string | null;
+};
+export type SchemaCreationContextInput = {
+  pageIndex: number;
+  totalPages: number;
+  timestamp?: number;
+  pageNumber?: number;
+  fileId?: string | null;
+  collaboration?: Partial<
+    Pick<
+      SchemaCreationContext,
+      'actorId' | 'ownerRecipientId' | 'ownerRecipientIds' | 'ownerRecipientName' | 'ownerColor' | 'userColor'
+    >
+  >;
+};
+
+const normalizeCreationOwnerIds = (value: unknown): string[] => {
+  if (Array.isArray(value)) {
+    return Array.from(
+      new Set(
+        value
+          .map((entry) => String(entry || '').trim())
+          .filter(Boolean),
+      ),
+    );
+  }
+  if (typeof value === 'string') {
+    return Array.from(
+      new Set(
+        value
+          .split(',')
+          .map((entry) => entry.trim())
+          .filter(Boolean),
+      ),
+    );
+  }
+  return [];
+};
+
+export const createSchemaCreationContext = (input: SchemaCreationContextInput): SchemaCreationContext => {
+  const nextTimestamp = Number.isFinite(input.timestamp as number) ? Number(input.timestamp) : Date.now();
+  const collaboration = input.collaboration || {};
+  const ownerRecipientIds = normalizeCreationOwnerIds(
+    collaboration.ownerRecipientIds || collaboration.ownerRecipientId || undefined,
+  );
+  const ownerRecipientId = (typeof collaboration.ownerRecipientId === 'string' && collaboration.ownerRecipientId.trim())
+    ? collaboration.ownerRecipientId.trim()
+    : ownerRecipientIds[0] || null;
+
+  return {
+    pageIndex: input.pageIndex,
+    totalPages: input.totalPages,
+    timestamp: nextTimestamp,
+    pageNumber: input.pageNumber ?? input.pageIndex + 1,
+    fileId: input.fileId ?? null,
+    actorId: collaboration.actorId ?? null,
+    ownerRecipientId,
+    ownerRecipientIds,
+    ownerRecipientName: collaboration.ownerRecipientName ?? null,
+    ownerColor: collaboration.ownerColor ?? null,
+    userColor: collaboration.userColor ?? null,
+  };
 };
 
 export type SchemaCreationHook = (schema: SchemaForUI, context: SchemaCreationContext) => SchemaForUI;

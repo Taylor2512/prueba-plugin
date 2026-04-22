@@ -46,3 +46,11 @@ Lee primero `designerEngine`, luego `schemaRegistry`, después `RightSidebar` + 
 - Catálogo de schemas y extensibilidad.
 - Colaboración y sincronización.
 - Referencias a tests que validan estos flujos.
+
+## Estado Fase Crítica (abril 2026)
+
+- `common/collaboration` expone tres vistas de asignación: por destinatario, por autor y por `autor+destinatario` con bucket técnico `__shared__`.
+- La validación colaborativa (`validateCollaborativeSchemas`) rechaza persistencia de schemas colaborativos sin `createdBy` o `userColor`.
+- El flujo de comentarios anclados soporta modelo mixto: schema-bound y fallback top-level, con `upsert/remove` por `id` para evitar duplicados.
+- El diseñador aplica guardas de rol (`designer` vs `reviewer/viewer`) en comandos estructurales (duplicar, borrar, pegar, alinear, etc.) manteniendo comentarios activos.
+- Playwright endurece la política de runtime (`console.error` + `pageerror`) con allowlist explícita y cobertura de rutas multiusuario/enterprise.

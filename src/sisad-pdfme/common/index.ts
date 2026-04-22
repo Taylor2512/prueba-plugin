@@ -33,6 +33,7 @@ export {
 } from './helper.js';
 export {
   buildSchemaAssignments,
+  buildUserRecipientAssignments,
   buildUserSchemaAssignments,
   createSchemaComment,
   createSchemaCommentAnchor,
@@ -55,7 +56,11 @@ export {
   resolveCommentInSchema,
   filterCommentsByFileAndPage,
 } from './comments.js';
-export type { SchemaAssignments } from './collaboration.js';
+export type {
+  SchemaAssignments,
+  UserRecipientSchemaAssignments,
+  UserRecipientAssignmentOptions,
+} from './collaboration.js';
 export { getDynamicTemplate } from './dynamicTemplate.js';
 export { replacePlaceholders } from './expression.js';
 export { pluginRegistry } from './pluginRegistry.js';

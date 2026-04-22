@@ -100,6 +100,7 @@ describe('SchemaCollaborationWidget', () => {
           type: 'text',
           schemaUid: 'schema-uid-1',
           pageNumber: 2,
+          fileId: 'file-2',
         } as SchemaForUI}
         changeSchemas={changeSchemas}
         designerEngine={{
@@ -123,11 +124,11 @@ describe('SchemaCollaborationWidget', () => {
     );
 
     fireEvent.change(screen.getByPlaceholderText('file-01'), {
-      target: { value: 'file-2' },
+      target: { value: 'file-3' },
     });
     expect(changeSchemas).toHaveBeenLastCalledWith([
-      { key: 'fileId', value: 'file-2', schemaId: 'schema-1' },
-      { key: 'fileTemplateId', value: 'file-2', schemaId: 'schema-1' },
+      { key: 'fileId', value: 'file-3', schemaId: 'schema-1' },
+      { key: 'fileTemplateId', value: 'file-3', schemaId: 'schema-1' },
     ]);
 
     fireEvent.click(screen.getByRole('button', { name: 'Agregar comentario' }));
@@ -154,6 +155,7 @@ describe('SchemaCollaborationWidget', () => {
         value: [
           expect.objectContaining({
             schemaUid: 'schema-uid-1',
+            fileId: 'file-2',
             pageNumber: 2,
             authorId: 'sales-user-1',
             authorColor: '#2563EB',

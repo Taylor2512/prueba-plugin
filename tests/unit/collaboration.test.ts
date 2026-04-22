@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import {
   buildSchemaAssignments,
+  buildUserRecipientAssignments,
   buildUserSchemaAssignments,
   createSchemaComment,
   createSchemaCommentAnchor,
@@ -179,6 +180,143 @@ describe('collaboration metadata', () => {
     expect(assignments[SHARED_ASSIGNMENTS_BUCKET]['file-shared']['1']).toEqual(['uid-shared']);
   });
 
+  it('builds user+recipient assignments with shared recipient bucket and unassigned fallbacks', () => {
+    const assignments = buildUserRecipientAssignments([
+      [
+        {
+          id: 'schema-1',
+          schemaUid: 'uid-a',
+          name: 'field-a',
+          type: 'text',
+          fileId: 'file-a',
+          pageNumber: 2,
+          createdBy: 'sales-user-1',
+          ownerRecipientId: 'recipient-sales',
+        } as SchemaForUI,
+        {
+          id: 'schema-2',
+          schemaUid: 'uid-b',
+          name: 'field-b',
+          type: 'text',
+          fileTemplateId: 'file-b',
+          createdBy: 'legal-user-1',
+          ownerRecipientIds: ['recipient-legal', 'recipient-audit'],
+        } as SchemaForUI,
+        {
+          id: 'schema-3',
+          schemaUid: 'uid-shared',
+          name: 'shared-field',
+          type: 'text',
+          fileId: 'file-shared',
+          createdBy: 'sales-user-1',
+          ownerRecipientIds: ['recipient-sales'],
+          ownerMode: 'shared',
+        } as SchemaForUI,
+        {
+          id: 'schema-4',
+          schemaUid: 'uid-shared',
+          name: 'shared-field-duplicate',
+          type: 'text',
+          fileId: 'file-shared',
+          createdBy: 'sales-user-1',
+          ownerRecipientIds: ['recipient-sales'],
+          ownerMode: 'shared',
+        } as SchemaForUI,
+        {
+          id: 'schema-5',
+          schemaUid: 'uid-unassigned',
+          name: 'field-unassigned',
+          type: 'text',
+        } as SchemaForUI,
+      ],
+    ]);
+
+    expect(assignments['sales-user-1']['recipient-sales']['file-a']['2']).toEqual(['uid-a']);
+    expect(assignments['legal-user-1']['recipient-legal']['file-b']['1']).toEqual(['uid-b']);
+    expect(assignments['legal-user-1']['recipient-audit']['file-b']['1']).toEqual(['uid-b']);
+    expect(assignments['sales-user-1']['recipient-sales']['file-shared']['1']).toEqual(['uid-shared']);
+    expect(assignments['sales-user-1'][SHARED_ASSIGNMENTS_BUCKET]['file-shared']['1']).toEqual(['uid-shared']);
+    expect(assignments.__unassigned__.__unassigned__.default['1']).toEqual(['uid-unassigned']);
+  });
+
+  it('can disable the shared recipient bucket in user+recipient assignments', () => {
+    const assignments = buildUserRecipientAssignments(
+      [[{
+        id: 'schema-1',
+        schemaUid: 'uid-shared',
+        name: 'shared-field',
+        type: 'text',
+        fileId: 'file-shared',
+        createdBy: 'sales-user-1',
+        ownerRecipientId: 'recipient-sales',
+        ownerMode: 'shared',
+      } as SchemaForUI]],
+      { includeSharedRecipientBucket: false },
+    );
+
+    expect(assignments['sales-user-1']['recipient-sales']['file-shared']['1']).toEqual(['uid-shared']);
+    expect(assignments['sales-user-1'][SHARED_ASSIGNMENTS_BUCKET]).toBeUndefined();
+  });
+
+  it('deduplicates schema uids and respects single, multi and shared owner modes in user+recipient assignments', () => {
+    const assignments = buildUserRecipientAssignments([
+      [
+        {
+          id: 'schema-single',
+          schemaUid: 'uid-single',
+          name: 'single-field',
+          type: 'text',
+          fileId: 'file-single',
+          createdBy: 'sales-user-1',
+          ownerMode: 'single',
+          ownerRecipientId: 'recipient-single',
+          ownerRecipientIds: ['recipient-single', 'recipient-extra'],
+        } as SchemaForUI,
+        {
+          id: 'schema-multi',
+          schemaUid: 'uid-multi',
+          name: 'multi-field',
+          type: 'text',
+          fileId: 'file-multi',
+          pageNumber: 4,
+          createdBy: 'sales-user-1',
+          ownerMode: 'multi',
+          ownerRecipientIds: ['recipient-a', 'recipient-b'],
+        } as SchemaForUI,
+        {
+          id: 'schema-shared-1',
+          schemaUid: 'uid-shared',
+          name: 'shared-field',
+          type: 'text',
+          fileId: 'file-shared',
+          pageNumber: 2,
+          createdBy: 'sales-user-1',
+          ownerMode: 'shared',
+          ownerRecipientIds: ['recipient-shared-1', 'recipient-shared-2'],
+        } as SchemaForUI,
+        {
+          id: 'schema-shared-2',
+          schemaUid: 'uid-shared',
+          name: 'shared-field-duplicate',
+          type: 'text',
+          fileId: 'file-shared',
+          pageNumber: 2,
+          createdBy: 'sales-user-1',
+          ownerMode: 'shared',
+          ownerRecipientIds: ['recipient-shared-1', 'recipient-shared-2'],
+        } as SchemaForUI,
+      ],
+    ]);
+
+    expect(assignments['sales-user-1']['recipient-single']['file-single']['1']).toEqual(['uid-single']);
+    expect(assignments['sales-user-1']['recipient-extra']).toBeUndefined();
+    expect(assignments['sales-user-1']['recipient-a']['file-multi']['4']).toEqual(['uid-multi']);
+    expect(assignments['sales-user-1']['recipient-b']['file-multi']['4']).toEqual(['uid-multi']);
+    expect(assignments['sales-user-1']['recipient-shared-1']['file-shared']['2']).toEqual(['uid-shared']);
+    expect(assignments['sales-user-1']['recipient-shared-2']['file-shared']['2']).toEqual(['uid-shared']);
+    expect(assignments['sales-user-1'][SHARED_ASSIGNMENTS_BUCKET]['file-shared']['2']).toEqual(['uid-shared']);
+  });
+
   it('validates collaborative schemas before persistence', () => {
     expect(
       validateCollaborativeSchemas([
@@ -215,6 +353,24 @@ describe('collaboration metadata', () => {
         { schemaUid: 'uid-b', reason: 'missing-userColor' },
       ],
     });
+  });
+
+  it('accepts shared collaborative schemas with creator and color metadata before shared assignment generation', () => {
+    const schema = {
+      id: 'schema-shared',
+      name: 'field-shared',
+      type: 'text',
+      schemaUid: 'uid-shared',
+      createdBy: 'sales-user-1',
+      userColor: '#2563EB',
+      ownerMode: 'shared',
+      ownerRecipientIds: ['sales-user-1', 'legal-user-1'],
+    } as SchemaForUI;
+
+    expect(validateCollaborativeSchemas([[schema]])).toEqual({ valid: true, issues: [] });
+
+    const assignments = buildUserRecipientAssignments([[schema]]);
+    expect(assignments['sales-user-1'][SHARED_ASSIGNMENTS_BUCKET]['default']['1']).toEqual(['uid-shared']);
   });
 
   it('builds tinted collaborator chip styles from a collaborator color', () => {

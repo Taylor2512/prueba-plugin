@@ -7,19 +7,21 @@ Los ejemplos consumidos por la pantalla de laboratorio viven en:
 - `src/features/sisad-pdfme/example.pdf.jsx`
 - `src/features/sisad-pdfme/examples/labExamples.js`
 
-Los presets actuales cubren cuatro escenarios concretos:
+Los presets actuales cubren cinco escenarios concretos y ahora parten de PDFs reales servidos desde `public/templates`:
 
 - `basic-designer`
 - `enterprise-collaboration`
 - `multi-document-routing`
+- `multiuser-collaboration`
 - `generator-runtime`
 
 Cada preset se puede usar como plantilla de referencia para:
 
-- diseñador básico
+- diseñador básico sobre PDF real
 - colaboración con comentarios y locks
-- scoping por documento y página
-- flujo de generación / conversión
+- scoping por documento y página con documentos precargados
+- colaboración multiusuario con ownership filtrado por vista
+- flujo de generación / conversión sobre documento real
 
 ## 1. Editor mínimo
 

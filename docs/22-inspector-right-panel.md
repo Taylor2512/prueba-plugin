@@ -1,5 +1,14 @@
 # Panel derecho, detalle y widgets
 
+## Actualización crítica (multiusuario/multidocumento)
+
+En esta fase el inspector se alinea con colaboración author-first y mantiene compatibilidad:
+
+- no se rompen widgets existentes;
+- se agrega filtro consistente de vista `Usuario activo` vs `Global`;
+- edición colaborativa usa merges no destructivos;
+- comentarios anclados y estado colaborativo se reflejan en el panel sin duplicar lógica del canvas.
+
 ## 1. Panorama general
 
 El panel derecho concentra tres modos:
@@ -49,6 +58,15 @@ Además calcula tags para configuración activa:
 - API
 - Form JSON
 - Prefill
+
+### Tags colaborativos mínimos (fase crítica)
+
+El header/detalle debe poder exponer de forma compacta:
+
+- autor activo (`createdBy`);
+- color de autor (`userColor`);
+- ownership (`ownerMode`, `ownerRecipientId(s)`);
+- lock y comentarios activos.
 
 Eso es una señal de madurez del sistema: el inspector no solo pinta inputs, también comunica estado de configuración.
 
@@ -150,6 +168,12 @@ Este widget concentra:
 
 Es una buena línea de crecimiento para escenarios multiusuario.
 
+### Reglas de esta fase
+
+- Si existe contexto de usuarios/recipients, usar `select` (no input textual libre como control principal).
+- Mantener fallback manual solo cuando no hay contexto disponible.
+- Cambios de autor/color/comentarios deben pasar por actualización no destructiva (`mergeSchemaDesignerConfig` o equivalente de dominio), evitando sobrescritura de estructura anidada.
+
 ## 13. Ejemplo de flujo real del inspector
 
 ```tsx
@@ -177,6 +201,26 @@ Sin mezclar persistencia/API/JSON con estilo o layout.
 
 ### 14.4 Recordar apertura de secciones
 Ayuda a usuarios avanzados sin penalizar novatos.
+
+### 14.5 Filtro de visibilidad por usuario
+
+El inspector/lista debe soportar:
+
+- `Usuario activo`: muestra campos relevantes al usuario seleccionado;
+- `Global`: neutraliza filtro por usuario sin perder metadata colaborativa.
+
+Comportamiento esperado:
+
+- al ocultarse un campo por filtro, limpiar selección inválida para evitar edición fantasma;
+- mantener señales compactas `propio / ajeno / compartido` en list view.
+
+### 14.6 Coherencia con acciones rápidas
+
+Las rutas de `add`, `duplicate`, `paste`, `delete` deben producir el mismo resultado colaborativo que el inspector:
+
+- identidad de autor y color consistentes;
+- ownership consistente;
+- sync de schema/comments sin duplicados.
 
 ## 15. Qué documentar mejor
 

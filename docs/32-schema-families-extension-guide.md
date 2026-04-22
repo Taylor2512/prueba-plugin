@@ -8,6 +8,7 @@ La capa `schemas` ya está organizada por familias:
 - `barcodes`
 - `date`
 - `graphics`
+- `signature`
 - `checkbox`
 - `radioGroup`
 - `select`
@@ -97,6 +98,17 @@ Dibuja el resultado final en la página PDF.
 
 ### Paso 6. Registro
 Agregarlo en `schemas/index.ts` y `schemaRegistry.ts`.
+
+Si el schema debe funcionar como built-in real, no basta con aparecer en el catalogo.
+Tambien debe quedar alineado con los registros usados por runtime y generator.
+En este fork eso implica mantener en paridad:
+- `schemaPlugins`
+- `flatSchemaPlugins`
+- `builtInSchemaDefinitions`
+- `builtInPlugins`
+
+Ejemplo actual: `signature` ya existe como una familia built-in de firma visual basada en imagen.
+Su primera version reutiliza el pipeline de `graphics/image` para render UI y PDF, muestra un placeholder solo en UI cuando esta vacia y no pretende resolver firma digital criptografica PDF.
 
 ## 6. Regla de oro
 

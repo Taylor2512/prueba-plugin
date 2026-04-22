@@ -24,6 +24,7 @@ export type CanvasContextMenuProps = {
   activeReadOnly?: boolean;
   activeRequired?: boolean;
   activeHidden?: boolean;
+  canEditStructure?: boolean;
   onClose?: () => void;
   className?: string;
 };
@@ -45,6 +46,7 @@ const CanvasContextMenu = ({
   activeReadOnly = false,
   activeRequired = false,
   activeHidden = false,
+  canEditStructure = true,
   onClose,
   className = '',
 }: CanvasContextMenuProps) => {
@@ -61,8 +63,9 @@ const CanvasContextMenu = ({
         activeReadOnly,
         activeRequired,
         activeHidden,
+        canEditStructure,
       }),
-    [mode, commands, externalActions, hasClipboardData, selectionCount, activeReadOnly, activeRequired, activeHidden],
+    [mode, commands, externalActions, hasClipboardData, selectionCount, activeReadOnly, activeRequired, activeHidden, canEditStructure],
   );
 
   useEffect(() => {

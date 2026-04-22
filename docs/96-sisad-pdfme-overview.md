@@ -24,7 +24,9 @@ SISAD PDFME es una plataforma para diseñar, visualizar, capturar, convertir y g
 - lista de fields;
 - rail de documentos;
 - overlays contextuales;
-- edición inline.
+- edición inline;
+- comentarios anclados desde canvas/context menu;
+- filtros de colaboración por usuario y vista global.
 
 ### Engine
 - sidebars reemplazables;
@@ -32,7 +34,8 @@ SISAD PDFME es una plataforma para diseñar, visualizar, capturar, convertir y g
 - feature toggles del canvas;
 - hooks de schema;
 - config HTTP global;
-- identidad configurable.
+- identidad configurable;
+- contexto de colaboración (usuarios, destinatarios, actor y vista).
 
 ### Schemas
 - texto;
@@ -67,7 +70,16 @@ npm run build
 npm run preview
 npm run test
 npm run test:e2e
+npx vitest run
+npx playwright test tests/playwright/pdfme-editor.spec.ts
 ```
+
+## Estado actual de colaboración
+
+- Asignaciones soportadas: `recipient`, `author` y `author+recipient`.
+- Metadata colaborativa de schema: `createdBy/createdAt/lastModifiedBy/lastModifiedAt/userColor`, ownership y lock.
+- Comentarios con identidad de autor y ancla (`fileId`, `pageNumber`, coordenadas), sincronizados por eventos `comment.created|updated|deleted`.
+- Guardas de rol activas en UI/runtime para separar edición estructural de revisión/comentarios.
 
 ## Importaciones base
 

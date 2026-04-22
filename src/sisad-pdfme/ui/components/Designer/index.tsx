@@ -4,6 +4,7 @@ import {
   cloneDeep,
   ZOOM,
   Template,
+  addCommentWithAnchorToTemplate,
   Schema,
   SchemaForUI,
   ChangeSchemas,
@@ -44,6 +45,7 @@ import { useUIPreProcessor, useScrollPageCursor, useInitEvents } from '../../hoo
 import Root from '../Root.js';
 import ErrorScreen from '../ErrorScreen.js';
 import CtlBar from '../CtlBar.js';
+import CommentDialog from './Comments/CommentDialog.js';
 import { applyCollaborationEvent, diffCollaborationEvents, useCollaborationSync } from '../../collaboration.js';
 import type { DesignerDocumentItem } from './RightSidebar/DocumentsRail.js';
 import type { DesignerRuntimeApi, DesignerSidebarPresentation } from '../../types.js';
@@ -55,6 +57,7 @@ import {
   attachSchemaIdentity,
   applySchemaCreationHook,
   applySchemaCollaborativeDefaults,
+  createSchemaCreationContext,
   getSchemaDesignerConfig,
   mergeSchemaDesignerConfig,
 } from '../../designerEngine.js';
@@ -372,6 +375,7 @@ const TemplateEditor = ({
   const [visibleTemplate, setVisibleTemplate] = useState<Template>(() => template);
   const [schemasList, setSchemasList] = useState<SchemaForUI[][]>([[]] as SchemaForUI[][]);
   const [pageCursor, setPageCursor] = useState(0);
+  const pageCursorRef = useRef(0);
   const [zoomLevel, setZoomLevel] = useState(options.zoomLevel ?? 1);
   const [sidebarOpen, setSidebarOpen] = useState(options.sidebarOpen ?? true);
   const [viewportMode, setViewportMode] = useState<ViewportMode>('manual');
@@ -407,6 +411,10 @@ const TemplateEditor = ({
   const [isDraggingOverCanvas, setIsDraggingOverCanvas] = useState(false);
   const [activeDragData, setActiveDragData] = useState<{ schema: Schema; type: string } | null>(null);
   const [isIdle, setIsIdle] = useState(false);
+
+  useEffect(() => {
+    pageCursorRef.current = pageCursor;
+  }, [pageCursor]);
   const uploadedDocumentsOption = (options as Record<string, unknown>).uploadedDocuments;
   const activeDocumentIdOption = (options as Record<string, unknown>).activeDocumentId;
   const uploadedDocumentsSeed = useMemo<UploadedPdfDocument[]>(
@@ -583,6 +591,9 @@ const TemplateEditor = ({
     reconnectMs: designerEngine.collaboration?.reconnectMs,
     onEvent: handleCollaborationEvent,
   });
+  const applyCollaborationLocalChange = collaborationSync.applyLocalChange;
+  const setCollaborationPresence = collaborationSync.setPresence;
+  const collaborationHistoryLength = collaborationSync.history.length;
 
   useEffect(() => {
     if (!designerEngine.collaboration?.enabled) {
@@ -591,13 +602,13 @@ const TemplateEditor = ({
     }
     if (!previousCollaborativeSchemasRef.current) {
       previousCollaborativeSchemasRef.current = cloneDeep(schemasList);
-      if ((collaborationSync.history?.length || 0) === 0) {
+      if (collaborationHistoryLength === 0) {
         const seedEvents = diffCollaborationEvents([], schemasList, {
           actorId: collaborationContext.actorId || designerEngine.collaboration?.actorId,
           sessionId: designerEngine.collaboration?.sessionId || activeDocumentId || 'local',
           timestamp: Date.now(),
         });
-        seedEvents.forEach((event) => collaborationSync.applyLocalChange(event));
+        seedEvents.forEach((event) => applyCollaborationLocalChange(event));
       }
       return;
     }
@@ -613,23 +624,23 @@ const TemplateEditor = ({
       timestamp: Date.now(),
     });
     if (events.length > 0) {
-      events.forEach((event) => collaborationSync.applyLocalChange(event));
+      events.forEach((event) => applyCollaborationLocalChange(event));
     }
     previousCollaborativeSchemasRef.current = cloneDeep(schemasList);
   }, [
     activeDocumentId,
+    applyCollaborationLocalChange,
+    collaborationHistoryLength,
     collaborationContext.actorId,
-    collaborationSync,
     designerEngine.collaboration?.actorId,
     designerEngine.collaboration?.enabled,
-    collaborationSync.history?.length,
     designerEngine.collaboration?.sessionId,
     schemasList,
   ]);
 
   useEffect(() => {
     if (!designerEngine.collaboration?.enabled) return;
-    collaborationSync.setPresence({
+    setCollaborationPresence({
       userId: collaborationContext.actorId || designerEngine.collaboration?.actorId || 'local',
       name:
         collaborationContext.activeRecipient?.name ||
@@ -654,12 +665,12 @@ const TemplateEditor = ({
     collaborationContext.ownerColor,
     collaborationContext.ownerRecipientName,
     collaborationContext.userColor,
-    collaborationSync,
     designerEngine.collaboration?.actorColor,
     designerEngine.collaboration?.actorId,
     designerEngine.collaboration?.enabled,
     interactionState.phase,
     pageCursor,
+    setCollaborationPresence,
   ]);
 
   const { backgrounds, pageSizes, scale, error } = useUIPreProcessor({
@@ -668,6 +679,44 @@ const TemplateEditor = ({
     zoomLevel,
     maxZoom,
   });
+
+  // Comment dialog state and handlers
+  const [commentDialogOpen, setCommentDialogOpen] = useState(false);
+  const [pendingAnchor, setPendingAnchor] = useState<null | {
+    xMm: number;
+    yMm: number;
+    pageIndex: number;
+    fileId?: string | null;
+    schemaUid?: string;
+  }>(null);
+
+  const openCommentDialog = useCallback(
+    (xClient: number, yClient: number, pageIndex: number, schemaUid?: string, fileId?: string | null) => {
+    try {
+      const paper = paperRefs.current[pageIndex] || paperRefs.current[pageCursor];
+      if (!paper) return;
+      const rect = paper.getBoundingClientRect();
+      const pxX = Number(xClient) - rect.left;
+      const pxY = Number(yClient) - rect.top;
+      const pixelPerMm = (ZOOM as number) * (scale || 1);
+      const xMm = Math.max(0, pxX / pixelPerMm);
+      const yMm = Math.max(0, pxY / pixelPerMm);
+      const boundedX = Math.max(0, Math.min(pageSizes[pageIndex]?.width || 0, xMm));
+      const boundedY = Math.max(0, Math.min(pageSizes[pageIndex]?.height || 0, yMm));
+      setPendingAnchor({
+        xMm: Math.round(boundedX * 100) / 100,
+        yMm: Math.round(boundedY * 100) / 100,
+        pageIndex,
+        fileId: fileId || activeDocumentId || null,
+        schemaUid,
+      });
+      setCommentDialogOpen(true);
+    } catch (err) {
+      console.error('openCommentDialog failed', err);
+    }
+    },
+    [activeDocumentId, pageCursor, paperRefs, pageSizes, scale],
+  );
 
   const canvasWidth = size.width - leftSidebarWidth;
   const safeCanvasWidth = Number.isFinite(canvasWidth) ? Math.max(0, canvasWidth) : 0;
@@ -821,10 +870,81 @@ const TemplateEditor = ({
       if (sl.length <= 0) return 0;
       return Math.max(0, Math.min(prev, sl.length - 1));
     });
-    if (pageCursor >= sl.length && canvasRef.current?.scroll) {
+    if (pageCursorRef.current >= sl.length && canvasRef.current?.scroll) {
       canvasRef.current.scroll({ top: 0, behavior: 'smooth' });
     }
-  }, [pageCursor]);
+  }, []);
+
+  useEffect(() => {
+    const handler = (ev: any) => {
+      const detail = ev?.detail || {};
+      const page = typeof detail.page === 'number' ? detail.page : pageCursor;
+      const x = detail.x;
+      const y = detail.y;
+      const schemaUid = Array.isArray(detail.targetIds) && detail.targetIds.length > 0 ? detail.targetIds[0] : detail.schemaUid;
+      const fileId = typeof detail.fileId === 'string' ? detail.fileId : null;
+      if (typeof x === 'number' && typeof y === 'number') {
+        openCommentDialog(x, y, page, schemaUid, fileId);
+      }
+    };
+    globalThis.addEventListener('sisad-pdfme:create-comment', handler as EventListener);
+    globalThis.addEventListener('sisad-pdfme:create-comment-request', handler as EventListener);
+    return () => {
+      globalThis.removeEventListener('sisad-pdfme:create-comment', handler as EventListener);
+      globalThis.removeEventListener('sisad-pdfme:create-comment-request', handler as EventListener);
+    };
+  }, [openCommentDialog, pageCursor]);
+
+  const handleSaveComment = useCallback(
+    (text: string) => {
+      if (!pendingAnchor) return;
+      try {
+        const pageSchemas = schemasList[pendingAnchor.pageIndex] || [];
+        const fallbackSchema = pageSchemas
+          .slice()
+          .reverse()
+          .find((schema) => {
+            const x = Number(schema.position?.x);
+            const y = Number(schema.position?.y);
+            const width = Number(schema.width);
+            const height = Number(schema.height);
+            if (!Number.isFinite(x) || !Number.isFinite(y) || !Number.isFinite(width) || !Number.isFinite(height)) {
+              return false;
+            }
+            return (
+              pendingAnchor.xMm >= x
+              && pendingAnchor.xMm <= x + width
+              && pendingAnchor.yMm >= y
+              && pendingAnchor.yMm <= y + height
+            );
+          });
+        const resolvedSchemaUid = pendingAnchor.schemaUid || fallbackSchema?.schemaUid || fallbackSchema?.id;
+
+        const anchor = {
+          x: pendingAnchor.xMm,
+          y: pendingAnchor.yMm,
+          fileId: pendingAnchor.fileId || activeDocumentId || null,
+          pageNumber: pendingAnchor.pageIndex + 1,
+          schemaUid: resolvedSchemaUid,
+        } as any;
+
+        const identity = {
+          authorId: collaborationContext.actorId || undefined,
+          authorName: collaborationContext.activeRecipient?.name || collaborationContext.ownerRecipientName || undefined,
+          authorColor: collaborationContext.userColor || undefined,
+        } as any;
+
+        const nextTemplate = addCommentWithAnchorToTemplate(visibleTemplate, anchor, text, identity);
+        void updateTemplate(nextTemplate);
+      } catch (err) {
+        console.error('Failed to save comment', err);
+      } finally {
+        setCommentDialogOpen(false);
+        setPendingAnchor(null);
+      }
+    },
+    [pendingAnchor, activeDocumentId, collaborationContext, visibleTemplate, updateTemplate, schemasList],
+  );
 
   const loadDocumentIntoCanvas = useCallback(
     async (document: UploadedPdfDocument, targetPageIndex = 0) => {
@@ -906,19 +1026,21 @@ const TemplateEditor = ({
       s.position.y = rectTop > 0 ? paddingTop : pageSizes[pageCursor].height / 2;
     }
 
-    const creationContext = {
+    const creationContext = createSchemaCreationContext({
       fileId: activeDocumentId || null,
       pageIndex: pageCursor,
       pageNumber: pageCursor + 1,
       totalPages: schemasList.length,
       timestamp: Date.now(),
-      actorId: collaborationContext.actorId,
-      ownerRecipientId: collaborationContext.ownerRecipientId,
-      ownerRecipientIds: collaborationContext.ownerRecipientIds,
-      ownerRecipientName: collaborationContext.ownerRecipientName,
-      ownerColor: collaborationContext.ownerColor,
-      userColor: collaborationContext.userColor,
-    };
+      collaboration: {
+        actorId: collaborationContext.actorId,
+        ownerRecipientId: collaborationContext.ownerRecipientId,
+        ownerRecipientIds: collaborationContext.ownerRecipientIds,
+        ownerRecipientName: collaborationContext.ownerRecipientName,
+        ownerColor: collaborationContext.ownerColor,
+        userColor: collaborationContext.userColor,
+      },
+    });
     s = applySchemaCreationHook(s, creationContext, designerEngine);
     s = attachSchemaIdentity(s, creationContext, designerEngine);
     s = applySchemaCollaborativeDefaults(s, creationContext, designerEngine);
@@ -1438,19 +1560,21 @@ const TemplateEditor = ({
     const duplicatedPageSchemas = cloneDeep(currentPageSchemas).map((schema) =>
       applySchemaCollaborativeDefaults(
         schema,
-        {
+        createSchemaCreationContext({
           fileId: activeDocumentId || null,
           pageIndex: pageCursor + 1,
           pageNumber: pageCursor + 2,
           totalPages: schemasList.length + 1,
           timestamp: Date.now(),
-          actorId: collaborationContext.actorId,
-          ownerRecipientId: collaborationContext.ownerRecipientId,
-          ownerRecipientIds: collaborationContext.ownerRecipientIds,
-          ownerRecipientName: collaborationContext.ownerRecipientName,
-          ownerColor: collaborationContext.ownerColor,
-          userColor: collaborationContext.userColor,
-        },
+          collaboration: {
+            actorId: collaborationContext.actorId,
+            ownerRecipientId: collaborationContext.ownerRecipientId,
+            ownerRecipientIds: collaborationContext.ownerRecipientIds,
+            ownerRecipientName: collaborationContext.ownerRecipientName,
+            ownerColor: collaborationContext.ownerColor,
+            userColor: collaborationContext.userColor,
+          },
+        }),
         designerEngine,
       ),
     );
@@ -2108,6 +2232,8 @@ const TemplateEditor = ({
             activeElements={activeElements}
             schemasList={schemasList}
             renderedSchemasList={visibleSchemasList}
+            topLevelComments={((visibleTemplate as unknown as { __commentAnchors?: Array<{ anchor?: Record<string, unknown>; comment?: Record<string, unknown> }> }).__commentAnchors) || []}
+            activeDocumentId={activeDocumentId}
             changeSchemas={changeSchemas}
             sidebarOpen={sidebarOpen}
             sidebarWidth={rightSidebarWidth}
@@ -2126,6 +2252,15 @@ const TemplateEditor = ({
           selectionCommands={selectionCommands}
           onInteractionStateChange={handleInteractionStateChange}
           />
+        <CommentDialog
+          open={commentDialogOpen}
+          initialText={''}
+          onClose={() => {
+            setCommentDialogOpen(false);
+            setPendingAnchor(null);
+          }}
+          onSave={handleSaveComment}
+        />
         </div>
         <DragOverlay zIndex={1000} className={DESIGNER_CLASSNAME + "dragoverlay-auto"}>
           {activeDragData ? (

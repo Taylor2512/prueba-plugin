@@ -181,6 +181,8 @@ export interface CanvasProps {
   useDefaultStyles?: boolean;
   components?: CanvasComponentSlots;
   bridge?: DesignerComponentBridge;
+  topLevelComments?: Array<{ anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
+  activeDocumentId?: string | null;
   canvasActions?: {
     addPageAfter?: () => void;
     uploadPdf?: () => void;
@@ -211,6 +213,8 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     useDefaultStyles = true,
     components,
     bridge,
+    topLevelComments = [],
+    activeDocumentId = null,
     canvasActions,
     selectionCommands,
     onInteractionStateChange,
@@ -747,14 +751,21 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
       onCreateComment: () => {
         try {
           if (typeof window === 'undefined' || !contextMenu) return;
-          const detail = { x: contextMenu.x, y: contextMenu.y, page: pageCursor };
+          const detail = {
+            x: contextMenu.x,
+            y: contextMenu.y,
+            page: pageCursor,
+            pageNumber: pageCursor + 1,
+            fileId: activeDocumentId || null,
+            targetIds: contextMenu.targetIds,
+          };
           window.dispatchEvent(new CustomEvent('sisad-pdfme:create-comment', { detail }));
         } finally {
           closeContextMenu();
         }
       },
     }),
-    [bridge, canvasActions?.addPageAfter, canvasActions?.uploadPdf, handleInsertField, handlePaste, selectionCommands, contextMenu, pageCursor, closeContextMenu],
+    [activeDocumentId, bridge, canvasActions?.addPageAfter, canvasActions?.uploadPdf, handleInsertField, handlePaste, selectionCommands, contextMenu, pageCursor, closeContextMenu],
   );
   const hasClipboardData = typeof navigator !== 'undefined' && Boolean(navigator.clipboard?.readText);
   const contextMenuSelectionSchemas = useMemo(() => {
@@ -1068,8 +1079,10 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
       <CanvasOverlayManager
         activeElements={activeElements}
         schemasList={renderedPageSchemasList}
+        topLevelComments={topLevelComments}
         pageCursor={pageCursor}
         pageSize={pageSizes[pageCursor] ?? { width: 0, height: 0 }}
+        paperRefs={paperRefs}
         scale={scale}
         snapLines={snapLines}
         SnapLinesSlot={SnapLinesSlot}
@@ -1095,6 +1108,7 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
         activeReadOnly={contextMenuSelectionReadOnly}
         activeRequired={contextMenuSelectionRequired}
         activeHidden={contextMenuSelectionHidden}
+        canEditStructure={selectionCommands?.canEditStructure !== false}
         onClose={closeContextMenu}
       />
     </div>

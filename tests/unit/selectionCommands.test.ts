@@ -1,6 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import { createSelectionCommands } from '../../src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.js';
+import { buildCanvasContextMenuGroups } from '../../src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.js';
 
 describe('selectionCommands inline edit bridge', () => {
   const schema = {
@@ -10,7 +11,7 @@ describe('selectionCommands inline edit bridge', () => {
     content: 'Texto inicial',
   } as SchemaForUI;
 
-  const createContext = () => {
+  const createContext = (overrides: Partial<Parameters<typeof createSelectionCommands>[0]> = {}) => {
     const activeElement = document.createElement('div');
     activeElement.id = schema.id;
 
@@ -38,7 +39,9 @@ describe('selectionCommands inline edit bridge', () => {
         ownerRecipientName: 'Ventas Ejecutivas',
         ownerColor: '#2563EB',
         userColor: '#2563EB',
+        canEditStructure: true,
       },
+      ...overrides,
     });
 
     return { commands, requestInlineEdit, changeSchemas, commitSchemas, removeSchemas, onOpenProperties };
@@ -83,5 +86,68 @@ describe('selectionCommands inline edit bridge', () => {
     expect(clone.userColor).toBe('#2563EB');
     expect(clone.state).toBe('draft');
     expect(clone.lock).toBeUndefined();
+  });
+
+  it('keeps reviewers in view/comment mode without structural edit commands', () => {
+    const { commands, changeSchemas, commitSchemas, removeSchemas, requestInlineEdit } = createContext({
+      collaborationContext: {
+        fileId: 'file-1',
+        actorId: 'reviewer-1',
+        ownerRecipientId: 'reviewer-1',
+        ownerRecipientIds: ['reviewer-1'],
+        ownerRecipientName: 'Revisor',
+        ownerColor: '#7C3AED',
+        userColor: '#7C3AED',
+        canEditStructure: false,
+      },
+    });
+
+    commands.duplicateSelection();
+    commands.deleteSelection();
+    commands.toggleReadOnly();
+    commands.toggleRequired();
+    commands.toggleHidden?.();
+    commands.bringForward();
+    commands.sendBackward();
+    commands.alignSelection('left');
+    commands.distributeSelection('horizontal');
+    commands.renameLabel?.();
+    commands.editTextInline?.();
+
+    expect(commands.canEditStructure).toBe(false);
+    expect(commitSchemas).not.toHaveBeenCalled();
+    expect(changeSchemas).not.toHaveBeenCalled();
+    expect(removeSchemas).not.toHaveBeenCalled();
+    expect(requestInlineEdit).not.toHaveBeenCalled();
+  });
+
+  it('disables structural canvas actions for reviewers while keeping add-comment available', () => {
+    const { commands } = createContext({
+      collaborationContext: {
+        fileId: 'file-1',
+        actorId: 'reviewer-1',
+        ownerRecipientId: 'reviewer-1',
+        ownerRecipientIds: ['reviewer-1'],
+        ownerRecipientName: 'Revisor',
+        ownerColor: '#7C3AED',
+        userColor: '#7C3AED',
+        canEditStructure: false,
+      },
+    });
+
+    const groups = buildCanvasContextMenuGroups({
+      mode: 'single',
+      commands,
+      canEditStructure: commands.canEditStructure,
+      externalActions: {
+        onCreateComment: vi.fn(),
+      },
+    });
+
+    const mainGroup = groups.find((group) => group.id === 'single-main');
+    expect(mainGroup).toBeDefined();
+    expect(mainGroup?.items.find((item) => item.id === 'add-comment')?.disabled).toBe(false);
+    expect(mainGroup?.items.find((item) => item.id === 'duplicate')?.disabled).toBe(true);
+    expect(mainGroup?.items.find((item) => item.id === 'delete')?.disabled).toBe(true);
   });
 });

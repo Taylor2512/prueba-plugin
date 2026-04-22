@@ -24,7 +24,11 @@ import {
 import type { SelectionCommandSet } from './components/Designer/shared/selectionCommands.js';
 import { RULER_HEIGHT } from './constants.js';
 import { DEFAULT_SCHEMA_CONFIG_STORAGE_KEY } from './designerEngine.js';
-import { applySchemaCollaborativeDefaults, type SchemaCreationContext } from './designerEngine.js';
+import {
+  applySchemaCollaborativeDefaults,
+  createSchemaCreationContext,
+  type SchemaCreationContext,
+} from './designerEngine.js';
 
 export function usePrevious<T>(value: T) {
   const [previous, setPrevious] = useState<T | null>(null);
@@ -290,6 +294,7 @@ export const useInitEvents = ({
   collaborationContext,
 }: UseInitEventsParams & { selectionCommands?: SelectionCommandSet }) => {
   const copiedSchemas = useRef<SchemaForUI[] | null>(null);
+  const canEditStructure = selectionCommands?.canEditStructure !== false;
 
   const initEvents = useCallback(() => {
     const getActiveSchemas = () => {
@@ -308,6 +313,7 @@ export const useInitEvents = ({
     };
     initShortCuts({
       move: (command, isShift) => {
+        if (!canEditStructure) return;
         const pageSize = pageSizes[pageCursor];
         const activeSchemas = getActiveSchemas();
         const arg = moveCommandToChangeSchemasArg({ command, activeSchemas, pageSize, isShift });
@@ -320,6 +326,7 @@ export const useInitEvents = ({
         copiedSchemas.current = activeSchemas;
       },
       paste: () => {
+        if (!canEditStructure) return;
         if (!copiedSchemas.current || copiedSchemas.current.length === 0) return;
         const schema = schemasList[pageCursor];
         const stackUniqueSchemaNames: string[] = [];
@@ -344,19 +351,21 @@ export const useInitEvents = ({
           });
           const nextCollaborative = applySchemaCollaborativeDefaults(
             cloned,
-            {
+            createSchemaCreationContext({
               pageIndex: pageCursor,
               pageNumber: pageCursor + 1,
               totalPages: schemasList.length,
-              timestamp: Date.now(),
               fileId: collaborationContext?.fileId || null,
-              actorId: collaborationContext?.actorId || null,
-              ownerRecipientId: collaborationContext?.ownerRecipientId || null,
-              ownerRecipientIds: collaborationContext?.ownerRecipientIds,
-              ownerRecipientName: collaborationContext?.ownerRecipientName || null,
-              ownerColor: collaborationContext?.ownerColor || null,
-              userColor: collaborationContext?.userColor || null,
-            },
+              timestamp: Date.now(),
+              collaboration: {
+                actorId: collaborationContext?.actorId || null,
+                ownerRecipientId: collaborationContext?.ownerRecipientId || null,
+                ownerRecipientIds: collaborationContext?.ownerRecipientIds,
+                ownerRecipientName: collaborationContext?.ownerRecipientName || null,
+                ownerColor: collaborationContext?.ownerColor || null,
+                userColor: collaborationContext?.userColor || null,
+              },
+            }),
           );
           Object.assign(cloned, nextCollaborative, { state: 'draft', lock: undefined });
           const designerConfig = cloned?.[DEFAULT_SCHEMA_CONFIG_STORAGE_KEY];
@@ -381,7 +390,12 @@ export const useInitEvents = ({
       undo: () => timeTravel('undo'),
       save: () =>
         onSaveTemplate && onSaveTemplate(schemasList2template(schemasList, template.basePdf)),
-      remove: () => (selectionCommands?.deleteSelection ? selectionCommands.deleteSelection() : removeSchemas(getActiveSchemas().map((s) => s.id))),
+      remove: () => {
+        if (!canEditStructure) return;
+        return selectionCommands?.deleteSelection
+          ? selectionCommands.deleteSelection()
+          : removeSchemas(getActiveSchemas().map((s) => s.id));
+      },
       esc: onEditEnd,
       selectAll: () =>
         onEdit(
@@ -408,6 +422,7 @@ export const useInitEvents = ({
     onEdit,
     onEditEnd,
     selectionCommands,
+    canEditStructure,
     collaborationContext,
   ]);
 

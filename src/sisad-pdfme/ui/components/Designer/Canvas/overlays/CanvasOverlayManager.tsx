@@ -20,8 +20,10 @@ export type SnapLinesSlot = React.ComponentType<{
 type CanvasOverlayManagerProps = {
   activeElements: HTMLElement[];
   schemasList: SchemaForUI[][];
+  topLevelComments?: Array<{ anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
   pageCursor: number;
   pageSize: Size;
+  paperRefs: React.MutableRefObject<HTMLDivElement[]>;
   scale?: number;
   snapLines: SnapLine[];
   SnapLinesSlot: SnapLinesSlot;
@@ -40,8 +42,10 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
   const {
     activeElements,
     schemasList,
+    topLevelComments = [],
     pageCursor,
     pageSize,
+    paperRefs,
     snapLines,
     SnapLinesSlot,
     selectionCommands,
@@ -92,7 +96,13 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
         <SnapLinesSlot lines={snapLines} />
       ) : null}
       {/* Comments overlay (pins, click handlers) */}
-      <CommentsOverlay schemas={schemasList[pageCursor] || []} scale={props.scale || 1} pageIndex={pageCursor} />
+      <CommentsOverlay
+        schemas={schemasList[pageCursor] || []}
+        topLevelComments={topLevelComments}
+        scale={props.scale || 1}
+        pageCursor={pageCursor}
+        paperRefs={paperRefs}
+      />
     </div>
   );
 };
