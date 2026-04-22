@@ -56,7 +56,8 @@
   "include": [
     "src",
     "tests",
-    "vite.config.*"
+    "vite.config.*",
+    "playwright.config.ts"
   ],
   "exclude": [
     "dist",

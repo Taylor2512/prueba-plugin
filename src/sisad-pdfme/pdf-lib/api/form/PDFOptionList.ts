@@ -49,7 +49,7 @@ export default class PDFOptionList extends PDFField {
     new PDFOptionList(acroListBox, ref, doc);
 
   /** The low-level PDFAcroListBox wrapped by this option list. */
-  readonly acroField: PDFAcroListBox;
+  declare readonly acroField: PDFAcroListBox;
 
   private constructor(acroListBox: PDFAcroListBox, ref: PDFRef, doc: PDFDocument) {
     super(acroListBox, ref, doc);

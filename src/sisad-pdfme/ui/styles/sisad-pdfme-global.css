@@ -3620,6 +3620,87 @@ body {
   transform: translateY(-0.5px);
 }
 
+.sisad-pdfme-designer-compact-config-panel {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.625rem;
+  border: 1px solid var(--color-border-12);
+  border-radius: 0.75rem;
+  background: linear-gradient(180deg, var(--color-white), var(--color-gray-50));
+  box-shadow: 0 1px 3px var(--color-gray-900-04);
+}
+
+.sisad-pdfme-designer-compact-config-panel-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.sisad-pdfme-designer-compact-config-panel-copy {
+  min-width: 0;
+}
+
+.sisad-pdfme-designer-compact-config-panel-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--color-gray-900);
+}
+
+.sisad-pdfme-designer-compact-config-panel-description {
+  margin-top: 0.1875rem;
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--color-gray-500);
+}
+
+.sisad-pdfme-designer-compact-config-panel-tags {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.25rem;
+}
+
+.sisad-pdfme-designer-compact-config-panel-summary {
+  padding: 0.5rem 0.625rem;
+  border: 1px solid var(--color-border-12);
+  border-radius: 0.625rem;
+  background: var(--color-white);
+}
+
+.sisad-pdfme-designer-compact-config-panel-summary-text {
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: var(--color-gray-700);
+}
+
+.sisad-pdfme-designer-compact-config-panel-actions {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.sisad-pdfme-designer-compact-config-panel-actions > * {
+  min-width: 0;
+}
+
+.sisad-pdfme-designer-compact-config-panel-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.sisad-pdfme-designer-compact-config-panel-footer-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.375rem;
+  flex-wrap: wrap;
+}
+
 /* ── Section cards — staggered animation ────────────────────────── */
 
 .sisad-pdfme-designer-detail-view-sections {
@@ -3861,53 +3942,70 @@ body {
 
 .sisad-pdfme-designer-color-picker-container {
   display: flex;
-  align-items: center;
-  gap: 0.3125rem;
+  align-items: stretch;
+  gap: 0.375rem;
   width: 100%;
+  min-width: 0;
 }
 
-/* Color swatch button */
-.sisad-pdfme-designer-color-picker-container > .sisad-pdfme-designer-button-auto {
+.sisad-pdfme-designer-color-picker-trigger {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.25rem;
   flex-shrink: 0;
-  width: 1.75rem;
-  height: 1.75rem;
-  min-width: 1.75rem;
+  width: 2rem;
+  height: 2rem;
+  min-width: 2rem;
   border-radius: var(--radius-md);
-  border: 2px solid var(--color-border-30);
+  border: 1px solid var(--color-border-20);
+  background: linear-gradient(180deg, var(--color-white), var(--color-gray-50));
+  color: var(--color-gray-700);
   padding: 0;
   cursor: pointer;
   transition:
     border-color var(--transition-fast),
-    transform var(--transition-fast),
+    background var(--transition-fast),
     box-shadow var(--transition-fast);
-  will-change: transform;
 }
 
-.sisad-pdfme-designer-color-picker-container > .sisad-pdfme-designer-button-auto:hover {
+.sisad-pdfme-designer-color-picker-trigger:hover {
+  border-color: var(--color-primary-30);
+  background: linear-gradient(180deg, var(--color-primary-04), var(--color-white));
+  box-shadow: 0 2px 8px var(--color-gray-900-10);
+}
+
+.sisad-pdfme-designer-color-picker-trigger:focus-within,
+.sisad-pdfme-designer-color-picker-trigger:focus-visible {
+  outline: none;
   border-color: var(--color-primary-40);
-  transform: scale(1.08);
-  box-shadow: 0 2px 8px var(--color-gray-900-16);
+  box-shadow: 0 0 0 2px var(--color-primary-10);
 }
 
-.sisad-pdfme-designer-color-picker-container > .sisad-pdfme-designer-button-auto:active {
-  transform: scale(0.96);
+.sisad-pdfme-designer-color-picker-preview {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-20);
+  box-shadow: inset 0 0 0 1px var(--color-white-70);
 }
 
-/* Hidden native color input */
 .sisad-pdfme-designer-color-picker-input {
   position: absolute;
-  width: 1px;
-  height: 1px;
+  inset: 0;
+  width: 100%;
+  height: 100%;
   opacity: 0;
-  pointer-events: none;
+  cursor: pointer;
 }
 
-/* Hex text input */
 .sisad-pdfme-designer-color-picker-hex {
   flex: 1;
   min-width: 0;
+  height: 2rem;
   font-family: var(--font-family-mono);
-  font-size: 0.6875rem;
+  font-size: 0.75rem;
   letter-spacing: 0.02em;
   transition:
     border-color var(--transition-fast),
@@ -3915,6 +4013,37 @@ body {
 }
 
 .sisad-pdfme-designer-color-picker-hex:focus {
+  outline: none;
+  border-color: var(--color-primary-40);
+  box-shadow: 0 0 0 2px var(--color-primary-10);
+}
+
+.sisad-pdfme-designer-color-picker-swatches {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.375rem;
+}
+
+.sisad-pdfme-designer-color-picker-swatch-option {
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border-20);
+  padding: 0;
+  cursor: pointer;
+  transition:
+    transform var(--transition-fast),
+    box-shadow var(--transition-fast),
+    border-color var(--transition-fast);
+}
+
+.sisad-pdfme-designer-color-picker-swatch-option:hover {
+  transform: translateY(-1px);
+  border-color: var(--color-primary-30);
+  box-shadow: 0 2px 8px var(--color-gray-900-12);
+}
+
+.sisad-pdfme-designer-color-picker-swatch-option:focus-visible {
   outline: none;
   border-color: var(--color-primary-40);
   box-shadow: 0 0 0 2px var(--color-primary-10);
@@ -4203,6 +4332,7 @@ body {
   .sisad-pdfme-designer-detail-section-card,
   .sisad-pdfme-designer-detail-section-card-body[data-collapsed="false"],
   .sisad-pdfme-designer-schema-config-widget,
+  .sisad-pdfme-designer-compact-config-panel,
   .sisad-pdfme-designer-right-sidebar-layout-header,
   .sisad-pdfme-designer-schema-config-section-state[data-active="true"] {
     animation: none;
@@ -4216,5 +4346,11 @@ body {
   .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"]:hover,
   .sisad-pdfme-designer-list-view-item:hover {
     transform: none;
+  }
+}
+
+@media (max-width: 960px) {
+  .sisad-pdfme-designer-compact-config-panel-actions {
+    grid-template-columns: 1fr;
   }
 }

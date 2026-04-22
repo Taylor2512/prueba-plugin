@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react';
 import { getCustomSchemaDefinitions, subscribeCustomSchemaDefinitions } from './schemaRegistry.js';
-import type { CatalogCapability, CatalogQuickFilter, CatalogViewMode, LeftSidebarTab } from './LeftSidebar.js';
+import type { CatalogCapability, CatalogQuickFilter, CatalogViewMode } from './LeftSidebar.js';
+import type { LeftSidebarTab } from './LeftSidebarTabs.js';
 import type { RuntimeCustomSchemaDefinition } from './LeftSidebarCustomPanel.js';
 import type { CustomFieldDef } from './LeftSidebarCustomFieldModal.js';
 
@@ -16,9 +17,17 @@ const makeDefaultCustomField = (): CustomFieldDef => ({
   font: '__DEFAULT__',
   fontColor: '__DEFAULT__',
   fontSize: '__DEFAULT__',
-  backgroundColor: '__DEFAULT__',
-  align: 'left',
-  verticalAlign: 'middle',
+  bold: false,
+  italic: false,
+  underline: false,
+  fixedWidth: false,
+  maskAsterisks: false,
+  width: '',
+  height: '',
+  maxChars: '',
+  validation: 'None',
+  helpText: '',
+  autoPlaceText: '',
 });
 
 type UseLeftSidebarCatalogStateArgs = {

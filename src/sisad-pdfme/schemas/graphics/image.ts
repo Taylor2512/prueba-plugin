@@ -14,6 +14,7 @@ import {
 } from '../utils.js';
 import { DEFAULT_OPACITY } from '../constants.js';
 import { getImageDimension } from './imagehelper.js';
+import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 
 const getCacheKey = (schema: Schema, input: string) => `${schema.type}${input}`;
 const fullSize = { width: '100%', height: '100%' };
@@ -185,6 +186,7 @@ const imageSchema: Plugin<ImageSchema> = {
   },
   propPanel: {
     schema: {},
+    inspector: createSchemaInspectorConfig('media'),
     defaultSchema: {
       name: '',
       type: 'image',

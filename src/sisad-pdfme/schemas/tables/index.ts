@@ -4,13 +4,13 @@ import { pdfRender } from './pdfRender.js';
 import { uiRender } from './uiRender.js';
 import { propPanel } from './propPanel.js';
 import { Table } from 'lucide-react';
-import { createSchemaPlugin, createLucideIcon } from '../schemaBuilder.js';
+import { createSchemaPlugin, renderLucideIcon } from '../schemaBuilder.js';
 
 const tableSchema: Plugin<TableSchema> = createSchemaPlugin<TableSchema>({
   pdf: pdfRender,
   ui: uiRender,
   propPanel,
-  icon: createLucideIcon(Table),
+  icon: renderLucideIcon(Table),
 }, {
   key: 'table',
   type: 'table',

@@ -49,7 +49,7 @@ export default class PDFDropdown extends PDFField {
     new PDFDropdown(acroComboBox, ref, doc);
 
   /** The low-level PDFAcroComboBox wrapped by this dropdown. */
-  readonly acroField: PDFAcroComboBox;
+  declare readonly acroField: PDFAcroComboBox;
 
   private constructor(acroComboBox: PDFAcroComboBox, ref: PDFRef, doc: PDFDocument) {
     super(acroComboBox, ref, doc);

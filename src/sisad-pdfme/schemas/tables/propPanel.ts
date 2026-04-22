@@ -7,6 +7,7 @@ import {
   getColumnStylesPropPanelSchema,
 } from './helper.js';
 import { HEX_COLOR_PATTERN } from '../constants.js';
+import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 
 export const propPanel: PropPanel<TableSchema> = {
   schema: ({ activeSchema, options, i18n }) => {
@@ -79,6 +80,16 @@ export const propPanel: PropPanel<TableSchema> = {
       },
     };
   },
+  inspector: createSchemaInspectorConfig('table', {
+    propertyMap: {
+      showHead: 'data',
+      repeatHead: 'data',
+      tableStyles: 'style',
+      headStyles: 'style',
+      bodyStyles: 'style',
+      columnStyles: 'style',
+    },
+  }),
   defaultSchema: {
     name: '',
     type: 'table',

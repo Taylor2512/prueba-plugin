@@ -1,5 +1,5 @@
 import React from 'react';
-import { isBlankPdf, replacePlaceholders, Template } from '@sisad-pdfme/common';
+import { isBlankPdf, replacePlaceholders, Template, type SchemaForUI } from '@sisad-pdfme/common';
 import Renderer from './Renderer.js';
 
 const StaticSchema = (props: {
@@ -17,16 +17,19 @@ const StaticSchema = (props: {
     currentPage,
   } = props;
   if (!isBlankPdf(basePdf) || !basePdf.staticSchema) return null;
-  const staticSchemaEntries = basePdf.staticSchema.map((schema, index) => ({
-    ...schema,
-    id: schema.id || `static-schema-${index}-${schema.name || schema.type || 'field'}`,
-  }));
+  const staticSchemaEntries = basePdf.staticSchema.map((schema, index) => {
+    const nextSchema = schema as SchemaForUI & { id?: string };
+    return {
+      ...nextSchema,
+      id: nextSchema.id || `static-schema-${index}-${nextSchema.name || nextSchema.type || 'field'}`,
+    };
+  }) as SchemaForUI[];
   return (
     <>
       {staticSchemaEntries.map((schema) => (
         <Renderer
-          key={schema.id}
-          schema={schema}
+          key={String(schema.id)}
+          schema={schema as any}
           basePdf={basePdf}
           value={
             schema.readOnly

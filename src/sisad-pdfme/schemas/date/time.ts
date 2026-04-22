@@ -1,10 +1,10 @@
 import { getPlugin } from './helper.js';
 import { Clock } from 'lucide-react';
-import { createLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
+import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 
 const type = 'time';
 
-const icon = createLucideIcon(Clock);
+const icon = renderLucideIcon(Clock);
 
 export default createSchemaPlugin(getPlugin({ type, icon }), {
   key: 'time',

@@ -1,5 +1,5 @@
 import React from 'react';
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, within } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import SchemaCollaborationWidget, {
@@ -26,9 +26,25 @@ describe('SchemaCollaborationWidget helpers', () => {
 });
 
 describe('SchemaCollaborationWidget', () => {
+  const widgetShellProps = {
+    rootElement: document.createElement('div'),
+    activeElements: [] as HTMLElement[],
+    schemas: [] as never[],
+    options: {} as never,
+    theme: {} as never,
+    i18n: (key: string) => key,
+    value: '',
+    onChange: vi.fn(),
+    schema: {} as never,
+    style: {} as never,
+    id: 'schema-collaboration-widget',
+    addons: {} as never,
+  };
+
   it('keeps comment and anchor sections compact while exposing their counts', () => {
     render(
       <SchemaCollaborationWidget
+        {...widgetShellProps}
         activeSchema={{
           id: 'schema-1',
           name: 'Campo colaborativo',
@@ -67,26 +83,20 @@ describe('SchemaCollaborationWidget', () => {
         } as SchemaForUI}
         changeSchemas={vi.fn()}
         designerEngine={undefined}
-        rootElement={document.createElement('div')}
-        activeElements={[]}
-        schemas={[]}
-        options={{} as never}
-        theme={{} as never}
-        i18n={(key) => key}
-        value=""
-        onChange={vi.fn()}
       />,
     );
 
     expect(screen.getByText('Comentarios: 1')).toBeVisible();
     expect(screen.getByText('Anchors: 1')).toBeVisible();
-    expect(screen.getByRole('button', { name: /Comentarios 1/ })).toHaveAttribute('aria-expanded', 'false');
-    expect(screen.getByRole('button', { name: /Anchors 1/ })).toHaveAttribute('aria-expanded', 'false');
     expect(screen.queryByText('Revisar este campo')).toBeNull();
 
-    fireEvent.click(screen.getByRole('button', { name: /Comentarios 1/ }));
+    fireEvent.click(screen.getByRole('button', { name: 'Gestionar colaboración' }));
+    const dialog = screen.getByRole('dialog', { name: 'Configurar colaboración del campo' });
 
-    expect(screen.getByText('Revisar este campo')).toBeVisible();
+    const commentsToggle = within(dialog).getByRole('button', { name: /Comentarios 1/ });
+    expect(commentsToggle).toHaveAttribute('aria-expanded', 'false');
+    fireEvent.click(commentsToggle);
+    expect(within(dialog).getByText('Revisar este campo')).toBeInTheDocument();
   });
 
   it('writes file ids to both fileId and fileTemplateId and can create comments and anchors', () => {
@@ -94,6 +104,7 @@ describe('SchemaCollaborationWidget', () => {
 
     render(
       <SchemaCollaborationWidget
+        {...widgetShellProps}
         activeSchema={{
           id: 'schema-1',
           name: 'Campo colaborativo',
@@ -112,18 +123,13 @@ describe('SchemaCollaborationWidget', () => {
             ],
           },
         } as never}
-        rootElement={document.createElement('div')}
-        activeElements={[]}
-        schemas={[]}
-        options={{} as never}
-        theme={{} as never}
-        i18n={(key) => key}
-        value=""
-        onChange={vi.fn()}
       />,
     );
 
-    fireEvent.change(screen.getByPlaceholderText('file-01'), {
+    fireEvent.click(screen.getByRole('button', { name: 'Gestionar colaboración' }));
+    const dialog = screen.getByRole('dialog', { name: 'Configurar colaboración del campo' });
+
+    fireEvent.change(within(dialog).getByPlaceholderText('file-01'), {
       target: { value: 'file-3' },
     });
     expect(changeSchemas).toHaveBeenLastCalledWith([
@@ -131,7 +137,7 @@ describe('SchemaCollaborationWidget', () => {
       { key: 'fileTemplateId', value: 'file-3', schemaId: 'schema-1' },
     ]);
 
-    fireEvent.click(screen.getByRole('button', { name: 'Agregar comentario' }));
+    fireEvent.click(screen.getAllByRole('button', { name: 'Agregar comentario' })[0]);
     expect(changeSchemas).toHaveBeenLastCalledWith([
       expect.objectContaining({
         key: 'comments',
@@ -147,7 +153,7 @@ describe('SchemaCollaborationWidget', () => {
       expect.objectContaining({ key: 'commentsCount', value: 1, schemaId: 'schema-1' }),
     ]);
 
-    fireEvent.click(screen.getByRole('button', { name: 'Agregar anchor' }));
+    fireEvent.click(screen.getAllByRole('button', { name: 'Agregar anchor' })[0]);
     expect(changeSchemas).toHaveBeenLastCalledWith([
       expect.objectContaining({
         key: 'commentAnchors',
@@ -178,6 +184,7 @@ describe('SchemaCollaborationWidget', () => {
   it('renders resolved ownership state from collaboration context', () => {
     render(
       <SchemaCollaborationWidget
+        {...widgetShellProps}
         activeSchema={{
           id: 'schema-1',
           name: 'Campo colaborativo',
@@ -198,19 +205,13 @@ describe('SchemaCollaborationWidget', () => {
             ],
           },
         } as never}
-        rootElement={document.createElement('div')}
-        activeElements={[]}
-        schemas={[]}
-        options={{} as never}
-        theme={{} as never}
-        i18n={(key) => key}
-        value=""
-        onChange={vi.fn()}
       />,
     );
 
     expect(screen.getByText('Compartido')).toBeVisible();
-    expect(screen.getByText('Autor sales-user-1')).toBeVisible();
-    expect(screen.getByDisplayValue('Ventas Ejecutivas')).toBeVisible();
+    fireEvent.click(screen.getByRole('button', { name: 'Gestionar colaboración' }));
+    const dialog = screen.getByRole('dialog', { name: 'Configurar colaboración del campo' });
+    expect(within(dialog).getByText('Autor sales-user-1')).toBeInTheDocument();
+    expect(within(dialog).getByDisplayValue('Ventas Ejecutivas')).toBeInTheDocument();
   });
 });

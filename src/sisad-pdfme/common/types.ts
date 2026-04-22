@@ -1,6 +1,6 @@
 import { z } from 'zod';
 import type { PDFPage, PDFDocument } from '@sisad-pdfme/pdf-lib';
-import type { ThemeConfig, GlobalToken } from 'antd';
+import type { ThemeConfig, GlobalToken as AntGlobalToken } from 'antd';
 import type { WidgetProps as _PropPanelWidgetProps, Schema as _PropPanelSchema } from 'form-render';
 import {
   Lang,
@@ -123,6 +123,30 @@ type PropPanelProps = {
 
 export type PropPanelWidgetProps = _PropPanelWidgetProps & PropPanelProps;
 
+export type GlobalToken = AntGlobalToken;
+
+export type PropPanelInspectorSectionKey =
+  | 'general'
+  | 'layout'
+  | 'style'
+  | 'data'
+  | 'connections'
+  | 'collaboration'
+  | 'validation'
+  | 'advanced';
+
+export type PropPanelInspectorConfig = {
+  visibleSections?: PropPanelInspectorSectionKey[];
+  fieldSections?: Partial<Record<string, PropPanelInspectorSectionKey>>;
+  propertyMap?: Partial<Record<string, PropPanelInspectorSectionKey>>;
+  includeConnections?: boolean;
+  includeCollaboration?: boolean;
+  includeValidation?: boolean;
+  supportsConnections?: boolean;
+  supportsCollaboration?: boolean;
+  supportsValidation?: boolean;
+};
+
 /**
  * Used for customizing the property panel.
  * @template T - Type of the extended Schema object.
@@ -136,6 +160,7 @@ export interface PropPanel<T extends Schema> {
     | Record<string, PropPanelSchema>;
 
   widgets?: Record<string, (props: PropPanelWidgetProps) => void>;
+  inspector?: PropPanelInspectorConfig;
   defaultSchema: T;
 }
 

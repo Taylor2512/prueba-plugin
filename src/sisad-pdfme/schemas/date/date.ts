@@ -1,10 +1,10 @@
 import { getPlugin } from './helper.js';
 import { Calendar } from 'lucide-react';
-import { createLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
+import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 
 const type = 'date';
 
-const icon = createLucideIcon(Calendar);
+const icon = renderLucideIcon(Calendar);
 
 export default createSchemaPlugin(getPlugin({ type, icon }), {
   key: 'date',

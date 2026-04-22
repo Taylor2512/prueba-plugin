@@ -166,6 +166,7 @@ export const Schema = z
     comments: z.array(SchemaComment).optional(),
     commentAnchors: z.array(CommentAnchor).optional(),
     commentsAnchors: z.array(CommentAnchor).optional(),
+    collaboration: z.any().optional(),
     saveValue: z.boolean().optional(),
     name: z.string(),
     type: z.string(),

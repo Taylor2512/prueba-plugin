@@ -28,7 +28,7 @@ export default class PDFSignature extends PDFField {
     new PDFSignature(acroSignature, ref, doc);
 
   /** The low-level PDFAcroSignature wrapped by this signature. */
-  readonly acroField: PDFAcroSignature;
+  declare readonly acroField: PDFAcroSignature;
 
   private constructor(acroSignature: PDFAcroSignature, ref: PDFRef, doc: PDFDocument) {
     super(acroSignature, ref, doc);

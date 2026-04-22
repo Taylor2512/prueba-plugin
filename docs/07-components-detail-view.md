@@ -2,7 +2,7 @@
 
 ## Rol
 
-`DetailViewContent.tsx` es la pieza que materializa el inspector del schema seleccionado. Se apoya en `detailSchemas`, `detailWidgets`, `DetailHeaderCard`, `DetailSectionCard`, `DetailFormSection` y widgets especializados como `SchemaConnectionsWidget` y `SchemaCollaborationWidget`. El árbol del repo muestra esta estructura de forma muy clara. fileciteturn15file1turn19file12
+`DetailViewContent.tsx` es la pieza que materializa el inspector del schema seleccionado. Se apoya en `detailSchemas`, `detailWidgets`, `DetailHeaderCard`, `DetailSectionCard`, `DetailFormSection` y widgets especializados como `SchemaConnectionsWidget` y `SchemaCollaborationWidget`.
 
 ## Función arquitectónica
 
@@ -46,6 +46,12 @@ Las demás deberían quedar colapsadas, a menos que el usuario las haya abierto 
   onChangeSchemaConfig={updateSchemaConfig}
 />
 ```
+
+## Contrato declarativo actual
+
+- `src/sisad-pdfme/schemas/schemaFamilies.ts` es la fuente canónica de familias de schema para el inspector
+- cada plugin puede declarar `propPanel.inspector` con `visibleSections`, `propertyMap` y flags `supports*`
+- `detailSchemas.ts` mantiene compatibilidad con aliases legacy (`fieldSections`, `include*`) pero prioriza el contrato declarativo nuevo
 
 ## Qué documentar mejor
 

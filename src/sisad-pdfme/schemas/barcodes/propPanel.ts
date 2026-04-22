@@ -6,6 +6,7 @@ import {
   DEFAULT_BARCODE_INCLUDETEXT,
 } from './constants.js';
 import { DEFAULT_OPACITY, HEX_COLOR_PATTERN } from '../constants.js';
+import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 
 const defaultColors = {
   backgroundColor: DEFAULT_BARCODE_BG_COLOR,
@@ -243,6 +244,14 @@ export const getPropPanelByBarcodeType = (barcodeType: string): PropPanel<Barcod
             },
           }
         : {}),
+    }),
+    inspector: createSchemaInspectorConfig('barcode', {
+      propertyMap: {
+        barColor: 'style',
+        backgroundColor: 'style',
+        textColor: 'style',
+        includetext: 'data',
+      },
     }),
     ...defaults,
   };

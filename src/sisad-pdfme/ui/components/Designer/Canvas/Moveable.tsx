@@ -1,13 +1,9 @@
 import React, { useEffect, forwardRef, Ref, useId } from 'react';
-import MoveableComponent, {
-  OnDrag,
-  OnRotate,
-  OnRotateEnd,
-  OnClick,
-  OnResize,
-} from 'react-moveable';
+import MoveableComponent from 'react-moveable';
 import { theme } from 'antd';
 import { resolveFirstClassSelector } from '../shared/className.js';
+
+const MoveableElement = MoveableComponent as any;
 
 type Props = {
   target: HTMLElement[];
@@ -16,19 +12,19 @@ type Props = {
   verticalGuidelines: number[];
   keepRatio: boolean;
   rotatable: boolean;
-  onDrag: ({ target, left, top }: OnDrag) => void;
-  onDragEnd: ({ target }: { target: HTMLElement | SVGElement }) => void;
-  onDragGroupEnd: ({ targets }: { targets: (HTMLElement | SVGElement)[] }) => void;
-  onDragStart?: ({ target, left, top }: OnDrag) => void;
-  onRotate: ({ target, rotate }: OnRotate) => void;
-  onRotateStart?: ({ target, rotate }: OnRotate) => void;
-  onRotateEnd: ({ target }: OnRotateEnd) => void;
-  onRotateGroupEnd: ({ targets }: { targets: (HTMLElement | SVGElement)[] }) => void;
-  onResize: ({ target, width, height, direction }: OnResize) => void;
-  onResizeStart?: ({ target, width, height, direction }: OnResize) => void;
-  onResizeEnd: ({ target }: { target: HTMLElement | SVGElement }) => void;
-  onResizeGroupEnd: ({ targets }: { targets: (HTMLElement | SVGElement)[] }) => void;
-  onClick: (e: OnClick) => void;
+  onDrag: (e: any) => void;
+  onDragEnd: (e: any) => void;
+  onDragGroupEnd: (e: any) => void;
+  onDragStart?: (e: any) => void;
+  onRotate: (e: any) => void;
+  onRotateStart?: (e: any) => void;
+  onRotateEnd: (e: any) => void;
+  onRotateGroupEnd: (e: any) => void;
+  onResize: (e: any) => void;
+  onResizeStart?: (e: any) => void;
+  onResizeEnd: (e: any) => void;
+  onResizeGroupEnd: (e: any) => void;
+  onClick: (e: any) => void;
   className?: string;
   useDefaultStyles?: boolean;
   moveableColor?: string;
@@ -59,7 +55,7 @@ const Moveable = (props: Props, ref: Ref<MoveableComponent>) => {
   }, [props.moveableColor, props.target, props.useDefaultStyles, styleClassSelector, token.colorPrimary]);
 
   return (
-    <MoveableComponent
+    <MoveableElement
       className={resolvedClassName}
       rootContainer={typeof document === 'undefined' ? undefined : document.body}
       snappable
@@ -78,26 +74,26 @@ const Moveable = (props: Props, ref: Ref<MoveableComponent>) => {
       onRotate={props.onRotate}
       onRotateStart={props.onRotateStart}
       onRotateEnd={props.onRotateEnd}
-      onRotateGroupStart={({ events }: { events: OnRotate[] }) => {
+      onRotateGroupStart={({ events }: { events: any[] }) => {
         events.forEach((event) => props.onRotateStart?.(event));
       }}
-      onRotateGroup={({ events }: { events: OnRotate[] }) => {
+      onRotateGroup={({ events }: { events: any[] }) => {
         events.forEach(props.onRotate);
       }}
       onRotateGroupEnd={props.onRotateGroupEnd}
       onDrag={props.onDrag}
       onDragStart={props.onDragStart}
-      onDragGroupStart={({ events }: { events: OnDrag[] }) => {
+      onDragGroupStart={({ events }: { events: any[] }) => {
         events.forEach((event) => props.onDragStart?.(event));
       }}
-      onDragGroup={({ events }: { events: OnDrag[] }) => {
+      onDragGroup={({ events }: { events: any[] }) => {
         events.forEach(props.onDrag);
       }}
       onDragEnd={props.onDragEnd}
       onDragGroupEnd={props.onDragGroupEnd}
       onResize={props.onResize}
       onResizeStart={props.onResizeStart}
-      onResizeGroup={({ events }: { events: OnResize[] }) => {
+      onResizeGroup={({ events }: { events: any[] }) => {
         events.forEach(props.onResize);
       }}
       onResizeEnd={props.onResizeEnd}

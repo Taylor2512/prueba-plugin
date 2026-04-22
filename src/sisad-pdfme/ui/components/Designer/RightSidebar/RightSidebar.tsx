@@ -2,6 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import type {
   SidebarProps,
   DesignerComponentBridge,
+  DesignerCommentsBridge,
   DesignerDocumentsBridge,
   DesignerSidebarPresentation,
 } from '../../../types.js';
@@ -10,9 +11,10 @@ import ListView from './ListView/ListView.js';
 import DetailView from './DetailView/DetailView.js';
 import { SidebarFrame } from './layout.js';
 import DocumentsRail, { DocumentsRailProps } from './DocumentsRail.js';
+import CommentsRail, { CommentsRailProps } from './CommentsRail.js';
 import { mergeClassNames } from '../shared/className.js';
 import type { SelectionCommandSet } from '../shared/selectionCommands.js';
-import { Layers, SlidersHorizontal, FileText } from 'lucide-react';
+import { Layers, SlidersHorizontal, FileText, MessageSquareText } from 'lucide-react';
 import {
   resolveRightSidebarContextHeader,
   type RightSidebarContextHeader,
@@ -46,18 +48,20 @@ export type RightSidebarProps = SidebarProps & {
   bridge?: DesignerComponentBridge;
   documents?: DesignerDocumentsBridge;
   pages?: DesignerDocumentsBridge;
+  comments?: DesignerCommentsBridge;
   showDocumentsRail?: boolean;
-  viewMode?: 'auto' | 'fields' | 'detail' | 'docs';
+  viewMode?: 'auto' | 'fields' | 'detail' | 'docs' | 'comments';
   autoFocusDetail?: boolean;
   showDocumentsAsTab?: boolean;
   documentsAccessMode?: 'always' | 'tab';
-  onViewModeChange?: (_mode: 'fields' | 'detail' | 'docs') => void;
+  onViewModeChange?: (_mode: 'fields' | 'detail' | 'docs' | 'comments') => void;
   contextHeader?: RightSidebarContextHeader;
   selectionCommands?: SelectionCommandSet;
   components?: {
     listView?: typeof ListView;
     detailView?: typeof DetailView;
     documentsRail?: React.ComponentType<DocumentsRailProps>;
+    commentsView?: React.ComponentType<CommentsRailProps>;
   };
 };
 
@@ -75,7 +79,7 @@ type SidebarModeMeta = {
   ariaLabel: string;
 };
 
-const sidebarModeMeta: Record<'fields' | 'detail' | 'docs', SidebarModeMeta> = {
+const sidebarModeMeta: Record<'fields' | 'detail' | 'docs' | 'comments', SidebarModeMeta> = {
   fields: {
     shortLabel: 'Campos',
     icon: <Layers size={14} />,
@@ -94,9 +98,15 @@ const sidebarModeMeta: Record<'fields' | 'detail' | 'docs', SidebarModeMeta> = {
     title: 'Documentos y páginas',
     ariaLabel: 'Abrir panel Docs',
   },
+  comments: {
+    shortLabel: 'Comentarios',
+    icon: <MessageSquareText size={14} />,
+    title: 'Comentarios del documento',
+    ariaLabel: 'Abrir panel Comentarios',
+  },
 };
 
-const sidebarModes = ['fields', 'detail', 'docs'] as const;
+const sidebarModes = ['fields', 'detail', 'comments', 'docs'] as const;
 
 const Sidebar = (props: RightSidebarProps) => {
   const { sidebarOpen, activeElements, schemas } = props;
@@ -110,6 +120,7 @@ const Sidebar = (props: RightSidebarProps) => {
         : 1280;
   const responsiveBreakpoint = Math.max(640, props.responsiveBreakpoint ?? 1080);
   const DocumentsRailComponent = props.components?.documentsRail || DocumentsRail;
+  const CommentsViewComponent = props.components?.commentsView || CommentsRail;
   const ListViewComponent = props.components?.listView || ListView;
   const DetailViewComponent = props.components?.detailView || DetailView;
   const activeSchemaIdSet = useMemo(() => new Set(activeElements.map((ae) => ae.id)), [activeElements]);
@@ -125,9 +136,10 @@ const Sidebar = (props: RightSidebarProps) => {
   };
   const hasActiveSchema = activeSchemas.length > 0;
   const activeSchemaCount = activeSchemas.length;
-  const [internalViewMode, setInternalViewMode] = useState<'fields' | 'detail' | 'docs'>('fields');
+  const [internalViewMode, setInternalViewMode] = useState<'fields' | 'detail' | 'docs' | 'comments'>('fields');
   const requestedViewMode = props.viewMode || 'auto';
   const showDocumentsRail = props.showDocumentsRail !== false && (Boolean(props.pages) || Boolean(props.documents));
+  const showCommentsRail = Boolean(props.comments);
   const actualPresentation = useMemo<DesignerSidebarPresentation>(() => {
     if (props.presentation === 'overlay') return 'overlay';
     if (props.presentation === 'docked') return 'docked';
@@ -138,18 +150,20 @@ const Sidebar = (props: RightSidebarProps) => {
     if (props.documentsRailMode === 'stacked') return 'stacked';
     return viewportWidth <= responsiveBreakpoint + 140 ? 'stacked' : 'split';
   }, [props.documentsRailMode, responsiveBreakpoint, viewportWidth]);
-  const resolvedViewMode: 'fields' | 'detail' | 'docs' =
+  const resolvedViewMode: 'fields' | 'detail' | 'docs' | 'comments' =
     requestedViewMode !== 'auto' ? requestedViewMode : internalViewMode;
   const pagesBridge = props.pages || props.documents;
   const docsBridge = props.documents;
-  const panelIdByMode: Record<'fields' | 'detail' | 'docs', string> = {
+  const panelIdByMode: Record<'fields' | 'detail' | 'docs' | 'comments', string> = {
     fields: 'sisad-pdfme-right-sidebar-panel-fields',
     detail: 'sisad-pdfme-right-sidebar-panel-detail',
+    comments: 'sisad-pdfme-right-sidebar-panel-comments',
     docs: 'sisad-pdfme-right-sidebar-panel-docs',
   };
-  const tabIdByMode: Record<'fields' | 'detail' | 'docs', string> = {
+  const tabIdByMode: Record<'fields' | 'detail' | 'docs' | 'comments', string> = {
     fields: 'sisad-pdfme-right-sidebar-tab-fields',
     detail: 'sisad-pdfme-right-sidebar-tab-detail',
+    comments: 'sisad-pdfme-right-sidebar-tab-comments',
     docs: 'sisad-pdfme-right-sidebar-tab-docs',
   };
 
@@ -166,11 +180,18 @@ const Sidebar = (props: RightSidebarProps) => {
       setInternalViewMode('fields');
       props.onViewModeChange?.('fields');
     }
-  }, [requestedViewMode, activeSchemaCount, props.autoFocusDetail, internalViewMode, props]);
 
-  const resolvedPanelMode: 'list' | 'detail' | 'bulk' | 'docs' =
+    if (!showCommentsRail && internalViewMode === 'comments') {
+      setInternalViewMode('fields');
+      props.onViewModeChange?.('fields');
+    }
+  }, [requestedViewMode, activeSchemaCount, props.autoFocusDetail, internalViewMode, props, showCommentsRail]);
+
+  const resolvedPanelMode: 'list' | 'detail' | 'bulk' | 'docs' | 'comments' =
     resolvedViewMode === 'docs'
       ? 'docs'
+      : resolvedViewMode === 'comments'
+        ? 'comments'
       : activeSchemaCount > 1
         ? 'bulk'
         : activeSchemaCount === 1 && resolvedViewMode === 'detail'
@@ -218,7 +239,14 @@ const Sidebar = (props: RightSidebarProps) => {
     props.onViewModeChange?.(nextMode);
   };
 
-  const contentNode = resolvedPanelMode === 'docs' ? (
+  const contentNode = resolvedPanelMode === 'comments' ? (
+    <CommentsViewComponent
+      items={props.comments?.items || []}
+      onAdd={props.comments?.onAdd}
+      title={props.comments?.title}
+      emptyTitle={props.comments?.emptyTitle}
+    />
+  ) : resolvedPanelMode === 'docs' ? (
     docsBridge || pagesBridge ? (
       <DocumentsRailComponent
         items={(docsBridge?.items || pagesBridge?.items) || []}
@@ -297,8 +325,9 @@ const Sidebar = (props: RightSidebarProps) => {
                 aria-orientation="horizontal"
                 onKeyDown={handlePanelSwitcherKeyDown}
               >
-                {(['fields', 'detail', 'docs'] as const).map((mode) => {
+                {(['fields', 'detail', 'comments', 'docs'] as const).map((mode) => {
                   if (mode === 'docs' && !showDocumentsRail) return null;
+                  if (mode === 'comments' && !showCommentsRail) return null;
                   const disabled = mode === 'detail' && activeSchemaCount !== 1;
                   const isActive = resolvedViewMode === mode;
                   const modeMeta = sidebarModeMeta[mode];

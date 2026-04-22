@@ -1,7 +1,7 @@
 # Documentación Markdown Unificada
 
 **Carpeta origen:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin`  
-**Fecha de generación:** `2026-04-21T21:58:05.408Z`  
+**Fecha de generación:** `2026-04-22T16:10:19.894Z`  
 **Total de archivos incluidos:** `254`  
 **Extensiones incluidas:** `.md`
 
@@ -1074,7 +1074,7 @@ La acción “Propiedades” debe considerarse un puente hacia `RightSidebar`, n
 - **Ruta relativa:** `docs/05-components-right-sidebar.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/05-components-right-sidebar.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `56`
+- **Líneas aproximadas:** `65`
 
 ### Contenido original
 
@@ -1082,7 +1082,7 @@ La acción “Propiedades” debe considerarse un puente hacia `RightSidebar`, n
 
 ## Propósito
 
-`RightSidebar.tsx` es el contenedor principal del panel derecho del editor. Su estructura actual ya incluye varias vistas: listado de campos, inspector detallado y rail de documentos. El árbol de componentes confirma que existe una jerarquía completa para `RightSidebar`, `DetailView`, `ListView`, `DocumentsRail` y layouts específicos. fileciteturn19file12turn19file7
+`RightSidebar.tsx` es el contenedor principal del panel derecho del editor. Su estructura actual ya incluye varias vistas: listado de campos, inspector detallado, comentarios y rail de documentos.
 
 ## Responsabilidades
 
@@ -1090,16 +1090,25 @@ La acción “Propiedades” debe considerarse un puente hacia `RightSidebar`, n
 - decidir qué vista renderizar:
   - outline/listado
   - detalle
+  - comentarios
   - documentos
 - transmitir contexto de selección
 - mantener consistencia visual del inspector
+- reutilizar bridges de runtime sin duplicar estado del canvas
 
 ## Dependencias cercanas
 
 - `layout.tsx`
 - `DetailView/*`
 - `ListView/*`
+- `CommentsRail.tsx`
 - `DocumentsRail.tsx`
+
+## Estado actual del contrato
+
+- `viewMode` ahora contempla `fields`, `detail`, `comments` y `docs`
+- la vista `comments` se alimenta desde `Designer/index.tsx` con hilos filtrados por documento/página
+- la acción `Agregar` reutiliza `openCommentDialog(...)`, por lo que no existe una segunda fuente de verdad para comentarios
 
 ## Qué hace valioso a este archivo
 
@@ -1207,7 +1216,7 @@ La toolbar del outline/listado de campos es una pieza pequeña pero crítica. La
 - **Ruta relativa:** `docs/07-components-detail-view.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/07-components-detail-view.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `56`
+- **Líneas aproximadas:** `62`
 
 ### Contenido original
 
@@ -1215,7 +1224,7 @@ La toolbar del outline/listado de campos es una pieza pequeña pero crítica. La
 
 ## Rol
 
-`DetailViewContent.tsx` es la pieza que materializa el inspector del schema seleccionado. Se apoya en `detailSchemas`, `detailWidgets`, `DetailHeaderCard`, `DetailSectionCard`, `DetailFormSection` y widgets especializados como `SchemaConnectionsWidget` y `SchemaCollaborationWidget`. El árbol del repo muestra esta estructura de forma muy clara. fileciteturn15file1turn19file12
+`DetailViewContent.tsx` es la pieza que materializa el inspector del schema seleccionado. Se apoya en `detailSchemas`, `detailWidgets`, `DetailHeaderCard`, `DetailSectionCard`, `DetailFormSection` y widgets especializados como `SchemaConnectionsWidget` y `SchemaCollaborationWidget`.
 
 ## Función arquitectónica
 
@@ -1259,6 +1268,12 @@ Las demás deberían quedar colapsadas, a menos que el usuario las haya abierto 
   onChangeSchemaConfig={updateSchemaConfig}
 />
 ```
+
+## Contrato declarativo actual
+
+- `src/sisad-pdfme/schemas/schemaFamilies.ts` es la fuente canónica de familias de schema para el inspector
+- cada plugin puede declarar `propPanel.inspector` con `visibleSections`, `propertyMap` y flags `supports*`
+- `detailSchemas.ts` mantiene compatibilidad con aliases legacy (`fieldSections`, `include*`) pero prioriza el contrato declarativo nuevo
 
 ## Qué documentar mejor
 
@@ -4104,7 +4119,7 @@ La migración será exitosa cuando:
 - **Ruta relativa:** `docs/90-indice-verdad-actual.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/90-indice-verdad-actual.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `49`
+- **Líneas aproximadas:** `57`
 
 ### Contenido original
 
@@ -4156,6 +4171,14 @@ Lee primero `designerEngine`, luego `schemaRegistry`, después `RightSidebar` + 
 - Catálogo de schemas y extensibilidad.
 - Colaboración y sincronización.
 - Referencias a tests que validan estos flujos.
+
+## Estado Fase Crítica (abril 2026)
+
+- `common/collaboration` expone tres vistas de asignación: por destinatario, por autor y por `autor+destinatario` con bucket técnico `__shared__`.
+- La validación colaborativa (`validateCollaborativeSchemas`) rechaza persistencia de schemas colaborativos sin `createdBy` o `userColor`.
+- El flujo de comentarios anclados soporta modelo mixto: schema-bound y fallback top-level, con `upsert/remove` por `id` para evitar duplicados.
+- El diseñador aplica guardas de rol (`designer` vs `reviewer/viewer`) en comandos estructurales (duplicar, borrar, pegar, alinear, etc.) manteniendo comentarios activos.
+- Playwright endurece la política de runtime (`console.error` + `pageerror`) con allowlist explícita y cobertura de rutas multiusuario/enterprise.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
@@ -4456,7 +4479,7 @@ Convertir la documentación conceptual de empaquetado en una guía operativa que
 - **Ruta relativa:** `docs/96-sisad-pdfme-overview.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/96-sisad-pdfme-overview.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `160`
+- **Líneas aproximadas:** `172`
 
 ### Contenido original
 
@@ -4486,7 +4509,9 @@ SISAD PDFME es una plataforma para diseñar, visualizar, capturar, convertir y g
 - lista de fields;
 - rail de documentos;
 - overlays contextuales;
-- edición inline.
+- edición inline;
+- comentarios anclados desde canvas/context menu;
+- filtros de colaboración por usuario y vista global.
 
 ### Engine
 - sidebars reemplazables;
@@ -4494,7 +4519,8 @@ SISAD PDFME es una plataforma para diseñar, visualizar, capturar, convertir y g
 - feature toggles del canvas;
 - hooks de schema;
 - config HTTP global;
-- identidad configurable.
+- identidad configurable;
+- contexto de colaboración (usuarios, destinatarios, actor y vista).
 
 ### Schemas
 - texto;
@@ -4529,7 +4555,16 @@ npm run build
 npm run preview
 npm run test
 npm run test:e2e
+npx vitest run
+npx playwright test tests/playwright/pdfme-editor.spec.ts
 ```
+
+## Estado actual de colaboración
+
+- Asignaciones soportadas: `recipient`, `author` y `author+recipient`.
+- Metadata colaborativa de schema: `createdBy/createdAt/lastModifiedBy/lastModifiedAt/userColor`, ownership y lock.
+- Comentarios con identidad de autor y ancla (`fileId`, `pageNumber`, coordenadas), sincronizados por eventos `comment.created|updated|deleted`.
+- Guardas de rol activas en UI/runtime para separar edición estructural de revisión/comentarios.
 
 ## Importaciones base
 
@@ -22145,6 +22180,7 @@ prueba-plugin
 │       ├── testing-y-calidad.md
 │       ├── ui-editor-canvas-y-overlays.md
 │       └── versionado-changelog-y-canary-flow.md
+├── documentacion-unificada.md
 ├── GEMINI.md
 ├── public
 │   └── templates

@@ -4,9 +4,10 @@ import { Plugin, PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
 import text from '../text/index.js';
 import { TextSchema } from '../text/types.js';
 import { ChevronDown } from 'lucide-react';
-import { createLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
+import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
+import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 
-const selectIcon = createLucideIcon(ChevronDown);
+const selectIcon = renderLucideIcon(ChevronDown);
 
 interface Select extends TextSchema {
   options: string[];
@@ -217,6 +218,11 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
   pdf: text.pdf,
   propPanel: {
     ...text.propPanel,
+    inspector: createSchemaInspectorConfig('textual', {
+      propertyMap: {
+        optionsContainer: 'data',
+      },
+    }),
     widgets: { ...parentPropPanel.widgets, addOptions },
     schema: (propPanelProps: Omit<PropPanelWidgetProps, 'rootElement'>) => {
       if (typeof parentPropPanel.schema !== 'function') {

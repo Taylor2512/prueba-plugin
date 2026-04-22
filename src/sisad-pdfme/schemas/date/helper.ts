@@ -38,6 +38,7 @@ import localeZh from 'air-datepicker/locale/zh';
 
 import * as dateFns from 'date-fns/locale';
 import { format } from 'date-fns';
+import type { Locale as DFLocale } from 'date-fns';
 
 import { Plugin, getFallbackFontName, DEFAULT_FONT_NAME, PropPanelSchema } from '@sisad-pdfme/common';
 import text from '../text/index.js';
@@ -54,6 +55,7 @@ import {
 import { DateSchema } from './types.js';
 import { getExtraFormatterSchema, Formatter } from '../text/extraFormatter.js';
 import { isEditable } from '../utils.js';
+import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 
 interface AirDatepickerInstance {
   selectedDates: Date[];
@@ -67,7 +69,7 @@ type PickerType = 'date' | 'time' | 'dateTime';
 interface Locale {
   label: string;
   adLocale: AirDatepickerLocale;
-  formatLocale: dateFns.Locale;
+  formatLocale: DFLocale;
 }
 
 const LOCALE_MAP: Record<string, Locale> = {
@@ -113,6 +115,8 @@ const getAirDatepickerLocale = (locale: string) => {
   }
   return data;
 };
+
+const toDate = (value: AirDatepickerDate): Date => (value instanceof Date ? value : new Date(value));
 
 const airDatepickerCss = `.air-datepicker-cell.-year-.-other-decade-,.air-datepicker-cell.-day-.-other-month-{color:var(--adp-color-other-month)}.air-datepicker-cell.-year-.-other-decade-:hover,.air-datepicker-cell.-day-.-other-month-:hover{color:var(--adp-color-other-month-hover)}.-disabled-.-focus-.air-datepicker-cell.-year-.-other-decade-,.-disabled-.-focus-.air-datepicker-cell.-day-.-other-month-{color:var(--adp-color-other-month)}.-selected-.air-datepicker-cell.-year-.-other-decade-,.-selected-.air-datepicker-cell.-day-.-other-month-{color:#fff;background:var(--adp-background-color-selected-other-month)}.-selected-.-focus-.air-datepicker-cell.-year-.-other-decade-,.-selected-.-focus-.air-datepicker-cell.-day-.-other-month-{background:var(--adp-background-color-selected-other-month-focused)}.-in-range-.air-datepicker-cell.-year-.-other-decade-,.-in-range-.air-datepicker-cell.-day-.-other-month-{background-color:var(--adp-background-color-in-range);color:var(--adp-color)}.-in-range-.-focus-.air-datepicker-cell.-year-.-other-decade-,.-in-range-.-focus-.air-datepicker-cell.-day-.-other-month-{background-color:var(--adp-background-color-in-range-focused)}.air-datepicker-cell.-year-.-other-decade-:empty,.air-datepicker-cell.-day-.-other-month-:empty{background:none;border:none}.air-datepicker-cell{border-radius:var(--adp-cell-border-radius);box-sizing:border-box;cursor:pointer;display:flex;position:relative;align-items:center;justify-content:center;z-index:1}.air-datepicker-cell.-focus-{background:var(--adp-cell-background-color-hover)}.air-datepicker-cell.-current-{color:var(--adp-color-current-date)}.air-datepicker-cell.-current-.-focus-{color:var(--adp-color)}.air-datepicker-cell.-current-.-in-range-{color:var(--adp-color-current-date)}.air-datepicker-cell.-disabled-{cursor:default;color:var(--adp-color-disabled)}.air-datepicker-cell.-disabled-.-focus-{color:var(--adp-color-disabled)}.air-datepicker-cell.-disabled-.-in-range-{color:var(--adp-color-disabled-in-range)}.air-datepicker-cell.-disabled-.-current-.-focus-{color:var(--adp-color-disabled)}.air-datepicker-cell.-in-range-{background:var(--adp-cell-background-color-in-range);border-radius:0}.air-datepicker-cell.-in-range-:hover,.air-datepicker-cell.-in-range-.-focus-{background:var(--adp-cell-background-color-in-range-hover)}.air-datepicker-cell.-range-from-{border:1px solid var(--adp-cell-border-color-in-range);background-color:var(--adp-cell-background-color-in-range);border-radius:var(--adp-cell-border-radius) 0 0 var(--adp-cell-border-radius)}.air-datepicker-cell.-range-to-{border:1px solid var(--adp-cell-border-color-in-range);background-color:var(--adp-cell-background-color-in-range);border-radius:0 var(--adp-cell-border-radius) var(--adp-cell-border-radius) 0}.air-datepicker-cell.-range-to-.-range-from-{border-radius:var(--adp-cell-border-radius)}.air-datepicker-cell.-selected-{color:#fff;border:none;background:var(--adp-cell-background-color-selected)}.air-datepicker-cell.-selected-.-current-{color:#fff;background:var(--adp-cell-background-color-selected)}.air-datepicker-cell.-selected-.-focus-{background:var(--adp-cell-background-color-selected-hover)}
 .air-datepicker-body{transition:all var(--adp-transition-duration) var(--adp-transition-ease)}.air-datepicker-body.-hidden-{display:none}.air-datepicker-body--day-names{display:grid;grid-template-columns:repeat(7, var(--adp-day-cell-width));margin:8px 0 3px}.air-datepicker-body--day-name{color:var(--adp-day-name-color);display:flex;align-items:center;justify-content:center;flex:1;text-align:center;text-transform:uppercase;font-size:.8em}.air-datepicker-body--day-name.-clickable-{cursor:pointer}.air-datepicker-body--day-name.-clickable-:hover{color:var(--adp-day-name-color-hover)}.air-datepicker-body--cells{display:grid}.air-datepicker-body--cells.-days-{grid-template-columns:repeat(7, var(--adp-day-cell-width));grid-auto-rows:var(--adp-day-cell-height)}.air-datepicker-body--cells.-months-{grid-template-columns:repeat(3, 1fr);grid-auto-rows:var(--adp-month-cell-height)}.air-datepicker-body--cells.-years-{grid-template-columns:repeat(4, 1fr);grid-auto-rows:var(--adp-year-cell-height)}
@@ -270,7 +274,7 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
         locale: locale.adLocale,
         selectedDates: value.trim() ? [strDateToDate(value, type)] : [],
         dateFormat: (date: AirDatepickerDate) =>
-          format(date, schema.format, { locale: locale.formatLocale }),
+          format(toDate(date), schema.format, { locale: locale.formatLocale }),
         timepicker: type !== 'date',
         onlyTimepicker: type === 'time',
         isMobile: window.innerWidth < 768,
@@ -367,7 +371,7 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
 
         const validateDateTimeFormat = (_rule: unknown, formatString: string): boolean => {
           try {
-            format('Thu Jan 01 1970 00:00:00 GMT+0000', formatString, {
+            format(new Date(0), formatString, {
               locale: locale.formatLocale,
             });
             return true;
@@ -460,6 +464,12 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
 
         return dateSchema;
       },
+      inspector: createSchemaInspectorConfig('textual', {
+        propertyMap: {
+          format: 'data',
+          locale: 'data',
+        },
+      }),
       defaultSchema: {
         name: '',
         format: defaultFormat,

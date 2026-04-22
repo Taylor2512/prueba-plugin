@@ -39,7 +39,7 @@ export const LeftSidebarGroup = ({
           type="button"
           className={`${DESIGNER_CLASSNAME}left-sidebar-group-title`}
           data-collapsed={collapsed ? 'true' : 'false'}
-          aria-expanded={String(!collapsed)}
+          aria-expanded={!collapsed}
           aria-label={`Alternar categoría ${category}`}
           onClick={onToggle}
         >

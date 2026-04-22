@@ -150,10 +150,8 @@ export const updateCommentInSchema = (
 };
 
 export const deleteCommentFromSchema = (schema: SchemaForUI, commentId: string): SchemaForUI => {
-  const next = cloneDeep(schema) as SchemaForUI;
-  const comment = (next.comments || []).find((entry: any) => entry.id === commentId) as
-    | (SchemaForUI & { anchor?: CommentAnchor })
-    | undefined;
+  const next = cloneDeep(schema) as unknown as SchemaForUI;
+  const comment = (next.comments || []).find((entry: any) => entry.id === commentId) as any | undefined;
   const anchorId = String((comment?.anchor as CommentAnchor | undefined)?.id || commentId);
   next.comments = removeById(next.comments || [], commentId) as any;
   next.commentAnchors = removeById(next.commentAnchors || [], anchorId) as any;

@@ -51,7 +51,7 @@ const CanvasContextMenu = ({
   className = '',
 }: CanvasContextMenuProps) => {
   const menuRef = useRef<HTMLDivElement | null>(null);
-  const [resolvedPosition, setResolvedPosition] = useState<CanvasContextMenuPosition | null>(null);
+  const [resolvedPosition, setResolvedPosition] = useState<{ top: number; left: number } | null>(null);
   const groups = useMemo(
     () =>
       buildCanvasContextMenuGroups({

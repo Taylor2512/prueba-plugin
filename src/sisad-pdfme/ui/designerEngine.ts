@@ -12,7 +12,7 @@ import type {
   CanvasComponentSlots,
   CanvasFeatureToggles,
   CanvasStyleOverrides,
-} from './components/Designer/Canvas/index.js';
+} from './components/Designer/Canvas/Canvas.js';
 
 export const DEFAULT_SCHEMA_CONFIG_STORAGE_KEY = '__designer';
 

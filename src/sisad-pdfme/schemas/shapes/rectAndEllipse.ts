@@ -3,6 +3,7 @@ import { HEX_COLOR_PATTERN } from '../constants.js';
 import { hex2PrintingColor, convertForPdfLayoutProps, createSvgStr } from '../utils.js';
 import { toRadians } from '@sisad-pdfme/pdf-lib';
 import { Circle, Square } from 'lucide-react';
+import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 
 interface ShapeSchema extends Schema {
   type: 'ellipse' | 'rectangle';
@@ -112,6 +113,14 @@ const shape: Plugin<ShapeSchema> = {
         widget: 'inputNumber',
         props: { min: 0, step: 1 },
         span: 12,
+      },
+    }),
+    inspector: createSchemaInspectorConfig('shape', {
+      propertyMap: {
+        borderWidth: 'style',
+        borderColor: 'style',
+        color: 'style',
+        radius: 'style',
       },
     }),
     defaultSchema: {

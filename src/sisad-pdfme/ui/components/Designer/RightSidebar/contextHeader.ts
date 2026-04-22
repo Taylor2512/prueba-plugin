@@ -1,7 +1,7 @@
 import type React from 'react';
 
 export type RightSidebarContextHeaderContext = {
-  mode: 'list' | 'detail' | 'bulk' | 'docs';
+  mode: 'list' | 'detail' | 'bulk' | 'docs' | 'comments';
   activeCount: number;
 };
 

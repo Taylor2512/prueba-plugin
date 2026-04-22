@@ -21,6 +21,7 @@ import {
 } from './constants.js';
 import { DEFAULT_OPACITY, HEX_COLOR_PATTERN } from '../constants.js';
 import { getExtraFormatterSchema } from './extraFormatter.js';
+import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 
 const UseDynamicFontSize = (props: PropPanelWidgetProps) => {
   const { rootElement, changeSchemas, activeSchema, i18n } = props;
@@ -157,6 +158,7 @@ export const propPanel: PropPanel<TextSchema> = {
 
     return textSchema;
   },
+  inspector: createSchemaInspectorConfig('textual'),
   widgets: { UseDynamicFontSize },
   defaultSchema: {
     name: '',

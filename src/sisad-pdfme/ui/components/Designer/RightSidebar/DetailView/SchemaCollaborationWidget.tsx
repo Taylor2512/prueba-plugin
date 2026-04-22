@@ -22,6 +22,7 @@ import {
   type SchemaCollaborativeLock,
   type SchemaCollaborativeState,
 } from '../../../../designerEngine.js';
+import CompactConfigPanel from './CompactConfigPanel.js';
 
 type CollaborationWidgetProps = PropPanelWidgetProps & {
   activeSchema: SchemaForUI;
@@ -155,14 +156,17 @@ const CollaborationCommentsSection = ({
                     size="small"
                     onClick={() =>
                       onUpdateComment(commentIndex, {
-                        replies: [...(comment.replies || []), {
-                          id: createId('reply'),
-                          authorId: '',
-                          authorName: '',
-                          timestamp: Date.now(),
-                          text: '',
-                          resolved: false,
-                        }],
+                        replies: [
+                          ...(comment.replies || []),
+                          {
+                            id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
+                            authorId: '',
+                            authorName: '',
+                            timestamp: Date.now(),
+                            text: '',
+                            resolved: false,
+                          },
+                        ],
                       })
                     }
                   >
@@ -475,8 +479,8 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
     });
   };
 
-  const handleAddComment = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
+  const handleAddComment = (event?: React.MouseEvent<HTMLElement>) => {
+    event?.stopPropagation();
     updateComments([
       ...comments,
       createSchemaComment('', {
@@ -487,8 +491,8 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
     ]);
   };
 
-  const handleAddAnchor = (event: React.MouseEvent<HTMLButtonElement>) => {
-    event.stopPropagation();
+  const handleAddAnchor = (event?: React.MouseEvent<HTMLElement>) => {
+    event?.stopPropagation();
     updateAnchors([
       ...anchors,
       createSchemaCommentAnchor(
@@ -539,58 +543,104 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
   };
 
   return (
-    <div className={`${DESIGNER_CLASSNAME}schema-collaboration-widget`}>
-      <div className={`${DESIGNER_CLASSNAME}schema-collaboration-widget-head`}>
-        <div>
-          <div className={`${DESIGNER_CLASSNAME}schema-collaboration-widget-title`}>Colaboración</div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>
-            Identidad estable, propietario y bloqueo del campo para trabajo multiusuario.
+    <CompactConfigPanel
+      title="Colaboración"
+      description="Gestiona owner, bloqueo y trazabilidad sin dejar abierto todo el formulario."
+      summary={[
+        schemaUid || 'sin schemaUid',
+        resolvedOwnerLabel,
+        commentCount > 0 ? `${commentCount} comentario(s)` : 'sin comentarios',
+        anchorCount > 0 ? `${anchorCount} anchor(s)` : 'sin anchors',
+      ].join(' · ')}
+      statusTags={[
+        { label: stateTag.label, color: stateTag.color },
+        ...(ownerMode ? [{ label: `Owner ${ownerMode}`, color: 'default' as const }] : []),
+        {
+          label: resolvedSchemaState.isShared
+            ? 'Compartido'
+            : resolvedSchemaState.isOwnerOther
+              ? 'Pertenece a otro usuario'
+              : resolvedSchemaState.isOwnerActive
+                ? 'Owner activo'
+                : resolvedOwnerLabel,
+          color: resolvedSchemaState.isShared ? 'purple' : resolvedSchemaState.isOwnerOther ? 'gold' : 'processing',
+        },
+        {
+          label: ownerRecipientIds.length > 0 ? `${ownerRecipientIds.length} owner(s)` : 'Sin owner',
+          color: ownerRecipientIds.length > 0 ? 'processing' : 'warning',
+        },
+        ...(commentCount > 0 ? [{ label: `Comentarios: ${commentCount}`, color: 'blue' as const }] : []),
+        ...(anchorCount > 0 ? [{ label: `Anchors: ${anchorCount}`, color: 'cyan' as const }] : []),
+        ...(hasLock ? [{ label: 'Bloqueo activo', color: 'error' as const }] : []),
+      ]}
+      quickActions={
+        <>
+          <Button size="small" type="default" onClick={() => updateState(hasLock ? 'draft' : 'locked')}>
+            {hasLock ? 'Desbloquear' : 'Bloquear'}
+          </Button>
+          <Button size="small" type="default" onClick={() => handleAddComment()}>
+            Agregar comentario
+          </Button>
+          <Button size="small" type="default" onClick={() => handleAddAnchor()}>
+            Agregar anchor
+          </Button>
+        </>
+      }
+      modalTitle="Configurar colaboración del campo"
+      modalTriggerLabel="Gestionar colaboración"
+    >
+      <div className={`${DESIGNER_CLASSNAME}schema-collaboration-widget`}>
+        <div className={`${DESIGNER_CLASSNAME}schema-collaboration-widget-head`}>
+          <div>
+            <div className={`${DESIGNER_CLASSNAME}schema-collaboration-widget-title`}>Colaboración</div>
+            <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>
+              Identidad estable, propietario y bloqueo del campo para trabajo multiusuario.
+            </div>
           </div>
+          <Tag color={stateTag.color} icon={<ShieldCheck size={13} />}>
+            {stateTag.label}
+          </Tag>
         </div>
-        <Tag color={stateTag.color} icon={<ShieldCheck size={13} />}>
-          {stateTag.label}
-        </Tag>
-      </div>
 
-      <div className={`${DESIGNER_CLASSNAME}schema-collaboration-widget-summary`}>
-        <Space size={[6, 6]} wrap>
-          <Tag color="default">{schemaUid || 'sin schemaUid'}</Tag>
-          {ownerMode ? <Tag color="default">Owner {ownerMode}</Tag> : null}
-          <Tag
-            color={resolvedSchemaState.isShared ? 'purple' : resolvedSchemaState.isOwnerOther ? 'gold' : 'processing'}
-          >
-            {resolvedSchemaState.isShared
-              ? 'Compartido'
-              : resolvedSchemaState.isOwnerOther
-                ? 'Pertenece a otro usuario'
-                : resolvedSchemaState.isOwnerActive
-                  ? 'Owner activo'
-                  : resolvedOwnerLabel}
-          </Tag>
-          <Tag color={ownerRecipientIds.length > 0 ? 'processing' : 'warning'} icon={<Users2 size={12} />}>
-            {ownerRecipientIds.length > 0 ? `${ownerRecipientIds.length} owner(s)` : 'Sin owner'}
-          </Tag>
-          {effectiveAuthorColor ? (
-            <Tag color="default" style={{ borderColor: effectiveAuthorColor, color: effectiveAuthorColor }}>
-              Autor {resolvedSchemaState.createdBy || 'sin asignar'}
+        <div className={`${DESIGNER_CLASSNAME}schema-collaboration-widget-summary`}>
+          <Space size={[6, 6]} wrap>
+            <Tag color="default">{schemaUid || 'sin schemaUid'}</Tag>
+            {ownerMode ? <Tag color="default">Owner {ownerMode}</Tag> : null}
+            <Tag
+              color={resolvedSchemaState.isShared ? 'purple' : resolvedSchemaState.isOwnerOther ? 'gold' : 'processing'}
+            >
+              {resolvedSchemaState.isShared
+                ? 'Compartido'
+                : resolvedSchemaState.isOwnerOther
+                  ? 'Pertenece a otro usuario'
+                  : resolvedSchemaState.isOwnerActive
+                    ? 'Owner activo'
+                    : resolvedOwnerLabel}
             </Tag>
-          ) : null}
-          <Tag color={collaborative.saveValue === false || activeSchema.saveValue === false ? 'warning' : 'success'}>
-            {collaborative.saveValue === false || activeSchema.saveValue === false ? 'No guardar valor' : 'Guardar valor'}
-          </Tag>
-          {commentCount > 0 ? <Tag color="blue">Comentarios: {commentCount}</Tag> : null}
-          {anchorCount > 0 ? <Tag color="cyan">Anchors: {anchorCount}</Tag> : null}
-          {hasLock ? (
-            <Tag color="error" icon={<Lock size={12} />}>
-              Bloqueo activo
+            <Tag color={ownerRecipientIds.length > 0 ? 'processing' : 'warning'} icon={<Users2 size={12} />}>
+              {ownerRecipientIds.length > 0 ? `${ownerRecipientIds.length} owner(s)` : 'Sin owner'}
             </Tag>
-          ) : null}
-        </Space>
-      </div>
+            {effectiveAuthorColor ? (
+              <Tag color="default" style={{ borderColor: effectiveAuthorColor, color: effectiveAuthorColor }}>
+                Autor {resolvedSchemaState.createdBy || 'sin asignar'}
+              </Tag>
+            ) : null}
+            <Tag color={collaborative.saveValue === false || activeSchema.saveValue === false ? 'warning' : 'success'}>
+              {collaborative.saveValue === false || activeSchema.saveValue === false ? 'No guardar valor' : 'Guardar valor'}
+            </Tag>
+            {commentCount > 0 ? <Tag color="blue">Comentarios: {commentCount}</Tag> : null}
+            {anchorCount > 0 ? <Tag color="cyan">Anchors: {anchorCount}</Tag> : null}
+            {hasLock ? (
+              <Tag color="error" icon={<Lock size={12} />}>
+                Bloqueo activo
+              </Tag>
+            ) : null}
+          </Space>
+        </div>
 
-      <Divider className={`${DESIGNER_CLASSNAME}schema-config-divider`} />
+        <Divider className={`${DESIGNER_CLASSNAME}schema-config-divider`} />
 
-      <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
+        <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
         <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
           <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>schemaUid</div>
           <Input value={schemaUid || ''} disabled placeholder="UUID estable del campo" />
@@ -774,15 +824,16 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
         onDeleteComment={(commentIndex) => updateComments(removeById(comments, comments[commentIndex]?.id || ''))}
       />
 
-      <Divider className={`${DESIGNER_CLASSNAME}schema-config-divider`} />
-      <CollaborationAnchorsSection
-        anchors={anchors}
-        anchorCount={anchorCount}
-        onAddAnchor={handleAddAnchor}
-        onDeleteAnchor={(anchorIndex) => updateAnchors(removeById(anchors, anchors[anchorIndex]?.id || ''))}
-        onUpdateAnchors={updateAnchors}
-      />
-    </div>
+        <Divider className={`${DESIGNER_CLASSNAME}schema-config-divider`} />
+        <CollaborationAnchorsSection
+          anchors={anchors}
+          anchorCount={anchorCount}
+          onAddAnchor={handleAddAnchor}
+          onDeleteAnchor={(anchorIndex) => updateAnchors(removeById(anchors, anchors[anchorIndex]?.id || ''))}
+          onUpdateAnchors={updateAnchors}
+        />
+      </div>
+    </CompactConfigPanel>
   );
 };
 

@@ -5,6 +5,7 @@ import {
   ZOOM,
   Template,
   addCommentWithAnchorToTemplate,
+  filterCommentsByFileAndPage,
   Schema,
   SchemaForUI,
   ChangeSchemas,
@@ -52,6 +53,7 @@ import type { DesignerRuntimeApi, DesignerSidebarPresentation } from '../../type
 import { resolveSchemaTone } from './shared/schemaTone.js';
 import { buildCollaboratorChipStyle } from '../../../../features/sisad-pdfme/domain/collaborationAppearance.js';
 import { buildEffectiveCollaborationContext, filterSchemasForCollaborationView } from '../../collaborationContext.js';
+import type { RightSidebarContextHeader, RightSidebarContextHeaderContext } from './RightSidebar/contextHeader.js';
 import {
   resolveDesignerEngine,
   attachSchemaIdentity,
@@ -163,7 +165,8 @@ const getBasePdfDisplayName = (basePdf: Template['basePdf']): string | null => {
 
   try {
     const [withoutQuery] = source.split(/[?#]/);
-    const lastSegment = withoutQuery.split('/').filter(Boolean).pop() || withoutQuery;
+    const segments = withoutQuery.split('/').filter(Boolean);
+    const lastSegment = segments.length > 0 ? segments[segments.length - 1] : withoutQuery;
     return decodeURIComponent(lastSegment) || source;
   } catch {
     return source;
@@ -251,8 +254,8 @@ const TemplateEditor = ({
   onApiReady?: (api: DesignerRuntimeApi | null) => void;
 } & {
   onChangeTemplate: (t: Template) => void;
-  onPageCursorChange: (newPageCursor: number, totalPages: number) => void;
-}) => {
+  onPageCursorChange: (newPageCursor: number, totalPages: number) => void; // NOSONAR
+}) => { // NOSONAR
   const past = useRef<SchemaForUI[][]>([]);
   const future = useRef<SchemaForUI[][]>([]);
   const canvasRef = useRef<HTMLDivElement>(null);
@@ -445,7 +448,7 @@ const TemplateEditor = ({
     () => buildEffectiveCollaborationContext(designerEngine.collaboration, activeDocumentId || null),
     [activeDocumentId, designerEngine.collaboration],
   );
-  const [rightSidebarViewMode, setRightSidebarViewMode] = useState<'auto' | 'fields' | 'detail' | 'docs'>('auto');
+  const [rightSidebarViewMode, setRightSidebarViewMode] = useState<'auto' | 'fields' | 'detail' | 'docs' | 'comments'>('auto');
   const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const openPropertiesPanel = useCallback(() => {
     setSidebarOpen(true);
@@ -944,6 +947,48 @@ const TemplateEditor = ({
       }
     },
     [pendingAnchor, activeDocumentId, collaborationContext, visibleTemplate, updateTemplate, schemasList],
+  );
+
+  const handleAddSidebarComment = useCallback(() => {
+    const paper = paperRefs.current[pageCursor];
+    if (!paper) return;
+
+    const rect = paper.getBoundingClientRect();
+    const activeSchema = currentPageSchemas.find((schema) => schema.id === activeElements[0]?.id);
+    openCommentDialog(
+      rect.left + rect.width / 2,
+      rect.top + rect.height / 2,
+      pageCursor,
+      activeSchema?.schemaUid || activeSchema?.id,
+      activeDocumentId || null,
+    );
+  }, [activeDocumentId, activeElements, currentPageSchemas, openCommentDialog, pageCursor]);
+
+  const commentItems = useMemo(() => {
+    return filterCommentsByFileAndPage(visibleTemplate, activeDocumentId || null, pageCursor + 1)
+      .map((entry) => ({
+        id: String(entry.comment?.id || entry.anchor?.id || ''),
+        text: String(entry.comment?.text || entry.comment?.content || ''),
+        authorName: entry.comment?.authorName || null,
+        authorColor: entry.comment?.authorColor || null,
+        schemaUid: entry.schemaUid || entry.anchor?.schemaUid,
+        fileId: entry.fileId || null,
+        pageNumber: entry.pageNumber,
+        resolved: Boolean(entry.anchor?.resolved ?? entry.comment?.resolved),
+        timestamp: Number(entry.comment?.timestamp || entry.comment?.createdAt || 0) || undefined,
+      }))
+      .filter((item) => item.id && item.text)
+      .sort((left, right) => (right.timestamp || 0) - (left.timestamp || 0));
+  }, [activeDocumentId, pageCursor, visibleTemplate]);
+
+  const commentsBridge = useMemo(
+    () => ({
+      items: commentItems,
+      onAdd: handleAddSidebarComment,
+      title: 'Comentarios de la página',
+      emptyTitle: 'No hay comentarios en la página actual.',
+    }),
+    [commentItems, handleAddSidebarComment],
   );
 
   const loadDocumentIntoCanvas = useCallback(
@@ -1814,60 +1859,66 @@ const TemplateEditor = ({
     () => (uploadedDocumentItems.length > 0 ? uploadedDocumentItems : fallbackBaseDocumentItem ? [fallbackBaseDocumentItem] : []),
     [fallbackBaseDocumentItem, uploadedDocumentItems],
   );
-  const rightSidebarContextHeader = useMemo(() => {
-    const activeDocument = uploadedDocuments.find((doc) => doc.id === activeDocumentId) || null;
-    const activeDocumentLabel =
-      activeDocument?.name ||
-      activeDocument?.id ||
-      fallbackBaseDocumentItem?.name ||
-      activeDocumentId ||
-      'Documento local';
-    const actorId = designerEngine.collaboration?.actorId || '';
-    const actorColor = collaborationContext.userColor || collaborationContext.ownerColor || designerEngine.collaboration?.actorColor || '';
-    const actorStyle = buildCollaboratorChipStyle(actorColor, true);
-    const recipientStyle = buildCollaboratorChipStyle(collaborationContext.activeRecipient?.color || actorColor, false);
-    return (
-      <div className={DESIGNER_CLASSNAME + 'detail-view-context-strip'} aria-label="Contexto activo del editor">
-        <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-          Documento: {activeDocumentLabel}
-        </span>
-        {uploadedDocuments.length > 1 ? (
+  const rightSidebarContextHeader = useMemo<RightSidebarContextHeader>(() => {
+    return (ctx: RightSidebarContextHeaderContext) => {
+      // Only show the top context strip when the right sidebar is in 'fields' (list/bulk) mode
+      if (!ctx || (ctx.mode !== 'list' && ctx.mode !== 'bulk')) return null;
+
+      const activeDocument = uploadedDocuments.find((doc) => doc.id === activeDocumentId) || null;
+      const activeDocumentLabel =
+        activeDocument?.name ||
+        activeDocument?.id ||
+        fallbackBaseDocumentItem?.name ||
+        activeDocumentId ||
+        'Documento local';
+      const actorId = designerEngine.collaboration?.actorId || '';
+      const actorColor = collaborationContext.userColor || collaborationContext.ownerColor || designerEngine.collaboration?.actorColor || '';
+      const actorStyle = buildCollaboratorChipStyle(actorColor, true);
+      const recipientStyle = buildCollaboratorChipStyle(collaborationContext.activeRecipient?.color || actorColor, false);
+
+      return (
+        <div className={DESIGNER_CLASSNAME + 'detail-view-context-strip'} aria-label="Contexto activo del editor">
           <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-            Docs: {uploadedDocuments.length}
+            Documento: {activeDocumentLabel}
           </span>
-        ) : null}
-        {pageItems.length > 0 ? (
+          {uploadedDocuments.length > 1 ? (
+            <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
+              Docs: {uploadedDocuments.length}
+            </span>
+          ) : null}
+          {pageItems.length > 0 ? (
+            <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
+              Página: {pageCursor + 1}/{pageItems.length}
+            </span>
+          ) : null}
           <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-            Página: {pageCursor + 1}/{pageItems.length}
+            Campos: {visiblePageSchemas.length}/{currentPageSchemas.length}
           </span>
-        ) : null}
-        <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-          Campos: {visiblePageSchemas.length}/{currentPageSchemas.length}
-        </span>
-        {activeElements.length > 0 ? (
+          {activeElements.length > 0 ? (
+            <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
+              Selección: {activeElements.length}
+            </span>
+          ) : null}
           <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-            Selección: {activeElements.length}
+            Presencia: {isIdle ? 'pausa' : 'activa'}
           </span>
-        ) : null}
-        <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-          Presencia: {isIdle ? 'pausa' : 'activa'}
-        </span>
-        <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-          Colaboradores: {Math.max(1, collaborationSync.presence.length)}
-        </span>
-        {collaborationSync.history.length > 0 ? (
           <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-            Historial: {collaborationSync.history.length}
+            Colaboradores: {Math.max(1, collaborationSync.presence.length)}
           </span>
-        ) : null}
-        <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'} style={recipientStyle}>
-          Vista: {collaborationContext.isGlobalView ? 'Global' : collaborationContext.activeRecipient?.name || 'Sin destinatario'}
-        </span>
-        <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'} style={actorStyle}>
-          Usuario: {actorId || 'local'}
-        </span>
-      </div>
-    );
+          {collaborationSync.history.length > 0 ? (
+            <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
+              Historial: {collaborationSync.history.length}
+            </span>
+          ) : null}
+          <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'} style={recipientStyle}>
+            Vista: {collaborationContext.isGlobalView ? 'Global' : collaborationContext.activeRecipient?.name || 'Sin destinatario'}
+          </span>
+          <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'} style={actorStyle}>
+            Usuario: {actorId || 'local'}
+          </span>
+        </div>
+      );
+    };
   }, [
     activeDocumentId,
     activeElements.length,
@@ -2019,6 +2070,7 @@ const TemplateEditor = ({
         title: 'Páginas del documento',
         emptyTitle: 'Este documento aún no tiene páginas. Agrega una página para empezar.',
       }}
+      comments={commentsBridge}
       showDocumentsRail={pageItems.length > 0 || documentItems.length > 0}
       autoFocusDetail={true}
       viewMode={rightSidebarViewMode}

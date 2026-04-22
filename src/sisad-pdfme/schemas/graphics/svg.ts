@@ -7,6 +7,7 @@ import {
   createSvgStr,
 } from '../utils.js';
 import { Route } from 'lucide-react';
+import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 
 const isValidSVG = (svgString: string): boolean => {
   try {
@@ -103,6 +104,7 @@ const svgSchema: Plugin<SVGSchema> = {
   },
   propPanel: {
     schema: {},
+    inspector: createSchemaInspectorConfig('media'),
     defaultSchema: {
       name: '',
       type: 'svg',

@@ -59,6 +59,25 @@ export type DesignerDocumentsBridge = {
   emptyTitle?: string;
 };
 
+export type DesignerCommentItem = {
+  id: string;
+  text: string;
+  authorName?: string | null;
+  authorColor?: string | null;
+  schemaUid?: string;
+  fileId?: string | null;
+  pageNumber?: number;
+  resolved?: boolean;
+  timestamp?: number;
+};
+
+export type DesignerCommentsBridge = {
+  items: DesignerCommentItem[];
+  onAdd?: () => void;
+  title?: string;
+  emptyTitle?: string;
+};
+
 export type DesignerRuntimeApi = {
   undo: () => void;
   redo: () => void;

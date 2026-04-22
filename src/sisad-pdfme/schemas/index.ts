@@ -68,7 +68,7 @@ export {
 
 export {
   createSchemaPlugin,
-  createLucideIcon,
+  renderLucideIcon as createLucideIcon,
   getSchemaDefinition,
   flattenSchemaPlugins,
   listSchemaDefinitions,

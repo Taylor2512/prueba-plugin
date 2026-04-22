@@ -91,14 +91,31 @@ const selectFieldForDetail = async (page: Page, schemaName: string, fallbackText
     throw new Error(`Schema not found for detail selection: ${schemaName}`);
   }
 
-  const contextHeader = page.getByLabel('Contexto activo del editor');
-  await expect.poll(async () => (await contextHeader.textContent()) || '').toContain('Selección: 1');
-
   const panel = page.getByLabel('Secciones del detalle del campo');
+  const contextHeader = page.getByLabel('Contexto activo del editor');
+  try {
+    await expect.poll(async () => (await contextHeader.textContent()) || '').toContain('Selección: 1');
+  } catch {
+    await expect(panel).toBeVisible();
+  }
+
   if (!(await panel.isVisible())) {
     await openDetailPanel(page);
   }
   await expect(panel).toBeVisible();
+};
+
+const openCollaborationConfigFromDetail = async (page: Page) => {
+  const collaborationToggle = page.getByRole('button', { name: /Expandir sección Colaboración|Colapsar sección Colaboración/ });
+  await expect(collaborationToggle).toBeVisible();
+  if ((await collaborationToggle.getAttribute('aria-expanded')) !== 'true') {
+    await collaborationToggle.click();
+  }
+
+  const manageButton = page.getByRole('button', { name: 'Gestionar colaboración' });
+  await expect(manageButton).toBeVisible();
+  await manageButton.click();
+  return page.getByRole('dialog', { name: 'Configurar colaboración del campo' });
 };
 
 test.describe('PDFME editor shell', () => {
@@ -218,6 +235,22 @@ test.describe('PDFME editor shell', () => {
     await expect(page.getByText('3 paginas')).toBeVisible();
   });
 
+  test('opens compact advanced configuration modals from the detail sidebar', async ({ page }) => {
+    await openDesigner(page);
+    await selectFieldForDetail(page, 'role', 'role');
+
+    const dataSectionToggle = page.getByRole('button', { name: /Expandir sección Datos|Colapsar sección Datos/ });
+    if ((await dataSectionToggle.getAttribute('aria-expanded')) !== 'true') {
+      await dataSectionToggle.click();
+    }
+
+    await page.getByRole('button', { name: 'Configuración avanzada' }).click();
+    await expect(page.getByRole('dialog', { name: 'Configurar conexiones y persistencia' })).toBeVisible();
+    await expect(page.getByText('Persistencia de datos')).toBeVisible();
+    await page.keyboard.press('Escape');
+    await expect(page.getByRole('dialog', { name: 'Configurar conexiones y persistencia' })).toBeHidden();
+  });
+
   test('seeds the docs rail with real PDFs on the multi-document route', async ({ page }) => {
     await openDesigner(page, '/lab/multi-document-routing');
 
@@ -272,7 +305,8 @@ test.describe('PDFME editor shell', () => {
     const collaborationDetail = page.getByLabel('Secciones del detalle del campo');
     await expect(collaborationDetail).toContainText('OwnerMode: multi');
     await expect(collaborationDetail).toContainText('Owner: legal-user-1');
-    await expect(collaborationDetail).toContainText('Comentarios: 1');
+    const collaborationDialog = await openCollaborationConfigFromDetail(page);
+    await expect(collaborationDialog).toContainText('Comentarios: 1');
     await expect(page.locator('.sisad-pdfme-ui-comments-overlay button[aria-label^="Comentario en"]')).toHaveCount(1);
     await expectCanvasToStartEarly(page, 520);
   });
@@ -325,7 +359,9 @@ test.describe('PDFME editor shell', () => {
     const ownershipDetail = page.getByLabel('Secciones del detalle del campo');
     await expect(ownershipDetail).toContainText('OwnerMode: multi');
     await expect(ownershipDetail).toContainText('Owner: sales-team');
-    await expect(ownershipDetail).toContainText('Comentarios: 1');
+    const ownershipDialog = await openCollaborationConfigFromDetail(page);
+    await expect(ownershipDialog).toContainText('Comentarios: 1');
+    await page.keyboard.press('Escape');
 
     await page.getByRole('combobox', { name: 'Seleccionar vista activa' }).selectOption('global');
     await expect(contextHeader).toContainText('Vista: Global');

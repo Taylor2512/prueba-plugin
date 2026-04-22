@@ -3,6 +3,8 @@ import React, { useContext, useEffect, useCallback, useMemo } from 'react';
 import type {
   Dict,
   ChangeSchemaItem,
+  PropPanelInspectorConfig,
+  PropPanelSchema,
   SchemaForUI,
   Schema,
 } from '@sisad-pdfme/common';
@@ -10,12 +12,12 @@ import { isBlankPdf } from '@sisad-pdfme/common';
 import type { SidebarProps } from '../../../../types.js';
 import { I18nContext, PluginsRegistry, OptionsContext } from '../../../../contexts.js';
 import { debounce } from '../../../../helper.js';
-import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { theme } from 'antd';
 import { InternalNamePath, ValidateErrorEntity } from 'rc-field-form/es/interface.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import {
-  buildInspectorSchemas,
+  buildInspectorSections,
+  type DetailInspectorSection,
 } from './detailSchemas.js';
 import { buildDetailWidgets } from './detailWidgets.js';
 import DetailViewContent from './DetailViewContent.js';
@@ -222,7 +224,7 @@ const DetailView = (props: DetailViewProps) => {
           if (reason.errorFields.length) {
             changes = changes.filter(
               (change: ChangeSchemaItem) =>
-                !reason.errorFields.find((field: { name: InternalNamePath; errors: string[] }) =>
+                !reason.errorFields.some((field: { name: InternalNamePath; errors: string[] }) =>
                   field.name.includes(change.key),
                 ),
             );
@@ -239,17 +241,12 @@ const DetailView = (props: DetailViewProps) => {
     throw Error(`[@sisad-pdfme/ui] Failed to find plugin used for ${activeSchema.type}`);
   }
 
-  const typeOptions: Array<{ label: string; value: string | undefined }> = [];
-  pluginsRegistry.entries().forEach(([label, plugin]) => {
-    typeOptions.push({ label, value: plugin.propPanel.defaultSchema?.type ?? undefined });
-  });
-
   const emptySchema: Record<string, unknown> = {};
   const defaultSchema: Record<string, unknown> = activePlugin?.propPanel?.defaultSchema
     ? (() => {
         const result: Record<string, unknown> = {};
         for (const key in activePlugin.propPanel.defaultSchema) {
-          if (Object.prototype.hasOwnProperty.call(activePlugin.propPanel.defaultSchema, key)) {
+          if (Object.hasOwn(activePlugin.propPanel.defaultSchema, key)) {
             result[key] = (activePlugin.propPanel.defaultSchema as Record<string, unknown>)[key];
           }
         }
@@ -257,39 +254,40 @@ const DetailView = (props: DetailViewProps) => {
       })()
     : emptySchema;
 
-  const pluginProps =
-    typeof activePlugin.propPanel.schema === 'function'
-      ? (() => {
-          const { size, schemas, pageSize, changeSchemas, activeElements, deselectSchema, activeSchema } =
-            props;
-          const propPanelProps = {
-            size,
-            schemas,
-            pageSize,
-            changeSchemas,
-            activeElements,
-            deselectSchema,
-            activeSchema,
-          };
-          const functionResult = activePlugin.propPanel.schema({
-            ...propPanelProps,
-            options,
-            theme: token,
-            i18n: typedI18n,
-          });
-          return functionResult && typeof functionResult === 'object' ? functionResult : {};
-        })()
-      : activePlugin.propPanel.schema && typeof activePlugin.propPanel.schema === 'object'
-        ? activePlugin.propPanel.schema
-        : {};
+  let pluginProps: Record<string, PropPanelSchema> = {};
+  if (typeof activePlugin.propPanel.schema === 'function') {
+    const { size, schemas, pageSize, changeSchemas, activeElements, deselectSchema, activeSchema } = props;
+    const propPanelProps = {
+      size,
+      schemas,
+      pageSize,
+      changeSchemas,
+      activeElements,
+      deselectSchema,
+      activeSchema,
+    };
+    const functionResult = activePlugin.propPanel.schema({
+      ...propPanelProps,
+      options,
+      theme: token,
+      i18n: typedI18n,
+    });
+    if (functionResult && typeof functionResult === 'object') {
+      pluginProps = functionResult as Record<string, PropPanelSchema>;
+    }
+  } else if (activePlugin.propPanel.schema && typeof activePlugin.propPanel.schema === 'object') {
+    pluginProps = activePlugin.propPanel.schema as Record<string, PropPanelSchema>;
+  }
+  const inspectorConfig = (activePlugin.propPanel.inspector || undefined) as PropPanelInspectorConfig | undefined;
 
   const maxWidth = pageSize.width - paddingLeft - paddingRight;
   const maxHeight = pageSize.height - paddingTop - paddingBottom;
-  const sectionSchemas = buildInspectorSchemas({
+  const sections = buildInspectorSections({
+    activeSchemaType: activeSchema.type,
     typedI18n,
-    typeOptions,
     defaultSchema,
-    pluginProps: pluginProps as Record<string, Partial<Schema>>,
+    pluginProps,
+    inspectorConfig,
     pageSize,
     paddingTop,
     paddingRight,
@@ -307,7 +305,7 @@ const DetailView = (props: DetailViewProps) => {
       schemaConfig={schemaConfig}
       deselectSchema={deselectSchema}
       form={form}
-      sectionSchemas={sectionSchemas as any}
+      sections={sections}
       widgets={widgets}
       watchHandler={handleWatch}
     />

@@ -55,7 +55,7 @@ export default class PDFRadioGroup extends PDFField {
     new PDFRadioGroup(acroRadioButton, ref, doc);
 
   /** The low-level PDFAcroRadioButton wrapped by this radio group. */
-  readonly acroField: PDFAcroRadioButton;
+  declare readonly acroField: PDFAcroRadioButton;
 
   private constructor(acroRadioButton: PDFAcroRadioButton, ref: PDFRef, doc: PDFDocument) {
     super(acroRadioButton, ref, doc);

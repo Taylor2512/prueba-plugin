@@ -7,6 +7,7 @@ import {
 } from '../utils.js';
 import { HEX_COLOR_PATTERN } from '../constants.js';
 import { Minus } from 'lucide-react';
+import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 
 const DEFAULT_LINE_COLOR = '#000000';
 const HIT_POINT_HEIGHT = 16;
@@ -75,6 +76,11 @@ const lineSchema: Plugin<LineSchema> = {
         },
         required: true,
         rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
+      },
+    }),
+    inspector: createSchemaInspectorConfig('shape', {
+      propertyMap: {
+        color: 'style',
       },
     }),
     defaultSchema: {

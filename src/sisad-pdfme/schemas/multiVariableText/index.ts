@@ -4,13 +4,13 @@ import { propPanel } from './propPanel.js';
 import { uiRender } from './uiRender.js';
 import type { MultiVariableTextSchema } from './types.js';
 import { Type } from 'lucide-react';
-import { createSchemaPlugin, createLucideIcon } from '../schemaBuilder.js';
+import { createSchemaPlugin, renderLucideIcon } from '../schemaBuilder.js';
 
 const schema: Plugin<MultiVariableTextSchema> = createSchemaPlugin<MultiVariableTextSchema>({
   pdf: pdfRender,
   ui: uiRender,
   propPanel,
-  icon: createLucideIcon(Type),
+  icon: renderLucideIcon(Type),
   uninterruptedEditMode: true,
 }, {
   key: 'multiVariableText',

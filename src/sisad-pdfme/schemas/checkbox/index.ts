@@ -3,12 +3,13 @@ import svg from '../graphics/svg.js';
 import { isEditable } from '../utils.js';
 import { HEX_COLOR_PATTERN } from '../constants.js';
 import { Square, SquareCheck } from 'lucide-react';
-import { createLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
+import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
+import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 
 const defaultStroke = 'currentColor';
 
-const getCheckedIcon = (stroke = defaultStroke) => createLucideIcon(SquareCheck, { stroke });
-const getUncheckedIcon = (stroke = defaultStroke) => createLucideIcon(Square, { stroke });
+const getCheckedIcon = (stroke = defaultStroke) => renderLucideIcon(SquareCheck, { stroke });
+const getUncheckedIcon = (stroke = defaultStroke) => renderLucideIcon(Square, { stroke });
 
 interface Checkbox extends Schema {
   color: string;
@@ -52,6 +53,11 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
         },
         required: true,
         rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
+      },
+    }),
+    inspector: createSchemaInspectorConfig('choice', {
+      propertyMap: {
+        color: 'style',
       },
     }),
     defaultSchema: {

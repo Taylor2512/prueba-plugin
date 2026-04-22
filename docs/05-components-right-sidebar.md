@@ -2,7 +2,7 @@
 
 ## Propósito
 
-`RightSidebar.tsx` es el contenedor principal del panel derecho del editor. Su estructura actual ya incluye varias vistas: listado de campos, inspector detallado y rail de documentos. El árbol de componentes confirma que existe una jerarquía completa para `RightSidebar`, `DetailView`, `ListView`, `DocumentsRail` y layouts específicos. fileciteturn19file12turn19file7
+`RightSidebar.tsx` es el contenedor principal del panel derecho del editor. Su estructura actual ya incluye varias vistas: listado de campos, inspector detallado, comentarios y rail de documentos.
 
 ## Responsabilidades
 
@@ -10,16 +10,25 @@
 - decidir qué vista renderizar:
   - outline/listado
   - detalle
+  - comentarios
   - documentos
 - transmitir contexto de selección
 - mantener consistencia visual del inspector
+- reutilizar bridges de runtime sin duplicar estado del canvas
 
 ## Dependencias cercanas
 
 - `layout.tsx`
 - `DetailView/*`
 - `ListView/*`
+- `CommentsRail.tsx`
 - `DocumentsRail.tsx`
+
+## Estado actual del contrato
+
+- `viewMode` ahora contempla `fields`, `detail`, `comments` y `docs`
+- la vista `comments` se alimenta desde `Designer/index.tsx` con hilos filtrados por documento/página
+- la acción `Agregar` reutiliza `openCommentDialog(...)`, por lo que no existe una segunda fuente de verdad para comentarios
 
 ## Qué hace valioso a este archivo
 

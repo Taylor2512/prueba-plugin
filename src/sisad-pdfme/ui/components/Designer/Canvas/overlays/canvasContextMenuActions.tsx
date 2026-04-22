@@ -65,6 +65,7 @@ export type CanvasContextMenuItem = {
   disabledReason?: string;
   danger?: boolean;
   hidden?: boolean;
+  active?: boolean;
   onSelect?: () => void;
 };
 

@@ -58,11 +58,12 @@ const Padding = ({ basePdf, className, style, color, opacity = 0.25 }: PaddingPr
   const resolvedClassName = hasCustomClass
     ? `${DESIGNER_CLASSNAME}custom-${className.trim()}`
     : `${DESIGNER_CLASSNAME}padding`;
+  const padding = isBlankPdf(basePdf) ? (basePdf.padding as [number, number, number, number]) : [0, 0, 0, 0];
 
   return (
     <>
       {isBlankPdf(basePdf) &&
-        basePdf.padding.map((p, i) => (
+        padding.map((p, i) => (
           <div
             key={String(i)}
             className={resolvedClassName}

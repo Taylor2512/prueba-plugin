@@ -1,5 +1,5 @@
 import React from 'react';
-import type { PropPanelSchema, SchemaForUI, PropPanelWidgetProps } from '@sisad-pdfme/common';
+import type { SchemaForUI, PropPanelWidgetProps } from '@sisad-pdfme/common';
 import type { useForm } from 'form-render';
 import { ArrowLeft } from 'lucide-react';
 import { Button, Tooltip } from 'antd';
@@ -8,13 +8,14 @@ import { SidebarBody, SidebarFrame, SidebarHeader } from '../layout.js';
 import DetailHeaderCard from './DetailHeaderCard.js';
 import DetailFormSection from './DetailFormSection.js';
 import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
+import type { DetailInspectorSection } from './detailSchemas.js';
 
 type DetailViewContentProps = {
   activeSchema: SchemaForUI;
   schemaConfig: SchemaDesignerConfig | null;
   deselectSchema: () => void;
   form: ReturnType<typeof useForm>;
-  sectionSchemas: Record<'general' | 'style' | 'layout' | 'data' | 'collaboration' | 'validation' | 'advanced', PropPanelSchema>;
+  sections: DetailInspectorSection[];
   widgets: Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element>;
   watchHandler: (..._args: unknown[]) => void;
 };
@@ -24,7 +25,7 @@ const DetailViewContent = ({
   schemaConfig,
   deselectSchema,
   form,
-  sectionSchemas,
+  sections,
   widgets,
   watchHandler,
 }: DetailViewContentProps) => {
@@ -47,7 +48,9 @@ const DetailViewContent = ({
     commentCount > 0 ? { label: `Comentarios: ${commentCount}` } : null,
     anchorCount > 0 ? { label: `Anchors: ${anchorCount}` } : null,
   ].filter(Boolean) as Array<{ label: string }>;
-  const contextTags = [...configTags, ...collaborationTags];
+  const contextTags = [...collaborationTags, ...configTags];
+  const visibleContextTags = contextTags.slice(0, 4);
+  const hiddenContextTagCount = Math.max(0, contextTags.length - visibleContextTags.length);
 
   return (
     <SidebarFrame className={DESIGNER_CLASSNAME + 'detail-view'}>
@@ -68,91 +71,35 @@ const DetailViewContent = ({
       </SidebarHeader>
       <SidebarBody tabIndex={0} aria-label="Secciones del detalle del campo">
         <DetailHeaderCard activeSchema={activeSchema} configTags={configTags} />
-        {contextTags.length > 0 ? (
+        {visibleContextTags.length > 0 ? (
           <div className={DESIGNER_CLASSNAME + 'detail-view-context-strip'}>
-            {contextTags.map((tag) => (
+            {visibleContextTags.map((tag) => (
               <span key={tag.label} className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
                 {tag.label}
               </span>
             ))}
+            {hiddenContextTagCount > 0 ? (
+              <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
+                +{hiddenContextTagCount} más
+              </span>
+            ) : null}
           </div>
         ) : null}
         <div className={DESIGNER_CLASSNAME + 'detail-view-sections'}>
-          <DetailFormSection
-            sectionKey="general"
-            title="General"
-            description="Identidad y metadatos del campo."
-            schema={sectionSchemas.general}
-            form={form}
-            widgets={widgets}
-            watchHandler={watchHandler}
-            resetToken={activeSchema.id}
-          />
-          <DetailFormSection
-            sectionKey="style"
-            title="Estilo"
-            description="Alineación y tratamiento visual."
-            schema={sectionSchemas.style}
-            form={form}
-            widgets={widgets}
-            watchHandler={watchHandler}
-            defaultCollapsed
-            resetToken={activeSchema.id}
-          />
-          <DetailFormSection
-            sectionKey="layout"
-            title="Layout"
-            description="Posición y tamaño en la página."
-            schema={sectionSchemas.layout}
-            form={form}
-            widgets={widgets}
-            watchHandler={watchHandler}
-            resetToken={activeSchema.id}
-          />
-          <DetailFormSection
-            sectionKey="data"
-            title="Datos"
-            description="Comportamiento semántico y edición."
-            schema={sectionSchemas.data}
-            form={form}
-            widgets={widgets}
-            watchHandler={watchHandler}
-            defaultCollapsed
-            resetToken={activeSchema.id}
-          />
-          <DetailFormSection
-            sectionKey="collaboration"
-            title="Colaboración"
-            description="Propietario, bloqueo, auditoría y trazabilidad."
-            schema={sectionSchemas.collaboration}
-            form={form}
-            widgets={widgets}
-            watchHandler={watchHandler}
-            defaultCollapsed
-            resetToken={activeSchema.id}
-          />
-          <DetailFormSection
-            sectionKey="validation"
-            title="Validación"
-            description="Reglas y obligatoriedad."
-            schema={sectionSchemas.validation}
-            form={form}
-            widgets={widgets}
-            watchHandler={watchHandler}
-            defaultCollapsed
-            resetToken={activeSchema.id}
-          />
-          <DetailFormSection
-            sectionKey="advanced"
-            title="Avanzado"
-            description="Propiedades avanzadas del plugin."
-            schema={sectionSchemas.advanced}
-            form={form}
-            widgets={widgets}
-            watchHandler={watchHandler}
-            defaultCollapsed
-            resetToken={activeSchema.id}
-          />
+          {sections.map((section) => (
+            <DetailFormSection
+              key={section.key}
+              sectionKey={section.key}
+              title={section.title}
+              description={section.description}
+              schema={section.schema}
+              form={form}
+              widgets={widgets}
+              watchHandler={watchHandler}
+              defaultCollapsed={section.defaultCollapsed}
+              resetToken={`${activeSchema.id}:${section.key}`}
+            />
+          ))}
         </div>
       </SidebarBody>
     </SidebarFrame>

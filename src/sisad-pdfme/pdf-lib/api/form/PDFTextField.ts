@@ -55,7 +55,7 @@ export default class PDFTextField extends PDFField {
     new PDFTextField(acroText, ref, doc);
 
   /** The low-level PDFAcroText wrapped by this text field. */
-  readonly acroField: PDFAcroText;
+  declare readonly acroField: PDFAcroText;
 
   private constructor(acroText: PDFAcroText, ref: PDFRef, doc: PDFDocument) {
     super(acroText, ref, doc);

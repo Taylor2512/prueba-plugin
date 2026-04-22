@@ -1,6 +1,7 @@
 import type { PropPanel, PropPanelSchema } from '@sisad-pdfme/common';
 import type { SignatureSchema } from './types.js';
 import { DEFAULT_OPACITY, HEX_COLOR_PATTERN } from '../constants.js';
+import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 
 const buildColorField = (title: string): PropPanelSchema => ({
   title,
@@ -32,6 +33,14 @@ export const propPanel: PropPanel<SignatureSchema> = {
       span: 8,
     },
   },
+  inspector: createSchemaInspectorConfig('signature', {
+    propertyMap: {
+      placeholderText: 'data',
+      strokeColor: 'style',
+      borderColor: 'style',
+      backgroundColor: 'style',
+    },
+  }),
   defaultSchema: {
     name: '',
     type: 'signature',

@@ -1,7 +1,8 @@
 import React from 'react';
-import type { PropPanelWidgetProps } from '@sisad-pdfme/common';
+import type { PropPanelWidgetProps, UIOptions } from '@sisad-pdfme/common';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { Divider, Input, Popover, Tooltip } from 'antd';
+import { Palette, Pipette } from 'lucide-react';
 import AlignWidget from './AlignWidget.js';
 import ButtonGroupWidget from './ButtonGroupWidget.js';
 import WidgetRenderer from './WidgetRenderer.js';
@@ -27,7 +28,7 @@ const COLOR_PRESETS = [
   '#78350f',
 ];
 
-const ColorPickerWidget = ({
+export const ColorPickerWidget = ({
   value,
   onChange,
   normalizeHex,
@@ -44,14 +45,11 @@ const ColorPickerWidget = ({
       {COLOR_PRESETS.map((preset) => (
         <Tooltip key={preset} title={preset} placement="top">
           <button
+            type="button"
             onClick={() => onChange?.(preset)}
-            onMouseEnter={(e) => {
-              e.currentTarget.style.transform = 'scale(1.2)';
-            }}
-            onMouseLeave={(e) => {
-              e.currentTarget.style.transform = 'scale(1)';
-            }}
-            className={DESIGNER_CLASSNAME + 'button-auto'}
+            className={DESIGNER_CLASSNAME + 'color-picker-swatch-option'}
+            style={{ backgroundColor: preset }}
+            aria-label={`Aplicar color ${preset}`}
           />
         </Tooltip>
       ))}
@@ -61,15 +59,39 @@ const ColorPickerWidget = ({
   return (
     <div className={`${DESIGNER_CLASSNAME}color-picker-container`}>
       <Popover content={swatches} trigger="click" placement="bottomLeft">
-        <button title="Elegir color" className={DESIGNER_CLASSNAME + 'button-auto'} />
+        <button
+          type="button"
+          title="Paleta de colores"
+          aria-label="Paleta de colores"
+          className={`${DESIGNER_CLASSNAME}color-picker-trigger`}
+        >
+          <span
+            className={`${DESIGNER_CLASSNAME}color-picker-preview`}
+            style={{ backgroundColor: hex }}
+            aria-hidden="true"
+          />
+          <Palette size={12} aria-hidden="true" />
+        </button>
       </Popover>
-      <input
-        type="color"
-        className={`${DESIGNER_CLASSNAME}color-picker-input`}
-        value={hex}
-        onChange={(e) => onChange?.(e.target.value)}
-        aria-label="Color picker"
-      />
+      <label
+        className={`${DESIGNER_CLASSNAME}color-picker-trigger`}
+        aria-label="Selector nativo de color"
+        title="Selector nativo de color"
+      >
+        <span
+          className={`${DESIGNER_CLASSNAME}color-picker-preview`}
+          style={{ backgroundColor: hex }}
+          aria-hidden="true"
+        />
+        <Pipette size={12} aria-hidden="true" />
+        <input
+          type="color"
+          className={`${DESIGNER_CLASSNAME}color-picker-input`}
+          value={hex}
+          onChange={(e) => onChange?.(e.target.value)}
+          aria-label="Selector nativo de color"
+        />
+      </label>
       <Input
         className={`${DESIGNER_CLASSNAME}color-picker-hex`}
         value={currentColor}
@@ -89,11 +111,11 @@ type BuildWidgetsParams = {
       };
     }>;
   };
-  options: unknown;
-  token: unknown;
+  options: UIOptions;
+  token: any;
   typedI18n: (key: string) => string;
   normalizeColorHex: (value: unknown) => string;
-  props: Record<string, unknown>;
+  props: any;
 };
 
 export const buildDetailWidgets = ({

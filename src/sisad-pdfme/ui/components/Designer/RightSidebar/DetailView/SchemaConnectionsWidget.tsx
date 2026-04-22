@@ -15,6 +15,7 @@ import {
 } from '../../../../designerEngine.js';
 import { PairEditor, SectionHeader } from './SchemaConnectionsShared.js';
 import { getMissingConnectionFields } from './schemaConnectionsValidation.js';
+import CompactConfigPanel from './CompactConfigPanel.js';
 
 type ConfigWidgetProps = PropPanelWidgetProps & {
   schemaConfig?: SchemaDesignerConfig | null;
@@ -299,7 +300,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
 
   const validationTag = useMemo(() => buildValidationTag(validationState), [validationState]);
 
-  const headerTags = runtimeStatusTags.slice(0, 4);
+  const headerTags = runtimeStatusTags.slice(0, 3);
   const persistenceSummary = describePersistence(persistence);
   const formJsonSummary = describeFormJson(formJson);
   const apiSummary = describeApi(api, resolvedHttpClient);
@@ -686,57 +687,63 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
   ];
 
   return (
-    <div className={`${DESIGNER_CLASSNAME}schema-config-widget`}>
-      <div className={`${DESIGNER_CLASSNAME}schema-config-header`}>
-        <div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-widget-title`}>Conexiones y persistencia</div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>
-            Configura guardado, salida de formulario y consultas remotas sin ocupar espacio permanente.
+    <CompactConfigPanel
+      title="Conexiones y persistencia"
+      description="Activa guardado, salida JSON y consultas remotas sin ocupar el panel completo."
+      summary={validationMessage}
+      statusTags={[
+        ...headerTags,
+        ...(validationTag ? [validationTag] : []),
+        ...(api.enabled && !api.endpoint ? [{ label: 'Falta endpoint', color: 'warning' as const }] : []),
+        ...(formJson.enabled && formJson.collect && !formJson.rootKey
+          ? [{ label: 'Falta raíz JSON', color: 'warning' as const }]
+          : []),
+      ]}
+      quickActions={
+        <>
+          <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
+            <span>Guardar datos</span>
+            <Switch checked={Boolean(persistence.enabled)} onChange={(checked) => updatePersistence({ enabled: checked })} />
           </div>
-        </div>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-tags`}>
+          <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
+            <span>Salida JSON</span>
+            <Switch checked={Boolean(formJson.enabled)} onChange={(checked) => updateFormJson({ enabled: checked })} />
+          </div>
+          <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
+            <span>Consultar API</span>
+            <Switch checked={Boolean(api.enabled)} onChange={(checked) => updateApi({ enabled: checked })} />
+          </div>
+        </>
+      }
+      footerActions={
+        <>
           <Button size="small" type="text" onClick={handleValidateConfig}>
             Validar
           </Button>
-          {headerTags.map((tag) => (
-            <Tag key={tag.label} color={tag.color}>
+        </>
+      }
+      modalTitle="Configurar conexiones y persistencia"
+      modalTriggerLabel="Configuración avanzada"
+    >
+      <div className={`${DESIGNER_CLASSNAME}schema-config-widget`}>
+        <div className={`${DESIGNER_CLASSNAME}schema-config-summary-row`}>
+          {runtimeStatusTags.map((tag) => (
+            <Tag key={tag.label} color={tag.color} className={`${DESIGNER_CLASSNAME}schema-config-summary-tag`}>
               {tag.label}
             </Tag>
           ))}
         </div>
+        <div className={`${DESIGNER_CLASSNAME}schema-config-summary`}>
+          <div className={`${DESIGNER_CLASSNAME}schema-config-summary-text`}>{validationMessage}</div>
+        </div>
+        <Collapse
+          ghost
+          items={items}
+          defaultActiveKey={['persistence']}
+          className={`${DESIGNER_CLASSNAME}schema-config-collapse`}
+        />
       </div>
-      <div className={`${DESIGNER_CLASSNAME}schema-config-summary-row`}>
-        {runtimeStatusTags.slice(0, 2).map((tag) => (
-          <Tag key={tag.label} color={tag.color} className={`${DESIGNER_CLASSNAME}schema-config-summary-tag`}>
-            {tag.label}
-          </Tag>
-        ))}
-        {validationTag ? (
-          <Tag color={validationTag.color} className={`${DESIGNER_CLASSNAME}schema-config-summary-tag`}>
-            {validationTag.label}
-          </Tag>
-        ) : null}
-        {api.enabled && !api.endpoint ? (
-          <Tag color="warning" className={`${DESIGNER_CLASSNAME}schema-config-summary-tag`}>
-            Falta endpoint
-          </Tag>
-        ) : null}
-        {formJson.enabled && formJson.collect && !formJson.rootKey ? (
-          <Tag color="warning" className={`${DESIGNER_CLASSNAME}schema-config-summary-tag`}>
-            Falta raíz JSON
-          </Tag>
-        ) : null}
-      </div>
-      <div className={`${DESIGNER_CLASSNAME}schema-config-summary`}>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-summary-text`}>{validationMessage}</div>
-      </div>
-      <Collapse
-        ghost
-        items={items}
-        defaultActiveKey={['persistence']}
-        className={`${DESIGNER_CLASSNAME}schema-config-collapse`}
-      />
-    </div>
+    </CompactConfigPanel>
   );
 };
 

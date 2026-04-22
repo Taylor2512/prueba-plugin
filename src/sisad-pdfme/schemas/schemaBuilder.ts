@@ -32,7 +32,7 @@ export type SchemaPluginEntry =
   | Record<string, AnySchemaPlugin | SchemaPluginWithMetadata<Schema>>;
 export type SchemaPluginMap = Record<string, SchemaPluginEntry>;
 
-export const createLucideIcon = (icon: IconNode, attrs?: Record<string, string>) =>
+export const renderLucideIcon = (icon: unknown, attrs?: Record<string, string>) =>
   createSvgStr(icon, attrs);
 
 export const createSchemaPlugin = <T extends Schema>(

@@ -3,12 +3,13 @@ import { Circle, CircleDot } from 'lucide-react';
 import svg from '../graphics/svg.js';
 import { isEditable } from '../utils.js';
 import { HEX_COLOR_PATTERN } from '../constants.js';
-import { createLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
+import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
+import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 
 const defaultStroke = 'currentColor';
 
-const getCheckedIcon = (stroke = defaultStroke) => createLucideIcon(CircleDot, { stroke });
-const getUncheckedIcon = (stroke = defaultStroke) => createLucideIcon(Circle, { stroke });
+const getCheckedIcon = (stroke = defaultStroke) => renderLucideIcon(CircleDot, { stroke });
+const getUncheckedIcon = (stroke = defaultStroke) => renderLucideIcon(Circle, { stroke });
 
 interface RadioGroup extends Schema {
   group: string;
@@ -97,6 +98,12 @@ const schema: Plugin<RadioGroup> = createSchemaPlugin<RadioGroup>({
       group: {
         title: i18n('schemas.radioGroup.groupName'),
         type: 'string',
+      },
+    }),
+    inspector: createSchemaInspectorConfig('choice', {
+      propertyMap: {
+        color: 'style',
+        group: 'data',
       },
     }),
     defaultSchema: {

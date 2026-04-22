@@ -2,7 +2,7 @@ import type { Plugin, UIRenderProps } from '@sisad-pdfme/common';
 import { PenLine } from 'lucide-react';
 import image from '../graphics/image.js';
 import { isEditable } from '../utils.js';
-import { createLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
+import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 import { propPanel } from './propPanel.js';
 import type { SignatureSchema } from './types.js';
 
@@ -176,7 +176,7 @@ const signatureSchema: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSch
     }
   },
   propPanel,
-  icon: createLucideIcon(PenLine),
+  icon: renderLucideIcon(PenLine),
 }, {
   key: 'signature',
   type: 'signature',
