@@ -1,8 +1,15 @@
-import type { PropPanelInspectorConfig, PropPanelInspectorSectionKey } from '@sisad-pdfme/common';
+import type {
+  PluginActionDefinition,
+  PluginFamilyDefinition,
+  PluginStrategyDefinition,
+  PropPanelInspectorConfig,
+  PropPanelInspectorSectionKey,
+} from '../common/types.js';
 
-export type SchemaFamily = 'textual' | 'media' | 'signature' | 'choice' | 'shape' | 'barcode' | 'table';
+export type SchemaFamily = 'text' | 'mediaVisual' | 'boolean' | 'shapeBarcode' | 'table';
+export type LegacySchemaFamily = 'textual' | 'media' | 'signature' | 'choice' | 'shape' | 'barcode' | 'table';
 
-type FamilyPreset = {
+type FamilyPreset = PluginFamilyDefinition & {
   visibleSections: PropPanelInspectorSectionKey[];
   propertyMap: Partial<Record<string, PropPanelInspectorSectionKey>>;
   supportsConnections: boolean;
@@ -10,11 +17,13 @@ type FamilyPreset = {
   supportsValidation: boolean;
 };
 
-const TEXTUAL_TYPES = new Set(['text', 'multiVariableText', 'select', 'date', 'time', 'dateTime']);
-const CHOICE_TYPES = new Set(['checkbox', 'radioGroup']);
+const TEXT_TYPES = new Set(['text', 'multivariabletext', 'select', 'date', 'time', 'datetime', 'signature']);
+const BOOLEAN_TYPES = new Set(['checkbox', 'radiogroup']);
 const MEDIA_TYPES = new Set(['image', 'svg']);
-const SHAPE_TYPES = new Set(['line', 'rectangle', 'ellipse']);
-const BARCODE_TYPES = new Set([
+const SHAPE_BARCODE_TYPES = new Set([
+  'line',
+  'rectangle',
+  'ellipse',
   'qrcode',
   'japanpost',
   'ean13',
@@ -61,75 +70,176 @@ const BASE_PROPERTY_MAP: Partial<Record<string, PropPanelInspectorSectionKey>> =
   includetext: 'data',
 };
 
+const createActions = (ids: Array<PluginActionDefinition['command']>): PluginActionDefinition[] =>
+  ids.map((command) => ({
+    id: command,
+    command,
+    label: command,
+    placement: ['toolbar', 'context-menu', 'inspector'],
+  }));
+
+const createStrategies = (types: Array<PluginStrategyDefinition['type']>): PluginStrategyDefinition[] =>
+  types.map((type) => ({
+    id: type,
+    type,
+    label: type,
+  }));
+
 const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
-  textual: {
-    visibleSections: ['general', 'layout', 'style', 'data', 'connections', 'collaboration', 'validation', 'advanced'],
+  text: {
+    family: 'text',
+    visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'collaboration', 'validation', 'advanced'],
     propertyMap: BASE_PROPERTY_MAP,
+    supportedActions: createActions([
+      'editText',
+      'renameVariable',
+      'resizeField',
+      'moveField',
+      'duplicateField',
+      'deleteField',
+      'changeColor',
+      'togglePersistence',
+      'addComment',
+      'resolveComment',
+      'lockField',
+      'unlockField',
+    ]),
+    strategies: createStrategies(['validation', 'prefill', 'persistence', 'comments', 'locking']),
+    supportsComments: true,
+    supportsLocking: true,
+    supportsPresence: true,
     supportsConnections: true,
     supportsCollaboration: true,
     supportsValidation: true,
   },
-  media: {
+  mediaVisual: {
+    family: 'mediaVisual',
     visibleSections: ['general', 'layout', 'style', 'collaboration', 'advanced'],
     propertyMap: BASE_PROPERTY_MAP,
+    supportedActions: createActions([
+      'resizeField',
+      'moveField',
+      'duplicateField',
+      'deleteField',
+      'changeColor',
+      'addComment',
+      'lockField',
+      'unlockField',
+    ]),
+    strategies: createStrategies(['upload', 'comments', 'locking']),
+    supportsComments: true,
+    supportsLocking: true,
+    supportsPresence: true,
     supportsConnections: false,
     supportsCollaboration: true,
     supportsValidation: false,
   },
-  signature: {
-    visibleSections: ['general', 'layout', 'style', 'data', 'connections', 'collaboration', 'validation', 'advanced'],
+  boolean: {
+    family: 'boolean',
+    visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'collaboration', 'validation', 'advanced'],
     propertyMap: BASE_PROPERTY_MAP,
+    supportedActions: createActions([
+      'renameVariable',
+      'resizeField',
+      'moveField',
+      'duplicateField',
+      'deleteField',
+      'changeColor',
+      'togglePersistence',
+      'addComment',
+      'resolveComment',
+      'lockField',
+      'unlockField',
+    ]),
+    strategies: createStrategies(['validation', 'prefill', 'persistence', 'comments', 'locking']),
+    supportsComments: true,
+    supportsLocking: true,
+    supportsPresence: true,
     supportsConnections: true,
     supportsCollaboration: true,
     supportsValidation: true,
   },
-  choice: {
-    visibleSections: ['general', 'layout', 'style', 'data', 'connections', 'collaboration', 'validation', 'advanced'],
+  shapeBarcode: {
+    family: 'shapeBarcode',
+    visibleSections: ['general', 'layout', 'style', 'data', 'advanced', 'collaboration'],
     propertyMap: BASE_PROPERTY_MAP,
-    supportsConnections: true,
-    supportsCollaboration: true,
-    supportsValidation: true,
-  },
-  shape: {
-    visibleSections: ['general', 'layout', 'style', 'collaboration', 'advanced'],
-    propertyMap: BASE_PROPERTY_MAP,
-    supportsConnections: false,
-    supportsCollaboration: true,
-    supportsValidation: false,
-  },
-  barcode: {
-    visibleSections: ['general', 'layout', 'style', 'data', 'collaboration', 'advanced'],
-    propertyMap: BASE_PROPERTY_MAP,
+    supportedActions: createActions([
+      'resizeField',
+      'moveField',
+      'duplicateField',
+      'deleteField',
+      'changeColor',
+      'addComment',
+      'lockField',
+      'unlockField',
+    ]),
+    strategies: createStrategies(['comments', 'locking']),
+    supportsComments: true,
+    supportsLocking: true,
+    supportsPresence: true,
     supportsConnections: false,
     supportsCollaboration: true,
     supportsValidation: false,
   },
   table: {
-    visibleSections: ['general', 'layout', 'style', 'data', 'connections', 'collaboration', 'advanced'],
+    family: 'table',
+    visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'collaboration', 'advanced'],
     propertyMap: BASE_PROPERTY_MAP,
+    supportedActions: createActions([
+      'renameVariable',
+      'resizeField',
+      'moveField',
+      'duplicateField',
+      'deleteField',
+      'changeColor',
+      'togglePersistence',
+      'addComment',
+      'resolveComment',
+      'lockField',
+      'unlockField',
+    ]),
+    strategies: createStrategies(['prefill', 'persistence', 'comments', 'locking']),
+    supportsComments: true,
+    supportsLocking: true,
+    supportsPresence: true,
     supportsConnections: true,
     supportsCollaboration: true,
     supportsValidation: false,
   },
 };
 
-export const resolveSchemaFamily = (schemaType: string): SchemaFamily => {
-  if (TEXTUAL_TYPES.has(schemaType)) return 'textual';
-  if (MEDIA_TYPES.has(schemaType)) return 'media';
-  if (schemaType === 'signature') return 'signature';
-  if (CHOICE_TYPES.has(schemaType)) return 'choice';
-  if (SHAPE_TYPES.has(schemaType)) return 'shape';
-  if (BARCODE_TYPES.has(schemaType)) return 'barcode';
-  if (schemaType === 'table') return 'table';
-  return 'textual';
+const LEGACY_TO_CANONICAL: Record<LegacySchemaFamily, SchemaFamily> = {
+  textual: 'text',
+  media: 'mediaVisual',
+  signature: 'text',
+  choice: 'boolean',
+  shape: 'shapeBarcode',
+  barcode: 'shapeBarcode',
+  table: 'table',
 };
 
-export const getSchemaFamilyInspectorPreset = (family: SchemaFamily): FamilyPreset => {
-  const preset = FAMILY_PRESETS[family];
+export const normalizeSchemaFamily = (family: SchemaFamily | LegacySchemaFamily): SchemaFamily =>
+  family in LEGACY_TO_CANONICAL ? LEGACY_TO_CANONICAL[family as LegacySchemaFamily] : (family as SchemaFamily);
+
+export const resolveSchemaFamily = (schemaType: string): SchemaFamily => {
+  const normalizedType = String(schemaType || '').trim().toLowerCase();
+  if (TEXT_TYPES.has(normalizedType)) return 'text';
+  if (BOOLEAN_TYPES.has(normalizedType)) return 'boolean';
+  if (MEDIA_TYPES.has(normalizedType)) return 'mediaVisual';
+  if (normalizedType === 'table') return 'table';
+  if (SHAPE_BARCODE_TYPES.has(normalizedType)) return 'shapeBarcode';
+  return 'text';
+};
+
+export const getSchemaFamilyInspectorPreset = (family: SchemaFamily | LegacySchemaFamily): FamilyPreset => {
+  const normalized = normalizeSchemaFamily(family);
+  const preset = FAMILY_PRESETS[normalized];
   return {
     ...preset,
     visibleSections: [...preset.visibleSections],
     propertyMap: { ...preset.propertyMap },
+    supportedActions: preset.supportedActions.map((action) => ({ ...action, placement: [...(action.placement || [])] })),
+    strategies: preset.strategies.map((strategy) => ({ ...strategy })),
   };
 };
 
@@ -137,7 +247,7 @@ export const getSchemaTypeInspectorPreset = (schemaType: string): FamilyPreset =
   getSchemaFamilyInspectorPreset(resolveSchemaFamily(schemaType));
 
 export const createSchemaInspectorConfig = (
-  family: SchemaFamily,
+  family: SchemaFamily | LegacySchemaFamily,
   overrides: PropPanelInspectorConfig = {},
 ): PropPanelInspectorConfig => {
   const preset = getSchemaFamilyInspectorPreset(family);
@@ -149,6 +259,8 @@ export const createSchemaInspectorConfig = (
       ...preset.propertyMap,
       ...overridePropertyMap,
     },
+    supportedActions: overrides.supportedActions?.length ? overrides.supportedActions : preset.supportedActions,
+    strategies: overrides.strategies?.length ? overrides.strategies : preset.strategies,
     supportsConnections: overrides.supportsConnections ?? overrides.includeConnections ?? preset.supportsConnections,
     supportsCollaboration:
       overrides.supportsCollaboration ?? overrides.includeCollaboration ?? preset.supportsCollaboration,

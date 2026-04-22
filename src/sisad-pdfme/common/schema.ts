@@ -104,7 +104,8 @@ export const SchemaCommentReply = z
     authorId: z.string().optional(),
     authorName: z.string().optional(),
     authorColor: z.string().optional(),
-    timestamp: z.number(),
+    timestamp: z.number().optional(),
+    createdAt: z.number().optional(),
     text: z.string(),
     resolved: z.boolean().optional(),
   })
@@ -113,10 +114,15 @@ export const SchemaCommentReply = z
 export const SchemaComment = z
   .object({
     id: z.string(),
+    fileId: z.string().optional(),
+    pageNumber: z.number().int().positive().optional(),
+    fieldId: z.string().optional(),
+    schemaUid: z.string().optional(),
     authorId: z.string().optional(),
     authorName: z.string().optional(),
     authorColor: z.string().optional(),
-    timestamp: z.number(),
+    timestamp: z.number().optional(),
+    createdAt: z.number().optional(),
     text: z.string(),
     resolved: z.boolean().optional(),
     anchor: z.lazy(() => CommentAnchor).optional(),

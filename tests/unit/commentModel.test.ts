@@ -156,7 +156,9 @@ describe('comment model helpers', () => {
       { authorId: 'reviewer-1', authorColor: '#2563EB' },
     );
 
+    expect((withFallbackTwice as any).pdfComments).toHaveLength(1);
     expect((withFallbackTwice as any).__commentAnchors).toHaveLength(1);
+    expect((withFallbackTwice as any).pdfComments[0].comment.text).toBe('Fallback comment updated');
     expect((withFallbackTwice as any).__commentAnchors[0].comment.text).toBe('Fallback comment updated');
 
     const schema = withFallbackTwice.schemas[0][0] as any;

@@ -9,6 +9,7 @@ import {
   createSchemaCommentAnchor,
   filterCommentsByFileAndPage,
   removeById,
+  removeTopLevelComment,
   Schema,
   SchemaForUI,
   ChangeSchemas,
@@ -16,6 +17,7 @@ import {
   Size,
   isBlankPdf,
   px2mm,
+  upsertTopLevelComment,
   upsertById,
 } from '@sisad-pdfme/common';
 import { DndContext, DragOverlay } from '@dnd-kit/core';
@@ -67,6 +69,13 @@ import {
   getSchemaDesignerConfig,
   mergeSchemaDesignerConfig,
 } from '../../designerEngine.js';
+import { CommandBus } from '../../commands/commandBus.js';
+import {
+  buildTopLevelCommentEntry,
+  createCommentCommandEvent,
+  createPageSnapshotCommand,
+  createTemplateSnapshotCommand,
+} from '../../commands/designerCommands.js';
 const DESIGNER_THEME_STYLE_ID = DESIGNER_CLASSNAME + 'theme-base';
 
 const DESIGNER_THEME_CSS = `
@@ -177,25 +186,20 @@ const applyTopLevelCommentEventToTemplate = (
   if (!('type' in event) || !event.type.startsWith('comment.')) return template;
   if (!('schemaId' in event) || !isTopLevelCommentSchemaId(event.schemaId)) return template;
 
-  const nextTemplate = cloneDeep(template) as Template & {
-    __commentAnchors?: Array<{ id: string; anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
-  };
-  const currentEntries = Array.isArray(nextTemplate.__commentAnchors) ? nextTemplate.__commentAnchors : [];
+  const nextTemplate = cloneDeep(template) as Template;
 
   if (event.type === 'comment.deleted') {
-    nextTemplate.__commentAnchors = removeById(currentEntries, event.commentId) as typeof currentEntries;
-    return nextTemplate;
+    return removeTopLevelComment(nextTemplate, event.commentId);
   }
 
   const commentEvent = event as Extract<Parameters<typeof applyCollaborationEvent>[1], { type: 'comment.created' | 'comment.updated' }>;
   const anchor = cloneDeep(commentEvent.anchor || commentEvent.comment.anchor || undefined);
   const comment = cloneDeep(commentEvent.comment);
-  nextTemplate.__commentAnchors = upsertById(currentEntries, {
+  return upsertTopLevelComment(nextTemplate, {
     id: comment.id,
     anchor,
     comment,
-  } as (typeof currentEntries)[number]);
-  return nextTemplate;
+  } as any);
 };
 
 const getBasePdfDisplayName = (basePdf: Template['basePdf']): string | null => {
@@ -298,6 +302,7 @@ const TemplateEditor = ({
 }) => { // NOSONAR
   const past = useRef<SchemaForUI[][]>([]);
   const future = useRef<SchemaForUI[][]>([]);
+  const commandBusRef = useRef(new CommandBus());
   const canvasRef = useRef<HTMLDivElement>(null);
   const paperRefs = useRef<HTMLDivElement[]>([]);
   const pdfUploadInputRef = useRef<HTMLInputElement>(null);
@@ -307,6 +312,8 @@ const TemplateEditor = ({
   const applyingRemoteCollaborationRef = useRef(false);
   const lockedSelectionSchemaIdsRef = useRef<string[]>([]);
   const documentSchemasCacheRef = useRef<Map<string, SchemaForUI[][]>>(new Map());
+  const schemasListRef = useRef<SchemaForUI[][]>([]);
+  const activeBasePdfRef = useRef(template.basePdf);
 
   const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
@@ -557,6 +564,14 @@ const TemplateEditor = ({
   }, []);
 
   const activeBasePdf = visibleTemplate.basePdf;
+
+  useEffect(() => {
+    schemasListRef.current = schemasList;
+  }, [schemasList]);
+
+  useEffect(() => {
+    activeBasePdfRef.current = activeBasePdf;
+  }, [activeBasePdf]);
   const currentPageSchemas = useMemo(
     () => schemasList[pageCursor] || [],
     [pageCursor, schemasList],
@@ -830,13 +845,32 @@ const TemplateEditor = ({
 
   const commitSchemas = useCallback(
     (newSchemas: SchemaForUI[]) => {
-      future.current = [];
-      past.current.push(cloneDeep(schemasList[pageCursor]));
-      const nextSchemasList = replacePageSchemas(schemasList, pageCursor, newSchemas);
-      setSchemasList(nextSchemasList);
-      pushTemplateUpdate(schemasList2template(nextSchemasList, activeBasePdf));
+      const beforeSchemas = cloneDeep(schemasListRef.current[pageCursor] || []);
+      const afterSchemas = cloneDeep(newSchemas);
+      const eventType =
+        beforeSchemas.length < afterSchemas.length
+          ? 'schema.created'
+          : beforeSchemas.length > afterSchemas.length
+            ? 'schema.deleted'
+            : 'schema.updated';
+      void commandBusRef.current.execute(
+        createPageSnapshotCommand({
+          id: eventType,
+          label: eventType,
+          pageIndex: pageCursor,
+          beforeSchemas,
+          afterSchemas,
+          schemaEvents: [{ type: eventType, pageIndex: pageCursor }],
+          applyPageSchemas: (targetPageIndex, nextPageSchemas) => {
+            const nextSchemasList = replacePageSchemas(schemasListRef.current, targetPageIndex, nextPageSchemas);
+            schemasListRef.current = nextSchemasList;
+            setSchemasList(nextSchemasList);
+            pushTemplateUpdate(schemasList2template(nextSchemasList, activeBasePdfRef.current));
+          },
+        }),
+      );
     },
-    [activeBasePdf, pageCursor, pushTemplateUpdate, schemasList],
+    [pageCursor, pushTemplateUpdate],
   );
 
   const removeSchemas = useCallback(
@@ -911,6 +945,7 @@ const TemplateEditor = ({
     onSaveTemplate,
     past,
     future,
+    commandBus: commandBusRef.current,
     setSchemasList,
     onEdit,
     onEditEnd,
@@ -922,6 +957,7 @@ const TemplateEditor = ({
     setVisibleTemplate(newTemplate);
     const sl = await template2SchemasList(newTemplate);
     setSchemasList(sl);
+    schemasListRef.current = sl;
     setPageCursor((prev) => {
       if (sl.length <= 0) return 0;
       return Math.max(0, Math.min(prev, sl.length - 1));
@@ -992,7 +1028,7 @@ const TemplateEditor = ({
               && pendingAnchor.yMm <= y + height
             );
           });
-        const resolvedSchemaUid = pendingAnchor.schemaUid || fallbackSchema?.schemaUid || fallbackSchema?.id;
+        const resolvedSchemaUid = fallbackSchema?.schemaUid || fallbackSchema?.id || pendingAnchor.schemaUid;
 
         const anchor = {
           x: pendingAnchor.xMm,
@@ -1023,9 +1059,26 @@ const TemplateEditor = ({
           anchor: cloneDeep(createdAnchor),
         });
 
+        const beforeTemplate = cloneDeep(visibleTemplate) as Template;
+
         if (resolvedSchemaUid) {
           const nextTemplate = cloneDeep(visibleTemplate) as Template;
-          const target = findSchemaByUid(nextTemplate, resolvedSchemaUid);
+          const target =
+            findSchemaByUid(nextTemplate, resolvedSchemaUid) ||
+            (() => {
+              const pages = nextTemplate.schemas || [];
+              for (let pageIndex = 0; pageIndex < pages.length; pageIndex += 1) {
+                const index = (pages[pageIndex] || []).findIndex((schema) => schema.id === resolvedSchemaUid);
+                if (index >= 0) {
+                  return {
+                    pageIndex,
+                    index,
+                    schema: pages[pageIndex][index] as SchemaForUI,
+                  };
+                }
+              }
+              return null;
+            })();
           if (target?.schema) {
             const nextSchema = cloneDeep(target.schema) as SchemaForUI & {
               comments?: Array<{ id: string; anchor?: Record<string, unknown>; [key: string]: unknown }>;
@@ -1037,17 +1090,36 @@ const TemplateEditor = ({
             nextSchema.commentsCount = (Number(nextSchema.commentsCount) || 0) + 1;
             nextTemplate.schemas[target.pageIndex][target.index] = nextSchema as any;
           }
-          void updateTemplate(nextTemplate);
+          void commandBusRef.current.execute(
+            createTemplateSnapshotCommand({
+              id: 'addComment',
+              label: 'addComment',
+              beforeTemplate,
+              afterTemplate: nextTemplate,
+              events: [createCommentCommandEvent('comment.created', createdComment.id, anchor.fileId)],
+              applyTemplate: updateTemplate,
+            }),
+          );
         } else {
-          const nextTemplate = cloneDeep(visibleTemplate) as Template & {
-            __commentAnchors?: Array<{ id: string; anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
-          };
-          nextTemplate.__commentAnchors = upsertById(nextTemplate.__commentAnchors || [], {
-            id: createdComment.id,
-            anchor: createdAnchor,
-            comment: createdComment,
-          });
-          void updateTemplate(nextTemplate as Template);
+          const nextTemplate = upsertTopLevelComment(
+            cloneDeep(visibleTemplate) as Template,
+            buildTopLevelCommentEntry({
+              id: createdComment.id,
+              anchor: createdAnchor as any,
+              comment: createdComment as any,
+            }),
+          );
+
+          void commandBusRef.current.execute(
+            createTemplateSnapshotCommand({
+              id: 'addComment',
+              label: 'addComment',
+              beforeTemplate,
+              afterTemplate: nextTemplate,
+              events: [createCommentCommandEvent('comment.created', createdComment.id, anchor.fileId)],
+              applyTemplate: updateTemplate,
+            }),
+          );
 
           if (designerEngine.collaboration?.enabled) {
             applyCollaborationLocalChange({
@@ -1133,6 +1205,7 @@ const TemplateEditor = ({
   const loadDocumentIntoCanvas = useCallback(
     async (document: UploadedPdfDocument, targetPageIndex = 0) => {
       if (!document?.id) return;
+      commandBusRef.current.clear();
       const normalizedTemplate = normalizeTemplateSchemaPages(document.template, document.pageCount);
 
       const cachedSchemas = documentSchemasCacheRef.current.get(document.id);
@@ -1409,22 +1482,14 @@ const TemplateEditor = ({
   }, [computeZoomForMode, pageCursor, sizeExcSidebars.height, sizeExcSidebars.width, viewportMode]);
 
   const undoExternal = useCallback(() => {
-    if (past.current.length <= 0) return;
-    future.current.push(cloneDeep(currentPageSchemas));
-    const updatedSchemas = replacePageSchemas(schemasList, pageCursor, past.current.pop()!);
-    setSchemasList(updatedSchemas);
-    pushTemplateUpdate(schemasList2template(updatedSchemas, activeBasePdf));
+    void commandBusRef.current.undo();
     onEditEnd();
-  }, [activeBasePdf, currentPageSchemas, onEditEnd, pageCursor, pushTemplateUpdate, schemasList]);
+  }, [onEditEnd]);
 
   const redoExternal = useCallback(() => {
-    if (future.current.length <= 0) return;
-    past.current.push(cloneDeep(currentPageSchemas));
-    const updatedSchemas = replacePageSchemas(schemasList, pageCursor, future.current.pop()!);
-    setSchemasList(updatedSchemas);
-    pushTemplateUpdate(schemasList2template(updatedSchemas, activeBasePdf));
+    void commandBusRef.current.redo();
     onEditEnd();
-  }, [activeBasePdf, currentPageSchemas, onEditEnd, pageCursor, pushTemplateUpdate, schemasList]);
+  }, [onEditEnd]);
 
   const focusFieldExternal = useCallback(
     (fieldName: string) => {
@@ -2425,7 +2490,17 @@ const TemplateEditor = ({
             activeElements={activeElements}
             schemasList={schemasList}
             renderedSchemasList={visibleSchemasList}
-            topLevelComments={((visibleTemplate as unknown as { __commentAnchors?: Array<{ anchor?: Record<string, unknown>; comment?: Record<string, unknown> }> }).__commentAnchors) || []}
+            topLevelComments={
+              ((visibleTemplate as unknown as {
+                pdfComments?: Array<{ anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
+                __commentAnchors?: Array<{ anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
+              }).pdfComments) ||
+              ((visibleTemplate as unknown as {
+                pdfComments?: Array<{ anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
+                __commentAnchors?: Array<{ anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
+              }).__commentAnchors) ||
+              []
+            }
             activeDocumentId={activeDocumentId}
             changeSchemas={changeSchemas}
             sidebarOpen={sidebarOpen}

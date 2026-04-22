@@ -65,10 +65,12 @@ export type DesignerCommentItem = {
   authorName?: string | null;
   authorColor?: string | null;
   schemaUid?: string;
+  fieldId?: string | null;
   fileId?: string | null;
   pageNumber?: number;
   resolved?: boolean;
   timestamp?: number;
+  createdAt?: number;
   replies?: SchemaCommentReply[];
 };
 

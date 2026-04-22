@@ -1,4 +1,13 @@
 export { PDFME_VERSION } from './version.js';
+export type {
+  Command,
+  CommandExecutionContext,
+  CommandObserverEvent,
+  CommandObserverPayload,
+  SchemaAssignments as ContractSchemaAssignments,
+  SchemaIdentity,
+  TopLevelPdfCommentEntry,
+} from '../contracts/index.js';
 export {
   MM_TO_PT_RATIO,
   PT_TO_MM_RATIO,
@@ -51,6 +60,8 @@ export {
   addAnchorToSchema,
   addCommentToSchema,
   addCommentWithAnchorToTemplate,
+  upsertTopLevelComment,
+  removeTopLevelComment,
   updateCommentInSchema,
   deleteCommentFromSchema,
   resolveCommentInSchema,
@@ -70,6 +81,8 @@ export type {
   SchemaPageArray,
   SchemaComment,
   SchemaCommentReply,
+  PdfComment,
+  PdfCommentReply,
   CommentAnchor,
   PropPanel,
   PropPanelInspectorConfig,
@@ -96,6 +109,9 @@ export type {
   GeneratorOptions,
   Plugins,
   PluginRegistry,
+  PluginActionDefinition,
+  PluginFamilyDefinition,
+  PluginStrategyDefinition,
   GenerateProps,
   UIOptions,
   UIProps,

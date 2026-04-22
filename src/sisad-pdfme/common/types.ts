@@ -1,4 +1,12 @@
 import { z } from 'zod';
+import type {
+  PdfComment as ContractPdfComment,
+  PdfCommentReply as ContractPdfCommentReply,
+  PluginActionDefinition,
+  PluginFamilyDefinition,
+  PluginStrategyDefinition,
+  SchemaInspectorSection,
+} from '../contracts/index.js';
 import type { PDFPage, PDFDocument } from '@sisad-pdfme/pdf-lib';
 import type { ThemeConfig, GlobalToken as AntGlobalToken } from 'antd';
 import type { WidgetProps as _PropPanelWidgetProps, Schema as _PropPanelSchema } from 'form-render';
@@ -139,6 +147,8 @@ export type PropPanelInspectorConfig = {
   visibleSections?: PropPanelInspectorSectionKey[];
   fieldSections?: Partial<Record<string, PropPanelInspectorSectionKey>>;
   propertyMap?: Partial<Record<string, PropPanelInspectorSectionKey>>;
+  supportedActions?: PluginActionDefinition[];
+  strategies?: PluginStrategyDefinition[];
   includeConnections?: boolean;
   includeCollaboration?: boolean;
   includeValidation?: boolean;
@@ -193,6 +203,10 @@ export interface PluginRegistry {
   entries(): [string, Plugin][];
   findByType(type: string): Plugin | undefined;
   findWithLabelByType(type: string): [string, Plugin | undefined];
+  getFamilyByType(type: string): PluginFamilyDefinition | null;
+  getSupportedActionsByType(type: string): PluginActionDefinition[];
+  getStrategiesByType(type: string): PluginStrategyDefinition[];
+  getVisibleSectionsByType(type: string): SchemaInspectorSection[];
 }
 
 export type Lang = z.infer<typeof Lang>;
@@ -204,6 +218,9 @@ export type SchemaForUI = z.infer<typeof SchemaForUI>;
 export type SchemaCommentReply = z.infer<typeof SchemaCommentReply>;
 export type SchemaComment = z.infer<typeof SchemaComment>;
 export type CommentAnchor = z.infer<typeof CommentAnchor>;
+export type PdfComment = ContractPdfComment;
+export type PdfCommentReply = ContractPdfCommentReply;
+export type { PluginActionDefinition, PluginFamilyDefinition, PluginStrategyDefinition, SchemaInspectorSection };
 
 /**
  * Represents the Font type definition.

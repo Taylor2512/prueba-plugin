@@ -1,5 +1,5 @@
 import { cloneDeep } from './helper.js';
-import type { SchemaForUI, SchemaPageArray, CommentAnchor } from './types.js';
+import type { SchemaComment, SchemaForUI, SchemaPageArray, CommentAnchor } from './types.js';
 
 export const normalizeRecipientIds = (value: unknown): string[] => {
   if (Array.isArray(value)) {
@@ -90,17 +90,31 @@ export const createSchemaComment = (
       replies?: unknown[];
     }
   > = {},
-) => ({
+): SchemaComment => ({
+  ...(overrides as Record<string, unknown>),
   id: normalizeText((overrides as { id?: string }).id) || createEntityId('comment'),
+  fileId: normalizeText((overrides as { fileId?: string }).fileId) || undefined,
+  pageNumber:
+    typeof (overrides as { pageNumber?: number }).pageNumber === 'number'
+      ? (overrides as { pageNumber?: number }).pageNumber
+      : undefined,
+  fieldId:
+    normalizeText((overrides as { fieldId?: string; schemaUid?: string }).fieldId) ||
+    normalizeText((overrides as { fieldId?: string; schemaUid?: string }).schemaUid) ||
+    undefined,
+  schemaUid:
+    normalizeText((overrides as { schemaUid?: string; fieldId?: string }).schemaUid) ||
+    normalizeText((overrides as { schemaUid?: string; fieldId?: string }).fieldId) ||
+    undefined,
   authorId: normalizeText(identity.authorId) || undefined,
   authorName: normalizeText(identity.authorName) || undefined,
   authorColor: normalizeText(identity.authorColor) || undefined,
   timestamp: Number(identity.timestamp) || Date.now(),
+  createdAt: Number(identity.timestamp) || Date.now(),
   text: text.trim(),
   resolved: false,
   anchor: overrides.anchor ? cloneDeep(overrides.anchor) : undefined,
   replies: [],
-  ...(overrides as Record<string, unknown>),
 });
 
 export const createSchemaCommentAnchor = (
@@ -116,9 +130,14 @@ export const createSchemaCommentAnchor = (
     }
   >,
   identity: CommentAuthorIdentity = {},
-) => ({
+): CommentAnchor => ({
+  ...(anchor as Record<string, unknown>),
   id: normalizeText((anchor as { id?: string }).id) || createEntityId('anchor'),
   schemaUid: normalizeText((anchor as { schemaUid?: string }).schemaUid) || undefined,
+  fieldId:
+    normalizeText((anchor as { fieldId?: string; schemaUid?: string }).fieldId) ||
+    normalizeText((anchor as { fieldId?: string; schemaUid?: string }).schemaUid) ||
+    undefined,
   fileId: normalizeText((anchor as { fileId?: string }).fileId) || undefined,
   pageNumber:
     typeof (anchor as { pageNumber?: number }).pageNumber === 'number'

@@ -38,17 +38,23 @@ export type SchemaCommentReply = {
   authorId?: string;
   authorName?: string;
   authorColor?: string | null;
-  timestamp: number;
+  timestamp?: number;
+  createdAt?: number;
   text: string;
   resolved?: boolean;
 };
 
 export type SchemaComment = {
   id: string;
+  fileId?: string | null;
+  pageNumber?: number;
+  fieldId?: string | null;
+  schemaUid?: string | null;
   authorId?: string;
   authorName?: string;
   authorColor?: string | null;
-  timestamp: number;
+  timestamp?: number;
+  createdAt?: number;
   text: string;
   resolved?: boolean;
   anchor?: SchemaCommentAnchor;
@@ -57,6 +63,7 @@ export type SchemaComment = {
 
 export type SchemaCommentAnchor = {
   id: string;
+  fieldId?: string | null;
   schemaUid?: string;
   fileId?: string | null;
   pageNumber?: number;

@@ -9,6 +9,10 @@ const createPluginRegistry = (): PluginRegistry => ({
   entries: () => [],
   findByType: () => undefined,
   findWithLabelByType: () => ['', undefined],
+  getFamilyByType: () => null,
+  getSupportedActionsByType: () => [],
+  getStrategiesByType: () => [],
+  getVisibleSectionsByType: () => [],
 });
 
 describe('changeSchemas', () => {

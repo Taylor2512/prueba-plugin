@@ -22,6 +22,7 @@ import {
   destroyShortCuts,
 } from './helper.js';
 import type { SelectionCommandSet } from './components/Designer/shared/selectionCommands.js';
+import type { CommandBus } from './commands/commandBus.js';
 import { RULER_HEIGHT } from './constants.js';
 import { DEFAULT_SCHEMA_CONFIG_STORAGE_KEY } from './designerEngine.js';
 import {
@@ -262,8 +263,9 @@ interface UseInitEventsParams {
   commitSchemas: (newSchemas: SchemaForUI[]) => void;
   removeSchemas: (ids: string[]) => void;
   onSaveTemplate: (t: Template) => void;
-  past: React.MutableRefObject<SchemaForUI[][]>;
-  future: React.MutableRefObject<SchemaForUI[][]>;
+  past?: React.MutableRefObject<SchemaForUI[][]>;
+  future?: React.MutableRefObject<SchemaForUI[][]>;
+  commandBus?: CommandBus;
   setSchemasList: React.Dispatch<React.SetStateAction<SchemaForUI[][]>>;
   onEdit: (targets: HTMLElement[]) => void;
   onEditEnd: () => void;
@@ -287,6 +289,7 @@ export const useInitEvents = ({
   onSaveTemplate,
   past,
   future,
+  commandBus,
   setSchemasList,
   onEdit,
   onEditEnd,
@@ -303,9 +306,13 @@ export const useInitEvents = ({
       return schemasList[pageCursor].filter((s) => ids.includes(s.id));
     };
     const timeTravel = (mode: 'undo' | 'redo') => {
+      if (commandBus) {
+        void (mode === 'undo' ? commandBus.undo() : commandBus.redo());
+        return;
+      }
       const isUndo = mode === 'undo';
       const stack = isUndo ? past : future;
-      if (stack.current.length <= 0) return;
+      if (!stack || !past || !future || stack.current.length <= 0) return;
       (isUndo ? future : past).current.push(cloneDeep(schemasList[pageCursor]));
       const s = cloneDeep(schemasList);
       s[pageCursor] = stack.current.pop()!;
@@ -417,6 +424,7 @@ export const useInitEvents = ({
     removeSchemas,
     past,
     future,
+    commandBus,
     setSchemasList,
     copiedSchemas,
     onEdit,

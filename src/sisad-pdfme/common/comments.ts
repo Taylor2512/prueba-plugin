@@ -1,5 +1,6 @@
 import { cloneDeep } from './helper.js';
 import type { Template, SchemaForUI, CommentAnchor } from './types.js';
+import type { PdfComment, TopLevelPdfCommentEntry } from '../contracts/index.js';
 import {
   createSchemaComment,
   createSchemaCommentAnchor,
@@ -8,6 +9,38 @@ import {
 } from './collaboration.js';
 
 type Identity = { authorId?: string | null; authorName?: string | null; authorColor?: string | null };
+
+type TemplateWithComments = Template & {
+  pdfComments?: TopLevelPdfCommentEntry[];
+  __commentAnchors?: Array<{ id: string; anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
+};
+
+const getTopLevelEntries = (template: TemplateWithComments): TopLevelPdfCommentEntry[] => {
+  if (Array.isArray(template.pdfComments)) {
+    return template.pdfComments as TopLevelPdfCommentEntry[];
+  }
+  if (Array.isArray(template.__commentAnchors)) {
+    return template.__commentAnchors.map((entry) => ({
+      id: String(entry?.id || entry?.comment?.id || entry?.anchor?.id || ''),
+      anchor: cloneDeep((entry?.anchor || {}) as TopLevelPdfCommentEntry['anchor']),
+      comment: cloneDeep((entry?.comment || {}) as PdfComment),
+    }));
+  }
+  return [];
+};
+
+const setTopLevelEntries = (template: TemplateWithComments, entries: TopLevelPdfCommentEntry[]) => {
+  template.pdfComments = entries.map((entry) => ({
+    id: entry.id,
+    anchor: cloneDeep(entry.anchor),
+    comment: cloneDeep(entry.comment),
+  }));
+  template.__commentAnchors = template.pdfComments.map((entry) => ({
+    id: entry.id,
+    anchor: cloneDeep(entry.anchor),
+    comment: cloneDeep(entry.comment),
+  }));
+};
 
 const cloneAnchor = (
   anchor: Partial<CommentAnchor> & {
@@ -88,7 +121,7 @@ export const addCommentWithAnchorToTemplate = (
   text: string,
   identity: Identity = {},
 ): Template => {
-  const next = cloneDeep(template) as Template;
+  const next = cloneDeep(template) as TemplateWithComments;
   const target = anchor.schemaUid ? findSchemaByUid(next, anchor.schemaUid) : null;
 
   if (target && target.schema) {
@@ -97,7 +130,7 @@ export const addCommentWithAnchorToTemplate = (
     return next;
   }
 
-  // Fallback: store on a top-level __commentAnchors property if no schemaUid matches
+  // Canonical top-level storage for comments that do not belong to a concrete field.
   const createdAnchor = cloneAnchor({
     ...anchor,
     authorId: identity.authorId || undefined,
@@ -114,11 +147,32 @@ export const addCommentWithAnchorToTemplate = (
     { id: createdAnchor.id, anchor: cloneDeep(createdAnchor) },
   );
 
-  (next as any).__commentAnchors = upsertById(((next as any).__commentAnchors as any[]) || [], {
-    id: createdComment.id,
-    anchor: createdAnchor,
-    comment: createdComment,
-  } as any);
+  const currentEntries = getTopLevelEntries(next);
+  setTopLevelEntries(
+    next,
+    upsertById<TopLevelPdfCommentEntry>(currentEntries, {
+      id: createdComment.id,
+      anchor: createdAnchor as any,
+      comment: createdComment as unknown as PdfComment,
+    }),
+  );
+  return next;
+};
+
+export const upsertTopLevelComment = (
+  template: Template,
+  entry: TopLevelPdfCommentEntry,
+): Template => {
+  const next = cloneDeep(template) as TemplateWithComments;
+  const currentEntries = getTopLevelEntries(next);
+  setTopLevelEntries(next, upsertById<TopLevelPdfCommentEntry>(currentEntries, entry));
+  return next;
+};
+
+export const removeTopLevelComment = (template: Template, commentId: string): Template => {
+  const next = cloneDeep(template) as TemplateWithComments;
+  const currentEntries = getTopLevelEntries(next);
+  setTopLevelEntries(next, removeById(currentEntries, commentId));
   return next;
 };
 
@@ -189,8 +243,7 @@ export const filterCommentsByFileAndPage = (template: Template, fileId?: string 
       });
     }
   }
-  // also include top-level __commentAnchors if present (fallback anchors without schemaUid)
-  const top = (template as any).__commentAnchors || [];
+  const top = getTopLevelEntries(template as TemplateWithComments);
   top.forEach((entry: any) => {
     const c = entry.comment || entry;
     const a = entry.anchor || c?.anchor || {};
@@ -210,6 +263,8 @@ export default {
   addAnchorToSchema,
   addCommentToSchema,
   addCommentWithAnchorToTemplate,
+  upsertTopLevelComment,
+  removeTopLevelComment,
   updateCommentInSchema,
   deleteCommentFromSchema,
   resolveCommentInSchema,

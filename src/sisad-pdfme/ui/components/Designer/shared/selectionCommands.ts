@@ -3,6 +3,7 @@ import {
   SchemaForUI,
   Size,
   cloneDeep,
+  type Command,
 } from '@sisad-pdfme/common';
 import { uuid, round } from '../../../helper.js';
 import {
@@ -89,6 +90,7 @@ export type SelectionCommandsContext = {
     | 'userColor'
     | 'canEditStructure'
   >;
+  executeCommand?: (_command: Command) => void;
 };
 
 const getActiveIds = (elements: HTMLElement[]) => elements.map((element) => element.id);
@@ -123,6 +125,22 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
 
   const deleteSelection = () => {
     if (!hasSelection || !guardStructureEdit()) return;
+    if (context.executeCommand) {
+      const beforeSchemas = getPageSchemas(context);
+      const afterSchemas = beforeSchemas.filter((schema) => !activeIds.includes(schema.id));
+      context.executeCommand({
+        id: 'deleteField',
+        label: 'deleteField',
+        execute: () => {
+          context.commitSchemas(afterSchemas);
+          context.onOpenProperties();
+        },
+        undo: () => {
+          context.commitSchemas(beforeSchemas);
+        },
+      });
+      return;
+    }
     context.removeSchemas(activeIds);
   };
 
@@ -173,7 +191,21 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
 
       return clone;
     });
-    context.commitSchemas(existing.concat(clones));
+    const nextSchemas = existing.concat(clones);
+    if (context.executeCommand) {
+      context.executeCommand({
+        id: 'duplicateField',
+        label: 'duplicateField',
+        execute: () => {
+          context.commitSchemas(nextSchemas);
+        },
+        undo: () => {
+          context.commitSchemas(existing);
+        },
+      });
+      return;
+    }
+    context.commitSchemas(nextSchemas);
   };
 
   const toggleRequired = () => {
