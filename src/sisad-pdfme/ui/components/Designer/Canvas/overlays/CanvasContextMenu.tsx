@@ -1,4 +1,5 @@
 import React, { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react';
+import type { SchemaForUI } from '@sisad-pdfme/common';
 import { createPortal } from 'react-dom';
 import {
   CanvasContextMenuMode,
@@ -21,6 +22,7 @@ export type CanvasContextMenuProps = {
   externalActions?: CanvasContextMenuExternalActions;
   hasClipboardData?: boolean;
   selectionCount?: number;
+  selectionSchemas: SchemaForUI[];
   activeReadOnly?: boolean;
   activeRequired?: boolean;
   activeHidden?: boolean;
@@ -43,6 +45,7 @@ const CanvasContextMenu = ({
   externalActions,
   hasClipboardData = false,
   selectionCount = 0,
+  selectionSchemas,
   activeReadOnly = false,
   activeRequired = false,
   activeHidden = false,
@@ -60,12 +63,13 @@ const CanvasContextMenu = ({
         externalActions,
         hasClipboardData,
         selectionCount,
+        selectionSchemas,
         activeReadOnly,
         activeRequired,
         activeHidden,
         canEditStructure,
       }),
-    [mode, commands, externalActions, hasClipboardData, selectionCount, activeReadOnly, activeRequired, activeHidden, canEditStructure],
+    [mode, commands, externalActions, hasClipboardData, selectionCount, selectionSchemas, activeReadOnly, activeRequired, activeHidden, canEditStructure],
   );
 
   useEffect(() => {

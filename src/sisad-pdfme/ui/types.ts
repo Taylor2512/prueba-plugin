@@ -1,4 +1,4 @@
-import type { SchemaForUI, Size, ChangeSchemas, BasePdf } from '@sisad-pdfme/common';
+import type { SchemaForUI, SchemaCommentReply, Size, ChangeSchemas, BasePdf } from '@sisad-pdfme/common';
 import type { SchemaDesignerConfig } from './designerEngine';
 import type { EffectiveCollaborationContext } from './collaborationContext';
 import type { DesignerDocumentItem } from './components/Designer/RightSidebar/DocumentsRail';
@@ -69,6 +69,7 @@ export type DesignerCommentItem = {
   pageNumber?: number;
   resolved?: boolean;
   timestamp?: number;
+  replies?: SchemaCommentReply[];
 };
 
 export type DesignerCommentsBridge = {
@@ -76,6 +77,7 @@ export type DesignerCommentsBridge = {
   onAdd?: () => void;
   title?: string;
   emptyTitle?: string;
+  activeCommentId?: string | null;
 };
 
 export type DesignerRuntimeApi = {

@@ -3,19 +3,52 @@ import type { SchemaForUI } from '@sisad-pdfme/common';
 import { Badge, Tag, Tooltip } from 'antd';
 import { resolveSchemaTone } from '../../shared/schemaTone.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
+import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
 
 type DetailHeaderCardProps = {
   activeSchema: SchemaForUI;
-  configTags?: Array<{ label: string; color?: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue' }>;
+  schemaConfig?: SchemaDesignerConfig | null;
 };
 
-const EMPTY_CONFIG_TAGS: NonNullable<DetailHeaderCardProps['configTags']> = [];
-
-const DetailHeaderCard = ({ activeSchema, configTags = EMPTY_CONFIG_TAGS }: DetailHeaderCardProps) => {
+const DetailHeaderCard = ({
+  activeSchema,
+  schemaConfig,
+}: DetailHeaderCardProps) => {
   const tone = resolveSchemaTone(activeSchema, '#7c3aed');
   const schemaName = typeof activeSchema.name === 'string' ? activeSchema.name : 'Campo';
   const schemaType = typeof activeSchema.type === 'string' ? activeSchema.type : 'schema';
   const schemaHidden = (activeSchema as SchemaForUI & { hidden?: boolean }).hidden === true;
+  const schemaUid =
+    typeof activeSchema.schemaUid === 'string' && activeSchema.schemaUid.trim()
+      ? activeSchema.schemaUid.trim()
+      : String(activeSchema.id || '').trim();
+  const createdBy = typeof activeSchema.createdBy === 'string' ? activeSchema.createdBy.trim() : '';
+  const lastModifiedBy =
+    typeof activeSchema.lastModifiedBy === 'string' ? activeSchema.lastModifiedBy.trim() : '';
+  const commentCount = activeSchema.commentsCount || activeSchema.comments?.length || 0;
+  const anchorCount = activeSchema.commentAnchors?.length || activeSchema.commentsAnchors?.length || 0;
+  const configTags = [
+    schemaConfig?.persistence?.enabled ? { label: 'Guardar', color: 'processing' as const } : null,
+    schemaConfig?.api?.enabled ? { label: 'API', color: 'blue' as const } : null,
+    schemaConfig?.form?.enabled ? { label: 'Form JSON', color: 'success' as const } : null,
+    schemaConfig?.prefill?.enabled ? { label: 'Prefill', color: 'gold' as const } : null,
+  ].filter(Boolean) as Array<{ label: string; color?: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue' }>;
+  const collaborationTags = [
+    schemaUid ? { label: `UID: ${schemaUid}` } : null,
+    createdBy ? { label: `Creado por: ${createdBy}` } : null,
+    lastModifiedBy ? { label: `Modificado por: ${lastModifiedBy}` } : null,
+    activeSchema.ownerRecipientId ? { label: `Owner: ${activeSchema.ownerRecipientId}` } : null,
+    activeSchema.fileId || activeSchema.fileTemplateId
+      ? { label: `Archivo: ${activeSchema.fileId || activeSchema.fileTemplateId}` }
+      : null,
+    activeSchema.state ? { label: `Estado: ${activeSchema.state}` } : null,
+    activeSchema.ownerMode ? { label: `OwnerMode: ${activeSchema.ownerMode}` } : null,
+    activeSchema.saveValue === false ? { label: 'No guarda valor' } : null,
+    commentCount > 0 ? { label: `Comentarios: ${commentCount}` } : null,
+    anchorCount > 0 ? { label: `Anchors: ${anchorCount}` } : null,
+  ].filter(Boolean) as Array<{ label: string }>;
+  const visibleCollaborationTags = collaborationTags.slice(0, 4);
+  const hiddenCollaborationTagCount = Math.max(0, collaborationTags.length - visibleCollaborationTags.length);
   const visibleStats = [
     { label: 'X', value: activeSchema.position?.x ?? 0 },
     { label: 'Y', value: activeSchema.position?.y ?? 0 },
@@ -59,6 +92,20 @@ const DetailHeaderCard = ({ activeSchema, configTags = EMPTY_CONFIG_TAGS }: Deta
               {tag.label}
             </Tag>
           ))}
+        </div>
+      ) : null}
+      {visibleCollaborationTags.length > 0 ? (
+        <div className={DESIGNER_CLASSNAME + 'detail-header-card-state-row'}>
+          {visibleCollaborationTags.map((tag) => (
+            <Tag key={tag.label} color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-state-tag'}>
+              {tag.label}
+            </Tag>
+          ))}
+          {hiddenCollaborationTagCount > 0 ? (
+            <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-state-tag'}>
+              +{hiddenCollaborationTagCount} más
+            </Tag>
+          ) : null}
         </div>
       ) : null}
       <div className={DESIGNER_CLASSNAME + 'detail-header-card-stats'}>

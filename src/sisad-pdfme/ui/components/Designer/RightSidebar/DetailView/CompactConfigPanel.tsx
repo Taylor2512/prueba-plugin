@@ -85,8 +85,8 @@ const CompactConfigPanel = ({
         onCancel={() => setOpen(false)}
         title={modalTitle || title}
         width={modalWidth}
+        centered
         footer={null}
-        getContainer={false}
       >
         {children}
       </Modal>

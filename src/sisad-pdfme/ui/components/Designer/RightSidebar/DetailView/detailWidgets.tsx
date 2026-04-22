@@ -8,6 +8,7 @@ import ButtonGroupWidget from './ButtonGroupWidget.js';
 import WidgetRenderer from './WidgetRenderer.js';
 import SchemaCollaborationWidget from './SchemaCollaborationWidget.js';
 import SchemaConnectionsWidget from './SchemaConnectionsWidget.js';
+import { getSchemaTypeInspectorPreset } from '../../../../../schemas/schemaFamilies.js';
 
 const COLOR_PRESETS = [
   '#000000',
@@ -126,6 +127,8 @@ export const buildDetailWidgets = ({
   normalizeColorHex,
   props,
 }: BuildWidgetsParams): Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element> => {
+  const activeSchemaType = typeof props?.activeSchema?.type === 'string' ? props.activeSchema.type : '';
+  const familyPreset = getSchemaTypeInspectorPreset(activeSchemaType);
   const widgets: Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element> = {
     AlignWidget: (p) => <AlignWidget {...p} {...props} options={options} selectionCommands={props.selectionCommands} />,
     Divider: () => <Divider className={`${DESIGNER_CLASSNAME}detail-view-divider`} />,
@@ -133,9 +136,27 @@ export const buildDetailWidgets = ({
     nativeColor: (p) => (
       <ColorPickerWidget value={p.value} onChange={p.onChange} normalizeHex={normalizeColorHex} />
     ),
-    SchemaConnectionsWidget: (p) => <SchemaConnectionsWidget {...p} {...props} />,
-    SchemaCollaborationWidget: (p) => <SchemaCollaborationWidget {...p} {...props} />,
   };
+
+  if (familyPreset.supportsConnections) {
+    const SchemaConnectionsWidgetRenderer = function SchemaConnectionsWidgetRenderer(
+      p: PropPanelWidgetProps,
+    ) {
+      return <SchemaConnectionsWidget {...p} {...props} />;
+    };
+    SchemaConnectionsWidgetRenderer.displayName = 'SchemaConnectionsWidget';
+    widgets.SchemaConnectionsWidget = SchemaConnectionsWidgetRenderer;
+  }
+
+  if (familyPreset.supportsCollaboration) {
+    const SchemaCollaborationWidgetRenderer = function SchemaCollaborationWidgetRenderer(
+      p: PropPanelWidgetProps,
+    ) {
+      return <SchemaCollaborationWidget {...p} {...props} />;
+    };
+    SchemaCollaborationWidgetRenderer.displayName = 'SchemaCollaborationWidget';
+    widgets.SchemaCollaborationWidget = SchemaCollaborationWidgetRenderer;
+  }
 
   for (const plugin of pluginsRegistry.values()) {
     const pluginWidgets = plugin.propPanel.widgets || {};

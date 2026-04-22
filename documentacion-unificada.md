@@ -1,8 +1,8 @@
 # Documentación Markdown Unificada
 
 **Carpeta origen:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin`  
-**Fecha de generación:** `2026-04-22T16:10:19.894Z`  
-**Total de archivos incluidos:** `254`  
+**Fecha de generación:** `2026-04-22T21:39:41.957Z`  
+**Total de archivos incluidos:** `259`  
 **Extensiones incluidas:** `.md`
 
 ---
@@ -41,228 +41,233 @@
 0030. [docs/25-testing-quality-roadmap.md](#archivo-0030)
 0031. [docs/30-types-transversal-contracts.md](#archivo-0031)
 0032. [docs/31-public-apis-consumer-surface.md](#archivo-0032)
-0033. [docs/32-schema-families-extension-guide.md](#archivo-0033)
-0034. [docs/33-rename-guide-platform-pdf.md](#archivo-0034)
-0035. [docs/34-product-matrix-sdk-commercialization.md](#archivo-0035)
-0036. [docs/35-packaging-roadmap.md](#archivo-0036)
-0037. [docs/36-commercial-adoption-checklist.md](#archivo-0037)
-0038. [docs/37-platform-pdf-migration-plan.md](#archivo-0038)
-0039. [docs/90-indice-verdad-actual.md](#archivo-0039)
-0040. [docs/91-indice-conceptual.md](#archivo-0040)
-0041. [docs/92-indice-historico.md](#archivo-0041)
-0042. [docs/93-indice-roadmap-plataforma.md](#archivo-0042)
-0043. [docs/94-indice-roadmap-empaquetado.md](#archivo-0043)
-0044. [docs/95-indice-roadmap-operativo.md](#archivo-0044)
-0045. [docs/96-sisad-pdfme-overview.md](#archivo-0045)
-0046. [docs/97-indice-generado.md](#archivo-0046)
-0047. [docs/README.md](#archivo-0047)
-0048. [.ai/agents/canvas-overlays-architect.agent.md](#archivo-0048)
-0049. [.ai/agents/canvas-runtime-architect.agent.md](#archivo-0049)
-0050. [.ai/agents/canvas-ux-orchestrator.agent.md](#archivo-0050)
-0051. [.ai/agents/collaboration-sync-architect.agent.md](#archivo-0051)
-0052. [.ai/agents/design-system-guardian.agent.md](#archivo-0052)
-0053. [.ai/agents/design-token-governance.agent.md](#archivo-0053)
-0054. [.ai/agents/designer-engine-architect.agent.md](#archivo-0054)
-0055. [.ai/agents/detail-view-forms-architect.agent.md](#archivo-0055)
-0056. [.ai/agents/docs-migration-steward.agent.md](#archivo-0056)
-0057. [.ai/agents/frontend-pdf-architect.agent.md](#archivo-0057)
-0058. [.ai/agents/generator-converter-architect.agent.md](#archivo-0058)
-0059. [.ai/agents/left-sidebar-catalog-architect.agent.md](#archivo-0059)
-0060. [.ai/agents/list-view-interactions-architect.agent.md](#archivo-0060)
-0061. [.ai/agents/pdfme-runtime-specialist.agent.md](#archivo-0061)
-0062. [.ai/agents/platform-pdf-architect.agent.md](#archivo-0062)
-0063. [.ai/agents/prompt-execution-director.agent.md](#archivo-0063)
-0064. [.ai/agents/right-sidebar-inspector-architect.agent.md](#archivo-0064)
-0065. [.ai/agents/schema-registry-architect.agent.md](#archivo-0065)
-0066. [.ai/agents/schema-rendering-architect.agent.md](#archivo-0066)
-0067. [.ai/agents/testing-regression-guardian.agent.md](#archivo-0067)
-0068. [.ai/context/project-overview.md](#archivo-0068)
-0069. [.ai/context/provider-compatibility.md](#archivo-0069)
-0070. [.ai/instructions/canvas-first-ux.instructions.md](#archivo-0070)
-0071. [.ai/instructions/css-unification.instructions.md](#archivo-0071)
-0072. [.ai/instructions/designer-runtime.instructions.md](#archivo-0072)
-0073. [.ai/instructions/docs-and-migration.instructions.md](#archivo-0073)
-0074. [.ai/instructions/editor-platform.instructions.md](#archivo-0074)
-0075. [.ai/instructions/frontend-editor.instructions.md](#archivo-0075)
-0076. [.ai/instructions/pdfme-extension.instructions.md](#archivo-0076)
-0077. [.ai/instructions/schema-system.instructions.md](#archivo-0077)
-0078. [.ai/instructions/testing-quality.instructions.md](#archivo-0078)
-0079. [.ai/instructions/ui-ux-compact.instructions.md](#archivo-0079)
-0080. [.ai/prompts/add-comments-and-presence.prompt.md](#archivo-0080)
-0081. [.ai/prompts/add-editor-regression-tests.prompt.md](#archivo-0081)
-0082. [.ai/prompts/add-new-schema-family.prompt.md](#archivo-0082)
-0083. [.ai/prompts/add-prop-panel-for-schema.prompt.md](#archivo-0083)
-0084. [.ai/prompts/audit-platform-boundaries.prompt.md](#archivo-0084)
-0085. [.ai/prompts/build-detail-section-system.prompt.md](#archivo-0085)
-0086. [.ai/prompts/compact-wix-style-ui.prompt.md](#archivo-0086)
-0087. [.ai/prompts/create-command-bus.prompt.md](#archivo-0087)
-0088. [.ai/prompts/create-playwright-canvas-scenarios.prompt.md](#archivo-0088)
-0089. [.ai/prompts/document-fork-divergence.prompt.md](#archivo-0089)
-0090. [.ai/prompts/fix-moveable-selecto-regression.prompt.md](#archivo-0090)
-0091. [.ai/prompts/generate-migration-guide.prompt.md](#archivo-0091)
-0092. [.ai/prompts/implement-collaboration-state.prompt.md](#archivo-0092)
-0093. [.ai/prompts/implement-overlay-pattern.prompt.md](#archivo-0093)
-0094. [.ai/prompts/improve-discovery-mode.prompt.md](#archivo-0094)
-0095. [.ai/prompts/improve-list-view-ux.prompt.md](#archivo-0095)
-0096. [.ai/prompts/normalize-schema-contracts.prompt.md](#archivo-0096)
-0097. [.ai/prompts/optimize-canvas-runtime.prompt.md](#archivo-0097)
-0098. [.ai/prompts/refactor-designer-engine.prompt.md](#archivo-0098)
-0099. [.ai/prompts/refactor-editor-shell.prompt.md](#archivo-0099)
-0100. [.ai/prompts/refactor-left-rail-catalog.prompt.md](#archivo-0100)
-0101. [.ai/prompts/refactor-right-inspector-layout.prompt.md](#archivo-0101)
-0102. [.ai/prompts/split-monolithic-hook.prompt.md](#archivo-0102)
-0103. [.ai/prompts/stabilize-public-api.prompt.md](#archivo-0103)
-0104. [.ai/prompts/unify-css-architecture.prompt.md](#archivo-0104)
-0105. [.ai/prompts/validate-runtime-generate-parity.prompt.md](#archivo-0105)
-0106. [.ai/prompts/write-architecture-decision-record.prompt.md](#archivo-0106)
-0107. [.ai/rules/global-rules.md](#archivo-0107)
-0108. [.backup-ai-workspace/.agents.bak/copilot-instructions.md](#archivo-0108)
-0109. [.backup-ai-workspace/.agents.bak/README-AI-WORKSPACE.md](#archivo-0109)
-0110. [.backup-ai-workspace/github-agents.bak/canvas-ux-orchestrator.agent.md](#archivo-0110)
-0111. [.backup-ai-workspace/github-agents.bak/design-system-guardian.agent.md](#archivo-0111)
-0112. [.backup-ai-workspace/github-agents.bak/frontend-pdf-architect.agent.md](#archivo-0112)
-0113. [.backup-ai-workspace/github-agents.bak/pdfme-runtime-specialist.agent.md](#archivo-0113)
-0114. [.backup-ai-workspace/github-agents.bak/prompt-execution-director.agent.md](#archivo-0114)
-0115. [.backup-ai-workspace/github-instructions.bak/css-unification.instructions.md](#archivo-0115)
-0116. [.backup-ai-workspace/github-instructions.bak/frontend-editor.instructions.md](#archivo-0116)
-0117. [.backup-ai-workspace/github-instructions.bak/pdfme-extension.instructions.md](#archivo-0117)
-0118. [.backup-ai-workspace/github-instructions.bak/ui-ux-compact.instructions.md](#archivo-0118)
-0119. [.backup-ai-workspace/github-prompts.bak/compact-wix-style-ui.prompt.md](#archivo-0119)
-0120. [.backup-ai-workspace/github-prompts.bak/create-command-bus.prompt.md](#archivo-0120)
-0121. [.backup-ai-workspace/github-prompts.bak/refactor-editor-shell.prompt.md](#archivo-0121)
-0122. [.backup-ai-workspace/github-prompts.bak/split-monolithic-hook.prompt.md](#archivo-0122)
-0123. [.backup-ai-workspace/github-prompts.bak/unify-css-architecture.prompt.md](#archivo-0123)
-0124. [.backup-ai-workspace/github-skills.bak/canvas-interaction.skill.md](#archivo-0124)
-0125. [.backup-ai-workspace/github-skills.bak/component-composition.skill.md](#archivo-0125)
-0126. [.backup-ai-workspace/github-skills.bak/design-system-consistency.skill.md](#archivo-0126)
-0127. [.backup-ai-workspace/github-skills.bak/editor-product-vision.skill.md](#archivo-0127)
-0128. [.backup-ai-workspace/github-skills.bak/pdfme-integration.skill.md](#archivo-0128)
-0129. [.backup-ai-workspace/github-skills.bak/refactor-safety.skill.md](#archivo-0129)
-0130. [.backup-ai-workspace/github-skills.bak/ux-compact-panels.skill.md](#archivo-0130)
-0131. [docs/ai/README.md](#archivo-0131)
-0132. [docs/reference/arquitectura-y-estructura.md](#archivo-0132)
-0133. [docs/reference/build-esm-cjs-y-generacion-de-tipos.md](#archivo-0133)
-0134. [docs/reference/canvas-overlays-y-ciclo-de-interaccion.md](#archivo-0134)
-0135. [docs/reference/checklist-de-release-y-soporte.md](#archivo-0135)
-0136. [docs/reference/ci-cd-publicacion-y-release-automation.md](#archivo-0136)
-0137. [docs/reference/colaboracion-arquitectura-operativa.md](#archivo-0137)
-0138. [docs/reference/colaboracion-y-sincronizacion.md](#archivo-0138)
-0139. [docs/reference/configuraciones-de-build-reales.md](#archivo-0139)
-0140. [docs/reference/consumer-app-y-ejemplos-vivos.md](#archivo-0140)
-0141. [docs/reference/designer-engine-builder-profundo.md](#archivo-0141)
-0142. [docs/reference/designer-engine-y-configuracion.md](#archivo-0142)
-0143. [docs/reference/ejemplos-de-consumo-externo.md](#archivo-0143)
-0144. [docs/reference/ejemplos-de-implementacion.md](#archivo-0144)
-0145. [docs/reference/entrypoints-exports-y-surface-api.md](#archivo-0145)
-0146. [docs/reference/generator-converter-y-runtime-de-visualizacion.md](#archivo-0146)
-0147. [docs/reference/monorepo-root-y-workspaces.md](#archivo-0147)
-0148. [docs/reference/package-json-por-paquete.md](#archivo-0148)
-0149. [docs/reference/paquetizacion-y-estructura-de-modulos.md](#archivo-0149)
-0150. [docs/reference/publicacion-registry-privado-y-versionado.md](#archivo-0150)
-0151. [docs/reference/README.md](#archivo-0151)
-0152. [docs/reference/rightsidebar-listview-y-detailview-profundo.md](#archivo-0152)
-0153. [docs/reference/runtime-persistencia-api-y-formjson.md](#archivo-0153)
-0154. [docs/reference/schemaconnections-y-contratos-de-datos.md](#archivo-0154)
-0155. [docs/reference/schemas-y-plugins.md](#archivo-0155)
-0156. [docs/reference/schemas-y-registry-guia-de-extension.md](#archivo-0156)
-0157. [docs/reference/testing-y-calidad.md](#archivo-0157)
-0158. [docs/reference/ui-editor-canvas-y-overlays.md](#archivo-0158)
-0159. [docs/reference/versionado-changelog-y-canary-flow.md](#archivo-0159)
-0160. [.ai/agents/legacy/pdfme-command-architect.md](#archivo-0160)
-0161. [.ai/agents/legacy/pdfme-css-polish-architect.md](#archivo-0161)
-0162. [.ai/agents/legacy/pdfme-editor-architect.md](#archivo-0162)
-0163. [.ai/agents/legacy/pdfme-layout-architect.md](#archivo-0163)
-0164. [.ai/agents/legacy/pdfme-overlay-architect.md](#archivo-0164)
-0165. [.ai/agents/legacy/pdfme-registry-architect.md](#archivo-0165)
-0166. [.ai/agents/legacy/pdfme-sidebar-architect.md](#archivo-0166)
-0167. [.ai/agents/legacy/pdfme-testing-architect.md](#archivo-0167)
-0168. [.ai/agents/legacy/pdfme-toolbar-architect.md](#archivo-0168)
-0169. [.ai/skills/canvas-geometry-scaling/SKILL.md](#archivo-0169)
-0170. [.ai/skills/canvas-interaction/SKILL.md](#archivo-0170)
-0171. [.ai/skills/canvas-overlay-composition/SKILL.md](#archivo-0171)
-0172. [.ai/skills/catalog-discovery-patterns/SKILL.md](#archivo-0172)
-0173. [.ai/skills/collaboration-state-sync/SKILL.md](#archivo-0173)
-0174. [.ai/skills/component-composition/SKILL.md](#archivo-0174)
-0175. [.ai/skills/converter-pipeline-integrity/SKILL.md](#archivo-0175)
-0176. [.ai/skills/css-layering-and-overrides/SKILL.md](#archivo-0176)
-0177. [.ai/skills/design-system-consistency/SKILL.md](#archivo-0177)
-0178. [.ai/skills/design-token-governance/SKILL.md](#archivo-0178)
-0179. [.ai/skills/designer-engine-runtime-state/SKILL.md](#archivo-0179)
-0180. [.ai/skills/designer-selection-lifecycle/SKILL.md](#archivo-0180)
-0181. [.ai/skills/detail-view-sectioning/SKILL.md](#archivo-0181)
-0182. [.ai/skills/document-workflow-ux-patterns/SKILL.md](#archivo-0182)
-0183. [.ai/skills/docusign-inspired-product-thinking/SKILL.md](#archivo-0183)
-0184. [.ai/skills/editor-product-vision/SKILL.md](#archivo-0184)
-0185. [.ai/skills/editor-regression-testing/SKILL.md](#archivo-0185)
-0186. [.ai/skills/fork-safe-pdfme-evolution/SKILL.md](#archivo-0186)
-0187. [.ai/skills/generator-runtime-parity/SKILL.md](#archivo-0187)
-0188. [.ai/skills/inspector-panel-composition/SKILL.md](#archivo-0188)
-0189. [.ai/skills/list-view-reorder-patterns/SKILL.md](#archivo-0189)
-0190. [.ai/skills/moveable-selecto-integration/SKILL.md](#archivo-0190)
-0191. [.ai/skills/pdfme-integration/SKILL.md](#archivo-0191)
-0192. [.ai/skills/platform-architecture-governance/SKILL.md](#archivo-0192)
-0193. [.ai/skills/playwright-canvas-diagnostics/SKILL.md](#archivo-0193)
-0194. [.ai/skills/public-api-surface-design/SKILL.md](#archivo-0194)
-0195. [.ai/skills/react-doctor/SKILL.md](#archivo-0195)
-0196. [.ai/skills/refactor-safety/SKILL.md](#archivo-0196)
-0197. [.ai/skills/schema-identity-persistence/SKILL.md](#archivo-0197)
-0198. [.ai/skills/schema-registry-extension/SKILL.md](#archivo-0198)
-0199. [.ai/skills/schema-render-contracts/SKILL.md](#archivo-0199)
-0200. [.ai/skills/snaplines-guides-behavior/SKILL.md](#archivo-0200)
-0201. [.ai/skills/ux-compact-panels/SKILL.md](#archivo-0201)
-0202. [.ai/skills/wix-inspired-left-rail-ux/SKILL.md](#archivo-0202)
-0203. [.backup-ai-workspace/.agents.bak/agents/canvas-ux-orchestrator.agent.md](#archivo-0203)
-0204. [.backup-ai-workspace/.agents.bak/agents/design-system-guardian.agent.md](#archivo-0204)
-0205. [.backup-ai-workspace/.agents.bak/agents/frontend-pdf-architect.agent.md](#archivo-0205)
-0206. [.backup-ai-workspace/.agents.bak/agents/pdfme-runtime-specialist.agent.md](#archivo-0206)
-0207. [.backup-ai-workspace/.agents.bak/agents/prompt-execution-director.agent.md](#archivo-0207)
-0208. [.backup-ai-workspace/.agents.bak/instructions/css-unification.instructions.md](#archivo-0208)
-0209. [.backup-ai-workspace/.agents.bak/instructions/frontend-editor.instructions.md](#archivo-0209)
-0210. [.backup-ai-workspace/.agents.bak/instructions/pdfme-extension.instructions.md](#archivo-0210)
-0211. [.backup-ai-workspace/.agents.bak/instructions/ui-ux-compact.instructions.md](#archivo-0211)
-0212. [.backup-ai-workspace/.agents.bak/prompts/compact-wix-style-ui.prompt.md](#archivo-0212)
-0213. [.backup-ai-workspace/.agents.bak/prompts/create-command-bus.prompt.md](#archivo-0213)
-0214. [.backup-ai-workspace/.agents.bak/prompts/refactor-editor-shell.prompt.md](#archivo-0214)
-0215. [.backup-ai-workspace/.agents.bak/prompts/split-monolithic-hook.prompt.md](#archivo-0215)
-0216. [.backup-ai-workspace/.agents.bak/prompts/unify-css-architecture.prompt.md](#archivo-0216)
-0217. [.backup-ai-workspace/.agents.bak/react-doctor/AGENTS.md](#archivo-0217)
-0218. [.backup-ai-workspace/.agents.bak/react-doctor/SKILL.md](#archivo-0218)
-0219. [.backup-ai-workspace/.agents.bak/skills/canvas-interaction.skill.md](#archivo-0219)
-0220. [.backup-ai-workspace/.agents.bak/skills/component-composition.skill.md](#archivo-0220)
-0221. [.backup-ai-workspace/.agents.bak/skills/design-system-consistency.skill.md](#archivo-0221)
-0222. [.backup-ai-workspace/.agents.bak/skills/editor-product-vision.skill.md](#archivo-0222)
-0223. [.backup-ai-workspace/.agents.bak/skills/pdfme-integration.skill.md](#archivo-0223)
-0224. [.backup-ai-workspace/.agents.bak/skills/refactor-safety.skill.md](#archivo-0224)
-0225. [.backup-ai-workspace/.agents.bak/skills/ux-compact-panels.skill.md](#archivo-0225)
-0226. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-command-architect.md](#archivo-0226)
-0227. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-css-polish-architect.md](#archivo-0227)
-0228. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-editor-architect.md](#archivo-0228)
-0229. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-layout-architect.md](#archivo-0229)
-0230. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-overlay-architect.md](#archivo-0230)
-0231. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-registry-architect.md](#archivo-0231)
-0232. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-sidebar-architect.md](#archivo-0232)
-0233. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-testing-architect.md](#archivo-0233)
-0234. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-toolbar-architect.md](#archivo-0234)
-0235. [.backup-ai-workspace/github-skills.bak/canvas-interaction/SKILL.md](#archivo-0235)
-0236. [.backup-ai-workspace/github-skills.bak/editor-product-vision/SKILL.md](#archivo-0236)
-0237. [.backup-ai-workspace/github-skills.bak/pdfme-integration/SKILL.md](#archivo-0237)
-0238. [docs/ai/agents/README.md](#archivo-0238)
-0239. [docs/ai/instructions/README.md](#archivo-0239)
-0240. [docs/ai/prompts/README.md](#archivo-0240)
-0241. [docs/ai/skills/README.md](#archivo-0241)
-0242. [src/sisad-pdfme/ui/designerEngine.api.md](#archivo-0242)
-0243. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-command-architect.md](#archivo-0243)
-0244. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-css-polish-architect.md](#archivo-0244)
-0245. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-editor-architect.md](#archivo-0245)
-0246. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-layout-architect.md](#archivo-0246)
-0247. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-overlay-architect.md](#archivo-0247)
-0248. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-registry-architect.md](#archivo-0248)
-0249. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-sidebar-architect.md](#archivo-0249)
-0250. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-testing-architect.md](#archivo-0250)
-0251. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-toolbar-architect.md](#archivo-0251)
-0252. [.backup-ai-workspace/.agents.bak/skills/canvas-interaction/SKILL.md](#archivo-0252)
-0253. [.backup-ai-workspace/.agents.bak/skills/editor-product-vision/SKILL.md](#archivo-0253)
-0254. [.backup-ai-workspace/.agents.bak/skills/pdfme-integration/SKILL.md](#archivo-0254)
+0033. [docs/32-schema-audit.md](#archivo-0033)
+0034. [docs/32-schema-families-extension-guide.md](#archivo-0034)
+0035. [docs/33-rename-guide-platform-pdf.md](#archivo-0035)
+0036. [docs/34-product-matrix-sdk-commercialization.md](#archivo-0036)
+0037. [docs/35-packaging-roadmap.md](#archivo-0037)
+0038. [docs/36-commercial-adoption-checklist.md](#archivo-0038)
+0039. [docs/37-platform-pdf-migration-plan.md](#archivo-0039)
+0040. [docs/90-indice-verdad-actual.md](#archivo-0040)
+0041. [docs/91-indice-conceptual.md](#archivo-0041)
+0042. [docs/92-indice-historico.md](#archivo-0042)
+0043. [docs/93-indice-roadmap-plataforma.md](#archivo-0043)
+0044. [docs/94-indice-roadmap-empaquetado.md](#archivo-0044)
+0045. [docs/95-indice-roadmap-operativo.md](#archivo-0045)
+0046. [docs/96-sisad-pdfme-overview.md](#archivo-0046)
+0047. [docs/97-indice-generado.md](#archivo-0047)
+0048. [docs/README.md](#archivo-0048)
+0049. [.ai/agents/canvas-overlays-architect.agent.md](#archivo-0049)
+0050. [.ai/agents/canvas-runtime-architect.agent.md](#archivo-0050)
+0051. [.ai/agents/canvas-ux-orchestrator.agent.md](#archivo-0051)
+0052. [.ai/agents/collaboration-sync-architect.agent.md](#archivo-0052)
+0053. [.ai/agents/design-system-guardian.agent.md](#archivo-0053)
+0054. [.ai/agents/design-token-governance.agent.md](#archivo-0054)
+0055. [.ai/agents/designer-engine-architect.agent.md](#archivo-0055)
+0056. [.ai/agents/detail-view-forms-architect.agent.md](#archivo-0056)
+0057. [.ai/agents/docs-migration-steward.agent.md](#archivo-0057)
+0058. [.ai/agents/frontend-pdf-architect.agent.md](#archivo-0058)
+0059. [.ai/agents/generator-converter-architect.agent.md](#archivo-0059)
+0060. [.ai/agents/left-sidebar-catalog-architect.agent.md](#archivo-0060)
+0061. [.ai/agents/list-view-interactions-architect.agent.md](#archivo-0061)
+0062. [.ai/agents/pdfme-runtime-specialist.agent.md](#archivo-0062)
+0063. [.ai/agents/platform-pdf-architect.agent.md](#archivo-0063)
+0064. [.ai/agents/prompt-execution-director.agent.md](#archivo-0064)
+0065. [.ai/agents/right-sidebar-inspector-architect.agent.md](#archivo-0065)
+0066. [.ai/agents/schema-registry-architect.agent.md](#archivo-0066)
+0067. [.ai/agents/schema-rendering-architect.agent.md](#archivo-0067)
+0068. [.ai/agents/testing-regression-guardian.agent.md](#archivo-0068)
+0069. [.ai/context/project-overview.md](#archivo-0069)
+0070. [.ai/context/provider-compatibility.md](#archivo-0070)
+0071. [.ai/instructions/canvas-first-ux.instructions.md](#archivo-0071)
+0072. [.ai/instructions/css-unification.instructions.md](#archivo-0072)
+0073. [.ai/instructions/designer-runtime.instructions.md](#archivo-0073)
+0074. [.ai/instructions/docs-and-migration.instructions.md](#archivo-0074)
+0075. [.ai/instructions/editor-platform.instructions.md](#archivo-0075)
+0076. [.ai/instructions/frontend-editor.instructions.md](#archivo-0076)
+0077. [.ai/instructions/pdfme-extension.instructions.md](#archivo-0077)
+0078. [.ai/instructions/schema-system.instructions.md](#archivo-0078)
+0079. [.ai/instructions/testing-quality.instructions.md](#archivo-0079)
+0080. [.ai/instructions/ui-ux-compact.instructions.md](#archivo-0080)
+0081. [.ai/prompts/add-comments-and-presence.prompt.md](#archivo-0081)
+0082. [.ai/prompts/add-editor-regression-tests.prompt.md](#archivo-0082)
+0083. [.ai/prompts/add-new-schema-family.prompt.md](#archivo-0083)
+0084. [.ai/prompts/add-prop-panel-for-schema.prompt.md](#archivo-0084)
+0085. [.ai/prompts/audit-platform-boundaries.prompt.md](#archivo-0085)
+0086. [.ai/prompts/build-detail-section-system.prompt.md](#archivo-0086)
+0087. [.ai/prompts/compact-wix-style-ui.prompt.md](#archivo-0087)
+0088. [.ai/prompts/create-command-bus.prompt.md](#archivo-0088)
+0089. [.ai/prompts/create-playwright-canvas-scenarios.prompt.md](#archivo-0089)
+0090. [.ai/prompts/document-fork-divergence.prompt.md](#archivo-0090)
+0091. [.ai/prompts/fix-moveable-selecto-regression.prompt.md](#archivo-0091)
+0092. [.ai/prompts/generate-migration-guide.prompt.md](#archivo-0092)
+0093. [.ai/prompts/implement-collaboration-state.prompt.md](#archivo-0093)
+0094. [.ai/prompts/implement-overlay-pattern.prompt.md](#archivo-0094)
+0095. [.ai/prompts/improve-discovery-mode.prompt.md](#archivo-0095)
+0096. [.ai/prompts/improve-list-view-ux.prompt.md](#archivo-0096)
+0097. [.ai/prompts/normalize-schema-contracts.prompt.md](#archivo-0097)
+0098. [.ai/prompts/optimize-canvas-runtime.prompt.md](#archivo-0098)
+0099. [.ai/prompts/refactor-designer-engine.prompt.md](#archivo-0099)
+0100. [.ai/prompts/refactor-editor-shell.prompt.md](#archivo-0100)
+0101. [.ai/prompts/refactor-left-rail-catalog.prompt.md](#archivo-0101)
+0102. [.ai/prompts/refactor-right-inspector-layout.prompt.md](#archivo-0102)
+0103. [.ai/prompts/split-monolithic-hook.prompt.md](#archivo-0103)
+0104. [.ai/prompts/stabilize-public-api.prompt.md](#archivo-0104)
+0105. [.ai/prompts/unify-css-architecture.prompt.md](#archivo-0105)
+0106. [.ai/prompts/validate-runtime-generate-parity.prompt.md](#archivo-0106)
+0107. [.ai/prompts/write-architecture-decision-record.prompt.md](#archivo-0107)
+0108. [.ai/rules/global-rules.md](#archivo-0108)
+0109. [.backup-ai-workspace/.agents.bak/copilot-instructions.md](#archivo-0109)
+0110. [.backup-ai-workspace/.agents.bak/README-AI-WORKSPACE.md](#archivo-0110)
+0111. [.backup-ai-workspace/github-agents.bak/canvas-ux-orchestrator.agent.md](#archivo-0111)
+0112. [.backup-ai-workspace/github-agents.bak/design-system-guardian.agent.md](#archivo-0112)
+0113. [.backup-ai-workspace/github-agents.bak/frontend-pdf-architect.agent.md](#archivo-0113)
+0114. [.backup-ai-workspace/github-agents.bak/pdfme-runtime-specialist.agent.md](#archivo-0114)
+0115. [.backup-ai-workspace/github-agents.bak/prompt-execution-director.agent.md](#archivo-0115)
+0116. [.backup-ai-workspace/github-instructions.bak/css-unification.instructions.md](#archivo-0116)
+0117. [.backup-ai-workspace/github-instructions.bak/frontend-editor.instructions.md](#archivo-0117)
+0118. [.backup-ai-workspace/github-instructions.bak/pdfme-extension.instructions.md](#archivo-0118)
+0119. [.backup-ai-workspace/github-instructions.bak/ui-ux-compact.instructions.md](#archivo-0119)
+0120. [.backup-ai-workspace/github-prompts.bak/compact-wix-style-ui.prompt.md](#archivo-0120)
+0121. [.backup-ai-workspace/github-prompts.bak/create-command-bus.prompt.md](#archivo-0121)
+0122. [.backup-ai-workspace/github-prompts.bak/refactor-editor-shell.prompt.md](#archivo-0122)
+0123. [.backup-ai-workspace/github-prompts.bak/split-monolithic-hook.prompt.md](#archivo-0123)
+0124. [.backup-ai-workspace/github-prompts.bak/unify-css-architecture.prompt.md](#archivo-0124)
+0125. [.backup-ai-workspace/github-skills.bak/canvas-interaction.skill.md](#archivo-0125)
+0126. [.backup-ai-workspace/github-skills.bak/component-composition.skill.md](#archivo-0126)
+0127. [.backup-ai-workspace/github-skills.bak/design-system-consistency.skill.md](#archivo-0127)
+0128. [.backup-ai-workspace/github-skills.bak/editor-product-vision.skill.md](#archivo-0128)
+0129. [.backup-ai-workspace/github-skills.bak/pdfme-integration.skill.md](#archivo-0129)
+0130. [.backup-ai-workspace/github-skills.bak/refactor-safety.skill.md](#archivo-0130)
+0131. [.backup-ai-workspace/github-skills.bak/ux-compact-panels.skill.md](#archivo-0131)
+0132. [docs/ai/README.md](#archivo-0132)
+0133. [docs/reference/arquitectura-y-estructura.md](#archivo-0133)
+0134. [docs/reference/build-esm-cjs-y-generacion-de-tipos.md](#archivo-0134)
+0135. [docs/reference/canvas-overlays-y-ciclo-de-interaccion.md](#archivo-0135)
+0136. [docs/reference/checklist-de-release-y-soporte.md](#archivo-0136)
+0137. [docs/reference/ci-cd-publicacion-y-release-automation.md](#archivo-0137)
+0138. [docs/reference/colaboracion-arquitectura-operativa.md](#archivo-0138)
+0139. [docs/reference/colaboracion-y-sincronizacion.md](#archivo-0139)
+0140. [docs/reference/configuraciones-de-build-reales.md](#archivo-0140)
+0141. [docs/reference/consumer-app-y-ejemplos-vivos.md](#archivo-0141)
+0142. [docs/reference/designer-engine-builder-profundo.md](#archivo-0142)
+0143. [docs/reference/designer-engine-y-configuracion.md](#archivo-0143)
+0144. [docs/reference/ejemplos-de-consumo-externo.md](#archivo-0144)
+0145. [docs/reference/ejemplos-de-implementacion.md](#archivo-0145)
+0146. [docs/reference/entrypoints-exports-y-surface-api.md](#archivo-0146)
+0147. [docs/reference/generator-converter-y-runtime-de-visualizacion.md](#archivo-0147)
+0148. [docs/reference/monorepo-root-y-workspaces.md](#archivo-0148)
+0149. [docs/reference/package-json-por-paquete.md](#archivo-0149)
+0150. [docs/reference/paquetizacion-y-estructura-de-modulos.md](#archivo-0150)
+0151. [docs/reference/publicacion-registry-privado-y-versionado.md](#archivo-0151)
+0152. [docs/reference/README.md](#archivo-0152)
+0153. [docs/reference/rightsidebar-listview-y-detailview-profundo.md](#archivo-0153)
+0154. [docs/reference/runtime-persistencia-api-y-formjson.md](#archivo-0154)
+0155. [docs/reference/schemaconnections-y-contratos-de-datos.md](#archivo-0155)
+0156. [docs/reference/schemas-y-plugins.md](#archivo-0156)
+0157. [docs/reference/schemas-y-registry-guia-de-extension.md](#archivo-0157)
+0158. [docs/reference/testing-y-calidad.md](#archivo-0158)
+0159. [docs/reference/ui-editor-canvas-y-overlays.md](#archivo-0159)
+0160. [docs/reference/versionado-changelog-y-canary-flow.md](#archivo-0160)
+0161. [test-results/pdfme-editor-PDFME-editor--0cd8b-on-the-basic-designer-route-chromium/error-context.md](#archivo-0161)
+0162. [test-results/pdfme-editor-PDFME-editor--544df-on-the-multi-document-route-chromium/error-context.md](#archivo-0162)
+0163. [test-results/pdfme-editor-PDFME-editor--a3ed6-cks-on-the-enterprise-route-chromium/error-context.md](#archivo-0163)
+0164. [test-results/pdfme-editor-PDFME-editor--f3033-als-from-the-detail-sidebar-chromium/error-context.md](#archivo-0164)
+0165. [.ai/agents/legacy/pdfme-command-architect.md](#archivo-0165)
+0166. [.ai/agents/legacy/pdfme-css-polish-architect.md](#archivo-0166)
+0167. [.ai/agents/legacy/pdfme-editor-architect.md](#archivo-0167)
+0168. [.ai/agents/legacy/pdfme-layout-architect.md](#archivo-0168)
+0169. [.ai/agents/legacy/pdfme-overlay-architect.md](#archivo-0169)
+0170. [.ai/agents/legacy/pdfme-registry-architect.md](#archivo-0170)
+0171. [.ai/agents/legacy/pdfme-sidebar-architect.md](#archivo-0171)
+0172. [.ai/agents/legacy/pdfme-testing-architect.md](#archivo-0172)
+0173. [.ai/agents/legacy/pdfme-toolbar-architect.md](#archivo-0173)
+0174. [.ai/skills/canvas-geometry-scaling/SKILL.md](#archivo-0174)
+0175. [.ai/skills/canvas-interaction/SKILL.md](#archivo-0175)
+0176. [.ai/skills/canvas-overlay-composition/SKILL.md](#archivo-0176)
+0177. [.ai/skills/catalog-discovery-patterns/SKILL.md](#archivo-0177)
+0178. [.ai/skills/collaboration-state-sync/SKILL.md](#archivo-0178)
+0179. [.ai/skills/component-composition/SKILL.md](#archivo-0179)
+0180. [.ai/skills/converter-pipeline-integrity/SKILL.md](#archivo-0180)
+0181. [.ai/skills/css-layering-and-overrides/SKILL.md](#archivo-0181)
+0182. [.ai/skills/design-system-consistency/SKILL.md](#archivo-0182)
+0183. [.ai/skills/design-token-governance/SKILL.md](#archivo-0183)
+0184. [.ai/skills/designer-engine-runtime-state/SKILL.md](#archivo-0184)
+0185. [.ai/skills/designer-selection-lifecycle/SKILL.md](#archivo-0185)
+0186. [.ai/skills/detail-view-sectioning/SKILL.md](#archivo-0186)
+0187. [.ai/skills/document-workflow-ux-patterns/SKILL.md](#archivo-0187)
+0188. [.ai/skills/docusign-inspired-product-thinking/SKILL.md](#archivo-0188)
+0189. [.ai/skills/editor-product-vision/SKILL.md](#archivo-0189)
+0190. [.ai/skills/editor-regression-testing/SKILL.md](#archivo-0190)
+0191. [.ai/skills/fork-safe-pdfme-evolution/SKILL.md](#archivo-0191)
+0192. [.ai/skills/generator-runtime-parity/SKILL.md](#archivo-0192)
+0193. [.ai/skills/inspector-panel-composition/SKILL.md](#archivo-0193)
+0194. [.ai/skills/list-view-reorder-patterns/SKILL.md](#archivo-0194)
+0195. [.ai/skills/moveable-selecto-integration/SKILL.md](#archivo-0195)
+0196. [.ai/skills/pdfme-integration/SKILL.md](#archivo-0196)
+0197. [.ai/skills/platform-architecture-governance/SKILL.md](#archivo-0197)
+0198. [.ai/skills/playwright-canvas-diagnostics/SKILL.md](#archivo-0198)
+0199. [.ai/skills/public-api-surface-design/SKILL.md](#archivo-0199)
+0200. [.ai/skills/react-doctor/SKILL.md](#archivo-0200)
+0201. [.ai/skills/refactor-safety/SKILL.md](#archivo-0201)
+0202. [.ai/skills/schema-identity-persistence/SKILL.md](#archivo-0202)
+0203. [.ai/skills/schema-registry-extension/SKILL.md](#archivo-0203)
+0204. [.ai/skills/schema-render-contracts/SKILL.md](#archivo-0204)
+0205. [.ai/skills/snaplines-guides-behavior/SKILL.md](#archivo-0205)
+0206. [.ai/skills/ux-compact-panels/SKILL.md](#archivo-0206)
+0207. [.ai/skills/wix-inspired-left-rail-ux/SKILL.md](#archivo-0207)
+0208. [.backup-ai-workspace/.agents.bak/agents/canvas-ux-orchestrator.agent.md](#archivo-0208)
+0209. [.backup-ai-workspace/.agents.bak/agents/design-system-guardian.agent.md](#archivo-0209)
+0210. [.backup-ai-workspace/.agents.bak/agents/frontend-pdf-architect.agent.md](#archivo-0210)
+0211. [.backup-ai-workspace/.agents.bak/agents/pdfme-runtime-specialist.agent.md](#archivo-0211)
+0212. [.backup-ai-workspace/.agents.bak/agents/prompt-execution-director.agent.md](#archivo-0212)
+0213. [.backup-ai-workspace/.agents.bak/instructions/css-unification.instructions.md](#archivo-0213)
+0214. [.backup-ai-workspace/.agents.bak/instructions/frontend-editor.instructions.md](#archivo-0214)
+0215. [.backup-ai-workspace/.agents.bak/instructions/pdfme-extension.instructions.md](#archivo-0215)
+0216. [.backup-ai-workspace/.agents.bak/instructions/ui-ux-compact.instructions.md](#archivo-0216)
+0217. [.backup-ai-workspace/.agents.bak/prompts/compact-wix-style-ui.prompt.md](#archivo-0217)
+0218. [.backup-ai-workspace/.agents.bak/prompts/create-command-bus.prompt.md](#archivo-0218)
+0219. [.backup-ai-workspace/.agents.bak/prompts/refactor-editor-shell.prompt.md](#archivo-0219)
+0220. [.backup-ai-workspace/.agents.bak/prompts/split-monolithic-hook.prompt.md](#archivo-0220)
+0221. [.backup-ai-workspace/.agents.bak/prompts/unify-css-architecture.prompt.md](#archivo-0221)
+0222. [.backup-ai-workspace/.agents.bak/react-doctor/AGENTS.md](#archivo-0222)
+0223. [.backup-ai-workspace/.agents.bak/react-doctor/SKILL.md](#archivo-0223)
+0224. [.backup-ai-workspace/.agents.bak/skills/canvas-interaction.skill.md](#archivo-0224)
+0225. [.backup-ai-workspace/.agents.bak/skills/component-composition.skill.md](#archivo-0225)
+0226. [.backup-ai-workspace/.agents.bak/skills/design-system-consistency.skill.md](#archivo-0226)
+0227. [.backup-ai-workspace/.agents.bak/skills/editor-product-vision.skill.md](#archivo-0227)
+0228. [.backup-ai-workspace/.agents.bak/skills/pdfme-integration.skill.md](#archivo-0228)
+0229. [.backup-ai-workspace/.agents.bak/skills/refactor-safety.skill.md](#archivo-0229)
+0230. [.backup-ai-workspace/.agents.bak/skills/ux-compact-panels.skill.md](#archivo-0230)
+0231. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-command-architect.md](#archivo-0231)
+0232. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-css-polish-architect.md](#archivo-0232)
+0233. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-editor-architect.md](#archivo-0233)
+0234. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-layout-architect.md](#archivo-0234)
+0235. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-overlay-architect.md](#archivo-0235)
+0236. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-registry-architect.md](#archivo-0236)
+0237. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-sidebar-architect.md](#archivo-0237)
+0238. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-testing-architect.md](#archivo-0238)
+0239. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-toolbar-architect.md](#archivo-0239)
+0240. [.backup-ai-workspace/github-skills.bak/canvas-interaction/SKILL.md](#archivo-0240)
+0241. [.backup-ai-workspace/github-skills.bak/editor-product-vision/SKILL.md](#archivo-0241)
+0242. [.backup-ai-workspace/github-skills.bak/pdfme-integration/SKILL.md](#archivo-0242)
+0243. [docs/ai/agents/README.md](#archivo-0243)
+0244. [docs/ai/instructions/README.md](#archivo-0244)
+0245. [docs/ai/prompts/README.md](#archivo-0245)
+0246. [docs/ai/skills/README.md](#archivo-0246)
+0247. [src/sisad-pdfme/ui/designerEngine.api.md](#archivo-0247)
+0248. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-command-architect.md](#archivo-0248)
+0249. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-css-polish-architect.md](#archivo-0249)
+0250. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-editor-architect.md](#archivo-0250)
+0251. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-layout-architect.md](#archivo-0251)
+0252. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-overlay-architect.md](#archivo-0252)
+0253. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-registry-architect.md](#archivo-0253)
+0254. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-sidebar-architect.md](#archivo-0254)
+0255. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-testing-architect.md](#archivo-0255)
+0256. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-toolbar-architect.md](#archivo-0256)
+0257. [.backup-ai-workspace/.agents.bak/skills/canvas-interaction/SKILL.md](#archivo-0257)
+0258. [.backup-ai-workspace/.agents.bak/skills/editor-product-vision/SKILL.md](#archivo-0258)
+0259. [.backup-ai-workspace/.agents.bak/skills/pdfme-integration/SKILL.md](#archivo-0259)
 
 ---
 
@@ -1216,19 +1221,23 @@ La toolbar del outline/listado de campos es una pieza pequeña pero crítica. La
 - **Ruta relativa:** `docs/07-components-detail-view.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/07-components-detail-view.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `62`
+- **Líneas aproximadas:** `68`
 
 ### Contenido original
 
-# `DetailViewContent.tsx`
+## `DetailViewContent.tsx`
 
-## Rol
+`DetailViewContent.tsx` es la pieza que materializa el inspector del schema seleccionado. Se apoya en `detailSchemas`, `detailWidgets`, `DetailHeaderCard`, `DetailSectionCard`, `DetailFormSection` y widgets especializados como `SchemaConnectionsWidget` y `SchemaCollaborationWidget`.
 
 `DetailViewContent.tsx` es la pieza que materializa el inspector del schema seleccionado. Se apoya en `detailSchemas`, `detailWidgets`, `DetailHeaderCard`, `DetailSectionCard`, `DetailFormSection` y widgets especializados como `SchemaConnectionsWidget` y `SchemaCollaborationWidget`.
 
 ## Función arquitectónica
 
-Es el punto donde el modelo declarativo de propiedades se convierte en UI concreta.
+Es el punto donde el modelo declarativo de propiedades se convierte en UI concreta. El resumen de identidad, configuración y colaboración vive en `DetailHeaderCard`; `DetailViewContent` sólo organiza la pila de secciones.
+
+El header ya concentra la identidad visible del schema (`schemaUid`, `createdBy`, `lastModifiedBy`) junto con los chips de configuración y colaboración.
+
+`src/sisad-pdfme/schemas/schemaFamilies.ts` sigue siendo la fuente de verdad de `visibleSections` y `supports*`; `DetailViewContent.tsx` sólo adapta ese contrato a layout y render.
 
 ## Secciones conocidas
 
@@ -1247,13 +1256,14 @@ Según la evolución del proyecto y los documentos previos, el detalle suele agr
 - ordenar widgets por prioridad
 - mantener disclosure progresivo
 - delegar rendering a widgets específicos
+- actuar como shell de layout, no como dueño del resumen de chips
 
 ## Recomendación de comportamiento
 
 Por defecto, solo deberían abrirse:
 - General
 - Layout
-- Data
+- Data cuando la familia realmente la soporte
 
 Las demás deberían quedar colapsadas, a menos que el usuario las haya abierto antes.
 
@@ -1280,6 +1290,7 @@ Las demás deberían quedar colapsadas, a menos que el usuario las haya abierto 
 - cómo se alimenta de `detailSchemas`
 - qué widgets se consideran núcleo y cuáles avanzados
 - reglas para colapso y persistencia de apertura
+- qué parte del resumen vive en `DetailHeaderCard` y qué parte queda en `DetailViewContent`
 - tratamiento de estados vacíos cuando no hay selección
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
@@ -2044,7 +2055,7 @@ El canvas actual ya está bien encaminado. Las mejores mejoras futuras no consis
 - **Ruta relativa:** `docs/22-inspector-right-panel.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/22-inspector-right-panel.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `248`
+- **Líneas aproximadas:** `254`
 
 ### Contenido original
 
@@ -2094,7 +2105,7 @@ Por eso la estrategia adecuada sigue siendo **progressive disclosure**.
 
 ## 4. `DetailViewContent`
 
-La estructura actual ya divide el schema en secciones:
+La estructura actual ya divide el schema en secciones y delega el resumen superior a `DetailHeaderCard`:
 - general
 - style
 - layout
@@ -2102,6 +2113,8 @@ La estructura actual ya divide el schema en secciones:
 - collaboration
 - validation
 - advanced
+
+`src/sisad-pdfme/schemas/schemaFamilies.ts` es la fuente de verdad para `visibleSections` y los flags `supports*`; `detailSchemas.ts` sólo normaliza ese contrato y lo materializa en UI.
 
 Además calcula tags para configuración activa:
 - Guardar
@@ -2111,9 +2124,11 @@ Además calcula tags para configuración activa:
 
 ### Tags colaborativos mínimos (fase crítica)
 
-El header/detalle debe poder exponer de forma compacta:
+`DetailHeaderCard` debe poder exponer de forma compacta:
 
+- `schemaUid` estable del campo;
 - autor activo (`createdBy`);
+- último autor visible (`lastModifiedBy`);
 - color de autor (`userColor`);
 - ownership (`ownerMode`, `ownerRecipientId(s)`);
 - lock y comentarios activos.
@@ -2135,13 +2150,15 @@ Eso es una señal de madurez del sistema: el inspector no solo pinta inputs, tam
 
 ## 5. `DetailHeaderCard`
 
-Debe funcionar como resumen persistente:
+Debe funcionar como resumen persistente y única superficie de chips:
 - nombre/tipo
+- identidad estable (`schemaUid`)
+- autoría visible (`createdBy`, `lastModifiedBy`)
 - tags de configuración
 - tags colaborativos
 - quizás métricas mínimas
 
-No debe competir con la sección layout ni repetir demasiada información.
+No debe competir con la sección layout ni repetir información debajo del header.
 
 ## 6. `detailSchemas`
 
@@ -2163,8 +2180,8 @@ Esta capa ya integra widgets base y widgets de plugins:
 - botones de alineación
 - divisores
 - groups
-- `SchemaConnectionsWidget`
-- `SchemaCollaborationWidget`
+- `SchemaConnectionsWidget` cuando el schema o la familia exponen `supportsConnections`
+- `SchemaCollaborationWidget` cuando el schema o la familia exponen colaboración
 
 ### Buena práctica
 Separar:
@@ -2205,7 +2222,7 @@ Es uno de los widgets más potentes del inspector, porque concentra:
 - resumen de auth
 
 ### Recomendación
-Tratarlo como un subsistema por sí mismo, no como “un widget más”. Debe seguir agrupando configuración avanzada bajo un solo paraguas.
+Tratarlo como un subsistema por sí mismo, no como “un widget más”. Debe seguir agrupando configuración avanzada bajo un solo paraguas y mostrarse sólo en familias o plugins que declaren soporte de conexiones.
 
 ## 12. `SchemaCollaborationWidget`
 
@@ -3294,7 +3311,7 @@ Un contrato transversal está bien definido cuando:
 - **Ruta relativa:** `docs/31-public-apis-consumer-surface.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/31-public-apis-consumer-surface.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `160`
+- **Líneas aproximadas:** `161`
 
 ### Contenido original
 
@@ -3324,6 +3341,7 @@ La API pública todavía conserva nombres heredados como `Designer`, `Form`, `Vi
 - `builtInSchemaDefinitions`
 - `schemaBuilder`
 - registros y plugins
+- `createSchemaInspectorConfig` como factory pública para presets de inspector por familia
 
 ### 2.4 Runtime adapters
 - persistencia
@@ -3463,12 +3481,110 @@ Antes de vender o empaquetar:
 ---
 
 <a id="archivo-0033"></a>
-## Archivo #33: docs/32-schema-families-extension-guide.md
+## Archivo #33: docs/32-schema-audit.md
+
+- **Ruta relativa:** `docs/32-schema-audit.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/32-schema-audit.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `84`
+
+### Contenido original
+
+# Auditoría inicial de plugins y contrato de inspector
+
+Resumen rápido: se analizaron los plugins exportados en `src/sisad-pdfme/schemas/index.ts`. A continuación se listan los plugins principales, la familia del inspector que usan (según `createSchemaInspectorConfig`) y notas sobre `propPanel` / `propertyMap` / `widgets` y `defaultSchema`.
+
+- text
+  - familia: `textual`
+  - propPanel: sí (`text/propPanel.ts`)
+  - propertyMap: ninguno declarado explícitamente
+  - widgets: `UseDynamicFontSize`
+  - defaultSchema (claves relevantes): `name`, `type`, `content`, `fontName`, `fontSize`, `fontColor`, `backgroundColor`, `dynamicFontSize`, `opacity`
+  - supportsConnections/supportsCollaboration: no declarado
+
+- multiVariableText
+  - familia: `textual`
+  - propPanel: sí (`multiVariableText/propPanel.ts`)
+  - propertyMap: `{ dynamicVarContainer: 'data' }`
+  - widgets: `mapDynamicVariables`
+  - defaultSchema: extiende `text` (type: `multiVariableText`)
+
+- select
+  - familia: `textual`
+  - propPanel: extiende `text` (`select/index.ts`)
+  - propertyMap: `{ optionsContainer: 'data' }`
+  - widgets: `addOptions`
+
+- checkbox
+  - familia: `choice`
+  - propPanel: sí (`checkbox/index.ts`)
+  - propertyMap: `{ color: 'style' }`
+
+- radioGroup
+  - familia: `choice`
+  - propPanel: sí (`radioGroup/index.ts`)
+  - propertyMap: `{ color: 'style', group: 'data' }`
+
+- image
+  - familia: `media`
+  - propPanel: esquema vacío / inspector: `media` (`graphics/image.ts`)
+  - inspector visible: `general`, `layout`, `collaboration`, `advanced` (sin `data` ni `connections`)
+  - defaultSchema contiene `content` (data URI), tamaño, rotate, opacity
+
+- svg
+  - familia: `media`
+  - propPanel: esquema vacío / inspector: `media` (`graphics/svg.ts`)
+  - inspector visible: `general`, `layout`, `collaboration`, `advanced` (sin `data` ni `connections`)
+
+- signature
+  - familia: `signature`
+  - propPanel: sí (`signature/propPanel.ts`)
+  - propertyMap: maps placeholderText -> `data`, colors -> `style`
+
+- shapes (line, rectangle, ellipse)
+  - familia: `shape`
+  - propPanel: sí (line.ts, rectAndEllipse.ts)
+  - propertyMap: color/borderColor/borderWidth/radius -> `style`
+
+- table
+  - familia: `table`
+  - propPanel: sí (`tables/propPanel.ts`)
+  - propertyMap: mapping de showHead/repeatHead -> `data`, estilos (tableStyles/headStyles/bodyStyles/columnStyles) -> `style`
+
+- barcodes (varios tipos)
+  - familia: `barcode`
+  - propPanel: factory `getPropPanelByBarcodeType` (`barcodes/propPanel.ts`)
+  - propertyMap: barColor/backgroundColor/textColor -> `style`, `includetext` -> `data`
+
+- date / time / dateTime
+  - familia: `textual`
+  - propPanel: sí (`date/helper.ts`)
+  - propertyMap: `{ format: 'data', locale: 'data' }`
+
+Observaciones globales:
+- El proyecto ya cuenta con `schemaFamilies.ts` y fábrica `createSchemaInspectorConfig` que normaliza presets por familia.
+- La mayoría de plugins delegan al contrato `createSchemaInspectorConfig(...)` en lugar de declarar explícitamente `visibleSections` o `supports*` flags. Esto facilita aplicar presets, pero requiere estandarizar `PropPanelInspectorConfig` para habilitar `supportsConnections` y `supportsCollaboration` cuando proceda.
+- El tipo `Schema` ya incluye metadata colaborativa base (`createdBy`, `createdAt`, `lastModifiedBy`, `lastModifiedAt`, `userColor`, `comments`, `commentAnchors`, `ownerRecipientId`, `ownerRecipientIds`, `state`, `lock`); el trabajo pendiente no es extender el tipo, sino completar su propagación y documentación en el inspector y la colaboración.
+- Los `propPanel` existentes ya usan `propertyMap` para mapear controles complejos a secciones (`data` o `style`), lo que facilita migración a la nueva estructura basada en familias.
+
+Siguientes pasos recomendados (ejecución inmediata):
+1. Generar una matriz completa (CSV/MD) con todas las propiedades por plugin (puedo generarla ahora).
+2. Documentar y, si hace falta, reforzar la propagación de la metadata colaborativa ya existente desde `designerEngine` y `SchemaCollaborationWidget` hacia inspector, canvas y comentarios.
+3. Añadir o mantener tests que verifiquen la preservación de `name` único y que `type` no sea editable en el inspector.
+
+Si confirmas, procedo con el paso 2: aplicar extensión de `Schema` en `src/sisad-pdfme/common/types.ts` y crear pruebas mínimas de compatibilidad.
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0034"></a>
+## Archivo #34: docs/32-schema-families-extension-guide.md
 
 - **Ruta relativa:** `docs/32-schema-families-extension-guide.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/32-schema-families-extension-guide.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `150`
+- **Líneas aproximadas:** `154`
 
 ### Contenido original
 
@@ -3516,6 +3632,8 @@ export interface FieldPluginDefinition {
   getInspectorSchema?: () => DetailSchemaSection[];
 }
 ```
+
+La implementación actual ya expone `createSchemaInspectorConfig(...)` desde `src/sisad-pdfme/schemas/index.ts` como el factory canónico para presets de inspector por familia.
 
 ## 4. Ejemplo: text
 
@@ -3581,6 +3699,8 @@ En este fork eso implica mantener en paridad:
 - `builtInSchemaDefinitions`
 - `builtInPlugins`
 
+Y, cuando la familia requiera inspector declarativo, usar `createSchemaInspectorConfig(...)` como el punto de entrada común para `visibleSections`, `propertyMap` y `supports*`.
+
 Ejemplo actual: `signature` ya existe como una familia built-in de firma visual basada en imagen.
 Su primera version reutiliza el pipeline de `graphics/image` para render UI y PDF, muestra un placeholder solo en UI cuando esta vacia y no pretende resolver firma digital criptografica PDF.
 
@@ -3626,8 +3746,8 @@ Cada familia debería tener su propio `.md` técnico con:
 
 ---
 
-<a id="archivo-0034"></a>
-## Archivo #34: docs/33-rename-guide-platform-pdf.md
+<a id="archivo-0035"></a>
+## Archivo #35: docs/33-rename-guide-platform-pdf.md
 
 - **Ruta relativa:** `docs/33-rename-guide-platform-pdf.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/33-rename-guide-platform-pdf.md`
@@ -3738,8 +3858,8 @@ Usar una migración con:
 
 ---
 
-<a id="archivo-0035"></a>
-## Archivo #35: docs/34-product-matrix-sdk-commercialization.md
+<a id="archivo-0036"></a>
+## Archivo #36: docs/34-product-matrix-sdk-commercialization.md
 
 - **Ruta relativa:** `docs/34-product-matrix-sdk-commercialization.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/34-product-matrix-sdk-commercialization.md`
@@ -3884,8 +4004,8 @@ Venderlo como:
 
 ---
 
-<a id="archivo-0036"></a>
-## Archivo #36: docs/35-packaging-roadmap.md
+<a id="archivo-0037"></a>
+## Archivo #37: docs/35-packaging-roadmap.md
 
 - **Ruta relativa:** `docs/35-packaging-roadmap.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/35-packaging-roadmap.md`
@@ -3940,8 +4060,8 @@ La quinta tanda deja una base documental para pasar de repositorio de producto i
 
 ---
 
-<a id="archivo-0037"></a>
-## Archivo #37: docs/36-commercial-adoption-checklist.md
+<a id="archivo-0038"></a>
+## Archivo #38: docs/36-commercial-adoption-checklist.md
 
 - **Ruta relativa:** `docs/36-commercial-adoption-checklist.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/36-commercial-adoption-checklist.md`
@@ -4007,8 +4127,8 @@ listos para crear en el repo.
 
 ---
 
-<a id="archivo-0038"></a>
-## Archivo #38: docs/37-platform-pdf-migration-plan.md
+<a id="archivo-0039"></a>
+## Archivo #39: docs/37-platform-pdf-migration-plan.md
 
 - **Ruta relativa:** `docs/37-platform-pdf-migration-plan.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/37-platform-pdf-migration-plan.md`
@@ -4113,8 +4233,8 @@ La migración será exitosa cuando:
 
 ---
 
-<a id="archivo-0039"></a>
-## Archivo #39: docs/90-indice-verdad-actual.md
+<a id="archivo-0040"></a>
+## Archivo #40: docs/90-indice-verdad-actual.md
 
 - **Ruta relativa:** `docs/90-indice-verdad-actual.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/90-indice-verdad-actual.md`
@@ -4184,8 +4304,8 @@ Lee primero `designerEngine`, luego `schemaRegistry`, después `RightSidebar` + 
 
 ---
 
-<a id="archivo-0040"></a>
-## Archivo #40: docs/91-indice-conceptual.md
+<a id="archivo-0041"></a>
+## Archivo #41: docs/91-indice-conceptual.md
 
 - **Ruta relativa:** `docs/91-indice-conceptual.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/91-indice-conceptual.md`
@@ -4289,8 +4409,8 @@ Después de leer estos documentos, el equipo debería poder:
 
 ---
 
-<a id="archivo-0041"></a>
-## Archivo #41: docs/92-indice-historico.md
+<a id="archivo-0042"></a>
+## Archivo #42: docs/92-indice-historico.md
 
 - **Ruta relativa:** `docs/92-indice-historico.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/92-indice-historico.md`
@@ -4329,8 +4449,8 @@ A diferencia de la primera y segunda entregas, esta tanda:
 
 ---
 
-<a id="archivo-0042"></a>
-## Archivo #42: docs/93-indice-roadmap-plataforma.md
+<a id="archivo-0043"></a>
+## Archivo #43: docs/93-indice-roadmap-plataforma.md
 
 - **Ruta relativa:** `docs/93-indice-roadmap-plataforma.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/93-indice-roadmap-plataforma.md`
@@ -4373,8 +4493,8 @@ Cerrar la brecha entre el editor actual `sisad-pdfme` y una plataforma reutiliza
 
 ---
 
-<a id="archivo-0043"></a>
-## Archivo #43: docs/94-indice-roadmap-empaquetado.md
+<a id="archivo-0044"></a>
+## Archivo #44: docs/94-indice-roadmap-empaquetado.md
 
 - **Ruta relativa:** `docs/94-indice-roadmap-empaquetado.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/94-indice-roadmap-empaquetado.md`
@@ -4423,8 +4543,8 @@ Dejar documentado cómo pasar del repositorio actual a una distribución modular
 
 ---
 
-<a id="archivo-0044"></a>
-## Archivo #44: docs/95-indice-roadmap-operativo.md
+<a id="archivo-0045"></a>
+## Archivo #45: docs/95-indice-roadmap-operativo.md
 
 - **Ruta relativa:** `docs/95-indice-roadmap-operativo.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/95-indice-roadmap-operativo.md`
@@ -4473,8 +4593,8 @@ Convertir la documentación conceptual de empaquetado en una guía operativa que
 
 ---
 
-<a id="archivo-0045"></a>
-## Archivo #45: docs/96-sisad-pdfme-overview.md
+<a id="archivo-0046"></a>
+## Archivo #46: docs/96-sisad-pdfme-overview.md
 
 - **Ruta relativa:** `docs/96-sisad-pdfme-overview.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/96-sisad-pdfme-overview.md`
@@ -4659,8 +4779,8 @@ Aunque el proyecto nació como modificación de pdfme, hoy debe documentarse y e
 
 ---
 
-<a id="archivo-0046"></a>
-## Archivo #46: docs/97-indice-generado.md
+<a id="archivo-0047"></a>
+## Archivo #47: docs/97-indice-generado.md
 
 - **Ruta relativa:** `docs/97-indice-generado.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/97-indice-generado.md`
@@ -4700,8 +4820,8 @@ Este archivo es un apoyo histórico. No es la fuente de verdad del proyecto.
 
 ---
 
-<a id="archivo-0047"></a>
-## Archivo #47: docs/README.md
+<a id="archivo-0048"></a>
+## Archivo #48: docs/README.md
 
 - **Ruta relativa:** `docs/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/README.md`
@@ -4792,8 +4912,8 @@ Esta carpeta concentra la documentación técnica del proyecto. La estructura es
 
 ---
 
-<a id="archivo-0048"></a>
-## Archivo #48: .ai/agents/canvas-overlays-architect.agent.md
+<a id="archivo-0049"></a>
+## Archivo #49: .ai/agents/canvas-overlays-architect.agent.md
 
 - **Ruta relativa:** `.ai/agents/canvas-overlays-architect.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/canvas-overlays-architect.agent.md`
@@ -4870,8 +4990,8 @@ El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el 
 
 ---
 
-<a id="archivo-0049"></a>
-## Archivo #49: .ai/agents/canvas-runtime-architect.agent.md
+<a id="archivo-0050"></a>
+## Archivo #50: .ai/agents/canvas-runtime-architect.agent.md
 
 - **Ruta relativa:** `.ai/agents/canvas-runtime-architect.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/canvas-runtime-architect.agent.md`
@@ -4950,8 +5070,8 @@ El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el 
 
 ---
 
-<a id="archivo-0050"></a>
-## Archivo #50: .ai/agents/canvas-ux-orchestrator.agent.md
+<a id="archivo-0051"></a>
+## Archivo #51: .ai/agents/canvas-ux-orchestrator.agent.md
 
 - **Ruta relativa:** `.ai/agents/canvas-ux-orchestrator.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/canvas-ux-orchestrator.agent.md`
@@ -4985,8 +5105,8 @@ Lograr una experiencia tipo editor profesional con mínima ocupación visual y m
 
 ---
 
-<a id="archivo-0051"></a>
-## Archivo #51: .ai/agents/collaboration-sync-architect.agent.md
+<a id="archivo-0052"></a>
+## Archivo #52: .ai/agents/collaboration-sync-architect.agent.md
 
 - **Ruta relativa:** `.ai/agents/collaboration-sync-architect.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/collaboration-sync-architect.agent.md`
@@ -5066,8 +5186,8 @@ El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el 
 
 ---
 
-<a id="archivo-0052"></a>
-## Archivo #52: .ai/agents/design-system-guardian.agent.md
+<a id="archivo-0053"></a>
+## Archivo #53: .ai/agents/design-system-guardian.agent.md
 
 - **Ruta relativa:** `.ai/agents/design-system-guardian.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/design-system-guardian.agent.md`
@@ -5102,8 +5222,8 @@ Garantizar consistencia entre tokens, spacing, radii, sombras, tipografías, tam
 
 ---
 
-<a id="archivo-0053"></a>
-## Archivo #53: .ai/agents/design-token-governance.agent.md
+<a id="archivo-0054"></a>
+## Archivo #54: .ai/agents/design-token-governance.agent.md
 
 - **Ruta relativa:** `.ai/agents/design-token-governance.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/design-token-governance.agent.md`
@@ -5181,8 +5301,8 @@ El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el 
 
 ---
 
-<a id="archivo-0054"></a>
-## Archivo #54: .ai/agents/designer-engine-architect.agent.md
+<a id="archivo-0055"></a>
+## Archivo #55: .ai/agents/designer-engine-architect.agent.md
 
 - **Ruta relativa:** `.ai/agents/designer-engine-architect.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/designer-engine-architect.agent.md`
@@ -5260,8 +5380,8 @@ El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el 
 
 ---
 
-<a id="archivo-0055"></a>
-## Archivo #55: .ai/agents/detail-view-forms-architect.agent.md
+<a id="archivo-0056"></a>
+## Archivo #56: .ai/agents/detail-view-forms-architect.agent.md
 
 - **Ruta relativa:** `.ai/agents/detail-view-forms-architect.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/detail-view-forms-architect.agent.md`
@@ -5338,8 +5458,8 @@ El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el 
 
 ---
 
-<a id="archivo-0056"></a>
-## Archivo #56: .ai/agents/docs-migration-steward.agent.md
+<a id="archivo-0057"></a>
+## Archivo #57: .ai/agents/docs-migration-steward.agent.md
 
 - **Ruta relativa:** `.ai/agents/docs-migration-steward.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/docs-migration-steward.agent.md`
@@ -5417,8 +5537,8 @@ El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el 
 
 ---
 
-<a id="archivo-0057"></a>
-## Archivo #57: .ai/agents/frontend-pdf-architect.agent.md
+<a id="archivo-0058"></a>
+## Archivo #58: .ai/agents/frontend-pdf-architect.agent.md
 
 - **Ruta relativa:** `.ai/agents/frontend-pdf-architect.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/frontend-pdf-architect.agent.md`
@@ -5470,8 +5590,8 @@ Diseñar y refactorizar el editor PDF como producto, no como laboratorio de prue
 
 ---
 
-<a id="archivo-0058"></a>
-## Archivo #58: .ai/agents/generator-converter-architect.agent.md
+<a id="archivo-0059"></a>
+## Archivo #59: .ai/agents/generator-converter-architect.agent.md
 
 - **Ruta relativa:** `.ai/agents/generator-converter-architect.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/generator-converter-architect.agent.md`
@@ -5551,8 +5671,8 @@ El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el 
 
 ---
 
-<a id="archivo-0059"></a>
-## Archivo #59: .ai/agents/left-sidebar-catalog-architect.agent.md
+<a id="archivo-0060"></a>
+## Archivo #60: .ai/agents/left-sidebar-catalog-architect.agent.md
 
 - **Ruta relativa:** `.ai/agents/left-sidebar-catalog-architect.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/left-sidebar-catalog-architect.agent.md`
@@ -5632,8 +5752,8 @@ El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el 
 
 ---
 
-<a id="archivo-0060"></a>
-## Archivo #60: .ai/agents/list-view-interactions-architect.agent.md
+<a id="archivo-0061"></a>
+## Archivo #61: .ai/agents/list-view-interactions-architect.agent.md
 
 - **Ruta relativa:** `.ai/agents/list-view-interactions-architect.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/list-view-interactions-architect.agent.md`
@@ -5709,8 +5829,8 @@ El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el 
 
 ---
 
-<a id="archivo-0061"></a>
-## Archivo #61: .ai/agents/pdfme-runtime-specialist.agent.md
+<a id="archivo-0062"></a>
+## Archivo #62: .ai/agents/pdfme-runtime-specialist.agent.md
 
 - **Ruta relativa:** `.ai/agents/pdfme-runtime-specialist.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/pdfme-runtime-specialist.agent.md`
@@ -5751,8 +5871,8 @@ Mantener la compatibilidad con sisad-pdfme mientras se mejora su ergonomía, ext
 
 ---
 
-<a id="archivo-0062"></a>
-## Archivo #62: .ai/agents/platform-pdf-architect.agent.md
+<a id="archivo-0063"></a>
+## Archivo #63: .ai/agents/platform-pdf-architect.agent.md
 
 - **Ruta relativa:** `.ai/agents/platform-pdf-architect.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/platform-pdf-architect.agent.md`
@@ -5831,8 +5951,8 @@ El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el 
 
 ---
 
-<a id="archivo-0063"></a>
-## Archivo #63: .ai/agents/prompt-execution-director.agent.md
+<a id="archivo-0064"></a>
+## Archivo #64: .ai/agents/prompt-execution-director.agent.md
 
 - **Ruta relativa:** `.ai/agents/prompt-execution-director.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/prompt-execution-director.agent.md`
@@ -5867,8 +5987,8 @@ Reducir ambigüedad y guiar a los modelos a cambios estructurados, seguros y med
 
 ---
 
-<a id="archivo-0064"></a>
-## Archivo #64: .ai/agents/right-sidebar-inspector-architect.agent.md
+<a id="archivo-0065"></a>
+## Archivo #65: .ai/agents/right-sidebar-inspector-architect.agent.md
 
 - **Ruta relativa:** `.ai/agents/right-sidebar-inspector-architect.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/right-sidebar-inspector-architect.agent.md`
@@ -5948,8 +6068,8 @@ El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el 
 
 ---
 
-<a id="archivo-0065"></a>
-## Archivo #65: .ai/agents/schema-registry-architect.agent.md
+<a id="archivo-0066"></a>
+## Archivo #66: .ai/agents/schema-registry-architect.agent.md
 
 - **Ruta relativa:** `.ai/agents/schema-registry-architect.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/schema-registry-architect.agent.md`
@@ -6028,8 +6148,8 @@ El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el 
 
 ---
 
-<a id="archivo-0066"></a>
-## Archivo #66: .ai/agents/schema-rendering-architect.agent.md
+<a id="archivo-0067"></a>
+## Archivo #67: .ai/agents/schema-rendering-architect.agent.md
 
 - **Ruta relativa:** `.ai/agents/schema-rendering-architect.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/schema-rendering-architect.agent.md`
@@ -6106,8 +6226,8 @@ El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el 
 
 ---
 
-<a id="archivo-0067"></a>
-## Archivo #67: .ai/agents/testing-regression-guardian.agent.md
+<a id="archivo-0068"></a>
+## Archivo #68: .ai/agents/testing-regression-guardian.agent.md
 
 - **Ruta relativa:** `.ai/agents/testing-regression-guardian.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/testing-regression-guardian.agent.md`
@@ -6186,8 +6306,8 @@ El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el 
 
 ---
 
-<a id="archivo-0068"></a>
-## Archivo #68: .ai/context/project-overview.md
+<a id="archivo-0069"></a>
+## Archivo #69: .ai/context/project-overview.md
 
 - **Ruta relativa:** `.ai/context/project-overview.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/project-overview.md`
@@ -6204,8 +6324,8 @@ Describe aquí la verdad actual del fork, objetivos, restricciones y diferencias
 
 ---
 
-<a id="archivo-0069"></a>
-## Archivo #69: .ai/context/provider-compatibility.md
+<a id="archivo-0070"></a>
+## Archivo #70: .ai/context/provider-compatibility.md
 
 - **Ruta relativa:** `.ai/context/provider-compatibility.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/provider-compatibility.md`
@@ -6222,8 +6342,8 @@ Este repositorio debe mantener prompts y artefactos reutilizables entre distinto
 
 ---
 
-<a id="archivo-0070"></a>
-## Archivo #70: .ai/instructions/canvas-first-ux.instructions.md
+<a id="archivo-0071"></a>
+## Archivo #71: .ai/instructions/canvas-first-ux.instructions.md
 
 - **Ruta relativa:** `.ai/instructions/canvas-first-ux.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/canvas-first-ux.instructions.md`
@@ -6239,8 +6359,8 @@ Define reglas inspiradas en Wix para progressive disclosure, ahorro de espacio e
 
 ---
 
-<a id="archivo-0071"></a>
-## Archivo #71: .ai/instructions/css-unification.instructions.md
+<a id="archivo-0072"></a>
+## Archivo #72: .ai/instructions/css-unification.instructions.md
 
 - **Ruta relativa:** `.ai/instructions/css-unification.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/css-unification.instructions.md`
@@ -6268,8 +6388,8 @@ Lograr que el editor tenga una base visual consistente, predecible y mantenible.
 
 ---
 
-<a id="archivo-0072"></a>
-## Archivo #72: .ai/instructions/designer-runtime.instructions.md
+<a id="archivo-0073"></a>
+## Archivo #73: .ai/instructions/designer-runtime.instructions.md
 
 - **Ruta relativa:** `.ai/instructions/designer-runtime.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/designer-runtime.instructions.md`
@@ -6285,8 +6405,8 @@ Define reglas del lifecycle de selección, overlays, inspector y canvas.
 
 ---
 
-<a id="archivo-0073"></a>
-## Archivo #73: .ai/instructions/docs-and-migration.instructions.md
+<a id="archivo-0074"></a>
+## Archivo #74: .ai/instructions/docs-and-migration.instructions.md
 
 - **Ruta relativa:** `.ai/instructions/docs-and-migration.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/docs-and-migration.instructions.md`
@@ -6302,8 +6422,8 @@ Toda divergencia importante del fork debe documentarse.
 
 ---
 
-<a id="archivo-0074"></a>
-## Archivo #74: .ai/instructions/editor-platform.instructions.md
+<a id="archivo-0075"></a>
+## Archivo #75: .ai/instructions/editor-platform.instructions.md
 
 - **Ruta relativa:** `.ai/instructions/editor-platform.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/editor-platform.instructions.md`
@@ -6319,8 +6439,8 @@ Define reglas de arquitectura global del editor.
 
 ---
 
-<a id="archivo-0075"></a>
-## Archivo #75: .ai/instructions/frontend-editor.instructions.md
+<a id="archivo-0076"></a>
+## Archivo #76: .ai/instructions/frontend-editor.instructions.md
 
 - **Ruta relativa:** `.ai/instructions/frontend-editor.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/frontend-editor.instructions.md`
@@ -6367,8 +6487,8 @@ Evolucionar el editor PDF hacia una arquitectura profesional y compacta.
 
 ---
 
-<a id="archivo-0076"></a>
-## Archivo #76: .ai/instructions/pdfme-extension.instructions.md
+<a id="archivo-0077"></a>
+## Archivo #77: .ai/instructions/pdfme-extension.instructions.md
 
 - **Ruta relativa:** `.ai/instructions/pdfme-extension.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/pdfme-extension.instructions.md`
@@ -6401,8 +6521,8 @@ Extender sisad-pdfme modificado sin convertir la integración en una caja negra 
 
 ---
 
-<a id="archivo-0077"></a>
-## Archivo #77: .ai/instructions/schema-system.instructions.md
+<a id="archivo-0078"></a>
+## Archivo #78: .ai/instructions/schema-system.instructions.md
 
 - **Ruta relativa:** `.ai/instructions/schema-system.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/schema-system.instructions.md`
@@ -6418,8 +6538,8 @@ Define reglas para registry, familias de schema y contratos.
 
 ---
 
-<a id="archivo-0078"></a>
-## Archivo #78: .ai/instructions/testing-quality.instructions.md
+<a id="archivo-0079"></a>
+## Archivo #79: .ai/instructions/testing-quality.instructions.md
 
 - **Ruta relativa:** `.ai/instructions/testing-quality.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/testing-quality.instructions.md`
@@ -6435,8 +6555,8 @@ Toda mejora relevante del editor debe venir con pruebas proporcionales.
 
 ---
 
-<a id="archivo-0079"></a>
-## Archivo #79: .ai/instructions/ui-ux-compact.instructions.md
+<a id="archivo-0080"></a>
+## Archivo #80: .ai/instructions/ui-ux-compact.instructions.md
 
 - **Ruta relativa:** `.ai/instructions/ui-ux-compact.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/ui-ux-compact.instructions.md`
@@ -6468,8 +6588,8 @@ Aplicar una experiencia compacta inspirada en Wix, Figma y editores modernos.
 
 ---
 
-<a id="archivo-0080"></a>
-## Archivo #80: .ai/prompts/add-comments-and-presence.prompt.md
+<a id="archivo-0081"></a>
+## Archivo #81: .ai/prompts/add-comments-and-presence.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/add-comments-and-presence.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/add-comments-and-presence.prompt.md`
@@ -6523,8 +6643,8 @@ Agregar comentarios y presencia ligera sobre schemas con integración en panel d
 
 ---
 
-<a id="archivo-0081"></a>
-## Archivo #81: .ai/prompts/add-editor-regression-tests.prompt.md
+<a id="archivo-0082"></a>
+## Archivo #82: .ai/prompts/add-editor-regression-tests.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/add-editor-regression-tests.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/add-editor-regression-tests.prompt.md`
@@ -6579,8 +6699,8 @@ Agregar pruebas de regresión para el editor cubriendo selección, toolbar, side
 
 ---
 
-<a id="archivo-0082"></a>
-## Archivo #82: .ai/prompts/add-new-schema-family.prompt.md
+<a id="archivo-0083"></a>
+## Archivo #83: .ai/prompts/add-new-schema-family.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/add-new-schema-family.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/add-new-schema-family.prompt.md`
@@ -6634,8 +6754,8 @@ Crear una nueva familia de schema con helper, types, uiRender, pdfRender, propPa
 
 ---
 
-<a id="archivo-0083"></a>
-## Archivo #83: .ai/prompts/add-prop-panel-for-schema.prompt.md
+<a id="archivo-0084"></a>
+## Archivo #84: .ai/prompts/add-prop-panel-for-schema.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/add-prop-panel-for-schema.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/add-prop-panel-for-schema.prompt.md`
@@ -6689,8 +6809,8 @@ Agregar o mejorar el prop panel de una familia schema, alineando detail widgets,
 
 ---
 
-<a id="archivo-0084"></a>
-## Archivo #84: .ai/prompts/audit-platform-boundaries.prompt.md
+<a id="archivo-0085"></a>
+## Archivo #85: .ai/prompts/audit-platform-boundaries.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/audit-platform-boundaries.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/audit-platform-boundaries.prompt.md`
@@ -6744,8 +6864,8 @@ Auditar límites entre core, runtime, UI, generator, converter y docs de platafo
 
 ---
 
-<a id="archivo-0085"></a>
-## Archivo #85: .ai/prompts/build-detail-section-system.prompt.md
+<a id="archivo-0086"></a>
+## Archivo #86: .ai/prompts/build-detail-section-system.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/build-detail-section-system.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/build-detail-section-system.prompt.md`
@@ -6798,8 +6918,8 @@ Construir o endurecer un sistema modular de secciones para el detalle del schema
 
 ---
 
-<a id="archivo-0086"></a>
-## Archivo #86: .ai/prompts/compact-wix-style-ui.prompt.md
+<a id="archivo-0087"></a>
+## Archivo #87: .ai/prompts/compact-wix-style-ui.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/compact-wix-style-ui.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/compact-wix-style-ui.prompt.md`
@@ -6833,8 +6953,8 @@ Transformar una UI pesada de editor PDF en una experiencia compacta y profesiona
 
 ---
 
-<a id="archivo-0087"></a>
-## Archivo #87: .ai/prompts/create-command-bus.prompt.md
+<a id="archivo-0088"></a>
+## Archivo #88: .ai/prompts/create-command-bus.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/create-command-bus.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/create-command-bus.prompt.md`
@@ -6874,8 +6994,8 @@ Diseñar e implementar un command bus reutilizable para accionar funciones del e
 
 ---
 
-<a id="archivo-0088"></a>
-## Archivo #88: .ai/prompts/create-playwright-canvas-scenarios.prompt.md
+<a id="archivo-0089"></a>
+## Archivo #89: .ai/prompts/create-playwright-canvas-scenarios.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/create-playwright-canvas-scenarios.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/create-playwright-canvas-scenarios.prompt.md`
@@ -6928,8 +7048,8 @@ Crear escenarios de Playwright centrados en canvas, overlays, sidebars, zoom, em
 
 ---
 
-<a id="archivo-0089"></a>
-## Archivo #89: .ai/prompts/document-fork-divergence.prompt.md
+<a id="archivo-0090"></a>
+## Archivo #90: .ai/prompts/document-fork-divergence.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/document-fork-divergence.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/document-fork-divergence.prompt.md`
@@ -6983,8 +7103,8 @@ Documentar en forma explícita en qué se diferencia este fork del pdfme origina
 
 ---
 
-<a id="archivo-0090"></a>
-## Archivo #90: .ai/prompts/fix-moveable-selecto-regression.prompt.md
+<a id="archivo-0091"></a>
+## Archivo #91: .ai/prompts/fix-moveable-selecto-regression.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/fix-moveable-selecto-regression.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/fix-moveable-selecto-regression.prompt.md`
@@ -7039,8 +7159,8 @@ Corregir regresiones entre Moveable y Selecto relacionadas con selección, resiz
 
 ---
 
-<a id="archivo-0091"></a>
-## Archivo #91: .ai/prompts/generate-migration-guide.prompt.md
+<a id="archivo-0092"></a>
+## Archivo #92: .ai/prompts/generate-migration-guide.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/generate-migration-guide.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/generate-migration-guide.prompt.md`
@@ -7095,8 +7215,8 @@ Redactar una guía de migración clara para consumidores internos o externos cua
 
 ---
 
-<a id="archivo-0092"></a>
-## Archivo #92: .ai/prompts/implement-collaboration-state.prompt.md
+<a id="archivo-0093"></a>
+## Archivo #93: .ai/prompts/implement-collaboration-state.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/implement-collaboration-state.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/implement-collaboration-state.prompt.md`
@@ -7151,8 +7271,8 @@ Diseñar e implementar una capa clara de estado colaborativo para comentarios, p
 
 ---
 
-<a id="archivo-0093"></a>
-## Archivo #93: .ai/prompts/implement-overlay-pattern.prompt.md
+<a id="archivo-0094"></a>
+## Archivo #94: .ai/prompts/implement-overlay-pattern.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/implement-overlay-pattern.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/implement-overlay-pattern.prompt.md`
@@ -7205,8 +7325,8 @@ Implementar o normalizar el patrón de overlays del canvas con reglas de priorid
 
 ---
 
-<a id="archivo-0094"></a>
-## Archivo #94: .ai/prompts/improve-discovery-mode.prompt.md
+<a id="archivo-0095"></a>
+## Archivo #95: .ai/prompts/improve-discovery-mode.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/improve-discovery-mode.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/improve-discovery-mode.prompt.md`
@@ -7260,8 +7380,8 @@ Mejorar el discovery mode del catálogo para revelar lo justo en el momento corr
 
 ---
 
-<a id="archivo-0095"></a>
-## Archivo #95: .ai/prompts/improve-list-view-ux.prompt.md
+<a id="archivo-0096"></a>
+## Archivo #96: .ai/prompts/improve-list-view-ux.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/improve-list-view-ux.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/improve-list-view-ux.prompt.md`
@@ -7314,8 +7434,8 @@ Mejorar la UX del listado de campos con mejor densidad, reorder, acciones al hov
 
 ---
 
-<a id="archivo-0096"></a>
-## Archivo #96: .ai/prompts/normalize-schema-contracts.prompt.md
+<a id="archivo-0097"></a>
+## Archivo #97: .ai/prompts/normalize-schema-contracts.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/normalize-schema-contracts.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/normalize-schema-contracts.prompt.md`
@@ -7370,8 +7490,8 @@ Normalizar contratos de schema, config embebida, identidad y metadatos para que 
 
 ---
 
-<a id="archivo-0097"></a>
-## Archivo #97: .ai/prompts/optimize-canvas-runtime.prompt.md
+<a id="archivo-0098"></a>
+## Archivo #98: .ai/prompts/optimize-canvas-runtime.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/optimize-canvas-runtime.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/optimize-canvas-runtime.prompt.md`
@@ -7425,8 +7545,8 @@ Optimizar el runtime del canvas en geometría, zoom, wrappers, stage y scroll si
 
 ---
 
-<a id="archivo-0098"></a>
-## Archivo #98: .ai/prompts/refactor-designer-engine.prompt.md
+<a id="archivo-0099"></a>
+## Archivo #99: .ai/prompts/refactor-designer-engine.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/refactor-designer-engine.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/refactor-designer-engine.prompt.md`
@@ -7481,8 +7601,8 @@ Refactorizar el designer engine para separar mejor config estructural, config po
 
 ---
 
-<a id="archivo-0099"></a>
-## Archivo #99: .ai/prompts/refactor-editor-shell.prompt.md
+<a id="archivo-0100"></a>
+## Archivo #100: .ai/prompts/refactor-editor-shell.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/refactor-editor-shell.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/refactor-editor-shell.prompt.md`
@@ -7531,8 +7651,8 @@ Refactorizar el shell principal del editor para separar:
 
 ---
 
-<a id="archivo-0100"></a>
-## Archivo #100: .ai/prompts/refactor-left-rail-catalog.prompt.md
+<a id="archivo-0101"></a>
+## Archivo #101: .ai/prompts/refactor-left-rail-catalog.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/refactor-left-rail-catalog.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/refactor-left-rail-catalog.prompt.md`
@@ -7587,8 +7707,8 @@ Refactorizar el catálogo izquierdo para fortalecer tabs, búsqueda, discovery m
 
 ---
 
-<a id="archivo-0101"></a>
-## Archivo #101: .ai/prompts/refactor-right-inspector-layout.prompt.md
+<a id="archivo-0102"></a>
+## Archivo #102: .ai/prompts/refactor-right-inspector-layout.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/refactor-right-inspector-layout.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/refactor-right-inspector-layout.prompt.md`
@@ -7641,8 +7761,8 @@ Refactorizar el layout del inspector derecho para mejorar espacio útil, scroll,
 
 ---
 
-<a id="archivo-0102"></a>
-## Archivo #102: .ai/prompts/split-monolithic-hook.prompt.md
+<a id="archivo-0103"></a>
+## Archivo #103: .ai/prompts/split-monolithic-hook.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/split-monolithic-hook.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/split-monolithic-hook.prompt.md`
@@ -7676,8 +7796,8 @@ Extraer al menos estas responsabilidades:
 
 ---
 
-<a id="archivo-0103"></a>
-## Archivo #103: .ai/prompts/stabilize-public-api.prompt.md
+<a id="archivo-0104"></a>
+## Archivo #104: .ai/prompts/stabilize-public-api.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/stabilize-public-api.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/stabilize-public-api.prompt.md`
@@ -7733,8 +7853,8 @@ Auditar exports y contratos públicos para estabilizar la surface externa del ed
 
 ---
 
-<a id="archivo-0104"></a>
-## Archivo #104: .ai/prompts/unify-css-architecture.prompt.md
+<a id="archivo-0105"></a>
+## Archivo #105: .ai/prompts/unify-css-architecture.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/unify-css-architecture.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/unify-css-architecture.prompt.md`
@@ -7765,8 +7885,8 @@ Una arquitectura CSS estable, limpia y escalable.
 
 ---
 
-<a id="archivo-0105"></a>
-## Archivo #105: .ai/prompts/validate-runtime-generate-parity.prompt.md
+<a id="archivo-0106"></a>
+## Archivo #106: .ai/prompts/validate-runtime-generate-parity.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/validate-runtime-generate-parity.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/validate-runtime-generate-parity.prompt.md`
@@ -7821,8 +7941,8 @@ Validar paridad entre lo que el editor muestra y lo que el generator produce par
 
 ---
 
-<a id="archivo-0106"></a>
-## Archivo #106: .ai/prompts/write-architecture-decision-record.prompt.md
+<a id="archivo-0107"></a>
+## Archivo #107: .ai/prompts/write-architecture-decision-record.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/write-architecture-decision-record.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/write-architecture-decision-record.prompt.md`
@@ -7875,8 +7995,8 @@ Escribir un ADR breve y útil para documentar una decisión arquitectónica impo
 
 ---
 
-<a id="archivo-0107"></a>
-## Archivo #107: .ai/rules/global-rules.md
+<a id="archivo-0108"></a>
+## Archivo #108: .ai/rules/global-rules.md
 
 - **Ruta relativa:** `.ai/rules/global-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/global-rules.md`
@@ -7895,8 +8015,8 @@ Escribir un ADR breve y útil para documentar una decisión arquitectónica impo
 
 ---
 
-<a id="archivo-0108"></a>
-## Archivo #108: .backup-ai-workspace/.agents.bak/copilot-instructions.md
+<a id="archivo-0109"></a>
+## Archivo #109: .backup-ai-workspace/.agents.bak/copilot-instructions.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/copilot-instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/copilot-instructions.md`
@@ -7945,8 +8065,8 @@ Cuando pidas al agente que modifique código, referencia el objetivo (por ejempl
 
 ---
 
-<a id="archivo-0109"></a>
-## Archivo #109: .backup-ai-workspace/.agents.bak/README-AI-WORKSPACE.md
+<a id="archivo-0110"></a>
+## Archivo #110: .backup-ai-workspace/.agents.bak/README-AI-WORKSPACE.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/README-AI-WORKSPACE.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/README-AI-WORKSPACE.md`
@@ -8001,8 +8121,8 @@ Construir un editor PDF moderno sobre React y sisad-pdfme modificado con una exp
 
 ---
 
-<a id="archivo-0110"></a>
-## Archivo #110: .backup-ai-workspace/github-agents.bak/canvas-ux-orchestrator.agent.md
+<a id="archivo-0111"></a>
+## Archivo #111: .backup-ai-workspace/github-agents.bak/canvas-ux-orchestrator.agent.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-agents.bak/canvas-ux-orchestrator.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-agents.bak/canvas-ux-orchestrator.agent.md`
@@ -8036,8 +8156,8 @@ Lograr una experiencia tipo editor profesional con mínima ocupación visual y m
 
 ---
 
-<a id="archivo-0111"></a>
-## Archivo #111: .backup-ai-workspace/github-agents.bak/design-system-guardian.agent.md
+<a id="archivo-0112"></a>
+## Archivo #112: .backup-ai-workspace/github-agents.bak/design-system-guardian.agent.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-agents.bak/design-system-guardian.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-agents.bak/design-system-guardian.agent.md`
@@ -8072,8 +8192,8 @@ Garantizar consistencia entre tokens, spacing, radii, sombras, tipografías, tam
 
 ---
 
-<a id="archivo-0112"></a>
-## Archivo #112: .backup-ai-workspace/github-agents.bak/frontend-pdf-architect.agent.md
+<a id="archivo-0113"></a>
+## Archivo #113: .backup-ai-workspace/github-agents.bak/frontend-pdf-architect.agent.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-agents.bak/frontend-pdf-architect.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-agents.bak/frontend-pdf-architect.agent.md`
@@ -8125,8 +8245,8 @@ Diseñar y refactorizar el editor PDF como producto, no como laboratorio de prue
 
 ---
 
-<a id="archivo-0113"></a>
-## Archivo #113: .backup-ai-workspace/github-agents.bak/pdfme-runtime-specialist.agent.md
+<a id="archivo-0114"></a>
+## Archivo #114: .backup-ai-workspace/github-agents.bak/pdfme-runtime-specialist.agent.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-agents.bak/pdfme-runtime-specialist.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-agents.bak/pdfme-runtime-specialist.agent.md`
@@ -8167,8 +8287,8 @@ Mantener la compatibilidad con sisad-pdfme mientras se mejora su ergonomía, ext
 
 ---
 
-<a id="archivo-0114"></a>
-## Archivo #114: .backup-ai-workspace/github-agents.bak/prompt-execution-director.agent.md
+<a id="archivo-0115"></a>
+## Archivo #115: .backup-ai-workspace/github-agents.bak/prompt-execution-director.agent.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-agents.bak/prompt-execution-director.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-agents.bak/prompt-execution-director.agent.md`
@@ -8203,8 +8323,8 @@ Reducir ambigüedad y guiar a los modelos a cambios estructurados, seguros y med
 
 ---
 
-<a id="archivo-0115"></a>
-## Archivo #115: .backup-ai-workspace/github-instructions.bak/css-unification.instructions.md
+<a id="archivo-0116"></a>
+## Archivo #116: .backup-ai-workspace/github-instructions.bak/css-unification.instructions.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-instructions.bak/css-unification.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-instructions.bak/css-unification.instructions.md`
@@ -8232,8 +8352,8 @@ Lograr que el editor tenga una base visual consistente, predecible y mantenible.
 
 ---
 
-<a id="archivo-0116"></a>
-## Archivo #116: .backup-ai-workspace/github-instructions.bak/frontend-editor.instructions.md
+<a id="archivo-0117"></a>
+## Archivo #117: .backup-ai-workspace/github-instructions.bak/frontend-editor.instructions.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-instructions.bak/frontend-editor.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-instructions.bak/frontend-editor.instructions.md`
@@ -8280,8 +8400,8 @@ Evolucionar el editor PDF hacia una arquitectura profesional y compacta.
 
 ---
 
-<a id="archivo-0117"></a>
-## Archivo #117: .backup-ai-workspace/github-instructions.bak/pdfme-extension.instructions.md
+<a id="archivo-0118"></a>
+## Archivo #118: .backup-ai-workspace/github-instructions.bak/pdfme-extension.instructions.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-instructions.bak/pdfme-extension.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-instructions.bak/pdfme-extension.instructions.md`
@@ -8314,8 +8434,8 @@ Extender sisad-pdfme modificado sin convertir la integración en una caja negra 
 
 ---
 
-<a id="archivo-0118"></a>
-## Archivo #118: .backup-ai-workspace/github-instructions.bak/ui-ux-compact.instructions.md
+<a id="archivo-0119"></a>
+## Archivo #119: .backup-ai-workspace/github-instructions.bak/ui-ux-compact.instructions.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-instructions.bak/ui-ux-compact.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-instructions.bak/ui-ux-compact.instructions.md`
@@ -8347,8 +8467,8 @@ Aplicar una experiencia compacta inspirada en Wix, Figma y editores modernos.
 
 ---
 
-<a id="archivo-0119"></a>
-## Archivo #119: .backup-ai-workspace/github-prompts.bak/compact-wix-style-ui.prompt.md
+<a id="archivo-0120"></a>
+## Archivo #120: .backup-ai-workspace/github-prompts.bak/compact-wix-style-ui.prompt.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/compact-wix-style-ui.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/compact-wix-style-ui.prompt.md`
@@ -8382,8 +8502,8 @@ Transformar una UI pesada de editor PDF en una experiencia compacta y profesiona
 
 ---
 
-<a id="archivo-0120"></a>
-## Archivo #120: .backup-ai-workspace/github-prompts.bak/create-command-bus.prompt.md
+<a id="archivo-0121"></a>
+## Archivo #121: .backup-ai-workspace/github-prompts.bak/create-command-bus.prompt.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/create-command-bus.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/create-command-bus.prompt.md`
@@ -8423,8 +8543,8 @@ Diseñar e implementar un command bus reutilizable para accionar funciones del e
 
 ---
 
-<a id="archivo-0121"></a>
-## Archivo #121: .backup-ai-workspace/github-prompts.bak/refactor-editor-shell.prompt.md
+<a id="archivo-0122"></a>
+## Archivo #122: .backup-ai-workspace/github-prompts.bak/refactor-editor-shell.prompt.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/refactor-editor-shell.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/refactor-editor-shell.prompt.md`
@@ -8473,8 +8593,8 @@ Refactorizar el shell principal del editor para separar:
 
 ---
 
-<a id="archivo-0122"></a>
-## Archivo #122: .backup-ai-workspace/github-prompts.bak/split-monolithic-hook.prompt.md
+<a id="archivo-0123"></a>
+## Archivo #123: .backup-ai-workspace/github-prompts.bak/split-monolithic-hook.prompt.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/split-monolithic-hook.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/split-monolithic-hook.prompt.md`
@@ -8508,8 +8628,8 @@ Extraer al menos estas responsabilidades:
 
 ---
 
-<a id="archivo-0123"></a>
-## Archivo #123: .backup-ai-workspace/github-prompts.bak/unify-css-architecture.prompt.md
+<a id="archivo-0124"></a>
+## Archivo #124: .backup-ai-workspace/github-prompts.bak/unify-css-architecture.prompt.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/unify-css-architecture.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/unify-css-architecture.prompt.md`
@@ -8540,8 +8660,8 @@ Una arquitectura CSS estable, limpia y escalable.
 
 ---
 
-<a id="archivo-0124"></a>
-## Archivo #124: .backup-ai-workspace/github-skills.bak/canvas-interaction.skill.md
+<a id="archivo-0125"></a>
+## Archivo #125: .backup-ai-workspace/github-skills.bak/canvas-interaction.skill.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/canvas-interaction.skill.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/canvas-interaction.skill.md`
@@ -8569,8 +8689,8 @@ Toda mejora de interacción debe respetar el foco del canvas y minimizar fricci�
 
 ---
 
-<a id="archivo-0125"></a>
-## Archivo #125: .backup-ai-workspace/github-skills.bak/component-composition.skill.md
+<a id="archivo-0126"></a>
+## Archivo #126: .backup-ai-workspace/github-skills.bak/component-composition.skill.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/component-composition.skill.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/component-composition.skill.md`
@@ -8595,8 +8715,8 @@ Cada componente debe tener una responsabilidad principal clara.
 
 ---
 
-<a id="archivo-0126"></a>
-## Archivo #126: .backup-ai-workspace/github-skills.bak/design-system-consistency.skill.md
+<a id="archivo-0127"></a>
+## Archivo #127: .backup-ai-workspace/github-skills.bak/design-system-consistency.skill.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/design-system-consistency.skill.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/design-system-consistency.skill.md`
@@ -8623,8 +8743,8 @@ Mantener coherencia visual y semántica.
 
 ---
 
-<a id="archivo-0127"></a>
-## Archivo #127: .backup-ai-workspace/github-skills.bak/editor-product-vision.skill.md
+<a id="archivo-0128"></a>
+## Archivo #128: .backup-ai-workspace/github-skills.bak/editor-product-vision.skill.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/editor-product-vision.skill.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/editor-product-vision.skill.md`
@@ -8654,8 +8774,8 @@ Cuando una tarea impacta directamente la visión del producto del editor PDF.
 
 ---
 
-<a id="archivo-0128"></a>
-## Archivo #128: .backup-ai-workspace/github-skills.bak/pdfme-integration.skill.md
+<a id="archivo-0129"></a>
+## Archivo #129: .backup-ai-workspace/github-skills.bak/pdfme-integration.skill.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/pdfme-integration.skill.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/pdfme-integration.skill.md`
@@ -8679,8 +8799,8 @@ Integrar y extender sisad-pdfme modificado de forma controlada.
 
 ---
 
-<a id="archivo-0129"></a>
-## Archivo #129: .backup-ai-workspace/github-skills.bak/refactor-safety.skill.md
+<a id="archivo-0130"></a>
+## Archivo #130: .backup-ai-workspace/github-skills.bak/refactor-safety.skill.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/refactor-safety.skill.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/refactor-safety.skill.md`
@@ -8706,8 +8826,8 @@ Cambiar arquitectura sin romper funcionalidades base.
 
 ---
 
-<a id="archivo-0130"></a>
-## Archivo #130: .backup-ai-workspace/github-skills.bak/ux-compact-panels.skill.md
+<a id="archivo-0131"></a>
+## Archivo #131: .backup-ai-workspace/github-skills.bak/ux-compact-panels.skill.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/ux-compact-panels.skill.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/ux-compact-panels.skill.md`
@@ -8738,8 +8858,8 @@ No mostrar configuraciones complejas hasta que el usuario las pida.
 
 ---
 
-<a id="archivo-0131"></a>
-## Archivo #131: docs/ai/README.md
+<a id="archivo-0132"></a>
+## Archivo #132: docs/ai/README.md
 
 - **Ruta relativa:** `docs/ai/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/ai/README.md`
@@ -8755,8 +8875,8 @@ Documentación auxiliar para agentes, skills, prompts e instrucciones.
 
 ---
 
-<a id="archivo-0132"></a>
-## Archivo #132: docs/reference/arquitectura-y-estructura.md
+<a id="archivo-0133"></a>
+## Archivo #133: docs/reference/arquitectura-y-estructura.md
 
 - **Ruta relativa:** `docs/reference/arquitectura-y-estructura.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/arquitectura-y-estructura.md`
@@ -9005,8 +9125,8 @@ El proyecto ya debe tratarse como plataforma propia. Cualquier nueva mejora debe
 
 ---
 
-<a id="archivo-0133"></a>
-## Archivo #133: docs/reference/build-esm-cjs-y-generacion-de-tipos.md
+<a id="archivo-0134"></a>
+## Archivo #134: docs/reference/build-esm-cjs-y-generacion-de-tipos.md
 
 - **Ruta relativa:** `docs/reference/build-esm-cjs-y-generacion-de-tipos.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/build-esm-cjs-y-generacion-de-tipos.md`
@@ -9152,8 +9272,8 @@ Validar:
 
 ---
 
-<a id="archivo-0134"></a>
-## Archivo #134: docs/reference/canvas-overlays-y-ciclo-de-interaccion.md
+<a id="archivo-0135"></a>
+## Archivo #135: docs/reference/canvas-overlays-y-ciclo-de-interaccion.md
 
 - **Ruta relativa:** `docs/reference/canvas-overlays-y-ciclo-de-interaccion.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/canvas-overlays-y-ciclo-de-interaccion.md`
@@ -9314,8 +9434,8 @@ El canvas ya tiene arquitectura de editor profesional. La mejora futura no está
 
 ---
 
-<a id="archivo-0135"></a>
-## Archivo #135: docs/reference/checklist-de-release-y-soporte.md
+<a id="archivo-0136"></a>
+## Archivo #136: docs/reference/checklist-de-release-y-soporte.md
 
 - **Ruta relativa:** `docs/reference/checklist-de-release-y-soporte.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/checklist-de-release-y-soporte.md`
@@ -9383,8 +9503,8 @@ La sexta tanda completa la transición documental desde un repositorio potente p
 
 ---
 
-<a id="archivo-0136"></a>
-## Archivo #136: docs/reference/ci-cd-publicacion-y-release-automation.md
+<a id="archivo-0137"></a>
+## Archivo #137: docs/reference/ci-cd-publicacion-y-release-automation.md
 
 - **Ruta relativa:** `docs/reference/ci-cd-publicacion-y-release-automation.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/ci-cd-publicacion-y-release-automation.md`
@@ -9505,8 +9625,8 @@ Nunca publiques directamente desde una máquina local si quieres vender/reusar l
 
 ---
 
-<a id="archivo-0137"></a>
-## Archivo #137: docs/reference/colaboracion-arquitectura-operativa.md
+<a id="archivo-0138"></a>
+## Archivo #138: docs/reference/colaboracion-arquitectura-operativa.md
 
 - **Ruta relativa:** `docs/reference/colaboracion-arquitectura-operativa.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/colaboracion-arquitectura-operativa.md`
@@ -9618,8 +9738,8 @@ La colaboración debe tratarse como producto de plataforma: observable, document
 
 ---
 
-<a id="archivo-0138"></a>
-## Archivo #138: docs/reference/colaboracion-y-sincronizacion.md
+<a id="archivo-0139"></a>
+## Archivo #139: docs/reference/colaboracion-y-sincronizacion.md
 
 - **Ruta relativa:** `docs/reference/colaboracion-y-sincronizacion.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/colaboracion-y-sincronizacion.md`
@@ -9814,8 +9934,8 @@ Para pruebas E2E de colaboración:
 
 ---
 
-<a id="archivo-0139"></a>
-## Archivo #139: docs/reference/configuraciones-de-build-reales.md
+<a id="archivo-0140"></a>
+## Archivo #140: docs/reference/configuraciones-de-build-reales.md
 
 - **Ruta relativa:** `docs/reference/configuraciones-de-build-reales.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/configuraciones-de-build-reales.md`
@@ -9944,8 +10064,8 @@ No mezclar el build del producto de laboratorio con el build de paquetes.
 
 ---
 
-<a id="archivo-0140"></a>
-## Archivo #140: docs/reference/consumer-app-y-ejemplos-vivos.md
+<a id="archivo-0141"></a>
+## Archivo #141: docs/reference/consumer-app-y-ejemplos-vivos.md
 
 - **Ruta relativa:** `docs/reference/consumer-app-y-ejemplos-vivos.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/consumer-app-y-ejemplos-vivos.md`
@@ -10066,8 +10186,8 @@ Tus examples sirven para:
 
 ---
 
-<a id="archivo-0141"></a>
-## Archivo #141: docs/reference/designer-engine-builder-profundo.md
+<a id="archivo-0142"></a>
+## Archivo #142: docs/reference/designer-engine-builder-profundo.md
 
 - **Ruta relativa:** `docs/reference/designer-engine-builder-profundo.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/designer-engine-builder-profundo.md`
@@ -10246,8 +10366,8 @@ Tu engine ya no es “un helper de pdfme modificado”. Es el núcleo de una pla
 
 ---
 
-<a id="archivo-0142"></a>
-## Archivo #142: docs/reference/designer-engine-y-configuracion.md
+<a id="archivo-0143"></a>
+## Archivo #143: docs/reference/designer-engine-y-configuracion.md
 
 - **Ruta relativa:** `docs/reference/designer-engine-y-configuracion.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/designer-engine-y-configuracion.md`
@@ -10571,8 +10691,8 @@ Toda evolución del engine debería acompañarse con:
 
 ---
 
-<a id="archivo-0143"></a>
-## Archivo #143: docs/reference/ejemplos-de-consumo-externo.md
+<a id="archivo-0144"></a>
+## Archivo #144: docs/reference/ejemplos-de-consumo-externo.md
 
 - **Ruta relativa:** `docs/reference/ejemplos-de-consumo-externo.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/ejemplos-de-consumo-externo.md`
@@ -10719,8 +10839,8 @@ Estos ejemplos deben acompañarse luego con:
 
 ---
 
-<a id="archivo-0144"></a>
-## Archivo #144: docs/reference/ejemplos-de-implementacion.md
+<a id="archivo-0145"></a>
+## Archivo #145: docs/reference/ejemplos-de-implementacion.md
 
 - **Ruta relativa:** `docs/reference/ejemplos-de-implementacion.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/ejemplos-de-implementacion.md`
@@ -10977,8 +11097,8 @@ const myPlugin: Plugin<any> = {
 
 ---
 
-<a id="archivo-0145"></a>
-## Archivo #145: docs/reference/entrypoints-exports-y-surface-api.md
+<a id="archivo-0146"></a>
+## Archivo #146: docs/reference/entrypoints-exports-y-surface-api.md
 
 - **Ruta relativa:** `docs/reference/entrypoints-exports-y-surface-api.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/entrypoints-exports-y-surface-api.md`
@@ -11114,8 +11234,8 @@ Cada entrypoint debe tener:
 
 ---
 
-<a id="archivo-0146"></a>
-## Archivo #146: docs/reference/generator-converter-y-runtime-de-visualizacion.md
+<a id="archivo-0147"></a>
+## Archivo #147: docs/reference/generator-converter-y-runtime-de-visualizacion.md
 
 - **Ruta relativa:** `docs/reference/generator-converter-y-runtime-de-visualizacion.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/generator-converter-y-runtime-de-visualizacion.md`
@@ -11200,8 +11320,8 @@ La plataforma ya tiene los ingredientes para separarse en paquetes funcionales c
 
 ---
 
-<a id="archivo-0147"></a>
-## Archivo #147: docs/reference/monorepo-root-y-workspaces.md
+<a id="archivo-0148"></a>
+## Archivo #148: docs/reference/monorepo-root-y-workspaces.md
 
 - **Ruta relativa:** `docs/reference/monorepo-root-y-workspaces.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/monorepo-root-y-workspaces.md`
@@ -11362,8 +11482,8 @@ Esta raíz deja el proyecto listo para:
 
 ---
 
-<a id="archivo-0148"></a>
-## Archivo #148: docs/reference/package-json-por-paquete.md
+<a id="archivo-0149"></a>
+## Archivo #149: docs/reference/package-json-por-paquete.md
 
 - **Ruta relativa:** `docs/reference/package-json-por-paquete.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/package-json-por-paquete.md`
@@ -11539,8 +11659,8 @@ No meter en `editor` dependencias internas de laboratorio como rutas `features/`
 
 ---
 
-<a id="archivo-0149"></a>
-## Archivo #149: docs/reference/paquetizacion-y-estructura-de-modulos.md
+<a id="archivo-0150"></a>
+## Archivo #150: docs/reference/paquetizacion-y-estructura-de-modulos.md
 
 - **Ruta relativa:** `docs/reference/paquetizacion-y-estructura-de-modulos.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/paquetizacion-y-estructura-de-modulos.md`
@@ -11700,8 +11820,8 @@ Una estructura modular te permite:
 
 ---
 
-<a id="archivo-0150"></a>
-## Archivo #150: docs/reference/publicacion-registry-privado-y-versionado.md
+<a id="archivo-0151"></a>
+## Archivo #151: docs/reference/publicacion-registry-privado-y-versionado.md
 
 - **Ruta relativa:** `docs/reference/publicacion-registry-privado-y-versionado.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/publicacion-registry-privado-y-versionado.md`
@@ -11783,8 +11903,8 @@ Usar SemVer real:
 
 ---
 
-<a id="archivo-0151"></a>
-## Archivo #151: docs/reference/README.md
+<a id="archivo-0152"></a>
+## Archivo #152: docs/reference/README.md
 
 - **Ruta relativa:** `docs/reference/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/README.md`
@@ -11840,8 +11960,8 @@ Esta carpeta agrupa documentación histórica y material de apoyo. No es la fuen
 
 ---
 
-<a id="archivo-0152"></a>
-## Archivo #152: docs/reference/rightsidebar-listview-y-detailview-profundo.md
+<a id="archivo-0153"></a>
+## Archivo #153: docs/reference/rightsidebar-listview-y-detailview-profundo.md
 
 - **Ruta relativa:** `docs/reference/rightsidebar-listview-y-detailview-profundo.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/rightsidebar-listview-y-detailview-profundo.md`
@@ -11981,8 +12101,8 @@ Si lo quieres vender o reutilizar, el panel derecho debería evolucionar hacia u
 
 ---
 
-<a id="archivo-0153"></a>
-## Archivo #153: docs/reference/runtime-persistencia-api-y-formjson.md
+<a id="archivo-0154"></a>
+## Archivo #154: docs/reference/runtime-persistencia-api-y-formjson.md
 
 - **Ruta relativa:** `docs/reference/runtime-persistencia-api-y-formjson.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/runtime-persistencia-api-y-formjson.md`
@@ -12170,8 +12290,8 @@ const nextSchema = mergeSchemaDesignerConfig(
 
 ---
 
-<a id="archivo-0154"></a>
-## Archivo #154: docs/reference/schemaconnections-y-contratos-de-datos.md
+<a id="archivo-0155"></a>
+## Archivo #155: docs/reference/schemaconnections-y-contratos-de-datos.md
 
 - **Ruta relativa:** `docs/reference/schemaconnections-y-contratos-de-datos.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/schemaconnections-y-contratos-de-datos.md`
@@ -12323,8 +12443,8 @@ Este subsistema es uno de los diferenciales más fuertes del producto. Debe trat
 
 ---
 
-<a id="archivo-0155"></a>
-## Archivo #155: docs/reference/schemas-y-plugins.md
+<a id="archivo-0156"></a>
+## Archivo #156: docs/reference/schemas-y-plugins.md
 
 - **Ruta relativa:** `docs/reference/schemas-y-plugins.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/schemas-y-plugins.md`
@@ -12541,8 +12661,8 @@ const plugins = {
 
 ---
 
-<a id="archivo-0156"></a>
-## Archivo #156: docs/reference/schemas-y-registry-guia-de-extension.md
+<a id="archivo-0157"></a>
+## Archivo #157: docs/reference/schemas-y-registry-guia-de-extension.md
 
 - **Ruta relativa:** `docs/reference/schemas-y-registry-guia-de-extension.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/schemas-y-registry-guia-de-extension.md`
@@ -12647,8 +12767,8 @@ El sistema de schemas es tu SDK interno. Debe ser tratado como producto para ext
 
 ---
 
-<a id="archivo-0157"></a>
-## Archivo #157: docs/reference/testing-y-calidad.md
+<a id="archivo-0158"></a>
+## Archivo #158: docs/reference/testing-y-calidad.md
 
 - **Ruta relativa:** `docs/reference/testing-y-calidad.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/testing-y-calidad.md`
@@ -12798,8 +12918,8 @@ test('abre el overlay inline y confirma con Enter', async ({ page }) => {
 
 ---
 
-<a id="archivo-0158"></a>
-## Archivo #158: docs/reference/ui-editor-canvas-y-overlays.md
+<a id="archivo-0159"></a>
+## Archivo #159: docs/reference/ui-editor-canvas-y-overlays.md
 
 - **Ruta relativa:** `docs/reference/ui-editor-canvas-y-overlays.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/ui-editor-canvas-y-overlays.md`
@@ -13056,8 +13176,8 @@ export default function DemoEditor() {
 
 ---
 
-<a id="archivo-0159"></a>
-## Archivo #159: docs/reference/versionado-changelog-y-canary-flow.md
+<a id="archivo-0160"></a>
+## Archivo #160: docs/reference/versionado-changelog-y-canary-flow.md
 
 - **Ruta relativa:** `docs/reference/versionado-changelog-y-canary-flow.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/reference/versionado-changelog-y-canary-flow.md`
@@ -13136,8 +13256,1284 @@ Trata `editor`, `contracts` y `schemas` como paquetes más sensibles. Sus breaki
 
 ---
 
-<a id="archivo-0160"></a>
-## Archivo #160: .ai/agents/legacy/pdfme-command-architect.md
+<a id="archivo-0161"></a>
+## Archivo #161: test-results/pdfme-editor-PDFME-editor--0cd8b-on-the-basic-designer-route-chromium/error-context.md
+
+- **Ruta relativa:** `test-results/pdfme-editor-PDFME-editor--0cd8b-on-the-basic-designer-route-chromium/error-context.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/test-results/pdfme-editor-PDFME-editor--0cd8b-on-the-basic-designer-route-chromium/error-context.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `365`
+
+### Contenido original
+
+# Page snapshot
+
+```yaml
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - paragraph [ref=e7]: Ruta activa
+        - heading "Editor básico" [level=1] [ref=e8]
+        - paragraph [ref=e9]: Arranca en modo designer sobre un PDF real para crear, mover y revisar campos.
+      - generic [ref=e10]:
+        - generic "Estado del laboratorio" [ref=e11]:
+          - generic [ref=e12]:
+            - term [ref=e13]: Estado
+            - definition [ref=e14]: Listo
+          - generic [ref=e15]:
+            - term [ref=e16]: Modo
+            - definition [ref=e17]: Diseñador
+          - generic [ref=e18]:
+            - term [ref=e19]: Vista
+            - definition [ref=e20]: Diseño
+          - generic [ref=e21]:
+            - term [ref=e22]: UX
+            - definition [ref=e23]: canvas-first
+          - generic [ref=e24]:
+            - term [ref=e25]: Páginas
+            - definition [ref=e26]: "3"
+        - generic [ref=e27]:
+          - link "Volver al índice" [ref=e29] [cursor=pointer]:
+            - /url: /
+          - button "Controles" [ref=e32] [cursor=pointer]:
+            - img [ref=e33]
+          - paragraph [ref=e36]: Listo para editar sobre sample-a4.pdf
+    - generic [ref=e37]:
+      - generic "Metadatos del ejemplo" [ref=e38]:
+        - generic [ref=e39]: "id: basic-designer"
+        - generic [ref=e40]: "ruta: /lab/basic-designer"
+      - group [ref=e41]:
+        - generic "Participantes · basic-designer-session Diseño 2" [ref=e42] [cursor=pointer]:
+          - generic [ref=e43]: Participantes · basic-designer-session
+          - generic "owner · lab-team" [ref=e44]: Diseño
+          - generic [ref=e45]: "2"
+        - option "Diseño" [selected]
+        - option "QA"
+        - option "Usuario activo" [selected]
+        - option "Global"
+  - region "Canvas" [ref=e46]:
+    - generic [ref=e47]:
+      - heading "Canvas" [level=2] [ref=e48]
+      - paragraph [ref=e49]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e50]: sisad-pdfme
+        - text: .
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - button "Cerrar catálogo de campos" [expanded] [ref=e56] [cursor=pointer]:
+          - img [ref=e57]
+        - generic [ref=e61]:
+          - generic [ref=e62]:
+            - generic [ref=e63]: Diseñador
+            - generic [ref=e64]: Catálogo de campos
+          - generic [ref=e65]:
+            - tablist "Tipos de campo" [ref=e66]:
+              - tab "Campos estándar" [selected] [ref=e67] [cursor=pointer]:
+                - img [ref=e68]
+              - tab "Campos personalizados" [ref=e70] [cursor=pointer]:
+                - img [ref=e71]
+              - tab "Herramientas de prerrellenado" [ref=e74] [cursor=pointer]:
+                - img [ref=e75]
+            - generic [ref=e78]:
+              - generic [ref=e79]:
+                - img [ref=e81]
+                - textbox "Buscar campo, tipo o categoría..." [ref=e84]
+              - generic [ref=e86]:
+                - button "Todo" [ref=e87] [cursor=pointer]:
+                  - generic [ref=e88]: Todo
+                - button "Fav (0)" [ref=e89] [cursor=pointer]:
+                  - generic [ref=e90]: Fav (0)
+                - button "Rec (0)" [ref=e91] [cursor=pointer]:
+                  - generic [ref=e92]: Rec (0)
+                - button "Detalle" [ref=e93] [cursor=pointer]:
+                  - generic [ref=e94]: Detalle
+          - generic [ref=e95]:
+            - button "Alternar categoría Texto" [ref=e97] [cursor=pointer]:
+              - generic [ref=e98]: Texto
+              - generic [ref=e99]: "1"
+            - button "Alternar categoría Imagen y medios" [ref=e101] [cursor=pointer]:
+              - generic [ref=e102]: Imagen y medios
+              - generic [ref=e103]: "2"
+            - button "Alternar categoría Fecha y hora" [ref=e105] [cursor=pointer]:
+              - generic [ref=e106]: Fecha y hora
+              - generic [ref=e107]: "3"
+            - button "Alternar categoría QR y códigos" [ref=e109] [cursor=pointer]:
+              - generic [ref=e110]: QR y códigos
+              - generic [ref=e111]: "12"
+            - generic [ref=e112]:
+              - button "Alternar categoría Firma" [expanded] [ref=e113] [cursor=pointer]:
+                - generic [ref=e114]: Firma
+                - generic [ref=e115]: "1"
+              - generic [ref=e119]:
+                - button "signature" [active] [ref=e120]:
+                  - generic "signature" [ref=e122]:
+                    - img [ref=e123]
+                  - generic [ref=e126]: signature
+                - button "Marcar favorito" [ref=e127]: ★
+            - button "Alternar categoría Selección" [ref=e129] [cursor=pointer]:
+              - generic [ref=e130]: Selección
+              - generic [ref=e131]: "3"
+            - button "Alternar categoría Estructura" [ref=e133] [cursor=pointer]:
+              - generic [ref=e134]: Estructura
+              - generic [ref=e135]: "4"
+      - generic [ref=e136]:
+        - generic [ref=e137]:
+          - generic [ref=e138]:
+            - generic [ref=e139]:
+              - strong [ref=e141]: Página 1
+              - generic [ref=e142]: Listo
+            - generic [ref=e143]: Página 1 de 3
+          - generic [ref=e144]:
+            - generic [ref=e145]:
+              - button "Deshacer" [ref=e146] [cursor=pointer]:
+                - img [ref=e148]
+              - button "Rehacer" [ref=e151] [cursor=pointer]:
+                - img [ref=e153]
+            - generic [ref=e156]:
+              - button "Página anterior" [disabled] [ref=e157]:
+                - generic:
+                  - img
+              - generic [ref=e158] [cursor=pointer]:
+                - generic [ref=e160]:
+                  - combobox [ref=e162]
+                  - generic "Página 1" [ref=e163]
+                - generic:
+                  - img:
+                    - img
+              - button "Página siguiente" [ref=e164] [cursor=pointer]:
+                - img [ref=e166]
+            - generic [ref=e168]:
+              - button "Ajustar ancho" [ref=e169] [cursor=pointer]:
+                - img [ref=e171]
+              - button "Ajustar página" [ref=e176] [cursor=pointer]:
+                - img [ref=e178]
+            - generic [ref=e187]:
+              - button "Reducir zoom" [ref=e188] [cursor=pointer]:
+                - img [ref=e190]
+              - generic [ref=e191] [cursor=pointer]:
+                - generic [ref=e193]:
+                  - combobox [ref=e195]
+                  - generic "100%" [ref=e196]
+                - generic:
+                  - img:
+                    - img
+              - button "Aumentar zoom" [ref=e197] [cursor=pointer]:
+                - img [ref=e199]
+            - generic [ref=e200]:
+              - button "Ocultar panel derecho" [pressed] [ref=e201] [cursor=pointer]:
+                - img [ref=e203]
+              - button "Ocultar guías" [pressed] [ref=e206] [cursor=pointer]:
+                - img [ref=e208]
+              - button "Ocultar snaps" [pressed] [ref=e214] [cursor=pointer]:
+                - img [ref=e216]
+              - button "Ocultar padding" [pressed] [ref=e220] [cursor=pointer]:
+                - img [ref=e222]
+            - generic [ref=e224]:
+              - button "Guardar" [ref=e225] [cursor=pointer]:
+                - img [ref=e227]
+                - generic [ref=e231]: Guardar
+              - button "Exportar" [disabled] [ref=e232]:
+                - generic:
+                  - img
+                - generic: Exportar
+              - button "Más acciones" [ref=e233] [cursor=pointer]:
+                - img [ref=e234]
+        - complementary "Panel derecho del diseñador" [ref=e238]:
+          - generic [ref=e239]:
+            - tablist "Panel derecho" [ref=e241]:
+              - tab "Abrir panel Campos" [ref=e242] [cursor=pointer]:
+                - generic [ref=e243]:
+                  - img [ref=e245]
+                  - generic [ref=e249]: Campos
+              - tab "Abrir panel Detalle" [selected] [ref=e250] [cursor=pointer]:
+                - generic [ref=e251]:
+                  - img [ref=e253]
+                  - generic [ref=e254]: Detalle
+              - tab "Abrir panel Comentarios" [ref=e255] [cursor=pointer]:
+                - generic [ref=e256]:
+                  - img [ref=e258]
+                  - generic [ref=e260]: Comentarios
+              - tab "Abrir panel Docs" [ref=e261] [cursor=pointer]:
+                - generic [ref=e262]:
+                  - img [ref=e264]
+                  - generic [ref=e267]: Docs
+            - generic [ref=e269]:
+              - generic [ref=e270]:
+                - button [ref=e271] [cursor=pointer]:
+                  - img [ref=e273]
+                - generic [ref=e275]: Editar campo
+                - separator [ref=e276]
+              - generic "Secciones del detalle del campo" [ref=e277]:
+                - generic [ref=e278]:
+                  - generic [ref=e282]:
+                    - generic [ref=e283]: campo4
+                    - generic [ref=e285]: signature
+                  - generic [ref=e286]:
+                    - generic [ref=e287]:
+                      - generic [ref=e288]: "0"
+                      - generic [ref=e289]: X
+                    - generic [ref=e290]:
+                      - generic [ref=e291]: "231.66"
+                      - generic [ref=e292]: "Y"
+                - generic [ref=e293]:
+                  - generic [ref=e294]: "Owner: basic-user-1"
+                  - generic [ref=e295]: "Estado: locked"
+                  - generic [ref=e296]: "OwnerMode: single"
+                - generic [ref=e297]:
+                  - generic [ref=e298]:
+                    - button "Colapsar sección General" [expanded] [ref=e299] [cursor=pointer]:
+                      - generic [ref=e300]:
+                        - generic [ref=e301]: General
+                        - generic [ref=e302]: Identidad y metadatos del campo.
+                      - img [ref=e304]
+                    - generic [ref=e312]:
+                      - generic "Nombre de variable" [ref=e314]: "* Nombre de variable"
+                      - textbox "* Nombre de variable" [ref=e318]: campo4
+                  - generic [ref=e319]:
+                    - button "Colapsar sección Layout" [expanded] [ref=e320] [cursor=pointer]:
+                      - generic [ref=e321]:
+                        - generic [ref=e322]: Layout
+                        - generic [ref=e323]: Posición y tamaño en la página.
+                      - img [ref=e325]
+                    - generic [ref=e330]:
+                      - generic [ref=e333]:
+                        - generic "Alineación" [ref=e335]
+                        - generic [ref=e339]:
+                          - button [ref=e340] [cursor=pointer]:
+                            - img [ref=e342]
+                          - button [ref=e345] [cursor=pointer]:
+                            - img [ref=e347]
+                          - button [ref=e352] [cursor=pointer]:
+                            - img [ref=e354]
+                          - button [ref=e357] [cursor=pointer]:
+                            - img [ref=e359]
+                          - button [ref=e362] [cursor=pointer]:
+                            - img [ref=e364]
+                          - button [ref=e369] [cursor=pointer]:
+                            - img [ref=e371]
+                          - button [disabled] [ref=e374]:
+                            - generic:
+                              - img
+                          - button [disabled] [ref=e375]:
+                            - generic:
+                              - img
+                      - generic [ref=e378]:
+                        - generic [ref=e381]:
+                          - generic "X" [ref=e383]: "* X"
+                          - generic [ref=e387]:
+                            - generic:
+                              - button "Increase Value" [ref=e388] [cursor=pointer]:
+                                - img "up" [ref=e389]:
+                                  - img [ref=e390]
+                              - button "Decrease Value" [ref=e392] [cursor=pointer]:
+                                - img "down" [ref=e393]:
+                                  - img [ref=e394]
+                            - spinbutton "* X" [ref=e397]: "0"
+                        - generic [ref=e400]:
+                          - generic "Y" [ref=e402]: "* Y"
+                          - generic [ref=e406]:
+                            - generic:
+                              - button "Increase Value" [ref=e407] [cursor=pointer]:
+                                - img "up" [ref=e408]:
+                                  - img [ref=e409]
+                              - button "Decrease Value" [ref=e411] [cursor=pointer]:
+                                - img "down" [ref=e412]:
+                                  - img [ref=e413]
+                            - spinbutton "* Y" [ref=e416]: "231.66"
+                      - generic [ref=e419]:
+                        - generic "Anchura" [ref=e421]: "* Anchura"
+                        - generic [ref=e425]:
+                          - generic:
+                            - button "Increase Value" [ref=e426] [cursor=pointer]:
+                              - img "up" [ref=e427]:
+                                - img [ref=e428]
+                            - button "Decrease Value" [ref=e430] [cursor=pointer]:
+                              - img "down" [ref=e431]:
+                                - img [ref=e432]
+                          - spinbutton "* Anchura" [ref=e435]: "46"
+                      - generic [ref=e438]:
+                        - generic "Altura" [ref=e440]: "* Altura"
+                        - generic [ref=e444]:
+                          - generic:
+                            - button "Increase Value" [ref=e445] [cursor=pointer]:
+                              - img "up" [ref=e446]:
+                                - img [ref=e447]
+                            - button "Decrease Value" [ref=e449] [cursor=pointer]:
+                              - img "down" [ref=e450]:
+                                - img [ref=e451]
+                          - spinbutton "* Altura" [ref=e454]: "18"
+                  - button "Expandir sección Estilo" [ref=e456] [cursor=pointer]:
+                    - generic [ref=e457]:
+                      - generic [ref=e458]: Estilo
+                      - generic [ref=e459]: Alineación y tratamiento visual.
+                    - img [ref=e461]
+                  - generic [ref=e463]:
+                    - button "Colapsar sección Datos" [expanded] [ref=e464] [cursor=pointer]:
+                      - generic [ref=e465]:
+                        - generic [ref=e466]: Datos
+                        - generic [ref=e467]: Comportamiento semántico y edición.
+                      - img [ref=e469]
+                    - generic [ref=e474]:
+                      - generic [ref=e480]:
+                        - checkbox [checked] [ref=e483] [cursor=pointer]
+                        - generic [ref=e485]: Editable
+                      - generic [ref=e488]:
+                        - generic "Texto de ayuda" [ref=e490]
+                        - textbox "Texto de ayuda" [ref=e494]: Firmar aqui
+                  - button "Expandir sección Conexiones" [ref=e496] [cursor=pointer]:
+                    - generic [ref=e497]:
+                      - generic [ref=e498]: Conexiones
+                      - generic [ref=e499]: Persistencia, API y salida de datos.
+                    - img [ref=e501]
+                  - button "Expandir sección Colaboración" [ref=e504] [cursor=pointer]:
+                    - generic [ref=e505]:
+                      - generic [ref=e506]: Colaboración
+                      - generic [ref=e507]: Propietario, bloqueo, auditoría y trazabilidad.
+                    - img [ref=e509]
+                  - button "Expandir sección Validación" [ref=e512] [cursor=pointer]:
+                    - generic [ref=e513]:
+                      - generic [ref=e514]: Validación
+                      - generic [ref=e515]: Reglas y obligatoriedad.
+                    - img [ref=e517]
+                  - button "Expandir sección Avanzado" [ref=e520] [cursor=pointer]:
+                    - generic [ref=e521]:
+                      - generic [ref=e522]: Avanzado
+                      - generic [ref=e523]: Propiedades avanzadas del plugin.
+                    - img [ref=e525]
+        - generic [ref=e527]:
+          - generic [ref=e529]:
+            - generic "full_name" [ref=e547] [cursor=pointer]:
+              - generic [ref=e550]: Ada Lovelace
+              - text: text
+            - generic "role" [ref=e551] [cursor=pointer]:
+              - generic [ref=e554]: Researcher
+              - text: text
+            - generic "signature" [ref=e555] [cursor=pointer]: signature
+            - generic "campo4" [ref=e558] [cursor=pointer]: signature
+          - generic:
+            - toolbar "Barra contextual de edición" [ref=e565]:
+              - generic "Resumen de selección" [ref=e566]:
+                - generic [ref=e567]: campo4
+                - generic [ref=e568]: Signature
+                - button "Compacto" [ref=e569] [cursor=pointer]
+              - group "Acciones rápidas" [ref=e570]:
+                - button "Duplicar" [ref=e571] [cursor=pointer]:
+                  - img [ref=e573]
+                  - generic [ref=e576]: Duplicar
+                - button "Propiedades" [ref=e577] [cursor=pointer]:
+                  - img [ref=e579]
+                  - generic [ref=e582]: Propiedades
+            - generic: 96px × 37px
+      - status [ref=e583]: Draggable item signature::signature was dropped.
+  - group "Resultados" [ref=e584]:
+    - generic "Resultados Oculto" [ref=e585] [cursor=pointer]:
+      - heading "Resultados" [level=2] [ref=e587]
+      - generic [ref=e588]: Oculto
+```
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0162"></a>
+## Archivo #162: test-results/pdfme-editor-PDFME-editor--544df-on-the-multi-document-route-chromium/error-context.md
+
+- **Ruta relativa:** `test-results/pdfme-editor-PDFME-editor--544df-on-the-multi-document-route-chromium/error-context.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/test-results/pdfme-editor-PDFME-editor--544df-on-the-multi-document-route-chromium/error-context.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `236`
+
+### Contenido original
+
+# Page snapshot
+
+```yaml
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - paragraph [ref=e7]: Ruta activa
+        - heading "Multidocumento y destinatarios" [level=1] [ref=e8]
+        - paragraph [ref=e9]: Distribuye schemas por archivo, página y destinatario con dos PDFs precargados.
+      - generic [ref=e10]:
+        - generic "Estado del laboratorio" [ref=e11]:
+          - generic [ref=e12]:
+            - term [ref=e13]: Estado
+            - definition [ref=e14]: Listo
+          - generic [ref=e15]:
+            - term [ref=e16]: Modo
+            - definition [ref=e17]: Diseñador
+          - generic [ref=e18]:
+            - term [ref=e19]: Vista
+            - definition [ref=e20]: Cliente Principal
+          - generic [ref=e21]:
+            - term [ref=e22]: UX
+            - definition [ref=e23]: canvas-first
+          - generic [ref=e24]:
+            - term [ref=e25]: Páginas
+            - definition [ref=e26]: "2"
+        - generic [ref=e27]:
+          - link "Volver al índice" [ref=e29] [cursor=pointer]:
+            - /url: /
+          - button "Controles" [ref=e32] [cursor=pointer]:
+            - img [ref=e33]
+          - paragraph [ref=e36]: Página 1 / 2
+    - generic [ref=e37]:
+      - generic "Metadatos del ejemplo" [ref=e38]:
+        - generic [ref=e39]: "id: multi-document-routing"
+        - generic [ref=e40]: "ruta: /lab/multi-document-routing"
+      - group [ref=e41]:
+        - generic "Participantes · multi-document-routing-session Cliente Principal 3" [ref=e42] [cursor=pointer]:
+          - generic [ref=e43]: Participantes · multi-document-routing-session
+          - generic "signer" [ref=e44]: Cliente Principal
+          - generic [ref=e45]: "3"
+        - option "Cliente Principal" [selected]
+        - option "Avalista"
+        - option "Mesa de entrega"
+        - option "Usuario activo" [selected]
+        - option "Global"
+  - region "Canvas" [ref=e46]:
+    - generic [ref=e47]:
+      - heading "Canvas" [level=2] [ref=e48]
+      - paragraph [ref=e49]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e50]: sisad-pdfme
+        - text: .
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - button "Cerrar catálogo de campos" [expanded] [ref=e56] [cursor=pointer]:
+          - img [ref=e57]
+        - generic [ref=e61]:
+          - generic [ref=e62]:
+            - generic [ref=e63]: Diseñador
+            - generic [ref=e64]: Catálogo de campos
+          - generic [ref=e65]:
+            - tablist "Tipos de campo" [ref=e66]:
+              - tab "Campos estándar" [selected] [ref=e67] [cursor=pointer]:
+                - img [ref=e68]
+              - tab "Campos personalizados" [ref=e70] [cursor=pointer]:
+                - img [ref=e71]
+              - tab "Herramientas de prerrellenado" [ref=e74] [cursor=pointer]:
+                - img [ref=e75]
+            - generic [ref=e78]:
+              - generic [ref=e79]:
+                - img [ref=e81]
+                - textbox "Buscar campo, tipo o categoría..." [ref=e84]
+              - generic [ref=e86]:
+                - button "Todo" [ref=e87] [cursor=pointer]:
+                  - generic [ref=e88]: Todo
+                - button "Fav (0)" [ref=e89] [cursor=pointer]:
+                  - generic [ref=e90]: Fav (0)
+                - button "Rec (0)" [ref=e91] [cursor=pointer]:
+                  - generic [ref=e92]: Rec (0)
+                - button "Detalle" [ref=e93] [cursor=pointer]:
+                  - generic [ref=e94]: Detalle
+          - generic [ref=e95]:
+            - generic [ref=e96]:
+              - button "Alternar categoría Texto" [expanded] [ref=e97] [cursor=pointer]:
+                - generic [ref=e98]: Texto
+                - generic [ref=e99]: "1"
+              - generic [ref=e103]:
+                - button "text" [ref=e104]:
+                  - generic "text" [ref=e106]:
+                    - img [ref=e107]
+                  - generic [ref=e113]: text
+                - button "Marcar favorito": ★
+            - button "Alternar categoría Imagen y medios" [ref=e115] [cursor=pointer]:
+              - generic [ref=e116]: Imagen y medios
+              - generic [ref=e117]: "2"
+            - button "Alternar categoría Fecha y hora" [ref=e119] [cursor=pointer]:
+              - generic [ref=e120]: Fecha y hora
+              - generic [ref=e121]: "3"
+            - button "Alternar categoría QR y códigos" [ref=e123] [cursor=pointer]:
+              - generic [ref=e124]: QR y códigos
+              - generic [ref=e125]: "12"
+            - button "Alternar categoría Firma" [ref=e127] [cursor=pointer]:
+              - generic [ref=e128]: Firma
+              - generic [ref=e129]: "1"
+            - button "Alternar categoría Selección" [ref=e131] [cursor=pointer]:
+              - generic [ref=e132]: Selección
+              - generic [ref=e133]: "3"
+            - button "Alternar categoría Estructura" [ref=e135] [cursor=pointer]:
+              - generic [ref=e136]: Estructura
+              - generic [ref=e137]: "4"
+      - generic [ref=e138]:
+        - generic [ref=e139]:
+          - generic [ref=e140]:
+            - generic [ref=e141]:
+              - strong [ref=e143]: Página 1
+              - generic [ref=e144]: Listo
+            - generic [ref=e145]: Página 1 de 2
+          - generic [ref=e146]:
+            - generic [ref=e147]:
+              - button "Deshacer" [ref=e148] [cursor=pointer]:
+                - img [ref=e150]
+              - button "Rehacer" [ref=e153] [cursor=pointer]:
+                - img [ref=e155]
+            - generic [ref=e158]:
+              - button "Página anterior" [disabled] [ref=e159]:
+                - generic:
+                  - img
+              - generic [ref=e160] [cursor=pointer]:
+                - generic [ref=e162]:
+                  - combobox [ref=e164]
+                  - generic "Página 1" [ref=e165]
+                - generic:
+                  - img:
+                    - img
+              - button "Página siguiente" [ref=e166] [cursor=pointer]:
+                - img [ref=e168]
+            - generic [ref=e170]:
+              - button "Ajustar ancho" [ref=e171] [cursor=pointer]:
+                - img [ref=e173]
+              - button "Ajustar página" [ref=e178] [cursor=pointer]:
+                - img [ref=e180]
+            - generic [ref=e189]:
+              - button "Reducir zoom" [ref=e190] [cursor=pointer]:
+                - img [ref=e192]
+              - generic [ref=e193] [cursor=pointer]:
+                - generic [ref=e195]:
+                  - combobox [ref=e197]
+                  - generic "100%" [ref=e198]
+                - generic:
+                  - img:
+                    - img
+              - button "Aumentar zoom" [ref=e199] [cursor=pointer]:
+                - img [ref=e201]
+            - generic [ref=e202]:
+              - button "Ocultar panel derecho" [pressed] [ref=e203] [cursor=pointer]:
+                - img [ref=e205]
+              - button "Ocultar guías" [pressed] [ref=e208] [cursor=pointer]:
+                - img [ref=e210]
+              - button "Ocultar snaps" [pressed] [ref=e216] [cursor=pointer]:
+                - img [ref=e218]
+              - button "Ocultar padding" [pressed] [ref=e222] [cursor=pointer]:
+                - img [ref=e224]
+            - generic [ref=e226]:
+              - button "Guardar" [ref=e227] [cursor=pointer]:
+                - img [ref=e229]
+                - generic [ref=e233]: Guardar
+              - button "Exportar" [disabled] [ref=e234]:
+                - generic:
+                  - img
+                - generic: Exportar
+              - button "Más acciones" [ref=e235] [cursor=pointer]:
+                - img [ref=e236]
+        - complementary "Panel derecho del diseñador" [ref=e240]:
+          - generic [ref=e241]:
+            - tablist "Panel derecho" [ref=e243]:
+              - tab "Abrir panel Campos" [ref=e244] [cursor=pointer]:
+                - generic [ref=e245]:
+                  - img [ref=e247]
+                  - generic [ref=e251]: Campos
+              - tab "Abrir panel Detalle" [disabled] [ref=e252]:
+                - generic [ref=e253]:
+                  - img [ref=e255]
+                  - generic [ref=e256]: Detalle
+              - tab "Abrir panel Comentarios" [ref=e257] [cursor=pointer]:
+                - generic [ref=e258]:
+                  - img [ref=e260]
+                  - generic [ref=e262]: Comentarios
+              - tab "Abrir panel Docs" [selected] [ref=e263] [cursor=pointer]:
+                - generic [ref=e264]:
+                  - img [ref=e266]
+                  - generic [ref=e269]: Docs
+            - generic [ref=e271]:
+              - generic [ref=e272]:
+                - generic [ref=e273]:
+                  - generic [ref=e274]:
+                    - img [ref=e275]
+                    - strong [ref=e279]: Documentos cargados
+                    - generic [ref=e280]: "2"
+                  - button "Subir PDF" [ref=e282] [cursor=pointer]:
+                    - img [ref=e284]
+                    - generic [ref=e288]: Subir PDF
+                - generic [ref=e289]: Sube un PDF para trabajar con páginas y documentos.
+                - separator [ref=e290]
+              - generic "Lista de páginas del documento" [ref=e291]:
+                - generic [ref=e292]:
+                  - button "1 Declaración de datos Página 1 2 paginas" [ref=e293] [cursor=pointer]:
+                    - generic [ref=e294]:
+                      - img [ref=e296]
+                      - generic [ref=e299]: "1"
+                    - generic [ref=e300]:
+                      - strong [ref=e302]: Declaración de datos
+                      - generic [ref=e304]: Página 1
+                      - generic [ref=e305]: 2 paginas
+                  - button "2 Certificado académico Página 2 Activo 2 paginas" [active] [ref=e306] [cursor=pointer]:
+                    - generic [ref=e307]:
+                      - img [ref=e309]
+                      - generic [ref=e312]: "2"
+                    - generic [ref=e313]:
+                      - strong [ref=e315]: Certificado académico
+                      - generic [ref=e316]:
+                        - generic [ref=e317]: Página 2
+                        - generic [ref=e318]: Activo
+                      - generic [ref=e319]: 2 paginas
+        - generic [ref=e322]:
+          - generic:
+            - generic:
+              - generic: Esta página todavía no tiene campos
+              - generic: Arrastra un campo del catálogo izquierdo para empezar a construir el documento.
+      - status [ref=e326]
+  - group "Resultados" [ref=e327]:
+    - generic "Resultados Oculto" [ref=e328] [cursor=pointer]:
+      - heading "Resultados" [level=2] [ref=e330]
+      - generic [ref=e331]: Oculto
+```
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0163"></a>
+## Archivo #163: test-results/pdfme-editor-PDFME-editor--a3ed6-cks-on-the-enterprise-route-chromium/error-context.md
+
+- **Ruta relativa:** `test-results/pdfme-editor-PDFME-editor--a3ed6-cks-on-the-enterprise-route-chromium/error-context.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/test-results/pdfme-editor-PDFME-editor--a3ed6-cks-on-the-enterprise-route-chromium/error-context.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `252`
+
+### Contenido original
+
+# Page snapshot
+
+```yaml
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - paragraph [ref=e7]: Ruta activa
+        - heading "Enterprise con colaboración" [level=1] [ref=e8]
+        - paragraph [ref=e9]: Incluye owners, comentarios y bloqueo sobre un convenio real para revisar contratos multiusuario.
+      - generic [ref=e10]:
+        - generic "Estado del laboratorio" [ref=e11]:
+          - generic [ref=e12]:
+            - term [ref=e13]: Estado
+            - definition [ref=e14]: Listo
+          - generic [ref=e15]:
+            - term [ref=e16]: Modo
+            - definition [ref=e17]: Diseñador
+          - generic [ref=e18]:
+            - term [ref=e19]: Vista
+            - definition [ref=e20]: Equipo de Ventas
+          - generic [ref=e21]:
+            - term [ref=e22]: UX
+            - definition [ref=e23]: canvas-first
+          - generic [ref=e24]:
+            - term [ref=e25]: Páginas
+            - definition [ref=e26]: "2"
+        - generic [ref=e27]:
+          - link "Volver al índice" [ref=e29] [cursor=pointer]:
+            - /url: /
+          - button "Controles" [ref=e32] [cursor=pointer]:
+            - img [ref=e33]
+          - paragraph [ref=e36]: Preparado para probar metadatos colaborativos sobre PDF real
+    - generic [ref=e37]:
+      - generic "Metadatos del ejemplo" [ref=e38]:
+        - generic [ref=e39]: "id: enterprise-collaboration"
+        - generic [ref=e40]: "ruta: /lab/enterprise-collaboration"
+      - group [ref=e41]:
+        - generic "Participantes · enterprise-collaboration-session Equipo de Ventas 3" [ref=e42] [cursor=pointer]:
+          - generic [ref=e43]: Participantes · enterprise-collaboration-session
+          - generic "editor · sales-team" [ref=e44]: Equipo de Ventas
+          - generic [ref=e45]: "3"
+        - generic "Participantes del ejemplo" [ref=e46]:
+          - generic [ref=e47]:
+            - generic "editor · sales-team" [ref=e48]: Equipo de Ventas
+            - generic "reviewer · legal-team" [ref=e49]: Equipo Legal
+            - generic "admin · ops-team" [ref=e50]: Operaciones
+          - generic [ref=e51]:
+            - generic [ref=e52]: Activo
+            - combobox "Seleccionar usuario activo" [ref=e53]:
+              - option "Equipo de Ventas" [selected]
+              - option "Equipo Legal"
+              - option "Operaciones"
+          - generic [ref=e54]:
+            - generic [ref=e55]: Vista
+            - combobox "Seleccionar vista activa" [ref=e56]:
+              - option "Usuario activo" [selected]
+              - option "Global"
+  - region "Canvas" [ref=e57]:
+    - generic [ref=e58]:
+      - heading "Canvas" [level=2] [ref=e59]
+      - paragraph [ref=e60]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e61]: sisad-pdfme
+        - text: .
+    - generic [ref=e65]:
+      - generic [ref=e66]:
+        - button "Cerrar catálogo de campos" [expanded] [ref=e67] [cursor=pointer]:
+          - img [ref=e68]
+        - generic [ref=e72]:
+          - generic [ref=e73]:
+            - generic [ref=e74]: Diseñador
+            - generic [ref=e75]: Catálogo de campos
+          - generic [ref=e76]:
+            - tablist "Tipos de campo" [ref=e77]:
+              - tab "Campos estándar" [selected] [ref=e78] [cursor=pointer]:
+                - img [ref=e79]
+              - tab "Campos personalizados" [ref=e81] [cursor=pointer]:
+                - img [ref=e82]
+              - tab "Herramientas de prerrellenado" [ref=e85] [cursor=pointer]:
+                - img [ref=e86]
+            - generic [ref=e89]:
+              - generic [ref=e90]:
+                - img [ref=e92]
+                - textbox "Buscar campo, tipo o categoría..." [ref=e95]
+              - generic [ref=e97]:
+                - button "Todo" [ref=e98] [cursor=pointer]:
+                  - generic [ref=e99]: Todo
+                - button "Fav (0)" [ref=e100] [cursor=pointer]:
+                  - generic [ref=e101]: Fav (0)
+                - button "Rec (0)" [ref=e102] [cursor=pointer]:
+                  - generic [ref=e103]: Rec (0)
+                - button "Detalle" [ref=e104] [cursor=pointer]:
+                  - generic [ref=e105]: Detalle
+          - generic [ref=e106]:
+            - generic [ref=e107]:
+              - button "Alternar categoría Texto" [expanded] [ref=e108] [cursor=pointer]:
+                - generic [ref=e109]: Texto
+                - generic [ref=e110]: "1"
+              - generic [ref=e114]:
+                - button "text" [ref=e115]:
+                  - generic "text" [ref=e117]:
+                    - img [ref=e118]
+                  - generic [ref=e124]: text
+                - button "Marcar favorito": ★
+            - button "Alternar categoría Imagen y medios" [ref=e126] [cursor=pointer]:
+              - generic [ref=e127]: Imagen y medios
+              - generic [ref=e128]: "2"
+            - button "Alternar categoría Fecha y hora" [ref=e130] [cursor=pointer]:
+              - generic [ref=e131]: Fecha y hora
+              - generic [ref=e132]: "3"
+            - button "Alternar categoría QR y códigos" [ref=e134] [cursor=pointer]:
+              - generic [ref=e135]: QR y códigos
+              - generic [ref=e136]: "12"
+            - button "Alternar categoría Firma" [ref=e138] [cursor=pointer]:
+              - generic [ref=e139]: Firma
+              - generic [ref=e140]: "1"
+            - button "Alternar categoría Selección" [ref=e142] [cursor=pointer]:
+              - generic [ref=e143]: Selección
+              - generic [ref=e144]: "3"
+            - button "Alternar categoría Estructura" [ref=e146] [cursor=pointer]:
+              - generic [ref=e147]: Estructura
+              - generic [ref=e148]: "4"
+      - generic [ref=e149]:
+        - generic [ref=e150]:
+          - generic [ref=e151]:
+            - generic [ref=e152]:
+              - strong [ref=e154]: Página 1
+              - generic [ref=e155]: Listo
+            - generic [ref=e156]: Página 1 de 2
+          - generic [ref=e157]:
+            - generic [ref=e158]:
+              - button "Deshacer" [ref=e159] [cursor=pointer]:
+                - img [ref=e161]
+              - button "Rehacer" [ref=e164] [cursor=pointer]:
+                - img [ref=e166]
+            - generic [ref=e169]:
+              - button "Página anterior" [disabled] [ref=e170]:
+                - generic:
+                  - img
+              - generic [ref=e171] [cursor=pointer]:
+                - generic [ref=e173]:
+                  - combobox [ref=e175]
+                  - generic "Página 1" [ref=e176]
+                - generic:
+                  - img:
+                    - img
+              - button "Página siguiente" [ref=e177] [cursor=pointer]:
+                - img [ref=e179]
+            - generic [ref=e181]:
+              - button "Ajustar ancho" [ref=e182] [cursor=pointer]:
+                - img [ref=e184]
+              - button "Ajustar página" [ref=e189] [cursor=pointer]:
+                - img [ref=e191]
+            - generic [ref=e200]:
+              - button "Reducir zoom" [ref=e201] [cursor=pointer]:
+                - img [ref=e203]
+              - generic [ref=e204] [cursor=pointer]:
+                - generic [ref=e206]:
+                  - combobox [ref=e208]
+                  - generic "100%" [ref=e209]
+                - generic:
+                  - img:
+                    - img
+              - button "Aumentar zoom" [ref=e210] [cursor=pointer]:
+                - img [ref=e212]
+            - generic [ref=e213]:
+              - button "Ocultar panel derecho" [pressed] [ref=e214] [cursor=pointer]:
+                - img [ref=e216]
+              - button "Ocultar guías" [pressed] [ref=e219] [cursor=pointer]:
+                - img [ref=e221]
+              - button "Ocultar snaps" [pressed] [ref=e227] [cursor=pointer]:
+                - img [ref=e229]
+              - button "Ocultar padding" [pressed] [ref=e233] [cursor=pointer]:
+                - img [ref=e235]
+            - generic [ref=e237]:
+              - button "Guardar" [ref=e238] [cursor=pointer]:
+                - img [ref=e240]
+                - generic [ref=e244]: Guardar
+              - button "Exportar" [disabled] [ref=e245]:
+                - generic:
+                  - img
+                - generic: Exportar
+              - button "Más acciones" [ref=e246] [cursor=pointer]:
+                - img [ref=e247]
+        - complementary "Panel derecho del diseñador" [ref=e251]:
+          - generic [ref=e252]:
+            - generic [ref=e253]:
+              - tablist "Panel derecho" [ref=e254]:
+                - tab "Abrir panel Campos" [selected] [ref=e255] [cursor=pointer]:
+                  - generic [ref=e256]:
+                    - img [ref=e258]
+                    - generic [ref=e262]: Campos
+                - tab "Abrir panel Detalle" [disabled] [ref=e263]:
+                  - generic [ref=e264]:
+                    - img [ref=e266]
+                    - generic [ref=e267]: Detalle
+                - tab "Abrir panel Comentarios" [ref=e268] [cursor=pointer]:
+                  - generic [ref=e269]:
+                    - img [ref=e271]
+                    - generic [ref=e273]: Comentarios
+                - tab "Abrir panel Docs" [ref=e274] [cursor=pointer]:
+                  - generic [ref=e275]:
+                    - img [ref=e277]
+                    - generic [ref=e280]: Docs
+              - generic "Contexto activo del editor" [ref=e281]:
+                - generic [ref=e282]: "Documento: CONVENIO DE CRÉDITO.pdf"
+                - generic [ref=e283]: "Página: 1/2"
+                - generic [ref=e284]: "Campos: 1/2"
+                - generic [ref=e285]: "Presencia: pausa"
+                - generic [ref=e286]: "Colaboradores: 1"
+                - generic [ref=e287]: "Historial: 6"
+                - generic [ref=e288]: "Vista: Equipo de Ventas"
+                - generic [ref=e289]: "Usuario: sales-user-1"
+            - generic [ref=e290]:
+              - generic [ref=e291]:
+                - generic [ref=e292]:
+                  - generic [ref=e293]:
+                    - generic [ref=e294]:
+                      - generic [ref=e295]:
+                        - img [ref=e296]
+                        - strong [ref=e301]: Campos del documento
+                        - generic [ref=e302]: 1/1
+                      - generic [ref=e303]: Gestiona nombres, orden y visibilidad
+                    - button "Renombrar" [ref=e304] [cursor=pointer]:
+                      - generic [ref=e305]: Renombrar
+                  - generic [ref=e307]:
+                    - img [ref=e309]
+                    - textbox "Buscar campo, tipo o categoría" [ref=e312]
+                - separator [ref=e314]
+              - generic "Lista de campos del documento" [ref=e315]:
+                - list [ref=e316]:
+                  - listitem [ref=e317] [cursor=pointer]:
+                    - button "company_name" [ref=e318]
+                    - generic [ref=e319]:
+                      - button [ref=e320]:
+                        - img [ref=e322]
+                      - img [ref=e332]
+                      - generic [ref=e337]: company_name
+                      - generic [ref=e339]: Ajeno
+                - status [ref=e340]
+        - generic [ref=e341]:
+          - generic "company_name" [ref=e345] [cursor=pointer]:
+            - generic [ref=e348]: Taylor Holdings
+            - text: text
+          - button "Comentario en enterprise-company-name" [ref=e351] [cursor=pointer]
+      - status [ref=e352]
+  - group "Resultados" [ref=e353]:
+    - generic "Resultados Oculto" [ref=e354] [cursor=pointer]:
+      - heading "Resultados" [level=2] [ref=e356]
+      - generic [ref=e357]: Oculto
+```
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0164"></a>
+## Archivo #164: test-results/pdfme-editor-PDFME-editor--f3033-als-from-the-detail-sidebar-chromium/error-context.md
+
+- **Ruta relativa:** `test-results/pdfme-editor-PDFME-editor--f3033-als-from-the-detail-sidebar-chromium/error-context.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/test-results/pdfme-editor-PDFME-editor--f3033-als-from-the-detail-sidebar-chromium/error-context.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `363`
+
+### Contenido original
+
+# Page snapshot
+
+```yaml
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - paragraph [ref=e7]: Ruta activa
+        - heading "Editor básico" [level=1] [ref=e8]
+        - paragraph [ref=e9]: Arranca en modo designer sobre un PDF real para crear, mover y revisar campos.
+      - generic [ref=e10]:
+        - generic "Estado del laboratorio" [ref=e11]:
+          - generic [ref=e12]:
+            - term [ref=e13]: Estado
+            - definition [ref=e14]: Listo
+          - generic [ref=e15]:
+            - term [ref=e16]: Modo
+            - definition [ref=e17]: Diseñador
+          - generic [ref=e18]:
+            - term [ref=e19]: Vista
+            - definition [ref=e20]: Diseño
+          - generic [ref=e21]:
+            - term [ref=e22]: UX
+            - definition [ref=e23]: canvas-first
+          - generic [ref=e24]:
+            - term [ref=e25]: Páginas
+            - definition [ref=e26]: "3"
+        - generic [ref=e27]:
+          - link "Volver al índice" [ref=e29] [cursor=pointer]:
+            - /url: /
+          - button "Controles" [ref=e32] [cursor=pointer]:
+            - img [ref=e33]
+          - paragraph [ref=e36]: Listo para editar sobre sample-a4.pdf
+    - generic [ref=e37]:
+      - generic "Metadatos del ejemplo" [ref=e38]:
+        - generic [ref=e39]: "id: basic-designer"
+        - generic [ref=e40]: "ruta: /lab/basic-designer"
+      - group [ref=e41]:
+        - generic "Participantes · basic-designer-session Diseño 2" [ref=e42] [cursor=pointer]:
+          - generic [ref=e43]: Participantes · basic-designer-session
+          - generic "owner · lab-team" [ref=e44]: Diseño
+          - generic [ref=e45]: "2"
+        - option "Diseño" [selected]
+        - option "QA"
+        - option "Usuario activo" [selected]
+        - option "Global"
+  - region "Canvas" [ref=e46]:
+    - generic [ref=e47]:
+      - heading "Canvas" [level=2] [ref=e48]
+      - paragraph [ref=e49]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e50]: sisad-pdfme
+        - text: .
+    - generic [ref=e54]:
+      - generic [ref=e55]:
+        - button "Cerrar catálogo de campos" [expanded] [ref=e56] [cursor=pointer]:
+          - img [ref=e57]
+        - generic [ref=e61]:
+          - generic [ref=e62]:
+            - generic [ref=e63]: Diseñador
+            - generic [ref=e64]: Catálogo de campos
+          - generic [ref=e65]:
+            - tablist "Tipos de campo" [ref=e66]:
+              - tab "Campos estándar" [selected] [ref=e67] [cursor=pointer]:
+                - img [ref=e68]
+              - tab "Campos personalizados" [ref=e70] [cursor=pointer]:
+                - img [ref=e71]
+              - tab "Herramientas de prerrellenado" [ref=e74] [cursor=pointer]:
+                - img [ref=e75]
+            - generic [ref=e78]:
+              - generic [ref=e79]:
+                - img [ref=e81]
+                - textbox "Buscar campo, tipo o categoría..." [ref=e84]
+              - generic [ref=e86]:
+                - button "Todo" [ref=e87] [cursor=pointer]:
+                  - generic [ref=e88]: Todo
+                - button "Fav (0)" [ref=e89] [cursor=pointer]:
+                  - generic [ref=e90]: Fav (0)
+                - button "Rec (0)" [ref=e91] [cursor=pointer]:
+                  - generic [ref=e92]: Rec (0)
+                - button "Detalle" [ref=e93] [cursor=pointer]:
+                  - generic [ref=e94]: Detalle
+          - generic [ref=e95]:
+            - generic [ref=e96]:
+              - button "Alternar categoría Texto" [expanded] [ref=e97] [cursor=pointer]:
+                - generic [ref=e98]: Texto
+                - generic [ref=e99]: "1"
+              - generic [ref=e103]:
+                - button "text" [ref=e104]:
+                  - generic "text" [ref=e106]:
+                    - img [ref=e107]
+                  - generic [ref=e113]: text
+                - button "Marcar favorito": ★
+            - button "Alternar categoría Imagen y medios" [ref=e115] [cursor=pointer]:
+              - generic [ref=e116]: Imagen y medios
+              - generic [ref=e117]: "2"
+            - button "Alternar categoría Fecha y hora" [ref=e119] [cursor=pointer]:
+              - generic [ref=e120]: Fecha y hora
+              - generic [ref=e121]: "3"
+            - button "Alternar categoría QR y códigos" [ref=e123] [cursor=pointer]:
+              - generic [ref=e124]: QR y códigos
+              - generic [ref=e125]: "12"
+            - button "Alternar categoría Firma" [ref=e127] [cursor=pointer]:
+              - generic [ref=e128]: Firma
+              - generic [ref=e129]: "1"
+            - button "Alternar categoría Selección" [ref=e131] [cursor=pointer]:
+              - generic [ref=e132]: Selección
+              - generic [ref=e133]: "3"
+            - button "Alternar categoría Estructura" [ref=e135] [cursor=pointer]:
+              - generic [ref=e136]: Estructura
+              - generic [ref=e137]: "4"
+      - generic [ref=e138]:
+        - generic [ref=e139]:
+          - generic [ref=e140]:
+            - generic [ref=e141]:
+              - strong [ref=e143]: Página 1
+              - generic [ref=e144]: Listo
+            - generic [ref=e145]: Página 1 de 3
+          - generic [ref=e146]:
+            - generic [ref=e147]:
+              - button "Deshacer" [ref=e148] [cursor=pointer]:
+                - img [ref=e150]
+              - button "Rehacer" [ref=e153] [cursor=pointer]:
+                - img [ref=e155]
+            - generic [ref=e158]:
+              - button "Página anterior" [disabled] [ref=e159]:
+                - generic:
+                  - img
+              - generic [ref=e160] [cursor=pointer]:
+                - generic [ref=e162]:
+                  - combobox [ref=e164]
+                  - generic "Página 1" [ref=e165]
+                - generic:
+                  - img:
+                    - img
+              - button "Página siguiente" [ref=e166] [cursor=pointer]:
+                - img [ref=e168]
+            - generic [ref=e170]:
+              - button "Ajustar ancho" [ref=e171] [cursor=pointer]:
+                - img [ref=e173]
+              - button "Ajustar página" [ref=e178] [cursor=pointer]:
+                - img [ref=e180]
+            - generic [ref=e189]:
+              - button "Reducir zoom" [ref=e190] [cursor=pointer]:
+                - img [ref=e192]
+              - generic [ref=e193] [cursor=pointer]:
+                - generic [ref=e195]:
+                  - combobox [ref=e197]
+                  - generic "100%" [ref=e198]
+                - generic:
+                  - img:
+                    - img
+              - button "Aumentar zoom" [ref=e199] [cursor=pointer]:
+                - img [ref=e201]
+            - generic [ref=e202]:
+              - button "Ocultar panel derecho" [pressed] [ref=e203] [cursor=pointer]:
+                - img [ref=e205]
+              - button "Ocultar guías" [pressed] [ref=e208] [cursor=pointer]:
+                - img [ref=e210]
+              - button "Ocultar snaps" [pressed] [ref=e216] [cursor=pointer]:
+                - img [ref=e218]
+              - button "Ocultar padding" [pressed] [ref=e222] [cursor=pointer]:
+                - img [ref=e224]
+            - generic [ref=e226]:
+              - button "Guardar" [ref=e227] [cursor=pointer]:
+                - img [ref=e229]
+                - generic [ref=e233]: Guardar
+              - button "Exportar" [disabled] [ref=e234]:
+                - generic:
+                  - img
+                - generic: Exportar
+              - button "Más acciones" [ref=e235] [cursor=pointer]:
+                - img [ref=e236]
+        - complementary "Panel derecho del diseñador" [ref=e240]:
+          - generic [ref=e241]:
+            - tablist "Panel derecho" [ref=e243]:
+              - tab "Abrir panel Campos" [ref=e244] [cursor=pointer]:
+                - generic [ref=e245]:
+                  - img [ref=e247]
+                  - generic [ref=e251]: Campos
+              - tab "Abrir panel Detalle" [active] [selected] [ref=e252] [cursor=pointer]:
+                - generic [ref=e253]:
+                  - img [ref=e255]
+                  - generic [ref=e256]: Detalle
+              - tab "Abrir panel Comentarios" [ref=e257] [cursor=pointer]:
+                - generic [ref=e258]:
+                  - img [ref=e260]
+                  - generic [ref=e262]: Comentarios
+              - tab "Abrir panel Docs" [ref=e263] [cursor=pointer]:
+                - generic [ref=e264]:
+                  - img [ref=e266]
+                  - generic [ref=e269]: Docs
+            - generic [ref=e271]:
+              - generic [ref=e272]:
+                - button [ref=e273] [cursor=pointer]:
+                  - img [ref=e275]
+                - generic [ref=e277]: Editar campo
+                - separator [ref=e278]
+              - generic "Secciones del detalle del campo" [ref=e279]:
+                - generic [ref=e280]:
+                  - generic [ref=e284]:
+                    - generic [ref=e285]: role
+                    - generic [ref=e287]: text
+                  - generic [ref=e288]:
+                    - generic [ref=e289]:
+                      - generic [ref=e290]: "18"
+                      - generic [ref=e291]: X
+                    - generic [ref=e292]:
+                      - generic [ref=e293]: "24"
+                      - generic [ref=e294]: "Y"
+                - generic [ref=e295]:
+                  - generic [ref=e296]: "Owner: basic-user-2"
+                  - generic [ref=e297]: "Estado: locked"
+                  - generic [ref=e298]: "OwnerMode: single"
+                - generic [ref=e299]:
+                  - generic [ref=e300]:
+                    - button "Colapsar sección General" [expanded] [ref=e301] [cursor=pointer]:
+                      - generic [ref=e302]:
+                        - generic [ref=e303]: General
+                        - generic [ref=e304]: Identidad y metadatos del campo.
+                      - img [ref=e306]
+                    - generic [ref=e314]:
+                      - generic "Nombre de variable" [ref=e316]: "* Nombre de variable"
+                      - textbox "* Nombre de variable" [ref=e320]: role
+                  - generic [ref=e321]:
+                    - button "Colapsar sección Layout" [expanded] [ref=e322] [cursor=pointer]:
+                      - generic [ref=e323]:
+                        - generic [ref=e324]: Layout
+                        - generic [ref=e325]: Posición y tamaño en la página.
+                      - img [ref=e327]
+                    - generic [ref=e332]:
+                      - generic [ref=e335]:
+                        - generic "Alineación" [ref=e337]
+                        - generic [ref=e341]:
+                          - button [ref=e342] [cursor=pointer]:
+                            - img [ref=e344]
+                          - button [ref=e347] [cursor=pointer]:
+                            - img [ref=e349]
+                          - button [ref=e354] [cursor=pointer]:
+                            - img [ref=e356]
+                          - button [ref=e359] [cursor=pointer]:
+                            - img [ref=e361]
+                          - button [ref=e364] [cursor=pointer]:
+                            - img [ref=e366]
+                          - button [ref=e371] [cursor=pointer]:
+                            - img [ref=e373]
+                          - button [disabled] [ref=e376]:
+                            - generic:
+                              - img
+                          - button [disabled] [ref=e377]:
+                            - generic:
+                              - img
+                      - generic [ref=e380]:
+                        - generic [ref=e383]:
+                          - generic "X" [ref=e385]: "* X"
+                          - generic [ref=e389]:
+                            - generic:
+                              - button "Increase Value" [ref=e390] [cursor=pointer]:
+                                - img "up" [ref=e391]:
+                                  - img [ref=e392]
+                              - button "Decrease Value" [ref=e394] [cursor=pointer]:
+                                - img "down" [ref=e395]:
+                                  - img [ref=e396]
+                            - spinbutton "* X" [ref=e399]: "18"
+                        - generic [ref=e402]:
+                          - generic "Y" [ref=e404]: "* Y"
+                          - generic [ref=e408]:
+                            - generic:
+                              - button "Increase Value" [ref=e409] [cursor=pointer]:
+                                - img "up" [ref=e410]:
+                                  - img [ref=e411]
+                              - button "Decrease Value" [ref=e413] [cursor=pointer]:
+                                - img "down" [ref=e414]:
+                                  - img [ref=e415]
+                            - spinbutton "* Y" [ref=e418]: "24"
+                      - generic [ref=e421]:
+                        - generic "Anchura" [ref=e423]: "* Anchura"
+                        - generic [ref=e427]:
+                          - generic:
+                            - button "Increase Value" [ref=e428] [cursor=pointer]:
+                              - img "up" [ref=e429]:
+                                - img [ref=e430]
+                            - button "Decrease Value" [ref=e432] [cursor=pointer]:
+                              - img "down" [ref=e433]:
+                                - img [ref=e434]
+                          - spinbutton "* Anchura" [ref=e437]: "92"
+                      - generic [ref=e440]:
+                        - generic "Altura" [ref=e442]: "* Altura"
+                        - generic [ref=e446]:
+                          - generic:
+                            - button "Increase Value" [ref=e447] [cursor=pointer]:
+                              - img "up" [ref=e448]:
+                                - img [ref=e449]
+                            - button "Decrease Value" [ref=e451] [cursor=pointer]:
+                              - img "down" [ref=e452]:
+                                - img [ref=e453]
+                          - spinbutton "* Altura" [ref=e456]: "12"
+                  - button "Expandir sección Estilo" [ref=e458] [cursor=pointer]:
+                    - generic [ref=e459]:
+                      - generic [ref=e460]: Estilo
+                      - generic [ref=e461]: Alineación y tratamiento visual.
+                    - img [ref=e463]
+                  - generic [ref=e465]:
+                    - button "Colapsar sección Datos" [expanded] [ref=e466] [cursor=pointer]:
+                      - generic [ref=e467]:
+                        - generic [ref=e468]: Datos
+                        - generic [ref=e469]: Comportamiento semántico y edición.
+                      - img [ref=e471]
+                    - generic [ref=e482]:
+                      - checkbox [checked] [ref=e485] [cursor=pointer]
+                      - generic [ref=e487]: Editable
+                  - button "Expandir sección Conexiones" [ref=e489] [cursor=pointer]:
+                    - generic [ref=e490]:
+                      - generic [ref=e491]: Conexiones
+                      - generic [ref=e492]: Persistencia, API y salida de datos.
+                    - img [ref=e494]
+                  - button "Expandir sección Colaboración" [ref=e497] [cursor=pointer]:
+                    - generic [ref=e498]:
+                      - generic [ref=e499]: Colaboración
+                      - generic [ref=e500]: Propietario, bloqueo, auditoría y trazabilidad.
+                    - img [ref=e502]
+                  - button "Expandir sección Validación" [ref=e505] [cursor=pointer]:
+                    - generic [ref=e506]:
+                      - generic [ref=e507]: Validación
+                      - generic [ref=e508]: Reglas y obligatoriedad.
+                    - img [ref=e510]
+                  - button "Expandir sección Avanzado" [ref=e513] [cursor=pointer]:
+                    - generic [ref=e514]:
+                      - generic [ref=e515]: Avanzado
+                      - generic [ref=e516]: Propiedades avanzadas del plugin.
+                    - img [ref=e518]
+        - generic [ref=e520]:
+          - generic [ref=e522]:
+            - generic "full_name" [ref=e540] [cursor=pointer]:
+              - generic [ref=e543]: Ada Lovelace
+              - text: text
+            - generic "role" [ref=e544] [cursor=pointer]:
+              - generic [ref=e547]: Researcher
+              - text: text
+            - generic "signature" [ref=e548] [cursor=pointer]: signature
+          - generic:
+            - toolbar "Barra contextual de edición" [ref=e555]:
+              - generic "Resumen de selección" [ref=e556]:
+                - generic [ref=e557]: role
+                - generic [ref=e558]: Text
+                - button "Compacto" [ref=e559] [cursor=pointer]
+              - group "Acciones rápidas" [ref=e560]:
+                - button "Editar texto" [ref=e561] [cursor=pointer]:
+                  - img [ref=e563]
+                  - generic [ref=e565]: Editar texto
+                - button "Duplicar" [ref=e566] [cursor=pointer]:
+                  - img [ref=e568]
+                  - generic [ref=e571]: Duplicar
+                - button "Propiedades" [ref=e572] [cursor=pointer]:
+                  - img [ref=e574]
+                  - generic [ref=e577]: Propiedades
+            - generic: 191px × 25px
+      - status [ref=e578]
+  - group "Resultados" [ref=e579]:
+    - generic "Resultados Oculto" [ref=e580] [cursor=pointer]:
+      - heading "Resultados" [level=2] [ref=e582]
+      - generic [ref=e583]: Oculto
+```
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0165"></a>
+## Archivo #165: .ai/agents/legacy/pdfme-command-architect.md
 
 - **Ruta relativa:** `.ai/agents/legacy/pdfme-command-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy/pdfme-command-architect.md`
@@ -13182,8 +14578,8 @@ You are a senior architect specialized in shared editor logic and command layers
 
 ---
 
-<a id="archivo-0161"></a>
-## Archivo #161: .ai/agents/legacy/pdfme-css-polish-architect.md
+<a id="archivo-0166"></a>
+## Archivo #166: .ai/agents/legacy/pdfme-css-polish-architect.md
 
 - **Ruta relativa:** `.ai/agents/legacy/pdfme-css-polish-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy/pdfme-css-polish-architect.md`
@@ -13224,8 +14620,8 @@ You are a senior visual architect specialized in CSS consolidation and UI polish
 
 ---
 
-<a id="archivo-0162"></a>
-## Archivo #162: .ai/agents/legacy/pdfme-editor-architect.md
+<a id="archivo-0167"></a>
+## Archivo #167: .ai/agents/legacy/pdfme-editor-architect.md
 
 - **Ruta relativa:** `.ai/agents/legacy/pdfme-editor-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy/pdfme-editor-architect.md`
@@ -13267,8 +14663,8 @@ Improve the sisad-pdfme editor incrementally without rewriting the motor.
 
 ---
 
-<a id="archivo-0163"></a>
-## Archivo #163: .ai/agents/legacy/pdfme-layout-architect.md
+<a id="archivo-0168"></a>
+## Archivo #168: .ai/agents/legacy/pdfme-layout-architect.md
 
 - **Ruta relativa:** `.ai/agents/legacy/pdfme-layout-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy/pdfme-layout-architect.md`
@@ -13312,8 +14708,8 @@ You are a senior architect specialized in workspace layout and editor shell UX.
 
 ---
 
-<a id="archivo-0164"></a>
-## Archivo #164: .ai/agents/legacy/pdfme-overlay-architect.md
+<a id="archivo-0169"></a>
+## Archivo #169: .ai/agents/legacy/pdfme-overlay-architect.md
 
 - **Ruta relativa:** `.ai/agents/legacy/pdfme-overlay-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy/pdfme-overlay-architect.md`
@@ -13360,8 +14756,8 @@ You are a senior frontend architect specialized in on-canvas overlays for visual
 
 ---
 
-<a id="archivo-0165"></a>
-## Archivo #165: .ai/agents/legacy/pdfme-registry-architect.md
+<a id="archivo-0170"></a>
+## Archivo #170: .ai/agents/legacy/pdfme-registry-architect.md
 
 - **Ruta relativa:** `.ai/agents/legacy/pdfme-registry-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy/pdfme-registry-architect.md`
@@ -13404,8 +14800,8 @@ You are a senior architecture agent specialized in extensibility systems for vis
 
 ---
 
-<a id="archivo-0166"></a>
-## Archivo #166: .ai/agents/legacy/pdfme-sidebar-architect.md
+<a id="archivo-0171"></a>
+## Archivo #171: .ai/agents/legacy/pdfme-sidebar-architect.md
 
 - **Ruta relativa:** `.ai/agents/legacy/pdfme-sidebar-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy/pdfme-sidebar-architect.md`
@@ -13451,8 +14847,8 @@ You are a senior architect specialized in contextual side panels for visual edit
 
 ---
 
-<a id="archivo-0167"></a>
-## Archivo #167: .ai/agents/legacy/pdfme-testing-architect.md
+<a id="archivo-0172"></a>
+## Archivo #172: .ai/agents/legacy/pdfme-testing-architect.md
 
 - **Ruta relativa:** `.ai/agents/legacy/pdfme-testing-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy/pdfme-testing-architect.md`
@@ -13497,8 +14893,8 @@ You are a senior testing architect specialized in editor interaction testing.
 
 ---
 
-<a id="archivo-0168"></a>
-## Archivo #168: .ai/agents/legacy/pdfme-toolbar-architect.md
+<a id="archivo-0173"></a>
+## Archivo #173: .ai/agents/legacy/pdfme-toolbar-architect.md
 
 - **Ruta relativa:** `.ai/agents/legacy/pdfme-toolbar-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy/pdfme-toolbar-architect.md`
@@ -13542,8 +14938,8 @@ You are a senior UX/UI architect specialized in toolbars for visual editors.
 
 ---
 
-<a id="archivo-0169"></a>
-## Archivo #169: .ai/skills/canvas-geometry-scaling/SKILL.md
+<a id="archivo-0174"></a>
+## Archivo #174: .ai/skills/canvas-geometry-scaling/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/canvas-geometry-scaling/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/canvas-geometry-scaling/SKILL.md`
@@ -13599,8 +14995,8 @@ Trabajar zoom, scale, paper geometry y wrappers sin producir drift visual.
 
 ---
 
-<a id="archivo-0170"></a>
-## Archivo #170: .ai/skills/canvas-interaction/SKILL.md
+<a id="archivo-0175"></a>
+## Archivo #175: .ai/skills/canvas-interaction/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/canvas-interaction/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/canvas-interaction/SKILL.md`
@@ -13636,8 +15032,8 @@ Toda mejora de interacción debe respetar el foco del canvas y minimizar fricci�
 
 ---
 
-<a id="archivo-0171"></a>
-## Archivo #171: .ai/skills/canvas-overlay-composition/SKILL.md
+<a id="archivo-0176"></a>
+## Archivo #176: .ai/skills/canvas-overlay-composition/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/canvas-overlay-composition/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/canvas-overlay-composition/SKILL.md`
@@ -13692,8 +15088,8 @@ Coordinar toolbar, inline editing, métricas y feedback contextual sin colisione
 
 ---
 
-<a id="archivo-0172"></a>
-## Archivo #172: .ai/skills/catalog-discovery-patterns/SKILL.md
+<a id="archivo-0177"></a>
+## Archivo #177: .ai/skills/catalog-discovery-patterns/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/catalog-discovery-patterns/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/catalog-discovery-patterns/SKILL.md`
@@ -13748,8 +15144,8 @@ Mejorar búsqueda, favoritos, recent y revelado progresivo del catálogo.
 
 ---
 
-<a id="archivo-0173"></a>
-## Archivo #173: .ai/skills/collaboration-state-sync/SKILL.md
+<a id="archivo-0178"></a>
+## Archivo #178: .ai/skills/collaboration-state-sync/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/collaboration-state-sync/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/collaboration-state-sync/SKILL.md`
@@ -13805,8 +15201,8 @@ Coordinar estado colaborativo entre dominio, widgets y sincronización UI.
 
 ---
 
-<a id="archivo-0174"></a>
-## Archivo #174: .ai/skills/component-composition/SKILL.md
+<a id="archivo-0179"></a>
+## Archivo #179: .ai/skills/component-composition/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/component-composition/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/component-composition/SKILL.md`
@@ -13831,8 +15227,8 @@ Cada componente debe tener una responsabilidad principal clara.
 
 ---
 
-<a id="archivo-0175"></a>
-## Archivo #175: .ai/skills/converter-pipeline-integrity/SKILL.md
+<a id="archivo-0180"></a>
+## Archivo #180: .ai/skills/converter-pipeline-integrity/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/converter-pipeline-integrity/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/converter-pipeline-integrity/SKILL.md`
@@ -13887,8 +15283,8 @@ Mantener integridad del pipeline de conversión PDF/imágenes entre browser y no
 
 ---
 
-<a id="archivo-0176"></a>
-## Archivo #176: .ai/skills/css-layering-and-overrides/SKILL.md
+<a id="archivo-0181"></a>
+## Archivo #181: .ai/skills/css-layering-and-overrides/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/css-layering-and-overrides/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/css-layering-and-overrides/SKILL.md`
@@ -13943,8 +15339,8 @@ Ordenar overrides CSS y evitar conflictos entre tokens, globales e interacciones
 
 ---
 
-<a id="archivo-0177"></a>
-## Archivo #177: .ai/skills/design-system-consistency/SKILL.md
+<a id="archivo-0182"></a>
+## Archivo #182: .ai/skills/design-system-consistency/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/design-system-consistency/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/design-system-consistency/SKILL.md`
@@ -13971,8 +15367,8 @@ Mantener coherencia visual y semántica.
 
 ---
 
-<a id="archivo-0178"></a>
-## Archivo #178: .ai/skills/design-token-governance/SKILL.md
+<a id="archivo-0183"></a>
+## Archivo #183: .ai/skills/design-token-governance/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/design-token-governance/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/design-token-governance/SKILL.md`
@@ -14028,8 +15424,8 @@ Mantener disciplina en tokens visuales, semántica de variables y capas de estil
 
 ---
 
-<a id="archivo-0179"></a>
-## Archivo #179: .ai/skills/designer-engine-runtime-state/SKILL.md
+<a id="archivo-0184"></a>
+## Archivo #184: .ai/skills/designer-engine-runtime-state/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/designer-engine-runtime-state/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/designer-engine-runtime-state/SKILL.md`
@@ -14084,8 +15480,8 @@ Trabajar con seguridad en el engine del diseñador y su relación con runtime ef
 
 ---
 
-<a id="archivo-0180"></a>
-## Archivo #180: .ai/skills/designer-selection-lifecycle/SKILL.md
+<a id="archivo-0185"></a>
+## Archivo #185: .ai/skills/designer-selection-lifecycle/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/designer-selection-lifecycle/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/designer-selection-lifecycle/SKILL.md`
@@ -14140,8 +15536,8 @@ Entender selección simple, múltiple, edición y transición entre estados del 
 
 ---
 
-<a id="archivo-0181"></a>
-## Archivo #181: .ai/skills/detail-view-sectioning/SKILL.md
+<a id="archivo-0186"></a>
+## Archivo #186: .ai/skills/detail-view-sectioning/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/detail-view-sectioning/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/detail-view-sectioning/SKILL.md`
@@ -14196,8 +15592,8 @@ Estructurar el detalle en secciones compactas, legibles y con colapso útil.
 
 ---
 
-<a id="archivo-0182"></a>
-## Archivo #182: .ai/skills/document-workflow-ux-patterns/SKILL.md
+<a id="archivo-0187"></a>
+## Archivo #187: .ai/skills/document-workflow-ux-patterns/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/document-workflow-ux-patterns/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/document-workflow-ux-patterns/SKILL.md`
@@ -14252,8 +15648,8 @@ Aplicar patrones de UX orientados a flujos documentales: claridad, foco, revisi�
 
 ---
 
-<a id="archivo-0183"></a>
-## Archivo #183: .ai/skills/docusign-inspired-product-thinking/SKILL.md
+<a id="archivo-0188"></a>
+## Archivo #188: .ai/skills/docusign-inspired-product-thinking/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/docusign-inspired-product-thinking/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/docusign-inspired-product-thinking/SKILL.md`
@@ -14309,8 +15705,8 @@ Aplicar criterio de producto documental: claridad, foco, progresividad y confian
 
 ---
 
-<a id="archivo-0184"></a>
-## Archivo #184: .ai/skills/editor-product-vision/SKILL.md
+<a id="archivo-0189"></a>
+## Archivo #189: .ai/skills/editor-product-vision/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/editor-product-vision/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/editor-product-vision/SKILL.md`
@@ -14344,8 +15740,8 @@ Cuando una tarea impacta directamente la visión del producto del editor PDF o l
 
 ---
 
-<a id="archivo-0185"></a>
-## Archivo #185: .ai/skills/editor-regression-testing/SKILL.md
+<a id="archivo-0190"></a>
+## Archivo #190: .ai/skills/editor-regression-testing/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/editor-regression-testing/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/editor-regression-testing/SKILL.md`
@@ -14401,8 +15797,8 @@ Asegurar que la evolución del editor no reintroduzca fallos en interacción, la
 
 ---
 
-<a id="archivo-0186"></a>
-## Archivo #186: .ai/skills/fork-safe-pdfme-evolution/SKILL.md
+<a id="archivo-0191"></a>
+## Archivo #191: .ai/skills/fork-safe-pdfme-evolution/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/fork-safe-pdfme-evolution/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/fork-safe-pdfme-evolution/SKILL.md`
@@ -14457,8 +15853,8 @@ Evolucionar el fork con criterio propio sin reintroducir dependencias mentales d
 
 ---
 
-<a id="archivo-0187"></a>
-## Archivo #187: .ai/skills/generator-runtime-parity/SKILL.md
+<a id="archivo-0192"></a>
+## Archivo #192: .ai/skills/generator-runtime-parity/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/generator-runtime-parity/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/generator-runtime-parity/SKILL.md`
@@ -14514,8 +15910,8 @@ Reducir diferencias entre render visual en el editor y salida final del generato
 
 ---
 
-<a id="archivo-0188"></a>
-## Archivo #188: .ai/skills/inspector-panel-composition/SKILL.md
+<a id="archivo-0193"></a>
+## Archivo #193: .ai/skills/inspector-panel-composition/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/inspector-panel-composition/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/inspector-panel-composition/SKILL.md`
@@ -14570,8 +15966,8 @@ Mejorar composición del inspector derecho sin mezclar layout shell con widgets 
 
 ---
 
-<a id="archivo-0189"></a>
-## Archivo #189: .ai/skills/list-view-reorder-patterns/SKILL.md
+<a id="archivo-0194"></a>
+## Archivo #194: .ai/skills/list-view-reorder-patterns/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/list-view-reorder-patterns/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/list-view-reorder-patterns/SKILL.md`
@@ -14626,8 +16022,8 @@ Diseñar reorder, bulk edit y selección en list view sin romper claridad ni pre
 
 ---
 
-<a id="archivo-0190"></a>
-## Archivo #190: .ai/skills/moveable-selecto-integration/SKILL.md
+<a id="archivo-0195"></a>
+## Archivo #195: .ai/skills/moveable-selecto-integration/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/moveable-selecto-integration/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/moveable-selecto-integration/SKILL.md`
@@ -14684,8 +16080,8 @@ Guiar cambios seguros cuando Moveable y Selecto comparten selección, drag, resi
 
 ---
 
-<a id="archivo-0191"></a>
-## Archivo #191: .ai/skills/pdfme-integration/SKILL.md
+<a id="archivo-0196"></a>
+## Archivo #196: .ai/skills/pdfme-integration/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/pdfme-integration/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/pdfme-integration/SKILL.md`
@@ -14716,8 +16112,8 @@ Integrar y extender `sisad-pdfme` modificado de forma controlada.
 
 ---
 
-<a id="archivo-0192"></a>
-## Archivo #192: .ai/skills/platform-architecture-governance/SKILL.md
+<a id="archivo-0197"></a>
+## Archivo #197: .ai/skills/platform-architecture-governance/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/platform-architecture-governance/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/platform-architecture-governance/SKILL.md`
@@ -14774,8 +16170,8 @@ Tomar decisiones transversales de arquitectura sin perder claridad entre realida
 
 ---
 
-<a id="archivo-0193"></a>
-## Archivo #193: .ai/skills/playwright-canvas-diagnostics/SKILL.md
+<a id="archivo-0198"></a>
+## Archivo #198: .ai/skills/playwright-canvas-diagnostics/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/playwright-canvas-diagnostics/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/playwright-canvas-diagnostics/SKILL.md`
@@ -14830,8 +16226,8 @@ Diagnosticar y cubrir bugs del canvas usando Playwright con escenarios repetible
 
 ---
 
-<a id="archivo-0194"></a>
-## Archivo #194: .ai/skills/public-api-surface-design/SKILL.md
+<a id="archivo-0199"></a>
+## Archivo #199: .ai/skills/public-api-surface-design/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/public-api-surface-design/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/public-api-surface-design/SKILL.md`
@@ -14889,8 +16285,8 @@ Diseñar y proteger exports públicos del proyecto sin filtrar internals inneces
 
 ---
 
-<a id="archivo-0195"></a>
-## Archivo #195: .ai/skills/react-doctor/SKILL.md
+<a id="archivo-0200"></a>
+## Archivo #200: .ai/skills/react-doctor/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/react-doctor/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/react-doctor/SKILL.md`
@@ -14923,8 +16319,8 @@ Run after making changes to catch issues early. Fix errors first, then re-run to
 
 ---
 
-<a id="archivo-0196"></a>
-## Archivo #196: .ai/skills/refactor-safety/SKILL.md
+<a id="archivo-0201"></a>
+## Archivo #201: .ai/skills/refactor-safety/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/refactor-safety/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/refactor-safety/SKILL.md`
@@ -14950,8 +16346,8 @@ Cambiar arquitectura sin romper funcionalidades base.
 
 ---
 
-<a id="archivo-0197"></a>
-## Archivo #197: .ai/skills/schema-identity-persistence/SKILL.md
+<a id="archivo-0202"></a>
+## Archivo #202: .ai/skills/schema-identity-persistence/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/schema-identity-persistence/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/schema-identity-persistence/SKILL.md`
@@ -15006,8 +16402,8 @@ Mantener identidad estable y persistencia confiable para schemas a través de re
 
 ---
 
-<a id="archivo-0198"></a>
-## Archivo #198: .ai/skills/schema-registry-extension/SKILL.md
+<a id="archivo-0203"></a>
+## Archivo #203: .ai/skills/schema-registry-extension/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/schema-registry-extension/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/schema-registry-extension/SKILL.md`
@@ -15063,8 +16459,8 @@ Agregar nuevas familias schema y mantener el registry coherente y extensible.
 
 ---
 
-<a id="archivo-0199"></a>
-## Archivo #199: .ai/skills/schema-render-contracts/SKILL.md
+<a id="archivo-0204"></a>
+## Archivo #204: .ai/skills/schema-render-contracts/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/schema-render-contracts/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/schema-render-contracts/SKILL.md`
@@ -15119,8 +16515,8 @@ Definir contratos claros para cada familia schema entre helper, uiRender, pdfRen
 
 ---
 
-<a id="archivo-0200"></a>
-## Archivo #200: .ai/skills/snaplines-guides-behavior/SKILL.md
+<a id="archivo-0205"></a>
+## Archivo #205: .ai/skills/snaplines-guides-behavior/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/snaplines-guides-behavior/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/snaplines-guides-behavior/SKILL.md`
@@ -15175,8 +16571,8 @@ Controlar snap lines y rulers para que ayuden sin contaminar la vista.
 
 ---
 
-<a id="archivo-0201"></a>
-## Archivo #201: .ai/skills/ux-compact-panels/SKILL.md
+<a id="archivo-0206"></a>
+## Archivo #206: .ai/skills/ux-compact-panels/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/ux-compact-panels/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/ux-compact-panels/SKILL.md`
@@ -15207,8 +16603,8 @@ No mostrar configuraciones complejas hasta que el usuario las pida.
 
 ---
 
-<a id="archivo-0202"></a>
-## Archivo #202: .ai/skills/wix-inspired-left-rail-ux/SKILL.md
+<a id="archivo-0207"></a>
+## Archivo #207: .ai/skills/wix-inspired-left-rail-ux/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/wix-inspired-left-rail-ux/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/wix-inspired-left-rail-ux/SKILL.md`
@@ -15264,8 +16660,8 @@ Aplicar patrones de rail compacto, discovery mode y progressive disclosure inspi
 
 ---
 
-<a id="archivo-0203"></a>
-## Archivo #203: .backup-ai-workspace/.agents.bak/agents/canvas-ux-orchestrator.agent.md
+<a id="archivo-0208"></a>
+## Archivo #208: .backup-ai-workspace/.agents.bak/agents/canvas-ux-orchestrator.agent.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/agents/canvas-ux-orchestrator.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/agents/canvas-ux-orchestrator.agent.md`
@@ -15299,8 +16695,8 @@ Lograr una experiencia tipo editor profesional con mínima ocupación visual y m
 
 ---
 
-<a id="archivo-0204"></a>
-## Archivo #204: .backup-ai-workspace/.agents.bak/agents/design-system-guardian.agent.md
+<a id="archivo-0209"></a>
+## Archivo #209: .backup-ai-workspace/.agents.bak/agents/design-system-guardian.agent.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/agents/design-system-guardian.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/agents/design-system-guardian.agent.md`
@@ -15335,8 +16731,8 @@ Garantizar consistencia entre tokens, spacing, radii, sombras, tipografías, tam
 
 ---
 
-<a id="archivo-0205"></a>
-## Archivo #205: .backup-ai-workspace/.agents.bak/agents/frontend-pdf-architect.agent.md
+<a id="archivo-0210"></a>
+## Archivo #210: .backup-ai-workspace/.agents.bak/agents/frontend-pdf-architect.agent.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/agents/frontend-pdf-architect.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/agents/frontend-pdf-architect.agent.md`
@@ -15388,8 +16784,8 @@ Diseñar y refactorizar el editor PDF como producto, no como laboratorio de prue
 
 ---
 
-<a id="archivo-0206"></a>
-## Archivo #206: .backup-ai-workspace/.agents.bak/agents/pdfme-runtime-specialist.agent.md
+<a id="archivo-0211"></a>
+## Archivo #211: .backup-ai-workspace/.agents.bak/agents/pdfme-runtime-specialist.agent.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/agents/pdfme-runtime-specialist.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/agents/pdfme-runtime-specialist.agent.md`
@@ -15430,8 +16826,8 @@ Mantener la compatibilidad con sisad-pdfme mientras se mejora su ergonomía, ext
 
 ---
 
-<a id="archivo-0207"></a>
-## Archivo #207: .backup-ai-workspace/.agents.bak/agents/prompt-execution-director.agent.md
+<a id="archivo-0212"></a>
+## Archivo #212: .backup-ai-workspace/.agents.bak/agents/prompt-execution-director.agent.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/agents/prompt-execution-director.agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/agents/prompt-execution-director.agent.md`
@@ -15466,8 +16862,8 @@ Reducir ambigüedad y guiar a los modelos a cambios estructurados, seguros y med
 
 ---
 
-<a id="archivo-0208"></a>
-## Archivo #208: .backup-ai-workspace/.agents.bak/instructions/css-unification.instructions.md
+<a id="archivo-0213"></a>
+## Archivo #213: .backup-ai-workspace/.agents.bak/instructions/css-unification.instructions.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/instructions/css-unification.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/instructions/css-unification.instructions.md`
@@ -15495,8 +16891,8 @@ Lograr que el editor tenga una base visual consistente, predecible y mantenible.
 
 ---
 
-<a id="archivo-0209"></a>
-## Archivo #209: .backup-ai-workspace/.agents.bak/instructions/frontend-editor.instructions.md
+<a id="archivo-0214"></a>
+## Archivo #214: .backup-ai-workspace/.agents.bak/instructions/frontend-editor.instructions.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/instructions/frontend-editor.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/instructions/frontend-editor.instructions.md`
@@ -15543,8 +16939,8 @@ Evolucionar el editor PDF hacia una arquitectura profesional y compacta.
 
 ---
 
-<a id="archivo-0210"></a>
-## Archivo #210: .backup-ai-workspace/.agents.bak/instructions/pdfme-extension.instructions.md
+<a id="archivo-0215"></a>
+## Archivo #215: .backup-ai-workspace/.agents.bak/instructions/pdfme-extension.instructions.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/instructions/pdfme-extension.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/instructions/pdfme-extension.instructions.md`
@@ -15577,8 +16973,8 @@ Extender sisad-pdfme modificado sin convertir la integración en una caja negra 
 
 ---
 
-<a id="archivo-0211"></a>
-## Archivo #211: .backup-ai-workspace/.agents.bak/instructions/ui-ux-compact.instructions.md
+<a id="archivo-0216"></a>
+## Archivo #216: .backup-ai-workspace/.agents.bak/instructions/ui-ux-compact.instructions.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/instructions/ui-ux-compact.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/instructions/ui-ux-compact.instructions.md`
@@ -15610,8 +17006,8 @@ Aplicar una experiencia compacta inspirada en Wix, Figma y editores modernos.
 
 ---
 
-<a id="archivo-0212"></a>
-## Archivo #212: .backup-ai-workspace/.agents.bak/prompts/compact-wix-style-ui.prompt.md
+<a id="archivo-0217"></a>
+## Archivo #217: .backup-ai-workspace/.agents.bak/prompts/compact-wix-style-ui.prompt.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/compact-wix-style-ui.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/compact-wix-style-ui.prompt.md`
@@ -15645,8 +17041,8 @@ Transformar una UI pesada de editor PDF en una experiencia compacta y profesiona
 
 ---
 
-<a id="archivo-0213"></a>
-## Archivo #213: .backup-ai-workspace/.agents.bak/prompts/create-command-bus.prompt.md
+<a id="archivo-0218"></a>
+## Archivo #218: .backup-ai-workspace/.agents.bak/prompts/create-command-bus.prompt.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/create-command-bus.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/create-command-bus.prompt.md`
@@ -15686,8 +17082,8 @@ Diseñar e implementar un command bus reutilizable para accionar funciones del e
 
 ---
 
-<a id="archivo-0214"></a>
-## Archivo #214: .backup-ai-workspace/.agents.bak/prompts/refactor-editor-shell.prompt.md
+<a id="archivo-0219"></a>
+## Archivo #219: .backup-ai-workspace/.agents.bak/prompts/refactor-editor-shell.prompt.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/refactor-editor-shell.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/refactor-editor-shell.prompt.md`
@@ -15736,8 +17132,8 @@ Refactorizar el shell principal del editor para separar:
 
 ---
 
-<a id="archivo-0215"></a>
-## Archivo #215: .backup-ai-workspace/.agents.bak/prompts/split-monolithic-hook.prompt.md
+<a id="archivo-0220"></a>
+## Archivo #220: .backup-ai-workspace/.agents.bak/prompts/split-monolithic-hook.prompt.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/split-monolithic-hook.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/split-monolithic-hook.prompt.md`
@@ -15771,8 +17167,8 @@ Extraer al menos estas responsabilidades:
 
 ---
 
-<a id="archivo-0216"></a>
-## Archivo #216: .backup-ai-workspace/.agents.bak/prompts/unify-css-architecture.prompt.md
+<a id="archivo-0221"></a>
+## Archivo #221: .backup-ai-workspace/.agents.bak/prompts/unify-css-architecture.prompt.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/unify-css-architecture.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/unify-css-architecture.prompt.md`
@@ -15803,8 +17199,8 @@ Una arquitectura CSS estable, limpia y escalable.
 
 ---
 
-<a id="archivo-0217"></a>
-## Archivo #217: .backup-ai-workspace/.agents.bak/react-doctor/AGENTS.md
+<a id="archivo-0222"></a>
+## Archivo #222: .backup-ai-workspace/.agents.bak/react-doctor/AGENTS.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/react-doctor/AGENTS.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/react-doctor/AGENTS.md`
@@ -15833,8 +17229,8 @@ Run after making changes to catch issues early. Fix errors first, then re-run to
 
 ---
 
-<a id="archivo-0218"></a>
-## Archivo #218: .backup-ai-workspace/.agents.bak/react-doctor/SKILL.md
+<a id="archivo-0223"></a>
+## Archivo #223: .backup-ai-workspace/.agents.bak/react-doctor/SKILL.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/react-doctor/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/react-doctor/SKILL.md`
@@ -15867,8 +17263,8 @@ Run after making changes to catch issues early. Fix errors first, then re-run to
 
 ---
 
-<a id="archivo-0219"></a>
-## Archivo #219: .backup-ai-workspace/.agents.bak/skills/canvas-interaction.skill.md
+<a id="archivo-0224"></a>
+## Archivo #224: .backup-ai-workspace/.agents.bak/skills/canvas-interaction.skill.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/canvas-interaction.skill.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/canvas-interaction.skill.md`
@@ -15896,8 +17292,8 @@ Toda mejora de interacción debe respetar el foco del canvas y minimizar fricci�
 
 ---
 
-<a id="archivo-0220"></a>
-## Archivo #220: .backup-ai-workspace/.agents.bak/skills/component-composition.skill.md
+<a id="archivo-0225"></a>
+## Archivo #225: .backup-ai-workspace/.agents.bak/skills/component-composition.skill.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/component-composition.skill.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/component-composition.skill.md`
@@ -15922,8 +17318,8 @@ Cada componente debe tener una responsabilidad principal clara.
 
 ---
 
-<a id="archivo-0221"></a>
-## Archivo #221: .backup-ai-workspace/.agents.bak/skills/design-system-consistency.skill.md
+<a id="archivo-0226"></a>
+## Archivo #226: .backup-ai-workspace/.agents.bak/skills/design-system-consistency.skill.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/design-system-consistency.skill.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/design-system-consistency.skill.md`
@@ -15950,8 +17346,8 @@ Mantener coherencia visual y semántica.
 
 ---
 
-<a id="archivo-0222"></a>
-## Archivo #222: .backup-ai-workspace/.agents.bak/skills/editor-product-vision.skill.md
+<a id="archivo-0227"></a>
+## Archivo #227: .backup-ai-workspace/.agents.bak/skills/editor-product-vision.skill.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/editor-product-vision.skill.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/editor-product-vision.skill.md`
@@ -15981,8 +17377,8 @@ Cuando una tarea impacta directamente la visión del producto del editor PDF.
 
 ---
 
-<a id="archivo-0223"></a>
-## Archivo #223: .backup-ai-workspace/.agents.bak/skills/pdfme-integration.skill.md
+<a id="archivo-0228"></a>
+## Archivo #228: .backup-ai-workspace/.agents.bak/skills/pdfme-integration.skill.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/pdfme-integration.skill.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/pdfme-integration.skill.md`
@@ -16006,8 +17402,8 @@ Integrar y extender sisad-pdfme modificado de forma controlada.
 
 ---
 
-<a id="archivo-0224"></a>
-## Archivo #224: .backup-ai-workspace/.agents.bak/skills/refactor-safety.skill.md
+<a id="archivo-0229"></a>
+## Archivo #229: .backup-ai-workspace/.agents.bak/skills/refactor-safety.skill.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/refactor-safety.skill.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/refactor-safety.skill.md`
@@ -16033,8 +17429,8 @@ Cambiar arquitectura sin romper funcionalidades base.
 
 ---
 
-<a id="archivo-0225"></a>
-## Archivo #225: .backup-ai-workspace/.agents.bak/skills/ux-compact-panels.skill.md
+<a id="archivo-0230"></a>
+## Archivo #230: .backup-ai-workspace/.agents.bak/skills/ux-compact-panels.skill.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/ux-compact-panels.skill.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/ux-compact-panels.skill.md`
@@ -16065,8 +17461,8 @@ No mostrar configuraciones complejas hasta que el usuario las pida.
 
 ---
 
-<a id="archivo-0226"></a>
-## Archivo #226: .backup-ai-workspace/github-prompts.bak/agents/pdfme-command-architect.md
+<a id="archivo-0231"></a>
+## Archivo #231: .backup-ai-workspace/github-prompts.bak/agents/pdfme-command-architect.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/agents/pdfme-command-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/agents/pdfme-command-architect.md`
@@ -16111,8 +17507,8 @@ You are a senior architect specialized in shared editor logic and command layers
 
 ---
 
-<a id="archivo-0227"></a>
-## Archivo #227: .backup-ai-workspace/github-prompts.bak/agents/pdfme-css-polish-architect.md
+<a id="archivo-0232"></a>
+## Archivo #232: .backup-ai-workspace/github-prompts.bak/agents/pdfme-css-polish-architect.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/agents/pdfme-css-polish-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/agents/pdfme-css-polish-architect.md`
@@ -16153,8 +17549,8 @@ You are a senior visual architect specialized in CSS consolidation and UI polish
 
 ---
 
-<a id="archivo-0228"></a>
-## Archivo #228: .backup-ai-workspace/github-prompts.bak/agents/pdfme-editor-architect.md
+<a id="archivo-0233"></a>
+## Archivo #233: .backup-ai-workspace/github-prompts.bak/agents/pdfme-editor-architect.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/agents/pdfme-editor-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/agents/pdfme-editor-architect.md`
@@ -16196,8 +17592,8 @@ Improve the sisad-pdfme editor incrementally without rewriting the motor.
 
 ---
 
-<a id="archivo-0229"></a>
-## Archivo #229: .backup-ai-workspace/github-prompts.bak/agents/pdfme-layout-architect.md
+<a id="archivo-0234"></a>
+## Archivo #234: .backup-ai-workspace/github-prompts.bak/agents/pdfme-layout-architect.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/agents/pdfme-layout-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/agents/pdfme-layout-architect.md`
@@ -16241,8 +17637,8 @@ You are a senior architect specialized in workspace layout and editor shell UX.
 
 ---
 
-<a id="archivo-0230"></a>
-## Archivo #230: .backup-ai-workspace/github-prompts.bak/agents/pdfme-overlay-architect.md
+<a id="archivo-0235"></a>
+## Archivo #235: .backup-ai-workspace/github-prompts.bak/agents/pdfme-overlay-architect.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/agents/pdfme-overlay-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/agents/pdfme-overlay-architect.md`
@@ -16289,8 +17685,8 @@ You are a senior frontend architect specialized in on-canvas overlays for visual
 
 ---
 
-<a id="archivo-0231"></a>
-## Archivo #231: .backup-ai-workspace/github-prompts.bak/agents/pdfme-registry-architect.md
+<a id="archivo-0236"></a>
+## Archivo #236: .backup-ai-workspace/github-prompts.bak/agents/pdfme-registry-architect.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/agents/pdfme-registry-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/agents/pdfme-registry-architect.md`
@@ -16333,8 +17729,8 @@ You are a senior architecture agent specialized in extensibility systems for vis
 
 ---
 
-<a id="archivo-0232"></a>
-## Archivo #232: .backup-ai-workspace/github-prompts.bak/agents/pdfme-sidebar-architect.md
+<a id="archivo-0237"></a>
+## Archivo #237: .backup-ai-workspace/github-prompts.bak/agents/pdfme-sidebar-architect.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/agents/pdfme-sidebar-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/agents/pdfme-sidebar-architect.md`
@@ -16380,8 +17776,8 @@ You are a senior architect specialized in contextual side panels for visual edit
 
 ---
 
-<a id="archivo-0233"></a>
-## Archivo #233: .backup-ai-workspace/github-prompts.bak/agents/pdfme-testing-architect.md
+<a id="archivo-0238"></a>
+## Archivo #238: .backup-ai-workspace/github-prompts.bak/agents/pdfme-testing-architect.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/agents/pdfme-testing-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/agents/pdfme-testing-architect.md`
@@ -16426,8 +17822,8 @@ You are a senior testing architect specialized in editor interaction testing.
 
 ---
 
-<a id="archivo-0234"></a>
-## Archivo #234: .backup-ai-workspace/github-prompts.bak/agents/pdfme-toolbar-architect.md
+<a id="archivo-0239"></a>
+## Archivo #239: .backup-ai-workspace/github-prompts.bak/agents/pdfme-toolbar-architect.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/agents/pdfme-toolbar-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/agents/pdfme-toolbar-architect.md`
@@ -16471,8 +17867,8 @@ You are a senior UX/UI architect specialized in toolbars for visual editors.
 
 ---
 
-<a id="archivo-0235"></a>
-## Archivo #235: .backup-ai-workspace/github-skills.bak/canvas-interaction/SKILL.md
+<a id="archivo-0240"></a>
+## Archivo #240: .backup-ai-workspace/github-skills.bak/canvas-interaction/SKILL.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/canvas-interaction/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/canvas-interaction/SKILL.md`
@@ -16508,8 +17904,8 @@ Toda mejora de interacción debe respetar el foco del canvas y minimizar fricci�
 
 ---
 
-<a id="archivo-0236"></a>
-## Archivo #236: .backup-ai-workspace/github-skills.bak/editor-product-vision/SKILL.md
+<a id="archivo-0241"></a>
+## Archivo #241: .backup-ai-workspace/github-skills.bak/editor-product-vision/SKILL.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/editor-product-vision/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/editor-product-vision/SKILL.md`
@@ -16543,8 +17939,8 @@ Cuando una tarea impacta directamente la visión del producto del editor PDF o l
 
 ---
 
-<a id="archivo-0237"></a>
-## Archivo #237: .backup-ai-workspace/github-skills.bak/pdfme-integration/SKILL.md
+<a id="archivo-0242"></a>
+## Archivo #242: .backup-ai-workspace/github-skills.bak/pdfme-integration/SKILL.md
 
 - **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/pdfme-integration/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/pdfme-integration/SKILL.md`
@@ -16575,8 +17971,8 @@ Integrar y extender `sisad-pdfme` modificado de forma controlada.
 
 ---
 
-<a id="archivo-0238"></a>
-## Archivo #238: docs/ai/agents/README.md
+<a id="archivo-0243"></a>
+## Archivo #243: docs/ai/agents/README.md
 
 - **Ruta relativa:** `docs/ai/agents/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/ai/agents/README.md`
@@ -16591,8 +17987,8 @@ Integrar y extender `sisad-pdfme` modificado de forma controlada.
 
 ---
 
-<a id="archivo-0239"></a>
-## Archivo #239: docs/ai/instructions/README.md
+<a id="archivo-0244"></a>
+## Archivo #244: docs/ai/instructions/README.md
 
 - **Ruta relativa:** `docs/ai/instructions/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/ai/instructions/README.md`
@@ -16607,8 +18003,8 @@ Integrar y extender `sisad-pdfme` modificado de forma controlada.
 
 ---
 
-<a id="archivo-0240"></a>
-## Archivo #240: docs/ai/prompts/README.md
+<a id="archivo-0245"></a>
+## Archivo #245: docs/ai/prompts/README.md
 
 - **Ruta relativa:** `docs/ai/prompts/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/ai/prompts/README.md`
@@ -16623,8 +18019,8 @@ Integrar y extender `sisad-pdfme` modificado de forma controlada.
 
 ---
 
-<a id="archivo-0241"></a>
-## Archivo #241: docs/ai/skills/README.md
+<a id="archivo-0246"></a>
+## Archivo #246: docs/ai/skills/README.md
 
 - **Ruta relativa:** `docs/ai/skills/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/ai/skills/README.md`
@@ -16639,8 +18035,8 @@ Integrar y extender `sisad-pdfme` modificado de forma controlada.
 
 ---
 
-<a id="archivo-0242"></a>
-## Archivo #242: src/sisad-pdfme/ui/designerEngine.api.md
+<a id="archivo-0247"></a>
+## Archivo #247: src/sisad-pdfme/ui/designerEngine.api.md
 
 - **Ruta relativa:** `src/sisad-pdfme/ui/designerEngine.api.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/designerEngine.api.md`
@@ -16734,8 +18130,8 @@ Cada schema puede guardar config en `__designer` (o la key que definas):
 
 ---
 
-<a id="archivo-0243"></a>
-## Archivo #243: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-command-architect.md
+<a id="archivo-0248"></a>
+## Archivo #248: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-command-architect.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-command-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-command-architect.md`
@@ -16780,8 +18176,8 @@ You are a senior architect specialized in shared editor logic and command layers
 
 ---
 
-<a id="archivo-0244"></a>
-## Archivo #244: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-css-polish-architect.md
+<a id="archivo-0249"></a>
+## Archivo #249: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-css-polish-architect.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-css-polish-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-css-polish-architect.md`
@@ -16822,8 +18218,8 @@ You are a senior visual architect specialized in CSS consolidation and UI polish
 
 ---
 
-<a id="archivo-0245"></a>
-## Archivo #245: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-editor-architect.md
+<a id="archivo-0250"></a>
+## Archivo #250: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-editor-architect.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-editor-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-editor-architect.md`
@@ -16865,8 +18261,8 @@ Improve the sisad-pdfme editor incrementally without rewriting the motor.
 
 ---
 
-<a id="archivo-0246"></a>
-## Archivo #246: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-layout-architect.md
+<a id="archivo-0251"></a>
+## Archivo #251: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-layout-architect.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-layout-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-layout-architect.md`
@@ -16910,8 +18306,8 @@ You are a senior architect specialized in workspace layout and editor shell UX.
 
 ---
 
-<a id="archivo-0247"></a>
-## Archivo #247: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-overlay-architect.md
+<a id="archivo-0252"></a>
+## Archivo #252: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-overlay-architect.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-overlay-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-overlay-architect.md`
@@ -16958,8 +18354,8 @@ You are a senior frontend architect specialized in on-canvas overlays for visual
 
 ---
 
-<a id="archivo-0248"></a>
-## Archivo #248: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-registry-architect.md
+<a id="archivo-0253"></a>
+## Archivo #253: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-registry-architect.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-registry-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-registry-architect.md`
@@ -17002,8 +18398,8 @@ You are a senior architecture agent specialized in extensibility systems for vis
 
 ---
 
-<a id="archivo-0249"></a>
-## Archivo #249: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-sidebar-architect.md
+<a id="archivo-0254"></a>
+## Archivo #254: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-sidebar-architect.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-sidebar-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-sidebar-architect.md`
@@ -17049,8 +18445,8 @@ You are a senior architect specialized in contextual side panels for visual edit
 
 ---
 
-<a id="archivo-0250"></a>
-## Archivo #250: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-testing-architect.md
+<a id="archivo-0255"></a>
+## Archivo #255: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-testing-architect.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-testing-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-testing-architect.md`
@@ -17095,8 +18491,8 @@ You are a senior testing architect specialized in editor interaction testing.
 
 ---
 
-<a id="archivo-0251"></a>
-## Archivo #251: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-toolbar-architect.md
+<a id="archivo-0256"></a>
+## Archivo #256: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-toolbar-architect.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-toolbar-architect.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-toolbar-architect.md`
@@ -17140,8 +18536,8 @@ You are a senior UX/UI architect specialized in toolbars for visual editors.
 
 ---
 
-<a id="archivo-0252"></a>
-## Archivo #252: .backup-ai-workspace/.agents.bak/skills/canvas-interaction/SKILL.md
+<a id="archivo-0257"></a>
+## Archivo #257: .backup-ai-workspace/.agents.bak/skills/canvas-interaction/SKILL.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/canvas-interaction/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/canvas-interaction/SKILL.md`
@@ -17177,8 +18573,8 @@ Toda mejora de interacción debe respetar el foco del canvas y minimizar fricci�
 
 ---
 
-<a id="archivo-0253"></a>
-## Archivo #253: .backup-ai-workspace/.agents.bak/skills/editor-product-vision/SKILL.md
+<a id="archivo-0258"></a>
+## Archivo #258: .backup-ai-workspace/.agents.bak/skills/editor-product-vision/SKILL.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/editor-product-vision/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/editor-product-vision/SKILL.md`
@@ -17212,8 +18608,8 @@ Cuando una tarea impacta directamente la visión del producto del editor PDF o l
 
 ---
 
-<a id="archivo-0254"></a>
-## Archivo #254: .backup-ai-workspace/.agents.bak/skills/pdfme-integration/SKILL.md
+<a id="archivo-0259"></a>
+## Archivo #259: .backup-ai-workspace/.agents.bak/skills/pdfme-integration/SKILL.md
 
 - **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/pdfme-integration/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/pdfme-integration/SKILL.md`
@@ -22126,6 +23522,7 @@ prueba-plugin
 │   ├── 25-testing-quality-roadmap.md
 │   ├── 30-types-transversal-contracts.md
 │   ├── 31-public-apis-consumer-surface.md
+│   ├── 32-schema-audit.md
 │   ├── 32-schema-families-extension-guide.md
 │   ├── 33-rename-guide-platform-pdf.md
 │   ├── 34-product-matrix-sdk-commercialization.md
@@ -22246,6 +23643,14 @@ prueba-plugin
 │   │       └── types
 │   └── types
 ├── test-results
+│   ├── pdfme-editor-PDFME-editor--0cd8b-on-the-basic-designer-route-chromium
+│   │   └── error-context.md
+│   ├── pdfme-editor-PDFME-editor--544df-on-the-multi-document-route-chromium
+│   │   └── error-context.md
+│   ├── pdfme-editor-PDFME-editor--a3ed6-cks-on-the-enterprise-route-chromium
+│   │   └── error-context.md
+│   └── pdfme-editor-PDFME-editor--f3033-als-from-the-detail-sidebar-chromium
+│       └── error-context.md
 └── tests
     ├── playwright
     └── unit

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import { buildInspectorSections } from '../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.js';
+import { createSchemaInspectorConfig } from '../../src/sisad-pdfme/schemas/index.js';
 
 const typedI18n = (key: string) => key;
 
@@ -40,22 +41,23 @@ describe('buildInspectorSections', () => {
     expect((style?.schema as { properties?: Record<string, unknown> }).properties).toHaveProperty('fontName');
   });
 
-  it('renders image schemas with persistence and collaboration sections but no validation', () => {
-    const sections = buildInspectorSections({
-      ...baseParams,
-      activeSchemaType: 'image',
-      defaultSchema: { rotate: 0, opacity: 1 },
-    });
+  it.each(['image', 'svg'] as const)(
+    'renders %s schemas with persistence and collaboration sections but no validation',
+    (activeSchemaType) => {
+      const sections = buildInspectorSections({
+        ...baseParams,
+        activeSchemaType,
+        defaultSchema: { rotate: 0, opacity: 1 },
+      });
 
-    expect(sections.map((section) => section.key)).toEqual([
-      'general',
-      'layout',
-      'data',
-      'connections',
-      'collaboration',
-      'advanced',
-    ]);
-  });
+      expect(sections.map((section) => section.key)).toEqual([
+        'general',
+        'layout',
+        'collaboration',
+        'advanced',
+      ]);
+    },
+  );
 
   it('routes signature placeholder to data and colors to style', () => {
     const sections = buildInspectorSections({
@@ -100,5 +102,31 @@ describe('buildInspectorSections', () => {
 
     const data = sections.find((section) => section.key === 'data');
     expect((data?.schema as { properties?: Record<string, unknown> }).properties).toHaveProperty('customField');
+  });
+
+  it('keeps table schemas connected and collaborative while hiding validation', () => {
+    const sections = buildInspectorSections({
+      ...baseParams,
+      activeSchemaType: 'table',
+      defaultSchema: { rotate: 0, opacity: 1 },
+    });
+
+    expect(sections.map((section) => section.key)).toEqual([
+      'general',
+      'layout',
+      'data',
+      'connections',
+      'collaboration',
+      'advanced',
+    ]);
+  });
+
+  it('re-exports the family-aware inspector factory from the schemas barrel', () => {
+    const mediaInspectorConfig = createSchemaInspectorConfig('media');
+
+    expect(mediaInspectorConfig.supportsConnections).toBe(false);
+    expect(mediaInspectorConfig.supportsCollaboration).toBe(true);
+    expect(mediaInspectorConfig.supportsValidation).toBe(false);
+    expect(mediaInspectorConfig.visibleSections).toEqual(['general', 'layout', 'style', 'collaboration', 'advanced']);
   });
 });

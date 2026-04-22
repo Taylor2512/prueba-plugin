@@ -44,7 +44,7 @@ Por eso la estrategia adecuada sigue siendo **progressive disclosure**.
 
 ## 4. `DetailViewContent`
 
-La estructura actual ya divide el schema en secciones:
+La estructura actual ya divide el schema en secciones y delega el resumen superior a `DetailHeaderCard`:
 - general
 - style
 - layout
@@ -52,6 +52,8 @@ La estructura actual ya divide el schema en secciones:
 - collaboration
 - validation
 - advanced
+
+`src/sisad-pdfme/schemas/schemaFamilies.ts` es la fuente de verdad para `visibleSections` y los flags `supports*`; `detailSchemas.ts` sólo normaliza ese contrato y lo materializa en UI.
 
 Además calcula tags para configuración activa:
 - Guardar
@@ -61,9 +63,11 @@ Además calcula tags para configuración activa:
 
 ### Tags colaborativos mínimos (fase crítica)
 
-El header/detalle debe poder exponer de forma compacta:
+`DetailHeaderCard` debe poder exponer de forma compacta:
 
+- `schemaUid` estable del campo;
 - autor activo (`createdBy`);
+- último autor visible (`lastModifiedBy`);
 - color de autor (`userColor`);
 - ownership (`ownerMode`, `ownerRecipientId(s)`);
 - lock y comentarios activos.
@@ -85,13 +89,15 @@ Eso es una señal de madurez del sistema: el inspector no solo pinta inputs, tam
 
 ## 5. `DetailHeaderCard`
 
-Debe funcionar como resumen persistente:
+Debe funcionar como resumen persistente y única superficie de chips:
 - nombre/tipo
+- identidad estable (`schemaUid`)
+- autoría visible (`createdBy`, `lastModifiedBy`)
 - tags de configuración
 - tags colaborativos
 - quizás métricas mínimas
 
-No debe competir con la sección layout ni repetir demasiada información.
+No debe competir con la sección layout ni repetir información debajo del header.
 
 ## 6. `detailSchemas`
 
@@ -113,8 +119,8 @@ Esta capa ya integra widgets base y widgets de plugins:
 - botones de alineación
 - divisores
 - groups
-- `SchemaConnectionsWidget`
-- `SchemaCollaborationWidget`
+- `SchemaConnectionsWidget` cuando el schema o la familia exponen `supportsConnections`
+- `SchemaCollaborationWidget` cuando el schema o la familia exponen colaboración
 
 ### Buena práctica
 Separar:
@@ -155,7 +161,7 @@ Es uno de los widgets más potentes del inspector, porque concentra:
 - resumen de auth
 
 ### Recomendación
-Tratarlo como un subsistema por sí mismo, no como “un widget más”. Debe seguir agrupando configuración avanzada bajo un solo paraguas.
+Tratarlo como un subsistema por sí mismo, no como “un widget más”. Debe seguir agrupando configuración avanzada bajo un solo paraguas y mostrarse sólo en familias o plugins que declaren soporte de conexiones.
 
 ## 12. `SchemaCollaborationWidget`
 

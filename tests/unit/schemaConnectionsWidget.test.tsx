@@ -69,4 +69,60 @@ describe('SchemaConnectionsWidget', () => {
     fireEvent.click(screen.getAllByRole('switch')[0]);
     expect(updateSchemaConfig).toHaveBeenCalled();
   });
+
+  it('validates local sections without forcing remote API checks', () => {
+    render(
+      <SchemaConnectionsWidget
+        {...widgetShellProps}
+        schemaConfig={{
+          persistence: { enabled: true, mode: 'local', key: 'role' },
+          form: { enabled: true, collect: true, format: 'nested', rootKey: 'formData' },
+          api: { enabled: false },
+        }}
+        updateSchemaConfig={vi.fn()}
+        designerEngine={undefined}
+        activeSchema={{ id: 'schema-1', name: 'role', type: 'text' } as never}
+      />,
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: 'Validar' }));
+    expect(screen.getByText('La configuración local está lista. Activa API si quieres probar una conexión remota.')).toBeVisible();
+  });
+
+  it('renders manual basic auth fields inside advanced settings', () => {
+    render(
+      <SchemaConnectionsWidget
+        {...widgetShellProps}
+        schemaConfig={{
+          api: {
+            enabled: true,
+            endpoint: '/api/fields/options',
+            method: 'GET',
+            http: {
+              inheritSystem: false,
+              baseURL: 'https://api.ejemplo.com',
+              auth: {
+                mode: 'manual',
+                type: 'basic',
+                headerName: 'Authorization',
+                username: 'demo',
+                password: 'secret',
+              },
+            },
+          },
+        }}
+        updateSchemaConfig={vi.fn()}
+        designerEngine={undefined}
+        activeSchema={{ id: 'schema-1', name: 'role', type: 'text' } as never}
+      />,
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: 'Configuración avanzada' }));
+    const dialog = screen.getByRole('dialog', { name: 'Configurar conexiones y persistencia' });
+    fireEvent.click(within(dialog).getByRole('button', { name: /Consulta API \/ Axios/i }));
+    fireEvent.click(within(dialog).getByRole('button', { name: /Autenticación manual/i }));
+
+    expect(within(dialog).getByDisplayValue('demo')).toBeInTheDocument();
+    expect(within(dialog).getByDisplayValue('secret')).toBeInTheDocument();
+  });
 });

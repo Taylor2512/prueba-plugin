@@ -4,8 +4,11 @@ import {
   cloneDeep,
   ZOOM,
   Template,
-  addCommentWithAnchorToTemplate,
+  findSchemaByUid,
+  createSchemaComment,
+  createSchemaCommentAnchor,
   filterCommentsByFileAndPage,
+  removeById,
   Schema,
   SchemaForUI,
   ChangeSchemas,
@@ -13,6 +16,7 @@ import {
   Size,
   isBlankPdf,
   px2mm,
+  upsertById,
 } from '@sisad-pdfme/common';
 import { DndContext, DragOverlay } from '@dnd-kit/core';
 import { pdf2size } from '@sisad-pdfme/converter';
@@ -156,6 +160,42 @@ const normalizeTemplateSchemaPages = (
       })),
     ),
   };
+};
+
+const PAGE_COMMENT_SCHEMA_PREFIX = '__page-comment__:';
+
+const buildTopLevelCommentSchemaId = (fileId?: string | null, pageNumber?: number) =>
+  `${PAGE_COMMENT_SCHEMA_PREFIX}${String(fileId || 'document')}:${Number(pageNumber) || 1}`;
+
+const isTopLevelCommentSchemaId = (schemaId?: string) =>
+  typeof schemaId === 'string' && schemaId.startsWith(PAGE_COMMENT_SCHEMA_PREFIX);
+
+const applyTopLevelCommentEventToTemplate = (
+  template: Template,
+  event: Parameters<typeof applyCollaborationEvent>[1],
+): Template => {
+  if (!('type' in event) || !event.type.startsWith('comment.')) return template;
+  if (!('schemaId' in event) || !isTopLevelCommentSchemaId(event.schemaId)) return template;
+
+  const nextTemplate = cloneDeep(template) as Template & {
+    __commentAnchors?: Array<{ id: string; anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
+  };
+  const currentEntries = Array.isArray(nextTemplate.__commentAnchors) ? nextTemplate.__commentAnchors : [];
+
+  if (event.type === 'comment.deleted') {
+    nextTemplate.__commentAnchors = removeById(currentEntries, event.commentId) as typeof currentEntries;
+    return nextTemplate;
+  }
+
+  const commentEvent = event as Extract<Parameters<typeof applyCollaborationEvent>[1], { type: 'comment.created' | 'comment.updated' }>;
+  const anchor = cloneDeep(commentEvent.anchor || commentEvent.comment.anchor || undefined);
+  const comment = cloneDeep(commentEvent.comment);
+  nextTemplate.__commentAnchors = upsertById(currentEntries, {
+    id: comment.id,
+    anchor,
+    comment,
+  } as (typeof currentEntries)[number]);
+  return nextTemplate;
 };
 
 const getBasePdfDisplayName = (basePdf: Template['basePdf']): string | null => {
@@ -449,10 +489,16 @@ const TemplateEditor = ({
     [activeDocumentId, designerEngine.collaboration],
   );
   const [rightSidebarViewMode, setRightSidebarViewMode] = useState<'auto' | 'fields' | 'detail' | 'docs' | 'comments'>('auto');
+  const [activeCommentId, setActiveCommentId] = useState<string | null>(null);
   const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const openPropertiesPanel = useCallback(() => {
     setSidebarOpen(true);
     setRightSidebarViewMode('detail');
+  }, []);
+  const openCommentsPanel = useCallback((commentId?: string | null) => {
+    setSidebarOpen(true);
+    setRightSidebarViewMode('comments');
+    setActiveCommentId(commentId || null);
   }, []);
 
   useEffect(() => {
@@ -571,6 +617,12 @@ const TemplateEditor = ({
   );
   const handleCollaborationEvent = useCallback(
     (event: Parameters<typeof applyCollaborationEvent>[1]) => {
+      if (isTopLevelCommentSchemaId('schemaId' in event ? event.schemaId : undefined)) {
+        const nextTemplate = applyTopLevelCommentEventToTemplate(visibleTemplate, event);
+        pushTemplateUpdate(nextTemplate);
+        return;
+      }
+
       setSchemasList((prev) => {
         const next = applyCollaborationEvent(prev, event);
         if (next !== prev) {
@@ -580,7 +632,7 @@ const TemplateEditor = ({
         return next;
       });
     },
-    [activeBasePdf],
+    [activeBasePdf, pushTemplateUpdate, visibleTemplate],
   );
   const collaborationSync = useCollaborationSync({
     enabled: Boolean(designerEngine.collaboration?.enabled),
@@ -713,12 +765,13 @@ const TemplateEditor = ({
         fileId: fileId || activeDocumentId || null,
         schemaUid,
       });
+      openCommentsPanel();
       setCommentDialogOpen(true);
     } catch (err) {
       console.error('openCommentDialog failed', err);
     }
     },
-    [activeDocumentId, pageCursor, paperRefs, pageSizes, scale],
+    [activeDocumentId, openCommentsPanel, pageCursor, paperRefs, pageSizes, scale],
   );
 
   const canvasWidth = size.width - leftSidebarWidth;
@@ -898,6 +951,24 @@ const TemplateEditor = ({
     };
   }, [openCommentDialog, pageCursor]);
 
+  useEffect(() => {
+    const handleCommentPinClick = (event: Event) => {
+      const detail = (event as CustomEvent<{ anchorId?: string; commentId?: string }>).detail || {};
+      let commentId: string | null = null;
+      if (typeof detail.anchorId === 'string' && detail.anchorId.trim()) {
+        commentId = detail.anchorId.trim();
+      } else if (typeof detail.commentId === 'string' && detail.commentId.trim()) {
+        commentId = detail.commentId.trim();
+      }
+      openCommentsPanel(commentId);
+    };
+
+    globalThis.addEventListener('sisad-pdfme:pin-clicked', handleCommentPinClick as EventListener);
+    return () => {
+      globalThis.removeEventListener('sisad-pdfme:pin-clicked', handleCommentPinClick as EventListener);
+    };
+  }, [openCommentsPanel]);
+
   const handleSaveComment = useCallback(
     (text: string) => {
       if (!pendingAnchor) return;
@@ -937,8 +1008,62 @@ const TemplateEditor = ({
           authorColor: collaborationContext.userColor || undefined,
         } as any;
 
-        const nextTemplate = addCommentWithAnchorToTemplate(visibleTemplate, anchor, text, identity);
-        void updateTemplate(nextTemplate);
+        const createdAnchor = createSchemaCommentAnchor(anchor, {
+          authorId: identity.authorId,
+          authorName: identity.authorName,
+          authorColor: identity.authorColor,
+        } as any);
+        const createdComment = createSchemaComment(text, {
+          authorId: identity.authorId,
+          authorName: identity.authorName,
+          authorColor: identity.authorColor,
+          timestamp: Date.now(),
+        } as any, {
+          id: createdAnchor.id,
+          anchor: cloneDeep(createdAnchor),
+        });
+
+        if (resolvedSchemaUid) {
+          const nextTemplate = cloneDeep(visibleTemplate) as Template;
+          const target = findSchemaByUid(nextTemplate, resolvedSchemaUid);
+          if (target?.schema) {
+            const nextSchema = cloneDeep(target.schema) as SchemaForUI & {
+              comments?: Array<{ id: string; anchor?: Record<string, unknown>; [key: string]: unknown }>;
+              commentAnchors?: Array<{ id: string; [key: string]: unknown }>;
+              commentsCount?: number;
+            };
+            nextSchema.comments = upsertById(nextSchema.comments || [], createdComment as any);
+            nextSchema.commentAnchors = upsertById(nextSchema.commentAnchors || [], createdAnchor as any);
+            nextSchema.commentsCount = (Number(nextSchema.commentsCount) || 0) + 1;
+            nextTemplate.schemas[target.pageIndex][target.index] = nextSchema as any;
+          }
+          void updateTemplate(nextTemplate);
+        } else {
+          const nextTemplate = cloneDeep(visibleTemplate) as Template & {
+            __commentAnchors?: Array<{ id: string; anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
+          };
+          nextTemplate.__commentAnchors = upsertById(nextTemplate.__commentAnchors || [], {
+            id: createdComment.id,
+            anchor: createdAnchor,
+            comment: createdComment,
+          });
+          void updateTemplate(nextTemplate as Template);
+
+          if (designerEngine.collaboration?.enabled) {
+            applyCollaborationLocalChange({
+              type: 'comment.created',
+              schemaId: buildTopLevelCommentSchemaId(anchor.fileId, anchor.pageNumber),
+              comment: createdComment,
+              anchor: createdAnchor,
+              pageIndex: pendingAnchor.pageIndex,
+              actorId: collaborationContext.actorId || designerEngine.collaboration?.actorId,
+              sessionId: designerEngine.collaboration?.sessionId || activeDocumentId || 'local',
+              timestamp: Date.now(),
+            });
+          }
+        }
+        setActiveCommentId(createdComment.id);
+        openCommentsPanel(createdComment.id);
       } catch (err) {
         console.error('Failed to save comment', err);
       } finally {
@@ -946,7 +1071,19 @@ const TemplateEditor = ({
         setPendingAnchor(null);
       }
     },
-    [pendingAnchor, activeDocumentId, collaborationContext, visibleTemplate, updateTemplate, schemasList],
+    [
+      pendingAnchor,
+      activeDocumentId,
+      applyCollaborationLocalChange,
+      collaborationContext,
+      designerEngine.collaboration?.actorId,
+      designerEngine.collaboration?.enabled,
+      designerEngine.collaboration?.sessionId,
+      visibleTemplate,
+      updateTemplate,
+      schemasList,
+      openCommentsPanel,
+    ],
   );
 
   const handleAddSidebarComment = useCallback(() => {
@@ -976,6 +1113,7 @@ const TemplateEditor = ({
         pageNumber: entry.pageNumber,
         resolved: Boolean(entry.anchor?.resolved ?? entry.comment?.resolved),
         timestamp: Number(entry.comment?.timestamp || entry.comment?.createdAt || 0) || undefined,
+        replies: Array.isArray(entry.comment?.replies) ? entry.comment.replies : [],
       }))
       .filter((item) => item.id && item.text)
       .sort((left, right) => (right.timestamp || 0) - (left.timestamp || 0));
@@ -987,8 +1125,9 @@ const TemplateEditor = ({
       onAdd: handleAddSidebarComment,
       title: 'Comentarios de la página',
       emptyTitle: 'No hay comentarios en la página actual.',
+      activeCommentId,
     }),
-    [commentItems, handleAddSidebarComment],
+    [activeCommentId, commentItems, handleAddSidebarComment],
   );
 
   const loadDocumentIntoCanvas = useCallback(
@@ -1860,7 +1999,7 @@ const TemplateEditor = ({
     [fallbackBaseDocumentItem, uploadedDocumentItems],
   );
   const rightSidebarContextHeader = useMemo<RightSidebarContextHeader>(() => {
-    return (ctx: RightSidebarContextHeaderContext) => {
+    function RightSidebarContextHeaderRenderer(ctx: RightSidebarContextHeaderContext) {
       // Only show the top context strip when the right sidebar is in 'fields' (list/bulk) mode
       if (!ctx || (ctx.mode !== 'list' && ctx.mode !== 'bulk')) return null;
 
@@ -1918,7 +2057,9 @@ const TemplateEditor = ({
           </span>
         </div>
       );
-    };
+    }
+
+    return RightSidebarContextHeaderRenderer;
   }, [
     activeDocumentId,
     activeElements.length,

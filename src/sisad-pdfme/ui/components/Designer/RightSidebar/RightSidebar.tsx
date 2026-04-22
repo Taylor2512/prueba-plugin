@@ -245,6 +245,7 @@ const Sidebar = (props: RightSidebarProps) => {
       onAdd={props.comments?.onAdd}
       title={props.comments?.title}
       emptyTitle={props.comments?.emptyTitle}
+      activeCommentId={props.comments?.activeCommentId}
     />
   ) : resolvedPanelMode === 'docs' ? (
     docsBridge || pagesBridge ? (

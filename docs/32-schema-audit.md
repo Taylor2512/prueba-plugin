@@ -36,11 +36,13 @@ Resumen rápido: se analizaron los plugins exportados en `src/sisad-pdfme/schema
 - image
   - familia: `media`
   - propPanel: esquema vacío / inspector: `media` (`graphics/image.ts`)
+  - inspector visible: `general`, `layout`, `collaboration`, `advanced` (sin `data` ni `connections`)
   - defaultSchema contiene `content` (data URI), tamaño, rotate, opacity
 
 - svg
   - familia: `media`
   - propPanel: esquema vacío / inspector: `media` (`graphics/svg.ts`)
+  - inspector visible: `general`, `layout`, `collaboration`, `advanced` (sin `data` ni `connections`)
 
 - signature
   - familia: `signature`
@@ -70,12 +72,12 @@ Resumen rápido: se analizaron los plugins exportados en `src/sisad-pdfme/schema
 Observaciones globales:
 - El proyecto ya cuenta con `schemaFamilies.ts` y fábrica `createSchemaInspectorConfig` que normaliza presets por familia.
 - La mayoría de plugins delegan al contrato `createSchemaInspectorConfig(...)` en lugar de declarar explícitamente `visibleSections` o `supports*` flags. Esto facilita aplicar presets, pero requiere estandarizar `PropPanelInspectorConfig` para habilitar `supportsConnections` y `supportsCollaboration` cuando proceda.
-- No se han detectado propiedades `createdBy`, `createdAt`, `lastModifiedBy`, `lastModifiedAt`, `userColor` ni `comments` en `defaultSchema`—esta ausencia requiere extender el tipo `Schema` en `src/sisad-pdfme/common/types.ts`.
+- El tipo `Schema` ya incluye metadata colaborativa base (`createdBy`, `createdAt`, `lastModifiedBy`, `lastModifiedAt`, `userColor`, `comments`, `commentAnchors`, `ownerRecipientId`, `ownerRecipientIds`, `state`, `lock`); el trabajo pendiente no es extender el tipo, sino completar su propagación y documentación en el inspector y la colaboración.
 - Los `propPanel` existentes ya usan `propertyMap` para mapear controles complejos a secciones (`data` o `style`), lo que facilita migración a la nueva estructura basada en familias.
 
 Siguientes pasos recomendados (ejecución inmediata):
 1. Generar una matriz completa (CSV/MD) con todas las propiedades por plugin (puedo generarla ahora).
-2. Extender `Schema` en `src/sisad-pdfme/common/types.ts` añadiendo campos multiusuario (`createdBy`, `createdAt`, `lastModifiedBy`, `lastModifiedAt`, `userColor`, `comments`).
-3. Añadir tests que verifiquen la preservación de `name` único y que `type` no sea editable en el inspector.
+2. Documentar y, si hace falta, reforzar la propagación de la metadata colaborativa ya existente desde `designerEngine` y `SchemaCollaborationWidget` hacia inspector, canvas y comentarios.
+3. Añadir o mantener tests que verifiquen la preservación de `name` único y que `type` no sea editable en el inspector.
 
 Si confirmas, procedo con el paso 2: aplicar extensión de `Schema` en `src/sisad-pdfme/common/types.ts` y crear pruebas mínimas de compatibilidad.

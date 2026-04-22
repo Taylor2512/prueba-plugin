@@ -191,7 +191,7 @@ export interface CanvasProps {
   onInteractionStateChange?: (state: InteractionState) => void;
 }
 
-const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
+const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
   const {
     basePdf,
     pageCursor,
@@ -673,6 +673,29 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
     });
   };
 
+  const dispatchFreeCommentRequest = useCallback(
+    (event: MouseEvent, pageIndex: number) => {
+      const target = event.target as Element | null;
+      if (!target) return;
+      const selectableTarget = target.closest?.(`.${SELECTABLE_CLASSNAME}`);
+      if (selectableTarget) return;
+
+      globalThis.dispatchEvent(
+        new CustomEvent('sisad-pdfme:create-comment-request', {
+          detail: {
+            x: event.clientX,
+            y: event.clientY,
+            page: pageIndex,
+            pageNumber: pageIndex + 1,
+            fileId: activeDocumentId || null,
+            targetIds: [],
+          },
+        }),
+      );
+    },
+    [activeDocumentId],
+  );
+
   const rotatable = useMemo(() => {
     const selectedSchemas = currentPageSchemas.filter((s) => activeElementIdSet.has(s.id));
     const schemaTypes = selectedSchemas.map((s) => s.type);
@@ -836,6 +859,21 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
       paper.dataset.pageEmpty = ((schemasList[index] || []).length === 0).toString();
     });
   }, [paperRefs, pageCursor, schemasList]);
+
+  useEffect(() => {
+    const cleanups: Array<() => void> = [];
+
+    paperRefs.current.forEach((paper, index) => {
+      if (!paper) return;
+      const handleDoubleClick = (event: MouseEvent) => dispatchFreeCommentRequest(event, index);
+      paper.addEventListener('dblclick', handleDoubleClick);
+      cleanups.push(() => paper.removeEventListener('dblclick', handleDoubleClick));
+    });
+
+    return () => {
+      cleanups.forEach((cleanup) => cleanup());
+    };
+  }, [dispatchFreeCommentRequest, pageCursor, paperRefs, schemasList.length]);
 
   return (
     <div
@@ -1108,10 +1146,15 @@ const Canvas = (props: CanvasProps, ref: Ref<HTMLDivElement>) => {
         activeReadOnly={contextMenuSelectionReadOnly}
         activeRequired={contextMenuSelectionRequired}
         activeHidden={contextMenuSelectionHidden}
+        selectionSchemas={contextMenuSelectionSchemas}
         canEditStructure={selectionCommands?.canEditStructure !== false}
         onClose={closeContextMenu}
       />
     </div>
   );
 };
-export default forwardRef<HTMLDivElement, CanvasProps>(Canvas);
+
+const ForwardedCanvas = forwardRef<HTMLDivElement, CanvasProps>(Canvas);
+ForwardedCanvas.displayName = 'Canvas';
+
+export default ForwardedCanvas;

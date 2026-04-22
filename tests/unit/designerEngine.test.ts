@@ -295,6 +295,47 @@ describe('designerEngine config', () => {
     expect(mapped.customerName).toBe('Grace');
   });
 
+  it('builds authorization headers for manual basic auth requests', () => {
+    const engine = new DesignerEngineBuilder().build();
+    const schema = mergeSchemaDesignerConfig(
+      {
+        id: 'schema-basic-auth',
+        name: 'customerName',
+        type: 'text',
+      } as SchemaForUI,
+      {
+        api: {
+          enabled: true,
+          endpoint: 'https://api.ejemplo.com/customers',
+          method: 'GET',
+          http: {
+            inheritSystem: false,
+            auth: {
+              mode: 'manual',
+              type: 'basic',
+              headerName: 'Authorization',
+              username: 'demo',
+              password: 'secret',
+            },
+          },
+        },
+      },
+      engine,
+    );
+
+    const adapter = createSchemaDataRuntimeAdapter({ engine });
+    const snapshot = {
+      pageIndex: 0,
+      totalPages: 1,
+      unitIndex: 0,
+      currentInput: {},
+      fields: [{ schema, config: getSchemaDesignerConfig(schema, engine) || null }],
+    };
+    const request = adapter.resolveRequest(snapshot.fields[0], snapshot);
+
+    expect(request?.headers.Authorization).toBe('Basic ZGVtbzpzZWNyZXQ=');
+  });
+
   it('reads and writes persisted values through the adapter storage layer', () => {
     const storage = (() => {
       const store = new Map<string, string>();

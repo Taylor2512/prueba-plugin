@@ -66,6 +66,9 @@ export const resolveOwnerMode = (ownerRecipientIds: string[]) => {
 type CollaborationCommentsSectionProps = {
   comments: SchemaComment[];
   commentCount: number;
+  replyAuthorId?: string;
+  replyAuthorName?: string;
+  replyAuthorColor?: string;
   onAddComment: (event: React.MouseEvent<HTMLButtonElement>) => void;
   onUpdateComment: (commentIndex: number, patch: Partial<SchemaComment>) => void;
   onUpdateReply: (
@@ -73,15 +76,20 @@ type CollaborationCommentsSectionProps = {
     replyIndex: number,
     patch: Partial<NonNullable<SchemaComment['replies']>[number]>,
   ) => void;
+  onDeleteReply: (commentIndex: number, replyIndex: number) => void;
   onDeleteComment: (commentIndex: number) => void;
 };
 
 const CollaborationCommentsSection = ({
   comments,
   commentCount,
+  replyAuthorId,
+  replyAuthorName,
+  replyAuthorColor,
   onAddComment,
   onUpdateComment,
   onUpdateReply,
+  onDeleteReply,
   onDeleteComment,
 }: CollaborationCommentsSectionProps) => (
   <Collapse
@@ -160,8 +168,9 @@ const CollaborationCommentsSection = ({
                           ...(comment.replies || []),
                           {
                             id: `${Date.now()}-${Math.random().toString(36).slice(2, 9)}`,
-                            authorId: '',
-                            authorName: '',
+                            authorId: replyAuthorId || '',
+                            authorName: replyAuthorName || '',
+                            authorColor: replyAuthorColor || undefined,
                             timestamp: Date.now(),
                             text: '',
                             resolved: false,
@@ -189,10 +198,27 @@ const CollaborationCommentsSection = ({
                           />
                         </div>
                         <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>ID autor</div>
+                          <Input
+                            value={reply.authorId || ''}
+                            onChange={(event) => onUpdateReply(commentIndex, replyIndex, { authorId: event.target.value })}
+                            placeholder="user-1"
+                          />
+                        </div>
+                        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
                           <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Resuelto</div>
                           <Switch
                             checked={Boolean(reply.resolved)}
                             onChange={(checked) => onUpdateReply(commentIndex, replyIndex, { resolved: checked })}
+                          />
+                        </div>
+                        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Timestamp</div>
+                          <InputNumber
+                            className={`${DESIGNER_CLASSNAME}schema-config-number`}
+                            value={reply.timestamp}
+                            onChange={(value) =>
+                              onUpdateReply(commentIndex, replyIndex, { timestamp: typeof value === 'number' ? value : Date.now() })}
                           />
                         </div>
                       </div>
@@ -203,6 +229,11 @@ const CollaborationCommentsSection = ({
                           onChange={(event) => onUpdateReply(commentIndex, replyIndex, { text: event.target.value })}
                           autoSize={{ minRows: 2, maxRows: 4 }}
                         />
+                      </div>
+                      <div className={`${DESIGNER_CLASSNAME}schema-collaboration-comment-actions`}>
+                        <Button size="small" danger onClick={() => onDeleteReply(commentIndex, replyIndex)}>
+                          Eliminar respuesta
+                        </Button>
                       </div>
                     </div>
                   ))}
@@ -525,6 +556,14 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
     );
   };
 
+  const deleteComment = (commentIndex: number) => {
+    const commentId = comments[commentIndex]?.id || '';
+    updateComments(removeById(comments, commentId));
+    if (commentId) {
+      updateAnchors(removeById(anchors, commentId));
+    }
+  };
+
   const updateReply = (
     commentIndex: number,
     replyIndex: number,
@@ -537,6 +576,19 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
         return {
           ...comment,
           replies: replies.map((reply, replyIdx) => (replyIdx === replyIndex ? { ...reply, ...patch } : reply)),
+        };
+      }),
+    );
+  };
+
+  const deleteReply = (commentIndex: number, replyIndex: number) => {
+    updateComments(
+      comments.map((comment, index) => {
+        if (index !== commentIndex) return comment;
+        const replies = Array.isArray(comment.replies) ? comment.replies : [];
+        return {
+          ...comment,
+          replies: replies.filter((_, currentReplyIndex) => currentReplyIndex !== replyIndex),
         };
       }),
     );
@@ -640,173 +692,192 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
 
         <Divider className={`${DESIGNER_CLASSNAME}schema-config-divider`} />
 
-        <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>schemaUid</div>
-          <Input value={schemaUid || ''} disabled placeholder="UUID estable del campo" />
-        </div>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Archivo</div>
-          <Input
-            value={String(activeSchema.fileId || activeSchema.fileTemplateId || collaborative.fileId || collaborative.fileTemplateId || '')}
-            onChange={(event) => commit({
-              fileId: event.target.value || undefined,
-              fileTemplateId: event.target.value || undefined,
-            })}
-            placeholder="file-01"
-          />
-        </div>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Página</div>
-          <InputNumber
-            className={`${DESIGNER_CLASSNAME}schema-config-number`}
-            min={1}
-            value={typeof activeSchema.pageNumber === 'number' ? activeSchema.pageNumber : collaborative.pageNumber}
-            onChange={(value) => commit({ pageNumber: typeof value === 'number' ? value : undefined })}
-          />
-        </div>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Estado</div>
-          <Select
-            value={state}
-            options={STATE_OPTIONS}
-            onChange={(value) => updateState(value)}
-          />
-        </div>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>ownerMode</div>
-          <Input
-            value={ownerMode || ''}
-            onChange={(event) => commit({ ownerMode: event.target.value || undefined })}
-            placeholder="single / multi / shared"
-          />
-        </div>
-      </div>
+        <Collapse
+          className={`${DESIGNER_CLASSNAME}schema-config-collapse`}
+          ghost
+          defaultActiveKey={[]}
+          items={[
+            {
+              key: 'metadata',
+              label: (
+                <Space size={6} align="center">
+                  <span className={`${DESIGNER_CLASSNAME}schema-collaboration-widget-title`}>Metadatos editables</span>
+                </Space>
+              ),
+              children: (
+                <>
+                <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>schemaUid</div>
+                    <Input value={schemaUid || ''} disabled placeholder="UUID estable del campo" />
+                  </div>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Archivo</div>
+                    <Input
+                      value={String(activeSchema.fileId || activeSchema.fileTemplateId || collaborative.fileId || collaborative.fileTemplateId || '')}
+                      onChange={(event) => commit({
+                        fileId: event.target.value || undefined,
+                        fileTemplateId: event.target.value || undefined,
+                      })}
+                      placeholder="file-01"
+                    />
+                  </div>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Página</div>
+                    <InputNumber
+                      className={`${DESIGNER_CLASSNAME}schema-config-number`}
+                      min={1}
+                      value={typeof activeSchema.pageNumber === 'number' ? activeSchema.pageNumber : collaborative.pageNumber}
+                      onChange={(value) => commit({ pageNumber: typeof value === 'number' ? value : undefined })}
+                    />
+                  </div>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Estado</div>
+                    <Select
+                      value={state}
+                      options={STATE_OPTIONS}
+                      onChange={(value) => updateState(value)}
+                    />
+                  </div>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>ownerMode</div>
+                    <Input
+                      value={ownerMode || ''}
+                      onChange={(event) => commit({ ownerMode: event.target.value || undefined })}
+                      placeholder="single / multi / shared"
+                    />
+                  </div>
+                </div>
 
-      <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Owner principal</div>
-        {hasRecipientOptions ? (
-          <Select
-            value={activeSchema.ownerRecipientId || collaborative.ownerRecipientId || undefined}
-            options={recipientSelectOptions}
-            onChange={(value) => updateRecipientIds([value])}
-            placeholder="Selecciona un owner"
-            allowClear
-            onClear={() => updateRecipientIds([])}
-          />
-        ) : (
-          <Input
-            value={activeSchema.ownerRecipientId || collaborative.ownerRecipientId || ''}
-            onChange={(event) => commit({ ownerRecipientId: event.target.value || undefined })}
-            placeholder="recipient-1"
-          />
-        )}
-      </div>
-      <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Co-propietarios</div>
-        {hasRecipientOptions ? (
-          <Select
-            mode="multiple"
-            value={ownerRecipientIds}
-            options={recipientSelectOptions}
-            onChange={(value) => updateRecipientIds(value)}
-            placeholder="Selecciona owners"
-          />
-        ) : (
-          <Input
-            value={joinRecipientIds(ownerRecipientIds)}
-            onChange={(event) => updateRecipientIds(event.target.value)}
-            placeholder="recipient-1, recipient-2"
-          />
-        )}
-      </div>
-      <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Owner visible</div>
-        <Input
-          value={resolvedOwnerLabel}
-          onChange={(event) => commit({ ownerRecipientName: event.target.value || undefined })}
-          placeholder="Nombre visible del owner"
+                <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Owner principal</div>
+                  {hasRecipientOptions ? (
+                    <Select
+                      value={activeSchema.ownerRecipientId || collaborative.ownerRecipientId || undefined}
+                      options={recipientSelectOptions}
+                      onChange={(value) => updateRecipientIds([value])}
+                      placeholder="Selecciona un owner"
+                      allowClear
+                      onClear={() => updateRecipientIds([])}
+                    />
+                  ) : (
+                    <Input
+                      value={activeSchema.ownerRecipientId || collaborative.ownerRecipientId || ''}
+                      onChange={(event) => commit({ ownerRecipientId: event.target.value || undefined })}
+                      placeholder="recipient-1"
+                    />
+                  )}
+                </div>
+                <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Co-propietarios</div>
+                  {hasRecipientOptions ? (
+                    <Select
+                      mode="multiple"
+                      value={ownerRecipientIds}
+                      options={recipientSelectOptions}
+                      onChange={(value) => updateRecipientIds(value)}
+                      placeholder="Selecciona owners"
+                    />
+                  ) : (
+                    <Input
+                      value={joinRecipientIds(ownerRecipientIds)}
+                      onChange={(event) => updateRecipientIds(event.target.value)}
+                      placeholder="recipient-1, recipient-2"
+                    />
+                  )}
+                </div>
+                <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Owner visible</div>
+                  <Input
+                    value={resolvedOwnerLabel}
+                    onChange={(event) => commit({ ownerRecipientName: event.target.value || undefined })}
+                    placeholder="Nombre visible del owner"
+                  />
+                </div>
+
+                <Divider className={`${DESIGNER_CLASSNAME}schema-config-divider`} />
+
+                <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Creado por</div>
+                    {hasRecipientOptions ? (
+                      <Select
+                        value={activeSchema.createdBy || collaborative.createdBy || undefined}
+                        options={authorOptions}
+                        onChange={(value) => {
+                          const nextAuthor = recipientOptions.find((recipient) => recipient.id === value) || null;
+                          commit({
+                            createdBy: value || undefined,
+                            userColor: nextAuthor?.color || collaborative.userColor || undefined,
+                          });
+                        }}
+                        placeholder="Selecciona autor"
+                        allowClear
+                      />
+                    ) : (
+                      <Input
+                        value={activeSchema.createdBy || collaborative.createdBy || ''}
+                        onChange={(event) => commit({ createdBy: event.target.value || undefined })}
+                        placeholder="user-1"
+                      />
+                    )}
+                  </div>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Modificado por</div>
+                    {hasRecipientOptions ? (
+                      <Select
+                        value={activeSchema.lastModifiedBy || collaborative.lastModifiedBy || undefined}
+                        options={authorOptions}
+                        onChange={(value) => commit({ lastModifiedBy: value || undefined })}
+                        placeholder="Selecciona editor"
+                        allowClear
+                      />
+                    ) : (
+                      <Input
+                        value={activeSchema.lastModifiedBy || collaborative.lastModifiedBy || ''}
+                        onChange={(event) => commit({ lastModifiedBy: event.target.value || undefined })}
+                        placeholder="user-1"
+                      />
+                    )}
+                  </div>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Creado</div>
+                    <InputNumber
+                      className={`${DESIGNER_CLASSNAME}schema-config-number`}
+                      value={typeof activeSchema.createdAt === 'number' ? activeSchema.createdAt : collaborative.createdAt}
+                      onChange={(value) => commit({ createdAt: typeof value === 'number' ? value : undefined })}
+                    />
+                  </div>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Actualizado</div>
+                    <InputNumber
+                      className={`${DESIGNER_CLASSNAME}schema-config-number`}
+                      value={typeof activeSchema.updatedAt === 'number' ? activeSchema.updatedAt : collaborative.updatedAt}
+                      onChange={(value) => commit({ updatedAt: typeof value === 'number' ? value : undefined })}
+                    />
+                  </div>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Color owner</div>
+                    <Input
+                      value={activeSchema.ownerColor || collaborative.ownerColor || resolvedSchemaState.ownerColor || ''}
+                      onChange={(event) => commit({ ownerColor: event.target.value || undefined })}
+                      placeholder="#2563EB"
+                    />
+                  </div>
+                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Color autor</div>
+                    <Input
+                      value={activeSchema.userColor || collaborative.userColor || resolvedSchemaState.userColor || ''}
+                      onChange={(event) => commit({ userColor: event.target.value || undefined })}
+                      placeholder="#2563EB"
+                    />
+                  </div>
+                </div>
+                </>
+              ),
+            },
+          ]}
         />
-      </div>
-
-      <Divider className={`${DESIGNER_CLASSNAME}schema-config-divider`} />
-
-      <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Creado por</div>
-          {hasRecipientOptions ? (
-            <Select
-              value={activeSchema.createdBy || collaborative.createdBy || undefined}
-              options={authorOptions}
-              onChange={(value) => {
-                const nextAuthor = recipientOptions.find((recipient) => recipient.id === value) || null;
-                commit({
-                  createdBy: value || undefined,
-                  userColor: nextAuthor?.color || collaborative.userColor || undefined,
-                });
-              }}
-              placeholder="Selecciona autor"
-              allowClear
-            />
-          ) : (
-            <Input
-              value={activeSchema.createdBy || collaborative.createdBy || ''}
-              onChange={(event) => commit({ createdBy: event.target.value || undefined })}
-              placeholder="user-1"
-            />
-          )}
-        </div>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Modificado por</div>
-          {hasRecipientOptions ? (
-            <Select
-              value={activeSchema.lastModifiedBy || collaborative.lastModifiedBy || undefined}
-              options={authorOptions}
-              onChange={(value) => commit({ lastModifiedBy: value || undefined })}
-              placeholder="Selecciona editor"
-              allowClear
-            />
-          ) : (
-            <Input
-              value={activeSchema.lastModifiedBy || collaborative.lastModifiedBy || ''}
-              onChange={(event) => commit({ lastModifiedBy: event.target.value || undefined })}
-              placeholder="user-1"
-            />
-          )}
-        </div>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Creado</div>
-          <InputNumber
-            className={`${DESIGNER_CLASSNAME}schema-config-number`}
-            value={typeof activeSchema.createdAt === 'number' ? activeSchema.createdAt : collaborative.createdAt}
-            onChange={(value) => commit({ createdAt: typeof value === 'number' ? value : undefined })}
-          />
-        </div>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Actualizado</div>
-          <InputNumber
-            className={`${DESIGNER_CLASSNAME}schema-config-number`}
-            value={typeof activeSchema.updatedAt === 'number' ? activeSchema.updatedAt : collaborative.updatedAt}
-            onChange={(value) => commit({ updatedAt: typeof value === 'number' ? value : undefined })}
-          />
-        </div>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Color owner</div>
-          <Input
-            value={activeSchema.ownerColor || collaborative.ownerColor || resolvedSchemaState.ownerColor || ''}
-            onChange={(event) => commit({ ownerColor: event.target.value || undefined })}
-            placeholder="#2563EB"
-          />
-        </div>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Color autor</div>
-          <Input
-            value={activeSchema.userColor || collaborative.userColor || resolvedSchemaState.userColor || ''}
-            onChange={(event) => commit({ userColor: event.target.value || undefined })}
-            placeholder="#2563EB"
-          />
-        </div>
-      </div>
 
       <CollaborationLockSection
         isVisible={hasLock}
@@ -818,10 +889,14 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
       <CollaborationCommentsSection
         comments={comments}
         commentCount={commentCount}
+        replyAuthorId={collaborationContext.activeRecipientId || activeSchema.createdBy || collaborative.createdBy || ''}
+        replyAuthorName={collaborationContext.activeRecipient?.name || resolvedOwnerLabel}
+        replyAuthorColor={effectiveAuthorColor}
         onAddComment={handleAddComment}
         onUpdateComment={updateComment}
         onUpdateReply={updateReply}
-        onDeleteComment={(commentIndex) => updateComments(removeById(comments, comments[commentIndex]?.id || ''))}
+        onDeleteReply={deleteReply}
+        onDeleteComment={deleteComment}
       />
 
         <Divider className={`${DESIGNER_CLASSNAME}schema-config-divider`} />

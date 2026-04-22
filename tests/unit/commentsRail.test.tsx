@@ -19,6 +19,16 @@ describe('CommentsRail', () => {
             pageNumber: 2,
             schemaUid: 'schema-1',
             timestamp: 1700000000000,
+            replies: [
+              {
+                id: 'reply-1',
+                text: 'Ya quedó alineado',
+                authorName: 'Legal',
+                authorColor: '#D946EF',
+                timestamp: 1700000001000,
+                resolved: true,
+              },
+            ],
           },
         ]}
       />, 
@@ -27,6 +37,8 @@ describe('CommentsRail', () => {
     expect(screen.getByText('Revisar el owner del campo')).toBeVisible();
     expect(screen.getByText('Campo schema-1')).toBeVisible();
     expect(screen.getByText('Página 2')).toBeVisible();
+    expect(screen.getByText('Ya quedó alineado')).toBeVisible();
+    expect(screen.getByText('1 hilo · 1 respuesta en la página actual')).toBeVisible();
 
     fireEvent.click(screen.getByRole('button', { name: 'Agregar' }));
     expect(onAdd).toHaveBeenCalledTimes(1);
@@ -36,5 +48,36 @@ describe('CommentsRail', () => {
     render(<CommentsRail items={[]} emptyTitle="Sin hilos activos" />);
 
     expect(screen.getAllByText('Sin hilos activos')).toHaveLength(2);
+  });
+
+  it('highlights and scrolls the active comment thread into view', () => {
+    const scrollIntoView = vi.fn();
+    const originalScrollIntoView = HTMLElement.prototype.scrollIntoView;
+    HTMLElement.prototype.scrollIntoView = scrollIntoView;
+
+    try {
+      render(
+        <CommentsRail
+          activeCommentId="comment-2"
+          items={[
+            {
+              id: 'comment-1',
+              text: 'Comentario anterior',
+              timestamp: 1700000000000,
+            },
+            {
+              id: 'comment-2',
+              text: 'Comentario activo',
+              timestamp: 1700000001000,
+            },
+          ]}
+        />,
+      );
+
+      expect(screen.getByText('Comentario activo').closest('article')).toHaveAttribute('data-active', 'true');
+      expect(scrollIntoView).toHaveBeenCalled();
+    } finally {
+      HTMLElement.prototype.scrollIntoView = originalScrollIntoView;
+    }
   });
 });

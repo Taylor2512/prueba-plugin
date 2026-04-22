@@ -108,6 +108,7 @@ type BuildContextMenuGroupsArgs = {
   externalActions?: CanvasContextMenuExternalActions;
   hasClipboardData?: boolean;
   selectionCount?: number;
+  selectionSchemas: SchemaForUI[];
   activeReadOnly?: boolean;
   activeRequired?: boolean;
   activeHidden?: boolean;
@@ -164,6 +165,9 @@ const isFormFieldType = (type: string) =>
   SIGNATURE_TYPES.has(type) ||
   CHOICE_TYPES.has(type) ||
   ['date', 'datetime', 'time'].includes(type);
+
+const hasFormFieldSelection = (activeSchemas: SchemaForUI[]) =>
+  activeSchemas.length > 0 && activeSchemas.every((schema) => isFormFieldType(normalizeTypeKey(schema.type)));
 
 export const resolveSelectionToolbarKind = (activeSchemas: SchemaForUI[]): SelectionToolbarSelectionKind => {
   if (activeSchemas.length > 1) {
@@ -395,8 +399,7 @@ export const buildSelectionToolbarModel = (args: {
   const quickActions: CanvasSelectionQuickAction[] = [];
   const secondarySections: SelectionToolbarSection[] = [];
   const activeSchema = activeSchemas[0];
-  const activeType = normalizeTypeKey(activeSchema?.type);
-  const isFormField = Boolean(activeSchema && isFormFieldType(activeType));
+  const hasFieldSelection = hasFormFieldSelection(activeSchemas);
 
   if (selectionCount > 1) {
     quickActions.push(
@@ -455,7 +458,7 @@ export const buildSelectionToolbarModel = (args: {
     ]);
     const compactPrimary = compactItems([
       getSelectionInlineAction(commands, kind, canEditStructure),
-      isFormField
+      hasFieldSelection
         ? toolbarAction('required', activeSchema?.required ? 'Quitar obligatorio' : 'Marcar obligatorio', <SquareCheckBig size={14} />, commands?.toggleRequired, {
             active: Boolean(activeSchema?.required),
             disabled: !canEditStructure || !hasAction(commands?.toggleRequired),
@@ -492,7 +495,7 @@ export const buildSelectionToolbarModel = (args: {
                 active: allReadOnly,
                 disabled: !canEditStructure || !hasAction(commands?.toggleReadOnly),
               }),
-              isFormField
+              hasFieldSelection
                 ? toolbarAction('required', allRequired ? 'Quitar obligatorio' : 'Marcar obligatorio', <SquareCheckBig size={14} />, commands?.toggleRequired, {
                     active: allRequired,
                     disabled: !canEditStructure || !hasAction(commands?.toggleRequired),
@@ -505,7 +508,7 @@ export const buildSelectionToolbarModel = (args: {
             label: 'Estilo',
             items: getSelectionStyleActions(commands, allReadOnly, canEditStructure),
           },
-          isFormField
+          hasFieldSelection
             ? {
                 id: 'data',
                 label: 'Datos',
@@ -623,11 +626,13 @@ export const buildCanvasContextMenuGroups = (
     externalActions,
     hasClipboardData = false,
     selectionCount = 0,
+    selectionSchemas,
     activeReadOnly = false,
     activeRequired = false,
     activeHidden = false,
     canEditStructure = true,
   } = args;
+  const hasFieldSelection = hasFormFieldSelection(selectionSchemas);
 
   if (mode === 'empty') {
     return compactItems<CanvasContextMenuGroup>([
@@ -663,6 +668,7 @@ export const buildCanvasContextMenuGroups = (
             disabled: !canEditStructure,
             disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
           }),
+          commandItem('add-comment', 'Agregar comentario', <MessageSquare size={14} />, externalActions?.onCreateComment),
         ]),
       },
       {
@@ -736,17 +742,19 @@ export const buildCanvasContextMenuGroups = (
             disabled: !canEditStructure,
             disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
           }),
-          commandItem(
-            'required',
-            resolveToggleLabel(activeRequired, 'Quitar requerido', 'Activar requerido'),
-            <Asterisk size={14} />,
-            commands?.toggleRequired,
-            {
-              active: activeRequired,
-              disabled: !canEditStructure,
-              disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
-            },
-          ),
+          hasFieldSelection
+            ? commandItem(
+                'required',
+                resolveToggleLabel(activeRequired, 'Quitar requerido', 'Activar requerido'),
+                <Asterisk size={14} />,
+                commands?.toggleRequired,
+                {
+                  active: activeRequired,
+                  disabled: !canEditStructure,
+                  disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+                },
+              )
+            : null,
         ]),
       },
       {
@@ -870,6 +878,19 @@ export const buildCanvasContextMenuGroups = (
             disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
           },
         ),
+        hasFieldSelection
+          ? commandItem(
+              'required-multi',
+              resolveToggleLabel(activeRequired, 'Quitar requerido', 'Activar requerido'),
+              <Asterisk size={14} />,
+              commands?.toggleRequired,
+              {
+                active: activeRequired,
+                disabled: !canEditStructure,
+                disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+              },
+            )
+          : null,
         commandItem('delete-multi', 'Eliminar selección', <Trash2 size={14} />, commands?.deleteSelection, {
           danger: true,
           disabled: !canEditStructure,

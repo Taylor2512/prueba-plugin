@@ -1,7 +1,7 @@
 import { describe, expect, it, vi } from 'vitest';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import { createSelectionCommands } from '../../src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.js';
-import { buildCanvasContextMenuGroups } from '../../src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.js';
+import { buildCanvasContextMenuGroups, buildSelectionToolbarModel } from '../../src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.js';
 
 describe('selectionCommands inline edit bridge', () => {
   const schema = {
@@ -9,6 +9,11 @@ describe('selectionCommands inline edit bridge', () => {
     name: 'campo-1',
     type: 'text',
     content: 'Texto inicial',
+  } as SchemaForUI;
+  const imageSchema = {
+    id: 'schema-image-1',
+    name: 'imagen-1',
+    type: 'image',
   } as SchemaForUI;
 
   const createContext = (overrides: Partial<Parameters<typeof createSelectionCommands>[0]> = {}) => {
@@ -121,6 +126,56 @@ describe('selectionCommands inline edit bridge', () => {
     expect(requestInlineEdit).not.toHaveBeenCalled();
   });
 
+  it('only shows field actions when every selected schema is a field', () => {
+    const fieldToolbar = buildSelectionToolbarModel({
+      activeSchemas: [schema],
+      selectionCount: 1,
+      interactionPhase: 'idle',
+      mode: 'expanded',
+    });
+
+    expect(fieldToolbar.secondarySections.some((section) => section.id === 'data')).toBe(true);
+    expect(
+      fieldToolbar.secondarySections
+        .find((section) => section.id === 'state')
+        ?.items.some((item) => item.id === 'required'),
+    ).toBe(true);
+
+    const imageToolbar = buildSelectionToolbarModel({
+      activeSchemas: [imageSchema],
+      selectionCount: 1,
+      interactionPhase: 'idle',
+      mode: 'expanded',
+    });
+
+    expect(imageToolbar.secondarySections.some((section) => section.id === 'data')).toBe(false);
+    expect(
+      imageToolbar.secondarySections
+        .find((section) => section.id === 'state')
+        ?.items.some((item) => item.id === 'required'),
+    ).toBe(false);
+
+    const { commands } = createContext();
+
+    const fieldGroups = buildCanvasContextMenuGroups({
+      mode: 'single',
+      commands,
+      selectionSchemas: [schema],
+      canEditStructure: commands.canEditStructure,
+    });
+
+    expect(fieldGroups.some((group) => group.items.some((item) => item.id === 'required'))).toBe(true);
+
+    const imageGroups = buildCanvasContextMenuGroups({
+      mode: 'single',
+      commands,
+      selectionSchemas: [imageSchema],
+      canEditStructure: commands.canEditStructure,
+    });
+
+    expect(imageGroups.some((group) => group.items.some((item) => item.id === 'required'))).toBe(false);
+  });
+
   it('disables structural canvas actions for reviewers while keeping add-comment available', () => {
     const { commands } = createContext({
       collaborationContext: {
@@ -138,6 +193,7 @@ describe('selectionCommands inline edit bridge', () => {
     const groups = buildCanvasContextMenuGroups({
       mode: 'single',
       commands,
+      selectionSchemas: [schema],
       canEditStructure: commands.canEditStructure,
       externalActions: {
         onCreateComment: vi.fn(),
@@ -149,5 +205,26 @@ describe('selectionCommands inline edit bridge', () => {
     expect(mainGroup?.items.find((item) => item.id === 'add-comment')?.disabled).toBe(false);
     expect(mainGroup?.items.find((item) => item.id === 'duplicate')?.disabled).toBe(true);
     expect(mainGroup?.items.find((item) => item.id === 'delete')?.disabled).toBe(true);
+  });
+
+  it('shows add-comment in the empty canvas context menu', () => {
+    const onCreateComment = vi.fn();
+    const groups = buildCanvasContextMenuGroups({
+      mode: 'empty',
+      commands: createContext().commands,
+      selectionSchemas: [],
+      canEditStructure: true,
+      externalActions: {
+        onCreateComment,
+      },
+    });
+
+    const createGroup = groups.find((group) => group.id === 'canvas-create');
+    const addCommentItem = createGroup?.items.find((item) => item.id === 'add-comment');
+
+    expect(addCommentItem).toBeDefined();
+    expect(addCommentItem?.disabled).toBe(false);
+    addCommentItem?.onSelect?.();
+    expect(onCreateComment).toHaveBeenCalledTimes(1);
   });
 });

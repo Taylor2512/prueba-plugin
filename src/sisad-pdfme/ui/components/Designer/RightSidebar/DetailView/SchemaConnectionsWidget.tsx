@@ -71,9 +71,24 @@ const describeFormJson = (formJson: SchemaFormJsonConfig) => {
 
 const describeHttpAuth = (auth?: SchemaHttpAuthConfig) => {
   if (auth?.mode !== 'manual') return 'Auth heredada';
+  if ((auth.type || 'bearer') === 'basic') {
+    const username = auth.username ? `user=${auth.username}` : 'sin credenciales';
+    return `basic · ${username}`;
+  }
   const header = auth.headerName ? `header=${auth.headerName}` : 'sin header';
   return `${auth.type || 'manual'} · ${header}`;
 };
+
+const CONNECTION_FIELD_LABELS: Record<string, string> = {
+  storageKey: 'clave de almacenamiento',
+  rootKey: 'raíz JSON',
+  endpoint: 'endpoint',
+  baseURL: 'base URL',
+  auth: 'autenticación manual',
+};
+
+const formatMissingConnectionFields = (missing: string[]) =>
+  missing.map((field) => CONNECTION_FIELD_LABELS[field] || field).join(', ');
 
 const describeApi = (
   api: NonNullable<SchemaDesignerConfig['api']>,
@@ -149,6 +164,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
   const { schemaConfig, designerEngine, updateSchemaConfig } = props;
   const [validationState, setValidationState] = useState<'idle' | 'ok' | 'warning'>('idle');
   const [validationMessage, setValidationMessage] = useState('Sin validar');
+  const [isValidating, setIsValidating] = useState(false);
   const persistence = useMemo<SchemaPersistenceConfig>(() => schemaConfig?.persistence || {}, [schemaConfig?.persistence]);
   const api = useMemo(() => schemaConfig?.api || {}, [schemaConfig?.api]);
   const formJson = useMemo<SchemaFormJsonConfig>(() => schemaConfig?.form || {}, [schemaConfig?.form]);
@@ -227,6 +243,28 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
     [api.http?.auth, updateApiHttp],
   );
 
+  const updateApiAuthMode = useCallback(
+    (mode: 'inherit' | 'manual') => {
+      if (mode === 'inherit') {
+        updateApiHttp({
+          auth: {
+            ...api.http?.auth,
+            mode: 'inherit',
+          },
+        });
+        return;
+      }
+
+      updateApiHttp({
+        auth: applyAuthPreset(api.http?.auth?.type || 'bearer', {
+          ...api.http?.auth,
+          mode: 'manual',
+        }),
+      });
+    },
+    [api.http?.auth, updateApiHttp],
+  );
+
   const updateApiAuthType = useCallback(
     (type: SchemaHttpAuthConfig['type']) => {
       updateApiHttp({
@@ -249,17 +287,24 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
   );
 
   const handleValidateConfig = () => {
-    if (!api.enabled) {
+    const enabledSections = [persistence.enabled, formJson.enabled, api.enabled].filter(Boolean).length;
+    if (enabledSections === 0) {
       setValidationState('warning');
-      setValidationMessage('Activa la API para probar la conexión.');
+      setValidationMessage('Activa persistencia, salida JSON o API para empezar a configurar este bloque.');
       return;
     }
 
     const missing = getMissingConnectionFields(persistence, api, formJson, resolvedHttpClient);
 
-    if (missing.length === 0) {
+    if (missing.length > 0) {
+      setValidationState('warning');
+      setValidationMessage(`Completa: ${formatMissingConnectionFields(missing)}.`);
+      return;
+    }
+
+    if (!api.enabled) {
       setValidationState('ok');
-      setValidationMessage('La configuración está lista para usar.');
+      setValidationMessage('La configuración local está lista. Activa API si quieres probar una conexión remota.');
       return;
     }
 
@@ -285,6 +330,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
     }
 
     setValidationState('idle');
+    setIsValidating(true);
     setValidationMessage('Validando conexión...');
     void runtimeAdapter
       .executeRequest(request)
@@ -295,6 +341,9 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
       .catch((error) => {
         setValidationState('warning');
         setValidationMessage(`Validación fallida: ${error instanceof Error ? error.message : 'error desconocido'}`);
+      })
+      .finally(() => {
+        setIsValidating(false);
       });
   };
 
@@ -554,7 +603,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
               <Select
                 size="small"
                 value={api.http?.auth?.mode || 'inherit'}
-                onChange={(value) => updateApiAuth({ mode: value })}
+                onChange={(value) => updateApiAuthMode(value)}
                 options={[
                   { label: 'Heredada', value: 'inherit' },
                   { label: 'Manual', value: 'manual' },
@@ -605,21 +654,44 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                           onChange={(event) => updateApiAuth({ headerName: event.target.value })}
                         />
                       </div>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                        <span>Valor / token</span>
-                        <Input
-                          size="small"
-                          value={api.http?.auth?.token || api.http?.auth?.headerValue || ''}
-                          placeholder="Bearer ..."
-                          onChange={(event) => {
-                            if ((api.http?.auth?.type || 'bearer') === 'apiKey') {
-                              updateApiAuth({ headerValue: event.target.value });
-                            } else {
-                              updateApiAuth({ token: event.target.value });
-                            }
-                          }}
-                        />
-                      </div>
+                      {(api.http?.auth?.type || 'bearer') === 'basic' ? (
+                        <>
+                          <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                            <span>Usuario</span>
+                            <Input
+                              size="small"
+                              value={api.http?.auth?.username || ''}
+                              placeholder="usuario"
+                              onChange={(event) => updateApiAuth({ username: event.target.value })}
+                            />
+                          </div>
+                          <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                            <span>Contraseña</span>
+                            <Input.Password
+                              size="small"
+                              value={api.http?.auth?.password || ''}
+                              placeholder="••••••••"
+                              onChange={(event) => updateApiAuth({ password: event.target.value })}
+                            />
+                          </div>
+                        </>
+                      ) : (
+                        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                          <span>Valor / token</span>
+                          <Input
+                            size="small"
+                            value={api.http?.auth?.token || api.http?.auth?.headerValue || ''}
+                            placeholder={(api.http?.auth?.type || 'bearer') === 'apiKey' ? 'api-key' : 'Bearer ...'}
+                            onChange={(event) => {
+                              if ((api.http?.auth?.type || 'bearer') === 'apiKey' || (api.http?.auth?.type || 'bearer') === 'custom') {
+                                updateApiAuth({ headerValue: event.target.value, token: undefined });
+                              } else {
+                                updateApiAuth({ token: event.target.value, headerValue: undefined });
+                              }
+                            }}
+                          />
+                        </div>
+                      )}
                     </div>
                   ),
                 },
@@ -716,11 +788,9 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
         </>
       }
       footerActions={
-        <>
-          <Button size="small" type="text" onClick={handleValidateConfig}>
-            Validar
-          </Button>
-        </>
+        <Button size="small" type="text" loading={isValidating} onClick={handleValidateConfig}>
+          Validar
+        </Button>
       }
       modalTitle="Configurar conexiones y persistencia"
       modalTriggerLabel="Configuración avanzada"

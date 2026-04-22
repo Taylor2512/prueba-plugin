@@ -24,6 +24,7 @@ La API pública todavía conserva nombres heredados como `Designer`, `Form`, `Vi
 - `builtInSchemaDefinitions`
 - `schemaBuilder`
 - registros y plugins
+- `createSchemaInspectorConfig` como factory pública para presets de inspector por familia
 
 ### 2.4 Runtime adapters
 - persistencia

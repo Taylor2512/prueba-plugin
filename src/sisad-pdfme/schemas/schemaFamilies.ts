@@ -70,9 +70,9 @@ const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
     supportsValidation: true,
   },
   media: {
-    visibleSections: ['general', 'layout', 'style', 'data', 'connections', 'collaboration', 'advanced'],
+    visibleSections: ['general', 'layout', 'style', 'collaboration', 'advanced'],
     propertyMap: BASE_PROPERTY_MAP,
-    supportsConnections: true,
+    supportsConnections: false,
     supportsCollaboration: true,
     supportsValidation: false,
   },

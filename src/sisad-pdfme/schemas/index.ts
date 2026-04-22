@@ -73,6 +73,7 @@ export {
   flattenSchemaPlugins,
   listSchemaDefinitions,
 } from './schemaBuilder.js';
+export { createSchemaInspectorConfig } from './schemaFamilies.js';
 export type {
   SchemaDefinition,
   SchemaPluginWithMetadata,

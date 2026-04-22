@@ -43,6 +43,8 @@ export interface FieldPluginDefinition {
 }
 ```
 
+La implementación actual ya expone `createSchemaInspectorConfig(...)` desde `src/sisad-pdfme/schemas/index.ts` como el factory canónico para presets de inspector por familia.
+
 ## 4. Ejemplo: text
 
 La familia `text` es la mejor candidata para documentarse como ejemplo canónico porque toca:
@@ -106,6 +108,8 @@ En este fork eso implica mantener en paridad:
 - `flatSchemaPlugins`
 - `builtInSchemaDefinitions`
 - `builtInPlugins`
+
+Y, cuando la familia requiera inspector declarativo, usar `createSchemaInspectorConfig(...)` como el punto de entrada común para `visibleSections`, `propertyMap` y `supports*`.
 
 Ejemplo actual: `signature` ya existe como una familia built-in de firma visual basada en imagen.
 Su primera version reutiliza el pipeline de `graphics/image` para render UI y PDF, muestra un placeholder solo en UI cuando esta vacia y no pretende resolver firma digital criptografica PDF.

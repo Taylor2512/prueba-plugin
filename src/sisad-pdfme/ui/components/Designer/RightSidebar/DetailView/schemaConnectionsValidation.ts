@@ -24,7 +24,19 @@ export const validateFormConfig = (formJson?: SchemaDesignerConfig['form']): str
 
 export const validateApiConfig = (
   api: SchemaDesignerConfig['api'],
-  resolvedHttpClient?: { inheritSystem?: boolean; baseURL?: string; auth?: { mode?: 'inherit' | 'manual'; headerName?: string; headerValue?: string; token?: string } },
+  resolvedHttpClient?: {
+    inheritSystem?: boolean;
+    baseURL?: string;
+    auth?: {
+      mode?: 'inherit' | 'manual';
+      type?: 'bearer' | 'basic' | 'apiKey' | 'custom';
+      headerName?: string;
+      headerValue?: string;
+      token?: string;
+      username?: string;
+      password?: string;
+    };
+  },
 ): string[] => {
   if (!api?.enabled) return [];
 
@@ -38,9 +50,20 @@ export const validateApiConfig = (
   }
 
   if (resolvedHttpClient?.auth?.mode === 'manual') {
+    const authType = resolvedHttpClient.auth?.type || 'bearer';
     const hasToken = Boolean(resolvedHttpClient.auth?.token || resolvedHttpClient.auth?.headerValue);
     const hasHeader = Boolean(resolvedHttpClient.auth?.headerName);
-    if (!hasToken || !hasHeader) {
+    const hasBasicCredentials = Boolean(resolvedHttpClient.auth?.username || resolvedHttpClient.auth?.password);
+
+    if (authType === 'basic') {
+      if (!hasBasicCredentials) {
+        missing.push('auth');
+      }
+    } else if (authType === 'apiKey' || authType === 'custom') {
+      if (!hasToken || !hasHeader) {
+        missing.push('auth');
+      }
+    } else if (!hasToken) {
       missing.push('auth');
     }
   }
