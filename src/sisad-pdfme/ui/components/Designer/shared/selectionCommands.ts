@@ -12,6 +12,7 @@ import {
   createSchemaCreationContext,
 } from '../../../designerEngine.js';
 import type { EffectiveCollaborationContext } from '../../../collaborationContext.js';
+import { createUniqueSchemaVariableName } from './schemaVariableName.js';
 export type AlignType =
   | 'left'
   | 'center'
@@ -147,12 +148,14 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
   const duplicateSelection = () => {
     if (!hasSelection || !guardStructureEdit()) return;
     const existing = getPageSchemas(context);
+    const existingNames = existing.map((schema) => schema.name);
     const clones = getActiveSchemas(context).map((schema) => {
       const clone = cloneDeep(schema);
       const nextSchemaUid = uuid();
       clone.id = nextSchemaUid;
       clone.schemaUid = nextSchemaUid;
-      clone.name = `${schema.name} copy`;
+      clone.name = createUniqueSchemaVariableName(schema.type, existingNames);
+      existingNames.push(clone.name);
       clone.position = {
         x: clampToPage((schema.position?.x ?? 0) + 6, context.pageSize.width - (schema.width ?? 0)),
         y: clampToPage((schema.position?.y ?? 0) + 6, context.pageSize.height - (schema.height ?? 0)),

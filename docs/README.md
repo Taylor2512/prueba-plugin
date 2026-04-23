@@ -41,6 +41,7 @@ Esta carpeta concentra la documentación técnica del proyecto. La estructura es
 - [35-packaging-roadmap.md](35-packaging-roadmap.md)
 - [36-commercial-adoption-checklist.md](36-commercial-adoption-checklist.md)
 - [37-platform-pdf-migration-plan.md](37-platform-pdf-migration-plan.md)
+- [98-plan-ejecucion-mcp-skills-subagentes.md](98-plan-ejecucion-mcp-skills-subagentes.md)
 
 ### Histórico, referencia e índices
 

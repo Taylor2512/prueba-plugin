@@ -53,10 +53,12 @@ import Root from '../Root.js';
 import ErrorScreen from '../ErrorScreen.js';
 import CtlBar from '../CtlBar.js';
 import CommentDialog from './Comments/CommentDialog.js';
+import SchemaDropSetupModal, { type DropDraft } from './SchemaDropSetupModal.js';
 import { applyCollaborationEvent, diffCollaborationEvents, useCollaborationSync } from '../../collaboration.js';
 import type { DesignerDocumentItem } from './RightSidebar/DocumentsRail.js';
 import type { DesignerRuntimeApi, DesignerSidebarPresentation } from '../../types.js';
 import { resolveSchemaTone } from './shared/schemaTone.js';
+import { createUniqueSchemaVariableName } from './shared/schemaVariableName.js';
 import { buildCollaboratorChipStyle } from '../../../../features/pdfcomponent/domain/collaborationAppearance.js';
 import { buildEffectiveCollaborationContext, filterSchemasForCollaborationView } from '../../collaborationContext.js';
 import type { RightSidebarContextHeader, RightSidebarContextHeaderContext } from './RightSidebar/contextHeader.js';
@@ -460,6 +462,7 @@ const TemplateEditor = ({
   const [isSchemaDragging, setIsSchemaDragging] = useState(false);
   const [isDraggingOverCanvas, setIsDraggingOverCanvas] = useState(false);
   const [activeDragData, setActiveDragData] = useState<{ schema: Schema; type: string } | null>(null);
+  const [pendingDropDraft, setPendingDropDraft] = useState<DropDraft | null>(null);
   const [isIdle, setIsIdle] = useState(false);
 
   useEffect(() => {
@@ -1239,15 +1242,7 @@ const TemplateEditor = ({
       : [0, 0, 0, 0];
     const pageSize = pageSizes[pageCursor];
 
-    const newSchemaName = (prefix: string) => {
-      let index = schemasList.reduce((acc, page) => acc + page.length, 1);
-      let newName = prefix + index;
-      while (schemasList.some((page) => page.find((s) => s.name === newName))) {
-        index++;
-        newName = prefix + index;
-      }
-      return newName;
-    };
+    const existingSchemaNames = schemasList.flatMap((page) => page.map((schema) => schema.name));
     const ensureMiddleValue = (min: number, value: number, max: number) =>
       Math.min(Math.max(min, value), max);
 
@@ -1271,7 +1266,7 @@ const TemplateEditor = ({
       ...defaultSchema,
       width: safeWidth,
       height: safeHeight,
-      name: newSchemaName(i18n('field')),
+      name: createUniqueSchemaVariableName(defaultSchema.type, existingSchemaNames),
       position: {
         x: ensureMiddleValue(
           paddingLeft,
@@ -1343,6 +1338,54 @@ const TemplateEditor = ({
     },
     [addSchema, pageCursor, pageSizes],
   );
+
+  const openDropSetup = useCallback(
+    (schema: Schema, position: { x: number; y: number }) => {
+      const existingNames = schemasList[pageCursor]?.map((entry) => entry.name) || [];
+      const defaultRecipientId =
+        collaborationContext.ownerRecipientId || collaborationContext.activeRecipientId || '';
+      const rawWidth = Number(schema.width);
+      const rawHeight = Number(schema.height);
+      setPendingDropDraft({
+        schema,
+        position,
+        name: createUniqueSchemaVariableName(schema.type, existingNames),
+        ownerRecipientId: defaultRecipientId,
+        width: Number.isFinite(rawWidth) && rawWidth > 0 ? rawWidth : 45,
+        height: Number.isFinite(rawHeight) && rawHeight > 0 ? rawHeight : 10,
+      });
+    },
+    [collaborationContext.activeRecipientId, collaborationContext.ownerRecipientId, pageCursor, schemasList],
+  );
+
+  const cancelDropSetup = useCallback(() => {
+    setPendingDropDraft(null);
+  }, []);
+
+  const confirmDropSetup = useCallback(() => {
+    if (!pendingDropDraft) return;
+    const name = pendingDropDraft.name.trim();
+    if (!name) return;
+    const duplicate = (schemasList[pageCursor] || []).some((schema) => schema.name.trim().toLowerCase() === name.toLowerCase());
+    if (duplicate) return;
+
+    const recipient = collaborationContext.recipientOptions.find((entry) => entry.id === pendingDropDraft.ownerRecipientId);
+    const nextSchema: Schema = {
+      ...pendingDropDraft.schema,
+      name,
+      width: Number(pendingDropDraft.width) || pendingDropDraft.schema.width,
+      height: Number(pendingDropDraft.height) || pendingDropDraft.schema.height,
+      position: pendingDropDraft.position,
+      ownerRecipientId: pendingDropDraft.ownerRecipientId || undefined,
+      ownerRecipientIds: pendingDropDraft.ownerRecipientId ? [pendingDropDraft.ownerRecipientId] : undefined,
+      ownerRecipientName: recipient?.name || undefined,
+      ownerColor: recipient?.color || undefined,
+      userColor: recipient?.color || collaborationContext.userColor || undefined,
+    };
+
+    addSchema(nextSchema);
+    setPendingDropDraft(null);
+  }, [addSchema, collaborationContext.recipientOptions, collaborationContext.userColor, pageCursor, pendingDropDraft, schemasList]);
 
   const addSchemaByType = useCallback(
     (schemaType: string) => {
@@ -2414,7 +2457,13 @@ const TemplateEditor = ({
 
           const pageNode = paperRefs.current[pageCursor];
           if (!pageNode) {
-            addSchemaAtCenter(draggedSchema);
+            const pageSize = pageSizes[pageCursor] || { width: 210, height: 297 };
+            const fallbackWidth = Number.isFinite(Number(draggedSchema.width)) ? Number(draggedSchema.width) : 45;
+            const fallbackHeight = Number.isFinite(Number(draggedSchema.height)) ? Number(draggedSchema.height) : 10;
+            openDropSetup(draggedSchema, {
+              x: round(Math.max(0, (pageSize.width - fallbackWidth) / 2), 2),
+              y: round(Math.max(0, (pageSize.height - fallbackHeight) / 2), 2),
+            });
             return;
           }
           const pageRect = pageNode.getBoundingClientRect();
@@ -2424,7 +2473,13 @@ const TemplateEditor = ({
 
           const translated = active.rect.current.translated || active.rect.current.initial;
           if (!translated) {
-            addSchemaAtCenter(draggedSchema);
+            const pageSize = pageSizes[pageCursor] || { width: 210, height: 297 };
+            const fallbackWidth = Number.isFinite(Number(draggedSchema.width)) ? Number(draggedSchema.width) : 45;
+            const fallbackHeight = Number.isFinite(Number(draggedSchema.height)) ? Number(draggedSchema.height) : 10;
+            openDropSetup(draggedSchema, {
+              x: round(Math.max(0, (pageSize.width - fallbackWidth) / 2), 2),
+              y: round(Math.max(0, (pageSize.height - fallbackHeight) / 2), 2),
+            });
             return;
           }
 
@@ -2443,7 +2498,7 @@ const TemplateEditor = ({
             y: round(px2mm(Math.max(0, moveY)), 2),
           };
 
-          addSchema({ ...draggedSchema, position });
+          openDropSetup(draggedSchema, position);
           setActiveDragData(null);
         }}
       >
@@ -2617,6 +2672,24 @@ const TemplateEditor = ({
             </div>
           ) : null}
         </DragOverlay>
+        <SchemaDropSetupModal
+          open={Boolean(pendingDropDraft)}
+          draft={pendingDropDraft}
+          existingNames={(schemasList[pageCursor] || []).map((schema) => schema.name)}
+          recipients={collaborationContext.recipientOptions}
+          onChange={(patch) =>
+            setPendingDropDraft((current) =>
+              current
+                ? {
+                    ...current,
+                    ...patch,
+                  }
+                : current,
+            )
+          }
+          onCancel={cancelDropSetup}
+          onConfirm={confirmDropSetup}
+        />
       </DndContext>
     </Root>
   );
