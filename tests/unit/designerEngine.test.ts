@@ -214,6 +214,8 @@ describe('designerEngine config', () => {
     expect(envelope?.meta.format).toBe('nested');
     expect(envelope?.meta.rootKey).toBe('formData');
     expect(envelope?.meta.schemaCount).toBe(2);
+    expect(envelope?.meta.collectedFieldCount).toBe(1);
+    expect(envelope?.meta.duplicateFieldNames).toEqual([]);
     expect(envelope?.data.formData).toMatchObject({
       customer: { name: 'Ada' },
     });
@@ -222,8 +224,85 @@ describe('designerEngine config', () => {
       totalPages: 3,
       unitIndex: 0,
       schemaCount: 2,
+      collectedFieldCount: 1,
+      duplicateFieldNames: [],
       generatedAt: 1700000000000,
     });
+  });
+
+  it('ignores blank names and deduplicates collected keys when building flat JSON', () => {
+    const engine = new DesignerEngineBuilder().build();
+    const primary = mergeSchemaDesignerConfig(
+      { id: 'schema-1', name: 'cliente.email', type: 'text' } as SchemaForUI,
+      { form: { enabled: true, collect: true, format: 'flat', rootKey: 'formData', includeEmpty: true, includeHidden: true } },
+      engine,
+    );
+    const duplicate = mergeSchemaDesignerConfig(
+      { id: 'schema-2', name: 'cliente.email', type: 'text' } as SchemaForUI,
+      { form: { enabled: true, collect: true, format: 'flat', rootKey: 'formData', includeEmpty: true, includeHidden: true } },
+      engine,
+    );
+    const blank = mergeSchemaDesignerConfig(
+      { id: 'schema-3', name: '   ', type: 'text' } as SchemaForUI,
+      { form: { enabled: true, collect: true, format: 'flat', rootKey: 'formData', includeEmpty: true, includeHidden: true } },
+      engine,
+    );
+
+    const adapter = createSchemaDataRuntimeAdapter({ engine, now: () => 1700000000000 });
+    const envelope = adapter.buildFormJson({
+      pageIndex: 0,
+      totalPages: 1,
+      unitIndex: 0,
+      currentInput: { 'cliente.email': 'ada@example.com' },
+      fields: [
+        { schema: primary, config: getSchemaDesignerConfig(primary, engine) || null },
+        { schema: duplicate, config: getSchemaDesignerConfig(duplicate, engine) || null },
+        { schema: blank, config: getSchemaDesignerConfig(blank, engine) || null },
+      ],
+    });
+
+    expect(envelope?.meta.format).toBe('flat');
+    expect(envelope?.meta.collectedFieldCount).toBe(1);
+    expect(envelope?.meta.duplicateFieldNames).toEqual(['cliente.email']);
+    expect(envelope?.data).toMatchObject({ 'cliente.email': 'ada@example.com' });
+  });
+
+  it('respects includeHidden/includeEmpty flags when building form JSON', () => {
+    const engine = new DesignerEngineBuilder().build();
+    const visibleSchema = mergeSchemaDesignerConfig(
+      { id: 'schema-visible', name: 'customer.name', type: 'text' } as SchemaForUI,
+      { form: { enabled: true, collect: true, format: 'flat', rootKey: 'formData', includeEmpty: false, includeHidden: false } },
+      engine,
+    );
+    const hiddenSchema = mergeSchemaDesignerConfig(
+      { id: 'schema-hidden', name: 'customer.hidden', type: 'text', hidden: true } as SchemaForUI,
+      { form: { enabled: true, collect: true, format: 'flat', rootKey: 'formData', includeEmpty: false, includeHidden: false } },
+      engine,
+    );
+    const emptySchema = mergeSchemaDesignerConfig(
+      { id: 'schema-empty', name: 'customer.empty', type: 'text' } as SchemaForUI,
+      { form: { enabled: true, collect: true, format: 'flat', rootKey: 'formData', includeEmpty: false, includeHidden: false } },
+      engine,
+    );
+
+    const adapter = createSchemaDataRuntimeAdapter({ engine, now: () => 1700000000000 });
+    const envelope = adapter.buildFormJson({
+      pageIndex: 0,
+      totalPages: 1,
+      unitIndex: 0,
+      currentInput: {
+        'customer.name': 'Ada',
+        'customer.empty': '',
+      },
+      fields: [
+        { schema: visibleSchema, config: getSchemaDesignerConfig(visibleSchema, engine) || null },
+        { schema: hiddenSchema, config: getSchemaDesignerConfig(hiddenSchema, engine) || null },
+        { schema: emptySchema, config: getSchemaDesignerConfig(emptySchema, engine) || null },
+      ],
+    });
+
+    expect(envelope?.meta.collectedFieldCount).toBe(1);
+    expect(envelope?.data).toEqual({ 'customer.name': 'Ada' });
   });
 
   it('resolves API requests, merges inherited headers and maps response values', async () => {

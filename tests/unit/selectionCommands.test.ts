@@ -82,7 +82,7 @@ describe('selectionCommands inline edit bridge', () => {
 
     expect(clone.id).not.toBe('schema-1');
     expect(clone.schemaUid).toBe(clone.id);
-    expect(clone.name).toBe('campo-1 copy');
+    expect(clone.name).toBe('texto_01');
     expect(clone.fileId).toBe('file-1');
     expect(clone.ownerRecipientId).toBe('sales-user-1');
     expect(clone.ownerRecipientIds).toEqual(['sales-user-1', 'legal-user-1']);
@@ -124,6 +124,79 @@ describe('selectionCommands inline edit bridge', () => {
     expect(changeSchemas).not.toHaveBeenCalled();
     expect(removeSchemas).not.toHaveBeenCalled();
     expect(requestInlineEdit).not.toHaveBeenCalled();
+  });
+
+  it('assigns the next available unique variable name when duplicating', () => {
+    const occupiedA = { ...schema, id: 'schema-2', name: 'texto_01' } as SchemaForUI;
+    const occupiedB = { ...schema, id: 'schema-3', name: 'texto_02' } as SchemaForUI;
+    const activeElement = document.createElement('div');
+    activeElement.id = schema.id;
+    const commitSchemas = vi.fn();
+
+    const commands = createSelectionCommands({
+      activeElements: [activeElement],
+      schemasList: [[schema, occupiedA, occupiedB]],
+      pageCursor: 0,
+      pageSize: { width: 210, height: 297 },
+      changeSchemas: vi.fn(),
+      commitSchemas,
+      removeSchemas: vi.fn(),
+      onOpenProperties: vi.fn(),
+      requestInlineEdit: vi.fn(),
+      collaborationContext: {
+        fileId: 'file-1',
+        actorId: 'sales-user-1',
+        ownerRecipientId: 'sales-user-1',
+        ownerRecipientIds: ['sales-user-1'],
+        ownerRecipientName: 'Ventas Ejecutivas',
+        ownerColor: '#2563EB',
+        userColor: '#2563EB',
+        canEditStructure: true,
+      },
+    });
+
+    commands.duplicateSelection();
+
+    const nextSchemas = commitSchemas.mock.calls[0][0] as SchemaForUI[];
+    expect(nextSchemas[nextSchemas.length - 1]?.name).toBe('texto_03');
+  });
+
+  it('generates sequential names when duplicating multiple selected fields together', () => {
+    const schemaA = { ...schema, id: 'schema-a', name: 'campo_a' } as SchemaForUI;
+    const schemaB = { ...schema, id: 'schema-b', name: 'campo_b' } as SchemaForUI;
+    const activeA = document.createElement('div');
+    activeA.id = 'schema-a';
+    const activeB = document.createElement('div');
+    activeB.id = 'schema-b';
+    const commitSchemas = vi.fn();
+
+    const commands = createSelectionCommands({
+      activeElements: [activeA, activeB],
+      schemasList: [[schemaA, schemaB]],
+      pageCursor: 0,
+      pageSize: { width: 210, height: 297 },
+      changeSchemas: vi.fn(),
+      commitSchemas,
+      removeSchemas: vi.fn(),
+      onOpenProperties: vi.fn(),
+      requestInlineEdit: vi.fn(),
+      collaborationContext: {
+        fileId: 'file-1',
+        actorId: 'sales-user-1',
+        ownerRecipientId: 'sales-user-1',
+        ownerRecipientIds: ['sales-user-1'],
+        ownerRecipientName: 'Ventas Ejecutivas',
+        ownerColor: '#2563EB',
+        userColor: '#2563EB',
+        canEditStructure: true,
+      },
+    });
+
+    commands.duplicateSelection();
+    const nextSchemas = commitSchemas.mock.calls[0][0] as SchemaForUI[];
+    const clones = nextSchemas.slice(-2);
+    expect(clones[0].name).toBe('texto_01');
+    expect(clones[1].name).toBe('texto_02');
   });
 
   it('only shows field actions when every selected schema is a field', () => {
