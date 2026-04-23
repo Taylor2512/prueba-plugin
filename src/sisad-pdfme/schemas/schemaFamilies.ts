@@ -4,13 +4,14 @@ import type {
   PluginStrategyDefinition,
   PropPanelInspectorConfig,
   PropPanelInspectorSectionKey,
+  SchemaInspectorSection,
 } from '../common/types.js';
 
 export type SchemaFamily = 'text' | 'mediaVisual' | 'boolean' | 'shapeBarcode' | 'table';
 export type LegacySchemaFamily = 'textual' | 'media' | 'signature' | 'choice' | 'shape' | 'barcode' | 'table';
 
 type FamilyPreset = PluginFamilyDefinition & {
-  visibleSections: PropPanelInspectorSectionKey[];
+  visibleSections: SchemaInspectorSection[];
   propertyMap: Partial<Record<string, PropPanelInspectorSectionKey>>;
   supportsConnections: boolean;
   supportsCollaboration: boolean;
@@ -88,7 +89,7 @@ const createStrategies = (types: Array<PluginStrategyDefinition['type']>): Plugi
 const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
   text: {
     family: 'text',
-    visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'collaboration', 'validation', 'advanced'],
+    visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'collaboration', 'validation', 'advanced', 'comments'],
     propertyMap: BASE_PROPERTY_MAP,
     supportedActions: createActions([
       'editText',
@@ -136,7 +137,7 @@ const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
   },
   boolean: {
     family: 'boolean',
-    visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'collaboration', 'validation', 'advanced'],
+    visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'collaboration', 'validation', 'advanced', 'comments'],
     propertyMap: BASE_PROPERTY_MAP,
     supportedActions: createActions([
       'renameVariable',
@@ -183,7 +184,7 @@ const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
   },
   table: {
     family: 'table',
-    visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'collaboration', 'advanced'],
+    visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'collaboration', 'advanced', 'comments'],
     propertyMap: BASE_PROPERTY_MAP,
     supportedActions: createActions([
       'renameVariable',

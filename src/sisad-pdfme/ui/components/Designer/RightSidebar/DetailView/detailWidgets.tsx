@@ -8,6 +8,7 @@ import ButtonGroupWidget from './ButtonGroupWidget.js';
 import WidgetRenderer from './WidgetRenderer.js';
 import SchemaCollaborationWidget from './SchemaCollaborationWidget.js';
 import SchemaConnectionsWidget from './SchemaConnectionsWidget.js';
+import SchemaFieldCommentsWidget from './SchemaFieldCommentsWidget.js';
 import { getSchemaTypeInspectorPreset } from '../../../../../schemas/schemaFamilies.js';
 
 const COLOR_PRESETS = [
@@ -137,6 +138,16 @@ export const buildDetailWidgets = ({
       <ColorPickerWidget value={p.value} onChange={p.onChange} normalizeHex={normalizeColorHex} />
     ),
   };
+
+  if (familyPreset.supportsComments) {
+    const SchemaFieldCommentsWidgetRenderer = function SchemaFieldCommentsWidgetRenderer(
+      p: PropPanelWidgetProps,
+    ) {
+      return <SchemaFieldCommentsWidget {...p} {...props} />;
+    };
+    SchemaFieldCommentsWidgetRenderer.displayName = 'SchemaFieldCommentsWidget';
+    widgets.SchemaFieldCommentsWidget = SchemaFieldCommentsWidgetRenderer;
+  }
 
   if (familyPreset.supportsConnections) {
     const SchemaConnectionsWidgetRenderer = function SchemaConnectionsWidgetRenderer(

@@ -77,6 +77,12 @@ const SECTION_META: Record<DetailInspectorSectionKey, Omit<DetailInspectorSectio
     description: 'Propiedades avanzadas del plugin.',
     defaultCollapsed: true,
   },
+  comments: {
+    key: 'comments',
+    title: 'Comentarios',
+    description: 'Hilos de comentarios anclados a este campo.',
+    defaultCollapsed: false,
+  },
 };
 
 const buildSectionSchema = (properties: Record<string, PropPanelSchema>): PropPanelSchema => ({
@@ -161,6 +167,7 @@ export const buildInspectorSections = ({
     familyPreset.supportsCollaboration;
   const shouldShowValidation =
     inspectorConfig?.supportsValidation ?? inspectorConfig?.includeValidation ?? familyPreset.supportsValidation;
+  const shouldShowComments = familyPreset.supportsComments === true;
   const fieldSections = {
     ...familyPreset.propertyMap,
     ...(inspectorConfig?.propertyMap || {}),
@@ -176,6 +183,7 @@ export const buildInspectorSections = ({
     collaboration: {},
     validation: {},
     advanced: {},
+    comments: {},
   };
 
   addFieldToSection(sectionProperties, 'general', 'name', {
@@ -288,6 +296,14 @@ export const buildInspectorSections = ({
       title: 'Colaboración',
       type: 'void',
       widget: 'SchemaCollaborationWidget',
+    });
+  }
+
+  if (shouldShowComments) {
+    addFieldToSection(sectionProperties, 'comments', 'fieldComments', {
+      title: 'Comentarios del campo',
+      type: 'void',
+      widget: 'SchemaFieldCommentsWidget',
     });
   }
 
