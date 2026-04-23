@@ -54,6 +54,8 @@ describe('DetailHeaderCard', () => {
           name: 'Campo saturado',
           type: 'text',
           position: { x: 0, y: 0 },
+          // required + readOnly + hidden = 3 state tags; persistence adds a 4th
+          // so MAX_VISIBLE=3 forces overflowCount=1 → badge reads "+1"
           required: true,
           readOnly: true,
           hidden: true,
@@ -68,10 +70,8 @@ describe('DetailHeaderCard', () => {
     );
 
     expect(screen.getByText('Campo saturado')).toBeVisible();
-    // When there are more than 3 tags, an overflow indicator is rendered
-    // (it can be "+N" or "···" depending on the overflow count).
-    const overflow = screen.queryByText(/^\+\d+$/) || screen.queryByText('···');
-    expect(overflow).not.toBeNull();
+    // The 4th state item (Guardar) overflows — badge shows "+1"
+    expect(screen.getByText('+1')).toBeVisible();
   });
 
   it('renders the position indicator in the header row', () => {

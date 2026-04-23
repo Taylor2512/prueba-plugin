@@ -121,14 +121,18 @@ const DetailHeaderCard = ({
               </Tag>
             </Tooltip>
           ) : null}
-          {/* Metadata tooltip anchor when no overflow tags but metadata exists */}
-          {overflowCount === 0 && visibleTags.length === 0 ? null : overflowCount === 0 ? (
-            <Tooltip title={metaTooltip} styles={{ root: { whiteSpace: 'pre-line', maxWidth: 260 } }}>
-              <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-state-tag is-overflow'}>
-                ···
-              </Tag>
-            </Tooltip>
-          ) : null}
+          {/* When all tags fit inline, still show a compact metadata anchor. */}
+          {(() => {
+            const shouldShowMetadataBadge = overflowCount === 0 && visibleTags.length > 0;
+            if (!shouldShowMetadataBadge) return null;
+            return (
+              <Tooltip title={metaTooltip} styles={{ root: { whiteSpace: 'pre-line', maxWidth: 260 } }}>
+                <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-state-tag is-overflow'}>
+                  ···
+                </Tag>
+              </Tooltip>
+            );
+          })()}
         </div>
       ) : null}
     </div>
