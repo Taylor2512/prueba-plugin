@@ -10,6 +10,38 @@ type DetailHeaderCardProps = {
   schemaConfig?: SchemaDesignerConfig | null;
 };
 
+type StateTag = { label: string; color?: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue' };
+
+/** Build the short metadata tooltip shown on the "+N" overflow indicator. */
+const buildMetaTooltip = (
+  activeSchema: SchemaForUI,
+  schemaConfig: SchemaDesignerConfig | null | undefined,
+): string => {
+  const lines: string[] = [];
+  const uid =
+    typeof activeSchema.schemaUid === 'string' && activeSchema.schemaUid.trim()
+      ? activeSchema.schemaUid.trim()
+      : String(activeSchema.id || '').slice(0, 8);
+  if (uid) lines.push(`UID: ${uid}`);
+  const createdBy = typeof activeSchema.createdBy === 'string' ? activeSchema.createdBy.trim() : '';
+  const modifiedBy = typeof activeSchema.lastModifiedBy === 'string' ? activeSchema.lastModifiedBy.trim() : '';
+  if (createdBy) lines.push(`Creado por: ${createdBy}`);
+  if (modifiedBy) lines.push(`Modificado: ${modifiedBy}`);
+  if (activeSchema.ownerRecipientId) lines.push(`Owner: ${activeSchema.ownerRecipientId}`);
+  if (activeSchema.state) lines.push(`Estado: ${activeSchema.state}`);
+  if (activeSchema.ownerMode) lines.push(`Modo: ${activeSchema.ownerMode}`);
+  if (activeSchema.saveValue === false) lines.push('No guarda valor');
+  if (schemaConfig?.persistence?.enabled) lines.push('Persistencia activa');
+  if (schemaConfig?.api?.enabled) lines.push('API activa');
+  if (schemaConfig?.form?.enabled) lines.push('Form JSON activo');
+  if (schemaConfig?.prefill?.enabled) lines.push('Prefill activo');
+  const commentCount = activeSchema.commentsCount || activeSchema.comments?.length || 0;
+  const anchorCount = activeSchema.commentAnchors?.length || activeSchema.commentsAnchors?.length || 0;
+  if (commentCount > 0) lines.push(`Comentarios: ${commentCount}`);
+  if (anchorCount > 0) lines.push(`Anchors: ${anchorCount}`);
+  return lines.join('\n') || 'Sin metadatos adicionales';
+};
+
 const DetailHeaderCard = ({
   activeSchema,
   schemaConfig,
@@ -18,72 +50,62 @@ const DetailHeaderCard = ({
   const schemaName = typeof activeSchema.name === 'string' ? activeSchema.name : 'Campo';
   const schemaType = typeof activeSchema.type === 'string' ? activeSchema.type : 'schema';
   const schemaHidden = (activeSchema as SchemaForUI & { hidden?: boolean }).hidden === true;
-  const schemaUid =
-    typeof activeSchema.schemaUid === 'string' && activeSchema.schemaUid.trim()
-      ? activeSchema.schemaUid.trim()
-      : String(activeSchema.id || '').trim();
-  const createdBy = typeof activeSchema.createdBy === 'string' ? activeSchema.createdBy.trim() : '';
-  const lastModifiedBy =
-    typeof activeSchema.lastModifiedBy === 'string' ? activeSchema.lastModifiedBy.trim() : '';
-  const commentCount = activeSchema.commentsCount || activeSchema.comments?.length || 0;
-  const anchorCount = activeSchema.commentAnchors?.length || activeSchema.commentsAnchors?.length || 0;
-  const configTags = [
-    schemaConfig?.persistence?.enabled ? { label: 'Guardar', color: 'processing' as const } : null,
-    schemaConfig?.api?.enabled ? { label: 'API', color: 'blue' as const } : null,
-    schemaConfig?.form?.enabled ? { label: 'Form JSON', color: 'success' as const } : null,
-    schemaConfig?.prefill?.enabled ? { label: 'Prefill', color: 'gold' as const } : null,
-  ].filter(Boolean) as Array<{ label: string; color?: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue' }>;
-  const collaborationTags = [
-    schemaUid ? { label: `UID: ${schemaUid}` } : null,
-    createdBy ? { label: `Creado por: ${createdBy}` } : null,
-    lastModifiedBy ? { label: `Modificado por: ${lastModifiedBy}` } : null,
-    activeSchema.ownerRecipientId ? { label: `Owner: ${activeSchema.ownerRecipientId}` } : null,
-    activeSchema.fileId || activeSchema.fileTemplateId
-      ? { label: `Archivo: ${activeSchema.fileId || activeSchema.fileTemplateId}` }
-      : null,
-    activeSchema.state ? { label: `Estado: ${activeSchema.state}` } : null,
-    activeSchema.ownerMode ? { label: `OwnerMode: ${activeSchema.ownerMode}` } : null,
-    activeSchema.saveValue === false ? { label: 'No guarda valor' } : null,
-    commentCount > 0 ? { label: `Comentarios: ${commentCount}` } : null,
-    anchorCount > 0 ? { label: `Anchors: ${anchorCount}` } : null,
-  ].filter(Boolean) as Array<{ label: string }>;
-  const visibleCollaborationTags = collaborationTags.slice(0, 4);
-  const hiddenCollaborationTagCount = Math.max(0, collaborationTags.length - visibleCollaborationTags.length);
-  const visibleStats = [
-    { label: 'X', value: activeSchema.position?.x ?? 0 },
-    { label: 'Y', value: activeSchema.position?.y ?? 0 },
-  ];
 
-  const summaryTags = [
-    schemaName.trim() ? null : { label: 'Sin nombre', color: 'warning' as const },
-    activeSchema.required ? { label: 'Requerido', color: 'error' as const } : null,
-    activeSchema.readOnly ? { label: 'Solo lectura', color: 'gold' as const } : null,
-    schemaHidden ? { label: 'Oculto', color: 'default' as const } : null,
-    ...configTags.slice(0, 2),
-  ].filter((tag): tag is { label: string; color?: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue' } => Boolean(tag));
+  // ── Primary state tags (max 3 shown inline) ─────────────────────────────────
+  // Active config tags are surfaced here to avoid a second tag row.
+  const activeConfigTag: StateTag | null =
+    schemaConfig?.persistence?.enabled
+      ? { label: 'Guardar', color: 'processing' }
+      : schemaConfig?.api?.enabled
+        ? { label: 'API', color: 'blue' }
+        : null;
+
+  const stateTags: StateTag[] = [
+    !schemaName.trim() ? { label: 'Sin nombre', color: 'warning' } : null,
+    activeSchema.required ? { label: 'Requerido', color: 'error' } : null,
+    activeSchema.readOnly ? { label: 'Solo lectura', color: 'gold' } : null,
+    schemaHidden ? { label: 'Oculto', color: 'default' } : null,
+    activeConfigTag,
+  ].filter((t): t is StateTag => Boolean(t));
+
+  // Show at most 3 inline; collapse the rest behind a tooltip.
+  const MAX_VISIBLE = 3;
+  const visibleTags = stateTags.slice(0, MAX_VISIBLE);
+  const overflowCount = Math.max(0, stateTags.length - MAX_VISIBLE);
+  const metaTooltip = buildMetaTooltip(activeSchema, schemaConfig);
+
+  const posX = Number((activeSchema.position?.x ?? 0).toFixed(1));
+  const posY = Number((activeSchema.position?.y ?? 0).toFixed(1));
 
   return (
     <div className={DESIGNER_CLASSNAME + 'detail-header-card'}>
+      {/* ── Identity row ── */}
       <div className={DESIGNER_CLASSNAME + 'detail-header-card-head'}>
         <Badge color={tone} />
         <div className={DESIGNER_CLASSNAME + 'detail-header-card-title-wrap'}>
-          <Tooltip title={schemaName}>
+          <Tooltip title={schemaName} placement="topLeft">
             <span className={DESIGNER_CLASSNAME + 'detail-header-card-title'}>
               {schemaName}
             </span>
           </Tooltip>
-          <div className={DESIGNER_CLASSNAME + 'detail-header-card-meta'}>
-            <Tooltip title={`Tipo: ${schemaType}`}>
-              <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-tag-base'}>
-                {schemaType}
-              </Tag>
-            </Tooltip>
-          </div>
+          <Tooltip title={`Tipo: ${schemaType}`}>
+            <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-tag-base'}>
+              {schemaType}
+            </Tag>
+          </Tooltip>
         </div>
+        {/* ── Compact position stat ── */}
+        <Tooltip title={`Posición X: ${posX} mm, Y: ${posY} mm`} placement="topRight">
+          <span className={DESIGNER_CLASSNAME + 'detail-header-card-pos'}>
+            {posX},{posY}
+          </span>
+        </Tooltip>
       </div>
-      {summaryTags.length > 0 ? (
+
+      {/* ── State tags row (progressive disclosure: max 3 + overflow badge) ── */}
+      {visibleTags.length > 0 || overflowCount > 0 ? (
         <div className={DESIGNER_CLASSNAME + 'detail-header-card-state-row'}>
-          {summaryTags.map((tag) => (
+          {visibleTags.map((tag) => (
             <Tag
               key={tag.label}
               color={tag.color || 'default'}
@@ -92,34 +114,27 @@ const DetailHeaderCard = ({
               {tag.label}
             </Tag>
           ))}
-        </div>
-      ) : null}
-      {visibleCollaborationTags.length > 0 ? (
-        <div className={DESIGNER_CLASSNAME + 'detail-header-card-state-row'}>
-          {visibleCollaborationTags.map((tag) => (
-            <Tag key={tag.label} color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-state-tag'}>
-              {tag.label}
-            </Tag>
-          ))}
-          {hiddenCollaborationTagCount > 0 ? (
-            <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-state-tag'}>
-              +{hiddenCollaborationTagCount} más
-            </Tag>
-          ) : null}
-        </div>
-      ) : null}
-      <div className={DESIGNER_CLASSNAME + 'detail-header-card-stats'}>
-        {visibleStats.map((item) => (
-          <div key={item.label} className={DESIGNER_CLASSNAME + 'detail-header-card-stat'}>
-            <Tooltip title={`${item.label}: ${item.value}`}>
-              <div className={DESIGNER_CLASSNAME + 'detail-header-card-stat-value'}>{item.value}</div>
+          {overflowCount > 0 ? (
+            <Tooltip title={metaTooltip} styles={{ root: { whiteSpace: 'pre-line', maxWidth: 260 } }}>
+              <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-state-tag is-overflow'}>
+                +{overflowCount}
+              </Tag>
             </Tooltip>
-            <div className={DESIGNER_CLASSNAME + 'detail-header-card-stat-label'}>
-              {item.label}
-            </div>
-          </div>
-        ))}
-      </div>
+          ) : null}
+          {/* When all tags fit inline, still show a compact metadata anchor. */}
+          {(() => {
+            const shouldShowMetadataBadge = overflowCount === 0 && visibleTags.length > 0;
+            if (!shouldShowMetadataBadge) return null;
+            return (
+              <Tooltip title={metaTooltip} styles={{ root: { whiteSpace: 'pre-line', maxWidth: 260 } }}>
+                <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-state-tag is-overflow'}>
+                  ···
+                </Tag>
+              </Tooltip>
+            );
+          })()}
+        </div>
+      ) : null}
     </div>
   );
 };

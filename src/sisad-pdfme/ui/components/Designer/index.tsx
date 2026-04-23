@@ -763,20 +763,32 @@ const TemplateEditor = ({
   const openCommentDialog = useCallback(
     (xClient: number, yClient: number, pageIndex: number, schemaUid?: string, fileId?: string | null) => {
     try {
-      const paper = paperRefs.current[pageIndex] || paperRefs.current[pageCursor];
-      if (!paper) return;
-      const rect = paper.getBoundingClientRect();
-      const pxX = Number(xClient) - rect.left;
-      const pxY = Number(yClient) - rect.top;
-      const pixelPerMm = (ZOOM as number) * (scale || 1);
-      const xMm = Math.max(0, pxX / pixelPerMm);
-      const yMm = Math.max(0, pxY / pixelPerMm);
-      const boundedX = Math.max(0, Math.min(pageSizes[pageIndex]?.width || 0, xMm));
-      const boundedY = Math.max(0, Math.min(pageSizes[pageIndex]?.height || 0, yMm));
+      // Resolve paper: prefer the requested page, fall back to the active cursor
+      // or the first available paper ref so the dialog always opens.
+      const paper =
+        paperRefs.current[pageIndex] ||
+        paperRefs.current[pageCursor] ||
+        paperRefs.current.find(Boolean);
+
+      let xMm = 0;
+      let yMm = 0;
+
+      if (paper) {
+        const rect = paper.getBoundingClientRect();
+        const pixelPerMm = (ZOOM as number) * (scale || 1);
+        const pxX = Number(xClient) - rect.left;
+        const pxY = Number(yClient) - rect.top;
+        const rawXMm = Math.max(0, pxX / pixelPerMm);
+        const rawYMm = Math.max(0, pxY / pixelPerMm);
+        const resolvedPageIndex = paperRefs.current[pageIndex] ? pageIndex : pageCursor;
+        xMm = Math.max(0, Math.min(pageSizes[resolvedPageIndex]?.width || 0, rawXMm));
+        yMm = Math.max(0, Math.min(pageSizes[resolvedPageIndex]?.height || 0, rawYMm));
+      }
+
       setPendingAnchor({
-        xMm: Math.round(boundedX * 100) / 100,
-        yMm: Math.round(boundedY * 100) / 100,
-        pageIndex,
+        xMm: Math.round(xMm * 100) / 100,
+        yMm: Math.round(yMm * 100) / 100,
+        pageIndex: paperRefs.current[pageIndex] ? pageIndex : pageCursor,
         fileId: fileId || activeDocumentId || null,
         schemaUid,
       });
