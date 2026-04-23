@@ -45,6 +45,30 @@ registerSchema({
 });
 ```
 
-## Recomendación
+## Relación con familias y acciones declarativas
 
-Convertir esta pieza en un contrato formal de extensión. Es un excelente punto para monetizar extensiones o verticales sectoriales si el proyecto crece.
+El registro de schemas está ahora vinculado con `schemaFamilies.ts` que define cinco familias canónicas:
+`text`, `mediaVisual`, `boolean`, `shapeBarcode` y `table`.
+
+Cada familia declara:
+- `visibleSections` — qué pestañas aparecen en el inspector (incluyendo la nueva `'comments'`)
+- `supportedActions` — acciones disponibles en toolbar y menú contextual
+- `strategies` — comportamientos inyectables (validación, upload, prefill, persistencia, comentarios, bloqueo)
+- `supportsComments`, `supportsLocking`, `supportsPresence` — flags de capacidades
+
+Cuando registras un nuevo plugin, su `propPanel.inspector` puede sobrescribir el preset de familia:
+
+```ts
+propPanel: {
+  inspector: createSchemaInspectorConfig('text', {
+    visibleSections: ['general', 'layout', 'data', 'comments'],
+    supportedActions: [
+      { id: 'rename', command: 'renameVariable', label: 'Renombrar', placement: ['inspector'] },
+    ],
+  }),
+  defaultSchema: { type: 'myField', ... },
+}
+```
+
+El `pluginRegistry` expone `getFamilyByType`, `getSupportedActionsByType`, `getStrategiesByType` y `getVisibleSectionsByType` para consultas en runtime.
+

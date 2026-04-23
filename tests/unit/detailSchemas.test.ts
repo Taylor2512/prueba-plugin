@@ -118,6 +118,7 @@ describe('buildInspectorSections', () => {
       'connections',
       'collaboration',
       'advanced',
+      'comments',
     ]);
   });
 

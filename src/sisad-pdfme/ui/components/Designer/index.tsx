@@ -1562,6 +1562,17 @@ const TemplateEditor = ({
         sessionId: designerEngine.collaboration?.sessionId || activeDocumentId || 'local',
         timestamp: Date.now(),
       });
+      // Emit schema.unlocked through the CommandBus so observers can react.
+      void commandBusRef.current.execute({
+        id: `schema.unlocked:${schemaId}`,
+        label: 'Unlock field',
+        execute: ({ emit }) => {
+          emit({ type: 'schema.unlocked', schemaId, pageIndex: location?.pageIndex });
+        },
+        undo: ({ emit }) => {
+          emit({ type: 'schema.locked', schemaId, pageIndex: location?.pageIndex });
+        },
+      });
     });
 
     acquiredIds.forEach((schemaId) => {
@@ -1582,6 +1593,17 @@ const TemplateEditor = ({
         actorId: collaborationContext.actorId || designerEngine.collaboration?.actorId,
         sessionId: designerEngine.collaboration?.sessionId || activeDocumentId || 'local',
         timestamp: Date.now(),
+      });
+      // Emit schema.locked through the CommandBus so observers can react.
+      void commandBusRef.current.execute({
+        id: `schema.locked:${schemaId}`,
+        label: 'Lock field',
+        execute: ({ emit }) => {
+          emit({ type: 'schema.locked', schemaId, pageIndex: location?.pageIndex });
+        },
+        undo: ({ emit }) => {
+          emit({ type: 'schema.unlocked', schemaId, pageIndex: location?.pageIndex });
+        },
       });
     });
 

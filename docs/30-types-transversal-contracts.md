@@ -210,11 +210,50 @@ export type {
 ### Paso 3
 Actualizar widgets del inspector para leer solo contratos públicos.
 
-## 8. Criterio de calidad
+## 9. Contratos de comentarios anclados (PdfComment)
 
-Un contrato transversal está bien definido cuando:
-- no depende de React
-- puede serializarse
-- tiene defaults claros
-- tiene compatibilidad hacia atrás
-- tiene tests de construcción y merge
+`src/sisad-pdfme/contracts/plugins.ts` expone `SchemaInspectorSection` que incluye la sección `'comments'` (además de las secciones clásicas `general`, `layout`, `style`, `data`, `connections`, `collaboration`, `validation`, `advanced`).
+
+`PropPanelInspectorSectionKey` en `common/types.ts` ahora incluye también `'comments'` para que la clave sea válida tanto en el registro de familias (`schemaFamilies.ts`) como en el motor del inspector (`detailSchemas.ts`).
+
+### Tipo `PdfComment`
+
+```ts
+// src/sisad-pdfme/contracts/comments.ts
+export interface PdfComment {
+  id: string;
+  fileId?: string | null;
+  pageNumber?: number;
+  anchor?: { x: number; y: number };
+  fieldId?: string;
+  authorId: string;
+  authorName?: string;
+  authorColor?: string;
+  text: string;
+  createdAt: number;
+  resolved: boolean;
+  replies?: PdfCommentReply[];
+}
+```
+
+Los comentarios anclados al canvas se almacenan en `template.pdfComments` y `template.__commentAnchors`. Los comentarios ligados a un campo específico se almacenan dentro de `schema.comments[]`.
+
+### Estructura de `assignments`
+
+```ts
+assignments[userId][recipientId][fileId][pageNumber]
+```
+
+Esto permite filtrar campos por autor, destinatario, documento y página.
+
+## 10. Eventos de bloqueo (`schema.locked` / `schema.unlocked`)
+
+Cuando el colaborador selecciona un campo, el `Designer` emite a través del `CommandBus`:
+
+```ts
+{ type: 'schema.locked', schemaId, pageIndex }
+{ type: 'schema.unlocked', schemaId, pageIndex }
+```
+
+Estos eventos se encolan como comandos reversibles, permitiendo que el undo/redo funcione sobre el estado de bloqueo. Los suscriptores del `CommandBus` pueden reaccionar a cualquier cambio de bloqueo mediante `bus.subscribe(...)`.
+

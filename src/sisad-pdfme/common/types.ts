@@ -141,7 +141,8 @@ export type PropPanelInspectorSectionKey =
   | 'connections'
   | 'collaboration'
   | 'validation'
-  | 'advanced';
+  | 'advanced'
+  | 'comments';
 
 export type PropPanelInspectorConfig = {
   visibleSections?: PropPanelInspectorSectionKey[];

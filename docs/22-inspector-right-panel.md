@@ -31,6 +31,7 @@ Su valor está en permitir edición profunda sin convertir cada click del canvas
 - `detailSchemas`
 - `detailWidgets`
 - `WidgetRenderer`
+- `SchemaFieldCommentsWidget`
 
 ## 3. Filosofía correcta del inspector
 
@@ -52,6 +53,7 @@ La estructura actual ya divide el schema en secciones y delega el resumen superi
 - collaboration
 - validation
 - advanced
+- **comments** *(nuevo — solo para familias con `supportsComments: true` y `'comments'` en `visibleSections`)*
 
 `src/sisad-pdfme/schemas/schemaFamilies.ts` es la fuente de verdad para `visibleSections` y los flags `supports*`; `detailSchemas.ts` sólo normaliza ese contrato y lo materializa en UI.
 
@@ -80,12 +82,36 @@ Eso es una señal de madurez del sistema: el inspector no solo pinta inputs, tam
 - general
 - layout
 - data
+- comments
 
 #### cerradas por defecto
 - style
 - collaboration
 - validation
 - advanced
+
+## 8. `SchemaFieldCommentsWidget`
+
+El widget de comentarios de campo (`SchemaFieldCommentsWidget`) se registra automáticamente en `detailWidgets.tsx` cuando `familyPreset.supportsComments` es `true`. Permite:
+
+- ver hilos de comentarios anclados al campo;
+- agregar nuevos comentarios (Ctrl+Enter o botón);
+- responder a hilos existentes (Enter o botón);
+- marcar hilos como resueltos / reabrirlos;
+- eliminar hilos.
+
+Los cambios se persisten llamando `changeSchemas([{ key: 'comments', value: nextComments, schemaId }])`.
+
+### Familias con `'comments'` en `visibleSections`
+
+| Familia       | Sección `comments` visible |
+|---------------|---------------------------|
+| `text`        | ✅                        |
+| `boolean`     | ✅                        |
+| `table`       | ✅                        |
+| `mediaVisual` | ❌ (no en `visibleSections`) |
+| `shapeBarcode`| ❌ (no en `visibleSections`) |
+
 
 ## 5. `DetailHeaderCard`
 
