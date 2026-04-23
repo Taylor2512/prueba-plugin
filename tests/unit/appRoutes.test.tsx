@@ -3,7 +3,7 @@ import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { describe, expect, it, vi } from 'vitest'
 
-vi.mock('../../src/features/sisad-pdfme/PdfmeLabPage.jsx', () => ({
+vi.mock('../../src/features/pdfcomponent/PdfmeLabPage.jsx', () => ({
   default: ({ exampleId }: { exampleId?: string }) => <div data-testid="lab-page">{exampleId}</div>,
 }))
 
