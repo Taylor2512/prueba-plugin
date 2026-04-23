@@ -4,8 +4,10 @@
 
 Los ejemplos consumidos por la pantalla de laboratorio viven en:
 
-- `src/features/sisad-pdfme/example.pdf.jsx`
-- `src/features/sisad-pdfme/examples/labExamples.js`
+- `src/features/pdfcomponent/example.pdf.jsx`
+- `src/features/pdfcomponent/examples/labExamples.js`
+
+> Nota de ruta histórica: algunos documentos viejos aún referencian `src/features/sisad-pdfme`.
 
 Los presets actuales cubren cinco escenarios concretos y ahora parten de PDFs reales servidos desde `public/templates`:
 

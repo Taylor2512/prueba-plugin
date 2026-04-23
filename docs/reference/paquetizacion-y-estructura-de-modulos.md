@@ -9,9 +9,11 @@ El repositorio actual ya tiene una separación bastante útil entre:
 - `pdf-lib`
 - `schemas`
 - `ui`
-- `features/sisad-pdfme` como aplicación de laboratorio
+- `src/features/pdfcomponent` como aplicación de laboratorio
 
 Esto es una ventaja directa para convertirlo en una plataforma distribuible.
+
+> Nota de ruta histórica: en versiones anteriores se documentó esta app como `src/features/sisad-pdfme`.
 
 ## 2. Objetivo
 

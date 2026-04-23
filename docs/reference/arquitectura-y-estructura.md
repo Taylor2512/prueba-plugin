@@ -13,7 +13,7 @@ La solución se organiza alrededor de un núcleo modular:
 - `src/sisad-pdfme/generator`: generación final de PDFs a partir de template e inputs.
 - `src/sisad-pdfme/schemas`: catálogo de plugins/bloques para texto, tablas, códigos, gráficos, fechas, selección y más.
 - `src/sisad-pdfme/ui`: diseñador, visor, runtime de formulario, engine configurable, componentes de canvas y sidebars.
-- `src/features/sisad-pdfme`: página demo/laboratorio y estado de aplicación del producto.
+- `src/features/pdfcomponent`: página demo/laboratorio y estado de aplicación del producto.
 - `tests/unit` y `tests/playwright`: pruebas unitarias y E2E que validan el shell del editor, el engine, inline editing, colaboración y estabilidad de sidebars.
 
 ## Mapa de carpetas recomendado
@@ -21,7 +21,7 @@ La solución se organiza alrededor de un núcleo modular:
 ```text
 src/
   features/
-    sisad-pdfme/
+    pdfcomponent/
       SisadPdfmeExample.jsx
       template.js
       domain/
@@ -41,6 +41,9 @@ tests/
   playwright/
 docs/
 ```
+
+> Nota de ruta histórica: la ruta `src/features/sisad-pdfme` se mantiene solo en referencias antiguas; el estado actual usa `src/features/pdfcomponent`.
+
 
 ## Flujo de responsabilidades
 

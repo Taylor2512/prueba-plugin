@@ -112,7 +112,9 @@ export default function App() {
 
 ## Estructura
 
-- `src/features/sisad-pdfme`: demo/lab del producto.
+- `src/features/pdfcomponent`: demo/lab del producto.
+
+> Nota de ruta histórica: en documentación previa este módulo aparece como `src/features/sisad-pdfme`.
 - `src/sisad-pdfme/common`: tipos y dominio base.
 - `src/sisad-pdfme/converter`: conversiones.
 - `src/sisad-pdfme/generator`: generación final.
