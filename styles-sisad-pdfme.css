@@ -2,7 +2,7 @@
    ARCHIVO UNIFICADO DE ESTILOS CSS
    =====================================================================
    Carpeta origen: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
-   Fecha de generación: 2026-04-22T21:39:46.576Z
+   Fecha de generación: 2026-04-23T22:24:29.284Z
    Total de archivos incluidos: 4
    Extensiones incluidas: .css
    Objetivo: consolidar estilos CSS respetando un orden estable de cascada
@@ -11,7 +11,7 @@
 /* TABLA DE CONTENIDOS */
 
 /* 0001. src/sisad-pdfme/ui/styles/sisad-pdfme-global.css */
-/* 0002. src/features/sisad-pdfme/labRoutes.css */
+/* 0002. src/features/pdfcomponent/labRoutes.css */
 /* 0003. src/sisad-pdfme/ui/styles/canvas-interactions.css */
 /* 0004. src/sisad-pdfme/ui/styles/tokens.css */
 
@@ -23,7 +23,7 @@
    ARCHIVO #1
    Ruta relativa: src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
    Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
-   Líneas aproximadas: 4357
+   Líneas aproximadas: 4375
    ==================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
@@ -1697,6 +1697,24 @@ body {
   font-size: 0.75rem;
   font-weight: 700;
   color: var(--color-gray-900);
+}
+
+/* Compact position indicator shown inline in the header head row */
+.sisad-pdfme-designer-detail-header-card-pos {
+  margin-left: auto;
+  flex-shrink: 0;
+  font-size: 0.5625rem;
+  font-weight: 600;
+  color: var(--color-gray-500);
+  letter-spacing: 0.02em;
+  cursor: default;
+  user-select: none;
+}
+
+/* Overflow indicator badge */
+.sisad-pdfme-designer-detail-header-card-state-tag.is-overflow {
+  cursor: help;
+  opacity: 0.7;
 }
 
 .sisad-pdfme-designer-detail-section-card {
@@ -4389,9 +4407,9 @@ body {
 
 /* ====================================================================
    ARCHIVO #2
-   Ruta relativa: src/features/sisad-pdfme/labRoutes.css
-   Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/sisad-pdfme/labRoutes.css
-   Líneas aproximadas: 830
+   Ruta relativa: src/features/pdfcomponent/labRoutes.css
+   Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/pdfcomponent/labRoutes.css
+   Líneas aproximadas: 823
    ==================================================================== */
 
 .sisad-pdfme-lab-landing,
@@ -4406,14 +4424,7 @@ body {
     linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%);
 }
 
-.sisad-pdfme-lab-hero,
-.sisad-pdfme-lab-toolbar,
-.sisad-pdfme-lab-results,
-.sisad-pdfme-lab-card-grid,
-.sisad-pdfme-lab-workspace {
-  width: min(1400px, 100%);
-  margin: 0 auto 0.7rem auto;
-}
+
 
 .sisad-pdfme-lab-hero,
 .sisad-pdfme-lab-toolbar,
@@ -5225,7 +5236,7 @@ body {
 }
 
 
-/* ========================== FIN DE src/features/sisad-pdfme/labRoutes.css ========================== */
+/* ========================== FIN DE src/features/pdfcomponent/labRoutes.css ========================== */
 
 
 /* ====================================================================
@@ -6502,8 +6513,7 @@ body {
    │   └── skills
    ├── .github
    │   ├── agents
-   │   ├── instructions
-   │   └── prompts
+   │   └── instructions
    ├── .kilo
    │   ├── agents
    │   ├── prompts
@@ -11101,14 +11111,14 @@ body {
    ├── scripts
    ├── src
    │   ├── features
-   │   │   ├── implements
-   │   │   └── sisad-pdfme
+   │   │   └── pdfcomponent
    │   │       ├── domain
    │   │       ├── examples
    │   │       ├── labRoutes.css
    │   │       └── utils
    │   ├── sisad-pdfme
    │   │   ├── common
+   │   │   ├── contracts
    │   │   ├── converter
    │   │   ├── generator
    │   │   ├── pdf-lib
@@ -11146,6 +11156,7 @@ body {
    │   │   │   └── text
    │   │   │       └── icons
    │   │   └── ui
+   │   │       ├── commands
    │   │       ├── components
    │   │       │   └── Designer
    │   │       │       ├── Canvas
@@ -11161,12 +11172,7 @@ body {
    │   │       │   └── tokens.css
    │   │       └── types
    │   └── types
-   ├── styles-unificados.css
    ├── test-results
-   │   ├── pdfme-editor-PDFME-editor--0cd8b-on-the-basic-designer-route-chromium
-   │   ├── pdfme-editor-PDFME-editor--544df-on-the-multi-document-route-chromium
-   │   ├── pdfme-editor-PDFME-editor--a3ed6-cks-on-the-enterprise-route-chromium
-   │   └── pdfme-editor-PDFME-editor--f3033-als-from-the-detail-sidebar-chromium
    └── tests
        ├── playwright
        └── unit

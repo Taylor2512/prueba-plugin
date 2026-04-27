@@ -517,10 +517,8 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
           <p>La superficie de edición se monta dentro del runtime de <code>sisad-pdfme</code>.</p>
         </div>
 
-        <div className="sisad-pdfme-lab-canvas-shell">
-          <div ref={containerRef} className="sisad-pdfme-canvas" data-ux-mode={uxMode} />
-        </div>
-      </section>
+           <div ref={containerRef} data-ux-mode={uxMode} />
+       </section>
 
       <ResultsPanel
         generatedPdfUrl={generatedPdfUrl}
