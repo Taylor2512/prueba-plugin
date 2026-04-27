@@ -3,3 +3,13 @@ export type { Command, CommandExecutionContext, CommandObserverEvent, CommandObs
 export type { CommentAnchor, PdfComment, PdfCommentReply, TopLevelPdfCommentEntry } from './comments.js';
 export type { PluginActionDefinition, PluginFamilyDefinition, PluginStrategyDefinition, SchemaInspectorSection } from './plugins.js';
 export type { CollaborativeSchemaContract, SchemaIdentity } from './schema.js';
+export type {
+  Template,
+  Schema,
+  SchemaForUI,
+  GenerateProps,
+  DesignerProps,
+  PreviewProps,
+  UIProps,
+  Plugin,
+} from '../common/types.js';

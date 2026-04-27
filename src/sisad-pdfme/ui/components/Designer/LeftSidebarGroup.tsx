@@ -18,9 +18,9 @@ export const LeftSidebarGroup = ({
   category,
   items,
   count,
-  viewMode = 'compact',
-  collapsed = false,
-  collapsible = false,
+  viewMode = 'rich',
+  collapsed = true,
+  collapsible = true,
   onToggle,
 }: LeftSidebarGroupProps) => {
   const titleContent = (

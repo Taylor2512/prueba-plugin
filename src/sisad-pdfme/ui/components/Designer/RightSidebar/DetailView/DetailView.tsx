@@ -246,7 +246,7 @@ const DetailView = (props: DetailViewProps) => {
     ? (() => {
         const result: Record<string, unknown> = {};
         for (const key in activePlugin.propPanel.defaultSchema) {
-          if (Object.hasOwn(activePlugin.propPanel.defaultSchema, key)) {
+          if (activePlugin.propPanel.defaultSchema.hasOwnProperty(key)) {
             result[key] = (activePlugin.propPanel.defaultSchema as Record<string, unknown>)[key];
           }
         }

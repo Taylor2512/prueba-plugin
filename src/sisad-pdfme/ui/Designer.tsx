@@ -18,6 +18,13 @@ import { DesignerRuntimeApi } from './types';
 import { SchemaDesignerConfig } from './designerEngine';
 
 type SchemaConfigMatcher = 'id' | 'name' | 'identity' | 'prefill-source';
+type DesignerTemplateChangeContext = {
+  documentId?: string | null;
+  fileId?: string | null;
+  pageCount?: number;
+  source?: string;
+  updatedAt?: number;
+};
 
 const ensureDesignerTemplate = (template: Template): Template => {
   const basePdf = (template as Partial<Template>)?.basePdf;
@@ -96,7 +103,7 @@ const ensureDesignerTemplate = (template: Template): Template => {
 
 class Designer extends BaseUIClass {
   private onSaveTemplateCallback?: (template: Template) => void;
-  private onChangeTemplateCallback?: (template: Template) => void;
+  private onChangeTemplateCallback?: (template: Template, context?: DesignerTemplateChangeContext) => void;
   private onPageChangeCallback?: (pageInfo: { currentPage: number; totalPages: number }) => void;
   private pageCursor: number = 0;
   private runtimeApi: DesignerRuntimeApi | null = null;
@@ -129,7 +136,7 @@ class Designer extends BaseUIClass {
     this.onSaveTemplateCallback = cb;
   }
 
-  public onChangeTemplate(cb: (template: Template) => void) {
+  public onChangeTemplate(cb: (template: Template, context?: DesignerTemplateChangeContext) => void) {
     this.onChangeTemplateCallback = cb;
   }
 
@@ -315,11 +322,11 @@ class Designer extends BaseUIClass {
               this.onSaveTemplateCallback(template);
             }
           }}
-          onChangeTemplate={(template) => {
+          onChangeTemplate={(template, context) => {
             this.template = template;
             this.template.pdfmeVersion = PDFME_VERSION;
             if (this.onChangeTemplateCallback) {
-              this.onChangeTemplateCallback(template);
+              this.onChangeTemplateCallback(template, context);
             }
           }}
           onPageCursorChange={(newPageCursor: number, totalPages: number) => {

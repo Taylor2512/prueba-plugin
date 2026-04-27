@@ -2,7 +2,7 @@ import { PDFDocument } from '@sisad-pdfme/pdf-lib';
 import { mm2pt } from '@sisad-pdfme/common';
 import type { ImageType } from './types.js';
 
-interface Img2PdfOptions {
+export interface Img2PdfOptions {
   scale?: number;
   imageType?: ImageType;
   size?: { height: number; width: number }; // in millimeters

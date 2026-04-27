@@ -740,8 +740,6 @@ export type FormJsonEnvelope = {
     totalPages: number;
     unitIndex: number;
     schemaCount: number;
-    collectedFieldCount?: number;
-    duplicateFieldNames?: string[];
     generatedAt: number;
   };
 };
@@ -1061,33 +1059,24 @@ export const createSchemaDataRuntimeAdapter = ({
 
       const data: Record<string, unknown> = {};
       const nestedRoot: Record<string, unknown> = {};
-      const collectedFieldNames = new Set<string>();
-      const duplicateFieldNames = new Set<string>();
 
       activeFields.forEach(({ schema, config }) => {
         const fieldConfig = config?.form;
         if (!fieldConfig) return;
         if (!fieldConfig.collect) return;
-        const schemaName = String(schema.name || '').trim();
-        if (!schemaName) return;
 
         const hidden = Boolean((schema as SchemaForUI & { hidden?: boolean }).hidden);
         if (hidden && !includeHidden) return;
 
-        const value = snapshot.currentInput[schemaName] ?? schema.content ?? '';
+        const value = snapshot.currentInput[schema.name] ?? schema.content ?? '';
         if (!includeEmpty && isEmptyRuntimeValue(value)) return;
-        if (collectedFieldNames.has(schemaName)) {
-          duplicateFieldNames.add(schemaName);
-          return;
-        }
-        collectedFieldNames.add(schemaName);
 
         if (format === 'flat') {
-          data[schemaName] = value;
+          data[schema.name] = value;
           return;
         }
 
-        setByPath(nestedRoot, schemaName, value);
+        setByPath(nestedRoot, schema.name, value);
       });
 
       if (format === 'nested') {
@@ -1100,8 +1089,6 @@ export const createSchemaDataRuntimeAdapter = ({
           totalPages: snapshot.totalPages,
           unitIndex: snapshot.unitIndex,
           schemaCount: activeFields.length,
-          collectedFieldCount: collectedFieldNames.size,
-          duplicateFieldNames: Array.from(duplicateFieldNames),
           generatedAt: now(),
         };
       }
@@ -1115,8 +1102,6 @@ export const createSchemaDataRuntimeAdapter = ({
           totalPages: snapshot.totalPages,
           unitIndex: snapshot.unitIndex,
           schemaCount: activeFields.length,
-          collectedFieldCount: collectedFieldNames.size,
-          duplicateFieldNames: Array.from(duplicateFieldNames),
           generatedAt: now(),
         },
       };

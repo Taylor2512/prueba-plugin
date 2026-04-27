@@ -73,7 +73,7 @@ const DetailSectionCard = ({
   defaultCollapsed = false,
 }: DetailSectionCardProps) => {
   const [collapsed, setCollapsed] = React.useState(() => defaultCollapsed);
-  const bodyId = `${sectionKey || title}`.toLowerCase().replaceAll(/[^a-z0-9]+/g, '-');
+  const bodyId = `${sectionKey || title}`.toLowerCase().replace(/[^a-z0-9]+/g, '-');
 
   return (
     <section

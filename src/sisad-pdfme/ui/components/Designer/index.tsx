@@ -53,13 +53,11 @@ import Root from '../Root.js';
 import ErrorScreen from '../ErrorScreen.js';
 import CtlBar from '../CtlBar.js';
 import CommentDialog from './Comments/CommentDialog.js';
-import SchemaDropSetupModal, { type DropDraft } from './SchemaDropSetupModal.js';
 import { applyCollaborationEvent, diffCollaborationEvents, useCollaborationSync } from '../../collaboration.js';
 import type { DesignerDocumentItem } from './RightSidebar/DocumentsRail.js';
 import type { DesignerRuntimeApi, DesignerSidebarPresentation } from '../../types.js';
 import { resolveSchemaTone } from './shared/schemaTone.js';
-import { createUniqueSchemaVariableName } from './shared/schemaVariableName.js';
-import { buildCollaboratorChipStyle } from '../../../../features/pdfcomponent/domain/collaborationAppearance.js';
+
 import { buildEffectiveCollaborationContext, filterSchemasForCollaborationView } from '../../collaborationContext.js';
 import type { RightSidebarContextHeader, RightSidebarContextHeaderContext } from './RightSidebar/contextHeader.js';
 import {
@@ -79,6 +77,78 @@ import {
   createTemplateSnapshotCommand,
 } from '../../commands/designerCommands.js';
 const DESIGNER_THEME_STYLE_ID = DESIGNER_CLASSNAME + 'theme-base';
+
+type RightSidebarContextHeaderRendererDeps = {
+  activeDocumentId: string | null;
+  uploadedDocuments: UploadedPdfDocument[];
+  fallbackBaseDocumentItem: DesignerDocumentItem | null;
+  pageCursor: number;
+  pageItemsLength: number;
+  visiblePageSchemasLength: number;
+  currentPageSchemasLength: number;
+  activeElementsLength: number;
+  isIdle: boolean;
+  collaborationPresenceLength: number;
+  collaborationHistoryLength: number;
+  collaborationContext: ReturnType<typeof buildEffectiveCollaborationContext>;
+  actorId: string;
+};
+
+const renderRightSidebarContextHeader = (
+  ctx: RightSidebarContextHeaderContext,
+  deps: RightSidebarContextHeaderRendererDeps,
+): React.ReactNode => {
+  if (!ctx || (ctx.mode !== 'list' && ctx.mode !== 'bulk')) return null;
+
+  const activeDocument = deps.uploadedDocuments.find((doc) => doc.id === deps.activeDocumentId) || null;
+  const activeDocumentLabel =
+    activeDocument?.name ||
+    activeDocument?.id ||
+    deps.fallbackBaseDocumentItem?.name ||
+    deps.activeDocumentId ||
+    'Documento local';
+
+  return (
+    <div className={DESIGNER_CLASSNAME + 'detail-view-context-strip'} aria-label="Contexto activo del editor">
+      <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
+        Documento: {activeDocumentLabel}
+      </span>
+      {deps.uploadedDocuments.length > 1 ? (
+        <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>Docs: {deps.uploadedDocuments.length}</span>
+      ) : null}
+      {deps.pageItemsLength > 0 ? (
+        <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
+          Página: {deps.pageCursor + 1}/{deps.pageItemsLength}
+        </span>
+      ) : null}
+      <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
+        Campos: {deps.visiblePageSchemasLength}/{deps.currentPageSchemasLength}
+      </span>
+      {deps.activeElementsLength > 0 ? (
+        <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
+          Selección: {deps.activeElementsLength}
+        </span>
+      ) : null}
+      <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
+        Presencia: {deps.isIdle ? 'pausa' : 'activa'}
+      </span>
+      <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
+        Colaboradores: {Math.max(1, deps.collaborationPresenceLength)}
+      </span>
+      {deps.collaborationHistoryLength > 0 ? (
+        <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
+          Historial: {deps.collaborationHistoryLength}
+        </span>
+      ) : null}
+      <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
+        Vista: {deps.collaborationContext.isGlobalView ? 'Global' : deps.collaborationContext.activeRecipient?.name || 'Sin destinatario'}
+      </span>
+      <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
+        Usuario: {deps.actorId || 'local'}
+      </span>
+    </div>
+  );
+};
 
 const DESIGNER_THEME_CSS = `
 .sisad-pdfme-designer-root {
@@ -148,6 +218,15 @@ type UploadedPdfDocument = {
   name: string;
   template: Template;
   pageCount: number;
+  updatedAt?: number;
+};
+
+type TemplateChangeContext = {
+  documentId?: string | null;
+  fileId?: string | null;
+  pageCount?: number;
+  source?: string;
+  updatedAt?: number;
 };
 
 const normalizeTemplateSchemaPages = (
@@ -296,10 +375,10 @@ const TemplateEditor = ({
 }: Omit<DesignerProps, 'domContainer'> & {
   size: Size;
   onSaveTemplate: (t: Template) => void;
-  onChangeTemplate: (t: Template) => void;
+  onChangeTemplate: (t: Template, context?: TemplateChangeContext) => void;
   onApiReady?: (api: DesignerRuntimeApi | null) => void;
 } & {
-  onChangeTemplate: (t: Template) => void;
+  onChangeTemplate: (t: Template, context?: TemplateChangeContext) => void;
   onPageCursorChange: (newPageCursor: number, totalPages: number) => void; // NOSONAR
 }) => { // NOSONAR
   const past = useRef<SchemaForUI[][]>([]);
@@ -316,6 +395,9 @@ const TemplateEditor = ({
   const documentSchemasCacheRef = useRef<Map<string, SchemaForUI[][]>>(new Map());
   const schemasListRef = useRef<SchemaForUI[][]>([]);
   const activeBasePdfRef = useRef(template.basePdf);
+  const canvasDocumentIdRef = useRef<string | null>(null);
+  const pendingCanvasDocumentIdRef = useRef<string | null>(null);
+  const loadDocumentRequestRef = useRef(0);
 
   const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
@@ -462,7 +544,6 @@ const TemplateEditor = ({
   const [isSchemaDragging, setIsSchemaDragging] = useState(false);
   const [isDraggingOverCanvas, setIsDraggingOverCanvas] = useState(false);
   const [activeDragData, setActiveDragData] = useState<{ schema: Schema; type: string } | null>(null);
-  const [pendingDropDraft, setPendingDropDraft] = useState<DropDraft | null>(null);
   const [isIdle, setIsIdle] = useState(false);
 
   useEffect(() => {
@@ -470,6 +551,8 @@ const TemplateEditor = ({
   }, [pageCursor]);
   const uploadedDocumentsOption = (options as Record<string, unknown>).uploadedDocuments;
   const activeDocumentIdOption = (options as Record<string, unknown>).activeDocumentId;
+  const rightSidebarViewModeOption = (options as Record<string, unknown>).rightSidebarViewMode;
+  const onRightSidebarViewModeChangeOption = (options as Record<string, unknown>).onRightSidebarViewModeChange;
   const uploadedDocumentsSeed = useMemo<UploadedPdfDocument[]>(
     () => (Array.isArray(uploadedDocumentsOption) ? (uploadedDocumentsOption as UploadedPdfDocument[]) : []),
     [uploadedDocumentsOption],
@@ -477,7 +560,7 @@ const TemplateEditor = ({
   const uploadedDocumentsSeedSignature = useMemo(
     () =>
       uploadedDocumentsSeed
-        .map((doc) => `${doc.id}:${doc.name}:${doc.pageCount}`)
+        .map((doc) => `${doc.id}:${doc.name}:${doc.pageCount}:${doc.updatedAt || ''}`)
         .join("|"),
     [uploadedDocumentsSeed],
   );
@@ -513,14 +596,36 @@ const TemplateEditor = ({
 
   useEffect(() => {
     setUploadedDocuments((prev) => {
-      const next = uploadedDocumentsSeed.map((doc) => ({ ...doc }));
+      const previousById = new Map(prev.map((doc) => [doc.id, doc]));
+      const next = uploadedDocumentsSeed.map((doc) => {
+        const previous = previousById.get(doc.id);
+        if (!previous) return { ...doc };
+        const previousUpdatedAt = Number(previous.updatedAt || 0);
+        const incomingUpdatedAt = Number(doc.updatedAt || 0);
+        if (previousUpdatedAt > incomingUpdatedAt) {
+          return {
+            ...doc,
+            template: previous.template,
+            pageCount: previous.pageCount,
+            updatedAt: previous.updatedAt,
+          };
+        }
+        return {
+          ...previous,
+          ...doc,
+          template: doc.template || previous.template,
+          pageCount: Math.max(1, Number(doc.pageCount || previous.pageCount || 1)),
+          updatedAt: incomingUpdatedAt || previousUpdatedAt || undefined,
+        };
+      });
       if (
         prev.length === next.length &&
         prev.every((doc, index) =>
           doc.id === next[index]?.id &&
           doc.name === next[index]?.name &&
           doc.pageCount === next[index]?.pageCount &&
-          doc.template === next[index]?.template
+          doc.template === next[index]?.template &&
+          doc.updatedAt === next[index]?.updatedAt
         )
       ) {
         return prev;
@@ -536,6 +641,33 @@ const TemplateEditor = ({
     if (!optionActiveId) return;
     setActiveDocumentId(optionActiveId);
   }, [activeDocumentIdOption]);
+
+  useEffect(() => {
+    const handler = (options as Record<string, unknown>).onUploadedDocumentsChange;
+    if (typeof handler !== 'function') return;
+    handler(
+      uploadedDocuments.map((doc) => ({ ...doc })),
+      activeDocumentId || null,
+    );
+  }, [activeDocumentId, options, uploadedDocuments]);
+
+  useEffect(() => {
+    if (
+      rightSidebarViewModeOption !== 'auto' &&
+      rightSidebarViewModeOption !== 'fields' &&
+      rightSidebarViewModeOption !== 'detail' &&
+      rightSidebarViewModeOption !== 'docs' &&
+      rightSidebarViewModeOption !== 'comments'
+    ) {
+      return;
+    }
+    setRightSidebarViewMode(rightSidebarViewModeOption);
+  }, [rightSidebarViewModeOption]);
+
+  useEffect(() => {
+    if (typeof onRightSidebarViewModeChangeOption !== 'function') return;
+    onRightSidebarViewModeChangeOption(rightSidebarViewMode);
+  }, [onRightSidebarViewModeChangeOption, rightSidebarViewMode]);
 
   useEffect(() => {
     setActiveDocumentId((prev) =>
@@ -626,12 +758,19 @@ const TemplateEditor = ({
   }, [hoveringSchemaId, visiblePageSchemaIdSet]);
 
   const pushTemplateUpdate = useCallback(
-    (nextTemplate: Template) => {
+    (nextTemplate: Template, context: TemplateChangeContext = {}) => {
       setVisibleTemplate(nextTemplate);
       internalTemplateSyncRef.current = true;
-      onChangeTemplate(nextTemplate);
+      const documentId = context.documentId || activeDocumentId || canvasDocumentIdRef.current || null;
+      onChangeTemplate(nextTemplate, {
+        ...context,
+        documentId,
+        fileId: context.fileId || documentId,
+        pageCount: context.pageCount || Math.max(1, nextTemplate.schemas?.length || 1),
+        updatedAt: context.updatedAt || Date.now(),
+      });
     },
-    [onChangeTemplate],
+    [activeDocumentId, onChangeTemplate],
   );
   const handleCollaborationEvent = useCallback(
     (event: Parameters<typeof applyCollaborationEvent>[1]) => {
@@ -1220,12 +1359,23 @@ const TemplateEditor = ({
   const loadDocumentIntoCanvas = useCallback(
     async (document: UploadedPdfDocument, targetPageIndex = 0) => {
       if (!document?.id) return;
+      loadDocumentRequestRef.current += 1;
+      const requestId = loadDocumentRequestRef.current;
+      pendingCanvasDocumentIdRef.current = document.id;
       commandBusRef.current.clear();
       const normalizedTemplate = normalizeTemplateSchemaPages(document.template, document.pageCount);
 
       const cachedSchemas = documentSchemasCacheRef.current.get(document.id);
       const nextSchemas = cachedSchemas || (await template2SchemasList(normalizedTemplate));
+      if (requestId !== loadDocumentRequestRef.current) {
+        if (pendingCanvasDocumentIdRef.current === document.id) {
+          pendingCanvasDocumentIdRef.current = null;
+        }
+        return;
+      }
       documentSchemasCacheRef.current.set(document.id, nextSchemas);
+      canvasDocumentIdRef.current = document.id;
+      pendingCanvasDocumentIdRef.current = null;
 
       setVisibleTemplate(normalizedTemplate);
       setSchemasList(nextSchemas);
@@ -1236,13 +1386,59 @@ const TemplateEditor = ({
     [onPageCursorChange],
   );
 
+  const persistActiveDocumentSnapshot = useCallback(
+    (source = 'document-snapshot') => {
+      const documentId = activeDocumentId || canvasDocumentIdRef.current;
+      if (!documentId || canvasDocumentIdRef.current !== documentId) return null;
+
+      const nextSchemas = schemasListRef.current.map((page) => page.slice());
+      const pageCount = Math.max(1, pageSizes.length || nextSchemas.length || visibleTemplate.schemas.length || 1);
+      const updatedAt = Date.now();
+      const nextTemplate = normalizeTemplateSchemaPages(
+        schemasList2template(nextSchemas, activeBasePdfRef.current),
+        pageCount,
+      );
+
+      documentSchemasCacheRef.current.set(documentId, nextSchemas);
+      setUploadedDocuments((prev) => {
+        const idx = prev.findIndex((doc) => doc.id === documentId);
+        if (idx < 0) return prev;
+        const next = [...prev];
+        next[idx] = {
+          ...next[idx],
+          template: nextTemplate,
+          pageCount,
+          updatedAt,
+        };
+        return next;
+      });
+      pushTemplateUpdate(nextTemplate, {
+        documentId,
+        fileId: documentId,
+        pageCount,
+        source,
+        updatedAt,
+      });
+      return nextTemplate;
+    },
+    [activeDocumentId, pageSizes.length, pushTemplateUpdate, visibleTemplate.schemas.length],
+  );
+
   const addSchema = (defaultSchema: Schema) => {
     const [paddingTop, paddingRight, paddingBottom, paddingLeft] = isBlankPdf(activeBasePdf)
       ? activeBasePdf.padding
       : [0, 0, 0, 0];
     const pageSize = pageSizes[pageCursor];
 
-    const existingSchemaNames = schemasList.flatMap((page) => page.map((schema) => schema.name));
+    const newSchemaName = (prefix: string) => {
+      let index = schemasList.reduce((acc, page) => acc + page.length, 1);
+      let newName = prefix + index;
+      while (schemasList.some((page) => page.find((s) => s.name === newName))) {
+        index++;
+        newName = prefix + index;
+      }
+      return newName;
+    };
     const ensureMiddleValue = (min: number, value: number, max: number) =>
       Math.min(Math.max(min, value), max);
 
@@ -1266,7 +1462,7 @@ const TemplateEditor = ({
       ...defaultSchema,
       width: safeWidth,
       height: safeHeight,
-      name: createUniqueSchemaVariableName(defaultSchema.type, existingSchemaNames),
+      name: newSchemaName(i18n('field')),
       position: {
         x: ensureMiddleValue(
           paddingLeft,
@@ -1338,54 +1534,6 @@ const TemplateEditor = ({
     },
     [addSchema, pageCursor, pageSizes],
   );
-
-  const openDropSetup = useCallback(
-    (schema: Schema, position: { x: number; y: number }) => {
-      const existingNames = schemasList[pageCursor]?.map((entry) => entry.name) || [];
-      const defaultRecipientId =
-        collaborationContext.ownerRecipientId || collaborationContext.activeRecipientId || '';
-      const rawWidth = Number(schema.width);
-      const rawHeight = Number(schema.height);
-      setPendingDropDraft({
-        schema,
-        position,
-        name: createUniqueSchemaVariableName(schema.type, existingNames),
-        ownerRecipientId: defaultRecipientId,
-        width: Number.isFinite(rawWidth) && rawWidth > 0 ? rawWidth : 45,
-        height: Number.isFinite(rawHeight) && rawHeight > 0 ? rawHeight : 10,
-      });
-    },
-    [collaborationContext.activeRecipientId, collaborationContext.ownerRecipientId, pageCursor, schemasList],
-  );
-
-  const cancelDropSetup = useCallback(() => {
-    setPendingDropDraft(null);
-  }, []);
-
-  const confirmDropSetup = useCallback(() => {
-    if (!pendingDropDraft) return;
-    const name = pendingDropDraft.name.trim();
-    if (!name) return;
-    const duplicate = (schemasList[pageCursor] || []).some((schema) => schema.name.trim().toLowerCase() === name.toLowerCase());
-    if (duplicate) return;
-
-    const recipient = collaborationContext.recipientOptions.find((entry) => entry.id === pendingDropDraft.ownerRecipientId);
-    const nextSchema: Schema = {
-      ...pendingDropDraft.schema,
-      name,
-      width: Number(pendingDropDraft.width) || pendingDropDraft.schema.width,
-      height: Number(pendingDropDraft.height) || pendingDropDraft.schema.height,
-      position: pendingDropDraft.position,
-      ownerRecipientId: pendingDropDraft.ownerRecipientId || undefined,
-      ownerRecipientIds: pendingDropDraft.ownerRecipientId ? [pendingDropDraft.ownerRecipientId] : undefined,
-      ownerRecipientName: recipient?.name || undefined,
-      ownerColor: recipient?.color || undefined,
-      userColor: recipient?.color || collaborationContext.userColor || undefined,
-    };
-
-    addSchema(nextSchema);
-    setPendingDropDraft(null);
-  }, [addSchema, collaborationContext.recipientOptions, collaborationContext.userColor, pageCursor, pendingDropDraft, schemasList]);
 
   const addSchemaByType = useCallback(
     (schemaType: string) => {
@@ -1956,13 +2104,7 @@ const TemplateEditor = ({
           const buffer = await file.arrayBuffer();
           const pdfPages = await pdf2size(buffer.slice(0));
           const targetPageCount = Math.max(1, pdfPages.length || 1);
-          const normalizedSchemas = schemasList.map((page) => page.slice());
-          if (normalizedSchemas.length > targetPageCount) {
-            normalizedSchemas.length = targetPageCount;
-          }
-          while (normalizedSchemas.length < targetPageCount) {
-            normalizedSchemas.push([]);
-          }
+          const normalizedSchemas = Array.from({ length: targetPageCount }, () => [] as SchemaForUI[]);
           const uploadedBasePdf = await new Promise<string>((resolve, reject) => {
             const reader = new FileReader();
             reader.onload = () => {
@@ -1982,6 +2124,7 @@ const TemplateEditor = ({
           const safePageCursor = Math.max(0, Math.min(pageCursor, targetPageCount - 1));
           const newDocumentId = uuid();
           const docName = file.name?.trim() || `Documento ${uploadedDocuments.length + 1}`;
+          const updatedAt = Date.now();
 
           setUploadedDocuments((prev) =>
             prev.concat({
@@ -1989,21 +2132,30 @@ const TemplateEditor = ({
               name: docName,
               template: nextTemplate,
               pageCount: targetPageCount,
+              updatedAt,
             }),
           );
           documentSchemasCacheRef.current.set(newDocumentId, normalizedSchemas);
 
           if (i === 0) {
+            persistActiveDocumentSnapshot('document-upload');
             setActiveDocumentId(newDocumentId);
             emitActiveDocumentChange({
               id: newDocumentId,
               name: docName,
               template: nextTemplate,
               pageCount: targetPageCount,
+              updatedAt,
             });
             setVisibleTemplate(nextTemplate);
             setSchemasList(normalizedSchemas);
-            pushTemplateUpdate(nextTemplate);
+            pushTemplateUpdate(nextTemplate, {
+              documentId: newDocumentId,
+              fileId: newDocumentId,
+              pageCount: targetPageCount,
+              source: 'document-upload',
+              updatedAt,
+            });
             setPageCursor(safePageCursor);
             onPageCursorChange(safePageCursor, normalizedSchemas.length);
             onEditEnd();
@@ -2018,6 +2170,7 @@ const TemplateEditor = ({
     },
     [
       emitActiveDocumentChange,
+      persistActiveDocumentSnapshot,
       pushTemplateUpdate,
       onEditEnd,
       onPageCursorChange,
@@ -2047,34 +2200,53 @@ const TemplateEditor = ({
 
   useEffect(() => {
     if (!activeDocumentId) return;
-    documentSchemasCacheRef.current.set(activeDocumentId, schemasList);
+    if (canvasDocumentIdRef.current !== activeDocumentId) return;
+    documentSchemasCacheRef.current.set(activeDocumentId, schemasList.map((page) => page.slice()));
     setUploadedDocuments((prev) => {
       const idx = prev.findIndex((doc) => doc.id === activeDocumentId);
       if (idx < 0) return prev;
       const current = prev[idx];
-      if (current.template === visibleTemplate && current.pageCount === pageSizes.length) return prev;
+      const pageCount = Math.max(1, pageSizes.length || visibleTemplate.schemas.length || 1);
+      if (current.template === visibleTemplate && current.pageCount === pageCount) return prev;
       const next = [...prev];
       next[idx] = {
         ...current,
         template: visibleTemplate,
-        pageCount: Math.max(1, pageSizes.length || visibleTemplate.schemas.length || 1),
+        pageCount,
+        updatedAt: Date.now(),
       };
       return next;
     });
   }, [activeDocumentId, pageSizes.length, schemasList, visibleTemplate]);
 
   useEffect(() => {
+    if (!activeDocumentId) {
+      canvasDocumentIdRef.current = null;
+      pendingCanvasDocumentIdRef.current = null;
+      return;
+    }
+
+    if (canvasDocumentIdRef.current === activeDocumentId) return;
+    if (pendingCanvasDocumentIdRef.current === activeDocumentId) return;
+
+    const targetDoc = uploadedDocuments.find((doc) => doc.id === activeDocumentId);
+    if (!targetDoc) return;
+    void loadDocumentIntoCanvas(targetDoc, 0);
+  }, [activeDocumentId, uploadedDocuments, loadDocumentIntoCanvas]);
+
+  useEffect(() => {
     if (internalTemplateSyncRef.current) {
       internalTemplateSyncRef.current = false;
       return;
     }
+    if (activeDocumentId && uploadedDocuments.length > 0) return;
     const normalizedIncomingTemplate = normalizeTemplateSchemaPages(
       template,
       Math.max(1, pageSizes.length || template.schemas.length || 1),
     );
     setVisibleTemplate(normalizedIncomingTemplate);
     void updateTemplate(normalizedIncomingTemplate);
-  }, [template, updateTemplate]);
+  }, [activeDocumentId, pageSizes.length, template, updateTemplate, uploadedDocuments.length]);
 
   useEffect(() => {
     const nextTemplate = pendingCollaborativeTemplateRef.current;
@@ -2141,67 +2313,24 @@ const TemplateEditor = ({
     [fallbackBaseDocumentItem, uploadedDocumentItems],
   );
   const rightSidebarContextHeader = useMemo<RightSidebarContextHeader>(() => {
-    function RightSidebarContextHeaderRenderer(ctx: RightSidebarContextHeaderContext) {
-      // Only show the top context strip when the right sidebar is in 'fields' (list/bulk) mode
-      if (!ctx || (ctx.mode !== 'list' && ctx.mode !== 'bulk')) return null;
+    const actorId = designerEngine.collaboration?.actorId || '';
 
-      const activeDocument = uploadedDocuments.find((doc) => doc.id === activeDocumentId) || null;
-      const activeDocumentLabel =
-        activeDocument?.name ||
-        activeDocument?.id ||
-        fallbackBaseDocumentItem?.name ||
-        activeDocumentId ||
-        'Documento local';
-      const actorId = designerEngine.collaboration?.actorId || '';
-      const actorColor = collaborationContext.userColor || collaborationContext.ownerColor || designerEngine.collaboration?.actorColor || '';
-      const actorStyle = buildCollaboratorChipStyle(actorColor, true);
-      const recipientStyle = buildCollaboratorChipStyle(collaborationContext.activeRecipient?.color || actorColor, false);
-
-      return (
-        <div className={DESIGNER_CLASSNAME + 'detail-view-context-strip'} aria-label="Contexto activo del editor">
-          <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-            Documento: {activeDocumentLabel}
-          </span>
-          {uploadedDocuments.length > 1 ? (
-            <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-              Docs: {uploadedDocuments.length}
-            </span>
-          ) : null}
-          {pageItems.length > 0 ? (
-            <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-              Página: {pageCursor + 1}/{pageItems.length}
-            </span>
-          ) : null}
-          <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-            Campos: {visiblePageSchemas.length}/{currentPageSchemas.length}
-          </span>
-          {activeElements.length > 0 ? (
-            <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-              Selección: {activeElements.length}
-            </span>
-          ) : null}
-          <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-            Presencia: {isIdle ? 'pausa' : 'activa'}
-          </span>
-          <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-            Colaboradores: {Math.max(1, collaborationSync.presence.length)}
-          </span>
-          {collaborationSync.history.length > 0 ? (
-            <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-              Historial: {collaborationSync.history.length}
-            </span>
-          ) : null}
-          <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'} style={recipientStyle}>
-            Vista: {collaborationContext.isGlobalView ? 'Global' : collaborationContext.activeRecipient?.name || 'Sin destinatario'}
-          </span>
-          <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'} style={actorStyle}>
-            Usuario: {actorId || 'local'}
-          </span>
-        </div>
-      );
-    }
-
-    return RightSidebarContextHeaderRenderer;
+    return (ctx: RightSidebarContextHeaderContext) =>
+      renderRightSidebarContextHeader(ctx, {
+        activeDocumentId,
+        uploadedDocuments,
+        fallbackBaseDocumentItem,
+        pageCursor,
+        pageItemsLength: pageItems.length,
+        visiblePageSchemasLength: visiblePageSchemas.length,
+        currentPageSchemasLength: currentPageSchemas.length,
+        activeElementsLength: activeElements.length,
+        isIdle,
+        collaborationPresenceLength: collaborationSync.presence.length,
+        collaborationHistoryLength: collaborationSync.history.length,
+        collaborationContext,
+        actorId,
+      });
   }, [
     activeDocumentId,
     activeElements.length,
@@ -2312,6 +2441,7 @@ const TemplateEditor = ({
                       if (!targetDoc) return;
                       if (targetDoc.id === activeDocumentId) return;
                       onEditEnd();
+                      persistActiveDocumentSnapshot('document-switch');
                       setActiveDocumentId(targetDoc.id);
                       emitActiveDocumentChange(targetDoc);
                       await loadDocumentIntoCanvas(targetDoc, 0);
@@ -2335,6 +2465,7 @@ const TemplateEditor = ({
 
             if (docId !== activeDocumentId) {
               onEditEnd();
+              persistActiveDocumentSnapshot('page-document-switch');
               setActiveDocumentId(docId);
               emitActiveDocumentChange(targetDoc);
               await loadDocumentIntoCanvas(targetDoc, targetPageIndex);
@@ -2457,13 +2588,7 @@ const TemplateEditor = ({
 
           const pageNode = paperRefs.current[pageCursor];
           if (!pageNode) {
-            const pageSize = pageSizes[pageCursor] || { width: 210, height: 297 };
-            const fallbackWidth = Number.isFinite(Number(draggedSchema.width)) ? Number(draggedSchema.width) : 45;
-            const fallbackHeight = Number.isFinite(Number(draggedSchema.height)) ? Number(draggedSchema.height) : 10;
-            openDropSetup(draggedSchema, {
-              x: round(Math.max(0, (pageSize.width - fallbackWidth) / 2), 2),
-              y: round(Math.max(0, (pageSize.height - fallbackHeight) / 2), 2),
-            });
+            addSchemaAtCenter(draggedSchema);
             return;
           }
           const pageRect = pageNode.getBoundingClientRect();
@@ -2473,13 +2598,7 @@ const TemplateEditor = ({
 
           const translated = active.rect.current.translated || active.rect.current.initial;
           if (!translated) {
-            const pageSize = pageSizes[pageCursor] || { width: 210, height: 297 };
-            const fallbackWidth = Number.isFinite(Number(draggedSchema.width)) ? Number(draggedSchema.width) : 45;
-            const fallbackHeight = Number.isFinite(Number(draggedSchema.height)) ? Number(draggedSchema.height) : 10;
-            openDropSetup(draggedSchema, {
-              x: round(Math.max(0, (pageSize.width - fallbackWidth) / 2), 2),
-              y: round(Math.max(0, (pageSize.height - fallbackHeight) / 2), 2),
-            });
+            addSchemaAtCenter(draggedSchema);
             return;
           }
 
@@ -2498,7 +2617,7 @@ const TemplateEditor = ({
             y: round(px2mm(Math.max(0, moveY)), 2),
           };
 
-          openDropSetup(draggedSchema, position);
+          addSchema({ ...draggedSchema, position });
           setActiveDragData(null);
         }}
       >
@@ -2672,24 +2791,6 @@ const TemplateEditor = ({
             </div>
           ) : null}
         </DragOverlay>
-        <SchemaDropSetupModal
-          open={Boolean(pendingDropDraft)}
-          draft={pendingDropDraft}
-          existingNames={(schemasList[pageCursor] || []).map((schema) => schema.name)}
-          recipients={collaborationContext.recipientOptions}
-          onChange={(patch) =>
-            setPendingDropDraft((current) =>
-              current
-                ? {
-                    ...current,
-                    ...patch,
-                  }
-                : current,
-            )
-          }
-          onCancel={cancelDropSetup}
-          onConfirm={confirmDropSetup}
-        />
       </DndContext>
     </Root>
   );
