@@ -7,6 +7,7 @@ import {
   resolveOwnerMode,
   type CollaborationRecipientOption,
 } from './collaborationContext.js';
+import type { SignatureProviderDefinition } from '../schemas/signature/providerRegistry.js';
 import type {
   CanvasClassNames,
   CanvasComponentSlots,
@@ -337,6 +338,10 @@ export type DesignerEngine = {
     identityFactory?: SchemaIdentityFactory;
     onCreate?: SchemaCreationHook;
   };
+  signature?: {
+    providers?: SignatureProviderDefinition[];
+    defaultProviderKey?: string | null;
+  };
   collaboration?: CollaborationSyncConfig;
 };
 
@@ -385,6 +390,21 @@ const cloneDesignerEngine = (engine: DesignerEngine = {}): DesignerEngine => ({
         autoAttachIdentity: engine.schema.autoAttachIdentity,
         identityFactory: engine.schema.identityFactory,
         onCreate: engine.schema.onCreate,
+      }
+    : undefined,
+  signature: engine.signature
+    ? {
+        defaultProviderKey: engine.signature.defaultProviderKey ?? null,
+        providers: engine.signature.providers?.map((provider) => ({
+          ...provider,
+          badges: provider.badges ? [...provider.badges] : undefined,
+          capabilities: { ...provider.capabilities },
+          defaultConfig: provider.defaultConfig ? cloneDeep(provider.defaultConfig) : undefined,
+          configFields: provider.configFields?.map((field) => ({
+            ...field,
+            options: field.options?.map((option) => ({ ...option })),
+          })),
+        })),
       }
     : undefined,
   collaboration: engine.collaboration
@@ -1224,6 +1244,31 @@ export class DesignerEngineBuilder {
 
   withAutoAttachIdentity(autoAttachIdentity: boolean) {
     this.engine.schema = { ...(this.engine.schema || {}), autoAttachIdentity };
+    return this;
+  }
+
+  withSignatureProviders(providers: SignatureProviderDefinition[]) {
+    this.engine.signature = {
+      ...(this.engine.signature || {}),
+      providers: providers?.map((provider) => ({
+        ...provider,
+        badges: provider.badges ? [...provider.badges] : undefined,
+        capabilities: { ...provider.capabilities },
+        defaultConfig: provider.defaultConfig ? cloneDeep(provider.defaultConfig) : undefined,
+        configFields: provider.configFields?.map((field) => ({
+          ...field,
+          options: field.options?.map((option) => ({ ...option })),
+        })),
+      })) || [],
+    };
+    return this;
+  }
+
+  withSignatureDefaultProviderKey(defaultProviderKey: string | null | undefined) {
+    this.engine.signature = {
+      ...(this.engine.signature || {}),
+      defaultProviderKey: defaultProviderKey ?? null,
+    };
     return this;
   }
 

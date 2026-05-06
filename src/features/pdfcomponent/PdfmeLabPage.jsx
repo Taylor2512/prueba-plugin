@@ -34,6 +34,76 @@ const MODE_LABELS = {
   viewer: 'Visor',
 }
 
+const DEFAULT_SIGNATURE_PROVIDERS = [
+  {
+    key: 'provider.remoto.tenantA',
+    label: 'Tenant A Sign',
+    description: 'Proveedor remoto embebido para flujos de firma del tenant A.',
+    capabilities: {
+      supportsVisibleSignature: true,
+      supportsWebhook: true,
+      supportsPolling: false,
+      supportsCertificateMetadata: false,
+      supportsReason: true,
+      supportsLocation: false,
+      supportsOtp: true,
+      supportsBiometric: false,
+    },
+    defaultConfig: {
+      flow: 'embedded',
+      visibleSignature: true,
+      baseUrl: 'https://firma.tenant-a.example.com',
+    },
+    configFields: [
+      { key: 'baseUrl', label: 'Base URL', type: 'text', required: true },
+      {
+        key: 'flow',
+        label: 'Flow',
+        type: 'select',
+        required: true,
+        options: [
+          { label: 'Embedded', value: 'embedded' },
+          { label: 'Redirect', value: 'redirect' },
+        ],
+      },
+      { key: 'visibleSignature', label: 'Firma visible', type: 'switch' },
+    ],
+  },
+  {
+    key: 'provider.remoto.tenantB',
+    label: 'Tenant B Sign',
+    description: 'Proveedor remoto por polling para tenant B.',
+    capabilities: {
+      supportsVisibleSignature: false,
+      supportsWebhook: false,
+      supportsPolling: true,
+      supportsCertificateMetadata: true,
+      supportsReason: true,
+      supportsLocation: true,
+      supportsOtp: false,
+      supportsBiometric: true,
+    },
+    defaultConfig: {
+      flow: 'redirect',
+      callbackUrl: 'https://app.tenant-b.example.com/sign/callback',
+    },
+    configFields: [
+      { key: 'baseUrl', label: 'Base URL', type: 'text', required: true },
+      {
+        key: 'flow',
+        label: 'Flow',
+        type: 'select',
+        required: true,
+        options: [
+          { label: 'Redirect', value: 'redirect' },
+          { label: 'Embedded', value: 'embedded' },
+        ],
+      },
+      { key: 'callbackUrl', label: 'Callback URL', type: 'text', required: true },
+    ],
+  },
+]
+
 // MODE_LABELS removed: use mode strings directly where needed
 
 export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
@@ -59,6 +129,12 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   const [isGlobalView, setIsGlobalView] = useState(Boolean(collaboration?.isGlobalView))
   const activeCollaborator =
     collaborationUsers.find((user) => user.id === activeCollaboratorId) || collaborationUsers[0] || null
+  const signatureProviders = useMemo(() => {
+    const runtimeProviders = Array.isArray(example?.runtimeOptions?.signatureProviders)
+      ? example.runtimeOptions.signatureProviders
+      : null
+    return runtimeProviders && runtimeProviders.length > 0 ? cloneDeep(runtimeProviders) : cloneDeep(DEFAULT_SIGNATURE_PROVIDERS)
+  }, [example])
   const designerEngineOptions = useMemo(() => {
     const collaborationConfig = {
       enabled: Boolean(collaborationSessionId),
@@ -80,6 +156,8 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
         padding: true,
         mask: false,
       })
+      .withSignatureProviders(signatureProviders)
+      .withSignatureDefaultProviderKey(signatureProviders[0]?.key || null)
       .withCollaboration(collaborationConfig)
       .buildOptions({ lang: 'es' })
   }, [
@@ -89,6 +167,7 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
     collaborationSessionId,
     collaborationUsers,
     isGlobalView,
+    signatureProviders,
   ])
   const runtimeOptions = useMemo(
     () => cloneDeep(example?.runtimeOptions || {}),

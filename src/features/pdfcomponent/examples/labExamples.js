@@ -449,6 +449,43 @@ const generatorRuntimeTemplate = createTemplate([
   ],
 ], { basePdf: LAB_PDFS.generator, pageCount: 3 })
 
+const BASIC_SIGNATURE_PROVIDERS = [
+  {
+    key: 'provider.remoto.tenantA',
+    label: 'Tenant A Sign',
+    description: 'Proveedor remoto embebido para pruebas del lab.',
+    capabilities: {
+      supportsVisibleSignature: true,
+      supportsWebhook: true,
+      supportsPolling: false,
+      supportsCertificateMetadata: false,
+      supportsReason: true,
+      supportsLocation: false,
+      supportsOtp: true,
+      supportsBiometric: false,
+    },
+    defaultConfig: {
+      flow: 'embedded',
+      visibleSignature: true,
+      baseUrl: 'https://firma.tenant-a.example.com',
+    },
+    configFields: [
+      { key: 'baseUrl', label: 'Base URL', type: 'text', required: true },
+      {
+        key: 'flow',
+        label: 'Flow',
+        type: 'select',
+        required: true,
+        options: [
+          { label: 'Embedded', value: 'embedded' },
+          { label: 'Redirect', value: 'redirect' },
+        ],
+      },
+      { key: 'visibleSignature', label: 'Firma visible', type: 'switch' },
+    ],
+  },
+]
+
 const LAB_EXAMPLES = [
   createExample({
     id: 'basic-designer',
@@ -463,6 +500,9 @@ const LAB_EXAMPLES = [
       { id: 'basic-user-2', name: 'QA', role: 'reviewer', team: 'lab-team', color: '#D946EF' },
     ], { sessionId: 'basic-designer-session', actorId: 'basic-user-1' }),
     template: basicDesignerTemplate,
+    runtimeOptions: {
+      signatureProviders: BASIC_SIGNATURE_PROVIDERS,
+    },
   }),
   createExample({
     id: 'enterprise-collaboration',

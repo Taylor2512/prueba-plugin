@@ -5,6 +5,9 @@ import {
   builtInSchemaDefinitionsByType,
   flatSchemaPlugins,
 } from '../../src/sisad-pdfme/schemas/index.js';
+import { validateSignatureSchema } from '../../src/sisad-pdfme/schemas/signature/validation.js';
+import { registerSignatureProvider } from '../../src/sisad-pdfme/schemas/signature/providerRegistry.js';
+import { normalizeSignatureSchema } from '../../src/sisad-pdfme/schemas/signature/types.js';
 
 const PNG_DATA_URL =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAusB9pX6lzQAAAAASUVORK5CYII=';
@@ -23,7 +26,7 @@ describe('signature schema plugin', () => {
     expect(flatSchemaPlugins.signature?.propPanel?.defaultSchema?.type).toBe('signature');
   });
 
-  it('renders an empty signature field with upload affordances', () => {
+  it('renders an empty signature field with draw affordances by default', () => {
     const rootElement = document.createElement('div');
     const onChange = vi.fn();
 
@@ -41,8 +44,33 @@ describe('signature schema plugin', () => {
       _cache: new Map(),
     });
 
-    expect(rootElement.querySelector('input[type="file"]')).not.toBeNull();
+    expect(rootElement.querySelector('button')?.textContent).toContain('Dibujar');
+    expect(rootElement.querySelector('input[type="file"]')).toBeNull();
     expect(rootElement.innerHTML.length).toBeGreaterThan(0);
+  });
+
+  it('shows upload affordances only in image mode', () => {
+    const rootElement = document.createElement('div');
+
+    flatSchemaPlugins.signature.ui({
+      schema: {
+        ...flatSchemaPlugins.signature.propPanel.defaultSchema,
+        id: 'signature-image-mode',
+        signatureMode: 'image',
+      },
+      basePdf,
+      mode: 'form',
+      value: '',
+      rootElement,
+      options,
+      theme,
+      i18n: (key) => key,
+      scale: 1,
+      _cache: new Map(),
+    });
+
+    expect(rootElement.querySelector('input[type="file"]')).not.toBeNull();
+    expect(rootElement.textContent).not.toContain('Dibujar');
   });
 
   it('renders the uploaded image when a signature value exists', () => {
@@ -84,5 +112,61 @@ describe('signature schema plugin', () => {
 
     expect(output).toBeInstanceOf(Uint8Array);
     expect(output.length).toBeGreaterThan(0);
+  });
+
+  it('validates provider mode against registered provider config', () => {
+    registerSignatureProvider({
+      key: 'provider.remoto.test',
+      label: 'Proveedor remoto',
+      capabilities: {
+        supportsVisibleSignature: true,
+        supportsWebhook: true,
+        supportsPolling: false,
+        supportsCertificateMetadata: false,
+        supportsReason: true,
+        supportsLocation: false,
+        supportsOtp: false,
+        supportsBiometric: false,
+      },
+      configFields: [
+        { key: 'baseUrl', label: 'Base URL', type: 'text', required: true },
+      ],
+      defaultConfig: {},
+    });
+
+    expect(
+      validateSignatureSchema({
+        type: 'signature',
+        name: 'firma_remota',
+        signatureMode: 'provider',
+        signatureProviderKey: 'provider.remoto.test',
+        signatureProviderConfig: {},
+      }).isValid,
+    ).toBe(false);
+
+    expect(
+      validateSignatureSchema({
+        type: 'signature',
+        name: 'firma_remota',
+        signatureMode: 'provider',
+        signatureProviderKey: 'provider.remoto.test',
+        signatureProviderConfig: { baseUrl: 'https://firma.example.com' },
+      }).isValid,
+    ).toBe(true);
+  });
+
+  it('migrates legacy signatureProvider local_draw to draw mode without external provider key', () => {
+    const normalized = normalizeSignatureSchema({
+      type: 'signature',
+      name: 'legacy_signature',
+      signatureProvider: 'local_draw',
+      signatureMetadata: {
+        digestAlgorithm: 'SHA-256',
+      },
+    });
+
+    expect(normalized.signatureMode).toBe('draw');
+    expect(normalized.signatureProviderKey).toBeNull();
+    expect(normalized.signatureMetadata?.digestAlgorithm).toBeUndefined();
   });
 });

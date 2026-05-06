@@ -4,6 +4,7 @@ import { Badge, Tag, Tooltip } from 'antd';
 import { resolveSchemaTone } from '../../shared/schemaTone.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
+import { resolveLegacySignatureMode, type SignatureSchema } from '../../../../../schemas/signature/types.js';
 
 type DetailHeaderCardProps = {
   activeSchema: SchemaForUI;
@@ -60,7 +61,15 @@ const DetailHeaderCard = ({
         ? { label: 'API', color: 'blue' }
         : null;
 
+  const signatureSchema = activeSchema.type === 'signature' ? (activeSchema as Partial<SignatureSchema>) : null;
+  const signatureMode = signatureSchema ? resolveLegacySignatureMode(signatureSchema) : null;
+  const signatureProviderKey = signatureSchema?.signatureProviderKey || null;
+  const signatureVisualStamp = signatureSchema?.signatureDisplay?.showVisualStamp;
+
   const stateTags: StateTag[] = [
+    signatureMode ? { label: signatureMode.toUpperCase(), color: 'blue' } : null,
+    signatureMode === 'provider' && signatureProviderKey ? { label: signatureProviderKey, color: 'processing' } : null,
+    signatureMode ? { label: signatureVisualStamp === false ? 'Invisible' : 'Visible', color: 'default' } : null,
     !schemaName.trim() ? { label: 'Sin nombre', color: 'warning' } : null,
     activeSchema.required ? { label: 'Requerido', color: 'error' } : null,
     activeSchema.readOnly ? { label: 'Solo lectura', color: 'gold' } : null,

@@ -11,8 +11,6 @@ import {
   Undo2,
   Redo2,
   Maximize2,
-  PanelRightOpen,
-  PanelRightClose,
   Grid2x2,
   Ruler,
   Magnet,
@@ -282,16 +280,6 @@ const CtlBar = (props: CtlBarProps) => {
         <Zoom zoomLevel={zoomLevel} setZoomLevel={zoomChangeHandler} />
 
         <div className={UI_CLASSNAME + 'control-bar-group'}>
-          <Button
-            className={UI_CLASSNAME + 'control-bar-icon-btn'}
-            type="text"
-            onClick={onToggleSidebar}
-            disabled={!onToggleSidebar}
-            icon={sidebarOpen ? <PanelRightClose size={16} /> : <PanelRightOpen size={16} />}
-            title={sidebarOpen ? 'Ocultar panel derecho' : 'Mostrar panel derecho'}
-            aria-pressed={sidebarOpen ? 'true' : 'false'}
-            data-active={sidebarOpen ? 'true' : 'false'}
-          />
           <Button
             className={UI_CLASSNAME + 'control-bar-icon-btn'}
             type="text"

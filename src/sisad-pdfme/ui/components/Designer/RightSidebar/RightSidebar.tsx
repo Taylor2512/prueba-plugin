@@ -14,7 +14,7 @@ import DocumentsRail, { DocumentsRailProps } from './DocumentsRail.js';
 import CommentsRail, { CommentsRailProps } from './CommentsRail.js';
 import { mergeClassNames } from '../shared/className.js';
 import type { SelectionCommandSet } from '../shared/selectionCommands.js';
-import { Layers, SlidersHorizontal, FileText, MessageSquareText } from 'lucide-react';
+import { Layers, SlidersHorizontal, FileText, MessageSquareText, PanelRightClose, PanelRightOpen } from 'lucide-react';
 import {
   resolveRightSidebarContextHeader,
   type RightSidebarContextHeader,
@@ -56,6 +56,7 @@ export type RightSidebarProps = SidebarProps & {
   documentsAccessMode?: 'always' | 'tab';
   onViewModeChange?: (_mode: 'fields' | 'detail' | 'docs' | 'comments') => void;
   contextHeader?: RightSidebarContextHeader;
+  onToggleSidebar?: () => void;
   selectionCommands?: SelectionCommandSet;
   components?: {
     listView?: typeof ListView;
@@ -290,6 +291,8 @@ const Sidebar = (props: RightSidebarProps) => {
       useDefaultStyles={props.useDefaultStyles} />
   );
 
+  const onToggleSidebar = props.onToggleSidebar;
+
   return (
     <aside
       id={props.rootId}
@@ -306,6 +309,7 @@ const Sidebar = (props: RightSidebarProps) => {
       data-sidebar-open={sidebarOpen ? 'true' : 'false'}
       data-panel-mode={resolvedPanelMode}
       data-sidebar-mode={resolvedPanelMode}>
+    
       <div
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'right-sidebar-content',

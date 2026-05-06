@@ -30,7 +30,7 @@ import Canvas from './Canvas/Canvas.js';
 import type { CanvasFeatureToggles } from './Canvas/Canvas.js';
 import { createSelectionCommands } from './shared/selectionCommands.js';
 import type { InteractionState } from './shared/interactionState.js';
-import { Plus } from 'lucide-react';
+import { Plus, PanelRightClose, PanelRightOpen } from 'lucide-react';
 import {
   RULER_HEIGHT,
   RIGHT_SIDEBAR_WIDTH,
@@ -2490,6 +2490,7 @@ const TemplateEditor = ({
       viewMode={rightSidebarViewMode}
       onViewModeChange={(mode) => setRightSidebarViewMode(mode)}
       contextHeader={rightSidebarContextHeader}
+      onToggleSidebar={() => setSidebarOpen((prev) => !prev)}
       selectionCommands={selectionCommands}
       className={
         [
@@ -2678,6 +2679,20 @@ const TemplateEditor = ({
             }}
             onToggleFeature={handleToggleCanvasFeature}
           />
+
+          {!rightSidebarDetached ? (
+            <button
+              type="button"
+              className={`${DESIGNER_CLASSNAME}right-sidebar-toggle-btn`}
+              title={sidebarOpen ? 'Ocultar panel derecho' : 'Mostrar panel derecho'}
+              aria-label={sidebarOpen ? 'Ocultar panel derecho' : 'Mostrar panel derecho'}
+              aria-pressed={sidebarOpen ? 'true' : 'false'}
+              data-active={sidebarOpen ? 'true' : 'false'}
+              onClick={() => setSidebarOpen((prev) => !prev)}
+            >
+              {sidebarOpen ? <PanelRightClose size={16} strokeWidth={2.2} /> : <PanelRightOpen size={16} strokeWidth={2.2} />}
+            </button>
+          ) : null}
 
 
 

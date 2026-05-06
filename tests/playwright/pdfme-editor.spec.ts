@@ -119,6 +119,36 @@ const openCollaborationConfigFromDetail = async (page: Page) => {
   return page.getByRole('dialog', { name: 'Configurar colaboración del campo' });
 };
 
+const ensureDetailSectionExpanded = async (page: Page, sectionName: string) => {
+  const toggle = page.getByRole('button', {
+    name: new RegExp(`Expandir sección ${sectionName}|Colapsar sección ${sectionName}`),
+  });
+  await expect(toggle).toBeVisible();
+  if ((await toggle.getAttribute('aria-expanded')) !== 'true') {
+    await toggle.click();
+  }
+};
+
+const getFieldInputByTitle = (page: Page, title: string) =>
+  page
+    .locator('.sisad-pdfme-designer-right-sidebar')
+    .getByRole('textbox', { name: title })
+    .first();
+
+const selectSignatureMode = async (page: Page, optionLabel: string) => {
+  const modeSelects = page
+    .locator('.sisad-pdfme-designer-right-sidebar')
+    .locator('div')
+    .filter({ hasText: 'Modo de firma' })
+    .locator('select');
+
+  const count = await modeSelects.count();
+  expect(count).toBeGreaterThan(0);
+  for (let i = 0; i < count; i += 1) {
+    await modeSelects.nth(i).selectOption({ label: optionLabel });
+  }
+};
+
 test.describe('PDFME editor shell', () => {
   test('renders the landing page with example routes', async ({ page }) => {
     await page.goto('/');
@@ -161,6 +191,77 @@ test.describe('PDFME editor shell', () => {
     const signatureFields = page.locator('.sisad-pdfme-designer-canvas [data-schema-type="signature"]');
     await expect(signatureFields).toHaveCount(2);
     await expect(signatureFields.first()).toBeVisible();
+  });
+
+  test('switches signature mode to provider and configures external provider from modal', async ({ page }) => {
+    await openDesigner(page);
+    await selectFieldForDetail(page, 'signature');
+    await ensureDetailSectionExpanded(page, 'Datos');
+
+    await selectSignatureMode(page, 'Proveedor externo');
+
+    const providerSelects = page
+      .locator('.sisad-pdfme-designer-right-sidebar')
+      .locator('div')
+      .filter({ hasText: 'Proveedor externo' })
+      .locator('select');
+    await expect(providerSelects.first()).toBeVisible();
+    const providerCount = await providerSelects.count();
+    let providerAssigned = false;
+    for (let i = 0; i < providerCount; i += 1) {
+      try {
+        await providerSelects.nth(i).selectOption({ label: 'Tenant A Sign' });
+        providerAssigned = true;
+        break;
+      } catch {
+        // Continue trying the next provider select instance.
+      }
+    }
+    expect(providerAssigned).toBeTruthy();
+
+    const configureProviderButton = page.getByRole('button', { name: 'Configurar proveedor' }).first();
+    if ((await configureProviderButton.count()) > 0 && (await configureProviderButton.isVisible())) {
+      await configureProviderButton.click();
+
+      const overlay = page.locator('div').filter({ hasText: 'Tenant A Sign' }).first();
+      await expect(overlay).toBeVisible();
+
+      const baseUrlInput = overlay.locator('label').filter({ hasText: 'Base URL' }).locator('input').first();
+      await expect(baseUrlInput).toBeVisible();
+      await baseUrlInput.fill('https://firma-e2e.example.com');
+
+      const flowSelect = overlay
+        .locator('div')
+        .filter({ hasText: 'Flow' })
+        .locator('select')
+        .first();
+      await expect(flowSelect).toBeVisible();
+      await flowSelect.selectOption('embedded');
+
+      await overlay.getByRole('button', { name: 'Guardar' }).click();
+      await expect(overlay).toBeHidden();
+    }
+
+    await expect(page.getByText('PROVIDER').first()).toBeVisible();
+    await expect(page.getByText('provider.remoto.tenantA').first()).toBeVisible();
+  });
+
+  test('sanitizes p12 metadata when switching signature mode', async ({ page }) => {
+    await openDesigner(page);
+    await selectFieldForDetail(page, 'signature');
+    await ensureDetailSectionExpanded(page, 'Datos');
+
+    await selectSignatureMode(page, 'Firma con certificado P12');
+    await ensureDetailSectionExpanded(page, 'Avanzado');
+
+    const certSubjectInput = getFieldInputByTitle(page, 'Subject certificado');
+    await expect(certSubjectInput).toBeVisible();
+    await certSubjectInput.fill('CN=E2E Subject');
+
+    await ensureDetailSectionExpanded(page, 'Datos');
+    await selectSignatureMode(page, 'Firma por imagen');
+    await ensureDetailSectionExpanded(page, 'Avanzado');
+    await expect(getFieldInputByTitle(page, 'Subject certificado')).toHaveCount(0);
   });
 
   test('creates an anchored comment from the canvas context menu', async ({ page }) => {
