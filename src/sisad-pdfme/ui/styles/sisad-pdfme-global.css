@@ -303,6 +303,36 @@ body {
   box-shadow: none;
 }
 
+.sisad-pdfme-ui-control-bar-shortcuts-btn {
+  height: 1.5rem;
+  min-height: 1.5rem;
+  padding: 0 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.71875rem;
+  line-height: 1;
+  gap: 0.35rem;
+}
+
+.sisad-pdfme-ui-control-bar-shortcuts-btn .ant-btn-icon {
+  display: inline-flex;
+  margin-inline-end: 0;
+}
+
+.sisad-pdfme-ui-control-bar-shortcuts-btn,
+.sisad-pdfme-ui-control-bar-shortcuts-btn:hover,
+.sisad-pdfme-ui-control-bar-shortcuts-btn:focus-visible {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sisad-pdfme-ui-control-bar-icon-btn[data-active='true'],
+.sisad-pdfme-ui-control-bar-shortcuts-btn[data-active='true'] {
+  color: var(--color-primary);
+  background: var(--color-primary-08);
+  border-color: var(--color-primary-16);
+}
+
 .sisad-pdfme-ui-control-bar-icon-btn {
   width: 1.5rem;
   height: 1.5rem;

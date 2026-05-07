@@ -1,7 +1,16 @@
-import type { PropPanelInspectorConfig, PropPanelInspectorSectionKey, PropPanelSchema } from '@sisad-pdfme/common';
-import { getSchemaTypeInspectorPreset } from '../../../../../schemas/schemaFamilies.js';
+import type { PropPanelInspectorConfig, PropPanelSchema, SchemaForUI } from '@sisad-pdfme/common';
+import type { SchemaDesignerConfig } from '../../../../../ui/designerEngine.js';
+import {
+  CANONICAL_DETAIL_SECTION_LABELS,
+  CANONICAL_DETAIL_SECTION_ORDER,
+  type CanonicalDetailSection,
+  type LegacyDetailSection,
+  toCanonicalDetailSection,
+  shouldRenderDetailSection,
+} from './detailSectionTaxonomy.js';
+import { getSchemaTypeInspectorPreset, resolveSchemaSemanticFamily } from '../../../../../schemas/schemaFamilies.js';
 
-export type DetailInspectorSectionKey = PropPanelInspectorSectionKey;
+export type DetailInspectorSectionKey = CanonicalDetailSection;
 
 export type DetailInspectorSection = {
   key: DetailInspectorSectionKey;
@@ -13,6 +22,8 @@ export type DetailInspectorSection = {
 
 type BuildInspectorSchemasParams = {
   activeSchemaType: string;
+  activeSchema?: SchemaForUI | null;
+  schemaConfig?: SchemaDesignerConfig | null;
   typedI18n: (key: string) => string;
   defaultSchema: Record<string, unknown>;
   pluginProps: Record<string, PropPanelSchema>;
@@ -28,62 +39,15 @@ type BuildInspectorSchemasParams = {
   validatePosition: (_: unknown, value: number, fieldName: string) => boolean;
 };
 
-const SECTION_META: Record<DetailInspectorSectionKey, Omit<DetailInspectorSection, 'schema'>> = {
-  general: {
-    key: 'general',
-    title: 'General',
-    description: 'Identidad y metadatos del campo.',
-    defaultCollapsed: false,
-  },
-  layout: {
-    key: 'layout',
-    title: 'Layout',
-    description: 'Posición y tamaño en la página.',
-    defaultCollapsed: false,
-  },
-  style: {
-    key: 'style',
-    title: 'Estilo',
-    description: 'Alineación y tratamiento visual.',
-    defaultCollapsed: true,
-  },
-  data: {
-    key: 'data',
-    title: 'Datos',
-    description: 'Comportamiento semántico y edición.',
-    defaultCollapsed: false,
-  },
-  connections: {
-    key: 'connections',
-    title: 'Conexiones',
-    description: 'Persistencia, API y salida de datos.',
-    defaultCollapsed: true,
-  },
-  collaboration: {
-    key: 'collaboration',
-    title: 'Colaboración',
-    description: 'Propietario, bloqueo, auditoría y trazabilidad.',
-    defaultCollapsed: true,
-  },
-  validation: {
-    key: 'validation',
-    title: 'Validación',
-    description: 'Reglas y obligatoriedad.',
-    defaultCollapsed: true,
-  },
-  advanced: {
-    key: 'advanced',
-    title: 'Avanzado',
-    description: 'Propiedades avanzadas del plugin.',
-    defaultCollapsed: true,
-  },
-  comments: {
-    key: 'comments',
-    title: 'Comentarios',
-    description: 'Hilos de comentarios anclados a este campo.',
-    defaultCollapsed: false,
-  },
-};
+const SECTION_META: Record<DetailInspectorSectionKey, Omit<DetailInspectorSection, 'schema'>> = Object.fromEntries(
+  CANONICAL_DETAIL_SECTION_ORDER.map((sectionKey) => [
+    sectionKey,
+    {
+      key: sectionKey,
+      ...CANONICAL_DETAIL_SECTION_LABELS[sectionKey],
+    },
+  ]),
+) as Record<DetailInspectorSectionKey, Omit<DetailInspectorSection, 'schema'>>;
 
 const buildSectionSchema = (properties: Record<string, PropPanelSchema>): PropPanelSchema => ({
   type: 'object',
@@ -91,25 +55,9 @@ const buildSectionSchema = (properties: Record<string, PropPanelSchema>): PropPa
   properties,
 });
 
-const hasVisibleFields = (schema: PropPanelSchema | undefined): boolean => {
-  if (!schema || typeof schema !== 'object') return false;
-  const properties = (schema as { properties?: Record<string, PropPanelSchema> }).properties;
-  if (!properties) return false;
-
-  return Object.values(properties).some((property) => {
-    if (!property || typeof property !== 'object') return false;
-    if ((property as { hidden?: unknown }).hidden === true) return false;
-    const nestedProperties = (property as { properties?: Record<string, PropPanelSchema> }).properties;
-    if (nestedProperties) {
-      return hasVisibleFields({ type: 'object', properties: nestedProperties } as PropPanelSchema);
-    }
-    return true;
-  });
-};
-
 const addFieldToSection = (
-  sectionProperties: Record<DetailInspectorSectionKey, Record<string, PropPanelSchema>>,
-  sectionKey: DetailInspectorSectionKey,
+  sectionProperties: Record<LegacyDetailSection, Record<string, PropPanelSchema>>,
+  sectionKey: LegacyDetailSection,
   fieldKey: string,
   fieldSchema: PropPanelSchema,
 ) => {
@@ -141,6 +89,8 @@ const replaceColorWidget = (schemaNode: unknown): unknown => {
 
 export const buildInspectorSections = ({
   activeSchemaType,
+  activeSchema,
+  schemaConfig,
   typedI18n,
   defaultSchema,
   pluginProps,
@@ -156,25 +106,57 @@ export const buildInspectorSections = ({
   validatePosition,
 }: BuildInspectorSchemasParams) => {
   const familyPreset = getSchemaTypeInspectorPreset(activeSchemaType);
-  const visibleSections = new Set(
-    inspectorConfig?.visibleSections?.length ? inspectorConfig.visibleSections : familyPreset.visibleSections,
+  const semanticFamily = resolveSchemaSemanticFamily(activeSchemaType);
+  const activeSchemaRecord = activeSchema as Record<string, unknown> | null | undefined;
+  const canonicalVisibleSections = new Set(
+    (inspectorConfig?.visibleSections?.length ? inspectorConfig.visibleSections : familyPreset.visibleSections)
+      .map((sectionKey) => toCanonicalDetailSection(sectionKey))
+      .filter((sectionKey): sectionKey is CanonicalDetailSection => Boolean(sectionKey)),
+  );
+  const hasSchemaBindings = Boolean(
+    schemaConfig?.persistence?.enabled ||
+      schemaConfig?.api?.enabled ||
+      schemaConfig?.form?.enabled ||
+      schemaConfig?.prefill?.enabled ||
+      (schemaConfig?.integrations?.length || 0) > 0,
+  );
+  const hasSchemaCollaboration = Boolean(
+    schemaConfig?.collaboration ||
+      (activeSchemaRecord &&
+        (activeSchemaRecord.ownerRecipientId ||
+          activeSchemaRecord.ownerRecipientIds ||
+          activeSchemaRecord.ownerRecipientName ||
+          activeSchemaRecord.ownerColor ||
+          activeSchemaRecord.userColor ||
+          activeSchemaRecord.createdBy ||
+          activeSchemaRecord.lastModifiedBy ||
+          activeSchemaRecord.lockedBy ||
+          activeSchemaRecord.lock ||
+          activeSchemaRecord.state)),
+  );
+  const hasSchemaComments = Boolean(
+    activeSchemaRecord &&
+      (activeSchemaRecord.commentsCount ||
+        (Array.isArray(activeSchemaRecord.comments) && activeSchemaRecord.comments.length > 0) ||
+        (Array.isArray(activeSchemaRecord.commentAnchors) && activeSchemaRecord.commentAnchors.length > 0) ||
+        (Array.isArray(activeSchemaRecord.commentsAnchors) && activeSchemaRecord.commentsAnchors.length > 0)),
   );
   const shouldShowConnections =
-    inspectorConfig?.supportsConnections ?? inspectorConfig?.includeConnections ?? familyPreset.supportsConnections;
+    Boolean(inspectorConfig?.supportsConnections ?? inspectorConfig?.includeConnections ?? familyPreset.supportsConnections) ||
+    hasSchemaBindings;
   const shouldShowCollaboration =
-    inspectorConfig?.supportsCollaboration ??
-    inspectorConfig?.includeCollaboration ??
-    familyPreset.supportsCollaboration;
+    Boolean(inspectorConfig?.supportsCollaboration ?? inspectorConfig?.includeCollaboration) ||
+    hasSchemaCollaboration;
   const shouldShowValidation =
-    inspectorConfig?.supportsValidation ?? inspectorConfig?.includeValidation ?? familyPreset.supportsValidation;
-  const shouldShowComments = familyPreset.supportsComments === true;
+    Boolean(inspectorConfig?.supportsValidation ?? inspectorConfig?.includeValidation ?? familyPreset.supportsValidation);
+  const shouldShowComments = hasSchemaComments;
   const fieldSections = {
     ...familyPreset.propertyMap,
     ...(inspectorConfig?.propertyMap || {}),
     ...(inspectorConfig?.fieldSections || {}),
   };
 
-  const sectionProperties: Record<DetailInspectorSectionKey, Record<string, PropPanelSchema>> = {
+  const sectionProperties: Record<LegacyDetailSection, Record<string, PropPanelSchema>> = {
     general: {},
     layout: {},
     style: {},
@@ -280,7 +262,7 @@ export const buildInspectorSections = ({
     title: typedI18n('editable'),
     type: 'boolean',
     span: 12,
-    hidden: defaultSchema.readOnly !== undefined || !visibleSections.has('data'),
+    hidden: defaultSchema.readOnly !== undefined || !canonicalVisibleSections.has('behavior'),
   });
 
   if (shouldShowConnections) {
@@ -337,20 +319,69 @@ export const buildInspectorSections = ({
 
   Object.entries(pluginProps).forEach(([fieldKey, fieldSchema]) => {
     if (/^-+$/.test(fieldKey)) return;
-    const sectionKey = fieldSections[fieldKey] || 'advanced';
+    const sectionKey = (fieldSections[fieldKey] || 'advanced') as LegacyDetailSection;
     addFieldToSection(sectionProperties, sectionKey, fieldKey, fieldSchema);
   });
 
-  const sections = (Object.keys(SECTION_META) as DetailInspectorSectionKey[])
-    .filter((sectionKey) => visibleSections.has(sectionKey))
-    .map((sectionKey) => {
-      const schema = replaceColorWidget(buildSectionSchema(sectionProperties[sectionKey])) as PropPanelSchema;
-      return {
-        ...SECTION_META[sectionKey],
-        schema,
-      };
-    })
-    .filter((section) => hasVisibleFields(section.schema));
+  const canonicalSectionProperties: Record<CanonicalDetailSection, Record<string, PropPanelSchema>> = {
+    identity: { ...sectionProperties.general },
+    box: { ...sectionProperties.layout },
+    appearance: { ...sectionProperties.style },
+    behavior: { ...sectionProperties.data, ...sectionProperties.validation },
+    dataBindings: { ...sectionProperties.connections },
+    collaboration: { ...sectionProperties.collaboration },
+    comments: { ...sectionProperties.comments },
+    advanced: { ...sectionProperties.advanced },
+  };
+
+  const sectionContext = {
+    isMultiUser: shouldShowCollaboration,
+    hasComments: hasSchemaComments,
+    hasAnchors: hasSchemaComments,
+    hasDataBindings: hasSchemaBindings,
+    supportsComments: shouldShowComments,
+    supportsCollaboration: shouldShowCollaboration,
+    supportsDataBindings: shouldShowConnections,
+    supportsAppearance: true,
+    supportsBehavior: true,
+    supportsBox: true,
+  };
+
+  const visibilitySchema = (activeSchema || (defaultSchema as SchemaForUI)) as SchemaForUI;
+
+  const sections = CANONICAL_DETAIL_SECTION_ORDER.map((sectionKey) => {
+    const schema = replaceColorWidget(buildSectionSchema(canonicalSectionProperties[sectionKey])) as PropPanelSchema;
+
+    return {
+      ...SECTION_META[sectionKey],
+      schema,
+      canonicalKey: sectionKey,
+    } as DetailInspectorSection & { canonicalKey: CanonicalDetailSection };
+  }).filter((section) =>
+    shouldRenderDetailSection({
+      section: section.canonicalKey,
+      schema: visibilitySchema,
+      schemaType: activeSchemaType,
+      semanticFamily,
+      fields: sectionFieldsFromSection(section),
+      widgets: sectionWidgetsFromSection(section),
+      context: sectionContext,
+    }),
+  );
 
   return sections;
 };
+
+const sectionFieldsFromSection = (section: DetailInspectorSection & { canonicalKey?: CanonicalDetailSection }) =>
+  Object.entries((section.schema as { properties?: Record<string, PropPanelSchema> }).properties || {}).map(([fieldKey, fieldSchema]) => ({
+    key: fieldKey,
+    hidden: Boolean((fieldSchema as { hidden?: boolean }).hidden),
+    disabled: Boolean((fieldSchema as { disabled?: boolean }).disabled),
+    widget: (fieldSchema as { widget?: string }).widget,
+    schema: fieldSchema,
+  }));
+
+const sectionWidgetsFromSection = (section: DetailInspectorSection & { canonicalKey?: CanonicalDetailSection }) =>
+  sectionFieldsFromSection(section)
+    .map((field) => field.widget)
+    .filter((widget): widget is string => Boolean(widget));

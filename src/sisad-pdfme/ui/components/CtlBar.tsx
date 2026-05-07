@@ -8,6 +8,7 @@ import {
   ChevronLeft,
   ChevronRight,
   Ellipsis,
+  PanelLeftOpen,
   Undo2,
   Redo2,
   Maximize2,
@@ -24,6 +25,7 @@ import { Typography, Button, Dropdown, Select } from 'antd';
 import { I18nContext } from '../contexts.js';
 import { useMaxZoom } from '../helper.js';
 import { UI_CLASSNAME } from '../constants.js';
+import { ShortcutHelpButton } from './Designer/Shortcuts/index.js';
 
 const { Text } = Typography;
 
@@ -105,6 +107,7 @@ type CtlBarProps = {
   onRedo?: () => void;
   onFitWidth?: () => void;
   onFitPage?: () => void;
+  onOpenShortcuts?: () => void;
   onToggleSidebar?: () => void;
   sidebarOpen?: boolean;
   documentTitle?: string;
@@ -137,6 +140,7 @@ const CtlBar = (props: CtlBarProps) => {
     onRedo,
     onFitWidth,
     onFitPage,
+    onOpenShortcuts,
     onToggleSidebar,
     sidebarOpen,
     documentTitle,
@@ -228,6 +232,18 @@ const CtlBar = (props: CtlBarProps) => {
             icon={<Redo2 size={16} />}
             title="Rehacer"
           />
+          <ShortcutHelpButton onClick={() => onOpenShortcuts?.()} className={UI_CLASSNAME + 'control-bar-shortcuts-btn'} />
+          {onToggleSidebar ? (
+            <Button
+              className={UI_CLASSNAME + 'control-bar-icon-btn'}
+              type="text"
+              onClick={onToggleSidebar}
+              icon={<PanelLeftOpen size={16} />}
+              aria-pressed={sidebarOpen ? 'true' : 'false'}
+              data-active={sidebarOpen ? 'true' : 'false'}
+              title={sidebarOpen ? 'Ocultar panel lateral' : 'Mostrar panel lateral'}
+            />
+          ) : null}
         </div>
 
         {pageNum > 1 ? (

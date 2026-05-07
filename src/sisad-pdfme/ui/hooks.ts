@@ -13,23 +13,22 @@ import {
 import { pdf2img, pdf2size } from '@sisad-pdfme/converter';
 
 import {
-  schemasList2template,
-  uuid,
-  getUniqueSchemaName,
-  moveCommandToChangeSchemasArg,
   arrayBufferToBase64,
-  initShortCuts,
-  destroyShortCuts,
+  round,
 } from './helper.js';
 import type { SelectionCommandSet } from './components/Designer/shared/selectionCommands.js';
 import type { CommandBus } from './commands/commandBus.js';
 import { RULER_HEIGHT } from './constants.js';
-import { DEFAULT_SCHEMA_CONFIG_STORAGE_KEY } from './designerEngine.js';
 import {
-  applySchemaCollaborativeDefaults,
-  createSchemaCreationContext,
-  type SchemaCreationContext,
-} from './designerEngine.js';
+  type SchemaClipboardPayload,
+  copySchemasToClipboard,
+  cutSchemasToClipboard,
+  pasteSchemasFromClipboard,
+} from './components/Designer/shared/schemaClipboard.js';
+import {
+  useDesignerKeyboardShortcuts,
+  type DesignerShortcutHandlers,
+} from './components/Designer/shared/useDesignerKeyboardShortcuts.js';
 
 export function usePrevious<T>(value: T) {
   const [previous, setPrevious] = useState<T | null>(null);
@@ -262,11 +261,7 @@ interface UseInitEventsParams {
   changeSchemas: ChangeSchemas;
   commitSchemas: (newSchemas: SchemaForUI[]) => void;
   removeSchemas: (ids: string[]) => void;
-  onSaveTemplate: (t: Template) => void;
-  past?: React.MutableRefObject<SchemaForUI[][]>;
-  future?: React.MutableRefObject<SchemaForUI[][]>;
   commandBus?: CommandBus;
-  setSchemasList: React.Dispatch<React.SetStateAction<SchemaForUI[][]>>;
   onEdit: (targets: HTMLElement[]) => void;
   onEditEnd: () => void;
   selectionCommands?: SelectionCommandSet;
@@ -274,6 +269,13 @@ interface UseInitEventsParams {
     SchemaCreationContext,
     'fileId' | 'actorId' | 'ownerRecipientId' | 'ownerRecipientIds' | 'ownerRecipientName' | 'ownerColor' | 'userColor'
   >;
+  onZoomIn?: () => void;
+  onZoomOut?: () => void;
+  onFitPage?: () => void;
+  onFitWidth?: () => void;
+  onZoom100?: () => void;
+  onNextPage?: () => void;
+  onPreviousPage?: () => void;
 }
 
 export const useInitEvents = ({
@@ -286,161 +288,137 @@ export const useInitEvents = ({
   changeSchemas,
   commitSchemas,
   removeSchemas,
-  onSaveTemplate,
-  past,
-  future,
   commandBus,
-  setSchemasList,
   onEdit,
   onEditEnd,
   selectionCommands,
   collaborationContext,
+  onZoomIn,
+  onZoomOut,
+  onFitPage,
+  onFitWidth,
+  onZoom100,
+  onNextPage,
+  onPreviousPage,
 }: UseInitEventsParams & { selectionCommands?: SelectionCommandSet }) => {
-  const copiedSchemas = useRef<SchemaForUI[] | null>(null);
+  const copiedSchemas = useRef<SchemaClipboardPayload | null>(null);
   const canEditStructure = selectionCommands?.canEditStructure !== false;
+  const getActiveSchemas = () => {
+    const ids = activeElements.map((ae) => ae.id);
+    return schemasList[pageCursor].filter((s) => ids.includes(s.id));
+  };
 
-  const initEvents = useCallback(() => {
-    const getActiveSchemas = () => {
-      const ids = activeElements.map((ae) => ae.id);
+  const copySelection = () => {
+    const activeSchemas = getActiveSchemas();
+    if (activeSchemas.length === 0) return;
+    copiedSchemas.current = copySchemasToClipboard(activeSchemas);
+  };
 
-      return schemasList[pageCursor].filter((s) => ids.includes(s.id));
-    };
-    const timeTravel = (mode: 'undo' | 'redo') => {
-      if (commandBus) {
-        void (mode === 'undo' ? commandBus.undo() : commandBus.redo());
-        return;
-      }
-      const isUndo = mode === 'undo';
-      const stack = isUndo ? past : future;
-      if (!stack || !past || !future || stack.current.length <= 0) return;
-      (isUndo ? future : past).current.push(cloneDeep(schemasList[pageCursor]));
-      const s = cloneDeep(schemasList);
-      s[pageCursor] = stack.current.pop()!;
-      setSchemasList(s);
-    };
-    initShortCuts({
-      move: (command, isShift) => {
-        if (!canEditStructure) return;
-        const pageSize = pageSizes[pageCursor];
-        const activeSchemas = getActiveSchemas();
-        const arg = moveCommandToChangeSchemasArg({ command, activeSchemas, pageSize, isShift });
-        changeSchemas(arg);
-      },
-
-      copy: () => {
-        const activeSchemas = getActiveSchemas();
-        if (activeSchemas.length === 0) return;
-        copiedSchemas.current = activeSchemas;
-      },
-      paste: () => {
-        if (!canEditStructure) return;
-        if (!copiedSchemas.current || copiedSchemas.current.length === 0) return;
-        const schema = schemasList[pageCursor];
-        const stackUniqueSchemaNames: string[] = [];
-        const pasteSchemas = copiedSchemas.current.map((cs) => {
-          const id = uuid();
-          const name = getUniqueSchemaName({
-            copiedSchemaName: cs.name,
-            schema,
-            stackUniqueSchemaNames,
-          });
-          const { height, width, position: p } = cs;
-          const ps = pageSizes[pageCursor];
-          const position = {
-            x: p.x + 10 > ps.width - width ? ps.width - width : p.x + 10,
-            y: p.y + 10 > ps.height - height ? ps.height - height : p.y + 10,
-          };
-          const cloned = Object.assign(cloneDeep(cs), {
-            id,
-            schemaUid: id,
-            name,
-            position,
-          });
-          const nextCollaborative = applySchemaCollaborativeDefaults(
-            cloned,
-            createSchemaCreationContext({
-              pageIndex: pageCursor,
-              pageNumber: pageCursor + 1,
-              totalPages: schemasList.length,
-              fileId: collaborationContext?.fileId || null,
-              timestamp: Date.now(),
-              collaboration: {
-                actorId: collaborationContext?.actorId || null,
-                ownerRecipientId: collaborationContext?.ownerRecipientId || null,
-                ownerRecipientIds: collaborationContext?.ownerRecipientIds,
-                ownerRecipientName: collaborationContext?.ownerRecipientName || null,
-                ownerColor: collaborationContext?.ownerColor || null,
-                userColor: collaborationContext?.userColor || null,
-              },
-            }),
-          );
-          Object.assign(cloned, nextCollaborative, { state: 'draft', lock: undefined });
-          const designerConfig = cloned?.[DEFAULT_SCHEMA_CONFIG_STORAGE_KEY];
-          if (designerConfig && typeof designerConfig === 'object') {
-            cloned[DEFAULT_SCHEMA_CONFIG_STORAGE_KEY] = {
-              ...designerConfig,
-              identity: {
-                ...(designerConfig.identity || {}),
-                id,
-                key: name,
-              },
-            };
-          }
-
-          return cloned;
-        });
-        commitSchemas(schemasList[pageCursor].concat(pasteSchemas));
-        onEdit(pasteSchemas.map((s) => document.getElementById(s.id)!));
-        copiedSchemas.current = pasteSchemas;
-      },
-      redo: () => timeTravel('redo'),
-      undo: () => timeTravel('undo'),
-      save: () =>
-        onSaveTemplate && onSaveTemplate(schemasList2template(schemasList, template.basePdf)),
-      remove: () => {
-        if (!canEditStructure) return;
-        return selectionCommands?.deleteSelection
-          ? selectionCommands.deleteSelection()
-          : removeSchemas(getActiveSchemas().map((s) => s.id));
-      },
-      esc: onEditEnd,
-      selectAll: () =>
-        onEdit(
-          (visibleSchemasList?.[pageCursor] || schemasList[pageCursor])
-            .map((schema) => document.getElementById(schema.id))
-            .filter((element): element is HTMLElement => Boolean(element)),
-        ),
+  const pasteSelection = () => {
+    if (!canEditStructure) return;
+    if (!copiedSchemas.current || copiedSchemas.current.items.length === 0) return;
+    const pasteSchemas = pasteSchemasFromClipboard(copiedSchemas.current, {
+      pageIndex: pageCursor,
+      pageSize: pageSizes[pageCursor],
+      totalPages: schemasList.length,
+      fileId: collaborationContext?.fileId || null,
+      collaboration: collaborationContext,
+      existingSchemas: schemasList[pageCursor],
+      offsetMm: 8,
+      collisionStepMm: 6,
     });
-  }, [
-    template,
-    activeElements,
+    commitSchemas(schemasList[pageCursor].concat(pasteSchemas));
+    onEdit(pasteSchemas.map((s) => document.getElementById(s.id)!));
+    copiedSchemas.current = copySchemasToClipboard(pasteSchemas);
+  };
+
+  const cutSelection = () => {
+    if (!canEditStructure) return;
+    const activeSchemas = getActiveSchemas();
+    if (activeSchemas.length === 0) return;
+    copiedSchemas.current = cutSchemasToClipboard(activeSchemas);
+    if (selectionCommands?.deleteSelection) {
+      selectionCommands.deleteSelection();
+      return;
+    }
+    removeSchemas(activeSchemas.map((s) => s.id));
+  };
+
+  const selectAllVisible = () => {
+    onEdit(
+      (visibleSchemasList?.[pageCursor] || schemasList[pageCursor])
+        .map((schema) => document.getElementById(schema.id))
+        .filter((element): element is HTMLElement => Boolean(element)),
+    );
+  };
+
+  const addCommentShortcut = () => {
+    const activeSchema = getActiveSchemas()[0];
+    const x = activeSchema ? activeSchema.position.x + activeSchema.width / 2 : pageSizes[pageCursor]?.width / 2 || 0;
+    const y = activeSchema ? activeSchema.position.y + activeSchema.height / 2 : pageSizes[pageCursor]?.height / 2 || 0;
+    window.dispatchEvent(
+      new CustomEvent('sisad-pdfme:create-comment-request', {
+        detail: {
+          x,
+          y,
+          page: pageCursor,
+          pageNumber: pageCursor + 1,
+          fileId: collaborationContext?.fileId || null,
+          schemaUid: activeSchema?.schemaUid || activeSchema?.id || undefined,
+          targetIds: activeSchema ? [activeSchema.id] : [],
+        },
+      }),
+    );
+  };
+
+  useDesignerKeyboardShortcuts({
+    enabled: true,
+    activeSchemas: getActiveSchemas(),
     pageCursor,
-    pageSizes,
-    changeSchemas,
-    commitSchemas,
     schemasList,
     visibleSchemasList,
-    onSaveTemplate,
-    removeSchemas,
-    past,
-    future,
-    commandBus,
-    setSchemasList,
-    copiedSchemas,
-    onEdit,
-    onEditEnd,
+    commandBus: commandBus ?? null,
     selectionCommands,
     canEditStructure,
-    collaborationContext,
-  ]);
-
-  const destroyEvents = useCallback(() => {
-    destroyShortCuts();
-  }, []);
-
-  useEffect(() => {
-    initEvents();
-
-    return destroyEvents;
-  }, [initEvents, destroyEvents]);
+    activeDocumentId: collaborationContext?.fileId || undefined,
+    activeUserId: collaborationContext?.actorId || undefined,
+    isModalOpen: false,
+    isInlineEditing: false,
+    onOpenDetail: () => selectionCommands?.openProperties?.(),
+    onAddComment: addCommentShortcut,
+    onSelectAllVisible: selectAllVisible,
+    onClearSelection: onEditEnd,
+    onZoomIn,
+    onZoomOut,
+    onFitPage,
+    onFitWidth,
+    onZoom100,
+    onNextPage,
+    onPreviousPage,
+    handlers: {
+      copy: () => copySelection(),
+      paste: () => pasteSelection(),
+      cut: () => cutSelection(),
+    } as DesignerShortcutHandlers,
+    onMove: (direction, step) => {
+      if (!canEditStructure) return;
+      const pageSize = pageSizes[pageCursor];
+      const activeSchemas = getActiveSchemas();
+      const deltaMultiplier = step === 'fast' ? 10 : step === 'fine' ? 0.5 : 1;
+      const delta = direction === 'up' || direction === 'left' ? -deltaMultiplier : deltaMultiplier;
+      const axis = direction === 'up' || direction === 'down' ? 'y' : 'x';
+      const ops = activeSchemas.map((schema) => {
+        const currentPosition = Number(schema.position?.[axis] ?? 0);
+        const size = axis === 'x' ? Number(schema.width || 0) : Number(schema.height || 0);
+        const max = Math.max(0, (axis === 'x' ? pageSize.width : pageSize.height) - size);
+        const nextValue = Math.min(Math.max(0, round(currentPosition + delta, 2)), max);
+        return { key: `position.${axis}`, value: nextValue, schemaId: schema.id };
+      });
+      changeSchemas(ops);
+    },
+    onInsertSchemaByType: (type) => {
+      if (!type) return;
+      window.dispatchEvent(new CustomEvent('sisad-pdfme:shortcut-insert-schema', { detail: { type, pageCursor } }));
+    },
+  });
 };

@@ -20,7 +20,7 @@ const baseParams = {
 };
 
 describe('buildInspectorSections', () => {
-  it('hides the editable type selector and keeps the variable name in general', () => {
+  it('hides the editable type selector and keeps the variable name in identity', () => {
     const sections = buildInspectorSections({
       ...baseParams,
       activeSchemaType: 'text',
@@ -33,16 +33,16 @@ describe('buildInspectorSections', () => {
       },
     });
 
-    const general = sections.find((section) => section.key === 'general');
-    const style = sections.find((section) => section.key === 'style');
-    expect(general).toBeDefined();
-    expect((general?.schema as { properties?: Record<string, unknown> }).properties).toHaveProperty('name');
-    expect((general?.schema as { properties?: Record<string, unknown> }).properties).not.toHaveProperty('type');
-    expect((style?.schema as { properties?: Record<string, unknown> }).properties).toHaveProperty('fontName');
+    const identity = sections.find((section) => section.key === 'identity');
+    const appearance = sections.find((section) => section.key === 'appearance');
+    expect(identity).toBeDefined();
+    expect((identity?.schema as { properties?: Record<string, unknown> }).properties).toHaveProperty('name');
+    expect((identity?.schema as { properties?: Record<string, unknown> }).properties).not.toHaveProperty('type');
+    expect((appearance?.schema as { properties?: Record<string, unknown> }).properties).toHaveProperty('fontName');
   });
 
   it.each(['image', 'svg'] as const)(
-    'renders %s schemas with persistence and collaboration sections but no validation',
+    'renders %s schemas with canonical shell sections but no empty collaboration/comments',
     (activeSchemaType) => {
       const sections = buildInspectorSections({
         ...baseParams,
@@ -51,15 +51,14 @@ describe('buildInspectorSections', () => {
       });
 
       expect(sections.map((section) => section.key)).toEqual([
-        'general',
-        'layout',
-        'collaboration',
+        'identity',
+        'box',
         'advanced',
       ]);
     },
   );
 
-  it('routes signature placeholder to data and colors to style', () => {
+  it('routes signature placeholder to behavior and colors to appearance', () => {
     const sections = buildInspectorSections({
       ...baseParams,
       activeSchemaType: 'signature',
@@ -76,11 +75,11 @@ describe('buildInspectorSections', () => {
       },
     });
 
-    const data = sections.find((section) => section.key === 'data');
-    const style = sections.find((section) => section.key === 'style');
+    const behavior = sections.find((section) => section.key === 'behavior');
+    const appearance = sections.find((section) => section.key === 'appearance');
 
-    expect((data?.schema as { properties?: Record<string, unknown> }).properties).toHaveProperty('placeholderText');
-    expect((style?.schema as { properties?: Record<string, unknown> }).properties).toHaveProperty('strokeColor');
+    expect((behavior?.schema as { properties?: Record<string, unknown> }).properties).toHaveProperty('placeholderText');
+    expect((appearance?.schema as { properties?: Record<string, unknown> }).properties).toHaveProperty('strokeColor');
   });
 
   it('supports propertyMap aliases in inspector config', () => {
@@ -100,11 +99,11 @@ describe('buildInspectorSections', () => {
       },
     });
 
-    const data = sections.find((section) => section.key === 'data');
-    expect((data?.schema as { properties?: Record<string, unknown> }).properties).toHaveProperty('customField');
+    const behavior = sections.find((section) => section.key === 'behavior');
+    expect((behavior?.schema as { properties?: Record<string, unknown> }).properties).toHaveProperty('customField');
   });
 
-  it('keeps table schemas connected and collaborative while hiding validation', () => {
+  it('keeps table schemas data-aware while hiding empty collaboration/comments', () => {
     const sections = buildInspectorSections({
       ...baseParams,
       activeSchemaType: 'table',
@@ -112,13 +111,11 @@ describe('buildInspectorSections', () => {
     });
 
     expect(sections.map((section) => section.key)).toEqual([
-      'general',
-      'layout',
-      'data',
-      'connections',
-      'collaboration',
+      'identity',
+      'box',
+      'behavior',
+      'dataBindings',
       'advanced',
-      'comments',
     ]);
   });
 
@@ -128,6 +125,6 @@ describe('buildInspectorSections', () => {
     expect(mediaInspectorConfig.supportsConnections).toBe(false);
     expect(mediaInspectorConfig.supportsCollaboration).toBe(true);
     expect(mediaInspectorConfig.supportsValidation).toBe(false);
-    expect(mediaInspectorConfig.visibleSections).toEqual(['general', 'layout', 'style', 'collaboration', 'advanced']);
+    expect(mediaInspectorConfig.visibleSections).toEqual(['general', 'layout', 'style', 'collaboration', 'comments', 'advanced']);
   });
 });

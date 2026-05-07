@@ -9,6 +9,17 @@ import type {
 
 export type SchemaFamily = 'text' | 'mediaVisual' | 'boolean' | 'shapeBarcode' | 'table';
 export type LegacySchemaFamily = 'textual' | 'media' | 'signature' | 'choice' | 'shape' | 'barcode' | 'table';
+export type SchemaSemanticFamily =
+  | 'text'
+  | 'multiVariableText'
+  | 'signature'
+  | 'table'
+  | 'barcode'
+  | 'boolean'
+  | 'choice'
+  | 'dateTime'
+  | 'media'
+  | 'shape';
 
 type FamilyPreset = PluginFamilyDefinition & {
   visibleSections: SchemaInspectorSection[];
@@ -115,7 +126,7 @@ const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
   },
   mediaVisual: {
     family: 'mediaVisual',
-    visibleSections: ['general', 'layout', 'style', 'collaboration', 'advanced'],
+    visibleSections: ['general', 'layout', 'style', 'collaboration', 'comments', 'advanced'],
     propertyMap: BASE_PROPERTY_MAP,
     supportedActions: createActions([
       'resizeField',
@@ -162,7 +173,7 @@ const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
   },
   shapeBarcode: {
     family: 'shapeBarcode',
-    visibleSections: ['general', 'layout', 'style', 'data', 'advanced', 'collaboration'],
+    visibleSections: ['general', 'layout', 'style', 'data', 'collaboration', 'comments', 'advanced'],
     propertyMap: BASE_PROPERTY_MAP,
     supportedActions: createActions([
       'resizeField',
@@ -229,6 +240,24 @@ export const resolveSchemaFamily = (schemaType: string): SchemaFamily => {
   if (MEDIA_TYPES.has(normalizedType)) return 'mediaVisual';
   if (normalizedType === 'table') return 'table';
   if (SHAPE_BARCODE_TYPES.has(normalizedType)) return 'shapeBarcode';
+  return 'text';
+};
+
+export const resolveSchemaSemanticFamily = (schemaType: string): SchemaSemanticFamily => {
+  const normalizedType = String(schemaType || '').trim().toLowerCase();
+
+  if (normalizedType === 'multivariabletext') return 'multiVariableText';
+  if (normalizedType === 'signature') return 'signature';
+  if (normalizedType === 'table') return 'table';
+  if (normalizedType === 'select') return 'choice';
+  if (normalizedType === 'date' || normalizedType === 'time' || normalizedType === 'datetime') return 'dateTime';
+  if (normalizedType === 'checkbox') return 'boolean';
+  if (normalizedType === 'radiogroup') return 'choice';
+  if (MEDIA_TYPES.has(normalizedType)) return 'media';
+  if (SHAPE_BARCODE_TYPES.has(normalizedType)) {
+    return normalizedType.startsWith('qrcode') || normalizedType === 'japanpost' || normalizedType === 'ean13' || normalizedType === 'ean8' || normalizedType === 'code39' || normalizedType === 'code128' || normalizedType === 'nw7' || normalizedType === 'itf14' || normalizedType === 'upca' || normalizedType === 'upce' || normalizedType === 'gs1datamatrix' || normalizedType === 'pdf417' ? 'barcode' : 'shape';
+  }
+
   return 'text';
 };
 

@@ -9,6 +9,7 @@ import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import type { SelectionToolbarMode } from './canvasContextMenuActions.js';
 import type { InteractionState } from '../../shared/interactionState.js';
 import CommentsOverlay from './CommentsOverlay.js';
+import { ShortcutHelpPanel } from '../../Shortcuts/index.js';
 
 export type SnapLinesSlot = React.ComponentType<{
   lines: SnapLine[];
@@ -30,6 +31,7 @@ type CanvasOverlayManagerProps = {
   selectionCommands?: SelectionCommandSet;
   interactionState: InteractionState;
   featureSnapLines: boolean;
+  externalSchemaDragActive?: boolean;
   contextMenuOpen?: boolean;
   className?: string;
 };
@@ -51,6 +53,7 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
     selectionCommands,
     interactionState,
     featureSnapLines,
+    externalSchemaDragActive = false,
     contextMenuOpen = false,
     className,
   } = props;
@@ -58,11 +61,20 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
   const [toolbarMode, setToolbarMode] = useState<SelectionToolbarMode>(
     interactionState.selectionCount > 1 ? 'expanded' : 'micro',
   );
+  const [shortcutHelpOpen, setShortcutHelpOpen] = useState(false);
 
   useEffect(() => {
     const nextMode = interactionState.selectionCount > 1 ? 'expanded' : 'micro';
     setToolbarMode((prev) => (prev === nextMode ? prev : nextMode));
   }, [interactionState.selectionCount]);
+
+  useEffect(() => {
+    const openShortcutPanel = () => setShortcutHelpOpen(true);
+    window.addEventListener('sisad-pdfme:shortcut-open-panel', openShortcutPanel as EventListener);
+    return () => {
+      window.removeEventListener('sisad-pdfme:shortcut-open-panel', openShortcutPanel as EventListener);
+    };
+  }, []);
 
   const toolbarSize =
     toolbarMode === 'expanded' ? EXPANDED_TOOLBAR_SIZE : toolbarMode === 'compact' ? COMPACT_TOOLBAR_SIZE : MICRO_TOOLBAR_SIZE;
@@ -80,20 +92,22 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
 
   return (
     <div className={`sisad-pdfme-ui-canvas-overlay-manager ${className || ''}`}>
-      <SelectionContextToolbar
-        position={selectionBounds}
-        commands={selectionCommands}
-        activeElements={activeElements}
-        activeSchemas={activeSchemas}
-        interactionState={interactionState}
-        contextMenuOpen={contextMenuOpen}
-        toolbarMode={toolbarMode}
-        onToolbarModeChange={setToolbarMode}
-      />
-      <InlineMetricsOverlay bounds={selectionBounds} />
-      <SnapFeedbackOverlay bounds={selectionBounds} snapLines={snapLines} />
-      {featureSnapLines ? (
-        <SnapLinesSlot lines={snapLines} />
+      {!externalSchemaDragActive ? (
+        <>
+          <SelectionContextToolbar
+            position={selectionBounds}
+            commands={selectionCommands}
+            activeElements={activeElements}
+            activeSchemas={activeSchemas}
+            interactionState={interactionState}
+            contextMenuOpen={contextMenuOpen}
+            toolbarMode={toolbarMode}
+            onToolbarModeChange={setToolbarMode}
+          />
+          <InlineMetricsOverlay bounds={selectionBounds} />
+          <SnapFeedbackOverlay bounds={selectionBounds} snapLines={snapLines} />
+          {featureSnapLines ? <SnapLinesSlot lines={snapLines} /> : null}
+        </>
       ) : null}
       {/* Comments overlay (pins, click handlers) */}
       <CommentsOverlay
@@ -103,6 +117,7 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
         pageCursor={pageCursor}
         paperRefs={paperRefs}
       />
+      <ShortcutHelpPanel open={shortcutHelpOpen} onClose={() => setShortcutHelpOpen(false)} />
     </div>
   );
 };

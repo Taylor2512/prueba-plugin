@@ -2,16 +2,11 @@ import {
   ChangeSchemas,
   SchemaForUI,
   Size,
-  cloneDeep,
   type Command,
 } from '@sisad-pdfme/common';
-import { uuid, round } from '../../../helper.js';
-import {
-  DEFAULT_SCHEMA_CONFIG_STORAGE_KEY,
-  applySchemaCollaborativeDefaults,
-  createSchemaCreationContext,
-} from '../../../designerEngine.js';
+import { round } from '../../../helper.js';
 import type { EffectiveCollaborationContext } from '../../../collaborationContext.js';
+import { duplicateSchemas } from './schemaClipboard.js';
 export type AlignType =
   | 'left'
   | 'center'
@@ -52,6 +47,11 @@ export type SelectionCommandSet = {
   canEditStructure?: boolean;
   deleteSelection: () => void;
   duplicateSelection: () => void;
+  copySelection?: () => void;
+  pasteSelection?: () => void;
+  cutSelection?: () => void;
+  selectAllVisible?: () => void;
+  clearSelection?: () => void;
   toggleHidden?: () => void;
   toggleRequired: () => void;
   toggleReadOnly: () => void;
@@ -67,6 +67,7 @@ export type SelectionCommandSet = {
   renameLabel?: () => void;
   editTextInline?: () => void;
   requestInlineEdit?: (_request: InlineEditRequest) => void;
+  moveBy?: (_direction: AlignType | DistributeType | 'up' | 'down' | 'left' | 'right', _step: number) => void;
 };
 
 export type SelectionCommandsContext = {
@@ -79,6 +80,11 @@ export type SelectionCommandsContext = {
   removeSchemas: (ids: string[]) => void;
   onOpenProperties: () => void;
   requestInlineEdit?: (_request: InlineEditRequest) => void;
+  onCopySelection?: () => void;
+  onPasteSelection?: () => void;
+  onCutSelection?: () => void;
+  onSelectAllVisible?: () => void;
+  onClearSelection?: () => void;
   collaborationContext?: Pick<
     EffectiveCollaborationContext,
     | 'fileId'
@@ -146,52 +152,17 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
 
   const duplicateSelection = () => {
     if (!hasSelection || !guardStructureEdit()) return;
-    const existing = getPageSchemas(context);
-    const clones = getActiveSchemas(context).map((schema) => {
-      const clone = cloneDeep(schema);
-      const nextSchemaUid = uuid();
-      clone.id = nextSchemaUid;
-      clone.schemaUid = nextSchemaUid;
-      clone.name = `${schema.name} copy`;
-      clone.position = {
-        x: clampToPage((schema.position?.x ?? 0) + 6, context.pageSize.width - (schema.width ?? 0)),
-        y: clampToPage((schema.position?.y ?? 0) + 6, context.pageSize.height - (schema.height ?? 0)),
-      };
-      const nextCollaborative = applySchemaCollaborativeDefaults(
-        clone,
-        createSchemaCreationContext({
-          pageIndex: context.pageCursor,
-          pageNumber: context.pageCursor + 1,
-          totalPages: context.schemasList.length,
-          fileId: context.collaborationContext?.fileId || null,
-          timestamp: Date.now(),
-          collaboration: {
-            actorId: context.collaborationContext?.actorId || null,
-            ownerRecipientId: context.collaborationContext?.ownerRecipientId || null,
-            ownerRecipientIds: context.collaborationContext?.ownerRecipientIds,
-            ownerRecipientName: context.collaborationContext?.ownerRecipientName || null,
-            ownerColor: context.collaborationContext?.ownerColor || null,
-            userColor: context.collaborationContext?.userColor || null,
-          },
-        }),
-      );
-      Object.assign(clone, nextCollaborative, { state: 'draft', lock: undefined });
-
-      const designerConfig = (clone as SchemaForUI & Record<string, unknown>)[DEFAULT_SCHEMA_CONFIG_STORAGE_KEY];
-      if (designerConfig && typeof designerConfig === 'object') {
-        (clone as SchemaForUI & Record<string, unknown>)[DEFAULT_SCHEMA_CONFIG_STORAGE_KEY] = {
-          ...designerConfig,
-          identity: {
-            ...((designerConfig as Record<string, unknown>).identity as Record<string, unknown> || {}),
-            id: nextSchemaUid,
-            key: clone.name,
-          },
-        };
-      }
-
-      return clone;
+    const clones = duplicateSchemas(getActiveSchemas(context), {
+      pageIndex: context.pageCursor,
+      pageSize: context.pageSize,
+      totalPages: context.schemasList.length,
+      fileId: context.collaborationContext?.fileId || null,
+      collaboration: context.collaborationContext,
+      existingSchemas: getPageSchemas(context),
+      offsetMm: 6,
+      collisionStepMm: 6,
     });
-    const nextSchemas = existing.concat(clones);
+    const nextSchemas = getPageSchemas(context).concat(clones);
     if (context.executeCommand) {
       context.executeCommand({
         id: 'duplicateField',
@@ -331,6 +302,11 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     canEditStructure,
     deleteSelection,
     duplicateSelection,
+    copySelection: context.onCopySelection,
+    pasteSelection: context.onPasteSelection,
+    cutSelection: context.onCutSelection,
+    selectAllVisible: context.onSelectAllVisible,
+    clearSelection: context.onClearSelection,
     toggleHidden,
     toggleRequired,
     toggleReadOnly,

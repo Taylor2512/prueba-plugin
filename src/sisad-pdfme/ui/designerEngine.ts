@@ -1,4 +1,4 @@
-import { cloneDeep, Schema, SchemaForUI, UIOptions } from '@sisad-pdfme/common';
+import { cloneDeep, Schema, SchemaForUI, UIOptions, type CommentScope } from '@sisad-pdfme/common';
 import type React from 'react';
 import type { LeftSidebarProps } from './components/Designer/LeftSidebar';
 import type { RightSidebarProps } from './components/Designer/RightSidebar/index';
@@ -47,6 +47,7 @@ export type SchemaCommentReply = {
 
 export type SchemaComment = {
   id: string;
+  scope?: CommentScope;
   fileId?: string | null;
   pageNumber?: number;
   fieldId?: string | null;
@@ -64,6 +65,7 @@ export type SchemaComment = {
 
 export type SchemaCommentAnchor = {
   id: string;
+  scope?: CommentScope;
   fieldId?: string | null;
   schemaUid?: string;
   fileId?: string | null;

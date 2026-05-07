@@ -11,6 +11,304 @@
   z-index: var(--z-overlay);
 }
 
+.sisad-pdfme-designer-stage[data-schema-dragging='true'] .sisad-pdfme-designer-canvas {
+  cursor: copy;
+}
+
+.sisad-pdfme-designer-stage[data-schema-dragging='true'][data-schema-over-canvas='true'] [data-canvas-page='true'] {
+  outline: 2px solid var(--color-primary-20);
+  outline-offset: 6px;
+}
+
+.sisad-pdfme-designer-stage[data-schema-dragging='true'][data-drop-valid='false'] [data-canvas-page='true'] {
+  outline-color: var(--color-danger-32);
+}
+
+.sisad-pdfme-designer-stage[data-schema-dragging='true'] .moveable-control-box,
+.sisad-pdfme-designer-stage[data-schema-dragging='true'] .sisad-pdfme-ui-selection-context-toolbar,
+.sisad-pdfme-designer-stage[data-schema-dragging='true'] .sisad-pdfme-ui-inline-edit-overlay {
+  opacity: 0 !important;
+  pointer-events: none !important;
+}
+
+.sisad-pdfme-designer-left-sidebar-draggable-shell[data-dragging='true'] {
+  opacity: 0.58;
+  transform: scale(0.98);
+  transition:
+    transform 140ms var(--wix-ease-out),
+    opacity 140ms var(--wix-ease-out),
+    filter 140ms var(--wix-ease-out);
+}
+
+.sisad-pdfme-designer-left-sidebar-plugin-wrap[data-drag-source='true'] .sisad-pdfme-designer-plugin-btn,
+.sisad-pdfme-designer-left-sidebar-draggable-shell[data-dragging='true'] .sisad-pdfme-designer-plugin-btn {
+  border-color: var(--color-primary);
+  background: var(--color-primary-08);
+  box-shadow:
+    0 0 0 3px var(--color-primary-08),
+    0 8px 18px rgba(37, 99, 235, 0.16);
+}
+
+.sisad-pdfme-designer-left-sidebar-draggable-shell[data-dragging='true'] {
+  filter: saturate(1.06);
+}
+
+.sisad-pdfme-designer-left-sidebar-draggable-shell[data-dragging='true'] .sisad-pdfme-designer-plugin-favorite-toggle {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.sisad-pdfme-designer-plugin-btn[data-view-mode='compact']:active {
+  cursor: grabbing;
+}
+
+.sisad-pdfme-schema-drag-preview {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 9999;
+  pointer-events: none;
+  transform: translate3d(calc(var(--drag-x) + 8px), calc(var(--drag-y) + 8px), 0);
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 0.99), rgba(255, 255, 255, 0.92) 74%),
+    color-mix(in srgb, var(--schema-owner-color, #2563eb) 18%, rgba(255, 255, 255, 0.94));
+  border: 1px solid color-mix(in srgb, var(--schema-owner-color, #2563eb) 34%, var(--color-primary-25));
+  box-shadow:
+    0 10px 20px rgba(15, 23, 42, 0.16),
+    0 0 0 1px rgba(255, 255, 255, 0.45) inset;
+  backdrop-filter: blur(10px) saturate(1.04);
+  transform-origin: top left;
+  animation: schema-drag-preview-enter 170ms cubic-bezier(0.16, 1, 0.3, 1) both;
+  transition:
+    border-color 120ms var(--wix-ease-out),
+    box-shadow 140ms var(--wix-ease-out),
+    background 120ms var(--wix-ease-out),
+    opacity 120ms var(--wix-ease-out);
+  will-change: transform, opacity, box-shadow;
+}
+
+.sisad-pdfme-schema-drag-preview[data-over-page='true'] {
+  border-color: var(--schema-owner-color, #2563eb);
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--schema-owner-color, #2563eb) 22%, transparent),
+    0 12px 28px rgba(15, 23, 42, 0.2),
+    0 0 0 1px rgba(255, 255, 255, 0.5) inset;
+  animation:
+    schema-drag-preview-enter 170ms cubic-bezier(0.16, 1, 0.3, 1) both,
+    schema-drag-preview-glow 1.05s ease-in-out infinite;
+}
+
+.sisad-pdfme-schema-drag-preview[data-over-canvas='false'] {
+  opacity: 0.82;
+}
+
+.sisad-pdfme-schema-drag-preview-orb {
+  width: 100%;
+  height: 100%;
+  min-height: 48px;
+  display: grid;
+  place-items: center;
+  border-radius: inherit;
+  position: relative;
+}
+
+.sisad-pdfme-schema-drag-preview-orb::after {
+  content: '';
+  position: absolute;
+  inset: 7px;
+  border-radius: inherit;
+  border: 1px solid color-mix(in srgb, var(--schema-owner-color, #2563eb) 18%, transparent);
+  opacity: 0.9;
+  animation: schema-drag-preview-pulse 1.2s ease-in-out infinite;
+}
+
+.sisad-pdfme-schema-drag-preview-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 1;
+  transform: scale(0.92);
+  filter: drop-shadow(0 1px 2px rgba(15, 23, 42, 0.12));
+}
+
+.sisad-pdfme-schema-drag-preview[data-over-page='true'] .sisad-pdfme-schema-drag-preview-icon {
+  animation: schema-drag-preview-icon-bounce 680ms cubic-bezier(0.22, 1, 0.36, 1) infinite;
+}
+
+.sisad-pdfme-schema-drop-placeholder {
+  position: fixed;
+  z-index: 18;
+  pointer-events: none;
+  border: 1px dashed var(--schema-owner-color, #2563eb);
+  background: color-mix(in srgb, var(--schema-owner-color, #2563eb) 12%, transparent);
+  border-radius: 8px;
+  box-shadow:
+    0 0 0 2px rgba(255, 255, 255, 0.85),
+    0 10px 24px rgba(15, 23, 42, 0.08);
+  overflow: hidden;
+  animation:
+    schema-drop-placeholder-enter 140ms var(--wix-ease-out) both,
+    schema-drop-placeholder-breathe 1.35s ease-in-out infinite;
+}
+
+.sisad-pdfme-schema-drop-placeholder[data-valid='false'] {
+  border-color: var(--color-danger);
+  background: rgba(239, 68, 68, 0.08);
+}
+
+.sisad-pdfme-schema-drop-placeholder-badge {
+  position: absolute;
+  left: 8px;
+  top: 8px;
+  max-width: calc(100% - 16px);
+  padding: 0.25rem 0.5rem;
+  border-radius: var(--radius-full);
+  background: rgba(255, 255, 255, 0.92);
+  border: 1px solid color-mix(in srgb, var(--schema-owner-color, #2563eb) 22%, rgba(255, 255, 255, 0.8));
+  color: var(--color-text-primary);
+  font-size: 0.6875rem;
+  font-weight: var(--font-weight-semibold);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.sisad-pdfme-schema-drop-commit-flash {
+  z-index: 10000;
+  pointer-events: none;
+  transform: translate3d(-50%, -50%, 0);
+  animation: schema-drop-commit-flash-enter 180ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.sisad-pdfme-schema-drop-commit-flash-orb {
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 35% 30%, rgba(255, 255, 255, 1), rgba(255, 255, 255, 0.92) 68%),
+    color-mix(in srgb, var(--schema-owner-color, #2563eb) 20%, rgba(255, 255, 255, 0.95));
+  border: 1px solid color-mix(in srgb, var(--schema-owner-color, #2563eb) 30%, rgba(255, 255, 255, 0.8));
+  box-shadow:
+    0 0 0 3px color-mix(in srgb, var(--schema-owner-color, #2563eb) 16%, transparent),
+    0 8px 18px rgba(15, 23, 42, 0.14);
+}
+
+.sisad-pdfme-schema-drop-commit-flash-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  animation: schema-drop-commit-flash-icon 180ms cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes schema-drag-preview-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(calc(var(--drag-x) + 8px), calc(var(--drag-y) + 8px), 0) scale(0.72);
+    filter: blur(1px);
+  }
+  60% {
+    transform: translate3d(calc(var(--drag-x) + 8px), calc(var(--drag-y) + 8px), 0) scale(1.03);
+  }
+  to {
+    opacity: 1;
+    transform: translate3d(calc(var(--drag-x) + 8px), calc(var(--drag-y) + 8px), 0) scale(1);
+    filter: blur(0);
+  }
+}
+
+@keyframes schema-drag-preview-glow {
+  0%,
+  100% {
+    box-shadow:
+      0 12px 28px rgba(15, 23, 42, 0.18),
+      0 0 0 1px rgba(255, 255, 255, 0.45) inset;
+  }
+  50% {
+    box-shadow:
+      0 14px 32px rgba(15, 23, 42, 0.22),
+      0 0 0 1px rgba(255, 255, 255, 0.52) inset;
+  }
+}
+
+@keyframes schema-drag-preview-pulse {
+  0%,
+  100% {
+    transform: scale(0.94);
+    opacity: 0.6;
+  }
+  50% {
+    transform: scale(1.06);
+    opacity: 1;
+  }
+}
+
+@keyframes schema-drag-preview-icon-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(0.92);
+  }
+  50% {
+    transform: translateY(-1px) scale(0.98);
+  }
+}
+
+@keyframes schema-drop-placeholder-enter {
+  from {
+    opacity: 0;
+    transform: scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+@keyframes schema-drop-placeholder-breathe {
+  0%,
+  100% {
+    filter: saturate(1);
+  }
+  50% {
+    filter: saturate(1.06);
+  }
+}
+
+@keyframes schema-drop-commit-flash-enter {
+  from {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(0.62);
+  }
+  55% {
+    opacity: 1;
+    transform: translate3d(-50%, -50%, 0) scale(1.08);
+  }
+  to {
+    opacity: 0;
+    transform: translate3d(-50%, -50%, 0) scale(0.96);
+  }
+}
+
+@keyframes schema-drop-commit-flash-icon {
+  from {
+    transform: scale(0.82);
+  }
+  55% {
+    transform: scale(1.1);
+  }
+  to {
+    transform: scale(0.94);
+  }
+}
+
 /* ── Selection Context Toolbar ──────────────────────────────── */
 
 .sisad-pdfme-ui-selection-context-toolbar {
@@ -807,4 +1105,100 @@
     opacity: 1;
     transform: scale(1) translateY(0);
   }
+}
+
+.sisad-pdfme-ui-shortcuts-launcher {
+  position: absolute;
+  top: 0.75rem;
+  right: 0.75rem;
+  z-index: 44;
+  pointer-events: auto;
+}
+
+.sisad-pdfme-shortcuts-button {
+  border-color: var(--color-border-soft);
+  background: color-mix(in srgb, var(--color-bg-base) 92%, var(--color-primary) 8%);
+  color: var(--color-text-primary);
+  box-shadow: 0 0.5rem 1rem rgba(15, 23, 42, 0.08);
+}
+
+.sisad-pdfme-shortcuts-button:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+  background: color-mix(in srgb, var(--color-bg-base) 85%, var(--color-primary) 15%);
+}
+
+.sisad-pdfme-shortcuts-panel .ant-modal-content {
+  border-radius: 1rem;
+  overflow: hidden;
+}
+
+.sisad-pdfme-shortcuts-panel-body {
+  display: grid;
+  gap: 1rem;
+}
+
+.sisad-pdfme-shortcuts-groups {
+  display: grid;
+  gap: 1rem;
+  max-height: min(60vh, 42rem);
+  overflow: auto;
+  padding-right: 0.25rem;
+}
+
+.sisad-pdfme-shortcuts-group {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.sisad-pdfme-shortcuts-group-title {
+  margin: 0 !important;
+}
+
+.sisad-pdfme-shortcuts-group-items {
+  display: grid;
+  gap: 0.5rem;
+}
+
+.sisad-pdfme-shortcuts-row {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.75rem 0.875rem;
+  border: 1px solid var(--color-border-soft);
+  border-radius: 0.875rem;
+  background: var(--color-bg-base);
+}
+
+.sisad-pdfme-shortcuts-row-copy {
+  display: grid;
+  gap: 0.125rem;
+}
+
+.sisad-pdfme-shortcuts-row-copy strong {
+  color: var(--color-text-primary);
+  font-weight: 600;
+}
+
+.sisad-pdfme-shortcuts-row-copy span {
+  color: var(--color-text-secondary);
+  font-size: 0.8125rem;
+}
+
+.sisad-pdfme-shortcuts-row-keys {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 0.25rem;
+}
+
+.sisad-pdfme-shortcuts-key {
+  margin-inline-end: 0 !important;
+  border-radius: 999px !important;
+  border: 1px solid var(--color-border-soft) !important;
+  background: color-mix(in srgb, var(--color-primary) 10%, var(--color-bg-base)) !important;
+  color: var(--color-text-primary) !important;
+  font-size: 0.75rem;
+  line-height: 1;
 }

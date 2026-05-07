@@ -41,7 +41,7 @@ describe('SchemaCollaborationWidget', () => {
     addons: {} as never,
   };
 
-  it('keeps comment and anchor sections compact while exposing their counts', () => {
+  it('keeps collaboration focused on owner and lock metadata', () => {
     render(
       <SchemaCollaborationWidget
         {...widgetShellProps}
@@ -53,20 +53,10 @@ describe('SchemaCollaborationWidget', () => {
           ownerRecipientId: 'user-1',
           state: 'locked',
           commentsCount: 1,
-          comments: [
-            {
-              id: 'comment-1',
-              authorId: 'user-2',
-              authorName: 'Ana',
-              timestamp: 1700000000000,
-              text: 'Revisar este campo',
-              resolved: false,
-              replies: [],
-            },
-          ],
           commentAnchors: [
             {
               id: 'anchor-1',
+              scope: 'schema',
               schemaUid: 'schema-uid-1',
               fileId: 'file-1',
               pageNumber: 2,
@@ -88,7 +78,9 @@ describe('SchemaCollaborationWidget', () => {
 
     expect(screen.getByText('Comentarios: 1')).toBeVisible();
     expect(screen.getByText('Anchors: 1')).toBeVisible();
-    expect(screen.queryByText('Revisar este campo')).toBeNull();
+    expect(screen.getByText('Bloqueo activo')).toBeVisible();
+    expect(screen.queryByRole('button', { name: 'Agregar comentario' })).toBeNull();
+    expect(screen.queryByRole('button', { name: 'Agregar anchor' })).toBeNull();
 
     fireEvent.click(screen.getByRole('button', { name: 'Gestionar colaboración' }));
     const dialog = screen.getByRole('dialog', { name: 'Configurar colaboración del campo' });
@@ -99,14 +91,11 @@ describe('SchemaCollaborationWidget', () => {
 
     fireEvent.click(metadataToggle);
     expect(within(dialog).getByDisplayValue('schema-uid-1')).toBeInTheDocument();
-
-    const commentsToggle = within(dialog).getByRole('button', { name: /Comentarios 1/ });
-    expect(commentsToggle).toHaveAttribute('aria-expanded', 'false');
-    fireEvent.click(commentsToggle);
-    expect(within(dialog).getByText('Revisar este campo')).toBeInTheDocument();
+    expect(within(dialog).queryByRole('button', { name: 'Agregar comentario' })).toBeNull();
+    expect(within(dialog).queryByRole('button', { name: 'Agregar anchor' })).toBeNull();
   });
 
-  it('writes file ids to both fileId and fileTemplateId and can create comments and anchors', () => {
+  it('writes file ids to both fileId and fileTemplateId', () => {
     const changeSchemas = vi.fn();
 
     render(
@@ -135,7 +124,6 @@ describe('SchemaCollaborationWidget', () => {
 
     fireEvent.click(screen.getByRole('button', { name: 'Gestionar colaboración' }));
     const dialog = screen.getByRole('dialog', { name: 'Configurar colaboración del campo' });
-
     fireEvent.click(within(dialog).getByRole('button', { name: /Metadatos editables/ }));
 
     fireEvent.change(within(dialog).getByPlaceholderText('file-01'), {
@@ -144,49 +132,6 @@ describe('SchemaCollaborationWidget', () => {
     expect(changeSchemas).toHaveBeenLastCalledWith([
       { key: 'fileId', value: 'file-3', schemaId: 'schema-1' },
       { key: 'fileTemplateId', value: 'file-3', schemaId: 'schema-1' },
-    ]);
-
-    fireEvent.click(screen.getAllByRole('button', { name: 'Agregar comentario' })[0]);
-    expect(changeSchemas).toHaveBeenLastCalledWith([
-      expect.objectContaining({
-        key: 'comments',
-        schemaId: 'schema-1',
-        value: [
-          expect.objectContaining({
-            authorId: 'sales-user-1',
-            authorName: 'Ventas Ejecutivas',
-            authorColor: '#2563EB',
-          }),
-        ],
-      }),
-      expect.objectContaining({ key: 'commentsCount', value: 1, schemaId: 'schema-1' }),
-    ]);
-
-    fireEvent.click(screen.getAllByRole('button', { name: 'Agregar anchor' })[0]);
-    expect(changeSchemas).toHaveBeenLastCalledWith([
-      expect.objectContaining({
-        key: 'commentAnchors',
-        schemaId: 'schema-1',
-        value: [
-          expect.objectContaining({
-            schemaUid: 'schema-uid-1',
-            fileId: 'file-2',
-            pageNumber: 2,
-            authorId: 'sales-user-1',
-            authorColor: '#2563EB',
-          }),
-        ],
-      }),
-      expect.objectContaining({
-        key: 'commentsAnchors',
-        schemaId: 'schema-1',
-        value: [
-          expect.objectContaining({
-            schemaUid: 'schema-uid-1',
-            pageNumber: 2,
-          }),
-        ],
-      }),
     ]);
   });
 
@@ -224,109 +169,5 @@ describe('SchemaCollaborationWidget', () => {
     fireEvent.click(within(dialog).getByRole('button', { name: /Metadatos editables/ }));
     expect(within(dialog).getByText('Autor sales-user-1')).toBeInTheDocument();
     expect(within(dialog).getByDisplayValue('Ventas Ejecutivas')).toBeInTheDocument();
-  });
-
-  it('seeds reply authors from collaboration context and removes matching anchors when deleting comments', () => {
-    const changeSchemas = vi.fn();
-
-    render(
-      <SchemaCollaborationWidget
-        {...widgetShellProps}
-        activeSchema={{
-          id: 'schema-1',
-          name: 'Campo colaborativo',
-          type: 'text',
-          schemaUid: 'schema-uid-1',
-          createdBy: 'sales-user-1',
-          commentsCount: 1,
-          comments: [
-            {
-              id: 'comment-1',
-              authorId: 'legal-user-1',
-              authorName: 'Legal',
-              timestamp: 1700000000000,
-              text: 'Revisar aprobación',
-              resolved: false,
-              replies: [],
-            },
-          ],
-          commentAnchors: [
-            {
-              id: 'comment-1',
-              schemaUid: 'schema-uid-1',
-              fileId: 'file-1',
-              pageNumber: 1,
-              x: 10,
-              y: 20,
-              resolved: false,
-            },
-          ],
-        } as SchemaForUI}
-        changeSchemas={changeSchemas}
-        designerEngine={{
-          collaboration: {
-            actorId: 'sales-user-1',
-            activeRecipientId: 'sales-user-1',
-            recipientOptions: [
-              { id: 'sales-user-1', name: 'Ventas Ejecutivas', color: '#2563EB' },
-            ],
-          },
-        } as never}
-      />,
-    );
-
-    fireEvent.click(screen.getByRole('button', { name: 'Gestionar colaboración' }));
-    const dialog = screen.getByRole('dialog', { name: 'Configurar colaboración del campo' });
-    fireEvent.click(within(dialog).getByRole('button', { name: /Comentarios 1/ }));
-
-    fireEvent.click(within(dialog).getByRole('button', { name: 'Agregar respuesta' }));
-    expect(changeSchemas).toHaveBeenLastCalledWith([
-      expect.objectContaining({
-        key: 'comments',
-        schemaId: 'schema-1',
-        value: [
-          expect.objectContaining({
-            replies: [
-              expect.objectContaining({
-                authorId: 'sales-user-1',
-                authorName: 'Ventas Ejecutivas',
-                authorColor: '#2563EB',
-              }),
-            ],
-          }),
-        ],
-      }),
-      expect.objectContaining({ key: 'commentsCount', value: 1, schemaId: 'schema-1' }),
-    ]);
-
-    fireEvent.click(within(dialog).getByRole('button', { name: 'Eliminar' }));
-    expect(changeSchemas.mock.calls).toEqual(
-      expect.arrayContaining([
-        [[
-          expect.objectContaining({ key: 'comments', schemaId: 'schema-1', value: [] }),
-          expect.objectContaining({ key: 'commentsCount', schemaId: 'schema-1', value: 0 }),
-        ]],
-        [[
-          expect.objectContaining({ key: 'commentAnchors', schemaId: 'schema-1', value: [] }),
-          expect.objectContaining({ key: 'commentsAnchors', schemaId: 'schema-1', value: [] }),
-        ]],
-      ]),
-    );
-    expect(changeSchemas.mock.calls).toEqual(
-      expect.arrayContaining([
-        [
-          expect.arrayContaining([
-            expect.objectContaining({ key: 'comments', schemaId: 'schema-1', value: [] }),
-            expect.objectContaining({ key: 'commentsCount', schemaId: 'schema-1', value: 0 }),
-          ]),
-        ],
-        [
-          expect.arrayContaining([
-            expect.objectContaining({ key: 'commentAnchors', schemaId: 'schema-1', value: [] }),
-            expect.objectContaining({ key: 'commentsAnchors', schemaId: 'schema-1', value: [] }),
-          ]),
-        ],
-      ]),
-    );
   });
 });

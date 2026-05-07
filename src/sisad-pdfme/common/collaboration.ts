@@ -1,5 +1,5 @@
 import { cloneDeep } from './helper.js';
-import type { SchemaComment, SchemaForUI, SchemaPageArray, CommentAnchor } from './types.js';
+import type { CommentScope, SchemaComment, SchemaForUI, SchemaPageArray, CommentAnchor } from './types.js';
 
 export const normalizeRecipientIds = (value: unknown): string[] => {
   if (Array.isArray(value)) {
@@ -47,6 +47,20 @@ const createEntityId = (prefix: string) =>
     ? `${prefix}-${crypto.randomUUID()}`
     : `${prefix}-${Date.now()}-${Math.random().toString(16).slice(2)}`;
 
+const resolveCommentScope = (
+  scope: CommentScope | undefined,
+  fallback: {
+    schemaUid?: string | null;
+    fieldId?: string | null;
+    pageNumber?: number;
+  } = {},
+): CommentScope => {
+  if (scope === 'document' || scope === 'page' || scope === 'schema') return scope;
+  if (String(fallback.schemaUid || fallback.fieldId || '').trim()) return 'schema';
+  if (typeof fallback.pageNumber === 'number') return 'page';
+  return 'document';
+};
+
 export const resolveSchemaAuthorId = (schema: SchemaForUI) =>
   normalizeText((schema as SchemaForUI & { createdBy?: string; lastModifiedBy?: string }).createdBy) ||
   normalizeText((schema as SchemaForUI & { createdBy?: string; lastModifiedBy?: string }).lastModifiedBy) ||
@@ -84,6 +98,7 @@ export const createSchemaComment = (
   overrides: Partial<
     SchemaForUI & {
       id?: string;
+      scope?: CommentScope;
       text?: string;
       resolved?: boolean;
       anchor?: CommentAnchor;
@@ -93,6 +108,11 @@ export const createSchemaComment = (
 ): SchemaComment => ({
   ...(overrides as Record<string, unknown>),
   id: normalizeText((overrides as { id?: string }).id) || createEntityId('comment'),
+  scope: resolveCommentScope((overrides as { scope?: CommentScope }).scope, {
+    schemaUid: (overrides as { schemaUid?: string; fieldId?: string }).schemaUid,
+    fieldId: (overrides as { schemaUid?: string; fieldId?: string }).fieldId,
+    pageNumber: (overrides as { pageNumber?: number }).pageNumber,
+  }),
   fileId: normalizeText((overrides as { fileId?: string }).fileId) || undefined,
   pageNumber:
     typeof (overrides as { pageNumber?: number }).pageNumber === 'number'
@@ -121,6 +141,7 @@ export const createSchemaCommentAnchor = (
   anchor: Partial<
     SchemaForUI & {
       id?: string;
+      scope?: CommentScope;
       schemaUid?: string;
       fileId?: string;
       pageNumber?: number;
@@ -133,6 +154,11 @@ export const createSchemaCommentAnchor = (
 ): CommentAnchor => ({
   ...(anchor as Record<string, unknown>),
   id: normalizeText((anchor as { id?: string }).id) || createEntityId('anchor'),
+  scope: resolveCommentScope((anchor as { scope?: CommentScope }).scope, {
+    schemaUid: (anchor as { schemaUid?: string; fieldId?: string }).schemaUid,
+    fieldId: (anchor as { fieldId?: string; schemaUid?: string }).fieldId,
+    pageNumber: (anchor as { pageNumber?: number }).pageNumber,
+  }),
   schemaUid: normalizeText((anchor as { schemaUid?: string }).schemaUid) || undefined,
   fieldId:
     normalizeText((anchor as { fieldId?: string; schemaUid?: string }).fieldId) ||

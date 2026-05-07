@@ -15,6 +15,7 @@ import {
   Dict,
   Mode,
   Size,
+  CommentScope,
   Schema,
   Font,
   SchemaForUI,
@@ -214,6 +215,7 @@ export type Lang = z.infer<typeof Lang>;
 export type Dict = z.infer<typeof Dict>;
 export type Mode = z.infer<typeof Mode>;
 export type Size = z.infer<typeof Size>;
+export type CommentScope = z.infer<typeof CommentScope>;
 export type Schema = z.infer<typeof Schema>;
 export type SchemaForUI = z.infer<typeof SchemaForUI>;
 export type SchemaCommentReply = z.infer<typeof SchemaCommentReply>;

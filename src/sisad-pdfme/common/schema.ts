@@ -3,6 +3,7 @@ import { z } from 'zod';
 const langs = ['en', 'zh', 'ja', 'ko', 'ar', 'th', 'pl', 'it', 'de', 'es', 'fr'] as const;
 
 export const Lang = z.enum(langs);
+export const CommentScope = z.enum(['document', 'page', 'schema']);
 export const Dict = z.object({
   // -----------------used in ui-----------------
   cancel: z.string(),
@@ -114,6 +115,7 @@ export const SchemaCommentReply = z
 export const SchemaComment = z
   .object({
     id: z.string(),
+    scope: CommentScope.optional(),
     fileId: z.string().optional(),
     pageNumber: z.number().int().positive().optional(),
     fieldId: z.string().optional(),
@@ -133,6 +135,7 @@ export const SchemaComment = z
 export const CommentAnchor = z
   .object({
     id: z.string(),
+    scope: CommentScope.optional(),
     schemaUid: z.string().optional(),
     fileId: z.string().optional(),
     pageNumber: z.number().int().positive().optional(),

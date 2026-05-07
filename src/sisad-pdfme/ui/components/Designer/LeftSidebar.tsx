@@ -407,7 +407,9 @@ const Draggable = (props: {
     <div ref={setNodeRef}>
       <div
         className={DESIGNER_CLASSNAME + 'left-sidebar-draggable-shell'}
-        data-dragging={isDragging ? 'true' : 'false'}>
+        data-dragging={isDragging ? 'true' : 'false'}
+        data-drag-source={isDragging ? 'true' : 'false'}
+        data-dragging-schema-type={String(baseSchema.type || '')}>
         {props.children({ listeners, attributes, isDragging })}
       </div>
     </div>
@@ -925,6 +927,7 @@ const LeftSidebar = ({
               className={buttonClass}
               data-schema-type={pluginType}
               data-schema-label={label}
+              data-dragging={draggableActive ? 'true' : 'false'}
               data-view-mode={resolvedViewMode}
               data-is-panel={isPanel ? 'true' : 'false'}
               title={tooltipText}

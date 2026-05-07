@@ -183,6 +183,7 @@ export interface CanvasProps {
   bridge?: DesignerComponentBridge;
   topLevelComments?: Array<{ anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
   activeDocumentId?: string | null;
+  externalSchemaDragActive?: boolean;
   canvasActions?: {
     addPageAfter?: () => void;
     uploadPdf?: () => void;
@@ -215,6 +216,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
     bridge,
     topLevelComments = [],
     activeDocumentId = null,
+    externalSchemaDragActive = false,
     canvasActions,
     selectionCommands,
     onInteractionStateChange,
@@ -763,6 +765,19 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
     }
   }, [bridge]);
 
+  useEffect(() => {
+    const handleInsertShortcut = (event: Event) => {
+      const detail = (event as CustomEvent<{ type?: string }>).detail || {};
+      if (typeof detail.type !== 'string' || !detail.type.trim()) return;
+      bridge?.runtime.addSchemaByType(detail.type.trim());
+    };
+
+    window.addEventListener('sisad-pdfme:shortcut-insert-schema', handleInsertShortcut as EventListener);
+    return () => {
+      window.removeEventListener('sisad-pdfme:shortcut-insert-schema', handleInsertShortcut as EventListener);
+    };
+  }, [bridge]);
+
   const canvasContextMenuExternalActions = useMemo(
     () => ({
       onInsertField: handleInsertField,
@@ -891,7 +906,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
       data-interaction-resizing={interactionState.isResizing ? 'true' : 'false'}
       data-interaction-rotating={interactionState.isRotating ? 'true' : 'false'}
       ref={rootRef}>
-      {!editing && feature.selecto ? (
+      {!editing && feature.selecto && !externalSchemaDragActive ? (
         <SelectoSlot
           container={paperRefs.current[pageCursor]}
           continueSelect={modifierKeys.shift}
@@ -1027,7 +1042,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
                 />
               ) : null
             ) : (
-              !editing && feature.moveable && (
+              !editing && feature.moveable && !externalSchemaDragActive && (
                 <MoveableSlot
                   ref={moveable}
                   className={classNames?.moveable}
@@ -1127,14 +1142,17 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
         selectionCommands={selectionCommands}
         interactionState={interactionState}
         featureSnapLines={feature.snapLines}
+        externalSchemaDragActive={externalSchemaDragActive}
         contextMenuOpen={Boolean(contextMenu)}
       />
-      <InlineEditOverlay
+      {!externalSchemaDragActive ? (
+        <InlineEditOverlay
         session={inlineEditSession}
         canvasSize={size}
         onCommit={finishInlineEdit}
         onCancel={cancelInlineEdit}
-      />
+        />
+      ) : null}
       <CanvasContextMenu
         open={Boolean(contextMenu) && !editing}
         mode={contextMenu?.mode || 'empty'}

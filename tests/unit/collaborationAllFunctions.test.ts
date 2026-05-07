@@ -66,10 +66,12 @@ describe('collaboration.ts all exported functions', () => {
     const anchor = createSchemaCommentAnchor({ schemaUid: 'su-1', pageNumber: 1, x: 1, y: 2 }, { authorId: 'u1' });
 
     expect(comment.text).toBe('Hola');
+    expect(comment.scope).toBe('schema');
     expect(comment.schemaUid).toBe('su-1');
     expect(comment.fieldId).toBe('su-1');
     expect(comment.createdAt).toBe(10);
     expect(comment.replies).toEqual([]);
+    expect(anchor.scope).toBe('schema');
     expect(anchor.schemaUid).toBe('su-1');
     expect(anchor.fieldId).toBe('su-1');
     expect(anchor.pageNumber).toBe(1);

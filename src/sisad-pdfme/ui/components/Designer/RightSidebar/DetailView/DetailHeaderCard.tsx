@@ -5,6 +5,7 @@ import { resolveSchemaTone } from '../../shared/schemaTone.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
 import { resolveLegacySignatureMode, type SignatureSchema } from '../../../../../schemas/signature/types.js';
+import { InspectorTagList, type InspectorTag } from './InspectorPrimitives.js';
 
 type DetailHeaderCardProps = {
   activeSchema: SchemaForUI;
@@ -43,28 +44,25 @@ const buildMetaTooltip = (
   return lines.join('\n') || 'Sin metadatos adicionales';
 };
 
-const DetailHeaderCard = ({
-  activeSchema,
-  schemaConfig,
-}: DetailHeaderCardProps) => {
-  const tone = resolveSchemaTone(activeSchema, '#7c3aed');
+export const buildDetailHeaderSummary = (
+  activeSchema: SchemaForUI,
+  schemaConfig: SchemaDesignerConfig | null | undefined,
+): { tags: InspectorTag[]; overflowTooltip: string; positionLabel: string; schemaName: string; schemaType: string } => {
   const schemaName = typeof activeSchema.name === 'string' ? activeSchema.name : 'Campo';
   const schemaType = typeof activeSchema.type === 'string' ? activeSchema.type : 'schema';
   const schemaHidden = (activeSchema as SchemaForUI & { hidden?: boolean }).hidden === true;
 
-  // ── Primary state tags (max 3 shown inline) ─────────────────────────────────
-  // Active config tags are surfaced here to avoid a second tag row.
+  const signatureSchema = activeSchema.type === 'signature' ? (activeSchema as Partial<SignatureSchema>) : null;
+  const signatureMode = signatureSchema ? resolveLegacySignatureMode(signatureSchema) : null;
+  const signatureProviderKey = signatureSchema?.signatureProviderKey || null;
+  const signatureVisualStamp = signatureSchema?.signatureDisplay?.showVisualStamp;
+
   const activeConfigTag: StateTag | null =
     schemaConfig?.persistence?.enabled
       ? { label: 'Guardar', color: 'processing' }
       : schemaConfig?.api?.enabled
         ? { label: 'API', color: 'blue' }
         : null;
-
-  const signatureSchema = activeSchema.type === 'signature' ? (activeSchema as Partial<SignatureSchema>) : null;
-  const signatureMode = signatureSchema ? resolveLegacySignatureMode(signatureSchema) : null;
-  const signatureProviderKey = signatureSchema?.signatureProviderKey || null;
-  const signatureVisualStamp = signatureSchema?.signatureDisplay?.showVisualStamp;
 
   const stateTags: StateTag[] = [
     signatureMode ? { label: signatureMode.toUpperCase(), color: 'blue' } : null,
@@ -77,14 +75,27 @@ const DetailHeaderCard = ({
     activeConfigTag,
   ].filter((t): t is StateTag => Boolean(t));
 
-  // Show at most 3 inline; collapse the rest behind a tooltip.
-  const MAX_VISIBLE = 3;
-  const visibleTags = stateTags.slice(0, MAX_VISIBLE);
-  const overflowCount = Math.max(0, stateTags.length - MAX_VISIBLE);
-  const metaTooltip = buildMetaTooltip(activeSchema, schemaConfig);
-
   const posX = Number((activeSchema.position?.x ?? 0).toFixed(1));
   const posY = Number((activeSchema.position?.y ?? 0).toFixed(1));
+
+  return {
+    tags: stateTags,
+    overflowTooltip: buildMetaTooltip(activeSchema, schemaConfig),
+    positionLabel: `${posX},${posY}`,
+    schemaName,
+    schemaType,
+  };
+};
+
+const DetailHeaderCard = ({
+  activeSchema,
+  schemaConfig,
+}: DetailHeaderCardProps) => {
+  const tone = resolveSchemaTone(activeSchema, '#7c3aed');
+  const headerSummary = buildDetailHeaderSummary(activeSchema, schemaConfig);
+  const MAX_VISIBLE = 3;
+  const visibleTags = headerSummary.tags.slice(0, MAX_VISIBLE);
+  const overflowCount = Math.max(0, headerSummary.tags.length - MAX_VISIBLE);
 
   return (
     <div className={DESIGNER_CLASSNAME + 'detail-header-card'}>
@@ -92,21 +103,21 @@ const DetailHeaderCard = ({
       <div className={DESIGNER_CLASSNAME + 'detail-header-card-head'}>
         <Badge color={tone} />
         <div className={DESIGNER_CLASSNAME + 'detail-header-card-title-wrap'}>
-          <Tooltip title={schemaName} placement="topLeft">
+          <Tooltip title={headerSummary.schemaName} placement="topLeft">
             <span className={DESIGNER_CLASSNAME + 'detail-header-card-title'}>
-              {schemaName}
+              {headerSummary.schemaName}
             </span>
           </Tooltip>
-          <Tooltip title={`Tipo: ${schemaType}`}>
+          <Tooltip title={`Tipo: ${headerSummary.schemaType}`}>
             <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-tag-base'}>
-              {schemaType}
+              {headerSummary.schemaType}
             </Tag>
           </Tooltip>
         </div>
         {/* ── Compact position stat ── */}
-        <Tooltip title={`Posición X: ${posX} mm, Y: ${posY} mm`} placement="topRight">
+        <Tooltip title={`Posición X/Y: ${headerSummary.positionLabel} mm`} placement="topRight">
           <span className={DESIGNER_CLASSNAME + 'detail-header-card-pos'}>
-            {posX},{posY}
+            {headerSummary.positionLabel}
           </span>
         </Tooltip>
       </div>
@@ -114,17 +125,13 @@ const DetailHeaderCard = ({
       {/* ── State tags row (progressive disclosure: max 3 + overflow badge) ── */}
       {visibleTags.length > 0 || overflowCount > 0 ? (
         <div className={DESIGNER_CLASSNAME + 'detail-header-card-state-row'}>
-          {visibleTags.map((tag) => (
-            <Tag
-              key={tag.label}
-              color={tag.color || 'default'}
-              className={DESIGNER_CLASSNAME + 'detail-header-card-state-tag'}
-            >
-              {tag.label}
-            </Tag>
-          ))}
+          <InspectorTagList
+            tags={visibleTags}
+            classNameSuffix="detail-header-card-state-tags"
+            overflowTooltip={headerSummary.overflowTooltip}
+          />
           {overflowCount > 0 ? (
-            <Tooltip title={metaTooltip} styles={{ root: { whiteSpace: 'pre-line', maxWidth: 260 } }}>
+            <Tooltip title={headerSummary.overflowTooltip} styles={{ root: { whiteSpace: 'pre-line', maxWidth: 260 } }}>
               <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-state-tag is-overflow'}>
                 +{overflowCount}
               </Tag>
@@ -135,7 +142,7 @@ const DetailHeaderCard = ({
             const shouldShowMetadataBadge = overflowCount === 0 && visibleTags.length > 0;
             if (!shouldShowMetadataBadge) return null;
             return (
-              <Tooltip title={metaTooltip} styles={{ root: { whiteSpace: 'pre-line', maxWidth: 260 } }}>
+              <Tooltip title={headerSummary.overflowTooltip} styles={{ root: { whiteSpace: 'pre-line', maxWidth: 260 } }}>
                 <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-state-tag is-overflow'}>
                   ···
                 </Tag>

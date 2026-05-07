@@ -81,6 +81,7 @@ export type {
   SchemaPageArray,
   SchemaComment,
   SchemaCommentReply,
+  CommentScope,
   PdfComment,
   PdfCommentReply,
   CommentAnchor,

@@ -11,6 +11,7 @@ import {
 import { uuid } from '../../../../helper.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import type { SchemaComment } from '../../../../designerEngine.js';
+import { InspectorEmptyState } from './InspectorPrimitives.js';
 
 type FieldCommentsWidgetProps = PropPanelWidgetProps & {
   activeSchema: SchemaForUI;
@@ -21,19 +22,38 @@ type FieldCommentsWidgetProps = PropPanelWidgetProps & {
 const normalizeComments = (value: unknown): SchemaComment[] =>
   Array.isArray(value) ? (value as SchemaComment[]) : [];
 
+const createTimestamp = () => Date.now();
+
+const COMMENT_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat('es-ES', {
+  day: '2-digit',
+  month: 'short',
+  hour: '2-digit',
+  minute: '2-digit',
+});
+
 const formatTimestamp = (ts?: number): string => {
   if (!ts || !Number.isFinite(ts)) return '';
   try {
-    return new Intl.DateTimeFormat('es-ES', {
-      day: '2-digit',
-      month: 'short',
-      hour: '2-digit',
-      minute: '2-digit',
-    }).format(new Date(ts));
+    return COMMENT_TIMESTAMP_FORMATTER.format(new Date(ts));
   } catch {
     return '';
   }
 };
+
+const buildReplyComment = (args: {
+  actorId: string;
+  actorName: string;
+  actorColor?: string;
+  text: string;
+}) => ({
+  id: `reply-${uuid()}`,
+  authorId: args.actorId,
+  authorName: args.actorName,
+  authorColor: args.actorColor,
+  text: args.text,
+  timestamp: createTimestamp(),
+  resolved: false,
+});
 
 /**
  * Per-field inspector comments tab.
@@ -84,17 +104,14 @@ const SchemaFieldCommentsWidget = ({
   const handleAddReply = (commentId: string) => {
     const text = (replyTexts[commentId] || '').trim();
     if (!text) return;
-    const reply = {
-      id: `reply-${uuid()}`,
-      authorId: actorId,
-      authorName: actorName,
-      authorColor: actorColor,
-      text,
-      timestamp: Date.now(),
-      resolved: false,
-    };
     const existingComment = comments.find((c) => c.id === commentId);
     if (!existingComment) return;
+    const reply = buildReplyComment({
+      actorId,
+      actorName,
+      actorColor,
+      text,
+    });
     const next = upsertById(
       comments,
       {
@@ -138,10 +155,11 @@ const SchemaFieldCommentsWidget = ({
 
       {/* Thread list */}
       {comments.length === 0 ? (
-        <div className={cls('field-comments-empty')}>
-          <MessageSquare size={18} />
-          <span>Sin comentarios en este campo</span>
-        </div>
+        <InspectorEmptyState
+          icon={<MessageSquare size={18} />}
+          label="Sin comentarios en este campo"
+          classNameSuffix="field-comments-empty"
+        />
       ) : (
         <div className={cls('field-comments-list')}>
           {comments.map((comment) => {

@@ -4,6 +4,7 @@ import {
   getSchemaTypeInspectorPreset,
   normalizeSchemaFamily,
   resolveSchemaFamily,
+  resolveSchemaSemanticFamily,
 } from '../../src/sisad-pdfme/schemas/schemaFamilies.js';
 
 describe('schema families', () => {
@@ -14,6 +15,11 @@ describe('schema families', () => {
     expect(resolveSchemaFamily('image')).toBe('mediaVisual');
     expect(resolveSchemaFamily('qrcode')).toBe('shapeBarcode');
     expect(resolveSchemaFamily('table')).toBe('table');
+    expect(resolveSchemaSemanticFamily('signature')).toBe('signature');
+    expect(resolveSchemaSemanticFamily('select')).toBe('choice');
+    expect(resolveSchemaSemanticFamily('dateTime')).toBe('dateTime');
+    expect(resolveSchemaSemanticFamily('qrcode')).toBe('barcode');
+    expect(resolveSchemaSemanticFamily('rectangle')).toBe('shape');
   });
 
   it('accepts legacy family aliases when building inspector config', () => {
@@ -34,5 +40,10 @@ describe('schema families', () => {
     expect(preset.supportsPresence).toBe(true);
     expect(preset.supportedActions.map((action) => action.command)).toContain('addComment');
     expect(preset.strategies.map((strategy) => strategy.type)).toContain('locking');
+  });
+
+  it('keeps comments available for visual families that support review metadata', () => {
+    expect(createSchemaInspectorConfig('media').visibleSections).toContain('comments');
+    expect(createSchemaInspectorConfig('barcode').visibleSections).toContain('comments');
   });
 });
