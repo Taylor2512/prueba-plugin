@@ -94,14 +94,7 @@ type RightSidebarContextHeaderRendererDeps = {
   fallbackBaseDocumentItem: DesignerDocumentItem | null;
   pageCursor: number;
   pageItemsLength: number;
-  visiblePageSchemasLength: number;
-  currentPageSchemasLength: number;
   activeElementsLength: number;
-  isIdle: boolean;
-  collaborationPresenceLength: number;
-  collaborationHistoryLength: number;
-  collaborationContext: ReturnType<typeof buildEffectiveCollaborationContext>;
-  actorId: string;
 };
 
 const renderRightSidebarContextHeader = (
@@ -123,39 +116,16 @@ const renderRightSidebarContextHeader = (
       <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
         Documento: {activeDocumentLabel}
       </span>
-      {deps.uploadedDocuments.length > 1 ? (
-        <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>Docs: {deps.uploadedDocuments.length}</span>
-      ) : null}
       {deps.pageItemsLength > 0 ? (
         <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
           Página: {deps.pageCursor + 1}/{deps.pageItemsLength}
         </span>
       ) : null}
-      <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-        Campos: {deps.visiblePageSchemasLength}/{deps.currentPageSchemasLength}
-      </span>
       {deps.activeElementsLength > 0 ? (
         <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
           Selección: {deps.activeElementsLength}
         </span>
       ) : null}
-      <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-        Presencia: {deps.isIdle ? 'pausa' : 'activa'}
-      </span>
-      <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-        Colaboradores: {Math.max(1, deps.collaborationPresenceLength)}
-      </span>
-      {deps.collaborationHistoryLength > 0 ? (
-        <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-          Historial: {deps.collaborationHistoryLength}
-        </span>
-      ) : null}
-      <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-        Vista: {deps.collaborationContext.isGlobalView ? 'Global' : deps.collaborationContext.activeRecipient?.name || 'Sin destinatario'}
-      </span>
-      <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-        Usuario: {deps.actorId || 'local'}
-      </span>
     </div>
   );
 };
@@ -1398,8 +1368,8 @@ const TemplateEditor = ({
     () => ({
       items: commentItems,
       onAdd: handleAddSidebarComment,
-      title: 'Comentarios de la página',
-      emptyTitle: 'No hay comentarios en la página actual.',
+      title: 'Comentarios',
+      emptyTitle: 'Sin comentarios en esta página.',
       activeCommentId,
     }),
     [activeCommentId, commentItems, handleAddSidebarComment],
@@ -2455,8 +2425,6 @@ const TemplateEditor = ({
     [fallbackBaseDocumentItem, uploadedDocumentItems],
   );
   const rightSidebarContextHeader = useMemo<RightSidebarContextHeader>(() => {
-    const actorId = designerEngine.collaboration?.actorId || '';
-
     return (ctx: RightSidebarContextHeaderContext) =>
       renderRightSidebarContextHeader(ctx, {
         activeDocumentId,
@@ -2464,25 +2432,11 @@ const TemplateEditor = ({
         fallbackBaseDocumentItem,
         pageCursor,
         pageItemsLength: pageItems.length,
-        visiblePageSchemasLength: visiblePageSchemas.length,
-        currentPageSchemasLength: currentPageSchemas.length,
         activeElementsLength: activeElements.length,
-        isIdle,
-        collaborationPresenceLength: collaborationSync.presence.length,
-        collaborationHistoryLength: collaborationSync.history.length,
-        collaborationContext,
-        actorId,
       });
   }, [
     activeDocumentId,
     activeElements.length,
-    collaborationContext,
-    collaborationSync.history.length,
-    collaborationSync.presence.length,
-    currentPageSchemas,
-    designerEngine.collaboration?.actorColor,
-    designerEngine.collaboration?.actorId,
-    isIdle,
     pageCursor,
     pageItems.length,
     fallbackBaseDocumentItem?.name,
@@ -2623,8 +2577,8 @@ const TemplateEditor = ({
         },
         onAdd: pageManipulation.addPageAfter,
         onUploadPdf: handleUploadPdfClick,
-        title: 'Páginas del documento',
-        emptyTitle: 'Este documento aún no tiene páginas. Agrega una página para empezar.',
+        title: 'Páginas',
+        emptyTitle: 'Este documento aún no tiene páginas.',
       }}
       comments={commentsBridge}
       showDocumentsRail={pageItems.length > 0 || documentItems.length > 0}

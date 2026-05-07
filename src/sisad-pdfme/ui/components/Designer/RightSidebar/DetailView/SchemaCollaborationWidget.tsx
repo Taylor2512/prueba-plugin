@@ -23,6 +23,11 @@ type CollaborationWidgetProps = PropPanelWidgetProps & {
   activeSchema: SchemaForUI;
   changeSchemas: (_objs: { key: string; value: unknown; schemaId: string }[]) => void;
   designerEngine?: DesignerEngine;
+  summaryTitle?: string;
+  summaryDescription?: string;
+  modalTitle?: string;
+  modalTriggerLabel?: React.ReactNode;
+  quickActionLabel?: React.ReactNode;
 };
 
 const STATE_OPTIONS: Array<{ label: string; value: SchemaCollaborativeState }> = [
@@ -183,13 +188,13 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
 
   return (
     <CompactConfigPanel
-      title="Colaboración"
-      description="Gestiona owner, bloqueo y trazabilidad sin dejar abierto todo el formulario."
+      title={props.summaryTitle || 'Colaboración'}
+      description={props.summaryDescription || 'Gestiona owner, bloqueo y trazabilidad sin dejar abierto todo el formulario.'}
       summary={[
         schemaUid || 'sin schemaUid',
         resolvedOwnerLabel,
-        commentCount > 0 ? `${commentCount} comentario(s)` : 'sin comentarios',
-        anchorCount > 0 ? `${anchorCount} anchor(s)` : 'sin anchors',
+        commentCount > 0 ? `${commentCount} comentarios` : 'sin comentarios',
+        anchorCount > 0 ? `${anchorCount} anclas` : 'sin anclas',
       ].join(' · ')}
       statusTags={[
         { label: stateTag.label, color: stateTag.color },
@@ -208,17 +213,17 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
           label: ownerRecipientIds.length > 0 ? `${ownerRecipientIds.length} owner(s)` : 'Sin owner',
           color: ownerRecipientIds.length > 0 ? 'processing' : 'warning',
         },
-        ...(commentCount > 0 ? [{ label: `Comentarios: ${commentCount}`, color: 'blue' as const }] : []),
-        ...(anchorCount > 0 ? [{ label: `Anchors: ${anchorCount}`, color: 'cyan' as const }] : []),
+        ...(commentCount > 0 ? [{ label: `${commentCount} comentarios`, color: 'blue' as const }] : []),
+        ...(anchorCount > 0 ? [{ label: `${anchorCount} anclas`, color: 'cyan' as const }] : []),
         ...(hasLock ? [{ label: 'Bloqueo activo', color: 'error' as const }] : []),
       ]}
       quickActions={
         <Button size="small" type="default" onClick={() => updateState(hasLock ? 'draft' : 'locked')}>
-          {hasLock ? 'Desbloquear' : 'Bloquear'}
+          {props.quickActionLabel || (hasLock ? 'Desbloquear' : 'Bloquear')}
         </Button>
       }
-      modalTitle="Configurar colaboración del campo"
-      modalTriggerLabel="Gestionar colaboración"
+      modalTitle={props.modalTitle || 'Configurar colaboración del campo'}
+      modalTriggerLabel={props.modalTriggerLabel || 'Gestionar colaboración'}
     >
       <div className={`${DESIGNER_CLASSNAME}schema-collaboration-widget`}>
         <InspectorSummaryCard
@@ -245,8 +250,8 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
               label: collaborative.saveValue === false || activeSchema.saveValue === false ? 'No guardar valor' : 'Guardar valor',
               color: collaborative.saveValue === false || activeSchema.saveValue === false ? 'warning' : 'success',
             },
-            ...(commentCount > 0 ? [{ label: `Comentarios: ${commentCount}`, color: 'blue' as const }] : []),
-            ...(anchorCount > 0 ? [{ label: `Anchors: ${anchorCount}`, color: 'cyan' as const }] : []),
+        ...(commentCount > 0 ? [{ label: `${commentCount} comentarios`, color: 'blue' as const }] : []),
+        ...(anchorCount > 0 ? [{ label: `${anchorCount} anclas`, color: 'cyan' as const }] : []),
             ...(hasLock ? [{ label: 'Bloqueo activo', color: 'error' as const }] : []),
           ]}
         >
@@ -303,7 +308,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                       <Select value={state} options={STATE_OPTIONS} onChange={(value) => updateState(value)} />
                     </div>
                     <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>ownerMode</div>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Modo owner</div>
                       <Input
                         value={ownerMode || ''}
                         onChange={(event) => commit({ ownerMode: event.target.value || undefined })}
@@ -313,7 +318,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                   </div>
 
                   <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Owner principal</div>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Owner</div>
                     {hasRecipientOptions ? (
                       <Select
                         value={activeSchema.ownerRecipientId || collaborative.ownerRecipientId || undefined}
@@ -350,11 +355,11 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                     )}
                   </div>
                   <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Owner visible</div>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Visible</div>
                     <Input
                       value={resolvedOwnerLabel}
                       onChange={(event) => commit({ ownerRecipientName: event.target.value || undefined })}
-                      placeholder="Nombre visible del owner"
+                      placeholder="Nombre visible"
                     />
                   </div>
 

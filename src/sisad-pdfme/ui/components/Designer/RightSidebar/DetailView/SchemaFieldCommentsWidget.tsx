@@ -17,6 +17,14 @@ type FieldCommentsWidgetProps = PropPanelWidgetProps & {
   activeSchema: SchemaForUI;
   changeSchemas: (_objs: { key: string; value: unknown; schemaId: string }[]) => void;
   designerEngine?: { collaboration?: { actorId?: string; actorName?: string; actorColor?: string } };
+  composerPlaceholder?: string;
+  addLabel?: React.ReactNode;
+  emptyLabel?: React.ReactNode;
+  emptyDescription?: React.ReactNode;
+  replyPlaceholder?: string;
+  replyLabel?: React.ReactNode;
+  resolvedLabel?: React.ReactNode;
+  openLabel?: React.ReactNode;
 };
 
 const normalizeComments = (value: unknown): SchemaComment[] =>
@@ -66,6 +74,14 @@ const SchemaFieldCommentsWidget = ({
   activeSchema,
   changeSchemas,
   designerEngine,
+  composerPlaceholder = 'Escribe un comentario sobre este campo…',
+  addLabel = 'Agregar',
+  emptyLabel = 'Sin comentarios en este campo',
+  emptyDescription = 'Crea el primer hilo para este campo.',
+  replyPlaceholder = 'Responder…',
+  replyLabel = 'Respuestas',
+  resolvedLabel = 'Resuelto',
+  openLabel = 'Abierto',
 }: FieldCommentsWidgetProps) => {
   const [newCommentText, setNewCommentText] = useState('');
   const [replyTexts, setReplyTexts] = useState<Record<string, string>>({});
@@ -132,7 +148,7 @@ const SchemaFieldCommentsWidget = ({
         <Input.TextArea
           value={newCommentText}
           onChange={(e) => setNewCommentText(e.target.value)}
-          placeholder="Escribe un comentario sobre este campo…"
+          placeholder={composerPlaceholder}
           autoSize={{ minRows: 2, maxRows: 4 }}
           onKeyDown={(e) => {
             if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
@@ -149,7 +165,7 @@ const SchemaFieldCommentsWidget = ({
           disabled={!newCommentText.trim()}
           className={cls('field-comments-add-btn')}
         >
-          Agregar
+          {addLabel}
         </Button>
       </div>
 
@@ -157,7 +173,8 @@ const SchemaFieldCommentsWidget = ({
       {comments.length === 0 ? (
         <InspectorEmptyState
           icon={<MessageSquare size={18} />}
-          label="Sin comentarios en este campo"
+          label={emptyLabel}
+          description={emptyDescription}
           classNameSuffix="field-comments-empty"
         />
       ) : (
@@ -187,7 +204,7 @@ const SchemaFieldCommentsWidget = ({
                     </span>
                     {resolved ? (
                       <Tag color="success" style={{ margin: 0 }}>
-                        Resuelto
+                        {resolvedLabel}
                       </Tag>
                     ) : null}
                   </Space>
@@ -258,7 +275,7 @@ const SchemaFieldCommentsWidget = ({
                       onChange={(e) =>
                         setReplyTexts((prev) => ({ ...prev, [comment.id]: e.target.value }))
                       }
-                      placeholder="Responder…"
+                      placeholder={replyPlaceholder}
                       onPressEnter={() => handleAddReply(comment.id)}
                     />
                     <Button
@@ -266,7 +283,7 @@ const SchemaFieldCommentsWidget = ({
                       onClick={() => handleAddReply(comment.id)}
                       disabled={!(replyTexts[comment.id] || '').trim()}
                     >
-                      Responder
+                      {replyLabel}
                     </Button>
                   </div>
                 ) : null}

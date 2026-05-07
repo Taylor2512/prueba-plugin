@@ -8,6 +8,11 @@ type ShortcutHelpPanelProps = {
   open: boolean;
   onClose: () => void;
   shortcuts?: ShortcutDefinition[];
+  title?: React.ReactNode;
+  searchPlaceholder?: string;
+  emptyMessage?: React.ReactNode;
+  scopeLabels?: Partial<Record<ShortcutDefinition['scope'], string>>;
+  scopeOrder?: ShortcutDefinition['scope'][];
 };
 
 const scopeLabels: Record<ShortcutDefinition['scope'], string> = {
@@ -23,11 +28,27 @@ const scopeLabels: Record<ShortcutDefinition['scope'], string> = {
 
 const normalize = (value: string) => value.toLowerCase().trim();
 
-const ShortcutHelpPanel = ({ open, onClose, shortcuts }: ShortcutHelpPanelProps) => {
+const splitShortcutCombos = (value: string): string[] =>
+  value.split(',').reduce<string[]>((acc, entry) => {
+    const normalized = entry.trim();
+    if (normalized) acc.push(normalized);
+    return acc;
+  }, []);
+
+const ShortcutHelpPanel = ({
+  open,
+  onClose,
+  shortcuts,
+  title = 'Atajos del diseñador',
+  searchPlaceholder = 'Buscar atajo',
+  emptyMessage = 'No hay atajos que coincidan con la búsqueda.',
+  scopeLabels: scopeLabelOverrides,
+  scopeOrder: scopeOrderOverride,
+}: ShortcutHelpPanelProps) => {
   const [query, setQuery] = useState('');
   const inputRef = useRef<InputRef | null>(null);
   const resolvedShortcuts = shortcuts || getShortcuts();
-  const scopeOrder: ShortcutDefinition['scope'][] = [
+  const scopeOrder: ShortcutDefinition['scope'][] = scopeOrderOverride || [
     'global',
     'selection',
     'canvas',
@@ -77,7 +98,7 @@ const ShortcutHelpPanel = ({ open, onClose, shortcuts }: ShortcutHelpPanelProps)
       footer={null}
       width={760}
       centered
-      title="Atajos del diseñador"
+      title={title}
       className="sisad-pdfme-shortcuts-panel"
       destroyOnClose
       afterClose={() => setQuery('')}
@@ -87,20 +108,20 @@ const ShortcutHelpPanel = ({ open, onClose, shortcuts }: ShortcutHelpPanelProps)
           ref={inputRef}
           value={query}
           onChange={(event) => setQuery(event.target.value)}
-          placeholder="Buscar atajo"
+          placeholder={searchPlaceholder}
           allowClear
         />
 
         {Object.keys(grouped).length === 0 ? (
-          <Empty description="No hay atajos que coincidan con la búsqueda." />
+          <Empty description={emptyMessage} />
         ) : (
           <div className="sisad-pdfme-shortcuts-groups">
-            {scopeOrder
-              .filter((scope) => Boolean(grouped[scope]?.length))
-              .map((scope) => (
+            {scopeOrder.reduce<React.ReactNode[]>((acc, scope) => {
+              if (!grouped[scope]?.length) return acc;
+              acc.push(
                 <section key={scope} className="sisad-pdfme-shortcuts-group">
                   <Typography.Title level={5} className="sisad-pdfme-shortcuts-group-title">
-                    {scopeLabels[scope] || scope}
+                    {scopeLabelOverrides?.[scope] || scopeLabels[scope] || scope}
                   </Typography.Title>
                   <div className="sisad-pdfme-shortcuts-group-items">
                     {grouped[scope].map((shortcut) => (
@@ -110,21 +131,19 @@ const ShortcutHelpPanel = ({ open, onClose, shortcuts }: ShortcutHelpPanelProps)
                           {shortcut.description ? <span>{shortcut.description}</span> : null}
                         </div>
                         <div className="sisad-pdfme-shortcuts-row-keys" aria-label={shortcut.label}>
-                          {formatShortcutForPlatform(shortcut)
-                            .split(',')
-                            .map((keyCombo) => keyCombo.trim())
-                            .filter(Boolean)
-                            .map((keyCombo) => (
-                              <Tag key={`${shortcut.id}-${keyCombo}`} className="sisad-pdfme-shortcuts-key" bordered={false}>
-                                {keyCombo}
-                              </Tag>
-                            ))}
+                          {splitShortcutCombos(formatShortcutForPlatform(shortcut)).map((keyCombo) => (
+                            <Tag key={`${shortcut.id}-${keyCombo}`} className="sisad-pdfme-shortcuts-key" bordered={false}>
+                              {keyCombo}
+                            </Tag>
+                          ))}
                         </div>
                       </article>
                     ))}
                   </div>
                 </section>
-              ))}
+              );
+              return acc;
+            }, [])}
           </div>
         )}
       </div>

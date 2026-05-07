@@ -3,6 +3,7 @@ import { Button, Tag } from 'antd';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 
 export type InspectorTag = {
+  key?: React.Key;
   label: string;
   color?: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue' | 'cyan' | 'purple';
 };
@@ -30,7 +31,7 @@ export const InspectorTagList = ({
   return (
     <div className={`${DESIGNER_CLASSNAME}${classNameSuffix}`}>
       {visibleTags.map((tag, index) => (
-        <Tag key={`${tag.label}-${index}`} color={tag.color}>
+        <Tag key={tag.key ?? tag.label ?? index} color={tag.color}>
           {tag.label}
         </Tag>
       ))}
@@ -45,6 +46,7 @@ export const InspectorTagList = ({
 };
 
 type InspectorAction = {
+  key?: React.Key;
   label: string;
   onClick: () => void;
   disabled?: boolean;
@@ -67,7 +69,13 @@ export const InspectorActionRow = ({
   return (
     <div className={`${DESIGNER_CLASSNAME}${classNameSuffix}`}>
       {actions.map((action) => (
-        <Button key={action.label} size="small" type={action.type || 'default'} onClick={action.onClick} disabled={action.disabled}>
+        <Button
+          key={action.key ?? action.label}
+          size="small"
+          type={action.type || 'default'}
+          onClick={action.onClick}
+          disabled={action.disabled}
+        >
           {action.label}
         </Button>
       ))}
@@ -76,6 +84,7 @@ export const InspectorActionRow = ({
 };
 
 type InspectorMetric = {
+  key?: React.Key;
   label: string;
   value: React.ReactNode;
 };
@@ -96,7 +105,7 @@ export const InspectorMetricRow = ({
   return (
     <div className={`${DESIGNER_CLASSNAME}${classNameSuffix}`}>
       {metrics.map((metric) => (
-        <div key={metric.label} className={`${DESIGNER_CLASSNAME}inspector-metric-chip`}>
+        <div key={metric.key ?? metric.label} className={`${DESIGNER_CLASSNAME}inspector-metric-chip`}>
           <span className={`${DESIGNER_CLASSNAME}inspector-metric-label`}>{metric.label}</span>
           <span className={`${DESIGNER_CLASSNAME}inspector-metric-value`}>{metric.value}</span>
         </div>

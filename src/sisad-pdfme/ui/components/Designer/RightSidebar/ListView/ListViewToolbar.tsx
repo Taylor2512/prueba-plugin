@@ -1,9 +1,8 @@
 import React from 'react';
-import { Button, Input, Select, Typography } from 'antd';
+import { Button, Input, Select } from 'antd';
 import { Layers, Search } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-
-const { Text } = Typography;
+import { SidebarSurfaceHeader } from '../shared/SidebarSurfacePrimitives.js';
 
 type Option = { value: string; label: string };
 
@@ -19,6 +18,12 @@ type Props = {
   onChangeType: (_value: string) => void;
   onStartBulk: () => void;
   onClearFilters: () => void;
+  title?: React.ReactNode;
+  subtitle?: React.ReactNode;
+  bulkActionLabel?: React.ReactNode;
+  searchPlaceholder?: string;
+  clearLabel?: React.ReactNode;
+  showBulkAction?: boolean;
   useDefaultStyles?: boolean;
 };
 
@@ -34,18 +39,24 @@ const ListViewToolbar = ({
   onChangeType,
   onStartBulk,
   onClearFilters,
+  title = 'Campos',
+  subtitle,
+  bulkActionLabel = 'Renombrar',
+  searchPlaceholder = 'Buscar campo, tipo o categoría',
+  clearLabel = 'Limpiar',
   useDefaultStyles,
+  showBulkAction = true,
 }: Props) => {
-  const subtitle = (() => {
+  const resolvedSubtitle = subtitle ?? (() => {
     if (!hasActiveSearch) {
-      return 'Gestiona nombres, orden y visibilidad';
+      return 'Ordena y filtra';
     }
 
     if (filteredCount === 0) {
-      return 'Sin coincidencias. Ajusta filtros o limpia la búsqueda.';
+      return 'Sin coincidencias. Limpia filtros.';
     }
 
-    return `Mostrando ${filteredCount} coincidencias`;
+    return `Mostrando ${filteredCount}`;
   })();
 
   const densityStyles =
@@ -127,38 +138,32 @@ const ListViewToolbar = ({
   return (
     <div className={DESIGNER_CLASSNAME + 'list-view-toolbar'} style={densityStyles.container}>
       <div className={DESIGNER_CLASSNAME + 'sidebar-header'} style={densityStyles.header}>
-        <div className={DESIGNER_CLASSNAME + 'sidebar-header-content'} style={densityStyles.titleWrap}>
-          <div className={DESIGNER_CLASSNAME + 'sidebar-header-title'} style={densityStyles.title}>
-            <Layers size={14} className={DESIGNER_CLASSNAME + 'layers-auto'} />
-            <Text strong className={DESIGNER_CLASSNAME + 'list-view-title'}>
-              Campos del documento
-            </Text>
-            <Text
-              type="secondary"
-              className={DESIGNER_CLASSNAME + 'list-view-counter'}
-              style={densityStyles.counter}>
-              {filteredCount}/{totalCount}
-            </Text>
-          </div>
-          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-subtitle'} style={densityStyles.subtitle}>
-            {subtitle}
-          </Text>
-        </div>
-        {hasSchemas ? (
-          <Button
-            type="text"
-            size="small"
-            onClick={onStartBulk}
-            className={DESIGNER_CLASSNAME + 'bulk-update'}>
-            Renombrar
-          </Button>
-        ) : null}
+        <SidebarSurfaceHeader
+          leading={<Layers size={14} className={DESIGNER_CLASSNAME + 'layers-auto'} />}
+          title={title}
+          subtitle={resolvedSubtitle}
+          badges={[
+            { label: `${filteredCount}/${totalCount}`, color: 'default' },
+          ]}
+          trailing={
+            showBulkAction && hasSchemas ? (
+              <Button
+                type="text"
+                size="small"
+                onClick={onStartBulk}
+                className={DESIGNER_CLASSNAME + 'bulk-update'}>
+                {bulkActionLabel}
+              </Button>
+            ) : null
+          }
+          compact
+        />
       </div>
       <div className={DESIGNER_CLASSNAME + 'list-view-toolbar-controls'} style={densityStyles.searchWrap}>
         <Input
           size="small"
           allowClear
-          placeholder="Buscar campo, tipo o categoría"
+          placeholder={searchPlaceholder}
           prefix={<Search size={12} className={DESIGNER_CLASSNAME + 'search-auto'} />}
           value={searchQuery}
           onChange={(e) => onChangeSearch(e.target.value)}
@@ -182,7 +187,7 @@ const ListViewToolbar = ({
               size="small"
               onClick={onClearFilters}
               className={DESIGNER_CLASSNAME + 'list-view-clear-filters'}>
-              Limpiar
+              {clearLabel}
             </Button>
           ) : null}
         </div>

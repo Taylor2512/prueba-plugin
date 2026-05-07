@@ -58,6 +58,7 @@ export type RightSidebarProps = SidebarProps & {
   contextHeader?: RightSidebarContextHeader;
   onToggleSidebar?: () => void;
   selectionCommands?: SelectionCommandSet;
+  modeMetaOverrides?: Partial<Record<'fields' | 'detail' | 'docs' | 'comments', Partial<SidebarModeMeta>>>;
   components?: {
     listView?: typeof ListView;
     detailView?: typeof DetailView;
@@ -84,26 +85,26 @@ const sidebarModeMeta: Record<'fields' | 'detail' | 'docs' | 'comments', Sidebar
   fields: {
     shortLabel: 'Campos',
     icon: <Layers size={14} />,
-    title: 'Campos del documento',
-    ariaLabel: 'Abrir panel Campos',
+    title: 'Ver campos',
+    ariaLabel: 'Ver campos del documento',
   },
   detail: {
     shortLabel: 'Detalle',
     icon: <SlidersHorizontal size={14} />,
-    title: 'Detalle del campo seleccionado',
-    ariaLabel: 'Abrir panel Detalle',
+    title: 'Ver detalle',
+    ariaLabel: 'Ver detalle del campo seleccionado',
   },
   docs: {
     shortLabel: 'Docs',
     icon: <FileText size={14} />,
-    title: 'Documentos y páginas',
-    ariaLabel: 'Abrir panel Docs',
+    title: 'Ver documentos',
+    ariaLabel: 'Ver documentos y páginas',
   },
   comments: {
     shortLabel: 'Comentarios',
     icon: <MessageSquareText size={14} />,
-    title: 'Comentarios del documento',
-    ariaLabel: 'Abrir panel Comentarios',
+    title: 'Ver comentarios',
+    ariaLabel: 'Ver comentarios del documento',
   },
 };
 
@@ -167,6 +168,15 @@ const Sidebar = (props: RightSidebarProps) => {
     comments: 'sisad-pdfme-right-sidebar-tab-comments',
     docs: 'sisad-pdfme-right-sidebar-tab-docs',
   };
+  const effectiveSidebarModeMeta = useMemo(() => {
+    const overrides = props.modeMetaOverrides || {};
+    return {
+      fields: { ...sidebarModeMeta.fields, ...(overrides.fields || {}) },
+      detail: { ...sidebarModeMeta.detail, ...(overrides.detail || {}) },
+      docs: { ...sidebarModeMeta.docs, ...(overrides.docs || {}) },
+      comments: { ...sidebarModeMeta.comments, ...(overrides.comments || {}) },
+    } as Record<'fields' | 'detail' | 'docs' | 'comments', SidebarModeMeta>;
+  }, [props.modeMetaOverrides]);
 
   useEffect(() => {
     if (requestedViewMode !== 'auto') return;
@@ -335,7 +345,7 @@ const Sidebar = (props: RightSidebarProps) => {
                   if (mode === 'comments' && !showCommentsRail) return null;
                   const disabled = mode === 'detail' && activeSchemaCount !== 1;
                   const isActive = resolvedViewMode === mode;
-                  const modeMeta = sidebarModeMeta[mode];
+                  const modeMeta = effectiveSidebarModeMeta[mode];
                   return (
                     <button
                       key={`rs-mode-${mode}`}
@@ -364,6 +374,18 @@ const Sidebar = (props: RightSidebarProps) => {
               </div>
             ) : null}
             {contextHeaderNode}
+            {onToggleSidebar ? (
+              <button
+                type="button"
+                className={DESIGNER_CLASSNAME + 'right-sidebar-toggle-btn'}
+                aria-label={sidebarOpen ? 'Ocultar panel lateral' : 'Mostrar panel lateral'}
+                aria-pressed={sidebarOpen ? 'true' : 'false'}
+                onClick={onToggleSidebar}
+                title={sidebarOpen ? 'Ocultar panel lateral' : 'Mostrar panel lateral'}
+              >
+                {sidebarOpen ? <PanelRightClose size={16} /> : <PanelRightOpen size={16} />}
+              </button>
+            ) : null}
           </div>
         ) : null}
         {useLayoutFrame ? (
@@ -371,7 +393,7 @@ const Sidebar = (props: RightSidebarProps) => {
             className={DESIGNER_CLASSNAME + 'right-sidebar-frame'}
             role="tabpanel"
             aria-labelledby={props.showDocumentsAsTab !== false ? tabIdByMode[resolvedPanelMode] : undefined}
-            aria-label={props.showDocumentsAsTab !== false ? undefined : sidebarModeMeta[resolvedPanelMode].title}
+            aria-label={props.showDocumentsAsTab !== false ? undefined : effectiveSidebarModeMeta[resolvedPanelMode].title}
             id={panelIdByMode[resolvedPanelMode]}
           >
             <div className={DESIGNER_CLASSNAME + 'right-sidebar-layout-grid'}>

@@ -9,6 +9,7 @@ import DetailHeaderCard from './DetailHeaderCard.js';
 import DetailFormSection from './DetailFormSection.js';
 import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
 import type { DetailInspectorSection } from './detailSchemas.js';
+import { SidebarSurfaceHeader } from '../shared/SidebarSurfacePrimitives.js';
 
 type DetailViewContentProps = {
   activeSchema: SchemaForUI;
@@ -18,6 +19,10 @@ type DetailViewContentProps = {
   sections: DetailInspectorSection[];
   widgets: Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element>;
   watchHandler: (..._args: unknown[]) => void;
+  title?: React.ReactNode;
+  subtitle?: React.ReactNode;
+  backLabel?: React.ReactNode;
+  backTooltip?: React.ReactNode;
 };
 
 const DetailViewContent = ({
@@ -28,23 +33,33 @@ const DetailViewContent = ({
   sections,
   widgets,
   watchHandler,
+  title = 'Detalle',
+  subtitle,
+  backLabel = 'Volver a campos',
+  backTooltip = 'Volver a campos',
 }: DetailViewContentProps) => {
   return (
     <SidebarFrame className={DESIGNER_CLASSNAME + 'detail-view'}>
       <SidebarHeader>
-        <Tooltip title="Campos del documento" placement="right">
-          <Button
-            className={DESIGNER_CLASSNAME + 'back-button'}
-            htmlType="button"
-            onClick={deselectSchema}
-            icon={<ArrowLeft strokeWidth={1.5} size={18} />}
-            size="small"
-            type="text"
-          />
-        </Tooltip>
-        <div className={DESIGNER_CLASSNAME + 'detail-view-title'}>
-          Editar campo
-        </div>
+        <SidebarSurfaceHeader
+          title={title}
+          subtitle={subtitle || activeSchema.name || activeSchema.type}
+          trailing={(
+            <Tooltip title={backTooltip} placement="right">
+              <Button
+                className={DESIGNER_CLASSNAME + 'back-button'}
+                htmlType="button"
+                onClick={deselectSchema}
+                icon={<ArrowLeft strokeWidth={1.5} size={18} />}
+                size="small"
+                type="text"
+                aria-label={String(backLabel)}
+                title={String(backLabel)}
+              />
+            </Tooltip>
+          )}
+          compact
+        />
       </SidebarHeader>
       <SidebarBody tabIndex={0} aria-label="Secciones del detalle del campo">
         <DetailHeaderCard

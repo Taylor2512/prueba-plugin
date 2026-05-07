@@ -220,6 +220,106 @@ body {
   flex-wrap: wrap;
 }
 
+.sisad-pdfme-sidebar-surface-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.sisad-pdfme-sidebar-surface-header-compact {
+  align-items: center;
+}
+
+.sisad-pdfme-sidebar-surface-header-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.sisad-pdfme-sidebar-surface-header-leading,
+.sisad-pdfme-sidebar-surface-header-trailing {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.sisad-pdfme-sidebar-surface-header-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.sisad-pdfme-sidebar-surface-header-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+.sisad-pdfme-sidebar-surface-header-subtitle {
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+
+.sisad-pdfme-sidebar-surface-header-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-top: 0.125rem;
+}
+
+.sisad-pdfme-sidebar-surface-empty {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem;
+  border: 1px dashed var(--border-subtle);
+  border-radius: 0.75rem;
+  background: var(--color-bg-elevated);
+}
+
+.sisad-pdfme-sidebar-surface-empty-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.sisad-pdfme-sidebar-surface-empty-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.sisad-pdfme-sidebar-surface-empty-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.sisad-pdfme-sidebar-surface-empty-description {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.sisad-pdfme-sidebar-surface-empty-action {
+  flex-shrink: 0;
+}
+
 .sisad-pdfme-ui-control-bar-context {
   display: inline-flex;
   align-items: center;
@@ -4712,4 +4812,91 @@ body {
     transition-duration: 1ms;
     animation: none;
   }
+}
+
+.sisad-pdfme-comments-rail-thread {
+  border: 1px solid var(--sisad-pdfme-border);
+  border-radius: 12px;
+  background: var(--sisad-pdfme-surface);
+  box-shadow: var(--sisad-pdfme-shadow-sm);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sisad-pdfme-comments-rail-thread-active {
+  border-color: var(--sisad-pdfme-accent);
+  background: var(--sisad-pdfme-accent-soft);
+}
+
+.sisad-pdfme-comments-rail-thread-head,
+.sisad-pdfme-comments-rail-reply-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sisad-pdfme-comments-rail-thread-author,
+.sisad-pdfme-comments-rail-reply-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.sisad-pdfme-comments-rail-thread-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+}
+
+.sisad-pdfme-comments-rail-reply-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+}
+
+.sisad-pdfme-comments-rail-thread-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.sisad-pdfme-comments-rail-thread-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sisad-pdfme-comments-rail-thread-meta-pill {
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 12px;
+  background: var(--sisad-pdfme-surface-soft);
+  color: var(--sisad-pdfme-text-muted);
+}
+
+.sisad-pdfme-comments-rail-thread-replies {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 2px;
+  padding-left: 12px;
+  border-left: 2px solid rgba(37, 99, 235, 0.18);
+}
+
+.sisad-pdfme-comments-rail-reply {
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  border-radius: 10px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.82);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
