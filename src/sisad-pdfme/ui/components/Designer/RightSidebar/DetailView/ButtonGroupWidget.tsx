@@ -16,7 +16,7 @@ const ButtonGroupWidget = (props: PropPanelWidgetProps) => {
   const apply = (btn: ButtonConfig) => {
     const key = btn.key;
     const type = btn.type;
-    const ids = activeElements.map((ae) => ae.id);
+    const ids = activeElements.filter(Boolean).map((ae) => ae.id);
     const ass = schemas.filter((s) => ids.includes(s.id));
     changeSchemas(
       ass.map((s: SchemaForUI) => {
@@ -31,7 +31,7 @@ const ButtonGroupWidget = (props: PropPanelWidgetProps) => {
     const key = btn.key;
     const type = btn.type;
     let active = false;
-    const ids = activeElements.map((ae) => ae.id);
+    const ids = activeElements.filter(Boolean).map((ae) => ae.id);
     const ass = schemas.filter((s) => ids.includes(s.id));
     ass.forEach((s: SchemaForUI) => {
       // Cast schema to Record to safely access dynamic properties

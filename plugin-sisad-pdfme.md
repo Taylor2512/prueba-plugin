@@ -1,7 +1,7 @@
 # Documentación Markdown Unificada
 
 **Carpeta origen:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin`  
-**Fecha de generación:** `2026-05-07T00:28:15.657Z`  
+**Fecha de generación:** `2026-05-07T19:21:06.700Z`  
 **Total de archivos incluidos:** `270`  
 **Extensiones incluidas:** `.md`
 
@@ -26582,7 +26582,6 @@ prueba-plugin
 │       └── versionado-changelog-y-canary-flow.md
 ├── GEMINI.md
 ├── GUARDRAILS.md
-├── plugin-sisad-pdfme.md
 ├── public
 │   └── templates
 ├── README.md
@@ -26647,7 +26646,8 @@ prueba-plugin
 │   │       │       ├── Comments
 │   │       │       ├── RightSidebar
 │   │       │       │   ├── DetailView
-│   │       │       │   └── ListView
+│   │       │       │   ├── ListView
+│   │       │       │   └── shared
 │   │       │       ├── shared
 │   │       │       └── Shortcuts
 │   │       ├── designerEngine.api.md

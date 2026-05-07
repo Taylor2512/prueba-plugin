@@ -623,10 +623,11 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
             hasImages={images.length > 0}
           />
         }
+        density={uxMode === 'canvas-first' ? 'compact' : 'full'}
       />
 
-      <section className="sisad-pdfme-lab-workspace" aria-labelledby="lab-workspace-title">
-        <div className="sisad-pdfme-lab-section-heading">
+      <section className="sisad-pdfme-lab-workspace" aria-labelledby="lab-workspace-title" data-ux-mode={uxMode}>
+        <div className="sisad-pdfme-lab-section-heading" data-ux-mode={uxMode}>
           <h2 id="lab-workspace-title">Canvas</h2>
           <p>La superficie de edición se monta dentro del runtime de <code>sisad-pdfme</code>.</p>
         </div>

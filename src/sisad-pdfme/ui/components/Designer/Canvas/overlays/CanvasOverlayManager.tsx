@@ -9,7 +9,7 @@ import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import type { SelectionToolbarMode } from './canvasContextMenuActions.js';
 import type { InteractionState } from '../../shared/interactionState.js';
 import CommentsOverlay from './CommentsOverlay.js';
-import { ShortcutHelpPanel } from '../../Shortcuts/index.js';
+import ShortcutHelpPanel from '../../Shortcuts/ShortcutHelpPanel.js';
 
 export type SnapLinesSlot = React.ComponentType<{
   lines: SnapLine[];
@@ -86,8 +86,16 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
   );
 
   const activeSchemas = useMemo(() => {
-    const ids = new Set(activeElements.map((element) => element.id));
-    return schemasList[pageCursor]?.filter((schema) => ids.has(schema.id)) || [];
+    const ids = new Set<string>();
+    for (const element of activeElements) {
+      if (element) ids.add(element.id);
+    }
+    const schemas = schemasList[pageCursor] || [];
+    const nextActiveSchemas: SchemaForUI[] = [];
+    for (const schema of schemas) {
+      if (ids.has(schema.id)) nextActiveSchemas.push(schema);
+    }
+    return nextActiveSchemas;
   }, [activeElements, pageCursor, schemasList]);
 
   return (

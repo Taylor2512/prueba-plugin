@@ -48,15 +48,9 @@ const ListViewToolbar = ({
   showBulkAction = true,
 }: Props) => {
   const resolvedSubtitle = subtitle ?? (() => {
-    if (!hasActiveSearch) {
-      return 'Ordena y filtra';
-    }
-
-    if (filteredCount === 0) {
-      return 'Sin coincidencias. Limpia filtros.';
-    }
-
-    return `Mostrando ${filteredCount}`;
+    if (!hasActiveSearch) return null;
+    if (filteredCount === 0) return 'Sin coincidencias';
+    return `${filteredCount} visibles`;
   })();
 
   const densityStyles =
@@ -137,28 +131,24 @@ const ListViewToolbar = ({
 
   return (
     <div className={DESIGNER_CLASSNAME + 'list-view-toolbar'} style={densityStyles.container}>
-      <div className={DESIGNER_CLASSNAME + 'sidebar-header'} style={densityStyles.header}>
-        <SidebarSurfaceHeader
-          leading={<Layers size={14} className={DESIGNER_CLASSNAME + 'layers-auto'} />}
-          title={title}
-          subtitle={resolvedSubtitle}
-          badges={[
-            { label: `${filteredCount}/${totalCount}`, color: 'default' },
-          ]}
-          trailing={
-            showBulkAction && hasSchemas ? (
-              <Button
-                type="text"
-                size="small"
-                onClick={onStartBulk}
-                className={DESIGNER_CLASSNAME + 'bulk-update'}>
-                {bulkActionLabel}
-              </Button>
-            ) : null
-          }
-          compact
-        />
-      </div>
+      <SidebarSurfaceHeader
+        leading={<Layers size={14} className={DESIGNER_CLASSNAME + 'layers-auto'} />}
+        title={title}
+        subtitle={resolvedSubtitle || undefined}
+        badges={[{ label: `${filteredCount}/${totalCount}`, color: 'default' }]}
+        trailing={
+          showBulkAction && hasSchemas ? (
+            <Button
+              type="text"
+              size="small"
+              onClick={onStartBulk}
+              className={DESIGNER_CLASSNAME + 'bulk-update'}>
+              {bulkActionLabel}
+            </Button>
+          ) : null
+        }
+        compact
+      />
       <div className={DESIGNER_CLASSNAME + 'list-view-toolbar-controls'} style={densityStyles.searchWrap}>
         <Input
           size="small"

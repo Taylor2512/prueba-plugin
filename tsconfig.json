@@ -20,31 +20,30 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "ignoreDeprecations": "6.0",
-    "baseUrl": ".",
     "paths": {
       "@/*": [
-        "src/*"
+        "./src/*"
       ],
       "@sisad-pdfme/*": [
-        "src/sisad-pdfme/*"
+        "./src/sisad-pdfme/*"
       ],
       "@sisad-pdfme/common": [
-        "src/sisad-pdfme/common/index.ts"
+        "./src/sisad-pdfme/common/index.ts"
       ],
       "@sisad-pdfme/converter": [
-        "src/sisad-pdfme/converter/index.browser.ts"
+        "./src/sisad-pdfme/converter/index.browser.ts"
       ],
       "@sisad-pdfme/generator": [
-        "src/sisad-pdfme/generator/index.ts"
+        "./src/sisad-pdfme/generator/index.ts"
       ],
       "@sisad-pdfme/schemas": [
-        "src/sisad-pdfme/schemas/index.ts"
+        "./src/sisad-pdfme/schemas/index.ts"
       ],
       "@sisad-pdfme/pdf-lib": [
-        "src/sisad-pdfme/pdf-lib/index.ts"
+        "./src/sisad-pdfme/pdf-lib/index.ts"
       ],
       "@sisad-pdfme/ui": [
-        "src/sisad-pdfme/ui/index.ts"
+        "./src/sisad-pdfme/ui/index.ts"
       ]
     },
     "types": [

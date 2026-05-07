@@ -100,9 +100,17 @@ type FieldLike =
       schema?: unknown;
     };
 
+type NormalizedField = {
+  key: string;
+  hidden: boolean;
+  disabled: boolean;
+  widget: string;
+  schema?: unknown;
+};
+
 const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim().toLowerCase() : '');
 
-const normalizeFieldEntry = (field: FieldLike) => {
+const normalizeFieldEntry = (field: FieldLike): NormalizedField => {
   if (typeof field === 'string') {
     return { key: normalizeText(field), hidden: false, disabled: false, widget: '' };
   }
@@ -127,7 +135,7 @@ const normalizeFieldEntry = (field: FieldLike) => {
   };
 };
 
-const fieldNames = (fields: FieldLike[] = []) => fields.map(normalizeFieldEntry).filter((field) => field.key && !field.hidden);
+const fieldNames = (fields: FieldLike[] = []): NormalizedField[] => fields.map(normalizeFieldEntry).filter((field) => field.key && !field.hidden);
 
 const getSchemaValue = (schema: SchemaForUI, key: string) => (schema as Record<string, unknown>)[key];
 
@@ -138,13 +146,11 @@ const hasDefinedSchemaValue = (schema: SchemaForUI, key: string) => {
 
 const hasAnyValue = (schema: SchemaForUI, keys: string[]) => keys.some((key) => hasDefinedSchemaValue(schema, key));
 
-const hasWidget = (fields: ReturnType<typeof fieldNames>, widgetNames: string[]) =>
-  fields.some((field) => widgetNames.includes(field.widget));
+const hasWidget = (fields: FieldLike[], widgetNames: string[]) => fieldNames(fields).some((field) => widgetNames.includes(field.widget));
 
-const hasField = (fields: ReturnType<typeof fieldNames>, names: string[]) =>
-  fields.some((field) => names.includes(field.key));
+const hasField = (fields: FieldLike[], names: string[]) => fieldNames(fields).some((field) => names.includes(field.key));
 
-const hasRenderableField = (fields: ReturnType<typeof fieldNames>) => fields.some((field) => !field.hidden && !field.disabled);
+const hasRenderableField = (fields: FieldLike[]) => fieldNames(fields).some((field) => !field.hidden && !field.disabled);
 
 export const toCanonicalDetailSection = (section: string): CanonicalDetailSection | null => {
   const normalized = normalizeText(section) as LegacyDetailSection | CanonicalDetailSection;

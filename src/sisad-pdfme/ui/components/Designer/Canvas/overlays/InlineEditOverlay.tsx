@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Input, Modal } from 'antd';
+import type { InputRef } from 'antd';
 
 type InlineEditSession = {
   schemaId: string;
@@ -18,7 +19,7 @@ type InlineEditOverlayProps = {
 
 const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEditOverlayProps) => {
   const [draft, setDraft] = useState(session?.value ?? '');
-  const inputRef = useRef<any>(null);
+  const inputRef = useRef<InputRef | null>(null);
   const sessionLabel = session?.target === 'name' ? 'Editar nombre' : 'Editar texto';
   const sessionHint =
     session?.target === 'name'
@@ -87,7 +88,7 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
         </p>
         {session.multiline ? (
           <Input.TextArea
-            ref={inputRef as any}
+            ref={inputRef}
             value={draft}
             onChange={(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setDraft(event.target.value)}
             onKeyDown={(event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
@@ -115,7 +116,7 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
           />
         ) : (
           <Input
-            ref={inputRef as any}
+            ref={inputRef}
             value={draft}
             onChange={(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setDraft(event.target.value)}
             onKeyDown={(event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {

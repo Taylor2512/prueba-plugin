@@ -93,56 +93,66 @@ export default function PageHeader({
   status,
   controls = null,
   backLink = null,
+  density = 'full',
 }) {
+  const isCompact = density === 'compact'
+  const summaryLabel = [example?.title, status].filter(Boolean).join(' · ')
+
   return (
-    <header className="sisad-pdfme-lab-page-hero">
+    <header className="sisad-pdfme-lab-page-hero" data-density={density}>
       <div className="sisad-pdfme-lab-page-topbar">
         <div className="sisad-pdfme-lab-page-copy">
-          <p className="sisad-pdfme-lab-kicker">Ruta activa</p>
+          <p className="sisad-pdfme-lab-kicker">Laboratorio</p>
           <h1>{example?.title}</h1>
-          <p className="sisad-pdfme-lab-description">{example?.description}</p>
+          {example?.description ? (
+            <p className="sisad-pdfme-lab-description">
+              {isCompact ? example.description.split('. ')[0] : example.description}
+            </p>
+          ) : null}
         </div>
 
         <div className="sisad-pdfme-lab-page-rail">
-          <dl className="sisad-pdfme-lab-page-metrics" aria-label="Estado del laboratorio">
-            {pageMetrics.map((metric) => (
-              <div key={metric.label} className="sisad-pdfme-lab-page-metric">
-                <dt className="sisad-pdfme-lab-summary-label">{metric.label}</dt>
-                <dd>{metric.value}</dd>
-              </div>
-            ))}
-          </dl>
+          <div className="sisad-pdfme-lab-page-actions">
+            {backLink ? <div className="sisad-pdfme-lab-page-linkRow">{backLink}</div> : null}
+            {controls ? <div className="sisad-pdfme-lab-page-controls">{controls}</div> : null}
+            {status ? <p className="sisad-pdfme-lab-status sisad-pdfme-lab-status-inline">{status}</p> : null}
+          </div>
+        </div>
+      </div>
 
-          {controls || status ? (
-            <div className="sisad-pdfme-lab-page-actions">
-              {backLink ? <div className="sisad-pdfme-lab-page-linkRow">{backLink}</div> : null}
-              {controls ? (
-                <div className="sisad-pdfme-lab-page-controls">
-                  {controls}
+      <details className="sisad-pdfme-lab-page-details">
+        <summary className="sisad-pdfme-lab-page-details-summary">
+          <span className="sisad-pdfme-lab-summary-label">Contexto</span>
+          <span className="sisad-pdfme-lab-page-details-title">{summaryLabel || 'Detalles del laboratorio'}</span>
+          <span className="sisad-pdfme-lab-page-details-hint">Ver metadata</span>
+        </summary>
+        <div className="sisad-pdfme-lab-page-context">
+          {pageMetrics.length > 0 ? (
+            <dl className="sisad-pdfme-lab-page-metrics" aria-label="Estado del laboratorio">
+              {pageMetrics.map((metric) => (
+                <div key={metric.label} className="sisad-pdfme-lab-page-metric">
+                  <dt className="sisad-pdfme-lab-summary-label">{metric.label}</dt>
+                  <dd>{metric.value}</dd>
                 </div>
-              ) : null}
-
-              {status ? <p className="sisad-pdfme-lab-status sisad-pdfme-lab-status-inline">{status}</p> : null}
-            </div>
+              ))}
+            </dl>
           ) : null}
-        </div>
-      </div>
 
-      <div className="sisad-pdfme-lab-page-context">
-        <div className="sisad-pdfme-lab-meta" aria-label="Metadatos del ejemplo">
-          <span className="sisad-pdfme-lab-chip">id: {example?.id}</span>
-          <span className="sisad-pdfme-lab-chip">ruta: {example?.path}</span>
-        </div>
+          <div className="sisad-pdfme-lab-meta" aria-label="Metadatos del ejemplo">
+            <span className="sisad-pdfme-lab-chip">id: {example?.id}</span>
+            <span className="sisad-pdfme-lab-chip">ruta: {example?.path}</span>
+          </div>
 
-        <CollaborationSection
-          example={example}
-          collaborationUsers={collaborationUsers}
-          activeCollaborator={activeCollaborator}
-          onActiveCollaboratorChange={onActiveCollaboratorChange}
-          isGlobalView={isGlobalView}
-          onToggleGlobalView={onToggleGlobalView}
-        />
-      </div>
+          <CollaborationSection
+            example={example}
+            collaborationUsers={collaborationUsers}
+            activeCollaborator={activeCollaborator}
+            onActiveCollaboratorChange={onActiveCollaboratorChange}
+            isGlobalView={isGlobalView}
+            onToggleGlobalView={onToggleGlobalView}
+          />
+        </div>
+      </details>
     </header>
   )
 }
@@ -181,6 +191,7 @@ PageHeader.propTypes = {
   status: PropTypes.node,
   controls: PropTypes.node,
   backLink: PropTypes.node,
+  density: PropTypes.oneOf(['full', 'compact', 'hidden']),
 }
 
 CollaborationSection.propTypes = {

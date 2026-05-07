@@ -8,7 +8,6 @@ import {
   ChevronLeft,
   ChevronRight,
   Ellipsis,
-  PanelLeftOpen,
   Undo2,
   Redo2,
   Maximize2,
@@ -16,18 +15,14 @@ import {
   Ruler,
   Magnet,
   Save,
-  Share2,
-  CircleDashed,
 } from 'lucide-react';
 
 import type { MenuProps } from 'antd';
-import { Typography, Button, Dropdown, Select } from 'antd';
+import { Button, Dropdown, Select } from 'antd';
 import { I18nContext } from '../contexts.js';
 import { useMaxZoom } from '../helper.js';
 import { UI_CLASSNAME } from '../constants.js';
-import { ShortcutHelpButton } from './Designer/Shortcuts/index.js';
-
-const { Text } = Typography;
+import DesignerContextSummary from './Designer/shared/DesignerContextSummary.js';
 
 type ZoomProps = {
   zoomLevel: number;
@@ -108,8 +103,6 @@ type CtlBarProps = {
   onFitWidth?: () => void;
   onFitPage?: () => void;
   onOpenShortcuts?: () => void;
-  onToggleSidebar?: () => void;
-  sidebarOpen?: boolean;
   documentTitle?: string;
   documentStatus?: string;
   onSave?: () => void;
@@ -141,8 +134,6 @@ const CtlBar = (props: CtlBarProps) => {
     onFitWidth,
     onFitPage,
     onOpenShortcuts,
-    onToggleSidebar,
-    sidebarOpen,
     documentTitle,
     documentStatus,
     onSave,
@@ -153,7 +144,7 @@ const CtlBar = (props: CtlBarProps) => {
   void _size;
   const zoomChangeHandler = setZoom ?? setZoomLevel;
 
-  const contextMenuItems: MenuProps['items'] = useMemo(() => {
+  const moreMenuItems: MenuProps['items'] = useMemo(() => {
     const items: MenuProps['items'] = [];
     if (addPageAfter) {
       items.push({
@@ -185,33 +176,122 @@ const CtlBar = (props: CtlBarProps) => {
         ),
       });
     }
+    if (onExport) {
+      items.push({
+        key: 'export-pdf',
+        label: (
+          <button type="button" className={UI_CLASSNAME + 'control-bar-menu-item'} onClick={onExport}>
+            Exportar
+          </button>
+        ),
+      });
+    }
     return items;
-  }, [addPageAfter, duplicatePageAfter, i18n, pageCursor, pageNum, removePage]);
+  }, [addPageAfter, duplicatePageAfter, i18n, onExport, pageCursor, pageNum, removePage]);
+
+  const viewOptionsItems: MenuProps['items'] = useMemo(
+    () => [
+      onFitWidth
+        ? {
+            key: 'fit-width',
+            label: (
+              <button type="button" className={UI_CLASSNAME + 'control-bar-menu-item'} onClick={onFitWidth}>
+                Ajustar ancho
+              </button>
+            ),
+          }
+        : null,
+      onFitPage
+        ? {
+            key: 'fit-page',
+            label: (
+              <button type="button" className={UI_CLASSNAME + 'control-bar-menu-item'} onClick={onFitPage}>
+                Ajustar página
+              </button>
+            ),
+          }
+        : null,
+      onOpenShortcuts
+        ? {
+            key: 'shortcuts',
+            label: (
+              <button type="button" className={UI_CLASSNAME + 'control-bar-menu-item'} onClick={onOpenShortcuts}>
+                Atajos
+              </button>
+            ),
+          }
+        : null,
+      onToggleFeature
+        ? {
+            key: 'guides',
+            label: (
+              <button
+                type="button"
+                className={UI_CLASSNAME + 'control-bar-menu-item'}
+                onClick={() => onToggleFeature('guides')}
+              >
+                {featureToggles?.guides ? 'Ocultar guías' : 'Mostrar guías'}
+              </button>
+            ),
+          }
+        : null,
+      onToggleFeature
+        ? {
+            key: 'snap-lines',
+            label: (
+              <button
+                type="button"
+                className={UI_CLASSNAME + 'control-bar-menu-item'}
+                onClick={() => onToggleFeature('snapLines')}
+              >
+                {featureToggles?.snapLines ? 'Ocultar snaps' : 'Mostrar snaps'}
+              </button>
+            ),
+          }
+        : null,
+      onToggleFeature
+        ? {
+            key: 'padding',
+            label: (
+              <button
+                type="button"
+                className={UI_CLASSNAME + 'control-bar-menu-item'}
+                onClick={() => onToggleFeature('padding')}
+              >
+                {featureToggles?.padding ? 'Ocultar padding' : 'Mostrar padding'}
+              </button>
+            ),
+          }
+        : null,
+    ].filter(Boolean),
+    [featureToggles?.guides, featureToggles?.padding, featureToggles?.snapLines, onFitPage, onFitWidth, onOpenShortcuts, onToggleFeature],
+  );
 
   const pageOptions = useMemo(
-    () =>
-      Array.from({ length: Math.max(1, pageNum) }, (_, index) => ({
-        value: index + 1,
-        label: `Página ${index + 1}`,
-      })),
+    () => {
+      const options: Array<{ value: number; label: string }> = [];
+      for (let index = 0; index < Math.max(1, pageNum); index += 1) {
+        options.push({
+          value: index + 1,
+          label: `Página ${index + 1}`,
+        });
+      }
+      return options;
+    },
     [pageNum],
   );
 
   return (
     <div className={UI_CLASSNAME + 'control-bar'}>
       <div className={UI_CLASSNAME + 'control-bar-context'}>
-        <span className={UI_CLASSNAME + 'control-bar-kicker'}>Página activa</span>
-        <div className={UI_CLASSNAME + 'control-bar-title-row'}>
-          <Text strong className={UI_CLASSNAME + 'control-bar-page'}>
-            {documentTitle?.trim() || `Página ${pageCursor + 1}`}
-          </Text>
-          {documentStatus ? (
-            <span className={UI_CLASSNAME + 'control-bar-status-chip'}>{documentStatus}</span>
-          ) : null}
-        </div>
-        <span className={UI_CLASSNAME + 'control-bar-subtext'}>
-          {pageNum > 1 ? `Página ${pageCursor + 1} de ${pageNum}` : 'página única'}
-        </span>
+        <DesignerContextSummary
+          documentName={documentTitle?.trim() || 'Documento activo'}
+          pageIndex={pageCursor}
+          pageCount={pageNum}
+          status={documentStatus}
+          density="compact"
+          placement="toolbar"
+        />
       </div>
 
       <div className={UI_CLASSNAME + 'control-bar-actions'}>
@@ -232,18 +312,6 @@ const CtlBar = (props: CtlBarProps) => {
             icon={<Redo2 size={16} />}
             title="Rehacer"
           />
-          <ShortcutHelpButton onClick={() => onOpenShortcuts?.()} className={UI_CLASSNAME + 'control-bar-shortcuts-btn'} />
-          {onToggleSidebar ? (
-            <Button
-              className={UI_CLASSNAME + 'control-bar-icon-btn'}
-              type="text"
-              onClick={onToggleSidebar}
-              icon={<PanelLeftOpen size={16} />}
-              aria-pressed={sidebarOpen ? 'true' : 'false'}
-              data-active={sidebarOpen ? 'true' : 'false'}
-              title={sidebarOpen ? 'Ocultar panel lateral' : 'Mostrar panel lateral'}
-            />
-          ) : null}
         </div>
 
         {pageNum > 1 ? (
@@ -275,22 +343,9 @@ const CtlBar = (props: CtlBarProps) => {
         ) : null}
 
         <div className={UI_CLASSNAME + 'control-bar-group'}>
-          <Button
-            className={UI_CLASSNAME + 'control-bar-icon-btn'}
-            type="text"
-            onClick={onFitWidth}
-            disabled={!onFitWidth}
-            icon={<Maximize2 size={15} />}
-            title="Ajustar ancho"
-          />
-          <Button
-            className={UI_CLASSNAME + 'control-bar-icon-btn'}
-            type="text"
-            onClick={onFitPage}
-            disabled={!onFitPage}
-            icon={<CircleDashed size={15} />}
-            title="Ajustar página"
-          />
+          <Dropdown menu={{ items: viewOptionsItems }} placement="bottomRight" trigger={['click']}>
+            <Button className={UI_CLASSNAME + 'control-bar-icon-btn'} type="text" title="Vista" icon={<Maximize2 size={15} />} />
+          </Dropdown>
         </div>
 
         <Zoom zoomLevel={zoomLevel} setZoomLevel={zoomChangeHandler} />
@@ -338,16 +393,7 @@ const CtlBar = (props: CtlBarProps) => {
           >
             Guardar
           </Button>
-          <Button
-            className={UI_CLASSNAME + 'control-bar-text-btn'}
-            type="text"
-            onClick={onExport}
-            disabled={!onExport}
-            icon={<Share2 size={14} />}
-          >
-            Exportar
-          </Button>
-          {contextMenuItems.length > 0 && <ContextMenu items={contextMenuItems} />}
+          {moreMenuItems.length > 0 ? <ContextMenu items={moreMenuItems} /> : null}
         </div>
       </div>
     </div>

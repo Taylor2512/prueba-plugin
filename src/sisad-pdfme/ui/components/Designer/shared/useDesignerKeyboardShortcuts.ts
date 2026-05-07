@@ -3,11 +3,11 @@ import type { CommandBus } from '../../../commands/commandBus.js';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import {
   getShortcuts,
-  isEditableTarget,
   resolveShortcutByKeyboardEvent,
   type ShortcutDefinition,
 } from './keyboardShortcutRegistry.js';
 import type { SelectionCommandSet } from './selectionCommands.js';
+import { isEditableTarget, shouldSuppressDesignerShortcuts } from './interactionGuards.js';
 
 export type ShortcutHandlerContext = {
   activeSchemas: SchemaForUI[];
@@ -220,11 +220,19 @@ export const useDesignerKeyboardShortcuts = ({
       if (!current.enabled || event.defaultPrevented) return;
       const target = event.target;
       const editableTarget = isEditableTarget(target);
+      const suppressShortcuts = shouldSuppressDesignerShortcuts(target, {
+        phase: current.isInlineEditing ? 'inline-editing' : undefined,
+        isModalOpen: current.isModalOpen,
+        isInlineEditing: current.isInlineEditing,
+        isResizing: false,
+        isRotating: false,
+        isDraggingPlugin: false,
+      });
+
+      if (suppressShortcuts) return;
 
       const shortcut = resolveShortcutByKeyboardEvent(event, current.shortcuts ?? getShortcuts());
       if (!shortcut) return;
-
-      if ((current.isModalOpen || current.isInlineEditing) && shortcut.id !== 'clearSelection') return;
 
       if (editableTarget && shortcut.disabledWhenEditingText && shortcut.id !== 'clearSelection') return;
       if (shortcut.requiresSelection && current.activeSchemas.length === 0) return;

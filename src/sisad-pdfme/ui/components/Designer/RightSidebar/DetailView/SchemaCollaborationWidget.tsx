@@ -47,6 +47,9 @@ const buildStateTag = (state?: SchemaCollaborativeState) => {
   return { label: 'Borrador', color: 'default' as const };
 };
 
+const resolveStringLabel = (value: React.ReactNode, fallback: string) =>
+  typeof value === 'string' && value.trim() ? value : fallback;
+
 export const resolveOwnerMode = (ownerRecipientIds: string[]) => {
   if (ownerRecipientIds.length > 1) return 'multi' as const;
   if (ownerRecipientIds.length === 1) return 'single' as const;
@@ -223,7 +226,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
         </Button>
       }
       modalTitle={props.modalTitle || 'Configurar colaboración del campo'}
-      modalTriggerLabel={props.modalTriggerLabel || 'Gestionar colaboración'}
+      modalTriggerLabel={resolveStringLabel(props.modalTriggerLabel, 'Gestionar colaboración')}
     >
       <div className={`${DESIGNER_CLASSNAME}schema-collaboration-widget`}>
         <InspectorSummaryCard

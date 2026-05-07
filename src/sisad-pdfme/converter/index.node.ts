@@ -1,8 +1,10 @@
 import * as pdfjsLib from 'pdfjs-dist/legacy/build/pdf';
 import PDFJSWorker from 'pdfjs-dist/legacy/build/pdf.worker.js';
 import { createCanvas } from 'canvas';
-import { pdf2img as _pdf2img, Pdf2ImgOptions } from './pdf2img.js';
-import { pdf2size as _pdf2size, Pdf2SizeOptions } from './pdf2size.js';
+import type { Pdf2ImgOptions } from './pdf2img.js';
+import type { Pdf2SizeOptions } from './pdf2size.js';
+import { pdf2img as _pdf2img } from './pdf2img.js';
+import { pdf2size as _pdf2size } from './pdf2size.js';
 
 pdfjsLib.GlobalWorkerOptions.workerSrc = PDFJSWorker as unknown as string;
 
@@ -25,5 +27,9 @@ export const pdf2size = async (pdf: ArrayBuffer | Uint8Array, options: Pdf2SizeO
   _pdf2size(pdf, options, {
     getDocument: (pdf) => pdfjsLib.getDocument({ data: pdf, isEvalSupported: false }).promise,
   });
+
+export type { Img2PdfOptions } from './img2pdf.js';
+export type { Pdf2ImgOptions } from './pdf2img.js';
+export type { Pdf2SizeOptions } from './pdf2size.js';
 
 export { img2pdf } from './img2pdf.js';

@@ -511,8 +511,6 @@ const LeftSidebar = ({
   const pluginsRegistry = useContext(PluginsRegistry);
   const options = useContext(OptionsContext) as Record<string, unknown>;
   const {
-    isDragging,
-    setIsDragging,
     search,
     setSearch,
     activeTab,
@@ -525,7 +523,6 @@ const LeftSidebar = ({
     favoritePlugins,
     setFavoritePlugins,
     recentPlugins,
-    setRecentPlugins,
     quickFilter,
     setQuickFilter,
     activeCapabilities,
@@ -534,7 +531,6 @@ const LeftSidebar = ({
     setInternalViewMode,
     collapsedCategories,
     setCollapsedCategories,
-    saveRecentPlugins,
     markRecent,
   } = useLeftSidebarCatalogState({ catalogViewMode });
 
@@ -775,7 +771,7 @@ const LeftSidebar = ({
       });
       return changed ? next : prev;
     });
-  }, [activeTab, groupedPlugins, normalizedSearch, quickFilter]);
+  }, [activeTab, groupedPlugins, normalizedSearch, quickFilter, setCollapsedCategories]);
 
   const updateCustomDraft = <K extends keyof CustomFieldDef>(key: K, value: CustomFieldDef[K]) => {
     setCustomDraft((prev) => ({ ...prev, [key]: value }));

@@ -5,6 +5,8 @@ import { mergeClassNames } from '../../shared/className.js';
 
 const { Text } = Typography;
 
+const EMPTY_BADGES: SidebarSurfaceBadge[] = [];
+
 export type SidebarSurfaceBadge = {
   key?: React.Key;
   label: React.ReactNode;
@@ -27,7 +29,7 @@ export const SidebarSurfaceHeader = ({
   subtitle,
   leading,
   trailing,
-  badges = [],
+  badges = EMPTY_BADGES,
   className,
   compact = false,
 }: SidebarSurfaceHeaderProps) => {

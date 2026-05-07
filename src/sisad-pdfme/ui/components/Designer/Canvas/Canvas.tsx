@@ -43,6 +43,12 @@ import {
   type InlineEditTarget,
   type SelectionCommandSet,
 } from '../shared/selectionCommands.js';
+import { DesignerCoordinateService } from '../shared/designerCoordinateService.js';
+import {
+  shouldSuppressCanvasRegionSelection,
+  isEditableTarget,
+  isAntDPopupTarget,
+} from '../shared/interactionGuards.js';
 import CanvasOverlayManager from './overlays/CanvasOverlayManager.js';
 import CanvasContextMenu from './overlays/CanvasContextMenu.js';
 import InlineEditOverlay, { type InlineEditSession } from './overlays/InlineEditOverlay.js';
@@ -261,6 +267,15 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
   const contextMenu = contextMenuState.contextMenu;
   const pendingContextMenu = contextMenuState.pendingContextMenu;
   const rootRef = useRef<HTMLDivElement>(null);
+  const coordinateService = useMemo(
+    () =>
+      new DesignerCoordinateService({
+        getZoom: () => scale,
+        getCanvasRoot: () => rootRef.current,
+        getPageElement: (pageIndex: number) => paperRefs.current[pageIndex] || null,
+      }),
+    [paperRefs, scale],
+  );
   const setContextMenu = useCallback((next: CanvasContextMenuState | null) => {
     setContextMenuState((prev) => ({ ...prev, contextMenu: next }));
   }, []);
@@ -274,7 +289,16 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
     () => renderedPageSchemasList[pageCursor] || [],
     [pageCursor, renderedPageSchemasList],
   );
-  const activeElementIds = useMemo(() => activeElements.map((element) => element.id), [activeElements]);
+  const activeElementIds = useMemo(
+    () => {
+      const ids: string[] = [];
+      for (const element of activeElements) {
+        if (element) ids.push(element.id);
+      }
+      return ids;
+    },
+    [activeElements],
+  );
   const activeElementIdSet = useMemo(() => new Set(activeElementIds), [activeElementIds]);
   const currentPageSchemaIdSet = useMemo(
     () => new Set(currentPageSchemas.map((schema) => schema.id)),
@@ -373,8 +397,10 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
 
     const nextTop = clamp(snapResult.snapped.y, minY, maxY);
     const nextLeft = clamp(snapResult.snapped.x, minX, maxX);
-    target.style.top = `${nextTop * ZOOM}px`;
-    target.style.left = `${nextLeft * ZOOM}px`;
+    Object.assign(target.style, {
+      top: `${nextTop * ZOOM}px`,
+      left: `${nextLeft * ZOOM}px`,
+    });
 
     if (snapRafRef.current != null) {
       cancelAnimationFrame(snapRafRef.current);
@@ -545,7 +571,15 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
       setPendingContextMenu(null);
       onEdit([targetRect]);
     },
-    [currentPageSchemas, onEdit, resolveInlineEditRect, resolveInlineEditTarget, selectionCommands],
+    [
+      currentPageSchemas,
+      onEdit,
+      resolveInlineEditRect,
+      resolveInlineEditTarget,
+      selectionCommands,
+      setContextMenu,
+      setPendingContextMenu,
+    ],
   );
 
   const finishInlineEdit = useCallback(
@@ -613,11 +647,20 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
     };
     imperativeNode.cancelInlineEdit = cancelInlineEdit;
     return imperativeNode;
-  }, [cancelInlineEdit, currentPageSchemas, resolveInlineEditRect, resolveInlineEditTarget, selectionCommands]);
+  }, [
+    cancelInlineEdit,
+    currentPageSchemas,
+    resolveInlineEditRect,
+    resolveInlineEditTarget,
+    selectionCommands,
+    setContextMenu,
+    setPendingContextMenu,
+  ]);
 
   const onClickMoveable = useCallback(() => {
-    if (!activeElements[0]) return;
-    const schemaId = activeElements[0].id;
+    const activeElement = activeElements.find(Boolean);
+    if (!activeElement) return;
+    const schemaId = activeElement.id;
     const target = document.getElementById(schemaId);
     if (!target) {
       selectionCommands?.openProperties?.();
@@ -632,6 +675,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
   const handleCanvasContextMenu = (event: React.MouseEvent<HTMLDivElement>) => {
     const target = event.target as Element | null;
     if (!target) return;
+    if (isEditableTarget(target) || isAntDPopupTarget(target)) return;
 
     const activePaper = paperRefs.current[pageCursor];
     const selectableTarget = target.closest?.(`.${SELECTABLE_CLASSNAME}`) as HTMLElement | null;
@@ -739,7 +783,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
   const closeContextMenu = useCallback(() => {
     setContextMenu(null);
     setPendingContextMenu(null);
-  }, []);
+  }, [setContextMenu, setPendingContextMenu]);
 
   const handleInsertField = useCallback(() => {
     bridge?.runtime.addSchemaByType('text');
@@ -844,26 +888,21 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
   const zoomPercent = Math.max(1, Math.round(scale * 100));
   const zoomTier = zoomPercent < 80 ? 'low' : zoomPercent > 140 ? 'high' : 'medium';
   const activePageSchemaCount = currentPageSchemas.length;
-  const interactionState = deriveInteractionState({
-    activeElements,
-    hoveringSchemaId,
-    editing,
-    isDragging,
-    isResizing,
-    isRotating,
-  });
+  const interactionState = useMemo(
+    () =>
+      deriveInteractionState({
+        activeElements,
+        hoveringSchemaId,
+        editing,
+        isDragging,
+        isResizing,
+        isRotating,
+      }),
+    [activeElements, editing, hoveringSchemaId, isDragging, isResizing, isRotating],
+  );
   useEffect(() => {
     onInteractionStateChange?.(interactionState);
-  }, [
-    interactionState.phase,
-    interactionState.selectionCount,
-    interactionState.hasSelection,
-    interactionState.isHovering,
-    interactionState.isDragging,
-    interactionState.isResizing,
-    interactionState.isRotating,
-    onInteractionStateChange,
-  ]);
+  }, [interactionState, onInteractionStateChange]);
 
   useEffect(() => {
     paperRefs.current.forEach((paper, index) => {
@@ -909,16 +948,46 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
       {!editing && feature.selecto && !externalSchemaDragActive ? (
         <SelectoSlot
           container={paperRefs.current[pageCursor]}
+          rootContainer={rootRef.current}
+          dragContainer={rootRef.current || paperRefs.current[pageCursor]}
+          boundContainer={paperRefs.current[pageCursor]}
+          checkInput
           continueSelect={modifierKeys.shift}
           className={classNames?.selecto}
           useDefaultStyles={useDefaultStyles}
+          getElementRect={(element) => coordinateService.elementRectToCanvasRect(element)}
           selectionStyle={styleOverrides?.selectoSelection}
+          dragCondition={(dragStart) => {
+            const inputEvent = dragStart.inputEvent as MouseEvent | TouchEvent;
+            const target = inputEvent.target as EventTarget | null;
+            return !shouldSuppressCanvasRegionSelection(target, {
+              phase: interactionState.phase,
+              isModalOpen: contextMenu !== null,
+              isInlineEditing: editing,
+              isSchemaDragging: isDragging,
+              isResizing,
+              isRotating,
+              externalSchemaDragActive,
+            });
+          }}
           onDragStart={(e) => {
             // Use type assertion to safely access inputEvent properties
             const inputEvent = e.inputEvent as MouseEvent | TouchEvent;
             const target = inputEvent.target as Element | null;
             const isInsidePaper = isEventInsideActivePaper(target);
-            if (!isInsidePaper) {
+            if (
+              !isInsidePaper ||
+              shouldSuppressCanvasRegionSelection(target, {
+                phase: interactionState.phase,
+                isModalOpen: contextMenu !== null,
+                isInlineEditing: editing,
+                isSchemaDragging: isDragging,
+                isResizing,
+                isRotating,
+                externalSchemaDragActive,
+              })
+            ) {
+              e.stop();
               return;
             }
             const isMoveableElement = moveable.current?.isMoveableElement(target as Element);

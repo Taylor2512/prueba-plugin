@@ -1,5 +1,5 @@
 import React from 'react';
-import type { PropPanelWidgetProps, UIOptions } from '@sisad-pdfme/common';
+import type { GlobalToken, PropPanelWidgetProps, SchemaForUI, UIOptions } from '@sisad-pdfme/common';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { Divider, Input, Popover, Tooltip } from 'antd';
 import { Palette, Pipette } from 'lucide-react';
@@ -10,6 +10,9 @@ import SchemaCollaborationWidget from './SchemaCollaborationWidget.js';
 import SchemaConnectionsWidget from './SchemaConnectionsWidget.js';
 import SchemaFieldCommentsWidget from './SchemaFieldCommentsWidget.js';
 import { getSchemaTypeInspectorPreset } from '../../../../../schemas/schemaFamilies.js';
+import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
+import type { DesignerEngine, SchemaDesignerConfig } from '../../../../designerEngine.js';
+import type { SidebarProps } from '../../../../types.js';
 
 const COLOR_PRESETS = [
   '#000000',
@@ -114,10 +117,19 @@ type BuildWidgetsParams = {
     }>;
   };
   options: UIOptions;
-  token: any;
+  token: GlobalToken;
   typedI18n: (key: string) => string;
   normalizeColorHex: (value: unknown) => string;
-  props: any;
+  props: Pick<
+    SidebarProps,
+    'size' | 'schemas' | 'schemasList' | 'pageSize' | 'basePdf' | 'changeSchemas' | 'activeElements' | 'deselectSchema'
+  > & {
+    activeSchema: SchemaForUI;
+    selectionCommands?: SelectionCommandSet;
+    designerEngine?: DesignerEngine;
+    schemaConfig?: SchemaDesignerConfig | null;
+    updateSchemaConfig: (patch: Partial<SchemaDesignerConfig>) => void;
+  };
 };
 
 export const buildDetailWidgets = ({

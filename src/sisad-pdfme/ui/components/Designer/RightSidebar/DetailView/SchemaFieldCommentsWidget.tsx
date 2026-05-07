@@ -48,6 +48,9 @@ const formatTimestamp = (ts?: number): string => {
   }
 };
 
+const resolveText = (value: React.ReactNode, fallback: string) =>
+  typeof value === 'string' && value.trim() ? value : fallback;
+
 const buildReplyComment = (args: {
   actorId: string;
   actorName: string;
@@ -107,6 +110,9 @@ const SchemaFieldCommentsWidget = ({
     persistComments([...comments, comment as unknown as SchemaComment]);
     setNewCommentText('');
   };
+
+  const resolvedEmptyLabel = resolveText(emptyLabel, 'Sin comentarios en este campo');
+  const resolvedEmptyDescription = resolveText(emptyDescription, 'Crea el primer hilo para este campo.');
 
   const handleResolveToggle = (commentId: string, resolved: boolean) => {
     const next = comments.map((c) => (c.id === commentId ? { ...c, resolved } : c));
@@ -173,8 +179,8 @@ const SchemaFieldCommentsWidget = ({
       {comments.length === 0 ? (
         <InspectorEmptyState
           icon={<MessageSquare size={18} />}
-          label={emptyLabel}
-          description={emptyDescription}
+          label={resolvedEmptyLabel}
+          description={resolvedEmptyDescription}
           classNameSuffix="field-comments-empty"
         />
       ) : (

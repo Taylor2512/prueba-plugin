@@ -34,11 +34,12 @@ const SelectionContextToolbar = ({
   const [internalToolbarMode, setInternalToolbarMode] = React.useState<SelectionToolbarMode>(
     defaultToolbarMode ?? (interactionState.selectionCount > 1 ? 'expanded' : 'micro'),
   );
+  const primarySchemaId = activeSchemas[0]?.id ?? '';
+  const toolbarSeed = defaultToolbarMode ?? (interactionState.selectionCount > 1 ? 'expanded' : 'micro');
 
   React.useEffect(() => {
-    const nextMode = defaultToolbarMode ?? (interactionState.selectionCount > 1 ? 'expanded' : 'micro');
-    setInternalToolbarMode(nextMode);
-  }, [activeSchemas[0]?.id, defaultToolbarMode, interactionState.selectionCount]);
+    setInternalToolbarMode(toolbarSeed);
+  }, [toolbarSeed, primarySchemaId]);
 
   const resolvedToolbarMode = toolbarMode ?? internalToolbarMode;
   const isExpanded = resolvedToolbarMode === 'expanded';

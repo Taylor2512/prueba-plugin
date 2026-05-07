@@ -1,13 +1,10 @@
-import React, { useEffect, useContext, ReactNode, useRef, useMemo, useCallback } from 'react';
+import React, { useEffect, useContext, ReactNode, useRef, useCallback } from 'react';
 import {
-  Mode,
   ZOOM,
   UIRenderProps,
   SchemaForUI,
   BasePdf,
   Schema,
-  Plugin,
-  UIOptions,
 } from '@sisad-pdfme/common';
 import { theme as antdTheme } from 'antd';
 import { SELECTABLE_CLASSNAME, UI_CLASSNAME } from '../constants.js';
@@ -29,15 +26,6 @@ type RendererProps = Omit<
   isHovering?: boolean;
   isEditing?: boolean;
   onDoubleClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
-};
-
-type ReRenderCheckProps = {
-  plugin?: Plugin<Schema>;
-  value: string;
-  mode: Mode;
-  scale: number;
-  schema: SchemaForUI;
-  options: UIOptions;
 };
 
 type OwnerAwareSchema = SchemaForUI & { ownerRecipientName?: string };
@@ -96,64 +84,6 @@ const sanitizeDesignerStyle = (
   }, {} as React.CSSProperties);
 };
 
-const toSerializableSnapshot = (value: unknown, seen = new WeakMap<object, unknown>): unknown => {
-  if (typeof value === 'function' || typeof value === 'symbol') return undefined;
-  if (value === null || value === undefined) return value;
-
-  if (Array.isArray(value)) {
-    return value.map((item) => toSerializableSnapshot(item, seen));
-  }
-
-  if (typeof value !== 'object') return value;
-
-  if (value instanceof Date) return value.toISOString();
-  if (value instanceof Map) return Array.from(value.entries()).map(([key, item]) => [
-    key,
-    toSerializableSnapshot(item, seen),
-  ]);
-  if (value instanceof Set) return Array.from(value.values()).map((item) =>
-    toSerializableSnapshot(item, seen),
-  );
-
-  const objectValue = value as Record<string, unknown>;
-  if (seen.has(objectValue)) return seen.get(objectValue);
-
-  const snapshot: Record<string, unknown> = {};
-  seen.set(objectValue, snapshot);
-
-  Object.entries(objectValue).forEach(([key, item]) => {
-    if (key === 'data' && typeof item === 'string' && item.length > 128) {
-      snapshot[key] = '...';
-      return;
-    }
-
-    const nextValue = toSerializableSnapshot(item, seen);
-    if (nextValue !== undefined) {
-      snapshot[key] = nextValue;
-    }
-  });
-
-  return snapshot;
-};
-
-const useRerenderDependencies = (arg: ReRenderCheckProps) => {
-  const { plugin, value, mode, scale, schema, options } = arg;
-  const optionStr = useMemo(
-    () => JSON.stringify(toSerializableSnapshot(options)),
-    [options],
-  );
-
-  return useMemo(() => {
-    const uninterrupted = Boolean(plugin?.uninterruptedEditMode && mode === 'designer');
-    const schemaSignature = uninterrupted ? '' : JSON.stringify(schema);
-    const optionsSignature = uninterrupted ? '' : optionStr;
-    const valueSignature = uninterrupted ? '__designer_uninterrupted__' : value;
-
-    // Keep a stable dependency array length to avoid React warnings in development.
-    return [valueSignature, mode, scale, schemaSignature, optionsSignature];
-  }, [value, mode, scale, schema, optionStr, plugin]);
-};
-
 const Wrapper = ({
   children,
   outline,
@@ -185,7 +115,6 @@ const Wrapper = ({
       ? 'requerido'
       : schemaType;
   const schemaState = isEditing ? 'editing' : isActive ? 'active' : isHovering ? 'hover' : 'idle';
-  const showQuickActions = isHovering || isActive || isEditing;
   const rotation = Number(schema.rotate);
   const wrapperGeometryStyle: React.CSSProperties = {
     position: 'absolute',
@@ -258,26 +187,17 @@ const Renderer = (props: RendererProps) => {
   const _cache = useContext(CacheContext);
   const plugin = pluginsRegistry.findByType(schema.type);
 
-  const reRenderDependencies = useRerenderDependencies({
-    plugin,
-    value,
-    mode,
-    scale,
-    schema,
-    options,
-  });
+  const renderPlugin = useCallback(() => {
+    const rootElement = ref.current;
+    if (!plugin?.ui || !rootElement || !schema.type) return undefined;
 
-  useEffect(() => {
-    if (!plugin?.ui || !ref.current || !schema.type) return;
+    rootElement.innerHTML = '';
 
-    ref.current.innerHTML = '';
-    const render = plugin.ui;
-
-    void render({
+    void plugin.ui({
       value,
       schema,
       basePdf,
-      rootElement: ref.current,
+      rootElement,
       mode,
       onChange,
       stopEditing,
@@ -291,11 +211,26 @@ const Renderer = (props: RendererProps) => {
     });
 
     return () => {
-      if (ref.current) {
-        ref.current.innerHTML = '';
-      }
+      rootElement.innerHTML = '';
     };
-  }, [...reRenderDependencies, renderI18n]);
+  }, [
+    _cache,
+    basePdf,
+    mode,
+    onChange,
+    options,
+    placeholder,
+    plugin,
+    renderI18n,
+    scale,
+    schema,
+    stopEditing,
+    tabIndex,
+    theme,
+    value,
+  ]);
+
+  useEffect(() => renderPlugin(), [renderPlugin]);
 
   if (!plugin) {
     console.error(`[@sisad-pdfme/ui] Renderer for type ${schema.type} not found. 

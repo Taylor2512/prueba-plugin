@@ -29,7 +29,7 @@ const StaticSchema = (props: {
       {staticSchemaEntries.map((schema) => (
         <Renderer
           key={String(schema.id)}
-          schema={schema as any}
+          schema={schema}
           basePdf={basePdf}
           value={
             schema.readOnly

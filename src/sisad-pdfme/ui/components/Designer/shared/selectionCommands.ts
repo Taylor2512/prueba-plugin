@@ -99,11 +99,11 @@ export type SelectionCommandsContext = {
   executeCommand?: (_command: Command) => void;
 };
 
-const getActiveIds = (elements: HTMLElement[]) => elements.map((element) => element.id);
+const getActiveIds = (elements: HTMLElement[]) => elements.filter(Boolean).map((element) => element.id);
 
 const getActiveSchemas = (context: SelectionCommandsContext) => {
   const ids = getActiveIds(context.activeElements);
-  return context.schemasList[context.pageCursor].filter((schema) => ids.includes(schema.id));
+  return (context.schemasList[context.pageCursor] || []).filter((schema) => ids.includes(schema.id));
 };
 
 const getPageSchemas = (context: SelectionCommandsContext) =>
@@ -152,17 +152,16 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
 
   const duplicateSelection = () => {
     if (!hasSelection || !guardStructureEdit()) return;
+    const existing = getPageSchemas(context);
     const clones = duplicateSchemas(getActiveSchemas(context), {
       pageIndex: context.pageCursor,
       pageSize: context.pageSize,
-      totalPages: context.schemasList.length,
+      pageCount: context.schemasList.length,
       fileId: context.collaborationContext?.fileId || null,
-      collaboration: context.collaborationContext,
-      existingSchemas: getPageSchemas(context),
-      offsetMm: 6,
-      collisionStepMm: 6,
+      collaborationContext: context.collaborationContext,
+      existingSchemas: existing,
     });
-    const nextSchemas = getPageSchemas(context).concat(clones);
+    const nextSchemas = existing.concat(clones);
     if (context.executeCommand) {
       context.executeCommand({
         id: 'duplicateField',

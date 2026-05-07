@@ -5,6 +5,8 @@ import {
   isMacShortcutPlatform,
 } from './keyboardShortcuts.js';
 
+export type { ShortcutDefinition, ShortcutPlatform } from './keyboardShortcuts.js';
+
 const registry = new Map<string, ShortcutDefinition>();
 const orderedIds: string[] = [];
 
@@ -192,15 +194,6 @@ export const resolveShortcutByKeyboardEvent = (
   }
 
   return undefined;
-};
-
-export const isEditableTarget = (target: EventTarget | null | undefined): boolean => {
-  if (!(target instanceof HTMLElement)) return false;
-
-  const editableSelector =
-    'input, textarea, select, [contenteditable=""], [contenteditable="true"], [contenteditable="plaintext-only"], [role="textbox"]';
-
-  return Boolean(target.closest(editableSelector) || target.matches(editableSelector));
 };
 
 const normalizeKeyLabel = (key: string, platform: ShortcutPlatform) => {

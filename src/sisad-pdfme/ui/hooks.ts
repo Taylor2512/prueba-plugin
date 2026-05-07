@@ -1,6 +1,5 @@
 import { RefObject, useRef, useState, useCallback, useEffect } from 'react';
 import {
-  cloneDeep,
   ZOOM,
   Template,
   Size,
@@ -29,6 +28,7 @@ import {
   useDesignerKeyboardShortcuts,
   type DesignerShortcutHandlers,
 } from './components/Designer/shared/useDesignerKeyboardShortcuts.js';
+import type { SchemaCreationContext } from './designerEngine.js';
 
 export function usePrevious<T>(value: T) {
   const [previous, setPrevious] = useState<T | null>(null);
@@ -72,7 +72,7 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
   const requestIdRef = useRef(0);
   const preprocessedCacheRef = useRef<Map<string, PreprocessedPdfCache>>(new Map());
 
-  const init = async (prop: { template: Template; size: Size }) => {
+  const init = useCallback(async (prop: { template: Template; size: Size }) => {
     const {
       template: { basePdf, schemas },
       size,
@@ -142,7 +142,7 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
       pageSizes: _pageSizes,
       scale: _scale,
     };
-  };
+  }, [maxZoom]);
 
   const isBlankBasePdf = isBlankPdf(template.basePdf);
   const blankSchemaPages = isBlankBasePdf ? template.schemas.length : 0;
@@ -169,7 +169,7 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
         requestIdRef.current += 1;
       }
     };
-  }, [blankSchemaPages, isBlankBasePdf, size.width, size.height, template.basePdf, maxZoom]);
+  }, [blankSchemaPages, init, isBlankBasePdf, size, template]);
 
   return {
     backgrounds,
@@ -232,10 +232,11 @@ export const useScrollPageCursor = ({
   }, [onChangePageCursor, pageCursor, pageSizes, ref, scale]);
 
   useEffect(() => {
-    ref.current?.addEventListener('scroll', onScroll, { passive: true });
+    const scrollContainer = ref.current;
+    scrollContainer?.addEventListener('scroll', onScroll, { passive: true });
 
     return () => {
-      ref.current?.removeEventListener('scroll', onScroll);
+      scrollContainer?.removeEventListener('scroll', onScroll);
     };
   }, [ref, onScroll]);
 };
@@ -304,8 +305,8 @@ export const useInitEvents = ({
   const copiedSchemas = useRef<SchemaClipboardPayload | null>(null);
   const canEditStructure = selectionCommands?.canEditStructure !== false;
   const getActiveSchemas = () => {
-    const ids = activeElements.map((ae) => ae.id);
-    return schemasList[pageCursor].filter((s) => ids.includes(s.id));
+    const ids = activeElements.filter(Boolean).map((ae) => ae.id);
+    return (schemasList[pageCursor] || []).filter((s) => ids.includes(s.id));
   };
 
   const copySelection = () => {
@@ -320,15 +321,20 @@ export const useInitEvents = ({
     const pasteSchemas = pasteSchemasFromClipboard(copiedSchemas.current, {
       pageIndex: pageCursor,
       pageSize: pageSizes[pageCursor],
-      totalPages: schemasList.length,
+      pageCount: schemasList.length,
       fileId: collaborationContext?.fileId || null,
-      collaboration: collaborationContext,
+      collaborationContext: collaborationContext,
       existingSchemas: schemasList[pageCursor],
-      offsetMm: 8,
-      collisionStepMm: 6,
     });
-    commitSchemas(schemasList[pageCursor].concat(pasteSchemas));
-    onEdit(pasteSchemas.map((s) => document.getElementById(s.id)!));
+    commitSchemas((schemasList[pageCursor] || []).concat(pasteSchemas));
+    window.requestAnimationFrame(() => {
+      const nextElements = pasteSchemas
+        .map((schema) => document.getElementById(schema.id))
+        .filter((element): element is HTMLElement => Boolean(element));
+      if (nextElements.length > 0) {
+        onEdit(nextElements);
+      }
+    });
     copiedSchemas.current = copySchemasToClipboard(pasteSchemas);
   };
 
@@ -346,7 +352,7 @@ export const useInitEvents = ({
 
   const selectAllVisible = () => {
     onEdit(
-      (visibleSchemasList?.[pageCursor] || schemasList[pageCursor])
+      (visibleSchemasList?.[pageCursor] || schemasList[pageCursor] || [])
         .map((schema) => document.getElementById(schema.id))
         .filter((element): element is HTMLElement => Boolean(element)),
     );

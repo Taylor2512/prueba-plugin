@@ -1,10 +1,11 @@
 import React from 'react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import { Badge, Tag, Tooltip } from 'antd';
+import { Badge, Tag } from 'antd';
 import { resolveSchemaTone } from '../../shared/schemaTone.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
-import { InspectorTagList, type InspectorTag } from './InspectorPrimitives.js';
+import { SidebarSurfaceHeader } from '../shared/SidebarSurfacePrimitives.js';
+import type { InspectorTag } from './InspectorPrimitives.js';
 
 type DetailHeaderCardProps = {
   activeSchema: SchemaForUI;
@@ -23,7 +24,7 @@ type DetailHeaderCardProps = {
   className?: string;
 };
 
-type StateTag = { label: string; color?: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue' };
+type StateTag = { label: string; color: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue' };
 
 /** Build the short metadata tooltip shown on the "+N" overflow indicator. */
 const buildMetaTooltip = (
@@ -63,12 +64,11 @@ export const buildDetailHeaderSummary = (
   const schemaType = typeof activeSchema.type === 'string' ? activeSchema.type : 'schema';
   const schemaHidden = (activeSchema as SchemaForUI & { hidden?: boolean }).hidden === true;
 
-  const stateTags: StateTag[] = [
-    !schemaName.trim() ? { label: 'Sin nombre', color: 'warning' } : null,
-    activeSchema.required ? { label: 'Requerido', color: 'error' } : null,
-    activeSchema.readOnly ? { label: 'Solo lectura', color: 'gold' } : null,
-    schemaHidden ? { label: 'Oculto', color: 'default' } : null,
-  ].filter((t): t is StateTag => Boolean(t));
+  const stateTags: StateTag[] = [];
+  if (!schemaName.trim()) stateTags.push({ label: 'Sin nombre', color: 'warning' });
+  if (activeSchema.required) stateTags.push({ label: 'Requerido', color: 'error' });
+  if (activeSchema.readOnly) stateTags.push({ label: 'Solo lectura', color: 'gold' });
+  if (schemaHidden) stateTags.push({ label: 'Oculto', color: 'default' });
 
   const posX = Number((activeSchema.position?.x ?? 0).toFixed(1));
   const posY = Number((activeSchema.position?.y ?? 0).toFixed(1));
@@ -106,64 +106,29 @@ const DetailHeaderCard = ({
   const resolvedOverflowTooltip = overflowTooltip || metaTooltip || headerSummary.overflowTooltip;
 
   return (
-    <div className={[DESIGNER_CLASSNAME + 'detail-header-card', className].filter(Boolean).join(' ')}>
-      {/* ── Identity row ── */}
-      <div className={DESIGNER_CLASSNAME + 'detail-header-card-head'}>
-        {leading || <Badge color={tone} />}
-        <div className={DESIGNER_CLASSNAME + 'detail-header-card-title-wrap'}>
-          <Tooltip title={typeof title === 'string' ? title : headerSummary.schemaName} placement="topLeft">
-            <span className={DESIGNER_CLASSNAME + 'detail-header-card-title'}>
-              {title || headerSummary.schemaName}
-            </span>
-          </Tooltip>
-          {showType ? (
-            <Tooltip title={`Tipo: ${headerSummary.schemaType}`}>
-              <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-tag-base'}>
-                {typeLabel || headerSummary.schemaType}
-              </Tag>
-            </Tooltip>
-          ) : null}
-        </div>
-        {/* ── Compact position stat ── */}
-        {showPosition ? (
-          <Tooltip title={`Posición X/Y: ${headerSummary.positionLabel} mm`} placement="topRight">
-            <span className={DESIGNER_CLASSNAME + 'detail-header-card-pos'}>
-              {positionLabel || headerSummary.positionLabel}
-            </span>
-          </Tooltip>
-        ) : null}
-      </div>
-
-      {/* ── State tags row (progressive disclosure: max 3 + overflow badge) ── */}
-      {visibleTags.length > 0 || overflowCount > 0 ? (
-        <div className={DESIGNER_CLASSNAME + 'detail-header-card-state-row'}>
-          <InspectorTagList
-            tags={visibleTags}
-            classNameSuffix="detail-header-card-state-tags"
-            overflowTooltip={resolvedOverflowTooltip}
-          />
-          {overflowCount > 0 ? (
-            <Tooltip title={resolvedOverflowTooltip} styles={{ root: { whiteSpace: 'pre-line', maxWidth: 260 } }}>
-              <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-state-tag is-overflow'}>
-                +{overflowCount}
-              </Tag>
-            </Tooltip>
-          ) : null}
-          {/* When all tags fit inline, still show a compact metadata anchor. */}
-          {(() => {
-            const shouldShowMetadataBadge = overflowCount === 0 && visibleTags.length > 0;
-            if (!shouldShowMetadataBadge) return null;
-            return (
-              <Tooltip title={resolvedOverflowTooltip} styles={{ root: { whiteSpace: 'pre-line', maxWidth: 260 } }}>
-                <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-state-tag is-overflow'}>
-                  ···
-                </Tag>
-              </Tooltip>
-            );
-          })()}
-        </div>
-      ) : null}
-    </div>
+    <SidebarSurfaceHeader
+      className={[DESIGNER_CLASSNAME + 'detail-header-card', className].filter(Boolean).join(' ')}
+      compact
+      leading={leading || <Badge color={tone} />}
+      title={title || headerSummary.schemaName}
+      subtitle={showType ? (typeLabel || headerSummary.schemaType) : showPosition ? (positionLabel || headerSummary.positionLabel) : undefined}
+      badges={
+        showStateTags
+          ? [
+              ...visibleTags.map((tag) => ({
+                key: tag.key,
+                label: tag.label,
+                color: tag.color,
+                tooltip: resolvedOverflowTooltip,
+              })),
+              ...(overflowCount > 0
+                ? [{ key: 'overflow', label: `+${overflowCount}`, color: 'default' as const, tooltip: resolvedOverflowTooltip }]
+                : []),
+            ]
+          : []
+      }
+      trailing={showPosition ? <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-pos'}>{positionLabel || headerSummary.positionLabel}</Tag> : null}
+    />
   );
 };
 

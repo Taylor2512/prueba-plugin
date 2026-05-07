@@ -3,7 +3,6 @@ import React, { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 import { DragOverlay } from '@dnd-kit/core';
 import { SchemaForUI } from '@sisad-pdfme/common';
-import { theme } from 'antd';
 import Item from './Item.js';
 
 type Props = {
@@ -14,8 +13,6 @@ type Props = {
 };
 
 const ListViewDragOverlay = ({ activeId, schemas, selectedSchemas, renderIcon }: Props) => {
-  const { token } = theme.useToken();
-
   if (typeof document === 'undefined' || !activeId) return null;
 
   const activeSchema = schemas.find((schema) => schema.id === activeId);

@@ -1,5 +1,6 @@
 import React, { useRef, useState, useContext, useCallback, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
+import { PanelRightClose, PanelRightOpen } from 'lucide-react';
 import {
   cloneDeep,
   ZOOM,
@@ -8,7 +9,6 @@ import {
   createSchemaComment,
   createSchemaCommentAnchor,
   filterCommentsByFileAndPage,
-  removeById,
   removeTopLevelComment,
   Schema,
   SchemaForUI,
@@ -16,13 +16,11 @@ import {
   DesignerProps,
   Size,
   isBlankPdf,
-  px2mm,
   upsertTopLevelComment,
   upsertById,
 } from '@sisad-pdfme/common';
 import { DndContext } from '@dnd-kit/core';
 import { pdf2size } from '@sisad-pdfme/converter';
-import Renderer from '../Renderer.js';
 import PluginIcon from './PluginIcon.js';
 import RightSidebarDefault from './RightSidebar/RightSidebar.js';
 import LeftSidebarDefault from './LeftSidebar.js';
@@ -30,7 +28,6 @@ import Canvas from './Canvas/Canvas.js';
 import type { CanvasFeatureToggles } from './Canvas/Canvas.js';
 import { createSelectionCommands } from './shared/selectionCommands.js';
 import type { InteractionState } from './shared/interactionState.js';
-import { PanelRightClose, PanelRightOpen } from 'lucide-react';
 import {
   RULER_HEIGHT,
   RIGHT_SIDEBAR_WIDTH,
@@ -56,7 +53,7 @@ import CommentDialog from './Comments/CommentDialog.js';
 import { applyCollaborationEvent, diffCollaborationEvents, useCollaborationSync } from '../../collaboration.js';
 import type { DesignerDocumentItem } from './RightSidebar/DocumentsRail.js';
 import type { DesignerRuntimeApi, DesignerSidebarPresentation } from '../../types.js';
-import { resolveSchemaTone } from './shared/schemaTone.js';
+import type { SchemaComment, SchemaCommentAnchor } from '../../designerEngine.js';
 import {
   extractClientPoint,
   clampPointToPageBounds,
@@ -70,6 +67,7 @@ import SchemaDropPlaceholder from './Canvas/overlays/SchemaDropPlaceholder.js';
 
 import { buildEffectiveCollaborationContext, filterSchemasForCollaborationView } from '../../collaborationContext.js';
 import type { RightSidebarContextHeader, RightSidebarContextHeaderContext } from './RightSidebar/contextHeader.js';
+import DesignerContextSummary from './shared/DesignerContextSummary.js';
 import {
   resolveDesignerEngine,
   attachSchemaIdentity,
@@ -112,21 +110,15 @@ const renderRightSidebarContextHeader = (
     'Documento local';
 
   return (
-    <div className={DESIGNER_CLASSNAME + 'detail-view-context-strip'} aria-label="Contexto activo del editor">
-      <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-        Documento: {activeDocumentLabel}
-      </span>
-      {deps.pageItemsLength > 0 ? (
-        <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-          Página: {deps.pageCursor + 1}/{deps.pageItemsLength}
-        </span>
-      ) : null}
-      {deps.activeElementsLength > 0 ? (
-        <span className={DESIGNER_CLASSNAME + 'detail-view-context-chip'}>
-          Selección: {deps.activeElementsLength}
-        </span>
-      ) : null}
-    </div>
+    <DesignerContextSummary
+      documentName={activeDocumentLabel}
+      pageIndex={deps.pageCursor}
+      pageCount={deps.pageItemsLength}
+      selectionCount={deps.activeElementsLength}
+      density="compact"
+      placement="sidebar"
+      className={DESIGNER_CLASSNAME + 'detail-view-context-strip'}
+    />
   );
 };
 
@@ -212,6 +204,37 @@ type SchemaDragSession = {
   sizePreview: { width: number; height: number };
 };
 
+type SchemaCommentMetadata = SchemaForUI & {
+  commentsCount?: number;
+  comments?: Array<{ id: string; [key: string]: unknown }>;
+  commentAnchors?: Array<{ id: string; [key: string]: unknown }>;
+};
+
+type SchemaDragSourceData = {
+  schema?: Schema;
+  type?: string;
+};
+
+type SchemaDragActiveLike =
+  | {
+      data?: {
+        current?: SchemaDragSourceData | Schema | null;
+      };
+    }
+  | null
+  | undefined;
+
+type CreateCommentEventDetail = {
+  x?: number;
+  y?: number;
+  page?: number;
+  schemaUid?: string;
+  fileId?: string | null;
+  targetIds?: string[];
+};
+
+type TopLevelCommentEntry = Parameters<typeof upsertTopLevelComment>[1];
+
 const normalizeTemplateSchemaPages = (
   sourceTemplate: Template,
   targetPageCount: number,
@@ -225,12 +248,15 @@ const normalizeTemplateSchemaPages = (
   return {
     ...sourceTemplate,
     schemas: nextSchemas.map((page) =>
-      page.map((schema) => ({
-        ...schema,
-        commentsCount: typeof (schema as any).commentsCount === 'number' ? (schema as any).commentsCount : 0,
-        comments: Array.isArray((schema as any).comments) ? (schema as any).comments : [],
-        commentAnchors: Array.isArray((schema as any).commentAnchors) ? (schema as any).commentAnchors : [],
-      })),
+      page.map((schema) => {
+        const commentSchema = schema as SchemaCommentMetadata;
+        return {
+          ...schema,
+          commentsCount: typeof commentSchema.commentsCount === 'number' ? commentSchema.commentsCount : 0,
+          comments: Array.isArray(commentSchema.comments) ? commentSchema.comments : [],
+          commentAnchors: Array.isArray(commentSchema.commentAnchors) ? commentSchema.commentAnchors : [],
+        };
+      }),
     ),
   };
 };
@@ -259,11 +285,12 @@ const applyTopLevelCommentEventToTemplate = (
   const commentEvent = event as Extract<Parameters<typeof applyCollaborationEvent>[1], { type: 'comment.created' | 'comment.updated' }>;
   const anchor = cloneDeep(commentEvent.anchor || commentEvent.comment.anchor || undefined);
   const comment = cloneDeep(commentEvent.comment);
-  return upsertTopLevelComment(nextTemplate, {
+  const topLevelEntry: TopLevelCommentEntry = {
     id: comment.id,
-    anchor,
-    comment,
-  } as any);
+    anchor: anchor as TopLevelCommentEntry['anchor'],
+    comment: comment as TopLevelCommentEntry['comment'],
+  };
+  return upsertTopLevelComment(nextTemplate, topLevelEntry);
 };
 
 const getBasePdfDisplayName = (basePdf: Template['basePdf']): string | null => {
@@ -364,8 +391,6 @@ const TemplateEditor = ({
   onChangeTemplate: (t: Template, context?: TemplateChangeContext) => void;
   onPageCursorChange: (newPageCursor: number, totalPages: number) => void; // NOSONAR
 }) => { // NOSONAR
-  const past = useRef<SchemaForUI[][]>([]);
-  const future = useRef<SchemaForUI[][]>([]);
   const commandBusRef = useRef(new CommandBus());
   const canvasRef = useRef<HTMLDivElement>(null);
   const paperRefs = useRef<HTMLDivElement[]>([]);
@@ -385,10 +410,9 @@ const TemplateEditor = ({
   const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
   const options = useContext(OptionsContext);
-  const designerEngineOptions = (options as Record<string, unknown>).designerEngine;
   const designerEngine = useMemo(
     () => resolveDesignerEngine(options as Record<string, unknown>),
-    [designerEngineOptions],
+    [options],
   );
   const LeftSidebar = designerEngine.renderers?.leftSidebar || LeftSidebarDefault;
   const RightSidebar = designerEngine.renderers?.rightSidebar || RightSidebarDefault;
@@ -474,7 +498,13 @@ const TemplateEditor = ({
   const [hoveringSchemaId, setHoveringSchemaId] = useState<string | null>(null);
   const [activeElements, setActiveElements] = useState<HTMLElement[]>([]);
   const activeElementIds = useMemo(
-    () => activeElements.map((element) => element.id),
+    () => {
+      const ids: string[] = [];
+      for (const element of activeElements) {
+        if (element) ids.push(element.id);
+      }
+      return ids;
+    },
     [activeElements],
   );
   const [interactionState, setInteractionState] = useState<InteractionState>({
@@ -487,7 +517,20 @@ const TemplateEditor = ({
     isRotating: false,
   });
   const handleInteractionStateChange = useCallback((next: InteractionState) => {
-    setInteractionState(next);
+    setInteractionState((prev) => {
+      if (
+        prev.phase === next.phase &&
+        prev.selectionCount === next.selectionCount &&
+        prev.hasSelection === next.hasSelection &&
+        prev.isHovering === next.isHovering &&
+        prev.isDragging === next.isDragging &&
+        prev.isResizing === next.isResizing &&
+        prev.isRotating === next.isRotating
+      ) {
+        return prev;
+      }
+      return next;
+    });
   }, []);
   const [visibleTemplate, setVisibleTemplate] = useState<Template>(() => template);
   const [schemasList, setSchemasList] = useState<SchemaForUI[][]>([[]] as SchemaForUI[][]);
@@ -539,6 +582,11 @@ const TemplateEditor = ({
   const dropCommitTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const [isIdle, setIsIdle] = useState(false);
 
+  const areActiveElementsEqual = useCallback((left: HTMLElement[], right: HTMLElement[]) => {
+    if (left.length !== right.length) return false;
+    return left.every((element, index) => element?.id === right[index]?.id);
+  }, []);
+
   useEffect(() => {
     pageCursorRef.current = pageCursor;
   }, [pageCursor]);
@@ -549,13 +597,6 @@ const TemplateEditor = ({
   const uploadedDocumentsSeed = useMemo<UploadedPdfDocument[]>(
     () => (Array.isArray(uploadedDocumentsOption) ? (uploadedDocumentsOption as UploadedPdfDocument[]) : []),
     [uploadedDocumentsOption],
-  );
-  const uploadedDocumentsSeedSignature = useMemo(
-    () =>
-      uploadedDocumentsSeed
-        .map((doc) => `${doc.id}:${doc.name}:${doc.pageCount}:${doc.updatedAt || ''}`)
-        .join("|"),
-    [uploadedDocumentsSeed],
   );
   const initialActiveDocumentId = useMemo<string | null>(() => {
     const optionActiveId = typeof activeDocumentIdOption === 'string'
@@ -625,7 +666,7 @@ const TemplateEditor = ({
       }
       return next;
     });
-  }, [uploadedDocumentsSeedSignature]);
+  }, [uploadedDocumentsSeed]);
 
   useEffect(() => {
     const optionActiveId = typeof activeDocumentIdOption === 'string'
@@ -668,7 +709,7 @@ const TemplateEditor = ({
         ? prev
         : initialActiveDocumentId,
     );
-  }, [initialActiveDocumentId, uploadedDocumentsSeedSignature]);
+  }, [initialActiveDocumentId, uploadedDocumentsSeed]);
 
   // Wix-inspired idle detection: after 4s of no interaction, mark UI as idle to reduce chrome
   useEffect(() => {
@@ -723,14 +764,15 @@ const TemplateEditor = ({
     const activePaper = paperRefs.current[pageCursor];
     if (!activePaper) return;
 
-    const nextActive = activeElements
-      .map((element) => document.getElementById(element.id))
-      .filter((element): element is HTMLElement => Boolean(element))
-      .filter((element) => {
-        if (!element.classList.contains(SELECTABLE_CLASSNAME)) return false;
-        if (!visiblePageSchemaIdSet.has(element.id)) return false;
-        return element === activePaper || activePaper.contains(element);
-      });
+    const nextActive: HTMLElement[] = [];
+    for (const element of activeElements) {
+      const nextElement = document.getElementById(element.id);
+      if (!nextElement) continue;
+      if (!nextElement.classList.contains(SELECTABLE_CLASSNAME)) continue;
+      if (!visiblePageSchemaIdSet.has(nextElement.id)) continue;
+      if (nextElement !== activePaper && !activePaper.contains(nextElement)) continue;
+      nextActive.push(nextElement);
+    }
 
     const hasChanged =
       nextActive.length !== activeElements.length ||
@@ -954,34 +996,21 @@ const TemplateEditor = ({
   const usableCanvasWidth = Math.max(1, sizeExcSidebars.width - 24);
   const usableCanvasHeight = Math.max(1, sizeExcSidebars.height - RULER_HEIGHT * ZOOM - 24);
 
-  const onEdit = (targets: HTMLElement[]) => {
-    setActiveElements(targets);
+  const onEdit = useCallback((targets: HTMLElement[]) => {
+    const nextTargets = targets.filter(Boolean);
+    setActiveElements((prev) => (areActiveElementsEqual(prev, nextTargets) ? prev : nextTargets));
     setHoveringSchemaId(null);
-  };
+  }, [areActiveElementsEqual]);
 
-  const onEditEnd = () => {
-    setActiveElements([]);
+  const onEditEnd = useCallback(() => {
+    setActiveElements((prev) => (prev.length === 0 ? prev : []));
     setHoveringSchemaId(null);
-  };
-
-  // Update component state only when _options_ changes
-  useEffect(() => {
-    if (typeof options.zoomLevel === 'number' && options.zoomLevel !== zoomLevel) {
-      setZoomLevel(options.zoomLevel);
-    }
-    if (typeof options.sidebarOpen === 'boolean' && options.sidebarOpen !== sidebarOpen) {
-      setSidebarOpen(options.sidebarOpen);
-    }
-    const modeFromOptions = normalizeViewportMode(options.viewportMode ?? options.initialViewportMode);
-    if (modeFromOptions !== 'manual' && modeFromOptions !== viewportMode) {
-      applyViewportMode(modeFromOptions);
-    }
-  }, [options]);
+  }, []);
 
   useScrollPageCursor({
     ref: canvasRef,
     pageSizes,
-    scale,
+    scale, 
     pageCursor,
     onChangePageCursor: (p) => {
       setPageCursor(p);
@@ -1141,8 +1170,8 @@ const TemplateEditor = ({
   }, []);
 
   useEffect(() => {
-    const handler = (ev: any) => {
-      const detail = ev?.detail || {};
+    const handler = (ev: Event) => {
+      const detail = (ev as CustomEvent<CreateCommentEventDetail>).detail || {};
       const page = typeof detail.page === 'number' ? detail.page : pageCursor;
       const x = detail.x;
       const y = detail.y;
@@ -1182,7 +1211,7 @@ const TemplateEditor = ({
     (text: string) => {
       if (!pendingAnchor) return;
       try {
-        const pageSchemas = schemasList[pendingAnchor.pageIndex] || [];
+        const pageSchemas = schemasListRef.current[pendingAnchor.pageIndex] || [];
         const fallbackSchema = pageSchemas
           .slice()
           .reverse()
@@ -1209,28 +1238,22 @@ const TemplateEditor = ({
           fileId: pendingAnchor.fileId || activeDocumentId || null,
           pageNumber: pendingAnchor.pageIndex + 1,
           schemaUid: resolvedSchemaUid,
-        } as any;
+        } satisfies Parameters<typeof createSchemaCommentAnchor>[0];
 
         const identity = {
           authorId: collaborationContext.actorId || undefined,
           authorName: collaborationContext.activeRecipient?.name || collaborationContext.ownerRecipientName || undefined,
           authorColor: collaborationContext.userColor || undefined,
-        } as any;
+        } as Parameters<typeof createSchemaComment>[1];
 
-        const createdAnchor = createSchemaCommentAnchor(anchor, {
-          authorId: identity.authorId,
-          authorName: identity.authorName,
-          authorColor: identity.authorColor,
-        } as any);
+        const createdAnchor = createSchemaCommentAnchor(anchor, identity) as SchemaCommentAnchor;
         const createdComment = createSchemaComment(text, {
-          authorId: identity.authorId,
-          authorName: identity.authorName,
-          authorColor: identity.authorColor,
+          ...identity,
           timestamp: Date.now(),
-        } as any, {
+        }, {
           id: createdAnchor.id,
-          anchor: cloneDeep(createdAnchor),
-        });
+          anchor: cloneDeep(createdAnchor) as SchemaCommentAnchor,
+        }) as SchemaComment;
 
         const beforeTemplate = cloneDeep(visibleTemplate) as Template;
 
@@ -1254,14 +1277,14 @@ const TemplateEditor = ({
             })();
           if (target?.schema) {
             const nextSchema = cloneDeep(target.schema) as SchemaForUI & {
-              comments?: Array<{ id: string; anchor?: Record<string, unknown>; [key: string]: unknown }>;
-              commentAnchors?: Array<{ id: string; [key: string]: unknown }>;
+              comments?: SchemaComment[];
+              commentAnchors?: SchemaCommentAnchor[];
               commentsCount?: number;
             };
-            nextSchema.comments = upsertById(nextSchema.comments || [], createdComment as any);
-            nextSchema.commentAnchors = upsertById(nextSchema.commentAnchors || [], createdAnchor as any);
+            nextSchema.comments = upsertById(nextSchema.comments || [], createdComment);
+            nextSchema.commentAnchors = upsertById(nextSchema.commentAnchors || [], createdAnchor);
             nextSchema.commentsCount = (Number(nextSchema.commentsCount) || 0) + 1;
-            nextTemplate.schemas[target.pageIndex][target.index] = nextSchema as any;
+            nextTemplate.schemas[target.pageIndex][target.index] = nextSchema;
           }
           void commandBusRef.current.execute(
             createTemplateSnapshotCommand({
@@ -1278,8 +1301,8 @@ const TemplateEditor = ({
             cloneDeep(visibleTemplate) as Template,
             buildTopLevelCommentEntry({
               id: createdComment.id,
-              anchor: createdAnchor as any,
-              comment: createdComment as any,
+              anchor: createdAnchor as unknown as TopLevelCommentEntry['anchor'],
+              comment: createdComment as unknown as TopLevelCommentEntry['comment'],
             }),
           );
 
@@ -1326,7 +1349,6 @@ const TemplateEditor = ({
       designerEngine.collaboration?.sessionId,
       visibleTemplate,
       updateTemplate,
-      schemasList,
       openCommentsPanel,
     ],
   );
@@ -1347,10 +1369,25 @@ const TemplateEditor = ({
   }, [activeDocumentId, activeElements, currentPageSchemas, openCommentDialog, pageCursor]);
 
   const commentItems = useMemo(() => {
-    return filterCommentsByFileAndPage(visibleTemplate, activeDocumentId || null, pageCursor + 1)
-      .map((entry) => ({
-        id: String(entry.comment?.id || entry.anchor?.id || ''),
-        text: String(entry.comment?.text || entry.comment?.content || ''),
+    const items: Array<{
+      id: string;
+      text: string;
+      authorName: string | null;
+      authorColor: string | null;
+      schemaUid?: string | null;
+      fileId: string | null;
+      pageNumber: number;
+      resolved: boolean;
+      timestamp?: number;
+      replies: unknown[];
+    }> = [];
+    for (const entry of filterCommentsByFileAndPage(visibleTemplate, activeDocumentId || null, pageCursor + 1)) {
+      const id = String(entry.comment?.id || entry.anchor?.id || '');
+      const text = String(entry.comment?.text || entry.comment?.content || '');
+      if (!id || !text) continue;
+      items.push({
+        id,
+        text,
         authorName: entry.comment?.authorName || null,
         authorColor: entry.comment?.authorColor || null,
         schemaUid: entry.schemaUid || entry.anchor?.schemaUid,
@@ -1359,9 +1396,9 @@ const TemplateEditor = ({
         resolved: Boolean(entry.anchor?.resolved ?? entry.comment?.resolved),
         timestamp: Number(entry.comment?.timestamp || entry.comment?.createdAt || 0) || undefined,
         replies: Array.isArray(entry.comment?.replies) ? entry.comment.replies : [],
-      }))
-      .filter((item) => item.id && item.text)
-      .sort((left, right) => (right.timestamp || 0) - (left.timestamp || 0));
+      });
+    }
+    return items.sort((left, right) => (right.timestamp || 0) - (left.timestamp || 0));
   }, [activeDocumentId, pageCursor, visibleTemplate]);
 
   const commentsBridge = useMemo(
@@ -1443,95 +1480,111 @@ const TemplateEditor = ({
     [activeDocumentId, pageSizes.length, pushTemplateUpdate, visibleTemplate.schemas.length],
   );
 
-  const addSchema = (defaultSchema: Schema, targetPageIndex = pageCursor, preservePosition = false) => {
-    const [paddingTop, paddingRight, paddingBottom, paddingLeft] = isBlankPdf(activeBasePdf)
-      ? activeBasePdf.padding
-      : [0, 0, 0, 0];
-    const pageSize = pageSizes[targetPageIndex] || pageSizes[pageCursor];
-    const pageSchemas = schemasList[targetPageIndex] || [];
+  const addSchema = useCallback(
+    (defaultSchema: Schema, targetPageIndex = pageCursor, preservePosition = false) => {
+      const [paddingTop, paddingRight, paddingBottom, paddingLeft] = isBlankPdf(activeBasePdf)
+        ? activeBasePdf.padding
+        : [0, 0, 0, 0];
+      const pageSize = pageSizes[targetPageIndex] || pageSizes[pageCursor];
+      const pageSchemas = schemasList[targetPageIndex] || [];
 
-    const newSchemaName = (prefix: string) => {
-      let index = schemasList.reduce((acc, page) => acc + page.length, 1);
-      let newName = prefix + index;
-      while (schemasList.some((page) => page.find((s) => s.name === newName))) {
-        index++;
-        newName = prefix + index;
+      const newSchemaName = (prefix: string) => {
+        let index = schemasList.reduce((acc, page) => acc + page.length, 1);
+        let newName = prefix + index;
+        while (schemasList.some((page) => page.find((s) => s.name === newName))) {
+          index++;
+          newName = prefix + index;
+        }
+        return newName;
+      };
+      const ensureMiddleValue = (min: number, value: number, max: number) =>
+        Math.min(Math.max(min, value), max);
+
+      const rawWidth = Number(defaultSchema.width);
+      const rawHeight = Number(defaultSchema.height);
+      const minHeightByType = defaultSchema.type === 'line' ? 0.5 : 4;
+      const minWidth = 4;
+      const maxWidth = Math.max(minWidth, pageSize.width - paddingLeft - paddingRight);
+      const maxHeight = Math.max(minHeightByType, pageSize.height - paddingTop - paddingBottom);
+      const safeWidth = round(
+        Math.min(maxWidth, Number.isFinite(rawWidth) && rawWidth > 0 ? rawWidth : 45),
+        2,
+      );
+      const safeHeight = round(
+        Math.min(maxHeight, Number.isFinite(rawHeight) && rawHeight > 0 ? rawHeight : 10),
+        2,
+      );
+
+      let s = {
+        id: uuid(),
+        ...defaultSchema,
+        width: safeWidth,
+        height: safeHeight,
+        name: newSchemaName(i18n('field')),
+        position: {
+          x: ensureMiddleValue(
+            paddingLeft,
+            defaultSchema.position.x,
+            pageSize.width - paddingRight - safeWidth,
+          ),
+          y: ensureMiddleValue(
+            paddingTop,
+            defaultSchema.position.y,
+            pageSize.height - paddingBottom - safeHeight,
+          ),
+        },
+        required: defaultSchema.readOnly
+          ? false
+          : options.requiredByDefault || defaultSchema.required || false,
+      } as SchemaForUI;
+
+      if (!preservePosition && defaultSchema.position.y === 0) {
+        const paper = paperRefs.current[targetPageIndex] || paperRefs.current[pageCursor];
+        const rectTop = paper ? paper.getBoundingClientRect().top : 0;
+        s.position.y = rectTop > 0 ? paddingTop : (pageSizes[targetPageIndex] || pageSizes[pageCursor]).height / 2;
       }
-      return newName;
-    };
-    const ensureMiddleValue = (min: number, value: number, max: number) =>
-      Math.min(Math.max(min, value), max);
 
-    const rawWidth = Number(defaultSchema.width);
-    const rawHeight = Number(defaultSchema.height);
-    const minHeightByType = defaultSchema.type === 'line' ? 0.5 : 4;
-    const minWidth = 4;
-    const maxWidth = Math.max(minWidth, pageSize.width - paddingLeft - paddingRight);
-    const maxHeight = Math.max(minHeightByType, pageSize.height - paddingTop - paddingBottom);
-    const safeWidth = round(
-      Math.min(maxWidth, Number.isFinite(rawWidth) && rawWidth > 0 ? rawWidth : 45),
-      2,
-    );
-    const safeHeight = round(
-      Math.min(maxHeight, Number.isFinite(rawHeight) && rawHeight > 0 ? rawHeight : 10),
-      2,
-    );
+      const creationContext = createSchemaCreationContext({
+        fileId: activeDocumentId || null,
+        pageIndex: targetPageIndex,
+        pageNumber: targetPageIndex + 1,
+        totalPages: schemasList.length,
+        timestamp: Date.now(),
+        collaboration: {
+          actorId: collaborationContext.actorId,
+          ownerRecipientId: collaborationContext.ownerRecipientId,
+          ownerRecipientIds: collaborationContext.ownerRecipientIds,
+          ownerRecipientName: collaborationContext.ownerRecipientName,
+          ownerColor: collaborationContext.ownerColor,
+          userColor: collaborationContext.userColor,
+        },
+      });
+      s = applySchemaCreationHook(s, creationContext, designerEngine);
+      s = attachSchemaIdentity(s, creationContext, designerEngine);
+      s = applySchemaCollaborativeDefaults(s, creationContext, designerEngine);
 
-    let s = {
-      id: uuid(),
-      ...defaultSchema,
-      width: safeWidth,
-      height: safeHeight,
-      name: newSchemaName(i18n('field')),
-      position: {
-        x: ensureMiddleValue(
-          paddingLeft,
-          defaultSchema.position.x,
-          pageSize.width - paddingRight - safeWidth,
-        ),
-        y: ensureMiddleValue(
-          paddingTop,
-          defaultSchema.position.y,
-          pageSize.height - paddingBottom - safeHeight,
-        ),
-      },
-      required: defaultSchema.readOnly
-        ? false
-        : options.requiredByDefault || defaultSchema.required || false,
-    } as SchemaForUI;
-
-    if (!preservePosition && defaultSchema.position.y === 0) {
-      const paper = paperRefs.current[targetPageIndex] || paperRefs.current[pageCursor];
-      const rectTop = paper ? paper.getBoundingClientRect().top : 0;
-      s.position.y = rectTop > 0 ? paddingTop : (pageSizes[targetPageIndex] || pageSizes[pageCursor]).height / 2;
-    }
-
-    const creationContext = createSchemaCreationContext({
-      fileId: activeDocumentId || null,
-      pageIndex: targetPageIndex,
-      pageNumber: targetPageIndex + 1,
-      totalPages: schemasList.length,
-      timestamp: Date.now(),
-      collaboration: {
-        actorId: collaborationContext.actorId,
-        ownerRecipientId: collaborationContext.ownerRecipientId,
-        ownerRecipientIds: collaborationContext.ownerRecipientIds,
-        ownerRecipientName: collaborationContext.ownerRecipientName,
-        ownerColor: collaborationContext.ownerColor,
-        userColor: collaborationContext.userColor,
-      },
-    });
-    s = applySchemaCreationHook(s, creationContext, designerEngine);
-    s = attachSchemaIdentity(s, creationContext, designerEngine);
-    s = applySchemaCollaborativeDefaults(s, creationContext, designerEngine);
-
-    commitSchemas(pageSchemas.concat(s), targetPageIndex);
-    setTimeout(() => {
-      const element = document.getElementById(s.id);
-      if (!element) return;
-      onEdit([element]);
-    });
-  };
+      commitSchemas(pageSchemas.concat(s), targetPageIndex);
+      setTimeout(() => {
+        const element = document.getElementById(s.id);
+        if (!element) return;
+        onEdit([element]);
+      });
+    },
+    [
+      activeBasePdf,
+      activeDocumentId,
+      collaborationContext,
+      commitSchemas,
+      designerEngine,
+      i18n,
+      onEdit,
+      pageCursor,
+      pageSizes,
+      options,
+      paperRefs,
+      schemasList,
+    ],
+  );
 
   const addSchemaAtCenter = useCallback(
     (defaultSchema: Schema, targetPageIndex = pageCursor) => {
@@ -1590,7 +1643,7 @@ const TemplateEditor = ({
       onPageCursorChange(safePage, schemasList.length);
       onEditEnd();
     },
-    [onEditEnd, onPageCursorChange, pageSizes, scale, schemasList.length],
+    [onEditEnd, onPageCursorChange, pageCursor, pageSizes, scale, schemasList.length],
   );
 
   const resolveTargetPageIndex = useCallback(
@@ -1677,6 +1730,20 @@ const TemplateEditor = ({
     },
     [maxZoom],
   );
+
+  // Update component state only when _options_ changes
+  useEffect(() => {
+    if (typeof options.zoomLevel === 'number' && options.zoomLevel !== zoomLevel) {
+      setZoomLevel(options.zoomLevel);
+    }
+    if (typeof options.sidebarOpen === 'boolean' && options.sidebarOpen !== sidebarOpen) {
+      setSidebarOpen(options.sidebarOpen);
+    }
+    const modeFromOptions = normalizeViewportMode(options.viewportMode ?? options.initialViewportMode);
+    if (modeFromOptions !== 'manual' && modeFromOptions !== viewportMode) {
+      applyViewportMode(modeFromOptions);
+    }
+  }, [applyViewportMode, options, sidebarOpen, viewportMode, zoomLevel]);
 
   const getCanvasMetrics = useCallback(() => {
     const page = pageSizes[pageCursor];
@@ -1769,7 +1836,7 @@ const TemplateEditor = ({
       return;
     }
 
-    const nextLockedIds = activeElements.map((element) => element.id).filter(Boolean);
+    const nextLockedIds = activeElements.filter(Boolean).map((element) => element.id);
     const previousLockedIds = lockedSelectionSchemaIdsRef.current;
     const releasedIds = previousLockedIds.filter((schemaId) => !nextLockedIds.includes(schemaId));
     const acquiredIds = nextLockedIds.filter((schemaId) => !previousLockedIds.includes(schemaId));
@@ -1884,6 +1951,59 @@ const TemplateEditor = ({
     [activeBasePdf, designerEngine, pushTemplateUpdate, schemasList],
   );
 
+  const updatePage = useCallback((sl: SchemaForUI[][], newPageCursor: number) => {
+    setSchemasList(sl);
+    setPageCursor(newPageCursor);
+    const newTemplate = schemasList2template(sl, activeBasePdf);
+    pushTemplateUpdate(newTemplate);
+
+    onPageCursorChange(newPageCursor, sl.length);
+
+    setTimeout(() => {
+      if (canvasRef.current) {
+        canvasRef.current.scrollTop = getPagesScrollTopByIndex(pageSizes, newPageCursor, scale);
+      }
+    }, 0);
+  }, [activeBasePdf, onPageCursorChange, pageSizes, pushTemplateUpdate, scale]);
+
+  const handleDuplicatePageAfter = useCallback(() => {
+    const duplicatedPageSchemas = cloneDeep(currentPageSchemas).map((schema) =>
+      applySchemaCollaborativeDefaults(
+        schema,
+        createSchemaCreationContext({
+          fileId: activeDocumentId || null,
+          pageIndex: pageCursor + 1,
+          pageNumber: pageCursor + 2,
+          totalPages: schemasList.length + 1,
+          timestamp: Date.now(),
+          collaboration: {
+            actorId: collaborationContext.actorId,
+            ownerRecipientId: collaborationContext.ownerRecipientId,
+            ownerRecipientIds: collaborationContext.ownerRecipientIds,
+            ownerRecipientName: collaborationContext.ownerRecipientName,
+            ownerColor: collaborationContext.ownerColor,
+            userColor: collaborationContext.userColor,
+          },
+        }),
+        designerEngine,
+      ),
+    );
+    duplicatedPageSchemas.forEach((schema) => {
+      schema.state = 'draft';
+      schema.lock = undefined;
+    });
+    const nextSchemasList = insertPageSchemas(schemasList, pageCursor + 1, duplicatedPageSchemas);
+    updatePage(nextSchemasList, pageCursor + 1);
+  }, [
+    activeDocumentId,
+    collaborationContext,
+    currentPageSchemas,
+    designerEngine,
+    pageCursor,
+    schemasList,
+    updatePage,
+  ]);
+
   const runtimeApi: DesignerRuntimeApi = useMemo(
     () => ({
       undo: undoExternal,
@@ -1956,6 +2076,7 @@ const TemplateEditor = ({
       pageCursor,
       redoExternal,
       resolveTargetPageIndex,
+      pushTemplateUpdate,
       schemasList,
       viewportMode,
       setPageCursorWithScroll,
@@ -1996,6 +2117,11 @@ const TemplateEditor = ({
     }),
     [
       activeElementIds,
+      interactionState.isDragging,
+      interactionState.isResizing,
+      interactionState.isRotating,
+      interactionState.phase,
+      interactionState.selectionCount,
       hoveringSchemaId,
       isDraggingOverCanvas,
       isSchemaDragging,
@@ -2015,8 +2141,8 @@ const TemplateEditor = ({
     setHoveringSchemaId(id);
   };
 
-  const isSchemaDragActive = (active: { data?: { current?: unknown } } | null | undefined) => {
-    const data = (active?.data?.current || {}) as { schema?: Schema; type?: string };
+  const isSchemaDragActive = (active: SchemaDragActiveLike) => {
+    const data = (active?.data?.current || {}) as SchemaDragSourceData;
     return Boolean(data?.schema && data?.type);
   };
 
@@ -2037,8 +2163,8 @@ const TemplateEditor = ({
   );
 
   const resolveSchemaDragSession = useCallback(
-    (active: { data?: { current?: unknown }; rect?: { current?: { initial?: DOMRect; translated?: DOMRect } } } | null | undefined, pointer: { x: number; y: number }) => {
-      const data = (active?.data?.current || {}) as { schema?: Schema; type?: string };
+    (active: SchemaDragActiveLike, pointer: { x: number; y: number }) => {
+      const data = (active?.data?.current || {}) as SchemaDragSourceData;
       const schema = cloneDeep(data.schema || (active?.data?.current as Schema | undefined));
       if (!schema) return null;
 
@@ -2112,23 +2238,6 @@ const TemplateEditor = ({
     [collaborationContext.ownerColor, designerEngine.collaboration?.actorColor, pageCursor, paperRefs, scale],
   );
 
-  const updatePage = (sl: SchemaForUI[][], newPageCursor: number) => {
-    setSchemasList(sl);
-    setPageCursor(newPageCursor);
-    const newTemplate = schemasList2template(sl, activeBasePdf);
-    pushTemplateUpdate(newTemplate);
-
-    // Notify page change with updated total pages
-    onPageCursorChange(newPageCursor, sl.length);
-
-    // Use setTimeout to update scroll position after render
-    setTimeout(() => {
-      if (canvasRef.current) {
-        canvasRef.current.scrollTop = getPagesScrollTopByIndex(pageSizes, newPageCursor, scale);
-      }
-    }, 0);
-  };
-
   function handleRemovePage() {
     if (pageCursor === 0) return;
     if (!window.confirm(i18n('removePageConfirm'))) return;
@@ -2139,36 +2248,6 @@ const TemplateEditor = ({
 
   function handleAddPageAfter() {
     const nextSchemasList = insertPageSchemas(schemasList, pageCursor + 1, []);
-    updatePage(nextSchemasList, pageCursor + 1);
-  }
-
-  function handleDuplicatePageAfter() {
-    const duplicatedPageSchemas = cloneDeep(currentPageSchemas).map((schema) =>
-      applySchemaCollaborativeDefaults(
-        schema,
-        createSchemaCreationContext({
-          fileId: activeDocumentId || null,
-          pageIndex: pageCursor + 1,
-          pageNumber: pageCursor + 2,
-          totalPages: schemasList.length + 1,
-          timestamp: Date.now(),
-          collaboration: {
-            actorId: collaborationContext.actorId,
-            ownerRecipientId: collaborationContext.ownerRecipientId,
-            ownerRecipientIds: collaborationContext.ownerRecipientIds,
-            ownerRecipientName: collaborationContext.ownerRecipientName,
-            ownerColor: collaborationContext.ownerColor,
-            userColor: collaborationContext.userColor,
-          },
-        }),
-        designerEngine,
-      ),
-    );
-    duplicatedPageSchemas.forEach((schema) => {
-      schema.state = 'draft';
-      schema.lock = undefined;
-    });
-    const nextSchemasList = insertPageSchemas(schemasList, pageCursor + 1, duplicatedPageSchemas);
     updatePage(nextSchemasList, pageCursor + 1);
   }
 
@@ -2287,7 +2366,6 @@ const TemplateEditor = ({
       onEditEnd,
       onPageCursorChange,
       pageCursor,
-      schemasList,
       uploadedDocuments.length,
     ],
   );
@@ -2439,7 +2517,7 @@ const TemplateEditor = ({
     activeElements.length,
     pageCursor,
     pageItems.length,
-    fallbackBaseDocumentItem?.name,
+    fallbackBaseDocumentItem,
     uploadedDocuments,
   ]);
   if (error) {
@@ -2586,7 +2664,6 @@ const TemplateEditor = ({
       viewMode={rightSidebarViewMode}
       onViewModeChange={(mode) => setRightSidebarViewMode(mode)}
       contextHeader={rightSidebarContextHeader}
-      onToggleSidebar={() => setSidebarOpen((prev) => !prev)}
       selectionCommands={selectionCommands}
       className={
         [
@@ -2862,8 +2939,6 @@ const TemplateEditor = ({
             onFitWidth={() => applyViewportMode('fit-width')}
             onFitPage={() => applyViewportMode('fit-page')}
             onOpenShortcuts={() => window.dispatchEvent(new CustomEvent('sisad-pdfme:shortcut-open-panel'))}
-            onToggleSidebar={() => setSidebarOpen((prev) => !prev)}
-            sidebarOpen={sidebarOpen}
             documentStatus={isIdle ? 'Listo' : 'Editando'}
             onSave={() => onSaveTemplate(visibleTemplate)}
             featureToggles={{
@@ -2873,7 +2948,6 @@ const TemplateEditor = ({
             }}
             onToggleFeature={handleToggleCanvasFeature}
           />
-
           {!rightSidebarDetached ? (
             <button
               type="button"
@@ -2887,9 +2961,6 @@ const TemplateEditor = ({
               {sidebarOpen ? <PanelRightClose size={16} strokeWidth={2.2} /> : <PanelRightOpen size={16} strokeWidth={2.2} />}
             </button>
           ) : null}
-
-
-
           {!rightSidebarDetached ? rightSidebarNode : null}
 
           <Canvas

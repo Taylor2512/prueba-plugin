@@ -100,7 +100,7 @@ const ShortcutHelpPanel = ({
       centered
       title={title}
       className="sisad-pdfme-shortcuts-panel"
-      destroyOnClose
+      destroyOnHidden
       afterClose={() => setQuery('')}
     >
       <div className="sisad-pdfme-shortcuts-panel-body">

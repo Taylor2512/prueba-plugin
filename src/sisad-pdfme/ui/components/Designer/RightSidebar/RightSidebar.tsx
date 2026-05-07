@@ -14,7 +14,7 @@ import DocumentsRail, { DocumentsRailProps } from './DocumentsRail.js';
 import CommentsRail, { CommentsRailProps } from './CommentsRail.js';
 import { mergeClassNames } from '../shared/className.js';
 import type { SelectionCommandSet } from '../shared/selectionCommands.js';
-import { Layers, SlidersHorizontal, FileText, MessageSquareText, PanelRightClose, PanelRightOpen } from 'lucide-react';
+import { Layers, SlidersHorizontal, FileText, MessageSquareText } from 'lucide-react';
 import {
   resolveRightSidebarContextHeader,
   type RightSidebarContextHeader,
@@ -56,7 +56,6 @@ export type RightSidebarProps = SidebarProps & {
   documentsAccessMode?: 'always' | 'tab';
   onViewModeChange?: (_mode: 'fields' | 'detail' | 'docs' | 'comments') => void;
   contextHeader?: RightSidebarContextHeader;
-  onToggleSidebar?: () => void;
   selectionCommands?: SelectionCommandSet;
   modeMetaOverrides?: Partial<Record<'fields' | 'detail' | 'docs' | 'comments', Partial<SidebarModeMeta>>>;
   components?: {
@@ -112,6 +111,7 @@ const sidebarModes = ['fields', 'detail', 'comments', 'docs'] as const;
 
 const Sidebar = (props: RightSidebarProps) => {
   const { sidebarOpen, activeElements, schemas } = props;
+  const { autoFocusDetail, onViewModeChange } = props;
   const detached = Boolean(props.detached);
   const useLayoutFrame = Boolean(props.useLayoutFrame);
   const viewportWidth =
@@ -125,18 +125,30 @@ const Sidebar = (props: RightSidebarProps) => {
   const CommentsViewComponent = props.components?.commentsView || CommentsRail;
   const ListViewComponent = props.components?.listView || ListView;
   const DetailViewComponent = props.components?.detailView || DetailView;
-  const activeSchemaIdSet = useMemo(() => new Set(activeElements.map((ae) => ae.id)), [activeElements]);
+  const activeSchemaIdSet = useMemo(() => {
+    const ids = new Set<string>();
+    for (const element of activeElements) {
+      if (element) ids.add(element.id);
+    }
+    return ids;
+  }, [activeElements]);
   const activeSchemas = useMemo(
-    () => schemas.filter((s) => activeSchemaIdSet.has(s.id)),
+    () => {
+      const nextActiveSchemas: typeof schemas = [];
+      for (const schema of schemas) {
+        if (activeSchemaIdSet.has(schema.id)) nextActiveSchemas.push(schema);
+      }
+      return nextActiveSchemas;
+    },
     [activeSchemaIdSet, schemas],
   );
-  const activeSchemaIds = useMemo(() => activeElements.map((ae) => ae.id), [activeElements]);
-  const getActiveSchemas = () => activeSchemas;
-  const getLastActiveSchema = () => {
-    const activeSchemas = getActiveSchemas();
-    return activeSchemas[activeSchemas.length - 1];
-  };
-  const hasActiveSchema = activeSchemas.length > 0;
+  const activeSchemaIds = useMemo(() => {
+    const ids: string[] = [];
+    for (const element of activeElements) {
+      if (element) ids.push(element.id);
+    }
+    return ids;
+  }, [activeElements]);
   const activeSchemaCount = activeSchemas.length;
   const [internalViewMode, setInternalViewMode] = useState<'fields' | 'detail' | 'docs' | 'comments'>('fields');
   const requestedViewMode = props.viewMode || 'auto';
@@ -181,22 +193,22 @@ const Sidebar = (props: RightSidebarProps) => {
   useEffect(() => {
     if (requestedViewMode !== 'auto') return;
 
-    if (activeSchemaCount === 1 && props.autoFocusDetail && internalViewMode !== 'detail') {
+    if (activeSchemaCount === 1 && autoFocusDetail && internalViewMode !== 'detail') {
       setInternalViewMode('detail');
-      props.onViewModeChange?.('detail');
+      onViewModeChange?.('detail');
       return;
     }
 
     if (activeSchemaCount !== 1 && internalViewMode === 'detail') {
       setInternalViewMode('fields');
-      props.onViewModeChange?.('fields');
+      onViewModeChange?.('fields');
     }
 
     if (!showCommentsRail && internalViewMode === 'comments') {
       setInternalViewMode('fields');
-      props.onViewModeChange?.('fields');
+      onViewModeChange?.('fields');
     }
-  }, [requestedViewMode, activeSchemaCount, props.autoFocusDetail, internalViewMode, props, showCommentsRail]);
+  }, [requestedViewMode, activeSchemaCount, autoFocusDetail, internalViewMode, onViewModeChange, showCommentsRail]);
 
   const resolvedPanelMode: 'list' | 'detail' | 'bulk' | 'docs' | 'comments' =
     resolvedViewMode === 'docs'
@@ -247,7 +259,7 @@ const Sidebar = (props: RightSidebarProps) => {
     event.preventDefault();
     const nextMode = sidebarModes[nextIndex];
     setInternalViewMode(nextMode);
-    props.onViewModeChange?.(nextMode);
+    onViewModeChange?.(nextMode);
   };
 
   const contentNode = resolvedPanelMode === 'comments' ? (
@@ -280,7 +292,7 @@ const Sidebar = (props: RightSidebarProps) => {
         className={mergeClassNames(toDesignerCustomClassName(props.classNames?.listView))}
         useDefaultStyles={props.useDefaultStyles} />
     )
-  ) : resolvedPanelMode === 'detail' && hasActiveSchema ? (
+  ) : resolvedPanelMode === 'detail' && activeSchemaCount > 0 ? (
     <div
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'detail-view-host',
@@ -289,7 +301,7 @@ const Sidebar = (props: RightSidebarProps) => {
       )}>
       <DetailViewComponent
         {...props}
-        activeSchema={getLastActiveSchema()}
+        activeSchema={activeSchemas[activeSchemas.length - 1]}
         selectionCommands={props.selectionCommands}
       />
     </div>
@@ -300,8 +312,6 @@ const Sidebar = (props: RightSidebarProps) => {
       className={mergeClassNames(toDesignerCustomClassName(props.classNames?.listView))}
       useDefaultStyles={props.useDefaultStyles} />
   );
-
-  const onToggleSidebar = props.onToggleSidebar;
 
   return (
     <aside
@@ -361,7 +371,7 @@ const Sidebar = (props: RightSidebarProps) => {
                       aria-label={modeMeta.ariaLabel}
                       onClick={() => {
                         if (requestedViewMode === 'auto') setInternalViewMode(mode);
-                        props.onViewModeChange?.(mode);
+                        onViewModeChange?.(mode);
                       }}
                     >
                       <span className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn-content'}>
@@ -373,19 +383,9 @@ const Sidebar = (props: RightSidebarProps) => {
                 })}
               </div>
             ) : null}
-            {contextHeaderNode}
-            {onToggleSidebar ? (
-              <button
-                type="button"
-                className={DESIGNER_CLASSNAME + 'right-sidebar-toggle-btn'}
-                aria-label={sidebarOpen ? 'Ocultar panel lateral' : 'Mostrar panel lateral'}
-                aria-pressed={sidebarOpen ? 'true' : 'false'}
-                onClick={onToggleSidebar}
-                title={sidebarOpen ? 'Ocultar panel lateral' : 'Mostrar panel lateral'}
-              >
-                {sidebarOpen ? <PanelRightClose size={16} /> : <PanelRightOpen size={16} />}
-              </button>
-            ) : null}
+            <div className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-extra'}>
+              {contextHeaderNode}
+            </div>
           </div>
         ) : null}
         {useLayoutFrame ? (
