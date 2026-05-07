@@ -1,4 +1,5 @@
 import { px2mm } from '@sisad-pdfme/common';
+import { getPageRectInViewport } from '../../shared/coordinateMath.js';
 
 export type PointLike = {
   x: number;
@@ -42,8 +43,6 @@ export type PointerToPaperResult = {
 const isFiniteNumber = (value: unknown): value is number =>
   typeof value === 'number' && Number.isFinite(value);
 
-const getPaperRect = (paperElement: HTMLElement): RectLike => paperElement.getBoundingClientRect();
-
 const normalizeZoom = (zoom: number) => (Number.isFinite(zoom) && zoom > 0 ? zoom : 1);
 
 const toMm = (px: number, zoom: number) => px2mm(px / normalizeZoom(zoom));
@@ -51,7 +50,7 @@ const toMm = (px: number, zoom: number) => px2mm(px / normalizeZoom(zoom));
 export const resolveClientPointToCanvasPoint = (
   input: PointerToPaperInput,
 ): PointerToPaperResult => {
-  const paperRect = getPaperRect(input.paperElement);
+  const paperRect = getPageRectInViewport(input.paperElement);
   const canvasRect = input.canvasElement.getBoundingClientRect();
   const rulerOffsetX = input.rulerOffset?.x || 0;
   const rulerOffsetY = input.rulerOffset?.y || 0;

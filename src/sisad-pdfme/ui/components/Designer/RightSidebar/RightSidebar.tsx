@@ -85,25 +85,25 @@ const sidebarModeMeta: Record<'fields' | 'detail' | 'docs' | 'comments', Sidebar
     shortLabel: 'Campos',
     icon: <Layers size={14} />,
     title: 'Ver campos',
-    ariaLabel: 'Ver campos del documento',
+    ariaLabel: 'Abrir panel Campos',
   },
   detail: {
     shortLabel: 'Detalle',
     icon: <SlidersHorizontal size={14} />,
     title: 'Ver detalle',
-    ariaLabel: 'Ver detalle del campo seleccionado',
+    ariaLabel: 'Abrir panel Detalle',
   },
   docs: {
     shortLabel: 'Docs',
     icon: <FileText size={14} />,
     title: 'Ver documentos',
-    ariaLabel: 'Ver documentos y páginas',
+    ariaLabel: 'Abrir panel Docs',
   },
   comments: {
     shortLabel: 'Comentarios',
     icon: <MessageSquareText size={14} />,
     title: 'Ver comentarios',
-    ariaLabel: 'Ver comentarios del documento',
+    ariaLabel: 'Abrir panel Comentarios',
   },
 };
 

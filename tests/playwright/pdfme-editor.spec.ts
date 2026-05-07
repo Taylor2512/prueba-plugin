@@ -372,12 +372,114 @@ test.describe('PDFME editor shell', () => {
     await expect(page.getByText('Página 2').first()).toBeVisible();
   });
 
+  test('advances the active page in the multi-document designer', async ({ page }) => {
+    await openDesigner(page, '/lab/multi-document-routing');
+
+    const contextHeader = page.locator('.sisad-pdfme-ui-control-bar .sisad-pdfme-designer-context-summary');
+    const firstPaper = page.locator('[data-paper-page="true"]').first();
+    const secondPaper = page.locator('[data-paper-page="true"]').nth(1);
+    await expect(contextHeader).toContainText('Página 1/2');
+    await expect(page.locator('.sisad-pdfme-designer-canvas')).toHaveAttribute('data-active-page', '0');
+    const beforeFirst = await firstPaper.boundingBox();
+    const beforeSecond = await secondPaper.boundingBox();
+    expect((beforeSecond?.y ?? 0)).toBeGreaterThan((beforeFirst?.y ?? 0) + (beforeFirst?.height ?? 0) * 0.8);
+
+    await page.getByRole('button', { name: 'Página siguiente' }).click();
+    await page.waitForTimeout(300);
+
+    await expect(page.locator('.sisad-pdfme-designer-canvas')).toHaveAttribute('data-active-page', '1');
+    await expect(contextHeader).toContainText('Página 2/2');
+    const afterFirst = await firstPaper.boundingBox();
+    const afterSecond = await secondPaper.boundingBox();
+    expect((afterSecond?.y ?? 0)).toBeGreaterThan((afterFirst?.y ?? 0) + (afterFirst?.height ?? 0) * 0.8);
+  });
+
+  test('designer renders active document schemas on the multi-document route', async ({ page }) => {
+    await openDesigner(page, '/lab/multi-document-routing');
+
+    await expect(page.locator('[data-paper-page="true"]').first()).toBeVisible();
+    await expect(
+      page.locator('.sisad-pdfme-designer-canvas [data-schema-id], .sisad-pdfme-designer-canvas [data-schema-name]').first(),
+    ).toBeVisible();
+  });
+
   test('opens the generator runtime example route', async ({ page }) => {
     await openLabRoute(page, '/lab/generator-runtime');
     await expect(page.getByRole('heading', { name: 'Generación y conversión' })).toBeVisible();
     await page.getByRole('button', { name: 'Controles' }).click();
     await expect(page.getByRole('button', { name: 'Generar PDF' })).toBeVisible();
     await expectCanvasToStartEarly(page, 520);
+  });
+
+  test('renders the viewer runtime document inside the visible preview area', async ({ page }) => {
+    await openLabRoute(page, '/lab/viewer-runtime');
+
+    await expect(page.getByRole('heading', { name: 'Vista previa de documento' })).toBeVisible();
+
+    const previewScroll = page.locator('.sisad-pdfme-ui-preview-scroll');
+    await expect(previewScroll).toBeVisible();
+
+    const previewBox = await previewScroll.boundingBox();
+    expect(previewBox?.height ?? 0).toBeGreaterThan(300);
+
+    const firstPage = page.locator('[data-paper-page="true"]').first();
+    await expect(firstPage).toBeVisible();
+    await expect(firstPage).toBeInViewport();
+  });
+
+  test('viewer keeps pdf geometry stable while scrolling', async ({ page }) => {
+    await openLabRoute(page, '/lab/viewer-runtime');
+    await page.getByRole('button', { name: 'Controles' }).click();
+    await page.getByRole('button', { name: 'Visor' }).click();
+
+    const paper = page.locator('[data-paper-page="true"]').first();
+    await expect(paper).toBeVisible();
+
+    const before = await paper.boundingBox();
+    await page.mouse.wheel(0, 700);
+    await page.waitForTimeout(500);
+    const after = await paper.boundingBox();
+
+    expect(Math.abs((after?.width ?? 0) - (before?.width ?? 0))).toBeLessThan(1);
+    expect(Math.abs((after?.height ?? 0) - (before?.height ?? 0))).toBeLessThan(1);
+  });
+
+  test('switching modes preserves active document and paper geometry', async ({ page }) => {
+    await openDesigner(page, '/lab/multi-document-routing');
+
+    await page.getByRole('tab', { name: 'Abrir panel Docs' }).click();
+    const activeDocButton = page.getByRole('button', { name: 'Declaración de datos' });
+    await activeDocButton.click();
+    await expect(activeDocButton).toHaveAttribute('data-active', 'true');
+
+    const paper = page.locator('[data-paper-page="true"]').first();
+    await expect(paper).toBeVisible();
+    const before = await paper.boundingBox();
+
+    for (const nextMode of ['Formulario', 'Visor', 'Diseñador'] as const) {
+      await page.getByRole('button', { name: 'Controles' }).click();
+      await page.getByRole('button', { name: nextMode }).click();
+      const modePaper = page.locator('[data-paper-page="true"]').first();
+      await expect(modePaper).toBeVisible();
+    }
+
+    const afterPaper = page.locator('[data-paper-page="true"]').first();
+    await expect(afterPaper).toBeVisible();
+    const after = await afterPaper.boundingBox();
+
+    expect(Math.abs((after?.width ?? 0) - (before?.width ?? 0))).toBeLessThan(2);
+    await page.getByRole('tab', { name: 'Abrir panel Docs' }).click();
+    await expect(activeDocButton).toHaveAttribute('data-active', 'true');
+  });
+
+  test('designer stays usable on a narrow viewport', async ({ page }) => {
+    await page.setViewportSize({ width: 390, height: 844 });
+    await openDesigner(page, '/lab/multi-document-routing');
+
+    await expect(page.locator('[data-paper-page="true"]').first()).toBeVisible();
+    await page.getByRole('tab', { name: 'Abrir panel Docs' }).click();
+    await expect(page.getByRole('button', { name: 'Declaración de datos' })).toBeVisible();
+    await expect(page.locator('.sisad-pdfme-designer-right-sidebar')).toBeVisible();
   });
 
   test('opens the multiuser collaboration route with participant chips', async ({ page }) => {

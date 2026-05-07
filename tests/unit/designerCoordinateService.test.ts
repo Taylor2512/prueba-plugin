@@ -1,6 +1,13 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest';
 import { ZOOM } from '@sisad-pdfme/common';
-import { DesignerCoordinateService } from '../../src/sisad-pdfme/ui/components/Designer/shared/designerCoordinateService.js';
+import {
+  DesignerCoordinateService,
+  clientPointToPagePoint,
+  getPageRectInViewport,
+  pagePointToSchemaPoint,
+  rectIntersects,
+  resolveSelectionRegion,
+} from '../../src/sisad-pdfme/ui/components/Designer/shared/designerCoordinateService.js';
 
 describe('DesignerCoordinateService', () => {
   let root: HTMLElement;
@@ -44,6 +51,7 @@ describe('DesignerCoordinateService', () => {
 
   it('converts viewport points to page-local points with transform scale', () => {
     const service = new DesignerCoordinateService({
+      getZoom: () => 0.75,
       getCanvasRoot: () => root,
       getPageElement: () => page,
     });
@@ -59,6 +67,7 @@ describe('DesignerCoordinateService', () => {
 
   it('clamps and normalizes rectangles', () => {
     const service = new DesignerCoordinateService({
+      getZoom: () => 0.75,
       getCanvasRoot: () => root,
       getPageElement: () => page,
     });
@@ -77,5 +86,38 @@ describe('DesignerCoordinateService', () => {
     expect(clamped.top).toBe(0);
     expect(clamped.width).toBe(400);
     expect(clamped.height).toBe(600);
+  });
+
+  it('exposes shared helpers for page geometry and selection region hits', () => {
+    const pageTwo = document.createElement('div');
+    document.body.appendChild(pageTwo);
+
+    vi.spyOn(pageTwo, 'getBoundingClientRect').mockImplementation(() => makeRect(100, 1080, 750, 1000) as DOMRect);
+
+    const pageRect = getPageRectInViewport(page);
+    const pagePoint = clientPointToPagePoint(250, 200, pageRect, 0.75);
+    expect(pagePoint.x).toBeCloseTo(200, 5);
+    expect(pagePoint.y).toBeCloseTo(200, 5);
+
+    const schemaPoint = pagePointToSchemaPoint(pagePoint);
+    expect(schemaPoint.x).toBeCloseTo(200 / ZOOM, 5);
+    expect(schemaPoint.y).toBeCloseTo(200 / ZOOM, 5);
+
+    expect(rectIntersects(pageRect, pageRect)).toBe(true);
+    expect(rectIntersects(pageRect, { left: 900, top: 900, right: 950, bottom: 950, width: 50, height: 50 })).toBe(false);
+
+    const selection = resolveSelectionRegion({
+      startClientX: 120,
+      startClientY: 80,
+      endClientX: 180,
+      endClientY: 240,
+      pageElements: [page, pageTwo],
+      zoom: 0.75,
+    });
+
+    expect(selection.pageHits).toHaveLength(1);
+    expect(selection.pageHits[0]?.pageIndex).toBe(0);
+    expect(selection.pageHits[0]?.pageStartPoint.x).toBeCloseTo((120 - 100) / 0.75, 5);
+    expect(selection.pageHits[0]?.pageEndPoint.y).toBeCloseTo((240 - 50) / 0.75, 5);
   });
 });

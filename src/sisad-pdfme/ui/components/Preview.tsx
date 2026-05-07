@@ -64,15 +64,20 @@ const Preview = ({
       <CtlBar
         size={size}
         pageCursor={pageCursor}
-        pageNum={schemasList.length}
+        pageNum={pageSizes.length}
         setPageCursor={(p) => {
           if (!containerRef.current) return;
           const nextPage = typeof p === 'function' ? p(pageCursor) : p;
           if (!Number.isFinite(nextPage)) return;
-          containerRef.current.scrollTop = getPagesScrollTopByIndex(pageSizes, nextPage, scale);
           setPageCursor(nextPage);
+          const paper = paperRefs.current[nextPage];
+          if (paper && typeof paper.scrollIntoView === 'function') {
+            paper.scrollIntoView({ block: 'start', inline: 'nearest' });
+          } else {
+            containerRef.current.scrollTop = getPagesScrollTopByIndex(pageSizes, nextPage, scale);
+          }
           if (onPageChange) {
-            onPageChange({ currentPage: nextPage, totalPages: schemasList.length });
+            onPageChange({ currentPage: nextPage, totalPages: pageSizes.length });
           }
         }}
         zoomLevel={zoomLevel}

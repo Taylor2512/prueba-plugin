@@ -350,19 +350,22 @@ const usePreviewRuntime = ({
     if (unitCursor > inputs.length - 1) {
       setUnitCursor(inputs.length - 1);
     }
+  }, [inputs.length, unitCursor]);
 
+  useEffect(() => {
     init(template);
-  }, [template, inputs, size, init, unitCursor]);
+  }, [template, input, init]);
 
   useScrollPageCursor({
     ref: containerRef,
+    paperRefs,
     pageSizes,
     scale,
     pageCursor,
     onChangePageCursor: (p) => {
       setPageCursor(p);
       if (onPageChange) {
-        onPageChange({ currentPage: p, totalPages: schemasList.length });
+        onPageChange({ currentPage: p, totalPages: pageSizes.length });
       }
     },
   });

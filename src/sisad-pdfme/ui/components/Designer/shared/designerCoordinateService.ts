@@ -1,8 +1,32 @@
 import { ZOOM } from '@sisad-pdfme/common';
+import {
+  clientPointToPagePoint,
+  getPageRectInViewport,
+  normalizeRect,
+  pagePointToSchemaPoint as toSchemaPoint,
+  type Point,
+  type Rect,
+  type Size,
+} from './coordinateMath.js';
 
-export type Point = { x: number; y: number };
-export type Rect = { left: number; top: number; right: number; bottom: number; width: number; height: number };
-export type Size = { width: number; height: number };
+export {
+  clientPointToPagePoint,
+  getPageRectInViewport,
+  pagePointToSchemaPoint,
+  pagePointToPdfPoint,
+  rectIntersects,
+  resolveSelectionRegion,
+} from './coordinateMath.js';
+
+export type {
+  DOMRectLike,
+  PagePoint,
+  PdfPoint,
+  ResolveSelectionRegionParams,
+  SelectionRegionPageHit,
+  SelectionRegionResult,
+} from './coordinateMath.js';
+
 export type PointArea = {
   pos1: number[];
   pos2: number[];
@@ -46,33 +70,6 @@ const parseTransformScale = (value: string | null): number => {
   return 1;
 };
 
-const getElementRect = (element: HTMLElement): Rect => {
-  const rect = element.getBoundingClientRect();
-  return {
-    left: rect.left,
-    top: rect.top,
-    right: rect.right,
-    bottom: rect.bottom,
-    width: rect.width,
-    height: rect.height,
-  };
-};
-
-const normalizeRect = (rect: Rect): Rect => {
-  const left = Math.min(rect.left, rect.right);
-  const right = Math.max(rect.left, rect.right);
-  const top = Math.min(rect.top, rect.bottom);
-  const bottom = Math.max(rect.top, rect.bottom);
-  return {
-    left,
-    top,
-    right,
-    bottom,
-    width: right - left,
-    height: bottom - top,
-  };
-};
-
 export class DesignerCoordinateService {
   constructor(private readonly options: DesignerCoordinateServiceOptions = {}) {}
 
@@ -94,17 +91,9 @@ export class DesignerCoordinateService {
     return parseTransformScale(window.getComputedStyle(root).transform);
   }
 
-  private getRelativeViewportPoint(point: Point, pageRect: Rect) {
-    const scale = this.getPaperScale();
-    return {
-      x: (point.x - pageRect.left) / scale,
-      y: (point.y - pageRect.top) / scale,
-    };
-  }
-
   elementRectToCanvasRect(element: HTMLElement): PointArea {
     const canvasRoot = this.getCanvasRoot();
-    const rect = getElementRect(element);
+    const rect = getPageRectInViewport(element);
     if (!canvasRoot) {
       return {
         pos1: [rect.left, rect.top],
@@ -113,7 +102,7 @@ export class DesignerCoordinateService {
         pos4: [rect.right, rect.bottom],
       };
     }
-    const canvasRect = getElementRect(canvasRoot);
+    const canvasRect = getPageRectInViewport(canvasRoot);
     const scale = this.getPaperScale();
     const left = (rect.left - canvasRect.left) / scale;
     const top = (rect.top - canvasRect.top) / scale;
@@ -130,7 +119,7 @@ export class DesignerCoordinateService {
   viewportToCanvasPoint(point: Point): Point {
     const root = this.getCanvasRoot();
     if (!root) return point;
-    const rect = getElementRect(root);
+    const rect = getPageRectInViewport(root);
     const scale = this.getPaperScale();
     return {
       x: (point.x - rect.left) / scale,
@@ -139,21 +128,17 @@ export class DesignerCoordinateService {
   }
 
   viewportToPagePoint(point: Point, pageElement: HTMLElement): Point {
-    const pageRect = getElementRect(pageElement);
-    return this.getRelativeViewportPoint(point, pageRect);
+    return clientPointToPagePoint(point.x, point.y, getPageRectInViewport(pageElement), this.getZoom());
   }
 
   pagePointToSchemaPoint(point: Point, _pageIndex: number): Point {
-    return {
-      x: point.x / ZOOM,
-      y: point.y / ZOOM,
-    };
+    return toSchemaPoint(point);
   }
 
   schemaPointToViewport(point: Point, pageIndex: number): Point {
     const pageElement = this.getPageElement(pageIndex);
     if (!pageElement) return point;
-    const pageRect = getElementRect(pageElement);
+    const pageRect = getPageRectInViewport(pageElement);
     const scale = this.getPaperScale();
     return {
       x: pageRect.left + point.x * ZOOM * scale,
@@ -162,13 +147,14 @@ export class DesignerCoordinateService {
   }
 
   regionViewportRectToPageRect(rect: Rect, pageElement: HTMLElement): Rect {
-    const pageRect = getElementRect(pageElement);
-    const scale = this.getPaperScale();
     const normalized = normalizeRect(rect);
-    const left = (normalized.left - pageRect.left) / scale;
-    const top = (normalized.top - pageRect.top) / scale;
-    const right = (normalized.right - pageRect.left) / scale;
-    const bottom = (normalized.bottom - pageRect.top) / scale;
+    const pageRect = getPageRectInViewport(pageElement);
+    const leftTop = clientPointToPagePoint(normalized.left, normalized.top, pageRect, this.getZoom());
+    const rightBottom = clientPointToPagePoint(normalized.right, normalized.bottom, pageRect, this.getZoom());
+    const left = leftTop.x;
+    const top = leftTop.y;
+    const right = rightBottom.x;
+    const bottom = rightBottom.y;
     return normalizeRect({ left, top, right, bottom, width: right - left, height: bottom - top });
   }
 

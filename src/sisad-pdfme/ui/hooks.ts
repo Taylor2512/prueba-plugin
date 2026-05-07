@@ -67,16 +67,17 @@ const getBasePdfCacheKey = (basePdf: Template['basePdf']) => {
 export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreProcessorProps) => {
   const [backgrounds, setBackgrounds] = useState<string[]>([]);
   const [pageSizes, setPageSizes] = useState<Size[]>([]);
-  const [scale, setScale] = useState(0);
+  const [scale, setScale] = useState(1);
   const [error, setError] = useState<Error | null>(null);
+  const [paperMetrics, setPaperMetrics] = useState<{ paperWidth: number; paperHeight: number } | null>(null);
   const requestIdRef = useRef(0);
   const preprocessedCacheRef = useRef<Map<string, PreprocessedPdfCache>>(new Map());
 
-  const init = useCallback(async (prop: { template: Template; size: Size }) => {
+  const init = useCallback(async (nextTemplate: Template) => {
     const {
-      template: { basePdf, schemas },
-      size,
-    } = prop;
+      basePdf,
+      schemas,
+    } = nextTemplate;
 
     let paperWidth: number;
     let paperHeight: number;
@@ -132,15 +133,11 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
       }
     }
 
-    const _scale = Math.min(
-      getScale(size.width, paperWidth),
-      getScale(size.height - RULER_HEIGHT, paperHeight),
-    );
-
     return {
       backgrounds: _backgrounds,
       pageSizes: _pageSizes,
-      scale: _scale,
+      paperWidth,
+      paperHeight,
     };
   }, [maxZoom]);
 
@@ -150,12 +147,12 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
   useEffect(() => {
     requestIdRef.current += 1;
     const requestId = requestIdRef.current;
-    init({ template, size })
-      .then(({ pageSizes, scale, backgrounds }) => {
+    init(template)
+      .then(({ pageSizes, paperWidth, paperHeight, backgrounds }) => {
         if (requestId !== requestIdRef.current) return;
         setPageSizes(pageSizes);
-        setScale(scale);
         setBackgrounds(backgrounds);
+        setPaperMetrics({ paperWidth, paperHeight });
         setError(null);
       })
       .catch((err: Error) => {
@@ -169,7 +166,18 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
         requestIdRef.current += 1;
       }
     };
-  }, [blankSchemaPages, init, isBlankBasePdf, size, template]);
+  }, [blankSchemaPages, init, isBlankBasePdf, template]);
+
+  useEffect(() => {
+    if (!paperMetrics) return;
+
+    const nextScale = Math.min(
+      getScale(size.width, paperMetrics.paperWidth),
+      getScale(size.height - RULER_HEIGHT, paperMetrics.paperHeight),
+    );
+
+    setScale((current) => (Math.abs(current - nextScale) < 0.001 ? current : nextScale));
+  }, [paperMetrics, size.height, size.width]);
 
   return {
     backgrounds,
@@ -177,16 +185,17 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
     scale: scale * zoomLevel,
     error,
     refresh: (template: Template) =>
-      init({ template, size }).then(({ pageSizes, scale, backgrounds }) => {
+      init(template).then(({ pageSizes, paperWidth, paperHeight, backgrounds }) => {
         setPageSizes(pageSizes);
-        setScale(scale);
         setBackgrounds(backgrounds);
+        setPaperMetrics({ paperWidth, paperHeight });
       }),
   };
 };
 
 type ScrollPageCursorProps = {
   ref: RefObject<HTMLDivElement>;
+  paperRefs?: RefObject<HTMLDivElement[]>;
   pageSizes: Size[];
   scale: number;
   pageCursor: number;
@@ -195,41 +204,65 @@ type ScrollPageCursorProps = {
 
 export const useScrollPageCursor = ({
   ref,
+  paperRefs,
   pageSizes,
   scale,
   pageCursor,
   onChangePageCursor,
 }: ScrollPageCursorProps) => {
   const onScroll = useCallback(() => {
-    if (!pageSizes[0] || !ref.current) {
+    const scrollContainer = ref.current;
+    if (!pageSizes[0] || !scrollContainer) {
       return;
     }
 
-    const scrollTop = ref.current.scrollTop;
-    const viewportHeight = Math.max(1, ref.current.clientHeight || 0);
-    const viewportMidpoint = scrollTop + viewportHeight / 2;
+    const paperElements = paperRefs?.current?.filter((paper): paper is HTMLDivElement => Boolean(paper)) || [];
+    if (paperElements.length === 0) {
+      const scrollTop = scrollContainer.scrollTop;
+      const viewportHeight = Math.max(1, scrollContainer.clientHeight || 0);
+      const viewportMidpoint = scrollTop + viewportHeight / 2;
 
-    const pageGap = 12 * Math.max(0.25, scale);
-    let accumulatedTop = 0;
-    let nextPageCursor = 0;
+      const pageGap = 12 * Math.max(0.25, scale);
+      let accumulatedTop = 0;
+      let nextPageCursor = 0;
 
-    for (let i = 0; i < pageSizes.length; i += 1) {
-      const page = pageSizes[i];
-      const pageHeight = Math.max(1, (page.height * ZOOM + RULER_HEIGHT) * scale);
-      const pageBottom = accumulatedTop + pageHeight;
+      for (let i = 0; i < pageSizes.length; i += 1) {
+        const page = pageSizes[i];
+        const pageHeight = Math.max(1, (page.height * ZOOM + RULER_HEIGHT) * scale);
+        const pageBottom = accumulatedTop + pageHeight;
 
-      if (viewportMidpoint <= pageBottom || i === pageSizes.length - 1) {
-        nextPageCursor = i;
-        break;
+        if (viewportMidpoint <= pageBottom || i === pageSizes.length - 1) {
+          nextPageCursor = i;
+          break;
+        }
+
+        accumulatedTop = pageBottom + pageGap;
       }
 
-      accumulatedTop = pageBottom + pageGap;
+      if (nextPageCursor !== pageCursor) {
+        onChangePageCursor(nextPageCursor);
+      }
+      return;
+    }
+
+    const activationLine = scrollContainer.scrollTop + RULER_HEIGHT;
+    let nextPageCursor = 0;
+
+    for (let i = 0; i < Math.min(pageSizes.length, paperElements.length); i += 1) {
+      const page = paperElements[i];
+      const pageTop = page.offsetTop;
+
+      if (pageTop > activationLine || i === Math.min(pageSizes.length, paperElements.length) - 1) {
+        nextPageCursor = Math.max(0, pageTop > activationLine ? i - 1 : i);
+        break;
+      }
+      nextPageCursor = i;
     }
 
     if (nextPageCursor !== pageCursor) {
       onChangePageCursor(nextPageCursor);
     }
-  }, [onChangePageCursor, pageCursor, pageSizes, ref, scale]);
+  }, [onChangePageCursor, pageCursor, pageSizes, paperRefs, ref, scale]);
 
   useEffect(() => {
     const scrollContainer = ref.current;

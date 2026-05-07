@@ -8,7 +8,11 @@ import { flatSchemaPlugins, builtInSchemaDefinitions } from '@sisad-pdfme/schema
 import { pdf2img, pdf2size, img2pdf } from '@sisad-pdfme/converter'
 import { createObjectUrl, revokeObjectUrls } from './utils/binary.js'
 import { createInitialPdfmeTemplate } from './template.js'
-import { getLabExampleById, getLabExamples } from './examples/labExamples.js'
+import {
+  getLabExampleById,
+  getLabExamples,
+} from './examples/labExamples.js'
+import LabExampleDownloadButton from './LabExampleDownloadButton.jsx'
 import {
   UX_MODE_STORAGE_KEY,
   getErrorMessage,
@@ -32,6 +36,20 @@ const MODE_LABELS = {
   designer: 'Diseñador',
   form: 'Formulario',
   viewer: 'Visor',
+}
+
+const scheduleDestroyInstance = (instance) => {
+  if (!instance) return
+
+  globalThis.setTimeout(() => {
+    try {
+      instance.destroy()
+    } catch (error) {
+      if (!(error instanceof DOMException && error.name === 'NotFoundError')) {
+        throw error
+      }
+    }
+  }, 0)
 }
 
 const schemaCatalog = sortSchemaDefinitions(builtInSchemaDefinitions)
@@ -311,14 +329,23 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   }
 
   useEffect(() => {
-    if (!containerRef.current) return
+    const container = containerRef.current
+    if (!container) return undefined
+
+    const host = document.createElement('div')
+    host.className = 'sisad-pdfme-lab-runtime-host'
+    host.dataset.runtimeMode = mode
+    host.dataset.uxMode = uxMode
+    container.replaceChildren(host)
 
     const commonProps = {
-      domContainer: containerRef.current,
+      domContainer: host,
       template: cloneDeep(template),
       plugins: flatSchemaPlugins,
       options: commonOptions,
     }
+
+    let instance = null
 
     if (mode === 'designer') {
       const designer = new Designer(commonProps)
@@ -336,10 +363,8 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
       designer.onPageChange((pageInfo) => {
         setStatus(formatPageStatus(pageInfo))
       })
-      instanceRef.current = designer
-    }
-
-    if (mode === 'form') {
+      instance = designer
+    } else if (mode === 'form') {
       const form = new Form({ ...commonProps, inputs: cloneDeep(inputs) })
       lastAppliedTemplateRef.current = template
       lastAppliedOptionsRef.current = commonOptions
@@ -353,25 +378,38 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
           return next
         })
       })
-      instanceRef.current = form
-    }
-
-    if (mode === 'viewer') {
+      instance = form
+    } else if (mode === 'viewer') {
       const viewer = new Viewer({ ...commonProps, inputs: cloneDeep(inputs) })
       lastAppliedTemplateRef.current = template
       lastAppliedOptionsRef.current = commonOptions
       lastAppliedInputsRef.current = inputs
-      instanceRef.current = viewer
+      instance = viewer
     }
 
+    instanceRef.current = instance
+
     return () => {
-      if (instanceRef.current) {
-        instanceRef.current.destroy()
+      const currentInstance = instanceRef.current
+      if (currentInstance === instance) {
         instanceRef.current = null
+      }
+      scheduleDestroyInstance(instance)
+
+      if (host.parentNode === container) {
+        host.remove()
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode])
+
+  useEffect(() => {
+    return () => {
+      const currentInstance = instanceRef.current
+      instanceRef.current = null
+      scheduleDestroyInstance(currentInstance)
+    }
+  }, [])
 
   useEffect(() => {
     const instance = instanceRef.current
@@ -623,6 +661,11 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
             hasImages={images.length > 0}
           />
         }
+        downloadLink={
+          <LabExampleDownloadButton className="sisad-pdfme-lab-inline-link" example={example}>
+            Descargar plantilla
+          </LabExampleDownloadButton>
+        }
         density={uxMode === 'canvas-first' ? 'compact' : 'full'}
       />
 
@@ -632,7 +675,11 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
           <p>La superficie de edición se monta dentro del runtime de <code>sisad-pdfme</code>.</p>
         </div>
 
-        <div ref={containerRef} data-ux-mode={uxMode} />
+        <div
+          ref={containerRef}
+          className="sisad-pdfme-lab-canvas-shell"
+          data-ux-mode={uxMode}
+        />
       </section>
 
       <ResultsPanel

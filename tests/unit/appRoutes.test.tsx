@@ -32,4 +32,10 @@ describe('app routes', () => {
 
     expect(screen.getByTestId('lab-page')).toHaveTextContent('generator-runtime')
   })
+
+  it('mounts one of the consolidated collaboration routes', () => {
+    renderApp(['/lab/enterprise-collaboration'])
+
+    expect(screen.getByTestId('lab-page')).toHaveTextContent('enterprise-collaboration')
+  })
 })

@@ -19,8 +19,16 @@ const CollaborationSection = ({
 
   const sessionLabel = example?.collaboration?.sessionId ? `· ${example.collaboration.sessionId}` : ''
   return (
-    <details className="sisad-pdfme-lab-collaboration-disclosure">
-      <summary className="sisad-pdfme-lab-collaboration-summary">
+    <details className="sisad-pdfme-lab-collaboration-disclosure" open>
+      <summary
+        className="sisad-pdfme-lab-collaboration-summary"
+        style={{
+          display: 'block',
+          width: '100%',
+          minHeight: '1.75rem',
+          cursor: 'pointer',
+        }}
+      >
         <span className="sisad-pdfme-lab-summary-label sisad-pdfme-lab-collaboration-title">Participantes {sessionLabel}</span>
         {activeCollaborator ? (
           <span
@@ -91,6 +99,7 @@ export default function PageHeader({
   isGlobalView = false,
   onToggleGlobalView = null,
   status,
+  downloadLink = null,
   controls = null,
   backLink = null,
   density = 'full',
@@ -114,6 +123,7 @@ export default function PageHeader({
         <div className="sisad-pdfme-lab-page-rail">
           <div className="sisad-pdfme-lab-page-actions">
             {backLink ? <div className="sisad-pdfme-lab-page-linkRow">{backLink}</div> : null}
+            {downloadLink ? <div className="sisad-pdfme-lab-page-linkRow">{downloadLink}</div> : null}
             {controls ? <div className="sisad-pdfme-lab-page-controls">{controls}</div> : null}
             {status ? <p className="sisad-pdfme-lab-status sisad-pdfme-lab-status-inline">{status}</p> : null}
           </div>
@@ -189,6 +199,7 @@ PageHeader.propTypes = {
   isGlobalView: PropTypes.bool,
   onToggleGlobalView: PropTypes.func,
   status: PropTypes.node,
+  downloadLink: PropTypes.node,
   controls: PropTypes.node,
   backLink: PropTypes.node,
   density: PropTypes.oneOf(['full', 'compact', 'hidden']),

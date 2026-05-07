@@ -47,6 +47,31 @@ export const isAntDPopupOpen = (): boolean => {
   return Boolean(document.querySelector(ANTD_POPUP_SELECTOR));
 };
 
+export type DesignerInteractionMode =
+  | 'idle'
+  | 'dragging-plugin'
+  | 'dragging-schema'
+  | 'resizing-schema'
+  | 'rotating-schema'
+  | 'region-selecting'
+  | 'inline-editing'
+  | 'commenting'
+  | 'panning'
+  | 'command-running'
+  | 'sidebar-editing';
+
+export type DesignerInteractionState = {
+  mode: DesignerInteractionMode;
+  activePointerId?: number;
+  activeSchemaIds: string[];
+  activeFileId?: string;
+  activePageIndex?: number;
+  isKeyboardInputFocused: boolean;
+  isDraggingFromPalette: boolean;
+  isOverCanvas: boolean;
+  isOverPage: boolean;
+};
+
 export type DesignerInteractionBlockContext = {
   phase?: string;
   isModalOpen?: boolean;
@@ -54,6 +79,73 @@ export type DesignerInteractionBlockContext = {
   isDraggingPlugin?: boolean;
   isResizing?: boolean;
   isRotating?: boolean;
+  isKeyboardInputFocused?: boolean;
+  isDraggingFromPalette?: boolean;
+  isOverCanvas?: boolean;
+  isOverPage?: boolean;
+};
+
+const deriveInteractionState = (context: DesignerInteractionBlockContext = {}): DesignerInteractionState => ({
+  mode:
+    context.phase === 'dragging-plugin'
+      ? 'dragging-plugin'
+      : context.phase === 'dragging-schema'
+        ? 'dragging-schema'
+        : context.phase === 'resizing-schema'
+          ? 'resizing-schema'
+          : context.phase === 'rotating-schema'
+            ? 'rotating-schema'
+            : context.phase === 'inline-editing'
+              ? 'inline-editing'
+              : context.phase === 'commenting'
+                ? 'commenting'
+                : context.phase === 'panning'
+                  ? 'panning'
+                  : context.isDraggingPlugin
+                    ? 'dragging-plugin'
+                    : context.isResizing
+                      ? 'resizing-schema'
+                      : context.isRotating
+                        ? 'rotating-schema'
+                        : context.isInlineEditing
+                          ? 'inline-editing'
+                          : 'idle',
+  activeSchemaIds: [],
+  isKeyboardInputFocused: Boolean(context.isKeyboardInputFocused),
+  isDraggingFromPalette: Boolean(context.isDraggingFromPalette || context.isDraggingPlugin),
+  isOverCanvas: context.isOverCanvas !== false,
+  isOverPage: context.isOverPage !== false,
+});
+
+export const canStartInteraction = (
+  current: DesignerInteractionState,
+  nextMode: DesignerInteractionMode,
+  context: DesignerInteractionBlockContext = {},
+): boolean => {
+  if (current.mode === nextMode) return true;
+  if (context.isModalOpen && nextMode !== 'command-running' && nextMode !== 'sidebar-editing') return false;
+  if (current.isKeyboardInputFocused && nextMode !== 'sidebar-editing') return false;
+
+  switch (current.mode) {
+    case 'dragging-plugin':
+      return nextMode !== 'region-selecting' && nextMode !== 'dragging-schema';
+    case 'dragging-schema':
+      return nextMode !== 'region-selecting' && nextMode !== 'dragging-plugin';
+    case 'resizing-schema':
+    case 'rotating-schema':
+    case 'inline-editing':
+    case 'commenting':
+    case 'panning':
+      return nextMode === 'sidebar-editing';
+    default:
+      break;
+  }
+
+  if (current.isDraggingFromPalette && nextMode === 'region-selecting') return false;
+  if (!current.isOverCanvas && nextMode === 'region-selecting') return false;
+  if (!current.isOverPage && nextMode === 'dragging-schema') return false;
+
+  return true;
 };
 
 export const shouldSuppressDesignerShortcuts = (
@@ -64,21 +156,8 @@ export const shouldSuppressDesignerShortcuts = (
     return true;
   }
 
-  if (context.isModalOpen) return true;
-  if (context.isInlineEditing) return true;
-  if (context.isDraggingPlugin) return true;
-  if (context.isResizing) return true;
-  if (context.isRotating) return true;
-
-  switch (context.phase) {
-    case 'inline-editing':
-    case 'dragging-plugin':
-    case 'resizing-schema':
-    case 'rotating-schema':
-      return true;
-    default:
-      return false;
-  }
+  const current = deriveInteractionState(context);
+  return !canStartInteraction(current, 'command-running', context);
 };
 
 export const shouldSuppressCanvasRegionSelection = (
@@ -93,21 +172,8 @@ export const shouldSuppressCanvasRegionSelection = (
     return true;
   }
 
-  if (context.externalSchemaDragActive) return true;
-  if (context.isCanvasDragging) return true;
-  if (context.isSchemaDragging) return true;
-  if (context.isInlineEditing) return true;
-  if (context.isResizing) return true;
-  if (context.isRotating) return true;
-  if (context.isModalOpen) return true;
+  if (context.externalSchemaDragActive || context.isCanvasDragging || context.isSchemaDragging) return true;
 
-  switch (context.phase) {
-    case 'inline-editing':
-    case 'dragging-plugin':
-    case 'resizing-schema':
-    case 'rotating-schema':
-      return true;
-    default:
-      return false;
-  }
+  const current = deriveInteractionState(context);
+  return !canStartInteraction(current, 'region-selecting', context);
 };

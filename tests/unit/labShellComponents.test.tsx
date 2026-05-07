@@ -1,7 +1,7 @@
 import React from 'react';
-import { fireEvent, render, screen, within } from '@testing-library/react';
-import { describe, expect, it, vi } from 'vitest';
-import { MemoryRouter } from 'react-router-dom';
+import { fireEvent, render, screen, waitFor, within } from '@testing-library/react';
+import { afterEach, describe, expect, it, vi } from 'vitest';
+import { MemoryRouter, Route, Routes } from 'react-router-dom';
 import {
   CaseCard,
   CaseGrid,
@@ -10,6 +10,10 @@ import {
   PageHeader,
   ResultsPanel,
 } from '../../src/features/pdfcomponent/index.js';
+
+afterEach(() => {
+  vi.restoreAllMocks();
+});
 
 describe('lab shell components', () => {
   it('renders hero metrics and case cards for the landing page', () => {
@@ -48,6 +52,46 @@ describe('lab shell components', () => {
       'href',
       '/lab/basic-designer',
     );
+    expect(screen.getByRole('button', { name: /Descargar plantilla Editor básico/ })).toBeEnabled();
+  });
+
+  it('prepares the template download from a button instead of a static href', async () => {
+    const blobUrl = 'blob:downloaded-template';
+    const originalCreateObjectURL = URL.createObjectURL;
+    const originalRevokeObjectURL = URL.revokeObjectURL;
+    const createObjectURLSpy = vi.fn(() => blobUrl);
+    const revokeObjectURLSpy = vi.fn();
+    const clickSpy = vi.spyOn(HTMLAnchorElement.prototype, 'click').mockImplementation(() => {});
+    vi.spyOn(globalThis, 'fetch').mockImplementation(async () => ({
+      blob: async () => new Blob(['%PDF-1.4 card-download'], { type: 'application/pdf' }),
+    }));
+    URL.createObjectURL = createObjectURLSpy;
+    URL.revokeObjectURL = revokeObjectURLSpy;
+
+    render(
+      <MemoryRouter future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <CaseCard
+          example={{
+            id: 'basic-designer',
+            defaultMode: 'designer',
+            path: '/lab/basic-designer',
+            title: 'Editor básico',
+            description: 'Plantilla mínima para crear y mover campos.',
+          }}
+        />
+      </MemoryRouter>,
+    );
+
+    fireEvent.click(screen.getByRole('button', { name: /Descargar plantilla Editor básico/ }));
+
+    await waitFor(() => {
+      expect(createObjectURLSpy).toHaveBeenCalledTimes(1);
+      expect(clickSpy).toHaveBeenCalledTimes(1);
+    });
+
+    clickSpy.mockRestore();
+    URL.createObjectURL = originalCreateObjectURL;
+    URL.revokeObjectURL = originalRevokeObjectURL;
   });
 
   it('renders a grid with one card per example', () => {
@@ -77,6 +121,34 @@ describe('lab shell components', () => {
     expect(screen.getAllByRole('article')).toHaveLength(2);
     expect(screen.getByRole('link', { name: /Abrir ejemplo Uno/ })).toHaveAttribute('href', '/lab/one');
     expect(screen.getByRole('link', { name: /Abrir ejemplo Dos/ })).toHaveAttribute('href', '/lab/two');
+  });
+
+  it('navigates to the example route on card double click', () => {
+    render(
+      <MemoryRouter initialEntries={['/']} future={{ v7_startTransition: true, v7_relativeSplatPath: true }}>
+        <Routes>
+          <Route
+            path="/"
+            element={(
+              <CaseCard
+                example={{
+                  id: 'basic-designer',
+                  defaultMode: 'designer',
+                  path: '/lab/basic-designer',
+                  title: 'Editor básico',
+                  description: 'Plantilla mínima para crear y mover campos.',
+                }}
+              />
+            )}
+          />
+          <Route path="/lab/basic-designer" element={<div>Ruta abierta</div>} />
+        </Routes>
+      </MemoryRouter>,
+    );
+
+    fireEvent.doubleClick(screen.getByRole('article'));
+
+    expect(screen.getByText('Ruta abierta')).toBeVisible();
   });
 
   it('renders an empty grid without cards when there are no examples', () => {
@@ -124,14 +196,19 @@ describe('lab shell components', () => {
         onToggleGlobalView={vi.fn()}
         status="Listo para probar"
         backLink={<a href="/lab">Volver al índice</a>}
+        downloadLink={<a href="/download/demo.json" download="demo.json">Descargar plantilla</a>}
         controls={<button type="button">Abrir controles</button>}
       />,
     );
 
     expect(screen.getByRole('heading', { name: 'Colaboración multiusuario' })).toBeVisible();
-    expect(screen.getByText('Estado')).toBeVisible();
-    expect(screen.getByText('Listo')).toBeVisible();
+    expect(screen.getByText('Estado')).toBeInTheDocument();
+    expect(screen.getByText('Listo')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Abrir controles' })).toBeVisible();
+    expect(screen.getByRole('link', { name: 'Descargar plantilla' })).toHaveAttribute(
+      'download',
+      'demo.json',
+    );
 
     const collaboratorSummary = screen.getByText(
       (_, element) => element?.tagName?.toLowerCase() === 'summary' && element.textContent?.includes('Participantes'),

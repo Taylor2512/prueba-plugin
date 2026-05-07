@@ -111,7 +111,7 @@ const renderRightSidebarContextHeader = (
 
   return (
     <DesignerContextSummary
-      documentName={activeDocumentLabel}
+      documentName={`Documento: ${activeDocumentLabel}`}
       pageIndex={deps.pageCursor}
       pageCount={deps.pageItemsLength}
       selectionCount={deps.activeElementsLength}
@@ -1007,14 +1007,33 @@ const TemplateEditor = ({
     setHoveringSchemaId(null);
   }, []);
 
+  const scrollPageIntoView = useCallback(
+    (pageIndex: number) => {
+      const paper = paperRefs.current[pageIndex];
+      if (paper && typeof paper.scrollIntoView === 'function') {
+        paper.scrollIntoView({ block: 'start', inline: 'nearest' });
+        return true;
+      }
+
+      if (canvasRef.current) {
+        canvasRef.current.scrollTop = getPagesScrollTopByIndex(pageSizes, pageIndex, scale);
+        return true;
+      }
+
+      return false;
+    },
+    [pageSizes, scale],
+  );
+
   useScrollPageCursor({
     ref: canvasRef,
+    paperRefs,
     pageSizes,
-    scale, 
+    scale,
     pageCursor,
     onChangePageCursor: (p) => {
       setPageCursor(p);
-      onPageCursorChange(p, schemasList.length);
+      onPageCursorChange(p, pageSizes.length);
       onEditEnd();
     },
   });
@@ -1140,18 +1159,12 @@ const TemplateEditor = ({
     onPreviousPage: () => {
       const nextPage = Math.max(0, pageCursor - 1);
       if (nextPage === pageCursor) return;
-      setPageCursor(nextPage);
-      if (canvasRef.current) {
-        canvasRef.current.scrollTop = getPagesScrollTopByIndex(pageSizes, nextPage, scale);
-      }
+      setPageCursorWithScroll(nextPage);
     },
     onNextPage: () => {
-      const nextPage = Math.min(Math.max(0, schemasList.length - 1), pageCursor + 1);
+      const nextPage = Math.min(Math.max(0, pageSizes.length - 1), pageCursor + 1);
       if (nextPage === pageCursor) return;
-      setPageCursor(nextPage);
-      if (canvasRef.current) {
-        canvasRef.current.scrollTop = getPagesScrollTopByIndex(pageSizes, nextPage, scale);
-      }
+      setPageCursorWithScroll(nextPage);
     },
   });
 
@@ -1631,19 +1644,19 @@ const TemplateEditor = ({
 
   const setPageCursorWithScroll = useCallback(
     (targetPageOrUpdater: number | ((currentPage: number) => number)) => {
-      if (!canvasRef.current || schemasList.length === 0) return;
+      if (pageSizes.length === 0) return;
 
       const targetPage =
         typeof targetPageOrUpdater === 'function'
           ? targetPageOrUpdater(pageCursor)
           : targetPageOrUpdater;
-      const safePage = Math.max(0, Math.min(targetPage, schemasList.length - 1));
-      canvasRef.current.scrollTop = getPagesScrollTopByIndex(pageSizes, safePage, scale);
+      const safePage = Math.max(0, Math.min(targetPage, pageSizes.length - 1));
       setPageCursor(safePage);
-      onPageCursorChange(safePage, schemasList.length);
+      scrollPageIntoView(safePage);
+      onPageCursorChange(safePage, pageSizes.length);
       onEditEnd();
     },
-    [onEditEnd, onPageCursorChange, pageCursor, pageSizes, scale, schemasList.length],
+    [onEditEnd, onPageCursorChange, pageCursor, pageSizes.length, scrollPageIntoView],
   );
 
   const resolveTargetPageIndex = useCallback(
@@ -1960,11 +1973,9 @@ const TemplateEditor = ({
     onPageCursorChange(newPageCursor, sl.length);
 
     setTimeout(() => {
-      if (canvasRef.current) {
-        canvasRef.current.scrollTop = getPagesScrollTopByIndex(pageSizes, newPageCursor, scale);
-      }
+      scrollPageIntoView(newPageCursor);
     }, 0);
-  }, [activeBasePdf, onPageCursorChange, pageSizes, pushTemplateUpdate, scale]);
+  }, [activeBasePdf, onPageCursorChange, pageSizes, pushTemplateUpdate, scrollPageIntoView]);
 
   const handleDuplicatePageAfter = useCallback(() => {
     const duplicatedPageSchemas = cloneDeep(currentPageSchemas).map((schema) =>
@@ -2890,43 +2901,41 @@ const TemplateEditor = ({
           resetSchemaDragState();
         }}
       >
-        {!leftSidebarDetached ? leftSidebarNode : null}
-        {detachedSidebarRendered}
-        {detachedRightSidebarRendered}
-
-        <div
-          className={`${DESIGNER_CLASSNAME}stage`}
-          data-left-sidebar={leftSidebarVisible ? 'visible' : 'hidden'}
-          data-left-sidebar-mode={shouldReserveLeftSidebarSpace ? 'docked' : 'overlay'}
-          data-left-sidebar-variant={leftSidebarVariant}
-          data-left-sidebar-detached={leftSidebarDetached ? 'true' : 'false'}
-          data-left-sidebar-layout={leftSidebarUseLayout ? 'frame' : 'default'}
-          data-right-sidebar-detached={rightSidebarDetached ? 'true' : 'false'}
-          data-sidebar-open={sidebarOpen ? 'true' : 'false'}
-          data-is-dragging={isSchemaDragging ? 'true' : 'false'}
-          data-schema-dragging={isSchemaDragging ? 'true' : 'false'}
-          data-schema-over-canvas={isDraggingOverCanvas ? 'true' : 'false'}
-          data-schema-over-page={isDraggingOverPage ? 'true' : 'false'}
-          data-drop-valid={dropValid ? 'true' : 'false'}
-          data-is-idle={isIdle ? 'true' : 'false'}
-          data-interaction-phase={interactionState.phase}
-          data-interaction-count={String(interactionState.selectionCount)}
-          data-interaction-dragging={interactionState.isDragging ? 'true' : 'false'}
-          data-interaction-resizing={interactionState.isResizing ? 'true' : 'false'}
-          data-interaction-rotating={interactionState.isRotating ? 'true' : 'false'}
-          data-ui-state={
-            interactionState.isDragging
-              ? 'dragging'
-              : interactionState.isResizing
-                ? 'resizing'
-                : interactionState.isRotating
-                  ? 'rotating'
-                  : interactionState.phase
-          }>
+        <div className={`${DESIGNER_CLASSNAME}workspace`}>
+          {!leftSidebarDetached ? leftSidebarNode : null}
+          <div
+            className={`${DESIGNER_CLASSNAME}stage`}
+            data-left-sidebar={leftSidebarVisible ? 'visible' : 'hidden'}
+            data-left-sidebar-mode={shouldReserveLeftSidebarSpace ? 'docked' : 'overlay'}
+            data-left-sidebar-variant={leftSidebarVariant}
+            data-left-sidebar-detached={leftSidebarDetached ? 'true' : 'false'}
+            data-left-sidebar-layout={leftSidebarUseLayout ? 'frame' : 'default'}
+            data-right-sidebar-detached={rightSidebarDetached ? 'true' : 'false'}
+            data-sidebar-open={sidebarOpen ? 'true' : 'false'}
+            data-is-dragging={isSchemaDragging ? 'true' : 'false'}
+            data-schema-dragging={isSchemaDragging ? 'true' : 'false'}
+            data-schema-over-canvas={isDraggingOverCanvas ? 'true' : 'false'}
+            data-schema-over-page={isDraggingOverPage ? 'true' : 'false'}
+            data-drop-valid={dropValid ? 'true' : 'false'}
+            data-is-idle={isIdle ? 'true' : 'false'}
+            data-interaction-phase={interactionState.phase}
+            data-interaction-count={String(interactionState.selectionCount)}
+            data-interaction-dragging={interactionState.isDragging ? 'true' : 'false'}
+            data-interaction-resizing={interactionState.isResizing ? 'true' : 'false'}
+            data-interaction-rotating={interactionState.isRotating ? 'true' : 'false'}
+            data-ui-state={
+              interactionState.isDragging
+                ? 'dragging'
+                : interactionState.isResizing
+                  ? 'resizing'
+                  : interactionState.isRotating
+                    ? 'rotating'
+                    : interactionState.phase
+            }>
           <CtlBar
             size={sizeExcSidebars}
             pageCursor={pageCursor}
-            pageNum={schemasList.length}
+            pageNum={pageSizes.length}
             setPageCursor={setPageCursorWithScroll}
             zoomLevel={zoomLevel}
             setZoomLevel={setZoomLevel}
@@ -3009,16 +3018,19 @@ const TemplateEditor = ({
           selectionCommands={selectionCommands}
           onInteractionStateChange={handleInteractionStateChange}
           />
-        <CommentDialog
-          open={commentDialogOpen}
-          initialText={''}
-          onClose={() => {
-            setCommentDialogOpen(false);
-            setPendingAnchor(null);
-          }}
-          onSave={handleSaveComment}
-        />
+          <CommentDialog
+            open={commentDialogOpen}
+            initialText={''}
+            onClose={() => {
+              setCommentDialogOpen(false);
+              setPendingAnchor(null);
+            }}
+            onSave={handleSaveComment}
+          />
+          </div>
         </div>
+        {detachedSidebarRendered}
+        {detachedRightSidebarRendered}
       </DndContext>
     </Root>
   );

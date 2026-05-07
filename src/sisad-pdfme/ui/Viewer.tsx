@@ -11,9 +11,6 @@ class Viewer extends PreviewUI {
 
   constructor(props: PreviewProps) {
     super(props);
-    console.warn(
-      '[@sisad-pdfme/ui] Viewer component is deprecated and will be removed in a future version.',
-    );
   }
 
   public onPageChange(cb: (pageInfo: { currentPage: number; totalPages: number }) => void) {

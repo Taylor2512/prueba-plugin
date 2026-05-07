@@ -17,7 +17,6 @@ const Paper = (props: {
   const {
     paperRefs,
     scale,
-    size,
     schemasList,
     pageSizes,
     backgrounds,
@@ -36,60 +35,48 @@ const Paper = (props: {
     pageSizes.length === schemasList.length
       ? schemasList
       : Array.from({ length: pageSizes.length }, (_, pageIndex) => schemasList[pageIndex] || []);
+  let runningTop = hasRulers ? RULER_HEIGHT : PAGE_GAP * 2;
+  const pageBlocks = backgrounds.map((background, paperIndex) => {
+    const pageSize = pageSizes[paperIndex];
+    const paperSize = { width: pageSize.width * ZOOM, height: pageSize.height * ZOOM };
+    const pageTop = runningTop;
+    runningTop += paperSize.height + PAGE_GAP;
 
-  const getUsableViewportWidth = () => {
-    if (!hasRulers || typeof window === 'undefined' || typeof document === 'undefined') {
-      return size.width;
-    }
+    return {
+      background,
+      pageSize,
+      paperSize,
+      pageTop,
+    };
+  });
 
-    const canvas = document.querySelector('.sisad-pdfme-designer-canvas') as HTMLElement | null;
-    if (!canvas) return size.width;
-
-    const styles = window.getComputedStyle(canvas);
-    const paddingLeft = Number.parseFloat(styles.paddingLeft || '0') || 0;
-    const paddingRight = Number.parseFloat(styles.paddingRight || '0') || 0;
-    const contentWidth = canvas.clientWidth - paddingLeft - paddingRight;
-
-    return Number.isFinite(contentWidth) && contentWidth > 0 ? contentWidth : size.width;
-  };
-
-  const viewportWidth = getUsableViewportWidth();
+  const rootWidth = Math.max(0, ...pageBlocks.map(({ paperSize }) => paperSize.width));
+  const rootHeight = Math.max(0, ...pageBlocks.map(({ paperSize, pageTop }) => pageTop + paperSize.height));
+  const scaledRootWidth = rootWidth * scale;
+  const scaledRootHeight = rootHeight * scale;
 
   return (
     <div
       data-paper-root="true"
       style={{
-        transform: `scale(${scale})`,
-        transformOrigin: 'top left',
-        // NOTE: These values do not impact the UI unless they exceed the Paper sizes.
-        // We set them to the scale value to ensure the container is redrawn when you zoom in/out.
-        height: scale,
-        width: scale,
+        position: 'relative',
+        width: `${scaledRootWidth}px`,
+        height: `${scaledRootHeight}px`,
+        flex: '0 0 auto',
       }}
     >
-      {backgrounds.map((background, paperIndex) => {
-        const pageSize = pageSizes[paperIndex];
-        const paperSize = { width: pageSize.width * ZOOM, height: pageSize.height * ZOOM };
-
-        // We want to center the content within the available viewport, but transform: scale()
-        // must be done from the top-left or CSS crops off left-hand content as you zoom in.
-        // However, we want to display the content centrally, so we apply a left indent for
-        // when the content does not exceed its container
-        const leftCenteringIndent =
-          paperSize.width * scale + rulerHeight < viewportWidth
-            ? `${(viewportWidth / scale - paperSize.width) / 2}px`
-            : `${rulerHeight}px`;
-
-        // Rulers are drawn above/before the top of each page, so each Paper div must have
-        // a top offset considering them.
-        let pageTop = paperIndex > 0 ? (rulerHeight + PAGE_GAP) * (paperIndex + 1) : rulerHeight;
-
-        if (!hasRulers) {
-          // If no rulers (i.e. Preview/Form) then we'll add an initial gap at the top of the first page
-          pageTop += PAGE_GAP * 2;
-        }
-
-        return (
+      <div
+        data-paper-scale-layer="true"
+        style={{
+          position: 'absolute',
+          inset: 0,
+          width: `${rootWidth}px`,
+          height: `${rootHeight}px`,
+          transform: `scale(${scale})`,
+          transformOrigin: 'top left',
+        }}
+      >
+        {pageBlocks.map(({ background, pageSize, paperSize, pageTop }, paperIndex) => (
           <div
             key={String(paperIndex) + JSON.stringify(paperSize)}
             data-paper-page="true"
@@ -111,30 +98,29 @@ const Paper = (props: {
             style={{
               fontFamily: `'${getFallbackFontName(font)}'`,
               top: `${pageTop}px`,
-              left: leftCenteringIndent,
-              position: 'relative',
+              left: '0px',
+              position: 'absolute',
               backgroundImage: `url(${background})`,
               backgroundSize: `${paperSize.width}px ${paperSize.height}px`,
-              ...paperSize,
+              width: `${paperSize.width}px`,
+              height: `${paperSize.height}px`,
             }}
           >
-            {renderPaper({ paperSize, index: paperIndex })}
-            {(normalizedSchemasList[paperIndex] || []).map((schema, schemaIndex) => {
-              return (
-                <div key={schema.id}>
-                  {renderSchema({
-                    schema,
-                    index:
-                      paperIndex === 0
-                        ? schemaIndex
-                        : schemaIndex + normalizedSchemasList[paperIndex - 1].length,
-                  })}
-                </div>
-              );
-            })}
+            {renderPaper({ paperSize: pageSize, index: paperIndex })}
+            {(normalizedSchemasList[paperIndex] || []).map((schema, schemaIndex) => (
+              <div key={schema.id}>
+                {renderSchema({
+                  schema,
+                  index:
+                    paperIndex === 0
+                      ? schemaIndex
+                      : schemaIndex + normalizedSchemasList[paperIndex - 1].length,
+                })}
+              </div>
+            ))}
           </div>
-        );
-      })}
+        ))}
+      </div>
     </div>
   );
 };

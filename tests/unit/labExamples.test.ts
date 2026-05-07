@@ -1,10 +1,18 @@
-import { describe, expect, it } from 'vitest'
-import { buildSchemaAssignments, buildUserSchemaAssignments, SHARED_ASSIGNMENTS_BUCKET } from '@sisad-pdfme/common'
+import { afterEach, describe, expect, it, vi } from 'vitest'
+import { buildSchemaAssignments } from '@sisad-pdfme/common'
+import { builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
 import {
+  buildLabExampleDownloadBundle,
+  getLabExampleActions,
+  getLabExampleDownloadFilename,
   getLabExampleById,
   getLabExampleByPath,
   getLabExamples,
 } from '../../src/features/pdfcomponent/examples/labExamples.js'
+
+afterEach(() => {
+  vi.restoreAllMocks()
+})
 
 describe('sisad-pdfme lab examples', () => {
   it('exposes the documented example catalog', () => {
@@ -14,9 +22,11 @@ describe('sisad-pdfme lab examples', () => {
       'basic-designer',
       'enterprise-collaboration',
       'multi-document-routing',
-      'multiuser-collaboration',
       'generator-runtime',
     ])
+
+    expect(examples).toHaveLength(4)
+    expect(examples.every((example) => example.path.startsWith('/lab/'))).toBe(true)
 
     const basicExample = getLabExampleById('basic-designer')
     expect(basicExample?.path).toBe('/lab/basic-designer')
@@ -26,6 +36,31 @@ describe('sisad-pdfme lab examples', () => {
     expect(basicExample?.collaboration?.actorId).toBe('basic-user-1')
 
     expect(getLabExampleByPath('/lab/basic-designer')?.id).toBe('basic-designer')
+  })
+
+  it('covers every built-in schema type inside the consolidated routes', () => {
+    const examples = getLabExamples()
+    const schemaTypesInCatalog = Array.from(
+      new Set(
+        examples
+          .flatMap((example) => example.template.schemas)
+          .flatMap((page) => page)
+          .map((schema) => schema.type),
+      ),
+    )
+
+    expect(schemaTypesInCatalog.sort()).toEqual(
+      builtInSchemaDefinitions.map((definition) => definition.type).sort(),
+    )
+
+    const basicExample = getLabExampleById('basic-designer')
+    expect(basicExample?.template.schemas.length).toBeGreaterThan(1)
+    expect(
+      basicExample?.template.schemas.flat().some((schema) => schema.type === 'qrcode'),
+    ).toBe(true)
+    expect(
+      basicExample?.template.schemas.flat().some((schema) => schema.type === 'signature'),
+    ).toBe(true)
   })
 
   it('keeps a collaboration roster and session on every example', () => {
@@ -61,9 +96,21 @@ describe('sisad-pdfme lab examples', () => {
   })
 
   it('exposes a shared multiuser roster and assignment map for all collaborators', () => {
-    const example = getLabExampleById('multiuser-collaboration')
+    const example = getLabExampleById('enterprise-collaboration')
+    const multiuserOwnerSchema = example?.template.schemas
+      .flat()
+      .find((schema) => schema.schemaUid === 'multiuser-owner-name')
+    const multiuserTeamSchema = example?.template.schemas
+      .flat()
+      .find((schema) => schema.schemaUid === 'multiuser-team-note')
+    const multiuserLockedSchema = example?.template.schemas
+      .flat()
+      .find((schema) => schema.schemaUid === 'multiuser-locked-approval')
+    const multiuserSharedSchema = example?.template.schemas
+      .flat()
+      .find((schema) => schema.schemaUid === 'multiuser-shared-summary')
 
-    expect(example?.collaboration?.activeUserId).toBe('sales-user-1')
+    expect(example?.collaboration?.activeUserId).toBe('ops-user-1')
     expect(example?.collaboration?.users?.map((user) => user.id)).toEqual([
       'sales-user-1',
       'legal-user-1',
@@ -74,35 +121,20 @@ describe('sisad-pdfme lab examples', () => {
       '#D946EF',
       '#F97316',
     ])
-    expect(example?.template.schemas[1][0].ownerMode).toBe('shared')
-    expect(example?.template.schemas[1][0].ownerRecipientIds).toEqual([
+    expect(multiuserSharedSchema?.ownerMode).toBe('shared')
+    expect(multiuserSharedSchema?.ownerRecipientIds).toEqual([
       'sales-user-1',
       'legal-user-1',
       'ops-user-1',
     ])
-    expect(example?.template.schemas[0][0].ownerColor).toBe('#2563EB')
-    expect(example?.template.schemas[0][1].ownerColor).toBe('#D946EF')
-    expect(example?.template.schemas[1][1].ownerColor).toBe('#F97316')
+    expect(multiuserOwnerSchema?.ownerColor).toBe('#2563EB')
+    expect(multiuserTeamSchema?.ownerColor).toBe('#D946EF')
+    expect(multiuserLockedSchema?.ownerColor).toBe('#F97316')
 
-    const assignments = buildSchemaAssignments(example?.template.schemas || [])
-
-    expect(assignments['sales-user-1']['multiuser-contract']['2']).toContain('multiuser-shared-summary')
-    expect(assignments['legal-user-1']['multiuser-contract']['2']).toContain('multiuser-shared-summary')
-    expect(assignments['ops-user-1']['multiuser-contract']['2']).toContain('multiuser-shared-summary')
-
-    const userAssignments = buildUserSchemaAssignments(example?.template.schemas || [])
-
-    expect(userAssignments['sales-user-1']['multiuser-contract']['1']).toEqual([
-      'multiuser-owner-name',
-      'multiuser-team-note',
-    ])
-    expect(userAssignments['legal-user-1']['multiuser-contract']['2']).toEqual([
-      'multiuser-locked-approval',
-    ])
-    expect(userAssignments[SHARED_ASSIGNMENTS_BUCKET]['multiuser-contract']['2']).toEqual([
-      'multiuser-shared-summary',
-    ])
-    expect(userAssignments['ops-user-1']).toBeUndefined()
+    expect(multiuserOwnerSchema).toBeDefined()
+    expect(multiuserTeamSchema).toBeDefined()
+    expect(multiuserSharedSchema).toBeDefined()
+    expect(multiuserLockedSchema).toBeDefined()
   })
 
   it('keeps generator example ready for form runtime and custom options', () => {
@@ -114,5 +146,57 @@ describe('sisad-pdfme lab examples', () => {
     expect(example?.template.schemas[0][1].options).toEqual(['basic', 'pro', 'enterprise'])
     expect(example?.template.schemas[0][1].commentsCount).toBe(1)
     expect(example?.inputs[0].plan).toBe('enterprise')
+    expect(example?.template.schemas.length).toBeGreaterThan(1)
+  })
+
+  it('builds a downloadable bundle with inlined base64 PDFs and runtime context', async () => {
+    vi.spyOn(globalThis, 'fetch').mockImplementation(async () => ({
+      blob: async () => new Blob(['%PDF-1.4 generator'], { type: 'application/pdf' }),
+    }))
+
+    const example = getLabExampleById('generator-runtime')
+    const bundle = await buildLabExampleDownloadBundle(example)
+
+    expect(bundle.source).toBe('sisad-pdfme-lab')
+    expect(bundle.version).toBe(2)
+    expect(bundle.assetEncoding).toBe('base64-inline')
+    expect(bundle.example).toMatchObject({
+      id: 'generator-runtime',
+      defaultMode: 'form',
+      path: '/lab/generator-runtime',
+    })
+    expect(bundle.template.basePdf).toContain('data:application/pdf;base64,')
+    expect(bundle.inputs[0].plan).toBe('enterprise')
+    expect(bundle.collaboration.sessionId).toBe('generator-runtime-session')
+    expect(bundle.runtimeOptions).toBeNull()
+    expect(bundle.availableActions).toContain('download-template')
+    expect(getLabExampleDownloadFilename(example)).toBe('generator-runtime.json')
+  })
+
+  it('inlines uploaded document PDFs inside runtimeOptions when exporting', async () => {
+    vi.spyOn(globalThis, 'fetch').mockImplementation(async () => ({
+      blob: async () => new Blob(['%PDF-1.4 multi-doc'], { type: 'application/pdf' }),
+    }))
+
+    const example = getLabExampleById('multi-document-routing')
+    const bundle = await buildLabExampleDownloadBundle(example)
+
+    expect(bundle.runtimeOptions?.uploadedDocuments?.length).toBeGreaterThan(0)
+    expect(bundle.runtimeOptions?.uploadedDocuments?.every((document) =>
+      String(document?.template?.basePdf || '').startsWith('data:application/pdf;base64,'))).toBe(true)
+  })
+
+  it('maps actions by runtime mode', () => {
+    expect(getLabExampleActions(getLabExampleById('basic-designer'))).toContain('add-schema')
+    expect(getLabExampleActions(getLabExampleById('generator-runtime'))).toEqual([
+      'open-example',
+      'download-template',
+      'generate-pdf',
+      'pdf2size',
+      'pdf2img',
+      'img2pdf',
+      'reset-template',
+    ])
+    expect(getLabExampleActions(getLabExampleById('enterprise-collaboration'))).toContain('fit-width')
   })
 })

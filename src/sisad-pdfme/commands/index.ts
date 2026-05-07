@@ -1,4 +1,7 @@
-import { CommandBus } from '../ui/commands/commandBus.js';
+import {
+  CommandBus,
+  createCommandBus,
+} from '../ui/commands/commandBus.js';
 import {
   buildTopLevelCommentEntry,
   createCommentCommandEvent,
@@ -6,20 +9,12 @@ import {
   createTemplateSnapshotCommand,
 } from '../ui/commands/designerCommands.js';
 
-export const createCommandBus = () => new CommandBus();
-
-export const registerDesignerCommands = () => ({
-  schemaCommands: {
-    createPageSnapshotCommand,
-  },
-  commentCommands: {
-    createCommentCommandEvent,
-    buildTopLevelCommentEntry,
-  },
-  documentCommands: {
-    createTemplateSnapshotCommand,
-  },
-});
+export const designerCommands = {
+  createPageSnapshotCommand,
+  createTemplateSnapshotCommand,
+  createCommentCommandEvent,
+  buildTopLevelCommentEntry,
+} as const;
 
 export const schemaCommands = {
   createPageSnapshotCommand,
@@ -34,13 +29,14 @@ export const documentCommands = {
   createTemplateSnapshotCommand,
 };
 
-export { CommandBus };
-export {
-  createPageSnapshotCommand,
-  createTemplateSnapshotCommand,
-  createCommentCommandEvent,
-  buildTopLevelCommentEntry,
-};
+export const registerDesignerCommands = () => ({
+  schemaCommands,
+  commentCommands,
+  documentCommands,
+});
+
+export { CommandBus, createCommandBus };
+export { createPageSnapshotCommand, createTemplateSnapshotCommand, createCommentCommandEvent, buildTopLevelCommentEntry };
 export {
   createSelectionCommands,
   emitInlineEditRequest,

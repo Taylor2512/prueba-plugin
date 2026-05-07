@@ -40,6 +40,10 @@ export abstract class BaseUIClass {
 
   private options: UIOptions = {};
 
+  private lastMeasuredSize: Size | null = null;
+
+  private resizeRaf: number | null = null;
+
   private getVisibleContainerSize() {
     if (!this.domContainer) {
       return {
@@ -73,9 +77,31 @@ export abstract class BaseUIClass {
       return;
     }
 
-    this.size = this.getVisibleContainerSize();
+    if (this.resizeRaf != null) {
+      return;
+    }
 
-    this.render();
+    this.resizeRaf = globalThis.requestAnimationFrame(() => {
+      this.resizeRaf = null;
+      if (!this.domContainer || !this.domContainer.isConnected) {
+        return;
+      }
+
+      const nextSize = this.getVisibleContainerSize();
+      const previousSize = this.lastMeasuredSize;
+      const hasMeaningfulChange =
+        !previousSize ||
+        Math.abs(previousSize.width - nextSize.width) > 1 ||
+        Math.abs(previousSize.height - nextSize.height) > 1;
+
+      if (!hasMeaningfulChange) {
+        return;
+      }
+
+      this.lastMeasuredSize = nextSize;
+      this.size = nextSize;
+      this.render();
+    });
   }, 100);
 
   resizeObserver = new ResizeObserver(this.setSize);
@@ -88,7 +114,19 @@ export abstract class BaseUIClass {
     this.template = cloneDeep(template);
     this.options = options;
     this.size = this.getVisibleContainerSize();
+    this.lastMeasuredSize = this.size;
     this.resizeObserver.observe(this.domContainer);
+    const scheduleInitialRender = () => {
+      if (!this.domContainer || !this.domContainer.isConnected) {
+        return;
+      }
+      this.render();
+    };
+    if (typeof globalThis.queueMicrotask === 'function') {
+      globalThis.queueMicrotask(scheduleInitialRender);
+    } else {
+      globalThis.setTimeout(scheduleInitialRender, 0);
+    }
 
     const { lang, font } = options;
     if (lang) {
@@ -153,23 +191,47 @@ export abstract class BaseUIClass {
     if (!this.domContainer) return;
 
     const container = this.domContainer as ContainerWithPdfmeRoot;
+    const rootToUnmount = this.reactRoot;
+
     // Mark as destroyed early to prevent re-entrancy/update races.
     this.domContainer = null;
+    this.reactRoot = null;
+
+    if (this.resizeRaf != null) {
+      globalThis.cancelAnimationFrame(this.resizeRaf);
+      this.resizeRaf = null;
+    }
+
+    this.lastMeasuredSize = null;
 
     try {
-      this.reactRoot?.unmount();
-    } catch (err) {
-      // React may throw DOM NotFoundError if the host DOM was replaced/removed externally.
-      if (!(err instanceof DOMException && err.name === 'NotFoundError')) {
-        throw err;
-      }
-    } finally {
-      if (container[PDFME_ROOT_KEY] === this.reactRoot) {
-        delete container[PDFME_ROOT_KEY];
-      }
-      this.reactRoot = null;
-      this.resizeObserver.unobserve(container);
+      this.resizeObserver.disconnect();
+    } catch {
+      // noop
     }
+
+    if (container[PDFME_ROOT_KEY] === rootToUnmount) {
+      delete container[PDFME_ROOT_KEY];
+    }
+
+    const unmountRoot = () => {
+      if (!rootToUnmount) return;
+      try {
+        rootToUnmount.unmount();
+      } catch (err) {
+        // React may throw DOM NotFoundError if the host DOM was replaced/removed externally.
+        if (!(err instanceof DOMException && err.name === 'NotFoundError')) {
+          throw err;
+        }
+      }
+    };
+
+    if (typeof globalThis.queueMicrotask === 'function') {
+      globalThis.queueMicrotask(unmountRoot);
+      return;
+    }
+
+    globalThis.setTimeout(unmountRoot, 0);
   }
 
   protected getOrCreateRoot() {

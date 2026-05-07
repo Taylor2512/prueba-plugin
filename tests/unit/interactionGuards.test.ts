@@ -1,5 +1,7 @@
 import { describe, expect, it, beforeEach, afterEach } from 'vitest';
 import {
+  canStartInteraction,
+  type DesignerInteractionState,
   isAntDPopupOpen,
   isEditableTarget,
   shouldSuppressDesignerShortcuts,
@@ -32,5 +34,23 @@ describe('interaction guards', () => {
     expect(isAntDPopupOpen()).toBe(true);
     expect(shouldSuppressDesignerShortcuts(document.body, { isModalOpen: true })).toBe(true);
     expect(shouldSuppressCanvasRegionSelection(document.body, { isModalOpen: true })).toBe(true);
+  });
+
+  it('uses the shared interaction state to block selection while dragging a palette item', () => {
+    const current: DesignerInteractionState = {
+      mode: 'dragging-plugin',
+      activeSchemaIds: [],
+      isKeyboardInputFocused: false,
+      isDraggingFromPalette: true,
+      isOverCanvas: true,
+      isOverPage: true,
+    };
+
+    expect(canStartInteraction(current, 'region-selecting')).toBe(false);
+    expect(shouldSuppressCanvasRegionSelection(document.body, { isDraggingPlugin: true })).toBe(true);
+  });
+
+  it('blocks shortcuts when keyboard focus is inside an input surface', () => {
+    expect(shouldSuppressDesignerShortcuts(document.body, { isKeyboardInputFocused: true })).toBe(true);
   });
 });
