@@ -1,12 +1,20 @@
 import type { Plugin, UIRenderProps } from '@sisad-pdfme/common';
 import { PenLine } from 'lucide-react';
 import image from '../graphics/image.js';
-import { isEditable } from '../utils.js';
+import { isEditable, readFile } from '../utils.js';
 import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 import { propPanel } from './propPanel.js';
+import { getSignatureProvider, resolveSignatureProviderSource } from './providerRegistry.js';
+import { normalizeSignatureSchema } from './types.js';
 import type { SignatureSchema } from './types.js';
 
 const buildSignaturePlaceholder = (schema: SignatureSchema) => {
+  const modeLabel = {
+    draw: 'Draw',
+    image: 'Image',
+    p12: 'P12',
+    provider: 'Provider',
+  }[schema.signatureMode || 'draw'];
   const placeholderText = String(schema.placeholderText || 'Firmar aqui').trim() || 'Firmar aqui';
   const strokeColor = String(schema.strokeColor || '#8A5A00');
   const borderColor = String(schema.borderColor || '#D6B46B');
@@ -16,10 +24,24 @@ const buildSignaturePlaceholder = (schema: SignatureSchema) => {
       <rect x="6" y="6" width="448" height="168" rx="16" fill="${backgroundColor}" stroke="${borderColor}" stroke-width="6" stroke-dasharray="18 12" />
       <path d="M94 118c24-8 49-49 72-49 17 0 22 21 35 21 17 0 25-34 44-34 18 0 22 30 42 30 13 0 19-16 33-16 10 0 18 6 30 18" fill="none" stroke="${strokeColor}" stroke-width="10" stroke-linecap="round" stroke-linejoin="round" />
       <line x1="90" y1="136" x2="370" y2="136" stroke="${borderColor}" stroke-width="5" />
+      <text x="52" y="36" text-anchor="start" font-family="Arial, Helvetica, sans-serif" font-size="18" fill="${borderColor}">${modeLabel}</text>
       <text x="230" y="158" text-anchor="middle" font-family="Arial, Helvetica, sans-serif" font-size="26" fill="${strokeColor}">${placeholderText}</text>
     </svg>
   `;
   return `data:image/svg+xml;charset=utf-8,${encodeURIComponent(svg)}`;
+};
+
+const fullSize = { width: '100%', height: '100%' };
+
+const renderPreviewImage = (rootElement: HTMLDivElement, value: string) => {
+  const img = document.createElement('img');
+  Object.assign(img.style, {
+    width: '100%',
+    height: '100%',
+    objectFit: 'contain',
+  });
+  img.src = value;
+  rootElement.appendChild(img);
 };
 
 const signatureSchema: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSchema>({
@@ -28,38 +50,139 @@ const signatureSchema: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSch
     return image.pdf(arg);
   },
   ui: (arg: UIRenderProps<SignatureSchema>) => {
-    const nextPlaceholder = arg.value ? arg.placeholder : buildSignaturePlaceholder(arg.schema);
-    // Render base image UI
-    image.ui({
-      ...arg,
-      placeholder: nextPlaceholder,
-    });
+    if (!arg.rootElement) return;
 
-    const { rootElement, mode, schema, onChange, stopEditing } = arg;
+    const providerSource = resolveSignatureProviderSource((arg.options as { designerEngine?: unknown } | undefined)?.designerEngine);
+    const provider = getSignatureProvider(arg.schema.signatureProviderKey || arg.schema.signatureProvider, providerSource);
+    const schema = normalizeSignatureSchema(arg.schema, provider?.capabilities);
+    const nextPlaceholder = arg.value ? arg.placeholder : buildSignaturePlaceholder(schema);
+
+    const container = document.createElement('div');
+    Object.assign(container.style, {
+      ...fullSize,
+      position: 'relative',
+      backgroundImage: arg.value ? 'none' : `url(${nextPlaceholder})`,
+      backgroundRepeat: 'no-repeat',
+      backgroundPosition: 'center',
+      backgroundSize: 'contain',
+    });
+    arg.rootElement.appendChild(container);
+
+    if (arg.value) {
+      renderPreviewImage(container, arg.value);
+    }
+
+    const { rootElement, mode, onChange, stopEditing } = arg;
     const editable = isEditable(mode, schema);
 
     if (!editable || !rootElement) return;
 
+    const capabilities = schema.signatureCapabilities || {};
+
+    if (arg.value && capabilities.allowClear) {
+      const removeBtn = document.createElement('button');
+      removeBtn.type = 'button';
+      removeBtn.textContent = 'x';
+      Object.assign(removeBtn.style, {
+        position: 'absolute',
+        top: '0',
+        left: '0',
+        zIndex: '3',
+        height: '24px',
+        width: '24px',
+        border: '1px solid #767676',
+        background: '#f2f2f2',
+        borderRadius: '2px',
+        cursor: 'pointer',
+      });
+      removeBtn.onclick = (event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        if (onChange) onChange({ key: 'content', value: '' });
+      };
+      container.appendChild(removeBtn);
+    }
+
+    if (!arg.value && schema.signatureMode === 'image' && capabilities.allowUploadImage) {
+      const label = document.createElement('label');
+      Object.assign(label.style, {
+        ...fullSize,
+        display: 'flex',
+        position: 'absolute',
+        inset: '0',
+        backgroundColor: 'rgba(22,119,255,0.18)',
+        cursor: 'pointer',
+      });
+      const input = document.createElement('input');
+      Object.assign(input.style, {
+        position: 'absolute',
+        top: '50%',
+        left: '50%',
+        width: '180px',
+        height: '30px',
+        marginLeft: '-90px',
+        marginTop: '-15px',
+      });
+      input.type = 'file';
+      input.accept = 'image/jpeg, image/png';
+      input.addEventListener('change', (event: Event) => {
+        const changeEvent = event as Event & { target: HTMLInputElement };
+        readFile(changeEvent.target.files)
+          .then((result) => {
+            if (onChange) onChange({ key: 'content', value: result as string });
+          })
+          .catch((error) => {
+            console.error('Error reading file:', error);
+          });
+      });
+      input.addEventListener('blur', () => {
+        if (stopEditing) stopEditing();
+      });
+      label.appendChild(input);
+      container.appendChild(label);
+    }
+
     // small draw button overlay
-    const controls = document.createElement('div');
-    controls.style.position = 'absolute';
-    controls.style.right = '6px';
-    controls.style.bottom = '6px';
-    controls.style.zIndex = '2';
+    if (schema.signatureMode === 'draw' && capabilities.allowDraw) {
+      const controls = document.createElement('div');
+      controls.style.position = 'absolute';
+      controls.style.right = '6px';
+      controls.style.bottom = '6px';
+      controls.style.zIndex = '2';
 
-    const drawBtn = document.createElement('button');
-    drawBtn.type = 'button';
-    drawBtn.textContent = 'Dibujar';
-    drawBtn.style.cursor = 'pointer';
-    drawBtn.style.padding = '6px 8px';
-    drawBtn.style.fontSize = '12px';
-    drawBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      openPad();
-    });
+      const drawBtn = document.createElement('button');
+      drawBtn.type = 'button';
+      drawBtn.textContent = 'Dibujar';
+      drawBtn.style.cursor = 'pointer';
+      drawBtn.style.padding = '6px 8px';
+      drawBtn.style.fontSize = '12px';
+      drawBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        openPad();
+      });
 
-    controls.appendChild(drawBtn);
-    rootElement.appendChild(controls);
+      controls.appendChild(drawBtn);
+      rootElement.appendChild(controls);
+    }
+
+    if (!arg.value && (schema.signatureMode === 'provider' || schema.signatureMode === 'p12')) {
+      const info = document.createElement('div');
+      info.textContent =
+        schema.signatureMode === 'provider'
+          ? `Proveedor: ${provider?.label || 'sin configurar'}`
+          : 'Firma P12 configurada';
+      Object.assign(info.style, {
+        position: 'absolute',
+        left: '8px',
+        bottom: '8px',
+        fontSize: '12px',
+        color: '#475467',
+        background: 'rgba(255,255,255,0.85)',
+        padding: '4px 6px',
+        borderRadius: '6px',
+      });
+      container.appendChild(info);
+    }
 
     function openPad() {
       const overlay = document.createElement('div');
@@ -102,7 +225,7 @@ const signatureSchema: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSch
       if (ctx) {
         ctx.fillStyle = '#ffffff';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        ctx.strokeStyle = String((schema as SignatureSchema).strokeColor || '#000');
+        ctx.strokeStyle = String(schema.strokeColor || '#000');
         ctx.lineWidth = 4;
         ctx.lineCap = 'round';
       }

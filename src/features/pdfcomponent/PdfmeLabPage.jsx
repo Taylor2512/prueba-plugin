@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react'
+import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 import { cloneDeep, getInputFromTemplate, validateCollaborativeSchemas } from '@sisad-pdfme/common'
@@ -8,7 +8,11 @@ import { flatSchemaPlugins, builtInSchemaDefinitions } from '@sisad-pdfme/schema
 import { pdf2img, pdf2size, img2pdf } from '@sisad-pdfme/converter'
 import { createObjectUrl, revokeObjectUrls } from './utils/binary.js'
 import { createInitialPdfmeTemplate } from './template.js'
-import { getLabExampleById, getLabExamples } from './examples/labExamples.js'
+import {
+  getLabExampleById,
+  getLabExamples,
+} from './examples/labExamples.js'
+import LabExampleDownloadButton from './LabExampleDownloadButton.jsx'
 import {
   UX_MODE_STORAGE_KEY,
   getErrorMessage,
@@ -34,6 +38,96 @@ const MODE_LABELS = {
   viewer: 'Visor',
 }
 
+const scheduleDestroyInstance = (instance) => {
+  if (!instance) return
+
+  globalThis.setTimeout(() => {
+    try {
+      instance.destroy()
+    } catch (error) {
+      if (!(error instanceof DOMException && error.name === 'NotFoundError')) {
+        throw error
+      }
+    }
+  }, 0)
+}
+
+const schemaCatalog = sortSchemaDefinitions(builtInSchemaDefinitions)
+
+const resolveInitialCollaboratorId = (activeUserId, users) => activeUserId || users[0]?.id || ''
+
+const resolveInitialGlobalView = (isGlobalView) => Boolean(isGlobalView)
+
+const DEFAULT_SIGNATURE_PROVIDERS = [
+  {
+    key: 'provider.remoto.tenantA',
+    label: 'Tenant A Sign',
+    description: 'Proveedor remoto embebido para flujos de firma del tenant A.',
+    capabilities: {
+      supportsVisibleSignature: true,
+      supportsWebhook: true,
+      supportsPolling: false,
+      supportsCertificateMetadata: false,
+      supportsReason: true,
+      supportsLocation: false,
+      supportsOtp: true,
+      supportsBiometric: false,
+    },
+    defaultConfig: {
+      flow: 'embedded',
+      visibleSignature: true,
+      baseUrl: 'https://firma.tenant-a.example.com',
+    },
+    configFields: [
+      { key: 'baseUrl', label: 'Base URL', type: 'text', required: true },
+      {
+        key: 'flow',
+        label: 'Flow',
+        type: 'select',
+        required: true,
+        options: [
+          { label: 'Embedded', value: 'embedded' },
+          { label: 'Redirect', value: 'redirect' },
+        ],
+      },
+      { key: 'visibleSignature', label: 'Firma visible', type: 'switch' },
+    ],
+  },
+  {
+    key: 'provider.remoto.tenantB',
+    label: 'Tenant B Sign',
+    description: 'Proveedor remoto por polling para tenant B.',
+    capabilities: {
+      supportsVisibleSignature: false,
+      supportsWebhook: false,
+      supportsPolling: true,
+      supportsCertificateMetadata: true,
+      supportsReason: true,
+      supportsLocation: true,
+      supportsOtp: false,
+      supportsBiometric: true,
+    },
+    defaultConfig: {
+      flow: 'redirect',
+      callbackUrl: 'https://app.tenant-b.example.com/sign/callback',
+    },
+    configFields: [
+      { key: 'baseUrl', label: 'Base URL', type: 'text', required: true },
+      {
+        key: 'flow',
+        label: 'Flow',
+        type: 'select',
+        required: true,
+        options: [
+          { label: 'Redirect', value: 'redirect' },
+          { label: 'Embedded', value: 'embedded' },
+        ],
+      },
+      { key: 'callbackUrl', label: 'Callback URL', type: 'text', required: true },
+    ],
+  },
+]
+
 // MODE_LABELS removed: use mode strings directly where needed
 
 export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
@@ -42,6 +136,11 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   const generatedPdfUrlRef = useRef('')
   const roundtripPdfUrlRef = useRef('')
   const imagesRef = useRef([])
+  const lastAppliedTemplateRef = useRef(null)
+  const lastAppliedOptionsRef = useRef(null)
+  const lastAppliedInputsRef = useRef(null)
+  const templateSyncFromDesignerRef = useRef(false)
+  const inputsSyncFromRuntimeRef = useRef(false)
 
   const example = useMemo(
     () => getLabExampleById(exampleId) ?? fallbackExample,
@@ -53,23 +152,35 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
     [collaboration?.users],
   )
   const collaborationSessionId = collaboration?.sessionId || example?.id || ''
-  const [activeCollaboratorId, setActiveCollaboratorId] = useState(
-    collaboration?.activeUserId || collaborationUsers[0]?.id || '',
+  const [activeCollaboratorId, setActiveCollaboratorId] = useState(() =>
+    resolveInitialCollaboratorId(collaboration?.activeUserId, collaborationUsers),
   )
-  const [isGlobalView, setIsGlobalView] = useState(Boolean(collaboration?.isGlobalView))
-  const activeCollaborator =
-    collaborationUsers.find((user) => user.id === activeCollaboratorId) || collaborationUsers[0] || null
+  const [isGlobalView, setIsGlobalView] = useState(() =>
+    resolveInitialGlobalView(collaboration?.isGlobalView),
+  )
+  const activeCollaborator = useMemo(
+    () => collaborationUsers.find((user) => user.id === activeCollaboratorId) || collaborationUsers[0] || null,
+    [activeCollaboratorId, collaborationUsers],
+  )
+  const signatureProviders = useMemo(() => {
+    const runtimeProviders = Array.isArray(example?.runtimeOptions?.signatureProviders)
+      ? example.runtimeOptions.signatureProviders
+      : null
+    return runtimeProviders && runtimeProviders.length > 0
+      ? cloneDeep(runtimeProviders)
+      : cloneDeep(DEFAULT_SIGNATURE_PROVIDERS)
+  }, [example?.runtimeOptions?.signatureProviders])
   const designerEngineOptions = useMemo(() => {
     const collaborationConfig = {
       enabled: Boolean(collaborationSessionId),
       provider: 'yjs',
       sessionId: collaborationSessionId,
-      actorId: activeCollaborator?.id || collaboration?.activeUserId || collaborationUsers[0]?.id || 'local',
+      actorId: activeCollaborator?.id || activeCollaboratorId || 'local',
       actorColor: activeCollaborator?.color || null,
       recipientOptions: collaborationUsers,
       users: collaborationUsers,
-      activeRecipientId: activeCollaborator?.id || collaboration?.activeUserId || collaborationUsers[0]?.id || null,
-      activeUserId: activeCollaborator?.id || collaboration?.activeUserId || collaborationUsers[0]?.id || null,
+      activeRecipientId: activeCollaborator?.id || activeCollaboratorId || null,
+      activeUserId: activeCollaborator?.id || activeCollaboratorId || null,
       isGlobalView,
     }
 
@@ -80,20 +191,20 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
         padding: true,
         mask: false,
       })
+      .withSignatureProviders(signatureProviders)
+      .withSignatureDefaultProviderKey(signatureProviders[0]?.key || null)
       .withCollaboration(collaborationConfig)
       .buildOptions({ lang: 'es' })
   }, [
     activeCollaborator?.color,
     activeCollaborator?.id,
-    collaboration?.activeUserId,
     collaborationSessionId,
     collaborationUsers,
+    activeCollaboratorId,
     isGlobalView,
+    signatureProviders,
   ])
-  const runtimeOptions = useMemo(
-    () => cloneDeep(example?.runtimeOptions || {}),
-    [example],
-  )
+  const runtimeOptions = useMemo(() => cloneDeep(example?.runtimeOptions || {}), [example?.runtimeOptions])
   const commonOptions = useMemo(
     () => ({
       ...runtimeOptions,
@@ -104,11 +215,11 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
 
   const initialTemplate = useMemo(
     () => decorateTemplateWithCollaboration(example?.template || createInitialPdfmeTemplate(), collaborationUsers),
-    [collaborationUsers, example],
+    [collaborationUsers, example?.template],
   )
   const initialInputs = useMemo(
     () => cloneDeep(example?.inputs || getInputFromTemplate(initialTemplate)),
-    [example, initialTemplate],
+    [example?.inputs, initialTemplate],
   )
 
   const [template, setTemplate] = useState(initialTemplate)
@@ -134,66 +245,61 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
     generatedPdfUrl || generatedPdfBytes || pdfSizes.length || images.length || roundtripPdfUrl,
   )
 
-  const schemaCatalog = useMemo(() => sortSchemaDefinitions(builtInSchemaDefinitions), [])
-  useEffect(() => {
-    setActiveCollaboratorId(collaboration?.activeUserId || collaborationUsers[0]?.id || '')
-  }, [collaboration?.activeUserId, collaborationUsers, example?.id])
-  useEffect(() => {
-    setIsGlobalView(Boolean(collaboration?.isGlobalView))
-  }, [collaboration?.isGlobalView, example?.id])
+  const pageMetrics = useMemo(
+    () => [
+      { label: 'Estado', value: busy ? 'Procesando' : 'Listo' },
+      { label: 'Modo', value: MODE_LABELS[mode] || mode },
+      { label: 'Vista', value: isGlobalView ? 'Global' : activeCollaborator?.name || 'Usuario activo' },
+      { label: 'UX', value: uxMode },
+      { label: 'Páginas', value: template.schemas.length },
+    ],
+    [activeCollaborator?.name, busy, isGlobalView, mode, template.schemas.length, uxMode],
+  )
 
-  const pageMetrics = [
-    { label: 'Estado', value: busy ? 'Procesando' : 'Listo' },
-    { label: 'Modo', value: MODE_LABELS[mode] || mode },
-    { label: 'Vista', value: isGlobalView ? 'Global' : activeCollaborator?.name || 'Usuario activo' },
-    { label: 'UX', value: uxMode },
-    { label: 'Páginas', value: template.schemas.length },
-  ]
-
-  const setMode = (nextMode) => {
+  const setMode = useCallback((nextMode) => {
     setUiState((prev) => ({ ...prev, mode: nextMode }))
-  }
+  }, [])
 
-  const setSchemaType = (nextSchemaType) => {
+  const setSchemaType = useCallback((nextSchemaType) => {
     setUiState((prev) => ({ ...prev, schemaType: nextSchemaType }))
-  }
+  }, [])
 
-  const setUxMode = (nextUxMode) => {
+  const setUxMode = useCallback((nextUxMode) => {
     setUiState((prev) => ({ ...prev, uxMode: nextUxMode }))
-  }
+  }, [])
 
-  const setBusy = (nextBusy) => {
+  const setBusy = useCallback((nextBusy) => {
     setUiState((prev) => ({ ...prev, busy: nextBusy }))
-  }
+  }, [])
 
-  const setStatus = (nextStatus) => {
+  const setStatus = useCallback((nextStatus) => {
     setUiState((prev) => ({ ...prev, status: nextStatus }))
-  }
+  }, [])
 
-  const setGeneratedPdfUrl = (nextGeneratedPdfUrl) => {
+  const setGeneratedPdfUrl = useCallback((nextGeneratedPdfUrl) => {
     setResultsState((prev) => ({ ...prev, generatedPdfUrl: nextGeneratedPdfUrl }))
-  }
+  }, [])
 
-  const setGeneratedPdfBytes = (nextGeneratedPdfBytes) => {
+  const setGeneratedPdfBytes = useCallback((nextGeneratedPdfBytes) => {
     setResultsState((prev) => ({ ...prev, generatedPdfBytes: nextGeneratedPdfBytes }))
-  }
+  }, [])
 
-  const setPdfSizes = (nextPdfSizes) => {
+  const setPdfSizes = useCallback((nextPdfSizes) => {
     setResultsState((prev) => ({ ...prev, pdfSizes: nextPdfSizes }))
-  }
+  }, [])
 
-  const setImages = (nextImages) => {
+  const setImages = useCallback((nextImages) => {
     setResultsState((prev) => ({ ...prev, images: nextImages }))
-  }
+  }, [])
 
-  const setRoundtripPdfUrl = (nextRoundtripPdfUrl) => {
+  const setRoundtripPdfUrl = useCallback((nextRoundtripPdfUrl) => {
     setResultsState((prev) => ({ ...prev, roundtripPdfUrl: nextRoundtripPdfUrl }))
-  }
+  }, [])
 
   useEffect(() => {
     const modeFromStorage = globalThis.localStorage?.getItem(UX_MODE_STORAGE_KEY)
     setUxMode(resolveInitialUxMode({ search: globalThis.location?.search || '', storedMode: modeFromStorage }))
-  }, [])
+  }, [setUxMode])
 
   useEffect(() => {
     if (!isValidUxMode(uxMode)) return
@@ -223,34 +329,48 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   }
 
   useEffect(() => {
-    if (!containerRef.current) return
+    const container = containerRef.current
+    if (!container) return undefined
+
+    const host = document.createElement('div')
+    host.className = 'sisad-pdfme-lab-runtime-host'
+    host.dataset.runtimeMode = mode
+    host.dataset.uxMode = uxMode
+    container.replaceChildren(host)
 
     const commonProps = {
-      domContainer: containerRef.current,
+      domContainer: host,
       template: cloneDeep(template),
       plugins: flatSchemaPlugins,
       options: commonOptions,
     }
 
+    let instance = null
+
     if (mode === 'designer') {
       const designer = new Designer(commonProps)
+      lastAppliedTemplateRef.current = template
+      lastAppliedOptionsRef.current = commonOptions
       globalThis.requestAnimationFrame(() => {
         if (designer && typeof designer.fitToPage === 'function') {
           designer.fitToPage()
         }
       })
       designer.onChangeTemplate((nextTemplate) => {
+        templateSyncFromDesignerRef.current = true
         setTemplate(decorateTemplateWithCollaboration(nextTemplate, collaborationUsers))
       })
       designer.onPageChange((pageInfo) => {
         setStatus(formatPageStatus(pageInfo))
       })
-      instanceRef.current = designer
-    }
-
-    if (mode === 'form') {
+      instance = designer
+    } else if (mode === 'form') {
       const form = new Form({ ...commonProps, inputs: cloneDeep(inputs) })
+      lastAppliedTemplateRef.current = template
+      lastAppliedOptionsRef.current = commonOptions
+      lastAppliedInputsRef.current = inputs
       form.onChangeInput(({ index, name, value }) => {
+        inputsSyncFromRuntimeRef.current = true
         setInputs((prev) => {
           const next = cloneDeep(prev)
           if (!next[index]) next[index] = {}
@@ -258,38 +378,70 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
           return next
         })
       })
-      instanceRef.current = form
+      instance = form
+    } else if (mode === 'viewer') {
+      const viewer = new Viewer({ ...commonProps, inputs: cloneDeep(inputs) })
+      lastAppliedTemplateRef.current = template
+      lastAppliedOptionsRef.current = commonOptions
+      lastAppliedInputsRef.current = inputs
+      instance = viewer
     }
 
-    if (mode === 'viewer') {
-      const viewer = new Viewer({ ...commonProps, inputs: cloneDeep(inputs) })
-      instanceRef.current = viewer
-    }
+    instanceRef.current = instance
 
     return () => {
-      if (instanceRef.current) {
-        instanceRef.current.destroy()
+      const currentInstance = instanceRef.current
+      if (currentInstance === instance) {
         instanceRef.current = null
+      }
+      scheduleDestroyInstance(instance)
+
+      if (host.parentNode === container) {
+        host.remove()
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [mode])
 
   useEffect(() => {
+    return () => {
+      const currentInstance = instanceRef.current
+      instanceRef.current = null
+      scheduleDestroyInstance(currentInstance)
+    }
+  }, [])
+
+  useEffect(() => {
     const instance = instanceRef.current
     if (!instance) return
+    if (lastAppliedOptionsRef.current === commonOptions) return
+    lastAppliedOptionsRef.current = commonOptions
     instance.updateOptions(commonOptions)
   }, [commonOptions])
 
   useEffect(() => {
     const instance = instanceRef.current
     if (!instance) return
+    if (templateSyncFromDesignerRef.current) {
+      templateSyncFromDesignerRef.current = false
+      lastAppliedTemplateRef.current = template
+      return
+    }
+    if (lastAppliedTemplateRef.current === template) return
+    lastAppliedTemplateRef.current = template
     instance.updateTemplate(cloneDeep(template))
   }, [mode, template])
 
   useEffect(() => {
     const instance = instanceRef.current
     if (!instance || mode === 'designer') return
+    if (inputsSyncFromRuntimeRef.current) {
+      inputsSyncFromRuntimeRef.current = false
+      lastAppliedInputsRef.current = inputs
+      return
+    }
+    if (lastAppliedInputsRef.current === inputs) return
+    lastAppliedInputsRef.current = inputs
     instance.setInputs(cloneDeep(inputs))
   }, [inputs, mode])
 
@@ -457,15 +609,15 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
     setStatus(`${example.title}: template reiniciado`)
   }
 
-  const handleModeChange = (nextMode) => {
+  const handleModeChange = useCallback((nextMode) => {
     globalThis.setTimeout(() => {
       setMode(nextMode)
     }, 0)
-  }
+  }, [setMode])
 
-  const handleSchemaTypeChange = (event) => {
+  const handleSchemaTypeChange = useCallback((event) => {
     setSchemaType(event.target.value)
-  }
+  }, [setSchemaType])
 
   return (
     <main
@@ -509,16 +661,26 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
             hasImages={images.length > 0}
           />
         }
+        downloadLink={
+          <LabExampleDownloadButton className="sisad-pdfme-lab-inline-link" example={example}>
+            Descargar plantilla
+          </LabExampleDownloadButton>
+        }
+        density={uxMode === 'canvas-first' ? 'compact' : 'full'}
       />
 
-      <section className="sisad-pdfme-lab-workspace" aria-labelledby="lab-workspace-title">
-        <div className="sisad-pdfme-lab-section-heading">
+      <section className="sisad-pdfme-lab-workspace" aria-labelledby="lab-workspace-title" data-ux-mode={uxMode}>
+        <div className="sisad-pdfme-lab-section-heading" data-ux-mode={uxMode}>
           <h2 id="lab-workspace-title">Canvas</h2>
           <p>La superficie de edición se monta dentro del runtime de <code>sisad-pdfme</code>.</p>
         </div>
 
-           <div ref={containerRef} data-ux-mode={uxMode} />
-       </section>
+        <div
+          ref={containerRef}
+          className="sisad-pdfme-lab-canvas-shell"
+          data-ux-mode={uxMode}
+        />
+      </section>
 
       <ResultsPanel
         generatedPdfUrl={generatedPdfUrl}

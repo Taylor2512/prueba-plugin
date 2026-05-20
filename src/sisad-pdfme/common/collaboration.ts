@@ -1,5 +1,12 @@
 import { cloneDeep } from './helper.js';
-import type { SchemaComment, SchemaForUI, SchemaPageArray, CommentAnchor } from './types.js';
+import type {
+  CommentScope,
+  SchemaComment,
+  SchemaCommentReply,
+  SchemaForUI,
+  SchemaPageArray,
+  CommentAnchor,
+} from './types.js';
 
 export const normalizeRecipientIds = (value: unknown): string[] => {
   if (Array.isArray(value)) {
@@ -42,10 +49,54 @@ export type CommentAuthorIdentity = {
 
 const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
 
+type SchemaCommentDraft = {
+  id?: string;
+  scope?: CommentScope;
+  fileId?: string;
+  pageNumber?: number;
+  fieldId?: string;
+  schemaUid?: string;
+  authorId?: string;
+  authorName?: string;
+  authorColor?: string;
+  timestamp?: number;
+  createdAt?: number;
+  text?: string;
+  resolved?: boolean;
+  anchor?: CommentAnchor;
+  replies?: SchemaCommentReply[];
+};
+
+type CommentAnchorDraft = {
+  id?: string;
+  scope?: CommentScope;
+  schemaUid?: string;
+  fileId?: string;
+  pageNumber?: number;
+  fieldId?: string;
+  x?: number;
+  y?: number;
+  resolved?: boolean;
+};
+
 const createEntityId = (prefix: string) =>
   typeof crypto !== 'undefined' && typeof crypto.randomUUID === 'function'
     ? `${prefix}-${crypto.randomUUID()}`
     : `${prefix}-${Date.now()}-${Math.random().toString(16).slice(2)}`;
+
+const resolveCommentScope = (
+  scope: CommentScope | undefined,
+  fallback: {
+    schemaUid?: string | null;
+    fieldId?: string | null;
+    pageNumber?: number;
+  } = {},
+): CommentScope => {
+  if (scope === 'document' || scope === 'page' || scope === 'schema') return scope;
+  if (String(fallback.schemaUid || fallback.fieldId || '').trim()) return 'schema';
+  if (typeof fallback.pageNumber === 'number') return 'page';
+  return 'document';
+};
 
 export const resolveSchemaAuthorId = (schema: SchemaForUI) =>
   normalizeText((schema as SchemaForUI & { createdBy?: string; lastModifiedBy?: string }).createdBy) ||
@@ -81,30 +132,24 @@ export const filterSchemasByAuthorView = (schemas: SchemaForUI[], filter: Collab
 export const createSchemaComment = (
   text: string,
   identity: CommentAuthorIdentity = {},
-  overrides: Partial<
-    SchemaForUI & {
-      id?: string;
-      text?: string;
-      resolved?: boolean;
-      anchor?: CommentAnchor;
-      replies?: unknown[];
-    }
-  > = {},
+  overrides: SchemaCommentDraft = {},
 ): SchemaComment => ({
   ...(overrides as Record<string, unknown>),
-  id: normalizeText((overrides as { id?: string }).id) || createEntityId('comment'),
-  fileId: normalizeText((overrides as { fileId?: string }).fileId) || undefined,
-  pageNumber:
-    typeof (overrides as { pageNumber?: number }).pageNumber === 'number'
-      ? (overrides as { pageNumber?: number }).pageNumber
-      : undefined,
+  id: normalizeText(overrides.id) || createEntityId('comment'),
+  scope: resolveCommentScope(overrides.scope, {
+    schemaUid: overrides.schemaUid,
+    fieldId: overrides.fieldId,
+    pageNumber: overrides.pageNumber,
+  }),
+  fileId: normalizeText(overrides.fileId) || undefined,
+  pageNumber: typeof overrides.pageNumber === 'number' ? overrides.pageNumber : undefined,
   fieldId:
-    normalizeText((overrides as { fieldId?: string; schemaUid?: string }).fieldId) ||
-    normalizeText((overrides as { fieldId?: string; schemaUid?: string }).schemaUid) ||
+    normalizeText(overrides.fieldId) ||
+    normalizeText(overrides.schemaUid) ||
     undefined,
   schemaUid:
-    normalizeText((overrides as { schemaUid?: string; fieldId?: string }).schemaUid) ||
-    normalizeText((overrides as { schemaUid?: string; fieldId?: string }).fieldId) ||
+    normalizeText(overrides.schemaUid) ||
+    normalizeText(overrides.fieldId) ||
     undefined,
   authorId: normalizeText(identity.authorId) || undefined,
   authorName: normalizeText(identity.authorName) || undefined,
@@ -114,38 +159,30 @@ export const createSchemaComment = (
   text: text.trim(),
   resolved: false,
   anchor: overrides.anchor ? cloneDeep(overrides.anchor) : undefined,
-  replies: [],
+  replies: Array.isArray(overrides.replies) ? cloneDeep(overrides.replies) : [],
 });
 
 export const createSchemaCommentAnchor = (
-  anchor: Partial<
-    SchemaForUI & {
-      id?: string;
-      schemaUid?: string;
-      fileId?: string;
-      pageNumber?: number;
-      x?: number;
-      y?: number;
-      resolved?: boolean;
-    }
-  >,
+  anchor: CommentAnchorDraft = {},
   identity: CommentAuthorIdentity = {},
 ): CommentAnchor => ({
   ...(anchor as Record<string, unknown>),
-  id: normalizeText((anchor as { id?: string }).id) || createEntityId('anchor'),
-  schemaUid: normalizeText((anchor as { schemaUid?: string }).schemaUid) || undefined,
+  id: normalizeText(anchor.id) || createEntityId('anchor'),
+  scope: resolveCommentScope(anchor.scope, {
+    schemaUid: anchor.schemaUid,
+    fieldId: anchor.fieldId,
+    pageNumber: anchor.pageNumber,
+  }),
+  schemaUid: normalizeText(anchor.schemaUid) || undefined,
   fieldId:
-    normalizeText((anchor as { fieldId?: string; schemaUid?: string }).fieldId) ||
-    normalizeText((anchor as { fieldId?: string; schemaUid?: string }).schemaUid) ||
+    normalizeText(anchor.fieldId) ||
+    normalizeText(anchor.schemaUid) ||
     undefined,
-  fileId: normalizeText((anchor as { fileId?: string }).fileId) || undefined,
-  pageNumber:
-    typeof (anchor as { pageNumber?: number }).pageNumber === 'number'
-      ? (anchor as { pageNumber?: number }).pageNumber
-      : undefined,
-  x: typeof (anchor as { x?: number }).x === 'number' ? (anchor as { x?: number }).x : undefined,
-  y: typeof (anchor as { y?: number }).y === 'number' ? (anchor as { y?: number }).y : undefined,
-  resolved: Boolean((anchor as { resolved?: boolean }).resolved),
+  fileId: normalizeText(anchor.fileId) || undefined,
+  pageNumber: typeof anchor.pageNumber === 'number' ? anchor.pageNumber : undefined,
+  x: typeof anchor.x === 'number' ? anchor.x : undefined,
+  y: typeof anchor.y === 'number' ? anchor.y : undefined,
+  resolved: Boolean(anchor.resolved),
   authorId: normalizeText(identity.authorId) || undefined,
   authorColor: normalizeText(identity.authorColor) || undefined,
 });

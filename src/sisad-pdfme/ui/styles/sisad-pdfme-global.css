@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
 @import './tokens.css';
 
-:root {
-  /* ── Shorthand aliases used throughout sisad-pdfme-global ─────────── */
+.sisad-pdfme-root {
+  /* ── Shorthand aliases used throughout sisad-pdfme runtime ───────── */
   --bg-hover: var(--color-bg-hover);
   --bg-active: var(--color-bg-active);
   --border-subtle: var(--color-border-subtle);
@@ -12,94 +12,37 @@
   --text-secondary: var(--color-text-secondary);
   --text-muted: var(--color-text-muted);
   --transition: 180ms ease;
-}
-
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-}
-
-body {
   font-family: var(--font-family-ui);
   font-size: 0.8125rem;
   line-height: 1.5;
   color: var(--text-primary);
   background: var(--color-bg-base);
-  margin: 0;
   -webkit-font-smoothing: antialiased;
 }
 
-::-webkit-scrollbar {
+.sisad-pdfme-root,
+.sisad-pdfme-root *,
+.sisad-pdfme-root *::before,
+.sisad-pdfme-root *::after {
+  box-sizing: border-box;
+}
+
+.sisad-pdfme-root ::-webkit-scrollbar {
   width: 5px;
   height: 5px;
 }
 
-::-webkit-scrollbar-track {
+.sisad-pdfme-root ::-webkit-scrollbar-track {
   background: transparent;
 }
 
-::-webkit-scrollbar-thumb {
+.sisad-pdfme-root ::-webkit-scrollbar-thumb {
   background: var(--border-soft);
   border-radius: 100px;
 }
 
-::-webkit-scrollbar-thumb:hover {
+.sisad-pdfme-root ::-webkit-scrollbar-thumb:hover {
   background: var(--border-strong);
-}
-
-.app-shell {
-  display: flex;
-  flex-direction: column;
-  height: 100vh;
-  min-height: 0;
-  overflow: hidden;
-  background: var(--color-bg-base);
-}
-
-.main-nav {
-  display: flex;
-  align-items: center;
-  gap: 0;
-  min-height: 2.75rem;
-  padding: 0 1rem;
-  background: var(--color-bg-elevated);
-  border-bottom: 1px solid var(--border-subtle);
-  flex-shrink: 0;
-  z-index: 100;
-  position: relative;
-}
-
-.main-nav::before {
-  content: 'PDFME';
-  font-family: var(--font-family-mono);
-  font-size: 0.6875rem;
-  font-weight: 700;
-  letter-spacing: 0.12em;
-  color: var(--color-primary);
-  margin-right: 1.5rem;
-}
-
-.main-nav a {
-  display: flex;
-  align-items: center;
-  height: 100%;
-  padding: 0 0.875rem;
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-size: 0.78125rem;
-  font-weight: 500;
-  border-bottom: 2px solid transparent;
-  transition: color var(--transition), border-color var(--transition);
-}
-
-.main-nav a:hover {
-  color: var(--text-primary);
-}
-
-.main-nav a:last-child {
-  color: var(--color-primary);
-  border-bottom-color: var(--color-primary);
 }
 
 .sisad-pdfme-page {
@@ -159,7 +102,9 @@ body {
 
 .sisad-pdfme-canvas,
 .sisad-pdfme-designer-root,
-.sisad-pdfme-designer-background {
+.sisad-pdfme-designer-background,
+.sisad-pdfme-designer-stage,
+.sisad-pdfme-designer-canvas {
   flex: 1 1 auto;
   overflow: hidden;
 }
@@ -176,16 +121,89 @@ body {
 .sisad-pdfme-designer-background {
   position: relative;
   display: flex;
+  flex-direction: column;
   width: 100%;
   height: 100%;
   background: transparent;
 }
 
-.sisad-pdfme-ui-preview-scroll {
+.sisad-pdfme-designer-workspace {
   position: relative;
-  width: var(--sisad-pdfme-preview-width, auto);
-  height: var(--sisad-pdfme-preview-height, auto);
+  display: flex;
+  flex: 1 1 auto;
+  flex-direction: row;
+  align-items: stretch;
+  min-width: 0;
+  min-height: 0;
+  width: 100%;
+}
+
+.sisad-pdfme-designer-stage {
+  position: relative;
+  display: flex;
+  flex: 1 1 auto;
+  min-height: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.sisad-pdfme-designer-canvas,
+.sisad-pdfme-ui-preview-scroll {
+  flex: 1 1 auto;
+  min-width: 0;
+  min-height: 0;
+  position: relative;
+  width: 100%;
+  height: 100%;
   overflow: auto;
+  padding: 0.85rem 1rem 1.5rem;
+  background:
+    radial-gradient(circle at top left, rgba(148, 163, 184, 0.08), transparent 22%),
+    linear-gradient(180deg, rgba(248, 250, 252, 0.96), rgba(241, 245, 249, 0.98));
+}
+
+.sisad-pdfme-designer-canvas [data-paper-root='true'],
+.sisad-pdfme-ui-preview-scroll [data-paper-root='true'] {
+  position: relative;
+  flex: 0 0 auto;
+  min-width: 0;
+  min-height: 0;
+}
+
+.sisad-pdfme-ui-preview-scroll [data-paper-root='true'] {
+  margin-inline: auto;
+}
+
+.sisad-pdfme-designer-canvas [data-paper-root='true'] {
+  margin-inline: auto;
+}
+
+.sisad-pdfme-designer-canvas .sisad-pdfme-ui-canvas-overlay-manager {
+  position: absolute;
+  inset: 0;
+  z-index: 30;
+  pointer-events: none;
+}
+
+.sisad-pdfme-designer-canvas [data-paper-page='true'],
+.sisad-pdfme-ui-preview-scroll [data-paper-page='true'] {
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 0.35rem;
+  background-color: #ffffff;
+  background-repeat: no-repeat;
+  background-position: top left;
+  box-sizing: border-box;
+  box-shadow:
+    0 14px 32px rgba(15, 23, 42, 0.08),
+    0 2px 8px rgba(15, 23, 42, 0.06);
+}
+
+.sisad-pdfme-lab-runtime-host {
+  width: 100%;
+  height: 100%;
+  min-width: 0;
+  min-height: 0;
+  overflow: hidden;
 }
 
 .sisad-pdfme-ui-error-screen {
@@ -209,15 +227,162 @@ body {
   justify-content: space-between;
   gap: 0.5rem;
   width: calc(100% - 0.75rem);
-  min-height: 2.375rem;
+  min-height: 2.625rem;
   margin: 0.3125rem auto 0;
-  padding: 0.25rem 0.5rem;
+  padding: 0.2rem 0.45rem;
   border: 1px solid var(--border-subtle);
   border-radius: 0.75rem;
   background: linear-gradient(180deg, var(--color-white), var(--color-gray-50));
   box-shadow: var(--shadow-lg);
   backdrop-filter: blur(0.875rem);
   flex-wrap: wrap;
+}
+
+.sisad-pdfme-designer-context-summary {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.sisad-pdfme-designer-context-summary-top,
+.sisad-pdfme-designer-context-summary-meta {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  min-width: 0;
+  flex-wrap: wrap;
+}
+
+.sisad-pdfme-designer-context-summary-title {
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.sisad-pdfme-designer-context-summary-chip {
+  display: inline-flex;
+  align-items: center;
+  min-height: 1.125rem;
+  padding: 0 0.4rem;
+  border-radius: 999px;
+  background: var(--color-gray-100-80);
+  color: var(--text-secondary);
+  font-size: 0.625rem;
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.sisad-pdfme-designer-context-summary[data-placement='sidebar'] .sisad-pdfme-designer-context-summary-title {
+  font-size: 0.75rem;
+}
+
+.sisad-pdfme-designer-context-summary[data-density='compact'] .sisad-pdfme-designer-context-summary-chip {
+  padding: 0 0.35rem;
+}
+
+.sisad-pdfme-sidebar-surface-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.75rem;
+  width: 100%;
+  min-width: 0;
+}
+
+.sisad-pdfme-sidebar-surface-header-compact {
+  align-items: center;
+}
+
+.sisad-pdfme-sidebar-surface-header-main {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.sisad-pdfme-sidebar-surface-header-leading,
+.sisad-pdfme-sidebar-surface-header-trailing {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.sisad-pdfme-sidebar-surface-header-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+}
+
+.sisad-pdfme-sidebar-surface-header-title {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--text-primary);
+}
+
+.sisad-pdfme-sidebar-surface-header-subtitle {
+  font-size: 0.75rem;
+  line-height: 1.35;
+  color: var(--text-muted);
+}
+
+.sisad-pdfme-sidebar-surface-header-badges {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.375rem;
+  margin-top: 0.125rem;
+}
+
+.sisad-pdfme-sidebar-surface-empty {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+  padding: 0.875rem;
+  border: 1px dashed var(--border-subtle);
+  border-radius: 0.75rem;
+  background: var(--color-bg-elevated);
+}
+
+.sisad-pdfme-sidebar-surface-empty-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.75rem;
+  height: 1.75rem;
+  flex-shrink: 0;
+  color: var(--color-primary);
+}
+
+.sisad-pdfme-sidebar-surface-empty-copy {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.sisad-pdfme-sidebar-surface-empty-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: var(--text-primary);
+}
+
+.sisad-pdfme-sidebar-surface-empty-description {
+  font-size: 0.75rem;
+  line-height: 1.4;
+  color: var(--text-muted);
+}
+
+.sisad-pdfme-sidebar-surface-empty-action {
+  flex-shrink: 0;
 }
 
 .sisad-pdfme-ui-control-bar-context {
@@ -301,6 +466,36 @@ body {
 .sisad-pdfme-ui-control-bar-text-btn {
   border-color: transparent;
   box-shadow: none;
+}
+
+.sisad-pdfme-ui-control-bar-shortcuts-btn {
+  height: 1.5rem;
+  min-height: 1.5rem;
+  padding: 0 0.5rem;
+  border-radius: 0.5rem;
+  font-size: 0.71875rem;
+  line-height: 1;
+  gap: 0.35rem;
+}
+
+.sisad-pdfme-ui-control-bar-shortcuts-btn .ant-btn-icon {
+  display: inline-flex;
+  margin-inline-end: 0;
+}
+
+.sisad-pdfme-ui-control-bar-shortcuts-btn,
+.sisad-pdfme-ui-control-bar-shortcuts-btn:hover,
+.sisad-pdfme-ui-control-bar-shortcuts-btn:focus-visible {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sisad-pdfme-ui-control-bar-icon-btn[data-active='true'],
+.sisad-pdfme-ui-control-bar-shortcuts-btn[data-active='true'] {
+  color: var(--color-primary);
+  background: var(--color-primary-08);
+  border-color: var(--color-primary-16);
 }
 
 .sisad-pdfme-ui-control-bar-icon-btn {
@@ -839,6 +1034,53 @@ body {
   display: grid;
   align-items: stretch;
   min-width: 0;
+  border-radius: 0.75rem;
+  padding: 0.125rem;
+  background: transparent;
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-plugin-wrap > .sisad-pdfme-designer-plugin-btn,
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-plugin-wrap > .ant-btn.sisad-pdfme-designer-plugin-btn,
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item {
+  background-color: var(--color-white) !important;
+  border-color: var(--color-border-20) !important;
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-plugin-wrap > .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"],
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-plugin-wrap > .sisad-pdfme-designer-plugin-btn[data-view-mode="rich"],
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item[data-view-mode="compact"],
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item[data-view-mode="rich"] {
+  background:
+    linear-gradient(
+      180deg,
+      var(--color-white),
+      var(--color-gray-50)
+    ) !important;
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-plugin-wrap > .sisad-pdfme-designer-plugin-btn:hover,
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item:hover {
+  background:
+    linear-gradient(
+      180deg,
+      var(--color-white),
+      var(--color-gray-100-80)
+    ) !important;
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-icon-fallback {
+  min-width: 2rem;
+  min-height: 2rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.5rem;
+  background: var(--color-white) !important;
+  border: 1px solid var(--color-border-20);
+  color: var(--schema-owner-color, var(--text-primary));
+  box-shadow:
+    inset 0 1px 0 var(--color-white-80),
+    0 0 0 1px var(--color-gray-900-03);
 }
 
 .sisad-pdfme-designer-plugin-btn[data-view-mode="rich"] {
@@ -846,17 +1088,30 @@ body {
   min-height: 3rem;
   padding: 0.4375rem 0.5625rem;
   gap: 0.5625rem;
-  justify-content: flex-start;
+  justify-content: center;
   border: 1px solid var(--color-border-20);
   border-radius: 0.5625rem;
-  background: var(--color-gray-50);
+  background:
+    linear-gradient(
+      180deg,
+      var(--color-white),
+      var(--color-gray-50)
+    );
+  box-shadow:
+    inset 0 1px 0 var(--color-white-80),
+    0 1px 2px var(--color-gray-900-04);
   cursor: grab;
   transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
 }
 
 .sisad-pdfme-designer-plugin-btn[data-view-mode="rich"]:hover {
   border-color: var(--color-primary-30);
-  background: var(--color-primary-200-20);
+  background:
+    linear-gradient(
+      180deg,
+      var(--color-white),
+      var(--color-primary-100-90)
+    );
   box-shadow: 0 2px 0.375rem var(--color-primary-08);
 }
 
@@ -872,9 +1127,16 @@ body {
   padding: 0.5rem 0.3125rem 0.4375rem;
   border: 1px solid var(--color-border-22);
   border-radius: 0.625rem;
-  background: var(--color-white);
+  background:
+    linear-gradient(
+      180deg,
+      var(--color-white),
+      var(--color-gray-50)
+    );
   cursor: grab;
-  box-shadow: 0 1px 3px var(--color-gray-900-04);
+  box-shadow:
+    inset 0 1px 0 var(--color-white-80),
+    0 1px 3px var(--color-gray-900-04);
   overflow: hidden;
   text-align: center;
   transition:
@@ -886,7 +1148,12 @@ body {
 
 .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"]:hover {
   border-color: var(--color-primary-30);
-  background: linear-gradient(180deg, var(--color-primary-100-90), var(--color-primary-200-20));
+  background:
+    linear-gradient(
+      180deg,
+      var(--color-white),
+      var(--color-primary-100-90)
+    );
   box-shadow: 0 3px 8px var(--color-primary-10);
   transform: translateY(-1px);
 }
@@ -900,26 +1167,34 @@ body {
   justify-content: center;
   flex-shrink: 0;
   border-radius: 0.5rem;
-  background: linear-gradient(180deg, var(--color-gray-50), var(--color-gray-100-80));
+  background: var(--color-white);
   border: 1px solid var(--color-border-14);
-  box-shadow: inset 0 1px 0 var(--color-white-80);
+  box-shadow:
+    inset 0 1px 0 var(--color-white-80),
+    0 0 0 1px var(--color-gray-900-03);
   transition: background 150ms ease, border-color 150ms ease;
 }
 
 .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"]:hover > div {
-  background: linear-gradient(180deg, var(--color-primary-200-20), var(--color-primary-100-60));
+  background: var(--color-white);
   border-color: var(--color-primary-25);
 }
 
 .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] > div svg {
   width: 1rem;
   height: 1rem;
-  color: var(--color-gray-600);
+  color: var(--schema-owner-color, var(--color-gray-600));
   transition: color 150ms ease;
 }
 
 .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"]:hover > div svg {
-  color: var(--color-primary);
+  color: var(--schema-owner-color, var(--color-primary));
+}
+
+.sisad-pdfme-designer-plugin-btn[data-view-mode="rich"] > div svg,
+.sisad-pdfme-designer-plugin-btn[data-view-mode="rich"] .sisad-pdfme-designer-plugin-icon-fallback svg,
+.sisad-pdfme-designer-plugin-btn[data-view-mode="rich"] .sisad-pdfme-designer-plugin-icon-fallback {
+  color: var(--schema-owner-color, var(--color-gray-600));
 }
 
 .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"]:active,
@@ -944,6 +1219,7 @@ body {
   width: 100%;
   overflow: hidden;
   display: -webkit-box;
+  line-clamp: 2;
   -webkit-line-clamp: 2;
   -webkit-box-orient: vertical;
   text-overflow: ellipsis;
@@ -970,6 +1246,7 @@ body {
 
 .sisad-pdfme-designer-plugin-btn[data-view-mode="rich"] .sisad-pdfme-designer-plugin-btn-label-title {
   text-align: left;
+  line-clamp: 1;
   -webkit-line-clamp: 1;
   font-size: 0.75rem;
   color: var(--color-gray-900);
@@ -1091,7 +1368,7 @@ body {
   max-width: 100%;
   overflow: auto;
   display: flex;
-  justify-content: flex-start;
+  justify-content: center;
   align-items: flex-start;
   padding: 3.5rem 1rem 1rem;
   box-sizing: border-box;
@@ -1102,31 +1379,6 @@ body {
     linear-gradient(90deg, var(--color-border-16) 1px, transparent 1px),
     var(--color-bg-base);
   background-size: 100% 100%, 1.5rem 1.5rem, 1.5rem 1.5rem;
-}
-
-.sisad-pdfme-designer-canvas>*,
-.sisad-pdfme-designer-canvas>[data-paper-root='true'] {
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  justify-content: flex-start;
-  align-content: flex-start;
-  width: auto;
-  height: auto;
-  min-width: 0;
-  min-height: 0;
-  margin: 0;
-  position: relative;
-}
-
-.sisad-pdfme-designer-canvas>*>*,
-.sisad-pdfme-designer-canvas>[data-paper-root='true']>[data-paper-page='true'] {
-  width: max-content;
-  height: max-content;
-  min-width: 1px;
-  min-height: 1px;
-  margin: 0;
-  position: relative;
 }
 
 .sisad-pdfme-designer-canvas-empty-state {
@@ -1233,6 +1485,10 @@ body {
   opacity: 0.9;
 }
 
+.sisad-pdfme-ui-custom-selectable[data-schema-active='true']:not([data-schema-editing='true']) > * {
+  pointer-events: none;
+}
+
 .sisad-pdfme-designer-right-sidebar {
   position: absolute;
   top: 0;
@@ -1284,11 +1540,9 @@ body {
 
 /* ── SIDEBAR TOGGLE BUTTON (shared base) ────────────────────────
    .sisad-pdfme-designer-sidebar-toggle-btn       → generic (e.g. left sidebar)
-   .sisad-pdfme-designer-right-sidebar-toggle-btn → right sidebar specific
    When rendered inside the sidebar panel it is position:static (see below).
    ────────────────────────────────────────────────────────────── */
-.sisad-pdfme-designer-sidebar-toggle-btn,
-.sisad-pdfme-designer-right-sidebar-toggle-btn {
+.sisad-pdfme-designer-sidebar-toggle-btn {
   min-width: 1.625rem;
   height: 1.625rem;
   padding: 0 var(--space-2);
@@ -1308,8 +1562,7 @@ body {
     box-shadow var(--transition-fast);
 }
 
-.sisad-pdfme-designer-sidebar-toggle-btn:hover,
-.sisad-pdfme-designer-right-sidebar-toggle-btn:hover {
+.sisad-pdfme-designer-sidebar-toggle-btn:hover {
   border-color: var(--color-primary-25);
   color: var(--color-primary);
   box-shadow: var(--shadow-md);
@@ -1339,6 +1592,22 @@ body {
 
 .sisad-pdfme-designer-left-sidebar[data-sidebar-collapsed="true"] .sisad-pdfme-designer-left-sidebar-toggle-btn {
   right: 0.5rem;
+}
+
+.sisad-pdfme-designer-stage > .sisad-pdfme-designer-right-sidebar-toggle-btn {
+  position: absolute;
+  top: 3.75rem;
+  right: 0.75rem;
+  z-index: 71;
+  transition:
+    right 180ms ease,
+    border-color var(--transition-fast),
+    color var(--transition-fast),
+    box-shadow var(--transition-fast);
+}
+
+.sisad-pdfme-designer-stage[data-sidebar-open="true"] > .sisad-pdfme-designer-right-sidebar-toggle-btn {
+  right: calc(var(--sisad-pdfme-rs-width) + 1rem);
 }
 
 .sisad-pdfme-designer-left-sidebar[data-sidebar-collapsed="true"] {
@@ -2008,10 +2277,6 @@ body {
 
 .sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item > .ant-collapse-content > .ant-collapse-content-box {
   padding: 0.375rem 0.5rem;
-}
-
-.sisad-pdfme-designer-schema-config-collapse .ant-space-item {
-  /* tighten vertical spacing inside collapse panels */
 }
 
 .sisad-pdfme-designer-schema-config-nested-collapse {
@@ -2746,15 +3011,388 @@ body {
   min-width: var(--sisad-pdfme-ls-rail-width);
 }
 
-/* ── RIGHT SIDEBAR TOGGLE — stage (floating) variant ─────────────
-   Overrides the shared base to be absolutely positioned when
-   the toggle is rendered in the stage (outside the panel).
-   ─────────────────────────────────────────────────────────────── */
-.sisad-pdfme-designer-stage > .sisad-pdfme-designer-right-sidebar-toggle-btn {
-  position: absolute;
-  top: 3.75rem;
-  right: 0.75rem;
-  z-index: 71;
+/* Dense DocuSign-like compact mode */
+.sisad-pdfme-designer-left-sidebar-compact[data-sidebar-collapsed="false"] {
+  width: clamp(12.25rem, 14.5vw, 14.25rem);
+  max-width: clamp(12.25rem, 14.5vw, 14.25rem);
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-shell {
+  padding: 0.4rem 0.375rem 0.375rem;
+  border-radius: 0.7rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-dock-header {
+  margin-bottom: 0.3rem;
+  padding-bottom: 0.3rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-dock-kicker {
+  font-size: 0.5rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-dock-title {
+  font-size: 0.56rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-control-band,
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-search-stack {
+  gap: 0.25rem;
+  margin-bottom: 0.3rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-tablist {
+  margin: 0 0 0.25rem;
+  padding: 0.125rem;
+  border-radius: 0.7rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-tab-btn {
+  height: 1.7rem;
+  border-radius: 0.5rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-tab-btn svg {
+  width: 0.85rem;
+  height: 0.85rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-search[data-use-default-style="true"] {
+  min-height: 1.72rem;
+  border-radius: 0.5rem;
+  font-size: 0.66rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-chip-row {
+  gap: 0.1875rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-filter-btn {
+  min-height: 1.15rem;
+  height: 1.15rem;
+  padding: 0 0.4rem;
+  font-size: 0.52rem;
+}
+
+/* Breakpoint calibration for compact designer density */
+@media (min-width: 75rem) and (max-width: 89.9375rem) {
+  .sisad-pdfme-designer-left-sidebar-compact[data-sidebar-collapsed="false"] {
+    width: 12rem;
+    max-width: 12rem;
+  }
+
+  .sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar {
+    width: 15rem;
+  }
+
+  .sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"][data-sidebar-open="true"] .sisad-pdfme-designer-canvas {
+    padding-right: 15.75rem;
+  }
+}
+
+@media (min-width: 90rem) and (max-width: 119.9375rem) {
+  .sisad-pdfme-designer-left-sidebar-compact[data-sidebar-collapsed="false"] {
+    width: 12.5rem;
+    max-width: 12.5rem;
+  }
+
+  .sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar {
+    width: 15.6rem;
+  }
+
+  .sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"][data-sidebar-open="true"] .sisad-pdfme-designer-canvas {
+    padding-right: 16.35rem;
+  }
+}
+
+@media (min-width: 120rem) {
+  .sisad-pdfme-designer-left-sidebar-compact[data-sidebar-collapsed="false"] {
+    width: 13rem;
+    max-width: 13rem;
+  }
+
+  .sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar {
+    width: 16rem;
+  }
+
+  .sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"][data-sidebar-open="true"] .sisad-pdfme-designer-canvas {
+    padding-right: 16.8rem;
+  }
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-main {
+  padding-right: 0.125rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group {
+  margin-bottom: 0.45rem;
+  padding-bottom: 0.35rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group-title {
+  margin-bottom: 0.25rem;
+  padding: 0.15rem 0.25rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group-title-label {
+  font-size: 0.58rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group-title-count {
+  min-width: 0.85rem;
+  height: 0.8rem;
+  font-size: 0.5rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group-items[data-view-mode="compact"] {
+  gap: 0.22rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] {
+  min-height: 2.65rem;
+  gap: 0.17rem;
+  padding: 0.26rem 0.2rem;
+  border-radius: 0.5rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] > div {
+  width: 1.3rem;
+  height: 1.3rem;
+  border-radius: 0.4rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] > div svg {
+  width: 0.78rem;
+  height: 0.78rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn-label-title {
+  font-size: 0.5rem;
+  line-height: 1.12;
+}
+
+/* Compact catalog: force neutral cards even when runtime injects inline owner colors */
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-plugin-wrap {
+  background: transparent !important;
+  background-color: transparent !important;
+  border-color: transparent !important;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] {
+  background: linear-gradient(180deg, var(--color-white), var(--color-gray-50)) !important;
+  background-color: var(--color-white) !important;
+  border-color: var(--color-border-22) !important;
+  box-shadow:
+    inset 0 1px 0 var(--color-white-80),
+    0 1px 2px var(--color-gray-900-04) !important;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"]:hover {
+  background: linear-gradient(180deg, var(--color-white), var(--color-primary-100-90)) !important;
+  border-color: var(--color-primary-30) !important;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] > div,
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] > div > div,
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] .sisad-pdfme-designer-plugin-icon-fallback {
+  background: var(--color-white) !important;
+  background-color: var(--color-white) !important;
+  border-color: var(--color-border-14) !important;
+  box-shadow: none !important;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] > div svg,
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] > div > div svg,
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] .sisad-pdfme-designer-plugin-icon-fallback svg,
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] .sisad-pdfme-designer-plugin-icon-fallback {
+  color: var(--schema-owner-color, var(--color-gray-700)) !important;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn-label-title {
+  font-size: 0.46875rem;
+  letter-spacing: 0.01em;
+  line-height: 1.05;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-favorite-toggle {
+  top: 0.125rem;
+  right: 0.125rem;
+  width: 0.85rem;
+  height: 0.85rem;
+  font-size: 0.45rem;
+}
+
+/* Compact stage harmonization for right panel and toolbar */
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar {
+  width: clamp(15rem, 17.5vw, 17.25rem);
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"][data-sidebar-open="true"] .sisad-pdfme-designer-canvas {
+  padding-right: calc(clamp(15rem, 17.5vw, 17.25rem) + 0.9rem);
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar {
+  min-height: 2.25rem;
+  padding: 0.14rem 0.35rem;
+  gap: 0.35rem;
+  border-radius: 0.625rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-group,
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-zoom,
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-pager {
+  padding: 0.1rem 0.18rem;
+  gap: 0.1rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-icon-btn {
+  width: 1.32rem;
+  height: 1.32rem;
+  min-width: 1.32rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-text-btn {
+  height: 1.32rem;
+  font-size: 0.65625rem;
+  padding: 0 0.28rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-page-select {
+  min-width: 6.4rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-wrap {
+  padding: 0.25rem 0.28rem 0;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn {
+  height: 1.45rem;
+  padding: 0 0.25rem;
+  font-size: 0.53125rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn-icon {
+  width: 0.75rem;
+  height: 0.75rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn-label {
+  font-size: 0.5rem;
+  letter-spacing: 0.04em;
+}
+
+/* Extreme compact: icon-first panel switcher, labels via title/aria-label */
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn {
+  height: 1.3rem;
+  min-width: 1.6rem;
+  padding: 0 0.12rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn-content {
+  justify-content: center;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn-label {
+  display: none;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-layout-header {
+  padding: 0.25rem 0.32rem 0;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-sidebar-surface-header-title {
+  font-size: 0.75rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-sidebar-surface-header-badges .ant-tag {
+  min-height: 1rem;
+  padding: 0 0.26rem;
+  font-size: 0.56rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-layout-body {
+  padding: 0.24rem 0.32rem 0.35rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-context-summary-title {
+  font-size: 0.6875rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-context-summary-chip {
+  min-height: 0.9rem;
+  padding: 0 0.24rem;
+  font-size: 0.53125rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-content {
+  min-height: 1.72rem;
+  padding: 0.18rem 0.32rem;
+  gap: 0.25rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-content {
+  min-height: 1.52rem;
+  padding: 0.12rem 0.25rem;
+  gap: 0.18rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-icon {
+  width: 1.22rem;
+  height: 1.22rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-grip {
+  width: 1rem;
+  height: 1rem;
+  min-width: 1rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-value {
+  font-size: 0.6875rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-value {
+  font-size: 0.625rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-meta {
+  gap: 0.18rem !important;
+  margin-left: 0.14rem !important;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-meta-badge {
+  padding: 0 0.25rem !important;
+  border-radius: 999px !important;
+  font-size: 0.53125rem !important;
+  line-height: 1.2 !important;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-meta-badge {
+  padding: 0 0.18rem !important;
+  font-size: 0.46875rem !important;
+  line-height: 1.05 !important;
+}
+
+/* Extreme compact left catalog vertical rhythm */
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group {
+  margin-bottom: 0.28rem;
+  padding-bottom: 0.22rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group-title {
+  margin-bottom: 0.14rem;
+  padding: 0.08rem 0.2rem;
+}
+
+.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group-items[data-view-mode="compact"] {
+  gap: 0.14rem;
+}
+
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-actions .ant-btn {
+  min-width: 1rem;
+  width: 1rem;
+  height: 1rem;
+  padding: 0;
 }
 
 /* ── LIST VIEW ITEM STRUCTURE ──────────────────────────────── */
@@ -2907,17 +3545,6 @@ body {
   font-size: 0.6875rem;
   color: var(--color-text-secondary);
   line-height: 1.45;
-}
-
-/* ── RIGHT SIDEBAR TOGGLE INSIDE PANEL ───────────────────────────────
-   The toggle lives in the right sidebar panel header.
-   It inherits its base styles from .sisad-pdfme-designer-sidebar-toggle-btn
-   defined above and only overrides the positional specifics.
-   ─────────────────────────────────────────────────────────────────── */
-.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-right-sidebar-toggle-btn {
-  position: static;
-  flex-shrink: 0;
-  margin-left: auto;
 }
 
 /* ═══════════════════════════════════════════════════════════════════
@@ -4371,4 +4998,393 @@ body {
   .sisad-pdfme-designer-compact-config-panel-actions {
     grid-template-columns: 1fr;
   }
+}
+
+/* ════════════════════════════════════════════════════════════════
+   RIGHT SIDEBAR — COMPACT DESIGN CORRECTIONS  (2026-04-28)
+   Fixes: panel-switcher clipping · header-card layout · align-widget
+          overflow · color-picker size · compact-panel title · spacing
+   ════════════════════════════════════════════════════════════════ */
+
+/* ── 1. Panel switcher — prevent label clipping ─────────────────── */
+
+.sisad-pdfme-designer-right-sidebar-panel-switcher-wrap {
+  padding: 0.3125rem 0.375rem 0.25rem;
+}
+
+.sisad-pdfme-designer-right-sidebar-panel-switcher {
+  gap: 0.125rem;
+  padding: 0.125rem;
+}
+
+/* Make each tab slightly shorter so 4 tabs fit in ~290 px */
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn {
+  height: 1.625rem;
+  padding: 0 0.1875rem;
+  font-size: 0.5rem;          /* tighter caps text */
+  letter-spacing: 0.04em;
+  overflow: hidden;
+}
+
+/* Icon is always visible; clamp label to available space */
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn-content {
+  gap: 0.1875rem;
+  overflow: hidden;
+  min-width: 0;
+}
+
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn-icon {
+  flex-shrink: 0;
+}
+
+.sisad-pdfme-designer-right-sidebar-panel-switcher-btn-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
+}
+
+/* ── 2. Detail header card — compacter layout ───────────────────── */
+
+.sisad-pdfme-designer-detail-header-card {
+  padding: 0.4375rem 0.5625rem;
+  margin-bottom: 0.3125rem;
+}
+
+/* Head row: badge dot + title + type tag — keep on one line */
+.sisad-pdfme-designer-detail-header-card-head {
+  gap: 0.3125rem;
+  margin-bottom: 0.1875rem;
+  flex-wrap: nowrap;
+  align-items: baseline;
+}
+
+.sisad-pdfme-designer-detail-header-card-title {
+  font-size: 0.75rem;          /* down from 0.8125rem */
+  font-weight: 700;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Title + tag in a row, keep wrapping controlled */
+.sisad-pdfme-designer-detail-header-card-title-wrap {
+  gap: 0.25rem;
+  flex-wrap: nowrap;
+  align-items: baseline;
+  overflow: hidden;
+  min-width: 0;
+}
+
+/* Type tag beside the title */
+.sisad-pdfme-designer-detail-header-card-tag-base {
+  flex-shrink: 0;
+  font-size: 0.5625rem;
+  padding-inline: 0.375rem;
+  line-height: 1.6;
+}
+
+/* State rows — tighter gaps and margin */
+.sisad-pdfme-designer-detail-header-card-state-row {
+  gap: 0.1875rem;
+  margin-bottom: 0.1875rem;
+}
+
+.sisad-pdfme-designer-detail-header-card-state-tag {
+  font-size: 0.5625rem;
+  padding-inline: 0.3125rem;
+  line-height: 1.6;
+}
+
+/* Stats row at the bottom — compact pill layout */
+.sisad-pdfme-designer-detail-header-card-stats {
+  gap: 0.1875rem;
+  margin-top: 0.25rem;
+}
+
+.sisad-pdfme-designer-detail-header-card-stat {
+  padding: 0.125rem 0.375rem;
+  gap: 0.1875rem;
+}
+
+.sisad-pdfme-designer-detail-header-card-stat-value {
+  font-size: 0.6875rem;
+}
+
+.sisad-pdfme-designer-detail-header-card-stat-label {
+  font-size: 0.5rem;
+}
+
+/* ── 3. Section cards — tighter head & body ─────────────────────── */
+
+.sisad-pdfme-designer-detail-section-card {
+  margin-bottom: 0.125rem;
+  border-radius: 0.5rem;
+}
+
+.sisad-pdfme-designer-detail-section-card-head {
+  padding: 0.25rem 0.4375rem;
+  gap: 0.25rem;
+}
+
+.sisad-pdfme-designer-detail-section-card-body[data-collapsed="false"] {
+  padding: 0.3125rem 0.4375rem 0.375rem;
+}
+
+/* Form items inside sections — tightest margin */
+.sisad-pdfme-designer-right-sidebar .ant-form-item {
+  margin-bottom: 0.375rem;
+}
+
+.sisad-pdfme-designer-right-sidebar .ant-form-item-label {
+  padding-bottom: 0.0625rem;
+}
+
+.sisad-pdfme-designer-right-sidebar .ant-form-item-label > label {
+  font-size: 0.5625rem;
+  font-weight: 600;
+  color: var(--color-gray-600);
+  letter-spacing: 0.02em;
+  line-height: 1.3;
+}
+
+/* ── 4. Align widget — two rows of 4 instead of one row of 8 ────── */
+
+.sisad-pdfme-designer-align-widget-grid {
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.1875rem;
+  row-gap: 0.1875rem;
+}
+
+.sisad-pdfme-designer-align-btn {
+  min-height: 1.5rem;    /* down from 1.75rem */
+  min-width: 1.5rem;
+  padding: 0;
+}
+
+/* ── 5. Formatter button group — tighter icons ──────────────────── */
+
+.sisad-pdfme-designer-button-group {
+  gap: 0.125rem;
+  row-gap: 0.125rem;
+}
+
+.sisad-pdfme-designer-button-auto {
+  min-height: 1.5rem;
+  min-width: 1.5rem;
+  padding: 0;
+}
+
+/* ── 6. Color picker — smaller trigger buttons ──────────────────── */
+
+.sisad-pdfme-designer-color-picker-container {
+  gap: 0.25rem;
+}
+
+.sisad-pdfme-designer-color-picker-trigger {
+  width: 1.625rem;
+  height: 1.625rem;
+  min-width: 1.625rem;
+}
+
+.sisad-pdfme-designer-color-picker-hex {
+  height: 1.625rem;
+  font-size: 0.6875rem;
+}
+
+.sisad-pdfme-designer-color-picker-preview {
+  width: 0.625rem;
+  height: 0.625rem;
+}
+
+/* ── 7. Compact config panel (Conexiones) — scale down typography ── */
+
+.sisad-pdfme-designer-compact-config-panel {
+  padding: 0.5rem;
+  gap: 0.375rem;
+}
+
+.sisad-pdfme-designer-compact-config-panel-title {
+  font-size: 0.71875rem;   /* down from 0.875rem */
+  font-weight: 700;
+}
+
+.sisad-pdfme-designer-compact-config-panel-description {
+  font-size: 0.625rem;     /* down from 0.75rem */
+  line-height: 1.35;
+  margin-top: 0.125rem;
+}
+
+.sisad-pdfme-designer-compact-config-panel-summary {
+  padding: 0.3125rem 0.5rem;
+}
+
+.sisad-pdfme-designer-compact-config-panel-summary-text {
+  font-size: 0.625rem;     /* down from 0.75rem */
+  line-height: 1.35;
+}
+
+.sisad-pdfme-designer-compact-config-panel-actions {
+  grid-template-columns: 1fr;   /* stack vertically — more readable in narrow sidebar */
+  gap: 0.25rem;
+}
+
+.sisad-pdfme-designer-schema-config-switch-row {
+  min-height: 1.5rem;
+  padding: 0.125rem 0.375rem;
+  font-size: 0.6875rem;
+}
+
+.sisad-pdfme-designer-compact-config-panel-footer {
+  gap: 0.375rem;
+}
+
+/* ── 8. Layout header — tighter back-button row ─────────────────── */
+
+.sisad-pdfme-designer-right-sidebar-layout-header {
+  padding: 0.25rem 0.375rem 0.1875rem;
+  gap: 0.25rem;
+}
+
+.sisad-pdfme-designer-right-sidebar-layout-header-divider {
+  margin-top: 0.25rem;
+  margin-bottom: 0;
+}
+
+.sisad-pdfme-designer-detail-view-title {
+  font-size: 0.6875rem;    /* down from 0.75rem */
+  font-weight: 700;
+}
+
+/* ── 9. Layout body — smaller top padding in detail mode ─────────── */
+
+.sisad-pdfme-designer-right-sidebar[data-panel-mode='detail']
+  .sisad-pdfme-designer-right-sidebar-layout-body {
+  padding: 0.25rem 0.375rem 0.375rem;
+}
+
+.sisad-pdfme-designer-right-sidebar-layout-body {
+  padding: 0.3125rem 0.375rem 0.375rem;
+}
+
+/* ── 10. Inner grid gutters (ant col) — even tighter ────────────── */
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell .ant-col {
+  padding-left: 0.125rem;
+  padding-right: 0.125rem;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell .ant-row {
+  margin-left: -0.125rem;
+  margin-right: -0.125rem;
+}
+
+/* ── 11. Dynamic font checkbox row — fix native label layout ─────── */
+
+.sisad-pdfme-designer-right-sidebar label[style*="display: flex"] {
+  font-size: 0.6875rem;
+  color: var(--text-secondary);
+  align-items: center;
+  gap: 0.375rem;
+  cursor: pointer;
+}
+
+/* ── Reduced-motion additions ────────────────────────────────────── */
+
+@media (prefers-reduced-motion: reduce) {
+  .sisad-pdfme-designer-right-sidebar-panel-switcher-btn,
+  .sisad-pdfme-designer-align-btn,
+  .sisad-pdfme-designer-button-auto,
+  .sisad-pdfme-designer-color-picker-trigger,
+  .sisad-pdfme-designer-compact-config-panel {
+    transition-duration: 1ms;
+    animation: none;
+  }
+}
+
+.sisad-pdfme-comments-rail-thread {
+  border: 1px solid var(--sisad-pdfme-border);
+  border-radius: 12px;
+  background: var(--sisad-pdfme-surface);
+  box-shadow: var(--sisad-pdfme-shadow-sm);
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.sisad-pdfme-comments-rail-thread-active {
+  border-color: var(--sisad-pdfme-accent);
+  background: var(--sisad-pdfme-accent-soft);
+}
+
+.sisad-pdfme-comments-rail-thread-head,
+.sisad-pdfme-comments-rail-reply-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.sisad-pdfme-comments-rail-thread-author,
+.sisad-pdfme-comments-rail-reply-author {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.sisad-pdfme-comments-rail-thread-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+}
+
+.sisad-pdfme-comments-rail-reply-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  flex: 0 0 auto;
+}
+
+.sisad-pdfme-comments-rail-thread-badges {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+}
+
+.sisad-pdfme-comments-rail-thread-meta-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.sisad-pdfme-comments-rail-thread-meta-pill {
+  border-radius: 999px;
+  padding: 2px 8px;
+  font-size: 12px;
+  background: var(--sisad-pdfme-surface-soft);
+  color: var(--sisad-pdfme-text-muted);
+}
+
+.sisad-pdfme-comments-rail-thread-replies {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 2px;
+  padding-left: 12px;
+  border-left: 2px solid rgba(37, 99, 235, 0.18);
+}
+
+.sisad-pdfme-comments-rail-reply {
+  border: 1px solid rgba(37, 99, 235, 0.12);
+  border-radius: 10px;
+  padding: 10px;
+  background: rgba(255, 255, 255, 0.82);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }

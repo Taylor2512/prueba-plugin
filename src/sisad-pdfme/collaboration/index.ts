@@ -33,7 +33,6 @@ const updateSchemaPages = (state: CollaborationState, schemas: SchemaForUI[][]) 
 const mapSchemaState = (
   state: CollaborationState,
   schemaUid: string,
-  // eslint-disable-next-line no-unused-vars
   updater: (_schema: SchemaForUI) => SchemaForUI,
 ) => {
   const normalizedSchemaUid = normalizeText(schemaUid);

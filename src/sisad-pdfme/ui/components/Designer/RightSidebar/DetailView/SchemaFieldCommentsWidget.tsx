@@ -11,29 +11,60 @@ import {
 import { uuid } from '../../../../helper.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import type { SchemaComment } from '../../../../designerEngine.js';
+import { InspectorEmptyState } from './InspectorPrimitives.js';
 
 type FieldCommentsWidgetProps = PropPanelWidgetProps & {
   activeSchema: SchemaForUI;
   changeSchemas: (_objs: { key: string; value: unknown; schemaId: string }[]) => void;
   designerEngine?: { collaboration?: { actorId?: string; actorName?: string; actorColor?: string } };
+  composerPlaceholder?: string;
+  addLabel?: React.ReactNode;
+  emptyLabel?: React.ReactNode;
+  emptyDescription?: React.ReactNode;
+  replyPlaceholder?: string;
+  replyLabel?: React.ReactNode;
+  resolvedLabel?: React.ReactNode;
+  openLabel?: React.ReactNode;
 };
 
 const normalizeComments = (value: unknown): SchemaComment[] =>
   Array.isArray(value) ? (value as SchemaComment[]) : [];
 
+const createTimestamp = () => Date.now();
+
+const COMMENT_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat('es-ES', {
+  day: '2-digit',
+  month: 'short',
+  hour: '2-digit',
+  minute: '2-digit',
+});
+
 const formatTimestamp = (ts?: number): string => {
   if (!ts || !Number.isFinite(ts)) return '';
   try {
-    return new Intl.DateTimeFormat('es-ES', {
-      day: '2-digit',
-      month: 'short',
-      hour: '2-digit',
-      minute: '2-digit',
-    }).format(new Date(ts));
+    return COMMENT_TIMESTAMP_FORMATTER.format(new Date(ts));
   } catch {
     return '';
   }
 };
+
+const resolveText = (value: React.ReactNode, fallback: string) =>
+  typeof value === 'string' && value.trim() ? value : fallback;
+
+const buildReplyComment = (args: {
+  actorId: string;
+  actorName: string;
+  actorColor?: string;
+  text: string;
+}) => ({
+  id: `reply-${uuid()}`,
+  authorId: args.actorId,
+  authorName: args.actorName,
+  authorColor: args.actorColor,
+  text: args.text,
+  timestamp: createTimestamp(),
+  resolved: false,
+});
 
 /**
  * Per-field inspector comments tab.
@@ -46,6 +77,14 @@ const SchemaFieldCommentsWidget = ({
   activeSchema,
   changeSchemas,
   designerEngine,
+  composerPlaceholder = 'Escribe un comentario sobre este campo…',
+  addLabel = 'Agregar',
+  emptyLabel = 'Sin comentarios en este campo',
+  emptyDescription = 'Crea el primer hilo para este campo.',
+  replyPlaceholder = 'Responder…',
+  replyLabel = 'Respuestas',
+  resolvedLabel = 'Resuelto',
+  openLabel = 'Abierto',
 }: FieldCommentsWidgetProps) => {
   const [newCommentText, setNewCommentText] = useState('');
   const [replyTexts, setReplyTexts] = useState<Record<string, string>>({});
@@ -72,6 +111,9 @@ const SchemaFieldCommentsWidget = ({
     setNewCommentText('');
   };
 
+  const resolvedEmptyLabel = resolveText(emptyLabel, 'Sin comentarios en este campo');
+  const resolvedEmptyDescription = resolveText(emptyDescription, 'Crea el primer hilo para este campo.');
+
   const handleResolveToggle = (commentId: string, resolved: boolean) => {
     const next = comments.map((c) => (c.id === commentId ? { ...c, resolved } : c));
     persistComments(next);
@@ -84,17 +126,14 @@ const SchemaFieldCommentsWidget = ({
   const handleAddReply = (commentId: string) => {
     const text = (replyTexts[commentId] || '').trim();
     if (!text) return;
-    const reply = {
-      id: `reply-${uuid()}`,
-      authorId: actorId,
-      authorName: actorName,
-      authorColor: actorColor,
-      text,
-      timestamp: Date.now(),
-      resolved: false,
-    };
     const existingComment = comments.find((c) => c.id === commentId);
     if (!existingComment) return;
+    const reply = buildReplyComment({
+      actorId,
+      actorName,
+      actorColor,
+      text,
+    });
     const next = upsertById(
       comments,
       {
@@ -115,7 +154,7 @@ const SchemaFieldCommentsWidget = ({
         <Input.TextArea
           value={newCommentText}
           onChange={(e) => setNewCommentText(e.target.value)}
-          placeholder="Escribe un comentario sobre este campo…"
+          placeholder={composerPlaceholder}
           autoSize={{ minRows: 2, maxRows: 4 }}
           onKeyDown={(e) => {
             if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
@@ -132,16 +171,18 @@ const SchemaFieldCommentsWidget = ({
           disabled={!newCommentText.trim()}
           className={cls('field-comments-add-btn')}
         >
-          Agregar
+          {addLabel}
         </Button>
       </div>
 
       {/* Thread list */}
       {comments.length === 0 ? (
-        <div className={cls('field-comments-empty')}>
-          <MessageSquare size={18} />
-          <span>Sin comentarios en este campo</span>
-        </div>
+        <InspectorEmptyState
+          icon={<MessageSquare size={18} />}
+          label={resolvedEmptyLabel}
+          description={resolvedEmptyDescription}
+          classNameSuffix="field-comments-empty"
+        />
       ) : (
         <div className={cls('field-comments-list')}>
           {comments.map((comment) => {
@@ -169,7 +210,7 @@ const SchemaFieldCommentsWidget = ({
                     </span>
                     {resolved ? (
                       <Tag color="success" style={{ margin: 0 }}>
-                        Resuelto
+                        {resolvedLabel}
                       </Tag>
                     ) : null}
                   </Space>
@@ -240,7 +281,7 @@ const SchemaFieldCommentsWidget = ({
                       onChange={(e) =>
                         setReplyTexts((prev) => ({ ...prev, [comment.id]: e.target.value }))
                       }
-                      placeholder="Responder…"
+                      placeholder={replyPlaceholder}
                       onPressEnter={() => handleAddReply(comment.id)}
                     />
                     <Button
@@ -248,7 +289,7 @@ const SchemaFieldCommentsWidget = ({
                       onClick={() => handleAddReply(comment.id)}
                       disabled={!(replyTexts[comment.id] || '').trim()}
                     >
-                      Responder
+                      {replyLabel}
                     </Button>
                   </div>
                 ) : null}

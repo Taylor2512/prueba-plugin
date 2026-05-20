@@ -1,5 +1,5 @@
-import { cloneDeep, getInputFromTemplate } from '@sisad-pdfme/common'
-import { checkbox, select, text, signature } from '@sisad-pdfme/schemas'
+import { cloneDeep, getB64BasePdf, getInputFromTemplate } from '@sisad-pdfme/common'
+import { checkbox, select, text, signature, builtInSchemaDefinitions, flatSchemaPlugins } from '@sisad-pdfme/schemas'
 import { createInitialPdfmeTemplate } from '../template.js'
 import { decorateCollaborationUsers, decorateTemplateWithCollaboration } from '../domain/collaborationAppearance.js'
 
@@ -17,6 +17,34 @@ const LAB_PDFS = {
   multiuser: getTemplatePdfUrl('Jhonn_Taylor_Montenegro_CV_ES.pdf'),
   generator: getTemplatePdfUrl('sample-multilingual-text.pdf'),
 }
+
+const SORTED_SCHEMA_DEFINITIONS = builtInSchemaDefinitions
+  .slice()
+  .sort((a, b) => `${a.category}-${a.label}`.localeCompare(`${b.category}-${b.label}`))
+
+const SHOWCASE_GRID_POSITIONS = [
+  { x: 18, y: 24 },
+  { x: 112, y: 24 },
+  { x: 18, y: 58 },
+  { x: 112, y: 58 },
+  { x: 18, y: 92 },
+  { x: 112, y: 92 },
+  { x: 18, y: 126 },
+  { x: 112, y: 126 },
+  { x: 18, y: 160 },
+  { x: 112, y: 160 },
+  { x: 18, y: 194 },
+  { x: 112, y: 194 },
+  { x: 18, y: 228 },
+  { x: 112, y: 228 },
+]
+
+const sanitizeIdentifier = (value) =>
+  String(value || 'lab-example')
+    .trim()
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '') || 'lab-example'
 
 const createSchema = (baseSchema, overrides = {}) => ({
   ...cloneDeep(baseSchema),
@@ -55,6 +83,146 @@ const createSignatureSchema = (overrides = {}) =>
     height: 24,
     ...overrides,
   })
+
+const chunkItems = (items, size) => {
+  const chunks = []
+  for (let index = 0; index < items.length; index += size) {
+    chunks.push(items.slice(index, index + size))
+  }
+  return chunks
+}
+
+const createSchemaByType = (type, overrides = {}) => {
+  const plugin = flatSchemaPlugins[type]
+  if (!plugin?.propPanel?.defaultSchema) {
+    throw new Error(`Schema type not registered for lab example generation: ${type}`)
+  }
+
+  return createSchema(plugin.propPanel.defaultSchema, {
+    position: { x: 18, y: 24 },
+    name: `${sanitizeIdentifier(type)}_field`,
+    schemaUid: `schema-${sanitizeIdentifier(type)}`,
+    ...overrides,
+  })
+}
+
+const SCHEMA_EXAMPLE_OVERRIDES = {
+  text: {
+    name: 'customer_full_name',
+    content: 'Taylor Demo',
+    width: 92,
+    height: 12,
+  },
+  multiVariableText: {
+    name: 'approval_summary',
+    text: 'Cliente {customer_name} · Plan {plan}',
+    content: '{customer_name}',
+    width: 110,
+    height: 14,
+  },
+  select: {
+    name: 'contract_stage',
+    content: 'Aprobado',
+    options: ['Pendiente', 'Aprobado', 'Rechazado'],
+    width: 92,
+    height: 12,
+  },
+  checkbox: {
+    name: 'accept_terms',
+    content: 'true',
+    width: 8,
+    height: 8,
+  },
+  radioGroup: {
+    name: 'notify_customer',
+    group: 'delivery-notifications',
+    content: 'true',
+    width: 8,
+    height: 8,
+  },
+  signature: {
+    name: 'review_signature',
+    width: 60,
+    height: 24,
+  },
+  image: {
+    name: 'company_logo',
+    width: 42,
+    height: 42,
+  },
+  svg: {
+    name: 'process_icon',
+    width: 42,
+    height: 42,
+  },
+  line: {
+    name: 'divider_line',
+    width: 94,
+    height: 0.75,
+  },
+  rectangle: {
+    name: 'highlight_box',
+    width: 94,
+    height: 32,
+  },
+  ellipse: {
+    name: 'approval_badge',
+    width: 52,
+    height: 28,
+  },
+  table: {
+    name: 'line_items',
+    width: 155,
+    height: 28,
+  },
+  dateTime: {
+    name: 'approval_timestamp',
+    width: 68,
+    height: 12,
+  },
+  date: {
+    name: 'approval_date',
+    width: 54,
+    height: 12,
+  },
+  time: {
+    name: 'approval_time',
+    width: 36,
+    height: 12,
+  },
+}
+
+const createSchemaShowcasePages = ({
+  definitions = SORTED_SCHEMA_DEFINITIONS,
+  scope,
+  ownerRecipientId,
+  fileId = `${sanitizeIdentifier(scope)}-showcase`,
+  fileTemplateId = fileId,
+  startingPageNumber = 1,
+  auditOffset = 0,
+}) =>
+  chunkItems(definitions, SHOWCASE_GRID_POSITIONS.length).map((pageDefinitions, pageIndex) =>
+    pageDefinitions.map((definition, itemIndex) => {
+      const slug = sanitizeIdentifier(definition.type)
+      return createSchemaByType(definition.type, {
+        ...SCHEMA_EXAMPLE_OVERRIDES[definition.type],
+        position: cloneDeep(SHOWCASE_GRID_POSITIONS[itemIndex]),
+        name: `${sanitizeIdentifier(scope)}_${slug}`,
+        schemaUid: `${sanitizeIdentifier(scope)}-${slug}`,
+        fileId,
+        fileTemplateId,
+        pageNumber: startingPageNumber + pageIndex,
+        ownerMode: 'single',
+        ownerRecipientId,
+        ...createAuditMetadata(ownerRecipientId, ownerRecipientId, auditOffset + pageIndex * 10000 + itemIndex * 1000),
+      })
+    }),
+  )
+
+const appendTemplatePages = (template, extraPages) => ({
+  ...template,
+  schemas: [...(template.schemas || []), ...cloneDeep(extraPages)],
+})
 
 const createTemplate = (schemas, options = {}) => {
   const initialTemplate = createInitialPdfmeTemplate()
@@ -106,6 +274,32 @@ const createCollaboration = (activeUserId, users, metadata = {}) => ({
   enabled: metadata.enabled ?? true,
   users: decorateCollaborationUsers(users),
 })
+
+const EXAMPLE_ACTIONS_BY_MODE = {
+  designer: [
+    'open-example',
+    'download-template',
+    'generate-pdf',
+    'pdf2size',
+    'pdf2img',
+    'img2pdf',
+    'add-page',
+    'fit-page',
+    'fit-width',
+    'add-schema',
+    'reset-template',
+  ],
+  form: [
+    'open-example',
+    'download-template',
+    'generate-pdf',
+    'pdf2size',
+    'pdf2img',
+    'img2pdf',
+    'reset-template',
+  ],
+  viewer: ['open-example', 'download-template', 'reset-template'],
+}
 
 const createExample = ({
   id,
@@ -449,27 +643,95 @@ const generatorRuntimeTemplate = createTemplate([
   ],
 ], { basePdf: LAB_PDFS.generator, pageCount: 3 })
 
+const designerShowcasePages = createSchemaShowcasePages({
+  scope: 'designer-showcase',
+  ownerRecipientId: 'basic-user-1',
+  auditOffset: 120000,
+})
+
+const collaborationShowcasePages = createSchemaShowcasePages({
+  scope: 'collaboration-showcase',
+  ownerRecipientId: 'ops-user-1',
+  fileId: 'enterprise-contract',
+  fileTemplateId: 'enterprise-contract',
+  startingPageNumber: 3,
+  auditOffset: 240000,
+})
+
+const generatorShowcasePages = createSchemaShowcasePages({
+  scope: 'generator-showcase',
+  ownerRecipientId: 'generator-user-1',
+  auditOffset: 360000,
+})
+
+const basicDesignerShowcaseTemplate = appendTemplatePages(basicDesignerTemplate, designerShowcasePages)
+const enterpriseCollaborationShowcaseTemplate = appendTemplatePages(
+  appendTemplatePages(enterpriseCollaborationTemplate, collaborationShowcasePages),
+  multiuserCollaborationTemplate.schemas,
+)
+const generatorRuntimeShowcaseTemplate = appendTemplatePages(generatorRuntimeTemplate, generatorShowcasePages)
+
+const BASIC_SIGNATURE_PROVIDERS = [
+  {
+    key: 'provider.remoto.tenantA',
+    label: 'Tenant A Sign',
+    description: 'Proveedor remoto embebido para pruebas del lab.',
+    capabilities: {
+      supportsVisibleSignature: true,
+      supportsWebhook: true,
+      supportsPolling: false,
+      supportsCertificateMetadata: false,
+      supportsReason: true,
+      supportsLocation: false,
+      supportsOtp: true,
+      supportsBiometric: false,
+    },
+    defaultConfig: {
+      flow: 'embedded',
+      visibleSignature: true,
+      baseUrl: 'https://firma.tenant-a.example.com',
+    },
+    configFields: [
+      { key: 'baseUrl', label: 'Base URL', type: 'text', required: true },
+      {
+        key: 'flow',
+        label: 'Flow',
+        type: 'select',
+        required: true,
+        options: [
+          { label: 'Embedded', value: 'embedded' },
+          { label: 'Redirect', value: 'redirect' },
+        ],
+      },
+      { key: 'visibleSignature', label: 'Firma visible', type: 'switch' },
+    ],
+  },
+]
+
 const LAB_EXAMPLES = [
   createExample({
     id: 'basic-designer',
     path: '/lab/basic-designer',
-    title: 'Editor básico',
-    description: 'Arranca en modo designer sobre un PDF real para crear, mover y revisar campos.',
-    status: 'Listo para editar sobre sample-a4.pdf',
+    title: 'Editor integral',
+    description: 'Ruta integral en modo designer con todos los schemas disponibles, alta de páginas, selección y edición sobre PDF real.',
+    status: 'Listo para editar, agregar schemas y recorrer todos los casos de uso en una sola ruta',
     defaultMode: 'designer',
     initialSchemaType: 'text',
     collaboration: createCollaboration('basic-user-1', [
       { id: 'basic-user-1', name: 'Diseño', role: 'owner', team: 'lab-team', color: '#2563EB' },
       { id: 'basic-user-2', name: 'QA', role: 'reviewer', team: 'lab-team', color: '#D946EF' },
     ], { sessionId: 'basic-designer-session', actorId: 'basic-user-1' }),
-    template: basicDesignerTemplate,
+    template: basicDesignerShowcaseTemplate,
+    runtimeOptions: {
+      signatureProviders: BASIC_SIGNATURE_PROVIDERS,
+    },
   }),
   createExample({
     id: 'enterprise-collaboration',
     path: '/lab/enterprise-collaboration',
-    title: 'Enterprise con colaboración',
-    description: 'Incluye owners, comentarios y bloqueo sobre un convenio real para revisar contratos multiusuario.',
-    status: 'Preparado para probar metadatos colaborativos sobre PDF real',
+    title: 'Colaboración integral',
+    description: 'Ruta integral para ownership, comentarios, locks y revisión colaborativa, incluyendo showcase completo de schemas en contexto enterprise.',
+    status: 'Preparado para validar colaboración, bloqueo y cobertura total de schemas sobre PDF real',
     defaultMode: 'designer',
     initialSchemaType: 'text',
     collaboration: createCollaboration('ops-user-1', [
@@ -477,14 +739,29 @@ const LAB_EXAMPLES = [
       { id: 'legal-user-1', name: 'Equipo Legal', role: 'reviewer', team: 'legal-team', color: '#D946EF' },
       { id: 'ops-user-1', name: 'Operaciones', role: 'admin', team: 'ops-team', color: '#F97316' },
     ], { sessionId: 'enterprise-collaboration-session', actorId: 'ops-user-1' }),
-    template: enterpriseCollaborationTemplate,
+    template: enterpriseCollaborationShowcaseTemplate,
+  }),
+  createExample({
+    id: 'multiuser-collaboration',
+    path: '/lab/multiuser-collaboration',
+    title: 'Colaboración multiusuario',
+    description: 'Ruta integral para validar ownership, comentarios, bloqueo y vista activa por usuario sobre un PDF colaborativo real.',
+    status: 'Preparado para validar la interacción multiusuario con ownership y comentarios en contexto compartido',
+    defaultMode: 'designer',
+    initialSchemaType: 'text',
+    collaboration: createCollaboration('sales-user-1', [
+      { id: 'sales-user-1', name: 'Ventas Ejecutivas', role: 'editor', team: 'sales-team', color: '#2563EB' },
+      { id: 'legal-user-1', name: 'Legal', role: 'reviewer', team: 'legal-team', color: '#D946EF' },
+      { id: 'ops-user-1', name: 'Operaciones', role: 'admin', team: 'ops-team', color: '#F97316' },
+    ], { sessionId: 'multiuser-collaboration-session', actorId: 'sales-user-1' }),
+    template: multiuserCollaborationTemplate,
   }),
   createExample({
     id: 'multi-document-routing',
     path: '/lab/multi-document-routing',
-    title: 'Multidocumento y destinatarios',
-    description: 'Distribuye schemas por archivo, página y destinatario con dos PDFs precargados.',
-    status: 'Listo para validar asignaciones por documento, página y destinatario',
+    title: 'Multidocumento integral',
+    description: 'Ruta integral para asignaciones por documento, página y destinatario con carga de múltiples PDFs y handoff entre archivos.',
+    status: 'Listo para validar rutas de documentos, destinatarios y descarga/exportación en un solo flujo',
     defaultMode: 'designer',
     initialSchemaType: 'text',
     collaboration: createCollaboration('recipient-1', [
@@ -499,33 +776,18 @@ const LAB_EXAMPLES = [
     },
   }),
   createExample({
-    id: 'multiuser-collaboration',
-    path: '/lab/multiuser-collaboration',
-    title: 'Colaboración multiusuario',
-    description: 'Muestra ownership individual, grupal y compartido sobre un PDF real con registro de usuarios y roles.',
-    status: 'Listo para validar ownership por usuario y grupos sobre PDF real',
-    defaultMode: 'designer',
-    initialSchemaType: 'text',
-    collaboration: createCollaboration('sales-user-1', [
-      { id: 'sales-user-1', name: 'Ventas Ejecutivas', role: 'owner', team: 'sales-team', color: '#2563EB' },
-      { id: 'legal-user-1', name: 'Revisor Legal', role: 'reviewer', team: 'legal-team', color: '#D946EF' },
-      { id: 'ops-user-1', name: 'Operaciones', role: 'approver', team: 'ops-team', color: '#F97316' },
-    ], { sessionId: 'multiuser-collaboration-session', actorId: 'sales-user-1' }),
-    template: multiuserCollaborationTemplate,
-  }),
-  createExample({
     id: 'generator-runtime',
     path: '/lab/generator-runtime',
-    title: 'Generación y conversión',
-    description: 'Arranca en modo form sobre un PDF real para probar generate, pdf2size, pdf2img e img2pdf.',
-    status: 'Listo para generar PDF y probar conversiones sobre documento real',
+    title: 'Runtime integral',
+    description: 'Ruta integral en modo form para probar captura, generación, conversión y revisión de todos los schemas disponibles.',
+    status: 'Listo para generar PDF, convertir y validar todos los schemas desde un solo runtime',
     defaultMode: 'form',
     initialSchemaType: 'select',
     collaboration: createCollaboration('generator-user-1', [
       { id: 'generator-user-1', name: 'Formulario', role: 'owner', team: 'automation-team', color: '#2563EB' },
       { id: 'generator-user-2', name: 'Conversión', role: 'reviewer', team: 'automation-team', color: '#D946EF' },
     ], { sessionId: 'generator-runtime-session', actorId: 'generator-user-1' }),
-    template: generatorRuntimeTemplate,
+    template: generatorRuntimeShowcaseTemplate,
   }),
 ]
 
@@ -535,6 +797,78 @@ const cloneExample = (example) => ({
   inputs: cloneDeep(example.inputs),
   runtimeOptions: cloneDeep(example.runtimeOptions),
 })
+
+const sanitizeDownloadName = sanitizeIdentifier
+
+export const getLabExampleDownloadFilename = (example) => {
+  const exampleId = sanitizeDownloadName(example?.id)
+  return `${exampleId}.json`
+}
+
+export const getLabExampleActions = (example) => {
+  const mode = String(example?.defaultMode || 'designer')
+  return EXAMPLE_ACTIONS_BY_MODE[mode] || EXAMPLE_ACTIONS_BY_MODE.designer
+}
+
+const inlineTemplateBasePdf = async (template) => {
+  if (!template) return template
+
+  const nextTemplate = cloneDeep(template)
+  nextTemplate.basePdf = await getB64BasePdf(nextTemplate.basePdf)
+  return nextTemplate
+}
+
+const inlineRuntimeOptionsBasePdfs = async (runtimeOptions) => {
+  if (!runtimeOptions) return null
+
+  const nextRuntimeOptions = cloneDeep(runtimeOptions)
+  if (!Array.isArray(nextRuntimeOptions.uploadedDocuments) || nextRuntimeOptions.uploadedDocuments.length === 0) {
+    return nextRuntimeOptions
+  }
+
+  nextRuntimeOptions.uploadedDocuments = await Promise.all(
+    nextRuntimeOptions.uploadedDocuments.map(async (document) => ({
+      ...document,
+      template: await inlineTemplateBasePdf(document.template),
+    })),
+  )
+
+  return nextRuntimeOptions
+}
+
+export const buildLabExampleDownloadBundle = async (example) => {
+  const safeExample = cloneExample(example)
+  const [template, runtimeOptions] = await Promise.all([
+    inlineTemplateBasePdf(safeExample.template),
+    inlineRuntimeOptionsBasePdfs(safeExample.runtimeOptions),
+  ])
+
+  return {
+    source: 'sisad-pdfme-lab',
+    version: 2,
+    assetEncoding: 'base64-inline',
+    exportedAt: new Date().toISOString(),
+    example: {
+      id: safeExample.id,
+      path: safeExample.path,
+      title: safeExample.title,
+      description: safeExample.description,
+      status: safeExample.status,
+      defaultMode: safeExample.defaultMode,
+      initialSchemaType: safeExample.initialSchemaType,
+    },
+    template,
+    inputs: safeExample.inputs,
+    collaboration: safeExample.collaboration,
+    runtimeOptions,
+    availableActions: getLabExampleActions(safeExample),
+  }
+}
+
+export const buildLabExampleDownloadHref = async (example) => {
+  const bundle = await buildLabExampleDownloadBundle(example)
+  return `data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(bundle, null, 2))}`
+}
 
 export const getLabExamples = () => LAB_EXAMPLES.map(cloneExample)
 

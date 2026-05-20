@@ -1,16 +1,31 @@
 import React from 'react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import { Badge, Tag, Tooltip } from 'antd';
+import { Badge, Tag } from 'antd';
 import { resolveSchemaTone } from '../../shared/schemaTone.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
+import { SidebarSurfaceHeader } from '../shared/SidebarSurfacePrimitives.js';
+import type { InspectorTag } from './InspectorPrimitives.js';
+import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
 
 type DetailHeaderCardProps = {
   activeSchema: SchemaForUI;
   schemaConfig?: SchemaDesignerConfig | null;
+  title?: React.ReactNode;
+  typeLabel?: React.ReactNode;
+  positionLabel?: React.ReactNode;
+  tags?: InspectorTag[];
+  maxVisibleTags?: number;
+  showType?: boolean;
+  showPosition?: boolean;
+  showStateTags?: boolean;
+  overflowTooltip?: string;
+  metaTooltip?: string;
+  leading?: React.ReactNode;
+  className?: string;
 };
 
-type StateTag = { label: string; color?: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue' };
+type StateTag = { label: string; color: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue' };
 
 /** Build the short metadata tooltip shown on the "+N" overflow indicator. */
 const buildMetaTooltip = (
@@ -42,99 +57,100 @@ const buildMetaTooltip = (
   return lines.join('\n') || 'Sin metadatos adicionales';
 };
 
-const DetailHeaderCard = ({
-  activeSchema,
-  schemaConfig,
-}: DetailHeaderCardProps) => {
-  const tone = resolveSchemaTone(activeSchema, '#7c3aed');
+export const buildDetailHeaderSummary = (
+  activeSchema: SchemaForUI,
+  schemaConfig: SchemaDesignerConfig | null | undefined,
+): { tags: InspectorTag[]; overflowTooltip: string; positionLabel: string; schemaName: string; schemaType: string } => {
   const schemaName = typeof activeSchema.name === 'string' ? activeSchema.name : 'Campo';
   const schemaType = typeof activeSchema.type === 'string' ? activeSchema.type : 'schema';
   const schemaHidden = (activeSchema as SchemaForUI & { hidden?: boolean }).hidden === true;
+  const ownerLabel =
+    typeof activeSchema.ownerRecipientName === 'string' && activeSchema.ownerRecipientName.trim()
+      ? activeSchema.ownerRecipientName.trim()
+      : typeof activeSchema.ownerRecipientId === 'string' && activeSchema.ownerRecipientId.trim()
+        ? activeSchema.ownerRecipientId.trim()
+        : '';
 
-  // ── Primary state tags (max 3 shown inline) ─────────────────────────────────
-  // Active config tags are surfaced here to avoid a second tag row.
-  const activeConfigTag: StateTag | null =
-    schemaConfig?.persistence?.enabled
-      ? { label: 'Guardar', color: 'processing' }
-      : schemaConfig?.api?.enabled
-        ? { label: 'API', color: 'blue' }
-        : null;
-
-  const stateTags: StateTag[] = [
-    !schemaName.trim() ? { label: 'Sin nombre', color: 'warning' } : null,
-    activeSchema.required ? { label: 'Requerido', color: 'error' } : null,
-    activeSchema.readOnly ? { label: 'Solo lectura', color: 'gold' } : null,
-    schemaHidden ? { label: 'Oculto', color: 'default' } : null,
-    activeConfigTag,
-  ].filter((t): t is StateTag => Boolean(t));
-
-  // Show at most 3 inline; collapse the rest behind a tooltip.
-  const MAX_VISIBLE = 3;
-  const visibleTags = stateTags.slice(0, MAX_VISIBLE);
-  const overflowCount = Math.max(0, stateTags.length - MAX_VISIBLE);
-  const metaTooltip = buildMetaTooltip(activeSchema, schemaConfig);
+  const stateTags: StateTag[] = [];
+  if (!schemaName.trim()) stateTags.push({ label: 'Sin nombre', color: 'warning' });
+  if (activeSchema.required) stateTags.push({ label: 'Requerido', color: 'error' });
+  if (activeSchema.readOnly) stateTags.push({ label: 'Solo lectura', color: 'gold' });
+  if (schemaHidden) stateTags.push({ label: 'Oculto', color: 'default' });
+  if (ownerLabel) stateTags.push({ label: `Owner: ${ownerLabel}`, color: 'processing' });
+  if (typeof activeSchema.ownerColor === 'string' && activeSchema.ownerColor.trim()) {
+    stateTags.push({ label: `Color: ${activeSchema.ownerColor.trim()}`, color: 'blue' });
+  }
 
   const posX = Number((activeSchema.position?.x ?? 0).toFixed(1));
   const posY = Number((activeSchema.position?.y ?? 0).toFixed(1));
 
-  return (
-    <div className={DESIGNER_CLASSNAME + 'detail-header-card'}>
-      {/* ── Identity row ── */}
-      <div className={DESIGNER_CLASSNAME + 'detail-header-card-head'}>
-        <Badge color={tone} />
-        <div className={DESIGNER_CLASSNAME + 'detail-header-card-title-wrap'}>
-          <Tooltip title={schemaName} placement="topLeft">
-            <span className={DESIGNER_CLASSNAME + 'detail-header-card-title'}>
-              {schemaName}
-            </span>
-          </Tooltip>
-          <Tooltip title={`Tipo: ${schemaType}`}>
-            <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-tag-base'}>
-              {schemaType}
-            </Tag>
-          </Tooltip>
-        </div>
-        {/* ── Compact position stat ── */}
-        <Tooltip title={`Posición X: ${posX} mm, Y: ${posY} mm`} placement="topRight">
-          <span className={DESIGNER_CLASSNAME + 'detail-header-card-pos'}>
-            {posX},{posY}
-          </span>
-        </Tooltip>
-      </div>
+  return {
+    tags: stateTags,
+    overflowTooltip: buildMetaTooltip(activeSchema, schemaConfig),
+    positionLabel: `${posX},${posY}`,
+    schemaName,
+    schemaType,
+  };
+};
 
-      {/* ── State tags row (progressive disclosure: max 3 + overflow badge) ── */}
-      {visibleTags.length > 0 || overflowCount > 0 ? (
-        <div className={DESIGNER_CLASSNAME + 'detail-header-card-state-row'}>
-          {visibleTags.map((tag) => (
-            <Tag
-              key={tag.label}
-              color={tag.color || 'default'}
-              className={DESIGNER_CLASSNAME + 'detail-header-card-state-tag'}
-            >
-              {tag.label}
-            </Tag>
-          ))}
-          {overflowCount > 0 ? (
-            <Tooltip title={metaTooltip} styles={{ root: { whiteSpace: 'pre-line', maxWidth: 260 } }}>
-              <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-state-tag is-overflow'}>
-                +{overflowCount}
-              </Tag>
-            </Tooltip>
-          ) : null}
-          {/* When all tags fit inline, still show a compact metadata anchor. */}
-          {(() => {
-            const shouldShowMetadataBadge = overflowCount === 0 && visibleTags.length > 0;
-            if (!shouldShowMetadataBadge) return null;
-            return (
-              <Tooltip title={metaTooltip} styles={{ root: { whiteSpace: 'pre-line', maxWidth: 260 } }}>
-                <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-state-tag is-overflow'}>
-                  ···
-                </Tag>
-              </Tooltip>
-            );
-          })()}
-        </div>
-      ) : null}
+const DetailHeaderCard = ({
+  activeSchema,
+  schemaConfig,
+  title,
+  typeLabel,
+  positionLabel,
+  tags,
+  maxVisibleTags = 3,
+  showType = true,
+  showPosition = true,
+  showStateTags = true,
+  overflowTooltip,
+  metaTooltip,
+  leading,
+  className,
+}: DetailHeaderCardProps) => {
+  const headerRef = React.useRef<HTMLDivElement | null>(null);
+  const { mode: headerDensity } = useResponsiveDensity(headerRef, {
+    comfortable: 350,
+    compact: 286,
+    mini: 232,
+  });
+  const tone = resolveSchemaTone(activeSchema, '#7c3aed');
+  const headerSummary = buildDetailHeaderSummary(activeSchema, schemaConfig);
+  const effectiveTags = tags || headerSummary.tags;
+  const adaptiveMaxVisibleTags =
+    headerDensity === 'mini' ? 0 : headerDensity === 'compact' ? Math.min(1, maxVisibleTags) : Math.min(2, maxVisibleTags);
+  const resolvedShowStateTags = showStateTags && headerDensity !== 'mini';
+  const resolvedShowPosition = showPosition && headerDensity !== 'mini';
+  const visibleTags = resolvedShowStateTags ? effectiveTags.slice(0, adaptiveMaxVisibleTags) : [];
+  const overflowCount = resolvedShowStateTags ? Math.max(0, effectiveTags.length - adaptiveMaxVisibleTags) : 0;
+  const resolvedOverflowTooltip = overflowTooltip || metaTooltip || headerSummary.overflowTooltip;
+
+  return (
+    <div ref={headerRef} data-detail-header-density={headerDensity}>
+      <SidebarSurfaceHeader
+        className={[DESIGNER_CLASSNAME + 'detail-header-card', className].filter(Boolean).join(' ')}
+        compact
+        leading={leading || <Badge color={tone} />}
+        title={title || headerSummary.schemaName}
+        subtitle={showType ? (typeLabel || headerSummary.schemaType) : resolvedShowPosition ? (positionLabel || headerSummary.positionLabel) : undefined}
+        badges={
+          resolvedShowStateTags
+            ? [
+                ...visibleTags.map((tag, index) => ({
+                  key: tag.key || `${String(tag.label)}-${String(tag.color || 'default')}-${index}`,
+                  label: tag.label,
+                  color: tag.color,
+                  tooltip: resolvedOverflowTooltip,
+                })),
+                ...(overflowCount > 0
+                  ? [{ key: 'overflow', label: `+${overflowCount}`, color: 'default' as const, tooltip: resolvedOverflowTooltip }]
+                  : []),
+              ]
+            : []
+        }
+        trailing={resolvedShowPosition ? <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-pos'}>{positionLabel || headerSummary.positionLabel}</Tag> : null}
+      />
     </div>
   );
 };

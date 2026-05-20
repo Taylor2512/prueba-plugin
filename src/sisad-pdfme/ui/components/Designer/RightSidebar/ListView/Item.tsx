@@ -125,6 +125,7 @@ const ItemActions = ({
   onToggleVisibility,
   onDelete,
   isHovered,
+  label,
 }: {
   readOnly?: boolean;
   required?: boolean;
@@ -132,6 +133,7 @@ const ItemActions = ({
   onToggleVisibility?: () => void;
   onDelete?: () => void;
   isHovered?: boolean;
+  label?: string;
 }) => (
   <div className={DESIGNER_CLASSNAME + 'list-view-item-actions'}>
     {readOnly ? (
@@ -158,9 +160,20 @@ const ItemActions = ({
     {onDelete && isHovered ? (
       <Tooltip title="Eliminar campo" placement="top">
         <button
-          onClick={(e) => { e.stopPropagation(); onDelete(); }}
+          type="button"
+          aria-label={`Eliminar campo ${label || ''}`.trim()}
+          onMouseDown={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+          }}
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            onDelete();
+          }}
           title="Eliminar campo"
-          className={DESIGNER_CLASSNAME + "button-auto"}
+          className={DESIGNER_CLASSNAME + 'button-auto'}
+          style={{ color: '#d92d20' }}
         >
           <Trash2 size={13} />
         </button>
@@ -270,43 +283,45 @@ const Item = React.memo(
             className={DESIGNER_CLASSNAME + 'list-view-item-grip'}
             icon={<GripVertical size={14} />} />
           <div className={DESIGNER_CLASSNAME + 'list-view-item-icon'}>{icon}</div>
-          <Text
-            className={DESIGNER_CLASSNAME + 'list-view-item-value'}
-            title={valueTooltip}
-            ellipsis={{ tooltip: valueTooltip }}>
-            <ItemStatusLabel
-              value={value}
-              status={status}
-              noKeyNameLabel={i18n('noKeyName')}
-              notUniqueLabel={i18n('notUniq')}
-            />
-          </Text>
-          {Array.isArray(metaBadges) && metaBadges.length > 0 ? (
-            <div
-              className={DESIGNER_CLASSNAME + 'list-view-item-meta'}
-              style={{ display: 'flex', gap: 6, flexWrap: 'wrap', marginLeft: 4 }}
-            >
-              {metaBadges.map((badge) => (
-                <span
-                  key={`${badge.label}-${badge.color || 'default'}`}
-                  className={DESIGNER_CLASSNAME + 'list-view-item-meta-badge'}
-                  style={{
-                    display: 'inline-flex',
-                    alignItems: 'center',
-                    padding: '1px 6px',
-                    borderRadius: 999,
-                    fontSize: 10,
-                    lineHeight: 1.4,
-                    color: badge.color || '#667085',
-                    background: badge.color ? `${badge.color}1A` : '#F2F4F7',
-                    border: `1px solid ${badge.color ? `${badge.color}4D` : '#D0D5DD'}`,
-                  }}
-                >
-                  {badge.label}
-                </span>
-              ))}
-            </div>
-          ) : null}
+          <div className={DESIGNER_CLASSNAME + 'list-view-item-main'}>
+            <Text
+              className={DESIGNER_CLASSNAME + 'list-view-item-value'}
+              title={valueTooltip}
+              ellipsis={{ tooltip: valueTooltip }}>
+              <ItemStatusLabel
+                value={value}
+                status={status}
+                noKeyNameLabel={i18n('noKeyName')}
+                notUniqueLabel={i18n('notUniq')}
+              />
+            </Text>
+            {Array.isArray(metaBadges) && metaBadges.length > 0 ? (
+              <div
+                className={DESIGNER_CLASSNAME + 'list-view-item-meta'}
+                style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}
+              >
+                {metaBadges.map((badge) => (
+                  <span
+                    key={`${badge.label}-${badge.color || 'default'}`}
+                    className={DESIGNER_CLASSNAME + 'list-view-item-meta-badge'}
+                    style={{
+                      display: 'inline-flex',
+                      alignItems: 'center',
+                      padding: '1px 6px',
+                      borderRadius: 999,
+                      fontSize: 10,
+                      lineHeight: 1.35,
+                      color: badge.color || '#667085',
+                      background: badge.color ? `${badge.color}1A` : '#F2F4F7',
+                      border: `1px solid ${badge.color ? `${badge.color}4D` : '#D0D5DD'}`,
+                    }}
+                  >
+                    {badge.label}
+                  </span>
+                ))}
+              </div>
+            ) : null}
+          </div>
           <ItemActions
             readOnly={readOnly}
             required={required}
@@ -314,6 +329,7 @@ const Item = React.memo(
             onToggleVisibility={onToggleVisibility}
             onDelete={onDelete}
             isHovered={isHovered}
+            label={valueTooltip}
           />
         </div>
       </li>

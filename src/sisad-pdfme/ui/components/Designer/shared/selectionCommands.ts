@@ -1,17 +1,14 @@
 import {
   ChangeSchemas,
+  cloneDeep,
   SchemaForUI,
   Size,
-  cloneDeep,
   type Command,
 } from '@sisad-pdfme/common';
-import { uuid, round } from '../../../helper.js';
-import {
-  DEFAULT_SCHEMA_CONFIG_STORAGE_KEY,
-  applySchemaCollaborativeDefaults,
-  createSchemaCreationContext,
-} from '../../../designerEngine.js';
+import { message } from 'antd';
+import { round } from '../../../helper.js';
 import type { EffectiveCollaborationContext } from '../../../collaborationContext.js';
+import { duplicateSchemas } from './schemaClipboard.js';
 export type AlignType =
   | 'left'
   | 'center'
@@ -21,6 +18,11 @@ export type AlignType =
   | 'bottom';
 
 export type DistributeType = 'vertical' | 'horizontal';
+
+export type DeleteSchemasOptions = {
+  origin?: 'keyboard' | 'toolbar' | 'context-menu' | 'field-list' | 'command';
+  clearSelection?: boolean;
+};
 
 export const INLINE_EDIT_REQUEST_EVENT = 'sisad-pdfme-designer-inline-edit-request';
 
@@ -50,8 +52,14 @@ export const emitInlineEditRequest = (request: InlineEditRequest) => {
 
 export type SelectionCommandSet = {
   canEditStructure?: boolean;
-  deleteSelection: () => void;
+  deleteSelection: () => boolean;
+  deleteSchemasByIds: (ids: string[], options?: DeleteSchemasOptions) => boolean;
   duplicateSelection: () => void;
+  copySelection?: () => void;
+  pasteSelection?: () => void;
+  cutSelection?: () => void;
+  selectAllVisible?: () => void;
+  clearSelection?: () => void;
   toggleHidden?: () => void;
   toggleRequired: () => void;
   toggleReadOnly: () => void;
@@ -66,7 +74,14 @@ export type SelectionCommandSet = {
   pasteStyle?: () => void;
   renameLabel?: () => void;
   editTextInline?: () => void;
+  assignRecipient?: (recipient: {
+    id: string;
+    name?: string | null;
+    color?: string | null;
+  }) => void;
+  changeRecipient?: (direction: 'previous' | 'next') => void;
   requestInlineEdit?: (_request: InlineEditRequest) => void;
+  moveBy?: (_direction: AlignType | DistributeType | 'up' | 'down' | 'left' | 'right', _step: number) => void;
 };
 
 export type SelectionCommandsContext = {
@@ -79,6 +94,11 @@ export type SelectionCommandsContext = {
   removeSchemas: (ids: string[]) => void;
   onOpenProperties: () => void;
   requestInlineEdit?: (_request: InlineEditRequest) => void;
+  onCopySelection?: () => void;
+  onPasteSelection?: () => void;
+  onCutSelection?: () => void;
+  onSelectAllVisible?: () => void;
+  onClearSelection?: () => void;
   collaborationContext?: Pick<
     EffectiveCollaborationContext,
     | 'fileId'
@@ -88,16 +108,18 @@ export type SelectionCommandsContext = {
     | 'ownerRecipientName'
     | 'ownerColor'
     | 'userColor'
+    | 'activeRecipientId'
+    | 'recipientOptions'
     | 'canEditStructure'
   >;
   executeCommand?: (_command: Command) => void;
 };
 
-const getActiveIds = (elements: HTMLElement[]) => elements.map((element) => element.id);
+const getActiveIds = (elements: HTMLElement[]) => elements.filter(Boolean).map((element) => element.id);
 
 const getActiveSchemas = (context: SelectionCommandsContext) => {
   const ids = getActiveIds(context.activeElements);
-  return context.schemasList[context.pageCursor].filter((schema) => ids.includes(schema.id));
+  return (context.schemasList[context.pageCursor] || []).filter((schema) => ids.includes(schema.id));
 };
 
 const getPageSchemas = (context: SelectionCommandsContext) =>
@@ -116,6 +138,19 @@ const getPageBounds = (schemas: SchemaForUI[], tgtPos: 'x' | 'y', tgtSize: 'widt
 
 const clampToPage = (value: number, max: number) => Math.min(Math.max(value, 0), max);
 
+const hasDeleteDependencies = (schema: SchemaForUI) =>
+  Boolean(
+    schema.commentsCount ||
+      (Array.isArray(schema.comments) && schema.comments.length > 0) ||
+      (Array.isArray(schema.commentAnchors) && schema.commentAnchors.length > 0) ||
+      (Array.isArray((schema as SchemaForUI & { commentsAnchors?: unknown[] }).commentsAnchors) &&
+        (schema as SchemaForUI & { commentsAnchors?: unknown[] }).commentsAnchors?.length) ||
+      (Array.isArray((schema as SchemaForUI & { connections?: unknown[] }).connections) &&
+        (schema as SchemaForUI & { connections?: unknown[] }).connections?.length) ||
+      (Array.isArray((schema as SchemaForUI & { connectionIds?: unknown[] }).connectionIds) &&
+        (schema as SchemaForUI & { connectionIds?: unknown[] }).connectionIds?.length),
+  );
+
 export const createSelectionCommands = (context: SelectionCommandsContext): SelectionCommandSet => {
   const activeIds = getActiveIds(context.activeElements);
   const hasSelection = activeIds.length > 0;
@@ -123,73 +158,78 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
 
   const guardStructureEdit = () => canEditStructure;
 
-  const deleteSelection = () => {
-    if (!hasSelection || !guardStructureEdit()) return;
+  const clearSelectionIfNeeded = (shouldClearSelection: boolean) => {
+    if (shouldClearSelection) {
+      context.onClearSelection?.();
+    }
+  };
+
+  const deleteSchemasByIds = (ids: string[], options: DeleteSchemasOptions = {}) => {
+    const normalizedIds = [...new Set(ids.map((id) => String(id || '').trim()).filter(Boolean))];
+    if (!normalizedIds.length || !guardStructureEdit()) return false;
+
+    const pageSchemas = getPageSchemas(context);
+    const activeIdSet = new Set(activeIds);
+    const shouldClearSelection = options.clearSelection ?? normalizedIds.some((id) => activeIdSet.has(id));
+    const beforeSchemas = cloneDeep(pageSchemas) as SchemaForUI[];
+    const afterSchemas = beforeSchemas.filter((schema) => !normalizedIds.includes(schema.id)) as SchemaForUI[];
+    const deletedSchemas = beforeSchemas.filter((schema) => normalizedIds.includes(schema.id));
+    const shouldConfirmDelete =
+      normalizedIds.length > 1 || deletedSchemas.some((schema) => hasDeleteDependencies(schema));
+
+    if (shouldConfirmDelete && typeof window !== 'undefined') {
+      const confirmLabel =
+        normalizedIds.length > 1
+          ? `Se eliminarán ${normalizedIds.length} campos. ¿Deseas continuar?`
+          : 'Este campo tiene comentarios o conexiones. ¿Deseas eliminarlo?';
+      if (!window.confirm(confirmLabel)) return false;
+    }
+
+    const finishDelete = () => {
+      message.success('Campo eliminado');
+      clearSelectionIfNeeded(shouldClearSelection);
+    };
+
     if (context.executeCommand) {
-      const beforeSchemas = getPageSchemas(context);
-      const afterSchemas = beforeSchemas.filter((schema) => !activeIds.includes(schema.id));
       context.executeCommand({
         id: 'deleteField',
         label: 'deleteField',
         execute: () => {
-          context.commitSchemas(afterSchemas);
-          context.onOpenProperties();
+          context.commitSchemas(afterSchemas as SchemaForUI[]);
+          finishDelete();
         },
         undo: () => {
-          context.commitSchemas(beforeSchemas);
+          context.commitSchemas(beforeSchemas as SchemaForUI[]);
+          clearSelectionIfNeeded(shouldClearSelection);
+        },
+        redo: () => {
+          context.commitSchemas(afterSchemas as SchemaForUI[]);
+          finishDelete();
         },
       });
-      return;
+      return true;
     }
-    context.removeSchemas(activeIds);
+
+    context.removeSchemas(normalizedIds);
+    finishDelete();
+    return true;
+  };
+
+  const deleteSelection = () => {
+    if (!hasSelection || !guardStructureEdit()) return false;
+    return deleteSchemasByIds(activeIds, { origin: 'keyboard' });
   };
 
   const duplicateSelection = () => {
     if (!hasSelection || !guardStructureEdit()) return;
     const existing = getPageSchemas(context);
-    const clones = getActiveSchemas(context).map((schema) => {
-      const clone = cloneDeep(schema);
-      const nextSchemaUid = uuid();
-      clone.id = nextSchemaUid;
-      clone.schemaUid = nextSchemaUid;
-      clone.name = `${schema.name} copy`;
-      clone.position = {
-        x: clampToPage((schema.position?.x ?? 0) + 6, context.pageSize.width - (schema.width ?? 0)),
-        y: clampToPage((schema.position?.y ?? 0) + 6, context.pageSize.height - (schema.height ?? 0)),
-      };
-      const nextCollaborative = applySchemaCollaborativeDefaults(
-        clone,
-        createSchemaCreationContext({
-          pageIndex: context.pageCursor,
-          pageNumber: context.pageCursor + 1,
-          totalPages: context.schemasList.length,
-          fileId: context.collaborationContext?.fileId || null,
-          timestamp: Date.now(),
-          collaboration: {
-            actorId: context.collaborationContext?.actorId || null,
-            ownerRecipientId: context.collaborationContext?.ownerRecipientId || null,
-            ownerRecipientIds: context.collaborationContext?.ownerRecipientIds,
-            ownerRecipientName: context.collaborationContext?.ownerRecipientName || null,
-            ownerColor: context.collaborationContext?.ownerColor || null,
-            userColor: context.collaborationContext?.userColor || null,
-          },
-        }),
-      );
-      Object.assign(clone, nextCollaborative, { state: 'draft', lock: undefined });
-
-      const designerConfig = (clone as SchemaForUI & Record<string, unknown>)[DEFAULT_SCHEMA_CONFIG_STORAGE_KEY];
-      if (designerConfig && typeof designerConfig === 'object') {
-        (clone as SchemaForUI & Record<string, unknown>)[DEFAULT_SCHEMA_CONFIG_STORAGE_KEY] = {
-          ...designerConfig,
-          identity: {
-            ...((designerConfig as Record<string, unknown>).identity as Record<string, unknown> || {}),
-            id: nextSchemaUid,
-            key: clone.name,
-          },
-        };
-      }
-
-      return clone;
+    const clones = duplicateSchemas(getActiveSchemas(context), {
+      pageIndex: context.pageCursor,
+      pageSize: context.pageSize,
+      pageCount: context.schemasList.length,
+      fileId: context.collaborationContext?.fileId || null,
+      collaborationContext: context.collaborationContext,
+      existingSchemas: existing,
     });
     const nextSchemas = existing.concat(clones);
     if (context.executeCommand) {
@@ -327,10 +367,85 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     requestInlineEdit('content');
   };
 
+  const assignRecipient = (recipient: { id: string; name?: string | null; color?: string | null }) => {
+    if (!hasSelection || !guardStructureEdit()) return;
+    const nextRecipientId = String(recipient?.id || '').trim();
+    if (!nextRecipientId) return;
+
+    const nextRecipientName = String(recipient?.name || '').trim() || nextRecipientId;
+    const nextRecipientColor = String(recipient?.color || '').trim() || null;
+    const beforeSchemas = cloneDeep(getPageSchemas(context));
+    const activeSchemaIds = new Set(activeIds);
+    const afterSchemas = beforeSchemas.map((schema) =>
+      activeSchemaIds.has(schema.id)
+        ? {
+            ...schema,
+            ownerRecipientId: nextRecipientId,
+            ownerRecipientIds: [nextRecipientId],
+            recipientId: nextRecipientId,
+            ownerRecipientName: nextRecipientName,
+            ownerColor: nextRecipientColor,
+            userColor: nextRecipientColor,
+            ownerMode: 'single',
+          }
+        : schema,
+    );
+
+    if (context.executeCommand) {
+      context.executeCommand({
+        id: 'assignRecipient',
+        label: 'assignRecipient',
+        execute: () => {
+          context.commitSchemas(afterSchemas as SchemaForUI[]);
+        },
+        undo: () => {
+          context.commitSchemas(beforeSchemas as SchemaForUI[]);
+        },
+        redo: () => {
+          context.commitSchemas(afterSchemas as SchemaForUI[]);
+        },
+      });
+      return;
+    }
+
+    context.commitSchemas(afterSchemas as SchemaForUI[]);
+  };
+
+  const changeRecipient = (direction: 'previous' | 'next') => {
+    if (!hasSelection || !guardStructureEdit()) return;
+    const options = Array.isArray(context.collaborationContext?.recipientOptions)
+      ? context.collaborationContext.recipientOptions
+      : [];
+    if (!options.length) return;
+
+    const activeRecipientId = context.collaborationContext?.activeRecipientId || context.collaborationContext?.ownerRecipientId || null;
+    const currentIndex = Math.max(
+      0,
+      options.findIndex((recipient) => recipient.id === activeRecipientId),
+    );
+    const nextIndex =
+      direction === 'previous'
+        ? (currentIndex - 1 + options.length) % options.length
+        : (currentIndex + 1) % options.length;
+    const nextRecipient = options[nextIndex];
+    if (!nextRecipient?.id) return;
+    assignRecipient({
+      id: nextRecipient.id,
+      name: nextRecipient.name || nextRecipient.tag || nextRecipient.id,
+      color: nextRecipient.color || null,
+    });
+  };
+
   return {
     canEditStructure,
     deleteSelection,
+    deleteSchemasByIds,
     duplicateSelection,
+    copySelection: context.onCopySelection,
+    pasteSelection: context.onPasteSelection,
+    cutSelection: context.onCutSelection,
+    selectAllVisible: context.onSelectAllVisible,
+    clearSelection: context.onClearSelection,
     toggleHidden,
     toggleRequired,
     toggleReadOnly,
@@ -341,5 +456,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     openProperties,
     renameLabel,
     editTextInline,
+    assignRecipient,
+    changeRecipient,
   };
 };

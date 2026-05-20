@@ -206,12 +206,21 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
 
       // Ensure schema.options is an array before mapping
       const options = Array.isArray(schema.options) ? schema.options : [];
-      selectElement.innerHTML = options
-        .map(
+      const placeholder = 'Seleccionar';
+      const resolvedOptions = options.filter((option) => String(option || '').trim().length > 0);
+      const needsPlaceholder = !value || !resolvedOptions.includes(value);
+      const optionMarkup = [
+        needsPlaceholder
+          ? `<option value="" disabled ${!value ? 'selected' : ''} hidden>${placeholder}</option>`
+          : '',
+        ...resolvedOptions.map(
           (option) =>
             `<option value="${option}" ${option === value ? 'selected' : ''}>${option}</option>`,
-        )
+        ),
+      ]
+        .filter(Boolean)
         .join('');
+      selectElement.innerHTML = optionMarkup;
       rootElement.appendChild(selectElement);
     }
   },
@@ -249,7 +258,7 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
     defaultSchema: {
       ...(text.propPanel.defaultSchema as TextSchema),
       type: 'select',
-      content: 'option1',
+      content: '',
       options: ['option1', 'option2'],
     },
   },

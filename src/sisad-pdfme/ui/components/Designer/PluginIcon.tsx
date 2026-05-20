@@ -73,14 +73,15 @@ const PluginIcon = (props: PluginIconProps) => {
 
   const icon = options.icons?.[schemaType] ?? plugin.icon;
   const iconStyles = {
-    ...styles,
     ...(useDefaultStyles
       ? {
         color: token.colorText,
         display: 'flex',
+        alignItems: 'center',
         justifyContent: 'center',
       }
       : {}),
+    ...styles,
   };
 
   if (icon) {
@@ -94,6 +95,17 @@ const PluginIcon = (props: PluginIconProps) => {
   return (
     <div
       className={resolvedFallbackClassName}
+      style={{
+        ...(useDefaultStyles
+          ? {
+              color: token.colorText,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }
+          : {}),
+        ...styles,
+      }}
       title={label}>
       {label}
     </div>

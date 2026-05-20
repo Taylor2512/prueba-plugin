@@ -24,11 +24,11 @@ describe('InlineEditOverlay', () => {
       />,
     );
 
+    expect(screen.getByRole('dialog', { name: 'Editar texto' })).toBeInTheDocument();
     const input = screen.getByPlaceholderText('Escribe el contenido');
-    expect(input).toBeVisible();
 
     fireEvent.change(input, { target: { value: 'Texto nuevo' } });
-    fireEvent.keyDown(input, { key: 'Enter', code: 'Enter' });
+    fireEvent.click(screen.getByRole('button', { name: 'Guardar' }));
 
     expect(onCommit).toHaveBeenCalledWith('Texto nuevo');
     expect(onCancel).not.toHaveBeenCalled();
@@ -47,6 +47,7 @@ describe('InlineEditOverlay', () => {
       />,
     );
 
+    expect(screen.getByRole('dialog', { name: 'Editar nombre' })).toBeInTheDocument();
     const input = screen.getByPlaceholderText('Nombre del campo');
     fireEvent.keyDown(input, { key: 'Escape', code: 'Escape' });
 

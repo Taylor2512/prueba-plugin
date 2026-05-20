@@ -9,8 +9,66 @@ type CommentsOverlayProps = {
   scale: number;
   pageCursor: number;
   paperRefs: React.MutableRefObject<HTMLDivElement[]>;
-  topLevelComments?: Array<{ anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
+  topLevelComments?: Array<{
+    anchor?: {
+      id?: string;
+      x?: number;
+      y?: number;
+      schemaUid?: string;
+      authorName?: string;
+      authorId?: string;
+      authorColor?: string;
+      resolved?: boolean;
+    };
+    comment?: {
+      id?: string;
+      authorName?: string;
+      authorId?: string;
+      authorColor?: string;
+      text?: string;
+      resolved?: boolean;
+    };
+  }>;
 };
+
+type OverlayComment = {
+  id?: string;
+  anchor?: {
+    id?: string;
+    x?: number;
+    y?: number;
+    schemaUid?: string;
+    authorName?: string;
+    authorId?: string;
+    authorColor?: string;
+    resolved?: boolean;
+  };
+  authorName?: string;
+  authorId?: string;
+  authorColor?: string;
+  text?: string;
+  resolved?: boolean;
+};
+
+type OverlayAnchor = {
+  id?: string;
+  x?: number;
+  y?: number;
+  schemaUid?: string;
+  authorName?: string;
+  authorId?: string;
+  authorColor?: string;
+  text?: string;
+  resolved?: boolean;
+};
+
+type OverlaySchema = SchemaForUI & {
+  comments?: OverlayComment[];
+  commentAnchors?: OverlayAnchor[];
+};
+
+const toStringOrUndefined = (value: unknown): string | undefined =>
+  typeof value === 'string' && value.trim() ? value : undefined;
 
 const CommentsOverlay = ({
   schemas = [],
@@ -55,7 +113,8 @@ const CommentsOverlay = ({
       }
     >();
     schemas.forEach((s) => {
-      const comments = (s.comments || []) as any[];
+      const schema = s as OverlaySchema;
+      const comments = schema.comments || [];
       comments.forEach((comment) => {
         const anchor = comment?.anchor;
         if (!anchor) return;
@@ -65,13 +124,13 @@ const CommentsOverlay = ({
           x: Number(anchor.x || 0),
           y: Number(anchor.y || 0),
           schemaUid: anchor.schemaUid || s.schemaUid,
-          authorName: comment.authorName || comment.authorId,
-          authorColor: comment.authorColor || anchor.authorColor,
+          authorName: toStringOrUndefined(comment.authorName) || toStringOrUndefined(comment.authorId),
+          authorColor: toStringOrUndefined(comment.authorColor) || toStringOrUndefined(anchor.authorColor),
           text: String(comment.text || '').trim(),
           resolved: Boolean(comment.resolved || anchor.resolved),
         });
       });
-      const as = (s.commentAnchors || []) as any[];
+      const as = schema.commentAnchors || [];
       as.forEach((a) => {
         const id = String(a.id || `${s.schemaUid}-anchor`);
         byId.set(id, {
@@ -79,8 +138,8 @@ const CommentsOverlay = ({
           x: Number(a.x || 0),
           y: Number(a.y || 0),
           schemaUid: a.schemaUid || s.schemaUid,
-          authorName: a.authorName || a.authorId,
-          authorColor: a.authorColor,
+          authorName: toStringOrUndefined(a.authorName) || toStringOrUndefined(a.authorId),
+          authorColor: toStringOrUndefined(a.authorColor),
           text: String(a.text || '').trim(),
           resolved: Boolean(a.resolved),
         });

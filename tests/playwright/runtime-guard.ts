@@ -3,16 +3,11 @@ import { expect, test as base, type Page, type TestInfo } from '@playwright/test
 const KNOWN_EXTERNAL_CONSOLE_ERROR_ALLOWLIST: RegExp[] = [
   /favicon\.ico/i,
   /net::ERR_BLOCKED_BY_CLIENT/i,
-  /ResizeObserver loop limit exceeded/i,
-  /ResizeObserver loop completed with undelivered notifications/i,
   /chrome-extension:\/\//i,
   /Extension context invalidated/i,
-  /Attempted to synchronously unmount a root while React was already rendering/i,
 ];
 
 const KNOWN_EXTERNAL_PAGE_ERROR_ALLOWLIST: RegExp[] = [
-  /ResizeObserver loop limit exceeded/i,
-  /ResizeObserver loop completed with undelivered notifications/i,
   /chrome-extension:\/\//i,
   /Extension context invalidated/i,
 ];

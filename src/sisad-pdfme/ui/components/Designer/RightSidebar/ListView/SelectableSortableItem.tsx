@@ -16,6 +16,7 @@ interface Props {
   style?: React.CSSProperties;
   onSelect: (_id: string, _isShiftSelect: boolean) => void;
   onEdit: (_id: string) => void;
+  onDelete?: () => void;
   schema: SchemaForUI;
   onMouseEnter: () => void;
   onMouseLeave: () => void;
@@ -28,6 +29,7 @@ const SelectableSortableItem = ({
   style,
   onSelect,
   onEdit,
+  onDelete,
   schema,
   onMouseEnter,
   onMouseLeave,
@@ -104,6 +106,7 @@ const SelectableSortableItem = ({
       transform={transform}
       selected={isSelected}
       hovered={isHovering}
+      onDelete={onDelete}
       style={style}
       fadeIn={mountedWhileDragging}
       listeners={newListeners}

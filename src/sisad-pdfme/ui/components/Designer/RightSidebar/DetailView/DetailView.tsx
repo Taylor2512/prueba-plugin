@@ -6,7 +6,6 @@ import type {
   PropPanelInspectorConfig,
   PropPanelSchema,
   SchemaForUI,
-  Schema,
 } from '@sisad-pdfme/common';
 import { isBlankPdf } from '@sisad-pdfme/common';
 import type { SidebarProps } from '../../../../types.js';
@@ -15,10 +14,7 @@ import { debounce } from '../../../../helper.js';
 import { theme } from 'antd';
 import { InternalNamePath, ValidateErrorEntity } from 'rc-field-form/es/interface.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
-import {
-  buildInspectorSections,
-  type DetailInspectorSection,
-} from './detailSchemas.js';
+import { buildInspectorSections } from './detailSchemas.js';
 import { buildDetailWidgets } from './detailWidgets.js';
 import DetailViewContent from './DetailViewContent.js';
 import {
@@ -93,7 +89,6 @@ const DetailView = (props: DetailViewProps) => {
     return '#000000';
   }, []);
 
-  const optionsKey = JSON.stringify(options);
   const widgets = React.useMemo(
     () =>
       buildDetailWidgets({
@@ -118,12 +113,10 @@ const DetailView = (props: DetailViewProps) => {
       }),
     [
       activeSchema,
-      activeSchema.id,
       changeSchemas,
       designerEngine,
       normalizeColorHex,
       options,
-      optionsKey,
       pluginsRegistry,
       props,
       schemaConfig,
@@ -186,6 +179,8 @@ const DetailView = (props: DetailViewProps) => {
 
   const handleWatch = debounce(function (...args: unknown[]) {
     const formSchema = args[0] as Record<string, unknown>;
+    const ignoredKeys = new Set(['id', 'content']);
+    const nullableKeys = new Set(['rotate', 'opacity']);
     const formAndSchemaValuesDiffer = (formValue: unknown, schemaValue: unknown): boolean => {
       if (typeof formValue === 'object' && formValue !== null) {
         return JSON.stringify(formValue) !== JSON.stringify(schemaValue);
@@ -195,11 +190,11 @@ const DetailView = (props: DetailViewProps) => {
 
     let changes: ChangeSchemaItem[] = [];
     for (const key in formSchema) {
-      if (['id', 'content'].includes(key)) continue;
+      if (ignoredKeys.has(key)) continue;
 
       let value = formSchema[key];
       if (formAndSchemaValuesDiffer(value, (activeSchema as Record<string, unknown>)[key])) {
-        if (value === null && ['rotate', 'opacity'].includes(key)) {
+        if (value === null && nullableKeys.has(key)) {
           value = undefined;
         }
 
@@ -284,6 +279,8 @@ const DetailView = (props: DetailViewProps) => {
   const maxHeight = pageSize.height - paddingTop - paddingBottom;
   const sections = buildInspectorSections({
     activeSchemaType: activeSchema.type,
+    activeSchema,
+    schemaConfig,
     typedI18n,
     defaultSchema,
     pluginProps,

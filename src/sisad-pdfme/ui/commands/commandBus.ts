@@ -62,3 +62,5 @@ export class CommandBus {
     };
   }
 }
+
+export const createCommandBus = () => new CommandBus();

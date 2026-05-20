@@ -20,69 +20,64 @@ const baseParams = {
 };
 
 describe('inspector comments section', () => {
-  it('includes a comments section for text schemas', () => {
-    const sections = buildInspectorSections({
+  it('does not render a comments section when there are no comments', () => {
+    const textSections = buildInspectorSections({
       ...baseParams,
       activeSchemaType: 'text',
     });
-    const keys = sections.map((s) => s.key);
-    expect(keys).toContain('comments');
-  });
+    expect(textSections.map((s) => s.key)).not.toContain('comments');
 
-  it('includes a comments section for checkbox schemas', () => {
-    const sections = buildInspectorSections({
+    const checkboxSections = buildInspectorSections({
       ...baseParams,
       activeSchemaType: 'checkbox',
     });
-    const keys = sections.map((s) => s.key);
-    expect(keys).toContain('comments');
-  });
+    expect(checkboxSections.map((s) => s.key)).not.toContain('comments');
 
-  it('includes a comments section for table schemas', () => {
-    const sections = buildInspectorSections({
+    const tableSections = buildInspectorSections({
       ...baseParams,
       activeSchemaType: 'table',
       defaultSchema: { rotate: 0, opacity: 1 },
     });
-    const keys = sections.map((s) => s.key);
-    expect(keys).toContain('comments');
+    expect(tableSections.map((s) => s.key)).not.toContain('comments');
   });
 
-  it('does NOT include a comments section for image schemas (not in visibleSections)', () => {
-    const preset = getSchemaTypeInspectorPreset('image');
-    // mediaVisual supports comments but its visibleSections does not include 'comments',
-    // so the section is absent from the rendered inspector output.
-    expect(preset.visibleSections).not.toContain('comments');
-
+  it('renders a comments section when the active schema carries comments metadata', () => {
     const sections = buildInspectorSections({
       ...baseParams,
-      activeSchemaType: 'image',
+      activeSchemaType: 'text',
       defaultSchema: { rotate: 0, opacity: 1 },
+      pluginProps: {},
+      activeSchema: {
+        id: 'schema-1',
+        name: 'campo',
+        type: 'text',
+        commentsCount: 1,
+        comments: [
+          {
+            id: 'comment-1',
+            scope: 'schema',
+            authorId: 'user-1',
+            authorName: 'Ana',
+            timestamp: 1700000000000,
+            text: 'Revisar este campo',
+            resolved: false,
+            replies: [],
+          },
+        ],
+      } as never,
     });
-    const keys = sections.map((s) => s.key);
-    expect(keys).not.toContain('comments');
-  });
 
-  it('registers the SchemaFieldCommentsWidget in the comments section schema', () => {
-    const sections = buildInspectorSections({
-      ...baseParams,
-      activeSchemaType: 'text',
-    });
-    const commentsSection = sections.find((s) => s.key === 'comments');
+    const commentsSection = sections.find((section) => section.key === 'comments');
     expect(commentsSection).toBeDefined();
+    expect(commentsSection?.title).toBe('Comentarios');
+    expect(commentsSection?.defaultCollapsed).toBe(true);
+
     const props = (commentsSection?.schema as { properties?: Record<string, { widget?: string }> }).properties;
-    expect(props).toBeDefined();
-    const fieldComments = props?.fieldComments;
-    expect(fieldComments?.widget).toBe('SchemaFieldCommentsWidget');
+    expect(props?.fieldComments?.widget).toBe('SchemaFieldCommentsWidget');
   });
 
-  it('comments section has correct metadata', () => {
-    const sections = buildInspectorSections({
-      ...baseParams,
-      activeSchemaType: 'text',
-    });
-    const commentsSection = sections.find((s) => s.key === 'comments');
-    expect(commentsSection?.title).toBe('Comentarios');
-    expect(commentsSection?.defaultCollapsed).toBe(false);
+  it('keeps comments available in visibleSections for families that support review metadata', () => {
+    const preset = getSchemaTypeInspectorPreset('image');
+    expect(preset.visibleSections).toContain('comments');
   });
 });

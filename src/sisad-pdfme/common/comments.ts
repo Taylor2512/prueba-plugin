@@ -79,6 +79,7 @@ export const addAnchorToSchema = (
     authorColor: identity.authorColor || undefined,
     authorName: identity.authorName || undefined,
   } as any);
+  created.scope = 'schema';
   next.commentAnchors = upsertById(next.commentAnchors || [], created as any);
   return next;
 };
@@ -105,8 +106,15 @@ export const addCommentToSchema = (
     timestamp: Date.now(),
   } as any, {
     id: commentId,
+    scope: 'schema',
+    schemaUid: next.schemaUid || next.id,
+    fieldId: next.schemaUid || next.id,
+    pageNumber: next.pageNumber,
     anchor: createdAnchor ? cloneDeep(createdAnchor) : undefined,
   });
+  if (createdAnchor) {
+    createdAnchor.scope = 'schema';
+  }
   next.comments = upsertById(next.comments || [], comment as any);
   if (createdAnchor) {
     next.commentAnchors = upsertById(next.commentAnchors || [], createdAnchor as any);

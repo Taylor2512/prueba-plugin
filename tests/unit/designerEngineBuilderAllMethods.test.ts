@@ -49,6 +49,24 @@ describe('DesignerEngineBuilder all methods', () => {
       .withSchemaIdentityFactory(identityFactory)
       .withSchemaCreationHook(onCreate)
       .withAutoAttachIdentity(false)
+      .withSignatureProviders([
+        {
+          key: 'provider.remoto.tenantA',
+          label: 'Provider A',
+          capabilities: {
+            supportsVisibleSignature: true,
+            supportsWebhook: true,
+            supportsPolling: false,
+            supportsCertificateMetadata: false,
+            supportsReason: true,
+            supportsLocation: false,
+            supportsOtp: false,
+            supportsBiometric: false,
+          },
+          defaultConfig: { flow: 'embedded' },
+        },
+      ])
+      .withSignatureDefaultProviderKey('provider.remoto.tenantA')
       .withCollaboration({
         enabled: true,
         actorId: 'u1',
@@ -60,6 +78,8 @@ describe('DesignerEngineBuilder all methods', () => {
     expect(engine.schema?.identityFactory).toBe(identityFactory);
     expect(engine.schema?.onCreate).toBe(onCreate);
     expect(engine.schema?.autoAttachIdentity).toBe(false);
+    expect(engine.signature?.providers?.[0]?.key).toBe('provider.remoto.tenantA');
+    expect(engine.signature?.defaultProviderKey).toBe('provider.remoto.tenantA');
     expect(engine.collaboration?.recipientOptions?.[0]?.id).toBe('u1');
     expect(engine.collaboration?.users?.[0]?.id).toBe('u1');
   });

@@ -27,6 +27,22 @@ const Preview = ({
   size: Size;
 }) => {
   const { token } = theme.useToken();
+  const handleExportTemplate = () => {
+    const exportPayload = JSON.stringify(template, null, 2);
+    const safeName = String(template.basePdf || 'sisad-pdfme-preview-template')
+      .replace(/[\\/:*?"<>|]+/g, '_')
+      .trim() || 'sisad-pdfme-preview-template';
+    const blob = new Blob([exportPayload], { type: 'application/json' });
+    const downloadUrl = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = `${safeName}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(downloadUrl);
+  };
+
   const {
     containerRef,
     paperRefs,
@@ -64,19 +80,25 @@ const Preview = ({
       <CtlBar
         size={size}
         pageCursor={pageCursor}
-        pageNum={schemasList.length}
+        pageNum={pageSizes.length}
         setPageCursor={(p) => {
           if (!containerRef.current) return;
           const nextPage = typeof p === 'function' ? p(pageCursor) : p;
           if (!Number.isFinite(nextPage)) return;
-          containerRef.current.scrollTop = getPagesScrollTopByIndex(pageSizes, nextPage, scale);
           setPageCursor(nextPage);
+          const paper = paperRefs.current[nextPage];
+          if (paper && typeof paper.scrollIntoView === 'function') {
+            paper.scrollIntoView({ block: 'start', inline: 'nearest' });
+          } else {
+            containerRef.current.scrollTop = getPagesScrollTopByIndex(pageSizes, nextPage, scale);
+          }
           if (onPageChange) {
-            onPageChange({ currentPage: nextPage, totalPages: schemasList.length });
+            onPageChange({ currentPage: nextPage, totalPages: pageSizes.length });
           }
         }}
         zoomLevel={zoomLevel}
         setZoomLevel={setZoomLevel}
+        onExport={handleExportTemplate}
       />
       <UnitPager
         size={size}

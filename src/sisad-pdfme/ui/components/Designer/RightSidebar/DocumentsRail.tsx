@@ -4,6 +4,7 @@ import { FileText, FileUp, Plus } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../constants.js';
 import { SidebarBody, SidebarFrame, SidebarHeader } from './layout.js';
 import { mergeClassNames } from '../shared/className.js';
+import { SidebarSurfaceEmptyState, SidebarSurfaceHeader } from './shared/SidebarSurfacePrimitives.js';
 
 const { Text } = Typography;
 
@@ -25,11 +26,16 @@ export type DocumentsRailProps = {
   onUploadPdf?: () => void;
   title?: React.ReactNode;
   emptyTitle?: React.ReactNode;
+  subtitle?: React.ReactNode;
   className?: string;
   style?: React.CSSProperties;
   useDefaultStyles?: boolean;
   density?: 'default' | 'compact';
   showInlineAddCard?: boolean;
+  uploadLabel?: React.ReactNode;
+  addPageLabel?: React.ReactNode;
+  pageLabelPrefix?: string;
+  emptyDescription?: React.ReactNode;
 };
 
 const DocumentsRail = ({
@@ -40,16 +46,22 @@ const DocumentsRail = ({
   onUploadPdf,
   title = 'Páginas',
   emptyTitle = 'Sin páginas disponibles',
+  subtitle,
   className,
   style,
   useDefaultStyles = true,
   density = 'default',
   showInlineAddCard = true,
+  uploadLabel = 'Subir PDF',
+  addPageLabel = 'Nueva página',
+  pageLabelPrefix = 'Pág.',
+  emptyDescription = 'Carga un PDF para empezar.',
 }: DocumentsRailProps) => {
   const hasItems = items.length > 0;
   const canUpload = typeof onUploadPdf === 'function';
   const canAdd = typeof onAdd === 'function';
   const canAddPage = canAdd && hasItems;
+  const resolvedSubtitle = subtitle ?? (hasItems ? 'Selecciona una página' : 'Carga un PDF para empezar.');
 
   return (
     <div
@@ -63,46 +75,41 @@ const DocumentsRail = ({
           className,
         )}>
         <SidebarHeader>
-          <div className={DESIGNER_CLASSNAME + 'documents-rail-header'}>
-            <div className={DESIGNER_CLASSNAME + 'documents-rail-header-title'}>
-              <FileText size={14} className={DESIGNER_CLASSNAME + 'filetext-auto'} />
-              <Text strong className={DESIGNER_CLASSNAME + 'text-auto'}>
-                {title}
-              </Text>
-              <Text type="secondary" className={DESIGNER_CLASSNAME + 'documents-rail-count'}>
-                {items.length}
-              </Text>
-            </div>
-            <div className={DESIGNER_CLASSNAME + 'documents-rail-header-actions'}>
-              {canUpload ? (
-                <Button
-                  size="small"
-                  type="text"
-                  htmlType="button"
-                  icon={<FileUp size={14} />}
-                  onClick={onUploadPdf}
-                  className={DESIGNER_CLASSNAME + 'documents-rail-action ' + DESIGNER_CLASSNAME + "button-auto"}
-                >
-                  Subir PDF
-                </Button>
-              ) : null}
-              {canAddPage ? (
-                <Button
-                  size="small"
-                  type="text"
-                  htmlType="button"
-                  icon={<Plus size={14} />}
-                  onClick={onAdd}
-                  className={DESIGNER_CLASSNAME + 'documents-rail-action ' + DESIGNER_CLASSNAME + "button-auto"}
-                  title="Agregar página"
-                  aria-label="Agregar página"
-                />
-              ) : null}
-            </div>
-          </div>
-          <Text type="secondary" className={DESIGNER_CLASSNAME + 'documents-rail-subtitle'}>
-            Sube un PDF para trabajar con páginas y documentos.
-          </Text>
+          <SidebarSurfaceHeader
+            leading={<FileText size={14} className={DESIGNER_CLASSNAME + 'filetext-auto'} />}
+            title={title}
+            subtitle={resolvedSubtitle}
+            badges={[{ label: items.length, color: 'default' }]}
+            trailing={(
+              <div className={DESIGNER_CLASSNAME + 'documents-rail-header-actions'}>
+                {canUpload ? (
+                  <Button
+                    size="small"
+                    type="text"
+                    htmlType="button"
+                    icon={<FileUp size={14} />}
+                    onClick={onUploadPdf}
+                    className={DESIGNER_CLASSNAME + 'documents-rail-action ' + DESIGNER_CLASSNAME + "button-auto"}
+                  >
+                    {uploadLabel}
+                  </Button>
+                ) : null}
+                {canAddPage ? (
+                  <Button
+                    size="small"
+                    type="text"
+                    htmlType="button"
+                    icon={<Plus size={14} />}
+                    onClick={onAdd}
+                    className={DESIGNER_CLASSNAME + 'documents-rail-action ' + DESIGNER_CLASSNAME + "button-auto"}
+                    title={String(addPageLabel)}
+                    aria-label={String(addPageLabel)}
+                  />
+                ) : null}
+              </div>
+            )}
+            compact
+          />
         </SidebarHeader>
         <SidebarBody tabIndex={0} aria-label="Lista de páginas del documento">
           {hasItems ? (
@@ -119,10 +126,10 @@ const DocumentsRail = ({
                   </div>
                   <div className={DESIGNER_CLASSNAME + 'documents-rail-meta'}>
                     <Text strong className={DESIGNER_CLASSNAME + 'text-auto'}>
-                      Agregar página
+                      {addPageLabel}
                     </Text>
                     <Text type="secondary" className={DESIGNER_CLASSNAME + 'text-auto'}>
-                      Crea una nueva página dentro del documento activo
+                      Añade una página al final del documento
                     </Text>
                   </div>
                 </button>
@@ -155,9 +162,6 @@ const DocumentsRail = ({
                           <FileText size={20} />
                         </div>
                       )}
-                      <div className={DESIGNER_CLASSNAME + 'documents-rail-page-label'}>
-                        {item.pageLabel || `${index + 1}`}
-                      </div>
                     </div>
                     <div className={DESIGNER_CLASSNAME + 'documents-rail-meta'}>
                       <Text strong ellipsis={{ tooltip: item.name }} className={DESIGNER_CLASSNAME + 'text-auto'}>
@@ -165,7 +169,7 @@ const DocumentsRail = ({
                       </Text>
                       <div className={DESIGNER_CLASSNAME + 'documents-rail-meta-row'}>
                         <Text type="secondary" ellipsis={{ tooltip: item.pageLabel || `${index + 1}` }} className={DESIGNER_CLASSNAME + 'text-auto'}>
-                          Página {item.pageLabel || `${index + 1}`}
+                          {pageLabelPrefix} {item.pageLabel || `${index + 1}`}
                         </Text>
                         {isSelected ? (
                           <span className={DESIGNER_CLASSNAME + 'documents-rail-active-badge'}>
@@ -184,33 +188,24 @@ const DocumentsRail = ({
               })}
             </div>
           ) : (
-          <div className={DESIGNER_CLASSNAME + 'documents-rail-empty'}>
-              <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-icon'}>
-                <FileText size={16} />
-              </div>
-              <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-copy'}>
-                <Text strong className={DESIGNER_CLASSNAME + 'documents-empty-title'}>
-                  {emptyTitle}
-                </Text>
-                <Text type="secondary" className={DESIGNER_CLASSNAME + 'documents-rail-empty-hint'}>
-                  Sube un PDF para empezar.
-                </Text>
-              </div>
-              {canUpload ? (
-                <div className={DESIGNER_CLASSNAME + 'documents-rail-empty-actions'}>
-                  <Button
-                    size="small"
-                    type="default"
-                    htmlType="button"
-                    icon={<FileUp size={13} />}
-                    onClick={onUploadPdf}
-                    className={DESIGNER_CLASSNAME + 'documents-rail-empty-upload'}
-                  >
-                    Subir PDF
-                  </Button>
-                </div>
+            <SidebarSurfaceEmptyState
+              icon={<FileText size={16} />}
+              title={emptyTitle}
+              description={emptyDescription}
+              action={canUpload ? (
+                <Button
+                  size="small"
+                  type="default"
+                  htmlType="button"
+                  icon={<FileUp size={13} />}
+                  onClick={onUploadPdf}
+                  className={DESIGNER_CLASSNAME + 'documents-rail-empty-upload'}
+                >
+                  {uploadLabel}
+                </Button>
               ) : null}
-            </div>
+              className={DESIGNER_CLASSNAME + 'documents-rail-empty'}
+            />
           )}
         </SidebarBody>
       </SidebarFrame>

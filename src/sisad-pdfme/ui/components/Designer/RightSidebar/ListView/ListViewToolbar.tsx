@@ -1,9 +1,10 @@
 import React from 'react';
-import { Button, Input, Select, Typography } from 'antd';
+import { Button, Input, Select } from 'antd';
 import { Layers, Search } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-
-const { Text } = Typography;
+import { SidebarSurfaceHeader } from '../shared/SidebarSurfacePrimitives.js';
+import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
+import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 
 type Option = { value: string; label: string };
 
@@ -13,12 +14,25 @@ type Props = {
   schemaTypes: Option[];
   filteredCount: number;
   totalCount: number;
+  selectedCount?: number;
   hasActiveSearch: boolean;
   hasSchemas: boolean;
   onChangeSearch: (_value: string) => void;
   onChangeType: (_value: string) => void;
   onStartBulk: () => void;
   onClearFilters: () => void;
+  title?: React.ReactNode;
+  subtitle?: React.ReactNode;
+  bulkActionLabel?: React.ReactNode;
+  bulkRecipientLabel?: React.ReactNode;
+  searchPlaceholder?: string;
+  clearLabel?: React.ReactNode;
+  showBulkAction?: boolean;
+  showBulkRecipientAction?: boolean;
+  bulkRecipientDisabled?: boolean;
+  onBulkAssignRecipient?: () => void;
+  collaborationContext?: Pick<EffectiveCollaborationContext, 'activeRecipient' | 'canEditStructure'> | null;
+  selectionCommands?: SelectionCommandSet;
   useDefaultStyles?: boolean;
 };
 
@@ -28,24 +42,30 @@ const ListViewToolbar = ({
   schemaTypes,
   filteredCount,
   totalCount,
+  selectedCount = 0,
   hasActiveSearch,
   hasSchemas,
   onChangeSearch,
   onChangeType,
   onStartBulk,
   onClearFilters,
+  title = 'Campos',
+  subtitle,
+  bulkActionLabel = 'Renombrar',
+  bulkRecipientLabel,
+  searchPlaceholder = 'Buscar campo, tipo o categoría',
+  clearLabel = 'Limpiar',
   useDefaultStyles,
+  showBulkAction = true,
+  showBulkRecipientAction = false,
+  bulkRecipientDisabled = false,
+  onBulkAssignRecipient,
+  collaborationContext,
 }: Props) => {
-  const subtitle = (() => {
-    if (!hasActiveSearch) {
-      return 'Gestiona nombres, orden y visibilidad';
-    }
-
-    if (filteredCount === 0) {
-      return 'Sin coincidencias. Ajusta filtros o limpia la búsqueda.';
-    }
-
-    return `Mostrando ${filteredCount} coincidencias`;
+  const resolvedSubtitle = subtitle ?? (() => {
+    if (!hasActiveSearch) return null;
+    if (filteredCount === 0) return 'Sin coincidencias';
+    return `${filteredCount} visibles`;
   })();
 
   const densityStyles =
@@ -126,39 +146,44 @@ const ListViewToolbar = ({
 
   return (
     <div className={DESIGNER_CLASSNAME + 'list-view-toolbar'} style={densityStyles.container}>
-      <div className={DESIGNER_CLASSNAME + 'sidebar-header'} style={densityStyles.header}>
-        <div className={DESIGNER_CLASSNAME + 'sidebar-header-content'} style={densityStyles.titleWrap}>
-          <div className={DESIGNER_CLASSNAME + 'sidebar-header-title'} style={densityStyles.title}>
-            <Layers size={14} className={DESIGNER_CLASSNAME + 'layers-auto'} />
-            <Text strong className={DESIGNER_CLASSNAME + 'list-view-title'}>
-              Campos del documento
-            </Text>
-            <Text
-              type="secondary"
-              className={DESIGNER_CLASSNAME + 'list-view-counter'}
-              style={densityStyles.counter}>
-              {filteredCount}/{totalCount}
-            </Text>
-          </div>
-          <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-subtitle'} style={densityStyles.subtitle}>
-            {subtitle}
-          </Text>
-        </div>
-        {hasSchemas ? (
-          <Button
-            type="text"
-            size="small"
-            onClick={onStartBulk}
-            className={DESIGNER_CLASSNAME + 'bulk-update'}>
-            Renombrar
-          </Button>
-        ) : null}
-      </div>
+      <SidebarSurfaceHeader
+        leading={<Layers size={14} className={DESIGNER_CLASSNAME + 'layers-auto'} />}
+        title={title}
+        subtitle={resolvedSubtitle || undefined}
+        badges={[
+          { label: `${filteredCount}/${totalCount}`, color: 'default' },
+          ...(selectedCount > 0 ? [{ label: `${selectedCount} seleccionados`, color: 'processing' as const }] : []),
+        ]}
+        trailing={
+          showBulkAction && hasSchemas ? (
+            <div className={DESIGNER_CLASSNAME + 'list-view-toolbar-actions'}>
+              {showBulkRecipientAction && collaborationContext?.activeRecipient && collaborationContext.canEditStructure !== false ? (
+                <Button
+                  type="text"
+                  size="small"
+                  disabled={bulkRecipientDisabled}
+                  onClick={onBulkAssignRecipient}
+                  className={DESIGNER_CLASSNAME + 'bulk-assign-recipient'}>
+                  {bulkRecipientLabel || `Asignar a ${collaborationContext.activeRecipient.name}`}
+                </Button>
+              ) : null}
+              <Button
+                type="text"
+                size="small"
+                onClick={onStartBulk}
+                className={DESIGNER_CLASSNAME + 'bulk-update'}>
+                {bulkActionLabel}
+              </Button>
+            </div>
+          ) : null
+        }
+        compact
+      />
       <div className={DESIGNER_CLASSNAME + 'list-view-toolbar-controls'} style={densityStyles.searchWrap}>
         <Input
           size="small"
           allowClear
-          placeholder="Buscar campo, tipo o categoría"
+          placeholder={searchPlaceholder}
           prefix={<Search size={12} className={DESIGNER_CLASSNAME + 'search-auto'} />}
           value={searchQuery}
           onChange={(e) => onChangeSearch(e.target.value)}
@@ -182,7 +207,7 @@ const ListViewToolbar = ({
               size="small"
               onClick={onClearFilters}
               className={DESIGNER_CLASSNAME + 'list-view-clear-filters'}>
-              Limpiar
+              {clearLabel}
             </Button>
           ) : null}
         </div>

@@ -3,6 +3,7 @@ import type { SchemaDesignerConfig } from './designerEngine';
 import type { EffectiveCollaborationContext } from './collaborationContext';
 import type { DesignerDocumentItem } from './components/Designer/RightSidebar/DocumentsRail';
 import type { InteractionPhase } from './components/Designer/shared/interactionState';
+import type { DesignerRuntimeExtensions } from './components/Designer/shared/designerExtensions';
 
 export type DesignerSidebarPresentation = 'docked' | 'overlay' | 'auto';
 
@@ -22,8 +23,10 @@ export type SidebarProps = {
   changeSchemas: ChangeSchemas;
   deselectSchema: () => void;
   sidebarOpen: boolean;
+  sidebarOpenControlled?: boolean;
   setSidebarOpen: (sidebarOpen: boolean) => void;
   collaborationContext?: EffectiveCollaborationContext;
+  extensions?: DesignerRuntimeExtensions;
 };
 
 export type DesignerComponentBridge = {

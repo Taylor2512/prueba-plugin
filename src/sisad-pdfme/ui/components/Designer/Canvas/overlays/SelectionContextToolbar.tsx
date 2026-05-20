@@ -7,6 +7,7 @@ import {
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import type { InteractionState } from '../../shared/interactionState.js';
 import { Loader2 } from 'lucide-react';
+import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
 
 type SelectionContextToolbarProps = {
   position: { top: number; left: number; width: number; height: number } | null;
@@ -31,16 +32,29 @@ const SelectionContextToolbar = ({
   defaultToolbarMode,
   onToolbarModeChange,
 }: SelectionContextToolbarProps) => {
+  const toolbarRef = React.useRef<HTMLDivElement | null>(null);
+  const { mode: toolbarDensityMode } = useResponsiveDensity(toolbarRef, {
+    comfortable: 340,
+    compact: 268,
+    mini: 214,
+  });
   const [internalToolbarMode, setInternalToolbarMode] = React.useState<SelectionToolbarMode>(
     defaultToolbarMode ?? (interactionState.selectionCount > 1 ? 'expanded' : 'micro'),
   );
+  const primarySchemaId = activeSchemas[0]?.id ?? '';
+  const toolbarSeed = defaultToolbarMode ?? (interactionState.selectionCount > 1 ? 'expanded' : 'micro');
 
   React.useEffect(() => {
-    const nextMode = defaultToolbarMode ?? (interactionState.selectionCount > 1 ? 'expanded' : 'micro');
-    setInternalToolbarMode(nextMode);
-  }, [activeSchemas[0]?.id, defaultToolbarMode, interactionState.selectionCount]);
+    setInternalToolbarMode(toolbarSeed);
+  }, [toolbarSeed, primarySchemaId]);
 
-  const resolvedToolbarMode = toolbarMode ?? internalToolbarMode;
+  const requestedToolbarMode = toolbarMode ?? internalToolbarMode;
+  const resolvedToolbarMode: SelectionToolbarMode =
+    toolbarDensityMode === 'mini'
+      ? 'micro'
+      : toolbarDensityMode === 'compact' && requestedToolbarMode === 'expanded'
+        ? 'compact'
+        : requestedToolbarMode;
   const isExpanded = resolvedToolbarMode === 'expanded';
   const isMicro = resolvedToolbarMode === 'micro';
   const nextToolbarMode: SelectionToolbarMode = isMicro ? 'compact' : isExpanded ? 'compact' : 'expanded';
@@ -61,6 +75,7 @@ const SelectionContextToolbar = ({
 
   return (
     <div
+      ref={toolbarRef}
       className="sisad-pdfme-ui-selection-context-toolbar"
       role="toolbar"
       aria-label="Barra contextual de edición"
@@ -68,6 +83,7 @@ const SelectionContextToolbar = ({
       data-interaction-phase={interactionState.phase}
       data-selection-kind={toolbarModel.kind}
       data-toolbar-mode={resolvedToolbarMode}
+      data-toolbar-density={toolbarDensityMode}
       style={{
         top: `${position.top}px`,
         left: `${position.left}px`,

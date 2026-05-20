@@ -21,6 +21,7 @@ import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import SelectableSortableItem from './SelectableSortableItem.js';
 import PluginIcon from '../../PluginIcon.js';
 import ListViewDragOverlay from './ListViewDragOverlay.js';
+import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 
 const SelectableSortableContainer = (
   props: Pick<
@@ -30,6 +31,7 @@ const SelectableSortableContainer = (
     allSchemas: SchemaForUI[];
     visibleSchemas: SchemaForUI[];
     activeSchemaIds: string[];
+    selectionCommands?: SelectionCommandSet;
   },
 ) => {
   const {
@@ -41,6 +43,7 @@ const SelectableSortableContainer = (
     hoveringSchemaId,
     onChangeHoveringSchemaId,
     collaborationContext,
+    selectionCommands,
   } = props;
   const [selectedSchemas, setSelectedSchemas] = useState<SchemaForUI[]>([]);
   const [activeId, setActiveId] = useState<string | null>(null);
@@ -186,6 +189,11 @@ const SelectableSortableContainer = (
                 onMouseEnter={() => onChangeHoveringSchemaId(schema.id)}
                 onMouseLeave={() => onChangeHoveringSchemaId(null)}
                 collaborationContext={collaborationContext}
+                onDelete={
+                  selectionCommands?.canEditStructure === false
+                    ? undefined
+                    : () => selectionCommands?.deleteSchemasByIds?.([schema.id], { origin: 'field-list' })
+                }
               />
             ))}
           </ul>
