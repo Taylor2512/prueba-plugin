@@ -2,7 +2,7 @@
    ARCHIVO UNIFICADO DE CÓDIGO PARA ANÁLISIS CON IA
    =====================================================================
    Carpeta origen: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
-   Fecha de generación: 2026-05-07T22:17:54.017Z
+   Fecha de generación: 2026-05-08T15:16:43.545Z
    Total de archivos incluidos: 434
    Extensiones incluidas: .tsx, .ts, .jsx, .js
    Objetivo: consolidar código fuente con contexto estructural para análisis
@@ -40115,7 +40115,7 @@ export default signatureSchema;
 // Ruta relativa: src/sisad-pdfme/schemas/signature/propPanel.ts
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/schemas/signature/propPanel.ts
 // Extensión: .ts
-// Líneas aproximadas: 618
+// Líneas aproximadas: 658
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
 // ====================================================================
 
@@ -40214,7 +40214,7 @@ const SignatureModeWidget = ({ rootElement, activeSchema, changeSchemas, options
   wrapper.style.gap = '6px';
 
   const label = document.createElement('label');
-  label.textContent = 'Modo de firma';
+  label.textContent = 'Tipo de firma';
   label.style.fontWeight = '600';
 
   const select = document.createElement('select');
@@ -40244,6 +40244,24 @@ const SignatureModeWidget = ({ rootElement, activeSchema, changeSchemas, options
     note.style.color = '#b42318';
     wrapper.appendChild(note);
   }
+
+  rootElement.appendChild(wrapper);
+};
+
+const OneShotStatusWidget = ({ rootElement, activeSchema }: PropPanelWidgetProps) => {
+  const resolvedSchema = normalizeSignatureSchema(activeSchema as SignatureSchema);
+  const isOneShot = Boolean(resolvedSchema.isOneShot || resolvedSchema.isOneShop);
+
+  const wrapper = document.createElement('div');
+  wrapper.style.display = 'inline-flex';
+  wrapper.style.alignItems = 'center';
+  wrapper.style.gap = '8px';
+  wrapper.style.padding = '8px 10px';
+  wrapper.style.borderRadius = '999px';
+  wrapper.style.background = isOneShot ? '#ecfdf3' : '#f8fafc';
+  wrapper.style.color = isOneShot ? '#027a48' : '#475467';
+  wrapper.style.border = `1px solid ${isOneShot ? '#abefc6' : '#d0d5dd'}`;
+  wrapper.textContent = isOneShot ? 'OneShot activo' : 'Firma local';
 
   rootElement.appendChild(wrapper);
 };
@@ -40537,12 +40555,30 @@ export const propPanel: PropPanel<SignatureSchema> = {
         bind: false,
         span: 24,
       },
+      signatureType: {
+        title: 'Tipo de firma',
+        type: 'string',
+        widget: 'select',
+        props: {
+          options: SIGNATURE_MODE_OPTIONS.map((option) => ({
+            label: option.label,
+            value: option.value,
+          })),
+        },
+        hidden: true,
+      },
       signatureProviderKey: {
         type: 'void',
         widget: 'SignatureProviderWidget',
         bind: false,
         span: 24,
         hidden: !isProviderMode,
+      },
+      signatureOneShotStatus: {
+        type: 'void',
+        widget: 'OneShotStatusWidget',
+        bind: false,
+        span: 24,
       },
       placeholderText: {
         title: 'Texto de ayuda',
@@ -40683,11 +40719,14 @@ export const propPanel: PropPanel<SignatureSchema> = {
     SignatureModeWidget,
     SignatureProviderWidget,
     SignatureProviderConfigWidget,
+    OneShotStatusWidget,
   },
   inspector: createSchemaInspectorConfig('signature', {
     propertyMap: {
       signatureMode: 'data',
+      signatureType: 'data',
       signatureProviderKey: 'data',
+      signatureOneShotStatus: 'data',
       placeholderText: 'data',
       strokeColor: 'style',
       borderColor: 'style',
@@ -40737,6 +40776,7 @@ export const propPanel: PropPanel<SignatureSchema> = {
     backgroundColor: '#FFF9ED',
   },
 };
+
 
 // ========================== FIN DE src/sisad-pdfme/schemas/signature/propPanel.ts ==========================
 
@@ -40976,7 +41016,7 @@ registerSignatureProviders([
 // Ruta relativa: src/sisad-pdfme/schemas/signature/types.ts
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/schemas/signature/types.ts
 // Extensión: .ts
-// Líneas aproximadas: 281
+// Líneas aproximadas: 288
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
 // ====================================================================
 
@@ -41236,12 +41276,15 @@ export interface SignatureSchema extends Schema {
   borderColor?: string;
   backgroundColor?: string;
   signatureMode?: SignatureMode;
+  signatureType?: SignatureMode | string;
   signatureProvider?: string | null;
   signatureProviderKey?: SignatureProviderKey | null;
   signatureProviderConfig?: SignatureProviderConfig;
   signatureCapabilities?: Partial<SignatureCapabilities>;
   signatureDisplay?: Partial<SignatureDisplayConfig>;
   signatureMetadata?: Record<string, unknown>;
+  isOneShot?: boolean;
+  isOneShop?: boolean;
 }
 
 export const normalizeSignatureSchema = (
@@ -41254,13 +41297,17 @@ export const normalizeSignatureSchema = (
   return {
     ...baseSchema,
     signatureMode,
+    signatureType: baseSchema.signatureType || signatureMode,
     signatureProviderKey,
     signatureProviderConfig: asRecord(baseSchema.signatureProviderConfig),
     signatureCapabilities: createModeAwareCapabilities(signatureMode, baseSchema.signatureCapabilities),
     signatureDisplay: createModeAwareDisplay(signatureMode, baseSchema.signatureDisplay, providerSupport),
     signatureMetadata: sanitizeSignatureMetadata(baseSchema.signatureMetadata, signatureMode),
+    isOneShot: Boolean(baseSchema.isOneShot || baseSchema.isOneShop),
+    isOneShop: Boolean(baseSchema.isOneShot || baseSchema.isOneShop),
   };
 };
+
 
 // ========================== FIN DE src/sisad-pdfme/schemas/signature/types.ts ==========================
 
@@ -46141,7 +46188,7 @@ export default Preview;
 // Ruta relativa: src/sisad-pdfme/ui/components/Renderer.tsx
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/components/Renderer.tsx
 // Extensión: .tsx
-// Líneas aproximadas: 264
+// Líneas aproximadas: 267
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
 // ====================================================================
 
@@ -46173,6 +46220,7 @@ type RendererProps = Omit<
   isHovering?: boolean;
   isEditing?: boolean;
   onDoubleClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
+  onMouseDownCapture?: (event: React.MouseEvent<HTMLDivElement>) => void;
 };
 
 type OwnerAwareSchema = SchemaForUI & { ownerRecipientName?: string };
@@ -46241,6 +46289,7 @@ const Wrapper = ({
   isHovering = false,
   isEditing = false,
   onDoubleClick,
+  onMouseDownCapture,
 }: RendererProps & { children: ReactNode }) => {
   const styleSchema = schema as DesignerStyleAwareSchema;
   const schemaClassName =
@@ -46293,6 +46342,7 @@ const Wrapper = ({
       title={schemaTitle}
       onMouseEnter={() => onChangeHoveringSchemaId?.(schema.id)}
       onMouseLeave={() => onChangeHoveringSchemaId?.(null)}
+      onMouseDownCapture={onMouseDownCapture}
       className={wrapperClassName}
       id={schema.id}
       style={wrapperStyle}
@@ -68642,7 +68692,7 @@ export default useLeftSidebarCatalogState;
 // Ruta relativa: src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx
 // Extensión: .tsx
-// Líneas aproximadas: 1248
+// Líneas aproximadas: 1266
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
 // ====================================================================
 
@@ -69023,6 +69073,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
     const targetHeightMm = fmt(_height);
     const actualTop = top / ZOOM;
     const actualLeft = left / ZOOM;
+    const snapThresholdMm = 0.75;
     const { width: pageWidthMm, height: pageHeightMm } = pageSizes[pageCursor];
     const [paddingTopMm, paddingRightMm, paddingBottomMm, paddingLeftMm] = getPaddingMm(basePdf);
     const minY = paddingTopMm;
@@ -69041,6 +69092,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
         { x: actualLeft, y: actualTop, width: targetWidthMm, height: targetHeightMm },
         { width: pageWidthMm, height: pageHeightMm },
         others,
+        snapThresholdMm,
       );
 
     const nextTop = clamp(snapResult.snapped.y, minY, maxY);
@@ -69766,11 +69818,17 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
                   useDefaultStyles={useDefaultStyles}
                   moveableColor={styleOverrides?.moveable?.color}
                   target={activeElements}
-                  bounds={{ left: 0, top: 0, bottom: paperSize.height, right: paperSize.width }}
+                  bounds={{
+                    left: 0,
+                    top: 0,
+                    bottom: mm2px(paperSize.height),
+                    right: mm2px(paperSize.width),
+                  }}
                   horizontalGuidelines={getGuideLines(horizontalGuides.current, index)}
                   verticalGuidelines={getGuideLines(verticalGuides.current, index)}
                   keepRatio={modifierKeys.shift}
                   rotatable={rotatable}
+                  zoom={scale}
                   onDrag={onDrag}
                   onDragStart={handleDragStart}
                   onDragEnd={onDragEnd}
@@ -69827,6 +69885,16 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
                     changeSchemas(
                       args.map(({ key, value }) => ({ key, value, schemaId: schema.id })),
                     );
+                  }
+                  : undefined
+              }
+              onMouseDownCapture={
+                isActive && !editing
+                  ? (event) => {
+                    if (event.button !== 0 || event.detail > 1) return;
+                    moveable.current?.dragStart(event.nativeEvent, event.currentTarget);
+                    event.preventDefault();
+                    event.stopPropagation();
                   }
                   : undefined
               }
@@ -70060,7 +70128,7 @@ export default Mask;
 // Ruta relativa: src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx
 // Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx
 // Extensión: .tsx
-// Líneas aproximadas: 125
+// Líneas aproximadas: 128
 // Fuente: tomado desde la carpeta base "/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin"
 // ====================================================================
 
@@ -70114,6 +70182,7 @@ type Props = {
   className?: string;
   useDefaultStyles?: boolean;
   moveableColor?: string;
+  zoom?: number;
 };
 
 const baseClassName = 'sisad-pdfme-moveable';
@@ -70153,6 +70222,7 @@ const Moveable = (props: Props, ref: Ref<MoveableComponent>) => {
       ref={ref}
       target={props.target}
       bounds={props.bounds}
+      zoom={props.zoom ?? 1}
       horizontalGuidelines={props.horizontalGuidelines}
       verticalGuidelines={props.verticalGuidelines}
       keepRatio={props.keepRatio}
@@ -70189,6 +70259,7 @@ const Moveable = (props: Props, ref: Ref<MoveableComponent>) => {
 };
 
 export default forwardRef<MoveableComponent, Props>(Moveable);
+
 
 // ========================== FIN DE src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx ==========================
 
@@ -88071,12 +88142,16 @@ prueba-plugin
 │   └── index
 ├── AI-Memory
 ├── docs
-│   ├── ai
-│   │   ├── agents
-│   │   ├── instructions
-│   │   ├── prompts
-│   │   └── skills
-│   └── reference
+│   ├── 00-indice
+│   ├── 01-arquitectura
+│   ├── 02-api-publica
+│   ├── 03-runtime
+│   ├── 04-componentes
+│   ├── 05-schemas
+│   ├── 06-funcionalidades
+│   ├── 07-integracion
+│   ├── 08-calidad
+│   └── 99-anexos
 ├── merge-css-from-folder.js
 ├── merge-md-from-folder.js
 ├── merge-react-from-folder.js

@@ -93,7 +93,7 @@ const SignatureModeWidget = ({ rootElement, activeSchema, changeSchemas, options
   wrapper.style.gap = '6px';
 
   const label = document.createElement('label');
-  label.textContent = 'Modo de firma';
+  label.textContent = 'Tipo de firma';
   label.style.fontWeight = '600';
 
   const select = document.createElement('select');
@@ -123,6 +123,24 @@ const SignatureModeWidget = ({ rootElement, activeSchema, changeSchemas, options
     note.style.color = '#b42318';
     wrapper.appendChild(note);
   }
+
+  rootElement.appendChild(wrapper);
+};
+
+const OneShotStatusWidget = ({ rootElement, activeSchema }: PropPanelWidgetProps) => {
+  const resolvedSchema = normalizeSignatureSchema(activeSchema as SignatureSchema);
+  const isOneShot = Boolean(resolvedSchema.isOneShot || resolvedSchema.isOneShop);
+
+  const wrapper = document.createElement('div');
+  wrapper.style.display = 'inline-flex';
+  wrapper.style.alignItems = 'center';
+  wrapper.style.gap = '8px';
+  wrapper.style.padding = '8px 10px';
+  wrapper.style.borderRadius = '999px';
+  wrapper.style.background = isOneShot ? '#ecfdf3' : '#f8fafc';
+  wrapper.style.color = isOneShot ? '#027a48' : '#475467';
+  wrapper.style.border = `1px solid ${isOneShot ? '#abefc6' : '#d0d5dd'}`;
+  wrapper.textContent = isOneShot ? 'OneShot activo' : 'Firma local';
 
   rootElement.appendChild(wrapper);
 };
@@ -416,12 +434,30 @@ export const propPanel: PropPanel<SignatureSchema> = {
         bind: false,
         span: 24,
       },
+      signatureType: {
+        title: 'Tipo de firma',
+        type: 'string',
+        widget: 'select',
+        props: {
+          options: SIGNATURE_MODE_OPTIONS.map((option) => ({
+            label: option.label,
+            value: option.value,
+          })),
+        },
+        hidden: true,
+      },
       signatureProviderKey: {
         type: 'void',
         widget: 'SignatureProviderWidget',
         bind: false,
         span: 24,
         hidden: !isProviderMode,
+      },
+      signatureOneShotStatus: {
+        type: 'void',
+        widget: 'OneShotStatusWidget',
+        bind: false,
+        span: 24,
       },
       placeholderText: {
         title: 'Texto de ayuda',
@@ -562,11 +598,14 @@ export const propPanel: PropPanel<SignatureSchema> = {
     SignatureModeWidget,
     SignatureProviderWidget,
     SignatureProviderConfigWidget,
+    OneShotStatusWidget,
   },
   inspector: createSchemaInspectorConfig('signature', {
     propertyMap: {
       signatureMode: 'data',
+      signatureType: 'data',
       signatureProviderKey: 'data',
+      signatureOneShotStatus: 'data',
       placeholderText: 'data',
       strokeColor: 'style',
       borderColor: 'style',

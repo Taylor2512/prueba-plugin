@@ -48,6 +48,7 @@ type Props = {
   className?: string;
   useDefaultStyles?: boolean;
   moveableColor?: string;
+  zoom?: number;
 };
 
 const baseClassName = 'sisad-pdfme-moveable';
@@ -87,6 +88,7 @@ const Moveable = (props: Props, ref: Ref<MoveableComponent>) => {
       ref={ref}
       target={props.target}
       bounds={props.bounds}
+      zoom={props.zoom ?? 1}
       horizontalGuidelines={props.horizontalGuidelines}
       verticalGuidelines={props.verticalGuidelines}
       keepRatio={props.keepRatio}

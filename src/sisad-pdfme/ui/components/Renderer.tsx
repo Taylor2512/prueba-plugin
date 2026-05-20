@@ -26,6 +26,7 @@ type RendererProps = Omit<
   isHovering?: boolean;
   isEditing?: boolean;
   onDoubleClick?: (event: React.MouseEvent<HTMLDivElement>) => void;
+  onMouseDownCapture?: (event: React.MouseEvent<HTMLDivElement>) => void;
 };
 
 type OwnerAwareSchema = SchemaForUI & { ownerRecipientName?: string };
@@ -94,6 +95,7 @@ const Wrapper = ({
   isHovering = false,
   isEditing = false,
   onDoubleClick,
+  onMouseDownCapture,
 }: RendererProps & { children: ReactNode }) => {
   const styleSchema = schema as DesignerStyleAwareSchema;
   const schemaClassName =
@@ -146,6 +148,7 @@ const Wrapper = ({
       title={schemaTitle}
       onMouseEnter={() => onChangeHoveringSchemaId?.(schema.id)}
       onMouseLeave={() => onChangeHoveringSchemaId?.(null)}
+      onMouseDownCapture={onMouseDownCapture}
       className={wrapperClassName}
       id={schema.id}
       style={wrapperStyle}

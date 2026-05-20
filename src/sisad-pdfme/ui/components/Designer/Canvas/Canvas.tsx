@@ -375,6 +375,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
     const targetHeightMm = fmt(_height);
     const actualTop = top / ZOOM;
     const actualLeft = left / ZOOM;
+    const snapThresholdMm = 0.75;
     const { width: pageWidthMm, height: pageHeightMm } = pageSizes[pageCursor];
     const [paddingTopMm, paddingRightMm, paddingBottomMm, paddingLeftMm] = getPaddingMm(basePdf);
     const minY = paddingTopMm;
@@ -393,6 +394,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
         { x: actualLeft, y: actualTop, width: targetWidthMm, height: targetHeightMm },
         { width: pageWidthMm, height: pageHeightMm },
         others,
+        snapThresholdMm,
       );
 
     const nextTop = clamp(snapResult.snapped.y, minY, maxY);
@@ -1118,11 +1120,17 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
                   useDefaultStyles={useDefaultStyles}
                   moveableColor={styleOverrides?.moveable?.color}
                   target={activeElements}
-                  bounds={{ left: 0, top: 0, bottom: paperSize.height, right: paperSize.width }}
+                  bounds={{
+                    left: 0,
+                    top: 0,
+                    bottom: mm2px(paperSize.height),
+                    right: mm2px(paperSize.width),
+                  }}
                   horizontalGuidelines={getGuideLines(horizontalGuides.current, index)}
                   verticalGuidelines={getGuideLines(verticalGuides.current, index)}
                   keepRatio={modifierKeys.shift}
                   rotatable={rotatable}
+                  zoom={scale}
                   onDrag={onDrag}
                   onDragStart={handleDragStart}
                   onDragEnd={onDragEnd}
@@ -1179,6 +1187,16 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
                     changeSchemas(
                       args.map(({ key, value }) => ({ key, value, schemaId: schema.id })),
                     );
+                  }
+                  : undefined
+              }
+              onMouseDownCapture={
+                isActive && !editing
+                  ? (event) => {
+                    if (event.button !== 0 || event.detail > 1) return;
+                    moveable.current?.dragStart(event.nativeEvent, event.currentTarget);
+                    event.preventDefault();
+                    event.stopPropagation();
                   }
                   : undefined
               }

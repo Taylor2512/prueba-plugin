@@ -1462,6 +1462,10 @@ body {
   opacity: 0.9;
 }
 
+.sisad-pdfme-ui-custom-selectable[data-schema-active='true']:not([data-schema-editing='true']) > * {
+  pointer-events: none;
+}
+
 .sisad-pdfme-designer-right-sidebar {
   position: absolute;
   top: 0;

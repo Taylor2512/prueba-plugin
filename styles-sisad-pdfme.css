@@ -2,7 +2,7 @@
    ARCHIVO UNIFICADO DE ESTILOS CSS
    =====================================================================
    Carpeta origen: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
-   Fecha de generación: 2026-05-07T22:17:53.975Z
+   Fecha de generación: 2026-05-08T15:16:43.531Z
    Total de archivos incluidos: 4
    Extensiones incluidas: .css
    Objetivo: consolidar estilos CSS respetando un orden estable de cascada
@@ -23,7 +23,7 @@
    ARCHIVO #1
    Ruta relativa: src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
    Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
-   Líneas aproximadas: 4980
+   Líneas aproximadas: 4984
    ==================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
@@ -1488,6 +1488,10 @@ body {
 .sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-rotation-line {
   border-color: var(--moveable-color);
   opacity: 0.9;
+}
+
+.sisad-pdfme-ui-custom-selectable[data-schema-active='true']:not([data-schema-editing='true']) > * {
+  pointer-events: none;
 }
 
 .sisad-pdfme-designer-right-sidebar {
@@ -12184,12 +12188,16 @@ body {
    │   └── index
    ├── AI-Memory
    ├── docs
-   │   ├── ai
-   │   │   ├── agents
-   │   │   ├── instructions
-   │   │   ├── prompts
-   │   │   └── skills
-   │   └── reference
+   │   ├── 00-indice
+   │   ├── 01-arquitectura
+   │   ├── 02-api-publica
+   │   ├── 03-runtime
+   │   ├── 04-componentes
+   │   ├── 05-schemas
+   │   ├── 06-funcionalidades
+   │   ├── 07-integracion
+   │   ├── 08-calidad
+   │   └── 99-anexos
    ├── public
    │   └── templates
    ├── scripts

@@ -254,12 +254,15 @@ export interface SignatureSchema extends Schema {
   borderColor?: string;
   backgroundColor?: string;
   signatureMode?: SignatureMode;
+  signatureType?: SignatureMode | string;
   signatureProvider?: string | null;
   signatureProviderKey?: SignatureProviderKey | null;
   signatureProviderConfig?: SignatureProviderConfig;
   signatureCapabilities?: Partial<SignatureCapabilities>;
   signatureDisplay?: Partial<SignatureDisplayConfig>;
   signatureMetadata?: Record<string, unknown>;
+  isOneShot?: boolean;
+  isOneShop?: boolean;
 }
 
 export const normalizeSignatureSchema = (
@@ -272,10 +275,13 @@ export const normalizeSignatureSchema = (
   return {
     ...baseSchema,
     signatureMode,
+    signatureType: baseSchema.signatureType || signatureMode,
     signatureProviderKey,
     signatureProviderConfig: asRecord(baseSchema.signatureProviderConfig),
     signatureCapabilities: createModeAwareCapabilities(signatureMode, baseSchema.signatureCapabilities),
     signatureDisplay: createModeAwareDisplay(signatureMode, baseSchema.signatureDisplay, providerSupport),
     signatureMetadata: sanitizeSignatureMetadata(baseSchema.signatureMetadata, signatureMode),
+    isOneShot: Boolean(baseSchema.isOneShot || baseSchema.isOneShop),
+    isOneShop: Boolean(baseSchema.isOneShot || baseSchema.isOneShop),
   };
 };
