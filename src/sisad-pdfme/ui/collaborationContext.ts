@@ -10,6 +10,17 @@ export type CollaborationRecipientOption = {
   tag?: string | null;
 };
 
+export type CollaborationCanEditStructureContext = {
+  fileId: string | null;
+  activeRecipientId: string | null;
+  activeRecipient: CollaborationRecipientOption | null;
+  activeRecipientRole: string | null;
+};
+
+export type CollaborationCanEditStructurePolicy =
+  | boolean
+  | ((context: CollaborationCanEditStructureContext) => boolean);
+
 export type EffectiveCollaborationContext = Pick<
   SchemaCreationContext,
   'fileId' | 'actorId' | 'ownerRecipientId' | 'ownerRecipientIds' | 'ownerRecipientName' | 'ownerColor' | 'userColor'
@@ -37,6 +48,16 @@ export type ResolvedSchemaCollaborationState = {
   isOwnerActive: boolean;
   isOwnerOther: boolean;
   isShared: boolean;
+};
+
+const resolveCanEditStructure = (
+  collaboration: CollaborationSyncConfig | undefined,
+  context: CollaborationCanEditStructureContext,
+) => {
+  const policy = collaboration?.permissions?.canEditStructure ?? collaboration?.canEditStructure;
+  if (typeof policy === 'function') return policy(context);
+  if (typeof policy === 'boolean') return policy;
+  return true;
 };
 
 const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
@@ -132,7 +153,12 @@ export const buildEffectiveCollaborationContext = (
     activeRecipient,
     activeRecipientRole,
     isGlobalView: collaboration?.isGlobalView === true,
-    canEditStructure: !['reviewer', 'viewer'].includes(activeRecipientRole || ''),
+    canEditStructure: resolveCanEditStructure(collaboration, {
+      fileId,
+      activeRecipientId,
+      activeRecipient,
+      activeRecipientRole,
+    }),
   };
 };
 

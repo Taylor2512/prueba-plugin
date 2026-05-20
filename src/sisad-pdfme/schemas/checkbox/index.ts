@@ -12,6 +12,7 @@ const getCheckedIcon = (stroke = defaultStroke) => renderLucideIcon(SquareCheck,
 const getUncheckedIcon = (stroke = defaultStroke) => renderLucideIcon(Square, { stroke });
 
 interface Checkbox extends Schema {
+  groupId?: string;
   color: string;
 }
 
@@ -54,6 +55,10 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
         required: true,
         rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
       },
+      groupId: {
+        title: i18n('schemas.radioGroup.groupName'),
+        type: 'string',
+      },
     }),
     inspector: createSchemaInspectorConfig('choice', {
       propertyMap: {
@@ -67,6 +72,7 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
       position: { x: 0, y: 0 },
       width: 8,
       height: 8,
+      groupId: 'MyGroup',
       color: '#000000',
     },
   },

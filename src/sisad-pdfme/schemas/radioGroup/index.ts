@@ -12,7 +12,8 @@ const getCheckedIcon = (stroke = defaultStroke) => renderLucideIcon(CircleDot, {
 const getUncheckedIcon = (stroke = defaultStroke) => renderLucideIcon(Circle, { stroke });
 
 interface RadioGroup extends Schema {
-  group: string;
+  group?: string;
+  groupId?: string;
   color: string;
 }
 
@@ -40,9 +41,10 @@ const schema: Plugin<RadioGroup> = createSchemaPlugin<RadioGroup>({
       radioButtonStates.set(schema.name, { value, onChange });
     }
 
+    const groupKey = schema.groupId || schema.group || schema.name;
     const oldListener = eventListeners.get(schema.name);
     if (oldListener) {
-      eventEmitter.removeEventListener(`group-${schema.group}`, oldListener);
+      eventEmitter.removeEventListener(`group-${groupKey}`, oldListener);
     }
 
     const handleGroupEvent = (event: Event) => {
@@ -58,16 +60,14 @@ const schema: Plugin<RadioGroup> = createSchemaPlugin<RadioGroup>({
     };
 
     eventListeners.set(schema.name, handleGroupEvent);
-    eventEmitter.addEventListener(`group-${schema.group}`, handleGroupEvent);
+    eventEmitter.addEventListener(`group-${groupKey}`, handleGroupEvent);
 
     if (isEditable(mode, schema)) {
       container.addEventListener('click', () => {
         if (value !== 'true' && onChange) {
           onChange({ key: 'content', value: 'true' });
           radioButtonStates.set(schema.name, { value: 'true', onChange });
-          eventEmitter.dispatchEvent(
-            new CustomEvent(`group-${schema.group}`, { detail: schema.name }),
-          );
+          eventEmitter.dispatchEvent(new CustomEvent(`group-${groupKey}`, { detail: schema.name }));
         }
       });
     }
@@ -99,6 +99,10 @@ const schema: Plugin<RadioGroup> = createSchemaPlugin<RadioGroup>({
         title: i18n('schemas.radioGroup.groupName'),
         type: 'string',
       },
+      groupId: {
+        title: i18n('schemas.radioGroup.groupName'),
+        type: 'string',
+      },
     }),
     inspector: createSchemaInspectorConfig('choice', {
       propertyMap: {
@@ -113,6 +117,7 @@ const schema: Plugin<RadioGroup> = createSchemaPlugin<RadioGroup>({
       position: { x: 0, y: 0 },
       width: 8,
       height: 8,
+      groupId: 'MyGroup',
       group: 'MyGroup',
       color: '#000000',
     },

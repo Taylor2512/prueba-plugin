@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import type {
   SidebarProps,
   DesignerComponentBridge,
@@ -14,6 +14,7 @@ import DocumentsRail, { DocumentsRailProps } from './DocumentsRail.js';
 import CommentsRail, { CommentsRailProps } from './CommentsRail.js';
 import { mergeClassNames } from '../shared/className.js';
 import type { SelectionCommandSet } from '../shared/selectionCommands.js';
+import { useResponsiveDensity } from '../shared/useResponsiveDensity.js';
 import { Layers, SlidersHorizontal, FileText, MessageSquareText } from 'lucide-react';
 import {
   resolveRightSidebarContextHeader,
@@ -113,6 +114,12 @@ const Sidebar = (props: RightSidebarProps) => {
   const { sidebarOpen, activeElements, schemas } = props;
   const { autoFocusDetail, onViewModeChange } = props;
   const detached = Boolean(props.detached);
+  const sidebarRootRef = useRef<HTMLElement | null>(null);
+  const { mode: sidebarDensityMode } = useResponsiveDensity(sidebarRootRef, {
+    comfortable: 390,
+    compact: 318,
+    mini: 256,
+  });
   const useLayoutFrame = Boolean(props.useLayoutFrame);
   const viewportWidth =
     props.viewportWidth && Number.isFinite(props.viewportWidth)
@@ -315,6 +322,7 @@ const Sidebar = (props: RightSidebarProps) => {
 
   return (
     <aside
+      ref={sidebarRootRef}
       id={props.rootId}
       aria-label="Panel derecho del diseñador"
       aria-hidden={sidebarOpen ? 'false' : 'true'}
@@ -325,6 +333,7 @@ const Sidebar = (props: RightSidebarProps) => {
         props.className,
       )}
       data-sidebar-detached={detached ? 'true' : 'false'}
+      data-right-sidebar-density={sidebarDensityMode}
       data-sidebar-presentation={actualPresentation}
       data-sidebar-open={sidebarOpen ? 'true' : 'false'}
       data-panel-mode={resolvedPanelMode}

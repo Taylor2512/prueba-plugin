@@ -6,6 +6,7 @@ import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
 import { SidebarSurfaceHeader } from '../shared/SidebarSurfacePrimitives.js';
 import type { InspectorTag } from './InspectorPrimitives.js';
+import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
 
 type DetailHeaderCardProps = {
   activeSchema: SchemaForUI;
@@ -63,12 +64,22 @@ export const buildDetailHeaderSummary = (
   const schemaName = typeof activeSchema.name === 'string' ? activeSchema.name : 'Campo';
   const schemaType = typeof activeSchema.type === 'string' ? activeSchema.type : 'schema';
   const schemaHidden = (activeSchema as SchemaForUI & { hidden?: boolean }).hidden === true;
+  const ownerLabel =
+    typeof activeSchema.ownerRecipientName === 'string' && activeSchema.ownerRecipientName.trim()
+      ? activeSchema.ownerRecipientName.trim()
+      : typeof activeSchema.ownerRecipientId === 'string' && activeSchema.ownerRecipientId.trim()
+        ? activeSchema.ownerRecipientId.trim()
+        : '';
 
   const stateTags: StateTag[] = [];
   if (!schemaName.trim()) stateTags.push({ label: 'Sin nombre', color: 'warning' });
   if (activeSchema.required) stateTags.push({ label: 'Requerido', color: 'error' });
   if (activeSchema.readOnly) stateTags.push({ label: 'Solo lectura', color: 'gold' });
   if (schemaHidden) stateTags.push({ label: 'Oculto', color: 'default' });
+  if (ownerLabel) stateTags.push({ label: `Owner: ${ownerLabel}`, color: 'processing' });
+  if (typeof activeSchema.ownerColor === 'string' && activeSchema.ownerColor.trim()) {
+    stateTags.push({ label: `Color: ${activeSchema.ownerColor.trim()}`, color: 'blue' });
+  }
 
   const posX = Number((activeSchema.position?.x ?? 0).toFixed(1));
   const posY = Number((activeSchema.position?.y ?? 0).toFixed(1));
@@ -98,37 +109,49 @@ const DetailHeaderCard = ({
   leading,
   className,
 }: DetailHeaderCardProps) => {
+  const headerRef = React.useRef<HTMLDivElement | null>(null);
+  const { mode: headerDensity } = useResponsiveDensity(headerRef, {
+    comfortable: 350,
+    compact: 286,
+    mini: 232,
+  });
   const tone = resolveSchemaTone(activeSchema, '#7c3aed');
   const headerSummary = buildDetailHeaderSummary(activeSchema, schemaConfig);
   const effectiveTags = tags || headerSummary.tags;
-  const visibleTags = showStateTags ? effectiveTags.slice(0, maxVisibleTags) : [];
-  const overflowCount = showStateTags ? Math.max(0, effectiveTags.length - maxVisibleTags) : 0;
+  const adaptiveMaxVisibleTags =
+    headerDensity === 'mini' ? 0 : headerDensity === 'compact' ? Math.min(1, maxVisibleTags) : Math.min(2, maxVisibleTags);
+  const resolvedShowStateTags = showStateTags && headerDensity !== 'mini';
+  const resolvedShowPosition = showPosition && headerDensity !== 'mini';
+  const visibleTags = resolvedShowStateTags ? effectiveTags.slice(0, adaptiveMaxVisibleTags) : [];
+  const overflowCount = resolvedShowStateTags ? Math.max(0, effectiveTags.length - adaptiveMaxVisibleTags) : 0;
   const resolvedOverflowTooltip = overflowTooltip || metaTooltip || headerSummary.overflowTooltip;
 
   return (
-    <SidebarSurfaceHeader
-      className={[DESIGNER_CLASSNAME + 'detail-header-card', className].filter(Boolean).join(' ')}
-      compact
-      leading={leading || <Badge color={tone} />}
-      title={title || headerSummary.schemaName}
-      subtitle={showType ? (typeLabel || headerSummary.schemaType) : showPosition ? (positionLabel || headerSummary.positionLabel) : undefined}
-      badges={
-        showStateTags
-          ? [
-              ...visibleTags.map((tag) => ({
-                key: tag.key,
-                label: tag.label,
-                color: tag.color,
-                tooltip: resolvedOverflowTooltip,
-              })),
-              ...(overflowCount > 0
-                ? [{ key: 'overflow', label: `+${overflowCount}`, color: 'default' as const, tooltip: resolvedOverflowTooltip }]
-                : []),
-            ]
-          : []
-      }
-      trailing={showPosition ? <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-pos'}>{positionLabel || headerSummary.positionLabel}</Tag> : null}
-    />
+    <div ref={headerRef} data-detail-header-density={headerDensity}>
+      <SidebarSurfaceHeader
+        className={[DESIGNER_CLASSNAME + 'detail-header-card', className].filter(Boolean).join(' ')}
+        compact
+        leading={leading || <Badge color={tone} />}
+        title={title || headerSummary.schemaName}
+        subtitle={showType ? (typeLabel || headerSummary.schemaType) : resolvedShowPosition ? (positionLabel || headerSummary.positionLabel) : undefined}
+        badges={
+          resolvedShowStateTags
+            ? [
+                ...visibleTags.map((tag, index) => ({
+                  key: tag.key || `${String(tag.label)}-${String(tag.color || 'default')}-${index}`,
+                  label: tag.label,
+                  color: tag.color,
+                  tooltip: resolvedOverflowTooltip,
+                })),
+                ...(overflowCount > 0
+                  ? [{ key: 'overflow', label: `+${overflowCount}`, color: 'default' as const, tooltip: resolvedOverflowTooltip }]
+                  : []),
+              ]
+            : []
+        }
+        trailing={resolvedShowPosition ? <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-pos'}>{positionLabel || headerSummary.positionLabel}</Tag> : null}
+      />
+    </div>
   );
 };
 

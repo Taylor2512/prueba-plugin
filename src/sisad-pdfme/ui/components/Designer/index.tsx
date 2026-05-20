@@ -64,6 +64,9 @@ import { resolveSmartDropPosition } from './Canvas/overlays/smartPlacement.js';
 import SchemaDragPreview from './Canvas/overlays/SchemaDragPreview.js';
 import SchemaDropCommitFlash from './Canvas/overlays/SchemaDropCommitFlash.js';
 import SchemaDropPlaceholder from './Canvas/overlays/SchemaDropPlaceholder.js';
+import { installPassiveTouchListenerGuard } from './shared/passiveTouchListeners.js';
+
+installPassiveTouchListenerGuard();
 
 import { buildEffectiveCollaborationContext, filterSchemasForCollaborationView } from '../../collaborationContext.js';
 import type { RightSidebarContextHeader, RightSidebarContextHeaderContext } from './RightSidebar/contextHeader.js';
@@ -84,6 +87,7 @@ import {
   createPageSnapshotCommand,
   createTemplateSnapshotCommand,
 } from '../../commands/designerCommands.js';
+import { emitDesignerRuntimeEvent } from '../Designer/shared/designerExtensions.js';
 const DESIGNER_THEME_STYLE_ID = DESIGNER_CLASSNAME + 'theme-base';
 
 type RightSidebarContextHeaderRendererDeps = {
@@ -414,6 +418,13 @@ const TemplateEditor = ({
     () => resolveDesignerEngine(options as Record<string, unknown>),
     [options],
   );
+  const designerEvents = designerEngine.extensions?.events;
+  const emitDesignerEvent = useCallback(
+    (event: Parameters<typeof emitDesignerRuntimeEvent>[1]) => {
+      emitDesignerRuntimeEvent(designerEvents, event);
+    },
+    [designerEvents],
+  );
   const LeftSidebar = designerEngine.renderers?.leftSidebar || LeftSidebarDefault;
   const RightSidebar = designerEngine.renderers?.rightSidebar || RightSidebarDefault;
   const leftSidebarEngine = designerEngine.sidebars?.left;
@@ -421,6 +432,10 @@ const TemplateEditor = ({
   const maxZoom = useMaxZoom();
   const leftSidebarVariant = options.leftSidebarVariant === 'panel' ? 'panel' : 'compact';
   const leftSidebarVisible = options.leftSidebarVisible !== false;
+  const leftSidebarShowItemMeta = options.leftSidebarShowItemMeta !== false;
+  const leftSidebarShowItemDescription = options.leftSidebarShowItemDescription !== false;
+  const leftSidebarShowTechnicalLabels = options.leftSidebarShowTechnicalLabels !== false;
+  const leftSidebarShowCatalogViewSwitcher = options.leftSidebarShowCatalogViewSwitcher !== false;
   const leftSidebarUseLayout = Boolean(options.leftSidebarUseLayout);
   const leftSidebarSearchable = options.leftSidebarSearchable !== false;
   const leftSidebarDetached = options.leftSidebarDetached === true;
@@ -538,7 +553,9 @@ const TemplateEditor = ({
   const pageCursorRef = useRef(0);
   const [zoomLevel, setZoomLevel] = useState(options.zoomLevel ?? 1);
   const [sidebarOpen, setSidebarOpen] = useState(options.sidebarOpen ?? true);
-  const [viewportMode, setViewportMode] = useState<ViewportMode>('manual');
+  const [viewportMode, setViewportMode] = useState<ViewportMode>(() =>
+    normalizeViewportMode(options.viewportMode ?? options.initialViewportMode),
+  );
   const [canvasFeatureOverrides, setCanvasFeatureOverrides] = useState<Partial<CanvasFeatureToggles>>({});
   const canvasFeatureToggles = useMemo<CanvasFeatureToggles>(
     () => ({
@@ -1078,6 +1095,18 @@ const TemplateEditor = ({
 
   const changeSchemas: ChangeSchemas = useCallback(
     (objs) => {
+      emitDesignerEvent({
+        type: 'designer.schema.change',
+        source: 'canvas',
+        component: 'Canvas',
+        pageIndex: pageCursor,
+        schemaIds: objs.map((obj) => obj.schemaId).filter(Boolean) as string[],
+        patch: objs.reduce<Record<string, unknown>>((acc, obj) => {
+          acc[String(obj.schemaId)] = { key: obj.key, value: obj.value };
+          return acc;
+        }, {}),
+        details: { changeCount: objs.length },
+      });
       _changeSchemas({
         objs,
         schemas: currentPageSchemas,
@@ -1087,7 +1116,7 @@ const TemplateEditor = ({
         commitSchemas,
       });
     },
-    [activeBasePdf, commitSchemas, currentPageSchemas, pageCursor, pageSizes, pluginsRegistry],
+    [activeBasePdf, commitSchemas, currentPageSchemas, emitDesignerEvent, pageCursor, pageSizes, pluginsRegistry],
   );
 
   const currentPageSize = useMemo(
@@ -1112,6 +1141,9 @@ const TemplateEditor = ({
         onOpenProperties: openPropertiesPanel,
         requestInlineEdit,
         collaborationContext,
+        executeCommand: (command) => {
+          void commandBusRef.current.execute(command);
+        },
       }),
     [
       activeElements,
@@ -1124,6 +1156,7 @@ const TemplateEditor = ({
       openPropertiesPanel,
       requestInlineEdit,
       collaborationContext,
+      commandBusRef,
     ],
   );
 
@@ -1717,6 +1750,13 @@ const TemplateEditor = ({
     (mode: ViewportMode, page?: number) => {
       const normalizedMode = normalizeViewportMode(mode);
       setViewportMode(normalizedMode);
+      emitDesignerEvent({
+        type: 'designer.action.viewport-mode.set',
+        source: 'designer',
+        component: 'Designer',
+        value: normalizedMode,
+        pageIndex: typeof page === 'number' ? Math.max(0, Math.round(page) - 1) : undefined,
+      });
 
       const targetPage = resolveTargetPageIndex(page);
       if (targetPage !== pageCursor) {
@@ -1732,7 +1772,7 @@ const TemplateEditor = ({
         return Math.abs(prev - nextZoom) <= 0.005 ? prev : nextZoom;
       });
     },
-    [computeZoomForMode, pageCursor, resolveTargetPageIndex, setPageCursorWithScroll],
+    [computeZoomForMode, emitDesignerEvent, pageCursor, resolveTargetPageIndex, setPageCursorWithScroll],
   );
 
   const setZoomExternal = useCallback(
@@ -1740,8 +1780,14 @@ const TemplateEditor = ({
       setViewportMode('manual');
       const nextZoom = Math.max(0.25, Math.min(maxZoom, zoom));
       setZoomLevel(nextZoom);
+      emitDesignerEvent({
+        type: 'designer.action.zoom.set',
+        source: 'designer',
+        component: 'Designer',
+        value: nextZoom,
+      });
     },
-    [maxZoom],
+    [emitDesignerEvent, maxZoom],
   );
 
   // Update component state only when _options_ changes
@@ -1749,11 +1795,11 @@ const TemplateEditor = ({
     if (typeof options.zoomLevel === 'number' && options.zoomLevel !== zoomLevel) {
       setZoomLevel(options.zoomLevel);
     }
-    if (typeof options.sidebarOpen === 'boolean' && options.sidebarOpen !== sidebarOpen) {
+    if (options.sidebarOpenControlled === true && typeof options.sidebarOpen === 'boolean' && options.sidebarOpen !== sidebarOpen) {
       setSidebarOpen(options.sidebarOpen);
     }
-    const modeFromOptions = normalizeViewportMode(options.viewportMode ?? options.initialViewportMode);
-    if (modeFromOptions !== 'manual' && modeFromOptions !== viewportMode) {
+    const modeFromOptions = normalizeViewportMode(options.viewportMode);
+    if (options.viewportMode !== undefined && modeFromOptions !== viewportMode) {
       applyViewportMode(modeFromOptions);
     }
   }, [applyViewportMode, options, sidebarOpen, viewportMode, zoomLevel]);
@@ -1793,6 +1839,28 @@ const TemplateEditor = ({
     void commandBusRef.current.redo();
     onEditEnd();
   }, [onEditEnd]);
+
+  const exportTemplateExternal = useCallback(() => {
+    const exportPayload = JSON.stringify(visibleTemplate, null, 2);
+    const safeName = String(getBasePdfDisplayName(visibleTemplate.basePdf) || 'sisad-pdfme-template')
+      .replace(/[\\/:*?"<>|]+/g, '_')
+      .trim() || 'sisad-pdfme-template';
+    const blob = new Blob([exportPayload], { type: 'application/json' });
+    const downloadUrl = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = `${safeName}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(downloadUrl);
+    emitDesignerEvent({
+      type: 'designer.action.export.template',
+      source: 'designer',
+      component: 'Designer',
+      details: { fileName: `${safeName}.json` },
+    });
+  }, [emitDesignerEvent, visibleTemplate]);
 
   const focusFieldExternal = useCallback(
     (fieldName: string) => {
@@ -1923,6 +1991,74 @@ const TemplateEditor = ({
     handleCollaborationEvent,
   ]);
 
+  useEffect(() => {
+    emitDesignerEvent({
+      type: 'designer.selection.changed',
+      source: 'canvas',
+      component: 'Canvas',
+      schemaIds: activeElementIds,
+      details: { count: activeElementIds.length },
+    });
+  }, [activeElementIds, emitDesignerEvent]);
+
+  useEffect(() => {
+    emitDesignerEvent({
+      type: 'designer.view.page.changed',
+      source: 'designer',
+      component: 'Designer',
+      pageIndex: pageCursor,
+      details: { totalPages: schemasList.length },
+    });
+  }, [emitDesignerEvent, pageCursor, schemasList.length]);
+
+  useEffect(() => {
+    emitDesignerEvent({
+      type: 'designer.view.zoom.changed',
+      source: 'designer',
+      component: 'Designer',
+      value: zoomLevel,
+      details: { viewportMode, sidebarOpen },
+    });
+  }, [emitDesignerEvent, sidebarOpen, viewportMode, zoomLevel]);
+
+  useEffect(() => {
+    emitDesignerEvent({
+      type: 'designer.view.sidebar.changed',
+      source: 'designer',
+      component: 'Designer',
+      value: sidebarOpen,
+    });
+  }, [emitDesignerEvent, sidebarOpen]);
+
+  useEffect(() => {
+    emitDesignerEvent({
+      type: 'designer.view.viewport-mode.changed',
+      source: 'designer',
+      component: 'Designer',
+      value: viewportMode,
+    });
+  }, [emitDesignerEvent, viewportMode]);
+
+  useEffect(() => {
+    emitDesignerEvent({
+      type: 'designer.selection.hover.changed',
+      source: 'sidebar',
+      component: 'Sidebar',
+      schemaId: hoveringSchemaId,
+      value: hoveringSchemaId,
+    });
+  }, [emitDesignerEvent, hoveringSchemaId]);
+
+  useEffect(() => {
+    emitDesignerEvent({
+      type: 'designer.component.interaction.changed',
+      source: 'designer',
+      component: 'Designer',
+      schemaIds: activeElementIds,
+      details: { ...interactionState },
+    });
+  }, [activeElementIds, emitDesignerEvent, interactionState]);
+
   const applyExternalPrefill = useCallback(
     (payload: Record<string, unknown>, matcher: SchemaMatcher = 'name') => {
       if (!payload || typeof payload !== 'object') return 0;
@@ -1975,7 +2111,7 @@ const TemplateEditor = ({
     setTimeout(() => {
       scrollPageIntoView(newPageCursor);
     }, 0);
-  }, [activeBasePdf, onPageCursorChange, pageSizes, pushTemplateUpdate, scrollPageIntoView]);
+  }, [activeBasePdf, onPageCursorChange, pushTemplateUpdate, scrollPageIntoView]);
 
   const handleDuplicatePageAfter = useCallback(() => {
     const duplicatedPageSchemas = cloneDeep(currentPageSchemas).map((schema) =>
@@ -2035,15 +2171,63 @@ const TemplateEditor = ({
         const targetPage = resolveTargetPageIndex(page);
         setPageCursorWithScroll(targetPage);
       },
-      setSidebarOpen: (open: boolean) => setSidebarOpen(Boolean(open)),
-      toggleSidebar: () => setSidebarOpen((prev) => !prev),
+      setSidebarOpen: (open: boolean) => {
+        setSidebarOpen(Boolean(open));
+        emitDesignerEvent({
+          type: 'designer.action.sidebar.set',
+          source: 'designer',
+          component: 'Designer',
+          value: Boolean(open),
+        });
+      },
+      toggleSidebar: () => {
+        setSidebarOpen((prev) => !prev);
+        emitDesignerEvent({
+          type: 'designer.action.sidebar.toggle',
+          source: 'designer',
+          component: 'Designer',
+        });
+      },
       focusField: focusFieldExternal,
       highlightField: focusFieldExternal,
-      addSchema: (schema: Schema) => addSchemaAtCenter(cloneDeep(schema)),
-      addSchemaByType,
-      duplicatePage: handleDuplicatePageAfter,
+      addSchema: (schema: Schema) => {
+        const schemaId = schema?.id ? String(schema.id) : null;
+        emitDesignerEvent({
+          type: 'designer.action.schema.add',
+          source: 'designer',
+          component: 'Designer',
+          schemaId,
+          details: { schemaType: schema?.type, schemaName: schema?.name },
+        });
+        addSchemaAtCenter(cloneDeep(schema));
+      },
+      addSchemaByType: (schemaType: string) => {
+        emitDesignerEvent({
+          type: 'designer.action.schema.add-by-type',
+          source: 'designer',
+          component: 'Designer',
+          value: schemaType,
+        });
+        addSchemaByType(schemaType);
+      },
+      duplicatePage: () => {
+        emitDesignerEvent({
+          type: 'designer.action.page.duplicate',
+          source: 'designer',
+          component: 'Designer',
+          pageIndex: pageCursor,
+        });
+        handleDuplicatePageAfter();
+      },
       setCanvasFeatureToggle: (key: keyof CanvasFeatureToggles, value: boolean) => {
-      setCanvasFeatureOverrides((prev) => ({ ...prev, [key]: Boolean(value) }));
+        setCanvasFeatureOverrides((prev) => ({ ...prev, [key]: Boolean(value) }));
+        emitDesignerEvent({
+          type: 'designer.action.canvas-feature-toggle',
+          source: 'designer',
+          component: 'Designer',
+          value: Boolean(value),
+          details: { key },
+        });
       },
       getCanvasFeatureToggles: () => ({ ...canvasFeatureToggles }),
       getSchemaConfig: (schemaIdOrName, matcher = 'id') => {
@@ -2068,15 +2252,34 @@ const TemplateEditor = ({
         );
         setSchemasList(next);
         pushTemplateUpdate(schemasList2template(next, activeBasePdf));
+        emitDesignerEvent({
+          type: 'designer.action.schema.config-set',
+          source: 'designer',
+          component: 'Designer',
+          schemaId: target.id,
+          patch: patch as Record<string, unknown>,
+          details: { matcher },
+        });
         return true;
       },
-      applyExternalPrefill,
+      applyExternalPrefill: (payload, matcher = 'name') => {
+        const result = applyExternalPrefill(payload, matcher);
+        emitDesignerEvent({
+          type: 'designer.action.prefill.apply',
+          source: 'runtime',
+          component: 'Designer',
+          value: payload,
+          details: { matcher, affectedCount: result },
+        });
+        return result;
+      },
     }),
     [
       applyExternalPrefill,
       addSchemaAtCenter,
       addSchemaByType,
       canvasFeatureToggles,
+      emitDesignerEvent,
       handleDuplicatePageAfter,
       applyViewportMode,
       designerEngine,
@@ -2150,6 +2353,13 @@ const TemplateEditor = ({
 
   const onChangeHoveringSchemaId = (id: string | null) => {
     setHoveringSchemaId(id);
+    emitDesignerEvent({
+      type: 'designer.hover.changed',
+      source: 'sidebar',
+      component: 'Sidebar',
+      schemaId: id,
+      value: id,
+    });
   };
 
   const isSchemaDragActive = (active: SchemaDragActiveLike) => {
@@ -2535,16 +2745,44 @@ const TemplateEditor = ({
     // Pass the error directly to ErrorScreen
     return <ErrorScreen size={size} error={error} />;
   }
-  const { className: leftSidebarEngineClassName, ...leftSidebarEngineProps } = leftSidebarEngine || {};
-  const { className: rightSidebarEngineClassName, ...rightSidebarEngineProps } = rightSidebarEngine || {};
+  const {
+    className: leftSidebarEngineClassName,
+    extensions: leftSidebarEngineExtensions,
+    ...leftSidebarEngineProps
+  } = leftSidebarEngine || {};
+  const {
+    className: rightSidebarEngineClassName,
+    extensions: rightSidebarEngineExtensions,
+    ...rightSidebarEngineProps
+  } = rightSidebarEngine || {};
+  const leftSidebarResolvedProps = Object.assign({}, leftSidebarEngineProps, {
+    extensions: designerEngine.extensions || leftSidebarEngineExtensions,
+  });
+  const rightSidebarResolvedProps = Object.assign({}, rightSidebarEngineProps, {
+    extensions: designerEngine.extensions || rightSidebarEngineExtensions,
+  });
 
   const leftSidebarNode = leftSidebarVisible ? (
     <LeftSidebar
       scale={scale}
       basePdf={activeBasePdf}
+      activeRecipientColor={
+        designerEngine.extensions?.resolveRecipientColor?.(collaborationContext.activeRecipient || null) ||
+        (typeof options.activeRecipientColor === 'string' && options.activeRecipientColor.trim()
+          ? options.activeRecipientColor.trim()
+          : null) ||
+        collaborationContext.userColor ||
+        collaborationContext.ownerColor ||
+        collaborationContext.activeRecipient?.color ||
+        null
+      }
       variant={leftSidebarVariant}
       useLayoutFrame={leftSidebarUseLayout}
       showSearch={leftSidebarSearchable}
+      showItemMeta={leftSidebarShowItemMeta}
+      showItemDescription={leftSidebarShowItemDescription}
+      showTechnicalLabels={leftSidebarShowTechnicalLabels}
+      showCatalogViewSwitcher={leftSidebarShowCatalogViewSwitcher}
       detached={leftSidebarDetached}
       presentation={leftSidebarPresentation}
       responsiveBreakpoint={Number.isFinite(leftSidebarResponsiveBreakpoint) ? leftSidebarResponsiveBreakpoint : 1080}
@@ -2561,7 +2799,7 @@ const TemplateEditor = ({
         addSchemaAtCenter(cloneDeep(schema));
       }}
       bridge={componentBridge}
-      {...leftSidebarEngineProps}
+      {...leftSidebarResolvedProps}
     />
   ) : null;
 
@@ -2608,6 +2846,7 @@ const TemplateEditor = ({
       sidebarOpen={sidebarOpen}
       setSidebarOpen={setSidebarOpen}
       collaborationContext={collaborationContext}
+      extensions={designerEngine.extensions}
       width={responsiveRightSidebarWidthRaw}
       detached={rightSidebarDetached}
       presentation={rightSidebarPresentation}
@@ -2685,7 +2924,7 @@ const TemplateEditor = ({
           .join(' ') || undefined
       }
       bridge={componentBridge}
-      {...rightSidebarEngineProps}
+      {...rightSidebarResolvedProps}
     />
   );
   const activeDragPageIndex = activeDragData?.pageIndex ?? pageCursor;
@@ -2950,6 +3189,7 @@ const TemplateEditor = ({
             onOpenShortcuts={() => window.dispatchEvent(new CustomEvent('sisad-pdfme:shortcut-open-panel'))}
             documentStatus={isIdle ? 'Listo' : 'Editando'}
             onSave={() => onSaveTemplate(visibleTemplate)}
+            onExport={exportTemplateExternal}
             featureToggles={{
               guides: canvasFeatureToggles.guides,
               snapLines: canvasFeatureToggles.snapLines,

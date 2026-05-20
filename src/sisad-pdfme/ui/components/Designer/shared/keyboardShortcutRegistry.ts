@@ -27,6 +27,8 @@ const KEY_ALIASES: Record<string, string[]> = {
   return: ['enter'],
   enter: ['enter'],
   space: ['space'],
+  comma: ['comma', ',', 'less'],
+  period: ['period', '.', 'greater'],
   slash: ['slash', '/'],
   question: ['question', 'slash', '/'],
   plus: ['plus', 'equal', '+'],
@@ -246,6 +248,10 @@ const normalizeKeyLabel = (key: string, platform: ShortcutPlatform) => {
       return '-';
     case 'space':
       return 'Space';
+    case 'comma':
+      return ',';
+    case 'period':
+      return '.';
     default:
       return value.length === 1 ? value.toUpperCase() : value;
   }

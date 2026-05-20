@@ -3,6 +3,12 @@ import type { Schema } from '@sisad-pdfme/common';
 export type SignatureMode = 'draw' | 'image' | 'p12' | 'provider';
 export type SignatureProviderKey = string;
 export type SignatureProviderConfig = Record<string, unknown>;
+export type SignatureProviderStatus = 'pending' | 'ready' | 'completed' | 'failed' | 'expired';
+export type SignatureProviderDisplay = {
+  label?: string;
+  badge?: string;
+  tone?: 'neutral' | 'success' | 'warning' | 'danger';
+};
 
 export type SignatureCapabilities = {
   allowDraw: boolean;
@@ -140,8 +146,40 @@ const LEGACY_PROVIDER_MODE_MAP: Record<string, SignatureMode> = {
 
 const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
 
+const SIGNATURE_PROVIDER_STATUS_VALUES = new Set<SignatureProviderStatus>([
+  'pending',
+  'ready',
+  'completed',
+  'failed',
+  'expired',
+]);
+
 const asRecord = (value: unknown): Record<string, unknown> =>
   value && typeof value === 'object' && !Array.isArray(value) ? { ...(value as Record<string, unknown>) } : {};
+
+const normalizeSignatureProviderDisplay = (
+  value: unknown,
+): SignatureProviderDisplay | undefined => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return undefined;
+  const record = value as Record<string, unknown>;
+  const toneValue = normalizeText(record.tone);
+  const tone = toneValue === 'neutral' || toneValue === 'success' || toneValue === 'warning' || toneValue === 'danger'
+    ? toneValue
+    : undefined;
+
+  return {
+    label: normalizeText(record.label) || undefined,
+    badge: normalizeText(record.badge) || undefined,
+    tone,
+  };
+};
+
+const normalizeSignatureProviderStatus = (value: unknown): SignatureProviderStatus | undefined => {
+  const normalized = normalizeText(value);
+  return SIGNATURE_PROVIDER_STATUS_VALUES.has(normalized as SignatureProviderStatus)
+    ? (normalized as SignatureProviderStatus)
+    : undefined;
+};
 
 const isSignatureMode = (value: unknown): value is SignatureMode =>
   value === 'draw' || value === 'image' || value === 'p12' || value === 'provider';
@@ -258,11 +296,11 @@ export interface SignatureSchema extends Schema {
   signatureProvider?: string | null;
   signatureProviderKey?: SignatureProviderKey | null;
   signatureProviderConfig?: SignatureProviderConfig;
+  signatureProviderStatus?: SignatureProviderStatus;
+  signatureProviderDisplay?: SignatureProviderDisplay;
   signatureCapabilities?: Partial<SignatureCapabilities>;
   signatureDisplay?: Partial<SignatureDisplayConfig>;
   signatureMetadata?: Record<string, unknown>;
-  isOneShot?: boolean;
-  isOneShop?: boolean;
 }
 
 export const normalizeSignatureSchema = (
@@ -278,10 +316,10 @@ export const normalizeSignatureSchema = (
     signatureType: baseSchema.signatureType || signatureMode,
     signatureProviderKey,
     signatureProviderConfig: asRecord(baseSchema.signatureProviderConfig),
+    signatureProviderStatus: normalizeSignatureProviderStatus(baseSchema.signatureProviderStatus),
+    signatureProviderDisplay: normalizeSignatureProviderDisplay(baseSchema.signatureProviderDisplay),
     signatureCapabilities: createModeAwareCapabilities(signatureMode, baseSchema.signatureCapabilities),
     signatureDisplay: createModeAwareDisplay(signatureMode, baseSchema.signatureDisplay, providerSupport),
     signatureMetadata: sanitizeSignatureMetadata(baseSchema.signatureMetadata, signatureMode),
-    isOneShot: Boolean(baseSchema.isOneShot || baseSchema.isOneShop),
-    isOneShop: Boolean(baseSchema.isOneShot || baseSchema.isOneShop),
   };
 };

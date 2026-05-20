@@ -16,6 +16,7 @@ import {
   type SchemaCollaborativeLock,
   type SchemaCollaborativeState,
 } from '../../../../designerEngine.js';
+import { normalizeHexColor } from '../../shared/recipientColor.js';
 import CompactConfigPanel from './CompactConfigPanel.js';
 import { InspectorSummaryCard } from './InspectorPrimitives.js';
 
@@ -159,6 +160,13 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
     const nextPrimaryRecipientId = nextRecipientIds[0];
     const nextPrimaryRecipient =
       recipientOptions.find((recipient) => recipient.id === nextPrimaryRecipientId) || null;
+    const nextPrimaryRecipientColor =
+      designerEngine?.extensions?.resolveRecipientColor?.(nextPrimaryRecipient) ||
+      normalizeHexColor(nextPrimaryRecipient?.color) ||
+      normalizeHexColor(collaborative.ownerColor) ||
+      normalizeHexColor(activeSchema.ownerColor) ||
+      normalizeHexColor(activeSchema.userColor) ||
+      undefined;
     const nextOwnerMode =
       nextRecipientIds.length === 0
         ? undefined
@@ -168,8 +176,10 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
     commit({
       ownerRecipientIds: nextRecipientIds,
       ownerRecipientId: nextPrimaryRecipientId,
+      recipientId: nextPrimaryRecipientId,
       ownerRecipientName: nextPrimaryRecipient?.name || undefined,
-      ownerColor: nextPrimaryRecipient?.color || undefined,
+      ownerColor: nextPrimaryRecipientColor,
+      userColor: nextPrimaryRecipientColor,
       ownerMode: nextOwnerMode,
     });
   };
@@ -311,7 +321,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                       <Select value={state} options={STATE_OPTIONS} onChange={(value) => updateState(value)} />
                     </div>
                     <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Modo owner</div>
+                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Modo owner</div>
                       <Input
                         value={ownerMode || ''}
                         onChange={(event) => commit({ ownerMode: event.target.value || undefined })}

@@ -294,28 +294,28 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
 
           const showAbove = spaceBelow < dpHeight + offset && spaceAbove > dpHeight;
 
-          let top = showAbove
-              ? targetRect.top + scrollY - dpHeight - offset
-              : targetRect.bottom + scrollY + offset;
+          const top = showAbove
+            ? targetRect.top + scrollY - dpHeight - offset
+            : targetRect.bottom + scrollY + offset;
 
           let left = targetRect.left + scrollX;
 
           if (left + dpWidth > window.innerWidth) {
-              left = window.innerWidth - dpWidth - 10;
+            left = window.innerWidth - dpWidth - 10;
           }
 
           $datepicker.style.position = 'absolute';
           $datepicker.style.top = `${top}px`;
           $datepicker.style.left = `${left}px`;
           if ($pointer) {
-              $pointer.style.display = 'block';
-              $pointer.style.position = 'absolute';
-              $pointer.style.left = '10px'; 
-              $pointer.style.top = showAbove ? 'calc(100% - 5px)' : '-5px';
-              $pointer.style.transform = showAbove ? 'rotate(135deg)' : 'rotate(-45deg)';
+            $pointer.style.display = 'block';
+            $pointer.style.position = 'absolute';
+            $pointer.style.left = '10px';
+            $pointer.style.top = showAbove ? 'calc(100% - 5px)' : '-5px';
+            $pointer.style.transform = showAbove ? 'rotate(135deg)' : 'rotate(-45deg)';
           }
           return function completeHide() {
-              done();
+            done();
           };
       },
         onSelect: ({ datepicker }: { datepicker: AirDatepickerInstance }) => {
@@ -384,6 +384,12 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
           label: `${lc} (${LOCALE_MAP[lc].label})`,
           value: lc,
         }));
+        const defaultValueStrategyOptions = [
+          { label: i18n('schemas.date.defaultValueStrategy.none') || 'Sin valor por defecto', value: 'none' },
+          { label: i18n('schemas.date.defaultValueStrategy.today') || 'Hoy', value: 'today' },
+          { label: i18n('schemas.date.defaultValueStrategy.now') || 'Ahora', value: 'now' },
+          { label: i18n('schemas.date.defaultValueStrategy.custom') || 'Personalizado', value: 'custom' },
+        ];
 
         const dateSchema: Record<string, PropPanelSchema> = {
           format: {
@@ -460,6 +466,16 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
             },
             span: 16,
           },
+          defaultValueStrategy: {
+            title: i18n('schemas.date.defaultValueStrategy.label') || 'Valor por defecto',
+            type: 'string',
+            widget: 'select',
+            default: 'none',
+            props: {
+              options: defaultValueStrategyOptions,
+            },
+            span: 12,
+          },
         };
 
         return dateSchema;
@@ -468,13 +484,15 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
         propertyMap: {
           format: 'data',
           locale: 'data',
+          defaultValueStrategy: 'data',
         },
       }),
       defaultSchema: {
         name: '',
         format: defaultFormat,
         type,
-        content: getFmtContent(new Date(), type),
+        content: '',
+        defaultValueStrategy: 'none',
         position: { x: 0, y: 0 },
         width: 50,
         height: 10,

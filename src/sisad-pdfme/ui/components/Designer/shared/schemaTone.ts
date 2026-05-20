@@ -41,6 +41,28 @@ type ToneAwareSchema = (SchemaForUI | Schema) & {
 const normalizeTypeKey = (value: unknown) =>
   typeof value === 'string' ? value.trim().toLowerCase() : '';
 
+const normalizeHexChannel = (value: string) => {
+  const numeric = Number.parseInt(value, 16);
+  return Number.isFinite(numeric) ? numeric : 0;
+};
+
+const hexToRgb = (hex: string) => {
+  const normalized = String(hex || '').trim().replace(/^#/, '');
+  if (!/^[0-9a-fA-F]{3}$|^[0-9a-fA-F]{6}$/.test(normalized)) return null;
+  const expanded =
+    normalized.length === 3
+      ? normalized
+          .split('')
+          .map((part) => part + part)
+          .join('')
+      : normalized;
+  return {
+    r: normalizeHexChannel(expanded.slice(0, 2)),
+    g: normalizeHexChannel(expanded.slice(2, 4)),
+    b: normalizeHexChannel(expanded.slice(4, 6)),
+  };
+};
+
 export const resolveSchemaTone = (schema: SchemaForUI | Schema, fallback: string): string => {
   const toneSchema = schema as ToneAwareSchema;
   const candidate =
@@ -51,4 +73,16 @@ export const resolveSchemaTone = (schema: SchemaForUI | Schema, fallback: string
   if (typeof candidate === 'string' && candidate.trim()) return candidate;
   if (typeTone) return typeTone;
   return fallback;
+};
+
+export const resolveSchemaToneSurface = (
+  schema: SchemaForUI | Schema,
+  fallback: string,
+  alpha = 0.14,
+): string => {
+  const tone = resolveSchemaTone(schema, fallback);
+  const rgb = hexToRgb(tone);
+  if (!rgb) return tone;
+  const resolvedAlpha = Math.max(0, Math.min(1, alpha));
+  return `rgba(${rgb.r}, ${rgb.g}, ${rgb.b}, ${resolvedAlpha})`;
 };

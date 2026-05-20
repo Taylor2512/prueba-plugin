@@ -27,6 +27,22 @@ const Preview = ({
   size: Size;
 }) => {
   const { token } = theme.useToken();
+  const handleExportTemplate = () => {
+    const exportPayload = JSON.stringify(template, null, 2);
+    const safeName = String(template.basePdf || 'sisad-pdfme-preview-template')
+      .replace(/[\\/:*?"<>|]+/g, '_')
+      .trim() || 'sisad-pdfme-preview-template';
+    const blob = new Blob([exportPayload], { type: 'application/json' });
+    const downloadUrl = URL.createObjectURL(blob);
+    const link = document.createElement('a');
+    link.href = downloadUrl;
+    link.download = `${safeName}.json`;
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    URL.revokeObjectURL(downloadUrl);
+  };
+
   const {
     containerRef,
     paperRefs,
@@ -82,6 +98,7 @@ const Preview = ({
         }}
         zoomLevel={zoomLevel}
         setZoomLevel={setZoomLevel}
+        onExport={handleExportTemplate}
       />
       <UnitPager
         size={size}

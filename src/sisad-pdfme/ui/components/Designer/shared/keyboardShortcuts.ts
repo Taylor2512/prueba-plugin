@@ -157,6 +157,34 @@ const common = {
     actionId: 'clearSelection',
     priority: 'secondary',
   } satisfies ShortcutDefinition,
+  recipientPrevious: {
+    id: 'recipientPrevious',
+    label: 'Destinatario anterior',
+    description: 'Asigna el destinatario anterior a la selección actual.',
+    keys: ['mod+shift+comma'],
+    macKeys: ['meta+shift+comma'],
+    windowsKeys: ['ctrl+shift+comma'],
+    scope: 'collaboration',
+    actionId: 'recipientPrevious',
+    priority: 'secondary',
+    disabledWhenEditingText: true,
+    requiresSelection: true,
+    requiresEditableStructure: true,
+  } satisfies ShortcutDefinition,
+  recipientNext: {
+    id: 'recipientNext',
+    label: 'Destinatario siguiente',
+    description: 'Asigna el siguiente destinatario a la selección actual.',
+    keys: ['mod+shift+period'],
+    macKeys: ['meta+shift+period'],
+    windowsKeys: ['ctrl+shift+period'],
+    scope: 'collaboration',
+    actionId: 'recipientNext',
+    priority: 'secondary',
+    disabledWhenEditingText: true,
+    requiresSelection: true,
+    requiresEditableStructure: true,
+  } satisfies ShortcutDefinition,
   moveUp: {
     id: 'moveUp',
     label: 'Mover arriba',
@@ -470,4 +498,3 @@ const common = {
 } as const;
 
 export const DESIGNER_SHORTCUTS: ShortcutDefinition[] = Object.values(common);
-

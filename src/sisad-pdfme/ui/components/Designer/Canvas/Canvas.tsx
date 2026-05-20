@@ -1191,9 +1191,20 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
                   : undefined
               }
               onMouseDownCapture={
-                isActive && !editing
+                !editing
                   ? (event) => {
-                    if (event.button !== 0 || event.detail > 1) return;
+                    if (event.button !== 0) return;
+
+                    if (!isActive) {
+                      const nextTargets = event.shiftKey
+                        ? normalizeActiveTargets([...activeElements, event.currentTarget])
+                        : [event.currentTarget];
+                      onEdit(nextTargets);
+                      closeContextMenu();
+                      return;
+                    }
+
+                    if (event.detail > 1) return;
                     moveable.current?.dragStart(event.nativeEvent, event.currentTarget);
                     event.preventDefault();
                     event.stopPropagation();

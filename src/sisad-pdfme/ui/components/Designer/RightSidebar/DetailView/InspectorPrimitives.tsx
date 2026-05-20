@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Tag } from 'antd';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
+import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
 
 export type InspectorTag = {
   key?: React.Key;
@@ -133,14 +134,33 @@ export const InspectorSummaryCard = ({
   children,
   classNameSuffix = 'inspector-summary-card',
 }: InspectorSummaryCardProps) => {
+  const summaryCardRef = React.useRef<HTMLDivElement | null>(null);
+  const { mode: inspectorDensity } = useResponsiveDensity(summaryCardRef, {
+    comfortable: 360,
+    compact: 286,
+    mini: 234,
+  });
+  const visibleTagCount = inspectorDensity === 'mini' ? 1 : inspectorDensity === 'compact' ? 2 : undefined;
+
   return (
-    <div className={`${DESIGNER_CLASSNAME}${classNameSuffix}`}>
+    <div
+      ref={summaryCardRef}
+      className={`${DESIGNER_CLASSNAME}${classNameSuffix}`}
+      data-inspector-density={inspectorDensity}
+    >
       <div className={`${DESIGNER_CLASSNAME}inspector-summary-card-head`}>
         <div className={`${DESIGNER_CLASSNAME}inspector-summary-card-copy`}>
           <div className={`${DESIGNER_CLASSNAME}inspector-summary-card-title`}>{title}</div>
           {description ? <div className={`${DESIGNER_CLASSNAME}inspector-summary-card-description`}>{description}</div> : null}
         </div>
-        {tags && tags.length > 0 ? <InspectorTagList tags={tags} classNameSuffix="inspector-summary-card-tags" /> : null}
+        {tags && tags.length > 0 ? (
+          <InspectorTagList
+            tags={tags}
+            classNameSuffix="inspector-summary-card-tags"
+            maxVisible={visibleTagCount}
+            overflowTooltip="Etiquetas adicionales"
+          />
+        ) : null}
       </div>
       {metrics && metrics.length > 0 ? <InspectorMetricRow metrics={metrics} /> : null}
       {actions && actions.length > 0 ? <InspectorActionRow actions={actions} /> : null}

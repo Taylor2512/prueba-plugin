@@ -7,6 +7,9 @@ import type { OnDragStart as GestoOnDragStart } from 'gesto';
 import { SELECTABLE_CLASSNAME } from '../../../constants.js';
 import { theme } from 'antd';
 import { resolveFirstClassSelector } from '../shared/className.js';
+import { installPassiveTouchListenerGuard } from '../shared/passiveTouchListeners.js';
+
+installPassiveTouchListenerGuard();
 
 type SelectoPointArea = {
   pos1: number[];
@@ -93,7 +96,7 @@ const Selecto = (props: Props) => {
       selectFromInside={false}
       selectByClick
       preventDragFromInside
-      preventDefault
+      preventDefault={false}
       hitRate={0}
       selectableTargets={[`.${SELECTABLE_CLASSNAME}`]}
       container={props.container}

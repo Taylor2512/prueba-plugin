@@ -59,12 +59,12 @@ export const CANONICAL_DETAIL_SECTION_LABELS: Record<CanonicalDetailSection, { t
   appearance: {
     title: 'Apariencia',
     description: 'Tratamiento visual específico de la familia.',
-    defaultCollapsed: false,
+    defaultCollapsed: true,
   },
   behavior: {
     title: 'Comportamiento',
     description: 'Semántica, reglas y opciones del campo.',
-    defaultCollapsed: false,
+    defaultCollapsed: true,
   },
   dataBindings: {
     title: 'Datos conectados',
@@ -86,6 +86,33 @@ export const CANONICAL_DETAIL_SECTION_LABELS: Record<CanonicalDetailSection, { t
     description: 'Propiedades poco frecuentes o de bajo nivel.',
     defaultCollapsed: true,
   },
+};
+
+export const resolveDetailSectionDefaultCollapsed = (
+  section: CanonicalDetailSection,
+  semanticFamily?: SchemaSemanticFamily | string,
+): boolean => {
+  const baseCollapsed = Boolean(CANONICAL_DETAIL_SECTION_LABELS[section]?.defaultCollapsed);
+
+  if (section === 'identity' || section === 'box') {
+    return false;
+  }
+
+  if (section === 'behavior') {
+    const normalizedFamily = normalizeText(semanticFamily);
+    const keepBehaviorExpanded = new Set([
+      'text',
+      'multivariabletext',
+      'signature',
+      'table',
+      'choice',
+      'boolean',
+      'datetime',
+    ]);
+    return !keepBehaviorExpanded.has(normalizedFamily);
+  }
+
+  return baseCollapsed;
 };
 
 type FieldLike =

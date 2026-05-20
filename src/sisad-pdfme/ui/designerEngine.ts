@@ -7,6 +7,7 @@ import {
   resolveOwnerMode,
   type CollaborationRecipientOption,
 } from './collaborationContext.js';
+import type { DesignerRuntimeExtensions } from './components/Designer/shared/designerExtensions';
 import type { SignatureProviderDefinition } from '../schemas/signature/providerRegistry.js';
 import type {
   CanvasClassNames,
@@ -151,6 +152,20 @@ export type CollaborationSyncConfig = {
   activeRecipientId?: string | null;
   activeUserId?: string | null;
   isGlobalView?: boolean;
+  canEditStructure?: boolean | ((context: {
+    fileId: string | null;
+    activeRecipientId: string | null;
+    activeRecipient: CollaborationRecipientOption | null;
+    activeRecipientRole: string | null;
+  }) => boolean);
+  permissions?: {
+    canEditStructure?: boolean | ((context: {
+      fileId: string | null;
+      activeRecipientId: string | null;
+      activeRecipient: CollaborationRecipientOption | null;
+      activeRecipientRole: string | null;
+    }) => boolean);
+  };
   presence?: CollaborationPresence[];
   history?: CollaborationHistoryEntry[];
   reconnectMs?: number;
@@ -345,6 +360,7 @@ export type DesignerEngine = {
     defaultProviderKey?: string | null;
   };
   collaboration?: CollaborationSyncConfig;
+  extensions?: DesignerRuntimeExtensions;
 };
 
 type LeftSidebarEngineProps = NonNullable<DesignerEngine['sidebars']>['left'];
@@ -416,6 +432,13 @@ const cloneDesignerEngine = (engine: DesignerEngine = {}): DesignerEngine => ({
           engine.collaboration.recipientOptions || engine.collaboration.users,
         ),
         users: normalizeCollaborationRecipients(engine.collaboration.users),
+      }
+    : undefined,
+  extensions: engine.extensions
+    ? {
+        events: engine.extensions.events,
+        resolveRecipientColor: engine.extensions.resolveRecipientColor,
+        resolveSchemaAutoPlaceDescriptor: engine.extensions.resolveSchemaAutoPlaceDescriptor,
       }
     : undefined,
 });
@@ -742,7 +765,7 @@ export type SchemaDataSnapshot = {
 export type ResolvedSchemaRequest = {
   schemaId: string;
   schemaName: string;
-  source: 'api' | 'prefill';
+  source: 'api' | 'prefill' | 'integration';
   requestMode: 'read' | 'submit' | 'sync' | 'options';
   method: 'GET' | 'POST' | 'PUT' | 'PATCH' | 'DELETE';
   url: string;
@@ -751,6 +774,8 @@ export type ResolvedSchemaRequest = {
   body?: unknown;
   timeoutMs?: number;
   withCredentials?: boolean;
+  integrationProvider?: string;
+  integrationOperation?: string;
 };
 
 export type FormJsonEnvelope = {
@@ -769,6 +794,7 @@ export type FormJsonEnvelope = {
 export type SchemaDataRuntimeAdapter = {
   readPersistedValue: (storageKey: string) => string | null;
   writePersistedValue: (storageKey: string, value: string) => void;
+  resolveRequests: (field: SchemaDataFieldSnapshot, snapshot: SchemaDataSnapshot) => ResolvedSchemaRequest[];
   resolveRequest: (field: SchemaDataFieldSnapshot, snapshot: SchemaDataSnapshot) => ResolvedSchemaRequest | null;
   executeRequest: (request: ResolvedSchemaRequest) => Promise<unknown>;
   mapResponseToValues: (
@@ -888,6 +914,54 @@ const buildRequestBodyFromMapping = (input: Record<string, string>, mapping?: Re
   return body;
 };
 
+const toStringRecord = (value: unknown): Record<string, string> => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return {};
+
+  return Object.fromEntries(
+    Object.entries(value as Record<string, unknown>)
+      .filter(([, entry]) => entry !== undefined && entry !== null)
+      .map(([key, entry]) => [key, String(entry)]),
+  );
+};
+
+const normalizeRequestMethod = (value: unknown): ResolvedSchemaRequest['method'] | null => {
+  const normalized = String(value || '').trim().toUpperCase();
+  if (normalized === 'GET' || normalized === 'POST' || normalized === 'PUT' || normalized === 'PATCH' || normalized === 'DELETE') {
+    return normalized;
+  }
+  return null;
+};
+
+const resolveIntegrationRequestMode = (operation?: string): ResolvedSchemaRequest['requestMode'] => {
+  const normalized = String(operation || '').trim().toLowerCase();
+  if (!normalized) return 'sync';
+  if (['read', 'load', 'fetch', 'lookup', 'query'].includes(normalized)) return 'read';
+  if (['options', 'metadata', 'describe'].includes(normalized)) return 'options';
+  if (['submit', 'create', 'update', 'upsert', 'write', 'mutate'].includes(normalized)) return 'submit';
+  return 'sync';
+};
+
+const buildIntegrationBody = (
+  integration: SchemaIntegrationConfig,
+  field: SchemaDataFieldSnapshot,
+  snapshot: SchemaDataSnapshot,
+) => ({
+  provider: integration.provider,
+  operation: integration.operation || 'sync',
+  params: integration.params || {},
+  field: {
+    id: field.schema.id,
+    name: field.schema.name,
+    type: field.schema.type,
+  },
+  input: snapshot.currentInput,
+  context: {
+    pageIndex: snapshot.pageIndex,
+    totalPages: snapshot.totalPages,
+    unitIndex: snapshot.unitIndex,
+  },
+});
+
 const buildValuesFromResponse = (
   response: unknown,
   mapping?: Record<string, string>,
@@ -995,31 +1069,21 @@ export const createSchemaDataRuntimeAdapter = ({
     }
   };
 
-  return {
-    readPersistedValue(storageKey) {
-      try {
-        return safeStorage.getItem(storageKey);
-      } catch {
-        return null;
-      }
-    },
-    writePersistedValue(storageKey, value) {
-      try {
-        safeStorage.setItem(storageKey, value);
-      } catch {
-        // Ignore storage failures to keep the editor responsive.
-      }
-    },
-    resolveRequest(field, snapshot) {
-      const config = field.config;
-      const apiConfig = config?.api;
-      const prefillConfig = config?.prefill;
-      const source = apiConfig?.enabled ? 'api' : prefillConfig?.enabled && prefillConfig.strategy === 'api' ? 'prefill' : null;
+  const resolveRequests = (
+    field: SchemaDataFieldSnapshot,
+    snapshot: SchemaDataSnapshot,
+  ): ResolvedSchemaRequest[] => {
+    const config = field.config;
+    const apiConfig = config?.api;
+    const prefillConfig = config?.prefill;
+    const source = apiConfig?.enabled ? 'api' : prefillConfig?.enabled && prefillConfig.strategy === 'api' ? 'prefill' : null;
+    const requestConfig = source === 'api' ? apiConfig : undefined;
+    const httpConfig = resolveDesignerHttpClientConfig(config, engine);
+
+    const primaryRequest = (() => {
       if (!source) return null;
 
       const requestMode = source === 'api' ? apiConfig?.requestMode || 'read' : 'read';
-      const requestConfig = source === 'api' ? apiConfig : undefined;
-      const httpConfig = resolveDesignerHttpClientConfig(config, engine);
       const endpoint =
         (source === 'api' ? requestConfig?.endpoint : prefillConfig?.endpoint) ||
         requestConfig?.endpoint ||
@@ -1060,10 +1124,66 @@ export const createSchemaDataRuntimeAdapter = ({
         body,
         timeoutMs: requestConfig?.timeoutMs || httpConfig?.timeoutMs,
         withCredentials: Boolean(httpConfig?.withCredentials),
-      };
+      } satisfies ResolvedSchemaRequest;
+    })();
+
+    const integrationRequests = Array.isArray(config?.integrations)
+      ? config.integrations
+          .filter((integration): integration is SchemaIntegrationConfig => Boolean(integration?.enabled !== false && integration?.provider && integration?.endpoint))
+          .map((integration) => {
+            const requestMode = resolveIntegrationRequestMode(integration.operation);
+            const params = toStringRecord(integration.params);
+            const method =
+              normalizeRequestMethod((integration.params || {}).method) ||
+              (requestMode === 'read' || requestMode === 'options' ? 'GET' : 'POST');
+            const url = resolveRuntimeEndpoint(integration.endpoint, httpConfig?.baseURL, method === 'GET' ? params : undefined);
+            if (!url) return null;
+
+            return {
+              schemaId: field.schema.id,
+              schemaName: field.schema.name,
+              source: 'integration',
+              requestMode,
+              method,
+              url,
+              headers: buildResolvedHeaders(httpConfig?.headers, httpConfig?.auth, undefined),
+              params,
+              body: method === 'GET' || method === 'DELETE' ? undefined : buildIntegrationBody(integration, field, snapshot),
+              timeoutMs: httpConfig?.timeoutMs,
+              withCredentials: Boolean(httpConfig?.withCredentials),
+              integrationProvider: integration.provider,
+              integrationOperation: integration.operation,
+            } satisfies ResolvedSchemaRequest;
+          })
+          .filter((request): request is ResolvedSchemaRequest => Boolean(request))
+      : [];
+
+    return [primaryRequest, ...integrationRequests].filter(
+      (request): request is ResolvedSchemaRequest => Boolean(request),
+    );
+  };
+
+  return {
+    readPersistedValue(storageKey) {
+      try {
+        return safeStorage.getItem(storageKey);
+      } catch {
+        return null;
+      }
+    },
+    writePersistedValue(storageKey, value) {
+      try {
+        safeStorage.setItem(storageKey, value);
+      } catch {
+        // Ignore storage failures to keep the editor responsive.
+      }
+    },
+    resolveRequests,
+    resolveRequest(field, snapshot) {
+      return resolveRequests(field, snapshot)[0] || null;
     },
     executeRequest,
-    mapResponseToValues(response, field, request) {
+    mapResponseToValues(response, field, _request) {
       const config = field.config;
       const responseMapping = config?.api?.responseMapping || config?.prefill?.mapping;
       return buildValuesFromResponse(response, responseMapping && Object.keys(responseMapping).length > 0 ? responseMapping : undefined);

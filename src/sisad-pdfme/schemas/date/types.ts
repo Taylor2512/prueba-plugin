@@ -3,6 +3,8 @@ import { ALIGNMENT } from '../text/types.js';
 
 export interface DateSchema extends Schema {
   format: string;
+  defaultValueStrategy?: 'none' | 'today' | 'now' | 'custom';
+  defaultValue?: string;
   fontName?: string;
   alignment: ALIGNMENT;
   fontSize: number;

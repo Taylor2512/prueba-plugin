@@ -20,6 +20,9 @@ import MoveableComponent, {
   type OnRotateStart,
 } from 'react-moveable';
 import { resolveFirstClassSelector } from '../shared/className.js';
+import { installPassiveTouchListenerGuard } from '../shared/passiveTouchListeners.js';
+
+installPassiveTouchListenerGuard();
 
 const MoveableElement = MoveableComponent as unknown as React.ForwardRefExoticComponent<
   React.PropsWithoutRef<Record<string, unknown>> & React.RefAttributes<unknown>
@@ -80,6 +83,7 @@ const Moveable = (props: Props, ref: Ref<MoveableComponent>) => {
       rootContainer={typeof document === 'undefined' ? undefined : document.body}
       snappable
       draggable
+      preventDefault={false}
       rotatable={props.rotatable}
       resizable
       throttleDrag={1}

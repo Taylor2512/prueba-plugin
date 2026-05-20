@@ -7,9 +7,10 @@ import {
   Schema,
 } from '@sisad-pdfme/common';
 import { theme as antdTheme } from 'antd';
+import { getSchemaPluginByType as getBuiltInSchemaPluginByType } from '@sisad-pdfme/schemas';
 import { SELECTABLE_CLASSNAME, UI_CLASSNAME } from '../constants.js';
 import { PluginsRegistry, OptionsContext, I18nContext, CacheContext } from '../contexts.js';
-import { resolveSchemaTone } from './Designer/shared/schemaTone.js';
+import { resolveSchemaTone, resolveSchemaToneSurface } from './Designer/shared/schemaTone.js';
 
 type RendererProps = Omit<
   UIRenderProps<Schema>,
@@ -107,6 +108,7 @@ const Wrapper = ({
   const schemaType = typeof schema.type === 'string' && schema.type.trim() ? schema.type.trim() : 'schema';
   const schemaTitle = getSchemaTitle(schema);
   const schemaTone = resolveSchemaTone(schema, selectable ? '#38a0ff' : '#94a3b8');
+  const schemaSurfaceTone = resolveSchemaToneSurface(schema, '#ffffff', schema.readOnly ? 0.08 : 0.12);
   const schemaHidden = (schema as SchemaForUI & { hidden?: boolean }).hidden === true;
   const schemaCaption = `${schemaName} · ${schemaType}`;
   const schemaBadge = schemaHidden
@@ -132,7 +134,10 @@ const Wrapper = ({
   const wrapperStyle = {
     ...wrapperGeometryStyle,
     ...schemaStyle,
+    backgroundColor: schemaSurfaceTone,
+    border: outline || `1px solid ${schemaTone}`,
     '--schema-tone': schemaTone,
+    '--schema-surface-tone': schemaSurfaceTone,
     '--schema-outline': outline || `1px solid ${schemaTone}`,
   } as React.CSSProperties;
   const wrapperClassName = [
@@ -188,7 +193,7 @@ const Renderer = (props: RendererProps) => {
 
   const ref = useRef<HTMLDivElement>(null);
   const _cache = useContext(CacheContext);
-  const plugin = pluginsRegistry.findByType(schema.type);
+  const plugin = pluginsRegistry.findByType(schema.type) || getBuiltInSchemaPluginByType(schema.type);
 
   const renderPlugin = useCallback(() => {
     const rootElement = ref.current;

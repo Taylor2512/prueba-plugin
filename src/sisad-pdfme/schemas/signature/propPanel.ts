@@ -127,9 +127,13 @@ const SignatureModeWidget = ({ rootElement, activeSchema, changeSchemas, options
   rootElement.appendChild(wrapper);
 };
 
-const OneShotStatusWidget = ({ rootElement, activeSchema }: PropPanelWidgetProps) => {
+const SignatureProviderStatusWidget = ({ rootElement, activeSchema }: PropPanelWidgetProps) => {
   const resolvedSchema = normalizeSignatureSchema(activeSchema as SignatureSchema);
-  const isOneShot = Boolean(resolvedSchema.isOneShot || resolvedSchema.isOneShop);
+  const providerStatus = resolvedSchema.signatureProviderStatus || 'pending';
+  const providerDisplay = resolvedSchema.signatureProviderDisplay || {};
+  const badgeLabel = providerDisplay.badge || providerDisplay.label || 'Proveedor externo';
+  const tone = providerDisplay.tone || (providerStatus === 'completed' ? 'success' : providerStatus === 'failed' ? 'danger' : 'neutral');
+  const isPositive = tone === 'success' || providerStatus === 'completed' || providerStatus === 'ready';
 
   const wrapper = document.createElement('div');
   wrapper.style.display = 'inline-flex';
@@ -137,10 +141,10 @@ const OneShotStatusWidget = ({ rootElement, activeSchema }: PropPanelWidgetProps
   wrapper.style.gap = '8px';
   wrapper.style.padding = '8px 10px';
   wrapper.style.borderRadius = '999px';
-  wrapper.style.background = isOneShot ? '#ecfdf3' : '#f8fafc';
-  wrapper.style.color = isOneShot ? '#027a48' : '#475467';
-  wrapper.style.border = `1px solid ${isOneShot ? '#abefc6' : '#d0d5dd'}`;
-  wrapper.textContent = isOneShot ? 'OneShot activo' : 'Firma local';
+  wrapper.style.background = isPositive ? '#ecfdf3' : '#f8fafc';
+  wrapper.style.color = isPositive ? '#027a48' : '#475467';
+  wrapper.style.border = `1px solid ${isPositive ? '#abefc6' : '#d0d5dd'}`;
+  wrapper.textContent = `${badgeLabel} · ${providerStatus}`;
 
   rootElement.appendChild(wrapper);
 };
@@ -453,11 +457,40 @@ export const propPanel: PropPanel<SignatureSchema> = {
         span: 24,
         hidden: !isProviderMode,
       },
-      signatureOneShotStatus: {
+      signatureProviderStatus: {
         type: 'void',
-        widget: 'OneShotStatusWidget',
+        widget: 'SignatureProviderStatusWidget',
         bind: false,
         span: 24,
+      },
+      signatureProviderDisplay: {
+        title: 'Visual del proveedor',
+        type: 'object',
+        widget: 'card',
+        column: 2,
+        properties: {
+          label: {
+            title: 'Etiqueta',
+            type: 'string',
+          },
+          badge: {
+            title: 'Badge',
+            type: 'string',
+          },
+          tone: {
+            title: 'Tono',
+            type: 'string',
+            widget: 'select',
+            props: {
+              options: [
+                { label: 'Neutral', value: 'neutral' },
+                { label: 'Success', value: 'success' },
+                { label: 'Warning', value: 'warning' },
+                { label: 'Danger', value: 'danger' },
+              ],
+            },
+          },
+        },
       },
       placeholderText: {
         title: 'Texto de ayuda',
@@ -598,14 +631,15 @@ export const propPanel: PropPanel<SignatureSchema> = {
     SignatureModeWidget,
     SignatureProviderWidget,
     SignatureProviderConfigWidget,
-    OneShotStatusWidget,
+    SignatureProviderStatusWidget,
   },
   inspector: createSchemaInspectorConfig('signature', {
     propertyMap: {
       signatureMode: 'data',
       signatureType: 'data',
       signatureProviderKey: 'data',
-      signatureOneShotStatus: 'data',
+      signatureProviderStatus: 'data',
+      signatureProviderDisplay: 'data',
       placeholderText: 'data',
       strokeColor: 'style',
       borderColor: 'style',
@@ -629,6 +663,12 @@ export const propPanel: PropPanel<SignatureSchema> = {
     signatureMode: 'draw',
     signatureProviderKey: undefined,
     signatureProviderConfig: {},
+    signatureProviderStatus: 'pending',
+    signatureProviderDisplay: {
+      label: 'Proveedor externo',
+      badge: 'Pendiente',
+      tone: 'neutral',
+    },
     signatureMetadata: {
       signedAt: null,
       digestAlgorithm: 'SHA-256',

@@ -12,6 +12,7 @@ import {
   type SchemaDataFieldSnapshot,
   type SchemaDataSnapshot,
 } from '../designerEngine.js';
+import { emitDesignerRuntimeEvent } from './Designer/shared/designerExtensions.js';
 
 const _cache = new Map<string | number, unknown>();
 const MAX_RUNTIME_TEMPLATE_CACHE_ENTRIES = 12;
@@ -119,6 +120,7 @@ const usePreviewRuntime = ({
   const [schemasList, setSchemasList] = useState<SchemaForUI[][]>([[]] as SchemaForUI[][]);
 
   const designerEngine = useMemo(() => resolveDesignerEngine(options as Record<string, unknown>), [options]);
+  const designerEvents = designerEngine.extensions?.events;
   const runtimeAdapter = useMemo(
     () =>
       createSchemaDataRuntimeAdapter({
@@ -127,6 +129,13 @@ const usePreviewRuntime = ({
         storage: resolveLocalStorage(),
       }),
     [designerEngine],
+  );
+
+  const emitRuntimeEvent = useCallback(
+    (event: Parameters<typeof emitDesignerRuntimeEvent>[1]) => {
+      emitDesignerRuntimeEvent(designerEvents, event);
+    },
+    [designerEvents],
   );
 
   const { backgrounds, pageSizes, scale, error, refresh } = useUIPreProcessor({
@@ -177,14 +186,30 @@ const usePreviewRuntime = ({
 
       if (onChangeInputs) {
         onChangeInputs({ index: unitCursor, values: Object.fromEntries(entries) });
+        emitRuntimeEvent({
+          type: 'runtime.input.batch.changed',
+          source: isForm ? 'form' : 'viewer',
+          component: 'Preview',
+          unitIndex: unitCursor,
+          values: Object.fromEntries(entries),
+          details: { changedCount: entries.length },
+        });
         return;
       }
 
       entries.forEach(([name, value]) => {
         onChangeInput?.({ index: unitCursor, name, value });
+        emitRuntimeEvent({
+          type: 'runtime.input.changed',
+          source: isForm ? 'form' : 'viewer',
+          component: 'Preview',
+          unitIndex: unitCursor,
+          value,
+          details: { name },
+        });
       });
     },
-    [onChangeInput, onChangeInputs, unitCursor],
+    [emitRuntimeEvent, isForm, onChangeInput, onChangeInputs, unitCursor],
   );
 
   const formJsonEnvelope = useMemo(() => runtimeAdapter.buildFormJson(snapshot), [runtimeAdapter, snapshot]);
@@ -234,7 +259,16 @@ const usePreviewRuntime = ({
     if (onFormJsonChange) {
       onFormJsonChange(formJsonEnvelope);
     }
-  }, [formJsonEnvelope, onFormJsonChange]);
+    emitRuntimeEvent({
+      type: 'runtime.output.form-json.changed',
+      source: isForm ? 'form' : 'viewer',
+      component: 'Preview',
+      value: formJsonEnvelope,
+      details: {
+        totalPages: formJsonEnvelope?.totalPages ?? pageSizes.length,
+      },
+    });
+  }, [emitRuntimeEvent, formJsonEnvelope, isForm, onFormJsonChange, pageSizes.length]);
 
   useEffect(() => {
     if (!isForm) return;
@@ -276,19 +310,35 @@ const usePreviewRuntime = ({
       commitInputPatch(nextPatch);
     }
 
-    const prefillTargets = fieldSnapshots.filter(({ config }) => Boolean(config?.prefill?.enabled || config?.api?.enabled));
+    const prefillTargets = fieldSnapshots.filter(
+      ({ config }) =>
+        Boolean(
+          config?.prefill?.enabled ||
+            config?.api?.enabled ||
+            (Array.isArray(config?.integrations) && config.integrations.some((integration) => integration?.enabled !== false)),
+        ),
+    );
     prefillTargets.forEach((field) => {
-      const request = runtimeAdapter.resolveRequest(field, snapshot);
-      if (!request || request.requestMode === 'submit' || request.requestMode === 'sync') return;
+      runtimeAdapter.resolveRequests(field, snapshot).forEach((request) => {
+        if (request.requestMode === 'submit' || request.requestMode === 'sync') return;
 
-      const requestSignature = [request.schemaId, request.source, request.method, request.url, request.requestMode].join('|');
-      if (remotePrefillSignatureRef.current.has(requestSignature)) return;
-      remotePrefillSignatureRef.current.add(requestSignature);
+        const requestSignature = [
+          request.schemaId,
+          request.source,
+          request.integrationProvider || '',
+          request.integrationOperation || '',
+          request.method,
+          request.url,
+          request.requestMode,
+        ].join('|');
+        if (remotePrefillSignatureRef.current.has(requestSignature)) return;
+        remotePrefillSignatureRef.current.add(requestSignature);
 
-      void applyPrefillResponse(runtimeAdapter, field, request, snapshot, currentInputRef, commitInputPatch).catch((error) => {
-        if (typeof console !== 'undefined' && console.warn) {
-          console.warn('[@sisad-pdfme/ui] Schema runtime prefill failed', error);
-        }
+        void applyPrefillResponse(runtimeAdapter, field, request, snapshot, currentInputRef, commitInputPatch).catch((error) => {
+          if (typeof console !== 'undefined' && console.warn) {
+            console.warn('[@sisad-pdfme/ui] Schema runtime prefill failed', error);
+          }
+        });
       });
     });
   }, [commitInputPatch, fieldSnapshots, isForm, runtimeAdapter, snapshot]);
@@ -328,12 +378,10 @@ const usePreviewRuntime = ({
           }
         }
 
-        const request = runtimeAdapter.resolveRequest({ schema, config }, snapshot);
-        if (!request) return;
-        if (request.requestMode !== 'submit' && request.requestMode !== 'sync') return;
-        if (persistence?.mode === 'local' && !config?.api?.enabled) return;
-
-        void runRuntimeRequest(runtimeAdapter, request, '[@sisad-pdfme/ui] Schema runtime sync failed');
+        runtimeAdapter.resolveRequests({ schema, config }, snapshot).forEach((request) => {
+          if (request.requestMode !== 'submit' && request.requestMode !== 'sync') return;
+          void runRuntimeRequest(runtimeAdapter, request, '[@sisad-pdfme/ui] Schema runtime sync failed');
+        });
       });
     }, 250);
 
@@ -351,6 +399,27 @@ const usePreviewRuntime = ({
       setUnitCursor(inputs.length - 1);
     }
   }, [inputs.length, unitCursor]);
+
+  useEffect(() => {
+    emitRuntimeEvent({
+      type: 'runtime.view.page.changed',
+      source: isForm ? 'form' : 'viewer',
+      component: 'Preview',
+      pageIndex: pageCursor,
+      unitIndex: unitCursor,
+      details: { totalPages: pageSizes.length },
+    });
+  }, [emitRuntimeEvent, isForm, pageCursor, pageSizes.length, unitCursor]);
+
+  useEffect(() => {
+    emitRuntimeEvent({
+      type: 'runtime.view.zoom.changed',
+      source: 'runtime',
+      component: 'Preview',
+      value: zoomLevel,
+      details: { scale, viewportWidth: size.width, viewportHeight: size.height },
+    });
+  }, [emitRuntimeEvent, scale, size.height, size.width, zoomLevel]);
 
   useEffect(() => {
     init(template);
@@ -372,9 +441,17 @@ const usePreviewRuntime = ({
 
   const handleChangeInput = useCallback(
     ({ name, value }: { name: string; value: string }) => {
+      emitRuntimeEvent({
+        type: 'runtime.input.changed',
+        source: isForm ? 'form' : 'viewer',
+        component: 'Preview',
+        unitIndex: unitCursor,
+        value,
+        details: { name },
+      });
       onChangeInput?.({ index: unitCursor, name, value });
     },
-    [onChangeInput, unitCursor],
+    [emitRuntimeEvent, isForm, onChangeInput, unitCursor],
   );
 
   const handleOnChangeRenderer = useCallback(

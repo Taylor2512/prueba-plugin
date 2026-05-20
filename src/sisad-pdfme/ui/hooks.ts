@@ -26,7 +26,6 @@ import {
 } from './components/Designer/shared/schemaClipboard.js';
 import {
   useDesignerKeyboardShortcuts,
-  type DesignerShortcutHandlers,
 } from './components/Designer/shared/useDesignerKeyboardShortcuts.js';
 import type { SchemaCreationContext } from './designerEngine.js';
 
@@ -434,11 +433,6 @@ export const useInitEvents = ({
     onZoom100,
     onNextPage,
     onPreviousPage,
-    handlers: {
-      copy: () => copySelection(),
-      paste: () => pasteSelection(),
-      cut: () => cutSelection(),
-    } as DesignerShortcutHandlers,
     onMove: (direction, step) => {
       if (!canEditStructure) return;
       const pageSize = pageSizes[pageCursor];

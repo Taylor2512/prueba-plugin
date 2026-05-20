@@ -1,4 +1,4 @@
-import React, { useContext, useState, useMemo } from 'react';
+import React, { useContext, useState, useMemo, useCallback, useRef } from 'react';
 import type { SidebarProps } from '../../../../types.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { I18nContext } from '../../../../contexts.js';
@@ -9,6 +9,9 @@ import { mergeClassNames } from '../../shared/className.js';
 import ListViewToolbar from './ListViewToolbar.js';
 import ListViewFooter from './ListViewFooter.js';
 import { filterSchemasForCollaborationView } from '../../../../collaborationContext.js';
+import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
+import { emitDesignerRuntimeEvent } from '../../shared/designerExtensions.js';
+import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
 
 const { TextArea } = Input;
 const { Text } = Typography;
@@ -23,10 +26,12 @@ const ListView = (
     | 'onChangeHoveringSchemaId'
     | 'changeSchemas'
     | 'collaborationContext'
+    | 'extensions'
   > & {
     activeSchemaIds: string[];
     className?: string;
     useDefaultStyles?: boolean;
+    selectionCommands?: SelectionCommandSet;
   },
 ) => {
   const {
@@ -38,8 +43,16 @@ const ListView = (
     changeSchemas,
     activeSchemaIds,
     collaborationContext,
+    selectionCommands,
   } = props;
   const i18n = useContext(I18nContext);
+  const runtimeEvents = props.extensions?.events;
+  const rootRef = useRef<HTMLDivElement | null>(null);
+  const { mode: densityMode, width: panelWidth } = useResponsiveDensity(rootRef, {
+    comfortable: 430,
+    compact: 332,
+    mini: 252,
+  });
   const [isBulkUpdateFieldNamesMode, setIsBulkUpdateFieldNamesMode] = useState(false);
   const [fieldNamesValue, setFieldNamesValue] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
@@ -78,9 +91,123 @@ const ListView = (
     });
   }, [viewSchemas, searchQuery, typeFilter]);
 
+  const activeRecipient = collaborationContext?.activeRecipient || null;
+  const selectedSchemas = useMemo(
+    () => viewSchemas.filter((schema) => activeSchemaIds.includes(schema.id)),
+    [activeSchemaIds, viewSchemas],
+  );
+  const hasSelectableRecipient = Boolean(activeRecipient?.id) && collaborationContext?.canEditStructure !== false;
+  const hasLockedSelection = selectedSchemas.some((schema) => schema.readOnly === true || schema.state === 'locked');
+
+  const emitRuntimeEvent = useCallback(
+    (event: Parameters<typeof emitDesignerRuntimeEvent>[1]) => {
+      emitDesignerRuntimeEvent(runtimeEvents, event);
+    },
+    [runtimeEvents],
+  );
+
+  const handleSearchChange = useCallback(
+    (value: string) => {
+      setSearchQuery(value);
+      emitRuntimeEvent({
+        type: 'sidebar.list.search.changed',
+        source: 'toolbar',
+        component: 'ListViewToolbar',
+        value,
+        details: { activeSchemas: viewSchemas.length, filteredSchemas: filteredSchemas.length },
+      });
+    },
+    [emitRuntimeEvent, filteredSchemas.length, viewSchemas.length],
+  );
+
+  const handleTypeChange = useCallback(
+    (value: string) => {
+      setTypeFilter(value);
+      emitRuntimeEvent({
+        type: 'sidebar.list.filter.changed',
+        source: 'toolbar',
+        component: 'ListViewToolbar',
+        value,
+        details: { searchQuery },
+      });
+    },
+    [emitRuntimeEvent, searchQuery],
+  );
+
+  const startBulk = useCallback(() => {
+    setFieldNamesValue(viewSchemas.map((s) => s.name).join('\n'));
+    setIsBulkUpdateFieldNamesMode(true);
+  }, [viewSchemas]);
+
+  const handleStartBulk = useCallback(() => {
+    emitRuntimeEvent({
+      type: 'sidebar.list.bulk.start',
+      source: 'toolbar',
+      component: 'ListView',
+      details: { schemaCount: viewSchemas.length },
+    });
+    startBulk();
+  }, [emitRuntimeEvent, startBulk, viewSchemas.length]);
+
+  const handleClearFilters = useCallback(() => {
+    setSearchQuery('');
+    setTypeFilter('all');
+    emitRuntimeEvent({
+      type: 'sidebar.list.filter.cleared',
+      source: 'toolbar',
+      component: 'ListViewToolbar',
+    });
+  }, [emitRuntimeEvent]);
+
+  const handleBulkAssignRecipient = () => {
+    if (!hasSelectableRecipient || selectedSchemas.length === 0 || hasLockedSelection) return;
+    const nextRecipient = activeRecipient;
+    if (!nextRecipient?.id) return;
+
+    emitRuntimeEvent({
+      type: 'sidebar.list.bulk.assign-recipient',
+      source: 'toolbar',
+      component: 'ListView',
+      schemaIds: selectedSchemas.map((schema) => schema.id),
+      details: { recipientId: nextRecipient.id, recipientName: nextRecipient.name || nextRecipient.tag || nextRecipient.id },
+    });
+
+    if (selectionCommands?.assignRecipient) {
+      selectionCommands.assignRecipient({
+        id: nextRecipient.id,
+        name: nextRecipient.name || nextRecipient.tag || nextRecipient.id,
+        color: nextRecipient.color || null,
+      });
+      return;
+    }
+
+    const nextOwnerColor = nextRecipient.color || null;
+    changeSchemas(
+      selectedSchemas.flatMap((schema) => [
+        { schemaId: schema.id, key: 'ownerRecipientId', value: nextRecipient.id },
+        { schemaId: schema.id, key: 'ownerRecipientIds', value: [nextRecipient.id] },
+        { schemaId: schema.id, key: 'recipientId', value: nextRecipient.id },
+        { schemaId: schema.id, key: 'ownerRecipientName', value: nextRecipient.name || nextRecipient.tag || nextRecipient.id },
+        { schemaId: schema.id, key: 'ownerColor', value: nextOwnerColor },
+        { schemaId: schema.id, key: 'userColor', value: nextOwnerColor },
+        {
+          schemaId: schema.id,
+          key: 'ownerMode',
+          value: 'single',
+        },
+      ]),
+    );
+  };
+
   const commitBulk = () => {
     const names = fieldNamesValue.split('\n');
     if (names.length === viewSchemas.length) {
+      emitRuntimeEvent({
+        type: 'sidebar.list.bulk.commit-names',
+        source: 'toolbar',
+        component: 'ListView',
+        details: { schemaCount: viewSchemas.length },
+      });
       changeSchemas(
         names.map((value, index) => ({
           key: 'name',
@@ -95,19 +222,19 @@ const ListView = (
     alert(i18n('errorBulkUpdateFieldName'));
   };
 
-  const startBulk = () => {
-    setFieldNamesValue(viewSchemas.map((s) => s.name).join('\n'));
-    setIsBulkUpdateFieldNamesMode(true);
-  };
-
   const hasActiveSearch = searchQuery !== '' || typeFilter !== 'all';
   const showToolbar = !isBulkUpdateFieldNamesMode;
   const showEmptyState = !isBulkUpdateFieldNamesMode && filteredSchemas.length === 0;
   const showList = !isBulkUpdateFieldNamesMode && filteredSchemas.length > 0;
 
   return (
-    <SidebarFrame
-      className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view', props.className)}>
+    <SidebarFrame className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view', props.className)}>
+      <div
+        ref={rootRef}
+        className={DESIGNER_CLASSNAME + 'list-view-density-wrap'}
+        data-list-density={densityMode}
+        style={{ '--list-view-panel-width': `${panelWidth}px` } as React.CSSProperties}
+      >
       {showToolbar ? (
       <SidebarHeader>
         <ListViewToolbar
@@ -116,15 +243,25 @@ const ListView = (
           schemaTypes={schemaTypes}
           filteredCount={filteredSchemas.length}
           totalCount={viewSchemas.length}
+          selectedCount={activeSchemaIds.length}
           hasActiveSearch={hasActiveSearch}
           hasSchemas={viewSchemas.length > 0}
-          onChangeSearch={setSearchQuery}
-          onChangeType={setTypeFilter}
-          onStartBulk={startBulk}
-          onClearFilters={() => {
-            setSearchQuery('');
-            setTypeFilter('all');
-          }}
+          onChangeSearch={handleSearchChange}
+          onChangeType={handleTypeChange}
+          onStartBulk={handleStartBulk}
+          onClearFilters={handleClearFilters}
+          collaborationContext={collaborationContext}
+          selectionCommands={selectionCommands}
+          showBulkRecipientAction={selectedSchemas.length > 0}
+          bulkRecipientDisabled={hasLockedSelection || !hasSelectableRecipient}
+          onBulkAssignRecipient={handleBulkAssignRecipient}
+          bulkRecipientLabel={
+            selectedSchemas.length > 1 && activeRecipient
+              ? `Asignar ${selectedSchemas.length} campos a ${activeRecipient.name}`
+              : activeRecipient
+                ? `Asignar a ${activeRecipient.name}`
+                : 'Asignar destinatario'
+          }
           useDefaultStyles={props.useDefaultStyles}
         />
       </SidebarHeader>
@@ -134,7 +271,16 @@ const ListView = (
           <TextArea
             wrap="off"
             value={fieldNamesValue}
-            onChange={(e) => setFieldNamesValue(e.target.value)}
+            onChange={(e) => {
+              setFieldNamesValue(e.target.value);
+              emitRuntimeEvent({
+                type: 'sidebar.list.bulk.text.changed',
+                source: 'toolbar',
+                component: 'ListView',
+                value: e.target.value,
+                details: { lineCount: e.target.value.split('\n').length },
+              });
+            }}
             className={DESIGNER_CLASSNAME + 'list-view-bulk-textarea'}
           />
         ) : null}
@@ -148,6 +294,7 @@ const ListView = (
             onEdit={onEdit}
             activeSchemaIds={activeSchemaIds}
             collaborationContext={collaborationContext}
+            selectionCommands={selectionCommands}
           />
         ) : null}
         {showEmptyState ? (
@@ -189,6 +336,7 @@ const ListView = (
           />
         </SidebarFooter>
       ) : null}
+      </div>
     </SidebarFrame>
   );
 };

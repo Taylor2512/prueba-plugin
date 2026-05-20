@@ -3,6 +3,8 @@ import { Button, Input, Select } from 'antd';
 import { Layers, Search } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { SidebarSurfaceHeader } from '../shared/SidebarSurfacePrimitives.js';
+import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
+import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 
 type Option = { value: string; label: string };
 
@@ -12,6 +14,7 @@ type Props = {
   schemaTypes: Option[];
   filteredCount: number;
   totalCount: number;
+  selectedCount?: number;
   hasActiveSearch: boolean;
   hasSchemas: boolean;
   onChangeSearch: (_value: string) => void;
@@ -21,9 +24,15 @@ type Props = {
   title?: React.ReactNode;
   subtitle?: React.ReactNode;
   bulkActionLabel?: React.ReactNode;
+  bulkRecipientLabel?: React.ReactNode;
   searchPlaceholder?: string;
   clearLabel?: React.ReactNode;
   showBulkAction?: boolean;
+  showBulkRecipientAction?: boolean;
+  bulkRecipientDisabled?: boolean;
+  onBulkAssignRecipient?: () => void;
+  collaborationContext?: Pick<EffectiveCollaborationContext, 'activeRecipient' | 'canEditStructure'> | null;
+  selectionCommands?: SelectionCommandSet;
   useDefaultStyles?: boolean;
 };
 
@@ -33,6 +42,7 @@ const ListViewToolbar = ({
   schemaTypes,
   filteredCount,
   totalCount,
+  selectedCount = 0,
   hasActiveSearch,
   hasSchemas,
   onChangeSearch,
@@ -42,10 +52,15 @@ const ListViewToolbar = ({
   title = 'Campos',
   subtitle,
   bulkActionLabel = 'Renombrar',
+  bulkRecipientLabel,
   searchPlaceholder = 'Buscar campo, tipo o categoría',
   clearLabel = 'Limpiar',
   useDefaultStyles,
   showBulkAction = true,
+  showBulkRecipientAction = false,
+  bulkRecipientDisabled = false,
+  onBulkAssignRecipient,
+  collaborationContext,
 }: Props) => {
   const resolvedSubtitle = subtitle ?? (() => {
     if (!hasActiveSearch) return null;
@@ -135,16 +150,31 @@ const ListViewToolbar = ({
         leading={<Layers size={14} className={DESIGNER_CLASSNAME + 'layers-auto'} />}
         title={title}
         subtitle={resolvedSubtitle || undefined}
-        badges={[{ label: `${filteredCount}/${totalCount}`, color: 'default' }]}
+        badges={[
+          { label: `${filteredCount}/${totalCount}`, color: 'default' },
+          ...(selectedCount > 0 ? [{ label: `${selectedCount} seleccionados`, color: 'processing' as const }] : []),
+        ]}
         trailing={
           showBulkAction && hasSchemas ? (
-            <Button
-              type="text"
-              size="small"
-              onClick={onStartBulk}
-              className={DESIGNER_CLASSNAME + 'bulk-update'}>
-              {bulkActionLabel}
-            </Button>
+            <div className={DESIGNER_CLASSNAME + 'list-view-toolbar-actions'}>
+              {showBulkRecipientAction && collaborationContext?.activeRecipient && collaborationContext.canEditStructure !== false ? (
+                <Button
+                  type="text"
+                  size="small"
+                  disabled={bulkRecipientDisabled}
+                  onClick={onBulkAssignRecipient}
+                  className={DESIGNER_CLASSNAME + 'bulk-assign-recipient'}>
+                  {bulkRecipientLabel || `Asignar a ${collaborationContext.activeRecipient.name}`}
+                </Button>
+              ) : null}
+              <Button
+                type="text"
+                size="small"
+                onClick={onStartBulk}
+                className={DESIGNER_CLASSNAME + 'bulk-update'}>
+                {bulkActionLabel}
+              </Button>
+            </div>
           ) : null
         }
         compact

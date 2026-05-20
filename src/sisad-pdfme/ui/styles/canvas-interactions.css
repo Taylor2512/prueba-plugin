@@ -341,6 +341,54 @@
   max-height: min(32rem, calc(100vh - 2rem));
 }
 
+.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-density='compact'] {
+  gap: var(--space-1);
+  padding: var(--space-2);
+}
+
+.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-density='compact'] .sisad-pdfme-ui-selection-context-toolbar-actions {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-density='compact'] .sisad-pdfme-ui-selection-context-toolbar-section-actions {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-density='mini'] {
+  gap: var(--space-1);
+  padding: var(--space-1);
+  border-radius: var(--radius-lg);
+}
+
+.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-density='mini'] .sisad-pdfme-ui-selection-context-toolbar-summary {
+  border-bottom: 0;
+  padding-bottom: 0;
+}
+
+.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-density='mini'] .sisad-pdfme-ui-selection-context-toolbar-chip:not(.is-primary) {
+  display: none;
+}
+
+.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-density='mini'] .sisad-pdfme-ui-selection-context-toolbar-state,
+.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-density='mini'] .sisad-pdfme-ui-selection-context-toolbar-sections {
+  display: none;
+}
+
+.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-density='mini'] .sisad-pdfme-ui-selection-context-toolbar-actions {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-density='mini'] button {
+  min-height: 1.68rem;
+  justify-content: center;
+  gap: 0;
+  padding: 0.2rem;
+}
+
+.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-density='mini'] .sisad-pdfme-ui-selection-context-toolbar-action-label {
+  display: none;
+}
+
 .sisad-pdfme-ui-selection-context-toolbar[data-toolbar-mode='micro'] .sisad-pdfme-ui-selection-context-toolbar-summary {
   padding-bottom: 0;
   border-bottom: 0;

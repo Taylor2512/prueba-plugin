@@ -3,6 +3,7 @@ import type { SchemaDesignerConfig } from '../../../../../ui/designerEngine.js';
 import {
   CANONICAL_DETAIL_SECTION_LABELS,
   CANONICAL_DETAIL_SECTION_ORDER,
+  resolveDetailSectionDefaultCollapsed,
   type CanonicalDetailSection,
   type LegacyDetailSection,
   toCanonicalDetailSection,
@@ -351,9 +352,11 @@ export const buildInspectorSections = ({
 
   const sections = CANONICAL_DETAIL_SECTION_ORDER.map((sectionKey) => {
     const schema = replaceColorWidget(buildSectionSchema(canonicalSectionProperties[sectionKey])) as PropPanelSchema;
+    const defaultCollapsed = resolveDetailSectionDefaultCollapsed(sectionKey, semanticFamily);
 
     return {
       ...SECTION_META[sectionKey],
+      defaultCollapsed,
       schema,
       canonicalKey: sectionKey,
     } as DetailInspectorSection & { canonicalKey: CanonicalDetailSection };
