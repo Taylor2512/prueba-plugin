@@ -21,5 +21,5 @@ export function getToolbar(page: Page) {
 
 export async function waitForEditorIdle(page: Page) {
   await page.waitForLoadState('networkidle');
-  await page.waitForTimeout(50);
+  await page.waitForFunction(() => document.readyState === 'complete');
 }
