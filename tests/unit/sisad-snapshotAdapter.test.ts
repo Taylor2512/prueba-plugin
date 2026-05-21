@@ -5,25 +5,12 @@
 import { describe, it, expect } from 'vitest';
 import { snapshotAdapter } from '../../src/sisad-pdfme/shared/snapshotAdapter.js';
 import {
-  makeEmptySnapshot,
   SNAPSHOT_VERSION,
   isLegacySnapshot,
-  type SnapshotDocument,
 } from '../../src/sisad-pdfme/shared/snapshot.js';
-import type { DesignerState } from '../../src/sisad-pdfme/shared/snapshotAdapter.js';
-
-function makeState(overrides?: Partial<DesignerState>): DesignerState {
-  return {
-    documents: [],
-    recipients: [],
-    assignments: [],
-    signatureConfig: { defaultMode: 'draw', allowedModes: ['draw'] },
-    providerConfig: { defaultProvider: 'draw', allowedProviders: ['draw'] },
-    ...overrides,
-  };
-}
-
-const META = { name: 'Test', createdByUserId: 'user-1' };
+import { makeDesignerState, makeLegacySnapshot, makeSnapshot } from './factories/snapshotFactory.js';
+import { makeRecipient } from './factories/recipientFactory.js';
+import { expectSnapshotRoundTrip } from './helpers/assertSnapshotRoundTrip.js';
 
 describe('validate', () => {
   it('rechaza null', () => {
@@ -36,27 +23,21 @@ describe('validate', () => {
   });
 
   it('acepta snapshot mínimo válido', () => {
-    const ok = makeEmptySnapshot();
+    const ok = makeSnapshot();
     expect(snapshotAdapter.validate(ok).valid).toBe(true);
   });
 });
 
 describe('serialize → deserialize idempotente', () => {
   it('estado vacío ida y vuelta', () => {
-    const state = makeState();
-    const snap = snapshotAdapter.serialize(state, META);
-    const restored = snapshotAdapter.deserialize(snap);
-    const snap2 = snapshotAdapter.serialize(restored, META);
-    expect(snap2.documents).toEqual(snap.documents);
-    expect(snap2.recipients).toEqual(snap.recipients);
-    expect(snap2.assignments).toEqual(snap.assignments);
+    const snap = expectSnapshotRoundTrip(makeDesignerState(), { name: 'Test', createdByUserId: 'user-1' });
+    expect(snap.version).toBe(SNAPSHOT_VERSION);
   });
 
   it('recipients se conservan', () => {
-    const state = makeState({
-      recipients: [{ id: 'r-1', name: 'Ana', color: '#3B82F6', isActive: true }],
-    });
-    const snap = snapshotAdapter.serialize(state, META);
+    const state = makeDesignerState();
+    state.recipients = [makeRecipient({ id: 'r-1', name: 'Ana', color: '#3B82F6' })];
+    const snap = snapshotAdapter.serialize(state, { name: 'Test', createdByUserId: 'user-1' });
     const restored = snapshotAdapter.deserialize(snap);
     expect(restored.recipients).toEqual(state.recipients);
   });
@@ -72,7 +53,7 @@ describe('isLegacySnapshot', () => {
   });
 
   it('no detecta v2 como legacy', () => {
-    expect(isLegacySnapshot(makeEmptySnapshot())).toBe(false);
+    expect(isLegacySnapshot(makeSnapshot())).toBe(false);
   });
 
   it('retorna false para no-objeto', () => {
@@ -94,11 +75,7 @@ describe('isLegacySnapshot', () => {
 
 describe('migrate', () => {
   it('migra snapshot legacy sin version a v2', () => {
-    const legacy = {
-      name: 'Template viejo',
-      schemas: [[{ name: 'campo1', type: 'text', position: { x: 0, y: 0 }, width: 100, height: 20 }]],
-    };
-    const migrated = snapshotAdapter.migrate(legacy);
+    const migrated = snapshotAdapter.migrate(makeLegacySnapshot());
     expect(migrated.version).toBe(SNAPSHOT_VERSION);
     expect(migrated.documents).toHaveLength(1);
     expect(migrated.documents[0].pages).toHaveLength(1);
@@ -106,12 +83,13 @@ describe('migrate', () => {
   });
 
   it('migra sin perder schemas', () => {
-    const legacySchemas = [
-      [{ name: 'f1', type: 'text', position: { x: 0, y: 0 }, width: 100, height: 20 }],
-      [{ name: 'f2', type: 'text', position: { x: 0, y: 0 }, width: 100, height: 20 }],
-    ];
-    const legacy = { schemas: legacySchemas };
-    const migrated = snapshotAdapter.migrate(legacy);
+    const migrated = snapshotAdapter.migrate({
+      name: 'Template viejo',
+      schemas: [
+        [{ name: 'f1', type: 'text', position: { x: 0, y: 0 }, width: 100, height: 20 }],
+        [{ name: 'f2', type: 'text', position: { x: 0, y: 0 }, width: 100, height: 20 }],
+      ],
+    });
     const totalSchemas = migrated.documents[0].pages.reduce(
       (acc, p) => acc + p.schemas.length, 0,
     );
@@ -119,10 +97,7 @@ describe('migrate', () => {
   });
 
   it('agrega __designer a cada schema migrado', () => {
-    const legacy = {
-      schemas: [[{ name: 'campo1', type: 'text', position: { x: 0, y: 0 }, width: 100, height: 20 }]],
-    };
-    const migrated = snapshotAdapter.migrate(legacy);
+    const migrated = snapshotAdapter.migrate(makeLegacySnapshot());
     const schema = migrated.documents[0].pages[0].schemas[0];
     expect(schema.__designer).toBeDefined();
     expect(schema.__designer.schemaUid).toBeDefined();
@@ -130,7 +105,7 @@ describe('migrate', () => {
   });
 
   it('no muta snapshot que ya es v2', () => {
-    const v2 = makeEmptySnapshot();
+    const v2 = makeSnapshot();
     const result = snapshotAdapter.migrate(v2);
     expect(result).toBe(v2); // misma referencia — no se creó copia
   });
@@ -138,7 +113,7 @@ describe('migrate', () => {
 
 describe('snapshot con orphaned schemas', () => {
   it('deserializa correctamente aunque un recipient esté eliminado', () => {
-    const snap = makeEmptySnapshot({
+    const snap = makeSnapshot({
       documents: [{
         documentId: 'doc-1',
         name: 'Doc',
@@ -158,7 +133,7 @@ describe('snapshot con orphaned schemas', () => {
           }],
           background: { type: 'none' },
         }],
-      }] as SnapshotDocument[],
+      }],
       recipients: [], // recipient eliminado
     });
 

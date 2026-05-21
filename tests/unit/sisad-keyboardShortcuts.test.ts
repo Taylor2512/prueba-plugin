@@ -33,28 +33,7 @@ import {
   resolveShortcutByKeyboardEvent,
   formatShortcutForPlatform,
 } from '../../src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcutRegistry.js';
-
-// ── Helpers ──────────────────────────────────────────────────────────────────
-
-function mockNavigator(platform: string, userAgent = '') {
-  Object.defineProperty(globalThis, 'navigator', {
-    value: { platform, userAgent },
-    configurable: true,
-    writable: true,
-  });
-}
-
-function makeKeyboardEvent(overrides: Partial<KeyboardEvent>): KeyboardEvent {
-  return {
-    key: '',
-    ctrlKey: false,
-    metaKey: false,
-    shiftKey: false,
-    altKey: false,
-    defaultPrevented: false,
-    ...overrides,
-  } as KeyboardEvent;
-}
+import { makeKeyboardEvent, mockNavigator } from './helpers/keyboardEventFactory.js';
 
 // ── shared/keyboardShortcuts.ts ───────────────────────────────────────────────
 
