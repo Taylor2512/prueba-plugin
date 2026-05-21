@@ -32,6 +32,7 @@ import {
 } from 'lucide-react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
+import { INLINE_EDITABLE_TEXT_TYPES } from '../../../../../schemas/schemaFamilies.js';
 
 export type CanvasContextMenuMode = 'empty' | 'single' | 'multi';
 
@@ -154,14 +155,13 @@ const formatSelectionStateLabel = (phase: string) => {
 
 const normalizeTypeKey = (value: unknown) => (typeof value === 'string' ? value.trim().toLowerCase() : '');
 
-const TEXT_TYPES = new Set(['text', 'multivariabletext']);
 const IMAGE_TYPES = new Set(['image', 'svg']);
 const SIGNATURE_TYPES = new Set(['signature']);
 const CHOICE_TYPES = new Set(['checkbox', 'radiogroup', 'select']);
 const TABLE_TYPES = new Set(['table']);
 
 const isFormFieldType = (type: string) =>
-  TEXT_TYPES.has(type) ||
+  INLINE_EDITABLE_TEXT_TYPES.has(type) ||
   SIGNATURE_TYPES.has(type) ||
   CHOICE_TYPES.has(type) ||
   ['date', 'datetime', 'time'].includes(type);
@@ -177,7 +177,7 @@ export const resolveSelectionToolbarKind = (activeSchemas: SchemaForUI[]): Selec
 
   const type = normalizeTypeKey(activeSchemas[0]?.type);
   if (!type) return 'mixed';
-  if (TEXT_TYPES.has(type)) return 'text';
+  if (INLINE_EDITABLE_TEXT_TYPES.has(type)) return 'text';
   if (IMAGE_TYPES.has(type)) return 'image';
   if (SIGNATURE_TYPES.has(type)) return 'signature';
   if (CHOICE_TYPES.has(type)) return 'choice';
@@ -581,41 +581,6 @@ const commandItem = (
     ...extra,
   };
 };
-
-export const buildSelectionQuickActions = (
-  commands?: SelectionCommandSet,
-  activeReadOnly = false,
-): CanvasSelectionQuickAction[] => [
-  {
-    id: 'duplicate',
-    label: 'Duplicar',
-    icon: <Copy size={14} />,
-    onSelect: commands?.duplicateSelection,
-    disabled: commands?.canEditStructure === false,
-  },
-  {
-    id: 'delete',
-    label: 'Eliminar',
-    icon: <Trash2 size={14} />,
-    danger: true,
-    onSelect: commands?.deleteSelection,
-    disabled: commands?.canEditStructure === false,
-  },
-  {
-    id: 'readonly',
-    label: activeReadOnly ? 'Desbloquear' : 'Bloquear',
-    icon: <Lock size={14} />,
-    active: activeReadOnly,
-    onSelect: commands?.toggleReadOnly,
-    disabled: commands?.canEditStructure === false,
-  },
-  {
-    id: 'properties',
-    label: 'Propiedades',
-    icon: <Settings2 size={14} />,
-    onSelect: commands?.openProperties,
-  },
-];
 
 export const buildCanvasContextMenuGroups = (
   args: BuildContextMenuGroupsArgs,

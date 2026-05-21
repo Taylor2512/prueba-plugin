@@ -316,11 +316,12 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  width: min(100%, 24rem);
-  max-width: min(100%, 32rem);
+  /* Compact default — DocuSign-style narrow toolbar */
+  width: min(100%, 20rem);
+  max-width: min(100%, 28rem);
   max-height: min(26rem, calc(100vh - 2rem));
   overflow: auto;
-  padding: var(--space-3);
+  padding: var(--space-2) var(--space-3);
   background: var(--color-bg-elevated);
   border-radius: var(--radius-xl);
   border: 1px solid var(--color-border-soft);
@@ -332,9 +333,16 @@
   animation: toolbar-reveal var(--wix-reveal-dur) var(--wix-ease-out) both;
 }
 
+/* micro mode: pill-shaped horizontal icon bar — closest to DocuSign floating toolbar */
 .sisad-pdfme-ui-selection-context-toolbar[data-toolbar-mode='micro'] {
+  flex-direction: row;
+  flex-wrap: nowrap;
   gap: var(--space-1);
-  padding: var(--space-2);
+  padding: var(--space-1) var(--space-2);
+  width: auto;
+  max-width: min(100%, 18rem);
+  border-radius: var(--radius-full);
+  align-items: center;
 }
 
 .sisad-pdfme-ui-selection-context-toolbar[data-toolbar-mode='expanded'] {
@@ -475,8 +483,16 @@
   gap: var(--space-1);
 }
 
+/* micro: actions are a flat horizontal row of icon-only buttons */
 .sisad-pdfme-ui-selection-context-toolbar[data-toolbar-mode='micro'] .sisad-pdfme-ui-selection-context-toolbar-actions {
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  gap: 2px;
+}
+
+.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-mode='micro'] .sisad-pdfme-ui-selection-context-toolbar-summary {
+  display: none;
 }
 
 .sisad-pdfme-ui-selection-context-toolbar[data-toolbar-mode='expanded'] .sisad-pdfme-ui-selection-context-toolbar-actions {

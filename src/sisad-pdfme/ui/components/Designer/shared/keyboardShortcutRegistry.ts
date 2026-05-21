@@ -75,7 +75,9 @@ const normalizePattern = (pattern: string) => {
     }
   }
 
-  return { modifiers, key };
+  // Sort modifiers alphabetically for canonical comparison regardless of
+  // the order they appear in the definition string (e.g. "mod+shift" = "shift+mod").
+  return { modifiers: [...modifiers].sort(), key };
 };
 
 const getPatternVariants = (pattern: string) => {
@@ -128,7 +130,13 @@ const getEventModifierVariants = (event: KeyboardEvent, platform: ShortcutPlatfo
     variants.push(common);
   }
 
-  return variants.map((tokens) => Array.from(new Set(tokens)).filter(Boolean).join('+')).filter(Boolean);
+  // Sort tokens alphabetically for canonical modifier order.
+  // Keep empty-string entries (no-modifier case) so the outer loop always runs
+  // at least once and can add plain-key signatures (e.g. Backspace, Escape, 't').
+  const rendered = variants.map((tokens) => Array.from(new Set(tokens)).filter(Boolean).sort().join('+'));
+  // Deduplicate but preserve at least one entry (even if it's the empty string).
+  const deduped = Array.from(new Set(rendered));
+  return deduped.length > 0 ? deduped : [''];
 };
 
 const getCandidateSignatures = (event: KeyboardEvent, platform: ShortcutPlatform) => {
@@ -139,13 +147,11 @@ const getCandidateSignatures = (event: KeyboardEvent, platform: ShortcutPlatform
   for (const key of keys) {
     for (const modifiers of modifierVariants) {
       signatures.add(modifiers ? `${modifiers}+${key}` : key);
-      if (event.shiftKey) {
-        const shiftless = modifiers
-          .split('+')
-          .filter((token) => token !== 'shift')
-          .join('+');
-        signatures.add(shiftless ? `${shiftless}+${key}` : key);
-      }
+      // NOTE: We intentionally do NOT add "shiftless" variants here.
+      // Adding ctrl+g as a candidate for Ctrl+Shift+G would cause false
+      // positive matches against simpler shortcuts (group vs ungroup).
+      // Key variants are already lowercased by getEventKeyVariants, so
+      // uppercase/shift ambiguity is handled at the key level.
     }
   }
 

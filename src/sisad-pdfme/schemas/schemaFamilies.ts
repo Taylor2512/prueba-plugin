@@ -32,6 +32,14 @@ type FamilyPreset = PluginFamilyDefinition & {
 const TEXT_TYPES = new Set(['text', 'multivariabletext', 'select', 'date', 'time', 'datetime', 'signature']);
 const BOOLEAN_TYPES = new Set(['checkbox', 'radiogroup']);
 const MEDIA_TYPES = new Set(['image', 'svg']);
+
+/**
+ * Schema types that support inline content editing on the canvas.
+ * Narrower than TEXT_TYPES — only types with a free-text `content` field.
+ * Shared across canvasContextMenuActions, detailWidgets, and any consumer
+ * that needs to decide whether to show an "Edit text" action.
+ */
+export const INLINE_EDITABLE_TEXT_TYPES: ReadonlySet<string> = new Set(['text', 'multivariabletext']);
 const SHAPE_BARCODE_TYPES = new Set([
   'line',
   'rectangle',

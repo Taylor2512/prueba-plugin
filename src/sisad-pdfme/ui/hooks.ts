@@ -209,68 +209,71 @@ export const useScrollPageCursor = ({
   pageCursor,
   onChangePageCursor,
 }: ScrollPageCursorProps) => {
-  const onScroll = useCallback(() => {
+  useEffect(() => {
     const scrollContainer = ref.current;
-    if (!pageSizes[0] || !scrollContainer) {
+    if (!scrollContainer) {
       return;
     }
 
-    const paperElements = paperRefs?.current?.filter((paper): paper is HTMLDivElement => Boolean(paper)) || [];
-    if (paperElements.length === 0) {
-      const scrollTop = scrollContainer.scrollTop;
-      const viewportHeight = Math.max(1, scrollContainer.clientHeight || 0);
-      const viewportMidpoint = scrollTop + viewportHeight / 2;
+    const onScroll = () => {
+      if (!pageSizes[0]) {
+        return;
+      }
 
-      const pageGap = 12 * Math.max(0.25, scale);
-      let accumulatedTop = 0;
-      let nextPageCursor = 0;
+      const paperElements = paperRefs?.current?.filter((paper): paper is HTMLDivElement => Boolean(paper)) || [];
+      if (paperElements.length === 0) {
+        const scrollTop = scrollContainer.scrollTop;
+        const viewportHeight = Math.max(1, scrollContainer.clientHeight || 0);
+        const viewportMidpoint = scrollTop + viewportHeight / 2;
 
-      for (let i = 0; i < pageSizes.length; i += 1) {
-        const page = pageSizes[i];
-        const pageHeight = Math.max(1, (page.height * ZOOM + RULER_HEIGHT) * scale);
-        const pageBottom = accumulatedTop + pageHeight;
+        const pageGap = 12 * Math.max(0.25, scale);
+        let accumulatedTop = 0;
+        let nextPageCursor = 0;
 
-        if (viewportMidpoint <= pageBottom || i === pageSizes.length - 1) {
-          nextPageCursor = i;
-          break;
+        for (let i = 0; i < pageSizes.length; i += 1) {
+          const page = pageSizes[i];
+          const pageHeight = Math.max(1, (page.height * ZOOM + RULER_HEIGHT) * scale);
+          const pageBottom = accumulatedTop + pageHeight;
+
+          if (viewportMidpoint <= pageBottom || i === pageSizes.length - 1) {
+            nextPageCursor = i;
+            break;
+          }
+
+          accumulatedTop = pageBottom + pageGap;
         }
 
-        accumulatedTop = pageBottom + pageGap;
+        if (nextPageCursor !== pageCursor) {
+          onChangePageCursor(nextPageCursor);
+        }
+        return;
+      }
+
+      const activationLine = scrollContainer.scrollTop + RULER_HEIGHT;
+      let nextPageCursor = 0;
+
+      for (let i = 0; i < Math.min(pageSizes.length, paperElements.length); i += 1) {
+        const page = paperElements[i];
+        const pageTop = page.offsetTop;
+
+        if (pageTop > activationLine || i === Math.min(pageSizes.length, paperElements.length) - 1) {
+          nextPageCursor = Math.max(0, pageTop > activationLine ? i - 1 : i);
+          break;
+        }
+        nextPageCursor = i;
       }
 
       if (nextPageCursor !== pageCursor) {
         onChangePageCursor(nextPageCursor);
       }
-      return;
-    }
+    };
 
-    const activationLine = scrollContainer.scrollTop + RULER_HEIGHT;
-    let nextPageCursor = 0;
-
-    for (let i = 0; i < Math.min(pageSizes.length, paperElements.length); i += 1) {
-      const page = paperElements[i];
-      const pageTop = page.offsetTop;
-
-      if (pageTop > activationLine || i === Math.min(pageSizes.length, paperElements.length) - 1) {
-        nextPageCursor = Math.max(0, pageTop > activationLine ? i - 1 : i);
-        break;
-      }
-      nextPageCursor = i;
-    }
-
-    if (nextPageCursor !== pageCursor) {
-      onChangePageCursor(nextPageCursor);
-    }
-  }, [onChangePageCursor, pageCursor, pageSizes, paperRefs, ref, scale]);
-
-  useEffect(() => {
-    const scrollContainer = ref.current;
     scrollContainer?.addEventListener('scroll', onScroll, { passive: true });
 
     return () => {
       scrollContainer?.removeEventListener('scroll', onScroll);
     };
-  }, [ref, onScroll]);
+  }, [onChangePageCursor, pageCursor, pageSizes, paperRefs, ref, scale]);
 };
 
 export const useMountStatus = () => {
@@ -339,47 +342,6 @@ export const useInitEvents = ({
   const getActiveSchemas = () => {
     const ids = activeElements.filter(Boolean).map((ae) => ae.id);
     return (schemasList[pageCursor] || []).filter((s) => ids.includes(s.id));
-  };
-
-  const copySelection = () => {
-    const activeSchemas = getActiveSchemas();
-    if (activeSchemas.length === 0) return;
-    copiedSchemas.current = copySchemasToClipboard(activeSchemas);
-  };
-
-  const pasteSelection = () => {
-    if (!canEditStructure) return;
-    if (!copiedSchemas.current || copiedSchemas.current.items.length === 0) return;
-    const pasteSchemas = pasteSchemasFromClipboard(copiedSchemas.current, {
-      pageIndex: pageCursor,
-      pageSize: pageSizes[pageCursor],
-      pageCount: schemasList.length,
-      fileId: collaborationContext?.fileId || null,
-      collaborationContext: collaborationContext,
-      existingSchemas: schemasList[pageCursor],
-    });
-    commitSchemas((schemasList[pageCursor] || []).concat(pasteSchemas));
-    window.requestAnimationFrame(() => {
-      const nextElements = pasteSchemas
-        .map((schema) => document.getElementById(schema.id))
-        .filter((element): element is HTMLElement => Boolean(element));
-      if (nextElements.length > 0) {
-        onEdit(nextElements);
-      }
-    });
-    copiedSchemas.current = copySchemasToClipboard(pasteSchemas);
-  };
-
-  const cutSelection = () => {
-    if (!canEditStructure) return;
-    const activeSchemas = getActiveSchemas();
-    if (activeSchemas.length === 0) return;
-    copiedSchemas.current = cutSchemasToClipboard(activeSchemas);
-    if (selectionCommands?.deleteSelection) {
-      selectionCommands.deleteSelection();
-      return;
-    }
-    removeSchemas(activeSchemas.map((s) => s.id));
   };
 
   const selectAllVisible = () => {

@@ -9,6 +9,32 @@ import { message } from 'antd';
 import { round } from '../../../helper.js';
 import type { EffectiveCollaborationContext } from '../../../collaborationContext.js';
 import { duplicateSchemas } from './schemaClipboard.js';
+import type { GroupMeta } from '../../../../shared/schemaDesignerMeta.js';
+
+// ── Group helpers ──────────────────────────────────────────────────────────────
+
+const generateGroupId = (): string => {
+  if (typeof crypto !== 'undefined' && crypto.randomUUID) {
+    return crypto.randomUUID();
+  }
+  return 'grp-' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+};
+
+/** Returns the GroupMeta for a schema from __designer or the schema itself */
+const getGroupMeta = (schema: SchemaForUI): GroupMeta | undefined => {
+  const designer = (schema as SchemaForUI & { __designer?: { group?: GroupMeta } }).__designer;
+  return designer?.group;
+};
+
+/** Returns a new schema with __designer.group set */
+const withGroupMeta = (schema: SchemaForUI, group: GroupMeta | undefined): SchemaForUI => {
+  const existing = (schema as SchemaForUI & { __designer?: Record<string, unknown> }).__designer ?? {};
+  if (group === undefined) {
+    const { group: _removed, ...rest } = existing as Record<string, unknown> & { group?: unknown };
+    return { ...schema, __designer: rest };
+  }
+  return { ...schema, __designer: { ...existing, group } };
+};
 export type AlignType =
   | 'left'
   | 'center'
@@ -352,6 +378,90 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     context.onOpenProperties();
   };
 
+  const groupSelection = () => {
+    if (!hasSelection || activeIds.length < 2 || !guardStructureEdit()) return;
+    const pageSchemas = getPageSchemas(context);
+    const beforeSchemas = cloneDeep(pageSchemas) as SchemaForUI[];
+    const groupId = generateGroupId();
+    const groupMeta: GroupMeta = {
+      groupId,
+      groupType: 'visual',
+      groupName: `Grupo ${groupId.slice(0, 6)}`,
+      lockedAsGroup: false,
+    };
+    const afterSchemas = beforeSchemas.map((schema, order) =>
+      activeIds.includes(schema.id)
+        ? withGroupMeta(schema, { ...groupMeta, order })
+        : schema,
+    ) as SchemaForUI[];
+
+    if (context.executeCommand) {
+      context.executeCommand({
+        id: 'groupSchemas',
+        label: 'Agrupar campos',
+        execute: () => {
+          context.commitSchemas(afterSchemas);
+          message.success(`${activeIds.length} campos agrupados`);
+        },
+        undo: () => {
+          context.commitSchemas(beforeSchemas);
+        },
+        redo: () => {
+          context.commitSchemas(afterSchemas);
+          message.success(`${activeIds.length} campos agrupados`);
+        },
+      });
+      return;
+    }
+    context.commitSchemas(afterSchemas);
+    message.success(`${activeIds.length} campos agrupados`);
+  };
+
+  const ungroupSelection = () => {
+    if (!hasSelection || !guardStructureEdit()) return;
+    const pageSchemas = getPageSchemas(context);
+    const beforeSchemas = cloneDeep(pageSchemas) as SchemaForUI[];
+
+    // Collect groupIds from active schemas
+    const groupIds = new Set(
+      beforeSchemas
+        .filter((s) => activeIds.includes(s.id) && getGroupMeta(s)?.groupId)
+        .map((s) => getGroupMeta(s)!.groupId),
+    );
+
+    if (groupIds.size === 0) return;
+
+    // Remove group meta from ALL schemas in any of those groupIds
+    const afterSchemas = beforeSchemas.map((schema) => {
+      const meta = getGroupMeta(schema);
+      if (meta && groupIds.has(meta.groupId)) {
+        return withGroupMeta(schema, undefined);
+      }
+      return schema;
+    }) as SchemaForUI[];
+
+    if (context.executeCommand) {
+      context.executeCommand({
+        id: 'ungroupSchemas',
+        label: 'Desagrupar campos',
+        execute: () => {
+          context.commitSchemas(afterSchemas);
+          message.success('Grupo disuelto');
+        },
+        undo: () => {
+          context.commitSchemas(beforeSchemas);
+        },
+        redo: () => {
+          context.commitSchemas(afterSchemas);
+          message.success('Grupo disuelto');
+        },
+      });
+      return;
+    }
+    context.commitSchemas(afterSchemas);
+    message.success('Grupo disuelto');
+  };
+
   const requestInlineEdit = (target: InlineEditTarget) => {
     if (!hasSelection || !guardStructureEdit()) return;
     const activeSchemas = getActiveSchemas(context);
@@ -454,6 +564,8 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     alignSelection,
     distributeSelection,
     openProperties,
+    groupSelection,
+    ungroupSelection,
     renameLabel,
     editTextInline,
     assignRecipient,

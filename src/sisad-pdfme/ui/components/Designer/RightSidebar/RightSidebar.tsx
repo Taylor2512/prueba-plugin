@@ -81,6 +81,21 @@ type SidebarModeMeta = {
   ariaLabel: string;
 };
 
+// Static — never changes, no reason to recreate inside render
+const PANEL_ID_BY_MODE: Record<'fields' | 'detail' | 'docs' | 'comments', string> = {
+  fields: 'sisad-pdfme-right-sidebar-panel-fields',
+  detail: 'sisad-pdfme-right-sidebar-panel-detail',
+  comments: 'sisad-pdfme-right-sidebar-panel-comments',
+  docs: 'sisad-pdfme-right-sidebar-panel-docs',
+};
+
+const TAB_ID_BY_MODE: Record<'fields' | 'detail' | 'docs' | 'comments', string> = {
+  fields: 'sisad-pdfme-right-sidebar-tab-fields',
+  detail: 'sisad-pdfme-right-sidebar-tab-detail',
+  comments: 'sisad-pdfme-right-sidebar-tab-comments',
+  docs: 'sisad-pdfme-right-sidebar-tab-docs',
+};
+
 const sidebarModeMeta: Record<'fields' | 'detail' | 'docs' | 'comments', SidebarModeMeta> = {
   fields: {
     shortLabel: 'Campos',
@@ -132,30 +147,17 @@ const Sidebar = (props: RightSidebarProps) => {
   const CommentsViewComponent = props.components?.commentsView || CommentsRail;
   const ListViewComponent = props.components?.listView || ListView;
   const DetailViewComponent = props.components?.detailView || DetailView;
-  const activeSchemaIdSet = useMemo(() => {
-    const ids = new Set<string>();
-    for (const element of activeElements) {
-      if (element) ids.add(element.id);
-    }
-    return ids;
-  }, [activeElements]);
-  const activeSchemas = useMemo(
-    () => {
-      const nextActiveSchemas: typeof schemas = [];
-      for (const schema of schemas) {
-        if (activeSchemaIdSet.has(schema.id)) nextActiveSchemas.push(schema);
-      }
-      return nextActiveSchemas;
-    },
-    [activeSchemaIdSet, schemas],
-  );
-  const activeSchemaIds = useMemo(() => {
+  const { activeSchemas, activeSchemaIds } = useMemo(() => {
+    const idSet = new Set<string>();
     const ids: string[] = [];
     for (const element of activeElements) {
-      if (element) ids.push(element.id);
+      if (element) { idSet.add(element.id); ids.push(element.id); }
     }
-    return ids;
-  }, [activeElements]);
+    return {
+      activeSchemas: schemas.filter((s) => idSet.has(s.id)),
+      activeSchemaIds: ids,
+    };
+  }, [activeElements, schemas]);
   const activeSchemaCount = activeSchemas.length;
   const [internalViewMode, setInternalViewMode] = useState<'fields' | 'detail' | 'docs' | 'comments'>('fields');
   const requestedViewMode = props.viewMode || 'auto';
@@ -175,18 +177,8 @@ const Sidebar = (props: RightSidebarProps) => {
     requestedViewMode !== 'auto' ? requestedViewMode : internalViewMode;
   const pagesBridge = props.pages || props.documents;
   const docsBridge = props.documents;
-  const panelIdByMode: Record<'fields' | 'detail' | 'docs' | 'comments', string> = {
-    fields: 'sisad-pdfme-right-sidebar-panel-fields',
-    detail: 'sisad-pdfme-right-sidebar-panel-detail',
-    comments: 'sisad-pdfme-right-sidebar-panel-comments',
-    docs: 'sisad-pdfme-right-sidebar-panel-docs',
-  };
-  const tabIdByMode: Record<'fields' | 'detail' | 'docs' | 'comments', string> = {
-    fields: 'sisad-pdfme-right-sidebar-tab-fields',
-    detail: 'sisad-pdfme-right-sidebar-tab-detail',
-    comments: 'sisad-pdfme-right-sidebar-tab-comments',
-    docs: 'sisad-pdfme-right-sidebar-tab-docs',
-  };
+  const panelIdByMode = PANEL_ID_BY_MODE;
+  const tabIdByMode = TAB_ID_BY_MODE;
   const effectiveSidebarModeMeta = useMemo(() => {
     const overrides = props.modeMetaOverrides || {};
     return {
@@ -244,6 +236,25 @@ const Sidebar = (props: RightSidebarProps) => {
     }
     : undefined;
 
+  const railDensity = documentsRailMode === 'stacked' ? 'compact' : 'default';
+  const railItems = (docsBridge?.items || pagesBridge?.items) ?? [];
+
+  const documentsRailNode = shouldRenderDocumentsRail ? (
+    <DocumentsRailComponent
+      items={pagesBridge?.items ?? []}
+      selectedId={pagesBridge?.selectedId ?? null}
+      onSelect={pagesBridge?.onSelect}
+      onAdd={pagesBridge?.onAdd}
+      onUploadPdf={pagesBridge?.onUploadPdf}
+      title={pagesBridge?.title}
+      emptyTitle={pagesBridge?.emptyTitle}
+      style={documentsRailStyle}
+      useDefaultStyles={props.useDefaultStyles}
+      density={railDensity}
+      className={`${DESIGNER_CLASSNAME}documentsrailcomponent-auto`}
+    />
+  ) : null;
+
   const handlePanelSwitcherKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (requestedViewMode !== 'auto') return;
 
@@ -269,41 +280,44 @@ const Sidebar = (props: RightSidebarProps) => {
     onViewModeChange?.(nextMode);
   };
 
+  const listViewNode = (
+    <ListViewComponent
+      {...props}
+      activeSchemaIds={activeSchemaIds}
+      className={mergeClassNames(toDesignerCustomClassName(props.classNames?.listView))}
+      useDefaultStyles={props.useDefaultStyles}
+    />
+  );
+
   const contentNode = resolvedPanelMode === 'comments' ? (
     <CommentsViewComponent
-      items={props.comments?.items || []}
+      items={props.comments?.items ?? []}
       onAdd={props.comments?.onAdd}
       title={props.comments?.title}
       emptyTitle={props.comments?.emptyTitle}
       activeCommentId={props.comments?.activeCommentId}
     />
   ) : resolvedPanelMode === 'docs' ? (
-    docsBridge || pagesBridge ? (
+    (docsBridge || pagesBridge) ? (
       <DocumentsRailComponent
-        items={(docsBridge?.items || pagesBridge?.items) || []}
-        selectedId={(docsBridge?.selectedId || pagesBridge?.selectedId) || null}
-        onSelect={docsBridge?.onSelect || pagesBridge?.onSelect}
-        onAdd={docsBridge?.onAdd || pagesBridge?.onAdd}
-        onUploadPdf={docsBridge?.onUploadPdf || pagesBridge?.onUploadPdf}
-        title={docsBridge?.title || pagesBridge?.title}
-        emptyTitle={docsBridge?.emptyTitle || pagesBridge?.emptyTitle}
+        items={railItems}
+        selectedId={(docsBridge?.selectedId ?? pagesBridge?.selectedId) ?? null}
+        onSelect={docsBridge?.onSelect ?? pagesBridge?.onSelect}
+        onAdd={docsBridge?.onAdd ?? pagesBridge?.onAdd}
+        onUploadPdf={docsBridge?.onUploadPdf ?? pagesBridge?.onUploadPdf}
+        title={docsBridge?.title ?? pagesBridge?.title}
+        emptyTitle={docsBridge?.emptyTitle ?? pagesBridge?.emptyTitle}
         style={documentsRailStyle}
         useDefaultStyles={props.useDefaultStyles}
-        density={documentsRailMode === 'stacked' ? 'compact' : 'default'}
-        className={DESIGNER_CLASSNAME + "documentsrailcomponent-auto"}
+        density={railDensity}
+        className={`${DESIGNER_CLASSNAME}documentsrailcomponent-auto`}
       />
-    ) : (
-      <ListViewComponent
-        {...props}
-        activeSchemaIds={activeSchemaIds}
-        className={mergeClassNames(toDesignerCustomClassName(props.classNames?.listView))}
-        useDefaultStyles={props.useDefaultStyles} />
-    )
+    ) : listViewNode
   ) : resolvedPanelMode === 'detail' && activeSchemaCount > 0 ? (
     <div
       className={mergeClassNames(
-        DESIGNER_CLASSNAME + 'detail-view-host',
-        DESIGNER_CLASSNAME + 'custom-detailView',
+        `${DESIGNER_CLASSNAME}detail-view-host`,
+        `${DESIGNER_CLASSNAME}custom-detailView`,
         toDesignerCustomClassName(props.classNames?.detailView),
       )}>
       <DetailViewComponent
@@ -312,13 +326,7 @@ const Sidebar = (props: RightSidebarProps) => {
         selectionCommands={props.selectionCommands}
       />
     </div>
-  ) : (
-    <ListViewComponent
-      {...props}
-      activeSchemaIds={activeSchemaIds}
-      className={mergeClassNames(toDesignerCustomClassName(props.classNames?.listView))}
-      useDefaultStyles={props.useDefaultStyles} />
-  );
+  ) : listViewNode;
 
   return (
     <aside
@@ -349,10 +357,10 @@ const Sidebar = (props: RightSidebarProps) => {
         data-docs-mode={documentsRailMode}
         data-panel-mode={resolvedPanelMode}>
         {props.showDocumentsAsTab !== false || contextHeaderNode ? (
-          <div className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-wrap'}>
+          <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-wrap`}>
             {props.showDocumentsAsTab !== false ? (
               <div
-                className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher'}
+                className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher`}
                 role="tablist"
                 tabIndex={0}
                 aria-label="Panel derecho"
@@ -370,7 +378,7 @@ const Sidebar = (props: RightSidebarProps) => {
                       key={`rs-mode-${mode}`}
                       type="button"
                       disabled={disabled}
-                      className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn'}
+                      className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn`}
                       role="tab"
                       data-active={isActive ? 'true' : 'false'}
                       aria-selected={isActive ? 'true' : 'false'}
@@ -383,64 +391,36 @@ const Sidebar = (props: RightSidebarProps) => {
                         onViewModeChange?.(mode);
                       }}
                     >
-                      <span className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn-content'}>
-                        <span className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn-icon'}>{modeMeta.icon}</span>
-                        <span className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-btn-label'}>{modeMeta.shortLabel}</span>
+                      <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-content`}>
+                        <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-icon`}>{modeMeta.icon}</span>
+                        <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-label`}>{modeMeta.shortLabel}</span>
                       </span>
                     </button>
                   );
                 })}
               </div>
             ) : null}
-            <div className={DESIGNER_CLASSNAME + 'right-sidebar-panel-switcher-extra'}>
+            <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-extra`}>
               {contextHeaderNode}
             </div>
           </div>
         ) : null}
         {useLayoutFrame ? (
           <SidebarFrame
-            className={DESIGNER_CLASSNAME + 'right-sidebar-frame'}
+            className={`${DESIGNER_CLASSNAME}right-sidebar-frame`}
             role="tabpanel"
             aria-labelledby={props.showDocumentsAsTab !== false ? tabIdByMode[resolvedPanelMode] : undefined}
             aria-label={props.showDocumentsAsTab !== false ? undefined : effectiveSidebarModeMeta[resolvedPanelMode].title}
             id={panelIdByMode[resolvedPanelMode]}
           >
-            <div className={DESIGNER_CLASSNAME + 'right-sidebar-layout-grid'}>
-              {shouldRenderDocumentsRail && resolvedPanelMode !== 'docs' ? (
-                <DocumentsRailComponent
-                  items={pagesBridge?.items || []}
-                  selectedId={pagesBridge?.selectedId || null}
-                  onSelect={pagesBridge?.onSelect}
-                  onAdd={pagesBridge?.onAdd}
-                  onUploadPdf={pagesBridge?.onUploadPdf}
-                  title={pagesBridge?.title}
-                  emptyTitle={pagesBridge?.emptyTitle}
-                  style={documentsRailStyle}
-                  useDefaultStyles={props.useDefaultStyles}
-                  density={documentsRailMode === 'stacked' ? 'compact' : 'default'}
-                  className={DESIGNER_CLASSNAME + "documentsrailcomponent-auto"}
-                />
-              ) : null}
+            <div className={`${DESIGNER_CLASSNAME}right-sidebar-layout-grid`}>
+              {resolvedPanelMode !== 'docs' ? documentsRailNode : null}
               {contentNode}
             </div>
           </SidebarFrame>
         ) : (
           <>
-            {shouldRenderDocumentsRail && resolvedPanelMode !== 'docs' ? (
-              <DocumentsRailComponent
-                items={pagesBridge?.items || []}
-                selectedId={pagesBridge?.selectedId || null}
-                onSelect={pagesBridge?.onSelect}
-                onAdd={pagesBridge?.onAdd}
-                onUploadPdf={pagesBridge?.onUploadPdf}
-                title={pagesBridge?.title}
-                emptyTitle={pagesBridge?.emptyTitle}
-                style={documentsRailStyle}
-                useDefaultStyles={props.useDefaultStyles}
-                density={documentsRailMode === 'stacked' ? 'compact' : 'default'}
-                className={DESIGNER_CLASSNAME + "documentsrailcomponent-auto"}
-              />
-            ) : null}
+            {resolvedPanelMode !== 'docs' ? documentsRailNode : null}
             {contentNode}
           </>
         )}

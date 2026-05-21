@@ -322,16 +322,28 @@
 }
 
 .sisad-pdfme-sidebar-surface-header-title {
+  /* Force block rendering so Ant Design <Text> (which is a <span>) always
+     stacks on its own line — prevents "Detalleteam_note" concatenation. */
+  display: block;
   font-size: 0.875rem;
   font-weight: 700;
   line-height: 1.2;
   color: var(--text-primary);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
 }
 
 .sisad-pdfme-sidebar-surface-header-subtitle {
+  display: block;
   font-size: 0.75rem;
   line-height: 1.35;
   color: var(--text-muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  min-width: 0;
 }
 
 .sisad-pdfme-sidebar-surface-header-badges {
@@ -682,13 +694,22 @@
 }
 
 .sisad-pdfme-designer-sidebar-frame,
-.sisad-pdfme-designer-left-sidebar-frame,
+.sisad-pdfme-designer-left-sidebar-frame {
+  display: flex;
+  flex-direction: column;
+  flex: 1 1 auto;
+  min-height: 0;
+  height: 100%;
+}
+
 .sisad-pdfme-designer-left-sidebar-content {
   display: flex;
   flex-direction: column;
   flex: 1 1 auto;
   min-height: 0;
   height: 100%;
+  padding: 0.625rem 0.5rem 0.625rem 0.625rem;
+  box-sizing: border-box;
 }
 
 .sisad-pdfme-designer-sidebar-surface,
@@ -705,12 +726,6 @@
   box-shadow: var(--shadow-gray-08);
   backdrop-filter: blur(0.875rem) saturate(1.05);
   overflow: hidden;
-}
-
-.sisad-pdfme-designer-left-sidebar-content {
-  height: 100%;
-  padding: 0.625rem 0.5rem 0.625rem 0.625rem;
-  box-sizing: border-box;
 }
 
 .sisad-pdfme-designer-left-sidebar-dock-header {
@@ -1118,14 +1133,15 @@
 /* ── Compact card: vertical tile layout (icon → label stacked) ───── */
 .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] {
   width: 100%;
-  min-height: 4rem;
+  /* Reduced from 4rem to 3rem — DocuSign-style compact card */
+  min-height: 3rem;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  gap: 0.25rem;
-  padding: 0.5rem 0.3125rem 0.4375rem;
-  border: 1px solid var(--color-border-22);
+  gap: 0.2rem;
+  padding: 0.375rem 0.25rem 0.3125rem;
+  border: 1px solid var(--color-border-18);
   border-radius: 0.625rem;
   background:
     linear-gradient(
@@ -1147,15 +1163,18 @@
 }
 
 .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"]:hover {
-  border-color: var(--color-primary-30);
-  background:
-    linear-gradient(
-      180deg,
-      var(--color-white),
-      var(--color-primary-100-90)
-    );
-  box-shadow: 0 3px 8px var(--color-primary-10);
+  /* Use recipient color when available, fallback to primary */
+  border-color: var(--schema-owner-color, var(--color-primary-30));
+  background: linear-gradient(
+    180deg,
+    var(--color-white),
+    color-mix(in srgb, var(--schema-owner-color, var(--color-primary)) 8%, var(--color-white))
+  );
+  box-shadow: 0 3px 8px color-mix(in srgb, var(--schema-owner-color, var(--color-primary)) 12%, transparent);
   transform: translateY(-1px);
+  /* DocuSign-style left accent bar using recipient color */
+  border-left-width: 3px;
+  border-left-color: var(--schema-owner-color, var(--color-primary));
 }
 
 /* Icon wrapper inside compact card */
@@ -1384,22 +1403,45 @@
 .sisad-pdfme-designer-canvas-empty-state {
   position: absolute;
   inset: 0;
-  z-index: 0;
+  z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
   padding: 1.25rem;
   pointer-events: none;
+  /* Subtle radial gradient so it's clearly inside the page */
+  background: radial-gradient(circle at 50% 45%, var(--color-primary-08) 0%, transparent 68%);
 }
 
 .sisad-pdfme-designer-canvas-empty-state-card {
-  max-width: 22.5rem;
-  padding: 0.875rem 1rem;
-  border: 1px dashed var(--border-subtle);
-  border-radius: 0.875rem;
-  background: linear-gradient(180deg, var(--color-white), var(--color-bg-2));
+  max-width: 22rem;
+  padding: 1.25rem 1.5rem 1.375rem;
+  border: 1.5px dashed var(--color-primary-25);
+  border-radius: 1rem;
+  background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(241,245,249,0.95));
   color: var(--text-primary);
-  box-shadow: 0 0.75rem 1.75rem var(--color-gray-900-08);
+  box-shadow:
+    0 1.25rem 2.5rem var(--color-gray-900-08),
+    0 0 0 4px var(--color-primary-08);
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  text-align: center;
+}
+
+.sisad-pdfme-designer-canvas-empty-state-title {
+  display: block;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  line-height: 1.4;
+}
+
+.sisad-pdfme-designer-canvas-empty-state-hint {
+  display: block;
+  font-size: 0.6875rem;
+  color: var(--color-text-muted);
+  line-height: 1.5;
 }
 
 .sisad-pdfme-designer-canvas [data-canvas-page="true"] {
@@ -1517,7 +1559,7 @@
 }
 
 .sisad-pdfme-designer-stage[data-sidebar-open="true"] .sisad-pdfme-designer-canvas {
-  padding-right: calc(var(--sisad-pdfme-rs-width) + 1.25rem);
+  padding-right: calc(var(--sisad-pdfme-rs-width) + 0.875rem);
 }
 
 .sisad-pdfme-designer-right-sidebar-content {
@@ -1626,7 +1668,7 @@
 }
 
 .sisad-pdfme-designer-right-sidebar-panel-switcher-wrap {
-  padding: 0.375rem 0.4375rem 0;
+  padding: 0.25rem 0.375rem 0;
   border-bottom: 1px solid var(--border-subtle);
   flex-shrink: 0;
 }
@@ -1637,19 +1679,19 @@
   width: 100%;
   padding: 0.125rem;
   border: 1px solid var(--border-subtle);
-  border-radius: 0.625rem;
+  border-radius: 0.5rem;
   background: var(--color-bg-surface);
 }
 
 .sisad-pdfme-designer-right-sidebar-panel-switcher-btn {
   flex: 1;
-  height: 1.625rem;
-  padding: 0 0.375rem;
+  height: 1.5rem;
+  padding: 0 0.25rem;
   border: 1px solid transparent;
-  border-radius: 0.4375rem;
+  border-radius: 0.375rem;
   background: transparent;
   color: var(--text-primary);
-  font-size: 0.59375rem;
+  font-size: 0.5625rem;
   font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -1699,7 +1741,7 @@
   top: 0;
   z-index: 2;
   flex-shrink: 0;
-  padding: 0.375rem 0.5rem 0;
+  padding: 0.25rem 0.4375rem 0;
   background: var(--color-white);
   border-bottom: 1px solid var(--color-border-16);
 }
@@ -1739,7 +1781,7 @@
   min-height: 0;
   overflow-y: auto;
   overflow-x: hidden;
-  padding: 0.375rem 0.5rem 0.5rem;
+  padding: 0.3125rem 0.4375rem 0.4375rem;
   overscroll-behavior: contain;
   scrollbar-gutter: stable both-edges;
   scrollbar-width: thin;
@@ -1780,7 +1822,7 @@
 .sisad-pdfme-designer-detail-view-sections {
   display: flex;
   flex-direction: column;
-  gap: 0.25rem;
+  gap: 0.1875rem;
   min-height: 0;
 }
 
@@ -1819,15 +1861,15 @@
 
 /* Compact ant-form-item inside right sidebar */
 .sisad-pdfme-designer-right-sidebar .ant-form-item {
-  margin-bottom: 0.4375rem;
+  margin-bottom: 0.3125rem;
 }
 
 .sisad-pdfme-designer-right-sidebar .ant-form-item-label {
-  padding-bottom: 0.125rem;
+  padding-bottom: 0.0625rem;
 }
 
 .sisad-pdfme-designer-right-sidebar .ant-form-item-label>label {
-  font-size: 0.625rem;
+  font-size: 0.5938rem;
   font-weight: 600;
   color: var(--color-gray-600);
   letter-spacing: 0.02em;
@@ -1835,22 +1877,43 @@
 
 .sisad-pdfme-designer-right-sidebar .ant-input,
 .sisad-pdfme-designer-right-sidebar .ant-input-number-input {
-  font-size: 0.71875rem;
+  font-size: 0.6875rem;
 }
 
 .sisad-pdfme-designer-right-sidebar .ant-select-selection-item {
-  font-size: 0.71875rem;
+  font-size: 0.6875rem;
+}
+
+.sisad-pdfme-designer-detail-header-back-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.375rem;
+  height: 1.375rem;
+  padding: 0;
+  border: 1px solid var(--color-border-18);
+  border-radius: var(--radius-full);
+  background: var(--color-bg-elevated);
+  color: var(--text-secondary);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: border-color var(--transition-fast), color var(--transition-fast);
+}
+
+.sisad-pdfme-designer-detail-header-back-btn:hover {
+  border-color: var(--color-primary-25);
+  color: var(--color-primary);
 }
 
 .sisad-pdfme-designer-detail-header-card {
-  margin-bottom: 0.375rem;
-  padding: 0.5rem 0.625rem;
+  margin-bottom: 0.25rem;
+  padding: 0.375rem 0.5rem;
   border: 1px solid var(--color-border-18);
-  border-radius: 0.875rem;
+  border-radius: 0.625rem;
   background:
     radial-gradient(circle at top right, var(--color-primary-200-20), transparent 38%),
     linear-gradient(180deg, var(--color-white), var(--color-gray-50));
-  box-shadow: 0 0.375rem 1rem var(--color-gray-900-06);
+  box-shadow: 0 0.25rem 0.75rem var(--color-gray-900-06);
 }
 
 .sisad-pdfme-designer-detail-header-card-head {

@@ -51,7 +51,10 @@ import {
 } from '../shared/interactionGuards.js';
 import CanvasOverlayManager from './overlays/CanvasOverlayManager.js';
 import CanvasContextMenu from './overlays/CanvasContextMenu.js';
+import CanvasStateOverlay from './overlays/CanvasStateOverlay.js';
 import InlineEditOverlay, { type InlineEditSession } from './overlays/InlineEditOverlay.js';
+import { useCanvasRenderState, type CanvasRenderStateInput } from '../../../../canvas/useCanvasRenderState.js';
+import { isCanvasInteractive } from '../../../../canvas/canvasRenderState.js';
 
 const mm2px = (mm: number) => mm * 3.7795275591;
 
@@ -196,6 +199,19 @@ export interface CanvasProps {
   };
   selectionCommands?: SelectionCommandSet;
   onInteractionStateChange?: (state: InteractionState) => void;
+
+  // ── Canvas render state inputs (Phase 4) ────────────────────────────
+  isLoadingDocument?: boolean;
+  isSwitchingDocument?: boolean;
+  switchFromDocId?: string;
+  switchToDocId?: string;
+  isLoadingPage?: boolean;
+  renderError?: Error | null;
+  renderErrorRecoverable?: boolean;
+  pdfLoadError?: { reason: 'not_found' | 'encrypted' | 'unsupported' | 'network' } | null;
+  isCollaborationDisconnected?: boolean;
+  lastSyncAt?: number;
+  onRetryRender?: () => void;
 }
 
 const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
@@ -226,6 +242,17 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
     canvasActions,
     selectionCommands,
     onInteractionStateChange,
+    isLoadingDocument = false,
+    isSwitchingDocument = false,
+    switchFromDocId,
+    switchToDocId,
+    isLoadingPage = false,
+    renderError,
+    renderErrorRecoverable,
+    pdfLoadError,
+    isCollaborationDisconnected = false,
+    lastSyncAt,
+    onRetryRender,
 } = props;
   const SelectoSlot = components?.Selecto || Selecto;
   const SnapLinesSlot = components?.SnapLines || SnapLines;
@@ -906,6 +933,24 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
     onInteractionStateChange?.(interactionState);
   }, [interactionState, onInteractionStateChange]);
 
+  // ── Canvas render state (Phase 4) ───────────────────────────────────
+  const canvasRenderState = useCanvasRenderState({
+    schemaCount: activePageSchemaCount,
+    pageCursor,
+    documentId: activeDocumentId,
+    isLoadingDocument,
+    isSwitchingDocument,
+    switchFromDocId,
+    switchToDocId,
+    isLoadingPage,
+    renderError,
+    renderErrorRecoverable,
+    pdfLoadError,
+    isCollaborationDisconnected,
+    lastSyncAt,
+  });
+  const canvasInteractive = isCanvasInteractive(canvasRenderState);
+
   useEffect(() => {
     paperRefs.current.forEach((paper, index) => {
       if (!paper) return;
@@ -946,8 +991,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
       data-interaction-dragging={interactionState.isDragging ? 'true' : 'false'}
       data-interaction-resizing={interactionState.isResizing ? 'true' : 'false'}
       data-interaction-rotating={interactionState.isRotating ? 'true' : 'false'}
+      data-canvas-state={canvasRenderState.type}
       ref={rootRef}>
-      {!editing && feature.selecto && !externalSchemaDragActive ? (
+      {!editing && feature.selecto && !externalSchemaDragActive && canvasInteractive ? (
         <SelectoSlot
           container={paperRefs.current[pageCursor]}
           rootContainer={rootRef.current}
@@ -1060,21 +1106,12 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
                 opacity={styleOverrides?.padding?.opacity}
               />
             ) : null}
-            {pageCursor === index && (renderedPageSchemasList[index] || []).length === 0 ? (
-              <div
-                className={[DESIGNER_CLASSNAME + 'canvas-empty-state', classNames?.emptyState]
-                  .filter(Boolean)
-                  .join(' ')}
-              >
-                <div className={DESIGNER_CLASSNAME + 'canvas-empty-state-card'}>
-                  <span className={DESIGNER_CLASSNAME + 'canvas-empty-state-title'}>
-                    Esta página todavía no tiene campos
-                  </span>
-                  <span className={DESIGNER_CLASSNAME + 'canvas-empty-state-hint'}>
-                    Arrastra un campo del catálogo izquierdo para empezar a construir el documento.
-                  </span>
-                </div>
-              </div>
+            {pageCursor === index ? (
+              <CanvasStateOverlay
+                state={canvasRenderState}
+                onRetry={onRetryRender}
+                className={classNames?.emptyState}
+              />
             ) : null}
             <StaticSchema
               template={paperTemplate}
@@ -1113,7 +1150,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
                 />
               ) : null
             ) : (
-              !editing && feature.moveable && !externalSchemaDragActive && (
+              !editing && feature.moveable && !externalSchemaDragActive && canvasInteractive && (
                 <MoveableSlot
                   ref={moveable}
                   className={classNames?.moveable}

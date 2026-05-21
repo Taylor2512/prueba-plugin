@@ -7,6 +7,28 @@ import {
 import { uuid, getUniqueSchemaName } from '../../../helper.js';
 import { resolveSmartDropPosition, type SmartPlacementInput } from '../Canvas/overlays/smartPlacement.js';
 
+/**
+ * Controls how recipient assignment and collaboration metadata are handled
+ * when pasting schemas into the designer.
+ *
+ * - preserveAssignments: keeps the original recipientId/color from the copied schema.
+ *   Used when duplicating within the same recipient context.
+ * - assignToActiveRecipient: strips legacy assignment and applies the currently active
+ *   recipient from collaborationContext. Used when dropping into a different recipient slot.
+ */
+export type ClipboardPasteMode = 'preserveAssignments' | 'assignToActiveRecipient';
+
+export type PastePolicy = {
+  /** Controls assignment behavior on paste. Defaults to 'preserveAssignments'. */
+  mode: ClipboardPasteMode;
+  /** When false (default), locks are always stripped on paste. */
+  preserveLocks?: boolean;
+  /** When false (default), comments and commentAnchors are stripped on paste. */
+  preserveComments?: boolean;
+  /** Placement offset strategy. 'smart' uses collision-avoidance; 'fixed' applies a constant delta. */
+  offsetStrategy?: 'smart' | 'fixed';
+};
+
 type ClipboardCollaborationContext = {
   fileId?: string | null;
   actorId?: string | null;
@@ -109,7 +131,16 @@ export const buildPastedSchema = (
   context: SchemaClipboardContext,
   index = 0,
   stackUniqueSchemaNames: string[] = [],
+  policy: PastePolicy = { mode: 'preserveAssignments' },
 ): SchemaForUI => {
+  // Capture transient fields from the original BEFORE sanitization so that
+  // PastePolicy.preserveLocks / preserveComments can selectively restore them.
+  const originalRecord = schema as SchemaForUI & Record<string, unknown>;
+  const originalLock = originalRecord.lock;
+  const originalComments = originalRecord.comments;
+  const originalCommentAnchors = originalRecord.commentAnchors;
+  const originalCommentsAnchors = originalRecord.commentsAnchors;
+
   const baseSchema = sanitizeCopiedSchema(schema);
   const nextSchemaUid = uuid();
   const targetFileId = context.fileId ?? context.collaborationContext?.fileId ?? undefined;
@@ -152,12 +183,37 @@ export const buildPastedSchema = (
   pasted.fileId = targetFileId;
   pasted.fileTemplateId = targetFileId;
   pasted.pageNumber = pageNumber;
-  pasted.lock = undefined;
   pasted.state = 'draft';
   pasted.commentsCount = 0;
   pasted.createdAt = context.timestamp ?? Date.now();
   pasted.updatedAt = context.timestamp ?? Date.now();
   pasted.lastModifiedAt = context.timestamp ?? Date.now();
+
+  // Apply PastePolicy for comments — lock restoration must happen AFTER
+  // applySchemaCollaborativeDefaults because that function hard-codes lock: undefined.
+  if (policy.preserveComments) {
+    if (originalComments !== undefined) pasted.comments = originalComments;
+    if (originalCommentAnchors !== undefined) pasted.commentAnchors = originalCommentAnchors;
+    if (originalCommentsAnchors !== undefined) pasted.commentsAnchors = originalCommentsAnchors;
+  } else {
+    pasted.comments = undefined;
+    pasted.commentAnchors = undefined;
+    pasted.commentsAnchors = undefined;
+  }
+  if (policy.mode === 'assignToActiveRecipient') {
+    // Strip original recipient assignment — creationContext below will apply the active one
+    delete pasted['ownerRecipientId'];
+    delete pasted['ownerRecipientIds'];
+    delete pasted['ownerRecipientName'];
+    delete pasted['ownerColor'];
+    if (pasted['__designer'] && typeof pasted['__designer'] === 'object') {
+      const designer = { ...(pasted['__designer'] as Record<string, unknown>) };
+      delete designer['recipientId'];
+      delete designer['recipientName'];
+      delete designer['recipientColor'];
+      pasted['__designer'] = designer;
+    }
+  }
 
   const creationContext = createSchemaCreationContext({
     pageIndex: context.pageIndex,
@@ -192,12 +248,20 @@ export const buildPastedSchema = (
     };
   }
 
-  return withCollaborativeDefaults;
+  // Restore lock AFTER applySchemaCollaborativeDefaults (which always sets lock: undefined).
+  // preserveLocks only works when the original schema had a lock value.
+  const finalResult = withCollaborativeDefaults as SchemaForUI & Record<string, unknown>;
+  if (policy.preserveLocks && originalLock !== undefined) {
+    finalResult.lock = originalLock;
+  }
+
+  return finalResult as SchemaForUI;
 };
 
 export const pasteSchemasFromClipboard = (
   clipboard: SchemaClipboardPayload | SchemaForUI[],
   context: SchemaClipboardContext,
+  policy: PastePolicy = { mode: 'preserveAssignments' },
 ): SchemaForUI[] => {
   const items = Array.isArray(clipboard) ? clipboard : clipboard.items;
   const existingSchemas = context.existingSchemas || [];
@@ -206,7 +270,7 @@ export const pasteSchemasFromClipboard = (
 
   for (const [index, schema] of items.entries()) {
     const nextExistingSchemas = existingSchemas.concat(pasted);
-    const next = buildPastedSchema(schema, { ...context, existingSchemas: nextExistingSchemas }, index, stackUniqueSchemaNames);
+    const next = buildPastedSchema(schema, { ...context, existingSchemas: nextExistingSchemas }, index, stackUniqueSchemaNames, policy);
     pasted.push(next);
   }
 

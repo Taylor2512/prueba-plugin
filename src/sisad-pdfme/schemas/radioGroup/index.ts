@@ -5,6 +5,7 @@ import { isEditable } from '../utils.js';
 import { HEX_COLOR_PATTERN } from '../constants.js';
 import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
 
 const defaultStroke = 'currentColor';
 
@@ -12,10 +13,24 @@ const getCheckedIcon = (stroke = defaultStroke) => renderLucideIcon(CircleDot, {
 const getUncheckedIcon = (stroke = defaultStroke) => renderLucideIcon(Circle, { stroke });
 
 interface RadioGroup extends Schema {
+  /** Legacy group name — kept for backward compatibility; prefer __designer.group */
   group?: string;
+  /** Legacy group ID — kept for backward compatibility; prefer __designer.group.groupId */
   groupId?: string;
   color: string;
+  /** __designer field — carries GroupMeta for logical radio grouping */
+  __designer?: {
+    group?: GroupMeta;
+    [key: string]: unknown;
+  };
 }
+
+/**
+ * Resolves the canonical group key for a RadioGroup schema.
+ * Priority: __designer.group.groupId > groupId > group > schema.name (fallback)
+ */
+const resolveGroupKey = (schema: RadioGroup): string =>
+  schema.__designer?.group?.groupId ?? schema.groupId ?? schema.group ?? schema.name;
 
 const getIcon = ({ value, color }: { value: string; color: string }) =>
   value === 'true' ? getCheckedIcon(color) : getUncheckedIcon(color);
@@ -41,7 +56,7 @@ const schema: Plugin<RadioGroup> = createSchemaPlugin<RadioGroup>({
       radioButtonStates.set(schema.name, { value, onChange });
     }
 
-    const groupKey = schema.groupId || schema.group || schema.name;
+    const groupKey = resolveGroupKey(schema);
     const oldListener = eventListeners.get(schema.name);
     if (oldListener) {
       eventEmitter.removeEventListener(`group-${groupKey}`, oldListener);
@@ -95,13 +110,16 @@ const schema: Plugin<RadioGroup> = createSchemaPlugin<RadioGroup>({
         required: true,
         rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
       },
-      group: {
-        title: i18n('schemas.radioGroup.groupName'),
-        type: 'string',
-      },
+      // groupId is the canonical field; group is a legacy alias
       groupId: {
         title: i18n('schemas.radioGroup.groupName'),
         type: 'string',
+        description: 'ID del grupo de opción única. Botones con el mismo ID son mutuamente excluyentes.',
+      },
+      group: {
+        title: i18n('schemas.radioGroup.groupName'),
+        type: 'string',
+        hidden: true, // kept for backward compat — not shown in UI
       },
     }),
     inspector: createSchemaInspectorConfig('choice', {

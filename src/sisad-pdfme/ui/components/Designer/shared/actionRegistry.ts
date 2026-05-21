@@ -226,22 +226,6 @@ const CORE_ACTIONS: SchemaActionDefinition[] = [
     presentationMode: 'contextMenu',
     isEnabled: (ctx) => ctx.canEditStructure,
   },
-  // ── Style ──
-  {
-    id: 'copyStyle',
-    label: 'Copiar estilo',
-    section: 'style',
-    priority: 'secondary',
-    presentationMode: 'contextMenu',
-  },
-  {
-    id: 'pasteStyle',
-    label: 'Pegar estilo',
-    section: 'style',
-    priority: 'secondary',
-    presentationMode: 'contextMenu',
-    isEnabled: (ctx) => ctx.canEditStructure,
-  },
   // ── Connections & Collaboration (complex → open in modal) ──
   {
     id: 'openConnections',
@@ -458,6 +442,50 @@ const CORE_ACTIONS: SchemaActionDefinition[] = [
     id: 'lockToggle',
     label: 'Bloquear o desbloquear',
     section: 'collaboration',
+    priority: 'secondary',
+    presentationMode: 'hidden',
+    isVisible: (ctx) => ctx.selectionCount === 1,
+  },
+  // ── Grupos ──
+  {
+    id: 'group',
+    label: 'Agrupar',
+    section: 'structure',
+    priority: 'primary',
+    presentationMode: 'inline',
+    isVisible: (ctx) => ctx.selectionCount > 1,
+    isEnabled: (ctx) => ctx.canEditStructure,
+  },
+  {
+    id: 'ungroup',
+    label: 'Desagrupar',
+    section: 'structure',
+    priority: 'primary',
+    presentationMode: 'inline',
+    isVisible: (ctx) => ctx.selectionCount >= 1,
+    isEnabled: (ctx) => ctx.canEditStructure,
+  },
+  // ── Estilos ──
+  {
+    id: 'copyStyle',
+    label: 'Copiar estilo',
+    section: 'style',
+    priority: 'secondary',
+    presentationMode: 'hidden',
+    isVisible: (ctx) => ctx.selectionCount === 1,
+  },
+  {
+    id: 'pasteStyle',
+    label: 'Pegar estilo',
+    section: 'style',
+    priority: 'secondary',
+    presentationMode: 'hidden',
+    isEnabled: (ctx) => ctx.canEditStructure,
+  },
+  {
+    id: 'showInspector',
+    label: 'Mostrar inspector',
+    section: 'view',
     priority: 'secondary',
     presentationMode: 'hidden',
     isVisible: (ctx) => ctx.selectionCount === 1,

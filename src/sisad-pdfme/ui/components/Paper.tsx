@@ -3,6 +3,13 @@ import { ZOOM, SchemaForUI, Size, getFallbackFontName } from '@sisad-pdfme/commo
 import { FontContext } from '../contexts.js';
 import { RULER_HEIGHT, PAGE_GAP } from '../constants.js';
 
+type PageBlock = {
+  background: string;
+  pageSize: Size;
+  paperSize: { width: number; height: number };
+  pageTop: number;
+};
+
 const Paper = (props: {
   paperRefs: MutableRefObject<HTMLDivElement[]>;
   scale: number;
@@ -25,7 +32,6 @@ const Paper = (props: {
     hasRulers,
   } = props;
   const font = useContext(FontContext);
-  const rulerHeight = hasRulers ? RULER_HEIGHT : 0;
 
   if (pageSizes.length !== backgrounds.length) {
     return null;
@@ -35,23 +41,38 @@ const Paper = (props: {
     pageSizes.length === schemasList.length
       ? schemasList
       : Array.from({ length: pageSizes.length }, (_, pageIndex) => schemasList[pageIndex] || []);
-  let runningTop = hasRulers ? RULER_HEIGHT : PAGE_GAP * 2;
-  const pageBlocks = backgrounds.map((background, paperIndex) => {
-    const pageSize = pageSizes[paperIndex];
-    const paperSize = { width: pageSize.width * ZOOM, height: pageSize.height * ZOOM };
-    const pageTop = runningTop;
-    runningTop += paperSize.height + PAGE_GAP;
+  const initialTop = hasRulers ? RULER_HEIGHT : PAGE_GAP * 2;
+  const { pageBlocks, rootWidth, rootHeight } = backgrounds.reduce<{
+    pageBlocks: PageBlock[];
+    nextTop: number;
+    rootWidth: number;
+    rootHeight: number;
+  }>(
+    (acc, background, paperIndex) => {
+      const pageSize = pageSizes[paperIndex];
+      const paperSize = { width: pageSize.width * ZOOM, height: pageSize.height * ZOOM };
+      const pageTop = acc.nextTop;
 
-    return {
-      background,
-      pageSize,
-      paperSize,
-      pageTop,
-    };
-  });
+      return {
+        pageBlocks: acc.pageBlocks.concat({
+          background,
+          pageSize,
+          paperSize,
+          pageTop,
+        }),
+        nextTop: pageTop + paperSize.height + PAGE_GAP,
+        rootWidth: Math.max(acc.rootWidth, paperSize.width),
+        rootHeight: Math.max(acc.rootHeight, pageTop + paperSize.height),
+      };
+    },
+    {
+      pageBlocks: [],
+      nextTop: initialTop,
+      rootWidth: 0,
+      rootHeight: 0,
+    },
+  );
 
-  const rootWidth = Math.max(0, ...pageBlocks.map(({ paperSize }) => paperSize.width));
-  const rootHeight = Math.max(0, ...pageBlocks.map(({ paperSize, pageTop }) => pageTop + paperSize.height));
   const scaledRootWidth = rootWidth * scale;
   const scaledRootHeight = rootHeight * scale;
 

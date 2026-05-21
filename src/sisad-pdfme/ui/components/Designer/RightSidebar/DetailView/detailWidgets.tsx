@@ -1,15 +1,15 @@
 import React from 'react';
 import type { GlobalToken, PropPanelWidgetProps, SchemaForUI, UIOptions } from '@sisad-pdfme/common';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { Divider, Input, Popover, Tooltip } from 'antd';
-import { Palette, Pipette } from 'lucide-react';
+import { Button, Divider, Input, Popover, Tooltip } from 'antd';
+import { Palette, Pencil, Pipette, Type } from 'lucide-react';
 import AlignWidget from './AlignWidget.js';
 import ButtonGroupWidget from './ButtonGroupWidget.js';
 import WidgetRenderer from './WidgetRenderer.js';
 import SchemaCollaborationWidget from './SchemaCollaborationWidget.js';
 import SchemaConnectionsWidget from './SchemaConnectionsWidget.js';
 import SchemaFieldCommentsWidget from './SchemaFieldCommentsWidget.js';
-import { getSchemaTypeInspectorPreset } from '../../../../../schemas/schemaFamilies.js';
+import { getSchemaTypeInspectorPreset, INLINE_EDITABLE_TEXT_TYPES } from '../../../../../schemas/schemaFamilies.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import type { DesignerEngine, SchemaDesignerConfig } from '../../../../designerEngine.js';
 import type { SidebarProps } from '../../../../types.js';
@@ -149,6 +149,39 @@ export const buildDetailWidgets = ({
     nativeColor: (p) => (
       <ColorPickerWidget value={p.value} onChange={p.onChange} normalizeHex={normalizeColorHex} />
     ),
+    InlineEditActionsWidget: () => {
+      const schemaType = typeof props.activeSchema?.type === 'string' ? props.activeSchema.type : '';
+      const isTextType = INLINE_EDITABLE_TEXT_TYPES.has(schemaType);
+      const canEdit = props.selectionCommands?.canEditStructure !== false;
+      return (
+        <div className={`${DESIGNER_CLASSNAME}inline-edit-actions`}>
+          <Tooltip title="Renombrar variable (F2)" placement="bottom">
+            <Button
+              size="small"
+              icon={<Pencil size={12} />}
+              disabled={!canEdit}
+              onClick={() => props.selectionCommands?.renameLabel?.()}
+              className={`${DESIGNER_CLASSNAME}inline-edit-btn`}
+            >
+              Renombrar
+            </Button>
+          </Tooltip>
+          {isTextType && (
+            <Tooltip title="Editar texto (Enter)" placement="bottom">
+              <Button
+                size="small"
+                icon={<Type size={12} />}
+                disabled={!canEdit}
+                onClick={() => props.selectionCommands?.editTextInline?.()}
+                className={`${DESIGNER_CLASSNAME}inline-edit-btn`}
+              >
+                Editar texto
+              </Button>
+            </Tooltip>
+          )}
+        </div>
+      );
+    },
   };
 
   if (familyPreset.supportsComments) {

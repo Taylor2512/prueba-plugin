@@ -1,15 +1,12 @@
 import React from 'react';
 import type { SchemaForUI, PropPanelWidgetProps } from '@sisad-pdfme/common';
 import type { useForm } from 'form-render';
-import { ArrowLeft } from 'lucide-react';
-import { Button, Tooltip } from 'antd';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { SidebarBody, SidebarFrame, SidebarHeader } from '../layout.js';
+import { SidebarBody, SidebarFrame } from '../layout.js';
 import DetailHeaderCard from './DetailHeaderCard.js';
 import DetailFormSection from './DetailFormSection.js';
 import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
 import type { DetailInspectorSection } from './detailSchemas.js';
-import { SidebarSurfaceHeader } from '../shared/SidebarSurfacePrimitives.js';
 
 type DetailViewContentProps = {
   activeSchema: SchemaForUI;
@@ -19,10 +16,7 @@ type DetailViewContentProps = {
   sections: DetailInspectorSection[];
   widgets: Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element>;
   watchHandler: (..._args: unknown[]) => void;
-  title?: React.ReactNode;
-  subtitle?: React.ReactNode;
-  backLabel?: React.ReactNode;
-  backTooltip?: React.ReactNode;
+  backTooltip?: string;
 };
 
 const DetailViewContent = ({
@@ -33,40 +27,18 @@ const DetailViewContent = ({
   sections,
   widgets,
   watchHandler,
-  title = 'Detalle',
-  subtitle,
-  backLabel = 'Volver a campos',
   backTooltip = 'Volver a campos',
 }: DetailViewContentProps) => {
   return (
-    <SidebarFrame className={DESIGNER_CLASSNAME + 'detail-view'}>
-      <SidebarHeader>
-        <SidebarSurfaceHeader
-          title={title}
-          subtitle={subtitle || activeSchema.name || activeSchema.type}
-          trailing={(
-            <Tooltip title={backTooltip} placement="right">
-              <Button
-                className={DESIGNER_CLASSNAME + 'back-button'}
-                htmlType="button"
-                onClick={deselectSchema}
-                icon={<ArrowLeft strokeWidth={1.5} size={18} />}
-                size="small"
-                type="text"
-                aria-label={String(backLabel)}
-                title={String(backLabel)}
-              />
-            </Tooltip>
-          )}
-          compact
-        />
-      </SidebarHeader>
+    <SidebarFrame className={`${DESIGNER_CLASSNAME}detail-view`}>
       <SidebarBody tabIndex={0} aria-label="Secciones del detalle del campo">
         <DetailHeaderCard
           activeSchema={activeSchema}
           schemaConfig={schemaConfig}
+          onBack={deselectSchema}
+          backTooltip={backTooltip}
         />
-        <div className={DESIGNER_CLASSNAME + 'detail-view-sections'}>
+        <div className={`${DESIGNER_CLASSNAME}detail-view-sections`}>
           {sections.map((section) => (
             <DetailFormSection
               key={section.key}

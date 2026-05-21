@@ -20,3 +20,13 @@ export type CollaborativeSchemaContract = SchemaIdentity & {
   ownerColor?: string;
   comments?: PdfComment[];
 };
+
+// ── Re-exportación de contratos de Fase 1 ────────────────────────────────────
+// SchemaDesignerMeta es la fuente de verdad de identidad de cada schema.
+// Vive en shared/schemaDesignerMeta.ts para evitar dependencias circulares.
+export type { SchemaDesignerMeta } from '../shared/schemaDesignerMeta.js';
+export {
+  createSchemaDesignerMeta,
+  duplicateSchemaDesignerMeta,
+  pasteSchemaDesignerMeta,
+} from '../shared/schemaDesignerMeta.js';

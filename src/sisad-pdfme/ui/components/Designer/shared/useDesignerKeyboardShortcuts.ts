@@ -8,7 +8,7 @@ import {
   type ShortcutDefinition,
 } from './keyboardShortcutRegistry.js';
 import type { SelectionCommandSet } from './selectionCommands.js';
-import { isEditableTarget, shouldSuppressDesignerShortcuts } from './interactionGuards.js';
+import { isEditableTarget, isFocusInsideDesigner, shouldSuppressDesignerShortcuts } from './interactionGuards.js';
 
 export type ShortcutHandlerContext = {
   activeSchemas: SchemaForUI[];
@@ -57,6 +57,11 @@ export type UseDesignerKeyboardShortcutsParams = {
   onNextPage?: () => void;
   onPreviousPage?: () => void;
   onMove?: (direction: 'up' | 'down' | 'left' | 'right', step: 'normal' | 'fast' | 'fine', event: KeyboardEvent) => void;
+  onGroup?: () => void;
+  onUngroup?: () => void;
+  onShowInspector?: () => void;
+  onCopyStyle?: () => void;
+  onPasteStyle?: () => void;
 };
 
 const getMoveStep = (event: KeyboardEvent): 'normal' | 'fast' | 'fine' => {
@@ -101,10 +106,7 @@ export const shouldIgnoreShortcutEvent = (
   if (context.isModalOpen || context.isInlineEditing) return true;
   if (isEditableTarget(target) || shouldSuppressDesignerShortcuts(target, { isModalOpen: false })) return true;
 
-  const activeElement = typeof document !== 'undefined' ? document.activeElement : null;
-  const targetInsideDesigner = target instanceof HTMLElement && Boolean(target.closest(DESIGNER_ROOT_SELECTOR));
-  const activeElementInsideDesigner = activeElement instanceof HTMLElement && Boolean(activeElement.closest(DESIGNER_ROOT_SELECTOR));
-  const focusInsideDesigner = targetInsideDesigner || activeElementInsideDesigner;
+  const focusInsideDesigner = isFocusInsideDesigner(target, DESIGNER_ROOT_SELECTOR);
 
   if (!focusInsideDesigner && shortcut.scope !== 'global') {
     return true;
@@ -278,6 +280,47 @@ const executeShortcutAction = (
     return true;
   }
 
+  if (shortcut.id === 'group') {
+    if (current.onGroup) {
+      current.onGroup();
+    } else {
+      current.selectionCommands?.groupSelection?.();
+    }
+    return true;
+  }
+
+  if (shortcut.id === 'ungroup') {
+    if (current.onUngroup) {
+      current.onUngroup();
+    } else {
+      current.selectionCommands?.ungroupSelection?.();
+    }
+    return true;
+  }
+
+  if (shortcut.id === 'showInspector') {
+    current.onShowInspector?.();
+    return true;
+  }
+
+  if (shortcut.id === 'copyStyle') {
+    if (current.onCopyStyle) {
+      current.onCopyStyle();
+    } else {
+      current.selectionCommands?.copyStyle?.();
+    }
+    return true;
+  }
+
+  if (shortcut.id === 'pasteStyle') {
+    if (current.onPasteStyle) {
+      current.onPasteStyle();
+    } else {
+      current.selectionCommands?.pasteStyle?.();
+    }
+    return true;
+  }
+
   const handler =
     shortcut.id === 'copy' || shortcut.id === 'cut' || shortcut.id === 'paste'
       ? undefined
@@ -319,6 +362,11 @@ export const useDesignerKeyboardShortcuts = ({
   onNextPage,
   onPreviousPage,
   onMove,
+  onGroup,
+  onUngroup,
+  onShowInspector,
+  onCopyStyle,
+  onPasteStyle,
 }: UseDesignerKeyboardShortcutsParams) => {
   const paramsRef = useRef<UseDesignerKeyboardShortcutsParams>({
     enabled,
@@ -349,6 +397,11 @@ export const useDesignerKeyboardShortcuts = ({
     onNextPage,
     onPreviousPage,
     onMove,
+    onGroup,
+    onUngroup,
+    onShowInspector,
+    onCopyStyle,
+    onPasteStyle,
   });
 
   useEffect(() => {
@@ -381,6 +434,11 @@ export const useDesignerKeyboardShortcuts = ({
       onNextPage,
       onPreviousPage,
       onMove,
+      onGroup,
+      onUngroup,
+      onShowInspector,
+      onCopyStyle,
+      onPasteStyle,
     };
   }, [
     activeDocumentId,
@@ -406,6 +464,11 @@ export const useDesignerKeyboardShortcuts = ({
     onZoom100,
     onZoomIn,
     onZoomOut,
+    onGroup,
+    onUngroup,
+    onShowInspector,
+    onCopyStyle,
+    onPasteStyle,
     pageCursor,
     schemasList,
     selectionCommands,
@@ -442,6 +505,11 @@ export const useDesignerKeyboardShortcuts = ({
         shortcut.id === 'recipientNext' ||
         shortcut.id === 'selectAllVisible' ||
         shortcut.id === 'clearSelection' ||
+        shortcut.id === 'group' ||
+        shortcut.id === 'ungroup' ||
+        shortcut.id === 'showInspector' ||
+        shortcut.id === 'copyStyle' ||
+        shortcut.id === 'pasteStyle' ||
         shortcut.id.startsWith('move') ||
         shortcut.id.startsWith('insert')
       ) {

@@ -1,6 +1,7 @@
 import React from 'react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import { Badge, Tag } from 'antd';
+import { Badge, Tag, Tooltip } from 'antd';
+import { ArrowLeft } from 'lucide-react';
 import { resolveSchemaTone } from '../../shared/schemaTone.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
@@ -23,6 +24,9 @@ type DetailHeaderCardProps = {
   metaTooltip?: string;
   leading?: React.ReactNode;
   className?: string;
+  /** When provided, renders a back button as the trailing action. */
+  onBack?: () => void;
+  backTooltip?: string;
 };
 
 type StateTag = { label: string; color: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue' };
@@ -60,7 +64,7 @@ const buildMetaTooltip = (
 export const buildDetailHeaderSummary = (
   activeSchema: SchemaForUI,
   schemaConfig: SchemaDesignerConfig | null | undefined,
-): { tags: InspectorTag[]; overflowTooltip: string; positionLabel: string; schemaName: string; schemaType: string } => {
+): { tags: InspectorTag[]; overflowTooltip: string; positionLabel: string; schemaName: string; schemaType: string; recipientColor: string | null } => {
   const schemaName = typeof activeSchema.name === 'string' ? activeSchema.name : 'Campo';
   const schemaType = typeof activeSchema.type === 'string' ? activeSchema.type : 'schema';
   const schemaHidden = (activeSchema as SchemaForUI & { hidden?: boolean }).hidden === true;
@@ -70,16 +74,20 @@ export const buildDetailHeaderSummary = (
       : typeof activeSchema.ownerRecipientId === 'string' && activeSchema.ownerRecipientId.trim()
         ? activeSchema.ownerRecipientId.trim()
         : '';
+  const recipientColor =
+    typeof activeSchema.ownerColor === 'string' && activeSchema.ownerColor.trim()
+      ? activeSchema.ownerColor.trim()
+      : typeof (activeSchema as SchemaForUI & { userColor?: string }).userColor === 'string'
+        ? ((activeSchema as SchemaForUI & { userColor?: string }).userColor ?? null)
+        : null;
 
   const stateTags: StateTag[] = [];
   if (!schemaName.trim()) stateTags.push({ label: 'Sin nombre', color: 'warning' });
   if (activeSchema.required) stateTags.push({ label: 'Requerido', color: 'error' });
   if (activeSchema.readOnly) stateTags.push({ label: 'Solo lectura', color: 'gold' });
   if (schemaHidden) stateTags.push({ label: 'Oculto', color: 'default' });
-  if (ownerLabel) stateTags.push({ label: `Owner: ${ownerLabel}`, color: 'processing' });
-  if (typeof activeSchema.ownerColor === 'string' && activeSchema.ownerColor.trim()) {
-    stateTags.push({ label: `Color: ${activeSchema.ownerColor.trim()}`, color: 'blue' });
-  }
+  // Show recipient as a tag (color shown via Badge leading element)
+  if (ownerLabel) stateTags.push({ label: ownerLabel, color: 'processing' });
 
   const posX = Number((activeSchema.position?.x ?? 0).toFixed(1));
   const posY = Number((activeSchema.position?.y ?? 0).toFixed(1));
@@ -90,6 +98,7 @@ export const buildDetailHeaderSummary = (
     positionLabel: `${posX},${posY}`,
     schemaName,
     schemaType,
+    recipientColor,
   };
 };
 
@@ -108,6 +117,8 @@ const DetailHeaderCard = ({
   metaTooltip,
   leading,
   className,
+  onBack,
+  backTooltip = 'Volver a campos',
 }: DetailHeaderCardProps) => {
   const headerRef = React.useRef<HTMLDivElement | null>(null);
   const { mode: headerDensity } = useResponsiveDensity(headerRef, {
@@ -117,6 +128,8 @@ const DetailHeaderCard = ({
   });
   const tone = resolveSchemaTone(activeSchema, '#7c3aed');
   const headerSummary = buildDetailHeaderSummary(activeSchema, schemaConfig);
+  // Recipient color takes precedence over schema tone for the leading badge
+  const leadingColor = headerSummary.recipientColor || tone;
   const effectiveTags = tags || headerSummary.tags;
   const adaptiveMaxVisibleTags =
     headerDensity === 'mini' ? 0 : headerDensity === 'compact' ? Math.min(1, maxVisibleTags) : Math.min(2, maxVisibleTags);
@@ -126,19 +139,43 @@ const DetailHeaderCard = ({
   const overflowCount = resolvedShowStateTags ? Math.max(0, effectiveTags.length - adaptiveMaxVisibleTags) : 0;
   const resolvedOverflowTooltip = overflowTooltip || metaTooltip || headerSummary.overflowTooltip;
 
+  const backBtn = onBack ? (
+    <Tooltip title={backTooltip} placement="right">
+      <button
+        type="button"
+        className={`${DESIGNER_CLASSNAME}detail-header-back-btn`}
+        onClick={onBack}
+        aria-label={backTooltip}
+      >
+        <ArrowLeft strokeWidth={1.5} size={14} />
+      </button>
+    </Tooltip>
+  ) : null;
+
+  const trailingNode = (
+    <>
+      {resolvedShowPosition && (
+        <Tag color="default" className={`${DESIGNER_CLASSNAME}detail-header-card-pos`}>
+          {positionLabel || headerSummary.positionLabel}
+        </Tag>
+      )}
+      {backBtn}
+    </>
+  );
+
   return (
     <div ref={headerRef} data-detail-header-density={headerDensity}>
       <SidebarSurfaceHeader
-        className={[DESIGNER_CLASSNAME + 'detail-header-card', className].filter(Boolean).join(' ')}
+        className={[`${DESIGNER_CLASSNAME}detail-header-card`, className].filter(Boolean).join(' ')}
         compact
-        leading={leading || <Badge color={tone} />}
+        leading={leading || <Badge color={leadingColor} />}
         title={title || headerSummary.schemaName}
         subtitle={showType ? (typeLabel || headerSummary.schemaType) : resolvedShowPosition ? (positionLabel || headerSummary.positionLabel) : undefined}
         badges={
           resolvedShowStateTags
             ? [
                 ...visibleTags.map((tag, index) => ({
-                  key: tag.key || `${String(tag.label)}-${String(tag.color || 'default')}-${index}`,
+                  key: tag.key || `${String(tag.label)}-${String(tag.color ?? 'default')}-${index}`,
                   label: tag.label,
                   color: tag.color,
                   tooltip: resolvedOverflowTooltip,
@@ -149,7 +186,7 @@ const DetailHeaderCard = ({
               ]
             : []
         }
-        trailing={resolvedShowPosition ? <Tag color="default" className={DESIGNER_CLASSNAME + 'detail-header-card-pos'}>{positionLabel || headerSummary.positionLabel}</Tag> : null}
+        trailing={trailingNode}
       />
     </div>
   );

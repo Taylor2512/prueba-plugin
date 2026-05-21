@@ -170,6 +170,65 @@ export const shouldSuppressDesignerShortcuts = (
   return !canStartInteraction(current, 'command-running', context);
 };
 
+/**
+ * Structured keyboard shortcut guard with IME composition support.
+ *
+ * Returns true when a global designer shortcut should be handled.
+ * Blocks:
+ *  - Events already consumed by the browser (defaultPrevented)
+ *  - IME composition (isComposing) — prevents double-firing on CJK input
+ *  - Open modals
+ *  - Input/editable targets (unless Escape — to allow modal dismiss from input)
+ *  - Inline-editing mode (only Escape/Enter/Tab pass through)
+ */
+export type ShortcutHandlerOpts = {
+  /** Any modal/dialog/overlay is currently blocking the canvas */
+  modalOpen: boolean;
+  /** The canvas is in inline text-editing mode */
+  inlineEditing: boolean;
+  /** Current user has structural edit rights (guards destructive shortcuts) */
+  canEditStructure: boolean;
+};
+
+export const shouldHandleDesignerShortcut = (
+  event: KeyboardEvent,
+  opts: ShortcutHandlerOpts,
+): boolean => {
+  if (event.defaultPrevented) return false;
+  if (event.isComposing) return false;
+  if (opts.modalOpen) return false;
+
+  const target = event.target as HTMLElement | null;
+  const editable =
+    !!target?.closest(
+      'input, textarea, select, [contenteditable=""], [contenteditable="true"], [contenteditable="plaintext-only"], [role="textbox"]',
+    );
+
+  if (editable && event.key !== 'Escape') return false;
+  if (opts.inlineEditing && !['Escape', 'Enter', 'Tab'].includes(event.key)) return false;
+
+  return true;
+};
+
+/**
+ * Returns true when the keyboard event target or document.activeElement
+ * is within the designer root element (identified by CSS selector).
+ * Used to prevent non-global shortcuts from firing while the user
+ * is interacting with elements outside the designer.
+ */
+export const isFocusInsideDesigner = (
+  target: EventTarget | null | undefined,
+  designerRootSelector: string,
+): boolean => {
+  if (typeof document === 'undefined') return false;
+  const activeElement = document.activeElement;
+  const targetInDesigner =
+    target instanceof HTMLElement && Boolean(target.closest(designerRootSelector));
+  const activeInDesigner =
+    activeElement instanceof HTMLElement && Boolean(activeElement.closest(designerRootSelector));
+  return targetInDesigner || activeInDesigner;
+};
+
 export const shouldSuppressCanvasRegionSelection = (
   eventTarget: EventTarget | null | undefined,
   context: DesignerInteractionBlockContext & {

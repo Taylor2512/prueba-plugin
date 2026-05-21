@@ -186,6 +186,13 @@ export const buildInspectorSections = ({
     }.name as PropPanelSchema,
   );
 
+  addFieldToSection(sectionProperties, 'general', 'inlineEditActions', {
+    title: '',
+    type: 'void',
+    widget: 'InlineEditActionsWidget',
+    span: 24,
+  });
+
   addFieldToSection(sectionProperties, 'layout', 'align', {
     title: typedI18n('align'),
     type: 'void',
