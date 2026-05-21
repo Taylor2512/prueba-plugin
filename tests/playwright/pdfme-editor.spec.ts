@@ -105,9 +105,7 @@ const selectFieldForDetail = async (page: Page, schemaName: string, fallbackText
 
   const panel = page.getByLabel('Secciones del detalle del campo');
   const contextHeader = page.getByLabel('Contexto activo del editor');
-  try {
-    await expect.poll(async () => (await contextHeader.textContent()) || '').toContain('Selección');
-  } catch {}
+  await expect.poll(async () => (await contextHeader.textContent()) || '').toContain('Selección');
 
   if (!(await panel.isVisible())) {
     await openDetailPanel(page);
@@ -611,24 +609,25 @@ test.describe('cross-platform keyboard shortcuts', () => {
 
     await page.keyboard.press(`${mod}+a`);
 
-    // Should have multiple fields selected (count > 1 or "todo" indicator)
-    const text = await contextHeader.textContent();
-    // We just verify no error was thrown and the canvas is still alive
-    await expect(page.locator('.sisad-pdfme-designer-stage')).toBeVisible();
-    // If selection happened, context header reflects it
-    expect(text).not.toBeNull();
+    await expect
+      .poll(async () => (await contextHeader.textContent()) ?? '')
+      .toMatch(/Selección(:\s*)?[2-9]\d*|Selección múltiple/i);
   });
 
-  test(`${mod}+Z triggers undo (no crash)`, async ({ page }) => {
+  test(`${mod}+Z reverts a delete operation`, async ({ page }) => {
     await openLabRoute(page, '/lab/multiuser-collaboration');
 
-    // Focus the canvas
-    const paper = page.locator('[data-paper-page="true"]').first();
-    await paper.click();
-
-    // Undo — even if there's nothing to undo, should not crash
+    await openCollaborationDisclosure(page);
+    await page.getByRole('combobox', { name: 'Seleccionar vista activa' }).selectOption('global');
+    const schemas = page.locator('.sisad-pdfme-designer-canvas [data-schema-uid]');
+    const before = await schemas.count();
+    expect(before).toBeGreaterThan(0);
+    await clickFirstFieldOnCanvas(page);
+    page.once('dialog', (dialog) => dialog.dismiss());
+    await page.keyboard.press('Delete');
+    await expect(schemas).toHaveCount(before - 1);
     await page.keyboard.press(`${mod}+z`);
-    await expect(page.locator('.sisad-pdfme-designer-stage')).toBeVisible();
+    await expect(schemas).toHaveCount(before);
   });
 
   test(`${mod}+G groups fields when two are selected`, async ({ page }) => {
@@ -642,21 +641,11 @@ test.describe('cross-platform keyboard shortcuts', () => {
     await paper.click();
     await page.keyboard.press(`${mod}+a`);
 
-    // If we have at least 2 fields, group them
-    const selText = await contextHeader.textContent();
-    const selMatch = (selText ?? '').match(/Selección: (\d+)/);
-    const selCount = selMatch ? parseInt(selMatch[1], 10) : 0;
-
-    if (selCount >= 2) {
-      // Press Mod+G to group
-      await page.keyboard.press(`${mod}+g`);
-      // Designer should still be alive
-      await expect(page.locator('.sisad-pdfme-designer-stage')).toBeVisible();
-    } else {
-      // Not enough fields visible — just verify shortcut doesn't crash
-      await page.keyboard.press(`${mod}+g`);
-      await expect(page.locator('.sisad-pdfme-designer-stage')).toBeVisible();
-    }
+    await expect
+      .poll(async () => (await contextHeader.textContent()) ?? '')
+      .toMatch(/Selección(:\s*)?[2-9]\d*|Selección múltiple/i);
+    await page.keyboard.press(`${mod}+g`);
+    await expect(contextHeader).toContainText(/Grupo|group|agrup/i);
   });
 
   test(`${mod}+Shift+G ungroups a previously grouped selection`, async ({ page }) => {
@@ -665,14 +654,16 @@ test.describe('cross-platform keyboard shortcuts', () => {
     const paper = page.locator('[data-paper-page="true"]').first();
     await expect(paper).toBeVisible();
 
-    // Group first (Mod+A then Mod+G), then ungroup (Mod+Shift+G)
+    const contextHeader = page.getByLabel('Contexto activo del editor');
     await paper.click();
     await page.keyboard.press(`${mod}+a`);
+    await expect
+      .poll(async () => (await contextHeader.textContent()) ?? '')
+      .toMatch(/Selección(:\s*)?[2-9]\d*|Selección múltiple/i);
     await page.keyboard.press(`${mod}+g`);
+    await expect(contextHeader).toContainText(/Grupo|group|agrup/i);
     await page.keyboard.press(`${mod}+Shift+g`);
-
-    // Designer should still be alive and not crashed
-    await expect(page.locator('.sisad-pdfme-designer-stage')).toBeVisible();
+    await expect(contextHeader).not.toContainText(/Grupo|group|agrup/i);
   });
 
   test('Delete key removes selected field (if editable)', async ({ page }) => {
@@ -684,13 +675,56 @@ test.describe('cross-platform keyboard shortcuts', () => {
 
     const paper = page.locator('[data-paper-page="true"]').first();
     await expect(paper).toBeVisible();
+    const schemas = page.locator('.sisad-pdfme-designer-canvas [data-schema-uid]');
+    const before = await schemas.count();
+    expect(before).toBeGreaterThan(0);
 
     // Click a field and press Delete — may show confirm dialog or just delete
     await clickFirstFieldOnCanvas(page);
     page.once('dialog', (dialog) => dialog.dismiss()); // dismiss confirmation if any
     await page.keyboard.press('Delete');
 
-    // Designer must still be alive
-    await expect(page.locator('.sisad-pdfme-designer-stage')).toBeVisible();
+    const after = await schemas.count();
+    expect(after).toBeLessThan(before);
+  });
+
+  test('Mod+A inside text input does not select canvas schemas', async ({ page }) => {
+    await openLabRoute(page, '/lab/multiuser-collaboration');
+    const contextHeader = page.getByLabel('Contexto activo del editor');
+
+    await selectFieldForDetail(page, 'signature');
+    await openDetailPanel(page);
+    await ensureDetailSectionExpanded(page, 'Datos');
+
+    const baseUrlInput = page.getByRole('textbox', { name: /Base URL/i }).first();
+    await expect(baseUrlInput).toBeVisible();
+    await baseUrlInput.click();
+    await page.keyboard.press(`${mod}+a`);
+    await page.keyboard.type('https://typed-from-e2e.example.com');
+    await expect(baseUrlInput).toHaveValue('https://typed-from-e2e.example.com');
+    await expect(contextHeader).not.toContainText(/Selección(:\s*)?[2-9]\d*|Selección múltiple/i);
+  });
+
+  test('Delete inside comments textarea does not delete selected schema', async ({ page }) => {
+    await openLabRoute(page, '/lab/multiuser-collaboration');
+    await openCollaborationDisclosure(page);
+    await page.getByRole('combobox', { name: 'Seleccionar vista activa' }).selectOption('global');
+
+    const schemas = page.locator('.sisad-pdfme-designer-canvas [data-schema-uid]');
+    const before = await schemas.count();
+    expect(before).toBeGreaterThan(0);
+
+    await clickFirstFieldOnCanvas(page);
+    const addCommentButton = page.getByRole('button', { name: /Agregar comentario|Añadir comentario/i }).first();
+    await expect(addCommentButton).toBeVisible();
+    await addCommentButton.click();
+    const dialog = page.getByRole('dialog');
+    await expect(dialog).toBeVisible();
+    const textarea = dialog.locator('textarea').first();
+    await expect(textarea).toBeVisible();
+    await textarea.fill('texto inicial');
+    await page.keyboard.press('Delete');
+    await expect(textarea).toHaveValue('texto inicial');
+    await expect(schemas).toHaveCount(before);
   });
 });

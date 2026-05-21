@@ -11,13 +11,16 @@ Estados: `covered` | `partial` | `weak` | `missing` | `blocked` | `not implement
 | Drag/drop campo | sí | parcial | parcial | sí | partial | P0 | validar coordenadas con zoom/scroll y clamp |
 | Move/resize/selecto | sí | parcial | parcial | parcial | partial | P0 | cobertura E2E robusta por interacción |
 | Snaplines/guides/grid | sí | bajo | bajo | bajo | weak | P1 | suite dedicada canvas-interactions |
+| Suite dedicada canvas (`tests/playwright/canvas-interactions.spec.ts`) | sí | n/a | n/a | sí | partial | P0 | ampliar drag/resize con zoom+scroll, clamps, lock/no-move, multi-page |
 | Command bus con metadata completa | parcial | parcial | n/a | parcial | weak | P0 | tests por comando y metadata/source/actor |
 | Undo/redo robusto | sí | parcial | n/a | débil | weak | P0 | validar outcome, no solo “no crash” |
+| Suite dedicada de shortcuts (`tests/playwright/shortcuts.spec.ts`) | sí | n/a | n/a | sí | partial | P0 | completar redo/cut/copy/paste/flechas/zoom y negativos de modal-contenteditable |
 | Clipboard copy/cut/paste/duplicate | sí | sí | parcial | parcial | partial | P0 | casos multi-doc/page + UID uniqueness |
 | Group/ungroup/align/distribute | parcial | parcial | parcial | débil | weak | P1 | suites selection + shortcuts + e2e |
 | Guards lock/readonly/recipient/conflict | sí | sí | parcial | parcial | partial | P0 | matrix por `source` y razones de bloqueo |
 | Lock TTL/heartbeat/release | sí | sí | parcial | no | partial | P0 | e2e multiusuario con lock owner visible |
 | Comments por schema | sí | sí | sí | parcial | partial | P1 | resolve/reopen + hidden schema stability |
+| Ruta principal `/lab/multiuser-collaboration` (vista/user/global, selección, participantes) | sí | n/a | n/a | sí | partial | P0 | ampliar con locks duros, snapshot import/export y comments anclados |
 | Overlay manager (viewport safe area) | parcial | no | parcial | no | missing | P1 | unit overlay geometry + e2e clipping |
 | Floating toolbar/context menu/inline edit | sí | parcial | parcial | parcial | partial | P1 | asserts de posición y no captura indebida |
 | Right sidebar context-aware | sí | sí | sí | parcial | partial | P1 | locked/readonly/group/radio/signature/table contexts |
