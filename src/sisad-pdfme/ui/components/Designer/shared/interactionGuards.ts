@@ -246,3 +246,80 @@ export const shouldSuppressCanvasRegionSelection = (
   const current = deriveInteractionState(context);
   return !canStartInteraction(current, 'region-selecting', context);
 };
+
+export type SchemaMutationSource =
+  | 'canvas'
+  | 'sidebar'
+  | 'toolbar'
+  | 'keyboard'
+  | 'context-menu'
+  | 'collaboration'
+  | 'import-export'
+  | 'command-bus';
+
+export type SchemaMutationGuardContext = {
+  schemaId: string;
+  source: SchemaMutationSource;
+  canEditStructure: boolean;
+  isReadonly?: boolean;
+  isLockedByOtherUser?: boolean;
+  schemaRecipientId?: string | null;
+  activeRecipientId?: string | null;
+};
+
+export type SchemaMutationDecision = {
+  allowed: boolean;
+  reason?:
+    | 'readonly'
+    | 'structure-disabled'
+    | 'locked-by-other-user'
+    | 'recipient-mismatch'
+    | 'unknown';
+  message?: string;
+};
+
+const normalizeNullable = (value: unknown) => {
+  if (typeof value !== 'string') return null;
+  const next = value.trim();
+  return next || null;
+};
+
+export const evaluateSchemaMutationPermission = (
+  context: SchemaMutationGuardContext,
+): SchemaMutationDecision => {
+  if (!context.canEditStructure) {
+    return {
+      allowed: false,
+      reason: 'structure-disabled',
+      message: 'No tienes permisos para modificar la estructura del documento.',
+    };
+  }
+
+  if (context.isReadonly) {
+    return {
+      allowed: false,
+      reason: 'readonly',
+      message: 'Este campo está en modo solo lectura.',
+    };
+  }
+
+  if (context.isLockedByOtherUser) {
+    return {
+      allowed: false,
+      reason: 'locked-by-other-user',
+      message: 'Este campo está bloqueado por otro usuario.',
+    };
+  }
+
+  const schemaRecipientId = normalizeNullable(context.schemaRecipientId);
+  const activeRecipientId = normalizeNullable(context.activeRecipientId);
+  if (schemaRecipientId && activeRecipientId && schemaRecipientId !== activeRecipientId) {
+    return {
+      allowed: false,
+      reason: 'recipient-mismatch',
+      message: 'El campo pertenece a otro destinatario activo.',
+    };
+  }
+
+  return { allowed: true };
+};
