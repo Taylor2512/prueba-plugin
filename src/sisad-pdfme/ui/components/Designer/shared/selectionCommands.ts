@@ -8,6 +8,7 @@ import {
 import { message } from 'antd';
 import { round } from '../../../helper.js';
 import type { EffectiveCollaborationContext } from '../../../collaborationContext.js';
+import { evaluateSchemaMutationPermission } from './interactionGuards.js';
 import { duplicateSchemas } from './schemaClipboard.js';
 import type { GroupMeta } from '../../../../shared/schemaDesignerMeta.js';
 
@@ -177,12 +178,38 @@ const hasDeleteDependencies = (schema: SchemaForUI) =>
         (schema as SchemaForUI & { connectionIds?: unknown[] }).connectionIds?.length),
   );
 
+const resolveSchemaRecipientId = (schema: SchemaForUI): string | null => {
+  const asRecord = schema as SchemaForUI & { __designer?: { recipientId?: string | null }; ownerRecipientId?: string | null };
+  return String(asRecord.__designer?.recipientId || asRecord.ownerRecipientId || '').trim() || null;
+};
+
+const isSchemaLockedByOtherUser = (
+  schema: SchemaForUI,
+  actorId?: string | null,
+) => {
+  const asRecord = schema as SchemaForUI & { lock?: { lockedBy?: string | null } };
+  const lockedBy = String(asRecord.lock?.lockedBy || '').trim();
+  const currentActor = String(actorId || '').trim();
+  return Boolean(lockedBy && currentActor && lockedBy !== currentActor);
+};
+
 export const createSelectionCommands = (context: SelectionCommandsContext): SelectionCommandSet => {
   const activeIds = getActiveIds(context.activeElements);
   const hasSelection = activeIds.length > 0;
   const canEditStructure = context.collaborationContext?.canEditStructure !== false;
 
   const guardStructureEdit = () => canEditStructure;
+
+  const guardSchemaMutation = (schema: SchemaForUI) =>
+    evaluateSchemaMutationPermission({
+      schemaId: schema.id,
+      source: 'command-bus',
+      canEditStructure,
+      isReadonly: schema.readOnly === true,
+      isLockedByOtherUser: isSchemaLockedByOtherUser(schema, context.collaborationContext?.actorId),
+      schemaRecipientId: resolveSchemaRecipientId(schema),
+      activeRecipientId: context.collaborationContext?.activeRecipientId || null,
+    });
 
   const clearSelectionIfNeeded = (shouldClearSelection: boolean) => {
     if (shouldClearSelection) {
@@ -195,6 +222,14 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     if (!normalizedIds.length || !guardStructureEdit()) return false;
 
     const pageSchemas = getPageSchemas(context);
+    const blocked = pageSchemas
+      .filter((schema) => normalizedIds.includes(schema.id))
+      .map((schema) => ({ schema, decision: guardSchemaMutation(schema) }))
+      .find((entry) => !entry.decision.allowed);
+    if (blocked) {
+      message.warning(blocked.decision.message || 'No se puede modificar uno de los campos seleccionados.');
+      return false;
+    }
     const activeIdSet = new Set(activeIds);
     const shouldClearSelection = options.clearSelection ?? normalizedIds.some((id) => activeIdSet.has(id));
     const beforeSchemas = cloneDeep(pageSchemas) as SchemaForUI[];
@@ -248,6 +283,13 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
 
   const duplicateSelection = () => {
     if (!hasSelection || !guardStructureEdit()) return;
+    const blocked = getActiveSchemas(context)
+      .map((schema) => guardSchemaMutation(schema))
+      .find((decision) => !decision.allowed);
+    if (blocked) {
+      message.warning(blocked.message || 'No se puede duplicar la selección actual.');
+      return;
+    }
     const existing = getPageSchemas(context);
     const clones = duplicateSchemas(getActiveSchemas(context), {
       pageIndex: context.pageCursor,

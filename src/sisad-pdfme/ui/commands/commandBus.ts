@@ -18,10 +18,22 @@ export type CommandMeta = {
   actorId?: string;
   /** Document context. */
   documentId?: string;
+  /** Human/business file/document id (if available). */
+  fileId?: string;
   /** Zero-indexed page where the command applies. */
   pageIndex?: number;
+  /** 1-indexed page number where the command applies. */
+  pageNumber?: number;
+  /** Recipient context where the command was emitted. */
+  recipientId?: string;
   /** UIDs of schemas affected by the command. */
   schemaUids?: string[];
+  /** Single schema uid for command that targets one schema. */
+  schemaUid?: string;
+  /** User id for audit timelines (alias of actorId for compatibility). */
+  userId?: string;
+  /** Version of the template when command was generated. */
+  templateVersion?: string;
   /** Group UID if the command targets a group. */
   groupUid?: string;
   /** Unix epoch timestamp (ms) at command creation. */
@@ -64,6 +76,9 @@ type CommandListener = (_event: CommandObserverPayload) => void;
  */
 export type CommandGuard = (_command: Command) => boolean;
 
+const hasRequiredBaseCommandFields = (command: Command) =>
+  Boolean(String(command.id || '').trim()) && Boolean(String(command.label || '').trim());
+
 const createExecutionContext = (listeners: Set<CommandListener>): CommandExecutionContext => ({
   emit(event) {
     listeners.forEach((listener) => listener(event));
@@ -92,6 +107,7 @@ export class CommandBus {
 
   /** Returns true if all guards allow the command. */
   private checkGuards(command: Command): boolean {
+    if (!hasRequiredBaseCommandFields(command)) return false;
     return this.guards.every((guard) => guard(command));
   }
 
