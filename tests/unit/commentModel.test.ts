@@ -75,7 +75,7 @@ describe('comment model helpers', () => {
   });
 
   it('creates anchored comments with a shared anchor id and can filter them by file/page', () => {
-    const template = {
+    const template: Parameters<typeof addCommentWithAnchorToTemplate>[0] = {
       basePdf: { width: 210, height: 297, padding: [0, 0, 0, 0] },
       schemas: [[{
         id: 'schema-1',
@@ -86,7 +86,7 @@ describe('comment model helpers', () => {
         width: 40,
         height: 10,
       }]],
-    } as any;
+    };
 
     const nextTemplate = addCommentWithAnchorToTemplate(
       template,
@@ -101,7 +101,7 @@ describe('comment model helpers', () => {
       { authorId: 'reviewer-1', authorColor: '#2563EB' },
     );
 
-    const schema = nextTemplate.schemas[0][0] as any;
+    const schema = nextTemplate.schemas[0][0];
     expect(schema.comments).toHaveLength(1);
     expect(schema.commentAnchors).toHaveLength(1);
     expect(schema.comments[0].id).toBe(schema.commentAnchors[0].id);
@@ -122,7 +122,7 @@ describe('comment model helpers', () => {
   });
 
   it('deduplicates top-level fallback comments by id and keeps mixed comment views unique', () => {
-    const template = {
+    const template: Parameters<typeof addCommentWithAnchorToTemplate>[0] = {
       basePdf: { width: 210, height: 297, padding: [0, 0, 0, 0] },
       schemas: [[{
         id: 'schema-1',
@@ -133,7 +133,7 @@ describe('comment model helpers', () => {
         width: 40,
         height: 10,
       }]],
-    } as any;
+    };
 
     const fallbackAnchor = {
       id: 'comment-mixed',
@@ -156,12 +156,16 @@ describe('comment model helpers', () => {
       { authorId: 'reviewer-1', authorColor: '#2563EB' },
     );
 
-    expect((withFallbackTwice as any).pdfComments).toHaveLength(1);
-    expect((withFallbackTwice as any).__commentAnchors).toHaveLength(1);
-    expect((withFallbackTwice as any).pdfComments[0].comment.text).toBe('Fallback comment updated');
-    expect((withFallbackTwice as any).__commentAnchors[0].comment.text).toBe('Fallback comment updated');
+    const commentState = withFallbackTwice as ReturnType<typeof addCommentWithAnchorToTemplate> & {
+      pdfComments: Array<{ comment: { text: string } }>;
+      __commentAnchors: Array<{ comment: { text: string } }>;
+    };
+    expect(commentState.pdfComments).toHaveLength(1);
+    expect(commentState.__commentAnchors).toHaveLength(1);
+    expect(commentState.pdfComments[0].comment.text).toBe('Fallback comment updated');
+    expect(commentState.__commentAnchors[0].comment.text).toBe('Fallback comment updated');
 
-    const schema = withFallbackTwice.schemas[0][0] as any;
+    const schema = withFallbackTwice.schemas[0][0];
     schema.comments = [
       createSchemaComment(
         'Schema-bound comment',

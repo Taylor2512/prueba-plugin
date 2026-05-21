@@ -62,10 +62,10 @@ export type {
   SignatureResult,
   SignatureValidation,
   ExternalSignatureAdapter,
-} from '../schemas/signature/providerRegistry.js';
+} from '../shared/signatureRegistry.js';
 export {
   signatureProviderRegistry,
   ProviderNotRegisteredError,
   getAvailableProvidersForSchema,
   getDefaultProviderForSchema,
-} from '../schemas/signature/providerRegistry.js';
+} from '../shared/signatureRegistry.js';

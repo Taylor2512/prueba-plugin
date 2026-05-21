@@ -1,8 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import {
-  createUniqueSchemaVariableName,
-  getSchemaVariablePrefix,
-} from '../../src/sisad-pdfme/ui/components/Designer/shared/schemaVariableName.js';
+// eslint-disable-next-line import/no-unresolved
+import { createUniqueSchemaVariableName, getSchemaVariablePrefix } from '../../src/sisad-pdfme/ui/components/Designer/shared/schemaVariableName.js';
 
 describe('schema variable names', () => {
   it('maps known schema types to stable spanish prefixes', () => {

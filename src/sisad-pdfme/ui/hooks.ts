@@ -19,12 +19,6 @@ import type { SelectionCommandSet } from './components/Designer/shared/selection
 import type { CommandBus } from './commands/commandBus.js';
 import { RULER_HEIGHT } from './constants.js';
 import {
-  type SchemaClipboardPayload,
-  copySchemasToClipboard,
-  cutSchemasToClipboard,
-  pasteSchemasFromClipboard,
-} from './components/Designer/shared/schemaClipboard.js';
-import {
   useDesignerKeyboardShortcuts,
 } from './components/Designer/shared/useDesignerKeyboardShortcuts.js';
 import type { SchemaCreationContext } from './designerEngine.js';
@@ -295,8 +289,6 @@ interface UseInitEventsParams {
   schemasList: SchemaForUI[][];
   visibleSchemasList?: SchemaForUI[][];
   changeSchemas: ChangeSchemas;
-  commitSchemas: (newSchemas: SchemaForUI[]) => void;
-  removeSchemas: (ids: string[]) => void;
   commandBus?: CommandBus;
   onEdit: (targets: HTMLElement[]) => void;
   onEditEnd: () => void;
@@ -322,8 +314,6 @@ export const useInitEvents = ({
   schemasList,
   visibleSchemasList,
   changeSchemas,
-  commitSchemas,
-  removeSchemas,
   commandBus,
   onEdit,
   onEditEnd,
@@ -337,7 +327,6 @@ export const useInitEvents = ({
   onNextPage,
   onPreviousPage,
 }: UseInitEventsParams & { selectionCommands?: SelectionCommandSet }) => {
-  const copiedSchemas = useRef<SchemaClipboardPayload | null>(null);
   const canEditStructure = selectionCommands?.canEditStructure !== false;
   const getActiveSchemas = () => {
     const ids = activeElements.filter(Boolean).map((ae) => ae.id);

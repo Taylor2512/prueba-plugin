@@ -2,6 +2,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
 import type { Schema } from '@sisad-pdfme/common';
+// eslint-disable-next-line import/no-unresolved
 import SchemaDropSetupModal from '../../src/sisad-pdfme/ui/components/Designer/SchemaDropSetupModal.js';
 
 const baseSchema = {

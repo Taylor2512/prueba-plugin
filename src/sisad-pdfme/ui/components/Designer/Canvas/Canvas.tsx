@@ -53,7 +53,7 @@ import CanvasOverlayManager from './overlays/CanvasOverlayManager.js';
 import CanvasContextMenu from './overlays/CanvasContextMenu.js';
 import CanvasStateOverlay from './overlays/CanvasStateOverlay.js';
 import InlineEditOverlay, { type InlineEditSession } from './overlays/InlineEditOverlay.js';
-import { useCanvasRenderState, type CanvasRenderStateInput } from '../../../../canvas/useCanvasRenderState.js';
+import { useCanvasRenderState } from '../../../../canvas/useCanvasRenderState.js';
 import { isCanvasInteractive } from '../../../../canvas/canvasRenderState.js';
 
 const mm2px = (mm: number) => mm * 3.7795275591;

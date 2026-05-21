@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import * as Y from 'yjs';
 import { Awareness } from 'y-protocols/awareness';
-import { cloneDeep, upsertById, type SchemaForUI } from '@sisad-pdfme/common';
+import { cloneDeep, type SchemaForUI } from '@sisad-pdfme/common';
 import type {
   CollaborationHistoryEntry,
   CollaborationPresence,

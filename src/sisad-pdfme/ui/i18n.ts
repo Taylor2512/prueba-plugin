@@ -1,7 +1,7 @@
 import type { Lang, Dict } from '@sisad-pdfme/common';
 import { DEFAULT_LANG } from './constants.js';
 
-const dictEn: { [key in keyof Dict]: string } = {
+const dictEn: Record<keyof Dict, string> = {
   cancel: 'Cancel',
   close: 'Close',
   clear: 'Clear',
@@ -82,7 +82,7 @@ const dictEn: { [key in keyof Dict]: string } = {
   'schemas.radioGroup.groupName': 'Group Name',
 };
 
-const dictZh: { [key in keyof Dict]: string } = {
+const dictZh: Record<keyof Dict, string> = {
   cancel: '取消',
   close: '关闭',
   clear: '清除',
@@ -161,7 +161,7 @@ const dictZh: { [key in keyof Dict]: string } = {
   'schemas.radioGroup.groupName': '组名',
 };
 
-const dictJa: { [key in keyof Dict]: string } = {
+const dictJa: Record<keyof Dict, string> = {
   cancel: 'キャンセル',
   close: '閉じる',
   clear: 'クリア',
@@ -240,7 +240,7 @@ const dictJa: { [key in keyof Dict]: string } = {
   'schemas.radioGroup.groupName': 'グループ名',
 };
 
-const dictKo: { [key in keyof Dict]: string } = {
+const dictKo: Record<keyof Dict, string> = {
   cancel: '취소',
   close: '닫기',
   clear: '지우기',
@@ -319,7 +319,7 @@ const dictKo: { [key in keyof Dict]: string } = {
   'schemas.radioGroup.groupName': '그룹 이름',
 };
 
-const dictAr: { [key in keyof Dict]: string } = {
+const dictAr: Record<keyof Dict, string> = {
   cancel: 'إلغاء',
   close: 'إغلاق',
   clear: 'مسح',
@@ -399,7 +399,7 @@ const dictAr: { [key in keyof Dict]: string } = {
   'schemas.radioGroup.groupName': 'اسم المجموعة',
 };
 
-const dictTh: { [key in keyof Dict]: string } = {
+const dictTh: Record<keyof Dict, string> = {
   cancel: 'ยกเลิก',
   close: 'ปิด',
   clear: 'ล้าง',
@@ -478,7 +478,7 @@ const dictTh: { [key in keyof Dict]: string } = {
   'schemas.radioGroup.groupName': 'ชื่อกลุ่ม',
 };
 
-const dictIt: { [key in keyof Dict]: string } = {
+const dictIt: Record<keyof Dict, string> = {
   cancel: 'Annulla',
   close: 'Chiudi',
   clear: 'Wyczyść',
@@ -560,7 +560,7 @@ const dictIt: { [key in keyof Dict]: string } = {
   'schemas.radioGroup.groupName': 'Nome del Gruppo',
 };
 
-const dictPl: { [key in keyof Dict]: string } = {
+const dictPl: Record<keyof Dict, string> = {
   cancel: 'Anuluj',
   close: 'Zamknij',
   clear: 'Cancella',
@@ -639,7 +639,7 @@ const dictPl: { [key in keyof Dict]: string } = {
   'schemas.radioGroup.groupName': 'Nazwa grupy',
 };
 
-const dictDe: { [key in keyof Dict]: string } = {
+const dictDe: Record<keyof Dict, string> = {
   cancel: 'Abbrechen',
   close: 'Schließen',
   clear: 'Löschen',
@@ -721,7 +721,7 @@ const dictDe: { [key in keyof Dict]: string } = {
   'schemas.radioGroup.groupName': 'Gruppenname',
 };
 
-const dictEs: { [key in keyof Dict]: string } = {
+const dictEs: Record<keyof Dict, string> = {
   cancel: 'Cancelar',
   close: 'Cerrar',
   clear: 'Limpiar',
@@ -802,7 +802,7 @@ const dictEs: { [key in keyof Dict]: string } = {
   'schemas.radioGroup.groupName': 'Nombre del grupo',
 };
 
-const dictFr: { [key in keyof Dict]: string } = {
+const dictFr: Record<keyof Dict, string> = {
   cancel: 'Annuler',
   close: 'Fermer',
   clear: 'Effacer',
@@ -884,7 +884,7 @@ const dictFr: { [key in keyof Dict]: string } = {
   'schemas.radioGroup.groupName': 'Nom du groupe',
 };
 
-const dictionaries: { [key in Lang]: Dict } = {
+const dictionaries: Record<Lang, Dict> = {
   en: dictEn,
   zh: dictZh,
   ja: dictJa,

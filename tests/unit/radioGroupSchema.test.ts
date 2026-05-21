@@ -1,10 +1,10 @@
-import { describe, expect, it, vi } from 'vitest';
-import type { BasePdf, Template, UIOptions } from '@sisad-pdfme/common';
+import { describe, expect, it } from 'vitest';
+import type { BasePdf, Schema, Template, UIOptions } from '@sisad-pdfme/common';
 import generate from '../../src/sisad-pdfme/generator/generate.js';
 import { flatSchemaPlugins, builtInPlugins } from '../../src/sisad-pdfme/schemas/index.js';
 
 const basePdf: BasePdf = { width: 210, height: 297, padding: [0, 0, 0, 0] };
-const theme = {} as any;
+const theme = {};
 const options = {} as UIOptions;
 
 describe('radioGroup schema plugin', () => {
@@ -20,7 +20,7 @@ describe('radioGroup schema plugin', () => {
     const rootElement = document.createElement('div');
 
     builtInPlugins.radioGroup.ui({
-      schema: { type: 'radioGroup', position: { x: 0, y: 0 }, width: 100, height: 20 } as any,
+      schema: { type: 'radioGroup', position: { x: 0, y: 0 }, width: 100, height: 20 } as Schema,
       basePdf,
       mode: 'form',
       value: '',

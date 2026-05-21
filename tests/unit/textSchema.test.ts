@@ -1,10 +1,10 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import type { BasePdf, Template, UIOptions } from '@sisad-pdfme/common';
 import generate from '../../src/sisad-pdfme/generator/generate.js';
 import { flatSchemaPlugins, builtInPlugins } from '../../src/sisad-pdfme/schemas/index.js';
 
 const basePdf: BasePdf = { width: 210, height: 297, padding: [0, 0, 0, 0] };
-const theme = {} as any;
+const theme = {};
 const options = {} as UIOptions;
 
 describe('text schema plugin', () => {
@@ -20,7 +20,7 @@ describe('text schema plugin', () => {
     const rootElement = document.createElement('div');
 
     builtInPlugins.text.ui({
-      schema: { type: 'text', position: { x: 0, y: 0 }, width: 100, height: 20 } as any,
+      schema: { type: 'text', position: { x: 0, y: 0 }, width: 100, height: 20 } as Parameters<typeof builtInPlugins.text.ui>[0]['schema'],
       basePdf,
       mode: 'form',
       value: '',
@@ -39,7 +39,7 @@ describe('text schema plugin', () => {
     const rootElement = document.createElement('div');
 
     builtInPlugins.text.ui({
-      schema: { type: 'text', position: { x: 0, y: 0 }, width: 100, height: 20 } as any,
+      schema: { type: 'text', position: { x: 0, y: 0 }, width: 100, height: 20 } as Parameters<typeof builtInPlugins.text.ui>[0]['schema'],
       basePdf,
       mode: 'form',
       value: 'Test value',
@@ -63,7 +63,7 @@ describe('text schema plugin', () => {
         position: { x: 0, y: 0 }, 
         width: 100, 
         height: 20,
-      } as any,
+      } as Parameters<typeof builtInPlugins.text.ui>[0]['schema'],
       basePdf,
       mode: 'viewer',
       value: 'Read-only content',

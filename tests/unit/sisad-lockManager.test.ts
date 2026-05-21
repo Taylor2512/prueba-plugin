@@ -23,8 +23,6 @@ import {
 } from '../../src/sisad-pdfme/collaboration/lockManager.js';
 
 const me: CurrentUserInfo = { userId: 'user-me', displayName: 'Me', color: '#00ff00' };
-const other: CurrentUserInfo = { userId: 'user-other', displayName: 'Other', color: '#ff0000' };
-
 describe('LockManager', () => {
   let manager: LockManager;
 

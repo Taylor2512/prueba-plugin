@@ -4,7 +4,7 @@ import generate from '../../src/sisad-pdfme/generator/generate.js';
 import { flatSchemaPlugins, builtInPlugins } from '../../src/sisad-pdfme/schemas/index.js';
 
 const basePdf: BasePdf = { width: 210, height: 297, padding: [0, 0, 0, 0] };
-const theme = {} as any;
+const theme = {};
 const options = {} as UIOptions;
 
 describe('checkbox schema plugin', () => {
@@ -21,7 +21,7 @@ describe('checkbox schema plugin', () => {
     const onChange = vi.fn();
 
     builtInPlugins.checkbox.ui({
-      schema: { type: 'checkbox', position: { x: 0, y: 0 }, width: 20, height: 20 } as any,
+      schema: { type: 'checkbox', position: { x: 0, y: 0 }, width: 20, height: 20 } as Parameters<typeof builtInPlugins.checkbox.ui>[0]['schema'],
       basePdf,
       mode: 'form',
       value: '',
@@ -41,7 +41,7 @@ describe('checkbox schema plugin', () => {
     const rootElement = document.createElement('div');
 
     builtInPlugins.checkbox.ui({
-      schema: { type: 'checkbox', position: { x: 0, y: 0 }, width: 20, height: 20 } as any,
+      schema: { type: 'checkbox', position: { x: 0, y: 0 }, width: 20, height: 20 } as Parameters<typeof builtInPlugins.checkbox.ui>[0]['schema'],
       basePdf,
       mode: 'form',
       value: 'true',

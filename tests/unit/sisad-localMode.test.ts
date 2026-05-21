@@ -7,7 +7,6 @@ import {
   LocalSnapshotStoreImpl,
   LocalStorageQuotaError,
   SnapshotNotFoundError,
-  type SnapshotIndexEntry,
 } from '../../src/sisad-pdfme/shared/localSnapshotStore.js';
 import {
   LocalFormStorage,

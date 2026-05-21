@@ -16,7 +16,6 @@ import {
   duplicateSchemaDesignerMeta,
   pasteSchemaDesignerMeta,
   type SchemaDesignerMeta,
-  type DesignerConfigV3,
   type GroupMeta,
 } from '../../src/sisad-pdfme/shared/schemaDesignerMeta.js';
 

@@ -6,7 +6,6 @@ import {
   getActions,
   getActionsForContext,
   unregisterAction,
-  clearActionRegistry,
   type SchemaActionDefinition,
   type ActionContext,
 } from '../../src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.js';

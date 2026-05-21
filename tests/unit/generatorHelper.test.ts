@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { BasePdf, Template } from '@sisad-pdfme/common';
 import generate from '../../src/sisad-pdfme/generator/generate.js';
-import { flatSchemaPlugins } from '../../src/sisad-pdfme/schemas/index.js';
 
 const basePdf: BasePdf = { width: 210, height: 297, padding: [0, 0, 0, 0] };
 

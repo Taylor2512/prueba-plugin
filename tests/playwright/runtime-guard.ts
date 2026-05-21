@@ -1,4 +1,4 @@
-import { expect, test as base, type Page, type TestInfo } from '@playwright/test';
+import { expect, test as base } from '@playwright/test';
 
 const KNOWN_EXTERNAL_CONSOLE_ERROR_ALLOWLIST: RegExp[] = [
   /favicon\.ico/i,

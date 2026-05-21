@@ -13,12 +13,10 @@ const USER_A = { userId: 'user-A', displayName: 'Alice', color: '#3B82F6' };
 const USER_B = { userId: 'user-B', displayName: 'Bob', color: '#EF4444' };
 
 let lmA: LockManager;
-let lmB: LockManager;
 
 beforeEach(() => {
   vi.useFakeTimers();
   lmA = createLockManager(USER_A, { ttlConfig: { default: 30_000, signature: 15_000, heartbeatInterval: 10_000 } });
-  lmB = createLockManager(USER_B);
 });
 
 afterEach(() => {
@@ -37,7 +35,6 @@ describe('acquire', () => {
 
   it('falla si otro usuario ya tiene el lock', async () => {
     await lmA.acquire('schema-1');
-    const resultB = createLockManager(USER_B);
 
     // Simular lock de otro usuario mediante _injectLockForTest
     const managerB = createLockManager(USER_B);

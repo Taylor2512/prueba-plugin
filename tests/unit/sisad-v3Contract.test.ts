@@ -14,7 +14,6 @@ import { describe, it, expect } from 'vitest';
 // ── V3 factory ────────────────────────────────────────────────────────────────
 import {
   createDesignerConfigV3,
-  type DesignerConfigV3,
 } from '../../src/sisad-pdfme/shared/schemaDesignerMeta.js';
 
 // ── Migration ─────────────────────────────────────────────────────────────────

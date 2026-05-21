@@ -8,7 +8,7 @@
  *   - Designer/shared/keyboardShortcutRegistry.ts: registro, resolveShortcutByKeyboardEvent,
  *     formatShortcutForPlatform
  */
-import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
+import { describe, it, expect, afterEach } from 'vitest';
 
 // ── shared/keyboardShortcuts ───────────────────────────────────────────────────
 import {

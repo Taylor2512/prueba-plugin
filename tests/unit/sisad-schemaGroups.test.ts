@@ -1,7 +1,7 @@
 /**
  * Tests: Schema Groups — GroupMeta + group/ungroup operations
  */
-import { describe, it, expect, vi, beforeEach } from 'vitest';
+import { describe, it, expect } from 'vitest';
 import type { GroupMeta } from '../../src/sisad-pdfme/shared/schemaDesignerMeta.js';
 import { createSchemaDesignerMeta, duplicateSchemaDesignerMeta } from '../../src/sisad-pdfme/shared/schemaDesignerMeta.js';
 

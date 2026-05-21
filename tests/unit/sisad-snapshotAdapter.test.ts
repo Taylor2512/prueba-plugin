@@ -8,7 +8,6 @@ import {
   makeEmptySnapshot,
   SNAPSHOT_VERSION,
   isLegacySnapshot,
-  type OfficialTemplateSnapshot,
   type SnapshotDocument,
 } from '../../src/sisad-pdfme/shared/snapshot.js';
 import type { DesignerState } from '../../src/sisad-pdfme/shared/snapshotAdapter.js';
