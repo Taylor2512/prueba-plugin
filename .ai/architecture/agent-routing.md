@@ -1,65 +1,14 @@
-# Enrutamiento de tareas por agente
+# Agent Routing — recipient colors + transform controls
 
-## Canvas, coordenadas, zoom, scroll
+## Ruta rápida
 
-Usar:
-
-- `canvas-runtime-architect`
-- Skills: `canvas-geometry-scaling`, `moveable-selecto-integration`, `canvas-interaction`
-
-## Overlays y toolbar flotante
-
-Usar:
-
-- `canvas-overlays-architect`
-- Skills: `canvas-overlay-composition`, `snaplines-guides-behavior`
-
-## LeftSidebar
-
-Usar:
-
-- `left-sidebar-catalog-architect`
-- Skills: `catalog-discovery-patterns`, `wix-inspired-left-rail-ux`, `ux-compact-panels`
-
-## RightSidebar e inspector
-
-Usar:
-
-- `right-sidebar-inspector-architect`
-- Skills: `inspector-panel-composition`, `detail-view-sectioning`
-
-## Schemas y plugins
-
-Usar:
-
-- `schema-registry-architect`
-- `schema-rendering-architect`
-- Skills: `schema-registry-extension`, `schema-render-contracts`, `schema-identity-persistence`
-
-## Snapshot y persistencia
-
-Usar:
-
-- `platform-pdf-architect`
-- Skills: `public-api-surface-design`, `schema-identity-persistence`
-
-## CSS y diseño
-
-Usar:
-
-- `design-system-guardian`
-- Skills: `design-system-consistency`, `design-token-governance`, `css-layering-and-overrides`
-
-## Tests
-
-Usar:
-
-- `testing-regression-guardian`
-- Skills: `editor-regression-testing`, `playwright-canvas-diagnostics`
-
-## Documentación
-
-Usar:
-
-- `docs-migration-steward`
-- Skills: `fork-safe-pdfme-evolution`, `platform-architecture-governance`
+| Problema | Agente | Skill principal | Prompt sugerido |
+|---|---|---|---|
+| Colores únicos por destinatario | recipient-color-ownership-architect | active-recipient-color-contract | enforce-recipient-colors-and-icon-sync |
+| Iconos no cambian de color | schema-icon-color-sync-agent | schema-icon-color-sync | propagate-active-recipient-color-catalog |
+| Schema pierde color owner | schema-ownership-persistence-guardian | schema-owner-color-persistence | preserve-owner-color-on-existing-schemas |
+| Resize/rotate falla | canvas-transform-interaction-architect | moveable-selecto-resize-rotate | stabilize-schema-resize-rotation |
+| Selecto colisiona con Moveable | moveable-selecto-rotation-guardian | transform-interaction-state-machine | audit-transform-collisions |
+| Tests fallan | playwright-recipient-color-test-guardian | playwright-recipient-color-regression | fix-results-from-tests-recipient-transform |
+| CSS no aplica color | ui-token-color-consistency-guardian | css-recipient-color-tokens | css-token-recipient-color-layer |
+| Docs incompletas | docs-migration-steward | documentation-traceability | update-docs-recipient-transform |

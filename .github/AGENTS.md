@@ -1,22 +1,12 @@
 # GitHub AGENTS
 
-Este archivo es un adaptador para Copilot. La fuente de verdad está en `.ai/`.
+Adaptador para Copilot. Fuente de verdad: `.ai/`.
 
-## Inicio
+Para esta tarea, priorizar:
 
-1. Leer `AGENTS.md`.
-2. Leer `.ai/INDEX.md`.
-3. Seguir `.ai/architecture/agent-routing.md` para seleccionar agente.
-
-## Agentes principales
-
-- platform-pdf-architect
-- designer-engine-architect
-- canvas-runtime-architect
-- left-sidebar-catalog-architect
-- right-sidebar-inspector-architect
-- schema-registry-architect
+- recipient-color-ownership-architect
+- schema-icon-color-sync-agent
+- canvas-transform-interaction-architect
+- moveable-selecto-rotation-guardian
+- playwright-recipient-color-test-guardian
 - testing-regression-guardian
-- docs-migration-steward
-
-Si hay contradicción, prevalece `.ai/`.

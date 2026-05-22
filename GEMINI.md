@@ -1,20 +1,10 @@
-# GEMINI
+# GEMINI — Adaptador extendido para análisis en `sisad-pdfme`
 
-Este archivo adapta Gemini al workspace neutral de `.ai/`.
+Gemini debe auditar consistencia entre código, docs, tests y workspace IA.
 
-## Regla principal
-Consume primero `.ai/` y trata este archivo como una guía de entrada, no como una segunda fuente de verdad.
+## Buenas tareas para Gemini
 
-## Enfoque
-- preservar arquitectura real del repositorio
-- proponer soluciones con buen particionamiento
-- evitar refactors gigantes sin validación
-- mantener compatibilidad multi proveedor
-- favorecer salida estructurada: objetivo, archivos, riesgos, plan, validación
-
-## Prioridades del proyecto
-- editor canvas-first
-- UX compacta inspirada en Wix
-- workflows documentales tipo DocuSign
-- engine y contracts extensibles
-- pruebas de regresión
+- Auditar duplicidades de color ownership.
+- Comparar contratos de docs contra implementación.
+- Diseñar matrices de prueba por destinatario y transform.
+- Detectar riesgos de colisión entre Moveable, Selecto e inline edit.

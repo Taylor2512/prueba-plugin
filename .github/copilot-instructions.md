@@ -1,21 +1,20 @@
 # GitHub Copilot Instructions — `sisad-pdfme`
 
-Fuente de verdad del proyecto: `.ai/`.
+Fuente de verdad: `.ai/`.
 
 ## Inicio obligatorio
 
 1. Revisar `AGENTS.md`.
 2. Revisar `.ai/INDEX.md`.
-3. Seguir `.ai/rules/global-rules.md`.
-4. Aplicar `.ai/instructions/*.instructions.md` para la tarea.
+3. Aplicar `.ai/rules/global-rules.md`.
+4. Para recipient colors y transform controls, leer `.ai/context/recipient-transform-context.md`.
 5. Usar agentes, skills y prompts desde `.ai/`.
 
 ## Reglas críticas
 
 - No acoplar `sisad-pdfme` a terceros.
-- No duplicar sidebars, canvas runtime, snapshot engine ni schemas.
-- Mantener CSS dentro de `.sisad-pdfme-root`.
-- Preservar geometría de canvas, zoom, scroll, Moveable y Selecto.
-- Actualizar docs y tests cuando cambie runtime o API pública.
-
-Si existe contradicción con otro adaptador, prevalece `.ai/`.
+- Cada usuario/destinatario de pruebas debe tener color único.
+- El catálogo debe reflejar el color del destinatario activo.
+- El schema creado debe conservar ownerColor/ownerId.
+- Resize/rotation no debe colisionar con Selecto, inline edit, comments, context menu ni shortcuts.
+- CSS solo bajo `.sisad-pdfme-root` y tokens existentes.

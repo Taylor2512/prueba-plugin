@@ -1,6 +1,6 @@
-# CLAUDE — Adaptador de `sisad-pdfme`
+# CLAUDE — Adaptador extendido para `sisad-pdfme`
 
-Claude debe usar `.ai/` como fuente de verdad y este archivo solo como puente.
+Claude debe usar `.ai/` como fuente de verdad.
 
 ## Orden obligatorio
 
@@ -8,7 +8,7 @@ Claude debe usar `.ai/` como fuente de verdad y este archivo solo como puente.
 2. `.ai/INDEX.md`
 3. `.ai/rules/global-rules.md`
 4. `.ai/context/project-overview.md`
-5. `.ai/context/code-map.md`
+5. `.ai/context/recipient-transform-context.md`
 6. `.ai/architecture/assistant-architecture.md`
 7. `.ai/architecture/agent-routing.md`
 8. `.ai/instructions/*.instructions.md`
@@ -16,6 +16,6 @@ Claude debe usar `.ai/` como fuente de verdad y este archivo solo como puente.
 10. `.ai/skills/*/SKILL.md`
 11. `.ai/prompts/*.prompt.md`
 
-## Regla
+## Para esta tarea
 
-No contradigas `.ai/`. Si falta contexto, revisa `.ai/` antes de proponer cambios.
+Usa primero `recipient-transform-master-plan.prompt.md`, luego divide en fases: colores, iconos, transform controls, tests y documentación.

@@ -1,91 +1,33 @@
-# Reglas globales para modelos IA en `sisad-pdfme`
+# Global Rules — `sisad-pdfme`
 
-## Identidad del proyecto
+## Principios
 
-`sisad-pdfme` es un fork aislado de edición documental PDF. Debe comportarse como una librería/componente autónomo, configurable y extensible.
+1. `sisad-pdfme` es un fork aislado, genérico y configurable.
+2. `.ai/` es la fuente de verdad para asistentes IA.
+3. Cada cambio debe ser pequeño, testeable y reversible.
+4. No se deben crear variantes rígidas por cliente, proveedor o flujo externo.
+5. Si cambia un contrato público, deben actualizarse tests y docs.
 
-## Reglas obligatorias
+## Reglas recipient color
 
-### 1. Aislamiento
+- Todo destinatario/usuario debe tener `id`, `name`, `color` y opcionalmente `groupId`.
+- Los colores en fixtures de prueba deben ser únicos.
+- El color activo se expone como `activeRecipientColor` o CSS var `--active-recipient-color`.
+- El catálogo de schemas usa el color del destinatario activo para iconos y acentos.
+- El schema creado conserva `ownerId` y `ownerColor`.
+- Cambiar destinatario activo no debe reescribir el color de schemas existentes.
 
-No introducir referencias rígidas a:
+## Reglas transform
 
-- Clientes externos.
-- Workflows externos.
-- Endpoints.
-- Rutas de aplicaciones consumidoras.
-- Servicios de autenticación.
-- Servicios de firma concretos.
-- Pantallas específicas fuera del fork.
+- Drag, resize y rotate son interacciones mutuamente controladas por estado.
+- Moveable y Selecto no deben competir por el mismo pointer event.
+- Inline edit no debe abrirse durante drag/resize/rotate.
+- Context menu no debe abrirse durante transform activo.
+- Shortcuts no deben ejecutarse dentro de inputs, textareas, selects o contenteditable.
 
-### 2. Configurabilidad
+## CSS
 
-Toda nueva habilidad debe poder configurarse mediante:
-
-- `features`.
-- `layout`.
-- `plugins`.
-- `theme`.
-- `permissions`.
-- `commands`.
-- `events`.
-- `adapters`.
-
-### 3. Composición
-
-Preferir componentes genéricos:
-
-- `Designer`
-- `Canvas`
-- `LeftSidebar`
-- `RightSidebar`
-- `SchemaCatalog`
-- `Inspector`
-- `FloatingToolbar`
-- `DocsRail`
-- `CommentsRail`
-- `Form`
-- `Viewer`
-- `SnapshotEngine`
-
-No crear variantes por caso de uso.
-
-### 4. Estabilidad visual
-
-No romper:
-
-- PDF background.
-- Paper geometry.
-- Zoom.
-- Scroll.
-- Coordenadas.
-- Moveable.
-- Selecto.
-- Overlays.
-- Sidebars.
-- Toolbar contextual.
-
-### 5. Snapshot como fuente de verdad
-
-El snapshot debe representar el estado portable del fork. No guardar nodos DOM, funciones, tokens ni credenciales.
-
-### 6. Testing
-
-Toda modificación importante debe tener al menos una validación:
-
-- Unit test.
-- Playwright test.
-- Snapshot round-trip.
-- Validación manual documentada.
-
-### 7. Documentación
-
-Actualizar docs si se cambia:
-
-- API pública.
-- Contrato de schema.
-- Snapshot.
-- Eventos.
-- Comandos.
-- Comportamiento de componentes.
-- Estilos o tokens globales.
+- Mantener estilos bajo `.sisad-pdfme-root`.
+- No alterar globalmente `.moveable-*` ni `.selecto-*`.
+- Usar tokens y variables existentes.
+- No hardcodear colores de destinatarios en CSS global.

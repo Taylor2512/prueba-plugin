@@ -1,64 +1,51 @@
-# SISAD PDFME — Workspace IA extendido
+# SISAD PDFME — Workspace IA extendido para recipient colors + transform controls
 
-Este paquete contiene una arquitectura completa de asistencia con IA para evolucionar `sisad-pdfme` como fork aislado, configurable y genérico.
+Este paquete reemplaza y amplía el ZIP anterior. Mantiene el formato `.ai/` como fuente neutral para Claude, Codex, GitHub Copilot y Gemini, pero ahora incluye una cobertura mucho más amplia de agentes, skills, prompts, instrucciones, documentación y matrices de pruebas.
 
-## Qué incluye
+## Objetivo del paquete
 
-- Reglas globales para IA.
-- Arquitectura de asistencia multiagente.
-- Skills reutilizables.
-- Prompts especializados.
-- Instrucciones por proveedor.
-- Adaptadores para Claude, Codex, GitHub Copilot y Gemini.
-- Documentación técnica mejorada y extendida.
-- Checklists de calidad, seguridad y regresión.
-- Mapa de módulos detectado desde el código consolidado.
+Preparar a los asistentes IA para corregir y completar comportamientos de `sisad-pdfme` relacionados con:
 
-## Principio rector
+- colores únicos por usuario o destinatario;
+- sincronización del color del destinatario activo en iconos del catálogo de schemas;
+- preservación del color propietario de schemas ya creados;
+- pruebas donde cada usuario/destinatario usa un color distinto;
+- resize, rotación, drag, selección simple y selección múltiple sin colisiones;
+- convivencia segura entre Moveable, Selecto, inline edit, toolbar, context menu, comments y shortcuts;
+- documentación y test coverage trazable.
 
-`sisad-pdfme` debe mantenerse como componente aislado. Todo componente debe ser genérico, toda habilidad debe ser configurable y toda integración debe entrar mediante contratos públicos, plugins, adapters, comandos o eventos.
+## Regla principal
 
-## Proveedores soportados
+`.ai/` es la fuente de verdad. Los adaptadores `CLAUDE.md`, `CODEX.md`, `GEMINI.md`, `.github/copilot-instructions.md` y carpetas de proveedor solo apuntan a `.ai/`.
 
-- Claude
-- Codex
-- GitHub Copilot
-- Gemini
+## Orden recomendado de ejecución
 
-## Orden recomendado de lectura
+1. Leer `AGENTS.md`.
+2. Leer `.ai/INDEX.md`.
+3. Leer `.ai/rules/global-rules.md`.
+4. Usar `.ai/architecture/agent-routing.md` para elegir subagentes.
+5. Cargar skills desde `.ai/skills`.
+6. Ejecutar prompts desde `.ai/prompts`.
+7. Validar con Vitest + Playwright.
+8. Actualizar docs si cambian contratos públicos.
 
-1. `AGENTS.md`
-2. `.ai/rules/global-rules.md`
-3. `.ai/architecture/assistant-architecture.md`
-4. `.ai/context/project-overview.md`
-5. `.ai/instructions/*.instructions.md`
-6. `.ai/agents/*.agent.md`
-7. `.ai/skills/*/SKILL.md`
-8. `.ai/prompts/*.prompt.md`
-9. `docs/README.md`
+## Prompts principales
 
-## Estadísticas usadas para generar el workspace
+- `.ai/prompts/recipient-transform-master-plan.prompt.md`
+- `.ai/prompts/enforce-recipient-colors-and-icon-sync.prompt.md`
+- `.ai/prompts/stabilize-schema-resize-rotation.prompt.md`
+- `.ai/prompts/fix-results-from-tests-recipient-transform.prompt.md`
 
-- Archivos de código detectados: `504`
-- Archivos bajo `src/sisad-pdfme`: `385`
-- Archivos Markdown detectados: `248`
-- Archivos CSS detectados: `6`
+## Estadísticas de contexto del último bundle
+
+- Archivos de código detectados en el TXT unificado: `504`.
+- Archivos CSS detectados: `6`.
+- Archivos Markdown detectados: `248`.
 
 ## Instalación sugerida
 
-Copia el contenido de este ZIP en la raíz del repositorio del fork. Si ya tienes archivos con el mismo nombre, revisa primero los diffs y fusiona manualmente.
+Copia el contenido del ZIP en la raíz del repositorio y revisa los diffs antes de sobrescribir archivos existentes.
 
 ```bash
-unzip sisad_pdfme_ai_workspace.zip -d .
+unzip sisad_pdfme_recipient_transform_ai_workspace_EXTENDIDO.zip -d .
 ```
-
-## Uso recomendado
-
-Para una tarea técnica:
-
-1. Identifica el dominio: canvas, schema, sidebars, snapshot, generator, testing, CSS o arquitectura.
-2. Abre el agente correspondiente en `.ai/agents`.
-3. Lee el skill correspondiente en `.ai/skills`.
-4. Ejecuta el prompt de `.ai/prompts`.
-5. Valida con tests unitarios y Playwright.
-6. Actualiza documentación si cambian contratos públicos.

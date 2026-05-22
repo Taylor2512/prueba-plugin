@@ -1,15 +1,9 @@
-# Reporte de cambio IA
+# Reporte de cambio
 
 ## Resumen
 
 ## Archivos modificados
 
-## Contratos afectados
-
-## Tests ejecutados
+## Tests
 
 ## Riesgos
-
-## Documentación actualizada
-
-## Próximos pasos

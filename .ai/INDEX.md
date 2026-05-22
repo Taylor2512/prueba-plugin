@@ -1,57 +1,56 @@
-# AI Context Index
+# AI Context Index — `sisad-pdfme`
 
-Este archivo es el punto de entrada principal para cualquier asistente IA en `sisad-pdfme`.
+Este archivo es el punto de entrada principal para cualquier asistente IA.
 
 ## Fuente de verdad
 
-La carpeta `.ai/` contiene la base única de contexto compartido:
+La carpeta `.ai/` contiene:
 
-- reglas globales
-- contexto estable
-- arquitectura IA
-- agentes
-- skills
-- prompts
-- instrucciones
-- templates
+- reglas globales;
+- contexto estable;
+- arquitectura IA;
+- agentes;
+- skills;
+- prompts;
+- instrucciones;
+- templates.
 
 ## Lectura mínima obligatoria
 
 1. `.ai/rules/global-rules.md`
 2. `.ai/context/project-overview.md`
 3. `.ai/context/code-map.md`
-4. `.ai/architecture/assistant-architecture.md`
-5. `.ai/architecture/agent-routing.md`
+4. `.ai/context/recipient-transform-context.md`
+5. `.ai/architecture/assistant-architecture.md`
+6. `.ai/architecture/agent-routing.md`
 
-## Flujo de implementación
+## Prompts prioritarios para esta entrega
 
-1. Seleccionar agente en `.ai/agents`.
-2. Cargar skill en `.ai/skills`.
-3. Ejecutar prompt en `.ai/prompts`.
-4. Implementar cambios incrementales.
-5. Ejecutar tests relevantes.
-6. Actualizar documentación.
+1. `.ai/prompts/recipient-transform-master-plan.prompt.md`
+2. `.ai/prompts/enforce-recipient-colors-and-icon-sync.prompt.md`
+3. `.ai/prompts/add-recipient-color-playwright-tests.prompt.md`
+4. `.ai/prompts/stabilize-schema-resize-rotation.prompt.md`
+5. `.ai/prompts/fix-results-from-tests-recipient-transform.prompt.md`
 
-## Regla de sincronización
+## Contratos implementados (mayo 2026)
 
-Si cambia una regla, prompt o instrucción:
+| Contrato | Módulo | Estado |
+|----------|--------|--------|
+| `resolveRecipientColor` | `shared/recipientColor.ts` | ✅ implementado + 22 tests |
+| `resolveAllRecipientColors` | `shared/recipientColor.ts` | ✅ implementado |
+| `PluginIcon.activeRecipientColor` | `Designer/PluginIcon.tsx` | ✅ prop + data attrs |
+| `data-recipient-color` en chips | `PageHeader.jsx` | ✅ atributo estable |
+| `data-schema-owner-id/color` en canvas | `Renderer.tsx` | ✅ atributos estables |
+| `decorateCollaborationUsers` unicidad | `collaborationAppearance.js` | ✅ paleta sin colisión |
+| Tests Playwright color | `recipient-colors.spec.ts` | ✅ 5 scenarios |
+| Tests Playwright transform | `schema-transform.spec.ts` | ✅ 8 scenarios |
 
-1. Actualizar primero `.ai/`.
-2. Ejecutar `npm run ai:sync`.
-3. Ejecutar `npm run ai:check`.
-4. Actualizar manifiesto con `npm run ai:manifest`.
+## Sincronización
 
-## Adaptadores
+Si cambias prompts o instructions:
 
-Los siguientes archivos son adaptadores y no fuente de verdad:
-
-- `AGENTS.md`
-- `CLAUDE.md`
-- `CODEX.md`
-- `GEMINI.md`
-- `.github/copilot-instructions.md`
-- `.claude/README.md`
-- `.codex/README.md`
-- `.gemini/README.md`
-
-Si hay contradicción, prevalece `.ai/`.
+```bash
+node scripts/ai/sync-ai-adapters.js
+node scripts/ai/check-ai-workspace.js
+node scripts/ai/generate-ai-manifest.js
+```

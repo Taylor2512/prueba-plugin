@@ -1,5 +1,3 @@
-<!-- AUTO-GENERATED FILE. DO NOT EDIT DIRECTLY. -->
-<!-- Source of truth: .ai/ -->
 # Prompt: Optimize Canvas Runtime
 
 ## Objetivo
