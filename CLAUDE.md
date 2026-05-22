@@ -1,21 +1,21 @@
-# CLAUDE
+# CLAUDE — Adaptador de `sisad-pdfme`
 
-Este archivo adapta Claude al workspace neutral de `.ai/`.
+Claude debe usar `.ai/` como fuente de verdad y este archivo solo como puente.
 
-## Regla principal
-Usa `.ai/` como fuente de verdad. No dupliques agentes, prompts o skills aquí salvo que exista una necesidad real de formato.
+## Orden obligatorio
 
-## Orden de lectura recomendado
 1. `AGENTS.md`
-2. `.ai/rules/global-rules.md`
-3. `.ai/instructions/*.instructions.md`
-4. `.ai/agents/*.agent.md`
-5. `.ai/skills/*/SKILL.md`
-6. `.ai/prompts/*.prompt.md`
+2. `.ai/INDEX.md`
+3. `.ai/rules/global-rules.md`
+4. `.ai/context/project-overview.md`
+5. `.ai/context/code-map.md`
+6. `.ai/architecture/assistant-architecture.md`
+7. `.ai/architecture/agent-routing.md`
+8. `.ai/instructions/*.instructions.md`
+9. `.ai/agents/*.agent.md`
+10. `.ai/skills/*/SKILL.md`
+11. `.ai/prompts/*.prompt.md`
 
-## Comportamiento esperado
-- trabajar por cambios pequeños
-- respetar contratos actuales
-- no asumir que el editor sigue el pdfme original
-- priorizar canvas, overlays, sidebars, schema registry, generator y converter
-- documentar migraciones cuando cambie surface pública
+## Regla
+
+No contradigas `.ai/`. Si falta contexto, revisa `.ai/` antes de proponer cambios.

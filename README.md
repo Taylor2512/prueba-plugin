@@ -1,45 +1,64 @@
-# SISAD PDFME
+# SISAD PDFME — Workspace IA extendido
 
-Editor visual de PDFs basado en React, Vite y una integración modificada de `sisad-pdfme`. El proyecto combina un canvas editable, runtime de formularios, generación de PDF, conversión de documentos y soporte de colaboración.
+Este paquete contiene una arquitectura completa de asistencia con IA para evolucionar `sisad-pdfme` como fork aislado, configurable y genérico.
 
-## Qué hay aquí
+## Qué incluye
 
-- `src/sisad-pdfme/common`: contratos, helpers y tipos compartidos.
-- `src/sisad-pdfme/converter`: conversión PDF e imágenes.
-- `src/sisad-pdfme/generator`: generación final de PDFs.
-- `src/sisad-pdfme/pdf-lib`: fork o adaptación de bajo nivel para PDF.
-- `src/sisad-pdfme/schemas`: catálogo de campos y plugins.
-- `src/sisad-pdfme/ui`: diseñador, visor, formularios y componentes del editor.
-- `src/features/sisad-pdfme`: laboratorio y demo de la aplicación.
+- Reglas globales para IA.
+- Arquitectura de asistencia multiagente.
+- Skills reutilizables.
+- Prompts especializados.
+- Instrucciones por proveedor.
+- Adaptadores para Claude, Codex, GitHub Copilot y Gemini.
+- Documentación técnica mejorada y extendida.
+- Checklists de calidad, seguridad y regresión.
+- Mapa de módulos detectado desde el código consolidado.
 
-## Dónde empezar
+## Principio rector
 
-- [docs/README.md](docs/README.md): entrada principal a la documentación.
-- [docs/90-indice-verdad-actual.md](docs/90-indice-verdad-actual.md): documentación respaldada por el código actual.
-- [docs/91-indice-conceptual.md](docs/91-indice-conceptual.md): visión conceptual y funcional.
-- [docs/93-indice-roadmap-plataforma.md](docs/93-indice-roadmap-plataforma.md): roadmap de plataforma y empaquetado.
-- [docs/96-sisad-pdfme-overview.md](docs/96-sisad-pdfme-overview.md): resumen técnico histórico de la plataforma.
-- [docs/97-indice-generado.md](docs/97-indice-generado.md): índice generado para búsqueda histórica.
-- [docs/reference/README.md](docs/reference/README.md): material histórico y archivo de apoyo.
-- [documentacion-unificada.md](documentacion-unificada.md): volcado unificado generado automáticamente, útil solo como archivo histórico.
+`sisad-pdfme` debe mantenerse como componente aislado. Todo componente debe ser genérico, toda habilidad debe ser configurable y toda integración debe entrar mediante contratos públicos, plugins, adapters, comandos o eventos.
 
-## Proceso actual importante
+## Proveedores soportados
 
-La carga múltiple de PDF se resuelve en [src/sisad-pdfme/ui/components/Designer/index.tsx](src/sisad-pdfme/ui/components/Designer/index.tsx) y el motor de configuración real vive en [src/sisad-pdfme/ui/designerEngine.ts](src/sisad-pdfme/ui/designerEngine.ts).
+- Claude
+- Codex
+- GitHub Copilot
+- Gemini
 
-## Scripts útiles
+## Orden recomendado de lectura
+
+1. `AGENTS.md`
+2. `.ai/rules/global-rules.md`
+3. `.ai/architecture/assistant-architecture.md`
+4. `.ai/context/project-overview.md`
+5. `.ai/instructions/*.instructions.md`
+6. `.ai/agents/*.agent.md`
+7. `.ai/skills/*/SKILL.md`
+8. `.ai/prompts/*.prompt.md`
+9. `docs/README.md`
+
+## Estadísticas usadas para generar el workspace
+
+- Archivos de código detectados: `504`
+- Archivos bajo `src/sisad-pdfme`: `385`
+- Archivos Markdown detectados: `248`
+- Archivos CSS detectados: `6`
+
+## Instalación sugerida
+
+Copia el contenido de este ZIP en la raíz del repositorio del fork. Si ya tienes archivos con el mismo nombre, revisa primero los diffs y fusiona manualmente.
 
 ```bash
-npm run dev
-npm run build
-npm run preview
-npm run lint
-npm run test
-npm run test:e2e
+unzip sisad_pdfme_ai_workspace.zip -d .
 ```
 
-## Verificación rápida
+## Uso recomendado
 
-- El árbol actual no está organizado como monorepo con workspaces.
-- Las propuestas de `platform/pdf` son roadmap, no implementación actual.
-- La verdad operativa está en `src/sisad-pdfme/*` y en la cuarta tanda de documentación.
+Para una tarea técnica:
+
+1. Identifica el dominio: canvas, schema, sidebars, snapshot, generator, testing, CSS o arquitectura.
+2. Abre el agente correspondiente en `.ai/agents`.
+3. Lee el skill correspondiente en `.ai/skills`.
+4. Ejecuta el prompt de `.ai/prompts`.
+5. Valida con tests unitarios y Playwright.
+6. Actualiza documentación si cambian contratos públicos.

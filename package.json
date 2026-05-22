@@ -12,7 +12,10 @@
         "lint": "eslint .",
         "lint:fix": "eslint --fix .",
         "test": "vitest",
-        "test:e2e": "npx playwright test"
+        "test:e2e": "npx playwright test",
+        "ai:sync": "node scripts/ai/sync-ai-adapters.js",
+        "ai:check": "node scripts/ai/check-ai-workspace.js",
+        "ai:manifest": "node scripts/ai/generate-ai-manifest.js"
     },
     "dependencies": {
         "@dnd-kit/core": "^6.0.8",

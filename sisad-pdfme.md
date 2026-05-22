@@ -1,8 +1,8 @@
 # Documentación Markdown Unificada
 
 **Carpeta origen:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin`  
-**Fecha de generación:** `2026-05-21T05:20:38.689Z`  
-**Total de archivos incluidos:** `238`  
+**Fecha de generación:** `2026-05-22T18:12:01.594Z`  
+**Total de archivos incluidos:** `134`  
 **Extensiones incluidas:** `.md`
 
 ---
@@ -11,242 +11,138 @@
 
 0001. [AGENTS.md](#archivo-0001)
 0002. [CLAUDE.md](#archivo-0002)
-0003. [GEMINI.md](#archivo-0003)
-0004. [GUARDRAILS.md](#archivo-0004)
-0005. [README.md](#archivo-0005)
-0006. [.ai/README.md](#archivo-0006)
-0007. [.antigravity/README.md](#archivo-0007)
+0003. [CODEX.md](#archivo-0003)
+0004. [GEMINI.md](#archivo-0004)
+0005. [MANIFEST.md](#archivo-0005)
+0006. [README.md](#archivo-0006)
+0007. [.ai/README.md](#archivo-0007)
 0008. [.claude/README.md](#archivo-0008)
 0009. [.codex/README.md](#archivo-0009)
 0010. [.gemini/README.md](#archivo-0010)
 0011. [.github/AGENTS.md](#archivo-0011)
 0012. [.github/copilot-instructions.md](#archivo-0012)
-0013. [.github/PROTECTED_FILES.md](#archivo-0013)
-0014. [.github/README-AI-WORKSPACE.md](#archivo-0014)
-0015. [.github/README.md](#archivo-0015)
-0016. [.kilo/README.md](#archivo-0016)
-0017. [docs/README.md](#archivo-0017)
-0018. [.ai/agents/canvas-overlays-architect.agent.md](#archivo-0018)
-0019. [.ai/agents/canvas-runtime-architect.agent.md](#archivo-0019)
-0020. [.ai/agents/canvas-ux-orchestrator.agent.md](#archivo-0020)
-0021. [.ai/agents/collaboration-sync-architect.agent.md](#archivo-0021)
-0022. [.ai/agents/design-system-guardian.agent.md](#archivo-0022)
-0023. [.ai/agents/design-token-governance.agent.md](#archivo-0023)
-0024. [.ai/agents/designer-engine-architect.agent.md](#archivo-0024)
-0025. [.ai/agents/detail-view-forms-architect.agent.md](#archivo-0025)
-0026. [.ai/agents/docs-migration-steward.agent.md](#archivo-0026)
-0027. [.ai/agents/frontend-pdf-architect.agent.md](#archivo-0027)
-0028. [.ai/agents/generator-converter-architect.agent.md](#archivo-0028)
-0029. [.ai/agents/left-sidebar-catalog-architect.agent.md](#archivo-0029)
-0030. [.ai/agents/list-view-interactions-architect.agent.md](#archivo-0030)
-0031. [.ai/agents/pdfme-runtime-specialist.agent.md](#archivo-0031)
-0032. [.ai/agents/platform-pdf-architect.agent.md](#archivo-0032)
-0033. [.ai/agents/prompt-execution-director.agent.md](#archivo-0033)
-0034. [.ai/agents/right-sidebar-inspector-architect.agent.md](#archivo-0034)
-0035. [.ai/agents/schema-registry-architect.agent.md](#archivo-0035)
-0036. [.ai/agents/schema-rendering-architect.agent.md](#archivo-0036)
-0037. [.ai/agents/testing-regression-guardian.agent.md](#archivo-0037)
-0038. [.ai/context/project-overview.md](#archivo-0038)
-0039. [.ai/context/provider-compatibility.md](#archivo-0039)
-0040. [.ai/instructions/architecture-modular.instructions.md](#archivo-0040)
-0041. [.ai/instructions/canvas-first-ux.instructions.md](#archivo-0041)
-0042. [.ai/instructions/css-unification.instructions.md](#archivo-0042)
-0043. [.ai/instructions/designer-runtime.instructions.md](#archivo-0043)
-0044. [.ai/instructions/docs-and-migration.instructions.md](#archivo-0044)
-0045. [.ai/instructions/editor-platform.instructions.md](#archivo-0045)
-0046. [.ai/instructions/frontend-editor.instructions.md](#archivo-0046)
-0047. [.ai/instructions/pdfme-extension.instructions.md](#archivo-0047)
-0048. [.ai/instructions/schema-system.instructions.md](#archivo-0048)
-0049. [.ai/instructions/testing-quality.instructions.md](#archivo-0049)
-0050. [.ai/instructions/ui-ux-compact.instructions.md](#archivo-0050)
-0051. [.ai/prompts/add-comments-and-presence.prompt.md](#archivo-0051)
-0052. [.ai/prompts/add-editor-regression-tests.prompt.md](#archivo-0052)
-0053. [.ai/prompts/add-new-schema-family.prompt.md](#archivo-0053)
-0054. [.ai/prompts/add-prop-panel-for-schema.prompt.md](#archivo-0054)
-0055. [.ai/prompts/audit-platform-boundaries.prompt.md](#archivo-0055)
-0056. [.ai/prompts/build-detail-section-system.prompt.md](#archivo-0056)
-0057. [.ai/prompts/compact-wix-style-ui.prompt.md](#archivo-0057)
-0058. [.ai/prompts/create-command-bus.prompt.md](#archivo-0058)
-0059. [.ai/prompts/create-playwright-canvas-scenarios.prompt.md](#archivo-0059)
-0060. [.ai/prompts/document-fork-divergence.prompt.md](#archivo-0060)
-0061. [.ai/prompts/fix-moveable-selecto-regression.prompt.md](#archivo-0061)
-0062. [.ai/prompts/generate-migration-guide.prompt.md](#archivo-0062)
-0063. [.ai/prompts/implement-collaboration-state.prompt.md](#archivo-0063)
-0064. [.ai/prompts/implement-overlay-pattern.prompt.md](#archivo-0064)
-0065. [.ai/prompts/improve-discovery-mode.prompt.md](#archivo-0065)
-0066. [.ai/prompts/improve-list-view-ux.prompt.md](#archivo-0066)
-0067. [.ai/prompts/normalize-schema-contracts.prompt.md](#archivo-0067)
-0068. [.ai/prompts/optimize-canvas-runtime.prompt.md](#archivo-0068)
-0069. [.ai/prompts/refactor-designer-engine.prompt.md](#archivo-0069)
-0070. [.ai/prompts/refactor-editor-shell.prompt.md](#archivo-0070)
-0071. [.ai/prompts/refactor-left-rail-catalog.prompt.md](#archivo-0071)
-0072. [.ai/prompts/refactor-right-inspector-layout.prompt.md](#archivo-0072)
-0073. [.ai/prompts/split-monolithic-hook.prompt.md](#archivo-0073)
-0074. [.ai/prompts/stabilize-public-api.prompt.md](#archivo-0074)
-0075. [.ai/prompts/unify-css-architecture.prompt.md](#archivo-0075)
-0076. [.ai/prompts/validate-runtime-generate-parity.prompt.md](#archivo-0076)
-0077. [.ai/prompts/write-architecture-decision-record.prompt.md](#archivo-0077)
-0078. [.ai/rules/global-rules.md](#archivo-0078)
-0079. [.backup-ai-workspace/.agents.bak/copilot-instructions.md](#archivo-0079)
-0080. [.backup-ai-workspace/.agents.bak/README-AI-WORKSPACE.md](#archivo-0080)
-0081. [.backup-ai-workspace/github-agents.bak/canvas-ux-orchestrator.agent.md](#archivo-0081)
-0082. [.backup-ai-workspace/github-agents.bak/design-system-guardian.agent.md](#archivo-0082)
-0083. [.backup-ai-workspace/github-agents.bak/frontend-pdf-architect.agent.md](#archivo-0083)
-0084. [.backup-ai-workspace/github-agents.bak/pdfme-runtime-specialist.agent.md](#archivo-0084)
-0085. [.backup-ai-workspace/github-agents.bak/prompt-execution-director.agent.md](#archivo-0085)
-0086. [.backup-ai-workspace/github-instructions.bak/css-unification.instructions.md](#archivo-0086)
-0087. [.backup-ai-workspace/github-instructions.bak/frontend-editor.instructions.md](#archivo-0087)
-0088. [.backup-ai-workspace/github-instructions.bak/pdfme-extension.instructions.md](#archivo-0088)
-0089. [.backup-ai-workspace/github-instructions.bak/ui-ux-compact.instructions.md](#archivo-0089)
-0090. [.backup-ai-workspace/github-prompts.bak/compact-wix-style-ui.prompt.md](#archivo-0090)
-0091. [.backup-ai-workspace/github-prompts.bak/create-command-bus.prompt.md](#archivo-0091)
-0092. [.backup-ai-workspace/github-prompts.bak/refactor-editor-shell.prompt.md](#archivo-0092)
-0093. [.backup-ai-workspace/github-prompts.bak/split-monolithic-hook.prompt.md](#archivo-0093)
-0094. [.backup-ai-workspace/github-prompts.bak/unify-css-architecture.prompt.md](#archivo-0094)
-0095. [.backup-ai-workspace/github-skills.bak/canvas-interaction.skill.md](#archivo-0095)
-0096. [.backup-ai-workspace/github-skills.bak/component-composition.skill.md](#archivo-0096)
-0097. [.backup-ai-workspace/github-skills.bak/design-system-consistency.skill.md](#archivo-0097)
-0098. [.backup-ai-workspace/github-skills.bak/editor-product-vision.skill.md](#archivo-0098)
-0099. [.backup-ai-workspace/github-skills.bak/pdfme-integration.skill.md](#archivo-0099)
-0100. [.backup-ai-workspace/github-skills.bak/refactor-safety.skill.md](#archivo-0100)
-0101. [.backup-ai-workspace/github-skills.bak/ux-compact-panels.skill.md](#archivo-0101)
-0102. [.github/prompts/Checkpoint.prompt.md](#archivo-0102)
-0103. [.github/prompts/Execute.prompt.md](#archivo-0103)
-0104. [.github/prompts/GH.prompt.md](#archivo-0104)
-0105. [.github/prompts/Plan.prompt.md](#archivo-0105)
-0106. [.github/prompts/Startup.prompt.md](#archivo-0106)
-0107. [.github/prompts/Sync.prompt.md](#archivo-0107)
-0108. [.github/prompts/Think.prompt.md](#archivo-0108)
-0109. [docs/00-indice/01-manifiesto-fuentes.md](#archivo-0109)
-0110. [docs/00-indice/README.md](#archivo-0110)
-0111. [docs/01-arquitectura/01-vision-general.md](#archivo-0111)
-0112. [docs/01-arquitectura/02-mapa-modulos.md](#archivo-0112)
-0113. [docs/01-arquitectura/03-contratos-template-schema-inputs.md](#archivo-0113)
-0114. [docs/02-api-publica/01-entrypoints.md](#archivo-0114)
-0115. [docs/02-api-publica/api-assignments.md](#archivo-0115)
-0116. [docs/02-api-publica/api-commands.md](#archivo-0116)
-0117. [docs/02-api-publica/api-comments.md](#archivo-0117)
-0118. [docs/02-api-publica/api-common.md](#archivo-0118)
-0119. [docs/02-api-publica/api-converter.md](#archivo-0119)
-0120. [docs/02-api-publica/api-generator.md](#archivo-0120)
-0121. [docs/02-api-publica/api-schemas.md](#archivo-0121)
-0122. [docs/02-api-publica/api-ui.md](#archivo-0122)
-0123. [docs/03-runtime/01-designer-form-viewer.md](#archivo-0123)
-0124. [docs/03-runtime/02-designer-engine-builder.md](#archivo-0124)
-0125. [docs/03-runtime/03-command-bus-y-acciones.md](#archivo-0125)
-0126. [docs/04-componentes/01-inventario-componentes.md](#archivo-0126)
-0127. [docs/04-componentes/02-canvas-interacciones.md](#archivo-0127)
-0128. [docs/04-componentes/03-sidebars-overlays.md](#archivo-0128)
-0129. [docs/05-schemas/01-registry-y-plugins.md](#archivo-0129)
-0130. [docs/05-schemas/02-plugins-built-in-y-formulario.md](#archivo-0130)
-0131. [docs/05-schemas/03-firma.md](#archivo-0131)
-0132. [docs/06-funcionalidades/01-multidocumento.md](#archivo-0132)
-0133. [docs/06-funcionalidades/02-colaboracion-usuarios.md](#archivo-0133)
-0134. [docs/06-funcionalidades/03-assignments.md](#archivo-0134)
-0135. [docs/06-funcionalidades/04-comentarios.md](#archivo-0135)
-0136. [docs/06-funcionalidades/05-persistencia-api-formjson.md](#archivo-0136)
-0137. [docs/06-funcionalidades/06-generacion-y-conversion.md](#archivo-0137)
-0138. [docs/07-integracion/01-consumo-react.md](#archivo-0138)
-0139. [docs/07-integracion/02-editar-plantilla-existente.md](#archivo-0139)
-0140. [docs/07-integracion/03-ejemplos-laboratorio.md](#archivo-0140)
-0141. [docs/07-integracion/04-sisad-web-y-backend-futuro.md](#archivo-0141)
-0142. [docs/08-calidad/01-css-design-system.md](#archivo-0142)
-0143. [docs/08-calidad/02-testing.md](#archivo-0143)
-0144. [docs/08-calidad/03-troubleshooting-render.md](#archivo-0144)
-0145. [docs/99-anexos/01-inventario.md](#archivo-0145)
-0146. [docs/99-anexos/02-checklist-adopcion.md](#archivo-0146)
-0147. [docs/99-anexos/03-prompt-maestro.md](#archivo-0147)
-0148. [.ai/agents/legacy/pdfme-command-architect.md](#archivo-0148)
-0149. [.ai/agents/legacy/pdfme-css-polish-architect.md](#archivo-0149)
-0150. [.ai/agents/legacy/pdfme-editor-architect.md](#archivo-0150)
-0151. [.ai/agents/legacy/pdfme-layout-architect.md](#archivo-0151)
-0152. [.ai/agents/legacy/pdfme-overlay-architect.md](#archivo-0152)
-0153. [.ai/agents/legacy/pdfme-registry-architect.md](#archivo-0153)
-0154. [.ai/agents/legacy/pdfme-sidebar-architect.md](#archivo-0154)
-0155. [.ai/agents/legacy/pdfme-testing-architect.md](#archivo-0155)
-0156. [.ai/agents/legacy/pdfme-toolbar-architect.md](#archivo-0156)
-0157. [.ai/skills/canvas-geometry-scaling/SKILL.md](#archivo-0157)
-0158. [.ai/skills/canvas-interaction/SKILL.md](#archivo-0158)
-0159. [.ai/skills/canvas-overlay-composition/SKILL.md](#archivo-0159)
-0160. [.ai/skills/catalog-discovery-patterns/SKILL.md](#archivo-0160)
-0161. [.ai/skills/collaboration-state-sync/SKILL.md](#archivo-0161)
-0162. [.ai/skills/component-composition/SKILL.md](#archivo-0162)
-0163. [.ai/skills/converter-pipeline-integrity/SKILL.md](#archivo-0163)
-0164. [.ai/skills/css-layering-and-overrides/SKILL.md](#archivo-0164)
-0165. [.ai/skills/design-system-consistency/SKILL.md](#archivo-0165)
-0166. [.ai/skills/design-token-governance/SKILL.md](#archivo-0166)
-0167. [.ai/skills/designer-engine-runtime-state/SKILL.md](#archivo-0167)
-0168. [.ai/skills/designer-selection-lifecycle/SKILL.md](#archivo-0168)
-0169. [.ai/skills/detail-view-sectioning/SKILL.md](#archivo-0169)
-0170. [.ai/skills/document-workflow-ux-patterns/SKILL.md](#archivo-0170)
-0171. [.ai/skills/docusign-inspired-product-thinking/SKILL.md](#archivo-0171)
-0172. [.ai/skills/editor-product-vision/SKILL.md](#archivo-0172)
-0173. [.ai/skills/editor-regression-testing/SKILL.md](#archivo-0173)
-0174. [.ai/skills/fork-safe-pdfme-evolution/SKILL.md](#archivo-0174)
-0175. [.ai/skills/generator-runtime-parity/SKILL.md](#archivo-0175)
-0176. [.ai/skills/inspector-panel-composition/SKILL.md](#archivo-0176)
-0177. [.ai/skills/list-view-reorder-patterns/SKILL.md](#archivo-0177)
-0178. [.ai/skills/moveable-selecto-integration/SKILL.md](#archivo-0178)
-0179. [.ai/skills/pdfme-integration/SKILL.md](#archivo-0179)
-0180. [.ai/skills/platform-architecture-governance/SKILL.md](#archivo-0180)
-0181. [.ai/skills/playwright-canvas-diagnostics/SKILL.md](#archivo-0181)
-0182. [.ai/skills/public-api-surface-design/SKILL.md](#archivo-0182)
-0183. [.ai/skills/react-doctor/SKILL.md](#archivo-0183)
-0184. [.ai/skills/refactor-safety/SKILL.md](#archivo-0184)
-0185. [.ai/skills/schema-identity-persistence/SKILL.md](#archivo-0185)
-0186. [.ai/skills/schema-registry-extension/SKILL.md](#archivo-0186)
-0187. [.ai/skills/schema-render-contracts/SKILL.md](#archivo-0187)
-0188. [.ai/skills/snaplines-guides-behavior/SKILL.md](#archivo-0188)
-0189. [.ai/skills/ux-compact-panels/SKILL.md](#archivo-0189)
-0190. [.ai/skills/wix-inspired-left-rail-ux/SKILL.md](#archivo-0190)
-0191. [.backup-ai-workspace/.agents.bak/agents/canvas-ux-orchestrator.agent.md](#archivo-0191)
-0192. [.backup-ai-workspace/.agents.bak/agents/design-system-guardian.agent.md](#archivo-0192)
-0193. [.backup-ai-workspace/.agents.bak/agents/frontend-pdf-architect.agent.md](#archivo-0193)
-0194. [.backup-ai-workspace/.agents.bak/agents/pdfme-runtime-specialist.agent.md](#archivo-0194)
-0195. [.backup-ai-workspace/.agents.bak/agents/prompt-execution-director.agent.md](#archivo-0195)
-0196. [.backup-ai-workspace/.agents.bak/instructions/css-unification.instructions.md](#archivo-0196)
-0197. [.backup-ai-workspace/.agents.bak/instructions/frontend-editor.instructions.md](#archivo-0197)
-0198. [.backup-ai-workspace/.agents.bak/instructions/pdfme-extension.instructions.md](#archivo-0198)
-0199. [.backup-ai-workspace/.agents.bak/instructions/ui-ux-compact.instructions.md](#archivo-0199)
-0200. [.backup-ai-workspace/.agents.bak/prompts/compact-wix-style-ui.prompt.md](#archivo-0200)
-0201. [.backup-ai-workspace/.agents.bak/prompts/create-command-bus.prompt.md](#archivo-0201)
-0202. [.backup-ai-workspace/.agents.bak/prompts/refactor-editor-shell.prompt.md](#archivo-0202)
-0203. [.backup-ai-workspace/.agents.bak/prompts/split-monolithic-hook.prompt.md](#archivo-0203)
-0204. [.backup-ai-workspace/.agents.bak/prompts/unify-css-architecture.prompt.md](#archivo-0204)
-0205. [.backup-ai-workspace/.agents.bak/react-doctor/AGENTS.md](#archivo-0205)
-0206. [.backup-ai-workspace/.agents.bak/react-doctor/SKILL.md](#archivo-0206)
-0207. [.backup-ai-workspace/.agents.bak/skills/canvas-interaction.skill.md](#archivo-0207)
-0208. [.backup-ai-workspace/.agents.bak/skills/component-composition.skill.md](#archivo-0208)
-0209. [.backup-ai-workspace/.agents.bak/skills/design-system-consistency.skill.md](#archivo-0209)
-0210. [.backup-ai-workspace/.agents.bak/skills/editor-product-vision.skill.md](#archivo-0210)
-0211. [.backup-ai-workspace/.agents.bak/skills/pdfme-integration.skill.md](#archivo-0211)
-0212. [.backup-ai-workspace/.agents.bak/skills/refactor-safety.skill.md](#archivo-0212)
-0213. [.backup-ai-workspace/.agents.bak/skills/ux-compact-panels.skill.md](#archivo-0213)
-0214. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-command-architect.md](#archivo-0214)
-0215. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-css-polish-architect.md](#archivo-0215)
-0216. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-editor-architect.md](#archivo-0216)
-0217. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-layout-architect.md](#archivo-0217)
-0218. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-overlay-architect.md](#archivo-0218)
-0219. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-registry-architect.md](#archivo-0219)
-0220. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-sidebar-architect.md](#archivo-0220)
-0221. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-testing-architect.md](#archivo-0221)
-0222. [.backup-ai-workspace/github-prompts.bak/agents/pdfme-toolbar-architect.md](#archivo-0222)
-0223. [.backup-ai-workspace/github-skills.bak/canvas-interaction/SKILL.md](#archivo-0223)
-0224. [.backup-ai-workspace/github-skills.bak/editor-product-vision/SKILL.md](#archivo-0224)
-0225. [.backup-ai-workspace/github-skills.bak/pdfme-integration/SKILL.md](#archivo-0225)
-0226. [src/sisad-pdfme/ui/designerEngine.api.md](#archivo-0226)
-0227. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-command-architect.md](#archivo-0227)
-0228. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-css-polish-architect.md](#archivo-0228)
-0229. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-editor-architect.md](#archivo-0229)
-0230. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-layout-architect.md](#archivo-0230)
-0231. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-overlay-architect.md](#archivo-0231)
-0232. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-registry-architect.md](#archivo-0232)
-0233. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-sidebar-architect.md](#archivo-0233)
-0234. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-testing-architect.md](#archivo-0234)
-0235. [.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-toolbar-architect.md](#archivo-0235)
-0236. [.backup-ai-workspace/.agents.bak/skills/canvas-interaction/SKILL.md](#archivo-0236)
-0237. [.backup-ai-workspace/.agents.bak/skills/editor-product-vision/SKILL.md](#archivo-0237)
-0238. [.backup-ai-workspace/.agents.bak/skills/pdfme-integration/SKILL.md](#archivo-0238)
+0013. [docs/README.md](#archivo-0013)
+0014. [.ai/agents/canvas-overlays-architect.agent.md](#archivo-0014)
+0015. [.ai/agents/canvas-runtime-architect.agent.md](#archivo-0015)
+0016. [.ai/agents/design-system-guardian.agent.md](#archivo-0016)
+0017. [.ai/agents/designer-engine-architect.agent.md](#archivo-0017)
+0018. [.ai/agents/docs-migration-steward.agent.md](#archivo-0018)
+0019. [.ai/agents/generator-converter-architect.agent.md](#archivo-0019)
+0020. [.ai/agents/left-sidebar-catalog-architect.agent.md](#archivo-0020)
+0021. [.ai/agents/platform-pdf-architect.agent.md](#archivo-0021)
+0022. [.ai/agents/prompt-execution-director.agent.md](#archivo-0022)
+0023. [.ai/agents/right-sidebar-inspector-architect.agent.md](#archivo-0023)
+0024. [.ai/agents/schema-registry-architect.agent.md](#archivo-0024)
+0025. [.ai/agents/schema-rendering-architect.agent.md](#archivo-0025)
+0026. [.ai/agents/testing-regression-guardian.agent.md](#archivo-0026)
+0027. [.ai/architecture/agent-routing.md](#archivo-0027)
+0028. [.ai/architecture/assistant-architecture.md](#archivo-0028)
+0029. [.ai/architecture/provider-model.md](#archivo-0029)
+0030. [.ai/context/code-map.md](#archivo-0030)
+0031. [.ai/context/project-overview.md](#archivo-0031)
+0032. [.ai/context/provider-compatibility.md](#archivo-0032)
+0033. [.ai/instructions/architecture-modular.instructions.md](#archivo-0033)
+0034. [.ai/instructions/canvas-first-ux.instructions.md](#archivo-0034)
+0035. [.ai/instructions/css-unification.instructions.md](#archivo-0035)
+0036. [.ai/instructions/designer-runtime.instructions.md](#archivo-0036)
+0037. [.ai/instructions/docs-and-migration.instructions.md](#archivo-0037)
+0038. [.ai/instructions/frontend-editor.instructions.md](#archivo-0038)
+0039. [.ai/instructions/pdfme-extension.instructions.md](#archivo-0039)
+0040. [.ai/instructions/schema-system.instructions.md](#archivo-0040)
+0041. [.ai/instructions/testing-quality.instructions.md](#archivo-0041)
+0042. [.ai/instructions/ui-ux-compact.instructions.md](#archivo-0042)
+0043. [.ai/prompts/add-new-schema-family.prompt.md](#archivo-0043)
+0044. [.ai/prompts/audit-platform-boundaries.prompt.md](#archivo-0044)
+0045. [.ai/prompts/build-detail-section-system.prompt.md](#archivo-0045)
+0046. [.ai/prompts/create-playwright-canvas-scenarios.prompt.md](#archivo-0046)
+0047. [.ai/prompts/document-fork-divergence.prompt.md](#archivo-0047)
+0048. [.ai/prompts/generate-migration-guide.prompt.md](#archivo-0048)
+0049. [.ai/prompts/implement-overlay-pattern.prompt.md](#archivo-0049)
+0050. [.ai/prompts/normalize-schema-contracts.prompt.md](#archivo-0050)
+0051. [.ai/prompts/optimize-canvas-runtime.prompt.md](#archivo-0051)
+0052. [.ai/prompts/refactor-designer-engine.prompt.md](#archivo-0052)
+0053. [.ai/prompts/refactor-left-rail-catalog.prompt.md](#archivo-0053)
+0054. [.ai/prompts/refactor-right-inspector-layout.prompt.md](#archivo-0054)
+0055. [.ai/prompts/stabilize-public-api.prompt.md](#archivo-0055)
+0056. [.ai/prompts/unify-css-architecture.prompt.md](#archivo-0056)
+0057. [.ai/rules/global-rules.md](#archivo-0057)
+0058. [.ai/templates/architecture-decision-record.md](#archivo-0058)
+0059. [.ai/templates/change-report.md](#archivo-0059)
+0060. [.claude/commands/plan.md](#archivo-0060)
+0061. [.claude/commands/review.md](#archivo-0061)
+0062. [.claude/commands/startup.md](#archivo-0062)
+0063. [.codex/tasks/refactor-safe.md](#archivo-0063)
+0064. [.gemini/prompts/audit-architecture.md](#archivo-0064)
+0065. [.github/instructions/architecture-modular.instructions.md](#archivo-0065)
+0066. [.github/instructions/canvas-first-ux.instructions.md](#archivo-0066)
+0067. [.github/instructions/css-unification.instructions.md](#archivo-0067)
+0068. [.github/instructions/designer-runtime.instructions.md](#archivo-0068)
+0069. [.github/instructions/docs-and-migration.instructions.md](#archivo-0069)
+0070. [.github/instructions/frontend-editor.instructions.md](#archivo-0070)
+0071. [.github/instructions/pdfme-extension.instructions.md](#archivo-0071)
+0072. [.github/instructions/schema-system.instructions.md](#archivo-0072)
+0073. [.github/instructions/testing-quality.instructions.md](#archivo-0073)
+0074. [.github/instructions/ui-ux-compact.instructions.md](#archivo-0074)
+0075. [.github/prompts/add-new-schema-family.prompt.md](#archivo-0075)
+0076. [.github/prompts/audit-platform-boundaries.prompt.md](#archivo-0076)
+0077. [.github/prompts/build-detail-section-system.prompt.md](#archivo-0077)
+0078. [.github/prompts/create-playwright-canvas-scenarios.prompt.md](#archivo-0078)
+0079. [.github/prompts/document-fork-divergence.prompt.md](#archivo-0079)
+0080. [.github/prompts/generate-migration-guide.prompt.md](#archivo-0080)
+0081. [.github/prompts/implement-overlay-pattern.prompt.md](#archivo-0081)
+0082. [.github/prompts/normalize-schema-contracts.prompt.md](#archivo-0082)
+0083. [.github/prompts/optimize-canvas-runtime.prompt.md](#archivo-0083)
+0084. [.github/prompts/refactor-designer-engine.prompt.md](#archivo-0084)
+0085. [.github/prompts/refactor-left-rail-catalog.prompt.md](#archivo-0085)
+0086. [.github/prompts/refactor-right-inspector-layout.prompt.md](#archivo-0086)
+0087. [.github/prompts/stabilize-public-api.prompt.md](#archivo-0087)
+0088. [.github/prompts/unify-css-architecture.prompt.md](#archivo-0088)
+0089. [docs/00-indice/README.md](#archivo-0089)
+0090. [docs/01-arquitectura/01-vision-general.md](#archivo-0090)
+0091. [docs/01-arquitectura/02-mapa-modulos.md](#archivo-0091)
+0092. [docs/01-arquitectura/03-arquitectura-ia.md](#archivo-0092)
+0093. [docs/02-api-publica/01-entrypoints.md](#archivo-0093)
+0094. [docs/02-api-publica/02-commands-events.md](#archivo-0094)
+0095. [docs/03-runtime/01-designer-form-viewer.md](#archivo-0095)
+0096. [docs/03-runtime/02-snapshot-engine.md](#archivo-0096)
+0097. [docs/04-componentes/01-inventario-componentes.md](#archivo-0097)
+0098. [docs/04-componentes/02-sidebars-configurables.md](#archivo-0098)
+0099. [docs/04-componentes/03-canvas-overlays.md](#archivo-0099)
+0100. [docs/05-schemas/01-registry-y-plugins.md](#archivo-0100)
+0101. [docs/05-schemas/02-schemas-built-in.md](#archivo-0101)
+0102. [docs/06-funcionalidades/01-habilidades-configurables.md](#archivo-0102)
+0103. [docs/06-funcionalidades/02-multidocumento.md](#archivo-0103)
+0104. [docs/06-funcionalidades/03-colaboracion-y-ownership.md](#archivo-0104)
+0105. [docs/07-calidad/01-testing.md](#archivo-0105)
+0106. [docs/07-calidad/02-css-design-system.md](#archivo-0106)
+0107. [docs/07-calidad/03-troubleshooting-render.md](#archivo-0107)
+0108. [docs/08-guias-ia/01-arquitectura-asistente.md](#archivo-0108)
+0109. [docs/08-guias-ia/02-prompts-y-skills.md](#archivo-0109)
+0110. [docs/99-anexos/01-checklist-adopcion.md](#archivo-0110)
+0111. [docs/99-anexos/02-matriz-agentes-skills.md](#archivo-0111)
+0112. [test-results/pdfme-editor-cross-platfor-7f4f4--reverts-a-delete-operation-chromium/error-context.md](#archivo-0112)
+0113. [test-results/pdfme-editor-cross-platfor-b802e-ible-fields-on-current-page-chromium/error-context.md](#archivo-0113)
+0114. [test-results/pdfme-editor-cross-platfor-e1d0b-ields-when-two-are-selected-chromium/error-context.md](#archivo-0114)
+0115. [test-results/pdfme-editor-PDFME-editor--0cd8b-on-the-basic-designer-route-chromium/error-context.md](#archivo-0115)
+0116. [test-results/pdfme-editor-PDFME-editor--d32b3-xternal-provider-from-modal-chromium/error-context.md](#archivo-0116)
+0117. [test-results/pdfme-editor-PDFME-editor--f6378-en-switching-signature-mode-chromium/error-context.md](#archivo-0117)
+0118. [.ai/skills/canvas-geometry-scaling/SKILL.md](#archivo-0118)
+0119. [.ai/skills/catalog-discovery-patterns/SKILL.md](#archivo-0119)
+0120. [.ai/skills/component-composition/SKILL.md](#archivo-0120)
+0121. [.ai/skills/css-layering-and-overrides/SKILL.md](#archivo-0121)
+0122. [.ai/skills/design-system-consistency/SKILL.md](#archivo-0122)
+0123. [.ai/skills/docusign-inspired-product-thinking/SKILL.md](#archivo-0123)
+0124. [.ai/skills/editor-regression-testing/SKILL.md](#archivo-0124)
+0125. [.ai/skills/fork-safe-pdfme-evolution/SKILL.md](#archivo-0125)
+0126. [.ai/skills/generator-runtime-parity/SKILL.md](#archivo-0126)
+0127. [.ai/skills/inspector-panel-composition/SKILL.md](#archivo-0127)
+0128. [.ai/skills/moveable-selecto-integration/SKILL.md](#archivo-0128)
+0129. [.ai/skills/playwright-canvas-diagnostics/SKILL.md](#archivo-0129)
+0130. [.ai/skills/public-api-surface-design/SKILL.md](#archivo-0130)
+0131. [.ai/skills/schema-identity-persistence/SKILL.md](#archivo-0131)
+0132. [.ai/skills/schema-registry-extension/SKILL.md](#archivo-0132)
+0133. [.ai/skills/wix-inspired-left-rail-ux/SKILL.md](#archivo-0133)
+0134. [src/sisad-pdfme/ui/designerEngine.api.md](#archivo-0134)
 
 ---
 
@@ -260,38 +156,42 @@
 - **Ruta relativa:** `AGENTS.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/AGENTS.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `29`
+- **Líneas aproximadas:** `33`
 
 ### Contenido original
 
-# AGENTS
+# AGENTS — Orquestación IA para `sisad-pdfme`
 
-Este repositorio usa un workspace neutral para múltiples proveedores de IA. La fuente de verdad está en `.ai/`. Los adaptadores de proveedor como GitHub Copilot, Codex, Claude, Gemini, Kilo y Antigravity deben leer o derivar desde ese espacio neutral, no inventar instrucciones paralelas.
+Este repositorio usa `.ai/` como fuente de verdad para reglas, agentes, skills, prompts e instrucciones. Los archivos específicos de Claude, Codex, GitHub Copilot y Gemini son adaptadores, no fuentes paralelas.
 
 ## Objetivo
-Coordinar subagentes, prompts, skills, reglas e instrucciones para evolucionar este fork de SISAD PDF editor sin perder coherencia técnica.
 
-## Principios
-- Priorizar la arquitectura real del repositorio, no la del pdfme original.
-- Mantener foco en engine, canvas, overlays, sidebars, schemas, generator y converter.
-- Diseñar con ahorro de espacio, progressive disclosure y widgets contextuales.
-- Favorecer cambios pequeños, testeables y documentados.
-- Mantener compatibilidad con múltiples proveedores de IA.
+Ayudar a los modelos de IA a evolucionar `sisad-pdfme` sin romper su principio central:
 
-## Dónde mirar primero
-- `.ai/agents`
-- `.ai/prompts`
-- `.ai/skills`
-- `.ai/instructions`
-- `.ai/rules/global-rules.md`
-- `docs/90-indice-verdad-actual.md`
-- `docs/96-sisad-pdfme-overview.md`
+> Fork aislado, genérico, configurable, extensible y desacoplado de flujos externos.
 
-## Flujo recomendado
-1. Elegir subagente por dominio.
-2. Cargar skill relevante.
-3. Ejecutar prompt de tarea.
-4. Validar con tests y documentación.
+## Reglas principales
+
+1. No acoplar `sisad-pdfme` a proyectos, clientes, rutas, endpoints o servicios externos.
+2. No crear componentes específicos por caso de uso.
+3. No duplicar sidebars, toolbars, inspectors, canvas runtime ni snapshot engine.
+4. Priorizar APIs públicas, contratos, plugins, adapters, commands y events.
+5. Mantener cada cambio pequeño, testeable, reversible y documentado.
+6. No modificar `pdf-lib` interno salvo que el prompt lo pida explícitamente y exista prueba de regresión.
+7. No usar CSS global invasivo fuera del scope `.sisad-pdfme-root`.
+8. No romper coordenadas, zoom, scroll, Moveable, Selecto ni overlays.
+9. Toda nueva habilidad debe poder activarse/desactivarse por configuración.
+10. Toda modificación de contrato debe actualizar documentación.
+
+## Flujo de trabajo recomendado
+
+1. Leer `.ai/rules/global-rules.md`.
+2. Seleccionar agente en `.ai/agents`.
+3. Cargar skill en `.ai/skills`.
+4. Usar prompt especializado en `.ai/prompts`.
+5. Ejecutar pruebas.
+6. Actualizar docs.
+7. Registrar riesgos y decisiones.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
@@ -303,368 +203,403 @@ Coordinar subagentes, prompts, skills, reglas e instrucciones para evolucionar e
 - **Ruta relativa:** `CLAUDE.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/CLAUDE.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `22`
+- **Líneas aproximadas:** `38`
 
 ### Contenido original
 
-# CLAUDE
+# CLAUDE — Adaptador para trabajar en `sisad-pdfme`
 
-Este archivo adapta Claude al workspace neutral de `.ai/`.
+## Fuente de verdad
 
-## Regla principal
-Usa `.ai/` como fuente de verdad. No dupliques agentes, prompts o skills aquí salvo que exista una necesidad real de formato.
+Claude debe usar `.ai/` como fuente principal. Este archivo solo define el orden de lectura y el comportamiento esperado.
 
-## Orden de lectura recomendado
+## Orden de lectura
+
 1. `AGENTS.md`
 2. `.ai/rules/global-rules.md`
-3. `.ai/instructions/*.instructions.md`
-4. `.ai/agents/*.agent.md`
-5. `.ai/skills/*/SKILL.md`
-6. `.ai/prompts/*.prompt.md`
+3. `.ai/context/project-overview.md`
+4. `.ai/architecture/assistant-architecture.md`
+5. `.ai/instructions/*.instructions.md`
+6. `.ai/agents/*.agent.md`
+7. `.ai/skills/*/SKILL.md`
+8. `.ai/prompts/*.prompt.md`
 
 ## Comportamiento esperado
-- trabajar por cambios pequeños
-- respetar contratos actuales
-- no asumir que el editor sigue el pdfme original
-- priorizar canvas, overlays, sidebars, schema registry, generator y converter
-- documentar migraciones cuando cambie surface pública
+
+- Trabajar por fases.
+- Explicar plan antes de editar.
+- Mantener cambios pequeños y verificables.
+- Respetar la arquitectura aislada del fork.
+- No asumir integraciones externas.
+- No inventar contratos si existen en `src/sisad-pdfme/contracts`.
+- Validar con pruebas.
+- Actualizar documentación cuando cambie la API pública.
+
+## Formato recomendado de respuesta
+
+1. Diagnóstico.
+2. Archivos afectados.
+3. Plan de cambio.
+4. Implementación.
+5. Tests.
+6. Riesgos.
+7. Documentación actualizada.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0003"></a>
-## Archivo #3: GEMINI.md
+## Archivo #3: CODEX.md
 
-- **Ruta relativa:** `GEMINI.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/GEMINI.md`
+- **Ruta relativa:** `CODEX.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/CODEX.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `21`
+- **Líneas aproximadas:** `38`
 
 ### Contenido original
 
-# GEMINI
+# CODEX — Adaptador para tareas de código en `sisad-pdfme`
 
-Este archivo adapta Gemini al workspace neutral de `.ai/`.
+## Principio
 
-## Regla principal
-Consume primero `.ai/` y trata este archivo como una guía de entrada, no como una segunda fuente de verdad.
+Codex debe ejecutar cambios concretos, pequeños y testeables. No debe hacer refactors masivos sin plan ni sin pruebas.
 
-## Enfoque
-- preservar arquitectura real del repositorio
-- proponer soluciones con buen particionamiento
-- evitar refactors gigantes sin validación
-- mantener compatibilidad multi proveedor
-- favorecer salida estructurada: objetivo, archivos, riesgos, plan, validación
+## Antes de editar
 
-## Prioridades del proyecto
-- editor canvas-first
-- UX compacta inspirada en Wix
-- workflows documentales tipo DocuSign
-- engine y contracts extensibles
-- pruebas de regresión
+- Revisar `AGENTS.md`.
+- Revisar `.ai/rules/global-rules.md`.
+- Revisar el agente y skill del dominio.
+- Localizar tests existentes.
+- Identificar contratos públicos afectados.
+
+## Durante la edición
+
+- Mantener compatibilidad de imports.
+- No duplicar lógica.
+- No introducir dependencias innecesarias.
+- No mezclar CSS de host con CSS interno.
+- No cambiar `pdf-lib` salvo necesidad explícita.
+- No reescribir el runtime completo por un bug puntual.
+
+## Después de editar
+
+Ejecutar lo que aplique:
+
+```bash
+npm test
+npm run test
+npm run test:unit
+npm run test:e2e
+npx vitest run
+npx playwright test
+```
+
+Si un comando no existe, reportarlo y usar el más cercano.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0004"></a>
-## Archivo #4: GUARDRAILS.md
+## Archivo #4: GEMINI.md
 
-- **Ruta relativa:** `GUARDRAILS.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/GUARDRAILS.md`
+- **Ruta relativa:** `GEMINI.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/GEMINI.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `187`
+- **Líneas aproximadas:** `26`
 
 ### Contenido original
 
-# AI Agent Guardrails
+# GEMINI — Adaptador para análisis y planeación en `sisad-pdfme`
 
-**⚠️ CRITICAL: ALL AI AGENTS MUST COMPLY WITH THESE RULES ⚠️**
+## Rol recomendado
 
-This file defines safety restrictions that AI agents MUST follow when working in this workspace.
-Agents should read and acknowledge these guardrails at the start of every session.
+Gemini debe usarse para análisis amplio, revisión de arquitectura, detección de inconsistencias, generación de documentación y auditorías comparativas.
 
----
+## Fuente de verdad
 
-## 🚫 ABSOLUTE RESTRICTIONS (NEVER VIOLATE)
+Usar `.ai/` como workspace neutral.
 
-### 1. Prompt Compliance
-- **Follow prompt instructions EXACTLY as written**
-- Do NOT interpret, improvise, or "improve" upon explicit instructions
-- Do NOT skip steps or take shortcuts unless explicitly permitted
-- If instructions are unclear, **ASK for clarification** before proceeding
-- If you cannot complete a task as specified, **STOP and explain why**
+## Enfoque esperado
 
-### 2. Forbidden Operations
-**NEVER execute these operations under ANY circumstances:**
+- Identificar contradicciones entre código, docs y tests.
+- Proponer planes de migración.
+- Revisar arquitectura modular.
+- Revisar cobertura de pruebas.
+- Detectar acoplamientos externos.
+- Mejorar documentación técnica.
 
-```
-# Destructive commands
-rm -rf /
-rm -rf ~
-rm -rf /*
-dd if=/dev/zero of=/dev/sda
+## No hacer
 
-# Silent discard (hides errors/output)
-command > /dev/null
-command 2> /dev/null
-command &> /dev/null
-
-# System modification without explicit approval
-chmod -R 777 /
-chown -R user /
-
-# Fork bombs or resource exhaustion
-:(){ :|:& };:
-```
-
-### 3. Secret Protection
-**NEVER read, display, echo, log, or expose:**
-
-- `.env` files or any `*.env*` files
-- Files containing: `secret`, `password`, `token`, `key`, `credential`, `auth`
-- SSH keys: `~/.ssh/*`, `id_rsa`, `id_ed25519`, `*.pem`
-- Cloud credentials: `~/.aws/*`, `~/.gcloud/*`, `~/.azure/*`
-- API keys in any format
-- Database connection strings with passwords
-- Any file the user explicitly marks as secret
-
-**If you accidentally see a secret:**
-1. Do NOT repeat it in your response
-2. Immediately inform the user
-3. Recommend rotating the exposed credential
-
-### 4. Command Autonomy
-**All terminal commands MUST be non-interactive:**
-
-- Use `-y`, `--yes`, `--non-interactive` flags
-- Use `DEBIAN_FRONTEND=noninteractive` for apt
-- Use `--no-input` for pip
-- Use `-f` for commands that prompt for confirmation (only when safe)
-- **NEVER** run commands that wait for user input
-- If interaction is required, break into multiple steps with user confirmation
-
-### 5. Protected Paths
-**NEVER modify these locations:**
-
-```
-.github/prompts/*     # Prompt templates
-.github/agents/*      # Agent definitions  
-.github/instructions/*# Instruction files
-GUARDRAILS.md         # This file
-.copilotignore        # Ignore patterns
-```
-
-**For any config file modification:**
-1. Show the proposed change first
-2. Wait for explicit user approval
-3. Create a backup before modifying
-
----
-
-## ⚠️ CAUTION ZONES (REQUIRE EXPLICIT APPROVAL)
-
-### Database Operations
-- Schema modifications (CREATE, ALTER, DROP)
-- Bulk data changes (UPDATE/DELETE without WHERE)
-- Production database connections
-
-### Git Operations
-- Force push (`git push -f`, `git push --force`)
-- Branch deletion (`git branch -D`)
-- History rewriting (`git rebase`, `git filter-branch`)
-- Pushing to main/master directly
-
-### System Configuration
-- Package installation (npm install, pip install, apt install)
-- Environment variable changes
-- Service restarts
-- Port binding
-
-### File Operations
-- Deleting multiple files
-- Moving/renaming critical files
-- Changing file permissions
-- Operations outside workspace directory
-
----
-
-## ✅ SAFE OPERATIONS (NO APPROVAL NEEDED)
-
-- Reading files in the workspace
-- Creating new files in the workspace
-- Running tests
-- Building/compiling code
-- Git status, diff, log (read-only)
-- Linting and formatting
-- Starting dev servers (on safe ports)
-
----
-
-## 📋 SESSION PROTOCOL
-
-### At Session Start
-1. Check if GUARDRAILS.md exists
-2. Read and acknowledge these rules
-3. State: "Guardrails acknowledged. Operating within defined restrictions."
-
-### Before Any Command
-1. Check command against ABSOLUTE RESTRICTIONS
-2. If in CAUTION ZONE, request explicit approval
-3. Prefer SAFE OPERATIONS when possible
-
-### When Uncertain
-1. **STOP** - Do not proceed
-2. **ASK** - Request clarification from user
-3. **EXPLAIN** - State what you need to know and why
-
----
-
-## 🔧 USER-DEFINED RULES
-
-Add your project-specific restrictions below. Agents MUST respect these rules.
-
-<!-- 
-Example user rules:
-
-### Project-Specific Restrictions
-- Never modify the `src/core/` directory without approval
-- Always run tests before committing
-- Use TypeScript strict mode for all new files
-- Require documentation for public functions
-- No console.log in production code
-- Database migrations require team review
-
-### Deployment Rules  
-- Never deploy to production directly
-- Staging deployment requires all tests passing
-- Hotfixes require incident ticket reference
-
-### Code Standards
-- Maximum function length: 50 lines
-- Maximum file length: 300 lines
-- Required test coverage: 80%
--->
-
-### Custom Restrictions
-<!-- Add your rules here -->
-
-
-
----
-
-## 📝 Guardrails Version
-
-- **Version:** 1.0.0
-- **Last Updated:** 2025-12-04
-- **Maintainer:** User (editable)
-
----
-
-*These guardrails exist to protect your codebase, secrets, and system integrity.*
-*AI agents should treat these rules as inviolable constraints, not suggestions.*
+- No inventar rutas.
+- No asumir servicios externos.
+- No mezclar reglas de negocio ajenas al fork.
+- No proponer cambios sin criterios de aceptación.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0005"></a>
-## Archivo #5: README.md
+## Archivo #5: MANIFEST.md
 
-- **Ruta relativa:** `README.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/README.md`
+- **Ruta relativa:** `MANIFEST.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/MANIFEST.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `46`
+- **Líneas aproximadas:** `130`
 
 ### Contenido original
 
-# SISAD PDFME
+# Manifest
 
-Editor visual de PDFs basado en React, Vite y una integración modificada de `sisad-pdfme`. El proyecto combina un canvas editable, runtime de formularios, generación de PDF, conversión de documentos y soporte de colaboración.
-
-## Qué hay aquí
-
-- `src/sisad-pdfme/common`: contratos, helpers y tipos compartidos.
-- `src/sisad-pdfme/converter`: conversión PDF e imágenes.
-- `src/sisad-pdfme/generator`: generación final de PDFs.
-- `src/sisad-pdfme/pdf-lib`: fork o adaptación de bajo nivel para PDF.
-- `src/sisad-pdfme/schemas`: catálogo de campos y plugins.
-- `src/sisad-pdfme/ui`: diseñador, visor, formularios y componentes del editor.
-- `src/features/sisad-pdfme`: laboratorio y demo de la aplicación.
-
-## Dónde empezar
-
-- [docs/README.md](docs/README.md): entrada principal a la documentación.
-- [docs/90-indice-verdad-actual.md](docs/90-indice-verdad-actual.md): documentación respaldada por el código actual.
-- [docs/91-indice-conceptual.md](docs/91-indice-conceptual.md): visión conceptual y funcional.
-- [docs/93-indice-roadmap-plataforma.md](docs/93-indice-roadmap-plataforma.md): roadmap de plataforma y empaquetado.
-- [docs/96-sisad-pdfme-overview.md](docs/96-sisad-pdfme-overview.md): resumen técnico histórico de la plataforma.
-- [docs/97-indice-generado.md](docs/97-indice-generado.md): índice generado para búsqueda histórica.
-- [docs/reference/README.md](docs/reference/README.md): material histórico y archivo de apoyo.
-- [documentacion-unificada.md](documentacion-unificada.md): volcado unificado generado automáticamente, útil solo como archivo histórico.
-
-## Proceso actual importante
-
-La carga múltiple de PDF se resuelve en [src/sisad-pdfme/ui/components/Designer/index.tsx](src/sisad-pdfme/ui/components/Designer/index.tsx) y el motor de configuración real vive en [src/sisad-pdfme/ui/designerEngine.ts](src/sisad-pdfme/ui/designerEngine.ts).
-
-## Scripts útiles
-
-```bash
-npm run dev
-npm run build
-npm run preview
-npm run lint
-npm run test
-npm run test:e2e
-```
-
-## Verificación rápida
-
-- El árbol actual no está organizado como monorepo con workspaces.
-- Las propuestas de `platform/pdf` son roadmap, no implementación actual.
-- La verdad operativa está en `src/sisad-pdfme/*` y en la cuarta tanda de documentación.
+- `.ai/README.md`
+- `.ai/agents/canvas-overlays-architect.agent.md`
+- `.ai/agents/canvas-runtime-architect.agent.md`
+- `.ai/agents/design-system-guardian.agent.md`
+- `.ai/agents/designer-engine-architect.agent.md`
+- `.ai/agents/docs-migration-steward.agent.md`
+- `.ai/agents/generator-converter-architect.agent.md`
+- `.ai/agents/left-sidebar-catalog-architect.agent.md`
+- `.ai/agents/platform-pdf-architect.agent.md`
+- `.ai/agents/prompt-execution-director.agent.md`
+- `.ai/agents/right-sidebar-inspector-architect.agent.md`
+- `.ai/agents/schema-registry-architect.agent.md`
+- `.ai/agents/schema-rendering-architect.agent.md`
+- `.ai/agents/testing-regression-guardian.agent.md`
+- `.ai/architecture/agent-routing.md`
+- `.ai/architecture/assistant-architecture.md`
+- `.ai/architecture/provider-model.md`
+- `.ai/context/code-map.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/provider-compatibility.md`
+- `.ai/instructions/architecture-modular.instructions.md`
+- `.ai/instructions/canvas-first-ux.instructions.md`
+- `.ai/instructions/css-unification.instructions.md`
+- `.ai/instructions/designer-runtime.instructions.md`
+- `.ai/instructions/docs-and-migration.instructions.md`
+- `.ai/instructions/frontend-editor.instructions.md`
+- `.ai/instructions/pdfme-extension.instructions.md`
+- `.ai/instructions/schema-system.instructions.md`
+- `.ai/instructions/testing-quality.instructions.md`
+- `.ai/instructions/ui-ux-compact.instructions.md`
+- `.ai/prompts/add-new-schema-family.prompt.md`
+- `.ai/prompts/audit-platform-boundaries.prompt.md`
+- `.ai/prompts/build-detail-section-system.prompt.md`
+- `.ai/prompts/create-playwright-canvas-scenarios.prompt.md`
+- `.ai/prompts/document-fork-divergence.prompt.md`
+- `.ai/prompts/generate-migration-guide.prompt.md`
+- `.ai/prompts/implement-overlay-pattern.prompt.md`
+- `.ai/prompts/normalize-schema-contracts.prompt.md`
+- `.ai/prompts/optimize-canvas-runtime.prompt.md`
+- `.ai/prompts/refactor-designer-engine.prompt.md`
+- `.ai/prompts/refactor-left-rail-catalog.prompt.md`
+- `.ai/prompts/refactor-right-inspector-layout.prompt.md`
+- `.ai/prompts/stabilize-public-api.prompt.md`
+- `.ai/prompts/unify-css-architecture.prompt.md`
+- `.ai/rules/global-rules.md`
+- `.ai/skills/canvas-geometry-scaling/SKILL.md`
+- `.ai/skills/catalog-discovery-patterns/SKILL.md`
+- `.ai/skills/component-composition/SKILL.md`
+- `.ai/skills/css-layering-and-overrides/SKILL.md`
+- `.ai/skills/design-system-consistency/SKILL.md`
+- `.ai/skills/docusign-inspired-product-thinking/SKILL.md`
+- `.ai/skills/editor-regression-testing/SKILL.md`
+- `.ai/skills/fork-safe-pdfme-evolution/SKILL.md`
+- `.ai/skills/generator-runtime-parity/SKILL.md`
+- `.ai/skills/inspector-panel-composition/SKILL.md`
+- `.ai/skills/moveable-selecto-integration/SKILL.md`
+- `.ai/skills/playwright-canvas-diagnostics/SKILL.md`
+- `.ai/skills/public-api-surface-design/SKILL.md`
+- `.ai/skills/schema-identity-persistence/SKILL.md`
+- `.ai/skills/schema-registry-extension/SKILL.md`
+- `.ai/skills/wix-inspired-left-rail-ux/SKILL.md`
+- `.ai/templates/architecture-decision-record.md`
+- `.ai/templates/change-report.md`
+- `.claude/README.md`
+- `.claude/commands/plan.md`
+- `.claude/commands/review.md`
+- `.claude/commands/startup.md`
+- `.codex/README.md`
+- `.codex/tasks/refactor-safe.md`
+- `.gemini/README.md`
+- `.gemini/prompts/audit-architecture.md`
+- `.github/AGENTS.md`
+- `.github/copilot-instructions.md`
+- `.github/instructions/architecture-modular.instructions.md`
+- `.github/instructions/canvas-first-ux.instructions.md`
+- `.github/instructions/css-unification.instructions.md`
+- `.github/instructions/designer-runtime.instructions.md`
+- `.github/instructions/docs-and-migration.instructions.md`
+- `.github/instructions/frontend-editor.instructions.md`
+- `.github/instructions/pdfme-extension.instructions.md`
+- `.github/instructions/schema-system.instructions.md`
+- `.github/instructions/testing-quality.instructions.md`
+- `.github/instructions/ui-ux-compact.instructions.md`
+- `.github/prompts/add-new-schema-family.prompt.md`
+- `.github/prompts/audit-platform-boundaries.prompt.md`
+- `.github/prompts/build-detail-section-system.prompt.md`
+- `.github/prompts/create-playwright-canvas-scenarios.prompt.md`
+- `.github/prompts/document-fork-divergence.prompt.md`
+- `.github/prompts/generate-migration-guide.prompt.md`
+- `.github/prompts/implement-overlay-pattern.prompt.md`
+- `.github/prompts/normalize-schema-contracts.prompt.md`
+- `.github/prompts/optimize-canvas-runtime.prompt.md`
+- `.github/prompts/refactor-designer-engine.prompt.md`
+- `.github/prompts/refactor-left-rail-catalog.prompt.md`
+- `.github/prompts/refactor-right-inspector-layout.prompt.md`
+- `.github/prompts/stabilize-public-api.prompt.md`
+- `.github/prompts/unify-css-architecture.prompt.md`
+- `AGENTS.md`
+- `CLAUDE.md`
+- `CODEX.md`
+- `GEMINI.md`
+- `README.md`
+- `docs/00-indice/README.md`
+- `docs/01-arquitectura/01-vision-general.md`
+- `docs/01-arquitectura/02-mapa-modulos.md`
+- `docs/01-arquitectura/03-arquitectura-ia.md`
+- `docs/02-api-publica/01-entrypoints.md`
+- `docs/02-api-publica/02-commands-events.md`
+- `docs/03-runtime/01-designer-form-viewer.md`
+- `docs/03-runtime/02-snapshot-engine.md`
+- `docs/04-componentes/01-inventario-componentes.md`
+- `docs/04-componentes/02-sidebars-configurables.md`
+- `docs/04-componentes/03-canvas-overlays.md`
+- `docs/05-schemas/01-registry-y-plugins.md`
+- `docs/05-schemas/02-schemas-built-in.md`
+- `docs/06-funcionalidades/01-habilidades-configurables.md`
+- `docs/06-funcionalidades/02-multidocumento.md`
+- `docs/06-funcionalidades/03-colaboracion-y-ownership.md`
+- `docs/07-calidad/01-testing.md`
+- `docs/07-calidad/02-css-design-system.md`
+- `docs/07-calidad/03-troubleshooting-render.md`
+- `docs/08-guias-ia/01-arquitectura-asistente.md`
+- `docs/08-guias-ia/02-prompts-y-skills.md`
+- `docs/99-anexos/01-checklist-adopcion.md`
+- `docs/99-anexos/02-matriz-agentes-skills.md`
+- `docs/README.md`
+- `metadata/project-analysis.json`
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0006"></a>
-## Archivo #6: .ai/README.md
+## Archivo #6: README.md
 
-- **Ruta relativa:** `.ai/README.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/README.md`
+- **Ruta relativa:** `README.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/README.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `11`
+- **Líneas aproximadas:** `65`
 
 ### Contenido original
 
-# AI workspace
+# SISAD PDFME — Workspace IA extendido
 
-Estructura neutral para múltiples proveedores:
-- Copilot
-- Codex
+Este paquete contiene una arquitectura completa de asistencia con IA para evolucionar `sisad-pdfme` como fork aislado, configurable y genérico.
+
+## Qué incluye
+
+- Reglas globales para IA.
+- Arquitectura de asistencia multiagente.
+- Skills reutilizables.
+- Prompts especializados.
+- Instrucciones por proveedor.
+- Adaptadores para Claude, Codex, GitHub Copilot y Gemini.
+- Documentación técnica mejorada y extendida.
+- Checklists de calidad, seguridad y regresión.
+- Mapa de módulos detectado desde el código consolidado.
+
+## Principio rector
+
+`sisad-pdfme` debe mantenerse como componente aislado. Todo componente debe ser genérico, toda habilidad debe ser configurable y toda integración debe entrar mediante contratos públicos, plugins, adapters, comandos o eventos.
+
+## Proveedores soportados
+
 - Claude
+- Codex
+- GitHub Copilot
 - Gemini
-- Kilo
-- Antigravity
+
+## Orden recomendado de lectura
+
+1. `AGENTS.md`
+2. `.ai/rules/global-rules.md`
+3. `.ai/architecture/assistant-architecture.md`
+4. `.ai/context/project-overview.md`
+5. `.ai/instructions/*.instructions.md`
+6. `.ai/agents/*.agent.md`
+7. `.ai/skills/*/SKILL.md`
+8. `.ai/prompts/*.prompt.md`
+9. `docs/README.md`
+
+## Estadísticas usadas para generar el workspace
+
+- Archivos de código detectados: `504`
+- Archivos bajo `src/sisad-pdfme`: `385`
+- Archivos Markdown detectados: `248`
+- Archivos CSS detectados: `6`
+
+## Instalación sugerida
+
+Copia el contenido de este ZIP en la raíz del repositorio del fork. Si ya tienes archivos con el mismo nombre, revisa primero los diffs y fusiona manualmente.
+
+```bash
+unzip sisad_pdfme_ai_workspace.zip -d .
+```
+
+## Uso recomendado
+
+Para una tarea técnica:
+
+1. Identifica el dominio: canvas, schema, sidebars, snapshot, generator, testing, CSS o arquitectura.
+2. Abre el agente correspondiente en `.ai/agents`.
+3. Lee el skill correspondiente en `.ai/skills`.
+4. Ejecuta el prompt de `.ai/prompts`.
+5. Valida con tests unitarios y Playwright.
+6. Actualiza documentación si cambian contratos públicos.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0007"></a>
-## Archivo #7: .antigravity/README.md
+## Archivo #7: .ai/README.md
 
-- **Ruta relativa:** `.antigravity/README.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.antigravity/README.md`
+- **Ruta relativa:** `.ai/README.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/README.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `4`
+- **Líneas aproximadas:** `27`
 
 ### Contenido original
 
-# Antigravity provider adapter
-Apunta a los artefactos neutrales en .ai/.
+# `.ai` — Workspace neutral de asistencia IA
+
+Esta carpeta contiene la fuente de verdad para modelos de IA que trabajen sobre `sisad-pdfme`.
+
+## Estructura
+
+```text
+.ai/
+├── agents/          # Subagentes por dominio técnico
+├── architecture/    # Arquitectura del asistente IA
+├── context/         # Contexto estable del proyecto
+├── instructions/    # Reglas de implementación por área
+├── prompts/         # Prompts ejecutables por tarea
+├── rules/           # Reglas globales
+├── skills/          # Skills reutilizables
+└── templates/       # Plantillas de reportes y decisiones
+```
+
+## Uso
+
+1. El orquestador lee reglas globales.
+2. Selecciona un agente.
+3. Carga uno o varios skills.
+4. Ejecuta un prompt.
+5. Valida con tests.
+6. Actualiza documentación.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
@@ -676,12 +611,25 @@ Apunta a los artefactos neutrales en .ai/.
 - **Ruta relativa:** `.claude/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.claude/README.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `4`
+- **Líneas aproximadas:** `16`
 
 ### Contenido original
 
-# Claude provider adapter
-Apunta a los artefactos neutrales en .ai/.
+# Claude workspace
+
+Claude debe leer este directorio como adaptador, pero la fuente de verdad está en `.ai/`.
+
+## Inicio rápido
+
+1. Leer `CLAUDE.md`.
+2. Leer `.ai/rules/global-rules.md`.
+3. Leer `.ai/architecture/assistant-architecture.md`.
+4. Seleccionar agente y skill.
+5. Ejecutar prompt.
+
+## Estilo recomendado
+
+Claude debe razonar por fases, explicar riesgos y proponer cambios incrementales.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
@@ -693,12 +641,30 @@ Apunta a los artefactos neutrales en .ai/.
 - **Ruta relativa:** `.codex/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.codex/README.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `4`
+- **Líneas aproximadas:** `21`
 
 ### Contenido original
 
-# Codex provider adapter
-Apunta a los artefactos neutrales en .ai/.
+# Codex workspace
+
+Este adaptador orienta a Codex para ejecutar tareas de código sobre `sisad-pdfme`.
+
+## Reglas
+
+- Cambios pequeños.
+- Tests antes/después si aplica.
+- No alterar contratos públicos sin docs.
+- No acoplar a terceros.
+- No modificar `pdf-lib` salvo instrucción explícita.
+
+## Flujo
+
+1. Leer `CODEX.md`.
+2. Leer `AGENTS.md`.
+3. Cargar prompt específico.
+4. Editar.
+5. Probar.
+6. Reportar.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
@@ -710,12 +676,22 @@ Apunta a los artefactos neutrales en .ai/.
 - **Ruta relativa:** `.gemini/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.gemini/README.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `4`
+- **Líneas aproximadas:** `13`
 
 ### Contenido original
 
-# Gemini provider adapter
-Apunta a los artefactos neutrales en .ai/.
+# Gemini workspace
+
+Gemini debe usarse para análisis amplio, documentación y revisión arquitectónica.
+
+## Buenas tareas para Gemini
+
+- Auditar duplicidad.
+- Comparar docs con código.
+- Diseñar arquitectura.
+- Detectar riesgos.
+- Mejorar prompts.
+- Crear checklists.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
@@ -727,22 +703,24 @@ Apunta a los artefactos neutrales en .ai/.
 - **Ruta relativa:** `.github/AGENTS.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/AGENTS.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `13`
+- **Líneas aproximadas:** `15`
 
 ### Contenido original
 
-# GitHub Agents
+# GitHub AGENTS
 
-GitHub es un adaptador del workspace neutral en `.ai/`.
+Usar `.ai/agents` como fuente de verdad. Este directorio existe para que Copilot encuentre instrucciones cercanas.
 
-## Qué hacer
-- referenciar `.ai/agents`, `.ai/prompts`, `.ai/skills` y `.ai/instructions`
-- mantener paridad con otros proveedores
-- usar lenguaje claro y orientado a tareas
+## Agentes principales
 
-## Qué no hacer
-- crear reglas exclusivas de GitHub que contradigan `.ai/`
-- ocultar contratos importantes en archivos solo de proveedor
+- platform-pdf-architect
+- designer-engine-architect
+- canvas-runtime-architect
+- left-sidebar-catalog-architect
+- right-sidebar-inspector-architect
+- schema-registry-architect
+- testing-regression-guardian
+- docs-migration-steward
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
@@ -754,2313 +732,1738 @@ GitHub es un adaptador del workspace neutral en `.ai/`.
 - **Ruta relativa:** `.github/copilot-instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/copilot-instructions.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `15`
+- **Líneas aproximadas:** `33`
 
 ### Contenido original
 
-# Copilot Instructions
+# GitHub Copilot Instructions — `sisad-pdfme`
 
-## Fuente de verdad
-Todo el workspace de IA vive en `.ai/`. Este archivo resume cómo debe comportarse GitHub Copilot en este proyecto.
+## Prioridad
+
+Mantener `sisad-pdfme` como fork aislado, configurable y extensible.
 
 ## Reglas
-- Prioriza cambios locales y pequeños.
-- Usa primero el agente adecuado antes de proponer una implementación.
-- Revisa skills antes de tocar engine, canvas, selection, schemas o generator.
-- Si el cambio toca API pública, documentación o migración, actualiza docs relacionadas.
-- Si el cambio toca interacción real del editor, propone cobertura Vitest o Playwright.
 
-## Contexto del producto
-Este repositorio es un fork muy evolucionado de pdfme con engine propio, catálogo izquierdo compacto, inspector derecho contextual, overlays de canvas, collaboration, generator, converter y UX inspirada en Wix y DocuSign.
+- No agregar lógica de servicios externos.
+- No crear componentes específicos por caso de uso.
+- Usar registry, plugins, commands, events y configs.
+- Mantener CSS dentro de `.sisad-pdfme-root`.
+- Preservar canvas geometry.
+- Actualizar docs si cambia contrato.
+- Agregar tests cuando afecte runtime.
+
+## Contexto principal
+
+- `src/sisad-pdfme/ui`
+- `src/sisad-pdfme/schemas`
+- `src/sisad-pdfme/shared`
+- `src/sisad-pdfme/contracts`
+- `src/sisad-pdfme/generator`
+- `src/sisad-pdfme/converter`
+- `tests/unit`
+- `tests/playwright`
+
+## No hacer
+
+- No exponer DOM interno como API.
+- No guardar datos sensibles en snapshot.
+- No romper Designer/Form/Viewer parity.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0013"></a>
-## Archivo #13: .github/PROTECTED_FILES.md
+## Archivo #13: docs/README.md
 
-- **Ruta relativa:** `.github/PROTECTED_FILES.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/PROTECTED_FILES.md`
+- **Ruta relativa:** `docs/README.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/README.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `157`
+- **Líneas aproximadas:** `24`
 
 ### Contenido original
 
-# Protected Files - Agent Safety Documentation
+# Documentación técnica de `sisad-pdfme`
 
-## Overview
+## Índice recomendado
 
-This document explains the protections in place to prevent Copilot agents from modifying critical workflow and configuration files.
+1. `00-indice/README.md`
+2. `01-arquitectura/01-vision-general.md`
+3. `01-arquitectura/02-mapa-modulos.md`
+4. `01-arquitectura/03-arquitectura-ia.md`
+5. `02-api-publica/01-entrypoints.md`
+6. `03-runtime/01-designer-form-viewer.md`
+7. `04-componentes/01-inventario-componentes.md`
+8. `04-componentes/02-sidebars-configurables.md`
+9. `04-componentes/03-canvas-overlays.md`
+10. `05-schemas/01-registry-y-plugins.md`
+11. `06-funcionalidades/01-habilidades-configurables.md`
+12. `07-calidad/01-testing.md`
+13. `07-calidad/02-css-design-system.md`
+14. `08-guias-ia/01-arquitectura-asistente.md`
+15. `99-anexos/01-checklist-adopcion.md`
 
-## Protected Directories
+## Regla
 
-The following directories contain files that define agent behavior and MUST NOT be modified by agents:
-
-1. **`.github/prompts/`** - Workflow prompt templates
-2. **`.github/agents/`** - Agent definition files
-3. **`.github/instructions/`** - Copilot instruction files
-
-## Protection Mechanisms
-
-### 1. Explicit Instructions in copilot-instructions.md
-
-The main instruction file contains a **CRITICAL** section at the top:
-
-```markdown
-**CRITICAL: PROTECTED FILES - DO NOT MODIFY**
-- **NEVER modify, edit, update, or replace files in `.github/prompts/`**
-- **NEVER modify, edit, update, or replace files in `.github/agents/`**
-- **NEVER modify, edit, update, or replace files in `.github/instructions/`**
-- These files define agent behavior and workflows - they are READ-ONLY
-- If you believe changes are needed to these files, STOP and inform the user
-- Violation of this rule means the agent is malfunctioning
-```
-
-This instruction appears FIRST, before any other instructions, giving it maximum priority.
-
-### 2. Per-Agent Protections
-
-Each agent file (`.github/agents/*.md`) includes the same protection warning at the top of their instructions, immediately after their title:
-
-- `memory-deep-think.agent.md`
-- `architect.agent.md`
-- `code.agent.md`
-- `debug.agent.md`
-- `ask.agent.md`
-
-### 3. Self-Documenting Prompt Files
-
-Each prompt template file (`.github/prompts/*.md`) includes a warning header:
-
-```markdown
-**⚠️ CRITICAL: THIS FILE IS READ-ONLY ⚠️**
-**DO NOT MODIFY THIS PROMPT FILE. It is a template for agent workflows.**
-**All work, plans, and context must be saved to AI-Memory/, NOT here.**
-```
-
-This serves as both a protection and a reminder that outputs should go to `AI-Memory/`, not back into the prompt files.
-
-### 4. .copilotignore File
-
-A `.github/.copilotignore` file explicitly lists the protected directories:
-
-```
-# Agent definition files
-agents/*.md
-
-# Prompt template files
-prompts/*.md
-
-# Instruction files
-instructions/*.md
-```
-
-## What To Do If a File Is Modified
-
-If you notice that an agent has modified a file in these protected directories:
-
-1. **Immediately stop the agent** - The agent is malfunctioning
-2. **Restore the file** from git history: `git restore .github/prompts/filename.md`
-3. **Review the changes** to understand what the agent was trying to do
-4. **Report the issue** - This indicates a failure in the protection mechanisms
-5. **Consider if the legitimate intent** requires updating the instructions
-
-## Legitimate Modifications
-
-Only humans should modify these files, and only when:
-
-- Adding new workflow patterns
-- Updating agent capabilities
-- Fixing bugs in prompt logic
-- Improving instruction clarity
-- Adding new protection mechanisms
-
-## File Purposes
-
-### Prompt Files (`.github/prompts/`)
-- `Think.prompt.md` - Deep research and analysis workflow
-- `Plan.prompt.md` - Task breakdown and planning workflow
-- `Execute.prompt.md` - Implementation and execution workflow
-- `Checkpoint.prompt.md` - Memory bank checkpoint workflow
-- `Startup.prompt.md` - Session initialization workflow
-- `GH.prompt.md` - GitHub Actions monitoring workflow
-- `Sync.prompt.md` - Memory-codebase synchronization workflow
-
-### Agent Files (`.github/agents/`)
-- `memory-deep-think.agent.md` - Memory management and deep thinking
-- `architect.agent.md` - System architecture and design
-- `code.agent.md` - Code implementation
-- `debug.agent.md` - Debugging and troubleshooting
-- `ask.agent.md` - Questions and documentation
-
-### Instruction Files (`.github/instructions/`)
-- `copilot-instructions.md` - Main Copilot configuration
-
-## Output Destinations
-
-Agents should output their work to:
-
-- **`AI-Memory/`** - For context, decisions, progress, patterns
-- **`app/`, `components/`, `lib/`** - For code implementation
-- **`docs/`** - For project documentation
-- **Root config files** - For build/deployment configuration
-
-Agents should **NEVER** write output back to:
-- `.github/prompts/`
-- `.github/agents/`
-- `.github/instructions/`
-
-## Monitoring
-
-To check if protected files have been modified:
-
-```bash
-# Check git status for any changes in .github
-git status .github/
-
-# View changes to protected directories
-git diff .github/prompts/
-git diff .github/agents/
-git diff .github/instructions/
-
-# Check recent commits affecting these files
-git log --oneline -- .github/prompts/ .github/agents/ .github/instructions/
-```
-
-## Version History
-
-- 2025-11-19: Initial protection mechanisms implemented
-  - Added CRITICAL warning to copilot-instructions.md
-  - Added protection warnings to all agent files
-  - Added read-only warnings to all prompt files
-  - Created .copilotignore file
-  - Created this documentation
-- 2025-12-01: Updated for AI-Memory folder structure
-  - Changed memory-bank references to AI-Memory
-  - Updated file list (consolidated to 5 files)
-
----
-
-**Remember: These protections exist because agents must follow workflows, not redefine them.**
+Toda documentación debe hablar de `sisad-pdfme` como componente aislado.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0014"></a>
-## Archivo #14: .github/README-AI-WORKSPACE.md
+## Archivo #14: .ai/agents/canvas-overlays-architect.agent.md
 
-- **Ruta relativa:** `.github/README-AI-WORKSPACE.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/README-AI-WORKSPACE.md`
+- **Ruta relativa:** `.ai/agents/canvas-overlays-architect.agent.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/canvas-overlays-architect.agent.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `23`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# README AI Workspace
+# Arquitecto de Overlays
 
-## Propósito
-Explicar cómo usar el workspace de IA multi proveedor del proyecto.
+## Misión
 
-## Estructura
-- `.ai/agents`: subagentes especializados por dominio
-- `.ai/prompts`: prompts reutilizables de ejecución
-- `.ai/skills`: conocimiento táctico y checklists
-- `.ai/instructions`: instrucciones por área
-- `.ai/rules`: reglas globales
+Diseña overlays, toolbar flotante, comentarios anclados, contexto visual, snap feedback y state overlays.
 
-## Proveedores compatibles
-- GitHub Copilot
-- Codex
-- Claude
-- Gemini
-- Kilo
-- Antigravity
+## Contexto obligatorio
 
-## Regla central
-La fuente de verdad es `.ai/`. Los directorios de proveedor son adaptadores ligeros.
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/architecture/assistant-architecture.md`
+
+## Responsabilidades
+
+- Analizar el dominio antes de editar.
+- Identificar archivos afectados.
+- Mantener aislamiento del fork.
+- Preservar configurabilidad.
+- Proponer cambios pequeños y testeables.
+- Exigir pruebas relevantes.
+- Actualizar documentación cuando cambie contrato.
+
+## No hacer
+
+- No crear lógica específica de consumidores externos.
+- No duplicar componentes.
+- No modificar dominios ajenos sin necesidad.
+- No ignorar tests existentes.
+- No introducir CSS global invasivo.
+
+## Entregable esperado
+
+1. Diagnóstico.
+2. Plan.
+3. Archivos afectados.
+4. Cambios.
+5. Tests.
+6. Riesgos.
+7. Documentación.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0015"></a>
-## Archivo #15: .github/README.md
+## Archivo #15: .ai/agents/canvas-runtime-architect.agent.md
 
-- **Ruta relativa:** `.github/README.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/README.md`
+- **Ruta relativa:** `.ai/agents/canvas-runtime-architect.agent.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/canvas-runtime-architect.agent.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `4`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# GitHub provider adapter
-Apunta a los artefactos neutrales en .ai/.
+# Arquitecto de Canvas Runtime
+
+## Misión
+
+Protege coordenadas, zoom, scroll, paper geometry, Moveable, Selecto y render estable.
+
+## Contexto obligatorio
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/architecture/assistant-architecture.md`
+
+## Responsabilidades
+
+- Analizar el dominio antes de editar.
+- Identificar archivos afectados.
+- Mantener aislamiento del fork.
+- Preservar configurabilidad.
+- Proponer cambios pequeños y testeables.
+- Exigir pruebas relevantes.
+- Actualizar documentación cuando cambie contrato.
+
+## No hacer
+
+- No crear lógica específica de consumidores externos.
+- No duplicar componentes.
+- No modificar dominios ajenos sin necesidad.
+- No ignorar tests existentes.
+- No introducir CSS global invasivo.
+
+## Entregable esperado
+
+1. Diagnóstico.
+2. Plan.
+3. Archivos afectados.
+4. Cambios.
+5. Tests.
+6. Riesgos.
+7. Documentación.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0016"></a>
-## Archivo #16: .kilo/README.md
+## Archivo #16: .ai/agents/design-system-guardian.agent.md
 
-- **Ruta relativa:** `.kilo/README.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.kilo/README.md`
+- **Ruta relativa:** `.ai/agents/design-system-guardian.agent.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/design-system-guardian.agent.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `4`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# Kilo provider adapter
-Apunta a los artefactos neutrales en .ai/.
+# Guardián de Design System
+
+## Misión
+
+Controla tokens, CSS scope, compact UI, responsive y consistencia visual.
+
+## Contexto obligatorio
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/architecture/assistant-architecture.md`
+
+## Responsabilidades
+
+- Analizar el dominio antes de editar.
+- Identificar archivos afectados.
+- Mantener aislamiento del fork.
+- Preservar configurabilidad.
+- Proponer cambios pequeños y testeables.
+- Exigir pruebas relevantes.
+- Actualizar documentación cuando cambie contrato.
+
+## No hacer
+
+- No crear lógica específica de consumidores externos.
+- No duplicar componentes.
+- No modificar dominios ajenos sin necesidad.
+- No ignorar tests existentes.
+- No introducir CSS global invasivo.
+
+## Entregable esperado
+
+1. Diagnóstico.
+2. Plan.
+3. Archivos afectados.
+4. Cambios.
+5. Tests.
+6. Riesgos.
+7. Documentación.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0017"></a>
-## Archivo #17: docs/README.md
+## Archivo #17: .ai/agents/designer-engine-architect.agent.md
 
-- **Ruta relativa:** `docs/README.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/README.md`
+- **Ruta relativa:** `.ai/agents/designer-engine-architect.agent.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/designer-engine-architect.agent.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `45`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# SISAD PDFME — Documentación para consumo externo
+# Arquitecto del Designer Engine
 
-Este paquete contiene documentación organizada para implementar y mantener `sisad-pdfme` en otros proyectos.
+## Misión
 
-## Índice
-- [00-indice/01-manifiesto-fuentes.md](00-indice/01-manifiesto-fuentes.md)
-- [00-indice/README.md](00-indice/README.md)
-- [01-arquitectura/01-vision-general.md](01-arquitectura/01-vision-general.md)
-- [01-arquitectura/02-mapa-modulos.md](01-arquitectura/02-mapa-modulos.md)
-- [01-arquitectura/03-contratos-template-schema-inputs.md](01-arquitectura/03-contratos-template-schema-inputs.md)
-- [02-api-publica/01-entrypoints.md](02-api-publica/01-entrypoints.md)
-- [02-api-publica/api-assignments.md](02-api-publica/api-assignments.md)
-- [02-api-publica/api-commands.md](02-api-publica/api-commands.md)
-- [02-api-publica/api-comments.md](02-api-publica/api-comments.md)
-- [02-api-publica/api-common.md](02-api-publica/api-common.md)
-- [02-api-publica/api-converter.md](02-api-publica/api-converter.md)
-- [02-api-publica/api-generator.md](02-api-publica/api-generator.md)
-- [02-api-publica/api-schemas.md](02-api-publica/api-schemas.md)
-- [02-api-publica/api-ui.md](02-api-publica/api-ui.md)
-- [03-runtime/01-designer-form-viewer.md](03-runtime/01-designer-form-viewer.md)
-- [03-runtime/02-designer-engine-builder.md](03-runtime/02-designer-engine-builder.md)
-- [03-runtime/03-command-bus-y-acciones.md](03-runtime/03-command-bus-y-acciones.md)
-- [04-componentes/01-inventario-componentes.md](04-componentes/01-inventario-componentes.md)
-- [04-componentes/02-canvas-interacciones.md](04-componentes/02-canvas-interacciones.md)
-- [04-componentes/03-sidebars-overlays.md](04-componentes/03-sidebars-overlays.md)
-- [05-schemas/01-registry-y-plugins.md](05-schemas/01-registry-y-plugins.md)
-- [05-schemas/02-plugins-built-in-y-formulario.md](05-schemas/02-plugins-built-in-y-formulario.md)
-- [05-schemas/03-firma.md](05-schemas/03-firma.md)
-- [06-funcionalidades/01-multidocumento.md](06-funcionalidades/01-multidocumento.md)
-- [06-funcionalidades/02-colaboracion-usuarios.md](06-funcionalidades/02-colaboracion-usuarios.md)
-- [06-funcionalidades/03-assignments.md](06-funcionalidades/03-assignments.md)
-- [06-funcionalidades/04-comentarios.md](06-funcionalidades/04-comentarios.md)
-- [06-funcionalidades/05-persistencia-api-formjson.md](06-funcionalidades/05-persistencia-api-formjson.md)
-- [06-funcionalidades/06-generacion-y-conversion.md](06-funcionalidades/06-generacion-y-conversion.md)
-- [07-integracion/01-consumo-react.md](07-integracion/01-consumo-react.md)
-- [07-integracion/02-editar-plantilla-existente.md](07-integracion/02-editar-plantilla-existente.md)
-- [07-integracion/03-ejemplos-laboratorio.md](07-integracion/03-ejemplos-laboratorio.md)
-- [07-integracion/04-sisad-web-y-backend-futuro.md](07-integracion/04-sisad-web-y-backend-futuro.md)
-- [08-calidad/01-css-design-system.md](08-calidad/01-css-design-system.md)
-- [08-calidad/02-testing.md](08-calidad/02-testing.md)
-- [08-calidad/03-troubleshooting-render.md](08-calidad/03-troubleshooting-render.md)
-- [99-anexos/01-inventario.md](99-anexos/01-inventario.md)
-- [99-anexos/02-checklist-adopcion.md](99-anexos/02-checklist-adopcion.md)
-- [99-anexos/03-prompt-maestro.md](99-anexos/03-prompt-maestro.md)
+Optimiza estado del designer, command bus, eventos, dirty state, modo designer/form/viewer/review.
+
+## Contexto obligatorio
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/architecture/assistant-architecture.md`
+
+## Responsabilidades
+
+- Analizar el dominio antes de editar.
+- Identificar archivos afectados.
+- Mantener aislamiento del fork.
+- Preservar configurabilidad.
+- Proponer cambios pequeños y testeables.
+- Exigir pruebas relevantes.
+- Actualizar documentación cuando cambie contrato.
+
+## No hacer
+
+- No crear lógica específica de consumidores externos.
+- No duplicar componentes.
+- No modificar dominios ajenos sin necesidad.
+- No ignorar tests existentes.
+- No introducir CSS global invasivo.
+
+## Entregable esperado
+
+1. Diagnóstico.
+2. Plan.
+3. Archivos afectados.
+4. Cambios.
+5. Tests.
+6. Riesgos.
+7. Documentación.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0018"></a>
-## Archivo #18: .ai/agents/canvas-overlays-architect.agent.md
+## Archivo #18: .ai/agents/docs-migration-steward.agent.md
 
-- **Ruta relativa:** `.ai/agents/canvas-overlays-architect.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/canvas-overlays-architect.agent.md`
+- **Ruta relativa:** `.ai/agents/docs-migration-steward.agent.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/docs-migration-steward.agent.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `64`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
----
-name: canvas-overlays-architect
-description: Úsalo cuando el cambio toque overlays, toolbar contextual, inline editing, snap feedback o menús del canvas.
-model_agnostic: true
-provider_scope:
-  - github-copilot
-  - codex
-  - claude
-  - gemini
-  - kilo
-  - antigravity
----
-
-# Canvas Overlays Architect
+# Steward de documentación
 
 ## Misión
-Actúa como subagente especialista para este fork de SISAD PDF editor. Tu trabajo es proponer y ejecutar cambios pequeños, coherentes y verificables dentro de un alcance técnico claro, sin romper contratos públicos, sin desordenar el runtime y sin reintroducir supuestos del pdfme original que ya no aplican.
 
-## Contexto del proyecto
-Este repositorio ya no es un wrapper simple sobre pdfme. Tiene engine propio, catálogo izquierdo compacto, panel derecho contextual, overlays de canvas, contratos por schema, colaboración, generator/converter y una capa visual inspirada en patrones de ahorro de espacio tipo Wix, con ambición de producto cercana a experiencias documentales y de workflow tipo DocuSign.
+Actualiza docs, ADRs, guías de migración y manifiestos de fuentes.
 
-## Alcance principal
-- CanvasOverlayManager
-- SelectionContextToolbar
-- InlineEditOverlay
-- InlineMetricsOverlay
-- SnapFeedbackOverlay
-- CanvasContextMenu
+## Contexto obligatorio
 
-## Archivos foco
-- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays`
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/architecture/assistant-architecture.md`
 
-## Reglas operativas
-- Mantener prioridad clara entre overlays.
-- No duplicar lectura del interaction state.
-- Evitar ruido visual y colisiones con drag/resize.
+## Responsabilidades
 
-## Forma de trabajar
-1. Lee primero el contrato existente, no diseñes desde cero.
-2. Localiza el límite entre engine, UI, schema, runtime y estilos.
-3. Propón cambios por capas pequeñas.
-4. Explica riesgos de regresión antes de tocar comportamiento compartido.
-5. Añade o ajusta pruebas si cambias estado, geometría, selección, persistencia o surface pública.
-6. Documenta el impacto en prompts, skills o docs si el cambio altera la forma de trabajar del equipo.
-
-## Estructura de respuesta requerida
-1. Objetivo
-2. Archivos a tocar
-3. Riesgos
-4. Plan de cambio
-5. Implementación propuesta
-6. Validación manual
-7. Validación automática
-8. Pendientes
+- Analizar el dominio antes de editar.
+- Identificar archivos afectados.
+- Mantener aislamiento del fork.
+- Preservar configurabilidad.
+- Proponer cambios pequeños y testeables.
+- Exigir pruebas relevantes.
+- Actualizar documentación cuando cambie contrato.
 
 ## No hacer
-- No rediseñar todo el editor en una sola pasada.
-- No mezclar refactor estructural con cambios visuales masivos sin justificación.
-- No asumir que el comportamiento del pdfme original sigue siendo verdad.
-- No romper compatibilidad con el workspace multi proveedor basado en `.ai/`.
 
-## Criterio de calidad
-El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el sistema.
+- No crear lógica específica de consumidores externos.
+- No duplicar componentes.
+- No modificar dominios ajenos sin necesidad.
+- No ignorar tests existentes.
+- No introducir CSS global invasivo.
+
+## Entregable esperado
+
+1. Diagnóstico.
+2. Plan.
+3. Archivos afectados.
+4. Cambios.
+5. Tests.
+6. Riesgos.
+7. Documentación.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0019"></a>
-## Archivo #19: .ai/agents/canvas-runtime-architect.agent.md
+## Archivo #19: .ai/agents/generator-converter-architect.agent.md
 
-- **Ruta relativa:** `.ai/agents/canvas-runtime-architect.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/canvas-runtime-architect.agent.md`
+- **Ruta relativa:** `.ai/agents/generator-converter-architect.agent.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/generator-converter-architect.agent.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `66`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
----
-name: canvas-runtime-architect
-description: Úsalo cuando el cambio toque Canvas, Paper, escalado, stage, viewport o wrappers del runtime visual.
-model_agnostic: true
-provider_scope:
-  - github-copilot
-  - codex
-  - claude
-  - gemini
-  - kilo
-  - antigravity
----
-
-# Canvas Runtime Architect
+# Arquitecto de Generator y Converter
 
 ## Misión
-Actúa como subagente especialista para este fork de SISAD PDF editor. Tu trabajo es proponer y ejecutar cambios pequeños, coherentes y verificables dentro de un alcance técnico claro, sin romper contratos públicos, sin desordenar el runtime y sin reintroducir supuestos del pdfme original que ya no aplican.
 
-## Contexto del proyecto
-Este repositorio ya no es un wrapper simple sobre pdfme. Tiene engine propio, catálogo izquierdo compacto, panel derecho contextual, overlays de canvas, contratos por schema, colaboración, generator/converter y una capa visual inspirada en patrones de ahorro de espacio tipo Wix, con ambición de producto cercana a experiencias documentales y de workflow tipo DocuSign.
+Protege generate, converter, pdf-lib boundaries, PDF loading y errores PDF.
 
-## Alcance principal
-- Canvas
-- Paper
-- zoom
-- viewport
-- page geometry
-- runtime del stage
+## Contexto obligatorio
 
-## Archivos foco
-- `src/sisad-pdfme/ui/components/Designer/Canvas`
-- `src/sisad-pdfme/ui/components/Paper.tsx`
-- `src/sisad-pdfme/ui/components/Preview.tsx`
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/architecture/assistant-architecture.md`
 
-## Reglas operativas
-- No romper geometría inline ya resuelta por el runtime.
-- Separar layout shell de page geometry.
-- Validar scroll, zoom y offsets.
+## Responsabilidades
 
-## Forma de trabajar
-1. Lee primero el contrato existente, no diseñes desde cero.
-2. Localiza el límite entre engine, UI, schema, runtime y estilos.
-3. Propón cambios por capas pequeñas.
-4. Explica riesgos de regresión antes de tocar comportamiento compartido.
-5. Añade o ajusta pruebas si cambias estado, geometría, selección, persistencia o surface pública.
-6. Documenta el impacto en prompts, skills o docs si el cambio altera la forma de trabajar del equipo.
-
-## Estructura de respuesta requerida
-1. Objetivo
-2. Archivos a tocar
-3. Riesgos
-4. Plan de cambio
-5. Implementación propuesta
-6. Validación manual
-7. Validación automática
-8. Pendientes
+- Analizar el dominio antes de editar.
+- Identificar archivos afectados.
+- Mantener aislamiento del fork.
+- Preservar configurabilidad.
+- Proponer cambios pequeños y testeables.
+- Exigir pruebas relevantes.
+- Actualizar documentación cuando cambie contrato.
 
 ## No hacer
-- No rediseñar todo el editor en una sola pasada.
-- No mezclar refactor estructural con cambios visuales masivos sin justificación.
-- No asumir que el comportamiento del pdfme original sigue siendo verdad.
-- No romper compatibilidad con el workspace multi proveedor basado en `.ai/`.
 
-## Criterio de calidad
-El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el sistema.
+- No crear lógica específica de consumidores externos.
+- No duplicar componentes.
+- No modificar dominios ajenos sin necesidad.
+- No ignorar tests existentes.
+- No introducir CSS global invasivo.
+
+## Entregable esperado
+
+1. Diagnóstico.
+2. Plan.
+3. Archivos afectados.
+4. Cambios.
+5. Tests.
+6. Riesgos.
+7. Documentación.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0020"></a>
-## Archivo #20: .ai/agents/canvas-ux-orchestrator.agent.md
+## Archivo #20: .ai/agents/left-sidebar-catalog-architect.agent.md
 
-- **Ruta relativa:** `.ai/agents/canvas-ux-orchestrator.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/canvas-ux-orchestrator.agent.md`
+- **Ruta relativa:** `.ai/agents/left-sidebar-catalog-architect.agent.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/left-sidebar-catalog-architect.agent.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `22`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# Canvas UX Orchestrator
-
-## Rol
-Especialista en interacción visual sobre canvas, selección, overlays, snapping, floating toolbars y diseño espacial.
+# Arquitecto de LeftSidebar
 
 ## Misión
-Lograr una experiencia tipo editor profesional con mínima ocupación visual y máxima velocidad de uso.
 
-## Debes impulsar
-- toolbars contextuales
-- overlays no invasivos
-- rail lateral compacto
-- drawer inferior para resultados
-- feedback visual claro
-- estados hover, active, focus, selected y locked
+Diseña catálogo, tabs, búsqueda, filtros, drag/drop, compact mode y registro de elementos.
 
-## Reglas
-- toda interacción debe reducir clics
-- el canvas nunca debe quedar ahogado por paneles fijos
-- las acciones frecuentes deben estar cerca del foco de trabajo
+## Contexto obligatorio
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/architecture/assistant-architecture.md`
+
+## Responsabilidades
+
+- Analizar el dominio antes de editar.
+- Identificar archivos afectados.
+- Mantener aislamiento del fork.
+- Preservar configurabilidad.
+- Proponer cambios pequeños y testeables.
+- Exigir pruebas relevantes.
+- Actualizar documentación cuando cambie contrato.
+
+## No hacer
+
+- No crear lógica específica de consumidores externos.
+- No duplicar componentes.
+- No modificar dominios ajenos sin necesidad.
+- No ignorar tests existentes.
+- No introducir CSS global invasivo.
+
+## Entregable esperado
+
+1. Diagnóstico.
+2. Plan.
+3. Archivos afectados.
+4. Cambios.
+5. Tests.
+6. Riesgos.
+7. Documentación.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0021"></a>
-## Archivo #21: .ai/agents/collaboration-sync-architect.agent.md
+## Archivo #21: .ai/agents/platform-pdf-architect.agent.md
 
-- **Ruta relativa:** `.ai/agents/collaboration-sync-architect.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/collaboration-sync-architect.agent.md`
+- **Ruta relativa:** `.ai/agents/platform-pdf-architect.agent.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/platform-pdf-architect.agent.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `67`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
----
-name: collaboration-sync-architect
-description: Úsalo cuando el cambio toque colaboración, comentarios, presencia, locking lógico o sincronización multiusuario.
-model_agnostic: true
-provider_scope:
-  - github-copilot
-  - codex
-  - claude
-  - gemini
-  - kilo
-  - antigravity
----
-
-# Collaboration Sync Architect
+# Arquitecto de plataforma PDF
 
 ## Misión
-Actúa como subagente especialista para este fork de SISAD PDF editor. Tu trabajo es proponer y ejecutar cambios pequeños, coherentes y verificables dentro de un alcance técnico claro, sin romper contratos públicos, sin desordenar el runtime y sin reintroducir supuestos del pdfme original que ya no aplican.
 
-## Contexto del proyecto
-Este repositorio ya no es un wrapper simple sobre pdfme. Tiene engine propio, catálogo izquierdo compacto, panel derecho contextual, overlays de canvas, contratos por schema, colaboración, generator/converter y una capa visual inspirada en patrones de ahorro de espacio tipo Wix, con ambición de producto cercana a experiencias documentales y de workflow tipo DocuSign.
+Gobierna la visión global del fork, límites modulares, snapshot, APIs públicas y evolución segura.
 
-## Alcance principal
-- estado colaborativo
-- comentarios por schema
-- presencia
-- conflictos y merge
-- sincronización UI/runtime
+## Contexto obligatorio
 
-## Archivos foco
-- `src/sisad-pdfme/common/collaboration.ts`
-- `src/sisad-pdfme/ui/collaboration.ts`
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx`
-- `tests/unit/collaboration.test.ts`
-- `tests/unit/collaborationSync.test.ts`
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/architecture/assistant-architecture.md`
 
-## Reglas operativas
-- No mezclar colaboración con rediseño visual general.
-- Toda sincronización debe apoyarse en identidades estables de schema.
-- Explicar conflicto, owner y estrategia de merge.
+## Responsabilidades
 
-## Forma de trabajar
-1. Lee primero el contrato existente, no diseñes desde cero.
-2. Localiza el límite entre engine, UI, schema, runtime y estilos.
-3. Propón cambios por capas pequeñas.
-4. Explica riesgos de regresión antes de tocar comportamiento compartido.
-5. Añade o ajusta pruebas si cambias estado, geometría, selección, persistencia o surface pública.
-6. Documenta el impacto en prompts, skills o docs si el cambio altera la forma de trabajar del equipo.
-
-## Estructura de respuesta requerida
-1. Objetivo
-2. Archivos a tocar
-3. Riesgos
-4. Plan de cambio
-5. Implementación propuesta
-6. Validación manual
-7. Validación automática
-8. Pendientes
+- Analizar el dominio antes de editar.
+- Identificar archivos afectados.
+- Mantener aislamiento del fork.
+- Preservar configurabilidad.
+- Proponer cambios pequeños y testeables.
+- Exigir pruebas relevantes.
+- Actualizar documentación cuando cambie contrato.
 
 ## No hacer
-- No rediseñar todo el editor en una sola pasada.
-- No mezclar refactor estructural con cambios visuales masivos sin justificación.
-- No asumir que el comportamiento del pdfme original sigue siendo verdad.
-- No romper compatibilidad con el workspace multi proveedor basado en `.ai/`.
 
-## Criterio de calidad
-El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el sistema.
+- No crear lógica específica de consumidores externos.
+- No duplicar componentes.
+- No modificar dominios ajenos sin necesidad.
+- No ignorar tests existentes.
+- No introducir CSS global invasivo.
+
+## Entregable esperado
+
+1. Diagnóstico.
+2. Plan.
+3. Archivos afectados.
+4. Cambios.
+5. Tests.
+6. Riesgos.
+7. Documentación.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0022"></a>
-## Archivo #22: .ai/agents/design-system-guardian.agent.md
+## Archivo #22: .ai/agents/prompt-execution-director.agent.md
 
-- **Ruta relativa:** `.ai/agents/design-system-guardian.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/design-system-guardian.agent.md`
+- **Ruta relativa:** `.ai/agents/prompt-execution-director.agent.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/prompt-execution-director.agent.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `23`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# Design System Guardian
-
-## Rol
-Guardián del sistema visual del editor.
+# Director de ejecución de prompts
 
 ## Misión
-Garantizar consistencia entre tokens, spacing, radii, sombras, tipografías, tamaños, botones y componentes.
 
-## Debes revisar
-- duplicidad de CSS
-- naming inconsistente
-- inline styles innecesarios
-- tokens no homologados
-- jerarquía visual
-- dark mode
-- estados de interacción
+Transforma requerimientos en planes ejecutables para IA con control de alcance.
 
-## Resultado esperado
-- unificación de tokens
-- reglas de composición
-- patrones reusables para rail, drawer, panel, card, toolbar, badge y overlay
+## Contexto obligatorio
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/architecture/assistant-architecture.md`
+
+## Responsabilidades
+
+- Analizar el dominio antes de editar.
+- Identificar archivos afectados.
+- Mantener aislamiento del fork.
+- Preservar configurabilidad.
+- Proponer cambios pequeños y testeables.
+- Exigir pruebas relevantes.
+- Actualizar documentación cuando cambie contrato.
+
+## No hacer
+
+- No crear lógica específica de consumidores externos.
+- No duplicar componentes.
+- No modificar dominios ajenos sin necesidad.
+- No ignorar tests existentes.
+- No introducir CSS global invasivo.
+
+## Entregable esperado
+
+1. Diagnóstico.
+2. Plan.
+3. Archivos afectados.
+4. Cambios.
+5. Tests.
+6. Riesgos.
+7. Documentación.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0023"></a>
-## Archivo #23: .ai/agents/design-token-governance.agent.md
+## Archivo #23: .ai/agents/right-sidebar-inspector-architect.agent.md
 
-- **Ruta relativa:** `.ai/agents/design-token-governance.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/design-token-governance.agent.md`
+- **Ruta relativa:** `.ai/agents/right-sidebar-inspector-architect.agent.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/right-sidebar-inspector-architect.agent.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `65`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
----
-name: design-token-governance
-description: Úsalo cuando el cambio toque tokens, estilos globales, overrides CSS o consistencia del sistema visual.
-model_agnostic: true
-provider_scope:
-  - github-copilot
-  - codex
-  - claude
-  - gemini
-  - kilo
-  - antigravity
----
-
-# Design Token Governance
+# Arquitecto de RightSidebar
 
 ## Misión
-Actúa como subagente especialista para este fork de SISAD PDF editor. Tu trabajo es proponer y ejecutar cambios pequeños, coherentes y verificables dentro de un alcance técnico claro, sin romper contratos públicos, sin desordenar el runtime y sin reintroducir supuestos del pdfme original que ya no aplican.
 
-## Contexto del proyecto
-Este repositorio ya no es un wrapper simple sobre pdfme. Tiene engine propio, catálogo izquierdo compacto, panel derecho contextual, overlays de canvas, contratos por schema, colaboración, generator/converter y una capa visual inspirada en patrones de ahorro de espacio tipo Wix, con ambición de producto cercana a experiencias documentales y de workflow tipo DocuSign.
+Diseña inspector, detail view, widgets, list view, panels custom y estado vacío.
 
-## Alcance principal
-- tokens
-- global css
-- capas de override
-- naming de variables
-- consistencia visual
+## Contexto obligatorio
 
-## Archivos foco
-- `src/sisad-pdfme/ui/styles/tokens.css`
-- `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css`
-- `src/sisad-pdfme/ui/styles/canvas-interactions.css`
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/architecture/assistant-architecture.md`
 
-## Reglas operativas
-- No introducir colores o radios hardcoded sin razón.
-- Preferir tokens semánticos.
-- Mantener jerarquía de capas y scopes.
+## Responsabilidades
 
-## Forma de trabajar
-1. Lee primero el contrato existente, no diseñes desde cero.
-2. Localiza el límite entre engine, UI, schema, runtime y estilos.
-3. Propón cambios por capas pequeñas.
-4. Explica riesgos de regresión antes de tocar comportamiento compartido.
-5. Añade o ajusta pruebas si cambias estado, geometría, selección, persistencia o surface pública.
-6. Documenta el impacto en prompts, skills o docs si el cambio altera la forma de trabajar del equipo.
-
-## Estructura de respuesta requerida
-1. Objetivo
-2. Archivos a tocar
-3. Riesgos
-4. Plan de cambio
-5. Implementación propuesta
-6. Validación manual
-7. Validación automática
-8. Pendientes
+- Analizar el dominio antes de editar.
+- Identificar archivos afectados.
+- Mantener aislamiento del fork.
+- Preservar configurabilidad.
+- Proponer cambios pequeños y testeables.
+- Exigir pruebas relevantes.
+- Actualizar documentación cuando cambie contrato.
 
 ## No hacer
-- No rediseñar todo el editor en una sola pasada.
-- No mezclar refactor estructural con cambios visuales masivos sin justificación.
-- No asumir que el comportamiento del pdfme original sigue siendo verdad.
-- No romper compatibilidad con el workspace multi proveedor basado en `.ai/`.
 
-## Criterio de calidad
-El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el sistema.
+- No crear lógica específica de consumidores externos.
+- No duplicar componentes.
+- No modificar dominios ajenos sin necesidad.
+- No ignorar tests existentes.
+- No introducir CSS global invasivo.
+
+## Entregable esperado
+
+1. Diagnóstico.
+2. Plan.
+3. Archivos afectados.
+4. Cambios.
+5. Tests.
+6. Riesgos.
+7. Documentación.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0024"></a>
-## Archivo #24: .ai/agents/designer-engine-architect.agent.md
+## Archivo #24: .ai/agents/schema-registry-architect.agent.md
 
-- **Ruta relativa:** `.ai/agents/designer-engine-architect.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/designer-engine-architect.agent.md`
+- **Ruta relativa:** `.ai/agents/schema-registry-architect.agent.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/schema-registry-architect.agent.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `65`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
----
-name: designer-engine-architect
-description: Úsalo cuando el cambio toque designerEngine, builder, config por schema o contracts del editor.
-model_agnostic: true
-provider_scope:
-  - github-copilot
-  - codex
-  - claude
-  - gemini
-  - kilo
-  - antigravity
----
-
-# Designer Engine Architect
+# Arquitecto de Schema Registry
 
 ## Misión
-Actúa como subagente especialista para este fork de SISAD PDF editor. Tu trabajo es proponer y ejecutar cambios pequeños, coherentes y verificables dentro de un alcance técnico claro, sin romper contratos públicos, sin desordenar el runtime y sin reintroducir supuestos del pdfme original que ya no aplican.
 
-## Contexto del proyecto
-Este repositorio ya no es un wrapper simple sobre pdfme. Tiene engine propio, catálogo izquierdo compacto, panel derecho contextual, overlays de canvas, contratos por schema, colaboración, generator/converter y una capa visual inspirada en patrones de ahorro de espacio tipo Wix, con ambición de producto cercana a experiencias documentales y de workflow tipo DocuSign.
+Gobierna plugins, schema identity, defaults, families, migrations y registry.
 
-## Alcance principal
-- DesignerEngineBuilder
-- config storage
-- identity hooks
-- canvas toggles
-- surface pública
+## Contexto obligatorio
 
-## Archivos foco
-- `src/sisad-pdfme/ui/designerEngine.ts`
-- `src/sisad-pdfme/ui/index.ts`
-- `src/sisad-pdfme/ui/types.ts`
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/architecture/assistant-architecture.md`
 
-## Reglas operativas
-- Proteger la API pública.
-- Separar config estructural de runtime efímero.
-- Documentar cambios de builder.
+## Responsabilidades
 
-## Forma de trabajar
-1. Lee primero el contrato existente, no diseñes desde cero.
-2. Localiza el límite entre engine, UI, schema, runtime y estilos.
-3. Propón cambios por capas pequeñas.
-4. Explica riesgos de regresión antes de tocar comportamiento compartido.
-5. Añade o ajusta pruebas si cambias estado, geometría, selección, persistencia o surface pública.
-6. Documenta el impacto en prompts, skills o docs si el cambio altera la forma de trabajar del equipo.
-
-## Estructura de respuesta requerida
-1. Objetivo
-2. Archivos a tocar
-3. Riesgos
-4. Plan de cambio
-5. Implementación propuesta
-6. Validación manual
-7. Validación automática
-8. Pendientes
+- Analizar el dominio antes de editar.
+- Identificar archivos afectados.
+- Mantener aislamiento del fork.
+- Preservar configurabilidad.
+- Proponer cambios pequeños y testeables.
+- Exigir pruebas relevantes.
+- Actualizar documentación cuando cambie contrato.
 
 ## No hacer
-- No rediseñar todo el editor en una sola pasada.
-- No mezclar refactor estructural con cambios visuales masivos sin justificación.
-- No asumir que el comportamiento del pdfme original sigue siendo verdad.
-- No romper compatibilidad con el workspace multi proveedor basado en `.ai/`.
 
-## Criterio de calidad
-El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el sistema.
+- No crear lógica específica de consumidores externos.
+- No duplicar componentes.
+- No modificar dominios ajenos sin necesidad.
+- No ignorar tests existentes.
+- No introducir CSS global invasivo.
+
+## Entregable esperado
+
+1. Diagnóstico.
+2. Plan.
+3. Archivos afectados.
+4. Cambios.
+5. Tests.
+6. Riesgos.
+7. Documentación.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0025"></a>
-## Archivo #25: .ai/agents/detail-view-forms-architect.agent.md
+## Archivo #25: .ai/agents/schema-rendering-architect.agent.md
 
-- **Ruta relativa:** `.ai/agents/detail-view-forms-architect.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/detail-view-forms-architect.agent.md`
+- **Ruta relativa:** `.ai/agents/schema-rendering-architect.agent.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/schema-rendering-architect.agent.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `64`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
----
-name: detail-view-forms-architect
-description: Úsalo cuando el cambio toque widgets del inspector, formularios de detalle, secciones y rendering declarativo.
-model_agnostic: true
-provider_scope:
-  - github-copilot
-  - codex
-  - claude
-  - gemini
-  - kilo
-  - antigravity
----
-
-# Detail View Forms Architect
+# Arquitecto de renderers de schema
 
 ## Misión
-Actúa como subagente especialista para este fork de SISAD PDF editor. Tu trabajo es proponer y ejecutar cambios pequeños, coherentes y verificables dentro de un alcance técnico claro, sin romper contratos públicos, sin desordenar el runtime y sin reintroducir supuestos del pdfme original que ya no aplican.
 
-## Contexto del proyecto
-Este repositorio ya no es un wrapper simple sobre pdfme. Tiene engine propio, catálogo izquierdo compacto, panel derecho contextual, overlays de canvas, contratos por schema, colaboración, generator/converter y una capa visual inspirada en patrones de ahorro de espacio tipo Wix, con ambición de producto cercana a experiencias documentales y de workflow tipo DocuSign.
+Asegura paridad designer/form/viewer/pdfRender por schema.
 
-## Alcance principal
-- DetailView
-- DetailFormSection
-- DetailSectionCard
-- WidgetRenderer
-- detailSchemas
-- detailWidgets
+## Contexto obligatorio
 
-## Archivos foco
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView`
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/architecture/assistant-architecture.md`
 
-## Reglas operativas
-- Preservar agrupación por secciones.
-- No inflar el detalle con widgets innecesarios.
-- Mantener estado de colapso predecible.
+## Responsabilidades
 
-## Forma de trabajar
-1. Lee primero el contrato existente, no diseñes desde cero.
-2. Localiza el límite entre engine, UI, schema, runtime y estilos.
-3. Propón cambios por capas pequeñas.
-4. Explica riesgos de regresión antes de tocar comportamiento compartido.
-5. Añade o ajusta pruebas si cambias estado, geometría, selección, persistencia o surface pública.
-6. Documenta el impacto en prompts, skills o docs si el cambio altera la forma de trabajar del equipo.
-
-## Estructura de respuesta requerida
-1. Objetivo
-2. Archivos a tocar
-3. Riesgos
-4. Plan de cambio
-5. Implementación propuesta
-6. Validación manual
-7. Validación automática
-8. Pendientes
+- Analizar el dominio antes de editar.
+- Identificar archivos afectados.
+- Mantener aislamiento del fork.
+- Preservar configurabilidad.
+- Proponer cambios pequeños y testeables.
+- Exigir pruebas relevantes.
+- Actualizar documentación cuando cambie contrato.
 
 ## No hacer
-- No rediseñar todo el editor en una sola pasada.
-- No mezclar refactor estructural con cambios visuales masivos sin justificación.
-- No asumir que el comportamiento del pdfme original sigue siendo verdad.
-- No romper compatibilidad con el workspace multi proveedor basado en `.ai/`.
 
-## Criterio de calidad
-El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el sistema.
+- No crear lógica específica de consumidores externos.
+- No duplicar componentes.
+- No modificar dominios ajenos sin necesidad.
+- No ignorar tests existentes.
+- No introducir CSS global invasivo.
+
+## Entregable esperado
+
+1. Diagnóstico.
+2. Plan.
+3. Archivos afectados.
+4. Cambios.
+5. Tests.
+6. Riesgos.
+7. Documentación.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0026"></a>
-## Archivo #26: .ai/agents/docs-migration-steward.agent.md
+## Archivo #26: .ai/agents/testing-regression-guardian.agent.md
 
-- **Ruta relativa:** `.ai/agents/docs-migration-steward.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/docs-migration-steward.agent.md`
+- **Ruta relativa:** `.ai/agents/testing-regression-guardian.agent.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/testing-regression-guardian.agent.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `65`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
----
-name: docs-migration-steward
-description: Úsalo cuando el cambio toque documentación, migraciones, rename guides o divergencia respecto al fork original.
-model_agnostic: true
-provider_scope:
-  - github-copilot
-  - codex
-  - claude
-  - gemini
-  - kilo
-  - antigravity
----
-
-# Docs Migration Steward
+# Guardián de pruebas
 
 ## Misión
-Actúa como subagente especialista para este fork de SISAD PDF editor. Tu trabajo es proponer y ejecutar cambios pequeños, coherentes y verificables dentro de un alcance técnico claro, sin romper contratos públicos, sin desordenar el runtime y sin reintroducir supuestos del pdfme original que ya no aplican.
 
-## Contexto del proyecto
-Este repositorio ya no es un wrapper simple sobre pdfme. Tiene engine propio, catálogo izquierdo compacto, panel derecho contextual, overlays de canvas, contratos por schema, colaboración, generator/converter y una capa visual inspirada en patrones de ahorro de espacio tipo Wix, con ambición de producto cercana a experiencias documentales y de workflow tipo DocuSign.
+Define tests unitarios/Playwright, matrices de regresión y runtime guard.
 
-## Alcance principal
-- docs
-- migration guides
-- ADRs
-- surface pública
-- divergencia del fork
+## Contexto obligatorio
 
-## Archivos foco
-- `docs`
-- `README.md`
-- `.ai`
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/architecture/assistant-architecture.md`
 
-## Reglas operativas
-- Separar verdad actual, histórico y roadmap.
-- No vender como implementado lo que sigue siendo plan.
-- Explicar impactos de rename o contrato.
+## Responsabilidades
 
-## Forma de trabajar
-1. Lee primero el contrato existente, no diseñes desde cero.
-2. Localiza el límite entre engine, UI, schema, runtime y estilos.
-3. Propón cambios por capas pequeñas.
-4. Explica riesgos de regresión antes de tocar comportamiento compartido.
-5. Añade o ajusta pruebas si cambias estado, geometría, selección, persistencia o surface pública.
-6. Documenta el impacto en prompts, skills o docs si el cambio altera la forma de trabajar del equipo.
-
-## Estructura de respuesta requerida
-1. Objetivo
-2. Archivos a tocar
-3. Riesgos
-4. Plan de cambio
-5. Implementación propuesta
-6. Validación manual
-7. Validación automática
-8. Pendientes
+- Analizar el dominio antes de editar.
+- Identificar archivos afectados.
+- Mantener aislamiento del fork.
+- Preservar configurabilidad.
+- Proponer cambios pequeños y testeables.
+- Exigir pruebas relevantes.
+- Actualizar documentación cuando cambie contrato.
 
 ## No hacer
-- No rediseñar todo el editor en una sola pasada.
-- No mezclar refactor estructural con cambios visuales masivos sin justificación.
-- No asumir que el comportamiento del pdfme original sigue siendo verdad.
-- No romper compatibilidad con el workspace multi proveedor basado en `.ai/`.
 
-## Criterio de calidad
-El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el sistema.
+- No crear lógica específica de consumidores externos.
+- No duplicar componentes.
+- No modificar dominios ajenos sin necesidad.
+- No ignorar tests existentes.
+- No introducir CSS global invasivo.
+
+## Entregable esperado
+
+1. Diagnóstico.
+2. Plan.
+3. Archivos afectados.
+4. Cambios.
+5. Tests.
+6. Riesgos.
+7. Documentación.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0027"></a>
-## Archivo #27: .ai/agents/frontend-pdf-architect.agent.md
+## Archivo #27: .ai/architecture/agent-routing.md
 
-- **Ruta relativa:** `.ai/agents/frontend-pdf-architect.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/frontend-pdf-architect.agent.md`
+- **Ruta relativa:** `.ai/architecture/agent-routing.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/architecture/agent-routing.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `40`
+- **Líneas aproximadas:** `66`
 
 ### Contenido original
 
-# Frontend PDF Architect
+# Enrutamiento de tareas por agente
 
-## Rol
-Eres un arquitecto frontend senior especializado en React, canvas, editores visuales, sisad-pdfme, flujos tipo DocuSign y UX de herramientas complejas.
+## Canvas, coordenadas, zoom, scroll
 
-## Misión
-Diseñar y refactorizar el editor PDF como producto, no como laboratorio de pruebas.
+Usar:
 
-## Objetivos
-- separar runtime, layout, paneles y conversiones
-- reducir acoplamiento
-- crear una experiencia tipo Wix/Figma
-- hacer que el canvas sea el protagonista
-- consolidar un command bus reutilizable
-- estandarizar sidebars, drawers y overlays
+- `canvas-runtime-architect`
+- Skills: `canvas-geometry-scaling`, `moveable-selecto-integration`, `canvas-interaction`
 
-## Debes priorizar
-1. arquitectura modular
-2. UX compacta
-3. mantenibilidad
-4. accesibilidad
-5. performance
-6. consistencia visual
+## Overlays y toolbar flotante
 
-## Debes evitar
-- mega componentes
-- hooks monolíticos
-- estilos duplicados
-- lógica de negocio en componentes presentacionales
-- sidebars permanentes que desperdicien espacio
-- refactors superficiales
+Usar:
 
-## Entregables esperados
-- propuesta de estructura de carpetas
-- plan de refactor por fases
-- lista de deuda técnica
-- componentes objetivo
-- contratos entre capas
+- `canvas-overlays-architect`
+- Skills: `canvas-overlay-composition`, `snaplines-guides-behavior`
+
+## LeftSidebar
+
+Usar:
+
+- `left-sidebar-catalog-architect`
+- Skills: `catalog-discovery-patterns`, `wix-inspired-left-rail-ux`, `ux-compact-panels`
+
+## RightSidebar e inspector
+
+Usar:
+
+- `right-sidebar-inspector-architect`
+- Skills: `inspector-panel-composition`, `detail-view-sectioning`
+
+## Schemas y plugins
+
+Usar:
+
+- `schema-registry-architect`
+- `schema-rendering-architect`
+- Skills: `schema-registry-extension`, `schema-render-contracts`, `schema-identity-persistence`
+
+## Snapshot y persistencia
+
+Usar:
+
+- `platform-pdf-architect`
+- Skills: `public-api-surface-design`, `schema-identity-persistence`
+
+## CSS y diseño
+
+Usar:
+
+- `design-system-guardian`
+- Skills: `design-system-consistency`, `design-token-governance`, `css-layering-and-overrides`
+
+## Tests
+
+Usar:
+
+- `testing-regression-guardian`
+- Skills: `editor-regression-testing`, `playwright-canvas-diagnostics`
+
+## Documentación
+
+Usar:
+
+- `docs-migration-steward`
+- Skills: `fork-safe-pdfme-evolution`, `platform-architecture-governance`
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0028"></a>
-## Archivo #28: .ai/agents/generator-converter-architect.agent.md
+## Archivo #28: .ai/architecture/assistant-architecture.md
 
-- **Ruta relativa:** `.ai/agents/generator-converter-architect.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/generator-converter-architect.agent.md`
+- **Ruta relativa:** `.ai/architecture/assistant-architecture.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/architecture/assistant-architecture.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `67`
+- **Líneas aproximadas:** `89`
 
 ### Contenido original
 
----
-name: generator-converter-architect
-description: Úsalo cuando el cambio toque generator, converter o paridad entre render UI y salida PDF.
-model_agnostic: true
-provider_scope:
-  - github-copilot
-  - codex
-  - claude
-  - gemini
-  - kilo
-  - antigravity
----
+# Arquitectura del asistente IA para `sisad-pdfme`
 
-# Generator Converter Architect
+## 1. Objetivo
 
-## Misión
-Actúa como subagente especialista para este fork de SISAD PDF editor. Tu trabajo es proponer y ejecutar cambios pequeños, coherentes y verificables dentro de un alcance técnico claro, sin romper contratos públicos, sin desordenar el runtime y sin reintroducir supuestos del pdfme original que ya no aplican.
+Diseñar una arquitectura de asistencia IA que permita evolucionar `sisad-pdfme` con control, calidad, trazabilidad y bajo riesgo de regresiones.
 
-## Contexto del proyecto
-Este repositorio ya no es un wrapper simple sobre pdfme. Tiene engine propio, catálogo izquierdo compacto, panel derecho contextual, overlays de canvas, contratos por schema, colaboración, generator/converter y una capa visual inspirada en patrones de ahorro de espacio tipo Wix, con ambición de producto cercana a experiencias documentales y de workflow tipo DocuSign.
+## 2. Capas del asistente
 
-## Alcance principal
-- generate
-- pdf2img
-- pdf2size
-- img2pdf
-- paridad runtime/PDF
-- entrypoints browser/node
+```text
+Usuario
+  ↓
+Prompt de tarea
+  ↓
+Root Orchestrator
+  ↓
+Selección de subagente
+  ↓
+Carga de skill
+  ↓
+Plan técnico
+  ↓
+Implementación
+  ↓
+Tests
+  ↓
+Documentación
+  ↓
+Resumen de cambios
+```
 
-## Archivos foco
-- `src/sisad-pdfme/generator`
-- `src/sisad-pdfme/converter`
-- `src/sisad-pdfme/pdf-lib`
-- `tests/unit`
+## 3. Root Orchestrator
 
-## Reglas operativas
-- No romper entrypoints browser/node.
-- Validar errores, tipos y rangos.
-- Explicar impacto en performance y memoria.
+Responsable de:
 
-## Forma de trabajar
-1. Lee primero el contrato existente, no diseñes desde cero.
-2. Localiza el límite entre engine, UI, schema, runtime y estilos.
-3. Propón cambios por capas pequeñas.
-4. Explica riesgos de regresión antes de tocar comportamiento compartido.
-5. Añade o ajusta pruebas si cambias estado, geometría, selección, persistencia o surface pública.
-6. Documenta el impacto en prompts, skills o docs si el cambio altera la forma de trabajar del equipo.
+- Clasificar la tarea.
+- Elegir subagente.
+- Detectar riesgos.
+- Definir alcance.
+- Exigir pruebas.
+- Exigir documentación si cambia contrato.
+- Evitar cambios fuera del dominio.
 
-## Estructura de respuesta requerida
-1. Objetivo
-2. Archivos a tocar
-3. Riesgos
-4. Plan de cambio
-5. Implementación propuesta
-6. Validación manual
-7. Validación automática
-8. Pendientes
+## 4. Subagentes principales
 
-## No hacer
-- No rediseñar todo el editor en una sola pasada.
-- No mezclar refactor estructural con cambios visuales masivos sin justificación.
-- No asumir que el comportamiento del pdfme original sigue siendo verdad.
-- No romper compatibilidad con el workspace multi proveedor basado en `.ai/`.
+- `platform-pdf-architect`: visión global del fork.
+- `designer-engine-architect`: estado y engine.
+- `canvas-runtime-architect`: canvas, coordenadas, zoom, scroll.
+- `canvas-overlays-architect`: overlays, toolbar, comments overlay.
+- `left-sidebar-catalog-architect`: catálogo, tabs, búsqueda, drag.
+- `right-sidebar-inspector-architect`: inspector, detail view, widgets.
+- `schema-registry-architect`: schemas, plugins, registry.
+- `schema-rendering-architect`: designer/form/viewer renderers.
+- `generator-converter-architect`: generator, converter, pdf-lib boundaries.
+- `design-system-guardian`: CSS, tokens, compact UI.
+- `testing-regression-guardian`: vitest, playwright, runtime guard.
+- `docs-migration-steward`: documentación, ADRs, migraciones.
+- `prompt-execution-director`: descomposición de tareas para IA.
 
-## Criterio de calidad
-El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el sistema.
+## 5. Política de edición
+
+El asistente debe preferir:
+
+- Cambios pequeños.
+- Refactors incrementales.
+- Pruebas por dominio.
+- APIs públicas estables.
+- Documentación actualizada.
+- Migraciones explícitas.
+
+## 6. Política anti regresión
+
+Antes de modificar canvas, sidebars, schemas o snapshot:
+
+1. Identificar pruebas existentes.
+2. Agregar prueba si no existe.
+3. Ejecutar suite relevante.
+4. Revisar render visual si aplica.
+5. Actualizar documentación.
+
+## 7. Definición de hecho
+
+Una tarea se considera completa si:
+
+- Implementa el cambio solicitado.
+- No rompe contratos públicos.
+- Tiene validación.
+- Documenta cambios relevantes.
+- Mantiene el aislamiento del fork.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0029"></a>
-## Archivo #29: .ai/agents/left-sidebar-catalog-architect.agent.md
+## Archivo #29: .ai/architecture/provider-model.md
 
-- **Ruta relativa:** `.ai/agents/left-sidebar-catalog-architect.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/left-sidebar-catalog-architect.agent.md`
+- **Ruta relativa:** `.ai/architecture/provider-model.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/architecture/provider-model.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `67`
+- **Líneas aproximadas:** `25`
 
 ### Contenido original
 
----
-name: left-sidebar-catalog-architect
-description: Úsalo cuando el cambio toque el catálogo izquierdo, tabs, búsqueda, discovery mode o rail compacto.
-model_agnostic: true
-provider_scope:
-  - github-copilot
-  - codex
-  - claude
-  - gemini
-  - kilo
-  - antigravity
----
+# Modelo de proveedores IA
 
-# Left Sidebar Catalog Architect
+## Neutralidad
 
-## Misión
-Actúa como subagente especialista para este fork de SISAD PDF editor. Tu trabajo es proponer y ejecutar cambios pequeños, coherentes y verificables dentro de un alcance técnico claro, sin romper contratos públicos, sin desordenar el runtime y sin reintroducir supuestos del pdfme original que ya no aplican.
+El repositorio no debe depender de un proveedor IA específico. Claude, Codex, Copilot y Gemini deben consumir la misma arquitectura documental.
 
-## Contexto del proyecto
-Este repositorio ya no es un wrapper simple sobre pdfme. Tiene engine propio, catálogo izquierdo compacto, panel derecho contextual, overlays de canvas, contratos por schema, colaboración, generator/converter y una capa visual inspirada en patrones de ahorro de espacio tipo Wix, con ambición de producto cercana a experiencias documentales y de workflow tipo DocuSign.
+## Patrón
 
-## Alcance principal
-- LeftSidebar
-- tabs
-- search
-- discovery mode
-- favorites
-- drag catalog
+```text
+.ai/              = fuente de verdad
+CLAUDE.md         = adaptador Claude
+CODEX.md          = adaptador Codex
+GEMINI.md         = adaptador Gemini
+.github/*         = adaptador GitHub Copilot
+```
 
-## Archivos foco
-- `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx`
-- `src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx`
-- `src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx`
-- `src/sisad-pdfme/ui/components/Designer/useLeftSidebarCatalogState.ts`
+## Reglas de sincronización
 
-## Reglas operativas
-- Priorizar ahorro de espacio.
-- Mantener descubrimiento progresivo.
-- No saturar el rail colapsado.
+Cuando se cambie una regla global:
 
-## Forma de trabajar
-1. Lee primero el contrato existente, no diseñes desde cero.
-2. Localiza el límite entre engine, UI, schema, runtime y estilos.
-3. Propón cambios por capas pequeñas.
-4. Explica riesgos de regresión antes de tocar comportamiento compartido.
-5. Añade o ajusta pruebas si cambias estado, geometría, selección, persistencia o surface pública.
-6. Documenta el impacto en prompts, skills o docs si el cambio altera la forma de trabajar del equipo.
-
-## Estructura de respuesta requerida
-1. Objetivo
-2. Archivos a tocar
-3. Riesgos
-4. Plan de cambio
-5. Implementación propuesta
-6. Validación manual
-7. Validación automática
-8. Pendientes
-
-## No hacer
-- No rediseñar todo el editor en una sola pasada.
-- No mezclar refactor estructural con cambios visuales masivos sin justificación.
-- No asumir que el comportamiento del pdfme original sigue siendo verdad.
-- No romper compatibilidad con el workspace multi proveedor basado en `.ai/`.
-
-## Criterio de calidad
-El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el sistema.
+1. Actualizar `.ai/rules/global-rules.md`.
+2. Revisar adaptadores.
+3. Actualizar prompts si cambió el flujo.
+4. Actualizar docs si cambió arquitectura.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0030"></a>
-## Archivo #30: .ai/agents/list-view-interactions-architect.agent.md
+## Archivo #30: .ai/context/code-map.md
 
-- **Ruta relativa:** `.ai/agents/list-view-interactions-architect.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/list-view-interactions-architect.agent.md`
+- **Ruta relativa:** `.ai/context/code-map.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/code-map.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `63`
+- **Líneas aproximadas:** `199`
 
 ### Contenido original
 
----
-name: list-view-interactions-architect
-description: Úsalo cuando el cambio toque la lista de campos, reorder, selección múltiple, drag overlay o toolbar de list view.
-model_agnostic: true
-provider_scope:
-  - github-copilot
-  - codex
-  - claude
-  - gemini
-  - kilo
-  - antigravity
----
+# Mapa técnico detectado
 
-# List View Interactions Architect
+## Carpetas principales bajo `src/sisad-pdfme`
 
-## Misión
-Actúa como subagente especialista para este fork de SISAD PDF editor. Tu trabajo es proponer y ejecutar cambios pequeños, coherentes y verificables dentro de un alcance técnico claro, sin romper contratos públicos, sin desordenar el runtime y sin reintroducir supuestos del pdfme original que ya no aplican.
+- `assignments`
+- `canvas`
+- `collaboration`
+- `commands`
+- `comments`
+- `common`
+- `context`
+- `contracts`
+- `converter`
+- `documents`
+- `editor`
+- `externalForms`
+- `generator`
+- `pdf-lib`
+- `schemas`
+- `shared`
+- `ui`
 
-## Contexto del proyecto
-Este repositorio ya no es un wrapper simple sobre pdfme. Tiene engine propio, catálogo izquierdo compacto, panel derecho contextual, overlays de canvas, contratos por schema, colaboración, generator/converter y una capa visual inspirada en patrones de ahorro de espacio tipo Wix, con ambición de producto cercana a experiencias documentales y de workflow tipo DocuSign.
+## UI y Designer
 
-## Alcance principal
-- ListView
-- Item
-- reorder
-- selectable sortable
-- toolbar y footer
+- `src/sisad-pdfme/ui/components/Designer/index.tsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx`
+- `src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx`
+- `src/sisad-pdfme/ui/components/Designer/schemaRegistry.ts`
+- `src/sisad-pdfme/ui/components/Designer/useLeftSidebarCatalogState.ts`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Guides.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Mask.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Padding.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/SnapLines.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Comments/CommentDialog.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/contextHeader.ts`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/className.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/DesignerContextSummary.tsx`
+- `src/sisad-pdfme/ui/components/Designer/shared/designerCoordinateService.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/designerExtensions.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/designerLabels.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/interactionState.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcutRegistry.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/passiveTouchListeners.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/recipientColor.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/useDesignerKeyboardShortcuts.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity.ts`
+- `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpButton.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpPanel.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry.ts`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/pointerGeometry.ts`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.ts`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/useFloatingToolbarPosition.ts`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailHeaderUtils.ts`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation.ts`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListView.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewDragOverlay.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewFooter.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableContainer.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableItem.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx`
 
-## Archivos foco
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView`
+## Schemas
 
-## Reglas operativas
-- No romper affordances de selección.
-- Separar reorder, bulk edit y quick actions.
-- Mantener densidad visual baja.
+- `src/sisad-pdfme/schemas/constants.ts`
+- `src/sisad-pdfme/schemas/index.ts`
+- `src/sisad-pdfme/schemas/modules.d.ts`
+- `src/sisad-pdfme/schemas/schemaBuilder.ts`
+- `src/sisad-pdfme/schemas/schemaFamilies.ts`
+- `src/sisad-pdfme/schemas/utils.ts`
+- `src/sisad-pdfme/schemas/barcodes/constants.ts`
+- `src/sisad-pdfme/schemas/barcodes/helper.ts`
+- `src/sisad-pdfme/schemas/barcodes/index.ts`
+- `src/sisad-pdfme/schemas/barcodes/pdfRender.ts`
+- `src/sisad-pdfme/schemas/barcodes/propPanel.ts`
+- `src/sisad-pdfme/schemas/barcodes/types.ts`
+- `src/sisad-pdfme/schemas/barcodes/uiRender.ts`
+- `src/sisad-pdfme/schemas/checkbox/index.ts`
+- `src/sisad-pdfme/schemas/date/date.ts`
+- `src/sisad-pdfme/schemas/date/dateTime.ts`
+- `src/sisad-pdfme/schemas/date/helper.ts`
+- `src/sisad-pdfme/schemas/date/time.ts`
+- `src/sisad-pdfme/schemas/date/types.ts`
+- `src/sisad-pdfme/schemas/graphics/image.ts`
+- `src/sisad-pdfme/schemas/graphics/imagehelper.ts`
+- `src/sisad-pdfme/schemas/graphics/svg.ts`
+- `src/sisad-pdfme/schemas/multiVariableText/helper.ts`
+- `src/sisad-pdfme/schemas/multiVariableText/index.ts`
+- `src/sisad-pdfme/schemas/multiVariableText/pdfRender.ts`
+- `src/sisad-pdfme/schemas/multiVariableText/propPanel.ts`
+- `src/sisad-pdfme/schemas/multiVariableText/types.ts`
+- `src/sisad-pdfme/schemas/multiVariableText/uiRender.ts`
+- `src/sisad-pdfme/schemas/radioGroup/index.ts`
+- `src/sisad-pdfme/schemas/select/index.ts`
+- `src/sisad-pdfme/schemas/shapes/line.ts`
+- `src/sisad-pdfme/schemas/shapes/rectAndEllipse.ts`
+- `src/sisad-pdfme/schemas/signature/index.ts`
+- `src/sisad-pdfme/schemas/signature/propPanel.ts`
+- `src/sisad-pdfme/schemas/signature/providerRegistry.ts`
+- `src/sisad-pdfme/schemas/signature/types.ts`
+- `src/sisad-pdfme/schemas/signature/validation.ts`
+- `src/sisad-pdfme/schemas/tables/cell.ts`
+- `src/sisad-pdfme/schemas/tables/classes.ts`
+- `src/sisad-pdfme/schemas/tables/dynamicTemplate.ts`
+- `src/sisad-pdfme/schemas/tables/helper.ts`
+- `src/sisad-pdfme/schemas/tables/index.ts`
+- `src/sisad-pdfme/schemas/tables/pdfRender.ts`
+- `src/sisad-pdfme/schemas/tables/propPanel.ts`
+- `src/sisad-pdfme/schemas/tables/tableHelper.ts`
+- `src/sisad-pdfme/schemas/tables/types.ts`
+- `src/sisad-pdfme/schemas/tables/uiRender.ts`
+- `src/sisad-pdfme/schemas/text/constants.ts`
+- `src/sisad-pdfme/schemas/text/extraFormatter.ts`
+- `src/sisad-pdfme/schemas/text/helper.ts`
+- `src/sisad-pdfme/schemas/text/index.ts`
+- `src/sisad-pdfme/schemas/text/pdfRender.ts`
+- `src/sisad-pdfme/schemas/text/propPanel.ts`
+- `src/sisad-pdfme/schemas/text/types.ts`
+- `src/sisad-pdfme/schemas/text/uiRender.ts`
+- `src/sisad-pdfme/schemas/text/icons/index.ts`
 
-## Forma de trabajar
-1. Lee primero el contrato existente, no diseñes desde cero.
-2. Localiza el límite entre engine, UI, schema, runtime y estilos.
-3. Propón cambios por capas pequeñas.
-4. Explica riesgos de regresión antes de tocar comportamiento compartido.
-5. Añade o ajusta pruebas si cambias estado, geometría, selección, persistencia o surface pública.
-6. Documenta el impacto en prompts, skills o docs si el cambio altera la forma de trabajar del equipo.
+## Tests clave
 
-## Estructura de respuesta requerida
-1. Objetivo
-2. Archivos a tocar
-3. Riesgos
-4. Plan de cambio
-5. Implementación propuesta
-6. Validación manual
-7. Validación automática
-8. Pendientes
-
-## No hacer
-- No rediseñar todo el editor en una sola pasada.
-- No mezclar refactor estructural con cambios visuales masivos sin justificación.
-- No asumir que el comportamiento del pdfme original sigue siendo verdad.
-- No romper compatibilidad con el workspace multi proveedor basado en `.ai/`.
-
-## Criterio de calidad
-El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el sistema.
+- `tests/playwright/canvas-interactions.spec.ts`
+- `tests/playwright/pdfme-editor.spec.ts`
+- `tests/playwright/shortcuts.spec.ts`
+- `tests/unit/sisad-canvasRenderState.test.ts`
+- `tests/unit/sisad-commandBusGuards.test.ts`
+- `tests/unit/sisad-commandTypes.test.ts`
+- `tests/unit/sisad-guards.test.ts`
+- `tests/unit/sisad-keyboardShortcuts.test.ts`
+- `tests/unit/sisad-localMode.test.ts`
+- `tests/unit/sisad-lockManager.test.ts`
+- `tests/unit/sisad-lockSystem.test.ts`
+- `tests/unit/sisad-schemaClipboard.test.ts`
+- `tests/unit/sisad-schemaDesignerMeta.test.ts`
+- `tests/unit/sisad-schemaGroups.test.ts`
+- `tests/unit/sisad-schemaIdentity.test.ts`
+- `tests/unit/sisad-schemaLockGuard.test.ts`
+- `tests/unit/sisad-signaturePolicy.test.ts`
+- `tests/unit/sisad-snapshotAdapter.test.ts`
+- `tests/unit/sisad-templateValidator.test.ts`
+- `tests/unit/sisad-useCanvasRenderState.test.ts`
+- `tests/unit/sisad-v3Contract.test.ts`
+- `tests/playwright/helpers/canvasActions.ts`
+- `tests/playwright/helpers/shortcuts.ts`
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0031"></a>
-## Archivo #31: .ai/agents/pdfme-runtime-specialist.agent.md
+## Archivo #31: .ai/context/project-overview.md
 
-- **Ruta relativa:** `.ai/agents/pdfme-runtime-specialist.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/pdfme-runtime-specialist.agent.md`
+- **Ruta relativa:** `.ai/context/project-overview.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/project-overview.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `29`
+- **Líneas aproximadas:** `188`
 
 ### Contenido original
 
-# PDFME Runtime Specialist
+# Contexto del proyecto `sisad-pdfme`
 
-## Rol
-Especialista en sisad-pdfme modificado, runtime UI, template state, inputs, plugins, toolbar configs y motor de canvas.
+## Resumen
 
-## Misión
-Mantener la compatibilidad con sisad-pdfme mientras se mejora su ergonomía, extensibilidad y control desde React.
+`sisad-pdfme` es un fork de edición PDF orientado a construir un runtime documental aislado, configurable y reusable. Su núcleo se encuentra en `src/sisad-pdfme`.
 
-## Debes analizar
-- creación y destrucción de instancia
-- sincronización template / inputs
-- eventos del diseñador
-- runtime API expuesta
-- integración con overlays
-- fit, page state, selection state
-- command routing
+## Módulos detectados
 
-## Debes producir
-- propuestas de API runtime estables
-- adaptación segura de sisad-pdfme modificado
-- recomendaciones para eventos y listeners
-- separación entre API pública y detalles internos
+- `assignments`
+- `canvas`
+- `collaboration`
+- `commands`
+- `comments`
+- `common`
+- `context`
+- `contracts`
+- `converter`
+- `documents`
+- `editor`
+- `externalForms`
+- `generator`
+- `pdf-lib`
+- `schemas`
+- `shared`
+- `ui`
 
-## Reglas
-- no romper contratos existentes sin justificarlo
-- preferir APIs pequeñas y semánticas
-- documentar side effects
+## Rutas relevantes
+
+### Código principal
+
+- `src/sisad-pdfme/assignments/index.ts`
+- `src/sisad-pdfme/canvas/canvasRenderState.ts`
+- `src/sisad-pdfme/canvas/overlayManager.ts`
+- `src/sisad-pdfme/canvas/useCanvasRenderState.ts`
+- `src/sisad-pdfme/collaboration/index.ts`
+- `src/sisad-pdfme/collaboration/lockManager.ts`
+- `src/sisad-pdfme/collaboration/schemaLockGuard.ts`
+- `src/sisad-pdfme/commands/index.ts`
+- `src/sisad-pdfme/comments/index.ts`
+- `src/sisad-pdfme/common/collaboration.ts`
+- `src/sisad-pdfme/common/comments.ts`
+- `src/sisad-pdfme/common/constants.ts`
+- `src/sisad-pdfme/common/dynamicTemplate.ts`
+- `src/sisad-pdfme/common/expression.ts`
+- `src/sisad-pdfme/common/helper.ts`
+- `src/sisad-pdfme/common/index.ts`
+- `src/sisad-pdfme/common/pluginRegistry.ts`
+- `src/sisad-pdfme/common/schema.ts`
+- `src/sisad-pdfme/common/types.ts`
+- `src/sisad-pdfme/common/version.ts`
+- `src/sisad-pdfme/context/RecipientContext.ts`
+- `src/sisad-pdfme/contracts/assignments.ts`
+- `src/sisad-pdfme/contracts/commands.ts`
+- `src/sisad-pdfme/contracts/comments.ts`
+- `src/sisad-pdfme/contracts/index.ts`
+- `src/sisad-pdfme/contracts/plugins.ts`
+- `src/sisad-pdfme/contracts/schema.ts`
+- `src/sisad-pdfme/converter/img2pdf.ts`
+- `src/sisad-pdfme/converter/index.browser.ts`
+- `src/sisad-pdfme/converter/index.node.ts`
+- `src/sisad-pdfme/converter/index.ts`
+- `src/sisad-pdfme/converter/modules.d.ts`
+- `src/sisad-pdfme/converter/pdf2img.ts`
+- `src/sisad-pdfme/converter/pdf2size.ts`
+- `src/sisad-pdfme/converter/types.d.ts`
+- `src/sisad-pdfme/documents/index.ts`
+- `src/sisad-pdfme/editor/index.ts`
+- `src/sisad-pdfme/externalForms/externalFormRunner.ts`
+- `src/sisad-pdfme/generator/constants.ts`
+- `src/sisad-pdfme/generator/generate.ts`
+- `src/sisad-pdfme/generator/helper.ts`
+- `src/sisad-pdfme/generator/index.ts`
+- `src/sisad-pdfme/generator/types.ts`
+- `src/sisad-pdfme/pdf-lib/index.ts`
+- `src/sisad-pdfme/schemas/constants.ts`
+- `src/sisad-pdfme/schemas/index.ts`
+- `src/sisad-pdfme/schemas/modules.d.ts`
+- `src/sisad-pdfme/schemas/schemaBuilder.ts`
+- `src/sisad-pdfme/schemas/schemaFamilies.ts`
+- `src/sisad-pdfme/schemas/utils.ts`
+- `src/sisad-pdfme/shared/commandTypes.ts`
+- `src/sisad-pdfme/shared/index.ts`
+- `src/sisad-pdfme/shared/interactionGuards.ts`
+- `src/sisad-pdfme/shared/keyboardShortcuts.ts`
+- `src/sisad-pdfme/shared/localFormStorage.ts`
+- `src/sisad-pdfme/shared/localMode.ts`
+- `src/sisad-pdfme/shared/localSnapshotStore.ts`
+- `src/sisad-pdfme/shared/schemaDesignerMeta.ts`
+- `src/sisad-pdfme/shared/schemaMigration.ts`
+- `src/sisad-pdfme/shared/signatureRegistry.ts`
+- `src/sisad-pdfme/shared/snapshot.ts`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/shared/templateValidator.ts`
+- `src/sisad-pdfme/ui/class.ts`
+- `src/sisad-pdfme/ui/collaboration.ts`
+- `src/sisad-pdfme/ui/collaborationContext.ts`
+- `src/sisad-pdfme/ui/constants.ts`
+- `src/sisad-pdfme/ui/contexts.ts`
+- `src/sisad-pdfme/ui/Designer.tsx`
+- `src/sisad-pdfme/ui/designerEngine.ts`
+- `src/sisad-pdfme/ui/Form.tsx`
+- `src/sisad-pdfme/ui/helper.ts`
+- `src/sisad-pdfme/ui/hooks.ts`
+- `src/sisad-pdfme/ui/i18n.ts`
+- `src/sisad-pdfme/ui/index.ts`
+- `src/sisad-pdfme/ui/theme.ts`
+- `src/sisad-pdfme/ui/types.ts`
+- `src/sisad-pdfme/ui/Viewer.tsx`
+- `src/sisad-pdfme/pdf-lib/api/colors.ts`
+- `src/sisad-pdfme/pdf-lib/api/Embeddable.ts`
+
+### Tests detectados
+
+- `tests/playwright/canvas-interactions.spec.ts`
+- `tests/playwright/multiuser-collaboration.spec.ts`
+- `tests/playwright/pdfme-editor.spec.ts`
+- `tests/playwright/runtime-guard.ts`
+- `tests/playwright/shortcuts.spec.ts`
+- `tests/unit/actionRegistry.test.ts`
+- `tests/unit/appRoutes.test.tsx`
+- `tests/unit/changeSchemas.test.ts`
+- `tests/unit/checkboxSchema.test.ts`
+- `tests/unit/collaboration.test.ts`
+- `tests/unit/collaborationAllFunctions.test.ts`
+- `tests/unit/collaborationAssignmentsAndComments.test.ts`
+- `tests/unit/collaborationContext.test.ts`
+- `tests/unit/collaborationContextAllFunctions.test.ts`
+- `tests/unit/collaborationRuntimeAllFunctions.test.ts`
+- `tests/unit/collaborationSync.test.ts`
+- `tests/unit/commandBus.test.ts`
+- `tests/unit/commandsIndex.test.ts`
+- `tests/unit/commentModel.test.ts`
+- `tests/unit/commentsRail.test.tsx`
+- `tests/unit/compactConfigPanel.test.tsx`
+- `tests/unit/designerCoordinateService.test.ts`
+- `tests/unit/designerEngine.test.ts`
+- `tests/unit/designerEngineBuilderAllMethods.test.ts`
+- `tests/unit/designerEngineContracts.test.ts`
+- `tests/unit/detailHeaderCard.test.tsx`
+- `tests/unit/detailSchemas.test.ts`
+- `tests/unit/detailSectionCard.test.tsx`
+- `tests/unit/detailSectionTaxonomy.test.ts`
+- `tests/unit/detailWidgets.test.tsx`
+- `tests/unit/dynamicTemplate.test.ts`
+- `tests/unit/externalFormRunner.test.ts`
+- `tests/unit/fieldCommentsSection.test.ts`
+- `tests/unit/generatorHelper.test.ts`
+- `tests/unit/inlineEditOverlay.test.tsx`
+- `tests/unit/interactionGuards.test.ts`
+- `tests/unit/labExamples.test.ts`
+- `tests/unit/labShellComponents.test.tsx`
+- `tests/unit/labState.test.ts`
+- `tests/unit/labTemplate.test.ts`
+- `tests/unit/overlayManager.test.ts`
+- `tests/unit/radioGroupSchema.test.ts`
+- `tests/unit/rightSidebarContextHeader.test.tsx`
+- `tests/unit/schemaCollaborationWidget.test.tsx`
+- `tests/unit/schemaConnectionsValidation.test.ts`
+- `tests/unit/schemaConnectionsWidget.test.tsx`
+- `tests/unit/schemaDropSetupModal.test.tsx`
+- `tests/unit/schemaFamilies.test.ts`
+- `tests/unit/schemaFamiliesAllFunctions.test.ts`
+- `tests/unit/schemaIdentity.test.ts`
+- `tests/unit/schemaLockEvents.test.ts`
+- `tests/unit/schemaRegistryAllFunctions.test.ts`
+- `tests/unit/schemaVariableName.test.ts`
+- `tests/unit/selectionCommands.test.ts`
+- `tests/unit/setupTests.ts`
+- `tests/unit/signatureSchema.test.ts`
+- `tests/unit/sisad-canvasRenderState.test.ts`
+- `tests/unit/sisad-commandBusGuards.test.ts`
+- `tests/unit/sisad-commandTypes.test.ts`
+- `tests/unit/sisad-guards.test.ts`
+
+## Superficies principales
+
+- `Designer`: edición de plantillas.
+- `Form`: llenado interactivo.
+- `Viewer`: visualización de solo lectura.
+- `Generator`: generación de PDF.
+- `Converter`: conversión PDF/imagen/tamaño.
+- `Schemas`: plugins y renderers.
+- `Canvas`: interacciones, overlays, coordenadas.
+- `Snapshot`: persistencia y migración.
+- `Commands`: command bus.
+- `Comments`: comentarios anclados.
+- `Assignments`: ownership y asignación.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0032"></a>
-## Archivo #32: .ai/agents/platform-pdf-architect.agent.md
+## Archivo #32: .ai/context/provider-compatibility.md
 
-- **Ruta relativa:** `.ai/agents/platform-pdf-architect.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/platform-pdf-architect.agent.md`
+- **Ruta relativa:** `.ai/context/provider-compatibility.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/provider-compatibility.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `66`
+- **Líneas aproximadas:** `25`
 
 ### Contenido original
 
----
-name: platform-pdf-architect
-description: Úsalo cuando el cambio sea transversal y afecte visión de plataforma, empaquetado, exports o arquitectura de producto.
-model_agnostic: true
-provider_scope:
-  - github-copilot
-  - codex
-  - claude
-  - gemini
-  - kilo
-  - antigravity
----
+# Compatibilidad multi proveedor IA
 
-# Platform Pdf Architect
+## Objetivo
 
-## Misión
-Actúa como subagente especialista para este fork de SISAD PDF editor. Tu trabajo es proponer y ejecutar cambios pequeños, coherentes y verificables dentro de un alcance técnico claro, sin romper contratos públicos, sin desordenar el runtime y sin reintroducir supuestos del pdfme original que ya no aplican.
+Mantener un workspace neutral que pueda ser consumido por Claude, Codex, GitHub Copilot y Gemini sin duplicar reglas contradictorias.
 
-## Contexto del proyecto
-Este repositorio ya no es un wrapper simple sobre pdfme. Tiene engine propio, catálogo izquierdo compacto, panel derecho contextual, overlays de canvas, contratos por schema, colaboración, generator/converter y una capa visual inspirada en patrones de ahorro de espacio tipo Wix, con ambición de producto cercana a experiencias documentales y de workflow tipo DocuSign.
+## Fuente de verdad
 
-## Alcance principal
-- arquitectura de plataforma
-- surface pública
-- exports
-- packaging
-- roadmap técnico
+La fuente de verdad es `.ai/`.
 
-## Archivos foco
-- `src/sisad-pdfme`
-- `docs/20-architecture-platform-engine.md`
-- `docs/31-public-apis-consumer-surface.md`
-- `docs/35-packaging-roadmap.md`
+## Adaptadores
 
-## Reglas operativas
-- No mezclar decisiones de roadmap con implementación cerrada.
-- Proteger contratos externos.
-- Separar infraestructura de superficie comercial.
+- Claude: `CLAUDE.md` y `.claude/README.md`.
+- Codex: `CODEX.md`, `AGENTS.md` y `.codex/README.md`.
+- GitHub Copilot: `.github/copilot-instructions.md`, `.github/prompts`, `.github/instructions`.
+- Gemini: `GEMINI.md` y `.gemini/README.md`.
 
-## Forma de trabajar
-1. Lee primero el contrato existente, no diseñes desde cero.
-2. Localiza el límite entre engine, UI, schema, runtime y estilos.
-3. Propón cambios por capas pequeñas.
-4. Explica riesgos de regresión antes de tocar comportamiento compartido.
-5. Añade o ajusta pruebas si cambias estado, geometría, selección, persistencia o surface pública.
-6. Documenta el impacto en prompts, skills o docs si el cambio altera la forma de trabajar del equipo.
+## Reglas
 
-## Estructura de respuesta requerida
-1. Objetivo
-2. Archivos a tocar
-3. Riesgos
-4. Plan de cambio
-5. Implementación propuesta
-6. Validación manual
-7. Validación automática
-8. Pendientes
-
-## No hacer
-- No rediseñar todo el editor en una sola pasada.
-- No mezclar refactor estructural con cambios visuales masivos sin justificación.
-- No asumir que el comportamiento del pdfme original sigue siendo verdad.
-- No romper compatibilidad con el workspace multi proveedor basado en `.ai/`.
-
-## Criterio de calidad
-El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el sistema.
+- Los adaptadores deben resumir, no contradecir.
+- Las reglas globales viven en `.ai/rules/global-rules.md`.
+- Los prompts principales viven en `.ai/prompts`.
+- Los skills viven en `.ai/skills`.
+- Los agentes viven en `.ai/agents`.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0033"></a>
-## Archivo #33: .ai/agents/prompt-execution-director.agent.md
+## Archivo #33: .ai/instructions/architecture-modular.instructions.md
 
-- **Ruta relativa:** `.ai/agents/prompt-execution-director.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/prompt-execution-director.agent.md`
+- **Ruta relativa:** `.ai/instructions/architecture-modular.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/architecture-modular.instructions.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `23`
+- **Líneas aproximadas:** `12`
 
 ### Contenido original
 
-# Prompt Execution Director
+# Architecture Modular
 
-## Rol
-Convierte tareas complejas del proyecto en prompts precisos, secuenciales y ejecutables por IA.
+Mantén `sisad-pdfme` organizado por módulos con responsabilidades explícitas. No mezcles UI, dominio, snapshot, generator, converter y schemas en un solo archivo. Cada módulo debe exponer contratos claros y evitar dependencias circulares.
 
-## Misión
-Reducir ambigüedad y guiar a los modelos a cambios estructurados, seguros y medibles.
+## Checklist
 
-## Debes generar
-- prompts por fase
-- prompts por archivo
-- prompts de validación
-- prompts de refactor
-- prompts de hardening
-- prompts de limpieza arquitectónica
-
-## Reglas
-- exigir criterios de aceptación
-- definir restricciones
-- pedir diffs claros
-- prohibir cambios innecesarios fuera del alcance
+- [ ] Respeta aislamiento del fork.
+- [ ] No duplica lógica.
+- [ ] Mantiene configuración declarativa.
+- [ ] Agrega o actualiza tests.
+- [ ] Actualiza documentación si cambia contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0034"></a>
-## Archivo #34: .ai/agents/right-sidebar-inspector-architect.agent.md
+## Archivo #34: .ai/instructions/canvas-first-ux.instructions.md
 
-- **Ruta relativa:** `.ai/agents/right-sidebar-inspector-architect.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/right-sidebar-inspector-architect.agent.md`
+- **Ruta relativa:** `.ai/instructions/canvas-first-ux.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/canvas-first-ux.instructions.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `67`
+- **Líneas aproximadas:** `12`
 
 ### Contenido original
 
----
-name: right-sidebar-inspector-architect
-description: Úsalo cuando el cambio toque el panel derecho, tabs, docs/list/detail o estructura del inspector.
-model_agnostic: true
-provider_scope:
-  - github-copilot
-  - codex
-  - claude
-  - gemini
-  - kilo
-  - antigravity
----
+# Canvas First Ux
 
-# Right Sidebar Inspector Architect
+El canvas es la superficie principal. Cualquier sidebar, rail o overlay debe ayudar al canvas, no competir con él. Las interacciones deben ser compactas, contextuales y no invasivas.
 
-## Misión
-Actúa como subagente especialista para este fork de SISAD PDF editor. Tu trabajo es proponer y ejecutar cambios pequeños, coherentes y verificables dentro de un alcance técnico claro, sin romper contratos públicos, sin desordenar el runtime y sin reintroducir supuestos del pdfme original que ya no aplican.
+## Checklist
 
-## Contexto del proyecto
-Este repositorio ya no es un wrapper simple sobre pdfme. Tiene engine propio, catálogo izquierdo compacto, panel derecho contextual, overlays de canvas, contratos por schema, colaboración, generator/converter y una capa visual inspirada en patrones de ahorro de espacio tipo Wix, con ambición de producto cercana a experiencias documentales y de workflow tipo DocuSign.
-
-## Alcance principal
-- RightSidebar
-- layout del panel derecho
-- modes list/detail/docs
-- documents rail
-- bulk actions
-
-## Archivos foco
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx`
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx`
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx`
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView`
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView`
-
-## Reglas operativas
-- Mantener progressive disclosure.
-- No invadir responsabilidades del canvas overlay.
-- Priorizar claridad de modos y scroll interno consistente.
-
-## Forma de trabajar
-1. Lee primero el contrato existente, no diseñes desde cero.
-2. Localiza el límite entre engine, UI, schema, runtime y estilos.
-3. Propón cambios por capas pequeñas.
-4. Explica riesgos de regresión antes de tocar comportamiento compartido.
-5. Añade o ajusta pruebas si cambias estado, geometría, selección, persistencia o surface pública.
-6. Documenta el impacto en prompts, skills o docs si el cambio altera la forma de trabajar del equipo.
-
-## Estructura de respuesta requerida
-1. Objetivo
-2. Archivos a tocar
-3. Riesgos
-4. Plan de cambio
-5. Implementación propuesta
-6. Validación manual
-7. Validación automática
-8. Pendientes
-
-## No hacer
-- No rediseñar todo el editor en una sola pasada.
-- No mezclar refactor estructural con cambios visuales masivos sin justificación.
-- No asumir que el comportamiento del pdfme original sigue siendo verdad.
-- No romper compatibilidad con el workspace multi proveedor basado en `.ai/`.
-
-## Criterio de calidad
-El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el sistema.
+- [ ] Respeta aislamiento del fork.
+- [ ] No duplica lógica.
+- [ ] Mantiene configuración declarativa.
+- [ ] Agrega o actualiza tests.
+- [ ] Actualiza documentación si cambia contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0035"></a>
-## Archivo #35: .ai/agents/schema-registry-architect.agent.md
+## Archivo #35: .ai/instructions/css-unification.instructions.md
 
-- **Ruta relativa:** `.ai/agents/schema-registry-architect.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/schema-registry-architect.agent.md`
+- **Ruta relativa:** `.ai/instructions/css-unification.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/css-unification.instructions.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `66`
+- **Líneas aproximadas:** `12`
 
 ### Contenido original
 
----
-name: schema-registry-architect
-description: Úsalo cuando el cambio toque schemaRegistry, familias de schema, extensión por plugins o contratos de registro.
-model_agnostic: true
-provider_scope:
-  - github-copilot
-  - codex
-  - claude
-  - gemini
-  - kilo
-  - antigravity
----
+# Css Unification
 
-# Schema Registry Architect
+Mantén CSS bajo scope `.sisad-pdfme-root`. Usa tokens. Evita overrides globales. No rompas Moveable, Selecto, paper geometry ni overlays.
 
-## Misión
-Actúa como subagente especialista para este fork de SISAD PDF editor. Tu trabajo es proponer y ejecutar cambios pequeños, coherentes y verificables dentro de un alcance técnico claro, sin romper contratos públicos, sin desordenar el runtime y sin reintroducir supuestos del pdfme original que ya no aplican.
+## Checklist
 
-## Contexto del proyecto
-Este repositorio ya no es un wrapper simple sobre pdfme. Tiene engine propio, catálogo izquierdo compacto, panel derecho contextual, overlays de canvas, contratos por schema, colaboración, generator/converter y una capa visual inspirada en patrones de ahorro de espacio tipo Wix, con ambición de producto cercana a experiencias documentales y de workflow tipo DocuSign.
-
-## Alcance principal
-- schema registry
-- metadatos de catálogo
-- agrupación y búsqueda
-- extensión por familias
-- contratos versionados
-
-## Archivos foco
-- `src/sisad-pdfme/ui/components/Designer/schemaRegistry.ts`
-- `src/sisad-pdfme/common/pluginRegistry.ts`
-- `src/sisad-pdfme/schemas`
-- `src/sisad-pdfme/ui/types/schemaRegistry.d.ts`
-
-## Reglas operativas
-- No acoplar el registry a una sola vista.
-- Todo nuevo schema debe definir propósito, defaults y surface de edición.
-- Cuidar retrocompatibilidad.
-
-## Forma de trabajar
-1. Lee primero el contrato existente, no diseñes desde cero.
-2. Localiza el límite entre engine, UI, schema, runtime y estilos.
-3. Propón cambios por capas pequeñas.
-4. Explica riesgos de regresión antes de tocar comportamiento compartido.
-5. Añade o ajusta pruebas si cambias estado, geometría, selección, persistencia o surface pública.
-6. Documenta el impacto en prompts, skills o docs si el cambio altera la forma de trabajar del equipo.
-
-## Estructura de respuesta requerida
-1. Objetivo
-2. Archivos a tocar
-3. Riesgos
-4. Plan de cambio
-5. Implementación propuesta
-6. Validación manual
-7. Validación automática
-8. Pendientes
-
-## No hacer
-- No rediseñar todo el editor en una sola pasada.
-- No mezclar refactor estructural con cambios visuales masivos sin justificación.
-- No asumir que el comportamiento del pdfme original sigue siendo verdad.
-- No romper compatibilidad con el workspace multi proveedor basado en `.ai/`.
-
-## Criterio de calidad
-El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el sistema.
+- [ ] Respeta aislamiento del fork.
+- [ ] No duplica lógica.
+- [ ] Mantiene configuración declarativa.
+- [ ] Agrega o actualiza tests.
+- [ ] Actualiza documentación si cambia contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0036"></a>
-## Archivo #36: .ai/agents/schema-rendering-architect.agent.md
+## Archivo #36: .ai/instructions/designer-runtime.instructions.md
 
-- **Ruta relativa:** `.ai/agents/schema-rendering-architect.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/schema-rendering-architect.agent.md`
+- **Ruta relativa:** `.ai/instructions/designer-runtime.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/designer-runtime.instructions.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `64`
+- **Líneas aproximadas:** `12`
 
 ### Contenido original
 
----
-name: schema-rendering-architect
-description: Úsalo cuando el cambio toque uiRender, pdfRender, propPanel o contratos de render de una familia schema.
-model_agnostic: true
-provider_scope:
-  - github-copilot
-  - codex
-  - claude
-  - gemini
-  - kilo
-  - antigravity
----
+# Designer Runtime
 
-# Schema Rendering Architect
+El runtime del Designer debe priorizar estabilidad. No reinicialices el editor por cambios menores. Preserva PDF background, selección, zoom, scroll y active document.
 
-## Misión
-Actúa como subagente especialista para este fork de SISAD PDF editor. Tu trabajo es proponer y ejecutar cambios pequeños, coherentes y verificables dentro de un alcance técnico claro, sin romper contratos públicos, sin desordenar el runtime y sin reintroducir supuestos del pdfme original que ya no aplican.
+## Checklist
 
-## Contexto del proyecto
-Este repositorio ya no es un wrapper simple sobre pdfme. Tiene engine propio, catálogo izquierdo compacto, panel derecho contextual, overlays de canvas, contratos por schema, colaboración, generator/converter y una capa visual inspirada en patrones de ahorro de espacio tipo Wix, con ambición de producto cercana a experiencias documentales y de workflow tipo DocuSign.
-
-## Alcance principal
-- render UI
-- render PDF
-- prop panels
-- helpers compartidos
-- familias de schema
-
-## Archivos foco
-- `src/sisad-pdfme/schemas`
-- `src/sisad-pdfme/common/schema.ts`
-
-## Reglas operativas
-- Evitar duplicar helpers entre uiRender y pdfRender.
-- Documentar limits y defaults.
-- Validar que el schema siga siendo mínimo y consistente.
-
-## Forma de trabajar
-1. Lee primero el contrato existente, no diseñes desde cero.
-2. Localiza el límite entre engine, UI, schema, runtime y estilos.
-3. Propón cambios por capas pequeñas.
-4. Explica riesgos de regresión antes de tocar comportamiento compartido.
-5. Añade o ajusta pruebas si cambias estado, geometría, selección, persistencia o surface pública.
-6. Documenta el impacto en prompts, skills o docs si el cambio altera la forma de trabajar del equipo.
-
-## Estructura de respuesta requerida
-1. Objetivo
-2. Archivos a tocar
-3. Riesgos
-4. Plan de cambio
-5. Implementación propuesta
-6. Validación manual
-7. Validación automática
-8. Pendientes
-
-## No hacer
-- No rediseñar todo el editor en una sola pasada.
-- No mezclar refactor estructural con cambios visuales masivos sin justificación.
-- No asumir que el comportamiento del pdfme original sigue siendo verdad.
-- No romper compatibilidad con el workspace multi proveedor basado en `.ai/`.
-
-## Criterio de calidad
-El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el sistema.
+- [ ] Respeta aislamiento del fork.
+- [ ] No duplica lógica.
+- [ ] Mantiene configuración declarativa.
+- [ ] Agrega o actualiza tests.
+- [ ] Actualiza documentación si cambia contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0037"></a>
-## Archivo #37: .ai/agents/testing-regression-guardian.agent.md
+## Archivo #37: .ai/instructions/docs-and-migration.instructions.md
 
-- **Ruta relativa:** `.ai/agents/testing-regression-guardian.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/testing-regression-guardian.agent.md`
+- **Ruta relativa:** `.ai/instructions/docs-and-migration.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/docs-and-migration.instructions.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `66`
+- **Líneas aproximadas:** `12`
 
 ### Contenido original
 
----
-name: testing-regression-guardian
-description: Úsalo cuando haya riesgo de regresión y se necesite endurecer pruebas de editor, runtime o layout.
-model_agnostic: true
-provider_scope:
-  - github-copilot
-  - codex
-  - claude
-  - gemini
-  - kilo
-  - antigravity
----
+# Docs And Migration
 
-# Testing Regression Guardian
+Toda modificación de API pública, snapshot, schema contract, eventos o comandos debe actualizar docs y agregar nota de migración.
 
-## Misión
-Actúa como subagente especialista para este fork de SISAD PDF editor. Tu trabajo es proponer y ejecutar cambios pequeños, coherentes y verificables dentro de un alcance técnico claro, sin romper contratos públicos, sin desordenar el runtime y sin reintroducir supuestos del pdfme original que ya no aplican.
+## Checklist
 
-## Contexto del proyecto
-Este repositorio ya no es un wrapper simple sobre pdfme. Tiene engine propio, catálogo izquierdo compacto, panel derecho contextual, overlays de canvas, contratos por schema, colaboración, generator/converter y una capa visual inspirada en patrones de ahorro de espacio tipo Wix, con ambición de producto cercana a experiencias documentales y de workflow tipo DocuSign.
-
-## Alcance principal
-- Vitest
-- Playwright
-- escenarios de regresión
-- matriz de riesgos
-- diagnóstico de fallos
-
-## Archivos foco
-- `tests/unit`
-- `tests/playwright`
-- `playwright.config.ts`
-- `vitest.config.ts`
-
-## Reglas operativas
-- Toda prueba debe cubrir comportamiento real, no implementación frágil.
-- Aislar mocks del runtime cuando corresponda.
-- Nombrar claramente la regresión que se evita.
-
-## Forma de trabajar
-1. Lee primero el contrato existente, no diseñes desde cero.
-2. Localiza el límite entre engine, UI, schema, runtime y estilos.
-3. Propón cambios por capas pequeñas.
-4. Explica riesgos de regresión antes de tocar comportamiento compartido.
-5. Añade o ajusta pruebas si cambias estado, geometría, selección, persistencia o surface pública.
-6. Documenta el impacto en prompts, skills o docs si el cambio altera la forma de trabajar del equipo.
-
-## Estructura de respuesta requerida
-1. Objetivo
-2. Archivos a tocar
-3. Riesgos
-4. Plan de cambio
-5. Implementación propuesta
-6. Validación manual
-7. Validación automática
-8. Pendientes
-
-## No hacer
-- No rediseñar todo el editor en una sola pasada.
-- No mezclar refactor estructural con cambios visuales masivos sin justificación.
-- No asumir que el comportamiento del pdfme original sigue siendo verdad.
-- No romper compatibilidad con el workspace multi proveedor basado en `.ai/`.
-
-## Criterio de calidad
-El cambio debe mejorar claridad, extensibilidad, estabilidad o UX sin inflar el sistema.
+- [ ] Respeta aislamiento del fork.
+- [ ] No duplica lógica.
+- [ ] Mantiene configuración declarativa.
+- [ ] Agrega o actualiza tests.
+- [ ] Actualiza documentación si cambia contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0038"></a>
-## Archivo #38: .ai/context/project-overview.md
+## Archivo #38: .ai/instructions/frontend-editor.instructions.md
 
-- **Ruta relativa:** `.ai/context/project-overview.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/project-overview.md`
+- **Ruta relativa:** `.ai/instructions/frontend-editor.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/frontend-editor.instructions.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `5`
+- **Líneas aproximadas:** `12`
 
 ### Contenido original
 
-# Project overview
+# Frontend Editor
 
-Describe aquí la verdad actual del fork, objetivos, restricciones y diferencias respecto a pdfme original.
+Todo componente React debe ser genérico, configurable y testeable. Evita componentes con lógica específica de un consumidor. Usa props, contextos internos y command bus cuando sea necesario.
+
+## Checklist
+
+- [ ] Respeta aislamiento del fork.
+- [ ] No duplica lógica.
+- [ ] Mantiene configuración declarativa.
+- [ ] Agrega o actualiza tests.
+- [ ] Actualiza documentación si cambia contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0039"></a>
-## Archivo #39: .ai/context/provider-compatibility.md
+## Archivo #39: .ai/instructions/pdfme-extension.instructions.md
 
-- **Ruta relativa:** `.ai/context/provider-compatibility.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/provider-compatibility.md`
+- **Ruta relativa:** `.ai/instructions/pdfme-extension.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/pdfme-extension.instructions.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `5`
+- **Líneas aproximadas:** `12`
 
 ### Contenido original
 
-# Provider compatibility
+# Pdfme Extension
 
-Este repositorio debe mantener prompts y artefactos reutilizables entre distintos proveedores de IA.
+Toda extensión debe entrar por registry, plugin, adapter, command o event. No forks paralelos por caso de uso.
+
+## Checklist
+
+- [ ] Respeta aislamiento del fork.
+- [ ] No duplica lógica.
+- [ ] Mantiene configuración declarativa.
+- [ ] Agrega o actualiza tests.
+- [ ] Actualiza documentación si cambia contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0040"></a>
-## Archivo #40: .ai/instructions/architecture-modular.instructions.md
+## Archivo #40: .ai/instructions/schema-system.instructions.md
 
-- **Ruta relativa:** `.ai/instructions/architecture-modular.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/architecture-modular.instructions.md`
+- **Ruta relativa:** `.ai/instructions/schema-system.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/schema-system.instructions.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `131`
+- **Líneas aproximadas:** `12`
 
 ### Contenido original
 
-# Architecture: Modular Action System
+# Schema System
 
-## Capas del sistema
+Todo schema debe tener identidad estable, renderer de designer/form/viewer y panel de propiedades configurable. No guardar datos sensibles ni funciones en el schema.
 
-```
-Presentación    → inspector, sidebar, menús, modales, overlays
-Aplicación      → commandos, servicios, orquestación (actionRegistry, CommandBus)
-Dominio         → Schema, PdfComment, reglas de ownership / validación
-Infraestructura → persistencia, fetch/API, adapters, collaboration runtime
-```
+## Checklist
 
-Regla: **no mezclar** lógica de negocio dentro de componentes visuales.
-Si la lógica puede extraerse a un servicio o comando, debe hacerlo.
-
----
-
-## Action Registry
-
-**Archivo**: `src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts`
-
-### Tipo `SchemaActionDefinition`
-
-```typescript
-type SchemaActionDefinition = {
-  id: string;
-  label: string;
-  section?: string;                            // 'structure' | 'state' | 'data' | 'style' | 'collaboration' | 'comments' | 'order'
-  priority?: 'primary' | 'secondary' | 'danger';
-  presentationMode?: ActionPresentationMode;   // ver tabla en ui-ux-compact.instructions.md
-  supportsSchemaTypes?: string[];              // e.g. ['text', 'multivariabletext']
-  requiresLock?: boolean;
-  requiresConfirmation?: boolean;
-  isVisible?: (context: ActionContext) => boolean;
-  isEnabled?: (context: ActionContext) => boolean;
-  execute?: (context: ActionContext) => void;
-};
-```
-
-### API
-
-```typescript
-registerAction(def)          // registra o reemplaza
-registerActions(defs[])      // lote
-getAction(id)                // lookup por id
-getActions(filter?)          // todos con filtro opcional
-getActionsForContext(ctx, filter?) // visible + ordenados por prioridad
-unregisterAction(id)         // eliminar
-clearActionRegistry()        // solo para tests
-```
-
----
-
-## Schema Families
-
-**Archivo**: `src/sisad-pdfme/schemas/schemaFamilies.ts`
-
-Las familias agrupan tipos de schema que comparten secciones del inspector:
-
-| Familia        | Tipos incluidos                              |
-|----------------|----------------------------------------------|
-| `text`         | text, multivariabletext, select, date, signature |
-| `boolean`      | checkbox, radiogroup                         |
-| `mediaVisual`  | image, svg                                   |
-| `shapeBarcode` | line, rectangle, ellipse, qrcode, ean13, …   |
-| `table`        | table                                        |
-
-Cada familia declara:
-- `visibleSections` → secciones del inspector que aplican
-- `supportedActions` → acciones declaradas
-- `supportsConnections`, `supportsCollaboration`, `supportsComments`
-
----
-
-## Command Pattern (CommandBus)
-
-Las operaciones del editor usan el patrón Command para soporte de undo/redo.
-
-```
-src/sisad-pdfme/ui/commands/
-```
-
-### Acciones registradas en el registry que también tienen un Command:
-- `duplicate` → `DuplicateSelectionCommand`
-- `delete` → `DeleteSelectionCommand`
-- `toggleRequired` → `ToggleRequiredCommand`
-
----
-
-## Estrategia para configuraciones complejas
-
-| Widget                       | Estrategia                         |
-|------------------------------|------------------------------------|
-| `SchemaConnectionsWidget`    | `CompactConfigPanel` → modal       |
-| `SchemaCollaborationWidget`  | `CompactConfigPanel` → modal       |
-| `SchemaFieldCommentsWidget`  | Rail lateral + modal de comentario |
-
-**Regla**: si el widget tiene más de 3 controles inline, moverlos a un modal
-accesible desde un botón "Configurar" o "Gestionar".
-
----
-
-## Progressive Disclosure en el inspector
-
-### Secciones por visibilidad
-
-1. **Siempre visibles**: General, Layout, Data
-2. **Colapsadas por defecto**: Style, Validation
-3. **Abrirse en modal/drawer**: Connections, Collaboration, Advanced
-
-### DetailHeaderCard
-
-El header del inspector sigue estas reglas:
-- Máximo **3 tags** de estado inline.
-- Resto de metadatos (UID, owner, etc.) en tooltip del badge `+N` / `···`.
-- Posición X,Y mostrada compactamente en la fila de identidad.
-- **No agregar** más filas de tags al header.
-
----
-
-## Copilot / Codex Guidelines
-
-1. **No duplicar** widgets ya existentes (`CompactConfigPanel`, `DetailHeaderCard`, etc.).
-2. **No duplicar** lógica de acciones — usar `actionRegistry` como fuente de verdad.
-3. Preferir **composición** sobre condicionales gigantes.
-4. Preferir **metadata declarativa** por plugin/familia.
-5. Mover **configuraciones complejas a modales** — no inline en sidebar.
-6. Mantener el **sidebar limpio**: resumen corto + botón de acción.
-7. Usar siempre **tokens CSS** de `tokens.css` para colores, spacing, sombras.
-8. Los nuevos actions deben llamar a `registerAction()` — no hardcodear en los
-   menús contextuales o toolbars.
+- [ ] Respeta aislamiento del fork.
+- [ ] No duplica lógica.
+- [ ] Mantiene configuración declarativa.
+- [ ] Agrega o actualiza tests.
+- [ ] Actualiza documentación si cambia contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0041"></a>
-## Archivo #41: .ai/instructions/canvas-first-ux.instructions.md
+## Archivo #41: .ai/instructions/testing-quality.instructions.md
 
-- **Ruta relativa:** `.ai/instructions/canvas-first-ux.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/canvas-first-ux.instructions.md`
+- **Ruta relativa:** `.ai/instructions/testing-quality.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/testing-quality.instructions.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `4`
+- **Líneas aproximadas:** `12`
 
 ### Contenido original
 
-# Canvas-first UX instructions
-Define reglas inspiradas en Wix para progressive disclosure, ahorro de espacio e inspectores contextuales.
+# Testing Quality
+
+Cada cambio relevante debe tener test unitario o Playwright. Prioriza pruebas de canvas no blanco, geometría estable, sidebar toggle, snapshot round-trip y schema identity.
+
+## Checklist
+
+- [ ] Respeta aislamiento del fork.
+- [ ] No duplica lógica.
+- [ ] Mantiene configuración declarativa.
+- [ ] Agrega o actualiza tests.
+- [ ] Actualiza documentación si cambia contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0042"></a>
-## Archivo #42: .ai/instructions/css-unification.instructions.md
+## Archivo #42: .ai/instructions/ui-ux-compact.instructions.md
 
-- **Ruta relativa:** `.ai/instructions/css-unification.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/css-unification.instructions.md`
+- **Ruta relativa:** `.ai/instructions/ui-ux-compact.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/ui-ux-compact.instructions.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `16`
+- **Líneas aproximadas:** `12`
 
 ### Contenido original
 
-# CSS Unification Instructions
+# Ui Ux Compact
 
-## Objetivo
-Eliminar redundancia de estilos y consolidar el sistema visual.
+Aplica experiencia compacta inspirada en constructores visuales: progressive disclosure, paneles contextuales, density config, iconos claros y textos mínimos.
 
-## Reglas
-- unificar tokens
-- agrupar estilos por dominio
-- evitar archivos vacíos o duplicados
-- reducir colisiones de cascada
-- documentar capas: foundation, layout, components, overlays, utilities
+## Checklist
 
-## Meta
-Lograr que el editor tenga una base visual consistente, predecible y mantenible.
+- [ ] Respeta aislamiento del fork.
+- [ ] No duplica lógica.
+- [ ] Mantiene configuración declarativa.
+- [ ] Agrega o actualiza tests.
+- [ ] Actualiza documentación si cambia contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0043"></a>
-## Archivo #43: .ai/instructions/designer-runtime.instructions.md
-
-- **Ruta relativa:** `.ai/instructions/designer-runtime.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/designer-runtime.instructions.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `4`
-
-### Contenido original
-
-# Designer runtime instructions
-Define reglas del lifecycle de selección, overlays, inspector y canvas.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0044"></a>
-## Archivo #44: .ai/instructions/docs-and-migration.instructions.md
-
-- **Ruta relativa:** `.ai/instructions/docs-and-migration.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/docs-and-migration.instructions.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `4`
-
-### Contenido original
-
-# Docs and migration instructions
-Toda divergencia importante del fork debe documentarse.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0045"></a>
-## Archivo #45: .ai/instructions/editor-platform.instructions.md
-
-- **Ruta relativa:** `.ai/instructions/editor-platform.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/editor-platform.instructions.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `4`
-
-### Contenido original
-
-# Editor platform instructions
-Define reglas de arquitectura global del editor.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0046"></a>
-## Archivo #46: .ai/instructions/frontend-editor.instructions.md
-
-- **Ruta relativa:** `.ai/instructions/frontend-editor.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/frontend-editor.instructions.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `35`
-
-### Contenido original
-
-# Frontend Editor Instructions
-
-## Objetivo
-Evolucionar el editor PDF hacia una arquitectura profesional y compacta.
-
-## Directrices
-- usar React con componentes de responsabilidad única
-- separar layout shell de lógica de editor
-- extraer hooks monolíticos
-- mantener nombres semánticos
-- encapsular acciones en command handlers
-- mover resultados secundarios a drawers
-- reducir paneles permanentes
-
-## Convenciones
-- un archivo = una responsabilidad principal
-- componentes grandes deben delegar composición
-- evitar estilos inline salvo casos justificados
-- preferir tokens y clases de sistema
-- toda prop pública debe tener un propósito claro
-
-## Patrones obligatorios
-- rail de acciones
-- panel contextual
-- toolbar contextual sobre selección
-- bottom drawer para resultados
-- runtime desacoplado del shell visual
-
-## Anti-patrones
-- estado global accidental
-- duplicación de handlers
-- mezcla de lógica de conversión con lógica de canvas
-- side effects en render
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0047"></a>
-## Archivo #47: .ai/instructions/pdfme-extension.instructions.md
-
-- **Ruta relativa:** `.ai/instructions/pdfme-extension.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/pdfme-extension.instructions.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `21`
-
-### Contenido original
-
-# PDFME Extension Instructions
-
-## Objetivo
-Extender sisad-pdfme modificado sin convertir la integración en una caja negra frágil.
-
-## Reglas
-- envolver APIs internas detrás de adaptadores locales
-- no acoplar la app a detalles de implementación inestables
-- centralizar registro de toolbar configs
-- centralizar integración de plugins
-- documentar diferencias respecto a sisad-pdfme upstream
-
-## Debes promover
-- createRuntimeApi
-- adapters
-- event maps
-- selection helpers
-- page helpers
-- schema operations desacopladas
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0048"></a>
-## Archivo #48: .ai/instructions/schema-system.instructions.md
-
-- **Ruta relativa:** `.ai/instructions/schema-system.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/schema-system.instructions.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `4`
-
-### Contenido original
-
-# Schema system instructions
-Define reglas para registry, familias de schema y contratos.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0049"></a>
-## Archivo #49: .ai/instructions/testing-quality.instructions.md
-
-- **Ruta relativa:** `.ai/instructions/testing-quality.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/testing-quality.instructions.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `4`
-
-### Contenido original
-
-# Testing quality instructions
-Toda mejora relevante del editor debe venir con pruebas proporcionales.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0050"></a>
-## Archivo #50: .ai/instructions/ui-ux-compact.instructions.md
-
-- **Ruta relativa:** `.ai/instructions/ui-ux-compact.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/instructions/ui-ux-compact.instructions.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `69`
-
-### Contenido original
-
-# UI UX Compact Instructions
-
-## Objetivo
-Aplicar una experiencia compacta inspirada en Wix, Figma y editores modernos.
-
-## Principios
-- menos paneles visibles por defecto
-- más acciones contextuales
-- menos texto, más jerarquía visual
-- más espacio para el canvas
-- opciones avanzadas bajo demanda
-
-## Aplicación práctica
-- usar rail izquierdo angosto
-- abrir drawers por acción
-- mostrar propiedades según selección
-- agrupar controles secundarios en menus o drawers
-- mover resultados técnicos a panel inferior
-
----
-
-## Action Registry (`actionRegistry.ts`)
-
-Todas las acciones del diseñador están registradas en:
-`src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts`
-
-### Cuándo usar modal vs inline vs contextMenu
-
-| `presentationMode` | Cuándo usar |
-|--------------------|-------------|
-| `inline`           | Acción instantánea (duplicar, alinear) |
-| `popover`          | Config pequeña con 1–3 campos |
-| `modal`            | Config compleja: conexiones, colaboración |
-| `drawer`           | Config extensa que requiere espacio lateral |
-| `contextMenu`      | Acciones secundarias del clic derecho |
-| `hidden`           | Registrada pero no renderizada automáticamente |
-
-### Reglas de implementación
-- **No duplicar** la definición de acciones en múltiples toolbars/menús.
-  Registrar en el registry y leer desde allí.
-- Acciones con `presentationMode: 'modal'` **no deben** renderizarse inline
-  en el inspector; en su lugar mostrar un botón compacto que abre el modal.
-- Acciones `primary` visibles siempre en toolbar.
-  Acciones `secondary` y `danger` dentro de "Más" o menú contextual.
-
-## DetailHeaderCard
-
-El `DetailHeaderCard` sigue el principio de **progressive disclosure**:
-
-1. **Fila identidad**: nombre + tipo badge + posición compacta.
-2. **Fila estado**: máximo 3 tags inline (Requerido, Solo lectura, Oculto, config activa).
-3. **Overflow badge**: `+N` o `···` — al hacer hover muestra tooltip con todos los metadatos
-   (UID, createdBy, lastModifiedBy, owner, estado, etc.).
-
-**No agregar** más filas de tags al header. Toda metadata adicional va en el tooltip.
-
-## Inspector: progressive disclosure
-
-- `Connections`, `Collaboration` → abrirse con `CompactConfigPanel` → botón "Configurar" → modal.
-- No saturar el sidebar con toggles inline si el contenido es extenso.
-- El inspector muestra resumen corto + botón de acción, no el formulario completo.
-
-## CSS
-
-- Usar tokens de `tokens.css` en lugar de valores hardcodeados.
-- Clases de estado: `is-overflow`, `is-active`, `is-danger` como modificadores.
-- No duplicar estilos entre `sisad-pdfme-global.css` y otros archivos CSS del módulo.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0051"></a>
-## Archivo #51: .ai/prompts/add-comments-and-presence.prompt.md
-
-- **Ruta relativa:** `.ai/prompts/add-comments-and-presence.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/add-comments-and-presence.prompt.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `41`
-
-### Contenido original
-
-# Prompt: Add Comments And Presence
-
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
-## Objetivo
-Agregar comentarios y presencia ligera sobre schemas con integración en panel detalle y con espacio para sincronización futura.
-
-## Archivos candidatos
-- `src/sisad-pdfme/common/collaboration.ts`
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx`
-
-## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
-
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
-
-## Criterios de aceptación
-- se pueden representar comentarios por schema
-- la presencia no invade el canvas
-- la base queda lista para backend real
-
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0052"></a>
-## Archivo #52: .ai/prompts/add-editor-regression-tests.prompt.md
-
-- **Ruta relativa:** `.ai/prompts/add-editor-regression-tests.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/add-editor-regression-tests.prompt.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# Prompt: Add Editor Regression Tests
-
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
-## Objetivo
-Agregar pruebas de regresión para el editor cubriendo selección, toolbar, sidebars, overlays, zoom y layout shell.
-
-## Archivos candidatos
-- `tests/unit`
-- `tests/playwright`
-- `src/sisad-pdfme/ui/components/Designer`
-
-## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
-
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
-
-## Criterios de aceptación
-- la regresión queda claramente nombrada
-- hay cobertura automatizada útil
-- las pruebas no son frágiles
-
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0053"></a>
-## Archivo #53: .ai/prompts/add-new-schema-family.prompt.md
+## Archivo #43: .ai/prompts/add-new-schema-family.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/add-new-schema-family.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/add-new-schema-family.prompt.md`
@@ -3071,106 +2474,51 @@ Agregar pruebas de regresión para el editor cubriendo selección, toolbar, side
 
 # Prompt: Add New Schema Family
 
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
 ## Objetivo
-Crear una nueva familia de schema con helper, types, uiRender, pdfRender, propPanel, registro e integración en catálogo.
 
-## Archivos candidatos
-- `src/sisad-pdfme/schemas`
-- `src/sisad-pdfme/ui/components/Designer/schemaRegistry.ts`
+Agrega una nueva familia de schemas siguiendo registry, renderers, prop panel, tests y docs.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
 
 ## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
 
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
 
 ## Criterios de aceptación
-- la familia funciona en UI y PDF
-- tiene defaults claros
-- queda documentada y testeada
 
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
-<a id="archivo-0054"></a>
-## Archivo #54: .ai/prompts/add-prop-panel-for-schema.prompt.md
-
-- **Ruta relativa:** `.ai/prompts/add-prop-panel-for-schema.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/add-prop-panel-for-schema.prompt.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `41`
-
-### Contenido original
-
-# Prompt: Add Prop Panel For Schema
-
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
-## Objetivo
-Agregar o mejorar el prop panel de una familia schema, alineando detail widgets, config storage y comportamiento UI/PDF.
-
-## Archivos candidatos
-- `src/sisad-pdfme/schemas`
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView`
-
-## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
-
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
-
-## Criterios de aceptación
-- el schema queda editable desde inspector
-- la config persiste correctamente
-- la UI es consistente
-
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0055"></a>
-## Archivo #55: .ai/prompts/audit-platform-boundaries.prompt.md
+<a id="archivo-0044"></a>
+## Archivo #44: .ai/prompts/audit-platform-boundaries.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/audit-platform-boundaries.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/audit-platform-boundaries.prompt.md`
@@ -3181,235 +2529,161 @@ Agregar o mejorar el prop panel de una familia schema, alineando detail widgets,
 
 # Prompt: Audit Platform Boundaries
 
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
 ## Objetivo
-Auditar límites entre core, runtime, UI, generator, converter y docs de plataforma para detectar coupling innecesario y proponer saneamiento.
 
-## Archivos candidatos
-- `src/sisad-pdfme`
-- `docs`
+Audita el código para detectar acoplamientos externos, nombres rígidos, endpoints, rutas o lógica de negocio ajena al fork.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
 
 ## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
 
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
 
 ## Criterios de aceptación
-- fronteras más claras
-- riesgos priorizados
-- siguientes pasos accionables
 
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
-<a id="archivo-0056"></a>
-## Archivo #56: .ai/prompts/build-detail-section-system.prompt.md
+<a id="archivo-0045"></a>
+## Archivo #45: .ai/prompts/build-detail-section-system.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/build-detail-section-system.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/build-detail-section-system.prompt.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `40`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
 # Prompt: Build Detail Section System
 
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
 ## Objetivo
-Construir o endurecer un sistema modular de secciones para el detalle del schema, con headers compactos, colapso persistente y widgets bien agrupados.
 
-## Archivos candidatos
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView`
+Diseña un sistema de secciones del inspector reutilizable, extensible por plugins y compatible con modos compactos.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
 
 ## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
 
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
 
 ## Criterios de aceptación
-- secciones consistentes
-- mejor densidad visual
-- estado de colapso predecible
 
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
-<a id="archivo-0057"></a>
-## Archivo #57: .ai/prompts/compact-wix-style-ui.prompt.md
-
-- **Ruta relativa:** `.ai/prompts/compact-wix-style-ui.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/compact-wix-style-ui.prompt.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `22`
-
-### Contenido original
-
-# Prompt: compactar UI estilo Wix
-
-Actúa como diseñador de producto y frontend engineer senior.
-
-## Objetivo
-Transformar una UI pesada de editor PDF en una experiencia compacta y profesional inspirada en Wix/Figma.
-
-## Cambios esperados
-- rail izquierdo fino con iconos y tooltips
-- panel derecho contextual
-- toolbar flotante sobre selección
-- bottom drawer para resultados
-- top bar compacta
-- reducción de texto redundante
-- mejoras de espaciado, sombras, jerarquía y foco visual
-
-## No hacer
-- dejar sidebars anchas siempre visibles
-- llenar la pantalla de cards de soporte
-- mezclar herramientas técnicas con acciones de usuario final
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0058"></a>
-## Archivo #58: .ai/prompts/create-command-bus.prompt.md
-
-- **Ruta relativa:** `.ai/prompts/create-command-bus.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/create-command-bus.prompt.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `28`
-
-### Contenido original
-
-# Prompt: crear command bus del editor
-
-Actúa como arquitecto de interacción para un editor visual.
-
-## Objetivo
-Diseñar e implementar un command bus reutilizable para accionar funciones del editor desde:
-- top bar
-- left rail
-- overlays
-- hotkeys
-- context menus
-
-## Debe cubrir
-- document.*
-- selection.*
-- page.*
-- view.*
-- insert.*
-- convert.*
-
-## Requisitos
-- comandos semánticos
-- handlers desacoplados
-- tipado claro
-- posibilidad de telemetría futura
-- fácil extensión
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0059"></a>
-## Archivo #59: .ai/prompts/create-playwright-canvas-scenarios.prompt.md
+<a id="archivo-0046"></a>
+## Archivo #46: .ai/prompts/create-playwright-canvas-scenarios.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/create-playwright-canvas-scenarios.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/create-playwright-canvas-scenarios.prompt.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `40`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
 # Prompt: Create Playwright Canvas Scenarios
 
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
 ## Objetivo
-Crear escenarios de Playwright centrados en canvas, overlays, sidebars, zoom, empty states y selección contextual.
 
-## Archivos candidatos
-- `tests/playwright/pdfme-editor.spec.ts`
+Crea pruebas Playwright para validar canvas no blanco, selección, drag, resize, sidebars, docs rail y cambio de modo.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
 
 ## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
 
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
 
 ## Criterios de aceptación
-- escenarios relevantes
-- selectores estables
-- regresiones de UX detectables
 
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
-<a id="archivo-0060"></a>
-## Archivo #60: .ai/prompts/document-fork-divergence.prompt.md
+<a id="archivo-0047"></a>
+## Archivo #47: .ai/prompts/document-fork-divergence.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/document-fork-divergence.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/document-fork-divergence.prompt.md`
@@ -3420,438 +2694,216 @@ Crear escenarios de Playwright centrados en canvas, overlays, sidebars, zoom, em
 
 # Prompt: Document Fork Divergence
 
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
 ## Objetivo
-Documentar en forma explícita en qué se diferencia este fork del pdfme original a nivel de arquitectura, UX, runtime y surface pública.
 
-## Archivos candidatos
-- `docs`
-- `README.md`
+Documenta diferencias del fork respecto a pdfme base sin depender de flujos externos.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
 
 ## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
 
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
 
 ## Criterios de aceptación
-- diferencias claras
-- riesgos y beneficios documentados
-- sin vender humo
 
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
-<a id="archivo-0061"></a>
-## Archivo #61: .ai/prompts/fix-moveable-selecto-regression.prompt.md
-
-- **Ruta relativa:** `.ai/prompts/fix-moveable-selecto-regression.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/fix-moveable-selecto-regression.prompt.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# Prompt: Fix Moveable Selecto Regression
-
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
-## Objetivo
-Corregir regresiones entre Moveable y Selecto relacionadas con selección, resize, drag, keyboard o bounds.
-
-## Archivos candidatos
-- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
-- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
-- `tests/playwright`
-
-## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
-
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
-
-## Criterios de aceptación
-- selección consistente
-- drag/resize sin glitches
-- cobertura de regresión
-
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0062"></a>
-## Archivo #62: .ai/prompts/generate-migration-guide.prompt.md
+<a id="archivo-0048"></a>
+## Archivo #48: .ai/prompts/generate-migration-guide.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/generate-migration-guide.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/generate-migration-guide.prompt.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# Prompt: Generate Migration Guide
-
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
-## Objetivo
-Redactar una guía de migración clara para consumidores internos o externos cuando cambien nombres, surface pública o contratos del fork.
-
-## Archivos candidatos
-- `docs`
-- `README.md`
-- `src/sisad-pdfme/ui/index.ts`
-
-## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
-
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
-
-## Criterios de aceptación
-- guía accionable
-- cambios y reemplazos claros
-- sin ambigüedad entre realidad y roadmap
-
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0063"></a>
-## Archivo #63: .ai/prompts/implement-collaboration-state.prompt.md
-
-- **Ruta relativa:** `.ai/prompts/implement-collaboration-state.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/implement-collaboration-state.prompt.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# Prompt: Implement Collaboration State
-
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
-## Objetivo
-Diseñar e implementar una capa clara de estado colaborativo para comentarios, presencia, owner temporal y sincronización por schema, apoyada en identidades estables y con integración visible en el inspector.
-
-## Archivos candidatos
-- `src/sisad-pdfme/common/collaboration.ts`
-- `src/sisad-pdfme/ui/collaboration.ts`
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx`
-
-## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
-
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
-
-## Criterios de aceptación
-- existe modelo claro de eventos y comentarios
-- la UI no bloquea edición local sin razón
-- la identidad de schema es la base del enlace colaborativo
-
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0064"></a>
-## Archivo #64: .ai/prompts/implement-overlay-pattern.prompt.md
-
-- **Ruta relativa:** `.ai/prompts/implement-overlay-pattern.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/implement-overlay-pattern.prompt.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `40`
-
-### Contenido original
-
-# Prompt: Implement Overlay Pattern
-
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
-## Objetivo
-Implementar o normalizar el patrón de overlays del canvas con reglas de prioridad, geometría, foco y visibilidad.
-
-## Archivos candidatos
-- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays`
-
-## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
-
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
-
-## Criterios de aceptación
-- overlays coordinados
-- sin colisiones entre modos
-- mejor claridad del orchestration layer
-
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0065"></a>
-## Archivo #65: .ai/prompts/improve-discovery-mode.prompt.md
-
-- **Ruta relativa:** `.ai/prompts/improve-discovery-mode.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/improve-discovery-mode.prompt.md`
 - **Extensión:** `.md`
 - **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# Prompt: Improve Discovery Mode
-
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
+# Prompt: Generate Migration Guide
 
 ## Objetivo
-Mejorar el discovery mode del catálogo para revelar lo justo en el momento correcto y no desperdiciar espacio permanente.
 
-## Archivos candidatos
-- `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx`
-- `src/sisad-pdfme/ui/components/Designer/useLeftSidebarCatalogState.ts`
+Genera una guía de migración cuando cambien snapshot, schema contracts o APIs públicas.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
 
 ## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
 
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
 
 ## Criterios de aceptación
-- el modo descubre sin saturar
-- chips y grupos se revelan con intención
-- el rail colapsado sigue siendo útil
 
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
-<a id="archivo-0066"></a>
-## Archivo #66: .ai/prompts/improve-list-view-ux.prompt.md
+<a id="archivo-0049"></a>
+## Archivo #49: .ai/prompts/implement-overlay-pattern.prompt.md
 
-- **Ruta relativa:** `.ai/prompts/improve-list-view-ux.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/improve-list-view-ux.prompt.md`
+- **Ruta relativa:** `.ai/prompts/implement-overlay-pattern.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/implement-overlay-pattern.prompt.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `40`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# Prompt: Improve List View UX
-
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
+# Prompt: Implement Overlay Pattern
 
 ## Objetivo
-Mejorar la UX del listado de campos con mejor densidad, reorder, acciones al hover, búsqueda y estados vacíos claros.
 
-## Archivos candidatos
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView`
+Estandariza overlays de canvas: toolbar, comments, inline edit, metrics, context menu y feedback.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
 
 ## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
 
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
 
 ## Criterios de aceptación
-- más legibilidad
-- mejor affordance de reorder
-- sin sobrecargar el panel
 
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
-<a id="archivo-0067"></a>
-## Archivo #67: .ai/prompts/normalize-schema-contracts.prompt.md
+<a id="archivo-0050"></a>
+## Archivo #50: .ai/prompts/normalize-schema-contracts.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/normalize-schema-contracts.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/normalize-schema-contracts.prompt.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
 # Prompt: Normalize Schema Contracts
 
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
 ## Objetivo
-Normalizar contratos de schema, config embebida, identidad y metadatos para que nuevas familias se integren con menos fricción.
 
-## Archivos candidatos
-- `src/sisad-pdfme/common/schema.ts`
-- `src/sisad-pdfme/common/types.ts`
-- `src/sisad-pdfme/schemas`
+Normaliza contratos de schema para designer/form/viewer/pdfRender, identidad estable, serialización y migración.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
 
 ## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
 
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
 
 ## Criterios de aceptación
-- contratos más claros
-- menos duplicación
-- mejor extensibilidad
 
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
-<a id="archivo-0068"></a>
-## Archivo #68: .ai/prompts/optimize-canvas-runtime.prompt.md
+<a id="archivo-0051"></a>
+## Archivo #51: .ai/prompts/optimize-canvas-runtime.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/optimize-canvas-runtime.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/optimize-canvas-runtime.prompt.md`
@@ -3862,9089 +2914,5730 @@ Normalizar contratos de schema, config embebida, identidad y metadatos para que 
 
 # Prompt: Optimize Canvas Runtime
 
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
 ## Objetivo
-Optimizar el runtime del canvas en geometría, zoom, wrappers, stage y scroll sin romper selección ni overlays.
 
-## Archivos candidatos
-- `src/sisad-pdfme/ui/components/Designer/Canvas`
-- `src/sisad-pdfme/ui/components/Paper.tsx`
+Analiza y optimiza el canvas runtime para preservar PDF background, geometría, zoom, scroll, Moveable y Selecto.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
 
 ## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
 
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
 
 ## Criterios de aceptación
-- mejor estabilidad geométrica
-- sin saltos visuales
-- zoom coherente
 
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0052"></a>
+## Archivo #52: .ai/prompts/refactor-designer-engine.prompt.md
+
+- **Ruta relativa:** `.ai/prompts/refactor-designer-engine.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/refactor-designer-engine.prompt.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `41`
+
+### Contenido original
+
+# Prompt: Refactor Designer Engine
+
+## Objetivo
+
+Refactoriza el Designer Engine de forma incremental para separar estado, comandos y eventos sin cambiar la API pública ni romper tests.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
+
+## Restricciones
+
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
+
+## Criterios de aceptación
+
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0053"></a>
+## Archivo #53: .ai/prompts/refactor-left-rail-catalog.prompt.md
+
+- **Ruta relativa:** `.ai/prompts/refactor-left-rail-catalog.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/refactor-left-rail-catalog.prompt.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `41`
+
+### Contenido original
+
+# Prompt: Refactor Left Rail Catalog
+
+## Objetivo
+
+Mejora LeftSidebar/SchemaCatalog para que sea compacto, configurable, searchable, basado en registry y sin metadata innecesaria.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
+
+## Restricciones
+
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
+
+## Criterios de aceptación
+
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0054"></a>
+## Archivo #54: .ai/prompts/refactor-right-inspector-layout.prompt.md
+
+- **Ruta relativa:** `.ai/prompts/refactor-right-inspector-layout.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/refactor-right-inspector-layout.prompt.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `41`
+
+### Contenido original
+
+# Prompt: Refactor Right Inspector Layout
+
+## Objetivo
+
+Mejora RightSidebar/Inspector para soportar paneles contextuales, widgets reutilizables, estado vacío y propiedades por schema.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
+
+## Restricciones
+
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
+
+## Criterios de aceptación
+
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0055"></a>
+## Archivo #55: .ai/prompts/stabilize-public-api.prompt.md
+
+- **Ruta relativa:** `.ai/prompts/stabilize-public-api.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/stabilize-public-api.prompt.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `41`
+
+### Contenido original
+
+# Prompt: Stabilize Public Api
+
+## Objetivo
+
+Audita comandos, eventos y contratos públicos para estabilizar la API de `sisad-pdfme`.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
+
+## Restricciones
+
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
+
+## Criterios de aceptación
+
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0056"></a>
+## Archivo #56: .ai/prompts/unify-css-architecture.prompt.md
+
+- **Ruta relativa:** `.ai/prompts/unify-css-architecture.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/unify-css-architecture.prompt.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `41`
+
+### Contenido original
+
+# Prompt: Unify Css Architecture
+
+## Objetivo
+
+Audita y reorganiza CSS para mantener tokens, scopes y evitar overrides que rompan canvas o sidebars.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
+
+## Restricciones
+
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
+
+## Criterios de aceptación
+
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0057"></a>
+## Archivo #57: .ai/rules/global-rules.md
+
+- **Ruta relativa:** `.ai/rules/global-rules.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/global-rules.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `92`
+
+### Contenido original
+
+# Reglas globales para modelos IA en `sisad-pdfme`
+
+## Identidad del proyecto
+
+`sisad-pdfme` es un fork aislado de edición documental PDF. Debe comportarse como una librería/componente autónomo, configurable y extensible.
+
+## Reglas obligatorias
+
+### 1. Aislamiento
+
+No introducir referencias rígidas a:
+
+- Clientes externos.
+- Workflows externos.
+- Endpoints.
+- Rutas de aplicaciones consumidoras.
+- Servicios de autenticación.
+- Servicios de firma concretos.
+- Pantallas específicas fuera del fork.
+
+### 2. Configurabilidad
+
+Toda nueva habilidad debe poder configurarse mediante:
+
+- `features`.
+- `layout`.
+- `plugins`.
+- `theme`.
+- `permissions`.
+- `commands`.
+- `events`.
+- `adapters`.
+
+### 3. Composición
+
+Preferir componentes genéricos:
+
+- `Designer`
+- `Canvas`
+- `LeftSidebar`
+- `RightSidebar`
+- `SchemaCatalog`
+- `Inspector`
+- `FloatingToolbar`
+- `DocsRail`
+- `CommentsRail`
+- `Form`
+- `Viewer`
+- `SnapshotEngine`
+
+No crear variantes por caso de uso.
+
+### 4. Estabilidad visual
+
+No romper:
+
+- PDF background.
+- Paper geometry.
+- Zoom.
+- Scroll.
+- Coordenadas.
+- Moveable.
+- Selecto.
+- Overlays.
+- Sidebars.
+- Toolbar contextual.
+
+### 5. Snapshot como fuente de verdad
+
+El snapshot debe representar el estado portable del fork. No guardar nodos DOM, funciones, tokens ni credenciales.
+
+### 6. Testing
+
+Toda modificación importante debe tener al menos una validación:
+
+- Unit test.
+- Playwright test.
+- Snapshot round-trip.
+- Validación manual documentada.
+
+### 7. Documentación
+
+Actualizar docs si se cambia:
+
+- API pública.
+- Contrato de schema.
+- Snapshot.
+- Eventos.
+- Comandos.
+- Comportamiento de componentes.
+- Estilos o tokens globales.
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0058"></a>
+## Archivo #58: .ai/templates/architecture-decision-record.md
+
+- **Ruta relativa:** `.ai/templates/architecture-decision-record.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/templates/architecture-decision-record.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `37`
+
+### Contenido original
+
+# ADR: [Título]
+
+## Estado
+
+Propuesto | Aceptado | Rechazado | Deprecated
+
+## Contexto
+
+Describe el problema técnico.
+
+## Decisión
+
+Describe la decisión tomada.
+
+## Alternativas consideradas
+
+- Alternativa A.
+- Alternativa B.
+
+## Consecuencias
+
+### Positivas
+
+- ...
+
+### Riesgos
+
+- ...
+
+## Archivos afectados
+
+- ...
+
+## Tests requeridos
+
+- ...
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0059"></a>
+## Archivo #59: .ai/templates/change-report.md
+
+- **Ruta relativa:** `.ai/templates/change-report.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/templates/change-report.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `16`
+
+### Contenido original
+
+# Reporte de cambio IA
+
+## Resumen
+
+## Archivos modificados
+
+## Contratos afectados
+
+## Tests ejecutados
+
+## Riesgos
+
+## Documentación actualizada
+
+## Próximos pasos
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0060"></a>
+## Archivo #60: .claude/commands/plan.md
+
+- **Ruta relativa:** `.claude/commands/plan.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.claude/commands/plan.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `11`
+
+### Contenido original
+
+# /plan
+
+Genera un plan técnico con:
+
+1. Diagnóstico.
+2. Archivos afectados.
+3. Riesgos.
+4. Pasos.
+5. Tests.
+6. Documentación que debe actualizarse.
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0061"></a>
+## Archivo #61: .claude/commands/review.md
+
+- **Ruta relativa:** `.claude/commands/review.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.claude/commands/review.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `12`
+
+### Contenido original
+
+# /review
+
+Revisa cambios con foco en:
+
+- Aislamiento del fork.
+- Configurabilidad.
+- Snapshot.
+- Canvas geometry.
+- CSS scope.
+- Tests.
+- Documentación.
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0062"></a>
+## Archivo #62: .claude/commands/startup.md
+
+- **Ruta relativa:** `.claude/commands/startup.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.claude/commands/startup.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `9`
+
+### Contenido original
+
+# /startup
+
+Lee `AGENTS.md`, `.ai/rules/global-rules.md`, `.ai/context/project-overview.md` y resume:
+
+1. Qué es `sisad-pdfme`.
+2. Qué reglas no se pueden violar.
+3. Qué dominios técnicos existen.
+4. Qué agente usarías para la tarea actual.
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0063"></a>
+## Archivo #63: .codex/tasks/refactor-safe.md
+
+- **Ruta relativa:** `.codex/tasks/refactor-safe.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.codex/tasks/refactor-safe.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `10`
+
+### Contenido original
+
+# Tarea Codex: refactor seguro
+
+## Instrucción
+
+Refactoriza solo el área solicitada. Mantén API pública, tests y documentación.
+
+## Validación
+
+Ejecuta suite relevante y reporta fallos.
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0064"></a>
+## Archivo #64: .gemini/prompts/audit-architecture.md
+
+- **Ruta relativa:** `.gemini/prompts/audit-architecture.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.gemini/prompts/audit-architecture.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `4`
+
+### Contenido original
+
+# Prompt Gemini: auditoría de arquitectura
+
+Analiza `sisad-pdfme` como fork aislado. Revisa si existen acoplamientos, duplicidades, contratos incompletos, documentación desactualizada o riesgos de regresión.
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0065"></a>
+## Archivo #65: .github/instructions/architecture-modular.instructions.md
+
+- **Ruta relativa:** `.github/instructions/architecture-modular.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/instructions/architecture-modular.instructions.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `4`
+
+### Contenido original
+
+# GitHub Copilot — architecture-modular.instructions.md
+
+Mantén `sisad-pdfme` organizado por módulos con responsabilidades explícitas. No mezcles UI, dominio, snapshot, generator, converter y schemas en un solo archivo. Cada módulo debe exponer contratos claros y evitar dependencias circulares.
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0066"></a>
+## Archivo #66: .github/instructions/canvas-first-ux.instructions.md
+
+- **Ruta relativa:** `.github/instructions/canvas-first-ux.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/instructions/canvas-first-ux.instructions.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `4`
+
+### Contenido original
+
+# GitHub Copilot — canvas-first-ux.instructions.md
+
+El canvas es la superficie principal. Cualquier sidebar, rail o overlay debe ayudar al canvas, no competir con él. Las interacciones deben ser compactas, contextuales y no invasivas.
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0067"></a>
+## Archivo #67: .github/instructions/css-unification.instructions.md
+
+- **Ruta relativa:** `.github/instructions/css-unification.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/instructions/css-unification.instructions.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `4`
+
+### Contenido original
+
+# GitHub Copilot — css-unification.instructions.md
+
+Mantén CSS bajo scope `.sisad-pdfme-root`. Usa tokens. Evita overrides globales. No rompas Moveable, Selecto, paper geometry ni overlays.
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0068"></a>
+## Archivo #68: .github/instructions/designer-runtime.instructions.md
+
+- **Ruta relativa:** `.github/instructions/designer-runtime.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/instructions/designer-runtime.instructions.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `4`
+
+### Contenido original
+
+# GitHub Copilot — designer-runtime.instructions.md
+
+El runtime del Designer debe priorizar estabilidad. No reinicialices el editor por cambios menores. Preserva PDF background, selección, zoom, scroll y active document.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0069"></a>
-## Archivo #69: .ai/prompts/refactor-designer-engine.prompt.md
+## Archivo #69: .github/instructions/docs-and-migration.instructions.md
 
-- **Ruta relativa:** `.ai/prompts/refactor-designer-engine.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/refactor-designer-engine.prompt.md`
+- **Ruta relativa:** `.github/instructions/docs-and-migration.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/instructions/docs-and-migration.instructions.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
+- **Líneas aproximadas:** `4`
 
 ### Contenido original
 
-# Prompt: Refactor Designer Engine
+# GitHub Copilot — docs-and-migration.instructions.md
 
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
-## Objetivo
-Refactorizar el designer engine para separar mejor config estructural, config por schema, hooks de identidad y runtime efímero, sin romper la API principal del builder.
-
-## Archivos candidatos
-- `src/sisad-pdfme/ui/designerEngine.ts`
-- `src/sisad-pdfme/ui/index.ts`
-- `src/sisad-pdfme/ui/types.ts`
-
-## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
-
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
-
-## Criterios de aceptación
-- el builder queda más claro
-- no se rompe la integración existente
-- hay menor mezcla entre concerns
-
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
+Toda modificación de API pública, snapshot, schema contract, eventos o comandos debe actualizar docs y agregar nota de migración.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0070"></a>
-## Archivo #70: .ai/prompts/refactor-editor-shell.prompt.md
+## Archivo #70: .github/instructions/frontend-editor.instructions.md
 
-- **Ruta relativa:** `.ai/prompts/refactor-editor-shell.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/refactor-editor-shell.prompt.md`
+- **Ruta relativa:** `.github/instructions/frontend-editor.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/instructions/frontend-editor.instructions.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `37`
+- **Líneas aproximadas:** `4`
 
 ### Contenido original
 
-# Prompt: Refactor del shell del editor
+# GitHub Copilot — frontend-editor.instructions.md
 
-Actúa como arquitecto frontend senior experto en React, canvas, sisad-pdfme y editores visuales.
-
-## Contexto
-Existe un editor PDF construido con React y sisad-pdfme modificado. El estado actual mezcla lógica de laboratorio, runtime del diseñador, resultados de conversión y layout visual. El objetivo es evolucionarlo a un producto con UX compacta tipo Wix.
-
-## Objetivo
-Refactorizar el shell principal del editor para separar:
-- EditorRail
-- TopBar compacta
-- ContextDrawer
-- BottomResultsDrawer
-- Workspace central
-- Runtime del editor desacoplado
-
-## Restricciones
-- no romper compatibilidad funcional existente
-- mantener la base React actual
-- no introducir librerías innecesarias
-- minimizar cambios fuera del alcance
-- conservar nombres semánticos
-
-## Entregables
-1. nueva estructura de componentes
-2. propuesta de archivos
-3. implementación de base
-4. criterios de aceptación
-5. notas de migración
-
-## Criterios de aceptación
-- el canvas gana espacio visible
-- los paneles secundarios dejan de ocupar espacio permanente
-- las acciones principales siguen accesibles
-- el layout queda listo para escalar
+Todo componente React debe ser genérico, configurable y testeable. Evita componentes con lógica específica de un consumidor. Usa props, contextos internos y command bus cuando sea necesario.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0071"></a>
-## Archivo #71: .ai/prompts/refactor-left-rail-catalog.prompt.md
+## Archivo #71: .github/instructions/pdfme-extension.instructions.md
 
-- **Ruta relativa:** `.ai/prompts/refactor-left-rail-catalog.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/refactor-left-rail-catalog.prompt.md`
+- **Ruta relativa:** `.github/instructions/pdfme-extension.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/instructions/pdfme-extension.instructions.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
+- **Líneas aproximadas:** `4`
 
 ### Contenido original
 
-# Prompt: Refactor Left Rail Catalog
+# GitHub Copilot — pdfme-extension.instructions.md
 
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
-## Objetivo
-Refactorizar el catálogo izquierdo para fortalecer tabs, búsqueda, discovery mode, favoritos y comportamiento colapsado/expandido al estilo canvas-first.
-
-## Archivos candidatos
-- `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx`
-- `src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx`
-- `src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx`
-
-## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
-
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
-
-## Criterios de aceptación
-- rail más claro
-- búsqueda y filtros útiles
-- mejor uso del espacio
-
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
+Toda extensión debe entrar por registry, plugin, adapter, command o event. No forks paralelos por caso de uso.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0072"></a>
-## Archivo #72: .ai/prompts/refactor-right-inspector-layout.prompt.md
+## Archivo #72: .github/instructions/schema-system.instructions.md
 
-- **Ruta relativa:** `.ai/prompts/refactor-right-inspector-layout.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/refactor-right-inspector-layout.prompt.md`
+- **Ruta relativa:** `.github/instructions/schema-system.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/instructions/schema-system.instructions.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `40`
+- **Líneas aproximadas:** `4`
 
 ### Contenido original
 
-# Prompt: Refactor Right Inspector Layout
+# GitHub Copilot — schema-system.instructions.md
 
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
-## Objetivo
-Refactorizar el layout del inspector derecho para mejorar espacio útil, scroll, tabs y distribución entre docs/list/detail.
-
-## Archivos candidatos
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar`
-
-## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
-
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
-
-## Criterios de aceptación
-- menos huecos
-- mejor jerarquía
-- modos más claros
-
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
+Todo schema debe tener identidad estable, renderer de designer/form/viewer y panel de propiedades configurable. No guardar datos sensibles ni funciones en el schema.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0073"></a>
-## Archivo #73: .ai/prompts/split-monolithic-hook.prompt.md
+## Archivo #73: .github/instructions/testing-quality.instructions.md
 
-- **Ruta relativa:** `.ai/prompts/split-monolithic-hook.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/split-monolithic-hook.prompt.md`
+- **Ruta relativa:** `.github/instructions/testing-quality.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/instructions/testing-quality.instructions.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `22`
+- **Líneas aproximadas:** `4`
 
 ### Contenido original
 
-# Prompt: dividir hook monolítico
+# GitHub Copilot — testing-quality.instructions.md
 
-Actúa como especialista en arquitectura React.
-
-## Tarea
-Tomar un hook grande que mezcla runtime de editor, blobs, conversiones, UI mode y acciones, y dividirlo en hooks especializados.
-
-## Meta
-Extraer al menos estas responsabilidades:
-- usePdfmeEditorRuntime
-- usePdfmeConversionLab
-- usePdfmeUiState
-- useBlobResourceManager
-
-## Requisitos
-- preservar funcionalidad
-- reducir side effects implícitos
-- eliminar parches tipo setTimeout cuando sea posible
-- usar nombres explícitos
-- documentar responsabilidades de cada hook
+Cada cambio relevante debe tener test unitario o Playwright. Prioriza pruebas de canvas no blanco, geometría estable, sidebar toggle, snapshot round-trip y schema identity.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0074"></a>
-## Archivo #74: .ai/prompts/stabilize-public-api.prompt.md
+## Archivo #74: .github/instructions/ui-ux-compact.instructions.md
 
-- **Ruta relativa:** `.ai/prompts/stabilize-public-api.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/stabilize-public-api.prompt.md`
+- **Ruta relativa:** `.github/instructions/ui-ux-compact.instructions.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/instructions/ui-ux-compact.instructions.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `43`
+- **Líneas aproximadas:** `4`
 
 ### Contenido original
 
-# Prompt: Stabilize Public API
+# GitHub Copilot — ui-ux-compact.instructions.md
 
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
-## Objetivo
-Auditar exports y contratos públicos para estabilizar la surface externa del editor, del generator y del converter, marcando claramente qué es público y qué es interno.
-
-## Archivos candidatos
-- `src/sisad-pdfme/ui/index.ts`
-- `src/sisad-pdfme/common/index.ts`
-- `src/sisad-pdfme/generator/index.ts`
-- `src/sisad-pdfme/converter/index.ts`
-
-## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
-
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
-
-## Criterios de aceptación
-- exports claros
-- menos leaks internos
-- documentación de migración si algo cambia
-
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
+Aplica experiencia compacta inspirada en constructores visuales: progressive disclosure, paneles contextuales, density config, iconos claros y textos mínimos.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0075"></a>
-## Archivo #75: .ai/prompts/unify-css-architecture.prompt.md
+## Archivo #75: .github/prompts/add-new-schema-family.prompt.md
 
-- **Ruta relativa:** `.ai/prompts/unify-css-architecture.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/unify-css-architecture.prompt.md`
+- **Ruta relativa:** `.github/prompts/add-new-schema-family.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/add-new-schema-family.prompt.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `19`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# Prompt: unificar arquitectura CSS
-
-Actúa como frontend architect y design system specialist.
+# Prompt: Add New Schema Family
 
 ## Objetivo
-Reorganizar y consolidar el CSS del editor.
+
+Agrega una nueva familia de schemas siguiendo registry, renderers, prop panel, tests y docs.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
+
+## Restricciones
+
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
 
 ## Tareas
-- detectar duplicidades
-- proponer estructura final
-- mover reglas a capas correctas
-- homologar tokens
-- eliminar estilos vacíos o redundantes
-- reducir conflictos entre estilos globales y estilos internos del editor
 
-## Resultado esperado
-Una arquitectura CSS estable, limpia y escalable.
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
+
+## Criterios de aceptación
+
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0076"></a>
-## Archivo #76: .ai/prompts/validate-runtime-generate-parity.prompt.md
+## Archivo #76: .github/prompts/audit-platform-boundaries.prompt.md
 
-- **Ruta relativa:** `.ai/prompts/validate-runtime-generate-parity.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/validate-runtime-generate-parity.prompt.md`
+- **Ruta relativa:** `.github/prompts/audit-platform-boundaries.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/audit-platform-boundaries.prompt.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# Prompt: Validate Runtime Generate Parity
-
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
+# Prompt: Audit Platform Boundaries
 
 ## Objetivo
-Validar paridad entre lo que el editor muestra y lo que el generator produce para una o más familias de schema.
 
-## Archivos candidatos
-- `src/sisad-pdfme/generator`
-- `src/sisad-pdfme/schemas`
-- `tests/unit`
+Audita el código para detectar acoplamientos externos, nombres rígidos, endpoints, rutas o lógica de negocio ajena al fork.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
 
 ## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
 
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
 
 ## Criterios de aceptación
-- las diferencias se identifican
-- hay pruebas o checklist de verificación
-- se corrigen mismatches relevantes
 
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0077"></a>
-## Archivo #77: .ai/prompts/write-architecture-decision-record.prompt.md
+## Archivo #77: .github/prompts/build-detail-section-system.prompt.md
 
-- **Ruta relativa:** `.ai/prompts/write-architecture-decision-record.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/write-architecture-decision-record.prompt.md`
+- **Ruta relativa:** `.github/prompts/build-detail-section-system.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/build-detail-section-system.prompt.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `40`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# Prompt: Write Architecture Decision Record
-
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
+# Prompt: Build Detail Section System
 
 ## Objetivo
-Escribir un ADR breve y útil para documentar una decisión arquitectónica importante del editor o de la plataforma.
 
-## Archivos candidatos
-- `docs`
+Diseña un sistema de secciones del inspector reutilizable, extensible por plugins y compatible con modos compactos.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
 
 ## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
 
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
 
 ## Criterios de aceptación
-- la decisión queda contextualizada
-- se explican alternativas
-- hay consecuencias claras
 
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0078"></a>
-## Archivo #78: .ai/rules/global-rules.md
+## Archivo #78: .github/prompts/create-playwright-canvas-scenarios.prompt.md
 
-- **Ruta relativa:** `.ai/rules/global-rules.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/global-rules.md`
+- **Ruta relativa:** `.github/prompts/create-playwright-canvas-scenarios.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/create-playwright-canvas-scenarios.prompt.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `7`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# Global rules
+# Prompt: Create Playwright Canvas Scenarios
 
-1. No asumir que el proyecto sigue siendo pdfme original.
-2. Respetar separaciones entre common, schemas, ui, generator y converter.
-3. Preferir cambios incrementales con pruebas.
+## Objetivo
+
+Crea pruebas Playwright para validar canvas no blanco, selección, drag, resize, sidebars, docs rail y cambio de modo.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
+
+## Restricciones
+
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
+
+## Criterios de aceptación
+
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0079"></a>
-## Archivo #79: .backup-ai-workspace/.agents.bak/copilot-instructions.md
+## Archivo #79: .github/prompts/document-fork-divergence.prompt.md
 
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/copilot-instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/copilot-instructions.md`
+- **Ruta relativa:** `.github/prompts/document-fork-divergence.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/document-fork-divergence.prompt.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `36`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-Copilot instructions for prueba-plugin
+# Prompt: Document Fork Divergence
 
-Visión general
-Este repositorio contiene una aplicación React que integra una versión modificada de `sisad-pdfme`.
-La interfaz principal es un lienzo (canvas) editable donde predominan las interacciones directas: selección, arrastre, overlays y paneles contextuales. El objetivo UX es un editor tipo Wix: inmediato, directo, con controles contextuales y bajo ruido visual.
+## Objetivo
 
-Arquitectura objetivo
-- `src/sisad-pdfme/*`: adaptadores, runtime y puentes hacia la librería sisad-pdfme modificada.
-- `src/components/*`: componentes UI reutilizables y desacoplados del runtime.
-- `styles/` y `styles-unificados.css`: tokens y utilidades de presentación.
-- `types/`: definiciones públicas y contratos entre la app y `sisad-pdfme`.
+Documenta diferencias del fork respecto a pdfme base sin depender de flujos externos.
 
-Reglas generales para Copilot
-- Prioriza cambios locales y no invasivos: preferir adaptadores sobre modificaciones al runtime.
-- Preserva contratos públicos en `src/sisad-pdfme` y `types/`.
-- Mantén componentes pequeños y con una única responsabilidad.
-- Evita soluciones que rompan la accesibilidad o la usabilidad del canvas.
+## Contexto obligatorio
 
-Cómo validar cambios
-- Ejecutar la app en modo desarrollo y comprobar interacciones del canvas.
-- Ejecutar pruebas unitarias y de integración (`vitest` / `npm test` si aplica).
-- Usar Playwright para pruebas E2E y capturas visuales (hay `playwright.config.ts`).
+Lee antes de actuar:
 
-Qué no romper
-- No cambiar la API pública del runtime de `sisad-pdfme` sin plan de migración.
-- No renombrar tipos en `types/` sin coordinar adaptadores.
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
 
-Dónde colocar instrucciones y skills
-- Instrucciones por ruta: `.github/instructions/*.instructions.md` (ya existen).
-- Instrucciones globales: este archivo `.github/copilot-instructions.md`.
-- AGENTS.md define el comportamiento esperado del coding agent.
-- Skills: `.github/skills/<skill>/SKILL.md` (carpetas con `SKILL.md`).
+## Restricciones
 
-Uso práctico
-Cuando pidas al agente que modifique código, referencia el objetivo (por ejemplo: “Refactoriza `usePdfmeLab.ts` manteniendo compatibilidad con sisad-pdfme modificado”). Copilot debería incluir referencias a este archivo si lo tomó en cuenta.
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
+
+## Criterios de aceptación
+
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0080"></a>
-## Archivo #80: .backup-ai-workspace/.agents.bak/README-AI-WORKSPACE.md
+## Archivo #80: .github/prompts/generate-migration-guide.prompt.md
 
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/README-AI-WORKSPACE.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/README-AI-WORKSPACE.md`
+- **Ruta relativa:** `.github/prompts/generate-migration-guide.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/generate-migration-guide.prompt.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `43`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# AI Workspace del proyecto PDF Editor
+# Prompt: Generate Migration Guide
 
-Este workspace fue generado para guiar asistentes, agentes y modelos hacia una visión clara del producto.
+## Objetivo
 
-## Visión del producto
+Genera una guía de migración cuando cambien snapshot, schema contracts o APIs públicas.
 
-Construir un editor PDF moderno sobre React y sisad-pdfme modificado con una experiencia tipo Wix/Figma/DocuSign:
+## Contexto obligatorio
 
-- canvas dominante
-- paneles compactos y contextuales
-- sidebars colapsables
-- overlays flotantes
-- command bus reutilizable
-- runtime desacoplado
-- arquitectura escalable
-- bajo acoplamiento entre UI, canvas, conversiones y datos
-- diseño premium y consistente
-- soporte para plantillas, campos, firmas, drag & drop, capas y propiedades avanzadas
+Lee antes de actuar:
 
-## Principios de construcción
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
 
-1. El canvas es el centro del producto.
-2. Las acciones complejas deben abrirse bajo demanda, no ocupar espacio fijo.
-3. Las herramientas deben ser contextuales, no invasivas.
-4. La arquitectura debe separar editor, laboratorio, conversiones y shell visual.
-5. Cada archivo debe tener responsabilidad clara.
-6. La UI debe ser consistente, accesible y escalable.
-7. El sistema debe poder evolucionar hacia multi-documento, colaboración y flujos de firma.
+## Restricciones
 
-## Áreas críticas
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
 
-- runtime del diseñador
-- panel izquierdo tipo action rail
-- panel derecho contextual
-- overlays sobre canvas
-- barra superior compacta
-- resultados en bottom drawer
-- comandos unificados
-- persistencia de estado UI
-- estilos unificados y tokens de diseño
-- compatibilidad con sisad-pdfme modificado
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
+
+## Criterios de aceptación
+
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0081"></a>
-## Archivo #81: .backup-ai-workspace/github-agents.bak/canvas-ux-orchestrator.agent.md
+## Archivo #81: .github/prompts/implement-overlay-pattern.prompt.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-agents.bak/canvas-ux-orchestrator.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-agents.bak/canvas-ux-orchestrator.agent.md`
+- **Ruta relativa:** `.github/prompts/implement-overlay-pattern.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/implement-overlay-pattern.prompt.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `22`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# Canvas UX Orchestrator
+# Prompt: Implement Overlay Pattern
 
-## Rol
-Especialista en interacción visual sobre canvas, selección, overlays, snapping, floating toolbars y diseño espacial.
+## Objetivo
 
-## Misión
-Lograr una experiencia tipo editor profesional con mínima ocupación visual y máxima velocidad de uso.
+Estandariza overlays de canvas: toolbar, comments, inline edit, metrics, context menu y feedback.
 
-## Debes impulsar
-- toolbars contextuales
-- overlays no invasivos
-- rail lateral compacto
-- drawer inferior para resultados
-- feedback visual claro
-- estados hover, active, focus, selected y locked
+## Contexto obligatorio
 
-## Reglas
-- toda interacción debe reducir clics
-- el canvas nunca debe quedar ahogado por paneles fijos
-- las acciones frecuentes deben estar cerca del foco de trabajo
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
+
+## Restricciones
+
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
+
+## Criterios de aceptación
+
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0082"></a>
-## Archivo #82: .backup-ai-workspace/github-agents.bak/design-system-guardian.agent.md
+## Archivo #82: .github/prompts/normalize-schema-contracts.prompt.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-agents.bak/design-system-guardian.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-agents.bak/design-system-guardian.agent.md`
+- **Ruta relativa:** `.github/prompts/normalize-schema-contracts.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/normalize-schema-contracts.prompt.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `23`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# Design System Guardian
+# Prompt: Normalize Schema Contracts
 
-## Rol
-Guardián del sistema visual del editor.
+## Objetivo
 
-## Misión
-Garantizar consistencia entre tokens, spacing, radii, sombras, tipografías, tamaños, botones y componentes.
+Normaliza contratos de schema para designer/form/viewer/pdfRender, identidad estable, serialización y migración.
 
-## Debes revisar
-- duplicidad de CSS
-- naming inconsistente
-- inline styles innecesarios
-- tokens no homologados
-- jerarquía visual
-- dark mode
-- estados de interacción
+## Contexto obligatorio
 
-## Resultado esperado
-- unificación de tokens
-- reglas de composición
-- patrones reusables para rail, drawer, panel, card, toolbar, badge y overlay
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
+
+## Restricciones
+
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
+
+## Criterios de aceptación
+
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0083"></a>
-## Archivo #83: .backup-ai-workspace/github-agents.bak/frontend-pdf-architect.agent.md
+## Archivo #83: .github/prompts/optimize-canvas-runtime.prompt.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-agents.bak/frontend-pdf-architect.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-agents.bak/frontend-pdf-architect.agent.md`
+- **Ruta relativa:** `.github/prompts/optimize-canvas-runtime.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/optimize-canvas-runtime.prompt.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `40`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# Frontend PDF Architect
+# Prompt: Optimize Canvas Runtime
 
-## Rol
-Eres un arquitecto frontend senior especializado en React, canvas, editores visuales, sisad-pdfme, flujos tipo DocuSign y UX de herramientas complejas.
+## Objetivo
 
-## Misión
-Diseñar y refactorizar el editor PDF como producto, no como laboratorio de pruebas.
+Analiza y optimiza el canvas runtime para preservar PDF background, geometría, zoom, scroll, Moveable y Selecto.
 
-## Objetivos
-- separar runtime, layout, paneles y conversiones
-- reducir acoplamiento
-- crear una experiencia tipo Wix/Figma
-- hacer que el canvas sea el protagonista
-- consolidar un command bus reutilizable
-- estandarizar sidebars, drawers y overlays
+## Contexto obligatorio
 
-## Debes priorizar
-1. arquitectura modular
-2. UX compacta
-3. mantenibilidad
-4. accesibilidad
-5. performance
-6. consistencia visual
+Lee antes de actuar:
 
-## Debes evitar
-- mega componentes
-- hooks monolíticos
-- estilos duplicados
-- lógica de negocio en componentes presentacionales
-- sidebars permanentes que desperdicien espacio
-- refactors superficiales
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
 
-## Entregables esperados
-- propuesta de estructura de carpetas
-- plan de refactor por fases
-- lista de deuda técnica
-- componentes objetivo
-- contratos entre capas
+## Restricciones
+
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
+
+## Criterios de aceptación
+
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0084"></a>
-## Archivo #84: .backup-ai-workspace/github-agents.bak/pdfme-runtime-specialist.agent.md
+## Archivo #84: .github/prompts/refactor-designer-engine.prompt.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-agents.bak/pdfme-runtime-specialist.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-agents.bak/pdfme-runtime-specialist.agent.md`
+- **Ruta relativa:** `.github/prompts/refactor-designer-engine.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/refactor-designer-engine.prompt.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `29`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# PDFME Runtime Specialist
+# Prompt: Refactor Designer Engine
 
-## Rol
-Especialista en sisad-pdfme modificado, runtime UI, template state, inputs, plugins, toolbar configs y motor de canvas.
+## Objetivo
 
-## Misión
-Mantener la compatibilidad con sisad-pdfme mientras se mejora su ergonomía, extensibilidad y control desde React.
+Refactoriza el Designer Engine de forma incremental para separar estado, comandos y eventos sin cambiar la API pública ni romper tests.
 
-## Debes analizar
-- creación y destrucción de instancia
-- sincronización template / inputs
-- eventos del diseñador
-- runtime API expuesta
-- integración con overlays
-- fit, page state, selection state
-- command routing
+## Contexto obligatorio
 
-## Debes producir
-- propuestas de API runtime estables
-- adaptación segura de sisad-pdfme modificado
-- recomendaciones para eventos y listeners
-- separación entre API pública y detalles internos
+Lee antes de actuar:
 
-## Reglas
-- no romper contratos existentes sin justificarlo
-- preferir APIs pequeñas y semánticas
-- documentar side effects
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
+
+## Restricciones
+
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
+
+## Criterios de aceptación
+
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0085"></a>
-## Archivo #85: .backup-ai-workspace/github-agents.bak/prompt-execution-director.agent.md
+## Archivo #85: .github/prompts/refactor-left-rail-catalog.prompt.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-agents.bak/prompt-execution-director.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-agents.bak/prompt-execution-director.agent.md`
+- **Ruta relativa:** `.github/prompts/refactor-left-rail-catalog.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/refactor-left-rail-catalog.prompt.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `23`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# Prompt Execution Director
+# Prompt: Refactor Left Rail Catalog
 
-## Rol
-Convierte tareas complejas del proyecto en prompts precisos, secuenciales y ejecutables por IA.
+## Objetivo
 
-## Misión
-Reducir ambigüedad y guiar a los modelos a cambios estructurados, seguros y medibles.
+Mejora LeftSidebar/SchemaCatalog para que sea compacto, configurable, searchable, basado en registry y sin metadata innecesaria.
 
-## Debes generar
-- prompts por fase
-- prompts por archivo
-- prompts de validación
-- prompts de refactor
-- prompts de hardening
-- prompts de limpieza arquitectónica
+## Contexto obligatorio
 
-## Reglas
-- exigir criterios de aceptación
-- definir restricciones
-- pedir diffs claros
-- prohibir cambios innecesarios fuera del alcance
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
+
+## Restricciones
+
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
+
+## Criterios de aceptación
+
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0086"></a>
-## Archivo #86: .backup-ai-workspace/github-instructions.bak/css-unification.instructions.md
+## Archivo #86: .github/prompts/refactor-right-inspector-layout.prompt.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-instructions.bak/css-unification.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-instructions.bak/css-unification.instructions.md`
+- **Ruta relativa:** `.github/prompts/refactor-right-inspector-layout.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/refactor-right-inspector-layout.prompt.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `16`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# CSS Unification Instructions
+# Prompt: Refactor Right Inspector Layout
 
 ## Objetivo
-Eliminar redundancia de estilos y consolidar el sistema visual.
 
-## Reglas
-- unificar tokens
-- agrupar estilos por dominio
-- evitar archivos vacíos o duplicados
-- reducir colisiones de cascada
-- documentar capas: foundation, layout, components, overlays, utilities
+Mejora RightSidebar/Inspector para soportar paneles contextuales, widgets reutilizables, estado vacío y propiedades por schema.
 
-## Meta
-Lograr que el editor tenga una base visual consistente, predecible y mantenible.
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
+
+## Restricciones
+
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
+
+## Criterios de aceptación
+
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0087"></a>
-## Archivo #87: .backup-ai-workspace/github-instructions.bak/frontend-editor.instructions.md
+## Archivo #87: .github/prompts/stabilize-public-api.prompt.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-instructions.bak/frontend-editor.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-instructions.bak/frontend-editor.instructions.md`
+- **Ruta relativa:** `.github/prompts/stabilize-public-api.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/stabilize-public-api.prompt.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `35`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# Frontend Editor Instructions
+# Prompt: Stabilize Public Api
 
 ## Objetivo
-Evolucionar el editor PDF hacia una arquitectura profesional y compacta.
 
-## Directrices
-- usar React con componentes de responsabilidad única
-- separar layout shell de lógica de editor
-- extraer hooks monolíticos
-- mantener nombres semánticos
-- encapsular acciones en command handlers
-- mover resultados secundarios a drawers
-- reducir paneles permanentes
+Audita comandos, eventos y contratos públicos para estabilizar la API de `sisad-pdfme`.
 
-## Convenciones
-- un archivo = una responsabilidad principal
-- componentes grandes deben delegar composición
-- evitar estilos inline salvo casos justificados
-- preferir tokens y clases de sistema
-- toda prop pública debe tener un propósito claro
+## Contexto obligatorio
 
-## Patrones obligatorios
-- rail de acciones
-- panel contextual
-- toolbar contextual sobre selección
-- bottom drawer para resultados
-- runtime desacoplado del shell visual
+Lee antes de actuar:
 
-## Anti-patrones
-- estado global accidental
-- duplicación de handlers
-- mezcla de lógica de conversión con lógica de canvas
-- side effects en render
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
+
+## Restricciones
+
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
+
+## Criterios de aceptación
+
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0088"></a>
-## Archivo #88: .backup-ai-workspace/github-instructions.bak/pdfme-extension.instructions.md
+## Archivo #88: .github/prompts/unify-css-architecture.prompt.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-instructions.bak/pdfme-extension.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-instructions.bak/pdfme-extension.instructions.md`
+- **Ruta relativa:** `.github/prompts/unify-css-architecture.prompt.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/unify-css-architecture.prompt.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `21`
+- **Líneas aproximadas:** `41`
 
 ### Contenido original
 
-# PDFME Extension Instructions
+# Prompt: Unify Css Architecture
 
 ## Objetivo
-Extender sisad-pdfme modificado sin convertir la integración en una caja negra frágil.
 
-## Reglas
-- envolver APIs internas detrás de adaptadores locales
-- no acoplar la app a detalles de implementación inestables
-- centralizar registro de toolbar configs
-- centralizar integración de plugins
-- documentar diferencias respecto a sisad-pdfme upstream
+Audita y reorganiza CSS para mantener tokens, scopes y evitar overrides que rompan canvas o sidebars.
 
-## Debes promover
-- createRuntimeApi
-- adapters
-- event maps
-- selection helpers
-- page helpers
-- schema operations desacopladas
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
+
+## Restricciones
+
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
+
+## Criterios de aceptación
+
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0089"></a>
-## Archivo #89: .backup-ai-workspace/github-instructions.bak/ui-ux-compact.instructions.md
+## Archivo #89: docs/00-indice/README.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-instructions.bak/ui-ux-compact.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-instructions.bak/ui-ux-compact.instructions.md`
+- **Ruta relativa:** `docs/00-indice/README.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/00-indice/README.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `20`
+- **Líneas aproximadas:** `36`
 
 ### Contenido original
 
-# UI UX Compact Instructions
+# Índice maestro
 
-## Objetivo
-Aplicar una experiencia compacta inspirada en Wix, Figma y editores modernos.
+## Documentos generados
 
-## Principios
-- menos paneles visibles por defecto
-- más acciones contextuales
-- menos texto, más jerarquía visual
-- más espacio para el canvas
-- opciones avanzadas bajo demanda
+- Arquitectura del fork.
+- Arquitectura del asistente IA.
+- Mapa de módulos.
+- API pública.
+- Runtime Designer/Form/Viewer.
+- Componentes.
+- Schemas.
+- Habilidades configurables.
+- Calidad y testing.
+- CSS design system.
+- Guías IA.
 
-## Aplicación práctica
-- usar rail izquierdo angosto
-- abrir drawers por acción
-- mostrar propiedades según selección
-- agrupar controles secundarios en menus o drawers
-- mover resultados técnicos a panel inferior
+## Módulos detectados
+
+- `assignments`
+- `canvas`
+- `collaboration`
+- `commands`
+- `comments`
+- `common`
+- `context`
+- `contracts`
+- `converter`
+- `documents`
+- `editor`
+- `externalForms`
+- `generator`
+- `pdf-lib`
+- `schemas`
+- `shared`
+- `ui`
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0090"></a>
-## Archivo #90: .backup-ai-workspace/github-prompts.bak/compact-wix-style-ui.prompt.md
+## Archivo #90: docs/01-arquitectura/01-vision-general.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/compact-wix-style-ui.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/compact-wix-style-ui.prompt.md`
+- **Ruta relativa:** `docs/01-arquitectura/01-vision-general.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/01-arquitectura/01-vision-general.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `22`
+- **Líneas aproximadas:** `27`
 
 ### Contenido original
 
-# Prompt: compactar UI estilo Wix
+# Visión general de `sisad-pdfme`
 
-Actúa como diseñador de producto y frontend engineer senior.
+`sisad-pdfme` es un fork documental PDF orientado a funcionar como componente aislado, configurable y extensible.
 
 ## Objetivo
-Transformar una UI pesada de editor PDF en una experiencia compacta y profesional inspirada en Wix/Figma.
 
-## Cambios esperados
-- rail izquierdo fino con iconos y tooltips
-- panel derecho contextual
-- toolbar flotante sobre selección
-- bottom drawer para resultados
-- top bar compacta
-- reducción de texto redundante
-- mejoras de espaciado, sombras, jerarquía y foco visual
+Permitir:
 
-## No hacer
-- dejar sidebars anchas siempre visibles
-- llenar la pantalla de cards de soporte
-- mezclar herramientas técnicas con acciones de usuario final
+- Diseñar documentos PDF.
+- Agregar y configurar schemas.
+- Renderizar formularios.
+- Visualizar resultados.
+- Generar snapshots.
+- Importar/exportar plantillas.
+- Extender mediante plugins.
+
+## Principios
+
+- Aislamiento.
+- Configurabilidad.
+- Composición.
+- Snapshot portable.
+- UI compacta.
+- Canvas estable.
+- Contratos públicos.
+- Tests de regresión.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0091"></a>
-## Archivo #91: .backup-ai-workspace/github-prompts.bak/create-command-bus.prompt.md
+## Archivo #91: docs/01-arquitectura/02-mapa-modulos.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/create-command-bus.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/create-command-bus.prompt.md`
+- **Ruta relativa:** `docs/01-arquitectura/02-mapa-modulos.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/01-arquitectura/02-mapa-modulos.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `28`
+- **Líneas aproximadas:** `36`
 
 ### Contenido original
 
-# Prompt: crear command bus del editor
+# Mapa de módulos
 
-Actúa como arquitecto de interacción para un editor visual.
+## Módulos principales
 
-## Objetivo
-Diseñar e implementar un command bus reutilizable para accionar funciones del editor desde:
-- top bar
-- left rail
-- overlays
-- hotkeys
-- context menus
+- `assignments`
+- `canvas`
+- `collaboration`
+- `commands`
+- `comments`
+- `common`
+- `context`
+- `contracts`
+- `converter`
+- `documents`
+- `editor`
+- `externalForms`
+- `generator`
+- `pdf-lib`
+- `schemas`
+- `shared`
+- `ui`
 
-## Debe cubrir
-- document.*
-- selection.*
-- page.*
-- view.*
-- insert.*
-- convert.*
+## Responsabilidades sugeridas
 
-## Requisitos
-- comandos semánticos
-- handlers desacoplados
-- tipado claro
-- posibilidad de telemetría futura
-- fácil extensión
+- `ui`: Designer, Form, Viewer, componentes visuales.
+- `schemas`: plugins, renderers, prop panels.
+- `shared`: snapshot, shortcuts, guards, local state.
+- `contracts`: contratos públicos.
+- `generator`: generación de PDF.
+- `converter`: conversión PDF/imagen/tamaño.
+- `canvas`: estado de render y overlays.
+- `commands`: command bus.
+- `comments`: comentarios internos.
+- `assignments`: ownership/asignación.
+- `documents`: administración documental.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0092"></a>
-## Archivo #92: .backup-ai-workspace/github-prompts.bak/refactor-editor-shell.prompt.md
+## Archivo #92: docs/01-arquitectura/03-arquitectura-ia.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/refactor-editor-shell.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/refactor-editor-shell.prompt.md`
+- **Ruta relativa:** `docs/01-arquitectura/03-arquitectura-ia.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/01-arquitectura/03-arquitectura-ia.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `37`
+- **Líneas aproximadas:** `30`
 
 ### Contenido original
 
-# Prompt: Refactor del shell del editor
+# Arquitectura del asistente IA
 
-Actúa como arquitecto frontend senior experto en React, canvas, sisad-pdfme y editores visuales.
+La arquitectura IA del proyecto se basa en `.ai/`.
 
-## Contexto
-Existe un editor PDF construido con React y sisad-pdfme modificado. El estado actual mezcla lógica de laboratorio, runtime del diseñador, resultados de conversión y layout visual. El objetivo es evolucionarlo a un producto con UX compacta tipo Wix.
+## Capas
 
-## Objetivo
-Refactorizar el shell principal del editor para separar:
-- EditorRail
-- TopBar compacta
-- ContextDrawer
-- BottomResultsDrawer
-- Workspace central
-- Runtime del editor desacoplado
+1. Reglas globales.
+2. Contexto del proyecto.
+3. Agentes por dominio.
+4. Skills reutilizables.
+5. Prompts ejecutables.
+6. Adaptadores por proveedor.
 
-## Restricciones
-- no romper compatibilidad funcional existente
-- mantener la base React actual
-- no introducir librerías innecesarias
-- minimizar cambios fuera del alcance
-- conservar nombres semánticos
+## Proveedores
 
-## Entregables
-1. nueva estructura de componentes
-2. propuesta de archivos
-3. implementación de base
-4. criterios de aceptación
-5. notas de migración
+- Claude.
+- Codex.
+- GitHub Copilot.
+- Gemini.
 
-## Criterios de aceptación
-- el canvas gana espacio visible
-- los paneles secundarios dejan de ocupar espacio permanente
-- las acciones principales siguen accesibles
-- el layout queda listo para escalar
+## Flujo
+
+```text
+Prompt → Orquestador → Agente → Skill → Plan → Código → Tests → Docs
+```
+
+## Criterio de éxito
+
+El asistente mejora el fork sin acoplarlo, sin duplicar componentes y sin romper canvas/snapshot/schemas.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0093"></a>
-## Archivo #93: .backup-ai-workspace/github-prompts.bak/split-monolithic-hook.prompt.md
+## Archivo #93: docs/02-api-publica/01-entrypoints.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/split-monolithic-hook.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/split-monolithic-hook.prompt.md`
+- **Ruta relativa:** `docs/02-api-publica/01-entrypoints.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/02-api-publica/01-entrypoints.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `22`
+- **Líneas aproximadas:** `29`
 
 ### Contenido original
 
-# Prompt: dividir hook monolítico
+# API pública y entrypoints
 
-Actúa como especialista en arquitectura React.
+## Entry points esperados
 
-## Tarea
-Tomar un hook grande que mezcla runtime de editor, blobs, conversiones, UI mode y acciones, y dividirlo en hooks especializados.
+- `@sisad-pdfme/ui`
+- `@sisad-pdfme/common`
+- `@sisad-pdfme/schemas`
+- `@sisad-pdfme/generator`
+- `@sisad-pdfme/converter`
+- `@sisad-pdfme/pdf-lib`
 
-## Meta
-Extraer al menos estas responsabilidades:
-- usePdfmeEditorRuntime
-- usePdfmeConversionLab
-- usePdfmeUiState
-- useBlobResourceManager
+## Superficies públicas
 
-## Requisitos
-- preservar funcionalidad
-- reducir side effects implícitos
-- eliminar parches tipo setTimeout cuando sea posible
-- usar nombres explícitos
-- documentar responsabilidades de cada hook
+- `Designer`
+- `Form`
+- `Viewer`
+- `generate`
+- `schemaRegistry`
+- `snapshotAdapter`
+- `commandBus`
+- `templateValidator`
+
+## Reglas
+
+- No exponer DOM interno.
+- No exponer estructuras no serializables.
+- Versionar cambios de contrato.
+- Documentar migraciones.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0094"></a>
-## Archivo #94: .backup-ai-workspace/github-prompts.bak/unify-css-architecture.prompt.md
+## Archivo #94: docs/02-api-publica/02-commands-events.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/unify-css-architecture.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/unify-css-architecture.prompt.md`
+- **Ruta relativa:** `docs/02-api-publica/02-commands-events.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/02-api-publica/02-commands-events.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `19`
+- **Líneas aproximadas:** `37`
 
 ### Contenido original
 
-# Prompt: unificar arquitectura CSS
+# Commands y Events
 
-Actúa como frontend architect y design system specialist.
+## Commands
 
-## Objetivo
-Reorganizar y consolidar el CSS del editor.
+Los comandos deben permitir controlar el fork sin manipular DOM:
 
-## Tareas
-- detectar duplicidades
-- proponer estructura final
-- mover reglas a capas correctas
-- homologar tokens
-- eliminar estilos vacíos o redundantes
-- reducir conflictos entre estilos globales y estilos internos del editor
+- `loadDocument`
+- `loadDocuments`
+- `setActiveDocument`
+- `setActivePage`
+- `setZoom`
+- `addSchema`
+- `updateSchema`
+- `deleteSchema`
+- `duplicateSchema`
+- `selectSchema`
+- `clearSelection`
+- `getSnapshot`
+- `restoreSnapshot`
+- `validate`
 
-## Resultado esperado
-Una arquitectura CSS estable, limpia y escalable.
+## Events
+
+Los eventos deben entregar payloads serializables:
+
+- `onReady`
+- `onError`
+- `onDocumentChange`
+- `onPageChange`
+- `onZoomChange`
+- `onSchemaCreate`
+- `onSchemaUpdate`
+- `onSchemaDelete`
+- `onSelectionChange`
+- `onSnapshotChange`
+- `onValidationChange`
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0095"></a>
-## Archivo #95: .backup-ai-workspace/github-skills.bak/canvas-interaction.skill.md
+## Archivo #95: docs/03-runtime/01-designer-form-viewer.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/canvas-interaction.skill.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/canvas-interaction.skill.md`
+- **Ruta relativa:** `docs/03-runtime/01-designer-form-viewer.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/03-runtime/01-designer-form-viewer.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `16`
+- **Líneas aproximadas:** `23`
 
 ### Contenido original
 
-# Skill: Canvas Interaction
+# Runtime: Designer, Form y Viewer
 
-## Enfoque
-Toda mejora de interacción debe respetar el foco del canvas y minimizar fricción.
+## Designer
 
-## Debe cubrir
-- selección
-- hover
-- resize
-- move
-- snap
-- guías
-- overlays
-- toolbars contextuales
+Modo de edición de plantillas. Permite canvas, sidebars, inspector, drag/drop, zoom, overlays y snapshot.
+
+## Form
+
+Modo de captura de datos. Renderiza campos editables y emite valores por identidad estable.
+
+## Viewer
+
+Modo de lectura. Renderiza PDF y valores sin edición.
+
+## Regla de paridad
+
+Un schema debe tener comportamiento coherente en:
+
+- Designer.
+- Form.
+- Viewer.
+- PDF final generado.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0096"></a>
-## Archivo #96: .backup-ai-workspace/github-skills.bak/component-composition.skill.md
+## Archivo #96: docs/03-runtime/02-snapshot-engine.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/component-composition.skill.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/component-composition.skill.md`
+- **Ruta relativa:** `docs/03-runtime/02-snapshot-engine.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/03-runtime/02-snapshot-engine.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `13`
+- **Líneas aproximadas:** `27`
 
 ### Contenido original
 
-# Skill: Component Composition
+# Snapshot Engine
 
-## Regla principal
-Cada componente debe tener una responsabilidad principal clara.
+## Propósito
 
-## Buenas prácticas
-- separar shell y contenido
-- separar presentacional y lógico
-- aislar side effects
-- evitar mega props
-- usar composición sobre condicionales gigantes
+Representar el estado completo y portable de `sisad-pdfme`.
+
+## Debe incluir
+
+- Versión.
+- Documentos.
+- Páginas.
+- Schemas.
+- Coordenadas.
+- Propiedades.
+- Permisos.
+- Assignments si están activos.
+- Comentarios si están activos.
+- Configuración visual.
+
+## No debe incluir
+
+- Tokens.
+- Credenciales.
+- DOM.
+- Funciones.
+- Estados temporales innecesarios.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0097"></a>
-## Archivo #97: .backup-ai-workspace/github-skills.bak/design-system-consistency.skill.md
+## Archivo #97: docs/04-componentes/01-inventario-componentes.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/design-system-consistency.skill.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/design-system-consistency.skill.md`
+- **Ruta relativa:** `docs/04-componentes/01-inventario-componentes.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/04-componentes/01-inventario-componentes.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `15`
+- **Líneas aproximadas:** `27`
 
 ### Contenido original
 
-# Skill: Design System Consistency
+# Inventario de componentes
 
-## Objetivo
-Mantener coherencia visual y semántica.
+## Componentes principales
 
-## Revisar siempre
-- spacing
-- radius
-- shadows
-- typography
-- icon sizing
-- hover/focus/active
-- color semantics
+- `Designer`
+- `Canvas`
+- `LeftSidebar`
+- `RightSidebar`
+- `SchemaCatalog`
+- `Inspector`
+- `FloatingToolbar`
+- `DocsRail`
+- `PagesRail`
+- `CommentsRail`
+- `Form`
+- `Viewer`
+
+## Reglas
+
+Cada componente debe ser:
+
+- Genérico.
+- Configurable.
+- Opcional cuando aplique.
+- Testeable.
+- Desacoplado de servicios externos.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0098"></a>
-## Archivo #98: .backup-ai-workspace/github-skills.bak/editor-product-vision.skill.md
+## Archivo #98: docs/04-componentes/02-sidebars-configurables.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/editor-product-vision.skill.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/editor-product-vision.skill.md`
+- **Ruta relativa:** `docs/04-componentes/02-sidebars-configurables.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/04-componentes/02-sidebars-configurables.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `18`
+- **Líneas aproximadas:** `26`
 
 ### Contenido original
 
-# Skill: Editor Product Vision
+# Sidebars configurables
 
-## Cuándo usar esta skill
-Cuando una tarea impacta directamente la visión del producto del editor PDF.
+## LeftSidebar
 
-## Qué recuerda esta skill
-- el canvas debe dominar el layout
-- los paneles deben ser compactos y contextuales
-- la UI debe parecer producto real, no laboratorio
-- la arquitectura debe separar shell, runtime y conversiones
+Debe alojar catálogo, documentos, páginas, capas, búsqueda, filtros o secciones custom.
 
-## Checklist
-- ¿el canvas gana espacio?
-- ¿la acción es contextual?
-- ¿la solución reduce ruido visual?
-- ¿la propuesta escala a futuro?
+Debe poder:
+
+- Ocultarse.
+- Colapsarse.
+- Cambiar densidad.
+- Mostrar modo compacto.
+- Activar/desactivar secciones.
+
+## RightSidebar
+
+Debe alojar inspector, propiedades, validaciones, paneles custom y list view.
+
+Debe poder:
+
+- Mostrar estado vacío.
+- Cambiar contenido por selección.
+- Respetar readonly.
+- Colapsarse sin perder estado.
+- Renderizar widgets por schema.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0099"></a>
-## Archivo #99: .backup-ai-workspace/github-skills.bak/pdfme-integration.skill.md
+## Archivo #99: docs/04-componentes/03-canvas-overlays.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/pdfme-integration.skill.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/pdfme-integration.skill.md`
+- **Ruta relativa:** `docs/04-componentes/03-canvas-overlays.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/04-componentes/03-canvas-overlays.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `12`
+- **Líneas aproximadas:** `30`
 
 ### Contenido original
 
-# Skill: PDFME Integration
+# Canvas y overlays
 
-## Enfoque
-Integrar y extender sisad-pdfme modificado de forma controlada.
+## Canvas
 
-## Recordatorios
-- preferir adaptadores
-- encapsular APIs internas
-- centralizar eventos
-- no mezclar integración de sisad-pdfme con decisiones de layout de app
+Debe preservar:
+
+- PDF background.
+- Coordenadas.
+- Zoom.
+- Scroll.
+- Paper geometry.
+- Active document.
+- Active page.
+
+## Overlays
+
+Pueden incluir:
+
+- Toolbar contextual.
+- Inline edit.
+- Metrics.
+- Comments.
+- Context menu.
+- Snap feedback.
+- Drop placeholder.
+
+## Regla
+
+Ningún overlay debe romper selección, drag, resize o scroll.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0100"></a>
-## Archivo #100: .backup-ai-workspace/github-skills.bak/refactor-safety.skill.md
+## Archivo #100: docs/05-schemas/01-registry-y-plugins.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/refactor-safety.skill.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/refactor-safety.skill.md`
+- **Ruta relativa:** `docs/05-schemas/01-registry-y-plugins.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/05-schemas/01-registry-y-plugins.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `14`
+- **Líneas aproximadas:** `25`
 
 ### Contenido original
 
-# Skill: Refactor Safety
+# Schema Registry y plugins
 
-## Objetivo
-Cambiar arquitectura sin romper funcionalidades base.
+## Cada plugin debe definir
 
-## Checklist
-- preservar contratos públicos
-- migrar por fases
-- verificar eventos críticos
-- validar render del canvas
-- validar persistencia de estado
-- validar cleanup de recursos blob
+- `key`.
+- Nombre visible.
+- Icono.
+- Familia.
+- Default schema.
+- Designer renderer.
+- Form renderer.
+- Viewer renderer.
+- PDF renderer si aplica.
+- Prop panel.
+- Validaciones.
+- Migración.
+
+## Reglas
+
+- No usar label como identidad.
+- Preservar `schemaUid`.
+- No guardar funciones.
+- No guardar datos sensibles.
+- Documentar propiedades nuevas.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0101"></a>
-## Archivo #101: .backup-ai-workspace/github-skills.bak/ux-compact-panels.skill.md
+## Archivo #101: docs/05-schemas/02-schemas-built-in.md
 
-- **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/ux-compact-panels.skill.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/ux-compact-panels.skill.md`
+- **Ruta relativa:** `docs/05-schemas/02-schemas-built-in.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/05-schemas/02-schemas-built-in.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `19`
+- **Líneas aproximadas:** `21`
 
 ### Contenido original
 
-# Skill: UX Compact Panels
+# Schemas built-in
 
-## Principio
-No mostrar configuraciones complejas hasta que el usuario las pida.
+## Familias esperadas
 
-## Patrones preferidos
-- rail
-- drawer
-- popover
-- flyout
-- toolbar contextual
-- footer drawer
+- Texto.
+- Texto multivariable.
+- Fecha/hora.
+- Checkbox.
+- Radio group.
+- Select.
+- Imagen.
+- SVG.
+- Formas.
+- Firma.
+- Tablas.
+- Barcodes.
 
-## Evitar
-- paneles fijos sobredimensionados
-- listas vacías gigantes
-- barras técnicas expandidas por defecto
+## Criterio
+
+Cada schema built-in debe mantener paridad entre designer, form, viewer y generación.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0102"></a>
-## Archivo #102: .github/prompts/Checkpoint.prompt.md
+## Archivo #102: docs/06-funcionalidades/01-habilidades-configurables.md
 
-- **Ruta relativa:** `.github/prompts/Checkpoint.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/Checkpoint.prompt.md`
+- **Ruta relativa:** `docs/06-funcionalidades/01-habilidades-configurables.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/06-funcionalidades/01-habilidades-configurables.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `270`
+- **Líneas aproximadas:** `42`
 
 ### Contenido original
 
----
-description: Comprehensive memory bank checkpoint and update workflow
-version: "1.0.0"
----
+# Habilidades configurables
 
-# AI-Memory Checkpoint
+## Base
 
-**⚠️ CRITICAL: THIS FILE IS READ-ONLY ⚠️**
-**DO NOT MODIFY THIS PROMPT FILE. It is a template for agent workflows.**
-**All work, plans, and context must be saved to AI-Memory/, NOT here.**
+- PDF rendering.
+- Canvas.
+- Schemas.
+- Selección.
+- Movimiento.
+- Resize.
+- Snapshot simple.
 
+## Intermedias
 
-This prompt guides a comprehensive review and update of all memory bank files, captures recent progress, documents decisions, and generates a commit message summarizing the session.
+- Sidebars.
+- Inspector.
+- Toolbar.
+- Zoom.
+- Validación.
+- Import/export.
 
-## Instructions
+## Avanzadas
 
-Run this checkpoint at the end of a coding session or when significant work has been completed.
+- Multidocumento.
+- Multipágina.
+- Assignments.
+- Ownership.
+- Comments.
+- Docs rail.
+- Plugins.
+- Keyboard shortcuts.
 
-### Step 1: Review Current State
+## Empresariales
 
-1. **Query memory database**:
-   ```
-   aiSkeleton_showMemory
-   ```
-   This returns all memory entries organized by type:
-   - Project brief - Understand the project scope
-   - Active context - Current goals and blockers
-   - System patterns - Architectural patterns
-   - Decision log - Past decisions
-   - Progress - Recent work (done/doing/next)
-
-2. **Gather session context**:
-   - Review recent git changes: `git status` and `git diff`
-   - Check for new or modified files in key directories:
-     - Source directories (`src/`, `lib/`, etc.)
-     - Configuration files (`.github/`, `.vscode/`, root configs)
-   - Note any test runs, builds, or deployments attempted
-
-### Step 2: Update Memory Database
-
-Update the database using `aiSkeleton_*` tools. All updates persist to both SQLite and markdown files automatically.
-
-#### Active Context
-Update current goals and blockers:
-```
-aiSkeleton_updateContext({
-  "context": "[Current focus, blockers, and recent changes]"
-})
-```
-- Remove completed goals
-- Add new goals discovered during this session
-
-#### Progress
-Track task completion:
-```
-aiSkeleton_updateProgress({
-  "item": "[Task description]",
-  "status": "done" | "doing" | "next"
-})
-```
-- Move completed items to "done"
-- Update "doing" with current in-progress work
-- Update "next" with planned upcoming tasks
-
-#### Decision Log
-Document decisions made:
-```
-aiSkeleton_logDecision({
-  "decision": "[What was decided]",
-  "rationale": "[Why this decision was made]"
-})
-```
-
-#### System Patterns
-Document new or updated patterns:
-```
-aiSkeleton_updatePatterns({
-  "pattern": "[Pattern name]",
-  "description": "[Pattern description and usage]"
-})
-```
-Categories:
-- **Architectural Patterns**: High-level system design
-- **Design Patterns**: Code organization and structure
-- **Common Idioms**: Project-specific conventions
-
-#### Project Brief
-Update ONLY if project goals/scope changed:
-```
-aiSkeleton_updateProjectBrief({
-  "content": "[Updated project goals/scope/constraints]"
-})
-```
-**IMPORTANT:** Use for project-level info ONLY:
-- Top-level goals and objectives
-- Project scope and boundaries
-- Technical constraints
-- Target users/audience
-
-**DO NOT use for:**
-- Research findings (use `aiSkeleton_saveResearch`)
-- Implementation plans (use `aiSkeleton_savePlan`)
-- Task details (use `aiSkeleton_updateProgress`)
-
-### Step 3: Review Workflow and Instruction Files
-
-Check if any workflow or instruction files need updates:
-
-1. **Review `.github/workflows/`** for CI/CD changes
-2. **Review `.vscode/settings.json`** and `mcp.json` for tooling updates
-3. **Review root configuration files**:
-   - `package.json` - dependency changes
-   - Build configuration files - framework-specific settings
-   - `tsconfig.json` / language config - compiler/interpreter settings
-   - Test configuration files - testing framework settings
-
-4. **Document recommendations**:
-   - Workflow improvements discovered
-   - Configuration optimizations
-   - Tooling enhancements
-   - Process refinements
-
-### Step 4: Generate Summary Report
-
-Create a structured summary:
-
-```markdown
-## Checkpoint Summary
-
-### Session Overview
-[Brief description of work completed]
-
-### Files Modified
-- [List key files changed]
-
-### Decisions Made
-- [List major decisions from this session]
-
-### Progress Updates
-**Completed:**
-- [Items moved to Done]
-
-**In Progress:**
-- [Current work]
-
-**Blocked:**
-- [Any blockers identified]
-
-### Recommendations
-- [Workflow improvements]
-- [Configuration updates]
-- [Process changes]
-
-### Next Steps
-- [Immediate next actions]
-- [Future work to consider]
-```
-
-### Step 5: Generate Commit Message
-
-Based on the session summary, generate a conventional commit message:
-
-```
-<type>(<scope>): <subject>
-
-<body>
-
-<footer>
-```
-
-**Types:** feat, fix, docs, style, refactor, test, chore, build, ci, perf
-
-**Guidelines:**
-- Subject: Imperative mood, max 72 characters
-- Body: Explain what and why (not how)
-- Footer: Breaking changes, issue references
-
-**Example:**
-```
-chore(memory): update memory bank checkpoint workflow
-
-- Added comprehensive checkpoint prompt for session reviews
-- Updated progress tracking with recent test coverage work
-- Documented build configuration decision
-- Enhanced system patterns with fallback strategy details
-
-Related to ongoing feature development and deployment workflow improvements.
-```
-
-### Step 6: Validation
-
-Before completing:
-
-- [ ] All memory files have current dates
-- [ ] DecisionLog entries follow table format
-- [ ] Progress items are timestamped
-- [ ] Active blockers are clearly documented
-- [ ] System patterns reflect current architecture
-- [ ] Commit message follows conventional commits format
-- [ ] Recommendations are actionable and specific
-
-### Step 7: Cleanup & Archive
-
-Organize completed work and remove temporary files:
-
-1. **Identify Temporary Files**
-   - Search workspace for temp files created during Think/Plan/Execute phases:
-     - Research briefs (temporary markdown files)
-     - Draft plans (if saved locally)
-     - Working notes (if any)
-     - Build artifacts or cache files
-   - Do NOT delete files in `.github/`, source code, or config files
-
-2. **Create Archive Structure**
-   ```bash
-   AI-Memory/archive/YYYY-MM-DD-<tag>/
-   ├── research/          # Completed research documents
-   ├── plans/             # Completed execution plans
-   ├── notes/             # Working notes from session
-   └── summary.md         # Session checkpoint summary
-   ```
-
-3. **Move Completed Research & Plans**
-   - Move any research brief files to `AI-Memory/archive/<date-tag>/research/`
-   - Move any execution plan documents to `AI-Memory/archive/<date-tag>/plans/`
-   - Move working notes to `AI-Memory/archive/<date-tag>/notes/`
-   - Preserve original structure and naming for audit trail
-
-4. **Remove Temporary Files**
-   - Delete temporary markdown files from workspace root
-   - Clean up draft files not in version control
-   - Remove build artifacts or cache directories
-   - Verify with `git status` that only actual source changes remain
-
-5. **Update Active Memory**
-   ```
-   aiSkeleton_updateContext "Cleanup complete: Session archived to AI-Memory/archive/<date-tag>; Workspace cleaned"
-   ```
-
-6. **Verification Checklist**
-   - [ ] Archive directory created with proper date-tag structure
-   - [ ] All completed research/plans moved to archive
-   - [ ] Temporary files removed from workspace
-   - [ ] `git status` shows only intentional changes
-   - [ ] No untracked files except .gitignore'd items
-   - [ ] Memory bank updated with archive location
-
-## Usage
-
-To run this checkpoint:
-
-1. Say "Checkpoint" or "Run checkpoint" to the assistant
-2. The assistant will execute all steps above using `aiSkeleton_*` tools
-3. Review the generated summary and commit message
-4. Manually commit using the provided message, or edit as needed
-
-## Output Format
-
-The assistant should respond with:
-
-1. **Status**: `[MEMORY BANK: UPDATING]` at start
-2. **Updates**: Confirmation of each file updated via `aiSkeleton_*` tools
-3. **Summary**: Structured session summary
-4. **Commit Message**: Ready-to-use git commit message
-5. **Final Status**: `[MEMORY BANK: ACTIVE]`
-
----
-
-This checkpoint ensures consistent project memory maintenance and provides clear session documentation for future reference.
+- Permisos.
+- History.
+- Undo/redo.
+- Audit.
+- Cache.
+- Busy states.
+- Error contracts.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0103"></a>
-## Archivo #103: .github/prompts/Execute.prompt.md
+## Archivo #103: docs/06-funcionalidades/02-multidocumento.md
 
-- **Ruta relativa:** `.github/prompts/Execute.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/Execute.prompt.md`
+- **Ruta relativa:** `docs/06-funcionalidades/02-multidocumento.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/06-funcionalidades/02-multidocumento.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `365`
+- **Líneas aproximadas:** `17`
 
 ### Contenido original
 
-# Execution Prompt
+# Multidocumento
 
-**⚠️ CRITICAL: THIS FILE IS READ-ONLY ⚠️**
-**DO NOT MODIFY THIS PROMPT FILE. It is a template for agent workflows.**
-**All work, plans, and context must be saved to AI-Memory/, NOT here.**
+## Reglas
 
+- Cada documento debe tener identidad estable.
+- Cada página pertenece a un documento.
+- Cada schema pertenece a documento y página.
+- Cambiar documento no debe perder PDF ni schemas.
+- Campos no deben mezclarse entre documentos.
 
-## Core Directive
+## Tests recomendados
 
-**YOU MUST COMPLETE ALL STEPS FROM THE PLAN BEFORE RETURNING CONTROL.**
-
-**CRITICAL: Build and smoke tests MUST pass before completion. If the app doesn't function after changes, you MUST iterate and fix until it does. DO NOT return control with a broken build.**
-
-This prompt executes tasks from Think → Plan workflow. You are autonomous during execution. Do not ask for permission or confirmation between steps. Complete every #todo, verify all tests pass, **ensure build succeeds and app functions**, and validate success criteria before finishing.
-
-Toolsets Mapping (from .github/toolsets/Tools.jsonc):
-- Deep Thinking => mcp_sequential-th_sequentialthinking
-- Memory Management => aiSkeleton_* tools (updateContext, updateProgress, logDecision, updatePatterns, updateProjectBrief, showMemory, markDeprecated)
-- Web Research => vscode-websearchforcopilot_webSearch
-- Project Management => manage_todo_list
-
----
-
-## Pre-Execution Checklist
-
-Before starting execution, systematically verify:
-
-1. **Load Complete Context**
-   ```
-   aiSkeleton_showMemory
-   aiSkeleton_updateProgress (load current progress)
-   ```
-   - Load the full plan from Think/Plan phases
-   - Retrieve all #todos and their status
-   - Review success criteria from research brief
-   - Check for any blockers or dependencies
-
-2. **Validate Plan Completeness**
-   - [ ] All steps clearly defined
-   - [ ] Dependencies identified and resolved
-   - [ ] Tools/functions specified
-   - [ ] Success criteria documented
-   - [ ] Test strategy defined
-
-3. **Set Execution Context**
-   ```
-   aiSkeleton_updateContext "EXECUTING: <plan name> - Starting systematic implementation"
-   ```
-
-**If plan is incomplete:** Use `think` tool to fill gaps, update memory tools, then proceed.
-
----
-
-## Systematic Execution Protocol
-
-### Phase 1: Pre-Implementation Verification
-
-1. **Review Complete Plan**
-   - Read every step, every #todo
-   - Understand dependencies between steps
-   - Identify critical path
-   - Note testing requirements
-
-2. **Setup Execution Environment**
-   - Verify development environment ready
-   - Check required dependencies installed
-   - Validate file structure exists
-   - Ensure test frameworks available
-
-3. **Create Execution Checklist**
-   ```
-   aiSkeleton_updateProgress "Execution checklist created: <list all todos>"
-   ```
-
-### Phase 2: Sequential Step Execution
-
-**For each step in the plan, execute this loop without stopping:**
-
-```
-WHILE (todos exist AND not blocked) DO:
-  1. Load next todo
-  2. Break into atomic actions
-  3. Execute each atomic action
-  4. Update memory after each action
-  5. Run relevant tests
-  6. **BUILD and verify app functions**
-  7. Verify success
-  8. Mark todo complete
-  9. Move to next todo
-END WHILE
-```
-
-#### Atomic Action Execution Pattern
-
-**For each atomic action:**
-
-1. **Pre-Action**
-   ```
-   aiSkeleton_updateProgress "Starting: <specific action>"
-   ```
-   - State exactly what you're about to do
-   - Verify prerequisites met
-   - Load relevant context
-
-2. **Execute Action**
-   - Make ONE focused change
-   - Keep code minimal and concise
-   - Follow patterns from systemPatterns.md
-   - Apply decisions from decisionLog.md
-
-3. **Immediate Verification**
-   - Does code compile/parse?
-   - Are there obvious errors?
-   - Does it match the plan?
-
-4. **Update Memory (MANDATORY)**
-   ```
-   aiSkeleton_updateProgress "Completed: <action> - Status: <result>"
-   aiSkeleton_logDecision "<what was done>" "Context: <why this way>"
-   ```
-   - What changed
-   - Why it changed
-   - What worked/didn't work
-   - Current state
-
-5. **Run Tests (if applicable)**
-   - Unit tests for the change
-   - Integration tests if needed
-   - Visual verification for UI
-   - Performance checks if relevant
-   - **BUILD the application**
-   - **Run smoke tests to verify app functions**
-
-6. **Move to Next Action**
-   - Do not stop
-   - Do not ask for confirmation
-   - Proceed immediately to next action
-
-### Phase 3: Continuous Testing Integration
-
-**Testing is NOT optional. Execute tests at these checkpoints:**
-
-1. **After Each Component**
-   - Run unit tests for modified code
-   - Verify no regressions
-   - Document test results via `aiSkeleton_logDecision`
-   - **Run build to catch compilation errors early**
-
-2. **After Each Major Step**
-   - Run integration tests
-   - Verify step success criteria met
-   - Check against research brief requirements
-   - **Full build + smoke test verification**
-
-3. **After All Implementation**
-   - Full test suite execution
-   - End-to-end testing
-   - Performance validation
-   - Project-specific quality checks (as applicable)
-   - **MANDATORY: Production build + full smoke test suite**
-
-**Test Failure Protocol:**
-```
-IF (test fails OR build fails OR smoke test fails) THEN:
-  1. Analyze failure cause
-  2. aiSkeleton_logDecision "Failure: <details>" "Fix: <approach>"
-  3. Implement fix
-  4. Re-run tests AND rebuild
-  5. Verify app functions correctly
-  6. Update memory with resolution via aiSkeleton_updateProgress
-  7. Continue execution
-  LOOP UNTIL (all tests pass AND build succeeds AND app functions)
-END IF
-```
-
-**DO NOT STOP on test/build failures.** Fix iteratively and continue until app works.
-
-**BUILD FAILURE IS A BLOCKER:** You cannot proceed to completion if build fails or app doesn't function. Fix it immediately.
-
----
-
-## Memory Management Integration (Critical)
-
-**After EVERY action, update memory. No exceptions.**
-
-### Required Memory Updates
-
-1. **Progress Tracking**
-   ```
-   aiSkeleton_updateProgress "Completed: <action/todo> | Status: <done/in-progress/blocked> | Next: <immediate next action>"
-   ```
-
-2. **Decision Logging**
-   ```
-   aiSkeleton_logDecision "Decision: <what was decided>" "Context: <why/how> | Impact: <what this affects>"
-   ```
-
-3. **Active Context**
-   ```
-   aiSkeleton_updateContext "Current: <what you're doing now> | Last Completed: <previous action> | Next Up: <next 2-3 actions> | Blockers: <issues or none>"
-   ```
-
-4. **System Patterns (when applicable)**
-   ```
-   aiSkeleton_updatePatterns "Pattern: <name>" "Description: <reusable pattern> | Use Case: <when to apply> | Example: <code/approach>"
-   ```
-
-### Memory Update Frequency
-- Minimum: After every single action
-- Recommended: Before starting, after completion, on decisions, on issues, for patterns
-
-**Golden Rule:** If you haven't updated `aiSkeleton_*` tools in the last action, you're doing it wrong.
-
----
-
-## Blocker Resolution Protocol
-
-**If you encounter a blocker, DO NOT STOP EXECUTION:**
-
-1. **Document Blocker**
-   ```
-   aiSkeleton_updateProgress "BLOCKER: <issue> - Analyzing solutions"
-   ```
-2. **Analyze with Deep Thinking**
-   ```
-   mcp_sequential-th_sequentialthinking analyze <blocker description>
-   ```
-3. **Research if Needed**
-   ```
-   vscode-websearchforcopilot_webSearch <specific technical issue>
-   ```
-4. **Implement Solution**
-5. **Update Memory**
-   ```
-   aiSkeleton_logDecision "Resolved blocker: <issue>" "Solution: <approach>"
-   ```
-6. **Continue Execution**
-
----
-
-## Code Change Guidelines
-
-### Every Code Change Must:
-1. Be Atomic
-2. Follow Patterns
-3. Be Memory Efficient
-4. Be Tested
-5. Be Documented
-
-### Code Block Format
-````typescript
-// filepath: /path/to/file
-{ only the changed/new code }
-````
-
-Avoid repeating unchanged code or mixing unrelated changes.
-
----
-
-## Completion Validation Protocol
-
-Before marking execution complete, verify ALL criteria:
-
-### 1. Todo Verification
-- [ ] All #todo items done
-- [ ] None blocked or in-progress
-- [ ] Newly discovered todos resolved
-
-### 2. Success Criteria Check
-- [ ] Research brief criteria met
-- [ ] Plan objectives achieved
-- [ ] Edge cases handled
-
-### 3. Test Validation
-- [ ] Unit tests pass
-- [ ] Integration tests pass
-- [ ] E2E tests pass (if applicable)
-- [ ] No failures/skips
-
-### 4. Code Quality
-- [ ] Matches patterns
-- [ ] No console errors
-- [ ] No obvious memory leaks
-
-### 5. **Build & Runtime Validation (BLOCKING)**
-- [ ] **Build succeeds without errors**
-- [ ] **No type errors**
-- [ ] **No lint errors**
-- [ ] **App starts successfully**
-- [ ] **Smoke tests pass**
-- [ ] **Core functionality verified working**
-- [ ] **No runtime crashes or critical errors**
-
-**IF ANY BUILD/SMOKE TEST FAILS: Return to execution loop, fix issues, rebuild, retest. Repeat until all pass.**
-
-### 6. Documentation
-- [ ] Decisions logged
-- [ ] Patterns captured
-- [ ] Progress updated
-- [ ] Active context reflects completion
-
-### 7. Deployment Readiness (if applicable)
-- [ ] Build succeeds
-- [ ] No type errors
-- [ ] No lint errors
-
----
-
-## Final Completion Steps
-
-1. **Final Progress Update**
-   ```
-   aiSkeleton_updateProgress "✅ EXECUTION COMPLETE: <plan name> | Todos: <count> | Tests: <summary> | Deliverables: <list>"
-   ```
-2. **Completion Decision**
-   ```
-   aiSkeleton_logDecision "Execution Complete: <plan>" "Success criteria met; ready for <next phase>"
-   ```
-3. **Active Context Update**
-   ```
-   aiSkeleton_updateContext "Status: COMPLETE | Last: <plan> | Next: <follow-up>"
-   ```
-4. **Pattern Archival (If new)**
-5. **Generate Report**
-
----
-
-## Execution Loop (Simplified)
-```
-START
-Load plan & todos → Validate → Set context → WHILE todos:
-  For next todo → atomic actions (memory update → change → test → BUILD → smoke test → log) → mark done
-END WHILE → Full test suite → BUILD → Smoke tests → Validate → 
-IF (build fails OR smoke tests fail) THEN fix & repeat UNTIL working
-→ Final memory updates → Report → END
-```
-
----
-
-## Anti-Patterns (Avoid)
-- Stopping for permission
-- Skipping memory updates
-- Deferring tests
-- **Returning control with broken build**
-- **Marking complete when app doesn't function**
-- **Skipping build verification**
-- **Ignoring smoke test failures**
-- Returning early
-
-## Golden Rules
-- Memory First
-- Small & Continuous
-- Self-Correcting
-- Goal-Oriented
-- No Interruptions
-- **Build Must Pass**
-- **App Must Function**
-- **Fix Before Returning**
-
----
-
-Execution Philosophy: *Autonomous, systematic, fully documented completion with verified working software.*
-
-**Begin only when plan and memory context are ready; finish only when all validation passes AND the application builds and functions correctly.**
+- Cambiar documento activo.
+- Preservar background.
+- Preservar schemas.
+- Snapshot round-trip multidocumento.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0104"></a>
-## Archivo #104: .github/prompts/GH.prompt.md
+## Archivo #104: docs/06-funcionalidades/03-colaboracion-y-ownership.md
 
-- **Ruta relativa:** `.github/prompts/GH.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/GH.prompt.md`
+- **Ruta relativa:** `docs/06-funcionalidades/03-colaboracion-y-ownership.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/06-funcionalidades/03-colaboracion-y-ownership.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `112`
+- **Líneas aproximadas:** `18`
 
 ### Contenido original
 
-# GitHub Actions Deployment Monitor & Auto-Fix
+# Ownership, assignments y colaboración interna
 
-**⚠️ CRITICAL: THIS FILE IS READ-ONLY ⚠️**
-**DO NOT MODIFY THIS PROMPT FILE. It is a template for agent workflows.**
-**All work, plans, and context must be saved to AI-Memory/, NOT here.**
+## Conceptos
 
+- Owner.
+- Assignment.
+- Global field.
+- Shared field.
+- Locked field.
+- Readonly field.
 
-You are an expert DevOps engineer specializing in GitHub Actions CI/CD pipelines and deployment troubleshooting.
+## Reglas
 
-## Your Mission
-
-1. **Check Latest Deployment Status**
-   - Use `gh run list --limit 5 --json conclusion,status,name,databaseId,headBranch,event,createdAt` to get recent workflow runs
-   - Identify the latest deployment workflow (e.g., "Deploy", "CI/CD", "Production Deploy")
-   - Check if it failed or has errors
-
-2. **Analyze Failure Details**
-   - If a failure is detected, use `gh run view <run-id> --log-failed` to get error logs
-   - Extract the specific error messages, stack traces, and failure points
-   - Identify the root cause (build errors, test failures, deployment issues, dependency problems, etc.)
-
-3. **Research & Create Fix Plan**
-   - Analyze the error context thoroughly
-   - Consider:
-     * Error type (compilation, runtime, test, deployment)
-     * Affected files and line numbers
-     * Dependencies involved
-     * Environment variables or secrets issues
-     * Configuration problems
-   - Create a detailed, step-by-step fix plan with:
-     * Root cause explanation
-     * Required code changes
-     * Configuration updates needed
-     * Testing strategy
-     * Rollback plan if needed
-
-4. **Implement the Fix**
-   - Apply the necessary code changes to fix the issue
-   - Update workflow files if needed (.github/workflows/*.yml)
-   - Modify configuration files (package.json, tsconfig.json, etc.) as required
-   - Ensure changes are minimal and focused on the issue
-   - Add comments explaining critical changes
-
-5. **Verification Steps**
-   - Outline how to verify the fix locally
-   - Suggest commands to run before pushing
-   - Recommend testing strategy
-
-## Commands You Should Use
-
-```bash
-# List recent workflow runs
-gh run list --limit 5 --json conclusion,status,name,databaseId,headBranch,event,createdAt
-
-# View specific run details
-gh run view <run-id>
-
-# Get failed logs
-gh run view <run-id> --log-failed
-
-# Re-run a workflow (if needed)
-gh run rerun <run-id>
-
-# Check workflow files
-gh workflow list
-gh workflow view <workflow-name>
-```
-
-## Response Format
-
-When you find errors, structure your response as:
-
-### 🔍 Deployment Status
-- Workflow: [name]
-- Run ID: [id]
-- Status: [failed/success]
-- Branch: [branch]
-- Triggered: [timestamp]
-
-### ❌ Error Analysis
-[Detailed breakdown of what went wrong]
-
-### 🔧 Fix Plan
-1. [Step 1]
-2. [Step 2]
-...
-
-### 💻 Implementation
-[Code changes with file paths and explanations]
-
-### ✅ Verification
-[How to test the fix]
-
-## Important Guidelines
-
-- Always fetch fresh data using `gh` commands
-- Don't assume - verify the actual error from logs
-- Prioritize fixes that are safe and reversible
-- Consider the impact on production
-- If unsure, ask for human review before critical changes
-- Keep changes focused on the immediate issue
-- Document why each change is necessary
-
-## Start Command
-
-Begin by running:
-```bash
-gh run list --limit 5 --json conclusion,status,name,databaseId,headBranch,event,createdAt
-```
-
-Then proceed with analysis and fixing based on what you find.
+- Todo debe ser configurable.
+- No atar roles a nombres externos.
+- La selección debe limpiarse si el campo deja de ser visible.
+- El snapshot debe conservar metadata si la feature está activa.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0105"></a>
-## Archivo #105: .github/prompts/Plan.prompt.md
+## Archivo #105: docs/07-calidad/01-testing.md
 
-- **Ruta relativa:** `.github/prompts/Plan.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/Plan.prompt.md`
+- **Ruta relativa:** `docs/07-calidad/01-testing.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/07-calidad/01-testing.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `153`
+- **Líneas aproximadas:** `34`
 
 ### Contenido original
 
-# Task Breakdown and Action Plan Prompt
+# Testing
 
-**⚠️ CRITICAL: THIS FILE IS READ-ONLY ⚠️**
-**DO NOT MODIFY THIS PROMPT FILE. It is a template for agent workflows.**
+## Unit tests
 
-## ⛔ PLANNING ONLY - NO CODE EDITING
+Usar para:
 
-**This prompt is for PLANNING and TASK BREAKDOWN only.**
-- **DO NOT** create, edit, or modify any code files
-- **DO NOT** create separate documentation files
-- **ALL output MUST go through aiSkeleton memory tools**
+- Schema identity.
+- Snapshot round-trip.
+- Command bus.
+- Guards.
+- Validators.
+- Registry.
 
-| Output Type | Required Tool | Purpose |
-|---|---|---|
-| Implementation Plans | `aiSkeleton_savePlan` | Task breakdown, step-by-step planning |
-| Plans/Tasks Status | `aiSkeleton_updateProgress` | Track plan status (done/doing/next) |
-| Context | `aiSkeleton_updateContext` | Current planning focus, blockers |
-| Decisions | `aiSkeleton_logDecision` | Design decisions made during planning |
+## Playwright
 
-**When planning is complete:** State "Planning complete. Handoff to Execute mode for implementation."
+Usar para:
 
----
+- Canvas no blanco.
+- Sidebars toggle.
+- Drag/drop.
+- Resize.
+- Keyboard shortcuts.
+- Multidocumento.
+- Viewer geometry.
+- Responsive básico.
 
-## Instructions
+## Pruebas críticas
 
-Use this prompt to break down any complex task into actionable steps, assign #todos for each, and utilize available tools for tracking and execution. Each step should be clear, specific, and saved to Memory via aiSkeleton tools.
-
-**Important:** This prompt template is for planning only. All generated plans, tasks, and progress must be saved via aiSkeleton memory tools.
-
----
-
-## 1. Define the Main Task
-
-**Task:**  
-<Describe the main objective or project here.>
-
----
-
-## 2. Break Down the Task
-
-**Major Components or Steps:**  
-- <Step 1>
-- <Step 2>
-- <Step 3>
-- ...
-
----
-
-## 3. Outline Actionable Steps for Each Component
-
-### Step 1: <Step Name>
-- <Action 1>
-- <Action 2>
-- ...
-
-### Step 2: <Step Name>
-- <Action 1>
-- <Action 2>
-- ...
-
----
-
-## 4. Assign #todos
-
-For each actionable step, create a #todo:
-
-- #todo <Action 1 of Step 1>
-- #todo <Action 2 of Step 1>
-- #todo <Action 1 of Step 2>
-- ...
-
----
-
-## 5. Utilize Tools
-
-For each step, specify which tools or functions to use (e.g., code generation, unit testing, project management):
-
-- <Step/Action>: <Tool/Function>
-- ...
-
----
-
-## 6. Save to Memory Management
-
-**Use `aiSkeleton_*` tools to save all task data:**
-
-- Save the complete plan using `aiSkeleton_updateProjectBrief`
-- Store task breakdown in the project context
-- Log each #todo to the progress tracking system using `aiSkeleton_updateProgress`
-- Update active context with current task focus using `aiSkeleton_updateContext`
-- Document key decisions made during planning using `aiSkeleton_logDecision`
-
-**Memory Management Actions:**
-- Use `aiSkeleton_updateProgress` to track task status
-- Use `aiSkeleton_logDecision` for important choices
-- Use `aiSkeleton_updateContext` to set current focus
-- Use `aiSkeleton_updatePatterns` for reusable patterns
-
-**Do NOT modify this prompt file** - it is a template for creating plans, not for storing them.
-
----
-
-## 7. Review and Adjust
-
-Plan for periodic reviews and adjust steps as needed based on feedback or new information.
-
-**Review Checklist:**
-- Verify all tasks are saved via `aiSkeleton_*` tools
-- Confirm #todos are tracked in progress system
-- Ensure active context reflects current priorities
-- Document any blockers or decisions
-
----
-
-## Example
-
-**Task:** Develop a new feature for the web application.
-
-**Major Components:**
-- Research requirements
-- Design the feature
-- Implement the code
-- Test the feature
-- Deploy the feature
-
-**Actionable Steps & #todos:**
-- #todo Review existing documentation
-- #todo Conduct user interviews
-- #todo Create wireframes
-- #todo Write implementation code
-- #todo Write unit tests
-- #todo Deploy to staging
-
-**Tools:**
-- Research: Documentation tools, `aiSkeleton_updateContext` for context retrieval
-- Design: Figma, `aiSkeleton_logDecision` for design decisions
-- Implementation: Code editor, Copilot, `aiSkeleton_updatePatterns` for patterns
-- Testing: Unit test framework, `aiSkeleton_updateProgress` for test strategies
-- Deployment: CI/CD pipeline, `aiSkeleton_logDecision` for deployment logs
-
-**Memory Management Usage:**
-- Save plan: `aiSkeleton_updateProjectBrief`
-- Track progress: `aiSkeleton_updateProgress`
-- Log decisions: `aiSkeleton_logDecision`
-- Update context: `aiSkeleton_updateContext`
-
----
-
-*Use this template for each new task to ensure clarity, accountability, and progress tracking. All generated content should be saved via `aiSkeleton_*` tools, not to this template file.*
-
----
+- PDF visible después de seleccionar schema.
+- Background no se pierde.
+- Zoom no rompe coordenadas.
+- Cambiar modo preserva documento.
+- RightSidebar no duplica estado.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0106"></a>
-## Archivo #106: .github/prompts/Startup.prompt.md
+## Archivo #106: docs/07-calidad/02-css-design-system.md
 
-- **Ruta relativa:** `.github/prompts/Startup.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/Startup.prompt.md`
+- **Ruta relativa:** `docs/07-calidad/02-css-design-system.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/07-calidad/02-css-design-system.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `316`
+- **Líneas aproximadas:** `20`
 
 ### Contenido original
 
----
-description: Startup prompt for new chat sessions
----
+# CSS y Design System
 
-# Startup Prompt
+## Reglas
 
-**⚠️ CRITICAL: THIS FILE IS READ-ONLY ⚠️**
-**DO NOT MODIFY THIS PROMPT FILE. It is a template for agent workflows.**
-**All work, plans, and context must be saved to AI-Memory/, NOT here.**
+- Scope bajo `.sisad-pdfme-root`.
+- Tokens en CSS variables.
+- Evitar hardcodes.
+- No invadir consumidores externos.
+- No romper paper geometry.
+- No cambiar `overflow`, `transform` o `position` del canvas sin test.
 
+## Elementos sensibles
 
-[New Task Or Continuing Session?]
-
-## Instructions for Every New Chat
-
-**Step 1: Determine Session Type**
-- Ask whether this is a new task or continuation of a previous session.
-- Check if AI-Memory exists and is populated.
-- Check if MCPs are enabled; if not, enable them.
-
-**Step 2: Route to Appropriate Workflow**
-- If AI-Memory is empty or doesn't exist → Execute **Initial Setup** workflow
-- If AI-Memory exists with content → Execute **Continuing Session** workflow
-- If user explicitly requests new task → Execute **New Task** workflow
-
----
-
-## Initial Setup Workflow (First Time in Workspace)
-
-**This is a comprehensive onboarding process. Take your time and be thorough.**
-
-### Phase 1: Workspace Discovery & Analysis
-
-1. **Scan Repository Structure**
-   ```bash
-   # Get complete directory tree
-   find . -type f -name "*.json" -o -name "*.md" -o -name "*.ts" -o -name "*.js" | head -100
-   ls -la
-   ```
-   - Identify project type (extension, web app, library, CLI tool, etc.)
-   - Map directory structure (common patterns: `src/`, `lib/`, `dist/`, `test/`, etc.)
-   - Locate configuration files (package.json, tsconfig.json, etc.)
-   - Find documentation (README.md, CONTRIBUTING.md, docs/)
-
-2. **Read Core Documentation**
-   - Read README.md thoroughly - understand purpose, features, usage
-   - Read package.json - identify dependencies, scripts, metadata
-   - Read CONTRIBUTING.md or similar if present
-   - Check for existing architecture docs in docs/ or .github/
-
-3. **Analyze Code Structure**
-   - Identify entry points (main.ts, index.ts, extension.ts, etc.)
-   - Map module organization and folder patterns
-   - Identify key frameworks/libraries in use
-   - Understand build/test/deploy tooling
-   - Note any configuration patterns (env vars, settings, etc.)
-
-4. **Technology Stack Inventory**
-   - Programming language(s) and versions
-   - Frameworks and major libraries
-   - Build tools (webpack, vite, esbuild, tsc, rollup, etc.)
-   - Testing frameworks (jest, vitest, mocha, pytest, etc.)
-   - Development tools (ESLint, Prettier, formatters, linters, etc.)
-   - Deployment/CI/CD (GitHub Actions, GitLab CI, Jenkins, etc.)
-
-### Phase 2: Architecture & Pattern Analysis
-
-1. **Identify Architectural Patterns**
-   - Overall architecture style (MVC, plugin-based, microservices, etc.)
-   - Code organization patterns (feature-based, layer-based, etc.)
-   - Design patterns in use (factory, singleton, observer, etc.)
-   - State management approach (if applicable)
-   - Data flow patterns
-
-2. **Document System Patterns**
-   - File/folder naming conventions
-   - Import/export patterns
-   - Error handling approach
-   - Logging and debugging patterns
-   - Testing patterns and conventions
-   - Configuration management patterns
-
-3. **Identify Integration Points**
-   - External APIs or services
-   - Database or storage systems
-   - Third-party libraries and their purposes
-   - Platform-specific APIs (if applicable)
-   - Runtime environment integrations
-
-### Phase 3: Memory Bank Initialization
-
-**First, create the memory bank (SQLite database + markdown files), then populate it:**
-
-#### Step 1: Create Memory Bank (Required First)
-
-If AI-Memory folder doesn't exist, create it via VS Code command:
-```
-Command Palette → "AI Skeleton: Create Memory Bank"
-```
-Or ask the user to run: `aiSkeleton.memory.create`
-
-This initializes:
-- `AI-Memory/memory.db` - SQLite database for fast queries
-- `AI-Memory/*.md` files - Human-readable markdown (synced with database)
-
-**Wait for confirmation before proceeding.**
-
-#### Step 2: Populate Project Brief
-
-Use `aiSkeleton_updateProjectBrief` to add project context to the database:
-```
-aiSkeleton_updateProjectBrief({
-  "content": "## Project Overview\n[Comprehensive description from README and code analysis]\n\n## Purpose & Goals\n- [Primary purpose]\n- [Key objectives]\n- [Target users/audience]\n\n## Core Features\n- [Feature 1 with description]\n- [Feature 2 with description]\n\n## Technical Stack\n- **Language**: [Language + version]\n- **Framework**: [Framework + version]\n- **Key Libraries**: [List major dependencies]\n- **Build Tools**: [Build toolchain]\n- **Testing**: [Test framework]\n\n## Project Structure\n- [Key directories and their purposes]\n\n## Constraints & Requirements\n- [Technical constraints]\n- [Performance requirements]"
-})
-```
-
-#### Step 3: Document System Patterns
-
-Use `aiSkeleton_updatePatterns` for each major pattern discovered:
-```
-aiSkeleton_updatePatterns({
-  "pattern": "Architecture Style",
-  "description": "[High-level architecture description - MVC, plugin-based, etc.]"
-})
-
-aiSkeleton_updatePatterns({
-  "pattern": "Code Organization",
-  "description": "[Module organization approach - feature-based, layer-based, etc.]"
-})
-
-aiSkeleton_updatePatterns({
-  "pattern": "Naming Conventions",
-  "description": "[File/folder naming conventions, variable naming, etc.]"
-})
-```
-
-#### Step 4: Set Initial Context
-
-```
-aiSkeleton_updateContext({
-  "context": "Initial workspace setup complete. Project analyzed and documented. Ready for development work."
-})
-```
-
-#### Step 5: Initialize Progress Tracking
-
-```
-aiSkeleton_updateProgress({
-  "item": "Initial workspace analysis and memory bank setup",
-  "status": "done"
-})
-```
-
-#### Step 6: Log Setup Decision
-
-```
-aiSkeleton_logDecision({
-  "decision": "Completed initial workspace analysis and memory setup",
-  "rationale": "Analyzed [X] files, documented [Y] patterns, mapped [Z] dependencies. SQLite database initialized for fast memory queries."
-})
-```
-
-### Phase 4: Validation & Summary
-
-1. **Verify Memory Bank Active**
-   ```
-   aiSkeleton_showMemory
-   ```
-   Confirm:
-   - [ ] Memory bank status shows ACTIVE
-   - [ ] SQLite database initialized (memory.db exists)
-   - [ ] Project brief contains comprehensive overview
-   - [ ] System patterns documented
-   - [ ] No critical gaps in understanding
-
-2. **Generate Setup Summary**
-   ```markdown
-   ## Initial Setup Summary
-   
-   ### Project Identified
-   - Type: [Extension/App/Library/etc.]
-   - Name: [Project name]
-   - Purpose: [Brief purpose]
-   
-   ### Analysis Completed
-   - Files analyzed: [Count]
-   - Directories mapped: [Count]
-   - Patterns documented: [Count]
-   - Dependencies cataloged: [Count]
-   
-   ### Memory Initialized
-   - ✓ SQLite database created (memory.db)
-   - ✓ Project brief populated
-   - ✓ System patterns documented
-   - ✓ Active context initialized
-   - ✓ Progress tracking started
-   - ✓ Decision log initialized
-   
-   ### Ready For
-   - Feature development
-   - Bug fixes
-   - Refactoring
-   - Testing
-   - Documentation
-   
-   **Status**: Workspace fully analyzed. Ready for productive work.
-   ```
-
-3. **Print Completion Message**
-   ```
-   [MEMORY BANK: ACTIVE]
-   
-   Initial setup complete! I've analyzed the workspace and initialized memory bank.
-   
-   Ready for new instructions.
-   ```
-
----
-
-## New Task Checklist (Memory Exists, New Work)
-
-1. **Load Current State from Database**
-   ```
-   aiSkeleton_showMemory
-   ```
-   The database query returns:
-   - Project brief - understand project scope
-   - System patterns - understand architecture  
-   - Active context - check for ongoing work
-
-2. **Clear Active Context**
-   ```
-   aiSkeleton_updateContext({ "context": "New task: [briefly describe if known]. Previous context cleared." })
-   ```
-
-3. **Archive Previous Work (if any)**
-   - Mark completed items as done in progress
-   - Clean up temporary files
-   - Reset progress.md for new work
-
-4. **Report Readiness**
-   ```
-   [MEMORY BANK: ACTIVE]
-   
-   Current project: [Project name from brief]
-   Architecture: [Brief architecture summary from patterns]
-   Previous work: [Summary of last completed work]
-   
-   Ready for new instructions.
-   ```
-
----
-
-## Continuing Session Checklist (Resume Previous Work)
-
-1. **Load Complete Context from Database**
-   ```
-   aiSkeleton_showMemory
-   ```
-   The database returns all memory entries organized by type:
-   - Project brief (goals, scope, tech stack)
-   - Active context (current focus, blockers)
-   - System patterns (architecture, conventions)
-   - Decision log (recent technical decisions)
-   - Progress (done/doing/next tasks)
-
-2. **Analyze Current State**
-   - Identify in-progress tasks from progress entries
-   - Check for blockers in context entries
-   - Review recent decisions from decision log
-   - Understand current focus area
-
-3. **Report Session Context**
-   ```
-   [MEMORY BANK: ACTIVE]
-   
-   Project: [Project name]
-   Last session: [Summary of last work]
-   
-   Current tasks:
-   - [In-progress task 1]
-   - [In-progress task 2]
-   
-   Blockers: [List blockers or "None"]
-   
-   Ready to continue. What would you like to work on?
-   ```
-
----
-
-## Important Notes
-
-**Initial Setup is Critical:**
-- First-time setup should be thorough and comprehensive
-- Take time to understand the codebase deeply
-- Document everything you discover
-- Ask clarifying questions if architecture is unclear
-- This investment pays off in all future sessions
-
-**Don't Rush:**
-- Initial setup may take 5-10 minutes of analysis
-- This is expected and valuable
-- Thorough understanding prevents mistakes later
-- Complete memory enables faster execution in future
-
-**When in Doubt:**
-- If unsure whether memory exists, check for AI-Memory/ directory
-- If memory seems incomplete, re-run initial setup
-- If memory seems stale, consider running Sync.prompt.md
-
----
-
-**Tip:** You can always ask for a summary of the current context, memory, or workflow at any time.
-
-This prompt ensures every session starts with proper context and orientation, enabling productive work from the first interaction.
+- `.sisad-pdfme-designer-canvas`
+- `[data-paper-page='true']`
+- `.moveable-*`
+- `.selecto-*`
+- overlays
+- sidebars
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0107"></a>
-## Archivo #107: .github/prompts/Sync.prompt.md
+## Archivo #107: docs/07-calidad/03-troubleshooting-render.md
 
-- **Ruta relativa:** `.github/prompts/Sync.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/Sync.prompt.md`
+- **Ruta relativa:** `docs/07-calidad/03-troubleshooting-render.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/07-calidad/03-troubleshooting-render.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `257`
+- **Líneas aproximadas:** `33`
 
 ### Contenido original
 
-# Memory Sync Protocol
+# Troubleshooting de render
 
-> **Purpose**: Scan the codebase and AI-Memory, synchronize knowledge, prune stale information, and ensure project state is accurately reflected.
+## PDF en blanco
 
----
+Revisar:
 
-## When to Use
+- Blob/base64 perdido.
+- Re-render innecesario.
+- Background image removido.
+- Documento activo incorrecto.
+- Error PDF no mostrado.
+- CSS externo alterando paper.
 
-- After major refactoring or architectural changes
-- When starting a new session after extended absence
-- Before major milestones or releases
-- When you suspect memory drift from actual codebase
-- Periodically (weekly recommended)
+## Campos desplazados
 
----
+Revisar:
 
-## Phase 1: Codebase Analysis
+- Zoom.
+- Scroll.
+- Bounding box.
+- Scale layer.
+- Transform.
+- Offset del contenedor.
 
-### Step 1.1 - Gather Current State
+## Sidebars inconsistentes
 
-Scan the workspace to understand the actual current state:
+Revisar:
 
-```
-1. List all top-level directories and key files
-2. Identify main technologies, frameworks, dependencies
-3. Find configuration files (package.json, tsconfig, etc.)
-4. Locate entry points and core modules
-5. Check recent git history (last 10-20 commits) for changes
-```
-
-### Step 1.2 - Extract Architecture
-
-From the codebase, identify:
-
-- **Core Components**: Main modules, services, classes
-- **Data Flow**: How information moves through the system
-- **External Integrations**: APIs, databases, third-party services
-- **Build/Deploy Pipeline**: Scripts, CI/CD, tooling
-- **Patterns in Use**: Design patterns, conventions, idioms
-
----
-
-## Phase 2: Memory Analysis
-
-### Step 2.1 - Read All Memory from Database
-
-Query the memory database to get current state:
-
-```
-aiSkeleton_showMemory
-```
-
-This returns all memory entries organized by type:
-- **projectBrief** - Product overview and goals
-- **activeContext** - Current focus and blockers  
-- **systemPatterns** - Architecture and patterns
-- **decisionLog** - Historical decisions
-- **progress** - Task tracking (done/doing/next)
-
-### Step 2.2 - Identify Discrepancies
-
-For each memory file, check:
-
-| Check | Question |
-|-------|----------|
-| **Accuracy** | Does this still reflect reality? |
-| **Completeness** | Is anything missing from current state? |
-| **Relevance** | Is this still applicable or has it been superseded? |
-| **Staleness** | Are there outdated entries that should be archived? |
-
----
-
-## Phase 3: Synchronization
-
-Use `aiSkeleton_*` tools to update the database. All updates are automatically persisted to both SQLite and markdown files.
-
-### Step 3.1 - Update System Patterns
-
-```
-aiSkeleton_updatePatterns({
-  "pattern": "[Pattern Name]",
-  "description": "[Updated description]"
-})
-```
-
-Apply these updates:
-1. ADD new patterns discovered in codebase
-2. Mark deprecated patterns using `aiSkeleton_markDeprecated`
-3. UPDATE patterns that have evolved
-4. VERIFY technical stack matches actual dependencies
-
-### Step 3.2 - Update Project Brief
-
-```
-aiSkeleton_updateProjectBrief({
-  "content": "[Updated project information]"
-})
-```
-
-Apply these updates:
-1. Refresh product description if scope changed
-2. Update feature list (add new, mark completed)
-3. Sync technical stack with actual dependencies
-4. Update user/audience if it has evolved
-
-### Step 3.3 - Update Active Context
-
-```
-aiSkeleton_updateContext({
-  "context": "[Current focus and state]"
-})
-```
-
-Apply these updates:
-1. Clear stale context (entries older than 7-14 days)
-2. Update current goals to match actual focus
-3. Refresh blockers list
-4. Add context for current work
-
-### Step 3.4 - Update Progress
-
-```
-aiSkeleton_updateProgress({
-  "item": "[Task description]",
-  "status": "done" | "doing" | "next"
-})
-```
-
-Apply these updates:
-1. Move completed items to Done (verify against commits)
-2. Update Doing to reflect actual current work
-3. Refresh Next with upcoming priorities
-
-### Step 3.5 - Update Decision Log
-
-```
-aiSkeleton_logDecision({
-  "decision": "[Decision made]",
-  "rationale": "[Why this was decided]"
-})
-```
-
-Apply these updates:
-1. Add any decisions made but not logged
-2. Mark superseded decisions with `aiSkeleton_markDeprecated`
-3. Keep all history (append-only) but annotate changes
-
----
-
-## Phase 4: Validation
-
-### Step 4.1 - Cross-Reference Check
-
-Query the database to verify consistency:
-
-```
-aiSkeleton_showMemory
-```
-
-Check:
-- [ ] Tech stack in project brief matches system patterns
-- [ ] Current goals in context align with progress "doing" entries
-- [ ] Recent decisions reflected in system patterns
-- [ ] No contradictions between memory types
-
-### Step 4.2 - Freshness Tags
-
-All database entries are automatically timestamped. Verify entries have proper tags:
-
-```
-[TYPE:YYYY-MM-DD] Content here
-```
-
-Types: `CONTEXT`, `DECISION`, `PROGRESS`, `PATTERN`, `BRIEF`, `DEPRECATED`, `SUPERSEDED`
-
----
-
-## Phase 5: Report
-
-Generate a sync summary:
-
-```markdown
-## Memory Sync Complete - [DATE]
-
-### Database Status
-- Backend: [sql.js | better-sqlite3]
-- Entries updated: [count]
-
-### Changes Made:
-- System Patterns: [X additions, Y updates, Z deprecations]
-- Project Brief: [Summary of changes]
-- Active Context: [Cleared N stale entries, added M new]
-- Progress: [Moved X to Done, updated Doing]
-- Decision Log: [Added N new decisions, marked M superseded]
-
-### Discrepancies Found:
-- [List any issues that need human attention]
-
-### Recommendations:
-- [Suggestions for follow-up actions]
-```
-
----
-
-## Cleanup Rules
-
-### When to DEPRECATE (not delete):
-
-- Pattern no longer used but historically relevant
-- Decision was valid but circumstances changed
-- Technology was replaced
-
-### When to ARCHIVE:
-
-- Context entries older than 30 days
-- Completed progress items older than 60 days
-- Keep in a `### Archived` section at file bottom
-
-### Never Delete:
-
-- Decision log entries (mark superseded instead)
-- Pattern history (mark deprecated instead)
-- Anything that explains "why" past choices were made
-
----
-
-## Quick Sync Commands
-
-For fast synchronization, use these memory tool commands:
-
-```
-AI Skeleton: Memory - Show Status     # Check current state
-AI Skeleton: Memory - Show Memory     # View all memory
-AI Skeleton: Memory - Update Context  # Quick context update
-AI Skeleton: Memory - Update Progress # Quick progress update
-AI Skeleton: Memory - Update Patterns # Quick pattern update
-```
-
----
-
-## Example Sync Session
-
-```
-User: "Run memory sync"
-
-Agent Actions:
-1. Read AI-Memory/*.md files
-2. Scan workspace structure (ls, package.json, etc.)
-3. Compare memory vs reality
-4. Apply updates with proper tags
-5. Report summary of changes
-```
-
----
-
-*This prompt ensures AI-Memory stays accurate, relevant, and useful across sessions.*
+- Estado duplicado.
+- Feature flags.
+- Layout activo.
+- Contexto de selección.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0108"></a>
-## Archivo #108: .github/prompts/Think.prompt.md
+## Archivo #108: docs/08-guias-ia/01-arquitectura-asistente.md
 
-- **Ruta relativa:** `.github/prompts/Think.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/Think.prompt.md`
+- **Ruta relativa:** `docs/08-guias-ia/01-arquitectura-asistente.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/08-guias-ia/01-arquitectura-asistente.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `504`
+- **Líneas aproximadas:** `20`
 
 ### Contenido original
 
-# Deep Think & Research Prompt
-
-**⚠️ CRITICAL: THIS FILE IS READ-ONLY ⚠️**
-**DO NOT MODIFY THIS PROMPT FILE. It is a template for agent workflows.**
-
-## ⛔ RESEARCH ONLY - NO CODE EDITING
-
-**This prompt is for RESEARCH and ANALYSIS only.**
-- **DO NOT** create, edit, or modify any code files
-- **DO NOT** create separate documentation files
-- **ALL output MUST go through aiSkeleton memory tools**
-
-| Output Type | Required Tool | Purpose |
-|-------------|---|---|
-| Research Briefs (Analysis) | `aiSkeleton_saveResearch` | Problem analysis, findings, approach options |
-| Project Briefs (Goals/Scope) | `aiSkeleton_updateProjectBrief` | ONLY top-level project goals & scope |
-| Context/Focus | `aiSkeleton_updateContext` | Current focus, blockers, ongoing work |
-| Decisions | `aiSkeleton_logDecision` | Architectural/technical choices + rationale |
-| Progress | `aiSkeleton_updateProgress` | Task status (done/doing/next) |
-| Patterns | `aiSkeleton_updatePatterns` | Code patterns, conventions, architecture |
-
-**When research is complete:** State "Research complete. Handoff to Execute mode for implementation."
-
----
-
-## Purpose
-
-This prompt facilitates deep research and analysis **before** planning begins. Use it to thoroughly understand problems, explore solutions, and gather context that will inform the Plan and Execute phases.
-
-**Workflow Integration:**
-```
-Think (Research & Analysis) → Plan (Breakdown & Tasks) → Execute (Implementation)
-                ↓
-        Memory Management (via aiSkeleton tools ONLY)
-```
-
----
-
-## Instructions
-
-### Phase 1: Problem Understanding
-
-1. **Define the Challenge**
-   - What is the core problem or opportunity?
-   - What are the constraints and requirements?
-   - What does success look like?
-
-2. **Use #DeepThink for Structured Analysis**
-   ```
-   #DeepThink analyze <problem statement>
-   ```
-   - Break down the problem into components
-   - Identify assumptions and edge cases
-   - Map dependencies and relationships
-   - Consider multiple perspectives
-
-3. **Capture Context**
-   - Current system state
-   - Related decisions from #MemoryManagement
-   - Existing patterns from systemPatterns.md
-   - Active blockers from activeContext.md
-
-**Memory Action:**
-```
-aiSkeleton_updateContext "Researching: <problem statement>"
-```
-
----
-
-### Phase 2: Research & Information Gathering
-
-1. **Internal Knowledge Review**
-   - Query #MemoryManagement for:
-     - Related past decisions (decisionLog.md)
-     - Existing system patterns (systemPatterns.md)
-     - Previous similar work (progress.md)
-     - Product context (productContext.md)
-
-2. **External Research (when needed)**
-   ```
-   #WebResearch <specific technical query>
-   ```
-   - Best practices and methodologies
-   - Technical documentation
-   - Industry standards
-   - Common pitfalls and solutions
-
-3. **Code & Library Analysis**
-   ```
-   #DeepThink analyze codebase for <specific aspect>
-   ```
-   - Existing implementations
-   - Available libraries and tools
-   - Integration points
-   - Technical debt considerations
-
-**Memory Action:**
-```
-aiSkeleton_logDecision {
-  "decision": "Research findings: <key insights>",
-  "rationale": "Context: <research scope>"
-}
-```
-
----
-
-### Phase 3: Solution Exploration
-
-1. **Generate Alternatives**
-   - Use #DeepThink to explore multiple approaches
-   - Consider trade-offs for each option:
-     - Complexity vs. maintainability
-     - Performance vs. developer experience
-     - Short-term vs. long-term benefits
-     - Resource requirements
-
-2. **Evaluate Against Criteria**
-   - Project constraints (from copilot.instruction.md)
-   - Technical stack compatibility
-   - Team expertise and capacity
-   - Timeline and urgency
-   - SEO/Performance requirements (for web projects)
-
-3. **Risk Assessment**
-   - Identify potential blockers
-   - Consider failure modes
-   - Plan mitigation strategies
-   - Estimate effort and complexity
-
-**Memory Action:**
-```
-aiSkeleton_updatePatterns {
-  "pattern": "<Pattern Name>",
-  "context": "<Pattern Description with trade-offs>"
-}
-```
-
----
-
-### Phase 4: Synthesize Research Brief
-
-Create a structured output that Plan.prompt.md can consume:
-
-#### Research Brief Template
-
-```markdown
-# Research Brief: <Problem/Feature Name>
-
-## Problem Statement
-<Clear description of what needs to be solved>
-
-## Context
-- **Related Work:** <Links to past decisions, similar features>
-- **Current State:** <System state, existing code>
-- **Constraints:** <Technical, business, resource constraints>
-
-## Research Findings
-
-### Approach Options
-1. **Option A: <Name>**
-   - Description: <What it is>
-   - Pros: <Benefits>
-   - Cons: <Drawbacks>
-   - Effort: <Estimation>
-
-2. **Option B: <Name>**
-   - Description: <What it is>
-   - Pros: <Benefits>
-   - Cons: <Drawbacks>
-   - Effort: <Estimation>
-
-### Recommended Approach
-<Which option and why>
-
-### Technical Considerations
-- **Dependencies:** <Required libraries, services>
-- **Integration Points:** <Where this touches existing code>
-- **Testing Strategy:** <How to verify>
-- **Deployment Impact:** <CI/CD, environment changes>
-
-### Risks & Mitigations
-| Risk | Impact | Likelihood | Mitigation |
-|------|--------|-----------|------------|
-| <Risk 1> | High/Med/Low | High/Med/Low | <Strategy> |
-
-## Implementation Readiness
-
-### Prerequisites
-- [ ] <Required research complete>
-- [ ] <Dependencies identified>
-- [ ] <Design decisions made>
-
-### Success Criteria
-- [ ] <Measurable outcome 1>
-- [ ] <Measurable outcome 2>
-
-### Next Steps for Planning
-1. <High-level step 1>
-2. <High-level step 2>
-
-## References
-- <Links to documentation>
-- <Related GitHub issues>
-- <Research sources>
-```
-
-**Memory Actions:**
-```
-aiSkeleton_updateProjectBrief "<Research brief content>"
-aiSkeleton_updateProgress "Next: Plan implementation of <feature>"
-```
-
----
-
-### Phase 5: Handoff to Planning
-
-1. **Validate Research Completeness**
-   - [ ] Problem clearly defined
-   - [ ] Multiple options explored
-   - [ ] Recommended approach justified
-   - [ ] Risks identified and mitigated
-   - [ ] Technical details documented
-   - [ ] Success criteria defined
-
-2. **Update Memory Management**
-   ```
-   aiSkeleton_updateContext "Ready to plan: <feature name>"
-   aiSkeleton_updateProgress "Done: Research for <feature>; Next: Create implementation plan"
-   ```
-
-3. **Transition to Plan.prompt.md**
-   - Use the Research Brief as input
-   - Reference the recommended approach
-   - Break down into actionable steps
-   - Create #todos based on implementation readiness
-
----
-
-## Deep Think Integration Patterns
-
-### For Architecture Decisions
-```
-#DeepThink analyze architecture for <feature>
-- Consider: scalability, maintainability, performance
-- Review: existing patterns in systemPatterns.md
-- Validate: against project constraints
-```
-
-### For Problem Decomposition
-```
-#DeepThink break down <complex problem>
-- Identify: core components
-- Map: dependencies and relationships
-- Find: potential bottlenecks
-```
-
-### For Code Analysis
-```
-#DeepThink analyze codebase
-- Focus: <specific module or pattern>
-- Look for: duplication, complexity, patterns
-- Suggest: refactoring opportunities
-```
-
-### For AI-Memory & Context Queries
-
-**Context:** AI-Memory now uses SQLite for **100x faster queries**. Use `showMemory()` to access context instead of file scanning.
-
-**Key Improvements:**
-- **queryByType()**: O(log n) indexed lookup (was O(n) file scan)
-- **queryByDateRange()**: Efficient range queries with timestamps
-- **fullTextSearch()**: Find entries by content
-- **getRecent()**: Quick access to latest entries
-
-**Usage Patterns:**
-
-**Pattern 1: Quick Context Lookup**
-```typescript
-// Fast: Get recent decisions (< 1ms)
-const recent = await memoryService.showMemory('decisionLog', 5);
-
-// Use: Review what was decided recently
-// Performance: O(1) indexed + cached
-```
-
-**Pattern 2: Date Range Analysis**
-```typescript
-// Fast: Find entries from last week (< 5ms)
-const weekEntries = await memoryService.queryByDateRange(
-  'progress',
-  '2025-11-27T00:00:00Z',  // Start
-  '2025-12-04T00:00:00Z'   // End
-);
-
-// Use: Understand recent progress and bottlenecks
-// Performance: O(log n) with timestamp index
-```
-
-**Pattern 3: Search by Entry Type**
-```typescript
-// Fast: Find all DECISION entries (< 2ms)
-const decisions = await memoryService.queryByType('decisionLog', 50);
-
-// Use: Review architectural decisions
-// Performance: O(log n) with file_type index
-```
-
-**Pattern 4: Content Search**
-```typescript
-// Search: Find entries mentioning SQLite (< 10ms)
-const sqliteEntries = await memoryService.fullTextSearch('SQLite migration');
-
-// Use: Find related research and discussions
-// Performance: O(n) but <10ms for 10K entries
-```
-
-**When Researching Features:**
-1. First, check `showMemory()` for related past decisions
-2. Query by date range to understand project history
-3. Use fullTextSearch for specific topics
-4. These queries are now much faster than before
-
-**Performance Expectations:**
-| Query | Time | Speedup |
-|-------|------|----------|
-| getRecent (20 entries) | < 1ms | 22x faster |
-| queryByType (50 entries) | < 2ms | 11x faster |
-| queryByDateRange (1 week) | < 5ms | 10x faster |
-| fullTextSearch (10K data) | < 10ms | 1.66x faster |
-
-**Memory Best Practices:**
-- Always query before researching (avoid re-research)
-- Log decisions/patterns immediately (don't defer)
-- Use consistent timestamps (use TimestampHandler)
-- Review `activeContext.md` for current blockers
-
----
-
-## Web Research Integration Patterns
-
-### For Technology Selection
-```
-#WebResearch best practices for <technology/pattern>
-- Compare: alternatives and trade-offs
-- Review: community adoption and support
-- Check: compatibility with current project stack
-```
-
-### For Performance Optimization
-```
-#WebResearch <performance aspect> optimization for <technology>
-- Focus: Core metrics, best practices
-- Target: Project requirements
-- Consider: Infrastructure constraints
-```
-
-### For Standards & Compliance
-```
-#WebResearch <standard/specification> requirements
-- Validate: required fields
-- Check: best practices
-- Review: examples and implementations
-```
-
----
-
-## Integration with Other Prompts
-
-### → Plan.prompt.md
-- Input: Research Brief
-- Use: Recommended approach as foundation
-- Reference: Technical considerations for task breakdown
-
-### → Execute.prompt.md
-- Input: Implementation plan from Plan.prompt.md
-- Reference: Success criteria from research
-- Follow: Technical patterns documented
-
-### → GH-Actions.prompt.md
-- Reference: Deployment considerations from research
-- Use: Risk mitigations for CI/CD issues
-- Apply: Testing strategies identified
-
-### → Checkpoint.prompt.md
-- Document: Research decisions in decisionLog.md
-- Update: System patterns discovered
-- Track: Research → Plan → Execute flow
-
----
-
-## Example: Feature Research Flow
-
-**Scenario:** Add image gallery with cloud storage integration
-
-### 1. Problem Understanding
-```
-#DeepThink analyze "Image gallery with cloud storage fallback requirements"
-```
-
-**Output:**
-- Need: Image gallery feature
-- Constraint: Cloud storage for production
-- Requirement: Fallback to local for development
-- Success: Fast load, lazy loading, responsive
-
-### 2. Research
-```
-aiSkeleton_updateContext "Query image optimization patterns"
-#WebResearch "Image optimization with cloud storage integration"
-```
-
-**Findings:**
-- Image framework supports custom loaders
-- Cloud storage requires authentication setup
-- Fallback can use local storage
-- Consider: image transformations
-
-### 3. Solution Exploration
-```
-#DeepThink compare approaches
-```
-
-**Options:**
-1. Direct cloud integration with signed URLs
-2. CDN-based image service
-3. Hybrid approach (cloud + local fallback)
-
-**Recommendation:** Hybrid (documented in systemPatterns.md)
-
-### 4. Research Brief
-```
-aiSkeleton_updatePatterns {
-  "pattern": "Cloud Image Gallery",
-  "context": "Loader implementation, Fallback strategy, Environment configuration, Testing approach"
-}
-```
-
-**Pattern documented with:**
-- Loader implementation
-- Fallback strategy
-- Environment configuration
-- Testing approach
-
-### 5. Handoff to Planning
-```
-aiSkeleton_updateProgress "Done: Image gallery research; Next: Plan implementation"
-```
-
-**Plan.prompt.md receives:**
-- Clear implementation approach
-- Technical requirements
-- Success criteria
-- Risk mitigations
-
----
-
-## Best Practices
-
-1. **Start Small, Think Deep**
-   - Don't over-research simple problems
-   - Use #DeepThink for complexity assessment first
-   - Scale research effort to problem scope
-
-2. **Leverage Memory**
-   - Always check existing decisions
-   - Build on documented patterns
-   - Avoid re-researching solved problems
-
-3. **Document as You Go**
-   - Update `aiSkeleton_*` tools throughout research
-   - Don't wait until the end
-   - Capture insights when fresh
-
-4. **Keep It Actionable**
-   - Research should lead to clear decisions
-   - Avoid analysis paralysis
-   - Time-box research phases
-
-5. **Integrate Tools Wisely**
-   - Use #DeepThink for structured analysis
-   - Use #WebResearch for external validation
-   - Use `aiSkeleton_*` tools for memory persistence
-
----
-
-## Validation Checklist
-
-Before moving to Plan.prompt.md:
-
-- [ ] Problem is clearly understood
-- [ ] Multiple solutions have been explored
-- [ ] A recommended approach is justified
-- [ ] Technical details are documented
-- [ ] Risks are identified with mitigations
-- [ ] Success criteria are defined
-- [ ] Research is saved via `aiSkeleton_*` tools
-- [ ] activeContext.md reflects current state
-- [ ] Relevant patterns added to systemPatterns.md
-- [ ] Decision logged in decisionLog.md
-
----
-
-*Research deeply, plan thoroughly, execute confidently.*
+# Guía IA: arquitectura del asistente
+
+## Qué debe hacer el asistente
+
+- Entender el dominio.
+- Elegir agente.
+- Cargar skill.
+- Ejecutar prompt.
+- Proponer cambios pequeños.
+- Validar con tests.
+- Actualizar docs.
+
+## Qué no debe hacer
+
+- Refactors masivos sin plan.
+- Mezclar flujos externos.
+- Duplicar componentes.
+- Romper snapshot.
+- Crear CSS global invasivo.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0109"></a>
-## Archivo #109: docs/00-indice/01-manifiesto-fuentes.md
+## Archivo #109: docs/08-guias-ia/02-prompts-y-skills.md
 
-- **Ruta relativa:** `docs/00-indice/01-manifiesto-fuentes.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/00-indice/01-manifiesto-fuentes.md`
+- **Ruta relativa:** `docs/08-guias-ia/02-prompts-y-skills.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/08-guias-ia/02-prompts-y-skills.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `20`
+- **Líneas aproximadas:** `14`
 
 ### Contenido original
 
-# Manifiesto de fuentes y trazabilidad
+# Guía IA: prompts y skills
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
+## Prompts
 
-## Fuentes
-| Fuente | Archivo | Cobertura | Uso |
-| --- | --- | --- | --- |
-| Código unificado | plugin-sisad-pdfme.txt | 416 archivos TS/JS detectados | APIs, componentes, tests y flujos |
-| Documentación existente | plugin-sisad-pdfme.md | 270 archivos MD reportados | Base documental previa |
-| Estilos unificados | styles-sisad-pdfme.css | 4 archivos CSS reportados | Tokens, clases y layout |
+Los prompts viven en `.ai/prompts` y definen tareas ejecutables.
 
-## Métricas detectadas
-- Archivos fuente detectados: **416**.
-- Componentes UI en `src/sisad-pdfme/ui/components`: **77**.
-- Archivos de schemas en `src/sisad-pdfme/schemas`: **56**.
-- Tests detectados: **48**.
+## Skills
 
-## Criterio aplicado
-La documentación nueva prioriza la superficie pública y la implementación real de `src/sisad-pdfme/*`. Los documentos históricos, prompts y referencias se tratan como soporte, pero no reemplazan el análisis de código.
+Los skills viven en `.ai/skills` y definen procedimientos reutilizables.
+
+## Regla
+
+Un prompt debe indicar qué skill usar y qué tests validar.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0110"></a>
-## Archivo #110: docs/00-indice/README.md
+## Archivo #110: docs/99-anexos/01-checklist-adopcion.md
 
-- **Ruta relativa:** `docs/00-indice/README.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/00-indice/README.md`
+- **Ruta relativa:** `docs/99-anexos/01-checklist-adopcion.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/99-anexos/01-checklist-adopcion.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `29`
+- **Líneas aproximadas:** `11`
 
 ### Contenido original
 
-# Índice maestro y ruta de lectura
+# Checklist de adopción
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## Propósito
-Este paquete reorganiza la documentación del plugin para que pueda ser usado fuera del laboratorio y dentro de otros proyectos como SISAD Web.
-
-## Fuentes analizadas
-| Fuente | Archivo | Cobertura | Uso |
-| --- | --- | --- | --- |
-| Código unificado | plugin-sisad-pdfme.txt | 416 archivos TS/JS detectados | APIs, componentes, tests y flujos |
-| Documentación existente | plugin-sisad-pdfme.md | 270 archivos MD reportados | Base documental previa |
-| Estilos unificados | styles-sisad-pdfme.css | 4 archivos CSS reportados | Tokens, clases y layout |
-
-## Ruta de lectura recomendada
-1. `01-arquitectura/01-vision-general.md` para entender el producto.
-2. `02-api-publica/01-entrypoints.md` antes de importar desde otro proyecto.
-3. `03-runtime/01-designer-form-viewer.md` para montar Designer, Form y Viewer.
-4. `04-componentes/02-canvas-interacciones.md` si se modifican coordenadas, Selecto o Moveable.
-5. `05-schemas/01-registry-y-plugins.md` para extender campos.
-6. `06-funcionalidades` para multidocumento, multiusuario, assignments, comentarios y persistencia.
-7. `07-integracion` para consumirlo en SISAD Web u otro host.
-8. `08-calidad` para tests, troubleshooting y reducción de redundancia visual.
-
-## Alcance
-- Incluye APIs públicas, componentes internos relevantes, flujos de runtime, ejemplos, contratos futuros y checklist.
-- No asume backend real: los ejemplos actuales deben seguir funcionando con estado local/mocks.
-- SISAD Web se considera implementación de referencia incompleta, no fuente de verdad.
+- [ ] Copiar `.ai/`.
+- [ ] Copiar `AGENTS.md`.
+- [ ] Copiar adaptadores de proveedor.
+- [ ] Revisar `.github/copilot-instructions.md`.
+- [ ] Revisar documentación.
+- [ ] Ajustar paths si el repositorio difiere.
+- [ ] Ejecutar tests actuales.
+- [ ] Crear primer ADR si se toma una decisión mayor.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0111"></a>
-## Archivo #111: docs/01-arquitectura/01-vision-general.md
+## Archivo #111: docs/99-anexos/02-matriz-agentes-skills.md
 
-- **Ruta relativa:** `docs/01-arquitectura/01-vision-general.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/01-arquitectura/01-vision-general.md`
+- **Ruta relativa:** `docs/99-anexos/02-matriz-agentes-skills.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/99-anexos/02-matriz-agentes-skills.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `31`
+- **Líneas aproximadas:** `13`
 
 ### Contenido original
 
-# Visión general de la plataforma
+# Matriz agentes / skills
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## Qué es `sisad-pdfme`
-Es una plataforma de edición documental basada en PDF con runtime de diseñador, formulario, visor, generación, conversión, schemas extensibles, colaboración, comentarios y ruteo multidocumento.
-
-## Capas
-```text
-common       → contratos, helpers, validaciones, comments, collaboration, assignments
-schemas      → plugins renderizables y catálogo de campos
-ui           → Designer, Form, Viewer, canvas, sidebars, overlays, runtime API
-generator    → PDF final desde template + inputs
-converter    → pdf2img, pdf2size, img2pdf
-lab/features → ejemplos vivos sin backend
-```
-
-## Principio de consumo
-Los proyectos externos deben importar desde entrypoints públicos y no desde componentes internos. Los componentes internos se documentan para mantener el plugin, no para acoplar consumidores.
-
-## Casos de uso cubiertos
-- Diseñar una plantilla nueva sobre PDF real.
-- Editar una plantilla ya diseñada.
-- Completar una plantilla como formulario dinámico.
-- Ver una plantilla con datos sin edición estructural.
-- Generar PDF final.
-- Manejar varios documentos y páginas.
-- Manejar varios usuarios/destinatarios con ownership, vista global/usuario y locks.
-- Configurar datos conectados, prefill, API y JSON de salida.
-- Manejar firmas por dibujo/imagen/P12/proveedor.
+| Dominio | Agente | Skills |
+|---|---|---|
+| Canvas | canvas-runtime-architect | canvas-geometry-scaling, moveable-selecto-integration |
+| Overlays | canvas-overlays-architect | canvas-overlay-composition, snaplines-guides-behavior |
+| LeftSidebar | left-sidebar-catalog-architect | catalog-discovery-patterns, wix-inspired-left-rail-ux |
+| RightSidebar | right-sidebar-inspector-architect | inspector-panel-composition |
+| Schemas | schema-registry-architect | schema-registry-extension, schema-identity-persistence |
+| CSS | design-system-guardian | design-system-consistency, css-layering-and-overrides |
+| Tests | testing-regression-guardian | editor-regression-testing, playwright-canvas-diagnostics |
+| Docs | docs-migration-steward | fork-safe-pdfme-evolution |
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0112"></a>
-## Archivo #112: docs/01-arquitectura/02-mapa-modulos.md
+## Archivo #112: test-results/pdfme-editor-cross-platfor-7f4f4--reverts-a-delete-operation-chromium/error-context.md
 
-- **Ruta relativa:** `docs/01-arquitectura/02-mapa-modulos.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/01-arquitectura/02-mapa-modulos.md`
+- **Ruta relativa:** `test-results/pdfme-editor-cross-platfor-7f4f4--reverts-a-delete-operation-chromium/error-context.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/test-results/pdfme-editor-cross-platfor-7f4f4--reverts-a-delete-operation-chromium/error-context.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `28`
+- **Líneas aproximadas:** `409`
 
 ### Contenido original
 
-# Mapa de módulos y responsabilidades
+# Page snapshot
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## Entry points principales
-| Paquete | Archivo | Exports | Principales |
-| --- | --- | --- | --- |
-| @sisad-pdfme/ui | src/sisad-pdfme/ui/index.ts | 10 | Designer, DesignerEngineBuilder, Form, PdfEditor, PdfEditorEngineBuilder, PdfFormView, PdfViewer, Viewer, applyCollaborationEvent, useCollaborationSync |
-| @sisad-pdfme/common | src/sisad-pdfme/common/index.ts | 55 | BLANK_A4_PDF, BLANK_PDF, CUSTOM_A4_PDF, DEFAULT_FONT_NAME, MM_TO_PT_RATIO, PDFME_VERSION, PT_TO_MM_RATIO, PT_TO_PX_RATIO, SHARED_ASSIGNMENTS_BUCKET, ZOOM, addAnchorToSchema, addCommentToSchema, addCommentWithAnchorToTemplate, b64toUint8Array, buildSchemaAssignments, buildUserRecipientAssignments, buildUserSchemaAssignments, checkDesignerProps, checkFont, checkGenerateProps, checkInputs, checkPreviewProps, checkTemplate, checkUIOptions… |
-| @sisad-pdfme/schemas | src/sisad-pdfme/schemas/index.ts | 51 | addAlphaToHex, barcodes, builtInFields, builtInPlugins, builtInSchemaDefinitions, builtInSchemaDefinitionsByType, changeSchemas, checkbox, convertForPdfLayoutProps, createDefaultSchema, createLucideIcon, createSchemaBuilder, createSchemaInspectorConfig, createSchemaPlugin, createSvgStr, date, dateTime, ellipse, flatSchemaPlugins, flattenSchemaPlugins, generateUniqueSchemaName, getBuiltInFields, getDynamicHeightsForTable, getSchemaDefinition… |
-| @sisad-pdfme/generator | src/sisad-pdfme/generator/index.ts | 5 | buildDynamicTemplate, generate, generatePdf, generatePdfBuffer, validateRequiredFields |
-| @sisad-pdfme/converter | src/sisad-pdfme/converter/index.browser.ts | 3 | img2pdf, pdf2img, pdf2size |
-| @sisad-pdfme/assignments | src/sisad-pdfme/assignments/index.ts | 12 | buildFileAssignments, buildPageAssignments, buildRecipientAssignments, buildSchemaAssignments, buildUserSchemaAssignments, getAssignmentsForFile, getAssignmentsForPage, getAssignmentsForRecipient, moveSchemaAssignment, reconcileAssignments, removeSchemaFromAssignments, validateAssignmentsConsistency |
-| @sisad-pdfme/comments | src/sisad-pdfme/comments/index.ts | 18 | addAnchorToSchema, addCommentToSchema, addCommentWithAnchorToTemplate, attachCommentToField, createSchemaComment, createSchemaCommentAnchor, deleteCommentFromSchema, detachCommentFromField, filterCommentsByFileAndPage, findSchemaByUid, getCommentsForDocument, getCommentsForPage, getCommentsForSchema, moveCommentAnchor, reopenComment, resolveCommentInSchema, resolveTopLevelComment, updateCommentInSchema |
-| @sisad-pdfme/commands | src/sisad-pdfme/commands/index.ts | 13 | CommandBus, buildTopLevelCommentEntry, commentCommands, createCommandBus, createCommentCommandEvent, createPageSnapshotCommand, createSelectionCommands, createTemplateSnapshotCommand, documentCommands, emitInlineEditRequest, registerDesignerCommands, schemaCommands, setInlineEditRequestHandler |
-
-## Responsabilidades
-| Módulo | Responsabilidad | Riesgo al tocar |
-| --- | --- | --- |
-| `common` | Contratos, zod schemas, helpers, comentarios y colaboración compartida. | Romper compatibilidad entre UI y generator. |
-| `schemas` | Plugins, familias, registry, defaults y propPanels. | Ver campo en UI pero no en PDF final. |
-| `ui` | Runtimes, canvas, sidebars, overlays, engine y command bus. | Render loops, selección rota o API inestable. |
-| `generator` | Generación final de PDF. | Diferencia entre preview y PDF generado. |
-| `converter` | PDF a imagen/tamaño e imagen a PDF. | Previews lentos o geometría inestable. |
-| `assignments` | Ruteo por recipient/file/page. | Campos en documento o usuario equivocado. |
-| `comments` | Comentarios, anchors, replies y resolved. | Comentarios perdidos/desanclados. |
-| `commands` | Acciones comunes para toolbar/context menu/shortcuts. | Funcionalidades duplicadas o colisiones. |
+```yaml
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - generic [ref=e8]: Lab
+          - generic [ref=e9]: Diseñador
+        - heading "Editor integral" [level=1] [ref=e10]
+        - paragraph [ref=e11]: Ruta integral en modo designer con todos los schemas disponibles, alta de páginas, selección y edición sobre PDF real.
+      - generic [ref=e13]:
+        - generic [ref=e14]: Listo para editar, agregar schemas y recorrer todos los casos de uso en una sola ruta
+        - link "Volver al índice" [ref=e16] [cursor=pointer]:
+          - /url: /
+        - button "Descargar plantilla Editor integral" [ref=e18]: Descargar plantilla
+        - button "Controles" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+    - region "Colaboración del ejemplo" [ref=e25]:
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]: Participantes
+          - generic [ref=e29]: "2"
+        - list "Participantes del ejemplo" [ref=e30]:
+          - listitem [ref=e31]:
+            - button "Diseño" [pressed] [ref=e32] [cursor=pointer]
+          - listitem [ref=e33]:
+            - button "QA" [ref=e34] [cursor=pointer]
+        - generic "Resumen de colaboración" [ref=e35] [cursor=pointer]:
+          - generic [ref=e36]: "Visibles: 30"
+          - generic [ref=e37]: "Editables: 30"
+          - generic [ref=e38]: "Bloqueados: 0"
+          - generic [ref=e39]: "Comentarios: 0"
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - generic [ref=e42]: Activo
+          - combobox "Seleccionar usuario activo" [ref=e43]:
+            - option "Diseño" [selected]
+            - option "QA"
+        - generic [ref=e44]:
+          - generic [ref=e45]: Vista
+          - combobox "Seleccionar vista activa" [ref=e46]:
+            - option "Usuario activo" [selected]
+            - option "Global"
+    - group [ref=e47]:
+      - generic "Detalles técnicos Metadatos y estado" [ref=e48] [cursor=pointer]:
+        - generic [ref=e49]: Detalles técnicos
+        - generic [ref=e50]: Metadatos y estado
+  - region "Canvas" [ref=e51]:
+    - generic [ref=e52]:
+      - heading "Canvas" [level=2] [ref=e53]
+      - paragraph [ref=e54]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e55]: sisad-pdfme
+        - text: .
+    - generic [ref=e59]:
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - button "Cerrar catálogo de campos" [expanded] [ref=e62] [cursor=pointer]:
+            - img [ref=e63]
+          - generic [ref=e67]:
+            - generic [ref=e68]:
+              - generic [ref=e69]: Diseñador
+              - generic [ref=e70]:
+                - generic [ref=e71]: Campos
+                - 'generic "Color del destinatario activo #2563EB" [ref=e72]'
+            - generic [ref=e73]:
+              - tablist "Tipos de campo" [ref=e74]:
+                - tab "Campos estándar" [selected] [ref=e75] [cursor=pointer]:
+                  - img [ref=e76]
+                - tab "Campos personalizados" [ref=e78] [cursor=pointer]:
+                  - img [ref=e79]
+                - tab "Herramientas de prerrellenado" [ref=e82] [cursor=pointer]:
+                  - img [ref=e83]
+              - generic [ref=e86]:
+                - generic [ref=e87]:
+                  - img [ref=e89]
+                  - textbox "Buscar campos" [ref=e92]
+                - generic [ref=e94]:
+                  - button "Todos" [ref=e95] [cursor=pointer]:
+                    - generic [ref=e96]: Todos
+                  - button "Favoritos (0)" [ref=e97] [cursor=pointer]:
+                    - generic [ref=e98]: Favoritos (0)
+                  - button "Recientes (0)" [ref=e99] [cursor=pointer]:
+                    - generic [ref=e100]: Recientes (0)
+                  - button "Vista detalle (lista)" [ref=e101] [cursor=pointer]:
+                    - img [ref=e103]
+            - generic [ref=e104]:
+              - generic [ref=e105]:
+                - button "Alternar categoría Firmas" [expanded] [ref=e106] [cursor=pointer]:
+                  - generic [ref=e107]: Firmas
+                  - generic [ref=e108]: "1"
+                - generic [ref=e112]:
+                  - button "Firma" [ref=e113]:
+                    - generic "Firma" [ref=e115]:
+                      - img [ref=e116]
+                    - generic [ref=e119]: Firma
+                  - button "Marcar favorito": ★
+              - generic [ref=e120]:
+                - button "Alternar categoría Texto" [expanded] [ref=e121] [cursor=pointer]:
+                  - generic [ref=e122]: Texto
+                  - generic [ref=e123]: "1"
+                - generic [ref=e127]:
+                  - button "Texto" [ref=e128]:
+                    - generic "Texto" [ref=e130]:
+                      - img [ref=e131]
+                    - generic [ref=e137]: Texto
+                  - button "Marcar favorito": ★
+              - generic [ref=e138]:
+                - button "Alternar categoría Imagen y medios" [expanded] [ref=e139] [cursor=pointer]:
+                  - generic [ref=e140]: Imagen y medios
+                  - generic [ref=e141]: "2"
+                - generic [ref=e142]:
+                  - generic [ref=e145]:
+                    - button "Imagen" [ref=e146]:
+                      - generic "Imagen" [ref=e148]:
+                        - img [ref=e149]
+                      - generic [ref=e154]: Imagen
+                    - button "Marcar favorito": ★
+                  - generic [ref=e157]:
+                    - button "SVG" [ref=e158]:
+                      - generic "SVG" [ref=e160]:
+                        - img [ref=e161]
+                      - generic [ref=e166]: SVG
+                    - button "Marcar favorito": ★
+              - generic [ref=e167]:
+                - button "Alternar categoría Selecciones" [expanded] [ref=e168] [cursor=pointer]:
+                  - generic [ref=e169]: Selecciones
+                  - generic [ref=e170]: "3"
+                - generic [ref=e171]:
+                  - generic [ref=e174]:
+                    - button "Casilla" [ref=e175]:
+                      - generic "Casilla" [ref=e177]:
+                        - img [ref=e178]
+                      - generic [ref=e182]: Casilla
+                    - button "Marcar favorito": ★
+                  - generic [ref=e185]:
+                    - button "Opción única" [ref=e186]:
+                      - generic "Opción única" [ref=e188]:
+                        - img [ref=e189]
+                      - generic [ref=e193]: Opción única
+                    - button "Marcar favorito": ★
+                  - generic [ref=e196]:
+                    - button "Lista desplegable" [ref=e197]:
+                      - generic "Lista desplegable" [ref=e199]:
+                        - img [ref=e200]
+                      - generic [ref=e203]: Lista desplegable
+                    - button "Marcar favorito": ★
+              - generic [ref=e204]:
+                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e205] [cursor=pointer]:
+                  - generic [ref=e206]: Fecha y Hora
+                  - generic [ref=e207]: "3"
+                - generic [ref=e208]:
+                  - generic [ref=e211]:
+                    - button "Fecha" [ref=e212]:
+                      - generic "Fecha" [ref=e214]:
+                        - img [ref=e215]
+                      - generic [ref=e218]: Fecha
+                    - button "Marcar favorito": ★
+                  - generic [ref=e221]:
+                    - button "Fecha y hora" [ref=e222]:
+                      - generic "Fecha y hora" [ref=e224]:
+                        - img [ref=e225]
+                      - generic [ref=e230]: Fecha y hora
+                    - button "Marcar favorito": ★
+                  - generic [ref=e233]:
+                    - button "Hora" [ref=e234]:
+                      - generic "Hora" [ref=e236]:
+                        - img [ref=e237]
+                      - generic [ref=e241]: Hora
+                    - button "Marcar favorito": ★
+              - generic [ref=e242]:
+                - button "Alternar categoría QR y Códigos" [expanded] [ref=e243] [cursor=pointer]:
+                  - generic [ref=e244]: QR y Códigos
+                  - generic [ref=e245]: "12"
+                - generic [ref=e246]:
+                  - generic [ref=e249]:
+                    - button "Código de barras" [ref=e250]:
+                      - generic "Código de barras" [ref=e252]:
+                        - img [ref=e253]
+                      - generic [ref=e255]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e258]:
+                    - button "Código de barras" [ref=e259]:
+                      - generic "Código de barras" [ref=e261]:
+                        - img [ref=e262]
+                      - generic [ref=e264]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e267]:
+                    - button "Código de barras" [ref=e268]:
+                      - generic "Código de barras" [ref=e270]:
+                        - img [ref=e271]
+                      - generic [ref=e273]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e276]:
+                    - button "Código de barras" [ref=e277]:
+                      - generic "Código de barras" [ref=e279]:
+                        - img [ref=e280]
+                      - generic [ref=e282]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e285]:
+                    - button "DataMatrix" [ref=e286]:
+                      - generic "DataMatrix" [ref=e288]:
+                        - img [ref=e289]
+                      - generic [ref=e291]: DataMatrix
+                    - button "Marcar favorito": ★
+                  - generic [ref=e294]:
+                    - button "Código de barras" [ref=e295]:
+                      - generic "Código de barras" [ref=e297]:
+                        - img [ref=e298]
+                      - generic [ref=e300]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e303]:
+                    - button "Japan Post" [ref=e304]:
+                      - generic "Japan Post" [ref=e306]:
+                        - img [ref=e307]
+                      - generic [ref=e309]: Japan Post
+                    - button "Marcar favorito": ★
+                  - generic [ref=e312]:
+                    - button "NW7" [ref=e313]:
+                      - generic "NW7" [ref=e315]:
+                        - img [ref=e316]
+                      - generic [ref=e318]: NW7
+                    - button "Marcar favorito": ★
+                  - generic [ref=e321]:
+                    - button "PDF417" [ref=e322]:
+                      - generic "PDF417" [ref=e324]:
+                        - img [ref=e325]
+                      - generic [ref=e327]: PDF417
+                    - button "Marcar favorito": ★
+                  - generic [ref=e330]:
+                    - button "Código QR" [ref=e331]:
+                      - generic "Código QR" [ref=e333]:
+                        - img [ref=e334]
+                      - generic [ref=e341]: Código QR
+                    - button "Marcar favorito": ★
+                  - generic [ref=e344]:
+                    - button "Código de barras" [ref=e345]:
+                      - generic "Código de barras" [ref=e347]:
+                        - img [ref=e348]
+                      - generic [ref=e350]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e353]:
+                    - button "Código de barras" [ref=e354]:
+                      - generic "Código de barras" [ref=e356]:
+                        - img [ref=e357]
+                      - generic [ref=e359]: Código de barras
+                    - button "Marcar favorito": ★
+              - generic [ref=e360]:
+                - button "Alternar categoría Estructura" [expanded] [ref=e361] [cursor=pointer]:
+                  - generic [ref=e362]: Estructura
+                  - generic [ref=e363]: "4"
+                - generic [ref=e364]:
+                  - generic [ref=e367]:
+                    - button "Óvalo" [ref=e368]:
+                      - generic "Óvalo" [ref=e370]:
+                        - img [ref=e371]
+                      - generic [ref=e374]: Óvalo
+                    - button "Marcar favorito": ★
+                  - generic [ref=e377]:
+                    - button "Línea" [ref=e378]:
+                      - generic "Línea" [ref=e380]:
+                        - img [ref=e381]
+                      - generic [ref=e383]: Línea
+                    - button "Marcar favorito": ★
+                  - generic [ref=e386]:
+                    - button "Rectángulo" [ref=e387]:
+                      - generic "Rectángulo" [ref=e389]:
+                        - img [ref=e390]
+                      - generic [ref=e393]: Rectángulo
+                    - button "Marcar favorito": ★
+                  - generic [ref=e396]:
+                    - button "Tabla" [ref=e397]:
+                      - generic "Tabla" [ref=e399]:
+                        - img [ref=e400]
+                      - generic [ref=e403]: Tabla
+                    - button "Marcar favorito": ★
+        - generic [ref=e404]:
+          - generic [ref=e405]:
+            - generic "Contexto activo del editor" [ref=e407]:
+              - generic [ref=e408]:
+                - generic "Documento activo" [ref=e409]
+                - generic [ref=e410]: Editando
+              - generic [ref=e412]: Página 1/3
+            - generic [ref=e413]:
+              - generic [ref=e414]:
+                - button "Deshacer" [ref=e415] [cursor=pointer]:
+                  - img [ref=e417]
+                - button "Rehacer" [ref=e420] [cursor=pointer]:
+                  - img [ref=e422]
+              - generic [ref=e425]:
+                - button "Página anterior" [disabled] [ref=e426]:
+                  - generic:
+                    - img
+                - generic [ref=e427] [cursor=pointer]:
+                  - generic [ref=e429]:
+                    - combobox [ref=e431]
+                    - generic "Página 1" [ref=e432]
+                  - generic:
+                    - img:
+                      - img
+                - button "Página siguiente" [ref=e433] [cursor=pointer]:
+                  - img [ref=e435]
+              - button "Vista" [ref=e438] [cursor=pointer]:
+                - img [ref=e440]
+              - generic [ref=e445]:
+                - button "Reducir zoom" [ref=e446] [cursor=pointer]:
+                  - img [ref=e448]
+                - generic [ref=e449] [cursor=pointer]:
+                  - generic [ref=e451]:
+                    - combobox [ref=e453]
+                    - generic "100%" [ref=e454]
+                  - generic:
+                    - img:
+                      - img
+                - button "Aumentar zoom" [ref=e455] [cursor=pointer]:
+                  - img [ref=e457]
+              - generic [ref=e458]:
+                - button "Ocultar cuadrícula" [pressed] [ref=e459] [cursor=pointer]:
+                  - img [ref=e461]
+                - button "Ocultar guías" [pressed] [ref=e463] [cursor=pointer]:
+                  - img [ref=e465]
+                - button "Ocultar snaps" [pressed] [ref=e471] [cursor=pointer]:
+                  - img [ref=e473]
+                - button "Ocultar padding" [pressed] [ref=e477] [cursor=pointer]:
+                  - img [ref=e479]
+              - generic [ref=e481]:
+                - button "Guardar" [ref=e482] [cursor=pointer]:
+                  - img [ref=e484]
+                  - generic [ref=e488]: Guardar
+                - button "Más acciones" [ref=e489] [cursor=pointer]:
+                  - img [ref=e490]
+          - button "Ocultar panel derecho" [pressed] [ref=e494]:
+            - img [ref=e495]
+          - complementary "Panel derecho del diseñador" [ref=e498]:
+            - generic [ref=e499]:
+              - tablist "Panel derecho" [ref=e501]:
+                - tab "Abrir panel Campos" [selected] [ref=e502] [cursor=pointer]:
+                  - img [ref=e505]
+                - tab "Abrir panel Detalle" [disabled] [ref=e509]:
+                  - img [ref=e512]
+                - tab "Abrir panel Comentarios" [ref=e513] [cursor=pointer]:
+                  - img [ref=e516]
+                - tab "Abrir panel Docs" [ref=e518] [cursor=pointer]:
+                  - img [ref=e521]
+              - generic [ref=e525]:
+                - generic [ref=e526]:
+                  - generic [ref=e527]:
+                    - generic [ref=e528]:
+                      - generic [ref=e529]:
+                        - img [ref=e531]
+                        - generic [ref=e535]:
+                          - strong [ref=e537]: Campos
+                          - generic [ref=e539]: 3/3
+                      - button "Renombrar" [ref=e542] [cursor=pointer]:
+                        - generic [ref=e543]: Renombrar
+                    - generic [ref=e544]:
+                      - generic [ref=e545]:
+                        - img [ref=e547]
+                        - textbox "Buscar campo o nombre" [ref=e550]
+                      - generic [ref=e553] [cursor=pointer]:
+                        - generic [ref=e555]:
+                          - combobox [ref=e557]
+                          - generic "Todos los tipos" [ref=e558]
+                        - generic:
+                          - img:
+                            - img
+                  - separator [ref=e559]
+                - generic "Lista de campos del documento" [ref=e560]:
+                  - list [ref=e561]:
+                    - listitem [ref=e562] [cursor=pointer]:
+                      - button "full_name" [ref=e563]
+                      - generic [ref=e564]:
+                        - button [ref=e565]:
+                          - img [ref=e567]
+                        - img [ref=e577]
+                        - generic [ref=e583]: full_name
+                    - listitem [ref=e584] [cursor=pointer]:
+                      - button "role" [ref=e585]
+                      - generic [ref=e586]:
+                        - button [ref=e587]:
+                          - img [ref=e589]
+                        - img [ref=e599]
+                        - generic [ref=e605]: role
+                    - listitem [ref=e606] [cursor=pointer]:
+                      - button "signature" [ref=e607]
+                      - generic [ref=e608]:
+                        - button [ref=e609]:
+                          - img [ref=e611]
+                        - img [ref=e621]
+                        - generic [ref=e624]: signature
+                  - status [ref=e625]
+          - generic [ref=e629]:
+            - generic "full_name" [ref=e631] [cursor=pointer]:
+              - generic [ref=e634]: Ada Lovelace
+              - text: text
+            - generic "role" [ref=e635] [cursor=pointer]:
+              - generic [ref=e638]: Researcher
+              - text: text
+            - generic "signature" [ref=e639] [cursor=pointer]: signature
+      - status [ref=e646]
+  - group "Resultados" [ref=e647]:
+    - generic "Resultados Abre esta sección para revisar salidas de generación y conversión. Colapsado" [ref=e648] [cursor=pointer]:
+      - generic [ref=e649]:
+        - heading "Resultados" [level=2] [ref=e650]
+        - paragraph [ref=e651]: Abre esta sección para revisar salidas de generación y conversión.
+      - generic [ref=e652]: Colapsado
+```
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0113"></a>
-## Archivo #113: docs/01-arquitectura/03-contratos-template-schema-inputs.md
+## Archivo #113: test-results/pdfme-editor-cross-platfor-b802e-ible-fields-on-current-page-chromium/error-context.md
 
-- **Ruta relativa:** `docs/01-arquitectura/03-contratos-template-schema-inputs.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/01-arquitectura/03-contratos-template-schema-inputs.md`
+- **Ruta relativa:** `test-results/pdfme-editor-cross-platfor-b802e-ible-fields-on-current-page-chromium/error-context.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/test-results/pdfme-editor-cross-platfor-b802e-ible-fields-on-current-page-chromium/error-context.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `57`
+- **Líneas aproximadas:** `402`
 
 ### Contenido original
 
-# Contratos Template, Schema, BasePdf e Inputs
+# Page snapshot
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## Template portable
-```ts
-type Template = {
-  basePdf: string | { width: number; height: number; padding?: number[] };
-  schemas: Schema[][];
-  sampledata?: Record<string, unknown>[];
-  pdfComments?: unknown[];
-  documents?: DocumentRuntimeState[];
-  assignments?: SchemaAssignments;
-};
+```yaml
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - generic [ref=e8]: Lab
+          - generic [ref=e9]: Diseñador
+        - heading "Colaboración multiusuario" [level=1] [ref=e10]
+        - paragraph [ref=e11]: Ruta integral para validar ownership, comentarios, bloqueo y vista activa por usuario sobre un PDF colaborativo real.
+      - generic [ref=e13]:
+        - generic [ref=e14]: Preparado para validar la interacción multiusuario con ownership y comentarios en contexto compartido
+        - link "Volver al índice" [ref=e16] [cursor=pointer]:
+          - /url: /
+        - button "Descargar plantilla Colaboración multiusuario" [ref=e18]: Descargar plantilla
+        - button "Controles" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+    - region "Colaboración del ejemplo" [ref=e25]:
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]: Participantes
+          - generic [ref=e29]: "3"
+        - list "Participantes del ejemplo" [ref=e30]:
+          - listitem [ref=e31]:
+            - button "Ventas Ejecutivas" [pressed] [ref=e32] [cursor=pointer]
+          - listitem [ref=e33]:
+            - button "Legal" [ref=e34] [cursor=pointer]
+          - listitem [ref=e35]:
+            - button "Operaciones" [ref=e36] [cursor=pointer]
+        - generic "Resumen de colaboración" [ref=e37] [cursor=pointer]:
+          - generic [ref=e38]: "Visibles: 3"
+          - generic [ref=e39]: "Editables: 3"
+          - generic [ref=e40]: "Bloqueados: 1"
+          - generic [ref=e41]: "Comentarios: 7"
+      - generic [ref=e42]:
+        - generic [ref=e43]:
+          - generic [ref=e44]: Activo
+          - combobox "Seleccionar usuario activo" [ref=e45]:
+            - option "Ventas Ejecutivas" [selected]
+            - option "Legal"
+            - option "Operaciones"
+        - generic [ref=e46]:
+          - generic [ref=e47]: Vista
+          - combobox "Seleccionar vista activa" [ref=e48]:
+            - option "Usuario activo" [selected]
+            - option "Global"
+    - group [ref=e49]:
+      - generic "Detalles técnicos Metadatos y estado" [ref=e50] [cursor=pointer]:
+        - generic [ref=e51]: Detalles técnicos
+        - generic [ref=e52]: Metadatos y estado
+  - region "Canvas" [ref=e53]:
+    - generic [ref=e54]:
+      - heading "Canvas" [level=2] [ref=e55]
+      - paragraph [ref=e56]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e57]: sisad-pdfme
+        - text: .
+    - generic [ref=e61]:
+      - generic [ref=e62]:
+        - generic [ref=e63]:
+          - button "Cerrar catálogo de campos" [expanded] [ref=e64] [cursor=pointer]:
+            - img [ref=e65]
+          - generic [ref=e69]:
+            - generic [ref=e70]:
+              - generic [ref=e71]: Diseñador
+              - generic [ref=e72]:
+                - generic [ref=e73]: Campos
+                - 'generic "Color del destinatario activo #2563EB" [ref=e74]'
+            - generic [ref=e75]:
+              - tablist "Tipos de campo" [ref=e76]:
+                - tab "Campos estándar" [selected] [ref=e77] [cursor=pointer]:
+                  - img [ref=e78]
+                - tab "Campos personalizados" [ref=e80] [cursor=pointer]:
+                  - img [ref=e81]
+                - tab "Herramientas de prerrellenado" [ref=e84] [cursor=pointer]:
+                  - img [ref=e85]
+              - generic [ref=e88]:
+                - generic [ref=e89]:
+                  - img [ref=e91]
+                  - textbox "Buscar campos" [ref=e94]
+                - generic [ref=e96]:
+                  - button "Todos" [ref=e97] [cursor=pointer]:
+                    - generic [ref=e98]: Todos
+                  - button "Favoritos (0)" [ref=e99] [cursor=pointer]:
+                    - generic [ref=e100]: Favoritos (0)
+                  - button "Recientes (0)" [ref=e101] [cursor=pointer]:
+                    - generic [ref=e102]: Recientes (0)
+                  - button "Vista detalle (lista)" [ref=e103] [cursor=pointer]:
+                    - img [ref=e105]
+            - generic [ref=e106]:
+              - generic [ref=e107]:
+                - button "Alternar categoría Firmas" [expanded] [ref=e108] [cursor=pointer]:
+                  - generic [ref=e109]: Firmas
+                  - generic [ref=e110]: "1"
+                - generic [ref=e114]:
+                  - button "Firma" [ref=e115]:
+                    - generic "Firma" [ref=e117]:
+                      - img [ref=e118]
+                    - generic [ref=e121]: Firma
+                  - button "Marcar favorito": ★
+              - generic [ref=e122]:
+                - button "Alternar categoría Texto" [expanded] [ref=e123] [cursor=pointer]:
+                  - generic [ref=e124]: Texto
+                  - generic [ref=e125]: "1"
+                - generic [ref=e129]:
+                  - button "Texto" [ref=e130]:
+                    - generic "Texto" [ref=e132]:
+                      - img [ref=e133]
+                    - generic [ref=e139]: Texto
+                  - button "Marcar favorito": ★
+              - generic [ref=e140]:
+                - button "Alternar categoría Imagen y medios" [expanded] [ref=e141] [cursor=pointer]:
+                  - generic [ref=e142]: Imagen y medios
+                  - generic [ref=e143]: "2"
+                - generic [ref=e144]:
+                  - generic [ref=e147]:
+                    - button "Imagen" [ref=e148]:
+                      - generic "Imagen" [ref=e150]:
+                        - img [ref=e151]
+                      - generic [ref=e156]: Imagen
+                    - button "Marcar favorito": ★
+                  - generic [ref=e159]:
+                    - button "SVG" [ref=e160]:
+                      - generic "SVG" [ref=e162]:
+                        - img [ref=e163]
+                      - generic [ref=e168]: SVG
+                    - button "Marcar favorito": ★
+              - generic [ref=e169]:
+                - button "Alternar categoría Selecciones" [expanded] [ref=e170] [cursor=pointer]:
+                  - generic [ref=e171]: Selecciones
+                  - generic [ref=e172]: "3"
+                - generic [ref=e173]:
+                  - generic [ref=e176]:
+                    - button "Casilla" [ref=e177]:
+                      - generic "Casilla" [ref=e179]:
+                        - img [ref=e180]
+                      - generic [ref=e184]: Casilla
+                    - button "Marcar favorito": ★
+                  - generic [ref=e187]:
+                    - button "Opción única" [ref=e188]:
+                      - generic "Opción única" [ref=e190]:
+                        - img [ref=e191]
+                      - generic [ref=e195]: Opción única
+                    - button "Marcar favorito": ★
+                  - generic [ref=e198]:
+                    - button "Lista desplegable" [ref=e199]:
+                      - generic "Lista desplegable" [ref=e201]:
+                        - img [ref=e202]
+                      - generic [ref=e205]: Lista desplegable
+                    - button "Marcar favorito": ★
+              - generic [ref=e206]:
+                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e207] [cursor=pointer]:
+                  - generic [ref=e208]: Fecha y Hora
+                  - generic [ref=e209]: "3"
+                - generic [ref=e210]:
+                  - generic [ref=e213]:
+                    - button "Fecha" [ref=e214]:
+                      - generic "Fecha" [ref=e216]:
+                        - img [ref=e217]
+                      - generic [ref=e220]: Fecha
+                    - button "Marcar favorito": ★
+                  - generic [ref=e223]:
+                    - button "Fecha y hora" [ref=e224]:
+                      - generic "Fecha y hora" [ref=e226]:
+                        - img [ref=e227]
+                      - generic [ref=e232]: Fecha y hora
+                    - button "Marcar favorito": ★
+                  - generic [ref=e235]:
+                    - button "Hora" [ref=e236]:
+                      - generic "Hora" [ref=e238]:
+                        - img [ref=e239]
+                      - generic [ref=e243]: Hora
+                    - button "Marcar favorito": ★
+              - generic [ref=e244]:
+                - button "Alternar categoría QR y Códigos" [expanded] [ref=e245] [cursor=pointer]:
+                  - generic [ref=e246]: QR y Códigos
+                  - generic [ref=e247]: "12"
+                - generic [ref=e248]:
+                  - generic [ref=e251]:
+                    - button "Código de barras" [ref=e252]:
+                      - generic "Código de barras" [ref=e254]:
+                        - img [ref=e255]
+                      - generic [ref=e257]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e260]:
+                    - button "Código de barras" [ref=e261]:
+                      - generic "Código de barras" [ref=e263]:
+                        - img [ref=e264]
+                      - generic [ref=e266]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e269]:
+                    - button "Código de barras" [ref=e270]:
+                      - generic "Código de barras" [ref=e272]:
+                        - img [ref=e273]
+                      - generic [ref=e275]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e278]:
+                    - button "Código de barras" [ref=e279]:
+                      - generic "Código de barras" [ref=e281]:
+                        - img [ref=e282]
+                      - generic [ref=e284]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e287]:
+                    - button "DataMatrix" [ref=e288]:
+                      - generic "DataMatrix" [ref=e290]:
+                        - img [ref=e291]
+                      - generic [ref=e293]: DataMatrix
+                    - button "Marcar favorito": ★
+                  - generic [ref=e296]:
+                    - button "Código de barras" [ref=e297]:
+                      - generic "Código de barras" [ref=e299]:
+                        - img [ref=e300]
+                      - generic [ref=e302]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e305]:
+                    - button "Japan Post" [ref=e306]:
+                      - generic "Japan Post" [ref=e308]:
+                        - img [ref=e309]
+                      - generic [ref=e311]: Japan Post
+                    - button "Marcar favorito": ★
+                  - generic [ref=e314]:
+                    - button "NW7" [ref=e315]:
+                      - generic "NW7" [ref=e317]:
+                        - img [ref=e318]
+                      - generic [ref=e320]: NW7
+                    - button "Marcar favorito": ★
+                  - generic [ref=e323]:
+                    - button "PDF417" [ref=e324]:
+                      - generic "PDF417" [ref=e326]:
+                        - img [ref=e327]
+                      - generic [ref=e329]: PDF417
+                    - button "Marcar favorito": ★
+                  - generic [ref=e332]:
+                    - button "Código QR" [ref=e333]:
+                      - generic "Código QR" [ref=e335]:
+                        - img [ref=e336]
+                      - generic [ref=e343]: Código QR
+                    - button "Marcar favorito": ★
+                  - generic [ref=e346]:
+                    - button "Código de barras" [ref=e347]:
+                      - generic "Código de barras" [ref=e349]:
+                        - img [ref=e350]
+                      - generic [ref=e352]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e355]:
+                    - button "Código de barras" [ref=e356]:
+                      - generic "Código de barras" [ref=e358]:
+                        - img [ref=e359]
+                      - generic [ref=e361]: Código de barras
+                    - button "Marcar favorito": ★
+              - generic [ref=e362]:
+                - button "Alternar categoría Estructura" [expanded] [ref=e363] [cursor=pointer]:
+                  - generic [ref=e364]: Estructura
+                  - generic [ref=e365]: "4"
+                - generic [ref=e366]:
+                  - generic [ref=e369]:
+                    - button "Óvalo" [ref=e370]:
+                      - generic "Óvalo" [ref=e372]:
+                        - img [ref=e373]
+                      - generic [ref=e376]: Óvalo
+                    - button "Marcar favorito": ★
+                  - generic [ref=e379]:
+                    - button "Línea" [ref=e380]:
+                      - generic "Línea" [ref=e382]:
+                        - img [ref=e383]
+                      - generic [ref=e385]: Línea
+                    - button "Marcar favorito": ★
+                  - generic [ref=e388]:
+                    - button "Rectángulo" [ref=e389]:
+                      - generic "Rectángulo" [ref=e391]:
+                        - img [ref=e392]
+                      - generic [ref=e395]: Rectángulo
+                    - button "Marcar favorito": ★
+                  - generic [ref=e398]:
+                    - button "Tabla" [ref=e399]:
+                      - generic "Tabla" [ref=e401]:
+                        - img [ref=e402]
+                      - generic [ref=e405]: Tabla
+                    - button "Marcar favorito": ★
+        - generic [ref=e406]:
+          - generic [ref=e407]:
+            - generic "Contexto activo del editor" [ref=e409]:
+              - generic [ref=e410]:
+                - generic "Documento activo" [ref=e411]
+                - generic [ref=e412]: Listo
+              - generic [ref=e414]: Página 1/2
+            - generic [ref=e415]:
+              - generic [ref=e416]:
+                - button "Deshacer" [ref=e417] [cursor=pointer]:
+                  - img [ref=e419]
+                - button "Rehacer" [ref=e422] [cursor=pointer]:
+                  - img [ref=e424]
+              - generic [ref=e427]:
+                - button "Página anterior" [disabled] [ref=e428]:
+                  - generic:
+                    - img
+                - generic [ref=e429] [cursor=pointer]:
+                  - generic [ref=e431]:
+                    - combobox [ref=e433]
+                    - generic "Página 1" [ref=e434]
+                  - generic:
+                    - img:
+                      - img
+                - button "Página siguiente" [ref=e435] [cursor=pointer]:
+                  - img [ref=e437]
+              - button "Vista" [ref=e440] [cursor=pointer]:
+                - img [ref=e442]
+              - generic [ref=e447]:
+                - button "Reducir zoom" [ref=e448] [cursor=pointer]:
+                  - img [ref=e450]
+                - generic [ref=e451] [cursor=pointer]:
+                  - generic [ref=e453]:
+                    - combobox [ref=e455]
+                    - generic "100%" [ref=e456]
+                  - generic:
+                    - img:
+                      - img
+                - button "Aumentar zoom" [ref=e457] [cursor=pointer]:
+                  - img [ref=e459]
+              - generic [ref=e460]:
+                - button "Ocultar cuadrícula" [pressed] [ref=e461] [cursor=pointer]:
+                  - img [ref=e463]
+                - button "Ocultar guías" [pressed] [ref=e465] [cursor=pointer]:
+                  - img [ref=e467]
+                - button "Ocultar snaps" [pressed] [ref=e473] [cursor=pointer]:
+                  - img [ref=e475]
+                - button "Ocultar padding" [pressed] [ref=e479] [cursor=pointer]:
+                  - img [ref=e481]
+              - generic [ref=e483]:
+                - button "Guardar" [ref=e484] [cursor=pointer]:
+                  - img [ref=e486]
+                  - generic [ref=e490]: Guardar
+                - button "Más acciones" [ref=e491] [cursor=pointer]:
+                  - img [ref=e492]
+          - button "Ocultar panel derecho" [pressed] [ref=e496]:
+            - img [ref=e497]
+          - complementary "Panel derecho del diseñador" [ref=e500]:
+            - generic [ref=e501]:
+              - tablist "Panel derecho" [ref=e503]:
+                - tab "Abrir panel Campos" [selected] [ref=e504] [cursor=pointer]:
+                  - img [ref=e507]
+                - tab "Abrir panel Detalle" [disabled] [ref=e511]:
+                  - img [ref=e514]
+                - tab "Abrir panel Comentarios" [ref=e515] [cursor=pointer]:
+                  - img [ref=e518]
+                - tab "Abrir panel Docs" [ref=e520] [cursor=pointer]:
+                  - img [ref=e523]
+              - generic [ref=e527]:
+                - generic [ref=e528]:
+                  - generic [ref=e529]:
+                    - generic [ref=e530]:
+                      - generic [ref=e531]:
+                        - img [ref=e533]
+                        - generic [ref=e537]:
+                          - strong [ref=e539]: Campos
+                          - generic [ref=e541]: 2/2
+                      - button "Renombrar" [ref=e544] [cursor=pointer]:
+                        - generic [ref=e545]: Renombrar
+                    - generic [ref=e547]:
+                      - img [ref=e549]
+                      - textbox "Buscar campo o nombre" [ref=e552]
+                  - separator [ref=e554]
+                - generic "Lista de campos del documento" [ref=e555]:
+                  - list [ref=e556]:
+                    - listitem [ref=e557] [cursor=pointer]:
+                      - button "owner_name" [ref=e558]
+                      - generic [ref=e559]:
+                        - button [ref=e560]:
+                          - img [ref=e562]
+                        - img [ref=e572]
+                        - generic [ref=e578]: owner_name
+                    - listitem [ref=e579] [cursor=pointer]:
+                      - button "team_note" [ref=e580]
+                      - generic [ref=e581]:
+                        - button [ref=e582]:
+                          - img [ref=e584]
+                        - img [ref=e594]
+                        - generic [ref=e600]: team_note
+                  - status [ref=e601]
+          - generic [ref=e602]:
+            - generic [ref=e604]:
+              - generic [active] [ref=e605]:
+                - generic "owner_name" [ref=e607] [cursor=pointer]:
+                  - generic [ref=e610]: Sales owner
+                  - text: text
+                - generic "team_note" [ref=e611] [cursor=pointer]:
+                  - generic [ref=e614]: Legal review in progress
+                  - text: text
+              - generic "shared_summary" [ref=e617] [cursor=pointer]:
+                - generic [ref=e620]: Visible to all collaborators
+                - text: text
+            - button "Comentario en multiuser-team-note" [ref=e621] [cursor=pointer]
+      - status [ref=e622]
+  - group "Resultados" [ref=e623]:
+    - generic "Resultados Abre esta sección para revisar salidas de generación y conversión. Colapsado" [ref=e624] [cursor=pointer]:
+      - generic [ref=e625]:
+        - heading "Resultados" [level=2] [ref=e626]
+        - paragraph [ref=e627]: Abre esta sección para revisar salidas de generación y conversión.
+      - generic [ref=e628]: Colapsado
 ```
-
-## Schema esencial
-Un schema debe persistirse en milímetros y con identidad durable:
-
-```ts
-type Schema = {
-  id?: string;              // identidad UI temporal
-  schemaUid?: string;       // identidad durable recomendada
-  name: string;             // clave de datos
-  type: string;             // plugin
-  position: { x: number; y: number };
-  width: number;
-  height: number;
-  content?: string;
-  required?: boolean;
-  editable?: boolean;
-  hidden?: boolean;
-  fileId?: string;
-  pageNumber?: number;
-  collaboration?: unknown;
-  comments?: unknown[];
-  __designer?: SchemaDesignerConfig;
-};
-```
-
-## Inputs
-Los inputs se mapean por `schema.name`:
-
-```ts
-const inputs = [{
-  client_name: 'Juan Pérez',
-  accept_terms: 'true',
-  signature_1: 'data:image/png;base64,...'
-}];
-```
-
-## Reglas
-- No persistir coordenadas en pixeles.
-- No usar `content` como clave de datos.
-- Mantener `schemaUid`, `fileId` y `pageNumber` para multidocumento.
-- Guardar configuración avanzada en `__designer` o `configStorageKey` definido por engine.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0114"></a>
-## Archivo #114: docs/02-api-publica/01-entrypoints.md
+## Archivo #114: test-results/pdfme-editor-cross-platfor-e1d0b-ields-when-two-are-selected-chromium/error-context.md
 
-- **Ruta relativa:** `docs/02-api-publica/01-entrypoints.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/02-api-publica/01-entrypoints.md`
+- **Ruta relativa:** `test-results/pdfme-editor-cross-platfor-e1d0b-ields-when-two-are-selected-chromium/error-context.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/test-results/pdfme-editor-cross-platfor-e1d0b-ields-when-two-are-selected-chromium/error-context.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `37`
+- **Líneas aproximadas:** `402`
 
 ### Contenido original
 
-# Entry points y exports públicos
+# Page snapshot
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## Matriz de API pública
-| Paquete | Archivo | Exports | Principales |
-| --- | --- | --- | --- |
-| @sisad-pdfme/ui | src/sisad-pdfme/ui/index.ts | 10 | Designer, DesignerEngineBuilder, Form, PdfEditor, PdfEditorEngineBuilder, PdfFormView, PdfViewer, Viewer, applyCollaborationEvent, useCollaborationSync |
-| @sisad-pdfme/common | src/sisad-pdfme/common/index.ts | 55 | BLANK_A4_PDF, BLANK_PDF, CUSTOM_A4_PDF, DEFAULT_FONT_NAME, MM_TO_PT_RATIO, PDFME_VERSION, PT_TO_MM_RATIO, PT_TO_PX_RATIO, SHARED_ASSIGNMENTS_BUCKET, ZOOM, addAnchorToSchema, addCommentToSchema, addCommentWithAnchorToTemplate, b64toUint8Array, buildSchemaAssignments, buildUserRecipientAssignments, buildUserSchemaAssignments, checkDesignerProps, checkFont, checkGenerateProps, checkInputs, checkPreviewProps, checkTemplate, checkUIOptions… |
-| @sisad-pdfme/schemas | src/sisad-pdfme/schemas/index.ts | 51 | addAlphaToHex, barcodes, builtInFields, builtInPlugins, builtInSchemaDefinitions, builtInSchemaDefinitionsByType, changeSchemas, checkbox, convertForPdfLayoutProps, createDefaultSchema, createLucideIcon, createSchemaBuilder, createSchemaInspectorConfig, createSchemaPlugin, createSvgStr, date, dateTime, ellipse, flatSchemaPlugins, flattenSchemaPlugins, generateUniqueSchemaName, getBuiltInFields, getDynamicHeightsForTable, getSchemaDefinition… |
-| @sisad-pdfme/generator | src/sisad-pdfme/generator/index.ts | 5 | buildDynamicTemplate, generate, generatePdf, generatePdfBuffer, validateRequiredFields |
-| @sisad-pdfme/converter | src/sisad-pdfme/converter/index.browser.ts | 3 | img2pdf, pdf2img, pdf2size |
-| @sisad-pdfme/assignments | src/sisad-pdfme/assignments/index.ts | 12 | buildFileAssignments, buildPageAssignments, buildRecipientAssignments, buildSchemaAssignments, buildUserSchemaAssignments, getAssignmentsForFile, getAssignmentsForPage, getAssignmentsForRecipient, moveSchemaAssignment, reconcileAssignments, removeSchemaFromAssignments, validateAssignmentsConsistency |
-| @sisad-pdfme/comments | src/sisad-pdfme/comments/index.ts | 18 | addAnchorToSchema, addCommentToSchema, addCommentWithAnchorToTemplate, attachCommentToField, createSchemaComment, createSchemaCommentAnchor, deleteCommentFromSchema, detachCommentFromField, filterCommentsByFileAndPage, findSchemaByUid, getCommentsForDocument, getCommentsForPage, getCommentsForSchema, moveCommentAnchor, reopenComment, resolveCommentInSchema, resolveTopLevelComment, updateCommentInSchema |
-| @sisad-pdfme/commands | src/sisad-pdfme/commands/index.ts | 13 | CommandBus, buildTopLevelCommentEntry, commentCommands, createCommandBus, createCommentCommandEvent, createPageSnapshotCommand, createSelectionCommands, createTemplateSnapshotCommand, documentCommands, emitInlineEditRequest, registerDesignerCommands, schemaCommands, setInlineEditRequestHandler |
-
-## Import mínimo
-```ts
-import { Designer, Form, Viewer, DesignerEngineBuilder } from '@sisad-pdfme/ui';
-import { builtInSchemaDefinitions } from '@sisad-pdfme/schemas';
-import { generate } from '@sisad-pdfme/generator';
-import { pdf2img, pdf2size, img2pdf } from '@sisad-pdfme/converter';
+```yaml
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - generic [ref=e8]: Lab
+          - generic [ref=e9]: Diseñador
+        - heading "Colaboración multiusuario" [level=1] [ref=e10]
+        - paragraph [ref=e11]: Ruta integral para validar ownership, comentarios, bloqueo y vista activa por usuario sobre un PDF colaborativo real.
+      - generic [ref=e13]:
+        - generic [ref=e14]: Preparado para validar la interacción multiusuario con ownership y comentarios en contexto compartido
+        - link "Volver al índice" [ref=e16] [cursor=pointer]:
+          - /url: /
+        - button "Descargar plantilla Colaboración multiusuario" [ref=e18]: Descargar plantilla
+        - button "Controles" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+    - region "Colaboración del ejemplo" [ref=e25]:
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]: Participantes
+          - generic [ref=e29]: "3"
+        - list "Participantes del ejemplo" [ref=e30]:
+          - listitem [ref=e31]:
+            - button "Ventas Ejecutivas" [pressed] [ref=e32] [cursor=pointer]
+          - listitem [ref=e33]:
+            - button "Legal" [ref=e34] [cursor=pointer]
+          - listitem [ref=e35]:
+            - button "Operaciones" [ref=e36] [cursor=pointer]
+        - generic "Resumen de colaboración" [ref=e37] [cursor=pointer]:
+          - generic [ref=e38]: "Visibles: 3"
+          - generic [ref=e39]: "Editables: 3"
+          - generic [ref=e40]: "Bloqueados: 1"
+          - generic [ref=e41]: "Comentarios: 7"
+      - generic [ref=e42]:
+        - generic [ref=e43]:
+          - generic [ref=e44]: Activo
+          - combobox "Seleccionar usuario activo" [ref=e45]:
+            - option "Ventas Ejecutivas" [selected]
+            - option "Legal"
+            - option "Operaciones"
+        - generic [ref=e46]:
+          - generic [ref=e47]: Vista
+          - combobox "Seleccionar vista activa" [ref=e48]:
+            - option "Usuario activo" [selected]
+            - option "Global"
+    - group [ref=e49]:
+      - generic "Detalles técnicos Metadatos y estado" [ref=e50] [cursor=pointer]:
+        - generic [ref=e51]: Detalles técnicos
+        - generic [ref=e52]: Metadatos y estado
+  - region "Canvas" [ref=e53]:
+    - generic [ref=e54]:
+      - heading "Canvas" [level=2] [ref=e55]
+      - paragraph [ref=e56]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e57]: sisad-pdfme
+        - text: .
+    - generic [ref=e61]:
+      - generic [ref=e62]:
+        - generic [ref=e63]:
+          - button "Cerrar catálogo de campos" [expanded] [ref=e64] [cursor=pointer]:
+            - img [ref=e65]
+          - generic [ref=e69]:
+            - generic [ref=e70]:
+              - generic [ref=e71]: Diseñador
+              - generic [ref=e72]:
+                - generic [ref=e73]: Campos
+                - 'generic "Color del destinatario activo #2563EB" [ref=e74]'
+            - generic [ref=e75]:
+              - tablist "Tipos de campo" [ref=e76]:
+                - tab "Campos estándar" [selected] [ref=e77] [cursor=pointer]:
+                  - img [ref=e78]
+                - tab "Campos personalizados" [ref=e80] [cursor=pointer]:
+                  - img [ref=e81]
+                - tab "Herramientas de prerrellenado" [ref=e84] [cursor=pointer]:
+                  - img [ref=e85]
+              - generic [ref=e88]:
+                - generic [ref=e89]:
+                  - img [ref=e91]
+                  - textbox "Buscar campos" [ref=e94]
+                - generic [ref=e96]:
+                  - button "Todos" [ref=e97] [cursor=pointer]:
+                    - generic [ref=e98]: Todos
+                  - button "Favoritos (0)" [ref=e99] [cursor=pointer]:
+                    - generic [ref=e100]: Favoritos (0)
+                  - button "Recientes (0)" [ref=e101] [cursor=pointer]:
+                    - generic [ref=e102]: Recientes (0)
+                  - button "Vista detalle (lista)" [ref=e103] [cursor=pointer]:
+                    - img [ref=e105]
+            - generic [ref=e106]:
+              - generic [ref=e107]:
+                - button "Alternar categoría Firmas" [expanded] [ref=e108] [cursor=pointer]:
+                  - generic [ref=e109]: Firmas
+                  - generic [ref=e110]: "1"
+                - generic [ref=e114]:
+                  - button "Firma" [ref=e115]:
+                    - generic "Firma" [ref=e117]:
+                      - img [ref=e118]
+                    - generic [ref=e121]: Firma
+                  - button "Marcar favorito": ★
+              - generic [ref=e122]:
+                - button "Alternar categoría Texto" [expanded] [ref=e123] [cursor=pointer]:
+                  - generic [ref=e124]: Texto
+                  - generic [ref=e125]: "1"
+                - generic [ref=e129]:
+                  - button "Texto" [ref=e130]:
+                    - generic "Texto" [ref=e132]:
+                      - img [ref=e133]
+                    - generic [ref=e139]: Texto
+                  - button "Marcar favorito": ★
+              - generic [ref=e140]:
+                - button "Alternar categoría Imagen y medios" [expanded] [ref=e141] [cursor=pointer]:
+                  - generic [ref=e142]: Imagen y medios
+                  - generic [ref=e143]: "2"
+                - generic [ref=e144]:
+                  - generic [ref=e147]:
+                    - button "Imagen" [ref=e148]:
+                      - generic "Imagen" [ref=e150]:
+                        - img [ref=e151]
+                      - generic [ref=e156]: Imagen
+                    - button "Marcar favorito": ★
+                  - generic [ref=e159]:
+                    - button "SVG" [ref=e160]:
+                      - generic "SVG" [ref=e162]:
+                        - img [ref=e163]
+                      - generic [ref=e168]: SVG
+                    - button "Marcar favorito": ★
+              - generic [ref=e169]:
+                - button "Alternar categoría Selecciones" [expanded] [ref=e170] [cursor=pointer]:
+                  - generic [ref=e171]: Selecciones
+                  - generic [ref=e172]: "3"
+                - generic [ref=e173]:
+                  - generic [ref=e176]:
+                    - button "Casilla" [ref=e177]:
+                      - generic "Casilla" [ref=e179]:
+                        - img [ref=e180]
+                      - generic [ref=e184]: Casilla
+                    - button "Marcar favorito": ★
+                  - generic [ref=e187]:
+                    - button "Opción única" [ref=e188]:
+                      - generic "Opción única" [ref=e190]:
+                        - img [ref=e191]
+                      - generic [ref=e195]: Opción única
+                    - button "Marcar favorito": ★
+                  - generic [ref=e198]:
+                    - button "Lista desplegable" [ref=e199]:
+                      - generic "Lista desplegable" [ref=e201]:
+                        - img [ref=e202]
+                      - generic [ref=e205]: Lista desplegable
+                    - button "Marcar favorito": ★
+              - generic [ref=e206]:
+                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e207] [cursor=pointer]:
+                  - generic [ref=e208]: Fecha y Hora
+                  - generic [ref=e209]: "3"
+                - generic [ref=e210]:
+                  - generic [ref=e213]:
+                    - button "Fecha" [ref=e214]:
+                      - generic "Fecha" [ref=e216]:
+                        - img [ref=e217]
+                      - generic [ref=e220]: Fecha
+                    - button "Marcar favorito": ★
+                  - generic [ref=e223]:
+                    - button "Fecha y hora" [ref=e224]:
+                      - generic "Fecha y hora" [ref=e226]:
+                        - img [ref=e227]
+                      - generic [ref=e232]: Fecha y hora
+                    - button "Marcar favorito": ★
+                  - generic [ref=e235]:
+                    - button "Hora" [ref=e236]:
+                      - generic "Hora" [ref=e238]:
+                        - img [ref=e239]
+                      - generic [ref=e243]: Hora
+                    - button "Marcar favorito": ★
+              - generic [ref=e244]:
+                - button "Alternar categoría QR y Códigos" [expanded] [ref=e245] [cursor=pointer]:
+                  - generic [ref=e246]: QR y Códigos
+                  - generic [ref=e247]: "12"
+                - generic [ref=e248]:
+                  - generic [ref=e251]:
+                    - button "Código de barras" [ref=e252]:
+                      - generic "Código de barras" [ref=e254]:
+                        - img [ref=e255]
+                      - generic [ref=e257]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e260]:
+                    - button "Código de barras" [ref=e261]:
+                      - generic "Código de barras" [ref=e263]:
+                        - img [ref=e264]
+                      - generic [ref=e266]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e269]:
+                    - button "Código de barras" [ref=e270]:
+                      - generic "Código de barras" [ref=e272]:
+                        - img [ref=e273]
+                      - generic [ref=e275]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e278]:
+                    - button "Código de barras" [ref=e279]:
+                      - generic "Código de barras" [ref=e281]:
+                        - img [ref=e282]
+                      - generic [ref=e284]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e287]:
+                    - button "DataMatrix" [ref=e288]:
+                      - generic "DataMatrix" [ref=e290]:
+                        - img [ref=e291]
+                      - generic [ref=e293]: DataMatrix
+                    - button "Marcar favorito": ★
+                  - generic [ref=e296]:
+                    - button "Código de barras" [ref=e297]:
+                      - generic "Código de barras" [ref=e299]:
+                        - img [ref=e300]
+                      - generic [ref=e302]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e305]:
+                    - button "Japan Post" [ref=e306]:
+                      - generic "Japan Post" [ref=e308]:
+                        - img [ref=e309]
+                      - generic [ref=e311]: Japan Post
+                    - button "Marcar favorito": ★
+                  - generic [ref=e314]:
+                    - button "NW7" [ref=e315]:
+                      - generic "NW7" [ref=e317]:
+                        - img [ref=e318]
+                      - generic [ref=e320]: NW7
+                    - button "Marcar favorito": ★
+                  - generic [ref=e323]:
+                    - button "PDF417" [ref=e324]:
+                      - generic "PDF417" [ref=e326]:
+                        - img [ref=e327]
+                      - generic [ref=e329]: PDF417
+                    - button "Marcar favorito": ★
+                  - generic [ref=e332]:
+                    - button "Código QR" [ref=e333]:
+                      - generic "Código QR" [ref=e335]:
+                        - img [ref=e336]
+                      - generic [ref=e343]: Código QR
+                    - button "Marcar favorito": ★
+                  - generic [ref=e346]:
+                    - button "Código de barras" [ref=e347]:
+                      - generic "Código de barras" [ref=e349]:
+                        - img [ref=e350]
+                      - generic [ref=e352]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e355]:
+                    - button "Código de barras" [ref=e356]:
+                      - generic "Código de barras" [ref=e358]:
+                        - img [ref=e359]
+                      - generic [ref=e361]: Código de barras
+                    - button "Marcar favorito": ★
+              - generic [ref=e362]:
+                - button "Alternar categoría Estructura" [expanded] [ref=e363] [cursor=pointer]:
+                  - generic [ref=e364]: Estructura
+                  - generic [ref=e365]: "4"
+                - generic [ref=e366]:
+                  - generic [ref=e369]:
+                    - button "Óvalo" [ref=e370]:
+                      - generic "Óvalo" [ref=e372]:
+                        - img [ref=e373]
+                      - generic [ref=e376]: Óvalo
+                    - button "Marcar favorito": ★
+                  - generic [ref=e379]:
+                    - button "Línea" [ref=e380]:
+                      - generic "Línea" [ref=e382]:
+                        - img [ref=e383]
+                      - generic [ref=e385]: Línea
+                    - button "Marcar favorito": ★
+                  - generic [ref=e388]:
+                    - button "Rectángulo" [ref=e389]:
+                      - generic "Rectángulo" [ref=e391]:
+                        - img [ref=e392]
+                      - generic [ref=e395]: Rectángulo
+                    - button "Marcar favorito": ★
+                  - generic [ref=e398]:
+                    - button "Tabla" [ref=e399]:
+                      - generic "Tabla" [ref=e401]:
+                        - img [ref=e402]
+                      - generic [ref=e405]: Tabla
+                    - button "Marcar favorito": ★
+        - generic [ref=e406]:
+          - generic [ref=e407]:
+            - generic "Contexto activo del editor" [ref=e409]:
+              - generic [ref=e410]:
+                - generic "Documento activo" [ref=e411]
+                - generic [ref=e412]: Listo
+              - generic [ref=e414]: Página 1/2
+            - generic [ref=e415]:
+              - generic [ref=e416]:
+                - button "Deshacer" [ref=e417] [cursor=pointer]:
+                  - img [ref=e419]
+                - button "Rehacer" [ref=e422] [cursor=pointer]:
+                  - img [ref=e424]
+              - generic [ref=e427]:
+                - button "Página anterior" [disabled] [ref=e428]:
+                  - generic:
+                    - img
+                - generic [ref=e429] [cursor=pointer]:
+                  - generic [ref=e431]:
+                    - combobox [ref=e433]
+                    - generic "Página 1" [ref=e434]
+                  - generic:
+                    - img:
+                      - img
+                - button "Página siguiente" [ref=e435] [cursor=pointer]:
+                  - img [ref=e437]
+              - button "Vista" [ref=e440] [cursor=pointer]:
+                - img [ref=e442]
+              - generic [ref=e447]:
+                - button "Reducir zoom" [ref=e448] [cursor=pointer]:
+                  - img [ref=e450]
+                - generic [ref=e451] [cursor=pointer]:
+                  - generic [ref=e453]:
+                    - combobox [ref=e455]
+                    - generic "100%" [ref=e456]
+                  - generic:
+                    - img:
+                      - img
+                - button "Aumentar zoom" [ref=e457] [cursor=pointer]:
+                  - img [ref=e459]
+              - generic [ref=e460]:
+                - button "Ocultar cuadrícula" [pressed] [ref=e461] [cursor=pointer]:
+                  - img [ref=e463]
+                - button "Ocultar guías" [pressed] [ref=e465] [cursor=pointer]:
+                  - img [ref=e467]
+                - button "Ocultar snaps" [pressed] [ref=e473] [cursor=pointer]:
+                  - img [ref=e475]
+                - button "Ocultar padding" [pressed] [ref=e479] [cursor=pointer]:
+                  - img [ref=e481]
+              - generic [ref=e483]:
+                - button "Guardar" [ref=e484] [cursor=pointer]:
+                  - img [ref=e486]
+                  - generic [ref=e490]: Guardar
+                - button "Más acciones" [ref=e491] [cursor=pointer]:
+                  - img [ref=e492]
+          - button "Ocultar panel derecho" [pressed] [ref=e496]:
+            - img [ref=e497]
+          - complementary "Panel derecho del diseñador" [ref=e500]:
+            - generic [ref=e501]:
+              - tablist "Panel derecho" [ref=e503]:
+                - tab "Abrir panel Campos" [selected] [ref=e504] [cursor=pointer]:
+                  - img [ref=e507]
+                - tab "Abrir panel Detalle" [disabled] [ref=e511]:
+                  - img [ref=e514]
+                - tab "Abrir panel Comentarios" [ref=e515] [cursor=pointer]:
+                  - img [ref=e518]
+                - tab "Abrir panel Docs" [ref=e520] [cursor=pointer]:
+                  - img [ref=e523]
+              - generic [ref=e527]:
+                - generic [ref=e528]:
+                  - generic [ref=e529]:
+                    - generic [ref=e530]:
+                      - generic [ref=e531]:
+                        - img [ref=e533]
+                        - generic [ref=e537]:
+                          - strong [ref=e539]: Campos
+                          - generic [ref=e541]: 2/2
+                      - button "Renombrar" [ref=e544] [cursor=pointer]:
+                        - generic [ref=e545]: Renombrar
+                    - generic [ref=e547]:
+                      - img [ref=e549]
+                      - textbox "Buscar campo o nombre" [ref=e552]
+                  - separator [ref=e554]
+                - generic "Lista de campos del documento" [ref=e555]:
+                  - list [ref=e556]:
+                    - listitem [ref=e557] [cursor=pointer]:
+                      - button "owner_name" [ref=e558]
+                      - generic [ref=e559]:
+                        - button [ref=e560]:
+                          - img [ref=e562]
+                        - img [ref=e572]
+                        - generic [ref=e578]: owner_name
+                    - listitem [ref=e579] [cursor=pointer]:
+                      - button "team_note" [ref=e580]
+                      - generic [ref=e581]:
+                        - button [ref=e582]:
+                          - img [ref=e584]
+                        - img [ref=e594]
+                        - generic [ref=e600]: team_note
+                  - status [ref=e601]
+          - generic [ref=e602]:
+            - generic [ref=e604]:
+              - generic [active] [ref=e605]:
+                - generic "owner_name" [ref=e607] [cursor=pointer]:
+                  - generic [ref=e610]: Sales owner
+                  - text: text
+                - generic "team_note" [ref=e611] [cursor=pointer]:
+                  - generic [ref=e614]: Legal review in progress
+                  - text: text
+              - generic "shared_summary" [ref=e617] [cursor=pointer]:
+                - generic [ref=e620]: Visible to all collaborators
+                - text: text
+            - button "Comentario en multiuser-team-note" [ref=e621] [cursor=pointer]
+      - status [ref=e622]
+  - group "Resultados" [ref=e623]:
+    - generic "Resultados Abre esta sección para revisar salidas de generación y conversión. Colapsado" [ref=e624] [cursor=pointer]:
+      - generic [ref=e625]:
+        - heading "Resultados" [level=2] [ref=e626]
+        - paragraph [ref=e627]: Abre esta sección para revisar salidas de generación y conversión.
+      - generic [ref=e628]: Colapsado
 ```
-
-## Aliases de dominio detectados
-El entrypoint UI puede exponer aliases como:
-
-```ts
-PdfEditor              // Designer
-PdfFormView            // Form
-PdfViewer              // Viewer
-PdfEditorEngineBuilder // DesignerEngineBuilder
-```
-
-## Regla
-Todo lo que se espere consumir desde otro proyecto debe aparecer aquí. Si una funcionalidad solo existe dentro de `components/Designer/...`, debe exportarse mediante una API estable o quedarse como interna.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0115"></a>
-## Archivo #115: docs/02-api-publica/api-assignments.md
+## Archivo #115: test-results/pdfme-editor-PDFME-editor--0cd8b-on-the-basic-designer-route-chromium/error-context.md
 
-- **Ruta relativa:** `docs/02-api-publica/api-assignments.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/02-api-publica/api-assignments.md`
+- **Ruta relativa:** `test-results/pdfme-editor-PDFME-editor--0cd8b-on-the-basic-designer-route-chromium/error-context.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/test-results/pdfme-editor-PDFME-editor--0cd8b-on-the-basic-designer-route-chromium/error-context.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `26`
+- **Líneas aproximadas:** `409`
 
 ### Contenido original
 
-# API @sisad-pdfme/assignments
+# Page snapshot
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## Archivo
-`src/sisad-pdfme/assignments/index.ts`
-
-## Exports detectados
-| Export |
-| --- |
-| buildFileAssignments |
-| buildPageAssignments |
-| buildRecipientAssignments |
-| buildSchemaAssignments |
-| buildUserSchemaAssignments |
-| getAssignmentsForFile |
-| getAssignmentsForPage |
-| getAssignmentsForRecipient |
-| moveSchemaAssignment |
-| reconcileAssignments |
-| removeSchemaFromAssignments |
-| validateAssignmentsConsistency |
-
-## Uso
-Importa desde `@sisad-pdfme/assignments` y evita rutas internas salvo para desarrollo del plugin.
+```yaml
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - generic [ref=e8]: Lab
+          - generic [ref=e9]: Diseñador
+        - heading "Editor integral" [level=1] [ref=e10]
+        - paragraph [ref=e11]: Ruta integral en modo designer con todos los schemas disponibles, alta de páginas, selección y edición sobre PDF real.
+      - generic [ref=e13]:
+        - generic [ref=e14]: Listo para editar, agregar schemas y recorrer todos los casos de uso en una sola ruta
+        - link "Volver al índice" [ref=e16] [cursor=pointer]:
+          - /url: /
+        - button "Descargar plantilla Editor integral" [ref=e18]: Descargar plantilla
+        - button "Controles" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+    - region "Colaboración del ejemplo" [ref=e25]:
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]: Participantes
+          - generic [ref=e29]: "2"
+        - list "Participantes del ejemplo" [ref=e30]:
+          - listitem [ref=e31]:
+            - button "Diseño" [pressed] [ref=e32] [cursor=pointer]
+          - listitem [ref=e33]:
+            - button "QA" [ref=e34] [cursor=pointer]
+        - generic "Resumen de colaboración" [ref=e35] [cursor=pointer]:
+          - generic [ref=e36]: "Visibles: 30"
+          - generic [ref=e37]: "Editables: 30"
+          - generic [ref=e38]: "Bloqueados: 0"
+          - generic [ref=e39]: "Comentarios: 0"
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - generic [ref=e42]: Activo
+          - combobox "Seleccionar usuario activo" [ref=e43]:
+            - option "Diseño" [selected]
+            - option "QA"
+        - generic [ref=e44]:
+          - generic [ref=e45]: Vista
+          - combobox "Seleccionar vista activa" [ref=e46]:
+            - option "Usuario activo" [selected]
+            - option "Global"
+    - group [ref=e47]:
+      - generic "Detalles técnicos Metadatos y estado" [ref=e48] [cursor=pointer]:
+        - generic [ref=e49]: Detalles técnicos
+        - generic [ref=e50]: Metadatos y estado
+  - region "Canvas" [ref=e51]:
+    - generic [ref=e52]:
+      - heading "Canvas" [level=2] [ref=e53]
+      - paragraph [ref=e54]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e55]: sisad-pdfme
+        - text: .
+    - generic [ref=e59]:
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - button "Cerrar catálogo de campos" [expanded] [ref=e62] [cursor=pointer]:
+            - img [ref=e63]
+          - generic [ref=e67]:
+            - generic [ref=e68]:
+              - generic [ref=e69]: Diseñador
+              - generic [ref=e70]:
+                - generic [ref=e71]: Campos
+                - 'generic "Color del destinatario activo #2563EB" [ref=e72]'
+            - generic [ref=e73]:
+              - tablist "Tipos de campo" [ref=e74]:
+                - tab "Campos estándar" [selected] [ref=e75] [cursor=pointer]:
+                  - img [ref=e76]
+                - tab "Campos personalizados" [ref=e78] [cursor=pointer]:
+                  - img [ref=e79]
+                - tab "Herramientas de prerrellenado" [ref=e82] [cursor=pointer]:
+                  - img [ref=e83]
+              - generic [ref=e86]:
+                - generic [ref=e87]:
+                  - img [ref=e89]
+                  - textbox "Buscar campos" [ref=e92]
+                - generic [ref=e94]:
+                  - button "Todos" [ref=e95] [cursor=pointer]:
+                    - generic [ref=e96]: Todos
+                  - button "Favoritos (0)" [ref=e97] [cursor=pointer]:
+                    - generic [ref=e98]: Favoritos (0)
+                  - button "Recientes (0)" [ref=e99] [cursor=pointer]:
+                    - generic [ref=e100]: Recientes (0)
+                  - button "Vista detalle (lista)" [ref=e101] [cursor=pointer]:
+                    - img [ref=e103]
+            - generic [ref=e104]:
+              - generic [ref=e105]:
+                - button "Alternar categoría Firmas" [expanded] [ref=e106] [cursor=pointer]:
+                  - generic [ref=e107]: Firmas
+                  - generic [ref=e108]: "1"
+                - generic [ref=e112]:
+                  - button "Firma" [ref=e113]:
+                    - generic "Firma" [ref=e115]:
+                      - img [ref=e116]
+                    - generic [ref=e119]: Firma
+                  - button "Marcar favorito": ★
+              - generic [ref=e120]:
+                - button "Alternar categoría Texto" [expanded] [ref=e121] [cursor=pointer]:
+                  - generic [ref=e122]: Texto
+                  - generic [ref=e123]: "1"
+                - generic [ref=e127]:
+                  - button "Texto" [ref=e128]:
+                    - generic "Texto" [ref=e130]:
+                      - img [ref=e131]
+                    - generic [ref=e137]: Texto
+                  - button "Marcar favorito": ★
+              - generic [ref=e138]:
+                - button "Alternar categoría Imagen y medios" [expanded] [ref=e139] [cursor=pointer]:
+                  - generic [ref=e140]: Imagen y medios
+                  - generic [ref=e141]: "2"
+                - generic [ref=e142]:
+                  - generic [ref=e145]:
+                    - button "Imagen" [ref=e146]:
+                      - generic "Imagen" [ref=e148]:
+                        - img [ref=e149]
+                      - generic [ref=e154]: Imagen
+                    - button "Marcar favorito": ★
+                  - generic [ref=e157]:
+                    - button "SVG" [ref=e158]:
+                      - generic "SVG" [ref=e160]:
+                        - img [ref=e161]
+                      - generic [ref=e166]: SVG
+                    - button "Marcar favorito": ★
+              - generic [ref=e167]:
+                - button "Alternar categoría Selecciones" [expanded] [ref=e168] [cursor=pointer]:
+                  - generic [ref=e169]: Selecciones
+                  - generic [ref=e170]: "3"
+                - generic [ref=e171]:
+                  - generic [ref=e174]:
+                    - button "Casilla" [ref=e175]:
+                      - generic "Casilla" [ref=e177]:
+                        - img [ref=e178]
+                      - generic [ref=e182]: Casilla
+                    - button "Marcar favorito": ★
+                  - generic [ref=e185]:
+                    - button "Opción única" [ref=e186]:
+                      - generic "Opción única" [ref=e188]:
+                        - img [ref=e189]
+                      - generic [ref=e193]: Opción única
+                    - button "Marcar favorito": ★
+                  - generic [ref=e196]:
+                    - button "Lista desplegable" [ref=e197]:
+                      - generic "Lista desplegable" [ref=e199]:
+                        - img [ref=e200]
+                      - generic [ref=e203]: Lista desplegable
+                    - button "Marcar favorito": ★
+              - generic [ref=e204]:
+                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e205] [cursor=pointer]:
+                  - generic [ref=e206]: Fecha y Hora
+                  - generic [ref=e207]: "3"
+                - generic [ref=e208]:
+                  - generic [ref=e211]:
+                    - button "Fecha" [ref=e212]:
+                      - generic "Fecha" [ref=e214]:
+                        - img [ref=e215]
+                      - generic [ref=e218]: Fecha
+                    - button "Marcar favorito": ★
+                  - generic [ref=e221]:
+                    - button "Fecha y hora" [ref=e222]:
+                      - generic "Fecha y hora" [ref=e224]:
+                        - img [ref=e225]
+                      - generic [ref=e230]: Fecha y hora
+                    - button "Marcar favorito": ★
+                  - generic [ref=e233]:
+                    - button "Hora" [ref=e234]:
+                      - generic "Hora" [ref=e236]:
+                        - img [ref=e237]
+                      - generic [ref=e241]: Hora
+                    - button "Marcar favorito": ★
+              - generic [ref=e242]:
+                - button "Alternar categoría QR y Códigos" [expanded] [ref=e243] [cursor=pointer]:
+                  - generic [ref=e244]: QR y Códigos
+                  - generic [ref=e245]: "12"
+                - generic [ref=e246]:
+                  - generic [ref=e249]:
+                    - button "Código de barras" [ref=e250]:
+                      - generic "Código de barras" [ref=e252]:
+                        - img [ref=e253]
+                      - generic [ref=e255]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e258]:
+                    - button "Código de barras" [ref=e259]:
+                      - generic "Código de barras" [ref=e261]:
+                        - img [ref=e262]
+                      - generic [ref=e264]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e267]:
+                    - button "Código de barras" [ref=e268]:
+                      - generic "Código de barras" [ref=e270]:
+                        - img [ref=e271]
+                      - generic [ref=e273]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e276]:
+                    - button "Código de barras" [ref=e277]:
+                      - generic "Código de barras" [ref=e279]:
+                        - img [ref=e280]
+                      - generic [ref=e282]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e285]:
+                    - button "DataMatrix" [ref=e286]:
+                      - generic "DataMatrix" [ref=e288]:
+                        - img [ref=e289]
+                      - generic [ref=e291]: DataMatrix
+                    - button "Marcar favorito": ★
+                  - generic [ref=e294]:
+                    - button "Código de barras" [ref=e295]:
+                      - generic "Código de barras" [ref=e297]:
+                        - img [ref=e298]
+                      - generic [ref=e300]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e303]:
+                    - button "Japan Post" [ref=e304]:
+                      - generic "Japan Post" [ref=e306]:
+                        - img [ref=e307]
+                      - generic [ref=e309]: Japan Post
+                    - button "Marcar favorito": ★
+                  - generic [ref=e312]:
+                    - button "NW7" [ref=e313]:
+                      - generic "NW7" [ref=e315]:
+                        - img [ref=e316]
+                      - generic [ref=e318]: NW7
+                    - button "Marcar favorito": ★
+                  - generic [ref=e321]:
+                    - button "PDF417" [ref=e322]:
+                      - generic "PDF417" [ref=e324]:
+                        - img [ref=e325]
+                      - generic [ref=e327]: PDF417
+                    - button "Marcar favorito": ★
+                  - generic [ref=e330]:
+                    - button "Código QR" [ref=e331]:
+                      - generic "Código QR" [ref=e333]:
+                        - img [ref=e334]
+                      - generic [ref=e341]: Código QR
+                    - button "Marcar favorito": ★
+                  - generic [ref=e344]:
+                    - button "Código de barras" [ref=e345]:
+                      - generic "Código de barras" [ref=e347]:
+                        - img [ref=e348]
+                      - generic [ref=e350]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e353]:
+                    - button "Código de barras" [ref=e354]:
+                      - generic "Código de barras" [ref=e356]:
+                        - img [ref=e357]
+                      - generic [ref=e359]: Código de barras
+                    - button "Marcar favorito": ★
+              - generic [ref=e360]:
+                - button "Alternar categoría Estructura" [expanded] [ref=e361] [cursor=pointer]:
+                  - generic [ref=e362]: Estructura
+                  - generic [ref=e363]: "4"
+                - generic [ref=e364]:
+                  - generic [ref=e367]:
+                    - button "Óvalo" [ref=e368]:
+                      - generic "Óvalo" [ref=e370]:
+                        - img [ref=e371]
+                      - generic [ref=e374]: Óvalo
+                    - button "Marcar favorito": ★
+                  - generic [ref=e377]:
+                    - button "Línea" [ref=e378]:
+                      - generic "Línea" [ref=e380]:
+                        - img [ref=e381]
+                      - generic [ref=e383]: Línea
+                    - button "Marcar favorito": ★
+                  - generic [ref=e386]:
+                    - button "Rectángulo" [ref=e387]:
+                      - generic "Rectángulo" [ref=e389]:
+                        - img [ref=e390]
+                      - generic [ref=e393]: Rectángulo
+                    - button "Marcar favorito": ★
+                  - generic [ref=e396]:
+                    - button "Tabla" [ref=e397]:
+                      - generic "Tabla" [ref=e399]:
+                        - img [ref=e400]
+                      - generic [ref=e403]: Tabla
+                    - button "Marcar favorito": ★
+        - generic [ref=e404]:
+          - generic [ref=e405]:
+            - generic "Contexto activo del editor" [ref=e407]:
+              - generic [ref=e408]:
+                - generic "Documento activo" [ref=e409]
+                - generic [ref=e410]: Editando
+              - generic [ref=e412]: Página 1/3
+            - generic [ref=e413]:
+              - generic [ref=e414]:
+                - button "Deshacer" [ref=e415] [cursor=pointer]:
+                  - img [ref=e417]
+                - button "Rehacer" [ref=e420] [cursor=pointer]:
+                  - img [ref=e422]
+              - generic [ref=e425]:
+                - button "Página anterior" [disabled] [ref=e426]:
+                  - generic:
+                    - img
+                - generic [ref=e427] [cursor=pointer]:
+                  - generic [ref=e429]:
+                    - combobox [ref=e431]
+                    - generic "Página 1" [ref=e432]
+                  - generic:
+                    - img:
+                      - img
+                - button "Página siguiente" [ref=e433] [cursor=pointer]:
+                  - img [ref=e435]
+              - button "Vista" [ref=e438] [cursor=pointer]:
+                - img [ref=e440]
+              - generic [ref=e445]:
+                - button "Reducir zoom" [ref=e446] [cursor=pointer]:
+                  - img [ref=e448]
+                - generic [ref=e449] [cursor=pointer]:
+                  - generic [ref=e451]:
+                    - combobox [ref=e453]
+                    - generic "100%" [ref=e454]
+                  - generic:
+                    - img:
+                      - img
+                - button "Aumentar zoom" [ref=e455] [cursor=pointer]:
+                  - img [ref=e457]
+              - generic [ref=e458]:
+                - button "Ocultar cuadrícula" [pressed] [ref=e459] [cursor=pointer]:
+                  - img [ref=e461]
+                - button "Ocultar guías" [pressed] [ref=e463] [cursor=pointer]:
+                  - img [ref=e465]
+                - button "Ocultar snaps" [pressed] [ref=e471] [cursor=pointer]:
+                  - img [ref=e473]
+                - button "Ocultar padding" [pressed] [ref=e477] [cursor=pointer]:
+                  - img [ref=e479]
+              - generic [ref=e481]:
+                - button "Guardar" [ref=e482] [cursor=pointer]:
+                  - img [ref=e484]
+                  - generic [ref=e488]: Guardar
+                - button "Más acciones" [ref=e489] [cursor=pointer]:
+                  - img [ref=e490]
+          - button "Ocultar panel derecho" [pressed] [ref=e494]:
+            - img [ref=e495]
+          - complementary "Panel derecho del diseñador" [ref=e498]:
+            - generic [ref=e499]:
+              - tablist "Panel derecho" [ref=e501]:
+                - tab "Abrir panel Campos" [selected] [ref=e502] [cursor=pointer]:
+                  - img [ref=e505]
+                - tab "Abrir panel Detalle" [disabled] [ref=e509]:
+                  - img [ref=e512]
+                - tab "Abrir panel Comentarios" [ref=e513] [cursor=pointer]:
+                  - img [ref=e516]
+                - tab "Abrir panel Docs" [ref=e518] [cursor=pointer]:
+                  - img [ref=e521]
+              - generic [ref=e525]:
+                - generic [ref=e526]:
+                  - generic [ref=e527]:
+                    - generic [ref=e528]:
+                      - generic [ref=e529]:
+                        - img [ref=e531]
+                        - generic [ref=e535]:
+                          - strong [ref=e537]: Campos
+                          - generic [ref=e539]: 3/3
+                      - button "Renombrar" [ref=e542] [cursor=pointer]:
+                        - generic [ref=e543]: Renombrar
+                    - generic [ref=e544]:
+                      - generic [ref=e545]:
+                        - img [ref=e547]
+                        - textbox "Buscar campo o nombre" [ref=e550]
+                      - generic [ref=e553] [cursor=pointer]:
+                        - generic [ref=e555]:
+                          - combobox [ref=e557]
+                          - generic "Todos los tipos" [ref=e558]
+                        - generic:
+                          - img:
+                            - img
+                  - separator [ref=e559]
+                - generic "Lista de campos del documento" [ref=e560]:
+                  - list [ref=e561]:
+                    - listitem [ref=e562] [cursor=pointer]:
+                      - button "full_name" [ref=e563]
+                      - generic [ref=e564]:
+                        - button [ref=e565]:
+                          - img [ref=e567]
+                        - img [ref=e577]
+                        - generic [ref=e583]: full_name
+                    - listitem [ref=e584] [cursor=pointer]:
+                      - button "role" [ref=e585]
+                      - generic [ref=e586]:
+                        - button [ref=e587]:
+                          - img [ref=e589]
+                        - img [ref=e599]
+                        - generic [ref=e605]: role
+                    - listitem [ref=e606] [cursor=pointer]:
+                      - button "signature" [ref=e607]
+                      - generic [ref=e608]:
+                        - button [ref=e609]:
+                          - img [ref=e611]
+                        - img [ref=e621]
+                        - generic [ref=e624]: signature
+                  - status [ref=e625]
+          - generic [ref=e629]:
+            - generic "full_name" [ref=e631] [cursor=pointer]:
+              - generic [ref=e634]: Ada Lovelace
+              - text: text
+            - generic "role" [ref=e635] [cursor=pointer]:
+              - generic [ref=e638]: Researcher
+              - text: text
+            - generic "signature" [ref=e639] [cursor=pointer]: signature
+      - status [ref=e646]
+  - group "Resultados" [ref=e647]:
+    - generic "Resultados Abre esta sección para revisar salidas de generación y conversión. Colapsado" [ref=e648] [cursor=pointer]:
+      - generic [ref=e649]:
+        - heading "Resultados" [level=2] [ref=e650]
+        - paragraph [ref=e651]: Abre esta sección para revisar salidas de generación y conversión.
+      - generic [ref=e652]: Colapsado
+```
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0116"></a>
-## Archivo #116: docs/02-api-publica/api-commands.md
+## Archivo #116: test-results/pdfme-editor-PDFME-editor--d32b3-xternal-provider-from-modal-chromium/error-context.md
 
-- **Ruta relativa:** `docs/02-api-publica/api-commands.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/02-api-publica/api-commands.md`
+- **Ruta relativa:** `test-results/pdfme-editor-PDFME-editor--d32b3-xternal-provider-from-modal-chromium/error-context.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/test-results/pdfme-editor-PDFME-editor--d32b3-xternal-provider-from-modal-chromium/error-context.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `27`
+- **Líneas aproximadas:** `409`
 
 ### Contenido original
 
-# API @sisad-pdfme/commands
+# Page snapshot
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## Archivo
-`src/sisad-pdfme/commands/index.ts`
-
-## Exports detectados
-| Export |
-| --- |
-| CommandBus |
-| buildTopLevelCommentEntry |
-| commentCommands |
-| createCommandBus |
-| createCommentCommandEvent |
-| createPageSnapshotCommand |
-| createSelectionCommands |
-| createTemplateSnapshotCommand |
-| documentCommands |
-| emitInlineEditRequest |
-| registerDesignerCommands |
-| schemaCommands |
-| setInlineEditRequestHandler |
-
-## Uso
-Importa desde `@sisad-pdfme/commands` y evita rutas internas salvo para desarrollo del plugin.
+```yaml
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - generic [ref=e8]: Lab
+          - generic [ref=e9]: Diseñador
+        - heading "Editor integral" [level=1] [ref=e10]
+        - paragraph [ref=e11]: Ruta integral en modo designer con todos los schemas disponibles, alta de páginas, selección y edición sobre PDF real.
+      - generic [ref=e13]:
+        - generic [ref=e14]: Listo para editar, agregar schemas y recorrer todos los casos de uso en una sola ruta
+        - link "Volver al índice" [ref=e16] [cursor=pointer]:
+          - /url: /
+        - button "Descargar plantilla Editor integral" [ref=e18]: Descargar plantilla
+        - button "Controles" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+    - region "Colaboración del ejemplo" [ref=e25]:
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]: Participantes
+          - generic [ref=e29]: "2"
+        - list "Participantes del ejemplo" [ref=e30]:
+          - listitem [ref=e31]:
+            - button "Diseño" [pressed] [ref=e32] [cursor=pointer]
+          - listitem [ref=e33]:
+            - button "QA" [ref=e34] [cursor=pointer]
+        - generic "Resumen de colaboración" [ref=e35] [cursor=pointer]:
+          - generic [ref=e36]: "Visibles: 3"
+          - generic [ref=e37]: "Editables: 3"
+          - generic [ref=e38]: "Bloqueados: 0"
+          - generic [ref=e39]: "Comentarios: 0"
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - generic [ref=e42]: Activo
+          - combobox "Seleccionar usuario activo" [ref=e43]:
+            - option "Diseño" [selected]
+            - option "QA"
+        - generic [ref=e44]:
+          - generic [ref=e45]: Vista
+          - combobox "Seleccionar vista activa" [ref=e46]:
+            - option "Usuario activo" [selected]
+            - option "Global"
+    - group [ref=e47]:
+      - generic "Detalles técnicos Metadatos y estado" [ref=e48] [cursor=pointer]:
+        - generic [ref=e49]: Detalles técnicos
+        - generic [ref=e50]: Metadatos y estado
+  - region "Canvas" [ref=e51]:
+    - generic [ref=e52]:
+      - heading "Canvas" [level=2] [ref=e53]
+      - paragraph [ref=e54]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e55]: sisad-pdfme
+        - text: .
+    - generic [ref=e59]:
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - button "Cerrar catálogo de campos" [expanded] [ref=e62] [cursor=pointer]:
+            - img [ref=e63]
+          - generic [ref=e67]:
+            - generic [ref=e68]:
+              - generic [ref=e69]: Diseñador
+              - generic [ref=e70]:
+                - generic [ref=e71]: Campos
+                - 'generic "Color del destinatario activo #2563EB" [ref=e72]'
+            - generic [ref=e73]:
+              - tablist "Tipos de campo" [ref=e74]:
+                - tab "Campos estándar" [selected] [ref=e75] [cursor=pointer]:
+                  - img [ref=e76]
+                - tab "Campos personalizados" [ref=e78] [cursor=pointer]:
+                  - img [ref=e79]
+                - tab "Herramientas de prerrellenado" [ref=e82] [cursor=pointer]:
+                  - img [ref=e83]
+              - generic [ref=e86]:
+                - generic [ref=e87]:
+                  - img [ref=e89]
+                  - textbox "Buscar campos" [ref=e92]
+                - generic [ref=e94]:
+                  - button "Todos" [ref=e95] [cursor=pointer]:
+                    - generic [ref=e96]: Todos
+                  - button "Favoritos (0)" [ref=e97] [cursor=pointer]:
+                    - generic [ref=e98]: Favoritos (0)
+                  - button "Recientes (0)" [ref=e99] [cursor=pointer]:
+                    - generic [ref=e100]: Recientes (0)
+                  - button "Vista detalle (lista)" [ref=e101] [cursor=pointer]:
+                    - img [ref=e103]
+            - generic [ref=e104]:
+              - generic [ref=e105]:
+                - button "Alternar categoría Firmas" [expanded] [ref=e106] [cursor=pointer]:
+                  - generic [ref=e107]: Firmas
+                  - generic [ref=e108]: "1"
+                - generic [ref=e112]:
+                  - button "Firma" [ref=e113]:
+                    - generic "Firma" [ref=e115]:
+                      - img [ref=e116]
+                    - generic [ref=e119]: Firma
+                  - button "Marcar favorito": ★
+              - generic [ref=e120]:
+                - button "Alternar categoría Texto" [expanded] [ref=e121] [cursor=pointer]:
+                  - generic [ref=e122]: Texto
+                  - generic [ref=e123]: "1"
+                - generic [ref=e127]:
+                  - button "Texto" [ref=e128]:
+                    - generic "Texto" [ref=e130]:
+                      - img [ref=e131]
+                    - generic [ref=e137]: Texto
+                  - button "Marcar favorito": ★
+              - generic [ref=e138]:
+                - button "Alternar categoría Imagen y medios" [expanded] [ref=e139] [cursor=pointer]:
+                  - generic [ref=e140]: Imagen y medios
+                  - generic [ref=e141]: "2"
+                - generic [ref=e142]:
+                  - generic [ref=e145]:
+                    - button "Imagen" [ref=e146]:
+                      - generic "Imagen" [ref=e148]:
+                        - img [ref=e149]
+                      - generic [ref=e154]: Imagen
+                    - button "Marcar favorito": ★
+                  - generic [ref=e157]:
+                    - button "SVG" [ref=e158]:
+                      - generic "SVG" [ref=e160]:
+                        - img [ref=e161]
+                      - generic [ref=e166]: SVG
+                    - button "Marcar favorito": ★
+              - generic [ref=e167]:
+                - button "Alternar categoría Selecciones" [expanded] [ref=e168] [cursor=pointer]:
+                  - generic [ref=e169]: Selecciones
+                  - generic [ref=e170]: "3"
+                - generic [ref=e171]:
+                  - generic [ref=e174]:
+                    - button "Casilla" [ref=e175]:
+                      - generic "Casilla" [ref=e177]:
+                        - img [ref=e178]
+                      - generic [ref=e182]: Casilla
+                    - button "Marcar favorito": ★
+                  - generic [ref=e185]:
+                    - button "Opción única" [ref=e186]:
+                      - generic "Opción única" [ref=e188]:
+                        - img [ref=e189]
+                      - generic [ref=e193]: Opción única
+                    - button "Marcar favorito": ★
+                  - generic [ref=e196]:
+                    - button "Lista desplegable" [ref=e197]:
+                      - generic "Lista desplegable" [ref=e199]:
+                        - img [ref=e200]
+                      - generic [ref=e203]: Lista desplegable
+                    - button "Marcar favorito": ★
+              - generic [ref=e204]:
+                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e205] [cursor=pointer]:
+                  - generic [ref=e206]: Fecha y Hora
+                  - generic [ref=e207]: "3"
+                - generic [ref=e208]:
+                  - generic [ref=e211]:
+                    - button "Fecha" [ref=e212]:
+                      - generic "Fecha" [ref=e214]:
+                        - img [ref=e215]
+                      - generic [ref=e218]: Fecha
+                    - button "Marcar favorito": ★
+                  - generic [ref=e221]:
+                    - button "Fecha y hora" [ref=e222]:
+                      - generic "Fecha y hora" [ref=e224]:
+                        - img [ref=e225]
+                      - generic [ref=e230]: Fecha y hora
+                    - button "Marcar favorito": ★
+                  - generic [ref=e233]:
+                    - button "Hora" [ref=e234]:
+                      - generic "Hora" [ref=e236]:
+                        - img [ref=e237]
+                      - generic [ref=e241]: Hora
+                    - button "Marcar favorito": ★
+              - generic [ref=e242]:
+                - button "Alternar categoría QR y Códigos" [expanded] [ref=e243] [cursor=pointer]:
+                  - generic [ref=e244]: QR y Códigos
+                  - generic [ref=e245]: "12"
+                - generic [ref=e246]:
+                  - generic [ref=e249]:
+                    - button "Código de barras" [ref=e250]:
+                      - generic "Código de barras" [ref=e252]:
+                        - img [ref=e253]
+                      - generic [ref=e255]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e258]:
+                    - button "Código de barras" [ref=e259]:
+                      - generic "Código de barras" [ref=e261]:
+                        - img [ref=e262]
+                      - generic [ref=e264]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e267]:
+                    - button "Código de barras" [ref=e268]:
+                      - generic "Código de barras" [ref=e270]:
+                        - img [ref=e271]
+                      - generic [ref=e273]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e276]:
+                    - button "Código de barras" [ref=e277]:
+                      - generic "Código de barras" [ref=e279]:
+                        - img [ref=e280]
+                      - generic [ref=e282]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e285]:
+                    - button "DataMatrix" [ref=e286]:
+                      - generic "DataMatrix" [ref=e288]:
+                        - img [ref=e289]
+                      - generic [ref=e291]: DataMatrix
+                    - button "Marcar favorito": ★
+                  - generic [ref=e294]:
+                    - button "Código de barras" [ref=e295]:
+                      - generic "Código de barras" [ref=e297]:
+                        - img [ref=e298]
+                      - generic [ref=e300]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e303]:
+                    - button "Japan Post" [ref=e304]:
+                      - generic "Japan Post" [ref=e306]:
+                        - img [ref=e307]
+                      - generic [ref=e309]: Japan Post
+                    - button "Marcar favorito": ★
+                  - generic [ref=e312]:
+                    - button "NW7" [ref=e313]:
+                      - generic "NW7" [ref=e315]:
+                        - img [ref=e316]
+                      - generic [ref=e318]: NW7
+                    - button "Marcar favorito": ★
+                  - generic [ref=e321]:
+                    - button "PDF417" [ref=e322]:
+                      - generic "PDF417" [ref=e324]:
+                        - img [ref=e325]
+                      - generic [ref=e327]: PDF417
+                    - button "Marcar favorito": ★
+                  - generic [ref=e330]:
+                    - button "Código QR" [ref=e331]:
+                      - generic "Código QR" [ref=e333]:
+                        - img [ref=e334]
+                      - generic [ref=e341]: Código QR
+                    - button "Marcar favorito": ★
+                  - generic [ref=e344]:
+                    - button "Código de barras" [ref=e345]:
+                      - generic "Código de barras" [ref=e347]:
+                        - img [ref=e348]
+                      - generic [ref=e350]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e353]:
+                    - button "Código de barras" [ref=e354]:
+                      - generic "Código de barras" [ref=e356]:
+                        - img [ref=e357]
+                      - generic [ref=e359]: Código de barras
+                    - button "Marcar favorito": ★
+              - generic [ref=e360]:
+                - button "Alternar categoría Estructura" [expanded] [ref=e361] [cursor=pointer]:
+                  - generic [ref=e362]: Estructura
+                  - generic [ref=e363]: "4"
+                - generic [ref=e364]:
+                  - generic [ref=e367]:
+                    - button "Óvalo" [ref=e368]:
+                      - generic "Óvalo" [ref=e370]:
+                        - img [ref=e371]
+                      - generic [ref=e374]: Óvalo
+                    - button "Marcar favorito": ★
+                  - generic [ref=e377]:
+                    - button "Línea" [ref=e378]:
+                      - generic "Línea" [ref=e380]:
+                        - img [ref=e381]
+                      - generic [ref=e383]: Línea
+                    - button "Marcar favorito": ★
+                  - generic [ref=e386]:
+                    - button "Rectángulo" [ref=e387]:
+                      - generic "Rectángulo" [ref=e389]:
+                        - img [ref=e390]
+                      - generic [ref=e393]: Rectángulo
+                    - button "Marcar favorito": ★
+                  - generic [ref=e396]:
+                    - button "Tabla" [ref=e397]:
+                      - generic "Tabla" [ref=e399]:
+                        - img [ref=e400]
+                      - generic [ref=e403]: Tabla
+                    - button "Marcar favorito": ★
+        - generic [ref=e404]:
+          - generic [ref=e405]:
+            - generic "Contexto activo del editor" [ref=e407]:
+              - generic [ref=e408]:
+                - generic "Documento activo" [ref=e409]
+                - generic [ref=e410]: Listo
+              - generic [ref=e412]: Página 1/3
+            - generic [ref=e413]:
+              - generic [ref=e414]:
+                - button "Deshacer" [ref=e415] [cursor=pointer]:
+                  - img [ref=e417]
+                - button "Rehacer" [ref=e420] [cursor=pointer]:
+                  - img [ref=e422]
+              - generic [ref=e425]:
+                - button "Página anterior" [disabled] [ref=e426]:
+                  - generic:
+                    - img
+                - generic [ref=e427] [cursor=pointer]:
+                  - generic [ref=e429]:
+                    - combobox [ref=e431]
+                    - generic "Página 1" [ref=e432]
+                  - generic:
+                    - img:
+                      - img
+                - button "Página siguiente" [ref=e433] [cursor=pointer]:
+                  - img [ref=e435]
+              - button "Vista" [ref=e438] [cursor=pointer]:
+                - img [ref=e440]
+              - generic [ref=e445]:
+                - button "Reducir zoom" [ref=e446] [cursor=pointer]:
+                  - img [ref=e448]
+                - generic [ref=e449] [cursor=pointer]:
+                  - generic [ref=e451]:
+                    - combobox [ref=e453]
+                    - generic "100%" [ref=e454]
+                  - generic:
+                    - img:
+                      - img
+                - button "Aumentar zoom" [ref=e455] [cursor=pointer]:
+                  - img [ref=e457]
+              - generic [ref=e458]:
+                - button "Ocultar cuadrícula" [pressed] [ref=e459] [cursor=pointer]:
+                  - img [ref=e461]
+                - button "Ocultar guías" [pressed] [ref=e463] [cursor=pointer]:
+                  - img [ref=e465]
+                - button "Ocultar snaps" [pressed] [ref=e471] [cursor=pointer]:
+                  - img [ref=e473]
+                - button "Ocultar padding" [pressed] [ref=e477] [cursor=pointer]:
+                  - img [ref=e479]
+              - generic [ref=e481]:
+                - button "Guardar" [ref=e482] [cursor=pointer]:
+                  - img [ref=e484]
+                  - generic [ref=e488]: Guardar
+                - button "Más acciones" [ref=e489] [cursor=pointer]:
+                  - img [ref=e490]
+          - button "Ocultar panel derecho" [pressed] [ref=e494]:
+            - img [ref=e495]
+          - complementary "Panel derecho del diseñador" [ref=e498]:
+            - generic [ref=e499]:
+              - tablist "Panel derecho" [ref=e501]:
+                - tab "Abrir panel Campos" [selected] [ref=e502] [cursor=pointer]:
+                  - img [ref=e505]
+                - tab "Abrir panel Detalle" [disabled] [ref=e509]:
+                  - img [ref=e512]
+                - tab "Abrir panel Comentarios" [ref=e513] [cursor=pointer]:
+                  - img [ref=e516]
+                - tab "Abrir panel Docs" [ref=e518] [cursor=pointer]:
+                  - img [ref=e521]
+              - generic [ref=e525]:
+                - generic [ref=e526]:
+                  - generic [ref=e527]:
+                    - generic [ref=e528]:
+                      - generic [ref=e529]:
+                        - img [ref=e531]
+                        - generic [ref=e535]:
+                          - strong [ref=e537]: Campos
+                          - generic [ref=e539]: 3/3
+                      - button "Renombrar" [ref=e542] [cursor=pointer]:
+                        - generic [ref=e543]: Renombrar
+                    - generic [ref=e544]:
+                      - generic [ref=e545]:
+                        - img [ref=e547]
+                        - textbox "Buscar campo o nombre" [ref=e550]
+                      - generic [ref=e553] [cursor=pointer]:
+                        - generic [ref=e555]:
+                          - combobox [ref=e557]
+                          - generic "Todos los tipos" [ref=e558]
+                        - generic:
+                          - img:
+                            - img
+                  - separator [ref=e559]
+                - generic "Lista de campos del documento" [ref=e560]:
+                  - list [ref=e561]:
+                    - listitem [ref=e562] [cursor=pointer]:
+                      - button "full_name" [ref=e563]
+                      - generic [ref=e564]:
+                        - button [ref=e565]:
+                          - img [ref=e567]
+                        - img [ref=e577]
+                        - generic [ref=e583]: full_name
+                    - listitem [ref=e584] [cursor=pointer]:
+                      - button "role" [ref=e585]
+                      - generic [ref=e586]:
+                        - button [ref=e587]:
+                          - img [ref=e589]
+                        - img [ref=e599]
+                        - generic [ref=e605]: role
+                    - listitem [ref=e606] [cursor=pointer]:
+                      - button "signature" [ref=e607]
+                      - generic [ref=e608]:
+                        - button [ref=e609]:
+                          - img [ref=e611]
+                        - img [ref=e621]
+                        - generic [ref=e624]: signature
+                  - status [ref=e625]
+          - generic [ref=e629]:
+            - generic "full_name" [ref=e631] [cursor=pointer]:
+              - generic [ref=e634]: Ada Lovelace
+              - text: text
+            - generic "role" [ref=e635] [cursor=pointer]:
+              - generic [ref=e638]: Researcher
+              - text: text
+            - generic "signature" [ref=e639] [cursor=pointer]: signature
+      - status [ref=e646]
+  - group "Resultados" [ref=e647]:
+    - generic "Resultados Abre esta sección para revisar salidas de generación y conversión. Colapsado" [ref=e648] [cursor=pointer]:
+      - generic [ref=e649]:
+        - heading "Resultados" [level=2] [ref=e650]
+        - paragraph [ref=e651]: Abre esta sección para revisar salidas de generación y conversión.
+      - generic [ref=e652]: Colapsado
+```
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0117"></a>
-## Archivo #117: docs/02-api-publica/api-comments.md
+## Archivo #117: test-results/pdfme-editor-PDFME-editor--f6378-en-switching-signature-mode-chromium/error-context.md
 
-- **Ruta relativa:** `docs/02-api-publica/api-comments.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/02-api-publica/api-comments.md`
+- **Ruta relativa:** `test-results/pdfme-editor-PDFME-editor--f6378-en-switching-signature-mode-chromium/error-context.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/test-results/pdfme-editor-PDFME-editor--f6378-en-switching-signature-mode-chromium/error-context.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `32`
+- **Líneas aproximadas:** `409`
 
 ### Contenido original
 
-# API @sisad-pdfme/comments
+# Page snapshot
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## Archivo
-`src/sisad-pdfme/comments/index.ts`
-
-## Exports detectados
-| Export |
-| --- |
-| addAnchorToSchema |
-| addCommentToSchema |
-| addCommentWithAnchorToTemplate |
-| attachCommentToField |
-| createSchemaComment |
-| createSchemaCommentAnchor |
-| deleteCommentFromSchema |
-| detachCommentFromField |
-| filterCommentsByFileAndPage |
-| findSchemaByUid |
-| getCommentsForDocument |
-| getCommentsForPage |
-| getCommentsForSchema |
-| moveCommentAnchor |
-| reopenComment |
-| resolveCommentInSchema |
-| resolveTopLevelComment |
-| updateCommentInSchema |
-
-## Uso
-Importa desde `@sisad-pdfme/comments` y evita rutas internas salvo para desarrollo del plugin.
+```yaml
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - generic [ref=e8]: Lab
+          - generic [ref=e9]: Diseñador
+        - heading "Editor integral" [level=1] [ref=e10]
+        - paragraph [ref=e11]: Ruta integral en modo designer con todos los schemas disponibles, alta de páginas, selección y edición sobre PDF real.
+      - generic [ref=e13]:
+        - generic [ref=e14]: Listo para editar, agregar schemas y recorrer todos los casos de uso en una sola ruta
+        - link "Volver al índice" [ref=e16] [cursor=pointer]:
+          - /url: /
+        - button "Descargar plantilla Editor integral" [ref=e18]: Descargar plantilla
+        - button "Controles" [ref=e21] [cursor=pointer]:
+          - img [ref=e22]
+    - region "Colaboración del ejemplo" [ref=e25]:
+      - generic [ref=e26]:
+        - generic [ref=e27]:
+          - generic [ref=e28]: Participantes
+          - generic [ref=e29]: "2"
+        - list "Participantes del ejemplo" [ref=e30]:
+          - listitem [ref=e31]:
+            - button "Diseño" [pressed] [ref=e32] [cursor=pointer]
+          - listitem [ref=e33]:
+            - button "QA" [ref=e34] [cursor=pointer]
+        - generic "Resumen de colaboración" [ref=e35] [cursor=pointer]:
+          - generic [ref=e36]: "Visibles: 3"
+          - generic [ref=e37]: "Editables: 3"
+          - generic [ref=e38]: "Bloqueados: 0"
+          - generic [ref=e39]: "Comentarios: 0"
+      - generic [ref=e40]:
+        - generic [ref=e41]:
+          - generic [ref=e42]: Activo
+          - combobox "Seleccionar usuario activo" [ref=e43]:
+            - option "Diseño" [selected]
+            - option "QA"
+        - generic [ref=e44]:
+          - generic [ref=e45]: Vista
+          - combobox "Seleccionar vista activa" [ref=e46]:
+            - option "Usuario activo" [selected]
+            - option "Global"
+    - group [ref=e47]:
+      - generic "Detalles técnicos Metadatos y estado" [ref=e48] [cursor=pointer]:
+        - generic [ref=e49]: Detalles técnicos
+        - generic [ref=e50]: Metadatos y estado
+  - region "Canvas" [ref=e51]:
+    - generic [ref=e52]:
+      - heading "Canvas" [level=2] [ref=e53]
+      - paragraph [ref=e54]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e55]: sisad-pdfme
+        - text: .
+    - generic [ref=e59]:
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - button "Cerrar catálogo de campos" [expanded] [ref=e62] [cursor=pointer]:
+            - img [ref=e63]
+          - generic [ref=e67]:
+            - generic [ref=e68]:
+              - generic [ref=e69]: Diseñador
+              - generic [ref=e70]:
+                - generic [ref=e71]: Campos
+                - 'generic "Color del destinatario activo #2563EB" [ref=e72]'
+            - generic [ref=e73]:
+              - tablist "Tipos de campo" [ref=e74]:
+                - tab "Campos estándar" [selected] [ref=e75] [cursor=pointer]:
+                  - img [ref=e76]
+                - tab "Campos personalizados" [ref=e78] [cursor=pointer]:
+                  - img [ref=e79]
+                - tab "Herramientas de prerrellenado" [ref=e82] [cursor=pointer]:
+                  - img [ref=e83]
+              - generic [ref=e86]:
+                - generic [ref=e87]:
+                  - img [ref=e89]
+                  - textbox "Buscar campos" [ref=e92]
+                - generic [ref=e94]:
+                  - button "Todos" [ref=e95] [cursor=pointer]:
+                    - generic [ref=e96]: Todos
+                  - button "Favoritos (0)" [ref=e97] [cursor=pointer]:
+                    - generic [ref=e98]: Favoritos (0)
+                  - button "Recientes (0)" [ref=e99] [cursor=pointer]:
+                    - generic [ref=e100]: Recientes (0)
+                  - button "Vista detalle (lista)" [ref=e101] [cursor=pointer]:
+                    - img [ref=e103]
+            - generic [ref=e104]:
+              - generic [ref=e105]:
+                - button "Alternar categoría Firmas" [expanded] [ref=e106] [cursor=pointer]:
+                  - generic [ref=e107]: Firmas
+                  - generic [ref=e108]: "1"
+                - generic [ref=e112]:
+                  - button "Firma" [ref=e113]:
+                    - generic "Firma" [ref=e115]:
+                      - img [ref=e116]
+                    - generic [ref=e119]: Firma
+                  - button "Marcar favorito": ★
+              - generic [ref=e120]:
+                - button "Alternar categoría Texto" [expanded] [ref=e121] [cursor=pointer]:
+                  - generic [ref=e122]: Texto
+                  - generic [ref=e123]: "1"
+                - generic [ref=e127]:
+                  - button "Texto" [ref=e128]:
+                    - generic "Texto" [ref=e130]:
+                      - img [ref=e131]
+                    - generic [ref=e137]: Texto
+                  - button "Marcar favorito": ★
+              - generic [ref=e138]:
+                - button "Alternar categoría Imagen y medios" [expanded] [ref=e139] [cursor=pointer]:
+                  - generic [ref=e140]: Imagen y medios
+                  - generic [ref=e141]: "2"
+                - generic [ref=e142]:
+                  - generic [ref=e145]:
+                    - button "Imagen" [ref=e146]:
+                      - generic "Imagen" [ref=e148]:
+                        - img [ref=e149]
+                      - generic [ref=e154]: Imagen
+                    - button "Marcar favorito": ★
+                  - generic [ref=e157]:
+                    - button "SVG" [ref=e158]:
+                      - generic "SVG" [ref=e160]:
+                        - img [ref=e161]
+                      - generic [ref=e166]: SVG
+                    - button "Marcar favorito": ★
+              - generic [ref=e167]:
+                - button "Alternar categoría Selecciones" [expanded] [ref=e168] [cursor=pointer]:
+                  - generic [ref=e169]: Selecciones
+                  - generic [ref=e170]: "3"
+                - generic [ref=e171]:
+                  - generic [ref=e174]:
+                    - button "Casilla" [ref=e175]:
+                      - generic "Casilla" [ref=e177]:
+                        - img [ref=e178]
+                      - generic [ref=e182]: Casilla
+                    - button "Marcar favorito": ★
+                  - generic [ref=e185]:
+                    - button "Opción única" [ref=e186]:
+                      - generic "Opción única" [ref=e188]:
+                        - img [ref=e189]
+                      - generic [ref=e193]: Opción única
+                    - button "Marcar favorito": ★
+                  - generic [ref=e196]:
+                    - button "Lista desplegable" [ref=e197]:
+                      - generic "Lista desplegable" [ref=e199]:
+                        - img [ref=e200]
+                      - generic [ref=e203]: Lista desplegable
+                    - button "Marcar favorito": ★
+              - generic [ref=e204]:
+                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e205] [cursor=pointer]:
+                  - generic [ref=e206]: Fecha y Hora
+                  - generic [ref=e207]: "3"
+                - generic [ref=e208]:
+                  - generic [ref=e211]:
+                    - button "Fecha" [ref=e212]:
+                      - generic "Fecha" [ref=e214]:
+                        - img [ref=e215]
+                      - generic [ref=e218]: Fecha
+                    - button "Marcar favorito": ★
+                  - generic [ref=e221]:
+                    - button "Fecha y hora" [ref=e222]:
+                      - generic "Fecha y hora" [ref=e224]:
+                        - img [ref=e225]
+                      - generic [ref=e230]: Fecha y hora
+                    - button "Marcar favorito": ★
+                  - generic [ref=e233]:
+                    - button "Hora" [ref=e234]:
+                      - generic "Hora" [ref=e236]:
+                        - img [ref=e237]
+                      - generic [ref=e241]: Hora
+                    - button "Marcar favorito": ★
+              - generic [ref=e242]:
+                - button "Alternar categoría QR y Códigos" [expanded] [ref=e243] [cursor=pointer]:
+                  - generic [ref=e244]: QR y Códigos
+                  - generic [ref=e245]: "12"
+                - generic [ref=e246]:
+                  - generic [ref=e249]:
+                    - button "Código de barras" [ref=e250]:
+                      - generic "Código de barras" [ref=e252]:
+                        - img [ref=e253]
+                      - generic [ref=e255]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e258]:
+                    - button "Código de barras" [ref=e259]:
+                      - generic "Código de barras" [ref=e261]:
+                        - img [ref=e262]
+                      - generic [ref=e264]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e267]:
+                    - button "Código de barras" [ref=e268]:
+                      - generic "Código de barras" [ref=e270]:
+                        - img [ref=e271]
+                      - generic [ref=e273]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e276]:
+                    - button "Código de barras" [ref=e277]:
+                      - generic "Código de barras" [ref=e279]:
+                        - img [ref=e280]
+                      - generic [ref=e282]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e285]:
+                    - button "DataMatrix" [ref=e286]:
+                      - generic "DataMatrix" [ref=e288]:
+                        - img [ref=e289]
+                      - generic [ref=e291]: DataMatrix
+                    - button "Marcar favorito": ★
+                  - generic [ref=e294]:
+                    - button "Código de barras" [ref=e295]:
+                      - generic "Código de barras" [ref=e297]:
+                        - img [ref=e298]
+                      - generic [ref=e300]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e303]:
+                    - button "Japan Post" [ref=e304]:
+                      - generic "Japan Post" [ref=e306]:
+                        - img [ref=e307]
+                      - generic [ref=e309]: Japan Post
+                    - button "Marcar favorito": ★
+                  - generic [ref=e312]:
+                    - button "NW7" [ref=e313]:
+                      - generic "NW7" [ref=e315]:
+                        - img [ref=e316]
+                      - generic [ref=e318]: NW7
+                    - button "Marcar favorito": ★
+                  - generic [ref=e321]:
+                    - button "PDF417" [ref=e322]:
+                      - generic "PDF417" [ref=e324]:
+                        - img [ref=e325]
+                      - generic [ref=e327]: PDF417
+                    - button "Marcar favorito": ★
+                  - generic [ref=e330]:
+                    - button "Código QR" [ref=e331]:
+                      - generic "Código QR" [ref=e333]:
+                        - img [ref=e334]
+                      - generic [ref=e341]: Código QR
+                    - button "Marcar favorito": ★
+                  - generic [ref=e344]:
+                    - button "Código de barras" [ref=e345]:
+                      - generic "Código de barras" [ref=e347]:
+                        - img [ref=e348]
+                      - generic [ref=e350]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e353]:
+                    - button "Código de barras" [ref=e354]:
+                      - generic "Código de barras" [ref=e356]:
+                        - img [ref=e357]
+                      - generic [ref=e359]: Código de barras
+                    - button "Marcar favorito": ★
+              - generic [ref=e360]:
+                - button "Alternar categoría Estructura" [expanded] [ref=e361] [cursor=pointer]:
+                  - generic [ref=e362]: Estructura
+                  - generic [ref=e363]: "4"
+                - generic [ref=e364]:
+                  - generic [ref=e367]:
+                    - button "Óvalo" [ref=e368]:
+                      - generic "Óvalo" [ref=e370]:
+                        - img [ref=e371]
+                      - generic [ref=e374]: Óvalo
+                    - button "Marcar favorito": ★
+                  - generic [ref=e377]:
+                    - button "Línea" [ref=e378]:
+                      - generic "Línea" [ref=e380]:
+                        - img [ref=e381]
+                      - generic [ref=e383]: Línea
+                    - button "Marcar favorito": ★
+                  - generic [ref=e386]:
+                    - button "Rectángulo" [ref=e387]:
+                      - generic "Rectángulo" [ref=e389]:
+                        - img [ref=e390]
+                      - generic [ref=e393]: Rectángulo
+                    - button "Marcar favorito": ★
+                  - generic [ref=e396]:
+                    - button "Tabla" [ref=e397]:
+                      - generic "Tabla" [ref=e399]:
+                        - img [ref=e400]
+                      - generic [ref=e403]: Tabla
+                    - button "Marcar favorito": ★
+        - generic [ref=e404]:
+          - generic [ref=e405]:
+            - generic "Contexto activo del editor" [ref=e407]:
+              - generic [ref=e408]:
+                - generic "Documento activo" [ref=e409]
+                - generic [ref=e410]: Listo
+              - generic [ref=e412]: Página 1/3
+            - generic [ref=e413]:
+              - generic [ref=e414]:
+                - button "Deshacer" [ref=e415] [cursor=pointer]:
+                  - img [ref=e417]
+                - button "Rehacer" [ref=e420] [cursor=pointer]:
+                  - img [ref=e422]
+              - generic [ref=e425]:
+                - button "Página anterior" [disabled] [ref=e426]:
+                  - generic:
+                    - img
+                - generic [ref=e427] [cursor=pointer]:
+                  - generic [ref=e429]:
+                    - combobox [ref=e431]
+                    - generic "Página 1" [ref=e432]
+                  - generic:
+                    - img:
+                      - img
+                - button "Página siguiente" [ref=e433] [cursor=pointer]:
+                  - img [ref=e435]
+              - button "Vista" [ref=e438] [cursor=pointer]:
+                - img [ref=e440]
+              - generic [ref=e445]:
+                - button "Reducir zoom" [ref=e446] [cursor=pointer]:
+                  - img [ref=e448]
+                - generic [ref=e449] [cursor=pointer]:
+                  - generic [ref=e451]:
+                    - combobox [ref=e453]
+                    - generic "100%" [ref=e454]
+                  - generic:
+                    - img:
+                      - img
+                - button "Aumentar zoom" [ref=e455] [cursor=pointer]:
+                  - img [ref=e457]
+              - generic [ref=e458]:
+                - button "Ocultar cuadrícula" [pressed] [ref=e459] [cursor=pointer]:
+                  - img [ref=e461]
+                - button "Ocultar guías" [pressed] [ref=e463] [cursor=pointer]:
+                  - img [ref=e465]
+                - button "Ocultar snaps" [pressed] [ref=e471] [cursor=pointer]:
+                  - img [ref=e473]
+                - button "Ocultar padding" [pressed] [ref=e477] [cursor=pointer]:
+                  - img [ref=e479]
+              - generic [ref=e481]:
+                - button "Guardar" [ref=e482] [cursor=pointer]:
+                  - img [ref=e484]
+                  - generic [ref=e488]: Guardar
+                - button "Más acciones" [ref=e489] [cursor=pointer]:
+                  - img [ref=e490]
+          - button "Ocultar panel derecho" [pressed] [ref=e494]:
+            - img [ref=e495]
+          - complementary "Panel derecho del diseñador" [ref=e498]:
+            - generic [ref=e499]:
+              - tablist "Panel derecho" [ref=e501]:
+                - tab "Abrir panel Campos" [selected] [ref=e502] [cursor=pointer]:
+                  - img [ref=e505]
+                - tab "Abrir panel Detalle" [disabled] [ref=e509]:
+                  - img [ref=e512]
+                - tab "Abrir panel Comentarios" [ref=e513] [cursor=pointer]:
+                  - img [ref=e516]
+                - tab "Abrir panel Docs" [ref=e518] [cursor=pointer]:
+                  - img [ref=e521]
+              - generic [ref=e525]:
+                - generic [ref=e526]:
+                  - generic [ref=e527]:
+                    - generic [ref=e528]:
+                      - generic [ref=e529]:
+                        - img [ref=e531]
+                        - generic [ref=e535]:
+                          - strong [ref=e537]: Campos
+                          - generic [ref=e539]: 3/3
+                      - button "Renombrar" [ref=e542] [cursor=pointer]:
+                        - generic [ref=e543]: Renombrar
+                    - generic [ref=e544]:
+                      - generic [ref=e545]:
+                        - img [ref=e547]
+                        - textbox "Buscar campo o nombre" [ref=e550]
+                      - generic [ref=e553] [cursor=pointer]:
+                        - generic [ref=e555]:
+                          - combobox [ref=e557]
+                          - generic "Todos los tipos" [ref=e558]
+                        - generic:
+                          - img:
+                            - img
+                  - separator [ref=e559]
+                - generic "Lista de campos del documento" [ref=e560]:
+                  - list [ref=e561]:
+                    - listitem [ref=e562] [cursor=pointer]:
+                      - button "full_name" [ref=e563]
+                      - generic [ref=e564]:
+                        - button [ref=e565]:
+                          - img [ref=e567]
+                        - img [ref=e577]
+                        - generic [ref=e583]: full_name
+                    - listitem [ref=e584] [cursor=pointer]:
+                      - button "role" [ref=e585]
+                      - generic [ref=e586]:
+                        - button [ref=e587]:
+                          - img [ref=e589]
+                        - img [ref=e599]
+                        - generic [ref=e605]: role
+                    - listitem [ref=e606] [cursor=pointer]:
+                      - button "signature" [ref=e607]
+                      - generic [ref=e608]:
+                        - button [ref=e609]:
+                          - img [ref=e611]
+                        - img [ref=e621]
+                        - generic [ref=e624]: signature
+                  - status [ref=e625]
+          - generic [ref=e629]:
+            - generic "full_name" [ref=e631] [cursor=pointer]:
+              - generic [ref=e634]: Ada Lovelace
+              - text: text
+            - generic "role" [ref=e635] [cursor=pointer]:
+              - generic [ref=e638]: Researcher
+              - text: text
+            - generic "signature" [ref=e639] [cursor=pointer]: signature
+      - status [ref=e646]
+  - group "Resultados" [ref=e647]:
+    - generic "Resultados Abre esta sección para revisar salidas de generación y conversión. Colapsado" [ref=e648] [cursor=pointer]:
+      - generic [ref=e649]:
+        - heading "Resultados" [level=2] [ref=e650]
+        - paragraph [ref=e651]: Abre esta sección para revisar salidas de generación y conversión.
+      - generic [ref=e652]: Colapsado
+```
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0118"></a>
-## Archivo #118: docs/02-api-publica/api-common.md
+## Archivo #118: .ai/skills/canvas-geometry-scaling/SKILL.md
 
-- **Ruta relativa:** `docs/02-api-publica/api-common.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/02-api-publica/api-common.md`
+- **Ruta relativa:** `.ai/skills/canvas-geometry-scaling/SKILL.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/canvas-geometry-scaling/SKILL.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `69`
+- **Líneas aproximadas:** `30`
 
 ### Contenido original
 
-# API @sisad-pdfme/common
+# Skill: Geometría, zoom y coordenadas del canvas
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
+## Cuándo usar
 
-## Archivo
-`src/sisad-pdfme/common/index.ts`
+Usa este skill cuando la tarea afecte `canvas-geometry-scaling` o componentes relacionados del fork.
 
-## Exports detectados
-| Export |
-| --- |
-| BLANK_A4_PDF |
-| BLANK_PDF |
-| CUSTOM_A4_PDF |
-| DEFAULT_FONT_NAME |
-| MM_TO_PT_RATIO |
-| PDFME_VERSION |
-| PT_TO_MM_RATIO |
-| PT_TO_PX_RATIO |
-| SHARED_ASSIGNMENTS_BUCKET |
-| ZOOM |
-| addAnchorToSchema |
-| addCommentToSchema |
-| addCommentWithAnchorToTemplate |
-| b64toUint8Array |
-| buildSchemaAssignments |
-| buildUserRecipientAssignments |
-| buildUserSchemaAssignments |
-| checkDesignerProps |
-| checkFont |
-| checkGenerateProps |
-| checkInputs |
-| checkPreviewProps |
-| checkTemplate |
-| checkUIOptions |
-| checkUIProps |
-| cloneDeep |
-| createSchemaComment |
-| createSchemaCommentAnchor |
-| deleteCommentFromSchema |
-| filterCommentsByFileAndPage |
-| filterSchemasByAuthorView |
-| findSchemaByUid |
-| getB64BasePdf |
-| getDefaultFont |
-| getDynamicTemplate |
-| getFallbackFontName |
-| getInputFromTemplate |
-| isBlankPdf |
-| isHexValid |
-| mm2pt |
-| normalizeRecipientIds |
-| pluginRegistry |
-| pt2mm |
-| pt2px |
-| px2mm |
-| removeById |
-| removeTopLevelComment |
-| replacePlaceholders |
-| resolveCommentInSchema |
-| resolveSchemaAuthorId |
-| schemaMatchesAuthorView |
-| updateCommentInSchema |
-| upsertById |
-| upsertTopLevelComment |
-| validateCollaborativeSchemas |
+## Objetivo
 
-## Uso
-Importa desde `@sisad-pdfme/common` y evita rutas internas salvo para desarrollo del plugin.
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
+
+## Procedimiento
+
+1. Revisar paper root, scale layer y bounding boxes.
+2. Validar zoom y scroll.
+3. Evitar offsets por CSS.
+4. Probar Moveable/Selecto.
+5. Agregar Playwright si hay interacción visual.
+
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0119"></a>
-## Archivo #119: docs/02-api-publica/api-converter.md
+## Archivo #119: .ai/skills/catalog-discovery-patterns/SKILL.md
 
-- **Ruta relativa:** `docs/02-api-publica/api-converter.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/02-api-publica/api-converter.md`
+- **Ruta relativa:** `.ai/skills/catalog-discovery-patterns/SKILL.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/catalog-discovery-patterns/SKILL.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `17`
+- **Líneas aproximadas:** `30`
 
 ### Contenido original
 
-# API @sisad-pdfme/converter
+# Skill: Catálogo y descubrimiento de campos
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
+## Cuándo usar
 
-## Archivo
-`src/sisad-pdfme/converter/index.browser.ts`
+Usa este skill cuando la tarea afecte `catalog-discovery-patterns` o componentes relacionados del fork.
 
-## Exports detectados
-| Export |
-| --- |
-| img2pdf |
-| pdf2img |
-| pdf2size |
+## Objetivo
 
-## Uso
-Importa desde `@sisad-pdfme/converter` y evita rutas internas salvo para desarrollo del plugin.
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
+
+## Procedimiento
+
+1. Organizar por familia.
+2. Permitir compact/rich mode.
+3. Agregar búsqueda y filtros.
+4. Usar registry como fuente.
+5. No duplicar metadata.
+
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0120"></a>
-## Archivo #120: docs/02-api-publica/api-generator.md
+## Archivo #120: .ai/skills/component-composition/SKILL.md
 
-- **Ruta relativa:** `docs/02-api-publica/api-generator.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/02-api-publica/api-generator.md`
+- **Ruta relativa:** `.ai/skills/component-composition/SKILL.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/component-composition/SKILL.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `19`
+- **Líneas aproximadas:** `30`
 
 ### Contenido original
 
-# API @sisad-pdfme/generator
+# Skill: Composición de componentes configurables
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
+## Cuándo usar
 
-## Archivo
-`src/sisad-pdfme/generator/index.ts`
+Usa este skill cuando la tarea afecte `component-composition` o componentes relacionados del fork.
 
-## Exports detectados
-| Export |
-| --- |
-| buildDynamicTemplate |
-| generate |
-| generatePdf |
-| generatePdfBuffer |
-| validateRequiredFields |
+## Objetivo
 
-## Uso
-Importa desde `@sisad-pdfme/generator` y evita rutas internas salvo para desarrollo del plugin.
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
+
+## Procedimiento
+
+1. Identificar componente base.
+2. Extraer comportamiento a props/config si está rígido.
+3. Evitar variantes por caso de uso.
+4. Usar paneles, slots, registry o adapters.
+5. Probar modo mínimo y modo avanzado.
+
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0121"></a>
-## Archivo #121: docs/02-api-publica/api-schemas.md
+## Archivo #121: .ai/skills/css-layering-and-overrides/SKILL.md
 
-- **Ruta relativa:** `docs/02-api-publica/api-schemas.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/02-api-publica/api-schemas.md`
+- **Ruta relativa:** `.ai/skills/css-layering-and-overrides/SKILL.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/css-layering-and-overrides/SKILL.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `65`
+- **Líneas aproximadas:** `30`
 
 ### Contenido original
 
-# API @sisad-pdfme/schemas
+# Skill: Capas CSS y overrides seguros
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
+## Cuándo usar
 
-## Archivo
-`src/sisad-pdfme/schemas/index.ts`
+Usa este skill cuando la tarea afecte `css-layering-and-overrides` o componentes relacionados del fork.
 
-## Exports detectados
-| Export |
-| --- |
-| addAlphaToHex |
-| barcodes |
-| builtInFields |
-| builtInPlugins |
-| builtInSchemaDefinitions |
-| builtInSchemaDefinitionsByType |
-| changeSchemas |
-| checkbox |
-| convertForPdfLayoutProps |
-| createDefaultSchema |
-| createLucideIcon |
-| createSchemaBuilder |
-| createSchemaInspectorConfig |
-| createSchemaPlugin |
-| createSvgStr |
-| date |
-| dateTime |
-| ellipse |
-| flatSchemaPlugins |
-| flattenSchemaPlugins |
-| generateUniqueSchemaName |
-| getBuiltInFields |
-| getDynamicHeightsForTable |
-| getSchemaDefinition |
-| getSchemaFamily |
-| getSchemaFamilyInspectorPreset |
-| getSchemaPluginByType |
-| getSchemaTypeInspectorPreset |
-| hex2PrintingColor |
-| hex2RgbColor |
-| image |
-| isEditable |
-| line |
-| listSchemaDefinitions |
-| multiVariableText |
-| normalizeSchemaFamily |
-| radioGroup |
-| readFile |
-| rectangle |
-| registerFieldPlugin |
-| registerPlugins |
-| resolveSchemaFamily |
-| rotatePoint |
-| schemaFamilies |
-| schemaPlugins |
-| select |
-| signature |
-| svg |
-| table |
-| time |
-| validateSchemaNameUniqueness |
+## Objetivo
 
-## Uso
-Importa desde `@sisad-pdfme/schemas` y evita rutas internas salvo para desarrollo del plugin.
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
+
+## Procedimiento
+
+1. Revisar orden de cascada.
+2. Usar scope `.sisad-pdfme-root`.
+3. No afectar paper geometry.
+4. No afectar Moveable/Selecto.
+5. Documentar tokens.
+
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0122"></a>
-## Archivo #122: docs/02-api-publica/api-ui.md
+## Archivo #122: .ai/skills/design-system-consistency/SKILL.md
 
-- **Ruta relativa:** `docs/02-api-publica/api-ui.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/02-api-publica/api-ui.md`
+- **Ruta relativa:** `.ai/skills/design-system-consistency/SKILL.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/design-system-consistency/SKILL.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `24`
+- **Líneas aproximadas:** `30`
 
 ### Contenido original
 
-# API @sisad-pdfme/ui
+# Skill: Consistencia visual y tokens
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
+## Cuándo usar
 
-## Archivo
-`src/sisad-pdfme/ui/index.ts`
+Usa este skill cuando la tarea afecte `design-system-consistency` o componentes relacionados del fork.
 
-## Exports detectados
-| Export |
-| --- |
-| Designer |
-| DesignerEngineBuilder |
-| Form |
-| PdfEditor |
-| PdfEditorEngineBuilder |
-| PdfFormView |
-| PdfViewer |
-| Viewer |
-| applyCollaborationEvent |
-| useCollaborationSync |
+## Objetivo
 
-## Uso
-Importa desde `@sisad-pdfme/ui` y evita rutas internas salvo para desarrollo del plugin.
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
+
+## Procedimiento
+
+1. Usar tokens existentes.
+2. Evitar colores hardcodeados.
+3. Conservar compact UI.
+4. Revisar responsive.
+5. Evitar CSS global fuera de scope.
+
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0123"></a>
-## Archivo #123: docs/03-runtime/01-designer-form-viewer.md
+## Archivo #123: .ai/skills/docusign-inspired-product-thinking/SKILL.md
 
-- **Ruta relativa:** `docs/03-runtime/01-designer-form-viewer.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/03-runtime/01-designer-form-viewer.md`
+- **Ruta relativa:** `.ai/skills/docusign-inspired-product-thinking/SKILL.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/docusign-inspired-product-thinking/SKILL.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `40`
+- **Líneas aproximadas:** `30`
 
 ### Contenido original
 
-# Designer, Form, Viewer y ciclo de vida
+# Skill: Patrones de preparación documental
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
+## Cuándo usar
 
-## Designer
-Diseño estructural de plantillas: crear schemas, mover, redimensionar, seleccionar, configurar, comentar, asignar usuarios y guardar template.
+Usa este skill cuando la tarea afecte `docusign-inspired-product-thinking` o componentes relacionados del fork.
 
-```ts
-const designer = new Designer({
-  domContainer,
-  template,
-  plugins: builtInSchemaDefinitions,
-  options: { lang: 'es', designerEngine }
-});
-```
+## Objetivo
 
-## Form
-Completar valores sin modificar layout.
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
 
-```ts
-const form = new Form({ domContainer, template, inputs, plugins: builtInSchemaDefinitions });
-```
+## Procedimiento
 
-## Viewer
-Vista previa sin edición estructural.
+1. Separar diseño, llenado y revisión.
+2. Usar color/ownership configurable.
+3. Validar campos requeridos.
+4. Conservar revisión de documento.
+5. Evitar dependencia de proveedor específico.
 
-```ts
-const viewer = new Viewer({ domContainer, template, inputs, plugins: builtInSchemaDefinitions });
-```
+## Checklist de salida
 
-## Cleanup en React
-```tsx
-useEffect(() => {
-  const instance = new Designer({ domContainer: ref.current, template, plugins, options });
-  return () => queueMicrotask(() => instance.destroy());
-}, [templateVersion]);
-```
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
 
-Usar cleanup diferido evita el warning de React sobre desmontaje síncrono mientras React renderiza.
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0124"></a>
-## Archivo #124: docs/03-runtime/02-designer-engine-builder.md
+## Archivo #124: .ai/skills/editor-regression-testing/SKILL.md
 
-- **Ruta relativa:** `docs/03-runtime/02-designer-engine-builder.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/03-runtime/02-designer-engine-builder.md`
+- **Ruta relativa:** `.ai/skills/editor-regression-testing/SKILL.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/editor-regression-testing/SKILL.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `94`
+- **Líneas aproximadas:** `30`
 
 ### Contenido original
 
-# DesignerEngineBuilder y configuración del diseñador
+# Skill: Pruebas de regresión del editor
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
+## Cuándo usar
 
-## Rol
-`DesignerEngineBuilder` configura comportamiento sin modificar componentes internos.
+Usa este skill cuando la tarea afecte `editor-regression-testing` o componentes relacionados del fork.
 
-## APIs clave
-| Export |
-| --- |
-| CollaborationHistoryEntry |
-| CollaborationHistoryEventType |
-| CollaborationPresence |
-| CollaborationProviderName |
-| CollaborationSyncConfig |
-| DEFAULT_SCHEMA_CONFIG_STORAGE_KEY |
-| DesignerEngine |
-| DesignerEngineBuilder |
-| FormJsonEnvelope |
-| ResolvedSchemaRequest |
-| SchemaCollaborativeLock |
-| SchemaCollaborativeMetadata |
-| SchemaCollaborativeState |
-| SchemaComment |
-| SchemaCommentAnchor |
-| SchemaCommentReply |
-| SchemaCreationContext |
-| SchemaCreationContextInput |
-| SchemaCreationHook |
-| SchemaDataFieldSnapshot |
-| SchemaDataRuntimeAdapter |
-| SchemaDataSnapshot |
-| SchemaDesignerConfig |
-| SchemaFormJsonConfig |
-| SchemaHttpAuthConfig |
-| SchemaHttpClientConfig |
-| SchemaIdentity |
-| SchemaIdentityFactory |
-| SchemaIntegrationConfig |
-| SchemaPersistenceConfig |
-| SchemaPrefillConfig |
-| SchemaRequestConfig |
-| applySchemaCollaborativeDefaults |
-| applySchemaCreationHook |
-| attachSchemaIdentity |
-| createSchemaCreationContext |
-| createSchemaDataRuntimeAdapter |
-| getSchemaConfigStorageKey |
-| getSchemaDesignerConfig |
-| mergeSchemaCollaborativeMetadata |
-| mergeSchemaDesignerConfig |
-| refreshSchemaCollaborativeMetadata |
-| resolveDesignerEngine |
-| resolveDesignerHttpClientConfig |
-| resolveSchemaCollaborativeMetadata |
-| setSchemaDesignerConfig |
+## Objetivo
 
-## Uso típico
-```ts
-const engine = new DesignerEngineBuilder()
-  .withCanvasFeatureToggles({
-    guides: true,
-    moveable: true,
-    selecto: true,
-    snapLines: true,
-    padding: true,
-    mask: false,
-  })
-  .withSchemaConfigStorageKey('__designer')
-  .withAutoAttachIdentity(true)
-  .withSchemaIdentityFactory((schema, context) => ({
-    id: schema.id,
-    key: String(context.fileId || 'default') + ':' + schema.name,
-    namespace: 'sisad-web',
-    version: '1',
-    tags: [schema.type],
-  }))
-  .build();
-```
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
 
-## Configuración avanzada por schema
-```ts
-mergeSchemaDesignerConfig(schema, {
-  persistence: { enabled: true, mode: 'local', key: 'draft.' + schema.name },
-  api: { enabled: true, endpoint: '/api/catalogs', method: 'GET', requestMode: 'read' },
-  form: { enabled: true, collect: true, format: 'nested', includeMeta: true },
-});
-```
+## Procedimiento
 
-## Buenas prácticas
-- Un engine por host, memoizado.
-- No mutar schemas directamente; usar helpers del engine.
-- Usar `configStorageKey` para aislar configuración por producto.
+1. Agregar unit tests para lógica pura.
+2. Agregar Playwright para interacción visual.
+3. Probar canvas no blanco.
+4. Probar sidebars toggle.
+5. Probar snapshot round-trip.
+
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0125"></a>
-## Archivo #125: docs/03-runtime/03-command-bus-y-acciones.md
+## Archivo #125: .ai/skills/fork-safe-pdfme-evolution/SKILL.md
 
-- **Ruta relativa:** `docs/03-runtime/03-command-bus-y-acciones.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/03-runtime/03-command-bus-y-acciones.md`
+- **Ruta relativa:** `.ai/skills/fork-safe-pdfme-evolution/SKILL.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/fork-safe-pdfme-evolution/SKILL.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `40`
+- **Líneas aproximadas:** `30`
 
 ### Contenido original
 
-# CommandBus, actionRegistry y comandos de selección
+# Skill: Evolución segura del fork
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
+## Cuándo usar
 
-## Problema que resuelve
-El diseñador tiene acciones en toolbar, menú contextual, shortcuts y sidebar. Si cada lugar implementa su propia lógica, aparecen colisiones.
+Usa este skill cuando la tarea afecte `fork-safe-pdfme-evolution` o componentes relacionados del fork.
 
-## Regla
-Toda acción estructural debe pasar por comandos comunes:
-- `createCommandBus`.
-- `registerDesignerCommands`.
-- `createSelectionCommands`.
-- `emitInlineEditRequest`.
-- `setInlineEditRequestHandler`.
+## Objetivo
 
-## Acciones cubiertas
-- duplicar;
-- eliminar;
-- alinear;
-- distribuir;
-- traer adelante/enviar atrás;
-- toggle requerido/readonly/hidden;
-- editar texto inline;
-- abrir propiedades;
-- comentar.
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
 
-## Flujo correcto
-```text
-Botón / atajo / menú
-  → acción registrada
-  → selectionCommands
-  → changeSchemas / commandBus
-  → un solo evento de cambio
-```
+## Procedimiento
 
-## Pruebas necesarias
-- Un click en toolbar y un shortcut producen el mismo resultado.
-- No se ejecutan shortcuts cuando el foco está en input del inspector.
-- Eliminar/duplicar no actúa sobre schemas ocultos por filtro multiusuario.
+1. Verificar que el cambio no acople `sisad-pdfme` a servicios externos.
+2. Comprobar que la habilidad pueda configurarse.
+3. Preservar APIs públicas y snapshot.
+4. Agregar migración si cambia contrato.
+5. Actualizar documentación.
+
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0126"></a>
-## Archivo #126: docs/04-componentes/01-inventario-componentes.md
+## Archivo #126: .ai/skills/generator-runtime-parity/SKILL.md
 
-- **Ruta relativa:** `docs/04-componentes/01-inventario-componentes.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/04-componentes/01-inventario-componentes.md`
+- **Ruta relativa:** `.ai/skills/generator-runtime-parity/SKILL.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/generator-runtime-parity/SKILL.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `88`
+- **Líneas aproximadas:** `29`
 
 ### Contenido original
 
-# Inventario de componentes UI
+# Skill: Paridad generator/form/viewer
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
+## Cuándo usar
 
-## Componentes detectados
-| Archivo | Rol | Líneas aprox. |
-| --- | --- | --- |
-| src/sisad-pdfme/ui/components/AppContextProvider.tsx | UI | 87 |
-| src/sisad-pdfme/ui/components/CtlBar.tsx | UI | 342 |
-| src/sisad-pdfme/ui/components/ErrorScreen.tsx | UI | 26 |
-| src/sisad-pdfme/ui/components/Paper.tsx | Preview/render schema | 143 |
-| src/sisad-pdfme/ui/components/Preview.tsx | Preview/render schema | 152 |
-| src/sisad-pdfme/ui/components/Renderer.tsx | Preview/render schema | 329 |
-| src/sisad-pdfme/ui/components/Root.tsx | UI | 44 |
-| src/sisad-pdfme/ui/components/Spinner.tsx | UI | 46 |
-| src/sisad-pdfme/ui/components/StaticSchema.tsx | Preview/render schema | 57 |
-| src/sisad-pdfme/ui/components/UnitPager.tsx | UI | 120 |
-| src/sisad-pdfme/ui/components/usePreviewRuntime.ts | Preview/render schema | 437 |
-| src/sisad-pdfme/ui/components/Designer/exports.ts | Designer shell/catalogo | 51 |
-| src/sisad-pdfme/ui/components/Designer/index.tsx | Designer shell/catalogo | 2815 |
-| src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx | Designer shell/catalogo | 1339 |
-| src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx | Designer shell/catalogo | 328 |
-| src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx | Designer shell/catalogo | 94 |
-| src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx | Designer shell/catalogo | 73 |
-| src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx | Designer shell/catalogo | 33 |
-| src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx | Designer shell/catalogo | 52 |
-| src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx | Designer shell/catalogo | 104 |
-| src/sisad-pdfme/ui/components/Designer/schemaRegistry.ts | Designer shell/catalogo | 127 |
-| src/sisad-pdfme/ui/components/Designer/useLeftSidebarCatalogState.ts | Designer shell/catalogo | 147 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx | Canvas/interacción/overlay | 1161 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/Guides.tsx | Canvas/interacción/overlay | 95 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/index.tsx | Canvas/interacción/overlay | 3 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/Mask.tsx | Canvas/interacción/overlay | 36 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx | Canvas/interacción/overlay | 107 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/Padding.tsx | Canvas/interacción/overlay | 82 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx | Canvas/interacción/overlay | 70 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/SnapLines.tsx | Canvas/interacción/overlay | 347 |
-| src/sisad-pdfme/ui/components/Designer/Comments/CommentDialog.tsx | Designer shell/catalogo | 75 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx | RightSidebar/inspector | 324 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/contextHeader.ts | RightSidebar/inspector | 19 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx | RightSidebar/inspector | 222 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/index.tsx | RightSidebar/inspector | 3 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx | RightSidebar/inspector | 59 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx | RightSidebar/inspector | 422 |
-| src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts | Designer shell/catalogo | 291 |
-| src/sisad-pdfme/ui/components/Designer/shared/className.ts | Designer shell/catalogo | 18 |
-| src/sisad-pdfme/ui/components/Designer/shared/interactionState.ts | Designer shell/catalogo | 63 |
-| src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts | Designer shell/catalogo | 55 |
-| src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts | Designer shell/catalogo | 346 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx | Canvas/interacción/overlay | 236 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.tsx | Canvas/interacción/overlay | 919 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx | Canvas/interacción/overlay | 111 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx | Canvas/interacción/overlay | 162 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry.ts | Canvas/interacción/overlay | 98 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx | Canvas/interacción/overlay | 154 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx | Canvas/interacción/overlay | 24 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx | Canvas/interacción/overlay | 193 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx | Canvas/interacción/overlay | 39 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/useFloatingToolbarPosition.ts | Canvas/interacción/overlay | 70 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx | RightSidebar/inspector | 60 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx | RightSidebar/inspector | 79 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel.tsx | RightSidebar/inspector | 98 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx | RightSidebar/inspector | 51 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx | RightSidebar/inspector | 152 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts | RightSidebar/inspector | 357 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx | RightSidebar/inspector | 105 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx | RightSidebar/inspector | 357 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx | RightSidebar/inspector | 76 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.tsx | RightSidebar/inspector | 190 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/index.tsx | RightSidebar/inspector | 2 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx | RightSidebar/inspector | 916 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared.tsx | RightSidebar/inspector | 147 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation.ts | RightSidebar/inspector | 84 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx | RightSidebar/inspector | 821 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.tsx | RightSidebar/inspector | 265 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx | RightSidebar/inspector | 33 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/index.tsx | RightSidebar/inspector | 2 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx | RightSidebar/inspector | 329 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListView.tsx | RightSidebar/inspector | 197 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewDragOverlay.tsx | RightSidebar/inspector | 61 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewFooter.tsx | RightSidebar/inspector | 56 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx | RightSidebar/inspector | 195 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableContainer.tsx | RightSidebar/inspector | 205 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableItem.tsx | RightSidebar/inspector | 117 |
+Usa este skill cuando la tarea afecte `generator-runtime-parity` o componentes relacionados del fork.
 
-## Regla de consumo
-Estos componentes son internos. Documentarlos ayuda a mantener el plugin, pero un proyecto consumidor debe usar `Designer`, `Form`, `Viewer` y el engine.
+## Objetivo
+
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
+
+## Procedimiento
+
+1. Verificar que el mismo schema renderice en designer/form/viewer/pdf.
+2. Validar inputs.
+3. Probar generación.
+4. Documentar limitaciones.
+
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0127"></a>
-## Archivo #127: docs/04-componentes/02-canvas-interacciones.md
+## Archivo #127: .ai/skills/inspector-panel-composition/SKILL.md
 
-- **Ruta relativa:** `docs/04-componentes/02-canvas-interacciones.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/04-componentes/02-canvas-interacciones.md`
+- **Ruta relativa:** `.ai/skills/inspector-panel-composition/SKILL.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/inspector-panel-composition/SKILL.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `39`
+- **Líneas aproximadas:** `30`
 
 ### Contenido original
 
-# Canvas, Moveable, Selecto y coordenadas
+# Skill: Composición del inspector derecho
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
+## Cuándo usar
 
-## Responsabilidad
-El canvas renderiza páginas, schemas y overlays, y coordina selección, drag, resize, rotate, reglas, snap lines y context menu.
+Usa este skill cuando la tarea afecte `inspector-panel-composition` o componentes relacionados del fork.
 
-## Componentes clave
-| Componente | Función |
-| --- | --- |
-| `Canvas.tsx` | Orquesta eventos, mm↔px, selección, drag/resize/rotate y drop. |
-| `Moveable.tsx` | Manipulación de elemento activo. |
-| `Selecto.tsx` | Selección por región. |
-| `Guides.tsx` | Reglas. |
-| `SnapLines.tsx` | Feedback de alineación. |
-| `CanvasOverlayManager` | Composición de overlays. |
+## Objetivo
 
-## Fórmula de coordenadas
-```ts
-const paperRect = paper.getBoundingClientRect();
-const xPx = event.clientX - paperRect.left;
-const yPx = event.clientY - paperRect.top;
-const xMm = xPx / scale / pxPerMm;
-const yMm = yPx / scale / pxPerMm;
-```
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
 
-## Riesgos
-- Selecto con `position: fixed` sin descontar scroll.
-- Moveable y Selecto activos a la vez.
-- Usar un scale distinto en Paper y Renderer.
-- Persistir px en vez de mm.
-- Cambiar zoom en cada scroll por ResizeObserver.
+## Procedimiento
 
-## Tests obligatorios
-- Selección por región en 75/100/150%.
-- Selección después de scroll.
-- Drag y resize con sidebars abiertos/cerrados.
-- Cambio de página/documento limpia selección inválida.
+1. Usar widgets reutilizables.
+2. Mostrar estado vacío.
+3. Renderizar propiedades contextuales.
+4. Respetar readonly y permisos.
+5. Evitar formularios gigantes sin secciones.
+
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0128"></a>
-## Archivo #128: docs/04-componentes/03-sidebars-overlays.md
+## Archivo #128: .ai/skills/moveable-selecto-integration/SKILL.md
 
-- **Ruta relativa:** `docs/04-componentes/03-sidebars-overlays.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/04-componentes/03-sidebars-overlays.md`
+- **Ruta relativa:** `.ai/skills/moveable-selecto-integration/SKILL.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/moveable-selecto-integration/SKILL.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `26`
+- **Líneas aproximadas:** `30`
 
 ### Contenido original
 
-# Sidebars y overlays
+# Skill: Integración Moveable/Selecto
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
+## Cuándo usar
 
-## LeftSidebar
-Catálogo de campos: búsqueda, tabs, favoritos, recientes, grupos y drag de schemas.
+Usa este skill cuando la tarea afecte `moveable-selecto-integration` o componentes relacionados del fork.
 
-## RightSidebar
-Paneles: Campos, Detalle, Comentarios y Docs.
+## Objetivo
 
-## DetailView
-Secciones recomendadas: Identidad, Caja, Apariencia, Comportamiento, Datos conectados, Colaboración, Comentarios y Avanzado.
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
 
-## Overlays
-- `SelectionContextToolbar`: acciones rápidas.
-- `CanvasContextMenu`: menú contextual.
-- `InlineEditOverlay`: edición de texto.
-- `InlineMetricsOverlay`: medidas.
-- `CommentsOverlay`: pines.
-- `SchemaDropPlaceholder`: drop visual.
+## Procedimiento
 
-## Reglas UX
-- No repetir headers ni chips de contexto en tres zonas.
-- Usar un solo `OwnerBadge` en lista, detalle y canvas.
-- Toolbar/context menu/sidebar deben usar las mismas acciones registradas.
+1. Validar targets.
+2. Validar selección múltiple.
+3. Evitar eventos duplicados.
+4. Evitar transforms externos.
+5. Probar drag, resize, group y delete.
+
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0129"></a>
-## Archivo #129: docs/05-schemas/01-registry-y-plugins.md
+## Archivo #129: .ai/skills/playwright-canvas-diagnostics/SKILL.md
 
-- **Ruta relativa:** `docs/05-schemas/01-registry-y-plugins.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/05-schemas/01-registry-y-plugins.md`
+- **Ruta relativa:** `.ai/skills/playwright-canvas-diagnostics/SKILL.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/playwright-canvas-diagnostics/SKILL.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `137`
+- **Líneas aproximadas:** `30`
 
 ### Contenido original
 
-# Registry de schemas, familias y plugins
+# Skill: Diagnóstico Playwright para canvas
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
+## Cuándo usar
 
-## Exports schemas
-| Export |
-| --- |
-| addAlphaToHex |
-| barcodes |
-| builtInFields |
-| builtInPlugins |
-| builtInSchemaDefinitions |
-| builtInSchemaDefinitionsByType |
-| changeSchemas |
-| checkbox |
-| convertForPdfLayoutProps |
-| createDefaultSchema |
-| createLucideIcon |
-| createSchemaBuilder |
-| createSchemaInspectorConfig |
-| createSchemaPlugin |
-| createSvgStr |
-| date |
-| dateTime |
-| ellipse |
-| flatSchemaPlugins |
-| flattenSchemaPlugins |
-| generateUniqueSchemaName |
-| getBuiltInFields |
-| getDynamicHeightsForTable |
-| getSchemaDefinition |
-| getSchemaFamily |
-| getSchemaFamilyInspectorPreset |
-| getSchemaPluginByType |
-| getSchemaTypeInspectorPreset |
-| hex2PrintingColor |
-| hex2RgbColor |
-| image |
-| isEditable |
-| line |
-| listSchemaDefinitions |
-| multiVariableText |
-| normalizeSchemaFamily |
-| radioGroup |
-| readFile |
-| rectangle |
-| registerFieldPlugin |
-| registerPlugins |
-| resolveSchemaFamily |
-| rotatePoint |
-| schemaFamilies |
-| schemaPlugins |
-| select |
-| signature |
-| svg |
-| table |
-| time |
-| validateSchemaNameUniqueness |
+Usa este skill cuando la tarea afecte `playwright-canvas-diagnostics` o componentes relacionados del fork.
 
-## Inventario por archivo
-| Grupo | Archivo | Líneas aprox. |
-| --- | --- | --- |
-| registry | src/sisad-pdfme/schemas/constants.ts | 3 |
-| registry | src/sisad-pdfme/schemas/index.ts | 349 |
-| registry | src/sisad-pdfme/schemas/modules.d.ts | 33 |
-| registry | src/sisad-pdfme/schemas/schemaBuilder.ts | 92 |
-| registry | src/sisad-pdfme/schemas/schemaFamilies.ts | 271 |
-| registry | src/sisad-pdfme/schemas/utils.ts | 295 |
-| barcodes | src/sisad-pdfme/schemas/barcodes/constants.ts | 21 |
-| barcodes | src/sisad-pdfme/schemas/barcodes/helper.ts | 188 |
-| barcodes | src/sisad-pdfme/schemas/barcodes/index.ts | 24 |
-| barcodes | src/sisad-pdfme/schemas/barcodes/pdfRender.ts | 38 |
-| barcodes | src/sisad-pdfme/schemas/barcodes/propPanel.ts | 259 |
-| barcodes | src/sisad-pdfme/schemas/barcodes/types.ts | 13 |
-| barcodes | src/sisad-pdfme/schemas/barcodes/uiRender.ts | 95 |
-| checkbox | src/sisad-pdfme/schemas/checkbox/index.ts | 84 |
-| date | src/sisad-pdfme/schemas/date/date.ts | 17 |
-| date | src/sisad-pdfme/schemas/date/dateTime.ts | 17 |
-| date | src/sisad-pdfme/schemas/date/helper.ts | 497 |
-| date | src/sisad-pdfme/schemas/date/time.ts | 17 |
-| date | src/sisad-pdfme/schemas/date/types.ts | 20 |
-| graphics | src/sisad-pdfme/schemas/graphics/image.ts | 207 |
-| graphics | src/sisad-pdfme/schemas/graphics/imagehelper.ts | 157 |
-| graphics | src/sisad-pdfme/schemas/graphics/svg.ts | 121 |
-| multiVariableText | src/sisad-pdfme/schemas/multiVariableText/helper.ts | 66 |
-| multiVariableText | src/sisad-pdfme/schemas/multiVariableText/index.ts | 24 |
-| multiVariableText | src/sisad-pdfme/schemas/multiVariableText/pdfRender.ts | 22 |
-| multiVariableText | src/sisad-pdfme/schemas/multiVariableText/propPanel.ts | 167 |
-| multiVariableText | src/sisad-pdfme/schemas/multiVariableText/types.ts | 7 |
-| multiVariableText | src/sisad-pdfme/schemas/multiVariableText/uiRender.ts | 171 |
-| radioGroup | src/sisad-pdfme/schemas/radioGroup/index.ts | 131 |
-| select | src/sisad-pdfme/schemas/select/index.ts | 267 |
-| shapes | src/sisad-pdfme/schemas/shapes/line.ts | 101 |
-| shapes | src/sisad-pdfme/schemas/shapes/rectAndEllipse.ts | 162 |
-| signature | src/sisad-pdfme/schemas/signature/index.ts | 312 |
-| signature | src/sisad-pdfme/schemas/signature/propPanel.ts | 618 |
-| signature | src/sisad-pdfme/schemas/signature/providerRegistry.ts | 217 |
-| signature | src/sisad-pdfme/schemas/signature/types.ts | 281 |
-| signature | src/sisad-pdfme/schemas/signature/validation.ts | 70 |
-| tables | src/sisad-pdfme/schemas/tables/cell.ts | 153 |
-| tables | src/sisad-pdfme/schemas/tables/classes.ts | 403 |
-| tables | src/sisad-pdfme/schemas/tables/dynamicTemplate.ts | 89 |
-| tables | src/sisad-pdfme/schemas/tables/helper.ts | 217 |
-| tables | src/sisad-pdfme/schemas/tables/index.ts | 23 |
-| tables | src/sisad-pdfme/schemas/tables/pdfRender.ts | 145 |
-| tables | src/sisad-pdfme/schemas/tables/propPanel.ts | 123 |
-| tables | src/sisad-pdfme/schemas/tables/tableHelper.ts | 279 |
-| tables | src/sisad-pdfme/schemas/tables/types.ts | 88 |
-| tables | src/sisad-pdfme/schemas/tables/uiRender.ts | 438 |
-| text | src/sisad-pdfme/schemas/text/constants.ts | 105 |
-| text | src/sisad-pdfme/schemas/text/extraFormatter.ts | 84 |
-| text | src/sisad-pdfme/schemas/text/helper.ts | 551 |
-| text | src/sisad-pdfme/schemas/text/index.ts | 24 |
-| text | src/sisad-pdfme/schemas/text/pdfRender.ts | 240 |
-| text | src/sisad-pdfme/schemas/text/propPanel.ts | 187 |
-| text | src/sisad-pdfme/schemas/text/types.ts | 31 |
-| text | src/sisad-pdfme/schemas/text/uiRender.ts | 289 |
-| text | src/sisad-pdfme/schemas/text/icons/index.ts | 31 |
+## Objetivo
 
-## Crear plugin nuevo
-```ts
-const myPlugin = createSchemaPlugin({
-  type: 'customField',
-  family: 'custom',
-  propPanel: { defaultSchema, schema },
-  ui: async (props) => {},
-  pdf: async (props) => {},
-});
-registerFieldPlugin(myPlugin);
-```
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
 
-## Reglas
-- Debe tener defaultSchema completo.
-- Debe funcionar en UI y PDF si será generado.
-- No debe depender del laboratorio.
-- Configuración avanzada debe ir en `__designer`.
+## Procedimiento
+
+1. Validar boundingBox.
+2. Validar backgroundImage del paper.
+3. Validar data attributes.
+4. Capturar screenshot en fallo.
+5. Usar runtime guard.
+
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0130"></a>
-## Archivo #130: docs/05-schemas/02-plugins-built-in-y-formulario.md
+## Archivo #130: .ai/skills/public-api-surface-design/SKILL.md
 
-- **Ruta relativa:** `docs/05-schemas/02-plugins-built-in-y-formulario.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/05-schemas/02-plugins-built-in-y-formulario.md`
+- **Ruta relativa:** `.ai/skills/public-api-surface-design/SKILL.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/public-api-surface-design/SKILL.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `33`
+- **Líneas aproximadas:** `30`
 
 ### Contenido original
 
-# Plugins built-in y formulario dinámico
+# Skill: Diseño de API pública
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
+## Cuándo usar
 
-## Plugins principales
-| Plugin | Uso | Runtime esperado |
-| --- | --- | --- |
-| text | Texto simple o editable. | designer/form/viewer/generator |
-| multiVariableText | Texto con variables. | designer/form/viewer/generator |
-| signature | Firma. | designer/form/viewer/generator |
-| checkbox | Booleanos. | form/viewer/generator |
-| radioGroup | Selección única. | form/viewer/generator |
-| select | Lista. | form/viewer/generator |
-| date/dateTime/time | Fechas. | form/viewer/generator |
-| barcodes | QR/códigos. | viewer/generator |
-| image/svg | Medios. | designer/viewer/generator |
-| line/rectangle/ellipse | Estructura. | designer/viewer/generator |
-| table | Tablas dinámicas. | designer/viewer/generator |
+Usa este skill cuando la tarea afecte `public-api-surface-design` o componentes relacionados del fork.
 
-## Formulario dinámico
-```text
-schema.name     → clave de input
-schema.type     → componente renderizado
-schema.required → validación
-schema.editable → input editable
-schema.hidden   → visibilidad
-__designer.api  → catálogos/prefill
-__designer.form → JSON final
-```
+## Objetivo
 
-## Recomendación
-El formulario no debe crear campos nuevos. Solo debe completar valores de schemas existentes.
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
+
+## Procedimiento
+
+1. Definir comando/evento.
+2. Usar payload serializable.
+3. Documentar contrato.
+4. Agregar test de guard.
+5. Evitar exponer DOM interno.
+
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0131"></a>
-## Archivo #131: docs/05-schemas/03-firma.md
+## Archivo #131: .ai/skills/schema-identity-persistence/SKILL.md
 
-- **Ruta relativa:** `docs/05-schemas/03-firma.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/05-schemas/03-firma.md`
+- **Ruta relativa:** `.ai/skills/schema-identity-persistence/SKILL.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/schema-identity-persistence/SKILL.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `33`
+- **Líneas aproximadas:** `30`
 
 ### Contenido original
 
-# Firma: dibujo, P12 y proveedores externos
+# Skill: Identidad y persistencia de schemas
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
+## Cuándo usar
 
-## Modos contemplados
-| Modo | Uso | Persistencia |
-| --- | --- | --- |
-| Dibujo/imagen | Firma capturada localmente. | dataURL o referencia segura. |
-| P12 | Certificado local. | metadata, nunca password. |
-| Proveedor externo | Firma con flujo externo. | providerId y estado; transacciones temporales fuera del template. |
+Usa este skill cuando la tarea afecte `schema-identity-persistence` o componentes relacionados del fork.
 
-## Proveedor externo configurable
-El plugin no debe setear proveedores fijos. El host debe poder inyectarlos por tenant o configuración.
+## Objetivo
 
-```ts
-const providers = [
-  { id: 'uanataca', label: 'Uanataca', flow: 'external-link' },
-  { id: 'tenant-a', label: 'Tenant A Sign', flow: 'embedded' },
-];
-```
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
 
-## Inspector recomendado
-- Modo de firma.
-- Proveedor visible solo si modo proveedor.
-- Botón Configurar proveedor.
-- Estado de firma: pendiente/completada/rechazada/expirada.
-- Avanzado: callbacks, mapping backend, policies.
+## Procedimiento
 
-## Seguridad
-- No persistir secretos ni passwords.
-- No guardar URL temporal de firma como parte permanente del schema.
-- Validar estado en backend antes de generar PDF final.
+1. Garantizar schemaUid estable.
+2. No usar label como identidad.
+3. Preservar documentId y pageIndex.
+4. Validar duplicados.
+5. Agregar test de migración o round-trip.
+
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0132"></a>
-## Archivo #132: docs/06-funcionalidades/01-multidocumento.md
+## Archivo #132: .ai/skills/schema-registry-extension/SKILL.md
 
-- **Ruta relativa:** `docs/06-funcionalidades/01-multidocumento.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/06-funcionalidades/01-multidocumento.md`
+- **Ruta relativa:** `.ai/skills/schema-registry-extension/SKILL.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/schema-registry-extension/SKILL.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `35`
+- **Líneas aproximadas:** `30`
 
 ### Contenido original
 
-# Multidocumento y paginación
+# Skill: Extensión del schema registry
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
+## Cuándo usar
 
-## Modelo recomendado
-```ts
-type MultiDocumentSession = {
-  activeDocumentId: string;
-  activePageIndex: number;
-  documents: Array<{
-    id: string;
-    name: string;
-    basePdf: string | BasePdf;
-    pageCount: number;
-    schemas: Schema[][];
-    inputs?: Record<string, unknown>[];
-    comments?: unknown[];
-  }>;
-};
-```
+Usa este skill cuando la tarea afecte `schema-registry-extension` o componentes relacionados del fork.
 
-## Cambio de documento
-1. Guardar schemas del documento actual.
-2. Cambiar `activeDocumentId`.
-3. Restaurar basePdf, schemas, inputs, comments y page.
-4. Limpiar selección inválida.
-5. Mantener zoom estable.
-6. Reconciliar assignments por `fileId`.
+## Objetivo
 
-## Errores que evita
-- Campos de un PDF sobre otro PDF.
-- Pérdida de campos al navegar.
-- Viewer/Form sin datos del documento correcto.
-- Render que cambia tamaño por recalcular en scroll.
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
+
+## Procedimiento
+
+1. Registrar key estable.
+2. Definir default schema.
+3. Agregar renderers designer/form/viewer/pdf.
+4. Agregar prop panel.
+5. Agregar test de snapshot round-trip.
+
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0133"></a>
-## Archivo #133: docs/06-funcionalidades/02-colaboracion-usuarios.md
+## Archivo #133: .ai/skills/wix-inspired-left-rail-ux/SKILL.md
 
-- **Ruta relativa:** `docs/06-funcionalidades/02-colaboracion-usuarios.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/06-funcionalidades/02-colaboracion-usuarios.md`
+- **Ruta relativa:** `.ai/skills/wix-inspired-left-rail-ux/SKILL.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/wix-inspired-left-rail-ux/SKILL.md`
 - **Extensión:** `.md`
-- **Líneas aproximadas:** `31`
+- **Líneas aproximadas:** `30`
 
 ### Contenido original
 
-# Colaboración, usuarios, roles y locks
+# Skill: UX de constructor visual para LeftRail
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
+## Cuándo usar
 
-## Modelo por schema
-```ts
-collaboration: {
-  ownerMode: 'user' | 'group' | 'shared';
-  ownerId: 'sales-user-1';
-  ownerIds: ['sales-user-1'];
-  ownerGroupId: 'sales-team';
-  visibleTo: ['sales-user-1', 'legal-user-1'];
-  editableBy: ['sales-user-1'];
-  state: 'draft' | 'locked' | 'merged';
-  lock: { lockedBy, lockedAt, reason, sessionId };
-}
-```
+Usa este skill cuando la tarea afecte `wix-inspired-left-rail-ux` o componentes relacionados del fork.
 
-## Vistas
-- `user`: muestra propios, compartidos y visibles para usuario activo.
-- `global`: muestra todos los campos con owner/color/lock.
+## Objetivo
 
-## Reglas
-- Cambio de usuario limpia selección oculta.
-- Campo locked bloquea edición estructural.
-- Owner color se ve en canvas, lista y detalle.
-- Comentarios preservan autor y color.
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
 
-## Backend futuro
-SSE/WebSocket para presencia y eventos, endpoints para locks, comentarios y auditoría.
+## Procedimiento
+
+1. Priorizar iconos y etiquetas cortas.
+2. Usar tabs compactos.
+3. Usar progressive disclosure.
+4. Optimizar búsqueda.
+5. Mantener drag/drop evidente.
+
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.
 
 [⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
 
 ---
 
 <a id="archivo-0134"></a>
-## Archivo #134: docs/06-funcionalidades/03-assignments.md
-
-- **Ruta relativa:** `docs/06-funcionalidades/03-assignments.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/06-funcionalidades/03-assignments.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `32`
-
-### Contenido original
-
-# Assignments recipient/file/page
-
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## Estructura
-```ts
-assignments[recipientId][fileId][pageNumber] = [schemaUid];
-```
-
-## APIs
-| Export |
-| --- |
-| buildFileAssignments |
-| buildPageAssignments |
-| buildRecipientAssignments |
-| buildSchemaAssignments |
-| buildUserSchemaAssignments |
-| getAssignmentsForFile |
-| getAssignmentsForPage |
-| getAssignmentsForRecipient |
-| moveSchemaAssignment |
-| reconcileAssignments |
-| removeSchemaFromAssignments |
-| validateAssignmentsConsistency |
-
-## Reglas
-- Usar `schemaUid`, no `id` temporal.
-- Mover entre página/documento actualiza bucket.
-- Eliminar schema lo remueve de todos los buckets.
-- Duplicar schema crea nuevo uid y nueva asignación.
-- Validar consistencia al cargar plantilla externa.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0135"></a>
-## Archivo #135: docs/06-funcionalidades/04-comentarios.md
-
-- **Ruta relativa:** `docs/06-funcionalidades/04-comentarios.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/06-funcionalidades/04-comentarios.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `50`
-
-### Contenido original
-
-# Comentarios, anclajes y replies
-
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## APIs
-| Export |
-| --- |
-| addAnchorToSchema |
-| addCommentToSchema |
-| addCommentWithAnchorToTemplate |
-| attachCommentToField |
-| createSchemaComment |
-| createSchemaCommentAnchor |
-| deleteCommentFromSchema |
-| detachCommentFromField |
-| filterCommentsByFileAndPage |
-| findSchemaByUid |
-| getCommentsForDocument |
-| getCommentsForPage |
-| getCommentsForSchema |
-| moveCommentAnchor |
-| reopenComment |
-| resolveCommentInSchema |
-| resolveTopLevelComment |
-| updateCommentInSchema |
-
-## Tipos
-- Comentario de documento.
-- Comentario de página.
-- Comentario anclado a schema.
-- Reply.
-- Resolved/reopen.
-
-## Modelo
-```ts
-comment: {
-  id: 'comment-1',
-  text: 'Revisar campo',
-  schemaUid: 'client_name',
-  fileId: 'doc-1',
-  pageNumber: 1,
-  authorId: 'legal-user-1',
-  authorColor: '#D946EF',
-  anchor: { x: 40, y: 80 }
-}
-```
-
-## UI
-Los pins deben ser clicables, pero el overlay completo no debe bloquear selección.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0136"></a>
-## Archivo #136: docs/06-funcionalidades/05-persistencia-api-formjson.md
-
-- **Ruta relativa:** `docs/06-funcionalidades/05-persistencia-api-formjson.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/06-funcionalidades/05-persistencia-api-formjson.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `30`
-
-### Contenido original
-
-# Persistencia, API, prefill y Form JSON
-
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## Configuración por schema
-```ts
-mergeSchemaDesignerConfig(schema, {
-  persistence: { enabled: true, mode: 'local', key: 'draft.' + schema.name },
-  api: {
-    enabled: true,
-    endpoint: '/api/catalog/countries',
-    method: 'GET',
-    requestMode: 'read',
-    responseMapping: { options: 'data.items' }
-  },
-  form: {
-    enabled: true,
-    collect: true,
-    format: 'nested',
-    rootKey: 'formData',
-    includeEmpty: false,
-    includeHidden: false,
-    includeMeta: true
-  }
-});
-```
-
-## Regla
-El plugin no debe asumir endpoints SISAD. Debe exponer configuración para que cada host conecte su backend.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0137"></a>
-## Archivo #137: docs/06-funcionalidades/06-generacion-y-conversion.md
-
-- **Ruta relativa:** `docs/06-funcionalidades/06-generacion-y-conversion.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/06-funcionalidades/06-generacion-y-conversion.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `28`
-
-### Contenido original
-
-# Generación, conversión y paridad visual
-
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## Flujo
-```text
-Designer guarda template
-→ Form completa inputs
-→ Viewer valida vista final
-→ validateRequiredFields
-→ generate
-→ PDF final
-```
-
-## APIs
-```ts
-const sizes = await pdf2size(pdfBytes);
-const images = await pdf2img(pdfBytes);
-const pdf = await img2pdf(images);
-const output = await generate({ template, inputs, plugins });
-```
-
-## Reglas
-- Cachear `pdf2size` y `pdf2img` por documento/hash.
-- No recalcular tamaño en cada scroll.
-- Viewer y generator deben coincidir visualmente.
-- Plugins con `ui` también deben tener `pdf` si generan salida.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0138"></a>
-## Archivo #138: docs/07-integracion/01-consumo-react.md
-
-- **Ruta relativa:** `docs/07-integracion/01-consumo-react.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/07-integracion/01-consumo-react.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `46`
-
-### Contenido original
-
-# Implementación en otro proyecto React
-
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## Alias Vite/TS mientras no haya paquete publicado
-```ts
-resolve: {
-  alias: {
-    '@sisad-pdfme/ui': path.resolve(__dirname, 'src/sisad-pdfme/ui'),
-    '@sisad-pdfme/common': path.resolve(__dirname, 'src/sisad-pdfme/common'),
-    '@sisad-pdfme/schemas': path.resolve(__dirname, 'src/sisad-pdfme/schemas'),
-    '@sisad-pdfme/generator': path.resolve(__dirname, 'src/sisad-pdfme/generator'),
-    '@sisad-pdfme/converter': path.resolve(__dirname, 'src/sisad-pdfme/converter/index.browser.ts')
-  }
-}
-```
-
-## Host mínimo
-```tsx
-function PdfDesignerHost({ template, onTemplateChange }) {
-  const ref = useRef(null);
-  const engine = useMemo(() => new DesignerEngineBuilder().build(), []);
-  const plugins = useMemo(() => builtInSchemaDefinitions, []);
-
-  useEffect(() => {
-    if (!ref.current) return;
-    const designer = new Designer({
-      domContainer: ref.current,
-      template,
-      plugins,
-      options: { lang: 'es', designerEngine: engine }
-    });
-    designer.onChangeTemplate?.(onTemplateChange);
-    return () => queueMicrotask(() => designer.destroy());
-  }, [template.version, engine, plugins]);
-
-  return <div ref={ref} style={{ height: '100%', minHeight: 720 }} />;
-}
-```
-
-## Reglas del host
-- Altura estable para el contenedor.
-- Props memoizadas.
-- No recrear runtime en scroll.
-- Separar estado por documento.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0139"></a>
-## Archivo #139: docs/07-integracion/02-editar-plantilla-existente.md
-
-- **Ruta relativa:** `docs/07-integracion/02-editar-plantilla-existente.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/07-integracion/02-editar-plantilla-existente.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `24`
-
-### Contenido original
-
-# Editar plantilla existente
-
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## Flujo
-1. Cargar JSON desde backend/archivo.
-2. Validar `checkTemplate`.
-3. Normalizar `schemas` como `Schema[][]`.
-4. Resolver basePdf.
-5. Reconciliar `schemaUid`, `fileId`, `pageNumber`.
-6. Reconstruir assignments si faltan.
-7. Renderizar en Designer.
-8. Guardar nueva versión.
-
-## Migración rápida
-```ts
-schema.schemaUid = schema.schemaUid || fileId + ':' + pageNumber + ':' + schema.name;
-schema.fileId = schema.fileId || activeDocumentId;
-schema.pageNumber = schema.pageNumber || pageIndex + 1;
-```
-
-## Persistencia recomendada
-Guardar `template`, `documents`, `assignments`, `recipients`, `comments`, `version`, `updatedBy` y `updatedAt`.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0140"></a>
-## Archivo #140: docs/07-integracion/03-ejemplos-laboratorio.md
-
-- **Ruta relativa:** `docs/07-integracion/03-ejemplos-laboratorio.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/07-integracion/03-ejemplos-laboratorio.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `57`
-
-### Contenido original
-
-# Ejemplos de laboratorio y casos de uso
-
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## Ejemplos detectados/esperados
-| Ejemplo |
-| --- |
-| basic-designer |
-| basic-full-name |
-| basic-role |
-| basic-signature |
-| basic-user-1 |
-| basic-user-2 |
-| comment-enterprise-1 |
-| comment-generator-1 |
-| comment-multiuser-1 |
-| comment-multiuser-2 |
-| comment-multiuser-3 |
-| enterprise-collaboration |
-| enterprise-company-name |
-| enterprise-contract-status |
-| file-contract-a |
-| file-contract-b |
-| generator-customer-name |
-| generator-plan |
-| generator-runtime |
-| generator-terms |
-| generator-user-1 |
-| generator-user-2 |
-| legal-user-1 |
-| multi-annex-name |
-| multi-annex-sign |
-| multi-contract-date |
-| multi-contract-name |
-| multi-document-routing |
-| multiuser-collaboration |
-| multiuser-locked-approval |
-| multiuser-owner-name |
-| multiuser-shared-summary |
-| multiuser-team-note |
-| ops-user-1 |
-| recipient-1 |
-| recipient-2 |
-| routing-user-1 |
-| sales-user-1 |
-
-## Cada ejemplo debe probar
-- modo Designer, Form y Viewer cuando aplique;
-- template descargable;
-- carga de template existente;
-- generación de PDF;
-- documentos reales;
-- usuarios/recipients;
-- assignments;
-- comentarios;
-- estado local claro, sin fingir backend real.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0141"></a>
-## Archivo #141: docs/07-integracion/04-sisad-web-y-backend-futuro.md
-
-- **Ruta relativa:** `docs/07-integracion/04-sisad-web-y-backend-futuro.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/07-integracion/04-sisad-web-y-backend-futuro.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `33`
-
-### Contenido original
-
-# SISAD Web incompleto y contratos backend futuros
-
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## SISAD Web
-Los archivos de SISAD Web son referencia para casos de uso, pero no deben copiarse como fuente de verdad. Sirven para entender:
-- integración con flujos existentes;
-- ContentCustomForm;
-- stepper externo;
-- documentos de respaldo;
-- firma y generación.
-
-## Adaptador recomendado
-```text
-SISAD workflow metadata
-→ MultiDocumentSession
-→ Template + documents + recipients + assignments
-→ Designer/Form/Viewer
-→ callbacks: onSave, onGenerate, onSignatureRequest
-```
-
-## Endpoints futuros
-| Endpoint | Uso |
-| --- | --- |
-| GET/PUT `/templates/:id` | Cargar/guardar plantilla. |
-| GET `/documents/:id/pdf` | PDF base. |
-| GET/PUT `/sessions/:id/assignments` | Ruteo. |
-| GET/POST/PATCH `/sessions/:id/comments` | Comentarios. |
-| WS/SSE `/sessions/:id/events` | Sync/presencia. |
-| POST `/generator/pdf` | PDF final. |
-| GET `/signatures/providers` | Proveedores por tenant. |
-| POST `/signatures/transactions` | Crear transacción. |
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0142"></a>
-## Archivo #142: docs/08-calidad/01-css-design-system.md
-
-- **Ruta relativa:** `docs/08-calidad/01-css-design-system.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/08-calidad/01-css-design-system.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `25`
-
-### Contenido original
-
-# CSS, tokens y reducción de redundancia visual
-
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## CSS fuente
-Se consolidaron estilos desde `sisad-pdfme-global.css`, `labRoutes.css`, `canvas-interactions.css` y `tokens.css`.
-
-## Reglas
-- Tokens para colores, radios, sombras, z-index, sidebars y transiciones.
-- Cero estilos inline para owner badges, chips repetidos y botones estándar.
-- Separar estilos del laboratorio de estilos exportables.
-- No permitir que CSS de UX altere geometría del paper.
-
-## Reducción de redundancia
-Crear/reutilizar:
-- `EditorContextSummary`.
-- `OwnerBadge`.
-- `DocumentPageChip`.
-- `ToolbarGroup`.
-- `IconActionButton`.
-- `SearchBox` común para left/right cuando aplique.
-
-## Éxito
-Menos headers duplicados, canvas-first real, sidebars más compactos y acciones consistentes.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0143"></a>
-## Archivo #143: docs/08-calidad/02-testing.md
-
-- **Ruta relativa:** `docs/08-calidad/02-testing.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/08-calidad/02-testing.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `21`
-
-### Contenido original
-
-# Testing y regresión
-
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## Cobertura recomendada
-- Unit: engine, registry, commands, assignments, comments, collaboration, schemas.
-- Component: detail widgets, list view, comments rail, sidebars.
-- Playwright: Designer, Form, Viewer, multi-document, multi-user, firma, canvas, geometry.
-
-## Tests críticos
-- Viewer mantiene tamaño al hacer scroll.
-- Designer muestra schemas en documento activo.
-- Cambio Designer/Form/Viewer no pierde template.
-- Selecto funciona con zoom y scroll.
-- Acciones de toolbar/context menu/shortcut producen mismo resultado.
-- Multiusuario limpia selección oculta.
-- Firma provider no persiste secretos.
-
-## Runtime guard
-Debe fallar ante warnings de React, errores de render, unmount síncrono y errores de ResizeObserver no controlados.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0144"></a>
-## Archivo #144: docs/08-calidad/03-troubleshooting-render.md
-
-- **Ruta relativa:** `docs/08-calidad/03-troubleshooting-render.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/08-calidad/03-troubleshooting-render.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `37`
-
-### Contenido original
-
-# Troubleshooting de render, scroll y canvas en blanco
-
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## Síntomas
-- Visor crece por intervalos.
-- Scroll cambia tamaño del paper.
-- Designer no muestra schemas.
-- Canvas queda en blanco.
-- Warning: Attempted to synchronously unmount a root.
-
-## Causas probables
-1. ResizeObserver provoca render loop.
-2. Paper usa transform scale pero reserva tamaño incorrecto.
-3. Preview recalcula scale desde contenedor inestable.
-4. Props se recrean en cada render del host.
-5. Multi-documento cambia basePdf sin restaurar schemas.
-6. CSS del laboratorio usa layout que cambia medidas.
-
-## Fixes
-- Evitar render si size no cambió realmente.
-- Reservar tamaño visual escalado en Paper.
-- Congelar zoom salvo acción explícita.
-- Memoizar template/options/plugins.
-- Cleanup con `queueMicrotask`.
-- Separar scroll container de paper root.
-
-## Test
-```ts
-const before = await paper.boundingBox();
-await page.mouse.wheel(0, 700);
-await page.waitForTimeout(500);
-const after = await paper.boundingBox();
-expect(Math.abs(after.width - before.width)).toBeLessThan(1);
-expect(Math.abs(after.height - before.height)).toBeLessThan(1);
-```
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0145"></a>
-## Archivo #145: docs/99-anexos/01-inventario.md
-
-- **Ruta relativa:** `docs/99-anexos/01-inventario.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/99-anexos/01-inventario.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `151`
-
-### Contenido original
-
-# Inventario técnico completo
-
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## Conteo por carpeta raíz
-| Carpeta | Archivos |
-| --- | --- |
-| src | 360 |
-| tests | 48 |
-| merge-css-from-folder.js | 1 |
-| merge-md-from-folder.js | 1 |
-| merge-react-from-folder.js | 1 |
-| playwright.config.ts | 1 |
-| test-script.js | 1 |
-| vite.config.js | 1 |
-| vitest.config.ts | 1 |
-| .backup-ai-workspace | 1 |
-
-## Componentes UI
-| Archivo | Rol | Líneas aprox. |
-| --- | --- | --- |
-| src/sisad-pdfme/ui/components/AppContextProvider.tsx | UI | 87 |
-| src/sisad-pdfme/ui/components/CtlBar.tsx | UI | 342 |
-| src/sisad-pdfme/ui/components/ErrorScreen.tsx | UI | 26 |
-| src/sisad-pdfme/ui/components/Paper.tsx | Preview/render schema | 143 |
-| src/sisad-pdfme/ui/components/Preview.tsx | Preview/render schema | 152 |
-| src/sisad-pdfme/ui/components/Renderer.tsx | Preview/render schema | 329 |
-| src/sisad-pdfme/ui/components/Root.tsx | UI | 44 |
-| src/sisad-pdfme/ui/components/Spinner.tsx | UI | 46 |
-| src/sisad-pdfme/ui/components/StaticSchema.tsx | Preview/render schema | 57 |
-| src/sisad-pdfme/ui/components/UnitPager.tsx | UI | 120 |
-| src/sisad-pdfme/ui/components/usePreviewRuntime.ts | Preview/render schema | 437 |
-| src/sisad-pdfme/ui/components/Designer/exports.ts | Designer shell/catalogo | 51 |
-| src/sisad-pdfme/ui/components/Designer/index.tsx | Designer shell/catalogo | 2815 |
-| src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx | Designer shell/catalogo | 1339 |
-| src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx | Designer shell/catalogo | 328 |
-| src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx | Designer shell/catalogo | 94 |
-| src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx | Designer shell/catalogo | 73 |
-| src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx | Designer shell/catalogo | 33 |
-| src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx | Designer shell/catalogo | 52 |
-| src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx | Designer shell/catalogo | 104 |
-| src/sisad-pdfme/ui/components/Designer/schemaRegistry.ts | Designer shell/catalogo | 127 |
-| src/sisad-pdfme/ui/components/Designer/useLeftSidebarCatalogState.ts | Designer shell/catalogo | 147 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx | Canvas/interacción/overlay | 1161 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/Guides.tsx | Canvas/interacción/overlay | 95 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/index.tsx | Canvas/interacción/overlay | 3 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/Mask.tsx | Canvas/interacción/overlay | 36 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx | Canvas/interacción/overlay | 107 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/Padding.tsx | Canvas/interacción/overlay | 82 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx | Canvas/interacción/overlay | 70 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/SnapLines.tsx | Canvas/interacción/overlay | 347 |
-| src/sisad-pdfme/ui/components/Designer/Comments/CommentDialog.tsx | Designer shell/catalogo | 75 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx | RightSidebar/inspector | 324 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/contextHeader.ts | RightSidebar/inspector | 19 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx | RightSidebar/inspector | 222 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/index.tsx | RightSidebar/inspector | 3 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx | RightSidebar/inspector | 59 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx | RightSidebar/inspector | 422 |
-| src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts | Designer shell/catalogo | 291 |
-| src/sisad-pdfme/ui/components/Designer/shared/className.ts | Designer shell/catalogo | 18 |
-| src/sisad-pdfme/ui/components/Designer/shared/interactionState.ts | Designer shell/catalogo | 63 |
-| src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts | Designer shell/catalogo | 55 |
-| src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts | Designer shell/catalogo | 346 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx | Canvas/interacción/overlay | 236 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.tsx | Canvas/interacción/overlay | 919 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx | Canvas/interacción/overlay | 111 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx | Canvas/interacción/overlay | 162 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry.ts | Canvas/interacción/overlay | 98 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx | Canvas/interacción/overlay | 154 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx | Canvas/interacción/overlay | 24 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx | Canvas/interacción/overlay | 193 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx | Canvas/interacción/overlay | 39 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/useFloatingToolbarPosition.ts | Canvas/interacción/overlay | 70 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx | RightSidebar/inspector | 60 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx | RightSidebar/inspector | 79 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel.tsx | RightSidebar/inspector | 98 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx | RightSidebar/inspector | 51 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx | RightSidebar/inspector | 152 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts | RightSidebar/inspector | 357 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx | RightSidebar/inspector | 105 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx | RightSidebar/inspector | 357 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx | RightSidebar/inspector | 76 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.tsx | RightSidebar/inspector | 190 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/index.tsx | RightSidebar/inspector | 2 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx | RightSidebar/inspector | 916 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared.tsx | RightSidebar/inspector | 147 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation.ts | RightSidebar/inspector | 84 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx | RightSidebar/inspector | 821 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.tsx | RightSidebar/inspector | 265 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx | RightSidebar/inspector | 33 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/index.tsx | RightSidebar/inspector | 2 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx | RightSidebar/inspector | 329 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListView.tsx | RightSidebar/inspector | 197 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewDragOverlay.tsx | RightSidebar/inspector | 61 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewFooter.tsx | RightSidebar/inspector | 56 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx | RightSidebar/inspector | 195 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableContainer.tsx | RightSidebar/inspector | 205 |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableItem.tsx | RightSidebar/inspector | 117 |
-
-## Tests
-| Archivo | Líneas aprox. |
-| --- | --- |
-| tests/playwright/pdfme-editor.spec.ts | 456 |
-| tests/playwright/runtime-guard.ts | 65 |
-| tests/unit/actionRegistry.test.ts | 199 |
-| tests/unit/appRoutes.test.tsx | 36 |
-| tests/unit/changeSchemas.test.ts | 113 |
-| tests/unit/checkboxSchema.test.ts | 80 |
-| tests/unit/collaboration.test.ts | 483 |
-| tests/unit/collaborationAllFunctions.test.ts | 160 |
-| tests/unit/collaborationAssignmentsAndComments.test.ts | 135 |
-| tests/unit/collaborationContext.test.ts | 226 |
-| tests/unit/collaborationContextAllFunctions.test.ts | 150 |
-| tests/unit/collaborationRuntimeAllFunctions.test.ts | 154 |
-| tests/unit/collaborationSync.test.ts | 411 |
-| tests/unit/commandBus.test.ts | 66 |
-| tests/unit/commentModel.test.ts | 199 |
-| tests/unit/commentsRail.test.tsx | 83 |
-| tests/unit/compactConfigPanel.test.tsx | 61 |
-| tests/unit/designerEngine.test.ts | 437 |
-| tests/unit/designerEngineBuilderAllMethods.test.ts | 103 |
-| tests/unit/designerEngineContracts.test.ts | 180 |
-| tests/unit/detailHeaderCard.test.tsx | 94 |
-| tests/unit/detailSchemas.test.ts | 133 |
-| tests/unit/detailSectionCard.test.tsx | 23 |
-| tests/unit/detailWidgets.test.tsx | 51 |
-| tests/unit/dynamicTemplate.test.ts | 161 |
-| tests/unit/fieldCommentsSection.test.ts | 89 |
-| tests/unit/generatorHelper.test.ts | 87 |
-| tests/unit/inlineEditOverlay.test.tsx | 58 |
-| tests/unit/labExamples.test.ts | 119 |
-| tests/unit/labShellComponents.test.tsx | 293 |
-| tests/unit/labState.test.ts | 36 |
-| tests/unit/labTemplate.test.ts | 16 |
-| tests/unit/radioGroupSchema.test.ts | 59 |
-| tests/unit/rightSidebarContextHeader.test.tsx | 41 |
-| tests/unit/schemaCollaborationWidget.test.tsx | 333 |
-| tests/unit/schemaConnectionsValidation.test.ts | 45 |
-| tests/unit/schemaConnectionsWidget.test.tsx | 129 |
-| tests/unit/schemaDropSetupModal.test.tsx | 143 |
-| tests/unit/schemaFamilies.test.ts | 39 |
-| tests/unit/schemaFamiliesAllFunctions.test.ts | 95 |
-| tests/unit/schemaLockEvents.test.ts | 98 |
-| tests/unit/schemaRegistryAllFunctions.test.ts | 111 |
-| tests/unit/schemaVariableName.test.ts | 33 |
-| tests/unit/selectionCommands.test.ts | 304 |
-| tests/unit/setupTests.ts | 12 |
-| tests/unit/signatureSchema.test.ts | 172 |
-| tests/unit/staticSchema.test.tsx | 48 |
-| tests/unit/textSchema.test.ts | 125 |
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0146"></a>
-## Archivo #146: docs/99-anexos/02-checklist-adopcion.md
-
-- **Ruta relativa:** `docs/99-anexos/02-checklist-adopcion.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/99-anexos/02-checklist-adopcion.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `33`
-
-### Contenido original
-
-# Checklist de adopción
-
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-## Integración
-- [ ] Definir distribución: alias local, submódulo o paquete privado.
-- [ ] Confirmar entrypoints públicos.
-- [ ] Definir almacenamiento de template.
-- [ ] Definir almacenamiento de PDFs base.
-- [ ] Definir documents, recipients, assignments y comments.
-- [ ] Definir providers de firma.
-- [ ] Definir callbacks del host.
-
-## Designer
-- [ ] Contenedor con alto fijo/estable.
-- [ ] Engine memoizado.
-- [ ] Plugins memoizados.
-- [ ] Cleanup diferido.
-- [ ] Autosave debounced.
-- [ ] Tests de documento/página/selección.
-
-## Form/Viewer/Generate
-- [ ] Inputs mapeados por schema.name.
-- [ ] Requeridos validados.
-- [ ] Viewer estable en scroll.
-- [ ] PDF generado coincide con preview.
-
-## Producción
-- [ ] Runtime guard sin warnings.
-- [ ] Tests unit/e2e pasan.
-- [ ] Documentación de backend lista.
-- [ ] Versionado/changelog actualizado.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0147"></a>
-## Archivo #147: docs/99-anexos/03-prompt-maestro.md
-
-- **Ruta relativa:** `docs/99-anexos/03-prompt-maestro.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/99-anexos/03-prompt-maestro.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `22`
-
-### Contenido original
-
-# Prompt maestro para continuar implementación
-
-> Documentación generada para consumo externo de `sisad-pdfme`.
-
-```text
-Actúa como arquitecto principal de sisad-pdfme. Usa esta documentación como guía. El plugin aún no tiene backend real; los ejemplos deben seguir con mocks/local state pero los contratos deben quedar preparados.
-
-Objetivos:
-1. Mantener entrypoints públicos y documentados.
-2. Asegurar consumo externo de Designer, Form, Viewer, generator y converter.
-3. Estabilizar multidocumento con documents, activeDocumentId, schemas, inputs, comments y assignments.
-4. Estabilizar multiusuario con owner, color, locks y vista user/global.
-5. Permitir edición de plantilla existente con migración de schemaUid/fileId/pageNumber.
-6. Reducir redundancia visual y mover estilos inline a tokens/clases.
-7. Unificar acciones mediante commandBus/actionRegistry/selectionCommands.
-8. Corregir Selecto con zoom/scroll.
-9. Corregir viewer/designer para que el paper no cambie tamaño al hacer scroll.
-10. Añadir Vitest y Playwright para los flujos críticos.
-
-Entrega: cambios pequeños, archivos tocados, riesgos, tests ejecutados y docs actualizadas.
-```
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0148"></a>
-## Archivo #148: .ai/agents/legacy/pdfme-command-architect.md
-
-- **Ruta relativa:** `.ai/agents/legacy/pdfme-command-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy/pdfme-command-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `32`
-
-### Contenido original
-
----
-name: sisad-pdfme-command-architect
-description: Use this agent when improving shared interaction state, selection commands, command registries, copy/paste styles, grouping, and reusable command logic.
----
-
-# sisad-pdfme-command-architect
-
-You are a senior architect specialized in shared editor logic and command layers.
-
-## Scope
-- shared interaction state
-- shared selection commands
-- type contracts
-- command registry
-- copy/paste styles
-- group/ungroup
-
-## Rules
-- Prefer pure helpers
-- Avoid UI logic here
-- Keep a single source of truth
-- Do not introduce parallel command systems
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0149"></a>
-## Archivo #149: .ai/agents/legacy/pdfme-css-polish-architect.md
-
-- **Ruta relativa:** `.ai/agents/legacy/pdfme-css-polish-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy/pdfme-css-polish-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `28`
-
-### Contenido original
-
----
-name: sisad-pdfme-css-polish-architect
-description: Use this agent when improving CSS consistency, visual polish, spacing, motion, hierarchy, z-indexes, and conflicts between the main style layers.
----
-
-# sisad-pdfme-css-polish-architect
-
-You are a senior visual architect specialized in CSS consolidation and UI polish for visual editors.
-
-## Scope
-- sisad-pdfme-improved.css
-- final-classes.css
-
-## Rules
-- Do not touch TypeScript or JSX
-- Keep sisad-pdfme-improved.css as the primary UX layer when possible
-- Keep final-classes.css focused on structural/vendor support
-- Avoid unnecessary 
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0150"></a>
-## Archivo #150: .ai/agents/legacy/pdfme-editor-architect.md
-
-- **Ruta relativa:** `.ai/agents/legacy/pdfme-editor-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy/pdfme-editor-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `29`
-
-### Contenido original
-
----
-name: sisad-pdfme-editor-architect
-description: Use this agent when the user asks to add, improve, refactor, stabilize, or evolve functionality in the sisad-pdfme-based visual editor toward a Wix/Figma-like experience without breaking the current architecture.
----
-
-# sisad-pdfme-editor-architect
-
-You are a senior frontend architect specialized in incremental refactoring and UX for visual editors like Wix, Figma, Framer, and Canva.
-
-## Mission
-Improve the sisad-pdfme editor incrementally without rewriting the motor.
-
-## Core principles
-- Preserve Canvas, Moveable, Selecto, and overlay coordination
-- Avoid duplication
-- Prefer consolidation before expansion
-- Keep changes small and reversible
-- Respect canvas-first and progressive disclosure
-- Separate document, tools, object, and deep-edit layers
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0151"></a>
-## Archivo #151: .ai/agents/legacy/pdfme-layout-architect.md
-
-- **Ruta relativa:** `.ai/agents/legacy/pdfme-layout-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy/pdfme-layout-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `31`
-
-### Contenido original
-
----
-name: sisad-pdfme-layout-architect
-description: Use this agent when improving the overall layout and shell of the editor: top bar, left rail, panel distribution, workspace hierarchy, and macro UX structure.
----
-
-# sisad-pdfme-layout-architect
-
-You are a senior architect specialized in workspace layout and editor shell UX.
-
-## Scope
-- top bar structure
-- left rail
-- shell hierarchy
-- layout contracts
-- document/tools/object separation
-
-## Rules
-- Do not rewrite Canvas
-- Do not refactor overlay internals here
-- Prefer structural clarity over visual decoration
-- Keep changes incremental
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0152"></a>
-## Archivo #152: .ai/agents/legacy/pdfme-overlay-architect.md
-
-- **Ruta relativa:** `.ai/agents/legacy/pdfme-overlay-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy/pdfme-overlay-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `34`
-
-### Contenido original
-
----
-name: sisad-pdfme-overlay-architect
-description: Use this agent when working on on-canvas overlays such as floating toolbars, badges, metrics, focus boxes, insert overlays, spacing guides, and overlay positioning.
----
-
-# sisad-pdfme-overlay-architect
-
-You are a senior frontend architect specialized in on-canvas overlays for visual editors.
-
-## Scope
-- CanvasOverlayManager
-- SelectionContextToolbar
-- InlineMetricsOverlay
-- SelectionBadgesOverlay
-- SnapFeedbackOverlay
-- SectionInsertOverlay
-- useFloatingToolbarPosition
-
-## Rules
-- Do not redesign RightSidebar
-- Do not rewrite Canvas
-- Keep positioning logic centralized
-- Avoid duplicate geometry calculations
-- Work in small reversible iterations
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0153"></a>
-## Archivo #153: .ai/agents/legacy/pdfme-registry-architect.md
-
-- **Ruta relativa:** `.ai/agents/legacy/pdfme-registry-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy/pdfme-registry-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `30`
-
-### Contenido original
-
----
-name: sisad-pdfme-registry-architect
-description: Use this agent when improving editor extensibility through registries, JSON-driven toolbars, configurable controls, and versioned contracts.
----
-
-# sisad-pdfme-registry-architect
-
-You are a senior architecture agent specialized in extensibility systems for visual editors.
-
-## Scope
-- command registry
-- control registry
-- JSON-driven toolbar config
-- versioned editor contracts
-
-## Rules
-- Do not redesign current UI in the same pass
-- Focus on contracts and extensibility
-- Keep backward compatibility in mind
-- Keep scope small
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0154"></a>
-## Archivo #154: .ai/agents/legacy/pdfme-sidebar-architect.md
-
-- **Ruta relativa:** `.ai/agents/legacy/pdfme-sidebar-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy/pdfme-sidebar-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `33`
-
-### Contenido original
-
----
-name: sisad-pdfme-sidebar-architect
-description: Use this agent when improving RightSidebar modes, layers panel, list/detail/docs tabs, quick edit, bulk edit, and sidebar UX behavior.
----
-
-# sisad-pdfme-sidebar-architect
-
-You are a senior architect specialized in contextual side panels for visual editors.
-
-## Scope
-- RightSidebar
-- ListView
-- DetailView
-- LayersPanel
-- quick-edit
-- bulk-edit
-- docs mode
-
-## Rules
-- Keep clear sidebar modes
-- Respect progressive disclosure
-- Do not refactor canvas overlays here
-- Keep single click lightweight and deep edit intentional
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0155"></a>
-## Archivo #155: .ai/agents/legacy/pdfme-testing-architect.md
-
-- **Ruta relativa:** `.ai/agents/legacy/pdfme-testing-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy/pdfme-testing-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `32`
-
-### Contenido original
-
----
-name: sisad-pdfme-testing-architect
-description: Use this agent when adding or improving tests for the sisad-pdfme visual editor, including overlays, sidebar modes, toolbars, and editor interactions.
----
-
-# sisad-pdfme-testing-architect
-
-You are a senior testing architect specialized in editor interaction testing.
-
-## Scope
-- unit tests
-- integration tests
-- Playwright
-- overlay visibility rules
-- toolbar behavior
-- sidebar behavior
-- selection flows
-
-## Rules
-- Do not refactor production code unless testability truly requires it
-- Prefer deterministic interactions
-- Keep testing iterations small
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0156"></a>
-## Archivo #156: .ai/agents/legacy/pdfme-toolbar-architect.md
-
-- **Ruta relativa:** `.ai/agents/legacy/pdfme-toolbar-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy/pdfme-toolbar-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `31`
-
-### Contenido original
-
----
-name: sisad-pdfme-toolbar-architect
-description: Use this agent when improving top bars, tools menus, contextual toolbars, schema-specific controls, or toolbar interaction patterns.
----
-
-# sisad-pdfme-toolbar-architect
-
-You are a senior UX/UI architect specialized in toolbars for visual editors.
-
-## Scope
-- CtlBar
-- SelectionContextToolbar
-- tools menu
-- schema-specific toolbar actions
-- top bar layering
-
-## Rules
-- Separate document actions, tools actions, and object actions
-- Do not duplicate toolbar and sidebar responsibilities
-- Keep the floating toolbar contextual and fast
-- Prefer shared command reuse
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0157"></a>
-## Archivo #157: .ai/skills/canvas-geometry-scaling/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/canvas-geometry-scaling/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/canvas-geometry-scaling/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `43`
-
-### Contenido original
-
-# SKILL: Canvas Geometry Scaling
-
-## Intención
-Trabajar zoom, scale, paper geometry y wrappers sin producir drift visual.
-
-## Cuándo usar esta skill
-- saltos al hacer zoom
-- paper mal escalado
-- offsets inconsistentes
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/ui/components/Paper.tsx`
-- `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- medir root/page bounds
-- revisar transform-origin
-- validar scroll
-- probar low/high zoom
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0158"></a>
-## Archivo #158: .ai/skills/canvas-interaction/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/canvas-interaction/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/canvas-interaction/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `23`
-
-### Contenido original
-
-# Skill: Canvas Interaction
-
-## Enfoque
-Toda mejora de interacción debe respetar el foco del canvas y minimizar fricción para el usuario.
-
-## Debe cubrir
-- Selección
-- Hover
-- Resize
-- Move
-- Snap
-- Guías
-- Overlays
-- Toolbars contextuales
-
-## Recomendaciones
-- Priorizar accesibilidad (soporte teclado y focus management).
-- Minimizar reflows y mantener alta responsividad durante drag/resize.
-
-## Ejemplos de tareas
-- Implementar snapping configurable.
-- Añadir atajos de teclado para manipulación rápida.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0159"></a>
-## Archivo #159: .ai/skills/canvas-overlay-composition/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/canvas-overlay-composition/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/canvas-overlay-composition/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# SKILL: Canvas Overlay Composition
-
-## Intención
-Coordinar toolbar, inline editing, métricas y feedback contextual sin colisiones.
-
-## Cuándo usar esta skill
-- overlays superpuestos
-- toolbar mal posicionada
-- edición inline conflictiva
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- definir prioridades
-- centralizar visibilidad
-- cuidar focus y pointer events
-- validar viewport edges
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0160"></a>
-## Archivo #160: .ai/skills/catalog-discovery-patterns/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/catalog-discovery-patterns/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/catalog-discovery-patterns/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# SKILL: Catalog Discovery Patterns
-
-## Intención
-Mejorar búsqueda, favoritos, recent y revelado progresivo del catálogo.
-
-## Cuándo usar esta skill
-- discovery mode débil
-- búsqueda confusa
-- grupos poco útiles
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/ui/components/Designer/LeftSidebar*`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- cuidar relevancia
-- evitar saturación
-- mantener filtros simples
-- validar empty states
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0161"></a>
-## Archivo #161: .ai/skills/collaboration-state-sync/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/collaboration-state-sync/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/collaboration-state-sync/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `43`
-
-### Contenido original
-
-# SKILL: Collaboration State Sync
-
-## Intención
-Coordinar estado colaborativo entre dominio, widgets y sincronización UI.
-
-## Cuándo usar esta skill
-- comentarios no enlazan
-- presencia incorrecta
-- sync parcial
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/common/collaboration.ts`
-- `src/sisad-pdfme/ui/collaboration.ts`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- identidad estable
-- eventos claros
-- conflictos visibles
-- pruebas de sync
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0162"></a>
-## Archivo #162: .ai/skills/component-composition/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/component-composition/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/component-composition/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `13`
-
-### Contenido original
-
-# Skill: Component Composition
-
-## Regla principal
-Cada componente debe tener una responsabilidad principal clara.
-
-## Buenas prácticas
-- separar shell y contenido
-- separar presentacional y lógico
-- aislar side effects
-- evitar mega props
-- usar composición sobre condicionales gigantes
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0163"></a>
-## Archivo #163: .ai/skills/converter-pipeline-integrity/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/converter-pipeline-integrity/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/converter-pipeline-integrity/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# SKILL: Converter Pipeline Integrity
-
-## Intención
-Mantener integridad del pipeline de conversión PDF/imágenes entre browser y node.
-
-## Cuándo usar esta skill
-- fallos en pdf2img
-- diferencias browser/node
-- errores de worker o canvas
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/converter`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- validar entrypoints
-- validar tipos
-- validar errores y ranges
-- probar memoria/performance básica
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0164"></a>
-## Archivo #164: .ai/skills/css-layering-and-overrides/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/css-layering-and-overrides/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/css-layering-and-overrides/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# SKILL: CSS Layering And Overrides
-
-## Intención
-Ordenar overrides CSS y evitar conflictos entre tokens, globales e interacciones.
-
-## Cuándo usar esta skill
-- specificity wars
-- estilos duplicados
-- overrides inseguros
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/ui/styles/*.css`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- definir capas
-- reducir !important
-- preferir scopes estables
-- documentar zonas peligrosas
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0165"></a>
-## Archivo #165: .ai/skills/design-system-consistency/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/design-system-consistency/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/design-system-consistency/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `15`
-
-### Contenido original
-
-# Skill: Design System Consistency
-
-## Objetivo
-Mantener coherencia visual y semántica.
-
-## Revisar siempre
-- spacing
-- radius
-- shadows
-- typography
-- icon sizing
-- hover/focus/active
-- color semantics
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0166"></a>
-## Archivo #166: .ai/skills/design-token-governance/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/design-token-governance/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/design-token-governance/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `43`
-
-### Contenido original
-
-# SKILL: Design Token Governance
-
-## Intención
-Mantener disciplina en tokens visuales, semántica de variables y capas de estilos.
-
-## Cuándo usar esta skill
-- hardcoded colors
-- variables duplicadas
-- overrides caóticos
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/ui/styles/tokens.css`
-- `src/sisad-pdfme/ui/styles/*.css`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- preferir tokens semánticos
-- reducir duplicación
-- cuidar scopes
-- evitar guerras de especificidad
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0167"></a>
-## Archivo #167: .ai/skills/designer-engine-runtime-state/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/designer-engine-runtime-state/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/designer-engine-runtime-state/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# SKILL: Designer Engine Runtime State
-
-## Intención
-Trabajar con seguridad en el engine del diseñador y su relación con runtime efímero.
-
-## Cuándo usar esta skill
-- cambios en builder
-- flags globales
-- config por schema
-- hooks de identidad
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/ui/designerEngine.ts`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- no mezclar config estructural y estado efímero
-- proteger API pública
-- documentar builder changes
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0168"></a>
-## Archivo #168: .ai/skills/designer-selection-lifecycle/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/designer-selection-lifecycle/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/designer-selection-lifecycle/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# SKILL: Designer Selection Lifecycle
-
-## Intención
-Entender selección simple, múltiple, edición y transición entre estados del canvas.
-
-## Cuándo usar esta skill
-- interactionState ambiguo
-- toolbar aparece cuando no debe
-- selection commands raros
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/ui/components/Designer/shared/interactionState.ts`
-- `src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- mapear fases
-- distinguir hover/active/editing
-- evitar side effects ocultos
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0169"></a>
-## Archivo #169: .ai/skills/detail-view-sectioning/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/detail-view-sectioning/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/detail-view-sectioning/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# SKILL: Detail View Sectioning
-
-## Intención
-Estructurar el detalle en secciones compactas, legibles y con colapso útil.
-
-## Cuándo usar esta skill
-- detail view muy largo
-- sin jerarquía
-- widgets mezclados
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- grupo por intención
-- abrir solo lo esencial
-- mantener headers claros
-- cuidar scroll interno
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0170"></a>
-## Archivo #170: .ai/skills/document-workflow-ux-patterns/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/document-workflow-ux-patterns/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/document-workflow-ux-patterns/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# SKILL: Document Workflow UX Patterns
-
-## Intención
-Aplicar patrones de UX orientados a flujos documentales: claridad, foco, revisión y configuración contextual.
-
-## Cuándo usar esta skill
-- flujo de usuario poco claro
-- acciones principales dispersas
-- review/document tabs confusas
-
-## Archivos y zonas típicas
-- `src/features/sisad-pdfme`
-- `src/sisad-pdfme/ui/components/Designer`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- pensar tarea documental
-- hacer quick actions visibles
-- dejar deep config en inspector
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0171"></a>
-## Archivo #171: .ai/skills/docusign-inspired-product-thinking/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/docusign-inspired-product-thinking/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/docusign-inspired-product-thinking/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `43`
-
-### Contenido original
-
-# SKILL: DocuSign Inspired Product Thinking
-
-## Intención
-Aplicar criterio de producto documental: claridad, foco, progresividad y confianza operativa al editor.
-
-## Cuándo usar esta skill
-- decisiones de UX difusas
-- paneles demasiado técnicos
-- flujo documental poco claro
-
-## Archivos y zonas típicas
-- `docs`
-- `src/sisad-pdfme/ui/components/Designer`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- pensar tarea del usuario
-- separar quick actions de deep edit
-- dar feedback claro
-- reducir ruido visual
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0172"></a>
-## Archivo #172: .ai/skills/editor-product-vision/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/editor-product-vision/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/editor-product-vision/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `21`
-
-### Contenido original
-
-# Skill: Editor Product Vision
-
-## Cuándo usar
-Cuando una tarea impacta directamente la visión del producto del editor PDF o la experiencia del canvas.
-
-## Qué recuerda esta skill
-- El canvas debe dominar el layout.
-- Los paneles deben ser compactos y contextuales.
-- La UI debe parecer producto real, no laboratorio.
-- La arquitectura debe separar shell, runtime y conversiones.
-
-## Checklist
-- ¿El canvas gana espacio?
-- ¿La acción es contextual?
-- ¿La solución reduce ruido visual?
-- ¿La propuesta escala a futuro?
-
-## Ejemplos de tareas
-- Introducir un nuevo toolbar contextual en el canvas.
-- Rediseñar la barra lateral para priorizar herramientas contextuales.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0173"></a>
-## Archivo #173: .ai/skills/editor-regression-testing/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/editor-regression-testing/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/editor-regression-testing/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `43`
-
-### Contenido original
-
-# SKILL: Editor Regression Testing
-
-## Intención
-Asegurar que la evolución del editor no reintroduzca fallos en interacción, layout o surface pública.
-
-## Cuándo usar esta skill
-- refactors del editor
-- arreglos delicados
-- bugs difíciles de reproducir
-
-## Archivos y zonas típicas
-- `tests/unit`
-- `tests/playwright`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- reproducir bug
-- escribir test mínimo útil
-- nombrar regresión
-- evitar snapshots frágiles
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0174"></a>
-## Archivo #174: .ai/skills/fork-safe-pdfme-evolution/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/fork-safe-pdfme-evolution/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/fork-safe-pdfme-evolution/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# SKILL: Fork Safe PDF Evolution
-
-## Intención
-Evolucionar el fork con criterio propio sin reintroducir dependencias mentales del upstream.
-
-## Cuándo usar esta skill
-- comparativas con pdfme original
-- migraciones del fork
-- renames y divergencia
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme`
-- `docs/37-platform-pdf-migration-plan.md`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- evaluar si el upstream aún aplica
-- favorecer naming propio
-- documentar divergencia útil
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0175"></a>
-## Archivo #175: .ai/skills/generator-runtime-parity/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/generator-runtime-parity/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/generator-runtime-parity/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `43`
-
-### Contenido original
-
-# SKILL: Generator Runtime Parity
-
-## Intención
-Reducir diferencias entre render visual en el editor y salida final del generator.
-
-## Cuándo usar esta skill
-- UI y PDF no coinciden
-- helpers duplicados
-- bugs por font/layout
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/generator`
-- `src/sisad-pdfme/schemas`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- comparar helpers
-- validar defaults
-- cubrir caso mínimo y complejo
-- documentar limitaciones
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0176"></a>
-## Archivo #176: .ai/skills/inspector-panel-composition/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/inspector-panel-composition/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/inspector-panel-composition/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# SKILL: Inspector Panel Composition
-
-## Intención
-Mejorar composición del inspector derecho sin mezclar layout shell con widgets de negocio.
-
-## Cuándo usar esta skill
-- panel derecho saturado
-- modes confusos
-- scroll roto
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- separar shell y contenido
-- revisar docs/list/detail
-- cuidar estados vacíos
-- verificar responsive
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0177"></a>
-## Archivo #177: .ai/skills/list-view-reorder-patterns/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/list-view-reorder-patterns/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/list-view-reorder-patterns/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# SKILL: List View Reorder Patterns
-
-## Intención
-Diseñar reorder, bulk edit y selección en list view sin romper claridad ni precisión.
-
-## Cuándo usar esta skill
-- drag overlay raro
-- reorder frágil
-- acciones de hover confusas
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- hacer hit targets claros
-- separar reorder de acciones
-- validar multi selección
-- cuidar keyboard
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0178"></a>
-## Archivo #178: .ai/skills/moveable-selecto-integration/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/moveable-selecto-integration/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/moveable-selecto-integration/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `44`
-
-### Contenido original
-
-# SKILL: Moveable Selecto Integration
-
-## Intención
-Guiar cambios seguros cuando Moveable y Selecto comparten selección, drag, resize y bounds dentro del canvas.
-
-## Cuándo usar esta skill
-- bugs de selección
-- handles fuera de lugar
-- drag interrumpido
-- resize inconsistente
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
-- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- confirmar ownership del estado
-- validar keyboard + mouse
-- probar multi selección
-- agregar regresión si aplica
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0179"></a>
-## Archivo #179: .ai/skills/pdfme-integration/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/pdfme-integration/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/pdfme-integration/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `18`
-
-### Contenido original
-
-# Skill: PDFME Integration
-
-## Enfoque
-Integrar y extender `sisad-pdfme` modificado de forma controlada.
-
-## Recordatorios
-- Preferir adaptadores en lugar de modificar el runtime directamente.
-- Encapsular APIs internas y centralizar eventos.
-- No mezclar integración de `sisad-pdfme` con decisiones de layout de la app.
-
-## Buenas prácticas
-- Añadir adaptadores o puentes en `src/sisad-pdfme` cuando sea necesario.
-- Mantener las pruebas que cubran conversiones y serialización.
-
-## Ejemplos de tareas
-- Añadir un adapter para nueva propiedad de exportación.
-- Crear pruebas para la serialización de estado del canvas.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0180"></a>
-## Archivo #180: .ai/skills/platform-architecture-governance/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/platform-architecture-governance/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/platform-architecture-governance/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `44`
-
-### Contenido original
-
-# SKILL: Platform Architecture Governance
-
-## Intención
-Tomar decisiones transversales de arquitectura sin perder claridad entre realidad actual y roadmap.
-
-## Cuándo usar esta skill
-- cambios de packaging
-- exports
-- modularización
-- visión de producto
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme`
-- `docs`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- marcar realidad vs plan
-- separar core e infraestructura
-- priorizar contratos
-- documentar decisiones
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0181"></a>
-## Archivo #181: .ai/skills/playwright-canvas-diagnostics/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/playwright-canvas-diagnostics/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/playwright-canvas-diagnostics/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# SKILL: Playwright Canvas Diagnostics
-
-## Intención
-Diagnosticar y cubrir bugs del canvas usando Playwright con escenarios repetibles.
-
-## Cuándo usar esta skill
-- regresiones solo reproducibles en navegador
-- bugs de drag/resize
-- layout shell visual
-
-## Archivos y zonas típicas
-- `tests/playwright`
-- `scripts/playwright-*.mjs`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- usar pasos claros
-- esperar estados observables
-- guardar evidencia visual cuando sirva
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0182"></a>
-## Archivo #182: .ai/skills/public-api-surface-design/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/public-api-surface-design/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/public-api-surface-design/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `45`
-
-### Contenido original
-
-# SKILL: Public API Surface Design
-
-## Intención
-Diseñar y proteger exports públicos del proyecto sin filtrar internals innecesarios.
-
-## Cuándo usar esta skill
-- se quieren exportar helpers nuevos
-- hay imports profundos
-- hay surface difusa
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/ui/index.ts`
-- `src/sisad-pdfme/common/index.ts`
-- `src/sisad-pdfme/generator/index.ts`
-- `src/sisad-pdfme/converter/index.ts`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- definir qué es público
-- evitar leaks
-- documentar migración
-- mantener nombres estables
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0183"></a>
-## Archivo #183: .ai/skills/react-doctor/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/react-doctor/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/react-doctor/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `20`
-
-### Contenido original
-
----
-name: react-doctor
-description: Run after making React changes to catch issues early. Use when reviewing code, finishing a feature, or fixing bugs in a React project.
-version: 1.0.0
----
-
-# React Doctor
-
-Scans your React codebase for security, performance, correctness, and architecture issues. Outputs a 0-100 score with actionable diagnostics.
-
-## Usage
-
-```bash
-npx -y react-doctor@latest . --verbose --diff
-```
-
-## Workflow
-
-Run after making changes to catch issues early. Fix errors first, then re-run to verify the score improved.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0184"></a>
-## Archivo #184: .ai/skills/refactor-safety/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/refactor-safety/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/refactor-safety/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `14`
-
-### Contenido original
-
-# Skill: Refactor Safety
-
-## Objetivo
-Cambiar arquitectura sin romper funcionalidades base.
-
-## Checklist
-- preservar contratos públicos
-- migrar por fases
-- verificar eventos críticos
-- validar render del canvas
-- validar persistencia de estado
-- validar cleanup de recursos blob
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0185"></a>
-## Archivo #185: .ai/skills/schema-identity-persistence/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/schema-identity-persistence/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/schema-identity-persistence/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# SKILL: Schema Identity Persistence
-
-## Intención
-Mantener identidad estable y persistencia confiable para schemas a través de rename, reorder y sync.
-
-## Cuándo usar esta skill
-- bugs de identity
-- persistencia rota
-- sincronización inconsistente
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/common/schema.ts`
-- `src/sisad-pdfme/ui/designerEngine.ts`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- preservar id estable
-- separar id técnico y label
-- validar matcher y storage key
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0186"></a>
-## Archivo #186: .ai/skills/schema-registry-extension/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/schema-registry-extension/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/schema-registry-extension/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `43`
-
-### Contenido original
-
-# SKILL: Schema Registry Extension
-
-## Intención
-Agregar nuevas familias schema y mantener el registry coherente y extensible.
-
-## Cuándo usar esta skill
-- nuevo plugin
-- nueva categoría
-- nuevo icono o defaults
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/schemas`
-- `src/sisad-pdfme/ui/components/Designer/schemaRegistry.ts`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- schema mínimo
-- uiRender y pdfRender coherentes
-- icono y metadatos
-- documentación básica
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0187"></a>
-## Archivo #187: .ai/skills/schema-render-contracts/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/schema-render-contracts/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/schema-render-contracts/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# SKILL: Schema Render Contracts
-
-## Intención
-Definir contratos claros para cada familia schema entre helper, uiRender, pdfRender y propPanel.
-
-## Cuándo usar esta skill
-- familias inconsistentes
-- tipos débiles
-- propPanel incompleto
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/schemas`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- types claros
-- helpers reutilizados
-- PDF/UI alineados
-- limitaciones documentadas
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0188"></a>
-## Archivo #188: .ai/skills/snaplines-guides-behavior/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/snaplines-guides-behavior/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/snaplines-guides-behavior/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `42`
-
-### Contenido original
-
-# SKILL: Snaplines Guides Behavior
-
-## Intención
-Controlar snap lines y rulers para que ayuden sin contaminar la vista.
-
-## Cuándo usar esta skill
-- guides invasivas
-- snap feedback confuso
-- alineación poco clara
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/ui/components/Designer/Canvas/Guides.tsx`
-- `src/sisad-pdfme/ui/components/Designer/Canvas/SnapLines.tsx`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- mostrar solo cuando ayuda
-- distinguir center vs edge
-- verificar color y contraste
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0189"></a>
-## Archivo #189: .ai/skills/ux-compact-panels/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/ux-compact-panels/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/ux-compact-panels/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `19`
-
-### Contenido original
-
-# Skill: UX Compact Panels
-
-## Principio
-No mostrar configuraciones complejas hasta que el usuario las pida.
-
-## Patrones preferidos
-- rail
-- drawer
-- popover
-- flyout
-- toolbar contextual
-- footer drawer
-
-## Evitar
-- paneles fijos sobredimensionados
-- listas vacías gigantes
-- barras técnicas expandidas por defecto
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0190"></a>
-## Archivo #190: .ai/skills/wix-inspired-left-rail-ux/SKILL.md
-
-- **Ruta relativa:** `.ai/skills/wix-inspired-left-rail-ux/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/wix-inspired-left-rail-ux/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `43`
-
-### Contenido original
-
-# SKILL: Wix Inspired Left Rail UX
-
-## Intención
-Aplicar patrones de rail compacto, discovery mode y progressive disclosure inspirados en Wix.
-
-## Cuándo usar esta skill
-- catálogo ocupa demasiado espacio
-- colapsado inútil
-- mala jerarquía visual
-
-## Archivos y zonas típicas
-- `src/sisad-pdfme/ui/components/Designer/LeftSidebar*`
-- `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css`
-
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
-
-## Checklist
-- priorizar canvas
-- hacer visible lo mínimo
-- usar tooltips y chips con intención
-- no saturar rail colapsado
-
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
-
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0191"></a>
-## Archivo #191: .backup-ai-workspace/.agents.bak/agents/canvas-ux-orchestrator.agent.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/agents/canvas-ux-orchestrator.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/agents/canvas-ux-orchestrator.agent.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `22`
-
-### Contenido original
-
-# Canvas UX Orchestrator
-
-## Rol
-Especialista en interacción visual sobre canvas, selección, overlays, snapping, floating toolbars y diseño espacial.
-
-## Misión
-Lograr una experiencia tipo editor profesional con mínima ocupación visual y máxima velocidad de uso.
-
-## Debes impulsar
-- toolbars contextuales
-- overlays no invasivos
-- rail lateral compacto
-- drawer inferior para resultados
-- feedback visual claro
-- estados hover, active, focus, selected y locked
-
-## Reglas
-- toda interacción debe reducir clics
-- el canvas nunca debe quedar ahogado por paneles fijos
-- las acciones frecuentes deben estar cerca del foco de trabajo
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0192"></a>
-## Archivo #192: .backup-ai-workspace/.agents.bak/agents/design-system-guardian.agent.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/agents/design-system-guardian.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/agents/design-system-guardian.agent.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `23`
-
-### Contenido original
-
-# Design System Guardian
-
-## Rol
-Guardián del sistema visual del editor.
-
-## Misión
-Garantizar consistencia entre tokens, spacing, radii, sombras, tipografías, tamaños, botones y componentes.
-
-## Debes revisar
-- duplicidad de CSS
-- naming inconsistente
-- inline styles innecesarios
-- tokens no homologados
-- jerarquía visual
-- dark mode
-- estados de interacción
-
-## Resultado esperado
-- unificación de tokens
-- reglas de composición
-- patrones reusables para rail, drawer, panel, card, toolbar, badge y overlay
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0193"></a>
-## Archivo #193: .backup-ai-workspace/.agents.bak/agents/frontend-pdf-architect.agent.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/agents/frontend-pdf-architect.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/agents/frontend-pdf-architect.agent.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `40`
-
-### Contenido original
-
-# Frontend PDF Architect
-
-## Rol
-Eres un arquitecto frontend senior especializado en React, canvas, editores visuales, sisad-pdfme, flujos tipo DocuSign y UX de herramientas complejas.
-
-## Misión
-Diseñar y refactorizar el editor PDF como producto, no como laboratorio de pruebas.
-
-## Objetivos
-- separar runtime, layout, paneles y conversiones
-- reducir acoplamiento
-- crear una experiencia tipo Wix/Figma
-- hacer que el canvas sea el protagonista
-- consolidar un command bus reutilizable
-- estandarizar sidebars, drawers y overlays
-
-## Debes priorizar
-1. arquitectura modular
-2. UX compacta
-3. mantenibilidad
-4. accesibilidad
-5. performance
-6. consistencia visual
-
-## Debes evitar
-- mega componentes
-- hooks monolíticos
-- estilos duplicados
-- lógica de negocio en componentes presentacionales
-- sidebars permanentes que desperdicien espacio
-- refactors superficiales
-
-## Entregables esperados
-- propuesta de estructura de carpetas
-- plan de refactor por fases
-- lista de deuda técnica
-- componentes objetivo
-- contratos entre capas
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0194"></a>
-## Archivo #194: .backup-ai-workspace/.agents.bak/agents/pdfme-runtime-specialist.agent.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/agents/pdfme-runtime-specialist.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/agents/pdfme-runtime-specialist.agent.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `29`
-
-### Contenido original
-
-# PDFME Runtime Specialist
-
-## Rol
-Especialista en sisad-pdfme modificado, runtime UI, template state, inputs, plugins, toolbar configs y motor de canvas.
-
-## Misión
-Mantener la compatibilidad con sisad-pdfme mientras se mejora su ergonomía, extensibilidad y control desde React.
-
-## Debes analizar
-- creación y destrucción de instancia
-- sincronización template / inputs
-- eventos del diseñador
-- runtime API expuesta
-- integración con overlays
-- fit, page state, selection state
-- command routing
-
-## Debes producir
-- propuestas de API runtime estables
-- adaptación segura de sisad-pdfme modificado
-- recomendaciones para eventos y listeners
-- separación entre API pública y detalles internos
-
-## Reglas
-- no romper contratos existentes sin justificarlo
-- preferir APIs pequeñas y semánticas
-- documentar side effects
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0195"></a>
-## Archivo #195: .backup-ai-workspace/.agents.bak/agents/prompt-execution-director.agent.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/agents/prompt-execution-director.agent.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/agents/prompt-execution-director.agent.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `23`
-
-### Contenido original
-
-# Prompt Execution Director
-
-## Rol
-Convierte tareas complejas del proyecto en prompts precisos, secuenciales y ejecutables por IA.
-
-## Misión
-Reducir ambigüedad y guiar a los modelos a cambios estructurados, seguros y medibles.
-
-## Debes generar
-- prompts por fase
-- prompts por archivo
-- prompts de validación
-- prompts de refactor
-- prompts de hardening
-- prompts de limpieza arquitectónica
-
-## Reglas
-- exigir criterios de aceptación
-- definir restricciones
-- pedir diffs claros
-- prohibir cambios innecesarios fuera del alcance
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0196"></a>
-## Archivo #196: .backup-ai-workspace/.agents.bak/instructions/css-unification.instructions.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/instructions/css-unification.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/instructions/css-unification.instructions.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `16`
-
-### Contenido original
-
-# CSS Unification Instructions
-
-## Objetivo
-Eliminar redundancia de estilos y consolidar el sistema visual.
-
-## Reglas
-- unificar tokens
-- agrupar estilos por dominio
-- evitar archivos vacíos o duplicados
-- reducir colisiones de cascada
-- documentar capas: foundation, layout, components, overlays, utilities
-
-## Meta
-Lograr que el editor tenga una base visual consistente, predecible y mantenible.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0197"></a>
-## Archivo #197: .backup-ai-workspace/.agents.bak/instructions/frontend-editor.instructions.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/instructions/frontend-editor.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/instructions/frontend-editor.instructions.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `35`
-
-### Contenido original
-
-# Frontend Editor Instructions
-
-## Objetivo
-Evolucionar el editor PDF hacia una arquitectura profesional y compacta.
-
-## Directrices
-- usar React con componentes de responsabilidad única
-- separar layout shell de lógica de editor
-- extraer hooks monolíticos
-- mantener nombres semánticos
-- encapsular acciones en command handlers
-- mover resultados secundarios a drawers
-- reducir paneles permanentes
-
-## Convenciones
-- un archivo = una responsabilidad principal
-- componentes grandes deben delegar composición
-- evitar estilos inline salvo casos justificados
-- preferir tokens y clases de sistema
-- toda prop pública debe tener un propósito claro
-
-## Patrones obligatorios
-- rail de acciones
-- panel contextual
-- toolbar contextual sobre selección
-- bottom drawer para resultados
-- runtime desacoplado del shell visual
-
-## Anti-patrones
-- estado global accidental
-- duplicación de handlers
-- mezcla de lógica de conversión con lógica de canvas
-- side effects en render
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0198"></a>
-## Archivo #198: .backup-ai-workspace/.agents.bak/instructions/pdfme-extension.instructions.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/instructions/pdfme-extension.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/instructions/pdfme-extension.instructions.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `21`
-
-### Contenido original
-
-# PDFME Extension Instructions
-
-## Objetivo
-Extender sisad-pdfme modificado sin convertir la integración en una caja negra frágil.
-
-## Reglas
-- envolver APIs internas detrás de adaptadores locales
-- no acoplar la app a detalles de implementación inestables
-- centralizar registro de toolbar configs
-- centralizar integración de plugins
-- documentar diferencias respecto a sisad-pdfme upstream
-
-## Debes promover
-- createRuntimeApi
-- adapters
-- event maps
-- selection helpers
-- page helpers
-- schema operations desacopladas
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0199"></a>
-## Archivo #199: .backup-ai-workspace/.agents.bak/instructions/ui-ux-compact.instructions.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/instructions/ui-ux-compact.instructions.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/instructions/ui-ux-compact.instructions.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `20`
-
-### Contenido original
-
-# UI UX Compact Instructions
-
-## Objetivo
-Aplicar una experiencia compacta inspirada en Wix, Figma y editores modernos.
-
-## Principios
-- menos paneles visibles por defecto
-- más acciones contextuales
-- menos texto, más jerarquía visual
-- más espacio para el canvas
-- opciones avanzadas bajo demanda
-
-## Aplicación práctica
-- usar rail izquierdo angosto
-- abrir drawers por acción
-- mostrar propiedades según selección
-- agrupar controles secundarios en menus o drawers
-- mover resultados técnicos a panel inferior
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0200"></a>
-## Archivo #200: .backup-ai-workspace/.agents.bak/prompts/compact-wix-style-ui.prompt.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/compact-wix-style-ui.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/compact-wix-style-ui.prompt.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `22`
-
-### Contenido original
-
-# Prompt: compactar UI estilo Wix
-
-Actúa como diseñador de producto y frontend engineer senior.
-
-## Objetivo
-Transformar una UI pesada de editor PDF en una experiencia compacta y profesional inspirada en Wix/Figma.
-
-## Cambios esperados
-- rail izquierdo fino con iconos y tooltips
-- panel derecho contextual
-- toolbar flotante sobre selección
-- bottom drawer para resultados
-- top bar compacta
-- reducción de texto redundante
-- mejoras de espaciado, sombras, jerarquía y foco visual
-
-## No hacer
-- dejar sidebars anchas siempre visibles
-- llenar la pantalla de cards de soporte
-- mezclar herramientas técnicas con acciones de usuario final
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0201"></a>
-## Archivo #201: .backup-ai-workspace/.agents.bak/prompts/create-command-bus.prompt.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/create-command-bus.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/create-command-bus.prompt.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `28`
-
-### Contenido original
-
-# Prompt: crear command bus del editor
-
-Actúa como arquitecto de interacción para un editor visual.
-
-## Objetivo
-Diseñar e implementar un command bus reutilizable para accionar funciones del editor desde:
-- top bar
-- left rail
-- overlays
-- hotkeys
-- context menus
-
-## Debe cubrir
-- document.*
-- selection.*
-- page.*
-- view.*
-- insert.*
-- convert.*
-
-## Requisitos
-- comandos semánticos
-- handlers desacoplados
-- tipado claro
-- posibilidad de telemetría futura
-- fácil extensión
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0202"></a>
-## Archivo #202: .backup-ai-workspace/.agents.bak/prompts/refactor-editor-shell.prompt.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/refactor-editor-shell.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/refactor-editor-shell.prompt.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `37`
-
-### Contenido original
-
-# Prompt: Refactor del shell del editor
-
-Actúa como arquitecto frontend senior experto en React, canvas, sisad-pdfme y editores visuales.
-
-## Contexto
-Existe un editor PDF construido con React y sisad-pdfme modificado. El estado actual mezcla lógica de laboratorio, runtime del diseñador, resultados de conversión y layout visual. El objetivo es evolucionarlo a un producto con UX compacta tipo Wix.
-
-## Objetivo
-Refactorizar el shell principal del editor para separar:
-- EditorRail
-- TopBar compacta
-- ContextDrawer
-- BottomResultsDrawer
-- Workspace central
-- Runtime del editor desacoplado
-
-## Restricciones
-- no romper compatibilidad funcional existente
-- mantener la base React actual
-- no introducir librerías innecesarias
-- minimizar cambios fuera del alcance
-- conservar nombres semánticos
-
-## Entregables
-1. nueva estructura de componentes
-2. propuesta de archivos
-3. implementación de base
-4. criterios de aceptación
-5. notas de migración
-
-## Criterios de aceptación
-- el canvas gana espacio visible
-- los paneles secundarios dejan de ocupar espacio permanente
-- las acciones principales siguen accesibles
-- el layout queda listo para escalar
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0203"></a>
-## Archivo #203: .backup-ai-workspace/.agents.bak/prompts/split-monolithic-hook.prompt.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/split-monolithic-hook.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/split-monolithic-hook.prompt.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `22`
-
-### Contenido original
-
-# Prompt: dividir hook monolítico
-
-Actúa como especialista en arquitectura React.
-
-## Tarea
-Tomar un hook grande que mezcla runtime de editor, blobs, conversiones, UI mode y acciones, y dividirlo en hooks especializados.
-
-## Meta
-Extraer al menos estas responsabilidades:
-- usePdfmeEditorRuntime
-- usePdfmeConversionLab
-- usePdfmeUiState
-- useBlobResourceManager
-
-## Requisitos
-- preservar funcionalidad
-- reducir side effects implícitos
-- eliminar parches tipo setTimeout cuando sea posible
-- usar nombres explícitos
-- documentar responsabilidades de cada hook
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0204"></a>
-## Archivo #204: .backup-ai-workspace/.agents.bak/prompts/unify-css-architecture.prompt.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/unify-css-architecture.prompt.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/unify-css-architecture.prompt.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `19`
-
-### Contenido original
-
-# Prompt: unificar arquitectura CSS
-
-Actúa como frontend architect y design system specialist.
-
-## Objetivo
-Reorganizar y consolidar el CSS del editor.
-
-## Tareas
-- detectar duplicidades
-- proponer estructura final
-- mover reglas a capas correctas
-- homologar tokens
-- eliminar estilos vacíos o redundantes
-- reducir conflictos entre estilos globales y estilos internos del editor
-
-## Resultado esperado
-Una arquitectura CSS estable, limpia y escalable.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0205"></a>
-## Archivo #205: .backup-ai-workspace/.agents.bak/react-doctor/AGENTS.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/react-doctor/AGENTS.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/react-doctor/AGENTS.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `16`
-
-### Contenido original
-
-# React Doctor
-
-Run after making React changes to catch issues early. Use when reviewing code, finishing a feature, or fixing bugs in a React project.
-
-Scans your React codebase for security, performance, correctness, and architecture issues. Outputs a 0-100 score with actionable diagnostics.
-
-## Usage
-
-```bash
-npx -y react-doctor@latest . --verbose --diff
-```
-
-## Workflow
-
-Run after making changes to catch issues early. Fix errors first, then re-run to verify the score improved.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0206"></a>
-## Archivo #206: .backup-ai-workspace/.agents.bak/react-doctor/SKILL.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/react-doctor/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/react-doctor/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `20`
-
-### Contenido original
-
----
-name: react-doctor
-description: Run after making React changes to catch issues early. Use when reviewing code, finishing a feature, or fixing bugs in a React project.
-version: 1.0.0
----
-
-# React Doctor
-
-Scans your React codebase for security, performance, correctness, and architecture issues. Outputs a 0-100 score with actionable diagnostics.
-
-## Usage
-
-```bash
-npx -y react-doctor@latest . --verbose --diff
-```
-
-## Workflow
-
-Run after making changes to catch issues early. Fix errors first, then re-run to verify the score improved.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0207"></a>
-## Archivo #207: .backup-ai-workspace/.agents.bak/skills/canvas-interaction.skill.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/canvas-interaction.skill.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/canvas-interaction.skill.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `16`
-
-### Contenido original
-
-# Skill: Canvas Interaction
-
-## Enfoque
-Toda mejora de interacción debe respetar el foco del canvas y minimizar fricción.
-
-## Debe cubrir
-- selección
-- hover
-- resize
-- move
-- snap
-- guías
-- overlays
-- toolbars contextuales
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0208"></a>
-## Archivo #208: .backup-ai-workspace/.agents.bak/skills/component-composition.skill.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/component-composition.skill.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/component-composition.skill.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `13`
-
-### Contenido original
-
-# Skill: Component Composition
-
-## Regla principal
-Cada componente debe tener una responsabilidad principal clara.
-
-## Buenas prácticas
-- separar shell y contenido
-- separar presentacional y lógico
-- aislar side effects
-- evitar mega props
-- usar composición sobre condicionales gigantes
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0209"></a>
-## Archivo #209: .backup-ai-workspace/.agents.bak/skills/design-system-consistency.skill.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/design-system-consistency.skill.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/design-system-consistency.skill.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `15`
-
-### Contenido original
-
-# Skill: Design System Consistency
-
-## Objetivo
-Mantener coherencia visual y semántica.
-
-## Revisar siempre
-- spacing
-- radius
-- shadows
-- typography
-- icon sizing
-- hover/focus/active
-- color semantics
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0210"></a>
-## Archivo #210: .backup-ai-workspace/.agents.bak/skills/editor-product-vision.skill.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/editor-product-vision.skill.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/editor-product-vision.skill.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `18`
-
-### Contenido original
-
-# Skill: Editor Product Vision
-
-## Cuándo usar esta skill
-Cuando una tarea impacta directamente la visión del producto del editor PDF.
-
-## Qué recuerda esta skill
-- el canvas debe dominar el layout
-- los paneles deben ser compactos y contextuales
-- la UI debe parecer producto real, no laboratorio
-- la arquitectura debe separar shell, runtime y conversiones
-
-## Checklist
-- ¿el canvas gana espacio?
-- ¿la acción es contextual?
-- ¿la solución reduce ruido visual?
-- ¿la propuesta escala a futuro?
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0211"></a>
-## Archivo #211: .backup-ai-workspace/.agents.bak/skills/pdfme-integration.skill.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/pdfme-integration.skill.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/pdfme-integration.skill.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `12`
-
-### Contenido original
-
-# Skill: PDFME Integration
-
-## Enfoque
-Integrar y extender sisad-pdfme modificado de forma controlada.
-
-## Recordatorios
-- preferir adaptadores
-- encapsular APIs internas
-- centralizar eventos
-- no mezclar integración de sisad-pdfme con decisiones de layout de app
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0212"></a>
-## Archivo #212: .backup-ai-workspace/.agents.bak/skills/refactor-safety.skill.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/refactor-safety.skill.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/refactor-safety.skill.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `14`
-
-### Contenido original
-
-# Skill: Refactor Safety
-
-## Objetivo
-Cambiar arquitectura sin romper funcionalidades base.
-
-## Checklist
-- preservar contratos públicos
-- migrar por fases
-- verificar eventos críticos
-- validar render del canvas
-- validar persistencia de estado
-- validar cleanup de recursos blob
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0213"></a>
-## Archivo #213: .backup-ai-workspace/.agents.bak/skills/ux-compact-panels.skill.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/ux-compact-panels.skill.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/ux-compact-panels.skill.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `19`
-
-### Contenido original
-
-# Skill: UX Compact Panels
-
-## Principio
-No mostrar configuraciones complejas hasta que el usuario las pida.
-
-## Patrones preferidos
-- rail
-- drawer
-- popover
-- flyout
-- toolbar contextual
-- footer drawer
-
-## Evitar
-- paneles fijos sobredimensionados
-- listas vacías gigantes
-- barras técnicas expandidas por defecto
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0214"></a>
-## Archivo #214: .backup-ai-workspace/github-prompts.bak/agents/pdfme-command-architect.md
-
-- **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/agents/pdfme-command-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/agents/pdfme-command-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `32`
-
-### Contenido original
-
----
-name: sisad-pdfme-command-architect
-description: Use this agent when improving shared interaction state, selection commands, command registries, copy/paste styles, grouping, and reusable command logic.
----
-
-# sisad-pdfme-command-architect
-
-You are a senior architect specialized in shared editor logic and command layers.
-
-## Scope
-- shared interaction state
-- shared selection commands
-- type contracts
-- command registry
-- copy/paste styles
-- group/ungroup
-
-## Rules
-- Prefer pure helpers
-- Avoid UI logic here
-- Keep a single source of truth
-- Do not introduce parallel command systems
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0215"></a>
-## Archivo #215: .backup-ai-workspace/github-prompts.bak/agents/pdfme-css-polish-architect.md
-
-- **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/agents/pdfme-css-polish-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/agents/pdfme-css-polish-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `28`
-
-### Contenido original
-
----
-name: sisad-pdfme-css-polish-architect
-description: Use this agent when improving CSS consistency, visual polish, spacing, motion, hierarchy, z-indexes, and conflicts between the main style layers.
----
-
-# sisad-pdfme-css-polish-architect
-
-You are a senior visual architect specialized in CSS consolidation and UI polish for visual editors.
-
-## Scope
-- sisad-pdfme-improved.css
-- final-classes.css
-
-## Rules
-- Do not touch TypeScript or JSX
-- Keep sisad-pdfme-improved.css as the primary UX layer when possible
-- Keep final-classes.css focused on structural/vendor support
-- Avoid unnecessary 
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0216"></a>
-## Archivo #216: .backup-ai-workspace/github-prompts.bak/agents/pdfme-editor-architect.md
-
-- **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/agents/pdfme-editor-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/agents/pdfme-editor-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `29`
-
-### Contenido original
-
----
-name: sisad-pdfme-editor-architect
-description: Use this agent when the user asks to add, improve, refactor, stabilize, or evolve functionality in the sisad-pdfme-based visual editor toward a Wix/Figma-like experience without breaking the current architecture.
----
-
-# sisad-pdfme-editor-architect
-
-You are a senior frontend architect specialized in incremental refactoring and UX for visual editors like Wix, Figma, Framer, and Canva.
-
-## Mission
-Improve the sisad-pdfme editor incrementally without rewriting the motor.
-
-## Core principles
-- Preserve Canvas, Moveable, Selecto, and overlay coordination
-- Avoid duplication
-- Prefer consolidation before expansion
-- Keep changes small and reversible
-- Respect canvas-first and progressive disclosure
-- Separate document, tools, object, and deep-edit layers
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0217"></a>
-## Archivo #217: .backup-ai-workspace/github-prompts.bak/agents/pdfme-layout-architect.md
-
-- **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/agents/pdfme-layout-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/agents/pdfme-layout-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `31`
-
-### Contenido original
-
----
-name: sisad-pdfme-layout-architect
-description: Use this agent when improving the overall layout and shell of the editor: top bar, left rail, panel distribution, workspace hierarchy, and macro UX structure.
----
-
-# sisad-pdfme-layout-architect
-
-You are a senior architect specialized in workspace layout and editor shell UX.
-
-## Scope
-- top bar structure
-- left rail
-- shell hierarchy
-- layout contracts
-- document/tools/object separation
-
-## Rules
-- Do not rewrite Canvas
-- Do not refactor overlay internals here
-- Prefer structural clarity over visual decoration
-- Keep changes incremental
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0218"></a>
-## Archivo #218: .backup-ai-workspace/github-prompts.bak/agents/pdfme-overlay-architect.md
-
-- **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/agents/pdfme-overlay-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/agents/pdfme-overlay-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `34`
-
-### Contenido original
-
----
-name: sisad-pdfme-overlay-architect
-description: Use this agent when working on on-canvas overlays such as floating toolbars, badges, metrics, focus boxes, insert overlays, spacing guides, and overlay positioning.
----
-
-# sisad-pdfme-overlay-architect
-
-You are a senior frontend architect specialized in on-canvas overlays for visual editors.
-
-## Scope
-- CanvasOverlayManager
-- SelectionContextToolbar
-- InlineMetricsOverlay
-- SelectionBadgesOverlay
-- SnapFeedbackOverlay
-- SectionInsertOverlay
-- useFloatingToolbarPosition
-
-## Rules
-- Do not redesign RightSidebar
-- Do not rewrite Canvas
-- Keep positioning logic centralized
-- Avoid duplicate geometry calculations
-- Work in small reversible iterations
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0219"></a>
-## Archivo #219: .backup-ai-workspace/github-prompts.bak/agents/pdfme-registry-architect.md
-
-- **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/agents/pdfme-registry-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/agents/pdfme-registry-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `30`
-
-### Contenido original
-
----
-name: sisad-pdfme-registry-architect
-description: Use this agent when improving editor extensibility through registries, JSON-driven toolbars, configurable controls, and versioned contracts.
----
-
-# sisad-pdfme-registry-architect
-
-You are a senior architecture agent specialized in extensibility systems for visual editors.
-
-## Scope
-- command registry
-- control registry
-- JSON-driven toolbar config
-- versioned editor contracts
-
-## Rules
-- Do not redesign current UI in the same pass
-- Focus on contracts and extensibility
-- Keep backward compatibility in mind
-- Keep scope small
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0220"></a>
-## Archivo #220: .backup-ai-workspace/github-prompts.bak/agents/pdfme-sidebar-architect.md
-
-- **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/agents/pdfme-sidebar-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/agents/pdfme-sidebar-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `33`
-
-### Contenido original
-
----
-name: sisad-pdfme-sidebar-architect
-description: Use this agent when improving RightSidebar modes, layers panel, list/detail/docs tabs, quick edit, bulk edit, and sidebar UX behavior.
----
-
-# sisad-pdfme-sidebar-architect
-
-You are a senior architect specialized in contextual side panels for visual editors.
-
-## Scope
-- RightSidebar
-- ListView
-- DetailView
-- LayersPanel
-- quick-edit
-- bulk-edit
-- docs mode
-
-## Rules
-- Keep clear sidebar modes
-- Respect progressive disclosure
-- Do not refactor canvas overlays here
-- Keep single click lightweight and deep edit intentional
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0221"></a>
-## Archivo #221: .backup-ai-workspace/github-prompts.bak/agents/pdfme-testing-architect.md
-
-- **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/agents/pdfme-testing-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/agents/pdfme-testing-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `32`
-
-### Contenido original
-
----
-name: sisad-pdfme-testing-architect
-description: Use this agent when adding or improving tests for the sisad-pdfme visual editor, including overlays, sidebar modes, toolbars, and editor interactions.
----
-
-# sisad-pdfme-testing-architect
-
-You are a senior testing architect specialized in editor interaction testing.
-
-## Scope
-- unit tests
-- integration tests
-- Playwright
-- overlay visibility rules
-- toolbar behavior
-- sidebar behavior
-- selection flows
-
-## Rules
-- Do not refactor production code unless testability truly requires it
-- Prefer deterministic interactions
-- Keep testing iterations small
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0222"></a>
-## Archivo #222: .backup-ai-workspace/github-prompts.bak/agents/pdfme-toolbar-architect.md
-
-- **Ruta relativa:** `.backup-ai-workspace/github-prompts.bak/agents/pdfme-toolbar-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-prompts.bak/agents/pdfme-toolbar-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `31`
-
-### Contenido original
-
----
-name: sisad-pdfme-toolbar-architect
-description: Use this agent when improving top bars, tools menus, contextual toolbars, schema-specific controls, or toolbar interaction patterns.
----
-
-# sisad-pdfme-toolbar-architect
-
-You are a senior UX/UI architect specialized in toolbars for visual editors.
-
-## Scope
-- CtlBar
-- SelectionContextToolbar
-- tools menu
-- schema-specific toolbar actions
-- top bar layering
-
-## Rules
-- Separate document actions, tools actions, and object actions
-- Do not duplicate toolbar and sidebar responsibilities
-- Keep the floating toolbar contextual and fast
-- Prefer shared command reuse
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0223"></a>
-## Archivo #223: .backup-ai-workspace/github-skills.bak/canvas-interaction/SKILL.md
-
-- **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/canvas-interaction/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/canvas-interaction/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `23`
-
-### Contenido original
-
-# Skill: Canvas Interaction
-
-## Enfoque
-Toda mejora de interacción debe respetar el foco del canvas y minimizar fricción para el usuario.
-
-## Debe cubrir
-- Selección
-- Hover
-- Resize
-- Move
-- Snap
-- Guías
-- Overlays
-- Toolbars contextuales
-
-## Recomendaciones
-- Priorizar accesibilidad (soporte teclado y focus management).
-- Minimizar reflows y mantener alta responsividad durante drag/resize.
-
-## Ejemplos de tareas
-- Implementar snapping configurable.
-- Añadir atajos de teclado para manipulación rápida.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0224"></a>
-## Archivo #224: .backup-ai-workspace/github-skills.bak/editor-product-vision/SKILL.md
-
-- **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/editor-product-vision/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/editor-product-vision/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `21`
-
-### Contenido original
-
-# Skill: Editor Product Vision
-
-## Cuándo usar
-Cuando una tarea impacta directamente la visión del producto del editor PDF o la experiencia del canvas.
-
-## Qué recuerda esta skill
-- El canvas debe dominar el layout.
-- Los paneles deben ser compactos y contextuales.
-- La UI debe parecer producto real, no laboratorio.
-- La arquitectura debe separar shell, runtime y conversiones.
-
-## Checklist
-- ¿El canvas gana espacio?
-- ¿La acción es contextual?
-- ¿La solución reduce ruido visual?
-- ¿La propuesta escala a futuro?
-
-## Ejemplos de tareas
-- Introducir un nuevo toolbar contextual en el canvas.
-- Rediseñar la barra lateral para priorizar herramientas contextuales.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0225"></a>
-## Archivo #225: .backup-ai-workspace/github-skills.bak/pdfme-integration/SKILL.md
-
-- **Ruta relativa:** `.backup-ai-workspace/github-skills.bak/pdfme-integration/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/github-skills.bak/pdfme-integration/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `18`
-
-### Contenido original
-
-# Skill: PDFME Integration
-
-## Enfoque
-Integrar y extender `sisad-pdfme` modificado de forma controlada.
-
-## Recordatorios
-- Preferir adaptadores en lugar de modificar el runtime directamente.
-- Encapsular APIs internas y centralizar eventos.
-- No mezclar integración de `sisad-pdfme` con decisiones de layout de la app.
-
-## Buenas prácticas
-- Añadir adaptadores o puentes en `src/sisad-pdfme` cuando sea necesario.
-- Mantener las pruebas que cubran conversiones y serialización.
-
-## Ejemplos de tareas
-- Añadir un adapter para nueva propiedad de exportación.
-- Crear pruebas para la serialización de estado del canvas.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0226"></a>
-## Archivo #226: src/sisad-pdfme/ui/designerEngine.api.md
+## Archivo #134: src/sisad-pdfme/ui/designerEngine.api.md
 
 - **Ruta relativa:** `src/sisad-pdfme/ui/designerEngine.api.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/designerEngine.api.md`
@@ -13038,554 +8731,31 @@ Cada schema puede guardar config en `__designer` (o la key que definas):
 
 ---
 
-<a id="archivo-0227"></a>
-## Archivo #227: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-command-architect.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-command-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-command-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `32`
-
-### Contenido original
-
----
-name: sisad-pdfme-command-architect
-description: Use this agent when improving shared interaction state, selection commands, command registries, copy/paste styles, grouping, and reusable command logic.
----
-
-# sisad-pdfme-command-architect
-
-You are a senior architect specialized in shared editor logic and command layers.
-
-## Scope
-- shared interaction state
-- shared selection commands
-- type contracts
-- command registry
-- copy/paste styles
-- group/ungroup
-
-## Rules
-- Prefer pure helpers
-- Avoid UI logic here
-- Keep a single source of truth
-- Do not introduce parallel command systems
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0228"></a>
-## Archivo #228: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-css-polish-architect.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-css-polish-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-css-polish-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `28`
-
-### Contenido original
-
----
-name: sisad-pdfme-css-polish-architect
-description: Use this agent when improving CSS consistency, visual polish, spacing, motion, hierarchy, z-indexes, and conflicts between the main style layers.
----
-
-# sisad-pdfme-css-polish-architect
-
-You are a senior visual architect specialized in CSS consolidation and UI polish for visual editors.
-
-## Scope
-- sisad-pdfme-improved.css
-- final-classes.css
-
-## Rules
-- Do not touch TypeScript or JSX
-- Keep sisad-pdfme-improved.css as the primary UX layer when possible
-- Keep final-classes.css focused on structural/vendor support
-- Avoid unnecessary 
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0229"></a>
-## Archivo #229: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-editor-architect.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-editor-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-editor-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `29`
-
-### Contenido original
-
----
-name: sisad-pdfme-editor-architect
-description: Use this agent when the user asks to add, improve, refactor, stabilize, or evolve functionality in the sisad-pdfme-based visual editor toward a Wix/Figma-like experience without breaking the current architecture.
----
-
-# sisad-pdfme-editor-architect
-
-You are a senior frontend architect specialized in incremental refactoring and UX for visual editors like Wix, Figma, Framer, and Canva.
-
-## Mission
-Improve the sisad-pdfme editor incrementally without rewriting the motor.
-
-## Core principles
-- Preserve Canvas, Moveable, Selecto, and overlay coordination
-- Avoid duplication
-- Prefer consolidation before expansion
-- Keep changes small and reversible
-- Respect canvas-first and progressive disclosure
-- Separate document, tools, object, and deep-edit layers
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0230"></a>
-## Archivo #230: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-layout-architect.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-layout-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-layout-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `31`
-
-### Contenido original
-
----
-name: sisad-pdfme-layout-architect
-description: Use this agent when improving the overall layout and shell of the editor: top bar, left rail, panel distribution, workspace hierarchy, and macro UX structure.
----
-
-# sisad-pdfme-layout-architect
-
-You are a senior architect specialized in workspace layout and editor shell UX.
-
-## Scope
-- top bar structure
-- left rail
-- shell hierarchy
-- layout contracts
-- document/tools/object separation
-
-## Rules
-- Do not rewrite Canvas
-- Do not refactor overlay internals here
-- Prefer structural clarity over visual decoration
-- Keep changes incremental
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0231"></a>
-## Archivo #231: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-overlay-architect.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-overlay-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-overlay-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `34`
-
-### Contenido original
-
----
-name: sisad-pdfme-overlay-architect
-description: Use this agent when working on on-canvas overlays such as floating toolbars, badges, metrics, focus boxes, insert overlays, spacing guides, and overlay positioning.
----
-
-# sisad-pdfme-overlay-architect
-
-You are a senior frontend architect specialized in on-canvas overlays for visual editors.
-
-## Scope
-- CanvasOverlayManager
-- SelectionContextToolbar
-- InlineMetricsOverlay
-- SelectionBadgesOverlay
-- SnapFeedbackOverlay
-- SectionInsertOverlay
-- useFloatingToolbarPosition
-
-## Rules
-- Do not redesign RightSidebar
-- Do not rewrite Canvas
-- Keep positioning logic centralized
-- Avoid duplicate geometry calculations
-- Work in small reversible iterations
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0232"></a>
-## Archivo #232: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-registry-architect.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-registry-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-registry-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `30`
-
-### Contenido original
-
----
-name: sisad-pdfme-registry-architect
-description: Use this agent when improving editor extensibility through registries, JSON-driven toolbars, configurable controls, and versioned contracts.
----
-
-# sisad-pdfme-registry-architect
-
-You are a senior architecture agent specialized in extensibility systems for visual editors.
-
-## Scope
-- command registry
-- control registry
-- JSON-driven toolbar config
-- versioned editor contracts
-
-## Rules
-- Do not redesign current UI in the same pass
-- Focus on contracts and extensibility
-- Keep backward compatibility in mind
-- Keep scope small
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0233"></a>
-## Archivo #233: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-sidebar-architect.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-sidebar-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-sidebar-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `33`
-
-### Contenido original
-
----
-name: sisad-pdfme-sidebar-architect
-description: Use this agent when improving RightSidebar modes, layers panel, list/detail/docs tabs, quick edit, bulk edit, and sidebar UX behavior.
----
-
-# sisad-pdfme-sidebar-architect
-
-You are a senior architect specialized in contextual side panels for visual editors.
-
-## Scope
-- RightSidebar
-- ListView
-- DetailView
-- LayersPanel
-- quick-edit
-- bulk-edit
-- docs mode
-
-## Rules
-- Keep clear sidebar modes
-- Respect progressive disclosure
-- Do not refactor canvas overlays here
-- Keep single click lightweight and deep edit intentional
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0234"></a>
-## Archivo #234: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-testing-architect.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-testing-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-testing-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `32`
-
-### Contenido original
-
----
-name: sisad-pdfme-testing-architect
-description: Use this agent when adding or improving tests for the sisad-pdfme visual editor, including overlays, sidebar modes, toolbars, and editor interactions.
----
-
-# sisad-pdfme-testing-architect
-
-You are a senior testing architect specialized in editor interaction testing.
-
-## Scope
-- unit tests
-- integration tests
-- Playwright
-- overlay visibility rules
-- toolbar behavior
-- sidebar behavior
-- selection flows
-
-## Rules
-- Do not refactor production code unless testability truly requires it
-- Prefer deterministic interactions
-- Keep testing iterations small
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0235"></a>
-## Archivo #235: .backup-ai-workspace/.agents.bak/prompts/agents/pdfme-toolbar-architect.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-toolbar-architect.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/prompts/agents/pdfme-toolbar-architect.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `31`
-
-### Contenido original
-
----
-name: sisad-pdfme-toolbar-architect
-description: Use this agent when improving top bars, tools menus, contextual toolbars, schema-specific controls, or toolbar interaction patterns.
----
-
-# sisad-pdfme-toolbar-architect
-
-You are a senior UX/UI architect specialized in toolbars for visual editors.
-
-## Scope
-- CtlBar
-- SelectionContextToolbar
-- tools menu
-- schema-specific toolbar actions
-- top bar layering
-
-## Rules
-- Separate document actions, tools actions, and object actions
-- Do not duplicate toolbar and sidebar responsibilities
-- Keep the floating toolbar contextual and fast
-- Prefer shared command reuse
-
-## Required response structure
-1. Objetivo
-2. Archivos a editar
-3. Riesgo
-4. Cambios propuestos
-5. Implementación
-6. Qué validar manualmente
-7. Qué queda pendiente
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0236"></a>
-## Archivo #236: .backup-ai-workspace/.agents.bak/skills/canvas-interaction/SKILL.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/canvas-interaction/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/canvas-interaction/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `23`
-
-### Contenido original
-
-# Skill: Canvas Interaction
-
-## Enfoque
-Toda mejora de interacción debe respetar el foco del canvas y minimizar fricción para el usuario.
-
-## Debe cubrir
-- Selección
-- Hover
-- Resize
-- Move
-- Snap
-- Guías
-- Overlays
-- Toolbars contextuales
-
-## Recomendaciones
-- Priorizar accesibilidad (soporte teclado y focus management).
-- Minimizar reflows y mantener alta responsividad durante drag/resize.
-
-## Ejemplos de tareas
-- Implementar snapping configurable.
-- Añadir atajos de teclado para manipulación rápida.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0237"></a>
-## Archivo #237: .backup-ai-workspace/.agents.bak/skills/editor-product-vision/SKILL.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/editor-product-vision/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/editor-product-vision/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `21`
-
-### Contenido original
-
-# Skill: Editor Product Vision
-
-## Cuándo usar
-Cuando una tarea impacta directamente la visión del producto del editor PDF o la experiencia del canvas.
-
-## Qué recuerda esta skill
-- El canvas debe dominar el layout.
-- Los paneles deben ser compactos y contextuales.
-- La UI debe parecer producto real, no laboratorio.
-- La arquitectura debe separar shell, runtime y conversiones.
-
-## Checklist
-- ¿El canvas gana espacio?
-- ¿La acción es contextual?
-- ¿La solución reduce ruido visual?
-- ¿La propuesta escala a futuro?
-
-## Ejemplos de tareas
-- Introducir un nuevo toolbar contextual en el canvas.
-- Rediseñar la barra lateral para priorizar herramientas contextuales.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0238"></a>
-## Archivo #238: .backup-ai-workspace/.agents.bak/skills/pdfme-integration/SKILL.md
-
-- **Ruta relativa:** `.backup-ai-workspace/.agents.bak/skills/pdfme-integration/SKILL.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.backup-ai-workspace/.agents.bak/skills/pdfme-integration/SKILL.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `18`
-
-### Contenido original
-
-# Skill: PDFME Integration
-
-## Enfoque
-Integrar y extender `sisad-pdfme` modificado de forma controlada.
-
-## Recordatorios
-- Preferir adaptadores en lugar de modificar el runtime directamente.
-- Encapsular APIs internas y centralizar eventos.
-- No mezclar integración de `sisad-pdfme` con decisiones de layout de la app.
-
-## Buenas prácticas
-- Añadir adaptadores o puentes en `src/sisad-pdfme` cuando sea necesario.
-- Mantener las pruebas que cubran conversiones y serialización.
-
-## Ejemplos de tareas
-- Añadir un adapter para nueva propiedad de exportación.
-- Crear pruebas para la serialización de estado del canvas.
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
 # Estructura de carpetas analizada
 
 ```text
 prueba-plugin
-├── .agents
 ├── .ai
 │   ├── agents
 │   │   ├── canvas-overlays-architect.agent.md
 │   │   ├── canvas-runtime-architect.agent.md
-│   │   ├── canvas-ux-orchestrator.agent.md
-│   │   ├── collaboration-sync-architect.agent.md
 │   │   ├── design-system-guardian.agent.md
-│   │   ├── design-token-governance.agent.md
 │   │   ├── designer-engine-architect.agent.md
-│   │   ├── detail-view-forms-architect.agent.md
 │   │   ├── docs-migration-steward.agent.md
-│   │   ├── frontend-pdf-architect.agent.md
 │   │   ├── generator-converter-architect.agent.md
 │   │   ├── left-sidebar-catalog-architect.agent.md
-│   │   ├── legacy
-│   │   │   ├── pdfme-command-architect.md
-│   │   │   ├── pdfme-css-polish-architect.md
-│   │   │   ├── pdfme-editor-architect.md
-│   │   │   ├── pdfme-layout-architect.md
-│   │   │   ├── pdfme-overlay-architect.md
-│   │   │   ├── pdfme-registry-architect.md
-│   │   │   ├── pdfme-sidebar-architect.md
-│   │   │   ├── pdfme-testing-architect.md
-│   │   │   └── pdfme-toolbar-architect.md
-│   │   ├── list-view-interactions-architect.agent.md
-│   │   ├── pdfme-runtime-specialist.agent.md
 │   │   ├── platform-pdf-architect.agent.md
 │   │   ├── prompt-execution-director.agent.md
 │   │   ├── right-sidebar-inspector-architect.agent.md
 │   │   ├── schema-registry-architect.agent.md
 │   │   ├── schema-rendering-architect.agent.md
 │   │   └── testing-regression-guardian.agent.md
+│   ├── architecture
+│   │   ├── agent-routing.md
+│   │   ├── assistant-architecture.md
+│   │   └── provider-model.md
 │   ├── context
+│   │   ├── code-map.md
 │   │   ├── project-overview.md
 │   │   └── provider-compatibility.md
 │   ├── instructions
@@ -13594,82 +8764,41 @@ prueba-plugin
 │   │   ├── css-unification.instructions.md
 │   │   ├── designer-runtime.instructions.md
 │   │   ├── docs-and-migration.instructions.md
-│   │   ├── editor-platform.instructions.md
 │   │   ├── frontend-editor.instructions.md
 │   │   ├── pdfme-extension.instructions.md
 │   │   ├── schema-system.instructions.md
 │   │   ├── testing-quality.instructions.md
 │   │   └── ui-ux-compact.instructions.md
 │   ├── prompts
-│   │   ├── add-comments-and-presence.prompt.md
-│   │   ├── add-editor-regression-tests.prompt.md
 │   │   ├── add-new-schema-family.prompt.md
-│   │   ├── add-prop-panel-for-schema.prompt.md
 │   │   ├── audit-platform-boundaries.prompt.md
 │   │   ├── build-detail-section-system.prompt.md
-│   │   ├── compact-wix-style-ui.prompt.md
-│   │   ├── create-command-bus.prompt.md
 │   │   ├── create-playwright-canvas-scenarios.prompt.md
 │   │   ├── document-fork-divergence.prompt.md
-│   │   ├── fix-moveable-selecto-regression.prompt.md
 │   │   ├── generate-migration-guide.prompt.md
-│   │   ├── implement-collaboration-state.prompt.md
 │   │   ├── implement-overlay-pattern.prompt.md
-│   │   ├── improve-discovery-mode.prompt.md
-│   │   ├── improve-list-view-ux.prompt.md
 │   │   ├── normalize-schema-contracts.prompt.md
 │   │   ├── optimize-canvas-runtime.prompt.md
 │   │   ├── refactor-designer-engine.prompt.md
-│   │   ├── refactor-editor-shell.prompt.md
 │   │   ├── refactor-left-rail-catalog.prompt.md
 │   │   ├── refactor-right-inspector-layout.prompt.md
-│   │   ├── split-monolithic-hook.prompt.md
 │   │   ├── stabilize-public-api.prompt.md
-│   │   ├── unify-css-architecture.prompt.md
-│   │   ├── validate-runtime-generate-parity.prompt.md
-│   │   └── write-architecture-decision-record.prompt.md
-│   ├── provider-adapters
-│   │   ├── antigravity
-│   │   ├── claude
-│   │   ├── codex
-│   │   ├── copilot
-│   │   ├── gemini
-│   │   └── kilo
+│   │   └── unify-css-architecture.prompt.md
 │   ├── README.md
 │   ├── rules
 │   │   └── global-rules.md
 │   ├── skills
 │   │   ├── canvas-geometry-scaling
 │   │   │   └── SKILL.md
-│   │   ├── canvas-interaction
-│   │   │   └── SKILL.md
-│   │   ├── canvas-overlay-composition
-│   │   │   └── SKILL.md
 │   │   ├── catalog-discovery-patterns
 │   │   │   └── SKILL.md
-│   │   ├── collaboration-state-sync
-│   │   │   └── SKILL.md
 │   │   ├── component-composition
-│   │   │   └── SKILL.md
-│   │   ├── converter-pipeline-integrity
 │   │   │   └── SKILL.md
 │   │   ├── css-layering-and-overrides
 │   │   │   └── SKILL.md
 │   │   ├── design-system-consistency
 │   │   │   └── SKILL.md
-│   │   ├── design-token-governance
-│   │   │   └── SKILL.md
-│   │   ├── designer-engine-runtime-state
-│   │   │   └── SKILL.md
-│   │   ├── designer-selection-lifecycle
-│   │   │   └── SKILL.md
-│   │   ├── detail-view-sectioning
-│   │   │   └── SKILL.md
-│   │   ├── document-workflow-ux-patterns
-│   │   │   └── SKILL.md
 │   │   ├── docusign-inspired-product-thinking
-│   │   │   └── SKILL.md
-│   │   ├── editor-product-vision
 │   │   │   └── SKILL.md
 │   │   ├── editor-regression-testing
 │   │   │   └── SKILL.md
@@ -13679,164 +8808,64 @@ prueba-plugin
 │   │   │   └── SKILL.md
 │   │   ├── inspector-panel-composition
 │   │   │   └── SKILL.md
-│   │   ├── list-view-reorder-patterns
-│   │   │   └── SKILL.md
 │   │   ├── moveable-selecto-integration
-│   │   │   └── SKILL.md
-│   │   ├── pdfme-integration
-│   │   │   └── SKILL.md
-│   │   ├── platform-architecture-governance
 │   │   │   └── SKILL.md
 │   │   ├── playwright-canvas-diagnostics
 │   │   │   └── SKILL.md
 │   │   ├── public-api-surface-design
 │   │   │   └── SKILL.md
-│   │   ├── react-doctor
-│   │   │   └── SKILL.md
-│   │   ├── refactor-safety
-│   │   │   └── SKILL.md
 │   │   ├── schema-identity-persistence
 │   │   │   └── SKILL.md
 │   │   ├── schema-registry-extension
 │   │   │   └── SKILL.md
-│   │   ├── schema-render-contracts
-│   │   │   └── SKILL.md
-│   │   ├── snaplines-guides-behavior
-│   │   │   └── SKILL.md
-│   │   ├── ux-compact-panels
-│   │   │   └── SKILL.md
 │   │   └── wix-inspired-left-rail-ux
 │   │       └── SKILL.md
 │   └── templates
-├── .antigravity
-│   ├── agents
-│   ├── prompts
-│   ├── README.md
-│   └── skills
-├── .backup-ai-workspace
-│   ├── .agents.bak
-│   │   ├── agents
-│   │   │   ├── canvas-ux-orchestrator.agent.md
-│   │   │   ├── design-system-guardian.agent.md
-│   │   │   ├── frontend-pdf-architect.agent.md
-│   │   │   ├── pdfme-runtime-specialist.agent.md
-│   │   │   └── prompt-execution-director.agent.md
-│   │   ├── copilot-instructions.md
-│   │   ├── instructions
-│   │   │   ├── css-unification.instructions.md
-│   │   │   ├── frontend-editor.instructions.md
-│   │   │   ├── pdfme-extension.instructions.md
-│   │   │   └── ui-ux-compact.instructions.md
-│   │   ├── prompts
-│   │   │   ├── agents
-│   │   │   │   ├── pdfme-command-architect.md
-│   │   │   │   ├── pdfme-css-polish-architect.md
-│   │   │   │   ├── pdfme-editor-architect.md
-│   │   │   │   ├── pdfme-layout-architect.md
-│   │   │   │   ├── pdfme-overlay-architect.md
-│   │   │   │   ├── pdfme-registry-architect.md
-│   │   │   │   ├── pdfme-sidebar-architect.md
-│   │   │   │   ├── pdfme-testing-architect.md
-│   │   │   │   └── pdfme-toolbar-architect.md
-│   │   │   ├── compact-wix-style-ui.prompt.md
-│   │   │   ├── create-command-bus.prompt.md
-│   │   │   ├── refactor-editor-shell.prompt.md
-│   │   │   ├── split-monolithic-hook.prompt.md
-│   │   │   └── unify-css-architecture.prompt.md
-│   │   ├── react-doctor
-│   │   │   ├── AGENTS.md
-│   │   │   └── SKILL.md
-│   │   ├── README-AI-WORKSPACE.md
-│   │   └── skills
-│   │       ├── canvas-interaction
-│   │       │   └── SKILL.md
-│   │       ├── canvas-interaction.skill.md
-│   │       ├── component-composition.skill.md
-│   │       ├── design-system-consistency.skill.md
-│   │       ├── editor-product-vision
-│   │       │   └── SKILL.md
-│   │       ├── editor-product-vision.skill.md
-│   │       ├── pdfme-integration
-│   │       │   └── SKILL.md
-│   │       ├── pdfme-integration.skill.md
-│   │       ├── refactor-safety.skill.md
-│   │       └── ux-compact-panels.skill.md
-│   ├── github-agents.bak
-│   │   ├── canvas-ux-orchestrator.agent.md
-│   │   ├── design-system-guardian.agent.md
-│   │   ├── frontend-pdf-architect.agent.md
-│   │   ├── pdfme-runtime-specialist.agent.md
-│   │   └── prompt-execution-director.agent.md
-│   ├── github-instructions.bak
-│   │   ├── css-unification.instructions.md
-│   │   ├── frontend-editor.instructions.md
-│   │   ├── pdfme-extension.instructions.md
-│   │   └── ui-ux-compact.instructions.md
-│   ├── github-prompts.bak
-│   │   ├── agents
-│   │   │   ├── pdfme-command-architect.md
-│   │   │   ├── pdfme-css-polish-architect.md
-│   │   │   ├── pdfme-editor-architect.md
-│   │   │   ├── pdfme-layout-architect.md
-│   │   │   ├── pdfme-overlay-architect.md
-│   │   │   ├── pdfme-registry-architect.md
-│   │   │   ├── pdfme-sidebar-architect.md
-│   │   │   ├── pdfme-testing-architect.md
-│   │   │   └── pdfme-toolbar-architect.md
-│   │   ├── compact-wix-style-ui.prompt.md
-│   │   ├── create-command-bus.prompt.md
-│   │   ├── refactor-editor-shell.prompt.md
-│   │   ├── split-monolithic-hook.prompt.md
-│   │   └── unify-css-architecture.prompt.md
-│   └── github-skills.bak
-│       ├── canvas-interaction
-│       │   └── SKILL.md
-│       ├── canvas-interaction.skill.md
-│       ├── component-composition.skill.md
-│       ├── design-system-consistency.skill.md
-│       ├── editor-product-vision
-│       │   └── SKILL.md
-│       ├── editor-product-vision.skill.md
-│       ├── pdfme-integration
-│       │   └── SKILL.md
-│       ├── pdfme-integration.skill.md
-│       ├── refactor-safety.skill.md
-│       └── ux-compact-panels.skill.md
+│       ├── architecture-decision-record.md
+│       └── change-report.md
 ├── .claude
-│   ├── agents
-│   ├── prompts
+│   ├── commands
+│   │   ├── plan.md
+│   │   ├── review.md
+│   │   └── startup.md
 │   └── README.md
 ├── .codex
-│   ├── agents
-│   ├── prompts
 │   ├── README.md
-│   └── skills
+│   └── tasks
+│       └── refactor-safe.md
 ├── .gemini
-│   ├── agents
 │   ├── prompts
-│   ├── README.md
-│   └── skills
+│   │   └── audit-architecture.md
+│   └── README.md
 ├── .github
-│   ├── agents
 │   ├── AGENTS.md
 │   ├── copilot-instructions.md
 │   ├── instructions
-│   ├── prompts
-│   │   ├── Checkpoint.prompt.md
-│   │   ├── Execute.prompt.md
-│   │   ├── GH.prompt.md
-│   │   ├── Plan.prompt.md
-│   │   ├── Startup.prompt.md
-│   │   ├── Sync.prompt.md
-│   │   └── Think.prompt.md
-│   ├── PROTECTED_FILES.md
-│   ├── README-AI-WORKSPACE.md
-│   └── README.md
-├── .kilo
-│   ├── agents
-│   ├── prompts
-│   ├── README.md
-│   └── skills
+│   │   ├── architecture-modular.instructions.md
+│   │   ├── canvas-first-ux.instructions.md
+│   │   ├── css-unification.instructions.md
+│   │   ├── designer-runtime.instructions.md
+│   │   ├── docs-and-migration.instructions.md
+│   │   ├── frontend-editor.instructions.md
+│   │   ├── pdfme-extension.instructions.md
+│   │   ├── schema-system.instructions.md
+│   │   ├── testing-quality.instructions.md
+│   │   └── ui-ux-compact.instructions.md
+│   └── prompts
+│       ├── add-new-schema-family.prompt.md
+│       ├── audit-platform-boundaries.prompt.md
+│       ├── build-detail-section-system.prompt.md
+│       ├── create-playwright-canvas-scenarios.prompt.md
+│       ├── document-fork-divergence.prompt.md
+│       ├── generate-migration-guide.prompt.md
+│       ├── implement-overlay-pattern.prompt.md
+│       ├── normalize-schema-contracts.prompt.md
+│       ├── optimize-canvas-runtime.prompt.md
+│       ├── refactor-designer-engine.prompt.md
+│       ├── refactor-left-rail-catalog.prompt.md
+│       ├── refactor-right-inspector-layout.prompt.md
+│       ├── stabilize-public-api.prompt.md
+│       └── unify-css-architecture.prompt.md
 ├── .playwright-cli
 ├── .playwright-mcp
 ├── .stubs
@@ -18422,63 +13451,48 @@ prueba-plugin
 ├── AGENTS.md
 ├── AI-Memory
 ├── CLAUDE.md
+├── CODEX.md
 ├── docs
 │   ├── 00-indice
-│   │   ├── 01-manifiesto-fuentes.md
 │   │   └── README.md
 │   ├── 01-arquitectura
 │   │   ├── 01-vision-general.md
 │   │   ├── 02-mapa-modulos.md
-│   │   └── 03-contratos-template-schema-inputs.md
+│   │   └── 03-arquitectura-ia.md
 │   ├── 02-api-publica
 │   │   ├── 01-entrypoints.md
-│   │   ├── api-assignments.md
-│   │   ├── api-commands.md
-│   │   ├── api-comments.md
-│   │   ├── api-common.md
-│   │   ├── api-converter.md
-│   │   ├── api-generator.md
-│   │   ├── api-schemas.md
-│   │   └── api-ui.md
+│   │   └── 02-commands-events.md
 │   ├── 03-runtime
 │   │   ├── 01-designer-form-viewer.md
-│   │   ├── 02-designer-engine-builder.md
-│   │   └── 03-command-bus-y-acciones.md
+│   │   └── 02-snapshot-engine.md
 │   ├── 04-componentes
 │   │   ├── 01-inventario-componentes.md
-│   │   ├── 02-canvas-interacciones.md
-│   │   └── 03-sidebars-overlays.md
+│   │   ├── 02-sidebars-configurables.md
+│   │   └── 03-canvas-overlays.md
 │   ├── 05-schemas
 │   │   ├── 01-registry-y-plugins.md
-│   │   ├── 02-plugins-built-in-y-formulario.md
-│   │   └── 03-firma.md
+│   │   └── 02-schemas-built-in.md
 │   ├── 06-funcionalidades
-│   │   ├── 01-multidocumento.md
-│   │   ├── 02-colaboracion-usuarios.md
-│   │   ├── 03-assignments.md
-│   │   ├── 04-comentarios.md
-│   │   ├── 05-persistencia-api-formjson.md
-│   │   └── 06-generacion-y-conversion.md
-│   ├── 07-integracion
-│   │   ├── 01-consumo-react.md
-│   │   ├── 02-editar-plantilla-existente.md
-│   │   ├── 03-ejemplos-laboratorio.md
-│   │   └── 04-sisad-web-y-backend-futuro.md
-│   ├── 08-calidad
-│   │   ├── 01-css-design-system.md
-│   │   ├── 02-testing.md
+│   │   ├── 01-habilidades-configurables.md
+│   │   ├── 02-multidocumento.md
+│   │   └── 03-colaboracion-y-ownership.md
+│   ├── 07-calidad
+│   │   ├── 01-testing.md
+│   │   ├── 02-css-design-system.md
 │   │   └── 03-troubleshooting-render.md
+│   ├── 08-guias-ia
+│   │   ├── 01-arquitectura-asistente.md
+│   │   └── 02-prompts-y-skills.md
 │   ├── 99-anexos
-│   │   ├── 01-inventario.md
-│   │   ├── 02-checklist-adopcion.md
-│   │   └── 03-prompt-maestro.md
+│   │   ├── 01-checklist-adopcion.md
+│   │   └── 02-matriz-agentes-skills.md
 │   └── README.md
 ├── GEMINI.md
-├── GUARDRAILS.md
+├── MANIFEST.md
+├── metadata
 ├── public
 │   └── templates
 ├── README.md
-├── sisad-pdfme.md
 ├── src
 │   ├── features
 │   │   └── pdfcomponent
@@ -18537,23 +13551,42 @@ prueba-plugin
 │   │   └── ui
 │   │       ├── commands
 │   │       ├── components
-│   │       │   └── Designer
-│   │       │       ├── Canvas
-│   │       │       │   └── overlays
-│   │       │       ├── Comments
-│   │       │       ├── RightSidebar
-│   │       │       │   ├── DetailView
-│   │       │       │   ├── ListView
-│   │       │       │   └── shared
-│   │       │       ├── shared
-│   │       │       └── Shortcuts
+│   │       │   ├── Designer
+│   │       │   │   ├── Canvas
+│   │       │   │   │   └── overlays
+│   │       │   │   ├── Comments
+│   │       │   │   ├── RightSidebar
+│   │       │   │   │   ├── DetailView
+│   │       │   │   │   ├── ListView
+│   │       │   │   │   └── shared
+│   │       │   │   ├── shared
+│   │       │   │   └── Shortcuts
+│   │       │   └── shared
 │   │       ├── designerEngine.api.md
 │   │       ├── styles
 │   │       └── types
 │   └── types
+├── test-results
+│   ├── canvas-interactions-canvas-31ace-able-while-scrolling-viewer-chromium
+│   ├── pdfme-editor-cross-platfor-7f4f4--reverts-a-delete-operation-chromium
+│   │   └── error-context.md
+│   ├── pdfme-editor-cross-platfor-b802e-ible-fields-on-current-page-chromium
+│   │   └── error-context.md
+│   ├── pdfme-editor-cross-platfor-e1d0b-ields-when-two-are-selected-chromium
+│   │   └── error-context.md
+│   ├── pdfme-editor-PDFME-editor--0cd8b-on-the-basic-designer-route-chromium
+│   │   └── error-context.md
+│   ├── pdfme-editor-PDFME-editor--72be4-etry-stable-while-scrolling-chromium
+│   ├── pdfme-editor-PDFME-editor--d32b3-xternal-provider-from-modal-chromium
+│   │   └── error-context.md
+│   └── pdfme-editor-PDFME-editor--f6378-en-switching-signature-mode-chromium
+│       └── error-context.md
 └── tests
     ├── playwright
+    │   └── helpers
     └── unit
+        ├── factories
+        ├── helpers
         └── pdfme
             └── ui
                 └── right-sidebar
