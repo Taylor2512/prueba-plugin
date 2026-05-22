@@ -1,44 +1,23 @@
-# SISAD PDFME — Documentación para consumo externo
+# Documentación técnica de `sisad-pdfme`
 
-Este paquete contiene documentación organizada para implementar y mantener `sisad-pdfme` en otros proyectos.
+## Índice recomendado
 
-## Índice
-- [00-indice/01-manifiesto-fuentes.md](00-indice/01-manifiesto-fuentes.md)
-- [00-indice/README.md](00-indice/README.md)
-- [01-arquitectura/01-vision-general.md](01-arquitectura/01-vision-general.md)
-- [01-arquitectura/02-mapa-modulos.md](01-arquitectura/02-mapa-modulos.md)
-- [01-arquitectura/03-contratos-template-schema-inputs.md](01-arquitectura/03-contratos-template-schema-inputs.md)
-- [02-api-publica/01-entrypoints.md](02-api-publica/01-entrypoints.md)
-- [02-api-publica/api-assignments.md](02-api-publica/api-assignments.md)
-- [02-api-publica/api-commands.md](02-api-publica/api-commands.md)
-- [02-api-publica/api-comments.md](02-api-publica/api-comments.md)
-- [02-api-publica/api-common.md](02-api-publica/api-common.md)
-- [02-api-publica/api-converter.md](02-api-publica/api-converter.md)
-- [02-api-publica/api-generator.md](02-api-publica/api-generator.md)
-- [02-api-publica/api-schemas.md](02-api-publica/api-schemas.md)
-- [02-api-publica/api-ui.md](02-api-publica/api-ui.md)
-- [03-runtime/01-designer-form-viewer.md](03-runtime/01-designer-form-viewer.md)
-- [03-runtime/02-designer-engine-builder.md](03-runtime/02-designer-engine-builder.md)
-- [03-runtime/03-command-bus-y-acciones.md](03-runtime/03-command-bus-y-acciones.md)
-- [04-componentes/01-inventario-componentes.md](04-componentes/01-inventario-componentes.md)
-- [04-componentes/02-canvas-interacciones.md](04-componentes/02-canvas-interacciones.md)
-- [04-componentes/03-sidebars-overlays.md](04-componentes/03-sidebars-overlays.md)
-- [05-schemas/01-registry-y-plugins.md](05-schemas/01-registry-y-plugins.md)
-- [05-schemas/02-plugins-built-in-y-formulario.md](05-schemas/02-plugins-built-in-y-formulario.md)
-- [05-schemas/03-firma.md](05-schemas/03-firma.md)
-- [06-funcionalidades/01-multidocumento.md](06-funcionalidades/01-multidocumento.md)
-- [06-funcionalidades/02-colaboracion-usuarios.md](06-funcionalidades/02-colaboracion-usuarios.md)
-- [06-funcionalidades/03-assignments.md](06-funcionalidades/03-assignments.md)
-- [06-funcionalidades/04-comentarios.md](06-funcionalidades/04-comentarios.md)
-- [06-funcionalidades/05-persistencia-api-formjson.md](06-funcionalidades/05-persistencia-api-formjson.md)
-- [06-funcionalidades/06-generacion-y-conversion.md](06-funcionalidades/06-generacion-y-conversion.md)
-- [07-integracion/01-consumo-react.md](07-integracion/01-consumo-react.md)
-- [07-integracion/02-editar-plantilla-existente.md](07-integracion/02-editar-plantilla-existente.md)
-- [07-integracion/03-ejemplos-laboratorio.md](07-integracion/03-ejemplos-laboratorio.md)
-- [07-integracion/04-sisad-web-y-backend-futuro.md](07-integracion/04-sisad-web-y-backend-futuro.md)
-- [08-calidad/01-css-design-system.md](08-calidad/01-css-design-system.md)
-- [08-calidad/02-testing.md](08-calidad/02-testing.md)
-- [08-calidad/03-troubleshooting-render.md](08-calidad/03-troubleshooting-render.md)
-- [99-anexos/01-inventario.md](99-anexos/01-inventario.md)
-- [99-anexos/02-checklist-adopcion.md](99-anexos/02-checklist-adopcion.md)
-- [99-anexos/03-prompt-maestro.md](99-anexos/03-prompt-maestro.md)
+1. `00-indice/README.md`
+2. `01-arquitectura/01-vision-general.md`
+3. `01-arquitectura/02-mapa-modulos.md`
+4. `01-arquitectura/03-arquitectura-ia.md`
+5. `02-api-publica/01-entrypoints.md`
+6. `03-runtime/01-designer-form-viewer.md`
+7. `04-componentes/01-inventario-componentes.md`
+8. `04-componentes/02-sidebars-configurables.md`
+9. `04-componentes/03-canvas-overlays.md`
+10. `05-schemas/01-registry-y-plugins.md`
+11. `06-funcionalidades/01-habilidades-configurables.md`
+12. `07-calidad/01-testing.md`
+13. `07-calidad/02-css-design-system.md`
+14. `08-guias-ia/01-arquitectura-asistente.md`
+15. `99-anexos/01-checklist-adopcion.md`
+
+## Regla
+
+Toda documentación debe hablar de `sisad-pdfme` como componente aislado.

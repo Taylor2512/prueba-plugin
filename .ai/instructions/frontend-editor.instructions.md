@@ -1,34 +1,11 @@
-# Frontend Editor Instructions
+# Frontend Editor
 
-## Objetivo
-Evolucionar el editor PDF hacia una arquitectura profesional y compacta.
+Todo componente React debe ser genérico, configurable y testeable. Evita componentes con lógica específica de un consumidor. Usa props, contextos internos y command bus cuando sea necesario.
 
-## Directrices
-- usar React con componentes de responsabilidad única
-- separar layout shell de lógica de editor
-- extraer hooks monolíticos
-- mantener nombres semánticos
-- encapsular acciones en command handlers
-- mover resultados secundarios a drawers
-- reducir paneles permanentes
+## Checklist
 
-## Convenciones
-- un archivo = una responsabilidad principal
-- componentes grandes deben delegar composición
-- evitar estilos inline salvo casos justificados
-- preferir tokens y clases de sistema
-- toda prop pública debe tener un propósito claro
-
-## Patrones obligatorios
-- rail de acciones
-- panel contextual
-- toolbar contextual sobre selección
-- bottom drawer para resultados
-- runtime desacoplado del shell visual
-
-## Anti-patrones
-- estado global accidental
-- duplicación de handlers
-- mezcla de lógica de conversión con lógica de canvas
-- side effects en render
-
+- [ ] Respeta aislamiento del fork.
+- [ ] No duplica lógica.
+- [ ] Mantiene configuración declarativa.
+- [ ] Agrega o actualiza tests.
+- [ ] Actualiza documentación si cambia contrato.

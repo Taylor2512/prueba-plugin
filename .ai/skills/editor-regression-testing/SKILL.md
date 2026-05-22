@@ -1,42 +1,29 @@
-# SKILL: Editor Regression Testing
+# Skill: Pruebas de regresión del editor
 
-## Intención
-Asegurar que la evolución del editor no reintroduzca fallos en interacción, layout o surface pública.
+## Cuándo usar
 
-## Cuándo usar esta skill
-- refactors del editor
-- arreglos delicados
-- bugs difíciles de reproducir
+Usa este skill cuando la tarea afecte `editor-regression-testing` o componentes relacionados del fork.
 
-## Archivos y zonas típicas
-- `tests/unit`
-- `tests/playwright`
+## Objetivo
 
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
 
-## Checklist
-- reproducir bug
-- escribir test mínimo útil
-- nombrar regresión
-- evitar snapshots frágiles
+## Procedimiento
 
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
+1. Agregar unit tests para lógica pura.
+2. Agregar Playwright para interacción visual.
+3. Probar canvas no blanco.
+4. Probar sidebars toggle.
+5. Probar snapshot round-trip.
 
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.

@@ -1,15 +1,11 @@
-# CSS Unification Instructions
+# Css Unification
 
-## Objetivo
-Eliminar redundancia de estilos y consolidar el sistema visual.
+Mantén CSS bajo scope `.sisad-pdfme-root`. Usa tokens. Evita overrides globales. No rompas Moveable, Selecto, paper geometry ni overlays.
 
-## Reglas
-- unificar tokens
-- agrupar estilos por dominio
-- evitar archivos vacíos o duplicados
-- reducir colisiones de cascada
-- documentar capas: foundation, layout, components, overlays, utilities
+## Checklist
 
-## Meta
-Lograr que el editor tenga una base visual consistente, predecible y mantenible.
-
+- [ ] Respeta aislamiento del fork.
+- [ ] No duplica lógica.
+- [ ] Mantiene configuración declarativa.
+- [ ] Agrega o actualiza tests.
+- [ ] Actualiza documentación si cambia contrato.

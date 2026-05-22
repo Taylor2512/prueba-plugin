@@ -1,41 +1,29 @@
-# SKILL: Playwright Canvas Diagnostics
+# Skill: Diagnóstico Playwright para canvas
 
-## Intención
-Diagnosticar y cubrir bugs del canvas usando Playwright con escenarios repetibles.
+## Cuándo usar
 
-## Cuándo usar esta skill
-- regresiones solo reproducibles en navegador
-- bugs de drag/resize
-- layout shell visual
+Usa este skill cuando la tarea afecte `playwright-canvas-diagnostics` o componentes relacionados del fork.
 
-## Archivos y zonas típicas
-- `tests/playwright`
-- `scripts/playwright-*.mjs`
+## Objetivo
 
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
 
-## Checklist
-- usar pasos claros
-- esperar estados observables
-- guardar evidencia visual cuando sirva
+## Procedimiento
 
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
+1. Validar boundingBox.
+2. Validar backgroundImage del paper.
+3. Validar data attributes.
+4. Capturar screenshot en fallo.
+5. Usar runtime guard.
 
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.

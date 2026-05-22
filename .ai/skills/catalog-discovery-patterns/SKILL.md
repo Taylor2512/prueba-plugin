@@ -1,41 +1,29 @@
-# SKILL: Catalog Discovery Patterns
+# Skill: Catálogo y descubrimiento de campos
 
-## Intención
-Mejorar búsqueda, favoritos, recent y revelado progresivo del catálogo.
+## Cuándo usar
 
-## Cuándo usar esta skill
-- discovery mode débil
-- búsqueda confusa
-- grupos poco útiles
+Usa este skill cuando la tarea afecte `catalog-discovery-patterns` o componentes relacionados del fork.
 
-## Archivos y zonas típicas
-- `src/sisad-pdfme/ui/components/Designer/LeftSidebar*`
+## Objetivo
 
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
 
-## Checklist
-- cuidar relevancia
-- evitar saturación
-- mantener filtros simples
-- validar empty states
+## Procedimiento
 
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
+1. Organizar por familia.
+2. Permitir compact/rich mode.
+3. Agregar búsqueda y filtros.
+4. Usar registry como fuente.
+5. No duplicar metadata.
 
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.

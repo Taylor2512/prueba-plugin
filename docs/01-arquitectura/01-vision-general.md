@@ -1,30 +1,26 @@
-# Visión general de la plataforma
+# Visión general de `sisad-pdfme`
 
-> Documentación generada para consumo externo de `sisad-pdfme`.
+`sisad-pdfme` es un fork documental PDF orientado a funcionar como componente aislado, configurable y extensible.
 
-## Qué es `sisad-pdfme`
-Es una plataforma de edición documental basada en PDF con runtime de diseñador, formulario, visor, generación, conversión, schemas extensibles, colaboración, comentarios y ruteo multidocumento.
+## Objetivo
 
-## Capas
-```text
-common       → contratos, helpers, validaciones, comments, collaboration, assignments
-schemas      → plugins renderizables y catálogo de campos
-ui           → Designer, Form, Viewer, canvas, sidebars, overlays, runtime API
-generator    → PDF final desde template + inputs
-converter    → pdf2img, pdf2size, img2pdf
-lab/features → ejemplos vivos sin backend
-```
+Permitir:
 
-## Principio de consumo
-Los proyectos externos deben importar desde entrypoints públicos y no desde componentes internos. Los componentes internos se documentan para mantener el plugin, no para acoplar consumidores.
+- Diseñar documentos PDF.
+- Agregar y configurar schemas.
+- Renderizar formularios.
+- Visualizar resultados.
+- Generar snapshots.
+- Importar/exportar plantillas.
+- Extender mediante plugins.
 
-## Casos de uso cubiertos
-- Diseñar una plantilla nueva sobre PDF real.
-- Editar una plantilla ya diseñada.
-- Completar una plantilla como formulario dinámico.
-- Ver una plantilla con datos sin edición estructural.
-- Generar PDF final.
-- Manejar varios documentos y páginas.
-- Manejar varios usuarios/destinatarios con ownership, vista global/usuario y locks.
-- Configurar datos conectados, prefill, API y JSON de salida.
-- Manejar firmas por dibujo/imagen/P12/proveedor.
+## Principios
+
+- Aislamiento.
+- Configurabilidad.
+- Composición.
+- Snapshot portable.
+- UI compacta.
+- Canvas estable.
+- Contratos públicos.
+- Tests de regresión.

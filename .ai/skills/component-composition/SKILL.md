@@ -1,12 +1,29 @@
-# Skill: Component Composition
+# Skill: Composición de componentes configurables
 
-## Regla principal
-Cada componente debe tener una responsabilidad principal clara.
+## Cuándo usar
 
-## Buenas prácticas
-- separar shell y contenido
-- separar presentacional y lógico
-- aislar side effects
-- evitar mega props
-- usar composición sobre condicionales gigantes
+Usa este skill cuando la tarea afecte `component-composition` o componentes relacionados del fork.
 
+## Objetivo
+
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
+
+## Procedimiento
+
+1. Identificar componente base.
+2. Extraer comportamiento a props/config si está rígido.
+3. Evitar variantes por caso de uso.
+4. Usar paneles, slots, registry o adapters.
+5. Probar modo mínimo y modo avanzado.
+
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.

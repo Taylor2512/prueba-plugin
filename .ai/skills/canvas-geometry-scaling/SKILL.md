@@ -1,42 +1,29 @@
-# SKILL: Canvas Geometry Scaling
+# Skill: Geometría, zoom y coordenadas del canvas
 
-## Intención
-Trabajar zoom, scale, paper geometry y wrappers sin producir drift visual.
+## Cuándo usar
 
-## Cuándo usar esta skill
-- saltos al hacer zoom
-- paper mal escalado
-- offsets inconsistentes
+Usa este skill cuando la tarea afecte `canvas-geometry-scaling` o componentes relacionados del fork.
 
-## Archivos y zonas típicas
-- `src/sisad-pdfme/ui/components/Paper.tsx`
-- `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx`
+## Objetivo
 
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
 
-## Checklist
-- medir root/page bounds
-- revisar transform-origin
-- validar scroll
-- probar low/high zoom
+## Procedimiento
 
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
+1. Revisar paper root, scale layer y bounding boxes.
+2. Validar zoom y scroll.
+3. Evitar offsets por CSS.
+4. Probar Moveable/Selecto.
+5. Agregar Playwright si hay interacción visual.
 
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.

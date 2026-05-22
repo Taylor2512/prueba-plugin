@@ -1,41 +1,29 @@
-# SKILL: Schema Identity Persistence
+# Skill: Identidad y persistencia de schemas
 
-## Intención
-Mantener identidad estable y persistencia confiable para schemas a través de rename, reorder y sync.
+## Cuándo usar
 
-## Cuándo usar esta skill
-- bugs de identity
-- persistencia rota
-- sincronización inconsistente
+Usa este skill cuando la tarea afecte `schema-identity-persistence` o componentes relacionados del fork.
 
-## Archivos y zonas típicas
-- `src/sisad-pdfme/common/schema.ts`
-- `src/sisad-pdfme/ui/designerEngine.ts`
+## Objetivo
 
-## Procedimiento recomendado
-1. Entender el estado actual del componente o subsistema.
-2. Identificar contratos de entrada, salida y persistencia.
-3. Verificar si hay coupling con selección, geometría, schema config, runtime o estilos.
-4. Proponer cambios pequeños y testeables.
-5. Validar impacto en accesibilidad, responsive, performance y regresiones.
-6. Actualizar documentación si el patrón cambió.
+Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
 
-## Checklist
-- preservar id estable
-- separar id técnico y label
-- validar matcher y storage key
+## Procedimiento
 
-## Anti patrones
-- Cambiar lógica y estilos sin aislar responsabilidades.
-- Duplicar helpers geométricos o reglas de selección.
-- Añadir flags temporales sin dueño claro.
-- Dejar side effects sin test.
-- Romper API pública por una mejora local.
+1. Garantizar schemaUid estable.
+2. No usar label como identidad.
+3. Preservar documentId y pageIndex.
+4. Validar duplicados.
+5. Agregar test de migración o round-trip.
 
-## Salida esperada
-- diagnóstico
-- propuesta técnica
-- diff lógico por archivos
-- validación manual
-- validación automática
-- riesgos residuales
+## Checklist de salida
+
+- [ ] El cambio mantiene aislamiento.
+- [ ] La habilidad sigue siendo configurable.
+- [ ] No hay duplicidad innecesaria.
+- [ ] Hay validación o test.
+- [ ] La documentación fue actualizada si aplica.
+
+## Evidencia sugerida
+
+Incluye comandos ejecutados, archivos modificados y riesgos restantes.

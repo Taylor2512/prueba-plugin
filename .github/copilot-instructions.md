@@ -1,14 +1,21 @@
-# Copilot Instructions
+# GitHub Copilot Instructions — `sisad-pdfme`
 
-## Fuente de verdad
-Todo el workspace de IA vive en `.ai/`. Este archivo resume cómo debe comportarse GitHub Copilot en este proyecto.
+Fuente de verdad del proyecto: `.ai/`.
 
-## Reglas
-- Prioriza cambios locales y pequeños.
-- Usa primero el agente adecuado antes de proponer una implementación.
-- Revisa skills antes de tocar engine, canvas, selection, schemas o generator.
-- Si el cambio toca API pública, documentación o migración, actualiza docs relacionadas.
-- Si el cambio toca interacción real del editor, propone cobertura Vitest o Playwright.
+## Inicio obligatorio
 
-## Contexto del producto
-Este repositorio es un fork muy evolucionado de pdfme con engine propio, catálogo izquierdo compacto, inspector derecho contextual, overlays de canvas, collaboration, generator, converter y UX inspirada en Wix y DocuSign.
+1. Revisar `AGENTS.md`.
+2. Revisar `.ai/INDEX.md`.
+3. Seguir `.ai/rules/global-rules.md`.
+4. Aplicar `.ai/instructions/*.instructions.md` para la tarea.
+5. Usar agentes, skills y prompts desde `.ai/`.
+
+## Reglas críticas
+
+- No acoplar `sisad-pdfme` a terceros.
+- No duplicar sidebars, canvas runtime, snapshot engine ni schemas.
+- Mantener CSS dentro de `.sisad-pdfme-root`.
+- Preservar geometría de canvas, zoom, scroll, Moveable y Selecto.
+- Actualizar docs y tests cuando cambie runtime o API pública.
+
+Si existe contradicción con otro adaptador, prevalece `.ai/`.

@@ -1,0 +1,26 @@
+{
+  "generated_at": "2026-05-22T18:03:19.643469Z",
+  "source_code_files_detected": 504,
+  "sisad_pdfme_files_detected": 385,
+  "markdown_files_detected": 248,
+  "css_files_detected": 6,
+  "core_modules": [
+    "assignments",
+    "canvas",
+    "collaboration",
+    "commands",
+    "comments",
+    "common",
+    "context",
+    "contracts",
+    "converter",
+    "documents",
+    "editor",
+    "externalForms",
+    "generator",
+    "pdf-lib",
+    "schemas",
+    "shared",
+    "ui"
+  ]
+}

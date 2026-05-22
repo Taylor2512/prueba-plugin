@@ -1,3 +1,11 @@
-# Canvas-first UX instructions
-Define reglas inspiradas en Wix para progressive disclosure, ahorro de espacio e inspectores contextuales.
+# Canvas First Ux
 
+El canvas es la superficie principal. Cualquier sidebar, rail o overlay debe ayudar al canvas, no competir con él. Las interacciones deben ser compactas, contextuales y no invasivas.
+
+## Checklist
+
+- [ ] Respeta aislamiento del fork.
+- [ ] No duplica lógica.
+- [ ] Mantiene configuración declarativa.
+- [ ] Agrega o actualiza tests.
+- [ ] Actualiza documentación si cambia contrato.

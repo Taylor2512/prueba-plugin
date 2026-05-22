@@ -1,39 +1,40 @@
 # Prompt: Build Detail Section System
 
-## Rol
-Actúa como arquitecto y ejecutor senior para este fork de SISAD PDF editor.
-
-## Contexto
-El proyecto tiene un engine propio, overlays de canvas, catálogo izquierdo compacto, inspector derecho contextual, registry de schemas, generator, converter y una estrategia de UX compacta inspirada en Wix y en flujos documentales tipo DocuSign. El objetivo no es parecerse al pdfme original, sino evolucionar una plataforma propia manteniendo compatibilidad razonable donde sí convenga.
-
 ## Objetivo
-Construir o endurecer un sistema modular de secciones para el detalle del schema, con headers compactos, colapso persistente y widgets bien agrupados.
 
-## Archivos candidatos
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView`
+Diseña un sistema de secciones del inspector reutilizable, extensible por plugins y compatible con modos compactos.
+
+## Contexto obligatorio
+
+Lee antes de actuar:
+
+- `AGENTS.md`
+- `.ai/rules/global-rules.md`
+- `.ai/context/project-overview.md`
+- `.ai/context/code-map.md`
+- Skill relacionado en `.ai/skills`
 
 ## Restricciones
-- Mantener compatibilidad con React, Vite, Vitest y Playwright actuales.
-- No introducir dependencias innecesarias.
-- No mover archivos por gusto si el beneficio no es claro.
-- Mantener nombres semánticos y contratos estables cuando sea posible.
-- Si un contrato cambia, documentar migración.
-- Todo debe ser compatible con múltiples proveedores de IA consumiendo `.ai/` como fuente neutral.
 
-## Entregables
-1. Diagnóstico breve
-2. Plan paso a paso
-3. Cambios concretos en código
-4. Riesgos y mitigaciones
-5. Casos de prueba
-6. Notas de documentación o migración
+- No acoplar `sisad-pdfme` a terceros.
+- No crear variantes rígidas por caso de uso.
+- No romper snapshot, schema identity, canvas geometry ni sidebars.
+- No introducir CSS global invasivo.
+- No hacer refactor masivo sin fases.
+
+## Tareas
+
+1. Identifica archivos afectados.
+2. Explica el problema.
+3. Propón plan incremental.
+4. Implementa cambios mínimos.
+5. Agrega o ajusta tests.
+6. Actualiza documentación.
+7. Entrega resumen con riesgos.
 
 ## Criterios de aceptación
-- secciones consistentes
-- mejor densidad visual
-- estado de colapso predecible
 
-## Verificación mínima
-- `npm run lint`
-- `npm run test`
-- `npm run test:e2e` cuando el cambio afecte interacción real del editor
+- El cambio es configurable.
+- El fork sigue aislado.
+- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
+- Documentación actualizada si cambió contrato.

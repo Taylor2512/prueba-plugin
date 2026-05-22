@@ -1,39 +1,22 @@
-# Designer, Form, Viewer y ciclo de vida
-
-> Documentación generada para consumo externo de `sisad-pdfme`.
+# Runtime: Designer, Form y Viewer
 
 ## Designer
-Diseño estructural de plantillas: crear schemas, mover, redimensionar, seleccionar, configurar, comentar, asignar usuarios y guardar template.
 
-```ts
-const designer = new Designer({
-  domContainer,
-  template,
-  plugins: builtInSchemaDefinitions,
-  options: { lang: 'es', designerEngine }
-});
-```
+Modo de edición de plantillas. Permite canvas, sidebars, inspector, drag/drop, zoom, overlays y snapshot.
 
 ## Form
-Completar valores sin modificar layout.
 
-```ts
-const form = new Form({ domContainer, template, inputs, plugins: builtInSchemaDefinitions });
-```
+Modo de captura de datos. Renderiza campos editables y emite valores por identidad estable.
 
 ## Viewer
-Vista previa sin edición estructural.
 
-```ts
-const viewer = new Viewer({ domContainer, template, inputs, plugins: builtInSchemaDefinitions });
-```
+Modo de lectura. Renderiza PDF y valores sin edición.
 
-## Cleanup en React
-```tsx
-useEffect(() => {
-  const instance = new Designer({ domContainer: ref.current, template, plugins, options });
-  return () => queueMicrotask(() => instance.destroy());
-}, [templateVersion]);
-```
+## Regla de paridad
 
-Usar cleanup diferido evita el warning de React sobre desmontaje síncrono mientras React renderiza.
+Un schema debe tener comportamiento coherente en:
+
+- Designer.
+- Form.
+- Viewer.
+- PDF final generado.

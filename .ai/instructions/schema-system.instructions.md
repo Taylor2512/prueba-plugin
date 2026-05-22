@@ -1,3 +1,11 @@
-# Schema system instructions
-Define reglas para registry, familias de schema y contratos.
+# Schema System
 
+Todo schema debe tener identidad estable, renderer de designer/form/viewer y panel de propiedades configurable. No guardar datos sensibles ni funciones en el schema.
+
+## Checklist
+
+- [ ] Respeta aislamiento del fork.
+- [ ] No duplica lógica.
+- [ ] Mantiene configuración declarativa.
+- [ ] Agrega o actualiza tests.
+- [ ] Actualiza documentación si cambia contrato.

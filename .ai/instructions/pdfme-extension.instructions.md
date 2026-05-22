@@ -1,20 +1,11 @@
-# PDFME Extension Instructions
+# Pdfme Extension
 
-## Objetivo
-Extender sisad-pdfme modificado sin convertir la integración en una caja negra frágil.
+Toda extensión debe entrar por registry, plugin, adapter, command o event. No forks paralelos por caso de uso.
 
-## Reglas
-- envolver APIs internas detrás de adaptadores locales
-- no acoplar la app a detalles de implementación inestables
-- centralizar registro de toolbar configs
-- centralizar integración de plugins
-- documentar diferencias respecto a sisad-pdfme upstream
+## Checklist
 
-## Debes promover
-- createRuntimeApi
-- adapters
-- event maps
-- selection helpers
-- page helpers
-- schema operations desacopladas
-
+- [ ] Respeta aislamiento del fork.
+- [ ] No duplica lógica.
+- [ ] Mantiene configuración declarativa.
+- [ ] Agrega o actualiza tests.
+- [ ] Actualiza documentación si cambia contrato.
