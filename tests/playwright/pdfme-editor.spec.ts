@@ -102,4 +102,29 @@ test.describe('pdfme editor canvas chrome', () => {
     expect(probe.controlBarBackground).toBe('rgba(0, 0, 0, 0)');
     expect(probe.visibleMaskCount).toBe(0);
   });
+
+  test('alignment command updates inspector position and supports undo', async ({ page }) => {
+    await page.goto('/lab/multi-document-routing');
+
+    const schema = page.locator('.sisad-pdfme-ui-custom-selectable').first();
+    await expect(schema).toBeVisible();
+    await schema.click({ force: true });
+
+    const xInput = page.locator('input[name="position.x"]').first();
+    await expect(xInput).toBeVisible();
+
+    const before = Number(await xInput.inputValue());
+    expect(Number.isFinite(before)).toBe(true);
+
+    const alignLeft = page.getByRole('button', { name: 'Alinear a la izquierda' }).first();
+    await expect(alignLeft).toBeVisible();
+    await alignLeft.click();
+
+    await expect.poll(async () => Number(await xInput.inputValue())).toBe(0);
+
+    await page.keyboard.press('Meta+z');
+    await expect
+      .poll(async () => Number(await xInput.inputValue()))
+      .toBeCloseTo(before, 1);
+  });
 });

@@ -2,7 +2,7 @@
    ARCHIVO UNIFICADO DE ESTILOS CSS
    =====================================================================
    Carpeta origen: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
-   Fecha de generación: 2026-06-01T18:42:38.921Z
+   Fecha de generación: 2026-06-01T20:36:35.428Z
    Total de archivos incluidos: 6
    Extensiones incluidas: .css
    Objetivo: consolidar estilos CSS respetando un orden estable de cascada
@@ -25,7 +25,7 @@
    ARCHIVO #1
    Ruta relativa: src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
    Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
-   Líneas aproximadas: 5597
+   Líneas aproximadas: 5750
    ==================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
@@ -305,23 +305,83 @@
 }
 
 .sisad-pdfme-ui-control-bar {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
+  position: absolute;
+  inset: 0;
+  z-index: var(--sisad-pdfme-chrome-z, 45);
+  pointer-events: none;
+  background: transparent;
+}
+
+.sisad-pdfme-ui-control-bar[data-density='comfortable'] {
+  --sisad-chrome-spacing: 0.5rem;
+}
+
+.sisad-pdfme-ui-control-bar[data-density='compact'],
+.sisad-pdfme-ui-control-bar[data-density='minimal'] {
+  --sisad-chrome-spacing: 0.4375rem;
+}
+
+.sisad-pdfme-ui-control-bar-cluster {
+  position: absolute;
+  pointer-events: auto;
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  width: calc(100% - 0.75rem);
-  min-height: 2.625rem;
-  margin: 0.3125rem auto 0;
-  padding: 0.2rem 0.45rem;
-  border: 1px solid var(--border-subtle);
-  border-radius: 0.75rem;
-  background: linear-gradient(180deg, var(--color-white), var(--color-gray-50));
-  box-shadow: var(--shadow-lg);
-  backdrop-filter: blur(0.875rem);
-  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.sisad-pdfme-ui-control-bar-cluster--top-left {
+  top: 0.5rem;
+  left: 0.5rem;
+}
+
+.sisad-pdfme-ui-control-bar-cluster--top-center {
+  top: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sisad-pdfme-ui-control-bar-cluster--top-right {
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.sisad-pdfme-ui-control-bar-cluster--bottom-right {
+  right: 0.75rem;
+  bottom: 0.75rem;
+}
+
+.sisad-pdfme-ui-control-bar-pill,
+.sisad-pdfme-ui-control-bar-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1875rem;
+  min-height: var(--sisad-pdfme-chrome-height, 1.875rem);
+  padding: 0.125rem 0.35rem;
+  border: 1px solid var(--sisad-pdfme-chrome-border, var(--border-subtle));
+  border-radius: var(--sisad-pdfme-chrome-radius, 0.625rem);
+  background: var(--sisad-pdfme-chrome-bg, linear-gradient(180deg, var(--color-white-98), var(--color-gray-50-90)));
+  box-shadow: var(--sisad-pdfme-chrome-shadow, var(--shadow-gray-10));
+  backdrop-filter: blur(0.625rem);
+}
+
+.sisad-pdfme-ui-control-bar-summary {
+  color: var(--text-secondary);
+  font-size: 0.65625rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.sisad-pdfme-ui-control-bar-status-dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: var(--color-success);
+  box-shadow: 0 0 0 2px var(--color-white-92);
+}
+
+.sisad-pdfme-ui-control-bar-status-dot[data-status='editing'] {
+  background: var(--color-warning);
 }
 
 .sisad-pdfme-designer-context-summary {
@@ -361,6 +421,18 @@
   font-size: 0.625rem;
   font-weight: 600;
   white-space: nowrap;
+}
+
+.sisad-pdfme-designer-context-summary-status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--color-success);
+  box-shadow: 0 0 0 2px var(--color-white);
+}
+
+.sisad-pdfme-designer-context-summary-meta.is-inline {
+  gap: 0.18rem;
 }
 
 .sisad-pdfme-designer-context-summary[data-placement='sidebar'] .sisad-pdfme-designer-context-summary-title {
@@ -489,7 +561,11 @@
   gap: 0.375rem;
   min-width: 0;
   flex: 1 1 auto;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+}
+
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-context {
+  flex: 0 1 auto;
 }
 
 .sisad-pdfme-ui-control-bar-kicker {
@@ -534,9 +610,13 @@
   display: inline-flex;
   align-items: center;
   gap: 0.3125rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: flex-end;
   flex: 2 1 auto;
+}
+
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-actions {
+  flex: 1 1 auto;
 }
 
 .sisad-pdfme-ui-pager,
@@ -597,20 +677,61 @@
 }
 
 .sisad-pdfme-ui-control-bar-icon-btn {
-  width: 1.5rem;
-  height: 1.5rem;
-  min-width: 1.5rem;
+  width: 1.625rem;
+  height: 1.625rem;
+  min-width: 1.625rem;
   padding: 0;
 }
 
+.sisad-pdfme-ui-control-bar[data-density='compact'] .sisad-pdfme-ui-control-bar-icon-btn,
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-icon-btn {
+  width: 1.75rem;
+  height: 1.75rem;
+  min-width: 1.75rem;
+}
+
 .sisad-pdfme-ui-control-bar-text-btn {
-  height: 1.5rem;
+  height: 1.625rem;
   padding: 0 0.375rem;
   font-size: 0.71875rem;
 }
 
+.sisad-pdfme-ui-control-bar[data-density='compact'] .sisad-pdfme-ui-control-bar-text-btn,
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-text-btn {
+  height: 1.75rem;
+  min-width: 1.75rem;
+  padding: 0 0.375rem;
+  font-size: 0.6875rem;
+}
+
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-summary {
+  font-size: 0.625rem;
+}
+
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-cluster--top-left {
+  max-width: calc(100% - 9.5rem);
+}
+
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-cluster--bottom-right {
+  right: 0.5rem;
+  bottom: 0.5rem;
+}
+
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-cluster--top-center {
+  top: auto;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  transform: none;
+}
+
 .sisad-pdfme-ui-control-bar-page-select {
   min-width: 7.5rem;
+}
+
+.sisad-pdfme-ui-control-bar[data-density='compact'] .sisad-pdfme-ui-control-bar-page-select,
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-page-select {
+  min-width: 6rem;
+  max-width: 6rem;
 }
 
 .sisad-pdfme-ui-context-menu {
@@ -664,6 +785,12 @@
 .sisad-pdfme-ui-zoom .ant-select-selector {
   min-width: 3.625rem;
   font-size: 0.6875rem;
+}
+
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-zoom .sisad-pdfme-ui-zoom-select .ant-select-selector,
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-zoom .ant-select-selector {
+  min-width: 3.5rem;
+  max-width: 3.5rem;
 }
 
 .sisad-pdfme-ui-zoom-out:hover,
@@ -1479,11 +1606,36 @@
   box-sizing: border-box;
   overscroll-behavior: contain;
   background:
-    radial-gradient(circle at center, var(--color-border-12) 0%, transparent 65%),
-    linear-gradient(var(--color-border-16) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-border-16) 1px, transparent 1px),
-    var(--color-bg-base);
-  background-size: 100% 100%, 1.5rem 1.5rem, 1.5rem 1.5rem;
+    radial-gradient(circle at top left, rgba(148, 163, 184, 0.08), transparent 22%),
+    linear-gradient(180deg, rgba(248, 250, 252, 0.96), rgba(241, 245, 249, 0.98));
+  background-size: auto, auto;
+}
+
+.sisad-pdfme-root .sisad-pdfme-designer-canvas[data-grid-visible='false'] {
+  background:
+    radial-gradient(circle at top left, rgba(148, 163, 184, 0.08), transparent 22%),
+    linear-gradient(180deg, rgba(248, 250, 252, 0.96), rgba(241, 245, 249, 0.98));
+  background-size: auto, auto;
+}
+
+.sisad-pdfme-root .sisad-pdfme-designer-canvas[data-grid-visible='true'] {
+  --sisad-grid-step: 24px;
+  --sisad-grid-line: rgba(148, 163, 184, 0.16);
+  --sisad-grid-line-strong: rgba(148, 163, 184, 0.24);
+  background-image:
+    linear-gradient(to right, var(--sisad-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--sisad-grid-line) 1px, transparent 1px),
+    linear-gradient(to right, var(--sisad-grid-line-strong) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--sisad-grid-line-strong) 1px, transparent 1px),
+    radial-gradient(circle at top left, rgba(148, 163, 184, 0.08), transparent 22%),
+    linear-gradient(180deg, rgba(248, 250, 252, 0.96), rgba(241, 245, 249, 0.98));
+  background-size:
+    var(--sisad-grid-step) var(--sisad-grid-step),
+    var(--sisad-grid-step) var(--sisad-grid-step),
+    calc(var(--sisad-grid-step) * 4) calc(var(--sisad-grid-step) * 4),
+    calc(var(--sisad-grid-step) * 4) calc(var(--sisad-grid-step) * 4),
+    auto,
+    auto;
 }
 
 .sisad-pdfme-designer-canvas-empty-state {
@@ -1654,6 +1806,10 @@
 
 .sisad-pdfme-designer-stage[data-sidebar-open="true"] .sisad-pdfme-designer-canvas {
   padding-right: calc(var(--sisad-pdfme-rs-width) + 0.875rem);
+}
+
+.sisad-pdfme-designer-stage[data-sidebar-open="true"] .sisad-pdfme-ui-control-bar {
+  right: calc(var(--sisad-pdfme-rs-width) + 0.875rem);
 }
 
 .sisad-pdfme-designer-right-sidebar-content {
@@ -3389,28 +3545,25 @@
 }
 
 .sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar {
-  min-height: 2.25rem;
-  padding: 0.14rem 0.35rem;
-  gap: 0.35rem;
-  border-radius: 0.625rem;
+  --sisad-pdfme-chrome-height: 1.72rem;
 }
 
 .sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"][data-sidebar-open="true"] .sisad-pdfme-ui-control-bar {
-  width: calc(100% - clamp(15rem, 17.5vw, 17.25rem) - 1rem);
-  margin: 0.3125rem 0.375rem 0 0.375rem;
+  right: calc(clamp(15rem, 17.5vw, 17.25rem) + 0.9rem);
 }
 
-.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-group,
-.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-zoom,
-.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-pager {
-  padding: 0.1rem 0.18rem;
-  gap: 0.1rem;
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density='comfortable'] .sisad-pdfme-ui-control-bar-cluster--top-left,
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density='comfortable'] .sisad-pdfme-ui-control-bar-cluster--top-center,
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density='comfortable'] .sisad-pdfme-ui-control-bar-cluster--top-right,
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density='compact'] .sisad-pdfme-ui-control-bar-cluster--top-left,
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density='compact'] .sisad-pdfme-ui-control-bar-cluster--top-center,
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density='compact'] .sisad-pdfme-ui-control-bar-cluster--top-right {
+  top: 0.375rem;
 }
 
-.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-icon-btn {
-  width: 1.32rem;
-  height: 1.32rem;
-  min-width: 1.32rem;
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-cluster--bottom-right {
+  right: 0.5rem;
+  bottom: 0.5rem;
 }
 
 .sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-text-btn {
@@ -6780,7 +6933,7 @@
    ARCHIVO #3
    Ruta relativa: src/sisad-pdfme/ui/styles/canvas-interactions.css
    Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/styles/canvas-interactions.css
-   Líneas aproximadas: 1323
+   Líneas aproximadas: 1414
    ==================================================================== */
 
 /* ============================================================
@@ -7459,14 +7612,18 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  padding: var(--space-2);
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid var(--color-primary-25);
-  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xl);
   backdrop-filter: var(--blur-md);
   pointer-events: auto;
-  z-index: calc(var(--z-overlay) + 3);
+  z-index: calc(var(--z-overlay) + 6);
+  width: min(420px, calc(100vw - 32px));
+  max-width: calc(100vw - 32px);
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+  transform-origin: top left;
 }
 
 .sisad-pdfme-ui-inline-edit-overlay-header {
@@ -7474,6 +7631,31 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
+}
+
+.sisad-pdfme-ui-inline-edit-overlay-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.sisad-pdfme-ui-inline-edit-overlay-close {
+  border: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 1.15rem;
+  line-height: 1;
+  width: 34px;
+  height: 34px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+}
+
+.sisad-pdfme-ui-inline-edit-overlay-close:hover {
+  background: var(--color-bg-hover);
+  color: var(--color-text-primary);
 }
 
 .sisad-pdfme-ui-inline-edit-overlay-kicker {
@@ -7491,6 +7673,41 @@
 
 .sisad-pdfme-ui-inline-edit-overlay-input {
   width: 100%;
+}
+
+.sisad-pdfme-ui-inline-edit-overlay-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-1);
+}
+
+.sisad-pdfme-ui-inline-edit-overlay-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.sisad-pdfme-ui-inline-edit-overlay-action {
+  min-height: 2rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-surface);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.sisad-pdfme-ui-inline-edit-overlay-action.primary {
+  background: linear-gradient(135deg, var(--color-primary-08), var(--color-primary-15));
+  border-color: var(--color-primary-25);
+  color: var(--color-primary);
+}
+
+.sisad-pdfme-ui-inline-edit-overlay-action:focus-visible,
+.sisad-pdfme-ui-inline-edit-overlay-close:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
 }
 
 /* ── Snap Feedback ───────────────────────────────────────────── */
@@ -7525,7 +7742,15 @@
 .sisad-pdfme-designer-stage[data-interaction-phase='dragging'] .sisad-pdfme-ui-control-bar,
 .sisad-pdfme-designer-stage[data-interaction-phase='resizing'] .sisad-pdfme-ui-control-bar,
 .sisad-pdfme-designer-stage[data-interaction-phase='rotating'] .sisad-pdfme-ui-control-bar {
-  background: rgba(30, 41, 59, 0.88);
+  background: transparent;
+}
+
+.sisad-pdfme-designer-stage[data-interaction-phase='dragging'] .sisad-pdfme-designer-mask,
+.sisad-pdfme-designer-stage[data-interaction-phase='resizing'] .sisad-pdfme-designer-mask,
+.sisad-pdfme-designer-stage[data-interaction-phase='rotating'] .sisad-pdfme-designer-mask,
+.sisad-pdfme-designer-stage[data-interaction-phase='selected-single'] .sisad-pdfme-designer-mask,
+.sisad-pdfme-designer-stage[data-interaction-phase='selected-multi'] .sisad-pdfme-designer-mask {
+  display: none;
 }
 
 .sisad-pdfme-designer-stage[data-interaction-phase='selected-single'] .sisad-pdfme-ui-control-bar,
@@ -8098,6 +8323,25 @@
   box-shadow: var(--shadow-md);
 }
 
+.sisad-pdfme-designer-canvas-state-overlay[data-blocking-mask='true'][data-block-reason='loading'] {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: auto;
+  background: rgba(15, 23, 42, 0.18);
+  backdrop-filter: blur(1px);
+}
+
+.sisad-pdfme-designer-canvas-state-overlay[data-blocking-mask='true'][data-block-reason='error'] {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: auto;
+  background: rgba(15, 23, 42, 0.1);
+}
+
 .sisad-pdfme-designer-canvas-state-overlay .sisad-pdfme-designer-canvas-empty-state-title {
   font-size: 0.74rem;
 }
@@ -8191,7 +8435,7 @@ body {
    ARCHIVO #5
    Ruta relativa: src/sisad-pdfme/ui/styles/sisad-pdfme-runtime.css
    Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/styles/sisad-pdfme-runtime.css
-   Líneas aproximadas: 393
+   Líneas aproximadas: 392
    ==================================================================== */
 
 @import './sisad-pdfme-global.css';
@@ -8579,8 +8823,7 @@ body {
 }
 
 .sisad-pdfme-designer-stage[data-left-sidebar-variant='compact'] .sisad-pdfme-ui-control-bar {
-  min-height: 3.15rem;
-  padding-block: 0.25rem;
+	--sisad-pdfme-chrome-height: 1.72rem;
 }
 
 .sisad-pdfme-designer-stage[data-left-sidebar-variant='compact'] .sisad-pdfme-ui-control-bar-context {
@@ -8595,7 +8838,7 @@ body {
    ARCHIVO #6
    Ruta relativa: src/sisad-pdfme/ui/styles/tokens.css
    Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/styles/tokens.css
-   Líneas aproximadas: 369
+   Líneas aproximadas: 375
    ==================================================================== */
 
 :root {
@@ -8926,6 +9169,12 @@ body {
   --sisad-pdfme-stage-top-gap: 4.25rem;
   --sisad-pdfme-stage-right-dock-width: clamp(17rem, 20vw, 21rem);
   --sisad-pdfme-stage-right-dock-gap: 1.125rem;
+  --sisad-pdfme-chrome-bg: linear-gradient(180deg, var(--color-white-98), var(--color-gray-50-90));
+  --sisad-pdfme-chrome-border: var(--color-border-20);
+  --sisad-pdfme-chrome-shadow: var(--shadow-gray-10);
+  --sisad-pdfme-chrome-radius: 0.625rem;
+  --sisad-pdfme-chrome-z: 45;
+  --sisad-pdfme-chrome-height: 1.875rem;
 
   /* ── CANVAS-FIRST STATE TOKENS ───────────────────────────── */
   /* Aliases removed - use base tokens directly */
@@ -8979,60 +9228,49 @@ body {
    ├── .ai
    │   ├── agents
    │   ├── architecture
+   │   ├── checklists
    │   ├── context
-   │   ├── instructions
+   │   ├── memory
    │   ├── prompts
+   │   ├── providers
    │   ├── rules
    │   ├── skills
    │   │   ├── active-recipient-color-contract
    │   │   ├── canvas-geometry-scaling
-   │   │   ├── canvas-transform-collision-guards
-   │   │   ├── catalog-discovery-patterns
    │   │   ├── command-bus-transform-actions
    │   │   ├── component-composition
+   │   │   ├── context-budget
    │   │   ├── context-menu-transform-guard
    │   │   ├── css-layering-and-overrides
    │   │   ├── css-recipient-color-tokens
    │   │   ├── css-transform-handle-safety
-   │   │   ├── design-system-consistency
+   │   │   ├── custom-schema-contracts
    │   │   ├── documentation-traceability
-   │   │   ├── docusign-inspired-product-thinking
-   │   │   ├── docusign-wix-color-ux-patterns
-   │   │   ├── editor-regression-testing
-   │   │   ├── event-payload-schema-color
+   │   │   ├── external-forms-runtime
    │   │   ├── floating-toolbar-transform-position
    │   │   ├── fork-safe-pdfme-evolution
-   │   │   ├── generator-runtime-parity
+   │   │   ├── form-viewer-generator-parity
    │   │   ├── inline-edit-transform-guard
-   │   │   ├── inspector-panel-composition
    │   │   ├── keyboard-shortcut-transform-safety
-   │   │   ├── lab-fixture-recipient-colors
-   │   │   ├── left-sidebar-catalog-color-behavior
+   │   │   ├── legacy-runtime-reduction
    │   │   ├── moveable-selecto-integration
    │   │   ├── moveable-selecto-resize-rotate
    │   │   ├── playwright-canvas-diagnostics
    │   │   ├── playwright-recipient-color-regression
    │   │   ├── playwright-transform-regression
-   │   │   ├── plugin-icon-fallback-rendering
-   │   │   ├── public-api-recipient-transform
    │   │   ├── public-api-surface-design
-   │   │   ├── recipient-color-accessibility
-   │   │   ├── recipient-palette-testing
-   │   │   ├── rotation-geometry-contract
+   │   │   ├── quality-gates
    │   │   ├── schema-icon-color-sync
-   │   │   ├── schema-identity-persistence
    │   │   ├── schema-owner-color-persistence
    │   │   ├── schema-registry-extension
    │   │   ├── schema-tone-resolution
-   │   │   ├── schema-transform-inspector-fields
-   │   │   ├── selecto-selection-lifecycle
    │   │   ├── snapshot-transform-roundtrip
    │   │   ├── test-results-forensics
    │   │   ├── transform-interaction-state-machine
    │   │   ├── unique-recipient-palette
    │   │   ├── unit-recipient-color-contracts
-   │   │   ├── unit-transform-state-contracts
-   │   │   └── wix-inspired-left-rail-ux
+   │   │   └── unit-transform-state-contracts
+   │   ├── subagents
    │   └── templates
    ├── .claude
    │   └── commands
@@ -9043,4603 +9281,27 @@ body {
    ├── .github
    │   ├── instructions
    │   └── prompts
-   ├── .playwright-cli
-   ├── .playwright-mcp
-   ├── .stubs
-   │   └── pyspark34
-   │       ├── absl
-   │       │   ├── flags
-   │       │   ├── logging
-   │       │   └── testing
-   │       ├── adal
-   │       ├── adlfs
-   │       ├── aiohttp
-   │       ├── aiosignal
-   │       ├── alembic
-   │       │   ├── autogenerate
-   │       │   ├── ddl
-   │       │   ├── operations
-   │       │   ├── runtime
-   │       │   ├── script
-   │       │   ├── testing
-   │       │   │   ├── plugin
-   │       │   │   └── suite
-   │       │   └── util
-   │       ├── ansi2html
-   │       ├── anyio
-   │       │   ├── _backends
-   │       │   ├── _core
-   │       │   ├── abc
-   │       │   └── streams
-   │       ├── argon2
-   │       ├── arrow
-   │       ├── astor
-   │       ├── asttokens
-   │       ├── astunparse
-   │       ├── async_timeout
-   │       ├── attr
-   │       ├── attrs
-   │       ├── auth
-   │       │   ├── compute_engine
-   │       │   ├── crypt
-   │       │   └── transport
-   │       ├── automl
-   │       ├── autopage
-   │       ├── axes_grid1
-   │       ├── axisartist
-   │       ├── azureml
-   │       │   └── train
-   │       │       └── automl
-   │       ├── backcall
-   │       ├── backoff
-   │       ├── backports
-   │       │   └── configparser
-   │       ├── bcrypt
-   │       ├── benchmark
-   │       ├── bleach
-   │       ├── blinker
-   │       ├── blob
-   │       │   ├── _generated
-   │       │   │   ├── aio
-   │       │   │   │   └── operations
-   │       │   │   ├── models
-   │       │   │   └── operations
-   │       │   ├── _shared
-   │       │   │   └── avro
-   │       │   └── aio
-   │       ├── bs4
-   │       │   └── builder
-   │       ├── cachetools
-   │       ├── catboost
-   │       │   ├── eval
-   │       │   ├── hnsw
-   │       │   └── widget
-   │       ├── causal
-   │       ├── certifi
-   │       ├── cffi
-   │       ├── charset_normalizer
-   │       │   └── cli
-   │       ├── chromadb
-   │       │   ├── api
-   │       │   ├── auth
-   │       │   │   ├── basic
-   │       │   │   └── token
-   │       │   ├── cli
-   │       │   ├── db
-   │       │   │   └── impl
-   │       │   ├── ingest
-   │       │   ├── migrations
-   │       │   ├── segment
-   │       │   ├── server
-   │       │   │   └── fastapi
-   │       │   ├── telemetry
-   │       │   └── utils
-   │       ├── click
-   │       ├── cliff
-   │       │   └── formatters
-   │       ├── cloudpickle
-   │       ├── clr_loader
-   │       │   ├── ffi
-   │       │   └── util
-   │       ├── cmaes
-   │       ├── cmd2
-   │       ├── cntk
-   │       ├── cognitive
-   │       ├── colorama
-   │       ├── coloredlogs
-   │       │   └── converter
-   │       ├── colorlog
-   │       ├── comm
-   │       ├── conda_package_handling
-   │       ├── conda_package_streaming
-   │       ├── contextlib2
-   │       ├── contourpy
-   │       │   └── util
-   │       ├── core
-   │       │   ├── pipeline
-   │       │   │   ├── policies
-   │       │   │   └── transport
-   │       │   ├── platform
-   │       │   ├── polling
-   │       │   ├── rest
-   │       │   ├── schema
-   │       │   ├── serialize
-   │       │   ├── spark
-   │       │   ├── tracing
-   │       │   │   └── ext
-   │       │   └── utils
-   │       ├── cryptography
-   │       │   ├── hazmat
-   │       │   │   ├── backends
-   │       │   │   │   └── openssl
-   │       │   │   ├── bindings
-   │       │   │   │   └── openssl
-   │       │   │   └── primitives
-   │       │   │       ├── asymmetric
-   │       │   │       ├── ciphers
-   │       │   │       ├── kdf
-   │       │   │       ├── serialization
-   │       │   │       └── twofactor
-   │       │   └── x509
-   │       ├── cyber
-   │       │   ├── anomaly
-   │       │   ├── feature
-   │       │   └── utils
-   │       ├── cycler
-   │       ├── Cython
-   │       │   ├── Build
-   │       │   │   └── Tests
-   │       │   ├── Compiler
-   │       │   │   └── Tests
-   │       │   ├── Debugger
-   │       │   │   └── Tests
-   │       │   ├── Distutils
-   │       │   ├── Plex
-   │       │   ├── Runtime
-   │       │   ├── Tempita
-   │       │   ├── Tests
-   │       │   └── Utility
-   │       ├── dash
-   │       │   ├── dash_table
-   │       │   ├── dcc
-   │       │   ├── development
-   │       │   ├── html
-   │       │   ├── long_callback
-   │       │   │   └── managers
-   │       │   ├── nbextension
-   │       │   └── testing
-   │       ├── dash_core_components
-   │       ├── dash_cytoscape
-   │       │   └── utils
-   │       ├── dash_html_components
-   │       ├── dash_table
-   │       ├── databricks_cli
-   │       │   ├── cluster_policies
-   │       │   ├── clusters
-   │       │   ├── configure
-   │       │   ├── dbfs
-   │       │   ├── groups
-   │       │   ├── instance_pools
-   │       │   ├── jobs
-   │       │   ├── libraries
-   │       │   ├── oauth
-   │       │   ├── pipelines
-   │       │   ├── repos
-   │       │   ├── runs
-   │       │   ├── sdk
-   │       │   ├── secrets
-   │       │   ├── stack
-   │       │   ├── tokens
-   │       │   ├── unity_catalog
-   │       │   └── workspace
-   │       ├── datalake
-   │       │   └── store
-   │       ├── datasets
-   │       │   ├── commands
-   │       │   ├── download
-   │       │   ├── features
-   │       │   ├── filesystems
-   │       │   ├── formatting
-   │       │   ├── io
-   │       │   ├── packaged_modules
-   │       │   │   ├── arrow
-   │       │   │   ├── audiofolder
-   │       │   │   ├── csv
-   │       │   │   ├── folder_based_builder
-   │       │   │   ├── generator
-   │       │   │   ├── imagefolder
-   │       │   │   ├── json
-   │       │   │   ├── pandas
-   │       │   │   ├── parquet
-   │       │   │   ├── spark
-   │       │   │   ├── sql
-   │       │   │   └── text
-   │       │   ├── parallel
-   │       │   ├── tasks
-   │       │   └── utils
-   │       │       └── resources
-   │       ├── dateutil
-   │       │   ├── parser
-   │       │   ├── tz
-   │       │   └── zoneinfo
-   │       ├── debugpy
-   │       │   ├── _vendored
-   │       │   ├── adapter
-   │       │   ├── common
-   │       │   ├── launcher
-   │       │   └── server
-   │       ├── defusedxml
-   │       ├── delta
-   │       │   └── testing
-   │       ├── dill
-   │       ├── diskcache
-   │       ├── distlib
-   │       ├── dl
-   │       ├── doc
-   │       ├── docker
-   │       │   ├── api
-   │       │   ├── context
-   │       │   ├── credentials
-   │       │   ├── models
-   │       │   ├── transport
-   │       │   ├── types
-   │       │   └── utils
-   │       ├── dockerpycreds
-   │       ├── downloader
-   │       ├── ebm
-   │       ├── et_xmlfile
-   │       ├── event
-   │       ├── exceptiongroup
-   │       ├── executing
-   │       ├── explainers
-   │       ├── exploratory
-   │       ├── fabric
-   │       │   └── prerun
-   │       ├── fastapi
-   │       │   ├── dependencies
-   │       │   ├── middleware
-   │       │   ├── openapi
-   │       │   └── security
-   │       ├── fastjsonschema
-   │       ├── featurize
-   │       │   └── text
-   │       ├── filedatalake
-   │       │   ├── _generated
-   │       │   │   ├── aio
-   │       │   │   │   └── operations
-   │       │   │   ├── models
-   │       │   │   └── operations
-   │       │   ├── _shared
-   │       │   └── aio
-   │       ├── filelock
-   │       ├── flaml
-   │       │   ├── autogen
-   │       │   │   ├── agentchat
-   │       │   │   ├── extensions
-   │       │   │   └── oai
-   │       │   ├── automl
-   │       │   │   ├── contrib
-   │       │   │   ├── nlp
-   │       │   │   │   └── huggingface
-   │       │   │   ├── spark
-   │       │   │   ├── task
-   │       │   │   └── time_series
-   │       │   ├── default
-   │       │   ├── internal
-   │       │   │   └── fanova
-   │       │   ├── onlineml
-   │       │   ├── tune
-   │       │   │   ├── scheduler
-   │       │   │   ├── searcher
-   │       │   │   └── spark
-   │       │   └── visualization
-   │       ├── flask
-   │       │   └── json
-   │       ├── flatbuffers
-   │       ├── fluent
-   │       ├── fontTools
-   │       │   ├── cffLib
-   │       │   ├── colorLib
-   │       │   ├── config
-   │       │   ├── cu2qu
-   │       │   ├── designspaceLib
-   │       │   ├── encodings
-   │       │   ├── feaLib
-   │       │   ├── merge
-   │       │   ├── misc
-   │       │   │   └── plistlib
-   │       │   ├── mtiLib
-   │       │   ├── otlLib
-   │       │   │   └── optimize
-   │       │   ├── pens
-   │       │   ├── qu2cu
-   │       │   ├── subset
-   │       │   ├── svgLib
-   │       │   │   └── path
-   │       │   ├── t1Lib
-   │       │   ├── ttLib
-   │       │   │   └── tables
-   │       │   ├── ufoLib
-   │       │   ├── unicodedata
-   │       │   ├── varLib
-   │       │   │   └── instancer
-   │       │   └── voltLib
-   │       ├── fqdn
-   │       ├── frozenlist
-   │       ├── fsspec
-   │       │   └── implementations
-   │       ├── fsspec_wrapper
-   │       │   ├── trident
-   │       │   └── utils
-   │       ├── functorch
-   │       │   ├── _src
-   │       │   │   ├── aot_autograd
-   │       │   │   ├── eager_transforms
-   │       │   │   ├── make_functional
-   │       │   │   └── vmap
-   │       │   ├── compile
-   │       │   ├── dim
-   │       │   └── experimental
-   │       ├── gast
-   │       ├── geographiclib
-   │       ├── geopy
-   │       │   ├── extra
-   │       │   └── geocoders
-   │       ├── gevent
-   │       │   ├── _ffi
-   │       │   ├── libev
-   │       │   ├── libuv
-   │       │   ├── resolver
-   │       │   └── testing
-   │       ├── git
-   │       │   ├── index
-   │       │   ├── objects
-   │       │   │   └── submodule
-   │       │   ├── refs
-   │       │   └── repo
-   │       ├── gitdb
-   │       │   ├── db
-   │       │   └── utils
-   │       ├── gmpy2
-   │       ├── google_auth_oauthlib
-   │       │   └── tool
-   │       ├── graphviz
-   │       │   ├── backend
-   │       │   └── parameters
-   │       ├── greenlet
-   │       │   └── platform
-   │       ├── grpc
-   │       │   ├── _cython
-   │       │   │   └── _cygrpc
-   │       │   ├── aio
-   │       │   ├── beta
-   │       │   ├── experimental
-   │       │   │   └── aio
-   │       │   └── framework
-   │       │       ├── common
-   │       │       ├── foundation
-   │       │       └── interfaces
-   │       │           ├── base
-   │       │           └── face
-   │       ├── gson
-   │       ├── h11
-   │       ├── h5py
-   │       │   └── _hl
-   │       ├── handler
-   │       ├── holidays
-   │       │   ├── calendars
-   │       │   ├── countries
-   │       │   ├── financial
-   │       │   └── groups
-   │       ├── horovodutils
-   │       ├── html5lib
-   │       │   ├── _trie
-   │       │   ├── filters
-   │       │   ├── treeadapters
-   │       │   ├── treebuilders
-   │       │   └── treewalkers
-   │       ├── huggingface_hub
-   │       │   ├── commands
-   │       │   ├── inference
-   │       │   │   └── _generated
-   │       │   └── utils
-   │       ├── humanfriendly
-   │       │   └── terminal
-   │       ├── identity
-   │       │   ├── _credentials
-   │       │   ├── _internal
-   │       │   └── aio
-   │       │       ├── _credentials
-   │       │       └── _internal
-   │       ├── idna
-   │       ├── image
-   │       ├── imageio
-   │       │   ├── config
-   │       │   ├── core
-   │       │   └── plugins
-   │       ├── importlib_metadata
-   │       ├── importlib_resources
-   │       ├── impulse
-   │       │   └── eventlog
-   │       ├── interface
-   │       │   └── common
-   │       ├── internal_utils
-   │       │   └── import_hooks
-   │       ├── interpret
-   │       │   ├── api
-   │       │   ├── blackbox
-   │       │   ├── data
-   │       │   ├── ext
-   │       │   │   ├── blackbox
-   │       │   │   ├── data
-   │       │   │   ├── glassbox
-   │       │   │   ├── greybox
-   │       │   │   ├── perf
-   │       │   │   └── provider
-   │       │   ├── glassbox
-   │       │   │   └── _ebm
-   │       │   │       └── _research
-   │       │   ├── greybox
-   │       │   ├── perf
-   │       │   ├── privacy
-   │       │   ├── provider
-   │       │   ├── utils
-   │       │   └── visual
-   │       ├── io
-   │       │   ├── binary
-   │       │   ├── http
-   │       │   ├── image
-   │       │   └── powerbi
-   │       ├── ipykernel
-   │       │   ├── comm
-   │       │   ├── gui
-   │       │   ├── inprocess
-   │       │   └── pylab
-   │       ├── IPython
-   │       │   ├── core
-   │       │   │   └── magics
-   │       │   ├── extensions
-   │       │   ├── external
-   │       │   ├── sphinxext
-   │       │   ├── terminal
-   │       │   │   ├── pt_inputhooks
-   │       │   │   └── shortcuts
-   │       │   ├── testing
-   │       │   │   └── plugin
-   │       │   └── utils
-   │       ├── ipywidgets
-   │       │   └── widgets
-   │       ├── isodate
-   │       ├── isoduration
-   │       │   ├── formatter
-   │       │   ├── operations
-   │       │   └── parser
-   │       ├── isolationforest
-   │       ├── itsdangerous
-   │       ├── jax
-   │       │   ├── _src
-   │       │   │   ├── clusters
-   │       │   │   ├── debugger
-   │       │   │   ├── extend
-   │       │   │   ├── image
-   │       │   │   ├── internal_test_util
-   │       │   │   │   └── lazy_loader_module
-   │       │   │   ├── interpreters
-   │       │   │   ├── lax
-   │       │   │   │   └── control_flow
-   │       │   │   ├── nn
-   │       │   │   ├── numpy
-   │       │   │   ├── ops
-   │       │   │   ├── pallas
-   │       │   │   │   ├── mosaic
-   │       │   │   │   └── triton
-   │       │   │   ├── scipy
-   │       │   │   │   ├── cluster
-   │       │   │   │   ├── interpolate
-   │       │   │   │   ├── optimize
-   │       │   │   │   ├── sparse
-   │       │   │   │   ├── spatial
-   │       │   │   │   └── stats
-   │       │   │   ├── state
-   │       │   │   └── third_party
-   │       │   │       ├── numpy
-   │       │   │       └── scipy
-   │       │   ├── example_libraries
-   │       │   ├── experimental
-   │       │   │   ├── array_serialization
-   │       │   │   ├── compilation_cache
-   │       │   │   ├── export
-   │       │   │   ├── jax2tf
-   │       │   │   ├── mosaic
-   │       │   │   ├── pallas
-   │       │   │   │   └── ops
-   │       │   │   │       └── tpu
-   │       │   │   └── sparse
-   │       │   ├── extend
-   │       │   ├── image
-   │       │   ├── interpreters
-   │       │   ├── lax
-   │       │   ├── nn
-   │       │   ├── ops
-   │       │   ├── scipy
-   │       │   │   ├── cluster
-   │       │   │   ├── interpolate
-   │       │   │   ├── optimize
-   │       │   │   ├── sparse
-   │       │   │   ├── spatial
-   │       │   │   └── stats
-   │       │   └── tools
-   │       ├── jaxlib
-   │       ├── jedi
-   │       │   ├── api
-   │       │   │   └── refactoring
-   │       │   ├── inference
-   │       │   │   ├── compiled
-   │       │   │   │   └── subprocess
-   │       │   │   ├── gradual
-   │       │   │   └── value
-   │       │   └── plugins
-   │       ├── jinja2
-   │       ├── joblib
-   │       │   └── externals
-   │       │       ├── cloudpickle
-   │       │       └── loky
-   │       │           └── backend
-   │       ├── joblibspark
-   │       ├── json_tricks
-   │       ├── jsonschema
-   │       │   └── benchmarks
-   │       ├── jsonschema_specifications
-   │       ├── jupyter_client
-   │       │   ├── asynchronous
-   │       │   ├── blocking
-   │       │   ├── ioloop
-   │       │   ├── provisioning
-   │       │   └── ssh
-   │       ├── jupyter_core
-   │       │   └── utils
-   │       ├── jupyter_events
-   │       ├── jupyter_server
-   │       │   ├── auth
-   │       │   ├── base
-   │       │   ├── extension
-   │       │   ├── files
-   │       │   ├── gateway
-   │       │   ├── i18n
-   │       │   ├── kernelspecs
-   │       │   ├── nbconvert
-   │       │   ├── prometheus
-   │       │   ├── services
-   │       │   │   ├── api
-   │       │   │   ├── config
-   │       │   │   ├── contents
-   │       │   │   ├── events
-   │       │   │   ├── kernels
-   │       │   │   │   └── connection
-   │       │   │   ├── kernelspecs
-   │       │   │   ├── nbconvert
-   │       │   │   ├── security
-   │       │   │   └── sessions
-   │       │   ├── terminal
-   │       │   └── view
-   │       ├── jupyter_server_terminals
-   │       ├── jupyter_ui_poll
-   │       ├── jupyterlab_plotly
-   │       ├── jupyterlab_pygments
-   │       ├── jupyterlab_widgets
-   │       ├── jwt
-   │       ├── keras
-   │       │   ├── api
-   │       │   │   ├── _v1
-   │       │   │   │   └── keras
-   │       │   │   │       ├── __internal__
-   │       │   │   │       │   ├── layers
-   │       │   │   │       │   └── legacy
-   │       │   │   │       │       ├── layers
-   │       │   │   │       │       │   └── experimental
-   │       │   │   │       │       └── rnn_cell
-   │       │   │   │       ├── activations
-   │       │   │   │       ├── applications
-   │       │   │   │       │   ├── convnext
-   │       │   │   │       │   ├── densenet
-   │       │   │   │       │   ├── efficientnet
-   │       │   │   │       │   ├── efficientnet_v2
-   │       │   │   │       │   ├── imagenet_utils
-   │       │   │   │       │   ├── inception_resnet_v2
-   │       │   │   │       │   ├── inception_v3
-   │       │   │   │       │   ├── mobilenet
-   │       │   │   │       │   ├── mobilenet_v2
-   │       │   │   │       │   ├── mobilenet_v3
-   │       │   │   │       │   ├── nasnet
-   │       │   │   │       │   ├── regnet
-   │       │   │   │       │   ├── resnet
-   │       │   │   │       │   ├── resnet_rs
-   │       │   │   │       │   ├── resnet_v2
-   │       │   │   │       │   ├── resnet50
-   │       │   │   │       │   ├── vgg16
-   │       │   │   │       │   ├── vgg19
-   │       │   │   │       │   └── xception
-   │       │   │   │       ├── backend
-   │       │   │   │       ├── callbacks
-   │       │   │   │       │   └── experimental
-   │       │   │   │       ├── constraints
-   │       │   │   │       ├── datasets
-   │       │   │   │       │   ├── boston_housing
-   │       │   │   │       │   ├── cifar10
-   │       │   │   │       │   ├── cifar100
-   │       │   │   │       │   ├── fashion_mnist
-   │       │   │   │       │   ├── imdb
-   │       │   │   │       │   ├── mnist
-   │       │   │   │       │   └── reuters
-   │       │   │   │       ├── estimator
-   │       │   │   │       ├── experimental
-   │       │   │   │       ├── export
-   │       │   │   │       ├── initializers
-   │       │   │   │       ├── layers
-   │       │   │   │       │   └── experimental
-   │       │   │   │       │       └── preprocessing
-   │       │   │   │       ├── losses
-   │       │   │   │       ├── metrics
-   │       │   │   │       ├── mixed_precision
-   │       │   │   │       ├── models
-   │       │   │   │       ├── optimizers
-   │       │   │   │       │   ├── legacy
-   │       │   │   │       │   └── schedules
-   │       │   │   │       ├── premade
-   │       │   │   │       ├── preprocessing
-   │       │   │   │       │   ├── image
-   │       │   │   │       │   ├── sequence
-   │       │   │   │       │   └── text
-   │       │   │   │       ├── regularizers
-   │       │   │   │       ├── saving
-   │       │   │   │       ├── utils
-   │       │   │   │       │   └── legacy
-   │       │   │   │       └── wrappers
-   │       │   │   │           └── scikit_learn
-   │       │   │   ├── _v2
-   │       │   │   │   └── keras
-   │       │   │   │       ├── __internal__
-   │       │   │   │       │   ├── backend
-   │       │   │   │       │   ├── layers
-   │       │   │   │       │   ├── losses
-   │       │   │   │       │   ├── models
-   │       │   │   │       │   ├── optimizers
-   │       │   │   │       │   └── utils
-   │       │   │   │       ├── activations
-   │       │   │   │       ├── applications
-   │       │   │   │       │   ├── convnext
-   │       │   │   │       │   ├── densenet
-   │       │   │   │       │   ├── efficientnet
-   │       │   │   │       │   ├── efficientnet_v2
-   │       │   │   │       │   ├── imagenet_utils
-   │       │   │   │       │   ├── inception_resnet_v2
-   │       │   │   │       │   ├── inception_v3
-   │       │   │   │       │   ├── mobilenet
-   │       │   │   │       │   ├── mobilenet_v2
-   │       │   │   │       │   ├── mobilenet_v3
-   │       │   │   │       │   ├── nasnet
-   │       │   │   │       │   ├── regnet
-   │       │   │   │       │   ├── resnet
-   │       │   │   │       │   ├── resnet_rs
-   │       │   │   │       │   ├── resnet_v2
-   │       │   │   │       │   ├── resnet50
-   │       │   │   │       │   ├── vgg16
-   │       │   │   │       │   ├── vgg19
-   │       │   │   │       │   └── xception
-   │       │   │   │       ├── backend
-   │       │   │   │       │   └── experimental
-   │       │   │   │       ├── callbacks
-   │       │   │   │       │   └── experimental
-   │       │   │   │       ├── constraints
-   │       │   │   │       ├── datasets
-   │       │   │   │       │   ├── boston_housing
-   │       │   │   │       │   ├── cifar10
-   │       │   │   │       │   ├── cifar100
-   │       │   │   │       │   ├── fashion_mnist
-   │       │   │   │       │   ├── imdb
-   │       │   │   │       │   ├── mnist
-   │       │   │   │       │   └── reuters
-   │       │   │   │       ├── dtensor
-   │       │   │   │       │   └── experimental
-   │       │   │   │       │       └── optimizers
-   │       │   │   │       ├── estimator
-   │       │   │   │       ├── experimental
-   │       │   │   │       ├── export
-   │       │   │   │       ├── initializers
-   │       │   │   │       ├── layers
-   │       │   │   │       │   └── experimental
-   │       │   │   │       │       └── preprocessing
-   │       │   │   │       ├── losses
-   │       │   │   │       ├── metrics
-   │       │   │   │       ├── mixed_precision
-   │       │   │   │       ├── models
-   │       │   │   │       │   └── experimental
-   │       │   │   │       ├── optimizers
-   │       │   │   │       │   ├── experimental
-   │       │   │   │       │   ├── legacy
-   │       │   │   │       │   └── schedules
-   │       │   │   │       ├── premade
-   │       │   │   │       ├── preprocessing
-   │       │   │   │       │   ├── image
-   │       │   │   │       │   ├── sequence
-   │       │   │   │       │   └── text
-   │       │   │   │       ├── regularizers
-   │       │   │   │       ├── saving
-   │       │   │   │       ├── utils
-   │       │   │   │       │   ├── experimental
-   │       │   │   │       │   └── legacy
-   │       │   │   │       └── wrappers
-   │       │   │   │           └── scikit_learn
-   │       │   │   └── keras
-   │       │   │       ├── __internal__
-   │       │   │       │   ├── layers
-   │       │   │       │   └── legacy
-   │       │   │       │       ├── layers
-   │       │   │       │       │   └── experimental
-   │       │   │       │       └── rnn_cell
-   │       │   │       ├── activations
-   │       │   │       ├── applications
-   │       │   │       │   ├── convnext
-   │       │   │       │   ├── densenet
-   │       │   │       │   ├── efficientnet
-   │       │   │       │   ├── efficientnet_v2
-   │       │   │       │   ├── imagenet_utils
-   │       │   │       │   ├── inception_resnet_v2
-   │       │   │       │   ├── inception_v3
-   │       │   │       │   ├── mobilenet
-   │       │   │       │   ├── mobilenet_v2
-   │       │   │       │   ├── mobilenet_v3
-   │       │   │       │   ├── nasnet
-   │       │   │       │   ├── regnet
-   │       │   │       │   ├── resnet
-   │       │   │       │   ├── resnet_rs
-   │       │   │       │   ├── resnet_v2
-   │       │   │       │   ├── resnet50
-   │       │   │       │   ├── vgg16
-   │       │   │       │   ├── vgg19
-   │       │   │       │   └── xception
-   │       │   │       ├── backend
-   │       │   │       ├── callbacks
-   │       │   │       │   └── experimental
-   │       │   │       ├── constraints
-   │       │   │       ├── datasets
-   │       │   │       │   ├── boston_housing
-   │       │   │       │   ├── cifar10
-   │       │   │       │   ├── cifar100
-   │       │   │       │   ├── fashion_mnist
-   │       │   │       │   ├── imdb
-   │       │   │       │   ├── mnist
-   │       │   │       │   └── reuters
-   │       │   │       ├── estimator
-   │       │   │       ├── experimental
-   │       │   │       ├── export
-   │       │   │       ├── initializers
-   │       │   │       ├── layers
-   │       │   │       │   └── experimental
-   │       │   │       │       └── preprocessing
-   │       │   │       ├── losses
-   │       │   │       ├── metrics
-   │       │   │       ├── mixed_precision
-   │       │   │       ├── models
-   │       │   │       ├── optimizers
-   │       │   │       │   ├── legacy
-   │       │   │       │   └── schedules
-   │       │   │       ├── premade
-   │       │   │       ├── preprocessing
-   │       │   │       │   ├── image
-   │       │   │       │   ├── sequence
-   │       │   │       │   └── text
-   │       │   │       ├── regularizers
-   │       │   │       ├── saving
-   │       │   │       ├── utils
-   │       │   │       │   └── legacy
-   │       │   │       └── wrappers
-   │       │   │           └── scikit_learn
-   │       │   ├── applications
-   │       │   ├── datasets
-   │       │   ├── distribute
-   │       │   ├── dtensor
-   │       │   ├── engine
-   │       │   ├── estimator
-   │       │   ├── export
-   │       │   ├── feature_column
-   │       │   ├── initializers
-   │       │   ├── integration_test
-   │       │   │   └── models
-   │       │   ├── layers
-   │       │   │   ├── activation
-   │       │   │   ├── attention
-   │       │   │   ├── convolutional
-   │       │   │   ├── core
-   │       │   │   ├── locally_connected
-   │       │   │   ├── merging
-   │       │   │   ├── normalization
-   │       │   │   ├── pooling
-   │       │   │   ├── preprocessing
-   │       │   │   │   └── benchmarks
-   │       │   │   ├── regularization
-   │       │   │   ├── reshaping
-   │       │   │   └── rnn
-   │       │   ├── legacy_tf_layers
-   │       │   ├── metrics
-   │       │   ├── mixed_precision
-   │       │   ├── models
-   │       │   ├── optimizers
-   │       │   │   ├── legacy
-   │       │   │   └── schedules
-   │       │   ├── premade_models
-   │       │   ├── preprocessing
-   │       │   ├── protobuf
-   │       │   ├── saving
-   │       │   │   └── legacy
-   │       │   │       └── saved_model
-   │       │   ├── testing_infra
-   │       │   ├── utils
-   │       │   │   └── legacy
-   │       │   └── wrappers
-   │       ├── keras_preprocessing
-   │       │   └── image
-   │       ├── kiwisolver
-   │       ├── library_metadata_cooker
-   │       ├── lightgbm
-   │       ├── lime
-   │       │   ├── utils
-   │       │   └── wrappers
-   │       ├── llvmlite
-   │       │   ├── binding
-   │       │   └── ir
-   │       ├── lxml
-   │       │   ├── html
-   │       │   ├── includes
-   │       │   └── isoschematron
-   │       ├── mako
-   │       │   ├── ext
-   │       │   └── testing
-   │       ├── markdown
-   │       │   └── extensions
-   │       ├── markdown_it
-   │       │   ├── cli
-   │       │   ├── common
-   │       │   ├── helpers
-   │       │   ├── presets
-   │       │   ├── rules_block
-   │       │   ├── rules_core
-   │       │   └── rules_inline
-   │       ├── markupsafe
-   │       ├── matplotlib
-   │       │   ├── _api
-   │       │   ├── axes
-   │       │   ├── backends
-   │       │   │   └── qt_editor
-   │       │   ├── cbook
-   │       │   ├── projections
-   │       │   ├── sphinxext
-   │       │   ├── style
-   │       │   ├── testing
-   │       │   │   └── jpl_units
-   │       │   └── tri
-   │       ├── matplotlib_inline
-   │       ├── mdurl
-   │       ├── mistune
-   │       │   ├── directives
-   │       │   ├── plugins
-   │       │   └── renderers
-   │       ├── mkl
-   │       ├── mkl_fft
-   │       ├── mkl_random
-   │       ├── ml_dtypes
-   │       ├── mlflow
-   │       │   ├── artifacts
-   │       │   ├── azure
-   │       │   ├── data
-   │       │   ├── deployments
-   │       │   ├── entities
-   │       │   │   └── model_registry
-   │       │   ├── fastai
-   │       │   ├── gateway
-   │       │   │   ├── providers
-   │       │   │   └── schemas
-   │       │   ├── gluon
-   │       │   ├── langchain
-   │       │   ├── model
-   │       │   ├── models
-   │       │   │   ├── container
-   │       │   │   │   └── scoring_server
-   │       │   │   └── evaluation
-   │       │   ├── openai
-   │       │   ├── paddle
-   │       │   ├── projects
-   │       │   │   └── backend
-   │       │   ├── protos
-   │       │   │   └── scalapb
-   │       │   ├── pyfunc
-   │       │   │   └── scoring_server
-   │       │   ├── pyspark
-   │       │   │   └── ml
-   │       │   ├── pytorch
-   │       │   ├── recipes
-   │       │   │   ├── cards
-   │       │   │   │   └── templates
-   │       │   │   ├── classification
-   │       │   │   │   └── v1
-   │       │   │   ├── regression
-   │       │   │   │   └── v1
-   │       │   │   ├── steps
-   │       │   │   │   ├── automl
-   │       │   │   │   └── ingest
-   │       │   │   └── utils
-   │       │   ├── rfunc
-   │       │   ├── sagemaker
-   │       │   ├── server
-   │       │   │   └── auth
-   │       │   │       └── db
-   │       │   │           └── migrations
-   │       │   │               └── versions
-   │       │   ├── sklearn
-   │       │   ├── store
-   │       │   │   ├── _unity_catalog
-   │       │   │   │   └── registry
-   │       │   │   ├── artifact
-   │       │   │   │   └── utils
-   │       │   │   ├── db
-   │       │   │   ├── db_migrations
-   │       │   │   │   └── versions
-   │       │   │   ├── entities
-   │       │   │   ├── model_registry
-   │       │   │   │   └── dbmodels
-   │       │   │   └── tracking
-   │       │   │       └── dbmodels
-   │       │   ├── tensorflow
-   │       │   ├── tracking
-   │       │   │   ├── _model_registry
-   │       │   │   ├── _tracking_service
-   │       │   │   ├── context
-   │       │   │   ├── default_experiment
-   │       │   │   └── request_header
-   │       │   ├── types
-   │       │   ├── utils
-   │       │   │   ├── autologging_utils
-   │       │   │   └── import_hooks
-   │       │   └── xgboost
-   │       ├── mmlspark
-   │       ├── more_itertools
-   │       ├── mplot3d
-   │       ├── mpmath
-   │       │   ├── calculus
-   │       │   ├── functions
-   │       │   ├── libmp
-   │       │   └── matrices
-   │       ├── msal
-   │       │   └── oauth2cli
-   │       ├── msal_extensions
-   │       ├── msgpack
-   │       ├── multidict
-   │       ├── multiprocess
-   │       │   └── dummy
-   │       ├── mypy
-   │       │   ├── dmypy
-   │       │   ├── plugins
-   │       │   └── server
-   │       ├── mypyc
-   │       │   ├── analysis
-   │       │   ├── codegen
-   │       │   ├── ir
-   │       │   ├── irbuild
-   │       │   ├── primitives
-   │       │   └── transform
-   │       ├── nacl
-   │       │   ├── bindings
-   │       │   └── pwhash
-   │       ├── nbclient
-   │       ├── nbconvert
-   │       │   ├── exporters
-   │       │   ├── filters
-   │       │   ├── postprocessors
-   │       │   ├── preprocessors
-   │       │   ├── resources
-   │       │   ├── utils
-   │       │   └── writers
-   │       ├── nbformat
-   │       │   ├── corpus
-   │       │   ├── v1
-   │       │   ├── v2
-   │       │   ├── v3
-   │       │   └── v4
-   │       ├── networkx
-   │       │   ├── algorithms
-   │       │   │   ├── approximation
-   │       │   │   ├── assortativity
-   │       │   │   ├── bipartite
-   │       │   │   ├── centrality
-   │       │   │   ├── coloring
-   │       │   │   ├── community
-   │       │   │   ├── components
-   │       │   │   ├── connectivity
-   │       │   │   ├── flow
-   │       │   │   ├── isomorphism
-   │       │   │   ├── link_analysis
-   │       │   │   ├── minors
-   │       │   │   ├── operators
-   │       │   │   ├── shortest_paths
-   │       │   │   ├── traversal
-   │       │   │   └── tree
-   │       │   ├── classes
-   │       │   ├── drawing
-   │       │   ├── generators
-   │       │   ├── linalg
-   │       │   ├── readwrite
-   │       │   │   └── json_graph
-   │       │   └── utils
-   │       ├── nltk
-   │       │   ├── app
-   │       │   ├── ccg
-   │       │   ├── chat
-   │       │   ├── chunk
-   │       │   ├── classify
-   │       │   ├── cluster
-   │       │   ├── corpus
-   │       │   │   └── reader
-   │       │   ├── draw
-   │       │   ├── inference
-   │       │   ├── lm
-   │       │   ├── metrics
-   │       │   ├── misc
-   │       │   ├── parse
-   │       │   ├── sem
-   │       │   ├── sentiment
-   │       │   ├── stem
-   │       │   ├── tag
-   │       │   ├── tbl
-   │       │   ├── tokenize
-   │       │   ├── translate
-   │       │   ├── tree
-   │       │   └── twitter
-   │       ├── nn
-   │       ├── nni
-   │       │   ├── algorithms
-   │       │   │   ├── compression
-   │       │   │   │   ├── pytorch
-   │       │   │   │   │   ├── auto_compress
-   │       │   │   │   │   ├── pruning
-   │       │   │   │   │   │   └── amc
-   │       │   │   │   │   └── quantization
-   │       │   │   │   └── v2
-   │       │   │   │       └── pytorch
-   │       │   │   │           ├── base
-   │       │   │   │           ├── pruning
-   │       │   │   │           │   └── tools
-   │       │   │   │           │       └── rl_env
-   │       │   │   │           └── utils
-   │       │   │   │               └── external
-   │       │   │   ├── feature_engineering
-   │       │   │   │   ├── gbdt_selector
-   │       │   │   │   └── gradient_selector
-   │       │   │   └── hpo
-   │       │   │       ├── bohb_advisor
-   │       │   │       ├── curvefitting_assessor
-   │       │   │       ├── gp_tuner
-   │       │   │       ├── metis_tuner
-   │       │   │       │   ├── Regression_GMM
-   │       │   │       │   └── Regression_GP
-   │       │   │       ├── networkmorphism_tuner
-   │       │   │       ├── ppo_tuner
-   │       │   │       └── smac_tuner
-   │       │   ├── common
-   │       │   │   └── hpo_utils
-   │       │   ├── compression
-   │       │   │   ├── experiment
-   │       │   │   │   └── config
-   │       │   │   ├── pytorch
-   │       │   │   │   ├── pruning
-   │       │   │   │   ├── quantization_speedup
-   │       │   │   │   ├── speedup
-   │       │   │   │   └── utils
-   │       │   │   └── tensorflow
-   │       │   ├── experiment
-   │       │   │   └── config
-   │       │   │       ├── training_services
-   │       │   │       └── utils
-   │       │   ├── feature_engineering
-   │       │   ├── nas
-   │       │   │   ├── benchmarks
-   │       │   │   │   ├── nasbench101
-   │       │   │   │   ├── nasbench201
-   │       │   │   │   ├── nds
-   │       │   │   │   └── nlp
-   │       │   │   ├── evaluator
-   │       │   │   │   └── pytorch
-   │       │   │   │       └── cgo
-   │       │   │   ├── execution
-   │       │   │   │   ├── common
-   │       │   │   │   ├── pytorch
-   │       │   │   │   │   ├── cgo
-   │       │   │   │   │   │   └── logical_optimizer
-   │       │   │   │   │   └── converter
-   │       │   │   │   └── tensorflow
-   │       │   │   ├── experiment
-   │       │   │   │   └── config
-   │       │   │   ├── hub
-   │       │   │   │   └── pytorch
-   │       │   │   │       ├── modules
-   │       │   │   │       └── utils
-   │       │   │   ├── mutable
-   │       │   │   ├── nn
-   │       │   │   │   └── pytorch
-   │       │   │   ├── oneshot
-   │       │   │   │   └── pytorch
-   │       │   │   │       └── supermodule
-   │       │   │   ├── strategy
-   │       │   │   └── utils
-   │       │   ├── retiarii
-   │       │   │   ├── codegen
-   │       │   │   ├── converter
-   │       │   │   ├── evaluator
-   │       │   │   │   └── pytorch
-   │       │   │   │       └── cgo
-   │       │   │   ├── execution
-   │       │   │   │   └── logical_optimizer
-   │       │   │   ├── experiment
-   │       │   │   │   └── config
-   │       │   │   ├── hub
-   │       │   │   │   └── pytorch
-   │       │   │   │       └── utils
-   │       │   │   ├── nn
-   │       │   │   │   └── pytorch
-   │       │   │   ├── oneshot
-   │       │   │   │   └── pytorch
-   │       │   │   │       └── supermodule
-   │       │   │   ├── operation_def
-   │       │   │   └── strategy
-   │       │   ├── runtime
-   │       │   │   ├── platform
-   │       │   │   └── tuner_command_channel
-   │       │   └── tools
-   │       │       ├── annotation
-   │       │       ├── gpu_tool
-   │       │       ├── jupyter_extension
-   │       │       ├── nnictl
-   │       │       ├── package_utils
-   │       │       └── trial_tool
-   │       ├── nni_assets
-   │       │   └── compression
-   │       ├── nni_node
-   │       ├── notebookutils
-   │       ├── numba
-   │       │   ├── cext
-   │       │   ├── cloudpickle
-   │       │   ├── core
-   │       │   │   ├── annotations
-   │       │   │   ├── datamodel
-   │       │   │   ├── rewrites
-   │       │   │   ├── runtime
-   │       │   │   ├── typeconv
-   │       │   │   ├── types
-   │       │   │   ├── typing
-   │       │   │   └── unsafe
-   │       │   ├── cpython
-   │       │   │   └── unsafe
-   │       │   ├── cuda
-   │       │   │   ├── cudadrv
-   │       │   │   ├── kernels
-   │       │   │   └── simulator
-   │       │   │       └── cudadrv
-   │       │   ├── experimental
-   │       │   │   └── jitclass
-   │       │   ├── misc
-   │       │   │   └── help
-   │       │   ├── np
-   │       │   │   ├── random
-   │       │   │   ├── ufunc
-   │       │   │   └── unsafe
-   │       │   ├── parfors
-   │       │   ├── pycc
-   │       │   ├── scripts
-   │       │   ├── stencils
-   │       │   ├── testing
-   │       │   ├── typed
-   │       │   └── types
-   │       ├── numpy
-   │       │   ├── core
-   │       │   ├── distutils
-   │       │   ├── f2py
-   │       │   ├── fft
-   │       │   ├── linalg
-   │       │   ├── ma
-   │       │   ├── matrixlib
-   │       │   ├── polynomial
-   │       │   └── random
-   │       ├── oauth2
-   │       ├── oauthlib
-   │       │   ├── oauth1
-   │       │   │   └── rfc5849
-   │       │   │       └── endpoints
-   │       │   ├── oauth2
-   │       │   │   ├── rfc6749
-   │       │   │   │   ├── clients
-   │       │   │   │   ├── endpoints
-   │       │   │   │   └── grant_types
-   │       │   │   └── rfc8628
-   │       │   │       └── clients
-   │       │   └── openid
-   │       │       └── connect
-   │       │           └── core
-   │       │               ├── endpoints
-   │       │               └── grant_types
-   │       ├── onnx
-   │       ├── onnxruntime
-   │       │   ├── backend
-   │       │   ├── capi
-   │       │   │   └── training
-   │       │   ├── datasets
-   │       │   ├── quantization
-   │       │   │   ├── CalTableFlatBuffers
-   │       │   │   └── operators
-   │       │   ├── tools
-   │       │   │   ├── mobile_helpers
-   │       │   │   ├── ort_format_model
-   │       │   │   │   └── ort_flatbuffers_py
-   │       │   │   │       └── fbs
-   │       │   │   └── qdq_helpers
-   │       │   └── transformers
-   │       ├── openai
-   │       │   ├── api_resources
-   │       │   │   ├── abstract
-   │       │   │   └── experimental
-   │       │   └── datalib
-   │       ├── opencv
-   │       ├── openpyxl
-   │       │   ├── cell
-   │       │   ├── chart
-   │       │   ├── chartsheet
-   │       │   ├── comments
-   │       │   ├── compat
-   │       │   ├── descriptors
-   │       │   ├── drawing
-   │       │   ├── formatting
-   │       │   ├── formula
-   │       │   ├── packaging
-   │       │   ├── pivot
-   │       │   ├── reader
-   │       │   ├── styles
-   │       │   ├── utils
-   │       │   ├── workbook
-   │       │   │   └── external_link
-   │       │   ├── worksheet
-   │       │   ├── writer
-   │       │   └── xml
-   │       ├── OpenSSL
-   │       ├── opt_einsum
-   │       │   └── backends
-   │       ├── optuna
-   │       │   ├── importance
-   │       │   │   └── _fanova
-   │       │   ├── integration
-   │       │   │   └── _lightgbm_tuner
-   │       │   ├── multi_objective
-   │       │   │   ├── _hypervolume
-   │       │   │   ├── samplers
-   │       │   │   └── visualization
-   │       │   ├── pruners
-   │       │   ├── samplers
-   │       │   │   ├── _search_space
-   │       │   │   └── _tpe
-   │       │   ├── storages
-   │       │   │   └── _rdb
-   │       │   ├── testing
-   │       │   ├── trial
-   │       │   └── visualization
-   │       │       └── matplotlib
-   │       ├── overrides
-   │       ├── packaging
-   │       ├── pandas
-   │       │   ├── _config
-   │       │   ├── _libs
-   │       │   │   ├── tslibs
-   │       │   │   └── window
-   │       │   ├── _testing
-   │       │   ├── api
-   │       │   │   ├── extensions
-   │       │   │   ├── indexers
-   │       │   │   ├── interchange
-   │       │   │   └── types
-   │       │   ├── arrays
-   │       │   ├── compat
-   │       │   │   └── numpy
-   │       │   ├── core
-   │       │   │   ├── _numba
-   │       │   │   │   └── kernels
-   │       │   │   ├── array_algos
-   │       │   │   ├── arrays
-   │       │   │   │   ├── arrow
-   │       │   │   │   └── sparse
-   │       │   │   ├── computation
-   │       │   │   ├── dtypes
-   │       │   │   ├── groupby
-   │       │   │   ├── indexers
-   │       │   │   ├── indexes
-   │       │   │   ├── interchange
-   │       │   │   ├── internals
-   │       │   │   ├── methods
-   │       │   │   ├── ops
-   │       │   │   ├── reshape
-   │       │   │   ├── sparse
-   │       │   │   ├── strings
-   │       │   │   ├── tools
-   │       │   │   ├── util
-   │       │   │   └── window
-   │       │   ├── errors
-   │       │   ├── io
-   │       │   │   ├── clipboard
-   │       │   │   ├── excel
-   │       │   │   ├── formats
-   │       │   │   ├── json
-   │       │   │   ├── parsers
-   │       │   │   └── sas
-   │       │   ├── plotting
-   │       │   │   └── _matplotlib
-   │       │   ├── tseries
-   │       │   └── util
-   │       │       └── version
-   │       ├── pandasql
-   │       ├── paramiko
-   │       ├── parso
-   │       │   ├── pgen2
-   │       │   └── python
-   │       ├── pasta
-   │       │   ├── augment
-   │       │   └── base
-   │       ├── pathos
-   │       │   ├── helpers
-   │       │   ├── secure
-   │       │   └── xmlrpc
-   │       ├── pathtools
-   │       ├── patsy
-   │       ├── pbr
-   │       │   ├── cmd
-   │       │   └── hooks
-   │       ├── pexpect
-   │       ├── PIL
-   │       ├── pip
-   │       │   └── _internal
-   │       │       ├── cli
-   │       │       ├── commands
-   │       │       ├── distributions
-   │       │       ├── index
-   │       │       ├── locations
-   │       │       ├── metadata
-   │       │       │   └── importlib
-   │       │       ├── models
-   │       │       ├── network
-   │       │       ├── operations
-   │       │       │   └── install
-   │       │       ├── req
-   │       │       ├── resolution
-   │       │       │   ├── legacy
-   │       │       │   └── resolvelib
-   │       │       ├── utils
-   │       │       └── vcs
-   │       ├── pkg_resources
-   │       │   └── extern
-   │       ├── platformdirs
-   │       ├── plot
-   │       ├── plotly
-   │       │   ├── colors
-   │       │   ├── data
-   │       │   ├── express
-   │       │   │   ├── colors
-   │       │   │   ├── data
-   │       │   │   └── trendline_functions
-   │       │   ├── figure_factory
-   │       │   ├── graph_objects
-   │       │   ├── graph_objs
-   │       │   │   ├── bar
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   ├── selected
-   │       │   │   │   └── unselected
-   │       │   │   ├── barpolar
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   ├── selected
-   │       │   │   │   └── unselected
-   │       │   │   ├── box
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   ├── selected
-   │       │   │   │   └── unselected
-   │       │   │   ├── candlestick
-   │       │   │   │   ├── decreasing
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── increasing
-   │       │   │   │   └── legendgrouptitle
-   │       │   │   ├── carpet
-   │       │   │   │   ├── aaxis
-   │       │   │   │   │   └── title
-   │       │   │   │   ├── baxis
-   │       │   │   │   │   └── title
-   │       │   │   │   └── legendgrouptitle
-   │       │   │   ├── choropleth
-   │       │   │   │   ├── colorbar
-   │       │   │   │   │   └── title
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   ├── selected
-   │       │   │   │   └── unselected
-   │       │   │   ├── choroplethmapbox
-   │       │   │   │   ├── colorbar
-   │       │   │   │   │   └── title
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   ├── selected
-   │       │   │   │   └── unselected
-   │       │   │   ├── cone
-   │       │   │   │   ├── colorbar
-   │       │   │   │   │   └── title
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   └── legendgrouptitle
-   │       │   │   ├── contour
-   │       │   │   │   ├── colorbar
-   │       │   │   │   │   └── title
-   │       │   │   │   ├── contours
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   └── legendgrouptitle
-   │       │   │   ├── contourcarpet
-   │       │   │   │   ├── colorbar
-   │       │   │   │   │   └── title
-   │       │   │   │   ├── contours
-   │       │   │   │   └── legendgrouptitle
-   │       │   │   ├── densitymapbox
-   │       │   │   │   ├── colorbar
-   │       │   │   │   │   └── title
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   └── legendgrouptitle
-   │       │   │   ├── funnel
-   │       │   │   │   ├── connector
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   └── marker
-   │       │   │   │       └── colorbar
-   │       │   │   │           └── title
-   │       │   │   ├── funnelarea
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   └── title
-   │       │   │   ├── heatmap
-   │       │   │   │   ├── colorbar
-   │       │   │   │   │   └── title
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   └── legendgrouptitle
-   │       │   │   ├── heatmapgl
-   │       │   │   │   ├── colorbar
-   │       │   │   │   │   └── title
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   └── legendgrouptitle
-   │       │   │   ├── histogram
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   ├── selected
-   │       │   │   │   └── unselected
-   │       │   │   ├── histogram2d
-   │       │   │   │   ├── colorbar
-   │       │   │   │   │   └── title
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   └── legendgrouptitle
-   │       │   │   ├── histogram2dcontour
-   │       │   │   │   ├── colorbar
-   │       │   │   │   │   └── title
-   │       │   │   │   ├── contours
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   └── legendgrouptitle
-   │       │   │   ├── icicle
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   └── pathbar
-   │       │   │   ├── image
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   └── legendgrouptitle
-   │       │   │   ├── indicator
-   │       │   │   │   ├── delta
-   │       │   │   │   ├── gauge
-   │       │   │   │   │   ├── axis
-   │       │   │   │   │   ├── bar
-   │       │   │   │   │   ├── step
-   │       │   │   │   │   └── threshold
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── number
-   │       │   │   │   └── title
-   │       │   │   ├── isosurface
-   │       │   │   │   ├── caps
-   │       │   │   │   ├── colorbar
-   │       │   │   │   │   └── title
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   └── slices
-   │       │   │   ├── layout
-   │       │   │   │   ├── annotation
-   │       │   │   │   │   └── hoverlabel
-   │       │   │   │   ├── coloraxis
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   ├── geo
-   │       │   │   │   │   └── projection
-   │       │   │   │   ├── grid
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legend
-   │       │   │   │   │   └── title
-   │       │   │   │   ├── mapbox
-   │       │   │   │   │   └── layer
-   │       │   │   │   │       └── symbol
-   │       │   │   │   ├── newselection
-   │       │   │   │   ├── newshape
-   │       │   │   │   │   ├── label
-   │       │   │   │   │   └── legendgrouptitle
-   │       │   │   │   ├── polar
-   │       │   │   │   │   ├── angularaxis
-   │       │   │   │   │   └── radialaxis
-   │       │   │   │   │       └── title
-   │       │   │   │   ├── scene
-   │       │   │   │   │   ├── annotation
-   │       │   │   │   │   │   └── hoverlabel
-   │       │   │   │   │   ├── camera
-   │       │   │   │   │   ├── xaxis
-   │       │   │   │   │   │   └── title
-   │       │   │   │   │   ├── yaxis
-   │       │   │   │   │   │   └── title
-   │       │   │   │   │   └── zaxis
-   │       │   │   │   │       └── title
-   │       │   │   │   ├── selection
-   │       │   │   │   ├── shape
-   │       │   │   │   │   ├── label
-   │       │   │   │   │   └── legendgrouptitle
-   │       │   │   │   ├── slider
-   │       │   │   │   │   └── currentvalue
-   │       │   │   │   ├── smith
-   │       │   │   │   │   ├── imaginaryaxis
-   │       │   │   │   │   └── realaxis
-   │       │   │   │   ├── template
-   │       │   │   │   │   └── data
-   │       │   │   │   ├── ternary
-   │       │   │   │   │   ├── aaxis
-   │       │   │   │   │   │   └── title
-   │       │   │   │   │   ├── baxis
-   │       │   │   │   │   │   └── title
-   │       │   │   │   │   └── caxis
-   │       │   │   │   │       └── title
-   │       │   │   │   ├── title
-   │       │   │   │   ├── updatemenu
-   │       │   │   │   ├── xaxis
-   │       │   │   │   │   ├── rangeselector
-   │       │   │   │   │   ├── rangeslider
-   │       │   │   │   │   └── title
-   │       │   │   │   └── yaxis
-   │       │   │   │       └── title
-   │       │   │   ├── mesh3d
-   │       │   │   │   ├── colorbar
-   │       │   │   │   │   └── title
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   └── legendgrouptitle
-   │       │   │   ├── ohlc
-   │       │   │   │   ├── decreasing
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── increasing
-   │       │   │   │   └── legendgrouptitle
-   │       │   │   ├── parcats
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   └── line
-   │       │   │   │       └── colorbar
-   │       │   │   │           └── title
-   │       │   │   ├── parcoords
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── line
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   └── unselected
-   │       │   │   ├── pie
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   └── title
-   │       │   │   ├── pointcloud
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   └── marker
-   │       │   │   ├── sankey
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── link
-   │       │   │   │   │   └── hoverlabel
-   │       │   │   │   └── node
-   │       │   │   │       └── hoverlabel
-   │       │   │   ├── scatter
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   ├── selected
-   │       │   │   │   └── unselected
-   │       │   │   ├── scatter3d
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── line
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   ├── marker
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   └── projection
-   │       │   │   ├── scattercarpet
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   ├── selected
-   │       │   │   │   └── unselected
-   │       │   │   ├── scattergeo
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   ├── selected
-   │       │   │   │   └── unselected
-   │       │   │   ├── scattergl
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   ├── selected
-   │       │   │   │   └── unselected
-   │       │   │   ├── scattermapbox
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   ├── selected
-   │       │   │   │   └── unselected
-   │       │   │   ├── scatterpolar
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   ├── selected
-   │       │   │   │   └── unselected
-   │       │   │   ├── scatterpolargl
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   ├── selected
-   │       │   │   │   └── unselected
-   │       │   │   ├── scattersmith
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   ├── selected
-   │       │   │   │   └── unselected
-   │       │   │   ├── scatterternary
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   ├── selected
-   │       │   │   │   └── unselected
-   │       │   │   ├── splom
-   │       │   │   │   ├── dimension
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   ├── selected
-   │       │   │   │   └── unselected
-   │       │   │   ├── streamtube
-   │       │   │   │   ├── colorbar
-   │       │   │   │   │   └── title
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   └── legendgrouptitle
-   │       │   │   ├── sunburst
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   └── marker
-   │       │   │   │       └── colorbar
-   │       │   │   │           └── title
-   │       │   │   ├── surface
-   │       │   │   │   ├── colorbar
-   │       │   │   │   │   └── title
-   │       │   │   │   ├── contours
-   │       │   │   │   │   ├── x
-   │       │   │   │   │   ├── y
-   │       │   │   │   │   └── z
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   └── legendgrouptitle
-   │       │   │   ├── table
-   │       │   │   │   ├── cells
-   │       │   │   │   ├── header
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   └── legendgrouptitle
-   │       │   │   ├── treemap
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   │   └── colorbar
-   │       │   │   │   │       └── title
-   │       │   │   │   └── pathbar
-   │       │   │   ├── violin
-   │       │   │   │   ├── box
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   ├── marker
-   │       │   │   │   ├── selected
-   │       │   │   │   └── unselected
-   │       │   │   ├── volume
-   │       │   │   │   ├── caps
-   │       │   │   │   ├── colorbar
-   │       │   │   │   │   └── title
-   │       │   │   │   ├── hoverlabel
-   │       │   │   │   ├── legendgrouptitle
-   │       │   │   │   └── slices
-   │       │   │   └── waterfall
-   │       │   │       ├── connector
-   │       │   │       ├── decreasing
-   │       │   │       │   └── marker
-   │       │   │       ├── hoverlabel
-   │       │   │       ├── increasing
-   │       │   │       │   └── marker
-   │       │   │       ├── legendgrouptitle
-   │       │   │       └── totals
-   │       │   │           └── marker
-   │       │   ├── io
-   │       │   ├── matplotlylib
-   │       │   │   └── mplexporter
-   │       │   │       └── renderers
-   │       │   ├── offline
-   │       │   ├── plotly
-   │       │   └── validators
-   │       │       ├── bar
-   │       │       │   ├── error_x
-   │       │       │   ├── error_y
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── insidetextfont
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── marker
-   │       │       │   │   ├── colorbar
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   ├── line
-   │       │       │   │   └── pattern
-   │       │       │   ├── outsidetextfont
-   │       │       │   ├── selected
-   │       │       │   │   ├── marker
-   │       │       │   │   └── textfont
-   │       │       │   ├── stream
-   │       │       │   ├── textfont
-   │       │       │   └── unselected
-   │       │       │       ├── marker
-   │       │       │       └── textfont
-   │       │       ├── barpolar
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── marker
-   │       │       │   │   ├── colorbar
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   ├── line
-   │       │       │   │   └── pattern
-   │       │       │   ├── selected
-   │       │       │   │   ├── marker
-   │       │       │   │   └── textfont
-   │       │       │   ├── stream
-   │       │       │   └── unselected
-   │       │       │       ├── marker
-   │       │       │       └── textfont
-   │       │       ├── box
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   ├── marker
-   │       │       │   │   └── line
-   │       │       │   ├── selected
-   │       │       │   │   └── marker
-   │       │       │   ├── stream
-   │       │       │   └── unselected
-   │       │       │       └── marker
-   │       │       ├── candlestick
-   │       │       │   ├── decreasing
-   │       │       │   │   └── line
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── increasing
-   │       │       │   │   └── line
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   └── stream
-   │       │       ├── carpet
-   │       │       │   ├── aaxis
-   │       │       │   │   ├── tickfont
-   │       │       │   │   ├── tickformatstop
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   ├── baxis
-   │       │       │   │   ├── tickfont
-   │       │       │   │   ├── tickformatstop
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   ├── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   └── stream
-   │       │       ├── choropleth
-   │       │       │   ├── colorbar
-   │       │       │   │   ├── tickfont
-   │       │       │   │   ├── tickformatstop
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── marker
-   │       │       │   │   └── line
-   │       │       │   ├── selected
-   │       │       │   │   └── marker
-   │       │       │   ├── stream
-   │       │       │   └── unselected
-   │       │       │       └── marker
-   │       │       ├── choroplethmapbox
-   │       │       │   ├── colorbar
-   │       │       │   │   ├── tickfont
-   │       │       │   │   ├── tickformatstop
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── marker
-   │       │       │   │   └── line
-   │       │       │   ├── selected
-   │       │       │   │   └── marker
-   │       │       │   ├── stream
-   │       │       │   └── unselected
-   │       │       │       └── marker
-   │       │       ├── cone
-   │       │       │   ├── colorbar
-   │       │       │   │   ├── tickfont
-   │       │       │   │   ├── tickformatstop
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── lighting
-   │       │       │   ├── lightposition
-   │       │       │   └── stream
-   │       │       ├── contour
-   │       │       │   ├── colorbar
-   │       │       │   │   ├── tickfont
-   │       │       │   │   ├── tickformatstop
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   ├── contours
-   │       │       │   │   └── labelfont
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   ├── stream
-   │       │       │   └── textfont
-   │       │       ├── contourcarpet
-   │       │       │   ├── colorbar
-   │       │       │   │   ├── tickfont
-   │       │       │   │   ├── tickformatstop
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   ├── contours
-   │       │       │   │   └── labelfont
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   └── stream
-   │       │       ├── densitymapbox
-   │       │       │   ├── colorbar
-   │       │       │   │   ├── tickfont
-   │       │       │   │   ├── tickformatstop
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   └── stream
-   │       │       ├── frame
-   │       │       ├── funnel
-   │       │       │   ├── connector
-   │       │       │   │   └── line
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── insidetextfont
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── marker
-   │       │       │   │   ├── colorbar
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   └── line
-   │       │       │   ├── outsidetextfont
-   │       │       │   ├── stream
-   │       │       │   └── textfont
-   │       │       ├── funnelarea
-   │       │       │   ├── domain
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── insidetextfont
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── marker
-   │       │       │   │   ├── line
-   │       │       │   │   └── pattern
-   │       │       │   ├── stream
-   │       │       │   ├── textfont
-   │       │       │   └── title
-   │       │       │       └── font
-   │       │       ├── heatmap
-   │       │       │   ├── colorbar
-   │       │       │   │   ├── tickfont
-   │       │       │   │   ├── tickformatstop
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── stream
-   │       │       │   └── textfont
-   │       │       ├── heatmapgl
-   │       │       │   ├── colorbar
-   │       │       │   │   ├── tickfont
-   │       │       │   │   ├── tickformatstop
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   └── stream
-   │       │       ├── histogram
-   │       │       │   ├── cumulative
-   │       │       │   ├── error_x
-   │       │       │   ├── error_y
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── insidetextfont
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── marker
-   │       │       │   │   ├── colorbar
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   ├── line
-   │       │       │   │   └── pattern
-   │       │       │   ├── outsidetextfont
-   │       │       │   ├── selected
-   │       │       │   │   ├── marker
-   │       │       │   │   └── textfont
-   │       │       │   ├── stream
-   │       │       │   ├── textfont
-   │       │       │   ├── unselected
-   │       │       │   │   ├── marker
-   │       │       │   │   └── textfont
-   │       │       │   ├── xbins
-   │       │       │   └── ybins
-   │       │       ├── histogram2d
-   │       │       │   ├── colorbar
-   │       │       │   │   ├── tickfont
-   │       │       │   │   ├── tickformatstop
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── marker
-   │       │       │   ├── stream
-   │       │       │   ├── textfont
-   │       │       │   ├── xbins
-   │       │       │   └── ybins
-   │       │       ├── histogram2dcontour
-   │       │       │   ├── colorbar
-   │       │       │   │   ├── tickfont
-   │       │       │   │   ├── tickformatstop
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   ├── contours
-   │       │       │   │   └── labelfont
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   ├── marker
-   │       │       │   ├── stream
-   │       │       │   ├── textfont
-   │       │       │   ├── xbins
-   │       │       │   └── ybins
-   │       │       ├── icicle
-   │       │       │   ├── domain
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── insidetextfont
-   │       │       │   ├── leaf
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── marker
-   │       │       │   │   ├── colorbar
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   ├── line
-   │       │       │   │   └── pattern
-   │       │       │   ├── outsidetextfont
-   │       │       │   ├── pathbar
-   │       │       │   │   └── textfont
-   │       │       │   ├── root
-   │       │       │   ├── stream
-   │       │       │   ├── textfont
-   │       │       │   └── tiling
-   │       │       ├── image
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   └── stream
-   │       │       ├── indicator
-   │       │       │   ├── delta
-   │       │       │   │   ├── decreasing
-   │       │       │   │   ├── font
-   │       │       │   │   └── increasing
-   │       │       │   ├── domain
-   │       │       │   ├── gauge
-   │       │       │   │   ├── axis
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   └── tickformatstop
-   │       │       │   │   ├── bar
-   │       │       │   │   │   └── line
-   │       │       │   │   ├── step
-   │       │       │   │   │   └── line
-   │       │       │   │   └── threshold
-   │       │       │   │       └── line
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── number
-   │       │       │   │   └── font
-   │       │       │   ├── stream
-   │       │       │   └── title
-   │       │       │       └── font
-   │       │       ├── isosurface
-   │       │       │   ├── caps
-   │       │       │   │   ├── x
-   │       │       │   │   ├── y
-   │       │       │   │   └── z
-   │       │       │   ├── colorbar
-   │       │       │   │   ├── tickfont
-   │       │       │   │   ├── tickformatstop
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   ├── contour
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── lighting
-   │       │       │   ├── lightposition
-   │       │       │   ├── slices
-   │       │       │   │   ├── x
-   │       │       │   │   ├── y
-   │       │       │   │   └── z
-   │       │       │   ├── spaceframe
-   │       │       │   ├── stream
-   │       │       │   └── surface
-   │       │       ├── layout
-   │       │       │   ├── activeselection
-   │       │       │   ├── activeshape
-   │       │       │   ├── annotation
-   │       │       │   │   ├── font
-   │       │       │   │   └── hoverlabel
-   │       │       │   │       └── font
-   │       │       │   ├── coloraxis
-   │       │       │   │   └── colorbar
-   │       │       │   │       ├── tickfont
-   │       │       │   │       ├── tickformatstop
-   │       │       │   │       └── title
-   │       │       │   │           └── font
-   │       │       │   ├── colorscale
-   │       │       │   ├── font
-   │       │       │   ├── geo
-   │       │       │   │   ├── center
-   │       │       │   │   ├── domain
-   │       │       │   │   ├── lataxis
-   │       │       │   │   ├── lonaxis
-   │       │       │   │   └── projection
-   │       │       │   │       └── rotation
-   │       │       │   ├── grid
-   │       │       │   │   └── domain
-   │       │       │   ├── hoverlabel
-   │       │       │   │   ├── font
-   │       │       │   │   └── grouptitlefont
-   │       │       │   ├── image
-   │       │       │   ├── legend
-   │       │       │   │   ├── font
-   │       │       │   │   ├── grouptitlefont
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   ├── mapbox
-   │       │       │   │   ├── bounds
-   │       │       │   │   ├── center
-   │       │       │   │   ├── domain
-   │       │       │   │   └── layer
-   │       │       │   │       ├── circle
-   │       │       │   │       ├── fill
-   │       │       │   │       ├── line
-   │       │       │   │       └── symbol
-   │       │       │   │           └── textfont
-   │       │       │   ├── margin
-   │       │       │   ├── modebar
-   │       │       │   ├── newselection
-   │       │       │   │   └── line
-   │       │       │   ├── newshape
-   │       │       │   │   ├── label
-   │       │       │   │   │   └── font
-   │       │       │   │   ├── legendgrouptitle
-   │       │       │   │   │   └── font
-   │       │       │   │   └── line
-   │       │       │   ├── polar
-   │       │       │   │   ├── angularaxis
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   └── tickformatstop
-   │       │       │   │   ├── domain
-   │       │       │   │   └── radialaxis
-   │       │       │   │       ├── tickfont
-   │       │       │   │       ├── tickformatstop
-   │       │       │   │       └── title
-   │       │       │   │           └── font
-   │       │       │   ├── scene
-   │       │       │   │   ├── annotation
-   │       │       │   │   │   ├── font
-   │       │       │   │   │   └── hoverlabel
-   │       │       │   │   │       └── font
-   │       │       │   │   ├── aspectratio
-   │       │       │   │   ├── camera
-   │       │       │   │   │   ├── center
-   │       │       │   │   │   ├── eye
-   │       │       │   │   │   ├── projection
-   │       │       │   │   │   └── up
-   │       │       │   │   ├── domain
-   │       │       │   │   ├── xaxis
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   ├── yaxis
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   └── zaxis
-   │       │       │   │       ├── tickfont
-   │       │       │   │       ├── tickformatstop
-   │       │       │   │       └── title
-   │       │       │   │           └── font
-   │       │       │   ├── selection
-   │       │       │   │   └── line
-   │       │       │   ├── shape
-   │       │       │   │   ├── label
-   │       │       │   │   │   └── font
-   │       │       │   │   ├── legendgrouptitle
-   │       │       │   │   │   └── font
-   │       │       │   │   └── line
-   │       │       │   ├── slider
-   │       │       │   │   ├── currentvalue
-   │       │       │   │   │   └── font
-   │       │       │   │   ├── font
-   │       │       │   │   ├── pad
-   │       │       │   │   ├── step
-   │       │       │   │   └── transition
-   │       │       │   ├── smith
-   │       │       │   │   ├── domain
-   │       │       │   │   ├── imaginaryaxis
-   │       │       │   │   │   └── tickfont
-   │       │       │   │   └── realaxis
-   │       │       │   │       └── tickfont
-   │       │       │   ├── template
-   │       │       │   │   └── data
-   │       │       │   ├── ternary
-   │       │       │   │   ├── aaxis
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   ├── baxis
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   ├── caxis
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   └── domain
-   │       │       │   ├── title
-   │       │       │   │   ├── font
-   │       │       │   │   └── pad
-   │       │       │   ├── transition
-   │       │       │   ├── uniformtext
-   │       │       │   ├── updatemenu
-   │       │       │   │   ├── button
-   │       │       │   │   ├── font
-   │       │       │   │   └── pad
-   │       │       │   ├── xaxis
-   │       │       │   │   ├── minor
-   │       │       │   │   ├── rangebreak
-   │       │       │   │   ├── rangeselector
-   │       │       │   │   │   ├── button
-   │       │       │   │   │   └── font
-   │       │       │   │   ├── rangeslider
-   │       │       │   │   │   └── yaxis
-   │       │       │   │   ├── tickfont
-   │       │       │   │   ├── tickformatstop
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   └── yaxis
-   │       │       │       ├── minor
-   │       │       │       ├── rangebreak
-   │       │       │       ├── tickfont
-   │       │       │       ├── tickformatstop
-   │       │       │       └── title
-   │       │       │           └── font
-   │       │       ├── mesh3d
-   │       │       │   ├── colorbar
-   │       │       │   │   ├── tickfont
-   │       │       │   │   ├── tickformatstop
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   ├── contour
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── lighting
-   │       │       │   ├── lightposition
-   │       │       │   └── stream
-   │       │       ├── ohlc
-   │       │       │   ├── decreasing
-   │       │       │   │   └── line
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── increasing
-   │       │       │   │   └── line
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   └── stream
-   │       │       ├── parcats
-   │       │       │   ├── dimension
-   │       │       │   ├── domain
-   │       │       │   ├── labelfont
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   │   └── colorbar
-   │       │       │   │       ├── tickfont
-   │       │       │   │       ├── tickformatstop
-   │       │       │   │       └── title
-   │       │       │   │           └── font
-   │       │       │   ├── stream
-   │       │       │   └── tickfont
-   │       │       ├── parcoords
-   │       │       │   ├── dimension
-   │       │       │   ├── domain
-   │       │       │   ├── labelfont
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   │   └── colorbar
-   │       │       │   │       ├── tickfont
-   │       │       │   │       ├── tickformatstop
-   │       │       │   │       └── title
-   │       │       │   │           └── font
-   │       │       │   ├── rangefont
-   │       │       │   ├── stream
-   │       │       │   ├── tickfont
-   │       │       │   └── unselected
-   │       │       │       └── line
-   │       │       ├── pie
-   │       │       │   ├── domain
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── insidetextfont
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── marker
-   │       │       │   │   ├── line
-   │       │       │   │   └── pattern
-   │       │       │   ├── outsidetextfont
-   │       │       │   ├── stream
-   │       │       │   ├── textfont
-   │       │       │   └── title
-   │       │       │       └── font
-   │       │       ├── pointcloud
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── marker
-   │       │       │   │   └── border
-   │       │       │   └── stream
-   │       │       ├── sankey
-   │       │       │   ├── domain
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── link
-   │       │       │   │   ├── colorscale
-   │       │       │   │   ├── hoverlabel
-   │       │       │   │   │   └── font
-   │       │       │   │   └── line
-   │       │       │   ├── node
-   │       │       │   │   ├── hoverlabel
-   │       │       │   │   │   └── font
-   │       │       │   │   └── line
-   │       │       │   ├── stream
-   │       │       │   └── textfont
-   │       │       ├── scatter
-   │       │       │   ├── error_x
-   │       │       │   ├── error_y
-   │       │       │   ├── fillpattern
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   ├── marker
-   │       │       │   │   ├── colorbar
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   ├── gradient
-   │       │       │   │   └── line
-   │       │       │   ├── selected
-   │       │       │   │   ├── marker
-   │       │       │   │   └── textfont
-   │       │       │   ├── stream
-   │       │       │   ├── textfont
-   │       │       │   └── unselected
-   │       │       │       ├── marker
-   │       │       │       └── textfont
-   │       │       ├── scatter3d
-   │       │       │   ├── error_x
-   │       │       │   ├── error_y
-   │       │       │   ├── error_z
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   │   └── colorbar
-   │       │       │   │       ├── tickfont
-   │       │       │   │       ├── tickformatstop
-   │       │       │   │       └── title
-   │       │       │   │           └── font
-   │       │       │   ├── marker
-   │       │       │   │   ├── colorbar
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   └── line
-   │       │       │   ├── projection
-   │       │       │   │   ├── x
-   │       │       │   │   ├── y
-   │       │       │   │   └── z
-   │       │       │   ├── stream
-   │       │       │   └── textfont
-   │       │       ├── scattercarpet
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   ├── marker
-   │       │       │   │   ├── colorbar
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   ├── gradient
-   │       │       │   │   └── line
-   │       │       │   ├── selected
-   │       │       │   │   ├── marker
-   │       │       │   │   └── textfont
-   │       │       │   ├── stream
-   │       │       │   ├── textfont
-   │       │       │   └── unselected
-   │       │       │       ├── marker
-   │       │       │       └── textfont
-   │       │       ├── scattergeo
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   ├── marker
-   │       │       │   │   ├── colorbar
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   ├── gradient
-   │       │       │   │   └── line
-   │       │       │   ├── selected
-   │       │       │   │   ├── marker
-   │       │       │   │   └── textfont
-   │       │       │   ├── stream
-   │       │       │   ├── textfont
-   │       │       │   └── unselected
-   │       │       │       ├── marker
-   │       │       │       └── textfont
-   │       │       ├── scattergl
-   │       │       │   ├── error_x
-   │       │       │   ├── error_y
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   ├── marker
-   │       │       │   │   ├── colorbar
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   └── line
-   │       │       │   ├── selected
-   │       │       │   │   ├── marker
-   │       │       │   │   └── textfont
-   │       │       │   ├── stream
-   │       │       │   ├── textfont
-   │       │       │   └── unselected
-   │       │       │       ├── marker
-   │       │       │       └── textfont
-   │       │       ├── scattermapbox
-   │       │       │   ├── cluster
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   ├── marker
-   │       │       │   │   └── colorbar
-   │       │       │   │       ├── tickfont
-   │       │       │   │       ├── tickformatstop
-   │       │       │   │       └── title
-   │       │       │   │           └── font
-   │       │       │   ├── selected
-   │       │       │   │   └── marker
-   │       │       │   ├── stream
-   │       │       │   ├── textfont
-   │       │       │   └── unselected
-   │       │       │       └── marker
-   │       │       ├── scatterpolar
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   ├── marker
-   │       │       │   │   ├── colorbar
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   ├── gradient
-   │       │       │   │   └── line
-   │       │       │   ├── selected
-   │       │       │   │   ├── marker
-   │       │       │   │   └── textfont
-   │       │       │   ├── stream
-   │       │       │   ├── textfont
-   │       │       │   └── unselected
-   │       │       │       ├── marker
-   │       │       │       └── textfont
-   │       │       ├── scatterpolargl
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   ├── marker
-   │       │       │   │   ├── colorbar
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   └── line
-   │       │       │   ├── selected
-   │       │       │   │   ├── marker
-   │       │       │   │   └── textfont
-   │       │       │   ├── stream
-   │       │       │   ├── textfont
-   │       │       │   └── unselected
-   │       │       │       ├── marker
-   │       │       │       └── textfont
-   │       │       ├── scattersmith
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   ├── marker
-   │       │       │   │   ├── colorbar
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   ├── gradient
-   │       │       │   │   └── line
-   │       │       │   ├── selected
-   │       │       │   │   ├── marker
-   │       │       │   │   └── textfont
-   │       │       │   ├── stream
-   │       │       │   ├── textfont
-   │       │       │   └── unselected
-   │       │       │       ├── marker
-   │       │       │       └── textfont
-   │       │       ├── scatterternary
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   ├── marker
-   │       │       │   │   ├── colorbar
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   ├── gradient
-   │       │       │   │   └── line
-   │       │       │   ├── selected
-   │       │       │   │   ├── marker
-   │       │       │   │   └── textfont
-   │       │       │   ├── stream
-   │       │       │   ├── textfont
-   │       │       │   └── unselected
-   │       │       │       ├── marker
-   │       │       │       └── textfont
-   │       │       ├── splom
-   │       │       │   ├── diagonal
-   │       │       │   ├── dimension
-   │       │       │   │   └── axis
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── marker
-   │       │       │   │   ├── colorbar
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   └── line
-   │       │       │   ├── selected
-   │       │       │   │   └── marker
-   │       │       │   ├── stream
-   │       │       │   └── unselected
-   │       │       │       └── marker
-   │       │       ├── streamtube
-   │       │       │   ├── colorbar
-   │       │       │   │   ├── tickfont
-   │       │       │   │   ├── tickformatstop
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── lighting
-   │       │       │   ├── lightposition
-   │       │       │   ├── starts
-   │       │       │   └── stream
-   │       │       ├── sunburst
-   │       │       │   ├── domain
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── insidetextfont
-   │       │       │   ├── leaf
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── marker
-   │       │       │   │   ├── colorbar
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   ├── line
-   │       │       │   │   └── pattern
-   │       │       │   ├── outsidetextfont
-   │       │       │   ├── root
-   │       │       │   ├── stream
-   │       │       │   └── textfont
-   │       │       ├── surface
-   │       │       │   ├── colorbar
-   │       │       │   │   ├── tickfont
-   │       │       │   │   ├── tickformatstop
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   ├── contours
-   │       │       │   │   ├── x
-   │       │       │   │   │   └── project
-   │       │       │   │   ├── y
-   │       │       │   │   │   └── project
-   │       │       │   │   └── z
-   │       │       │   │       └── project
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── lighting
-   │       │       │   ├── lightposition
-   │       │       │   └── stream
-   │       │       ├── table
-   │       │       │   ├── cells
-   │       │       │   │   ├── fill
-   │       │       │   │   ├── font
-   │       │       │   │   └── line
-   │       │       │   ├── domain
-   │       │       │   ├── header
-   │       │       │   │   ├── fill
-   │       │       │   │   ├── font
-   │       │       │   │   └── line
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   └── stream
-   │       │       ├── treemap
-   │       │       │   ├── domain
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── insidetextfont
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── marker
-   │       │       │   │   ├── colorbar
-   │       │       │   │   │   ├── tickfont
-   │       │       │   │   │   ├── tickformatstop
-   │       │       │   │   │   └── title
-   │       │       │   │   │       └── font
-   │       │       │   │   ├── line
-   │       │       │   │   ├── pad
-   │       │       │   │   └── pattern
-   │       │       │   ├── outsidetextfont
-   │       │       │   ├── pathbar
-   │       │       │   │   └── textfont
-   │       │       │   ├── root
-   │       │       │   ├── stream
-   │       │       │   ├── textfont
-   │       │       │   └── tiling
-   │       │       ├── violin
-   │       │       │   ├── box
-   │       │       │   │   └── line
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── line
-   │       │       │   ├── marker
-   │       │       │   │   └── line
-   │       │       │   ├── meanline
-   │       │       │   ├── selected
-   │       │       │   │   └── marker
-   │       │       │   ├── stream
-   │       │       │   └── unselected
-   │       │       │       └── marker
-   │       │       ├── volume
-   │       │       │   ├── caps
-   │       │       │   │   ├── x
-   │       │       │   │   ├── y
-   │       │       │   │   └── z
-   │       │       │   ├── colorbar
-   │       │       │   │   ├── tickfont
-   │       │       │   │   ├── tickformatstop
-   │       │       │   │   └── title
-   │       │       │   │       └── font
-   │       │       │   ├── contour
-   │       │       │   ├── hoverlabel
-   │       │       │   │   └── font
-   │       │       │   ├── legendgrouptitle
-   │       │       │   │   └── font
-   │       │       │   ├── lighting
-   │       │       │   ├── lightposition
-   │       │       │   ├── slices
-   │       │       │   │   ├── x
-   │       │       │   │   ├── y
-   │       │       │   │   └── z
-   │       │       │   ├── spaceframe
-   │       │       │   ├── stream
-   │       │       │   └── surface
-   │       │       └── waterfall
-   │       │           ├── connector
-   │       │           │   └── line
-   │       │           ├── decreasing
-   │       │           │   └── marker
-   │       │           │       └── line
-   │       │           ├── hoverlabel
-   │       │           │   └── font
-   │       │           ├── increasing
-   │       │           │   └── marker
-   │       │           │       └── line
-   │       │           ├── insidetextfont
-   │       │           ├── legendgrouptitle
-   │       │           │   └── font
-   │       │           ├── outsidetextfont
-   │       │           ├── stream
-   │       │           ├── textfont
-   │       │           └── totals
-   │       │               └── marker
-   │       │                   └── line
-   │       ├── ply
-   │       ├── policyeval
-   │       ├── pooch
-   │       ├── portalocker
-   │       ├── posthog
-   │       │   └── sentry
-   │       ├── powerbiclient
-   │       │   └── nbextension
-   │       ├── pox
-   │       ├── pp
-   │       │   └── server
-   │       ├── ppft
-   │       │   └── server
-   │       ├── predict
-   │       │   ├── core
-   │       │   └── utils
-   │       ├── prettytable
-   │       ├── prometheus_client
-   │       │   ├── bridge
-   │       │   ├── openmetrics
-   │       │   └── twisted
-   │       ├── prompt_toolkit
-   │       │   ├── application
-   │       │   ├── clipboard
-   │       │   ├── completion
-   │       │   ├── contrib
-   │       │   │   ├── completers
-   │       │   │   ├── regular_languages
-   │       │   │   ├── ssh
-   │       │   │   └── telnet
-   │       │   ├── eventloop
-   │       │   ├── filters
-   │       │   ├── formatted_text
-   │       │   ├── input
-   │       │   ├── key_binding
-   │       │   │   └── bindings
-   │       │   ├── layout
-   │       │   ├── lexers
-   │       │   ├── output
-   │       │   ├── shortcuts
-   │       │   │   └── progress_bar
-   │       │   ├── styles
-   │       │   └── widgets
-   │       ├── protobuf
-   │       │   ├── compiler
-   │       │   ├── internal
-   │       │   ├── pyext
-   │       │   └── util
-   │       ├── psutil
-   │       ├── ptyprocess
-   │       ├── pulsar
-   │       │   ├── functions
-   │       │   └── schema
-   │       ├── pure_eval
-   │       ├── py4j
-   │       ├── pyarrow
-   │       │   ├── interchange
-   │       │   └── parquet
-   │       ├── pyasn1
-   │       │   ├── codec
-   │       │   │   ├── ber
-   │       │   │   ├── cer
-   │       │   │   ├── der
-   │       │   │   └── native
-   │       │   ├── compat
-   │       │   └── type
-   │       ├── pyasn1_modules
-   │       ├── pycparser
-   │       │   └── ply
-   │       ├── pydantic
-   │       ├── pygments
-   │       │   ├── filters
-   │       │   ├── formatters
-   │       │   ├── lexers
-   │       │   └── styles
-   │       ├── pylint_plugins
-   │       │   └── pytest_raises_checker
-   │       ├── pymds
-   │       ├── pyparsing
-   │       │   └── diagram
-   │       ├── pyperclip
-   │       ├── pypika
-   │       │   └── clickhouse
-   │       ├── PyQt5
-   │       │   └── uic
-   │       │       ├── Compiler
-   │       │       ├── Loader
-   │       │       ├── port_v2
-   │       │       └── port_v3
-   │       ├── pyspark
-   │       │   ├── cloudpickle
-   │       │   ├── errors
-   │       │   │   └── exceptions
-   │       │   ├── ml
-   │       │   │   ├── linalg
-   │       │   │   ├── param
-   │       │   │   └── torch
-   │       │   ├── mllib
-   │       │   │   ├── linalg
-   │       │   │   └── stat
-   │       │   ├── pandas
-   │       │   │   ├── data_type_ops
-   │       │   │   ├── indexes
-   │       │   │   ├── missing
-   │       │   │   ├── plot
-   │       │   │   ├── spark
-   │       │   │   ├── typedef
-   │       │   │   └── usage_logging
-   │       │   ├── resource
-   │       │   ├── sql
-   │       │   │   ├── avro
-   │       │   │   ├── connect
-   │       │   │   │   └── proto
-   │       │   │   ├── pandas
-   │       │   │   ├── protobuf
-   │       │   │   └── streaming
-   │       │   └── streaming
-   │       ├── pythonjsonlogger
-   │       ├── pythonnet
-   │       ├── pytz
-   │       ├── pyu2f
-   │       │   ├── convenience
-   │       │   └── hid
-   │       ├── pyximport
-   │       ├── recommendation
-   │       ├── referencing
-   │       ├── regex
-   │       ├── requests
-   │       ├── requests_oauthlib
-   │       │   └── compliance_fixes
-   │       ├── responses
-   │       ├── rich
-   │       ├── rouge_score
-   │       ├── rpds
-   │       ├── rsa
-   │       ├── ruamel_yaml
-   │       │   └── ext
-   │       ├── sacremoses
-   │       ├── SALib
-   │       │   ├── analyze
-   │       │   ├── plotting
-   │       │   ├── sample
-   │       │   │   └── morris
-   │       │   ├── scripts
-   │       │   ├── test_functions
-   │       │   └── util
-   │       ├── samples
-   │       ├── scipy
-   │       │   ├── _build_utils
-   │       │   ├── _lib
-   │       │   │   └── _uarray
-   │       │   ├── cluster
-   │       │   ├── constants
-   │       │   ├── datasets
-   │       │   ├── fft
-   │       │   │   └── _pocketfft
-   │       │   ├── fftpack
-   │       │   ├── integrate
-   │       │   │   └── _ivp
-   │       │   ├── interpolate
-   │       │   ├── io
-   │       │   │   ├── _harwell_boeing
-   │       │   │   ├── arff
-   │       │   │   └── matlab
-   │       │   ├── linalg
-   │       │   ├── misc
-   │       │   ├── ndimage
-   │       │   ├── odr
-   │       │   ├── optimize
-   │       │   │   ├── _highs
-   │       │   │   ├── _lsq
-   │       │   │   ├── _shgo_lib
-   │       │   │   ├── _trlib
-   │       │   │   ├── _trustregion_constr
-   │       │   │   └── cython_optimize
-   │       │   ├── signal
-   │       │   │   └── windows
-   │       │   ├── sparse
-   │       │   │   ├── csgraph
-   │       │   │   └── linalg
-   │       │   │       ├── _dsolve
-   │       │   │       ├── _eigen
-   │       │   │       │   ├── arpack
-   │       │   │       │   └── lobpcg
-   │       │   │       └── _isolve
-   │       │   ├── spatial
-   │       │   │   └── transform
-   │       │   ├── special
-   │       │   │   └── _precompute
-   │       │   └── stats
-   │       │       ├── _boost
-   │       │       ├── _levy_stable
-   │       │       ├── _rcont
-   │       │       └── _unuran
-   │       ├── seaborn
-   │       │   ├── _core
-   │       │   ├── _marks
-   │       │   ├── _stats
-   │       │   ├── colors
-   │       │   └── external
-   │       ├── sempy
-   │       │   ├── _metadata
-   │       │   ├── _utils
-   │       │   ├── dependencies
-   │       │   ├── fabric
-   │       │   │   ├── _client
-   │       │   │   ├── _dataframe
-   │       │   │   ├── _trace
-   │       │   │   ├── exceptions
-   │       │   │   └── matcher
-   │       │   ├── functions
-   │       │   │   ├── _dataframe
-   │       │   │   └── matcher
-   │       │   └── relationships
-   │       ├── send2trash
-   │       │   ├── mac
-   │       │   └── win
-   │       ├── sentence_transformers
-   │       │   ├── cross_encoder
-   │       │   │   └── evaluation
-   │       │   ├── datasets
-   │       │   ├── evaluation
-   │       │   ├── losses
-   │       │   ├── models
-   │       │   │   └── tokenizer
-   │       │   └── readers
-   │       ├── sentry_sdk
-   │       │   ├── crons
-   │       │   ├── db
-   │       │   │   └── explain_plan
-   │       │   └── integrations
-   │       │       ├── django
-   │       │       ├── grpc
-   │       │       ├── opentelemetry
-   │       │       ├── redis
-   │       │       └── spark
-   │       ├── seqeval
-   │       │   └── metrics
-   │       ├── services
-   │       │   ├── anomaly
-   │       │   ├── bing
-   │       │   ├── face
-   │       │   ├── form
-   │       │   ├── geospatial
-   │       │   ├── langchain
-   │       │   ├── language
-   │       │   ├── openai
-   │       │   ├── search
-   │       │   ├── speech
-   │       │   ├── text
-   │       │   ├── translate
-   │       │   └── vision
-   │       ├── setproctitle
-   │       ├── setuptools
-   │       │   ├── _distutils
-   │       │   │   └── command
-   │       │   ├── command
-   │       │   ├── config
-   │       │   │   └── _validate_pyproject
-   │       │   └── extern
-   │       ├── shap
-   │       │   ├── actions
-   │       │   ├── benchmark
-   │       │   ├── explainers
-   │       │   │   ├── _deep
-   │       │   │   └── other
-   │       │   ├── maskers
-   │       │   ├── models
-   │       │   ├── plots
-   │       │   │   └── colors
-   │       │   └── utils
-   │       ├── shellingham
-   │       │   └── posix
-   │       ├── simplejson
-   │       ├── sipbuild
-   │       │   ├── distinfo
-   │       │   ├── generator
-   │       │   │   ├── outputs
-   │       │   │   │   └── formatters
-   │       │   │   ├── parser
-   │       │   │   └── resolver
-   │       │   ├── module
-   │       │   └── tools
-   │       ├── sklearn
-   │       │   ├── __check_build
-   │       │   ├── _build_utils
-   │       │   ├── _loss
-   │       │   ├── cluster
-   │       │   │   └── _hdbscan
-   │       │   ├── compose
-   │       │   ├── covariance
-   │       │   ├── cross_decomposition
-   │       │   ├── datasets
-   │       │   │   ├── data
-   │       │   │   ├── descr
-   │       │   │   └── images
-   │       │   ├── decomposition
-   │       │   ├── ensemble
-   │       │   │   └── _hist_gradient_boosting
-   │       │   ├── experimental
-   │       │   ├── externals
-   │       │   │   └── _packaging
-   │       │   ├── feature_extraction
-   │       │   ├── feature_selection
-   │       │   ├── gaussian_process
-   │       │   ├── impute
-   │       │   ├── inspection
-   │       │   │   └── _plot
-   │       │   ├── linear_model
-   │       │   │   └── _glm
-   │       │   ├── manifold
-   │       │   ├── metrics
-   │       │   │   ├── _pairwise_distances_reduction
-   │       │   │   ├── _plot
-   │       │   │   └── cluster
-   │       │   ├── mixture
-   │       │   ├── model_selection
-   │       │   ├── neighbors
-   │       │   ├── neural_network
-   │       │   ├── preprocessing
-   │       │   ├── semi_supervised
-   │       │   ├── svm
-   │       │   ├── tree
-   │       │   └── utils
-   │       ├── slicer
-   │       ├── smmap
-   │       ├── sniffio
-   │       │   └── _tests
-   │       ├── soupsieve
-   │       ├── sqlalchemy
-   │       │   ├── connectors
-   │       │   ├── cyextension
-   │       │   ├── dialects
-   │       │   │   ├── mssql
-   │       │   │   ├── mysql
-   │       │   │   ├── oracle
-   │       │   │   ├── postgresql
-   │       │   │   └── sqlite
-   │       │   ├── engine
-   │       │   ├── event
-   │       │   ├── ext
-   │       │   │   ├── asyncio
-   │       │   │   ├── declarative
-   │       │   │   └── mypy
-   │       │   ├── future
-   │       │   ├── orm
-   │       │   ├── pool
-   │       │   ├── sql
-   │       │   ├── testing
-   │       │   │   ├── fixtures
-   │       │   │   ├── plugin
-   │       │   │   └── suite
-   │       │   └── util
-   │       ├── sqlanalytics
-   │       ├── sqlparse
-   │       │   ├── engine
-   │       │   └── filters
-   │       ├── stack_data
-   │       ├── stages
-   │       ├── starlette
-   │       │   └── middleware
-   │       ├── statsmodels
-   │       │   ├── base
-   │       │   ├── compat
-   │       │   ├── datasets
-   │       │   │   ├── anes96
-   │       │   │   ├── cancer
-   │       │   │   ├── ccard
-   │       │   │   ├── china_smoking
-   │       │   │   ├── co2
-   │       │   │   ├── committee
-   │       │   │   ├── copper
-   │       │   │   ├── cpunish
-   │       │   │   ├── danish_data
-   │       │   │   ├── elec_equip
-   │       │   │   ├── elnino
-   │       │   │   ├── engel
-   │       │   │   ├── fair
-   │       │   │   ├── fertility
-   │       │   │   ├── grunfeld
-   │       │   │   ├── heart
-   │       │   │   ├── interest_inflation
-   │       │   │   ├── longley
-   │       │   │   ├── macrodata
-   │       │   │   ├── modechoice
-   │       │   │   ├── nile
-   │       │   │   ├── randhie
-   │       │   │   ├── scotland
-   │       │   │   ├── spector
-   │       │   │   ├── stackloss
-   │       │   │   ├── star98
-   │       │   │   ├── statecrime
-   │       │   │   ├── strikes
-   │       │   │   └── sunspots
-   │       │   ├── discrete
-   │       │   ├── distributions
-   │       │   │   └── copula
-   │       │   ├── duration
-   │       │   ├── emplike
-   │       │   ├── formula
-   │       │   ├── gam
-   │       │   │   └── gam_cross_validation
-   │       │   ├── genmod
-   │       │   │   └── families
-   │       │   ├── graphics
-   │       │   ├── imputation
-   │       │   ├── interface
-   │       │   ├── iolib
-   │       │   ├── miscmodels
-   │       │   ├── multivariate
-   │       │   │   └── factor_rotation
-   │       │   ├── nonparametric
-   │       │   ├── othermod
-   │       │   ├── regression
-   │       │   ├── robust
-   │       │   ├── sandbox
-   │       │   │   ├── archive
-   │       │   │   ├── datarich
-   │       │   │   ├── distributions
-   │       │   │   ├── mcevaluate
-   │       │   │   ├── nonparametric
-   │       │   │   ├── panel
-   │       │   │   ├── regression
-   │       │   │   ├── stats
-   │       │   │   ├── tools
-   │       │   │   └── tsa
-   │       │   ├── src
-   │       │   ├── stats
-   │       │   │   └── libqsturng
-   │       │   ├── tools
-   │       │   │   └── validation
-   │       │   ├── treatment
-   │       │   └── tsa
-   │       │       ├── ardl
-   │       │       │   └── _pss_critical_values
-   │       │       ├── arima
-   │       │       │   ├── datasets
-   │       │       │   │   └── brockwell_davis_2002
-   │       │       │   │       └── data
-   │       │       │   └── estimators
-   │       │       ├── base
-   │       │       ├── exponential_smoothing
-   │       │       ├── filters
-   │       │       ├── forecasting
-   │       │       ├── holtwinters
-   │       │       ├── innovations
-   │       │       ├── interp
-   │       │       ├── regime_switching
-   │       │       ├── statespace
-   │       │       │   ├── _filters
-   │       │       │   └── _smoothers
-   │       │       ├── stl
-   │       │       └── vector_ar
-   │       ├── stevedore
-   │       │   └── example2
-   │       ├── sympy
-   │       │   ├── algebras
-   │       │   ├── assumptions
-   │       │   │   ├── handlers
-   │       │   │   ├── predicates
-   │       │   │   └── relation
-   │       │   ├── benchmarks
-   │       │   ├── calculus
-   │       │   ├── categories
-   │       │   ├── codegen
-   │       │   ├── combinatorics
-   │       │   ├── concrete
-   │       │   ├── core
-   │       │   │   └── benchmarks
-   │       │   ├── crypto
-   │       │   ├── diffgeom
-   │       │   ├── discrete
-   │       │   ├── external
-   │       │   ├── functions
-   │       │   │   ├── combinatorial
-   │       │   │   ├── elementary
-   │       │   │   │   └── benchmarks
-   │       │   │   └── special
-   │       │   │       └── benchmarks
-   │       │   ├── geometry
-   │       │   ├── holonomic
-   │       │   ├── integrals
-   │       │   │   └── benchmarks
-   │       │   ├── interactive
-   │       │   ├── liealgebras
-   │       │   ├── logic
-   │       │   │   ├── algorithms
-   │       │   │   └── utilities
-   │       │   ├── matrices
-   │       │   │   ├── benchmarks
-   │       │   │   └── expressions
-   │       │   ├── multipledispatch
-   │       │   ├── ntheory
-   │       │   ├── parsing
-   │       │   │   ├── autolev
-   │       │   │   │   └── _antlr
-   │       │   │   ├── c
-   │       │   │   ├── fortran
-   │       │   │   └── latex
-   │       │   │       └── _antlr
-   │       │   ├── physics
-   │       │   │   ├── continuum_mechanics
-   │       │   │   ├── control
-   │       │   │   ├── hep
-   │       │   │   ├── mechanics
-   │       │   │   ├── optics
-   │       │   │   ├── quantum
-   │       │   │   ├── units
-   │       │   │   │   ├── definitions
-   │       │   │   │   └── systems
-   │       │   │   └── vector
-   │       │   ├── plotting
-   │       │   │   ├── intervalmath
-   │       │   │   └── pygletplot
-   │       │   ├── polys
-   │       │   │   ├── agca
-   │       │   │   ├── benchmarks
-   │       │   │   ├── domains
-   │       │   │   ├── matrices
-   │       │   │   └── numberfields
-   │       │   ├── printing
-   │       │   │   └── pretty
-   │       │   ├── sandbox
-   │       │   ├── series
-   │       │   │   └── benchmarks
-   │       │   ├── sets
-   │       │   │   └── handlers
-   │       │   ├── simplify
-   │       │   ├── solvers
-   │       │   │   ├── benchmarks
-   │       │   │   ├── diophantine
-   │       │   │   └── ode
-   │       │   ├── stats
-   │       │   │   └── sampling
-   │       │   ├── strategies
-   │       │   │   └── branch
-   │       │   ├── tensor
-   │       │   │   └── array
-   │       │   │       └── expressions
-   │       │   ├── testing
-   │       │   ├── unify
-   │       │   ├── utilities
-   │       │   │   ├── _compilation
-   │       │   │   └── mathml
-   │       │   └── vector
-   │       ├── tabulate
-   │       ├── tenacity
-   │       ├── tensorboard
-   │       │   ├── backend
-   │       │   │   └── event_processing
-   │       │   ├── compat
-   │       │   │   ├── proto
-   │       │   │   └── tensorflow_stub
-   │       │   │       ├── compat
-   │       │   │       │   └── v1
-   │       │   │       └── io
-   │       │   ├── data
-   │       │   │   ├── experimental
-   │       │   │   └── proto
-   │       │   ├── plugins
-   │       │   │   ├── audio
-   │       │   │   ├── core
-   │       │   │   ├── custom_scalar
-   │       │   │   ├── debugger_v2
-   │       │   │   ├── distribution
-   │       │   │   ├── graph
-   │       │   │   ├── histogram
-   │       │   │   ├── hparams
-   │       │   │   ├── image
-   │       │   │   ├── mesh
-   │       │   │   ├── metrics
-   │       │   │   ├── npmi
-   │       │   │   ├── pr_curve
-   │       │   │   ├── profile_redirect
-   │       │   │   ├── projector
-   │       │   │   ├── scalar
-   │       │   │   ├── text
-   │       │   │   ├── text_v2
-   │       │   │   └── wit_redirect
-   │       │   ├── summary
-   │       │   │   ├── _tf
-   │       │   │   │   └── summary
-   │       │   │   └── writer
-   │       │   ├── uploader
-   │       │   │   └── proto
-   │       │   └── util
-   │       ├── tensorboard_data_server
-   │       ├── tensorflow
-   │       │   ├── _api
-   │       │   │   └── v2
-   │       │   │       ├── __internal__
-   │       │   │       │   ├── autograph
-   │       │   │       │   ├── decorator
-   │       │   │       │   ├── dispatch
-   │       │   │       │   ├── distribute
-   │       │   │       │   │   ├── combinations
-   │       │   │       │   │   ├── interim
-   │       │   │       │   │   └── multi_process_runner
-   │       │   │       │   ├── eager_context
-   │       │   │       │   ├── feature_column
-   │       │   │       │   ├── function
-   │       │   │       │   ├── graph_util
-   │       │   │       │   ├── mixed_precision
-   │       │   │       │   ├── monitoring
-   │       │   │       │   ├── nest
-   │       │   │       │   ├── ops
-   │       │   │       │   ├── saved_model
-   │       │   │       │   │   └── load
-   │       │   │       │   ├── smart_cond
-   │       │   │       │   ├── tf2
-   │       │   │       │   ├── tracking
-   │       │   │       │   ├── train
-   │       │   │       │   └── types
-   │       │   │       │       └── data
-   │       │   │       ├── __operators__
-   │       │   │       ├── audio
-   │       │   │       ├── autodiff
-   │       │   │       ├── autograph
-   │       │   │       │   └── experimental
-   │       │   │       ├── bitwise
-   │       │   │       ├── compat
-   │       │   │       │   ├── v1
-   │       │   │       │   │   ├── __internal__
-   │       │   │       │   │   │   └── types
-   │       │   │       │   │   │       └── data
-   │       │   │       │   │   ├── app
-   │       │   │       │   │   ├── audio
-   │       │   │       │   │   ├── autograph
-   │       │   │       │   │   │   └── experimental
-   │       │   │       │   │   ├── bitwise
-   │       │   │       │   │   ├── compat
-   │       │   │       │   │   │   ├── v1
-   │       │   │       │   │   │   │   └── compat
-   │       │   │       │   │   │   └── v2
-   │       │   │       │   │   │       └── compat
-   │       │   │       │   │   ├── config
-   │       │   │       │   │   │   ├── experimental
-   │       │   │       │   │   │   ├── optimizer
-   │       │   │       │   │   │   └── threading
-   │       │   │       │   │   ├── data
-   │       │   │       │   │   │   └── experimental
-   │       │   │       │   │   │       └── service
-   │       │   │       │   │   ├── debugging
-   │       │   │       │   │   │   └── experimental
-   │       │   │       │   │   ├── distribute
-   │       │   │       │   │   │   ├── cluster_resolver
-   │       │   │       │   │   │   └── experimental
-   │       │   │       │   │   ├── distributions
-   │       │   │       │   │   ├── dtypes
-   │       │   │       │   │   │   └── experimental
-   │       │   │       │   │   ├── errors
-   │       │   │       │   │   ├── experimental
-   │       │   │       │   │   │   └── extension_type
-   │       │   │       │   │   ├── feature_column
-   │       │   │       │   │   ├── gfile
-   │       │   │       │   │   ├── graph_util
-   │       │   │       │   │   ├── image
-   │       │   │       │   │   ├── initializers
-   │       │   │       │   │   ├── io
-   │       │   │       │   │   │   └── gfile
-   │       │   │       │   │   ├── layers
-   │       │   │       │   │   │   └── experimental
-   │       │   │       │   │   ├── linalg
-   │       │   │       │   │   │   └── experimental
-   │       │   │       │   │   ├── lite
-   │       │   │       │   │   │   ├── constants
-   │       │   │       │   │   │   └── experimental
-   │       │   │       │   │   │       ├── authoring
-   │       │   │       │   │   │       └── microfrontend
-   │       │   │       │   │   │           └── python
-   │       │   │       │   │   │               └── ops
-   │       │   │       │   │   ├── logging
-   │       │   │       │   │   ├── lookup
-   │       │   │       │   │   │   └── experimental
-   │       │   │       │   │   ├── losses
-   │       │   │       │   │   ├── manip
-   │       │   │       │   │   ├── math
-   │       │   │       │   │   │   └── special
-   │       │   │       │   │   ├── metrics
-   │       │   │       │   │   ├── mixed_precision
-   │       │   │       │   │   │   └── experimental
-   │       │   │       │   │   ├── mlir
-   │       │   │       │   │   │   └── experimental
-   │       │   │       │   │   ├── nest
-   │       │   │       │   │   ├── nn
-   │       │   │       │   │   │   ├── experimental
-   │       │   │       │   │   │   └── rnn_cell
-   │       │   │       │   │   ├── profiler
-   │       │   │       │   │   ├── python_io
-   │       │   │       │   │   ├── quantization
-   │       │   │       │   │   ├── queue
-   │       │   │       │   │   ├── ragged
-   │       │   │       │   │   ├── random
-   │       │   │       │   │   │   └── experimental
-   │       │   │       │   │   ├── raw_ops
-   │       │   │       │   │   ├── resource_loader
-   │       │   │       │   │   ├── saved_model
-   │       │   │       │   │   │   ├── builder
-   │       │   │       │   │   │   ├── constants
-   │       │   │       │   │   │   ├── experimental
-   │       │   │       │   │   │   ├── loader
-   │       │   │       │   │   │   ├── main_op
-   │       │   │       │   │   │   ├── signature_constants
-   │       │   │       │   │   │   ├── signature_def_utils
-   │       │   │       │   │   │   ├── tag_constants
-   │       │   │       │   │   │   └── utils
-   │       │   │       │   │   ├── sets
-   │       │   │       │   │   ├── signal
-   │       │   │       │   │   ├── sparse
-   │       │   │       │   │   ├── spectral
-   │       │   │       │   │   ├── strings
-   │       │   │       │   │   ├── summary
-   │       │   │       │   │   ├── sysconfig
-   │       │   │       │   │   ├── tpu
-   │       │   │       │   │   │   └── experimental
-   │       │   │       │   │   │       └── embedding
-   │       │   │       │   │   ├── train
-   │       │   │       │   │   │   ├── experimental
-   │       │   │       │   │   │   └── queue_runner
-   │       │   │       │   │   ├── types
-   │       │   │       │   │   │   └── experimental
-   │       │   │       │   │   ├── user_ops
-   │       │   │       │   │   ├── version
-   │       │   │       │   │   └── xla
-   │       │   │       │   │       └── experimental
-   │       │   │       │   └── v2
-   │       │   │       │       ├── __internal__
-   │       │   │       │       │   ├── autograph
-   │       │   │       │       │   ├── decorator
-   │       │   │       │       │   ├── dispatch
-   │       │   │       │       │   ├── distribute
-   │       │   │       │       │   │   ├── combinations
-   │       │   │       │       │   │   ├── interim
-   │       │   │       │       │   │   └── multi_process_runner
-   │       │   │       │       │   ├── eager_context
-   │       │   │       │       │   ├── feature_column
-   │       │   │       │       │   ├── function
-   │       │   │       │       │   ├── graph_util
-   │       │   │       │       │   ├── mixed_precision
-   │       │   │       │       │   ├── monitoring
-   │       │   │       │       │   ├── nest
-   │       │   │       │       │   ├── ops
-   │       │   │       │       │   ├── saved_model
-   │       │   │       │       │   │   └── load
-   │       │   │       │       │   ├── smart_cond
-   │       │   │       │       │   ├── tf2
-   │       │   │       │       │   ├── tracking
-   │       │   │       │       │   ├── train
-   │       │   │       │       │   └── types
-   │       │   │       │       │       └── data
-   │       │   │       │       ├── __operators__
-   │       │   │       │       ├── audio
-   │       │   │       │       ├── autodiff
-   │       │   │       │       ├── autograph
-   │       │   │       │       │   └── experimental
-   │       │   │       │       ├── bitwise
-   │       │   │       │       ├── compat
-   │       │   │       │       │   ├── v1
-   │       │   │       │       │   │   └── compat
-   │       │   │       │       │   └── v2
-   │       │   │       │       │       └── compat
-   │       │   │       │       ├── config
-   │       │   │       │       │   ├── experimental
-   │       │   │       │       │   ├── optimizer
-   │       │   │       │       │   └── threading
-   │       │   │       │       ├── data
-   │       │   │       │       │   └── experimental
-   │       │   │       │       │       └── service
-   │       │   │       │       ├── debugging
-   │       │   │       │       │   └── experimental
-   │       │   │       │       ├── distribute
-   │       │   │       │       │   ├── cluster_resolver
-   │       │   │       │       │   ├── coordinator
-   │       │   │       │       │   └── experimental
-   │       │   │       │       │       ├── coordinator
-   │       │   │       │       │       ├── partitioners
-   │       │   │       │       │       └── rpc
-   │       │   │       │       ├── dtypes
-   │       │   │       │       │   └── experimental
-   │       │   │       │       ├── errors
-   │       │   │       │       ├── experimental
-   │       │   │       │       │   ├── dlpack
-   │       │   │       │       │   ├── dtensor
-   │       │   │       │       │   ├── extension_type
-   │       │   │       │       │   ├── numpy
-   │       │   │       │       │   │   └── random
-   │       │   │       │       │   └── tensorrt
-   │       │   │       │       ├── feature_column
-   │       │   │       │       ├── graph_util
-   │       │   │       │       ├── image
-   │       │   │       │       ├── io
-   │       │   │       │       │   └── gfile
-   │       │   │       │       ├── linalg
-   │       │   │       │       │   └── experimental
-   │       │   │       │       ├── lite
-   │       │   │       │       │   └── experimental
-   │       │   │       │       │       ├── authoring
-   │       │   │       │       │       └── microfrontend
-   │       │   │       │       │           └── python
-   │       │   │       │       │               └── ops
-   │       │   │       │       ├── lookup
-   │       │   │       │       │   └── experimental
-   │       │   │       │       ├── math
-   │       │   │       │       │   └── special
-   │       │   │       │       ├── mlir
-   │       │   │       │       │   └── experimental
-   │       │   │       │       ├── nest
-   │       │   │       │       ├── nn
-   │       │   │       │       │   └── experimental
-   │       │   │       │       ├── profiler
-   │       │   │       │       │   └── experimental
-   │       │   │       │       │       ├── client
-   │       │   │       │       │       └── server
-   │       │   │       │       ├── quantization
-   │       │   │       │       ├── queue
-   │       │   │       │       ├── ragged
-   │       │   │       │       ├── random
-   │       │   │       │       │   └── experimental
-   │       │   │       │       ├── raw_ops
-   │       │   │       │       ├── saved_model
-   │       │   │       │       │   └── experimental
-   │       │   │       │       ├── sets
-   │       │   │       │       ├── signal
-   │       │   │       │       ├── sparse
-   │       │   │       │       ├── strings
-   │       │   │       │       ├── summary
-   │       │   │       │       │   └── experimental
-   │       │   │       │       ├── sysconfig
-   │       │   │       │       ├── tpu
-   │       │   │       │       │   └── experimental
-   │       │   │       │       │       └── embedding
-   │       │   │       │       ├── train
-   │       │   │       │       │   └── experimental
-   │       │   │       │       ├── types
-   │       │   │       │       │   └── experimental
-   │       │   │       │       │       └── distributed
-   │       │   │       │       ├── version
-   │       │   │       │       └── xla
-   │       │   │       │           └── experimental
-   │       │   │       ├── config
-   │       │   │       │   ├── experimental
-   │       │   │       │   ├── optimizer
-   │       │   │       │   └── threading
-   │       │   │       ├── data
-   │       │   │       │   └── experimental
-   │       │   │       │       └── service
-   │       │   │       ├── debugging
-   │       │   │       │   └── experimental
-   │       │   │       ├── distribute
-   │       │   │       │   ├── cluster_resolver
-   │       │   │       │   ├── coordinator
-   │       │   │       │   └── experimental
-   │       │   │       │       ├── coordinator
-   │       │   │       │       ├── partitioners
-   │       │   │       │       └── rpc
-   │       │   │       ├── dtypes
-   │       │   │       │   └── experimental
-   │       │   │       ├── errors
-   │       │   │       ├── experimental
-   │       │   │       │   ├── dlpack
-   │       │   │       │   ├── dtensor
-   │       │   │       │   ├── extension_type
-   │       │   │       │   ├── numpy
-   │       │   │       │   │   └── random
-   │       │   │       │   └── tensorrt
-   │       │   │       ├── feature_column
-   │       │   │       ├── graph_util
-   │       │   │       ├── image
-   │       │   │       ├── io
-   │       │   │       │   └── gfile
-   │       │   │       ├── linalg
-   │       │   │       │   └── experimental
-   │       │   │       ├── lite
-   │       │   │       │   └── experimental
-   │       │   │       │       ├── authoring
-   │       │   │       │       └── microfrontend
-   │       │   │       │           └── python
-   │       │   │       │               └── ops
-   │       │   │       ├── lookup
-   │       │   │       │   └── experimental
-   │       │   │       ├── math
-   │       │   │       │   └── special
-   │       │   │       ├── mlir
-   │       │   │       │   └── experimental
-   │       │   │       ├── nest
-   │       │   │       ├── nn
-   │       │   │       │   └── experimental
-   │       │   │       ├── profiler
-   │       │   │       │   └── experimental
-   │       │   │       │       ├── client
-   │       │   │       │       └── server
-   │       │   │       ├── quantization
-   │       │   │       ├── queue
-   │       │   │       ├── ragged
-   │       │   │       ├── random
-   │       │   │       │   └── experimental
-   │       │   │       ├── raw_ops
-   │       │   │       ├── saved_model
-   │       │   │       │   └── experimental
-   │       │   │       ├── sets
-   │       │   │       ├── signal
-   │       │   │       ├── sparse
-   │       │   │       ├── strings
-   │       │   │       ├── summary
-   │       │   │       │   └── experimental
-   │       │   │       ├── sysconfig
-   │       │   │       ├── tpu
-   │       │   │       │   └── experimental
-   │       │   │       │       └── embedding
-   │       │   │       ├── train
-   │       │   │       │   └── experimental
-   │       │   │       ├── types
-   │       │   │       │   └── experimental
-   │       │   │       │       └── distributed
-   │       │   │       ├── version
-   │       │   │       └── xla
-   │       │   │           └── experimental
-   │       │   ├── compiler
-   │       │   │   ├── jit
-   │       │   │   │   └── ops
-   │       │   │   ├── mlir
-   │       │   │   │   └── tensorflow
-   │       │   │   ├── tf2tensorrt
-   │       │   │   │   ├── ops
-   │       │   │   │   └── utils
-   │       │   │   ├── tf2xla
-   │       │   │   │   ├── ops
-   │       │   │   │   └── python
-   │       │   │   └── xla
-   │       │   │       ├── python_api
-   │       │   │       └── service
-   │       │   ├── core
-   │       │   │   ├── config
-   │       │   │   ├── debug
-   │       │   │   ├── distributed_runtime
-   │       │   │   │   └── preemption
-   │       │   │   ├── framework
-   │       │   │   ├── function
-   │       │   │   │   ├── capture
-   │       │   │   │   ├── polymorphism
-   │       │   │   │   └── trace_type
-   │       │   │   ├── grappler
-   │       │   │   │   └── costs
-   │       │   │   ├── kernels
-   │       │   │   ├── profiler
-   │       │   │   │   └── protobuf
-   │       │   │   ├── protobuf
-   │       │   │   │   └── tpu
-   │       │   │   └── util
-   │       │   │       └── quantization
-   │       │   ├── distribute
-   │       │   │   └── experimental
-   │       │   │       └── rpc
-   │       │   │           ├── kernels
-   │       │   │           └── proto
-   │       │   ├── dtensor
-   │       │   │   ├── proto
-   │       │   │   └── python
-   │       │   ├── lite
-   │       │   │   ├── experimental
-   │       │   │   │   └── microfrontend
-   │       │   │   │       ├── ops
-   │       │   │   │       └── python
-   │       │   │   │           └── ops
-   │       │   │   ├── python
-   │       │   │   │   ├── analyzer_wrapper
-   │       │   │   │   ├── authoring
-   │       │   │   │   ├── interpreter_wrapper
-   │       │   │   │   ├── metrics
-   │       │   │   │   │   └── wrapper
-   │       │   │   │   └── optimize
-   │       │   │   ├── toco
-   │       │   │   │   ├── logging
-   │       │   │   │   └── python
-   │       │   │   └── tools
-   │       │   │       └── optimize
-   │       │   │           └── debugging
-   │       │   │               └── python
-   │       │   ├── python
-   │       │   │   ├── autograph
-   │       │   │   │   ├── converters
-   │       │   │   │   ├── core
-   │       │   │   │   ├── impl
-   │       │   │   │   │   └── testing
-   │       │   │   │   ├── lang
-   │       │   │   │   ├── operators
-   │       │   │   │   ├── pyct
-   │       │   │   │   │   ├── common_transformers
-   │       │   │   │   │   ├── static_analysis
-   │       │   │   │   │   └── testing
-   │       │   │   │   └── utils
-   │       │   │   ├── checkpoint
-   │       │   │   ├── client
-   │       │   │   ├── compat
-   │       │   │   ├── compiler
-   │       │   │   │   ├── mlir
-   │       │   │   │   ├── tensorrt
-   │       │   │   │   └── xla
-   │       │   │   │       └── experimental
-   │       │   │   ├── data
-   │       │   │   │   ├── benchmarks
-   │       │   │   │   ├── experimental
-   │       │   │   │   │   ├── kernel_tests
-   │       │   │   │   │   │   └── service
-   │       │   │   │   │   ├── ops
-   │       │   │   │   │   └── service
-   │       │   │   │   ├── kernel_tests
-   │       │   │   │   ├── ops
-   │       │   │   │   └── util
-   │       │   │   ├── debug
-   │       │   │   │   ├── cli
-   │       │   │   │   └── wrappers
-   │       │   │   ├── distribute
-   │       │   │   │   ├── cluster_resolver
-   │       │   │   │   │   └── tpu
-   │       │   │   │   ├── coordinator
-   │       │   │   │   ├── experimental
-   │       │   │   │   │   └── rpc
-   │       │   │   │   ├── failure_handling
-   │       │   │   │   ├── parallel_device
-   │       │   │   │   └── v1
-   │       │   │   ├── dlpack
-   │       │   │   ├── eager
-   │       │   │   │   ├── memory_tests
-   │       │   │   │   └── polymorphic_function
-   │       │   │   ├── estimator
-   │       │   │   │   ├── canned
-   │       │   │   │   ├── export
-   │       │   │   │   └── inputs
-   │       │   │   │       └── queues
-   │       │   │   ├── feature_column
-   │       │   │   ├── framework
-   │       │   │   ├── grappler
-   │       │   │   ├── keras
-   │       │   │   │   ├── distribute
-   │       │   │   │   ├── engine
-   │       │   │   │   ├── initializers
-   │       │   │   │   ├── layers
-   │       │   │   │   │   └── legacy_rnn
-   │       │   │   │   ├── legacy_tf_layers
-   │       │   │   │   ├── mixed_precision
-   │       │   │   │   ├── optimizer_v2
-   │       │   │   │   ├── protobuf
-   │       │   │   │   ├── saving
-   │       │   │   │   │   ├── saved_model
-   │       │   │   │   │   └── utils_v1
-   │       │   │   │   └── utils
-   │       │   │   ├── kernel_tests
-   │       │   │   │   ├── nn_ops
-   │       │   │   │   ├── random
-   │       │   │   │   ├── signal
-   │       │   │   │   └── sparse_ops
-   │       │   │   ├── layers
-   │       │   │   ├── module
-   │       │   │   ├── ops
-   │       │   │   │   ├── distributions
-   │       │   │   │   ├── linalg
-   │       │   │   │   │   └── sparse
-   │       │   │   │   ├── losses
-   │       │   │   │   ├── numpy_ops
-   │       │   │   │   ├── parallel_for
-   │       │   │   │   ├── ragged
-   │       │   │   │   ├── signal
-   │       │   │   │   └── structured
-   │       │   │   ├── platform
-   │       │   │   ├── profiler
-   │       │   │   │   └── internal
-   │       │   │   ├── saved_model
-   │       │   │   │   ├── model_utils
-   │       │   │   │   └── registration
-   │       │   │   ├── summary
-   │       │   │   │   └── writer
-   │       │   │   ├── tools
-   │       │   │   │   └── api
-   │       │   │   │       └── generator
-   │       │   │   ├── tpu
-   │       │   │   │   ├── client
-   │       │   │   │   ├── ops
-   │       │   │   │   └── profiler
-   │       │   │   ├── trackable
-   │       │   │   ├── training
-   │       │   │   │   ├── experimental
-   │       │   │   │   ├── saving
-   │       │   │   │   └── tracking
-   │       │   │   ├── types
-   │       │   │   ├── user_ops
-   │       │   │   │   └── ops
-   │       │   │   └── util
-   │       │   │       └── protobuf
-   │       │   ├── tools
-   │       │   │   ├── common
-   │       │   │   ├── compatibility
-   │       │   │   ├── docs
-   │       │   │   └── pip_package
-   │       │   └── tsl
-   │       │       ├── profiler
-   │       │       │   └── protobuf
-   │       │       └── protobuf
-   │       ├── tensorflow_estimator
-   │       │   ├── _api
-   │       │   │   ├── v1
-   │       │   │   │   └── estimator
-   │       │   │   │       ├── experimental
-   │       │   │   │       ├── export
-   │       │   │   │       ├── inputs
-   │       │   │   │       └── tpu
-   │       │   │   │           └── experimental
-   │       │   │   └── v2
-   │       │   │       └── estimator
-   │       │   │           ├── experimental
-   │       │   │           ├── export
-   │       │   │           └── inputs
-   │       │   └── python
-   │       │       └── estimator
-   │       │           ├── api
-   │       │           │   ├── _v1
-   │       │           │   │   └── estimator
-   │       │           │   │       ├── experimental
-   │       │           │   │       ├── export
-   │       │           │   │       ├── inputs
-   │       │           │   │       └── tpu
-   │       │           │   │           └── experimental
-   │       │           │   └── _v2
-   │       │           │       └── estimator
-   │       │           │           ├── experimental
-   │       │           │           ├── export
-   │       │           │           └── inputs
-   │       │           ├── canned
-   │       │           │   ├── linear_optimizer
-   │       │           │   │   └── python
-   │       │           │   │       └── utils
-   │       │           │   ├── timeseries
-   │       │           │   └── v1
-   │       │           ├── export
-   │       │           ├── head
-   │       │           ├── hooks
-   │       │           ├── inputs
-   │       │           │   └── queues
-   │       │           ├── tools
-   │       │           └── tpu
-   │       ├── termcolor
-   │       ├── terminado
-   │       ├── tiktoken
-   │       ├── tinycss2
-   │       ├── tlz
-   │       ├── tokenizers
-   │       │   ├── decoders
-   │       │   ├── models
-   │       │   ├── normalizers
-   │       │   ├── pre_tokenizers
-   │       │   ├── processors
-   │       │   └── trainers
-   │       ├── toml
-   │       ├── tomli
-   │       ├── toolz
-   │       │   ├── curried
-   │       │   └── sandbox
-   │       ├── torch
-   │       │   ├── _awaits
-   │       │   ├── _decomp
-   │       │   ├── _dispatch
-   │       │   ├── _dynamo
-   │       │   │   ├── backends
-   │       │   │   └── variables
-   │       │   ├── _export
-   │       │   ├── _functorch
-   │       │   ├── _inductor
-   │       │   │   ├── codegen
-   │       │   │   ├── kernel
-   │       │   │   └── triton_ops
-   │       │   ├── _lazy
-   │       │   ├── _prims
-   │       │   ├── _prims_common
-   │       │   ├── _refs
-   │       │   │   ├── linalg
-   │       │   │   ├── nn
-   │       │   │   │   └── functional
-   │       │   │   └── special
-   │       │   ├── _subclasses
-   │       │   ├── amp
-   │       │   ├── ao
-   │       │   │   ├── nn
-   │       │   │   │   ├── intrinsic
-   │       │   │   │   │   ├── modules
-   │       │   │   │   │   ├── qat
-   │       │   │   │   │   │   └── modules
-   │       │   │   │   │   └── quantized
-   │       │   │   │   │       ├── dynamic
-   │       │   │   │   │       │   └── modules
-   │       │   │   │   │       └── modules
-   │       │   │   │   ├── qat
-   │       │   │   │   │   ├── dynamic
-   │       │   │   │   │   │   └── modules
-   │       │   │   │   │   └── modules
-   │       │   │   │   ├── quantizable
-   │       │   │   │   │   └── modules
-   │       │   │   │   ├── quantized
-   │       │   │   │   │   ├── dynamic
-   │       │   │   │   │   │   └── modules
-   │       │   │   │   │   ├── modules
-   │       │   │   │   │   └── reference
-   │       │   │   │   │       └── modules
-   │       │   │   │   └── sparse
-   │       │   │   │       └── quantized
-   │       │   │   │           └── dynamic
-   │       │   │   ├── ns
-   │       │   │   │   └── fx
-   │       │   │   ├── pruning
-   │       │   │   │   ├── _experimental
-   │       │   │   │   │   ├── activation_sparsifier
-   │       │   │   │   │   ├── data_scheduler
-   │       │   │   │   │   ├── data_sparsifier
-   │       │   │   │   │   │   └── lightning
-   │       │   │   │   │   │       └── callbacks
-   │       │   │   │   │   └── pruner
-   │       │   │   │   ├── scheduler
-   │       │   │   │   └── sparsifier
-   │       │   │   └── quantization
-   │       │   │       ├── _pt2e
-   │       │   │       ├── backend_config
-   │       │   │       └── fx
-   │       │   │           └── _model_report
-   │       │   ├── autograd
-   │       │   │   └── _functions
-   │       │   ├── backends
-   │       │   │   ├── _coreml
-   │       │   │   ├── _nnapi
-   │       │   │   ├── cuda
-   │       │   │   ├── cudnn
-   │       │   │   ├── mkl
-   │       │   │   ├── mkldnn
-   │       │   │   ├── mps
-   │       │   │   ├── openmp
-   │       │   │   ├── opt_einsum
-   │       │   │   ├── quantized
-   │       │   │   ├── xeon
-   │       │   │   └── xnnpack
-   │       │   ├── contrib
-   │       │   ├── cpu
-   │       │   │   └── amp
-   │       │   ├── cuda
-   │       │   │   └── amp
-   │       │   ├── distributed
-   │       │   │   ├── _composable
-   │       │   │   ├── _shard
-   │       │   │   │   ├── checkpoint
-   │       │   │   │   ├── sharded_optim
-   │       │   │   │   ├── sharded_tensor
-   │       │   │   │   │   └── _ops
-   │       │   │   │   ├── sharding_plan
-   │       │   │   │   └── sharding_spec
-   │       │   │   │       └── chunk_sharding_spec_ops
-   │       │   │   ├── _sharded_tensor
-   │       │   │   ├── _sharding_spec
-   │       │   │   ├── _spmd
-   │       │   │   ├── _tensor
-   │       │   │   │   └── ops
-   │       │   │   ├── _tools
-   │       │   │   ├── algorithms
-   │       │   │   │   ├── _checkpoint
-   │       │   │   │   ├── _comm_hooks
-   │       │   │   │   ├── _optimizer_overlap
-   │       │   │   │   ├── _quantization
-   │       │   │   │   ├── ddp_comm_hooks
-   │       │   │   │   └── model_averaging
-   │       │   │   ├── autograd
-   │       │   │   ├── checkpoint
-   │       │   │   ├── elastic
-   │       │   │   │   ├── agent
-   │       │   │   │   │   └── server
-   │       │   │   │   ├── events
-   │       │   │   │   ├── metrics
-   │       │   │   │   ├── multiprocessing
-   │       │   │   │   │   └── errors
-   │       │   │   │   ├── rendezvous
-   │       │   │   │   ├── timer
-   │       │   │   │   └── utils
-   │       │   │   │       └── data
-   │       │   │   ├── fsdp
-   │       │   │   ├── launcher
-   │       │   │   ├── nn
-   │       │   │   │   ├── api
-   │       │   │   │   └── jit
-   │       │   │   │       └── templates
-   │       │   │   ├── optim
-   │       │   │   ├── pipeline
-   │       │   │   │   └── sync
-   │       │   │   │       ├── _balance
-   │       │   │   │       └── skip
-   │       │   │   ├── rpc
-   │       │   │   │   └── _testing
-   │       │   │   └── tensor
-   │       │   │       └── parallel
-   │       │   ├── distributions
-   │       │   ├── fft
-   │       │   ├── func
-   │       │   ├── futures
-   │       │   ├── fx
-   │       │   │   ├── experimental
-   │       │   │   │   ├── migrate_gradual_types
-   │       │   │   │   └── unification
-   │       │   │   │       └── multipledispatch
-   │       │   │   └── passes
-   │       │   │       ├── backends
-   │       │   │       ├── dialect
-   │       │   │       │   └── common
-   │       │   │       ├── infra
-   │       │   │       └── utils
-   │       │   ├── jit
-   │       │   │   ├── _passes
-   │       │   │   └── mobile
-   │       │   ├── linalg
-   │       │   ├── masked
-   │       │   │   └── maskedtensor
-   │       │   ├── monitor
-   │       │   ├── mps
-   │       │   ├── multiprocessing
-   │       │   ├── nested
-   │       │   ├── nn
-   │       │   │   ├── backends
-   │       │   │   ├── intrinsic
-   │       │   │   │   ├── modules
-   │       │   │   │   ├── qat
-   │       │   │   │   │   └── modules
-   │       │   │   │   └── quantized
-   │       │   │   │       ├── dynamic
-   │       │   │   │       │   └── modules
-   │       │   │   │       └── modules
-   │       │   │   ├── modules
-   │       │   │   ├── qat
-   │       │   │   │   ├── dynamic
-   │       │   │   │   │   └── modules
-   │       │   │   │   └── modules
-   │       │   │   ├── quantizable
-   │       │   │   │   └── modules
-   │       │   │   ├── quantized
-   │       │   │   │   ├── _reference
-   │       │   │   │   │   └── modules
-   │       │   │   │   ├── dynamic
-   │       │   │   │   │   └── modules
-   │       │   │   │   └── modules
-   │       │   │   └── utils
-   │       │   │       └── _expanded_weights
-   │       │   ├── onnx
-   │       │   │   └── _internal
-   │       │   │       ├── diagnostics
-   │       │   │       │   └── infra
-   │       │   │       │       └── sarif
-   │       │   │       └── fx
-   │       │   ├── package
-   │       │   │   └── analyze
-   │       │   ├── profiler
-   │       │   ├── quantization
-   │       │   │   └── fx
-   │       │   ├── signal
-   │       │   │   └── windows
-   │       │   ├── sparse
-   │       │   ├── special
-   │       │   ├── testing
-   │       │   │   └── _internal
-   │       │   │       ├── codegen
-   │       │   │       ├── data
-   │       │   │       ├── distributed
-   │       │   │       │   ├── _shard
-   │       │   │       │   │   └── sharded_tensor
-   │       │   │       │   ├── _tensor
-   │       │   │       │   ├── nn
-   │       │   │       │   │   └── api
-   │       │   │       │   ├── pipeline
-   │       │   │       │   └── rpc
-   │       │   │       │       └── jit
-   │       │   │       ├── generated
-   │       │   │       ├── opinfo
-   │       │   │       │   └── definitions
-   │       │   │       └── test_module
-   │       │   └── utils
-   │       │       ├── _sympy
-   │       │       ├── backcompat
-   │       │       ├── benchmark
-   │       │       │   ├── op_fuzzers
-   │       │       │   └── utils
-   │       │       │       └── valgrind_wrapper
-   │       │       ├── bottleneck
-   │       │       ├── data
-   │       │       │   ├── _utils
-   │       │       │   └── datapipes
-   │       │       │       ├── dataframe
-   │       │       │       ├── iter
-   │       │       │       ├── map
-   │       │       │       └── utils
-   │       │       ├── hipify
-   │       │       ├── jit
-   │       │       ├── model_dump
-   │       │       └── tensorboard
-   │       ├── torchgen
-   │       │   ├── api
-   │       │   │   └── types
-   │       │   ├── dest
-   │       │   ├── executorch
-   │       │   │   └── api
-   │       │   │       └── types
-   │       │   ├── operator_versions
-   │       │   ├── selective_build
-   │       │   └── static_runtime
-   │       ├── tornado
-   │       │   └── platform
-   │       ├── tqdm
-   │       │   └── contrib
-   │       ├── train
-   │       ├── traitlets
-   │       │   ├── config
-   │       │   └── utils
-   │       ├── transformers
-   │       │   ├── benchmark
-   │       │   ├── commands
-   │       │   ├── data
-   │       │   │   ├── datasets
-   │       │   │   ├── metrics
-   │       │   │   └── processors
-   │       │   ├── generation
-   │       │   ├── models
-   │       │   │   ├── albert
-   │       │   │   ├── altclip
-   │       │   │   ├── audio_spectrogram_transformer
-   │       │   │   ├── auto
-   │       │   │   ├── bart
-   │       │   │   ├── barthez
-   │       │   │   ├── bartpho
-   │       │   │   ├── beit
-   │       │   │   ├── bert
-   │       │   │   ├── bert_generation
-   │       │   │   ├── bert_japanese
-   │       │   │   ├── bertweet
-   │       │   │   ├── big_bird
-   │       │   │   ├── bigbird_pegasus
-   │       │   │   ├── biogpt
-   │       │   │   ├── bit
-   │       │   │   ├── blenderbot
-   │       │   │   ├── blenderbot_small
-   │       │   │   ├── blip
-   │       │   │   ├── bloom
-   │       │   │   ├── bort
-   │       │   │   ├── byt5
-   │       │   │   ├── camembert
-   │       │   │   ├── canine
-   │       │   │   ├── chinese_clip
-   │       │   │   ├── clip
-   │       │   │   ├── clipseg
-   │       │   │   ├── codegen
-   │       │   │   ├── conditional_detr
-   │       │   │   ├── convbert
-   │       │   │   ├── convnext
-   │       │   │   ├── cpm
-   │       │   │   ├── ctrl
-   │       │   │   ├── cvt
-   │       │   │   ├── data2vec
-   │       │   │   ├── deberta
-   │       │   │   ├── deberta_v2
-   │       │   │   ├── decision_transformer
-   │       │   │   ├── deformable_detr
-   │       │   │   ├── deit
-   │       │   │   ├── detr
-   │       │   │   ├── dialogpt
-   │       │   │   ├── dinat
-   │       │   │   ├── distilbert
-   │       │   │   ├── dit
-   │       │   │   ├── donut
-   │       │   │   ├── dpr
-   │       │   │   ├── dpt
-   │       │   │   ├── efficientformer
-   │       │   │   ├── electra
-   │       │   │   ├── encoder_decoder
-   │       │   │   ├── ernie
-   │       │   │   ├── esm
-   │       │   │   │   └── openfold_utils
-   │       │   │   ├── flaubert
-   │       │   │   ├── flava
-   │       │   │   ├── fnet
-   │       │   │   ├── fsmt
-   │       │   │   ├── funnel
-   │       │   │   ├── git
-   │       │   │   ├── glpn
-   │       │   │   ├── gpt_neo
-   │       │   │   ├── gpt_neox
-   │       │   │   ├── gpt_neox_japanese
-   │       │   │   ├── gpt_sw3
-   │       │   │   ├── gpt2
-   │       │   │   ├── gptj
-   │       │   │   ├── graphormer
-   │       │   │   ├── groupvit
-   │       │   │   ├── herbert
-   │       │   │   ├── hubert
-   │       │   │   ├── ibert
-   │       │   │   ├── imagegpt
-   │       │   │   ├── jukebox
-   │       │   │   ├── layoutlm
-   │       │   │   ├── layoutlmv2
-   │       │   │   ├── layoutlmv3
-   │       │   │   ├── layoutxlm
-   │       │   │   ├── led
-   │       │   │   ├── levit
-   │       │   │   ├── lilt
-   │       │   │   ├── longformer
-   │       │   │   ├── longt5
-   │       │   │   ├── luke
-   │       │   │   ├── lxmert
-   │       │   │   ├── m2m_100
-   │       │   │   ├── marian
-   │       │   │   ├── markuplm
-   │       │   │   ├── mask2former
-   │       │   │   ├── maskformer
-   │       │   │   ├── mbart
-   │       │   │   ├── mbart50
-   │       │   │   ├── mctct
-   │       │   │   ├── megatron_bert
-   │       │   │   ├── megatron_gpt2
-   │       │   │   ├── mluke
-   │       │   │   ├── mmbt
-   │       │   │   ├── mobilebert
-   │       │   │   ├── mobilenet_v1
-   │       │   │   ├── mobilenet_v2
-   │       │   │   ├── mobilevit
-   │       │   │   ├── mpnet
-   │       │   │   ├── mt5
-   │       │   │   ├── mvp
-   │       │   │   ├── nat
-   │       │   │   ├── nezha
-   │       │   │   ├── nllb
-   │       │   │   ├── nystromformer
-   │       │   │   ├── oneformer
-   │       │   │   ├── openai
-   │       │   │   ├── opt
-   │       │   │   ├── owlvit
-   │       │   │   ├── pegasus
-   │       │   │   ├── pegasus_x
-   │       │   │   ├── perceiver
-   │       │   │   ├── phobert
-   │       │   │   ├── plbart
-   │       │   │   ├── poolformer
-   │       │   │   ├── prophetnet
-   │       │   │   ├── qdqbert
-   │       │   │   ├── rag
-   │       │   │   ├── realm
-   │       │   │   ├── reformer
-   │       │   │   ├── regnet
-   │       │   │   ├── rembert
-   │       │   │   ├── resnet
-   │       │   │   ├── retribert
-   │       │   │   ├── roberta
-   │       │   │   ├── roberta_prelayernorm
-   │       │   │   ├── roc_bert
-   │       │   │   ├── roformer
-   │       │   │   ├── segformer
-   │       │   │   ├── sew
-   │       │   │   ├── sew_d
-   │       │   │   ├── speech_encoder_decoder
-   │       │   │   ├── speech_to_text
-   │       │   │   ├── speech_to_text_2
-   │       │   │   ├── splinter
-   │       │   │   ├── squeezebert
-   │       │   │   ├── swin
-   │       │   │   ├── swin2sr
-   │       │   │   ├── swinv2
-   │       │   │   ├── switch_transformers
-   │       │   │   ├── t5
-   │       │   │   ├── table_transformer
-   │       │   │   ├── tapas
-   │       │   │   ├── tapex
-   │       │   │   ├── time_series_transformer
-   │       │   │   ├── timesformer
-   │       │   │   ├── trajectory_transformer
-   │       │   │   ├── transfo_xl
-   │       │   │   ├── trocr
-   │       │   │   ├── unispeech
-   │       │   │   ├── unispeech_sat
-   │       │   │   ├── upernet
-   │       │   │   ├── van
-   │       │   │   ├── videomae
-   │       │   │   ├── vilt
-   │       │   │   ├── vision_encoder_decoder
-   │       │   │   ├── vision_text_dual_encoder
-   │       │   │   ├── visual_bert
-   │       │   │   ├── vit
-   │       │   │   ├── vit_hybrid
-   │       │   │   ├── vit_mae
-   │       │   │   ├── vit_msn
-   │       │   │   ├── wav2vec2
-   │       │   │   ├── wav2vec2_conformer
-   │       │   │   ├── wav2vec2_phoneme
-   │       │   │   ├── wav2vec2_with_lm
-   │       │   │   ├── wavlm
-   │       │   │   ├── whisper
-   │       │   │   ├── x_clip
-   │       │   │   ├── xglm
-   │       │   │   ├── xlm
-   │       │   │   ├── xlm_prophetnet
-   │       │   │   ├── xlm_roberta
-   │       │   │   ├── xlm_roberta_xl
-   │       │   │   ├── xlnet
-   │       │   │   ├── yolos
-   │       │   │   └── yoso
-   │       │   ├── onnx
-   │       │   ├── pipelines
-   │       │   ├── sagemaker
-   │       │   └── utils
-   │       ├── treeinterpreter
-   │       ├── typed_ast
-   │       ├── typeguard
-   │       ├── typer
-   │       ├── typing_utils
-   │       ├── tzdata
-   │       │   └── zoneinfo
-   │       │       ├── Africa
-   │       │       ├── America
-   │       │       │   ├── Argentina
-   │       │       │   ├── Indiana
-   │       │       │   ├── Kentucky
-   │       │       │   └── North_Dakota
-   │       │       ├── Antarctica
-   │       │       ├── Arctic
-   │       │       ├── Asia
-   │       │       ├── Atlantic
-   │       │       ├── Australia
-   │       │       ├── Brazil
-   │       │       ├── Canada
-   │       │       ├── Chile
-   │       │       ├── Etc
-   │       │       ├── Europe
-   │       │       ├── Indian
-   │       │       ├── Mexico
-   │       │       ├── Pacific
-   │       │       └── US
-   │       ├── uri_template
-   │       ├── urllib3
-   │       │   ├── contrib
-   │       │   │   └── _securetransport
-   │       │   ├── packages
-   │       │   │   └── backports
-   │       │   └── util
-   │       ├── uvicorn
-   │       │   ├── lifespan
-   │       │   ├── loops
-   │       │   ├── middleware
-   │       │   ├── protocols
-   │       │   │   ├── http
-   │       │   │   └── websockets
-   │       │   └── supervisors
-   │       ├── virtualenv
-   │       │   ├── activation
-   │       │   │   ├── bash
-   │       │   │   ├── batch
-   │       │   │   ├── cshell
-   │       │   │   ├── fish
-   │       │   │   ├── nushell
-   │       │   │   ├── powershell
-   │       │   │   └── python
-   │       │   ├── app_data
-   │       │   ├── config
-   │       │   │   └── cli
-   │       │   ├── create
-   │       │   │   └── via_global_ref
-   │       │   │       └── builtin
-   │       │   │           ├── cpython
-   │       │   │           └── pypy
-   │       │   ├── discovery
-   │       │   │   └── windows
-   │       │   ├── run
-   │       │   │   └── plugin
-   │       │   ├── seed
-   │       │   │   ├── embed
-   │       │   │   │   └── via_app_data
-   │       │   │   │       └── pip_install
-   │       │   │   └── wheels
-   │       │   │       └── embed
-   │       │   └── util
-   │       │       ├── path
-   │       │       └── subprocess
-   │       ├── vw
-   │       ├── wandb
-   │       │   ├── agents
-   │       │   ├── analytics
-   │       │   ├── apis
-   │       │   │   ├── importers
-   │       │   │   └── reports
-   │       │   ├── catboost
-   │       │   ├── cli
-   │       │   ├── docker
-   │       │   ├── errors
-   │       │   ├── fastai
-   │       │   ├── filesync
-   │       │   ├── integration
-   │       │   │   ├── catboost
-   │       │   │   ├── cohere
-   │       │   │   ├── fastai
-   │       │   │   ├── gym
-   │       │   │   ├── huggingface
-   │       │   │   ├── keras
-   │       │   │   │   └── callbacks
-   │       │   │   ├── kfp
-   │       │   │   ├── langchain
-   │       │   │   ├── lightgbm
-   │       │   │   ├── metaflow
-   │       │   │   ├── openai
-   │       │   │   ├── prodigy
-   │       │   │   ├── sacred
-   │       │   │   ├── sagemaker
-   │       │   │   ├── sb3
-   │       │   │   ├── tensorboard
-   │       │   │   ├── tensorflow
-   │       │   │   ├── torch
-   │       │   │   ├── ultralytics
-   │       │   │   ├── xgboost
-   │       │   │   └── yolov8
-   │       │   ├── keras
-   │       │   ├── lightgbm
-   │       │   ├── mpmain
-   │       │   ├── old
-   │       │   ├── plot
-   │       │   ├── plots
-   │       │   ├── proto
-   │       │   │   ├── v3
-   │       │   │   └── v4
-   │       │   ├── sacred
-   │       │   ├── sdk
-   │       │   │   ├── artifacts
-   │       │   │   │   ├── artifact_manifests
-   │       │   │   │   ├── storage_handlers
-   │       │   │   │   └── storage_policies
-   │       │   │   ├── backend
-   │       │   │   ├── data_types
-   │       │   │   │   ├── base_types
-   │       │   │   │   └── helper_types
-   │       │   │   ├── integration_utils
-   │       │   │   ├── interface
-   │       │   │   ├── internal
-   │       │   │   │   └── system
-   │       │   │   │       └── assets
-   │       │   │   ├── launch
-   │       │   │   │   ├── agent
-   │       │   │   │   ├── builder
-   │       │   │   │   ├── runner
-   │       │   │   │   └── sweeps
-   │       │   │   ├── service
-   │       │   │   └── verify
-   │       │   ├── sklearn
-   │       │   │   ├── calculate
-   │       │   │   └── plot
-   │       │   ├── sync
-   │       │   └── xgboost
-   │       ├── wcwidth
-   │       ├── webcolors
-   │       ├── webencodings
-   │       ├── websocket
-   │       ├── websockets
-   │       │   ├── extensions
-   │       │   ├── legacy
-   │       │   └── sync
-   │       ├── werkzeug
-   │       │   ├── datastructures
-   │       │   ├── debug
-   │       │   ├── middleware
-   │       │   ├── routing
-   │       │   ├── sansio
-   │       │   └── wrappers
-   │       ├── wheel
-   │       │   └── cli
-   │       ├── widgetsnbextension
-   │       ├── wolframalpha
-   │       ├── wrapt
-   │       ├── xgboost
-   │       │   └── spark
-   │       ├── xxhash
-   │       ├── yaml
-   │       ├── yarl
-   │       ├── zipp
-   │       ├── zmq
-   │       │   ├── auth
-   │       │   ├── backend
-   │       │   │   ├── cffi
-   │       │   │   └── cython
-   │       │   ├── devices
-   │       │   ├── eventloop
-   │       │   ├── green
-   │       │   │   └── eventloop
-   │       │   ├── log
-   │       │   ├── ssh
-   │       │   ├── sugar
-   │       │   └── utils
-   │       └── zstandard
-   ├── .vfscache
-   ├── .vfsmeta
-   │   └── index
    ├── AI-Memory
+   ├── debug
    ├── docs
    │   ├── 00-indice
-   │   ├── 01-arquitectura
-   │   ├── 02-api-publica
-   │   ├── 03-runtime
-   │   ├── 04-componentes
-   │   ├── 05-schemas
-   │   ├── 06-funcionalidades
+   │   ├── 01-producto-y-vision
+   │   ├── 02-mapa-modulos
+   │   ├── 03-arquitectura
+   │   ├── 04-recipient-transform
+   │   ├── 05-ui-ux
+   │   ├── 06-css
    │   ├── 07-calidad
-   │   ├── 08-guias-ia
-   │   └── 99-anexos
+   │   ├── 08-ia-agentes
+   │   ├── 09-operacion-debug
+   │   ├── 10-handoff
+   │   └── 99-archivo
+   ├── handoff
    ├── metadata
    ├── public
    │   └── templates
+   ├── reports
+   │   └── current-snapshot
    ├── scripts
    │   └── ai
    ├── src
@@ -13720,15 +9382,11 @@ body {
    │   │       │   └── tokens.css
    │   │       └── types
    │   └── types
+   ├── styles-sisad-dfme.css
    ├── test-results
+   │   └── pdfme-editor-pdfme-editor--485d3--position-and-supports-undo-chromium
    └── tests
        ├── playwright
-       │   └── helpers
        └── unit
-           ├── factories
-           ├── helpers
-           └── pdfme
-               └── ui
-                   └── right-sidebar
 
    ===================================================================== */

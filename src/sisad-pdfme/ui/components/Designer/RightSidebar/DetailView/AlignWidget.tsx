@@ -28,7 +28,7 @@ const LAYOUT_BUTTONS = [
 const AlignWidget = (props: PropPanelWidgetProps & { selectionCommands?: SelectionCommandSet }) => {
   const { activeElements, selectionCommands } = props;
   const hasSelection = activeElements.length > 0;
-  const isMulti = activeElements.length > 1;
+  const canDistribute = activeElements.length >= 3;
 
   const handleClick = (btn: typeof LAYOUT_BUTTONS[number]) => {
     if (!selectionCommands) return;
@@ -47,7 +47,9 @@ const AlignWidget = (props: PropPanelWidgetProps & { selectionCommands?: Selecti
             key={btn.id}
             className={`${DESIGNER_CLASSNAME}align-btn ${DESIGNER_CLASSNAME}align-${btn.id}`}
             onClick={() => handleClick(btn)}
-            disabled={!hasSelection || (btn.type === 'distribute' && !isMulti)}
+            title={btn.label}
+            aria-label={btn.label}
+            disabled={!hasSelection || (btn.type === 'distribute' && !canDistribute)}
             icon={btn.icon}
           />
         ))}

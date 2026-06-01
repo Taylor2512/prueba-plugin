@@ -95,4 +95,85 @@ test.describe('schema transform overlays', () => {
     expect(parseAlpha(rotatingProbe.controlBarBackground || 'rgba(0,0,0,0)')).toBeLessThanOrEqual(0.05);
     expect(rotatingProbe.visibleMasks.length).toBe(0);
   });
+
+  test('alignment controls move selected schema to page anchors', async ({ page }) => {
+    await page.goto('/lab/multi-document-routing');
+
+    const paper = page.locator('[data-paper-page="true"]').first();
+    await expect(paper).toBeVisible();
+    const paperBox = await paper.boundingBox();
+    expect(paperBox).not.toBeNull();
+
+    const candidates = page.locator('.sisad-pdfme-ui-custom-selectable');
+    const count = await candidates.count();
+    let targetIndex = 0;
+    for (let i = 0; i < count; i++) {
+      const box = await candidates.nth(i).boundingBox();
+      if (!box || !paperBox) continue;
+      const hasRoomHorizontally = box.width <= paperBox.width - 40;
+      const hasRoomVertically = box.height <= paperBox.height - 40;
+      if (hasRoomHorizontally && hasRoomVertically) {
+        targetIndex = i;
+        break;
+      }
+    }
+
+    const schema = candidates.nth(targetIndex);
+    await expect(schema).toBeVisible();
+    await schema.click({ force: true });
+
+    const getSchemaBox = async () => {
+      const box = await schema.boundingBox();
+      expect(box).not.toBeNull();
+      return box!;
+    };
+
+    const clickAlign = async (name: string) => {
+      await schema.click({ force: true });
+      const button = page.getByRole('button', { name }).first();
+      await expect(button).toBeVisible();
+      await button.click();
+    };
+
+    const initialBox = await getSchemaBox();
+    await clickAlign('Alinear a la izquierda');
+    await expect
+      .poll(async () => (await getSchemaBox()).x)
+      .toBeLessThanOrEqual(initialBox.x + 1);
+
+    const leftBox = await getSchemaBox();
+
+    await clickAlign('Centrar horizontalmente');
+    await expect
+      .poll(async () => (await getSchemaBox()).x)
+      .toBeGreaterThan(leftBox.x + 4);
+
+    const centeredBox = await getSchemaBox();
+
+    await clickAlign('Alinear a la derecha');
+    await expect
+      .poll(async () => (await getSchemaBox()).x)
+      .toBeGreaterThan(centeredBox.x + 4);
+
+    const rightBox = await getSchemaBox();
+
+    await clickAlign('Alinear arriba');
+    await expect
+      .poll(async () => (await getSchemaBox()).y)
+      .toBeLessThan(rightBox.y + 1);
+
+    const topBox = await getSchemaBox();
+
+    await clickAlign('Centrar verticalmente');
+    await expect
+      .poll(async () => (await getSchemaBox()).y)
+      .toBeGreaterThan(topBox.y + 4);
+
+    const middleBox = await getSchemaBox();
+
+    await clickAlign('Alinear abajo');
+    await expect
+      .poll(async () => (await getSchemaBox()).y)
+      .toBeGreaterThan(middleBox.y + 4);
+  });
 });

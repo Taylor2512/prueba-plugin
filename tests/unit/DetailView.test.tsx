@@ -1,0 +1,211 @@
+import React from 'react';
+import { describe, expect, test, vi, beforeEach } from 'vitest';
+import { render, waitFor } from '@testing-library/react';
+import type { SchemaForUI } from '../../src/sisad-pdfme/common/index.js';
+import { I18nContext, OptionsContext, PluginsRegistry } from '../../src/sisad-pdfme/ui/contexts.js';
+import DetailView from '../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.js';
+
+const setValues = vi.fn();
+const getValues = vi.fn(() => ({}));
+const validateFields = vi.fn(() => Promise.resolve());
+
+let capturedDetailProps: any = null;
+
+vi.mock('form-render', () => ({
+  useForm: () => ({
+    setValues,
+    getValues,
+    validateFields,
+  }),
+}));
+
+vi.mock('../../src/sisad-pdfme/ui/helper.js', async () => {
+  const actual = await vi.importActual('../../src/sisad-pdfme/ui/helper.js');
+  return {
+    ...actual,
+    debounce: (fn: (...args: unknown[]) => unknown) => fn,
+  };
+});
+
+vi.mock('../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.js', () => ({
+  default: (props: unknown) => {
+    capturedDetailProps = props;
+    return <div data-testid="detail-view-content" />;
+  },
+}));
+
+const baseSchema: SchemaForUI = {
+  id: 's-1',
+  name: 'field_1',
+  type: 'text',
+  content: 'value',
+  position: { x: 12, y: 16 },
+  width: 80,
+  height: 20,
+  readOnly: false,
+  required: true,
+  rotate: 3,
+  opacity: 0.8,
+} as SchemaForUI;
+
+const activePlugin = {
+  propPanel: {
+    defaultSchema: {
+      readOnly: false,
+      required: true,
+      rotate: 0,
+      opacity: 1,
+    },
+    schema: {
+      textColor: {
+        title: 'Color',
+        type: 'string',
+      },
+    },
+  },
+};
+
+const pluginsRegistry = {
+  findByType: vi.fn(() => activePlugin),
+  values: vi.fn(() => []),
+};
+
+const renderDetailView = (overrideProps?: Partial<React.ComponentProps<typeof DetailView>>) => {
+  const changeSchemas = vi.fn();
+  const props: React.ComponentProps<typeof DetailView> = {
+    size: { width: 1280, height: 800 },
+    schemas: [
+      [
+        {
+          ...baseSchema,
+          id: 's-1',
+        },
+      ],
+    ],
+    schemasList: [
+      [
+        {
+          ...baseSchema,
+          id: 's-1',
+        },
+      ],
+    ],
+    pageSize: { width: 210, height: 297 },
+    basePdf: {
+      width: 210,
+      height: 297,
+      padding: [0, 0, 0, 0],
+    },
+    changeSchemas,
+    activeElements: [],
+    deselectSchema: vi.fn(),
+    activeSchema: {
+      ...baseSchema,
+    },
+    selectionCommands: {
+      alignSelection: vi.fn(),
+      distributeSelection: vi.fn(),
+    },
+    ...overrideProps,
+  };
+
+  const view = render(
+    <I18nContext.Provider value={(key: string) => key}>
+      <PluginsRegistry.Provider value={pluginsRegistry as any}>
+        <OptionsContext.Provider value={{} as any}>
+          <DetailView {...props} />
+        </OptionsContext.Provider>
+      </PluginsRegistry.Provider>
+    </I18nContext.Provider>,
+  );
+
+  return {
+    ...view,
+    changeSchemas,
+  };
+};
+
+describe('DetailView', () => {
+  beforeEach(() => {
+    capturedDetailProps = null;
+    setValues.mockClear();
+    getValues.mockReset();
+    getValues.mockReturnValue({});
+    validateFields.mockReset();
+    validateFields.mockResolvedValue(undefined);
+    pluginsRegistry.findByType.mockReturnValue(activePlugin);
+  });
+
+  test('hydrates form values and derives editable from readOnly', async () => {
+    renderDetailView({
+      activeSchema: {
+        ...baseSchema,
+        readOnly: true,
+      },
+    });
+
+    await waitFor(() => {
+      expect(setValues).toHaveBeenCalled();
+    });
+
+    const values = setValues.mock.calls[0][0] as Record<string, unknown>;
+    expect(values.readOnly).toBe(true);
+    expect(values.editable).toBe(false);
+  });
+
+  test('watch handler ignores id/content and converts nullable fields to undefined', async () => {
+    const { changeSchemas } = renderDetailView();
+
+    await waitFor(() => {
+      expect(typeof capturedDetailProps?.watchHandler).toBe('function');
+    });
+
+    capturedDetailProps.watchHandler({
+      id: 'other',
+      content: 'ignored',
+      name: 'field_updated',
+      rotate: null,
+      opacity: null,
+    });
+
+    await waitFor(() => {
+      expect(changeSchemas).toHaveBeenCalled();
+    });
+
+    const changes = changeSchemas.mock.calls[0][0] as Array<{ key: string; value: unknown }>;
+    expect(changes).toEqual(
+      expect.arrayContaining([
+        expect.objectContaining({ key: 'name', value: 'field_updated' }),
+        expect.objectContaining({ key: 'rotate', value: undefined }),
+        expect.objectContaining({ key: 'opacity', value: undefined }),
+      ]),
+    );
+    expect(changes.some((item) => item.key === 'id')).toBe(false);
+    expect(changes.some((item) => item.key === 'content')).toBe(false);
+  });
+
+  test('filters invalid changes when validateFields reports field errors', async () => {
+    validateFields.mockRejectedValueOnce({
+      errorFields: [{ name: ['name'], errors: ['duplicado'] }],
+    });
+
+    const { changeSchemas } = renderDetailView();
+
+    await waitFor(() => {
+      expect(typeof capturedDetailProps?.watchHandler).toBe('function');
+    });
+
+    capturedDetailProps.watchHandler({
+      name: 'duplicated_name',
+      width: 90,
+    });
+
+    await waitFor(() => {
+      expect(changeSchemas).toHaveBeenCalled();
+    });
+
+    const changes = changeSchemas.mock.calls[0][0] as Array<{ key: string; value: unknown }>;
+    expect(changes).toEqual([expect.objectContaining({ key: 'width', value: 90 })]);
+  });
+
+});

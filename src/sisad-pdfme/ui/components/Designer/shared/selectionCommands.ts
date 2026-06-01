@@ -46,6 +46,13 @@ export type AlignType =
 
 export type DistributeType = 'vertical' | 'horizontal';
 
+export type AlignmentMode = 'page' | 'selection';
+
+export type PageBounds = {
+  width: number;
+  height: number;
+};
+
 export type DeleteSchemasOptions = {
   origin?: 'keyboard' | 'toolbar' | 'context-menu' | 'field-list' | 'command';
   clearSelection?: boolean;
@@ -163,7 +170,131 @@ const getPageBounds = (schemas: SchemaForUI[], tgtPos: 'x' | 'y', tgtSize: 'widt
   return { min, max };
 };
 
-const clampToPage = (value: number, max: number) => Math.min(Math.max(value, 0), max);
+const clampToPage = (value: number, max: number) => Math.min(Math.max(value, 0), Math.max(max, 0));
+
+const clampSchemaPositionToPage = (
+  value: number,
+  axis: 'x' | 'y',
+  size: number,
+  pageBounds: PageBounds,
+) => clampToPage(value, (axis === 'x' ? pageBounds.width : pageBounds.height) - size);
+
+export const computeAlignedSchemas = (params: {
+  schemas: SchemaForUI[];
+  selectedIds: string[];
+  pageBounds: PageBounds;
+  align: AlignType;
+  mode?: AlignmentMode;
+}): Array<{ key: string; value: number; schemaId: string }> => {
+  const { schemas, selectedIds, pageBounds, align } = params;
+  const mode: AlignmentMode = params.mode || 'page';
+  const selectedIdSet = new Set(selectedIds);
+  const selectedSchemas = schemas.filter((schema) => selectedIdSet.has(schema.id));
+  if (!selectedSchemas.length) return [];
+
+  const axis: 'x' | 'y' = ['left', 'center', 'right'].includes(align) ? 'x' : 'y';
+  const sizeKey: 'width' | 'height' = axis === 'x' ? 'width' : 'height';
+  const pageAxisSize = axis === 'x' ? pageBounds.width : pageBounds.height;
+  const selectionBounds = getPageBounds(selectedSchemas, axis, sizeKey);
+
+  const useSelectionBounds = mode === 'selection' && selectedSchemas.length > 1;
+  const anchorStart = useSelectionBounds ? selectionBounds.min : 0;
+  const anchorEnd = useSelectionBounds ? selectionBounds.max : pageAxisSize;
+  const anchorCenter = anchorStart + (anchorEnd - anchorStart) / 2;
+
+  return selectedSchemas.map((schema) => {
+    const schemaSize = schema[sizeKey] ?? 0;
+    const targetPosition =
+      align === 'left' || align === 'top'
+        ? anchorStart
+        : align === 'center' || align === 'middle'
+          ? anchorCenter - schemaSize / 2
+          : anchorEnd - schemaSize;
+
+    const nextValue = clampSchemaPositionToPage(
+      round(targetPosition, 2),
+      axis,
+      schemaSize,
+      pageBounds,
+    );
+
+    return {
+      key: `position.${axis}`,
+      value: nextValue,
+      schemaId: schema.id,
+    };
+  });
+};
+
+export const computeDistributedSchemas = (params: {
+  schemas: SchemaForUI[];
+  selectedIds: string[];
+  pageBounds: PageBounds;
+  distribute: DistributeType;
+}): Array<{ key: string; value: number; schemaId: string }> => {
+  const { schemas, selectedIds, pageBounds, distribute } = params;
+  const selectedIdSet = new Set(selectedIds);
+  const selectedSchemas = schemas.filter((schema) => selectedIdSet.has(schema.id));
+  if (selectedSchemas.length < 3) return [];
+
+  const axis: 'x' | 'y' = distribute === 'horizontal' ? 'x' : 'y';
+  const sizeKey: 'width' | 'height' = axis === 'x' ? 'width' : 'height';
+  const sortedSchemas = [...selectedSchemas].sort(
+    (left, right) => (left.position?.[axis] ?? 0) - (right.position?.[axis] ?? 0),
+  );
+  const bounds = getPageBounds(sortedSchemas, axis, sizeKey);
+  const totalSize = sortedSchemas.reduce((sum, schema) => sum + (schema[sizeKey] ?? 0), 0);
+  const span = bounds.max - bounds.min;
+  const gap = (span - totalSize) / (sortedSchemas.length - 1);
+
+  let cursor = bounds.min;
+  return sortedSchemas.map((schema, index) => {
+    const schemaSize = schema[sizeKey] ?? 0;
+    const next =
+      index === 0
+        ? bounds.min
+        : cursor + gap;
+
+    cursor = next + schemaSize;
+
+    return {
+      key: `position.${axis}`,
+      value: clampSchemaPositionToPage(round(next, 2), axis, schemaSize, pageBounds),
+      schemaId: schema.id,
+    };
+  });
+};
+
+const applySchemaOps = (
+  schemas: SchemaForUI[],
+  ops: Array<{ key: string; value: unknown; schemaId: string }>,
+) => {
+  if (!ops.length) return schemas;
+  const byId = new Map(ops.map((op) => [op.schemaId, op]));
+  return schemas.map((schema) => {
+    const op = byId.get(schema.id);
+    if (!op) return schema;
+    if (op.key === 'position.x') {
+      return {
+        ...schema,
+        position: {
+          ...(schema.position || { x: 0, y: 0 }),
+          x: Number(op.value),
+        },
+      };
+    }
+    if (op.key === 'position.y') {
+      return {
+        ...schema,
+        position: {
+          ...(schema.position || { x: 0, y: 0 }),
+          y: Number(op.value),
+        },
+      };
+    }
+    return schema;
+  });
+};
 
 const hasDeleteDependencies = (schema: SchemaForUI) =>
   Boolean(
@@ -364,55 +495,74 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
 
   const alignSelection = (type: AlignType) => {
     if (!hasSelection || !guardStructureEdit()) return;
-    const schemas = getActiveSchemas(context);
-    const isVertical = ['left', 'center', 'right'].includes(type);
-    const tgtPos = isVertical ? 'x' : 'y';
-    const tgtSize = isVertical ? 'width' : 'height';
-    const { min, max } = getPageBounds(schemas, tgtPos, tgtSize);
+    const pageSchemas = getPageSchemas(context);
+    const ops = computeAlignedSchemas({
+      schemas: pageSchemas,
+      selectedIds: activeIds,
+      pageBounds: {
+        width: context.pageSize.width,
+        height: context.pageSize.height,
+      },
+      align: type,
+      mode: 'page',
+    });
+    if (!ops.length) return;
 
-    let basePos = min;
-    let adjust: (value: number) => number = () => 0;
-    if (['center', 'middle'].includes(type)) {
-      basePos = (min + max) / 2;
-      adjust = (value: number) => value / 2;
-    } else if (['right', 'bottom'].includes(type)) {
-      basePos = max;
-      adjust = (value: number) => value;
-    } else {
-      adjust = () => 0;
+    if (context.executeCommand) {
+      const beforeSchemas = cloneDeep(pageSchemas) as SchemaForUI[];
+      const afterSchemas = applySchemaOps(beforeSchemas, ops);
+      context.executeCommand({
+        id: 'alignSelection',
+        label: 'alignSelection',
+        execute: () => {
+          context.commitSchemas(afterSchemas);
+        },
+        undo: () => {
+          context.commitSchemas(beforeSchemas);
+        },
+        redo: () => {
+          context.commitSchemas(afterSchemas);
+        },
+      });
+      return;
     }
 
-    const ops = schemas.map((schema) => {
-      const size = schema[tgtSize] ?? 0;
-      const value = round(basePos - adjust(size), 2);
-      return { key: `position.${tgtPos}`, value: clampToPage(value, (tgtPos === 'x' ? context.pageSize.width : context.pageSize.height) - size), schemaId: schema.id };
-    });
     context.changeSchemas(ops);
   };
 
   const distributeSelection = (type: DistributeType) => {
     if (!hasSelection || !guardStructureEdit()) return;
-    const schemas = getActiveSchemas(context);
-    if (schemas.length < 3) return;
-    const isVertical = type === 'vertical';
-    const tgtPos = isVertical ? 'y' : 'x';
-    const tgtSize = isVertical ? 'height' : 'width';
-    const { min, max } = getPageBounds(schemas, tgtPos, tgtSize);
-    const totalSize = schemas.reduce((sum, schema) => sum + (schema[tgtSize] ?? 0), 0);
-    const span = max - min;
-    const gap = (span - totalSize) / (schemas.length - 1);
-    let cursor = min;
-
-    const ops = schemas.map((schema, index) => {
-      const size = schema[tgtSize] ?? 0;
-      if (index === 0) {
-        cursor = min + size;
-        return { key: `position.${tgtPos}`, value: min, schemaId: schema.id };
-      }
-      const value = cursor + gap;
-      cursor = value + size;
-      return { key: `position.${tgtPos}`, value: clampToPage(value, (tgtPos === 'x' ? context.pageSize.width : context.pageSize.height) - size), schemaId: schema.id };
+    const pageSchemas = getPageSchemas(context);
+    const ops = computeDistributedSchemas({
+      schemas: pageSchemas,
+      selectedIds: activeIds,
+      pageBounds: {
+        width: context.pageSize.width,
+        height: context.pageSize.height,
+      },
+      distribute: type,
     });
+    if (!ops.length) return;
+
+    if (context.executeCommand) {
+      const beforeSchemas = cloneDeep(pageSchemas) as SchemaForUI[];
+      const afterSchemas = applySchemaOps(beforeSchemas, ops);
+      context.executeCommand({
+        id: 'distributeSelection',
+        label: 'distributeSelection',
+        execute: () => {
+          context.commitSchemas(afterSchemas);
+        },
+        undo: () => {
+          context.commitSchemas(beforeSchemas);
+        },
+        redo: () => {
+          context.commitSchemas(afterSchemas);
+        },
+      });
+      return;
+    }
+
     context.changeSchemas(ops);
   };
 
