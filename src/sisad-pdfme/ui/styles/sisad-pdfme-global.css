@@ -4577,6 +4577,8 @@
   font-weight: 700;
   line-height: 1.2;
   color: var(--color-gray-900);
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .sisad-pdfme-designer-compact-config-panel-description {
@@ -4584,6 +4586,8 @@
   font-size: 0.75rem;
   line-height: 1.4;
   color: var(--color-gray-500);
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .sisad-pdfme-designer-compact-config-panel-tags {
@@ -4604,6 +4608,8 @@
   font-size: 0.75rem;
   line-height: 1.45;
   color: var(--color-gray-700);
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .sisad-pdfme-designer-compact-config-panel-actions {
@@ -5504,12 +5510,16 @@
 .sisad-pdfme-designer-compact-config-panel-title {
   font-size: 0.71875rem;   /* down from 0.875rem */
   font-weight: 700;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .sisad-pdfme-designer-compact-config-panel-description {
   font-size: 0.625rem;     /* down from 0.75rem */
   line-height: 1.35;
   margin-top: 0.125rem;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .sisad-pdfme-designer-compact-config-panel-summary {
@@ -5519,6 +5529,8 @@
 .sisad-pdfme-designer-compact-config-panel-summary-text {
   font-size: 0.625rem;     /* down from 0.75rem */
   line-height: 1.35;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .sisad-pdfme-designer-compact-config-panel-actions {

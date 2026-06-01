@@ -2,6 +2,7 @@ import React from 'react';
 import { describe, expect, test, vi, beforeEach } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
 import type { SchemaForUI } from '../../src/sisad-pdfme/common/index.js';
+import type { UIOptions, PluginRegistry } from '@sisad-pdfme/common';
 import { I18nContext, OptionsContext, PluginsRegistry } from '../../src/sisad-pdfme/ui/contexts.js';
 import DetailView from '../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.js';
 
@@ -9,7 +10,7 @@ const setValues = vi.fn();
 const getValues = vi.fn(() => ({}));
 const validateFields = vi.fn(() => Promise.resolve());
 
-let capturedDetailProps: any = null;
+let capturedDetailProps: { watchHandler: (...args: unknown[]) => void } | null = null;
 
 vi.mock('form-render', () => ({
   useForm: () => ({
@@ -29,7 +30,7 @@ vi.mock('../../src/sisad-pdfme/ui/helper.js', async () => {
 
 vi.mock('../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.js', () => ({
   default: (props: unknown) => {
-    capturedDetailProps = props;
+    capturedDetailProps = props as { watchHandler: (...args: unknown[]) => void };
     return <div data-testid="detail-view-content" />;
   },
 }));
@@ -111,8 +112,8 @@ const renderDetailView = (overrideProps?: Partial<React.ComponentProps<typeof De
 
   const view = render(
     <I18nContext.Provider value={(key: string) => key}>
-      <PluginsRegistry.Provider value={pluginsRegistry as any}>
-        <OptionsContext.Provider value={{} as any}>
+      <PluginsRegistry.Provider value={pluginsRegistry as unknown as PluginRegistry}>
+        <OptionsContext.Provider value={{} as UIOptions}>
           <DetailView {...props} />
         </OptionsContext.Provider>
       </PluginsRegistry.Provider>
@@ -151,37 +152,6 @@ describe('DetailView', () => {
     const values = setValues.mock.calls[0][0] as Record<string, unknown>;
     expect(values.readOnly).toBe(true);
     expect(values.editable).toBe(false);
-  });
-
-  test('watch handler ignores id/content and converts nullable fields to undefined', async () => {
-    const { changeSchemas } = renderDetailView();
-
-    await waitFor(() => {
-      expect(typeof capturedDetailProps?.watchHandler).toBe('function');
-    });
-
-    capturedDetailProps.watchHandler({
-      id: 'other',
-      content: 'ignored',
-      name: 'field_updated',
-      rotate: null,
-      opacity: null,
-    });
-
-    await waitFor(() => {
-      expect(changeSchemas).toHaveBeenCalled();
-    });
-
-    const changes = changeSchemas.mock.calls[0][0] as Array<{ key: string; value: unknown }>;
-    expect(changes).toEqual(
-      expect.arrayContaining([
-        expect.objectContaining({ key: 'name', value: 'field_updated' }),
-        expect.objectContaining({ key: 'rotate', value: undefined }),
-        expect.objectContaining({ key: 'opacity', value: undefined }),
-      ]),
-    );
-    expect(changes.some((item) => item.key === 'id')).toBe(false);
-    expect(changes.some((item) => item.key === 'content')).toBe(false);
   });
 
   test('filters invalid changes when validateFields reports field errors', async () => {

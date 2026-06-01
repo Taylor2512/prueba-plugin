@@ -66,6 +66,7 @@ import SchemaDragPreview from './Canvas/overlays/SchemaDragPreview.js';
 import SchemaDropCommitFlash from './Canvas/overlays/SchemaDropCommitFlash.js';
 import SchemaDropPlaceholder from './Canvas/overlays/SchemaDropPlaceholder.js';
 import { installPassiveTouchListenerGuard } from './shared/passiveTouchListeners.js';
+import { filterSchemasByCollisionScope } from './shared/schemaCollision.js';
 
 installPassiveTouchListenerGuard();
 
@@ -1721,6 +1722,20 @@ const TemplateEditor = ({
       s = attachSchemaIdentity(s, creationContext, designerEngine);
       s = applySchemaCollaborativeDefaults(s, creationContext, designerEngine);
 
+      const collisionScopedSchemas = filterSchemasByCollisionScope(pageSchemas, s, {
+        fileId: activeDocumentId || null,
+        pageNumber: targetPageIndex + 1,
+      });
+      s.position = resolveSmartDropPosition({
+        candidate: s.position,
+        pageSize,
+        schemaSize: {
+          width: Number(s.width || safeWidth),
+          height: Number(s.height || safeHeight),
+        },
+        existingSchemas: collisionScopedSchemas,
+      });
+
       commitSchemas(pageSchemas.concat(s), targetPageIndex);
       setTimeout(() => {
         const element = document.getElementById(s.id);
@@ -3278,11 +3293,17 @@ const TemplateEditor = ({
           const candidate = session.dropValid
             ? session.dropPointMm || { x: Math.max(0, (pageSize.width - schemaSize.width) / 2), y: Math.max(0, (pageSize.height - schemaSize.height) / 2) }
             : { x: Math.max(0, (pageSize.width - schemaSize.width) / 2), y: Math.max(0, (pageSize.height - schemaSize.height) / 2) };
+          const collisionScopedSchemas = filterSchemasByCollisionScope(existingSchemas, draggedSchema as SchemaForUI, {
+            ownerRecipientId: collaborationContext.ownerRecipientId,
+            ownerRecipientIds: collaborationContext.ownerRecipientIds,
+            fileId: activeDocumentId || null,
+            pageNumber: pageIndex + 1,
+          });
           const position = resolveSmartDropPosition({
             candidate,
             pageSize,
             schemaSize,
-            existingSchemas,
+            existingSchemas: collisionScopedSchemas,
           });
           const targetSchema = { ...draggedSchema, position };
           if (dropCommitTimerRef.current) clearTimeout(dropCommitTimerRef.current);

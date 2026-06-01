@@ -7,6 +7,7 @@ import {
 import { uuid } from '../../../helper.js';
 import { resolveSmartDropPosition, type SmartPlacementInput } from '../Canvas/overlays/smartPlacement.js';
 import { createUniqueSchemaVariableName } from './schemaVariableName.js';
+import { filterSchemasByCollisionScope } from './schemaCollision.js';
 
 /**
  * Controls how recipient assignment and collaboration metadata are handled
@@ -257,6 +258,21 @@ export const buildPastedSchema = (
   const finalResult = withCollaborativeDefaults as SchemaForUI & Record<string, unknown>;
   if (policy.preserveLocks && originalLock !== undefined) {
     finalResult.lock = originalLock;
+  }
+
+  if (context.pageSize) {
+    const collisionScopedSchemas = filterSchemasByCollisionScope(existingSchemas, finalResult as SchemaForUI, {
+      fileId: targetFileId ?? null,
+      pageNumber,
+    });
+    finalResult.position = resolveSmartDropPosition({
+      candidate: (finalResult.position || position) as { x: number; y: number },
+      pageSize: context.pageSize,
+      schemaSize: sourceSize,
+      existingSchemas: collisionScopedSchemas,
+      stepMm: offset.x,
+      maxAttempts: 12,
+    });
   }
 
   return finalResult as SchemaForUI;

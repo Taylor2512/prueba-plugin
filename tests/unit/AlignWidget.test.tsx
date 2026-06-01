@@ -3,6 +3,7 @@ import { describe, expect, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import AlignWidget from '../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.js';
+import type { SelectionCommandSet } from '../../src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.js';
 
 const buildElements = (count: number) =>
   Array.from({ length: count }, (_, idx) => {
@@ -12,6 +13,21 @@ const buildElements = (count: number) =>
   });
 
 describe('AlignWidget', () => {
+  const createSelectionCommands = (overrides: Partial<SelectionCommandSet>): SelectionCommandSet => ({
+    canEditStructure: true,
+    deleteSelection: () => false,
+    deleteSchemasByIds: () => false,
+    duplicateSelection: () => undefined,
+    toggleRequired: () => undefined,
+    toggleReadOnly: () => undefined,
+    bringForward: () => undefined,
+    sendBackward: () => undefined,
+    alignSelection: () => undefined,
+    distributeSelection: () => undefined,
+    openProperties: () => undefined,
+    ...overrides,
+  });
+
   test('invokes align command with expected action', async () => {
     const user = userEvent.setup();
     const alignSelection = vi.fn();
@@ -20,10 +36,10 @@ describe('AlignWidget', () => {
     render(
       <AlignWidget
         activeElements={buildElements(1)}
-        selectionCommands={{
+        selectionCommands={createSelectionCommands({
           alignSelection,
           distributeSelection,
-        } as any}
+        })}
       />,
     );
 
@@ -39,10 +55,10 @@ describe('AlignWidget', () => {
     const { rerender } = render(
       <AlignWidget
         activeElements={buildElements(2)}
-        selectionCommands={{
+        selectionCommands={createSelectionCommands({
           alignSelection,
           distributeSelection,
-        } as any}
+        })}
       />,
     );
 
@@ -52,10 +68,10 @@ describe('AlignWidget', () => {
     rerender(
       <AlignWidget
         activeElements={buildElements(3)}
-        selectionCommands={{
+        selectionCommands={createSelectionCommands({
           alignSelection,
           distributeSelection,
-        } as any}
+        })}
       />,
     );
 

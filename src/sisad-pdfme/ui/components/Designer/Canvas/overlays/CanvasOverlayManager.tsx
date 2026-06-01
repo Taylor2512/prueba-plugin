@@ -59,12 +59,12 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
   } = props;
 
   const [toolbarMode, setToolbarMode] = useState<SelectionToolbarMode>(
-    interactionState.selectionCount > 1 ? 'expanded' : 'micro',
+    interactionState.selectionCount > 1 ? 'compact' : 'micro',
   );
   const [shortcutHelpOpen, setShortcutHelpOpen] = useState(false);
 
   useEffect(() => {
-    const nextMode = interactionState.selectionCount > 1 ? 'expanded' : 'micro';
+    const nextMode = interactionState.selectionCount > 1 ? 'compact' : 'micro';
     setToolbarMode((prev) => (prev === nextMode ? prev : nextMode));
   }, [interactionState.selectionCount]);
 

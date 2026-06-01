@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'vitest';
 import { buildInspectorSections } from '../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.js';
 import type { SchemaForUI } from '../../src/sisad-pdfme/common/index.js';
+import type { SchemaDesignerConfig } from '../../src/sisad-pdfme/ui/designerEngine.js';
 
 const baseSchema: SchemaForUI = {
   id: 'schema-1',
@@ -114,7 +115,7 @@ describe('buildInspectorSections', () => {
         } as SchemaForUI,
         schemaConfig: {
           api: { enabled: true },
-        } as any,
+        } as SchemaDesignerConfig,
       }),
     );
 

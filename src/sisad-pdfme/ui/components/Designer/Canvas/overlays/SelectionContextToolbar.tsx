@@ -40,10 +40,10 @@ const SelectionContextToolbar = ({
     mini: 214,
   });
   const [internalToolbarMode, setInternalToolbarMode] = React.useState<SelectionToolbarMode>(
-    defaultToolbarMode ?? (interactionState.selectionCount > 1 ? 'expanded' : 'micro'),
+    defaultToolbarMode ?? (interactionState.selectionCount > 1 ? 'compact' : 'micro'),
   );
   const primarySchemaId = activeSchemas[0]?.id ?? '';
-  const toolbarSeed = defaultToolbarMode ?? (interactionState.selectionCount > 1 ? 'expanded' : 'micro');
+  const toolbarSeed = defaultToolbarMode ?? (interactionState.selectionCount > 1 ? 'compact' : 'micro');
 
   React.useEffect(() => {
     setInternalToolbarMode(toolbarSeed);
@@ -89,7 +89,7 @@ const SelectionContextToolbar = ({
       style={{
         top: `${position.top}px`,
         left: `${position.left}px`,
-        width: isExpanded ? 'min(100%, 32rem)' : isMicro ? 'min(100%, 18rem)' : 'min(100%, 24rem)',
+        width: isExpanded ? 'min(100%, 28rem)' : isMicro ? 'min(100%, 17rem)' : 'min(100%, 22rem)',
       }}
     >
       <div className="sisad-pdfme-ui-selection-context-toolbar-summary" aria-label="Resumen de selección">

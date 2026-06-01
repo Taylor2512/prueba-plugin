@@ -881,12 +881,18 @@
   outline-offset: 2px;
   border-radius: var(--radius-md);
   z-index: 10;
-  box-shadow: 0 0 0 0.25rem rgba(67, 56, 202, 0.10), var(--shadow-md);
+  box-shadow: 0 0 0 0.15rem rgba(67, 56, 202, 0.08), var(--shadow-sm);
 }
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-active='true']::before {
   opacity: 1;
-  background: var(--color-primary-08);
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+.sisad-pdfme-designer-stage[data-interaction-phase='selected-multi']
+  :is(.app-shell, .sisad-pdfme-designer-root)
+  .sisad-pdfme-ui-custom-selectable[data-schema-active='true']::before {
+  background: color-mix(in srgb, var(--color-primary) 6%, transparent);
 }
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-active='true']::after {
