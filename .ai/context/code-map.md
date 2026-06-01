@@ -1,15 +1,12 @@
-# Code Map — `sisad-pdfme`
+# Code Map
 
-## Zonas principales
+## Mapa
 
-- `src/sisad-pdfme/ui/components/Designer`: shell principal del diseñador.
-- `src/sisad-pdfme/ui/components/Designer/Canvas`: canvas, Moveable, Selecto, guides, snaplines y overlays.
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar`: inspector, list view, docs rail y comments rail.
-- `src/sisad-pdfme/ui/components/Designer/shared`: helpers de interacción, color, schema tone, clipboard, shortcuts y coordinate service.
-- `src/sisad-pdfme/schemas`: plugins built-in y customizables.
-- `tests/playwright`: regresiones e2e de canvas, collaboration, shortcuts y editor.
-- `tests/unit`: contratos puros, helpers y componentes.
-
-## Para recipient transform
-
-Ver `.ai/context/recipient-transform-context.md`.
+- `src/sisad-pdfme/ui`: Designer/Form/Viewer y componentes.
+- `src/sisad-pdfme/schemas`: plugins y renderers.
+- `src/sisad-pdfme/shared`: snapshot, shortcuts, guards y storage.
+- `src/sisad-pdfme/common`: tipos base y helpers.
+- `src/sisad-pdfme/generator`: generación PDF.
+- `src/sisad-pdfme/converter`: conversión PDF/imagen.
+- `tests/unit`: contratos puros.
+- `tests/playwright`: regresión visual/canvas.

@@ -1,40 +1,56 @@
-# Prompt: Create Playwright Canvas Scenarios
+# Prompt: create-playwright-canvas-scenarios
+
+## Rol
+
+Actúa como arquitecto frontend senior experto en React, TypeScript, Vite, pdfme, canvas interactions, Moveable, Selecto, Vitest, Playwright y diseño de sistemas configurables.
 
 ## Objetivo
 
-Crea pruebas Playwright para validar canvas no blanco, selección, drag, resize, sidebars, docs rail y cambio de modo.
+Escenarios Playwright canvas.
 
 ## Contexto obligatorio
 
-Lee antes de actuar:
+1. `AGENTS.md`
+2. `.ai/INDEX.md`
+3. `.ai/memory/project-memory.md`
+4. `.ai/context-map.md`
+5. Regla del dominio según `.ai/context-map.md`
 
-- `AGENTS.md`
-- `.ai/rules/global-rules.md`
-- `.ai/context/project-overview.md`
-- `.ai/context/code-map.md`
-- Skill relacionado en `.ai/skills`
+## Archivos candidatos
 
-## Restricciones
+- `tests/playwright`
 
-- No acoplar `sisad-pdfme` a terceros.
-- No crear variantes rígidas por caso de uso.
-- No romper snapshot, schema identity, canvas geometry ni sidebars.
-- No introducir CSS global invasivo.
-- No hacer refactor masivo sin fases.
+## Reglas
 
-## Tareas
+- No duplicar runtime.
+- No manipular DOM interno.
+- No romper snapshot.
+- No usar delays arbitrarios.
+- Mantener CSS scope.
+- Agregar test si cambia comportamiento.
 
-1. Identifica archivos afectados.
-2. Explica el problema.
-3. Propón plan incremental.
-4. Implementa cambios mínimos.
-5. Agrega o ajusta tests.
-6. Actualiza documentación.
-7. Entrega resumen con riesgos.
+## Validación sugerida
 
-## Criterios de aceptación
+```bash
+npm run build -- --mode development
+npm run lint
+npx vitest run
+```
 
-- El cambio es configurable.
-- El fork sigue aislado.
-- Tests relevantes pasan o se explica por qué no se pudieron ejecutar.
-- Documentación actualizada si cambió contrato.
+Para canvas/visual:
+
+```bash
+npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/schema-transform.spec.ts --project=chromium
+```
+
+## Entregable obligatorio
+
+```md
+# Resultado
+## Diagnóstico
+## Cambios realizados
+## Tests agregados o actualizados
+## Comandos ejecutados
+## Riesgos residuales
+## Documentación actualizada
+```

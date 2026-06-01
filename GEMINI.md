@@ -1,10 +1,16 @@
-# GEMINI — Adaptador extendido para análisis en `sisad-pdfme`
+# GEMINI.md — Adaptador Gemini
 
-Gemini debe auditar consistencia entre código, docs, tests y workspace IA.
+Gemini se usa para auditoría, contraste y documentación.
 
-## Buenas tareas para Gemini
+## Buenas tareas
 
-- Auditar duplicidades de color ownership.
-- Comparar contratos de docs contra implementación.
-- Diseñar matrices de prueba por destinatario y transform.
-- Detectar riesgos de colisión entre Moveable, Selecto e inline edit.
+- Auditar consistencia entre docs, prompts y código.
+- Revisar drift entre `.ai` y `.github`.
+- Analizar resultados de tests.
+- Proponer matrices de regresión.
+- Detectar duplicidad arquitectónica.
+
+## No usar para
+
+- Cambios directos grandes sin plan.
+- Sustituir build/lint/test.

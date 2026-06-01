@@ -1,56 +1,40 @@
-# AI Context Index — `sisad-pdfme`
+# .ai/INDEX.md — Router de contexto
 
-Este archivo es el punto de entrada principal para cualquier asistente IA.
+## Carga inicial obligatoria
 
-## Fuente de verdad
+1. `.ai/memory/project-memory.md`
+2. `.ai/context-map.md`
+3. `.ai/rules/context-loading-ladder-rules.md`
+4. `.ai/agents/registry.md`
 
-La carpeta `.ai/` contiene:
+## Loop
 
-- reglas globales;
-- contexto estable;
-- arquitectura IA;
-- agentes;
-- skills;
-- prompts;
-- instrucciones;
-- templates.
-
-## Lectura mínima obligatoria
-
-1. `.ai/rules/global-rules.md`
-2. `.ai/context/project-overview.md`
-3. `.ai/context/code-map.md`
-4. `.ai/context/recipient-transform-context.md`
-5. `.ai/architecture/assistant-architecture.md`
-6. `.ai/architecture/agent-routing.md`
-
-## Prompts prioritarios para esta entrega
-
-1. `.ai/prompts/recipient-transform-master-plan.prompt.md`
-2. `.ai/prompts/enforce-recipient-colors-and-icon-sync.prompt.md`
-3. `.ai/prompts/add-recipient-color-playwright-tests.prompt.md`
-4. `.ai/prompts/stabilize-schema-resize-rotation.prompt.md`
-5. `.ai/prompts/fix-results-from-tests-recipient-transform.prompt.md`
-
-## Contratos implementados (mayo 2026)
-
-| Contrato | Módulo | Estado |
-|----------|--------|--------|
-| `resolveRecipientColor` | `shared/recipientColor.ts` | ✅ implementado + 22 tests |
-| `resolveAllRecipientColors` | `shared/recipientColor.ts` | ✅ implementado |
-| `PluginIcon.activeRecipientColor` | `Designer/PluginIcon.tsx` | ✅ prop + data attrs |
-| `data-recipient-color` en chips | `PageHeader.jsx` | ✅ atributo estable |
-| `data-schema-owner-id/color` en canvas | `Renderer.tsx` | ✅ atributos estables |
-| `decorateCollaborationUsers` unicidad | `collaborationAppearance.js` | ✅ paleta sin colisión |
-| Tests Playwright color | `recipient-colors.spec.ts` | ✅ 5 scenarios |
-| Tests Playwright transform | `schema-transform.spec.ts` | ✅ 8 scenarios |
-
-## Sincronización
-
-Si cambias prompts o instructions:
-
-```bash
-node scripts/ai/sync-ai-adapters.js
-node scripts/ai/check-ai-workspace.js
-node scripts/ai/generate-ai-manifest.js
+```txt
+Perceive -> Retrieve -> Plan -> Act -> Observe -> Guardrail -> Memory
 ```
+
+## Rutas por tarea
+
+| Tarea | Contexto | Regla | Prompt |
+|---|---|---|---|
+| `recipient-color` | `recipient-color-context.md` | `schema-ownership-rules.md` | `repair-recipient-color-sync.prompt.md` |
+| `schema-icon-sync` | `schema-icon-sync-context.md` | `schema-icon-color-rules.md` | `repair-schema-icon-color-sync.prompt.md` |
+| `transform-controls` | `transform-controls-context.md` | `transform-interaction-rules.md` | `repair-transform-collisions.prompt.md` |
+| `moveable-selecto` | `moveable-selecto-context.md` | `moveable-selecto-rules.md` | `harden-moveable-selecto-guards.prompt.md` |
+| `snapshot` | `snapshot-contract-context.md` | `snapshot-contract-rules.md` | `repair-snapshot-roundtrip.prompt.md` |
+| `external-forms` | `external-forms-runner-context.md` | `external-forms-runner-rules.md` | `repair-external-forms-runner.prompt.md` |
+| `designer-engine` | `designer-engine-context.md` | `public-api-rules.md` | `stabilize-designer-engine-api.prompt.md` |
+| `sidebars` | `sidebars-inspector-context.md` | `sidebars-inspector-rules.md` | `repair-sidebars-inspector.prompt.md` |
+| `css` | `css-design-system-context.md` | `css-boundary-rules.md` | `audit-css-boundaries.prompt.md` |
+| `tests` | `tests-quality-context.md` | `testing-quality-rules.md` | `build-regression-test-matrix.prompt.md` |
+| `legacy` | `legacy-cleanup-context.md` | `legacy-reduction-rules.md` | `audit-legacy-runtime-reduction.prompt.md` |
+| `content-custom-form` | `content-custom-form-integration-context.md` | `host-runtime-boundary-rules.md` | `repair-contentcustomform-integration.prompt.md` |
+
+## No cargar por defecto
+
+- snapshots completos;
+- código unificado completo;
+- CSS completo;
+- todos los prompts;
+- todos los docs;
+- reportes grandes.

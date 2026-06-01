@@ -2,74 +2,57 @@
 
 ## Rol
 
-Actúa como arquitecto frontend senior experto en React, TypeScript, Vite, pdfme, editores PDF, canvas interactions, Moveable, Selecto, Playwright, Vitest y diseño de sistemas configurables.
+Actúa como arquitecto frontend senior experto en React, TypeScript, Vite, pdfme, canvas interactions, Moveable, Selecto, Vitest, Playwright y diseño de sistemas configurables.
 
 ## Objetivo
 
-Validar comandos CI para unit/e2e/build y ai workspace.
+Validar flujo CI.
 
 ## Contexto obligatorio
 
-Antes de editar, lee:
-
-- `AGENTS.md`
-- `.ai/INDEX.md`
-- `.ai/rules/global-rules.md`
-- `.ai/context/recipient-transform-context.md`
-- `.ai/architecture/agent-routing.md`
+1. `AGENTS.md`
+2. `.ai/INDEX.md`
+3. `.ai/memory/project-memory.md`
+4. `.ai/context-map.md`
+5. Regla del dominio según `.ai/context-map.md`
 
 ## Archivos candidatos
 
-- `src/sisad-pdfme/context/RecipientContext.ts`
-- `src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx`
-- `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx`
-- `src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx`
-- `src/sisad-pdfme/ui/components/Designer/shared/recipientColor.ts`
-- `src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts`
-- `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx`
-- `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
-- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/*`
-- `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css`
-- `tests/unit/*`
-- `tests/playwright/*`
-- `docs/*`
+- `package.json`
+- `playwright.config.ts`
+- `vitest.config.ts`
 
-## Reglas específicas
+## Reglas
 
-1. Cada usuario/destinatario de pruebas debe tener color único.
-2. El color del destinatario activo debe cambiar iconos del catálogo de schemas.
-3. El color owner de schemas existentes no debe cambiar al cambiar destinatario activo.
-4. Resize, rotate y drag deben funcionar con schema seleccionado.
-5. Selecto no debe iniciar selección múltiple durante resize/rotate.
-6. Inline edit no debe abrir durante transform activo.
-7. Context menu no debe abrir durante transform activo.
-8. Shortcuts no deben ejecutarse dentro de inputs, textareas, selects ni contenteditable.
-9. No hardcodear colores fuera de fixtures o palette central.
-10. No usar delays arbitrarios para arreglar tests.
+- No duplicar runtime.
+- No manipular DOM interno.
+- No romper snapshot.
+- No usar delays arbitrarios.
+- Mantener CSS scope.
+- Agregar test si cambia comportamiento.
 
-## Tests mínimos esperados
+## Validación sugerida
 
-- Unit test para paleta única.
-- Unit test para ownerColor persistido.
-- Unit test para normalizeRotate/transform state si aplica.
-- Playwright para cambio de destinatario activo y color de iconos.
-- Playwright para schema creado conserva ownerColor.
-- Playwright para resize/rotate sin colisiones.
+```bash
+npm run build -- --mode development
+npm run lint
+npx vitest run
+```
+
+Para canvas/visual:
+
+```bash
+npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/schema-transform.spec.ts --project=chromium
+```
 
 ## Entregable obligatorio
 
 ```md
 # Resultado
-
 ## Diagnóstico
-
 ## Cambios realizados
-
 ## Tests agregados o actualizados
-
 ## Comandos ejecutados
-
 ## Riesgos residuales
-
 ## Documentación actualizada
 ```

@@ -1,3 +1,3 @@
-# GitHub Copilot — testing-quality.instructions.md
+# Testing Quality
 
-Cada cambio relevante debe tener test unitario o Playwright. Prioriza pruebas de canvas no blanco, geometría estable, sidebar toggle, snapshot round-trip y schema identity.
+Wrapper para `.ai/rules/testing-quality-rules.md` cuando exista. Si no existe, usar `.ai/context-map.md`.

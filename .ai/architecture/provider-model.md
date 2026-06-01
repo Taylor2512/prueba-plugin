@@ -1,24 +1,22 @@
-# Modelo de proveedores IA
+# Provider Model
 
-## Neutralidad
+## Propósito
 
-El repositorio no debe depender de un proveedor IA específico. Claude, Codex, Copilot y Gemini deben consumir la misma arquitectura documental.
+Modelo de proveedores: Claude, Codex, Copilot, Gemini y genérico.
 
-## Patrón
+## Reglas
 
-```text
-.ai/              = fuente de verdad
-CLAUDE.md         = adaptador Claude
-CODEX.md          = adaptador Codex
-GEMINI.md         = adaptador Gemini
-.github/*         = adaptador GitHub Copilot
+- Documentar contratos, no snapshots completos.
+- Preferir adaptadores a forks acoplados.
+- Evitar duplicidad entre provider adapters.
+- Cualquier cambio público debe tener prompt, regla, test y doc.
+
+## Salida esperada
+
+```md
+## Decisión
+## Impacto
+## Archivos afectados
+## Validación
+## Riesgos
 ```
-
-## Reglas de sincronización
-
-Cuando se cambie una regla global:
-
-1. Actualizar `.ai/rules/global-rules.md`.
-2. Revisar adaptadores.
-3. Actualizar prompts si cambió el flujo.
-4. Actualizar docs si cambió arquitectura.

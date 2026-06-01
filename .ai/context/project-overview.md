@@ -1,17 +1,5 @@
-# Project Overview — `sisad-pdfme`
+# Project Overview
 
-`sisad-pdfme` es un fork aislado, genérico y configurable para edición, renderizado, formularios y visualización de documentos PDF.
+## Resumen
 
-## Foco de este workspace extendido
-
-- Colores únicos por usuario/destinatario.
-- Sincronización del color activo en iconos del catálogo.
-- Persistencia del color propietario de schemas existentes.
-- Transformaciones de schemas seleccionados: resize, rotate, drag, selección y toolbar.
-- Pruebas unitarias y Playwright para prevenir regresiones.
-
-## Evidencia del bundle analizado
-
-- Código unificado detectado: `504` archivos.
-- CSS unificado detectado: `6` archivos.
-- Markdown unificado detectado: `248` archivos.
+Runtime `sisad-pdfme` analizado desde 510 archivos de código, 323 Markdown y 6 CSS. El objetivo actual es estabilizar recipient colors, transform controls, snapshots, externalForms y arquitectura IA.

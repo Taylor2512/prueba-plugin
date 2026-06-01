@@ -1,1 +1,3 @@
-Codex workspace. Leer `CODEX.md` y `.ai/INDEX.md`. Ejecutar cambios pequeños y testeables.
+# Codex workspace
+
+Leer `CODEX.md` y `.ai/INDEX.md`. Cambios pequeños y testeables.

@@ -1,332 +1,367 @@
-# Manifest
+# Manifest — SISAD PDFME Agentic MD v3
 
-Generated: `2026-05-22T19:20:05Z`
+Generado: `2026-06-01T18:47:53Z`
 
-Total files: `326`
+Total Markdown: `359`
 
-- `.ai/INDEX.md`
-- `.ai/README.md`
-- `.ai/agents/canvas-overlays-architect.agent.md`
-- `.ai/agents/canvas-runtime-architect.agent.md`
-- `.ai/agents/canvas-transform-interaction-architect.agent.md`
-- `.ai/agents/collision-debugging-agent.agent.md`
-- `.ai/agents/command-bus-transform-architect.agent.md`
-- `.ai/agents/design-system-guardian.agent.md`
-- `.ai/agents/designer-engine-architect.agent.md`
-- `.ai/agents/docs-migration-steward.agent.md`
-- `.ai/agents/docs-recipient-transform-steward.agent.md`
-- `.ai/agents/event-contract-recipient-architect.agent.md`
-- `.ai/agents/floating-toolbar-transform-guardian.agent.md`
-- `.ai/agents/generator-converter-architect.agent.md`
-- `.ai/agents/keyboard-shortcut-collision-guardian.agent.md`
-- `.ai/agents/lab-route-fixture-architect.agent.md`
-- `.ai/agents/left-sidebar-catalog-architect.agent.md`
-- `.ai/agents/left-sidebar-recipient-catalog-architect.agent.md`
-- `.ai/agents/moveable-selecto-rotation-guardian.agent.md`
-- `.ai/agents/platform-pdf-architect.agent.md`
-- `.ai/agents/playwright-recipient-color-test-guardian.agent.md`
-- `.ai/agents/plugin-icon-rendering-specialist.agent.md`
-- `.ai/agents/prompt-execution-director.agent.md`
-- `.ai/agents/recipient-color-ownership-architect.agent.md`
-- `.ai/agents/right-sidebar-inspector-architect.agent.md`
-- `.ai/agents/right-sidebar-transform-inspector-architect.agent.md`
-- `.ai/agents/schema-icon-color-sync-agent.agent.md`
-- `.ai/agents/schema-ownership-persistence-guardian.agent.md`
-- `.ai/agents/schema-registry-architect.agent.md`
-- `.ai/agents/schema-rendering-architect.agent.md`
-- `.ai/agents/snapshot-recipient-color-architect.agent.md`
-- `.ai/agents/testing-regression-guardian.agent.md`
-- `.ai/agents/ui-token-color-consistency-guardian.agent.md`
-- `.ai/agents/unit-test-contract-guardian.agent.md`
-- `.ai/agents/visual-regression-css-guardian.agent.md`
-- `.ai/architecture/agent-routing.md`
-- `.ai/architecture/assistant-architecture.md`
-- `.ai/architecture/provider-model.md`
-- `.ai/context/code-map-recipient-transform.md`
-- `.ai/context/code-map.md`
-- `.ai/context/project-overview.md`
-- `.ai/context/provider-compatibility.md`
-- `.ai/context/recipient-transform-context.md`
-- `.ai/instructions/architecture-modular.instructions.md`
-- `.ai/instructions/canvas-first-ux.instructions.md`
-- `.ai/instructions/canvas-transform-safety.instructions.md`
-- `.ai/instructions/command-bus-transform.instructions.md`
-- `.ai/instructions/css-token-recipient-transform.instructions.md`
-- `.ai/instructions/css-unification.instructions.md`
-- `.ai/instructions/designer-runtime.instructions.md`
-- `.ai/instructions/docs-and-migration.instructions.md`
-- `.ai/instructions/docs-recipient-transform.instructions.md`
-- `.ai/instructions/event-contract-recipient-transform.instructions.md`
-- `.ai/instructions/frontend-editor.instructions.md`
-- `.ai/instructions/inspector-transform-panel.instructions.md`
-- `.ai/instructions/lab-fixtures-recipient-colors.instructions.md`
-- `.ai/instructions/pdfme-extension.instructions.md`
-- `.ai/instructions/playwright-data-attributes.instructions.md`
-- `.ai/instructions/recipient-color-system.instructions.md`
-- `.ai/instructions/schema-icon-color-sync.instructions.md`
-- `.ai/instructions/schema-system.instructions.md`
-- `.ai/instructions/snapshot-recipient-transform.instructions.md`
-- `.ai/instructions/testing-quality.instructions.md`
-- `.ai/instructions/testing-recipient-transform.instructions.md`
-- `.ai/instructions/ui-ux-compact.instructions.md`
-- `.ai/prompts/add-changelog-and-adr.prompt.md`
-- `.ai/prompts/add-new-schema-family.prompt.md`
-- `.ai/prompts/add-playwright-active-recipient-icon-color.prompt.md`
-- `.ai/prompts/add-playwright-transform-resize-rotate.prompt.md`
-- `.ai/prompts/add-recipient-color-playwright-tests.prompt.md`
-- `.ai/prompts/add-rotation-without-selection-collision.prompt.md`
-- `.ai/prompts/add-schema-owner-color-story-doc.prompt.md`
-- `.ai/prompts/add-transform-contract-to-designer-api.prompt.md`
-- `.ai/prompts/add-transform-panel-controls.prompt.md`
-- `.ai/prompts/add-unit-tests-recipient-color-contract.prompt.md`
-- `.ai/prompts/audit-platform-boundaries.prompt.md`
-- `.ai/prompts/audit-transform-collisions.prompt.md`
-- `.ai/prompts/build-detail-section-system.prompt.md`
-- `.ai/prompts/create-playwright-canvas-scenarios.prompt.md`
-- `.ai/prompts/create-test-fixtures-multi-recipient-colors.prompt.md`
-- `.ai/prompts/css-token-recipient-color-layer.prompt.md`
-- `.ai/prompts/document-fork-divergence.prompt.md`
-- `.ai/prompts/enforce-recipient-colors-and-icon-sync.prompt.md`
-- `.ai/prompts/fix-delete-group-shortcut-collisions.prompt.md`
-- `.ai/prompts/fix-results-from-tests-recipient-transform.prompt.md`
-- `.ai/prompts/generate-final-implementation-report.prompt.md`
-- `.ai/prompts/generate-migration-guide.prompt.md`
-- `.ai/prompts/harden-moveable-selecto-guards.prompt.md`
-- `.ai/prompts/implement-color-contrast-test.prompt.md`
-- `.ai/prompts/implement-overlay-pattern.prompt.md`
-- `.ai/prompts/implement-recipient-color-accessibility.prompt.md`
-- `.ai/prompts/implement-recipient-color-lab-route.prompt.md`
-- `.ai/prompts/implement-unique-recipient-palette.prompt.md`
-- `.ai/prompts/inspect-failed-test-results.prompt.md`
-- `.ai/prompts/normalize-schema-contracts.prompt.md`
-- `.ai/prompts/normalize-selection-transform-state-machine.prompt.md`
-- `.ai/prompts/optimize-canvas-runtime.prompt.md`
-- `.ai/prompts/preserve-owner-color-on-existing-schemas.prompt.md`
-- `.ai/prompts/propagate-active-recipient-color-catalog.prompt.md`
-- `.ai/prompts/protect-inline-edit-from-transform.prompt.md`
-- `.ai/prompts/recipient-transform-master-plan.prompt.md`
-- `.ai/prompts/refactor-designer-engine.prompt.md`
-- `.ai/prompts/refactor-left-rail-catalog.prompt.md`
-- `.ai/prompts/refactor-recipient-color-utils.prompt.md`
-- `.ai/prompts/refactor-right-inspector-layout.prompt.md`
-- `.ai/prompts/refactor-transform-geometry-utils.prompt.md`
-- `.ai/prompts/regression-basic-designer-color-transform.prompt.md`
-- `.ai/prompts/regression-global-user-view-color-filter.prompt.md`
-- `.ai/prompts/regression-multi-document-owner-color.prompt.md`
-- `.ai/prompts/review-css-for-transform-handle-breaks.prompt.md`
-- `.ai/prompts/snapshot-roundtrip-recipient-color.prompt.md`
-- `.ai/prompts/stabilize-public-api.prompt.md`
-- `.ai/prompts/stabilize-schema-resize-rotation.prompt.md`
-- `.ai/prompts/standardize-data-attributes-for-colors.prompt.md`
-- `.ai/prompts/unify-css-architecture.prompt.md`
-- `.ai/prompts/update-docs-recipient-transform.prompt.md`
-- `.ai/prompts/update-plugin-icon-contract.prompt.md`
-- `.ai/prompts/validate-ci-flow-recipient-transform.prompt.md`
-- `.ai/prompts/verify-schema-icon-color-data-attrs.prompt.md`
-- `.ai/rules/global-rules.md`
-- `.ai/skills/active-recipient-color-contract/SKILL.md`
-- `.ai/skills/canvas-geometry-scaling/SKILL.md`
-- `.ai/skills/canvas-transform-collision-guards/SKILL.md`
-- `.ai/skills/catalog-discovery-patterns/SKILL.md`
-- `.ai/skills/command-bus-transform-actions/SKILL.md`
-- `.ai/skills/component-composition/SKILL.md`
-- `.ai/skills/context-menu-transform-guard/SKILL.md`
-- `.ai/skills/css-layering-and-overrides/SKILL.md`
-- `.ai/skills/css-recipient-color-tokens/SKILL.md`
-- `.ai/skills/css-transform-handle-safety/SKILL.md`
-- `.ai/skills/design-system-consistency/SKILL.md`
-- `.ai/skills/documentation-traceability/SKILL.md`
-- `.ai/skills/docusign-inspired-product-thinking/SKILL.md`
-- `.ai/skills/docusign-wix-color-ux-patterns/SKILL.md`
-- `.ai/skills/editor-regression-testing/SKILL.md`
-- `.ai/skills/event-payload-schema-color/SKILL.md`
-- `.ai/skills/floating-toolbar-transform-position/SKILL.md`
-- `.ai/skills/fork-safe-pdfme-evolution/SKILL.md`
-- `.ai/skills/generator-runtime-parity/SKILL.md`
-- `.ai/skills/inline-edit-transform-guard/SKILL.md`
-- `.ai/skills/inspector-panel-composition/SKILL.md`
-- `.ai/skills/keyboard-shortcut-transform-safety/SKILL.md`
-- `.ai/skills/lab-fixture-recipient-colors/SKILL.md`
-- `.ai/skills/left-sidebar-catalog-color-behavior/SKILL.md`
-- `.ai/skills/moveable-selecto-integration/SKILL.md`
-- `.ai/skills/moveable-selecto-resize-rotate/SKILL.md`
-- `.ai/skills/playwright-canvas-diagnostics/SKILL.md`
-- `.ai/skills/playwright-recipient-color-regression/SKILL.md`
-- `.ai/skills/playwright-transform-regression/SKILL.md`
-- `.ai/skills/plugin-icon-fallback-rendering/SKILL.md`
-- `.ai/skills/public-api-recipient-transform/SKILL.md`
-- `.ai/skills/public-api-surface-design/SKILL.md`
-- `.ai/skills/recipient-color-accessibility/SKILL.md`
-- `.ai/skills/recipient-palette-testing/SKILL.md`
-- `.ai/skills/rotation-geometry-contract/SKILL.md`
-- `.ai/skills/schema-icon-color-sync/SKILL.md`
-- `.ai/skills/schema-identity-persistence/SKILL.md`
-- `.ai/skills/schema-owner-color-persistence/SKILL.md`
-- `.ai/skills/schema-registry-extension/SKILL.md`
-- `.ai/skills/schema-tone-resolution/SKILL.md`
-- `.ai/skills/schema-transform-inspector-fields/SKILL.md`
-- `.ai/skills/selecto-selection-lifecycle/SKILL.md`
-- `.ai/skills/snapshot-transform-roundtrip/SKILL.md`
-- `.ai/skills/test-results-forensics/SKILL.md`
-- `.ai/skills/transform-interaction-state-machine/SKILL.md`
-- `.ai/skills/unique-recipient-palette/SKILL.md`
-- `.ai/skills/unit-recipient-color-contracts/SKILL.md`
-- `.ai/skills/unit-transform-state-contracts/SKILL.md`
-- `.ai/skills/wix-inspired-left-rail-ux/SKILL.md`
-- `.ai/templates/architecture-decision-record.md`
-- `.ai/templates/change-report.md`
-- `.ai/templates/recipient-transform-change-report.md`
-- `.ai/templates/test-failure-analysis.md`
-- `.claude/README.md`
-- `.claude/commands/plan.md`
-- `.claude/commands/recipient-transform-plan.md`
-- `.claude/commands/recipient-transform-review.md`
-- `.claude/commands/review.md`
-- `.claude/commands/startup.md`
-- `.codex/README.md`
-- `.codex/tasks/recipient-transform-implementation.md`
-- `.codex/tasks/refactor-safe.md`
-- `.gemini/README.md`
-- `.gemini/prompts/audit-architecture.md`
-- `.gemini/prompts/audit-recipient-transform.md`
-- `.github/AGENTS.md`
-- `.github/copilot-instructions.md`
-- `.github/instructions/architecture-modular.instructions.md`
-- `.github/instructions/canvas-first-ux.instructions.md`
-- `.github/instructions/canvas-transform-safety.instructions.md`
-- `.github/instructions/command-bus-transform.instructions.md`
-- `.github/instructions/css-token-recipient-transform.instructions.md`
-- `.github/instructions/css-unification.instructions.md`
-- `.github/instructions/designer-runtime.instructions.md`
-- `.github/instructions/docs-and-migration.instructions.md`
-- `.github/instructions/docs-recipient-transform.instructions.md`
-- `.github/instructions/event-contract-recipient-transform.instructions.md`
-- `.github/instructions/frontend-editor.instructions.md`
-- `.github/instructions/inspector-transform-panel.instructions.md`
-- `.github/instructions/lab-fixtures-recipient-colors.instructions.md`
-- `.github/instructions/pdfme-extension.instructions.md`
-- `.github/instructions/playwright-data-attributes.instructions.md`
-- `.github/instructions/recipient-color-system.instructions.md`
-- `.github/instructions/schema-icon-color-sync.instructions.md`
-- `.github/instructions/schema-system.instructions.md`
-- `.github/instructions/snapshot-recipient-transform.instructions.md`
-- `.github/instructions/testing-quality.instructions.md`
-- `.github/instructions/testing-recipient-transform.instructions.md`
-- `.github/instructions/ui-ux-compact.instructions.md`
-- `.github/prompts/add-changelog-and-adr.prompt.md`
-- `.github/prompts/add-new-schema-family.prompt.md`
-- `.github/prompts/add-playwright-active-recipient-icon-color.prompt.md`
-- `.github/prompts/add-playwright-transform-resize-rotate.prompt.md`
-- `.github/prompts/add-recipient-color-playwright-tests.prompt.md`
-- `.github/prompts/add-rotation-without-selection-collision.prompt.md`
-- `.github/prompts/add-schema-owner-color-story-doc.prompt.md`
-- `.github/prompts/add-transform-contract-to-designer-api.prompt.md`
-- `.github/prompts/add-transform-panel-controls.prompt.md`
-- `.github/prompts/add-unit-tests-recipient-color-contract.prompt.md`
-- `.github/prompts/audit-platform-boundaries.prompt.md`
-- `.github/prompts/audit-transform-collisions.prompt.md`
-- `.github/prompts/build-detail-section-system.prompt.md`
-- `.github/prompts/create-playwright-canvas-scenarios.prompt.md`
-- `.github/prompts/create-test-fixtures-multi-recipient-colors.prompt.md`
-- `.github/prompts/css-token-recipient-color-layer.prompt.md`
-- `.github/prompts/document-fork-divergence.prompt.md`
-- `.github/prompts/enforce-recipient-colors-and-icon-sync.prompt.md`
-- `.github/prompts/fix-delete-group-shortcut-collisions.prompt.md`
-- `.github/prompts/fix-results-from-tests-recipient-transform.prompt.md`
-- `.github/prompts/generate-final-implementation-report.prompt.md`
-- `.github/prompts/generate-migration-guide.prompt.md`
-- `.github/prompts/harden-moveable-selecto-guards.prompt.md`
-- `.github/prompts/implement-color-contrast-test.prompt.md`
-- `.github/prompts/implement-overlay-pattern.prompt.md`
-- `.github/prompts/implement-recipient-color-accessibility.prompt.md`
-- `.github/prompts/implement-recipient-color-lab-route.prompt.md`
-- `.github/prompts/implement-unique-recipient-palette.prompt.md`
-- `.github/prompts/inspect-failed-test-results.prompt.md`
-- `.github/prompts/normalize-schema-contracts.prompt.md`
-- `.github/prompts/normalize-selection-transform-state-machine.prompt.md`
-- `.github/prompts/optimize-canvas-runtime.prompt.md`
-- `.github/prompts/preserve-owner-color-on-existing-schemas.prompt.md`
-- `.github/prompts/propagate-active-recipient-color-catalog.prompt.md`
-- `.github/prompts/protect-inline-edit-from-transform.prompt.md`
-- `.github/prompts/recipient-transform-master-plan.prompt.md`
-- `.github/prompts/refactor-designer-engine.prompt.md`
-- `.github/prompts/refactor-left-rail-catalog.prompt.md`
-- `.github/prompts/refactor-recipient-color-utils.prompt.md`
-- `.github/prompts/refactor-right-inspector-layout.prompt.md`
-- `.github/prompts/refactor-transform-geometry-utils.prompt.md`
-- `.github/prompts/regression-basic-designer-color-transform.prompt.md`
-- `.github/prompts/regression-global-user-view-color-filter.prompt.md`
-- `.github/prompts/regression-multi-document-owner-color.prompt.md`
-- `.github/prompts/review-css-for-transform-handle-breaks.prompt.md`
-- `.github/prompts/snapshot-roundtrip-recipient-color.prompt.md`
-- `.github/prompts/stabilize-public-api.prompt.md`
-- `.github/prompts/stabilize-schema-resize-rotation.prompt.md`
-- `.github/prompts/standardize-data-attributes-for-colors.prompt.md`
-- `.github/prompts/unify-css-architecture.prompt.md`
-- `.github/prompts/update-docs-recipient-transform.prompt.md`
-- `.github/prompts/update-plugin-icon-contract.prompt.md`
-- `.github/prompts/validate-ci-flow-recipient-transform.prompt.md`
-- `.github/prompts/verify-schema-icon-color-data-attrs.prompt.md`
-- `AGENTS.md`
-- `CLAUDE.md`
-- `CODEX.md`
-- `GEMINI.md`
-- `MANIFEST.md`
-- `README.md`
-- `docs/00-indice/README.md`
-- `docs/01-arquitectura/01-vision-general.md`
-- `docs/01-arquitectura/02-mapa-modulos.md`
-- `docs/01-arquitectura/03-arquitectura-ia.md`
-- `docs/01-arquitectura/04-recipient-transform-architecture.md`
-- `docs/01-arquitectura/05-color-state-ownership-model.md`
-- `docs/02-api-publica/01-entrypoints.md`
-- `docs/02-api-publica/02-commands-events.md`
-- `docs/02-api-publica/03-recipient-color-api.md`
-- `docs/02-api-publica/04-transform-command-api.md`
-- `docs/03-runtime/01-designer-form-viewer.md`
-- `docs/03-runtime/02-snapshot-engine.md`
-- `docs/03-runtime/03-recipient-runtime-state.md`
-- `docs/03-runtime/04-transform-runtime-state.md`
-- `docs/04-componentes/01-inventario-componentes.md`
-- `docs/04-componentes/02-sidebars-configurables.md`
-- `docs/04-componentes/03-canvas-overlays.md`
-- `docs/04-componentes/04-schema-transform-controls.md`
-- `docs/04-componentes/05-plugin-icon-color-contract.md`
-- `docs/04-componentes/06-left-sidebar-color-catalog.md`
-- `docs/04-componentes/07-right-sidebar-transform-inspector.md`
-- `docs/04-componentes/08-floating-toolbar-transform.md`
-- `docs/05-schemas/01-registry-y-plugins.md`
-- `docs/05-schemas/02-schemas-built-in.md`
-- `docs/05-schemas/03-schema-owner-color.md`
-- `docs/05-schemas/04-schema-rotation-metadata.md`
-- `docs/06-funcionalidades/01-habilidades-configurables.md`
-- `docs/06-funcionalidades/02-multidocumento.md`
-- `docs/06-funcionalidades/03-colaboracion-y-ownership.md`
-- `docs/06-funcionalidades/04-recipient-color-behavior.md`
-- `docs/06-funcionalidades/05-schema-owner-color-persistence.md`
-- `docs/06-funcionalidades/06-transform-interaction-guards.md`
-- `docs/06-funcionalidades/07-accessibility-color-patterns.md`
-- `docs/07-calidad/01-testing.md`
-- `docs/07-calidad/02-css-design-system.md`
-- `docs/07-calidad/03-troubleshooting-render.md`
-- `docs/07-calidad/04-recipient-color-and-transform-testing.md`
-- `docs/07-calidad/05-playwright-recipient-transform-matrix.md`
-- `docs/07-calidad/06-unit-contract-test-matrix.md`
-- `docs/07-calidad/07-test-results-forensics.md`
-- `docs/07-calidad/08-css-regression-checklist.md`
-- `docs/08-guias-ia/01-arquitectura-asistente.md`
-- `docs/08-guias-ia/02-prompts-y-skills.md`
-- `docs/08-guias-ia/03-ejecucion-recipient-transform.md`
-- `docs/08-guias-ia/04-prompts-recipient-transform.md`
-- `docs/99-anexos/01-checklist-adopcion.md`
-- `docs/99-anexos/02-matriz-agentes-skills.md`
-- `docs/99-anexos/03-matriz-recipient-transform.md`
-- `docs/99-anexos/04-checklist-release-recipient-transform.md`
-- `docs/99-anexos/05-adr-recipient-color-contract.md`
-- `docs/99-anexos/06-adr-transform-state-machine.md`
-- `docs/99-anexos/07-archivo-lectura-rapida.md`
-- `docs/README.md`
-- `metadata/project-analysis.json`
-- `metadata/recipient-transform-analysis.json`
-- `package-scripts-sugeridos.md`
-- `scripts/ai/check-recipient-transform-workspace.js`
+| Archivo | Líneas | SHA-256 corto |
+|---|---:|---|
+| `.ai/INDEX.md` | 41 | `b950e39fbbf1a8cb` |
+| `.ai/README.md` | 15 | `493de1dd63d2e964` |
+| `.ai/agent-loop.md` | 37 | `6d76734d9e514138` |
+| `.ai/agents/canvas-runtime-agent.md` | 31 | `587a9cfe2ac0c356` |
+| `.ai/agents/collaboration-lock-agent.md` | 31 | `e26723ab6a7fd023` |
+| `.ai/agents/command-bus-agent.md` | 31 | `ea3a358fa0048822` |
+| `.ai/agents/content-custom-form-agent.md` | 31 | `d8bb6ac160e82091` |
+| `.ai/agents/css-agent.md` | 31 | `f4bd747065c43d1c` |
+| `.ai/agents/debugging-agent.md` | 31 | `05158fd78ca0b3d1` |
+| `.ai/agents/designer-engine-agent.md` | 31 | `63688569dd5d6fa3` |
+| `.ai/agents/docs-governance-agent.md` | 31 | `9ae5f21b9e438401` |
+| `.ai/agents/external-forms-agent.md` | 31 | `547baf000b950a3b` |
+| `.ai/agents/frontend-architect-agent.md` | 31 | `09c5d83805f39517` |
+| `.ai/agents/generator-converter-agent.md` | 31 | `0c6d16933a6777aa` |
+| `.ai/agents/left-sidebar-catalog-agent.md` | 31 | `4e4287a2e4ae3ec3` |
+| `.ai/agents/legacy-cleanup-agent.md` | 31 | `b0b51df6bd142547` |
+| `.ai/agents/moveable-selecto-agent.md` | 31 | `2291a601ed8718a3` |
+| `.ai/agents/provider-sync-agent.md` | 31 | `cc8412cdd1c82f4f` |
+| `.ai/agents/quality-agent.md` | 31 | `c8a9b7b6050ed993` |
+| `.ai/agents/recipient-color-agent.md` | 31 | `ee917cc6f9dd7f48` |
+| `.ai/agents/registry.md` | 33 | `7e3313b122905aa2` |
+| `.ai/agents/release-agent.md` | 31 | `a013d94fbb89d622` |
+| `.ai/agents/right-sidebar-inspector-agent.md` | 31 | `2fad1bc7ea422521` |
+| `.ai/agents/root-orchestrator-agent.md` | 31 | `40ab64eade3a7184` |
+| `.ai/agents/schema-icon-sync-agent.md` | 31 | `18139c161f69f56f` |
+| `.ai/agents/schema-registry-agent.md` | 31 | `32495dc1ae923882` |
+| `.ai/agents/security-agent.md` | 31 | `d00863f86a370cd4` |
+| `.ai/agents/sisad-pdfme-runtime-agent.md` | 31 | `304e5030881bc0b8` |
+| `.ai/agents/snapshot-agent.md` | 31 | `5e6504f75112b0c8` |
+| `.ai/agents/testing-regression-agent.md` | 31 | `e1b311f5cb81394e` |
+| `.ai/agents/token-economy-agent.md` | 31 | `e8f056eae485b59f` |
+| `.ai/agents/ui-ux-agent.md` | 31 | `777616a264fd2ab3` |
+| `.ai/architecture/agent-routing.md` | 23 | `8224108ecd77efe5` |
+| `.ai/architecture/assistant-architecture.md` | 23 | `f6157527edc778e0` |
+| `.ai/architecture/context-loading-ladder.md` | 23 | `832e1bdf9b4c318d` |
+| `.ai/architecture/fork-safe-evolution.md` | 23 | `d9d58ce60937c32a` |
+| `.ai/architecture/module-boundaries.md` | 23 | `965aab3e3d3039d0` |
+| `.ai/architecture/provider-model.md` | 23 | `7fd2d794afef4cfe` |
+| `.ai/architecture/quality-gate-model.md` | 23 | `3f2411604ff7d005` |
+| `.ai/architecture/runtime-ownership.md` | 23 | `64947ebabf85f27f` |
+| `.ai/checklists/before-change.md` | 7 | `a01eefdc6c471b90` |
+| `.ai/checklists/before-merge.md` | 7 | `399e5b9b449d8bc7` |
+| `.ai/checklists/css-boundaries.md` | 6 | `e15bfc0272a7cbbc` |
+| `.ai/checklists/external-forms.md` | 7 | `d606f5031bd4c07d` |
+| `.ai/checklists/provider-sync.md` | 6 | `bda3bb85fd856bbf` |
+| `.ai/checklists/quality-gates.md` | 7 | `92ae6a0b7b670ca6` |
+| `.ai/checklists/recipient-color.md` | 7 | `4e378796b9602b89` |
+| `.ai/checklists/release.md` | 7 | `678530d87aee6479` |
+| `.ai/checklists/schema-transform.md` | 8 | `590a185ae06719d6` |
+| `.ai/checklists/snapshot-roundtrip.md` | 9 | `a880f2e02c510edd` |
+| `.ai/context/canvas-coordinates-context.md` | 6 | `77b82a6938e44d26` |
+| `.ai/context/code-map.md` | 13 | `c373121cb2d84a13` |
+| `.ai/context/collaboration-locks-context.md` | 6 | `74665df8c09a8319` |
+| `.ai/context/command-bus-context.md` | 6 | `7618fe8f24c54106` |
+| `.ai/context/content-custom-form-integration-context.md` | 6 | `2298c2134d901a04` |
+| `.ai/context/css-design-system-context.md` | 6 | `2ecd37022b933d1d` |
+| `.ai/context/css-map.md` | 13 | `2a18fe0a24227838` |
+| `.ai/context/designer-engine-context.md` | 6 | `2e76fe8ba8e2e831` |
+| `.ai/context/docs-map.md` | 6 | `191c6ede5fb6bf31` |
+| `.ai/context/external-forms-runner-context.md` | 6 | `740d002f291045b2` |
+| `.ai/context/generator-converter-context.md` | 6 | `691b8d9aae0baa1f` |
+| `.ai/context/integration-host-boundaries-context.md` | 6 | `287bce12fde2837e` |
+| `.ai/context/legacy-cleanup-context.md` | 6 | `8aeca29cb5ff97d8` |
+| `.ai/context/module-map.md` | 15 | `1d788694f8f62b6a` |
+| `.ai/context/moveable-selecto-context.md` | 6 | `4db169325775a3f3` |
+| `.ai/context/project-overview.md` | 6 | `2b0ac44fb52588b1` |
+| `.ai/context/provider-compatibility-context.md` | 6 | `db6dc9c3ef7a6bda` |
+| `.ai/context/recipient-color-context.md` | 6 | `d2a19089b35144d1` |
+| `.ai/context/schema-icon-sync-context.md` | 6 | `ccf5b1b714355ea5` |
+| `.ai/context/schema-owner-persistence-context.md` | 6 | `ee5b0c867071e3d8` |
+| `.ai/context/schema-registry-context.md` | 6 | `63d15f4c82d92afa` |
+| `.ai/context/security-privacy-context.md` | 6 | `9f16d56d81ef7707` |
+| `.ai/context/selection-shortcuts-context.md` | 6 | `274ff5d16c25f912` |
+| `.ai/context/sidebars-inspector-context.md` | 6 | `9f43bc920a763746` |
+| `.ai/context/sisad-pdfme-runtime-context.md` | 6 | `747259138b9deca1` |
+| `.ai/context/snapshot-contract-context.md` | 6 | `d914e24f58f229be` |
+| `.ai/context/tests-quality-context.md` | 6 | `2e0ce561956e7425` |
+| `.ai/context/transform-controls-context.md` | 6 | `07124c41637a6dc2` |
+| `.ai/context/ui-ux-compact-context.md` | 6 | `0995e633c6c532d9` |
+| `.ai/context-map.md` | 27 | `246057668678e987` |
+| `.ai/memory/decisions.md` | 18 | `1d6db9c46e34df6c` |
+| `.ai/memory/incidents.md` | 26 | `defb197580bd6f53` |
+| `.ai/memory/project-memory.md` | 21 | `20172d452e5e0862` |
+| `.ai/memory/session-handoff.md` | 21 | `f74a6ccc78121d86` |
+| `.ai/memory/update-protocol.md` | 17 | `2b033e1926c2f258` |
+| `.ai/prompts/INDEX.md` | 34 | `451ed1fd1154afa7` |
+| `.ai/prompts/audit-css-boundaries.prompt.md` | 59 | `ba0354fa260b5900` |
+| `.ai/prompts/audit-legacy-runtime-reduction.prompt.md` | 57 | `4ed2018175cf0b9e` |
+| `.ai/prompts/audit-platform-boundaries.prompt.md` | 58 | `a3c9aae37017a438` |
+| `.ai/prompts/build-regression-test-matrix.prompt.md` | 58 | `f22b3b93bde7e75b` |
+| `.ai/prompts/create-playwright-canvas-scenarios.prompt.md` | 57 | `e51a47fdc4e6fded` |
+| `.ai/prompts/create-test-fixtures-multi-recipient-colors.prompt.md` | 58 | `b0ab9222d06e691e` |
+| `.ai/prompts/fix-keyboard-shortcut-collisions.prompt.md` | 58 | `e13fa24c15245937` |
+| `.ai/prompts/generate-final-implementation-report.prompt.md` | 57 | `d449df5cf5226626` |
+| `.ai/prompts/harden-moveable-selecto-guards.prompt.md` | 59 | `466b407c578fde81` |
+| `.ai/prompts/implement-unique-recipient-palette.prompt.md` | 58 | `ad44af46fca46af3` |
+| `.ai/prompts/inspect-failed-test-results.prompt.md` | 58 | `8350680a17318389` |
+| `.ai/prompts/normalize-selection-transform-state-machine.prompt.md` | 58 | `831bc23ad2c08885` |
+| `.ai/prompts/preserve-owner-color-on-existing-schemas.prompt.md` | 59 | `f15616def95da51e` |
+| `.ai/prompts/protect-inline-edit-from-transform.prompt.md` | 58 | `65315ca2c7ede639` |
+| `.ai/prompts/recipient-transform-master-plan.prompt.md` | 62 | `9c23aec04ffe23b2` |
+| `.ai/prompts/refactor-left-rail-catalog.prompt.md` | 58 | `9885acce27a801dc` |
+| `.ai/prompts/refactor-right-inspector-layout.prompt.md` | 58 | `f2c8c4c771eec161` |
+| `.ai/prompts/refactor-transform-geometry-utils.prompt.md` | 58 | `c5c3c7cc7d978392` |
+| `.ai/prompts/repair-contentcustomform-integration.prompt.md` | 46 | `2b5e392fd78715d6` |
+| `.ai/prompts/repair-external-forms-runner.prompt.md` | 59 | `6bd7ec9709f0363c` |
+| `.ai/prompts/repair-floating-toolbar-position.prompt.md` | 58 | `4309f34dd57130cb` |
+| `.ai/prompts/repair-recipient-color-sync.prompt.md` | 60 | `64ea9b4dfd972496` |
+| `.ai/prompts/repair-schema-icon-color-sync.prompt.md` | 59 | `b578254e20864ba9` |
+| `.ai/prompts/repair-sidebars-inspector.prompt.md` | 47 | `e8cb91fbf9ed3fe4` |
+| `.ai/prompts/repair-snapshot-roundtrip.prompt.md` | 59 | `fa5ddc812d29d141` |
+| `.ai/prompts/repair-transform-collisions.prompt.md` | 59 | `2196fd53e8780978` |
+| `.ai/prompts/review-css-for-transform-handle-breaks.prompt.md` | 57 | `bfc9d469bc731091` |
+| `.ai/prompts/stabilize-designer-engine-api.prompt.md` | 58 | `cdee78aaf4f09445` |
+| `.ai/prompts/stabilize-schema-resize-rotation.prompt.md` | 58 | `e926fee0479dbb3a` |
+| `.ai/prompts/standardize-data-attributes-for-colors.prompt.md` | 58 | `22c1b7563a54def7` |
+| `.ai/prompts/unify-css-architecture.prompt.md` | 58 | `7cfeaa321e2f2060` |
+| `.ai/prompts/update-docs-recipient-transform.prompt.md` | 58 | `20156b5e65386f6a` |
+| `.ai/prompts/validate-ci-flow-recipient-transform.prompt.md` | 59 | `355d72abf09521e7` |
+| `.ai/providers/claude-adapter.md` | 6 | `33ce1929a9a2e355` |
+| `.ai/providers/codex-adapter.md` | 6 | `92f76417b24e5047` |
+| `.ai/providers/gemini-adapter.md` | 6 | `c38ba3c6da7cd2e8` |
+| `.ai/providers/generic-provider-adapter.md` | 6 | `85487697f4407d5e` |
+| `.ai/providers/github-copilot-adapter.md` | 6 | `cc3dcb868482a2c0` |
+| `.ai/providers/provider-contract.md` | 6 | `f3786e697052a922` |
+| `.ai/rules/collaboration-lock-rules.md` | 15 | `d974603b8626e0f3` |
+| `.ai/rules/command-bus-rules.md` | 14 | `d10532312ec97501` |
+| `.ai/rules/context-loading-ladder-rules.md` | 15 | `200655fc87d8f52a` |
+| `.ai/rules/css-boundary-rules.md` | 15 | `a5d36dc0e1ba9569` |
+| `.ai/rules/docs-governance-rules.md` | 15 | `3023a116e52eceaf` |
+| `.ai/rules/external-forms-runner-rules.md` | 15 | `83c0518fd0d27820` |
+| `.ai/rules/generator-converter-rules.md` | 15 | `6bfdd8330b73ba4a` |
+| `.ai/rules/global-rules.md` | 16 | `911e389086b6af67` |
+| `.ai/rules/host-runtime-boundary-rules.md` | 15 | `33b1aed2e71c22f7` |
+| `.ai/rules/legacy-reduction-rules.md` | 15 | `b02cdea7c07bd285` |
+| `.ai/rules/moveable-selecto-rules.md` | 15 | `d0f1cac39f2c63f7` |
+| `.ai/rules/provider-adapter-rules.md` | 14 | `6f6abf789c59ec30` |
+| `.ai/rules/public-api-rules.md` | 15 | `5a4be394ecfd4cca` |
+| `.ai/rules/schema-icon-color-rules.md` | 15 | `c4cf6c73d37f4b16` |
+| `.ai/rules/schema-ownership-rules.md` | 15 | `53683f21d050c1dd` |
+| `.ai/rules/security-privacy-rules.md` | 15 | `673d9e2cc98bcbf8` |
+| `.ai/rules/sidebars-inspector-rules.md` | 15 | `cdc1899427ee8265` |
+| `.ai/rules/snapshot-contract-rules.md` | 15 | `5cb40986989b0a1a` |
+| `.ai/rules/testing-quality-rules.md` | 15 | `9890e8b15c44f26c` |
+| `.ai/rules/token-budget-rules.md` | 15 | `be80c3acec2bfd19` |
+| `.ai/rules/transform-interaction-rules.md` | 15 | `21d0853849213f38` |
+| `.ai/skills/active-recipient-color-contract/SKILL.md` | 31 | `572108c7d259df80` |
+| `.ai/skills/canvas-geometry-scaling/SKILL.md` | 31 | `0fd2aae4a4990bbe` |
+| `.ai/skills/command-bus-transform-actions/SKILL.md` | 31 | `3fbbb9caef07d8e1` |
+| `.ai/skills/component-composition/SKILL.md` | 31 | `902bf77808b010fd` |
+| `.ai/skills/context-budget/SKILL.md` | 31 | `1bf577bc79f1ac6a` |
+| `.ai/skills/context-menu-transform-guard/SKILL.md` | 31 | `5621b57398beeb2d` |
+| `.ai/skills/css-layering-and-overrides/SKILL.md` | 31 | `2aa14e4229287b18` |
+| `.ai/skills/css-recipient-color-tokens/SKILL.md` | 31 | `dd0eb445fd4794b8` |
+| `.ai/skills/css-transform-handle-safety/SKILL.md` | 31 | `b3d604845a8b5e36` |
+| `.ai/skills/custom-schema-contracts/SKILL.md` | 31 | `82dc045047bab83f` |
+| `.ai/skills/documentation-traceability/SKILL.md` | 31 | `99ecb99ecacc7097` |
+| `.ai/skills/external-forms-runtime/SKILL.md` | 31 | `2d154091ca3b730d` |
+| `.ai/skills/floating-toolbar-transform-position/SKILL.md` | 31 | `3f4d313ff846efc7` |
+| `.ai/skills/fork-safe-pdfme-evolution/SKILL.md` | 31 | `3279f6c63b2911cf` |
+| `.ai/skills/form-viewer-generator-parity/SKILL.md` | 31 | `b6e2fe39a38896bf` |
+| `.ai/skills/inline-edit-transform-guard/SKILL.md` | 31 | `af63296503ad0dda` |
+| `.ai/skills/keyboard-shortcut-transform-safety/SKILL.md` | 31 | `bc0361dcf99e49a9` |
+| `.ai/skills/legacy-runtime-reduction/SKILL.md` | 31 | `25c1f1df8f1bd291` |
+| `.ai/skills/moveable-selecto-integration/SKILL.md` | 31 | `b155c763e3efcf37` |
+| `.ai/skills/moveable-selecto-resize-rotate/SKILL.md` | 31 | `7158dbbca443b3c0` |
+| `.ai/skills/playwright-canvas-diagnostics/SKILL.md` | 31 | `d6bca019cd03e3ab` |
+| `.ai/skills/playwright-recipient-color-regression/SKILL.md` | 31 | `4dab7af3f995bd07` |
+| `.ai/skills/playwright-transform-regression/SKILL.md` | 31 | `4cccf5f986499260` |
+| `.ai/skills/public-api-surface-design/SKILL.md` | 31 | `22a2d02434d4c59a` |
+| `.ai/skills/quality-gates/SKILL.md` | 31 | `f9e29456675bc862` |
+| `.ai/skills/schema-icon-color-sync/SKILL.md` | 31 | `8bbcf63acfd6046c` |
+| `.ai/skills/schema-owner-color-persistence/SKILL.md` | 31 | `61d5f53783587654` |
+| `.ai/skills/schema-registry-extension/SKILL.md` | 31 | `23ba245312d44be9` |
+| `.ai/skills/schema-tone-resolution/SKILL.md` | 31 | `c32ff7e91f9b2790` |
+| `.ai/skills/snapshot-transform-roundtrip/SKILL.md` | 31 | `810a0960b8fea3f5` |
+| `.ai/skills/test-results-forensics/SKILL.md` | 31 | `291cd9da4aac4c88` |
+| `.ai/skills/transform-interaction-state-machine/SKILL.md` | 31 | `f7f58f85e7d2d7b0` |
+| `.ai/skills/unique-recipient-palette/SKILL.md` | 31 | `48b1e93c631c6831` |
+| `.ai/skills/unit-recipient-color-contracts/SKILL.md` | 31 | `b677d3ca6766cbdc` |
+| `.ai/skills/unit-transform-state-contracts/SKILL.md` | 31 | `9c12660041db30ea` |
+| `.ai/subagents/active-recipient-color-subagent.md` | 18 | `ebafbac25e780fec` |
+| `.ai/subagents/assignments-filtering-subagent.md` | 18 | `7fb0c1c75a991410` |
+| `.ai/subagents/canvas-coordinate-subagent.md` | 18 | `fad7ff6159fa6f39` |
+| `.ai/subagents/collaboration-locks-subagent.md` | 18 | `5a1b40f9dd80832e` |
+| `.ai/subagents/command-bus-transform-subagent.md` | 18 | `02abdaa63029d9b5` |
+| `.ai/subagents/comments-overlay-subagent.md` | 18 | `21a856ce991c13bf` |
+| `.ai/subagents/context-menu-guard-subagent.md` | 18 | `c74db7aedfd43631` |
+| `.ai/subagents/converter-browser-node-subagent.md` | 18 | `37ee09deb2748a95` |
+| `.ai/subagents/css-token-subagent.md` | 18 | `975abc20566f89af` |
+| `.ai/subagents/css-transform-handle-subagent.md` | 18 | `002c84b7188bec23` |
+| `.ai/subagents/custom-plugin-contract-subagent.md` | 18 | `cd43b9646fcb92b6` |
+| `.ai/subagents/detail-widgets-subagent.md` | 18 | `1652e5f33204a159` |
+| `.ai/subagents/docs-migration-subagent.md` | 18 | `2049f1edd538c84a` |
+| `.ai/subagents/external-form-runner-subagent.md` | 18 | `ad425316663a9d34` |
+| `.ai/subagents/floating-toolbar-position-subagent.md` | 18 | `290bc1ab26ba22cc` |
+| `.ai/subagents/form-viewer-parity-subagent.md` | 18 | `a5c50d04e44f2e4a` |
+| `.ai/subagents/generator-helper-subagent.md` | 18 | `10e4a7e5ccf41a97` |
+| `.ai/subagents/inline-edit-guard-subagent.md` | 18 | `1fae9202d76dd746` |
+| `.ai/subagents/keyboard-shortcut-guard-subagent.md` | 18 | `e55f0fd2bbff292b` |
+| `.ai/subagents/left-sidebar-catalog-color-subagent.md` | 18 | `903e5a7e70af720e` |
+| `.ai/subagents/legacy-wrapper-subagent.md` | 18 | `634f6610d71a37ab` |
+| `.ai/subagents/moveable-resize-subagent.md` | 18 | `411011a10e0a9314` |
+| `.ai/subagents/moveable-rotation-subagent.md` | 18 | `8e39cd157cf6f52c` |
+| `.ai/subagents/overlay-manager-subagent.md` | 18 | `baaa0c331f7f52da` |
+| `.ai/subagents/owner-color-persistence-subagent.md` | 18 | `ce0c545314523237` |
+| `.ai/subagents/paper-scale-layer-subagent.md` | 18 | `24e3bba5ea740da0` |
+| `.ai/subagents/playwright-canvas-subagent.md` | 18 | `165f2de3d47cf55a` |
+| `.ai/subagents/playwright-recipient-color-subagent.md` | 18 | `fd89eefc63516986` |
+| `.ai/subagents/plugin-icon-fallback-subagent.md` | 18 | `7e526c896b08a7c8` |
+| `.ai/subagents/prompt-catalog-subagent.md` | 18 | `b1257845c7131793` |
+| `.ai/subagents/provider-drift-subagent.md` | 18 | `25ae04d290492124` |
+| `.ai/subagents/public-api-surface-subagent.md` | 18 | `171ca08d26bd0a50` |
+| `.ai/subagents/right-inspector-transform-subagent.md` | 18 | `fe70ca11999a4837` |
+| `.ai/subagents/schema-registry-extension-subagent.md` | 18 | `2c3373940e10bc41` |
+| `.ai/subagents/schema-tone-resolution-subagent.md` | 18 | `8f83aa654c8a79f0` |
+| `.ai/subagents/selecto-lifecycle-subagent.md` | 18 | `214af79163ff1cd6` |
+| `.ai/subagents/snapshot-legacy-compat-subagent.md` | 18 | `815ac84872d9119d` |
+| `.ai/subagents/snapshot-roundtrip-subagent.md` | 18 | `3ed06a86c870738f` |
+| `.ai/subagents/token-budget-subagent.md` | 18 | `635c3510fa5f7e08` |
+| `.ai/subagents/unique-palette-subagent.md` | 18 | `58590a10a408ff51` |
+| `.ai/subagents/visual-regression-css-subagent.md` | 18 | `ad8c86f500b0cfc0` |
+| `.ai/subagents/vitest-contract-subagent.md` | 18 | `d192ed983b9b1f13` |
+| `.ai/templates/agent-report.md` | 9 | `f726d05bcde133bb` |
+| `.ai/templates/architecture-decision-record.md` | 8 | `a1091564bf0670e0` |
+| `.ai/templates/bug-ticket.md` | 8 | `38a455384c762ed6` |
+| `.ai/templates/handoff.md` | 8 | `4d8ffe414c3b8476` |
+| `.ai/templates/qa-report.md` | 8 | `10e28cb66346c8eb` |
+| `.ai/templates/refactor-report.md` | 8 | `644635d9f6a0312a` |
+| `.ai/templates/test-failure-analysis.md` | 8 | `3ceb0cb0e72357fb` |
+| `.claude/README.md` | 4 | `b002b075b2713058` |
+| `.claude/commands/audit-css-boundaries.md` | 4 | `2bbb84a1ce83fed0` |
+| `.claude/commands/local-selective-scan.md` | 4 | `cfbbce967e26fbe3` |
+| `.claude/commands/repair-recipient-color.md` | 4 | `922dbf68062e51a6` |
+| `.claude/commands/repair-snapshot-roundtrip.md` | 4 | `e24d21ade9bbcb03` |
+| `.claude/commands/repair-transform-collisions.md` | 4 | `e861cc58a793a9cd` |
+| `.claude/commands/startup.md` | 4 | `708ba6b6039209be` |
+| `.claude/commands/update-memory.md` | 4 | `5fe9697acee85f72` |
+| `.codex/README.md` | 4 | `795556862ce9a68c` |
+| `.codex/tasks/atomic-fix.md` | 4 | `f5bc2271dfe3a1f8` |
+| `.codex/tasks/legacy-cleanup-step.md` | 4 | `2ef5a3128c2705ab` |
+| `.codex/tasks/quality-gates.md` | 4 | `abbd0d55a28dda5b` |
+| `.codex/tasks/recipient-transform-implementation.md` | 4 | `57ddd1e051aa048d` |
+| `.codex/tasks/refactor-safe.md` | 4 | `3a88ed437137c54c` |
+| `.gemini/README.md` | 4 | `a488a53bcd6341d6` |
+| `.gemini/prompts/audit-architecture.md` | 4 | `5bf9ca88b0677ab4` |
+| `.gemini/prompts/audit-docs-vs-code.md` | 4 | `8576f911e9a92f39` |
+| `.gemini/prompts/audit-recipient-transform.md` | 4 | `e3502e883474a005` |
+| `.gemini/prompts/audit-token-budget.md` | 4 | `dc67b44a06154514` |
+| `.github/copilot-instructions.md` | 18 | `60a0d8f616ddfb94` |
+| `.github/instructions/architecture-boundaries.instructions.md` | 4 | `d368bde61ede056e` |
+| `.github/instructions/canvas-transform-safety.instructions.md` | 4 | `be7b93028756e647` |
+| `.github/instructions/css-boundaries.instructions.md` | 4 | `165be064bfee46e7` |
+| `.github/instructions/external-forms-runner.instructions.md` | 4 | `d49d14b26c6f2336` |
+| `.github/instructions/recipient-color-system.instructions.md` | 4 | `53e1391ea187eca9` |
+| `.github/instructions/snapshot-contract.instructions.md` | 4 | `bfeb8f63770fd0da` |
+| `.github/instructions/testing-quality.instructions.md` | 4 | `9bfcad559120dc70` |
+| `.github/prompts/audit-css-boundaries.prompt.md` | 6 | `964d93f3dbb3f30b` |
+| `.github/prompts/audit-legacy-runtime-reduction.prompt.md` | 6 | `cbbb73ba4bc03055` |
+| `.github/prompts/build-regression-test-matrix.prompt.md` | 6 | `4f0de8bcd26e96f5` |
+| `.github/prompts/fix-keyboard-shortcut-collisions.prompt.md` | 6 | `e23fc0ace76c4fca` |
+| `.github/prompts/harden-moveable-selecto-guards.prompt.md` | 6 | `5ea40d3e1d6c3011` |
+| `.github/prompts/implement-unique-recipient-palette.prompt.md` | 6 | `15ec8b7b93b21908` |
+| `.github/prompts/inspect-failed-test-results.prompt.md` | 6 | `e57be533a5357a1f` |
+| `.github/prompts/preserve-owner-color-on-existing-schemas.prompt.md` | 6 | `57d34502180757f4` |
+| `.github/prompts/protect-inline-edit-from-transform.prompt.md` | 6 | `0de58c6ed509e92f` |
+| `.github/prompts/recipient-transform-master-plan.prompt.md` | 6 | `f34ba2ca543ee259` |
+| `.github/prompts/repair-external-forms-runner.prompt.md` | 6 | `b78114c3d772d3d0` |
+| `.github/prompts/repair-floating-toolbar-position.prompt.md` | 6 | `29668cd39a80a182` |
+| `.github/prompts/repair-recipient-color-sync.prompt.md` | 6 | `d4c7027d46777add` |
+| `.github/prompts/repair-schema-icon-color-sync.prompt.md` | 6 | `b03fd4d2dbbb62cf` |
+| `.github/prompts/repair-snapshot-roundtrip.prompt.md` | 6 | `38c3aff2d8215576` |
+| `.github/prompts/repair-transform-collisions.prompt.md` | 6 | `e312251d44116b27` |
+| `.github/prompts/stabilize-designer-engine-api.prompt.md` | 6 | `fd47545cac364e2e` |
+| `.github/prompts/stabilize-schema-resize-rotation.prompt.md` | 6 | `99a72ac1acc7dc7f` |
+| `.github/prompts/unify-css-architecture.prompt.md` | 6 | `7db41972d7b86c04` |
+| `.github/prompts/update-docs-recipient-transform.prompt.md` | 6 | `e873306d5f266ced` |
+| `AGENTS.md` | 44 | `e07b0ba0295d86a5` |
+| `CLAUDE.md` | 32 | `2c9190513312b7b4` |
+| `CODEX.md` | 32 | `567d5f0f6ac24992` |
+| `COPILOT.md` | 21 | `c4ef94a9c8fc8beb` |
+| `CURRENT_STATE.md` | 24 | `d7fcdec47322765f` |
+| `GEMINI.md` | 17 | `0846309abf0de487` |
+| `GUARDRAILS.md` | 12 | `5563c45ceb167264` |
+| `INSTALL_MAC.md` | 22 | `5506473d4683ab1e` |
+| `MANIFEST.md` | 365 | `7722dbcd56a95444` |
+| `MIGRATION_GUIDE.md` | 22 | `2597800e65531811` |
+| `PACKAGE_SUMMARY.md` | 12 | `84c4a13601b6936d` |
+| `README.md` | 63 | `b916202f2ff8f2c4` |
+| `debug/breakpoints-criticos.md` | 28 | `d7e3398ab4cc2966` |
+| `debug/hardtrace-playbook.md` | 17 | `b887e393b5c23713` |
+| `docs/00-indice/README.md` | 4 | `48528c7d5bb44a2f` |
+| `docs/01-producto-y-vision/01-vision-producto.md` | 4 | `b099b9134b154e1b` |
+| `docs/01-producto-y-vision/02-actores.md` | 4 | `a76428fc3ee5a15a` |
+| `docs/01-producto-y-vision/03-objetivos.md` | 4 | `3ebb4a971bbd68ba` |
+| `docs/01-producto-y-vision/04-no-objetivos.md` | 4 | `b3dfb3232d4f24fd` |
+| `docs/02-mapa-modulos/01-inventario-codigo.md` | 15 | `104cf5e6280eadc7` |
+| `docs/02-mapa-modulos/02-ui-designer-form-viewer.md` | 4 | `bb8018c4d07d547a` |
+| `docs/02-mapa-modulos/03-schemas-y-plugin-registry.md` | 4 | `c124bffa5a748051` |
+| `docs/02-mapa-modulos/04-generator-converter-pdflib.md` | 4 | `94ba4c32a7881bf0` |
+| `docs/02-mapa-modulos/05-tests-playwright-vitest.md` | 4 | `c8911a164928576a` |
+| `docs/03-arquitectura/01-boundaries-host-runtime.md` | 4 | `73dedf99f7c9259a` |
+| `docs/03-arquitectura/02-runtime-visual.md` | 4 | `ee49aa8f8344ce7d` |
+| `docs/03-arquitectura/03-command-bus-events.md` | 4 | `21bc47d3762efab0` |
+| `docs/03-arquitectura/04-snapshot-contract.md` | 4 | `5813f6ca220b1f99` |
+| `docs/03-arquitectura/05-external-forms-contract.md` | 4 | `804be83e7dc04d62` |
+| `docs/03-arquitectura/06-collaboration-locks.md` | 4 | `2215811ac1f38e37` |
+| `docs/03-arquitectura/07-public-api.md` | 4 | `8a6c6ce4061e0b7e` |
+| `docs/03-arquitectura/08-fork-safe-evolution.md` | 4 | `74d96b8cc18437fa` |
+| `docs/04-recipient-transform/01-recipient-color-behavior.md` | 4 | `01f367178e996d7c` |
+| `docs/04-recipient-transform/02-schema-icon-color-sync.md` | 4 | `2e59ebd56c9e57eb` |
+| `docs/04-recipient-transform/03-owner-color-persistence.md` | 4 | `acc256dbaa52d307` |
+| `docs/04-recipient-transform/04-transform-state-machine.md` | 4 | `4be84b22fd88e56f` |
+| `docs/04-recipient-transform/05-moveable-selecto.md` | 4 | `1a1ae3fb4fd5074e` |
+| `docs/04-recipient-transform/06-shortcuts-and-inline-edit.md` | 4 | `5fab9132164ad572` |
+| `docs/04-recipient-transform/07-accessibility-colors.md` | 4 | `0d18e0725eb31311` |
+| `docs/05-ui-ux/01-left-sidebar-catalog.md` | 4 | `bd95da41e2cda0f0` |
+| `docs/05-ui-ux/02-right-sidebar-inspector.md` | 4 | `32744afe2d89205a` |
+| `docs/05-ui-ux/03-floating-toolbar.md` | 4 | `6c58be7133d26831` |
+| `docs/05-ui-ux/04-canvas-overlays.md` | 4 | `0aabc86fb30c7ee3` |
+| `docs/05-ui-ux/05-compact-header-host.md` | 4 | `fb2f72098a23cb87` |
+| `docs/05-ui-ux/06-responsive.md` | 4 | `1d53ad1a7d30cc1c` |
+| `docs/06-css/01-css-boundaries.md` | 4 | `349876819767bb43` |
+| `docs/06-css/02-token-system.md` | 4 | `df6411d1b566c93a` |
+| `docs/06-css/03-transform-handle-safety.md` | 4 | `c35962df6465f843` |
+| `docs/06-css/04-visual-regression.md` | 4 | `54e3b2884a3583ac` |
+| `docs/07-calidad/01-comandos-validacion.md` | 4 | `405e546926c212a3` |
+| `docs/07-calidad/02-matriz-regresion.md` | 4 | `3e15ddca072b3596` |
+| `docs/07-calidad/03-testing-gaps.md` | 4 | `89988fd2983a7ae4` |
+| `docs/07-calidad/04-test-results-forensics.md` | 4 | `b47bc933903d5fc7` |
+| `docs/08-ia-agentes/01-arquitectura-asistente.md` | 4 | `0e91afb254b4c0fc` |
+| `docs/08-ia-agentes/02-catalogo-agentes.md` | 4 | `f45953cc4f1fc861` |
+| `docs/08-ia-agentes/03-catalogo-prompts.md` | 4 | `654c01d30cd0d187` |
+| `docs/08-ia-agentes/04-economia-tokens.md` | 4 | `cb9d91e6f67f5712` |
+| `docs/08-ia-agentes/05-providers.md` | 4 | `09c006485e5899e1` |
+| `docs/09-operacion-debug/01-breakpoints-criticos.md` | 4 | `e2378dab33018ddc` |
+| `docs/09-operacion-debug/02-hardtrace-playbook.md` | 4 | `1e8f56f959ea9476` |
+| `docs/09-operacion-debug/03-troubleshooting.md` | 4 | `a49f38cf9de0eacb` |
+| `docs/10-handoff/01-handoff-sesion.md` | 4 | `0b8fec9200ebe2a7` |
+| `docs/10-handoff/02-plan-fases.md` | 4 | `f7c57267643445f0` |
+| `docs/10-handoff/03-tickets-sugeridos.md` | 4 | `bfff91db64b3ebc0` |
+| `docs/99-archivo/README.md` | 4 | `18f1dd886cb3e619` |
+| `handoff/README.md` | 4 | `6bfc4e95177b8cf4` |
+| `handoff/plan-ejecucion-fases.md` | 26 | `4c7737cbf2fecd15` |
+| `handoff/riesgos-residuales.md` | 7 | `d5c9c90ab19fdb14` |
+| `handoff/session-handoff.md` | 4 | `223cb0c9253bca37` |
+| `handoff/tickets-sugeridos.md` | 11 | `cd1a435d04ff45ac` |
+| `package-scripts-sugeridos.md` | 14 | `fe5cfde7df09922a` |
+| `reports/current-snapshot/analysis-summary.md` | 60 | `51cc5c0b167c503c` |
+| `reports/current-snapshot/css-summary.md` | 9 | `6690b39334a45df2` |
+| `reports/current-snapshot/docs-summary.md` | 23 | `392d51314caf7f56` |
+| `reports/current-snapshot/module-inventory.md` | 15 | `a5aec36925c78914` |
+| `reports/current-snapshot/risk-summary.md` | 10 | `6529647e3564f5b0` |
+| `tests/README.md` | 4 | `7c3acb5f7807504c` |
+| `tests/matriz-pruebas-regresion-designer.md` | 12 | `7fcf247f8181c63f` |
+| `tests/matriz-pruebas-regresion-externalforms.md` | 11 | `05036041b1bc21bf` |
+| `tests/plan-playwright.md` | 10 | `e9b2db75afacf11c` |
+| `tests/plan-vitest-unitario.md` | 12 | `fc787c1318ef1aa9` |
+| `tests/testing-gaps.md` | 10 | `e89554487ad940ac` |

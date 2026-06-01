@@ -1,9 +1,3 @@
-# Tarea Codex: refactor seguro
+# Tarea refactor-safe
 
-## Instrucción
-
-Refactoriza solo el área solicitada. Mantén API pública, tests y documentación.
-
-## Validación
-
-Ejecuta suite relevante y reporta fallos.
+Usar contexto mínimo, aplicar cambio pequeño, validar y reportar riesgos.

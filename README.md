@@ -1,51 +1,62 @@
-# SISAD PDFME — Workspace IA extendido para recipient colors + transform controls
+# SISAD PDFME — Arquitectura Markdown Agentic v3
 
-Este paquete reemplaza y amplía el ZIP anterior. Mantiene el formato `.ai/` como fuente neutral para Claude, Codex, GitHub Copilot y Gemini, pero ahora incluye una cobertura mucho más amplia de agentes, skills, prompts, instrucciones, documentación y matrices de pruebas.
+Generado: `2026-06-01T18:47:53Z`
 
-## Objetivo del paquete
+Este paquete reemplaza y ordena la arquitectura Markdown del workspace `sisad-pdfme`, tomando como referencia la arquitectura amplia de Inverneg pero ajustándola al contexto actual del proyecto: editor PDF, canvas, schemas, destinatarios, colores, transformaciones, snapshots, externalForms, generator/converter, UI/UX y pruebas.
 
-Preparar a los asistentes IA para corregir y completar comportamientos de `sisad-pdfme` relacionados con:
+## Diagnóstico base
 
-- colores únicos por usuario o destinatario;
-- sincronización del color del destinatario activo en iconos del catálogo de schemas;
-- preservación del color propietario de schemas ya creados;
-- pruebas donde cada usuario/destinatario usa un color distinto;
-- resize, rotación, drag, selección simple y selección múltiple sin colisiones;
-- convivencia segura entre Moveable, Selecto, inline edit, toolbar, context menu, comments y shortcuts;
-- documentación y test coverage trazable.
+El análisis cruzó:
 
-## Regla principal
+- `510` archivos de código JS/TS/JSX/TSX.
+- `323` archivos Markdown existentes.
+- `6` archivos CSS consolidados.
+- Referencia de arquitectura Inverneg/SISAD para adoptar `.ai`, `docs`, `handoff`, `tests`, providers, agentes, subagentes, skills, prompts, reglas y economía de tokens.
 
-`.ai/` es la fuente de verdad. Los adaptadores `CLAUDE.md`, `CODEX.md`, `GEMINI.md`, `.github/copilot-instructions.md` y carpetas de proveedor solo apuntan a `.ai/`.
+## Principio rector
 
-## Orden recomendado de ejecución
+```txt
+ContentCustomForm = host de negocio
+sisad-pdfme = runtime visual y funcional del PDF
+externalForms = runner del snapshot usando Form/Viewer
+.ai = memoria y ejecución para asistentes IA
+docs = documentación humana y técnica
+tests = matrices documentales y planes de validación
+```
 
-1. Leer `AGENTS.md`.
-2. Leer `.ai/INDEX.md`.
-3. Leer `.ai/rules/global-rules.md`.
-4. Usar `.ai/architecture/agent-routing.md` para elegir subagentes.
-5. Cargar skills desde `.ai/skills`.
-6. Ejecutar prompts desde `.ai/prompts`.
-7. Validar con Vitest + Playwright.
-8. Actualizar docs si cambian contratos públicos.
+## Uso recomendado
 
-## Prompts principales
+1. Copiar este paquete en la raíz del proyecto.
+2. Leer `AGENTS.md`.
+3. Ejecutar el flujo de inicio según el proveedor:
+   - Claude: `CLAUDE.md`
+   - Codex: `CODEX.md`
+   - Copilot: `.github/copilot-instructions.md`
+   - Gemini: `GEMINI.md`
+4. No cargar todo el snapshot: usar `.ai/INDEX.md` y `.ai/context-map.md`.
+5. Validar cambios con build, lint, Vitest dirigido y Playwright cuando toque canvas/visual.
 
-- `.ai/prompts/recipient-transform-master-plan.prompt.md`
-- `.ai/prompts/enforce-recipient-colors-and-icon-sync.prompt.md`
-- `.ai/prompts/stabilize-schema-resize-rotation.prompt.md`
-- `.ai/prompts/fix-results-from-tests-recipient-transform.prompt.md`
+## Capas
 
-## Estadísticas de contexto del último bundle
+```txt
+AGENTS.md / CLAUDE.md / CODEX.md / COPILOT.md / GEMINI.md
+  -> adaptadores pequeños por proveedor
 
-- Archivos de código detectados en el TXT unificado: `504`.
-- Archivos CSS detectados: `6`.
-- Archivos Markdown detectados: `248`.
+.ai/
+  -> router, memoria, contexto, reglas, agentes, prompts, skills y checklists
 
-## Instalación sugerida
+docs/
+  -> documentación humana y técnica
 
-Copia el contenido del ZIP en la raíz del repositorio y revisa los diffs antes de sobrescribir archivos existentes.
+handoff/
+  -> continuidad de sesión, plan y tickets
 
-```bash
-unzip sisad_pdfme_recipient_transform_ai_workspace_EXTENDIDO.zip -d .
+tests/
+  -> matrices de regresión y gaps
+
+reports/
+  -> análisis actual, inventarios y riesgos
+
+metadata/
+  -> inventarios JSON para futuras herramientas
 ```

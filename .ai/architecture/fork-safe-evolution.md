@@ -1,0 +1,22 @@
+# Fork Safe Evolution
+
+## Propósito
+
+Cómo evolucionar sisad-pdfme sin acoplarlo al host SISAD.
+
+## Reglas
+
+- Documentar contratos, no snapshots completos.
+- Preferir adaptadores a forks acoplados.
+- Evitar duplicidad entre provider adapters.
+- Cualquier cambio público debe tener prompt, regla, test y doc.
+
+## Salida esperada
+
+```md
+## Decisión
+## Impacto
+## Archivos afectados
+## Validación
+## Riesgos
+```

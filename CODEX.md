@@ -1,18 +1,31 @@
-# CODEX — Adaptador extendido para tareas de código en `sisad-pdfme`
+# CODEX.md — Adaptador Codex
 
-Codex debe ejecutar cambios pequeños y testeables usando `.ai/` como fuente de verdad.
+Codex se usa para cambios atómicos, verificables y con bajo riesgo.
 
-## Foco actual
+## Método
 
-- recipient color contract
-- active recipient icon sync
-- schema owner color persistence
-- Moveable/Selecto resize/rotate
-- Playwright regressions
+```txt
+leer contexto mínimo -> localizar con rg -> modificar poco -> validar -> reportar rollback
+```
 
-## Checklist final
+## Tareas ideales
 
-1. Ejecutar tests relevantes.
-2. No dejar `test.only`, `skip` o `fixme` sin justificación.
-3. Actualizar docs si cambia contrato.
-4. Reportar riesgos residuales.
+- Ajustar una función de color, owner o snapshot.
+- Corregir guard de Moveable/Selecto.
+- Crear test unitario cercano.
+- Eliminar wrapper o alias sin valor.
+- Ajustar prompt/doc puntual.
+
+## Validación mínima
+
+```bash
+npm run build -- --mode development
+npm run lint
+```
+
+Para canvas/transform/color visual:
+
+```bash
+npx vitest run tests/unit/recipientColor.test.ts tests/unit/schemaTone.test.ts
+npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/schema-transform.spec.ts --project=chromium
+```

@@ -1,36 +1,30 @@
-# SKILL: Moveable Selecto Resize Rotate
+# SKILL — Moveable Selecto Resize Rotate
 
-## Intención
+## Objetivo
 
-Estabiliza Moveable/Selecto para resize, rotate, drag y bounds.
+Aplicar procedimiento reutilizable para `moveable-selecto-resize-rotate`.
 
-## Cuándo usar
+## Entrada
 
-Usa esta skill cuando el cambio afecte colores de destinatario, iconos de schema, ownership visual, resize, rotación, selección, tests o documentación relacionada.
+- Contexto del dominio.
+- Archivos reales localizados con `rg`.
+- Reglas relevantes.
+- Resultado esperado por el usuario.
 
-## Procedimiento recomendado
+## Procedimiento
 
-1. Leer `.ai/context/recipient-transform-context.md`.
-2. Identificar el contrato afectado.
-3. Buscar implementación actual y tests existentes.
-4. Corregir el producto antes de ajustar tests.
-5. Agregar regresión unitaria o Playwright.
-6. Actualizar docs si cambia API, data attributes o CSS vars.
+1. Confirmar frontera de responsabilidad.
+2. Identificar contrato público afectado.
+3. Localizar implementación y tests.
+4. Proponer cambio mínimo.
+5. Validar con unit/integration/Playwright según aplique.
+6. Actualizar docs si cambia contrato.
 
-## Checklist
+## Salida
 
-- [ ] No hay acoplamiento externo.
-- [ ] El comportamiento es configurable.
-- [ ] El color activo y el color owner no se mezclan.
-- [ ] No se rompe canvas, zoom, scroll ni paper geometry.
-- [ ] No hay colisiones Moveable/Selecto.
-- [ ] Tests cubren el caso.
-- [ ] Docs actualizadas si aplica.
-
-## Anti patrones
-
-- Hardcodear colores por índice sin validador.
-- Usar DOM query externo para cambiar iconos.
-- Recalcular ownerColor de schemas existentes al cambiar destinatario activo.
-- Duplicar lógica de geometría.
-- Tapar fallos con delays arbitrarios.
+```md
+## Diagnóstico
+## Archivos tocados
+## Validación
+## Riesgos
+```

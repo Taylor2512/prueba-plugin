@@ -1,26 +1,14 @@
-# `.ai` — Workspace neutral de asistencia IA
+# .ai — Memoria operativa para asistentes
 
-Esta carpeta contiene la fuente de verdad para modelos de IA que trabajen sobre `sisad-pdfme`.
+`.ai/` contiene el router, memoria, reglas, agentes, subagentes, prompts, skills, plantillas y checklists.
 
-## Estructura
+## Política
 
-```text
-.ai/
-├── agents/          # Subagentes por dominio técnico
-├── architecture/    # Arquitectura del asistente IA
-├── context/         # Contexto estable del proyecto
-├── instructions/    # Reglas de implementación por área
-├── prompts/         # Prompts ejecutables por tarea
-├── rules/           # Reglas globales
-├── skills/          # Skills reutilizables
-└── templates/       # Plantillas de reportes y decisiones
-```
+- `.ai/INDEX.md` enruta el contexto.
+- `.ai/context-map.md` resuelve dominio → contexto/reglas/prompts.
+- `.ai/memory` guarda decisiones persistentes.
+- `.ai/prompts` contiene tareas ejecutables.
+- `.ai/rules` contiene guardrails vivos.
+- `.ai/skills` contiene procedimientos reutilizables.
 
-## Uso
-
-1. El orquestador lee reglas globales.
-2. Selecciona un agente.
-3. Carga uno o varios skills.
-4. Ejecuta un prompt.
-5. Valida con tests.
-6. Actualiza documentación.
+No cargar todo `.ai` al inicio.

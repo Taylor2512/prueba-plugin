@@ -1,32 +1,43 @@
-# AGENTS — Router neutral IA para `sisad-pdfme`
-
-Este repositorio usa `.ai/` como fuente de verdad para asistentes IA.
+# AGENTS.md — Router neutral IA para SISAD PDFME
 
 ## Inicio obligatorio
 
 1. Leer `.ai/INDEX.md`.
-2. Leer `.ai/rules/global-rules.md`.
-3. Leer `.ai/context/project-overview.md`.
-4. Leer `.ai/context/recipient-transform-context.md`.
-5. Leer `.ai/architecture/agent-routing.md`.
+2. Leer `.ai/memory/project-memory.md`.
+3. Leer `.ai/context-map.md`.
+4. Seleccionar agente en `.ai/agents/registry.md`.
+5. Cargar máximo 1 contexto principal + 2 reglas + 1 prompt al inicio.
+6. Inspeccionar código real con `rg` antes de proponer cambios.
 
-## Tarea actual prioritaria
+## Prioridad del proyecto
 
-Mejorar los comportamientos de recipient colors, schema icon color sync y transform controls:
-
-- Cada destinatario/usuario de pruebas debe tener color único.
+- Cada destinatario/usuario debe tener color único y accesible.
 - El catálogo de schemas debe tomar el color del destinatario activo.
-- Al cambiar destinatario activo, los iconos del catálogo deben cambiar al nuevo color.
-- Los schemas ya creados deben conservar el color de su propietario original.
-- Al seleccionar un schema debe poder redimensionarse y rotarse sin colisionar con selección, inline edit, context menu, comments ni shortcuts.
+- Los schemas ya creados deben conservar color/owner original.
+- Resize, rotate, drag y selección deben convivir sin colisiones.
+- El snapshot debe preservar documentos, schemas, recipients, assignments, ownerColor, rotation, comments y firma.
+- `externalForms` debe consumir `Form`/`Viewer` desde `sisad-pdfme`.
+- `ContentCustomForm` debe actuar como host de negocio, no como runtime visual.
 
-## Guardrails
+## Guardrails no negociables
 
-- No acoplar el fork a terceros.
-- No duplicar runtime de canvas, sidebars, snapshot engine ni schemas.
-- No manipular DOM interno desde fuera del fork.
+- No acoplar el fork `sisad-pdfme` a lógica SISAD no genérica.
+- No duplicar runtime de canvas, sidebars, inspector, snapshot engine ni schemas.
+- No manipular DOM interno del diseñador desde hosts externos.
 - Mantener CSS dentro de `.sisad-pdfme-root`.
-- Preservar geometría de canvas, zoom, scroll, Moveable y Selecto.
-- Si cambia runtime o API pública, agregar tests y docs.
+- No romper geometría de canvas, zoom, scroll, Moveable o Selecto.
+- No convertir `externalForms` en renderer paralelo si `Form`/`Viewer` ya cubren el caso.
+- Si cambia API pública, agregar docs y tests.
+- Si hay contradicción entre proveedores, prevalece `.ai/`.
 
-Si hay contradicción entre adaptadores, prevalece `.ai/`.
+## Formato de cierre
+
+```md
+## Contexto usado
+## Agente/subagente
+## Diagnóstico
+## Cambios realizados/propuestos
+## Validación
+## Riesgos residuales
+## Documentación/memoria actualizada
+```

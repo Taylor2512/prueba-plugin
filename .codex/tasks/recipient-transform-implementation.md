@@ -1,3 +1,3 @@
-# Codex task: recipient-transform-implementation
+# Tarea recipient-transform-implementation
 
-Ejecuta `.ai/prompts/enforce-recipient-colors-and-icon-sync.prompt.md` en cambios pequeños. Luego corre unit tests. Después ejecuta Playwright focalizado.
+Usar contexto mínimo, aplicar cambio pequeño, validar y reportar riesgos.

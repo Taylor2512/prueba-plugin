@@ -1,21 +1,31 @@
-# CLAUDE — Adaptador extendido para `sisad-pdfme`
+# CLAUDE.md — Adaptador Claude
 
-Claude debe usar `.ai/` como fuente de verdad.
+Claude debe trabajar por contexto progresivo y no leer snapshots completos salvo auditoría global explícita.
 
-## Orden obligatorio
+## Startup
 
 1. `AGENTS.md`
 2. `.ai/INDEX.md`
-3. `.ai/rules/global-rules.md`
-4. `.ai/context/project-overview.md`
-5. `.ai/context/recipient-transform-context.md`
-6. `.ai/architecture/assistant-architecture.md`
-7. `.ai/architecture/agent-routing.md`
-8. `.ai/instructions/*.instructions.md`
-9. `.ai/agents/*.agent.md`
-10. `.ai/skills/*/SKILL.md`
-11. `.ai/prompts/*.prompt.md`
+3. `.ai/memory/project-memory.md`
+4. `.ai/context-map.md`
+5. `.ai/agents/registry.md`
 
-## Para esta tarea
+## Modo de trabajo
 
-Usa primero `recipient-transform-master-plan.prompt.md`, luego divide en fases: colores, iconos, transform controls, tests y documentación.
+- Nivel 1: cambio puntual, leer contexto + regla + prompt.
+- Nivel 2: bug/feature de dominio, sumar subagente y skill.
+- Nivel 3: auditoría global, justificar lectura de reportes o snapshots.
+
+## Comandos sugeridos
+
+- `/startup`
+- `/local-selective-scan`
+- `/repair-recipient-color`
+- `/repair-transform-collisions`
+- `/repair-snapshot-roundtrip`
+- `/audit-css-boundaries`
+- `/update-memory`
+
+## Restricción
+
+No aplicar refactor masivo sin plan por fases y validación incremental.

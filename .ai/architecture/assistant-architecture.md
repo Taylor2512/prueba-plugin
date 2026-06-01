@@ -1,26 +1,22 @@
-# Arquitectura del asistente IA — recipient transform edition
+# Assistant Architecture
 
-## Capas
+## Propósito
 
-1. Router: `AGENTS.md` + `.ai/INDEX.md`.
-2. Reglas: `.ai/rules/global-rules.md`.
-3. Contexto: `.ai/context/*.md`.
-4. Agentes: `.ai/agents/*.agent.md`.
-5. Skills: `.ai/skills/*/SKILL.md`.
-6. Prompts: `.ai/prompts/*.prompt.md`.
-7. Validación: tests unitarios + Playwright + documentación.
+Define cómo un asistente debe cargar contexto, escoger agente, actuar y cerrar.
 
-## Flujo recomendado
+## Reglas
 
-```txt
-Diagnóstico → Agente → Skills → Prompt → Cambios pequeños → Tests → Docs → Reporte
+- Documentar contratos, no snapshots completos.
+- Preferir adaptadores a forks acoplados.
+- Evitar duplicidad entre provider adapters.
+- Cualquier cambio público debe tener prompt, regla, test y doc.
+
+## Salida esperada
+
+```md
+## Decisión
+## Impacto
+## Archivos afectados
+## Validación
+## Riesgos
 ```
-
-## Orquestación sugerida
-
-- Para color ownership: `recipient-color-ownership-architect`.
-- Para iconos de catálogo: `schema-icon-color-sync-agent`.
-- Para resize/rotate: `canvas-transform-interaction-architect`.
-- Para colisiones Moveable/Selecto: `moveable-selecto-rotation-guardian`.
-- Para pruebas: `playwright-recipient-color-test-guardian`.
-- Para docs: `docs-migration-steward`.

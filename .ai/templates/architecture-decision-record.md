@@ -1,9 +1,7 @@
-# ADR
-
-## Contexto
+# Architecture Decision Record
 
 ## Decisión
-
+## Contexto
+## Alternativas
 ## Consecuencias
-
-## Tests requeridos
+## Fecha

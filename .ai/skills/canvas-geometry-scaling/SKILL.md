@@ -1,29 +1,30 @@
-# Skill: Geometría, zoom y coordenadas del canvas
-
-## Cuándo usar
-
-Usa este skill cuando la tarea afecte `canvas-geometry-scaling` o componentes relacionados del fork.
+# SKILL — Canvas Geometry Scaling
 
 ## Objetivo
 
-Aplicar cambios seguros, configurables y testeables en `sisad-pdfme`.
+Aplicar procedimiento reutilizable para `canvas-geometry-scaling`.
+
+## Entrada
+
+- Contexto del dominio.
+- Archivos reales localizados con `rg`.
+- Reglas relevantes.
+- Resultado esperado por el usuario.
 
 ## Procedimiento
 
-1. Revisar paper root, scale layer y bounding boxes.
-2. Validar zoom y scroll.
-3. Evitar offsets por CSS.
-4. Probar Moveable/Selecto.
-5. Agregar Playwright si hay interacción visual.
+1. Confirmar frontera de responsabilidad.
+2. Identificar contrato público afectado.
+3. Localizar implementación y tests.
+4. Proponer cambio mínimo.
+5. Validar con unit/integration/Playwright según aplique.
+6. Actualizar docs si cambia contrato.
 
-## Checklist de salida
+## Salida
 
-- [ ] El cambio mantiene aislamiento.
-- [ ] La habilidad sigue siendo configurable.
-- [ ] No hay duplicidad innecesaria.
-- [ ] Hay validación o test.
-- [ ] La documentación fue actualizada si aplica.
-
-## Evidencia sugerida
-
-Incluye comandos ejecutados, archivos modificados y riesgos restantes.
+```md
+## Diagnóstico
+## Archivos tocados
+## Validación
+## Riesgos
+```
