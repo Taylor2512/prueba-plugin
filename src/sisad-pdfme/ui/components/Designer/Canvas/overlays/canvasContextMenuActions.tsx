@@ -540,7 +540,7 @@ export const buildSelectionToolbarModel = (args: {
     }
   }
 
-  const cappedPrimaryActions = quickActions.slice(0, mode === 'micro' ? 3 : mode === 'compact' ? 5 : 6);
+  const cappedPrimaryActions = quickActions.slice(0, mode === 'micro' ? 2 : mode === 'compact' ? 5 : 6);
 
   return {
     kind,

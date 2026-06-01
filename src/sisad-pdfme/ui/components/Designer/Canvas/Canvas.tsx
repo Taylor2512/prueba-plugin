@@ -1011,6 +1011,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
       data-grid-visible={feature.grid ? 'true' : 'false'}
       data-guides-visible={feature.guides ? 'true' : 'false'}
       data-snaps-enabled={feature.snapLines ? 'true' : 'false'}
+      data-snaps-visible={feature.snapLines ? 'true' : 'false'}
       data-padding-visible={feature.padding ? 'true' : 'false'}
       data-canvas-state={canvasRenderState.type}
       ref={rootRef}>

@@ -11,10 +11,6 @@ import {
   Undo2,
   Redo2,
   Maximize2,
-  Grid3x3,
-  SquareDashedBottom,
-  Ruler,
-  Magnet,
   Save,
 } from 'lucide-react';
 
@@ -23,15 +19,17 @@ import { Button, Dropdown, Select } from 'antd';
 import { I18nContext } from '../contexts.js';
 import { useMaxZoom } from '../helper.js';
 import { UI_CLASSNAME } from '../constants.js';
-import DesignerContextSummary from './Designer/shared/DesignerContextSummary.js';
+
+type ToolbarDensity = 'comfortable' | 'compact' | 'minimal';
 
 type ZoomProps = {
   zoomLevel: number;
   setZoomLevel: (zoom: number) => void;
   iconColor?: string;
+  density?: ToolbarDensity;
 };
 
-const Zoom = ({ zoomLevel, setZoomLevel, iconColor }: ZoomProps) => {
+const Zoom = ({ zoomLevel, setZoomLevel, iconColor, density = 'comfortable' }: ZoomProps) => {
   const zoomStep = 0.25;
   const maxZoom = useMaxZoom();
   const minZoom = 0.25;
@@ -39,17 +37,20 @@ const Zoom = ({ zoomLevel, setZoomLevel, iconColor }: ZoomProps) => {
 
   const nextZoomOut = zoomLevel - zoomStep;
   const nextZoomIn = zoomLevel + zoomStep;
+  const showStepButtons = density === 'comfortable';
 
   return (
     <div className={UI_CLASSNAME + 'zoom'}>
-      <Button
-        className={UI_CLASSNAME + 'zoom-out'}
-        type="text"
-        title="Reducir zoom"
-        disabled={minZoom >= nextZoomOut}
-        onClick={() => setZoomLevel(nextZoomOut)}
-        icon={<Minus size={14} color={iconColor} />}
-      />
+      {showStepButtons ? (
+        <Button
+          className={UI_CLASSNAME + 'zoom-out'}
+          type="text"
+          title="Reducir zoom"
+          disabled={minZoom >= nextZoomOut}
+          onClick={() => setZoomLevel(nextZoomOut)}
+          icon={<Minus size={14} color={iconColor} />}
+        />
+      ) : null}
       <Select
         size="small"
         value={Number(zoomLevel.toFixed(2))}
@@ -63,30 +64,19 @@ const Zoom = ({ zoomLevel, setZoomLevel, iconColor }: ZoomProps) => {
         styles={{ popup: { root: { minWidth: 80 } } }}
         className={UI_CLASSNAME + 'zoom-select'}
       />
-      <Button
-        className={UI_CLASSNAME + 'zoom-in'}
-        type="text"
-        title="Aumentar zoom"
-        disabled={maxZoom < nextZoomIn}
-        onClick={() => setZoomLevel(nextZoomIn)}
-        icon={<Plus size={14} color={iconColor} />}
-      />
+      {showStepButtons ? (
+        <Button
+          className={UI_CLASSNAME + 'zoom-in'}
+          type="text"
+          title="Aumentar zoom"
+          disabled={maxZoom < nextZoomIn}
+          onClick={() => setZoomLevel(nextZoomIn)}
+          icon={<Plus size={14} color={iconColor} />}
+        />
+      ) : null}
     </div>
   );
 };
-
-type ContextMenuProps = {
-  items: MenuProps['items'];
-  iconColor?: string;
-};
-
-const ContextMenu = ({ items, iconColor }: ContextMenuProps) => (
-  <Dropdown menu={{ items }} placement="top" arrow trigger={['click']}>
-    <Button className={UI_CLASSNAME + 'context-menu'} type="text" title="Más acciones">
-      <Ellipsis size={16} color={iconColor} />
-    </Button>
-  </Dropdown>
-);
 
 type CtlBarProps = {
   size: Size;
@@ -123,7 +113,7 @@ const CtlBar = (props: CtlBarProps) => {
   const i18n = useContext(I18nContext);
 
   const {
-    size: _size,
+    size,
     pageCursor,
     pageNum,
     setPageCursor,
@@ -147,177 +137,155 @@ const CtlBar = (props: CtlBarProps) => {
     selectionCount,
     isGroupedSelection,
   } = props;
-  void _size;
   const zoomChangeHandler = setZoom ?? setZoomLevel;
+  const toolbarDensity: ToolbarDensity =
+    size.width >= 1200 ? 'comfortable' : size.width >= 900 ? 'compact' : 'minimal';
+  const showPageNavButtons = pageNum > 1 && toolbarDensity !== 'minimal';
+  const showZoomStepper = toolbarDensity !== 'minimal';
+  const showSaveText = toolbarDensity === 'comfortable';
+  const showFitAction = toolbarDensity === 'comfortable';
+  const statusTone = (documentStatus || '').toLowerCase().includes('edit') ? 'editing' : 'idle';
+  const pageLabel = `Pág ${pageCursor + 1}/${Math.max(1, pageNum)}`;
+  const summaryLabel = `Doc · ${pageLabel}${selectionCount && selectionCount > 0 ? ` · Sel ${selectionCount}` : ''}`;
 
-  const moreMenuItems: MenuProps['items'] = useMemo(() => {
-    const items: MenuProps['items'] = [];
-    if (addPageAfter) {
-      items.push({
-        key: 'add-page',
-        label: (
-          <button type="button" className={UI_CLASSNAME + 'control-bar-menu-item'} onClick={addPageAfter}>
-            {i18n('addPageAfter')}
-          </button>
-        ),
-      });
-    }
-    if (duplicatePageAfter) {
-      items.push({
-        key: 'duplicate-page',
-        label: (
-          <button type="button" className={UI_CLASSNAME + 'control-bar-menu-item'} onClick={duplicatePageAfter}>
-            Duplicar página
-          </button>
-        ),
-      });
-    }
-    if (removePage && pageNum > 1 && pageCursor !== 0) {
-      items.push({
-        key: 'remove-page',
-        label: (
-          <button type="button" className={UI_CLASSNAME + 'control-bar-menu-item'} onClick={removePage}>
-            {i18n('removePage')}
-          </button>
-        ),
-      });
-    }
-    if (onExport) {
-      items.push({
-        key: 'export-pdf',
-        label: (
-          <button type="button" className={UI_CLASSNAME + 'control-bar-menu-item'} onClick={onExport}>
-            Exportar
-          </button>
-        ),
-      });
-    }
-    return items;
-  }, [addPageAfter, duplicatePageAfter, i18n, onExport, pageCursor, pageNum, removePage]);
-
-  const viewOptionsItems: MenuProps['items'] = useMemo(
-    () => [
-      onFitWidth
-        ? {
-            key: 'fit-width',
-            label: (
-              <button type="button" className={UI_CLASSNAME + 'control-bar-menu-item'} onClick={onFitWidth}>
-                Ajustar ancho
-              </button>
-            ),
-          }
-        : null,
-      onFitPage
-        ? {
-            key: 'fit-page',
-            label: (
-              <button type="button" className={UI_CLASSNAME + 'control-bar-menu-item'} onClick={onFitPage}>
-                Ajustar página
-              </button>
-            ),
-          }
-        : null,
-      onOpenShortcuts
-        ? {
-            key: 'shortcuts',
-            label: (
-              <button type="button" className={UI_CLASSNAME + 'control-bar-menu-item'} onClick={onOpenShortcuts}>
-                Atajos
-              </button>
-            ),
-          }
-        : null,
-      onToggleFeature
-        ? {
-            key: 'grid',
-            label: (
-              <button
-                type="button"
-                className={UI_CLASSNAME + 'control-bar-menu-item'}
-                onClick={() => onToggleFeature('grid')}
-              >
-                {featureToggles?.grid ? 'Ocultar cuadrícula' : 'Mostrar cuadrícula'}
-              </button>
-            ),
-          }
-        : null,
-      onToggleFeature
-        ? {
-            key: 'guides',
-            label: (
-              <button
-                type="button"
-                className={UI_CLASSNAME + 'control-bar-menu-item'}
-                onClick={() => onToggleFeature('guides')}
-              >
-                {featureToggles?.guides ? 'Ocultar guías' : 'Mostrar guías'}
-              </button>
-            ),
-          }
-        : null,
-      onToggleFeature
-        ? {
-            key: 'snap-lines',
-            label: (
-              <button
-                type="button"
-                className={UI_CLASSNAME + 'control-bar-menu-item'}
-                onClick={() => onToggleFeature('snapLines')}
-              >
-                {featureToggles?.snapLines ? 'Ocultar snaps' : 'Mostrar snaps'}
-              </button>
-            ),
-          }
-        : null,
-      onToggleFeature
-        ? {
-            key: 'padding',
-            label: (
-              <button
-                type="button"
-                className={UI_CLASSNAME + 'control-bar-menu-item'}
-                onClick={() => onToggleFeature('padding')}
-              >
-                {featureToggles?.padding ? 'Ocultar padding' : 'Mostrar padding'}
-              </button>
-            ),
-          }
-        : null,
-    ].filter(Boolean),
-    [featureToggles?.grid, featureToggles?.guides, featureToggles?.padding, featureToggles?.snapLines, onFitPage, onFitWidth, onOpenShortcuts, onToggleFeature],
-  );
-
-  const pageOptions = useMemo(
-    () => {
-      const options: Array<{ value: number; label: string }> = [];
-      for (let index = 0; index < Math.max(1, pageNum); index += 1) {
-        options.push({
-          value: index + 1,
-          label: `Página ${index + 1}`,
-        });
-      }
-      return options;
-    },
+  const pageMenuItems: MenuProps['items'] = useMemo(
+    () =>
+      Array.from({ length: Math.max(1, pageNum) }).map((_, index) => ({
+        key: `page-${index + 1}`,
+        label: `Página ${index + 1}`,
+      })),
     [pageNum],
   );
 
+  const handlePageMenuClick: NonNullable<MenuProps['onClick']> = ({ key }) => {
+    const pageFromKey = Number(String(key).replace('page-', ''));
+    if (Number.isFinite(pageFromKey) && pageFromKey > 0) {
+      setPageCursor(pageFromKey - 1);
+    }
+  };
+
+  const moreMenuItems: MenuProps['items'] = useMemo(() => {
+    const items: MenuProps['items'] = [];
+    if (!showFitAction && onFitWidth) {
+      items.push({ key: 'fit-width', label: 'Ajustar ancho' });
+    }
+    if (!showFitAction && onFitPage) {
+      items.push({ key: 'fit-page', label: 'Ajustar página' });
+    }
+    if (onOpenShortcuts) {
+      items.push({ key: 'shortcuts', label: 'Atajos' });
+    }
+    if (!showZoomStepper) {
+      items.push({ key: 'zoom-in', label: 'Aumentar zoom' });
+      items.push({ key: 'zoom-out', label: 'Reducir zoom' });
+    }
+    if (!showPageNavButtons && pageNum > 1) {
+      items.push({ key: 'prev-page', label: 'Página anterior' });
+      items.push({ key: 'next-page', label: 'Página siguiente' });
+    }
+    if (onToggleFeature) {
+      items.push({ key: 'toggle-grid', label: featureToggles?.grid ? 'Ocultar cuadrícula' : 'Mostrar cuadrícula' });
+      items.push({ key: 'toggle-guides', label: featureToggles?.guides ? 'Ocultar guías' : 'Mostrar guías' });
+      items.push({ key: 'toggle-snap-lines', label: featureToggles?.snapLines ? 'Ocultar snaps' : 'Mostrar snaps' });
+      items.push({ key: 'toggle-padding', label: featureToggles?.padding ? 'Ocultar padding' : 'Mostrar padding' });
+    }
+    if (addPageAfter) {
+      items.push({ key: 'add-page', label: i18n('addPageAfter') });
+    }
+    if (duplicatePageAfter) {
+      items.push({ key: 'duplicate-page', label: 'Duplicar página' });
+    }
+    if (removePage && pageNum > 1 && pageCursor !== 0) {
+      items.push({ key: 'remove-page', label: i18n('removePage') });
+    }
+    if (onExport) {
+      items.push({ key: 'export-pdf', label: 'Exportar' });
+    }
+    return items;
+  }, [addPageAfter, duplicatePageAfter, featureToggles?.grid, featureToggles?.guides, featureToggles?.padding, featureToggles?.snapLines, i18n, onExport, onFitPage, onFitWidth, onOpenShortcuts, onToggleFeature, pageCursor, pageNum, removePage, showFitAction, showPageNavButtons, showZoomStepper]);
+
+  const handleMoreMenuClick: NonNullable<MenuProps['onClick']> = ({ key }) => {
+    if (key === 'fit-width') onFitWidth?.();
+    if (key === 'fit-page') onFitPage?.();
+    if (key === 'shortcuts') onOpenShortcuts?.();
+    if (key === 'zoom-in') zoomChangeHandler(zoomLevel + 0.25);
+    if (key === 'zoom-out') zoomChangeHandler(zoomLevel - 0.25);
+    if (key === 'prev-page') setPageCursor((currentPage) => Math.max(0, currentPage - 1));
+    if (key === 'next-page') setPageCursor((currentPage) => Math.min(pageNum - 1, currentPage + 1));
+    if (key === 'toggle-grid') onToggleFeature?.('grid');
+    if (key === 'toggle-guides') onToggleFeature?.('guides');
+    if (key === 'toggle-snap-lines') onToggleFeature?.('snapLines');
+    if (key === 'toggle-padding') onToggleFeature?.('padding');
+    if (key === 'add-page') addPageAfter?.();
+    if (key === 'duplicate-page') duplicatePageAfter?.();
+    if (key === 'remove-page') removePage?.();
+    if (key === 'export-pdf') onExport?.();
+  };
+
   return (
-    <div className={UI_CLASSNAME + 'control-bar'}>
-      <div className={UI_CLASSNAME + 'control-bar-context'}>
-        <DesignerContextSummary
-          documentName={documentTitle?.trim() || 'Documento activo'}
-          pageIndex={pageCursor}
-          pageCount={pageNum}
-          status={documentStatus}
-          selectionCount={selectionCount}
-          isGroupedSelection={isGroupedSelection}
-          density="compact"
-          placement="toolbar"
-        />
+    <div className={UI_CLASSNAME + 'control-bar'} data-density={toolbarDensity} data-layout="canvas-chrome">
+      <div className={UI_CLASSNAME + 'control-bar-cluster ' + UI_CLASSNAME + 'control-bar-cluster--top-left'}>
+        <div className={UI_CLASSNAME + 'control-bar-summary'}>
+          <span
+            className={UI_CLASSNAME + 'control-bar-status-dot'}
+            data-status={statusTone}
+            title={documentStatus || 'Estado'}
+            aria-label={documentStatus || 'Estado'}
+          />
+          <span title={typeof documentTitle === 'string' ? documentTitle.trim() : undefined}>{summaryLabel}</span>
+        </div>
       </div>
 
-      <div className={UI_CLASSNAME + 'control-bar-actions'}>
-        <div className={UI_CLASSNAME + 'control-bar-group'}>
+      <div className={UI_CLASSNAME + 'control-bar-cluster ' + UI_CLASSNAME + 'control-bar-cluster--top-center'}>
+        <div className={UI_CLASSNAME + 'control-bar-pill'}>
+          {showPageNavButtons ? (
+            <Button
+              className={UI_CLASSNAME + 'control-bar-icon-btn'}
+              type="text"
+              disabled={pageCursor <= 0}
+              onClick={() => setPageCursor((currentPage) => Math.max(0, currentPage - 1))}
+              icon={<ChevronLeft size={16} />}
+              title="Página anterior"
+            />
+          ) : null}
+          <Dropdown menu={{ items: pageMenuItems, onClick: handlePageMenuClick }} placement="bottom" trigger={['click']}>
+            <Button className={UI_CLASSNAME + 'control-bar-text-btn'} type="text" title="Página">
+              {pageLabel}
+            </Button>
+          </Dropdown>
+          {showPageNavButtons ? (
+            <Button
+              className={UI_CLASSNAME + 'control-bar-icon-btn'}
+              type="text"
+              disabled={pageCursor + 1 >= pageNum}
+              onClick={() => setPageCursor((currentPage) => Math.min(pageNum - 1, currentPage + 1))}
+              icon={<ChevronRight size={16} />}
+              title="Página siguiente"
+            />
+          ) : null}
+        </div>
+      </div>
+
+      <div className={UI_CLASSNAME + 'control-bar-cluster ' + UI_CLASSNAME + 'control-bar-cluster--top-right'}>
+        <div className={UI_CLASSNAME + 'control-bar-pill'}>
+          <Button
+            className={UI_CLASSNAME + 'control-bar-text-btn'}
+            type="text"
+            onClick={onSave}
+            disabled={!onSave}
+            icon={<Save size={14} />}
+            title="Guardar"
+          >
+            {showSaveText ? 'Guardar' : null}
+          </Button>
+          <Dropdown menu={{ items: moreMenuItems, onClick: handleMoreMenuClick }} placement="bottomRight" trigger={['click']}>
+            <Button className={UI_CLASSNAME + 'control-bar-icon-btn'} type="text" title="Más acciones" icon={<Ellipsis size={16} />} />
+          </Dropdown>
+        </div>
+      </div>
+
+      <div className={UI_CLASSNAME + 'control-bar-cluster ' + UI_CLASSNAME + 'control-bar-cluster--bottom-right'}>
+        <div className={UI_CLASSNAME + 'control-bar-pill'}>
           <Button
             className={UI_CLASSNAME + 'control-bar-icon-btn'}
             type="text"
@@ -334,102 +302,30 @@ const CtlBar = (props: CtlBarProps) => {
             icon={<Redo2 size={16} />}
             title="Rehacer"
           />
-        </div>
-
-        {pageNum > 1 ? (
-          <div className={UI_CLASSNAME + 'control-bar-group'}>
+          {showFitAction ? (
             <Button
               className={UI_CLASSNAME + 'control-bar-icon-btn'}
               type="text"
-              disabled={pageCursor <= 0}
-              onClick={() => setPageCursor((currentPage) => Math.max(0, currentPage - 1))}
-              icon={<ChevronLeft size={16} />}
-              title="Página anterior"
+              title="Ajustar página"
+              onClick={onFitPage}
+              disabled={!onFitPage}
+              icon={<Maximize2 size={15} />}
             />
+          ) : null}
+          {showZoomStepper ? (
+            <Zoom zoomLevel={zoomLevel} setZoomLevel={zoomChangeHandler} density={toolbarDensity} />
+          ) : (
             <Select
               size="small"
-              value={pageCursor + 1}
-              options={pageOptions}
-              onChange={(value) => setPageCursor(Math.max(0, Number(value) - 1))}
-              className={UI_CLASSNAME + 'control-bar-page-select'}
+              value={Number(zoomLevel.toFixed(2))}
+              options={[0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 3].map((preset) => ({
+                value: Number(preset.toFixed(2)),
+                label: `${Math.round(preset * 100)}%`,
+              }))}
+              onChange={(value) => setZoomLevel(Number(value))}
+              className={UI_CLASSNAME + 'zoom-select'}
             />
-            <Button
-              className={UI_CLASSNAME + 'control-bar-icon-btn'}
-              type="text"
-              disabled={pageCursor + 1 >= pageNum}
-              onClick={() => setPageCursor((currentPage) => Math.min(pageNum - 1, currentPage + 1))}
-              icon={<ChevronRight size={16} />}
-              title="Página siguiente"
-            />
-          </div>
-        ) : null}
-
-        <div className={UI_CLASSNAME + 'control-bar-group'}>
-          <Dropdown menu={{ items: viewOptionsItems }} placement="bottomRight" trigger={['click']}>
-            <Button className={UI_CLASSNAME + 'control-bar-icon-btn'} type="text" title="Vista" icon={<Maximize2 size={15} />} />
-          </Dropdown>
-        </div>
-
-        <Zoom zoomLevel={zoomLevel} setZoomLevel={zoomChangeHandler} />
-
-        <div className={UI_CLASSNAME + 'control-bar-group'}>
-          <Button
-            className={UI_CLASSNAME + 'control-bar-icon-btn'}
-            type="text"
-            onClick={() => onToggleFeature?.('grid')}
-            disabled={!onToggleFeature}
-            icon={<Grid3x3 size={16} />}
-            aria-pressed={featureToggles?.grid ? 'true' : 'false'}
-            data-active={featureToggles?.grid ? 'true' : 'false'}
-            aria-label={featureToggles?.grid ? 'Ocultar cuadrícula' : 'Mostrar cuadrícula'}
-            title={featureToggles?.grid ? 'Ocultar cuadrícula' : 'Mostrar cuadrícula'}
-          />
-          <Button
-            className={UI_CLASSNAME + 'control-bar-icon-btn'}
-            type="text"
-            onClick={() => onToggleFeature?.('guides')}
-            disabled={!onToggleFeature}
-            icon={<Ruler size={16} />}
-            aria-pressed={featureToggles?.guides ? 'true' : 'false'}
-            data-active={featureToggles?.guides ? 'true' : 'false'}
-            aria-label={featureToggles?.guides ? 'Ocultar guías' : 'Mostrar guías'}
-            title={featureToggles?.guides ? 'Ocultar guías' : 'Mostrar guías'}
-          />
-          <Button
-            className={UI_CLASSNAME + 'control-bar-icon-btn'}
-            type="text"
-            onClick={() => onToggleFeature?.('snapLines')}
-            disabled={!onToggleFeature}
-            icon={<Magnet size={16} />}
-            aria-pressed={featureToggles?.snapLines ? 'true' : 'false'}
-            data-active={featureToggles?.snapLines ? 'true' : 'false'}
-            aria-label={featureToggles?.snapLines ? 'Ocultar snaps' : 'Mostrar snaps'}
-            title={featureToggles?.snapLines ? 'Ocultar snaps' : 'Mostrar snaps'}
-          />
-          <Button
-            className={UI_CLASSNAME + 'control-bar-icon-btn'}
-            type="text"
-            onClick={() => onToggleFeature?.('padding')}
-            disabled={!onToggleFeature}
-            icon={<SquareDashedBottom size={16} />}
-            aria-pressed={featureToggles?.padding ? 'true' : 'false'}
-            data-active={featureToggles?.padding ? 'true' : 'false'}
-            aria-label={featureToggles?.padding ? 'Ocultar padding' : 'Mostrar padding'}
-            title={featureToggles?.padding ? 'Ocultar padding' : 'Mostrar padding'}
-          />
-        </div>
-
-        <div className={UI_CLASSNAME + 'control-bar-group'}>
-          <Button
-            className={UI_CLASSNAME + 'control-bar-text-btn'}
-            type="text"
-            onClick={onSave}
-            disabled={!onSave}
-            icon={<Save size={14} />}
-          >
-            Guardar
-          </Button>
-          {moreMenuItems.length > 0 ? <ContextMenu items={moreMenuItems} /> : null}
+          )}
         </div>
       </div>
     </div>

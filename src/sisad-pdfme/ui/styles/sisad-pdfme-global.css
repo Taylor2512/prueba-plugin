@@ -275,23 +275,83 @@
 }
 
 .sisad-pdfme-ui-control-bar {
-  position: sticky;
-  top: 0;
-  z-index: 10;
-  display: flex;
+  position: absolute;
+  inset: 0;
+  z-index: var(--sisad-pdfme-chrome-z, 45);
+  pointer-events: none;
+  background: transparent;
+}
+
+.sisad-pdfme-ui-control-bar[data-density='comfortable'] {
+  --sisad-chrome-spacing: 0.5rem;
+}
+
+.sisad-pdfme-ui-control-bar[data-density='compact'],
+.sisad-pdfme-ui-control-bar[data-density='minimal'] {
+  --sisad-chrome-spacing: 0.4375rem;
+}
+
+.sisad-pdfme-ui-control-bar-cluster {
+  position: absolute;
+  pointer-events: auto;
+  display: inline-flex;
   align-items: center;
-  justify-content: space-between;
-  gap: 0.5rem;
-  width: calc(100% - 0.75rem);
-  min-height: 2.625rem;
-  margin: 0.3125rem auto 0;
-  padding: 0.2rem 0.45rem;
-  border: 1px solid var(--border-subtle);
-  border-radius: 0.75rem;
-  background: linear-gradient(180deg, var(--color-white), var(--color-gray-50));
-  box-shadow: var(--shadow-lg);
-  backdrop-filter: blur(0.875rem);
-  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+.sisad-pdfme-ui-control-bar-cluster--top-left {
+  top: 0.5rem;
+  left: 0.5rem;
+}
+
+.sisad-pdfme-ui-control-bar-cluster--top-center {
+  top: 0.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.sisad-pdfme-ui-control-bar-cluster--top-right {
+  top: 0.5rem;
+  right: 0.5rem;
+}
+
+.sisad-pdfme-ui-control-bar-cluster--bottom-right {
+  right: 0.75rem;
+  bottom: 0.75rem;
+}
+
+.sisad-pdfme-ui-control-bar-pill,
+.sisad-pdfme-ui-control-bar-summary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.1875rem;
+  min-height: var(--sisad-pdfme-chrome-height, 1.875rem);
+  padding: 0.125rem 0.35rem;
+  border: 1px solid var(--sisad-pdfme-chrome-border, var(--border-subtle));
+  border-radius: var(--sisad-pdfme-chrome-radius, 0.625rem);
+  background: var(--sisad-pdfme-chrome-bg, linear-gradient(180deg, var(--color-white-98), var(--color-gray-50-90)));
+  box-shadow: var(--sisad-pdfme-chrome-shadow, var(--shadow-gray-10));
+  backdrop-filter: blur(0.625rem);
+}
+
+.sisad-pdfme-ui-control-bar-summary {
+  color: var(--text-secondary);
+  font-size: 0.65625rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+
+.sisad-pdfme-ui-control-bar-status-dot {
+  width: 0.42rem;
+  height: 0.42rem;
+  border-radius: 999px;
+  background: var(--color-success);
+  box-shadow: 0 0 0 2px var(--color-white-92);
+}
+
+.sisad-pdfme-ui-control-bar-status-dot[data-status='editing'] {
+  background: var(--color-warning);
 }
 
 .sisad-pdfme-designer-context-summary {
@@ -331,6 +391,18 @@
   font-size: 0.625rem;
   font-weight: 600;
   white-space: nowrap;
+}
+
+.sisad-pdfme-designer-context-summary-status-dot {
+  width: 0.5rem;
+  height: 0.5rem;
+  border-radius: 999px;
+  background: var(--color-success);
+  box-shadow: 0 0 0 2px var(--color-white);
+}
+
+.sisad-pdfme-designer-context-summary-meta.is-inline {
+  gap: 0.18rem;
 }
 
 .sisad-pdfme-designer-context-summary[data-placement='sidebar'] .sisad-pdfme-designer-context-summary-title {
@@ -459,7 +531,11 @@
   gap: 0.375rem;
   min-width: 0;
   flex: 1 1 auto;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
+}
+
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-context {
+  flex: 0 1 auto;
 }
 
 .sisad-pdfme-ui-control-bar-kicker {
@@ -504,9 +580,13 @@
   display: inline-flex;
   align-items: center;
   gap: 0.3125rem;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   justify-content: flex-end;
   flex: 2 1 auto;
+}
+
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-actions {
+  flex: 1 1 auto;
 }
 
 .sisad-pdfme-ui-pager,
@@ -567,20 +647,61 @@
 }
 
 .sisad-pdfme-ui-control-bar-icon-btn {
-  width: 1.5rem;
-  height: 1.5rem;
-  min-width: 1.5rem;
+  width: 1.625rem;
+  height: 1.625rem;
+  min-width: 1.625rem;
   padding: 0;
 }
 
+.sisad-pdfme-ui-control-bar[data-density='compact'] .sisad-pdfme-ui-control-bar-icon-btn,
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-icon-btn {
+  width: 1.75rem;
+  height: 1.75rem;
+  min-width: 1.75rem;
+}
+
 .sisad-pdfme-ui-control-bar-text-btn {
-  height: 1.5rem;
+  height: 1.625rem;
   padding: 0 0.375rem;
   font-size: 0.71875rem;
 }
 
+.sisad-pdfme-ui-control-bar[data-density='compact'] .sisad-pdfme-ui-control-bar-text-btn,
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-text-btn {
+  height: 1.75rem;
+  min-width: 1.75rem;
+  padding: 0 0.375rem;
+  font-size: 0.6875rem;
+}
+
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-summary {
+  font-size: 0.625rem;
+}
+
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-cluster--top-left {
+  max-width: calc(100% - 9.5rem);
+}
+
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-cluster--bottom-right {
+  right: 0.5rem;
+  bottom: 0.5rem;
+}
+
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-cluster--top-center {
+  top: auto;
+  bottom: 0.5rem;
+  left: 0.5rem;
+  transform: none;
+}
+
 .sisad-pdfme-ui-control-bar-page-select {
   min-width: 7.5rem;
+}
+
+.sisad-pdfme-ui-control-bar[data-density='compact'] .sisad-pdfme-ui-control-bar-page-select,
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-page-select {
+  min-width: 6rem;
+  max-width: 6rem;
 }
 
 .sisad-pdfme-ui-context-menu {
@@ -634,6 +755,12 @@
 .sisad-pdfme-ui-zoom .ant-select-selector {
   min-width: 3.625rem;
   font-size: 0.6875rem;
+}
+
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-zoom .sisad-pdfme-ui-zoom-select .ant-select-selector,
+.sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-zoom .ant-select-selector {
+  min-width: 3.5rem;
+  max-width: 3.5rem;
 }
 
 .sisad-pdfme-ui-zoom-out:hover,
@@ -1449,11 +1576,36 @@
   box-sizing: border-box;
   overscroll-behavior: contain;
   background:
-    radial-gradient(circle at center, var(--color-border-12) 0%, transparent 65%),
-    linear-gradient(var(--color-border-16) 1px, transparent 1px),
-    linear-gradient(90deg, var(--color-border-16) 1px, transparent 1px),
-    var(--color-bg-base);
-  background-size: 100% 100%, 1.5rem 1.5rem, 1.5rem 1.5rem;
+    radial-gradient(circle at top left, rgba(148, 163, 184, 0.08), transparent 22%),
+    linear-gradient(180deg, rgba(248, 250, 252, 0.96), rgba(241, 245, 249, 0.98));
+  background-size: auto, auto;
+}
+
+.sisad-pdfme-root .sisad-pdfme-designer-canvas[data-grid-visible='false'] {
+  background:
+    radial-gradient(circle at top left, rgba(148, 163, 184, 0.08), transparent 22%),
+    linear-gradient(180deg, rgba(248, 250, 252, 0.96), rgba(241, 245, 249, 0.98));
+  background-size: auto, auto;
+}
+
+.sisad-pdfme-root .sisad-pdfme-designer-canvas[data-grid-visible='true'] {
+  --sisad-grid-step: 24px;
+  --sisad-grid-line: rgba(148, 163, 184, 0.16);
+  --sisad-grid-line-strong: rgba(148, 163, 184, 0.24);
+  background-image:
+    linear-gradient(to right, var(--sisad-grid-line) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--sisad-grid-line) 1px, transparent 1px),
+    linear-gradient(to right, var(--sisad-grid-line-strong) 1px, transparent 1px),
+    linear-gradient(to bottom, var(--sisad-grid-line-strong) 1px, transparent 1px),
+    radial-gradient(circle at top left, rgba(148, 163, 184, 0.08), transparent 22%),
+    linear-gradient(180deg, rgba(248, 250, 252, 0.96), rgba(241, 245, 249, 0.98));
+  background-size:
+    var(--sisad-grid-step) var(--sisad-grid-step),
+    var(--sisad-grid-step) var(--sisad-grid-step),
+    calc(var(--sisad-grid-step) * 4) calc(var(--sisad-grid-step) * 4),
+    calc(var(--sisad-grid-step) * 4) calc(var(--sisad-grid-step) * 4),
+    auto,
+    auto;
 }
 
 .sisad-pdfme-designer-canvas-empty-state {
@@ -1624,6 +1776,10 @@
 
 .sisad-pdfme-designer-stage[data-sidebar-open="true"] .sisad-pdfme-designer-canvas {
   padding-right: calc(var(--sisad-pdfme-rs-width) + 0.875rem);
+}
+
+.sisad-pdfme-designer-stage[data-sidebar-open="true"] .sisad-pdfme-ui-control-bar {
+  right: calc(var(--sisad-pdfme-rs-width) + 0.875rem);
 }
 
 .sisad-pdfme-designer-right-sidebar-content {
@@ -3359,28 +3515,25 @@
 }
 
 .sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar {
-  min-height: 2.25rem;
-  padding: 0.14rem 0.35rem;
-  gap: 0.35rem;
-  border-radius: 0.625rem;
+  --sisad-pdfme-chrome-height: 1.72rem;
 }
 
 .sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"][data-sidebar-open="true"] .sisad-pdfme-ui-control-bar {
-  width: calc(100% - clamp(15rem, 17.5vw, 17.25rem) - 1rem);
-  margin: 0.3125rem 0.375rem 0 0.375rem;
+  right: calc(clamp(15rem, 17.5vw, 17.25rem) + 0.9rem);
 }
 
-.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-group,
-.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-zoom,
-.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-pager {
-  padding: 0.1rem 0.18rem;
-  gap: 0.1rem;
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density='comfortable'] .sisad-pdfme-ui-control-bar-cluster--top-left,
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density='comfortable'] .sisad-pdfme-ui-control-bar-cluster--top-center,
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density='comfortable'] .sisad-pdfme-ui-control-bar-cluster--top-right,
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density='compact'] .sisad-pdfme-ui-control-bar-cluster--top-left,
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density='compact'] .sisad-pdfme-ui-control-bar-cluster--top-center,
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density='compact'] .sisad-pdfme-ui-control-bar-cluster--top-right {
+  top: 0.375rem;
 }
 
-.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-icon-btn {
-  width: 1.32rem;
-  height: 1.32rem;
-  min-width: 1.32rem;
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-cluster--bottom-right {
+  right: 0.5rem;
+  bottom: 0.5rem;
 }
 
 .sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-text-btn {

@@ -326,6 +326,12 @@
   --sisad-pdfme-stage-top-gap: 4.25rem;
   --sisad-pdfme-stage-right-dock-width: clamp(17rem, 20vw, 21rem);
   --sisad-pdfme-stage-right-dock-gap: 1.125rem;
+  --sisad-pdfme-chrome-bg: linear-gradient(180deg, var(--color-white-98), var(--color-gray-50-90));
+  --sisad-pdfme-chrome-border: var(--color-border-20);
+  --sisad-pdfme-chrome-shadow: var(--shadow-gray-10);
+  --sisad-pdfme-chrome-radius: 0.625rem;
+  --sisad-pdfme-chrome-z: 45;
+  --sisad-pdfme-chrome-height: 1.875rem;
 
   /* ── CANVAS-FIRST STATE TOKENS ───────────────────────────── */
   /* Aliases removed - use base tokens directly */

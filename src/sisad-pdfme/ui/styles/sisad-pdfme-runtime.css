@@ -383,8 +383,7 @@
 }
 
 .sisad-pdfme-designer-stage[data-left-sidebar-variant='compact'] .sisad-pdfme-ui-control-bar {
-  min-height: 3.15rem;
-  padding-block: 0.25rem;
+	--sisad-pdfme-chrome-height: 1.72rem;
 }
 
 .sisad-pdfme-designer-stage[data-left-sidebar-variant='compact'] .sisad-pdfme-ui-control-bar-context {

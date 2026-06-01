@@ -7,6 +7,7 @@ import {
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import type { InteractionState } from '../../shared/interactionState.js';
 import { Loader2 } from 'lucide-react';
+import { Ellipsis } from 'lucide-react';
 import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
 
 type SelectionContextToolbarProps = {
@@ -68,6 +69,7 @@ const SelectionContextToolbar = ({
     interactionPhase: interactionState.phase,
     mode: resolvedToolbarMode,
   });
+  const miniPrimaryActions = isMicro ? toolbarModel.primaryActions.slice(0, 2) : toolbarModel.primaryActions;
 
   if (!position || !commands || !activeElements.length) return null;
   if (['editing', 'dragging', 'resizing', 'rotating'].includes(interactionState.phase)) return null;
@@ -133,7 +135,7 @@ const SelectionContextToolbar = ({
       ) : null}
 
       <div className="sisad-pdfme-ui-selection-context-toolbar-actions" role="group" aria-label="Acciones rápidas">
-        {toolbarModel.primaryActions.map((btn) => (
+        {miniPrimaryActions.map((btn) => (
           <button
             key={btn.id}
             type="button"
@@ -161,6 +163,29 @@ const SelectionContextToolbar = ({
             <span className="sisad-pdfme-ui-selection-context-toolbar-action-label">{btn.label}</span>
           </button>
         ))}
+        {isMicro ? (
+          <button
+            type="button"
+            title="Más acciones"
+            aria-label="Más acciones"
+            onMouseDown={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+            }}
+            onClick={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              const nextMode: SelectionToolbarMode = 'compact';
+              setInternalToolbarMode(nextMode);
+              onToolbarModeChange?.(nextMode);
+            }}
+          >
+            <span className="sisad-pdfme-ui-selection-context-toolbar-action-icon" aria-hidden="true">
+              <Ellipsis size={14} />
+            </span>
+            <span className="sisad-pdfme-ui-selection-context-toolbar-action-label">Más</span>
+          </button>
+        ) : null}
       </div>
       {isExpanded && toolbarModel.secondarySections.length > 0 ? (
         <div className="sisad-pdfme-ui-selection-context-toolbar-sections" aria-label="Acciones avanzadas">
