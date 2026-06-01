@@ -1,4 +1,4 @@
-import { RefObject, useRef, useState, useCallback, useEffect } from 'react';
+import { RefObject, useRef, useState, useCallback, useEffect, useMemo } from 'react';
 import {
   ZOOM,
   Template,
@@ -64,7 +64,18 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
   const [error, setError] = useState<Error | null>(null);
   const [paperMetrics, setPaperMetrics] = useState<{ paperWidth: number; paperHeight: number } | null>(null);
   const requestIdRef = useRef(0);
+  const lastGoodPreprocessRef = useRef<PreprocessedPdfCache | null>(null);
   const preprocessedCacheRef = useRef<Map<string, PreprocessedPdfCache>>(new Map());
+  const templateRef = useRef(template);
+  const maxZoomRef = useRef(maxZoom);
+
+  useEffect(() => {
+    templateRef.current = template;
+  }, [template]);
+
+  useEffect(() => {
+    maxZoomRef.current = maxZoom;
+  }, [maxZoom]);
 
   const init = useCallback(async (nextTemplate: Template) => {
     const {
@@ -134,23 +145,39 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
     };
   }, [maxZoom]);
 
+  const basePdfCacheKey = useMemo(() => getBasePdfCacheKey(template.basePdf), [template.basePdf]);
   const isBlankBasePdf = isBlankPdf(template.basePdf);
   const blankSchemaPages = isBlankBasePdf ? template.schemas.length : 0;
 
   useEffect(() => {
     requestIdRef.current += 1;
     const requestId = requestIdRef.current;
-    init(template)
+    const currentTemplate = templateRef.current;
+    init(currentTemplate)
       .then(({ pageSizes, paperWidth, paperHeight, backgrounds }) => {
         if (requestId !== requestIdRef.current) return;
         setPageSizes(pageSizes);
         setBackgrounds(backgrounds);
         setPaperMetrics({ paperWidth, paperHeight });
         setError(null);
+        lastGoodPreprocessRef.current = {
+          key: currentTemplate.basePdf,
+          maxZoom: maxZoomRef.current,
+          backgrounds,
+          pageSizes,
+          paperWidth,
+          paperHeight,
+        };
       })
       .catch((err: Error) => {
         if (requestId !== requestIdRef.current) return;
         setError(err);
+        const lastGood = lastGoodPreprocessRef.current;
+        if (lastGood) {
+          setPageSizes(lastGood.pageSizes);
+          setBackgrounds(lastGood.backgrounds);
+          setPaperMetrics({ paperWidth: lastGood.paperWidth, paperHeight: lastGood.paperHeight });
+        }
         console.error('[@sisad-pdfme/ui]', err);
       });
 
@@ -159,7 +186,7 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
         requestIdRef.current += 1;
       }
     };
-  }, [blankSchemaPages, init, isBlankBasePdf, template]);
+  }, [basePdfCacheKey, blankSchemaPages, init, isBlankBasePdf]);
 
   useEffect(() => {
     if (!paperMetrics) return;

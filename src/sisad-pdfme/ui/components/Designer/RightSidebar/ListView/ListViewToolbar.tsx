@@ -53,7 +53,7 @@ const ListViewToolbar = ({
   subtitle,
   bulkActionLabel = 'Renombrar',
   bulkRecipientLabel,
-  searchPlaceholder = 'Buscar campo, tipo o categoría',
+  searchPlaceholder = 'Buscar campo o nombre',
   clearLabel = 'Limpiar',
   useDefaultStyles,
   showBulkAction = true,

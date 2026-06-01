@@ -345,4 +345,24 @@
   /* ── FOCUS RING TOKEN ────────────────────────────────────── */
   --focus-ring: 0 0 0 0.1875rem rgba(67, 56, 202, 0.28);
   --focus-ring-danger: 0 0 0 0.1875rem rgba(239, 68, 68, 0.24);
+
+  /* ── SISAD EDITOR SEMANTIC TOKENS ───────────────────────── */
+  --sisad-editor-bg: var(--color-bg-base);
+  --sisad-editor-surface: var(--color-bg-elevated);
+  --sisad-editor-surface-soft: var(--color-bg-surface);
+  --sisad-editor-border: var(--color-border-20);
+  --sisad-editor-border-strong: var(--color-border-30);
+  --sisad-editor-muted: var(--color-text-muted);
+  --sisad-editor-primary: var(--color-primary);
+  --sisad-editor-primary-soft: var(--color-primary-08);
+  --sisad-editor-success: var(--color-success);
+  --sisad-editor-warning: var(--color-warning);
+  --sisad-editor-danger: var(--color-danger);
+  --sisad-editor-radius-sm: var(--radius-sm);
+  --sisad-editor-radius-md: var(--radius-md);
+  --sisad-editor-radius-lg: var(--radius-lg);
+  --sisad-editor-shadow-sm: var(--shadow-sm);
+  --sisad-editor-shadow-md: var(--shadow-md);
+  --sisad-editor-panel-width-left: var(--sisad-pdfme-ls-width);
+  --sisad-editor-panel-width-right: var(--sisad-pdfme-rs-width);
 }

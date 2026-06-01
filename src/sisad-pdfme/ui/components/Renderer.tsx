@@ -39,7 +39,15 @@ type DesignerStyleAwareSchema = SchemaForUI & {
       className?: string;
       style?: React.CSSProperties;
     };
+    recipientId?: string;
+    recipientColor?: string;
+    collaboration?: {
+      recipientId?: string;
+      recipientColor?: string;
+    };
   };
+  ownerColor?: string;
+  userColor?: string;
 };
 const FILL_STYLE: React.CSSProperties = { height: '100%', width: '100%' };
 const BLOCKED_DESIGNER_STYLE_KEYS = new Set([
@@ -106,6 +114,20 @@ const Wrapper = ({
   );
   const schemaName = typeof schema.name === 'string' && schema.name.trim() ? schema.name.trim() : 'Campo';
   const schemaType = typeof schema.type === 'string' && schema.type.trim() ? schema.type.trim() : 'schema';
+  const schemaUid = typeof (schema as Record<string, unknown>).schemaUid === 'string'
+    ? (schema as Record<string, unknown>).schemaUid as string
+    : schema.id;
+  const designerStyleSchema = schema as DesignerStyleAwareSchema;
+  const schemaOwnerId =
+    designerStyleSchema.__designer?.collaboration?.recipientId ||
+    designerStyleSchema.__designer?.recipientId ||
+    undefined;
+  const schemaOwnerColor =
+    designerStyleSchema.__designer?.collaboration?.recipientColor ||
+    designerStyleSchema.__designer?.recipientColor ||
+    designerStyleSchema.ownerColor ||
+    designerStyleSchema.userColor ||
+    undefined;
   const schemaTitle = getSchemaTitle(schema);
   const schemaTone = resolveSchemaTone(schema, selectable ? '#38a0ff' : '#94a3b8');
   const schemaSurfaceTone = resolveSchemaToneSurface(schema, '#ffffff', schema.readOnly ? 0.08 : 0.12);
@@ -130,6 +152,7 @@ const Wrapper = ({
     transform: Number.isFinite(rotation) && rotation !== 0 ? `rotate(${rotation}deg)` : undefined,
     transformOrigin: 'center center',
     boxSizing: 'border-box',
+    outline: 'none',
   };
   const wrapperStyle = {
     ...wrapperGeometryStyle,
@@ -151,6 +174,7 @@ const Wrapper = ({
   return (
     <div
       title={schemaTitle}
+      tabIndex={-1}
       onMouseEnter={() => onChangeHoveringSchemaId?.(schema.id)}
       onMouseLeave={() => onChangeHoveringSchemaId?.(null)}
       onMouseDownCapture={onMouseDownCapture}
@@ -158,6 +182,7 @@ const Wrapper = ({
       id={schema.id}
       style={wrapperStyle}
       data-schema-id={schema.id}
+      data-schema-uid={schemaUid}
       data-schema-name={schemaName}
       data-schema-type={schemaType}
       data-schema-caption={schemaCaption}
@@ -170,6 +195,8 @@ const Wrapper = ({
       data-schema-readonly={schema.readOnly ? 'true' : 'false'}
       data-schema-required={schema.required ? 'true' : 'false'}
       data-schema-selectable={selectable ? 'true' : 'false'}
+      data-schema-owner-id={schemaOwnerId || undefined}
+      data-schema-owner-color={schemaOwnerColor || undefined}
       onDoubleClick={(event) => {
         if (!selectable) return;
         event.preventDefault();

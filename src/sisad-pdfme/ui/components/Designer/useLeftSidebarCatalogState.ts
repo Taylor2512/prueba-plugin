@@ -65,6 +65,7 @@ const useLeftSidebarCatalogState = ({ catalogViewMode }: UseLeftSidebarCatalogSt
   const [quickFilter, setQuickFilter] = useState<CatalogQuickFilter>('all');
   const [activeCapabilities, setActiveCapabilities] = useState<Set<CatalogCapability>>(new Set());
   const [internalViewMode, setInternalViewMode] = useState<CatalogViewMode>(catalogViewMode || 'compact');
+  const [hasManualViewMode, setHasManualViewMode] = useState(false);
   const [collapsedCategories, setCollapsedCategories] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
@@ -81,12 +82,18 @@ const useLeftSidebarCatalogState = ({ catalogViewMode }: UseLeftSidebarCatalogSt
   }), []);
 
   useEffect(() => {
-    if (catalogViewMode) {
+    if (catalogViewMode !== undefined) {
       setInternalViewMode(catalogViewMode);
+      setHasManualViewMode(false);
     }
   }, [catalogViewMode]);
 
-  const resolvedViewMode = catalogViewMode || internalViewMode;
+  const setUserViewMode = useCallback((mode: CatalogViewMode) => {
+    setHasManualViewMode(true);
+    setInternalViewMode(mode);
+  }, []);
+
+  const resolvedViewMode = catalogViewMode ?? internalViewMode;
 
   const saveRecentPlugins = useCallback((next: string[]) => {
     const normalized = next.filter(Boolean).slice(0, 8);
@@ -135,9 +142,11 @@ const useLeftSidebarCatalogState = ({ catalogViewMode }: UseLeftSidebarCatalogSt
     setActiveCapabilities,
     internalViewMode,
     setInternalViewMode,
+    setUserViewMode,
     resolvedViewMode,
     collapsedCategories,
     setCollapsedCategories,
+    hasManualViewMode,
     saveRecentPlugins,
     markRecent,
   };

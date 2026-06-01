@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useLayoutEffect, useRef } from 'react';
 import type { CommandBus } from '../../../commands/commandBus.js';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import { DESIGNER_CLASSNAME } from '../../../constants.js';
@@ -404,7 +404,9 @@ export const useDesignerKeyboardShortcuts = ({
     onPasteStyle,
   });
 
-  useEffect(() => {
+  // Use useLayoutEffect so the ref is updated before the browser paints and
+  // before any synthesised keyboard events that fire immediately after a click.
+  useLayoutEffect(() => {
     paramsRef.current = {
       enabled,
       activeSchemas,

@@ -107,6 +107,7 @@ interface GuidesInterface {
 export type CanvasFeatureToggles = {
   selecto?: boolean;
   snapLines?: boolean;
+  grid?: boolean;
   guides?: boolean;
   padding?: boolean;
   mask?: boolean;
@@ -180,6 +181,7 @@ export interface CanvasProps {
   onEdit: (targets: HTMLElement[]) => void;
   changeSchemas: ChangeSchemas;
   paperRefs: MutableRefObject<HTMLDivElement[]>;
+  registerPaperRef: (paperIndex: number, element: HTMLDivElement | null) => void;
   renderedSchemasList?: SchemaForUI[][];
   sidebarOpen: boolean;
   sidebarWidth?: number;
@@ -230,6 +232,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
     changeSchemas,
     onChangeHoveringSchemaId,
     paperRefs,
+    registerPaperRef,
     featureToggles,
     styleOverrides,
     classNames,
@@ -264,6 +267,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
   const feature = {
     selecto: featureToggles?.selecto !== false,
     snapLines: featureToggles?.snapLines !== false,
+    grid: featureToggles?.grid !== false,
     guides: featureToggles?.guides !== false,
     padding: featureToggles?.padding !== false,
     mask: featureToggles?.mask !== false,
@@ -359,6 +363,10 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
     if (e.key === 'Escape' || e.key === 'Esc') {
       setEditing(false);
       setInlineEditSession(null);
+      requestAnimationFrame(() => {
+        const paper = rootRef.current?.querySelector<HTMLElement>('[data-paper-page="true"]');
+        paper?.focus({ preventScroll: true });
+      });
     }
   };
 
@@ -611,6 +619,18 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
     ],
   );
 
+  const refocusCanvas = useCallback(() => {
+    requestAnimationFrame(() => {
+      const activeEl = activeElements.find(Boolean);
+      if (activeEl && activeEl.tabIndex !== undefined) {
+        activeEl.focus({ preventScroll: true });
+        return;
+      }
+      const paper = rootRef.current?.querySelector<HTMLElement>('[data-paper-page="true"]');
+      paper?.focus({ preventScroll: true });
+    });
+  }, [activeElements]);
+
   const finishInlineEdit = useCallback(
     (nextValue: string) => {
       if (!inlineEditSession) return;
@@ -620,25 +640,29 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
       if (!currentSchema) {
         setInlineEditSession(null);
         setEditing(false);
+        refocusCanvas();
         return;
       }
         const currentValue = key === 'content' ? String(currentSchema.content || '') : String(currentSchema.name || '');
         if (currentValue === nextValue) {
         setInlineEditSession(null);
         setEditing(false);
+        refocusCanvas();
         return;
       }
       changeSchemas([{ key, value: nextValue, schemaId }]);
       setInlineEditSession(null);
       setEditing(false);
+      refocusCanvas();
     },
-    [changeSchemas, currentPageSchemas, inlineEditSession],
+    [changeSchemas, currentPageSchemas, inlineEditSession, refocusCanvas],
   );
 
   const cancelInlineEdit = useCallback(() => {
     setInlineEditSession(null);
     setEditing(false);
-  }, []);
+    refocusCanvas();
+  }, [refocusCanvas]);
 
   useImperativeHandle(ref, () => {
     const node = rootRef.current;
@@ -687,16 +711,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
   ]);
 
   const onClickMoveable = useCallback(() => {
-    const activeElement = activeElements.find(Boolean);
-    if (!activeElement) return;
-    const schemaId = activeElement.id;
-    const target = document.getElementById(schemaId);
-    if (!target) {
-      selectionCommands?.openProperties?.();
-      return;
-    }
-    startInlineEdit(schemaId, target, 'content');
-  }, [activeElements, selectionCommands, startInlineEdit]);
+    setContextMenu(null);
+    setPendingContextMenu(null);
+  }, [setContextMenu, setPendingContextMenu]);
 
   const handleDragStart = () => setIsDragging(true);
   const handleResizeStart = () => setIsResizing(true);
@@ -991,6 +1008,10 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
       data-interaction-dragging={interactionState.isDragging ? 'true' : 'false'}
       data-interaction-resizing={interactionState.isResizing ? 'true' : 'false'}
       data-interaction-rotating={interactionState.isRotating ? 'true' : 'false'}
+      data-grid-visible={feature.grid ? 'true' : 'false'}
+      data-guides-visible={feature.guides ? 'true' : 'false'}
+      data-snaps-enabled={feature.snapLines ? 'true' : 'false'}
+      data-padding-visible={feature.padding ? 'true' : 'false'}
       data-canvas-state={canvasRenderState.type}
       ref={rootRef}>
       {!editing && feature.selecto && !externalSchemaDragActive && canvasInteractive ? (
@@ -1089,13 +1110,13 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
         />
       ) : null}
       <Paper
-        paperRefs={paperRefs}
         scale={scale}
         size={size}
         schemasList={renderedPageSchemasList}
         pageSizes={pageSizes}
         backgrounds={backgrounds}
         hasRulers={true}
+        registerPaperRef={registerPaperRef}
         renderPaper={({ index, paperSize }) => (
           <>
             {feature.padding ? (
@@ -1180,8 +1201,8 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
                   onResizeStart={handleResizeStart}
                   onResizeEnd={onResizeEnd}
                   onResizeGroupEnd={onResizeEnds}
-                  onClick={onClickMoveable}
-                />
+              onClick={onClickMoveable}
+            />
               )
             )}
           </>
@@ -1249,7 +1270,13 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
                   : undefined
               }
               onDoubleClick={(event) => {
-                startInlineEdit(schema.id, event.currentTarget);
+                if (isDragging || isResizing || isRotating || !canvasInteractive) return;
+                if (schema.readOnly) return;
+                const editableTypes = new Set(['text', 'multivariabletext']);
+                if (!editableTypes.has(String(schema.type || '').toLowerCase())) return;
+                const target = event.currentTarget as HTMLElement;
+                if (isEditableTarget(event.target) || isAntDPopupTarget(event.target)) return;
+                startInlineEdit(schema.id, target, 'content');
               }}
               stopEditing={() => setEditing(false)}
               isActive={isActive}

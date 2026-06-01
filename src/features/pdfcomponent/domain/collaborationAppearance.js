@@ -1,8 +1,22 @@
 import { cloneDeep } from '@sisad-pdfme/common'
 
-const DEFAULT_COLLABORATOR_COLORS = ['#2563EB', '#D946EF', '#F97316', '#0F766E', '#CA8A04', '#7C3AED']
+const DEFAULT_COLLABORATOR_COLORS = [
+  '#2563EB', '#D946EF', '#F97316', '#0F766E', '#CA8A04', '#7C3AED',
+  '#DC2626', '#0891B2', '#65A30D', '#DB2777',
+]
 
 const normalizeId = (value) => (typeof value === 'string' ? value.trim() : '')
+
+const normalizeHexUpper = (value) => {
+  if (typeof value !== 'string') return null
+  const v = value.trim()
+  if (!/^#([0-9a-fA-F]{3}|[0-9a-fA-F]{6})$/.test(v)) return null
+  if (v.length === 4) {
+    const [, a, b, c] = v
+    return `#${a}${a}${b}${b}${c}${c}`.toUpperCase()
+  }
+  return v.toUpperCase()
+}
 
 const buildOwnerIds = (schema) => {
   const values = []
@@ -13,11 +27,28 @@ const buildOwnerIds = (schema) => {
   return Array.from(new Set(values.map(normalizeId).filter(Boolean)))
 }
 
-export const decorateCollaborationUsers = (users = []) =>
-  users.map((user, index) => ({
-    ...user,
-    color: user?.color || DEFAULT_COLLABORATOR_COLORS[index % DEFAULT_COLLABORATOR_COLORS.length],
-  }))
+export const decorateCollaborationUsers = (users = []) => {
+  // Collect colors already claimed by explicit assignments so palette slots skip them.
+  const explicitColors = new Set()
+  for (const user of users) {
+    const hex = normalizeHexUpper(user?.color)
+    if (hex) explicitColors.add(hex)
+  }
+
+  const availableSlots = DEFAULT_COLLABORATOR_COLORS.filter(
+    (c) => !explicitColors.has(c.toUpperCase()),
+  )
+
+  let paletteIndex = 0
+  return users.map((user) => {
+    const explicit = normalizeHexUpper(user?.color)
+    if (explicit) return { ...user, color: explicit }
+    const assigned = availableSlots[paletteIndex % availableSlots.length] ||
+      DEFAULT_COLLABORATOR_COLORS[paletteIndex % DEFAULT_COLLABORATOR_COLORS.length]
+    paletteIndex += 1
+    return { ...user, color: assigned }
+  })
+}
 
 export const resolveCollaboratorById = (collaboratorId, users = []) => {
   const normalizedId = normalizeId(collaboratorId)

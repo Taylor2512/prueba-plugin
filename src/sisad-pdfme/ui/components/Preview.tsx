@@ -59,6 +59,7 @@ const Preview = ({
     error,
     input,
     isForm,
+    registerPaperRef,
     handleOnChangeRenderer,
     getPagesScrollTopByIndex,
   } = usePreviewRuntime({
@@ -70,7 +71,6 @@ const Preview = ({
     onFormJsonChange,
     onPageChange,
   });
-
   if (error) {
     return <ErrorScreen size={size} error={error} />;
   }
@@ -108,12 +108,12 @@ const Preview = ({
       />
       <div ref={containerRef} className={UI_CLASSNAME + 'preview-scroll'}>
         <Paper
-          paperRefs={paperRefs}
           scale={scale}
           size={size}
           schemasList={schemasList}
           pageSizes={pageSizes}
           backgrounds={backgrounds}
+          registerPaperRef={registerPaperRef}
           renderPaper={() => null}
           renderSchema={({ schema, index }) => {
             if ((schema as SchemaForUI & { hidden?: boolean }).hidden === true) {

@@ -182,7 +182,9 @@ export abstract class BaseUIClass {
     if (font) {
       this.font = font;
     }
-    this.options = Object.assign(this.options, options);
+    // Spread into a new object so OptionsContext.Provider receives a new reference
+    // and React re-renders all context consumers (LeftSidebar, PluginIcon, etc.)
+    this.options = { ...this.options, ...options };
     if (!this.domContainer || !this.domContainer.isConnected) return;
     this.render();
   }

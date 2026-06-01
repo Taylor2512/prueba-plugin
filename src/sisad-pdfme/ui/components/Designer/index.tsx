@@ -46,6 +46,7 @@ import {
   useMaxZoom,
 } from '../../helper.js';
 import { useUIPreProcessor, useScrollPageCursor, useInitEvents } from '../../hooks.js';
+import usePaperRefRegistry from '../shared/usePaperRefRegistry.js';
 import Root from '../Root.js';
 import ErrorScreen from '../ErrorScreen.js';
 import CtlBar from '../CtlBar.js';
@@ -89,6 +90,17 @@ import {
 } from '../../commands/designerCommands.js';
 import { emitDesignerRuntimeEvent } from '../Designer/shared/designerExtensions.js';
 const DESIGNER_THEME_STYLE_ID = DESIGNER_CLASSNAME + 'theme-base';
+
+const stableHashSchemas = (schemas: SchemaForUI[][]) => {
+  try {
+    return JSON.stringify(schemas);
+  } catch {
+    return `schemas:${schemas.length}`;
+  }
+};
+
+const isValidRealBasePdf = (basePdf: Template['basePdf']) =>
+  basePdf != null && !isBlankPdf(basePdf);
 
 type RightSidebarContextHeaderRendererDeps = {
   activeDocumentId: string | null;
@@ -397,7 +409,7 @@ const TemplateEditor = ({
 }) => { // NOSONAR
   const commandBusRef = useRef(new CommandBus());
   const canvasRef = useRef<HTMLDivElement>(null);
-  const paperRefs = useRef<HTMLDivElement[]>([]);
+  const { paperRefs, registerPaperRef } = usePaperRefRegistry();
   const pdfUploadInputRef = useRef<HTMLInputElement>(null);
   const internalTemplateSyncRef = useRef(false);
   const pendingCollaborativeTemplateRef = useRef<Template | null>(null);
@@ -407,9 +419,30 @@ const TemplateEditor = ({
   const documentSchemasCacheRef = useRef<Map<string, SchemaForUI[][]>>(new Map());
   const schemasListRef = useRef<SchemaForUI[][]>([]);
   const activeBasePdfRef = useRef(template.basePdf);
+  const visibleTemplateRef = useRef<Template>(template);
+  const uploadedDocumentsRef = useRef<UploadedPdfDocument[]>([]);
+  const lastCommittedSchemasHashRef = useRef<string>('');
+  const lastPersistedDocumentBasePdfRef = useRef<Template['basePdf']>(template.basePdf);
   const canvasDocumentIdRef = useRef<string | null>(null);
   const pendingCanvasDocumentIdRef = useRef<string | null>(null);
   const loadDocumentRequestRef = useRef(0);
+
+  const resolveStableDocumentBasePdf = useCallback((documentId: string | null) => {
+    const documentTemplate = uploadedDocumentsRef.current.find((doc) => doc.id === documentId)?.template || null;
+    const documentBasePdf = documentTemplate?.basePdf;
+    if (isValidRealBasePdf(documentBasePdf)) return documentBasePdf;
+
+    const visibleBasePdf = visibleTemplateRef.current?.basePdf;
+    if (isValidRealBasePdf(visibleBasePdf)) return visibleBasePdf;
+
+    const persistedBasePdf = lastPersistedDocumentBasePdfRef.current;
+    if (isValidRealBasePdf(persistedBasePdf)) return persistedBasePdf;
+
+    const refBasePdf = activeBasePdfRef.current;
+    if (isValidRealBasePdf(refBasePdf)) return refBasePdf;
+
+    return documentBasePdf || visibleBasePdf || refBasePdf;
+  }, []);
 
   const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
@@ -561,6 +594,7 @@ const TemplateEditor = ({
     () => ({
       selecto: canvasFeatureOverrides.selecto ?? designerEngine.canvas?.featureToggles?.selecto ?? true,
       snapLines: canvasFeatureOverrides.snapLines ?? designerEngine.canvas?.featureToggles?.snapLines ?? true,
+      grid: canvasFeatureOverrides.grid ?? designerEngine.canvas?.featureToggles?.grid ?? true,
       guides: canvasFeatureOverrides.guides ?? designerEngine.canvas?.featureToggles?.guides ?? true,
       padding: canvasFeatureOverrides.padding ?? designerEngine.canvas?.featureToggles?.padding ?? true,
       mask: canvasFeatureOverrides.mask ?? designerEngine.canvas?.featureToggles?.mask ?? true,
@@ -569,6 +603,7 @@ const TemplateEditor = ({
     }),
     [
       canvasFeatureOverrides.deleteButton,
+      canvasFeatureOverrides.grid,
       canvasFeatureOverrides.guides,
       canvasFeatureOverrides.mask,
       canvasFeatureOverrides.moveable,
@@ -576,6 +611,7 @@ const TemplateEditor = ({
       canvasFeatureOverrides.selecto,
       canvasFeatureOverrides.snapLines,
       designerEngine.canvas?.featureToggles?.deleteButton,
+      designerEngine.canvas?.featureToggles?.grid,
       designerEngine.canvas?.featureToggles?.guides,
       designerEngine.canvas?.featureToggles?.mask,
       designerEngine.canvas?.featureToggles?.moveable,
@@ -597,11 +633,10 @@ const TemplateEditor = ({
     iconType: string;
   } | null>(null);
   const dropCommitTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const [isIdle, setIsIdle] = useState(false);
+  const [isIdle, setIsIdle] = useState<boolean | undefined>(undefined);
 
   const areActiveElementsEqual = useCallback((left: HTMLElement[], right: HTMLElement[]) => {
-    if (left.length !== right.length) return false;
-    return left.every((element, index) => element?.id === right[index]?.id);
+    return left.length === right.length && left.every((element, index) => element?.id === right[index]?.id);
   }, []);
 
   useEffect(() => {
@@ -732,7 +767,6 @@ const TemplateEditor = ({
   useEffect(() => {
     const IDLE_DELAY = 4000;
     const resetIdle = () => {
-      setIsIdle(false);
       if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
       idleTimerRef.current = setTimeout(() => setIsIdle(true), IDLE_DELAY);
     };
@@ -758,6 +792,14 @@ const TemplateEditor = ({
   useEffect(() => {
     activeBasePdfRef.current = activeBasePdf;
   }, [activeBasePdf]);
+
+  useEffect(() => {
+    visibleTemplateRef.current = visibleTemplate;
+  }, [visibleTemplate]);
+
+  useEffect(() => {
+    uploadedDocumentsRef.current = uploadedDocuments;
+  }, [uploadedDocuments]);
   const currentPageSchemas = useMemo(
     () => schemasList[pageCursor] || [],
     [pageCursor, schemasList],
@@ -801,7 +843,7 @@ const TemplateEditor = ({
     if (nextActive.length === 0) {
       setHoveringSchemaId(null);
     }
-  }, [activeElements, pageCursor, schemasList, visiblePageSchemaIdSet]);
+  }, [activeElements, pageCursor, paperRefs, schemasList, visiblePageSchemaIdSet]);
 
   useEffect(() => {
     if (!hoveringSchemaId) return;
@@ -812,6 +854,7 @@ const TemplateEditor = ({
   const pushTemplateUpdate = useCallback(
     (nextTemplate: Template, context: TemplateChangeContext = {}) => {
       setVisibleTemplate(nextTemplate);
+      visibleTemplateRef.current = nextTemplate;
       internalTemplateSyncRef.current = true;
       const documentId = context.documentId || activeDocumentId || canvasDocumentIdRef.current || null;
       onChangeTemplate(nextTemplate, {
@@ -946,7 +989,7 @@ const TemplateEditor = ({
 
   // Comment dialog state and handlers
   const [commentDialogOpen, setCommentDialogOpen] = useState(false);
-  const [pendingAnchor, setPendingAnchor] = useState<null | {
+  const pendingAnchorRef = useRef<null | {
     xMm: number;
     yMm: number;
     pageIndex: number;
@@ -979,13 +1022,13 @@ const TemplateEditor = ({
         yMm = Math.max(0, Math.min(pageSizes[resolvedPageIndex]?.height || 0, rawYMm));
       }
 
-      setPendingAnchor({
+      pendingAnchorRef.current = {
         xMm: Math.round(xMm * 100) / 100,
         yMm: Math.round(yMm * 100) / 100,
         pageIndex: paperRefs.current[pageIndex] ? pageIndex : pageCursor,
         fileId: fileId || activeDocumentId || null,
         schemaUid,
-      });
+      };
       openCommentsPanel();
       setCommentDialogOpen(true);
     } catch (err) {
@@ -1039,7 +1082,7 @@ const TemplateEditor = ({
 
       return false;
     },
-    [pageSizes, scale],
+    [paperRefs, pageSizes, scale],
   );
 
   useScrollPageCursor({
@@ -1077,12 +1120,13 @@ const TemplateEditor = ({
             const nextSchemasList = replacePageSchemas(schemasListRef.current, targetPageIndex, nextPageSchemas);
             schemasListRef.current = nextSchemasList;
             setSchemasList(nextSchemasList);
-            pushTemplateUpdate(schemasList2template(nextSchemasList, activeBasePdfRef.current));
+            const stableBasePdf = resolveStableDocumentBasePdf(activeDocumentId || canvasDocumentIdRef.current || null);
+            pushTemplateUpdate(schemasList2template(nextSchemasList, stableBasePdf));
           },
         }),
       );
     },
-    [pageCursor, pushTemplateUpdate],
+    [activeDocumentId, canvasDocumentIdRef, pageCursor, pushTemplateUpdate, resolveStableDocumentBasePdf],
   );
 
   const removeSchemas = useCallback(
@@ -1095,12 +1139,16 @@ const TemplateEditor = ({
 
   const changeSchemas: ChangeSchemas = useCallback(
     (objs) => {
+      const stableBasePdf = resolveStableDocumentBasePdf(activeDocumentId || canvasDocumentIdRef.current || null);
       emitDesignerEvent({
         type: 'designer.schema.change',
         source: 'canvas',
         component: 'Canvas',
         pageIndex: pageCursor,
-        schemaIds: objs.map((obj) => obj.schemaId).filter(Boolean) as string[],
+        schemaIds: objs.reduce<string[]>((ids, obj) => {
+          if (obj.schemaId) ids.push(obj.schemaId);
+          return ids;
+        }, []),
         patch: objs.reduce<Record<string, unknown>>((acc, obj) => {
           acc[String(obj.schemaId)] = { key: obj.key, value: obj.value };
           return acc;
@@ -1110,13 +1158,22 @@ const TemplateEditor = ({
       _changeSchemas({
         objs,
         schemas: currentPageSchemas,
-        basePdf: activeBasePdf,
+        basePdf: stableBasePdf,
         pluginsRegistry,
         pageSize: pageSizes[pageCursor],
         commitSchemas,
       });
     },
-    [activeBasePdf, commitSchemas, currentPageSchemas, emitDesignerEvent, pageCursor, pageSizes, pluginsRegistry],
+    [
+      activeDocumentId,
+      commitSchemas,
+      currentPageSchemas,
+      emitDesignerEvent,
+      pageCursor,
+      pageSizes,
+      pluginsRegistry,
+      resolveStableDocumentBasePdf,
+    ],
   );
 
   const currentPageSize = useMemo(
@@ -1203,6 +1260,7 @@ const TemplateEditor = ({
 
   const updateTemplate = useCallback(async (newTemplate: Template) => {
     setVisibleTemplate(newTemplate);
+    visibleTemplateRef.current = newTemplate;
     const sl = await template2SchemasList(newTemplate);
     setSchemasList(sl);
     schemasListRef.current = sl;
@@ -1255,6 +1313,7 @@ const TemplateEditor = ({
 
   const handleSaveComment = useCallback(
     (text: string) => {
+      const pendingAnchor = pendingAnchorRef.current;
       if (!pendingAnchor) return;
       try {
         const pageSchemas = schemasListRef.current[pendingAnchor.pageIndex] || [];
@@ -1382,11 +1441,10 @@ const TemplateEditor = ({
         console.error('Failed to save comment', err);
       } finally {
         setCommentDialogOpen(false);
-        setPendingAnchor(null);
+        pendingAnchorRef.current = null;
       }
     },
     [
-      pendingAnchor,
       activeDocumentId,
       applyCollaborationLocalChange,
       collaborationContext,
@@ -1412,7 +1470,7 @@ const TemplateEditor = ({
       activeSchema?.schemaUid || activeSchema?.id,
       activeDocumentId || null,
     );
-  }, [activeDocumentId, activeElements, currentPageSchemas, openCommentDialog, pageCursor]);
+  }, [activeDocumentId, activeElements, currentPageSchemas, openCommentDialog, pageCursor, paperRefs]);
 
   const commentItems = useMemo(() => {
     const items: Array<{
@@ -1475,11 +1533,16 @@ const TemplateEditor = ({
         }
         return;
       }
+      const nextSchemasHash = stableHashSchemas(nextSchemas);
       documentSchemasCacheRef.current.set(document.id, nextSchemas);
       canvasDocumentIdRef.current = document.id;
       pendingCanvasDocumentIdRef.current = null;
 
       setVisibleTemplate(normalizedTemplate);
+      visibleTemplateRef.current = normalizedTemplate;
+      activeBasePdfRef.current = normalizedTemplate.basePdf;
+      lastCommittedSchemasHashRef.current = nextSchemasHash;
+      lastPersistedDocumentBasePdfRef.current = normalizedTemplate.basePdf;
       setSchemasList(nextSchemas);
       const safePageCursor = Math.max(0, Math.min(targetPageIndex, Math.max(0, nextSchemas.length - 1)));
       setPageCursor(safePageCursor);
@@ -1496,24 +1559,67 @@ const TemplateEditor = ({
       const nextSchemas = schemasListRef.current.map((page) => page.slice());
       const pageCount = Math.max(1, pageSizes.length || nextSchemas.length || visibleTemplate.schemas.length || 1);
       const updatedAt = Date.now();
+      const nextSchemasHash = stableHashSchemas(nextSchemas);
+      const stableBasePdf = resolveStableDocumentBasePdf(documentId);
       const nextTemplate = normalizeTemplateSchemaPages(
-        schemasList2template(nextSchemas, activeBasePdfRef.current),
+        schemasList2template(nextSchemas, stableBasePdf),
         pageCount,
       );
+      const currentDocument = uploadedDocumentsRef.current.find((doc) => doc.id === documentId) || null;
+      const currentTemplate = currentDocument?.template || null;
+      const currentTemplateHash = stableHashSchemas(currentTemplate?.schemas || []);
+      const currentTemplateBasePdf = currentTemplate?.basePdf;
+      if (
+        lastCommittedSchemasHashRef.current === nextSchemasHash &&
+        lastPersistedDocumentBasePdfRef.current === nextTemplate.basePdf &&
+        currentDocument &&
+        currentDocument.pageCount === pageCount &&
+        currentTemplateHash === nextSchemasHash &&
+        currentTemplateBasePdf === nextTemplate.basePdf
+      ) {
+        return nextTemplate;
+      }
+      if (
+        currentDocument &&
+        currentTemplateHash === nextSchemasHash &&
+        currentTemplateBasePdf === nextTemplate.basePdf &&
+        currentDocument.pageCount === pageCount
+      ) {
+        lastCommittedSchemasHashRef.current = nextSchemasHash;
+        lastPersistedDocumentBasePdfRef.current = nextTemplate.basePdf;
+        return nextTemplate;
+      }
 
       documentSchemasCacheRef.current.set(documentId, nextSchemas);
+      let didUpdate = false;
       setUploadedDocuments((prev) => {
         const idx = prev.findIndex((doc) => doc.id === documentId);
         if (idx < 0) return prev;
         const next = [...prev];
+        const currentTemplate = next[idx]?.template;
+        const currentBasePdf = currentTemplate?.basePdf;
+        const currentSchemasHash = stableHashSchemas(currentTemplate?.schemas || []);
+        if (
+          currentSchemasHash === nextSchemasHash &&
+          currentBasePdf === nextTemplate.basePdf &&
+          next[idx].pageCount === pageCount
+        ) {
+          lastCommittedSchemasHashRef.current = nextSchemasHash;
+          lastPersistedDocumentBasePdfRef.current = nextTemplate.basePdf;
+          return prev;
+        }
+        didUpdate = true;
         next[idx] = {
           ...next[idx],
           template: nextTemplate,
           pageCount,
           updatedAt,
         };
+        lastCommittedSchemasHashRef.current = nextSchemasHash;
+        lastPersistedDocumentBasePdfRef.current = nextTemplate.basePdf;
         return next;
       });
+      if (!didUpdate) return nextTemplate;
       pushTemplateUpdate(nextTemplate, {
         documentId,
         fileId: documentId,
@@ -1523,7 +1629,13 @@ const TemplateEditor = ({
       });
       return nextTemplate;
     },
-    [activeDocumentId, pageSizes.length, pushTemplateUpdate, visibleTemplate.schemas.length],
+    [
+      activeDocumentId,
+      pageSizes.length,
+      pushTemplateUpdate,
+      resolveStableDocumentBasePdf,
+      visibleTemplate.schemas.length,
+    ],
   );
 
   const addSchema = useCallback(
@@ -1917,7 +2029,10 @@ const TemplateEditor = ({
       return;
     }
 
-    const nextLockedIds = activeElements.filter(Boolean).map((element) => element.id);
+    const nextLockedIds = activeElements.reduce<string[]>((ids, element) => {
+      if (element) ids.push(element.id);
+      return ids;
+    }, []);
     const previousLockedIds = lockedSelectionSchemaIdsRef.current;
     const releasedIds = previousLockedIds.filter((schemaId) => !nextLockedIds.includes(schemaId));
     const acquiredIds = nextLockedIds.filter((schemaId) => !previousLockedIds.includes(schemaId));
@@ -2473,11 +2588,14 @@ const TemplateEditor = ({
   }
 
   const handleToggleCanvasFeature = useCallback((key: keyof CanvasFeatureToggles) => {
-    setCanvasFeatureOverrides((prev) => ({
-      ...prev,
-      [key]: !prev[key],
-    }));
-  }, []);
+    setCanvasFeatureOverrides((prev) => {
+      const currentValue = prev[key] ?? designerEngine.canvas?.featureToggles?.[key] ?? true;
+      return {
+        ...prev,
+        [key]: !currentValue,
+      };
+    });
+  }, [designerEngine.canvas?.featureToggles]);
 
   const emitActiveDocumentChange = useCallback(
     (document: UploadedPdfDocument | null) => {
@@ -2612,23 +2730,65 @@ const TemplateEditor = ({
   useEffect(() => {
     if (!activeDocumentId) return;
     if (canvasDocumentIdRef.current !== activeDocumentId) return;
-    documentSchemasCacheRef.current.set(activeDocumentId, schemasList.map((page) => page.slice()));
+    const nextSchemas = schemasList.map((page) => page.slice());
+    const nextSchemasHash = stableHashSchemas(nextSchemas);
+    const nextBasePdf = resolveStableDocumentBasePdf(activeDocumentId);
+    const pageCount = Math.max(1, pageSizes.length || visibleTemplate.schemas.length || 1);
+    const currentDocument = uploadedDocumentsRef.current.find((doc) => doc.id === activeDocumentId) || null;
+    if (!currentDocument) return;
+
+    if (
+      lastCommittedSchemasHashRef.current === nextSchemasHash &&
+      lastPersistedDocumentBasePdfRef.current === nextBasePdf &&
+      currentDocument.pageCount === pageCount
+    ) {
+      return;
+    }
+
+    const currentTemplate = currentDocument.template || null;
+    const currentSchemasHash = stableHashSchemas(currentTemplate?.schemas || []);
+    const currentBasePdf = currentTemplate?.basePdf;
+    if (currentSchemasHash === nextSchemasHash && currentBasePdf === nextBasePdf && currentDocument.pageCount === pageCount) {
+      lastCommittedSchemasHashRef.current = nextSchemasHash;
+      lastPersistedDocumentBasePdfRef.current = nextBasePdf;
+      return;
+    }
+
+    const safeBasePdf = isValidRealBasePdf(visibleTemplateRef.current?.basePdf)
+      ? visibleTemplateRef.current.basePdf
+      : nextBasePdf;
+    const safeTemplate = {
+      ...visibleTemplateRef.current,
+      basePdf: safeBasePdf,
+    };
+
+    documentSchemasCacheRef.current.set(activeDocumentId, nextSchemas);
+    lastCommittedSchemasHashRef.current = nextSchemasHash;
+    lastPersistedDocumentBasePdfRef.current = safeBasePdf;
+
     setUploadedDocuments((prev) => {
       const idx = prev.findIndex((doc) => doc.id === activeDocumentId);
       if (idx < 0) return prev;
       const current = prev[idx];
-      const pageCount = Math.max(1, pageSizes.length || visibleTemplate.schemas.length || 1);
-      if (current.template === visibleTemplate && current.pageCount === pageCount) return prev;
+      const currentTemplateSchemasHash = stableHashSchemas(current.template?.schemas || []);
+      const currentTemplateBasePdf = current.template?.basePdf;
+      if (
+        currentTemplateSchemasHash === nextSchemasHash &&
+        currentTemplateBasePdf === safeBasePdf &&
+        current.pageCount === pageCount
+      ) {
+        return prev;
+      }
       const next = [...prev];
       next[idx] = {
         ...current,
-        template: visibleTemplate,
+        template: safeTemplate,
         pageCount,
         updatedAt: Date.now(),
       };
       return next;
     });
-  }, [activeDocumentId, pageSizes.length, schemasList, visibleTemplate]);
+  }, [activeDocumentId, pageSizes.length, resolveStableDocumentBasePdf, schemasList, visibleTemplate]);
 
   useEffect(() => {
     if (!activeDocumentId) {
@@ -3013,9 +3173,11 @@ const TemplateEditor = ({
     <Root size={size} scale={scale}>
       <input
         ref={pdfUploadInputRef}
+        id="sisad-pdfme-pdf-upload"
         type="file"
         accept="application/pdf,.pdf"
         multiple
+        aria-label="Subir archivo PDF"
         style={{ display: 'none' }}
         onChange={handlePdfUploadChange}
       />
@@ -3191,11 +3353,24 @@ const TemplateEditor = ({
             onSave={() => onSaveTemplate(visibleTemplate)}
             onExport={exportTemplateExternal}
             featureToggles={{
+              grid: canvasFeatureToggles.grid,
               guides: canvasFeatureToggles.guides,
               snapLines: canvasFeatureToggles.snapLines,
               padding: canvasFeatureToggles.padding,
             }}
             onToggleFeature={handleToggleCanvasFeature}
+            selectionCount={activeElements.length}
+            isGroupedSelection={(() => {
+              if (activeElements.length < 2) return false;
+              const activeIds = new Set(activeElements.map((el) => el.id));
+              const pageSchemas = schemasList[pageCursor] || [];
+              const active = pageSchemas.filter((s) => activeIds.has(s.id));
+              if (active.length < 2) return false;
+              const groupIds = active.map(
+                (s) => ((s as { __designer?: { group?: { groupId?: string } } }).__designer?.group?.groupId),
+              );
+              return groupIds.every((g) => g != null && g === groupIds[0]);
+            })()}
           />
           {!rightSidebarDetached ? (
             <button
@@ -3215,6 +3390,7 @@ const TemplateEditor = ({
           <Canvas
             ref={canvasRef}
             paperRefs={paperRefs}
+            registerPaperRef={registerPaperRef}
             basePdf={activeBasePdf}
             hoveringSchemaId={hoveringSchemaId}
             onChangeHoveringSchemaId={onChangeHoveringSchemaId}
@@ -3263,7 +3439,7 @@ const TemplateEditor = ({
             initialText={''}
             onClose={() => {
               setCommentDialogOpen(false);
-              setPendingAnchor(null);
+              pendingAnchorRef.current = null;
             }}
             onSave={handleSaveComment}
           />

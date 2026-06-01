@@ -27,7 +27,16 @@ const definitions = new Map<string, CustomSchemaDefinition>();
 const STORAGE_KEY = 'sisad-pdfme:custom-schema-definitions';
 let hasHydratedFromStorage = false;
 
-const canUseStorage = () => typeof window !== 'undefined' && Boolean(window.localStorage);
+const canUseStorage = () => {
+  if (typeof window === 'undefined') return false;
+  const storage = (window as Window & { localStorage?: Storage }).localStorage;
+  return Boolean(
+    storage &&
+      typeof storage.getItem === 'function' &&
+      typeof storage.setItem === 'function' &&
+      typeof storage.removeItem === 'function',
+  );
+};
 
 const persistDefinitions = () => {
   if (!canUseStorage()) return;

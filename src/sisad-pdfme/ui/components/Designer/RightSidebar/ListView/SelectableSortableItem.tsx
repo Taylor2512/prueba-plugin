@@ -92,7 +92,6 @@ const SelectableSortableItem = ({
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={() => onEdit(schema.id)}
-      icon={thisPlugin && <PluginIcon plugin={thisPlugin} label={pluginLabel} size={20} />}
       value={schema.name}
       schemaType={schema.type}
       className={DESIGNER_CLASSNAME + 'item-auto'}
@@ -112,6 +111,7 @@ const SelectableSortableItem = ({
       listeners={newListeners}
       accentColor={collaborationColor}
       metaBadges={collaborationBadges}
+      icon={thisPlugin && <PluginIcon plugin={thisPlugin} label={pluginLabel} size={20} styles={collaborationColor ? { color: collaborationColor } : undefined} />}
     />
   );
 };

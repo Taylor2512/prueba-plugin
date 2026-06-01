@@ -41,7 +41,11 @@ const DetailFormSection = ({
         schema={schema}
         widgets={widgets}
         watch={{ '#': watchHandler }}
-        locale="en-US"
+        locale="es-ES"
+        footer={{
+          reset: { hide: true },
+          submit: { hide: true },
+        }}
       />
     </div>
   </DetailSectionCard>

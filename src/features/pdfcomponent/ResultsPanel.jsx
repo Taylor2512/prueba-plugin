@@ -5,12 +5,13 @@ const EMPTY_ARRAY = []
 
 export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, images = EMPTY_ARRAY, roundtripPdfUrl, hasGeneratedArtifacts }) {
   return (
-    <details className="sisad-pdfme-lab-results" open={hasGeneratedArtifacts} aria-labelledby="lab-results-title">
+    <details className="sisad-pdfme-lab-results" aria-labelledby="lab-results-title">
       <summary className="sisad-pdfme-lab-results-summary">
         <div className="sisad-pdfme-lab-section-heading sisad-pdfme-lab-section-heading-tight">
           <h2 id="lab-results-title">Resultados</h2>
+          <p>{hasGeneratedArtifacts ? 'Artefactos listos para revisar o descargar.' : 'Abre esta sección para revisar salidas de generación y conversión.'}</p>
         </div>
-        <span className="sisad-pdfme-lab-results-badge">{hasGeneratedArtifacts ? 'Visible' : 'Oculto'}</span>
+        <span className="sisad-pdfme-lab-results-badge">{hasGeneratedArtifacts ? 'Con artefactos' : 'Colapsado'}</span>
       </summary>
 
       <div className="sisad-pdfme-lab-results-body">
@@ -20,7 +21,7 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
             {generatedPdfUrl ? (
               <a href={generatedPdfUrl} target="_blank" rel="noreferrer">Abrir PDF generado</a>
             ) : (
-              <p>No hay PDF generado todavía.</p>
+              <p>Ejecuta <strong>Generar PDF</strong> para crear el primer artefacto.</p>
             )}
           </article>
 
@@ -35,7 +36,7 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
                 ))}
               </ul>
             ) : (
-              <p>Aún no se ha ejecutado pdf2size.</p>
+              <p>Ejecuta <strong>Leer tamaños</strong> para inspeccionar el documento generado.</p>
             )}
           </article>
 
@@ -51,7 +52,7 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
                 ))}
               </div>
             ) : (
-              <p>No hay imágenes generadas todavía.</p>
+              <p>Ejecuta <strong>PDF → imágenes</strong> para obtener previsualizaciones.</p>
             )}
           </article>
 
@@ -60,7 +61,7 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
             {roundtripPdfUrl ? (
               <a href={roundtripPdfUrl} target="_blank" rel="noreferrer">Abrir PDF de ida y vuelta</a>
             ) : (
-              <p>Aún no se ejecutó img2pdf.</p>
+              <p>Ejecuta <strong>Imágenes → PDF</strong> para cerrar el ciclo.</p>
             )}
           </article>
         </div>

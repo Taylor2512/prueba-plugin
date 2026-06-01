@@ -1,32 +1,42 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { getLabExamples } from './examples/labExamples.js'
-import { Hero, CaseGrid } from './index.js'
+import Hero from './Hero.jsx'
+import CaseGrid from './CaseGrid.jsx'
+import { getLabCoverageCounts, getLabExamplePresentation } from './domain/labPresentation.js'
 
 const defaultExamples = getLabExamples()
 
 export default function LabLandingPage({ examples = defaultExamples } = {}) {
+  const coverageCounts = getLabCoverageCounts(examples)
+  const coverageHighlights = ['Canvas', 'Schemas', 'Colaboración', 'Multidocumento', 'Firma', 'Generator', 'Converter', 'Viewer', 'Form']
+  const collaborationExamples = examples.filter((example) =>
+    getLabExamplePresentation(example).coverage.includes('Colaboración'),
+  ).length
+  const generatorExamples = examples.filter((example) =>
+    getLabExamplePresentation(example).coverage.includes('Generator'),
+  ).length
+
   const metrics = [
     { label: 'Ejemplos', value: examples.length },
-    { label: 'Ruta base', value: '/lab' },
-    { label: 'Runtime', value: 'BrowserRouter' },
+    { label: 'Coberturas', value: coverageHighlights.filter((label) => coverageCounts.has(label)).length },
+    { label: 'Colaboración', value: collaborationExamples },
+    { label: 'Generator', value: generatorExamples },
   ]
 
   return (
     <main className="sisad-pdfme-lab-landing" data-page="landing">
       <Hero
         kicker="SISAD PDFME Lab"
-        title="Rutas de ejemplo para probar casos de uso reales"
-        description={
-          "Cada ruta monta un escenario independiente de sisad-pdfme para evitar mezclar estado entre flujos de edición, colaboración y generación."
-        }
+        title="Suite de laboratorio para validar casos reales del editor PDF"
+        description="Cada ruta aísla un escenario funcional de sisad-pdfme para probar edición, colaboración, firma, multidocumento y generación sin mezclar estado."
         metrics={metrics}
       />
 
       <section className="sisad-pdfme-lab-card-grid" aria-labelledby="lab-examples-title">
         <div className="sisad-pdfme-lab-section-heading">
           <h2 id="lab-examples-title">Casos de uso</h2>
-          <p>Selecciona un ejemplo para abrir el canvas con su propio preset y modo inicial.</p>
+          <p>Selecciona un ejemplo para abrir un flujo real con su cobertura principal y su plantilla asociada.</p>
         </div>
 
         <CaseGrid examples={examples} />

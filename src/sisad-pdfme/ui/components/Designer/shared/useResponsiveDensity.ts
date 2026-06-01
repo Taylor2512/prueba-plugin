@@ -22,6 +22,7 @@ const resolveDensityMode = (
   width: number,
   breakpoints: Required<ResponsiveDensityBreakpoints>,
 ): DensityMode => {
+  if (width <= 0) return 'comfortable';
   if (width <= breakpoints.mini) return 'mini';
   if (width <= breakpoints.compact) return 'compact';
   if (width <= breakpoints.comfortable) return 'comfortable';

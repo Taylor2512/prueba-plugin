@@ -101,7 +101,7 @@ const common = {
     label: 'Eliminar',
     description: 'Elimina la seleccion actual.',
     keys: ['backspace', 'delete'],
-    macKeys: ['backspace'],
+    macKeys: ['backspace', 'delete'],
     windowsKeys: ['delete', 'backspace'],
     scope: 'selection',
     actionId: 'delete',

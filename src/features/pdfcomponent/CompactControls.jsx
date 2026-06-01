@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Settings2 } from 'lucide-react'
 import PopoverMenu from './PopoverMenu.jsx'
@@ -24,18 +24,37 @@ export default function CompactControls({
   hasGeneratedPdf = false,
   hasImages = false,
 }) {
+  const [resetConfirmationOpen, setResetConfirmationOpen] = useState(false)
+
+  const modeLabel = useMemo(
+    () =>
+      ({
+        designer: 'Diseñador',
+        form: 'Formulario',
+        viewer: 'Visor',
+      }[mode] || mode),
+    [mode],
+  )
+
   const runAndClose = (close, action) => () => {
     close()
+    setResetConfirmationOpen(false)
     if (typeof action === 'function') action()
   }
 
   const applyMode = (close, nextMode) => () => {
     close()
+    setResetConfirmationOpen(false)
     if (typeof onModeChange === 'function') onModeChange(nextMode)
   }
 
   return (
-    <PopoverMenu label="Controles" icon={<Settings2 size={16} />} align="start">
+    <PopoverMenu
+      label="Controles"
+      icon={<Settings2 size={16} />}
+      align="end"
+      panelClassName="sisad-pdfme-lab-command-center"
+    >
       {({ close }) => (
         <div className="sisad-pdfme-compact-controls-panel">
           <section className="sisad-pdfme-popover-section">
@@ -63,10 +82,11 @@ export default function CompactControls({
                 Visor
               </button>
             </div>
+            <span className="sisad-pdfme-popover-section-caption">Modo activo: {modeLabel}</span>
           </section>
 
           <section className="sisad-pdfme-popover-section">
-            <span className="sisad-pdfme-popover-section-label">Generación</span>
+            <span className="sisad-pdfme-popover-section-label">PDF</span>
             <button type="button" className="sisad-pdfme-popover-action" disabled={busy} onClick={runAndClose(close, onGenerate)}>
               Generar PDF
             </button>
@@ -93,6 +113,12 @@ export default function CompactControls({
               <button type="button" className="sisad-pdfme-popover-action" disabled={busy} onClick={runAndClose(close, onFitWidth)}>
                 Ajustar al ancho
               </button>
+            </section>
+          ) : null}
+
+          {mode === 'designer' ? (
+            <section className="sisad-pdfme-popover-section">
+              <span className="sisad-pdfme-popover-section-label">Schema</span>
               <label className="sisad-pdfme-popover-label" htmlFor="schema-type-select-compact">
                 Tipo de schema
               </label>
@@ -116,10 +142,46 @@ export default function CompactControls({
           ) : null}
 
           <section className="sisad-pdfme-popover-section sisad-pdfme-popover-section-quiet">
-            <span className="sisad-pdfme-popover-section-label">Sesión</span>
-            <button type="button" className="sisad-pdfme-popover-action is-destructive" disabled={busy} onClick={runAndClose(close, onReset)}>
-              Reiniciar template
-            </button>
+            <span className="sisad-pdfme-popover-section-label">Avanzado</span>
+            {!resetConfirmationOpen ? (
+              <>
+                <button
+                  type="button"
+                  className="sisad-pdfme-popover-action is-destructive"
+                  disabled={busy}
+                  onClick={() => setResetConfirmationOpen(true)}
+                >
+                  Reiniciar template
+                </button>
+                <span className="sisad-pdfme-popover-section-caption">
+                  Acción de riesgo. Requiere confirmación.
+                </span>
+              </>
+            ) : (
+              <div className="sisad-pdfme-popover-confirmation">
+                <span className="sisad-pdfme-popover-section-caption">
+                  Confirmar reinicio del template actual.
+                </span>
+                <div className="sisad-pdfme-popover-confirmation-actions">
+                  <button
+                    type="button"
+                    className="sisad-pdfme-popover-action is-destructive"
+                    disabled={busy}
+                    onClick={runAndClose(close, onReset)}
+                  >
+                    Confirmar
+                  </button>
+                  <button
+                    type="button"
+                    className="sisad-pdfme-popover-action"
+                    disabled={busy}
+                    onClick={() => setResetConfirmationOpen(false)}
+                  >
+                    Cancelar
+                  </button>
+                </div>
+              </div>
+            )}
           </section>
         </div>
       )}

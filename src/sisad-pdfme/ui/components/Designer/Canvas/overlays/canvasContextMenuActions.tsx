@@ -33,6 +33,7 @@ import {
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { INLINE_EDITABLE_TEXT_TYPES } from '../../../../../schemas/schemaFamilies.js';
+import { getSchemaTypeLabel } from '../../shared/designerLabels.js';
 
 export type CanvasContextMenuMode = 'empty' | 'single' | 'multi';
 
@@ -121,17 +122,6 @@ const compactItems = <T,>(items: Array<T | null | undefined>) => items.filter(Bo
 const resolveToggleLabel = (active: boolean | undefined, activeLabel: string, inactiveLabel: string) =>
   (active ? activeLabel : inactiveLabel).trim();
 
-function formatSchemaType(value?: string | null) {
-  if (!value) return null;
-  return value
-    .replace(/([a-z0-9])([A-Z])/g, '$1 $2')
-    .replace(/[_-]+/g, ' ')
-    .split(/\s+/)
-    .map((part) => part.charAt(0).toUpperCase() + part.slice(1).toLowerCase())
-    .join(' ')
-    .trim();
-}
-
 const formatSelectionStateLabel = (phase: string) => {
   switch (phase) {
     case 'selected-multi':
@@ -212,7 +202,7 @@ const buildSelectionSummaryChips = (activeSchemas: SchemaForUI[], selectionCount
     summaryChips.push('Selección múltiple');
   } else {
     const name = typeof primarySchema?.name === 'string' ? primarySchema.name.trim() : '';
-    const type = formatSchemaType(primarySchema?.type);
+    const type = getSchemaTypeLabel(primarySchema?.type);
     if (name) summaryChips.push(name);
     if (type) summaryChips.push(type);
     if (!summaryChips.length) summaryChips.push('Campo activo');

@@ -13,6 +13,7 @@ import {
   type SchemaDataSnapshot,
 } from '../designerEngine.js';
 import { emitDesignerRuntimeEvent } from './Designer/shared/designerExtensions.js';
+import usePaperRefRegistry from './shared/usePaperRefRegistry.js';
 
 const _cache = new Map<string | number, unknown>();
 const MAX_RUNTIME_TEMPLATE_CACHE_ENTRIES = 12;
@@ -112,7 +113,7 @@ const usePreviewRuntime = ({
   const maxZoom = useMaxZoom();
 
   const containerRef = useRef<HTMLDivElement>(null);
-  const paperRefs = useRef<HTMLDivElement[]>([]);
+  const { paperRefs, registerPaperRef } = usePaperRefRegistry();
 
   const [unitCursor, setUnitCursor] = useState(0);
   const [pageCursor, setPageCursor] = useState(0);
@@ -494,6 +495,7 @@ const usePreviewRuntime = ({
     options,
     containerRef,
     paperRefs,
+    registerPaperRef,
     unitCursor,
     setUnitCursor,
     pageCursor,

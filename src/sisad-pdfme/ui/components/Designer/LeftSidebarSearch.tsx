@@ -20,7 +20,7 @@ const LeftSidebarSearch = ({
   <Input
     size="small"
     allowClear
-    placeholder="Buscar campo, tipo o categoría..."
+    placeholder="Buscar campos"
     prefix={<Search size={14} />}
     value={value}
     onChange={(event) => onChange(event.target.value)}

@@ -43,13 +43,13 @@ const formatCountLabel = (count: number, singular: string, plural: string) => `$
 const formatThreadSummary = (threadCount: number, replyCount: number) => {
   const threadLabel = formatCountLabel(threadCount, 'hilo', 'hilos');
   if (replyCount <= 0) return threadLabel;
-  return `${threadLabel} · ${formatCountLabel(replyCount, 'respuesta', 'respuestas')}`;
+  return `${threadLabel} · ${formatCountLabel(replyCount, 'respuesta', 'respuestas')} en la página actual`;
 };
 
 const formatCommentMeta = (item: DesignerCommentItem) => {
   const segments: string[] = [];
   if (item.schemaUid) segments.push(`Campo ${item.schemaUid}`);
-  if (item.pageNumber) segments.push(`Pág. ${item.pageNumber}`);
+  if (item.pageNumber) segments.push(`Página ${item.pageNumber}`);
   const timestamp = formatTimestamp(item.timestamp);
   if (timestamp) segments.push(timestamp);
   return segments.join(' · ');
@@ -98,7 +98,7 @@ const CommentsRail = ({
   title = 'Comentarios',
   emptyTitle = 'Sin comentarios aún.',
   subtitle,
-  addLabel = 'Nuevo comentario',
+  addLabel = 'Agregar',
   emptyDescription = 'Crea el primer hilo para este campo.',
   replyLabel = 'Respuestas',
   resolvedLabel = 'Resuelto',

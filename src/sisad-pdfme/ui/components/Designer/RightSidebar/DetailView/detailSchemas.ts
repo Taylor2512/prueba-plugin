@@ -171,7 +171,7 @@ export const buildInspectorSections = ({
 
   addFieldToSection(sectionProperties, 'general', 'name', {
     name: {
-        title: 'Nombre de variable',
+        title: 'Nombre del campo',
         type: 'string',
         required: true,
         span: 24,
@@ -275,7 +275,7 @@ export const buildInspectorSections = ({
 
   if (shouldShowConnections) {
     addFieldToSection(sectionProperties, 'connections', 'schemaConnections', {
-      title: typedI18n('schemaConnections'),
+      title: 'Conexiones',
       type: 'void',
       widget: 'SchemaConnectionsWidget',
     });

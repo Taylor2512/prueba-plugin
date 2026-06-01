@@ -1,9 +1,5 @@
 import React, { useMemo } from 'react';
-import {
-  normalizeRecipientIds as normalizeRecipientIdsShared,
-  type PropPanelWidgetProps,
-  type SchemaForUI,
-} from '@sisad-pdfme/common';
+import { type PropPanelWidgetProps, type SchemaForUI } from '@sisad-pdfme/common';
 import { Button, Collapse, Divider, Input, InputNumber, Select, Space } from 'antd';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import {
@@ -19,6 +15,14 @@ import {
 import { normalizeHexColor } from '../../shared/recipientColor.js';
 import CompactConfigPanel from './CompactConfigPanel.js';
 import { InspectorSummaryCard } from './InspectorPrimitives.js';
+import {
+  buildStateTag,
+  joinRecipientIds,
+  normalizeRecipientIds,
+  resolveOwnerMode,
+} from './schemaCollaborationUtils.js';
+
+export { joinRecipientIds, normalizeRecipientIds, resolveOwnerMode } from './schemaCollaborationUtils.js';
 
 type CollaborationWidgetProps = PropPanelWidgetProps & {
   activeSchema: SchemaForUI;
@@ -37,25 +41,8 @@ const STATE_OPTIONS: Array<{ label: string; value: SchemaCollaborativeState }> =
   { label: 'Fusionado', value: 'merged' },
 ];
 
-export { normalizeRecipientIds } from '@sisad-pdfme/common';
-
-export const joinRecipientIds = (value: unknown): string =>
-  normalizeRecipientIdsShared(value as string[] | string | null | undefined).join(', ');
-
-const buildStateTag = (state?: SchemaCollaborativeState) => {
-  if (state === 'locked') return { label: 'Bloqueado', color: 'error' as const };
-  if (state === 'merged') return { label: 'Fusionado', color: 'success' as const };
-  return { label: 'Borrador', color: 'default' as const };
-};
-
 const resolveStringLabel = (value: React.ReactNode, fallback: string) =>
   typeof value === 'string' && value.trim() ? value : fallback;
-
-export const resolveOwnerMode = (ownerRecipientIds: string[]) => {
-  if (ownerRecipientIds.length > 1) return 'multi' as const;
-  if (ownerRecipientIds.length === 1) return 'single' as const;
-  return undefined;
-};
 
 type CollaborationLockSectionProps = {
   isVisible: boolean;
@@ -123,7 +110,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
 
   const schemaUid = collaborative.schemaUid || activeSchema.id;
   const state = collaborative.state || 'draft';
-  const ownerRecipientIds = normalizeRecipientIdsShared(
+  const ownerRecipientIds = normalizeRecipientIds(
     collaborative.ownerRecipientIds || collaborative.ownerRecipientId || activeSchema.ownerRecipientIds || activeSchema.ownerRecipientId,
   );
   const resolvedSchemaState = resolveSchemaCollaborationState(activeSchema, collaborationContext);
@@ -156,7 +143,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
   };
 
   const updateRecipientIds = (value: string[] | string) => {
-    const nextRecipientIds = normalizeRecipientIdsShared(value as string[] | string | null | undefined);
+    const nextRecipientIds = normalizeRecipientIds(value as string[] | string | null | undefined);
     const nextPrimaryRecipientId = nextRecipientIds[0];
     const nextPrimaryRecipient =
       recipientOptions.find((recipient) => recipient.id === nextPrimaryRecipientId) || null;
@@ -197,37 +184,37 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
     resolvedSchemaState.ownerRecipientName ||
     collaborationContext.recipientNameMap.get(resolvedSchemaState.ownerRecipientId || '') ||
     resolvedSchemaState.ownerRecipientId ||
-    'Sin owner';
+    'Sin propietario';
 
   return (
     <CompactConfigPanel
       title={props.summaryTitle || 'Colaboración'}
-      description={props.summaryDescription || 'Gestiona owner, bloqueo y trazabilidad sin dejar abierto todo el formulario.'}
+      description={props.summaryDescription || 'Gestiona propietario, bloqueo y trazabilidad sin dejar abierto todo el formulario.'}
       summary={[
-        schemaUid || 'sin schemaUid',
+        schemaUid || 'sin UID',
         resolvedOwnerLabel,
-        commentCount > 0 ? `${commentCount} comentarios` : 'sin comentarios',
-        anchorCount > 0 ? `${anchorCount} anclas` : 'sin anclas',
+        commentCount > 0 ? `Comentarios: ${commentCount}` : 'sin comentarios',
+        anchorCount > 0 ? `Anchors: ${anchorCount}` : 'sin anclas',
       ].join(' · ')}
       statusTags={[
         { label: stateTag.label, color: stateTag.color },
-        ...(ownerMode ? [{ label: `Owner ${ownerMode}`, color: 'default' as const }] : []),
+        ...(ownerMode ? [{ label: `Propiedad ${ownerMode}`, color: 'default' as const }] : []),
         {
           label: resolvedSchemaState.isShared
             ? 'Compartido'
             : resolvedSchemaState.isOwnerOther
               ? 'Pertenece a otro usuario'
               : resolvedSchemaState.isOwnerActive
-                ? 'Owner activo'
+                ? 'Propietario activo'
                 : resolvedOwnerLabel,
           color: resolvedSchemaState.isShared ? 'purple' : resolvedSchemaState.isOwnerOther ? 'gold' : 'processing',
         },
         {
-          label: ownerRecipientIds.length > 0 ? `${ownerRecipientIds.length} owner(s)` : 'Sin owner',
+          label: ownerRecipientIds.length > 0 ? `${ownerRecipientIds.length} propietario(s)` : 'Sin propietario',
           color: ownerRecipientIds.length > 0 ? 'processing' : 'warning',
         },
-        ...(commentCount > 0 ? [{ label: `${commentCount} comentarios`, color: 'blue' as const }] : []),
-        ...(anchorCount > 0 ? [{ label: `${anchorCount} anclas`, color: 'cyan' as const }] : []),
+        ...(commentCount > 0 ? [{ label: `Comentarios: ${commentCount}`, color: 'blue' as const }] : []),
+        ...(anchorCount > 0 ? [{ label: `Anchors: ${anchorCount}`, color: 'cyan' as const }] : []),
         ...(hasLock ? [{ label: 'Bloqueo activo', color: 'error' as const }] : []),
       ]}
       quickActions={
@@ -244,32 +231,32 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
           description="Identidad estable, propietario y bloqueo del campo para trabajo multiusuario."
           tags={[
             { label: stateTag.label, color: stateTag.color },
-            ...(ownerMode ? [{ label: `Owner ${ownerMode}`, color: 'default' as const }] : []),
+            ...(ownerMode ? [{ label: `Propiedad ${ownerMode}`, color: 'default' as const }] : []),
             {
               label: resolvedSchemaState.isShared
                 ? 'Compartido'
                 : resolvedSchemaState.isOwnerOther
                   ? 'Pertenece a otro usuario'
                   : resolvedSchemaState.isOwnerActive
-                    ? 'Owner activo'
+                    ? 'Propietario activo'
                     : resolvedOwnerLabel,
               color: resolvedSchemaState.isShared ? 'purple' : resolvedSchemaState.isOwnerOther ? 'gold' : 'processing',
             },
             {
-              label: ownerRecipientIds.length > 0 ? `${ownerRecipientIds.length} owner(s)` : 'Sin owner',
+              label: ownerRecipientIds.length > 0 ? `${ownerRecipientIds.length} propietario(s)` : 'Sin propietario',
               color: ownerRecipientIds.length > 0 ? 'processing' : 'warning',
             },
             {
               label: collaborative.saveValue === false || activeSchema.saveValue === false ? 'No guardar valor' : 'Guardar valor',
               color: collaborative.saveValue === false || activeSchema.saveValue === false ? 'warning' : 'success',
             },
-        ...(commentCount > 0 ? [{ label: `${commentCount} comentarios`, color: 'blue' as const }] : []),
-        ...(anchorCount > 0 ? [{ label: `${anchorCount} anclas`, color: 'cyan' as const }] : []),
+        ...(commentCount > 0 ? [{ label: `Comentarios: ${commentCount}`, color: 'blue' as const }] : []),
+        ...(anchorCount > 0 ? [{ label: `Anchors: ${anchorCount}`, color: 'cyan' as const }] : []),
             ...(hasLock ? [{ label: 'Bloqueo activo', color: 'error' as const }] : []),
           ]}
         >
           <div className={`${DESIGNER_CLASSNAME}schema-config-help`} style={{ marginTop: 4 }}>
-            Los comentarios y anchors se administran en la sección de comentarios del inspector.
+            Los comentarios y anclas se administran en la sección de comentarios del inspector.
           </div>
         </InspectorSummaryCard>
 
@@ -291,7 +278,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                 <>
                   <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
                     <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>schemaUid</div>
+                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>UID del esquema</div>
                       <Input value={schemaUid || ''} disabled placeholder="UUID estable del campo" />
                     </div>
                     <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
@@ -321,23 +308,29 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                       <Select value={state} options={STATE_OPTIONS} onChange={(value) => updateState(value)} />
                     </div>
                     <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Modo owner</div>
+                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Modo propietario</div>
                       <Input
                         value={ownerMode || ''}
                         onChange={(event) => commit({ ownerMode: event.target.value || undefined })}
-                        placeholder="single / multi / shared"
+                        placeholder="único / múltiple / compartido"
                       />
                     </div>
                   </div>
 
+                  {(activeSchema.createdBy || collaborative.createdBy) ? (
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>
+                      Autor {String(activeSchema.createdBy || collaborative.createdBy)}
+                    </div>
+                  ) : null}
+
                   <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Owner</div>
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Propietario</div>
                     {hasRecipientOptions ? (
                       <Select
                         value={activeSchema.ownerRecipientId || collaborative.ownerRecipientId || undefined}
                         options={recipientSelectOptions}
                         onChange={(value) => updateRecipientIds([value])}
-                        placeholder="Selecciona un owner"
+                        placeholder="Selecciona un propietario"
                         allowClear
                         onClear={() => updateRecipientIds([])}
                       />
@@ -357,7 +350,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                         value={ownerRecipientIds}
                         options={recipientSelectOptions}
                         onChange={(value) => updateRecipientIds(value)}
-                        placeholder="Selecciona owners"
+                        placeholder="Selecciona propietarios"
                       />
                     ) : (
                       <Input
@@ -438,7 +431,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                       />
                     </div>
                     <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Color owner</div>
+                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Color del propietario</div>
                       <Input
                         value={activeSchema.ownerColor || collaborative.ownerColor || resolvedSchemaState.ownerColor || ''}
                         onChange={(event) => commit({ ownerColor: event.target.value || undefined })}

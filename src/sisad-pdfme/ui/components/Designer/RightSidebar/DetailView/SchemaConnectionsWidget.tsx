@@ -29,10 +29,18 @@ const buildAuthTag = (resolvedHttpClient: ReturnType<typeof resolveDesignerHttpC
   if (!resolvedHttpClient) return null;
 
   if (resolvedHttpClient.auth?.mode === 'manual') {
-    return { label: `Auth ${resolvedHttpClient.auth.type || 'manual'}`, color: 'warning' as const };
+    const authType =
+      (resolvedHttpClient.auth.type || 'manual') === 'basic'
+        ? 'básica'
+        : (resolvedHttpClient.auth.type || 'manual') === 'apiKey'
+          ? 'clave API'
+          : (resolvedHttpClient.auth.type || 'manual') === 'custom'
+            ? 'personalizada'
+            : 'manual';
+    return { label: `Autenticación ${authType}`, color: 'warning' as const };
   }
 
-  return { label: 'Auth heredada', color: 'default' as const };
+  return { label: 'Autenticación heredada', color: 'default' as const };
 };
 
 const buildValidationTag = (validationState: 'idle' | 'ok' | 'warning') => {
@@ -53,7 +61,7 @@ const describePersistence = (persistence: SchemaPersistenceConfig) => {
   if (!persistence.enabled) return 'Inactiva';
   return [
     persistence.mode || 'local',
-    persistence.key ? `key=${persistence.key}` : 'sin clave',
+    persistence.key ? `clave=${persistence.key}` : 'sin clave',
     `ocultos ${describeBoolean(Boolean(persistence.includeHidden))}`,
     `meta ${describeBoolean(Boolean(persistence.includeMeta))}`,
   ].join(' · ');
@@ -63,27 +71,33 @@ const describeFormJson = (formJson: SchemaFormJsonConfig) => {
   if (!formJson.enabled) return 'Inactivo';
   return [
     formJson.format || 'nested',
-    formJson.rootKey ? `root=${formJson.rootKey}` : 'sin raíz',
+    formJson.rootKey ? `raíz=${formJson.rootKey}` : 'sin raíz',
     `vacíos ${describeBoolean(Boolean(formJson.includeEmpty))}`,
     `ocultos ${describeBoolean(Boolean(formJson.includeHidden))}`,
   ].join(' · ');
 };
 
 const describeHttpAuth = (auth?: SchemaHttpAuthConfig) => {
-  if (auth?.mode !== 'manual') return 'Auth heredada';
+  if (auth?.mode !== 'manual') return 'Autenticación heredada';
   if ((auth.type || 'bearer') === 'basic') {
-    const username = auth.username ? `user=${auth.username}` : 'sin credenciales';
-    return `basic · ${username}`;
+    const username = auth.username ? `usuario=${auth.username}` : 'sin credenciales';
+    return `básica · ${username}`;
   }
-  const header = auth.headerName ? `header=${auth.headerName}` : 'sin header';
-  return `${auth.type || 'manual'} · ${header}`;
+  const header = auth.headerName ? `encabezado=${auth.headerName}` : 'sin encabezado';
+  if ((auth.type || 'bearer') === 'apiKey') {
+    return `clave API · ${header}`;
+  }
+  if ((auth.type || 'bearer') === 'custom') {
+    return `personalizada · ${header}`;
+  }
+  return `portador · ${header}`;
 };
 
 const CONNECTION_FIELD_LABELS: Record<string, string> = {
   storageKey: 'clave de almacenamiento',
   rootKey: 'raíz JSON',
   endpoint: 'endpoint',
-  baseURL: 'base URL',
+  baseURL: 'URL base',
   auth: 'autenticación manual',
 };
 
@@ -114,7 +128,7 @@ const applyAuthPreset = (
       ...current,
       mode: 'manual',
       type: nextType,
-      headerName: current?.headerName || 'Authorization',
+      headerName: current?.headerName || 'Autorización',
       token: '',
       headerValue: undefined,
       username: current?.username || '',
@@ -140,7 +154,7 @@ const applyAuthPreset = (
       ...current,
       mode: 'manual',
       type: nextType,
-      headerName: current?.headerName || 'Authorization',
+      headerName: current?.headerName || 'Autorización',
       headerValue: current?.headerValue || current?.token || '',
       token: undefined,
       username: undefined,
@@ -152,7 +166,7 @@ const applyAuthPreset = (
     ...current,
     mode: 'manual',
     type: nextType,
-    headerName: current?.headerName || 'Authorization',
+    headerName: current?.headerName || 'Autorización',
     token: current?.token || current?.headerValue || '',
     headerValue: undefined,
     username: undefined,
@@ -599,7 +613,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
               />
             </div>
             <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-              <span>Tipo de auth</span>
+              <span>Tipo de autenticación</span>
               <Select
                 size="small"
                 value={api.http?.auth?.mode || 'inherit'}
@@ -638,10 +652,10 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                           value={api.http?.auth?.type || 'bearer'}
                           onChange={(value) => updateApiAuthType(value)}
                           options={[
-                            { label: 'Bearer', value: 'bearer' },
-                            { label: 'Basic', value: 'basic' },
-                            { label: 'API Key', value: 'apiKey' },
-                            { label: 'Custom', value: 'custom' },
+                            { label: 'Token portador', value: 'bearer' },
+                            { label: 'Básico', value: 'basic' },
+                            { label: 'Clave API', value: 'apiKey' },
+                            { label: 'Personalizado', value: 'custom' },
                           ]}
                         />
                       </div>
@@ -650,7 +664,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                         <Input
                           size="small"
                           value={api.http?.auth?.headerName || ''}
-                          placeholder="Authorization"
+                        placeholder="Autorización"
                           onChange={(event) => updateApiAuth({ headerName: event.target.value })}
                         />
                       </div>
@@ -681,7 +695,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                           <Input
                             size="small"
                             value={api.http?.auth?.token || api.http?.auth?.headerValue || ''}
-                            placeholder={(api.http?.auth?.type || 'bearer') === 'apiKey' ? 'api-key' : 'Bearer ...'}
+                        placeholder={(api.http?.auth?.type || 'bearer') === 'apiKey' ? 'clave-api' : 'token...'}
                             onChange={(event) => {
                               if ((api.http?.auth?.type || 'bearer') === 'apiKey' || (api.http?.auth?.type || 'bearer') === 'custom') {
                                 updateApiAuth({ headerValue: event.target.value, token: undefined });

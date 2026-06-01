@@ -57,6 +57,10 @@ const resolveCanEditStructure = (
   const policy = collaboration?.permissions?.canEditStructure ?? collaboration?.canEditStructure;
   if (typeof policy === 'function') return policy(context);
   if (typeof policy === 'boolean') return policy;
+  const normalizedRole = normalizeText(context.activeRecipientRole).toLowerCase();
+  if (normalizedRole === 'reviewer' || normalizedRole === 'viewer' || normalizedRole === 'commenter') {
+    return false;
+  }
   return true;
 };
 

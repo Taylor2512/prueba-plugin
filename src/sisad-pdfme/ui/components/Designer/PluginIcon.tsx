@@ -12,6 +12,9 @@ interface PluginIconProps {
   styles?: React.CSSProperties;
   className?: string;
   useDefaultStyles?: boolean;
+  activeRecipientColor?: string | null;
+  'data-schema-type'?: string;
+  'data-active-recipient-color'?: string;
 }
 
 const SVGIcon = ({ svgString, size, styles, label }: {
@@ -61,7 +64,7 @@ const SVGIcon = ({ svgString, size, styles, label }: {
 };
 
 const PluginIcon = (props: PluginIconProps) => {
-  const { plugin, label, size, styles, className, useDefaultStyles = true } = props;
+  const { plugin, label, size, styles, className, useDefaultStyles = true, activeRecipientColor } = props;
   const { token } = theme.useToken();
   const options = useContext(OptionsContext);
   const hasCustomClass = typeof className === 'string' && className.trim().length > 0;
@@ -70,12 +73,13 @@ const PluginIcon = (props: PluginIconProps) => {
     : `${DESIGNER_CLASSNAME}plugin-icon-fallback`;
 
   const schemaType = plugin.propPanel.defaultSchema?.type ?? '';
+  const resolvedIconColor = activeRecipientColor || token.colorText;
 
   const icon = options.icons?.[schemaType] ?? plugin.icon;
   const iconStyles = {
     ...(useDefaultStyles
       ? {
-        color: token.colorText,
+        color: resolvedIconColor,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -84,9 +88,14 @@ const PluginIcon = (props: PluginIconProps) => {
     ...styles,
   };
 
+  const dataAttrs = {
+    'data-schema-type': schemaType || undefined,
+    ...(activeRecipientColor ? { 'data-active-recipient-color': activeRecipientColor } : {}),
+  };
+
   if (icon) {
     return (
-      <div className={className}>
+      <div className={className} {...dataAttrs}>
         <SVGIcon svgString={icon} size={size} styles={iconStyles} label={label} />
       </div>
     );
@@ -98,7 +107,7 @@ const PluginIcon = (props: PluginIconProps) => {
       style={{
         ...(useDefaultStyles
           ? {
-              color: token.colorText,
+              color: resolvedIconColor,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
@@ -106,7 +115,8 @@ const PluginIcon = (props: PluginIconProps) => {
           : {}),
         ...styles,
       }}
-      title={label}>
+      title={label}
+      {...dataAttrs}>
       {label}
     </div>
   );

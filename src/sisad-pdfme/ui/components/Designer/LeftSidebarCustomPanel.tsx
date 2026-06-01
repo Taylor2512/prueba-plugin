@@ -73,9 +73,6 @@ const LeftSidebarCustomPanel = ({
                   <div className={`${DESIGNER_CLASSNAME}left-sidebar-custom-preview-title`}>
                     {definition.label}
                   </div>
-                  <div className={`${DESIGNER_CLASSNAME}left-sidebar-custom-preview-meta`}>
-                    {definition.pluginType}
-                  </div>
                 </div>
               </div>
             </Tooltip>

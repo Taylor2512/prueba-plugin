@@ -4,8 +4,9 @@ import {
   createSchemaCreationContext,
   DEFAULT_SCHEMA_CONFIG_STORAGE_KEY,
 } from '../../../designerEngine.js';
-import { uuid, getUniqueSchemaName } from '../../../helper.js';
+import { uuid } from '../../../helper.js';
 import { resolveSmartDropPosition, type SmartPlacementInput } from '../Canvas/overlays/smartPlacement.js';
+import { createUniqueSchemaVariableName } from './schemaVariableName.js';
 
 /**
  * Controls how recipient assignment and collaboration metadata are handled
@@ -119,12 +120,15 @@ export const resolveUniqueSchemaName = (
   schema: SchemaForUI,
   existingSchemas: SchemaForUI[],
   stackUniqueSchemaNames: string[],
-) =>
-  getUniqueSchemaName({
-    copiedSchemaName: schema.name,
-    schema: existingSchemas,
-    stackUniqueSchemaNames,
-  });
+) => {
+  const existingNames = existingSchemas
+    .map((entry) => entry.name)
+    .filter((name): name is string => typeof name === 'string' && name.trim().length > 0)
+    .concat(stackUniqueSchemaNames);
+  const uniqueName = createUniqueSchemaVariableName(schema.type, existingNames);
+  stackUniqueSchemaNames.push(uniqueName);
+  return uniqueName;
+};
 
 export const buildPastedSchema = (
   schema: SchemaForUI,

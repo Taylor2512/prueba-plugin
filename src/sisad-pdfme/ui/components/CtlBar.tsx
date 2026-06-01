@@ -11,7 +11,8 @@ import {
   Undo2,
   Redo2,
   Maximize2,
-  Grid2x2,
+  Grid3x3,
+  SquareDashedBottom,
   Ruler,
   Magnet,
   Save,
@@ -108,11 +109,14 @@ type CtlBarProps = {
   onSave?: () => void;
   onExport?: () => void;
   featureToggles?: {
+    grid?: boolean;
     guides?: boolean;
     snapLines?: boolean;
     padding?: boolean;
   };
-  onToggleFeature?: (key: 'guides' | 'snapLines' | 'padding') => void;
+  onToggleFeature?: (key: 'grid' | 'guides' | 'snapLines' | 'padding') => void;
+  selectionCount?: number;
+  isGroupedSelection?: boolean;
 };
 
 const CtlBar = (props: CtlBarProps) => {
@@ -140,6 +144,8 @@ const CtlBar = (props: CtlBarProps) => {
     onExport,
     featureToggles,
     onToggleFeature,
+    selectionCount,
+    isGroupedSelection,
   } = props;
   void _size;
   const zoomChangeHandler = setZoom ?? setZoomLevel;
@@ -223,6 +229,20 @@ const CtlBar = (props: CtlBarProps) => {
         : null,
       onToggleFeature
         ? {
+            key: 'grid',
+            label: (
+              <button
+                type="button"
+                className={UI_CLASSNAME + 'control-bar-menu-item'}
+                onClick={() => onToggleFeature('grid')}
+              >
+                {featureToggles?.grid ? 'Ocultar cuadrícula' : 'Mostrar cuadrícula'}
+              </button>
+            ),
+          }
+        : null,
+      onToggleFeature
+        ? {
             key: 'guides',
             label: (
               <button
@@ -264,7 +284,7 @@ const CtlBar = (props: CtlBarProps) => {
           }
         : null,
     ].filter(Boolean),
-    [featureToggles?.guides, featureToggles?.padding, featureToggles?.snapLines, onFitPage, onFitWidth, onOpenShortcuts, onToggleFeature],
+    [featureToggles?.grid, featureToggles?.guides, featureToggles?.padding, featureToggles?.snapLines, onFitPage, onFitWidth, onOpenShortcuts, onToggleFeature],
   );
 
   const pageOptions = useMemo(
@@ -289,6 +309,8 @@ const CtlBar = (props: CtlBarProps) => {
           pageIndex={pageCursor}
           pageCount={pageNum}
           status={documentStatus}
+          selectionCount={selectionCount}
+          isGroupedSelection={isGroupedSelection}
           density="compact"
           placement="toolbar"
         />
@@ -354,11 +376,23 @@ const CtlBar = (props: CtlBarProps) => {
           <Button
             className={UI_CLASSNAME + 'control-bar-icon-btn'}
             type="text"
+            onClick={() => onToggleFeature?.('grid')}
+            disabled={!onToggleFeature}
+            icon={<Grid3x3 size={16} />}
+            aria-pressed={featureToggles?.grid ? 'true' : 'false'}
+            data-active={featureToggles?.grid ? 'true' : 'false'}
+            aria-label={featureToggles?.grid ? 'Ocultar cuadrícula' : 'Mostrar cuadrícula'}
+            title={featureToggles?.grid ? 'Ocultar cuadrícula' : 'Mostrar cuadrícula'}
+          />
+          <Button
+            className={UI_CLASSNAME + 'control-bar-icon-btn'}
+            type="text"
             onClick={() => onToggleFeature?.('guides')}
             disabled={!onToggleFeature}
             icon={<Ruler size={16} />}
             aria-pressed={featureToggles?.guides ? 'true' : 'false'}
             data-active={featureToggles?.guides ? 'true' : 'false'}
+            aria-label={featureToggles?.guides ? 'Ocultar guías' : 'Mostrar guías'}
             title={featureToggles?.guides ? 'Ocultar guías' : 'Mostrar guías'}
           />
           <Button
@@ -369,6 +403,7 @@ const CtlBar = (props: CtlBarProps) => {
             icon={<Magnet size={16} />}
             aria-pressed={featureToggles?.snapLines ? 'true' : 'false'}
             data-active={featureToggles?.snapLines ? 'true' : 'false'}
+            aria-label={featureToggles?.snapLines ? 'Ocultar snaps' : 'Mostrar snaps'}
             title={featureToggles?.snapLines ? 'Ocultar snaps' : 'Mostrar snaps'}
           />
           <Button
@@ -376,9 +411,10 @@ const CtlBar = (props: CtlBarProps) => {
             type="text"
             onClick={() => onToggleFeature?.('padding')}
             disabled={!onToggleFeature}
-            icon={<Grid2x2 size={16} />}
+            icon={<SquareDashedBottom size={16} />}
             aria-pressed={featureToggles?.padding ? 'true' : 'false'}
             data-active={featureToggles?.padding ? 'true' : 'false'}
+            aria-label={featureToggles?.padding ? 'Ocultar padding' : 'Mostrar padding'}
             title={featureToggles?.padding ? 'Ocultar padding' : 'Mostrar padding'}
           />
         </div>

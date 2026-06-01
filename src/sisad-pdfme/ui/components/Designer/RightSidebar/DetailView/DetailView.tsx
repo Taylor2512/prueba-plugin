@@ -1,5 +1,5 @@
 import { useForm } from 'form-render';
-import React, { useContext, useEffect, useCallback, useMemo } from 'react';
+import React, { useContext, useEffect, useCallback, useMemo, useState } from 'react';
 import type {
   Dict,
   ChangeSchemaItem,
@@ -15,7 +15,7 @@ import { theme } from 'antd';
 import { InternalNamePath, ValidateErrorEntity } from 'rc-field-form/es/interface.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { buildInspectorSections } from './detailSchemas.js';
-import { buildDetailWidgets } from './detailWidgets.js';
+import buildDetailWidgets from './detailWidgetRegistry.js';
 import DetailViewContent from './DetailViewContent.js';
 import {
   getSchemaConfigStorageKey,
@@ -52,6 +52,7 @@ const DetailView = (props: DetailViewProps) => {
     () => getSchemaDesignerConfig(activeSchema, designerEngine) || null,
     [activeSchema, designerEngine],
   );
+  const [isHydratingForm, setIsHydratingForm] = useState(false);
 
   const typedI18n = useCallback(
     (key: string): string => {
@@ -125,13 +126,28 @@ const DetailView = (props: DetailViewProps) => {
     ],
   );
 
-  useEffect(() => form.resetFields(), [activeSchema.id, form]);
-
   useEffect(() => {
     const values: Record<string, unknown> = { ...activeSchema };
     const readOnly = typeof values.readOnly === 'boolean' ? values.readOnly : false;
     values.editable = !readOnly;
-    form.setValues(values);
+
+    let resetTimeoutId: number | undefined;
+    const timeoutId = globalThis.setTimeout(() => {
+      setIsHydratingForm(true);
+      if (typeof form.setValues === 'function') {
+        form.setValues(values);
+      }
+      resetTimeoutId = globalThis.setTimeout(() => {
+        setIsHydratingForm(false);
+      }, 0);
+    }, 0);
+
+    return () => {
+      globalThis.clearTimeout(timeoutId);
+      if (resetTimeoutId !== undefined) {
+        globalThis.clearTimeout(resetTimeoutId);
+      }
+    };
   }, [activeSchema, form]);
 
   const validateUniqueSchemaName = useCallback(
@@ -178,6 +194,7 @@ const DetailView = (props: DetailViewProps) => {
   };
 
   const handleWatch = debounce(function (...args: unknown[]) {
+    if (isHydratingForm) return;
     const formSchema = args[0] as Record<string, unknown>;
     const ignoredKeys = new Set(['id', 'content']);
     const nullableKeys = new Set(['rotate', 'opacity']);

@@ -7,6 +7,7 @@ type DesignerContextSummaryProps = {
   status?: React.ReactNode;
   activeUser?: React.ReactNode;
   selectionCount?: number;
+  isGroupedSelection?: boolean;
   density?: 'compact' | 'normal';
   placement?: 'toolbar' | 'sidebar' | 'popover';
   className?: string;
@@ -19,6 +20,7 @@ const DesignerContextSummary = ({
   status,
   activeUser,
   selectionCount,
+  isGroupedSelection = false,
   density = 'compact',
   placement = 'toolbar',
   className,
@@ -42,7 +44,9 @@ const DesignerContextSummary = ({
       <div className="sisad-pdfme-designer-context-summary-meta">
         <span className="sisad-pdfme-designer-context-summary-chip">Página {pageIndex + 1}/{Math.max(1, pageCount)}</span>
         {activeUser ? <span className="sisad-pdfme-designer-context-summary-chip">{activeUser}</span> : null}
-        {typeof selectionCount === 'number' && selectionCount > 0 ? (
+        {isGroupedSelection && typeof selectionCount === 'number' && selectionCount > 0 ? (
+          <span className="sisad-pdfme-designer-context-summary-chip">Grupo · {selectionCount} campos</span>
+        ) : typeof selectionCount === 'number' && selectionCount > 0 ? (
           <span className="sisad-pdfme-designer-context-summary-chip">Selección {selectionCount}</span>
         ) : null}
       </div>

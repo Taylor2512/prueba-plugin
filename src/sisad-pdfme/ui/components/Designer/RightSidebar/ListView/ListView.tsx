@@ -12,6 +12,7 @@ import { filterSchemasForCollaborationView } from '../../../../collaborationCont
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { emitDesignerRuntimeEvent } from '../../shared/designerExtensions.js';
 import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
+import { getSchemaTypeLabel } from '../../shared/designerLabels.js';
 
 const { TextArea } = Input;
 const { Text } = Typography;
@@ -75,7 +76,7 @@ const ListView = (
     const types = Array.from(new Set(viewSchemas.map((s) => s.type)));
     return [
       { value: 'all', label: 'Todos los tipos' },
-      ...types.map((t) => ({ value: t, label: t })),
+      ...types.map((t) => ({ value: t, label: getSchemaTypeLabel(t) })),
     ];
   }, [viewSchemas]);
 

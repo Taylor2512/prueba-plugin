@@ -22,6 +22,7 @@ import SelectableSortableItem from './SelectableSortableItem.js';
 import PluginIcon from '../../PluginIcon.js';
 import ListViewDragOverlay from './ListViewDragOverlay.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
+import { resolveSchemaCollaborationState } from '../../../../collaborationContext.js';
 
 const SelectableSortableContainer = (
   props: Pick<
@@ -113,12 +114,15 @@ const SelectableSortableContainer = (
       return <></>;
     }
 
+    const collaborationState = resolveSchemaCollaborationState(thisSchema, collaborationContext);
+    const collaborationColor = collaborationState.userColor || collaborationState.ownerColor || undefined;
+
     return (
       <PluginIcon
         plugin={activePlugin}
         label={pluginLabel}
         size={20}
-        styles={{ marginRight: '0.5rem' }}
+        styles={{ marginRight: '0.5rem', color: collaborationColor || undefined }}
       />
     );
   };

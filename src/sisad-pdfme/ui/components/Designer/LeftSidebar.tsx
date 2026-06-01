@@ -28,6 +28,7 @@ import useLeftSidebarCatalogState from './useLeftSidebarCatalogState.js';
 import { normalizeHexColor } from './shared/recipientColor.js';
 import { buildAutoPlaceDescriptor } from './shared/schemaAutoPlace.js';
 import { useResponsiveDensity } from './shared/useResponsiveDensity.js';
+import { getCatalogLabel } from './shared/designerLabels.js';
 
 const schemaTypeCategoryMap: Record<string, string> = {
   text: 'Texto',
@@ -443,6 +444,7 @@ const SidebarShell = ({
   onChangeTab,
   renderTabIcon,
   searchNode,
+  activeRecipientLabel,
   activeRecipientColor,
   style,
   children,
@@ -452,6 +454,7 @@ const SidebarShell = ({
   onChangeTab: (tab: LeftSidebarTab) => void;
   renderTabIcon: (tab: LeftSidebarTab) => React.ReactNode;
   searchNode: React.ReactNode;
+  activeRecipientLabel?: string | null;
   activeRecipientColor?: string | null;
   style?: React.CSSProperties;
   children: React.ReactNode;
@@ -462,25 +465,22 @@ const SidebarShell = ({
       `${DESIGNER_CLASSNAME}sidebar-surface`,
     )}
     style={style}
-  >
-    <div className={`${DESIGNER_CLASSNAME}left-sidebar-dock-header`}>
+    >
+      <div className={`${DESIGNER_CLASSNAME}left-sidebar-dock-header`}>
       <span className={`${DESIGNER_CLASSNAME}left-sidebar-dock-kicker`}>Diseñador</span>
       <span className={`${DESIGNER_CLASSNAME}left-sidebar-dock-title`}>
-        <span>Catálogo de campos</span>
+        <span>Campos</span>
+        {activeRecipientLabel ? (
+          <span className={`${DESIGNER_CLASSNAME}left-sidebar-dock-recipient`}>
+            {activeRecipientLabel}
+          </span>
+        ) : null}
         {activeRecipientColor ? (
           <span
             aria-label={`Color del destinatario activo ${activeRecipientColor}`}
             title={`Color del destinatario activo: ${activeRecipientColor}`}
-            style={{
-              display: 'inline-block',
-              width: 10,
-              height: 10,
-              borderRadius: '999px',
-              marginLeft: 8,
-              background: activeRecipientColor,
-              boxShadow: '0 0 0 2px rgba(255,255,255,0.92), 0 0 0 3px rgba(15,23,42,0.12)',
-              verticalAlign: 'middle',
-            }}
+            className={`${DESIGNER_CLASSNAME}left-sidebar-active-recipient-dot`}
+            style={{ '--active-recipient-color': activeRecipientColor } as React.CSSProperties}
           />
         ) : null}
       </span>
@@ -545,9 +545,6 @@ const LeftSidebar = ({
   useLayoutFrame = false,
   activeRecipientColor: activeRecipientColorOverride = null,
   showSearch,
-  showItemMeta = true,
-  showItemDescription = true,
-  showTechnicalLabels = true,
   detached = false,
   presentation = 'auto',
   responsiveBreakpoint = 1080,
@@ -570,6 +567,10 @@ const LeftSidebar = ({
       : typeof options.activeRecipient === 'object' && options.activeRecipient
         ? String((options.activeRecipient as ActiveRecipientOption).color || '').trim() || null
         : null;
+  const activeRecipientLabel =
+    typeof options.activeRecipient === 'object' && options.activeRecipient
+      ? String((options.activeRecipient as ActiveRecipientOption).name || (options.activeRecipient as ActiveRecipientOption).tag || '')
+      : '';
   const activeRecipientColor = normalizeHexColor(
     extensions?.resolveRecipientColor?.(
       typeof options.activeRecipient === 'object' && options.activeRecipient
@@ -619,8 +620,10 @@ const LeftSidebar = ({
     setActiveCapabilities,
     resolvedViewMode,
     setInternalViewMode,
+    setUserViewMode,
     collapsedCategories,
     setCollapsedCategories,
+    hasManualViewMode,
     markRecent,
   } = useLeftSidebarCatalogState({ catalogViewMode });
 
@@ -783,7 +786,7 @@ const LeftSidebar = ({
       });
 
     const sortItems = (items: CatalogSchemaItem[]) =>
-      [...items].sort((a, b) => {
+      items.toSorted((a, b) => {
         if ((b.score || 0) !== (a.score || 0)) return (b.score || 0) - (a.score || 0);
         const aFav = favoritePlugins.has(a.pluginType) ? 1 : 0;
         const bFav = favoritePlugins.has(b.pluginType) ? 1 : 0;
@@ -983,13 +986,20 @@ const LeftSidebar = ({
   });
 
   useEffect(() => {
-    if (catalogViewMode !== undefined) return;
+    if (catalogViewMode !== undefined || hasManualViewMode) return;
     const targetViewMode: CatalogViewMode =
       sidebarDensityMode === 'compact' || sidebarDensityMode === 'mini' ? 'compact' : 'rich';
     if (targetViewMode === resolvedViewMode) return;
     setInternalViewMode(targetViewMode);
     onCatalogViewModeChange?.(targetViewMode);
-  }, [catalogViewMode, onCatalogViewModeChange, resolvedViewMode, setInternalViewMode, sidebarDensityMode]);
+  }, [
+    catalogViewMode,
+    hasManualViewMode,
+    onCatalogViewModeChange,
+    resolvedViewMode,
+    setInternalViewMode,
+    sidebarDensityMode,
+  ]);
 
   useEffect(() => {
     if (resolvedPresentation === 'overlay') {
@@ -1008,6 +1018,7 @@ const LeftSidebar = ({
     const { label, plugin, pluginType } = item;
     const draggableId = item.key;
     const recipientToneKey = activeRecipientTone || 'no-tone';
+    const displayLabel = getCatalogLabel(label, pluginType, item.source);
     const buttonClass = mergeClassNames(
       `${DESIGNER_CLASSNAME}plugin-${pluginType}`,
       `${DESIGNER_CLASSNAME}plugin-btn`,
@@ -1029,24 +1040,9 @@ const LeftSidebar = ({
       }
       saveFavorites(next);
     };
-    const pluginDescription = item.description;
     const pluginTone = activeRecipientTone || null;
     const pluginToneSurface = pluginTone ? `${pluginTone}18` : undefined;
-    const metaLine = [item.category, item.source === 'builtin' ? 'base' : 'custom']
-      .filter((part): part is string => Boolean(part))
-      .join(' · ');
-    const capabilityHint = item.capabilities.slice(0, 3).join(' · ');
-    const shouldShowCapabilityHint = showTechnicalLabels && isPanel && resolvedViewMode === 'rich' && capabilityHint;
-    const tooltipText = [
-      label,
-      pluginType,
-      pluginDescription,
-      metaLine,
-      item.tags.length ? `Tags: ${item.tags.slice(0, 4).join(', ')}` : '',
-      capabilityHint ? `Capacidades: ${capabilityHint}` : '',
-    ]
-      .filter((part): part is string => Boolean(part))
-      .join(' • ');
+    const tooltipText = displayLabel;
 
     return (
       <Draggable
@@ -1064,7 +1060,7 @@ const LeftSidebar = ({
             <Button
               className={buttonClass}
               data-schema-type={pluginType}
-              data-schema-label={label}
+              data-schema-label={displayLabel}
               data-dragging={draggableActive ? 'true' : 'false'}
               data-view-mode={resolvedViewMode}
               data-is-panel={isPanel ? 'true' : 'false'}
@@ -1082,7 +1078,8 @@ const LeftSidebar = ({
             >
               <PluginIcon
                 plugin={plugin}
-                label={label}
+                label={displayLabel}
+                activeRecipientColor={pluginTone ?? null}
                 styles={
                   pluginTone
                     ? {
@@ -1095,21 +1092,8 @@ const LeftSidebar = ({
               />
               <span className={`${DESIGNER_CLASSNAME}plugin-btn-label`}>
                 <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-title'}>
-                  {highlightTerm(label, searchTerms)}
+                  {highlightTerm(displayLabel, searchTerms)}
                 </span>
-                {showItemMeta && (isPanel || resolvedViewMode === 'rich') ? (
-                  <>
-                    <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-meta'}>
-                      {highlightTerm(metaLine, searchTerms)}
-                      {shouldShowCapabilityHint ? ` · ${capabilityHint}` : ''}
-                    </span>
-                    {showItemDescription && isPanel && pluginDescription ? (
-                      <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-desc'}>
-                        {pluginDescription}
-                      </span>
-                    ) : null}
-                  </>
-                ) : null}
               </span>
               {isFavorite ? (
                 <span className={DESIGNER_CLASSNAME + 'plugin-favorite-indicator'}>
@@ -1180,9 +1164,7 @@ const LeftSidebar = ({
               data-schema-label={definition.label}
               title={[
                 definition.label,
-                definition.pluginType,
-                definition.autoFillSource ? `Autofill: ${definition.autoFillSource}` : '',
-                definition.defaultValue ? `Default: ${definition.defaultValue}` : '',
+                getCatalogLabel(definition.label, definition.pluginType, 'custom'),
               ]
                 .filter(Boolean)
                 .join(' • ')}
@@ -1199,14 +1181,15 @@ const LeftSidebar = ({
               }}
               data-view-mode={resolvedViewMode}
               style={activeRecipientButtonStyle}
-            >
-              <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-icon`}>
-                <PluginIcon
-                  plugin={plugin}
-                  label={definition.label}
-                  styles={
-                    activeRecipientTone
-                      ? {
+              >
+                <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-icon`}>
+                  <PluginIcon
+                    plugin={plugin}
+                    label={definition.label}
+                    activeRecipientColor={activeRecipientTone ?? null}
+                    styles={
+                      activeRecipientTone
+                        ? {
                           backgroundColor: `color-mix(in srgb, ${activeRecipientTone} 22%, var(--color-white))`,
                           borderColor: activeRecipientTone,
                           color: activeRecipientTone,
@@ -1217,16 +1200,6 @@ const LeftSidebar = ({
               </span>
               <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-copy`}>
                 <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-label`}>{definition.label}</span>
-                <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-meta`}>
-                  {definition.pluginType}
-                  {definition.autoFillSource ? ' · autofill' : ''}
-                  {definition.defaultValue ? ' · default' : ''}
-                </span>
-                {resolvedViewMode === 'rich' ? (
-                  <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-desc`}>
-                    {definition.category || 'Campo personalizado'}
-                  </span>
-                ) : null}
               </span>
             </Button>
           </div>
@@ -1323,7 +1296,7 @@ const LeftSidebar = ({
           type={quickFilter === 'all' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('all')}
         >
-          Todo
+          Todos
         </Button>
         <Button
           className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
@@ -1331,7 +1304,7 @@ const LeftSidebar = ({
           type={quickFilter === 'favorites' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('favorites')}
         >
-          Fav ({favoritePlugins.size})
+          Favoritos ({favoritePlugins.size})
         </Button>
         <Button
           className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
@@ -1339,7 +1312,7 @@ const LeftSidebar = ({
           type={quickFilter === 'recent' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('recent')}
         >
-          Rec ({recentPlugins.length})
+          Recientes ({recentPlugins.length})
         </Button>
         {showCatalogViewSwitcher ? (
           <Button
@@ -1350,7 +1323,7 @@ const LeftSidebar = ({
             aria-label={resolvedViewMode === 'compact' ? 'Vista detalle (lista)' : 'Vista compacta (grid)'}
             onClick={() => {
               const nextMode: CatalogViewMode = resolvedViewMode === 'compact' ? 'rich' : 'compact';
-              setInternalViewMode(nextMode);
+              setUserViewMode(nextMode);
               onCatalogViewModeChange?.(nextMode);
             }}
           />
@@ -1444,6 +1417,7 @@ const LeftSidebar = ({
             onChangeTab={setActiveTab}
             renderTabIcon={renderTabIcon}
             searchNode={searchNode}
+            activeRecipientLabel={activeRecipientLabel}
             activeRecipientColor={activeRecipientColor}
             style={activeRecipientStyles}
           >
@@ -1475,6 +1449,7 @@ const LeftSidebar = ({
             onChangeTab={setActiveTab}
             renderTabIcon={renderTabIcon}
             searchNode={searchNode}
+            activeRecipientLabel={activeRecipientLabel}
             activeRecipientColor={activeRecipientColor}
             style={activeRecipientStyles}
           >

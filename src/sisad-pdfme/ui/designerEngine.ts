@@ -1201,24 +1201,37 @@ export const createSchemaDataRuntimeAdapter = ({
 
       const data: Record<string, unknown> = {};
       const nestedRoot: Record<string, unknown> = {};
+      const seenFieldNames = new Set<string>();
+      const duplicateFieldNames = new Set<string>();
+      let collectedFieldCount = 0;
 
       activeFields.forEach(({ schema, config }) => {
         const fieldConfig = config?.form;
         if (!fieldConfig) return;
         if (!fieldConfig.collect) return;
 
+        const fieldName = String(schema.name || '').trim();
+        if (!fieldName) return;
+
         const hidden = Boolean((schema as SchemaForUI & { hidden?: boolean }).hidden);
         if (hidden && !includeHidden) return;
 
-        const value = snapshot.currentInput[schema.name] ?? schema.content ?? '';
+        const value = snapshot.currentInput[fieldName] ?? schema.content ?? '';
         if (!includeEmpty && isEmptyRuntimeValue(value)) return;
 
+        if (seenFieldNames.has(fieldName)) {
+          duplicateFieldNames.add(fieldName);
+          return;
+        }
+        seenFieldNames.add(fieldName);
+        collectedFieldCount += 1;
+
         if (format === 'flat') {
-          data[schema.name] = value;
+          data[fieldName] = value;
           return;
         }
 
-        setByPath(nestedRoot, schema.name, value);
+        setByPath(nestedRoot, fieldName, value);
       });
 
       if (format === 'nested') {
@@ -1231,6 +1244,8 @@ export const createSchemaDataRuntimeAdapter = ({
           totalPages: snapshot.totalPages,
           unitIndex: snapshot.unitIndex,
           schemaCount: activeFields.length,
+          collectedFieldCount,
+          duplicateFieldNames: Array.from(duplicateFieldNames.values()),
           generatedAt: now(),
         };
       }
@@ -1244,6 +1259,8 @@ export const createSchemaDataRuntimeAdapter = ({
           totalPages: snapshot.totalPages,
           unitIndex: snapshot.unitIndex,
           schemaCount: activeFields.length,
+          collectedFieldCount,
+          duplicateFieldNames: Array.from(duplicateFieldNames.values()),
           generatedAt: now(),
         },
       };

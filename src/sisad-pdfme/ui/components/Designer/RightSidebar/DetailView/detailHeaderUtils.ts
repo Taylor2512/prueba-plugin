@@ -1,0 +1,85 @@
+import type { SchemaForUI } from '@sisad-pdfme/common';
+import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
+import { getSchemaStateLabel, getSchemaTypeLabel } from '../../shared/designerLabels.js';
+
+type HeaderSummary = {
+  tags: Array<{ label: string; color: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue' }>;
+  overflowTooltip: string;
+  positionLabel: string;
+  schemaName: string;
+  schemaType: string;
+  recipientColor: string | null;
+};
+
+/** Build the short metadata tooltip shown on the "+N" overflow indicator. */
+export const buildMetaTooltip = (
+  activeSchema: SchemaForUI,
+  schemaConfig: SchemaDesignerConfig | null | undefined,
+): string => {
+  const lines: string[] = [];
+  const uid =
+    typeof activeSchema.schemaUid === 'string' && activeSchema.schemaUid.trim()
+      ? activeSchema.schemaUid.trim()
+      : String(activeSchema.id || '').slice(0, 8);
+  if (uid) lines.push(`UID: ${uid}`);
+  const createdBy = typeof activeSchema.createdBy === 'string' ? activeSchema.createdBy.trim() : '';
+  const modifiedBy = typeof activeSchema.lastModifiedBy === 'string' ? activeSchema.lastModifiedBy.trim() : '';
+  if (createdBy) lines.push(`Creado por: ${createdBy}`);
+  if (modifiedBy) lines.push(`Modificado: ${modifiedBy}`);
+  if (activeSchema.ownerRecipientId) lines.push(`Propietario: ${activeSchema.ownerRecipientId}`);
+  if (activeSchema.state) lines.push(`Estado: ${getSchemaStateLabel(activeSchema.state)}`);
+  if (activeSchema.ownerMode) lines.push(`Modo de propiedad: ${activeSchema.ownerMode}`);
+  if (activeSchema.saveValue === false) lines.push('No guarda valor');
+  if (schemaConfig?.persistence?.enabled) lines.push('Persistencia activa');
+  if (schemaConfig?.api?.enabled) lines.push('API activa');
+  if (schemaConfig?.form?.enabled) lines.push('JSON del formulario activo');
+  if (schemaConfig?.prefill?.enabled) lines.push('Rellenado previo activo');
+  const commentCount = activeSchema.commentsCount || activeSchema.comments?.length || 0;
+  const anchorCount = activeSchema.commentAnchors?.length || activeSchema.commentsAnchors?.length || 0;
+  if (commentCount > 0) lines.push(`Comentarios: ${commentCount}`);
+  if (anchorCount > 0) lines.push(`Anclas: ${anchorCount}`);
+  return lines.join('\n') || 'Sin metadatos adicionales';
+};
+
+export const buildDetailHeaderSummary = (
+  activeSchema: SchemaForUI,
+  schemaConfig: SchemaDesignerConfig | null | undefined,
+): HeaderSummary => {
+  const schemaName = typeof activeSchema.name === 'string' ? activeSchema.name : 'Campo';
+  const schemaType = getSchemaTypeLabel(activeSchema.type || 'schema');
+  const schemaHidden = (activeSchema as SchemaForUI & { hidden?: boolean }).hidden === true;
+  const ownerLabel =
+    typeof activeSchema.ownerRecipientName === 'string' && activeSchema.ownerRecipientName.trim()
+      ? activeSchema.ownerRecipientName.trim()
+      : typeof activeSchema.ownerRecipientId === 'string' && activeSchema.ownerRecipientId.trim()
+        ? activeSchema.ownerRecipientId.trim()
+        : '';
+  const recipientColor =
+    typeof activeSchema.ownerColor === 'string' && activeSchema.ownerColor.trim()
+      ? activeSchema.ownerColor.trim()
+      : typeof (activeSchema as SchemaForUI & { userColor?: string }).userColor === 'string'
+        ? ((activeSchema as SchemaForUI & { userColor?: string }).userColor ?? null)
+        : null;
+
+  const tags: HeaderSummary['tags'] = [];
+  if (!schemaName.trim()) tags.push({ label: 'Sin nombre', color: 'warning' });
+  if (activeSchema.required) tags.push({ label: 'Requerido', color: 'error' });
+  if (activeSchema.readOnly) tags.push({ label: 'Solo lectura', color: 'gold' });
+  if (schemaHidden) tags.push({ label: 'Oculto', color: 'default' });
+  if (schemaConfig?.persistence?.enabled || activeSchema.saveValue !== false) {
+    tags.push({ label: 'Guardar', color: 'success' });
+  }
+  if (ownerLabel) tags.push({ label: ownerLabel, color: 'processing' });
+
+  const posX = Number((activeSchema.position?.x ?? 0).toFixed(1));
+  const posY = Number((activeSchema.position?.y ?? 0).toFixed(1));
+
+  return {
+    tags,
+    overflowTooltip: buildMetaTooltip(activeSchema, schemaConfig),
+    positionLabel: `${posX},${posY}`,
+    schemaName,
+    schemaType,
+    recipientColor,
+  };
+};

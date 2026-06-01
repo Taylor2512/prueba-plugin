@@ -24,7 +24,9 @@ import {
   decorateCollaborationUsers,
   decorateTemplateWithCollaboration,
 } from './domain/collaborationAppearance.js'
-import { PageHeader, ResultsPanel, CompactControls } from './index.js'
+import PageHeader from './PageHeader.jsx'
+import ResultsPanel from './ResultsPanel.jsx'
+import CompactControls from './CompactControls.jsx'
 
 const fallbackExample = getLabExamples()[0]
 const sortSchemaDefinitions = (definitions) =>
@@ -57,6 +59,18 @@ const schemaCatalog = sortSchemaDefinitions(builtInSchemaDefinitions)
 const resolveInitialCollaboratorId = (activeUserId, users) => activeUserId || users[0]?.id || ''
 
 const resolveInitialGlobalView = (isGlobalView) => Boolean(isGlobalView)
+
+const getTemplateSignature = (template) => {
+  try {
+    return JSON.stringify({
+      basePdf: template?.basePdf || null,
+      schemas: template?.schemas || [],
+      inputs: template?.inputs || null,
+    })
+  } catch {
+    return 'template-signature-unavailable'
+  }
+}
 
 const DEFAULT_SIGNATURE_PROVIDERS = [
   {
@@ -217,6 +231,7 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
     () => decorateTemplateWithCollaboration(example?.template || createInitialPdfmeTemplate(), collaborationUsers),
     [collaborationUsers, example?.template],
   )
+  const lastAppliedTemplateSignatureRef = useRef(getTemplateSignature(initialTemplate))
   const initialInputs = useMemo(
     () => cloneDeep(example?.inputs || getInputFromTemplate(initialTemplate)),
     [example?.inputs, initialTemplate],
@@ -255,6 +270,62 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
     ],
     [activeCollaborator?.name, busy, isGlobalView, mode, template.schemas.length, uxMode],
   )
+
+  const collaborationSummary = useMemo(() => {
+    const allSchemas = template.schemas.reduce((acc, page) => acc.concat(page || []), [])
+    const activeUserId = activeCollaborator?.id || activeCollaboratorId || ''
+    const normalizeValue = (value) => String(value || '').trim()
+    const getOwnerIds = (schema) => {
+      const ids = []
+      if (Array.isArray(schema?.ownerRecipientIds)) ids.push(...schema.ownerRecipientIds)
+      if (schema?.ownerRecipientId) ids.push(schema.ownerRecipientId)
+      return Array.from(new Set(ids.reduce((acc, value) => {
+        const normalized = normalizeValue(value)
+        if (normalized) acc.push(normalized)
+        return acc
+      }, [])))
+    }
+
+    const visibleSchemas = allSchemas.filter((schema) => {
+      if (isGlobalView) return true
+      const ownerIds = getOwnerIds(schema)
+      const schemaOwner = normalizeValue(schema?.createdBy) || normalizeValue(schema?.lastModifiedBy)
+      const sharedOwner = normalizeValue(schema?.ownerMode) === 'shared'
+      return ownerIds.length === 0 || ownerIds.includes(activeUserId) || schemaOwner === activeUserId || sharedOwner
+    })
+
+    const editableSchemas = visibleSchemas.filter((schema) => {
+      const ownerIds = getOwnerIds(schema)
+      const schemaOwner = normalizeValue(schema?.createdBy) || normalizeValue(schema?.lastModifiedBy)
+      const sharedOwner = normalizeValue(schema?.ownerMode) === 'shared'
+      const lockedBy = normalizeValue(schema?.lock?.lockedBy)
+      const isReadonly = Boolean(schema?.readonly || schema?.__designer?.ownership?.readonly)
+      const ownershipMatches =
+        ownerIds.length === 0 || ownerIds.includes(activeUserId) || schemaOwner === activeUserId || sharedOwner
+
+      return ownershipMatches && !isReadonly && (!lockedBy || lockedBy === activeUserId)
+    })
+
+    const lockedCount = allSchemas.filter((schema) => {
+      const lockedBy = normalizeValue(schema?.lock?.lockedBy)
+      return Boolean(lockedBy && lockedBy !== activeUserId)
+    }).length
+
+    const commentCount = allSchemas.reduce((total, schema) => {
+      const inlineComments = Array.isArray(schema?.comments) ? schema.comments.length : 0
+      const commentAnchors = Array.isArray(schema?.commentAnchors) ? schema.commentAnchors.length : 0
+      const legacyAnchors = Array.isArray(schema?.commentsAnchors) ? schema.commentsAnchors.length : 0
+      const storedCount = Number(schema?.commentsCount || 0)
+      return total + Math.max(storedCount, inlineComments + commentAnchors + legacyAnchors)
+    }, 0)
+
+    return {
+      visibleCount: visibleSchemas.length,
+      editableCount: editableSchemas.length,
+      lockedCount,
+      commentCount,
+    }
+  }, [activeCollaborator?.id, activeCollaboratorId, isGlobalView, template.schemas])
 
   const setMode = useCallback((nextMode) => {
     setUiState((prev) => ({ ...prev, mode: nextMode }))
@@ -357,8 +428,14 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
         }
       })
       designer.onChangeTemplate((nextTemplate) => {
+        const decoratedTemplate = decorateTemplateWithCollaboration(nextTemplate, collaborationUsers)
+        const nextSignature = getTemplateSignature(decoratedTemplate)
+        if (lastAppliedTemplateSignatureRef.current === nextSignature) {
+          return
+        }
+        lastAppliedTemplateSignatureRef.current = nextSignature
         templateSyncFromDesignerRef.current = true
-        setTemplate(decorateTemplateWithCollaboration(nextTemplate, collaborationUsers))
+        setTemplate(decoratedTemplate)
       })
       designer.onPageChange((pageInfo) => {
         setStatus(formatPageStatus(pageInfo))
@@ -425,10 +502,12 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
     if (templateSyncFromDesignerRef.current) {
       templateSyncFromDesignerRef.current = false
       lastAppliedTemplateRef.current = template
+      lastAppliedTemplateSignatureRef.current = getTemplateSignature(template)
       return
     }
     if (lastAppliedTemplateRef.current === template) return
     lastAppliedTemplateRef.current = template
+    lastAppliedTemplateSignatureRef.current = getTemplateSignature(template)
     instance.updateTemplate(cloneDeep(template))
   }, [mode, template])
 
@@ -635,6 +714,7 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
         isGlobalView={isGlobalView}
         onToggleGlobalView={setIsGlobalView}
         status={status}
+        collaborationSummary={collaborationSummary}
         backLink={
           <Link className="sisad-pdfme-lab-inline-link" to="/">
             Volver al índice
