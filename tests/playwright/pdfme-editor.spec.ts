@@ -76,4 +76,30 @@ test.describe('pdfme editor canvas chrome', () => {
     const afterLabel = ((await page.getByRole('menuitem', { name: /Ocultar cuadrícula|Mostrar cuadrícula/i }).first().textContent()) || '').trim();
     expect(afterLabel).not.toBe(beforeLabel.trim());
   });
+
+  test('selecting a schema keeps canvas readable without global dim mask', async ({ page }) => {
+    await page.goto('/lab/multi-document-routing');
+
+    const schema = page.locator('.sisad-pdfme-ui-custom-selectable').first();
+    await expect(schema).toBeVisible();
+    await schema.click({ force: true });
+
+    const probe = await page.evaluate(() => {
+      const stage = document.querySelector('.sisad-pdfme-designer-stage') as HTMLElement | null;
+      const controlBar = document.querySelector('.sisad-pdfme-ui-control-bar') as HTMLElement | null;
+      const masks = Array.from(document.querySelectorAll('.sisad-pdfme-designer-mask')) as HTMLElement[];
+      return {
+        interactionPhase: stage?.getAttribute('data-interaction-phase'),
+        controlBarBackground: controlBar ? getComputedStyle(controlBar).backgroundColor : null,
+        visibleMaskCount: masks.filter((node) => {
+          const s = getComputedStyle(node);
+          return s.display !== 'none' && s.visibility !== 'hidden' && Number(s.opacity || '0') > 0;
+        }).length,
+      };
+    });
+
+    expect(probe.interactionPhase === 'selected-single' || probe.interactionPhase === 'selected-multi').toBe(true);
+    expect(probe.controlBarBackground).toBe('rgba(0, 0, 0, 0)');
+    expect(probe.visibleMaskCount).toBe(0);
+  });
 });

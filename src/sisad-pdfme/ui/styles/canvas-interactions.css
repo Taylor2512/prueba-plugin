@@ -804,7 +804,15 @@
 .sisad-pdfme-designer-stage[data-interaction-phase='dragging'] .sisad-pdfme-ui-control-bar,
 .sisad-pdfme-designer-stage[data-interaction-phase='resizing'] .sisad-pdfme-ui-control-bar,
 .sisad-pdfme-designer-stage[data-interaction-phase='rotating'] .sisad-pdfme-ui-control-bar {
-  background: rgba(30, 41, 59, 0.88);
+  background: transparent;
+}
+
+.sisad-pdfme-designer-stage[data-interaction-phase='dragging'] .sisad-pdfme-designer-mask,
+.sisad-pdfme-designer-stage[data-interaction-phase='resizing'] .sisad-pdfme-designer-mask,
+.sisad-pdfme-designer-stage[data-interaction-phase='rotating'] .sisad-pdfme-designer-mask,
+.sisad-pdfme-designer-stage[data-interaction-phase='selected-single'] .sisad-pdfme-designer-mask,
+.sisad-pdfme-designer-stage[data-interaction-phase='selected-multi'] .sisad-pdfme-designer-mask {
+  display: none;
 }
 
 .sisad-pdfme-designer-stage[data-interaction-phase='selected-single'] .sisad-pdfme-ui-control-bar,
@@ -1375,6 +1383,25 @@
   border-radius: 0.9rem;
   background: rgba(255, 255, 255, 0.92);
   box-shadow: var(--shadow-md);
+}
+
+.sisad-pdfme-designer-canvas-state-overlay[data-blocking-mask='true'][data-block-reason='loading'] {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: auto;
+  background: rgba(15, 23, 42, 0.18);
+  backdrop-filter: blur(1px);
+}
+
+.sisad-pdfme-designer-canvas-state-overlay[data-blocking-mask='true'][data-block-reason='error'] {
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: auto;
+  background: rgba(15, 23, 42, 0.1);
 }
 
 .sisad-pdfme-designer-canvas-state-overlay .sisad-pdfme-designer-canvas-empty-state-title {

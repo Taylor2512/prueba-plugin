@@ -53,6 +53,11 @@ import CanvasOverlayManager from './overlays/CanvasOverlayManager.js';
 import CanvasContextMenu from './overlays/CanvasContextMenu.js';
 import CanvasStateOverlay from './overlays/CanvasStateOverlay.js';
 import InlineEditOverlay, { type InlineEditSession } from './overlays/InlineEditOverlay.js';
+import {
+  deriveCanvasBlockReason,
+  shouldDisplayBlockingMask,
+  type CanvasInteractionMode,
+} from './overlays/overlayState.js';
 import { useCanvasRenderState } from '../../../../canvas/useCanvasRenderState.js';
 import { isCanvasInteractive } from '../../../../canvas/canvasRenderState.js';
 
@@ -946,6 +951,21 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
       }),
     [activeElements, editing, hoveringSchemaId, isDragging, isResizing, isRotating],
   );
+
+  const interactionMode: CanvasInteractionMode = externalSchemaDragActive
+    ? 'dragging-new-schema'
+    : interactionState.isDragging
+      ? 'dragging'
+      : interactionState.isResizing
+        ? 'resizing'
+        : interactionState.isRotating
+          ? 'rotating'
+          : editing
+            ? 'editing-text'
+            : interactionState.hasSelection
+              ? 'selecting'
+              : 'idle';
+
   useEffect(() => {
     onInteractionStateChange?.(interactionState);
   }, [interactionState, onInteractionStateChange]);
@@ -967,6 +987,8 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
     lastSyncAt,
   });
   const canvasInteractive = isCanvasInteractive(canvasRenderState);
+  const canvasBlockReason = deriveCanvasBlockReason(canvasRenderState);
+  const canvasBlockingMaskVisible = shouldDisplayBlockingMask(canvasBlockReason, interactionMode);
 
   useEffect(() => {
     paperRefs.current.forEach((paper, index) => {
@@ -1014,6 +1036,8 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
       data-snaps-visible={feature.snapLines ? 'true' : 'false'}
       data-padding-visible={feature.padding ? 'true' : 'false'}
       data-canvas-state={canvasRenderState.type}
+      data-canvas-blocked={canvasBlockingMaskVisible ? 'true' : 'false'}
+      data-canvas-block-reason={canvasBlockReason || 'none'}
       ref={rootRef}>
       {!editing && feature.selecto && !externalSchemaDragActive && canvasInteractive ? (
         <SelectoSlot

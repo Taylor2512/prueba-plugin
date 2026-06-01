@@ -20,6 +20,7 @@ import {
   PDF_LOAD_ERROR_MESSAGES,
 } from '../../../../../canvas/canvasRenderState.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
+import { deriveCanvasBlockReason, shouldDisplayBlockingMask } from './overlayState.js';
 
 export interface CanvasStateOverlayProps {
   state: CanvasRenderState;
@@ -43,6 +44,8 @@ export default function CanvasStateOverlay({
   if (state.type === 'ready') return null;
 
   const config = getCanvasStateConfig(state);
+  const blockReason = deriveCanvasBlockReason(state);
+  const blockingMaskVisible = shouldDisplayBlockingMask(blockReason, 'idle');
   const rootClass = [CLS, className].filter(Boolean).join(' ');
 
   // ── Loading states: skeleton overlay ────────────────────────────────
@@ -51,7 +54,10 @@ export default function CanvasStateOverlay({
       <div
         className={rootClass}
         data-state={state.type}
+        data-visible="true"
         data-blocks-interaction={config.blocksInteraction ? 'true' : 'false'}
+        data-block-reason={blockReason || 'none'}
+        data-blocking-mask={blockingMaskVisible ? 'true' : 'false'}
         role="status"
         aria-live="polite"
       >
@@ -74,7 +80,10 @@ export default function CanvasStateOverlay({
       <div
         className={rootClass}
         data-state={state.type}
+        data-visible="true"
         data-blocks-interaction="false"
+        data-block-reason={blockReason || 'none'}
+        data-blocking-mask={blockingMaskVisible ? 'true' : 'false'}
         role="alert"
       >
         <div className={`${CLS}-error`}>
@@ -102,7 +111,10 @@ export default function CanvasStateOverlay({
       <div
         className={rootClass}
         data-state={state.type}
+        data-visible="true"
         data-blocks-interaction="false"
+        data-block-reason={blockReason || 'none'}
+        data-blocking-mask={blockingMaskVisible ? 'true' : 'false'}
         role="status"
         aria-live="polite"
       >
@@ -122,8 +134,11 @@ export default function CanvasStateOverlay({
       <div
         className={rootClass}
         data-state={state.type}
+        data-visible="true"
         data-blocks-interaction="false"
         data-allows-drop={config.allowsDrop ? 'true' : 'false'}
+        data-block-reason={blockReason || 'none'}
+        data-blocking-mask={blockingMaskVisible ? 'true' : 'false'}
       >
         <div className={DESIGNER_CLASSNAME + 'canvas-empty-state-card'}>
           <span className={DESIGNER_CLASSNAME + 'canvas-empty-state-title'}>
