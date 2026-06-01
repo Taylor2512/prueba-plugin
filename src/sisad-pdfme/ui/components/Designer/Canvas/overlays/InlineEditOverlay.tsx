@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Input, Modal } from 'antd';
+import { Input } from 'antd';
 import type { InputRef } from 'antd';
+import { resolveSelectionToolbarPosition } from './floatingSurfaceGeometry.js';
 
 type InlineEditSession = {
   schemaId: string;
@@ -23,8 +24,8 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
   const sessionLabel = session?.target === 'name' ? 'Editar nombre' : 'Editar texto';
   const sessionHint =
     session?.target === 'name'
-      ? 'Cambia el nombre visible del campo y guarda para reflejarlo en el lienzo.'
-      : 'Cambia el texto del elemento y guarda para reflejarlo en el lienzo.';
+      ? 'Cambia el nombre interno del campo.'
+      : 'Actualiza el contenido visible en el lienzo.';
   const inputPlaceholder = session?.target === 'name' ? 'Nombre del campo' : 'Escribe el contenido';
 
   useEffect(() => {
@@ -56,97 +57,146 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
 
   if (!session) return null;
 
+  const canvasRoot = globalThis.document?.querySelector('.sisad-pdfme-designer-canvas') as HTMLElement | null;
+  const canvasRect = canvasRoot?.getBoundingClientRect();
+  const surfaceWidth = Math.min(session.multiline ? 420 : 360, Math.max(340, canvasSize.width - 32));
+  const surfaceHeight = session.multiline ? 220 : 168;
+  const bounds = {
+    top: session.rect.top,
+    left: session.rect.left,
+    right: session.rect.left + session.rect.width,
+    bottom: session.rect.top + session.rect.height,
+  };
+  const viewportSize = canvasRect
+    ? { width: Math.max(canvasRect.width, canvasSize.width), height: Math.max(canvasRect.height, canvasSize.height) }
+    : { width: canvasSize.width, height: canvasSize.height };
+  const pos = resolveSelectionToolbarPosition(bounds, { width: surfaceWidth, height: surfaceHeight }, viewportSize);
+
   return (
-    <Modal
-      open
-      centered
-      destroyOnHidden
-      maskClosable={false}
-      title={sessionLabel}
-      okText="Guardar"
-      cancelText="Cancelar"
-      width={Math.min(session.multiline ? 720 : 520, Math.max(360, canvasSize.width - 32))}
-      onOk={commit}
-      onCancel={cancel}
-      afterOpenChange={(open) => {
-        if (!open) return;
-        requestAnimationFrame(() => {
-          inputRef.current?.focus?.();
-          if ('select' in (inputRef.current || {})) {
-            try {
-              inputRef.current?.select?.();
-            } catch {
-              // Ignore selection issues on unsupported inputs.
-            }
-          }
-        });
-      }}
+    <div
+      className="sisad-pdfme-ui-inline-edit-overlay"
+      role="dialog"
+      aria-modal="false"
+      aria-label={sessionLabel}
+      aria-describedby={`inline-edit-hint-${session.schemaId}`}
+      style={{ top: `${pos.top}px`, left: `${pos.left}px`, width: `${surfaceWidth}px` }}
     >
-      <div className="sisad-pdfme-ui-inline-edit-overlay" style={{ display: 'grid', gap: 12 }}>
-        <p className="sisad-pdfme-ui-inline-edit-overlay-hint" style={{ margin: 0 }}>
-          {sessionHint}
-        </p>
-        {session.multiline ? (
-          <Input.TextArea
-            ref={inputRef}
-            value={draft}
-            onChange={(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setDraft(event.target.value)}
-            onKeyDown={(event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-              if (event.key === 'Escape') {
-                event.preventDefault();
-                event.stopPropagation();
-                cancel();
-                return;
-              }
-              if (event.key === 'Enter' && !event.shiftKey && (event.metaKey || event.ctrlKey)) {
-                event.preventDefault();
-                event.stopPropagation();
-                commit();
-              }
-            }}
-            onMouseDown={(event: React.MouseEvent) => {
-              event.stopPropagation();
-            }}
-            onDoubleClick={(event: React.MouseEvent) => {
-              event.stopPropagation();
-            }}
-            placeholder={inputPlaceholder}
-            autoSize={{ minRows: 4, maxRows: 10 }}
-            className="sisad-pdfme-ui-inline-edit-overlay-input"
-          />
-        ) : (
-          <Input
-            ref={inputRef}
-            value={draft}
-            onChange={(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setDraft(event.target.value)}
-            onKeyDown={(event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-              if (event.key === 'Escape') {
-                event.preventDefault();
-                event.stopPropagation();
-                cancel();
-                return;
-              }
-              if (event.key === 'Enter' && !event.shiftKey) {
-                event.preventDefault();
-                event.stopPropagation();
-                commit();
-              }
-            }}
-            onMouseDown={(event: React.MouseEvent) => {
-              event.stopPropagation();
-            }}
-            onDoubleClick={(event: React.MouseEvent) => {
-              event.stopPropagation();
-            }}
-            placeholder={inputPlaceholder}
-            className="sisad-pdfme-ui-inline-edit-overlay-input"
-          />
-        )}
-        <span className="sisad-pdfme-ui-inline-edit-overlay-hint" style={{ fontSize: 12, opacity: 0.75 }}>
-          Escape cancela. {session.multiline ? 'Ctrl o Cmd + Enter guarda.' : 'Enter guarda.'}
-        </span>
+      <div className="sisad-pdfme-ui-inline-edit-overlay-header">
+        <div className="sisad-pdfme-ui-inline-edit-overlay-title">{sessionLabel}</div>
+        <button
+          type="button"
+          aria-label="Cerrar editor"
+          className="sisad-pdfme-ui-inline-edit-overlay-close"
+          onMouseDown={(event) => {
+            event.stopPropagation();
+          }}
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            cancel();
+          }}
+        >
+          ×
+        </button>
       </div>
-    </Modal>
+
+      <p id={`inline-edit-hint-${session.schemaId}`} className="sisad-pdfme-ui-inline-edit-overlay-hint" style={{ margin: 0 }}>
+        {sessionHint}
+      </p>
+
+      {session.multiline ? (
+        <Input.TextArea
+          ref={inputRef}
+          value={draft}
+          onChange={(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setDraft(event.target.value)}
+          onKeyDown={(event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+            if (event.key === 'Escape') {
+              event.preventDefault();
+              event.stopPropagation();
+              cancel();
+              return;
+            }
+            if (event.key === 'Enter' && !event.shiftKey && (event.metaKey || event.ctrlKey)) {
+              event.preventDefault();
+              event.stopPropagation();
+              commit();
+            }
+          }}
+          onMouseDown={(event: React.MouseEvent) => {
+            event.stopPropagation();
+          }}
+          onDoubleClick={(event: React.MouseEvent) => {
+            event.stopPropagation();
+          }}
+          placeholder={inputPlaceholder}
+          autoSize={{ minRows: 4, maxRows: 10 }}
+          className="sisad-pdfme-ui-inline-edit-overlay-input"
+        />
+      ) : (
+        <Input
+          ref={inputRef}
+          value={draft}
+          onChange={(event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => setDraft(event.target.value)}
+          onKeyDown={(event: React.KeyboardEvent<HTMLInputElement | HTMLTextAreaElement>) => {
+            if (event.key === 'Escape') {
+              event.preventDefault();
+              event.stopPropagation();
+              cancel();
+              return;
+            }
+            if (event.key === 'Enter' && !event.shiftKey) {
+              event.preventDefault();
+              event.stopPropagation();
+              commit();
+            }
+          }}
+          onMouseDown={(event: React.MouseEvent) => {
+            event.stopPropagation();
+          }}
+          onDoubleClick={(event: React.MouseEvent) => {
+            event.stopPropagation();
+          }}
+          placeholder={inputPlaceholder}
+          className="sisad-pdfme-ui-inline-edit-overlay-input"
+        />
+      )}
+
+      <div className="sisad-pdfme-ui-inline-edit-overlay-footer">
+        <span className="sisad-pdfme-ui-inline-edit-overlay-hint" style={{ fontSize: 12, opacity: 0.85 }}>
+          Esc cancela · {session.multiline ? 'Cmd/Ctrl + Enter guarda' : 'Enter guarda'}
+        </span>
+        <div className="sisad-pdfme-ui-inline-edit-overlay-actions">
+          <button
+            type="button"
+            className="sisad-pdfme-ui-inline-edit-overlay-action"
+            onMouseDown={(event) => {
+              event.stopPropagation();
+            }}
+            onClick={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              cancel();
+            }}
+          >
+            Cancelar
+          </button>
+          <button
+            type="button"
+            className="sisad-pdfme-ui-inline-edit-overlay-action primary"
+            onMouseDown={(event) => {
+              event.stopPropagation();
+            }}
+            onClick={(event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              commit();
+            }}
+          >
+            Guardar
+          </button>
+        </div>
+      </div>
+    </div>
   );
 };
 

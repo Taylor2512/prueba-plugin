@@ -674,14 +674,18 @@
   display: flex;
   flex-direction: column;
   gap: var(--space-2);
-  padding: var(--space-2);
-  background: rgba(255, 255, 255, 0.96);
-  border: 1px solid var(--color-primary-25);
-  border-radius: var(--radius-lg);
+  padding: var(--space-3);
+  background: var(--color-bg-elevated);
+  border: 1px solid var(--color-border-soft);
+  border-radius: var(--radius-xl);
   box-shadow: var(--shadow-xl);
   backdrop-filter: var(--blur-md);
   pointer-events: auto;
-  z-index: calc(var(--z-overlay) + 3);
+  z-index: calc(var(--z-overlay) + 6);
+  width: min(420px, calc(100vw - 32px));
+  max-width: calc(100vw - 32px);
+  transition: transform var(--transition-fast), opacity var(--transition-fast);
+  transform-origin: top left;
 }
 
 .sisad-pdfme-ui-inline-edit-overlay-header {
@@ -689,6 +693,31 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-2);
+}
+
+.sisad-pdfme-ui-inline-edit-overlay-title {
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-primary);
+}
+
+.sisad-pdfme-ui-inline-edit-overlay-close {
+  border: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  font-size: 1.15rem;
+  line-height: 1;
+  width: 34px;
+  height: 34px;
+  display: inline-grid;
+  place-items: center;
+  border-radius: var(--radius-full);
+  cursor: pointer;
+}
+
+.sisad-pdfme-ui-inline-edit-overlay-close:hover {
+  background: var(--color-bg-hover);
+  color: var(--color-text-primary);
 }
 
 .sisad-pdfme-ui-inline-edit-overlay-kicker {
@@ -706,6 +735,41 @@
 
 .sisad-pdfme-ui-inline-edit-overlay-input {
   width: 100%;
+}
+
+.sisad-pdfme-ui-inline-edit-overlay-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-3);
+  margin-top: var(--space-1);
+}
+
+.sisad-pdfme-ui-inline-edit-overlay-actions {
+  display: flex;
+  gap: var(--space-2);
+}
+
+.sisad-pdfme-ui-inline-edit-overlay-action {
+  min-height: 2rem;
+  padding: 0.375rem 0.75rem;
+  border-radius: var(--radius-md);
+  border: 1px solid var(--color-border-subtle);
+  background: var(--color-bg-surface);
+  color: var(--color-text-secondary);
+  cursor: pointer;
+}
+
+.sisad-pdfme-ui-inline-edit-overlay-action.primary {
+  background: linear-gradient(135deg, var(--color-primary-08), var(--color-primary-15));
+  border-color: var(--color-primary-25);
+  color: var(--color-primary);
+}
+
+.sisad-pdfme-ui-inline-edit-overlay-action:focus-visible,
+.sisad-pdfme-ui-inline-edit-overlay-close:focus-visible {
+  outline: none;
+  box-shadow: var(--focus-ring);
 }
 
 /* ── Snap Feedback ───────────────────────────────────────────── */
