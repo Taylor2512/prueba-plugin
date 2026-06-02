@@ -2,7 +2,16 @@ import { describe, expect, test } from 'vitest';
 import checkboxGroup, { __test__ } from '@/sisad-pdfme/schemas/checkboxGroup/index.js';
 import { createDefaultSchema, builtInSchemaDefinitions } from '@/sisad-pdfme/schemas/index.js';
 
-const { normalizeOptions, resolveSelectedIds, serializeSelectedIds, normalizeSelectedOptionIds, createNextOption } = __test__;
+const {
+  normalizeOptions,
+  resolveSelectedIds,
+  serializeSelectedIds,
+  normalizeSelectedOptionIds,
+  createNextOption,
+  resolveSelectionLimits,
+  clampSelectedIds,
+  toggleSelectedIds,
+} = __test__;
 
 describe('checkboxGroup schema', () => {
   test('is registered as a built-in schema', () => {
@@ -76,5 +85,42 @@ describe('checkboxGroup schema', () => {
     const clash = [...options, { optionId: 'option_4', label: 'D' }];
     const next = createNextOption('option', clash);
     expect(clash.some((o) => o.optionId === next.optionId)).toBe(false);
+  });
+
+  test('resolveSelectionLimits normalizes min and max values', () => {
+    expect(resolveSelectionLimits({ minSelected: 2, maxSelected: 1 } as never)).toEqual({ minSelected: 2, maxSelected: 2 });
+    expect(resolveSelectionLimits({ minSelected: '1', maxSelected: '3' } as never)).toEqual({ minSelected: 1, maxSelected: 3 });
+    expect(resolveSelectionLimits({ minSelected: -1, maxSelected: undefined } as never)).toEqual({ minSelected: undefined, maxSelected: undefined });
+  });
+
+  test('clampSelectedIds fills up to minSelected and trims down to maxSelected', () => {
+    const options = [
+      { optionId: 'option_1', label: 'A' },
+      { optionId: 'option_2', label: 'B' },
+      { optionId: 'option_3', label: 'C' },
+    ];
+
+    const clampedMin = clampSelectedIds(new Set(), options, { minSelected: 2 } as never);
+    expect(Array.from(clampedMin)).toEqual(['option_1', 'option_2']);
+
+    const clampedMax = clampSelectedIds(new Set(['option_1', 'option_2', 'option_3']), options, { maxSelected: 2 } as never);
+    expect(Array.from(clampedMax)).toEqual(['option_1', 'option_2']);
+  });
+
+  test('toggleSelectedIds respects minSelected and maxSelected', () => {
+    const options = [
+      { optionId: 'option_1', label: 'A' },
+      { optionId: 'option_2', label: 'B' },
+      { optionId: 'option_3', label: 'C' },
+    ];
+
+    const minLocked = toggleSelectedIds(new Set(['option_1']), 'option_1', options, { minSelected: 1 } as never);
+    expect(Array.from(minLocked)).toEqual(['option_1']);
+
+    const maxLocked = toggleSelectedIds(new Set(['option_1', 'option_2']), 'option_3', options, { maxSelected: 2 } as never);
+    expect(Array.from(maxLocked)).toEqual(['option_1', 'option_2']);
+
+    const normalToggle = toggleSelectedIds(new Set(['option_1']), 'option_2', options, {} as never);
+    expect(Array.from(normalToggle)).toEqual(['option_1', 'option_2']);
   });
 });

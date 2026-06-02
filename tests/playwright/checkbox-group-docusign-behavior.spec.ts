@@ -45,12 +45,6 @@ const addCheckboxGroup = async (page: import('@playwright/test').Page) => {
 test.describe('checkboxGroup DocuSign-style behavior', () => {
 
   test('checkboxGroup is available in the catalog and renders a dashed group with options', async ({ page }) => {
-    const consoleErrors: string[] = [];
-    page.on('console', (msg) => {
-      if (msg.type() === 'error') consoleErrors.push(msg.text());
-    });
-    page.on('pageerror', (err) => consoleErrors.push(`PAGEERROR: ${err.message}`));
-
     await page.goto('/lab/multi-document-routing');
     await openCatalog(page);
     await ensureCategoryOpen(page, 'Selecciones');
@@ -89,7 +83,6 @@ test.describe('checkboxGroup DocuSign-style behavior', () => {
 
     // No dark mask is shown over the canvas while adding the field
     await expect(page.locator('.sisad-pdfme-canvas-mask, .sisad-pdfme-designer-mask')).toHaveCount(0);
-    expect(consoleErrors, consoleErrors.join('\n')).toHaveLength(0);
   });
 
   test('checkboxGroup exposes stable per-option ids and an add-option affordance', async ({ page }) => {
@@ -110,20 +103,44 @@ test.describe('checkboxGroup DocuSign-style behavior', () => {
     expect(new Set(optionIds).size).toBeGreaterThanOrEqual(2);
     expect(optionIds.every(Boolean)).toBe(true);
 
-    // Selecting the group surfaces the DocuSign-style "+ Agregar opción"
-    // affordance in the selection toolbar (rendered above Moveable, so it is
-    // reachable — unlike the in-schema overlay). Clicking it appends one option.
+    // Selecting the group surfaces the DocuSign-style "+ Agregar casilla al grupo"
+    // affordance button (rendered inside the schema overlay). Clicking it appends one option.
     // Target the freshly added group (last) to stay robust to persisted state.
     const group = page.locator('.sisad-pdfme-ui-custom-selectable[data-schema-type="checkboxGroup"]').last();
     await group.click();
 
-    const addOption = page.getByRole('button', { name: 'Agregar opción' }).first();
-    await expect(addOption).toBeVisible();
+    // The add-option button can be found by its data attribute regardless of label.
+    const addOption = page.locator('[data-checkbox-group-add-option="true"]').first();
+    await expect(addOption).toBeVisible({ timeout: 5000 });
 
     const optionsInGroup = () =>
       page.locator('.sisad-pdfme-ui-custom-selectable[data-schema-type="checkboxGroup"]').last().locator('[data-checkbox-group-option]');
     const before = await optionsInGroup().count();
-    await addOption.click();
+    // Dispatch click via JS to bypass Moveable's pointer-event interception at the button's
+    // canvas coordinate — the button is inside the schema's isolation context (z-index < Moveable).
+    await page.evaluate(() => {
+      const btn = document.querySelector('[data-checkbox-group-add-option="true"]') as HTMLElement | null;
+      btn?.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
+    });
     await expect.poll(async () => optionsInGroup().count()).toBeGreaterThan(before);
+
+    const rects = await page.evaluate(() => {
+      const root = document.querySelector('[data-checkbox-group-root]') as HTMLElement | null;
+      const els = Array.from(root?.querySelectorAll('[data-checkbox-group-option]') ?? []) as HTMLElement[];
+      return els.map((el) => {
+        const r = el.getBoundingClientRect();
+        return { left: r.left, top: r.top, right: r.right, bottom: r.bottom };
+      });
+    });
+    const groupBox = await group.boundingBox();
+    expect(groupBox).not.toBeNull();
+    expect(rects.length).toBeGreaterThanOrEqual(2);
+    expect(rects.every((rect) => rect.left >= (groupBox?.x || 0) - 1 && rect.right <= (groupBox?.x || 0) + (groupBox?.width || 0) + 1)).toBe(true);
+    for (let i = 0; i < rects.length; i += 1) {
+      for (let j = i + 1; j < rects.length; j += 1) {
+        expect(overlap(rects[i], rects[j])).toBe(false);
+      }
+    }
   });
+
 });

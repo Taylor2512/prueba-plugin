@@ -166,6 +166,70 @@ describe('snapshotAdapter', () => {
     expect((schema.__designer as Record<string, unknown>).recipientColor).toBe('#2563EB');
   });
 
+  test('preserves radioGroup options, selectedOptionId and group metadata in round-trip', () => {
+    const state = {
+      ...baseState,
+      documents: [
+        {
+          documentId: 'doc-1',
+          name: 'Documento 1',
+          order: 0,
+          pages: [
+            {
+              pageNumber: 1,
+              background: { type: 'none' as const },
+              schemas: [
+                {
+                  id: 'schema-radio-group-1',
+                  name: 'opciones',
+                  type: 'radioGroup',
+                  position: { x: 10, y: 20 },
+                  width: 40,
+                  height: 24,
+                  options: [
+                    { optionId: 'option_1', label: 'A' },
+                    { optionId: 'option_2', label: 'B' },
+                  ],
+                  selectedOptionId: 'option_2',
+                  content: 'option_2',
+                  __designer: {
+                    schemaUid: 'uid-radio-group-1',
+                    templateVersion: '2.0.0',
+                    documentId: 'doc-1',
+                    pageNumber: 1,
+                    recipientId: 'recipient-1',
+                    recipientColor: '#2563EB',
+                    version: 0,
+                    createdAt: '2026-01-01T00:00:00.000Z',
+                    updatedAt: '2026-01-01T00:00:00.000Z',
+                    group: {
+                      groupId: 'group-radio-1',
+                      groupType: 'radio',
+                      groupName: 'Opciones',
+                      lockedAsGroup: true,
+                    },
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+
+    const snapshot = snapshotAdapter.serialize(state, { name: 't', createdByUserId: 'u' });
+    const restored = snapshotAdapter.deserialize(snapshot);
+    const schema = restored.documents[0]?.pages[0]?.schemas[0] as Record<string, unknown>;
+
+    expect(schema.type).toBe('radioGroup');
+    expect(schema.options).toHaveLength(2);
+    expect(schema.selectedOptionId).toBe('option_2');
+    const group = (schema.__designer as { group?: Record<string, unknown> }).group;
+    expect(group?.groupId).toBe('group-radio-1');
+    expect(group?.groupType).toBe('radio');
+    expect(group?.lockedAsGroup).toBe(true);
+  });
+
   test('legacy migration preserves an existing __designer.group', () => {
     const migrated = snapshotAdapter.migrate({
       name: 'Legacy with group',

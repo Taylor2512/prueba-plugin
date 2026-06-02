@@ -1,4 +1,5 @@
 import { describe, expect, test } from 'vitest';
+import checkboxGroup from '@/sisad-pdfme/schemas/checkboxGroup/index.js';
 import { buildInspectorSections } from '@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.js';
 import type { SchemaForUI } from '@/sisad-pdfme/common/index.js';
 
@@ -52,6 +53,58 @@ const sections = () =>
     validatePosition: () => true,
   });
 
+const checkboxGroupSections = () => {
+  const pluginProps =
+    typeof checkboxGroup.propPanel.schema === 'function'
+      ? checkboxGroup.propPanel.schema({ i18n: (key: string) => key })
+      : checkboxGroup.propPanel.schema;
+
+  return buildInspectorSections({
+    activeSchemaType: 'checkboxGroup',
+    activeSchema: {
+      id: 'checkbox-group-1',
+      name: 'checkbox_group',
+      type: 'checkboxGroup',
+      content: 'option_1',
+      position: { x: 12, y: 20 },
+      width: 140,
+      height: 48,
+      options: [
+        { optionId: 'option_1', label: 'Casilla 1' },
+        { optionId: 'option_2', label: 'Casilla 2' },
+      ],
+      selectedOptionIds: ['option_1'],
+      minSelected: 1,
+      maxSelected: 2,
+      groupId: 'Grupo_Casillas',
+      groupName: 'Grupo de casillas',
+      color: '#2563EB',
+      __designer: {
+        group: {
+          groupId: 'Grupo_Casillas',
+          groupType: 'checkbox',
+          groupName: 'Grupo de casillas',
+          lockedAsGroup: true,
+        },
+      },
+    } as unknown as SchemaForUI,
+    schemaConfig: undefined,
+    typedI18n: (key: string) => key,
+    defaultSchema: checkboxGroup.propPanel.defaultSchema as Record<string, unknown>,
+    pluginProps: pluginProps as Record<string, unknown>,
+    inspectorConfig: checkboxGroup.propPanel.inspector,
+    pageSize: { width: 210, height: 297 },
+    paddingTop: 0,
+    paddingRight: 0,
+    paddingBottom: 0,
+    paddingLeft: 0,
+    maxWidth: 210,
+    maxHeight: 297,
+    validateUniqueSchemaName: () => true,
+    validatePosition: () => true,
+  });
+};
+
 const expectProperty = (allSections: ReturnType<typeof sections>, propertyKey: string) => {
   const found = allSections.some((section) => Boolean(section.schema.properties?.[propertyKey]));
   expect(found, `Property ${propertyKey} should be present in inspector matrix`).toBe(true);
@@ -87,6 +140,18 @@ describe('DetailView schema matrix', () => {
     expect(keys).toContain('collaboration');
     expect(keys).toContain('comments');
     expect(keys).toContain('dataBindings');
+  });
+
+  test('covers checkboxGroup inspector fields for option limits and option editing', () => {
+    const allSections = checkboxGroupSections();
+    expectProperty(allSections, 'groupId');
+    expectProperty(allSections, 'groupName');
+    expectProperty(allSections, 'lockedAsGroup');
+    expectProperty(allSections, 'orientation');
+    expectProperty(allSections, 'spacing');
+    expectProperty(allSections, 'minSelected');
+    expectProperty(allSections, 'maxSelected');
+    expectProperty(allSections, 'optionsContainer');
   });
 
   test('keeps canonical section ordering stable for inspector UX', () => {

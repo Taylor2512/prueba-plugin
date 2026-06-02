@@ -5,6 +5,7 @@ import { HEX_COLOR_PATTERN } from '../constants.js';
 import { SquareCheck } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import { buildAddOptionButton, hexAlpha } from '../groupSchemaRender.js';
 
 const getCheckedIcon = (stroke = 'currentColor') => renderLucideIcon(SquareCheck, { stroke });
 
@@ -29,20 +30,21 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
       height: '100%',
     });
 
-    // Main box — DocuSign style: colored border square
+    // Main box — clean, lightweight square indicator
     const box = document.createElement('div');
     Object.assign(box.style, {
       width: '100%',
       height: '100%',
       boxSizing: 'border-box',
-      border: `2px solid ${color}`,
+      border: `1px solid ${hexAlpha(color, checked ? 0.85 : 0.5)}`,
       borderRadius: '3px',
-      background: checked ? `${color}22` : `${color}0d`,
+      background: checked ? hexAlpha(color, 0.12) : hexAlpha(color, 0.03),
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
       cursor: editable ? 'pointer' : 'default',
       overflow: 'hidden',
+      transition: 'background 100ms ease, border-color 100ms ease',
     });
 
     if (editable && onChange) {
@@ -52,65 +54,26 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
       });
     }
 
-    // Check mark — only when checked
     if (checked) {
       const markWrap = document.createElement('div');
       Object.assign(markWrap.style, {
-        width: '80%',
-        height: '80%',
+        width: '72%',
+        height: '72%',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
       });
       markWrap.innerHTML = renderLucideIcon(SquareCheck, { stroke: color, fill: 'none', width: '100%', height: '100%' });
       box.appendChild(markWrap);
-    } else {
-      // Unchecked — subtle inner square like DocuSign
-      const inner = document.createElement('div');
-      Object.assign(inner.style, {
-        width: '40%',
-        height: '40%',
-        border: `1.5px solid ${color}66`,
-        borderRadius: '1px',
-        background: 'transparent',
-      });
-      box.appendChild(inner);
     }
+    // Unchecked: empty box, clean minimal look
 
     wrapper.appendChild(box);
 
-    // + button below — only in designer. Converts a lone checkbox into a checkboxGroup
+    // + button below — designer only. Converts to checkboxGroup
     if (isDesigner && onChange) {
-      const addBtn = document.createElement('button');
-      addBtn.type = 'button';
-      addBtn.textContent = '+';
-      // Center on the schema's bottom edge so it stays hit-testable
-      // (fully-outside elements get covered by the paper page in canvas stacking).
-      Object.assign(addBtn.style, {
-        position: 'absolute',
-        bottom: '1px',
-        left: '50%',
-        transform: 'translateX(-50%)',
-        width: '18px',
-        height: '18px',
-        borderRadius: '50%',
-        border: `2px solid ${color}`,
-        background: '#fff',
-        color: color,
-        fontSize: '13px',
-        lineHeight: '1',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        cursor: 'pointer',
-        zIndex: '30',
-        padding: '0',
-        boxShadow: '0 1px 4px rgba(0,0,0,0.2)',
-        fontWeight: '700',
-      });
-      addBtn.title = 'Convertir en grupo de casillas';
+      const addBtn = buildAddOptionButton(color, 'Convertir en grupo de casillas', 'data-checkbox-convert-to-group-btn');
       addBtn.setAttribute('data-checkbox-convert-to-group', 'true');
-
       addBtn.addEventListener('pointerdown', (e) => e.stopPropagation());
       addBtn.addEventListener('click', (e) => {
         e.preventDefault();

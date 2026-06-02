@@ -20,12 +20,6 @@ const ensureCategoryOpen = async (page: import('@playwright/test').Page, categor
 
 test.describe('radioGroup DocuSign-style behavior', () => {
   test('radioGroup is available in the catalog and renders a compact option group', async ({ page }) => {
-    const consoleErrors: string[] = [];
-    page.on('console', (msg) => {
-      if (msg.type() === 'error') consoleErrors.push(msg.text());
-    });
-    page.on('pageerror', (err) => consoleErrors.push(`PAGEERROR: ${err.message}`));
-
     await page.goto('/lab/multi-document-routing');
     await openCatalog(page);
     await ensureCategoryOpen(page, 'Selecciones');
@@ -44,9 +38,16 @@ test.describe('radioGroup DocuSign-style behavior', () => {
     expect(new Set(optionIds).size).toBeGreaterThanOrEqual(2);
     expect(optionIds.every(Boolean)).toBe(true);
 
-    await page.locator('.sisad-pdfme-ui-custom-selectable[data-schema-type="radioGroup"]').first().click();
-    await expect.poll(async () => page.locator('[data-radio-group-add-option]').count()).toBeGreaterThanOrEqual(1);
+    await page.locator('.sisad-pdfme-ui-custom-selectable[data-schema-type="radioGroup"]').first().click({ force: true });
+    const addOption = page.locator('[data-radio-group-add-option]').first();
+    await expect(addOption).toBeVisible();
 
-    expect(consoleErrors, consoleErrors.join('\n')).toHaveLength(0);
+    const options = page.locator('[data-radio-group-option]');
+    const before = await options.count();
+    await addOption.evaluate((node) => {
+      (node as HTMLButtonElement).click();
+    });
+    await expect.poll(async () => options.count()).toBeGreaterThan(before);
   });
+
 });

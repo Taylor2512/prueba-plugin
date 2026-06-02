@@ -6,6 +6,15 @@ import { createSchemaPlugin, renderLucideIcon } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 import { CircleDot } from 'lucide-react';
 import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
+import {
+  buildGroupWrapper,
+  buildGroupContainer,
+  buildGroupLabel,
+  buildOptionRow,
+  buildRadioIndicator,
+  buildOptionLabel,
+  buildAddOptionButton,
+} from '../groupSchemaRender.js';
 
 type RadioOption = {
   optionId: string;
@@ -287,178 +296,56 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
       const gap = Number.isFinite(Number(radioSchema.spacing)) ? Number(radioSchema.spacing) : 3;
       const isHorizontal = radioSchema.orientation === 'horizontal';
 
-      // Root wrapper — relative for + button
-      const wrapper = document.createElement('div');
-      Object.assign(wrapper.style, {
-        position: 'relative',
-        width: '100%',
-        height: '100%',
-      });
+      const wrapper = buildGroupWrapper();
 
-      // Group container — dashed border like DocuSign
-      const container = document.createElement('div');
-      Object.assign(container.style, {
-        width: '100%',
-        height: '100%',
-        boxSizing: 'border-box',
-        border: `1.5px dashed ${color}`,
-        borderRadius: '5px',
-        padding: '4px 5px 4px 5px',
-        display: 'flex',
-        flexDirection: isHorizontal ? 'row' : 'column',
-        flexWrap: isHorizontal ? 'wrap' : 'nowrap',
-        gap: `${gap}px`,
-        background: `${color}0a`,
-        overflow: 'hidden',
-      });
+      const container = buildGroupContainer({ color, gap, isHorizontal });
 
-      // Group label — small, above options (like "Grupo de opción" in DocuSign)
       if (radioSchema.groupName) {
-        const label = document.createElement('div');
-        label.textContent = radioSchema.groupName;
-        Object.assign(label.style, {
-          width: '100%',
-          fontSize: '10px',
-          fontWeight: '600',
-          color: color,
-          letterSpacing: '0.03em',
-          lineHeight: '1.2',
-          marginBottom: '2px',
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
-        });
-        container.appendChild(label);
+        container.appendChild(buildGroupLabel(radioSchema.groupName, color));
       }
 
-      // Each option — colored box + circle + label (DocuSign style)
       options.forEach((option) => {
         const isSelected = option.optionId === selectedOptionId;
-
-        const row = document.createElement('button');
-        row.type = 'button';
-        row.setAttribute('role', 'radio');
+        const row = buildOptionRow({
+          color, isHorizontal, editable,
+          role: 'radio',
+          optionId: option.optionId,
+          dataAttr: 'data-radio-group-option',
+        });
         row.setAttribute('aria-checked', isSelected ? 'true' : 'false');
-        row.setAttribute('data-radio-group-option', option.optionId);
-        Object.assign(row.style, {
-          display: 'inline-flex',
-          alignItems: 'center',
-          gap: '6px',
-          padding: '2px 6px 2px 4px',
-          border: `1.5px solid ${color}`,
-          borderRadius: '3px',
-          background: `${color}${isSelected ? '1a' : '0d'}`,
-          color: color,
-          cursor: editable ? 'pointer' : 'default',
-          fontSize: '11px',
-          textAlign: 'left',
-          width: isHorizontal ? 'auto' : '100%',
-          minHeight: '20px',
-          flexShrink: '0',
-          userSelect: 'none',
-        });
-
-        // Circle — DocuSign uses filled for selected, ring for unselected
-        const circle = document.createElement('span');
-        Object.assign(circle.style, {
-          width: '12px',
-          height: '12px',
-          borderRadius: '50%',
-          border: `1.5px solid ${color}`,
-          background: isSelected ? color : '#fff',
-          display: 'inline-flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          flexShrink: '0',
-        });
-        if (isSelected) {
-          const dot = document.createElement('span');
-          Object.assign(dot.style, {
-            width: '4px',
-            height: '4px',
-            borderRadius: '50%',
-            background: '#fff',
-            display: 'block',
-          });
-          circle.appendChild(dot);
-        }
-
-        const labelSpan = document.createElement('span');
-        labelSpan.textContent = option.label;
-        Object.assign(labelSpan.style, {
-          overflow: 'hidden',
-          textOverflow: 'ellipsis',
-          whiteSpace: 'nowrap',
-          flex: '1',
-        });
-
-        row.appendChild(circle);
-        row.appendChild(labelSpan);
+        row.appendChild(buildRadioIndicator(color, isSelected));
+        row.appendChild(buildOptionLabel(option.label, color));
 
         if (editable && onChange) {
           row.addEventListener('click', (e) => {
-            e.preventDefault();
-            e.stopPropagation();
+            e.preventDefault(); e.stopPropagation();
             onChange({ key: 'content', value: option.optionId });
           });
         }
-
         container.appendChild(row);
       });
 
       if (!options.length) {
         const empty = document.createElement('div');
         empty.textContent = 'Sin opciones';
-        Object.assign(empty.style, { fontSize: '11px', color: color, opacity: '0.6' });
+        Object.assign(empty.style, { fontSize: '9px', color, opacity: '0.55' });
         container.appendChild(empty);
       }
 
       wrapper.appendChild(container);
 
-      // ── + button below — only in designer, DocuSign style ──
       if (isDesigner) {
-        const addBtn = document.createElement('button');
-        addBtn.type = 'button';
-        addBtn.textContent = '+';
-        // Center on the schema's bottom edge so it stays hit-testable
-        // (fully-outside elements get covered by the paper page in canvas stacking).
-        Object.assign(addBtn.style, {
-          position: 'absolute',
-          bottom: '1px',
-          left: '50%',
-          transform: 'translateX(-50%)',
-          width: '20px',
-          height: '20px',
-          borderRadius: '50%',
-          border: `2px solid ${color}`,
-          background: '#fff',
-          color: color,
-          fontSize: '15px',
-          lineHeight: '1',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          cursor: 'pointer',
-          zIndex: '30',
-          padding: '0',
-          boxShadow: '0 1px 5px rgba(0,0,0,0.18)',
-          fontWeight: '700',
-        });
-        addBtn.title = 'Agregar opción al grupo';
+        const addBtn = buildAddOptionButton(color, 'Agregar opción al grupo', 'data-radio-group-add-option');
         addBtn.setAttribute('aria-label', 'Agregar opción al grupo');
         addBtn.setAttribute('data-schema-interactive-control', 'radio-add-option');
-        addBtn.setAttribute('data-radio-group-add-option', 'true');
-
         addBtn.addEventListener('pointerdown', (e) => e.stopPropagation());
         addBtn.addEventListener('click', (e) => {
-          e.preventDefault();
-          e.stopPropagation();
+          e.preventDefault(); e.stopPropagation();
           const current = normalizeOptions(radioSchema);
           const n = current.length + 1;
           const newOpt: RadioOption = { optionId: `option_${n}`, label: `Opción ${n}` };
           if (onChange) onChange({ key: 'options', value: [...current, newOpt] });
         });
-
         wrapper.appendChild(addBtn);
       }
 

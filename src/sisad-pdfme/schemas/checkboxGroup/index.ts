@@ -6,6 +6,15 @@ import { createSchemaPlugin, renderLucideIcon } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 import { SquareCheck } from 'lucide-react';
 import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
+import {
+  buildGroupWrapper,
+  buildGroupContainer,
+  buildGroupLabel,
+  buildOptionRow,
+  buildCheckboxIndicator,
+  buildOptionLabel,
+  buildAddOptionButton,
+} from '../groupSchemaRender.js';
 
 type CheckboxOption = {
   optionId: string;
@@ -33,6 +42,11 @@ type CheckboxGroupSchema = SchemaForUI & {
 
 const normalizeText = (value: unknown) => String(value || '').trim();
 const ensureOptionId = (value: string, index: number) => normalizeText(value) || `option_${index + 1}`;
+const normalizeSelectionLimit = (value: unknown): number | undefined => {
+  const parsed = Number(value);
+  if (!Number.isFinite(parsed) || parsed < 0) return undefined;
+  return Math.floor(parsed);
+};
 
 const normalizeOptions = (schema: CheckboxGroupSchema): CheckboxOption[] => {
   const source = Array.isArray(schema.options) ? schema.options : [];
@@ -59,6 +73,55 @@ const resolveSelectedIds = (schema: CheckboxGroupSchema): Set<string> => {
   const fromContent = normalizeText(schema.content);
   if (fromContent) return new Set(fromContent.split(',').map((s) => s.trim()).filter(Boolean));
   return new Set();
+};
+
+const resolveSelectionLimits = (schema: CheckboxGroupSchema) => {
+  const minSelected = normalizeSelectionLimit(schema.minSelected);
+  const maxSelected = normalizeSelectionLimit(schema.maxSelected);
+  return {
+    minSelected,
+    maxSelected: maxSelected != null && minSelected != null ? Math.max(minSelected, maxSelected) : maxSelected,
+  };
+};
+
+const clampSelectedIds = (selected: Set<string>, options: CheckboxOption[], schema: CheckboxGroupSchema) => {
+  const validIds = new Set(options.map((option) => option.optionId));
+  const { minSelected, maxSelected } = resolveSelectionLimits(schema);
+  const ordered = Array.from(selected).map(normalizeText).filter((id) => id && validIds.has(id));
+
+  if (maxSelected != null && ordered.length > maxSelected) {
+    ordered.length = maxSelected;
+  }
+
+  if (minSelected != null && ordered.length < minSelected) {
+    for (const option of options) {
+      if (ordered.length >= minSelected) break;
+      if (!ordered.includes(option.optionId)) ordered.push(option.optionId);
+    }
+  }
+
+  return new Set(ordered);
+};
+
+const toggleSelectedIds = (
+  selected: Set<string>,
+  optionId: string,
+  options: CheckboxOption[],
+  schema: CheckboxGroupSchema,
+) => {
+  const current = clampSelectedIds(selected, options, schema);
+  const next = new Set(current);
+  const { minSelected, maxSelected } = resolveSelectionLimits(schema);
+
+  if (next.has(optionId)) {
+    if (minSelected != null && next.size <= minSelected) return next;
+    next.delete(optionId);
+    return clampSelectedIds(next, options, schema);
+  }
+
+  if (maxSelected != null && next.size >= maxSelected) return next;
+  next.add(optionId);
+  return clampSelectedIds(next, options, schema);
 };
 
 const serializeSelectedIds = (ids: Set<string>) => Array.from(ids).join(',');
@@ -109,7 +172,7 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
   const commitOptions = (nextOptions: CheckboxOption[]) => {
     const validIds = new Set(nextOptions.map((o) => o.optionId));
     const selected = resolveSelectedIds(schema);
-    const nextSelected = new Set(Array.from(selected).filter((id) => validIds.has(id)));
+    const nextSelected = clampSelectedIds(new Set(Array.from(selected).filter((id) => validIds.has(id))), nextOptions, schema);
     commit({
       options: nextOptions,
       content: serializeSelectedIds(nextSelected),
@@ -187,9 +250,6 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
   rootElement.appendChild(addRow);
 };
 
-const checkMarkSvg = (color: string) =>
-  `<svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>`;
-
 const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSchema>(
   {
     ui: (arg) => {
@@ -203,103 +263,52 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
         !isDesigner && typeof value === 'string' && value.trim()
           ? new Set(value.split(',').map((s) => s.trim()).filter(Boolean))
           : null;
-      const selected = externalIds ?? resolveSelectedIds(cbSchema);
+      const selected = clampSelectedIds(externalIds ?? resolveSelectedIds(cbSchema), options, cbSchema);
       const editable = isEditable(mode, cbSchema);
       const color = cbSchema.color || '#1677ff';
       const gap = Number.isFinite(Number(cbSchema.spacing)) ? Number(cbSchema.spacing) : 3;
       const isHorizontal = cbSchema.orientation === 'horizontal';
 
-      const wrapper = document.createElement('div');
-      Object.assign(wrapper.style, { position: 'relative', width: '100%', height: '100%' });
+      const wrapper = buildGroupWrapper();
       wrapper.setAttribute('data-checkbox-group-root', 'true');
 
-      const container = document.createElement('div');
-      Object.assign(container.style, {
-        width: '100%', height: '100%', boxSizing: 'border-box',
-        border: `1.5px dashed ${color}`, borderRadius: '5px', padding: '4px 5px',
-        display: 'flex', flexDirection: isHorizontal ? 'row' : 'column',
-        flexWrap: isHorizontal ? 'wrap' : 'nowrap', gap: `${gap}px`,
-        background: `${color}0a`, overflow: 'hidden',
-      });
+      const container = buildGroupContainer({ color, gap, isHorizontal });
 
       if (cbSchema.groupName) {
-        const label = document.createElement('div');
-        label.textContent = cbSchema.groupName;
-        Object.assign(label.style, { width: '100%', fontSize: '10px', fontWeight: '600', color, letterSpacing: '0.03em', lineHeight: '1.2', marginBottom: '2px', overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' });
-        container.appendChild(label);
+        container.appendChild(buildGroupLabel(cbSchema.groupName, color));
       }
 
       options.forEach((option) => {
         const isChecked = selected.has(option.optionId);
-        const row = document.createElement('button');
-        row.type = 'button';
-        row.setAttribute('role', 'checkbox');
+        const row = buildOptionRow({
+          color, isHorizontal, editable,
+          role: 'checkbox',
+          optionId: option.optionId,
+          dataAttr: 'data-checkbox-group-option',
+        });
         row.setAttribute('aria-checked', isChecked ? 'true' : 'false');
-        row.setAttribute('data-checkbox-group-option', option.optionId);
-        Object.assign(row.style, {
-          display: 'inline-flex', alignItems: 'center', gap: '6px',
-          padding: '2px 6px 2px 4px', border: `1.5px solid ${color}`, borderRadius: '3px',
-          background: `${color}${isChecked ? '1a' : '0d'}`, color,
-          cursor: editable ? 'pointer' : 'default', fontSize: '11px', textAlign: 'left',
-          width: isHorizontal ? 'auto' : '100%', minHeight: '20px', flexShrink: '0', userSelect: 'none',
-        });
-
-        const box = document.createElement('span');
-        Object.assign(box.style, {
-          width: '12px', height: '12px', borderRadius: '2px',
-          border: `1.5px solid ${color}`, background: isChecked ? color : '#fff',
-          display: 'inline-flex', alignItems: 'center', justifyContent: 'center', flexShrink: '0',
-        });
-        if (isChecked) {
-          const mark = document.createElement('span');
-          Object.assign(mark.style, { width: '9px', height: '9px', display: 'block' });
-          mark.innerHTML = checkMarkSvg('#fff');
-          box.appendChild(mark);
-        }
-
-        const labelSpan = document.createElement('span');
-        labelSpan.textContent = option.label;
-        Object.assign(labelSpan.style, { overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: '1' });
-
-        row.appendChild(box);
-        row.appendChild(labelSpan);
+        row.appendChild(buildCheckboxIndicator(color, isChecked));
+        row.appendChild(buildOptionLabel(option.label, color));
 
         if (editable && onChange) {
           row.addEventListener('click', (e) => {
             e.preventDefault(); e.stopPropagation();
-            const next = new Set(selected);
-            if (next.has(option.optionId)) next.delete(option.optionId);
-            else next.add(option.optionId);
+            const next = toggleSelectedIds(selected, option.optionId, options, cbSchema);
             onChange([
               { key: 'content', value: serializeSelectedIds(next) },
               { key: 'selectedOptionIds', value: Array.from(next) },
             ]);
           });
         }
-
         container.appendChild(row);
       });
 
       wrapper.appendChild(container);
 
       if (isDesigner) {
-        const addBtn = document.createElement('button');
-        addBtn.type = 'button';
-        addBtn.textContent = '+';
-        // Positioned with its center on the schema's bottom edge so it stays
-        // within the hit-testable bounds (anything poking fully outside is
-        // covered by the paper page in the canvas stacking order).
-        Object.assign(addBtn.style, {
-          position: 'absolute', bottom: '1px', left: '50%', transform: 'translateX(-50%)',
-          width: '20px', height: '20px', borderRadius: '50%', border: `2px solid ${color}`,
-          background: '#fff', color, fontSize: '15px', lineHeight: '1',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          cursor: 'pointer', zIndex: '30', padding: '0', boxShadow: '0 1px 5px rgba(0,0,0,0.18)', fontWeight: '700',
-        });
-        addBtn.title = 'Agregar casilla al grupo';
+        const addBtn = buildAddOptionButton(color, 'Agregar casilla al grupo', 'data-checkbox-group-add-option');
         addBtn.setAttribute('aria-label', 'Agregar casilla al grupo');
         addBtn.setAttribute('data-schema-interactive-control', 'checkbox-add-option');
-        addBtn.setAttribute('data-checkbox-group-add-option', 'true');
         addBtn.addEventListener('pointerdown', (e) => e.stopPropagation());
         addBtn.addEventListener('click', (e) => {
           e.preventDefault(); e.stopPropagation();
@@ -442,6 +451,9 @@ export const __test__ = {
   normalizeOptions,
   resolveSelectedIds,
   serializeSelectedIds,
+  resolveSelectionLimits,
+  clampSelectedIds,
+  toggleSelectedIds,
   /** Drops selected ids that no longer exist in the option set. */
   normalizeSelectedOptionIds: (selected: string[], options: CheckboxOption[]) => {
     const valid = new Set(options.map((o) => o.optionId));

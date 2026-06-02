@@ -4,15 +4,15 @@
 
 | Área | Propiedad/Funcionalidad | Unit | Playwright | Estado |
 |---|---|---|---|---|
-| checkboxGroup | options | requerido | requerido | missing-test si no existe test real |
-| checkboxGroup | selectedOptionIds | requerido | requerido | missing-test si no existe test real |
-| checkboxGroup | minSelected/maxSelected | requerido | Form recomendado | missing-test si no existe test real |
-| checkboxGroup | botón + agregar opción | recomendado | requerido | missing-test si no existe test real |
-| checkboxGroup | convertir desde checkbox | requerido | requerido | missing-test si no existe test real |
-| checkboxGroup | groupId/optionId | requerido | opcional | missing-test si no existe test real |
-| radioGroup | selectedOptionId exclusivo | requerido | requerido | missing-test si no existe test real |
-| radioGroup | botón + agregar opción | recomendado | requerido | missing-test si no existe test real |
-| select/dropdown | options/default/placeholder | requerido | requerido | missing-test si no existe test real |
-| ListView | grupo vs campo plano | recomendado | requerido | missing-test si no existe test real |
-| Snapshot | roundtrip grupos | requerido | recomendado | missing-test si no existe test real |
-| Form/Viewer/PDF | parity standard fields | requerido | recomendado | missing-test si no existe test real |
+| checkboxGroup | options | requerido | requerido | partial |
+| checkboxGroup | selectedOptionIds | requerido | requerido | partial |
+| checkboxGroup | minSelected/maxSelected | requerido | Form recomendado | partial |
+| checkboxGroup | botón + agregar opción | recomendado | requerido | partial |
+| checkboxGroup | convertir desde checkbox | requerido | requerido | partial |
+| checkboxGroup | groupId/optionId | requerido | opcional | partial |
+| radioGroup | selectedOptionId exclusivo | requerido | requerido | partial |
+| radioGroup | botón + agregar opción | recomendado | requerido | partial |
+| select/dropdown | options/default/placeholder | requerido | requerido | partial |
+| ListView | grupo vs campo plano | recomendado | requerido | partial |
+| Snapshot | roundtrip grupos | requerido | recomendado | partial |
+| Form/Viewer/PDF | parity standard fields | requerido | recomendado | partial |

@@ -544,100 +544,112 @@ const multiDocumentRoutingDocuments = [
   }),
 ]
 
-const multiuserCollaborationTemplate = createTemplate([
-  [
-    createTextSchema({
-      schemaUid: 'multiuser-owner-name',
-      fileTemplateId: 'multiuser-contract',
-      fileId: 'multiuser-contract',
-      name: 'owner_name',
-      content: 'Sales owner',
-      ownerMode: 'single',
-      ownerRecipientId: 'sales-user-1',
-      createdBy: 'sales-user-1',
-      lastModifiedBy: 'sales-user-1',
-      createdAt: BASE_COLLABORATION_TIMESTAMP,
-      updatedAt: BASE_COLLABORATION_TIMESTAMP + 60000,
-    }),
-    createTextSchema({
-      schemaUid: 'multiuser-team-note',
-      fileTemplateId: 'multiuser-contract',
-      fileId: 'multiuser-contract',
-      name: 'team_note',
-      content: 'Legal review in progress',
-      ownerRecipientId: 'legal-user-1',
-      ownerMode: 'multi',
-      ownerRecipientIds: ['sales-user-1', 'legal-user-1'],
-      ...createAuditMetadata('sales-user-1', 'legal-user-1', 30000),
-      commentAnchors: [
-        createCommentAnchor({ schemaUid: 'multiuser-team-note', fileId: 'multiuser-contract', pageNumber: 1, x: 12, y: 40 }),
+const multiuserShowcasePages = createSchemaShowcasePages({
+  scope: 'multiuser-showcase',
+  ownerRecipientId: 'sales-user-1',
+  fileId: 'multiuser-contract',
+  fileTemplateId: 'multiuser-contract',
+  startingPageNumber: 1,
+  auditOffset: 120000,
+})
+
+const multiuserCollaborationTemplate = appendTemplatePages(
+  createTemplate(
+    [
+      [
+        createTextSchema({
+          schemaUid: 'multiuser-owner-name',
+          fileTemplateId: 'multiuser-contract',
+          fileId: 'multiuser-contract',
+          name: 'owner_name',
+          content: 'Sales owner',
+          ownerMode: 'single',
+          ownerRecipientId: 'sales-user-1',
+          ...createAuditMetadata('sales-user-1', 'sales-user-1', 0),
+        }),
+        createTextSchema({
+          schemaUid: 'multiuser-team-note',
+          fileTemplateId: 'multiuser-contract',
+          fileId: 'multiuser-contract',
+          name: 'team_note',
+          content: 'Legal review in progress',
+          ownerRecipientId: 'legal-user-1',
+          ownerMode: 'multi',
+          ownerRecipientIds: ['sales-user-1', 'legal-user-1'],
+          ...createAuditMetadata('sales-user-1', 'legal-user-1', 30000),
+          commentAnchors: [
+            createCommentAnchor({ schemaUid: 'multiuser-team-note', fileId: 'multiuser-contract', pageNumber: 1, x: 12, y: 40 }),
+          ],
+          commentsAnchors: [
+            createCommentAnchor({ schemaUid: 'multiuser-team-note', fileId: 'multiuser-contract', pageNumber: 1, x: 12, y: 40 }),
+          ],
+          commentsCount: 1,
+          comments: [
+            {
+              id: 'comment-multiuser-1',
+              authorName: 'Legal',
+              timestamp: 1713571600000,
+              text: 'Alinear cláusula de confidencialidad con el borrador final.',
+            },
+          ],
+          y: 40,
+        }),
       ],
-      commentsAnchors: [
-        createCommentAnchor({ schemaUid: 'multiuser-team-note', fileId: 'multiuser-contract', pageNumber: 1, x: 12, y: 40 }),
+      [
+        createTextSchema({
+          schemaUid: 'multiuser-shared-summary',
+          fileTemplateId: 'multiuser-contract',
+          fileId: 'multiuser-contract',
+          name: 'shared_summary',
+          content: 'Visible to all collaborators',
+          ownerMode: 'shared',
+          ownerRecipientIds: ['sales-user-1', 'legal-user-1', 'ops-user-1'],
+          ...createAuditMetadata('sales-user-1', 'ops-user-1', 60000),
+          commentAnchors: [
+            createCommentAnchor({ schemaUid: 'multiuser-shared-summary', fileId: 'multiuser-contract', pageNumber: 2, x: 12, y: 0 }),
+          ],
+          commentsAnchors: [
+            createCommentAnchor({ schemaUid: 'multiuser-shared-summary', fileId: 'multiuser-contract', pageNumber: 2, x: 12, y: 0 }),
+          ],
+          commentsCount: 2,
+          comments: [
+            {
+              id: 'comment-multiuser-2',
+              authorName: 'Ops',
+              timestamp: 1713571660000,
+              text: 'Confirmar que el texto quede bloqueado tras aprobación.',
+            },
+            {
+              id: 'comment-multiuser-3',
+              authorName: 'Sales',
+              timestamp: 1713571720000,
+              text: 'Compartido con todos los usuarios activos del editor.',
+            },
+          ],
+        }),
+        createTextSchema({
+          schemaUid: 'multiuser-locked-approval',
+          fileTemplateId: 'multiuser-contract',
+          fileId: 'multiuser-contract',
+          name: 'approval_status',
+          content: 'Locked for final approval',
+          ownerMode: 'multi',
+          ownerRecipientIds: ['legal-user-1', 'ops-user-1'],
+          ...createAuditMetadata('legal-user-1', 'ops-user-1', 90000),
+          state: 'locked',
+          lock: {
+            lockedBy: 'ops-user-1',
+            lockedAt: BASE_COLLABORATION_TIMESTAMP + 135000,
+            reason: 'Aprobacion final',
+          },
+          y: 40,
+        }),
       ],
-      commentsCount: 1,
-      comments: [
-        {
-          id: 'comment-multiuser-1',
-          authorName: 'Legal',
-          timestamp: 1713571600000,
-          text: 'Alinear cláusula de confidencialidad con el borrador final.',
-        },
-      ],
-      y: 40,
-    }),
-  ],
-  [
-    createTextSchema({
-      schemaUid: 'multiuser-shared-summary',
-      fileTemplateId: 'multiuser-contract',
-      fileId: 'multiuser-contract',
-      name: 'shared_summary',
-      content: 'Visible to all collaborators',
-      ownerMode: 'shared',
-      ownerRecipientIds: ['sales-user-1', 'legal-user-1', 'ops-user-1'],
-      ...createAuditMetadata('sales-user-1', 'ops-user-1', 60000),
-      commentAnchors: [
-        createCommentAnchor({ schemaUid: 'multiuser-shared-summary', fileId: 'multiuser-contract', pageNumber: 2, x: 12, y: 0 }),
-      ],
-      commentsAnchors: [
-        createCommentAnchor({ schemaUid: 'multiuser-shared-summary', fileId: 'multiuser-contract', pageNumber: 2, x: 12, y: 0 }),
-      ],
-      commentsCount: 2,
-      comments: [
-        {
-          id: 'comment-multiuser-2',
-          authorName: 'Ops',
-          timestamp: 1713571660000,
-          text: 'Confirmar que el texto quede bloqueado tras aprobación.',
-        },
-        {
-          id: 'comment-multiuser-3',
-          authorName: 'Sales',
-          timestamp: 1713571720000,
-          text: 'Compartido con todos los usuarios activos del editor.',
-        },
-      ],
-    }),
-    createTextSchema({
-      schemaUid: 'multiuser-locked-approval',
-      fileTemplateId: 'multiuser-contract',
-      fileId: 'multiuser-contract',
-      name: 'approval_status',
-      content: 'Locked for final approval',
-      ownerMode: 'multi',
-      ownerRecipientIds: ['legal-user-1', 'ops-user-1'],
-      ...createAuditMetadata('legal-user-1', 'ops-user-1', 90000),
-      state: 'locked',
-      lock: {
-        lockedBy: 'ops-user-1',
-        lockedAt: 1713571800000,
-        reason: 'Approval handoff',
-      },
-      y: 40,
-    }),
-  ],
-], { basePdf: LAB_PDFS.multiuser, pageCount: 2 })
+    ],
+    { basePdf: LAB_PDFS.multiuser, pageCount: 2 },
+  ),
+  multiuserShowcasePages,
+)
 
 const generatorRuntimeTemplate = createTemplate([
   [
