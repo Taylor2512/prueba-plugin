@@ -29,7 +29,7 @@ type FamilyPreset = PluginFamilyDefinition & {
   supportsValidation: boolean;
 };
 
-const TEXT_TYPES = new Set(['text', 'number', 'multivariabletext', 'select', 'date', 'time', 'datetime', 'signature']);
+const TEXT_TYPES = new Set(['text', 'number', 'multivariabletext', 'select', 'dropdown', 'date', 'time', 'datetime', 'signature']);
 const BOOLEAN_TYPES = new Set(['checkbox', 'radiogroup', 'checkboxgroup']);
 const MEDIA_TYPES = new Set(['image', 'svg']);
 
@@ -257,7 +257,7 @@ export const resolveSchemaSemanticFamily = (schemaType: string): SchemaSemanticF
   if (normalizedType === 'multivariabletext') return 'multiVariableText';
   if (normalizedType === 'signature') return 'signature';
   if (normalizedType === 'table') return 'table';
-  if (normalizedType === 'select') return 'choice';
+  if (normalizedType === 'select' || normalizedType === 'dropdown') return 'choice';
   if (normalizedType === 'date' || normalizedType === 'time' || normalizedType === 'datetime') return 'dateTime';
   if (normalizedType === 'checkbox') return 'boolean';
   if (normalizedType === 'radiogroup') return 'choice';

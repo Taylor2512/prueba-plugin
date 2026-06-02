@@ -11,6 +11,7 @@ const TYPE_LABELS: Record<string, string> = {
   checkboxgroup: 'Grupo de casillas',
   radiogroup: 'Opción',
   select: 'Lista desplegable',
+  dropdown: 'Lista desplegable',
   date: 'Fecha',
   datetime: 'Fecha y hora',
   time: 'Hora',

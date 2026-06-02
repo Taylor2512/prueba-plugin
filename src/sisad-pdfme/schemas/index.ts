@@ -56,12 +56,17 @@ const schemaPlugins: SchemaPluginMap = {
 const flatSchemaPlugins = flattenSchemaPlugins(schemaPlugins);
 const builtInPlugins = flatSchemaPlugins;
 const builtInSchemaDefinitions = listSchemaDefinitions(schemaPlugins);
+const builtInTypeAliases: Record<string, string[]> = {
+  select: ['dropdown'],
+};
 const builtInSchemaDefinitionsByType = Object.fromEntries(
   builtInSchemaDefinitions.flatMap((definition) => {
     const normalizedType = String(definition.type || '').trim().toLowerCase();
+    const aliases = builtInTypeAliases[normalizedType] || [];
     return [
       [definition.type, definition],
       [normalizedType, definition],
+      ...aliases.map((alias) => [alias, definition] as const),
     ];
   }),
 );
@@ -75,6 +80,14 @@ const getAllRegisteredSchemaPlugins = () => ({
   ...Object.entries(flatSchemaPlugins).reduce<Record<string, Plugin<Schema>>>((acc, [key, plugin]) => {
     acc[key] = plugin;
     acc[normalizeSchemaType(key)] = plugin;
+    return acc;
+  }, {}),
+  ...Object.entries(builtInTypeAliases).reduce<Record<string, Plugin<Schema>>>((acc, [canonicalType, aliases]) => {
+    const plugin = flatSchemaPlugins[canonicalType] || flatSchemaPlugins[normalizeSchemaType(canonicalType)];
+    if (!plugin) return acc;
+    aliases.forEach((alias) => {
+      acc[alias] = plugin;
+    });
     return acc;
   }, {}),
   ...Object.fromEntries(registeredSchemaPlugins.entries()),

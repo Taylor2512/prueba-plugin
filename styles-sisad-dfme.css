@@ -2,7 +2,7 @@
    ARCHIVO UNIFICADO DE ESTILOS CSS
    =====================================================================
    Carpeta origen: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
-   Fecha de generación: 2026-06-01T22:58:25.902Z
+   Fecha de generación: 2026-06-02T04:47:31.645Z
    Total de archivos incluidos: 6
    Extensiones incluidas: .css
    Objetivo: consolidar estilos CSS respetando un orden estable de cascada
@@ -25,7 +25,7 @@
    ARCHIVO #1
    Ruta relativa: src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
    Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
-   Líneas aproximadas: 5782
+   Líneas aproximadas: 5773
    ==================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
@@ -1683,15 +1683,11 @@
 }
 
 .sisad-pdfme-designer-canvas [data-canvas-page="true"] {
-  position: relative;
-  display: block;
-  flex: none;
-  width: auto;
-  min-width: 1px;
-  min-height: 1px;
-  max-width: none;
-  max-height: none;
-  margin: 0 auto;
+  /* position:absolute and top/left/width/height come from .sisad-pdfme-paper-page.
+     Do NOT override position here — paper-page uses absolute positioning so pages
+     stack at their computed pageTop within the CSS-transformed scale layer.
+     Overriding to position:relative caused cumulative top-offset drift on
+     multi-page documents, producing a massive phantom gap below page 1. */
   overflow: hidden;
   isolation: isolate;
   background: var(--color-white);
@@ -1701,11 +1697,6 @@
     0 0 0 1px var(--border-subtle),
     0 0.5rem 1.5rem var(--color-gray-900-08),
     0 1.25rem 3rem var(--color-gray-900-06);
-}
-
-.sisad-pdfme-designer-canvas[data-zoom-tier="low"] [data-canvas-page="true"] {
-  min-height: 0;
-  max-height: none;
 }
 
 .sisad-pdfme-designer-canvas [data-canvas-page="true"]>.sisad-pdfme-designer-custom-undefined {
@@ -9275,6 +9266,7 @@ body {
    │   ├── skills
    │   │   ├── active-recipient-color-contract
    │   │   ├── canvas-geometry-scaling
+   │   │   ├── checkbox-radio-dropdown-parity
    │   │   ├── command-bus-transform-actions
    │   │   ├── component-composition
    │   │   ├── context-budget
@@ -9284,10 +9276,12 @@ body {
    │   │   ├── css-transform-handle-safety
    │   │   ├── custom-schema-contracts
    │   │   ├── documentation-traceability
+   │   │   ├── docusign-wix-minimal-ux
    │   │   ├── external-forms-runtime
    │   │   ├── floating-toolbar-transform-position
    │   │   ├── fork-safe-pdfme-evolution
    │   │   ├── form-viewer-generator-parity
+   │   │   ├── group-no-overlap
    │   │   ├── inline-edit-transform-guard
    │   │   ├── keyboard-shortcut-transform-safety
    │   │   ├── legacy-runtime-reduction
@@ -9303,6 +9297,8 @@ body {
    │   │   ├── schema-registry-extension
    │   │   ├── schema-tone-resolution
    │   │   ├── snapshot-transform-roundtrip
+   │   │   ├── standard-field-groups-contract
+   │   │   ├── standard-fields-regression-testing
    │   │   ├── test-results-forensics
    │   │   ├── transform-interaction-state-machine
    │   │   ├── unique-recipient-palette
@@ -9333,6 +9329,7 @@ body {
    │   ├── 08-ia-agentes
    │   ├── 09-operacion-debug
    │   ├── 10-handoff
+   │   ├── 11-standard-schemas
    │   └── 99-archivo
    ├── handoff
    ├── metadata
@@ -9424,6 +9421,7 @@ body {
    │   └── types
    ├── styles-sisad-dfme.css
    ├── test-results
+   │   └── schema-transform-schema-tr-64966-cted-schema-to-page-anchors-chromium
    └── tests
        ├── playwright
        └── unit

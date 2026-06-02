@@ -147,7 +147,28 @@ const normalizeTypeKey = (value: unknown) => (typeof value === 'string' ? value.
 
 const IMAGE_TYPES = new Set(['image', 'svg']);
 const SIGNATURE_TYPES = new Set(['signature']);
-const CHOICE_TYPES = new Set(['checkbox', 'radiogroup', 'select']);
+const CHOICE_TYPES = new Set(['checkbox', 'radiogroup', 'checkboxgroup', 'select', 'dropdown']);
+
+// Builds the DocuSign-style group affordance shown in the toolbar for single
+// selections: "+ Agregar opción" for groups, "Convertir a grupo" for a lone checkbox.
+const getGroupAffordanceAction = (
+  commands: SelectionCommandSet | undefined,
+  activeSchema: SchemaForUI | undefined,
+  canEditStructure: boolean,
+): CanvasSelectionQuickAction | null => {
+  const type = String((activeSchema as SchemaForUI & { type?: string })?.type || '').toLowerCase();
+  if (type === 'radiogroup' || type === 'checkboxgroup') {
+    return toolbarAction('add-group-option', 'Agregar opción', <Plus size={14} />, commands?.addGroupOption, {
+      disabled: !canEditStructure || !hasAction(commands?.addGroupOption),
+    });
+  }
+  if (type === 'checkbox') {
+    return toolbarAction('convert-checkbox-group', 'Convertir a grupo', <Plus size={14} />, commands?.convertCheckboxToGroup, {
+      disabled: !canEditStructure || !hasAction(commands?.convertCheckboxToGroup),
+    });
+  }
+  return null;
+};
 const NUMBER_TYPES = new Set(['number']);
 const TABLE_TYPES = new Set(['table']);
 
@@ -439,8 +460,9 @@ export const buildSelectionToolbarModel = (args: {
       );
     }
   } else {
+    const groupAffordance = getGroupAffordanceAction(commands, activeSchema, canEditStructure);
     const microPrimary = compactItems([
-      getSelectionInlineAction(commands, kind, canEditStructure),
+      groupAffordance ?? getSelectionInlineAction(commands, kind, canEditStructure),
       toolbarAction('duplicate', 'Duplicar', <Copy size={14} />, commands?.duplicateSelection, {
         disabled: !canEditStructure || !hasAction(commands?.duplicateSelection),
       }),
@@ -449,6 +471,7 @@ export const buildSelectionToolbarModel = (args: {
       }),
     ]);
     const compactPrimary = compactItems([
+      groupAffordance,
       getSelectionInlineAction(commands, kind, canEditStructure),
       hasFieldSelection
         ? toolbarAction('required', activeSchema?.required ? 'Quitar obligatorio' : 'Marcar obligatorio', <SquareCheckBig size={14} />, commands?.toggleRequired, {

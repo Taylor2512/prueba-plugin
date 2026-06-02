@@ -13,6 +13,7 @@ const SCHEMA_TYPE_TONES: Record<string, string> = {
   checkbox: '#06D6A0',
   radiogroup: '#06D6A0',
   select: '#118AB2',
+  dropdown: '#118AB2',
   date: '#9B5DE5',
   datetime: '#9B5DE5',
   time: '#9B5DE5',

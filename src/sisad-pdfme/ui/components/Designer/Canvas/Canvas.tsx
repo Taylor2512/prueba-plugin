@@ -1322,10 +1322,16 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
               isActive={isActive}
               isHovering={isHovering}
               isEditing={editing && isActive}
-              outline={`1px ${hoveringSchemaId === schema.id ? 'solid' : 'dashed'} ${schema.readOnly && hoveringSchemaId !== schema.id
-                ? 'transparent'
-                : resolveSchemaTone(schema, token.colorPrimary)
-                }`}
+              outline={
+                // When selected, let CSS outline (canvas-interactions.css) handle
+                // the visual frame — avoid double-border from both inline border + CSS outline.
+                isActive
+                  ? '1px solid transparent'
+                  : `1px ${hoveringSchemaId === schema.id ? 'solid' : 'dashed'} ${schema.readOnly && hoveringSchemaId !== schema.id
+                      ? 'transparent'
+                      : resolveSchemaTone(schema, token.colorPrimary)
+                    }`
+              }
               scale={scale}
             />
           );

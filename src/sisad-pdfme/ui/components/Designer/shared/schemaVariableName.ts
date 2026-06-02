@@ -6,6 +6,7 @@ const KNOWN_PREFIXES: Record<string, string> = {
   radioGroup: 'radio',
   checkbox: 'casilla',
   select: 'lista',
+  dropdown: 'lista',
   date: 'fecha',
   time: 'hora',
   rectangle: 'rectangulo',

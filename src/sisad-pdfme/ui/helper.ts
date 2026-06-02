@@ -13,7 +13,7 @@ import {
   PluginRegistry,
 } from '@sisad-pdfme/common';
 import { pdf2size } from '@sisad-pdfme/converter';
-import { DEFAULT_MAX_ZOOM, RULER_HEIGHT } from './constants.js';
+import { DEFAULT_MAX_ZOOM, RULER_HEIGHT, PAGE_GAP } from './constants.js';
 import { OptionsContext } from './contexts.js';
 
 // Define a type for the hotkeys function with additional properties
@@ -427,9 +427,14 @@ export const moveCommandToChangeSchemasArg = (props: {
 };
 
 export const getPagesScrollTopByIndex = (pageSizes: Size[], index: number, scale: number) => {
-  return pageSizes
+  // Page layout (unscaled px): initialTop=RULER_HEIGHT, then each page height*ZOOM + PAGE_GAP.
+  // PAGE_GAP is imported from constants and is 10px.
+  const initialTop = RULER_HEIGHT;
+  const interPageGap = PAGE_GAP;
+  const pageStackOffset = pageSizes
     .slice(0, index)
-    .reduce((acc, cur) => acc + (cur.height * ZOOM + RULER_HEIGHT * scale) * scale, 0);
+    .reduce((acc, cur) => acc + cur.height * ZOOM + interPageGap, 0);
+  return (initialTop + pageStackOffset) * scale;
 };
 
 const handlePositionSizeChange = (

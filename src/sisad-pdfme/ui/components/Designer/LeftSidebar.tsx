@@ -45,6 +45,7 @@ const schemaTypeCategoryMap: Record<string, string> = {
   checkboxgroup: 'Selecciones',
   radiogroup: 'Selecciones',
   select: 'Selecciones',
+  dropdown: 'Selecciones',
   date: 'Fecha y Hora',
   datetime: 'Fecha y Hora',
   time: 'Fecha y Hora',
@@ -125,6 +126,7 @@ const PREFILL_SCHEMA_TYPES = new Set([
   'time',
   'number',
   'select',
+  'dropdown',
 ]);
 
 const PREFILL_LABEL_TOKENS = [

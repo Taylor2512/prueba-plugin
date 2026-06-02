@@ -1,5 +1,10 @@
 import { describe, expect, test } from 'vitest';
-import { builtInSchemaDefinitions, createDefaultSchema } from '../../src/sisad-pdfme/schemas/index.js';
+import {
+  builtInSchemaDefinitions,
+  createDefaultSchema,
+  getSchemaDefinition,
+  getSchemaPluginByType,
+} from '../../src/sisad-pdfme/schemas/index.js';
 
 describe('standard schema support', () => {
   test('registers number, radioGroup and checkboxGroup as built-in schemas', () => {
@@ -42,5 +47,17 @@ describe('standard schema support', () => {
     expect(Array.isArray((schema as { selectedOptionIds?: string[] }).selectedOptionIds)).toBe(true);
     expect((schema as { __designer?: { group?: { groupType?: string; lockedAsGroup?: boolean } } }).__designer?.group?.groupType).toBe('checkbox');
     expect((schema as { __designer?: { group?: { groupType?: string; lockedAsGroup?: boolean } } }).__designer?.group?.lockedAsGroup).toBe(true);
+  });
+
+  test('resolves dropdown as an alias for select without changing the canonical contract', () => {
+    expect(getSchemaPluginByType('dropdown')).toBeDefined();
+
+    const definition = getSchemaDefinition('dropdown');
+    expect(definition?.type).toBe('select');
+
+    const schema = createDefaultSchema('dropdown');
+    expect(schema.type).toBe('select');
+    expect(Array.isArray(schema.options)).toBe(true);
+    expect(schema.options).toHaveLength(2);
   });
 });

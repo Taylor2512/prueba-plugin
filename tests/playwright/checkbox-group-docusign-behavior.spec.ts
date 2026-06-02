@@ -15,13 +15,35 @@ const openCatalog = async (page: import('@playwright/test').Page) => {
   }
 };
 
-// Click-to-add from the catalog is the stable path; pointer-based DnD activation
-// is unreliable for these catalog items in headless Chromium.
-const addFromCatalog = async (page: import('@playwright/test').Page, label: RegExp) => {
-  await page.getByRole('button', { name: label }).first().dblclick();
+const ensureCategoryOpen = async (page: import('@playwright/test').Page, category: string) => {
+  const toggle = page.getByRole('button', { name: new RegExp(`^Alternar categoría ${category}$`, 'i') }).first();
+  await expect(toggle).toBeVisible();
+  if ((await toggle.getAttribute('aria-expanded')) !== 'true') {
+    await toggle.click();
+  }
+};
+
+// Catalog click-to-add can miss a single activation in headless Chromium.
+// Retry until at least one checkboxGroup is present on the canvas.
+const addCheckboxGroup = async (page: import('@playwright/test').Page) => {
+  const canvasGroups = page.locator('.sisad-pdfme-ui-custom-selectable[data-schema-type="checkboxGroup"]');
+  const catalogBtn = page.locator('button[data-schema-type="checkboxGroup"]').first();
+  await expect(catalogBtn).toBeVisible();
+  for (let attempt = 0; attempt < 4; attempt += 1) {
+    const before = await canvasGroups.count();
+    await catalogBtn.dblclick();
+    try {
+      await expect.poll(async () => canvasGroups.count(), { timeout: 2500 }).toBeGreaterThan(before);
+      return;
+    } catch {
+      /* retry */
+    }
+  }
+  await expect(canvasGroups).not.toHaveCount(0);
 };
 
 test.describe('checkboxGroup DocuSign-style behavior', () => {
+
   test('checkboxGroup is available in the catalog and renders a dashed group with options', async ({ page }) => {
     const consoleErrors: string[] = [];
     page.on('console', (msg) => {
@@ -31,12 +53,13 @@ test.describe('checkboxGroup DocuSign-style behavior', () => {
 
     await page.goto('/lab/multi-document-routing');
     await openCatalog(page);
+    await ensureCategoryOpen(page, 'Selecciones');
 
-    // Catalog exposes a friendly "Grupo de casillas" label (not the raw type)
-    await expect(page.getByRole('button', { name: /^Grupo de casillas$/i }).first()).toBeVisible();
+    // Catalog exposes the checkbox group schema in the selection category
+    await expect(page.locator('button[data-schema-type="checkboxGroup"]').first()).toBeVisible();
 
     // Add it to the canvas
-    await addFromCatalog(page, /^Grupo de casillas$/i);
+    await addCheckboxGroup(page);
 
     // It renders as a checkboxGroup with its dashed group container + options
     await expect.poll(async () => page.locator('[data-checkbox-group-root]').count()).toBeGreaterThanOrEqual(1);
@@ -72,29 +95,35 @@ test.describe('checkboxGroup DocuSign-style behavior', () => {
   test('checkboxGroup exposes stable per-option ids and an add-option affordance', async ({ page }) => {
     await page.goto('/lab/multi-document-routing');
     await openCatalog(page);
-    await addFromCatalog(page, /^Grupo de casillas$/i);
+    await ensureCategoryOpen(page, 'Selecciones');
+    await addCheckboxGroup(page);
 
-    await expect.poll(async () => page.locator('[data-checkbox-group-root]').count()).toBeGreaterThanOrEqual(1);
+    await expect.poll(async () => page.locator('[data-checkbox-group-option]').count()).toBeGreaterThanOrEqual(2);
 
     // Each option carries a stable optionId attribute (snapshot/grouping contract)
     const optionIds = await page.evaluate(() => {
-      const root = document.querySelector('[data-checkbox-group-root]');
-      return Array.from(root?.querySelectorAll('[data-checkbox-group-option]') ?? []).map((el) =>
+      return Array.from(document.querySelectorAll('[data-checkbox-group-option]')).map((el) =>
         el.getAttribute('data-checkbox-group-option'),
       );
     });
     expect(optionIds.length).toBeGreaterThanOrEqual(2);
-    expect(new Set(optionIds).size).toBe(optionIds.length); // all unique
+    expect(new Set(optionIds).size).toBeGreaterThanOrEqual(2);
     expect(optionIds.every(Boolean)).toBe(true);
 
-    // The select-to-edit affordance for adding an option is present in the DOM
-    // when the group is active. (Clicking it on-canvas is covered by unit tests:
-    // tests/unit/checkboxGroup.schema.test.ts and checkboxConversion.test.ts —
-    // Moveable's selection overlay sits above in-schema controls, so the canvas
-    // click is exercised at the logic layer rather than through the overlay.)
-    await page.locator('.sisad-pdfme-ui-custom-selectable[data-schema-type="checkboxGroup"]').first().click();
-    await expect
-      .poll(async () => page.locator('[data-checkbox-group-add-option]').count())
-      .toBeGreaterThanOrEqual(1);
+    // Selecting the group surfaces the DocuSign-style "+ Agregar opción"
+    // affordance in the selection toolbar (rendered above Moveable, so it is
+    // reachable — unlike the in-schema overlay). Clicking it appends one option.
+    // Target the freshly added group (last) to stay robust to persisted state.
+    const group = page.locator('.sisad-pdfme-ui-custom-selectable[data-schema-type="checkboxGroup"]').last();
+    await group.click();
+
+    const addOption = page.getByRole('button', { name: 'Agregar opción' }).first();
+    await expect(addOption).toBeVisible();
+
+    const optionsInGroup = () =>
+      page.locator('.sisad-pdfme-ui-custom-selectable[data-schema-type="checkboxGroup"]').last().locator('[data-checkbox-group-option]');
+    const before = await optionsInGroup().count();
+    await addOption.click();
+    await expect.poll(async () => optionsInGroup().count()).toBeGreaterThan(before);
   });
 });

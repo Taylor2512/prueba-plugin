@@ -821,6 +821,11 @@
 }
 
 /* ── Schema Interaction Affordances ─────────────────────────── */
+/* Design intent: document stays primary, schemas are lightweight overlays.
+   - Idle: only a thin dashed border from the Renderer inline style. No CSS outline.
+   - Hover: subtle outline glow, owner-color tint. No vertical lift.
+   - Active: single clean outline (inline border is transparent, CSS outline takes over).
+   - Groups: same system, handled by schema renderers internally. */
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable {
   --schema-tone: var(--color-schema-tone);
@@ -830,18 +835,21 @@
   isolation: isolate;
   cursor: pointer;
   outline: var(--schema-outline);
-  outline-offset: 2px;
-  border-radius: var(--radius-md);
-  transition: transform var(--transition-fast), box-shadow var(--transition-normal), outline-color var(--transition-fast), outline-offset var(--transition-fast);
-  box-shadow: 0 0 0 0 transparent;
+  outline-offset: 1px;
+  border-radius: var(--radius-sm);
+  /* No transform — schemas must stay anchored to their PDF position */
+  transition:
+    box-shadow var(--transition-fast),
+    outline-color var(--transition-fast),
+    background-color var(--transition-fast);
+  box-shadow: none;
   z-index: 1;
 }
 
+/* Hover: light outline glow only. No translateY. */
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable:hover {
-  transform: translateY(-1px);
-  outline-color: var(--schema-tone);
-  outline-offset: 2px;
-  box-shadow: 0 0.5rem 1.25rem -1rem var(--color-gray-900), 0 0 0 2px var(--color-primary-08);
+  outline: 1px solid color-mix(in srgb, var(--schema-tone) 45%, transparent);
+  outline-offset: 1px;
 }
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-readonly='true'] {
@@ -849,16 +857,16 @@
 }
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-readonly='true']:hover {
-  box-shadow: 0 0.5rem 1.25rem -1rem var(--color-gray-900), inset 0 0 0 1px var(--color-gray-100);
+  box-shadow: none;
 }
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-hidden='true'] {
-  opacity: 0.45;
-  filter: saturate(0.75);
+  opacity: 0.38;
+  filter: saturate(0.6);
 }
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-hidden='true']::before {
-  opacity: 0.5;
+  opacity: 0.35;
   background: var(--color-gray-400);
 }
 
@@ -866,67 +874,73 @@
   cursor: default;
 }
 
+/* Toolbar: only show on active or editing, not on every hover. */
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-active='true'] .sisad-pdfme-ui-schema-toolbar,
-:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-hovering='true'] .sisad-pdfme-ui-schema-toolbar,
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-editing='true'] .sisad-pdfme-ui-schema-toolbar {
   opacity: 1;
   pointer-events: auto;
-  transform: translate(-50%, calc(-100% - 0.375rem));
+  transform: translate(-50%, calc(-100% - 0.25rem));
 }
 
 /* ── Schema Interaction Details ─────────────────────────── */
 
+/* Active/selected: single clean outline — inline border is transparent (Canvas.tsx),
+   so only this outline shows. Thin, no competing glows. */
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-active='true'] {
-  outline: 2px solid var(--schema-tone);
-  outline-offset: 2px;
-  border-radius: var(--radius-md);
+  outline: 1.5px solid var(--schema-tone);
+  outline-offset: 1px;
+  border-radius: var(--radius-sm);
   z-index: 10;
-  box-shadow: 0 0 0 0.15rem rgba(67, 56, 202, 0.08), var(--shadow-sm);
+  box-shadow: none;
 }
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-active='true']::before {
   opacity: 1;
-  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+  background: color-mix(in srgb, var(--schema-tone) 6%, transparent);
 }
 
 .sisad-pdfme-designer-stage[data-interaction-phase='selected-multi']
   :is(.app-shell, .sisad-pdfme-designer-root)
   .sisad-pdfme-ui-custom-selectable[data-schema-active='true']::before {
-  background: color-mix(in srgb, var(--color-primary) 6%, transparent);
+  background: color-mix(in srgb, var(--schema-tone) 5%, transparent);
 }
 
+/* Badge shows on active only — not on every hover. */
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-active='true']::after {
   opacity: 1;
 }
 
-:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-hidden='true'][data-schema-active='true']::after,
-:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-hidden='true'][data-schema-hovering='true']::after {
+:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-hidden='true'][data-schema-active='true']::after {
   opacity: 1;
 }
 
+/* Editing: slightly lighter outline, no heavy glow. */
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-editing='true'] {
-  outline: 2px solid var(--color-primary-light);
-  outline-offset: 2px;
+  outline: 1.5px solid color-mix(in srgb, var(--schema-tone) 70%, var(--color-primary-light));
+  outline-offset: 1px;
   z-index: 12;
 }
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-editing='true']::before {
   opacity: 1;
-  background: var(--color-primary-08);
+  background: color-mix(in srgb, var(--schema-tone) 5%, transparent);
 }
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-editing='true']::after {
   opacity: 1;
 }
 
+/* Hovering (not active): subtle outline only. */
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-hovering='true']:not([data-schema-active='true']) {
-  outline-color: var(--schema-tone);
-  box-shadow: 0 0 0 0.1875rem var(--color-primary-08);
+  outline: 1px solid color-mix(in srgb, var(--schema-tone) 45%, transparent);
+  outline-offset: 1px;
+  box-shadow: none;
 }
 
+/* Readonly + active: dashed subtle gray outline. */
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-readonly='true'][data-schema-active='true'],
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-readonly='true'][data-schema-editing='true'] {
-  outline: 2px dashed var(--color-gray-400);
+  outline: 1.5px dashed var(--color-gray-300);
 }
 
 /* ── Interaction Overlays ─────────────────────────────────────── */
@@ -943,9 +957,10 @@
   z-index: -1;
 }
 
+/* Hover tint: very light, owner color aware via schema-tone. */
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable:hover::before {
   opacity: 1;
-  background: var(--color-primary-08);
+  background: color-mix(in srgb, var(--schema-tone) 5%, transparent);
 }
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-state='editing']:hover::before,
@@ -954,59 +969,68 @@
 }
 
 /* ── Caption Badge ─────────────────────────────────────────── */
+/* Caption (name · type) shows only on active, not on generic hover.
+   It's subtle — positioned below the schema to avoid covering PDF text. */
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-caption]::after {
   content: attr(data-schema-caption);
   position: absolute;
-  top: -1px;
+  bottom: -1px;
   left: 0;
-  transform: translateY(-100%);
-  padding: 2px 0.4375rem;
-  border-radius: var(--radius-sm) var(--radius-sm) 0 0;
-  background: var(--schema-tone);
+  transform: translateY(100%);
+  padding: 1px 0.3125rem;
+  border-radius: 0 0 var(--radius-sm) var(--radius-sm);
+  background: color-mix(in srgb, var(--schema-tone) 88%, #000);
   color: #fff;
-  font-size: var(--font-size-xs);
+  font-size: 0.46875rem;
   font-weight: var(--font-weight-semibold);
   font-family: var(--font-family-ui);
   letter-spacing: var(--letter-spacing-wide);
   white-space: nowrap;
-  line-height: 1.5;
+  line-height: 1.4;
   pointer-events: none;
   opacity: 0;
-  transition: opacity var(--transition-fast), transform var(--transition-fast);
-  max-width: 12rem;
+  transition: opacity var(--transition-fast);
+  max-width: 9rem;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable:hover::after {
+/* Caption only on active — not on hover. Hover is too noisy. */
+:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-active='true'][data-schema-caption]::after {
   opacity: 1;
 }
 
-/* ── Badge Variant ────────────────────────────────────────────── */
+/* ── Badge Variant (required / readonly / hidden) ─────────── */
+/* Small corner pill — only for meaningful status flags, not type label. */
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-badge]::after {
   content: attr(data-schema-badge);
   position: absolute;
   top: 0;
   right: 0;
-  transform: translate(35%, -35%);
-  padding: 1px 0.3125rem;
-  min-width: 1rem;
-  height: 1rem;
+  transform: translate(30%, -30%);
+  padding: 0 0.25rem;
+  min-width: 0.875rem;
+  height: 0.875rem;
   border-radius: var(--radius-full);
   background: var(--schema-tone);
   color: #fff;
-  font-size: 0.5rem;
+  font-size: 0.40625rem;
   font-weight: var(--font-weight-bold);
   font-family: var(--font-family-ui);
   letter-spacing: 0;
   text-align: center;
-  line-height: 1rem;
+  line-height: 0.875rem;
   pointer-events: none;
   opacity: 0;
   transition: opacity var(--transition-fast);
-  border: 2px solid var(--color-bg-elevated);
+  border: 1.5px solid rgba(255,255,255,0.9);
+}
+
+/* Badge only on active, hidden on editing. */
+:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-active='true'][data-schema-badge]::after {
+  opacity: 1;
 }
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-state='editing']::after {
@@ -1022,53 +1046,52 @@
   background: var(--color-danger);
 }
 
-/* ── Schema Toolbar ──────────────────────────────────────────── */
+/* ── Schema Toolbar (per-schema mini-toolbar above the field) ── */
+/* Intentionally compact: it should not compete with the selected schema. */
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-schema-toolbar {
   position: absolute;
-  top: -0.5rem;
+  top: 0;
   left: 50%;
-  transform: translate(-50%, -100%);
+  transform: translate(-50%, calc(-100% - 0.125rem));
   z-index: 35;
   display: inline-flex;
   align-items: center;
-  gap: var(--space-1);
-  padding: 0.1875rem var(--space-1);
-  background: var(--color-bg-elevated);
-  border-radius: var(--radius-lg);
+  gap: 1px;
+  padding: 0.125rem 0.1875rem;
+  background: rgba(255, 255, 255, 0.97);
+  border-radius: var(--radius-md);
   border: 1px solid var(--color-border-soft);
-  box-shadow: var(--shadow-lg);
+  box-shadow: var(--shadow-md);
   opacity: 0;
   pointer-events: none;
   transition: opacity var(--transition-fast), transform var(--transition-fast);
-  transform: translate(-50%, calc(-100% - 0.25rem));
   white-space: nowrap;
+  backdrop-filter: blur(4px);
 }
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-schema-toolbar-btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-width: 1.625rem;
-  min-height: 1.625rem;
+  min-width: 1.375rem;
+  min-height: 1.375rem;
   border: none;
   background: transparent;
   color: var(--color-text-muted);
-  border-radius: var(--radius-md);
-  padding: 0.1875rem;
+  border-radius: var(--radius-sm);
+  padding: 0.125rem;
   cursor: pointer;
-  font-size: var(--font-size-md);
-  transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
+  font-size: var(--font-size-base);
+  transition: background var(--transition-fast), color var(--transition-fast);
 }
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-schema-toolbar-btn:hover {
   background: var(--color-bg-hover);
   color: var(--color-text-primary);
-  transform: scale(1.08);
 }
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-schema-toolbar-btn:active {
-  transform: scale(0.96);
   background: var(--color-bg-active);
 }
 
@@ -1345,18 +1368,44 @@
   line-height: 1;
 }
 
+/* SelectionContextToolbar: refined to be less dominant over the canvas. */
 .sisad-pdfme-ui-selection-context-toolbar {
-  border-radius: 0.9rem;
-  box-shadow: var(--shadow-lg);
+  border-radius: 0.75rem;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.10), 0 1px 3px rgba(15, 23, 42, 0.06);
+  border-color: var(--color-border-soft);
+  background: rgba(255, 255, 255, 0.97);
+  backdrop-filter: blur(8px);
+}
+
+/* Micro mode: compact pill, tight padding, small buttons. */
+.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-mode='micro'] {
+  padding: 0.125rem 0.25rem;
+  gap: 1px;
+  border-radius: var(--radius-full);
+}
+
+.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-mode='micro'] button {
+  min-height: 1.5rem;
+  min-width: 1.5rem;
+  padding: 0.2rem 0.3rem;
+  font-size: var(--font-size-sm);
 }
 
 .sisad-pdfme-ui-selection-context-toolbar .sisad-pdfme-ui-selection-context-toolbar-chip,
 .sisad-pdfme-ui-selection-context-toolbar .sisad-pdfme-ui-selection-context-toolbar-state-chip {
   border-radius: 999px;
+  font-size: 0.65rem;
+  min-height: 1.1rem;
+  padding: 0 0.3125rem;
 }
 
 .sisad-pdfme-ui-selection-context-toolbar .sisad-pdfme-ui-selection-context-toolbar-action-label {
-  font-size: 0.72rem;
+  font-size: 0.6875rem;
+}
+
+/* Micro mode: hide summary row entirely — just icons. */
+.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-mode='micro'] .sisad-pdfme-ui-selection-context-toolbar-summary {
+  display: none;
 }
 
 .sisad-pdfme-ui-inline-metrics {

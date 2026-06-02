@@ -17,7 +17,7 @@ import {
 } from './helper.js';
 import type { SelectionCommandSet } from './components/Designer/shared/selectionCommands.js';
 import type { CommandBus } from './commands/commandBus.js';
-import { RULER_HEIGHT } from './constants.js';
+import { RULER_HEIGHT, PAGE_GAP } from './constants.js';
 import {
   useDesignerKeyboardShortcuts,
 } from './components/Designer/shared/useDesignerKeyboardShortcuts.js';
@@ -247,7 +247,7 @@ export const useScrollPageCursor = ({
         const viewportHeight = Math.max(1, scrollContainer.clientHeight || 0);
         const viewportMidpoint = scrollTop + viewportHeight / 2;
 
-        const pageGap = 12 * Math.max(0.25, scale);
+        const pageGap = PAGE_GAP * Math.max(0.25, scale);
         let accumulatedTop = 0;
         let nextPageCursor = 0;
 

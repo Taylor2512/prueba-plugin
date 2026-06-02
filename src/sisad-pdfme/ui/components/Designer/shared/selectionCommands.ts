@@ -104,6 +104,10 @@ export type SelectionCommandSet = {
   openProperties: () => void;
   groupSelection?: () => void;
   ungroupSelection?: () => void;
+  /** Adds one option to an active radioGroup/checkboxGroup (DocuSign-style "+"). */
+  addGroupOption?: () => void;
+  /** Converts an active lone checkbox into a checkboxGroup. */
+  convertCheckboxToGroup?: () => void;
   copyStyle?: () => void;
   pasteStyle?: () => void;
   renameLabel?: () => void;
@@ -477,6 +481,66 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     context.changeSchemas(ops);
   };
 
+  const addGroupOption = () => {
+    if (!hasSelection || !guardStructureEdit()) return;
+    const schema = getActiveSchemas(context)[0] as SchemaForUI & {
+      type?: string;
+      options?: Array<string | { optionId: string; label: string }>;
+    };
+    if (!schema) return;
+    const type = String(schema.type || '');
+    if (type !== 'radioGroup' && type !== 'checkboxGroup') return;
+    const raw = Array.isArray(schema.options) ? schema.options : [];
+    const current = raw.map((entry, index) =>
+      typeof entry === 'string'
+        ? { optionId: entry || `option_${index + 1}`, label: entry || `Opción ${index + 1}` }
+        : { optionId: entry.optionId || `option_${index + 1}`, label: entry.label || entry.optionId },
+    );
+    const existing = new Set(current.map((o) => o.optionId));
+    let n = current.length + 1;
+    let optionId = `option_${n}`;
+    while (existing.has(optionId)) {
+      n += 1;
+      optionId = `option_${n}`;
+    }
+    const isRadio = type === 'radioGroup';
+    const label = `${isRadio ? 'Opción' : 'Casilla'} ${current.length + 1}`;
+    context.changeSchemas([
+      { key: 'options', value: [...current, { optionId, label }], schemaId: schema.id },
+    ]);
+  };
+
+  const convertCheckboxToGroup = () => {
+    if (!hasSelection || !guardStructureEdit()) return;
+    const schema = getActiveSchemas(context)[0] as SchemaForUI & { type?: string; content?: unknown; width?: number };
+    if (!schema || String(schema.type) !== 'checkbox') return;
+    const wasChecked = schema.content === 'true';
+    context.changeSchemas([
+      { key: 'type', value: 'checkboxGroup', schemaId: schema.id },
+      { key: 'groupName', value: 'Grupo de casillas', schemaId: schema.id },
+      { key: 'groupId', value: 'Grupo_Casillas', schemaId: schema.id },
+      { key: 'lockedAsGroup', value: true, schemaId: schema.id },
+      { key: 'orientation', value: 'vertical', schemaId: schema.id },
+      { key: 'spacing', value: 3, schemaId: schema.id },
+      { key: 'height', value: 24, schemaId: schema.id },
+      { key: 'width', value: Math.max(55, Number(schema.width) || 0), schemaId: schema.id },
+      {
+        key: 'options',
+        value: [
+          { optionId: 'option_1', label: 'Casilla 1' },
+          { optionId: 'option_2', label: 'Casilla 2' },
+        ],
+        schemaId: schema.id,
+      },
+      { key: 'content', value: wasChecked ? 'option_1' : '', schemaId: schema.id },
+      { key: 'selectedOptionIds', value: wasChecked ? ['option_1'] : [], schemaId: schema.id },
+      { key: '__designer.group.groupId', value: 'Grupo_Casillas', schemaId: schema.id },
+      { key: '__designer.group.groupType', value: 'checkbox', schemaId: schema.id },
+      { key: '__designer.group.groupName', value: 'Grupo de casillas', schemaId: schema.id },
+      { key: '__designer.group.lockedAsGroup', value: true, schemaId: schema.id },
+    ]);
+  };
+
   const bringForward = () => {
     if (!hasSelection || !guardStructureEdit()) return;
     const current = getPageSchemas(context);
@@ -758,6 +822,8 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     openProperties,
     groupSelection,
     ungroupSelection,
+    addGroupOption,
+    convertCheckboxToGroup,
     renameLabel,
     editTextInline,
     assignRecipient,

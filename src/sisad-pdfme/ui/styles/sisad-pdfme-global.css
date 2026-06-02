@@ -1653,15 +1653,11 @@
 }
 
 .sisad-pdfme-designer-canvas [data-canvas-page="true"] {
-  position: relative;
-  display: block;
-  flex: none;
-  width: auto;
-  min-width: 1px;
-  min-height: 1px;
-  max-width: none;
-  max-height: none;
-  margin: 0 auto;
+  /* position:absolute and top/left/width/height come from .sisad-pdfme-paper-page.
+     Do NOT override position here — paper-page uses absolute positioning so pages
+     stack at their computed pageTop within the CSS-transformed scale layer.
+     Overriding to position:relative caused cumulative top-offset drift on
+     multi-page documents, producing a massive phantom gap below page 1. */
   overflow: hidden;
   isolation: isolate;
   background: var(--color-white);
@@ -1671,11 +1667,6 @@
     0 0 0 1px var(--border-subtle),
     0 0.5rem 1.5rem var(--color-gray-900-08),
     0 1.25rem 3rem var(--color-gray-900-06);
-}
-
-.sisad-pdfme-designer-canvas[data-zoom-tier="low"] [data-canvas-page="true"] {
-  min-height: 0;
-  max-height: none;
 }
 
 .sisad-pdfme-designer-canvas [data-canvas-page="true"]>.sisad-pdfme-designer-custom-undefined {
