@@ -1,8 +1,8 @@
 # Documentación Markdown Unificada
 
 **Carpeta origen:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin`  
-**Fecha de generación:** `2026-06-02T04:47:31.657Z`  
-**Total de archivos incluidos:** `406`  
+**Fecha de generación:** `2026-06-02T07:11:56.979Z`  
+**Total de archivos incluidos:** `405`  
 **Extensiones incluidas:** `.md`
 
 ---
@@ -373,48 +373,47 @@
 0362. [reports/current-snapshot/module-inventory.md](#archivo-0362)
 0363. [reports/current-snapshot/risk-summary.md](#archivo-0363)
 0364. [reports/current-snapshot/v4-research-summary.md](#archivo-0364)
-0365. [test-results/schema-transform-schema-tr-64966-cted-schema-to-page-anchors-chromium/error-context.md](#archivo-0365)
-0366. [.ai/skills/active-recipient-color-contract/SKILL.md](#archivo-0366)
-0367. [.ai/skills/canvas-geometry-scaling/SKILL.md](#archivo-0367)
-0368. [.ai/skills/checkbox-radio-dropdown-parity/SKILL.md](#archivo-0368)
-0369. [.ai/skills/command-bus-transform-actions/SKILL.md](#archivo-0369)
-0370. [.ai/skills/component-composition/SKILL.md](#archivo-0370)
-0371. [.ai/skills/context-budget/SKILL.md](#archivo-0371)
-0372. [.ai/skills/context-menu-transform-guard/SKILL.md](#archivo-0372)
-0373. [.ai/skills/css-layering-and-overrides/SKILL.md](#archivo-0373)
-0374. [.ai/skills/css-recipient-color-tokens/SKILL.md](#archivo-0374)
-0375. [.ai/skills/css-transform-handle-safety/SKILL.md](#archivo-0375)
-0376. [.ai/skills/custom-schema-contracts/SKILL.md](#archivo-0376)
-0377. [.ai/skills/documentation-traceability/SKILL.md](#archivo-0377)
-0378. [.ai/skills/docusign-wix-minimal-ux/SKILL.md](#archivo-0378)
-0379. [.ai/skills/external-forms-runtime/SKILL.md](#archivo-0379)
-0380. [.ai/skills/floating-toolbar-transform-position/SKILL.md](#archivo-0380)
-0381. [.ai/skills/fork-safe-pdfme-evolution/SKILL.md](#archivo-0381)
-0382. [.ai/skills/form-viewer-generator-parity/SKILL.md](#archivo-0382)
-0383. [.ai/skills/group-no-overlap/SKILL.md](#archivo-0383)
-0384. [.ai/skills/inline-edit-transform-guard/SKILL.md](#archivo-0384)
-0385. [.ai/skills/keyboard-shortcut-transform-safety/SKILL.md](#archivo-0385)
-0386. [.ai/skills/legacy-runtime-reduction/SKILL.md](#archivo-0386)
-0387. [.ai/skills/moveable-selecto-integration/SKILL.md](#archivo-0387)
-0388. [.ai/skills/moveable-selecto-resize-rotate/SKILL.md](#archivo-0388)
-0389. [.ai/skills/playwright-canvas-diagnostics/SKILL.md](#archivo-0389)
-0390. [.ai/skills/playwright-recipient-color-regression/SKILL.md](#archivo-0390)
-0391. [.ai/skills/playwright-transform-regression/SKILL.md](#archivo-0391)
-0392. [.ai/skills/public-api-surface-design/SKILL.md](#archivo-0392)
-0393. [.ai/skills/quality-gates/SKILL.md](#archivo-0393)
-0394. [.ai/skills/schema-icon-color-sync/SKILL.md](#archivo-0394)
-0395. [.ai/skills/schema-owner-color-persistence/SKILL.md](#archivo-0395)
-0396. [.ai/skills/schema-registry-extension/SKILL.md](#archivo-0396)
-0397. [.ai/skills/schema-tone-resolution/SKILL.md](#archivo-0397)
-0398. [.ai/skills/snapshot-transform-roundtrip/SKILL.md](#archivo-0398)
-0399. [.ai/skills/standard-field-groups-contract/SKILL.md](#archivo-0399)
-0400. [.ai/skills/standard-fields-regression-testing/SKILL.md](#archivo-0400)
-0401. [.ai/skills/test-results-forensics/SKILL.md](#archivo-0401)
-0402. [.ai/skills/transform-interaction-state-machine/SKILL.md](#archivo-0402)
-0403. [.ai/skills/unique-recipient-palette/SKILL.md](#archivo-0403)
-0404. [.ai/skills/unit-recipient-color-contracts/SKILL.md](#archivo-0404)
-0405. [.ai/skills/unit-transform-state-contracts/SKILL.md](#archivo-0405)
-0406. [src/sisad-pdfme/ui/designerEngine.api.md](#archivo-0406)
+0365. [.ai/skills/active-recipient-color-contract/SKILL.md](#archivo-0365)
+0366. [.ai/skills/canvas-geometry-scaling/SKILL.md](#archivo-0366)
+0367. [.ai/skills/checkbox-radio-dropdown-parity/SKILL.md](#archivo-0367)
+0368. [.ai/skills/command-bus-transform-actions/SKILL.md](#archivo-0368)
+0369. [.ai/skills/component-composition/SKILL.md](#archivo-0369)
+0370. [.ai/skills/context-budget/SKILL.md](#archivo-0370)
+0371. [.ai/skills/context-menu-transform-guard/SKILL.md](#archivo-0371)
+0372. [.ai/skills/css-layering-and-overrides/SKILL.md](#archivo-0372)
+0373. [.ai/skills/css-recipient-color-tokens/SKILL.md](#archivo-0373)
+0374. [.ai/skills/css-transform-handle-safety/SKILL.md](#archivo-0374)
+0375. [.ai/skills/custom-schema-contracts/SKILL.md](#archivo-0375)
+0376. [.ai/skills/documentation-traceability/SKILL.md](#archivo-0376)
+0377. [.ai/skills/docusign-wix-minimal-ux/SKILL.md](#archivo-0377)
+0378. [.ai/skills/external-forms-runtime/SKILL.md](#archivo-0378)
+0379. [.ai/skills/floating-toolbar-transform-position/SKILL.md](#archivo-0379)
+0380. [.ai/skills/fork-safe-pdfme-evolution/SKILL.md](#archivo-0380)
+0381. [.ai/skills/form-viewer-generator-parity/SKILL.md](#archivo-0381)
+0382. [.ai/skills/group-no-overlap/SKILL.md](#archivo-0382)
+0383. [.ai/skills/inline-edit-transform-guard/SKILL.md](#archivo-0383)
+0384. [.ai/skills/keyboard-shortcut-transform-safety/SKILL.md](#archivo-0384)
+0385. [.ai/skills/legacy-runtime-reduction/SKILL.md](#archivo-0385)
+0386. [.ai/skills/moveable-selecto-integration/SKILL.md](#archivo-0386)
+0387. [.ai/skills/moveable-selecto-resize-rotate/SKILL.md](#archivo-0387)
+0388. [.ai/skills/playwright-canvas-diagnostics/SKILL.md](#archivo-0388)
+0389. [.ai/skills/playwright-recipient-color-regression/SKILL.md](#archivo-0389)
+0390. [.ai/skills/playwright-transform-regression/SKILL.md](#archivo-0390)
+0391. [.ai/skills/public-api-surface-design/SKILL.md](#archivo-0391)
+0392. [.ai/skills/quality-gates/SKILL.md](#archivo-0392)
+0393. [.ai/skills/schema-icon-color-sync/SKILL.md](#archivo-0393)
+0394. [.ai/skills/schema-owner-color-persistence/SKILL.md](#archivo-0394)
+0395. [.ai/skills/schema-registry-extension/SKILL.md](#archivo-0395)
+0396. [.ai/skills/schema-tone-resolution/SKILL.md](#archivo-0396)
+0397. [.ai/skills/snapshot-transform-roundtrip/SKILL.md](#archivo-0397)
+0398. [.ai/skills/standard-field-groups-contract/SKILL.md](#archivo-0398)
+0399. [.ai/skills/standard-fields-regression-testing/SKILL.md](#archivo-0399)
+0400. [.ai/skills/test-results-forensics/SKILL.md](#archivo-0400)
+0401. [.ai/skills/transform-interaction-state-machine/SKILL.md](#archivo-0401)
+0402. [.ai/skills/unique-recipient-palette/SKILL.md](#archivo-0402)
+0403. [.ai/skills/unit-recipient-color-contracts/SKILL.md](#archivo-0403)
+0404. [.ai/skills/unit-transform-state-contracts/SKILL.md](#archivo-0404)
+0405. [src/sisad-pdfme/ui/designerEngine.api.md](#archivo-0405)
 
 ---
 
@@ -13010,527 +13009,7 @@ Que los schemas estándar funcionen visualmente en Designer pero fallen en Detai
 ---
 
 <a id="archivo-0365"></a>
-## Archivo #365: test-results/schema-transform-schema-tr-64966-cted-schema-to-page-anchors-chromium/error-context.md
-
-- **Ruta relativa:** `test-results/schema-transform-schema-tr-64966-cted-schema-to-page-anchors-chromium/error-context.md`
-- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/test-results/schema-transform-schema-tr-64966-cted-schema-to-page-anchors-chromium/error-context.md`
-- **Extensión:** `.md`
-- **Líneas aproximadas:** `505`
-
-### Contenido original
-
-# Page snapshot
-
-```yaml
-- main [ref=e3]:
-  - generic [ref=e4]:
-    - generic [ref=e5]:
-      - generic [ref=e6]:
-        - generic [ref=e7]:
-          - generic [ref=e8]: Lab
-          - generic [ref=e9]: Diseñador
-        - heading "Multidocumento integral" [level=1] [ref=e10]
-        - paragraph [ref=e11]: Ruta integral para asignaciones por documento, página y destinatario con carga de múltiples PDFs y handoff entre archivos.
-      - generic [ref=e13]:
-        - generic [ref=e14]: Página 1 / 2
-        - link "Volver al índice" [ref=e16] [cursor=pointer]:
-          - /url: /
-        - button "Descargar plantilla Multidocumento integral" [ref=e18]: Descargar plantilla
-        - button "Controles" [ref=e21] [cursor=pointer]:
-          - img [ref=e22]
-    - region "Colaboración del ejemplo" [ref=e25]:
-      - generic [ref=e26]:
-        - generic [ref=e27]:
-          - generic [ref=e28]: Participantes
-          - generic [ref=e29]: "3"
-        - list "Participantes del ejemplo" [ref=e30]:
-          - listitem [ref=e31]:
-            - button "Cliente Principal" [pressed] [ref=e32] [cursor=pointer]
-          - listitem [ref=e33]:
-            - button "Avalista" [ref=e34] [cursor=pointer]
-          - listitem [ref=e35]:
-            - button "Mesa de entrega" [ref=e36] [cursor=pointer]
-        - generic "Resumen de colaboración" [ref=e37] [cursor=pointer]:
-          - generic [ref=e38]: "Visibles: 2"
-          - generic [ref=e39]: "Editables: 2"
-          - generic [ref=e40]: "Bloqueados: 0"
-          - generic [ref=e41]: "Comentarios: 0"
-      - generic [ref=e42]:
-        - generic [ref=e43]:
-          - generic [ref=e44]: Activo
-          - combobox "Seleccionar usuario activo" [ref=e45]:
-            - option "Cliente Principal" [selected]
-            - option "Avalista"
-            - option "Mesa de entrega"
-        - generic [ref=e46]:
-          - generic [ref=e47]: Vista
-          - combobox "Seleccionar vista activa" [ref=e48]:
-            - option "Usuario activo" [selected]
-            - option "Global"
-    - group [ref=e49]:
-      - generic "Detalles técnicos Metadatos y estado" [ref=e50] [cursor=pointer]:
-        - generic [ref=e51]: Detalles técnicos
-        - generic [ref=e52]: Metadatos y estado
-  - region "Canvas" [ref=e53]:
-    - generic [ref=e54]:
-      - heading "Canvas" [level=2] [ref=e55]
-      - paragraph [ref=e56]:
-        - text: La superficie de edición se monta dentro del runtime de
-        - code [ref=e57]: sisad-pdfme
-        - text: .
-    - generic [ref=e61]:
-      - generic [ref=e62]:
-        - generic [ref=e63]:
-          - button "Cerrar catálogo de campos" [expanded] [ref=e64] [cursor=pointer]:
-            - img [ref=e65]
-          - generic [ref=e69]:
-            - generic [ref=e70]:
-              - generic [ref=e71]: Diseñador
-              - generic [ref=e72]:
-                - generic [ref=e73]: Campos
-                - 'generic "Color del destinatario activo #2563EB" [ref=e74]'
-            - generic [ref=e75]:
-              - tablist "Tipos de campo" [ref=e76]:
-                - tab "Campos estándar" [selected] [ref=e77] [cursor=pointer]:
-                  - img [ref=e78]
-                - tab "Campos personalizados" [ref=e80] [cursor=pointer]:
-                  - img [ref=e81]
-                - tab "Herramientas de prerrellenado" [ref=e84] [cursor=pointer]:
-                  - img [ref=e85]
-              - generic [ref=e88]:
-                - generic [ref=e89]:
-                  - img [ref=e91]
-                  - textbox "Buscar campos" [ref=e94]
-                - generic [ref=e96]:
-                  - button "Todos" [ref=e97] [cursor=pointer]:
-                    - generic [ref=e98]: Todos
-                  - button "Favoritos (0)" [ref=e99] [cursor=pointer]:
-                    - generic [ref=e100]: Favoritos (0)
-                  - button "Recientes (0)" [ref=e101] [cursor=pointer]:
-                    - generic [ref=e102]: Recientes (0)
-                  - button "Vista detalle (lista)" [ref=e103] [cursor=pointer]:
-                    - img [ref=e105]
-            - generic [ref=e106]:
-              - generic [ref=e107]:
-                - button "Alternar categoría Firmas" [expanded] [ref=e108] [cursor=pointer]:
-                  - generic [ref=e109]: Firmas
-                  - generic [ref=e110]: "1"
-                - generic [ref=e114]:
-                  - button "Firma" [ref=e115]:
-                    - generic "Firma" [ref=e117]:
-                      - img [ref=e118]
-                    - generic [ref=e121]: Firma
-                  - button "Marcar favorito": ★
-              - generic [ref=e122]:
-                - button "Alternar categoría Texto" [expanded] [ref=e123] [cursor=pointer]:
-                  - generic [ref=e124]: Texto
-                  - generic [ref=e125]: "2"
-                - generic [ref=e126]:
-                  - generic [ref=e129]:
-                    - button "Número Número" [ref=e130]:
-                      - generic "Número" [ref=e131]
-                      - generic [ref=e133]: Número
-                    - button "Marcar favorito": ★
-                  - generic [ref=e136]:
-                    - button "Texto" [ref=e137]:
-                      - generic "Texto" [ref=e139]:
-                        - img [ref=e140]
-                      - generic [ref=e146]: Texto
-                    - button "Marcar favorito": ★
-              - generic [ref=e147]:
-                - button "Alternar categoría Imagen y medios" [expanded] [ref=e148] [cursor=pointer]:
-                  - generic [ref=e149]: Imagen y medios
-                  - generic [ref=e150]: "2"
-                - generic [ref=e151]:
-                  - generic [ref=e154]:
-                    - button "Imagen" [ref=e155]:
-                      - generic "Imagen" [ref=e157]:
-                        - img [ref=e158]
-                      - generic [ref=e163]: Imagen
-                    - button "Marcar favorito": ★
-                  - generic [ref=e166]:
-                    - button "SVG" [ref=e167]:
-                      - generic "SVG" [ref=e169]:
-                        - img [ref=e170]
-                      - generic [ref=e175]: SVG
-                    - button "Marcar favorito": ★
-              - generic [ref=e176]:
-                - button "Alternar categoría Selecciones" [expanded] [ref=e177] [cursor=pointer]:
-                  - generic [ref=e178]: Selecciones
-                  - generic [ref=e179]: "4"
-                - generic [ref=e180]:
-                  - generic [ref=e183]:
-                    - button "Casilla" [ref=e184]:
-                      - generic "Casilla" [ref=e186]:
-                        - img [ref=e187]
-                      - generic [ref=e191]: Casilla
-                    - button "Marcar favorito": ★
-                  - generic [ref=e194]:
-                    - button "Grupo de casillas" [ref=e195]:
-                      - generic "Grupo de casillas" [ref=e197]:
-                        - img [ref=e198]
-                      - generic [ref=e202]: Grupo de casillas
-                    - button "Marcar favorito": ★
-                  - generic [ref=e205]:
-                    - button "Opción" [ref=e206]:
-                      - generic "Opción" [ref=e208]:
-                        - img [ref=e209]
-                      - generic [ref=e213]: Opción
-                    - button "Marcar favorito": ★
-                  - generic [ref=e216]:
-                    - button "Lista desplegable" [ref=e217]:
-                      - generic "Lista desplegable" [ref=e219]:
-                        - img [ref=e220]
-                      - generic [ref=e223]: Lista desplegable
-                    - button "Marcar favorito": ★
-              - generic [ref=e224]:
-                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e225] [cursor=pointer]:
-                  - generic [ref=e226]: Fecha y Hora
-                  - generic [ref=e227]: "3"
-                - generic [ref=e228]:
-                  - generic [ref=e231]:
-                    - button "Fecha" [ref=e232]:
-                      - generic "Fecha" [ref=e234]:
-                        - img [ref=e235]
-                      - generic [ref=e238]: Fecha
-                    - button "Marcar favorito": ★
-                  - generic [ref=e241]:
-                    - button "Fecha y hora" [ref=e242]:
-                      - generic "Fecha y hora" [ref=e244]:
-                        - img [ref=e245]
-                      - generic [ref=e250]: Fecha y hora
-                    - button "Marcar favorito": ★
-                  - generic [ref=e253]:
-                    - button "Hora" [ref=e254]:
-                      - generic "Hora" [ref=e256]:
-                        - img [ref=e257]
-                      - generic [ref=e261]: Hora
-                    - button "Marcar favorito": ★
-              - generic [ref=e262]:
-                - button "Alternar categoría QR y Códigos" [expanded] [ref=e263] [cursor=pointer]:
-                  - generic [ref=e264]: QR y Códigos
-                  - generic [ref=e265]: "12"
-                - generic [ref=e266]:
-                  - generic [ref=e269]:
-                    - button "Código de barras" [ref=e270]:
-                      - generic "Código de barras" [ref=e272]:
-                        - img [ref=e273]
-                      - generic [ref=e275]: Código de barras
-                    - button "Marcar favorito": ★
-                  - generic [ref=e278]:
-                    - button "Código de barras" [ref=e279]:
-                      - generic "Código de barras" [ref=e281]:
-                        - img [ref=e282]
-                      - generic [ref=e284]: Código de barras
-                    - button "Marcar favorito": ★
-                  - generic [ref=e287]:
-                    - button "Código de barras" [ref=e288]:
-                      - generic "Código de barras" [ref=e290]:
-                        - img [ref=e291]
-                      - generic [ref=e293]: Código de barras
-                    - button "Marcar favorito": ★
-                  - generic [ref=e296]:
-                    - button "Código de barras" [ref=e297]:
-                      - generic "Código de barras" [ref=e299]:
-                        - img [ref=e300]
-                      - generic [ref=e302]: Código de barras
-                    - button "Marcar favorito": ★
-                  - generic [ref=e305]:
-                    - button "DataMatrix" [ref=e306]:
-                      - generic "DataMatrix" [ref=e308]:
-                        - img [ref=e309]
-                      - generic [ref=e311]: DataMatrix
-                    - button "Marcar favorito": ★
-                  - generic [ref=e314]:
-                    - button "Código de barras" [ref=e315]:
-                      - generic "Código de barras" [ref=e317]:
-                        - img [ref=e318]
-                      - generic [ref=e320]: Código de barras
-                    - button "Marcar favorito": ★
-                  - generic [ref=e323]:
-                    - button "Japan Post" [ref=e324]:
-                      - generic "Japan Post" [ref=e326]:
-                        - img [ref=e327]
-                      - generic [ref=e329]: Japan Post
-                    - button "Marcar favorito": ★
-                  - generic [ref=e332]:
-                    - button "NW7" [ref=e333]:
-                      - generic "NW7" [ref=e335]:
-                        - img [ref=e336]
-                      - generic [ref=e338]: NW7
-                    - button "Marcar favorito": ★
-                  - generic [ref=e341]:
-                    - button "PDF417" [ref=e342]:
-                      - generic "PDF417" [ref=e344]:
-                        - img [ref=e345]
-                      - generic [ref=e347]: PDF417
-                    - button "Marcar favorito": ★
-                  - generic [ref=e350]:
-                    - button "Código QR" [ref=e351]:
-                      - generic "Código QR" [ref=e353]:
-                        - img [ref=e354]
-                      - generic [ref=e361]: Código QR
-                    - button "Marcar favorito": ★
-                  - generic [ref=e364]:
-                    - button "Código de barras" [ref=e365]:
-                      - generic "Código de barras" [ref=e367]:
-                        - img [ref=e368]
-                      - generic [ref=e370]: Código de barras
-                    - button "Marcar favorito": ★
-                  - generic [ref=e373]:
-                    - button "Código de barras" [ref=e374]:
-                      - generic "Código de barras" [ref=e376]:
-                        - img [ref=e377]
-                      - generic [ref=e379]: Código de barras
-                    - button "Marcar favorito": ★
-              - generic [ref=e380]:
-                - button "Alternar categoría Estructura" [expanded] [ref=e381] [cursor=pointer]:
-                  - generic [ref=e382]: Estructura
-                  - generic [ref=e383]: "4"
-                - generic [ref=e384]:
-                  - generic [ref=e387]:
-                    - button "Óvalo" [ref=e388]:
-                      - generic "Óvalo" [ref=e390]:
-                        - img [ref=e391]
-                      - generic [ref=e394]: Óvalo
-                    - button "Marcar favorito": ★
-                  - generic [ref=e397]:
-                    - button "Línea" [ref=e398]:
-                      - generic "Línea" [ref=e400]:
-                        - img [ref=e401]
-                      - generic [ref=e403]: Línea
-                    - button "Marcar favorito": ★
-                  - generic [ref=e406]:
-                    - button "Rectángulo" [ref=e407]:
-                      - generic "Rectángulo" [ref=e409]:
-                        - img [ref=e410]
-                      - generic [ref=e413]: Rectángulo
-                    - button "Marcar favorito": ★
-                  - generic [ref=e416]:
-                    - button "Tabla" [ref=e417]:
-                      - generic "Tabla" [ref=e419]:
-                        - img [ref=e420]
-                      - generic [ref=e423]: Tabla
-                    - button "Marcar favorito": ★
-        - generic [ref=e424]:
-          - generic:
-            - generic [ref=e426]:
-              - generic "Listo" [ref=e427]
-              - generic [ref=e428]: Doc · Pág 1/2 · Sel 1
-            - generic [ref=e430]:
-              - button "Página anterior" [disabled] [ref=e431]:
-                - generic:
-                  - img
-              - button "Pág 1/2" [ref=e432] [cursor=pointer]:
-                - generic [ref=e433]: Pág 1/2
-              - button "Página siguiente" [ref=e434] [cursor=pointer]:
-                - img [ref=e436]
-            - generic [ref=e439]:
-              - button "Guardar" [ref=e440] [cursor=pointer]:
-                - img [ref=e442]
-                - generic [ref=e446]: Guardar
-              - button "Más acciones" [ref=e447] [cursor=pointer]:
-                - img [ref=e449]
-            - generic [ref=e454]:
-              - button "Deshacer" [ref=e455] [cursor=pointer]:
-                - img [ref=e457]
-              - button "Rehacer" [ref=e460] [cursor=pointer]:
-                - img [ref=e462]
-              - button "Ajustar página" [ref=e465] [cursor=pointer]:
-                - img [ref=e467]
-              - generic [ref=e472]:
-                - button "Reducir zoom" [ref=e473] [cursor=pointer]:
-                  - img [ref=e475]
-                - generic [ref=e476] [cursor=pointer]:
-                  - generic [ref=e478]:
-                    - combobox [ref=e480]
-                    - generic "100%" [ref=e481]
-                  - generic:
-                    - img:
-                      - img
-                - button "Aumentar zoom" [ref=e482] [cursor=pointer]:
-                  - img [ref=e484]
-          - button "Ocultar panel derecho" [pressed] [ref=e485]:
-            - img [ref=e486]
-          - complementary "Panel derecho del diseñador" [ref=e489]:
-            - generic [ref=e490]:
-              - tablist "Panel derecho" [ref=e492]:
-                - tab "Abrir panel Campos" [ref=e493] [cursor=pointer]:
-                  - img [ref=e496]
-                - tab "Abrir panel Detalle" [selected] [ref=e500] [cursor=pointer]:
-                  - img [ref=e503]
-                - tab "Abrir panel Comentarios" [ref=e504] [cursor=pointer]:
-                  - img [ref=e507]
-                - tab "Abrir panel Docs" [ref=e509] [cursor=pointer]:
-                  - img [ref=e512]
-              - generic "Secciones del detalle del campo" [ref=e517]:
-                - generic [ref=e524]:
-                  - strong [ref=e526]: contract_date
-                  - generic [ref=e527]:
-                    - 'generic "UID: multi-contract-date Creado por: routing-user-1 Modificado: recipient-1 Propietario: recipient-1 Modo de propiedad: single" [ref=e528]': Guardar
-                    - 'generic "UID: multi-contract-date Creado por: routing-user-1 Modificado: recipient-1 Propietario: recipient-1 Modo de propiedad: single" [ref=e529]': "+1"
-                - generic [ref=e530]:
-                  - generic [ref=e531]:
-                    - button "Colapsar sección Identidad" [expanded] [ref=e532] [cursor=pointer]:
-                      - generic [ref=e533]:
-                        - generic [ref=e534]: Identidad
-                        - generic [ref=e535]: Nombre, identidad y metadatos esenciales.
-                      - img [ref=e537]
-                    - generic [ref=e542]:
-                      - generic [ref=e545]:
-                        - generic "Nombre del campo" [ref=e547]: "* Nombre del campo"
-                        - textbox "* Nombre del campo" [ref=e551]: contract_date
-                      - generic [ref=e553]:
-                        - button "Renombrar campo" [ref=e554] [cursor=pointer]:
-                          - img [ref=e556]
-                          - generic [ref=e559]: Renombrar campo
-                        - button "Editar texto" [ref=e560] [cursor=pointer]:
-                          - img [ref=e562]
-                          - generic [ref=e564]: Editar texto
-                  - generic [ref=e571]:
-                    - button "Colapsar sección Caja" [expanded] [ref=e572] [cursor=pointer]:
-                      - generic [ref=e573]:
-                        - generic [ref=e574]: Caja
-                        - generic [ref=e575]: Posición, tamaño y orden espacial.
-                      - img [ref=e577]
-                    - generic [ref=e582]:
-                      - generic [ref=e585]:
-                        - generic "Alineación" [ref=e587]
-                        - generic [ref=e591]:
-                          - button "Alinear a la izquierda" [ref=e592] [cursor=pointer]:
-                            - img [ref=e594]
-                          - button "Centrar horizontalmente" [ref=e597] [cursor=pointer]:
-                            - img [ref=e599]
-                          - button "Alinear a la derecha" [ref=e604] [cursor=pointer]:
-                            - img [ref=e606]
-                          - button "Alinear arriba" [ref=e609] [cursor=pointer]:
-                            - img [ref=e611]
-                          - button "Centrar verticalmente" [ref=e614] [cursor=pointer]:
-                            - img [ref=e616]
-                          - button "Alinear abajo" [ref=e621] [cursor=pointer]:
-                            - img [ref=e623]
-                          - button "Distribuir verticalmente" [disabled] [ref=e626]:
-                            - generic:
-                              - img
-                          - button "Distribuir horizontalmente" [disabled] [ref=e627]:
-                            - generic:
-                              - img
-                      - generic [ref=e630]:
-                        - generic [ref=e633]:
-                          - generic "X" [ref=e635]: "* X"
-                          - generic [ref=e639]:
-                            - generic:
-                              - button "Increase Value" [ref=e640] [cursor=pointer]:
-                                - img "up" [ref=e641]:
-                                  - img [ref=e642]
-                              - button "Decrease Value" [ref=e644] [cursor=pointer]:
-                                - img "down" [ref=e645]:
-                                  - img [ref=e646]
-                            - spinbutton "* X" [ref=e649]: "58.95"
-                        - generic [ref=e652]:
-                          - generic "Y" [ref=e654]: "* Y"
-                          - generic [ref=e658]:
-                            - generic:
-                              - button "Increase Value" [ref=e659] [cursor=pointer]:
-                                - img "up" [ref=e660]:
-                                  - img [ref=e661]
-                              - button "Decrease Value" [ref=e663] [cursor=pointer]:
-                                - img "down" [ref=e664]:
-                                  - img [ref=e665]
-                            - spinbutton "* Y" [ref=e668]: "24"
-                      - generic [ref=e671]:
-                        - generic "Anchura" [ref=e673]: "* Anchura"
-                        - generic [ref=e677]:
-                          - generic:
-                            - button "Increase Value" [ref=e678] [cursor=pointer]:
-                              - img "up" [ref=e679]:
-                                - img [ref=e680]
-                            - button "Decrease Value" [ref=e682] [cursor=pointer]:
-                              - img "down" [ref=e683]:
-                                - img [ref=e684]
-                          - spinbutton "* Anchura" [ref=e687]: "92"
-                      - generic [ref=e690]:
-                        - generic "Altura" [ref=e692]: "* Altura"
-                        - generic [ref=e696]:
-                          - generic:
-                            - button "Increase Value" [ref=e697] [cursor=pointer]:
-                              - img "up" [ref=e698]:
-                                - img [ref=e699]
-                            - button "Decrease Value" [ref=e701] [cursor=pointer]:
-                              - img "down" [ref=e702]:
-                                - img [ref=e703]
-                          - spinbutton "* Altura" [ref=e706]: "12"
-                  - button "Expandir sección Apariencia" [ref=e714] [cursor=pointer]:
-                    - generic [ref=e715]:
-                      - generic [ref=e716]: Apariencia
-                      - generic [ref=e717]: Tratamiento visual específico de la familia.
-                    - img [ref=e719]
-                  - generic [ref=e721]:
-                    - button "Colapsar sección Comportamiento" [expanded] [ref=e722] [cursor=pointer]:
-                      - generic [ref=e723]:
-                        - generic [ref=e724]: Comportamiento
-                        - generic [ref=e725]: Semántica, reglas y opciones del campo.
-                      - img [ref=e727]
-                    - generic [ref=e732]:
-                      - generic [ref=e738]:
-                        - checkbox [checked] [ref=e741] [cursor=pointer]
-                        - generic [ref=e743]: Editable
-                      - generic [ref=e749]:
-                        - checkbox [ref=e752] [cursor=pointer]
-                        - generic [ref=e754]: Requerido
-                  - button "Expandir sección Datos conectados" [ref=e762] [cursor=pointer]:
-                    - generic [ref=e763]:
-                      - generic [ref=e764]: Datos conectados
-                      - generic [ref=e765]: Persistencia, JSON y API.
-                    - img [ref=e767]
-                  - button "Expandir sección Colaboración" [ref=e770] [cursor=pointer]:
-                    - generic [ref=e771]:
-                      - generic [ref=e772]: Colaboración
-                      - generic [ref=e773]: Owner, bloqueo y trazabilidad.
-                    - img [ref=e775]
-                  - button "Expandir sección Avanzado" [ref=e778] [cursor=pointer]:
-                    - generic [ref=e779]:
-                      - generic [ref=e780]: Avanzado
-                      - generic [ref=e781]: Propiedades poco frecuentes o de bajo nivel.
-                    - img [ref=e783]
-          - generic [ref=e785]:
-            - generic [ref=e788]:
-              - generic "contract_name" [ref=e806] [cursor=pointer]:
-                - generic [ref=e809]: Contrato principal
-                - text: text
-              - generic "contract_date" [ref=e810] [cursor=pointer]:
-                - generic:
-                  - generic:
-                    - generic: 2026-05-01
-                - text: text
-            - generic:
-              - toolbar "Barra contextual de edición" [ref=e813]:
-                - group "Acciones rápidas" [ref=e814]:
-                  - button "Editar texto" [ref=e815] [cursor=pointer]:
-                    - img [ref=e817]
-                    - generic [ref=e819]: Editar texto
-                  - button "Duplicar" [ref=e820] [cursor=pointer]:
-                    - img [ref=e822]
-                    - generic [ref=e825]: Duplicar
-                  - button "Más acciones" [ref=e826] [cursor=pointer]:
-                    - img [ref=e828]
-                    - generic [ref=e832]: Más
-              - generic: 153px × 20px
-      - status [ref=e833]
-  - group "Resultados" [ref=e834]:
-    - generic "Resultados Abre esta sección para revisar salidas de generación y conversión. Colapsado" [ref=e835] [cursor=pointer]:
-      - generic [ref=e836]:
-        - heading "Resultados" [level=2] [ref=e837]
-        - paragraph [ref=e838]: Abre esta sección para revisar salidas de generación y conversión.
-      - generic [ref=e839]: Colapsado
-```
-
-[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
-
----
-
-<a id="archivo-0366"></a>
-## Archivo #366: .ai/skills/active-recipient-color-contract/SKILL.md
+## Archivo #365: .ai/skills/active-recipient-color-contract/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/active-recipient-color-contract/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/active-recipient-color-contract/SKILL.md`
@@ -13574,8 +13053,8 @@ Aplicar procedimiento reutilizable para `active-recipient-color-contract`.
 
 ---
 
-<a id="archivo-0367"></a>
-## Archivo #367: .ai/skills/canvas-geometry-scaling/SKILL.md
+<a id="archivo-0366"></a>
+## Archivo #366: .ai/skills/canvas-geometry-scaling/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/canvas-geometry-scaling/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/canvas-geometry-scaling/SKILL.md`
@@ -13619,8 +13098,8 @@ Aplicar procedimiento reutilizable para `canvas-geometry-scaling`.
 
 ---
 
-<a id="archivo-0368"></a>
-## Archivo #368: .ai/skills/checkbox-radio-dropdown-parity/SKILL.md
+<a id="archivo-0367"></a>
+## Archivo #367: .ai/skills/checkbox-radio-dropdown-parity/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/checkbox-radio-dropdown-parity/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/checkbox-radio-dropdown-parity/SKILL.md`
@@ -13672,8 +13151,8 @@ Usa esta skill cuando una tarea afecte schemas estándar, grupos, botón `+`, De
 
 ---
 
-<a id="archivo-0369"></a>
-## Archivo #369: .ai/skills/command-bus-transform-actions/SKILL.md
+<a id="archivo-0368"></a>
+## Archivo #368: .ai/skills/command-bus-transform-actions/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/command-bus-transform-actions/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/command-bus-transform-actions/SKILL.md`
@@ -13717,8 +13196,8 @@ Aplicar procedimiento reutilizable para `command-bus-transform-actions`.
 
 ---
 
-<a id="archivo-0370"></a>
-## Archivo #370: .ai/skills/component-composition/SKILL.md
+<a id="archivo-0369"></a>
+## Archivo #369: .ai/skills/component-composition/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/component-composition/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/component-composition/SKILL.md`
@@ -13762,8 +13241,8 @@ Aplicar procedimiento reutilizable para `component-composition`.
 
 ---
 
-<a id="archivo-0371"></a>
-## Archivo #371: .ai/skills/context-budget/SKILL.md
+<a id="archivo-0370"></a>
+## Archivo #370: .ai/skills/context-budget/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/context-budget/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/context-budget/SKILL.md`
@@ -13807,8 +13286,8 @@ Aplicar procedimiento reutilizable para `context-budget`.
 
 ---
 
-<a id="archivo-0372"></a>
-## Archivo #372: .ai/skills/context-menu-transform-guard/SKILL.md
+<a id="archivo-0371"></a>
+## Archivo #371: .ai/skills/context-menu-transform-guard/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/context-menu-transform-guard/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/context-menu-transform-guard/SKILL.md`
@@ -13852,8 +13331,8 @@ Aplicar procedimiento reutilizable para `context-menu-transform-guard`.
 
 ---
 
-<a id="archivo-0373"></a>
-## Archivo #373: .ai/skills/css-layering-and-overrides/SKILL.md
+<a id="archivo-0372"></a>
+## Archivo #372: .ai/skills/css-layering-and-overrides/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/css-layering-and-overrides/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/css-layering-and-overrides/SKILL.md`
@@ -13897,8 +13376,8 @@ Aplicar procedimiento reutilizable para `css-layering-and-overrides`.
 
 ---
 
-<a id="archivo-0374"></a>
-## Archivo #374: .ai/skills/css-recipient-color-tokens/SKILL.md
+<a id="archivo-0373"></a>
+## Archivo #373: .ai/skills/css-recipient-color-tokens/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/css-recipient-color-tokens/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/css-recipient-color-tokens/SKILL.md`
@@ -13942,8 +13421,8 @@ Aplicar procedimiento reutilizable para `css-recipient-color-tokens`.
 
 ---
 
-<a id="archivo-0375"></a>
-## Archivo #375: .ai/skills/css-transform-handle-safety/SKILL.md
+<a id="archivo-0374"></a>
+## Archivo #374: .ai/skills/css-transform-handle-safety/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/css-transform-handle-safety/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/css-transform-handle-safety/SKILL.md`
@@ -13987,8 +13466,8 @@ Aplicar procedimiento reutilizable para `css-transform-handle-safety`.
 
 ---
 
-<a id="archivo-0376"></a>
-## Archivo #376: .ai/skills/custom-schema-contracts/SKILL.md
+<a id="archivo-0375"></a>
+## Archivo #375: .ai/skills/custom-schema-contracts/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/custom-schema-contracts/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/custom-schema-contracts/SKILL.md`
@@ -14032,8 +13511,8 @@ Aplicar procedimiento reutilizable para `custom-schema-contracts`.
 
 ---
 
-<a id="archivo-0377"></a>
-## Archivo #377: .ai/skills/documentation-traceability/SKILL.md
+<a id="archivo-0376"></a>
+## Archivo #376: .ai/skills/documentation-traceability/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/documentation-traceability/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/documentation-traceability/SKILL.md`
@@ -14077,8 +13556,8 @@ Aplicar procedimiento reutilizable para `documentation-traceability`.
 
 ---
 
-<a id="archivo-0378"></a>
-## Archivo #378: .ai/skills/docusign-wix-minimal-ux/SKILL.md
+<a id="archivo-0377"></a>
+## Archivo #377: .ai/skills/docusign-wix-minimal-ux/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/docusign-wix-minimal-ux/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/docusign-wix-minimal-ux/SKILL.md`
@@ -14130,8 +13609,8 @@ Usa esta skill cuando una tarea afecte schemas estándar, grupos, botón `+`, De
 
 ---
 
-<a id="archivo-0379"></a>
-## Archivo #379: .ai/skills/external-forms-runtime/SKILL.md
+<a id="archivo-0378"></a>
+## Archivo #378: .ai/skills/external-forms-runtime/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/external-forms-runtime/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/external-forms-runtime/SKILL.md`
@@ -14175,8 +13654,8 @@ Aplicar procedimiento reutilizable para `external-forms-runtime`.
 
 ---
 
-<a id="archivo-0380"></a>
-## Archivo #380: .ai/skills/floating-toolbar-transform-position/SKILL.md
+<a id="archivo-0379"></a>
+## Archivo #379: .ai/skills/floating-toolbar-transform-position/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/floating-toolbar-transform-position/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/floating-toolbar-transform-position/SKILL.md`
@@ -14220,8 +13699,8 @@ Aplicar procedimiento reutilizable para `floating-toolbar-transform-position`.
 
 ---
 
-<a id="archivo-0381"></a>
-## Archivo #381: .ai/skills/fork-safe-pdfme-evolution/SKILL.md
+<a id="archivo-0380"></a>
+## Archivo #380: .ai/skills/fork-safe-pdfme-evolution/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/fork-safe-pdfme-evolution/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/fork-safe-pdfme-evolution/SKILL.md`
@@ -14265,8 +13744,8 @@ Aplicar procedimiento reutilizable para `fork-safe-pdfme-evolution`.
 
 ---
 
-<a id="archivo-0382"></a>
-## Archivo #382: .ai/skills/form-viewer-generator-parity/SKILL.md
+<a id="archivo-0381"></a>
+## Archivo #381: .ai/skills/form-viewer-generator-parity/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/form-viewer-generator-parity/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/form-viewer-generator-parity/SKILL.md`
@@ -14310,8 +13789,8 @@ Aplicar procedimiento reutilizable para `form-viewer-generator-parity`.
 
 ---
 
-<a id="archivo-0383"></a>
-## Archivo #383: .ai/skills/group-no-overlap/SKILL.md
+<a id="archivo-0382"></a>
+## Archivo #382: .ai/skills/group-no-overlap/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/group-no-overlap/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/group-no-overlap/SKILL.md`
@@ -14363,8 +13842,8 @@ Usa esta skill cuando una tarea afecte schemas estándar, grupos, botón `+`, De
 
 ---
 
-<a id="archivo-0384"></a>
-## Archivo #384: .ai/skills/inline-edit-transform-guard/SKILL.md
+<a id="archivo-0383"></a>
+## Archivo #383: .ai/skills/inline-edit-transform-guard/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/inline-edit-transform-guard/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/inline-edit-transform-guard/SKILL.md`
@@ -14408,8 +13887,8 @@ Aplicar procedimiento reutilizable para `inline-edit-transform-guard`.
 
 ---
 
-<a id="archivo-0385"></a>
-## Archivo #385: .ai/skills/keyboard-shortcut-transform-safety/SKILL.md
+<a id="archivo-0384"></a>
+## Archivo #384: .ai/skills/keyboard-shortcut-transform-safety/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/keyboard-shortcut-transform-safety/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/keyboard-shortcut-transform-safety/SKILL.md`
@@ -14453,8 +13932,8 @@ Aplicar procedimiento reutilizable para `keyboard-shortcut-transform-safety`.
 
 ---
 
-<a id="archivo-0386"></a>
-## Archivo #386: .ai/skills/legacy-runtime-reduction/SKILL.md
+<a id="archivo-0385"></a>
+## Archivo #385: .ai/skills/legacy-runtime-reduction/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/legacy-runtime-reduction/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/legacy-runtime-reduction/SKILL.md`
@@ -14498,8 +13977,8 @@ Aplicar procedimiento reutilizable para `legacy-runtime-reduction`.
 
 ---
 
-<a id="archivo-0387"></a>
-## Archivo #387: .ai/skills/moveable-selecto-integration/SKILL.md
+<a id="archivo-0386"></a>
+## Archivo #386: .ai/skills/moveable-selecto-integration/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/moveable-selecto-integration/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/moveable-selecto-integration/SKILL.md`
@@ -14543,8 +14022,8 @@ Aplicar procedimiento reutilizable para `moveable-selecto-integration`.
 
 ---
 
-<a id="archivo-0388"></a>
-## Archivo #388: .ai/skills/moveable-selecto-resize-rotate/SKILL.md
+<a id="archivo-0387"></a>
+## Archivo #387: .ai/skills/moveable-selecto-resize-rotate/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/moveable-selecto-resize-rotate/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/moveable-selecto-resize-rotate/SKILL.md`
@@ -14588,8 +14067,8 @@ Aplicar procedimiento reutilizable para `moveable-selecto-resize-rotate`.
 
 ---
 
-<a id="archivo-0389"></a>
-## Archivo #389: .ai/skills/playwright-canvas-diagnostics/SKILL.md
+<a id="archivo-0388"></a>
+## Archivo #388: .ai/skills/playwright-canvas-diagnostics/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/playwright-canvas-diagnostics/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/playwright-canvas-diagnostics/SKILL.md`
@@ -14633,8 +14112,8 @@ Aplicar procedimiento reutilizable para `playwright-canvas-diagnostics`.
 
 ---
 
-<a id="archivo-0390"></a>
-## Archivo #390: .ai/skills/playwright-recipient-color-regression/SKILL.md
+<a id="archivo-0389"></a>
+## Archivo #389: .ai/skills/playwright-recipient-color-regression/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/playwright-recipient-color-regression/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/playwright-recipient-color-regression/SKILL.md`
@@ -14678,8 +14157,8 @@ Aplicar procedimiento reutilizable para `playwright-recipient-color-regression`.
 
 ---
 
-<a id="archivo-0391"></a>
-## Archivo #391: .ai/skills/playwright-transform-regression/SKILL.md
+<a id="archivo-0390"></a>
+## Archivo #390: .ai/skills/playwright-transform-regression/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/playwright-transform-regression/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/playwright-transform-regression/SKILL.md`
@@ -14723,8 +14202,8 @@ Aplicar procedimiento reutilizable para `playwright-transform-regression`.
 
 ---
 
-<a id="archivo-0392"></a>
-## Archivo #392: .ai/skills/public-api-surface-design/SKILL.md
+<a id="archivo-0391"></a>
+## Archivo #391: .ai/skills/public-api-surface-design/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/public-api-surface-design/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/public-api-surface-design/SKILL.md`
@@ -14768,8 +14247,8 @@ Aplicar procedimiento reutilizable para `public-api-surface-design`.
 
 ---
 
-<a id="archivo-0393"></a>
-## Archivo #393: .ai/skills/quality-gates/SKILL.md
+<a id="archivo-0392"></a>
+## Archivo #392: .ai/skills/quality-gates/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/quality-gates/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/quality-gates/SKILL.md`
@@ -14813,8 +14292,8 @@ Aplicar procedimiento reutilizable para `quality-gates`.
 
 ---
 
-<a id="archivo-0394"></a>
-## Archivo #394: .ai/skills/schema-icon-color-sync/SKILL.md
+<a id="archivo-0393"></a>
+## Archivo #393: .ai/skills/schema-icon-color-sync/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/schema-icon-color-sync/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/schema-icon-color-sync/SKILL.md`
@@ -14858,8 +14337,8 @@ Aplicar procedimiento reutilizable para `schema-icon-color-sync`.
 
 ---
 
-<a id="archivo-0395"></a>
-## Archivo #395: .ai/skills/schema-owner-color-persistence/SKILL.md
+<a id="archivo-0394"></a>
+## Archivo #394: .ai/skills/schema-owner-color-persistence/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/schema-owner-color-persistence/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/schema-owner-color-persistence/SKILL.md`
@@ -14903,8 +14382,8 @@ Aplicar procedimiento reutilizable para `schema-owner-color-persistence`.
 
 ---
 
-<a id="archivo-0396"></a>
-## Archivo #396: .ai/skills/schema-registry-extension/SKILL.md
+<a id="archivo-0395"></a>
+## Archivo #395: .ai/skills/schema-registry-extension/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/schema-registry-extension/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/schema-registry-extension/SKILL.md`
@@ -14948,8 +14427,8 @@ Aplicar procedimiento reutilizable para `schema-registry-extension`.
 
 ---
 
-<a id="archivo-0397"></a>
-## Archivo #397: .ai/skills/schema-tone-resolution/SKILL.md
+<a id="archivo-0396"></a>
+## Archivo #396: .ai/skills/schema-tone-resolution/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/schema-tone-resolution/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/schema-tone-resolution/SKILL.md`
@@ -14993,8 +14472,8 @@ Aplicar procedimiento reutilizable para `schema-tone-resolution`.
 
 ---
 
-<a id="archivo-0398"></a>
-## Archivo #398: .ai/skills/snapshot-transform-roundtrip/SKILL.md
+<a id="archivo-0397"></a>
+## Archivo #397: .ai/skills/snapshot-transform-roundtrip/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/snapshot-transform-roundtrip/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/snapshot-transform-roundtrip/SKILL.md`
@@ -15038,8 +14517,8 @@ Aplicar procedimiento reutilizable para `snapshot-transform-roundtrip`.
 
 ---
 
-<a id="archivo-0399"></a>
-## Archivo #399: .ai/skills/standard-field-groups-contract/SKILL.md
+<a id="archivo-0398"></a>
+## Archivo #398: .ai/skills/standard-field-groups-contract/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/standard-field-groups-contract/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/standard-field-groups-contract/SKILL.md`
@@ -15091,8 +14570,8 @@ Usa esta skill cuando una tarea afecte schemas estándar, grupos, botón `+`, De
 
 ---
 
-<a id="archivo-0400"></a>
-## Archivo #400: .ai/skills/standard-fields-regression-testing/SKILL.md
+<a id="archivo-0399"></a>
+## Archivo #399: .ai/skills/standard-fields-regression-testing/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/standard-fields-regression-testing/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/standard-fields-regression-testing/SKILL.md`
@@ -15144,8 +14623,8 @@ Usa esta skill cuando una tarea afecte schemas estándar, grupos, botón `+`, De
 
 ---
 
-<a id="archivo-0401"></a>
-## Archivo #401: .ai/skills/test-results-forensics/SKILL.md
+<a id="archivo-0400"></a>
+## Archivo #400: .ai/skills/test-results-forensics/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/test-results-forensics/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/test-results-forensics/SKILL.md`
@@ -15189,8 +14668,8 @@ Aplicar procedimiento reutilizable para `test-results-forensics`.
 
 ---
 
-<a id="archivo-0402"></a>
-## Archivo #402: .ai/skills/transform-interaction-state-machine/SKILL.md
+<a id="archivo-0401"></a>
+## Archivo #401: .ai/skills/transform-interaction-state-machine/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/transform-interaction-state-machine/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/transform-interaction-state-machine/SKILL.md`
@@ -15234,8 +14713,8 @@ Aplicar procedimiento reutilizable para `transform-interaction-state-machine`.
 
 ---
 
-<a id="archivo-0403"></a>
-## Archivo #403: .ai/skills/unique-recipient-palette/SKILL.md
+<a id="archivo-0402"></a>
+## Archivo #402: .ai/skills/unique-recipient-palette/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/unique-recipient-palette/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/unique-recipient-palette/SKILL.md`
@@ -15279,8 +14758,8 @@ Aplicar procedimiento reutilizable para `unique-recipient-palette`.
 
 ---
 
-<a id="archivo-0404"></a>
-## Archivo #404: .ai/skills/unit-recipient-color-contracts/SKILL.md
+<a id="archivo-0403"></a>
+## Archivo #403: .ai/skills/unit-recipient-color-contracts/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/unit-recipient-color-contracts/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/unit-recipient-color-contracts/SKILL.md`
@@ -15324,8 +14803,8 @@ Aplicar procedimiento reutilizable para `unit-recipient-color-contracts`.
 
 ---
 
-<a id="archivo-0405"></a>
-## Archivo #405: .ai/skills/unit-transform-state-contracts/SKILL.md
+<a id="archivo-0404"></a>
+## Archivo #404: .ai/skills/unit-transform-state-contracts/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/unit-transform-state-contracts/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/unit-transform-state-contracts/SKILL.md`
@@ -15369,8 +14848,8 @@ Aplicar procedimiento reutilizable para `unit-transform-state-contracts`.
 
 ---
 
-<a id="archivo-0406"></a>
-## Archivo #406: src/sisad-pdfme/ui/designerEngine.api.md
+<a id="archivo-0405"></a>
+## Archivo #405: src/sisad-pdfme/ui/designerEngine.api.md
 
 - **Ruta relativa:** `src/sisad-pdfme/ui/designerEngine.api.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/designerEngine.api.md`
@@ -15834,6 +15313,7 @@ prueba-plugin
 │       ├── stabilize-schema-resize-rotation.prompt.md
 │       ├── unify-css-architecture.prompt.md
 │       └── update-docs-recipient-transform.prompt.md
+├── .playwright-mcp
 ├── AGENTS.md
 ├── AI-Memory
 ├── CLAUDE.md
@@ -16025,8 +15505,6 @@ prueba-plugin
 │   └── types
 ├── START_PROMPT.md
 ├── test-results
-│   └── schema-transform-schema-tr-64966-cted-schema-to-page-anchors-chromium
-│       └── error-context.md
 └── tests
     ├── checkbox-radio-dropdown-regression.md
     ├── detail-view-coverage-matrix.md
@@ -16035,8 +15513,152 @@ prueba-plugin
     ├── plan-playwright.md
     ├── plan-vitest-unitario.md
     ├── playwright
+    │   ├── features
+    │   │   └── pdfcomponent
+    │   │       ├── domain
+    │   │       ├── examples
+    │   │       └── utils
+    │   ├── sisad-pdfme
+    │   │   ├── assignments
+    │   │   ├── canvas
+    │   │   ├── collaboration
+    │   │   ├── commands
+    │   │   ├── comments
+    │   │   ├── common
+    │   │   ├── context
+    │   │   ├── contracts
+    │   │   ├── converter
+    │   │   ├── documents
+    │   │   ├── editor
+    │   │   ├── externalForms
+    │   │   ├── generator
+    │   │   ├── pdf-lib
+    │   │   │   ├── api
+    │   │   │   │   ├── form
+    │   │   │   │   ├── image
+    │   │   │   │   └── text
+    │   │   │   ├── core
+    │   │   │   │   ├── acroform
+    │   │   │   │   ├── annotation
+    │   │   │   │   ├── document
+    │   │   │   │   ├── embedders
+    │   │   │   │   ├── interactive
+    │   │   │   │   ├── objects
+    │   │   │   │   ├── operators
+    │   │   │   │   ├── parser
+    │   │   │   │   ├── streams
+    │   │   │   │   ├── structures
+    │   │   │   │   ├── syntax
+    │   │   │   │   └── writers
+    │   │   │   ├── types
+    │   │   │   └── utils
+    │   │   │       └── elements
+    │   │   ├── schemas
+    │   │   │   ├── barcodes
+    │   │   │   ├── checkbox
+    │   │   │   ├── checkboxGroup
+    │   │   │   ├── date
+    │   │   │   ├── graphics
+    │   │   │   ├── multiVariableText
+    │   │   │   ├── number
+    │   │   │   ├── radioGroup
+    │   │   │   ├── select
+    │   │   │   ├── shapes
+    │   │   │   ├── signature
+    │   │   │   ├── tables
+    │   │   │   └── text
+    │   │   │       └── icons
+    │   │   ├── shared
+    │   │   └── ui
+    │   │       ├── commands
+    │   │       ├── components
+    │   │       │   ├── Designer
+    │   │       │   │   ├── Canvas
+    │   │       │   │   │   └── overlays
+    │   │       │   │   ├── Comments
+    │   │       │   │   ├── RightSidebar
+    │   │       │   │   │   ├── DetailView
+    │   │       │   │   │   ├── ListView
+    │   │       │   │   │   └── shared
+    │   │       │   │   ├── shared
+    │   │       │   │   └── Shortcuts
+    │   │       │   └── shared
+    │   │       └── types
+    │   └── types
     ├── README.md
     ├── standard-fields-use-cases.md
     ├── testing-gaps.md
     └── unit
+        ├── features
+        │   └── pdfcomponent
+        │       ├── domain
+        │       ├── examples
+        │       └── utils
+        ├── sisad-pdfme
+        │   ├── assignments
+        │   ├── canvas
+        │   ├── collaboration
+        │   ├── commands
+        │   ├── comments
+        │   ├── common
+        │   ├── context
+        │   ├── contracts
+        │   ├── converter
+        │   ├── documents
+        │   ├── editor
+        │   ├── externalForms
+        │   ├── generator
+        │   ├── pdf-lib
+        │   │   ├── api
+        │   │   │   ├── form
+        │   │   │   ├── image
+        │   │   │   └── text
+        │   │   ├── core
+        │   │   │   ├── acroform
+        │   │   │   ├── annotation
+        │   │   │   ├── document
+        │   │   │   ├── embedders
+        │   │   │   ├── interactive
+        │   │   │   ├── objects
+        │   │   │   ├── operators
+        │   │   │   ├── parser
+        │   │   │   ├── streams
+        │   │   │   ├── structures
+        │   │   │   ├── syntax
+        │   │   │   └── writers
+        │   │   ├── types
+        │   │   └── utils
+        │   │       └── elements
+        │   ├── schemas
+        │   │   ├── barcodes
+        │   │   ├── checkbox
+        │   │   ├── checkboxGroup
+        │   │   ├── date
+        │   │   ├── graphics
+        │   │   ├── multiVariableText
+        │   │   ├── number
+        │   │   ├── radioGroup
+        │   │   ├── select
+        │   │   ├── shapes
+        │   │   ├── signature
+        │   │   ├── tables
+        │   │   └── text
+        │   │       └── icons
+        │   ├── shared
+        │   └── ui
+        │       ├── commands
+        │       ├── components
+        │       │   ├── Designer
+        │       │   │   ├── Canvas
+        │       │   │   │   └── overlays
+        │       │   │   ├── Comments
+        │       │   │   ├── RightSidebar
+        │       │   │   │   ├── DetailView
+        │       │   │   │   ├── ListView
+        │       │   │   │   └── shared
+        │       │   │   ├── shared
+        │       │   │   └── Shortcuts
+        │       │   └── shared
+        │       └── types
+        └── types
 ```

@@ -24,4 +24,3 @@
 - radioGroup solo permite uno.
 - dropdown guarda valor seleccionado.
 - Form/Viewer/PDF son consistentes.
-- `dropdown` resuelve a `select` sin crear un renderer paralelo.

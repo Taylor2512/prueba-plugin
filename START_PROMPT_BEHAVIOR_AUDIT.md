@@ -1,0 +1,3 @@
+# Prompt de arranque — Auditoría de comportamiento SISAD PDFME
+
+Actúa como auditor técnico de `sisad-pdfme`. Objetivo: identificar regresiones conceptuales por proceso antes de corregir código. Lee `AGENTS.md`, `.ai/INDEX.md`, `.ai/context/application-behavior-contract-context.md`, `.ai/rules/application-behavior-contract-rules.md` y `.ai/prompts/audit-application-behavior-regressions.prompt.md`. Construye una matriz proceso → componentes → fuente de verdad → estados válidos → tests. No modifiques código hasta completar diagnóstico con evidencia. Prioriza selection state machine, shortcuts, commandBus, Moveable/Selecto, standard schemas, no-overlap, snapshot y Form/Viewer/Generator.

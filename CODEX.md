@@ -1,32 +1,40 @@
-# CODEX.md — Adaptador Codex
+# CODEX.md — Adaptador Codex para SISAD PDFME v5
 
-Codex se usa para cambios atómicos, verificables y con bajo riesgo.
+## Startup
 
-## Método
+1. `AGENTS.md`
+2. `.ai/INDEX.md`
+3. `.ai/memory/project-memory.md`
+4. `.ai/context-map.md`
+5. `.ai/agents/registry.md`
 
-```txt
-leer contexto mínimo -> localizar con rg -> modificar poco -> validar -> reportar rollback
-```
+## Modo de trabajo
 
-## Tareas ideales
+- Nivel 1: cambio puntual, leer contexto + regla + prompt.
+- Nivel 2: bug/feature de dominio, sumar subagente y skill.
+- Nivel 3: auditoría global, justificar lectura de reportes o snapshots.
+- Nivel 4: regresiones repetidas, activar contrato maestro de comportamiento.
 
-- Ajustar una función de color, owner o snapshot.
-- Corregir guard de Moveable/Selecto.
-- Crear test unitario cercano.
-- Eliminar wrapper o alias sin valor.
-- Ajustar prompt/doc puntual.
-- Endurecer `checkboxGroup` o `radioGroup` sin tocar runtime global.
+## Instrucción crítica
 
-## Validación mínima
+No aplicar fixes locales si el bug afecta procesos transversales. Usar `application-behavior-contract-context.md` y crear matriz proceso → componentes → tests.
 
-```bash
-npm run build -- --mode development
-npm run lint
-```
+## Comandos/prompts sugeridos
 
-Para schemas estándar y grupos:
+- `START_PROMPT.md`
+- `START_PROMPT_BEHAVIOR_AUDIT.md`
+- `.ai/prompts/audit-application-behavior-regressions.prompt.md`
+- `.ai/prompts/stabilize-selection-shortcuts-commandbus.prompt.md`
+- `.ai/prompts/validate-multipdf-multipage-nooverlap.prompt.md`
+- `.ai/prompts/improve-docusign-inspired-schema-design.prompt.md`
 
-```bash
-npx vitest run tests/unit/checkboxGroup.schema.test.ts tests/unit/schemaStandardSupport.test.ts tests/unit/schemaAutoPlace.test.ts tests/unit/schemaCollision.test.ts tests/unit/snapshotAdapter.test.ts
-npx playwright test tests/playwright/checkbox-group-docusign-behavior.spec.ts tests/playwright/schema-no-overlap.spec.ts --project=chromium
+## Cierre obligatorio
+
+```md
+## Contexto usado
+## Proceso afectado
+## Diagnóstico
+## Cambios
+## Validación
+## Riesgos
 ```

@@ -38,3 +38,12 @@
 | Standard Fields Agent | `.ai/agents/standard-fields-agent.md` | Controla Text, Number, Checkbox, CheckboxGroup, RadioGroup y Select. |
 | Schema Groups Agent | `.ai/agents/schema-groups-agent.md` | Controla groupId, optionId, botón +, no-overlap y lockedAsGroup. |
 | Form Viewer Generator Agent | `.ai/agents/form-viewer-generator-agent.md` | Controla parity entre Designer, Form, Viewer y PDF. |
+
+## Agentes v5 agregados
+
+| Agente | Archivo | Responsabilidad |
+|---|---|---|
+| Application Behavior Contract Agent | `.ai/agents/application-behavior-agent.md` | Contrato maestro por proceso y matriz de regresión. |
+| Interaction Regression Agent | `.ai/agents/interaction-regression-agent.md` | Selección, shortcuts, command bus, Moveable/Selecto y focus leakage. |
+| DocuSign/Wix UX Reference Agent | `.ai/agents/docusign-ux-agent.md` | Diseño genérico inspirado en patrones DocuSign/Wix sin copiar marca. |
+| Process Flow Implementation Agent | `.ai/agents/process-flow-agent.md` | Convierte faltantes en fases, tickets y pruebas. |

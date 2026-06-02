@@ -1,14 +1,13 @@
-# Package Summary — SISAD PDFME MD Architecture v4
+# Package Summary — SISAD PDFME Agentic MD v5
 
-## Contenido
+Generado: `2026-06-02`
+Total Markdown: `484`
 
-- Arquitectura base v3 preservada.
-- Contextos nuevos para standard fields y grupos.
-- Reglas nuevas para botón +, no-overlap y parity Form/Viewer/Generator.
-- Prompts cortos para Claude/Codex/Copilot/Gemini.
-- Sección documental `docs/11-standard-schemas`.
-- Matrices de casos de uso y regresión.
+## Novedades v5
 
-## Objetivo
-
-Permitir que asistentes de IA trabajen con contexto mínimo y no dependan de prompts enormes.
+- Contrato maestro de comportamiento por proceso.
+- Contextos/reglas/prompts para selection, shortcuts, command bus y regresiones.
+- Documentación DocuSign/Wix UX traducida a patrones propios.
+- Matrices multi-PDF/multi-página y no-overlap.
+- Instrucciones para completar faltantes por fases.
+- Adaptadores Claude/Codex/Copilot/Gemini actualizados.

@@ -1,17 +1,11 @@
-# GitHub Copilot Instructions — SISAD PDFME
+# GitHub Copilot Instructions — SISAD PDFME v5
 
-Fuente de verdad: `.ai/`.
-
-## Inicio
-
-1. Revisar `AGENTS.md`.
-2. Revisar `.ai/INDEX.md`.
-3. Aplicar `.ai/rules/global-rules.md`.
-4. Para colors/transform, leer `.ai/context/recipient-color-context.md` y `.ai/context/transform-controls-context.md`.
-
-## Reglas críticas
-
-- No duplicar runtime.
-- No manipular DOM interno.
-- No romper CSS scope.
-- Agregar tests si cambia contrato.
+- Trabaja con contratos por proceso, no con fixes aislados.
+- Antes de sugerir código, identificar proceso y componente dueño.
+- No duplicar runtime visual, Canvas, sidebars, renderer, snapshot ni schema plugins.
+- Preservar `schemaUid`, owner, documentId, pageNumber y snapshot.
+- No tocar CSS global fuera de `.sisad-pdfme-root`.
+- No modificar `.moveable-*` ni `.selecto-*` globalmente.
+- Mantener `selectionGroup` separado de `schemaGroup`.
+- Cada cambio que toque interacción debe considerar Selecto, Moveable, shortcuts y commandBus.
+- Cada cambio que toque schema debe considerar Designer, DetailView, Form, Viewer, Generator/PDF y Snapshot.
