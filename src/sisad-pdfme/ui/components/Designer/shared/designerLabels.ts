@@ -2,12 +2,14 @@ const DEFAULT_LABEL = 'Campo';
 
 const TYPE_LABELS: Record<string, string> = {
   text: 'Texto',
+  number: 'Número',
   multivariabletext: 'Texto dinámico',
   signature: 'Firma',
   image: 'Imagen',
   svg: 'SVG',
   checkbox: 'Casilla',
-  radiogroup: 'Opción única',
+  checkboxgroup: 'Grupo de casillas',
+  radiogroup: 'Opción',
   select: 'Lista desplegable',
   date: 'Fecha',
   datetime: 'Fecha y hora',

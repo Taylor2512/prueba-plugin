@@ -31,3 +31,13 @@
 - `.ai/prompts/refactor-transform-geometry-utils.prompt.md` — Extraer geometry utils
 - `.ai/prompts/review-css-for-transform-handle-breaks.prompt.md` — Revisar CSS que rompe handles
 - `.ai/prompts/validate-ci-flow-recipient-transform.prompt.md` — Validar flujo CI
+
+## Prompts v4 — Standard fields y grupos
+
+- `.ai/prompts/harden-standard-fields-groups.prompt.md` — Hardening de standard fields + grupos.
+- `.ai/prompts/repair-checkboxgroup-flow.prompt.md` — Conversión checkbox -> checkboxGroup y botón +.
+- `.ai/prompts/repair-radiogroup-flow.prompt.md` — RadioGroup/Opción y exclusividad.
+- `.ai/prompts/validate-standard-field-parity.prompt.md` — Designer/Form/Viewer/Generator parity.
+- `.ai/prompts/validate-group-no-overlap.prompt.md` — No-overlap por owner y bounding box de grupos.
+- `.ai/prompts/audit-sisad-pdfme-use-cases.prompt.md` — Auditoría de todos los casos de uso.
+- `.ai/prompts/update-md-architecture-v4.prompt.md` — Mantener arquitectura MD multi proveedor.

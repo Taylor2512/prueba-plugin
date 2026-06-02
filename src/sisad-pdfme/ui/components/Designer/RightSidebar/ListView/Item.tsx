@@ -11,6 +11,7 @@ const { Text } = Typography;
 // Schema type → accent color mapping (Wix-like color coding)
 const SCHEMA_TYPE_COLORS: Record<string, string> = {
   text: '#4F8EF7',
+  number: '#F59E0B',
   multiVariableText: '#7B61FF',
   image: '#00C2A8',
   svg: '#00C2A8',

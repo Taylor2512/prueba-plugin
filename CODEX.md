@@ -15,6 +15,7 @@ leer contexto mínimo -> localizar con rg -> modificar poco -> validar -> report
 - Crear test unitario cercano.
 - Eliminar wrapper o alias sin valor.
 - Ajustar prompt/doc puntual.
+- Endurecer `checkboxGroup` o `radioGroup` sin tocar runtime global.
 
 ## Validación mínima
 
@@ -23,9 +24,9 @@ npm run build -- --mode development
 npm run lint
 ```
 
-Para canvas/transform/color visual:
+Para schemas estándar y grupos:
 
 ```bash
-npx vitest run tests/unit/recipientColor.test.ts tests/unit/schemaTone.test.ts
-npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/schema-transform.spec.ts --project=chromium
+npx vitest run tests/unit/checkboxGroup.schema.test.ts tests/unit/schemaStandardSupport.test.ts tests/unit/schemaAutoPlace.test.ts tests/unit/schemaCollision.test.ts tests/unit/snapshotAdapter.test.ts
+npx playwright test tests/playwright/checkbox-group-docusign-behavior.spec.ts tests/playwright/schema-no-overlap.spec.ts --project=chromium
 ```

@@ -2,7 +2,7 @@
    ARCHIVO UNIFICADO DE ESTILOS CSS
    =====================================================================
    Carpeta origen: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
-   Fecha de generación: 2026-06-01T20:36:35.428Z
+   Fecha de generación: 2026-06-01T22:58:25.902Z
    Total de archivos incluidos: 6
    Extensiones incluidas: .css
    Objetivo: consolidar estilos CSS respetando un orden estable de cascada
@@ -25,7 +25,7 @@
    ARCHIVO #1
    Ruta relativa: src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
    Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
-   Líneas aproximadas: 5750
+   Líneas aproximadas: 5782
    ==================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
@@ -4008,11 +4008,31 @@
   padding: 0.25rem 0;
 }
 
+.sisad-pdfme-designer-documents-rail-item-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-radius: 0.5rem;
+}
+
+.sisad-pdfme-designer-documents-rail-item-wrapper .sisad-pdfme-designer-documents-rail-delete-btn {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  flex-shrink: 0;
+  margin-right: 2px;
+}
+
+.sisad-pdfme-designer-documents-rail-item-wrapper:hover .sisad-pdfme-designer-documents-rail-delete-btn {
+  opacity: 1;
+}
+
 .sisad-pdfme-designer-documents-rail-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   padding: 0.3125rem 0.5rem;
   border: 1px solid transparent;
   border-radius: 0.5rem;
@@ -4607,6 +4627,8 @@
   font-weight: 700;
   line-height: 1.2;
   color: var(--color-gray-900);
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .sisad-pdfme-designer-compact-config-panel-description {
@@ -4614,6 +4636,8 @@
   font-size: 0.75rem;
   line-height: 1.4;
   color: var(--color-gray-500);
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .sisad-pdfme-designer-compact-config-panel-tags {
@@ -4634,6 +4658,8 @@
   font-size: 0.75rem;
   line-height: 1.45;
   color: var(--color-gray-700);
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .sisad-pdfme-designer-compact-config-panel-actions {
@@ -5534,12 +5560,16 @@
 .sisad-pdfme-designer-compact-config-panel-title {
   font-size: 0.71875rem;   /* down from 0.875rem */
   font-weight: 700;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .sisad-pdfme-designer-compact-config-panel-description {
   font-size: 0.625rem;     /* down from 0.75rem */
   line-height: 1.35;
   margin-top: 0.125rem;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .sisad-pdfme-designer-compact-config-panel-summary {
@@ -5549,6 +5579,8 @@
 .sisad-pdfme-designer-compact-config-panel-summary-text {
   font-size: 0.625rem;     /* down from 0.75rem */
   line-height: 1.35;
+  word-break: normal;
+  overflow-wrap: anywhere;
 }
 
 .sisad-pdfme-designer-compact-config-panel-actions {
@@ -6933,7 +6965,7 @@
    ARCHIVO #3
    Ruta relativa: src/sisad-pdfme/ui/styles/canvas-interactions.css
    Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/styles/canvas-interactions.css
-   Líneas aproximadas: 1414
+   Líneas aproximadas: 1420
    ==================================================================== */
 
 /* ============================================================
@@ -7819,12 +7851,18 @@
   outline-offset: 2px;
   border-radius: var(--radius-md);
   z-index: 10;
-  box-shadow: 0 0 0 0.25rem rgba(67, 56, 202, 0.10), var(--shadow-md);
+  box-shadow: 0 0 0 0.15rem rgba(67, 56, 202, 0.08), var(--shadow-sm);
 }
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-active='true']::before {
   opacity: 1;
-  background: var(--color-primary-08);
+  background: color-mix(in srgb, var(--color-primary) 8%, transparent);
+}
+
+.sisad-pdfme-designer-stage[data-interaction-phase='selected-multi']
+  :is(.app-shell, .sisad-pdfme-designer-root)
+  .sisad-pdfme-ui-custom-selectable[data-schema-active='true']::before {
+  background: color-mix(in srgb, var(--color-primary) 6%, transparent);
 }
 
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-active='true']::after {
@@ -9349,9 +9387,11 @@ body {
    │   │   ├── schemas
    │   │   │   ├── barcodes
    │   │   │   ├── checkbox
+   │   │   │   ├── checkboxGroup
    │   │   │   ├── date
    │   │   │   ├── graphics
    │   │   │   ├── multiVariableText
+   │   │   │   ├── number
    │   │   │   ├── radioGroup
    │   │   │   ├── select
    │   │   │   ├── shapes
@@ -9384,7 +9424,6 @@ body {
    │   └── types
    ├── styles-sisad-dfme.css
    ├── test-results
-   │   └── pdfme-editor-pdfme-editor--485d3--position-and-supports-undo-chromium
    └── tests
        ├── playwright
        └── unit

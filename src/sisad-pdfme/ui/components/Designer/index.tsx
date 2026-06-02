@@ -2724,6 +2724,25 @@ const TemplateEditor = ({
     ],
   );
 
+  const handleDeleteDocument = useCallback(
+    (documentId: string) => {
+      setUploadedDocuments((prev) => {
+        if (prev.length <= 1) return prev;
+        const next = prev.filter((doc) => doc.id !== documentId);
+        const deletingActive = documentId === activeDocumentId;
+        if (deletingActive && next.length > 0) {
+          const fallback = next[0];
+          setActiveDocumentId(fallback.id);
+          emitActiveDocumentChange(fallback);
+          loadDocumentIntoCanvas(fallback, 0).catch(() => null);
+        }
+        documentSchemasCacheRef.current.delete(documentId);
+        return next;
+      });
+    },
+    [activeDocumentId, emitActiveDocumentChange, loadDocumentIntoCanvas],
+  );
+
   useEffect(() => {
     if (isBlankPdf(activeBasePdf)) return;
     const targetPageCount = pageSizes.length;
@@ -3047,6 +3066,7 @@ const TemplateEditor = ({
                     }
                   : undefined,
               onUploadPdf: handleUploadPdfClick,
+              onDelete: uploadedDocumentItems.length > 1 ? handleDeleteDocument : undefined,
               title: uploadedDocumentItems.length > 0 ? 'Documentos cargados' : 'Documento activo',
               emptyTitle: 'Todavía no hay documentos cargados. Sube un PDF para empezar.',
             }

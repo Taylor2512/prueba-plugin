@@ -3978,11 +3978,31 @@
   padding: 0.25rem 0;
 }
 
+.sisad-pdfme-designer-documents-rail-item-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0;
+  border-radius: 0.5rem;
+}
+
+.sisad-pdfme-designer-documents-rail-item-wrapper .sisad-pdfme-designer-documents-rail-delete-btn {
+  opacity: 0;
+  transition: opacity 0.15s ease;
+  flex-shrink: 0;
+  margin-right: 2px;
+}
+
+.sisad-pdfme-designer-documents-rail-item-wrapper:hover .sisad-pdfme-designer-documents-rail-delete-btn {
+  opacity: 1;
+}
+
 .sisad-pdfme-designer-documents-rail-item {
   display: flex;
   align-items: center;
   gap: 0.5rem;
-  width: 100%;
+  flex: 1;
+  min-width: 0;
   padding: 0.3125rem 0.5rem;
   border: 1px solid transparent;
   border-radius: 0.5rem;

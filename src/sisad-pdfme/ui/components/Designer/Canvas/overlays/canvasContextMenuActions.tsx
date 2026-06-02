@@ -148,10 +148,12 @@ const normalizeTypeKey = (value: unknown) => (typeof value === 'string' ? value.
 const IMAGE_TYPES = new Set(['image', 'svg']);
 const SIGNATURE_TYPES = new Set(['signature']);
 const CHOICE_TYPES = new Set(['checkbox', 'radiogroup', 'select']);
+const NUMBER_TYPES = new Set(['number']);
 const TABLE_TYPES = new Set(['table']);
 
 const isFormFieldType = (type: string) =>
   INLINE_EDITABLE_TEXT_TYPES.has(type) ||
+  NUMBER_TYPES.has(type) ||
   SIGNATURE_TYPES.has(type) ||
   CHOICE_TYPES.has(type) ||
   ['date', 'datetime', 'time'].includes(type);
@@ -172,7 +174,7 @@ export const resolveSelectionToolbarKind = (activeSchemas: SchemaForUI[]): Selec
   if (SIGNATURE_TYPES.has(type)) return 'signature';
   if (CHOICE_TYPES.has(type)) return 'choice';
   if (TABLE_TYPES.has(type)) return 'table';
-  return ['date', 'datetime', 'time'].includes(type) ? 'field' : 'mixed';
+  return ['date', 'datetime', 'time'].includes(type) || NUMBER_TYPES.has(type) ? 'field' : 'mixed';
 };
 
 const toolbarAction = (

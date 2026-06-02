@@ -2,6 +2,7 @@ import { Schema, SchemaForUI } from '@sisad-pdfme/common';
 
 const SCHEMA_TYPE_TONES: Record<string, string> = {
   text: '#4F8EF7',
+  number: '#F59E0B',
   multivariabletext: '#7B61FF',
   image: '#00C2A8',
   svg: '#00C2A8',

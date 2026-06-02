@@ -1,6 +1,7 @@
 import { cloneDeep, type ChangeSchemaItem, type Plugin, type Schema, type SchemaForUI } from '@sisad-pdfme/common';
 import multiVariableText from './multiVariableText/index.js';
 import text from './text/index.js';
+import number from './number/index.js';
 import image from './graphics/image.js';
 import svg from './graphics/svg.js';
 import barcodes from './barcodes/index.js';
@@ -13,6 +14,7 @@ import time from './date/time.js';
 import select from './select/index.js';
 import radioGroup from './radioGroup/index.js';
 import checkbox from './checkbox/index.js';
+import checkboxGroup from './checkboxGroup/index.js';
 import signature from './signature/index.js';
 import {
   flattenSchemaPlugins,
@@ -44,16 +46,24 @@ const schemaPlugins: SchemaPluginMap = {
   dateTime,
   date,
   time,
+  number,
   select,
   radioGroup,
   checkbox,
+  checkboxGroup,
 };
 
 const flatSchemaPlugins = flattenSchemaPlugins(schemaPlugins);
 const builtInPlugins = flatSchemaPlugins;
 const builtInSchemaDefinitions = listSchemaDefinitions(schemaPlugins);
 const builtInSchemaDefinitionsByType = Object.fromEntries(
-  builtInSchemaDefinitions.map((definition) => [definition.type, definition]),
+  builtInSchemaDefinitions.flatMap((definition) => {
+    const normalizedType = String(definition.type || '').trim().toLowerCase();
+    return [
+      [definition.type, definition],
+      [normalizedType, definition],
+    ];
+  }),
 );
 const builtInFields = builtInSchemaDefinitions;
 const registeredSchemaPlugins = new Map<string, Plugin<Schema>>();
@@ -62,7 +72,11 @@ const normalizeText = (value: unknown) => String(value || '').trim();
 const normalizeSchemaType = (value: unknown) => normalizeText(value).toLowerCase();
 
 const getAllRegisteredSchemaPlugins = () => ({
-  ...flatSchemaPlugins,
+  ...Object.entries(flatSchemaPlugins).reduce<Record<string, Plugin<Schema>>>((acc, [key, plugin]) => {
+    acc[key] = plugin;
+    acc[normalizeSchemaType(key)] = plugin;
+    return acc;
+  }, {}),
   ...Object.fromEntries(registeredSchemaPlugins.entries()),
 });
 
@@ -70,8 +84,11 @@ const getDefinitionFromType = (type: string) => {
   const normalizedType = normalizeSchemaType(type);
   if (!normalizedType) return null;
   if (builtInSchemaDefinitionsByType[normalizedType]) return builtInSchemaDefinitionsByType[normalizedType];
-  const plugin = getAllRegisteredSchemaPlugins()[normalizedType];
-  return plugin ? getSchemaDefinitionFromPlugin(plugin as SchemaPluginWithMetadata<Schema>) : null;
+  const pluginMap = getAllRegisteredSchemaPlugins();
+  const exactPlugin = pluginMap[type] || pluginMap[normalizedType];
+  if (exactPlugin) return getSchemaDefinitionFromPlugin(exactPlugin as SchemaPluginWithMetadata<Schema>);
+  const match = Object.entries(pluginMap).find(([key]) => normalizeSchemaType(key) === normalizedType)?.[1];
+  return match ? getSchemaDefinitionFromPlugin(match as SchemaPluginWithMetadata<Schema>) : null;
 };
 
 const createSchemaUid = () =>
@@ -217,7 +234,7 @@ export const createDefaultSchema = (
     ...(baseSchema as SchemaForUI),
     id,
     schemaUid,
-    type: normalizeSchemaType(baseSchema.type || type),
+    type: baseSchema.type || type,
     name: generateUniqueSchemaName(baseSchema.name || type, existingSchemas),
     fileTemplateId: normalizeText(context.fileTemplateId || context.fileId || baseSchema.fileTemplateId || baseSchema.fileId) || undefined,
     fileId: normalizeText(context.fileId || context.fileTemplateId || baseSchema.fileId || baseSchema.fileTemplateId) || undefined,
@@ -305,6 +322,7 @@ export {
   // schemas
   text,
   multiVariableText,
+  number,
   image,
   svg,
   signature,
@@ -319,6 +337,7 @@ export {
   select,
   radioGroup,
   checkbox,
+  checkboxGroup,
 };
 
 export { createSchemaPlugin, renderLucideIcon as createLucideIcon, flattenSchemaPlugins, listSchemaDefinitions };

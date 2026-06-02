@@ -101,6 +101,99 @@ describe('snapshotAdapter', () => {
     expect(migrated.documents[0]?.pages[0]?.schemas[0]?.__designer.recipientColor).toBe('#112233');
   });
 
+  test('preserves checkboxGroup options, selectedOptionIds and group metadata in round-trip', () => {
+    const state = {
+      ...baseState,
+      documents: [
+        {
+          documentId: 'doc-1',
+          name: 'Documento 1',
+          order: 0,
+          pages: [
+            {
+              pageNumber: 1,
+              background: { type: 'none' as const },
+              schemas: [
+                {
+                  id: 'schema-checkbox-group-1',
+                  name: 'beneficios',
+                  type: 'checkboxGroup',
+                  position: { x: 10, y: 20 },
+                  width: 40,
+                  height: 24,
+                  options: [
+                    { optionId: 'option_1', label: 'Décimos' },
+                    { optionId: 'option_2', label: 'Fondos' },
+                  ],
+                  selectedOptionIds: ['option_1'],
+                  content: 'option_1',
+                  __designer: {
+                    schemaUid: 'uid-checkbox-group-1',
+                    templateVersion: '2.0.0',
+                    documentId: 'doc-1',
+                    pageNumber: 1,
+                    recipientId: 'recipient-1',
+                    recipientColor: '#2563EB',
+                    version: 0,
+                    createdAt: '2026-01-01T00:00:00.000Z',
+                    updatedAt: '2026-01-01T00:00:00.000Z',
+                    group: {
+                      groupId: 'group-checkbox-1',
+                      groupType: 'checkbox',
+                      groupName: 'Beneficios',
+                      lockedAsGroup: true,
+                    },
+                  },
+                },
+              ],
+            },
+          ],
+        },
+      ],
+    };
+
+    const snapshot = snapshotAdapter.serialize(state, { name: 't', createdByUserId: 'u' });
+    const restored = snapshotAdapter.deserialize(snapshot);
+    const schema = restored.documents[0]?.pages[0]?.schemas[0] as Record<string, unknown>;
+
+    expect(schema.type).toBe('checkboxGroup');
+    expect(schema.options).toHaveLength(2);
+    expect(schema.selectedOptionIds).toEqual(['option_1']);
+    const group = (schema.__designer as { group?: Record<string, unknown> }).group;
+    expect(group?.groupId).toBe('group-checkbox-1');
+    expect(group?.groupType).toBe('checkbox');
+    expect(group?.lockedAsGroup).toBe(true);
+    expect((schema.__designer as Record<string, unknown>).recipientColor).toBe('#2563EB');
+  });
+
+  test('legacy migration preserves an existing __designer.group', () => {
+    const migrated = snapshotAdapter.migrate({
+      name: 'Legacy with group',
+      schemas: [[
+        {
+          id: 'legacy-group-1',
+          name: 'beneficios',
+          type: 'checkboxGroup',
+          position: { x: 1, y: 2 },
+          width: 40,
+          height: 24,
+          options: [{ optionId: 'option_1', label: 'A' }],
+          selectedOptionIds: ['option_1'],
+          ownerColor: '#112233',
+          __designer: {
+            group: { groupId: 'g-1', groupType: 'checkbox', groupName: 'Beneficios', lockedAsGroup: true },
+          },
+        },
+      ]],
+      basePdf: 'data:application/pdf;base64,AAA=',
+    });
+
+    const schema = migrated.documents[0]?.pages[0]?.schemas[0] as Record<string, unknown>;
+    const group = (schema.__designer as { group?: Record<string, unknown> }).group;
+    expect(group?.groupId).toBe('g-1');
+    expect(group?.groupType).toBe('checkbox');
+  });
+
   test('validates official snapshot shape', () => {
     const snapshot = makeEmptySnapshot();
     expect(snapshotAdapter.validate(snapshot)).toEqual({ valid: true, errors: [] });

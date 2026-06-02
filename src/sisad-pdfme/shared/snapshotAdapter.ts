@@ -226,6 +226,7 @@ class SnapshotAdapterImpl {
     return {
       ...s,
       __designer: {
+        ...existingMeta,
         schemaUid: (existingMeta?.schemaUid || s.schemaUid || s.id || this._generateId()) as string,
         templateVersion: SNAPSHOT_VERSION,
         documentId,

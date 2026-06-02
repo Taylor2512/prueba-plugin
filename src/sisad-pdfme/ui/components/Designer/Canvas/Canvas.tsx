@@ -845,7 +845,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
     const clipboardText = (await navigator.clipboard.readText().catch(() => '')).trim();
     if (!clipboardText || !bridge?.runtime) return;
     const normalized = clipboardText.replace(/^['"]|['"]$/g, '').trim();
-    const knownTypes = new Set(['text', 'multiVariableText', 'date', 'dateTime', 'time', 'checkbox', 'radioGroup', 'select']);
+    const knownTypes = new Set(['text', 'number', 'multiVariableText', 'date', 'dateTime', 'time', 'checkbox', 'radioGroup', 'select']);
     if (knownTypes.has(normalized)) {
       bridge.runtime.addSchemaByType(normalized);
       return;
@@ -1235,8 +1235,15 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
         renderSchema={({ schema, index }) => {
           const isActive = activeElementIdSet.has(schema.id);
           const isHovering = hoveringSchemaId === schema.id;
+          // Grouping schemas expose design-time affordances (the "+" add-option
+          // button) that must be reachable on selection, not only during inline
+          // text editing. Render them in designer mode whenever they are active.
+          const isGroupAffordanceType =
+            schema.type === 'checkbox' ||
+            schema.type === 'radioGroup' ||
+            schema.type === 'checkboxGroup';
           const mode =
-            editing && isActive
+            (editing && isActive) || (isActive && isGroupAffordanceType)
               ? 'designer'
               : 'viewer';
 
@@ -1277,6 +1284,14 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
                 !editing
                   ? (event) => {
                     if (event.button !== 0) return;
+
+                    // In-schema interactive controls (grouping "+" buttons, radio/
+                    // checkbox option toggles) must receive their own clicks instead
+                    // of starting a Moveable drag. Let those events through.
+                    const interactiveControl = (event.target as HTMLElement | null)?.closest?.(
+                      '[data-checkbox-convert-to-group],[data-checkbox-group-add-option],[data-checkbox-group-option],[data-schema-interactive-control]',
+                    );
+                    if (interactiveControl) return;
 
                     if (!isActive) {
                       const nextTargets = event.shiftKey

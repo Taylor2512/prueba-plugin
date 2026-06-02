@@ -1,6 +1,6 @@
 import React from 'react';
-import { Button, Typography } from 'antd';
-import { FileText, FileUp, Plus } from 'lucide-react';
+import { Button, Popconfirm, Typography } from 'antd';
+import { FileText, FileUp, Plus, Trash2 } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../constants.js';
 import { SidebarBody, SidebarFrame, SidebarHeader } from './layout.js';
 import { mergeClassNames } from '../shared/className.js';
@@ -24,6 +24,7 @@ export type DocumentsRailProps = {
   onSelect?: (_id: string) => void;
   onAdd?: () => void;
   onUploadPdf?: () => void;
+  onDelete?: (_id: string) => void;
   title?: React.ReactNode;
   emptyTitle?: React.ReactNode;
   subtitle?: React.ReactNode;
@@ -44,6 +45,7 @@ const DocumentsRail = ({
   onSelect,
   onAdd,
   onUploadPdf,
+  onDelete,
   title = 'Páginas',
   emptyTitle = 'Sin páginas disponibles',
   subtitle,
@@ -57,6 +59,7 @@ const DocumentsRail = ({
   pageLabelPrefix = 'Pág.',
   emptyDescription = 'Carga un PDF para empezar.',
 }: DocumentsRailProps) => {
+  const canDelete = typeof onDelete === 'function';
   const hasItems = items.length > 0;
   const canUpload = typeof onUploadPdf === 'function';
   const canAdd = typeof onAdd === 'function';
@@ -137,53 +140,83 @@ const DocumentsRail = ({
               {items.map((item, index) => {
                 const isSelected = item.selected ?? item.id === selectedId;
                 return (
-                  <button
+                  <div
                     key={item.id}
-                    type="button"
-                    disabled={item.disabled}
-                    onClick={() => onSelect?.(item.id)}
                     className={mergeClassNames(
-                      DESIGNER_CLASSNAME + 'documents-rail-item',
-                      isSelected ? DESIGNER_CLASSNAME + 'documents-rail-item-active' : '',
-                    )}
-                    data-active={isSelected ? 'true' : 'false'}>
-                    <div className={DESIGNER_CLASSNAME + 'documents-rail-leading'}>
-                      {item.previewSrc ? (
-                        <div className={DESIGNER_CLASSNAME + 'documents-rail-preview'}>
-                          <img
-                            src={item.previewSrc}
-                            alt={item.name}
-                            className={DESIGNER_CLASSNAME + 'documents-rail-preview-image'}
-                            loading="lazy"
-                          />
-                        </div>
-                      ) : (
-                        <div className={DESIGNER_CLASSNAME + 'documents-rail-preview'}>
-                          <FileText size={20} />
-                        </div>
+                      DESIGNER_CLASSNAME + 'documents-rail-item-wrapper',
+                      isSelected ? DESIGNER_CLASSNAME + 'documents-rail-item-wrapper-active' : '',
+                    )}>
+                    <button
+                      type="button"
+                      disabled={item.disabled}
+                      onClick={() => onSelect?.(item.id)}
+                      className={mergeClassNames(
+                        DESIGNER_CLASSNAME + 'documents-rail-item',
+                        isSelected ? DESIGNER_CLASSNAME + 'documents-rail-item-active' : '',
                       )}
-                    </div>
-                    <div className={DESIGNER_CLASSNAME + 'documents-rail-meta'}>
-                      <Text strong ellipsis={{ tooltip: item.name }} className={DESIGNER_CLASSNAME + 'text-auto'}>
-                        {item.name}
-                      </Text>
-                      <div className={DESIGNER_CLASSNAME + 'documents-rail-meta-row'}>
-                        <Text type="secondary" ellipsis={{ tooltip: item.pageLabel || `${index + 1}` }} className={DESIGNER_CLASSNAME + 'text-auto'}>
-                          {pageLabelPrefix} {item.pageLabel || `${index + 1}`}
+                      data-active={isSelected ? 'true' : 'false'}>
+                      <div className={DESIGNER_CLASSNAME + 'documents-rail-leading'}>
+                        {item.previewSrc ? (
+                          <div className={DESIGNER_CLASSNAME + 'documents-rail-preview'}>
+                            <img
+                              src={item.previewSrc}
+                              alt={item.name}
+                              className={DESIGNER_CLASSNAME + 'documents-rail-preview-image'}
+                              loading="lazy"
+                            />
+                          </div>
+                        ) : (
+                          <div className={DESIGNER_CLASSNAME + 'documents-rail-preview'}>
+                            <FileText size={20} />
+                          </div>
+                        )}
+                      </div>
+                      <div className={DESIGNER_CLASSNAME + 'documents-rail-meta'}>
+                        <Text strong ellipsis={{ tooltip: item.name }} className={DESIGNER_CLASSNAME + 'text-auto'}>
+                          {item.name}
                         </Text>
-                        {isSelected ? (
-                          <span className={DESIGNER_CLASSNAME + 'documents-rail-active-badge'}>
-                            Activo
-                          </span>
+                        <div className={DESIGNER_CLASSNAME + 'documents-rail-meta-row'}>
+                          <Text type="secondary" ellipsis={{ tooltip: item.pageLabel || `${index + 1}` }} className={DESIGNER_CLASSNAME + 'text-auto'}>
+                            {pageLabelPrefix} {item.pageLabel || `${index + 1}`}
+                          </Text>
+                          {isSelected ? (
+                            <span className={DESIGNER_CLASSNAME + 'documents-rail-active-badge'}>
+                              Activo
+                            </span>
+                          ) : null}
+                        </div>
+                        {item.meta ? (
+                          <Text type="secondary" ellipsis={{ tooltip: item.meta }} className={DESIGNER_CLASSNAME + 'text-auto'}>
+                            {item.meta}
+                          </Text>
                         ) : null}
                       </div>
-                      {item.meta ? (
-                        <Text type="secondary" ellipsis={{ tooltip: item.meta }} className={DESIGNER_CLASSNAME + 'text-auto'}>
-                          {item.meta}
-                        </Text>
-                      ) : null}
-                    </div>
-                  </button>
+                    </button>
+                    {canDelete && items.length > 1 ? (
+                      <Popconfirm
+                        title="¿Eliminar documento?"
+                        description={`Se eliminará "${item.name}" y sus campos del diseño.`}
+                        okText="Eliminar"
+                        cancelText="Cancelar"
+                        okButtonProps={{ danger: true }}
+                        onConfirm={(e) => {
+                          e?.stopPropagation();
+                          onDelete!(item.id);
+                        }}
+                        onCancel={(e) => e?.stopPropagation()}
+                      >
+                        <Button
+                          type="text"
+                          size="small"
+                          danger
+                          icon={<Trash2 size={13} />}
+                          className={DESIGNER_CLASSNAME + 'documents-rail-delete-btn'}
+                          aria-label={`Eliminar ${item.name}`}
+                          onClick={(e) => e.stopPropagation()}
+                        />
+                      </Popconfirm>
+                    ) : null}
+                  </div>
                 );
               })}
             </div>

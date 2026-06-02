@@ -29,8 +29,8 @@ type FamilyPreset = PluginFamilyDefinition & {
   supportsValidation: boolean;
 };
 
-const TEXT_TYPES = new Set(['text', 'multivariabletext', 'select', 'date', 'time', 'datetime', 'signature']);
-const BOOLEAN_TYPES = new Set(['checkbox', 'radiogroup']);
+const TEXT_TYPES = new Set(['text', 'number', 'multivariabletext', 'select', 'date', 'time', 'datetime', 'signature']);
+const BOOLEAN_TYPES = new Set(['checkbox', 'radiogroup', 'checkboxgroup']);
 const MEDIA_TYPES = new Set(['image', 'svg']);
 
 /**
@@ -261,6 +261,7 @@ export const resolveSchemaSemanticFamily = (schemaType: string): SchemaSemanticF
   if (normalizedType === 'date' || normalizedType === 'time' || normalizedType === 'datetime') return 'dateTime';
   if (normalizedType === 'checkbox') return 'boolean';
   if (normalizedType === 'radiogroup') return 'choice';
+  if (normalizedType === 'checkboxgroup') return 'choice';
   if (MEDIA_TYPES.has(normalizedType)) return 'media';
   if (SHAPE_BARCODE_TYPES.has(normalizedType)) {
     return normalizedType.startsWith('qrcode') || normalizedType === 'japanpost' || normalizedType === 'ean13' || normalizedType === 'ean8' || normalizedType === 'code39' || normalizedType === 'code128' || normalizedType === 'nw7' || normalizedType === 'itf14' || normalizedType === 'upca' || normalizedType === 'upce' || normalizedType === 'gs1datamatrix' || normalizedType === 'pdf417' ? 'barcode' : 'shape';

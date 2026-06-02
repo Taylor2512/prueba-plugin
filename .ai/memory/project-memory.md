@@ -18,3 +18,7 @@
 - Código analizado: `510` archivos.
 - Markdown previo: `323` archivos.
 - CSS: `6` archivos.
+
+## 2026-06-01 — Actualización v4 standard fields y grupos
+
+Se actualiza la arquitectura MD para evitar prompts gigantes y reutilizar la estructura existente. La prioridad nueva es cerrar contratos de `text`, `number`, `checkbox`, `checkboxGroup`, `radioGroup` y `select/dropdown` con casos de uso completos: Designer, DetailView, ListView, Snapshot, Form, Viewer, Generator/PDF, no-overlap y tests. El botón `+` queda formalizado por contexto. No se debe reescribir coordinateService/collision sin evidencia reproducible.

@@ -9,8 +9,10 @@ Gemini se usa para auditoría, contraste y documentación.
 - Analizar resultados de tests.
 - Proponer matrices de regresión.
 - Detectar duplicidad arquitectónica.
+- Revisar si todos los casos de uso de standard fields están cubiertos.
 
 ## No usar para
 
 - Cambios directos grandes sin plan.
 - Sustituir build/lint/test.
+- Reescribir runtime sin evidencia.

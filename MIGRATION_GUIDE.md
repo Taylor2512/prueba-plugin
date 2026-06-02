@@ -1,21 +1,20 @@
-# MIGRATION_GUIDE.md — Guía de migración
+# Migration Guide — v3 a v4
 
-## Objetivo
+## Qué cambia
 
-Migrar desde una arquitectura Markdown parcial o dispersa hacia una arquitectura agentic centralizada.
+- Se mantiene la estructura v3.
+- Se agregan documentos para standard fields, grupos y casos de uso.
+- Se actualizan adaptadores de proveedores para usar prompts cortos.
+- Se formaliza el contrato del botón `+`.
 
 ## Pasos
 
-1. Respaldar `AGENTS.md`, `.ai`, `docs`, `.github`, `.claude`, `.codex`, `.gemini`.
-2. Copiar este paquete sobre la raíz.
-3. Revisar `MANIFEST.md`.
-4. Mantener `.ai` como fuente de verdad.
-5. Mover docs obsoletos a `docs/99-archivo`.
-6. Mantener stubs en providers; no duplicar reglas largas.
-7. Ajustar prompts con rutas reales si el proyecto cambia de carpeta.
+1. Respaldar `.ai`, `docs`, `tests`, `handoff` actuales.
+2. Descomprimir v4 sobre la raíz.
+3. Revisar conflictos en docs modificados localmente.
+4. Ejecutar build/lint.
+5. Ejecutar tests focalizados si hay cambios de código.
 
-## No hacer
+## Compatibilidad
 
-- No mover documentación viva a `src`.
-- No crear prompts gigantes con snapshots completos.
-- No mantener dos reglas activas para el mismo flujo.
+v4 no exige cambios de código por sí misma. Es una actualización de documentación, prompts y matrices.

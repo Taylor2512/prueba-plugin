@@ -17,6 +17,12 @@ Perceive -> Retrieve -> Plan -> Act -> Observe -> Guardrail -> Memory
 
 | Tarea | Contexto | Regla | Prompt |
 |---|---|---|---|
+| `standard-fields-groups` | `standard-fields-groups-context.md` | `standard-fields-group-contract-rules.md` | `harden-standard-fields-groups.prompt.md` |
+| `checkboxgroup-flow` | `checkboxgroup-context.md` | `standard-fields-group-contract-rules.md` | `repair-checkboxgroup-flow.prompt.md` |
+| `radiogroup-flow` | `radiogroup-context.md` | `standard-fields-group-contract-rules.md` | `repair-radiogroup-flow.prompt.md` |
+| `dropdown-select` | `dropdown-select-context.md` | `standard-fields-group-contract-rules.md` | `validate-standard-field-parity.prompt.md` |
+| `no-overlap` | `no-overlap-contract-context.md` | `no-overlap-rules.md` | `validate-group-no-overlap.prompt.md` |
+| `form-viewer-generator` | `form-viewer-generator-parity-context.md` | `form-viewer-generator-rules.md` | `validate-form-viewer-generator-parity.prompt.md` |
 | `recipient-color` | `recipient-color-context.md` | `schema-ownership-rules.md` | `repair-recipient-color-sync.prompt.md` |
 | `schema-icon-sync` | `schema-icon-sync-context.md` | `schema-icon-color-rules.md` | `repair-schema-icon-color-sync.prompt.md` |
 | `transform-controls` | `transform-controls-context.md` | `transform-interaction-rules.md` | `repair-transform-collisions.prompt.md` |

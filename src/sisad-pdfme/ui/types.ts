@@ -58,6 +58,7 @@ export type DesignerDocumentsBridge = {
   onSelect: (id: string) => void;
   onAdd?: () => void;
   onUploadPdf?: () => void;
+  onDelete?: (id: string) => void;
   title?: string;
   emptyTitle?: string;
 };

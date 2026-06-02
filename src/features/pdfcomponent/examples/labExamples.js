@@ -135,10 +135,18 @@ const SCHEMA_EXAMPLE_OVERRIDES = {
   },
   radioGroup: {
     name: 'notify_customer',
+    groupId: 'delivery-notifications',
     group: 'delivery-notifications',
-    content: 'true',
-    width: 8,
-    height: 8,
+    groupName: 'Notificaciones de entrega',
+    content: 'option_1',
+    selectedOptionId: 'option_1',
+    defaultSelectedOptionId: 'option_1',
+    options: [
+      { optionId: 'option_1', label: 'Sí' },
+      { optionId: 'option_2', label: 'No' },
+    ],
+    width: 82,
+    height: 18,
   },
   signature: {
     name: 'review_signature',

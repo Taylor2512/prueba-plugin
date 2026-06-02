@@ -2,6 +2,13 @@
 
 | Dominio | Contexto | Regla | Prompt |
 |---|---|---|---|
+| Schemas estándar y grupos | `.ai/context/standard-fields-groups-context.md` | `.ai/rules/standard-fields-group-contract-rules.md` | `.ai/prompts/harden-standard-fields-groups.prompt.md` |
+| CheckboxGroup | `.ai/context/checkboxgroup-context.md` | `.ai/rules/standard-fields-group-contract-rules.md` | `.ai/prompts/repair-checkboxgroup-flow.prompt.md` |
+| RadioGroup/Opción | `.ai/context/radiogroup-context.md` | `.ai/rules/standard-fields-group-contract-rules.md` | `.ai/prompts/repair-radiogroup-flow.prompt.md` |
+| Dropdown/select | `.ai/context/dropdown-select-context.md` | `.ai/rules/standard-fields-group-contract-rules.md` | `.ai/prompts/validate-standard-field-parity.prompt.md` |
+| No-overlap por owner | `.ai/context/no-overlap-contract-context.md` | `.ai/rules/no-overlap-rules.md` | `.ai/prompts/validate-group-no-overlap.prompt.md` |
+| Form/Viewer/Generator parity | `.ai/context/form-viewer-generator-parity-context.md` | `.ai/rules/form-viewer-generator-rules.md` | `.ai/prompts/validate-form-viewer-generator-parity.prompt.md` |
+| Casos de uso y regresión | `.ai/context/use-cases-regression-context.md` | `.ai/rules/testing-quality-rules.md` | `.ai/prompts/audit-sisad-pdfme-use-cases.prompt.md` |
 | Colores y ownership por destinatario | `.ai/context/recipient-color-context.md` | `.ai/rules/schema-ownership-rules.md` | `.ai/prompts/repair-recipient-color-sync.prompt.md` |
 | Iconos del catálogo y color activo | `.ai/context/schema-icon-sync-context.md` | `.ai/rules/schema-icon-color-rules.md` | `.ai/prompts/repair-schema-icon-color-sync.prompt.md` |
 | Resize, rotate, drag y selección | `.ai/context/transform-controls-context.md` | `.ai/rules/transform-interaction-rules.md` | `.ai/prompts/repair-transform-collisions.prompt.md` |

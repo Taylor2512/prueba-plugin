@@ -30,3 +30,11 @@
 | Debugging Agent | `.ai/agents/debugging-agent.md` | Analiza incidentes y trazas. |
 | Testing Regression Agent | `.ai/agents/testing-regression-agent.md` | Diseña matriz de pruebas. |
 | Release Agent | `.ai/agents/release-agent.md` | Prepara checklist release. |
+
+## Agentes v4 agregados
+
+| Agente | Archivo | Responsabilidad |
+|---|---|---|
+| Standard Fields Agent | `.ai/agents/standard-fields-agent.md` | Controla Text, Number, Checkbox, CheckboxGroup, RadioGroup y Select. |
+| Schema Groups Agent | `.ai/agents/schema-groups-agent.md` | Controla groupId, optionId, botón +, no-overlap y lockedAsGroup. |
+| Form Viewer Generator Agent | `.ai/agents/form-viewer-generator-agent.md` | Controla parity entre Designer, Form, Viewer y PDF. |

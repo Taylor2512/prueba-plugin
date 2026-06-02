@@ -1,17 +1,18 @@
-# SISAD PDFME — Arquitectura Markdown Agentic v3
+# SISAD PDFME — Arquitectura Markdown Agentic v4
 
-Generado: `2026-06-01T18:47:53Z`
+Actualizado: `2026-06-01`
 
-Este paquete reemplaza y ordena la arquitectura Markdown del workspace `sisad-pdfme`, tomando como referencia la arquitectura amplia de Inverneg pero ajustándola al contexto actual del proyecto: editor PDF, canvas, schemas, destinatarios, colores, transformaciones, snapshots, externalForms, generator/converter, UI/UX y pruebas.
+Este paquete actualiza la arquitectura Markdown existente de `sisad-pdfme` sin reemplazarla por un prompt gigante. El objetivo es que Claude, Codex, Copilot, Gemini u otro proveedor puedan cargar contexto por dominio y ejecutar cambios seguros en el editor PDF.
 
-## Diagnóstico base
+## Investigación previa usada
 
-El análisis cruzó:
+La actualización se basó en:
 
-- `510` archivos de código JS/TS/JSX/TSX.
-- `323` archivos Markdown existentes.
-- `6` archivos CSS consolidados.
-- Referencia de arquitectura Inverneg/SISAD para adoptar `.ai`, `docs`, `handoff`, `tests`, providers, agentes, subagentes, skills, prompts, reglas y economía de tokens.
+- Código consolidado actual: `456` archivos JS/TS/JSX/TSX.
+- Documentación consolidada actual: `361` archivos Markdown.
+- Estilos consolidados actuales: `6` archivos CSS.
+- Comportamientos observados en capturas/grabación: toolbar compacta, paneles flotantes, `checkboxGroup`, `radioGroup`, `dropdown`, no-overlap, DetailView y ListView.
+- Arquitectura existente `.ai`, `docs`, `tests`, providers, agentes, skills, prompts y handoff.
 
 ## Principio rector
 
@@ -19,44 +20,29 @@ El análisis cruzó:
 ContentCustomForm = host de negocio
 sisad-pdfme = runtime visual y funcional del PDF
 externalForms = runner del snapshot usando Form/Viewer
-.ai = memoria y ejecución para asistentes IA
+.ai = memoria, reglas y prompts para asistentes IA
 docs = documentación humana y técnica
-tests = matrices documentales y planes de validación
+tests = matrices de regresión y casos de uso
 ```
+
+## Novedades v4
+
+- Se agregan contextos y prompts cortos para `standard-fields`, `checkboxGroup`, `radioGroup`, `dropdown/select` y `group no-overlap`.
+- Se agrega matriz completa de casos de uso para schemas estándar y grupos tipo DocuSign/Wix, sin copiar marca ni CSS propietario.
+- Se refuerza que el botón `+` tenga contrato explícito: `checkbox -> checkboxGroup`, `checkboxGroup -> add option`, `radioGroup -> add option`.
+- Se separa diseño de Designer, ejecución en Form/Viewer y salida en Generator/PDF.
+- Se actualizan adaptadores multi proveedor con arranque compacto.
+- Se agregan documentos de investigación previa para evitar que un asistente reescriba coordenadas/collision por intuición.
 
 ## Uso recomendado
 
 1. Copiar este paquete en la raíz del proyecto.
 2. Leer `AGENTS.md`.
-3. Ejecutar el flujo de inicio según el proveedor:
-   - Claude: `CLAUDE.md`
-   - Codex: `CODEX.md`
-   - Copilot: `.github/copilot-instructions.md`
-   - Gemini: `GEMINI.md`
-4. No cargar todo el snapshot: usar `.ai/INDEX.md` y `.ai/context-map.md`.
-5. Validar cambios con build, lint, Vitest dirigido y Playwright cuando toque canvas/visual.
+3. Según proveedor, leer `CLAUDE.md`, `CODEX.md`, `COPILOT.md`, `GEMINI.md` o `.ai/providers/*`.
+4. Cargar solo el contexto necesario desde `.ai/context-map.md`.
+5. Usar un prompt corto desde `.ai/prompts/`.
+6. Validar con build/lint y tests focalizados.
 
-## Capas
+## Prompt de arranque rápido
 
-```txt
-AGENTS.md / CLAUDE.md / CODEX.md / COPILOT.md / GEMINI.md
-  -> adaptadores pequeños por proveedor
-
-.ai/
-  -> router, memoria, contexto, reglas, agentes, prompts, skills y checklists
-
-docs/
-  -> documentación humana y técnica
-
-handoff/
-  -> continuidad de sesión, plan y tickets
-
-tests/
-  -> matrices de regresión y gaps
-
-reports/
-  -> análisis actual, inventarios y riesgos
-
-metadata/
-  -> inventarios JSON para futuras herramientas
-```
+Ver `START_PROMPT.md`.

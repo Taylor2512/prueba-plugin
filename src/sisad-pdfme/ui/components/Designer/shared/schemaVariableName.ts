@@ -1,5 +1,6 @@
 const KNOWN_PREFIXES: Record<string, string> = {
   text: 'texto',
+  number: 'numero',
   image: 'imagen',
   signature: 'firma',
   radioGroup: 'radio',

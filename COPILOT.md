@@ -18,3 +18,8 @@ Copilot debe actuar con instrucciones pequeñas y reutilizables.
 - Tests cercanos al cambio.
 - Refactor local.
 - Normalización de nombres y contratos.
+- Data attributes estables para Playwright.
+
+## Para schemas estándar
+
+Cargar `.ai/context/standard-fields-groups-context.md` y usar `.github/prompts/harden-standard-fields-groups.prompt.md`.

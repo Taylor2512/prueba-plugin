@@ -462,7 +462,28 @@ const handleTypeChange = (
   pluginsRegistry: PluginRegistry,
 ) => {
   if (key !== 'type') return;
-  const keysToKeep = ['id', 'name', 'type', 'position', 'required'];
+  // Keep field identity, layout, ownership and designer metadata across a type
+  // change. Without this, converting a schema (e.g. checkbox → checkboxGroup)
+  // would regenerate schemaUid and drop recipient/owner assignment.
+  const keysToKeep = [
+    'id',
+    'name',
+    'type',
+    'position',
+    'width',
+    'height',
+    'required',
+    'readOnly',
+    'schemaUid',
+    'ownerRecipientId',
+    'ownerRecipientIds',
+    'ownerColor',
+    'ownerMode',
+    'fileId',
+    'fileTemplateId',
+    'pageNumber',
+    '__designer',
+  ];
   Object.keys(schema).forEach((key) => {
     if (!keysToKeep.includes(key)) {
       delete schema[key as keyof typeof schema];

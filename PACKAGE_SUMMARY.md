@@ -1,11 +1,14 @@
-# Resumen del paquete
+# Package Summary — SISAD PDFME MD Architecture v4
 
-- **generated_at**: `2026-06-01T18:47:53Z`
-- **markdown_files**: `359`
-- **json_files**: `4`
-- **root**: `13`
-- **ai**: `230`
-- **docs**: `51`
-- **tests**: `6`
-- **handoff**: `5`
-- **providers**: `47`
+## Contenido
+
+- Arquitectura base v3 preservada.
+- Contextos nuevos para standard fields y grupos.
+- Reglas nuevas para botón +, no-overlap y parity Form/Viewer/Generator.
+- Prompts cortos para Claude/Codex/Copilot/Gemini.
+- Sección documental `docs/11-standard-schemas`.
+- Matrices de casos de uso y regresión.
+
+## Objetivo
+
+Permitir que asistentes de IA trabajen con contexto mínimo y no dependan de prompts enormes.

@@ -246,6 +246,7 @@ const Sidebar = (props: RightSidebarProps) => {
       onSelect={pagesBridge?.onSelect}
       onAdd={pagesBridge?.onAdd}
       onUploadPdf={pagesBridge?.onUploadPdf}
+      onDelete={pagesBridge?.onDelete}
       title={pagesBridge?.title}
       emptyTitle={pagesBridge?.emptyTitle}
       style={documentsRailStyle}
@@ -305,6 +306,7 @@ const Sidebar = (props: RightSidebarProps) => {
         onSelect={docsBridge?.onSelect ?? pagesBridge?.onSelect}
         onAdd={docsBridge?.onAdd ?? pagesBridge?.onAdd}
         onUploadPdf={docsBridge?.onUploadPdf ?? pagesBridge?.onUploadPdf}
+        onDelete={docsBridge?.onDelete ?? pagesBridge?.onDelete}
         title={docsBridge?.title ?? pagesBridge?.title}
         emptyTitle={docsBridge?.emptyTitle ?? pagesBridge?.emptyTitle}
         style={documentsRailStyle}

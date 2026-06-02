@@ -32,6 +32,7 @@ import { getCatalogLabel } from './shared/designerLabels.js';
 
 const schemaTypeCategoryMap: Record<string, string> = {
   text: 'Texto',
+  number: 'Texto',
   multivariabletext: 'Texto',
   image: 'Imagen y medios',
   svg: 'Imagen y medios',
@@ -41,6 +42,7 @@ const schemaTypeCategoryMap: Record<string, string> = {
   rectangle: 'Estructura',
   ellipse: 'Estructura',
   checkbox: 'Selecciones',
+  checkboxgroup: 'Selecciones',
   radiogroup: 'Selecciones',
   select: 'Selecciones',
   date: 'Fecha y Hora',
