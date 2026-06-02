@@ -312,6 +312,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
       }),
     [paperRefs, scale],
   );
+  const activePaper = paperRefs.current[pageCursor] || null;
   const setContextMenu = useCallback((next: CanvasContextMenuState | null) => {
     setContextMenuState((prev) => ({ ...prev, contextMenu: next }));
   }, []);
@@ -467,6 +468,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
   };
 
   const onDragEnds = ({ targets }: { targets: (HTMLElement | SVGElement)[] }) => {
+    setIsDragging(false);
     const arg = targets.map(({ style: { top, left }, id }) => buildPositionChanges(id, top, left));
     changeSchemas(flatten(arg));
     setSnapLines([]);
@@ -484,6 +486,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
   };
 
   const onRotateEnds = ({ targets }: { targets: (HTMLElement | SVGElement)[] }) => {
+    setIsRotating(false);
     const arg = targets.map(({ style: { transform }, id }) => {
       const normalizedRotate = parseRotateFromTransform(transform);
       return [{ key: 'rotate', value: normalizedRotate, schemaId: id }];
@@ -508,6 +511,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
   };
 
   const onResizeEnds = ({ targets }: { targets: (HTMLElement | SVGElement)[] }) => {
+    setIsResizing(false);
     const arg = targets.map(({ style: { width, height, top, left }, id }) =>
       buildSizeAndPositionChanges(id, width, height, top, left),
     );
@@ -1041,15 +1045,15 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
       ref={rootRef}>
       {!editing && feature.selecto && !externalSchemaDragActive && canvasInteractive ? (
         <SelectoSlot
-          container={paperRefs.current[pageCursor]}
+          container={rootRef.current}
           rootContainer={rootRef.current}
-          dragContainer={rootRef.current || paperRefs.current[pageCursor]}
-          boundContainer={paperRefs.current[pageCursor]}
+          dragContainer={rootRef.current}
+          boundContainer={activePaper || rootRef.current}
           checkInput
           continueSelect={modifierKeys.shift}
           className={classNames?.selecto}
           useDefaultStyles={useDefaultStyles}
-          getElementRect={(element) => coordinateService.elementRectToCanvasRect(element)}
+          getElementRect={(element) => coordinateService.elementRectToViewportRect(element)}
           selectionStyle={styleOverrides?.selectoSelection}
           dragCondition={(dragStart) => {
             const inputEvent = dragStart.inputEvent as MouseEvent | TouchEvent;

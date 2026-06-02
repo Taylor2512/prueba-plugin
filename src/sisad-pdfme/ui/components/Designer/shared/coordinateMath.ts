@@ -6,6 +6,12 @@ export type Size = { width: number; height: number };
 export type PagePoint = Point;
 export type PdfPoint = Point;
 export type DOMRectLike = Pick<Rect, 'left' | 'top' | 'right' | 'bottom' | 'width' | 'height'>;
+export type PointArea = {
+  pos1: number[];
+  pos2: number[];
+  pos3: number[];
+  pos4: number[];
+};
 
 export type SelectionRegionPageHit = {
   pageIndex: number;
@@ -52,6 +58,13 @@ const normalizeRect = (rect: Rect): Rect => {
     height: bottom - top,
   };
 };
+
+export const rectToPointArea = (rect: DOMRectLike): PointArea => ({
+  pos1: [rect.left, rect.top],
+  pos2: [rect.right, rect.top],
+  pos3: [rect.left, rect.bottom],
+  pos4: [rect.right, rect.bottom],
+});
 
 export const getPageRectInViewport = (pageEl: HTMLElement): Rect => {
   const rect = pageEl.getBoundingClientRect();

@@ -6,6 +6,7 @@ import SelectoComponent, {
 import type { OnDragStart as GestoOnDragStart } from 'gesto';
 import { SELECTABLE_CLASSNAME } from '../../../constants.js';
 import { theme } from 'antd';
+import { rectToPointArea } from '../shared/coordinateMath.js';
 import { resolveFirstClassSelector } from '../shared/className.js';
 import { installPassiveTouchListenerGuard } from '../shared/passiveTouchListeners.js';
 
@@ -39,13 +40,6 @@ type Props = {
 };
 
 const defaultClassName = 'sisad-pdfme-selecto';
-
-const rectToPointArea = (rect: DOMRect | ClientRect): SelectoPointArea => ({
-  pos1: [rect.left, rect.top],
-  pos2: [rect.right, rect.top],
-  pos3: [rect.left, rect.bottom],
-  pos4: [rect.right, rect.bottom],
-});
 
 const normalizeDragContainer = (
   container: Props['dragContainer'],

@@ -3,8 +3,10 @@ import {
   clientPointToPagePoint,
   getPageRectInViewport,
   normalizeRect,
+  rectToPointArea,
   pagePointToSchemaPoint as toSchemaPoint,
   type Point,
+  type PointArea,
   type Rect,
   type Size,
 } from './coordinateMath.js';
@@ -114,6 +116,10 @@ export class DesignerCoordinateService {
       pos3: [left, bottom],
       pos4: [right, bottom],
     };
+  }
+
+  elementRectToViewportRect(element: HTMLElement): PointArea {
+    return rectToPointArea(getPageRectInViewport(element));
   }
 
   viewportToCanvasPoint(point: Point): Point {
