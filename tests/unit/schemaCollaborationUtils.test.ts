@@ -4,7 +4,7 @@ import {
   normalizeRecipientIds,
   resolveOwnerMode,
   buildStateTag,
-} from '../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.js';
+} from '@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.js';
 
 describe('schemaCollaborationUtils', () => {
   test('normalizes and joins recipient ids', () => {

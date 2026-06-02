@@ -1,12 +1,12 @@
 import { describe, expect, test } from 'vitest';
-import type { SchemaForUI } from '../../src/sisad-pdfme/common/index.js';
+import type { SchemaForUI } from '@/sisad-pdfme/common/index.js';
 import {
   getAction,
   getActionsForContext,
   registerAction,
   unregisterAction,
   type ActionContext,
-} from '../../src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.js';
+} from '@/sisad-pdfme/ui/components/Designer/shared/actionRegistry.js';
 
 const baseContext: ActionContext = {
   activeSchemas: [{ id: 'a1', type: 'text', name: 'Campo', content: 'Hola' } as unknown as SchemaForUI],

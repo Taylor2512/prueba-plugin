@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { DesignerCoordinateService } from '../../src/sisad-pdfme/ui/components/Designer/shared/designerCoordinateService.js';
+import { DesignerCoordinateService } from '@/sisad-pdfme/ui/components/Designer/shared/designerCoordinateService.js';
 
 describe('DesignerCoordinateService', () => {
   test('clampRectToPage keeps rect inside page bounds', () => {

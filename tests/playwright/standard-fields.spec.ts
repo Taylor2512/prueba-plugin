@@ -31,8 +31,48 @@ test.describe('standard fields catalog', () => {
     await ensureCategoryOpen(page, 'Texto');
     await ensureCategoryOpen(page, 'Selecciones');
 
+    const selectionsGroup = page
+      .locator('section')
+      .filter({ has: page.getByRole('button', { name: /^Alternar categoría Selecciones$/i }) })
+      .first();
+
     await expect(page.locator('[data-schema-type="number"]').first()).toBeVisible();
     await expect(page.locator('[data-schema-type="select"]').first()).toBeVisible();
+    await expect(selectionsGroup.locator('button[data-schema-category="Selecciones"][data-schema-type]').first()).toBeVisible();
+
+    const selectionButtons = selectionsGroup.locator('button[data-schema-category="Selecciones"][data-schema-type]');
+    await expect(selectionButtons).toHaveCount(4);
+    await expect(
+      selectionsGroup.locator('button[data-schema-category="Selecciones"][data-schema-type="checkbox"]').first(),
+    ).toHaveAttribute('data-schema-label', 'Casilla');
+    await expect(
+      selectionsGroup.locator('button[data-schema-category="Selecciones"][data-schema-type="checkboxGroup"]').first(),
+    ).toHaveAttribute(
+      'data-schema-label',
+      'Grupo de Casillas',
+    );
+    await expect(
+      selectionsGroup.locator('button[data-schema-category="Selecciones"][data-schema-type="radioGroup"]').first(),
+    ).toHaveAttribute(
+      'data-schema-label',
+      'Opción',
+    );
+    await expect(
+      selectionsGroup.locator('button[data-schema-category="Selecciones"][data-schema-type="select"]').first(),
+    ).toHaveAttribute(
+      'data-schema-label',
+      'Lista Desplegable',
+    );
+
+    const uniqueTypeCount = await page.locator('button[data-schema-type][data-schema-kind="builtin"]').evaluateAll((nodes) => {
+      const uniqueTypes = new Set<string>();
+      nodes.forEach((node) => {
+        const type = node.getAttribute('data-schema-type');
+        if (type) uniqueTypes.add(type);
+      });
+      return uniqueTypes.size;
+    });
+    expect(uniqueTypeCount).toBe(28);
 
     await page.locator('[data-schema-type="number"]').first().dblclick();
     await expect.poll(async () => page.locator('.sisad-pdfme-ui-custom-selectable[data-schema-type="number"]').count()).toBeGreaterThanOrEqual(1);

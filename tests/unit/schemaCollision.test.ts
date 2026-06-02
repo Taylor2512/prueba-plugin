@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { filterSchemasByCollisionScope } from '../../src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.js';
+import { filterSchemasByCollisionScope } from '@/sisad-pdfme/ui/components/Designer/shared/schemaCollision.js';
 
 describe('schemaCollision scope filter', () => {
   test('returns only schemas that share owner and page/file scope', () => {

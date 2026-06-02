@@ -3,8 +3,8 @@ import {
   getSchemaDesignerConfig,
   mergeSchemaDesignerConfig,
   setSchemaDesignerConfig,
-} from '../../src/sisad-pdfme/ui/designerEngine.js';
-import type { SchemaForUI } from '../../src/sisad-pdfme/common/index.js';
+} from '@/sisad-pdfme/ui/designerEngine.js';
+import type { SchemaForUI } from '@/sisad-pdfme/common/index.js';
 
 const makeSchema = (): SchemaForUI =>
   ({

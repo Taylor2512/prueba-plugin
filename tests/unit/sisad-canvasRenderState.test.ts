@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { getCanvasStateConfig, isCanvasInteractive } from '../../src/sisad-pdfme/canvas/canvasRenderState.js';
+import { getCanvasStateConfig, isCanvasInteractive } from '@/sisad-pdfme/canvas/canvasRenderState.js';
 
 describe('canvasRenderState contract', () => {
   test('dragging/resizing/rotating are not blocking states; loading is blocking', () => {

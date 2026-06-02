@@ -2,7 +2,7 @@ import React from 'react';
 import { describe, expect, test, vi } from 'vitest';
 import { fireEvent, render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import { ColorPickerWidget } from '../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.js';
+import { ColorPickerWidget } from '@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.js';
 
 describe('detailWidgets ColorPickerWidget', () => {
   test('renders current value and updates from hex input', async () => {

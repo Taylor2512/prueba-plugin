@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { canStartInteraction } from '../../src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.js';
+import { canStartInteraction } from '@/sisad-pdfme/ui/components/Designer/shared/interactionGuards.js';
 
 const baseState = {
   mode: 'idle' as const,

@@ -2,8 +2,8 @@ import React from 'react';
 import { describe, expect, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import AlignWidget from '../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.js';
-import type { SelectionCommandSet } from '../../src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.js';
+import AlignWidget from '@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.js';
+import type { SelectionCommandSet } from '@/sisad-pdfme/ui/components/Designer/shared/selectionCommands.js';
 
 const buildElements = (count: number) =>
   Array.from({ length: count }, (_, idx) => {

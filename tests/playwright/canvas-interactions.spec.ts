@@ -1,6 +1,36 @@
 import { test, expect } from '@playwright/test';
 
 test.describe('canvas visual toggles', () => {
+  test('shift-click keeps an existing canvas selection and exposes the multi-select toolbar', async ({ page }) => {
+    await page.goto('/lab/multi-document-routing');
+
+    const first = page.locator('[data-schema-name="contract_name"]').first();
+    const second = page.locator('[data-schema-name="routing-primary-showcase_signature"]').first();
+
+    await expect(first).toBeVisible();
+    await expect(second).toBeVisible();
+
+    const firstBox = await first.boundingBox();
+    const secondBox = await second.boundingBox();
+    expect(firstBox).not.toBeNull();
+    expect(secondBox).not.toBeNull();
+
+    await page.mouse.click((firstBox?.x || 0) + 8, (firstBox?.y || 0) + 8);
+    await expect(page.locator('.sisad-pdfme-designer-canvas')).toHaveAttribute('data-interaction-count', '1');
+
+    await page.keyboard.down('Shift');
+    await page.mouse.click((secondBox?.x || 0) + 8, (secondBox?.y || 0) + 8);
+    await page.keyboard.up('Shift');
+
+    const canvas = page.locator('.sisad-pdfme-designer-canvas');
+    const toolbar = page.locator('.sisad-pdfme-ui-selection-context-toolbar');
+
+    await expect(canvas).toHaveAttribute('data-interaction-count', '2');
+    await expect(toolbar).toBeVisible();
+    await expect(toolbar).toHaveAttribute('data-selection-count', '2');
+    await expect(toolbar).toHaveAttribute('data-selection-kind', 'mixed');
+  });
+
   test('guides and padding toggles remain synchronized with canvas data attributes', async ({ page }) => {
     await page.goto('/lab/multi-document-routing');
 

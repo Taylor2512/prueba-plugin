@@ -86,6 +86,110 @@ const transientKeys: string[] = [
 
 const asSchemaRecord = (schema: SchemaForUI) => schema as SchemaForUI & Record<string, unknown>;
 
+const normalizeText = (value: unknown) => String(value || '').trim();
+
+const resolveSchemaGroupId = (schema: SchemaForUI): string | null => {
+  const record = schema as SchemaForUI & {
+    groupId?: string;
+    group?: string;
+    __designer?: { group?: { groupId?: string } };
+  };
+  const groupId =
+    normalizeText(record.__designer?.group?.groupId) ||
+    normalizeText(record.groupId) ||
+    normalizeText(record.group);
+  return groupId || null;
+};
+
+const remapGroupedSchemaIdentity = (
+  schema: SchemaForUI,
+  sourceSchema: SchemaForUI,
+  groupIdMap: Map<string, string>,
+) => {
+  const sourceGroupId = resolveSchemaGroupId(sourceSchema);
+  if (!sourceGroupId) return;
+
+  const nextGroupId = groupIdMap.get(sourceGroupId) || uuid();
+  if (!groupIdMap.has(sourceGroupId)) {
+    groupIdMap.set(sourceGroupId, nextGroupId);
+  }
+
+  const record = schema as SchemaForUI & {
+    type?: string;
+    groupId?: string;
+    group?: string;
+    options?: Array<string | { optionId?: string; label?: string }>;
+    selectedOptionId?: string;
+    defaultSelectedOptionId?: string;
+    selectedOptionIds?: string[];
+    content?: string;
+    __designer?: { group?: { groupId?: string; [key: string]: unknown }; [key: string]: unknown };
+  };
+
+  if (record.groupId !== undefined) record.groupId = nextGroupId;
+  if (record.group !== undefined) record.group = nextGroupId;
+  if (record.__designer?.group) {
+    record.__designer = {
+      ...record.__designer,
+      group: {
+        ...(record.__designer.group || {}),
+        groupId: nextGroupId,
+      },
+    };
+  }
+
+  const schemaType = normalizeText(record.type).toLowerCase();
+  if (schemaType !== 'radiogroup' && schemaType !== 'checkboxgroup') return;
+
+  const rawOptions = Array.isArray(record.options) ? record.options : [];
+  const optionIdMap = new Map<string, string>();
+  const normalizedOptions = rawOptions.map((entry, index) => {
+    const previousId =
+      typeof entry === 'string'
+        ? normalizeText(entry) || `option_${index + 1}`
+        : normalizeText(entry.optionId) || `option_${index + 1}`;
+    const label =
+      typeof entry === 'string'
+        ? normalizeText(entry) || `Opción ${index + 1}`
+        : normalizeText(entry.label) || previousId;
+    const nextId = `option_${index + 1}_${uuid().slice(0, 6)}`;
+    optionIdMap.set(previousId, nextId);
+    return { optionId: nextId, label };
+  });
+
+  const mapSingleId = (value: unknown) => {
+    const normalized = normalizeText(value);
+    return optionIdMap.get(normalized) || normalized;
+  };
+
+  const mapManyIds = (values: unknown) => {
+    if (Array.isArray(values)) {
+      return values
+        .map((value) => mapSingleId(value))
+        .filter((value) => Boolean(normalizeText(value)));
+    }
+    const content = normalizeText(values);
+    if (!content) return [];
+    return content
+      .split(',')
+      .map((value) => mapSingleId(value))
+      .filter((value) => Boolean(normalizeText(value)));
+  };
+
+  record.options = normalizedOptions;
+  if (schemaType === 'radiogroup') {
+    const nextSelectedId = mapSingleId(record.selectedOptionId || record.content || record.defaultSelectedOptionId);
+    record.selectedOptionId = nextSelectedId;
+    record.defaultSelectedOptionId = nextSelectedId;
+    record.content = nextSelectedId;
+    return;
+  }
+
+  const selectedOptionIds = mapManyIds(record.selectedOptionIds || record.content);
+  record.selectedOptionIds = selectedOptionIds;
+  record.content = selectedOptionIds.join(',');
+};
+
 export const sanitizeCopiedSchema = (schema: SchemaForUI): SchemaForUI => {
   const next = cloneDeep(schema) as SchemaForUI & Record<string, unknown>;
   for (const key of transientKeys) {
@@ -286,11 +390,13 @@ export const pasteSchemasFromClipboard = (
   const items = Array.isArray(clipboard) ? clipboard : clipboard.items;
   const existingSchemas = context.existingSchemas || [];
   const stackUniqueSchemaNames: string[] = [];
+  const groupIdMap = new Map<string, string>();
   const pasted: SchemaForUI[] = [];
 
   for (const [index, schema] of items.entries()) {
     const nextExistingSchemas = existingSchemas.concat(pasted);
     const next = buildPastedSchema(schema, { ...context, existingSchemas: nextExistingSchemas }, index, stackUniqueSchemaNames, policy);
+    remapGroupedSchemaIdentity(next, schema, groupIdMap);
     pasted.push(next);
   }
 

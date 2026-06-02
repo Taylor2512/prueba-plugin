@@ -114,8 +114,8 @@ const resolveCatalogCategory = (schemaType: string, schemaCategory?: string, cus
   if (custom) return custom;
   const typeMapped = schemaTypeCategoryMap[String(schemaType || '').toLowerCase()] || 'General';
   const declared = normalizeCatalogCategory(String(schemaCategory || ''));
-  if (!declared) return typeMapped;
-  if (declared === 'General' && typeMapped !== 'General') return typeMapped;
+  if (typeMapped !== 'General') return typeMapped;
+  if (!declared) return 'General';
   return declared;
 };
 const PREFILL_SCHEMA_TYPES = new Set([
@@ -790,7 +790,7 @@ const LeftSidebar = ({
       });
 
     const sortItems = (items: CatalogSchemaItem[]) =>
-      items.toSorted((a, b) => {
+      items.slice().sort((a, b) => {
         if ((b.score || 0) !== (a.score || 0)) return (b.score || 0) - (a.score || 0);
         const aFav = favoritePlugins.has(a.pluginType) ? 1 : 0;
         const bFav = favoritePlugins.has(b.pluginType) ? 1 : 0;
@@ -1019,7 +1019,7 @@ const LeftSidebar = ({
   );
 
   const renderPluginButton = (item: CatalogSchemaItem) => {
-    const { label, plugin, pluginType } = item;
+    const { label, plugin, pluginType, category } = item;
     const draggableId = item.key;
     const recipientToneKey = activeRecipientTone || 'no-tone';
     const displayLabel = getCatalogLabel(label, pluginType, item.source);
@@ -1064,6 +1064,8 @@ const LeftSidebar = ({
             <Button
               className={buttonClass}
               data-schema-type={pluginType}
+              data-schema-category={category}
+              data-schema-kind={item.source}
               data-schema-label={displayLabel}
               data-dragging={draggableActive ? 'true' : 'false'}
               data-view-mode={resolvedViewMode}
@@ -1073,6 +1075,15 @@ const LeftSidebar = ({
               {...listeners}
               {...attributes}
               onClick={() => {
+                if (draggableActive) return;
+                if (typeof onSchemaClick === 'function') {
+                  onSchemaClick(cloneDeep(plugin.propPanel.defaultSchema), pluginType);
+                  markRecent(pluginType);
+                }
+              }}
+              onDoubleClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
                 if (draggableActive) return;
                 if (typeof onSchemaClick === 'function') {
                   onSchemaClick(cloneDeep(plugin.propPanel.defaultSchema), pluginType);
@@ -1165,6 +1176,8 @@ const LeftSidebar = ({
                 `${DESIGNER_CLASSNAME}plugin-btn-${variant}`,
               )}
               data-schema-type={definition.pluginType}
+              data-schema-category={definition.category}
+              data-schema-kind="custom"
               data-schema-label={definition.label}
               title={[
                 definition.label,
@@ -1175,6 +1188,17 @@ const LeftSidebar = ({
               {...listeners}
               {...attributes}
               onClick={() => {
+                if (draggableActive) return;
+                if (typeof onSchemaClick === 'function') {
+                  const schema = createSchemaInstance();
+                  if (!schema) return;
+                  onSchemaClick(cloneDeep(schema), definition.pluginType);
+                  markRecent(definition.pluginType);
+                }
+              }}
+              onDoubleClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
                 if (draggableActive) return;
                 if (typeof onSchemaClick === 'function') {
                   const schema = createSchemaInstance();

@@ -2,7 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { Link, useNavigate } from 'react-router-dom'
 import LabExampleDownloadButton from './LabExampleDownloadButton.jsx'
-import { getLabExamplePresentation } from './domain/labPresentation.js'
+import { getLabExamplePresentation, getLabExampleSchemaStats } from './domain/labPresentation.js'
 
 export default function CaseCard({ example }) {
   const navigate = useNavigate()
@@ -10,6 +10,7 @@ export default function CaseCard({ example }) {
   if (!example) return null
 
   const presentation = getLabExamplePresentation(example)
+  const schemaStats = getLabExampleSchemaStats(example)
 
   const handleDoubleClick = (event) => {
     if (event.target instanceof Element && event.target.closest('a, button')) {
@@ -23,10 +24,15 @@ export default function CaseCard({ example }) {
     <article
       className="sisad-pdfme-lab-card"
       aria-labelledby={`example-${example.id}`}
+      data-mode={example.defaultMode}
+      data-schema-coverage={schemaStats.isFullCoverage ? 'full' : 'partial'}
       onDoubleClick={handleDoubleClick}
     >
       <div className="sisad-pdfme-lab-card-topline">
         <span className="sisad-pdfme-lab-chip">{presentation.modeLabel}</span>
+        <span className="sisad-pdfme-lab-chip sisad-pdfme-lab-chip-muted">
+          Schemas {schemaStats.usedSchemaTypes}/{schemaStats.registeredSchemaTypes}
+        </span>
         <span className="sisad-pdfme-lab-card-path">{example.path}</span>
       </div>
       <div className="sisad-pdfme-lab-card-titleWrap">

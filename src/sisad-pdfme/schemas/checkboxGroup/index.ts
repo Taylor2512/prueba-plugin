@@ -297,6 +297,8 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
           cursor: 'pointer', zIndex: '30', padding: '0', boxShadow: '0 1px 5px rgba(0,0,0,0.18)', fontWeight: '700',
         });
         addBtn.title = 'Agregar casilla al grupo';
+        addBtn.setAttribute('aria-label', 'Agregar casilla al grupo');
+        addBtn.setAttribute('data-schema-interactive-control', 'checkbox-add-option');
         addBtn.setAttribute('data-checkbox-group-add-option', 'true');
         addBtn.addEventListener('pointerdown', (e) => e.stopPropagation());
         addBtn.addEventListener('click', (e) => {
@@ -393,6 +395,7 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
       }),
       widgets: { editCheckboxGroupOptions: CheckboxOptionsEditor },
       defaultSchema: {
+        id: 'checkbox-group-default',
         name: '',
         type: 'checkboxGroup',
         content: '',

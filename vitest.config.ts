@@ -5,6 +5,7 @@ export default defineConfig({
   resolve: {
     alias: {
       '@sisad-pdfme/common': resolve(__dirname, 'src/sisad-pdfme/common'),
+      '@': resolve(__dirname, 'src'),
       '@sisad-pdfme/converter': resolve(__dirname, 'src/sisad-pdfme/converter/index.browser.ts'),
       '@sisad-pdfme/generator': resolve(__dirname, 'src/sisad-pdfme/generator'),
       '@sisad-pdfme/schemas': resolve(__dirname, 'src/sisad-pdfme/schemas'),

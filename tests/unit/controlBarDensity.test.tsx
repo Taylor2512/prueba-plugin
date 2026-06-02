@@ -1,7 +1,7 @@
 import React from 'react';
 import { describe, expect, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import CtlBar from '../../src/sisad-pdfme/ui/components/CtlBar.js';
+import CtlBar from '@/sisad-pdfme/ui/components/CtlBar.js';
 
 const baseProps = {
   size: { width: 1280, height: 720 },

@@ -1,3 +1,5 @@
+import { builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
+
 const LAB_MODE_LABELS = {
   designer: 'Diseñador',
   form: 'Formulario',
@@ -35,7 +37,7 @@ const LAB_EXAMPLE_PRESENTATION = {
   'multi-document-routing': {
     coverage: ['canvas', 'schemas', 'multiDocument', 'form', 'viewer'],
     focus: 'Multidocumento integral',
-    summary: 'Valida ruteo por documento, página y destinatario.',
+    summary: 'Valida ruteo por documento, página y destinatario con cobertura total de schemas.',
   },
   'generator-runtime': {
     coverage: ['generator', 'converter', 'form', 'viewer'],
@@ -89,5 +91,44 @@ export const getLabCoverageCounts = (examples = []) => {
   })
 
   return counts
+}
+
+const flattenSchemasFromTemplate = (template) => {
+  if (!template || !Array.isArray(template.schemas)) return []
+  return template.schemas.flatMap((page) => (Array.isArray(page) ? page : []))
+}
+
+const getExampleSchemas = (example) => {
+  const mainSchemas = flattenSchemasFromTemplate(example?.template)
+  const uploadedSchemas = Array.isArray(example?.runtimeOptions?.uploadedDocuments)
+    ? example.runtimeOptions.uploadedDocuments.flatMap((document) => flattenSchemasFromTemplate(document?.template))
+    : []
+
+  return [...mainSchemas, ...uploadedSchemas]
+}
+
+const ALL_SCHEMA_TYPES = new Set(
+  builtInSchemaDefinitions.map((definition) => String(definition?.type || '').trim()).filter(Boolean),
+)
+
+export const getLabExampleSchemaStats = (example) => {
+  const schemas = getExampleSchemas(example)
+  const schemaTypes = new Set(
+    schemas
+      .map((schema) => String(schema?.type || '').trim())
+      .filter(Boolean),
+  )
+
+  const registeredSchemaTypes = ALL_SCHEMA_TYPES.size
+  const usedSchemaTypes = schemaTypes.size
+  const coverageRatio = registeredSchemaTypes > 0 ? usedSchemaTypes / registeredSchemaTypes : 0
+
+  return {
+    totalSchemas: schemas.length,
+    usedSchemaTypes,
+    registeredSchemaTypes,
+    coverageRatio,
+    isFullCoverage: usedSchemaTypes >= registeredSchemaTypes && registeredSchemaTypes > 0,
+  }
 }
 

@@ -4,7 +4,7 @@ import {
   createDefaultSchema,
   getSchemaDefinition,
   getSchemaPluginByType,
-} from '../../src/sisad-pdfme/schemas/index.js';
+} from '@/sisad-pdfme/schemas/index.js';
 
 describe('standard schema support', () => {
   test('registers number, radioGroup and checkboxGroup as built-in schemas', () => {

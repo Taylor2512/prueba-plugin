@@ -61,7 +61,10 @@ import {
   resolveClientPointToPagePoint,
   resolveDropPageIndex,
 } from './Canvas/overlays/pointerGeometry.js';
-import { resolveSmartDropPosition } from './Canvas/overlays/smartPlacement.js';
+import {
+  resolveNonOverlappingDropPosition,
+  resolveSmartDropPosition,
+} from './Canvas/overlays/smartPlacement.js';
 import SchemaDragPreview from './Canvas/overlays/SchemaDragPreview.js';
 import SchemaDropCommitFlash from './Canvas/overlays/SchemaDropCommitFlash.js';
 import SchemaDropPlaceholder from './Canvas/overlays/SchemaDropPlaceholder.js';
@@ -92,7 +95,7 @@ import {
 import { emitDesignerRuntimeEvent } from '../Designer/shared/designerExtensions.js';
 const DESIGNER_THEME_STYLE_ID = DESIGNER_CLASSNAME + 'theme-base';
 
-const stableHashSchemas = (schemas: SchemaForUI[][]) => {
+const stableHashSchemas = (schemas: Schema[][]) => {
   try {
     return JSON.stringify(schemas);
   } catch {
@@ -1226,8 +1229,6 @@ const TemplateEditor = ({
     schemasList,
     visibleSchemasList,
     changeSchemas,
-    commitSchemas,
-    removeSchemas,
     commandBus: commandBusRef.current,
     onEdit,
     onEditEnd,
@@ -1644,8 +1645,8 @@ const TemplateEditor = ({
       const [paddingTop, paddingRight, paddingBottom, paddingLeft] = isBlankPdf(activeBasePdf)
         ? activeBasePdf.padding
         : [0, 0, 0, 0];
-      const pageSize = pageSizes[targetPageIndex] || pageSizes[pageCursor];
-      const pageSchemas = schemasList[targetPageIndex] || [];
+      const basePageSize =
+        pageSizes[targetPageIndex] || pageSizes[pageCursor] || { width: 210, height: 297 };
 
       const newSchemaName = (prefix: string) => {
         let index = schemasList.reduce((acc, page) => acc + page.length, 1);
@@ -1663,8 +1664,8 @@ const TemplateEditor = ({
       const rawHeight = Number(defaultSchema.height);
       const minHeightByType = defaultSchema.type === 'line' ? 0.5 : 4;
       const minWidth = 4;
-      const maxWidth = Math.max(minWidth, pageSize.width - paddingLeft - paddingRight);
-      const maxHeight = Math.max(minHeightByType, pageSize.height - paddingTop - paddingBottom);
+      const maxWidth = Math.max(minWidth, basePageSize.width - paddingLeft - paddingRight);
+      const maxHeight = Math.max(minHeightByType, basePageSize.height - paddingTop - paddingBottom);
       const safeWidth = round(
         Math.min(maxWidth, Number.isFinite(rawWidth) && rawWidth > 0 ? rawWidth : 45),
         2,
@@ -1683,13 +1684,13 @@ const TemplateEditor = ({
         position: {
           x: ensureMiddleValue(
             paddingLeft,
-            defaultSchema.position.x,
-            pageSize.width - paddingRight - safeWidth,
+            Number(defaultSchema.position?.x) || 0,
+            basePageSize.width - paddingRight - safeWidth,
           ),
           y: ensureMiddleValue(
             paddingTop,
-            defaultSchema.position.y,
-            pageSize.height - paddingBottom - safeHeight,
+            Number(defaultSchema.position?.y) || 0,
+            basePageSize.height - paddingBottom - safeHeight,
           ),
         },
         required: defaultSchema.readOnly
@@ -1697,10 +1698,10 @@ const TemplateEditor = ({
           : options.requiredByDefault || defaultSchema.required || false,
       } as SchemaForUI;
 
-      if (!preservePosition && defaultSchema.position.y === 0) {
+      if (!preservePosition && Number(defaultSchema.position?.y) === 0) {
         const paper = paperRefs.current[targetPageIndex] || paperRefs.current[pageCursor];
         const rectTop = paper ? paper.getBoundingClientRect().top : 0;
-        s.position.y = rectTop > 0 ? paddingTop : (pageSizes[targetPageIndex] || pageSizes[pageCursor]).height / 2;
+        s.position.y = rectTop > 0 ? paddingTop : basePageSize.height / 2;
       }
 
       const creationContext = createSchemaCreationContext({
@@ -1722,21 +1723,112 @@ const TemplateEditor = ({
       s = attachSchemaIdentity(s, creationContext, designerEngine);
       s = applySchemaCollaborativeDefaults(s, creationContext, designerEngine);
 
-      const collisionScopedSchemas = filterSchemasByCollisionScope(pageSchemas, s, {
-        fileId: activeDocumentId || null,
-        pageNumber: targetPageIndex + 1,
-      });
-      s.position = resolveSmartDropPosition({
-        candidate: s.position,
-        pageSize,
-        schemaSize: {
-          width: Number(s.width || safeWidth),
-          height: Number(s.height || safeHeight),
-        },
-        existingSchemas: collisionScopedSchemas,
-      });
+      const fallbackOwnerIds = Array.isArray((s as SchemaForUI & { ownerRecipientIds?: string[] }).ownerRecipientIds)
+        ? ((s as SchemaForUI & { ownerRecipientIds?: string[] }).ownerRecipientIds as string[])
+        : [];
+      const fallbackFileId = activeDocumentId || null;
+      const pageCount = Math.max(1, pageSizes.length || schemasList.length || 1);
+      const candidatePages = [
+        targetPageIndex,
+        ...Array.from({ length: pageCount }, (_, idx) => idx).filter((idx) => idx !== targetPageIndex),
+      ];
 
-      commitSchemas(pageSchemas.concat(s), targetPageIndex);
+      let resolvedPlacement:
+        | {
+            pageIndex: number;
+            pageSize: { width: number; height: number };
+            width: number;
+            height: number;
+            position: { x: number; y: number };
+          }
+        | null = null;
+
+      for (const candidatePageIndex of candidatePages) {
+        const candidatePageSize = pageSizes[candidatePageIndex] || basePageSize;
+        const pageMaxWidth = Math.max(minWidth, candidatePageSize.width - paddingLeft - paddingRight);
+        const pageMaxHeight = Math.max(minHeightByType, candidatePageSize.height - paddingTop - paddingBottom);
+        const candidateWidth = round(Math.min(pageMaxWidth, Number(s.width || safeWidth)), 2);
+        const candidateHeight = round(Math.min(pageMaxHeight, Number(s.height || safeHeight)), 2);
+
+        const defaultCandidatePosition = {
+          x: round(Math.max(0, (candidatePageSize.width - candidateWidth) / 2), 2),
+          y: round(Math.max(0, (candidatePageSize.height - candidateHeight) / 2), 2),
+        };
+        const preferredCandidatePosition =
+          candidatePageIndex === targetPageIndex
+            ? s.position
+            : defaultCandidatePosition;
+
+        const scopedReference = {
+          ...s,
+          width: candidateWidth,
+          height: candidateHeight,
+          pageNumber: candidatePageIndex + 1,
+          fileId: fallbackFileId,
+        } as SchemaForUI;
+        const collisionScopedSchemas = filterSchemasByCollisionScope(
+          schemasList[candidatePageIndex] || [],
+          scopedReference,
+          {
+            fileId: fallbackFileId,
+            pageNumber: candidatePageIndex + 1,
+            ownerRecipientId: scopedReference.ownerRecipientId || null,
+            ownerRecipientIds: fallbackOwnerIds,
+          },
+        );
+
+        const freePosition = resolveNonOverlappingDropPosition({
+          candidate: preferredCandidatePosition,
+          pageSize: candidatePageSize,
+          schemaSize: {
+            width: candidateWidth,
+            height: candidateHeight,
+          },
+          existingSchemas: collisionScopedSchemas,
+          stepMm: 4,
+          maxAttempts: 14,
+        });
+
+        if (!freePosition) continue;
+
+        resolvedPlacement = {
+          pageIndex: candidatePageIndex,
+          pageSize: candidatePageSize,
+          width: candidateWidth,
+          height: candidateHeight,
+          position: freePosition,
+        };
+        break;
+      }
+
+      if (!resolvedPlacement) {
+        emitDesignerEvent({
+          type: 'designer.schema.add.blocked',
+          source: 'sidebar',
+          component: 'Designer',
+          pageIndex: targetPageIndex,
+          schemaIds: [s.id],
+          details: {
+            reason: 'no-space-available',
+            schemaType: s.type,
+            ownerRecipientId: s.ownerRecipientId || null,
+            fileId: fallbackFileId,
+            pageCount,
+          },
+        });
+        return;
+      }
+
+      s = {
+        ...s,
+        width: resolvedPlacement.width,
+        height: resolvedPlacement.height,
+        position: resolvedPlacement.position,
+        pageNumber: resolvedPlacement.pageIndex + 1,
+      } as SchemaForUI;
+
+      const pageSchemas = schemasList[resolvedPlacement.pageIndex] || [];
+      commitSchemas(pageSchemas.concat(s), resolvedPlacement.pageIndex);
       setTimeout(() => {
         const element = document.getElementById(s.id);
         if (!element) return;
@@ -1748,6 +1840,7 @@ const TemplateEditor = ({
       activeDocumentId,
       collaborationContext,
       commitSchemas,
+      emitDesignerEvent,
       designerEngine,
       i18n,
       onEdit,

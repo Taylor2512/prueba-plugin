@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
-import { makeEmptySnapshot } from '../../src/sisad-pdfme/shared/snapshot.js';
-import { snapshotAdapter } from '../../src/sisad-pdfme/shared/snapshotAdapter.js';
+import { makeEmptySnapshot } from '@/sisad-pdfme/shared/snapshot.js';
+import { snapshotAdapter } from '@/sisad-pdfme/shared/snapshotAdapter.js';
 
 const baseState = {
   documents: [

@@ -339,7 +339,6 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
         row.type = 'button';
         row.setAttribute('role', 'radio');
         row.setAttribute('aria-checked', isSelected ? 'true' : 'false');
-        row.setAttribute('data-schema-interactive-control', 'radio-option');
         row.setAttribute('data-radio-group-option', option.optionId);
         Object.assign(row.style, {
           display: 'inline-flex',
@@ -446,6 +445,7 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
           fontWeight: '700',
         });
         addBtn.title = 'Agregar opción al grupo';
+        addBtn.setAttribute('aria-label', 'Agregar opción al grupo');
         addBtn.setAttribute('data-schema-interactive-control', 'radio-add-option');
         addBtn.setAttribute('data-radio-group-add-option', 'true');
 
@@ -563,6 +563,7 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
         editRadioGroupOptions: RadioOptionsEditor,
       },
       defaultSchema: {
+        id: 'radio-group-default',
         name: '',
         type: 'radioGroup',
         content: 'option_1',

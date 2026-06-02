@@ -1,6 +1,9 @@
 import { describe, expect, test } from 'vitest';
-import { resolveSmartDropPosition } from '../../src/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.js';
-import { filterSchemasByCollisionScope } from '../../src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.js';
+import {
+  resolveNonOverlappingDropPosition,
+  resolveSmartDropPosition,
+} from '@/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.js';
+import { filterSchemasByCollisionScope } from '@/sisad-pdfme/ui/components/Designer/shared/schemaCollision.js';
 
 describe('schema auto placement', () => {
   test('moves candidate when same-owner schema already occupies target area', () => {
@@ -85,5 +88,56 @@ describe('schema auto placement', () => {
 
     expect(collisionScopedSchemas).toHaveLength(0);
     expect(result).toEqual(candidate);
+  });
+
+  test('scans the page grid to find free slot when immediate offsets are occupied', () => {
+    const pageSize = { width: 60, height: 40 };
+    const schemaSize = { width: 20, height: 20 };
+    const candidate = { x: 0, y: 0 };
+
+    const existingSchemas = [
+      { position: { x: 0, y: 0 }, width: 20, height: 20 },
+      { position: { x: 20, y: 0 }, width: 20, height: 20 },
+      { position: { x: 0, y: 20 }, width: 20, height: 20 },
+    ];
+
+    const result = resolveNonOverlappingDropPosition({
+      candidate,
+      pageSize,
+      schemaSize,
+      existingSchemas,
+      stepMm: 4,
+      maxAttempts: 2,
+    });
+
+    expect(result).toEqual({ x: 40, y: 0 });
+  });
+
+  test('returns null when no non-overlapping slot exists in page bounds', () => {
+    const pageSize = { width: 30, height: 20 };
+    const schemaSize = { width: 30, height: 20 };
+    const candidate = { x: 0, y: 0 };
+
+    const existingSchemas = [{ position: { x: 0, y: 0 }, width: 30, height: 20 }];
+
+    const strictResult = resolveNonOverlappingDropPosition({
+      candidate,
+      pageSize,
+      schemaSize,
+      existingSchemas,
+      stepMm: 2,
+      maxAttempts: 4,
+    });
+    expect(strictResult).toBeNull();
+
+    const fallbackResult = resolveSmartDropPosition({
+      candidate,
+      pageSize,
+      schemaSize,
+      existingSchemas,
+      stepMm: 2,
+      maxAttempts: 4,
+    });
+    expect(fallbackResult).toEqual({ x: 0, y: 0 });
   });
 });

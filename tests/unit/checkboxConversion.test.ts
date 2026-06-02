@@ -1,8 +1,8 @@
 import { describe, expect, test } from 'vitest';
-import { changeSchemas } from '../../src/sisad-pdfme/ui/helper.js';
-import { pluginRegistry } from '../../src/sisad-pdfme/common/pluginRegistry.js';
-import { flatSchemaPlugins } from '../../src/sisad-pdfme/schemas/index.js';
-import type { SchemaForUI } from '../../src/sisad-pdfme/common/types.js';
+import { changeSchemas } from '@/sisad-pdfme/ui/helper.js';
+import { pluginRegistry } from '@/sisad-pdfme/common/pluginRegistry.js';
+import { flatSchemaPlugins } from '@/sisad-pdfme/schemas/index.js';
+import type { SchemaForUI } from '@/sisad-pdfme/common/types.js';
 
 // Mirrors the batch the checkbox "+" affordance dispatches via onChange.
 const conversionBatch = (schema: SchemaForUI) => {

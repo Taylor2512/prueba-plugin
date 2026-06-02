@@ -1,8 +1,8 @@
 import React from 'react';
 import { describe, expect, test, vi, beforeEach } from 'vitest';
 import { render, screen } from '@testing-library/react';
-import buildDetailWidgets from '../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.js';
-import type { PropPanelWidgetProps } from '../../src/sisad-pdfme/common/index.js';
+import buildDetailWidgets from '@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.js';
+import type { PropPanelWidgetProps } from '@/sisad-pdfme/common/index.js';
 
 const alignSpy = vi.fn();
 const buttonGroupSpy = vi.fn();
@@ -11,49 +11,49 @@ const collaborationSpy = vi.fn();
 const commentsSpy = vi.fn();
 const colorPickerSpy = vi.fn();
 
-vi.mock('../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.js', () => ({
+vi.mock('@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.js', () => ({
   default: (props: unknown) => {
     alignSpy(props);
     return <div data-testid="align-widget" />;
   },
 }));
 
-vi.mock('../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.js', () => ({
+vi.mock('@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.js', () => ({
   default: (props: unknown) => {
     buttonGroupSpy(props);
     return <div data-testid="button-group-widget" />;
   },
 }));
 
-vi.mock('../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.js', () => ({
+vi.mock('@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.js', () => ({
   default: (props: unknown) => {
     connectionsSpy(props);
     return <div data-testid="connections-widget" />;
   },
 }));
 
-vi.mock('../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.js', () => ({
+vi.mock('@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.js', () => ({
   default: (props: unknown) => {
     collaborationSpy(props);
     return <div data-testid="collaboration-widget" />;
   },
 }));
 
-vi.mock('../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.js', () => ({
+vi.mock('@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.js', () => ({
   default: (props: unknown) => {
     commentsSpy(props);
     return <div data-testid="comments-widget" />;
   },
 }));
 
-vi.mock('../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.js', () => ({
+vi.mock('@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.js', () => ({
   ColorPickerWidget: (props: unknown) => {
     colorPickerSpy(props);
     return <div data-testid="native-color-widget" />;
   },
 }));
 
-vi.mock('../../src/sisad-pdfme/schemas/schemaFamilies.js', () => ({
+vi.mock('@/sisad-pdfme/schemas/schemaFamilies.js', () => ({
   INLINE_EDITABLE_TEXT_TYPES: new Set(['text']),
   getSchemaTypeInspectorPreset: vi.fn(() => ({
     supportsComments: true,
@@ -137,7 +137,7 @@ describe('detailWidgetRegistry', () => {
   });
 
   test('registers collaboration/comments/connections widgets only when preset supports them', async () => {
-    const schemaFamilies = await import('../../src/sisad-pdfme/schemas/schemaFamilies.js');
+    const schemaFamilies = await import('@/sisad-pdfme/schemas/schemaFamilies.js');
     const getSchemaTypeInspectorPreset = vi.mocked(schemaFamilies.getSchemaTypeInspectorPreset);
 
     getSchemaTypeInspectorPreset.mockReturnValueOnce({

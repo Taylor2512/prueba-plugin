@@ -10,10 +10,8 @@ const getTemplatePdfUrl = (fileName) => `/templates/${encodeURIComponent(fileNam
 const LAB_PDFS = {
   basic: getTemplatePdfUrl('sample-a4.pdf'),
   enterprise: getTemplatePdfUrl('CONVENIO DE CRÉDITO.pdf'),
-  routingPrimary: getTemplatePdfUrl('Declaración de tratamiento de datos personales.pdf'),
-  routingSecondary: getTemplatePdfUrl(
-    'CERTIFICADO DE CULMINACIÓN DE MALLA CURRICULAR-MONTENEGRO ARELLANO JHONN TAYLOR-Malla.pdf',
-  ),
+  routingPrimary: getTemplatePdfUrl('routing-primary-5p.pdf'),
+  routingSecondary: getTemplatePdfUrl('routing-secondary-5p.pdf'),
   multiuser: getTemplatePdfUrl('Jhonn_Taylor_Montenegro_CV_ES.pdf'),
   generator: getTemplatePdfUrl('sample-multilingual-text.pdf'),
 }
@@ -24,19 +22,11 @@ const SORTED_SCHEMA_DEFINITIONS = builtInSchemaDefinitions
 
 const SHOWCASE_GRID_POSITIONS = [
   { x: 18, y: 24 },
-  { x: 112, y: 24 },
-  { x: 18, y: 58 },
-  { x: 112, y: 58 },
-  { x: 18, y: 92 },
-  { x: 112, y: 92 },
-  { x: 18, y: 126 },
-  { x: 112, y: 126 },
-  { x: 18, y: 160 },
-  { x: 112, y: 160 },
-  { x: 18, y: 194 },
-  { x: 112, y: 194 },
-  { x: 18, y: 228 },
-  { x: 112, y: 228 },
+  { x: 18, y: 68 },
+  { x: 18, y: 112 },
+  { x: 18, y: 156 },
+  { x: 18, y: 200 },
+  { x: 18, y: 244 },
 ]
 
 const sanitizeIdentifier = (value) =>
@@ -226,6 +216,14 @@ const createSchemaShowcasePages = ({
       })
     }),
   )
+
+const mergeSchemaPages = (basePages = [], extraPages = [], pageCount = 1) => {
+  const safePageCount = Math.max(1, Number(pageCount) || 1)
+  return Array.from({ length: safePageCount }, (_, pageIndex) => [
+    ...(basePages[pageIndex] || []),
+    ...(extraPages[pageIndex] || []),
+  ])
+}
 
 const appendTemplatePages = (template, extraPages) => ({
   ...template,
@@ -426,7 +424,7 @@ const enterpriseCollaborationTemplate = createTemplate([
   ],
 ], { basePdf: LAB_PDFS.enterprise, pageCount: 2 })
 
-const multiDocumentPrimarySchemas = [
+const multiDocumentPrimaryBaseSchemas = [
   [
     createTextSchema({
       schemaUid: 'multi-contract-name',
@@ -454,7 +452,7 @@ const multiDocumentPrimarySchemas = [
   [],
 ]
 
-const multiDocumentSecondarySchemas = [
+const multiDocumentSecondaryBaseSchemas = [
   [],
   [
     createTextSchema({
@@ -483,12 +481,49 @@ const multiDocumentSecondarySchemas = [
   ],
 ]
 
+const MULTI_DOCUMENT_ROUTING_PAGE_COUNT = 5
+const routingSchemaSplitIndex = Math.ceil(SORTED_SCHEMA_DEFINITIONS.length / 2)
+const routingPrimarySchemaDefinitions = SORTED_SCHEMA_DEFINITIONS.slice(0, routingSchemaSplitIndex)
+const routingSecondarySchemaDefinitions = SORTED_SCHEMA_DEFINITIONS.slice(routingSchemaSplitIndex)
+
+const multiDocumentPrimaryShowcaseSchemas = createSchemaShowcasePages({
+  definitions: routingPrimarySchemaDefinitions,
+  scope: 'routing-primary-showcase',
+  ownerRecipientId: 'recipient-1',
+  fileId: 'file-contract-a',
+  fileTemplateId: 'file-contract-a',
+  startingPageNumber: 3,
+  auditOffset: 180000,
+})
+
+const multiDocumentSecondaryShowcaseSchemas = createSchemaShowcasePages({
+  definitions: routingSecondarySchemaDefinitions,
+  scope: 'routing-secondary-showcase',
+  ownerRecipientId: 'recipient-2',
+  fileId: 'file-contract-b',
+  fileTemplateId: 'file-contract-b',
+  startingPageNumber: 3,
+  auditOffset: 360000,
+})
+
+const multiDocumentPrimarySchemas = mergeSchemaPages(
+  multiDocumentPrimaryBaseSchemas,
+  multiDocumentPrimaryShowcaseSchemas,
+  MULTI_DOCUMENT_ROUTING_PAGE_COUNT,
+)
+
+const multiDocumentSecondarySchemas = mergeSchemaPages(
+  multiDocumentSecondaryBaseSchemas,
+  multiDocumentSecondaryShowcaseSchemas,
+  MULTI_DOCUMENT_ROUTING_PAGE_COUNT,
+)
+
 // Merge primary and secondary schemas into a single template view for the routing example
 const multiDocumentRoutingTemplate = createTemplate(
   multiDocumentPrimarySchemas.map((page, idx) => page.concat(multiDocumentSecondarySchemas[idx] || [])),
   {
     basePdf: LAB_PDFS.routingPrimary,
-    pageCount: 2,
+    pageCount: MULTI_DOCUMENT_ROUTING_PAGE_COUNT,
   },
 )
 
@@ -496,16 +531,15 @@ const multiDocumentRoutingDocuments = [
   createUploadedDocument({
     id: 'file-contract-a',
     name: 'Declaración de datos',
-    pdfFileName: 'Declaración de tratamiento de datos personales.pdf',
-    pageCount: 2,
+    pdfFileName: 'routing-primary-5p.pdf',
+    pageCount: MULTI_DOCUMENT_ROUTING_PAGE_COUNT,
     schemas: multiDocumentPrimarySchemas,
   }),
   createUploadedDocument({
     id: 'file-contract-b',
     name: 'Certificado académico',
-    pdfFileName:
-      'CERTIFICADO DE CULMINACIÓN DE MALLA CURRICULAR-MONTENEGRO ARELLANO JHONN TAYLOR-Malla.pdf',
-    pageCount: 2,
+    pdfFileName: 'routing-secondary-5p.pdf',
+    pageCount: MULTI_DOCUMENT_ROUTING_PAGE_COUNT,
     schemas: multiDocumentSecondarySchemas,
   }),
 ]
@@ -768,8 +802,8 @@ const LAB_EXAMPLES = [
     id: 'multi-document-routing',
     path: '/lab/multi-document-routing',
     title: 'Multidocumento integral',
-    description: 'Ruta integral para asignaciones por documento, página y destinatario con carga de múltiples PDFs y handoff entre archivos.',
-    status: 'Listo para validar rutas de documentos, destinatarios y descarga/exportación en un solo flujo',
+    description: 'Ruta integral para asignaciones por documento, página y destinatario con carga de múltiples PDFs, handoff entre archivos y showcase de todos los schemas integrados.',
+    status: 'Listo para validar rutas multidocumento y cobertura completa de schemas en un solo flujo',
     defaultMode: 'designer',
     initialSchemaType: 'text',
     collaboration: createCollaboration('recipient-1', [

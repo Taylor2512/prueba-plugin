@@ -2,7 +2,7 @@ import React from 'react';
 import { describe, expect, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import DetailFormSection from '../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.js';
+import DetailFormSection from '@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.js';
 
 vi.mock('form-render', () => ({
   default: (props: { schema: { properties?: Record<string, { widget?: string }> }; widgets: Record<string, () => React.JSX.Element> }) => {

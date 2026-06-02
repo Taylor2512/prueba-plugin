@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest';
-import { buildInspectorSections } from '../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.js';
-import type { SchemaForUI } from '../../src/sisad-pdfme/common/index.js';
-import type { SchemaDesignerConfig } from '../../src/sisad-pdfme/ui/designerEngine.js';
+import { buildInspectorSections } from '@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.js';
+import type { SchemaForUI } from '@/sisad-pdfme/common/index.js';
+import type { SchemaDesignerConfig } from '@/sisad-pdfme/ui/designerEngine.js';
 
 const baseSchema: SchemaForUI = {
   id: 'schema-1',

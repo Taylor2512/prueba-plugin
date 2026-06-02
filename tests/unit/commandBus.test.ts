@@ -1,6 +1,6 @@
 import { describe, expect, test, vi } from 'vitest';
-import { CommandBus } from '../../src/sisad-pdfme/ui/commands/commandBus.js';
-import type { Command } from '../../src/sisad-pdfme/common/index.js';
+import { CommandBus } from '@/sisad-pdfme/ui/commands/commandBus.js';
+import type { Command } from '@/sisad-pdfme/common/index.js';
 
 describe('CommandBus', () => {
   test('executes, undoes and redoes commands', async () => {

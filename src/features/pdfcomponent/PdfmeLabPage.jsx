@@ -261,14 +261,21 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   )
 
   const pageMetrics = useMemo(
-    () => [
-      { label: 'Estado', value: busy ? 'Procesando' : 'Listo' },
-      { label: 'Modo', value: MODE_LABELS[mode] || mode },
-      { label: 'Vista', value: isGlobalView ? 'Global' : activeCollaborator?.name || 'Usuario activo' },
-      { label: 'UX', value: uxMode },
-      { label: 'Páginas', value: template.schemas.length },
-    ],
-    [activeCollaborator?.name, busy, isGlobalView, mode, template.schemas.length, uxMode],
+    () => {
+      const allSchemas = template.schemas.reduce((acc, page) => acc.concat(page || []), [])
+      const schemaTypes = new Set(allSchemas.map((schema) => String(schema?.type || '').trim()).filter(Boolean))
+      const registeredSchemaTypes = new Set(schemaCatalog.map((definition) => String(definition?.type || '').trim()).filter(Boolean))
+
+      return [
+        { label: 'Estado', value: busy ? 'Procesando' : 'Listo' },
+        { label: 'Modo', value: MODE_LABELS[mode] || mode },
+        { label: 'Vista', value: isGlobalView ? 'Global' : activeCollaborator?.name || 'Usuario activo' },
+        { label: 'UX', value: uxMode },
+        { label: 'Páginas', value: template.schemas.length },
+        { label: 'Schemas', value: `${schemaTypes.size}/${registeredSchemaTypes.size}` },
+      ]
+    },
+    [activeCollaborator?.name, busy, isGlobalView, mode, template.schemas, uxMode],
   )
 
   const collaborationSummary = useMemo(() => {

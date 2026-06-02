@@ -2,8 +2,8 @@ import React from 'react';
 import { describe, expect, test, vi } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-import DetailHeaderCard from '../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.js';
-import type { SchemaForUI } from '../../src/sisad-pdfme/common/index.js';
+import DetailHeaderCard from '@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.js';
+import type { SchemaForUI } from '@/sisad-pdfme/common/index.js';
 
 const schema = {
   id: 'schema-1',

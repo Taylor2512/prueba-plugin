@@ -1,10 +1,10 @@
 import React from 'react';
 import { describe, expect, test, vi, beforeEach } from 'vitest';
 import { render, waitFor } from '@testing-library/react';
-import type { SchemaForUI } from '../../src/sisad-pdfme/common/index.js';
+import type { SchemaForUI } from '@/sisad-pdfme/common/index.js';
 import type { UIOptions, PluginRegistry } from '@sisad-pdfme/common';
-import { I18nContext, OptionsContext, PluginsRegistry } from '../../src/sisad-pdfme/ui/contexts.js';
-import DetailView from '../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.js';
+import { I18nContext, OptionsContext, PluginsRegistry } from '@/sisad-pdfme/ui/contexts.js';
+import DetailView from '@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.js';
 
 const setValues = vi.fn();
 const getValues = vi.fn(() => ({}));
@@ -20,15 +20,15 @@ vi.mock('form-render', () => ({
   }),
 }));
 
-vi.mock('../../src/sisad-pdfme/ui/helper.js', async () => {
-  const actual = await vi.importActual('../../src/sisad-pdfme/ui/helper.js');
+vi.mock('@/sisad-pdfme/ui/helper.js', async () => {
+  const actual = await vi.importActual('@/sisad-pdfme/ui/helper.js');
   return {
     ...actual,
     debounce: (fn: (...args: unknown[]) => unknown) => fn,
   };
 });
 
-vi.mock('../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.js', () => ({
+vi.mock('@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.js', () => ({
   default: (props: unknown) => {
     capturedDetailProps = props as { watchHandler: (...args: unknown[]) => void };
     return <div data-testid="detail-view-content" />;

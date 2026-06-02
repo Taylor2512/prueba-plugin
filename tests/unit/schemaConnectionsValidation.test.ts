@@ -4,7 +4,7 @@ import {
   validateFormConfig,
   validateApiConfig,
   getMissingConnectionFields,
-} from '../../src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation.js';
+} from '@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation.js';
 
 describe('schemaConnectionsValidation', () => {
   test('validates missing persistence storage key', () => {

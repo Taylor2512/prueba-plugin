@@ -1,6 +1,6 @@
 import { describe, expect, test } from 'vitest';
-import checkboxGroup, { __test__ } from '../../src/sisad-pdfme/schemas/checkboxGroup/index.js';
-import { createDefaultSchema, builtInSchemaDefinitions } from '../../src/sisad-pdfme/schemas/index.js';
+import checkboxGroup, { __test__ } from '@/sisad-pdfme/schemas/checkboxGroup/index.js';
+import { createDefaultSchema, builtInSchemaDefinitions } from '@/sisad-pdfme/schemas/index.js';
 
 const { normalizeOptions, resolveSelectedIds, serializeSelectedIds, normalizeSelectedOptionIds, createNextOption } = __test__;
 

@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest';
-import { deriveCanvasBlockReason, shouldDisplayBlockingMask } from '../../src/sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState.js';
+import { deriveCanvasBlockReason, shouldDisplayBlockingMask } from '@/sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState.js';
 
 describe('overlayState blocking policy', () => {
   test('interaction-only modes never create a block reason by themselves', () => {

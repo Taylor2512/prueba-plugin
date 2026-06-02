@@ -14,8 +14,8 @@
  * - hooks.ts used a hardcoded `12 * scale` gap instead of `PAGE_GAP * scale`.
  */
 import { describe, expect, test } from 'vitest';
-import { getPagesScrollTopByIndex } from '../../src/sisad-pdfme/ui/helper.js';
-import { RULER_HEIGHT, PAGE_GAP } from '../../src/sisad-pdfme/ui/constants.js';
+import { getPagesScrollTopByIndex } from '@/sisad-pdfme/ui/helper.js';
+import { RULER_HEIGHT, PAGE_GAP } from '@/sisad-pdfme/ui/constants.js';
 import { ZOOM } from '@sisad-pdfme/common';
 
 const A4: { width: number; height: number } = { width: 210, height: 297 };

@@ -1108,7 +1108,12 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
             const selected = e.selected as HTMLElement[];
 
             const isClick = inputEvent.type === 'mousedown';
+            const isShiftClick = isClick && Boolean((inputEvent as MouseEvent).shiftKey);
             let newActiveElements: HTMLElement[] = isClick ? selected : [];
+
+            if (isShiftClick) {
+              newActiveElements = normalizeActiveTargets([...activeElements, ...selected]);
+            }
 
             if (!isClick && added.length > 0) {
               newActiveElements = activeElements.concat(added);

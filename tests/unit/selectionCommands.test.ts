@@ -2,8 +2,8 @@ import { describe, expect, test } from 'vitest';
 import {
   computeAlignedSchemas,
   computeDistributedSchemas,
-} from '../../src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.js';
-import type { SchemaForUI } from '../../src/sisad-pdfme/common/index.js';
+} from '@/sisad-pdfme/ui/components/Designer/shared/selectionCommands.js';
+import type { SchemaForUI } from '@/sisad-pdfme/common/index.js';
 
 const makeSchema = (
   id: string,

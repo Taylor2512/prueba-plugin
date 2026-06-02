@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { getLabExamples } from './examples/labExamples.js'
 import Hero from './Hero.jsx'
 import CaseGrid from './CaseGrid.jsx'
-import { getLabCoverageCounts, getLabExamplePresentation } from './domain/labPresentation.js'
+import { getLabCoverageCounts, getLabExamplePresentation, getLabExampleSchemaStats } from './domain/labPresentation.js'
 
 const defaultExamples = getLabExamples()
 
@@ -16,10 +16,12 @@ export default function LabLandingPage({ examples = defaultExamples } = {}) {
   const generatorExamples = examples.filter((example) =>
     getLabExamplePresentation(example).coverage.includes('Generator'),
   ).length
+  const fullSchemaExamples = examples.filter((example) => getLabExampleSchemaStats(example).isFullCoverage).length
 
   const metrics = [
     { label: 'Ejemplos', value: examples.length },
     { label: 'Coberturas', value: coverageHighlights.filter((label) => coverageCounts.has(label)).length },
+    { label: 'Schemas full', value: fullSchemaExamples },
     { label: 'Colaboración', value: collaborationExamples },
     { label: 'Generator', value: generatorExamples },
   ]
