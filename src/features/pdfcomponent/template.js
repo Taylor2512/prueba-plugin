@@ -1,10 +1,7 @@
+// Re-export shim. Factory moved to core `createDefaultTemplate`
+// (Fase 1 de migración features → sisad-pdfme). Removed in Fase 6.
+import { createDefaultTemplate } from '@/sisad-pdfme/templates/createDefaultTemplate'
+
 export function createInitialPdfmeTemplate() {
-  return {
-    basePdf: {
-      width: 390,
-      height: 400,
-      padding: [12, 12, 12, 12],
-    },
-    schemas: [[]],
-  }
+  return createDefaultTemplate()
 }

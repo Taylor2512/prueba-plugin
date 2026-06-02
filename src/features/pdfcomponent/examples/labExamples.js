@@ -1,7 +1,30 @@
-import { cloneDeep, getB64BasePdf, getInputFromTemplate } from '@sisad-pdfme/common'
-import { checkbox, select, text, signature, builtInSchemaDefinitions, flatSchemaPlugins } from '@sisad-pdfme/schemas'
-import { createInitialPdfmeTemplate } from '../template.js'
-import { decorateCollaborationUsers, decorateTemplateWithCollaboration } from '../domain/collaborationAppearance.js'
+// Lab examples. Generic builders/exporters live in core
+// (`@/sisad-pdfme/examples/*`, Fase 3). This file only holds lab-specific data
+// (PDF routes, demo content, example catalog) and wires it to the core builders.
+import { builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
+import { text, select, checkbox, signature } from '@sisad-pdfme/schemas'
+import {
+  createSchema,
+  createCommentAnchor,
+  createAuditMetadata,
+} from '@/sisad-pdfme/examples/builders/schemaFactory'
+import {
+  createSchemaShowcasePages as createShowcasePagesCore,
+  mergeSchemaPages,
+} from '@/sisad-pdfme/examples/builders/schemaShowcase'
+import {
+  createTemplate,
+  appendTemplatePages,
+  createUploadedDocument as createUploadedDocumentCore,
+  createCollaboration,
+  createExample,
+  cloneExample,
+} from '@/sisad-pdfme/examples/builders/exampleTemplate'
+import {
+  buildExampleBundle,
+  getExampleBundleFilename,
+} from '@/sisad-pdfme/examples/export/buildExampleBundle'
+import { buildExampleHref } from '@/sisad-pdfme/examples/export/downloadExampleBundle'
 
 const BASE_COLLABORATION_TIMESTAMP = 1713570000000
 
@@ -20,25 +43,24 @@ const SORTED_SCHEMA_DEFINITIONS = builtInSchemaDefinitions
   .slice()
   .sort((a, b) => `${a.category}-${a.label}`.localeCompare(`${b.category}-${b.label}`))
 
-const SHOWCASE_GRID_POSITIONS = [
-  { x: 18, y: 24 },
-  { x: 18, y: 68 },
-  { x: 18, y: 112 },
-  { x: 18, y: 156 },
-  { x: 18, y: 200 },
-  { x: 18, y: 244 },
-]
-
-const sanitizeIdentifier = (value) =>
-  String(value || 'lab-example')
-    .trim()
-    .toLowerCase()
-    .replace(/[^a-z0-9]+/g, '-')
-    .replace(/^-+|-+$/g, '') || 'lab-example'
-
-const createSchema = (baseSchema, overrides = {}) => ({
-  ...cloneDeep(baseSchema),
-  ...cloneDeep(overrides),
+// Exclude QR and barcode-type schemas from showcase examples per lab requirement
+// Keep this list aligned with the canonical BARCODE_TYPES in the schemas package
+const BARCODE_SCHEMA_TYPES = new Set([
+  'japanpost',
+  'ean13',
+  'ean8',
+  'code39',
+  'code128',
+  'nw7',
+  'itf14',
+  'upca',
+  'upce',
+  'gs1datamatrix',
+  'pdf417',
+])
+const NON_QR_SCHEMA_DEFINITIONS = SORTED_SCHEMA_DEFINITIONS.filter((d) => {
+  const t = String(d?.type || '').toLowerCase()
+  return t !== 'qrcode' && !BARCODE_SCHEMA_TYPES.has(t)
 })
 
 const createTextSchema = (overrides = {}) =>
@@ -74,28 +96,7 @@ const createSignatureSchema = (overrides = {}) =>
     ...overrides,
   })
 
-const chunkItems = (items, size) => {
-  const chunks = []
-  for (let index = 0; index < items.length; index += size) {
-    chunks.push(items.slice(index, index + size))
-  }
-  return chunks
-}
-
-const createSchemaByType = (type, overrides = {}) => {
-  const plugin = flatSchemaPlugins[type]
-  if (!plugin?.propPanel?.defaultSchema) {
-    throw new Error(`Schema type not registered for lab example generation: ${type}`)
-  }
-
-  return createSchema(plugin.propPanel.defaultSchema, {
-    position: { x: 18, y: 24 },
-    name: `${sanitizeIdentifier(type)}_field`,
-    schemaUid: `schema-${sanitizeIdentifier(type)}`,
-    ...overrides,
-  })
-}
-
+// Per-type example content injected into the core showcase builder.
 const SCHEMA_EXAMPLE_OVERRIDES = {
   text: {
     name: 'customer_full_name',
@@ -137,6 +138,17 @@ const SCHEMA_EXAMPLE_OVERRIDES = {
     ],
     width: 82,
     height: 18,
+  },
+  checkboxGroup: {
+    name: 'preferences',
+    options: [
+      { optionId: 'opt_1', label: 'Opción A' },
+      { optionId: 'opt_2', label: 'Opción B' },
+      { optionId: 'opt_3', label: 'Opción C' },
+    ],
+    selectedOptionIds: ['opt_1'],
+    width: 92,
+    height: 12,
   },
   signature: {
     name: 'review_signature',
@@ -190,96 +202,13 @@ const SCHEMA_EXAMPLE_OVERRIDES = {
   },
 }
 
-const createSchemaShowcasePages = ({
-  definitions = SORTED_SCHEMA_DEFINITIONS,
-  scope,
-  ownerRecipientId,
-  fileId = `${sanitizeIdentifier(scope)}-showcase`,
-  fileTemplateId = fileId,
-  startingPageNumber = 1,
-  auditOffset = 0,
-}) =>
-  chunkItems(definitions, SHOWCASE_GRID_POSITIONS.length).map((pageDefinitions, pageIndex) =>
-    pageDefinitions.map((definition, itemIndex) => {
-      const slug = sanitizeIdentifier(definition.type)
-      return createSchemaByType(definition.type, {
-        ...SCHEMA_EXAMPLE_OVERRIDES[definition.type],
-        position: cloneDeep(SHOWCASE_GRID_POSITIONS[itemIndex]),
-        name: `${sanitizeIdentifier(scope)}_${slug}`,
-        schemaUid: `${sanitizeIdentifier(scope)}-${slug}`,
-        fileId,
-        fileTemplateId,
-        pageNumber: startingPageNumber + pageIndex,
-        ownerMode: 'single',
-        ownerRecipientId,
-        ...createAuditMetadata(ownerRecipientId, ownerRecipientId, auditOffset + pageIndex * 10000 + itemIndex * 1000),
-      })
-    }),
-  )
+// Lab wrapper: inject the lab's example content into the core showcase builder.
+const createSchemaShowcasePages = (config) =>
+  createShowcasePagesCore({ ...config, overridesByType: SCHEMA_EXAMPLE_OVERRIDES })
 
-const mergeSchemaPages = (basePages = [], extraPages = [], pageCount = 1) => {
-  const safePageCount = Math.max(1, Number(pageCount) || 1)
-  return Array.from({ length: safePageCount }, (_, pageIndex) => [
-    ...(basePages[pageIndex] || []),
-    ...(extraPages[pageIndex] || []),
-  ])
-}
-
-const appendTemplatePages = (template, extraPages) => ({
-  ...template,
-  schemas: [...(template.schemas || []), ...cloneDeep(extraPages)],
-})
-
-const createTemplate = (schemas, options = {}) => {
-  const initialTemplate = createInitialPdfmeTemplate()
-  const nextSchemas = cloneDeep(Array.isArray(schemas) && schemas.length > 0 ? schemas : [[]])
-  const safePageCount = Math.max(1, Number(options.pageCount || nextSchemas.length) || nextSchemas.length || 1)
-
-  while (nextSchemas.length < safePageCount) {
-    nextSchemas.push([])
-  }
-
-  return {
-    ...initialTemplate,
-    basePdf: options.basePdf || initialTemplate.basePdf,
-    schemas: nextSchemas,
-  }
-}
-
-const createUploadedDocument = ({ id, name, pdfFileName, pageCount, schemas }) => ({
-  id,
-  name,
-  pageCount,
-  template: createTemplate(schemas, {
-    basePdf: getTemplatePdfUrl(pdfFileName),
-    pageCount,
-  }),
-})
-
-const createCommentAnchor = ({ schemaUid, fileId, pageNumber, x = 0, y = 0 }) => ({
-  id: `${schemaUid}-anchor-${pageNumber || 1}`,
-  schemaUid,
-  fileId,
-  pageNumber,
-  x,
-  y,
-  resolved: false,
-})
-
-const createAuditMetadata = (createdBy, lastModifiedBy = createdBy, offset = 0) => ({
-  createdBy,
-  lastModifiedBy,
-  createdAt: BASE_COLLABORATION_TIMESTAMP + offset,
-  updatedAt: BASE_COLLABORATION_TIMESTAMP + offset + 60000,
-})
-
-const createCollaboration = (activeUserId, users, metadata = {}) => ({
-  activeUserId,
-  actorId: metadata.actorId || activeUserId,
-  sessionId: metadata.sessionId || `lab-${activeUserId}`,
-  enabled: metadata.enabled ?? true,
-  users: decorateCollaborationUsers(users),
-})
+// Lab wrapper: resolve uploaded-document PDFs from the lab /templates route.
+const createUploadedDocument = (args) =>
+  createUploadedDocumentCore({ ...args, pdfResolver: getTemplatePdfUrl })
 
 const EXAMPLE_ACTIONS_BY_MODE = {
   designer: [
@@ -305,45 +234,6 @@ const EXAMPLE_ACTIONS_BY_MODE = {
     'reset-template',
   ],
   viewer: ['open-example', 'download-template', 'reset-template'],
-}
-
-const createExample = ({
-  id,
-  path,
-  title,
-  description,
-  status,
-  defaultMode = 'designer',
-  initialSchemaType = 'text',
-  collaboration = null,
-  template,
-  runtimeOptions = null,
-}) => {
-  const safeCollaboration = collaboration ? cloneDeep(collaboration) : null
-  const safeTemplate = decorateTemplateWithCollaboration(template, safeCollaboration?.users || [])
-  const safeRuntimeOptions = runtimeOptions
-    ? cloneDeep({
-        ...runtimeOptions,
-        uploadedDocuments: (runtimeOptions.uploadedDocuments || []).map((document) => ({
-          ...document,
-          template: decorateTemplateWithCollaboration(document.template, safeCollaboration?.users || []),
-        })),
-      })
-    : null
-
-  return {
-    id,
-    path,
-    title,
-    description,
-    status,
-    defaultMode,
-    initialSchemaType,
-    collaboration: safeCollaboration,
-    template: safeTemplate,
-    inputs: getInputFromTemplate(safeTemplate),
-    runtimeOptions: safeRuntimeOptions,
-  }
 }
 
 const basicDesignerTemplate = createTemplate([
@@ -482,9 +372,9 @@ const multiDocumentSecondaryBaseSchemas = [
 ]
 
 const MULTI_DOCUMENT_ROUTING_PAGE_COUNT = 5
-const routingSchemaSplitIndex = Math.ceil(SORTED_SCHEMA_DEFINITIONS.length / 2)
-const routingPrimarySchemaDefinitions = SORTED_SCHEMA_DEFINITIONS.slice(0, routingSchemaSplitIndex)
-const routingSecondarySchemaDefinitions = SORTED_SCHEMA_DEFINITIONS.slice(routingSchemaSplitIndex)
+const routingSchemaSplitIndex = Math.ceil(NON_QR_SCHEMA_DEFINITIONS.length / 2)
+const routingPrimarySchemaDefinitions = NON_QR_SCHEMA_DEFINITIONS.slice(0, routingSchemaSplitIndex)
+const routingSecondarySchemaDefinitions = NON_QR_SCHEMA_DEFINITIONS.slice(routingSchemaSplitIndex)
 
 const multiDocumentPrimaryShowcaseSchemas = createSchemaShowcasePages({
   definitions: routingPrimarySchemaDefinitions,
@@ -545,11 +435,13 @@ const multiDocumentRoutingDocuments = [
 ]
 
 const multiuserShowcasePages = createSchemaShowcasePages({
+  definitions: NON_QR_SCHEMA_DEFINITIONS,
   scope: 'multiuser-showcase',
   ownerRecipientId: 'sales-user-1',
   fileId: 'multiuser-contract',
   fileTemplateId: 'multiuser-contract',
-  startingPageNumber: 1,
+  // base multiuser template has 2 pages; start showcase after those to avoid overlap
+  startingPageNumber: 3,
   auditOffset: 120000,
 })
 
@@ -698,12 +590,16 @@ const generatorRuntimeTemplate = createTemplate([
 ], { basePdf: LAB_PDFS.generator, pageCount: 3 })
 
 const designerShowcasePages = createSchemaShowcasePages({
+  definitions: NON_QR_SCHEMA_DEFINITIONS,
   scope: 'designer-showcase',
   ownerRecipientId: 'basic-user-1',
+  // place designer showcase pages after the base designer template pages
+  startingPageNumber: basicDesignerTemplate.schemas.length + 1,
   auditOffset: 120000,
 })
 
 const collaborationShowcasePages = createSchemaShowcasePages({
+  definitions: NON_QR_SCHEMA_DEFINITIONS,
   scope: 'collaboration-showcase',
   ownerRecipientId: 'ops-user-1',
   fileId: 'enterprise-contract',
@@ -713,8 +609,11 @@ const collaborationShowcasePages = createSchemaShowcasePages({
 })
 
 const generatorShowcasePages = createSchemaShowcasePages({
+  definitions: NON_QR_SCHEMA_DEFINITIONS,
   scope: 'generator-showcase',
   ownerRecipientId: 'generator-user-1',
+  // append showcase after existing runtime template pages to avoid collisions
+  startingPageNumber: generatorRuntimeTemplate.schemas.length + 1,
   auditOffset: 360000,
 })
 
@@ -845,84 +744,18 @@ const LAB_EXAMPLES = [
   }),
 ]
 
-const cloneExample = (example) => ({
-  ...example,
-  template: cloneDeep(example.template),
-  inputs: cloneDeep(example.inputs),
-  runtimeOptions: cloneDeep(example.runtimeOptions),
-})
-
-const sanitizeDownloadName = sanitizeIdentifier
-
-export const getLabExampleDownloadFilename = (example) => {
-  const exampleId = sanitizeDownloadName(example?.id)
-  return `${exampleId}.json`
-}
+export const getLabExampleDownloadFilename = (example) => getExampleBundleFilename(example)
 
 export const getLabExampleActions = (example) => {
   const mode = String(example?.defaultMode || 'designer')
   return EXAMPLE_ACTIONS_BY_MODE[mode] || EXAMPLE_ACTIONS_BY_MODE.designer
 }
 
-const inlineTemplateBasePdf = async (template) => {
-  if (!template) return template
+export const buildLabExampleDownloadBundle = (example) =>
+  buildExampleBundle(example, { source: 'sisad-pdfme-lab', version: 2, getActions: getLabExampleActions })
 
-  const nextTemplate = cloneDeep(template)
-  nextTemplate.basePdf = await getB64BasePdf(nextTemplate.basePdf)
-  return nextTemplate
-}
-
-const inlineRuntimeOptionsBasePdfs = async (runtimeOptions) => {
-  if (!runtimeOptions) return null
-
-  const nextRuntimeOptions = cloneDeep(runtimeOptions)
-  if (!Array.isArray(nextRuntimeOptions.uploadedDocuments) || nextRuntimeOptions.uploadedDocuments.length === 0) {
-    return nextRuntimeOptions
-  }
-
-  nextRuntimeOptions.uploadedDocuments = await Promise.all(
-    nextRuntimeOptions.uploadedDocuments.map(async (document) => ({
-      ...document,
-      template: await inlineTemplateBasePdf(document.template),
-    })),
-  )
-
-  return nextRuntimeOptions
-}
-
-export const buildLabExampleDownloadBundle = async (example) => {
-  const safeExample = cloneExample(example)
-  const [template, runtimeOptions] = await Promise.all([
-    inlineTemplateBasePdf(safeExample.template),
-    inlineRuntimeOptionsBasePdfs(safeExample.runtimeOptions),
-  ])
-
-  return {
-    source: 'sisad-pdfme-lab',
-    version: 2,
-    assetEncoding: 'base64-inline',
-    exportedAt: new Date().toISOString(),
-    example: {
-      id: safeExample.id,
-      path: safeExample.path,
-      title: safeExample.title,
-      description: safeExample.description,
-      status: safeExample.status,
-      defaultMode: safeExample.defaultMode,
-      initialSchemaType: safeExample.initialSchemaType,
-    },
-    template,
-    inputs: safeExample.inputs,
-    collaboration: safeExample.collaboration,
-    runtimeOptions,
-    availableActions: getLabExampleActions(safeExample),
-  }
-}
-
-export const buildLabExampleDownloadHref = async (example) => {
-  const bundle = await buildLabExampleDownloadBundle(example)
-  return `data:application/json;charset=utf-8,${encodeURIComponent(JSON.stringify(bundle, null, 2))}`
-}
+export const buildLabExampleDownloadHref = (example) =>
+  buildExampleHref(example, { source: 'sisad-pdfme-lab', version: 2, getActions: getLabExampleActions })
 
 export const getLabExamples = () => LAB_EXAMPLES.map(cloneExample)
 

@@ -6,6 +6,7 @@ import { Designer, Form, Viewer, DesignerEngineBuilder } from '@sisad-pdfme/ui'
 import { generate } from '@sisad-pdfme/generator'
 import { flatSchemaPlugins, builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
 import { pdf2img, pdf2size, img2pdf } from '@sisad-pdfme/converter'
+import { usePdfmeRuntimeInstance } from '@/sisad-pdfme/runtime/usePdfmeRuntimeInstance'
 import { createObjectUrl, revokeObjectUrls } from './utils/binary.js'
 import { createInitialPdfmeTemplate } from './template.js'
 import {
@@ -40,37 +41,11 @@ const MODE_LABELS = {
   viewer: 'Visor',
 }
 
-const scheduleDestroyInstance = (instance) => {
-  if (!instance) return
-
-  globalThis.setTimeout(() => {
-    try {
-      instance.destroy()
-    } catch (error) {
-      if (!(error instanceof DOMException && error.name === 'NotFoundError')) {
-        throw error
-      }
-    }
-  }, 0)
-}
-
 const schemaCatalog = sortSchemaDefinitions(builtInSchemaDefinitions)
 
 const resolveInitialCollaboratorId = (activeUserId, users) => activeUserId || users[0]?.id || ''
 
 const resolveInitialGlobalView = (isGlobalView) => Boolean(isGlobalView)
-
-const getTemplateSignature = (template) => {
-  try {
-    return JSON.stringify({
-      basePdf: template?.basePdf || null,
-      schemas: template?.schemas || [],
-      inputs: template?.inputs || null,
-    })
-  } catch {
-    return 'template-signature-unavailable'
-  }
-}
 
 const DEFAULT_SIGNATURE_PROVIDERS = [
   {
@@ -146,15 +121,9 @@ const DEFAULT_SIGNATURE_PROVIDERS = [
 
 export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   const containerRef = useRef(null)
-  const instanceRef = useRef(null)
   const generatedPdfUrlRef = useRef('')
   const roundtripPdfUrlRef = useRef('')
   const imagesRef = useRef([])
-  const lastAppliedTemplateRef = useRef(null)
-  const lastAppliedOptionsRef = useRef(null)
-  const lastAppliedInputsRef = useRef(null)
-  const templateSyncFromDesignerRef = useRef(false)
-  const inputsSyncFromRuntimeRef = useRef(false)
 
   const example = useMemo(
     () => getLabExampleById(exampleId) ?? fallbackExample,
@@ -231,7 +200,6 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
     () => decorateTemplateWithCollaboration(example?.template || createInitialPdfmeTemplate(), collaborationUsers),
     [collaborationUsers, example?.template],
   )
-  const lastAppliedTemplateSignatureRef = useRef(getTemplateSignature(initialTemplate))
   const initialInputs = useMemo(
     () => cloneDeep(example?.inputs || getInputFromTemplate(initialTemplate)),
     [example?.inputs, initialTemplate],
@@ -406,130 +374,28 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
     setRoundtripPdfUrl('')
   }
 
-  useEffect(() => {
-    const container = containerRef.current
-    if (!container) return undefined
-
-    const host = document.createElement('div')
-    host.className = 'sisad-pdfme-lab-runtime-host'
-    host.dataset.runtimeMode = mode
-    host.dataset.uxMode = uxMode
-    container.replaceChildren(host)
-
-    const commonProps = {
-      domContainer: host,
-      template: cloneDeep(template),
-      plugins: flatSchemaPlugins,
-      options: commonOptions,
-    }
-
-    let instance = null
-
-    if (mode === 'designer') {
-      const designer = new Designer(commonProps)
-      lastAppliedTemplateRef.current = template
-      lastAppliedOptionsRef.current = commonOptions
-      globalThis.requestAnimationFrame(() => {
-        if (designer && typeof designer.fitToPage === 'function') {
-          designer.fitToPage()
-        }
+  const { instanceRef } = usePdfmeRuntimeInstance({
+    containerRef,
+    mode,
+    uxMode,
+    template,
+    inputs,
+    options: commonOptions,
+    plugins: flatSchemaPlugins,
+    runtime: { Designer, Form, Viewer },
+    decorateTemplate: (nextTemplate) => decorateTemplateWithCollaboration(nextTemplate, collaborationUsers),
+    onTemplateChange: setTemplate,
+    onInputChange: ({ index, name, value }) => {
+      setInputs((prev) => {
+        const next = cloneDeep(prev)
+        if (!next[index]) next[index] = {}
+        next[index][name] = value
+        return next
       })
-      designer.onChangeTemplate((nextTemplate) => {
-        const decoratedTemplate = decorateTemplateWithCollaboration(nextTemplate, collaborationUsers)
-        const nextSignature = getTemplateSignature(decoratedTemplate)
-        if (lastAppliedTemplateSignatureRef.current === nextSignature) {
-          return
-        }
-        lastAppliedTemplateSignatureRef.current = nextSignature
-        templateSyncFromDesignerRef.current = true
-        setTemplate(decoratedTemplate)
-      })
-      designer.onPageChange((pageInfo) => {
-        setStatus(formatPageStatus(pageInfo))
-      })
-      instance = designer
-    } else if (mode === 'form') {
-      const form = new Form({ ...commonProps, inputs: cloneDeep(inputs) })
-      lastAppliedTemplateRef.current = template
-      lastAppliedOptionsRef.current = commonOptions
-      lastAppliedInputsRef.current = inputs
-      form.onChangeInput(({ index, name, value }) => {
-        inputsSyncFromRuntimeRef.current = true
-        setInputs((prev) => {
-          const next = cloneDeep(prev)
-          if (!next[index]) next[index] = {}
-          next[index][name] = value
-          return next
-        })
-      })
-      instance = form
-    } else if (mode === 'viewer') {
-      const viewer = new Viewer({ ...commonProps, inputs: cloneDeep(inputs) })
-      lastAppliedTemplateRef.current = template
-      lastAppliedOptionsRef.current = commonOptions
-      lastAppliedInputsRef.current = inputs
-      instance = viewer
-    }
-
-    instanceRef.current = instance
-
-    return () => {
-      const currentInstance = instanceRef.current
-      if (currentInstance === instance) {
-        instanceRef.current = null
-      }
-      scheduleDestroyInstance(instance)
-
-      if (host.parentNode === container) {
-        host.remove()
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [mode])
-
-  useEffect(() => {
-    return () => {
-      const currentInstance = instanceRef.current
-      instanceRef.current = null
-      scheduleDestroyInstance(currentInstance)
-    }
-  }, [])
-
-  useEffect(() => {
-    const instance = instanceRef.current
-    if (!instance) return
-    if (lastAppliedOptionsRef.current === commonOptions) return
-    lastAppliedOptionsRef.current = commonOptions
-    instance.updateOptions(commonOptions)
-  }, [commonOptions])
-
-  useEffect(() => {
-    const instance = instanceRef.current
-    if (!instance) return
-    if (templateSyncFromDesignerRef.current) {
-      templateSyncFromDesignerRef.current = false
-      lastAppliedTemplateRef.current = template
-      lastAppliedTemplateSignatureRef.current = getTemplateSignature(template)
-      return
-    }
-    if (lastAppliedTemplateRef.current === template) return
-    lastAppliedTemplateRef.current = template
-    lastAppliedTemplateSignatureRef.current = getTemplateSignature(template)
-    instance.updateTemplate(cloneDeep(template))
-  }, [mode, template])
-
-  useEffect(() => {
-    const instance = instanceRef.current
-    if (!instance || mode === 'designer') return
-    if (inputsSyncFromRuntimeRef.current) {
-      inputsSyncFromRuntimeRef.current = false
-      lastAppliedInputsRef.current = inputs
-      return
-    }
-    if (lastAppliedInputsRef.current === inputs) return
-    lastAppliedInputsRef.current = inputs
-    instance.setInputs(cloneDeep(inputs))
-  }, [inputs, mode])
+    },
+    onPageChange: (pageInfo) => setStatus(formatPageStatus(pageInfo)),
+    autoFit: 'page',
+  })
 
   useEffect(() => {
     generatedPdfUrlRef.current = generatedPdfUrl

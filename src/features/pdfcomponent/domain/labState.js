@@ -1,21 +1,18 @@
-export const MODES = ['designer', 'form', 'viewer']
-export const UX_MODES = ['default', 'canvas-first']
-export const UX_MODE_STORAGE_KEY = 'sisad-pdfme.lab.ux-mode'
+// Partial re-export shim. Generic runtime helpers moved to core
+// `runtime/runtimeModes` (Fase 1). Lab-only constants stay here.
+import {
+  RUNTIME_MODES,
+  DEFAULT_UX_MODES,
+  getErrorMessage,
+  formatPageStatus,
+  resolveInitialUxMode,
+} from '@/sisad-pdfme/runtime/runtimeModes'
 
-export const getErrorMessage = (error) =>
-  error instanceof Error ? error.message : 'Error inesperado'
+export const MODES = [...RUNTIME_MODES]
+export const UX_MODES = [...DEFAULT_UX_MODES]
+// Lab-specific storage key — NOT moved to core (host concern).
+export const UX_MODE_STORAGE_KEY = 'sisad-pdfme.lab.ux-mode'
 
 export const isValidUxMode = (mode) => UX_MODES.includes(String(mode || ''))
 
-export const resolveInitialUxMode = ({ search = '', storedMode = '', fallback = 'canvas-first' } = {}) => {
-  const searchParams = new URLSearchParams(search)
-  const modeFromQuery = searchParams.get('ux')
-  const candidate = [modeFromQuery, storedMode].find((value) => isValidUxMode(value))
-  return candidate || fallback
-}
-
-export const formatPageStatus = (pageInfo) => {
-  const current = Math.max(1, Number(pageInfo?.currentPage || 1))
-  const total = Math.max(1, Number(pageInfo?.totalPages || 1))
-  return `Página ${current} / ${total}`
-}
+export { getErrorMessage, formatPageStatus, resolveInitialUxMode }

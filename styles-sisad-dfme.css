@@ -2,7 +2,7 @@
    ARCHIVO UNIFICADO DE ESTILOS CSS
    =====================================================================
    Carpeta origen: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
-   Fecha de generación: 2026-06-02T07:11:56.973Z
+   Fecha de generación: 2026-06-02T16:27:58.246Z
    Total de archivos incluidos: 6
    Extensiones incluidas: .css
    Objetivo: consolidar estilos CSS respetando un orden estable de cascada
@@ -9421,6 +9421,7 @@ body {
    │   ├── rules
    │   ├── skills
    │   │   ├── active-recipient-color-contract
+   │   │   ├── application-behavior-contract
    │   │   ├── canvas-geometry-scaling
    │   │   ├── checkbox-radio-dropdown-parity
    │   │   ├── command-bus-transform-actions
@@ -9432,6 +9433,7 @@ body {
    │   │   ├── css-transform-handle-safety
    │   │   ├── custom-schema-contracts
    │   │   ├── documentation-traceability
+   │   │   ├── docusign-inspired-schema-ux
    │   │   ├── docusign-wix-minimal-ux
    │   │   ├── external-forms-runtime
    │   │   ├── floating-toolbar-transform-position
@@ -9443,15 +9445,18 @@ body {
    │   │   ├── legacy-runtime-reduction
    │   │   ├── moveable-selecto-integration
    │   │   ├── moveable-selecto-resize-rotate
+   │   │   ├── multipage-multipdf-placement
    │   │   ├── playwright-canvas-diagnostics
    │   │   ├── playwright-recipient-color-regression
    │   │   ├── playwright-transform-regression
+   │   │   ├── process-regression-matrix
    │   │   ├── public-api-surface-design
    │   │   ├── quality-gates
    │   │   ├── schema-icon-color-sync
    │   │   ├── schema-owner-color-persistence
    │   │   ├── schema-registry-extension
    │   │   ├── schema-tone-resolution
+   │   │   ├── selection-shortcuts-commandbus-regression
    │   │   ├── snapshot-transform-roundtrip
    │   │   ├── standard-field-groups-contract
    │   │   ├── standard-fields-regression-testing
@@ -9487,6 +9492,11 @@ body {
    │   ├── 09-operacion-debug
    │   ├── 10-handoff
    │   ├── 11-standard-schemas
+   │   ├── 12-behavior-contract
+   │   ├── 13-docusign-ux-research
+   │   ├── 14-process-flows
+   │   ├── 15-component-contracts
+   │   ├── 16-completion-roadmap
    │   └── 99-archivo
    ├── handoff
    ├── metadata
@@ -9505,6 +9515,7 @@ body {
    │   │       └── utils
    │   ├── sisad-pdfme
    │   │   ├── assignments
+   │   │   ├── browser
    │   │   ├── canvas
    │   │   ├── collaboration
    │   │   ├── commands
@@ -9513,8 +9524,12 @@ body {
    │   │   ├── context
    │   │   ├── contracts
    │   │   ├── converter
+   │   │   ├── devtools
    │   │   ├── documents
    │   │   ├── editor
+   │   │   ├── examples
+   │   │   │   ├── builders
+   │   │   │   └── export
    │   │   ├── externalForms
    │   │   ├── generator
    │   │   ├── pdf-lib
@@ -9538,6 +9553,7 @@ body {
    │   │   │   ├── types
    │   │   │   └── utils
    │   │   │       └── elements
+   │   │   ├── runtime
    │   │   ├── schemas
    │   │   │   ├── barcodes
    │   │   │   ├── checkbox
@@ -9554,6 +9570,7 @@ body {
    │   │   │   └── text
    │   │   │       └── icons
    │   │   ├── shared
+   │   │   ├── templates
    │   │   └── ui
    │   │       ├── commands
    │   │       ├── components
@@ -9660,6 +9677,7 @@ body {
            │       └── utils
            ├── sisad-pdfme
            │   ├── assignments
+           │   ├── browser
            │   ├── canvas
            │   ├── collaboration
            │   ├── commands
@@ -9670,6 +9688,7 @@ body {
            │   ├── converter
            │   ├── documents
            │   ├── editor
+           │   ├── examples
            │   ├── externalForms
            │   ├── generator
            │   ├── pdf-lib
@@ -9693,6 +9712,7 @@ body {
            │   │   ├── types
            │   │   └── utils
            │   │       └── elements
+           │   ├── runtime
            │   ├── schemas
            │   │   ├── barcodes
            │   │   ├── checkbox
@@ -9709,6 +9729,7 @@ body {
            │   │   └── text
            │   │       └── icons
            │   ├── shared
+           │   ├── templates
            │   └── ui
            │       ├── commands
            │       ├── components

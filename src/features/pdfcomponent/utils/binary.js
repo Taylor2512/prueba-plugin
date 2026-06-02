@@ -1,14 +1,7 @@
-export function createObjectUrl(bytes, mimeType) {
-  return URL.createObjectURL(new Blob([bytes], { type: mimeType }))
-}
-
-export function revokeObjectUrls(urls) {
-  urls.forEach((url) => URL.revokeObjectURL(url))
-}
-
-export function downloadUrl(url, filename) {
-  const link = document.createElement('a')
-  link.href = url
-  link.download = filename
-  link.click()
-}
+// Re-export shim. Logic moved to the core browser module
+// (Fase 1 de migración features → sisad-pdfme). Removed in Fase 6.
+export {
+  createObjectUrl,
+  revokeObjectUrls,
+} from '@/sisad-pdfme/browser/objectUrls'
+export { downloadUrl } from '@/sisad-pdfme/browser/downloads'

@@ -3,6 +3,9 @@ import { ZOOM, SchemaForUI, Size, getFallbackFontName } from '@sisad-pdfme/commo
 import { FontContext } from '../contexts.js';
 import { RULER_HEIGHT, PAGE_GAP } from '../constants.js';
 
+const TRANSPARENT_PNG =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+pR6QAAAAASUVORK5CYII=';
+
 type PageBlock = {
   background: string;
   pageSize: Size;
@@ -91,27 +94,35 @@ const Paper = (props: {
       ? schemasList
       : Array.from({ length: pageSizes.length }, (_, paperIndex) => schemasList[paperIndex] || []);
   const initialTop = hasRulers ? RULER_HEIGHT : PAGE_GAP * 2;
+  const fallbackBackgrounds = useMemo(
+    () => Array.from({ length: pageSizes.length }, (_, paperIndex) => backgrounds[paperIndex] || TRANSPARENT_PNG),
+    [backgrounds, pageSizes.length],
+  );
 
   const currentState = useMemo<StablePaperState | null>(() => {
-    if (pageSizes.length !== backgrounds.length) {
+    if (pageSizes.length === 0) {
       return null;
     }
 
-    const computedState = backgrounds.reduce<{
+    const resolvedBackgrounds = pageSizes.map(
+      (_, paperIndex) => backgrounds[paperIndex] || fallbackBackgrounds[paperIndex] || TRANSPARENT_PNG,
+    );
+
+    const computedState = pageSizes.reduce<{
       pageBlocks: PageBlock[];
       nextTop: number;
       rootWidth: number;
       rootHeight: number;
     }>(
-      (acc, background, paperIndex) => {
-        const pageSize = pageSizes[paperIndex];
-        const paperSize = { width: pageSize.width * ZOOM, height: pageSize.height * ZOOM };
+      (acc, pageSizeItem, paperIndex) => {
+        const background = resolvedBackgrounds[paperIndex] || TRANSPARENT_PNG;
+        const paperSize = { width: pageSizeItem.width * ZOOM, height: pageSizeItem.height * ZOOM };
         const pageTop = acc.nextTop;
 
         return {
           pageBlocks: acc.pageBlocks.concat({
             background,
-            pageSize,
+            pageSize: pageSizeItem,
             paperSize,
             pageTop,
           }),
@@ -146,7 +157,7 @@ const Paper = (props: {
       rootWidth: computedState.rootWidth,
       rootHeight: computedState.rootHeight,
     };
-  }, [backgrounds, initialTop, normalizedSchemasList, pageSizes]);
+  }, [backgrounds, fallbackBackgrounds, initialTop, normalizedSchemasList, pageSizes]);
 
   const [lastStableState, setLastStableState] = useState<StablePaperState | null>(null);
 
