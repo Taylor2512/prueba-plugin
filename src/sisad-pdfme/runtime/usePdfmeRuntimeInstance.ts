@@ -4,10 +4,11 @@ import { cloneDeep } from '@sisad-pdfme/common';
 /** Stable JSON signature of the template's meaningful fields (for dedupe). */
 export const getTemplateSignature = (template: any): string => {
   try {
+    // Exclude `inputs` from the signature — inputs are synced separately
+    // and must not trigger template dedupe/echo logic.
     return JSON.stringify({
       basePdf: template?.basePdf || null,
       schemas: template?.schemas || [],
-      inputs: template?.inputs || null,
     });
   } catch {
     return 'template-signature-unavailable';
@@ -188,8 +189,23 @@ export function usePdfmeRuntimeInstance(
       return;
     }
     if (lastAppliedTemplateRef.current === template) return;
+    const nextSignature = getTemplateSignature(template);
+    if (import.meta.env?.DEV) {
+      try {
+        // Lightweight diagnostic to help detect unexpected signature churns
+        // during development without interfering in production.
+        // eslint-disable-next-line no-console
+        console.debug('[usePdfmeRuntimeInstance] template sync', {
+          mode,
+          previousSignature: lastAppliedTemplateSignatureRef.current,
+          nextSignature,
+        });
+      } catch (err) {
+        // swallow logging errors
+      }
+    }
     lastAppliedTemplateRef.current = template;
-    lastAppliedTemplateSignatureRef.current = getTemplateSignature(template);
+    lastAppliedTemplateSignatureRef.current = nextSignature;
     instance.updateTemplate(cloneDeep(template));
   }, [mode, template]);
 

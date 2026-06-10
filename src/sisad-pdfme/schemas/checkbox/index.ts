@@ -50,7 +50,7 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
     if (editable && onChange) {
       box.addEventListener('click', (e) => {
         e.stopPropagation();
-        onChange({ key: 'content', value: checked ? 'false' : 'true' });
+        onChange([{ key: 'content', value: checked ? 'false' : 'true' }]);
       });
     }
 

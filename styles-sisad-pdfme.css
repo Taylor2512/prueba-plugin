@@ -2,7 +2,7 @@
    ARCHIVO UNIFICADO DE ESTILOS CSS
    =====================================================================
    Carpeta origen: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
-   Fecha de generación: 2026-06-02T16:27:58.246Z
+   Fecha de generación: 2026-06-10T03:33:49.942Z
    Total de archivos incluidos: 6
    Extensiones incluidas: .css
    Objetivo: consolidar estilos CSS respetando un orden estable de cascada
@@ -25,7 +25,7 @@
    ARCHIVO #1
    Ruta relativa: src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
    Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
-   Líneas aproximadas: 5814
+   Líneas aproximadas: 5828
    ==================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
@@ -706,6 +706,33 @@
 
 .sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-summary {
   font-size: 0.625rem;
+}
+
+/* RadioGroup compacto: el plugin dibuja las celdas y el botón +.
+   El wrapper global no debe añadir caption/badge ni overlays grandes. */
+:is(.app-shell, .sisad-pdfme-designer-root)
+  .sisad-pdfme-ui-custom-selectable[data-schema-type='radioGroup']::after {
+  content: none !important;
+  display: none !important;
+}
+
+:is(.app-shell, .sisad-pdfme-designer-root)
+  .sisad-pdfme-ui-custom-selectable[data-schema-type='radioGroup']::before {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
+/* CheckboxGroup: evitar overlays/captions/badges globales que rompen la compactación */
+:is(.app-shell, .sisad-pdfme-designer-root)
+  .sisad-pdfme-ui-custom-selectable[data-schema-type='checkboxGroup']::after {
+  content: none !important;
+  display: none !important;
+}
+
+:is(.app-shell, .sisad-pdfme-designer-root)
+  .sisad-pdfme-ui-custom-selectable[data-schema-type='checkboxGroup']::before {
+  background: transparent !important;
+  box-shadow: none !important;
 }
 
 .sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-cluster--top-left {
@@ -8384,6 +8411,24 @@
   gap: 0.5rem;
 }
 
+/* Defensive: ensure radioGroup remains compact and never receives
+   caption/badge/overlay pseudo-elements that other schemas use. */
+:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-type='radioGroup']::after,
+:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-type='radioGroup'][data-schema-caption]::after,
+:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-type='radioGroup'][data-schema-badge]::after {
+  content: none !important;
+  display: none !important;
+  opacity: 0 !important;
+}
+
+:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-type='radioGroup']::before,
+:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-type='radioGroup'][data-schema-state='editing']::before {
+  background: transparent !important;
+  box-shadow: none !important;
+  opacity: 0 !important;
+  display: none !important;
+}
+
 .sisad-pdfme-shortcuts-group-title {
   margin: 0 !important;
 }
@@ -9410,6 +9455,7 @@ body {
    =====================================================================
 
    prueba-plugin
+   ├── .agents
    ├── .ai
    │   ├── agents
    │   ├── architecture
@@ -9476,6 +9522,10 @@ body {
    ├── .github
    │   ├── instructions
    │   └── prompts
+   ├── .kilo
+   │   ├── agents
+   │   ├── prompts
+   │   └── skills
    ├── .playwright-mcp
    ├── AI-Memory
    ├── debug
@@ -9525,6 +9575,25 @@ body {
    │   │   ├── contracts
    │   │   ├── converter
    │   │   ├── devtools
+   │   │   ├── docs
+   │   │   │   ├── 00-indice
+   │   │   │   ├── 01-producto-y-vision
+   │   │   │   ├── 02-mapa-modulos
+   │   │   │   ├── 03-arquitectura
+   │   │   │   ├── 04-recipient-transform
+   │   │   │   ├── 05-ui-ux
+   │   │   │   ├── 06-css
+   │   │   │   ├── 07-calidad
+   │   │   │   ├── 08-ia-agentes
+   │   │   │   ├── 09-operacion-debug
+   │   │   │   ├── 10-handoff
+   │   │   │   ├── 11-standard-schemas
+   │   │   │   ├── 12-behavior-contract
+   │   │   │   ├── 13-docusign-ux-research
+   │   │   │   ├── 14-process-flows
+   │   │   │   ├── 15-component-contracts
+   │   │   │   ├── 16-completion-roadmap
+   │   │   │   └── 99-archivo
    │   │   ├── documents
    │   │   ├── editor
    │   │   ├── examples
@@ -9593,7 +9662,7 @@ body {
    │   │       │   └── tokens.css
    │   │       └── types
    │   └── types
-   ├── styles-sisad-dfme.css
+   ├── styles-sisad-pdfme.css
    ├── test-results
    └── tests
        ├── playwright

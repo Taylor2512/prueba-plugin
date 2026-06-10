@@ -9,9 +9,9 @@
  *   - schemaUid, createdAt     → sisad-pdfme (inmutable tras creación)
  *   - recipientId/Name/Color   → sisad-pdfme via schema.assign_recipient
  *   - assignment, signature    → sisad-pdfme
- *   - ownership                → ContentCustomForm (política inyectada)
- *   - integration              → ContentCustomForm (opaco para el runtime)
- *   - templateVersion          → ContentCustomForm (al guardar)
+ *   - ownership                → DigitalAgreements (política inyectada)
+ *   - integration              → DigitalAgreements (opaco para el runtime)
+ *   - templateVersion          → DigitalAgreements (al guardar)
  *   - version, updatedAt       → sisad-pdfme (auto en cada mutación)
  */
 /**
@@ -71,7 +71,7 @@ export interface SchemaDesignerMeta {
     groupIds?: string[];
   };
 
-  /** Política de ownership — escrita por ContentCustomForm, leída por guards */
+  /** Política de ownership — escrita por DigitalAgreements, leída por guards */
   ownership?: {
     /** userId propietario del schema en el contexto de edición */
     ownerUserId?: string;
@@ -102,7 +102,7 @@ export interface SchemaDesignerMeta {
 
   /**
    * Datos de integración con proveedor externo.
-   * Completamente opacos para sisad-pdfme — ContentCustomForm los interpreta.
+   * Completamente opacos para sisad-pdfme — DigitalAgreements los interpreta.
    * Ejemplo: { provider: 'oneshot', envelopeId: 'env-123', tabId: 'tab-456' }
    */
   integration?: {

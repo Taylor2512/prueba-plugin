@@ -20,7 +20,7 @@
  *   - Sin checksums de PDF → backgrounds almacenados como base64
  *   - Pérdida de datos si se limpian cookies/localStorage del browser
  *
- * El padre (ContentCustomForm) puede sobreescribir cualquier campo del config
+ * El padre (DigitalAgreements) puede sobreescribir cualquier campo del config
  * antes de pasarlo al designer.
  */
 import { LocalSnapshotStoreImpl } from './localSnapshotStore.js';
@@ -68,7 +68,7 @@ export interface LocalModeOptions {
  * Crea la configuración completa para modo sin backend.
  *
  * @example
- * // En ContentCustomForm o el componente raíz:
+ * // En DigitalAgreements o el componente raíz:
  * const localConfig = createLocalModeConfig({ templateId: 'my-template' });
  *
  * // Montar el designer:

@@ -98,7 +98,7 @@ const signatureSchema: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSch
       removeBtn.onclick = (event) => {
         event.preventDefault();
         event.stopPropagation();
-        if (onChange) onChange({ key: 'content', value: '' });
+        if (onChange) onChange([{ key: 'content', value: '' }]);
       };
       container.appendChild(removeBtn);
     }
@@ -129,7 +129,7 @@ const signatureSchema: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSch
         const changeEvent = event as Event & { target: HTMLInputElement };
         readFile(changeEvent.target.files)
           .then((result) => {
-            if (onChange) onChange({ key: 'content', value: result as string });
+            if (onChange) onChange([{ key: 'content', value: result as string }]);
           })
           .catch((error) => {
             console.error('Error reading file:', error);
@@ -284,7 +284,7 @@ const signatureSchema: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSch
       saveBtn.textContent = 'Guardar';
       saveBtn.addEventListener('click', () => {
         const dataUrl = canvas.toDataURL('image/png');
-        if (onChange) onChange({ key: 'content', value: dataUrl });
+        if (onChange) onChange([{ key: 'content', value: dataUrl }]);
         document.body.removeChild(overlay);
         if (stopEditing) stopEditing();
       });

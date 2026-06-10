@@ -1,7 +1,7 @@
 import { cloneDeep, Schema, SchemaForUI, UIOptions, type CommentScope } from '@sisad-pdfme/common';
 import type React from 'react';
 import type { LeftSidebarProps } from './components/Designer/LeftSidebar';
-import type { RightSidebarProps } from './components/Designer/RightSidebar/index';
+import type { RightSidebarProps } from './components/Designer/RightSidebar/RightSidebar';
 import {
   normalizeCollaborationRecipients,
   resolveOwnerMode,
@@ -1155,12 +1155,9 @@ export const createSchemaDataRuntimeAdapter = ({
               integrationOperation: integration.operation,
             } satisfies ResolvedSchemaRequest;
           })
-          .filter((request): request is ResolvedSchemaRequest => Boolean(request))
+          .filter(Boolean) as ResolvedSchemaRequest[]
       : [];
-
-    return [primaryRequest, ...integrationRequests].filter(
-      (request): request is ResolvedSchemaRequest => Boolean(request),
-    );
+    return ([primaryRequest, ...integrationRequests].filter(Boolean) as ResolvedSchemaRequest[]);
   };
 
   return {

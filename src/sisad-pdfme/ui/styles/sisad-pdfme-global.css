@@ -678,6 +678,20 @@
   font-size: 0.625rem;
 }
 
+/* RadioGroup compacto: el plugin dibuja las celdas y el botón +.
+   El wrapper global no debe añadir caption/badge ni overlays grandes. */
+:is(.app-shell, .sisad-pdfme-designer-root)
+  .sisad-pdfme-ui-custom-selectable[data-schema-type='radioGroup']::after {
+  content: none !important;
+  display: none !important;
+}
+
+:is(.app-shell, .sisad-pdfme-designer-root)
+  .sisad-pdfme-ui-custom-selectable[data-schema-type='radioGroup']::before {
+  background: transparent !important;
+  box-shadow: none !important;
+}
+
 .sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-cluster--top-left {
   max-width: calc(100% - 9.5rem);
 }

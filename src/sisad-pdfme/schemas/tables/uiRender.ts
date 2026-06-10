@@ -168,11 +168,11 @@ const renderRowUi = (args: {
           if (section === 'body') {
             const startRange = arg.schema.__bodyRange?.start ?? 0;
             value[rowIndex + startRange][colIndex] = newValue;
-            arg.onChange({ key: 'content', value: JSON.stringify(value) });
+            arg.onChange([{ key: 'content', value: JSON.stringify(value) }]);
           } else {
             const newHead = [...arg.schema.head];
             newHead[colIndex] = newValue;
-            arg.onChange({ key: 'head', value: newHead });
+            arg.onChange([{ key: 'head', value: newHead }]);
           }
         },
         value: cell.raw,
@@ -251,7 +251,7 @@ export const uiRender = async (arg: UIRenderProps<TableSchema>) => {
       text: '+',
       onClick: () => {
         const newRow = Array(schema.head.length).fill('') as string[];
-        if (onChange) onChange({ key: 'content', value: JSON.stringify(body.concat([newRow])) });
+        if (onChange) onChange([{ key: 'content', value: JSON.stringify(body.concat([newRow])) }]);
       },
     });
 
@@ -267,7 +267,7 @@ export const uiRender = async (arg: UIRenderProps<TableSchema>) => {
         text: '-',
         onClick: () => {
           const newTableBody = body.filter((_, j) => j !== i + (schema.__bodyRange?.start ?? 0));
-          if (onChange) onChange({ key: 'content', value: JSON.stringify(newTableBody) });
+          if (onChange) onChange([{ key: 'content', value: JSON.stringify(newTableBody) }]);
         },
       });
       return removeRowButton;
@@ -412,7 +412,7 @@ export const uiRender = async (arg: UIRenderProps<TableSchema>) => {
               changedHeadWidth: table.columns[i].width + move,
               changedHeadIndex: i,
             });
-            onChange({ key: 'headWidthPercentages', value: newHeadWidthPercentages });
+            onChange([{ key: 'headWidthPercentages', value: newHeadWidthPercentages }]);
           }
           move = 0;
           dragHandle.addEventListener('mouseover', setColor);
@@ -432,6 +432,6 @@ export const uiRender = async (arg: UIRenderProps<TableSchema>) => {
 
   const tableHeight = showHead ? table.getHeight() : table.getBodyHeight();
   if (schema.height !== tableHeight && onChange) {
-    onChange({ key: 'height', value: tableHeight });
+    onChange([{ key: 'height', value: tableHeight }]);
   }
 };

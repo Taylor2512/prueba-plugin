@@ -75,7 +75,7 @@ export interface ProviderConfig {
   defaultProvider: string;
   allowedProviders: string[];
   /**
-   * Opaco — ContentCustomForm lo interpreta.
+   * Opaco — DigitalAgreements lo interpreta.
    * No contiene credenciales — solo configuración de tenant.
    */
   tenantConfig?: Record<string, unknown>;

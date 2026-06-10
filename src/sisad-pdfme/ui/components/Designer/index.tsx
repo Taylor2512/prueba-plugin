@@ -53,7 +53,7 @@ import CtlBar from '../CtlBar.js';
 import CommentDialog from './Comments/CommentDialog.js';
 import { applyCollaborationEvent, diffCollaborationEvents, useCollaborationSync } from '../../collaboration.js';
 import type { DesignerDocumentItem } from './RightSidebar/DocumentsRail.js';
-import type { DesignerRuntimeApi, DesignerSidebarPresentation } from '../../types.js';
+import type { DesignerRuntimeApi, DesignerSidebarPresentation, DesignerCommentItem } from '../../types.js';
 import type { SchemaComment, SchemaCommentAnchor } from '../../designerEngine.js';
 import {
   extractClientPoint,
@@ -1475,18 +1475,7 @@ const TemplateEditor = ({
   }, [activeDocumentId, activeElements, currentPageSchemas, openCommentDialog, pageCursor, paperRefs]);
 
   const commentItems = useMemo(() => {
-    const items: Array<{
-      id: string;
-      text: string;
-      authorName: string | null;
-      authorColor: string | null;
-      schemaUid?: string | null;
-      fileId: string | null;
-      pageNumber: number;
-      resolved: boolean;
-      timestamp?: number;
-      replies: unknown[];
-    }> = [];
+    const items: DesignerCommentItem[] = [];
     for (const entry of filterCommentsByFileAndPage(visibleTemplate, activeDocumentId || null, pageCursor + 1)) {
       const id = String(entry.comment?.id || entry.anchor?.id || '');
       const text = String(entry.comment?.text || entry.comment?.content || '');
@@ -1501,7 +1490,18 @@ const TemplateEditor = ({
         pageNumber: entry.pageNumber,
         resolved: Boolean(entry.anchor?.resolved ?? entry.comment?.resolved),
         timestamp: Number(entry.comment?.timestamp || entry.comment?.createdAt || 0) || undefined,
-        replies: Array.isArray(entry.comment?.replies) ? entry.comment.replies : [],
+        replies: Array.isArray(entry.comment?.replies)
+          ? (entry.comment.replies as any[]).map((r: any) => ({
+              id: String(r?.id || ''),
+              text: String(r?.text || r?.content || ''),
+              authorId: r?.authorId || undefined,
+              authorName: r?.authorName || undefined,
+              authorColor: r?.authorColor ?? null,
+              timestamp: Number(r?.timestamp || r?.createdAt || 0) || undefined,
+              createdAt: Number(r?.createdAt || r?.timestamp || 0) || undefined,
+              resolved: Boolean(r?.resolved),
+            }))
+          : [],
       });
     }
     return items.sort((left, right) => (right.timestamp || 0) - (left.timestamp || 0));

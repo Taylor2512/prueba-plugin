@@ -20,31 +20,77 @@ const MAX_RUNTIME_TEMPLATE_CACHE_ENTRIES = 12;
 
 const getTemplateDocumentIdentity = (template: Template) => {
   const scopedTemplate = template as Template & { fileId?: string; fileTemplateId?: string };
-  return String(scopedTemplate?.fileId || scopedTemplate?.fileTemplateId || template?.basePdf || '');
+  const id = String(scopedTemplate?.fileId || scopedTemplate?.fileTemplateId || '');
+  if (id) return id;
+  const basePdf = template?.basePdf;
+  if (!basePdf) return '';
+  if (typeof basePdf === 'string') {
+    if (basePdf.startsWith('data:')) {
+      const prefix = basePdf.slice(0, 128);
+      return `data:${basePdf.length}:${prefix}`;
+    }
+    return `url:${basePdf}`;
+  }
+  try {
+    return `obj:${String(JSON.stringify(basePdf).slice(0, 128))}`;
+  } catch {
+    return String(basePdf || '');
+  }
 };
 
-const createPreviewRuntimeSignature = (template: Template, input: Record<string, string> = {}) => {
+const stableJsonSignature = (v: unknown) => {
+  try {
+    const canonical = (function canon(x: any): any {
+      if (x === null || typeof x !== 'object') return x;
+      if (Array.isArray(x)) return x.map(canon);
+      const keys = Object.keys(x).sort();
+      const out: any = {};
+      keys.forEach((k) => (out[k] = canon(x[k])));
+      return out;
+    })(v);
+    return JSON.stringify(canonical);
+  } catch {
+    return String(v || '');
+  }
+};
+
+const getSchemaLayoutKey = (schema: SchemaForUI) =>
+  [schema?.schemaUid || schema?.id || schema?.name || 'field', schema?.pageNumber || '', schema?.position?.x || 0, schema?.position?.y || 0, schema?.width || 0, schema?.height || 0, schema?.type || '']
+    .join(':');
+
+const areSchemasListEquivalent = (a: SchemaForUI[][] = [[]], b: SchemaForUI[][] = [[]]) => {
+  if ((a || [[]]).length !== (b || [[]]).length) return false;
+  for (let i = 0; i < (a || [[]]).length; i += 1) {
+    const pa = a[i] || [];
+    const pb = b[i] || [];
+    if (pa.length !== pb.length) return false;
+    for (let j = 0; j < pa.length; j += 1) {
+      if (getSchemaLayoutKey(pa[j]) !== getSchemaLayoutKey(pb[j])) return false;
+    }
+  }
+  return true;
+};
+
+const createPreviewRuntimeSignature = (template: Template) => {
   const documentKey = getTemplateDocumentIdentity(template);
   const schemaSignature = (template?.schemas || [])
     .flat()
-    .map((schema: SchemaForUI) =>
-      [
-        schema?.schemaUid || schema?.id || schema?.name || 'field',
-        schema?.pageNumber || '',
-        schema?.position?.x || 0,
-        schema?.position?.y || 0,
-        schema?.width || 0,
-        schema?.height || 0,
-      ].join(':'),
-    )
+    .map((schema: SchemaForUI) => getSchemaLayoutKey(schema))
     .join('|');
 
-  return JSON.stringify({
-    documentKey,
-    pageCount: template?.schemas?.length || 0,
-    schemaSignature,
-    input,
+  return stableJsonSignature({ documentKey, pageCount: template?.schemas?.length || 0, schemaSignature });
+};
+
+const createInputRuntimeSignature = (template: Template, input: Record<string, string> = {}) => {
+  const dynamicNames = new Set<string>();
+  (template?.schemas || []).flat().forEach((s: SchemaForUI) => {
+    if (s?.type === 'table') dynamicNames.add(s.name);
   });
+  const filtered: Record<string, string> = {};
+  Object.entries(input || {}).forEach(([k, v]) => {
+    if (dynamicNames.has(k)) filtered[k] = v;
+  });
+  return stableJsonSignature(filtered);
 };
 
 const resolveLocalStorage = () => {
@@ -155,10 +201,21 @@ const usePreviewRuntime = ({
   const runtimeTemplateCacheRef = useRef(
     new Map<string, { dynamicTemplate: Template; schemasList: SchemaForUI[][] }>(),
   );
+  const runtimeSignatureRef = useRef('');
 
   useEffect(() => {
     currentInputRef.current = input || {};
   }, [input]);
+
+  const triggerSignature = useMemo(() => {
+    try {
+      const tSig = createPreviewRuntimeSignature(template);
+      const iSig = createInputRuntimeSignature(template, input || {});
+      return stableJsonSignature({ tSig, iSig });
+    } catch {
+      return '';
+    }
+  }, [template, input]);
 
   const fieldSnapshots = useMemo<SchemaDataFieldSnapshot[]>(
     () =>
@@ -217,11 +274,15 @@ const usePreviewRuntime = ({
 
   const init = useCallback(
     (nextTemplate: Template, inputOverride?: Record<string, string>) => {
-      const currentInput = inputOverride ?? input;
-      const runtimeSignature = createPreviewRuntimeSignature(nextTemplate, currentInput);
-      const cachedRuntime = runtimeTemplateCacheRef.current.get(runtimeSignature);
+      const currentInput = inputOverride ?? currentInputRef.current;
+      const templateSig = createPreviewRuntimeSignature(nextTemplate);
+      const inputSig = createInputRuntimeSignature(nextTemplate, currentInput);
+      const runtimeSignature = stableJsonSignature({ templateSig, inputSig });
+      const cachedRuntime = runtimeTemplateCacheRef.current.get(runtimeSignature) as
+        | { dynamicTemplate: Template; schemasList: SchemaForUI[][] }
+        | undefined;
       if (cachedRuntime) {
-        setSchemasList(cachedRuntime.schemasList);
+        setSchemasList((prev) => (areSchemasListEquivalent(prev, cachedRuntime.schemasList) ? prev : cachedRuntime.schemasList));
         void refresh(cachedRuntime.dynamicTemplate).catch((err) => console.error('[@sisad-pdfme/ui] ', err));
         return;
       }
@@ -248,12 +309,12 @@ const usePreviewRuntime = ({
             const oldestKey = runtimeTemplateCacheRef.current.keys().next().value;
             if (oldestKey) runtimeTemplateCacheRef.current.delete(oldestKey);
           }
-          setSchemasList(nextSchemasList);
+          setSchemasList((prev) => (areSchemasListEquivalent(prev, nextSchemasList) ? prev : nextSchemasList));
           await refresh(dynamicTemplate);
         })
         .catch((err) => console.error('[@sisad-pdfme/ui] ', err));
     },
-    [font, input, refresh],
+    [font, refresh],
   );
 
   useEffect(() => {
@@ -266,7 +327,7 @@ const usePreviewRuntime = ({
       component: 'Preview',
       value: formJsonEnvelope,
       details: {
-        totalPages: formJsonEnvelope?.totalPages ?? pageSizes.length,
+        totalPages: formJsonEnvelope?.meta?.totalPages ?? pageSizes.length,
       },
     });
   }, [emitRuntimeEvent, formJsonEnvelope, isForm, onFormJsonChange, pageSizes.length]);
@@ -423,8 +484,11 @@ const usePreviewRuntime = ({
   }, [emitRuntimeEvent, scale, size.height, size.width, zoomLevel]);
 
   useEffect(() => {
+    if (!triggerSignature) return;
+    if (runtimeSignatureRef.current === triggerSignature) return;
+    runtimeSignatureRef.current = triggerSignature;
     init(template);
-  }, [template, input, init]);
+  }, [triggerSignature, init, template]);
 
   useScrollPageCursor({
     ref: containerRef,
@@ -460,34 +524,46 @@ const usePreviewRuntime = ({
       let isNeedInit = false;
       let newInputValue: string | undefined;
 
-      args.forEach(({ key: _key, value }) => {
-        if (_key === 'content') {
-          const newValue = value as string;
-          const oldValue = input?.[schema.name] || '';
-          if (newValue === oldValue) return;
-
+      const contentArg = args.find((a) => a.key === 'content');
+      if (contentArg) {
+        const newValue = String(contentArg.value ?? '');
+        const oldValue = currentInputRef.current?.[schema.name] || '';
+        if (newValue !== oldValue) {
           handleChangeInput({ name: schema.name, value: newValue });
           if (schema.type === 'table') {
             isNeedInit = true;
             newInputValue = newValue;
           }
-          return;
         }
-
-        const targetSchema = schemasList[pageCursor].find((s) => s.id === schema.id);
-        if (!targetSchema) return;
-
-        targetSchema[_key] = value as string;
-      });
-
-      if (isNeedInit && newInputValue !== undefined) {
-        const updatedInput = { ...input, [schema.name]: newInputValue };
-        init(template, updatedInput);
       }
 
-      setSchemasList([...schemasList]);
+      const nonContentArgs = args.filter((a) => a.key !== 'content');
+      if (nonContentArgs.length > 0) {
+        setSchemasList((prev) => {
+          const page = prev[pageCursor] || [];
+          let changed = false;
+          const newPage = page.map((s) => {
+            if (s.id !== schema.id) return s;
+            let ns = s;
+            nonContentArgs.forEach(({ key: _k, value }) => {
+              if ((ns as any)[_k] !== value) {
+                ns = { ...ns, [_k]: value } as SchemaForUI;
+                changed = true;
+              }
+            });
+            return ns;
+          });
+          if (!changed) return prev;
+          return prev.map((p, idx) => (idx === pageCursor ? newPage : p));
+        });
+      }
+
+      if (isNeedInit && newInputValue !== undefined) {
+        const updatedInput = { ...(currentInputRef.current || {}), [schema.name]: newInputValue };
+        init(template, updatedInput);
+      }
     },
-    [handleChangeInput, init, input, pageCursor, schemasList, template],
+    [handleChangeInput, init, pageCursor, template],
   );
 
   return {

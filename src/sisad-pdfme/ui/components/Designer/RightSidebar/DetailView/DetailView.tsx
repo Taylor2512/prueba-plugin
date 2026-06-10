@@ -131,21 +131,21 @@ const DetailView = (props: DetailViewProps) => {
     const readOnly = typeof values.readOnly === 'boolean' ? values.readOnly : false;
     values.editable = !readOnly;
 
-    let resetTimeoutId: number | undefined;
-    const timeoutId = globalThis.setTimeout(() => {
+    let resetTimeoutId: ReturnType<typeof setTimeout> | undefined;
+    const timeoutId = setTimeout(() => {
       setIsHydratingForm(true);
       if (typeof form.setValues === 'function') {
         form.setValues(values);
       }
-      resetTimeoutId = globalThis.setTimeout(() => {
+      resetTimeoutId = setTimeout(() => {
         setIsHydratingForm(false);
       }, 0);
     }, 0);
 
     return () => {
-      globalThis.clearTimeout(timeoutId);
+      clearTimeout(timeoutId as unknown as number);
       if (resetTimeoutId !== undefined) {
-        globalThis.clearTimeout(resetTimeoutId);
+        clearTimeout(resetTimeoutId as unknown as number);
       }
     };
   }, [activeSchema, form]);

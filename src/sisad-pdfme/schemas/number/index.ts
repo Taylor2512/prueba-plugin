@@ -3,7 +3,7 @@ import text from '../text/index.js';
 import { createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 
-const schema: Plugin<Record<string, unknown>> = createSchemaPlugin<Record<string, unknown>>(
+const schema: Plugin<any> = createSchemaPlugin<any>(
   {
     ui: text.ui,
     pdf: text.pdf,

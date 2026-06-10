@@ -29,12 +29,8 @@ export type {
   SelectionRegionResult,
 } from './coordinateMath.js';
 
-export type PointArea = {
-  pos1: number[];
-  pos2: number[];
-  pos3: number[];
-  pos4: number[];
-};
+// PointArea is exported from ./coordinateMath.ts — avoid redeclaring to prevent
+// type conflicts. Use the imported `PointArea` type instead.
 
 export type DesignerCoordinateServiceOptions = {
   getZoom?: () => number;

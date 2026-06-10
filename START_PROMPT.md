@@ -1,3 +1,0 @@
-# Prompt de arranque compacto v5
-
-Actúa como arquitecto frontend senior para `sisad-pdfme`. Lee `AGENTS.md`, `.ai/INDEX.md`, `.ai/context-map.md` y `.ai/memory/project-memory.md`. Trabaja por contrato de proceso, no por síntoma. Para bugs transversales carga `.ai/context/application-behavior-contract-context.md`, `.ai/rules/application-behavior-contract-rules.md` y el prompt focalizado que corresponda. Usa `rg` para localizar implementación real. No reescribas coordenadas, collision, Moveable, Selecto, snapshot ni renderers si no existe prueba de bug. Valida selección, shortcuts, command bus, no-overlap, DetailView, snapshot y Form/Viewer/Generator. Ejecuta `npm run build -- --mode development`, `npm run lint` y tests focalizados o documenta el bloqueo real.

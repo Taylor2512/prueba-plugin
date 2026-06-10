@@ -63,6 +63,10 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
   const [scale, setScale] = useState(1);
   const [error, setError] = useState<Error | null>(null);
   const [paperMetrics, setPaperMetrics] = useState<{ paperWidth: number; paperHeight: number } | null>(null);
+  // refs to hold last values to avoid redundant setState calls
+  const pageSizesRefLocal = useRef<Size[]>([]);
+  const backgroundsRefLocal = useRef<string[]>([]);
+  const paperMetricsRefLocal = useRef<{ paperWidth: number; paperHeight: number } | null>(null);
   const requestIdRef = useRef(0);
   const lastGoodPreprocessRef = useRef<PreprocessedPdfCache | null>(null);
   const preprocessedCacheRef = useRef<Map<string, PreprocessedPdfCache>>(new Map());
@@ -156,9 +160,39 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
     init(currentTemplate)
       .then(({ pageSizes, paperWidth, paperHeight, backgrounds }) => {
         if (requestId !== requestIdRef.current) return;
-        setPageSizes(pageSizes);
-        setBackgrounds(backgrounds);
-        setPaperMetrics({ paperWidth, paperHeight });
+
+        // update pageSizes only when changed
+        const pageSizesChanged =
+          pageSizesRefLocal.current.length !== pageSizes.length ||
+          pageSizes.some((p, i) => {
+            const prev = pageSizesRefLocal.current[i];
+            return !prev || prev.width !== p.width || prev.height !== p.height;
+          });
+        if (pageSizesChanged) {
+          pageSizesRefLocal.current = pageSizes;
+          setPageSizes(pageSizes);
+        }
+
+        // update backgrounds only when changed
+        const backgroundsChanged =
+          backgroundsRefLocal.current.length !== backgrounds.length ||
+          backgrounds.some((b, i) => backgroundsRefLocal.current[i] !== b);
+        if (backgroundsChanged) {
+          backgroundsRefLocal.current = backgrounds;
+          setBackgrounds(backgrounds);
+        }
+
+        // update paperMetrics only when changed
+        const nextPaperMetrics = { paperWidth, paperHeight };
+        const paperMetricsChanged =
+          !paperMetricsRefLocal.current ||
+          paperMetricsRefLocal.current.paperWidth !== nextPaperMetrics.paperWidth ||
+          paperMetricsRefLocal.current.paperHeight !== nextPaperMetrics.paperHeight;
+        if (paperMetricsChanged) {
+          paperMetricsRefLocal.current = nextPaperMetrics;
+          setPaperMetrics(nextPaperMetrics);
+        }
+
         setError(null);
         lastGoodPreprocessRef.current = {
           key: currentTemplate.basePdf,
@@ -174,9 +208,35 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
         setError(err);
         const lastGood = lastGoodPreprocessRef.current;
         if (lastGood) {
-          setPageSizes(lastGood.pageSizes);
-          setBackgrounds(lastGood.backgrounds);
-          setPaperMetrics({ paperWidth: lastGood.paperWidth, paperHeight: lastGood.paperHeight });
+          const { pageSizes: lp, backgrounds: lb, paperWidth: pw, paperHeight: ph } = lastGood;
+          const pageSizesChanged =
+            pageSizesRefLocal.current.length !== lp.length ||
+            lp.some((p, i) => {
+              const prev = pageSizesRefLocal.current[i];
+              return !prev || prev.width !== p.width || prev.height !== p.height;
+            });
+          if (pageSizesChanged) {
+            pageSizesRefLocal.current = lp;
+            setPageSizes(lp);
+          }
+
+          const backgroundsChanged =
+            backgroundsRefLocal.current.length !== lb.length ||
+            lb.some((b, i) => backgroundsRefLocal.current[i] !== b);
+          if (backgroundsChanged) {
+            backgroundsRefLocal.current = lb;
+            setBackgrounds(lb);
+          }
+
+          const nextPaperMetrics = { paperWidth: pw, paperHeight: ph };
+          const paperMetricsChanged =
+            !paperMetricsRefLocal.current ||
+            paperMetricsRefLocal.current.paperWidth !== nextPaperMetrics.paperWidth ||
+            paperMetricsRefLocal.current.paperHeight !== nextPaperMetrics.paperHeight;
+          if (paperMetricsChanged) {
+            paperMetricsRefLocal.current = nextPaperMetrics;
+            setPaperMetrics(nextPaperMetrics);
+          }
         }
         console.error('[@sisad-pdfme/ui]', err);
       });

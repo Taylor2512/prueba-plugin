@@ -32,9 +32,9 @@ const withGroupMeta = (schema: SchemaForUI, group: GroupMeta | undefined): Schem
   const existing = (schema as SchemaForUI & { __designer?: Record<string, unknown> }).__designer ?? {};
   if (group === undefined) {
     const { group: _removed, ...rest } = existing as Record<string, unknown> & { group?: unknown };
-    return { ...schema, __designer: rest };
+    return ({ ...schema, __designer: rest } as unknown) as SchemaForUI;
   }
-  return { ...schema, __designer: { ...existing, group } };
+  return ({ ...schema, __designer: { ...existing, group } } as unknown) as SchemaForUI;
 };
 export type AlignType =
   | 'left'

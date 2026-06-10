@@ -132,14 +132,19 @@ const Wrapper = ({
   const schemaTone = resolveSchemaTone(schema, selectable ? '#38a0ff' : '#94a3b8');
   const schemaSurfaceTone = resolveSchemaToneSurface(schema, '#ffffff', schema.readOnly ? 0.08 : 0.12);
   const schemaHidden = (schema as SchemaForUI & { hidden?: boolean }).hidden === true;
-  const schemaCaption = `${schemaName} · ${schemaType}`;
+  const isCompactChoiceSchema = schemaType === 'radioGroup';
+
+  const schemaCaption = isCompactChoiceSchema
+    ? undefined
+    : `${schemaName} · ${schemaType}`;
+
   const schemaBadge = schemaHidden
     ? 'oculto'
     : schema.readOnly
     ? 'solo lectura'
     : schema.required
       ? 'requerido'
-      : schemaType;
+      : undefined;
   const schemaState = isEditing ? 'editing' : isActive ? 'active' : isHovering ? 'hover' : 'idle';
   const rotation = Number(schema.rotate);
   const wrapperGeometryStyle: React.CSSProperties = {
@@ -157,11 +162,11 @@ const Wrapper = ({
   const wrapperStyle = {
     ...wrapperGeometryStyle,
     ...schemaStyle,
-    backgroundColor: schemaSurfaceTone,
-    border: outline || `1px solid ${schemaTone}`,
+    backgroundColor: isCompactChoiceSchema ? 'transparent' : schemaSurfaceTone,
+    border: isCompactChoiceSchema ? '1px solid transparent' : outline || `1px solid ${schemaTone}`,
     '--schema-tone': schemaTone,
-    '--schema-surface-tone': schemaSurfaceTone,
-    '--schema-outline': outline || `1px solid ${schemaTone}`,
+    '--schema-surface-tone': isCompactChoiceSchema ? 'transparent' : schemaSurfaceTone,
+    '--schema-outline': isCompactChoiceSchema ? '1px solid transparent' : outline || `1px solid ${schemaTone}`,
   } as React.CSSProperties;
   const wrapperClassName = [
     UI_CLASSNAME + 'custom-selectable',
@@ -185,8 +190,8 @@ const Wrapper = ({
       data-schema-uid={schemaUid}
       data-schema-name={schemaName}
       data-schema-type={schemaType}
-      data-schema-caption={schemaCaption}
-      data-schema-badge={schemaBadge}
+      data-schema-caption={schemaCaption || undefined}
+      data-schema-badge={schemaBadge || undefined}
       data-schema-state={schemaState}
       data-schema-active={isActive ? 'true' : 'false'}
       data-schema-hovering={isHovering ? 'true' : 'false'}

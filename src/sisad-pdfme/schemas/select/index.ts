@@ -200,7 +200,7 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
 
       selectElement.addEventListener('change', (e) => {
         if (onChange && e.target instanceof HTMLSelectElement) {
-          if (onChange) onChange({ key: 'content', value: e.target.value });
+          onChange([{ key: 'content', value: e.target.value }]);
         }
       });
 

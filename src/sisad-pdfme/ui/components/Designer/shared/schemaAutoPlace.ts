@@ -24,9 +24,10 @@ export const buildAutoPlaceDescriptor = (keyword: unknown, options: Record<strin
 };
 
 export const resolveSchemaAutoPlaceDescriptor = (schema: Record<string, unknown> = {}, options: Record<string, unknown> = {}) => {
+  const s = schema as any;
   const keyword =
-    normalizeText(schema?.autoPlaceText) ||
-    normalizeText(schema?.__designer?.autoPlace?.keyword) ||
+    normalizeText(s?.autoPlaceText) ||
+    normalizeText(s?.__designer?.autoPlace?.keyword) ||
     normalizeText(options.keyword) ||
     '';
   if (!keyword) return null;
@@ -34,25 +35,25 @@ export const resolveSchemaAutoPlaceDescriptor = (schema: Record<string, unknown>
   return buildAutoPlaceDescriptor(keyword, {
     scope:
       options.scope ||
-      schema?.__designer?.autoPlace?.scope ||
-      schema?.autoPlaceScope ||
+      s?.__designer?.autoPlace?.scope ||
+      s?.autoPlaceScope ||
       DEFAULT_AUTO_PLACE_SCOPE,
     matchMode:
       options.matchMode ||
-      schema?.__designer?.autoPlace?.matchMode ||
-      schema?.autoPlaceMatchMode ||
+      s?.__designer?.autoPlace?.matchMode ||
+      s?.autoPlaceMatchMode ||
       DEFAULT_AUTO_PLACE_MATCH_MODE,
-    fieldType: options.fieldType || schema?.type,
-    schemaUid: options.schemaUid || schema?.schemaUid || schema?.id,
-    schemaName: options.schemaName || schema?.name,
-    documentId: options.documentId || schema?.documentId || schema?.fileTemplateId || schema?.fileId,
+    fieldType: options.fieldType || s?.type,
+    schemaUid: options.schemaUid || s?.schemaUid || s?.id,
+    schemaName: options.schemaName || s?.name,
+    documentId: options.documentId || s?.documentId || s?.fileTemplateId || s?.fileId,
     pageIndex:
       options.pageIndex !== undefined
         ? options.pageIndex
-        : schema?.pageIndex !== undefined
-          ? schema.pageIndex
-          : schema?.pageNumber !== undefined
-            ? Math.max(0, Number(schema.pageNumber) - 1)
+        : s?.pageIndex !== undefined
+          ? s.pageIndex
+          : s?.pageNumber !== undefined
+            ? Math.max(0, Number(s.pageNumber) - 1)
             : undefined,
   });
 };
@@ -61,11 +62,13 @@ export const collectAutoPlaceRulesFromDocuments = (documents: unknown[] = []) =>
   if (!Array.isArray(documents) || !documents.length) return [];
 
   const rules: Record<string, unknown>[] = [];
-  documents.forEach((document: Record<string, unknown> = {}) => {
+  documents.forEach((documentRaw: unknown = {}) => {
+    const document = documentRaw as any;
     const documentId = normalizeText(document?.id || document?.fileId || document?.fileTemplateId);
     const templateSchemas = Array.isArray(document?.template?.schemas) ? document.template.schemas : [];
     templateSchemas.forEach((page: unknown[] = [], pageIndex: number) => {
-      (Array.isArray(page) ? page : []).forEach((schema: Record<string, unknown> = {}) => {
+      (Array.isArray(page) ? page : []).forEach((schemaRaw: unknown = {}) => {
+        const schema = schemaRaw as any;
         const descriptor = resolveSchemaAutoPlaceDescriptor(schema, {
           documentId,
           pageIndex,

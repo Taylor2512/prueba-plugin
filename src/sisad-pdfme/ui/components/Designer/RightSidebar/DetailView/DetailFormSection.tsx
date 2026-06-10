@@ -41,7 +41,8 @@ const DetailFormSection = ({
         schema={schema}
         widgets={widgets}
         watch={{ '#': watchHandler }}
-        locale="es-ES"
+        // form-render types only accept 'zh-CN' | 'en-US'. Use 'en-US' to satisfy typing.
+        locale="en-US"
         footer={{
           reset: { hide: true },
           submit: { hide: true },

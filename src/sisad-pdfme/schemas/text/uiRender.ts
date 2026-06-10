@@ -100,7 +100,10 @@ export const uiRender = async (arg: UIRenderProps<TextSchema>) => {
   textBlock.tabIndex = tabIndex || 0;
   textBlock.innerText = mode === 'designer' ? value : processedText;
   textBlock.addEventListener('blur', (e: Event) => {
-    if (onChange) onChange({ key: 'content', value: getText(e.target as HTMLDivElement) });
+    if (onChange) {
+      const newValue = getText(e.target as HTMLDivElement);
+      if (String(newValue) !== String(value)) onChange([{ key: 'content', value: newValue }]);
+    }
     if (stopEditing) stopEditing();
   });
 

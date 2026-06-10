@@ -135,7 +135,7 @@ const imageSchema: Plugin<ImageSchema> = {
       button.addEventListener('click', (event) => {
         event.preventDefault();
         event.stopPropagation();
-        if (onChange) onChange({ key: 'content', value: '' });
+        if (onChange) onChange([{ key: 'content', value: '' }]);
       });
       container.appendChild(button);
     }
@@ -172,7 +172,7 @@ const imageSchema: Plugin<ImageSchema> = {
         const changeEvent = event as unknown as ChangeEvent<HTMLInputElement>;
         readFile(changeEvent.target.files)
           .then((result) => {
-            if (onChange) onChange({ key: 'content', value: result as string });
+            if (onChange) onChange([{ key: 'content', value: result as string }]);
           })
           .catch((error) => {
             console.error('Error reading file:', error);

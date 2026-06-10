@@ -241,7 +241,7 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
 
       const commitChange = (date: Date | null) => {
         if (onChange) {
-          onChange({ key: 'content', value: getFmtContent(date, type) });
+          onChange([{ key: 'content', value: getFmtContent(date, type) }]);
         }
       };
 
