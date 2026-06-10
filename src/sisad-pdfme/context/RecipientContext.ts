@@ -1,7 +1,7 @@
 /**
  * FASE 5 — Destinatario activo y propagación de color
  *
- * Fuente de verdad del color: ContentCustomForm — sisad-pdfme la recibe como prop
+ * Fuente de verdad del color: DigitalAgreements — sisad-pdfme la recibe como prop
  * y la cachea en RecipientContext para lookups rápidos.
  *
  * Regla clave: cambiar el activeRecipient en el panel NO muta schemas existentes.
@@ -15,7 +15,7 @@ import { createContext, useContext } from 'react';
 export interface Recipient {
   id: string;
   name: string;
-  /** Hex — fuente de verdad en ContentCustomForm, recibida como prop */
+  /** Hex — fuente de verdad en DigitalAgreements, recibida como prop */
   color: string;
   /** Nombre legible del color para accesibilidad. Ej: "Azul marino" */
   colorLabel?: string;
@@ -30,7 +30,7 @@ export const UNASSIGNED_SCHEMA_LABEL = 'Sin asignar';
 export interface RecipientContextValue {
   /** Destinatario activo en el panel (afecta schemas nuevos, no los existentes) */
   activeRecipient: Recipient | null;
-  /** Lista completa — inyectada por ContentCustomForm como prop */
+  /** Lista completa — inyectada por DigitalAgreements como prop */
   recipients: Recipient[];
   setActiveRecipient(id: string): void;
   getRecipientById(id: string): Recipient | undefined;
@@ -60,7 +60,7 @@ export function useRecipientContext(): RecipientContextValue {
  * Crea el valor del contexto a partir de la lista de recipients.
  * Se usa dentro del Provider del designer.
  *
- * @param recipients Lista inyectada por ContentCustomForm como prop
+ * @param recipients Lista inyectada por DigitalAgreements como prop
  * @param activeRecipientId ID del recipient activo inicial
  * @param onActiveChange Callback para notificar al padre cuando cambia el activo
  */
@@ -91,7 +91,7 @@ export function buildRecipientContextValue(
 }
 
 /**
- * Reconcilia el color de un recipient tras un cambio de ContentCustomForm.
+ * Reconcilia el color de un recipient tras un cambio de DigitalAgreements.
  *
  * Regla: si SnapshotRecipient.color difiere de __designer.recipientColor,
  * SnapshotRecipient.color gana (fue editado después del último guardado).

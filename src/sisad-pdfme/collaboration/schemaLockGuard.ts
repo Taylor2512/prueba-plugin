@@ -15,7 +15,7 @@
  * Read-only command IDs (listed in PASSTHROUGH_COMMAND_IDS) are never blocked.
  */
 
-import type { Command } from '../../contracts/commands.js';
+import type { Command } from '../contracts/commands';
 import type { CommandGuard } from '../ui/commands/commandBus.js';
 import type { LockManager } from './lockManager.js';
 

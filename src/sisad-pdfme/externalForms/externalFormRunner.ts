@@ -12,7 +12,7 @@
  *   hidden    → no renderizado
  */
 import type { OfficialTemplateSnapshot, SnapshotAssignment } from '../shared/snapshot.js';
-import type { SignaturePolicy } from '../schemas/signature/providerRegistry.js';
+import type { SignaturePolicy } from '../shared/signatureRegistry.js';
 
 // ── Estado del flujo ────────────────────────────────────────────────────────
 
