@@ -2,7 +2,7 @@
  * attachment schema — allows recipients to attach files to a document field.
  * No backend coupling. The host application is responsible for file upload handling.
  */
-import type { Plugin } from '@sisad-pdfme/common';
+import type { Plugin, Schema } from '@sisad-pdfme/common';
 import { Paperclip } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
@@ -12,6 +12,9 @@ import {
   dataLabelFields,
   COMMON_PROPERTY_MAP,
 } from '../propPanel/commonInspectorFields.js';
+import { createAttachmentContainerEl } from './actionSchemaFactory.js';
+import type { AttachmentSchema } from './actionSchemaFactory.js';
+import { clearSchemaRoot, setSchemaRootAttributes } from '../shared/schemaDom.js';
 import type { PropPanelSchema } from '@sisad-pdfme/common';
 
 const MIME_TYPE_OPTIONS = [
@@ -22,30 +25,18 @@ const MIME_TYPE_OPTIONS = [
   { label: 'Excel', value: 'application/vnd.ms-excel,application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' },
 ];
 
-const attachmentPlugin: Plugin<any> = createSchemaPlugin<any>(
+const attachmentPlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
   {
-    ui: async ({ rootElement }) => {
-      const container = document.createElement('div');
-      Object.assign(container.style, {
-        width: '100%',
-        height: '100%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        border: '2px dashed #d1d5db',
-        borderRadius: '6px',
-        background: '#f9fafb',
-        cursor: 'pointer',
-        boxSizing: 'border-box',
-      });
-      container.innerHTML = `<span style="color:#6b7280;font-size:12px;display:flex;align-items:center;gap:6px">
-        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.44 11.05-9.19 9.19a6 6 0 0 1-8.49-8.49l8.57-8.57A4 4 0 1 1 18 8.84l-8.59 8.57a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
-        Adjuntar archivo
-      </span>`;
+    ui: async ({ schema, rootElement }) => {
+      const s = schema as AttachmentSchema;
+      clearSchemaRoot(rootElement);
+      setSchemaRootAttributes(rootElement, s);
+      const container = createAttachmentContainerEl(s);
       rootElement.appendChild(container);
     },
     pdf: async ({ value, pdfDoc, pdfLib, page, schema }) => {
-      const { position, width, height } = schema as any;
+      const s = schema as AttachmentSchema & { position: { x: number; y: number } };
+      const { position, width, height } = s;
       const { x, y } = position;
       const pageHeight = page.getHeight();
       page.drawRectangle({

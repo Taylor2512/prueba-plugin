@@ -2,47 +2,47 @@
  * decline schema — action button that the recipient clicks to decline a document.
  * Fires a 'decline' action event via the host callback. No business logic inside.
  */
-import type { Plugin } from '@sisad-pdfme/common';
+import type { Plugin, Schema } from '@sisad-pdfme/common';
 import { XCircle } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 import { helpFields, dataLabelFields, COMMON_PROPERTY_MAP } from '../propPanel/commonInspectorFields.js';
+import { createActionButtonEl } from '../shared/schemaDom.js';
+import type { ActionSchemaBase } from '../shared/schemaTypes.js';
+import { renderSchemaWithChrome } from '../shared/renderSchemaWithChrome.js';
 import type { PropPanelSchema } from '@sisad-pdfme/common';
 
-const declinePlugin: Plugin<any> = createSchemaPlugin<any>(
+type DeclineSchema = ActionSchemaBase<{
+  requiresReason?: boolean;
+  confirmationMessage?: string;
+  action?: string;
+}>;
+
+const declinePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
   {
     ui: async ({ schema, rootElement, mode }) => {
-      const s = schema as any;
-      const label = s.label || 'Rechazar';
-      const bg = s.buttonColor || '#dc2626';
-      const textColor = s.buttonTextColor || '#ffffff';
-
-      const button = document.createElement('button');
-      button.type = 'button';
-      Object.assign(button.style, {
-        width: '100%',
-        height: '100%',
-        background: bg,
-        color: textColor,
-        border: 'none',
-        borderRadius: '6px',
-        fontWeight: '600',
-        fontSize: `${s.fontSize || 11}px`,
-        cursor: mode === 'form' ? 'pointer' : 'default',
-        boxSizing: 'border-box',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '6px',
+      const s = schema as DeclineSchema;
+      const iconSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
+      renderSchemaWithChrome({
+        schema: s as Parameters<typeof renderSchemaWithChrome>[0]['schema'],
+        rootElement,
+        family: 'action-based',
+        compact: true,
+        render: (chromeEl) => {
+          const button = createActionButtonEl({
+            label: s.label || 'Rechazar',
+            bgColor: s.buttonColor || '#dc2626',
+            textColor: s.buttonTextColor || '#ffffff',
+            fontSize: s.fontSize || 11,
+            isInteractive: mode === 'form',
+            iconSvg,
+          });
+          chromeEl.appendChild(button);
+        },
       });
-
-      const svg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
-      button.innerHTML = `${svg}${label}`;
-
-      rootElement.appendChild(button);
     },
     pdf: async ({ schema, pdfDoc, pdfLib, page }) => {
-      const s = schema as any;
+      const s = schema as DeclineSchema & { position: { x: number; y: number } };
       const { position, width, height } = s;
       const { x, y } = position;
       const pageHeight = page.getHeight();

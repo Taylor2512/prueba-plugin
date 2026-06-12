@@ -1,7 +1,6 @@
 import { cloneDeep } from '@sisad-pdfme/common';
 import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
 
-/** Default base timestamp for deterministic audit metadata. */
 export const DEFAULT_AUDIT_BASE_TIMESTAMP = 1713570000000;
 
 export const sanitizeIdentifier = (value: unknown): string =>
@@ -19,24 +18,24 @@ export const chunkItems = <T>(items: T[], size: number): T[][] => {
   return chunks;
 };
 
-/** Deep-clones a base schema and merges deep-cloned overrides. */
-export const createSchema = (baseSchema: any, overrides: any = {}): any => ({
+export const createSchema = (
+  baseSchema: Record<string, unknown>,
+  overrides: Record<string, unknown> = {},
+): Record<string, unknown> => ({
   ...cloneDeep(baseSchema),
   ...cloneDeep(overrides),
 });
 
 export type CreateSchemaByTypeOptions = {
-  /** Plugin registry to resolve default schemas. Defaults to flatSchemaPlugins. */
-  plugins?: Record<string, any>;
+  plugins?: Record<string, { propPanel?: { defaultSchema?: Record<string, unknown> } }>;
 };
 
-/** Builds a schema from a registered plugin's default schema. */
 export const createSchemaByType = (
   type: string,
-  overrides: any = {},
+  overrides: Record<string, unknown> = {},
   options: CreateSchemaByTypeOptions = {},
-): any => {
-  const plugins = options.plugins ?? flatSchemaPlugins;
+): Record<string, unknown> => {
+  const plugins = (options.plugins ?? flatSchemaPlugins) as Record<string, { propPanel?: { defaultSchema?: Record<string, unknown> } }>;
   const plugin = plugins[type];
   if (!plugin?.propPanel?.defaultSchema) {
     throw new Error(`Schema type not registered for example generation: ${type}`);
@@ -73,7 +72,6 @@ export const createCommentAnchor = ({
 });
 
 export type CreateAuditMetadataOptions = {
-  /** Base timestamp. Defaults to DEFAULT_AUDIT_BASE_TIMESTAMP. */
   baseTimestamp?: number;
 };
 

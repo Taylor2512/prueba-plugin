@@ -42,7 +42,6 @@ export const SidebarSurfaceHeader = ({
       )}
     >
       <div className={DESIGNER_CLASSNAME + 'sidebar-surface-header-main'}>
-        {leading ? <div className={DESIGNER_CLASSNAME + 'sidebar-surface-header-leading'}>{leading}</div> : null}
         <div className={DESIGNER_CLASSNAME + 'sidebar-surface-header-copy'}>
           <Text strong className={DESIGNER_CLASSNAME + 'sidebar-surface-header-title'}>
             {title}

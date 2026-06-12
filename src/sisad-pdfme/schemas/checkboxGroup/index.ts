@@ -21,6 +21,11 @@ import {
   buildCheckboxIndicator,
   buildOptionLabel,
 } from '../groupSchemaRender.js';
+import {
+  syncOptionGroupDesignerGeometry,
+  createDesignerOptionGroupEl,
+} from '../options/optionGroupFactory.js';
+import { clearSchemaRoot } from '../shared/schemaDom.js';
 
 // ─── Designer compact geometry constants ────────────────────────────────────
 // The + button is rendered as an external overlay (GroupOptionFloatingAction),
@@ -32,21 +37,13 @@ import {
   computeOptionGroupDesignerWidthMM,
 } from '../options/optionGroupLayout.js';
 
-const DESIGNER_BOX_SIZE = CHECKBOX_GROUP_LAYOUT.boxSize;  // px
-const DESIGNER_BOX_GAP  = CHECKBOX_GROUP_LAYOUT.boxGap;   // px
-
-const DESIGNER_BOX_BORDER = '#65d8de';
-const DESIGNER_BOX_BG = 'rgba(161, 239, 242, 0.58)';
+const DESIGNER_BOX_GAP  = CHECKBOX_GROUP_LAYOUT.boxGap;   // px (used in propPanel defaultSchema + editor)
+const DESIGNER_BOX_BORDER = '#65d8de';                      // used in form/viewer indicator builders
 
 const calculateDesignerHeight = (optionsCount: number): number =>
   computeOptionGroupDesignerHeightMM(optionsCount, CHECKBOX_GROUP_LAYOUT);
 
 const DESIGNER_BOX_MM = computeOptionGroupDesignerWidthMM(CHECKBOX_GROUP_LAYOUT);
-
-const almostEqualNumber = (a: unknown, b: number, tolerance = 0.1): boolean => {
-  const value = Number(a);
-  return Number.isFinite(value) && Math.abs(value - b) <= tolerance;
-};
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -173,38 +170,6 @@ const syncDesignerGroupPatch = (schema: CheckboxGroupSchema) => ({
 
 // ─── Designer compact DOM helpers ────────────────────────────────────────────
 
-const createDesignerOptionBox = (option: CheckboxOption, isChecked: boolean): HTMLDivElement => {
-  const box = document.createElement('div');
-  // Both specific and generic option attributes — generic for option-based queries
-  box.setAttribute('data-checkbox-group-option', option.optionId);
-  box.setAttribute('data-option-id', option.optionId);
-  box.setAttribute('aria-label', option.label);
-  Object.assign(box.style, {
-    width: `${DESIGNER_BOX_SIZE}px`,
-    height: `${DESIGNER_BOX_SIZE}px`,
-    minWidth: `${DESIGNER_BOX_SIZE}px`,
-    minHeight: `${DESIGNER_BOX_SIZE}px`,
-    maxWidth: `${DESIGNER_BOX_SIZE}px`,
-    maxHeight: `${DESIGNER_BOX_SIZE}px`,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    boxSizing: 'border-box',
-    border: `2px solid ${DESIGNER_BOX_BORDER}`,
-    borderRadius: '2px',
-    background: DESIGNER_BOX_BG,
-    padding: '0',
-    margin: '0',
-    flex: '0 0 auto',
-    pointerEvents: 'none',
-  });
-  const indicator = buildCheckboxIndicator(DESIGNER_BOX_BORDER, isChecked);
-  Object.assign(indicator.style, { width: '14px', height: '14px', minWidth: '14px', minHeight: '14px' });
-  box.appendChild(indicator);
-  return box;
-};
-
-
 const createDesignerCheckboxGroup = ({
   options,
   selected,
@@ -212,31 +177,14 @@ const createDesignerCheckboxGroup = ({
   options: CheckboxOption[];
   selected: Set<string>;
 }): HTMLDivElement => {
-  const wrapper = document.createElement('div');
+  const wrapper = createDesignerOptionGroupEl(
+    options.length ? options : [{ optionId: 'option_1', label: 'Casilla 1' }],
+    CHECKBOX_GROUP_LAYOUT,
+    'square',
+    selected,
+    'data-checkbox-group-option',
+  );
   wrapper.setAttribute('data-checkbox-group-root', 'true');
-
-  Object.assign(wrapper.style, {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    gap: `${DESIGNER_BOX_GAP}px`,
-    padding: '0',
-    margin: '0',
-    border: 'none',
-    background: 'transparent',
-    boxSizing: 'border-box',
-    overflow: 'visible',
-  });
-
-  const safeOptions = options.length ? options : [{ optionId: 'option_1', label: 'Casilla 1' }];
-  safeOptions.forEach((option) => {
-    wrapper.appendChild(createDesignerOptionBox(option, selected.has(option.optionId)));
-  });
-
   return wrapper;
 };
 
@@ -249,34 +197,15 @@ const syncDesignerCheckboxGroupGeometry = ({
   schema: CheckboxGroupSchema;
   options: CheckboxOption[];
   rootElement: HTMLElement;
-  onChange?: (arg: { key: string; value: unknown } | Array<{ key: string; value: unknown }>) => void;
+  onChange?: (arg: unknown) => void;
 }) => {
-  if (!onChange) return;
-
-  const optionsCount = Math.max(1, options.length);
-  // expectedWidth/Height are in mm (schema coordinate system)
-  const expectedWidth = DESIGNER_BOX_MM;
-  const expectedHeight = calculateDesignerHeight(optionsCount);
-
-  const needsSync =
-    schema.orientation !== 'vertical' ||
-    !almostEqualNumber(schema.spacing, DESIGNER_BOX_GAP) ||
-    !almostEqualNumber(schema.width, expectedWidth) ||
-    !almostEqualNumber(schema.height, expectedHeight);
-
-  if (!needsSync) return;
-
-  const signature = `${expectedWidth}:${expectedHeight}:${DESIGNER_BOX_GAP}:${optionsCount}`;
-  if ((rootElement as HTMLElement & { dataset: DOMStringMap }).dataset.cbGroupGeometrySync === signature) return;
-  (rootElement as HTMLElement & { dataset: DOMStringMap }).dataset.cbGroupGeometrySync = signature;
-
-  requestAnimationFrame(() => {
-    onChange([
-      { key: 'orientation', value: 'vertical' },
-      { key: 'spacing', value: DESIGNER_BOX_GAP },
-      { key: 'width', value: expectedWidth },
-      { key: 'height', value: expectedHeight },
-    ] as any);
+  syncOptionGroupDesignerGeometry({
+    schema,
+    options,
+    rootElement,
+    onChange,
+    layout: CHECKBOX_GROUP_LAYOUT,
+    datasetKey: 'cbGroupGeometrySync',
   });
 };
 
@@ -307,12 +236,12 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
   const currentOptions = normalizeOptions(schema);
 
   const header = document.createElement('div');
-  Object.assign(header.style, { fontSize: '12px', fontWeight: '600', color: '#555', marginBottom: '8px' });
+  header.className = 'sisad-option-editor-header';
   header.textContent = 'Valores de las casillas';
   rootElement.appendChild(header);
 
   const list = document.createElement('div');
-  Object.assign(list.style, { display: 'flex', flexDirection: 'column', gap: '6px', marginBottom: '10px', maxHeight: '220px', overflowY: 'auto' });
+  list.className = 'sisad-option-editor-list';
 
   const commitOptions = (nextOptions: CheckboxOption[]) => {
     const validIds = new Set(nextOptions.map((o) => o.optionId));
@@ -328,24 +257,24 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
   };
 
   const renderList = () => {
-    list.innerHTML = '';
+    clearSchemaRoot(list);
     currentOptions.forEach((option, index) => {
       const row = document.createElement('div');
-      Object.assign(row.style, { display: 'grid', gridTemplateColumns: '18px 1fr 28px', gap: '6px', alignItems: 'center' });
+      row.className = 'sisad-option-editor-row sisad-option-editor-row--checkbox';
 
       const indicator = document.createElement('div');
-      Object.assign(indicator.style, { width: '16px', height: '16px', border: '1.5px solid #d0d0d0', borderRadius: '2px', flexShrink: '0' });
+      indicator.className = 'sisad-option-editor-cb-indicator';
 
       const labelInput = document.createElement('input');
       labelInput.type = 'text';
       labelInput.value = option.label;
       labelInput.placeholder = `Casilla ${index + 1}`;
-      Object.assign(labelInput.style, { width: '100%', padding: '5px 8px', border: '1px solid #d9d9d9', borderRadius: '4px', fontSize: '13px', outline: 'none' });
+      labelInput.className = 'sisad-option-editor-input';
 
       const removeBtn = document.createElement('button');
       removeBtn.type = 'button';
-      removeBtn.innerHTML = '&times;';
-      Object.assign(removeBtn.style, { width: '24px', height: '24px', border: 'none', background: 'transparent', color: '#999', cursor: 'pointer', fontSize: '16px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '3px', padding: '0' });
+      removeBtn.textContent = '×';
+      removeBtn.className = 'sisad-option-editor-remove-btn';
 
       labelInput.addEventListener('change', () => {
         const next = currentOptions.map((o, i) => (i === index ? { ...o, label: normalizeText(labelInput.value) || o.label } : o));
@@ -368,17 +297,17 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
   rootElement.appendChild(list);
 
   const addRow = document.createElement('div');
-  Object.assign(addRow.style, { display: 'grid', gridTemplateColumns: '1fr 32px', gap: '6px', alignItems: 'center' });
+  addRow.className = 'sisad-option-editor-add-row';
 
   const newInput = document.createElement('input');
   newInput.type = 'text';
   newInput.placeholder = 'Nueva casilla…';
-  Object.assign(newInput.style, { width: '100%', padding: '5px 8px', border: '1px solid #d9d9d9', borderRadius: '4px', fontSize: '13px', outline: 'none' });
+  newInput.className = 'sisad-option-editor-input';
 
   const addBtn = document.createElement('button');
   addBtn.type = 'button';
   addBtn.textContent = '+';
-  Object.assign(addBtn.style, { width: '28px', height: '28px', border: '1.5px solid #1677ff', background: '#1677ff', color: '#fff', cursor: 'pointer', fontSize: '18px', display: 'flex', alignItems: 'center', justifyContent: 'center', borderRadius: '4px', padding: '0', fontWeight: '700' });
+  addBtn.className = 'sisad-option-editor-add-btn';
 
   const doAdd = (e: Event) => {
     e.preventDefault(); e.stopPropagation();
@@ -416,7 +345,7 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
       const editable = isEditable(mode, cbSchema);
       const color = cbSchema.color || '#1677ff';
 
-      rootElement.innerHTML = '';
+      clearSchemaRoot(rootElement);
 
       Object.assign(rootElement.style, {
         overflow: 'visible',

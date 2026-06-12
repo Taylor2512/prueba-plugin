@@ -2,48 +2,27 @@
  * note schema — read-only informative text field displayed to the recipient.
  * Cannot be edited by the recipient. Used for instructions, disclaimers, notices.
  */
-import type { Plugin } from '@sisad-pdfme/common';
+import type { Plugin, Schema } from '@sisad-pdfme/common';
 import { StickyNote } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 import { helpFields, dataLabelFields, COMMON_PROPERTY_MAP } from '../propPanel/commonInspectorFields.js';
+import { createNoteContainerEl } from './actionSchemaFactory.js';
+import type { NoteSchema } from './actionSchemaFactory.js';
+import { clearSchemaRoot, setSchemaRootAttributes } from '../shared/schemaDom.js';
 import type { PropPanelSchema } from '@sisad-pdfme/common';
 
-const notePlugin: Plugin<any> = createSchemaPlugin<any>(
+const notePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
   {
     ui: async ({ schema, rootElement }) => {
-      const s = schema as any;
-      const bg = s.noteBackground || '#fefce8';
-      const border = s.noteBorderColor || '#fde047';
-      const textColor = s.noteTextColor || '#713f12';
-
-      const container = document.createElement('div');
-      Object.assign(container.style, {
-        width: '100%',
-        height: '100%',
-        background: bg,
-        border: `1px solid ${border}`,
-        borderRadius: '4px',
-        padding: '4px 8px',
-        boxSizing: 'border-box',
-        overflow: 'hidden',
-        display: 'flex',
-        alignItems: 'flex-start',
-      });
-      const text = document.createElement('span');
-      Object.assign(text.style, {
-        color: textColor,
-        fontSize: `${s.fontSize || 10}px`,
-        lineHeight: '1.4',
-        whiteSpace: 'pre-wrap',
-        wordBreak: 'break-word',
-      });
-      text.textContent = s.content || 'Nota informativa';
-      container.appendChild(text);
+      const s = schema as NoteSchema;
+      clearSchemaRoot(rootElement);
+      setSchemaRootAttributes(rootElement, s);
+      const { container } = createNoteContainerEl(s);
       rootElement.appendChild(container);
     },
     pdf: async ({ schema, pdfDoc, pdfLib, page }) => {
-      const s = schema as any;
+      const s = schema as NoteSchema & { position: { x: number; y: number } };
       const { position, width, height } = s;
       const { x, y } = position;
       const pageHeight = page.getHeight();

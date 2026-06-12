@@ -46,10 +46,6 @@ import {
 const DESIGNER_BOX_SIZE = RADIO_GROUP_LAYOUT.boxSize;  // px
 const DESIGNER_BOX_GAP  = RADIO_GROUP_LAYOUT.boxGap;   // px
 
-const DESIGNER_BOX_BORDER = '#65d8de';
-const DESIGNER_BOX_BG = 'rgba(161, 239, 242, 0.58)';
-const DESIGNER_CIRCLE_BORDER = '#8b8b8b';
-
 const DESIGNER_BOX_MM = computeOptionGroupDesignerWidthMM(RADIO_GROUP_LAYOUT);
 
 import { normalizeOptionsFromSource, normalizeOptionId } from '../options/optionModel.js';
@@ -62,6 +58,11 @@ import {
   buildRadioIndicator,
   buildOptionLabel,
 } from '../groupSchemaRender.js';
+import {
+  syncOptionGroupDesignerGeometry,
+  createDesignerOptionGroupEl,
+} from '../options/optionGroupFactory.js';
+import { clearSchemaRoot } from '../shared/schemaDom.js';
 
 const normalizeText = (value: unknown) => String(value || '').trim();
 
@@ -78,7 +79,7 @@ const resolveSelectedOptionId = (
   return (
     resolveSelectedFromOptions(
       schema.selectedOptionId || schema.content || schema.defaultSelectedOptionId,
-      options as any,
+      options,
     ) || options[0]?.optionId || 'option_1'
   );
 };
@@ -99,74 +100,6 @@ const syncDesignerGroupPatch = (schema: RadioGroupSchema) => ({
 const calculateDesignerHeight = (optionsCount: number): number =>
   computeOptionGroupDesignerHeightMM(optionsCount, RADIO_GROUP_LAYOUT);
 
-const createDesignerOptionBox = (option: RadioOption): HTMLDivElement => {
-  const box = document.createElement('div');
-  box.setAttribute('data-radio-group-option', option.optionId);
-  box.setAttribute('aria-label', option.label);
-  Object.assign(box.style, {
-    width: `${DESIGNER_BOX_SIZE}px`,
-    height: `${DESIGNER_BOX_SIZE}px`,
-    minWidth: `${DESIGNER_BOX_SIZE}px`,
-    minHeight: `${DESIGNER_BOX_SIZE}px`,
-    maxWidth: `${DESIGNER_BOX_SIZE}px`,
-    maxHeight: `${DESIGNER_BOX_SIZE}px`,
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    boxSizing: 'border-box',
-    border: `2px solid ${DESIGNER_BOX_BORDER}`,
-    borderRadius: '2px',
-    background: DESIGNER_BOX_BG,
-    padding: '0',
-    margin: '0',
-    flex: '0 0 auto',
-    pointerEvents: 'none',
-  });
-
-  // Reuse the shared small radio indicator for the inner circle to
-  // keep visuals consistent with checkboxGroup runtime indicators.
-  const indicator = buildRadioIndicator('#8b8b8b', false);
-  Object.assign(indicator.style, { width: '18px', height: '18px', minWidth: '18px', minHeight: '18px' });
-  box.appendChild(indicator);
-  return box;
-};
-
-
-const createDesignerRadioGroup = ({
-  options,
-}: {
-  options: RadioOption[];
-}): HTMLDivElement => {
-  const wrapper = document.createElement('div');
-
-  Object.assign(wrapper.style, {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    display: 'flex',
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    gap: `${DESIGNER_BOX_GAP}px`,
-    padding: '0',
-    margin: '0',
-    border: 'none',
-    background: 'transparent',
-    boxSizing: 'border-box',
-    overflow: 'visible',
-    pointerEvents: 'none',
-  });
-
-  const safeOptions = options.length
-    ? options
-    : [{ optionId: 'option_1', label: 'Opción 1' }];
-
-  safeOptions.forEach((option) => {
-    wrapper.appendChild(createDesignerOptionBox(option));
-  });
-
-  return wrapper;
-};
 
 const createRuntimeCircle = ({
   selected,
@@ -251,10 +184,10 @@ const createRuntimeRadioGroup = ({
       row.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        onChange([
+        (onChange as unknown as (changes: Array<{ key: string; value: unknown }>) => void)([
           { key: 'content', value: option.optionId },
           { key: 'selectedOptionId', value: option.optionId },
-        ] as any);
+        ]);
       });
     }
 
@@ -265,54 +198,6 @@ const createRuntimeRadioGroup = ({
   return wrapper;
 };
 
-// Helpers to keep legacy/large schemas in a compact geometry for the designer.
-const almostEqualNumber = (a: unknown, b: number, tolerance = 0.1): boolean => {
-  const value = Number(a);
-  return Number.isFinite(value) && Math.abs(value - b) <= tolerance;
-};
-
-const syncDesignerRadioGroupGeometry = ({
-  schema,
-  options,
-  rootElement,
-  onChange,
-}: {
-  schema: RadioGroupSchema;
-  options: RadioOption[];
-  rootElement: HTMLElement;
-  onChange?: (arg: { key: string; value: unknown }) => void;
-}) => {
-  if (!onChange) return;
-
-  const optionsCount = Number.isFinite(options.length) && options.length >= 1 ? options.length : 1;
-  const expectedWidth = DESIGNER_BOX_MM;
-  const expectedHeight = calculateDesignerHeight(optionsCount);
-
-  const needsSync =
-    schema.orientation !== 'vertical' ||
-    !almostEqualNumber(schema.spacing, DESIGNER_BOX_GAP) ||
-    !almostEqualNumber(schema.width, expectedWidth) ||
-    !almostEqualNumber(schema.height, expectedHeight);
-
-  if (!needsSync) return;
-
-  const signature = `${expectedWidth}:${expectedHeight}:${DESIGNER_BOX_GAP}:${optionsCount}`;
-
-  if (rootElement.dataset.radioGroupGeometrySync === signature) return;
-
-  rootElement.dataset.radioGroupGeometrySync = signature;
-
-  requestAnimationFrame(() => {
-    // Emitimos un único parche atómico para evitar problemas de dedupe/orden
-    onChange([
-      { key: 'orientation', value: 'vertical' },
-      { key: 'spacing', value: DESIGNER_BOX_GAP },
-      // Importante: NO usar Math.max. El radioGroup debe volver a su tamaño compacto.
-      { key: 'width', value: expectedWidth },
-      { key: 'height', value: expectedHeight },
-    ] as any);
-  });
-};
 
 // ─── PropPanel options editor ────────────────────────────────────────────────
 
@@ -321,7 +206,7 @@ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
   const schema = activeSchema as RadioGroupSchema;
 
   rootElement.style.width = '100%';
-  rootElement.innerHTML = '';
+  clearSchemaRoot(rootElement);
 
   let currentOptions = normalizeOptions(schema);
   let currentSelected = resolveSelectedOptionId(schema, currentOptions);
@@ -378,40 +263,19 @@ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
   };
 
   const header = document.createElement('div');
-
-  Object.assign(header.style, {
-    fontSize: '12px',
-    fontWeight: '600',
-    color: '#555',
-    marginBottom: '8px',
-  });
-
+  header.className = 'sisad-option-editor-header';
   header.textContent = 'Opciones del radio button';
   rootElement.appendChild(header);
 
   const list = document.createElement('div');
-
-  Object.assign(list.style, {
-    display: 'flex',
-    flexDirection: 'column',
-    gap: '6px',
-    marginBottom: '10px',
-    maxHeight: '220px',
-    overflowY: 'auto',
-  });
+  list.className = 'sisad-option-editor-list';
 
   const renderList = () => {
-    list.innerHTML = '';
+    clearSchemaRoot(list);
 
     currentOptions.forEach((option, index) => {
       const row = document.createElement('div');
-
-      Object.assign(row.style, {
-        display: 'grid',
-        gridTemplateColumns: '20px 1fr 28px',
-        gap: '6px',
-        alignItems: 'center',
-      });
+      row.className = 'sisad-option-editor-row sisad-option-editor-row--radio';
 
       const indicator = createRuntimeCircle({
         selected: option.optionId === currentSelected,
@@ -435,35 +299,13 @@ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
       labelInput.type = 'text';
       labelInput.value = option.label;
       labelInput.placeholder = `Opción ${index + 1}`;
-
-      Object.assign(labelInput.style, {
-        width: '100%',
-        padding: '5px 8px',
-        border: '1px solid #d9d9d9',
-        borderRadius: '4px',
-        fontSize: '13px',
-        outline: 'none',
-      });
+      labelInput.className = 'sisad-option-editor-input';
 
       const removeBtn = document.createElement('button');
       removeBtn.type = 'button';
-      removeBtn.innerHTML = '&times;';
-
-      Object.assign(removeBtn.style, {
-        width: '24px',
-        height: '24px',
-        border: 'none',
-        background: 'transparent',
-        color: '#999',
-        cursor: currentOptions.length > 1 ? 'pointer' : 'not-allowed',
-        fontSize: '16px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        borderRadius: '3px',
-        padding: '0',
-        opacity: currentOptions.length > 1 ? '1' : '0.45',
-      });
+      removeBtn.textContent = '×';
+      removeBtn.className = 'sisad-option-editor-remove-btn';
+      removeBtn.dataset.disabled = String(currentOptions.length <= 1);
 
       labelInput.addEventListener('change', () => {
         const nextOptions = currentOptions.map((item, optionIndex) =>
@@ -501,46 +343,17 @@ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
   rootElement.appendChild(list);
 
   const addRow = document.createElement('div');
-
-  Object.assign(addRow.style, {
-    display: 'grid',
-    gridTemplateColumns: '1fr 32px',
-    gap: '6px',
-    alignItems: 'center',
-  });
+  addRow.className = 'sisad-option-editor-add-row';
 
   const newInput = document.createElement('input');
   newInput.type = 'text';
   newInput.placeholder = 'Nueva opción…';
-
-  Object.assign(newInput.style, {
-    width: '100%',
-    padding: '5px 8px',
-    border: '1px solid #d9d9d9',
-    borderRadius: '4px',
-    fontSize: '13px',
-    outline: 'none',
-  });
+  newInput.className = 'sisad-option-editor-input';
 
   const addBtn = document.createElement('button');
   addBtn.type = 'button';
   addBtn.textContent = '+';
-
-  Object.assign(addBtn.style, {
-    width: '28px',
-    height: '28px',
-    border: '1.5px solid #1677ff',
-    background: '#1677ff',
-    color: '#fff',
-    cursor: 'pointer',
-    fontSize: '18px',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: '4px',
-    padding: '0',
-    fontWeight: '700',
-  });
+  addBtn.className = 'sisad-option-editor-add-btn';
 
   const doAdd = (event: Event) => {
     event.preventDefault();
@@ -603,7 +416,7 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
       const isDesigner = mode === 'designer';
       const color = radioSchema.color || '#1677ff';
 
-      rootElement.innerHTML = '';
+      clearSchemaRoot(rootElement);
 
       Object.assign(rootElement.style, {
         overflow: 'visible',
@@ -616,17 +429,18 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
       });
 
       if (isDesigner) {
-        // Mantener sincronizada la geometría de schemas antiguos que quedaron grandes.
-        syncDesignerRadioGroupGeometry({
+        syncOptionGroupDesignerGeometry({
           schema: radioSchema,
           options,
           rootElement,
           onChange,
+          layout: RADIO_GROUP_LAYOUT,
+          datasetKey: 'radioGroupGeometrySync',
         });
 
-        const designerGroup = createDesignerRadioGroup({ options });
-
-        rootElement.appendChild(designerGroup);
+        rootElement.appendChild(
+          createDesignerOptionGroupEl(options, RADIO_GROUP_LAYOUT, 'circle', new Set([selectedOptionId]), 'data-radio-group-option'),
+        );
         return;
       }
 

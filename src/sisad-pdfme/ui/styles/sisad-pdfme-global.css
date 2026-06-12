@@ -18,6 +18,17 @@
   color: var(--text-primary);
   background: var(--color-bg-base);
   -webkit-font-smoothing: antialiased;
+
+  /* ── Schema field chrome tokens ──────────────────────────────────── */
+  --sisad-schema-radius: 4px;
+  --sisad-schema-border-alpha: 0.64;
+  --sisad-schema-surface-alpha: 0.14;
+  --sisad-schema-selected-color: var(--sisad-pdfme-selection-color, #4200ca);
+  --sisad-schema-selected-shadow: 0 0 0 1px var(--sisad-schema-selected-color);
+  --sisad-schema-font-size: 11px;
+  --sisad-schema-line-height: 1.2;
+  --sisad-schema-padding-x: 6px;
+  --sisad-schema-padding-y: 3px;
 }
 
 .sisad-pdfme-root,
@@ -3858,9 +3869,9 @@
   cursor: pointer;
 }
 
-.sisad-pdfme-designer-item-auto:hover {
+/* .sisad-pdfme-designer-item-auto:hover {
   background: var(--color-bg-hover);
-}
+} */
 
 /* ── CANVAS EMPTY STATE TITLE & HINT ──────────────────── */
 .sisad-pdfme-designer-canvas-empty-state-title {
@@ -5824,4 +5835,291 @@
 
 .sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-section-card-body {
   padding: 0.35rem 0.65rem 0.55rem;
+}
+
+/* ─── Schema shared visual chrome ───────────────────────────────────────────
+   Classes used by schemas/shared/fieldChrome.ts and schemaDom.ts.
+   Size/gap/color customized per instance via CSS custom properties.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.sisad-pdfme-designer-option-box {
+  --designer-box-size: 22px;
+  width: var(--designer-box-size);
+  height: var(--designer-box-size);
+  min-width: var(--designer-box-size);
+  min-height: var(--designer-box-size);
+  max-width: var(--designer-box-size);
+  max-height: var(--designer-box-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 2px solid #65d8de;
+  border-radius: 2px;
+  background: rgba(161, 239, 242, 0.58);
+  padding: 0;
+  margin: 0;
+  flex: 0 0 auto;
+  pointer-events: none;
+}
+
+.sisad-pdfme-designer-group-stack {
+  --designer-box-gap: 4px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--designer-box-gap);
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  box-sizing: border-box;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.sisad-pdfme-action-button {
+  --action-btn-bg: #16a34a;
+  --action-btn-color: #ffffff;
+  --action-btn-font-size: 11px;
+  width: 100%;
+  height: 100%;
+  background: var(--action-btn-bg);
+  color: var(--action-btn-color);
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: var(--action-btn-font-size);
+  cursor: pointer;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.sisad-pdfme-action-button[data-designer-mode='true'] {
+  cursor: default;
+}
+
+/* ─── Field chrome — generic schema visual state ─────────────────────────────
+   Applied by applyFieldChrome() in schemas/shared/fieldChrome.ts.
+   All visual state is CSS-driven via data attributes + --schema-tone variable.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid color-mix(in srgb, var(--schema-tone, #2563eb) var(--sisad-schema-border-alpha-pct, 64%), transparent);
+  background: color-mix(in srgb, var(--schema-tone, #2563eb) var(--sisad-schema-surface-alpha-pct, 14%), white);
+  border-radius: var(--sisad-schema-radius);
+  font-size: var(--sisad-schema-font-size);
+  line-height: var(--sisad-schema-line-height);
+  color: var(--text-primary, #1f2937);
+  overflow: hidden;
+}
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-state='selected'] {
+  border-color: var(--sisad-schema-selected-color);
+  box-shadow: var(--sisad-schema-selected-shadow);
+}
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-state='multi-selected'] {
+  border-color: var(--sisad-schema-selected-color);
+}
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family='option-based'] {
+  background: transparent;
+  border-style: dashed;
+}
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family='boolean'] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family='signing-based'] {
+  background: color-mix(in srgb, var(--schema-tone, #2563eb) 12%, white);
+}
+
+/* Action schemas: button is the visual — chrome wrapper stays transparent */
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family='action-based'] {
+  border: none;
+  background: transparent;
+  border-radius: var(--sisad-schema-radius);
+  overflow: visible;
+}
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-readonly='true'] {
+  opacity: 0.72;
+}
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-locked='true'] {
+  cursor: not-allowed;
+}
+
+/* ─── Option editor widget (propPanel sidebar) ───────────────────────────────
+   Replaces Object.assign(style) calls in radioGroup/checkboxGroup propPanel editors.
+   Scoped inside .sisad-pdfme-root to avoid leaking into host app.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.sisad-pdfme-root .sisad-option-editor-header {
+  font-size: 12px;
+  font-weight: 600;
+  color: #555;
+  margin-bottom: 8px;
+}
+
+.sisad-pdfme-root .sisad-option-editor-list {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 10px;
+  max-height: 220px;
+  overflow-y: auto;
+}
+
+.sisad-pdfme-root .sisad-option-editor-row {
+  display: grid;
+  gap: 6px;
+  align-items: center;
+}
+
+.sisad-pdfme-root .sisad-option-editor-row--radio {
+  grid-template-columns: 20px 1fr 28px;
+}
+
+.sisad-pdfme-root .sisad-option-editor-row--checkbox {
+  grid-template-columns: 18px 1fr 28px;
+}
+
+.sisad-pdfme-root .sisad-option-editor-input {
+  width: 100%;
+  padding: 5px 8px;
+  border: 1px solid #d9d9d9;
+  border-radius: 4px;
+  font-size: 13px;
+  outline: none;
+}
+
+.sisad-pdfme-root .sisad-option-editor-input:focus {
+  border-color: #1677ff;
+  box-shadow: 0 0 0 2px rgba(22, 119, 255, 0.1);
+}
+
+.sisad-pdfme-root .sisad-option-editor-remove-btn {
+  width: 24px;
+  height: 24px;
+  border: none;
+  background: transparent;
+  color: #999;
+  font-size: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.sisad-pdfme-root .sisad-option-editor-remove-btn:hover:not(:disabled) {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+.sisad-pdfme-root .sisad-option-editor-remove-btn[data-disabled='true'] {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.sisad-pdfme-root .sisad-option-editor-add-row {
+  display: grid;
+  grid-template-columns: 1fr 32px;
+  gap: 6px;
+  align-items: center;
+}
+
+.sisad-pdfme-root .sisad-option-editor-add-btn {
+  width: 28px;
+  height: 28px;
+  border: 1.5px solid #1677ff;
+  background: #1677ff;
+  color: #fff;
+  font-size: 18px;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  padding: 0;
+  cursor: pointer;
+}
+
+.sisad-pdfme-root .sisad-option-editor-add-btn:hover {
+  background: #0958d9;
+  border-color: #0958d9;
+}
+
+/* Checkbox indicator in propPanel editor */
+.sisad-pdfme-root .sisad-option-editor-cb-indicator {
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid #d0d0d0;
+  border-radius: 2px;
+  flex-shrink: 0;
+}
+
+/* Note schema — action-based informative variant */
+.sisad-pdfme-root .sisad-pdfme-note-container {
+  --note-bg: #fefce8;
+  --note-border: #fde047;
+  --note-text: #713f12;
+  width: 100%;
+  height: 100%;
+  background: var(--note-bg);
+  border: 1px solid var(--note-border);
+  border-radius: 4px;
+  padding: 4px 8px;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+}
+
+.sisad-pdfme-root .sisad-pdfme-note-text {
+  --note-font-size: 10px;
+  color: var(--note-text);
+  font-size: var(--note-font-size);
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Attachment schema — action-based dashed-border variant */
+.sisad-pdfme-root .sisad-pdfme-attachment-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #d1d5db;
+  border-radius: 6px;
+  background: #f9fafb;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.sisad-pdfme-root .sisad-pdfme-attachment-label {
+  color: #6b7280;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }

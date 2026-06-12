@@ -49,6 +49,7 @@ import {
   isEditableTarget,
   isAntDPopupTarget,
 } from '../shared/interactionGuards.js';
+import { isMoveableTarget } from '../shared/transformTargetGuards.js';
 import CanvasOverlayManager from './overlays/CanvasOverlayManager.js';
 import CanvasContextMenu from './overlays/CanvasContextMenu.js';
 import CanvasStateOverlay from './overlays/CanvasStateOverlay.js';
@@ -828,8 +829,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
     if (!activePaper) return [];
     return dedupeById(
       targets.filter((target) => {
-        if (!(target instanceof HTMLElement)) return false;
-        if (!target.classList.contains(SELECTABLE_CLASSNAME)) return false;
+        if (!isMoveableTarget(target)) return false;
         return target === activePaper || activePaper.contains(target);
       }),
     );
@@ -1298,7 +1298,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
                     // checkbox option toggles) must receive their own clicks instead
                     // of starting a Moveable drag. Let those events through.
                     const interactiveControl = (event.target as HTMLElement | null)?.closest?.(
-                      '[data-checkbox-convert-to-group],[data-checkbox-group-add-option],[data-checkbox-group-option],[data-schema-interactive-control]',
+                      '[data-checkbox-convert-to-group],[data-checkbox-group-add-option],[data-checkbox-group-option],[data-schema-interactive-control],[data-role="group-add-option"],[data-option-id]',
                     );
                     if (interactiveControl) return;
 

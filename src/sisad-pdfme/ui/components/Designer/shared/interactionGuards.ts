@@ -9,6 +9,12 @@ const EDITABLE_SELECTOR = [
   '[contenteditable="true"]',
   '[contenteditable="plaintext-only"]',
   '[role="textbox"]',
+  // Canvas overlay controls — must never trigger Selecto region or Moveable drag
+  '[data-role="group-add-option"]',
+  '[data-option-id]',
+  '[data-schema-interactive-control]',
+  '.sisad-pdfme-option-group-floating-action',
+  '.sisad-pdfme-option-group-action-overlay',
   '.ant-input',
   '.ant-input-affix-wrapper',
   '.ant-input-number',

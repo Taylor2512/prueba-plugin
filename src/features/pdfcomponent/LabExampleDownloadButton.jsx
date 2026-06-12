@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { buildLabExampleDownloadBundle, getLabExampleDownloadFilename } from './examples/labExamples.js'
-import { downloadUrl } from './utils/binary.js'
+import { downloadUrl } from '@/sisad-pdfme/browser/downloads'
 
 const revokeUrl = (url) => {
   if (url && typeof URL.revokeObjectURL === 'function') {

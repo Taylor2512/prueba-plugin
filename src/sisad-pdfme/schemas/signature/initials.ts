@@ -4,13 +4,13 @@
  * Only differences: smaller default size, different placeholder text, signatureKind.
  */
 import { cloneDeep } from '@sisad-pdfme/common';
-import type { Plugin } from '@sisad-pdfme/common';
+import type { Plugin, Schema } from '@sisad-pdfme/common';
 import { PenLine } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 import baseSignature from './index.js';
 import type { SignatureSchema } from './types.js';
 
-const initialsPlugin: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSchema>(
+const initialsPlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
   {
     ui: baseSignature.ui,
     pdf: baseSignature.pdf,
@@ -23,11 +23,11 @@ const initialsPlugin: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSche
         width: 22,
         height: 12,
         placeholderText: 'Iniciales aquí',
-        signatureKind: 'initials' as unknown as never,
+        signatureKind: 'initials',
         strokeColor: '#1a56a0',
         borderColor: '#93c5fd',
         backgroundColor: '#eff6ff',
-      },
+      } as unknown as Schema,
     },
     icon: renderLucideIcon(PenLine, { stroke: '#1a56a0' }),
   },

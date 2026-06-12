@@ -1,6 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
-import IconButton from './IconButton.jsx'
 
 const EMPTY_ARRAY = []
 
@@ -51,15 +50,17 @@ export default function PopoverMenu({
 
   return (
     <div className={containerClasses} ref={ref} data-align={align}>
-      <IconButton
-        label={label}
-        icon={icon}
+      <button
+        type="button"
+        className={['sisad-pdfme-popover-button', open ? 'is-active' : ''].filter(Boolean).join(' ')}
         onClick={() => setOpen((current) => !current)}
-        isActive={open}
-        ariaHasPopup="menu"
-        ariaExpanded={open}
+        aria-haspopup="menu"
+        aria-expanded={open}
         disabled={disabled}
-      />
+      >
+        {icon && <span className="sisad-pdfme-popover-button-icon">{icon}</span>}
+        {label && <span className="sisad-pdfme-popover-button-label">{label}</span>}
+      </button>
       {open ? (
         <div className={panelClasses} role="menu">
           {customContent}

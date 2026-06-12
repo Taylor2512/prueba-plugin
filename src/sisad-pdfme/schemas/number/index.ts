@@ -1,4 +1,4 @@
-import type { Plugin } from '@sisad-pdfme/common';
+import type { Plugin, Schema } from '@sisad-pdfme/common';
 import text from '../text/index.js';
 import { createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
@@ -13,7 +13,7 @@ import {
   COMMON_PROPERTY_MAP,
 } from '../propPanel/commonInspectorFields.js';
 
-const schema: Plugin<any> = createSchemaPlugin<any>(
+const schema: Plugin<Schema> = createSchemaPlugin<Schema>(
   {
     ui: text.ui,
     pdf: text.pdf,

@@ -2,11 +2,11 @@ import type { OptionItem } from './optionTypes.js';
 import { convertForPdfLayoutProps, hex2PrintingColor } from '../utils/convertForPdfLayoutProps.js';
 
 export type OptionGroupPdfParams = {
-  page: any;
+  page: Record<string, (...args: unknown[]) => unknown>;
   x: number;
   y: number;
   width: number;
-  schema: Record<string, any>;
+  schema: Record<string, unknown>;
   options: OptionItem[];
   selectionMode: 'single' | 'multiple';
   color?: string;

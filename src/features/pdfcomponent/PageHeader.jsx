@@ -1,7 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import { getCollaboratorToneClass, getLabModeLabel } from './domain/labPresentation.js'
-import { buildCollaboratorChipStyle } from './domain/collaborationAppearance.js'
+import { buildCollaboratorChipStyle } from '@/sisad-pdfme/collaboration/appearance'
 
 const EMPTY_ARRAY = []
 

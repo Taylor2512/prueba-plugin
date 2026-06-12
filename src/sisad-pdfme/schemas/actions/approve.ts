@@ -3,48 +3,48 @@
  * Fires an 'approve' action event via the host callback. No business logic inside.
  * The host app handles confirmation, audit trail, and routing.
  */
-import type { Plugin } from '@sisad-pdfme/common';
+import type { Plugin, Schema } from '@sisad-pdfme/common';
 import { CheckCircle } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 import { helpFields, dataLabelFields, COMMON_PROPERTY_MAP } from '../propPanel/commonInspectorFields.js';
+import { createActionButtonEl } from '../shared/schemaDom.js';
+import type { ActionSchemaBase } from '../shared/schemaTypes.js';
+import { renderSchemaWithChrome } from '../shared/renderSchemaWithChrome.js';
 import type { PropPanelSchema } from '@sisad-pdfme/common';
 
-const approvePlugin: Plugin<any> = createSchemaPlugin<any>(
+type ApproveSchema = ActionSchemaBase<{
+  requiresReason?: boolean;
+  confirmationMessage?: string;
+  auditEventName?: string;
+  action?: string;
+}>;
+
+const approvePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
   {
     ui: async ({ schema, rootElement, mode }) => {
-      const s = schema as any;
-      const label = s.label || 'Aprobar';
-      const bg = s.buttonColor || '#16a34a';
-      const textColor = s.buttonTextColor || '#ffffff';
-
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.textContent = label;
-      Object.assign(button.style, {
-        width: '100%',
-        height: '100%',
-        background: mode === 'designer' ? bg : bg,
-        color: textColor,
-        border: 'none',
-        borderRadius: '6px',
-        fontWeight: '600',
-        fontSize: `${s.fontSize || 11}px`,
-        cursor: mode === 'form' ? 'pointer' : 'default',
-        boxSizing: 'border-box',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        gap: '6px',
+      const s = schema as ApproveSchema;
+      const iconSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`;
+      renderSchemaWithChrome({
+        schema: s as Parameters<typeof renderSchemaWithChrome>[0]['schema'],
+        rootElement,
+        family: 'action-based',
+        compact: true,
+        render: (chromeEl) => {
+          const button = createActionButtonEl({
+            label: s.label || 'Aprobar',
+            bgColor: s.buttonColor || '#16a34a',
+            textColor: s.buttonTextColor || '#ffffff',
+            fontSize: s.fontSize || 11,
+            isInteractive: mode === 'form',
+            iconSvg,
+          });
+          chromeEl.appendChild(button);
+        },
       });
-
-      const svg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`;
-      button.innerHTML = `${svg}${label}`;
-
-      rootElement.appendChild(button);
     },
     pdf: async ({ schema, pdfDoc, pdfLib, page }) => {
-      const s = schema as any;
+      const s = schema as ApproveSchema & { position: { x: number; y: number } };
       const { position, width, height } = s;
       const { x, y } = position;
       const pageHeight = page.getHeight();

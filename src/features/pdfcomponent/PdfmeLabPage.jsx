@@ -7,8 +7,8 @@ import { generate } from '@sisad-pdfme/generator'
 import { flatSchemaPlugins, builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
 import { pdf2img, pdf2size, img2pdf } from '@sisad-pdfme/converter'
 import { usePdfmeRuntimeInstance } from '@/sisad-pdfme/runtime/usePdfmeRuntimeInstance'
-import { createObjectUrl, revokeObjectUrls } from './utils/binary.js'
-import { createInitialPdfmeTemplate } from './template.js'
+import { createObjectUrl, revokeObjectUrls } from '@/sisad-pdfme/browser/objectUrls'
+import { createDefaultTemplate } from '@/sisad-pdfme/templates/createDefaultTemplate'
 import {
   getLabExampleById,
   getLabExamples,
@@ -21,10 +21,8 @@ import {
   resolveInitialUxMode,
   formatPageStatus,
 } from './domain/labState.js'
-import {
-  decorateCollaborationUsers,
-  decorateTemplateWithCollaboration,
-} from './domain/collaborationAppearance.js'
+import { decorateCollaborationUsers } from '@/sisad-pdfme/collaboration/recipientPalette'
+import { decorateTemplateWithCollaboration } from '@/sisad-pdfme/collaboration/schemaOwnershipAppearance'
 import PageHeader from './PageHeader.jsx'
 import ResultsPanel from './ResultsPanel.jsx'
 import CompactControls from './CompactControls.jsx'
@@ -197,7 +195,7 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   )
 
   const initialTemplate = useMemo(
-    () => decorateTemplateWithCollaboration(example?.template || createInitialPdfmeTemplate(), collaborationUsers),
+    () => decorateTemplateWithCollaboration(example?.template || createDefaultTemplate(), collaborationUsers),
     [collaborationUsers, example?.template],
   )
   const initialInputs = useMemo(

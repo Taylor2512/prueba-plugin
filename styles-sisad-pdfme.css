@@ -2,7 +2,7 @@
    ARCHIVO UNIFICADO DE ESTILOS CSS
    =====================================================================
    Carpeta origen: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
-   Fecha de generación: 2026-06-10T14:44:30.592Z
+   Fecha de generación: 2026-06-12T21:36:08.696Z
    Total de archivos incluidos: 6
    Extensiones incluidas: .css
    Objetivo: consolidar estilos CSS respetando un orden estable de cascada
@@ -25,7 +25,7 @@
    ARCHIVO #1
    Ruta relativa: src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
    Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
-   Líneas aproximadas: 5828
+   Líneas aproximadas: 5999
    ==================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
@@ -3888,9 +3888,9 @@
   cursor: pointer;
 }
 
-.sisad-pdfme-designer-item-auto:hover {
+/* .sisad-pdfme-designer-item-auto:hover {
   background: var(--color-bg-hover);
-}
+} */
 
 /* ── CANVAS EMPTY STATE TITLE & HINT ──────────────────── */
 .sisad-pdfme-designer-canvas-empty-state-title {
@@ -5854,6 +5854,177 @@
 
 .sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-section-card-body {
   padding: 0.35rem 0.65rem 0.55rem;
+}
+
+/* ─── Schema shared visual chrome ───────────────────────────────────────────
+   Classes used by schemas/shared/fieldChrome.ts and schemaDom.ts.
+   Size/gap/color customized per instance via CSS custom properties.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.sisad-pdfme-designer-option-box {
+  --designer-box-size: 22px;
+  width: var(--designer-box-size);
+  height: var(--designer-box-size);
+  min-width: var(--designer-box-size);
+  min-height: var(--designer-box-size);
+  max-width: var(--designer-box-size);
+  max-height: var(--designer-box-size);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 2px solid #65d8de;
+  border-radius: 2px;
+  background: rgba(161, 239, 242, 0.58);
+  padding: 0;
+  margin: 0;
+  flex: 0 0 auto;
+  pointer-events: none;
+}
+
+.sisad-pdfme-designer-group-stack {
+  --designer-box-gap: 4px;
+  position: relative;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+  gap: var(--designer-box-gap);
+  padding: 0;
+  margin: 0;
+  border: none;
+  background: transparent;
+  box-sizing: border-box;
+  overflow: visible;
+  pointer-events: none;
+}
+
+.sisad-pdfme-action-button {
+  --action-btn-bg: #16a34a;
+  --action-btn-color: #ffffff;
+  --action-btn-font-size: 11px;
+  width: 100%;
+  height: 100%;
+  background: var(--action-btn-bg);
+  color: var(--action-btn-color);
+  border: none;
+  border-radius: 6px;
+  font-weight: 600;
+  font-size: var(--action-btn-font-size);
+  cursor: pointer;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+}
+
+.sisad-pdfme-action-button[data-designer-mode='true'] {
+  cursor: default;
+}
+
+/* ─── Field chrome — generic schema visual state ─────────────────────────────
+   Applied by applyFieldChrome() in schemas/shared/fieldChrome.ts.
+   All visual state is CSS-driven via data attributes + --schema-tone variable.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  border: 1px solid color-mix(in srgb, var(--schema-tone, #2563eb) 64%, transparent);
+  background: color-mix(in srgb, var(--schema-tone, #2563eb) 14%, white);
+  border-radius: 4px;
+  color: var(--text-primary, #1f2937);
+  overflow: hidden;
+}
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-state='selected'] {
+  border-color: var(--sisad-pdfme-selection-color, #4200ca);
+  box-shadow: 0 0 0 1px var(--sisad-pdfme-selection-color, #4200ca);
+}
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-state='multi-selected'] {
+  border-color: var(--sisad-pdfme-selection-color, #4200ca);
+}
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family='option-based'] {
+  background: transparent;
+  border-style: dashed;
+}
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family='boolean'] {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family='signing-based'] {
+  background: color-mix(in srgb, var(--schema-tone, #2563eb) 12%, white);
+}
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family='action-based'] {
+  border-radius: 6px;
+  overflow: visible;
+}
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-readonly='true'] {
+  opacity: 0.72;
+}
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-locked='true'] {
+  cursor: not-allowed;
+}
+
+/* Note schema — action-based informative variant */
+.sisad-pdfme-root .sisad-pdfme-note-container {
+  --note-bg: #fefce8;
+  --note-border: #fde047;
+  --note-text: #713f12;
+  width: 100%;
+  height: 100%;
+  background: var(--note-bg);
+  border: 1px solid var(--note-border);
+  border-radius: 4px;
+  padding: 4px 8px;
+  box-sizing: border-box;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-start;
+}
+
+.sisad-pdfme-root .sisad-pdfme-note-text {
+  --note-font-size: 10px;
+  color: var(--note-text);
+  font-size: var(--note-font-size);
+  line-height: 1.4;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* Attachment schema — action-based dashed-border variant */
+.sisad-pdfme-root .sisad-pdfme-attachment-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 2px dashed #d1d5db;
+  border-radius: 6px;
+  background: #f9fafb;
+  cursor: pointer;
+  box-sizing: border-box;
+}
+
+.sisad-pdfme-root .sisad-pdfme-attachment-label {
+  color: #6b7280;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
 }
 
 
@@ -9556,6 +9727,7 @@ body {
    │   │       ├── domain
    │   │       ├── examples
    │   │       ├── labRoutes.css
+   │   │       ├── ui
    │   │       └── utils
    │   ├── sisad-pdfme
    │   │   ├── assignments
@@ -9631,6 +9803,7 @@ body {
    │   │   │   ├── radioGroup
    │   │   │   ├── select
    │   │   │   ├── shapes
+   │   │   │   ├── shared
    │   │   │   ├── signature
    │   │   │   ├── tables
    │   │   │   ├── text
