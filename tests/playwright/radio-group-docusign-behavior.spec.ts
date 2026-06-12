@@ -38,15 +38,22 @@ test.describe('radioGroup DocuSign-style behavior', () => {
     expect(new Set(optionIds).size).toBeGreaterThanOrEqual(2);
     expect(optionIds.every(Boolean)).toBe(true);
 
-    await page.locator('.sisad-pdfme-ui-custom-selectable[data-schema-type="radioGroup"]').first().click({ force: true });
-    const addOption = page.locator('[data-radio-group-add-option]').first();
+    const radioGroup = page.locator('.sisad-pdfme-ui-custom-selectable[data-schema-type="radioGroup"]').first();
+    await radioGroup.click({ force: true });
+    // Floating action button is rendered outside the schema element (below Moveable control box).
+    const addOption = page.locator('[data-role="group-add-option"]').first();
     await expect(addOption).toBeVisible();
+
+    // Verify button is below the group bounding box.
+    const groupBox = await radioGroup.boundingBox();
+    const btnBox = await addOption.boundingBox();
+    if (groupBox && btnBox) {
+      expect(btnBox.y).toBeGreaterThan(groupBox.y + groupBox.height - 2);
+    }
 
     const options = page.locator('[data-radio-group-option]');
     const before = await options.count();
-    await addOption.evaluate((node) => {
-      (node as HTMLButtonElement).click();
-    });
+    await addOption.click();
     await expect.poll(async () => options.count()).toBeGreaterThan(before);
   });
 

@@ -4,6 +4,12 @@ import { isEditable } from '../utils.js';
 import { HEX_COLOR_PATTERN } from '../constants.js';
 import { createSchemaPlugin, renderLucideIcon } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import {
+  basicsFields,
+  helpFields,
+  dataLabelFields,
+  COMMON_PROPERTY_MAP,
+} from '../propPanel/commonInspectorFields.js';
 import { CircleDot } from 'lucide-react';
 import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
 
@@ -29,14 +35,22 @@ type RadioGroupSchema = SchemaForUI & {
   };
 };
 
-const DESIGNER_BOX_SIZE = 26;
-const DESIGNER_BOX_GAP = 4;
-const DESIGNER_PLUS_GAP = 5;
-const DESIGNER_PLUS_SIZE = 24;
+// The + button is rendered as an external overlay (GroupOptionFloatingAction),
+// so the bounding box covers ONLY the stacked indicator squares.
+import {
+  RADIO_GROUP_LAYOUT,
+  computeOptionGroupDesignerHeightMM,
+  computeOptionGroupDesignerWidthMM,
+} from '../options/optionGroupLayout.js';
+
+const DESIGNER_BOX_SIZE = RADIO_GROUP_LAYOUT.boxSize;  // px
+const DESIGNER_BOX_GAP  = RADIO_GROUP_LAYOUT.boxGap;   // px
+
 const DESIGNER_BOX_BORDER = '#65d8de';
 const DESIGNER_BOX_BG = 'rgba(161, 239, 242, 0.58)';
 const DESIGNER_CIRCLE_BORDER = '#8b8b8b';
-const DESIGNER_PLUS_BG = '#4d00c8';
+
+const DESIGNER_BOX_MM = computeOptionGroupDesignerWidthMM(RADIO_GROUP_LAYOUT);
 
 import { normalizeOptionsFromSource, normalizeOptionId } from '../options/optionModel.js';
 import { resolveSelectedOptionId as resolveSelectedFromOptions } from '../options/optionValueAdapter.js';
@@ -47,7 +61,6 @@ import {
   buildOptionRow,
   buildRadioIndicator,
   buildOptionLabel,
-  buildAddOptionButton,
 } from '../groupSchemaRender.js';
 
 const normalizeText = (value: unknown) => String(value || '').trim();
@@ -83,17 +96,8 @@ const syncDesignerGroupPatch = (schema: RadioGroupSchema) => ({
   '__designer.group.lockedAsGroup': schema.lockedAsGroup !== false,
 });
 
-const calculateDesignerHeight = (optionsCount: number): number => {
-  const count = Number.isFinite(optionsCount) && optionsCount >= 1 ? Math.floor(optionsCount) : 1;
-  const gapCount = count > 1 ? count - 1 : 0;
-
-  return (
-    count * DESIGNER_BOX_SIZE +
-    gapCount * DESIGNER_BOX_GAP +
-    DESIGNER_PLUS_GAP +
-    DESIGNER_PLUS_SIZE
-  );
-};
+const calculateDesignerHeight = (optionsCount: number): number =>
+  computeOptionGroupDesignerHeightMM(optionsCount, RADIO_GROUP_LAYOUT);
 
 const createDesignerOptionBox = (option: RadioOption): HTMLDivElement => {
   const box = document.createElement('div');
@@ -127,53 +131,19 @@ const createDesignerOptionBox = (option: RadioOption): HTMLDivElement => {
   return box;
 };
 
-const createDesignerAddButton = ({
-  schema,
-  onChange,
-}: {
-  schema: RadioGroupSchema;
-  onChange?: (arg: { key: string; value: unknown }) => void;
-}): HTMLButtonElement => {
-  // Delegate styling to shared builder and attach the same atomic emission.
-  const btn = buildAddOptionButton(DESIGNER_PLUS_BG, 'Agregar opción al grupo', 'data-radio-group-add-option');
-  btn.setAttribute('data-schema-interactive-control', 'radio-add-option');
-
-  btn.addEventListener('click', (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-    if (!onChange) return;
-    const currentOptions = normalizeOptions(schema);
-    const nextIndex = currentOptions.length + 1;
-    const nextOption: RadioOption = { optionId: `option_${nextIndex}`, label: `Opción ${nextIndex}` };
-    const nextOptions = [...currentOptions, nextOption];
-    onChange([
-      { key: 'options', value: nextOptions },
-      { key: 'orientation', value: 'vertical' },
-      { key: 'spacing', value: DESIGNER_BOX_GAP },
-      { key: 'width', value: DESIGNER_BOX_SIZE },
-      { key: 'height', value: calculateDesignerHeight(nextOptions.length) },
-    ]);
-  });
-
-  return btn;
-};
 
 const createDesignerRadioGroup = ({
-  schema,
   options,
-  onChange,
 }: {
-  schema: RadioGroupSchema;
   options: RadioOption[];
-  onChange?: (arg: { key: string; value: unknown }) => void;
 }): HTMLDivElement => {
   const wrapper = document.createElement('div');
 
   Object.assign(wrapper.style, {
-    width: `${DESIGNER_BOX_SIZE}px`,
-    minWidth: `${DESIGNER_BOX_SIZE}px`,
-    maxWidth: `${DESIGNER_BOX_SIZE}px`,
-    display: 'inline-flex',
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    display: 'flex',
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'flex-start',
@@ -194,8 +164,6 @@ const createDesignerRadioGroup = ({
   safeOptions.forEach((option) => {
     wrapper.appendChild(createDesignerOptionBox(option));
   });
-
-  wrapper.appendChild(createDesignerAddButton({ schema, onChange }));
 
   return wrapper;
 };
@@ -317,7 +285,7 @@ const syncDesignerRadioGroupGeometry = ({
   if (!onChange) return;
 
   const optionsCount = Number.isFinite(options.length) && options.length >= 1 ? options.length : 1;
-  const expectedWidth = DESIGNER_BOX_SIZE;
+  const expectedWidth = DESIGNER_BOX_MM;
   const expectedHeight = calculateDesignerHeight(optionsCount);
 
   const needsSync =
@@ -403,8 +371,8 @@ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
       defaultSelectedOptionId: currentSelected,
       orientation: 'vertical',
       spacing: DESIGNER_BOX_GAP,
-      // Forzar tamaño compacto aunque el schema previo viniera grande.
-      width: DESIGNER_BOX_SIZE,
+      // width/height in mm (schema coordinate system, not CSS pixels)
+      width: DESIGNER_BOX_MM,
       height: calculateDesignerHeight(currentOptions.length),
     });
   };
@@ -598,8 +566,8 @@ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
       defaultSelectedOptionId: currentSelected,
       orientation: 'vertical',
       spacing: DESIGNER_BOX_GAP,
-      // Forzar tamaño compacto aunque el schema previo viniera grande.
-      width: DESIGNER_BOX_SIZE,
+      // width/height in mm (schema coordinate system, not CSS pixels)
+      width: DESIGNER_BOX_MM,
       height: calculateDesignerHeight(nextOptions.length),
     });
 
@@ -644,8 +612,6 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
         boxShadow: 'none',
         padding: '0',
         margin: '0',
-        width: 'max-content',
-        height: 'max-content',
         pointerEvents: isDesigner ? 'none' : 'auto',
       });
 
@@ -658,11 +624,7 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
           onChange,
         });
 
-        const designerGroup = createDesignerRadioGroup({
-          schema: radioSchema,
-          options,
-          onChange,
-        });
+        const designerGroup = createDesignerRadioGroup({ options });
 
         rootElement.appendChild(designerGroup);
         return;
@@ -721,6 +683,9 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
 
     propPanel: {
       schema: ({ i18n }) => ({
+        // ── basics ──
+        ...basicsFields(),
+        // ── color ──
         color: {
           title: i18n('schemas.color'),
           type: 'string',
@@ -729,59 +694,43 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
           required: true,
           rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
         },
-        groupId: {
-          title: 'Etiqueta de grupo',
-          type: 'string',
-          description: 'ID del grupo de opción única.',
-        },
-        groupName: {
-          title: 'Nombre del grupo',
-          type: 'string',
-        },
-        lockedAsGroup: {
-          title: 'Bloquear como grupo',
-          type: 'boolean',
-        },
+        // ── options / group config ──
+        groupName: { title: 'Nombre del grupo', type: 'string', span: 12 },
         orientation: {
           title: 'Orientación',
           type: 'string',
           widget: 'select',
-          props: {
-            options: [
-              { label: 'Vertical', value: 'vertical' },
-              { label: 'Horizontal', value: 'horizontal' },
-            ],
-          },
+          span: 12,
+          props: { options: [{ label: 'Vertical', value: 'vertical' }, { label: 'Horizontal', value: 'horizontal' }] },
         },
-        spacing: {
-          title: 'Espaciado',
-          type: 'number',
-          widget: 'inputNumber',
-          props: { min: 0, precision: 0 },
-        },
+        spacing: { title: 'Espaciado', type: 'number', widget: 'inputNumber', span: 8, props: { min: 0, precision: 0 } },
         optionsContainer: {
           title: 'Opciones',
           type: 'string',
           widget: 'card',
           span: 24,
-          properties: {
-            options: {
-              widget: 'editRadioGroupOptions',
-              span: 24,
-            },
-          },
+          properties: { options: { widget: 'editRadioGroupOptions', span: 24 } },
         },
+        // ── help ──
+        ...helpFields(),
+        // ── dataLabel ──
+        ...dataLabelFields(),
+        // ── advanced ──
+        groupId: { title: 'ID del grupo', type: 'string', span: 12, description: 'ID técnico del grupo.' },
+        lockedAsGroup: { title: 'Bloquear como grupo', type: 'boolean', span: 12 },
       }),
       inspector: createSchemaInspectorConfig('choice', {
         propertyMap: {
+          ...COMMON_PROPERTY_MAP,
           color: 'style',
-          groupId: 'data',
           groupName: 'data',
-          lockedAsGroup: 'data',
           orientation: 'data',
           spacing: 'data',
           optionsContainer: 'data',
+          groupId: 'advanced',
+          lockedAsGroup: 'advanced',
         },
+        includeConnections: true,
       }),
       widgets: {
         editRadioGroupOptions: RadioOptionsEditor,
@@ -792,8 +741,8 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
         type: 'radioGroup',
         content: 'option_1',
         position: { x: 0, y: 0 },
-        width: DESIGNER_BOX_SIZE,
-        height: calculateDesignerHeight(1),
+        width: DESIGNER_BOX_MM,
+        height: calculateDesignerHeight(2),
         groupId: 'Grupo_Opcion',
         group: 'Grupo_Opcion',
         groupName: 'Grupo de opción',

@@ -29,7 +29,13 @@ type FamilyPreset = PluginFamilyDefinition & {
   supportsValidation: boolean;
 };
 
-const TEXT_TYPES = new Set(['text', 'number', 'multivariabletext', 'select', 'dropdown', 'date', 'time', 'datetime', 'signature']);
+const TEXT_TYPES = new Set([
+  'text', 'number', 'multivariabletext', 'select', 'dropdown',
+  'date', 'time', 'datetime',
+  'signature', 'initials', 'datesigned',
+  'fullname', 'emailaddress', 'company', 'title',
+  'attachment', 'note', 'approve', 'decline',
+]);
 const BOOLEAN_TYPES = new Set(['checkbox', 'radiogroup', 'checkboxgroup']);
 const MEDIA_TYPES = new Set(['image', 'svg']);
 
@@ -108,7 +114,7 @@ const createStrategies = (types: Array<PluginStrategyDefinition['type']>): Plugi
 const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
   text: {
     family: 'text',
-    visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'collaboration', 'validation', 'advanced', 'comments'],
+    visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'help', 'collaboration', 'validation', 'advanced', 'comments'],
     propertyMap: BASE_PROPERTY_MAP,
     supportedActions: createActions([
       'editText',
@@ -156,7 +162,7 @@ const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
   },
   boolean: {
     family: 'boolean',
-    visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'collaboration', 'validation', 'advanced', 'comments'],
+    visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'help', 'collaboration', 'validation', 'advanced', 'comments'],
     propertyMap: BASE_PROPERTY_MAP,
     supportedActions: createActions([
       'renameVariable',
@@ -255,7 +261,9 @@ export const resolveSchemaSemanticFamily = (schemaType: string): SchemaSemanticF
   const normalizedType = String(schemaType || '').trim().toLowerCase();
 
   if (normalizedType === 'multivariabletext') return 'multiVariableText';
-  if (normalizedType === 'signature') return 'signature';
+  if (normalizedType === 'signature' || normalizedType === 'initials' || normalizedType === 'datesigned') return 'signature';
+  if (normalizedType === 'fullname' || normalizedType === 'emailaddress' || normalizedType === 'company' || normalizedType === 'title') return 'text';
+  if (normalizedType === 'attachment' || normalizedType === 'note' || normalizedType === 'approve' || normalizedType === 'decline') return 'text';
   if (normalizedType === 'table') return 'table';
   if (normalizedType === 'select' || normalizedType === 'dropdown') return 'choice';
   if (normalizedType === 'date' || normalizedType === 'time' || normalizedType === 'datetime') return 'dateTime';

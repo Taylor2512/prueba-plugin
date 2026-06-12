@@ -140,6 +140,7 @@ export type PropPanelInspectorSectionKey =
   | 'style'
   | 'data'
   | 'connections'
+  | 'help'
   | 'collaboration'
   | 'validation'
   | 'advanced'

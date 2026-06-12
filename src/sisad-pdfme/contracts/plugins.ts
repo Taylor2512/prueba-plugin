@@ -4,6 +4,7 @@ export type SchemaInspectorSection =
   | 'style'
   | 'data'
   | 'connections'
+  | 'help'
   | 'collaboration'
   | 'validation'
   | 'advanced'

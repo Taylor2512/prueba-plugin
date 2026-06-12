@@ -16,6 +16,13 @@ import radioGroup from './radioGroup/index.js';
 import checkbox from './checkbox/index.js';
 import checkboxGroup from './checkboxGroup/index.js';
 import signature from './signature/index.js';
+import initials from './signature/initials.js';
+import dateSigned from './signature/dateSigned.js';
+import { fullName, emailAddress, company, title } from './textLike/textLikePresets.js';
+import attachment from './actions/attachment.js';
+import note from './actions/note.js';
+import approve from './actions/approve.js';
+import decline from './actions/decline.js';
 import {
   flattenSchemaPlugins,
   getSchemaDefinition as getSchemaDefinitionFromPlugin,
@@ -38,6 +45,12 @@ const schemaPlugins: SchemaPluginMap = {
   image,
   svg,
   signature,
+  initials,
+  dateSigned,
+  fullName,
+  emailAddress,
+  company,
+  title,
   table,
   barcodes,
   line,
@@ -51,6 +64,10 @@ const schemaPlugins: SchemaPluginMap = {
   radioGroup,
   checkbox,
   checkboxGroup,
+  attachment,
+  note,
+  approve,
+  decline,
 };
 
 const flatSchemaPlugins = flattenSchemaPlugins(schemaPlugins);
@@ -339,6 +356,12 @@ export {
   image,
   svg,
   signature,
+  initials,
+  dateSigned,
+  fullName,
+  emailAddress,
+  company,
+  title,
   table,
   barcodes,
   line,
@@ -351,6 +374,10 @@ export {
   radioGroup,
   checkbox,
   checkboxGroup,
+  attachment,
+  note,
+  approve,
+  decline,
 };
 
 export { createSchemaPlugin, renderLucideIcon as createLucideIcon, flattenSchemaPlugins, listSchemaDefinitions };

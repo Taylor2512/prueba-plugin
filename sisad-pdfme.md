@@ -1,8 +1,8 @@
 # Documentación Markdown Unificada
 
 **Carpeta origen:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin`  
-**Fecha de generación:** `2026-06-10T03:33:49.949Z`  
-**Total de archivos incluidos:** `483`  
+**Fecha de generación:** `2026-06-10T14:44:30.599Z`  
+**Total de archivos incluidos:** `484`  
 **Extensiones incluidas:** `.md`
 
 ---
@@ -19,479 +19,480 @@
 0008. [GUARDRAILS.md](#archivo-0008)
 0009. [INSTALL_MAC.md](#archivo-0009)
 0010. [MANIFEST.md](#archivo-0010)
-0011. [README.md](#archivo-0011)
-0012. [.ai/agent-loop.md](#archivo-0012)
-0013. [.ai/context-map.md](#archivo-0013)
-0014. [.ai/INDEX.md](#archivo-0014)
-0015. [.ai/README.md](#archivo-0015)
-0016. [.claude/README.md](#archivo-0016)
-0017. [.codex/README.md](#archivo-0017)
-0018. [.gemini/README.md](#archivo-0018)
-0019. [.github/copilot-instructions.md](#archivo-0019)
-0020. [.kilo/README.md](#archivo-0020)
-0021. [debug/breakpoints-criticos.md](#archivo-0021)
-0022. [debug/hardtrace-playbook.md](#archivo-0022)
-0023. [handoff/instrucciones-completar-faltantes-v5.md](#archivo-0023)
-0024. [handoff/plan-ejecucion-fases.md](#archivo-0024)
-0025. [handoff/README.md](#archivo-0025)
-0026. [handoff/riesgos-residuales.md](#archivo-0026)
-0027. [handoff/session-handoff.md](#archivo-0027)
-0028. [handoff/tickets-sugeridos.md](#archivo-0028)
-0029. [reports/pre-implementation-research-v5.md](#archivo-0029)
-0030. [tests/application-behavior-regression-matrix.md](#archivo-0030)
-0031. [tests/checkbox-radio-dropdown-regression.md](#archivo-0031)
-0032. [tests/detail-view-coverage-matrix.md](#archivo-0032)
-0033. [tests/docusign-inspired-ux-cases.md](#archivo-0033)
-0034. [tests/matriz-pruebas-regresion-designer.md](#archivo-0034)
-0035. [tests/matriz-pruebas-regresion-externalforms.md](#archivo-0035)
-0036. [tests/multi-document-multipage-cases.md](#archivo-0036)
-0037. [tests/plan-playwright.md](#archivo-0037)
-0038. [tests/plan-vitest-unitario.md](#archivo-0038)
-0039. [tests/README.md](#archivo-0039)
-0040. [tests/schema-visual-audit.md](#archivo-0040)
-0041. [tests/selection-shortcuts-regression.md](#archivo-0041)
-0042. [tests/standard-fields-use-cases.md](#archivo-0042)
-0043. [tests/testing-gaps.md](#archivo-0043)
-0044. [.ai/agents/application-behavior-agent.md](#archivo-0044)
-0045. [.ai/agents/canvas-runtime-agent.md](#archivo-0045)
-0046. [.ai/agents/collaboration-lock-agent.md](#archivo-0046)
-0047. [.ai/agents/command-bus-agent.md](#archivo-0047)
-0048. [.ai/agents/content-custom-form-agent.md](#archivo-0048)
-0049. [.ai/agents/css-agent.md](#archivo-0049)
-0050. [.ai/agents/debugging-agent.md](#archivo-0050)
-0051. [.ai/agents/designer-engine-agent.md](#archivo-0051)
-0052. [.ai/agents/docs-governance-agent.md](#archivo-0052)
-0053. [.ai/agents/docusign-ux-agent.md](#archivo-0053)
-0054. [.ai/agents/external-forms-agent.md](#archivo-0054)
-0055. [.ai/agents/form-viewer-generator-agent.md](#archivo-0055)
-0056. [.ai/agents/frontend-architect-agent.md](#archivo-0056)
-0057. [.ai/agents/generator-converter-agent.md](#archivo-0057)
-0058. [.ai/agents/interaction-regression-agent.md](#archivo-0058)
-0059. [.ai/agents/left-sidebar-catalog-agent.md](#archivo-0059)
-0060. [.ai/agents/legacy-cleanup-agent.md](#archivo-0060)
-0061. [.ai/agents/moveable-selecto-agent.md](#archivo-0061)
-0062. [.ai/agents/process-flow-agent.md](#archivo-0062)
-0063. [.ai/agents/provider-sync-agent.md](#archivo-0063)
-0064. [.ai/agents/quality-agent.md](#archivo-0064)
-0065. [.ai/agents/recipient-color-agent.md](#archivo-0065)
-0066. [.ai/agents/registry.md](#archivo-0066)
-0067. [.ai/agents/release-agent.md](#archivo-0067)
-0068. [.ai/agents/right-sidebar-inspector-agent.md](#archivo-0068)
-0069. [.ai/agents/root-orchestrator-agent.md](#archivo-0069)
-0070. [.ai/agents/schema-groups-agent.md](#archivo-0070)
-0071. [.ai/agents/schema-icon-sync-agent.md](#archivo-0071)
-0072. [.ai/agents/schema-registry-agent.md](#archivo-0072)
-0073. [.ai/agents/security-agent.md](#archivo-0073)
-0074. [.ai/agents/sisad-pdfme-runtime-agent.md](#archivo-0074)
-0075. [.ai/agents/snapshot-agent.md](#archivo-0075)
-0076. [.ai/agents/standard-fields-agent.md](#archivo-0076)
-0077. [.ai/agents/testing-regression-agent.md](#archivo-0077)
-0078. [.ai/agents/token-economy-agent.md](#archivo-0078)
-0079. [.ai/agents/ui-ux-agent.md](#archivo-0079)
-0080. [.ai/architecture/agent-routing.md](#archivo-0080)
-0081. [.ai/architecture/assistant-architecture.md](#archivo-0081)
-0082. [.ai/architecture/context-loading-ladder.md](#archivo-0082)
-0083. [.ai/architecture/fork-safe-evolution.md](#archivo-0083)
-0084. [.ai/architecture/migration-features-to-core.md](#archivo-0084)
-0085. [.ai/architecture/module-boundaries.md](#archivo-0085)
-0086. [.ai/architecture/provider-model.md](#archivo-0086)
-0087. [.ai/architecture/quality-gate-model.md](#archivo-0087)
-0088. [.ai/architecture/runtime-ownership.md](#archivo-0088)
-0089. [.ai/checklists/application-behavior.md](#archivo-0089)
-0090. [.ai/checklists/before-change.md](#archivo-0090)
-0091. [.ai/checklists/before-merge.md](#archivo-0091)
-0092. [.ai/checklists/css-boundaries.md](#archivo-0092)
-0093. [.ai/checklists/docusign-design.md](#archivo-0093)
-0094. [.ai/checklists/external-forms.md](#archivo-0094)
-0095. [.ai/checklists/multipage-no-overlap.md](#archivo-0095)
-0096. [.ai/checklists/process-flow-before-change.md](#archivo-0096)
-0097. [.ai/checklists/provider-sync.md](#archivo-0097)
-0098. [.ai/checklists/quality-gates.md](#archivo-0098)
-0099. [.ai/checklists/recipient-color.md](#archivo-0099)
-0100. [.ai/checklists/release.md](#archivo-0100)
-0101. [.ai/checklists/schema-transform.md](#archivo-0101)
-0102. [.ai/checklists/selection-shortcuts.md](#archivo-0102)
-0103. [.ai/checklists/snapshot-roundtrip.md](#archivo-0103)
-0104. [.ai/context/application-behavior-contract-context.md](#archivo-0104)
-0105. [.ai/context/canvas-coordinates-context.md](#archivo-0105)
-0106. [.ai/context/checkboxgroup-context.md](#archivo-0106)
-0107. [.ai/context/code-map.md](#archivo-0107)
-0108. [.ai/context/collaboration-locks-context.md](#archivo-0108)
-0109. [.ai/context/command-bus-context.md](#archivo-0109)
-0110. [.ai/context/component-contracts-context.md](#archivo-0110)
-0111. [.ai/context/content-custom-form-integration-context.md](#archivo-0111)
-0112. [.ai/context/css-design-system-context.md](#archivo-0112)
-0113. [.ai/context/css-map.md](#archivo-0113)
-0114. [.ai/context/designer-engine-context.md](#archivo-0114)
-0115. [.ai/context/docs-map.md](#archivo-0115)
-0116. [.ai/context/docusign-ux-reference-context.md](#archivo-0116)
-0117. [.ai/context/dropdown-select-context.md](#archivo-0117)
-0118. [.ai/context/external-forms-runner-context.md](#archivo-0118)
-0119. [.ai/context/form-viewer-generator-parity-context.md](#archivo-0119)
-0120. [.ai/context/generator-converter-context.md](#archivo-0120)
-0121. [.ai/context/integration-host-boundaries-context.md](#archivo-0121)
-0122. [.ai/context/interaction-regression-context.md](#archivo-0122)
-0123. [.ai/context/legacy-cleanup-context.md](#archivo-0123)
-0124. [.ai/context/module-map.md](#archivo-0124)
-0125. [.ai/context/moveable-selecto-context.md](#archivo-0125)
-0126. [.ai/context/no-overlap-contract-context.md](#archivo-0126)
-0127. [.ai/context/page-distribution-placement-context.md](#archivo-0127)
-0128. [.ai/context/pre-implementation-research.md](#archivo-0128)
-0129. [.ai/context/process-flow-implementation-context.md](#archivo-0129)
-0130. [.ai/context/project-overview.md](#archivo-0130)
-0131. [.ai/context/provider-compatibility-context.md](#archivo-0131)
-0132. [.ai/context/radiogroup-context.md](#archivo-0132)
-0133. [.ai/context/recipient-color-context.md](#archivo-0133)
-0134. [.ai/context/schema-icon-sync-context.md](#archivo-0134)
-0135. [.ai/context/schema-owner-persistence-context.md](#archivo-0135)
-0136. [.ai/context/schema-registry-context.md](#archivo-0136)
-0137. [.ai/context/security-privacy-context.md](#archivo-0137)
-0138. [.ai/context/selection-shortcuts-context.md](#archivo-0138)
-0139. [.ai/context/sidebars-inspector-context.md](#archivo-0139)
-0140. [.ai/context/sisad-pdfme-runtime-context.md](#archivo-0140)
-0141. [.ai/context/snapshot-contract-context.md](#archivo-0141)
-0142. [.ai/context/standard-fields-groups-context.md](#archivo-0142)
-0143. [.ai/context/tests-quality-context.md](#archivo-0143)
-0144. [.ai/context/transform-controls-context.md](#archivo-0144)
-0145. [.ai/context/ui-ux-compact-context.md](#archivo-0145)
-0146. [.ai/context/use-cases-regression-context.md](#archivo-0146)
-0147. [.ai/memory/decisions.md](#archivo-0147)
-0148. [.ai/memory/incidents.md](#archivo-0148)
-0149. [.ai/memory/project-memory.md](#archivo-0149)
-0150. [.ai/memory/session-handoff.md](#archivo-0150)
-0151. [.ai/memory/update-protocol.md](#archivo-0151)
-0152. [.ai/prompts/audit-application-behavior-regressions.prompt.md](#archivo-0152)
-0153. [.ai/prompts/audit-css-boundaries.prompt.md](#archivo-0153)
-0154. [.ai/prompts/audit-legacy-runtime-reduction.prompt.md](#archivo-0154)
-0155. [.ai/prompts/audit-platform-boundaries.prompt.md](#archivo-0155)
-0156. [.ai/prompts/audit-sisad-pdfme-use-cases.prompt.md](#archivo-0156)
-0157. [.ai/prompts/build-regression-test-matrix.prompt.md](#archivo-0157)
-0158. [.ai/prompts/complete-missing-tests-by-process.prompt.md](#archivo-0158)
-0159. [.ai/prompts/create-playwright-canvas-scenarios.prompt.md](#archivo-0159)
-0160. [.ai/prompts/create-test-fixtures-multi-recipient-colors.prompt.md](#archivo-0160)
-0161. [.ai/prompts/fix-keyboard-shortcut-collisions.prompt.md](#archivo-0161)
-0162. [.ai/prompts/generate-final-implementation-report.prompt.md](#archivo-0162)
-0163. [.ai/prompts/harden-moveable-selecto-guards.prompt.md](#archivo-0163)
-0164. [.ai/prompts/harden-standard-fields-groups.prompt.md](#archivo-0164)
-0165. [.ai/prompts/implement-behavior-contract-missing-pieces.prompt.md](#archivo-0165)
-0166. [.ai/prompts/implement-unique-recipient-palette.prompt.md](#archivo-0166)
-0167. [.ai/prompts/improve-docusign-inspired-schema-design.prompt.md](#archivo-0167)
-0168. [.ai/prompts/INDEX.md](#archivo-0168)
-0169. [.ai/prompts/inspect-failed-test-results.prompt.md](#archivo-0169)
-0170. [.ai/prompts/normalize-selection-transform-state-machine.prompt.md](#archivo-0170)
-0171. [.ai/prompts/preserve-owner-color-on-existing-schemas.prompt.md](#archivo-0171)
-0172. [.ai/prompts/protect-inline-edit-from-transform.prompt.md](#archivo-0172)
-0173. [.ai/prompts/recipient-transform-master-plan.prompt.md](#archivo-0173)
-0174. [.ai/prompts/refactor-left-rail-catalog.prompt.md](#archivo-0174)
-0175. [.ai/prompts/refactor-right-inspector-layout.prompt.md](#archivo-0175)
-0176. [.ai/prompts/refactor-transform-geometry-utils.prompt.md](#archivo-0176)
-0177. [.ai/prompts/repair-checkboxgroup-flow.prompt.md](#archivo-0177)
-0178. [.ai/prompts/repair-external-forms-runner.prompt.md](#archivo-0178)
-0179. [.ai/prompts/repair-floating-toolbar-position.prompt.md](#archivo-0179)
-0180. [.ai/prompts/repair-radiogroup-flow.prompt.md](#archivo-0180)
-0181. [.ai/prompts/repair-recipient-color-sync.prompt.md](#archivo-0181)
-0182. [.ai/prompts/repair-schema-icon-color-sync.prompt.md](#archivo-0182)
-0183. [.ai/prompts/repair-snapshot-roundtrip.prompt.md](#archivo-0183)
-0184. [.ai/prompts/repair-transform-collisions.prompt.md](#archivo-0184)
-0185. [.ai/prompts/review-css-for-transform-handle-breaks.prompt.md](#archivo-0185)
-0186. [.ai/prompts/stabilize-designer-engine-api.prompt.md](#archivo-0186)
-0187. [.ai/prompts/stabilize-schema-resize-rotation.prompt.md](#archivo-0187)
-0188. [.ai/prompts/stabilize-selection-shortcuts-commandbus.prompt.md](#archivo-0188)
-0189. [.ai/prompts/standardize-data-attributes-for-colors.prompt.md](#archivo-0189)
-0190. [.ai/prompts/unify-css-architecture.prompt.md](#archivo-0190)
-0191. [.ai/prompts/update-docs-recipient-transform.prompt.md](#archivo-0191)
-0192. [.ai/prompts/update-md-architecture-v4.prompt.md](#archivo-0192)
-0193. [.ai/prompts/validate-ci-flow-recipient-transform.prompt.md](#archivo-0193)
-0194. [.ai/prompts/validate-group-no-overlap.prompt.md](#archivo-0194)
-0195. [.ai/prompts/validate-multipdf-multipage-nooverlap.prompt.md](#archivo-0195)
-0196. [.ai/prompts/validate-standard-field-parity.prompt.md](#archivo-0196)
-0197. [.ai/providers/claude-adapter.md](#archivo-0197)
-0198. [.ai/providers/codex-adapter.md](#archivo-0198)
-0199. [.ai/providers/gemini-adapter.md](#archivo-0199)
-0200. [.ai/providers/generic-provider-adapter.md](#archivo-0200)
-0201. [.ai/providers/github-copilot-adapter.md](#archivo-0201)
-0202. [.ai/providers/provider-contract.md](#archivo-0202)
-0203. [.ai/rules/application-behavior-contract-rules.md](#archivo-0203)
-0204. [.ai/rules/collaboration-lock-rules.md](#archivo-0204)
-0205. [.ai/rules/command-bus-rules.md](#archivo-0205)
-0206. [.ai/rules/component-contract-rules.md](#archivo-0206)
-0207. [.ai/rules/context-loading-ladder-rules.md](#archivo-0207)
-0208. [.ai/rules/css-boundary-rules.md](#archivo-0208)
-0209. [.ai/rules/docs-governance-rules.md](#archivo-0209)
-0210. [.ai/rules/docusign-ux-design-rules.md](#archivo-0210)
-0211. [.ai/rules/external-forms-runner-rules.md](#archivo-0211)
-0212. [.ai/rules/form-viewer-generator-rules.md](#archivo-0212)
-0213. [.ai/rules/generator-converter-rules.md](#archivo-0213)
-0214. [.ai/rules/global-rules.md](#archivo-0214)
-0215. [.ai/rules/host-runtime-boundary-rules.md](#archivo-0215)
-0216. [.ai/rules/interaction-regression-rules.md](#archivo-0216)
-0217. [.ai/rules/legacy-reduction-rules.md](#archivo-0217)
-0218. [.ai/rules/moveable-selecto-rules.md](#archivo-0218)
-0219. [.ai/rules/no-overlap-rules.md](#archivo-0219)
-0220. [.ai/rules/page-distribution-placement-rules.md](#archivo-0220)
-0221. [.ai/rules/provider-adapter-rules.md](#archivo-0221)
-0222. [.ai/rules/public-api-rules.md](#archivo-0222)
-0223. [.ai/rules/schema-icon-color-rules.md](#archivo-0223)
-0224. [.ai/rules/schema-ownership-rules.md](#archivo-0224)
-0225. [.ai/rules/security-privacy-rules.md](#archivo-0225)
-0226. [.ai/rules/sidebars-inspector-rules.md](#archivo-0226)
-0227. [.ai/rules/snapshot-contract-rules.md](#archivo-0227)
-0228. [.ai/rules/standard-fields-group-contract-rules.md](#archivo-0228)
-0229. [.ai/rules/testing-quality-rules.md](#archivo-0229)
-0230. [.ai/rules/token-budget-rules.md](#archivo-0230)
-0231. [.ai/rules/transform-interaction-rules.md](#archivo-0231)
-0232. [.ai/subagents/active-recipient-color-subagent.md](#archivo-0232)
-0233. [.ai/subagents/assignments-filtering-subagent.md](#archivo-0233)
-0234. [.ai/subagents/canvas-coordinate-subagent.md](#archivo-0234)
-0235. [.ai/subagents/collaboration-locks-subagent.md](#archivo-0235)
-0236. [.ai/subagents/command-bus-transform-subagent.md](#archivo-0236)
-0237. [.ai/subagents/comments-overlay-subagent.md](#archivo-0237)
-0238. [.ai/subagents/context-menu-guard-subagent.md](#archivo-0238)
-0239. [.ai/subagents/converter-browser-node-subagent.md](#archivo-0239)
-0240. [.ai/subagents/css-token-subagent.md](#archivo-0240)
-0241. [.ai/subagents/css-transform-handle-subagent.md](#archivo-0241)
-0242. [.ai/subagents/custom-plugin-contract-subagent.md](#archivo-0242)
-0243. [.ai/subagents/detail-widgets-subagent.md](#archivo-0243)
-0244. [.ai/subagents/docs-migration-subagent.md](#archivo-0244)
-0245. [.ai/subagents/external-form-runner-subagent.md](#archivo-0245)
-0246. [.ai/subagents/floating-toolbar-position-subagent.md](#archivo-0246)
-0247. [.ai/subagents/form-viewer-parity-subagent.md](#archivo-0247)
-0248. [.ai/subagents/generator-helper-subagent.md](#archivo-0248)
-0249. [.ai/subagents/inline-edit-guard-subagent.md](#archivo-0249)
-0250. [.ai/subagents/keyboard-shortcut-guard-subagent.md](#archivo-0250)
-0251. [.ai/subagents/left-sidebar-catalog-color-subagent.md](#archivo-0251)
-0252. [.ai/subagents/legacy-wrapper-subagent.md](#archivo-0252)
-0253. [.ai/subagents/moveable-resize-subagent.md](#archivo-0253)
-0254. [.ai/subagents/moveable-rotation-subagent.md](#archivo-0254)
-0255. [.ai/subagents/overlay-manager-subagent.md](#archivo-0255)
-0256. [.ai/subagents/owner-color-persistence-subagent.md](#archivo-0256)
-0257. [.ai/subagents/paper-scale-layer-subagent.md](#archivo-0257)
-0258. [.ai/subagents/playwright-canvas-subagent.md](#archivo-0258)
-0259. [.ai/subagents/playwright-recipient-color-subagent.md](#archivo-0259)
-0260. [.ai/subagents/plugin-icon-fallback-subagent.md](#archivo-0260)
-0261. [.ai/subagents/prompt-catalog-subagent.md](#archivo-0261)
-0262. [.ai/subagents/provider-drift-subagent.md](#archivo-0262)
-0263. [.ai/subagents/public-api-surface-subagent.md](#archivo-0263)
-0264. [.ai/subagents/right-inspector-transform-subagent.md](#archivo-0264)
-0265. [.ai/subagents/schema-registry-extension-subagent.md](#archivo-0265)
-0266. [.ai/subagents/schema-tone-resolution-subagent.md](#archivo-0266)
-0267. [.ai/subagents/selecto-lifecycle-subagent.md](#archivo-0267)
-0268. [.ai/subagents/snapshot-legacy-compat-subagent.md](#archivo-0268)
-0269. [.ai/subagents/snapshot-roundtrip-subagent.md](#archivo-0269)
-0270. [.ai/subagents/token-budget-subagent.md](#archivo-0270)
-0271. [.ai/subagents/unique-palette-subagent.md](#archivo-0271)
-0272. [.ai/subagents/visual-regression-css-subagent.md](#archivo-0272)
-0273. [.ai/subagents/vitest-contract-subagent.md](#archivo-0273)
-0274. [.ai/templates/agent-report.md](#archivo-0274)
-0275. [.ai/templates/architecture-decision-record.md](#archivo-0275)
-0276. [.ai/templates/bug-ticket.md](#archivo-0276)
-0277. [.ai/templates/handoff.md](#archivo-0277)
-0278. [.ai/templates/qa-report.md](#archivo-0278)
-0279. [.ai/templates/refactor-report.md](#archivo-0279)
-0280. [.ai/templates/test-failure-analysis.md](#archivo-0280)
-0281. [.claude/commands/audit-css-boundaries.md](#archivo-0281)
-0282. [.claude/commands/harden-standard-fields-groups.md](#archivo-0282)
-0283. [.claude/commands/local-selective-scan.md](#archivo-0283)
-0284. [.claude/commands/repair-recipient-color.md](#archivo-0284)
-0285. [.claude/commands/repair-snapshot-roundtrip.md](#archivo-0285)
-0286. [.claude/commands/repair-transform-collisions.md](#archivo-0286)
-0287. [.claude/commands/startup.md](#archivo-0287)
-0288. [.claude/commands/update-memory.md](#archivo-0288)
-0289. [.codex/tasks/atomic-fix.md](#archivo-0289)
-0290. [.codex/tasks/legacy-cleanup-step.md](#archivo-0290)
-0291. [.codex/tasks/quality-gates.md](#archivo-0291)
-0292. [.codex/tasks/recipient-transform-implementation.md](#archivo-0292)
-0293. [.codex/tasks/refactor-safe.md](#archivo-0293)
-0294. [.codex/tasks/standard-fields-hardening.md](#archivo-0294)
-0295. [.gemini/prompts/audit-architecture.md](#archivo-0295)
-0296. [.gemini/prompts/audit-docs-vs-code.md](#archivo-0296)
-0297. [.gemini/prompts/audit-recipient-transform.md](#archivo-0297)
-0298. [.gemini/prompts/audit-standard-fields-groups.md](#archivo-0298)
-0299. [.gemini/prompts/audit-token-budget.md](#archivo-0299)
-0300. [.github/instructions/architecture-boundaries.instructions.md](#archivo-0300)
-0301. [.github/instructions/canvas-transform-safety.instructions.md](#archivo-0301)
-0302. [.github/instructions/css-boundaries.instructions.md](#archivo-0302)
-0303. [.github/instructions/external-forms-runner.instructions.md](#archivo-0303)
-0304. [.github/instructions/recipient-color-system.instructions.md](#archivo-0304)
-0305. [.github/instructions/snapshot-contract.instructions.md](#archivo-0305)
-0306. [.github/instructions/testing-quality.instructions.md](#archivo-0306)
-0307. [.github/prompts/audit-css-boundaries.prompt.md](#archivo-0307)
-0308. [.github/prompts/audit-legacy-runtime-reduction.prompt.md](#archivo-0308)
-0309. [.github/prompts/build-regression-test-matrix.prompt.md](#archivo-0309)
-0310. [.github/prompts/fix-keyboard-shortcut-collisions.prompt.md](#archivo-0310)
-0311. [.github/prompts/harden-moveable-selecto-guards.prompt.md](#archivo-0311)
-0312. [.github/prompts/harden-standard-fields-groups.prompt.md](#archivo-0312)
-0313. [.github/prompts/implement-unique-recipient-palette.prompt.md](#archivo-0313)
-0314. [.github/prompts/inspect-failed-test-results.prompt.md](#archivo-0314)
-0315. [.github/prompts/preserve-owner-color-on-existing-schemas.prompt.md](#archivo-0315)
-0316. [.github/prompts/protect-inline-edit-from-transform.prompt.md](#archivo-0316)
-0317. [.github/prompts/recipient-transform-master-plan.prompt.md](#archivo-0317)
-0318. [.github/prompts/repair-external-forms-runner.prompt.md](#archivo-0318)
-0319. [.github/prompts/repair-floating-toolbar-position.prompt.md](#archivo-0319)
-0320. [.github/prompts/repair-recipient-color-sync.prompt.md](#archivo-0320)
-0321. [.github/prompts/repair-schema-icon-color-sync.prompt.md](#archivo-0321)
-0322. [.github/prompts/repair-snapshot-roundtrip.prompt.md](#archivo-0322)
-0323. [.github/prompts/repair-transform-collisions.prompt.md](#archivo-0323)
-0324. [.github/prompts/stabilize-designer-engine-api.prompt.md](#archivo-0324)
-0325. [.github/prompts/stabilize-schema-resize-rotation.prompt.md](#archivo-0325)
-0326. [.github/prompts/unify-css-architecture.prompt.md](#archivo-0326)
-0327. [.github/prompts/update-docs-recipient-transform.prompt.md](#archivo-0327)
-0328. [docs/00-indice/README.md](#archivo-0328)
-0329. [docs/01-producto-y-vision/01-vision-producto.md](#archivo-0329)
-0330. [docs/01-producto-y-vision/02-actores.md](#archivo-0330)
-0331. [docs/01-producto-y-vision/03-objetivos.md](#archivo-0331)
-0332. [docs/01-producto-y-vision/04-no-objetivos.md](#archivo-0332)
-0333. [docs/02-mapa-modulos/01-inventario-codigo.md](#archivo-0333)
-0334. [docs/02-mapa-modulos/02-ui-designer-form-viewer.md](#archivo-0334)
-0335. [docs/02-mapa-modulos/03-schemas-y-plugin-registry.md](#archivo-0335)
-0336. [docs/02-mapa-modulos/04-generator-converter-pdflib.md](#archivo-0336)
-0337. [docs/02-mapa-modulos/05-tests-playwright-vitest.md](#archivo-0337)
-0338. [docs/03-arquitectura/01-boundaries-host-runtime.md](#archivo-0338)
-0339. [docs/03-arquitectura/02-runtime-visual.md](#archivo-0339)
-0340. [docs/03-arquitectura/03-command-bus-events.md](#archivo-0340)
-0341. [docs/03-arquitectura/04-snapshot-contract.md](#archivo-0341)
-0342. [docs/03-arquitectura/05-external-forms-contract.md](#archivo-0342)
-0343. [docs/03-arquitectura/06-collaboration-locks.md](#archivo-0343)
-0344. [docs/03-arquitectura/07-public-api.md](#archivo-0344)
-0345. [docs/03-arquitectura/08-fork-safe-evolution.md](#archivo-0345)
-0346. [docs/04-recipient-transform/01-recipient-color-behavior.md](#archivo-0346)
-0347. [docs/04-recipient-transform/02-schema-icon-color-sync.md](#archivo-0347)
-0348. [docs/04-recipient-transform/03-owner-color-persistence.md](#archivo-0348)
-0349. [docs/04-recipient-transform/04-transform-state-machine.md](#archivo-0349)
-0350. [docs/04-recipient-transform/05-moveable-selecto.md](#archivo-0350)
-0351. [docs/04-recipient-transform/06-shortcuts-and-inline-edit.md](#archivo-0351)
-0352. [docs/04-recipient-transform/07-accessibility-colors.md](#archivo-0352)
-0353. [docs/05-ui-ux/01-left-sidebar-catalog.md](#archivo-0353)
-0354. [docs/05-ui-ux/02-right-sidebar-inspector.md](#archivo-0354)
-0355. [docs/05-ui-ux/03-floating-toolbar.md](#archivo-0355)
-0356. [docs/05-ui-ux/04-canvas-overlays.md](#archivo-0356)
-0357. [docs/05-ui-ux/05-compact-header-host.md](#archivo-0357)
-0358. [docs/05-ui-ux/06-responsive.md](#archivo-0358)
-0359. [docs/06-css/01-css-boundaries.md](#archivo-0359)
-0360. [docs/06-css/02-token-system.md](#archivo-0360)
-0361. [docs/06-css/03-transform-handle-safety.md](#archivo-0361)
-0362. [docs/06-css/04-visual-regression.md](#archivo-0362)
-0363. [docs/07-calidad/01-comandos-validacion.md](#archivo-0363)
-0364. [docs/07-calidad/02-matriz-regresion.md](#archivo-0364)
-0365. [docs/07-calidad/03-testing-gaps.md](#archivo-0365)
-0366. [docs/07-calidad/04-test-results-forensics.md](#archivo-0366)
-0367. [docs/08-ia-agentes/01-arquitectura-asistente.md](#archivo-0367)
-0368. [docs/08-ia-agentes/02-catalogo-agentes.md](#archivo-0368)
-0369. [docs/08-ia-agentes/03-catalogo-prompts.md](#archivo-0369)
-0370. [docs/08-ia-agentes/04-economia-tokens.md](#archivo-0370)
-0371. [docs/08-ia-agentes/05-providers.md](#archivo-0371)
-0372. [docs/09-operacion-debug/01-breakpoints-criticos.md](#archivo-0372)
-0373. [docs/09-operacion-debug/02-hardtrace-playbook.md](#archivo-0373)
-0374. [docs/09-operacion-debug/03-troubleshooting.md](#archivo-0374)
-0375. [docs/10-handoff/01-handoff-sesion.md](#archivo-0375)
-0376. [docs/10-handoff/02-plan-fases.md](#archivo-0376)
-0377. [docs/10-handoff/03-tickets-sugeridos.md](#archivo-0377)
-0378. [docs/11-standard-schemas/01-use-cases-overview.md](#archivo-0378)
-0379. [docs/11-standard-schemas/02-text-number-contract.md](#archivo-0379)
-0380. [docs/11-standard-schemas/03-checkbox-and-checkboxgroup.md](#archivo-0380)
-0381. [docs/11-standard-schemas/04-radio-optiongroup.md](#archivo-0381)
-0382. [docs/11-standard-schemas/05-dropdown-select.md](#archivo-0382)
-0383. [docs/11-standard-schemas/06-group-plus-behavior.md](#archivo-0383)
-0384. [docs/11-standard-schemas/07-form-viewer-generator-parity.md](#archivo-0384)
-0385. [docs/11-standard-schemas/08-snapshot-and-identity.md](#archivo-0385)
-0386. [docs/11-standard-schemas/09-no-overlap-policy.md](#archivo-0386)
-0387. [docs/11-standard-schemas/10-detailview-listview-usecases.md](#archivo-0387)
-0388. [docs/11-standard-schemas/11-test-matrix.md](#archivo-0388)
-0389. [docs/11-standard-schemas/README.md](#archivo-0389)
-0390. [docs/12-behavior-contract/01-processes.md](#archivo-0390)
-0391. [docs/12-behavior-contract/02-components.md](#archivo-0391)
-0392. [docs/12-behavior-contract/03-regression-matrix.md](#archivo-0392)
-0393. [docs/12-behavior-contract/04-state-machines.md](#archivo-0393)
-0394. [docs/12-behavior-contract/05-command-flow.md](#archivo-0394)
-0395. [docs/12-behavior-contract/06-data-contracts.md](#archivo-0395)
-0396. [docs/12-behavior-contract/07-implementation-playbook.md](#archivo-0396)
-0397. [docs/12-behavior-contract/08-acceptance-gates.md](#archivo-0397)
-0398. [docs/12-behavior-contract/README.md](#archivo-0398)
-0399. [docs/13-docusign-ux-research/01-research-summary.md](#archivo-0399)
-0400. [docs/13-docusign-ux-research/02-standard-fields-visual-contract.md](#archivo-0400)
-0401. [docs/13-docusign-ux-research/03-group-option-design.md](#archivo-0401)
-0402. [docs/13-docusign-ux-research/04-toolbar-detailview-patterns.md](#archivo-0402)
-0403. [docs/13-docusign-ux-research/05-page-distribution-and-no-overlap.md](#archivo-0403)
-0404. [docs/13-docusign-ux-research/README.md](#archivo-0404)
-0405. [docs/14-process-flows/01-create-schema-flow.md](#archivo-0405)
-0406. [docs/14-process-flows/02-selection-shortcuts-flow.md](#archivo-0406)
-0407. [docs/14-process-flows/03-transform-flow.md](#archivo-0407)
-0408. [docs/14-process-flows/04-group-actions-flow.md](#archivo-0408)
-0409. [docs/14-process-flows/05-recipient-owner-flow.md](#archivo-0409)
-0410. [docs/14-process-flows/06-snapshot-flow.md](#archivo-0410)
-0411. [docs/14-process-flows/07-form-viewer-generator-flow.md](#archivo-0411)
-0412. [docs/14-process-flows/08-multipdf-multipage-flow.md](#archivo-0412)
-0413. [docs/14-process-flows/09-externalforms-flow.md](#archivo-0413)
-0414. [docs/14-process-flows/10-css-visual-flow.md](#archivo-0414)
-0415. [docs/15-component-contracts/01-designer.md](#archivo-0415)
-0416. [docs/15-component-contracts/02-canvas-page-stack.md](#archivo-0416)
-0417. [docs/15-component-contracts/03-renderer.md](#archivo-0417)
-0418. [docs/15-component-contracts/04-moveable-selecto.md](#archivo-0418)
-0419. [docs/15-component-contracts/05-selection-toolbar.md](#archivo-0419)
-0420. [docs/15-component-contracts/06-left-sidebar.md](#archivo-0420)
-0421. [docs/15-component-contracts/07-right-sidebar-detailview-listview.md](#archivo-0421)
-0422. [docs/15-component-contracts/08-schema-plugins.md](#archivo-0422)
-0423. [docs/15-component-contracts/09-command-bus.md](#archivo-0423)
-0424. [docs/15-component-contracts/10-snapshot-adapter.md](#archivo-0424)
-0425. [docs/15-component-contracts/11-form-viewer-generator.md](#archivo-0425)
-0426. [docs/15-component-contracts/12-externalforms-host.md](#archivo-0426)
-0427. [docs/16-completion-roadmap/01-gap-inventory.md](#archivo-0427)
-0428. [docs/16-completion-roadmap/02-phased-plan.md](#archivo-0428)
-0429. [docs/16-completion-roadmap/03-definition-of-done.md](#archivo-0429)
-0430. [docs/16-completion-roadmap/README.md](#archivo-0430)
-0431. [docs/99-archivo/README.md](#archivo-0431)
-0432. [reports/current-snapshot/analysis-summary.md](#archivo-0432)
-0433. [reports/current-snapshot/css-summary.md](#archivo-0433)
-0434. [reports/current-snapshot/docs-summary.md](#archivo-0434)
-0435. [reports/current-snapshot/module-inventory.md](#archivo-0435)
-0436. [reports/current-snapshot/risk-summary.md](#archivo-0436)
-0437. [reports/current-snapshot/v4-research-summary.md](#archivo-0437)
-0438. [.ai/skills/active-recipient-color-contract/SKILL.md](#archivo-0438)
-0439. [.ai/skills/application-behavior-contract/SKILL.md](#archivo-0439)
-0440. [.ai/skills/canvas-geometry-scaling/SKILL.md](#archivo-0440)
-0441. [.ai/skills/checkbox-radio-dropdown-parity/SKILL.md](#archivo-0441)
-0442. [.ai/skills/command-bus-transform-actions/SKILL.md](#archivo-0442)
-0443. [.ai/skills/component-composition/SKILL.md](#archivo-0443)
-0444. [.ai/skills/context-budget/SKILL.md](#archivo-0444)
-0445. [.ai/skills/context-menu-transform-guard/SKILL.md](#archivo-0445)
-0446. [.ai/skills/css-layering-and-overrides/SKILL.md](#archivo-0446)
-0447. [.ai/skills/css-recipient-color-tokens/SKILL.md](#archivo-0447)
-0448. [.ai/skills/css-transform-handle-safety/SKILL.md](#archivo-0448)
-0449. [.ai/skills/custom-schema-contracts/SKILL.md](#archivo-0449)
-0450. [.ai/skills/documentation-traceability/SKILL.md](#archivo-0450)
-0451. [.ai/skills/docusign-inspired-schema-ux/SKILL.md](#archivo-0451)
-0452. [.ai/skills/docusign-wix-minimal-ux/SKILL.md](#archivo-0452)
-0453. [.ai/skills/external-forms-runtime/SKILL.md](#archivo-0453)
-0454. [.ai/skills/floating-toolbar-transform-position/SKILL.md](#archivo-0454)
-0455. [.ai/skills/fork-safe-pdfme-evolution/SKILL.md](#archivo-0455)
-0456. [.ai/skills/form-viewer-generator-parity/SKILL.md](#archivo-0456)
-0457. [.ai/skills/group-no-overlap/SKILL.md](#archivo-0457)
-0458. [.ai/skills/inline-edit-transform-guard/SKILL.md](#archivo-0458)
-0459. [.ai/skills/keyboard-shortcut-transform-safety/SKILL.md](#archivo-0459)
-0460. [.ai/skills/legacy-runtime-reduction/SKILL.md](#archivo-0460)
-0461. [.ai/skills/moveable-selecto-integration/SKILL.md](#archivo-0461)
-0462. [.ai/skills/moveable-selecto-resize-rotate/SKILL.md](#archivo-0462)
-0463. [.ai/skills/multipage-multipdf-placement/SKILL.md](#archivo-0463)
-0464. [.ai/skills/playwright-canvas-diagnostics/SKILL.md](#archivo-0464)
-0465. [.ai/skills/playwright-recipient-color-regression/SKILL.md](#archivo-0465)
-0466. [.ai/skills/playwright-transform-regression/SKILL.md](#archivo-0466)
-0467. [.ai/skills/process-regression-matrix/SKILL.md](#archivo-0467)
-0468. [.ai/skills/public-api-surface-design/SKILL.md](#archivo-0468)
-0469. [.ai/skills/quality-gates/SKILL.md](#archivo-0469)
-0470. [.ai/skills/schema-icon-color-sync/SKILL.md](#archivo-0470)
-0471. [.ai/skills/schema-owner-color-persistence/SKILL.md](#archivo-0471)
-0472. [.ai/skills/schema-registry-extension/SKILL.md](#archivo-0472)
-0473. [.ai/skills/schema-tone-resolution/SKILL.md](#archivo-0473)
-0474. [.ai/skills/selection-shortcuts-commandbus-regression/SKILL.md](#archivo-0474)
-0475. [.ai/skills/snapshot-transform-roundtrip/SKILL.md](#archivo-0475)
-0476. [.ai/skills/standard-field-groups-contract/SKILL.md](#archivo-0476)
-0477. [.ai/skills/standard-fields-regression-testing/SKILL.md](#archivo-0477)
-0478. [.ai/skills/test-results-forensics/SKILL.md](#archivo-0478)
-0479. [.ai/skills/transform-interaction-state-machine/SKILL.md](#archivo-0479)
-0480. [.ai/skills/unique-recipient-palette/SKILL.md](#archivo-0480)
-0481. [.ai/skills/unit-recipient-color-contracts/SKILL.md](#archivo-0481)
-0482. [.ai/skills/unit-transform-state-contracts/SKILL.md](#archivo-0482)
-0483. [src/sisad-pdfme/ui/designerEngine.api.md](#archivo-0483)
+0011. [ONCHANGE_CANDIDATES.md](#archivo-0011)
+0012. [README.md](#archivo-0012)
+0013. [.ai/agent-loop.md](#archivo-0013)
+0014. [.ai/context-map.md](#archivo-0014)
+0015. [.ai/INDEX.md](#archivo-0015)
+0016. [.ai/README.md](#archivo-0016)
+0017. [.claude/README.md](#archivo-0017)
+0018. [.codex/README.md](#archivo-0018)
+0019. [.gemini/README.md](#archivo-0019)
+0020. [.github/copilot-instructions.md](#archivo-0020)
+0021. [.kilo/README.md](#archivo-0021)
+0022. [debug/breakpoints-criticos.md](#archivo-0022)
+0023. [debug/hardtrace-playbook.md](#archivo-0023)
+0024. [handoff/instrucciones-completar-faltantes-v5.md](#archivo-0024)
+0025. [handoff/plan-ejecucion-fases.md](#archivo-0025)
+0026. [handoff/README.md](#archivo-0026)
+0027. [handoff/riesgos-residuales.md](#archivo-0027)
+0028. [handoff/session-handoff.md](#archivo-0028)
+0029. [handoff/tickets-sugeridos.md](#archivo-0029)
+0030. [reports/pre-implementation-research-v5.md](#archivo-0030)
+0031. [tests/application-behavior-regression-matrix.md](#archivo-0031)
+0032. [tests/checkbox-radio-dropdown-regression.md](#archivo-0032)
+0033. [tests/detail-view-coverage-matrix.md](#archivo-0033)
+0034. [tests/docusign-inspired-ux-cases.md](#archivo-0034)
+0035. [tests/matriz-pruebas-regresion-designer.md](#archivo-0035)
+0036. [tests/matriz-pruebas-regresion-externalforms.md](#archivo-0036)
+0037. [tests/multi-document-multipage-cases.md](#archivo-0037)
+0038. [tests/plan-playwright.md](#archivo-0038)
+0039. [tests/plan-vitest-unitario.md](#archivo-0039)
+0040. [tests/README.md](#archivo-0040)
+0041. [tests/schema-visual-audit.md](#archivo-0041)
+0042. [tests/selection-shortcuts-regression.md](#archivo-0042)
+0043. [tests/standard-fields-use-cases.md](#archivo-0043)
+0044. [tests/testing-gaps.md](#archivo-0044)
+0045. [.ai/agents/application-behavior-agent.md](#archivo-0045)
+0046. [.ai/agents/canvas-runtime-agent.md](#archivo-0046)
+0047. [.ai/agents/collaboration-lock-agent.md](#archivo-0047)
+0048. [.ai/agents/command-bus-agent.md](#archivo-0048)
+0049. [.ai/agents/content-custom-form-agent.md](#archivo-0049)
+0050. [.ai/agents/css-agent.md](#archivo-0050)
+0051. [.ai/agents/debugging-agent.md](#archivo-0051)
+0052. [.ai/agents/designer-engine-agent.md](#archivo-0052)
+0053. [.ai/agents/docs-governance-agent.md](#archivo-0053)
+0054. [.ai/agents/docusign-ux-agent.md](#archivo-0054)
+0055. [.ai/agents/external-forms-agent.md](#archivo-0055)
+0056. [.ai/agents/form-viewer-generator-agent.md](#archivo-0056)
+0057. [.ai/agents/frontend-architect-agent.md](#archivo-0057)
+0058. [.ai/agents/generator-converter-agent.md](#archivo-0058)
+0059. [.ai/agents/interaction-regression-agent.md](#archivo-0059)
+0060. [.ai/agents/left-sidebar-catalog-agent.md](#archivo-0060)
+0061. [.ai/agents/legacy-cleanup-agent.md](#archivo-0061)
+0062. [.ai/agents/moveable-selecto-agent.md](#archivo-0062)
+0063. [.ai/agents/process-flow-agent.md](#archivo-0063)
+0064. [.ai/agents/provider-sync-agent.md](#archivo-0064)
+0065. [.ai/agents/quality-agent.md](#archivo-0065)
+0066. [.ai/agents/recipient-color-agent.md](#archivo-0066)
+0067. [.ai/agents/registry.md](#archivo-0067)
+0068. [.ai/agents/release-agent.md](#archivo-0068)
+0069. [.ai/agents/right-sidebar-inspector-agent.md](#archivo-0069)
+0070. [.ai/agents/root-orchestrator-agent.md](#archivo-0070)
+0071. [.ai/agents/schema-groups-agent.md](#archivo-0071)
+0072. [.ai/agents/schema-icon-sync-agent.md](#archivo-0072)
+0073. [.ai/agents/schema-registry-agent.md](#archivo-0073)
+0074. [.ai/agents/security-agent.md](#archivo-0074)
+0075. [.ai/agents/sisad-pdfme-runtime-agent.md](#archivo-0075)
+0076. [.ai/agents/snapshot-agent.md](#archivo-0076)
+0077. [.ai/agents/standard-fields-agent.md](#archivo-0077)
+0078. [.ai/agents/testing-regression-agent.md](#archivo-0078)
+0079. [.ai/agents/token-economy-agent.md](#archivo-0079)
+0080. [.ai/agents/ui-ux-agent.md](#archivo-0080)
+0081. [.ai/architecture/agent-routing.md](#archivo-0081)
+0082. [.ai/architecture/assistant-architecture.md](#archivo-0082)
+0083. [.ai/architecture/context-loading-ladder.md](#archivo-0083)
+0084. [.ai/architecture/fork-safe-evolution.md](#archivo-0084)
+0085. [.ai/architecture/migration-features-to-core.md](#archivo-0085)
+0086. [.ai/architecture/module-boundaries.md](#archivo-0086)
+0087. [.ai/architecture/provider-model.md](#archivo-0087)
+0088. [.ai/architecture/quality-gate-model.md](#archivo-0088)
+0089. [.ai/architecture/runtime-ownership.md](#archivo-0089)
+0090. [.ai/checklists/application-behavior.md](#archivo-0090)
+0091. [.ai/checklists/before-change.md](#archivo-0091)
+0092. [.ai/checklists/before-merge.md](#archivo-0092)
+0093. [.ai/checklists/css-boundaries.md](#archivo-0093)
+0094. [.ai/checklists/docusign-design.md](#archivo-0094)
+0095. [.ai/checklists/external-forms.md](#archivo-0095)
+0096. [.ai/checklists/multipage-no-overlap.md](#archivo-0096)
+0097. [.ai/checklists/process-flow-before-change.md](#archivo-0097)
+0098. [.ai/checklists/provider-sync.md](#archivo-0098)
+0099. [.ai/checklists/quality-gates.md](#archivo-0099)
+0100. [.ai/checklists/recipient-color.md](#archivo-0100)
+0101. [.ai/checklists/release.md](#archivo-0101)
+0102. [.ai/checklists/schema-transform.md](#archivo-0102)
+0103. [.ai/checklists/selection-shortcuts.md](#archivo-0103)
+0104. [.ai/checklists/snapshot-roundtrip.md](#archivo-0104)
+0105. [.ai/context/application-behavior-contract-context.md](#archivo-0105)
+0106. [.ai/context/canvas-coordinates-context.md](#archivo-0106)
+0107. [.ai/context/checkboxgroup-context.md](#archivo-0107)
+0108. [.ai/context/code-map.md](#archivo-0108)
+0109. [.ai/context/collaboration-locks-context.md](#archivo-0109)
+0110. [.ai/context/command-bus-context.md](#archivo-0110)
+0111. [.ai/context/component-contracts-context.md](#archivo-0111)
+0112. [.ai/context/content-custom-form-integration-context.md](#archivo-0112)
+0113. [.ai/context/css-design-system-context.md](#archivo-0113)
+0114. [.ai/context/css-map.md](#archivo-0114)
+0115. [.ai/context/designer-engine-context.md](#archivo-0115)
+0116. [.ai/context/docs-map.md](#archivo-0116)
+0117. [.ai/context/docusign-ux-reference-context.md](#archivo-0117)
+0118. [.ai/context/dropdown-select-context.md](#archivo-0118)
+0119. [.ai/context/external-forms-runner-context.md](#archivo-0119)
+0120. [.ai/context/form-viewer-generator-parity-context.md](#archivo-0120)
+0121. [.ai/context/generator-converter-context.md](#archivo-0121)
+0122. [.ai/context/integration-host-boundaries-context.md](#archivo-0122)
+0123. [.ai/context/interaction-regression-context.md](#archivo-0123)
+0124. [.ai/context/legacy-cleanup-context.md](#archivo-0124)
+0125. [.ai/context/module-map.md](#archivo-0125)
+0126. [.ai/context/moveable-selecto-context.md](#archivo-0126)
+0127. [.ai/context/no-overlap-contract-context.md](#archivo-0127)
+0128. [.ai/context/page-distribution-placement-context.md](#archivo-0128)
+0129. [.ai/context/pre-implementation-research.md](#archivo-0129)
+0130. [.ai/context/process-flow-implementation-context.md](#archivo-0130)
+0131. [.ai/context/project-overview.md](#archivo-0131)
+0132. [.ai/context/provider-compatibility-context.md](#archivo-0132)
+0133. [.ai/context/radiogroup-context.md](#archivo-0133)
+0134. [.ai/context/recipient-color-context.md](#archivo-0134)
+0135. [.ai/context/schema-icon-sync-context.md](#archivo-0135)
+0136. [.ai/context/schema-owner-persistence-context.md](#archivo-0136)
+0137. [.ai/context/schema-registry-context.md](#archivo-0137)
+0138. [.ai/context/security-privacy-context.md](#archivo-0138)
+0139. [.ai/context/selection-shortcuts-context.md](#archivo-0139)
+0140. [.ai/context/sidebars-inspector-context.md](#archivo-0140)
+0141. [.ai/context/sisad-pdfme-runtime-context.md](#archivo-0141)
+0142. [.ai/context/snapshot-contract-context.md](#archivo-0142)
+0143. [.ai/context/standard-fields-groups-context.md](#archivo-0143)
+0144. [.ai/context/tests-quality-context.md](#archivo-0144)
+0145. [.ai/context/transform-controls-context.md](#archivo-0145)
+0146. [.ai/context/ui-ux-compact-context.md](#archivo-0146)
+0147. [.ai/context/use-cases-regression-context.md](#archivo-0147)
+0148. [.ai/memory/decisions.md](#archivo-0148)
+0149. [.ai/memory/incidents.md](#archivo-0149)
+0150. [.ai/memory/project-memory.md](#archivo-0150)
+0151. [.ai/memory/session-handoff.md](#archivo-0151)
+0152. [.ai/memory/update-protocol.md](#archivo-0152)
+0153. [.ai/prompts/audit-application-behavior-regressions.prompt.md](#archivo-0153)
+0154. [.ai/prompts/audit-css-boundaries.prompt.md](#archivo-0154)
+0155. [.ai/prompts/audit-legacy-runtime-reduction.prompt.md](#archivo-0155)
+0156. [.ai/prompts/audit-platform-boundaries.prompt.md](#archivo-0156)
+0157. [.ai/prompts/audit-sisad-pdfme-use-cases.prompt.md](#archivo-0157)
+0158. [.ai/prompts/build-regression-test-matrix.prompt.md](#archivo-0158)
+0159. [.ai/prompts/complete-missing-tests-by-process.prompt.md](#archivo-0159)
+0160. [.ai/prompts/create-playwright-canvas-scenarios.prompt.md](#archivo-0160)
+0161. [.ai/prompts/create-test-fixtures-multi-recipient-colors.prompt.md](#archivo-0161)
+0162. [.ai/prompts/fix-keyboard-shortcut-collisions.prompt.md](#archivo-0162)
+0163. [.ai/prompts/generate-final-implementation-report.prompt.md](#archivo-0163)
+0164. [.ai/prompts/harden-moveable-selecto-guards.prompt.md](#archivo-0164)
+0165. [.ai/prompts/harden-standard-fields-groups.prompt.md](#archivo-0165)
+0166. [.ai/prompts/implement-behavior-contract-missing-pieces.prompt.md](#archivo-0166)
+0167. [.ai/prompts/implement-unique-recipient-palette.prompt.md](#archivo-0167)
+0168. [.ai/prompts/improve-docusign-inspired-schema-design.prompt.md](#archivo-0168)
+0169. [.ai/prompts/INDEX.md](#archivo-0169)
+0170. [.ai/prompts/inspect-failed-test-results.prompt.md](#archivo-0170)
+0171. [.ai/prompts/normalize-selection-transform-state-machine.prompt.md](#archivo-0171)
+0172. [.ai/prompts/preserve-owner-color-on-existing-schemas.prompt.md](#archivo-0172)
+0173. [.ai/prompts/protect-inline-edit-from-transform.prompt.md](#archivo-0173)
+0174. [.ai/prompts/recipient-transform-master-plan.prompt.md](#archivo-0174)
+0175. [.ai/prompts/refactor-left-rail-catalog.prompt.md](#archivo-0175)
+0176. [.ai/prompts/refactor-right-inspector-layout.prompt.md](#archivo-0176)
+0177. [.ai/prompts/refactor-transform-geometry-utils.prompt.md](#archivo-0177)
+0178. [.ai/prompts/repair-checkboxgroup-flow.prompt.md](#archivo-0178)
+0179. [.ai/prompts/repair-external-forms-runner.prompt.md](#archivo-0179)
+0180. [.ai/prompts/repair-floating-toolbar-position.prompt.md](#archivo-0180)
+0181. [.ai/prompts/repair-radiogroup-flow.prompt.md](#archivo-0181)
+0182. [.ai/prompts/repair-recipient-color-sync.prompt.md](#archivo-0182)
+0183. [.ai/prompts/repair-schema-icon-color-sync.prompt.md](#archivo-0183)
+0184. [.ai/prompts/repair-snapshot-roundtrip.prompt.md](#archivo-0184)
+0185. [.ai/prompts/repair-transform-collisions.prompt.md](#archivo-0185)
+0186. [.ai/prompts/review-css-for-transform-handle-breaks.prompt.md](#archivo-0186)
+0187. [.ai/prompts/stabilize-designer-engine-api.prompt.md](#archivo-0187)
+0188. [.ai/prompts/stabilize-schema-resize-rotation.prompt.md](#archivo-0188)
+0189. [.ai/prompts/stabilize-selection-shortcuts-commandbus.prompt.md](#archivo-0189)
+0190. [.ai/prompts/standardize-data-attributes-for-colors.prompt.md](#archivo-0190)
+0191. [.ai/prompts/unify-css-architecture.prompt.md](#archivo-0191)
+0192. [.ai/prompts/update-docs-recipient-transform.prompt.md](#archivo-0192)
+0193. [.ai/prompts/update-md-architecture-v4.prompt.md](#archivo-0193)
+0194. [.ai/prompts/validate-ci-flow-recipient-transform.prompt.md](#archivo-0194)
+0195. [.ai/prompts/validate-group-no-overlap.prompt.md](#archivo-0195)
+0196. [.ai/prompts/validate-multipdf-multipage-nooverlap.prompt.md](#archivo-0196)
+0197. [.ai/prompts/validate-standard-field-parity.prompt.md](#archivo-0197)
+0198. [.ai/providers/claude-adapter.md](#archivo-0198)
+0199. [.ai/providers/codex-adapter.md](#archivo-0199)
+0200. [.ai/providers/gemini-adapter.md](#archivo-0200)
+0201. [.ai/providers/generic-provider-adapter.md](#archivo-0201)
+0202. [.ai/providers/github-copilot-adapter.md](#archivo-0202)
+0203. [.ai/providers/provider-contract.md](#archivo-0203)
+0204. [.ai/rules/application-behavior-contract-rules.md](#archivo-0204)
+0205. [.ai/rules/collaboration-lock-rules.md](#archivo-0205)
+0206. [.ai/rules/command-bus-rules.md](#archivo-0206)
+0207. [.ai/rules/component-contract-rules.md](#archivo-0207)
+0208. [.ai/rules/context-loading-ladder-rules.md](#archivo-0208)
+0209. [.ai/rules/css-boundary-rules.md](#archivo-0209)
+0210. [.ai/rules/docs-governance-rules.md](#archivo-0210)
+0211. [.ai/rules/docusign-ux-design-rules.md](#archivo-0211)
+0212. [.ai/rules/external-forms-runner-rules.md](#archivo-0212)
+0213. [.ai/rules/form-viewer-generator-rules.md](#archivo-0213)
+0214. [.ai/rules/generator-converter-rules.md](#archivo-0214)
+0215. [.ai/rules/global-rules.md](#archivo-0215)
+0216. [.ai/rules/host-runtime-boundary-rules.md](#archivo-0216)
+0217. [.ai/rules/interaction-regression-rules.md](#archivo-0217)
+0218. [.ai/rules/legacy-reduction-rules.md](#archivo-0218)
+0219. [.ai/rules/moveable-selecto-rules.md](#archivo-0219)
+0220. [.ai/rules/no-overlap-rules.md](#archivo-0220)
+0221. [.ai/rules/page-distribution-placement-rules.md](#archivo-0221)
+0222. [.ai/rules/provider-adapter-rules.md](#archivo-0222)
+0223. [.ai/rules/public-api-rules.md](#archivo-0223)
+0224. [.ai/rules/schema-icon-color-rules.md](#archivo-0224)
+0225. [.ai/rules/schema-ownership-rules.md](#archivo-0225)
+0226. [.ai/rules/security-privacy-rules.md](#archivo-0226)
+0227. [.ai/rules/sidebars-inspector-rules.md](#archivo-0227)
+0228. [.ai/rules/snapshot-contract-rules.md](#archivo-0228)
+0229. [.ai/rules/standard-fields-group-contract-rules.md](#archivo-0229)
+0230. [.ai/rules/testing-quality-rules.md](#archivo-0230)
+0231. [.ai/rules/token-budget-rules.md](#archivo-0231)
+0232. [.ai/rules/transform-interaction-rules.md](#archivo-0232)
+0233. [.ai/subagents/active-recipient-color-subagent.md](#archivo-0233)
+0234. [.ai/subagents/assignments-filtering-subagent.md](#archivo-0234)
+0235. [.ai/subagents/canvas-coordinate-subagent.md](#archivo-0235)
+0236. [.ai/subagents/collaboration-locks-subagent.md](#archivo-0236)
+0237. [.ai/subagents/command-bus-transform-subagent.md](#archivo-0237)
+0238. [.ai/subagents/comments-overlay-subagent.md](#archivo-0238)
+0239. [.ai/subagents/context-menu-guard-subagent.md](#archivo-0239)
+0240. [.ai/subagents/converter-browser-node-subagent.md](#archivo-0240)
+0241. [.ai/subagents/css-token-subagent.md](#archivo-0241)
+0242. [.ai/subagents/css-transform-handle-subagent.md](#archivo-0242)
+0243. [.ai/subagents/custom-plugin-contract-subagent.md](#archivo-0243)
+0244. [.ai/subagents/detail-widgets-subagent.md](#archivo-0244)
+0245. [.ai/subagents/docs-migration-subagent.md](#archivo-0245)
+0246. [.ai/subagents/external-form-runner-subagent.md](#archivo-0246)
+0247. [.ai/subagents/floating-toolbar-position-subagent.md](#archivo-0247)
+0248. [.ai/subagents/form-viewer-parity-subagent.md](#archivo-0248)
+0249. [.ai/subagents/generator-helper-subagent.md](#archivo-0249)
+0250. [.ai/subagents/inline-edit-guard-subagent.md](#archivo-0250)
+0251. [.ai/subagents/keyboard-shortcut-guard-subagent.md](#archivo-0251)
+0252. [.ai/subagents/left-sidebar-catalog-color-subagent.md](#archivo-0252)
+0253. [.ai/subagents/legacy-wrapper-subagent.md](#archivo-0253)
+0254. [.ai/subagents/moveable-resize-subagent.md](#archivo-0254)
+0255. [.ai/subagents/moveable-rotation-subagent.md](#archivo-0255)
+0256. [.ai/subagents/overlay-manager-subagent.md](#archivo-0256)
+0257. [.ai/subagents/owner-color-persistence-subagent.md](#archivo-0257)
+0258. [.ai/subagents/paper-scale-layer-subagent.md](#archivo-0258)
+0259. [.ai/subagents/playwright-canvas-subagent.md](#archivo-0259)
+0260. [.ai/subagents/playwright-recipient-color-subagent.md](#archivo-0260)
+0261. [.ai/subagents/plugin-icon-fallback-subagent.md](#archivo-0261)
+0262. [.ai/subagents/prompt-catalog-subagent.md](#archivo-0262)
+0263. [.ai/subagents/provider-drift-subagent.md](#archivo-0263)
+0264. [.ai/subagents/public-api-surface-subagent.md](#archivo-0264)
+0265. [.ai/subagents/right-inspector-transform-subagent.md](#archivo-0265)
+0266. [.ai/subagents/schema-registry-extension-subagent.md](#archivo-0266)
+0267. [.ai/subagents/schema-tone-resolution-subagent.md](#archivo-0267)
+0268. [.ai/subagents/selecto-lifecycle-subagent.md](#archivo-0268)
+0269. [.ai/subagents/snapshot-legacy-compat-subagent.md](#archivo-0269)
+0270. [.ai/subagents/snapshot-roundtrip-subagent.md](#archivo-0270)
+0271. [.ai/subagents/token-budget-subagent.md](#archivo-0271)
+0272. [.ai/subagents/unique-palette-subagent.md](#archivo-0272)
+0273. [.ai/subagents/visual-regression-css-subagent.md](#archivo-0273)
+0274. [.ai/subagents/vitest-contract-subagent.md](#archivo-0274)
+0275. [.ai/templates/agent-report.md](#archivo-0275)
+0276. [.ai/templates/architecture-decision-record.md](#archivo-0276)
+0277. [.ai/templates/bug-ticket.md](#archivo-0277)
+0278. [.ai/templates/handoff.md](#archivo-0278)
+0279. [.ai/templates/qa-report.md](#archivo-0279)
+0280. [.ai/templates/refactor-report.md](#archivo-0280)
+0281. [.ai/templates/test-failure-analysis.md](#archivo-0281)
+0282. [.claude/commands/audit-css-boundaries.md](#archivo-0282)
+0283. [.claude/commands/harden-standard-fields-groups.md](#archivo-0283)
+0284. [.claude/commands/local-selective-scan.md](#archivo-0284)
+0285. [.claude/commands/repair-recipient-color.md](#archivo-0285)
+0286. [.claude/commands/repair-snapshot-roundtrip.md](#archivo-0286)
+0287. [.claude/commands/repair-transform-collisions.md](#archivo-0287)
+0288. [.claude/commands/startup.md](#archivo-0288)
+0289. [.claude/commands/update-memory.md](#archivo-0289)
+0290. [.codex/tasks/atomic-fix.md](#archivo-0290)
+0291. [.codex/tasks/legacy-cleanup-step.md](#archivo-0291)
+0292. [.codex/tasks/quality-gates.md](#archivo-0292)
+0293. [.codex/tasks/recipient-transform-implementation.md](#archivo-0293)
+0294. [.codex/tasks/refactor-safe.md](#archivo-0294)
+0295. [.codex/tasks/standard-fields-hardening.md](#archivo-0295)
+0296. [.gemini/prompts/audit-architecture.md](#archivo-0296)
+0297. [.gemini/prompts/audit-docs-vs-code.md](#archivo-0297)
+0298. [.gemini/prompts/audit-recipient-transform.md](#archivo-0298)
+0299. [.gemini/prompts/audit-standard-fields-groups.md](#archivo-0299)
+0300. [.gemini/prompts/audit-token-budget.md](#archivo-0300)
+0301. [.github/instructions/architecture-boundaries.instructions.md](#archivo-0301)
+0302. [.github/instructions/canvas-transform-safety.instructions.md](#archivo-0302)
+0303. [.github/instructions/css-boundaries.instructions.md](#archivo-0303)
+0304. [.github/instructions/external-forms-runner.instructions.md](#archivo-0304)
+0305. [.github/instructions/recipient-color-system.instructions.md](#archivo-0305)
+0306. [.github/instructions/snapshot-contract.instructions.md](#archivo-0306)
+0307. [.github/instructions/testing-quality.instructions.md](#archivo-0307)
+0308. [.github/prompts/audit-css-boundaries.prompt.md](#archivo-0308)
+0309. [.github/prompts/audit-legacy-runtime-reduction.prompt.md](#archivo-0309)
+0310. [.github/prompts/build-regression-test-matrix.prompt.md](#archivo-0310)
+0311. [.github/prompts/fix-keyboard-shortcut-collisions.prompt.md](#archivo-0311)
+0312. [.github/prompts/harden-moveable-selecto-guards.prompt.md](#archivo-0312)
+0313. [.github/prompts/harden-standard-fields-groups.prompt.md](#archivo-0313)
+0314. [.github/prompts/implement-unique-recipient-palette.prompt.md](#archivo-0314)
+0315. [.github/prompts/inspect-failed-test-results.prompt.md](#archivo-0315)
+0316. [.github/prompts/preserve-owner-color-on-existing-schemas.prompt.md](#archivo-0316)
+0317. [.github/prompts/protect-inline-edit-from-transform.prompt.md](#archivo-0317)
+0318. [.github/prompts/recipient-transform-master-plan.prompt.md](#archivo-0318)
+0319. [.github/prompts/repair-external-forms-runner.prompt.md](#archivo-0319)
+0320. [.github/prompts/repair-floating-toolbar-position.prompt.md](#archivo-0320)
+0321. [.github/prompts/repair-recipient-color-sync.prompt.md](#archivo-0321)
+0322. [.github/prompts/repair-schema-icon-color-sync.prompt.md](#archivo-0322)
+0323. [.github/prompts/repair-snapshot-roundtrip.prompt.md](#archivo-0323)
+0324. [.github/prompts/repair-transform-collisions.prompt.md](#archivo-0324)
+0325. [.github/prompts/stabilize-designer-engine-api.prompt.md](#archivo-0325)
+0326. [.github/prompts/stabilize-schema-resize-rotation.prompt.md](#archivo-0326)
+0327. [.github/prompts/unify-css-architecture.prompt.md](#archivo-0327)
+0328. [.github/prompts/update-docs-recipient-transform.prompt.md](#archivo-0328)
+0329. [docs/00-indice/README.md](#archivo-0329)
+0330. [docs/01-producto-y-vision/01-vision-producto.md](#archivo-0330)
+0331. [docs/01-producto-y-vision/02-actores.md](#archivo-0331)
+0332. [docs/01-producto-y-vision/03-objetivos.md](#archivo-0332)
+0333. [docs/01-producto-y-vision/04-no-objetivos.md](#archivo-0333)
+0334. [docs/02-mapa-modulos/01-inventario-codigo.md](#archivo-0334)
+0335. [docs/02-mapa-modulos/02-ui-designer-form-viewer.md](#archivo-0335)
+0336. [docs/02-mapa-modulos/03-schemas-y-plugin-registry.md](#archivo-0336)
+0337. [docs/02-mapa-modulos/04-generator-converter-pdflib.md](#archivo-0337)
+0338. [docs/02-mapa-modulos/05-tests-playwright-vitest.md](#archivo-0338)
+0339. [docs/03-arquitectura/01-boundaries-host-runtime.md](#archivo-0339)
+0340. [docs/03-arquitectura/02-runtime-visual.md](#archivo-0340)
+0341. [docs/03-arquitectura/03-command-bus-events.md](#archivo-0341)
+0342. [docs/03-arquitectura/04-snapshot-contract.md](#archivo-0342)
+0343. [docs/03-arquitectura/05-external-forms-contract.md](#archivo-0343)
+0344. [docs/03-arquitectura/06-collaboration-locks.md](#archivo-0344)
+0345. [docs/03-arquitectura/07-public-api.md](#archivo-0345)
+0346. [docs/03-arquitectura/08-fork-safe-evolution.md](#archivo-0346)
+0347. [docs/04-recipient-transform/01-recipient-color-behavior.md](#archivo-0347)
+0348. [docs/04-recipient-transform/02-schema-icon-color-sync.md](#archivo-0348)
+0349. [docs/04-recipient-transform/03-owner-color-persistence.md](#archivo-0349)
+0350. [docs/04-recipient-transform/04-transform-state-machine.md](#archivo-0350)
+0351. [docs/04-recipient-transform/05-moveable-selecto.md](#archivo-0351)
+0352. [docs/04-recipient-transform/06-shortcuts-and-inline-edit.md](#archivo-0352)
+0353. [docs/04-recipient-transform/07-accessibility-colors.md](#archivo-0353)
+0354. [docs/05-ui-ux/01-left-sidebar-catalog.md](#archivo-0354)
+0355. [docs/05-ui-ux/02-right-sidebar-inspector.md](#archivo-0355)
+0356. [docs/05-ui-ux/03-floating-toolbar.md](#archivo-0356)
+0357. [docs/05-ui-ux/04-canvas-overlays.md](#archivo-0357)
+0358. [docs/05-ui-ux/05-compact-header-host.md](#archivo-0358)
+0359. [docs/05-ui-ux/06-responsive.md](#archivo-0359)
+0360. [docs/06-css/01-css-boundaries.md](#archivo-0360)
+0361. [docs/06-css/02-token-system.md](#archivo-0361)
+0362. [docs/06-css/03-transform-handle-safety.md](#archivo-0362)
+0363. [docs/06-css/04-visual-regression.md](#archivo-0363)
+0364. [docs/07-calidad/01-comandos-validacion.md](#archivo-0364)
+0365. [docs/07-calidad/02-matriz-regresion.md](#archivo-0365)
+0366. [docs/07-calidad/03-testing-gaps.md](#archivo-0366)
+0367. [docs/07-calidad/04-test-results-forensics.md](#archivo-0367)
+0368. [docs/08-ia-agentes/01-arquitectura-asistente.md](#archivo-0368)
+0369. [docs/08-ia-agentes/02-catalogo-agentes.md](#archivo-0369)
+0370. [docs/08-ia-agentes/03-catalogo-prompts.md](#archivo-0370)
+0371. [docs/08-ia-agentes/04-economia-tokens.md](#archivo-0371)
+0372. [docs/08-ia-agentes/05-providers.md](#archivo-0372)
+0373. [docs/09-operacion-debug/01-breakpoints-criticos.md](#archivo-0373)
+0374. [docs/09-operacion-debug/02-hardtrace-playbook.md](#archivo-0374)
+0375. [docs/09-operacion-debug/03-troubleshooting.md](#archivo-0375)
+0376. [docs/10-handoff/01-handoff-sesion.md](#archivo-0376)
+0377. [docs/10-handoff/02-plan-fases.md](#archivo-0377)
+0378. [docs/10-handoff/03-tickets-sugeridos.md](#archivo-0378)
+0379. [docs/11-standard-schemas/01-use-cases-overview.md](#archivo-0379)
+0380. [docs/11-standard-schemas/02-text-number-contract.md](#archivo-0380)
+0381. [docs/11-standard-schemas/03-checkbox-and-checkboxgroup.md](#archivo-0381)
+0382. [docs/11-standard-schemas/04-radio-optiongroup.md](#archivo-0382)
+0383. [docs/11-standard-schemas/05-dropdown-select.md](#archivo-0383)
+0384. [docs/11-standard-schemas/06-group-plus-behavior.md](#archivo-0384)
+0385. [docs/11-standard-schemas/07-form-viewer-generator-parity.md](#archivo-0385)
+0386. [docs/11-standard-schemas/08-snapshot-and-identity.md](#archivo-0386)
+0387. [docs/11-standard-schemas/09-no-overlap-policy.md](#archivo-0387)
+0388. [docs/11-standard-schemas/10-detailview-listview-usecases.md](#archivo-0388)
+0389. [docs/11-standard-schemas/11-test-matrix.md](#archivo-0389)
+0390. [docs/11-standard-schemas/README.md](#archivo-0390)
+0391. [docs/12-behavior-contract/01-processes.md](#archivo-0391)
+0392. [docs/12-behavior-contract/02-components.md](#archivo-0392)
+0393. [docs/12-behavior-contract/03-regression-matrix.md](#archivo-0393)
+0394. [docs/12-behavior-contract/04-state-machines.md](#archivo-0394)
+0395. [docs/12-behavior-contract/05-command-flow.md](#archivo-0395)
+0396. [docs/12-behavior-contract/06-data-contracts.md](#archivo-0396)
+0397. [docs/12-behavior-contract/07-implementation-playbook.md](#archivo-0397)
+0398. [docs/12-behavior-contract/08-acceptance-gates.md](#archivo-0398)
+0399. [docs/12-behavior-contract/README.md](#archivo-0399)
+0400. [docs/13-docusign-ux-research/01-research-summary.md](#archivo-0400)
+0401. [docs/13-docusign-ux-research/02-standard-fields-visual-contract.md](#archivo-0401)
+0402. [docs/13-docusign-ux-research/03-group-option-design.md](#archivo-0402)
+0403. [docs/13-docusign-ux-research/04-toolbar-detailview-patterns.md](#archivo-0403)
+0404. [docs/13-docusign-ux-research/05-page-distribution-and-no-overlap.md](#archivo-0404)
+0405. [docs/13-docusign-ux-research/README.md](#archivo-0405)
+0406. [docs/14-process-flows/01-create-schema-flow.md](#archivo-0406)
+0407. [docs/14-process-flows/02-selection-shortcuts-flow.md](#archivo-0407)
+0408. [docs/14-process-flows/03-transform-flow.md](#archivo-0408)
+0409. [docs/14-process-flows/04-group-actions-flow.md](#archivo-0409)
+0410. [docs/14-process-flows/05-recipient-owner-flow.md](#archivo-0410)
+0411. [docs/14-process-flows/06-snapshot-flow.md](#archivo-0411)
+0412. [docs/14-process-flows/07-form-viewer-generator-flow.md](#archivo-0412)
+0413. [docs/14-process-flows/08-multipdf-multipage-flow.md](#archivo-0413)
+0414. [docs/14-process-flows/09-externalforms-flow.md](#archivo-0414)
+0415. [docs/14-process-flows/10-css-visual-flow.md](#archivo-0415)
+0416. [docs/15-component-contracts/01-designer.md](#archivo-0416)
+0417. [docs/15-component-contracts/02-canvas-page-stack.md](#archivo-0417)
+0418. [docs/15-component-contracts/03-renderer.md](#archivo-0418)
+0419. [docs/15-component-contracts/04-moveable-selecto.md](#archivo-0419)
+0420. [docs/15-component-contracts/05-selection-toolbar.md](#archivo-0420)
+0421. [docs/15-component-contracts/06-left-sidebar.md](#archivo-0421)
+0422. [docs/15-component-contracts/07-right-sidebar-detailview-listview.md](#archivo-0422)
+0423. [docs/15-component-contracts/08-schema-plugins.md](#archivo-0423)
+0424. [docs/15-component-contracts/09-command-bus.md](#archivo-0424)
+0425. [docs/15-component-contracts/10-snapshot-adapter.md](#archivo-0425)
+0426. [docs/15-component-contracts/11-form-viewer-generator.md](#archivo-0426)
+0427. [docs/15-component-contracts/12-externalforms-host.md](#archivo-0427)
+0428. [docs/16-completion-roadmap/01-gap-inventory.md](#archivo-0428)
+0429. [docs/16-completion-roadmap/02-phased-plan.md](#archivo-0429)
+0430. [docs/16-completion-roadmap/03-definition-of-done.md](#archivo-0430)
+0431. [docs/16-completion-roadmap/README.md](#archivo-0431)
+0432. [docs/99-archivo/README.md](#archivo-0432)
+0433. [reports/current-snapshot/analysis-summary.md](#archivo-0433)
+0434. [reports/current-snapshot/css-summary.md](#archivo-0434)
+0435. [reports/current-snapshot/docs-summary.md](#archivo-0435)
+0436. [reports/current-snapshot/module-inventory.md](#archivo-0436)
+0437. [reports/current-snapshot/risk-summary.md](#archivo-0437)
+0438. [reports/current-snapshot/v4-research-summary.md](#archivo-0438)
+0439. [.ai/skills/active-recipient-color-contract/SKILL.md](#archivo-0439)
+0440. [.ai/skills/application-behavior-contract/SKILL.md](#archivo-0440)
+0441. [.ai/skills/canvas-geometry-scaling/SKILL.md](#archivo-0441)
+0442. [.ai/skills/checkbox-radio-dropdown-parity/SKILL.md](#archivo-0442)
+0443. [.ai/skills/command-bus-transform-actions/SKILL.md](#archivo-0443)
+0444. [.ai/skills/component-composition/SKILL.md](#archivo-0444)
+0445. [.ai/skills/context-budget/SKILL.md](#archivo-0445)
+0446. [.ai/skills/context-menu-transform-guard/SKILL.md](#archivo-0446)
+0447. [.ai/skills/css-layering-and-overrides/SKILL.md](#archivo-0447)
+0448. [.ai/skills/css-recipient-color-tokens/SKILL.md](#archivo-0448)
+0449. [.ai/skills/css-transform-handle-safety/SKILL.md](#archivo-0449)
+0450. [.ai/skills/custom-schema-contracts/SKILL.md](#archivo-0450)
+0451. [.ai/skills/documentation-traceability/SKILL.md](#archivo-0451)
+0452. [.ai/skills/docusign-inspired-schema-ux/SKILL.md](#archivo-0452)
+0453. [.ai/skills/docusign-wix-minimal-ux/SKILL.md](#archivo-0453)
+0454. [.ai/skills/external-forms-runtime/SKILL.md](#archivo-0454)
+0455. [.ai/skills/floating-toolbar-transform-position/SKILL.md](#archivo-0455)
+0456. [.ai/skills/fork-safe-pdfme-evolution/SKILL.md](#archivo-0456)
+0457. [.ai/skills/form-viewer-generator-parity/SKILL.md](#archivo-0457)
+0458. [.ai/skills/group-no-overlap/SKILL.md](#archivo-0458)
+0459. [.ai/skills/inline-edit-transform-guard/SKILL.md](#archivo-0459)
+0460. [.ai/skills/keyboard-shortcut-transform-safety/SKILL.md](#archivo-0460)
+0461. [.ai/skills/legacy-runtime-reduction/SKILL.md](#archivo-0461)
+0462. [.ai/skills/moveable-selecto-integration/SKILL.md](#archivo-0462)
+0463. [.ai/skills/moveable-selecto-resize-rotate/SKILL.md](#archivo-0463)
+0464. [.ai/skills/multipage-multipdf-placement/SKILL.md](#archivo-0464)
+0465. [.ai/skills/playwright-canvas-diagnostics/SKILL.md](#archivo-0465)
+0466. [.ai/skills/playwright-recipient-color-regression/SKILL.md](#archivo-0466)
+0467. [.ai/skills/playwright-transform-regression/SKILL.md](#archivo-0467)
+0468. [.ai/skills/process-regression-matrix/SKILL.md](#archivo-0468)
+0469. [.ai/skills/public-api-surface-design/SKILL.md](#archivo-0469)
+0470. [.ai/skills/quality-gates/SKILL.md](#archivo-0470)
+0471. [.ai/skills/schema-icon-color-sync/SKILL.md](#archivo-0471)
+0472. [.ai/skills/schema-owner-color-persistence/SKILL.md](#archivo-0472)
+0473. [.ai/skills/schema-registry-extension/SKILL.md](#archivo-0473)
+0474. [.ai/skills/schema-tone-resolution/SKILL.md](#archivo-0474)
+0475. [.ai/skills/selection-shortcuts-commandbus-regression/SKILL.md](#archivo-0475)
+0476. [.ai/skills/snapshot-transform-roundtrip/SKILL.md](#archivo-0476)
+0477. [.ai/skills/standard-field-groups-contract/SKILL.md](#archivo-0477)
+0478. [.ai/skills/standard-fields-regression-testing/SKILL.md](#archivo-0478)
+0479. [.ai/skills/test-results-forensics/SKILL.md](#archivo-0479)
+0480. [.ai/skills/transform-interaction-state-machine/SKILL.md](#archivo-0480)
+0481. [.ai/skills/unique-recipient-palette/SKILL.md](#archivo-0481)
+0482. [.ai/skills/unit-recipient-color-contracts/SKILL.md](#archivo-0482)
+0483. [.ai/skills/unit-transform-state-contracts/SKILL.md](#archivo-0483)
+0484. [src/sisad-pdfme/ui/designerEngine.api.md](#archivo-0484)
 
 ---
 
@@ -14828,7 +14829,62 @@ Total Markdown: `484`
 ---
 
 <a id="archivo-0011"></a>
-## Archivo #11: README.md
+## Archivo #11: ONCHANGE_CANDIDATES.md
+
+- **Ruta relativa:** `ONCHANGE_CANDIDATES.md`
+- **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/ONCHANGE_CANDIDATES.md`
+- **Extensión:** `.md`
+- **Líneas aproximadas:** `41`
+
+### Contenido original
+
+# onChange Candidates (auto-generated)
+
+Resumen corto: agrupo las ocurrencias de `onChange(` encontradas en `src/` por riesgo para la migración a emisiones atómicas `onChange([{...}])`.
+
+## Low risk (schema-level handlers — safe para cambios automáticos)
+- src/sisad-pdfme/schemas/radioGroup/index.ts
+- src/sisad-pdfme/schemas/barcodes/uiRender.ts
+- src/sisad-pdfme/schemas/checkbox/index.ts
+- src/sisad-pdfme/schemas/select/index.ts
+- src/sisad-pdfme/schemas/checkboxGroup/index.ts
+- src/sisad-pdfme/schemas/multiVariableText/uiRender.ts
+- src/sisad-pdfme/schemas/signature/index.ts
+- src/sisad-pdfme/schemas/schemaBuilder.ts
+- src/sisad-pdfme/schemas/text/uiRender.ts
+- src/sisad-pdfme/schemas/date/helper.ts
+- src/sisad-pdfme/schemas/graphics/svg.ts
+- src/sisad-pdfme/schemas/graphics/image.ts
+- src/sisad-pdfme/schemas/tables/uiRender.ts
+- src/sisad-pdfme/schemas/options/optionPropPanel.tsx
+- src/sisad-pdfme/schemas/options/optionGroupRenderer.ts
+
+## Medium risk (designer-level flows; revisar antes de cambios automáticos)
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared.tsx
+- src/sisad-pdfme/ui/components/usePreviewRuntime.ts
+
+## High risk (React UI props / internal drafts — NO modificar automáticamente)
+- src/sisad-pdfme/ui/components/Designer/SchemaDropSetupModal.tsx
+- src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx
+- src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx
+
+## Observaciones y recomendaciones
+- La mayoría de archivos bajo `src/sisad-pdfme/schemas/` ya emiten `onChange([{ key, value }])` — por tanto no requieren conversiones adicionales.
+- Evitar convertir handlers de componentes React (`onChange={(e)=>...}`) que no sean el `onChange` provisto por `createSchemaPlugin`.
+- Siguiente paso recomendado: revisar los archivos "Medium risk" y crear un adaptador que, cuando corresponda, convierta cambios de draft (`onChange('field', value)`) a un patch atómico al confirmar.
+
+## Siguiente lote sugerido (conservador)
+- No hay cambios de bajo riesgo pendientes en `schemas/` que necesiten transformarse — proceder con revisión manual de `Medium risk`.
+
+---
+Generado automáticamente por el asistente para guiar la migración atómica de `onChange`.
+
+[⬆ Volver a la tabla de contenidos](#tabla-de-contenidos)
+
+---
+
+<a id="archivo-0012"></a>
+## Archivo #12: README.md
 
 - **Ruta relativa:** `README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/README.md`
@@ -14864,8 +14920,8 @@ Usa `START_PROMPT.md` para cambios normales y `START_PROMPT_BEHAVIOR_AUDIT.md` p
 
 ---
 
-<a id="archivo-0012"></a>
-## Archivo #12: .ai/agent-loop.md
+<a id="archivo-0013"></a>
+## Archivo #13: .ai/agent-loop.md
 
 - **Ruta relativa:** `.ai/agent-loop.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agent-loop.md`
@@ -14915,8 +14971,8 @@ Memory:
 
 ---
 
-<a id="archivo-0013"></a>
-## Archivo #13: .ai/context-map.md
+<a id="archivo-0014"></a>
+## Archivo #14: .ai/context-map.md
 
 - **Ruta relativa:** `.ai/context-map.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context-map.md`
@@ -14951,8 +15007,8 @@ Memory:
 
 ---
 
-<a id="archivo-0014"></a>
-## Archivo #14: .ai/INDEX.md
+<a id="archivo-0015"></a>
+## Archivo #15: .ai/INDEX.md
 
 - **Ruta relativa:** `.ai/INDEX.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/INDEX.md`
@@ -15020,8 +15076,8 @@ Perceive -> Retrieve -> Process Contract -> Plan -> Act -> Observe -> Guardrail 
 
 ---
 
-<a id="archivo-0015"></a>
-## Archivo #15: .ai/README.md
+<a id="archivo-0016"></a>
+## Archivo #16: .ai/README.md
 
 - **Ruta relativa:** `.ai/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/README.md`
@@ -15049,8 +15105,8 @@ No cargar todo `.ai` al inicio.
 
 ---
 
-<a id="archivo-0016"></a>
-## Archivo #16: .claude/README.md
+<a id="archivo-0017"></a>
+## Archivo #17: .claude/README.md
 
 - **Ruta relativa:** `.claude/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.claude/README.md`
@@ -15067,8 +15123,8 @@ Leer `CLAUDE.md` y `.ai/INDEX.md`.
 
 ---
 
-<a id="archivo-0017"></a>
-## Archivo #17: .codex/README.md
+<a id="archivo-0018"></a>
+## Archivo #18: .codex/README.md
 
 - **Ruta relativa:** `.codex/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.codex/README.md`
@@ -15085,8 +15141,8 @@ Leer `CODEX.md` y `.ai/INDEX.md`. Cambios pequeños y testeables.
 
 ---
 
-<a id="archivo-0018"></a>
-## Archivo #18: .gemini/README.md
+<a id="archivo-0019"></a>
+## Archivo #19: .gemini/README.md
 
 - **Ruta relativa:** `.gemini/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.gemini/README.md`
@@ -15103,8 +15159,8 @@ Leer `GEMINI.md` y `.ai/INDEX.md`. Auditar consistencia.
 
 ---
 
-<a id="archivo-0019"></a>
-## Archivo #19: .github/copilot-instructions.md
+<a id="archivo-0020"></a>
+## Archivo #20: .github/copilot-instructions.md
 
 - **Ruta relativa:** `.github/copilot-instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/copilot-instructions.md`
@@ -15129,8 +15185,8 @@ Leer `GEMINI.md` y `.ai/INDEX.md`. Auditar consistencia.
 
 ---
 
-<a id="archivo-0020"></a>
-## Archivo #20: .kilo/README.md
+<a id="archivo-0021"></a>
+## Archivo #21: .kilo/README.md
 
 - **Ruta relativa:** `.kilo/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.kilo/README.md`
@@ -15146,8 +15202,8 @@ Apunta a los artefactos neutrales en .ai/.
 
 ---
 
-<a id="archivo-0021"></a>
-## Archivo #21: debug/breakpoints-criticos.md
+<a id="archivo-0022"></a>
+## Archivo #22: debug/breakpoints-criticos.md
 
 - **Ruta relativa:** `debug/breakpoints-criticos.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/debug/breakpoints-criticos.md`
@@ -15188,8 +15244,8 @@ Apunta a los artefactos neutrales en .ai/.
 
 ---
 
-<a id="archivo-0022"></a>
-## Archivo #22: debug/hardtrace-playbook.md
+<a id="archivo-0023"></a>
+## Archivo #23: debug/hardtrace-playbook.md
 
 - **Ruta relativa:** `debug/hardtrace-playbook.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/debug/hardtrace-playbook.md`
@@ -15219,8 +15275,8 @@ No loggear PDFs, base64 ni datos sensibles.
 
 ---
 
-<a id="archivo-0023"></a>
-## Archivo #23: handoff/instrucciones-completar-faltantes-v5.md
+<a id="archivo-0024"></a>
+## Archivo #24: handoff/instrucciones-completar-faltantes-v5.md
 
 - **Ruta relativa:** `handoff/instrucciones-completar-faltantes-v5.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/handoff/instrucciones-completar-faltantes-v5.md`
@@ -15261,8 +15317,8 @@ No loggear PDFs, base64 ni datos sensibles.
 
 ---
 
-<a id="archivo-0024"></a>
-## Archivo #24: handoff/plan-ejecucion-fases.md
+<a id="archivo-0025"></a>
+## Archivo #25: handoff/plan-ejecucion-fases.md
 
 - **Ruta relativa:** `handoff/plan-ejecucion-fases.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/handoff/plan-ejecucion-fases.md`
@@ -15301,8 +15357,8 @@ Build/lint/Vitest/Playwright.
 
 ---
 
-<a id="archivo-0025"></a>
-## Archivo #25: handoff/README.md
+<a id="archivo-0026"></a>
+## Archivo #26: handoff/README.md
 
 - **Ruta relativa:** `handoff/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/handoff/README.md`
@@ -15319,8 +15375,8 @@ Usar esta carpeta para continuidad entre sesiones y asistentes.
 
 ---
 
-<a id="archivo-0026"></a>
-## Archivo #26: handoff/riesgos-residuales.md
+<a id="archivo-0027"></a>
+## Archivo #27: handoff/riesgos-residuales.md
 
 - **Ruta relativa:** `handoff/riesgos-residuales.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/handoff/riesgos-residuales.md`
@@ -15340,8 +15396,8 @@ Usar esta carpeta para continuidad entre sesiones y asistentes.
 
 ---
 
-<a id="archivo-0027"></a>
-## Archivo #27: handoff/session-handoff.md
+<a id="archivo-0028"></a>
+## Archivo #28: handoff/session-handoff.md
 
 - **Ruta relativa:** `handoff/session-handoff.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/handoff/session-handoff.md`
@@ -15374,8 +15430,8 @@ No iniciar por CSS. No reescribir coordenadas. No cambiar Moveable/Selecto sin t
 
 ---
 
-<a id="archivo-0028"></a>
-## Archivo #28: handoff/tickets-sugeridos.md
+<a id="archivo-0029"></a>
+## Archivo #29: handoff/tickets-sugeridos.md
 
 - **Ruta relativa:** `handoff/tickets-sugeridos.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/handoff/tickets-sugeridos.md`
@@ -15399,8 +15455,8 @@ No iniciar por CSS. No reescribir coordenadas. No cambiar Moveable/Selecto sin t
 
 ---
 
-<a id="archivo-0029"></a>
-## Archivo #29: reports/pre-implementation-research-v5.md
+<a id="archivo-0030"></a>
+## Archivo #30: reports/pre-implementation-research-v5.md
 
 - **Ruta relativa:** `reports/pre-implementation-research-v5.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/reports/pre-implementation-research-v5.md`
@@ -15426,8 +15482,8 @@ El proyecto requiere pasar de fixes locales a contratos por proceso. Esta arquit
 
 ---
 
-<a id="archivo-0030"></a>
-## Archivo #30: tests/application-behavior-regression-matrix.md
+<a id="archivo-0031"></a>
+## Archivo #31: tests/application-behavior-regression-matrix.md
 
 - **Ruta relativa:** `tests/application-behavior-regression-matrix.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/tests/application-behavior-regression-matrix.md`
@@ -15458,8 +15514,8 @@ El proyecto requiere pasar de fixes locales a contratos por proceso. Esta arquit
 
 ---
 
-<a id="archivo-0031"></a>
-## Archivo #31: tests/checkbox-radio-dropdown-regression.md
+<a id="archivo-0032"></a>
+## Archivo #32: tests/checkbox-radio-dropdown-regression.md
 
 - **Ruta relativa:** `tests/checkbox-radio-dropdown-regression.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/tests/checkbox-radio-dropdown-regression.md`
@@ -15499,8 +15555,8 @@ El proyecto requiere pasar de fixes locales a contratos por proceso. Esta arquit
 
 ---
 
-<a id="archivo-0032"></a>
-## Archivo #32: tests/detail-view-coverage-matrix.md
+<a id="archivo-0033"></a>
+## Archivo #33: tests/detail-view-coverage-matrix.md
 
 - **Ruta relativa:** `tests/detail-view-coverage-matrix.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/tests/detail-view-coverage-matrix.md`
@@ -15530,8 +15586,8 @@ El proyecto requiere pasar de fixes locales a contratos por proceso. Esta arquit
 
 ---
 
-<a id="archivo-0033"></a>
-## Archivo #33: tests/docusign-inspired-ux-cases.md
+<a id="archivo-0034"></a>
+## Archivo #34: tests/docusign-inspired-ux-cases.md
 
 - **Ruta relativa:** `tests/docusign-inspired-ux-cases.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/tests/docusign-inspired-ux-cases.md`
@@ -15556,8 +15612,8 @@ El proyecto requiere pasar de fixes locales a contratos por proceso. Esta arquit
 
 ---
 
-<a id="archivo-0034"></a>
-## Archivo #34: tests/matriz-pruebas-regresion-designer.md
+<a id="archivo-0035"></a>
+## Archivo #35: tests/matriz-pruebas-regresion-designer.md
 
 - **Ruta relativa:** `tests/matriz-pruebas-regresion-designer.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/tests/matriz-pruebas-regresion-designer.md`
@@ -15582,8 +15638,8 @@ El proyecto requiere pasar de fixes locales a contratos por proceso. Esta arquit
 
 ---
 
-<a id="archivo-0035"></a>
-## Archivo #35: tests/matriz-pruebas-regresion-externalforms.md
+<a id="archivo-0036"></a>
+## Archivo #36: tests/matriz-pruebas-regresion-externalforms.md
 
 - **Ruta relativa:** `tests/matriz-pruebas-regresion-externalforms.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/tests/matriz-pruebas-regresion-externalforms.md`
@@ -15607,8 +15663,8 @@ El proyecto requiere pasar de fixes locales a contratos por proceso. Esta arquit
 
 ---
 
-<a id="archivo-0036"></a>
-## Archivo #36: tests/multi-document-multipage-cases.md
+<a id="archivo-0037"></a>
+## Archivo #37: tests/multi-document-multipage-cases.md
 
 - **Ruta relativa:** `tests/multi-document-multipage-cases.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/tests/multi-document-multipage-cases.md`
@@ -15631,8 +15687,8 @@ El proyecto requiere pasar de fixes locales a contratos por proceso. Esta arquit
 
 ---
 
-<a id="archivo-0037"></a>
-## Archivo #37: tests/plan-playwright.md
+<a id="archivo-0038"></a>
+## Archivo #38: tests/plan-playwright.md
 
 - **Ruta relativa:** `tests/plan-playwright.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/tests/plan-playwright.md`
@@ -15655,8 +15711,8 @@ Prioridad:
 
 ---
 
-<a id="archivo-0038"></a>
-## Archivo #38: tests/plan-vitest-unitario.md
+<a id="archivo-0039"></a>
+## Archivo #39: tests/plan-vitest-unitario.md
 
 - **Ruta relativa:** `tests/plan-vitest-unitario.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/tests/plan-vitest-unitario.md`
@@ -15681,8 +15737,8 @@ Prioridad:
 
 ---
 
-<a id="archivo-0039"></a>
-## Archivo #39: tests/README.md
+<a id="archivo-0040"></a>
+## Archivo #40: tests/README.md
 
 - **Ruta relativa:** `tests/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/tests/README.md`
@@ -15699,8 +15755,8 @@ Matrices y planes de prueba. Los tests ejecutables viven en `tests/unit` y `test
 
 ---
 
-<a id="archivo-0040"></a>
-## Archivo #40: tests/schema-visual-audit.md
+<a id="archivo-0041"></a>
+## Archivo #41: tests/schema-visual-audit.md
 
 - **Ruta relativa:** `tests/schema-visual-audit.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/tests/schema-visual-audit.md`
@@ -15732,8 +15788,8 @@ Text, Number, Checkbox, CheckboxGroup, RadioGroup, Select/Dropdown, Signature, D
 
 ---
 
-<a id="archivo-0041"></a>
-## Archivo #41: tests/selection-shortcuts-regression.md
+<a id="archivo-0042"></a>
+## Archivo #42: tests/selection-shortcuts-regression.md
 
 - **Ruta relativa:** `tests/selection-shortcuts-regression.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/tests/selection-shortcuts-regression.md`
@@ -15761,8 +15817,8 @@ Text, Number, Checkbox, CheckboxGroup, RadioGroup, Select/Dropdown, Signature, D
 
 ---
 
-<a id="archivo-0042"></a>
-## Archivo #42: tests/standard-fields-use-cases.md
+<a id="archivo-0043"></a>
+## Archivo #43: tests/standard-fields-use-cases.md
 
 - **Ruta relativa:** `tests/standard-fields-use-cases.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/tests/standard-fields-use-cases.md`
@@ -15862,8 +15918,8 @@ Text, Number, Checkbox, CheckboxGroup, RadioGroup, Select/Dropdown, Signature, D
 
 ---
 
-<a id="archivo-0043"></a>
-## Archivo #43: tests/testing-gaps.md
+<a id="archivo-0044"></a>
+## Archivo #44: tests/testing-gaps.md
 
 - **Ruta relativa:** `tests/testing-gaps.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/tests/testing-gaps.md`
@@ -15886,8 +15942,8 @@ Text, Number, Checkbox, CheckboxGroup, RadioGroup, Select/Dropdown, Signature, D
 
 ---
 
-<a id="archivo-0044"></a>
-## Archivo #44: .ai/agents/application-behavior-agent.md
+<a id="archivo-0045"></a>
+## Archivo #45: .ai/agents/application-behavior-agent.md
 
 - **Ruta relativa:** `.ai/agents/application-behavior-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/application-behavior-agent.md`
@@ -15930,8 +15986,8 @@ Define y audita el contrato maestro de comportamiento por proceso transversal.
 
 ---
 
-<a id="archivo-0045"></a>
-## Archivo #45: .ai/agents/canvas-runtime-agent.md
+<a id="archivo-0046"></a>
+## Archivo #46: .ai/agents/canvas-runtime-agent.md
 
 - **Ruta relativa:** `.ai/agents/canvas-runtime-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/canvas-runtime-agent.md`
@@ -15975,8 +16031,8 @@ Controla canvas, paper, zoom y scroll.
 
 ---
 
-<a id="archivo-0046"></a>
-## Archivo #46: .ai/agents/collaboration-lock-agent.md
+<a id="archivo-0047"></a>
+## Archivo #47: .ai/agents/collaboration-lock-agent.md
 
 - **Ruta relativa:** `.ai/agents/collaboration-lock-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/collaboration-lock-agent.md`
@@ -16020,8 +16076,8 @@ Controla locks, readonly y ownership.
 
 ---
 
-<a id="archivo-0047"></a>
-## Archivo #47: .ai/agents/command-bus-agent.md
+<a id="archivo-0048"></a>
+## Archivo #48: .ai/agents/command-bus-agent.md
 
 - **Ruta relativa:** `.ai/agents/command-bus-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/command-bus-agent.md`
@@ -16065,8 +16121,8 @@ Controla comandos/eventos.
 
 ---
 
-<a id="archivo-0048"></a>
-## Archivo #48: .ai/agents/content-custom-form-agent.md
+<a id="archivo-0049"></a>
+## Archivo #49: .ai/agents/content-custom-form-agent.md
 
 - **Ruta relativa:** `.ai/agents/content-custom-form-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/content-custom-form-agent.md`
@@ -16110,8 +16166,8 @@ Controla host de negocio e integración.
 
 ---
 
-<a id="archivo-0049"></a>
-## Archivo #49: .ai/agents/css-agent.md
+<a id="archivo-0050"></a>
+## Archivo #50: .ai/agents/css-agent.md
 
 - **Ruta relativa:** `.ai/agents/css-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/css-agent.md`
@@ -16155,8 +16211,8 @@ Controla CSS, tokens y boundaries.
 
 ---
 
-<a id="archivo-0050"></a>
-## Archivo #50: .ai/agents/debugging-agent.md
+<a id="archivo-0051"></a>
+## Archivo #51: .ai/agents/debugging-agent.md
 
 - **Ruta relativa:** `.ai/agents/debugging-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/debugging-agent.md`
@@ -16200,8 +16256,8 @@ Analiza incidentes y trazas.
 
 ---
 
-<a id="archivo-0051"></a>
-## Archivo #51: .ai/agents/designer-engine-agent.md
+<a id="archivo-0052"></a>
+## Archivo #52: .ai/agents/designer-engine-agent.md
 
 - **Ruta relativa:** `.ai/agents/designer-engine-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/designer-engine-agent.md`
@@ -16245,8 +16301,8 @@ Controla API pública del engine.
 
 ---
 
-<a id="archivo-0052"></a>
-## Archivo #52: .ai/agents/docs-governance-agent.md
+<a id="archivo-0053"></a>
+## Archivo #53: .ai/agents/docs-governance-agent.md
 
 - **Ruta relativa:** `.ai/agents/docs-governance-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/docs-governance-agent.md`
@@ -16290,8 +16346,8 @@ Mantiene documentación.
 
 ---
 
-<a id="archivo-0053"></a>
-## Archivo #53: .ai/agents/docusign-ux-agent.md
+<a id="archivo-0054"></a>
+## Archivo #54: .ai/agents/docusign-ux-agent.md
 
 - **Ruta relativa:** `.ai/agents/docusign-ux-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/docusign-ux-agent.md`
@@ -16334,8 +16390,8 @@ Transforma patrones UX generales de DocuSign/Wix en diseño propio de SISAD PDFM
 
 ---
 
-<a id="archivo-0054"></a>
-## Archivo #54: .ai/agents/external-forms-agent.md
+<a id="archivo-0055"></a>
+## Archivo #55: .ai/agents/external-forms-agent.md
 
 - **Ruta relativa:** `.ai/agents/external-forms-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/external-forms-agent.md`
@@ -16379,8 +16435,8 @@ Controla runner externalForms.
 
 ---
 
-<a id="archivo-0055"></a>
-## Archivo #55: .ai/agents/form-viewer-generator-agent.md
+<a id="archivo-0056"></a>
+## Archivo #56: .ai/agents/form-viewer-generator-agent.md
 
 - **Ruta relativa:** `.ai/agents/form-viewer-generator-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/form-viewer-generator-agent.md`
@@ -16428,8 +16484,8 @@ Controla parity Designer/Form/Viewer/Generator.
 
 ---
 
-<a id="archivo-0056"></a>
-## Archivo #56: .ai/agents/frontend-architect-agent.md
+<a id="archivo-0057"></a>
+## Archivo #57: .ai/agents/frontend-architect-agent.md
 
 - **Ruta relativa:** `.ai/agents/frontend-architect-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/frontend-architect-agent.md`
@@ -16473,8 +16529,8 @@ Protege arquitectura React, módulos y límites.
 
 ---
 
-<a id="archivo-0057"></a>
-## Archivo #57: .ai/agents/generator-converter-agent.md
+<a id="archivo-0058"></a>
+## Archivo #58: .ai/agents/generator-converter-agent.md
 
 - **Ruta relativa:** `.ai/agents/generator-converter-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/generator-converter-agent.md`
@@ -16518,8 +16574,8 @@ Controla generación y conversión.
 
 ---
 
-<a id="archivo-0058"></a>
-## Archivo #58: .ai/agents/interaction-regression-agent.md
+<a id="archivo-0059"></a>
+## Archivo #59: .ai/agents/interaction-regression-agent.md
 
 - **Ruta relativa:** `.ai/agents/interaction-regression-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/interaction-regression-agent.md`
@@ -16562,8 +16618,8 @@ Audita selección, shortcuts, command bus, Moveable/Selecto, toolbar contextual 
 
 ---
 
-<a id="archivo-0059"></a>
-## Archivo #59: .ai/agents/left-sidebar-catalog-agent.md
+<a id="archivo-0060"></a>
+## Archivo #60: .ai/agents/left-sidebar-catalog-agent.md
 
 - **Ruta relativa:** `.ai/agents/left-sidebar-catalog-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/left-sidebar-catalog-agent.md`
@@ -16607,8 +16663,8 @@ Controla catálogo izquierdo.
 
 ---
 
-<a id="archivo-0060"></a>
-## Archivo #60: .ai/agents/legacy-cleanup-agent.md
+<a id="archivo-0061"></a>
+## Archivo #61: .ai/agents/legacy-cleanup-agent.md
 
 - **Ruta relativa:** `.ai/agents/legacy-cleanup-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/legacy-cleanup-agent.md`
@@ -16652,8 +16708,8 @@ Reduce wrappers y deuda.
 
 ---
 
-<a id="archivo-0061"></a>
-## Archivo #61: .ai/agents/moveable-selecto-agent.md
+<a id="archivo-0062"></a>
+## Archivo #62: .ai/agents/moveable-selecto-agent.md
 
 - **Ruta relativa:** `.ai/agents/moveable-selecto-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/moveable-selecto-agent.md`
@@ -16697,8 +16753,8 @@ Controla transformaciones y selección.
 
 ---
 
-<a id="archivo-0062"></a>
-## Archivo #62: .ai/agents/process-flow-agent.md
+<a id="archivo-0063"></a>
+## Archivo #63: .ai/agents/process-flow-agent.md
 
 - **Ruta relativa:** `.ai/agents/process-flow-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/process-flow-agent.md`
@@ -16741,8 +16797,8 @@ Convierte contratos de proceso en tareas implementables por fase, tests y checkl
 
 ---
 
-<a id="archivo-0063"></a>
-## Archivo #63: .ai/agents/provider-sync-agent.md
+<a id="archivo-0064"></a>
+## Archivo #64: .ai/agents/provider-sync-agent.md
 
 - **Ruta relativa:** `.ai/agents/provider-sync-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/provider-sync-agent.md`
@@ -16786,8 +16842,8 @@ Sincroniza Claude/Codex/Copilot/Gemini.
 
 ---
 
-<a id="archivo-0064"></a>
-## Archivo #64: .ai/agents/quality-agent.md
+<a id="archivo-0065"></a>
+## Archivo #65: .ai/agents/quality-agent.md
 
 - **Ruta relativa:** `.ai/agents/quality-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/quality-agent.md`
@@ -16831,8 +16887,8 @@ Valida build/lint/tests.
 
 ---
 
-<a id="archivo-0065"></a>
-## Archivo #65: .ai/agents/recipient-color-agent.md
+<a id="archivo-0066"></a>
+## Archivo #66: .ai/agents/recipient-color-agent.md
 
 - **Ruta relativa:** `.ai/agents/recipient-color-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/recipient-color-agent.md`
@@ -16876,8 +16932,8 @@ Controla colores por destinatario.
 
 ---
 
-<a id="archivo-0066"></a>
-## Archivo #66: .ai/agents/registry.md
+<a id="archivo-0067"></a>
+## Archivo #67: .ai/agents/registry.md
 
 - **Ruta relativa:** `.ai/agents/registry.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/registry.md`
@@ -16940,8 +16996,8 @@ Controla colores por destinatario.
 
 ---
 
-<a id="archivo-0067"></a>
-## Archivo #67: .ai/agents/release-agent.md
+<a id="archivo-0068"></a>
+## Archivo #68: .ai/agents/release-agent.md
 
 - **Ruta relativa:** `.ai/agents/release-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/release-agent.md`
@@ -16985,8 +17041,8 @@ Prepara checklist release.
 
 ---
 
-<a id="archivo-0068"></a>
-## Archivo #68: .ai/agents/right-sidebar-inspector-agent.md
+<a id="archivo-0069"></a>
+## Archivo #69: .ai/agents/right-sidebar-inspector-agent.md
 
 - **Ruta relativa:** `.ai/agents/right-sidebar-inspector-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/right-sidebar-inspector-agent.md`
@@ -17030,8 +17086,8 @@ Controla inspector y panel derecho.
 
 ---
 
-<a id="archivo-0069"></a>
-## Archivo #69: .ai/agents/root-orchestrator-agent.md
+<a id="archivo-0070"></a>
+## Archivo #70: .ai/agents/root-orchestrator-agent.md
 
 - **Ruta relativa:** `.ai/agents/root-orchestrator-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/root-orchestrator-agent.md`
@@ -17075,8 +17131,8 @@ Orquesta tareas, contexto y validación.
 
 ---
 
-<a id="archivo-0070"></a>
-## Archivo #70: .ai/agents/schema-groups-agent.md
+<a id="archivo-0071"></a>
+## Archivo #71: .ai/agents/schema-groups-agent.md
 
 - **Ruta relativa:** `.ai/agents/schema-groups-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/schema-groups-agent.md`
@@ -17124,8 +17180,8 @@ Controla grupos de checkbox/radio, opciones y no-overlap.
 
 ---
 
-<a id="archivo-0071"></a>
-## Archivo #71: .ai/agents/schema-icon-sync-agent.md
+<a id="archivo-0072"></a>
+## Archivo #72: .ai/agents/schema-icon-sync-agent.md
 
 - **Ruta relativa:** `.ai/agents/schema-icon-sync-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/schema-icon-sync-agent.md`
@@ -17169,8 +17225,8 @@ Controla iconos y catálogo.
 
 ---
 
-<a id="archivo-0072"></a>
-## Archivo #72: .ai/agents/schema-registry-agent.md
+<a id="archivo-0073"></a>
+## Archivo #73: .ai/agents/schema-registry-agent.md
 
 - **Ruta relativa:** `.ai/agents/schema-registry-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/schema-registry-agent.md`
@@ -17214,8 +17270,8 @@ Controla plugins y schemas custom.
 
 ---
 
-<a id="archivo-0073"></a>
-## Archivo #73: .ai/agents/security-agent.md
+<a id="archivo-0074"></a>
+## Archivo #74: .ai/agents/security-agent.md
 
 - **Ruta relativa:** `.ai/agents/security-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/security-agent.md`
@@ -17259,8 +17315,8 @@ Protege datos sensibles.
 
 ---
 
-<a id="archivo-0074"></a>
-## Archivo #74: .ai/agents/sisad-pdfme-runtime-agent.md
+<a id="archivo-0075"></a>
+## Archivo #75: .ai/agents/sisad-pdfme-runtime-agent.md
 
 - **Ruta relativa:** `.ai/agents/sisad-pdfme-runtime-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/sisad-pdfme-runtime-agent.md`
@@ -17304,8 +17360,8 @@ Controla runtime Designer/Form/Viewer.
 
 ---
 
-<a id="archivo-0075"></a>
-## Archivo #75: .ai/agents/snapshot-agent.md
+<a id="archivo-0076"></a>
+## Archivo #76: .ai/agents/snapshot-agent.md
 
 - **Ruta relativa:** `.ai/agents/snapshot-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/snapshot-agent.md`
@@ -17349,8 +17405,8 @@ Controla import/export y round-trip.
 
 ---
 
-<a id="archivo-0076"></a>
-## Archivo #76: .ai/agents/standard-fields-agent.md
+<a id="archivo-0077"></a>
+## Archivo #77: .ai/agents/standard-fields-agent.md
 
 - **Ruta relativa:** `.ai/agents/standard-fields-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/standard-fields-agent.md`
@@ -17398,8 +17454,8 @@ Controla schemas estándar y su contrato de extremo a extremo.
 
 ---
 
-<a id="archivo-0077"></a>
-## Archivo #77: .ai/agents/testing-regression-agent.md
+<a id="archivo-0078"></a>
+## Archivo #78: .ai/agents/testing-regression-agent.md
 
 - **Ruta relativa:** `.ai/agents/testing-regression-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/testing-regression-agent.md`
@@ -17443,8 +17499,8 @@ Diseña matriz de pruebas.
 
 ---
 
-<a id="archivo-0078"></a>
-## Archivo #78: .ai/agents/token-economy-agent.md
+<a id="archivo-0079"></a>
+## Archivo #79: .ai/agents/token-economy-agent.md
 
 - **Ruta relativa:** `.ai/agents/token-economy-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/token-economy-agent.md`
@@ -17488,8 +17544,8 @@ Controla consumo de contexto.
 
 ---
 
-<a id="archivo-0079"></a>
-## Archivo #79: .ai/agents/ui-ux-agent.md
+<a id="archivo-0080"></a>
+## Archivo #80: .ai/agents/ui-ux-agent.md
 
 - **Ruta relativa:** `.ai/agents/ui-ux-agent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/agents/ui-ux-agent.md`
@@ -17533,8 +17589,8 @@ Controla distribución visual.
 
 ---
 
-<a id="archivo-0080"></a>
-## Archivo #80: .ai/architecture/agent-routing.md
+<a id="archivo-0081"></a>
+## Archivo #81: .ai/architecture/agent-routing.md
 
 - **Ruta relativa:** `.ai/architecture/agent-routing.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/architecture/agent-routing.md`
@@ -17570,8 +17626,8 @@ Mapa de intención a agente principal, subagentes y validación.
 
 ---
 
-<a id="archivo-0081"></a>
-## Archivo #81: .ai/architecture/assistant-architecture.md
+<a id="archivo-0082"></a>
+## Archivo #82: .ai/architecture/assistant-architecture.md
 
 - **Ruta relativa:** `.ai/architecture/assistant-architecture.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/architecture/assistant-architecture.md`
@@ -17607,8 +17663,8 @@ Define cómo un asistente debe cargar contexto, escoger agente, actuar y cerrar.
 
 ---
 
-<a id="archivo-0082"></a>
-## Archivo #82: .ai/architecture/context-loading-ladder.md
+<a id="archivo-0083"></a>
+## Archivo #83: .ai/architecture/context-loading-ladder.md
 
 - **Ruta relativa:** `.ai/architecture/context-loading-ladder.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/architecture/context-loading-ladder.md`
@@ -17644,8 +17700,8 @@ Escalera de contexto y presupuesto de tokens.
 
 ---
 
-<a id="archivo-0083"></a>
-## Archivo #83: .ai/architecture/fork-safe-evolution.md
+<a id="archivo-0084"></a>
+## Archivo #84: .ai/architecture/fork-safe-evolution.md
 
 - **Ruta relativa:** `.ai/architecture/fork-safe-evolution.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/architecture/fork-safe-evolution.md`
@@ -17681,8 +17737,8 @@ Cómo evolucionar sisad-pdfme sin acoplarlo al host SISAD.
 
 ---
 
-<a id="archivo-0084"></a>
-## Archivo #84: .ai/architecture/migration-features-to-core.md
+<a id="archivo-0085"></a>
+## Archivo #85: .ai/architecture/migration-features-to-core.md
 
 - **Ruta relativa:** `.ai/architecture/migration-features-to-core.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/architecture/migration-features-to-core.md`
@@ -17803,8 +17859,8 @@ Vite NO tiene wildcard `@sisad-pdfme/*` (solo common/ui/generator/schemas/conver
 
 ---
 
-<a id="archivo-0085"></a>
-## Archivo #85: .ai/architecture/module-boundaries.md
+<a id="archivo-0086"></a>
+## Archivo #86: .ai/architecture/module-boundaries.md
 
 - **Ruta relativa:** `.ai/architecture/module-boundaries.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/architecture/module-boundaries.md`
@@ -17840,8 +17896,8 @@ Fronteras entre ContentCustomForm, sisad-pdfme, externalForms y adaptadores.
 
 ---
 
-<a id="archivo-0086"></a>
-## Archivo #86: .ai/architecture/provider-model.md
+<a id="archivo-0087"></a>
+## Archivo #87: .ai/architecture/provider-model.md
 
 - **Ruta relativa:** `.ai/architecture/provider-model.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/architecture/provider-model.md`
@@ -17877,8 +17933,8 @@ Modelo de proveedores: Claude, Codex, Copilot, Gemini y genérico.
 
 ---
 
-<a id="archivo-0087"></a>
-## Archivo #87: .ai/architecture/quality-gate-model.md
+<a id="archivo-0088"></a>
+## Archivo #88: .ai/architecture/quality-gate-model.md
 
 - **Ruta relativa:** `.ai/architecture/quality-gate-model.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/architecture/quality-gate-model.md`
@@ -17914,8 +17970,8 @@ Gates mínimos por tipo de cambio.
 
 ---
 
-<a id="archivo-0088"></a>
-## Archivo #88: .ai/architecture/runtime-ownership.md
+<a id="archivo-0089"></a>
+## Archivo #89: .ai/architecture/runtime-ownership.md
 
 - **Ruta relativa:** `.ai/architecture/runtime-ownership.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/architecture/runtime-ownership.md`
@@ -17951,8 +18007,8 @@ Propiedad de canvas, sidebars, inspector, command bus, snapshots y UI.
 
 ---
 
-<a id="archivo-0089"></a>
-## Archivo #89: .ai/checklists/application-behavior.md
+<a id="archivo-0090"></a>
+## Archivo #90: .ai/checklists/application-behavior.md
 
 - **Ruta relativa:** `.ai/checklists/application-behavior.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/checklists/application-behavior.md`
@@ -17975,8 +18031,8 @@ Propiedad de canvas, sidebars, inspector, command bus, snapshots y UI.
 
 ---
 
-<a id="archivo-0090"></a>
-## Archivo #90: .ai/checklists/before-change.md
+<a id="archivo-0091"></a>
+## Archivo #91: .ai/checklists/before-change.md
 
 - **Ruta relativa:** `.ai/checklists/before-change.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/checklists/before-change.md`
@@ -17996,8 +18052,8 @@ Propiedad de canvas, sidebars, inspector, command bus, snapshots y UI.
 
 ---
 
-<a id="archivo-0091"></a>
-## Archivo #91: .ai/checklists/before-merge.md
+<a id="archivo-0092"></a>
+## Archivo #92: .ai/checklists/before-merge.md
 
 - **Ruta relativa:** `.ai/checklists/before-merge.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/checklists/before-merge.md`
@@ -18017,8 +18073,8 @@ Propiedad de canvas, sidebars, inspector, command bus, snapshots y UI.
 
 ---
 
-<a id="archivo-0092"></a>
-## Archivo #92: .ai/checklists/css-boundaries.md
+<a id="archivo-0093"></a>
+## Archivo #93: .ai/checklists/css-boundaries.md
 
 - **Ruta relativa:** `.ai/checklists/css-boundaries.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/checklists/css-boundaries.md`
@@ -18037,8 +18093,8 @@ Propiedad de canvas, sidebars, inspector, command bus, snapshots y UI.
 
 ---
 
-<a id="archivo-0093"></a>
-## Archivo #93: .ai/checklists/docusign-design.md
+<a id="archivo-0094"></a>
+## Archivo #94: .ai/checklists/docusign-design.md
 
 - **Ruta relativa:** `.ai/checklists/docusign-design.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/checklists/docusign-design.md`
@@ -18062,8 +18118,8 @@ Propiedad de canvas, sidebars, inspector, command bus, snapshots y UI.
 
 ---
 
-<a id="archivo-0094"></a>
-## Archivo #94: .ai/checklists/external-forms.md
+<a id="archivo-0095"></a>
+## Archivo #95: .ai/checklists/external-forms.md
 
 - **Ruta relativa:** `.ai/checklists/external-forms.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/checklists/external-forms.md`
@@ -18083,8 +18139,8 @@ Propiedad de canvas, sidebars, inspector, command bus, snapshots y UI.
 
 ---
 
-<a id="archivo-0095"></a>
-## Archivo #95: .ai/checklists/multipage-no-overlap.md
+<a id="archivo-0096"></a>
+## Archivo #96: .ai/checklists/multipage-no-overlap.md
 
 - **Ruta relativa:** `.ai/checklists/multipage-no-overlap.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/checklists/multipage-no-overlap.md`
@@ -18107,8 +18163,8 @@ Propiedad de canvas, sidebars, inspector, command bus, snapshots y UI.
 
 ---
 
-<a id="archivo-0096"></a>
-## Archivo #96: .ai/checklists/process-flow-before-change.md
+<a id="archivo-0097"></a>
+## Archivo #97: .ai/checklists/process-flow-before-change.md
 
 - **Ruta relativa:** `.ai/checklists/process-flow-before-change.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/checklists/process-flow-before-change.md`
@@ -18130,8 +18186,8 @@ Propiedad de canvas, sidebars, inspector, command bus, snapshots y UI.
 
 ---
 
-<a id="archivo-0097"></a>
-## Archivo #97: .ai/checklists/provider-sync.md
+<a id="archivo-0098"></a>
+## Archivo #98: .ai/checklists/provider-sync.md
 
 - **Ruta relativa:** `.ai/checklists/provider-sync.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/checklists/provider-sync.md`
@@ -18150,8 +18206,8 @@ Propiedad de canvas, sidebars, inspector, command bus, snapshots y UI.
 
 ---
 
-<a id="archivo-0098"></a>
-## Archivo #98: .ai/checklists/quality-gates.md
+<a id="archivo-0099"></a>
+## Archivo #99: .ai/checklists/quality-gates.md
 
 - **Ruta relativa:** `.ai/checklists/quality-gates.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/checklists/quality-gates.md`
@@ -18171,8 +18227,8 @@ Propiedad de canvas, sidebars, inspector, command bus, snapshots y UI.
 
 ---
 
-<a id="archivo-0099"></a>
-## Archivo #99: .ai/checklists/recipient-color.md
+<a id="archivo-0100"></a>
+## Archivo #100: .ai/checklists/recipient-color.md
 
 - **Ruta relativa:** `.ai/checklists/recipient-color.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/checklists/recipient-color.md`
@@ -18192,8 +18248,8 @@ Propiedad de canvas, sidebars, inspector, command bus, snapshots y UI.
 
 ---
 
-<a id="archivo-0100"></a>
-## Archivo #100: .ai/checklists/release.md
+<a id="archivo-0101"></a>
+## Archivo #101: .ai/checklists/release.md
 
 - **Ruta relativa:** `.ai/checklists/release.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/checklists/release.md`
@@ -18213,8 +18269,8 @@ Propiedad de canvas, sidebars, inspector, command bus, snapshots y UI.
 
 ---
 
-<a id="archivo-0101"></a>
-## Archivo #101: .ai/checklists/schema-transform.md
+<a id="archivo-0102"></a>
+## Archivo #102: .ai/checklists/schema-transform.md
 
 - **Ruta relativa:** `.ai/checklists/schema-transform.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/checklists/schema-transform.md`
@@ -18235,8 +18291,8 @@ Propiedad de canvas, sidebars, inspector, command bus, snapshots y UI.
 
 ---
 
-<a id="archivo-0102"></a>
-## Archivo #102: .ai/checklists/selection-shortcuts.md
+<a id="archivo-0103"></a>
+## Archivo #103: .ai/checklists/selection-shortcuts.md
 
 - **Ruta relativa:** `.ai/checklists/selection-shortcuts.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/checklists/selection-shortcuts.md`
@@ -18262,8 +18318,8 @@ Propiedad de canvas, sidebars, inspector, command bus, snapshots y UI.
 
 ---
 
-<a id="archivo-0103"></a>
-## Archivo #103: .ai/checklists/snapshot-roundtrip.md
+<a id="archivo-0104"></a>
+## Archivo #104: .ai/checklists/snapshot-roundtrip.md
 
 - **Ruta relativa:** `.ai/checklists/snapshot-roundtrip.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/checklists/snapshot-roundtrip.md`
@@ -18285,8 +18341,8 @@ Propiedad de canvas, sidebars, inspector, command bus, snapshots y UI.
 
 ---
 
-<a id="archivo-0104"></a>
-## Archivo #104: .ai/context/application-behavior-contract-context.md
+<a id="archivo-0105"></a>
+## Archivo #105: .ai/context/application-behavior-contract-context.md
 
 - **Ruta relativa:** `.ai/context/application-behavior-contract-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/application-behavior-contract-context.md`
@@ -18361,8 +18417,8 @@ Tests afectados:
 
 ---
 
-<a id="archivo-0105"></a>
-## Archivo #105: .ai/context/canvas-coordinates-context.md
+<a id="archivo-0106"></a>
+## Archivo #106: .ai/context/canvas-coordinates-context.md
 
 - **Ruta relativa:** `.ai/context/canvas-coordinates-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/canvas-coordinates-context.md`
@@ -18381,8 +18437,8 @@ Las coordenadas dependen de paper root, scale layer, scroll, zoom, bounds y tran
 
 ---
 
-<a id="archivo-0106"></a>
-## Archivo #106: .ai/context/checkboxgroup-context.md
+<a id="archivo-0107"></a>
+## Archivo #107: .ai/context/checkboxgroup-context.md
 
 - **Ruta relativa:** `.ai/context/checkboxgroup-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/checkboxgroup-context.md`
@@ -18430,8 +18486,8 @@ __designer.group.lockedAsGroup = true
 
 ---
 
-<a id="archivo-0107"></a>
-## Archivo #107: .ai/context/code-map.md
+<a id="archivo-0108"></a>
+## Archivo #108: .ai/context/code-map.md
 
 - **Ruta relativa:** `.ai/context/code-map.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/code-map.md`
@@ -18457,8 +18513,8 @@ __designer.group.lockedAsGroup = true
 
 ---
 
-<a id="archivo-0108"></a>
-## Archivo #108: .ai/context/collaboration-locks-context.md
+<a id="archivo-0109"></a>
+## Archivo #109: .ai/context/collaboration-locks-context.md
 
 - **Ruta relativa:** `.ai/context/collaboration-locks-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/collaboration-locks-context.md`
@@ -18477,8 +18533,8 @@ Locks y readonly permiten seleccionar pero bloquean cambios destructivos o trans
 
 ---
 
-<a id="archivo-0109"></a>
-## Archivo #109: .ai/context/command-bus-context.md
+<a id="archivo-0110"></a>
+## Archivo #110: .ai/context/command-bus-context.md
 
 - **Ruta relativa:** `.ai/context/command-bus-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/command-bus-context.md`
@@ -18497,8 +18553,8 @@ El command bus es la vía para acciones externas seguras: selection, duplicate, 
 
 ---
 
-<a id="archivo-0110"></a>
-## Archivo #110: .ai/context/component-contracts-context.md
+<a id="archivo-0111"></a>
+## Archivo #111: .ai/context/component-contracts-context.md
 
 - **Ruta relativa:** `.ai/context/component-contracts-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/component-contracts-context.md`
@@ -18553,8 +18609,8 @@ Preserva identidad, owner, grupos, opciones y valores.
 
 ---
 
-<a id="archivo-0111"></a>
-## Archivo #111: .ai/context/content-custom-form-integration-context.md
+<a id="archivo-0112"></a>
+## Archivo #112: .ai/context/content-custom-form-integration-context.md
 
 - **Ruta relativa:** `.ai/context/content-custom-form-integration-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/content-custom-form-integration-context.md`
@@ -18573,8 +18629,8 @@ Preserva identidad, owner, grupos, opciones y valores.
 
 ---
 
-<a id="archivo-0112"></a>
-## Archivo #112: .ai/context/css-design-system-context.md
+<a id="archivo-0113"></a>
+## Archivo #113: .ai/context/css-design-system-context.md
 
 - **Ruta relativa:** `.ai/context/css-design-system-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/css-design-system-context.md`
@@ -18593,8 +18649,8 @@ Tokens, variables y capas CSS deben evitar sobrescribir geometry handles. Todo b
 
 ---
 
-<a id="archivo-0113"></a>
-## Archivo #113: .ai/context/css-map.md
+<a id="archivo-0114"></a>
+## Archivo #114: .ai/context/css-map.md
 
 - **Ruta relativa:** `.ai/context/css-map.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/css-map.md`
@@ -18620,8 +18676,8 @@ La frontera CSS es `.sisad-pdfme-root`.
 
 ---
 
-<a id="archivo-0114"></a>
-## Archivo #114: .ai/context/designer-engine-context.md
+<a id="archivo-0115"></a>
+## Archivo #115: .ai/context/designer-engine-context.md
 
 - **Ruta relativa:** `.ai/context/designer-engine-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/designer-engine-context.md`
@@ -18640,8 +18696,8 @@ La frontera CSS es `.sisad-pdfme-root`.
 
 ---
 
-<a id="archivo-0115"></a>
-## Archivo #115: .ai/context/docs-map.md
+<a id="archivo-0116"></a>
+## Archivo #116: .ai/context/docs-map.md
 
 - **Ruta relativa:** `.ai/context/docs-map.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/docs-map.md`
@@ -18660,8 +18716,8 @@ La documentación previa contiene agentes, prompts, skills, instructions y docs 
 
 ---
 
-<a id="archivo-0116"></a>
-## Archivo #116: .ai/context/docusign-ux-reference-context.md
+<a id="archivo-0117"></a>
+## Archivo #117: .ai/context/docusign-ux-reference-context.md
 
 - **Ruta relativa:** `.ai/context/docusign-ux-reference-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/docusign-ux-reference-context.md`
@@ -18742,8 +18798,8 @@ DocuSign muestra campos estándar simples con icono + label: Texto, Número, Cas
 
 ---
 
-<a id="archivo-0117"></a>
-## Archivo #117: .ai/context/dropdown-select-context.md
+<a id="archivo-0118"></a>
+## Archivo #118: .ai/context/dropdown-select-context.md
 
 - **Ruta relativa:** `.ai/context/dropdown-select-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/dropdown-select-context.md`
@@ -18784,8 +18840,8 @@ ownerColor/recipientColor
 
 ---
 
-<a id="archivo-0118"></a>
-## Archivo #118: .ai/context/external-forms-runner-context.md
+<a id="archivo-0119"></a>
+## Archivo #119: .ai/context/external-forms-runner-context.md
 
 - **Ruta relativa:** `.ai/context/external-forms-runner-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/external-forms-runner-context.md`
@@ -18804,8 +18860,8 @@ externalForms debe consumir snapshot, seleccionar documento/destinatario y rende
 
 ---
 
-<a id="archivo-0119"></a>
-## Archivo #119: .ai/context/form-viewer-generator-parity-context.md
+<a id="archivo-0120"></a>
+## Archivo #120: .ai/context/form-viewer-generator-parity-context.md
 
 - **Ruta relativa:** `.ai/context/form-viewer-generator-parity-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/form-viewer-generator-parity-context.md`
@@ -18841,8 +18897,8 @@ Un schema que existe en Designer debe poder ejecutarse en Form, verse en Viewer 
 
 ---
 
-<a id="archivo-0120"></a>
-## Archivo #120: .ai/context/generator-converter-context.md
+<a id="archivo-0121"></a>
+## Archivo #121: .ai/context/generator-converter-context.md
 
 - **Ruta relativa:** `.ai/context/generator-converter-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/generator-converter-context.md`
@@ -18861,8 +18917,8 @@ Generator y converter deben mantener paridad con Designer/Form/Viewer y no depen
 
 ---
 
-<a id="archivo-0121"></a>
-## Archivo #121: .ai/context/integration-host-boundaries-context.md
+<a id="archivo-0122"></a>
+## Archivo #122: .ai/context/integration-host-boundaries-context.md
 
 - **Ruta relativa:** `.ai/context/integration-host-boundaries-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/integration-host-boundaries-context.md`
@@ -18881,8 +18937,8 @@ Host y runtime se comunican con props, commands, events y snapshot. Nunca por DO
 
 ---
 
-<a id="archivo-0122"></a>
-## Archivo #122: .ai/context/interaction-regression-context.md
+<a id="archivo-0123"></a>
+## Archivo #123: .ai/context/interaction-regression-context.md
 
 - **Ruta relativa:** `.ai/context/interaction-regression-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/interaction-regression-context.md`
@@ -18929,8 +18985,8 @@ keydown -> resolveShortcutByKeyboardEvent -> shouldSuppressDesignerShortcuts -> 
 
 ---
 
-<a id="archivo-0123"></a>
-## Archivo #123: .ai/context/legacy-cleanup-context.md
+<a id="archivo-0124"></a>
+## Archivo #124: .ai/context/legacy-cleanup-context.md
 
 - **Ruta relativa:** `.ai/context/legacy-cleanup-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/legacy-cleanup-context.md`
@@ -18949,8 +19005,8 @@ Eliminar wrappers/aliases sin valor, pero mantener bridges explícitos si hay co
 
 ---
 
-<a id="archivo-0124"></a>
-## Archivo #124: .ai/context/module-map.md
+<a id="archivo-0125"></a>
+## Archivo #125: .ai/context/module-map.md
 
 - **Ruta relativa:** `.ai/context/module-map.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/module-map.md`
@@ -18978,8 +19034,8 @@ Eliminar wrappers/aliases sin valor, pero mantener bridges explícitos si hay co
 
 ---
 
-<a id="archivo-0125"></a>
-## Archivo #125: .ai/context/moveable-selecto-context.md
+<a id="archivo-0126"></a>
+## Archivo #126: .ai/context/moveable-selecto-context.md
 
 - **Ruta relativa:** `.ai/context/moveable-selecto-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/moveable-selecto-context.md`
@@ -18998,8 +19054,8 @@ Moveable maneja resize/rotate/drag. Selecto maneja selección. Deben suspenderse
 
 ---
 
-<a id="archivo-0126"></a>
-## Archivo #126: .ai/context/no-overlap-contract-context.md
+<a id="archivo-0127"></a>
+## Archivo #127: .ai/context/no-overlap-contract-context.md
 
 - **Ruta relativa:** `.ai/context/no-overlap-contract-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/no-overlap-contract-context.md`
@@ -19047,8 +19103,8 @@ Para `checkboxGroup` y `radioGroup`, la colisión se evalúa contra el bounding 
 
 ---
 
-<a id="archivo-0127"></a>
-## Archivo #127: .ai/context/page-distribution-placement-context.md
+<a id="archivo-0128"></a>
+## Archivo #128: .ai/context/page-distribution-placement-context.md
 
 - **Ruta relativa:** `.ai/context/page-distribution-placement-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/page-distribution-placement-context.md`
@@ -19092,8 +19148,8 @@ Para grupos se usa bounding box total.
 
 ---
 
-<a id="archivo-0128"></a>
-## Archivo #128: .ai/context/pre-implementation-research.md
+<a id="archivo-0129"></a>
+## Archivo #129: .ai/context/pre-implementation-research.md
 
 - **Ruta relativa:** `.ai/context/pre-implementation-research.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/pre-implementation-research.md`
@@ -19130,8 +19186,8 @@ Para grupos se usa bounding box total.
 
 ---
 
-<a id="archivo-0129"></a>
-## Archivo #129: .ai/context/process-flow-implementation-context.md
+<a id="archivo-0130"></a>
+## Archivo #130: .ai/context/process-flow-implementation-context.md
 
 - **Ruta relativa:** `.ai/context/process-flow-implementation-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/process-flow-implementation-context.md`
@@ -19175,8 +19231,8 @@ Convertir faltantes en tareas por proceso, no por archivo suelto.
 
 ---
 
-<a id="archivo-0130"></a>
-## Archivo #130: .ai/context/project-overview.md
+<a id="archivo-0131"></a>
+## Archivo #131: .ai/context/project-overview.md
 
 - **Ruta relativa:** `.ai/context/project-overview.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/project-overview.md`
@@ -19195,8 +19251,8 @@ Runtime `sisad-pdfme` analizado desde 510 archivos de código, 323 Markdown y 6 
 
 ---
 
-<a id="archivo-0131"></a>
-## Archivo #131: .ai/context/provider-compatibility-context.md
+<a id="archivo-0132"></a>
+## Archivo #132: .ai/context/provider-compatibility-context.md
 
 - **Ruta relativa:** `.ai/context/provider-compatibility-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/provider-compatibility-context.md`
@@ -19215,8 +19271,8 @@ Claude/Codex/Copilot/Gemini deben leer `.ai` y no divergir.
 
 ---
 
-<a id="archivo-0132"></a>
-## Archivo #132: .ai/context/radiogroup-context.md
+<a id="archivo-0133"></a>
+## Archivo #133: .ai/context/radiogroup-context.md
 
 - **Ruta relativa:** `.ai/context/radiogroup-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/radiogroup-context.md`
@@ -19261,8 +19317,8 @@ __designer.group.lockedAsGroup = true
 
 ---
 
-<a id="archivo-0133"></a>
-## Archivo #133: .ai/context/recipient-color-context.md
+<a id="archivo-0134"></a>
+## Archivo #134: .ai/context/recipient-color-context.md
 
 - **Ruta relativa:** `.ai/context/recipient-color-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/recipient-color-context.md`
@@ -19281,8 +19337,8 @@ Catálogo = activeRecipientColor. Canvas = schema ownerColor. Los recipients deb
 
 ---
 
-<a id="archivo-0134"></a>
-## Archivo #134: .ai/context/schema-icon-sync-context.md
+<a id="archivo-0135"></a>
+## Archivo #135: .ai/context/schema-icon-sync-context.md
 
 - **Ruta relativa:** `.ai/context/schema-icon-sync-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/schema-icon-sync-context.md`
@@ -19301,8 +19357,8 @@ Catálogo = activeRecipientColor. Canvas = schema ownerColor. Los recipients deb
 
 ---
 
-<a id="archivo-0135"></a>
-## Archivo #135: .ai/context/schema-owner-persistence-context.md
+<a id="archivo-0136"></a>
+## Archivo #136: .ai/context/schema-owner-persistence-context.md
 
 - **Ruta relativa:** `.ai/context/schema-owner-persistence-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/schema-owner-persistence-context.md`
@@ -19321,8 +19377,8 @@ Cada schema necesita identidad estable, ownerId, ownerColor, assignment, página
 
 ---
 
-<a id="archivo-0136"></a>
-## Archivo #136: .ai/context/schema-registry-context.md
+<a id="archivo-0137"></a>
+## Archivo #137: .ai/context/schema-registry-context.md
 
 - **Ruta relativa:** `.ai/context/schema-registry-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/schema-registry-context.md`
@@ -19341,8 +19397,8 @@ El registry debe permitir built-in y custom plugins sin romper Form/Viewer/gener
 
 ---
 
-<a id="archivo-0137"></a>
-## Archivo #137: .ai/context/security-privacy-context.md
+<a id="archivo-0138"></a>
+## Archivo #138: .ai/context/security-privacy-context.md
 
 - **Ruta relativa:** `.ai/context/security-privacy-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/security-privacy-context.md`
@@ -19361,8 +19417,8 @@ No loggear PDFs, base64, PII, tokens ni payloads sensibles. Los fixtures deben u
 
 ---
 
-<a id="archivo-0138"></a>
-## Archivo #138: .ai/context/selection-shortcuts-context.md
+<a id="archivo-0139"></a>
+## Archivo #139: .ai/context/selection-shortcuts-context.md
 
 - **Ruta relativa:** `.ai/context/selection-shortcuts-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/selection-shortcuts-context.md`
@@ -19381,8 +19437,8 @@ Shortcuts deben respetar foco editable. `Mod+A`, Delete, Escape, group/ungroup n
 
 ---
 
-<a id="archivo-0139"></a>
-## Archivo #139: .ai/context/sidebars-inspector-context.md
+<a id="archivo-0140"></a>
+## Archivo #140: .ai/context/sidebars-inspector-context.md
 
 - **Ruta relativa:** `.ai/context/sidebars-inspector-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/sidebars-inspector-context.md`
@@ -19401,8 +19457,8 @@ LeftSidebar muestra catálogo. RightSidebar muestra lista, docs, comments e insp
 
 ---
 
-<a id="archivo-0140"></a>
-## Archivo #140: .ai/context/sisad-pdfme-runtime-context.md
+<a id="archivo-0141"></a>
+## Archivo #141: .ai/context/sisad-pdfme-runtime-context.md
 
 - **Ruta relativa:** `.ai/context/sisad-pdfme-runtime-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/sisad-pdfme-runtime-context.md`
@@ -19421,8 +19477,8 @@ LeftSidebar muestra catálogo. RightSidebar muestra lista, docs, comments e insp
 
 ---
 
-<a id="archivo-0141"></a>
-## Archivo #141: .ai/context/snapshot-contract-context.md
+<a id="archivo-0142"></a>
+## Archivo #142: .ai/context/snapshot-contract-context.md
 
 - **Ruta relativa:** `.ai/context/snapshot-contract-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/snapshot-contract-context.md`
@@ -19441,8 +19497,8 @@ Snapshot round-trip debe preservar recipients, assignments, colors, owner, schem
 
 ---
 
-<a id="archivo-0142"></a>
-## Archivo #142: .ai/context/standard-fields-groups-context.md
+<a id="archivo-0143"></a>
+## Archivo #143: .ai/context/standard-fields-groups-context.md
 
 - **Ruta relativa:** `.ai/context/standard-fields-groups-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/standard-fields-groups-context.md`
@@ -19518,8 +19574,8 @@ optionId
 
 ---
 
-<a id="archivo-0143"></a>
-## Archivo #143: .ai/context/tests-quality-context.md
+<a id="archivo-0144"></a>
+## Archivo #144: .ai/context/tests-quality-context.md
 
 - **Ruta relativa:** `.ai/context/tests-quality-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/tests-quality-context.md`
@@ -19538,8 +19594,8 @@ Vitest cubre contratos puros; Playwright cubre canvas, color visual, keyboard, t
 
 ---
 
-<a id="archivo-0144"></a>
-## Archivo #144: .ai/context/transform-controls-context.md
+<a id="archivo-0145"></a>
+## Archivo #145: .ai/context/transform-controls-context.md
 
 - **Ruta relativa:** `.ai/context/transform-controls-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/transform-controls-context.md`
@@ -19558,8 +19614,8 @@ Resize/rotate/drag deben funcionar al seleccionar schema, pero no durante inline
 
 ---
 
-<a id="archivo-0145"></a>
-## Archivo #145: .ai/context/ui-ux-compact-context.md
+<a id="archivo-0146"></a>
+## Archivo #146: .ai/context/ui-ux-compact-context.md
 
 - **Ruta relativa:** `.ai/context/ui-ux-compact-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/ui-ux-compact-context.md`
@@ -19578,8 +19634,8 @@ UI compacta tipo DocuSign/Wix: catálogo con icono + nombre, header mínimo, ins
 
 ---
 
-<a id="archivo-0146"></a>
-## Archivo #146: .ai/context/use-cases-regression-context.md
+<a id="archivo-0147"></a>
+## Archivo #147: .ai/context/use-cases-regression-context.md
 
 - **Ruta relativa:** `.ai/context/use-cases-regression-context.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/context/use-cases-regression-context.md`
@@ -19613,8 +19669,8 @@ La matriz completa está en `docs/11-standard-schemas/01-use-cases-overview.md` 
 
 ---
 
-<a id="archivo-0147"></a>
-## Archivo #147: .ai/memory/decisions.md
+<a id="archivo-0148"></a>
+## Archivo #148: .ai/memory/decisions.md
 
 - **Ruta relativa:** `.ai/memory/decisions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/memory/decisions.md`
@@ -19645,8 +19701,8 @@ El snapshot preserva identidad, documento, página, recipient, owner, color, rot
 
 ---
 
-<a id="archivo-0148"></a>
-## Archivo #148: .ai/memory/incidents.md
+<a id="archivo-0149"></a>
+## Archivo #149: .ai/memory/incidents.md
 
 - **Ruta relativa:** `.ai/memory/incidents.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/memory/incidents.md`
@@ -19685,8 +19741,8 @@ Hipótesis: metadata no está normalizada o no se serializa.
 
 ---
 
-<a id="archivo-0149"></a>
-## Archivo #149: .ai/memory/project-memory.md
+<a id="archivo-0150"></a>
+## Archivo #150: .ai/memory/project-memory.md
 
 - **Ruta relativa:** `.ai/memory/project-memory.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/memory/project-memory.md`
@@ -19728,8 +19784,8 @@ Se agrega una arquitectura documental para evitar regresiones por fixes locales.
 
 ---
 
-<a id="archivo-0150"></a>
-## Archivo #150: .ai/memory/session-handoff.md
+<a id="archivo-0151"></a>
+## Archivo #151: .ai/memory/session-handoff.md
 
 - **Ruta relativa:** `.ai/memory/session-handoff.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/memory/session-handoff.md`
@@ -19763,8 +19819,8 @@ Aplicar el paquete y ejecutar auditoría selectiva sobre:
 
 ---
 
-<a id="archivo-0151"></a>
-## Archivo #151: .ai/memory/update-protocol.md
+<a id="archivo-0152"></a>
+## Archivo #152: .ai/memory/update-protocol.md
 
 - **Ruta relativa:** `.ai/memory/update-protocol.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/memory/update-protocol.md`
@@ -19794,8 +19850,8 @@ No guardar logs con datos sensibles ni snapshots completos.
 
 ---
 
-<a id="archivo-0152"></a>
-## Archivo #152: .ai/prompts/audit-application-behavior-regressions.prompt.md
+<a id="archivo-0153"></a>
+## Archivo #153: .ai/prompts/audit-application-behavior-regressions.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/audit-application-behavior-regressions.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/audit-application-behavior-regressions.prompt.md`
@@ -19849,8 +19905,8 @@ rg "Selecto|Moveable|useDesignerKeyboardShortcuts|keyboardShortcutRegistry|selec
 
 ---
 
-<a id="archivo-0153"></a>
-## Archivo #153: .ai/prompts/audit-css-boundaries.prompt.md
+<a id="archivo-0154"></a>
+## Archivo #154: .ai/prompts/audit-css-boundaries.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/audit-css-boundaries.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/audit-css-boundaries.prompt.md`
@@ -19922,8 +19978,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0154"></a>
-## Archivo #154: .ai/prompts/audit-legacy-runtime-reduction.prompt.md
+<a id="archivo-0155"></a>
+## Archivo #155: .ai/prompts/audit-legacy-runtime-reduction.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/audit-legacy-runtime-reduction.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/audit-legacy-runtime-reduction.prompt.md`
@@ -19993,8 +20049,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0155"></a>
-## Archivo #155: .ai/prompts/audit-platform-boundaries.prompt.md
+<a id="archivo-0156"></a>
+## Archivo #156: .ai/prompts/audit-platform-boundaries.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/audit-platform-boundaries.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/audit-platform-boundaries.prompt.md`
@@ -20065,8 +20121,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0156"></a>
-## Archivo #156: .ai/prompts/audit-sisad-pdfme-use-cases.prompt.md
+<a id="archivo-0157"></a>
+## Archivo #157: .ai/prompts/audit-sisad-pdfme-use-cases.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/audit-sisad-pdfme-use-cases.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/audit-sisad-pdfme-use-cases.prompt.md`
@@ -20133,8 +20189,8 @@ Auditar cobertura de todos los casos de uso y actualizar matriz.
 
 ---
 
-<a id="archivo-0157"></a>
-## Archivo #157: .ai/prompts/build-regression-test-matrix.prompt.md
+<a id="archivo-0158"></a>
+## Archivo #158: .ai/prompts/build-regression-test-matrix.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/build-regression-test-matrix.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/build-regression-test-matrix.prompt.md`
@@ -20205,8 +20261,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0158"></a>
-## Archivo #158: .ai/prompts/complete-missing-tests-by-process.prompt.md
+<a id="archivo-0159"></a>
+## Archivo #159: .ai/prompts/complete-missing-tests-by-process.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/complete-missing-tests-by-process.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/complete-missing-tests-by-process.prompt.md`
@@ -20245,8 +20301,8 @@ Objetivo: crear cobertura real por proceso, no tests superficiales.
 
 ---
 
-<a id="archivo-0159"></a>
-## Archivo #159: .ai/prompts/create-playwright-canvas-scenarios.prompt.md
+<a id="archivo-0160"></a>
+## Archivo #160: .ai/prompts/create-playwright-canvas-scenarios.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/create-playwright-canvas-scenarios.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/create-playwright-canvas-scenarios.prompt.md`
@@ -20316,8 +20372,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0160"></a>
-## Archivo #160: .ai/prompts/create-test-fixtures-multi-recipient-colors.prompt.md
+<a id="archivo-0161"></a>
+## Archivo #161: .ai/prompts/create-test-fixtures-multi-recipient-colors.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/create-test-fixtures-multi-recipient-colors.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/create-test-fixtures-multi-recipient-colors.prompt.md`
@@ -20388,8 +20444,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0161"></a>
-## Archivo #161: .ai/prompts/fix-keyboard-shortcut-collisions.prompt.md
+<a id="archivo-0162"></a>
+## Archivo #162: .ai/prompts/fix-keyboard-shortcut-collisions.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/fix-keyboard-shortcut-collisions.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/fix-keyboard-shortcut-collisions.prompt.md`
@@ -20460,8 +20516,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0162"></a>
-## Archivo #162: .ai/prompts/generate-final-implementation-report.prompt.md
+<a id="archivo-0163"></a>
+## Archivo #163: .ai/prompts/generate-final-implementation-report.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/generate-final-implementation-report.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/generate-final-implementation-report.prompt.md`
@@ -20531,8 +20587,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0163"></a>
-## Archivo #163: .ai/prompts/harden-moveable-selecto-guards.prompt.md
+<a id="archivo-0164"></a>
+## Archivo #164: .ai/prompts/harden-moveable-selecto-guards.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/harden-moveable-selecto-guards.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/harden-moveable-selecto-guards.prompt.md`
@@ -20604,8 +20660,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0164"></a>
-## Archivo #164: .ai/prompts/harden-standard-fields-groups.prompt.md
+<a id="archivo-0165"></a>
+## Archivo #165: .ai/prompts/harden-standard-fields-groups.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/harden-standard-fields-groups.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/harden-standard-fields-groups.prompt.md`
@@ -20672,8 +20728,8 @@ Auditar y endurecer text, number, checkbox, checkboxGroup, radioGroup y select/d
 
 ---
 
-<a id="archivo-0165"></a>
-## Archivo #165: .ai/prompts/implement-behavior-contract-missing-pieces.prompt.md
+<a id="archivo-0166"></a>
+## Archivo #166: .ai/prompts/implement-behavior-contract-missing-pieces.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/implement-behavior-contract-missing-pieces.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/implement-behavior-contract-missing-pieces.prompt.md`
@@ -20716,8 +20772,8 @@ Objetivo: completar lo faltante de SISAD PDFME sin refactor masivo.
 
 ---
 
-<a id="archivo-0166"></a>
-## Archivo #166: .ai/prompts/implement-unique-recipient-palette.prompt.md
+<a id="archivo-0167"></a>
+## Archivo #167: .ai/prompts/implement-unique-recipient-palette.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/implement-unique-recipient-palette.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/implement-unique-recipient-palette.prompt.md`
@@ -20788,8 +20844,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0167"></a>
-## Archivo #167: .ai/prompts/improve-docusign-inspired-schema-design.prompt.md
+<a id="archivo-0168"></a>
+## Archivo #168: .ai/prompts/improve-docusign-inspired-schema-design.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/improve-docusign-inspired-schema-design.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/improve-docusign-inspired-schema-design.prompt.md`
@@ -20834,8 +20890,8 @@ rg "checkboxGroup|radioGroup|checkbox|select|text|number|signature|date|Renderer
 
 ---
 
-<a id="archivo-0168"></a>
-## Archivo #168: .ai/prompts/INDEX.md
+<a id="archivo-0169"></a>
+## Archivo #169: .ai/prompts/INDEX.md
 
 - **Ruta relativa:** `.ai/prompts/INDEX.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/INDEX.md`
@@ -20892,8 +20948,8 @@ rg "checkboxGroup|radioGroup|checkbox|select|text|number|signature|date|Renderer
 
 ---
 
-<a id="archivo-0169"></a>
-## Archivo #169: .ai/prompts/inspect-failed-test-results.prompt.md
+<a id="archivo-0170"></a>
+## Archivo #170: .ai/prompts/inspect-failed-test-results.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/inspect-failed-test-results.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/inspect-failed-test-results.prompt.md`
@@ -20964,8 +21020,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0170"></a>
-## Archivo #170: .ai/prompts/normalize-selection-transform-state-machine.prompt.md
+<a id="archivo-0171"></a>
+## Archivo #171: .ai/prompts/normalize-selection-transform-state-machine.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/normalize-selection-transform-state-machine.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/normalize-selection-transform-state-machine.prompt.md`
@@ -21036,8 +21092,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0171"></a>
-## Archivo #171: .ai/prompts/preserve-owner-color-on-existing-schemas.prompt.md
+<a id="archivo-0172"></a>
+## Archivo #172: .ai/prompts/preserve-owner-color-on-existing-schemas.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/preserve-owner-color-on-existing-schemas.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/preserve-owner-color-on-existing-schemas.prompt.md`
@@ -21109,8 +21165,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0172"></a>
-## Archivo #172: .ai/prompts/protect-inline-edit-from-transform.prompt.md
+<a id="archivo-0173"></a>
+## Archivo #173: .ai/prompts/protect-inline-edit-from-transform.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/protect-inline-edit-from-transform.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/protect-inline-edit-from-transform.prompt.md`
@@ -21181,8 +21237,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0173"></a>
-## Archivo #173: .ai/prompts/recipient-transform-master-plan.prompt.md
+<a id="archivo-0174"></a>
+## Archivo #174: .ai/prompts/recipient-transform-master-plan.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/recipient-transform-master-plan.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/recipient-transform-master-plan.prompt.md`
@@ -21257,8 +21313,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0174"></a>
-## Archivo #174: .ai/prompts/refactor-left-rail-catalog.prompt.md
+<a id="archivo-0175"></a>
+## Archivo #175: .ai/prompts/refactor-left-rail-catalog.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/refactor-left-rail-catalog.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/refactor-left-rail-catalog.prompt.md`
@@ -21329,8 +21385,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0175"></a>
-## Archivo #175: .ai/prompts/refactor-right-inspector-layout.prompt.md
+<a id="archivo-0176"></a>
+## Archivo #176: .ai/prompts/refactor-right-inspector-layout.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/refactor-right-inspector-layout.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/refactor-right-inspector-layout.prompt.md`
@@ -21401,8 +21457,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0176"></a>
-## Archivo #176: .ai/prompts/refactor-transform-geometry-utils.prompt.md
+<a id="archivo-0177"></a>
+## Archivo #177: .ai/prompts/refactor-transform-geometry-utils.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/refactor-transform-geometry-utils.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/refactor-transform-geometry-utils.prompt.md`
@@ -21473,8 +21529,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0177"></a>
-## Archivo #177: .ai/prompts/repair-checkboxgroup-flow.prompt.md
+<a id="archivo-0178"></a>
+## Archivo #178: .ai/prompts/repair-checkboxgroup-flow.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/repair-checkboxgroup-flow.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/repair-checkboxgroup-flow.prompt.md`
@@ -21541,8 +21597,8 @@ Corregir conversión checkbox -> checkboxGroup y botón + del grupo.
 
 ---
 
-<a id="archivo-0178"></a>
-## Archivo #178: .ai/prompts/repair-external-forms-runner.prompt.md
+<a id="archivo-0179"></a>
+## Archivo #179: .ai/prompts/repair-external-forms-runner.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/repair-external-forms-runner.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/repair-external-forms-runner.prompt.md`
@@ -21614,8 +21670,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0179"></a>
-## Archivo #179: .ai/prompts/repair-floating-toolbar-position.prompt.md
+<a id="archivo-0180"></a>
+## Archivo #180: .ai/prompts/repair-floating-toolbar-position.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/repair-floating-toolbar-position.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/repair-floating-toolbar-position.prompt.md`
@@ -21686,8 +21742,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0180"></a>
-## Archivo #180: .ai/prompts/repair-radiogroup-flow.prompt.md
+<a id="archivo-0181"></a>
+## Archivo #181: .ai/prompts/repair-radiogroup-flow.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/repair-radiogroup-flow.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/repair-radiogroup-flow.prompt.md`
@@ -21754,8 +21810,8 @@ Corregir comportamiento radioGroup/Opción, exclusividad y botón +.
 
 ---
 
-<a id="archivo-0181"></a>
-## Archivo #181: .ai/prompts/repair-recipient-color-sync.prompt.md
+<a id="archivo-0182"></a>
+## Archivo #182: .ai/prompts/repair-recipient-color-sync.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/repair-recipient-color-sync.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/repair-recipient-color-sync.prompt.md`
@@ -21828,8 +21884,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0182"></a>
-## Archivo #182: .ai/prompts/repair-schema-icon-color-sync.prompt.md
+<a id="archivo-0183"></a>
+## Archivo #183: .ai/prompts/repair-schema-icon-color-sync.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/repair-schema-icon-color-sync.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/repair-schema-icon-color-sync.prompt.md`
@@ -21901,8 +21957,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0183"></a>
-## Archivo #183: .ai/prompts/repair-snapshot-roundtrip.prompt.md
+<a id="archivo-0184"></a>
+## Archivo #184: .ai/prompts/repair-snapshot-roundtrip.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/repair-snapshot-roundtrip.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/repair-snapshot-roundtrip.prompt.md`
@@ -21974,8 +22030,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0184"></a>
-## Archivo #184: .ai/prompts/repair-transform-collisions.prompt.md
+<a id="archivo-0185"></a>
+## Archivo #185: .ai/prompts/repair-transform-collisions.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/repair-transform-collisions.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/repair-transform-collisions.prompt.md`
@@ -22047,8 +22103,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0185"></a>
-## Archivo #185: .ai/prompts/review-css-for-transform-handle-breaks.prompt.md
+<a id="archivo-0186"></a>
+## Archivo #186: .ai/prompts/review-css-for-transform-handle-breaks.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/review-css-for-transform-handle-breaks.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/review-css-for-transform-handle-breaks.prompt.md`
@@ -22118,8 +22174,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0186"></a>
-## Archivo #186: .ai/prompts/stabilize-designer-engine-api.prompt.md
+<a id="archivo-0187"></a>
+## Archivo #187: .ai/prompts/stabilize-designer-engine-api.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/stabilize-designer-engine-api.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/stabilize-designer-engine-api.prompt.md`
@@ -22190,8 +22246,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0187"></a>
-## Archivo #187: .ai/prompts/stabilize-schema-resize-rotation.prompt.md
+<a id="archivo-0188"></a>
+## Archivo #188: .ai/prompts/stabilize-schema-resize-rotation.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/stabilize-schema-resize-rotation.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/stabilize-schema-resize-rotation.prompt.md`
@@ -22262,8 +22318,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0188"></a>
-## Archivo #188: .ai/prompts/stabilize-selection-shortcuts-commandbus.prompt.md
+<a id="archivo-0189"></a>
+## Archivo #189: .ai/prompts/stabilize-selection-shortcuts-commandbus.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/stabilize-selection-shortcuts-commandbus.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/stabilize-selection-shortcuts-commandbus.prompt.md`
@@ -22308,8 +22364,8 @@ rg "Selecto|Moveable|shouldSuppressDesignerShortcuts|shouldSuppressCanvasRegionS
 
 ---
 
-<a id="archivo-0189"></a>
-## Archivo #189: .ai/prompts/standardize-data-attributes-for-colors.prompt.md
+<a id="archivo-0190"></a>
+## Archivo #190: .ai/prompts/standardize-data-attributes-for-colors.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/standardize-data-attributes-for-colors.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/standardize-data-attributes-for-colors.prompt.md`
@@ -22380,8 +22436,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0190"></a>
-## Archivo #190: .ai/prompts/unify-css-architecture.prompt.md
+<a id="archivo-0191"></a>
+## Archivo #191: .ai/prompts/unify-css-architecture.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/unify-css-architecture.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/unify-css-architecture.prompt.md`
@@ -22452,8 +22508,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0191"></a>
-## Archivo #191: .ai/prompts/update-docs-recipient-transform.prompt.md
+<a id="archivo-0192"></a>
+## Archivo #192: .ai/prompts/update-docs-recipient-transform.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/update-docs-recipient-transform.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/update-docs-recipient-transform.prompt.md`
@@ -22524,8 +22580,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0192"></a>
-## Archivo #192: .ai/prompts/update-md-architecture-v4.prompt.md
+<a id="archivo-0193"></a>
+## Archivo #193: .ai/prompts/update-md-architecture-v4.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/update-md-architecture-v4.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/update-md-architecture-v4.prompt.md`
@@ -22592,8 +22648,8 @@ Actualizar documentación multi proveedor sin crear prompts gigantes.
 
 ---
 
-<a id="archivo-0193"></a>
-## Archivo #193: .ai/prompts/validate-ci-flow-recipient-transform.prompt.md
+<a id="archivo-0194"></a>
+## Archivo #194: .ai/prompts/validate-ci-flow-recipient-transform.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/validate-ci-flow-recipient-transform.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/validate-ci-flow-recipient-transform.prompt.md`
@@ -22665,8 +22721,8 @@ npx playwright test tests/playwright/recipient-colors.spec.ts tests/playwright/s
 
 ---
 
-<a id="archivo-0194"></a>
-## Archivo #194: .ai/prompts/validate-group-no-overlap.prompt.md
+<a id="archivo-0195"></a>
+## Archivo #195: .ai/prompts/validate-group-no-overlap.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/validate-group-no-overlap.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/validate-group-no-overlap.prompt.md`
@@ -22733,8 +22789,8 @@ Validar no-overlap por owner y bounding box de grupos.
 
 ---
 
-<a id="archivo-0195"></a>
-## Archivo #195: .ai/prompts/validate-multipdf-multipage-nooverlap.prompt.md
+<a id="archivo-0196"></a>
+## Archivo #196: .ai/prompts/validate-multipdf-multipage-nooverlap.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/validate-multipdf-multipage-nooverlap.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/validate-multipdf-multipage-nooverlap.prompt.md`
@@ -22774,8 +22830,8 @@ rg "schemaAutoPlace|schemaCollision|resolveSmartDropPosition|hasOverlap|document
 
 ---
 
-<a id="archivo-0196"></a>
-## Archivo #196: .ai/prompts/validate-standard-field-parity.prompt.md
+<a id="archivo-0197"></a>
+## Archivo #197: .ai/prompts/validate-standard-field-parity.prompt.md
 
 - **Ruta relativa:** `.ai/prompts/validate-standard-field-parity.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/prompts/validate-standard-field-parity.prompt.md`
@@ -22842,8 +22898,8 @@ Validar Designer/Form/Viewer/Generator para schemas estándar.
 
 ---
 
-<a id="archivo-0197"></a>
-## Archivo #197: .ai/providers/claude-adapter.md
+<a id="archivo-0198"></a>
+## Archivo #198: .ai/providers/claude-adapter.md
 
 - **Ruta relativa:** `.ai/providers/claude-adapter.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/providers/claude-adapter.md`
@@ -22862,8 +22918,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0198"></a>
-## Archivo #198: .ai/providers/codex-adapter.md
+<a id="archivo-0199"></a>
+## Archivo #199: .ai/providers/codex-adapter.md
 
 - **Ruta relativa:** `.ai/providers/codex-adapter.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/providers/codex-adapter.md`
@@ -22882,8 +22938,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0199"></a>
-## Archivo #199: .ai/providers/gemini-adapter.md
+<a id="archivo-0200"></a>
+## Archivo #200: .ai/providers/gemini-adapter.md
 
 - **Ruta relativa:** `.ai/providers/gemini-adapter.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/providers/gemini-adapter.md`
@@ -22902,8 +22958,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0200"></a>
-## Archivo #200: .ai/providers/generic-provider-adapter.md
+<a id="archivo-0201"></a>
+## Archivo #201: .ai/providers/generic-provider-adapter.md
 
 - **Ruta relativa:** `.ai/providers/generic-provider-adapter.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/providers/generic-provider-adapter.md`
@@ -22922,8 +22978,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0201"></a>
-## Archivo #201: .ai/providers/github-copilot-adapter.md
+<a id="archivo-0202"></a>
+## Archivo #202: .ai/providers/github-copilot-adapter.md
 
 - **Ruta relativa:** `.ai/providers/github-copilot-adapter.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/providers/github-copilot-adapter.md`
@@ -22942,8 +22998,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0202"></a>
-## Archivo #202: .ai/providers/provider-contract.md
+<a id="archivo-0203"></a>
+## Archivo #203: .ai/providers/provider-contract.md
 
 - **Ruta relativa:** `.ai/providers/provider-contract.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/providers/provider-contract.md`
@@ -22962,8 +23018,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0203"></a>
-## Archivo #203: .ai/rules/application-behavior-contract-rules.md
+<a id="archivo-0204"></a>
+## Archivo #204: .ai/rules/application-behavior-contract-rules.md
 
 - **Ruta relativa:** `.ai/rules/application-behavior-contract-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/application-behavior-contract-rules.md`
@@ -22987,8 +23043,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0204"></a>
-## Archivo #204: .ai/rules/collaboration-lock-rules.md
+<a id="archivo-0205"></a>
+## Archivo #205: .ai/rules/collaboration-lock-rules.md
 
 - **Ruta relativa:** `.ai/rules/collaboration-lock-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/collaboration-lock-rules.md`
@@ -23016,8 +23072,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0205"></a>
-## Archivo #205: .ai/rules/command-bus-rules.md
+<a id="archivo-0206"></a>
+## Archivo #206: .ai/rules/command-bus-rules.md
 
 - **Ruta relativa:** `.ai/rules/command-bus-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/command-bus-rules.md`
@@ -23044,8 +23100,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0206"></a>
-## Archivo #206: .ai/rules/component-contract-rules.md
+<a id="archivo-0207"></a>
+## Archivo #207: .ai/rules/component-contract-rules.md
 
 - **Ruta relativa:** `.ai/rules/component-contract-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/component-contract-rules.md`
@@ -23070,8 +23126,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0207"></a>
-## Archivo #207: .ai/rules/context-loading-ladder-rules.md
+<a id="archivo-0208"></a>
+## Archivo #208: .ai/rules/context-loading-ladder-rules.md
 
 - **Ruta relativa:** `.ai/rules/context-loading-ladder-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/context-loading-ladder-rules.md`
@@ -23099,8 +23155,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0208"></a>
-## Archivo #208: .ai/rules/css-boundary-rules.md
+<a id="archivo-0209"></a>
+## Archivo #209: .ai/rules/css-boundary-rules.md
 
 - **Ruta relativa:** `.ai/rules/css-boundary-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/css-boundary-rules.md`
@@ -23128,8 +23184,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0209"></a>
-## Archivo #209: .ai/rules/docs-governance-rules.md
+<a id="archivo-0210"></a>
+## Archivo #210: .ai/rules/docs-governance-rules.md
 
 - **Ruta relativa:** `.ai/rules/docs-governance-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/docs-governance-rules.md`
@@ -23157,8 +23213,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0210"></a>
-## Archivo #210: .ai/rules/docusign-ux-design-rules.md
+<a id="archivo-0211"></a>
+## Archivo #211: .ai/rules/docusign-ux-design-rules.md
 
 - **Ruta relativa:** `.ai/rules/docusign-ux-design-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/docusign-ux-design-rules.md`
@@ -23182,8 +23238,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0211"></a>
-## Archivo #211: .ai/rules/external-forms-runner-rules.md
+<a id="archivo-0212"></a>
+## Archivo #212: .ai/rules/external-forms-runner-rules.md
 
 - **Ruta relativa:** `.ai/rules/external-forms-runner-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/external-forms-runner-rules.md`
@@ -23211,8 +23267,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0212"></a>
-## Archivo #212: .ai/rules/form-viewer-generator-rules.md
+<a id="archivo-0213"></a>
+## Archivo #213: .ai/rules/form-viewer-generator-rules.md
 
 - **Ruta relativa:** `.ai/rules/form-viewer-generator-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/form-viewer-generator-rules.md`
@@ -23235,8 +23291,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0213"></a>
-## Archivo #213: .ai/rules/generator-converter-rules.md
+<a id="archivo-0214"></a>
+## Archivo #214: .ai/rules/generator-converter-rules.md
 
 - **Ruta relativa:** `.ai/rules/generator-converter-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/generator-converter-rules.md`
@@ -23264,8 +23320,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0214"></a>
-## Archivo #214: .ai/rules/global-rules.md
+<a id="archivo-0215"></a>
+## Archivo #215: .ai/rules/global-rules.md
 
 - **Ruta relativa:** `.ai/rules/global-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/global-rules.md`
@@ -23294,8 +23350,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0215"></a>
-## Archivo #215: .ai/rules/host-runtime-boundary-rules.md
+<a id="archivo-0216"></a>
+## Archivo #216: .ai/rules/host-runtime-boundary-rules.md
 
 - **Ruta relativa:** `.ai/rules/host-runtime-boundary-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/host-runtime-boundary-rules.md`
@@ -23323,8 +23379,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0216"></a>
-## Archivo #216: .ai/rules/interaction-regression-rules.md
+<a id="archivo-0217"></a>
+## Archivo #217: .ai/rules/interaction-regression-rules.md
 
 - **Ruta relativa:** `.ai/rules/interaction-regression-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/interaction-regression-rules.md`
@@ -23348,8 +23404,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0217"></a>
-## Archivo #217: .ai/rules/legacy-reduction-rules.md
+<a id="archivo-0218"></a>
+## Archivo #218: .ai/rules/legacy-reduction-rules.md
 
 - **Ruta relativa:** `.ai/rules/legacy-reduction-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/legacy-reduction-rules.md`
@@ -23377,8 +23433,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0218"></a>
-## Archivo #218: .ai/rules/moveable-selecto-rules.md
+<a id="archivo-0219"></a>
+## Archivo #219: .ai/rules/moveable-selecto-rules.md
 
 - **Ruta relativa:** `.ai/rules/moveable-selecto-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/moveable-selecto-rules.md`
@@ -23406,8 +23462,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0219"></a>
-## Archivo #219: .ai/rules/no-overlap-rules.md
+<a id="archivo-0220"></a>
+## Archivo #220: .ai/rules/no-overlap-rules.md
 
 - **Ruta relativa:** `.ai/rules/no-overlap-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/no-overlap-rules.md`
@@ -23432,8 +23488,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0220"></a>
-## Archivo #220: .ai/rules/page-distribution-placement-rules.md
+<a id="archivo-0221"></a>
+## Archivo #221: .ai/rules/page-distribution-placement-rules.md
 
 - **Ruta relativa:** `.ai/rules/page-distribution-placement-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/page-distribution-placement-rules.md`
@@ -23457,8 +23513,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0221"></a>
-## Archivo #221: .ai/rules/provider-adapter-rules.md
+<a id="archivo-0222"></a>
+## Archivo #222: .ai/rules/provider-adapter-rules.md
 
 - **Ruta relativa:** `.ai/rules/provider-adapter-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/provider-adapter-rules.md`
@@ -23485,8 +23541,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0222"></a>
-## Archivo #222: .ai/rules/public-api-rules.md
+<a id="archivo-0223"></a>
+## Archivo #223: .ai/rules/public-api-rules.md
 
 - **Ruta relativa:** `.ai/rules/public-api-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/public-api-rules.md`
@@ -23514,8 +23570,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0223"></a>
-## Archivo #223: .ai/rules/schema-icon-color-rules.md
+<a id="archivo-0224"></a>
+## Archivo #224: .ai/rules/schema-icon-color-rules.md
 
 - **Ruta relativa:** `.ai/rules/schema-icon-color-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/schema-icon-color-rules.md`
@@ -23543,8 +23599,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0224"></a>
-## Archivo #224: .ai/rules/schema-ownership-rules.md
+<a id="archivo-0225"></a>
+## Archivo #225: .ai/rules/schema-ownership-rules.md
 
 - **Ruta relativa:** `.ai/rules/schema-ownership-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/schema-ownership-rules.md`
@@ -23572,8 +23628,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0225"></a>
-## Archivo #225: .ai/rules/security-privacy-rules.md
+<a id="archivo-0226"></a>
+## Archivo #226: .ai/rules/security-privacy-rules.md
 
 - **Ruta relativa:** `.ai/rules/security-privacy-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/security-privacy-rules.md`
@@ -23601,8 +23657,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0226"></a>
-## Archivo #226: .ai/rules/sidebars-inspector-rules.md
+<a id="archivo-0227"></a>
+## Archivo #227: .ai/rules/sidebars-inspector-rules.md
 
 - **Ruta relativa:** `.ai/rules/sidebars-inspector-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/sidebars-inspector-rules.md`
@@ -23630,8 +23686,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0227"></a>
-## Archivo #227: .ai/rules/snapshot-contract-rules.md
+<a id="archivo-0228"></a>
+## Archivo #228: .ai/rules/snapshot-contract-rules.md
 
 - **Ruta relativa:** `.ai/rules/snapshot-contract-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/snapshot-contract-rules.md`
@@ -23659,8 +23715,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0228"></a>
-## Archivo #228: .ai/rules/standard-fields-group-contract-rules.md
+<a id="archivo-0229"></a>
+## Archivo #229: .ai/rules/standard-fields-group-contract-rules.md
 
 - **Ruta relativa:** `.ai/rules/standard-fields-group-contract-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/standard-fields-group-contract-rules.md`
@@ -23686,8 +23742,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0229"></a>
-## Archivo #229: .ai/rules/testing-quality-rules.md
+<a id="archivo-0230"></a>
+## Archivo #230: .ai/rules/testing-quality-rules.md
 
 - **Ruta relativa:** `.ai/rules/testing-quality-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/testing-quality-rules.md`
@@ -23715,8 +23771,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0230"></a>
-## Archivo #230: .ai/rules/token-budget-rules.md
+<a id="archivo-0231"></a>
+## Archivo #231: .ai/rules/token-budget-rules.md
 
 - **Ruta relativa:** `.ai/rules/token-budget-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/token-budget-rules.md`
@@ -23744,8 +23800,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0231"></a>
-## Archivo #231: .ai/rules/transform-interaction-rules.md
+<a id="archivo-0232"></a>
+## Archivo #232: .ai/rules/transform-interaction-rules.md
 
 - **Ruta relativa:** `.ai/rules/transform-interaction-rules.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/rules/transform-interaction-rules.md`
@@ -23773,8 +23829,8 @@ No duplicar reglas largas.
 
 ---
 
-<a id="archivo-0232"></a>
-## Archivo #232: .ai/subagents/active-recipient-color-subagent.md
+<a id="archivo-0233"></a>
+## Archivo #233: .ai/subagents/active-recipient-color-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/active-recipient-color-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/active-recipient-color-subagent.md`
@@ -23805,8 +23861,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0233"></a>
-## Archivo #233: .ai/subagents/assignments-filtering-subagent.md
+<a id="archivo-0234"></a>
+## Archivo #234: .ai/subagents/assignments-filtering-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/assignments-filtering-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/assignments-filtering-subagent.md`
@@ -23837,8 +23893,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0234"></a>
-## Archivo #234: .ai/subagents/canvas-coordinate-subagent.md
+<a id="archivo-0235"></a>
+## Archivo #235: .ai/subagents/canvas-coordinate-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/canvas-coordinate-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/canvas-coordinate-subagent.md`
@@ -23869,8 +23925,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0235"></a>
-## Archivo #235: .ai/subagents/collaboration-locks-subagent.md
+<a id="archivo-0236"></a>
+## Archivo #236: .ai/subagents/collaboration-locks-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/collaboration-locks-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/collaboration-locks-subagent.md`
@@ -23901,8 +23957,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0236"></a>
-## Archivo #236: .ai/subagents/command-bus-transform-subagent.md
+<a id="archivo-0237"></a>
+## Archivo #237: .ai/subagents/command-bus-transform-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/command-bus-transform-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/command-bus-transform-subagent.md`
@@ -23933,8 +23989,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0237"></a>
-## Archivo #237: .ai/subagents/comments-overlay-subagent.md
+<a id="archivo-0238"></a>
+## Archivo #238: .ai/subagents/comments-overlay-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/comments-overlay-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/comments-overlay-subagent.md`
@@ -23965,8 +24021,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0238"></a>
-## Archivo #238: .ai/subagents/context-menu-guard-subagent.md
+<a id="archivo-0239"></a>
+## Archivo #239: .ai/subagents/context-menu-guard-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/context-menu-guard-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/context-menu-guard-subagent.md`
@@ -23997,8 +24053,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0239"></a>
-## Archivo #239: .ai/subagents/converter-browser-node-subagent.md
+<a id="archivo-0240"></a>
+## Archivo #240: .ai/subagents/converter-browser-node-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/converter-browser-node-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/converter-browser-node-subagent.md`
@@ -24029,8 +24085,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0240"></a>
-## Archivo #240: .ai/subagents/css-token-subagent.md
+<a id="archivo-0241"></a>
+## Archivo #241: .ai/subagents/css-token-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/css-token-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/css-token-subagent.md`
@@ -24061,8 +24117,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0241"></a>
-## Archivo #241: .ai/subagents/css-transform-handle-subagent.md
+<a id="archivo-0242"></a>
+## Archivo #242: .ai/subagents/css-transform-handle-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/css-transform-handle-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/css-transform-handle-subagent.md`
@@ -24093,8 +24149,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0242"></a>
-## Archivo #242: .ai/subagents/custom-plugin-contract-subagent.md
+<a id="archivo-0243"></a>
+## Archivo #243: .ai/subagents/custom-plugin-contract-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/custom-plugin-contract-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/custom-plugin-contract-subagent.md`
@@ -24125,8 +24181,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0243"></a>
-## Archivo #243: .ai/subagents/detail-widgets-subagent.md
+<a id="archivo-0244"></a>
+## Archivo #244: .ai/subagents/detail-widgets-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/detail-widgets-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/detail-widgets-subagent.md`
@@ -24157,8 +24213,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0244"></a>
-## Archivo #244: .ai/subagents/docs-migration-subagent.md
+<a id="archivo-0245"></a>
+## Archivo #245: .ai/subagents/docs-migration-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/docs-migration-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/docs-migration-subagent.md`
@@ -24189,8 +24245,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0245"></a>
-## Archivo #245: .ai/subagents/external-form-runner-subagent.md
+<a id="archivo-0246"></a>
+## Archivo #246: .ai/subagents/external-form-runner-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/external-form-runner-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/external-form-runner-subagent.md`
@@ -24221,8 +24277,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0246"></a>
-## Archivo #246: .ai/subagents/floating-toolbar-position-subagent.md
+<a id="archivo-0247"></a>
+## Archivo #247: .ai/subagents/floating-toolbar-position-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/floating-toolbar-position-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/floating-toolbar-position-subagent.md`
@@ -24253,8 +24309,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0247"></a>
-## Archivo #247: .ai/subagents/form-viewer-parity-subagent.md
+<a id="archivo-0248"></a>
+## Archivo #248: .ai/subagents/form-viewer-parity-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/form-viewer-parity-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/form-viewer-parity-subagent.md`
@@ -24285,8 +24341,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0248"></a>
-## Archivo #248: .ai/subagents/generator-helper-subagent.md
+<a id="archivo-0249"></a>
+## Archivo #249: .ai/subagents/generator-helper-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/generator-helper-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/generator-helper-subagent.md`
@@ -24317,8 +24373,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0249"></a>
-## Archivo #249: .ai/subagents/inline-edit-guard-subagent.md
+<a id="archivo-0250"></a>
+## Archivo #250: .ai/subagents/inline-edit-guard-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/inline-edit-guard-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/inline-edit-guard-subagent.md`
@@ -24349,8 +24405,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0250"></a>
-## Archivo #250: .ai/subagents/keyboard-shortcut-guard-subagent.md
+<a id="archivo-0251"></a>
+## Archivo #251: .ai/subagents/keyboard-shortcut-guard-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/keyboard-shortcut-guard-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/keyboard-shortcut-guard-subagent.md`
@@ -24381,8 +24437,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0251"></a>
-## Archivo #251: .ai/subagents/left-sidebar-catalog-color-subagent.md
+<a id="archivo-0252"></a>
+## Archivo #252: .ai/subagents/left-sidebar-catalog-color-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/left-sidebar-catalog-color-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/left-sidebar-catalog-color-subagent.md`
@@ -24413,8 +24469,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0252"></a>
-## Archivo #252: .ai/subagents/legacy-wrapper-subagent.md
+<a id="archivo-0253"></a>
+## Archivo #253: .ai/subagents/legacy-wrapper-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/legacy-wrapper-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/legacy-wrapper-subagent.md`
@@ -24445,8 +24501,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0253"></a>
-## Archivo #253: .ai/subagents/moveable-resize-subagent.md
+<a id="archivo-0254"></a>
+## Archivo #254: .ai/subagents/moveable-resize-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/moveable-resize-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/moveable-resize-subagent.md`
@@ -24477,8 +24533,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0254"></a>
-## Archivo #254: .ai/subagents/moveable-rotation-subagent.md
+<a id="archivo-0255"></a>
+## Archivo #255: .ai/subagents/moveable-rotation-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/moveable-rotation-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/moveable-rotation-subagent.md`
@@ -24509,8 +24565,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0255"></a>
-## Archivo #255: .ai/subagents/overlay-manager-subagent.md
+<a id="archivo-0256"></a>
+## Archivo #256: .ai/subagents/overlay-manager-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/overlay-manager-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/overlay-manager-subagent.md`
@@ -24541,8 +24597,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0256"></a>
-## Archivo #256: .ai/subagents/owner-color-persistence-subagent.md
+<a id="archivo-0257"></a>
+## Archivo #257: .ai/subagents/owner-color-persistence-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/owner-color-persistence-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/owner-color-persistence-subagent.md`
@@ -24573,8 +24629,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0257"></a>
-## Archivo #257: .ai/subagents/paper-scale-layer-subagent.md
+<a id="archivo-0258"></a>
+## Archivo #258: .ai/subagents/paper-scale-layer-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/paper-scale-layer-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/paper-scale-layer-subagent.md`
@@ -24605,8 +24661,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0258"></a>
-## Archivo #258: .ai/subagents/playwright-canvas-subagent.md
+<a id="archivo-0259"></a>
+## Archivo #259: .ai/subagents/playwright-canvas-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/playwright-canvas-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/playwright-canvas-subagent.md`
@@ -24637,8 +24693,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0259"></a>
-## Archivo #259: .ai/subagents/playwright-recipient-color-subagent.md
+<a id="archivo-0260"></a>
+## Archivo #260: .ai/subagents/playwright-recipient-color-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/playwright-recipient-color-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/playwright-recipient-color-subagent.md`
@@ -24669,8 +24725,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0260"></a>
-## Archivo #260: .ai/subagents/plugin-icon-fallback-subagent.md
+<a id="archivo-0261"></a>
+## Archivo #261: .ai/subagents/plugin-icon-fallback-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/plugin-icon-fallback-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/plugin-icon-fallback-subagent.md`
@@ -24701,8 +24757,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0261"></a>
-## Archivo #261: .ai/subagents/prompt-catalog-subagent.md
+<a id="archivo-0262"></a>
+## Archivo #262: .ai/subagents/prompt-catalog-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/prompt-catalog-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/prompt-catalog-subagent.md`
@@ -24733,8 +24789,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0262"></a>
-## Archivo #262: .ai/subagents/provider-drift-subagent.md
+<a id="archivo-0263"></a>
+## Archivo #263: .ai/subagents/provider-drift-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/provider-drift-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/provider-drift-subagent.md`
@@ -24765,8 +24821,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0263"></a>
-## Archivo #263: .ai/subagents/public-api-surface-subagent.md
+<a id="archivo-0264"></a>
+## Archivo #264: .ai/subagents/public-api-surface-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/public-api-surface-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/public-api-surface-subagent.md`
@@ -24797,8 +24853,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0264"></a>
-## Archivo #264: .ai/subagents/right-inspector-transform-subagent.md
+<a id="archivo-0265"></a>
+## Archivo #265: .ai/subagents/right-inspector-transform-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/right-inspector-transform-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/right-inspector-transform-subagent.md`
@@ -24829,8 +24885,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0265"></a>
-## Archivo #265: .ai/subagents/schema-registry-extension-subagent.md
+<a id="archivo-0266"></a>
+## Archivo #266: .ai/subagents/schema-registry-extension-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/schema-registry-extension-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/schema-registry-extension-subagent.md`
@@ -24861,8 +24917,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0266"></a>
-## Archivo #266: .ai/subagents/schema-tone-resolution-subagent.md
+<a id="archivo-0267"></a>
+## Archivo #267: .ai/subagents/schema-tone-resolution-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/schema-tone-resolution-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/schema-tone-resolution-subagent.md`
@@ -24893,8 +24949,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0267"></a>
-## Archivo #267: .ai/subagents/selecto-lifecycle-subagent.md
+<a id="archivo-0268"></a>
+## Archivo #268: .ai/subagents/selecto-lifecycle-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/selecto-lifecycle-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/selecto-lifecycle-subagent.md`
@@ -24925,8 +24981,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0268"></a>
-## Archivo #268: .ai/subagents/snapshot-legacy-compat-subagent.md
+<a id="archivo-0269"></a>
+## Archivo #269: .ai/subagents/snapshot-legacy-compat-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/snapshot-legacy-compat-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/snapshot-legacy-compat-subagent.md`
@@ -24957,8 +25013,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0269"></a>
-## Archivo #269: .ai/subagents/snapshot-roundtrip-subagent.md
+<a id="archivo-0270"></a>
+## Archivo #270: .ai/subagents/snapshot-roundtrip-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/snapshot-roundtrip-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/snapshot-roundtrip-subagent.md`
@@ -24989,8 +25045,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0270"></a>
-## Archivo #270: .ai/subagents/token-budget-subagent.md
+<a id="archivo-0271"></a>
+## Archivo #271: .ai/subagents/token-budget-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/token-budget-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/token-budget-subagent.md`
@@ -25021,8 +25077,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0271"></a>
-## Archivo #271: .ai/subagents/unique-palette-subagent.md
+<a id="archivo-0272"></a>
+## Archivo #272: .ai/subagents/unique-palette-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/unique-palette-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/unique-palette-subagent.md`
@@ -25053,8 +25109,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0272"></a>
-## Archivo #272: .ai/subagents/visual-regression-css-subagent.md
+<a id="archivo-0273"></a>
+## Archivo #273: .ai/subagents/visual-regression-css-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/visual-regression-css-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/visual-regression-css-subagent.md`
@@ -25085,8 +25141,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0273"></a>
-## Archivo #273: .ai/subagents/vitest-contract-subagent.md
+<a id="archivo-0274"></a>
+## Archivo #274: .ai/subagents/vitest-contract-subagent.md
 
 - **Ruta relativa:** `.ai/subagents/vitest-contract-subagent.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/subagents/vitest-contract-subagent.md`
@@ -25117,8 +25173,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0274"></a>
-## Archivo #274: .ai/templates/agent-report.md
+<a id="archivo-0275"></a>
+## Archivo #275: .ai/templates/agent-report.md
 
 - **Ruta relativa:** `.ai/templates/agent-report.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/templates/agent-report.md`
@@ -25140,8 +25196,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0275"></a>
-## Archivo #275: .ai/templates/architecture-decision-record.md
+<a id="archivo-0276"></a>
+## Archivo #276: .ai/templates/architecture-decision-record.md
 
 - **Ruta relativa:** `.ai/templates/architecture-decision-record.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/templates/architecture-decision-record.md`
@@ -25162,8 +25218,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0276"></a>
-## Archivo #276: .ai/templates/bug-ticket.md
+<a id="archivo-0277"></a>
+## Archivo #277: .ai/templates/bug-ticket.md
 
 - **Ruta relativa:** `.ai/templates/bug-ticket.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/templates/bug-ticket.md`
@@ -25184,8 +25240,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0277"></a>
-## Archivo #277: .ai/templates/handoff.md
+<a id="archivo-0278"></a>
+## Archivo #278: .ai/templates/handoff.md
 
 - **Ruta relativa:** `.ai/templates/handoff.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/templates/handoff.md`
@@ -25206,8 +25262,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0278"></a>
-## Archivo #278: .ai/templates/qa-report.md
+<a id="archivo-0279"></a>
+## Archivo #279: .ai/templates/qa-report.md
 
 - **Ruta relativa:** `.ai/templates/qa-report.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/templates/qa-report.md`
@@ -25228,8 +25284,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0279"></a>
-## Archivo #279: .ai/templates/refactor-report.md
+<a id="archivo-0280"></a>
+## Archivo #280: .ai/templates/refactor-report.md
 
 - **Ruta relativa:** `.ai/templates/refactor-report.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/templates/refactor-report.md`
@@ -25250,8 +25306,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0280"></a>
-## Archivo #280: .ai/templates/test-failure-analysis.md
+<a id="archivo-0281"></a>
+## Archivo #281: .ai/templates/test-failure-analysis.md
 
 - **Ruta relativa:** `.ai/templates/test-failure-analysis.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/templates/test-failure-analysis.md`
@@ -25272,8 +25328,8 @@ Cuando la tarea toque este dominio específico y exista riesgo de regresión o d
 
 ---
 
-<a id="archivo-0281"></a>
-## Archivo #281: .claude/commands/audit-css-boundaries.md
+<a id="archivo-0282"></a>
+## Archivo #282: .claude/commands/audit-css-boundaries.md
 
 - **Ruta relativa:** `.claude/commands/audit-css-boundaries.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.claude/commands/audit-css-boundaries.md`
@@ -25290,8 +25346,8 @@ Ejecutar flujo `audit-css-boundaries` usando `.ai/INDEX.md`, `.ai/context-map.md
 
 ---
 
-<a id="archivo-0282"></a>
-## Archivo #282: .claude/commands/harden-standard-fields-groups.md
+<a id="archivo-0283"></a>
+## Archivo #283: .claude/commands/harden-standard-fields-groups.md
 
 - **Ruta relativa:** `.claude/commands/harden-standard-fields-groups.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.claude/commands/harden-standard-fields-groups.md`
@@ -25314,8 +25370,8 @@ No duplicar lógica divergente en este wrapper.
 
 ---
 
-<a id="archivo-0283"></a>
-## Archivo #283: .claude/commands/local-selective-scan.md
+<a id="archivo-0284"></a>
+## Archivo #284: .claude/commands/local-selective-scan.md
 
 - **Ruta relativa:** `.claude/commands/local-selective-scan.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.claude/commands/local-selective-scan.md`
@@ -25332,8 +25388,8 @@ Ejecutar flujo `local-selective-scan` usando `.ai/INDEX.md`, `.ai/context-map.md
 
 ---
 
-<a id="archivo-0284"></a>
-## Archivo #284: .claude/commands/repair-recipient-color.md
+<a id="archivo-0285"></a>
+## Archivo #285: .claude/commands/repair-recipient-color.md
 
 - **Ruta relativa:** `.claude/commands/repair-recipient-color.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.claude/commands/repair-recipient-color.md`
@@ -25350,8 +25406,8 @@ Ejecutar flujo `repair-recipient-color` usando `.ai/INDEX.md`, `.ai/context-map.
 
 ---
 
-<a id="archivo-0285"></a>
-## Archivo #285: .claude/commands/repair-snapshot-roundtrip.md
+<a id="archivo-0286"></a>
+## Archivo #286: .claude/commands/repair-snapshot-roundtrip.md
 
 - **Ruta relativa:** `.claude/commands/repair-snapshot-roundtrip.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.claude/commands/repair-snapshot-roundtrip.md`
@@ -25368,8 +25424,8 @@ Ejecutar flujo `repair-snapshot-roundtrip` usando `.ai/INDEX.md`, `.ai/context-m
 
 ---
 
-<a id="archivo-0286"></a>
-## Archivo #286: .claude/commands/repair-transform-collisions.md
+<a id="archivo-0287"></a>
+## Archivo #287: .claude/commands/repair-transform-collisions.md
 
 - **Ruta relativa:** `.claude/commands/repair-transform-collisions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.claude/commands/repair-transform-collisions.md`
@@ -25386,8 +25442,8 @@ Ejecutar flujo `repair-transform-collisions` usando `.ai/INDEX.md`, `.ai/context
 
 ---
 
-<a id="archivo-0287"></a>
-## Archivo #287: .claude/commands/startup.md
+<a id="archivo-0288"></a>
+## Archivo #288: .claude/commands/startup.md
 
 - **Ruta relativa:** `.claude/commands/startup.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.claude/commands/startup.md`
@@ -25404,8 +25460,8 @@ Ejecutar flujo `startup` usando `.ai/INDEX.md`, `.ai/context-map.md` y prompts c
 
 ---
 
-<a id="archivo-0288"></a>
-## Archivo #288: .claude/commands/update-memory.md
+<a id="archivo-0289"></a>
+## Archivo #289: .claude/commands/update-memory.md
 
 - **Ruta relativa:** `.claude/commands/update-memory.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.claude/commands/update-memory.md`
@@ -25422,8 +25478,8 @@ Ejecutar flujo `update-memory` usando `.ai/INDEX.md`, `.ai/context-map.md` y pro
 
 ---
 
-<a id="archivo-0289"></a>
-## Archivo #289: .codex/tasks/atomic-fix.md
+<a id="archivo-0290"></a>
+## Archivo #290: .codex/tasks/atomic-fix.md
 
 - **Ruta relativa:** `.codex/tasks/atomic-fix.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.codex/tasks/atomic-fix.md`
@@ -25440,8 +25496,8 @@ Usar contexto mínimo, aplicar cambio pequeño, validar y reportar riesgos.
 
 ---
 
-<a id="archivo-0290"></a>
-## Archivo #290: .codex/tasks/legacy-cleanup-step.md
+<a id="archivo-0291"></a>
+## Archivo #291: .codex/tasks/legacy-cleanup-step.md
 
 - **Ruta relativa:** `.codex/tasks/legacy-cleanup-step.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.codex/tasks/legacy-cleanup-step.md`
@@ -25458,8 +25514,8 @@ Usar contexto mínimo, aplicar cambio pequeño, validar y reportar riesgos.
 
 ---
 
-<a id="archivo-0291"></a>
-## Archivo #291: .codex/tasks/quality-gates.md
+<a id="archivo-0292"></a>
+## Archivo #292: .codex/tasks/quality-gates.md
 
 - **Ruta relativa:** `.codex/tasks/quality-gates.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.codex/tasks/quality-gates.md`
@@ -25476,8 +25532,8 @@ Usar contexto mínimo, aplicar cambio pequeño, validar y reportar riesgos.
 
 ---
 
-<a id="archivo-0292"></a>
-## Archivo #292: .codex/tasks/recipient-transform-implementation.md
+<a id="archivo-0293"></a>
+## Archivo #293: .codex/tasks/recipient-transform-implementation.md
 
 - **Ruta relativa:** `.codex/tasks/recipient-transform-implementation.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.codex/tasks/recipient-transform-implementation.md`
@@ -25494,8 +25550,8 @@ Usar contexto mínimo, aplicar cambio pequeño, validar y reportar riesgos.
 
 ---
 
-<a id="archivo-0293"></a>
-## Archivo #293: .codex/tasks/refactor-safe.md
+<a id="archivo-0294"></a>
+## Archivo #294: .codex/tasks/refactor-safe.md
 
 - **Ruta relativa:** `.codex/tasks/refactor-safe.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.codex/tasks/refactor-safe.md`
@@ -25512,8 +25568,8 @@ Usar contexto mínimo, aplicar cambio pequeño, validar y reportar riesgos.
 
 ---
 
-<a id="archivo-0294"></a>
-## Archivo #294: .codex/tasks/standard-fields-hardening.md
+<a id="archivo-0295"></a>
+## Archivo #295: .codex/tasks/standard-fields-hardening.md
 
 - **Ruta relativa:** `.codex/tasks/standard-fields-hardening.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.codex/tasks/standard-fields-hardening.md`
@@ -25536,8 +25592,8 @@ No duplicar lógica divergente en este wrapper.
 
 ---
 
-<a id="archivo-0295"></a>
-## Archivo #295: .gemini/prompts/audit-architecture.md
+<a id="archivo-0296"></a>
+## Archivo #296: .gemini/prompts/audit-architecture.md
 
 - **Ruta relativa:** `.gemini/prompts/audit-architecture.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.gemini/prompts/audit-architecture.md`
@@ -25554,8 +25610,8 @@ Auditar y reportar inconsistencias sin modificar código.
 
 ---
 
-<a id="archivo-0296"></a>
-## Archivo #296: .gemini/prompts/audit-docs-vs-code.md
+<a id="archivo-0297"></a>
+## Archivo #297: .gemini/prompts/audit-docs-vs-code.md
 
 - **Ruta relativa:** `.gemini/prompts/audit-docs-vs-code.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.gemini/prompts/audit-docs-vs-code.md`
@@ -25572,8 +25628,8 @@ Auditar y reportar inconsistencias sin modificar código.
 
 ---
 
-<a id="archivo-0297"></a>
-## Archivo #297: .gemini/prompts/audit-recipient-transform.md
+<a id="archivo-0298"></a>
+## Archivo #298: .gemini/prompts/audit-recipient-transform.md
 
 - **Ruta relativa:** `.gemini/prompts/audit-recipient-transform.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.gemini/prompts/audit-recipient-transform.md`
@@ -25590,8 +25646,8 @@ Auditar y reportar inconsistencias sin modificar código.
 
 ---
 
-<a id="archivo-0298"></a>
-## Archivo #298: .gemini/prompts/audit-standard-fields-groups.md
+<a id="archivo-0299"></a>
+## Archivo #299: .gemini/prompts/audit-standard-fields-groups.md
 
 - **Ruta relativa:** `.gemini/prompts/audit-standard-fields-groups.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.gemini/prompts/audit-standard-fields-groups.md`
@@ -25614,8 +25670,8 @@ No duplicar lógica divergente en este wrapper.
 
 ---
 
-<a id="archivo-0299"></a>
-## Archivo #299: .gemini/prompts/audit-token-budget.md
+<a id="archivo-0300"></a>
+## Archivo #300: .gemini/prompts/audit-token-budget.md
 
 - **Ruta relativa:** `.gemini/prompts/audit-token-budget.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.gemini/prompts/audit-token-budget.md`
@@ -25632,8 +25688,8 @@ Auditar y reportar inconsistencias sin modificar código.
 
 ---
 
-<a id="archivo-0300"></a>
-## Archivo #300: .github/instructions/architecture-boundaries.instructions.md
+<a id="archivo-0301"></a>
+## Archivo #301: .github/instructions/architecture-boundaries.instructions.md
 
 - **Ruta relativa:** `.github/instructions/architecture-boundaries.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/instructions/architecture-boundaries.instructions.md`
@@ -25650,8 +25706,8 @@ Wrapper para `.ai/rules/architecture-boundaries-rules.md` cuando exista. Si no e
 
 ---
 
-<a id="archivo-0301"></a>
-## Archivo #301: .github/instructions/canvas-transform-safety.instructions.md
+<a id="archivo-0302"></a>
+## Archivo #302: .github/instructions/canvas-transform-safety.instructions.md
 
 - **Ruta relativa:** `.github/instructions/canvas-transform-safety.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/instructions/canvas-transform-safety.instructions.md`
@@ -25668,8 +25724,8 @@ Wrapper para `.ai/rules/canvas-transform-safety-rules.md` cuando exista. Si no e
 
 ---
 
-<a id="archivo-0302"></a>
-## Archivo #302: .github/instructions/css-boundaries.instructions.md
+<a id="archivo-0303"></a>
+## Archivo #303: .github/instructions/css-boundaries.instructions.md
 
 - **Ruta relativa:** `.github/instructions/css-boundaries.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/instructions/css-boundaries.instructions.md`
@@ -25686,8 +25742,8 @@ Wrapper para `.ai/rules/css-boundaries-rules.md` cuando exista. Si no existe, us
 
 ---
 
-<a id="archivo-0303"></a>
-## Archivo #303: .github/instructions/external-forms-runner.instructions.md
+<a id="archivo-0304"></a>
+## Archivo #304: .github/instructions/external-forms-runner.instructions.md
 
 - **Ruta relativa:** `.github/instructions/external-forms-runner.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/instructions/external-forms-runner.instructions.md`
@@ -25704,8 +25760,8 @@ Wrapper para `.ai/rules/external-forms-runner-rules.md` cuando exista. Si no exi
 
 ---
 
-<a id="archivo-0304"></a>
-## Archivo #304: .github/instructions/recipient-color-system.instructions.md
+<a id="archivo-0305"></a>
+## Archivo #305: .github/instructions/recipient-color-system.instructions.md
 
 - **Ruta relativa:** `.github/instructions/recipient-color-system.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/instructions/recipient-color-system.instructions.md`
@@ -25722,8 +25778,8 @@ Wrapper para `.ai/rules/recipient-color-system-rules.md` cuando exista. Si no ex
 
 ---
 
-<a id="archivo-0305"></a>
-## Archivo #305: .github/instructions/snapshot-contract.instructions.md
+<a id="archivo-0306"></a>
+## Archivo #306: .github/instructions/snapshot-contract.instructions.md
 
 - **Ruta relativa:** `.github/instructions/snapshot-contract.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/instructions/snapshot-contract.instructions.md`
@@ -25740,8 +25796,8 @@ Wrapper para `.ai/rules/snapshot-contract-rules.md` cuando exista. Si no existe,
 
 ---
 
-<a id="archivo-0306"></a>
-## Archivo #306: .github/instructions/testing-quality.instructions.md
+<a id="archivo-0307"></a>
+## Archivo #307: .github/instructions/testing-quality.instructions.md
 
 - **Ruta relativa:** `.github/instructions/testing-quality.instructions.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/instructions/testing-quality.instructions.md`
@@ -25758,8 +25814,8 @@ Wrapper para `.ai/rules/testing-quality-rules.md` cuando exista. Si no existe, u
 
 ---
 
-<a id="archivo-0307"></a>
-## Archivo #307: .github/prompts/audit-css-boundaries.prompt.md
+<a id="archivo-0308"></a>
+## Archivo #308: .github/prompts/audit-css-boundaries.prompt.md
 
 - **Ruta relativa:** `.github/prompts/audit-css-boundaries.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/audit-css-boundaries.prompt.md`
@@ -25778,8 +25834,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0308"></a>
-## Archivo #308: .github/prompts/audit-legacy-runtime-reduction.prompt.md
+<a id="archivo-0309"></a>
+## Archivo #309: .github/prompts/audit-legacy-runtime-reduction.prompt.md
 
 - **Ruta relativa:** `.github/prompts/audit-legacy-runtime-reduction.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/audit-legacy-runtime-reduction.prompt.md`
@@ -25798,8 +25854,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0309"></a>
-## Archivo #309: .github/prompts/build-regression-test-matrix.prompt.md
+<a id="archivo-0310"></a>
+## Archivo #310: .github/prompts/build-regression-test-matrix.prompt.md
 
 - **Ruta relativa:** `.github/prompts/build-regression-test-matrix.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/build-regression-test-matrix.prompt.md`
@@ -25818,8 +25874,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0310"></a>
-## Archivo #310: .github/prompts/fix-keyboard-shortcut-collisions.prompt.md
+<a id="archivo-0311"></a>
+## Archivo #311: .github/prompts/fix-keyboard-shortcut-collisions.prompt.md
 
 - **Ruta relativa:** `.github/prompts/fix-keyboard-shortcut-collisions.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/fix-keyboard-shortcut-collisions.prompt.md`
@@ -25838,8 +25894,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0311"></a>
-## Archivo #311: .github/prompts/harden-moveable-selecto-guards.prompt.md
+<a id="archivo-0312"></a>
+## Archivo #312: .github/prompts/harden-moveable-selecto-guards.prompt.md
 
 - **Ruta relativa:** `.github/prompts/harden-moveable-selecto-guards.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/harden-moveable-selecto-guards.prompt.md`
@@ -25858,8 +25914,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0312"></a>
-## Archivo #312: .github/prompts/harden-standard-fields-groups.prompt.md
+<a id="archivo-0313"></a>
+## Archivo #313: .github/prompts/harden-standard-fields-groups.prompt.md
 
 - **Ruta relativa:** `.github/prompts/harden-standard-fields-groups.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/harden-standard-fields-groups.prompt.md`
@@ -25882,8 +25938,8 @@ No duplicar lógica divergente en este wrapper.
 
 ---
 
-<a id="archivo-0313"></a>
-## Archivo #313: .github/prompts/implement-unique-recipient-palette.prompt.md
+<a id="archivo-0314"></a>
+## Archivo #314: .github/prompts/implement-unique-recipient-palette.prompt.md
 
 - **Ruta relativa:** `.github/prompts/implement-unique-recipient-palette.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/implement-unique-recipient-palette.prompt.md`
@@ -25902,8 +25958,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0314"></a>
-## Archivo #314: .github/prompts/inspect-failed-test-results.prompt.md
+<a id="archivo-0315"></a>
+## Archivo #315: .github/prompts/inspect-failed-test-results.prompt.md
 
 - **Ruta relativa:** `.github/prompts/inspect-failed-test-results.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/inspect-failed-test-results.prompt.md`
@@ -25922,8 +25978,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0315"></a>
-## Archivo #315: .github/prompts/preserve-owner-color-on-existing-schemas.prompt.md
+<a id="archivo-0316"></a>
+## Archivo #316: .github/prompts/preserve-owner-color-on-existing-schemas.prompt.md
 
 - **Ruta relativa:** `.github/prompts/preserve-owner-color-on-existing-schemas.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/preserve-owner-color-on-existing-schemas.prompt.md`
@@ -25942,8 +25998,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0316"></a>
-## Archivo #316: .github/prompts/protect-inline-edit-from-transform.prompt.md
+<a id="archivo-0317"></a>
+## Archivo #317: .github/prompts/protect-inline-edit-from-transform.prompt.md
 
 - **Ruta relativa:** `.github/prompts/protect-inline-edit-from-transform.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/protect-inline-edit-from-transform.prompt.md`
@@ -25962,8 +26018,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0317"></a>
-## Archivo #317: .github/prompts/recipient-transform-master-plan.prompt.md
+<a id="archivo-0318"></a>
+## Archivo #318: .github/prompts/recipient-transform-master-plan.prompt.md
 
 - **Ruta relativa:** `.github/prompts/recipient-transform-master-plan.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/recipient-transform-master-plan.prompt.md`
@@ -25982,8 +26038,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0318"></a>
-## Archivo #318: .github/prompts/repair-external-forms-runner.prompt.md
+<a id="archivo-0319"></a>
+## Archivo #319: .github/prompts/repair-external-forms-runner.prompt.md
 
 - **Ruta relativa:** `.github/prompts/repair-external-forms-runner.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/repair-external-forms-runner.prompt.md`
@@ -26002,8 +26058,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0319"></a>
-## Archivo #319: .github/prompts/repair-floating-toolbar-position.prompt.md
+<a id="archivo-0320"></a>
+## Archivo #320: .github/prompts/repair-floating-toolbar-position.prompt.md
 
 - **Ruta relativa:** `.github/prompts/repair-floating-toolbar-position.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/repair-floating-toolbar-position.prompt.md`
@@ -26022,8 +26078,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0320"></a>
-## Archivo #320: .github/prompts/repair-recipient-color-sync.prompt.md
+<a id="archivo-0321"></a>
+## Archivo #321: .github/prompts/repair-recipient-color-sync.prompt.md
 
 - **Ruta relativa:** `.github/prompts/repair-recipient-color-sync.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/repair-recipient-color-sync.prompt.md`
@@ -26042,8 +26098,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0321"></a>
-## Archivo #321: .github/prompts/repair-schema-icon-color-sync.prompt.md
+<a id="archivo-0322"></a>
+## Archivo #322: .github/prompts/repair-schema-icon-color-sync.prompt.md
 
 - **Ruta relativa:** `.github/prompts/repair-schema-icon-color-sync.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/repair-schema-icon-color-sync.prompt.md`
@@ -26062,8 +26118,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0322"></a>
-## Archivo #322: .github/prompts/repair-snapshot-roundtrip.prompt.md
+<a id="archivo-0323"></a>
+## Archivo #323: .github/prompts/repair-snapshot-roundtrip.prompt.md
 
 - **Ruta relativa:** `.github/prompts/repair-snapshot-roundtrip.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/repair-snapshot-roundtrip.prompt.md`
@@ -26082,8 +26138,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0323"></a>
-## Archivo #323: .github/prompts/repair-transform-collisions.prompt.md
+<a id="archivo-0324"></a>
+## Archivo #324: .github/prompts/repair-transform-collisions.prompt.md
 
 - **Ruta relativa:** `.github/prompts/repair-transform-collisions.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/repair-transform-collisions.prompt.md`
@@ -26102,8 +26158,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0324"></a>
-## Archivo #324: .github/prompts/stabilize-designer-engine-api.prompt.md
+<a id="archivo-0325"></a>
+## Archivo #325: .github/prompts/stabilize-designer-engine-api.prompt.md
 
 - **Ruta relativa:** `.github/prompts/stabilize-designer-engine-api.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/stabilize-designer-engine-api.prompt.md`
@@ -26122,8 +26178,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0325"></a>
-## Archivo #325: .github/prompts/stabilize-schema-resize-rotation.prompt.md
+<a id="archivo-0326"></a>
+## Archivo #326: .github/prompts/stabilize-schema-resize-rotation.prompt.md
 
 - **Ruta relativa:** `.github/prompts/stabilize-schema-resize-rotation.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/stabilize-schema-resize-rotation.prompt.md`
@@ -26142,8 +26198,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0326"></a>
-## Archivo #326: .github/prompts/unify-css-architecture.prompt.md
+<a id="archivo-0327"></a>
+## Archivo #327: .github/prompts/unify-css-architecture.prompt.md
 
 - **Ruta relativa:** `.github/prompts/unify-css-architecture.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/unify-css-architecture.prompt.md`
@@ -26162,8 +26218,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0327"></a>
-## Archivo #327: .github/prompts/update-docs-recipient-transform.prompt.md
+<a id="archivo-0328"></a>
+## Archivo #328: .github/prompts/update-docs-recipient-transform.prompt.md
 
 - **Ruta relativa:** `.github/prompts/update-docs-recipient-transform.prompt.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.github/prompts/update-docs-recipient-transform.prompt.md`
@@ -26182,8 +26238,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0328"></a>
-## Archivo #328: docs/00-indice/README.md
+<a id="archivo-0329"></a>
+## Archivo #329: docs/00-indice/README.md
 
 - **Ruta relativa:** `docs/00-indice/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/00-indice/README.md`
@@ -26204,8 +26260,8 @@ Usar ese prompt y no modificar este wrapper salvo sincronización controlada.
 
 ---
 
-<a id="archivo-0329"></a>
-## Archivo #329: docs/01-producto-y-vision/01-vision-producto.md
+<a id="archivo-0330"></a>
+## Archivo #330: docs/01-producto-y-vision/01-vision-producto.md
 
 - **Ruta relativa:** `docs/01-producto-y-vision/01-vision-producto.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/01-producto-y-vision/01-vision-producto.md`
@@ -26222,8 +26278,8 @@ Visión del editor SISAD PDFME como runtime de documentos PDF tipo DocuSign.
 
 ---
 
-<a id="archivo-0330"></a>
-## Archivo #330: docs/01-producto-y-vision/02-actores.md
+<a id="archivo-0331"></a>
+## Archivo #331: docs/01-producto-y-vision/02-actores.md
 
 - **Ruta relativa:** `docs/01-producto-y-vision/02-actores.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/01-producto-y-vision/02-actores.md`
@@ -26240,8 +26296,8 @@ Actores: diseñador, destinatario, revisor, sistema host, externalForms, proveed
 
 ---
 
-<a id="archivo-0331"></a>
-## Archivo #331: docs/01-producto-y-vision/03-objetivos.md
+<a id="archivo-0332"></a>
+## Archivo #332: docs/01-producto-y-vision/03-objetivos.md
 
 - **Ruta relativa:** `docs/01-producto-y-vision/03-objetivos.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/01-producto-y-vision/03-objetivos.md`
@@ -26258,8 +26314,8 @@ Objetivos: multi-documento, multi-recipient, colores, ownership, snapshot, firma
 
 ---
 
-<a id="archivo-0332"></a>
-## Archivo #332: docs/01-producto-y-vision/04-no-objetivos.md
+<a id="archivo-0333"></a>
+## Archivo #333: docs/01-producto-y-vision/04-no-objetivos.md
 
 - **Ruta relativa:** `docs/01-producto-y-vision/04-no-objetivos.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/01-producto-y-vision/04-no-objetivos.md`
@@ -26276,8 +26332,8 @@ No objetivos: acoplar fork a SISAD, duplicar renderer, manipular DOM interno.
 
 ---
 
-<a id="archivo-0333"></a>
-## Archivo #333: docs/02-mapa-modulos/01-inventario-codigo.md
+<a id="archivo-0334"></a>
+## Archivo #334: docs/02-mapa-modulos/01-inventario-codigo.md
 
 - **Ruta relativa:** `docs/02-mapa-modulos/01-inventario-codigo.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/02-mapa-modulos/01-inventario-codigo.md`
@@ -26305,8 +26361,8 @@ No objetivos: acoplar fork a SISAD, duplicar renderer, manipular DOM interno.
 
 ---
 
-<a id="archivo-0334"></a>
-## Archivo #334: docs/02-mapa-modulos/02-ui-designer-form-viewer.md
+<a id="archivo-0335"></a>
+## Archivo #335: docs/02-mapa-modulos/02-ui-designer-form-viewer.md
 
 - **Ruta relativa:** `docs/02-mapa-modulos/02-ui-designer-form-viewer.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/02-mapa-modulos/02-ui-designer-form-viewer.md`
@@ -26323,8 +26379,8 @@ Designer, Form y Viewer son entrypoints principales de runtime.
 
 ---
 
-<a id="archivo-0335"></a>
-## Archivo #335: docs/02-mapa-modulos/03-schemas-y-plugin-registry.md
+<a id="archivo-0336"></a>
+## Archivo #336: docs/02-mapa-modulos/03-schemas-y-plugin-registry.md
 
 - **Ruta relativa:** `docs/02-mapa-modulos/03-schemas-y-plugin-registry.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/02-mapa-modulos/03-schemas-y-plugin-registry.md`
@@ -26341,8 +26397,8 @@ Schemas built-in y custom deben pasar por registry y contratos compartidos.
 
 ---
 
-<a id="archivo-0336"></a>
-## Archivo #336: docs/02-mapa-modulos/04-generator-converter-pdflib.md
+<a id="archivo-0337"></a>
+## Archivo #337: docs/02-mapa-modulos/04-generator-converter-pdflib.md
 
 - **Ruta relativa:** `docs/02-mapa-modulos/04-generator-converter-pdflib.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/02-mapa-modulos/04-generator-converter-pdflib.md`
@@ -26359,8 +26415,8 @@ Generator/converter/pdf-lib deben permanecer desacoplados de host.
 
 ---
 
-<a id="archivo-0337"></a>
-## Archivo #337: docs/02-mapa-modulos/05-tests-playwright-vitest.md
+<a id="archivo-0338"></a>
+## Archivo #338: docs/02-mapa-modulos/05-tests-playwright-vitest.md
 
 - **Ruta relativa:** `docs/02-mapa-modulos/05-tests-playwright-vitest.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/02-mapa-modulos/05-tests-playwright-vitest.md`
@@ -26377,8 +26433,8 @@ Inventario: 83 unitarios y 11 Playwright detectados.
 
 ---
 
-<a id="archivo-0338"></a>
-## Archivo #338: docs/03-arquitectura/01-boundaries-host-runtime.md
+<a id="archivo-0339"></a>
+## Archivo #339: docs/03-arquitectura/01-boundaries-host-runtime.md
 
 - **Ruta relativa:** `docs/03-arquitectura/01-boundaries-host-runtime.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/03-arquitectura/01-boundaries-host-runtime.md`
@@ -26395,8 +26451,8 @@ ContentCustomForm host; sisad-pdfme runtime; adapters traducen contexto.
 
 ---
 
-<a id="archivo-0339"></a>
-## Archivo #339: docs/03-arquitectura/02-runtime-visual.md
+<a id="archivo-0340"></a>
+## Archivo #340: docs/03-arquitectura/02-runtime-visual.md
 
 - **Ruta relativa:** `docs/03-arquitectura/02-runtime-visual.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/03-arquitectura/02-runtime-visual.md`
@@ -26413,8 +26469,8 @@ Canvas, sidebars, inspector, comments y docs rail pertenecen a runtime.
 
 ---
 
-<a id="archivo-0340"></a>
-## Archivo #340: docs/03-arquitectura/03-command-bus-events.md
+<a id="archivo-0341"></a>
+## Archivo #341: docs/03-arquitectura/03-command-bus-events.md
 
 - **Ruta relativa:** `docs/03-arquitectura/03-command-bus-events.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/03-arquitectura/03-command-bus-events.md`
@@ -26431,8 +26487,8 @@ Comandos/eventos reemplazan manipulación de DOM.
 
 ---
 
-<a id="archivo-0341"></a>
-## Archivo #341: docs/03-arquitectura/04-snapshot-contract.md
+<a id="archivo-0342"></a>
+## Archivo #342: docs/03-arquitectura/04-snapshot-contract.md
 
 - **Ruta relativa:** `docs/03-arquitectura/04-snapshot-contract.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/03-arquitectura/04-snapshot-contract.md`
@@ -26449,8 +26505,8 @@ Snapshot preserva identidad, color, owner, rotation y metadata.
 
 ---
 
-<a id="archivo-0342"></a>
-## Archivo #342: docs/03-arquitectura/05-external-forms-contract.md
+<a id="archivo-0343"></a>
+## Archivo #343: docs/03-arquitectura/05-external-forms-contract.md
 
 - **Ruta relativa:** `docs/03-arquitectura/05-external-forms-contract.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/03-arquitectura/05-external-forms-contract.md`
@@ -26467,8 +26523,8 @@ externalForms consume snapshot con Form/Viewer.
 
 ---
 
-<a id="archivo-0343"></a>
-## Archivo #343: docs/03-arquitectura/06-collaboration-locks.md
+<a id="archivo-0344"></a>
+## Archivo #344: docs/03-arquitectura/06-collaboration-locks.md
 
 - **Ruta relativa:** `docs/03-arquitectura/06-collaboration-locks.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/03-arquitectura/06-collaboration-locks.md`
@@ -26485,8 +26541,8 @@ Locks y readonly bloquean transformaciones pero permiten visibilidad.
 
 ---
 
-<a id="archivo-0344"></a>
-## Archivo #344: docs/03-arquitectura/07-public-api.md
+<a id="archivo-0345"></a>
+## Archivo #345: docs/03-arquitectura/07-public-api.md
 
 - **Ruta relativa:** `docs/03-arquitectura/07-public-api.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/03-arquitectura/07-public-api.md`
@@ -26503,8 +26559,8 @@ API pública versionada y documentada.
 
 ---
 
-<a id="archivo-0345"></a>
-## Archivo #345: docs/03-arquitectura/08-fork-safe-evolution.md
+<a id="archivo-0346"></a>
+## Archivo #346: docs/03-arquitectura/08-fork-safe-evolution.md
 
 - **Ruta relativa:** `docs/03-arquitectura/08-fork-safe-evolution.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/03-arquitectura/08-fork-safe-evolution.md`
@@ -26521,8 +26577,8 @@ Evolución segura del fork.
 
 ---
 
-<a id="archivo-0346"></a>
-## Archivo #346: docs/04-recipient-transform/01-recipient-color-behavior.md
+<a id="archivo-0347"></a>
+## Archivo #347: docs/04-recipient-transform/01-recipient-color-behavior.md
 
 - **Ruta relativa:** `docs/04-recipient-transform/01-recipient-color-behavior.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/04-recipient-transform/01-recipient-color-behavior.md`
@@ -26539,8 +26595,8 @@ Catálogo usa activeRecipientColor; canvas usa ownerColor persistido.
 
 ---
 
-<a id="archivo-0347"></a>
-## Archivo #347: docs/04-recipient-transform/02-schema-icon-color-sync.md
+<a id="archivo-0348"></a>
+## Archivo #348: docs/04-recipient-transform/02-schema-icon-color-sync.md
 
 - **Ruta relativa:** `docs/04-recipient-transform/02-schema-icon-color-sync.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/04-recipient-transform/02-schema-icon-color-sync.md`
@@ -26557,8 +26613,8 @@ PluginIcon debe exponer color activo y fallback visible.
 
 ---
 
-<a id="archivo-0348"></a>
-## Archivo #348: docs/04-recipient-transform/03-owner-color-persistence.md
+<a id="archivo-0349"></a>
+## Archivo #349: docs/04-recipient-transform/03-owner-color-persistence.md
 
 - **Ruta relativa:** `docs/04-recipient-transform/03-owner-color-persistence.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/04-recipient-transform/03-owner-color-persistence.md`
@@ -26575,8 +26631,8 @@ ownerColor no cambia al cambiar destinatario activo.
 
 ---
 
-<a id="archivo-0349"></a>
-## Archivo #349: docs/04-recipient-transform/04-transform-state-machine.md
+<a id="archivo-0350"></a>
+## Archivo #350: docs/04-recipient-transform/04-transform-state-machine.md
 
 - **Ruta relativa:** `docs/04-recipient-transform/04-transform-state-machine.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/04-recipient-transform/04-transform-state-machine.md`
@@ -26593,8 +26649,8 @@ State machine para idle/selecting/dragging/resizing/rotating/editing/menu.
 
 ---
 
-<a id="archivo-0350"></a>
-## Archivo #350: docs/04-recipient-transform/05-moveable-selecto.md
+<a id="archivo-0351"></a>
+## Archivo #351: docs/04-recipient-transform/05-moveable-selecto.md
 
 - **Ruta relativa:** `docs/04-recipient-transform/05-moveable-selecto.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/04-recipient-transform/05-moveable-selecto.md`
@@ -26611,8 +26667,8 @@ Moveable y Selecto no operan simultáneamente.
 
 ---
 
-<a id="archivo-0351"></a>
-## Archivo #351: docs/04-recipient-transform/06-shortcuts-and-inline-edit.md
+<a id="archivo-0352"></a>
+## Archivo #352: docs/04-recipient-transform/06-shortcuts-and-inline-edit.md
 
 - **Ruta relativa:** `docs/04-recipient-transform/06-shortcuts-and-inline-edit.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/04-recipient-transform/06-shortcuts-and-inline-edit.md`
@@ -26629,8 +26685,8 @@ Inputs y editores bloquean shortcuts globales.
 
 ---
 
-<a id="archivo-0352"></a>
-## Archivo #352: docs/04-recipient-transform/07-accessibility-colors.md
+<a id="archivo-0353"></a>
+## Archivo #353: docs/04-recipient-transform/07-accessibility-colors.md
 
 - **Ruta relativa:** `docs/04-recipient-transform/07-accessibility-colors.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/04-recipient-transform/07-accessibility-colors.md`
@@ -26647,8 +26703,8 @@ Paleta legible, contraste y fallback.
 
 ---
 
-<a id="archivo-0353"></a>
-## Archivo #353: docs/05-ui-ux/01-left-sidebar-catalog.md
+<a id="archivo-0354"></a>
+## Archivo #354: docs/05-ui-ux/01-left-sidebar-catalog.md
 
 - **Ruta relativa:** `docs/05-ui-ux/01-left-sidebar-catalog.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/05-ui-ux/01-left-sidebar-catalog.md`
@@ -26665,8 +26721,8 @@ Catálogo compacto: icono + nombre, detalle en inspector.
 
 ---
 
-<a id="archivo-0354"></a>
-## Archivo #354: docs/05-ui-ux/02-right-sidebar-inspector.md
+<a id="archivo-0355"></a>
+## Archivo #355: docs/05-ui-ux/02-right-sidebar-inspector.md
 
 - **Ruta relativa:** `docs/05-ui-ux/02-right-sidebar-inspector.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/05-ui-ux/02-right-sidebar-inspector.md`
@@ -26683,8 +26739,8 @@ Inspector con secciones y widgets.
 
 ---
 
-<a id="archivo-0355"></a>
-## Archivo #355: docs/05-ui-ux/03-floating-toolbar.md
+<a id="archivo-0356"></a>
+## Archivo #356: docs/05-ui-ux/03-floating-toolbar.md
 
 - **Ruta relativa:** `docs/05-ui-ux/03-floating-toolbar.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/05-ui-ux/03-floating-toolbar.md`
@@ -26701,8 +26757,8 @@ Toolbar contextual debe recalcular con scroll/zoom/rotate.
 
 ---
 
-<a id="archivo-0356"></a>
-## Archivo #356: docs/05-ui-ux/04-canvas-overlays.md
+<a id="archivo-0357"></a>
+## Archivo #357: docs/05-ui-ux/04-canvas-overlays.md
 
 - **Ruta relativa:** `docs/05-ui-ux/04-canvas-overlays.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/05-ui-ux/04-canvas-overlays.md`
@@ -26719,8 +26775,8 @@ Overlays no deben robar eventos indebidamente.
 
 ---
 
-<a id="archivo-0357"></a>
-## Archivo #357: docs/05-ui-ux/05-compact-header-host.md
+<a id="archivo-0358"></a>
+## Archivo #358: docs/05-ui-ux/05-compact-header-host.md
 
 - **Ruta relativa:** `docs/05-ui-ux/05-compact-header-host.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/05-ui-ux/05-compact-header-host.md`
@@ -26737,8 +26793,8 @@ Host puede tener header mínimo; no duplicar toolbar del runtime.
 
 ---
 
-<a id="archivo-0358"></a>
-## Archivo #358: docs/05-ui-ux/06-responsive.md
+<a id="archivo-0359"></a>
+## Archivo #359: docs/05-ui-ux/06-responsive.md
 
 - **Ruta relativa:** `docs/05-ui-ux/06-responsive.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/05-ui-ux/06-responsive.md`
@@ -26755,8 +26811,8 @@ Responsive sin romper geometry.
 
 ---
 
-<a id="archivo-0359"></a>
-## Archivo #359: docs/06-css/01-css-boundaries.md
+<a id="archivo-0360"></a>
+## Archivo #360: docs/06-css/01-css-boundaries.md
 
 - **Ruta relativa:** `docs/06-css/01-css-boundaries.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/06-css/01-css-boundaries.md`
@@ -26773,8 +26829,8 @@ CSS bajo `.sisad-pdfme-root`; hosts no alteran internals.
 
 ---
 
-<a id="archivo-0360"></a>
-## Archivo #360: docs/06-css/02-token-system.md
+<a id="archivo-0361"></a>
+## Archivo #361: docs/06-css/02-token-system.md
 
 - **Ruta relativa:** `docs/06-css/02-token-system.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/06-css/02-token-system.md`
@@ -26791,8 +26847,8 @@ Tokens de color, espacio, radius y shadow.
 
 ---
 
-<a id="archivo-0361"></a>
-## Archivo #361: docs/06-css/03-transform-handle-safety.md
+<a id="archivo-0362"></a>
+## Archivo #362: docs/06-css/03-transform-handle-safety.md
 
 - **Ruta relativa:** `docs/06-css/03-transform-handle-safety.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/06-css/03-transform-handle-safety.md`
@@ -26809,8 +26865,8 @@ No romper handles Moveable/Selecto.
 
 ---
 
-<a id="archivo-0362"></a>
-## Archivo #362: docs/06-css/04-visual-regression.md
+<a id="archivo-0363"></a>
+## Archivo #363: docs/06-css/04-visual-regression.md
 
 - **Ruta relativa:** `docs/06-css/04-visual-regression.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/06-css/04-visual-regression.md`
@@ -26827,8 +26883,8 @@ Pruebas visuales para color y transform.
 
 ---
 
-<a id="archivo-0363"></a>
-## Archivo #363: docs/07-calidad/01-comandos-validacion.md
+<a id="archivo-0364"></a>
+## Archivo #364: docs/07-calidad/01-comandos-validacion.md
 
 - **Ruta relativa:** `docs/07-calidad/01-comandos-validacion.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/07-calidad/01-comandos-validacion.md`
@@ -26845,8 +26901,8 @@ Build, lint, vitest y playwright por dominio.
 
 ---
 
-<a id="archivo-0364"></a>
-## Archivo #364: docs/07-calidad/02-matriz-regresion.md
+<a id="archivo-0365"></a>
+## Archivo #365: docs/07-calidad/02-matriz-regresion.md
 
 - **Ruta relativa:** `docs/07-calidad/02-matriz-regresion.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/07-calidad/02-matriz-regresion.md`
@@ -26863,8 +26919,8 @@ Matriz general de regresión.
 
 ---
 
-<a id="archivo-0365"></a>
-## Archivo #365: docs/07-calidad/03-testing-gaps.md
+<a id="archivo-0366"></a>
+## Archivo #366: docs/07-calidad/03-testing-gaps.md
 
 - **Ruta relativa:** `docs/07-calidad/03-testing-gaps.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/07-calidad/03-testing-gaps.md`
@@ -26881,8 +26937,8 @@ Gaps y prioridades de cobertura.
 
 ---
 
-<a id="archivo-0366"></a>
-## Archivo #366: docs/07-calidad/04-test-results-forensics.md
+<a id="archivo-0367"></a>
+## Archivo #367: docs/07-calidad/04-test-results-forensics.md
 
 - **Ruta relativa:** `docs/07-calidad/04-test-results-forensics.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/07-calidad/04-test-results-forensics.md`
@@ -26899,8 +26955,8 @@ Cómo analizar resultados fallidos.
 
 ---
 
-<a id="archivo-0367"></a>
-## Archivo #367: docs/08-ia-agentes/01-arquitectura-asistente.md
+<a id="archivo-0368"></a>
+## Archivo #368: docs/08-ia-agentes/01-arquitectura-asistente.md
 
 - **Ruta relativa:** `docs/08-ia-agentes/01-arquitectura-asistente.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/08-ia-agentes/01-arquitectura-asistente.md`
@@ -26917,8 +26973,8 @@ Cómo usar esta arquitectura con asistentes.
 
 ---
 
-<a id="archivo-0368"></a>
-## Archivo #368: docs/08-ia-agentes/02-catalogo-agentes.md
+<a id="archivo-0369"></a>
+## Archivo #369: docs/08-ia-agentes/02-catalogo-agentes.md
 
 - **Ruta relativa:** `docs/08-ia-agentes/02-catalogo-agentes.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/08-ia-agentes/02-catalogo-agentes.md`
@@ -26935,8 +26991,8 @@ Catálogo de agentes y subagentes.
 
 ---
 
-<a id="archivo-0369"></a>
-## Archivo #369: docs/08-ia-agentes/03-catalogo-prompts.md
+<a id="archivo-0370"></a>
+## Archivo #370: docs/08-ia-agentes/03-catalogo-prompts.md
 
 - **Ruta relativa:** `docs/08-ia-agentes/03-catalogo-prompts.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/08-ia-agentes/03-catalogo-prompts.md`
@@ -26953,8 +27009,8 @@ Prompts ejecutables por dominio.
 
 ---
 
-<a id="archivo-0370"></a>
-## Archivo #370: docs/08-ia-agentes/04-economia-tokens.md
+<a id="archivo-0371"></a>
+## Archivo #371: docs/08-ia-agentes/04-economia-tokens.md
 
 - **Ruta relativa:** `docs/08-ia-agentes/04-economia-tokens.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/08-ia-agentes/04-economia-tokens.md`
@@ -26971,8 +27027,8 @@ Escalera de contexto.
 
 ---
 
-<a id="archivo-0371"></a>
-## Archivo #371: docs/08-ia-agentes/05-providers.md
+<a id="archivo-0372"></a>
+## Archivo #372: docs/08-ia-agentes/05-providers.md
 
 - **Ruta relativa:** `docs/08-ia-agentes/05-providers.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/08-ia-agentes/05-providers.md`
@@ -26989,8 +27045,8 @@ Uso con Claude, Codex, Copilot y Gemini.
 
 ---
 
-<a id="archivo-0372"></a>
-## Archivo #372: docs/09-operacion-debug/01-breakpoints-criticos.md
+<a id="archivo-0373"></a>
+## Archivo #373: docs/09-operacion-debug/01-breakpoints-criticos.md
 
 - **Ruta relativa:** `docs/09-operacion-debug/01-breakpoints-criticos.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/09-operacion-debug/01-breakpoints-criticos.md`
@@ -27007,8 +27063,8 @@ Breakpoints en color, transform, snapshot y render.
 
 ---
 
-<a id="archivo-0373"></a>
-## Archivo #373: docs/09-operacion-debug/02-hardtrace-playbook.md
+<a id="archivo-0374"></a>
+## Archivo #374: docs/09-operacion-debug/02-hardtrace-playbook.md
 
 - **Ruta relativa:** `docs/09-operacion-debug/02-hardtrace-playbook.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/09-operacion-debug/02-hardtrace-playbook.md`
@@ -27025,8 +27081,8 @@ Trazas seguras para runtime.
 
 ---
 
-<a id="archivo-0374"></a>
-## Archivo #374: docs/09-operacion-debug/03-troubleshooting.md
+<a id="archivo-0375"></a>
+## Archivo #375: docs/09-operacion-debug/03-troubleshooting.md
 
 - **Ruta relativa:** `docs/09-operacion-debug/03-troubleshooting.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/09-operacion-debug/03-troubleshooting.md`
@@ -27043,8 +27099,8 @@ Guía de problemas frecuentes.
 
 ---
 
-<a id="archivo-0375"></a>
-## Archivo #375: docs/10-handoff/01-handoff-sesion.md
+<a id="archivo-0376"></a>
+## Archivo #376: docs/10-handoff/01-handoff-sesion.md
 
 - **Ruta relativa:** `docs/10-handoff/01-handoff-sesion.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/10-handoff/01-handoff-sesion.md`
@@ -27061,8 +27117,8 @@ Formato de continuidad entre sesiones.
 
 ---
 
-<a id="archivo-0376"></a>
-## Archivo #376: docs/10-handoff/02-plan-fases.md
+<a id="archivo-0377"></a>
+## Archivo #377: docs/10-handoff/02-plan-fases.md
 
 - **Ruta relativa:** `docs/10-handoff/02-plan-fases.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/10-handoff/02-plan-fases.md`
@@ -27079,8 +27135,8 @@ Plan por fases.
 
 ---
 
-<a id="archivo-0377"></a>
-## Archivo #377: docs/10-handoff/03-tickets-sugeridos.md
+<a id="archivo-0378"></a>
+## Archivo #378: docs/10-handoff/03-tickets-sugeridos.md
 
 - **Ruta relativa:** `docs/10-handoff/03-tickets-sugeridos.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/10-handoff/03-tickets-sugeridos.md`
@@ -27097,8 +27153,8 @@ Tickets sugeridos.
 
 ---
 
-<a id="archivo-0378"></a>
-## Archivo #378: docs/11-standard-schemas/01-use-cases-overview.md
+<a id="archivo-0379"></a>
+## Archivo #379: docs/11-standard-schemas/01-use-cases-overview.md
 
 - **Ruta relativa:** `docs/11-standard-schemas/01-use-cases-overview.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/11-standard-schemas/01-use-cases-overview.md`
@@ -27209,8 +27265,8 @@ Tickets sugeridos.
 
 ---
 
-<a id="archivo-0379"></a>
-## Archivo #379: docs/11-standard-schemas/02-text-number-contract.md
+<a id="archivo-0380"></a>
+## Archivo #380: docs/11-standard-schemas/02-text-number-contract.md
 
 - **Ruta relativa:** `docs/11-standard-schemas/02-text-number-contract.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/11-standard-schemas/02-text-number-contract.md`
@@ -27240,8 +27296,8 @@ Debe soportar value/defaultValue, min/max, decimals, format, required, readonly,
 
 ---
 
-<a id="archivo-0380"></a>
-## Archivo #380: docs/11-standard-schemas/03-checkbox-and-checkboxgroup.md
+<a id="archivo-0381"></a>
+## Archivo #381: docs/11-standard-schemas/03-checkbox-and-checkboxgroup.md
 
 - **Ruta relativa:** `docs/11-standard-schemas/03-checkbox-and-checkboxgroup.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/11-standard-schemas/03-checkbox-and-checkboxgroup.md`
@@ -27284,8 +27340,8 @@ Debe permitir editar nombre de grupo, opciones, orientación, spacing, min/max y
 
 ---
 
-<a id="archivo-0381"></a>
-## Archivo #381: docs/11-standard-schemas/04-radio-optiongroup.md
+<a id="archivo-0382"></a>
+## Archivo #382: docs/11-standard-schemas/04-radio-optiongroup.md
 
 - **Ruta relativa:** `docs/11-standard-schemas/04-radio-optiongroup.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/11-standard-schemas/04-radio-optiongroup.md`
@@ -27316,8 +27372,8 @@ Form solo permite una opción. Viewer y PDF muestran solo la seleccionada.
 
 ---
 
-<a id="archivo-0382"></a>
-## Archivo #382: docs/11-standard-schemas/05-dropdown-select.md
+<a id="archivo-0383"></a>
+## Archivo #383: docs/11-standard-schemas/05-dropdown-select.md
 
 - **Ruta relativa:** `docs/11-standard-schemas/05-dropdown-select.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/11-standard-schemas/05-dropdown-select.md`
@@ -27349,8 +27405,8 @@ Las opciones deben editarse en el inspector, no mediante overlays gigantes en ca
 
 ---
 
-<a id="archivo-0383"></a>
-## Archivo #383: docs/11-standard-schemas/06-group-plus-behavior.md
+<a id="archivo-0384"></a>
+## Archivo #384: docs/11-standard-schemas/06-group-plus-behavior.md
 
 - **Ruta relativa:** `docs/11-standard-schemas/06-group-plus-behavior.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/11-standard-schemas/06-group-plus-behavior.md`
@@ -27383,8 +27439,8 @@ Las opciones deben editarse en el inspector, no mediante overlays gigantes en ca
 
 ---
 
-<a id="archivo-0384"></a>
-## Archivo #384: docs/11-standard-schemas/07-form-viewer-generator-parity.md
+<a id="archivo-0385"></a>
+## Archivo #385: docs/11-standard-schemas/07-form-viewer-generator-parity.md
 
 - **Ruta relativa:** `docs/11-standard-schemas/07-form-viewer-generator-parity.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/11-standard-schemas/07-form-viewer-generator-parity.md`
@@ -27413,8 +27469,8 @@ Todo schema que se diseña debe poder llenarse, verse y generarse.
 
 ---
 
-<a id="archivo-0385"></a>
-## Archivo #385: docs/11-standard-schemas/08-snapshot-and-identity.md
+<a id="archivo-0386"></a>
+## Archivo #386: docs/11-standard-schemas/08-snapshot-and-identity.md
 
 - **Ruta relativa:** `docs/11-standard-schemas/08-snapshot-and-identity.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/11-standard-schemas/08-snapshot-and-identity.md`
@@ -27464,8 +27520,8 @@ readOnly
 
 ---
 
-<a id="archivo-0386"></a>
-## Archivo #386: docs/11-standard-schemas/09-no-overlap-policy.md
+<a id="archivo-0387"></a>
+## Archivo #387: docs/11-standard-schemas/09-no-overlap-policy.md
 
 - **Ruta relativa:** `docs/11-standard-schemas/09-no-overlap-policy.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/11-standard-schemas/09-no-overlap-policy.md`
@@ -27502,8 +27558,8 @@ Unit tests para funciones puras y Playwright para interacciones reales.
 
 ---
 
-<a id="archivo-0387"></a>
-## Archivo #387: docs/11-standard-schemas/10-detailview-listview-usecases.md
+<a id="archivo-0388"></a>
+## Archivo #388: docs/11-standard-schemas/10-detailview-listview-usecases.md
 
 - **Ruta relativa:** `docs/11-standard-schemas/10-detailview-listview-usecases.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/11-standard-schemas/10-detailview-listview-usecases.md`
@@ -27553,8 +27609,8 @@ beneficios · Grupo de casillas · 3 opciones · Cliente Principal
 
 ---
 
-<a id="archivo-0388"></a>
-## Archivo #388: docs/11-standard-schemas/11-test-matrix.md
+<a id="archivo-0389"></a>
+## Archivo #389: docs/11-standard-schemas/11-test-matrix.md
 
 - **Ruta relativa:** `docs/11-standard-schemas/11-test-matrix.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/11-standard-schemas/11-test-matrix.md`
@@ -27593,8 +27649,8 @@ npm run lint
 
 ---
 
-<a id="archivo-0389"></a>
-## Archivo #389: docs/11-standard-schemas/README.md
+<a id="archivo-0390"></a>
+## Archivo #390: docs/11-standard-schemas/README.md
 
 - **Ruta relativa:** `docs/11-standard-schemas/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/11-standard-schemas/README.md`
@@ -27625,8 +27681,8 @@ Esta sección documenta el contrato de schemas estándar y grupos inspirados en 
 
 ---
 
-<a id="archivo-0390"></a>
-## Archivo #390: docs/12-behavior-contract/01-processes.md
+<a id="archivo-0391"></a>
+## Archivo #391: docs/12-behavior-contract/01-processes.md
 
 - **Ruta relativa:** `docs/12-behavior-contract/01-processes.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/12-behavior-contract/01-processes.md`
@@ -27662,8 +27718,8 @@ Todo fix debe mapearse a un proceso. Si un proceso cruza varios componentes, no 
 
 ---
 
-<a id="archivo-0391"></a>
-## Archivo #391: docs/12-behavior-contract/02-components.md
+<a id="archivo-0392"></a>
+## Archivo #392: docs/12-behavior-contract/02-components.md
 
 - **Ruta relativa:** `docs/12-behavior-contract/02-components.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/12-behavior-contract/02-components.md`
@@ -27714,8 +27770,8 @@ Toda mutación significativa pasa por command bus para undo/redo.
 
 ---
 
-<a id="archivo-0392"></a>
-## Archivo #392: docs/12-behavior-contract/03-regression-matrix.md
+<a id="archivo-0393"></a>
+## Archivo #393: docs/12-behavior-contract/03-regression-matrix.md
 
 - **Ruta relativa:** `docs/12-behavior-contract/03-regression-matrix.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/12-behavior-contract/03-regression-matrix.md`
@@ -27746,8 +27802,8 @@ Toda mutación significativa pasa por command bus para undo/redo.
 
 ---
 
-<a id="archivo-0393"></a>
-## Archivo #393: docs/12-behavior-contract/04-state-machines.md
+<a id="archivo-0394"></a>
+## Archivo #394: docs/12-behavior-contract/04-state-machines.md
 
 - **Ruta relativa:** `docs/12-behavior-contract/04-state-machines.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/12-behavior-contract/04-state-machines.md`
@@ -27800,8 +27856,8 @@ Cada start debe tener end/cancel:
 
 ---
 
-<a id="archivo-0394"></a>
-## Archivo #394: docs/12-behavior-contract/05-command-flow.md
+<a id="archivo-0395"></a>
+## Archivo #395: docs/12-behavior-contract/05-command-flow.md
 
 - **Ruta relativa:** `docs/12-behavior-contract/05-command-flow.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/12-behavior-contract/05-command-flow.md`
@@ -27848,8 +27904,8 @@ Atajo registrado no significa funcionalidad cubierta; debe existir test end-to-e
 
 ---
 
-<a id="archivo-0395"></a>
-## Archivo #395: docs/12-behavior-contract/06-data-contracts.md
+<a id="archivo-0396"></a>
+## Archivo #396: docs/12-behavior-contract/06-data-contracts.md
 
 - **Ruta relativa:** `docs/12-behavior-contract/06-data-contracts.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/12-behavior-contract/06-data-contracts.md`
@@ -27909,8 +27965,8 @@ defaultSelectedOptionIds
 
 ---
 
-<a id="archivo-0396"></a>
-## Archivo #396: docs/12-behavior-contract/07-implementation-playbook.md
+<a id="archivo-0397"></a>
+## Archivo #397: docs/12-behavior-contract/07-implementation-playbook.md
 
 - **Ruta relativa:** `docs/12-behavior-contract/07-implementation-playbook.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/12-behavior-contract/07-implementation-playbook.md`
@@ -27943,8 +27999,8 @@ defaultSelectedOptionIds
 
 ---
 
-<a id="archivo-0397"></a>
-## Archivo #397: docs/12-behavior-contract/08-acceptance-gates.md
+<a id="archivo-0398"></a>
+## Archivo #398: docs/12-behavior-contract/08-acceptance-gates.md
 
 - **Ruta relativa:** `docs/12-behavior-contract/08-acceptance-gates.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/12-behavior-contract/08-acceptance-gates.md`
@@ -27989,8 +28045,8 @@ defaultSelectedOptionIds
 
 ---
 
-<a id="archivo-0398"></a>
-## Archivo #398: docs/12-behavior-contract/README.md
+<a id="archivo-0399"></a>
+## Archivo #399: docs/12-behavior-contract/README.md
 
 - **Ruta relativa:** `docs/12-behavior-contract/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/12-behavior-contract/README.md`
@@ -28018,8 +28074,8 @@ Esta sección define cómo debe comportarse SISAD PDFME por proceso y componente
 
 ---
 
-<a id="archivo-0399"></a>
-## Archivo #399: docs/13-docusign-ux-research/01-research-summary.md
+<a id="archivo-0400"></a>
+## Archivo #400: docs/13-docusign-ux-research/01-research-summary.md
 
 - **Ruta relativa:** `docs/13-docusign-ux-research/01-research-summary.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/13-docusign-ux-research/01-research-summary.md`
@@ -28052,8 +28108,8 @@ Esta sección define cómo debe comportarse SISAD PDFME por proceso y componente
 
 ---
 
-<a id="archivo-0400"></a>
-## Archivo #400: docs/13-docusign-ux-research/02-standard-fields-visual-contract.md
+<a id="archivo-0401"></a>
+## Archivo #401: docs/13-docusign-ux-research/02-standard-fields-visual-contract.md
 
 - **Ruta relativa:** `docs/13-docusign-ux-research/02-standard-fields-visual-contract.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/13-docusign-ux-research/02-standard-fields-visual-contract.md`
@@ -28081,8 +28137,8 @@ Esta sección define cómo debe comportarse SISAD PDFME por proceso y componente
 
 ---
 
-<a id="archivo-0401"></a>
-## Archivo #401: docs/13-docusign-ux-research/03-group-option-design.md
+<a id="archivo-0402"></a>
+## Archivo #402: docs/13-docusign-ux-research/03-group-option-design.md
 
 - **Ruta relativa:** `docs/13-docusign-ux-research/03-group-option-design.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/13-docusign-ux-research/03-group-option-design.md`
@@ -28131,8 +28187,8 @@ Esta sección define cómo debe comportarse SISAD PDFME por proceso y componente
 
 ---
 
-<a id="archivo-0402"></a>
-## Archivo #402: docs/13-docusign-ux-research/04-toolbar-detailview-patterns.md
+<a id="archivo-0403"></a>
+## Archivo #403: docs/13-docusign-ux-research/04-toolbar-detailview-patterns.md
 
 - **Ruta relativa:** `docs/13-docusign-ux-research/04-toolbar-detailview-patterns.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/13-docusign-ux-research/04-toolbar-detailview-patterns.md`
@@ -28164,8 +28220,8 @@ No debe tapar completamente el documento.
 
 ---
 
-<a id="archivo-0403"></a>
-## Archivo #403: docs/13-docusign-ux-research/05-page-distribution-and-no-overlap.md
+<a id="archivo-0404"></a>
+## Archivo #404: docs/13-docusign-ux-research/05-page-distribution-and-no-overlap.md
 
 - **Ruta relativa:** `docs/13-docusign-ux-research/05-page-distribution-and-no-overlap.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/13-docusign-ux-research/05-page-distribution-and-no-overlap.md`
@@ -28191,8 +28247,8 @@ No se debe concentrar todo en una misma zona.
 
 ---
 
-<a id="archivo-0404"></a>
-## Archivo #404: docs/13-docusign-ux-research/README.md
+<a id="archivo-0405"></a>
+## Archivo #405: docs/13-docusign-ux-research/README.md
 
 - **Ruta relativa:** `docs/13-docusign-ux-research/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/13-docusign-ux-research/README.md`
@@ -28209,8 +28265,8 @@ Esta sección consolida las observaciones visuales y de comportamiento recolecta
 
 ---
 
-<a id="archivo-0405"></a>
-## Archivo #405: docs/14-process-flows/01-create-schema-flow.md
+<a id="archivo-0406"></a>
+## Archivo #406: docs/14-process-flows/01-create-schema-flow.md
 
 - **Ruta relativa:** `docs/14-process-flows/01-create-schema-flow.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/14-process-flows/01-create-schema-flow.md`
@@ -28265,8 +28321,8 @@ Inserta un campo desde catálogo con identidad, owner, color, doc/page y no-over
 
 ---
 
-<a id="archivo-0406"></a>
-## Archivo #406: docs/14-process-flows/02-selection-shortcuts-flow.md
+<a id="archivo-0407"></a>
+## Archivo #407: docs/14-process-flows/02-selection-shortcuts-flow.md
 
 - **Ruta relativa:** `docs/14-process-flows/02-selection-shortcuts-flow.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/14-process-flows/02-selection-shortcuts-flow.md`
@@ -28321,8 +28377,8 @@ Gestiona selección simple, múltiple, shortcuts, focus y command bus.
 
 ---
 
-<a id="archivo-0407"></a>
-## Archivo #407: docs/14-process-flows/03-transform-flow.md
+<a id="archivo-0408"></a>
+## Archivo #408: docs/14-process-flows/03-transform-flow.md
 
 - **Ruta relativa:** `docs/14-process-flows/03-transform-flow.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/14-process-flows/03-transform-flow.md`
@@ -28377,8 +28433,8 @@ Mueve, redimensiona y rota schemas sin romper coordenadas ni Selecto.
 
 ---
 
-<a id="archivo-0408"></a>
-## Archivo #408: docs/14-process-flows/04-group-actions-flow.md
+<a id="archivo-0409"></a>
+## Archivo #409: docs/14-process-flows/04-group-actions-flow.md
 
 - **Ruta relativa:** `docs/14-process-flows/04-group-actions-flow.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/14-process-flows/04-group-actions-flow.md`
@@ -28433,8 +28489,8 @@ Convierte checkbox, agrega opciones, diferencia selectionGroup y schemaGroup.
 
 ---
 
-<a id="archivo-0409"></a>
-## Archivo #409: docs/14-process-flows/05-recipient-owner-flow.md
+<a id="archivo-0410"></a>
+## Archivo #410: docs/14-process-flows/05-recipient-owner-flow.md
 
 - **Ruta relativa:** `docs/14-process-flows/05-recipient-owner-flow.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/14-process-flows/05-recipient-owner-flow.md`
@@ -28489,8 +28545,8 @@ Mantiene colores/owner por destinatario y preserva schemas existentes.
 
 ---
 
-<a id="archivo-0410"></a>
-## Archivo #410: docs/14-process-flows/06-snapshot-flow.md
+<a id="archivo-0411"></a>
+## Archivo #411: docs/14-process-flows/06-snapshot-flow.md
 
 - **Ruta relativa:** `docs/14-process-flows/06-snapshot-flow.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/14-process-flows/06-snapshot-flow.md`
@@ -28545,8 +28601,8 @@ Serializa y restaura documentos, schemas, groups, owners y valores.
 
 ---
 
-<a id="archivo-0411"></a>
-## Archivo #411: docs/14-process-flows/07-form-viewer-generator-flow.md
+<a id="archivo-0412"></a>
+## Archivo #412: docs/14-process-flows/07-form-viewer-generator-flow.md
 
 - **Ruta relativa:** `docs/14-process-flows/07-form-viewer-generator-flow.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/14-process-flows/07-form-viewer-generator-flow.md`
@@ -28601,8 +28657,8 @@ Ejecuta los mismos schemas del Designer en runtime y PDF.
 
 ---
 
-<a id="archivo-0412"></a>
-## Archivo #412: docs/14-process-flows/08-multipdf-multipage-flow.md
+<a id="archivo-0413"></a>
+## Archivo #413: docs/14-process-flows/08-multipdf-multipage-flow.md
 
 - **Ruta relativa:** `docs/14-process-flows/08-multipdf-multipage-flow.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/14-process-flows/08-multipdf-multipage-flow.md`
@@ -28657,8 +28713,8 @@ Distribuye campos entre páginas/PDFs y evita huecos fantasma.
 
 ---
 
-<a id="archivo-0413"></a>
-## Archivo #413: docs/14-process-flows/09-externalforms-flow.md
+<a id="archivo-0414"></a>
+## Archivo #414: docs/14-process-flows/09-externalforms-flow.md
 
 - **Ruta relativa:** `docs/14-process-flows/09-externalforms-flow.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/14-process-flows/09-externalforms-flow.md`
@@ -28713,8 +28769,8 @@ Consume Form/Viewer y snapshot sin duplicar runtime visual.
 
 ---
 
-<a id="archivo-0414"></a>
-## Archivo #414: docs/14-process-flows/10-css-visual-flow.md
+<a id="archivo-0415"></a>
+## Archivo #415: docs/14-process-flows/10-css-visual-flow.md
 
 - **Ruta relativa:** `docs/14-process-flows/10-css-visual-flow.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/14-process-flows/10-css-visual-flow.md`
@@ -28769,8 +28825,8 @@ Refina UI con tokens sin alterar geometría o selección.
 
 ---
 
-<a id="archivo-0415"></a>
-## Archivo #415: docs/15-component-contracts/01-designer.md
+<a id="archivo-0416"></a>
+## Archivo #416: docs/15-component-contracts/01-designer.md
 
 - **Ruta relativa:** `docs/15-component-contracts/01-designer.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/15-component-contracts/01-designer.md`
@@ -28811,8 +28867,8 @@ Este componente debe cumplir una responsabilidad única dentro del runtime `sisa
 
 ---
 
-<a id="archivo-0416"></a>
-## Archivo #416: docs/15-component-contracts/02-canvas-page-stack.md
+<a id="archivo-0417"></a>
+## Archivo #417: docs/15-component-contracts/02-canvas-page-stack.md
 
 - **Ruta relativa:** `docs/15-component-contracts/02-canvas-page-stack.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/15-component-contracts/02-canvas-page-stack.md`
@@ -28853,8 +28909,8 @@ Este componente debe cumplir una responsabilidad única dentro del runtime `sisa
 
 ---
 
-<a id="archivo-0417"></a>
-## Archivo #417: docs/15-component-contracts/03-renderer.md
+<a id="archivo-0418"></a>
+## Archivo #418: docs/15-component-contracts/03-renderer.md
 
 - **Ruta relativa:** `docs/15-component-contracts/03-renderer.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/15-component-contracts/03-renderer.md`
@@ -28895,8 +28951,8 @@ Este componente debe cumplir una responsabilidad única dentro del runtime `sisa
 
 ---
 
-<a id="archivo-0418"></a>
-## Archivo #418: docs/15-component-contracts/04-moveable-selecto.md
+<a id="archivo-0419"></a>
+## Archivo #419: docs/15-component-contracts/04-moveable-selecto.md
 
 - **Ruta relativa:** `docs/15-component-contracts/04-moveable-selecto.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/15-component-contracts/04-moveable-selecto.md`
@@ -28937,8 +28993,8 @@ Este componente debe cumplir una responsabilidad única dentro del runtime `sisa
 
 ---
 
-<a id="archivo-0419"></a>
-## Archivo #419: docs/15-component-contracts/05-selection-toolbar.md
+<a id="archivo-0420"></a>
+## Archivo #420: docs/15-component-contracts/05-selection-toolbar.md
 
 - **Ruta relativa:** `docs/15-component-contracts/05-selection-toolbar.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/15-component-contracts/05-selection-toolbar.md`
@@ -28979,8 +29035,8 @@ Este componente debe cumplir una responsabilidad única dentro del runtime `sisa
 
 ---
 
-<a id="archivo-0420"></a>
-## Archivo #420: docs/15-component-contracts/06-left-sidebar.md
+<a id="archivo-0421"></a>
+## Archivo #421: docs/15-component-contracts/06-left-sidebar.md
 
 - **Ruta relativa:** `docs/15-component-contracts/06-left-sidebar.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/15-component-contracts/06-left-sidebar.md`
@@ -29021,8 +29077,8 @@ Este componente debe cumplir una responsabilidad única dentro del runtime `sisa
 
 ---
 
-<a id="archivo-0421"></a>
-## Archivo #421: docs/15-component-contracts/07-right-sidebar-detailview-listview.md
+<a id="archivo-0422"></a>
+## Archivo #422: docs/15-component-contracts/07-right-sidebar-detailview-listview.md
 
 - **Ruta relativa:** `docs/15-component-contracts/07-right-sidebar-detailview-listview.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/15-component-contracts/07-right-sidebar-detailview-listview.md`
@@ -29063,8 +29119,8 @@ Este componente debe cumplir una responsabilidad única dentro del runtime `sisa
 
 ---
 
-<a id="archivo-0422"></a>
-## Archivo #422: docs/15-component-contracts/08-schema-plugins.md
+<a id="archivo-0423"></a>
+## Archivo #423: docs/15-component-contracts/08-schema-plugins.md
 
 - **Ruta relativa:** `docs/15-component-contracts/08-schema-plugins.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/15-component-contracts/08-schema-plugins.md`
@@ -29105,8 +29161,8 @@ Este componente debe cumplir una responsabilidad única dentro del runtime `sisa
 
 ---
 
-<a id="archivo-0423"></a>
-## Archivo #423: docs/15-component-contracts/09-command-bus.md
+<a id="archivo-0424"></a>
+## Archivo #424: docs/15-component-contracts/09-command-bus.md
 
 - **Ruta relativa:** `docs/15-component-contracts/09-command-bus.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/15-component-contracts/09-command-bus.md`
@@ -29147,8 +29203,8 @@ Este componente debe cumplir una responsabilidad única dentro del runtime `sisa
 
 ---
 
-<a id="archivo-0424"></a>
-## Archivo #424: docs/15-component-contracts/10-snapshot-adapter.md
+<a id="archivo-0425"></a>
+## Archivo #425: docs/15-component-contracts/10-snapshot-adapter.md
 
 - **Ruta relativa:** `docs/15-component-contracts/10-snapshot-adapter.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/15-component-contracts/10-snapshot-adapter.md`
@@ -29189,8 +29245,8 @@ Este componente debe cumplir una responsabilidad única dentro del runtime `sisa
 
 ---
 
-<a id="archivo-0425"></a>
-## Archivo #425: docs/15-component-contracts/11-form-viewer-generator.md
+<a id="archivo-0426"></a>
+## Archivo #426: docs/15-component-contracts/11-form-viewer-generator.md
 
 - **Ruta relativa:** `docs/15-component-contracts/11-form-viewer-generator.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/15-component-contracts/11-form-viewer-generator.md`
@@ -29231,8 +29287,8 @@ Este componente debe cumplir una responsabilidad única dentro del runtime `sisa
 
 ---
 
-<a id="archivo-0426"></a>
-## Archivo #426: docs/15-component-contracts/12-externalforms-host.md
+<a id="archivo-0427"></a>
+## Archivo #427: docs/15-component-contracts/12-externalforms-host.md
 
 - **Ruta relativa:** `docs/15-component-contracts/12-externalforms-host.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/15-component-contracts/12-externalforms-host.md`
@@ -29273,8 +29329,8 @@ Este componente debe cumplir una responsabilidad única dentro del runtime `sisa
 
 ---
 
-<a id="archivo-0427"></a>
-## Archivo #427: docs/16-completion-roadmap/01-gap-inventory.md
+<a id="archivo-0428"></a>
+## Archivo #428: docs/16-completion-roadmap/01-gap-inventory.md
 
 - **Ruta relativa:** `docs/16-completion-roadmap/01-gap-inventory.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/16-completion-roadmap/01-gap-inventory.md`
@@ -29300,8 +29356,8 @@ Este componente debe cumplir una responsabilidad única dentro del runtime `sisa
 
 ---
 
-<a id="archivo-0428"></a>
-## Archivo #428: docs/16-completion-roadmap/02-phased-plan.md
+<a id="archivo-0429"></a>
+## Archivo #429: docs/16-completion-roadmap/02-phased-plan.md
 
 - **Ruta relativa:** `docs/16-completion-roadmap/02-phased-plan.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/16-completion-roadmap/02-phased-plan.md`
@@ -29345,8 +29401,8 @@ Este componente debe cumplir una responsabilidad única dentro del runtime `sisa
 
 ---
 
-<a id="archivo-0429"></a>
-## Archivo #429: docs/16-completion-roadmap/03-definition-of-done.md
+<a id="archivo-0430"></a>
+## Archivo #430: docs/16-completion-roadmap/03-definition-of-done.md
 
 - **Ruta relativa:** `docs/16-completion-roadmap/03-definition-of-done.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/16-completion-roadmap/03-definition-of-done.md`
@@ -29372,8 +29428,8 @@ Un cambio está completo si:
 
 ---
 
-<a id="archivo-0430"></a>
-## Archivo #430: docs/16-completion-roadmap/README.md
+<a id="archivo-0431"></a>
+## Archivo #431: docs/16-completion-roadmap/README.md
 
 - **Ruta relativa:** `docs/16-completion-roadmap/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/16-completion-roadmap/README.md`
@@ -29398,8 +29454,8 @@ Un cambio está completo si:
 
 ---
 
-<a id="archivo-0431"></a>
-## Archivo #431: docs/99-archivo/README.md
+<a id="archivo-0432"></a>
+## Archivo #432: docs/99-archivo/README.md
 
 - **Ruta relativa:** `docs/99-archivo/README.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/docs/99-archivo/README.md`
@@ -29416,8 +29472,8 @@ Archivo histórico; no usar como contexto inicial.
 
 ---
 
-<a id="archivo-0432"></a>
-## Archivo #432: reports/current-snapshot/analysis-summary.md
+<a id="archivo-0433"></a>
+## Archivo #433: reports/current-snapshot/analysis-summary.md
 
 - **Ruta relativa:** `reports/current-snapshot/analysis-summary.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/reports/current-snapshot/analysis-summary.md`
@@ -29490,8 +29546,8 @@ La arquitectura v3 combina:
 
 ---
 
-<a id="archivo-0433"></a>
-## Archivo #433: reports/current-snapshot/css-summary.md
+<a id="archivo-0434"></a>
+## Archivo #434: reports/current-snapshot/css-summary.md
 
 - **Ruta relativa:** `reports/current-snapshot/css-summary.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/reports/current-snapshot/css-summary.md`
@@ -29513,8 +29569,8 @@ La arquitectura v3 combina:
 
 ---
 
-<a id="archivo-0434"></a>
-## Archivo #434: reports/current-snapshot/docs-summary.md
+<a id="archivo-0435"></a>
+## Archivo #435: reports/current-snapshot/docs-summary.md
 
 - **Ruta relativa:** `reports/current-snapshot/docs-summary.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/reports/current-snapshot/docs-summary.md`
@@ -29550,8 +29606,8 @@ La arquitectura v3 combina:
 
 ---
 
-<a id="archivo-0435"></a>
-## Archivo #435: reports/current-snapshot/module-inventory.md
+<a id="archivo-0436"></a>
+## Archivo #436: reports/current-snapshot/module-inventory.md
 
 - **Ruta relativa:** `reports/current-snapshot/module-inventory.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/reports/current-snapshot/module-inventory.md`
@@ -29579,8 +29635,8 @@ La arquitectura v3 combina:
 
 ---
 
-<a id="archivo-0436"></a>
-## Archivo #436: reports/current-snapshot/risk-summary.md
+<a id="archivo-0437"></a>
+## Archivo #437: reports/current-snapshot/risk-summary.md
 
 - **Ruta relativa:** `reports/current-snapshot/risk-summary.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/reports/current-snapshot/risk-summary.md`
@@ -29603,8 +29659,8 @@ La arquitectura v3 combina:
 
 ---
 
-<a id="archivo-0437"></a>
-## Archivo #437: reports/current-snapshot/v4-research-summary.md
+<a id="archivo-0438"></a>
+## Archivo #438: reports/current-snapshot/v4-research-summary.md
 
 - **Ruta relativa:** `reports/current-snapshot/v4-research-summary.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/reports/current-snapshot/v4-research-summary.md`
@@ -29634,8 +29690,8 @@ Que los schemas estándar funcionen visualmente en Designer pero fallen en Detai
 
 ---
 
-<a id="archivo-0438"></a>
-## Archivo #438: .ai/skills/active-recipient-color-contract/SKILL.md
+<a id="archivo-0439"></a>
+## Archivo #439: .ai/skills/active-recipient-color-contract/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/active-recipient-color-contract/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/active-recipient-color-contract/SKILL.md`
@@ -29679,8 +29735,8 @@ Aplicar procedimiento reutilizable para `active-recipient-color-contract`.
 
 ---
 
-<a id="archivo-0439"></a>
-## Archivo #439: .ai/skills/application-behavior-contract/SKILL.md
+<a id="archivo-0440"></a>
+## Archivo #440: .ai/skills/application-behavior-contract/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/application-behavior-contract/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/application-behavior-contract/SKILL.md`
@@ -29715,8 +29771,8 @@ Matriz de proceso actualizada y tests focalizados.
 
 ---
 
-<a id="archivo-0440"></a>
-## Archivo #440: .ai/skills/canvas-geometry-scaling/SKILL.md
+<a id="archivo-0441"></a>
+## Archivo #441: .ai/skills/canvas-geometry-scaling/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/canvas-geometry-scaling/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/canvas-geometry-scaling/SKILL.md`
@@ -29760,8 +29816,8 @@ Aplicar procedimiento reutilizable para `canvas-geometry-scaling`.
 
 ---
 
-<a id="archivo-0441"></a>
-## Archivo #441: .ai/skills/checkbox-radio-dropdown-parity/SKILL.md
+<a id="archivo-0442"></a>
+## Archivo #442: .ai/skills/checkbox-radio-dropdown-parity/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/checkbox-radio-dropdown-parity/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/checkbox-radio-dropdown-parity/SKILL.md`
@@ -29813,8 +29869,8 @@ Usa esta skill cuando una tarea afecte schemas estándar, grupos, botón `+`, De
 
 ---
 
-<a id="archivo-0442"></a>
-## Archivo #442: .ai/skills/command-bus-transform-actions/SKILL.md
+<a id="archivo-0443"></a>
+## Archivo #443: .ai/skills/command-bus-transform-actions/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/command-bus-transform-actions/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/command-bus-transform-actions/SKILL.md`
@@ -29858,8 +29914,8 @@ Aplicar procedimiento reutilizable para `command-bus-transform-actions`.
 
 ---
 
-<a id="archivo-0443"></a>
-## Archivo #443: .ai/skills/component-composition/SKILL.md
+<a id="archivo-0444"></a>
+## Archivo #444: .ai/skills/component-composition/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/component-composition/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/component-composition/SKILL.md`
@@ -29903,8 +29959,8 @@ Aplicar procedimiento reutilizable para `component-composition`.
 
 ---
 
-<a id="archivo-0444"></a>
-## Archivo #444: .ai/skills/context-budget/SKILL.md
+<a id="archivo-0445"></a>
+## Archivo #445: .ai/skills/context-budget/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/context-budget/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/context-budget/SKILL.md`
@@ -29948,8 +30004,8 @@ Aplicar procedimiento reutilizable para `context-budget`.
 
 ---
 
-<a id="archivo-0445"></a>
-## Archivo #445: .ai/skills/context-menu-transform-guard/SKILL.md
+<a id="archivo-0446"></a>
+## Archivo #446: .ai/skills/context-menu-transform-guard/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/context-menu-transform-guard/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/context-menu-transform-guard/SKILL.md`
@@ -29993,8 +30049,8 @@ Aplicar procedimiento reutilizable para `context-menu-transform-guard`.
 
 ---
 
-<a id="archivo-0446"></a>
-## Archivo #446: .ai/skills/css-layering-and-overrides/SKILL.md
+<a id="archivo-0447"></a>
+## Archivo #447: .ai/skills/css-layering-and-overrides/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/css-layering-and-overrides/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/css-layering-and-overrides/SKILL.md`
@@ -30038,8 +30094,8 @@ Aplicar procedimiento reutilizable para `css-layering-and-overrides`.
 
 ---
 
-<a id="archivo-0447"></a>
-## Archivo #447: .ai/skills/css-recipient-color-tokens/SKILL.md
+<a id="archivo-0448"></a>
+## Archivo #448: .ai/skills/css-recipient-color-tokens/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/css-recipient-color-tokens/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/css-recipient-color-tokens/SKILL.md`
@@ -30083,8 +30139,8 @@ Aplicar procedimiento reutilizable para `css-recipient-color-tokens`.
 
 ---
 
-<a id="archivo-0448"></a>
-## Archivo #448: .ai/skills/css-transform-handle-safety/SKILL.md
+<a id="archivo-0449"></a>
+## Archivo #449: .ai/skills/css-transform-handle-safety/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/css-transform-handle-safety/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/css-transform-handle-safety/SKILL.md`
@@ -30128,8 +30184,8 @@ Aplicar procedimiento reutilizable para `css-transform-handle-safety`.
 
 ---
 
-<a id="archivo-0449"></a>
-## Archivo #449: .ai/skills/custom-schema-contracts/SKILL.md
+<a id="archivo-0450"></a>
+## Archivo #450: .ai/skills/custom-schema-contracts/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/custom-schema-contracts/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/custom-schema-contracts/SKILL.md`
@@ -30173,8 +30229,8 @@ Aplicar procedimiento reutilizable para `custom-schema-contracts`.
 
 ---
 
-<a id="archivo-0450"></a>
-## Archivo #450: .ai/skills/documentation-traceability/SKILL.md
+<a id="archivo-0451"></a>
+## Archivo #451: .ai/skills/documentation-traceability/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/documentation-traceability/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/documentation-traceability/SKILL.md`
@@ -30218,8 +30274,8 @@ Aplicar procedimiento reutilizable para `documentation-traceability`.
 
 ---
 
-<a id="archivo-0451"></a>
-## Archivo #451: .ai/skills/docusign-inspired-schema-ux/SKILL.md
+<a id="archivo-0452"></a>
+## Archivo #452: .ai/skills/docusign-inspired-schema-ux/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/docusign-inspired-schema-ux/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/docusign-inspired-schema-ux/SKILL.md`
@@ -30254,8 +30310,8 @@ Build/lint y screenshot/regresión visual.
 
 ---
 
-<a id="archivo-0452"></a>
-## Archivo #452: .ai/skills/docusign-wix-minimal-ux/SKILL.md
+<a id="archivo-0453"></a>
+## Archivo #453: .ai/skills/docusign-wix-minimal-ux/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/docusign-wix-minimal-ux/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/docusign-wix-minimal-ux/SKILL.md`
@@ -30307,8 +30363,8 @@ Usa esta skill cuando una tarea afecte schemas estándar, grupos, botón `+`, De
 
 ---
 
-<a id="archivo-0453"></a>
-## Archivo #453: .ai/skills/external-forms-runtime/SKILL.md
+<a id="archivo-0454"></a>
+## Archivo #454: .ai/skills/external-forms-runtime/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/external-forms-runtime/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/external-forms-runtime/SKILL.md`
@@ -30352,8 +30408,8 @@ Aplicar procedimiento reutilizable para `external-forms-runtime`.
 
 ---
 
-<a id="archivo-0454"></a>
-## Archivo #454: .ai/skills/floating-toolbar-transform-position/SKILL.md
+<a id="archivo-0455"></a>
+## Archivo #455: .ai/skills/floating-toolbar-transform-position/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/floating-toolbar-transform-position/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/floating-toolbar-transform-position/SKILL.md`
@@ -30397,8 +30453,8 @@ Aplicar procedimiento reutilizable para `floating-toolbar-transform-position`.
 
 ---
 
-<a id="archivo-0455"></a>
-## Archivo #455: .ai/skills/fork-safe-pdfme-evolution/SKILL.md
+<a id="archivo-0456"></a>
+## Archivo #456: .ai/skills/fork-safe-pdfme-evolution/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/fork-safe-pdfme-evolution/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/fork-safe-pdfme-evolution/SKILL.md`
@@ -30442,8 +30498,8 @@ Aplicar procedimiento reutilizable para `fork-safe-pdfme-evolution`.
 
 ---
 
-<a id="archivo-0456"></a>
-## Archivo #456: .ai/skills/form-viewer-generator-parity/SKILL.md
+<a id="archivo-0457"></a>
+## Archivo #457: .ai/skills/form-viewer-generator-parity/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/form-viewer-generator-parity/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/form-viewer-generator-parity/SKILL.md`
@@ -30487,8 +30543,8 @@ Aplicar procedimiento reutilizable para `form-viewer-generator-parity`.
 
 ---
 
-<a id="archivo-0457"></a>
-## Archivo #457: .ai/skills/group-no-overlap/SKILL.md
+<a id="archivo-0458"></a>
+## Archivo #458: .ai/skills/group-no-overlap/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/group-no-overlap/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/group-no-overlap/SKILL.md`
@@ -30540,8 +30596,8 @@ Usa esta skill cuando una tarea afecte schemas estándar, grupos, botón `+`, De
 
 ---
 
-<a id="archivo-0458"></a>
-## Archivo #458: .ai/skills/inline-edit-transform-guard/SKILL.md
+<a id="archivo-0459"></a>
+## Archivo #459: .ai/skills/inline-edit-transform-guard/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/inline-edit-transform-guard/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/inline-edit-transform-guard/SKILL.md`
@@ -30585,8 +30641,8 @@ Aplicar procedimiento reutilizable para `inline-edit-transform-guard`.
 
 ---
 
-<a id="archivo-0459"></a>
-## Archivo #459: .ai/skills/keyboard-shortcut-transform-safety/SKILL.md
+<a id="archivo-0460"></a>
+## Archivo #460: .ai/skills/keyboard-shortcut-transform-safety/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/keyboard-shortcut-transform-safety/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/keyboard-shortcut-transform-safety/SKILL.md`
@@ -30630,8 +30686,8 @@ Aplicar procedimiento reutilizable para `keyboard-shortcut-transform-safety`.
 
 ---
 
-<a id="archivo-0460"></a>
-## Archivo #460: .ai/skills/legacy-runtime-reduction/SKILL.md
+<a id="archivo-0461"></a>
+## Archivo #461: .ai/skills/legacy-runtime-reduction/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/legacy-runtime-reduction/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/legacy-runtime-reduction/SKILL.md`
@@ -30675,8 +30731,8 @@ Aplicar procedimiento reutilizable para `legacy-runtime-reduction`.
 
 ---
 
-<a id="archivo-0461"></a>
-## Archivo #461: .ai/skills/moveable-selecto-integration/SKILL.md
+<a id="archivo-0462"></a>
+## Archivo #462: .ai/skills/moveable-selecto-integration/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/moveable-selecto-integration/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/moveable-selecto-integration/SKILL.md`
@@ -30720,8 +30776,8 @@ Aplicar procedimiento reutilizable para `moveable-selecto-integration`.
 
 ---
 
-<a id="archivo-0462"></a>
-## Archivo #462: .ai/skills/moveable-selecto-resize-rotate/SKILL.md
+<a id="archivo-0463"></a>
+## Archivo #463: .ai/skills/moveable-selecto-resize-rotate/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/moveable-selecto-resize-rotate/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/moveable-selecto-resize-rotate/SKILL.md`
@@ -30765,8 +30821,8 @@ Aplicar procedimiento reutilizable para `moveable-selecto-resize-rotate`.
 
 ---
 
-<a id="archivo-0463"></a>
-## Archivo #463: .ai/skills/multipage-multipdf-placement/SKILL.md
+<a id="archivo-0464"></a>
+## Archivo #464: .ai/skills/multipage-multipdf-placement/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/multipage-multipdf-placement/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/multipage-multipdf-placement/SKILL.md`
@@ -30801,8 +30857,8 @@ schema-no-overlap + page-stack-layout + multi-document tests.
 
 ---
 
-<a id="archivo-0464"></a>
-## Archivo #464: .ai/skills/playwright-canvas-diagnostics/SKILL.md
+<a id="archivo-0465"></a>
+## Archivo #465: .ai/skills/playwright-canvas-diagnostics/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/playwright-canvas-diagnostics/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/playwright-canvas-diagnostics/SKILL.md`
@@ -30846,8 +30902,8 @@ Aplicar procedimiento reutilizable para `playwright-canvas-diagnostics`.
 
 ---
 
-<a id="archivo-0465"></a>
-## Archivo #465: .ai/skills/playwright-recipient-color-regression/SKILL.md
+<a id="archivo-0466"></a>
+## Archivo #466: .ai/skills/playwright-recipient-color-regression/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/playwright-recipient-color-regression/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/playwright-recipient-color-regression/SKILL.md`
@@ -30891,8 +30947,8 @@ Aplicar procedimiento reutilizable para `playwright-recipient-color-regression`.
 
 ---
 
-<a id="archivo-0466"></a>
-## Archivo #466: .ai/skills/playwright-transform-regression/SKILL.md
+<a id="archivo-0467"></a>
+## Archivo #467: .ai/skills/playwright-transform-regression/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/playwright-transform-regression/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/playwright-transform-regression/SKILL.md`
@@ -30936,8 +30992,8 @@ Aplicar procedimiento reutilizable para `playwright-transform-regression`.
 
 ---
 
-<a id="archivo-0467"></a>
-## Archivo #467: .ai/skills/process-regression-matrix/SKILL.md
+<a id="archivo-0468"></a>
+## Archivo #468: .ai/skills/process-regression-matrix/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/process-regression-matrix/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/process-regression-matrix/SKILL.md`
@@ -30972,8 +31028,8 @@ tests/application-behavior-regression-matrix.md actualizado.
 
 ---
 
-<a id="archivo-0468"></a>
-## Archivo #468: .ai/skills/public-api-surface-design/SKILL.md
+<a id="archivo-0469"></a>
+## Archivo #469: .ai/skills/public-api-surface-design/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/public-api-surface-design/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/public-api-surface-design/SKILL.md`
@@ -31017,8 +31073,8 @@ Aplicar procedimiento reutilizable para `public-api-surface-design`.
 
 ---
 
-<a id="archivo-0469"></a>
-## Archivo #469: .ai/skills/quality-gates/SKILL.md
+<a id="archivo-0470"></a>
+## Archivo #470: .ai/skills/quality-gates/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/quality-gates/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/quality-gates/SKILL.md`
@@ -31062,8 +31118,8 @@ Aplicar procedimiento reutilizable para `quality-gates`.
 
 ---
 
-<a id="archivo-0470"></a>
-## Archivo #470: .ai/skills/schema-icon-color-sync/SKILL.md
+<a id="archivo-0471"></a>
+## Archivo #471: .ai/skills/schema-icon-color-sync/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/schema-icon-color-sync/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/schema-icon-color-sync/SKILL.md`
@@ -31107,8 +31163,8 @@ Aplicar procedimiento reutilizable para `schema-icon-color-sync`.
 
 ---
 
-<a id="archivo-0471"></a>
-## Archivo #471: .ai/skills/schema-owner-color-persistence/SKILL.md
+<a id="archivo-0472"></a>
+## Archivo #472: .ai/skills/schema-owner-color-persistence/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/schema-owner-color-persistence/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/schema-owner-color-persistence/SKILL.md`
@@ -31152,8 +31208,8 @@ Aplicar procedimiento reutilizable para `schema-owner-color-persistence`.
 
 ---
 
-<a id="archivo-0472"></a>
-## Archivo #472: .ai/skills/schema-registry-extension/SKILL.md
+<a id="archivo-0473"></a>
+## Archivo #473: .ai/skills/schema-registry-extension/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/schema-registry-extension/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/schema-registry-extension/SKILL.md`
@@ -31197,8 +31253,8 @@ Aplicar procedimiento reutilizable para `schema-registry-extension`.
 
 ---
 
-<a id="archivo-0473"></a>
-## Archivo #473: .ai/skills/schema-tone-resolution/SKILL.md
+<a id="archivo-0474"></a>
+## Archivo #474: .ai/skills/schema-tone-resolution/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/schema-tone-resolution/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/schema-tone-resolution/SKILL.md`
@@ -31242,8 +31298,8 @@ Aplicar procedimiento reutilizable para `schema-tone-resolution`.
 
 ---
 
-<a id="archivo-0474"></a>
-## Archivo #474: .ai/skills/selection-shortcuts-commandbus-regression/SKILL.md
+<a id="archivo-0475"></a>
+## Archivo #475: .ai/skills/selection-shortcuts-commandbus-regression/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/selection-shortcuts-commandbus-regression/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/selection-shortcuts-commandbus-regression/SKILL.md`
@@ -31278,8 +31334,8 @@ selection-shortcuts-regression.spec.ts + unitarios.
 
 ---
 
-<a id="archivo-0475"></a>
-## Archivo #475: .ai/skills/snapshot-transform-roundtrip/SKILL.md
+<a id="archivo-0476"></a>
+## Archivo #476: .ai/skills/snapshot-transform-roundtrip/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/snapshot-transform-roundtrip/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/snapshot-transform-roundtrip/SKILL.md`
@@ -31323,8 +31379,8 @@ Aplicar procedimiento reutilizable para `snapshot-transform-roundtrip`.
 
 ---
 
-<a id="archivo-0476"></a>
-## Archivo #476: .ai/skills/standard-field-groups-contract/SKILL.md
+<a id="archivo-0477"></a>
+## Archivo #477: .ai/skills/standard-field-groups-contract/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/standard-field-groups-contract/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/standard-field-groups-contract/SKILL.md`
@@ -31376,8 +31432,8 @@ Usa esta skill cuando una tarea afecte schemas estándar, grupos, botón `+`, De
 
 ---
 
-<a id="archivo-0477"></a>
-## Archivo #477: .ai/skills/standard-fields-regression-testing/SKILL.md
+<a id="archivo-0478"></a>
+## Archivo #478: .ai/skills/standard-fields-regression-testing/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/standard-fields-regression-testing/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/standard-fields-regression-testing/SKILL.md`
@@ -31429,8 +31485,8 @@ Usa esta skill cuando una tarea afecte schemas estándar, grupos, botón `+`, De
 
 ---
 
-<a id="archivo-0478"></a>
-## Archivo #478: .ai/skills/test-results-forensics/SKILL.md
+<a id="archivo-0479"></a>
+## Archivo #479: .ai/skills/test-results-forensics/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/test-results-forensics/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/test-results-forensics/SKILL.md`
@@ -31474,8 +31530,8 @@ Aplicar procedimiento reutilizable para `test-results-forensics`.
 
 ---
 
-<a id="archivo-0479"></a>
-## Archivo #479: .ai/skills/transform-interaction-state-machine/SKILL.md
+<a id="archivo-0480"></a>
+## Archivo #480: .ai/skills/transform-interaction-state-machine/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/transform-interaction-state-machine/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/transform-interaction-state-machine/SKILL.md`
@@ -31519,8 +31575,8 @@ Aplicar procedimiento reutilizable para `transform-interaction-state-machine`.
 
 ---
 
-<a id="archivo-0480"></a>
-## Archivo #480: .ai/skills/unique-recipient-palette/SKILL.md
+<a id="archivo-0481"></a>
+## Archivo #481: .ai/skills/unique-recipient-palette/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/unique-recipient-palette/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/unique-recipient-palette/SKILL.md`
@@ -31564,8 +31620,8 @@ Aplicar procedimiento reutilizable para `unique-recipient-palette`.
 
 ---
 
-<a id="archivo-0481"></a>
-## Archivo #481: .ai/skills/unit-recipient-color-contracts/SKILL.md
+<a id="archivo-0482"></a>
+## Archivo #482: .ai/skills/unit-recipient-color-contracts/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/unit-recipient-color-contracts/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/unit-recipient-color-contracts/SKILL.md`
@@ -31609,8 +31665,8 @@ Aplicar procedimiento reutilizable para `unit-recipient-color-contracts`.
 
 ---
 
-<a id="archivo-0482"></a>
-## Archivo #482: .ai/skills/unit-transform-state-contracts/SKILL.md
+<a id="archivo-0483"></a>
+## Archivo #483: .ai/skills/unit-transform-state-contracts/SKILL.md
 
 - **Ruta relativa:** `.ai/skills/unit-transform-state-contracts/SKILL.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/.ai/skills/unit-transform-state-contracts/SKILL.md`
@@ -31654,8 +31710,8 @@ Aplicar procedimiento reutilizable para `unit-transform-state-contracts`.
 
 ---
 
-<a id="archivo-0483"></a>
-## Archivo #483: src/sisad-pdfme/ui/designerEngine.api.md
+<a id="archivo-0484"></a>
+## Archivo #484: src/sisad-pdfme/ui/designerEngine.api.md
 
 - **Ruta relativa:** `src/sisad-pdfme/ui/designerEngine.api.md`
 - **Ruta absoluta:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/designerEngine.api.md`
@@ -32308,6 +32364,7 @@ prueba-plugin
 ├── INSTALL_MAC.md
 ├── MANIFEST.md
 ├── metadata
+├── ONCHANGE_CANDIDATES.md
 ├── public
 │   └── templates
 ├── README.md
@@ -32390,6 +32447,7 @@ prueba-plugin
 │   │   │       └── elements
 │   │   ├── runtime
 │   │   ├── schemas
+│   │   │   ├── actions
 │   │   │   ├── barcodes
 │   │   │   ├── checkbox
 │   │   │   ├── checkboxGroup
@@ -32397,13 +32455,17 @@ prueba-plugin
 │   │   │   ├── graphics
 │   │   │   ├── multiVariableText
 │   │   │   ├── number
+│   │   │   ├── options
+│   │   │   ├── propPanel
 │   │   │   ├── radioGroup
 │   │   │   ├── select
 │   │   │   ├── shapes
 │   │   │   ├── signature
 │   │   │   ├── tables
-│   │   │   └── text
-│   │   │       └── icons
+│   │   │   ├── text
+│   │   │   │   └── icons
+│   │   │   ├── textLike
+│   │   │   └── values
 │   │   ├── shared
 │   │   ├── templates
 │   │   └── ui
@@ -32558,6 +32620,7 @@ prueba-plugin
         │   │       └── elements
         │   ├── runtime
         │   ├── schemas
+        │   │   ├── actions
         │   │   ├── barcodes
         │   │   ├── checkbox
         │   │   ├── checkboxGroup
@@ -32565,6 +32628,7 @@ prueba-plugin
         │   │   ├── graphics
         │   │   ├── multiVariableText
         │   │   ├── number
+        │   │   ├── options
         │   │   ├── radioGroup
         │   │   ├── select
         │   │   ├── shapes

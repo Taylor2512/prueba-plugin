@@ -6,6 +6,7 @@ export type CanonicalDetailSection =
   | 'box'
   | 'appearance'
   | 'behavior'
+  | 'help'
   | 'dataBindings'
   | 'collaboration'
   | 'comments'
@@ -17,6 +18,7 @@ export type LegacyDetailSection =
   | 'style'
   | 'data'
   | 'connections'
+  | 'help'
   | 'validation'
   | 'collaboration'
   | 'comments'
@@ -28,6 +30,7 @@ export const LEGACY_TO_CANONICAL_DETAIL_SECTION = {
   style: 'appearance',
   data: 'behavior',
   connections: 'dataBindings',
+  help: 'help',
   validation: 'behavior',
   collaboration: 'collaboration',
   comments: 'comments',
@@ -39,6 +42,7 @@ export const CANONICAL_DETAIL_SECTION_ORDER = [
   'box',
   'appearance',
   'behavior',
+  'help',
   'dataBindings',
   'collaboration',
   'comments',
@@ -64,6 +68,11 @@ export const CANONICAL_DETAIL_SECTION_LABELS: Record<CanonicalDetailSection, { t
   behavior: {
     title: 'Comportamiento',
     description: 'Semántica, reglas y opciones del campo.',
+    defaultCollapsed: true,
+  },
+  help: {
+    title: 'Ayuda',
+    description: 'Tooltips y textos de asistencia para el usuario.',
     defaultCollapsed: true,
   },
   dataBindings: {
@@ -267,6 +276,10 @@ export function shouldRenderDetailSection(params: {
       'editable',
       'readonly',
       'required',
+      'readOnly',
+      'locked',
+      'restrictchanges',
+      'restrictChanges',
       'format',
       'locale',
       'options',
@@ -275,13 +288,31 @@ export function shouldRenderDetailSection(params: {
       'repeathead',
       'includetext',
       'validation',
+      'validation.type',
+      'validation.pattern',
+      'validation.message',
       'type',
       'placeholder',
+      'defaultvalue',
+      'defaultValue',
+      'maxlength',
+      'maxLength',
+      'masked',
+      'fixedwidth',
+      'fixedWidth',
       'variables',
       'readvalue',
       'writevalue',
+      'mandatory',
+      'editablebysender',
+      'editablebyrecipient',
     ];
-    return Boolean(context.supportsBehavior !== false) && (hasField(entries, behaviorFields) || hasRenderableField(entries) || hasAnyValue(schemaObject, ['editable', 'readOnly', 'required', 'format', 'locale', 'options', 'group']));
+    return Boolean(context.supportsBehavior !== false) && (hasField(entries, behaviorFields) || hasRenderableField(entries) || hasAnyValue(schemaObject, ['editable', 'readOnly', 'required', 'locked', 'format', 'locale', 'options', 'group', 'mandatory']));
+  }
+
+  if (section === 'help') {
+    const helpKeys = ['tooltip', 'helptext', 'helpText'];
+    return hasField(entries, helpKeys) || hasAnyValue(schemaObject, ['tooltip', 'helpText']);
   }
 
   if (section === 'dataBindings') {
@@ -300,8 +331,17 @@ export function shouldRenderDetailSection(params: {
       'requestmapping',
       'responsemapping',
       'mapping',
+      // data label / integration fields
+      'datalabel',
+      'dataLabel',
+      'tablabel',
+      'tabLabel',
+      'fieldkey',
+      'fieldKey',
+      'externalkey',
+      'externalKey',
     ];
-    return hasField(entries, bindingFields) || hasWidget(fields, widgetNames) || hasAnyValue(schemaObject, ['schemaConnections', 'persistence', 'api', 'form', 'prefill', 'rootKey', 'endpoint', 'baseUrl', 'headers', 'params', 'storageKey', 'requestMapping', 'responseMapping', 'mapping']);
+    return hasField(entries, bindingFields) || hasWidget(fields, widgetNames) || hasAnyValue(schemaObject, ['schemaConnections', 'persistence', 'api', 'form', 'prefill', 'rootKey', 'endpoint', 'baseUrl', 'headers', 'params', 'storageKey', 'requestMapping', 'responseMapping', 'mapping', 'dataLabel', 'tabLabel', 'fieldKey']);
   }
 
   if (section === 'collaboration') {

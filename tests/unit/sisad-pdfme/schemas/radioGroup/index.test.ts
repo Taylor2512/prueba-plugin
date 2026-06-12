@@ -27,7 +27,8 @@ describe('sisad-pdfme/schemas/radioGroup/index.ts', () => {
     expect(propPanelSchema.groupName).toBeTruthy();
     expect(propPanelSchema.lockedAsGroup).toBeTruthy();
     expect(propPanelSchema.optionsContainer).toBeTruthy();
-    expect(radioGroup.propPanel.inspector.propertyMap.groupId).toBe('data');
+    // groupId is a technical ID — moved to advanced section (not data)
+    expect(radioGroup.propPanel.inspector.propertyMap.groupId).toBe('advanced');
     expect(radioGroup.propPanel.inspector.propertyMap.groupName).toBe('data');
     expect(radioGroup.propPanel.inspector.propertyMap.optionsContainer).toBe('data');
   });

@@ -202,8 +202,8 @@ export function validateTemplate(input: ValidateTemplateInput): ValidationResult
         });
       }
 
-      // FIELD_SIGNATURE_NO_PROVIDER — error for signature fields
-      const isSignature = schema.type === 'signature' ||
+      // FIELD_SIGNATURE_NO_PROVIDER — error for signature/initials fields
+      const isSignature = schema.type === 'signature' || schema.type === 'initials' ||
         schema.__designer?.signature?.mode !== undefined;
       const hasProvider = !!(
         schema.signatureProvider ||

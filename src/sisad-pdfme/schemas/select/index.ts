@@ -6,6 +6,7 @@ import { TextSchema } from '../text/types.js';
 import { ChevronDown } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import { basicsFields, helpFields, dataLabelFields, COMMON_PROPERTY_MAP } from '../propPanel/commonInspectorFields.js';
 
 const selectIcon = renderLucideIcon(ChevronDown);
 
@@ -229,8 +230,10 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
     ...text.propPanel,
     inspector: createSchemaInspectorConfig('textual', {
       propertyMap: {
+        ...COMMON_PROPERTY_MAP,
         optionsContainer: 'data',
       },
+      includeConnections: true,
     }),
     widgets: { ...parentPropPanel.widgets, addOptions },
     schema: (propPanelProps: Omit<PropPanelWidgetProps, 'rootElement'>) => {
@@ -243,7 +246,10 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
 
       // Create a type-safe return object
       return {
+        ...basicsFields(),
         ...parentSchema,
+        ...helpFields(),
+        ...dataLabelFields(),
         '-------': { type: 'void', widget: 'Divider' },
 
         optionsContainer: {

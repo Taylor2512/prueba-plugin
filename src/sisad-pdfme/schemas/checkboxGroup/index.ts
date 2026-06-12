@@ -4,17 +4,51 @@ import { isEditable } from '../utils.js';
 import { HEX_COLOR_PATTERN } from '../constants.js';
 import { createSchemaPlugin, renderLucideIcon } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import {
+  basicsFields,
+  helpFields,
+  dataLabelFields,
+  COMMON_PROPERTY_MAP,
+} from '../propPanel/commonInspectorFields.js';
 import { SquareCheck } from 'lucide-react';
 import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
 import {
+  hexAlpha,
   buildGroupWrapper,
   buildGroupContainer,
   buildGroupLabel,
   buildOptionRow,
   buildCheckboxIndicator,
   buildOptionLabel,
-  buildAddOptionButton,
 } from '../groupSchemaRender.js';
+
+// ─── Designer compact geometry constants ────────────────────────────────────
+// The + button is rendered as an external overlay (GroupOptionFloatingAction),
+// so the bounding box covers ONLY the stacked indicator squares.
+
+import {
+  CHECKBOX_GROUP_LAYOUT,
+  computeOptionGroupDesignerHeightMM,
+  computeOptionGroupDesignerWidthMM,
+} from '../options/optionGroupLayout.js';
+
+const DESIGNER_BOX_SIZE = CHECKBOX_GROUP_LAYOUT.boxSize;  // px
+const DESIGNER_BOX_GAP  = CHECKBOX_GROUP_LAYOUT.boxGap;   // px
+
+const DESIGNER_BOX_BORDER = '#65d8de';
+const DESIGNER_BOX_BG = 'rgba(161, 239, 242, 0.58)';
+
+const calculateDesignerHeight = (optionsCount: number): number =>
+  computeOptionGroupDesignerHeightMM(optionsCount, CHECKBOX_GROUP_LAYOUT);
+
+const DESIGNER_BOX_MM = computeOptionGroupDesignerWidthMM(CHECKBOX_GROUP_LAYOUT);
+
+const almostEqualNumber = (a: unknown, b: number, tolerance = 0.1): boolean => {
+  const value = Number(a);
+  return Number.isFinite(value) && Math.abs(value - b) <= tolerance;
+};
+
+// ─── Types ───────────────────────────────────────────────────────────────────
 
 type CheckboxOption = {
   optionId: string;
@@ -39,6 +73,8 @@ type CheckboxGroupSchema = SchemaForUI & {
     [key: string]: unknown;
   };
 };
+
+// ─── Pure helpers ────────────────────────────────────────────────────────────
 
 const normalizeText = (value: unknown) => String(value || '').trim();
 const ensureOptionId = (value: string, index: number) => normalizeText(value) || `option_${index + 1}`;
@@ -66,7 +102,6 @@ const normalizeOptions = (schema: CheckboxGroupSchema): CheckboxOption[] => {
   });
 };
 
-// Selected ids stored in `content` as comma-joined string, or in selectedOptionIds
 const resolveSelectedIds = (schema: CheckboxGroupSchema): Set<string> => {
   const fromArray = Array.isArray(schema.selectedOptionIds) ? schema.selectedOptionIds : null;
   if (fromArray) return new Set(fromArray.map(normalizeText).filter(Boolean));
@@ -136,7 +171,117 @@ const syncDesignerGroupPatch = (schema: CheckboxGroupSchema) => ({
   '__designer.group.lockedAsGroup': schema.lockedAsGroup !== false,
 });
 
+// ─── Designer compact DOM helpers ────────────────────────────────────────────
+
+const createDesignerOptionBox = (option: CheckboxOption, isChecked: boolean): HTMLDivElement => {
+  const box = document.createElement('div');
+  // Both specific and generic option attributes — generic for option-based queries
+  box.setAttribute('data-checkbox-group-option', option.optionId);
+  box.setAttribute('data-option-id', option.optionId);
+  box.setAttribute('aria-label', option.label);
+  Object.assign(box.style, {
+    width: `${DESIGNER_BOX_SIZE}px`,
+    height: `${DESIGNER_BOX_SIZE}px`,
+    minWidth: `${DESIGNER_BOX_SIZE}px`,
+    minHeight: `${DESIGNER_BOX_SIZE}px`,
+    maxWidth: `${DESIGNER_BOX_SIZE}px`,
+    maxHeight: `${DESIGNER_BOX_SIZE}px`,
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    boxSizing: 'border-box',
+    border: `2px solid ${DESIGNER_BOX_BORDER}`,
+    borderRadius: '2px',
+    background: DESIGNER_BOX_BG,
+    padding: '0',
+    margin: '0',
+    flex: '0 0 auto',
+    pointerEvents: 'none',
+  });
+  const indicator = buildCheckboxIndicator(DESIGNER_BOX_BORDER, isChecked);
+  Object.assign(indicator.style, { width: '14px', height: '14px', minWidth: '14px', minHeight: '14px' });
+  box.appendChild(indicator);
+  return box;
+};
+
+
+const createDesignerCheckboxGroup = ({
+  options,
+  selected,
+}: {
+  options: CheckboxOption[];
+  selected: Set<string>;
+}): HTMLDivElement => {
+  const wrapper = document.createElement('div');
+  wrapper.setAttribute('data-checkbox-group-root', 'true');
+
+  Object.assign(wrapper.style, {
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    gap: `${DESIGNER_BOX_GAP}px`,
+    padding: '0',
+    margin: '0',
+    border: 'none',
+    background: 'transparent',
+    boxSizing: 'border-box',
+    overflow: 'visible',
+  });
+
+  const safeOptions = options.length ? options : [{ optionId: 'option_1', label: 'Casilla 1' }];
+  safeOptions.forEach((option) => {
+    wrapper.appendChild(createDesignerOptionBox(option, selected.has(option.optionId)));
+  });
+
+  return wrapper;
+};
+
+const syncDesignerCheckboxGroupGeometry = ({
+  schema,
+  options,
+  rootElement,
+  onChange,
+}: {
+  schema: CheckboxGroupSchema;
+  options: CheckboxOption[];
+  rootElement: HTMLElement;
+  onChange?: (arg: { key: string; value: unknown } | Array<{ key: string; value: unknown }>) => void;
+}) => {
+  if (!onChange) return;
+
+  const optionsCount = Math.max(1, options.length);
+  // expectedWidth/Height are in mm (schema coordinate system)
+  const expectedWidth = DESIGNER_BOX_MM;
+  const expectedHeight = calculateDesignerHeight(optionsCount);
+
+  const needsSync =
+    schema.orientation !== 'vertical' ||
+    !almostEqualNumber(schema.spacing, DESIGNER_BOX_GAP) ||
+    !almostEqualNumber(schema.width, expectedWidth) ||
+    !almostEqualNumber(schema.height, expectedHeight);
+
+  if (!needsSync) return;
+
+  const signature = `${expectedWidth}:${expectedHeight}:${DESIGNER_BOX_GAP}:${optionsCount}`;
+  if ((rootElement as HTMLElement & { dataset: DOMStringMap }).dataset.cbGroupGeometrySync === signature) return;
+  (rootElement as HTMLElement & { dataset: DOMStringMap }).dataset.cbGroupGeometrySync = signature;
+
+  requestAnimationFrame(() => {
+    onChange([
+      { key: 'orientation', value: 'vertical' },
+      { key: 'spacing', value: DESIGNER_BOX_GAP },
+      { key: 'width', value: expectedWidth },
+      { key: 'height', value: expectedHeight },
+    ] as any);
+  });
+};
+
 // ─── PropPanel options editor ─────────────────────────────────────────────────
+
 const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
   const { rootElement, changeSchemas, activeSchema } = props;
   const schema = activeSchema as CheckboxGroupSchema;
@@ -177,6 +322,8 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
       options: nextOptions,
       content: serializeSelectedIds(nextSelected),
       selectedOptionIds: Array.from(nextSelected),
+      width: DESIGNER_BOX_MM,
+      height: calculateDesignerHeight(nextOptions.length),
     });
   };
 
@@ -250,6 +397,8 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
   rootElement.appendChild(addRow);
 };
 
+// ─── Plugin ──────────────────────────────────────────────────────────────────
+
 const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSchema>(
   {
     ui: (arg) => {
@@ -257,21 +406,43 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
       const cbSchema = schema as CheckboxGroupSchema;
       const options = normalizeOptions(cbSchema);
       const isDesigner = mode === 'designer';
-      // In form/viewer, the external `value` (comma-joined ids) is the source of truth
-      // when present; designer reads from the schema itself.
-      const externalIds =
+      const selected = clampSelectedIds(
         !isDesigner && typeof value === 'string' && value.trim()
           ? new Set(value.split(',').map((s) => s.trim()).filter(Boolean))
-          : null;
-      const selected = clampSelectedIds(externalIds ?? resolveSelectedIds(cbSchema), options, cbSchema);
+          : resolveSelectedIds(cbSchema),
+        options,
+        cbSchema,
+      );
       const editable = isEditable(mode, cbSchema);
       const color = cbSchema.color || '#1677ff';
+
+      rootElement.innerHTML = '';
+
+      Object.assign(rootElement.style, {
+        overflow: 'visible',
+        background: 'transparent',
+        border: 'none',
+        boxShadow: 'none',
+        padding: '0',
+        margin: '0',
+        pointerEvents: isDesigner ? 'none' : 'auto',
+      });
+
+      if (isDesigner) {
+        // Sync legacy/oversized schemas to compact geometry
+        syncDesignerCheckboxGroupGeometry({ schema: cbSchema, options, rootElement, onChange });
+
+        const designerGroup = createDesignerCheckboxGroup({ options, selected });
+        rootElement.appendChild(designerGroup);
+        return;
+      }
+
+      // ── Form / Viewer mode: labeled runtime ──────────────────────────────
       const gap = Number.isFinite(Number(cbSchema.spacing)) ? Number(cbSchema.spacing) : 3;
       const isHorizontal = cbSchema.orientation === 'horizontal';
 
       const wrapper = buildGroupWrapper();
       wrapper.setAttribute('data-checkbox-group-root', 'true');
-
       const container = buildGroupContainer({ color, gap, isHorizontal });
 
       if (cbSchema.groupName) {
@@ -304,52 +475,6 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
       });
 
       wrapper.appendChild(container);
-
-      // Surface the "add option" affordance when the page runtime is designer.
-      // Some embedding contexts may call the plugin with mode !== 'designer'
-      // even though the top-level runtime is in designer mode (canvas). Detect
-      // that global hint and show the button so selection overlays and tests
-      // reliably find the affordance.
-      const globalRuntimeIsDesigner = typeof document !== 'undefined' &&
-        Boolean(document.querySelector('[data-runtime-mode="designer"]'));
-
-      if (isDesigner || globalRuntimeIsDesigner) {
-        const addBtn = buildAddOptionButton(color, 'Agregar casilla al grupo', 'data-checkbox-group-add-option');
-        addBtn.setAttribute('aria-label', 'Agregar casilla al grupo');
-        addBtn.setAttribute('data-schema-interactive-control', 'checkbox-add-option');
-        addBtn.addEventListener('pointerdown', (e) => e.stopPropagation());
-        addBtn.addEventListener('click', (e) => {
-          e.preventDefault(); e.stopPropagation();
-
-          const current = normalizeOptions(cbSchema);
-          const n = current.length + 1;
-          const nextOptions = [...current, { optionId: `option_${n}`, label: `Casilla ${n}` }];
-
-          // Preserve/normalize selection and clamp to limits against the new options set
-          const selected = resolveSelectedIds(cbSchema);
-          const nextSelectedSet = clampSelectedIds(selected, nextOptions, cbSchema);
-          const nextSelected = Array.from(nextSelectedSet);
-
-          const gap = Number.isFinite(Number(cbSchema.spacing)) ? Number(cbSchema.spacing) : 3;
-          const expectedWidth = 55;
-          // Keep a compact default height: minimum 24, otherwise 12px per option
-          const expectedHeight = nextOptions.length >= 2 ? 12 * nextOptions.length : 24;
-
-          if (onChange) {
-            onChange([
-              { key: 'options', value: nextOptions },
-              { key: 'content', value: serializeSelectedIds(nextSelectedSet) },
-              { key: 'selectedOptionIds', value: nextSelected },
-              { key: 'orientation', value: 'vertical' },
-              { key: 'spacing', value: gap },
-              { key: 'width', value: expectedWidth },
-              { key: 'height', value: expectedHeight },
-            ]);
-          }
-        });
-        wrapper.appendChild(addBtn);
-      }
-
       rootElement.appendChild(wrapper);
     },
 
@@ -392,6 +517,7 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
 
     propPanel: {
       schema: ({ i18n }) => ({
+        ...basicsFields(),
         color: {
           title: i18n('schemas.color'),
           type: 'string',
@@ -400,18 +526,17 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
           required: true,
           rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
         },
-        groupId: { title: 'Etiqueta de grupo', type: 'string', description: 'ID del grupo de casillas.' },
-        groupName: { title: 'Nombre del grupo', type: 'string' },
-        lockedAsGroup: { title: 'Bloquear como grupo', type: 'boolean' },
+        groupName: { title: 'Nombre del grupo', type: 'string', span: 12 },
         orientation: {
           title: 'Orientación',
           type: 'string',
           widget: 'select',
+          span: 12,
           props: { options: [{ label: 'Vertical', value: 'vertical' }, { label: 'Horizontal', value: 'horizontal' }] },
         },
-        spacing: { title: 'Espaciado', type: 'number', widget: 'inputNumber', props: { min: 0, precision: 0 } },
-        minSelected: { title: 'Mínimo seleccionadas', type: 'number', widget: 'inputNumber', props: { min: 0, precision: 0 } },
-        maxSelected: { title: 'Máximo seleccionadas', type: 'number', widget: 'inputNumber', props: { min: 0, precision: 0 } },
+        spacing: { title: 'Espaciado', type: 'number', widget: 'inputNumber', span: 8, props: { min: 0, precision: 0 } },
+        minSelected: { title: 'Mín. seleccionadas', type: 'number', widget: 'inputNumber', span: 8, props: { min: 0, precision: 0 } },
+        maxSelected: { title: 'Máx. seleccionadas', type: 'number', widget: 'inputNumber', span: 8, props: { min: 0, precision: 0 } },
         optionsContainer: {
           title: 'Casillas',
           type: 'string',
@@ -419,19 +544,25 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
           span: 24,
           properties: { options: { widget: 'editCheckboxGroupOptions', span: 24 } },
         },
+        ...helpFields(),
+        ...dataLabelFields(),
+        groupId: { title: 'ID del grupo', type: 'string', span: 12, description: 'ID técnico del grupo.' },
+        lockedAsGroup: { title: 'Bloquear como grupo', type: 'boolean', span: 12 },
       }),
       inspector: createSchemaInspectorConfig('choice', {
         propertyMap: {
+          ...COMMON_PROPERTY_MAP,
           color: 'style',
-          groupId: 'data',
           groupName: 'data',
-          lockedAsGroup: 'data',
           orientation: 'data',
           spacing: 'data',
           minSelected: 'data',
           maxSelected: 'data',
           optionsContainer: 'data',
+          groupId: 'advanced',
+          lockedAsGroup: 'advanced',
         },
+        includeConnections: true,
       }),
       widgets: { editCheckboxGroupOptions: CheckboxOptionsEditor },
       defaultSchema: {
@@ -440,14 +571,14 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
         type: 'checkboxGroup',
         content: '',
         position: { x: 0, y: 0 },
-        width: 55,
-        height: 24,
+        width: DESIGNER_BOX_MM,
+        height: calculateDesignerHeight(2),
         groupId: 'Grupo_Casillas',
         group: 'Grupo_Casillas',
         groupName: 'Grupo de casillas',
         lockedAsGroup: true,
         orientation: 'vertical',
-        spacing: 3,
+        spacing: DESIGNER_BOX_GAP,
         options: [
           { optionId: 'option_1', label: 'Casilla 1' },
           { optionId: 'option_2', label: 'Casilla 2' },
@@ -485,6 +616,7 @@ export const __test__ = {
   resolveSelectionLimits,
   clampSelectedIds,
   toggleSelectedIds,
+  calculateDesignerHeight,
   /** Drops selected ids that no longer exist in the option set. */
   normalizeSelectedOptionIds: (selected: string[], options: CheckboxOption[]) => {
     const valid = new Set(options.map((o) => o.optionId));

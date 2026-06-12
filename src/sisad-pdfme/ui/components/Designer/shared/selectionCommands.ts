@@ -11,6 +11,11 @@ import type { EffectiveCollaborationContext } from '../../../collaborationContex
 import { evaluateSchemaMutationPermission } from './interactionGuards.js';
 import { duplicateSchemas } from './schemaClipboard.js';
 import type { GroupMeta } from '../../../../shared/schemaDesignerMeta.js';
+import {
+  optionGroupDesignerHeightMM,
+  optionGroupDesignerWidthMM,
+  type OptionGroupType,
+} from '../../../../schemas/options/optionGroupLayout.js';
 
 // ── Group helpers ──────────────────────────────────────────────────────────────
 
@@ -505,8 +510,12 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     }
     const isRadio = type === 'radioGroup';
     const label = `${isRadio ? 'Opción' : 'Casilla'} ${current.length + 1}`;
+    const nextOptions = [...current, { optionId, label }];
+    const groupType = type as OptionGroupType;
     context.changeSchemas([
-      { key: 'options', value: [...current, { optionId, label }], schemaId: schema.id },
+      { key: 'options', value: nextOptions, schemaId: schema.id },
+      { key: 'width',   value: optionGroupDesignerWidthMM(groupType), schemaId: schema.id },
+      { key: 'height',  value: optionGroupDesignerHeightMM(groupType, nextOptions.length), schemaId: schema.id },
     ]);
   };
 

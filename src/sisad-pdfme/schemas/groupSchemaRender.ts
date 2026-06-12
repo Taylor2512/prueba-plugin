@@ -96,6 +96,7 @@ export const buildOptionRow = (opts: {
   btn.type = 'button';
   btn.setAttribute('role', opts.role);
   btn.setAttribute(opts.dataAttr, opts.optionId);
+  btn.setAttribute('data-option-id', opts.optionId);
   Object.assign(btn.style, {
     display: 'inline-flex',
     alignItems: 'center',

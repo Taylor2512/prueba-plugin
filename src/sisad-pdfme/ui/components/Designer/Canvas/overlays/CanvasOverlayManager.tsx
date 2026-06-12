@@ -4,6 +4,7 @@ import type { SnapLine } from '../SnapLines.js';
 import SelectionContextToolbar from './SelectionContextToolbar.js';
 import InlineMetricsOverlay from './InlineMetricsOverlay.js';
 import SnapFeedbackOverlay from './SnapFeedbackOverlay.js';
+import GroupOptionFloatingAction from './GroupOptionFloatingAction.js';
 import { useFloatingToolbarPosition } from './useFloatingToolbarPosition.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import type { SelectionToolbarMode } from './canvasContextMenuActions.js';
@@ -111,6 +112,12 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
             contextMenuOpen={contextMenuOpen}
             toolbarMode={toolbarMode}
             onToolbarModeChange={setToolbarMode}
+          />
+          <GroupOptionFloatingAction
+            activeElements={activeElements}
+            activeSchemas={activeSchemas}
+            selectionCommands={selectionCommands}
+            interactionState={interactionState}
           />
           <InlineMetricsOverlay bounds={selectionBounds} />
           <SnapFeedbackOverlay bounds={selectionBounds} snapLines={snapLines} />

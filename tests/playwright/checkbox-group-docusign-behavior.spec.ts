@@ -109,19 +109,23 @@ test.describe('checkboxGroup DocuSign-style behavior', () => {
     const group = page.locator('.sisad-pdfme-ui-custom-selectable[data-schema-type="checkboxGroup"]').last();
     await group.click();
 
-    // The add-option button can be found by its data attribute regardless of label.
-    const addOption = page.locator('[data-checkbox-group-add-option="true"]').first();
+    // The add-option floating action button is rendered OUTSIDE the schema element
+    // (below the Moveable control box) and uses data-role="group-add-option".
+    const addOption = page.locator('[data-role="group-add-option"]').first();
     await expect(addOption).toBeVisible({ timeout: 5000 });
+
+    // Verify button is below the schema bounding box (not inside Moveable target).
+    const groupBox = await group.boundingBox();
+    const btnBox = await addOption.boundingBox();
+    if (groupBox && btnBox) {
+      expect(btnBox.y).toBeGreaterThan(groupBox.y + groupBox.height - 2);
+    }
 
     const optionsInGroup = () =>
       page.locator('.sisad-pdfme-ui-custom-selectable[data-schema-type="checkboxGroup"]').last().locator('[data-checkbox-group-option]');
     const before = await optionsInGroup().count();
-    // Dispatch click via JS to bypass Moveable's pointer-event interception at the button's
-    // canvas coordinate — the button is inside the schema's isolation context (z-index < Moveable).
-    await page.evaluate(() => {
-      const btn = document.querySelector('[data-checkbox-group-add-option="true"]') as HTMLElement | null;
-      btn?.dispatchEvent(new MouseEvent('click', { bubbles: true, cancelable: true }));
-    });
+    // Button is in the overlay layer — direct click works without JS dispatch.
+    await addOption.click();
     await expect.poll(async () => optionsInGroup().count()).toBeGreaterThan(before);
 
     const rects = await page.evaluate(() => {
@@ -132,10 +136,10 @@ test.describe('checkboxGroup DocuSign-style behavior', () => {
         return { left: r.left, top: r.top, right: r.right, bottom: r.bottom };
       });
     });
-    const groupBox = await group.boundingBox();
-    expect(groupBox).not.toBeNull();
+    const updatedGroupBox = await group.boundingBox();
+    expect(updatedGroupBox).not.toBeNull();
     expect(rects.length).toBeGreaterThanOrEqual(2);
-    expect(rects.every((rect) => rect.left >= (groupBox?.x || 0) - 1 && rect.right <= (groupBox?.x || 0) + (groupBox?.width || 0) + 1)).toBe(true);
+    expect(rects.every((rect) => rect.left >= (updatedGroupBox?.x || 0) - 1 && rect.right <= (updatedGroupBox?.x || 0) + (updatedGroupBox?.width || 0) + 1)).toBe(true);
     for (let i = 0; i < rects.length; i += 1) {
       for (let j = i + 1; j < rects.length; j += 1) {
         expect(overlap(rects[i], rects[j])).toBe(false);

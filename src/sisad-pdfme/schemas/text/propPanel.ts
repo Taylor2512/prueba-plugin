@@ -22,6 +22,13 @@ import {
 import { DEFAULT_OPACITY, HEX_COLOR_PATTERN } from '../constants.js';
 import { getExtraFormatterSchema } from './extraFormatter.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import {
+  basicsFields,
+  helpFields,
+  dataLabelFields,
+  textValidationFields,
+  COMMON_PROPERTY_MAP,
+} from '../propPanel/commonInspectorFields.js';
 
 const UseDynamicFontSize = (props: PropPanelWidgetProps) => {
   const { rootElement, changeSchemas, activeSchema, i18n } = props;
@@ -156,9 +163,26 @@ export const propPanel: PropPanel<TextSchema> = {
       },
     };
 
-    return textSchema;
+    return {
+      // ── basics (behavior section) ──
+      ...basicsFields(),
+      // ── appearance (style section) ──
+      ...textSchema,
+      // ── help (advanced section) ──
+      ...helpFields(),
+      // ── dataLabel (connections section) ──
+      ...dataLabelFields(),
+      // ── validation (validation section) ──
+      ...textValidationFields(),
+    };
   },
-  inspector: createSchemaInspectorConfig('textual'),
+  inspector: createSchemaInspectorConfig('textual', {
+    propertyMap: {
+      ...COMMON_PROPERTY_MAP,
+    },
+    includeValidation: true,
+    includeConnections: true,
+  }),
   widgets: { UseDynamicFontSize },
   defaultSchema: {
     name: '',

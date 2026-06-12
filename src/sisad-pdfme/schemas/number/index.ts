@@ -2,6 +2,16 @@ import type { Plugin } from '@sisad-pdfme/common';
 import text from '../text/index.js';
 import { createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import {
+  basicsFields,
+  helpFields,
+  dataLabelFields,
+  numberFormatFields,
+  validationMinField,
+  validationMaxField,
+  validationMessageField,
+  COMMON_PROPERTY_MAP,
+} from '../propPanel/commonInspectorFields.js';
 
 const schema: Plugin<any> = createSchemaPlugin<any>(
   {
@@ -9,24 +19,17 @@ const schema: Plugin<any> = createSchemaPlugin<any>(
     pdf: text.pdf,
     propPanel: {
       schema: ({ i18n }) => ({
+        // ── basics ──
+        ...basicsFields(),
+        // ── content ──
         placeholder: {
           title: 'Placeholder',
           type: 'string',
           widget: 'input',
           span: 12,
         },
-        min: {
-          title: i18n('schemas.text.min'),
-          type: 'number',
-          widget: 'inputNumber',
-          span: 6,
-        },
-        max: {
-          title: i18n('schemas.text.max'),
-          type: 'number',
-          widget: 'inputNumber',
-          span: 6,
-        },
+        // ── number format ──
+        ...numberFormatFields(),
         decimals: {
           title: 'Decimales',
           type: 'number',
@@ -34,28 +37,26 @@ const schema: Plugin<any> = createSchemaPlugin<any>(
           span: 6,
           props: { min: 0, precision: 0 },
         },
-        format: {
-          title: 'Formato',
-          type: 'string',
-          widget: 'select',
-          span: 12,
-          props: {
-            options: [
-              { label: 'Libre', value: 'free' },
-              { label: 'Moneda', value: 'currency' },
-              { label: 'Porcentaje', value: 'percent' },
-              { label: 'Entero', value: 'integer' },
-            ],
-          },
-        },
-        validationMessage: {
-          title: 'Mensaje de validación',
-          type: 'string',
-          widget: 'input',
-          span: 24,
-        },
+        // ── validation ──
+        validationMin: { ...validationMinField(), title: i18n('schemas.text.min') },
+        validationMax: { ...validationMaxField(), title: i18n('schemas.text.max') },
+        validationMessage: validationMessageField(),
+        // ── help ──
+        ...helpFields(),
+        // ── dataLabel ──
+        ...dataLabelFields(),
       }),
-      inspector: createSchemaInspectorConfig('textual'),
+      inspector: createSchemaInspectorConfig('textual', {
+        propertyMap: {
+          ...COMMON_PROPERTY_MAP,
+          decimals: 'data',
+          validationMin: 'validation',
+          validationMax: 'validation',
+          validationMessage: 'validation',
+        },
+        includeValidation: true,
+        includeConnections: true,
+      }),
       defaultSchema: {
         name: '',
         type: 'number',

@@ -2,7 +2,7 @@
    ARCHIVO UNIFICADO DE ESTILOS CSS
    =====================================================================
    Carpeta origen: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
-   Fecha de generación: 2026-06-10T03:33:49.942Z
+   Fecha de generación: 2026-06-10T14:44:30.592Z
    Total de archivos incluidos: 6
    Extensiones incluidas: .css
    Objetivo: consolidar estilos CSS respetando un orden estable de cascada
@@ -718,19 +718,6 @@
 
 :is(.app-shell, .sisad-pdfme-designer-root)
   .sisad-pdfme-ui-custom-selectable[data-schema-type='radioGroup']::before {
-  background: transparent !important;
-  box-shadow: none !important;
-}
-
-/* CheckboxGroup: evitar overlays/captions/badges globales que rompen la compactación */
-:is(.app-shell, .sisad-pdfme-designer-root)
-  .sisad-pdfme-ui-custom-selectable[data-schema-type='checkboxGroup']::after {
-  content: none !important;
-  display: none !important;
-}
-
-:is(.app-shell, .sisad-pdfme-designer-root)
-  .sisad-pdfme-ui-custom-selectable[data-schema-type='checkboxGroup']::before {
   background: transparent !important;
   box-shadow: none !important;
 }
@@ -7090,7 +7077,7 @@
    ARCHIVO #3
    Ruta relativa: src/sisad-pdfme/ui/styles/canvas-interactions.css
    Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/styles/canvas-interactions.css
-   Líneas aproximadas: 1469
+   Líneas aproximadas: 1494
    ==================================================================== */
 
 /* ============================================================
@@ -8411,24 +8398,6 @@
   gap: 0.5rem;
 }
 
-/* Defensive: ensure radioGroup remains compact and never receives
-   caption/badge/overlay pseudo-elements that other schemas use. */
-:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-type='radioGroup']::after,
-:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-type='radioGroup'][data-schema-caption]::after,
-:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-type='radioGroup'][data-schema-badge]::after {
-  content: none !important;
-  display: none !important;
-  opacity: 0 !important;
-}
-
-:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-type='radioGroup']::before,
-:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-type='radioGroup'][data-schema-state='editing']::before {
-  background: transparent !important;
-  box-shadow: none !important;
-  opacity: 0 !important;
-  display: none !important;
-}
-
 .sisad-pdfme-shortcuts-group-title {
   margin: 0 !important;
 }
@@ -8578,6 +8547,31 @@
 
 .sisad-pdfme-designer-canvas-state-overlay .sisad-pdfme-designer-canvas-empty-state-hint {
   font-size: 0.66rem;
+}
+
+/* ── Option group floating action ── */
+.sisad-pdfme-option-group-floating-action {
+  position: absolute;
+  pointer-events: none;
+  z-index: 201;
+}
+
+.sisad-pdfme-option-group__add-button {
+  pointer-events: auto;
+  user-select: none;
+  transition: box-shadow 100ms ease, background 100ms ease;
+}
+
+.sisad-pdfme-option-group__add-button:hover {
+  background: #3b00a0 !important;
+  box-shadow: 0 3px 8px rgba(77, 0, 200, 0.45) !important;
+}
+
+/* Hide when parent stage is in dragging or transform state */
+.sisad-pdfme-designer-stage[data-schema-dragging='true'] .sisad-pdfme-option-group-floating-action,
+.sisad-pdfme-designer-stage[data-resizing='true'] .sisad-pdfme-option-group-floating-action,
+.sisad-pdfme-designer-stage[data-rotating='true'] .sisad-pdfme-option-group-floating-action {
+  display: none;
 }
 
 
@@ -9624,6 +9618,7 @@ body {
    │   │   │       └── elements
    │   │   ├── runtime
    │   │   ├── schemas
+   │   │   │   ├── actions
    │   │   │   ├── barcodes
    │   │   │   ├── checkbox
    │   │   │   ├── checkboxGroup
@@ -9631,13 +9626,17 @@ body {
    │   │   │   ├── graphics
    │   │   │   ├── multiVariableText
    │   │   │   ├── number
+   │   │   │   ├── options
+   │   │   │   ├── propPanel
    │   │   │   ├── radioGroup
    │   │   │   ├── select
    │   │   │   ├── shapes
    │   │   │   ├── signature
    │   │   │   ├── tables
-   │   │   │   └── text
-   │   │   │       └── icons
+   │   │   │   ├── text
+   │   │   │   │   └── icons
+   │   │   │   ├── textLike
+   │   │   │   └── values
    │   │   ├── shared
    │   │   ├── templates
    │   │   └── ui
@@ -9783,6 +9782,7 @@ body {
            │   │       └── elements
            │   ├── runtime
            │   ├── schemas
+           │   │   ├── actions
            │   │   ├── barcodes
            │   │   ├── checkbox
            │   │   ├── checkboxGroup
@@ -9790,6 +9790,7 @@ body {
            │   │   ├── graphics
            │   │   ├── multiVariableText
            │   │   ├── number
+           │   │   ├── options
            │   │   ├── radioGroup
            │   │   ├── select
            │   │   ├── shapes
