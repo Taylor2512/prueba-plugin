@@ -1,5 +1,12 @@
-# Css Design System Context
+# CSS Design System Context
 
-## Contexto
+Runtime CSS bajo `.sisad-pdfme-root`.
 
-Tokens, variables y capas CSS deben evitar sobrescribir geometry handles. Todo bajo `.sisad-pdfme-root`.
+Archivos:
+
+- `tokens.css`
+- `sisad-pdfme-global.css`
+- `canvas-interactions.css`
+- `sisad-pdfme-runtime.css`
+
+No tocar `body/html`, `.moveable-*` o `.selecto-*` salvo regla justificada.

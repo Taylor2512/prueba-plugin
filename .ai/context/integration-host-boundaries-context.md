@@ -1,5 +1,7 @@
-# Integration Host Boundaries Context
+# Integration Host Boundaries
 
-## Contexto
+El host puede pasar recipients, callbacks, config, snapshot y acciones externas.
 
-Host y runtime se comunican con props, commands, events y snapshot. Nunca por DOM interno.
+El host no puede duplicar canvas, toolbar, inspector, sidebars, Moveable, Selecto o renderer.
+
+StepOne no se toca salvo alcance explícito.

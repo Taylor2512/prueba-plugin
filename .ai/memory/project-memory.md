@@ -1,28 +1,26 @@
-# Memoria del proyecto
+# Project Memory — SISAD PDFME
 
-## Contexto permanente
+## Objetivo
 
-`sisad-pdfme` es un runtime de edición y generación PDF con `Designer`, `Form`, `Viewer`, schemas, colaboración, recipients, ownership, comments, snapshots, generator y converter.
+Diseñador PDF genérico tipo DocuSign/Wix con múltiples documentos, páginas, destinatarios, color por owner, no-overlap, standard schemas, snapshot oficial, Form/Viewer/Generator parity y externalForms.
 
-## Decisiones activas
+## Reglas fuertes
 
-- `.ai` es fuente de verdad para asistentes.
-- El catálogo usa color de destinatario activo.
-- El canvas usa ownerColor persistente por schema.
-- Transformaciones deben pasar por guards y command bus.
-- CSS debe permanecer bajo `.sisad-pdfme-root`.
-- externalForms debe consumir snapshot y runtime, no duplicar renderer.
+- El color activo solo aplica a schemas nuevos.
+- Schemas existentes conservan `ownerColor`.
+- `checkboxGroup` y `radioGroup` son grupos lógicos.
+- Options internas usan `data-option-id`.
+- Root usa `data-schema-id`.
+- Botón `+` usa `data-role="group-add-option"` y vive fuera del root transformable.
+- `select/dropdown` edita opciones en DetailView.
+- Snapshot oficial se usa para descargar, importar, guardar TXT y externalForms.
 
-## Inventario base
+## Riesgos recurrentes
 
-- Código analizado: `510` archivos.
-- Markdown previo: `323` archivos.
-- CSS: `6` archivos.
-
-## 2026-06-01 — Actualización v4 standard fields y grupos
-
-Se actualiza la arquitectura MD para evitar prompts gigantes y reutilizar la estructura existente. La prioridad nueva es cerrar contratos de `text`, `number`, `checkbox`, `checkboxGroup`, `radioGroup` y `select/dropdown` con casos de uso completos: Designer, DetailView, ListView, Snapshot, Form, Viewer, Generator/PDF, no-overlap y tests. El botón `+` queda formalizado por contexto. No se debe reescribir coordinateService/collision sin evidencia reproducible.
-
-## Actualización v5 — Contrato maestro de comportamiento
-
-Se agrega una arquitectura documental para evitar regresiones por fixes locales. El proyecto debe evolucionar por procesos transversales: crear schema, seleccionar, transformar, shortcuts, commandBus, grupos, no-overlap, snapshot, Form/Viewer/Generator y externalForms. Se separan explícitamente `selectionGroup` y `schemaGroup`. Se incorpora información recolectada de patrones DocuSign/Wix para campos estándar, grupos de opciones/casillas, botón `+`, DetailView compacto y canvas con PDF protagonista. Se agregan reglas, contextos, prompts, agentes, skills y matrices para completar lo faltante.
+- Todo funciona solo en página 1.
+- Selecto captura overlays/options.
+- Moveable calcula contra página equivocada.
+- CSS host rompe coordenadas.
+- Snapshot pierde `pageNumber`.
+- `any` oculta errores de schema.
+- Wrappers triviales contaminan `src/features`.

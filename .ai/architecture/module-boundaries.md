@@ -1,22 +1,13 @@
 # Module Boundaries
 
-## Propósito
+## `sisad-pdfme`
 
-Fronteras entre ContentCustomForm, sisad-pdfme, externalForms y adaptadores.
+Canvas, schemas, sidebars, overlays, inspector, docs rail, comments rail, zoom, navegación, Moveable, Selecto, command bus, snapshot, Form, Viewer y Generator.
 
-## Reglas
+## Host
 
-- Documentar contratos, no snapshots completos.
-- Preferir adaptadores a forks acoplados.
-- Evitar duplicidad entre provider adapters.
-- Cualquier cambio público debe tener prompt, regla, test y doc.
+Negocio, permisos externos, APIs, navegación, callbacks y persistence bridge.
 
-## Salida esperada
+## Regla
 
-```md
-## Decisión
-## Impacto
-## Archivos afectados
-## Validación
-## Riesgos
-```
+Si ya existe en `sisad-pdfme`, el host no lo reconstruye.

@@ -1,14 +1,3 @@
 # Snapshot Contract Rules
 
-## Reglas
-
-- Preservar versión.
-- Preservar ownerColor/rotation.
-- Compatibilidad legacy.
-- Tests round-trip.
-
-## Validación
-
-- Citar archivos reales.
-- Indicar riesgos residuales.
-- Ejecutar gate mínimo o explicar bloqueo.
+Un solo snapshot oficial. No perder schemaUid, documentId, pageNumber/pageIndex, owner, groupId, optionId, selected values ni geometry. Fallback a página 1 solo en legacy sin metadata.

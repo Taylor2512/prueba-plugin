@@ -1,5 +1,7 @@
 # Snapshot Contract Context
 
-## Contexto
+Snapshot oficial para descargar template, importar template, guardar TXT, externalForms y Form/Viewer/Generator parity.
 
-Snapshot round-trip debe preservar recipients, assignments, colors, owner, schemas, rotation, comments, signature config y versiones.
+Debe preservar documentos, schemas, pages, assignments, ownership, signature config, comments, version y metadata.
+
+Prohibido crear snapshots paralelos o perder `documentId/pageNumber`.

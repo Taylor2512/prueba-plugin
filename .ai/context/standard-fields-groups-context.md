@@ -1,62 +1,18 @@
-# Contexto — Standard Fields y grupos
+# Standard Fields and Groups
 
-## Objetivo
+## Familias
 
-Cerrar el contrato completo de los schemas estándar:
+- text-like: text, number, date, fullName, emailAddress, company, title.
+- option-based: checkboxGroup, radioGroup, select/dropdown.
+- boolean: checkbox.
+- signing-based: signature, initials, dateSigned, stamp.
+- action-based: approve, decline, attachment, note.
 
-- `text`
-- `number`
-- `checkbox`
-- `checkboxGroup`
-- `radioGroup`
-- `select/dropdown`
+## Option-based
 
-El comportamiento debe estar inspirado en patrones generales de DocuSign/Wix/Figma, sin copiar marca ni CSS propietario.
-
-## Contrato transversal
-
-Cada schema estándar debe cubrir:
-
-- Designer renderer.
-- DetailView.
-- ListView/right rail.
-- Form.
-- Viewer.
-- Generator/PDF.
-- Snapshot round-trip.
-- Owner/recipient color.
-- Required/readonly/locked.
-- No-overlap por owner/document/page.
-- Tests unitarios y Playwright si afecta interacción real.
-
-## Reglas de identidad
-
-Nunca perder:
-
-```txt
-schemaUid
-id si aplica
-documentId
-pageNumber
-ownerRecipientId
-recipientId
-ownerColor
-recipientColor
-groupId
-optionId
-```
-
-## Botón +
-
-| Contexto | Resultado |
-|---|---|
-| checkbox individual | convertir a `checkboxGroup` preservando identidad |
-| checkboxGroup | agregar casilla al mismo grupo |
-| radioGroup | agregar opción al mismo grupo |
-| select/dropdown | no usa `+` flotante; sus opciones se gestionan en DetailView |
-
-## No hacer
-
-- No reescribir `DesignerCoordinateService` por intuición.
-- No duplicar `radioGroup` y `checkboxGroup` con contratos incompatibles.
-- No renderizar metadata técnica como contenido final del PDF.
+- checkboxGroup = multiple.
+- radioGroup = single.
+- select/dropdown = single compact.
+- options internas: `data-option-id`.
+- root: `data-schema-id`.
+- botón `+`: overlay externo.

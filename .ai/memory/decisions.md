@@ -1,17 +1,17 @@
-# Decisiones arquitectónicas
+# Decisions Log
 
-## ADR-001 — `.ai` como fuente de verdad
+## ADR-0001 — Contexto mínimo
 
-Los adaptadores de proveedor apuntan a `.ai` y no duplican reglas largas.
+Se adopta carga progresiva de contexto: 1 memoria, 1 contexto, 2 reglas, 1 prompt.
 
-## ADR-002 — Color activo vs ownerColor
+## ADR-0002 — Runtime ownership
 
-El catálogo representa el destinatario activo; los schemas existentes representan su owner original.
+`sisad-pdfme` controla runtime visual y funcional; hosts integran.
 
-## ADR-003 — Runtime canvas aislado
+## ADR-0003 — Snapshot único
 
-Moveable, Selecto, canvas, toolbar e inspector pertenecen al runtime `sisad-pdfme`.
+Descargar, importar, guardar TXT y externalForms usan snapshot oficial.
 
-## ADR-004 — Snapshot como contrato
+## ADR-0004 — Schemas por familia
 
-El snapshot preserva identidad, documento, página, recipient, owner, color, rotation, comments y firma.
+Familias: text-like, option-based, boolean, signing-based, action-based, media, shape, table y advanced.

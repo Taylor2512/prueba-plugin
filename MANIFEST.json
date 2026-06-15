@@ -1,0 +1,24 @@
+{
+  "name": "sisad-pdfme-md-architecture-reset-v1",
+  "generatedAt": "2026-06-15T14:26:34Z",
+  "purpose": "Nuevo comienzo Markdown y optimización de contexto IA para SISAD PDFME",
+  "deleteScriptsDefault": "dry-run",
+  "backupSupported": true,
+  "ignoredDirs": [
+    ".git",
+    "node_modules",
+    "dist",
+    "build",
+    "coverage",
+    ".next",
+    ".nuxt",
+    ".turbo",
+    ".cache",
+    ".venv",
+    "venv",
+    "out",
+    "tmp",
+    "temp"
+  ],
+  "fileCount": 53
+}
