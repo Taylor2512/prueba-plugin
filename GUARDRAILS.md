@@ -1,35 +1,53 @@
-# Guardrails globales
+# Guardrails globales — SISAD PDFME Designer
 
-## Nunca perder
+## Nunca romper
 
 ```txt
 schemaUid
 documentId
-pageNumber/pageIndex
+pageNumber
+pageIndex
 x/y/width/height/rotation
-ownerRecipientId/recipientId
-ownerColor/recipientColor
-groupId/optionId
-selectedOptionIds/selectedOptionId/selectedValue
-snapshot oficial
-Form/Viewer/Generator parity
+ownerRecipientId
+recipientId
+ownerColor
+recipientColor
+groupId
+optionId
+selectedOptionIds
+selectedOptionId
+selectedValue
+Snapshot del diseñador
+Compatibilidad de Form/Viewer/Generator
 ```
 
 ## Prohibido
 
-- Duplicar canvas, sidebars, toolbar, inspector o renderer.
+- Duplicar canvas.
+- Duplicar sidebars internas.
+- Duplicar inspector.
+- Duplicar toolbar interna.
+- Duplicar renderer de schemas.
 - Manipular DOM interno desde hosts.
-- CSS host contra `.moveable-*` o `.selecto-*`.
-- Resolver errores con `setTimeout`.
+- Crear snapshots paralelos.
+- Forzar todo a página 1.
+- Resolver geometría con `setTimeout`.
 - Resolver hit-testing con `z-index` arbitrario.
-- Crear prompts/contextos duplicados por proveedor.
+- Tocar `.moveable-*` desde CSS host.
+- Tocar `.selecto-*` desde CSS host.
+- Copiar HTML/CSS/SVG/branding de DocuSign.
+- Crear nuevos `as any`.
+- Convertir una tarea focal en auditoría global.
 
 ## Permitido
 
-- Refactor incremental.
+- Cambios incrementales.
 - Helpers compartidos.
-- Adapters en bordes.
-- Factories por familia.
+- Contracts.
 - Type guards.
-- Contextos pequeños.
-- Prompts focalizados.
+- Factories.
+- Strategies.
+- Adapters.
+- Commands.
+- State unions.
+- Task-cards nuevas si excede presupuesto.

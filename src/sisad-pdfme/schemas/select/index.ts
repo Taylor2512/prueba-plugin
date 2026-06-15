@@ -7,6 +7,7 @@ import { ChevronDown } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 import { basicsFields, helpFields, dataLabelFields, COMMON_PROPERTY_MAP } from '../propPanel/commonInspectorFields.js';
+import { resolveSchemaIdByIdentity } from '../shared/schemaGuards.js';
 
 const selectIcon = renderLucideIcon(ChevronDown);
 
@@ -23,15 +24,7 @@ const addOptions = (props: PropPanelWidgetProps) => {
   const currentOptions = Array.isArray(selectSchema.options) ? [...selectSchema.options] : [];
 
   const resolveActiveSchemaId = (): string | undefined => {
-    if (typeof selectSchema.id === 'string' && selectSchema.id) return selectSchema.id;
-    const match = props.schemas.find(
-      (schema) =>
-        schema.type === selectSchema.type &&
-        schema.name === selectSchema.name &&
-        schema.position?.x === selectSchema.position?.x &&
-        schema.position?.y === selectSchema.position?.y,
-    );
-    return match?.id;
+    return resolveSchemaIdByIdentity(props.schemas, selectSchema);
   };
 
   const updateSchemas = () => {

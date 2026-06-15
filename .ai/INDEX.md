@@ -1,25 +1,62 @@
-# .ai/INDEX.md — Índice mínimo
+# .ai/INDEX.md — Índice mínimo del diseñador
 
-## Carga base
+## Carga base obligatoria
 
-1. `.ai/memory/project-memory.md`
-2. `.ai/context-map.md`
-3. `.ai/agents/registry.md`
+```txt
+.ai/ROUTER.md
+.ai/CONTEXT_BUDGET.md
+.ai/memory/project-memory.md
+.ai/context-map.md
+.ai/agents/registry.md
+```
 
-## Contextos por intención
+## Flujo
 
-| Intención | Contexto |
+```txt
+Mensaje del usuario
+→ ROUTER decide dominio
+→ seleccionar task-card
+→ cargar contexto focal
+→ cargar regla principal
+→ cargar playbook
+→ ejecutar dentro de presupuesto
+```
+
+## No cargar por defecto
+
+- todos los `.md`;
+- todo `sisad-pdfme.md`;
+- todo `codigo-sisad-pdfme.txt`;
+- reportes históricos largos;
+- prompts no relacionados;
+- fuentes externas.
+
+## Contextos disponibles
+
+| Dominio | Contexto |
 |---|---|
-| Multipágina/coordenadas | `.ai/context/canvas-coordinates-context.md` |
-| Comportamiento transversal | `.ai/context/application-behavior-contract-context.md` |
-| Snapshot | `.ai/context/snapshot-contract-context.md` |
-| Form/Viewer/Generator | `.ai/context/form-viewer-generator-parity-context.md` |
-| Standard fields | `.ai/context/standard-fields-groups-context.md` |
-| DocuSign-like UX | `.ai/context/docusign-ux-reference-context.md` |
-| CSS | `.ai/context/css-design-system-context.md` |
-| Host/runtime | `.ai/context/integration-host-boundaries-context.md` |
-| Refactor legacy | `.ai/context/legacy-cleanup-context.md` |
+| Runtime diseñador | `.ai/context/designer-runtime-context.md` |
+| Multipágina/canvas | `.ai/context/canvas-multipage-context.md` |
+| Modelo de schemas | `.ai/context/schema-object-model-context.md` |
+| Familias de schema | `.ai/context/schema-families-context.md` |
+| Inspector | `.ai/context/inspector-context.md` |
+| CommandBus | `.ai/context/commandbus-context.md` |
+| Snapshot diseñador | `.ai/context/snapshot-designer-context.md` |
+| CSS visual | `.ai/context/css-visual-context.md` |
+| SOLID/OOP | `.ai/context/solid-oop-context.md` |
+| DocuSign-like | `.ai/context/docusign-like-context.md` |
 
-## Regla
+## Task-cards principales
 
-No cargar documentos unificados completos salvo auditoría explícita.
+```txt
+TASK-001-fix-multipage.md
+TASK-002-harden-selecto-moveable.md
+TASK-003-stabilize-option-groups.md
+TASK-004-schema-object-model.md
+TASK-005-reduce-any.md
+TASK-006-improve-inspector-sections.md
+TASK-007-compact-docusign-like-fields.md
+TASK-008-clean-feature-wrappers.md
+TASK-009-designer-snapshot-roundtrip.md
+TASK-010-commandbus-actions.md
+```

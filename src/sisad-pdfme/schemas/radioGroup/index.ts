@@ -61,8 +61,10 @@ import {
 import {
   syncOptionGroupDesignerGeometry,
   createDesignerOptionGroupEl,
+  syncDesignerOptionGroupPatch,
 } from '../options/optionGroupFactory.js';
 import { clearSchemaRoot } from '../shared/schemaDom.js';
+import { resolveSchemaIdByIdentity } from '../shared/schemaGuards.js';
 
 const normalizeText = (value: unknown) => String(value || '').trim();
 
@@ -83,19 +85,6 @@ const resolveSelectedOptionId = (
     ) || options[0]?.optionId || 'option_1'
   );
 };
-
-const resolveGroupKey = (schema: RadioGroupSchema): string =>
-  schema.__designer?.group?.groupId ??
-  schema.groupId ??
-  schema.group ??
-  schema.name;
-
-const syncDesignerGroupPatch = (schema: RadioGroupSchema) => ({
-  '__designer.group.groupId': resolveGroupKey(schema),
-  '__designer.group.groupName': normalizeText(schema.groupName) || undefined,
-  '__designer.group.groupType': 'radio' as const,
-  '__designer.group.lockedAsGroup': schema.lockedAsGroup !== false,
-});
 
 const calculateDesignerHeight = (optionsCount: number): number =>
   computeOptionGroupDesignerHeightMM(optionsCount, RADIO_GROUP_LAYOUT);
@@ -212,15 +201,7 @@ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
   let currentSelected = resolveSelectedOptionId(schema, currentOptions);
 
   const getSchemaId = (): string | undefined => {
-    if (typeof schema.id === 'string' && schema.id) return schema.id;
-
-    return props.schemas.find(
-      (candidate) =>
-        candidate.type === schema.type &&
-        candidate.name === schema.name &&
-        candidate.position?.x === schema.position?.x &&
-        candidate.position?.y === schema.position?.y,
-    )?.id;
+    return resolveSchemaIdByIdentity(props.schemas, schema);
   };
 
   const commit = (patch: Record<string, unknown>) => {
@@ -235,7 +216,7 @@ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
     changeSchemas(
       Object.entries({
         ...patch,
-        ...syncDesignerGroupPatch(nextSchema),
+        ...syncDesignerOptionGroupPatch(nextSchema, 'radio'),
       }).map(([key, value]) => ({ key, value, schemaId })),
     );
   };

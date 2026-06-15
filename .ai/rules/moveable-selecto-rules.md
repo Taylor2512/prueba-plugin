@@ -1,3 +1,25 @@
 # Moveable / Selecto Rules
 
-Selecto solo selecciona `.sisad-pdfme-ui-custom-selectable[data-schema-id]`. Excluir `[data-option-id]`, `[data-role="group-add-option"]`, `.moveable-*`, toolbar, input, textarea y contenteditable. Moveable solo transforma roots.
+## Targets válidos
+
+```txt
+.sisad-pdfme-ui-custom-selectable[data-schema-id]
+```
+
+## Excluir
+
+```txt
+[data-option-id]
+[data-role="group-add-option"]
+.moveable-control
+.moveable-line
+.moveable-control-box
+input
+textarea
+[contenteditable="true"]
+toolbar
+popover
+modal
+```
+
+Moveable transforma solo roots.

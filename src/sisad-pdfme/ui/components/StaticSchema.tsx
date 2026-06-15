@@ -44,6 +44,8 @@ const StaticSchema = (props: {
             void 0;
           }}
           mode={'viewer'}
+          pageIndex={currentPage - 1}
+          pageNumber={currentPage}
           outline={`none`}
           scale={scale}
           selectable={false}

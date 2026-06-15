@@ -1,21 +1,31 @@
 # Agent Registry
 
-## frontend-architect-agent
-
-Arquitectura, refactor, reducción de duplicidad. Cargar `legacy-cleanup-context`, `context-budget-rules`, `host-runtime-boundary-rules`.
+## designer-runtime-agent
+Uso: estado general del diseñador, composición, runtime ownership.
 
 ## canvas-runtime-agent
+Uso: multipágina, coordenadas, drop, page metadata, overlays.
 
-Multipágina, coordenadas, drop, overlays. Cargar `canvas-coordinates-context`, `moveable-selecto-rules`, `transform-interaction-rules`.
+## moveable-selecto-agent
+Uso: Moveable, Selecto, selection, transform, shortcuts, guards.
 
-## standard-fields-agent
+## schema-architecture-agent
+Uso: schema registry, schema families, factories, object model.
 
-Schemas estándar. Cargar `standard-fields-groups-context`, `standard-fields-group-contract-rules`, `snapshot-contract-rules`.
+## inspector-agent
+Uso: DetailView, ListView, inspector sections, widgets.
 
-## snapshot-agent
+## commandbus-agent
+Uso: commandBus, selectionCommands, action contracts.
 
-Import/export/save TXT/externalForms. Cargar `snapshot-contract-context`, `snapshot-contract-rules`, `form-viewer-generator-rules`.
+## snapshot-designer-agent
+Uso: snapshot del diseñador, metadata, roundtrip.
 
-## css-agent
+## css-visual-agent
+Uso: CSS scoped, tokens, visual compact, fieldChrome.
 
-CSS runtime, tokens, visual compact. Cargar `css-design-system-context`, `css-boundary-rules`, `context-budget-rules`.
+## solid-refactor-agent
+Uso: SOLID, OOP, type safety, reducción de any.
+
+## docusign-process-agent
+Uso: aplicar contratos funcionales DocuSign-like ya resumidos.

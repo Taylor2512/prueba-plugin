@@ -11,6 +11,7 @@ import { getSchemaPluginByType as getBuiltInSchemaPluginByType } from '@sisad-pd
 import { SELECTABLE_CLASSNAME, UI_CLASSNAME } from '../constants.js';
 import { PluginsRegistry, OptionsContext, I18nContext, CacheContext } from '../contexts.js';
 import { resolveSchemaTone, resolveSchemaToneSurface } from './Designer/shared/schemaTone.js';
+import { buildPageMetadataAttrs } from './shared/pageMetadata.js';
 
 type RendererProps = Omit<
   UIRenderProps<Schema>,
@@ -22,6 +23,9 @@ type RendererProps = Omit<
   outline: string;
   onChangeHoveringSchemaId?: (schemaId: string | null) => void;
   scale: number;
+  documentId?: string | null;
+  pageIndex?: number;
+  pageNumber?: number;
   selectable?: boolean;
   isActive?: boolean;
   isHovering?: boolean;
@@ -103,6 +107,9 @@ const Wrapper = ({
   isActive = false,
   isHovering = false,
   isEditing = false,
+  documentId,
+  pageIndex,
+  pageNumber,
   onDoubleClick,
   onMouseDownCapture,
 }: RendererProps & { children: ReactNode }) => {
@@ -202,6 +209,7 @@ const Wrapper = ({
       data-schema-selectable={selectable ? 'true' : 'false'}
       data-schema-owner-id={schemaOwnerId || undefined}
       data-schema-owner-color={schemaOwnerColor || undefined}
+      {...buildPageMetadataAttrs({ documentId, pageIndex, pageNumber })}
       onDoubleClick={(event) => {
         if (!selectable) return;
         event.preventDefault();

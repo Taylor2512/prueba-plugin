@@ -1,18 +1,54 @@
 #!/usr/bin/env node
+
 import fs from 'node:fs';
 import path from 'node:path';
 import { execFileSync } from 'node:child_process';
+
 const root = path.resolve(process.argv[2] || process.cwd());
 const args = new Set(process.argv.slice(3));
 const confirm = args.has('--confirm');
 const backup = args.has('--backup');
-const IGNORE = new Set(['.git','node_modules','dist','build','coverage','.next','.nuxt','.turbo','.cache','.venv','venv','out','tmp','temp']);
-if (!fs.existsSync(root) || !fs.statSync(root).isDirectory()) { console.error(`ERROR: ruta inválida: ${root}`); process.exit(1); }
-function walk(dir, out=[]) { for (const e of fs.readdirSync(dir,{withFileTypes:true})) { const full=path.join(dir,e.name); if (e.isDirectory()) { if (!IGNORE.has(e.name)) walk(full,out); } else if (e.isFile() && e.name.endsWith('.md')) out.push(full); } return out; }
+
+const IGNORE_DIRS = new Set([
+  '.git', 'node_modules', 'dist', 'build', 'coverage',
+  '.next', '.nuxt', '.turbo', '.cache', '.venv', 'venv',
+  'out', 'tmp', 'temp'
+]);
+
+function walk(dir, acc = []) {
+  const entries = fs.readdirSync(dir, { withFileTypes: true });
+  for (const entry of entries) {
+    const full = path.join(dir, entry.name);
+    if (entry.isDirectory()) {
+      if (!IGNORE_DIRS.has(entry.name)) walk(full, acc);
+    } else if (entry.isFile() && entry.name.endsWith('.md')) {
+      acc.push(full);
+    }
+  }
+  return acc;
+}
+
+if (!fs.existsSync(root) || !fs.statSync(root).isDirectory()) {
+  console.error(`ERROR: ruta inválida: ${root}`);
+  process.exit(1);
+}
+
 const files = walk(root).sort();
-const rel = f => path.relative(root,f).split(path.sep).join('/');
-console.log(`Proyecto: ${root}`); console.log(`Archivos .md encontrados: ${files.length}`); files.forEach(f=>console.log(rel(f)));
-if (!confirm) { console.log('DRY-RUN: no se eliminó nada. Usa --confirm para eliminar. Usa --confirm --backup para respaldar.'); process.exit(0); }
-if (backup && files.length) { const backupFile=`markdown-backup-${new Date().toISOString().replace(/[:.]/g,'-')}.tar.gz`; execFileSync('tar',['-czf',backupFile,...files.map(rel)],{cwd:root,stdio:'inherit'}); console.log(`Backup creado: ${backupFile}`); }
-for (const f of files) fs.rmSync(f,{force:true});
-console.log(`Eliminación completada. Archivos .md eliminados: ${files.length}`);
+console.log(`Proyecto: ${root}`);
+console.log(`Archivos .md encontrados: ${files.length}`);
+for (const f of files) console.log(path.relative(root, f));
+
+if (!confirm) {
+  console.log('\\nDRY-RUN: no se eliminó nada.');
+  console.log(`Para eliminar: node scripts/delete-existing-markdown.mjs "${root}" --confirm --backup`);
+  process.exit(0);
+}
+
+if (backup && files.length) {
+  const backupFile = path.join(root, `markdown-backup-${new Date().toISOString().replace(/[:.]/g, '-')}.tar.gz`);
+  execFileSync('tar', ['-czf', backupFile, ...files.map(f => path.relative(root, f))], { cwd: root, stdio: 'inherit' });
+  console.log(`Backup creado: ${backupFile}`);
+}
+
+for (const f of files) fs.rmSync(f, { force: true });
+console.log(`Eliminados: ${files.length}`);

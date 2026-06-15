@@ -1,21 +1,25 @@
-# Context Map
+# Context Map — PDF Designer only
 
-## Runtime `sisad-pdfme`
+## Runtime
 
-| Área | Dueño |
+| Área | Archivos orientativos |
 |---|---|
-| Designer/Canvas | `sisad-pdfme` |
-| Schemas | `sisad-pdfme/schemas` |
-| DetailView/ListView | `sisad-pdfme/ui/components/Designer/RightSidebar` |
-| Overlays | `sisad-pdfme/ui/components/Designer/Canvas/overlays` |
-| Snapshot | `sisad-pdfme/shared/snapshotAdapter.ts` |
-| Form/Viewer | `sisad-pdfme/ui` |
-| Generator/PDF | `sisad-pdfme/generator` |
+| Designer | `src/sisad-pdfme/ui/Designer.tsx` |
+| Canvas | `ui/components/Designer/Canvas/*` |
+| Paper/Renderer | `ui/components/Paper.tsx`, `Renderer.tsx`, `StaticSchema.tsx` |
+| Schemas | `src/sisad-pdfme/schemas/*` |
+| DetailView | `ui/components/Designer/RightSidebar/DetailView/*` |
+| ListView | `ui/components/Designer/RightSidebar/ListView/*` |
+| LeftSidebar | `ui/components/Designer/LeftSidebar*` |
+| Overlays | `ui/components/Designer/Canvas/overlays/*` |
+| Commands | `ui/commands/*`, `selectionCommands.ts` |
+| Snapshot | `shared/snapshotAdapter.ts`, `schemaDesignerMeta.ts` |
+| CSS | `ui/styles/*` |
 
-## Host
+## Límites
 
-El host solo maneja negocio, APIs, permisos externos, callbacks y persistencia de integración.
+El diseñador no implementa negocio SISAD.
 
-## Prohibición
+Form/Viewer/Generator solo son contrato de compatibilidad.
 
-El host no reconstruye runtime interno.
+externalForms no es foco de implementación en esta arquitectura.

@@ -1,29 +1,42 @@
-# CURRENT_STATE
+# CURRENT_STATE — SISAD PDFME Designer
 
 ## Estado esperado
 
-`sisad-pdfme` funciona como runtime genérico de diseñador PDF con canvas, sidebars, overlays, inspector, documentos, comentarios, recipients, ownership, snapshot, Form, Viewer, Generator y externalForms.
+El diseñador PDF debe soportar:
 
-## Estado de documentación anterior
+- múltiples documentos;
+- múltiples páginas;
+- recipients/owners;
+- color por owner;
+- schemas estándar;
+- grupos de opciones;
+- inspector configurable;
+- selección simple/múltiple;
+- drag/resize/rotate;
+- toolbar contextual;
+- snapshot del diseñador;
+- visual compacto tipo DocuSign/Wix sin copiar marca.
 
-Existían cientos de Markdown y múltiples capas de prompts/agentes. Este reset reduce ruido y contradicciones.
+## Riesgos activos conocidos
 
-## Módulos existentes a reutilizar
+- Interacciones que solo funcionan en página 1.
+- Selecto seleccionando overlays/options.
+- Moveable calculando contra página incorrecta.
+- Botón + entrando al target transformable.
+- No-overlap sin filtrar por owner/document/page.
+- Snapshot perdiendo `pageNumber`.
+- Uso excesivo de `any`.
+- Wrappers triviales y duplicidad en features/lab.
+- CSS global afectando Moveable/Selecto.
+- Prompts demasiado amplios generando loops.
 
-- `schemaTypes`
-- `schemaDom`
-- `fieldChrome`
-- `renderSchemaWithChrome`
-- `actionSchemaFactory`
-- `optionGroupFactory`
-- `optionGroupLayout`
-- `optionGroupRenderer`
-- `optionValueAdapter`
-- `schemaInteractionCapabilities`
-- `selectableTargetGuards`
-- `transformTargetGuards`
-- `canvasDropPipeline`
-- `selectionCommands`
-- `commandBus`
+## Prioridad actual
 
-No crear equivalentes paralelos.
+1. Multipágina.
+2. Selecto/Moveable/guards.
+3. Option groups.
+4. Schema object model.
+5. Inspector sections.
+6. Visual compact.
+7. Type safety/reducción any.
+8. Cleanup wrappers.

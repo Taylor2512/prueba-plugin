@@ -1,17 +1,21 @@
 # Decisions Log
 
-## ADR-0001 — Contexto mínimo
+## ADR-001 — PDF Designer only
 
-Se adopta carga progresiva de contexto: 1 memoria, 1 contexto, 2 reglas, 1 prompt.
+La arquitectura v3 se limita al componente diseñador PDF.
 
-## ADR-0002 — Runtime ownership
+## ADR-002 — Task-cards
 
-`sisad-pdfme` controla runtime visual y funcional; hosts integran.
+Toda implementación debe partir de una task-card cerrada.
 
-## ADR-0003 — Snapshot único
+## ADR-003 — Context budget
 
-Descargar, importar, guardar TXT y externalForms usan snapshot oficial.
+Se limita el contexto a 1 contexto + 1 regla + 1 playbook + 1 task-card.
 
-## ADR-0004 — Schemas por familia
+## ADR-004 — Composition over inheritance
 
-Familias: text-like, option-based, boolean, signing-based, action-based, media, shape, table y advanced.
+En schemas se prefiere composición, factories, strategies, adapters y type guards sobre herencia profunda.
+
+## ADR-005 — DocuSign-like no copy
+
+DocuSign se usa como referencia funcional, no visual ni de marca.

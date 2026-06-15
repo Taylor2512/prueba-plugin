@@ -34,6 +34,7 @@ import {
   type OptionGroupType,
 } from './optionGroupLayout.js';
 import createOptionGroupRuntime from './optionGroupRenderer.js';
+import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
 
 export type OptionGroupIndicatorShape = 'square' | 'circle';
 
@@ -44,6 +45,33 @@ export type OptionGroupPluginConfig = {
 };
 
 export type SimpleOption = { optionId: string; label: string };
+
+export type OptionGroupDesignerSchema = {
+  groupId?: string;
+  group?: string;
+  name?: string;
+  groupName?: string;
+  lockedAsGroup?: boolean;
+  __designer?: {
+    group?: GroupMeta;
+    [key: string]: unknown;
+  };
+};
+
+const normalizeText = (value: unknown): string => String(value || '').trim();
+
+export const resolveOptionGroupKey = (schema: OptionGroupDesignerSchema): string =>
+  schema.__designer?.group?.groupId ?? schema.groupId ?? schema.group ?? schema.name ?? '';
+
+export const syncDesignerOptionGroupPatch = (
+  schema: OptionGroupDesignerSchema,
+  groupType: 'checkbox' | 'radio',
+) => ({
+  '__designer.group.groupId': resolveOptionGroupKey(schema),
+  '__designer.group.groupName': normalizeText(schema.groupName) || undefined,
+  '__designer.group.groupType': groupType,
+  '__designer.group.lockedAsGroup': schema.lockedAsGroup !== false,
+});
 
 // ─── Backward compat ──────────────────────────────────────────────────────────
 // Keep the old export so callers importing createOptionGroupPlugin don't break.

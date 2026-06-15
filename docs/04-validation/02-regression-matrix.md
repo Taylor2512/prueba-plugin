@@ -2,10 +2,12 @@
 
 | Proceso | Validación |
 |---|---|
-| Crear schema | documentId/pageNumber correctos |
-| Mover | conserva owner/page |
-| Multi-select | solo roots |
-| Botón + | no seleccionable como schema |
-| No-overlap | owner/document/page |
-| Snapshot | roundtrip completo |
-| Generator | mismo valor que Viewer |
+| Drop | page metadata correcta |
+| Select | root only |
+| Move | conserva owner/page |
+| Resize | conserva owner/page |
+| Rotate | conserva owner/page |
+| Botón + | no target transformable |
+| Snapshot | roundtrip |
+| Inspector | sección correcta |
+| CSS | no rompe geometry |

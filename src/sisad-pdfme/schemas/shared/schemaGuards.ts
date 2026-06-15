@@ -134,3 +134,31 @@ export function getSchemaOptions(schema: MinimalSchema): RawOptionItem[] {
   if (!Array.isArray(schema.options)) return [];
   return schema.options.filter(isRawOptionItem);
 }
+
+// ─── Identity lookup ────────────────────────────────────────────────────────
+
+export type SchemaIdentityLike = MinimalSchema & {
+  type?: string;
+  name?: string | null;
+  position?: { x?: number | null; y?: number | null } | null;
+};
+
+/**
+ * Resolves a schema id from the most common identity fields.
+ * Useful for prop panels where the active schema may not carry `id`
+ * but the surrounding list does.
+ */
+export function resolveSchemaIdByIdentity(
+  schemas: SchemaIdentityLike[],
+  schema: SchemaIdentityLike,
+): string | undefined {
+  if (typeof schema.id === 'string' && schema.id.trim()) return schema.id;
+
+  return schemas.find(
+    (candidate) =>
+      candidate.type === schema.type &&
+      candidate.name === schema.name &&
+      candidate.position?.x === schema.position?.x &&
+      candidate.position?.y === schema.position?.y,
+  )?.id as string | undefined;
+}

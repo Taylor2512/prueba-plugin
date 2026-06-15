@@ -2,6 +2,7 @@ import React, { ReactNode, useContext, useEffect, useMemo, useState } from 'reac
 import { ZOOM, SchemaForUI, Size, getFallbackFontName } from '@sisad-pdfme/common';
 import { FontContext } from '../contexts.js';
 import { RULER_HEIGHT, PAGE_GAP } from '../constants.js';
+import { buildPageMetadataAttrs } from './shared/pageMetadata.js';
 
 const TRANSPARENT_PNG =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+pR6QAAAAASUVORK5CYII=';
@@ -24,6 +25,7 @@ type StablePaperState = {
 type PaperPageProps = {
   block: PageBlock;
   paperIndex: number;
+  documentId?: string | null;
   normalizedSchemasList: SchemaForUI[][];
   renderPaper: (arg: { index: number; paperSize: Size }) => ReactNode;
   renderSchema: (arg: { index: number; schema: SchemaForUI }) => ReactNode;
@@ -34,6 +36,7 @@ type PaperPageProps = {
 const PaperPage = ({
   block,
   paperIndex,
+  documentId,
   normalizedSchemasList,
   renderPaper,
   renderSchema,
@@ -44,6 +47,7 @@ const PaperPage = ({
     key={String(paperIndex) + JSON.stringify(block.paperSize)}
     data-paper-page="true"
     className="sisad-pdfme-paper-page"
+    {...buildPageMetadataAttrs({ documentId, pageIndex: paperIndex, pageNumber: paperIndex + 1 })}
     tabIndex={-1}
     ref={(e) => registerPaperRef(paperIndex, e)}
     role="presentation"
@@ -81,12 +85,13 @@ const Paper = (props: {
   schemasList: SchemaForUI[][];
   pageSizes: Size[];
   backgrounds: string[];
+  documentId?: string | null;
   renderPaper: (arg: { index: number; paperSize: Size }) => ReactNode;
   renderSchema: (arg: { index: number; schema: SchemaForUI }) => ReactNode;
   hasRulers?: boolean;
   registerPaperRef: (paperIndex: number, element: HTMLDivElement | null) => void;
 }) => {
-  const { scale, schemasList, pageSizes, backgrounds, renderPaper, renderSchema, hasRulers, registerPaperRef } = props;
+  const { scale, schemasList, pageSizes, backgrounds, documentId, renderPaper, renderSchema, hasRulers, registerPaperRef } = props;
   const font = useContext(FontContext);
 
   const normalizedSchemasList =
@@ -180,6 +185,7 @@ const Paper = (props: {
     <div
       data-paper-root="true"
       className="sisad-pdfme-paper-root"
+      {...buildPageMetadataAttrs({ documentId })}
       style={{
         '--paper-root-width': `${scaledRootWidth}px`,
         '--paper-root-height': `${scaledRootHeight}px`,
@@ -199,6 +205,7 @@ const Paper = (props: {
             key={String(paperIndex) + JSON.stringify(block.paperSize)}
             block={block}
             paperIndex={paperIndex}
+            documentId={documentId}
             normalizedSchemasList={stableSchemasList}
             renderPaper={renderPaper}
             renderSchema={renderSchema}

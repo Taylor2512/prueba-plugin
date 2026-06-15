@@ -1,3 +1,24 @@
-# Overview
+# Overview — PDF Designer
 
-SISAD PDFME es un runtime plugin-based para diseñar campos sobre PDF con múltiples documentos, páginas y destinatarios. Debe mantener PDF protagonista, catálogo compacto, inspector por schema, overlays ligeros, toolbar contextual y color por recipient.
+El diseñador PDF de SISAD PDFME es un runtime visual para ubicar y configurar schemas sobre documentos PDF.
+
+## Componentes
+
+- Designer;
+- Canvas;
+- Paper;
+- Renderer;
+- Schemas;
+- LeftSidebar;
+- RightSidebar;
+- DetailView;
+- ListView;
+- Toolbar contextual;
+- Moveable;
+- Selecto;
+- CommandBus;
+- Snapshot.
+
+## No incluye
+
+Flujos de negocio externos ni firma backend.

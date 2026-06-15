@@ -24,8 +24,10 @@ import {
 import {
   syncOptionGroupDesignerGeometry,
   createDesignerOptionGroupEl,
+  syncDesignerOptionGroupPatch,
 } from '../options/optionGroupFactory.js';
 import { clearSchemaRoot } from '../shared/schemaDom.js';
+import { resolveSchemaIdByIdentity } from '../shared/schemaGuards.js';
 
 // ─── Designer compact geometry constants ────────────────────────────────────
 // The + button is rendered as an external overlay (GroupOptionFloatingAction),
@@ -158,16 +160,6 @@ const toggleSelectedIds = (
 
 const serializeSelectedIds = (ids: Set<string>) => Array.from(ids).join(',');
 
-const resolveGroupKey = (schema: CheckboxGroupSchema): string =>
-  schema.__designer?.group?.groupId ?? schema.groupId ?? schema.group ?? schema.name;
-
-const syncDesignerGroupPatch = (schema: CheckboxGroupSchema) => ({
-  '__designer.group.groupId': resolveGroupKey(schema),
-  '__designer.group.groupName': normalizeText(schema.groupName) || undefined,
-  '__designer.group.groupType': 'checkbox' as const,
-  '__designer.group.lockedAsGroup': schema.lockedAsGroup !== false,
-});
-
 // ─── Designer compact DOM helpers ────────────────────────────────────────────
 
 const createDesignerCheckboxGroup = ({
@@ -217,18 +209,17 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
   rootElement.style.width = '100%';
 
   const getSchemaId = (): string | undefined => {
-    if (typeof schema.id === 'string' && schema.id) return schema.id;
-    return props.schemas.find(
-      (c) => c.type === schema.type && c.name === schema.name &&
-        c.position?.x === schema.position?.x && c.position?.y === schema.position?.y,
-    )?.id;
+    return resolveSchemaIdByIdentity(props.schemas, schema);
   };
 
   const commit = (patch: Record<string, unknown>) => {
     const schemaId = getSchemaId();
     if (!schemaId) return;
     changeSchemas(
-      Object.entries({ ...patch, ...syncDesignerGroupPatch({ ...schema, ...patch } as CheckboxGroupSchema) })
+      Object.entries({
+        ...patch,
+        ...syncDesignerOptionGroupPatch({ ...schema, ...patch } as CheckboxGroupSchema, 'checkbox'),
+      })
         .map(([key, value]) => ({ key, value, schemaId })),
     );
   };

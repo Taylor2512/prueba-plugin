@@ -1,14 +1,16 @@
 # Session Handoff
 
-Actualizar al cerrar cada sesión.
+Actualizar al cerrar una sesión.
+
+## Formato
 
 ```md
-## YYYY-MM-DD — Resumen
+## YYYY-MM-DD
+- Task-card:
 - Objetivo:
-- Agente:
 - Archivos modificados:
 - Cambios:
 - Validación:
 - Riesgos:
-- Siguiente paso:
+- Nueva task-card:
 ```

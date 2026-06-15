@@ -1149,6 +1149,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
         schemasList={renderedPageSchemasList}
         pageSizes={pageSizes}
         backgrounds={backgrounds}
+        documentId={activeDocumentId}
         hasRulers={true}
         registerPaperRef={registerPaperRef}
         renderPaper={({ index, paperSize }) => (
@@ -1275,6 +1276,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
               schema={schema}
               basePdf={basePdf}
               value={value}
+              documentId={activeDocumentId}
+              pageIndex={index}
+              pageNumber={index + 1}
               onChangeHoveringSchemaId={onChangeHoveringSchemaId}
               mode={mode}
               onChange={

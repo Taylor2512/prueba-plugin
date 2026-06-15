@@ -147,14 +147,16 @@ const Preview = ({
             }
 
             return (
-              <Renderer
-                key={schema.id}
-                schema={schema}
-                basePdf={template.basePdf}
-                value={value}
-                mode={isForm ? 'form' : 'viewer'}
-                placeholder={schema.content}
-                tabIndex={index + 100}
+            <Renderer
+              key={schema.id}
+              schema={schema}
+              basePdf={template.basePdf}
+              value={value}
+              pageIndex={index}
+              pageNumber={index + 1}
+              mode={isForm ? 'form' : 'viewer'}
+              placeholder={schema.content}
+              tabIndex={index + 100}
                 onChange={(arg) => {
                   const args = Array.isArray(arg) ? arg : [arg];
                   handleOnChangeRenderer(args, schema);
