@@ -24,7 +24,7 @@ export const buildAutoPlaceDescriptor = (keyword: unknown, options: Record<strin
 };
 
 export const resolveSchemaAutoPlaceDescriptor = (schema: Record<string, unknown> = {}, options: Record<string, unknown> = {}) => {
-  const s = schema as any;
+  const s = schema;
   const keyword =
     normalizeText(s?.autoPlaceText) ||
     normalizeText(s?.__designer?.autoPlace?.keyword) ||
@@ -63,12 +63,12 @@ export const collectAutoPlaceRulesFromDocuments = (documents: unknown[] = []) =>
 
   const rules: Record<string, unknown>[] = [];
   documents.forEach((documentRaw: unknown = {}) => {
-    const document = documentRaw as any;
+    const document = documentRaw as Record<string, unknown>;
     const documentId = normalizeText(document?.id || document?.fileId || document?.fileTemplateId);
     const templateSchemas = Array.isArray(document?.template?.schemas) ? document.template.schemas : [];
     templateSchemas.forEach((page: unknown[] = [], pageIndex: number) => {
       (Array.isArray(page) ? page : []).forEach((schemaRaw: unknown = {}) => {
-        const schema = schemaRaw as any;
+        const schema = schemaRaw as Record<string, unknown>;
         const descriptor = resolveSchemaAutoPlaceDescriptor(schema, {
           documentId,
           pageIndex,

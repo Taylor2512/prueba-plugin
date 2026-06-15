@@ -17,8 +17,7 @@ interface Select extends TextSchema {
 const addOptions = (props: PropPanelWidgetProps) => {
   const { rootElement, changeSchemas, activeSchema, i18n } = props;
 
-  rootElement.style.width = '100%';
-  rootElement.style.minWidth = '0';
+  rootElement.className = 'sisad-option-editor-select-root';
 
   const selectSchema = activeSchema as SchemaForUI & Select;
   const currentOptions = Array.isArray(selectSchema.options) ? [...selectSchema.options] : [];
@@ -35,22 +34,11 @@ const addOptions = (props: PropPanelWidgetProps) => {
     return match?.id;
   };
 
-  const inputStyle = {
-    width: '100%',
-    padding: '6.25px 11px',
-    border: '1px solid #ccc',
-    borderRadius: '4px',
-  };
-
-  const buttonStyle = { border: 'none', borderRadius: '4px', cursor: 'pointer' };
-
   const updateSchemas = () => {
     const activeSchemaId = resolveActiveSchemaId();
     if (!activeSchemaId) return;
-    // Keep content only if it exists in options. If not, fallback to first option.
     const currentContent = typeof selectSchema.content === 'string' ? selectSchema.content : '';
     const nextContent = currentOptions.includes(currentContent) ? currentContent : currentOptions[0] || '';
-
     changeSchemas([
       { key: 'options', value: [...currentOptions], schemaId: activeSchemaId },
       { key: 'content', value: nextContent, schemaId: activeSchemaId },
@@ -58,26 +46,17 @@ const addOptions = (props: PropPanelWidgetProps) => {
   };
 
   const formContainer = document.createElement('div');
-  Object.assign(formContainer.style, {
-    width: '100%',
-    display: 'flex',
-    alignItems: 'center',
-    marginBottom: '10px',
-  });
+  formContainer.className = 'sisad-option-editor-add-row';
 
   const input = document.createElement('input');
   input.type = 'text';
   input.placeholder = i18n('schemas.select.optionPlaceholder');
-  Object.assign(input.style, inputStyle, { marginRight: '10px' });
+  input.className = 'sisad-option-editor-input';
 
   const addButton = document.createElement('button');
   addButton.type = 'button';
   addButton.textContent = '+';
-  Object.assign(addButton.style, buttonStyle, {
-    width: '25px',
-    height: '25px',
-    padding: '4px 8px',
-  });
+  addButton.className = 'sisad-option-editor-add-btn';
 
   const handleAddOption = (event: Event) => {
     event.preventDefault();
@@ -92,12 +71,10 @@ const addOptions = (props: PropPanelWidgetProps) => {
   };
 
   addButton.addEventListener('pointerdown', (event) => {
-    // Stop drag handlers from capturing this control in sidebars.
     event.preventDefault();
     event.stopPropagation();
   });
   addButton.addEventListener('click', handleAddOption);
-
   input.addEventListener('keydown', (event) => {
     if (!['Enter', 'NumpadEnter'].includes(event.key)) return;
     event.preventDefault();
@@ -109,26 +86,18 @@ const addOptions = (props: PropPanelWidgetProps) => {
   formContainer.appendChild(addButton);
 
   const optionsList = document.createElement('ul');
-  Object.assign(optionsList.style, {
-    listStyle: 'none',
-    padding: '0',
-    margin: '0',
-    maxHeight: '220px',
-    overflowY: 'auto',
-    overflowX: 'hidden',
-    paddingRight: '4px',
-  });
+  optionsList.className = 'sisad-option-editor-select-list';
 
   const renderOptions = () => {
-    optionsList.innerHTML = '';
+    optionsList.replaceChildren();
     currentOptions.forEach((option, index) => {
       const li = document.createElement('li');
-      Object.assign(li.style, { display: 'flex', alignItems: 'center', marginBottom: '5px' });
+      li.className = 'sisad-option-editor-select-item';
 
       const optionInput = document.createElement('input');
       optionInput.type = 'text';
       optionInput.value = option;
-      Object.assign(optionInput.style, inputStyle, { marginRight: '10px' });
+      optionInput.className = 'sisad-option-editor-input';
 
       optionInput.addEventListener('change', () => {
         currentOptions[index] = optionInput.value.trim();
@@ -138,8 +107,8 @@ const addOptions = (props: PropPanelWidgetProps) => {
 
       const removeButton = document.createElement('button');
       removeButton.type = 'button';
-      removeButton.textContent = 'x';
-      Object.assign(removeButton.style, buttonStyle, { padding: '4px 8px' });
+      removeButton.textContent = '×';
+      removeButton.className = 'sisad-option-editor-remove-btn';
 
       removeButton.addEventListener('click', (event) => {
         event.preventDefault();
@@ -205,23 +174,26 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
         }
       });
 
-      // Ensure schema.options is an array before mapping
       const options = Array.isArray(schema.options) ? schema.options : [];
-      const placeholder = 'Seleccionar';
       const resolvedOptions = options.filter((option) => String(option || '').trim().length > 0);
       const needsPlaceholder = !value || !resolvedOptions.includes(value);
-      const optionMarkup = [
-        needsPlaceholder
-          ? `<option value="" disabled ${!value ? 'selected' : ''} hidden>${placeholder}</option>`
-          : '',
-        ...resolvedOptions.map(
-          (option) =>
-            `<option value="${option}" ${option === value ? 'selected' : ''}>${option}</option>`,
-        ),
-      ]
-        .filter(Boolean)
-        .join('');
-      selectElement.innerHTML = optionMarkup;
+
+      if (needsPlaceholder) {
+        const ph = document.createElement('option');
+        ph.value = '';
+        ph.disabled = true;
+        ph.hidden = true;
+        ph.selected = !value;
+        ph.textContent = 'Seleccionar';
+        selectElement.appendChild(ph);
+      }
+      for (const opt of resolvedOptions) {
+        const el = document.createElement('option');
+        el.value = opt;
+        el.selected = opt === value;
+        el.textContent = opt;
+        selectElement.appendChild(el);
+      }
       rootElement.appendChild(selectElement);
     }
   },

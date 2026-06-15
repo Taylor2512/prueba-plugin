@@ -6076,6 +6076,39 @@
   flex-shrink: 0;
 }
 
+/* Option group schema root — replaces Object.assign(rootElement.style) in checkboxGroup/radioGroup */
+.sisad-pdfme-root .sisad-pdfme-option-group-root {
+  overflow: visible;
+  background: transparent;
+  border: none;
+  box-shadow: none;
+  padding: 0;
+  margin: 0;
+}
+
+/* Select propPanel editor */
+.sisad-pdfme-root .sisad-option-editor-select-root {
+  width: 100%;
+  min-width: 0;
+}
+
+.sisad-pdfme-root .sisad-option-editor-select-list {
+  list-style: none;
+  padding: 0;
+  padding-right: 4px;
+  margin: 0;
+  max-height: 220px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.sisad-pdfme-root .sisad-option-editor-select-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-bottom: 5px;
+}
+
 /* Note schema — action-based informative variant */
 .sisad-pdfme-root .sisad-pdfme-note-container {
   --note-bg: #fefce8;

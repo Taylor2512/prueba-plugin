@@ -25,8 +25,8 @@ const approvePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
     ui: async ({ schema, rootElement, mode }) => {
       const s = schema as ApproveSchema;
       const iconSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`;
-      renderSchemaWithChrome({
-        schema: s as Parameters<typeof renderSchemaWithChrome>[0]['schema'],
+      renderSchemaWithChrome<ApproveSchema>({
+        schema: s,
         rootElement,
         family: 'action-based',
         compact: true,
@@ -43,7 +43,7 @@ const approvePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
         },
       });
     },
-    pdf: async ({ schema, pdfDoc, pdfLib, page }) => {
+    pdf: async ({ schema, pdfLib, page }) => {
       const s = schema as ApproveSchema & { position: { x: number; y: number } };
       const { position, width, height } = s;
       const { x, y } = position;

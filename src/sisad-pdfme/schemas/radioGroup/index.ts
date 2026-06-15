@@ -418,15 +418,8 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
 
       clearSchemaRoot(rootElement);
 
-      Object.assign(rootElement.style, {
-        overflow: 'visible',
-        background: 'transparent',
-        border: 'none',
-        boxShadow: 'none',
-        padding: '0',
-        margin: '0',
-        pointerEvents: isDesigner ? 'none' : 'auto',
-      });
+      rootElement.classList.add('sisad-pdfme-option-group-root');
+      rootElement.style.pointerEvents = isDesigner ? 'none' : 'auto';
 
       if (isDesigner) {
         syncOptionGroupDesignerGeometry({

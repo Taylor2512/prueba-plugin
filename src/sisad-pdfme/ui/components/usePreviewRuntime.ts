@@ -546,7 +546,7 @@ const usePreviewRuntime = ({
             if (s.id !== schema.id) return s;
             let ns = s;
             nonContentArgs.forEach(({ key: _k, value }) => {
-              if ((ns as any)[_k] !== value) {
+              if ((ns as Record<string, unknown>)[_k] !== value) {
                 ns = { ...ns, [_k]: value } as SchemaForUI;
                 changed = true;
               }
