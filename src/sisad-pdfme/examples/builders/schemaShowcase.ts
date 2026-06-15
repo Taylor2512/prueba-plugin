@@ -55,6 +55,7 @@ const readDimension = (value: unknown): number => {
 
 const findFreePosition = (
   occupiedRects: Rect[],
+  occupiedKeys: Set<string>,
   basePosition: { x: number; y: number },
   width: number,
   height: number,
@@ -72,7 +73,8 @@ const findFreePosition = (
       width: safeWidth,
       height: safeHeight,
     };
-    if (!occupiedRects.some((rect) => rectsIntersect(rect, candidate))) {
+    const candidateKey = `${candidate.x},${candidate.y}`;
+    if (!occupiedKeys.has(candidateKey) && !occupiedRects.some((rect) => rectsIntersect(rect, candidate))) {
       return { x: candidate.x, y: candidate.y };
     }
     nextY += stepY;
@@ -166,6 +168,7 @@ export const createSchemaShowcasePages = ({
 }: CreateSchemaShowcasePagesConfig): SchemaShowcaseRecord[][] =>
   chunkItems(definitions, positions.length).map((pageDefinitions, pageIndex) => {
     const occupiedRects: Rect[] = [];
+    const occupiedKeys = new Set<string>();
 
     return pageDefinitions.map((definition, itemIndex) => {
       const slug = sanitizeIdentifier(definition.type);
@@ -173,6 +176,7 @@ export const createSchemaShowcasePages = ({
       const basePosition = cloneDeep(positions[itemIndex]);
       const candidatePosition = findFreePosition(
         occupiedRects,
+        occupiedKeys,
         basePosition,
         readDimension(baseOverrides.width ?? baseOverrides.size?.width),
         readDimension(baseOverrides.height ?? baseOverrides.size?.height),
@@ -209,6 +213,7 @@ export const createSchemaShowcasePages = ({
         width: readDimension(createdSchemaRecord.width),
         height: readDimension(createdSchemaRecord.height),
       });
+      occupiedKeys.add(`${readDimension(createdSchemaRecord.position?.x)},${readDimension(createdSchemaRecord.position?.y)}`);
 
       return createdSchema;
     });

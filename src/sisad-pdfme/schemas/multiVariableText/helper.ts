@@ -12,13 +12,19 @@ export const substituteVariables = (
 
   if (variablesIn) {
     let variables: Record<string, string>;
-    try {
-      variables =
-        typeof variablesIn === 'string'
-          ? (JSON.parse(variablesIn || '{}') as Record<string, string>)
-          : variablesIn;
-    } catch {
-      throw new SyntaxError(`[@sisad-pdfme/schemas] MVT: invalid JSON string '${variablesIn as string}'`);
+    if (typeof variablesIn === 'string') {
+      try {
+        variables = JSON.parse(variablesIn || '{}') as Record<string, string>;
+      } catch {
+        // UI render passes the raw field value here, which may still be a bare
+        // placeholder (e.g. '{customer_name}') rather than a JSON variable map.
+        // Tolerate it: treat as no variables so unresolved placeholders are
+        // stripped below instead of crashing the renderer. Generator-side
+        // strictness lives in validateVariables, not here.
+        variables = {};
+      }
+    } else {
+      variables = variablesIn;
     }
 
     Object.keys(variables).forEach((variableName) => {

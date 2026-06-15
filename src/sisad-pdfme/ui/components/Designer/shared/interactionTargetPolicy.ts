@@ -11,15 +11,18 @@
  * SRP: only target classification. OCP: new exclusions are added here once,
  * never in two guard files.
  */
-import { DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS, buildSelectorList } from './interactionTargetSelectors.js';
+import {
+  DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS,
+  DESIGNER_INTERACTIVE_CONTROL_SELECTORS,
+  buildSelectorList,
+} from './interactionTargetSelectors.js';
 import { isSchemaRootElement } from './objectGuards.js';
 
 /** Everything Selecto/Moveable must NEVER treat as an interaction target. */
 const EXCLUDED_SELECTOR = buildSelectorList(DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS);
 const OPTION_INTERNAL_SELECTOR = '[data-option-id]';
 const GROUP_ADD_OPTION_SELECTOR = '[data-role="group-add-option"]';
-const INTERACTIVE_CONTROL_SELECTOR =
-  '[data-schema-interactive-control], [data-role="group-add-option"]';
+const INTERACTIVE_CONTROL_SELECTOR = buildSelectorList(DESIGNER_INTERACTIVE_CONTROL_SELECTORS);
 
 const matchesSelector = (target: EventTarget | null | undefined, selector: string): boolean => {
   if (!(target instanceof HTMLElement)) return false;

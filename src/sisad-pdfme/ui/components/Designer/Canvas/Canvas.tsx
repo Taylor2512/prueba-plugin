@@ -51,6 +51,7 @@ import {
 } from '../shared/interactionGuards.js';
 import { isMoveableTarget } from '../shared/transformTargetGuards.js';
 import { isSelectoExcludedTarget } from '../shared/selectableTargetGuards.js';
+import { isDesignerInteractiveTarget, isOptionInternalTarget } from '../shared/interactionTargetPolicy.js';
 import { isSameDocumentPageSelection } from '../shared/selectionIdentityResolver.js';
 import { applyPageMetadataDataset } from '../../shared/pageMetadata.js';
 import CanvasOverlayManager from './overlays/CanvasOverlayManager.js';
@@ -1479,12 +1480,15 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
                     if (event.button !== 0) return;
 
                     // In-schema interactive controls (grouping "+" buttons, radio/
-                    // checkbox option toggles) must receive their own clicks instead
-                    // of starting a Moveable drag. Let those events through.
-                    const interactiveControl = (event.target as HTMLElement | null)?.closest?.(
-                      '[data-checkbox-convert-to-group],[data-checkbox-group-add-option],[data-checkbox-group-option],[data-schema-interactive-control],[data-role="group-add-option"],[data-option-id]',
-                    );
-                    if (interactiveControl) return;
+                    // checkbox option toggles) and internal options must receive
+                    // their own clicks instead of starting a Moveable drag. Hit-test
+                    // via the central policy, not inline selectors.
+                    if (
+                      isDesignerInteractiveTarget(event.target) ||
+                      isOptionInternalTarget(event.target)
+                    ) {
+                      return;
+                    }
 
                     if (!isActive) {
                       const targetPageIndex = toNumber(event.currentTarget.dataset.pageIndex);

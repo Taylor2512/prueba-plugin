@@ -31,12 +31,12 @@ const BASE_COLLABORATION_TIMESTAMP = 1713570000000
 const getTemplatePdfUrl = (fileName) => `/templates/${encodeURIComponent(fileName)}`
 
 const LAB_PDFS = {
-  basic: getTemplatePdfUrl('sample-a4.pdf'),
-  enterprise: getTemplatePdfUrl('CONVENIO DE CRÉDITO.pdf'),
-  routingPrimary: getTemplatePdfUrl('routing-primary-5p.pdf'),
-  routingSecondary: getTemplatePdfUrl('routing-secondary-5p.pdf'),
-  multiuser: getTemplatePdfUrl('Jhonn_Taylor_Montenegro_CV_ES.pdf'),
-  generator: getTemplatePdfUrl('sample-multilingual-text.pdf'),
+  basic: getTemplatePdfUrl('example_pdf_empy.pdf'),
+  enterprise: getTemplatePdfUrl('example_pdf_empy.pdf'),
+  routingPrimary: getTemplatePdfUrl('example_pdf_empy.pdf'),
+  routingSecondary: getTemplatePdfUrl('example_pdf_empy.pdf'),
+  multiuser: getTemplatePdfUrl('example_pdf_empy.pdf'),
+  generator: getTemplatePdfUrl('example_pdf_empy.pdf'),
 }
 
 const SORTED_SCHEMA_DEFINITIONS = builtInSchemaDefinitions
@@ -51,9 +51,27 @@ const SHOWCASE_SCHEMA_DEFINITIONS = SORTED_SCHEMA_DEFINITIONS.filter((definition
   return !EXCLUDED_SHOWCASE_SCHEMA_TYPES.has(type)
 })
 
+const resolvePosition = (basePosition, overrides = {}) => {
+  const nextPosition = { ...(basePosition || {}) }
+  if (overrides.position && typeof overrides.position === 'object') {
+    if (overrides.position.x != null) nextPosition.x = overrides.position.x
+    if (overrides.position.y != null) nextPosition.y = overrides.position.y
+  }
+  if (overrides.x != null) nextPosition.x = overrides.x
+  if (overrides.y != null) nextPosition.y = overrides.y
+  return nextPosition
+}
+
+const withPosition = (baseSchema, basePosition, overrides = {}) => {
+  const { position, x, y, ...rest } = overrides
+  return createSchema(baseSchema, {
+    ...rest,
+    position: resolvePosition(basePosition, { position, x, y }),
+  })
+}
+
 const createTextSchema = (overrides = {}) =>
-  createSchema(text.propPanel.defaultSchema, {
-    position: { x: 18, y: 24 },
+  withPosition(text.propPanel.defaultSchema, { x: 18, y: 24 }, {
     width: 92,
     height: 12,
     fontSize: 12,
@@ -61,40 +79,35 @@ const createTextSchema = (overrides = {}) =>
   })
 
 const createSelectSchema = (overrides = {}) =>
-  createSchema(select.propPanel.defaultSchema, {
-    position: { x: 18, y: 46 },
+  withPosition(select.propPanel.defaultSchema, { x: 18, y: 46 }, {
     width: 92,
     height: 12,
     ...overrides,
   })
 
 const createCheckboxSchema = (overrides = {}) =>
-  createSchema(checkbox.propPanel.defaultSchema, {
-    position: { x: 18, y: 66 },
+  withPosition(checkbox.propPanel.defaultSchema, { x: 18, y: 66 }, {
     width: 8,
     height: 8,
     ...overrides,
   })
 
 const createRadioGroupSchema = (overrides = {}) =>
-  createSchema(radioGroup.propPanel.defaultSchema, {
-    position: { x: 18, y: 84 },
+  withPosition(radioGroup.propPanel.defaultSchema, { x: 18, y: 84 }, {
     width: 82,
     height: 18,
     ...overrides,
   })
 
 const createCheckboxGroupSchema = (overrides = {}) =>
-  createSchema(checkboxGroup.propPanel.defaultSchema, {
-    position: { x: 18, y: 108 },
+  withPosition(checkboxGroup.propPanel.defaultSchema, { x: 18, y: 108 }, {
     width: 92,
     height: 12,
     ...overrides,
   })
 
 const createSignatureSchema = (overrides = {}) =>
-  createSchema(signature.propPanel.defaultSchema, {
-    position: { x: 18, y: 88 },
+  withPosition(signature.propPanel.defaultSchema, { x: 18, y: 88 }, {
     width: 60,
     height: 24,
     ...overrides,
@@ -340,7 +353,7 @@ const multiDocumentPrimaryBaseSchemas = [
       ...createAuditMetadata('routing-user-1', 'recipient-1', 45000),
       name: 'contract_date',
       content: '2026-05-01',
-      y: 24,
+      y: 48,
     }),
     createSelectSchema({
       schemaUid: 'multi-contract-stage',
@@ -353,7 +366,7 @@ const multiDocumentPrimaryBaseSchemas = [
       name: 'contract_stage',
       content: 'Pendiente',
       options: ['Pendiente', 'Aprobado', 'Rechazado'],
-      y: 48,
+      y: 72,
     }),
     createRadioGroupSchema({
       schemaUid: 'multi-contract-approval-mode',
@@ -374,7 +387,7 @@ const multiDocumentPrimaryBaseSchemas = [
         { optionId: 'option_1', label: 'Firma' },
         { optionId: 'option_2', label: 'Revisión' },
       ],
-      y: 70,
+      y: 96,
     }),
     createCheckboxGroupSchema({
       schemaUid: 'multi-contract-attachments',
@@ -394,7 +407,7 @@ const multiDocumentPrimaryBaseSchemas = [
         { optionId: 'opt_2', label: 'RUC' },
         { optionId: 'opt_3', label: 'Contrato firmado' },
       ],
-      y: 98,
+      y: 124,
     }),
   ],
   [],
@@ -424,7 +437,7 @@ const multiDocumentSecondaryBaseSchemas = [
       ...createAuditMetadata('routing-user-1', 'recipient-2', 135000),
       name: 'annex_sign',
       content: 'Firmado',
-      y: 24,
+      y: 48,
     }),
     createCheckboxSchema({
       schemaUid: 'multi-annex-check',
@@ -436,7 +449,7 @@ const multiDocumentSecondaryBaseSchemas = [
       ...createAuditMetadata('routing-user-1', 'recipient-2', 160000),
       name: 'annex_confirm',
       content: 'true',
-      y: 48,
+      y: 72,
     }),
     createSelectSchema({
       schemaUid: 'multi-annex-select',
@@ -449,7 +462,7 @@ const multiDocumentSecondaryBaseSchemas = [
       name: 'annex_status',
       content: 'En revisión',
       options: ['En revisión', 'Aprobado', 'Observado'],
-      y: 68,
+      y: 96,
     }),
   ],
 ]
@@ -493,7 +506,12 @@ const multiDocumentSecondarySchemas = mergeSchemaPages(
 
 // Merge primary and secondary schemas into a single template view for the routing example
 const multiDocumentRoutingTemplate = createTemplate(
-  multiDocumentPrimarySchemas.map((page, idx) => page.concat(multiDocumentSecondarySchemas[idx] || [])),
+  mergeSchemaPages(
+    multiDocumentPrimarySchemas,
+    multiDocumentSecondarySchemas,
+    MULTI_DOCUMENT_ROUTING_PAGE_COUNT,
+    160,
+  ),
   {
     basePdf: LAB_PDFS.routingPrimary,
     pageCount: MULTI_DOCUMENT_ROUTING_PAGE_COUNT,
@@ -504,14 +522,14 @@ const multiDocumentRoutingDocuments = [
   createUploadedDocument({
     id: 'file-contract-a',
     name: 'Declaración de datos',
-    pdfFileName: 'routing-primary-5p.pdf',
+    pdfFileName: 'example_pdf_empy.pdf',
     pageCount: MULTI_DOCUMENT_ROUTING_PAGE_COUNT,
     schemas: multiDocumentPrimarySchemas,
   }),
   createUploadedDocument({
     id: 'file-contract-b',
     name: 'Certificado académico',
-    pdfFileName: 'routing-secondary-5p.pdf',
+    pdfFileName: 'example_pdf_empy.pdf',
     pageCount: MULTI_DOCUMENT_ROUTING_PAGE_COUNT,
     schemas: multiDocumentSecondarySchemas,
   }),
