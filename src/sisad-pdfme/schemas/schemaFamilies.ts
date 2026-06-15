@@ -13,6 +13,7 @@ export type SchemaSemanticFamily =
   | 'text'
   | 'multiVariableText'
   | 'signature'
+  | 'action'
   | 'table'
   | 'barcode'
   | 'boolean'
@@ -38,6 +39,11 @@ const TEXT_TYPES = new Set([
 ]);
 const BOOLEAN_TYPES = new Set(['checkbox', 'radiogroup', 'checkboxgroup']);
 const MEDIA_TYPES = new Set(['image', 'svg']);
+const ACTION_TYPES = new Set(['attachment', 'note', 'approve', 'decline']);
+const OPTION_TYPES = new Set(['select', 'dropdown', 'radiogroup', 'checkboxgroup']);
+const DATE_TYPES = new Set(['date', 'time', 'datetime']);
+const SIGNING_TYPES = new Set(['signature', 'initials', 'datesigned']);
+const TEXTUAL_TYPES = new Set(['fullname', 'emailaddress', 'company', 'title']);
 
 /**
  * Schema types that support inline content editing on the canvas.
@@ -63,6 +69,30 @@ const SHAPE_BARCODE_TYPES = new Set([
   'gs1datamatrix',
   'pdf417',
 ]);
+
+const SEMANTIC_FAMILY_BY_TYPE: Record<string, SchemaSemanticFamily> = {
+  multivariabletext: 'multiVariableText',
+  signature: 'signature',
+  initials: 'signature',
+  datesigned: 'signature',
+  fullname: 'text',
+  emailaddress: 'text',
+  company: 'text',
+  title: 'text',
+  attachment: 'action',
+  note: 'action',
+  approve: 'action',
+  decline: 'action',
+  select: 'choice',
+  dropdown: 'choice',
+  checkbox: 'boolean',
+  radiogroup: 'choice',
+  checkboxgroup: 'choice',
+  date: 'dateTime',
+  time: 'dateTime',
+  datetime: 'dateTime',
+  table: 'table',
+};
 
 const BASE_PROPERTY_MAP: Partial<Record<string, PropPanelInspectorSectionKey>> = {
   align: 'layout',
@@ -260,16 +290,13 @@ export const resolveSchemaFamily = (schemaType: string): SchemaFamily => {
 export const resolveSchemaSemanticFamily = (schemaType: string): SchemaSemanticFamily => {
   const normalizedType = String(schemaType || '').trim().toLowerCase();
 
-  if (normalizedType === 'multivariabletext') return 'multiVariableText';
-  if (normalizedType === 'signature' || normalizedType === 'initials' || normalizedType === 'datesigned') return 'signature';
-  if (normalizedType === 'fullname' || normalizedType === 'emailaddress' || normalizedType === 'company' || normalizedType === 'title') return 'text';
-  if (normalizedType === 'attachment' || normalizedType === 'note' || normalizedType === 'approve' || normalizedType === 'decline') return 'text';
-  if (normalizedType === 'table') return 'table';
-  if (normalizedType === 'select' || normalizedType === 'dropdown') return 'choice';
-  if (normalizedType === 'date' || normalizedType === 'time' || normalizedType === 'datetime') return 'dateTime';
+  if (normalizedType in SEMANTIC_FAMILY_BY_TYPE) return SEMANTIC_FAMILY_BY_TYPE[normalizedType];
+  if (ACTION_TYPES.has(normalizedType)) return 'action';
+  if (OPTION_TYPES.has(normalizedType)) return 'choice';
+  if (SIGNING_TYPES.has(normalizedType)) return 'signature';
+  if (TEXTUAL_TYPES.has(normalizedType)) return 'text';
+  if (DATE_TYPES.has(normalizedType)) return 'dateTime';
   if (normalizedType === 'checkbox') return 'boolean';
-  if (normalizedType === 'radiogroup') return 'choice';
-  if (normalizedType === 'checkboxgroup') return 'choice';
   if (MEDIA_TYPES.has(normalizedType)) return 'media';
   if (SHAPE_BARCODE_TYPES.has(normalizedType)) {
     return normalizedType.startsWith('qrcode') || normalizedType === 'japanpost' || normalizedType === 'ean13' || normalizedType === 'ean8' || normalizedType === 'code39' || normalizedType === 'code128' || normalizedType === 'nw7' || normalizedType === 'itf14' || normalizedType === 'upca' || normalizedType === 'upce' || normalizedType === 'gs1datamatrix' || normalizedType === 'pdf417' ? 'barcode' : 'shape';

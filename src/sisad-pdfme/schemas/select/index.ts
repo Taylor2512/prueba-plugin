@@ -8,6 +8,7 @@ import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 import { basicsFields, helpFields, dataLabelFields, COMMON_PROPERTY_MAP } from '../propPanel/commonInspectorFields.js';
 import { resolveSchemaIdByIdentity } from '../shared/schemaGuards.js';
+import { normalizeStringOptions, resolveCompactSelection } from '../options/optionSelectionBehavior.js';
 
 const selectIcon = renderLucideIcon(ChevronDown);
 
@@ -21,7 +22,7 @@ const addOptions = (props: PropPanelWidgetProps) => {
   rootElement.className = 'sisad-option-editor-select-root';
 
   const selectSchema = activeSchema as SchemaForUI & Select;
-  const currentOptions = Array.isArray(selectSchema.options) ? [...selectSchema.options] : [];
+  const currentOptions = normalizeStringOptions(Array.isArray(selectSchema.options) ? selectSchema.options : []);
 
   const resolveActiveSchemaId = (): string | undefined => {
     return resolveSchemaIdByIdentity(props.schemas, selectSchema);
@@ -31,7 +32,7 @@ const addOptions = (props: PropPanelWidgetProps) => {
     const activeSchemaId = resolveActiveSchemaId();
     if (!activeSchemaId) return;
     const currentContent = typeof selectSchema.content === 'string' ? selectSchema.content : '';
-    const nextContent = currentOptions.includes(currentContent) ? currentContent : currentOptions[0] || '';
+    const nextContent = resolveCompactSelection(currentContent, currentOptions);
     changeSchemas([
       { key: 'options', value: [...currentOptions], schemaId: activeSchemaId },
       { key: 'content', value: nextContent, schemaId: activeSchemaId },
@@ -93,7 +94,10 @@ const addOptions = (props: PropPanelWidgetProps) => {
       optionInput.className = 'sisad-option-editor-input';
 
       optionInput.addEventListener('change', () => {
-        currentOptions[index] = optionInput.value.trim();
+        const nextValue = optionInput.value.trim();
+        if (!nextValue) return;
+        if (currentOptions.some((value, currentIndex) => currentIndex !== index && value === nextValue)) return;
+        currentOptions[index] = nextValue;
         renderOptions();
         updateSchemas();
       });
@@ -159,7 +163,7 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
         appearance: 'initial',
       };
       Object.assign(selectElement.style, selectElementStyle);
-      selectElement.value = value;
+      selectElement.value = resolveCompactSelection(value, normalizeStringOptions(Array.isArray(schema.options) ? schema.options : []));
 
       selectElement.addEventListener('change', (e) => {
         if (onChange && e.target instanceof HTMLSelectElement) {
@@ -167,8 +171,8 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
         }
       });
 
-      const options = Array.isArray(schema.options) ? schema.options : [];
-      const resolvedOptions = options.filter((option) => String(option || '').trim().length > 0);
+      const options = normalizeStringOptions(Array.isArray(schema.options) ? schema.options : []);
+      const resolvedOptions = options;
       const needsPlaceholder = !value || !resolvedOptions.includes(value);
 
       if (needsPlaceholder) {

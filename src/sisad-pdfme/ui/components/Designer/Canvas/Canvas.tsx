@@ -96,6 +96,14 @@ const getPaddingMm = (basePdf: BasePdf): [number, number, number, number] => {
   return [top, right, bottom, left];
 };
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+const CONTENT_DRIVEN_INLINE_EDIT_TYPES = new Set(['text', 'multivariabletext']);
+
+const buildSchemaSelector = (schemaId: string): string => {
+  if (typeof CSS !== 'undefined' && typeof CSS.escape === 'function') {
+    return `[data-schema-id="${CSS.escape(schemaId)}"]`;
+  }
+  return `[data-schema-id="${schemaId.replace(/"/g, '\\"')}"]`;
+};
 
 type CanvasContextMenuState = {
   mode: 'empty' | 'single' | 'multi';
@@ -315,7 +323,6 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
       }),
     [paperRefs, scale],
   );
-  const activePaper = paperRefs.current[pageCursor] || null;
   const setContextMenu = useCallback((next: CanvasContextMenuState | null) => {
     setContextMenuState((prev) => ({ ...prev, contextMenu: next }));
   }, []);
@@ -340,10 +347,20 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     [activeElements],
   );
   const activeElementIdSet = useMemo(() => new Set(activeElementIds), [activeElementIds]);
-  const currentPageSchemaIdSet = useMemo(
-    () => new Set(currentPageSchemas.map((schema) => schema.id)),
-    [currentPageSchemas],
+  const activeSelectionPageIndex = useMemo(() => {
+    for (const element of activeElements) {
+      const pageIndex = Number(element?.dataset.pageIndex);
+      if (Number.isInteger(pageIndex) && pageIndex >= 0) {
+        return pageIndex;
+      }
+    }
+    return Number.isInteger(pageCursor) && pageCursor >= 0 ? pageCursor : null;
+  }, [activeElements, pageCursor]);
+  const activeSelectionSchemas = useMemo(
+    () => renderedPageSchemasList[activeSelectionPageIndex ?? pageCursor] || currentPageSchemas,
+    [activeSelectionPageIndex, currentPageSchemas, pageCursor, renderedPageSchemasList],
   );
+  const activePaper = paperRefs.current[activeSelectionPageIndex ?? pageCursor] || null;
   const placeholderVariables = useMemo(
     () =>
       Object.fromEntries(
@@ -405,8 +422,8 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
       return;
     }
 
-    const prevSchemaKeys = JSON.stringify(prevSchemas[pageCursor] || {});
-    const schemaKeys = JSON.stringify(renderedPageSchemasList[pageCursor] || {});
+    const prevSchemaKeys = JSON.stringify(prevSchemas || []);
+    const schemaKeys = JSON.stringify(renderedPageSchemasList[pageCursor] || []);
 
     if (prevSchemaKeys === schemaKeys) {
       moveable.current?.updateRect();
@@ -420,14 +437,16 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     const actualTop = top / ZOOM;
     const actualLeft = left / ZOOM;
     const snapThresholdMm = 0.75;
-    const { width: pageWidthMm, height: pageHeightMm } = pageSizes[pageCursor];
+    const targetPageIndex = resolvePageIndexForSchema(target.id, target as HTMLElement);
+    const pageSize = pageSizes[targetPageIndex ?? pageCursor] || pageSizes[pageCursor];
+    const { width: pageWidthMm, height: pageHeightMm } = pageSize;
     const [paddingTopMm, paddingRightMm, paddingBottomMm, paddingLeftMm] = getPaddingMm(basePdf);
     const minY = paddingTopMm;
     const minX = paddingLeftMm;
     const maxY = Math.max(minY, pageHeightMm - paddingBottomMm - targetHeightMm);
     const maxX = Math.max(minX, pageWidthMm - paddingRightMm - targetWidthMm);
 
-    const currentSchemas = currentPageSchemas;
+    const currentSchemas = renderedPageSchemasList[targetPageIndex ?? pageCursor] || currentPageSchemas;
     const others = currentSchemas
       .filter((s) => !activeElementIdSet.has(s.id))
       .map((s) => ({ x: s.position.x, y: s.position.y, width: s.width, height: s.height }));
@@ -503,7 +522,8 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     const { width, height, top, left } = style;
     changeSchemas(buildSizeAndPositionChanges(id, width, height, top, left));
 
-    const targetSchema = schemasList[pageCursor].find((schema) => schema.id === id);
+    const targetPageIndex = resolvePageIndexForSchema(id, target as HTMLElement);
+    const targetSchema = schemasList[targetPageIndex ?? pageCursor].find((schema) => schema.id === id);
 
     if (!targetSchema) return;
 
@@ -527,6 +547,8 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     let rightPadding = 0;
     let bottomPadding = 0;
     let leftPadding = 0;
+    const targetPageIndex = resolvePageIndexForSchema(target.id, target as HTMLElement);
+    const pageSize = pageSizes[targetPageIndex ?? pageCursor] || pageSizes[pageCursor];
 
     if (isBlankPdf(basePdf)) {
       const [t, r, b, l] = basePdf.padding;
@@ -536,8 +558,8 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
       leftPadding = l * ZOOM;
     }
 
-    const pageWidth = mm2px(pageSizes[pageCursor].width);
-    const pageHeight = mm2px(pageSizes[pageCursor].height);
+    const pageWidth = mm2px(pageSize.width);
+    const pageHeight = mm2px(pageSize.height);
 
     const obj: { top?: string; left?: string; width: string; height: string } = {
       width: `${width}px`,
@@ -575,6 +597,90 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   const getGuideLines = (guides: GuidesInterface[], index: number) =>
     guides[index] && guides[index].getGuides().map((g) => g * ZOOM);
 
+  const resolvePageIndexForSchema = useCallback(
+    (schemaId: string, targetElement?: HTMLElement | null): number | null => {
+      const targetPageIndex = targetElement?.dataset.pageIndex;
+      if (targetPageIndex != null) {
+        const parsedPageIndex = Number(targetPageIndex);
+        if (Number.isInteger(parsedPageIndex) && parsedPageIndex >= 0) {
+          return parsedPageIndex;
+        }
+      }
+
+      for (const element of activeElements) {
+        if (!element || element.dataset.schemaId !== schemaId) continue;
+        const parsedPageIndex = Number(element.dataset.pageIndex);
+        if (Number.isInteger(parsedPageIndex) && parsedPageIndex >= 0) {
+          return parsedPageIndex;
+        }
+      }
+
+      for (const element of activeElements) {
+        const parsedPageIndex = Number(element?.dataset.pageIndex);
+        if (Number.isInteger(parsedPageIndex) && parsedPageIndex >= 0) {
+          return parsedPageIndex;
+        }
+      }
+
+      return Number.isInteger(pageCursor) && pageCursor >= 0 ? pageCursor : null;
+    },
+    [activeElements, pageCursor],
+  );
+
+  const resolveSchemaById = useCallback(
+    (schemaId: string, pageIndex?: number | null) => {
+      const candidates = [
+        pageIndex,
+        resolvePageIndexForSchema(schemaId),
+        pageCursor,
+      ].filter((value): value is number => typeof value === 'number' && value >= 0);
+
+      for (const candidate of candidates) {
+        const schema = renderedPageSchemasList[candidate]?.find((item) => item.id === schemaId);
+        if (schema) return schema;
+      }
+
+      for (const pageSchemas of renderedPageSchemasList) {
+        const schema = pageSchemas?.find((item) => item.id === schemaId);
+        if (schema) return schema;
+      }
+
+      return null;
+    },
+    [pageCursor, renderedPageSchemasList, resolvePageIndexForSchema],
+  );
+
+  const resolveSchemaElementById = useCallback(
+    (schemaId: string, pageIndex?: number | null) => {
+      const selector = buildSchemaSelector(schemaId);
+
+      for (const element of activeElements) {
+        if (element?.dataset.schemaId === schemaId) {
+          return element;
+        }
+      }
+
+      const candidatePageIndex = resolvePageIndexForSchema(schemaId) ?? pageIndex ?? pageCursor;
+      if (Number.isInteger(candidatePageIndex) && candidatePageIndex >= 0) {
+        const pageElement = paperRefs.current[candidatePageIndex];
+        const scopedElement = pageElement?.querySelector<HTMLElement>(selector) || null;
+        if (scopedElement) {
+          return scopedElement;
+        }
+      }
+
+      for (const pageElement of paperRefs.current) {
+        const scopedElement = pageElement?.querySelector<HTMLElement>(selector) || null;
+        if (scopedElement) {
+          return scopedElement;
+        }
+      }
+
+      return document.querySelector<HTMLElement>(selector);
+    },
+    [activeElements, pageCursor, paperRefs, resolvePageIndexForSchema],
+  );
+
   const resolveInlineEditRect = useCallback((element: HTMLElement) => {
     const canvasRoot = document.querySelector('.sisad-pdfme-designer-canvas') as HTMLElement | null;
     const canvasRect = canvasRoot?.getBoundingClientRect();
@@ -589,19 +695,18 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
 
   const resolveInlineEditTarget = useCallback((schemaId: string, target?: InlineEditTarget) => {
     if (target) return target;
-    const schema = currentPageSchemas.find((item) => item.id === schemaId);
+    const schema = resolveSchemaById(schemaId);
     if (!schema) return 'content';
     const content = String(schema.content || '');
-    const contentDrivenTypes = new Set(['text', 'multivariabletext']);
-    if (contentDrivenTypes.has(schema.type) || content.length > 0) {
+    if (CONTENT_DRIVEN_INLINE_EDIT_TYPES.has(schema.type) || content.length > 0) {
       return 'content';
     }
     return 'name';
-  }, [currentPageSchemas]);
+  }, [resolveSchemaById]);
 
   const startInlineEdit = useCallback(
     (schemaId: string, targetRect: HTMLElement, target?: InlineEditTarget) => {
-      const schema = currentPageSchemas.find((item) => item.id === schemaId);
+      const schema = resolveSchemaById(schemaId);
       if (!schema) {
         selectionCommands?.openProperties?.();
         return;
@@ -621,10 +726,10 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
       onEdit([targetRect]);
     },
     [
-      currentPageSchemas,
       onEdit,
       resolveInlineEditRect,
       resolveInlineEditTarget,
+      resolveSchemaById,
       selectionCommands,
       setContextMenu,
       setPendingContextMenu,
@@ -648,7 +753,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
       if (!inlineEditSession) return;
       const schemaId = inlineEditSession.schemaId;
       const key = inlineEditSession.target === 'content' ? 'content' : 'name';
-      const currentSchema = currentPageSchemas.find((item) => item.id === schemaId);
+      const currentSchema = resolveSchemaById(schemaId);
       if (!currentSchema) {
         setInlineEditSession(null);
         setEditing(false);
@@ -667,7 +772,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
       setEditing(false);
       refocusCanvas();
     },
-    [changeSchemas, currentPageSchemas, inlineEditSession, refocusCanvas],
+    [changeSchemas, inlineEditSession, refocusCanvas, resolveSchemaById],
   );
 
   const cancelInlineEdit = useCallback(() => {
@@ -686,13 +791,13 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     };
 
     imperativeNode.openInlineEdit = (request) => {
-      const targetElement = document.getElementById(request.schemaId);
+      const targetElement = resolveSchemaElementById(request.schemaId);
       node.dataset.inlineEditRequest = `${request.schemaId}:${request.target}`;
       if (!targetElement) {
         selectionCommands?.openProperties?.();
         return;
       }
-      const schema = currentPageSchemas.find((item) => item.id === request.schemaId);
+      const schema = resolveSchemaById(request.schemaId, resolvePageIndexForSchema(request.schemaId, targetElement));
       if (!schema) {
         selectionCommands?.openProperties?.();
         return;
@@ -714,9 +819,11 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     return imperativeNode;
   }, [
     cancelInlineEdit,
-    currentPageSchemas,
     resolveInlineEditRect,
     resolveInlineEditTarget,
+    resolvePageIndexForSchema,
+    resolveSchemaById,
+    resolveSchemaElementById,
     selectionCommands,
     setContextMenu,
     setPendingContextMenu,
@@ -735,7 +842,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     if (!target) return;
     if (isEditableTarget(target) || isAntDPopupTarget(target)) return;
 
-    const activePaper = paperRefs.current[pageCursor];
+    const activePaper = paperRefs.current[activeSelectionPageIndex ?? pageCursor];
     const selectableTarget = target.closest?.(`.${SELECTABLE_CLASSNAME}`) as HTMLElement | null;
     const isSelectableTarget = Boolean(selectableTarget && activePaper?.contains(selectableTarget));
 
@@ -801,7 +908,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   );
 
   const rotatable = useMemo(() => {
-    const selectedSchemas = currentPageSchemas.filter((s) => activeElementIdSet.has(s.id));
+    const selectedSchemas = activeSelectionSchemas.filter((s) => activeElementIdSet.has(s.id));
     const schemaTypes = selectedSchemas.map((s) => s.type);
     const uniqueSchemaTypes = [...new Set(schemaTypes)];
 
@@ -819,20 +926,25 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
       const matchingSchema = defaultSchemas.find((ds) => ds && 'type' in ds && ds.type === type);
       return matchingSchema && 'rotate' in matchingSchema;
     });
-  }, [activeElementIdSet, currentPageSchemas, pluginsRegistry]);
+  }, [activeElementIdSet, activeSelectionSchemas, pluginsRegistry]);
 
-  const isEventInsideActivePaper = (target: EventTarget | null) => {
-    const activePaper = paperRefs.current[pageCursor];
-    if (!activePaper || !(target instanceof Node)) return false;
-    return target === activePaper || activePaper.contains(target);
+  // Multi-page: selection/interaction is valid inside ANY rendered paper, not
+  // only the cursor page. Scoping to a single paper broke selection on page 2+.
+  const isEventInsideAnyPaper = (target: EventTarget | null) => {
+    if (!(target instanceof Node)) return false;
+    for (const paper of paperRefs.current) {
+      if (paper && (target === paper || paper.contains(target))) return true;
+    }
+    return false;
   };
+  const isEventInsideActivePaper = (target: EventTarget | null) => isEventInsideAnyPaper(target);
   const normalizeActiveTargets = (targets: HTMLElement[]) => {
-    const activePaper = paperRefs.current[pageCursor];
-    if (!activePaper) return [];
+    const papers = paperRefs.current.filter(Boolean);
+    if (!papers.length) return [];
     return dedupeById(
       targets.filter((target) => {
         if (!isMoveableTarget(target)) return false;
-        return target === activePaper || activePaper.contains(target);
+        return papers.some((paper) => target === paper || paper.contains(target));
       }),
     );
   };
@@ -910,8 +1022,8 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   const contextMenuSelectionSchemas = useMemo(() => {
     if (!contextMenu) return [];
     const targetIds = new Set(contextMenu.targetIds);
-    return currentPageSchemas.filter((schema) => targetIds.has(schema.id));
-  }, [contextMenu, currentPageSchemas]);
+    return activeSelectionSchemas.filter((schema) => targetIds.has(schema.id));
+  }, [activeSelectionSchemas, contextMenu]);
   const contextMenuSelectionReadOnly = contextMenuSelectionSchemas.length > 0
     && contextMenuSelectionSchemas.every((schema) => schema.readOnly);
   const contextMenuSelectionRequired = contextMenuSelectionSchemas.length > 0
@@ -1100,7 +1212,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
               e.stop();
             }
 
-            if (paperRefs.current[pageCursor] === target) {
+            if (activePaper === target) {
               onEdit([]);
             }
 
@@ -1248,7 +1360,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
             )}
           </>
         )}
-        renderSchema={({ schema, index }) => {
+        renderSchema={({ schema, pageIndex }) => {
           const isActive = activeElementIdSet.has(schema.id);
           const isHovering = hoveringSchemaId === schema.id;
           // Grouping schemas expose design-time affordances (the "+" add-option
@@ -1270,7 +1382,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
             const variables = {
               ...placeholderVariables,
               totalPages: schemasList.length,
-              currentPage: index + 1,
+              currentPage: pageIndex + 1,
             };
 
             value = replacePlaceholders({ content, variables, schemas: schemasList });
@@ -1283,14 +1395,13 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
               basePdf={basePdf}
               value={value}
               documentId={activeDocumentId}
-              pageIndex={index}
-              pageNumber={index + 1}
+              pageIndex={pageIndex}
+              pageNumber={pageIndex + 1}
               onChangeHoveringSchemaId={onChangeHoveringSchemaId}
               mode={mode}
               onChange={
-                currentPageSchemaIdSet.has(schema.id)
+                isActive
                   ? (arg) => {
-                    // Use type assertion to safely handle the argument
                     type ChangeArg = { key: string; value: unknown };
                     const args = Array.isArray(arg) ? (arg as ChangeArg[]) : [arg as ChangeArg];
                     changeSchemas(

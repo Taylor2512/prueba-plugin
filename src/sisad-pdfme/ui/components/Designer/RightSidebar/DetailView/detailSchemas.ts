@@ -10,6 +10,7 @@ import {
   toCanonicalDetailSection,
   shouldRenderDetailSection,
 } from './detailSectionTaxonomy.js';
+import { contractSectionEnabled, resolveInspectorContract } from './inspectorContracts.js';
 import { getSchemaTypeInspectorPreset, resolveSchemaSemanticFamily } from '../../../../../schemas/schemaFamilies.js';
 
 export type DetailInspectorSectionKey = CanonicalDetailSection;
@@ -108,6 +109,7 @@ export const buildInspectorSections = ({
 }: BuildInspectorSchemasParams) => {
   const familyPreset = getSchemaTypeInspectorPreset(activeSchemaType);
   const semanticFamily = resolveSchemaSemanticFamily(activeSchemaType);
+  const inspectorContract = resolveInspectorContract(activeSchemaType);
   const activeSchemaRecord = asRecord(activeSchema);
   const canonicalVisibleSections = new Set(
     (inspectorConfig?.visibleSections?.length ? inspectorConfig.visibleSections : familyPreset.visibleSections)
@@ -142,14 +144,21 @@ export const buildInspectorSections = ({
         (Array.isArray(activeSchemaRecord.commentAnchors) && activeSchemaRecord.commentAnchors.length > 0) ||
         (Array.isArray(activeSchemaRecord.commentsAnchors) && activeSchemaRecord.commentsAnchors.length > 0)),
   );
+  const contractSupportsConnections = contractSectionEnabled(inspectorContract, 'dataBindings');
+  const contractSupportsCollaboration = contractSectionEnabled(inspectorContract, 'collaboration');
+  const contractSupportsValidation = contractSectionEnabled(inspectorContract, 'validation');
   const shouldShowConnections =
     Boolean(inspectorConfig?.supportsConnections ?? inspectorConfig?.includeConnections ?? familyPreset.supportsConnections) ||
+    contractSupportsConnections ||
     hasSchemaBindings;
   const shouldShowCollaboration =
     Boolean(inspectorConfig?.supportsCollaboration ?? inspectorConfig?.includeCollaboration) ||
+    contractSupportsCollaboration ||
     hasSchemaCollaboration;
   const shouldShowValidation =
-    Boolean(inspectorConfig?.supportsValidation ?? inspectorConfig?.includeValidation ?? familyPreset.supportsValidation);
+    semanticFamily !== 'action' &&
+    (Boolean(inspectorConfig?.supportsValidation ?? inspectorConfig?.includeValidation ?? familyPreset.supportsValidation) ||
+      contractSupportsValidation);
   const shouldShowComments = hasSchemaComments;
   const fieldSections = {
     ...familyPreset.propertyMap,

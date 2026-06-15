@@ -49,13 +49,15 @@ const DESIGNER_BOX_GAP  = RADIO_GROUP_LAYOUT.boxGap;   // px
 const DESIGNER_BOX_MM = computeOptionGroupDesignerWidthMM(RADIO_GROUP_LAYOUT);
 
 import { normalizeOptionsFromSource } from '../options/optionModel.js';
-import { resolveSelectedOptionId as resolveSelectedFromOptions } from '../options/optionValueAdapter.js';
 import {
   syncOptionGroupDesignerGeometry,
   createDesignerOptionGroupEl,
   syncDesignerOptionGroupPatch,
   createOptionGroupRuntime,
 } from '../options/optionGroupFactory.js';
+import {
+  resolveSingleOptionSelection,
+} from '../options/optionSelectionBehavior.js';
 import { createOptionGroupEditor } from '../options/optionGroupEditorFactory.js';
 import { clearSchemaRoot } from '../shared/schemaDom.js';
 import { resolveSchemaIdByIdentity } from '../shared/schemaGuards.js';
@@ -72,11 +74,10 @@ const resolveSelectedOptionId = (
   schema: RadioGroupSchema,
   options: RadioOption[],
 ): string => {
-  return (
-    resolveSelectedFromOptions(
-      schema.selectedOptionId || schema.content || schema.defaultSelectedOptionId,
-      options,
-    ) || options[0]?.optionId || 'option_1'
+  return resolveSingleOptionSelection(
+    schema.selectedOptionId || schema.content || schema.defaultSelectedOptionId,
+    options,
+    options[0]?.optionId || 'option_1',
   );
 };
 

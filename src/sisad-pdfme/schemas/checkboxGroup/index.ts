@@ -18,6 +18,11 @@ import {
   syncDesignerOptionGroupPatch,
   createOptionGroupRuntime,
 } from '../options/optionGroupFactory.js';
+import {
+  clampMultiOptionSelection,
+  resolveMultiOptionSelection,
+  toggleMultiOptionSelection,
+} from '../options/optionSelectionBehavior.js';
 import { createOptionGroupEditor } from '../options/optionGroupEditorFactory.js';
 import { clearSchemaRoot } from '../shared/schemaDom.js';
 import { resolveSchemaIdByIdentity } from '../shared/schemaGuards.js';
@@ -94,14 +99,6 @@ const normalizeOptions = (schema: CheckboxGroupSchema): CheckboxOption[] => {
   });
 };
 
-const resolveSelectedIds = (schema: CheckboxGroupSchema): Set<string> => {
-  const fromArray = Array.isArray(schema.selectedOptionIds) ? schema.selectedOptionIds : null;
-  if (fromArray) return new Set(fromArray.map(normalizeText).filter(Boolean));
-  const fromContent = normalizeText(schema.content);
-  if (fromContent) return new Set(fromContent.split(',').map((s) => s.trim()).filter(Boolean));
-  return new Set();
-};
-
 const resolveSelectionLimits = (schema: CheckboxGroupSchema) => {
   const minSelected = normalizeSelectionLimit(schema.minSelected);
   const maxSelected = normalizeSelectionLimit(schema.maxSelected);
@@ -111,45 +108,31 @@ const resolveSelectionLimits = (schema: CheckboxGroupSchema) => {
   };
 };
 
-const clampSelectedIds = (selected: Set<string>, options: CheckboxOption[], schema: CheckboxGroupSchema) => {
-  const validIds = new Set(options.map((option) => option.optionId));
-  const { minSelected, maxSelected } = resolveSelectionLimits(schema);
-  const ordered = Array.from(selected).map(normalizeText).filter((id) => id && validIds.has(id));
+const resolveSelectedIds = (schema: CheckboxGroupSchema): Set<string> =>
+  new Set(
+    resolveMultiOptionSelection(
+      Array.isArray(schema.selectedOptionIds) && schema.selectedOptionIds.length > 0
+        ? schema.selectedOptionIds
+        : normalizeText(schema.content).split(',').map((s) => s.trim()).filter(Boolean),
+      normalizeOptions(schema),
+    ),
+  );
 
-  if (maxSelected != null && ordered.length > maxSelected) {
-    ordered.length = maxSelected;
-  }
-
-  if (minSelected != null && ordered.length < minSelected) {
-    for (const option of options) {
-      if (ordered.length >= minSelected) break;
-      if (!ordered.includes(option.optionId)) ordered.push(option.optionId);
-    }
-  }
-
-  return new Set(ordered);
-};
+const clampSelectedIds = (selected: Set<string>, options: CheckboxOption[], schema: CheckboxGroupSchema) =>
+  new Set(
+    clampMultiOptionSelection(
+      Array.from(selected),
+      options,
+      resolveSelectionLimits(schema),
+    ),
+  );
 
 const toggleSelectedIds = (
   selected: Set<string>,
   optionId: string,
   options: CheckboxOption[],
   schema: CheckboxGroupSchema,
-) => {
-  const current = clampSelectedIds(selected, options, schema);
-  const next = new Set(current);
-  const { minSelected, maxSelected } = resolveSelectionLimits(schema);
-
-  if (next.has(optionId)) {
-    if (minSelected != null && next.size <= minSelected) return next;
-    next.delete(optionId);
-    return clampSelectedIds(next, options, schema);
-  }
-
-  if (maxSelected != null && next.size >= maxSelected) return next;
-  next.add(optionId);
-  return clampSelectedIds(next, options, schema);
-};
+) => new Set(toggleMultiOptionSelection(Array.from(selected), optionId, options, resolveSelectionLimits(schema)));
 
 const serializeSelectedIds = (ids: Set<string>) => Array.from(ids).join(',');
 

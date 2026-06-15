@@ -28,7 +28,7 @@ type PaperPageProps = {
   documentId?: string | null;
   normalizedSchemasList: SchemaForUI[][];
   renderPaper: (arg: { index: number; paperSize: Size }) => ReactNode;
-  renderSchema: (arg: { index: number; schema: SchemaForUI }) => ReactNode;
+  renderSchema: (arg: { index: number; pageIndex: number; schema: SchemaForUI }) => ReactNode;
   fontName: string;
   registerPaperRef: (paperIndex: number, element: HTMLDivElement | null) => void;
 };
@@ -69,6 +69,7 @@ const PaperPage = ({
       <div key={schema.id}>
         {renderSchema({
           schema,
+          pageIndex: paperIndex,
           index:
             paperIndex === 0
               ? schemaIndex
@@ -87,7 +88,7 @@ const Paper = (props: {
   backgrounds: string[];
   documentId?: string | null;
   renderPaper: (arg: { index: number; paperSize: Size }) => ReactNode;
-  renderSchema: (arg: { index: number; schema: SchemaForUI }) => ReactNode;
+  renderSchema: (arg: { index: number; pageIndex: number; schema: SchemaForUI }) => ReactNode;
   hasRulers?: boolean;
   registerPaperRef: (paperIndex: number, element: HTMLDivElement | null) => void;
 }) => {

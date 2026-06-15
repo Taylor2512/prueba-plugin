@@ -839,19 +839,46 @@ const TemplateEditor = ({
     () => new Set(visiblePageSchemas.map((schema) => schema.id)),
     [visiblePageSchemas],
   );
+  // Global (all pages) id set so re-anchoring never drops a selection that
+  // lives on a page other than pageCursor (multi-page regression guard).
+  const visibleSchemaIdSet = useMemo(
+    () => new Set(visibleSchemasList.flat().map((schema) => schema.id)),
+    [visibleSchemasList],
+  );
 
   useEffect(() => {
     if (!activeElements.length) return;
 
-    const activePaper = paperRefs.current[pageCursor];
-    if (!activePaper) return;
+    const selector = (id: string) =>
+      typeof CSS !== 'undefined' && typeof CSS.escape === 'function'
+        ? `[data-schema-id="${CSS.escape(id)}"]`
+        : `[data-schema-id="${id.replace(/"/g, '\\"')}"]`;
+
+    const findFreshElement = (element: HTMLElement): HTMLElement | null => {
+      // Re-anchor against the element's OWN page paper, not pageCursor's, so a
+      // selection on page 2+ survives re-renders. Fall back to scanning every
+      // visible paper before giving up.
+      const parsedPageIndex = Number(element.dataset.pageIndex);
+      const ownPaper =
+        Number.isInteger(parsedPageIndex) && parsedPageIndex >= 0
+          ? paperRefs.current[parsedPageIndex]
+          : null;
+      const sel = selector(element.id);
+      const fromOwnPaper = ownPaper?.querySelector<HTMLElement>(sel) || null;
+      if (fromOwnPaper) return fromOwnPaper;
+      for (const paper of paperRefs.current) {
+        const candidate = paper?.querySelector<HTMLElement>(sel) || null;
+        if (candidate) return candidate;
+      }
+      return null;
+    };
 
     const nextActive: HTMLElement[] = [];
     for (const element of activeElements) {
-      const nextElement = activePaper.querySelector<HTMLElement>(`[data-schema-id="${element.id}"]`);
+      const nextElement = findFreshElement(element);
       if (!nextElement) continue;
       if (!nextElement.classList.contains(SELECTABLE_CLASSNAME)) continue;
-      if (!visiblePageSchemaIdSet.has(nextElement.id)) continue;
+      if (!visibleSchemaIdSet.has(nextElement.id)) continue;
       nextActive.push(nextElement);
     }
 
@@ -865,7 +892,24 @@ const TemplateEditor = ({
     if (nextActive.length === 0) {
       setHoveringSchemaId(null);
     }
-  }, [activeElements, pageCursor, paperRefs, schemasList, visiblePageSchemaIdSet]);
+  }, [activeElements, paperRefs, schemasList, visibleSchemaIdSet]);
+
+  // Follow the selection's page: when the active schema(s) live on a single
+  // page other than pageCursor, move the cursor there so Moveable (rendered
+  // only on the cursor page) and page-scoped resolvers target the right page.
+  useEffect(() => {
+    if (!activeElements.length) return;
+    const pageIndexes = new Set<number>();
+    for (const element of activeElements) {
+      const parsed = Number(element?.dataset.pageIndex);
+      if (Number.isInteger(parsed) && parsed >= 0) pageIndexes.add(parsed);
+    }
+    if (pageIndexes.size !== 1) return;
+    const [selectionPage] = [...pageIndexes];
+    if (selectionPage === pageCursor) return;
+    setPageCursor(selectionPage);
+    pageCursorRef.current = selectionPage;
+  }, [activeElements, pageCursor]);
 
   useEffect(() => {
     if (!hoveringSchemaId) return;

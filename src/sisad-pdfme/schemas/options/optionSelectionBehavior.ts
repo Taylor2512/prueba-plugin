@@ -1,0 +1,110 @@
+import type { OptionItem } from './optionTypes.js';
+
+const normalizeText = (value: unknown): string => String(value || '').trim();
+
+const normalizeOptionIds = (ids: unknown, validIds: Set<string>): string[] => {
+  if (!Array.isArray(ids)) return [];
+  return ids
+    .map(normalizeText)
+    .filter((id) => id && validIds.has(id));
+};
+
+export const resolveSingleOptionSelection = (
+  schemaSelected: unknown,
+  options: OptionItem[],
+  fallback?: string | null,
+): string => {
+  const validIds = new Set(options.map((option) => option.optionId));
+  const byId = normalizeText(schemaSelected);
+  if (byId && validIds.has(byId)) return byId;
+
+  const byValue = options.find((option) => normalizeText(option.value) === byId);
+  if (byValue) return byValue.optionId;
+
+  return fallback && validIds.has(fallback) ? fallback : options[0]?.optionId || 'option_1';
+};
+
+export const resolveMultiOptionSelection = (
+  schemaSelected: unknown,
+  options: OptionItem[],
+  fallback: string[] = [],
+): string[] => {
+  const validIds = new Set(options.map((option) => option.optionId));
+  const normalized = normalizeOptionIds(schemaSelected, validIds);
+  if (normalized.length > 0) return normalized;
+  return fallback.filter((id) => validIds.has(id));
+};
+
+export const toggleMultiOptionSelection = (
+  selectedIds: string[],
+  optionId: string,
+  options: OptionItem[],
+  limits?: {
+    minSelected?: number;
+    maxSelected?: number;
+  },
+): string[] => {
+  const validIds = new Set(options.map((option) => option.optionId));
+  const current = selectedIds.map(normalizeText).filter((id) => id && validIds.has(id));
+  const next = new Set(current);
+
+  if (next.has(optionId)) {
+    if (limits?.minSelected != null && next.size <= limits.minSelected) {
+      return current;
+    }
+    next.delete(optionId);
+    return Array.from(next);
+  }
+
+  if (limits?.maxSelected != null && next.size >= limits.maxSelected) {
+    return current;
+  }
+
+  next.add(optionId);
+  return Array.from(next);
+};
+
+export const clampMultiOptionSelection = (
+  selectedIds: string[],
+  options: OptionItem[],
+  limits?: {
+    minSelected?: number;
+    maxSelected?: number;
+  },
+): string[] => {
+  const validIds = new Set(options.map((option) => option.optionId));
+  const selected = selectedIds.map(normalizeText).filter((id) => id && validIds.has(id));
+
+  if (limits?.maxSelected != null && selected.length > limits.maxSelected) {
+    selected.length = limits.maxSelected;
+  }
+
+  if (limits?.minSelected != null && selected.length < limits.minSelected) {
+    for (const option of options) {
+      if (selected.length >= limits.minSelected) break;
+      if (!selected.includes(option.optionId)) selected.push(option.optionId);
+    }
+  }
+
+  return selected;
+};
+
+export const normalizeStringOptions = (options: unknown[]): string[] => {
+  const normalized: string[] = [];
+  const seen = new Set<string>();
+
+  for (const option of Array.isArray(options) ? options : []) {
+    const value = normalizeText(option);
+    if (!value || seen.has(value)) continue;
+    seen.add(value);
+    normalized.push(value);
+  }
+
+  return normalized;
+};
+
+export const resolveCompactSelection = (currentValue: unknown, options: string[]): string => {
+  const normalizedValue = normalizeText(currentValue);
+  if (normalizedValue && options.includes(normalizedValue)) return normalizedValue;
+  return options[0] || '';
+};

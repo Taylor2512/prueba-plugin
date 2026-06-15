@@ -44,6 +44,15 @@ export const setSchemaRootAttributes = <TSchema extends SisadSchemaBase>(
   const tone = options.ownerColor ?? schema.ownerColor ?? schema.recipientColor ?? '#2563eb';
 
   if (options.family) root.dataset.schemaFamily = options.family;
+  if (schema.documentId) {
+    root.dataset.documentId = schema.documentId;
+  }
+  if (typeof schema.pageIndex === 'number') {
+    root.dataset.pageIndex = String(schema.pageIndex);
+  }
+  if (typeof schema.pageNumber === 'number') {
+    root.dataset.pageNumber = String(schema.pageNumber);
+  }
   root.dataset.schemaRequired = String(Boolean(schema.required));
   root.dataset.schemaReadonly = String(Boolean(schema.readOnly || schema.readonly));
   root.dataset.schemaLocked = String(Boolean(schema.locked));

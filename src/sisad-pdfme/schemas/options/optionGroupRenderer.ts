@@ -90,12 +90,15 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
           });
 
           if (nextSelection) {
-            onChange(
-              Object.entries(nextSelection).map(([key, value]) => ({ key, value })) as Array<{
-                key: string;
-                value: unknown;
-              }>,
-            );
+            const changes: Array<{ key: string; value: unknown }> = [];
+            if ('content' in nextSelection) changes.push({ key: 'content', value: nextSelection.content });
+            if ('selectedOptionId' in nextSelection) {
+              changes.push({ key: 'selectedOptionId', value: nextSelection.selectedOptionId });
+            }
+            if ('selectedOptionIds' in nextSelection) {
+              changes.push({ key: 'selectedOptionIds', value: nextSelection.selectedOptionIds });
+            }
+            onChange(changes);
           }
           return;
         }
