@@ -12,6 +12,7 @@
  *   Si divergen al cargar, SnapshotRecipient.color gana (fue editado después).
  */
 import type { SchemaDesignerMeta } from './schemaDesignerMeta.js';
+import { asRecord } from '../ui/components/Designer/shared/objectGuards.js';
 
 /** Versión actual del formato snapshot */
 export const SNAPSHOT_VERSION = '2.0.0';
@@ -130,7 +131,8 @@ export interface SerializeOptions {
 /** Helper: detecta si un objeto crudo es un snapshot legacy (pdfme ~4.x) */
 export function isLegacySnapshot(raw: unknown): boolean {
   if (!raw || typeof raw !== 'object') return false;
-  const obj = raw as Record<string, unknown>;
+  const obj = asRecord(raw);
+  if (!obj) return false;
   // Sin campo version → legacy pdfme 4.x
   if (!obj.version) return true;
   // version < "2.0.0" → legacy

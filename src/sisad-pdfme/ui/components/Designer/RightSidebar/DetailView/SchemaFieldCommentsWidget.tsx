@@ -12,6 +12,7 @@ import { uuid } from '../../../../helper.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import type { SchemaComment } from '../../../../designerEngine.js';
 import { InspectorEmptyState } from './InspectorPrimitives.js';
+import { asRecord } from '../../shared/objectGuards.js';
 
 type FieldCommentsWidgetProps = PropPanelWidgetProps & {
   activeSchema: SchemaForUI;
@@ -93,7 +94,7 @@ const SchemaFieldCommentsWidget = ({
   const actorName = designerEngine?.collaboration?.actorName || actorId;
   const actorColor = designerEngine?.collaboration?.actorColor;
 
-  const comments = normalizeComments((activeSchema as unknown as Record<string, unknown>).comments);
+  const comments = normalizeComments(asRecord(activeSchema)?.comments);
 
   const persistComments = (next: SchemaComment[]) => {
     changeSchemas([{ key: 'comments', value: next, schemaId: activeSchema.id }]);
@@ -107,7 +108,7 @@ const SchemaFieldCommentsWidget = ({
       authorName: actorName,
       authorColor: actorColor,
     });
-    persistComments([...comments, comment as unknown as SchemaComment]);
+    persistComments([...comments, comment as SchemaComment]);
     setNewCommentText('');
   };
 

@@ -333,6 +333,11 @@
   animation: toolbar-reveal var(--wix-reveal-dur) var(--wix-ease-out) both;
 }
 
+.sisad-pdfme-ui-selection-context-toolbar:focus-within {
+  opacity: 1;
+  pointer-events: auto;
+}
+
 /* micro mode: pill-shaped horizontal icon bar — closest to DocuSign floating toolbar */
 .sisad-pdfme-ui-selection-context-toolbar[data-toolbar-mode='micro'] {
   flex-direction: row;
@@ -882,6 +887,13 @@
   transform: translate(-50%, calc(-100% - 0.25rem));
 }
 
+:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-active='true']:focus-within .sisad-pdfme-ui-schema-toolbar,
+:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-editing='true']:focus-within .sisad-pdfme-ui-schema-toolbar {
+  opacity: 1;
+  pointer-events: auto;
+  transform: translate(-50%, calc(-100% - 0.25rem));
+}
+
 /* ── Schema Interaction Details ─────────────────────────── */
 
 /* Active/selected: single clean outline — inline border is transparent (Canvas.tsx),
@@ -1100,7 +1112,11 @@
   color: var(--color-primary);
 }
 
-:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-schema-toolbar-btn[aria-label='Eliminar campo']:hover {
+:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-schema-toolbar-btn[aria-label='Eliminar campo'] {
+  color: var(--color-danger);
+}
+
+:is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-schema-toolbar-btn[aria-label='Eliminar campo']:is(:hover, :focus-visible, :active) {
   background: var(--color-danger-dim);
   color: var(--color-danger);
 }

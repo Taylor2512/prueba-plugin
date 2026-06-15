@@ -3,8 +3,7 @@ import type { SchemaCollaborativeState } from '../../../../designerEngine.js';
 
 export { normalizeRecipientIdsShared as normalizeRecipientIds };
 
-export const joinRecipientIds = (value: unknown): string =>
-  normalizeRecipientIdsShared(value as string[] | string | null | undefined).join(', ');
+export const joinRecipientIds = (value: unknown): string => normalizeRecipientIdsShared(value).join(', ');
 
 export const resolveOwnerMode = (ownerRecipientIds: string[]) => {
   if (ownerRecipientIds.length > 1) return 'multi' as const;

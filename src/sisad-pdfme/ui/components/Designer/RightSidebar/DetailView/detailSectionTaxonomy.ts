@@ -1,5 +1,6 @@
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import type { SchemaSemanticFamily } from '../../../../../schemas/schemaFamilies.js';
+import { asRecord, isRecord } from '../../shared/objectGuards.js';
 
 export type CanonicalDetailSection =
   | 'identity'
@@ -173,7 +174,10 @@ const normalizeFieldEntry = (field: FieldLike): NormalizedField => {
 
 const fieldNames = (fields: FieldLike[] = []): NormalizedField[] => fields.map(normalizeFieldEntry).filter((field) => field.key && !field.hidden);
 
-const getSchemaValue = (schema: SchemaForUI, key: string) => (schema as Record<string, unknown>)[key];
+const getSchemaValue = (schema: SchemaForUI, key: string) => {
+  const record = asRecord(schema);
+  return record ? record[key] : undefined;
+};
 
 const hasDefinedSchemaValue = (schema: SchemaForUI, key: string) => {
   const value = getSchemaValue(schema, key);
@@ -226,7 +230,7 @@ export function shouldRenderDetailSection(params: {
 }): boolean {
   const { section, schema, fields = [], widgets = [], context = {} } = params;
   const entries = fieldNames(fields);
-  const schemaObject = (schema || {}) as SchemaForUI & Record<string, unknown>;
+  const schemaObject = (isRecord(schema) ? schema : {}) as SchemaForUI;
   const hasVisibleFields = entries.some((field) => !field.disabled);
   const hasAnyFields = entries.length > 0;
   const widgetNames = widgets.map((widget) => normalizeText(typeof widget === 'string' ? widget : widget.name || widget.widget));

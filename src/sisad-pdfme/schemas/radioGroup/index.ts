@@ -48,21 +48,15 @@ const DESIGNER_BOX_GAP  = RADIO_GROUP_LAYOUT.boxGap;   // px
 
 const DESIGNER_BOX_MM = computeOptionGroupDesignerWidthMM(RADIO_GROUP_LAYOUT);
 
-import { normalizeOptionsFromSource, normalizeOptionId } from '../options/optionModel.js';
+import { normalizeOptionsFromSource } from '../options/optionModel.js';
 import { resolveSelectedOptionId as resolveSelectedFromOptions } from '../options/optionValueAdapter.js';
-import {
-  buildGroupWrapper,
-  buildGroupContainer,
-  buildGroupLabel,
-  buildOptionRow,
-  buildRadioIndicator,
-  buildOptionLabel,
-} from '../groupSchemaRender.js';
 import {
   syncOptionGroupDesignerGeometry,
   createDesignerOptionGroupEl,
   syncDesignerOptionGroupPatch,
+  createOptionGroupRuntime,
 } from '../options/optionGroupFactory.js';
+import { createOptionGroupEditor } from '../options/optionGroupEditorFactory.js';
 import { clearSchemaRoot } from '../shared/schemaDom.js';
 import { resolveSchemaIdByIdentity } from '../shared/schemaGuards.js';
 
@@ -88,105 +82,6 @@ const resolveSelectedOptionId = (
 
 const calculateDesignerHeight = (optionsCount: number): number =>
   computeOptionGroupDesignerHeightMM(optionsCount, RADIO_GROUP_LAYOUT);
-
-
-const createRuntimeCircle = ({
-  selected,
-  editable,
-  color,
-  option,
-  onSelect,
-}: {
-  selected: boolean;
-  editable: boolean;
-  color: string;
-  option: RadioOption;
-  onSelect?: () => void;
-}): HTMLButtonElement => {
-  const button = document.createElement('button');
-
-  button.type = 'button';
-  button.setAttribute('role', 'radio');
-  button.setAttribute('data-radio-group-option', option.optionId);
-  button.setAttribute('aria-label', option.label);
-  button.setAttribute('aria-checked', selected ? 'true' : 'false');
-
-  Object.assign(button.style, {
-    width: '18px',
-    height: '18px',
-    minWidth: '18px',
-    minHeight: '18px',
-    border: `1.5px solid ${color}`,
-    borderRadius: '999px',
-    background: selected
-      ? `radial-gradient(circle at center, ${color} 0 35%, transparent 38% 100%)`
-      : '#ffffff',
-    boxSizing: 'border-box',
-    padding: '0',
-    margin: '0',
-    cursor: editable ? 'pointer' : 'default',
-    pointerEvents: editable ? 'auto' : 'none',
-  });
-
-  if (editable && onSelect) {
-    button.addEventListener('click', (event) => {
-      event.preventDefault();
-      event.stopPropagation();
-      onSelect();
-    });
-  }
-
-  return button;
-};
-
-// Runtime builder: reuse shared render helpers to avoid duplicating DOM logic
-// between checkboxGroup and radioGroup.
-const createRuntimeRadioGroup = ({
-  schema,
-  options,
-  selectedOptionId,
-  editable,
-  color,
-  onChange,
-}: {
-  schema: RadioGroupSchema;
-  options: RadioOption[];
-  selectedOptionId: string;
-  editable: boolean;
-  color: string;
-  onChange?: (arg: { key: string; value: unknown }) => void;
-}): HTMLDivElement => {
-  const wrapper = buildGroupWrapper();
-  const spacing = Number.isFinite(Number(schema.spacing)) ? Number(schema.spacing) : DESIGNER_BOX_GAP;
-  const container = buildGroupContainer({ color, gap: spacing, isHorizontal: schema.orientation === 'horizontal' });
-
-  if (schema.groupName) container.appendChild(buildGroupLabel(schema.groupName, color));
-
-  options.forEach((option) => {
-    const selected = option.optionId === selectedOptionId;
-    const row = buildOptionRow({ color, isHorizontal: schema.orientation === 'horizontal', editable, role: 'radio', optionId: option.optionId, dataAttr: 'data-radio-group-option' });
-    row.setAttribute('aria-checked', selected ? 'true' : 'false');
-    row.appendChild(buildRadioIndicator(color, selected));
-    row.appendChild(buildOptionLabel(option.label, color));
-
-    if (editable && onChange) {
-      row.addEventListener('click', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        (onChange as unknown as (changes: Array<{ key: string; value: unknown }>) => void)([
-          { key: 'content', value: option.optionId },
-          { key: 'selectedOptionId', value: option.optionId },
-        ]);
-      });
-    }
-
-    container.appendChild(row);
-  });
-
-  wrapper.appendChild(container);
-  return wrapper;
-};
-
 
 // ─── PropPanel options editor ────────────────────────────────────────────────
 
@@ -221,13 +116,15 @@ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
     );
   };
 
-  const commitOptions = (nextOptions: RadioOption[]) => {
+  const commitOptions = (nextOptions: RadioOption[], nextSelected?: string) => {
     currentOptions = nextOptions.length
       ? nextOptions
       : [{ optionId: 'option_1', label: 'Opción 1' }];
 
-    currentSelected = currentOptions.some((option) => option.optionId === currentSelected)
-      ? currentSelected
+    currentSelected = nextSelected && currentOptions.some((option) => option.optionId === nextSelected)
+      ? nextSelected
+      : currentOptions.some((option) => option.optionId === currentSelected)
+        ? currentSelected
       : currentOptions[0]?.optionId || 'option_1';
 
     commit({
@@ -243,144 +140,76 @@ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
     });
   };
 
-  const header = document.createElement('div');
-  header.className = 'sisad-option-editor-header';
-  header.textContent = 'Opciones del radio button';
-  rootElement.appendChild(header);
+  const editor = createOptionGroupEditor<RadioOption>({
+    rootElement,
+    headerText: 'Opciones del radio button',
+    rowClassName: 'sisad-option-editor-row sisad-option-editor-row--radio',
+    newInputPlaceholder: 'Nueva opción…',
+    optionInputPlaceholder: (index) => `Opción ${index + 1}`,
+    createIndicator: (option) => {
+      const button = document.createElement('button');
 
-  const list = document.createElement('div');
-  list.className = 'sisad-option-editor-list';
+      button.type = 'button';
+      button.setAttribute('role', 'radio');
+      button.setAttribute('data-radio-group-option', option.optionId);
+      button.setAttribute('aria-label', option.label);
+      button.setAttribute('aria-checked', option.optionId === currentSelected ? 'true' : 'false');
 
-  const renderList = () => {
-    clearSchemaRoot(list);
-
-    currentOptions.forEach((option, index) => {
-      const row = document.createElement('div');
-      row.className = 'sisad-option-editor-row sisad-option-editor-row--radio';
-
-      const indicator = createRuntimeCircle({
-        selected: option.optionId === currentSelected,
-        editable: true,
-        color: schema.color || '#1677ff',
-        option,
-        onSelect: () => {
-          currentSelected = option.optionId;
-
-          commit({
-            content: option.optionId,
-            selectedOptionId: option.optionId,
-            defaultSelectedOptionId: option.optionId,
-          });
-
-          renderList();
-        },
+      Object.assign(button.style, {
+        width: '18px',
+        height: '18px',
+        minWidth: '18px',
+        minHeight: '18px',
+        border: `1.5px solid ${schema.color || '#1677ff'}`,
+        borderRadius: '999px',
+        background: option.optionId === currentSelected
+          ? `radial-gradient(circle at center, ${schema.color || '#1677ff'} 0 35%, transparent 38% 100%)`
+          : '#ffffff',
+        boxSizing: 'border-box',
+        padding: '0',
+        margin: '0',
+        cursor: 'pointer',
+        pointerEvents: 'auto',
       });
 
-      const labelInput = document.createElement('input');
-      labelInput.type = 'text';
-      labelInput.value = option.label;
-      labelInput.placeholder = `Opción ${index + 1}`;
-      labelInput.className = 'sisad-option-editor-input';
-
-      const removeBtn = document.createElement('button');
-      removeBtn.type = 'button';
-      removeBtn.textContent = '×';
-      removeBtn.className = 'sisad-option-editor-remove-btn';
-      removeBtn.dataset.disabled = String(currentOptions.length <= 1);
-
-      labelInput.addEventListener('change', () => {
-        const nextOptions = currentOptions.map((item, optionIndex) =>
-          optionIndex === index
-            ? {
-                ...item,
-                label: normalizeText(labelInput.value) || item.label,
-              }
-            : item,
-        );
-
-        commitOptions(nextOptions);
-        renderList();
-      });
-
-      removeBtn.addEventListener('click', (event) => {
+      button.addEventListener('click', (event) => {
         event.preventDefault();
         event.stopPropagation();
-
-        if (currentOptions.length <= 1) return;
-
-        const nextOptions = currentOptions.filter((_, optionIndex) => optionIndex !== index);
-        commitOptions(nextOptions);
-        renderList();
+        currentSelected = option.optionId;
+        commitOptions(currentOptions, option.optionId);
+        editor.render();
       });
 
-      row.appendChild(indicator);
-      row.appendChild(labelInput);
-      row.appendChild(removeBtn);
-      list.appendChild(row);
-    });
-  };
-
-  renderList();
-  rootElement.appendChild(list);
-
-  const addRow = document.createElement('div');
-  addRow.className = 'sisad-option-editor-add-row';
-
-  const newInput = document.createElement('input');
-  newInput.type = 'text';
-  newInput.placeholder = 'Nueva opción…';
-  newInput.className = 'sisad-option-editor-input';
-
-  const addBtn = document.createElement('button');
-  addBtn.type = 'button';
-  addBtn.textContent = '+';
-  addBtn.className = 'sisad-option-editor-add-btn';
-
-  const doAdd = (event: Event) => {
-    event.preventDefault();
-    event.stopPropagation();
-
-    const label = normalizeText(newInput.value) || `Opción ${currentOptions.length + 1}`;
-    const nextIndex = currentOptions.length + 1;
-
-    const nextOption: RadioOption = {
-      optionId: `option_${nextIndex}`,
-      label,
-    };
-
-    const nextOptions = [...currentOptions, nextOption];
-
-    currentOptions = nextOptions;
-    currentSelected = currentSelected || nextOption.optionId;
-
-    commit({
-      options: nextOptions,
-      content: currentSelected,
-      selectedOptionId: currentSelected,
-      defaultSelectedOptionId: currentSelected,
-      orientation: 'vertical',
-      spacing: DESIGNER_BOX_GAP,
-      // width/height in mm (schema coordinate system, not CSS pixels)
-      width: DESIGNER_BOX_MM,
-      height: calculateDesignerHeight(nextOptions.length),
-    });
-
-    newInput.value = '';
-    renderList();
-  };
-
-  addBtn.addEventListener('pointerdown', (event) => event.stopPropagation());
-  addBtn.addEventListener('click', doAdd);
-
-  newInput.addEventListener('keydown', (event) => {
-    if (event.key === 'Enter' || event.key === 'NumpadEnter') {
-      doAdd(event);
-    }
+      return button;
+    },
+    getOptions: () => currentOptions,
+    setOptions: (nextOptions) => {
+      currentOptions = nextOptions;
+    },
+    createRenamedOptions: (options, index, label) =>
+      options.map((item, optionIndex) =>
+        optionIndex === index ? { ...item, label: label || item.label } : item,
+      ),
+    createRemovedOptions: (options, index) => {
+      if (options.length <= 1) return options;
+      const nextOptions = options.filter((_, optionIndex) => optionIndex !== index);
+      return nextOptions.length ? nextOptions : [{ optionId: 'option_1', label: 'Opción 1' }];
+    },
+    createAddedOptions: (options, label) => {
+      const clean = label || `Opción ${options.length + 1}`;
+      const nextIndex = options.length + 1;
+      const nextOption: RadioOption = {
+        optionId: `option_${nextIndex}`,
+        label: clean,
+      };
+      return [...options, nextOption];
+    },
+    onCommitOptions: (nextOptions) => {
+      commitOptions(nextOptions);
+    },
   });
 
-  addRow.appendChild(newInput);
-  addRow.appendChild(addBtn);
-  rootElement.appendChild(addRow);
+  editor.render();
 };
 
 // ─── Plugin ──────────────────────────────────────────────────────────────────
@@ -418,16 +247,23 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
         return;
       }
 
-      const runtimeGroup = createRuntimeRadioGroup({
-        schema: radioSchema,
-        options,
-        selectedOptionId,
-        editable,
-        color,
-        onChange,
-      });
-
-      rootElement.appendChild(runtimeGroup);
+      rootElement.appendChild(
+        createOptionGroupRuntime({
+          options,
+          selectionMode: 'single',
+          selectedOptionId,
+          editable,
+          color,
+          orientation: radioSchema.orientation,
+          spacing: Number.isFinite(Number(radioSchema.spacing)) ? Number(radioSchema.spacing) : DESIGNER_BOX_GAP,
+          groupName: radioSchema.groupName,
+          resolveSelection: ({ option }) => ({
+            content: option.optionId,
+            selectedOptionId: option.optionId,
+          }),
+          onChange,
+        }),
+      );
     },
 
     pdf: async (arg) => {

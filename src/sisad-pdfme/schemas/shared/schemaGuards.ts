@@ -1,6 +1,6 @@
 /**
  * Type guards for sisad-pdfme schema families.
- * Replace `(schema as any).options` patterns with safe narrowing.
+ * Replace weak schema casts with safe narrowing.
  *
  * All guards operate on `Record<string, unknown>` so they work at
  * JSON/snapshot boundaries without requiring the full `Schema` zod type.
@@ -119,13 +119,15 @@ export type RawOptionItem = {
   disabled?: boolean;
 };
 
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  Boolean(value) && typeof value === 'object' && !Array.isArray(value);
+
 /** Narrows an unknown item to RawOptionItem if it has the required optionId+label. */
 export function isRawOptionItem(item: unknown): item is RawOptionItem {
   return (
-    typeof item === 'object' &&
-    item !== null &&
-    typeof (item as Record<string, unknown>).optionId === 'string' &&
-    typeof (item as Record<string, unknown>).label === 'string'
+    isRecord(item) &&
+    typeof item.optionId === 'string' &&
+    typeof item.label === 'string'
   );
 }
 
@@ -138,6 +140,7 @@ export function getSchemaOptions(schema: MinimalSchema): RawOptionItem[] {
 // ─── Identity lookup ────────────────────────────────────────────────────────
 
 export type SchemaIdentityLike = MinimalSchema & {
+  id?: string;
   type?: string;
   name?: string | null;
   position?: { x?: number | null; y?: number | null } | null;
@@ -160,5 +163,5 @@ export function resolveSchemaIdByIdentity(
       candidate.name === schema.name &&
       candidate.position?.x === schema.position?.x &&
       candidate.position?.y === schema.position?.y,
-  )?.id as string | undefined;
+  )?.id;
 }

@@ -42,10 +42,18 @@ export class NoSuchFieldError extends Error {
   }
 }
 
+const getTypeName = (value: unknown): string | undefined => {
+  if (value === null || value === undefined) return undefined;
+  if (typeof value === 'function' && value.name) return value.name;
+  if (typeof value === 'object' && value.constructor?.name) return value.constructor.name;
+  if (typeof value === 'string') return value;
+  return String(value);
+};
+
 export class UnexpectedFieldTypeError extends Error {
-  constructor(name: string, expected: any, actual: any) {
-    const expectedType = expected?.name;
-    const actualType = actual?.constructor?.name ?? actual;
+  constructor(name: string, expected: unknown, actual: unknown) {
+    const expectedType = getTypeName(expected);
+    const actualType = getTypeName(actual);
     const msg =
       `Expected field "${name}" to be of type ${expectedType}, ` +
       `but it is actually of type ${actualType}`;
@@ -54,7 +62,7 @@ export class UnexpectedFieldTypeError extends Error {
 }
 
 export class MissingOnValueCheckError extends Error {
-  constructor(onValue: any) {
+  constructor(onValue: unknown) {
     const msg = `Failed to select check box due to missing onValue: "${onValue}"`;
     super(msg);
   }

@@ -17,6 +17,18 @@ export const SHOWCASE_GRID_POSITIONS: ReadonlyArray<{ x: number; y: number }> = 
 ];
 
 type Rect = { x: number; y: number; width: number; height: number };
+type SchemaShowcaseRecord = Record<string, unknown> & {
+  position?: { x?: unknown; y?: unknown };
+  width?: unknown;
+  height?: unknown;
+  size?: { width?: unknown; height?: unknown };
+};
+
+type SchemaShowcaseOverrides = Record<string, unknown> & {
+  width?: unknown;
+  height?: unknown;
+  size?: { width?: unknown; height?: unknown };
+};
 
 export const rectsIntersect = (a: Rect, b: Rect): boolean => {
   const ax1 = a.x || 0;
@@ -32,37 +44,82 @@ export const rectsIntersect = (a: Rect, b: Rect): boolean => {
   return !(ax2 <= bx1 || bx2 <= ax1 || ay2 <= by1 || by2 <= ay1);
 };
 
+const readDimension = (value: unknown): number => {
+  if (typeof value === 'number' && Number.isFinite(value)) return value;
+  if (typeof value === 'string' && value.trim()) {
+    const parsed = Number(value);
+    return Number.isFinite(parsed) ? parsed : 0;
+  }
+  return 0;
+};
+
+const findFreePosition = (
+  occupiedRects: Rect[],
+  basePosition: { x: number; y: number },
+  width: number,
+  height: number,
+): { x: number; y: number } => {
+  const safeWidth = Math.max(0, Number(width) || 0);
+  const safeHeight = Math.max(0, Number(height) || 0);
+  const stepY = Math.max(16, Math.round(safeHeight * 0.35) || 16);
+  const maxAttempts = 48;
+  let nextY = Number(basePosition?.y) || 0;
+
+  for (let attempt = 0; attempt < maxAttempts; attempt += 1) {
+    const candidate = {
+      x: Number(basePosition?.x) || 0,
+      y: nextY,
+      width: safeWidth,
+      height: safeHeight,
+    };
+    if (!occupiedRects.some((rect) => rectsIntersect(rect, candidate))) {
+      return { x: candidate.x, y: candidate.y };
+    }
+    nextY += stepY;
+  }
+
+  return {
+    x: Number(basePosition?.x) || 0,
+    y: nextY,
+  };
+};
+
 /**
  * Merges two page arrays. When an extra page's schema bounding-box collides
  * with a base schema, the whole extra page is shifted right by `shiftX`.
  */
 export const mergeSchemaPages = (
-  basePages: any[][] = [],
-  extraPages: any[][] = [],
+  basePages: SchemaShowcaseRecord[][] = [],
+  extraPages: SchemaShowcaseRecord[][] = [],
   pageCount = 1,
   shiftX = 120,
-): any[][] => {
+): SchemaShowcaseRecord[][] => {
   const safePageCount = Math.max(1, Number(pageCount) || 1);
   return Array.from({ length: safePageCount }, (_, pageIndex) => {
     const base = cloneDeep(basePages[pageIndex] || []);
     let extra = cloneDeep(extraPages[pageIndex] || []);
 
-    const occupiedRects = base.map((s: any) => ({
-      x: s?.position?.x || 0,
-      y: s?.position?.y || 0,
-      width: s?.width || 0,
-      height: s?.height || 0,
+    const occupiedRects = base.map((s) => ({
+      x: readDimension(s?.position?.x),
+      y: readDimension(s?.position?.y),
+      width: readDimension(s?.width),
+      height: readDimension(s?.height),
     }));
 
-    const collides = extra.some((s: any) => {
-      const r = { x: s?.position?.x || 0, y: s?.position?.y || 0, width: s?.width || 0, height: s?.height || 0 };
+    const collides = extra.some((s) => {
+      const r = {
+        x: readDimension(s?.position?.x),
+        y: readDimension(s?.position?.y),
+        width: readDimension(s?.width),
+        height: readDimension(s?.height),
+      };
       return occupiedRects.some((br: Rect) => rectsIntersect(r, br));
     });
 
     if (collides) {
-      extra = extra.map((s: any) => ({
+      extra = extra.map((s) => ({
         ...s,
-        position: { ...(s.position || {}), x: (s.position?.x || 0) + shiftX },
+        position: { ...(s.position || {}), x: readDimension(s.position?.x) + shiftX },
       }));
     }
 
@@ -81,9 +138,9 @@ export type CreateSchemaShowcasePagesConfig = {
   /** Grid positions per page. Defaults to SHOWCASE_GRID_POSITIONS. */
   positions?: ReadonlyArray<{ x: number; y: number }>;
   /** Per-type schema overrides (host-supplied example content). */
-  overridesByType?: Record<string, any>;
+  overridesByType?: Record<string, SchemaShowcaseOverrides>;
   /** Plugin registry passed to createSchemaByType. */
-  plugins?: Record<string, any>;
+  plugins?: Record<string, unknown>;
   /** Audit metadata factory. Defaults to schemaFactory's createAuditMetadata. */
   createAuditMetadata?: typeof defaultCreateAuditMetadata;
 };
@@ -106,17 +163,25 @@ export const createSchemaShowcasePages = ({
   overridesByType = {},
   plugins,
   createAuditMetadata = defaultCreateAuditMetadata,
-}: CreateSchemaShowcasePagesConfig): any[][] =>
-  chunkItems(definitions, positions.length).map((pageDefinitions, pageIndex) =>
-    pageDefinitions.map((definition, itemIndex) => {
+}: CreateSchemaShowcasePagesConfig): SchemaShowcaseRecord[][] =>
+  chunkItems(definitions, positions.length).map((pageDefinitions, pageIndex) => {
+    const occupiedRects: Rect[] = [];
+
+    return pageDefinitions.map((definition, itemIndex) => {
       const slug = sanitizeIdentifier(definition.type);
       const baseOverrides = overridesByType[definition.type] || {};
-
-      return createSchemaByType(
+      const basePosition = cloneDeep(positions[itemIndex]);
+      const candidatePosition = findFreePosition(
+        occupiedRects,
+        basePosition,
+        readDimension(baseOverrides.width ?? baseOverrides.size?.width),
+        readDimension(baseOverrides.height ?? baseOverrides.size?.height),
+      );
+      const createdSchema = createSchemaByType(
         definition.type,
         {
           ...baseOverrides,
-          position: cloneDeep(positions[itemIndex]),
+          position: candidatePosition,
           name: `${sanitizeIdentifier(scope)}_${slug}`,
           schemaUid: `${sanitizeIdentifier(scope)}-${slug}`,
           fileId,
@@ -132,5 +197,19 @@ export const createSchemaShowcasePages = ({
         },
         { plugins },
       );
-    }),
-  );
+      const createdSchemaRecord = createdSchema as SchemaShowcaseRecord & {
+        position?: { x?: unknown; y?: unknown };
+        width?: unknown;
+        height?: unknown;
+      };
+
+      occupiedRects.push({
+        x: readDimension(createdSchemaRecord.position?.x),
+        y: readDimension(createdSchemaRecord.position?.y),
+        width: readDimension(createdSchemaRecord.width),
+        height: readDimension(createdSchemaRecord.height),
+      });
+
+      return createdSchema;
+    });
+  });

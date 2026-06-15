@@ -8,6 +8,7 @@ import { uuid } from '../../../helper.js';
 import { resolveSmartDropPosition, type SmartPlacementInput } from '../Canvas/overlays/smartPlacement.js';
 import { createUniqueSchemaVariableName } from './schemaVariableName.js';
 import { filterSchemasByCollisionScope } from './schemaCollision.js';
+import { asRecord, isRecord } from './objectGuards.js';
 
 /**
  * Controls how recipient assignment and collaboration metadata are handled
@@ -39,6 +40,22 @@ type ClipboardCollaborationContext = {
   ownerRecipientName?: string | null;
   ownerColor?: string | null;
   userColor?: string | null;
+};
+
+type SchemaRecord = SchemaForUI & Record<string, unknown>;
+type DesignerRecord = Record<string, unknown> & {
+  recipientId?: unknown;
+  recipientName?: unknown;
+  recipientColor?: unknown;
+  group?: Record<string, unknown>;
+  identity?: Record<string, unknown>;
+};
+type ClipboardTransientRecord = Record<string, unknown> & {
+  lock?: SchemaForUI['lock'];
+  comments?: SchemaForUI['comments'];
+  commentAnchors?: SchemaForUI['commentAnchors'];
+  commentsAnchors?: SchemaForUI['commentsAnchors'];
+  __designer?: unknown;
 };
 
 export type SchemaClipboardPayload = {
@@ -84,18 +101,20 @@ const transientKeys: string[] = [
   'collaboration',
 ];
 
-const asSchemaRecord = (schema: SchemaForUI) => schema as SchemaForUI & Record<string, unknown>;
+const asSchemaRecord = (schema: SchemaForUI): SchemaRecord => schema as SchemaRecord;
+
+const getDesignerRecord = (schema: SchemaForUI): DesignerRecord | undefined => {
+  const designer = asRecord(asSchemaRecord(schema).__designer);
+  return isRecord(designer) ? (designer as DesignerRecord) : undefined;
+};
 
 const normalizeText = (value: unknown) => String(value || '').trim();
 
 const resolveSchemaGroupId = (schema: SchemaForUI): string | null => {
-  const record = schema as SchemaForUI & {
-    groupId?: string;
-    group?: string;
-    __designer?: { group?: { groupId?: string } };
-  };
+  const record = asSchemaRecord(schema) as SchemaRecord & { groupId?: string; group?: string };
+  const designer = getDesignerRecord(schema);
   const groupId =
-    normalizeText(record.__designer?.group?.groupId) ||
+    normalizeText(designer?.group?.groupId) ||
     normalizeText(record.groupId) ||
     normalizeText(record.group);
   return groupId || null;
@@ -114,7 +133,7 @@ const remapGroupedSchemaIdentity = (
     groupIdMap.set(sourceGroupId, nextGroupId);
   }
 
-  const record = schema as SchemaForUI & {
+  const record = asSchemaRecord(schema) as SchemaRecord & {
     type?: string;
     groupId?: string;
     group?: string;
@@ -128,11 +147,12 @@ const remapGroupedSchemaIdentity = (
 
   if (record.groupId !== undefined) record.groupId = nextGroupId;
   if (record.group !== undefined) record.group = nextGroupId;
-  if (record.__designer?.group) {
+  const designer = getDesignerRecord(schema);
+  if (designer?.group) {
     record.__designer = {
-      ...record.__designer,
+      ...designer,
       group: {
-        ...(record.__designer.group || {}),
+        ...designer.group,
         groupId: nextGroupId,
       },
     };
@@ -191,7 +211,7 @@ const remapGroupedSchemaIdentity = (
 };
 
 export const sanitizeCopiedSchema = (schema: SchemaForUI): SchemaForUI => {
-  const next = cloneDeep(schema) as SchemaForUI & Record<string, unknown>;
+  const next = cloneDeep(schema) as SchemaRecord;
   for (const key of transientKeys) {
     delete next[key];
   }
@@ -244,7 +264,7 @@ export const buildPastedSchema = (
 ): SchemaForUI => {
   // Capture transient fields from the original BEFORE sanitization so that
   // PastePolicy.preserveLocks / preserveComments can selectively restore them.
-  const originalRecord = schema as SchemaForUI & Record<string, unknown>;
+  const originalRecord = (asRecord(schema) || {}) as ClipboardTransientRecord;
   const originalLock = originalRecord.lock;
   const originalComments = originalRecord.comments;
   const originalCommentAnchors = originalRecord.commentAnchors;
@@ -315,12 +335,12 @@ export const buildPastedSchema = (
     delete pasted['ownerRecipientIds'];
     delete pasted['ownerRecipientName'];
     delete pasted['ownerColor'];
-    if (pasted['__designer'] && typeof pasted['__designer'] === 'object') {
-      const designer = { ...(pasted['__designer'] as Record<string, unknown>) };
+    const designer = asRecord(pasted.__designer);
+    if (designer) {
       delete designer['recipientId'];
       delete designer['recipientName'];
       delete designer['recipientColor'];
-      pasted['__designer'] = designer;
+      pasted.__designer = designer;
     }
   }
 
@@ -340,17 +360,15 @@ export const buildPastedSchema = (
     },
   });
 
-  const withCollaborativeDefaults = applySchemaCollaborativeDefaults(pasted as SchemaForUI, creationContext);
-  const designerConfig = (withCollaborativeDefaults as SchemaForUI & Record<string, unknown>)[
-    DEFAULT_SCHEMA_CONFIG_STORAGE_KEY
-  ];
+  const withCollaborativeDefaults = applySchemaCollaborativeDefaults(pasted as SchemaForUI, creationContext) as SchemaRecord;
+  const designerConfig = asRecord(withCollaborativeDefaults[DEFAULT_SCHEMA_CONFIG_STORAGE_KEY]);
 
-  if (designerConfig && typeof designerConfig === 'object' && !Array.isArray(designerConfig)) {
-    const config = designerConfig as Record<string, unknown>;
-    (withCollaborativeDefaults as SchemaForUI & Record<string, unknown>)[DEFAULT_SCHEMA_CONFIG_STORAGE_KEY] = {
-      ...config,
+  if (designerConfig) {
+    const designerIdentity = asRecord(designerConfig.identity) ?? {};
+    withCollaborativeDefaults[DEFAULT_SCHEMA_CONFIG_STORAGE_KEY] = {
+      ...designerConfig,
       identity: {
-        ...((config.identity as Record<string, unknown>) || {}),
+        ...designerIdentity,
         id: nextSchemaUid,
         key: nextName,
       },
@@ -359,7 +377,7 @@ export const buildPastedSchema = (
 
   // Restore lock AFTER applySchemaCollaborativeDefaults (which always sets lock: undefined).
   // preserveLocks only works when the original schema had a lock value.
-  const finalResult = withCollaborativeDefaults as SchemaForUI & Record<string, unknown>;
+  const finalResult = withCollaborativeDefaults;
   if (policy.preserveLocks && originalLock !== undefined) {
     finalResult.lock = originalLock;
   }
@@ -405,4 +423,3 @@ export const pasteSchemasFromClipboard = (
 
 export const duplicateSchemas = (schemas: SchemaForUI[], context: SchemaClipboardContext): SchemaForUI[] =>
   pasteSchemasFromClipboard(copySchemasToClipboard(schemas), context);
-

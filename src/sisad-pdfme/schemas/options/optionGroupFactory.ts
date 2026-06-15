@@ -73,10 +73,6 @@ export const syncDesignerOptionGroupPatch = (
   '__designer.group.lockedAsGroup': schema.lockedAsGroup !== false,
 });
 
-// ─── Backward compat ──────────────────────────────────────────────────────────
-// Keep the old export so callers importing createOptionGroupPlugin don't break.
-export const createOptionGroupPlugin = createOptionGroupSchemaPlugin as unknown as (config: OptionGroupPluginConfig) => { config: OptionGroupPluginConfig; layout: OptionGroupLayoutConfig };
-
 // ─── Designer DOM builder ─────────────────────────────────────────────────────
 
 /**
@@ -206,4 +202,4 @@ export function createOptionGroupSchemaPlugin(config: OptionGroupPluginConfig): 
   return { config, layout: getOptionGroupLayoutConfig(config.type) };
 }
 
-export default createOptionGroupPlugin;
+export default createOptionGroupSchemaPlugin;

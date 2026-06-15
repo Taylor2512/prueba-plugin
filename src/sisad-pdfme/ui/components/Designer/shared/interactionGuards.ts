@@ -1,52 +1,19 @@
-const EDITABLE_SELECTOR = [
-  'input',
-  'textarea',
-  'select',
-  'button[role="switch"]',
-  '[role="switch"]',
-  '[role="checkbox"]',
-  '[contenteditable=""]',
-  '[contenteditable="true"]',
-  '[contenteditable="plaintext-only"]',
-  '[role="textbox"]',
-  // Canvas overlay controls — must never trigger Selecto region or Moveable drag
-  '[data-role="group-add-option"]',
-  '[data-option-id]',
-  '[data-schema-interactive-control]',
-  '.sisad-pdfme-option-group-floating-action',
-  '.sisad-pdfme-option-group-action-overlay',
-  '.ant-input',
-  '.ant-input-affix-wrapper',
-  '.ant-input-number',
-  '.ant-select',
-  '.ant-select-selector',
-  '.ant-select-dropdown',
-  '.ant-picker',
-  '.ant-picker-dropdown',
-  '.ant-switch',
-  '.ant-switch-handle',
-  '.ant-switch-inner',
-  '.ant-checkbox',
-  '.ant-checkbox-wrapper',
-  '.ant-checkbox-input',
-  '.ant-checkbox-inner',
-  '.ant-dropdown',
-  '.ant-dropdown-menu',
-  '.ant-popover',
-  '.ant-popover-inner',
-  '.ant-modal',
-  '.ant-modal-content',
-  '.ant-tooltip',
-].join(', ');
+import {
+  ANTD_POPUP_SELECTORS,
+  buildSelectorList,
+  DESKTOP_EDITABLE_TARGET_SELECTORS,
+  DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS,
+} from './interactionTargetSelectors.js';
 
-const ANTD_POPUP_SELECTOR = [
-  '.ant-select-dropdown',
-  '.ant-dropdown',
-  '.ant-popover',
-  '.ant-modal',
-  '.ant-tooltip',
-  '.ant-picker-dropdown',
-].join(', ');
+const EDITABLE_SELECTOR = buildSelectorList([
+  ...DESKTOP_EDITABLE_TARGET_SELECTORS,
+  ...DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS,
+  '.ant-dropdown-menu',
+  '.ant-popover-inner',
+  '.ant-modal-content',
+] as const);
+
+const ANTD_POPUP_SELECTOR = buildSelectorList(ANTD_POPUP_SELECTORS);
 
 export const isEditableTarget = (target: EventTarget | null | undefined): boolean => {
   if (!(target instanceof HTMLElement)) return false;

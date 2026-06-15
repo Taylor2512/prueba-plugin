@@ -14,6 +14,7 @@ import { debounce } from '../../../../helper.js';
 import { theme } from 'antd';
 import { InternalNamePath, ValidateErrorEntity } from 'rc-field-form/es/interface.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
+import { asRecord, isRecord } from '../../shared/objectGuards.js';
 import { buildInspectorSections } from './detailSchemas.js';
 import buildDetailWidgets from './detailWidgetRegistry.js';
 import DetailViewContent from './DetailViewContent.js';
@@ -40,6 +41,110 @@ type DetailViewProps = Pick<
   selectionCommands?: SelectionCommandSet;
 };
 
+type PositionFieldName = 'x' | 'y' | 'width' | 'height';
+
+type PositionBounds = {
+  pageWidth: number;
+  pageHeight: number;
+  paddingTop: number;
+  paddingRight: number;
+  paddingBottom: number;
+  paddingLeft: number;
+};
+
+const createHydrationValues = (schema: SchemaForUI): Record<string, unknown> => {
+  const values: Record<string, unknown> = { ...schema };
+  values.editable = !Boolean(values.readOnly);
+  return values;
+};
+
+const createPositionValidator =
+  (getFormValues: () => Record<string, unknown>, bounds: PositionBounds) =>
+  (_: unknown, value: number, fieldName: PositionFieldName): boolean => {
+    const formValues = getFormValues();
+    const position = asRecord(formValues.position) || undefined;
+    const width = typeof formValues.width === 'number' ? formValues.width : undefined;
+    const height = typeof formValues.height === 'number' ? formValues.height : undefined;
+    const positionX = typeof position?.x === 'number' ? position.x : undefined;
+    const positionY = typeof position?.y === 'number' ? position.y : undefined;
+
+    if (positionX === undefined || positionY === undefined || width === undefined || height === undefined) return true;
+
+    const validators: Record<PositionFieldName, () => boolean> = {
+      x: () => {
+        if (value < bounds.paddingLeft || value > bounds.pageWidth - bounds.paddingRight) return true;
+        if (width > 0 && value + width > bounds.pageWidth - bounds.paddingRight) return false;
+        return true;
+      },
+      y: () => {
+        if (value < bounds.paddingTop || value > bounds.pageHeight - bounds.paddingBottom) return true;
+        if (height > 0 && value + height > bounds.pageHeight - bounds.paddingBottom) return false;
+        return true;
+      },
+      width: () => {
+        if (positionX < bounds.paddingLeft || positionX > bounds.pageWidth - bounds.paddingRight) return true;
+        if (value > 0 && positionX + value > bounds.pageWidth - bounds.paddingRight) return false;
+        return true;
+      },
+      height: () => {
+        if (positionY < bounds.paddingTop || positionY > bounds.pageHeight - bounds.paddingBottom) return true;
+        if (value > 0 && positionY + value > bounds.pageHeight - bounds.paddingBottom) return false;
+        return true;
+      },
+    };
+
+    return validators[fieldName]();
+  };
+
+const buildChangeSet = (nextValues: Record<string, unknown>, currentSchema: SchemaForUI): ChangeSchemaItem[] => {
+  const ignoredKeys = new Set(['id', 'content']);
+  const nullableKeys = new Set(['rotate', 'opacity']);
+  const changes: ChangeSchemaItem[] = [];
+  const currentValues = asRecord(currentSchema) || {};
+
+  const valuesDiffer = (formValue: unknown, schemaValue: unknown): boolean => {
+    if (typeof formValue === 'object' && formValue !== null) {
+      return JSON.stringify(formValue) !== JSON.stringify(schemaValue);
+    }
+    return formValue !== schemaValue;
+  };
+
+  for (const key in nextValues) {
+    if (ignoredKeys.has(key)) continue;
+
+    let value = nextValues[key];
+    if (!valuesDiffer(value, currentValues[key])) continue;
+
+    if (value === null && nullableKeys.has(key)) {
+      value = undefined;
+    }
+
+    if (key === 'editable') {
+      const readOnlyValue = !value;
+      changes.push({ key: 'readOnly', value: readOnlyValue, schemaId: currentSchema.id });
+      if (readOnlyValue) {
+        changes.push({ key: 'required', value: false, schemaId: currentSchema.id });
+      }
+      continue;
+    }
+
+    changes.push({ key, value, schemaId: currentSchema.id });
+  }
+
+  return changes;
+};
+
+const filterInvalidChanges = (
+  changes: ChangeSchemaItem[],
+  reason: ValidateErrorEntity,
+): ChangeSchemaItem[] =>
+  changes.filter(
+    (change) =>
+      !reason.errorFields.some((field: { name: InternalNamePath; errors: string[] }) =>
+        field.name.includes(change.key),
+      ),
+  );
+
 const DetailView = (props: DetailViewProps) => {
   const { token } = theme.useToken();
   const { schemasList, changeSchemas, deselectSchema, activeSchema, pageSize, basePdf } = props;
@@ -47,7 +152,7 @@ const DetailView = (props: DetailViewProps) => {
   const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
   const options = useContext(OptionsContext);
-  const designerEngine = useMemo(() => resolveDesignerEngine(options as Record<string, unknown>), [options]);
+  const designerEngine = useMemo(() => resolveDesignerEngine(asRecord(options) || {}), [options]);
   const schemaConfig = useMemo(
     () => getSchemaDesignerConfig(activeSchema, designerEngine) || null,
     [activeSchema, designerEngine],
@@ -127,9 +232,7 @@ const DetailView = (props: DetailViewProps) => {
   );
 
   useEffect(() => {
-    const values: Record<string, unknown> = { ...activeSchema };
-    const readOnly = typeof values.readOnly === 'boolean' ? values.readOnly : false;
-    values.editable = !readOnly;
+    const values = createHydrationValues(activeSchema);
 
     let resetTimeoutId: ReturnType<typeof setTimeout> | undefined;
     const timeoutId = setTimeout(() => {
@@ -143,9 +246,9 @@ const DetailView = (props: DetailViewProps) => {
     }, 0);
 
     return () => {
-      clearTimeout(timeoutId as unknown as number);
+      clearTimeout(timeoutId);
       if (resetTimeoutId !== undefined) {
-        clearTimeout(resetTimeoutId as unknown as number);
+        clearTimeout(resetTimeoutId);
       }
     };
   }, [activeSchema, form]);
@@ -168,65 +271,22 @@ const DetailView = (props: DetailViewProps) => {
     ? basePdf.padding
     : [0, 0, 0, 0];
 
-  const validatePosition = (_: unknown, value: number, fieldName: string): boolean => {
-    const formValues = form.getValues() as Record<string, unknown>;
-    const position = formValues.position as { x: number; y: number } | undefined;
-    const width = formValues.width as number | undefined;
-    const height = formValues.height as number | undefined;
-
-    if (!position || width === undefined || height === undefined) return true;
-
-    if (fieldName === 'x') {
-      if (value < paddingLeft || value > pageSize.width - paddingRight) return true;
-      if (width > 0 && value + width > pageSize.width - paddingRight) return false;
-    } else if (fieldName === 'y') {
-      if (value < paddingTop || value > pageSize.height - paddingBottom) return true;
-      if (height > 0 && value + height > pageSize.height - paddingBottom) return false;
-    } else if (fieldName === 'width') {
-      if (position.x < paddingLeft || position.x > pageSize.width - paddingRight) return true;
-      if (value > 0 && position.x + value > pageSize.width - paddingRight) return false;
-    } else if (fieldName === 'height') {
-      if (position.y < paddingTop || position.y > pageSize.height - paddingBottom) return true;
-      if (value > 0 && position.y + value > pageSize.height - paddingBottom) return false;
-    }
-
-    return true;
-  };
+  const validatePosition = createPositionValidator(
+    () => asRecord(form.getValues()) || {},
+    {
+      pageWidth: pageSize.width,
+      pageHeight: pageSize.height,
+      paddingTop,
+      paddingRight,
+      paddingBottom,
+      paddingLeft,
+    },
+  );
 
   const handleWatch = debounce(function (...args: unknown[]) {
     if (isHydratingForm) return;
-    const formSchema = args[0] as Record<string, unknown>;
-    const ignoredKeys = new Set(['id', 'content']);
-    const nullableKeys = new Set(['rotate', 'opacity']);
-    const formAndSchemaValuesDiffer = (formValue: unknown, schemaValue: unknown): boolean => {
-      if (typeof formValue === 'object' && formValue !== null) {
-        return JSON.stringify(formValue) !== JSON.stringify(schemaValue);
-      }
-      return formValue !== schemaValue;
-    };
-
-    let changes: ChangeSchemaItem[] = [];
-    for (const key in formSchema) {
-      if (ignoredKeys.has(key)) continue;
-
-      let value = formSchema[key];
-      if (formAndSchemaValuesDiffer(value, (activeSchema as Record<string, unknown>)[key])) {
-        if (value === null && nullableKeys.has(key)) {
-          value = undefined;
-        }
-
-        if (key === 'editable') {
-          const readOnlyValue = !value;
-          changes.push({ key: 'readOnly', value: readOnlyValue, schemaId: activeSchema.id });
-          if (readOnlyValue) {
-            changes.push({ key: 'required', value: false, schemaId: activeSchema.id });
-          }
-          continue;
-        }
-
-        changes.push({ key, value, schemaId: activeSchema.id });
-      }
-    }
+    const formSchema = asRecord(args[0]) || {};
+    let changes = buildChangeSet(formSchema, activeSchema);
 
     if (changes.length) {
       form
@@ -234,12 +294,7 @@ const DetailView = (props: DetailViewProps) => {
         .then(() => changeSchemas(changes))
         .catch((reason: ValidateErrorEntity) => {
           if (reason.errorFields.length) {
-            changes = changes.filter(
-              (change: ChangeSchemaItem) =>
-                !reason.errorFields.some((field: { name: InternalNamePath; errors: string[] }) =>
-                  field.name.includes(change.key),
-                ),
-            );
+            changes = filterInvalidChanges(changes, reason);
           }
           if (changes.length) {
             changeSchemas(changes);
@@ -253,18 +308,9 @@ const DetailView = (props: DetailViewProps) => {
     throw Error(`[@sisad-pdfme/ui] Failed to find plugin used for ${activeSchema.type}`);
   }
 
-  const emptySchema: Record<string, unknown> = {};
-  const defaultSchema: Record<string, unknown> = activePlugin?.propPanel?.defaultSchema
-    ? (() => {
-        const result: Record<string, unknown> = {};
-        for (const key in activePlugin.propPanel.defaultSchema) {
-          if (activePlugin.propPanel.defaultSchema.hasOwnProperty(key)) {
-            result[key] = (activePlugin.propPanel.defaultSchema as Record<string, unknown>)[key];
-          }
-        }
-        return result;
-      })()
-    : emptySchema;
+  const defaultSchema: Record<string, unknown> = isRecord(activePlugin?.propPanel?.defaultSchema)
+    ? { ...activePlugin.propPanel.defaultSchema }
+    : {};
 
   let pluginProps: Record<string, PropPanelSchema> = {};
   if (typeof activePlugin.propPanel.schema === 'function') {
@@ -284,7 +330,7 @@ const DetailView = (props: DetailViewProps) => {
       theme: token,
       i18n: typedI18n,
     });
-    if (functionResult && typeof functionResult === 'object') {
+    if (isRecord(functionResult)) {
       pluginProps = functionResult as Record<string, PropPanelSchema>;
     }
   } else if (activePlugin.propPanel.schema && typeof activePlugin.propPanel.schema === 'object') {
@@ -340,12 +386,13 @@ const schemaFingerprint = (schema: SchemaForUI) => {
     'opacity',
     'position',
   ]);
-  const rawSchema = schema as SchemaForUI & Record<string, unknown>;
+  const rawSchema = asRecord(schema) || {};
   const extraFingerprint = Object.keys(rawSchema)
     .filter((key) => !coreKeys.has(key))
     .sort()
     .map((key) => `${key}:${JSON.stringify(rawSchema[key])}`)
     .join('|');
+  const rawPosition = asRecord(rawSchema.position);
 
   return [
     rawSchema.id,
@@ -358,8 +405,8 @@ const schemaFingerprint = (schema: SchemaForUI) => {
     rawSchema.readOnly ? '1' : '0',
     rawSchema.rotate ?? '',
     rawSchema.opacity ?? '',
-    rawSchema.position?.x ?? '',
-    rawSchema.position?.y ?? '',
+    rawPosition?.x ?? '',
+    rawPosition?.y ?? '',
     extraFingerprint,
   ].join('|');
 };

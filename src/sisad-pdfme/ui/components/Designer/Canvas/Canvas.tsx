@@ -50,6 +50,8 @@ import {
   isAntDPopupTarget,
 } from '../shared/interactionGuards.js';
 import { isMoveableTarget } from '../shared/transformTargetGuards.js';
+import { isSelectoExcludedTarget } from '../shared/selectableTargetGuards.js';
+import { applyPageMetadataDataset } from '../../shared/pageMetadata.js';
 import CanvasOverlayManager from './overlays/CanvasOverlayManager.js';
 import CanvasContextMenu from './overlays/CanvasContextMenu.js';
 import CanvasStateOverlay from './overlays/CanvasStateOverlay.js';
@@ -222,7 +224,7 @@ export interface CanvasProps {
   onRetryRender?: () => void;
 }
 
-const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
+const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | null>) {
   const {
     basePdf,
     pageCursor,
@@ -676,7 +678,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
 
   useImperativeHandle(ref, () => {
     const node = rootRef.current;
-    if (!node) return null as unknown as HTMLDivElement;
+    if (!node) return null;
 
     const imperativeNode = node as HTMLDivElement & {
       openInlineEdit?: (request: { schemaId: string; target: InlineEditTarget }) => void;
@@ -804,11 +806,11 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
     const uniqueSchemaTypes = [...new Set(schemaTypes)];
 
     // Create a type-safe array of default schemas
-    const defaultSchemas: Record<string, unknown>[] = [];
+    const defaultSchemas: Array<{ type?: string; rotate?: unknown }> = [];
 
     pluginsRegistry.entries().forEach(([, plugin]) => {
       if (plugin.propPanel.defaultSchema) {
-        defaultSchemas.push(plugin.propPanel.defaultSchema as Record<string, unknown>);
+        defaultSchemas.push(plugin.propPanel.defaultSchema as { type?: string; rotate?: unknown });
       }
     });
 
@@ -998,9 +1000,11 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
     paperRefs.current.forEach((paper, index) => {
       if (!paper) return;
       paper.dataset.canvasPage = 'true';
-      paper.dataset.pageIndex = String(index);
-      paper.dataset.pageActive = index === pageCursor ? 'true' : 'false';
-      paper.dataset.pageEmpty = ((schemasList[index] || []).length === 0).toString();
+      applyPageMetadataDataset(paper, {
+        pageIndex: index,
+        pageActive: index === pageCursor,
+        pageEmpty: (schemasList[index] || []).length === 0,
+      });
     });
   }, [paperRefs, pageCursor, schemasList]);
 
@@ -1058,6 +1062,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
           dragCondition={(dragStart) => {
             const inputEvent = dragStart.inputEvent as MouseEvent | TouchEvent;
             const target = inputEvent.target as EventTarget | null;
+            if (isSelectoExcludedTarget(target)) return false;
             return !shouldSuppressCanvasRegionSelection(target, {
               phase: interactionState.phase,
               isModalOpen: contextMenu !== null,
@@ -1075,6 +1080,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
             const isInsidePaper = isEventInsideActivePaper(target);
             if (
               !isInsidePaper ||
+              isSelectoExcludedTarget(target) ||
               shouldSuppressCanvasRegionSelection(target, {
                 phase: interactionState.phase,
                 isModalOpen: contextMenu !== null,
@@ -1393,7 +1399,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
   );
 };
 
-const ForwardedCanvas = forwardRef<HTMLDivElement, CanvasProps>(Canvas);
+const ForwardedCanvas = forwardRef<HTMLDivElement | null, CanvasProps>(Canvas);
 ForwardedCanvas.displayName = 'Canvas';
 
 export default ForwardedCanvas;

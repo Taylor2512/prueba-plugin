@@ -20,6 +20,8 @@
  * 10. select created schema, open DetailView if applicable
  */
 
+import { asRecord } from './objectGuards.js';
+
 // ─── Types ───────────────────────────────────────────────────────────────────
 
 export type DropPayload = {
@@ -63,8 +65,8 @@ export type DropResult =
  * (has a schemaType and finite coordinates).
  */
 export const isValidDropPayload = (payload: unknown): payload is DropPayload => {
-  if (!payload || typeof payload !== 'object') return false;
-  const p = payload as Record<string, unknown>;
+  const p = asRecord(payload);
+  if (!p) return false;
   return (
     typeof p.schemaType === 'string' &&
     p.schemaType.trim().length > 0 &&
@@ -79,8 +81,8 @@ export const isValidDropPayload = (payload: unknown): payload is DropPayload => 
  * Returns true when the drop target has a valid document+page+position.
  */
 export const isValidDropTarget = (target: unknown): target is DropTarget => {
-  if (!target || typeof target !== 'object') return false;
-  const t = target as Record<string, unknown>;
+  const t = asRecord(target);
+  if (!t) return false;
   return (
     typeof t.documentId === 'string' &&
     t.documentId.trim().length > 0 &&

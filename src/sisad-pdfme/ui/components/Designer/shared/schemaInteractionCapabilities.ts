@@ -36,8 +36,6 @@ export type SchemaInteractionCapabilities = {
 
 // ─── Type sets ───────────────────────────────────────────────────────────────
 
-const DRAGGABLE: ReadonlySet<string> = new Set(['*']);
-
 const NON_RESIZABLE: ReadonlySet<string> = new Set([
   // none currently — all standard types support resize
 ]);
@@ -56,16 +54,16 @@ const INLINE_EDITABLE: ReadonlySet<string> = new Set([
 
 const OPTION_BASED: ReadonlySet<string> = new Set([
   'checkbox',
-  'checkboxGroup',
-  'radioGroup',
+  'checkboxgroup',
+  'radiogroup',
   'select',
   'dropdown',
 ]);
 
 /** Only checkboxGroup and radioGroup have the floating "+" overlay. */
 const HAS_GROUP_FLOATING_ACTION: ReadonlySet<string> = new Set([
-  'checkboxGroup',
-  'radioGroup',
+  'checkboxgroup',
+  'radiogroup',
 ]);
 
 const REQUIRES_PROVIDER: ReadonlySet<string> = new Set([
@@ -97,15 +95,14 @@ export const getSchemaInteractionCapabilities = (
   const t = (schemaType || '').toLowerCase();
   return {
     canDrag: true,
-    canResize: !NON_RESIZABLE.has(t) && !NON_RESIZABLE.has(schemaType),
-    canRotate: !NON_ROTATABLE.has(t) && !NON_ROTATABLE.has(schemaType),
-    canInlineEdit: INLINE_EDITABLE.has(t) || INLINE_EDITABLE.has(schemaType),
-    isOptionBased: OPTION_BASED.has(t) || OPTION_BASED.has(schemaType),
-    hasGroupFloatingAction:
-      HAS_GROUP_FLOATING_ACTION.has(t) || HAS_GROUP_FLOATING_ACTION.has(schemaType),
-    requiresProvider: REQUIRES_PROVIDER.has(t) || REQUIRES_PROVIDER.has(schemaType),
-    isShape: SHAPES.has(t) || SHAPES.has(schemaType),
-    isMedia: MEDIA.has(t) || MEDIA.has(schemaType),
+    canResize: !NON_RESIZABLE.has(t),
+    canRotate: !NON_ROTATABLE.has(t),
+    canInlineEdit: INLINE_EDITABLE.has(t),
+    isOptionBased: OPTION_BASED.has(t),
+    hasGroupFloatingAction: HAS_GROUP_FLOATING_ACTION.has(t),
+    requiresProvider: REQUIRES_PROVIDER.has(t),
+    isShape: SHAPES.has(t),
+    isMedia: MEDIA.has(t),
   };
 };
 

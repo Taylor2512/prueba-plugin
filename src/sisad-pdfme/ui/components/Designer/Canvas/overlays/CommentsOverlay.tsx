@@ -1,5 +1,6 @@
 import React, { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
+import { asRecord } from '../../shared/objectGuards.js';
 
 const MM_TO_PX = 3.7795275591;
 const mm2px = (mm: number) => mm * MM_TO_PX;
@@ -146,23 +147,23 @@ const CommentsOverlay = ({
       });
     });
     topLevelComments.forEach((entry) => {
-      const anchor = (entry?.anchor || {}) as Record<string, unknown>;
-      const comment = (entry?.comment || {}) as Record<string, unknown>;
+      const anchor = asRecord(entry?.anchor) || {};
+      const comment = asRecord(entry?.comment) || {};
       const id = String(anchor.id || comment.id || '').trim();
       if (!id) return;
       byId.set(id, {
         id,
         x: Number(anchor.x || 0),
         y: Number(anchor.y || 0),
-        schemaUid: (anchor.schemaUid as string | undefined) || undefined,
+        schemaUid: typeof anchor.schemaUid === 'string' ? anchor.schemaUid : undefined,
         authorName:
-          (comment.authorName as string | undefined)
-          || (comment.authorId as string | undefined)
-          || (anchor.authorName as string | undefined)
-          || (anchor.authorId as string | undefined),
+          (typeof comment.authorName === 'string' ? comment.authorName : undefined)
+          || (typeof comment.authorId === 'string' ? comment.authorId : undefined)
+          || (typeof anchor.authorName === 'string' ? anchor.authorName : undefined)
+          || (typeof anchor.authorId === 'string' ? anchor.authorId : undefined),
         authorColor:
-          (comment.authorColor as string | undefined)
-          || (anchor.authorColor as string | undefined),
+          (typeof comment.authorColor === 'string' ? comment.authorColor : undefined)
+          || (typeof anchor.authorColor === 'string' ? anchor.authorColor : undefined),
         text: String(comment.text || '').trim(),
         resolved: Boolean(comment.resolved || anchor.resolved),
       });

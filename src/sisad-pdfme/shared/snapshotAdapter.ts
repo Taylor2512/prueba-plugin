@@ -25,6 +25,7 @@ import {
   SNAPSHOT_VERSION,
   isLegacySnapshot,
 } from './snapshot.js';
+import { asRecord } from '../ui/components/Designer/shared/objectGuards.js';
 
 export interface ValidationResult {
   valid: boolean;
@@ -96,7 +97,7 @@ class SnapshotAdapterImpl {
     }
 
     // Legacy pdfme ~4.x: { schemas: SchemaPageArray[][], basePdf?: string, ... }
-    const legacy = raw as Record<string, unknown>;
+    const legacy = asRecord(raw) || {};
     const now = new Date().toISOString();
     const legacySchemas = this._extractLegacySchemas(legacy);
     const legacyRecipients = this._extractLegacyRecipients(legacy);
@@ -104,7 +105,7 @@ class SnapshotAdapterImpl {
     const documents: SnapshotDocument[] = [
       {
         documentId: this._generateId(),
-        name: (legacy.name as string) || 'Documento importado',
+        name: typeof legacy.name === 'string' ? legacy.name : 'Documento importado',
         order: 0,
         pages: legacySchemas.map((pageSchemas, index) => ({
           pageNumber: index + 1,
@@ -118,11 +119,11 @@ class SnapshotAdapterImpl {
 
     return {
       version: SNAPSHOT_VERSION,
-      templateId: (legacy.templateId as string) || this._generateId(),
+      templateId: typeof legacy.templateId === 'string' ? legacy.templateId : this._generateId(),
       createdAt: now,
       updatedAt: now,
       metadata: {
-        name: (legacy.name as string) || 'Template migrado',
+        name: typeof legacy.name === 'string' ? legacy.name : 'Template migrado',
         createdByUserId: 'migration',
         description: 'Migrado automáticamente desde formato pdfme v1',
       },
@@ -148,7 +149,10 @@ class SnapshotAdapterImpl {
       return { valid: false, errors: ['El snapshot no es un objeto válido'] };
     }
 
-    const obj = snapshot as Record<string, unknown>;
+    const obj = asRecord(snapshot);
+    if (!obj) {
+      return { valid: false, errors: ['El snapshot no es un objeto válido'] };
+    }
 
     if (!obj.version || typeof obj.version !== 'string') {
       errors.push('Campo "version" faltante o inválido');
@@ -177,19 +181,21 @@ class SnapshotAdapterImpl {
 
   // ── Privados de migración ──────────────────────────────────────────────
 
-  private _extractLegacySchemas(legacy: Record<string, unknown>): unknown[][] {
+  private _extractLegacySchemas(legacy: unknown): unknown[][] {
+    const record = asRecord(legacy) || {};
     // pdfme v4: { schemas: [[...], [...]] } o { schemas: { '0': [...] } }
-    const schemas = legacy.schemas;
+    const schemas = record.schemas;
     if (Array.isArray(schemas)) return schemas as unknown[][];
-    if (schemas && typeof schemas === 'object') {
+    if (schemas && typeof schemas === 'object' && !Array.isArray(schemas)) {
       return Object.values(schemas as Record<string, unknown[]>);
     }
     return [[]];
   }
 
-  private _extractLegacyRecipients(legacy: Record<string, unknown>): SnapshotRecipient[] {
+  private _extractLegacyRecipients(legacy: unknown): SnapshotRecipient[] {
+    const record = asRecord(legacy) || {};
     // pdfme v4 no tiene recipients nativos — retornar vacío
-    const recipients = legacy.recipients;
+    const recipients = record.recipients;
     if (Array.isArray(recipients)) {
       return recipients as SnapshotRecipient[];
     }
@@ -199,10 +205,23 @@ class SnapshotAdapterImpl {
   private _extractLegacyAssignments(legacyPages: unknown[][]): SnapshotAssignment[] {
     const assignments: SnapshotAssignment[] = [];
     for (const page of legacyPages) {
-      for (const schema of page as Record<string, unknown>[]) {
-        const uid = (schema.schemaUid || schema.id || schema.name) as string;
+      for (const schema of page) {
+        const schemaRecord = asRecord(schema);
+        if (!schemaRecord) continue;
+        const uid = typeof schemaRecord.schemaUid === 'string'
+          ? schemaRecord.schemaUid
+          : typeof schemaRecord.id === 'string'
+            ? schemaRecord.id
+            : typeof schemaRecord.name === 'string'
+              ? schemaRecord.name
+              : '';
         if (!uid) continue;
-        const recipientId = (schema.ownerRecipientId || schema.recipientId) as string;
+        const recipientId =
+          typeof schemaRecord.ownerRecipientId === 'string'
+            ? schemaRecord.ownerRecipientId
+            : typeof schemaRecord.recipientId === 'string'
+              ? schemaRecord.recipientId
+              : '';
         if (recipientId) {
           assignments.push({
             schemaUid: uid,
@@ -220,20 +239,35 @@ class SnapshotAdapterImpl {
     pageNumber: number,
     documentId: string,
   ): SchemaWithDesigner {
-    const s = schema as Record<string, unknown>;
-    const existingMeta = s.__designer as Record<string, unknown> | undefined;
+    const s = asRecord(schema) || {};
+    const existingMeta = asRecord(s.__designer);
 
     return {
       ...s,
       __designer: {
         ...existingMeta,
-        schemaUid: (existingMeta?.schemaUid || s.schemaUid || s.id || this._generateId()) as string,
+        schemaUid:
+          (typeof existingMeta?.schemaUid === 'string' && existingMeta.schemaUid) ||
+          (typeof s.schemaUid === 'string' && s.schemaUid) ||
+          (typeof s.id === 'string' && s.id) ||
+          this._generateId(),
         templateVersion: SNAPSHOT_VERSION,
         documentId,
         pageNumber,
-        recipientId: (existingMeta?.recipientId || s.ownerRecipientId || s.recipientId) as string | undefined,
-        recipientName: (existingMeta?.recipientName || s.ownerRecipientName) as string | undefined,
-        recipientColor: (existingMeta?.recipientColor || s.userColor || s.ownerColor) as string | undefined,
+        recipientId:
+          (typeof existingMeta?.recipientId === 'string' && existingMeta.recipientId) ||
+          (typeof s.ownerRecipientId === 'string' && s.ownerRecipientId) ||
+          (typeof s.recipientId === 'string' && s.recipientId) ||
+          undefined,
+        recipientName:
+          (typeof existingMeta?.recipientName === 'string' && existingMeta.recipientName) ||
+          (typeof s.ownerRecipientName === 'string' && s.ownerRecipientName) ||
+          undefined,
+        recipientColor:
+          (typeof existingMeta?.recipientColor === 'string' && existingMeta.recipientColor) ||
+          (typeof s.userColor === 'string' && s.userColor) ||
+          (typeof s.ownerColor === 'string' && s.ownerColor) ||
+          undefined,
         assignment: {
           scope: (s.ownerRecipientId || s.recipientId) ? 'recipient' : 'global',
         },
@@ -248,10 +282,11 @@ class SnapshotAdapterImpl {
   }
 
   private _migrateBackground(
-    legacy: Record<string, unknown>,
+    legacy: unknown,
     _pageIndex: number,
   ): SnapshotPage['background'] {
-    const basePdf = legacy.basePdf;
+    const record = asRecord(legacy) || {};
+    const basePdf = record.basePdf;
     if (!basePdf) return { type: 'none' };
     if (typeof basePdf === 'string') {
       if (basePdf.startsWith('data:')) {

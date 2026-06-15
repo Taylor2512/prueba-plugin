@@ -81,6 +81,7 @@ const SelectionContextToolbar = ({
       className="sisad-pdfme-ui-selection-context-toolbar"
       role="toolbar"
       aria-label="Barra contextual de edición"
+      data-schema-interactive-control="true"
       data-selection-count={String(selectionCount)}
       data-interaction-phase={interactionState.phase}
       data-selection-kind={toolbarModel.kind}
@@ -109,6 +110,7 @@ const SelectionContextToolbar = ({
           className="sisad-pdfme-ui-selection-context-toolbar-toggle"
           aria-label={toggleLabel}
           aria-pressed={isExpanded ? 'true' : 'false'}
+          data-schema-interactive-control="true"
           onMouseDown={(event) => {
             event.preventDefault();
             event.stopPropagation();
@@ -145,6 +147,7 @@ const SelectionContextToolbar = ({
             data-active={btn.active ? 'true' : 'false'}
             data-danger={btn.danger ? 'true' : 'false'}
             data-loading={btn.loading ? 'true' : 'false'}
+            data-schema-interactive-control="true"
             disabled={btn.disabled || !btn.onSelect || btn.loading}
             aria-busy={btn.loading ? 'true' : 'false'}
             onMouseDown={(event) => {
@@ -168,6 +171,7 @@ const SelectionContextToolbar = ({
             type="button"
             title="Más acciones"
             aria-label="Más acciones"
+            data-schema-interactive-control="true"
             onMouseDown={(event) => {
               event.preventDefault();
               event.stopPropagation();
@@ -203,6 +207,7 @@ const SelectionContextToolbar = ({
                     data-active={btn.active ? 'true' : 'false'}
                     data-danger={btn.danger ? 'true' : 'false'}
                     data-loading={btn.loading ? 'true' : 'false'}
+                    data-schema-interactive-control="true"
                     disabled={btn.disabled || !btn.onSelect || btn.loading}
                     aria-busy={btn.loading ? 'true' : 'false'}
                     onMouseDown={(event) => {

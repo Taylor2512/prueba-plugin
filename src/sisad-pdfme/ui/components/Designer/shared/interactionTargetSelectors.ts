@@ -1,0 +1,55 @@
+export const DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS = [
+  '[data-option-id]',
+  '[data-role="group-add-option"]',
+  '[data-schema-interactive-control]',
+  '.sisad-pdfme-option-group__add-button',
+  '.sisad-pdfme-option-group-floating-action',
+  '.sisad-pdfme-ui-selection-context-toolbar',
+  '.sisad-pdfme-option-group-action-overlay',
+  '.moveable-control',
+  '.moveable-line',
+  '.moveable-control-box',
+  '.ant-popover',
+  '.ant-select-dropdown',
+  'input',
+  'textarea',
+  'select',
+  '[contenteditable="true"]',
+] as const;
+
+export const DESKTOP_EDITABLE_TARGET_SELECTORS = [
+  'input',
+  'textarea',
+  'select',
+  'button[role="switch"]',
+  '[role="switch"]',
+  '[role="checkbox"]',
+  '[contenteditable=""]',
+  '[contenteditable="true"]',
+  '[contenteditable="plaintext-only"]',
+  '[role="textbox"]',
+  '.ant-input',
+  '.ant-input-affix-wrapper',
+  '.ant-input-number',
+  '.ant-select',
+  '.ant-select-selector',
+  '.ant-picker',
+  '.ant-switch',
+  '.ant-switch-handle',
+  '.ant-switch-inner',
+  '.ant-checkbox',
+  '.ant-checkbox-wrapper',
+  '.ant-checkbox-input',
+  '.ant-checkbox-inner',
+] as const;
+
+export const ANTD_POPUP_SELECTORS = [
+  '.ant-select-dropdown',
+  '.ant-dropdown',
+  '.ant-popover',
+  '.ant-modal',
+  '.ant-tooltip',
+  '.ant-picker-dropdown',
+] as const;
+
+export const buildSelectorList = (selectors: readonly string[]): string => selectors.join(', ');

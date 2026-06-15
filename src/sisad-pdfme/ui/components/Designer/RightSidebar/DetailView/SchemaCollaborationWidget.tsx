@@ -35,6 +35,24 @@ type CollaborationWidgetProps = PropPanelWidgetProps & {
   quickActionLabel?: React.ReactNode;
 };
 
+type CollaborationPatchKey =
+  | 'ownerRecipientIds'
+  | 'ownerRecipientId'
+  | 'recipientId'
+  | 'ownerRecipientName'
+  | 'ownerColor'
+  | 'userColor'
+  | 'ownerMode'
+  | 'state'
+  | 'lock'
+  | 'fileId'
+  | 'fileTemplateId'
+  | 'pageNumber'
+  | 'createdBy'
+  | 'lastModifiedBy'
+  | 'createdAt'
+  | 'updatedAt';
+
 const STATE_OPTIONS: Array<{ label: string; value: SchemaCollaborativeState }> = [
   { label: 'Borrador', value: 'draft' },
   { label: 'Bloqueado', value: 'locked' },
@@ -132,7 +150,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
     value: recipient.id,
   }));
 
-  const commit = (patch: Record<string, unknown>) => {
+  const commit = (patch: Partial<Record<CollaborationPatchKey, unknown>>) => {
     changeSchemas(
       Object.entries(patch).map(([key, value]) => ({
         key,
@@ -143,7 +161,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
   };
 
   const updateRecipientIds = (value: string[] | string) => {
-    const nextRecipientIds = normalizeRecipientIds(value as string[] | string | null | undefined);
+    const nextRecipientIds = normalizeRecipientIds(value);
     const nextPrimaryRecipientId = nextRecipientIds[0];
     const nextPrimaryRecipient =
       recipientOptions.find((recipient) => recipient.id === nextPrimaryRecipientId) || null;

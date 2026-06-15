@@ -2,6 +2,7 @@ import React from 'react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import type { InteractionState } from '../../shared/interactionState.js';
+import { getSchemaInteractionCapabilities } from '../../shared/schemaInteractionCapabilities.js';
 
 type Props = {
   activeElements: HTMLElement[];
@@ -10,7 +11,6 @@ type Props = {
   interactionState: InteractionState;
 };
 
-const GROUP_TYPES = new Set(['checkboxGroup', 'radioGroup']);
 const BUTTON_GAP_PX = 6;
 const BUTTON_SIZE_PX = 22;
 
@@ -51,7 +51,7 @@ const GroupOptionFloatingAction = ({
   }
 
   const schema = activeSchemas[0] as SchemaForUI & { type?: string };
-  if (!GROUP_TYPES.has(String(schema?.type || ''))) return null;
+  if (!getSchemaInteractionCapabilities(String(schema?.type || '')).hasGroupFloatingAction) return null;
   if (!selectionCommands?.addGroupOption) return null;
 
   const element = activeElements[0];
@@ -82,7 +82,8 @@ const GroupOptionFloatingAction = ({
         type="button"
         className="sisad-pdfme-option-group__add-button"
         data-role="group-add-option"
-        title={schema.type === 'radioGroup' ? 'Agregar opción al grupo' : 'Agregar casilla al grupo'}
+        data-schema-interactive-control="true"
+        title={String(schema.type || '').toLowerCase() === 'radiogroup' ? 'Agregar opción al grupo' : 'Agregar casilla al grupo'}
         style={{
           pointerEvents: 'auto',
           width: `${BUTTON_SIZE_PX}px`,

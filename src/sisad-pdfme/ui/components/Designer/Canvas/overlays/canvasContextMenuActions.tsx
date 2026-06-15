@@ -236,6 +236,13 @@ const buildSelectionSummaryChips = (activeSchemas: SchemaForUI[], selectionCount
 
 const hasAction = (command?: () => void) => typeof command === 'function';
 
+const prioritizeCriticalActions = (actions: CanvasSelectionQuickAction[]) => {
+  const deleteAction = actions.find((action) => action.id === 'delete');
+  const duplicateAction = actions.find((action) => action.id === 'duplicate');
+  const rest = actions.filter((action) => action.id !== 'delete' && action.id !== 'duplicate');
+  return [...compactItems([deleteAction, duplicateAction]), ...rest];
+};
+
 const buildSelectionToolbarStateChips = (
   interactionPhase: string,
   activeSchemas: SchemaForUI[],
@@ -461,15 +468,19 @@ export const buildSelectionToolbarModel = (args: {
     }
   } else {
     const groupAffordance = getGroupAffordanceAction(commands, activeSchema, canEditStructure);
-    const microPrimary = compactItems([
-      groupAffordance ?? getSelectionInlineAction(commands, kind, canEditStructure),
+    const microPrimary = prioritizeCriticalActions(compactItems([
+      toolbarAction('delete', 'Eliminar', <Trash2 size={14} />, commands?.deleteSelection, {
+        danger: true,
+        disabled: !canEditStructure || !hasAction(commands?.deleteSelection),
+      }),
       toolbarAction('duplicate', 'Duplicar', <Copy size={14} />, commands?.duplicateSelection, {
         disabled: !canEditStructure || !hasAction(commands?.duplicateSelection),
       }),
+      groupAffordance ?? getSelectionInlineAction(commands, kind, canEditStructure),
       toolbarAction('properties', 'Propiedades', <Settings2 size={14} />, commands?.openProperties, {
         disabled: !canEditStructure || !hasAction(commands?.openProperties),
       }),
-    ]);
+    ]));
     const compactPrimary = compactItems([
       groupAffordance,
       getSelectionInlineAction(commands, kind, canEditStructure),

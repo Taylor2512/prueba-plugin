@@ -9,37 +9,20 @@
  */
 
 import { SELECTABLE_CLASSNAME } from '../../../constants.js';
+import { DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS, buildSelectorList } from './interactionTargetSelectors.js';
+import { isSchemaRootElement } from './objectGuards.js';
 
 /** CSS selectors that Selecto must NEVER select. */
-export const SELECTO_EXCLUDED_SELECTORS = [
-  '[data-option-id]',
-  '[data-role="group-add-option"]',
-  '.sisad-pdfme-option-group__add-button',
-  '.sisad-pdfme-option-group-floating-action',
-  '.sisad-pdfme-option-group-action-overlay',
-  '.moveable-control',
-  '.moveable-line',
-  '.moveable-control-box',
-  '.ant-popover',
-  '.ant-select-dropdown',
-  'input',
-  'textarea',
-  'select',
-  '[contenteditable="true"]',
-] as const;
+export const SELECTO_EXCLUDED_SELECTORS = DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS;
 
-const EXCLUDED_SELECTOR = SELECTO_EXCLUDED_SELECTORS.join(', ');
+const EXCLUDED_SELECTOR = buildSelectorList(SELECTO_EXCLUDED_SELECTORS);
 
 /**
  * Returns true when the element is a valid Selecto selection target:
  * a schema root element with the selectable class and data-schema-id.
  */
 export const isSelectableTarget = (element: Element | null | undefined): boolean => {
-  if (!(element instanceof HTMLElement)) return false;
-  return (
-    element.classList.contains(SELECTABLE_CLASSNAME) &&
-    element.hasAttribute('data-schema-id')
-  );
+  return isSchemaRootElement(element);
 };
 
 /**

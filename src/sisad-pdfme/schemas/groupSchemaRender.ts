@@ -22,6 +22,10 @@ export const hexAlpha = (hex: string, alpha: number): string => {
   return `rgba(${r},${g},${b},${alpha})`;
 };
 
+const applyStyles = (element: HTMLElement, styles: Record<string, string>): void => {
+  Object.assign(element.style, styles);
+};
+
 export type GroupRenderOptions = {
   color: string;
   gap: number;
@@ -32,7 +36,7 @@ export type GroupRenderOptions = {
 /** Builds the outer wrapper (relative, full-size). */
 export const buildGroupWrapper = (): HTMLDivElement => {
   const el = document.createElement('div');
-  Object.assign(el.style, {
+  applyStyles(el, {
     position: 'relative',
     width: '100%',
     height: '100%',
@@ -44,7 +48,7 @@ export const buildGroupWrapper = (): HTMLDivElement => {
 export const buildGroupContainer = (opts: GroupRenderOptions): HTMLDivElement => {
   const { color, gap, isHorizontal } = opts;
   const el = document.createElement('div');
-  Object.assign(el.style, {
+  applyStyles(el, {
     width: '100%',
     height: '100%',
     boxSizing: 'border-box',
@@ -65,7 +69,7 @@ export const buildGroupContainer = (opts: GroupRenderOptions): HTMLDivElement =>
 export const buildGroupLabel = (name: string, color: string): HTMLDivElement => {
   const el = document.createElement('div');
   el.textContent = name;
-  Object.assign(el.style, {
+  applyStyles(el, {
     width: '100%',
     fontSize: '8.5px',
     fontWeight: '700',
@@ -97,7 +101,7 @@ export const buildOptionRow = (opts: {
   btn.setAttribute('role', opts.role);
   btn.setAttribute(opts.dataAttr, opts.optionId);
   btn.setAttribute('data-option-id', opts.optionId);
-  Object.assign(btn.style, {
+  applyStyles(btn, {
     display: 'inline-flex',
     alignItems: 'center',
     gap: '4px',
@@ -133,7 +137,7 @@ const checkSvg = (color: string) =>
 /** Checkbox indicator (square with optional checkmark). */
 export const buildCheckboxIndicator = (color: string, isChecked: boolean): HTMLSpanElement => {
   const el = document.createElement('span');
-  Object.assign(el.style, {
+  applyStyles(el, {
     width: '10px',
     height: '10px',
     minWidth: '10px',
@@ -155,7 +159,7 @@ export const buildCheckboxIndicator = (color: string, isChecked: boolean): HTMLS
 /** Radio indicator (circle with optional center dot). */
 export const buildRadioIndicator = (color: string, isSelected: boolean): HTMLSpanElement => {
   const el = document.createElement('span');
-  Object.assign(el.style, {
+  applyStyles(el, {
     width: '10px',
     height: '10px',
     minWidth: '10px',
@@ -170,7 +174,7 @@ export const buildRadioIndicator = (color: string, isSelected: boolean): HTMLSpa
   });
   if (isSelected) {
     const dot = document.createElement('span');
-    Object.assign(dot.style, {
+    applyStyles(dot, {
       width: '4px',
       height: '4px',
       borderRadius: '50%',
@@ -186,7 +190,7 @@ export const buildRadioIndicator = (color: string, isSelected: boolean): HTMLSpa
 export const buildOptionLabel = (text: string, color: string): HTMLSpanElement => {
   const el = document.createElement('span');
   el.textContent = text;
-  Object.assign(el.style, {
+  applyStyles(el, {
     overflow: 'hidden',
     textOverflow: 'ellipsis',
     whiteSpace: 'nowrap',
@@ -206,7 +210,7 @@ export const buildAddOptionButton = (color: string, title: string, dataAttr: str
   btn.textContent = '+';
   btn.title = title;
   btn.setAttribute(dataAttr, 'true');
-  Object.assign(btn.style, {
+  applyStyles(btn, {
     position: 'absolute',
     bottom: '1px',
     left: '50%',

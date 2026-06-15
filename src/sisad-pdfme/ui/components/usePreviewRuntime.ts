@@ -14,6 +14,7 @@ import {
 } from '../designerEngine.js';
 import { emitDesignerRuntimeEvent } from './Designer/shared/designerExtensions.js';
 import usePaperRefRegistry from './shared/usePaperRefRegistry.js';
+import { isRecord } from './Designer/shared/objectGuards.js';
 
 const _cache = new Map<string | number, unknown>();
 const MAX_RUNTIME_TEMPLATE_CACHE_ENTRIES = 12;
@@ -38,17 +39,23 @@ const getTemplateDocumentIdentity = (template: Template) => {
   }
 };
 
+const sortJsonValue = (value: unknown): unknown => {
+  if (value === null || typeof value !== 'object') return value;
+  if (Array.isArray(value)) return value.map(sortJsonValue);
+
+  const sortedEntries = Object.entries(value).sort(([a], [b]) =>
+    a.localeCompare(b),
+  );
+
+  return sortedEntries.reduce<Record<string, unknown>>((acc, [key, entryValue]) => {
+    acc[key] = sortJsonValue(entryValue);
+    return acc;
+  }, {});
+};
+
 const stableJsonSignature = (v: unknown) => {
   try {
-    const canonical = (function canon(x: any): any {
-      if (x === null || typeof x !== 'object') return x;
-      if (Array.isArray(x)) return x.map(canon);
-      const keys = Object.keys(x).sort();
-      const out: any = {};
-      keys.forEach((k) => (out[k] = canon(x[k])));
-      return out;
-    })(v);
-    return JSON.stringify(canonical);
+    return JSON.stringify(sortJsonValue(v));
   } catch {
     return String(v || '');
   }
@@ -166,7 +173,7 @@ const usePreviewRuntime = ({
   const [zoomLevel, setZoomLevel] = useState(options.zoomLevel ?? 1);
   const [schemasList, setSchemasList] = useState<SchemaForUI[][]>([[]] as SchemaForUI[][]);
 
-  const designerEngine = useMemo(() => resolveDesignerEngine(options as Record<string, unknown>), [options]);
+  const designerEngine = useMemo(() => resolveDesignerEngine(options), [options]);
   const designerEvents = designerEngine.extensions?.events;
   const runtimeAdapter = useMemo(
     () =>
@@ -546,7 +553,8 @@ const usePreviewRuntime = ({
             if (s.id !== schema.id) return s;
             let ns = s;
             nonContentArgs.forEach(({ key: _k, value }) => {
-              if ((ns as Record<string, unknown>)[_k] !== value) {
+              const currentValue = isRecord(ns) ? ns[_k] : undefined;
+              if (currentValue !== value) {
                 ns = { ...ns, [_k]: value } as SchemaForUI;
                 changed = true;
               }

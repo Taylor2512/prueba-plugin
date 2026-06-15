@@ -13,19 +13,12 @@ import {
 import { SquareCheck } from 'lucide-react';
 import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
 import {
-  hexAlpha,
-  buildGroupWrapper,
-  buildGroupContainer,
-  buildGroupLabel,
-  buildOptionRow,
-  buildCheckboxIndicator,
-  buildOptionLabel,
-} from '../groupSchemaRender.js';
-import {
   syncOptionGroupDesignerGeometry,
   createDesignerOptionGroupEl,
   syncDesignerOptionGroupPatch,
+  createOptionGroupRuntime,
 } from '../options/optionGroupFactory.js';
+import { createOptionGroupEditor } from '../options/optionGroupEditorFactory.js';
 import { clearSchemaRoot } from '../shared/schemaDom.js';
 import { resolveSchemaIdByIdentity } from '../shared/schemaGuards.js';
 
@@ -224,17 +217,10 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
     );
   };
 
-  const currentOptions = normalizeOptions(schema);
-
-  const header = document.createElement('div');
-  header.className = 'sisad-option-editor-header';
-  header.textContent = 'Valores de las casillas';
-  rootElement.appendChild(header);
-
-  const list = document.createElement('div');
-  list.className = 'sisad-option-editor-list';
+  let currentOptions = normalizeOptions(schema);
 
   const commitOptions = (nextOptions: CheckboxOption[]) => {
+    currentOptions = nextOptions;
     const validIds = new Set(nextOptions.map((o) => o.optionId));
     const selected = resolveSelectedIds(schema);
     const nextSelected = clampSelectedIds(new Set(Array.from(selected).filter((id) => validIds.has(id))), nextOptions, schema);
@@ -247,74 +233,36 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
     });
   };
 
-  const renderList = () => {
-    clearSchemaRoot(list);
-    currentOptions.forEach((option, index) => {
-      const row = document.createElement('div');
-      row.className = 'sisad-option-editor-row sisad-option-editor-row--checkbox';
-
+  const editor = createOptionGroupEditor<CheckboxOption>({
+    rootElement,
+    headerText: 'Valores de las casillas',
+    rowClassName: 'sisad-option-editor-row sisad-option-editor-row--checkbox',
+    newInputPlaceholder: 'Nueva casilla…',
+    optionInputPlaceholder: (index) => `Casilla ${index + 1}`,
+    createIndicator: () => {
       const indicator = document.createElement('div');
       indicator.className = 'sisad-option-editor-cb-indicator';
+      return indicator;
+    },
+    getOptions: () => currentOptions,
+    setOptions: (nextOptions) => {
+      currentOptions = nextOptions;
+    },
+    createRenamedOptions: (options, index, label) =>
+      options.map((option, optionIndex) => (optionIndex === index ? { ...option, label: label || option.label } : option)),
+    createRemovedOptions: (options, index) => {
+      const next = options.filter((_, optionIndex) => optionIndex !== index);
+      return next.length ? next : [{ optionId: 'option_1', label: 'Casilla 1' }];
+    },
+    createAddedOptions: (options, label) => {
+      const clean = label || `Casilla ${options.length + 1}`;
+      const idBase = clean.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'option';
+      return [...options, { optionId: `${idBase}_${options.length + 1}`, label: clean }];
+    },
+    onCommitOptions: commitOptions,
+  });
 
-      const labelInput = document.createElement('input');
-      labelInput.type = 'text';
-      labelInput.value = option.label;
-      labelInput.placeholder = `Casilla ${index + 1}`;
-      labelInput.className = 'sisad-option-editor-input';
-
-      const removeBtn = document.createElement('button');
-      removeBtn.type = 'button';
-      removeBtn.textContent = '×';
-      removeBtn.className = 'sisad-option-editor-remove-btn';
-
-      labelInput.addEventListener('change', () => {
-        const next = currentOptions.map((o, i) => (i === index ? { ...o, label: normalizeText(labelInput.value) || o.label } : o));
-        commitOptions(next);
-      });
-      removeBtn.addEventListener('click', (e) => {
-        e.preventDefault(); e.stopPropagation();
-        const next = currentOptions.filter((_, i) => i !== index);
-        commitOptions(next.length ? next : [{ optionId: 'option_1', label: 'Casilla 1' }]);
-      });
-
-      row.appendChild(indicator);
-      row.appendChild(labelInput);
-      row.appendChild(removeBtn);
-      list.appendChild(row);
-    });
-  };
-
-  renderList();
-  rootElement.appendChild(list);
-
-  const addRow = document.createElement('div');
-  addRow.className = 'sisad-option-editor-add-row';
-
-  const newInput = document.createElement('input');
-  newInput.type = 'text';
-  newInput.placeholder = 'Nueva casilla…';
-  newInput.className = 'sisad-option-editor-input';
-
-  const addBtn = document.createElement('button');
-  addBtn.type = 'button';
-  addBtn.textContent = '+';
-  addBtn.className = 'sisad-option-editor-add-btn';
-
-  const doAdd = (e: Event) => {
-    e.preventDefault(); e.stopPropagation();
-    const label = normalizeText(newInput.value) || `Casilla ${currentOptions.length + 1}`;
-    const idBase = label.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'option';
-    commitOptions([...currentOptions, { optionId: `${idBase}_${currentOptions.length + 1}`, label }]);
-    newInput.value = '';
-    renderList();
-  };
-  addBtn.addEventListener('pointerdown', (e) => e.stopPropagation());
-  addBtn.addEventListener('click', doAdd);
-  newInput.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === 'NumpadEnter') doAdd(e); });
-
-  addRow.appendChild(newInput);
-  addRow.appendChild(addBtn);
-  rootElement.appendChild(addRow);
+  editor.render();
 };
 
 // ─── Plugin ──────────────────────────────────────────────────────────────────
@@ -351,44 +299,32 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
       }
 
       // ── Form / Viewer mode: labeled runtime ──────────────────────────────
-      const gap = Number.isFinite(Number(cbSchema.spacing)) ? Number(cbSchema.spacing) : 3;
-      const isHorizontal = cbSchema.orientation === 'horizontal';
+      rootElement.appendChild(
+        createOptionGroupRuntime({
+          options,
+          selectionMode: 'multiple',
+          selectedOptionIds: Array.from(selected),
+          editable,
+          color,
+          orientation: cbSchema.orientation,
+          spacing: Number.isFinite(Number(cbSchema.spacing)) ? Number(cbSchema.spacing) : 3,
+          groupName: cbSchema.groupName,
+          resolveSelection: ({ option, currentSelection }) => {
+            const next = toggleSelectedIds(
+              new Set(currentSelection.selectedOptionIds),
+              option.optionId,
+              options,
+              cbSchema,
+            );
 
-      const wrapper = buildGroupWrapper();
-      wrapper.setAttribute('data-checkbox-group-root', 'true');
-      const container = buildGroupContainer({ color, gap, isHorizontal });
-
-      if (cbSchema.groupName) {
-        container.appendChild(buildGroupLabel(cbSchema.groupName, color));
-      }
-
-      options.forEach((option) => {
-        const isChecked = selected.has(option.optionId);
-        const row = buildOptionRow({
-          color, isHorizontal, editable,
-          role: 'checkbox',
-          optionId: option.optionId,
-          dataAttr: 'data-checkbox-group-option',
-        });
-        row.setAttribute('aria-checked', isChecked ? 'true' : 'false');
-        row.appendChild(buildCheckboxIndicator(color, isChecked));
-        row.appendChild(buildOptionLabel(option.label, color));
-
-        if (editable && onChange) {
-          row.addEventListener('click', (e) => {
-            e.preventDefault(); e.stopPropagation();
-            const next = toggleSelectedIds(selected, option.optionId, options, cbSchema);
-            onChange([
-              { key: 'content', value: serializeSelectedIds(next) },
-              { key: 'selectedOptionIds', value: Array.from(next) },
-            ]);
-          });
-        }
-        container.appendChild(row);
-      });
-
-      wrapper.appendChild(container);
-      rootElement.appendChild(wrapper);
+            return {
+              content: serializeSelectedIds(next),
+              selectedOptionIds: Array.from(next),
+            };
+          },
+          onChange,
+        }),
+      );
     },
 
     pdf: async (arg) => {

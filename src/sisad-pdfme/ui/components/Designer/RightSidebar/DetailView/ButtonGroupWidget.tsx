@@ -2,6 +2,7 @@ import { DESIGNER_CLASSNAME } from "../../../../constants.js";
 import { Button, Form, Tooltip, theme } from 'antd';
 import React from 'react';
 import type { PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
+import { isRecord } from '../../shared/objectGuards.js';
 interface ButtonConfig {
   key: string;
   icon: string;
@@ -20,7 +21,7 @@ const ButtonGroupWidget = (props: PropPanelWidgetProps) => {
     const ass = schemas.filter((s) => ids.includes(s.id));
     changeSchemas(
       ass.map((s: SchemaForUI) => {
-        const oldValue = Boolean((s as Record<string, unknown>)[key] ?? false);
+        const oldValue = Boolean((isRecord(s) ? s[key] : undefined) ?? false);
         const newValue = type === 'boolean' ? !oldValue : btn.value;
         return { key, value: newValue, schemaId: s.id };
       }),
@@ -34,8 +35,7 @@ const ButtonGroupWidget = (props: PropPanelWidgetProps) => {
     const ids = activeElements.filter(Boolean).map((ae) => ae.id);
     const ass = schemas.filter((s) => ids.includes(s.id));
     ass.forEach((s: SchemaForUI) => {
-      // Cast schema to Record to safely access dynamic properties
-      const schemaRecord = s as Record<string, unknown>;
+      const schemaRecord = isRecord(s) ? s : {};
       active =
         type === 'boolean' ? Boolean(schemaRecord[key] ?? false) : schemaRecord[key] === btn.value;
     });

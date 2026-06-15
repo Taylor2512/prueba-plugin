@@ -1,5 +1,6 @@
 import type { PropPanelInspectorConfig, PropPanelSchema, SchemaForUI } from '@sisad-pdfme/common';
 import type { SchemaDesignerConfig } from '../../../../../ui/designerEngine.js';
+import { asRecord, isRecord } from '../../shared/objectGuards.js';
 import {
   CANONICAL_DETAIL_SECTION_LABELS,
   CANONICAL_DETAIL_SECTION_ORDER,
@@ -66,18 +67,17 @@ const addFieldToSection = (
 };
 
 const replaceColorWidget = (schemaNode: unknown): unknown => {
-  if (schemaNode === undefined || schemaNode === null || Array.isArray(schemaNode) || typeof schemaNode !== 'object') {
+  if (!isRecord(schemaNode)) {
     return schemaNode;
   }
-  const node = schemaNode as Record<string, unknown>;
-  const nextNode: Record<string, unknown> = { ...node };
+  const nextNode: Record<string, unknown> = { ...schemaNode };
 
   if (nextNode.widget === 'color') {
     nextNode.widget = 'nativeColor';
   }
 
-  if (nextNode.properties !== undefined && nextNode.properties !== null && typeof nextNode.properties === 'object') {
-    const propsObj = nextNode.properties as Record<string, unknown>;
+  if (isRecord(nextNode.properties)) {
+    const propsObj = nextNode.properties;
     const nextProps: Record<string, unknown> = {};
     Object.entries(propsObj).forEach(([propKey, propValue]) => {
       nextProps[propKey] = replaceColorWidget(propValue);
@@ -108,7 +108,7 @@ export const buildInspectorSections = ({
 }: BuildInspectorSchemasParams) => {
   const familyPreset = getSchemaTypeInspectorPreset(activeSchemaType);
   const semanticFamily = resolveSchemaSemanticFamily(activeSchemaType);
-  const activeSchemaRecord = activeSchema as Record<string, unknown> | null | undefined;
+  const activeSchemaRecord = asRecord(activeSchema);
   const canonicalVisibleSections = new Set(
     (inspectorConfig?.visibleSections?.length ? inspectorConfig.visibleSections : familyPreset.visibleSections)
       .map((sectionKey) => toCanonicalDetailSection(sectionKey))
@@ -171,21 +171,18 @@ export const buildInspectorSections = ({
   };
 
   addFieldToSection(sectionProperties, 'general', 'name', {
-    name: {
-        title: 'Nombre del campo',
-        type: 'string',
-        required: true,
-        span: 24,
-        rules: [
-          {
-            validator: validateUniqueSchemaName,
-            message: typedI18n('validation.uniqueName'),
-          },
-        ],
-        props: { autoComplete: 'off' },
+    title: 'Nombre del campo',
+    type: 'string',
+    required: true,
+    span: 24,
+    rules: [
+      {
+        validator: validateUniqueSchemaName,
+        message: typedI18n('validation.uniqueName'),
       },
-    }.name as PropPanelSchema,
-  );
+    ],
+    props: { autoComplete: 'off' },
+  });
 
   addFieldToSection(sectionProperties, 'general', 'inlineEditActions', {
     title: '',

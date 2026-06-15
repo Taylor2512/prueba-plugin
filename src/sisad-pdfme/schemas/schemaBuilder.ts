@@ -1,5 +1,6 @@
 import type { Plugin, Schema } from '@sisad-pdfme/common';
 import type { IconNode } from 'lucide-react';
+import { isRecord } from '../ui/components/Designer/shared/objectGuards.js';
 import { createSvgStr } from './utils.js';
 
 export type SchemaCapability =
@@ -38,11 +39,11 @@ export const renderLucideIcon = (icon: unknown, attrs?: Record<string, string>) 
 // Wrap UI handlers to dedupe identical onChange emissions using a stable JSON signature.
 const stableJsonSignature = (v: unknown) => {
   try {
-    const canon = (function canon(x: any): any {
+    const canon = (function canon(x: unknown): unknown {
       if (x === null || typeof x !== 'object') return x;
       if (Array.isArray(x)) return x.map(canon);
       const keys = Object.keys(x).sort();
-      const out: any = {};
+      const out: Record<string, unknown> = {};
       keys.forEach((k) => (out[k] = canon(x[k])));
       return out;
     })(v);
@@ -56,37 +57,61 @@ const stableJsonSignature = (v: unknown) => {
 const _lastSigBySchemaId = new Map<string, string>();
 const _lastSigByElement = new WeakMap<Element, string>();
 
+const getOnChangeCacheKey = (schema: unknown, rootElement: unknown): string | Element | null => {
+  if (isRecord(schema) && typeof schema.id === 'string' && schema.id) {
+    return schema.id;
+  }
+  if (rootElement instanceof Element) {
+    return rootElement;
+  }
+  return null;
+};
+
+const shouldSkipDuplicateEmission = (cacheKey: string | Element | null, signature: string): boolean => {
+  if (typeof cacheKey === 'string') {
+    const last = _lastSigBySchemaId.get(cacheKey);
+    if (last === signature) return true;
+    _lastSigBySchemaId.set(cacheKey, signature);
+    return false;
+  }
+
+  if (cacheKey instanceof Element) {
+    const last = _lastSigByElement.get(cacheKey);
+    if (last === signature) return true;
+    _lastSigByElement.set(cacheKey, signature);
+  }
+
+  return false;
+};
+
 export const createSchemaPlugin = <T extends Schema>(
   plugin: Plugin<T>,
   definition: SchemaDefinition,
 ): SchemaPluginWithMetadata<T> => {
-  const wrapped: any = { ...plugin };
+  const wrapped: Plugin<T> & { designer?: SchemaDefinition } = { ...plugin };
 
   if (typeof plugin.ui === 'function') {
-    wrapped.ui = async (arg: any) => {
-      const { rootElement, schema } = arg || {};
-      const originalOnChange = arg?.onChange;
+    wrapped.ui = async (arg: Parameters<NonNullable<typeof plugin.ui>>[0]) => {
+      const uiArg: Record<string, unknown> = isRecord(arg) ? arg : {};
+      const rootElement = uiArg.rootElement;
+      const schema = uiArg.schema;
+      const originalOnChange =
+        typeof uiArg.onChange === 'function'
+          ? (uiArg.onChange as (payload: unknown) => unknown)
+          : undefined;
 
       const dedupeOnChange = (payload: unknown) => {
-        if (typeof originalOnChange !== 'function') return originalOnChange?.(payload);
+        if (typeof originalOnChange !== 'function') return undefined;
         try {
           const sig = stableJsonSignature(payload);
-          if (schema && typeof schema.id === 'string' && schema.id) {
-            const last = _lastSigBySchemaId.get(schema.id);
-            if (last === sig) return;
-            _lastSigBySchemaId.set(schema.id, sig);
-          } else if (rootElement instanceof Element) {
-            const last = _lastSigByElement.get(rootElement);
-            if (last === sig) return;
-            _lastSigByElement.set(rootElement, sig);
-          }
+          if (shouldSkipDuplicateEmission(getOnChangeCacheKey(schema, rootElement), sig)) return;
         } catch (e) {
           // ignore signature errors and proceed
         }
         return originalOnChange(payload);
       };
 
-      const newArg = { ...arg, onChange: dedupeOnChange };
+      const newArg = { ...uiArg, onChange: dedupeOnChange } as Parameters<NonNullable<typeof plugin.ui>>[0];
       return plugin.ui(newArg);
     };
   }
@@ -101,13 +126,10 @@ export const getSchemaDefinition = (plugin: Plugin<Schema> | SchemaPluginWithMet
   'designer' in plugin ? plugin.designer : null;
 
 const isPluginLike = (value: unknown): value is Plugin<Schema> =>
-  Boolean(
-    value &&
-      typeof value === 'object' &&
-      'pdf' in (value as Record<string, unknown>) &&
-      'ui' in (value as Record<string, unknown>) &&
-      'propPanel' in (value as Record<string, unknown>),
-  );
+  isRecord(value) &&
+  'pdf' in value &&
+  'ui' in value &&
+  'propPanel' in value;
 
 const resolveDefinitionFromPlugin = (key: string, plugin: Plugin<Schema>) => {
   const definition = getSchemaDefinition(plugin as SchemaPluginWithMetadata<Schema>);

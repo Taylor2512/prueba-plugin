@@ -16,6 +16,11 @@ import {
   optionGroupDesignerWidthMM,
   type OptionGroupType,
 } from '../../../../schemas/options/optionGroupLayout.js';
+import { asRecord } from './objectGuards.js';
+
+type SchemaWithDesigner = SchemaForUI & {
+  __designer?: Record<string, unknown>;
+};
 
 // ── Group helpers ──────────────────────────────────────────────────────────────
 
@@ -26,20 +31,35 @@ const generateGroupId = (): string => {
   return 'grp-' + Math.random().toString(36).slice(2) + Date.now().toString(36);
 };
 
+const isGroupMeta = (value: unknown): value is GroupMeta => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
+  const record = value as Record<string, unknown>;
+  return (
+    typeof record.groupId === 'string' &&
+    (record.groupType === 'visual' ||
+      record.groupType === 'radio' ||
+      record.groupType === 'checkbox' ||
+      record.groupType === 'signatureBlock' ||
+      record.groupType === 'table' ||
+      record.groupType === 'repeatable')
+  );
+};
+
 /** Returns the GroupMeta for a schema from __designer or the schema itself */
-const getGroupMeta = (schema: SchemaForUI): GroupMeta | undefined => {
-  const designer = (schema as SchemaForUI & { __designer?: { group?: GroupMeta } }).__designer;
-  return designer?.group;
+const getGroupMeta = (schema: SchemaWithDesigner): GroupMeta | undefined => {
+  const designer = asRecord(schema.__designer);
+  const group = asRecord(designer?.group);
+  return isGroupMeta(group) ? group : undefined;
 };
 
 /** Returns a new schema with __designer.group set */
-const withGroupMeta = (schema: SchemaForUI, group: GroupMeta | undefined): SchemaForUI => {
-  const existing = (schema as SchemaForUI & { __designer?: Record<string, unknown> }).__designer ?? {};
+const withGroupMeta = (schema: SchemaWithDesigner, group: GroupMeta | undefined): SchemaWithDesigner => {
+  const existing = asRecord(schema.__designer) || {};
   if (group === undefined) {
-    const { group: _removed, ...rest } = existing as Record<string, unknown> & { group?: unknown };
-    return ({ ...schema, __designer: rest } as unknown) as SchemaForUI;
+    const { group: _removed, ...rest } = existing;
+    return { ...schema, __designer: rest };
   }
-  return ({ ...schema, __designer: { ...existing, group } } as unknown) as SchemaForUI;
+  return { ...schema, __designer: { ...existing, group } };
 };
 export type AlignType =
   | 'left'
@@ -158,15 +178,48 @@ export type SelectionCommandsContext = {
   executeCommand?: (_command: Command) => void;
 };
 
-const getActiveIds = (elements: HTMLElement[]) => elements.filter(Boolean).map((element) => element.id);
+const getActiveIds = (elements: HTMLElement[]) =>
+  elements
+    .filter(Boolean)
+    .map((element) => element.dataset.schemaId || element.id)
+    .filter((id): id is string => Boolean(id));
 
-const getActiveSchemas = (context: SelectionCommandsContext) => {
-  const ids = getActiveIds(context.activeElements);
-  return (context.schemasList[context.pageCursor] || []).filter((schema) => ids.includes(schema.id));
+const resolvePageIndexFromActiveElements = (context: SelectionCommandsContext): number => {
+  for (const element of context.activeElements) {
+    const pageIndex = Number(element?.dataset.pageIndex);
+    if (Number.isInteger(pageIndex) && pageIndex >= 0 && context.schemasList[pageIndex]) {
+      return pageIndex;
+    }
+  }
+  return Math.max(0, Math.min(context.pageCursor, Math.max(0, context.schemasList.length - 1)));
 };
 
+const resolveSchemaForActiveElement = (context: SelectionCommandsContext, element: HTMLElement): SchemaForUI | null => {
+  const schemaId = String(element.dataset.schemaId || element.id || '').trim();
+  if (!schemaId) return null;
+
+  const pageIndex = Number(element.dataset.pageIndex);
+  if (Number.isInteger(pageIndex) && pageIndex >= 0) {
+    const pageSchemas = context.schemasList[pageIndex] || [];
+    const schema = pageSchemas.find((entry) => entry.id === schemaId);
+    if (schema) return schema;
+  }
+
+  for (const pageSchemas of context.schemasList) {
+    const schema = (pageSchemas || []).find((entry) => entry.id === schemaId);
+    if (schema) return schema;
+  }
+
+  return null;
+};
+
+const getActiveSchemas = (context: SelectionCommandsContext) =>
+  context.activeElements
+    .map((element) => resolveSchemaForActiveElement(context, element))
+    .filter((schema): schema is SchemaForUI => Boolean(schema));
+
 const getPageSchemas = (context: SelectionCommandsContext) =>
-  context.schemasList[context.pageCursor] || [];
+  context.schemasList[resolvePageIndexFromActiveElements(context)] || [];
 
 const getPageBounds = (schemas: SchemaForUI[], tgtPos: 'x' | 'y', tgtSize: 'width' | 'height') => {
   if (!schemas.length) return { min: 0, max: 0 };
@@ -696,7 +749,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
 
     if (groupIds.size === 0) return;
 
-    // Remove group meta from ALL schemas in any of those groupIds
+    // Remove group meta from all schemas that share one of those groupIds
     const afterSchemas = beforeSchemas.map((schema) => {
       const meta = getGroupMeta(schema);
       if (meta && groupIds.has(meta.groupId)) {

@@ -18,6 +18,7 @@ import {
   isBlankPdf,
   upsertTopLevelComment,
   upsertById,
+  type SchemaCommentReply,
 } from '@sisad-pdfme/common';
 import { DndContext } from '@dnd-kit/core';
 import { pdf2size } from '@sisad-pdfme/converter';
@@ -76,6 +77,7 @@ installPassiveTouchListenerGuard();
 import { buildEffectiveCollaborationContext, filterSchemasForCollaborationView } from '../../collaborationContext.js';
 import type { RightSidebarContextHeader, RightSidebarContextHeaderContext } from './RightSidebar/contextHeader.js';
 import DesignerContextSummary from './shared/DesignerContextSummary.js';
+import { asRecord } from './shared/objectGuards.js';
 import {
   resolveDesignerEngine,
   attachSchemaIdentity,
@@ -200,6 +202,23 @@ type UploadedPdfDocument = {
   template: Template;
   pageCount: number;
   updatedAt?: number;
+};
+
+const toDesignerCommentReplies = (value: unknown): SchemaCommentReply[] => {
+  if (!Array.isArray(value)) return [];
+  return value
+    .map((reply) => asRecord(reply))
+    .filter((reply): reply is Record<string, unknown> => Boolean(reply))
+    .map((reply) => ({
+      id: String(reply.id || reply.commentId || '').trim(),
+      text: String(reply.text || reply.content || '').trim(),
+      authorId: typeof reply.authorId === 'string' ? reply.authorId : undefined,
+      authorName: typeof reply.authorName === 'string' ? reply.authorName : undefined,
+      authorColor: typeof reply.authorColor === 'string' ? reply.authorColor : null,
+      timestamp: typeof reply.timestamp === 'number' ? reply.timestamp : undefined,
+      createdAt: typeof reply.createdAt === 'number' ? reply.createdAt : undefined,
+      resolved: typeof reply.resolved === 'boolean' ? reply.resolved : undefined,
+    }));
 };
 
 type TemplateChangeContext = {
@@ -829,11 +848,10 @@ const TemplateEditor = ({
 
     const nextActive: HTMLElement[] = [];
     for (const element of activeElements) {
-      const nextElement = document.getElementById(element.id);
+      const nextElement = activePaper.querySelector<HTMLElement>(`[data-schema-id="${element.id}"]`);
       if (!nextElement) continue;
       if (!nextElement.classList.contains(SELECTABLE_CLASSNAME)) continue;
       if (!visiblePageSchemaIdSet.has(nextElement.id)) continue;
-      if (nextElement !== activePaper && !activePaper.contains(nextElement)) continue;
       nextActive.push(nextElement);
     }
 
@@ -1135,10 +1153,24 @@ const TemplateEditor = ({
 
   const removeSchemas = useCallback(
     (ids: string[]) => {
-      commitSchemas(currentPageSchemas.filter((schema) => !ids.includes(schema.id)));
+      const normalizedIds = new Set(ids.map((id) => String(id || '').trim()).filter(Boolean));
+      if (!normalizedIds.size) return;
+
+      const activeElement = activeElements.find((element) => normalizedIds.has(String(element.dataset.schemaId || element.id || '').trim()));
+      const activePageIndex = Number(activeElement?.dataset.pageIndex);
+      const resolvedPageIndex =
+        Number.isInteger(activePageIndex) && activePageIndex >= 0
+          ? activePageIndex
+          : schemasListRef.current.findIndex((pageSchemas) =>
+              (pageSchemas || []).some((schema) => normalizedIds.has(schema.id)),
+            );
+
+      const targetPageIndex = resolvedPageIndex >= 0 ? resolvedPageIndex : pageCursor;
+      const pageSchemas = schemasListRef.current[targetPageIndex] || [];
+      commitSchemas(pageSchemas.filter((schema) => !normalizedIds.has(schema.id)), targetPageIndex);
       onEditEnd();
     },
-    [commitSchemas, currentPageSchemas, onEditEnd],
+    [activeElements, commitSchemas, onEditEnd, pageCursor],
   );
 
   const changeSchemas: ChangeSchemas = useCallback(
@@ -1490,18 +1522,7 @@ const TemplateEditor = ({
         pageNumber: entry.pageNumber,
         resolved: Boolean(entry.anchor?.resolved ?? entry.comment?.resolved),
         timestamp: Number(entry.comment?.timestamp || entry.comment?.createdAt || 0) || undefined,
-        replies: Array.isArray(entry.comment?.replies)
-          ? (entry.comment.replies as any[]).map((r: any) => ({
-              id: String(r?.id || ''),
-              text: String(r?.text || r?.content || ''),
-              authorId: r?.authorId || undefined,
-              authorName: r?.authorName || undefined,
-              authorColor: r?.authorColor ?? null,
-              timestamp: Number(r?.timestamp || r?.createdAt || 0) || undefined,
-              createdAt: Number(r?.createdAt || r?.timestamp || 0) || undefined,
-              resolved: Boolean(r?.resolved),
-            }))
-          : [],
+        replies: toDesignerCommentReplies(entry.comment?.replies),
       });
     }
     return items.sort((left, right) => (right.timestamp || 0) - (left.timestamp || 0));

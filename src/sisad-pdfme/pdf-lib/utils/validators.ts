@@ -2,20 +2,23 @@
 
 import { values as objectValues } from './objects';
 
-export const backtick = (val: any) => `\`${val}\``;
-export const singleQuote = (val: any) => `'${val}'`;
+const isObjectLike = (value: unknown): value is Record<string, unknown> =>
+  typeof value === 'object' && value !== null;
+
+export const backtick = (val: unknown) => `\`${val}\``;
+export const singleQuote = (val: unknown) => `'${val}'`;
 
 type Primitive = string | number | boolean | undefined | null;
 
 // prettier-ignore
-const formatValue = (value: any) => {
+const formatValue = (value: unknown): string => {
   const type = typeof value;
   if (type ==='string') return singleQuote(value);
   else if (type ==='undefined') return backtick(value);
-  else return value;
+  else return String(value);
 };
 
-export const createValueErrorMsg = (value: any, valueName: string, values: Primitive[]) => {
+export const createValueErrorMsg = (value: unknown, valueName: string, values: Primitive[]) => {
   const allowedValues = new Array(values.length);
 
   for (let idx = 0, len = values.length; idx < len; idx++) {
@@ -30,7 +33,7 @@ export const createValueErrorMsg = (value: any, valueName: string, values: Primi
 };
 
 export const assertIsOneOf = (
-  value: any,
+  value: unknown,
   valueName: string,
   allowedValues: Primitive[] | { [key: string]: Primitive },
 ) => {
@@ -44,7 +47,7 @@ export const assertIsOneOf = (
 };
 
 export const assertIsOneOfOrUndefined = (
-  value: any,
+  value: unknown,
   valueName: string,
   allowedValues: Primitive[] | { [key: string]: Primitive },
 ) => {
@@ -55,7 +58,7 @@ export const assertIsOneOfOrUndefined = (
 };
 
 export const assertIsSubset = (
-  values: any[],
+  values: unknown[],
   valueName: string,
   allowedValues: Primitive[] | { [key: string]: Primitive },
 ) => {
@@ -67,18 +70,20 @@ export const assertIsSubset = (
   }
 };
 
-export const getType = (val: any) => {
+export const getType = (val: unknown) => {
   if (val === null) return 'null';
   if (val === undefined) return 'undefined';
   if (typeof val === 'string') return 'string';
-  if (isNaN(val)) return 'NaN';
+  if (typeof val === 'number' && Number.isNaN(val)) return 'NaN';
   if (typeof val === 'number') return 'number';
   if (typeof val === 'boolean') return 'boolean';
   if (typeof val === 'symbol') return 'symbol';
   if (typeof val === 'bigint') return 'bigint';
-  if (val.constructor && val.constructor.name) return val.constructor.name;
-  if (val.name) return val.name;
-  if (val.constructor) return String(val.constructor);
+  if (isObjectLike(val) && val.constructor && typeof val.constructor === 'function' && val.constructor.name) {
+    return val.constructor.name;
+  }
+  if (isObjectLike(val) && typeof val.name === 'string') return val.name;
+  if (isObjectLike(val) && val.constructor) return String(val.constructor);
   return String(val);
 };
 
@@ -97,7 +102,7 @@ export type TypeDescriptor =
   | FunctionConstructor
   | [Function, string];
 
-export const isType = (value: any, type: TypeDescriptor) => {
+export const isType = (value: unknown, type: TypeDescriptor) => {
   if (type === 'null') return value === null;
   if (type === 'undefined') return value === undefined;
   if (type === 'string') return typeof value === 'string';
@@ -113,7 +118,7 @@ export const isType = (value: any, type: TypeDescriptor) => {
   return value instanceof (type as [Function, string])[0];
 };
 
-export const createTypeErrorMsg = (value: any, valueName: string, types: TypeDescriptor[]) => {
+export const createTypeErrorMsg = (value: unknown, valueName: string, types: TypeDescriptor[]) => {
   const allowedTypes = new Array(types.length);
 
   for (let idx = 0, len = types.length; idx < len; idx++) {
@@ -137,48 +142,51 @@ export const createTypeErrorMsg = (value: any, valueName: string, types: TypeDes
   return `${backtick(valueName)} must be of type ${joinedTypes}, but was actually of type ${backtick(getType(value))}`;
 };
 
-export const assertIs = (value: any, valueName: string, types: TypeDescriptor[]) => {
+export const assertIs = (value: unknown, valueName: string, types: TypeDescriptor[]) => {
   for (let idx = 0, len = types.length; idx < len; idx++) {
     if (isType(value, types[idx])) return;
   }
   throw new TypeError(createTypeErrorMsg(value, valueName, types));
 };
 
-export const assertOrUndefined = (value: any, valueName: string, types: TypeDescriptor[]) => {
+export const assertOrUndefined = (value: unknown, valueName: string, types: TypeDescriptor[]) => {
   assertIs(value, valueName, types.concat('undefined'));
 };
 
-export const assertEachIs = (values: any[], valueName: string, types: TypeDescriptor[]) => {
+export const assertEachIs = (values: unknown[], valueName: string, types: TypeDescriptor[]) => {
   for (let idx = 0, len = values.length; idx < len; idx++) {
     assertIs(values[idx], valueName, types);
   }
 };
 
-export const assertRange = (value: any, valueName: string, min: number, max: number) => {
+export const assertRange = (value: unknown, valueName: string, min: number, max: number) => {
   assertIs(value, valueName, ['number']);
   assertIs(min, 'min', ['number']);
   assertIs(max, 'max', ['number']);
   max = Math.max(min, max);
-  if (value < min || value > max) {
+  const numericValue = Number(value);
+  if (numericValue < min || numericValue > max) {
     // prettier-ignore
     throw new Error(`${backtick(valueName)} must be at least ${min} and at most ${max}, but was actually ${value}`);
   }
 };
 
-export const assertRangeOrUndefined = (value: any, valueName: string, min: number, max: number) => {
+export const assertRangeOrUndefined = (value: unknown, valueName: string, min: number, max: number) => {
   assertIs(value, valueName, ['number', 'undefined']);
   if (typeof value === 'number') assertRange(value, valueName, min, max);
 };
 
-export const assertMultiple = (value: any, valueName: string, multiplier: number) => {
+export const assertMultiple = (value: unknown, valueName: string, multiplier: number) => {
   assertIs(value, valueName, ['number']);
-  if (value % multiplier !== 0) {
+  const numericValue = Number(value);
+  if (numericValue % multiplier !== 0) {
     // prettier-ignore
     throw new Error(`${backtick(valueName)} must be a multiple of ${multiplier}, but was actually ${value}`);
   }
 };
 
-export const assertInteger = (value: any, valueName: string) => {
+export const assertInteger = (value: unknown, valueName: string) => {
+  assertIs(value, valueName, ['number']);
   if (!Number.isInteger(value)) {
     throw new Error(`${backtick(valueName)} must be an integer, but was actually ${value}`);
   }

@@ -1,3 +1,5 @@
+import { asRecord, isRecord } from './objectGuards.js';
+
 const DEFAULT_AUTO_PLACE_SCOPE = 'document';
 const DEFAULT_AUTO_PLACE_MATCH_MODE = 'contains';
 
@@ -25,9 +27,11 @@ export const buildAutoPlaceDescriptor = (keyword: unknown, options: Record<strin
 
 export const resolveSchemaAutoPlaceDescriptor = (schema: Record<string, unknown> = {}, options: Record<string, unknown> = {}) => {
   const s = schema;
+  const designer = isRecord(s.__designer) ? s.__designer : undefined;
+  const autoPlace = isRecord(designer?.autoPlace) ? designer.autoPlace : undefined;
   const keyword =
     normalizeText(s?.autoPlaceText) ||
-    normalizeText(s?.__designer?.autoPlace?.keyword) ||
+    normalizeText(autoPlace?.keyword) ||
     normalizeText(options.keyword) ||
     '';
   if (!keyword) return null;
@@ -35,12 +39,12 @@ export const resolveSchemaAutoPlaceDescriptor = (schema: Record<string, unknown>
   return buildAutoPlaceDescriptor(keyword, {
     scope:
       options.scope ||
-      s?.__designer?.autoPlace?.scope ||
+      autoPlace?.scope ||
       s?.autoPlaceScope ||
       DEFAULT_AUTO_PLACE_SCOPE,
     matchMode:
       options.matchMode ||
-      s?.__designer?.autoPlace?.matchMode ||
+      autoPlace?.matchMode ||
       s?.autoPlaceMatchMode ||
       DEFAULT_AUTO_PLACE_MATCH_MODE,
     fieldType: options.fieldType || s?.type,
@@ -63,12 +67,15 @@ export const collectAutoPlaceRulesFromDocuments = (documents: unknown[] = []) =>
 
   const rules: Record<string, unknown>[] = [];
   documents.forEach((documentRaw: unknown = {}) => {
-    const document = documentRaw as Record<string, unknown>;
+    const document = asRecord(documentRaw);
+    if (!document) return;
     const documentId = normalizeText(document?.id || document?.fileId || document?.fileTemplateId);
-    const templateSchemas = Array.isArray(document?.template?.schemas) ? document.template.schemas : [];
+    const template = isRecord(document.template) ? document.template : undefined;
+    const templateSchemas = Array.isArray(template?.schemas) ? template.schemas : [];
     templateSchemas.forEach((page: unknown[] = [], pageIndex: number) => {
       (Array.isArray(page) ? page : []).forEach((schemaRaw: unknown = {}) => {
-        const schema = schemaRaw as Record<string, unknown>;
+        if (!isRecord(schemaRaw)) return;
+        const schema = schemaRaw;
         const descriptor = resolveSchemaAutoPlaceDescriptor(schema, {
           documentId,
           pageIndex,

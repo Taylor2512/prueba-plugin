@@ -19,6 +19,17 @@ export type OptionGroupRuntimeParams = {
   orientation?: 'vertical' | 'horizontal';
   spacing?: number;
   groupName?: string;
+  resolveSelection?: (params: {
+    option: OptionItem;
+    currentSelection: {
+      selectedOptionId?: string | null;
+      selectedOptionIds: string[];
+    };
+  }) => {
+    content: string;
+    selectedOptionId?: string;
+    selectedOptionIds?: string[];
+  } | null;
   onChange?: (arg: { key: string; value: unknown } | Array<{ key: string; value: unknown }>) => void;
 };
 
@@ -34,6 +45,7 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
     orientation = 'vertical',
     spacing = 3,
     groupName,
+    resolveSelection,
     onChange,
   } = params;
 
@@ -67,6 +79,26 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
       row.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
+
+        if (resolveSelection) {
+          const nextSelection = resolveSelection({
+            option: opt,
+            currentSelection: {
+              selectedOptionId,
+              selectedOptionIds: Array.from(selectedSet),
+            },
+          });
+
+          if (nextSelection) {
+            onChange(
+              Object.entries(nextSelection).map(([key, value]) => ({ key, value })) as Array<{
+                key: string;
+                value: unknown;
+              }>,
+            );
+          }
+          return;
+        }
 
         if (selectionMode === 'single') {
           onChange([

@@ -1,0 +1,2843 @@
+diff --git a/src/sisad-pdfme/pdf-lib/api/errors.ts b/src/sisad-pdfme/pdf-lib/api/errors.ts
+index 9dc89a4..fe8504e 100644
+--- a/src/sisad-pdfme/pdf-lib/api/errors.ts
++++ b/src/sisad-pdfme/pdf-lib/api/errors.ts
+@@ -42,10 +42,18 @@ export class NoSuchFieldError extends Error {
+   }
+ }
+ 
++const getTypeName = (value: unknown): string | undefined => {
++  if (value === null || value === undefined) return undefined;
++  if (typeof value === 'function' && value.name) return value.name;
++  if (typeof value === 'object' && value.constructor?.name) return value.constructor.name;
++  if (typeof value === 'string') return value;
++  return String(value);
++};
++
+ export class UnexpectedFieldTypeError extends Error {
+-  constructor(name: string, expected: any, actual: any) {
+-    const expectedType = expected?.name;
+-    const actualType = actual?.constructor?.name ?? actual;
++  constructor(name: string, expected: unknown, actual: unknown) {
++    const expectedType = getTypeName(expected);
++    const actualType = getTypeName(actual);
+     const msg =
+       `Expected field "${name}" to be of type ${expectedType}, ` +
+       `but it is actually of type ${actualType}`;
+@@ -54,7 +62,7 @@ export class UnexpectedFieldTypeError extends Error {
+ }
+ 
+ export class MissingOnValueCheckError extends Error {
+-  constructor(onValue: any) {
++  constructor(onValue: unknown) {
+     const msg = `Failed to select check box due to missing onValue: "${onValue}"`;
+     super(msg);
+   }
+diff --git a/src/sisad-pdfme/pdf-lib/utils/validators.ts b/src/sisad-pdfme/pdf-lib/utils/validators.ts
+index eac0616..ab1dced 100644
+--- a/src/sisad-pdfme/pdf-lib/utils/validators.ts
++++ b/src/sisad-pdfme/pdf-lib/utils/validators.ts
+@@ -2,20 +2,23 @@
+ 
+ import { values as objectValues } from './objects';
+ 
+-export const backtick = (val: any) => `\`${val}\``;
+-export const singleQuote = (val: any) => `'${val}'`;
++const isObjectLike = (value: unknown): value is Record<string, unknown> =>
++  typeof value === 'object' && value !== null;
++
++export const backtick = (val: unknown) => `\`${val}\``;
++export const singleQuote = (val: unknown) => `'${val}'`;
+ 
+ type Primitive = string | number | boolean | undefined | null;
+ 
+ // prettier-ignore
+-const formatValue = (value: any) => {
++const formatValue = (value: unknown): string => {
+   const type = typeof value;
+   if (type ==='string') return singleQuote(value);
+   else if (type ==='undefined') return backtick(value);
+-  else return value;
++  else return String(value);
+ };
+ 
+-export const createValueErrorMsg = (value: any, valueName: string, values: Primitive[]) => {
++export const createValueErrorMsg = (value: unknown, valueName: string, values: Primitive[]) => {
+   const allowedValues = new Array(values.length);
+ 
+   for (let idx = 0, len = values.length; idx < len; idx++) {
+@@ -30,7 +33,7 @@ export const createValueErrorMsg = (value: any, valueName: string, values: Primi
+ };
+ 
+ export const assertIsOneOf = (
+-  value: any,
++  value: unknown,
+   valueName: string,
+   allowedValues: Primitive[] | { [key: string]: Primitive },
+ ) => {
+@@ -44,7 +47,7 @@ export const assertIsOneOf = (
+ };
+ 
+ export const assertIsOneOfOrUndefined = (
+-  value: any,
++  value: unknown,
+   valueName: string,
+   allowedValues: Primitive[] | { [key: string]: Primitive },
+ ) => {
+@@ -55,7 +58,7 @@ export const assertIsOneOfOrUndefined = (
+ };
+ 
+ export const assertIsSubset = (
+-  values: any[],
++  values: unknown[],
+   valueName: string,
+   allowedValues: Primitive[] | { [key: string]: Primitive },
+ ) => {
+@@ -67,18 +70,20 @@ export const assertIsSubset = (
+   }
+ };
+ 
+-export const getType = (val: any) => {
++export const getType = (val: unknown) => {
+   if (val === null) return 'null';
+   if (val === undefined) return 'undefined';
+   if (typeof val === 'string') return 'string';
+-  if (isNaN(val)) return 'NaN';
++  if (typeof val === 'number' && Number.isNaN(val)) return 'NaN';
+   if (typeof val === 'number') return 'number';
+   if (typeof val === 'boolean') return 'boolean';
+   if (typeof val === 'symbol') return 'symbol';
+   if (typeof val === 'bigint') return 'bigint';
+-  if (val.constructor && val.constructor.name) return val.constructor.name;
+-  if (val.name) return val.name;
+-  if (val.constructor) return String(val.constructor);
++  if (isObjectLike(val) && val.constructor && typeof val.constructor === 'function' && val.constructor.name) {
++    return val.constructor.name;
++  }
++  if (isObjectLike(val) && typeof val.name === 'string') return val.name;
++  if (isObjectLike(val) && val.constructor) return String(val.constructor);
+   return String(val);
+ };
+ 
+@@ -97,7 +102,7 @@ export type TypeDescriptor =
+   | FunctionConstructor
+   | [Function, string];
+ 
+-export const isType = (value: any, type: TypeDescriptor) => {
++export const isType = (value: unknown, type: TypeDescriptor) => {
+   if (type === 'null') return value === null;
+   if (type === 'undefined') return value === undefined;
+   if (type === 'string') return typeof value === 'string';
+@@ -113,7 +118,7 @@ export const isType = (value: any, type: TypeDescriptor) => {
+   return value instanceof (type as [Function, string])[0];
+ };
+ 
+-export const createTypeErrorMsg = (value: any, valueName: string, types: TypeDescriptor[]) => {
++export const createTypeErrorMsg = (value: unknown, valueName: string, types: TypeDescriptor[]) => {
+   const allowedTypes = new Array(types.length);
+ 
+   for (let idx = 0, len = types.length; idx < len; idx++) {
+@@ -137,48 +142,51 @@ export const createTypeErrorMsg = (value: any, valueName: string, types: TypeDes
+   return `${backtick(valueName)} must be of type ${joinedTypes}, but was actually of type ${backtick(getType(value))}`;
+ };
+ 
+-export const assertIs = (value: any, valueName: string, types: TypeDescriptor[]) => {
++export const assertIs = (value: unknown, valueName: string, types: TypeDescriptor[]) => {
+   for (let idx = 0, len = types.length; idx < len; idx++) {
+     if (isType(value, types[idx])) return;
+   }
+   throw new TypeError(createTypeErrorMsg(value, valueName, types));
+ };
+ 
+-export const assertOrUndefined = (value: any, valueName: string, types: TypeDescriptor[]) => {
++export const assertOrUndefined = (value: unknown, valueName: string, types: TypeDescriptor[]) => {
+   assertIs(value, valueName, types.concat('undefined'));
+ };
+ 
+-export const assertEachIs = (values: any[], valueName: string, types: TypeDescriptor[]) => {
++export const assertEachIs = (values: unknown[], valueName: string, types: TypeDescriptor[]) => {
+   for (let idx = 0, len = values.length; idx < len; idx++) {
+     assertIs(values[idx], valueName, types);
+   }
+ };
+ 
+-export const assertRange = (value: any, valueName: string, min: number, max: number) => {
++export const assertRange = (value: unknown, valueName: string, min: number, max: number) => {
+   assertIs(value, valueName, ['number']);
+   assertIs(min, 'min', ['number']);
+   assertIs(max, 'max', ['number']);
+   max = Math.max(min, max);
+-  if (value < min || value > max) {
++  const numericValue = Number(value);
++  if (numericValue < min || numericValue > max) {
+     // prettier-ignore
+     throw new Error(`${backtick(valueName)} must be at least ${min} and at most ${max}, but was actually ${value}`);
+   }
+ };
+ 
+-export const assertRangeOrUndefined = (value: any, valueName: string, min: number, max: number) => {
++export const assertRangeOrUndefined = (value: unknown, valueName: string, min: number, max: number) => {
+   assertIs(value, valueName, ['number', 'undefined']);
+   if (typeof value === 'number') assertRange(value, valueName, min, max);
+ };
+ 
+-export const assertMultiple = (value: any, valueName: string, multiplier: number) => {
++export const assertMultiple = (value: unknown, valueName: string, multiplier: number) => {
+   assertIs(value, valueName, ['number']);
+-  if (value % multiplier !== 0) {
++  const numericValue = Number(value);
++  if (numericValue % multiplier !== 0) {
+     // prettier-ignore
+     throw new Error(`${backtick(valueName)} must be a multiple of ${multiplier}, but was actually ${value}`);
+   }
+ };
+ 
+-export const assertInteger = (value: any, valueName: string) => {
++export const assertInteger = (value: unknown, valueName: string) => {
++  assertIs(value, valueName, ['number']);
+   if (!Number.isInteger(value)) {
+     throw new Error(`${backtick(valueName)} must be an integer, but was actually ${value}`);
+   }
+diff --git a/src/sisad-pdfme/schemas/checkboxGroup/index.ts b/src/sisad-pdfme/schemas/checkboxGroup/index.ts
+index 98d6d13..afbaff2 100644
+--- a/src/sisad-pdfme/schemas/checkboxGroup/index.ts
++++ b/src/sisad-pdfme/schemas/checkboxGroup/index.ts
+@@ -12,20 +12,13 @@ import {
+ } from '../propPanel/commonInspectorFields.js';
+ import { SquareCheck } from 'lucide-react';
+ import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
+-import {
+-  hexAlpha,
+-  buildGroupWrapper,
+-  buildGroupContainer,
+-  buildGroupLabel,
+-  buildOptionRow,
+-  buildCheckboxIndicator,
+-  buildOptionLabel,
+-} from '../groupSchemaRender.js';
+ import {
+   syncOptionGroupDesignerGeometry,
+   createDesignerOptionGroupEl,
+   syncDesignerOptionGroupPatch,
++  createOptionGroupRuntime,
+ } from '../options/optionGroupFactory.js';
++import { createOptionGroupEditor } from '../options/optionGroupEditorFactory.js';
+ import { clearSchemaRoot } from '../shared/schemaDom.js';
+ import { resolveSchemaIdByIdentity } from '../shared/schemaGuards.js';
+ 
+@@ -224,17 +217,10 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
+     );
+   };
+ 
+-  const currentOptions = normalizeOptions(schema);
+-
+-  const header = document.createElement('div');
+-  header.className = 'sisad-option-editor-header';
+-  header.textContent = 'Valores de las casillas';
+-  rootElement.appendChild(header);
+-
+-  const list = document.createElement('div');
+-  list.className = 'sisad-option-editor-list';
++  let currentOptions = normalizeOptions(schema);
+ 
+   const commitOptions = (nextOptions: CheckboxOption[]) => {
++    currentOptions = nextOptions;
+     const validIds = new Set(nextOptions.map((o) => o.optionId));
+     const selected = resolveSelectedIds(schema);
+     const nextSelected = clampSelectedIds(new Set(Array.from(selected).filter((id) => validIds.has(id))), nextOptions, schema);
+@@ -247,74 +233,36 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
+     });
+   };
+ 
+-  const renderList = () => {
+-    clearSchemaRoot(list);
+-    currentOptions.forEach((option, index) => {
+-      const row = document.createElement('div');
+-      row.className = 'sisad-option-editor-row sisad-option-editor-row--checkbox';
+-
++  const editor = createOptionGroupEditor<CheckboxOption>({
++    rootElement,
++    headerText: 'Valores de las casillas',
++    rowClassName: 'sisad-option-editor-row sisad-option-editor-row--checkbox',
++    newInputPlaceholder: 'Nueva casilla…',
++    optionInputPlaceholder: (index) => `Casilla ${index + 1}`,
++    createIndicator: () => {
+       const indicator = document.createElement('div');
+       indicator.className = 'sisad-option-editor-cb-indicator';
++      return indicator;
++    },
++    getOptions: () => currentOptions,
++    setOptions: (nextOptions) => {
++      currentOptions = nextOptions;
++    },
++    createRenamedOptions: (options, index, label) =>
++      options.map((option, optionIndex) => (optionIndex === index ? { ...option, label: label || option.label } : option)),
++    createRemovedOptions: (options, index) => {
++      const next = options.filter((_, optionIndex) => optionIndex !== index);
++      return next.length ? next : [{ optionId: 'option_1', label: 'Casilla 1' }];
++    },
++    createAddedOptions: (options, label) => {
++      const clean = label || `Casilla ${options.length + 1}`;
++      const idBase = clean.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'option';
++      return [...options, { optionId: `${idBase}_${options.length + 1}`, label: clean }];
++    },
++    onCommitOptions: commitOptions,
++  });
+ 
+-      const labelInput = document.createElement('input');
+-      labelInput.type = 'text';
+-      labelInput.value = option.label;
+-      labelInput.placeholder = `Casilla ${index + 1}`;
+-      labelInput.className = 'sisad-option-editor-input';
+-
+-      const removeBtn = document.createElement('button');
+-      removeBtn.type = 'button';
+-      removeBtn.textContent = '×';
+-      removeBtn.className = 'sisad-option-editor-remove-btn';
+-
+-      labelInput.addEventListener('change', () => {
+-        const next = currentOptions.map((o, i) => (i === index ? { ...o, label: normalizeText(labelInput.value) || o.label } : o));
+-        commitOptions(next);
+-      });
+-      removeBtn.addEventListener('click', (e) => {
+-        e.preventDefault(); e.stopPropagation();
+-        const next = currentOptions.filter((_, i) => i !== index);
+-        commitOptions(next.length ? next : [{ optionId: 'option_1', label: 'Casilla 1' }]);
+-      });
+-
+-      row.appendChild(indicator);
+-      row.appendChild(labelInput);
+-      row.appendChild(removeBtn);
+-      list.appendChild(row);
+-    });
+-  };
+-
+-  renderList();
+-  rootElement.appendChild(list);
+-
+-  const addRow = document.createElement('div');
+-  addRow.className = 'sisad-option-editor-add-row';
+-
+-  const newInput = document.createElement('input');
+-  newInput.type = 'text';
+-  newInput.placeholder = 'Nueva casilla…';
+-  newInput.className = 'sisad-option-editor-input';
+-
+-  const addBtn = document.createElement('button');
+-  addBtn.type = 'button';
+-  addBtn.textContent = '+';
+-  addBtn.className = 'sisad-option-editor-add-btn';
+-
+-  const doAdd = (e: Event) => {
+-    e.preventDefault(); e.stopPropagation();
+-    const label = normalizeText(newInput.value) || `Casilla ${currentOptions.length + 1}`;
+-    const idBase = label.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'option';
+-    commitOptions([...currentOptions, { optionId: `${idBase}_${currentOptions.length + 1}`, label }]);
+-    newInput.value = '';
+-    renderList();
+-  };
+-  addBtn.addEventListener('pointerdown', (e) => e.stopPropagation());
+-  addBtn.addEventListener('click', doAdd);
+-  newInput.addEventListener('keydown', (e) => { if (e.key === 'Enter' || e.key === 'NumpadEnter') doAdd(e); });
+-
+-  addRow.appendChild(newInput);
+-  addRow.appendChild(addBtn);
+-  rootElement.appendChild(addRow);
++  editor.render();
+ };
+ 
+ // ─── Plugin ──────────────────────────────────────────────────────────────────
+@@ -351,44 +299,32 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
+       }
+ 
+       // ── Form / Viewer mode: labeled runtime ──────────────────────────────
+-      const gap = Number.isFinite(Number(cbSchema.spacing)) ? Number(cbSchema.spacing) : 3;
+-      const isHorizontal = cbSchema.orientation === 'horizontal';
+-
+-      const wrapper = buildGroupWrapper();
+-      wrapper.setAttribute('data-checkbox-group-root', 'true');
+-      const container = buildGroupContainer({ color, gap, isHorizontal });
+-
+-      if (cbSchema.groupName) {
+-        container.appendChild(buildGroupLabel(cbSchema.groupName, color));
+-      }
+-
+-      options.forEach((option) => {
+-        const isChecked = selected.has(option.optionId);
+-        const row = buildOptionRow({
+-          color, isHorizontal, editable,
+-          role: 'checkbox',
+-          optionId: option.optionId,
+-          dataAttr: 'data-checkbox-group-option',
+-        });
+-        row.setAttribute('aria-checked', isChecked ? 'true' : 'false');
+-        row.appendChild(buildCheckboxIndicator(color, isChecked));
+-        row.appendChild(buildOptionLabel(option.label, color));
+-
+-        if (editable && onChange) {
+-          row.addEventListener('click', (e) => {
+-            e.preventDefault(); e.stopPropagation();
+-            const next = toggleSelectedIds(selected, option.optionId, options, cbSchema);
+-            onChange([
+-              { key: 'content', value: serializeSelectedIds(next) },
+-              { key: 'selectedOptionIds', value: Array.from(next) },
+-            ]);
+-          });
+-        }
+-        container.appendChild(row);
+-      });
+-
+-      wrapper.appendChild(container);
+-      rootElement.appendChild(wrapper);
++      rootElement.appendChild(
++        createOptionGroupRuntime({
++          options,
++          selectionMode: 'multiple',
++          selectedOptionIds: Array.from(selected),
++          editable,
++          color,
++          orientation: cbSchema.orientation,
++          spacing: Number.isFinite(Number(cbSchema.spacing)) ? Number(cbSchema.spacing) : 3,
++          groupName: cbSchema.groupName,
++          resolveSelection: ({ option, currentSelection }) => {
++            const next = toggleSelectedIds(
++              new Set(currentSelection.selectedOptionIds),
++              option.optionId,
++              options,
++              cbSchema,
++            );
++
++            return {
++              content: serializeSelectedIds(next),
++              selectedOptionIds: Array.from(next),
++            };
++          },
++          onChange,
++        }),
++      );
+     },
+ 
+     pdf: async (arg) => {
+diff --git a/src/sisad-pdfme/schemas/groupSchemaRender.ts b/src/sisad-pdfme/schemas/groupSchemaRender.ts
+index 1492113..1aa8ef3 100644
+--- a/src/sisad-pdfme/schemas/groupSchemaRender.ts
++++ b/src/sisad-pdfme/schemas/groupSchemaRender.ts
+@@ -22,6 +22,10 @@ export const hexAlpha = (hex: string, alpha: number): string => {
+   return `rgba(${r},${g},${b},${alpha})`;
+ };
+ 
++const applyStyles = (element: HTMLElement, styles: Record<string, string>): void => {
++  Object.assign(element.style, styles);
++};
++
+ export type GroupRenderOptions = {
+   color: string;
+   gap: number;
+@@ -32,7 +36,7 @@ export type GroupRenderOptions = {
+ /** Builds the outer wrapper (relative, full-size). */
+ export const buildGroupWrapper = (): HTMLDivElement => {
+   const el = document.createElement('div');
+-  Object.assign(el.style, {
++  applyStyles(el, {
+     position: 'relative',
+     width: '100%',
+     height: '100%',
+@@ -44,7 +48,7 @@ export const buildGroupWrapper = (): HTMLDivElement => {
+ export const buildGroupContainer = (opts: GroupRenderOptions): HTMLDivElement => {
+   const { color, gap, isHorizontal } = opts;
+   const el = document.createElement('div');
+-  Object.assign(el.style, {
++  applyStyles(el, {
+     width: '100%',
+     height: '100%',
+     boxSizing: 'border-box',
+@@ -65,7 +69,7 @@ export const buildGroupContainer = (opts: GroupRenderOptions): HTMLDivElement =>
+ export const buildGroupLabel = (name: string, color: string): HTMLDivElement => {
+   const el = document.createElement('div');
+   el.textContent = name;
+-  Object.assign(el.style, {
++  applyStyles(el, {
+     width: '100%',
+     fontSize: '8.5px',
+     fontWeight: '700',
+@@ -97,7 +101,7 @@ export const buildOptionRow = (opts: {
+   btn.setAttribute('role', opts.role);
+   btn.setAttribute(opts.dataAttr, opts.optionId);
+   btn.setAttribute('data-option-id', opts.optionId);
+-  Object.assign(btn.style, {
++  applyStyles(btn, {
+     display: 'inline-flex',
+     alignItems: 'center',
+     gap: '4px',
+@@ -133,7 +137,7 @@ const checkSvg = (color: string) =>
+ /** Checkbox indicator (square with optional checkmark). */
+ export const buildCheckboxIndicator = (color: string, isChecked: boolean): HTMLSpanElement => {
+   const el = document.createElement('span');
+-  Object.assign(el.style, {
++  applyStyles(el, {
+     width: '10px',
+     height: '10px',
+     minWidth: '10px',
+@@ -155,7 +159,7 @@ export const buildCheckboxIndicator = (color: string, isChecked: boolean): HTMLS
+ /** Radio indicator (circle with optional center dot). */
+ export const buildRadioIndicator = (color: string, isSelected: boolean): HTMLSpanElement => {
+   const el = document.createElement('span');
+-  Object.assign(el.style, {
++  applyStyles(el, {
+     width: '10px',
+     height: '10px',
+     minWidth: '10px',
+@@ -170,7 +174,7 @@ export const buildRadioIndicator = (color: string, isSelected: boolean): HTMLSpa
+   });
+   if (isSelected) {
+     const dot = document.createElement('span');
+-    Object.assign(dot.style, {
++    applyStyles(dot, {
+       width: '4px',
+       height: '4px',
+       borderRadius: '50%',
+@@ -186,7 +190,7 @@ export const buildRadioIndicator = (color: string, isSelected: boolean): HTMLSpa
+ export const buildOptionLabel = (text: string, color: string): HTMLSpanElement => {
+   const el = document.createElement('span');
+   el.textContent = text;
+-  Object.assign(el.style, {
++  applyStyles(el, {
+     overflow: 'hidden',
+     textOverflow: 'ellipsis',
+     whiteSpace: 'nowrap',
+@@ -206,7 +210,7 @@ export const buildAddOptionButton = (color: string, title: string, dataAttr: str
+   btn.textContent = '+';
+   btn.title = title;
+   btn.setAttribute(dataAttr, 'true');
+-  Object.assign(btn.style, {
++  applyStyles(btn, {
+     position: 'absolute',
+     bottom: '1px',
+     left: '50%',
+diff --git a/src/sisad-pdfme/schemas/options/optionGroupFactory.ts b/src/sisad-pdfme/schemas/options/optionGroupFactory.ts
+index 77fa300..b83d6af 100644
+--- a/src/sisad-pdfme/schemas/options/optionGroupFactory.ts
++++ b/src/sisad-pdfme/schemas/options/optionGroupFactory.ts
+@@ -73,10 +73,6 @@ export const syncDesignerOptionGroupPatch = (
+   '__designer.group.lockedAsGroup': schema.lockedAsGroup !== false,
+ });
+ 
+-// ─── Backward compat ──────────────────────────────────────────────────────────
+-// Keep the old export so callers importing createOptionGroupPlugin don't break.
+-export const createOptionGroupPlugin = createOptionGroupSchemaPlugin as unknown as (config: OptionGroupPluginConfig) => { config: OptionGroupPluginConfig; layout: OptionGroupLayoutConfig };
+-
+ // ─── Designer DOM builder ─────────────────────────────────────────────────────
+ 
+ /**
+@@ -206,4 +202,4 @@ export function createOptionGroupSchemaPlugin(config: OptionGroupPluginConfig):
+   return { config, layout: getOptionGroupLayoutConfig(config.type) };
+ }
+ 
+-export default createOptionGroupPlugin;
++export default createOptionGroupSchemaPlugin;
+diff --git a/src/sisad-pdfme/schemas/options/optionGroupPdfRender.ts b/src/sisad-pdfme/schemas/options/optionGroupPdfRender.ts
+index fedccb9..739bb41 100644
+--- a/src/sisad-pdfme/schemas/options/optionGroupPdfRender.ts
++++ b/src/sisad-pdfme/schemas/options/optionGroupPdfRender.ts
+@@ -1,20 +1,21 @@
++import type { PDFRenderProps, Schema } from '@sisad-pdfme/common';
+ import type { OptionItem } from './optionTypes.js';
+-import { convertForPdfLayoutProps, hex2PrintingColor } from '../utils/convertForPdfLayoutProps.js';
++import { convertForPdfLayoutProps, hex2PrintingColor } from '../utils.js';
+ 
+ export type OptionGroupPdfParams = {
+-  page: Record<string, (...args: unknown[]) => unknown>;
+-  x: number;
+-  y: number;
+-  width: number;
+-  schema: Record<string, unknown>;
++  page: PDFRenderProps<Schema>['page'];
++  schema: Schema;
+   options: OptionItem[];
+   selectionMode: 'single' | 'multiple';
+   color?: string;
+ };
+ 
+ // Simple PDF renderer for option groups (draws small radio circles or checkbox squares)
+-export const renderOptionGroupPdf = ({ page, x, y, width, schema, options, selectionMode, color = '#1677ff' }: OptionGroupPdfParams) => {
+-  const { top, left } = convertForPdfLayoutProps({ x, y, width }, schema);
++export const renderOptionGroupPdf = ({ page, schema, options, selectionMode, color = '#1677ff' }: OptionGroupPdfParams) => {
++  const pageHeight = page.getHeight();
++  const {
++    position: { x: left, y: top },
++  } = convertForPdfLayoutProps({ schema, pageHeight, applyRotateTranslate: false });
+   const printingColor = hex2PrintingColor(color);
+ 
+   const BOX_SIZE = 8; // small marker in PDF units
+@@ -28,13 +29,28 @@ export const renderOptionGroupPdf = ({ page, x, y, width, schema, options, selec
+ 
+     if (selectionMode === 'single') {
+       // radio circle
+-      page.drawCircle({ x: markerX + BOX_SIZE / 2, y: cursorY + BOX_SIZE / 2, r: BOX_SIZE / 2, color: printingColor, border: { color: printingColor, width: 0.8 } });
++      page.drawCircle({
++        x: markerX + BOX_SIZE / 2,
++        y: cursorY + BOX_SIZE / 2,
++        size: BOX_SIZE / 2,
++        color: printingColor,
++        borderColor: printingColor,
++        borderWidth: 0.8,
++      });
+     } else {
+       // checkbox square
+-      page.drawRect({ x: markerX, y: cursorY, w: BOX_SIZE, h: BOX_SIZE, color: null, border: { color: printingColor, width: 0.8 } });
++      page.drawRectangle({
++        x: markerX,
++        y: cursorY,
++        width: BOX_SIZE,
++        height: BOX_SIZE,
++        color: undefined,
++        borderColor: printingColor,
++        borderWidth: 0.8,
++      });
+     }
+ 
+-    page.drawText(String(opt.label || opt.optionId), { x: labelX, y: cursorY + 1, size: 10, color: '#000000' });
++    page.drawText(String(opt.label || opt.optionId), { x: labelX, y: cursorY + 1, size: 10, color: hex2PrintingColor('#000000') });
+ 
+     cursorY += BOX_SIZE + GAP;
+   });
+diff --git a/src/sisad-pdfme/schemas/options/optionGroupRenderer.ts b/src/sisad-pdfme/schemas/options/optionGroupRenderer.ts
+index cdc091a..6c1c39a 100644
+--- a/src/sisad-pdfme/schemas/options/optionGroupRenderer.ts
++++ b/src/sisad-pdfme/schemas/options/optionGroupRenderer.ts
+@@ -19,6 +19,17 @@ export type OptionGroupRuntimeParams = {
+   orientation?: 'vertical' | 'horizontal';
+   spacing?: number;
+   groupName?: string;
++  resolveSelection?: (params: {
++    option: OptionItem;
++    currentSelection: {
++      selectedOptionId?: string | null;
++      selectedOptionIds: string[];
++    };
++  }) => {
++    content: string;
++    selectedOptionId?: string;
++    selectedOptionIds?: string[];
++  } | null;
+   onChange?: (arg: { key: string; value: unknown } | Array<{ key: string; value: unknown }>) => void;
+ };
+ 
+@@ -34,6 +45,7 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
+     orientation = 'vertical',
+     spacing = 3,
+     groupName,
++    resolveSelection,
+     onChange,
+   } = params;
+ 
+@@ -68,6 +80,26 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
+         e.preventDefault();
+         e.stopPropagation();
+ 
++        if (resolveSelection) {
++          const nextSelection = resolveSelection({
++            option: opt,
++            currentSelection: {
++              selectedOptionId,
++              selectedOptionIds: Array.from(selectedSet),
++            },
++          });
++
++          if (nextSelection) {
++            onChange(
++              Object.entries(nextSelection).map(([key, value]) => ({ key, value })) as Array<{
++                key: string;
++                value: unknown;
++              }>,
++            );
++          }
++          return;
++        }
++
+         if (selectionMode === 'single') {
+           onChange([
+             { key: 'content', value: opt.optionId },
+diff --git a/src/sisad-pdfme/schemas/radioGroup/index.ts b/src/sisad-pdfme/schemas/radioGroup/index.ts
+index 2983f8a..056ca93 100644
+--- a/src/sisad-pdfme/schemas/radioGroup/index.ts
++++ b/src/sisad-pdfme/schemas/radioGroup/index.ts
+@@ -48,21 +48,15 @@ const DESIGNER_BOX_GAP  = RADIO_GROUP_LAYOUT.boxGap;   // px
+ 
+ const DESIGNER_BOX_MM = computeOptionGroupDesignerWidthMM(RADIO_GROUP_LAYOUT);
+ 
+-import { normalizeOptionsFromSource, normalizeOptionId } from '../options/optionModel.js';
++import { normalizeOptionsFromSource } from '../options/optionModel.js';
+ import { resolveSelectedOptionId as resolveSelectedFromOptions } from '../options/optionValueAdapter.js';
+-import {
+-  buildGroupWrapper,
+-  buildGroupContainer,
+-  buildGroupLabel,
+-  buildOptionRow,
+-  buildRadioIndicator,
+-  buildOptionLabel,
+-} from '../groupSchemaRender.js';
+ import {
+   syncOptionGroupDesignerGeometry,
+   createDesignerOptionGroupEl,
+   syncDesignerOptionGroupPatch,
++  createOptionGroupRuntime,
+ } from '../options/optionGroupFactory.js';
++import { createOptionGroupEditor } from '../options/optionGroupEditorFactory.js';
+ import { clearSchemaRoot } from '../shared/schemaDom.js';
+ import { resolveSchemaIdByIdentity } from '../shared/schemaGuards.js';
+ 
+@@ -89,105 +83,6 @@ const resolveSelectedOptionId = (
+ const calculateDesignerHeight = (optionsCount: number): number =>
+   computeOptionGroupDesignerHeightMM(optionsCount, RADIO_GROUP_LAYOUT);
+ 
+-
+-const createRuntimeCircle = ({
+-  selected,
+-  editable,
+-  color,
+-  option,
+-  onSelect,
+-}: {
+-  selected: boolean;
+-  editable: boolean;
+-  color: string;
+-  option: RadioOption;
+-  onSelect?: () => void;
+-}): HTMLButtonElement => {
+-  const button = document.createElement('button');
+-
+-  button.type = 'button';
+-  button.setAttribute('role', 'radio');
+-  button.setAttribute('data-radio-group-option', option.optionId);
+-  button.setAttribute('aria-label', option.label);
+-  button.setAttribute('aria-checked', selected ? 'true' : 'false');
+-
+-  Object.assign(button.style, {
+-    width: '18px',
+-    height: '18px',
+-    minWidth: '18px',
+-    minHeight: '18px',
+-    border: `1.5px solid ${color}`,
+-    borderRadius: '999px',
+-    background: selected
+-      ? `radial-gradient(circle at center, ${color} 0 35%, transparent 38% 100%)`
+-      : '#ffffff',
+-    boxSizing: 'border-box',
+-    padding: '0',
+-    margin: '0',
+-    cursor: editable ? 'pointer' : 'default',
+-    pointerEvents: editable ? 'auto' : 'none',
+-  });
+-
+-  if (editable && onSelect) {
+-    button.addEventListener('click', (event) => {
+-      event.preventDefault();
+-      event.stopPropagation();
+-      onSelect();
+-    });
+-  }
+-
+-  return button;
+-};
+-
+-// Runtime builder: reuse shared render helpers to avoid duplicating DOM logic
+-// between checkboxGroup and radioGroup.
+-const createRuntimeRadioGroup = ({
+-  schema,
+-  options,
+-  selectedOptionId,
+-  editable,
+-  color,
+-  onChange,
+-}: {
+-  schema: RadioGroupSchema;
+-  options: RadioOption[];
+-  selectedOptionId: string;
+-  editable: boolean;
+-  color: string;
+-  onChange?: (arg: { key: string; value: unknown }) => void;
+-}): HTMLDivElement => {
+-  const wrapper = buildGroupWrapper();
+-  const spacing = Number.isFinite(Number(schema.spacing)) ? Number(schema.spacing) : DESIGNER_BOX_GAP;
+-  const container = buildGroupContainer({ color, gap: spacing, isHorizontal: schema.orientation === 'horizontal' });
+-
+-  if (schema.groupName) container.appendChild(buildGroupLabel(schema.groupName, color));
+-
+-  options.forEach((option) => {
+-    const selected = option.optionId === selectedOptionId;
+-    const row = buildOptionRow({ color, isHorizontal: schema.orientation === 'horizontal', editable, role: 'radio', optionId: option.optionId, dataAttr: 'data-radio-group-option' });
+-    row.setAttribute('aria-checked', selected ? 'true' : 'false');
+-    row.appendChild(buildRadioIndicator(color, selected));
+-    row.appendChild(buildOptionLabel(option.label, color));
+-
+-    if (editable && onChange) {
+-      row.addEventListener('click', (e) => {
+-        e.preventDefault();
+-        e.stopPropagation();
+-        (onChange as unknown as (changes: Array<{ key: string; value: unknown }>) => void)([
+-          { key: 'content', value: option.optionId },
+-          { key: 'selectedOptionId', value: option.optionId },
+-        ]);
+-      });
+-    }
+-
+-    container.appendChild(row);
+-  });
+-
+-  wrapper.appendChild(container);
+-  return wrapper;
+-};
+-
+-
+ // ─── PropPanel options editor ────────────────────────────────────────────────
+ 
+ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
+@@ -221,13 +116,15 @@ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
+     );
+   };
+ 
+-  const commitOptions = (nextOptions: RadioOption[]) => {
++  const commitOptions = (nextOptions: RadioOption[], nextSelected?: string) => {
+     currentOptions = nextOptions.length
+       ? nextOptions
+       : [{ optionId: 'option_1', label: 'Opción 1' }];
+ 
+-    currentSelected = currentOptions.some((option) => option.optionId === currentSelected)
+-      ? currentSelected
++    currentSelected = nextSelected && currentOptions.some((option) => option.optionId === nextSelected)
++      ? nextSelected
++      : currentOptions.some((option) => option.optionId === currentSelected)
++        ? currentSelected
+       : currentOptions[0]?.optionId || 'option_1';
+ 
+     commit({
+@@ -243,144 +140,76 @@ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
+     });
+   };
+ 
+-  const header = document.createElement('div');
+-  header.className = 'sisad-option-editor-header';
+-  header.textContent = 'Opciones del radio button';
+-  rootElement.appendChild(header);
+-
+-  const list = document.createElement('div');
+-  list.className = 'sisad-option-editor-list';
+-
+-  const renderList = () => {
+-    clearSchemaRoot(list);
+-
+-    currentOptions.forEach((option, index) => {
+-      const row = document.createElement('div');
+-      row.className = 'sisad-option-editor-row sisad-option-editor-row--radio';
+-
+-      const indicator = createRuntimeCircle({
+-        selected: option.optionId === currentSelected,
+-        editable: true,
+-        color: schema.color || '#1677ff',
+-        option,
+-        onSelect: () => {
+-          currentSelected = option.optionId;
+-
+-          commit({
+-            content: option.optionId,
+-            selectedOptionId: option.optionId,
+-            defaultSelectedOptionId: option.optionId,
+-          });
+-
+-          renderList();
+-        },
++  const editor = createOptionGroupEditor<RadioOption>({
++    rootElement,
++    headerText: 'Opciones del radio button',
++    rowClassName: 'sisad-option-editor-row sisad-option-editor-row--radio',
++    newInputPlaceholder: 'Nueva opción…',
++    optionInputPlaceholder: (index) => `Opción ${index + 1}`,
++    createIndicator: (option) => {
++      const button = document.createElement('button');
++
++      button.type = 'button';
++      button.setAttribute('role', 'radio');
++      button.setAttribute('data-radio-group-option', option.optionId);
++      button.setAttribute('aria-label', option.label);
++      button.setAttribute('aria-checked', option.optionId === currentSelected ? 'true' : 'false');
++
++      Object.assign(button.style, {
++        width: '18px',
++        height: '18px',
++        minWidth: '18px',
++        minHeight: '18px',
++        border: `1.5px solid ${schema.color || '#1677ff'}`,
++        borderRadius: '999px',
++        background: option.optionId === currentSelected
++          ? `radial-gradient(circle at center, ${schema.color || '#1677ff'} 0 35%, transparent 38% 100%)`
++          : '#ffffff',
++        boxSizing: 'border-box',
++        padding: '0',
++        margin: '0',
++        cursor: 'pointer',
++        pointerEvents: 'auto',
+       });
+ 
+-      const labelInput = document.createElement('input');
+-      labelInput.type = 'text';
+-      labelInput.value = option.label;
+-      labelInput.placeholder = `Opción ${index + 1}`;
+-      labelInput.className = 'sisad-option-editor-input';
+-
+-      const removeBtn = document.createElement('button');
+-      removeBtn.type = 'button';
+-      removeBtn.textContent = '×';
+-      removeBtn.className = 'sisad-option-editor-remove-btn';
+-      removeBtn.dataset.disabled = String(currentOptions.length <= 1);
+-
+-      labelInput.addEventListener('change', () => {
+-        const nextOptions = currentOptions.map((item, optionIndex) =>
+-          optionIndex === index
+-            ? {
+-                ...item,
+-                label: normalizeText(labelInput.value) || item.label,
+-              }
+-            : item,
+-        );
+-
+-        commitOptions(nextOptions);
+-        renderList();
+-      });
+-
+-      removeBtn.addEventListener('click', (event) => {
++      button.addEventListener('click', (event) => {
+         event.preventDefault();
+         event.stopPropagation();
+-
+-        if (currentOptions.length <= 1) return;
+-
+-        const nextOptions = currentOptions.filter((_, optionIndex) => optionIndex !== index);
+-        commitOptions(nextOptions);
+-        renderList();
++        currentSelected = option.optionId;
++        commitOptions(currentOptions, option.optionId);
++        editor.render();
+       });
+ 
+-      row.appendChild(indicator);
+-      row.appendChild(labelInput);
+-      row.appendChild(removeBtn);
+-      list.appendChild(row);
+-    });
+-  };
+-
+-  renderList();
+-  rootElement.appendChild(list);
+-
+-  const addRow = document.createElement('div');
+-  addRow.className = 'sisad-option-editor-add-row';
+-
+-  const newInput = document.createElement('input');
+-  newInput.type = 'text';
+-  newInput.placeholder = 'Nueva opción…';
+-  newInput.className = 'sisad-option-editor-input';
+-
+-  const addBtn = document.createElement('button');
+-  addBtn.type = 'button';
+-  addBtn.textContent = '+';
+-  addBtn.className = 'sisad-option-editor-add-btn';
+-
+-  const doAdd = (event: Event) => {
+-    event.preventDefault();
+-    event.stopPropagation();
+-
+-    const label = normalizeText(newInput.value) || `Opción ${currentOptions.length + 1}`;
+-    const nextIndex = currentOptions.length + 1;
+-
+-    const nextOption: RadioOption = {
+-      optionId: `option_${nextIndex}`,
+-      label,
+-    };
+-
+-    const nextOptions = [...currentOptions, nextOption];
+-
+-    currentOptions = nextOptions;
+-    currentSelected = currentSelected || nextOption.optionId;
+-
+-    commit({
+-      options: nextOptions,
+-      content: currentSelected,
+-      selectedOptionId: currentSelected,
+-      defaultSelectedOptionId: currentSelected,
+-      orientation: 'vertical',
+-      spacing: DESIGNER_BOX_GAP,
+-      // width/height in mm (schema coordinate system, not CSS pixels)
+-      width: DESIGNER_BOX_MM,
+-      height: calculateDesignerHeight(nextOptions.length),
+-    });
+-
+-    newInput.value = '';
+-    renderList();
+-  };
+-
+-  addBtn.addEventListener('pointerdown', (event) => event.stopPropagation());
+-  addBtn.addEventListener('click', doAdd);
+-
+-  newInput.addEventListener('keydown', (event) => {
+-    if (event.key === 'Enter' || event.key === 'NumpadEnter') {
+-      doAdd(event);
+-    }
++      return button;
++    },
++    getOptions: () => currentOptions,
++    setOptions: (nextOptions) => {
++      currentOptions = nextOptions;
++    },
++    createRenamedOptions: (options, index, label) =>
++      options.map((item, optionIndex) =>
++        optionIndex === index ? { ...item, label: label || item.label } : item,
++      ),
++    createRemovedOptions: (options, index) => {
++      if (options.length <= 1) return options;
++      const nextOptions = options.filter((_, optionIndex) => optionIndex !== index);
++      return nextOptions.length ? nextOptions : [{ optionId: 'option_1', label: 'Opción 1' }];
++    },
++    createAddedOptions: (options, label) => {
++      const clean = label || `Opción ${options.length + 1}`;
++      const nextIndex = options.length + 1;
++      const nextOption: RadioOption = {
++        optionId: `option_${nextIndex}`,
++        label: clean,
++      };
++      return [...options, nextOption];
++    },
++    onCommitOptions: (nextOptions) => {
++      commitOptions(nextOptions);
++    },
+   });
+ 
+-  addRow.appendChild(newInput);
+-  addRow.appendChild(addBtn);
+-  rootElement.appendChild(addRow);
++  editor.render();
+ };
+ 
+ // ─── Plugin ──────────────────────────────────────────────────────────────────
+@@ -418,16 +247,23 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
+         return;
+       }
+ 
+-      const runtimeGroup = createRuntimeRadioGroup({
+-        schema: radioSchema,
+-        options,
+-        selectedOptionId,
+-        editable,
+-        color,
+-        onChange,
+-      });
+-
+-      rootElement.appendChild(runtimeGroup);
++      rootElement.appendChild(
++        createOptionGroupRuntime({
++          options,
++          selectionMode: 'single',
++          selectedOptionId,
++          editable,
++          color,
++          orientation: radioSchema.orientation,
++          spacing: Number.isFinite(Number(radioSchema.spacing)) ? Number(radioSchema.spacing) : DESIGNER_BOX_GAP,
++          groupName: radioSchema.groupName,
++          resolveSelection: ({ option }) => ({
++            content: option.optionId,
++            selectedOptionId: option.optionId,
++          }),
++          onChange,
++        }),
++      );
+     },
+ 
+     pdf: async (arg) => {
+diff --git a/src/sisad-pdfme/schemas/schemaBuilder.ts b/src/sisad-pdfme/schemas/schemaBuilder.ts
+index 3f8ba96..ad10290 100644
+--- a/src/sisad-pdfme/schemas/schemaBuilder.ts
++++ b/src/sisad-pdfme/schemas/schemaBuilder.ts
+@@ -1,5 +1,6 @@
+ import type { Plugin, Schema } from '@sisad-pdfme/common';
+ import type { IconNode } from 'lucide-react';
++import { isRecord } from '../ui/components/Designer/shared/objectGuards.js';
+ import { createSvgStr } from './utils.js';
+ 
+ export type SchemaCapability =
+@@ -38,11 +39,11 @@ export const renderLucideIcon = (icon: unknown, attrs?: Record<string, string>)
+ // Wrap UI handlers to dedupe identical onChange emissions using a stable JSON signature.
+ const stableJsonSignature = (v: unknown) => {
+   try {
+-    const canon = (function canon(x: any): any {
++    const canon = (function canon(x: unknown): unknown {
+       if (x === null || typeof x !== 'object') return x;
+       if (Array.isArray(x)) return x.map(canon);
+       const keys = Object.keys(x).sort();
+-      const out: any = {};
++      const out: Record<string, unknown> = {};
+       keys.forEach((k) => (out[k] = canon(x[k])));
+       return out;
+     })(v);
+@@ -56,37 +57,61 @@ const stableJsonSignature = (v: unknown) => {
+ const _lastSigBySchemaId = new Map<string, string>();
+ const _lastSigByElement = new WeakMap<Element, string>();
+ 
++const getOnChangeCacheKey = (schema: unknown, rootElement: unknown): string | Element | null => {
++  if (isRecord(schema) && typeof schema.id === 'string' && schema.id) {
++    return schema.id;
++  }
++  if (rootElement instanceof Element) {
++    return rootElement;
++  }
++  return null;
++};
++
++const shouldSkipDuplicateEmission = (cacheKey: string | Element | null, signature: string): boolean => {
++  if (typeof cacheKey === 'string') {
++    const last = _lastSigBySchemaId.get(cacheKey);
++    if (last === signature) return true;
++    _lastSigBySchemaId.set(cacheKey, signature);
++    return false;
++  }
++
++  if (cacheKey instanceof Element) {
++    const last = _lastSigByElement.get(cacheKey);
++    if (last === signature) return true;
++    _lastSigByElement.set(cacheKey, signature);
++  }
++
++  return false;
++};
++
+ export const createSchemaPlugin = <T extends Schema>(
+   plugin: Plugin<T>,
+   definition: SchemaDefinition,
+ ): SchemaPluginWithMetadata<T> => {
+-  const wrapped: any = { ...plugin };
++  const wrapped: Plugin<T> & { designer?: SchemaDefinition } = { ...plugin };
+ 
+   if (typeof plugin.ui === 'function') {
+-    wrapped.ui = async (arg: any) => {
+-      const { rootElement, schema } = arg || {};
+-      const originalOnChange = arg?.onChange;
++    wrapped.ui = async (arg: Parameters<NonNullable<typeof plugin.ui>>[0]) => {
++      const uiArg: Record<string, unknown> = isRecord(arg) ? arg : {};
++      const rootElement = uiArg.rootElement;
++      const schema = uiArg.schema;
++      const originalOnChange =
++        typeof uiArg.onChange === 'function'
++          ? (uiArg.onChange as (payload: unknown) => unknown)
++          : undefined;
+ 
+       const dedupeOnChange = (payload: unknown) => {
+-        if (typeof originalOnChange !== 'function') return originalOnChange?.(payload);
++        if (typeof originalOnChange !== 'function') return undefined;
+         try {
+           const sig = stableJsonSignature(payload);
+-          if (schema && typeof schema.id === 'string' && schema.id) {
+-            const last = _lastSigBySchemaId.get(schema.id);
+-            if (last === sig) return;
+-            _lastSigBySchemaId.set(schema.id, sig);
+-          } else if (rootElement instanceof Element) {
+-            const last = _lastSigByElement.get(rootElement);
+-            if (last === sig) return;
+-            _lastSigByElement.set(rootElement, sig);
+-          }
++          if (shouldSkipDuplicateEmission(getOnChangeCacheKey(schema, rootElement), sig)) return;
+         } catch (e) {
+           // ignore signature errors and proceed
+         }
+         return originalOnChange(payload);
+       };
+ 
+-      const newArg = { ...arg, onChange: dedupeOnChange };
++      const newArg = { ...uiArg, onChange: dedupeOnChange } as Parameters<NonNullable<typeof plugin.ui>>[0];
+       return plugin.ui(newArg);
+     };
+   }
+@@ -101,13 +126,10 @@ export const getSchemaDefinition = (plugin: Plugin<Schema> | SchemaPluginWithMet
+   'designer' in plugin ? plugin.designer : null;
+ 
+ const isPluginLike = (value: unknown): value is Plugin<Schema> =>
+-  Boolean(
+-    value &&
+-      typeof value === 'object' &&
+-      'pdf' in (value as Record<string, unknown>) &&
+-      'ui' in (value as Record<string, unknown>) &&
+-      'propPanel' in (value as Record<string, unknown>),
+-  );
++  isRecord(value) &&
++  'pdf' in value &&
++  'ui' in value &&
++  'propPanel' in value;
+ 
+ const resolveDefinitionFromPlugin = (key: string, plugin: Plugin<Schema>) => {
+   const definition = getSchemaDefinition(plugin as SchemaPluginWithMetadata<Schema>);
+diff --git a/src/sisad-pdfme/schemas/shared/schemaGuards.ts b/src/sisad-pdfme/schemas/shared/schemaGuards.ts
+index 79fd3a9..54c2978 100644
+--- a/src/sisad-pdfme/schemas/shared/schemaGuards.ts
++++ b/src/sisad-pdfme/schemas/shared/schemaGuards.ts
+@@ -1,6 +1,6 @@
+ /**
+  * Type guards for sisad-pdfme schema families.
+- * Replace `(schema as any).options` patterns with safe narrowing.
++ * Replace weak schema casts with safe narrowing.
+  *
+  * All guards operate on `Record<string, unknown>` so they work at
+  * JSON/snapshot boundaries without requiring the full `Schema` zod type.
+@@ -119,13 +119,15 @@ export type RawOptionItem = {
+   disabled?: boolean;
+ };
+ 
++const isRecord = (value: unknown): value is Record<string, unknown> =>
++  Boolean(value) && typeof value === 'object' && !Array.isArray(value);
++
+ /** Narrows an unknown item to RawOptionItem if it has the required optionId+label. */
+ export function isRawOptionItem(item: unknown): item is RawOptionItem {
+   return (
+-    typeof item === 'object' &&
+-    item !== null &&
+-    typeof (item as Record<string, unknown>).optionId === 'string' &&
+-    typeof (item as Record<string, unknown>).label === 'string'
++    isRecord(item) &&
++    typeof item.optionId === 'string' &&
++    typeof item.label === 'string'
+   );
+ }
+ 
+@@ -138,6 +140,7 @@ export function getSchemaOptions(schema: MinimalSchema): RawOptionItem[] {
+ // ─── Identity lookup ────────────────────────────────────────────────────────
+ 
+ export type SchemaIdentityLike = MinimalSchema & {
++  id?: string;
+   type?: string;
+   name?: string | null;
+   position?: { x?: number | null; y?: number | null } | null;
+@@ -160,5 +163,5 @@ export function resolveSchemaIdByIdentity(
+       candidate.name === schema.name &&
+       candidate.position?.x === schema.position?.x &&
+       candidate.position?.y === schema.position?.y,
+-  )?.id as string | undefined;
++  )?.id;
+ }
+diff --git a/src/sisad-pdfme/shared/snapshot.ts b/src/sisad-pdfme/shared/snapshot.ts
+index 5d276e2..3a218bf 100644
+--- a/src/sisad-pdfme/shared/snapshot.ts
++++ b/src/sisad-pdfme/shared/snapshot.ts
+@@ -12,6 +12,7 @@
+  *   Si divergen al cargar, SnapshotRecipient.color gana (fue editado después).
+  */
+ import type { SchemaDesignerMeta } from './schemaDesignerMeta.js';
++import { asRecord } from '../ui/components/Designer/shared/objectGuards.js';
+ 
+ /** Versión actual del formato snapshot */
+ export const SNAPSHOT_VERSION = '2.0.0';
+@@ -130,7 +131,8 @@ export interface SerializeOptions {
+ /** Helper: detecta si un objeto crudo es un snapshot legacy (pdfme ~4.x) */
+ export function isLegacySnapshot(raw: unknown): boolean {
+   if (!raw || typeof raw !== 'object') return false;
+-  const obj = raw as Record<string, unknown>;
++  const obj = asRecord(raw);
++  if (!obj) return false;
+   // Sin campo version → legacy pdfme 4.x
+   if (!obj.version) return true;
+   // version < "2.0.0" → legacy
+diff --git a/src/sisad-pdfme/shared/snapshotAdapter.ts b/src/sisad-pdfme/shared/snapshotAdapter.ts
+index 3a18fb3..231a983 100644
+--- a/src/sisad-pdfme/shared/snapshotAdapter.ts
++++ b/src/sisad-pdfme/shared/snapshotAdapter.ts
+@@ -25,6 +25,7 @@ import {
+   SNAPSHOT_VERSION,
+   isLegacySnapshot,
+ } from './snapshot.js';
++import { asRecord } from '../ui/components/Designer/shared/objectGuards.js';
+ 
+ export interface ValidationResult {
+   valid: boolean;
+@@ -96,7 +97,7 @@ class SnapshotAdapterImpl {
+     }
+ 
+     // Legacy pdfme ~4.x: { schemas: SchemaPageArray[][], basePdf?: string, ... }
+-    const legacy = raw as Record<string, unknown>;
++    const legacy = asRecord(raw) || {};
+     const now = new Date().toISOString();
+     const legacySchemas = this._extractLegacySchemas(legacy);
+     const legacyRecipients = this._extractLegacyRecipients(legacy);
+@@ -104,7 +105,7 @@ class SnapshotAdapterImpl {
+     const documents: SnapshotDocument[] = [
+       {
+         documentId: this._generateId(),
+-        name: (legacy.name as string) || 'Documento importado',
++        name: typeof legacy.name === 'string' ? legacy.name : 'Documento importado',
+         order: 0,
+         pages: legacySchemas.map((pageSchemas, index) => ({
+           pageNumber: index + 1,
+@@ -118,11 +119,11 @@ class SnapshotAdapterImpl {
+ 
+     return {
+       version: SNAPSHOT_VERSION,
+-      templateId: (legacy.templateId as string) || this._generateId(),
++      templateId: typeof legacy.templateId === 'string' ? legacy.templateId : this._generateId(),
+       createdAt: now,
+       updatedAt: now,
+       metadata: {
+-        name: (legacy.name as string) || 'Template migrado',
++        name: typeof legacy.name === 'string' ? legacy.name : 'Template migrado',
+         createdByUserId: 'migration',
+         description: 'Migrado automáticamente desde formato pdfme v1',
+       },
+@@ -148,7 +149,10 @@ class SnapshotAdapterImpl {
+       return { valid: false, errors: ['El snapshot no es un objeto válido'] };
+     }
+ 
+-    const obj = snapshot as Record<string, unknown>;
++    const obj = asRecord(snapshot);
++    if (!obj) {
++      return { valid: false, errors: ['El snapshot no es un objeto válido'] };
++    }
+ 
+     if (!obj.version || typeof obj.version !== 'string') {
+       errors.push('Campo "version" faltante o inválido');
+@@ -177,19 +181,21 @@ class SnapshotAdapterImpl {
+ 
+   // ── Privados de migración ──────────────────────────────────────────────
+ 
+-  private _extractLegacySchemas(legacy: Record<string, unknown>): unknown[][] {
++  private _extractLegacySchemas(legacy: unknown): unknown[][] {
++    const record = asRecord(legacy) || {};
+     // pdfme v4: { schemas: [[...], [...]] } o { schemas: { '0': [...] } }
+-    const schemas = legacy.schemas;
++    const schemas = record.schemas;
+     if (Array.isArray(schemas)) return schemas as unknown[][];
+-    if (schemas && typeof schemas === 'object') {
++    if (schemas && typeof schemas === 'object' && !Array.isArray(schemas)) {
+       return Object.values(schemas as Record<string, unknown[]>);
+     }
+     return [[]];
+   }
+ 
+-  private _extractLegacyRecipients(legacy: Record<string, unknown>): SnapshotRecipient[] {
++  private _extractLegacyRecipients(legacy: unknown): SnapshotRecipient[] {
++    const record = asRecord(legacy) || {};
+     // pdfme v4 no tiene recipients nativos — retornar vacío
+-    const recipients = legacy.recipients;
++    const recipients = record.recipients;
+     if (Array.isArray(recipients)) {
+       return recipients as SnapshotRecipient[];
+     }
+@@ -199,10 +205,23 @@ class SnapshotAdapterImpl {
+   private _extractLegacyAssignments(legacyPages: unknown[][]): SnapshotAssignment[] {
+     const assignments: SnapshotAssignment[] = [];
+     for (const page of legacyPages) {
+-      for (const schema of page as Record<string, unknown>[]) {
+-        const uid = (schema.schemaUid || schema.id || schema.name) as string;
++      for (const schema of page) {
++        const schemaRecord = asRecord(schema);
++        if (!schemaRecord) continue;
++        const uid = typeof schemaRecord.schemaUid === 'string'
++          ? schemaRecord.schemaUid
++          : typeof schemaRecord.id === 'string'
++            ? schemaRecord.id
++            : typeof schemaRecord.name === 'string'
++              ? schemaRecord.name
++              : '';
+         if (!uid) continue;
+-        const recipientId = (schema.ownerRecipientId || schema.recipientId) as string;
++        const recipientId =
++          typeof schemaRecord.ownerRecipientId === 'string'
++            ? schemaRecord.ownerRecipientId
++            : typeof schemaRecord.recipientId === 'string'
++              ? schemaRecord.recipientId
++              : '';
+         if (recipientId) {
+           assignments.push({
+             schemaUid: uid,
+@@ -220,20 +239,35 @@ class SnapshotAdapterImpl {
+     pageNumber: number,
+     documentId: string,
+   ): SchemaWithDesigner {
+-    const s = schema as Record<string, unknown>;
+-    const existingMeta = s.__designer as Record<string, unknown> | undefined;
++    const s = asRecord(schema) || {};
++    const existingMeta = asRecord(s.__designer);
+ 
+     return {
+       ...s,
+       __designer: {
+         ...existingMeta,
+-        schemaUid: (existingMeta?.schemaUid || s.schemaUid || s.id || this._generateId()) as string,
++        schemaUid:
++          (typeof existingMeta?.schemaUid === 'string' && existingMeta.schemaUid) ||
++          (typeof s.schemaUid === 'string' && s.schemaUid) ||
++          (typeof s.id === 'string' && s.id) ||
++          this._generateId(),
+         templateVersion: SNAPSHOT_VERSION,
+         documentId,
+         pageNumber,
+-        recipientId: (existingMeta?.recipientId || s.ownerRecipientId || s.recipientId) as string | undefined,
+-        recipientName: (existingMeta?.recipientName || s.ownerRecipientName) as string | undefined,
+-        recipientColor: (existingMeta?.recipientColor || s.userColor || s.ownerColor) as string | undefined,
++        recipientId:
++          (typeof existingMeta?.recipientId === 'string' && existingMeta.recipientId) ||
++          (typeof s.ownerRecipientId === 'string' && s.ownerRecipientId) ||
++          (typeof s.recipientId === 'string' && s.recipientId) ||
++          undefined,
++        recipientName:
++          (typeof existingMeta?.recipientName === 'string' && existingMeta.recipientName) ||
++          (typeof s.ownerRecipientName === 'string' && s.ownerRecipientName) ||
++          undefined,
++        recipientColor:
++          (typeof existingMeta?.recipientColor === 'string' && existingMeta.recipientColor) ||
++          (typeof s.userColor === 'string' && s.userColor) ||
++          (typeof s.ownerColor === 'string' && s.ownerColor) ||
++          undefined,
+         assignment: {
+           scope: (s.ownerRecipientId || s.recipientId) ? 'recipient' : 'global',
+         },
+@@ -248,10 +282,11 @@ class SnapshotAdapterImpl {
+   }
+ 
+   private _migrateBackground(
+-    legacy: Record<string, unknown>,
++    legacy: unknown,
+     _pageIndex: number,
+   ): SnapshotPage['background'] {
+-    const basePdf = legacy.basePdf;
++    const record = asRecord(legacy) || {};
++    const basePdf = record.basePdf;
+     if (!basePdf) return { type: 'none' };
+     if (typeof basePdf === 'string') {
+       if (basePdf.startsWith('data:')) {
+diff --git a/src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx b/src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx
+index 839d476..2ef1475 100644
+--- a/src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx
++++ b/src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx
+@@ -50,6 +50,8 @@ import {
+   isAntDPopupTarget,
+ } from '../shared/interactionGuards.js';
+ import { isMoveableTarget } from '../shared/transformTargetGuards.js';
++import { isSelectoExcludedTarget } from '../shared/selectableTargetGuards.js';
++import { applyPageMetadataDataset } from '../../shared/pageMetadata.js';
+ import CanvasOverlayManager from './overlays/CanvasOverlayManager.js';
+ import CanvasContextMenu from './overlays/CanvasContextMenu.js';
+ import CanvasStateOverlay from './overlays/CanvasStateOverlay.js';
+@@ -222,7 +224,7 @@ export interface CanvasProps {
+   onRetryRender?: () => void;
+ }
+ 
+-const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
++const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | null>) {
+   const {
+     basePdf,
+     pageCursor,
+@@ -676,7 +678,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
+ 
+   useImperativeHandle(ref, () => {
+     const node = rootRef.current;
+-    if (!node) return null as unknown as HTMLDivElement;
++    if (!node) return null;
+ 
+     const imperativeNode = node as HTMLDivElement & {
+       openInlineEdit?: (request: { schemaId: string; target: InlineEditTarget }) => void;
+@@ -804,11 +806,11 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
+     const uniqueSchemaTypes = [...new Set(schemaTypes)];
+ 
+     // Create a type-safe array of default schemas
+-    const defaultSchemas: Record<string, unknown>[] = [];
++    const defaultSchemas: Array<{ type?: string; rotate?: unknown }> = [];
+ 
+     pluginsRegistry.entries().forEach(([, plugin]) => {
+       if (plugin.propPanel.defaultSchema) {
+-        defaultSchemas.push(plugin.propPanel.defaultSchema as Record<string, unknown>);
++        defaultSchemas.push(plugin.propPanel.defaultSchema as { type?: string; rotate?: unknown });
+       }
+     });
+ 
+@@ -998,9 +1000,11 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
+     paperRefs.current.forEach((paper, index) => {
+       if (!paper) return;
+       paper.dataset.canvasPage = 'true';
+-      paper.dataset.pageIndex = String(index);
+-      paper.dataset.pageActive = index === pageCursor ? 'true' : 'false';
+-      paper.dataset.pageEmpty = ((schemasList[index] || []).length === 0).toString();
++      applyPageMetadataDataset(paper, {
++        pageIndex: index,
++        pageActive: index === pageCursor,
++        pageEmpty: (schemasList[index] || []).length === 0,
++      });
+     });
+   }, [paperRefs, pageCursor, schemasList]);
+ 
+@@ -1058,6 +1062,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
+           dragCondition={(dragStart) => {
+             const inputEvent = dragStart.inputEvent as MouseEvent | TouchEvent;
+             const target = inputEvent.target as EventTarget | null;
++            if (isSelectoExcludedTarget(target)) return false;
+             return !shouldSuppressCanvasRegionSelection(target, {
+               phase: interactionState.phase,
+               isModalOpen: contextMenu !== null,
+@@ -1075,6 +1080,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
+             const isInsidePaper = isEventInsideActivePaper(target);
+             if (
+               !isInsidePaper ||
++              isSelectoExcludedTarget(target) ||
+               shouldSuppressCanvasRegionSelection(target, {
+                 phase: interactionState.phase,
+                 isModalOpen: contextMenu !== null,
+@@ -1393,7 +1399,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement>) {
+   );
+ };
+ 
+-const ForwardedCanvas = forwardRef<HTMLDivElement, CanvasProps>(Canvas);
++const ForwardedCanvas = forwardRef<HTMLDivElement | null, CanvasProps>(Canvas);
+ ForwardedCanvas.displayName = 'Canvas';
+ 
+ export default ForwardedCanvas;
+diff --git a/src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx b/src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx
+index 1e011fa..ee8b3a3 100644
+--- a/src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx
++++ b/src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx
+@@ -24,10 +24,6 @@ import { installPassiveTouchListenerGuard } from '../shared/passiveTouchListener
+ 
+ installPassiveTouchListenerGuard();
+ 
+-const MoveableElement = MoveableComponent as unknown as React.ForwardRefExoticComponent<
+-  React.PropsWithoutRef<Record<string, unknown>> & React.RefAttributes<unknown>
+->;
+-
+ type Props = {
+   target: HTMLElement[];
+   bounds: { left: number; top: number; bottom: number; right: number };
+@@ -78,7 +74,7 @@ const Moveable = (props: Props, ref: Ref<MoveableComponent>) => {
+   }, [props.moveableColor, props.target, props.useDefaultStyles, styleClassSelector]);
+ 
+   return (
+-    <MoveableElement
++    <MoveableComponent
+       className={resolvedClassName}
+       rootContainer={typeof document === 'undefined' ? undefined : document.body}
+       snappable
+diff --git a/src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx b/src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx
+index 6e13031..89f744e 100644
+--- a/src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx
++++ b/src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx
+@@ -1,5 +1,6 @@
+ import React, { useLayoutEffect, useMemo, useRef, useState } from 'react';
+ import type { SchemaForUI } from '@sisad-pdfme/common';
++import { asRecord } from '../../shared/objectGuards.js';
+ 
+ const MM_TO_PX = 3.7795275591;
+ const mm2px = (mm: number) => mm * MM_TO_PX;
+@@ -146,23 +147,23 @@ const CommentsOverlay = ({
+       });
+     });
+     topLevelComments.forEach((entry) => {
+-      const anchor = (entry?.anchor || {}) as Record<string, unknown>;
+-      const comment = (entry?.comment || {}) as Record<string, unknown>;
++      const anchor = asRecord(entry?.anchor) || {};
++      const comment = asRecord(entry?.comment) || {};
+       const id = String(anchor.id || comment.id || '').trim();
+       if (!id) return;
+       byId.set(id, {
+         id,
+         x: Number(anchor.x || 0),
+         y: Number(anchor.y || 0),
+-        schemaUid: (anchor.schemaUid as string | undefined) || undefined,
++        schemaUid: typeof anchor.schemaUid === 'string' ? anchor.schemaUid : undefined,
+         authorName:
+-          (comment.authorName as string | undefined)
+-          || (comment.authorId as string | undefined)
+-          || (anchor.authorName as string | undefined)
+-          || (anchor.authorId as string | undefined),
++          (typeof comment.authorName === 'string' ? comment.authorName : undefined)
++          || (typeof comment.authorId === 'string' ? comment.authorId : undefined)
++          || (typeof anchor.authorName === 'string' ? anchor.authorName : undefined)
++          || (typeof anchor.authorId === 'string' ? anchor.authorId : undefined),
+         authorColor:
+-          (comment.authorColor as string | undefined)
+-          || (anchor.authorColor as string | undefined),
++          (typeof comment.authorColor === 'string' ? comment.authorColor : undefined)
++          || (typeof anchor.authorColor === 'string' ? anchor.authorColor : undefined),
+         text: String(comment.text || '').trim(),
+         resolved: Boolean(comment.resolved || anchor.resolved),
+       });
+diff --git a/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx b/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx
+index d14210d..07f8e27 100644
+--- a/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx
++++ b/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx
+@@ -2,6 +2,7 @@ import { DESIGNER_CLASSNAME } from "../../../../constants.js";
+ import { Button, Form, Tooltip, theme } from 'antd';
+ import React from 'react';
+ import type { PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
++import { isRecord } from '../../shared/objectGuards.js';
+ interface ButtonConfig {
+   key: string;
+   icon: string;
+@@ -20,7 +21,7 @@ const ButtonGroupWidget = (props: PropPanelWidgetProps) => {
+     const ass = schemas.filter((s) => ids.includes(s.id));
+     changeSchemas(
+       ass.map((s: SchemaForUI) => {
+-        const oldValue = Boolean((s as Record<string, unknown>)[key] ?? false);
++        const oldValue = Boolean((isRecord(s) ? s[key] : undefined) ?? false);
+         const newValue = type === 'boolean' ? !oldValue : btn.value;
+         return { key, value: newValue, schemaId: s.id };
+       }),
+@@ -34,8 +35,7 @@ const ButtonGroupWidget = (props: PropPanelWidgetProps) => {
+     const ids = activeElements.filter(Boolean).map((ae) => ae.id);
+     const ass = schemas.filter((s) => ids.includes(s.id));
+     ass.forEach((s: SchemaForUI) => {
+-      // Cast schema to Record to safely access dynamic properties
+-      const schemaRecord = s as Record<string, unknown>;
++      const schemaRecord = isRecord(s) ? s : {};
+       active =
+         type === 'boolean' ? Boolean(schemaRecord[key] ?? false) : schemaRecord[key] === btn.value;
+     });
+diff --git a/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx b/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx
+index da484f0..e1cd4c4 100644
+--- a/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx
++++ b/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx
+@@ -14,6 +14,7 @@ import { debounce } from '../../../../helper.js';
+ import { theme } from 'antd';
+ import { InternalNamePath, ValidateErrorEntity } from 'rc-field-form/es/interface.js';
+ import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
++import { asRecord, isRecord } from '../../shared/objectGuards.js';
+ import { buildInspectorSections } from './detailSchemas.js';
+ import buildDetailWidgets from './detailWidgetRegistry.js';
+ import DetailViewContent from './DetailViewContent.js';
+@@ -40,6 +41,110 @@ type DetailViewProps = Pick<
+   selectionCommands?: SelectionCommandSet;
+ };
+ 
++type PositionFieldName = 'x' | 'y' | 'width' | 'height';
++
++type PositionBounds = {
++  pageWidth: number;
++  pageHeight: number;
++  paddingTop: number;
++  paddingRight: number;
++  paddingBottom: number;
++  paddingLeft: number;
++};
++
++const createHydrationValues = (schema: SchemaForUI): Record<string, unknown> => {
++  const values: Record<string, unknown> = { ...schema };
++  values.editable = !Boolean(values.readOnly);
++  return values;
++};
++
++const createPositionValidator =
++  (getFormValues: () => Record<string, unknown>, bounds: PositionBounds) =>
++  (_: unknown, value: number, fieldName: PositionFieldName): boolean => {
++    const formValues = getFormValues();
++    const position = asRecord(formValues.position) || undefined;
++    const width = typeof formValues.width === 'number' ? formValues.width : undefined;
++    const height = typeof formValues.height === 'number' ? formValues.height : undefined;
++    const positionX = typeof position?.x === 'number' ? position.x : undefined;
++    const positionY = typeof position?.y === 'number' ? position.y : undefined;
++
++    if (positionX === undefined || positionY === undefined || width === undefined || height === undefined) return true;
++
++    const validators: Record<PositionFieldName, () => boolean> = {
++      x: () => {
++        if (value < bounds.paddingLeft || value > bounds.pageWidth - bounds.paddingRight) return true;
++        if (width > 0 && value + width > bounds.pageWidth - bounds.paddingRight) return false;
++        return true;
++      },
++      y: () => {
++        if (value < bounds.paddingTop || value > bounds.pageHeight - bounds.paddingBottom) return true;
++        if (height > 0 && value + height > bounds.pageHeight - bounds.paddingBottom) return false;
++        return true;
++      },
++      width: () => {
++        if (positionX < bounds.paddingLeft || positionX > bounds.pageWidth - bounds.paddingRight) return true;
++        if (value > 0 && positionX + value > bounds.pageWidth - bounds.paddingRight) return false;
++        return true;
++      },
++      height: () => {
++        if (positionY < bounds.paddingTop || positionY > bounds.pageHeight - bounds.paddingBottom) return true;
++        if (value > 0 && positionY + value > bounds.pageHeight - bounds.paddingBottom) return false;
++        return true;
++      },
++    };
++
++    return validators[fieldName]();
++  };
++
++const buildChangeSet = (nextValues: Record<string, unknown>, currentSchema: SchemaForUI): ChangeSchemaItem[] => {
++  const ignoredKeys = new Set(['id', 'content']);
++  const nullableKeys = new Set(['rotate', 'opacity']);
++  const changes: ChangeSchemaItem[] = [];
++  const currentValues = asRecord(currentSchema) || {};
++
++  const valuesDiffer = (formValue: unknown, schemaValue: unknown): boolean => {
++    if (typeof formValue === 'object' && formValue !== null) {
++      return JSON.stringify(formValue) !== JSON.stringify(schemaValue);
++    }
++    return formValue !== schemaValue;
++  };
++
++  for (const key in nextValues) {
++    if (ignoredKeys.has(key)) continue;
++
++    let value = nextValues[key];
++    if (!valuesDiffer(value, currentValues[key])) continue;
++
++    if (value === null && nullableKeys.has(key)) {
++      value = undefined;
++    }
++
++    if (key === 'editable') {
++      const readOnlyValue = !value;
++      changes.push({ key: 'readOnly', value: readOnlyValue, schemaId: currentSchema.id });
++      if (readOnlyValue) {
++        changes.push({ key: 'required', value: false, schemaId: currentSchema.id });
++      }
++      continue;
++    }
++
++    changes.push({ key, value, schemaId: currentSchema.id });
++  }
++
++  return changes;
++};
++
++const filterInvalidChanges = (
++  changes: ChangeSchemaItem[],
++  reason: ValidateErrorEntity,
++): ChangeSchemaItem[] =>
++  changes.filter(
++    (change) =>
++      !reason.errorFields.some((field: { name: InternalNamePath; errors: string[] }) =>
++        field.name.includes(change.key),
++      ),
++  );
++
+ const DetailView = (props: DetailViewProps) => {
+   const { token } = theme.useToken();
+   const { schemasList, changeSchemas, deselectSchema, activeSchema, pageSize, basePdf } = props;
+@@ -47,7 +152,7 @@ const DetailView = (props: DetailViewProps) => {
+   const i18n = useContext(I18nContext);
+   const pluginsRegistry = useContext(PluginsRegistry);
+   const options = useContext(OptionsContext);
+-  const designerEngine = useMemo(() => resolveDesignerEngine(options as Record<string, unknown>), [options]);
++  const designerEngine = useMemo(() => resolveDesignerEngine(asRecord(options) || {}), [options]);
+   const schemaConfig = useMemo(
+     () => getSchemaDesignerConfig(activeSchema, designerEngine) || null,
+     [activeSchema, designerEngine],
+@@ -127,9 +232,7 @@ const DetailView = (props: DetailViewProps) => {
+   );
+ 
+   useEffect(() => {
+-    const values: Record<string, unknown> = { ...activeSchema };
+-    const readOnly = typeof values.readOnly === 'boolean' ? values.readOnly : false;
+-    values.editable = !readOnly;
++    const values = createHydrationValues(activeSchema);
+ 
+     let resetTimeoutId: ReturnType<typeof setTimeout> | undefined;
+     const timeoutId = setTimeout(() => {
+@@ -143,9 +246,9 @@ const DetailView = (props: DetailViewProps) => {
+     }, 0);
+ 
+     return () => {
+-      clearTimeout(timeoutId as unknown as number);
++      clearTimeout(timeoutId);
+       if (resetTimeoutId !== undefined) {
+-        clearTimeout(resetTimeoutId as unknown as number);
++        clearTimeout(resetTimeoutId);
+       }
+     };
+   }, [activeSchema, form]);
+@@ -168,65 +271,22 @@ const DetailView = (props: DetailViewProps) => {
+     ? basePdf.padding
+     : [0, 0, 0, 0];
+ 
+-  const validatePosition = (_: unknown, value: number, fieldName: string): boolean => {
+-    const formValues = form.getValues() as Record<string, unknown>;
+-    const position = formValues.position as { x: number; y: number } | undefined;
+-    const width = formValues.width as number | undefined;
+-    const height = formValues.height as number | undefined;
+-
+-    if (!position || width === undefined || height === undefined) return true;
+-
+-    if (fieldName === 'x') {
+-      if (value < paddingLeft || value > pageSize.width - paddingRight) return true;
+-      if (width > 0 && value + width > pageSize.width - paddingRight) return false;
+-    } else if (fieldName === 'y') {
+-      if (value < paddingTop || value > pageSize.height - paddingBottom) return true;
+-      if (height > 0 && value + height > pageSize.height - paddingBottom) return false;
+-    } else if (fieldName === 'width') {
+-      if (position.x < paddingLeft || position.x > pageSize.width - paddingRight) return true;
+-      if (value > 0 && position.x + value > pageSize.width - paddingRight) return false;
+-    } else if (fieldName === 'height') {
+-      if (position.y < paddingTop || position.y > pageSize.height - paddingBottom) return true;
+-      if (value > 0 && position.y + value > pageSize.height - paddingBottom) return false;
+-    }
+-
+-    return true;
+-  };
++  const validatePosition = createPositionValidator(
++    () => asRecord(form.getValues()) || {},
++    {
++      pageWidth: pageSize.width,
++      pageHeight: pageSize.height,
++      paddingTop,
++      paddingRight,
++      paddingBottom,
++      paddingLeft,
++    },
++  );
+ 
+   const handleWatch = debounce(function (...args: unknown[]) {
+     if (isHydratingForm) return;
+-    const formSchema = args[0] as Record<string, unknown>;
+-    const ignoredKeys = new Set(['id', 'content']);
+-    const nullableKeys = new Set(['rotate', 'opacity']);
+-    const formAndSchemaValuesDiffer = (formValue: unknown, schemaValue: unknown): boolean => {
+-      if (typeof formValue === 'object' && formValue !== null) {
+-        return JSON.stringify(formValue) !== JSON.stringify(schemaValue);
+-      }
+-      return formValue !== schemaValue;
+-    };
+-
+-    let changes: ChangeSchemaItem[] = [];
+-    for (const key in formSchema) {
+-      if (ignoredKeys.has(key)) continue;
+-
+-      let value = formSchema[key];
+-      if (formAndSchemaValuesDiffer(value, (activeSchema as Record<string, unknown>)[key])) {
+-        if (value === null && nullableKeys.has(key)) {
+-          value = undefined;
+-        }
+-
+-        if (key === 'editable') {
+-          const readOnlyValue = !value;
+-          changes.push({ key: 'readOnly', value: readOnlyValue, schemaId: activeSchema.id });
+-          if (readOnlyValue) {
+-            changes.push({ key: 'required', value: false, schemaId: activeSchema.id });
+-          }
+-          continue;
+-        }
+-
+-        changes.push({ key, value, schemaId: activeSchema.id });
+-      }
+-    }
++    const formSchema = asRecord(args[0]) || {};
++    let changes = buildChangeSet(formSchema, activeSchema);
+ 
+     if (changes.length) {
+       form
+@@ -234,12 +294,7 @@ const DetailView = (props: DetailViewProps) => {
+         .then(() => changeSchemas(changes))
+         .catch((reason: ValidateErrorEntity) => {
+           if (reason.errorFields.length) {
+-            changes = changes.filter(
+-              (change: ChangeSchemaItem) =>
+-                !reason.errorFields.some((field: { name: InternalNamePath; errors: string[] }) =>
+-                  field.name.includes(change.key),
+-                ),
+-            );
++            changes = filterInvalidChanges(changes, reason);
+           }
+           if (changes.length) {
+             changeSchemas(changes);
+@@ -253,18 +308,9 @@ const DetailView = (props: DetailViewProps) => {
+     throw Error(`[@sisad-pdfme/ui] Failed to find plugin used for ${activeSchema.type}`);
+   }
+ 
+-  const emptySchema: Record<string, unknown> = {};
+-  const defaultSchema: Record<string, unknown> = activePlugin?.propPanel?.defaultSchema
+-    ? (() => {
+-        const result: Record<string, unknown> = {};
+-        for (const key in activePlugin.propPanel.defaultSchema) {
+-          if (activePlugin.propPanel.defaultSchema.hasOwnProperty(key)) {
+-            result[key] = (activePlugin.propPanel.defaultSchema as Record<string, unknown>)[key];
+-          }
+-        }
+-        return result;
+-      })()
+-    : emptySchema;
++  const defaultSchema: Record<string, unknown> = isRecord(activePlugin?.propPanel?.defaultSchema)
++    ? { ...activePlugin.propPanel.defaultSchema }
++    : {};
+ 
+   let pluginProps: Record<string, PropPanelSchema> = {};
+   if (typeof activePlugin.propPanel.schema === 'function') {
+@@ -284,7 +330,7 @@ const DetailView = (props: DetailViewProps) => {
+       theme: token,
+       i18n: typedI18n,
+     });
+-    if (functionResult && typeof functionResult === 'object') {
++    if (isRecord(functionResult)) {
+       pluginProps = functionResult as Record<string, PropPanelSchema>;
+     }
+   } else if (activePlugin.propPanel.schema && typeof activePlugin.propPanel.schema === 'object') {
+@@ -340,12 +386,13 @@ const schemaFingerprint = (schema: SchemaForUI) => {
+     'opacity',
+     'position',
+   ]);
+-  const rawSchema = schema as SchemaForUI & Record<string, unknown>;
++  const rawSchema = asRecord(schema) || {};
+   const extraFingerprint = Object.keys(rawSchema)
+     .filter((key) => !coreKeys.has(key))
+     .sort()
+     .map((key) => `${key}:${JSON.stringify(rawSchema[key])}`)
+     .join('|');
++  const rawPosition = asRecord(rawSchema.position);
+ 
+   return [
+     rawSchema.id,
+@@ -358,8 +405,8 @@ const schemaFingerprint = (schema: SchemaForUI) => {
+     rawSchema.readOnly ? '1' : '0',
+     rawSchema.rotate ?? '',
+     rawSchema.opacity ?? '',
+-    rawSchema.position?.x ?? '',
+-    rawSchema.position?.y ?? '',
++    rawPosition?.x ?? '',
++    rawPosition?.y ?? '',
+     extraFingerprint,
+   ].join('|');
+ };
+diff --git a/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx b/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx
+index 52ea379..6b83ce5 100644
+--- a/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx
++++ b/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx
+@@ -35,6 +35,24 @@ type CollaborationWidgetProps = PropPanelWidgetProps & {
+   quickActionLabel?: React.ReactNode;
+ };
+ 
++type CollaborationPatchKey =
++  | 'ownerRecipientIds'
++  | 'ownerRecipientId'
++  | 'recipientId'
++  | 'ownerRecipientName'
++  | 'ownerColor'
++  | 'userColor'
++  | 'ownerMode'
++  | 'state'
++  | 'lock'
++  | 'fileId'
++  | 'fileTemplateId'
++  | 'pageNumber'
++  | 'createdBy'
++  | 'lastModifiedBy'
++  | 'createdAt'
++  | 'updatedAt';
++
+ const STATE_OPTIONS: Array<{ label: string; value: SchemaCollaborativeState }> = [
+   { label: 'Borrador', value: 'draft' },
+   { label: 'Bloqueado', value: 'locked' },
+@@ -132,7 +150,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
+     value: recipient.id,
+   }));
+ 
+-  const commit = (patch: Record<string, unknown>) => {
++  const commit = (patch: Partial<Record<CollaborationPatchKey, unknown>>) => {
+     changeSchemas(
+       Object.entries(patch).map(([key, value]) => ({
+         key,
+@@ -143,7 +161,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
+   };
+ 
+   const updateRecipientIds = (value: string[] | string) => {
+-    const nextRecipientIds = normalizeRecipientIds(value as string[] | string | null | undefined);
++    const nextRecipientIds = normalizeRecipientIds(value);
+     const nextPrimaryRecipientId = nextRecipientIds[0];
+     const nextPrimaryRecipient =
+       recipientOptions.find((recipient) => recipient.id === nextPrimaryRecipientId) || null;
+diff --git a/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx b/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx
+index 368294d..2b02940 100644
+--- a/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx
++++ b/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx
+@@ -1,5 +1,5 @@
+ import React, { useCallback, useMemo, useState } from 'react';
+-import type { PropPanelWidgetProps } from '@sisad-pdfme/common';
++import type { PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
+ import { Button, Collapse, Divider, Input, InputNumber, Select, Space, Switch, Tag } from 'antd';
+ import { DatabaseZap, Globe2, FileJson2 } from 'lucide-react';
+ import { DESIGNER_CLASSNAME } from '../../../../constants.js';
+@@ -174,6 +174,12 @@ const applyAuthPreset = (
+   };
+ };
+ 
++const mergeSectionPatch = <T extends Record<string, unknown>>(base: T | undefined, patch: Partial<T>): T =>
++  ({
++    ...(base || {}),
++    ...patch,
++  } as T);
++
+ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
+   const { schemaConfig, designerEngine, updateSchemaConfig } = props;
+   const [validationState, setValidationState] = useState<'idle' | 'ok' | 'warning'>('idle');
+@@ -212,10 +218,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
+   const updatePersistence = useCallback(
+     (patch: Partial<SchemaPersistenceConfig>) => {
+       updateSchemaConfig?.({
+-        persistence: {
+-          ...persistence,
+-          ...patch,
+-        },
++        persistence: mergeSectionPatch(persistence, patch),
+       });
+     },
+     [persistence, updateSchemaConfig],
+@@ -224,10 +227,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
+   const updateApi = useCallback(
+     (patch: Partial<NonNullable<SchemaDesignerConfig['api']>>) => {
+       updateSchemaConfig?.({
+-        api: {
+-          ...api,
+-          ...patch,
+-        },
++        api: mergeSectionPatch(api, patch),
+       });
+     },
+     [api, updateSchemaConfig],
+@@ -236,10 +236,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
+   const updateApiHttp = useCallback(
+     (patch: Partial<SchemaHttpClientConfig>) => {
+       updateApi({
+-        http: {
+-          ...api.http,
+-          ...patch,
+-        },
++        http: mergeSectionPatch(api.http, patch),
+       });
+     },
+     [api.http, updateApi],
+@@ -248,10 +245,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
+   const updateApiAuth = useCallback(
+     (patch: Partial<SchemaHttpAuthConfig>) => {
+       updateApiHttp({
+-        auth: {
+-          ...api.http?.auth,
+-          ...patch,
+-        },
++        auth: mergeSectionPatch(api.http?.auth, patch),
+       });
+     },
+     [api.http?.auth, updateApiHttp],
+@@ -291,10 +285,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
+   const updateFormJson = useCallback(
+     (patch: Partial<SchemaFormJsonConfig>) => {
+       updateSchemaConfig?.({
+-        form: {
+-          ...formJson,
+-          ...patch,
+-        },
++        form: mergeSectionPatch(formJson, patch),
+       });
+     },
+     [formJson, updateSchemaConfig],
+@@ -322,11 +313,11 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
+       return;
+     }
+ 
+-    const validationSchema = {
++    const validationSchema: SchemaForUI = {
+       id: 'schema-connections-validation',
+       name: schemaConfig?.identity?.key || 'schemaConnections',
+       type: 'text',
+-    } as unknown as import('@sisad-pdfme/common').SchemaForUI;
++    } as SchemaForUI;
+     const validationField = { schema: validationSchema, config: schemaConfig || null };
+     const snapshot = {
+       pageIndex: 0,
+diff --git a/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.tsx b/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.tsx
+index 165718b..4fc5708 100644
+--- a/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.tsx
++++ b/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.tsx
+@@ -12,6 +12,7 @@ import { uuid } from '../../../../helper.js';
+ import { DESIGNER_CLASSNAME } from '../../../../constants.js';
+ import type { SchemaComment } from '../../../../designerEngine.js';
+ import { InspectorEmptyState } from './InspectorPrimitives.js';
++import { asRecord } from '../../shared/objectGuards.js';
+ 
+ type FieldCommentsWidgetProps = PropPanelWidgetProps & {
+   activeSchema: SchemaForUI;
+@@ -93,7 +94,7 @@ const SchemaFieldCommentsWidget = ({
+   const actorName = designerEngine?.collaboration?.actorName || actorId;
+   const actorColor = designerEngine?.collaboration?.actorColor;
+ 
+-  const comments = normalizeComments((activeSchema as unknown as Record<string, unknown>).comments);
++  const comments = normalizeComments(asRecord(activeSchema)?.comments);
+ 
+   const persistComments = (next: SchemaComment[]) => {
+     changeSchemas([{ key: 'comments', value: next, schemaId: activeSchema.id }]);
+@@ -107,7 +108,7 @@ const SchemaFieldCommentsWidget = ({
+       authorName: actorName,
+       authorColor: actorColor,
+     });
+-    persistComments([...comments, comment as unknown as SchemaComment]);
++    persistComments([...comments, comment as SchemaComment]);
+     setNewCommentText('');
+   };
+ 
+diff --git a/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts b/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts
+index 81f7bc3..d4e19f6 100644
+--- a/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts
++++ b/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts
+@@ -1,5 +1,6 @@
+ import type { PropPanelInspectorConfig, PropPanelSchema, SchemaForUI } from '@sisad-pdfme/common';
+ import type { SchemaDesignerConfig } from '../../../../../ui/designerEngine.js';
++import { asRecord, isRecord } from '../../shared/objectGuards.js';
+ import {
+   CANONICAL_DETAIL_SECTION_LABELS,
+   CANONICAL_DETAIL_SECTION_ORDER,
+@@ -66,18 +67,17 @@ const addFieldToSection = (
+ };
+ 
+ const replaceColorWidget = (schemaNode: unknown): unknown => {
+-  if (schemaNode === undefined || schemaNode === null || Array.isArray(schemaNode) || typeof schemaNode !== 'object') {
++  if (!isRecord(schemaNode)) {
+     return schemaNode;
+   }
+-  const node = schemaNode as Record<string, unknown>;
+-  const nextNode: Record<string, unknown> = { ...node };
++  const nextNode: Record<string, unknown> = { ...schemaNode };
+ 
+   if (nextNode.widget === 'color') {
+     nextNode.widget = 'nativeColor';
+   }
+ 
+-  if (nextNode.properties !== undefined && nextNode.properties !== null && typeof nextNode.properties === 'object') {
+-    const propsObj = nextNode.properties as Record<string, unknown>;
++  if (isRecord(nextNode.properties)) {
++    const propsObj = nextNode.properties;
+     const nextProps: Record<string, unknown> = {};
+     Object.entries(propsObj).forEach(([propKey, propValue]) => {
+       nextProps[propKey] = replaceColorWidget(propValue);
+@@ -108,7 +108,7 @@ export const buildInspectorSections = ({
+ }: BuildInspectorSchemasParams) => {
+   const familyPreset = getSchemaTypeInspectorPreset(activeSchemaType);
+   const semanticFamily = resolveSchemaSemanticFamily(activeSchemaType);
+-  const activeSchemaRecord = activeSchema as Record<string, unknown> | null | undefined;
++  const activeSchemaRecord = asRecord(activeSchema);
+   const canonicalVisibleSections = new Set(
+     (inspectorConfig?.visibleSections?.length ? inspectorConfig.visibleSections : familyPreset.visibleSections)
+       .map((sectionKey) => toCanonicalDetailSection(sectionKey))
+@@ -171,21 +171,18 @@ export const buildInspectorSections = ({
+   };
+ 
+   addFieldToSection(sectionProperties, 'general', 'name', {
+-    name: {
+-        title: 'Nombre del campo',
+-        type: 'string',
+-        required: true,
+-        span: 24,
+-        rules: [
+-          {
+-            validator: validateUniqueSchemaName,
+-            message: typedI18n('validation.uniqueName'),
+-          },
+-        ],
+-        props: { autoComplete: 'off' },
++    title: 'Nombre del campo',
++    type: 'string',
++    required: true,
++    span: 24,
++    rules: [
++      {
++        validator: validateUniqueSchemaName,
++        message: typedI18n('validation.uniqueName'),
+       },
+-    }.name as PropPanelSchema,
+-  );
++    ],
++    props: { autoComplete: 'off' },
++  });
+ 
+   addFieldToSection(sectionProperties, 'general', 'inlineEditActions', {
+     title: '',
+diff --git a/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts b/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts
+index e809b69..50d5894 100644
+--- a/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts
++++ b/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts
+@@ -1,5 +1,6 @@
+ import type { SchemaForUI } from '@sisad-pdfme/common';
+ import type { SchemaSemanticFamily } from '../../../../../schemas/schemaFamilies.js';
++import { asRecord, isRecord } from '../../shared/objectGuards.js';
+ 
+ export type CanonicalDetailSection =
+   | 'identity'
+@@ -173,7 +174,10 @@ const normalizeFieldEntry = (field: FieldLike): NormalizedField => {
+ 
+ const fieldNames = (fields: FieldLike[] = []): NormalizedField[] => fields.map(normalizeFieldEntry).filter((field) => field.key && !field.hidden);
+ 
+-const getSchemaValue = (schema: SchemaForUI, key: string) => (schema as Record<string, unknown>)[key];
++const getSchemaValue = (schema: SchemaForUI, key: string) => {
++  const record = asRecord(schema);
++  return record ? record[key] : undefined;
++};
+ 
+ const hasDefinedSchemaValue = (schema: SchemaForUI, key: string) => {
+   const value = getSchemaValue(schema, key);
+@@ -226,7 +230,7 @@ export function shouldRenderDetailSection(params: {
+ }): boolean {
+   const { section, schema, fields = [], widgets = [], context = {} } = params;
+   const entries = fieldNames(fields);
+-  const schemaObject = (schema || {}) as SchemaForUI & Record<string, unknown>;
++  const schemaObject = (isRecord(schema) ? schema : {}) as SchemaForUI;
+   const hasVisibleFields = entries.some((field) => !field.disabled);
+   const hasAnyFields = entries.length > 0;
+   const widgetNames = widgets.map((widget) => normalizeText(typeof widget === 'string' ? widget : widget.name || widget.widget));
+diff --git a/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts b/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts
+index 3249822..133c4b1 100644
+--- a/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts
++++ b/src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts
+@@ -3,8 +3,7 @@ import type { SchemaCollaborativeState } from '../../../../designerEngine.js';
+ 
+ export { normalizeRecipientIdsShared as normalizeRecipientIds };
+ 
+-export const joinRecipientIds = (value: unknown): string =>
+-  normalizeRecipientIdsShared(value as string[] | string | null | undefined).join(', ');
++export const joinRecipientIds = (value: unknown): string => normalizeRecipientIdsShared(value).join(', ');
+ 
+ export const resolveOwnerMode = (ownerRecipientIds: string[]) => {
+   if (ownerRecipientIds.length > 1) return 'multi' as const;
+diff --git a/src/sisad-pdfme/ui/components/Designer/index.tsx b/src/sisad-pdfme/ui/components/Designer/index.tsx
+index 4c71f81..f27adfb 100644
+--- a/src/sisad-pdfme/ui/components/Designer/index.tsx
++++ b/src/sisad-pdfme/ui/components/Designer/index.tsx
+@@ -18,6 +18,7 @@ import {
+   isBlankPdf,
+   upsertTopLevelComment,
+   upsertById,
++  type SchemaCommentReply,
+ } from '@sisad-pdfme/common';
+ import { DndContext } from '@dnd-kit/core';
+ import { pdf2size } from '@sisad-pdfme/converter';
+@@ -76,6 +77,7 @@ installPassiveTouchListenerGuard();
+ import { buildEffectiveCollaborationContext, filterSchemasForCollaborationView } from '../../collaborationContext.js';
+ import type { RightSidebarContextHeader, RightSidebarContextHeaderContext } from './RightSidebar/contextHeader.js';
+ import DesignerContextSummary from './shared/DesignerContextSummary.js';
++import { asRecord } from './shared/objectGuards.js';
+ import {
+   resolveDesignerEngine,
+   attachSchemaIdentity,
+@@ -202,6 +204,23 @@ type UploadedPdfDocument = {
+   updatedAt?: number;
+ };
+ 
++const toDesignerCommentReplies = (value: unknown): SchemaCommentReply[] => {
++  if (!Array.isArray(value)) return [];
++  return value
++    .map((reply) => asRecord(reply))
++    .filter((reply): reply is Record<string, unknown> => Boolean(reply))
++    .map((reply) => ({
++      id: String(reply.id || reply.commentId || '').trim(),
++      text: String(reply.text || reply.content || '').trim(),
++      authorId: typeof reply.authorId === 'string' ? reply.authorId : undefined,
++      authorName: typeof reply.authorName === 'string' ? reply.authorName : undefined,
++      authorColor: typeof reply.authorColor === 'string' ? reply.authorColor : null,
++      timestamp: typeof reply.timestamp === 'number' ? reply.timestamp : undefined,
++      createdAt: typeof reply.createdAt === 'number' ? reply.createdAt : undefined,
++      resolved: typeof reply.resolved === 'boolean' ? reply.resolved : undefined,
++    }));
++};
++
+ type TemplateChangeContext = {
+   documentId?: string | null;
+   fileId?: string | null;
+@@ -1490,18 +1509,7 @@ const TemplateEditor = ({
+         pageNumber: entry.pageNumber,
+         resolved: Boolean(entry.anchor?.resolved ?? entry.comment?.resolved),
+         timestamp: Number(entry.comment?.timestamp || entry.comment?.createdAt || 0) || undefined,
+-        replies: Array.isArray(entry.comment?.replies)
+-          ? (entry.comment.replies as any[]).map((r: any) => ({
+-              id: String(r?.id || ''),
+-              text: String(r?.text || r?.content || ''),
+-              authorId: r?.authorId || undefined,
+-              authorName: r?.authorName || undefined,
+-              authorColor: r?.authorColor ?? null,
+-              timestamp: Number(r?.timestamp || r?.createdAt || 0) || undefined,
+-              createdAt: Number(r?.createdAt || r?.timestamp || 0) || undefined,
+-              resolved: Boolean(r?.resolved),
+-            }))
+-          : [],
++        replies: toDesignerCommentReplies(entry.comment?.replies),
+       });
+     }
+     return items.sort((left, right) => (right.timestamp || 0) - (left.timestamp || 0));
+diff --git a/src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts b/src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts
+index 04e2258..8a93c65 100644
+--- a/src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts
++++ b/src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts
+@@ -20,6 +20,8 @@
+  * 10. select created schema, open DetailView if applicable
+  */
+ 
++import { asRecord } from './objectGuards.js';
++
+ // ─── Types ───────────────────────────────────────────────────────────────────
+ 
+ export type DropPayload = {
+@@ -63,8 +65,8 @@ export type DropResult =
+  * (has a schemaType and finite coordinates).
+  */
+ export const isValidDropPayload = (payload: unknown): payload is DropPayload => {
+-  if (!payload || typeof payload !== 'object') return false;
+-  const p = payload as Record<string, unknown>;
++  const p = asRecord(payload);
++  if (!p) return false;
+   return (
+     typeof p.schemaType === 'string' &&
+     p.schemaType.trim().length > 0 &&
+@@ -79,8 +81,8 @@ export const isValidDropPayload = (payload: unknown): payload is DropPayload =>
+  * Returns true when the drop target has a valid document+page+position.
+  */
+ export const isValidDropTarget = (target: unknown): target is DropTarget => {
+-  if (!target || typeof target !== 'object') return false;
+-  const t = target as Record<string, unknown>;
++  const t = asRecord(target);
++  if (!t) return false;
+   return (
+     typeof t.documentId === 'string' &&
+     t.documentId.trim().length > 0 &&
+diff --git a/src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.ts b/src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.ts
+index c719769..e8fa450 100644
+--- a/src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.ts
++++ b/src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.ts
+@@ -1,52 +1,19 @@
+-const EDITABLE_SELECTOR = [
+-  'input',
+-  'textarea',
+-  'select',
+-  'button[role="switch"]',
+-  '[role="switch"]',
+-  '[role="checkbox"]',
+-  '[contenteditable=""]',
+-  '[contenteditable="true"]',
+-  '[contenteditable="plaintext-only"]',
+-  '[role="textbox"]',
+-  // Canvas overlay controls — must never trigger Selecto region or Moveable drag
+-  '[data-role="group-add-option"]',
+-  '[data-option-id]',
+-  '[data-schema-interactive-control]',
+-  '.sisad-pdfme-option-group-floating-action',
+-  '.sisad-pdfme-option-group-action-overlay',
+-  '.ant-input',
+-  '.ant-input-affix-wrapper',
+-  '.ant-input-number',
+-  '.ant-select',
+-  '.ant-select-selector',
+-  '.ant-select-dropdown',
+-  '.ant-picker',
+-  '.ant-picker-dropdown',
+-  '.ant-switch',
+-  '.ant-switch-handle',
+-  '.ant-switch-inner',
+-  '.ant-checkbox',
+-  '.ant-checkbox-wrapper',
+-  '.ant-checkbox-input',
+-  '.ant-checkbox-inner',
+-  '.ant-dropdown',
++import {
++  ANTD_POPUP_SELECTORS,
++  buildSelectorList,
++  DESKTOP_EDITABLE_TARGET_SELECTORS,
++  DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS,
++} from './interactionTargetSelectors.js';
++
++const EDITABLE_SELECTOR = buildSelectorList([
++  ...DESKTOP_EDITABLE_TARGET_SELECTORS,
++  ...DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS,
+   '.ant-dropdown-menu',
+-  '.ant-popover',
+   '.ant-popover-inner',
+-  '.ant-modal',
+   '.ant-modal-content',
+-  '.ant-tooltip',
+-].join(', ');
+-
+-const ANTD_POPUP_SELECTOR = [
+-  '.ant-select-dropdown',
+-  '.ant-dropdown',
+-  '.ant-popover',
+-  '.ant-modal',
+-  '.ant-tooltip',
+-  '.ant-picker-dropdown',
+-].join(', ');
++] as const);
++
++const ANTD_POPUP_SELECTOR = buildSelectorList(ANTD_POPUP_SELECTORS);
+ 
+ export const isEditableTarget = (target: EventTarget | null | undefined): boolean => {
+   if (!(target instanceof HTMLElement)) return false;
+diff --git a/src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts b/src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts
+index 033ed03..ab93771 100644
+--- a/src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts
++++ b/src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts
+@@ -1,3 +1,5 @@
++import { asRecord, isRecord } from './objectGuards.js';
++
+ const DEFAULT_AUTO_PLACE_SCOPE = 'document';
+ const DEFAULT_AUTO_PLACE_MATCH_MODE = 'contains';
+ 
+@@ -25,9 +27,11 @@ export const buildAutoPlaceDescriptor = (keyword: unknown, options: Record<strin
+ 
+ export const resolveSchemaAutoPlaceDescriptor = (schema: Record<string, unknown> = {}, options: Record<string, unknown> = {}) => {
+   const s = schema;
++  const designer = isRecord(s.__designer) ? s.__designer : undefined;
++  const autoPlace = isRecord(designer?.autoPlace) ? designer.autoPlace : undefined;
+   const keyword =
+     normalizeText(s?.autoPlaceText) ||
+-    normalizeText(s?.__designer?.autoPlace?.keyword) ||
++    normalizeText(autoPlace?.keyword) ||
+     normalizeText(options.keyword) ||
+     '';
+   if (!keyword) return null;
+@@ -35,12 +39,12 @@ export const resolveSchemaAutoPlaceDescriptor = (schema: Record<string, unknown>
+   return buildAutoPlaceDescriptor(keyword, {
+     scope:
+       options.scope ||
+-      s?.__designer?.autoPlace?.scope ||
++      autoPlace?.scope ||
+       s?.autoPlaceScope ||
+       DEFAULT_AUTO_PLACE_SCOPE,
+     matchMode:
+       options.matchMode ||
+-      s?.__designer?.autoPlace?.matchMode ||
++      autoPlace?.matchMode ||
+       s?.autoPlaceMatchMode ||
+       DEFAULT_AUTO_PLACE_MATCH_MODE,
+     fieldType: options.fieldType || s?.type,
+@@ -63,12 +67,15 @@ export const collectAutoPlaceRulesFromDocuments = (documents: unknown[] = []) =>
+ 
+   const rules: Record<string, unknown>[] = [];
+   documents.forEach((documentRaw: unknown = {}) => {
+-    const document = documentRaw as Record<string, unknown>;
++    const document = asRecord(documentRaw);
++    if (!document) return;
+     const documentId = normalizeText(document?.id || document?.fileId || document?.fileTemplateId);
+-    const templateSchemas = Array.isArray(document?.template?.schemas) ? document.template.schemas : [];
++    const template = isRecord(document.template) ? document.template : undefined;
++    const templateSchemas = Array.isArray(template?.schemas) ? template.schemas : [];
+     templateSchemas.forEach((page: unknown[] = [], pageIndex: number) => {
+       (Array.isArray(page) ? page : []).forEach((schemaRaw: unknown = {}) => {
+-        const schema = schemaRaw as Record<string, unknown>;
++        if (!isRecord(schemaRaw)) return;
++        const schema = schemaRaw;
+         const descriptor = resolveSchemaAutoPlaceDescriptor(schema, {
+           documentId,
+           pageIndex,
+diff --git a/src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts b/src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts
+index 91f1ba7..722d8a6 100644
+--- a/src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts
++++ b/src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts
+@@ -8,6 +8,7 @@ import { uuid } from '../../../helper.js';
+ import { resolveSmartDropPosition, type SmartPlacementInput } from '../Canvas/overlays/smartPlacement.js';
+ import { createUniqueSchemaVariableName } from './schemaVariableName.js';
+ import { filterSchemasByCollisionScope } from './schemaCollision.js';
++import { asRecord, isRecord } from './objectGuards.js';
+ 
+ /**
+  * Controls how recipient assignment and collaboration metadata are handled
+@@ -41,6 +42,22 @@ type ClipboardCollaborationContext = {
+   userColor?: string | null;
+ };
+ 
++type SchemaRecord = SchemaForUI & Record<string, unknown>;
++type DesignerRecord = Record<string, unknown> & {
++  recipientId?: unknown;
++  recipientName?: unknown;
++  recipientColor?: unknown;
++  group?: Record<string, unknown>;
++  identity?: Record<string, unknown>;
++};
++type ClipboardTransientRecord = Record<string, unknown> & {
++  lock?: SchemaForUI['lock'];
++  comments?: SchemaForUI['comments'];
++  commentAnchors?: SchemaForUI['commentAnchors'];
++  commentsAnchors?: SchemaForUI['commentsAnchors'];
++  __designer?: unknown;
++};
++
+ export type SchemaClipboardPayload = {
+   source: 'copy' | 'cut';
+   items: SchemaForUI[];
+@@ -84,18 +101,20 @@ const transientKeys: string[] = [
+   'collaboration',
+ ];
+ 
+-const asSchemaRecord = (schema: SchemaForUI) => schema as SchemaForUI & Record<string, unknown>;
++const asSchemaRecord = (schema: SchemaForUI): SchemaRecord => schema as SchemaRecord;
++
++const getDesignerRecord = (schema: SchemaForUI): DesignerRecord | undefined => {
++  const designer = asRecord(asSchemaRecord(schema).__designer);
++  return isRecord(designer) ? (designer as DesignerRecord) : undefined;
++};
+ 
+ const normalizeText = (value: unknown) => String(value || '').trim();
+ 
+ const resolveSchemaGroupId = (schema: SchemaForUI): string | null => {
+-  const record = schema as SchemaForUI & {
+-    groupId?: string;
+-    group?: string;
+-    __designer?: { group?: { groupId?: string } };
+-  };
++  const record = asSchemaRecord(schema) as SchemaRecord & { groupId?: string; group?: string };
++  const designer = getDesignerRecord(schema);
+   const groupId =
+-    normalizeText(record.__designer?.group?.groupId) ||
++    normalizeText(designer?.group?.groupId) ||
+     normalizeText(record.groupId) ||
+     normalizeText(record.group);
+   return groupId || null;
+@@ -114,7 +133,7 @@ const remapGroupedSchemaIdentity = (
+     groupIdMap.set(sourceGroupId, nextGroupId);
+   }
+ 
+-  const record = schema as SchemaForUI & {
++  const record = asSchemaRecord(schema) as SchemaRecord & {
+     type?: string;
+     groupId?: string;
+     group?: string;
+@@ -128,11 +147,12 @@ const remapGroupedSchemaIdentity = (
+ 
+   if (record.groupId !== undefined) record.groupId = nextGroupId;
+   if (record.group !== undefined) record.group = nextGroupId;
+-  if (record.__designer?.group) {
++  const designer = getDesignerRecord(schema);
++  if (designer?.group) {
+     record.__designer = {
+-      ...record.__designer,
++      ...designer,
+       group: {
+-        ...(record.__designer.group || {}),
++        ...designer.group,
+         groupId: nextGroupId,
+       },
+     };
+@@ -191,7 +211,7 @@ const remapGroupedSchemaIdentity = (
+ };
+ 
+ export const sanitizeCopiedSchema = (schema: SchemaForUI): SchemaForUI => {
+-  const next = cloneDeep(schema) as SchemaForUI & Record<string, unknown>;
++  const next = cloneDeep(schema) as SchemaRecord;
+   for (const key of transientKeys) {
+     delete next[key];
+   }
+@@ -244,7 +264,7 @@ export const buildPastedSchema = (
+ ): SchemaForUI => {
+   // Capture transient fields from the original BEFORE sanitization so that
+   // PastePolicy.preserveLocks / preserveComments can selectively restore them.
+-  const originalRecord = schema as SchemaForUI & Record<string, unknown>;
++  const originalRecord = (asRecord(schema) || {}) as ClipboardTransientRecord;
+   const originalLock = originalRecord.lock;
+   const originalComments = originalRecord.comments;
+   const originalCommentAnchors = originalRecord.commentAnchors;
+@@ -315,12 +335,12 @@ export const buildPastedSchema = (
+     delete pasted['ownerRecipientIds'];
+     delete pasted['ownerRecipientName'];
+     delete pasted['ownerColor'];
+-    if (pasted['__designer'] && typeof pasted['__designer'] === 'object') {
+-      const designer = { ...(pasted['__designer'] as Record<string, unknown>) };
++    const designer = asRecord(pasted.__designer);
++    if (designer) {
+       delete designer['recipientId'];
+       delete designer['recipientName'];
+       delete designer['recipientColor'];
+-      pasted['__designer'] = designer;
++      pasted.__designer = designer;
+     }
+   }
+ 
+@@ -340,17 +360,15 @@ export const buildPastedSchema = (
+     },
+   });
+ 
+-  const withCollaborativeDefaults = applySchemaCollaborativeDefaults(pasted as SchemaForUI, creationContext);
+-  const designerConfig = (withCollaborativeDefaults as SchemaForUI & Record<string, unknown>)[
+-    DEFAULT_SCHEMA_CONFIG_STORAGE_KEY
+-  ];
++  const withCollaborativeDefaults = applySchemaCollaborativeDefaults(pasted as SchemaForUI, creationContext) as SchemaRecord;
++  const designerConfig = asRecord(withCollaborativeDefaults[DEFAULT_SCHEMA_CONFIG_STORAGE_KEY]);
+ 
+-  if (designerConfig && typeof designerConfig === 'object' && !Array.isArray(designerConfig)) {
+-    const config = designerConfig as Record<string, unknown>;
+-    (withCollaborativeDefaults as SchemaForUI & Record<string, unknown>)[DEFAULT_SCHEMA_CONFIG_STORAGE_KEY] = {
+-      ...config,
++  if (designerConfig) {
++    const designerIdentity = asRecord(designerConfig.identity) ?? {};
++    withCollaborativeDefaults[DEFAULT_SCHEMA_CONFIG_STORAGE_KEY] = {
++      ...designerConfig,
+       identity: {
+-        ...((config.identity as Record<string, unknown>) || {}),
++        ...designerIdentity,
+         id: nextSchemaUid,
+         key: nextName,
+       },
+@@ -359,7 +377,7 @@ export const buildPastedSchema = (
+ 
+   // Restore lock AFTER applySchemaCollaborativeDefaults (which always sets lock: undefined).
+   // preserveLocks only works when the original schema had a lock value.
+-  const finalResult = withCollaborativeDefaults as SchemaForUI & Record<string, unknown>;
++  const finalResult = withCollaborativeDefaults;
+   if (policy.preserveLocks && originalLock !== undefined) {
+     finalResult.lock = originalLock;
+   }
+@@ -405,4 +423,3 @@ export const pasteSchemasFromClipboard = (
+ 
+ export const duplicateSchemas = (schemas: SchemaForUI[], context: SchemaClipboardContext): SchemaForUI[] =>
+   pasteSchemasFromClipboard(copySchemasToClipboard(schemas), context);
+-
+diff --git a/src/sisad-pdfme/ui/components/Designer/shared/selectableTargetGuards.ts b/src/sisad-pdfme/ui/components/Designer/shared/selectableTargetGuards.ts
+index 9baff49..65fe6b0 100644
+--- a/src/sisad-pdfme/ui/components/Designer/shared/selectableTargetGuards.ts
++++ b/src/sisad-pdfme/ui/components/Designer/shared/selectableTargetGuards.ts
+@@ -9,37 +9,20 @@
+  */
+ 
+ import { SELECTABLE_CLASSNAME } from '../../../constants.js';
++import { DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS, buildSelectorList } from './interactionTargetSelectors.js';
++import { isSchemaRootElement } from './objectGuards.js';
+ 
+ /** CSS selectors that Selecto must NEVER select. */
+-export const SELECTO_EXCLUDED_SELECTORS = [
+-  '[data-option-id]',
+-  '[data-role="group-add-option"]',
+-  '.sisad-pdfme-option-group__add-button',
+-  '.sisad-pdfme-option-group-floating-action',
+-  '.sisad-pdfme-option-group-action-overlay',
+-  '.moveable-control',
+-  '.moveable-line',
+-  '.moveable-control-box',
+-  '.ant-popover',
+-  '.ant-select-dropdown',
+-  'input',
+-  'textarea',
+-  'select',
+-  '[contenteditable="true"]',
+-] as const;
++export const SELECTO_EXCLUDED_SELECTORS = DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS;
+ 
+-const EXCLUDED_SELECTOR = SELECTO_EXCLUDED_SELECTORS.join(', ');
++const EXCLUDED_SELECTOR = buildSelectorList(SELECTO_EXCLUDED_SELECTORS);
+ 
+ /**
+  * Returns true when the element is a valid Selecto selection target:
+  * a schema root element with the selectable class and data-schema-id.
+  */
+ export const isSelectableTarget = (element: Element | null | undefined): boolean => {
+-  if (!(element instanceof HTMLElement)) return false;
+-  return (
+-    element.classList.contains(SELECTABLE_CLASSNAME) &&
+-    element.hasAttribute('data-schema-id')
+-  );
++  return isSchemaRootElement(element);
+ };
+ 
+ /**
+diff --git a/src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts b/src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts
+index dbe3aa2..d19edaa 100644
+--- a/src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts
++++ b/src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts
+@@ -16,6 +16,11 @@ import {
+   optionGroupDesignerWidthMM,
+   type OptionGroupType,
+ } from '../../../../schemas/options/optionGroupLayout.js';
++import { asRecord } from './objectGuards.js';
++
++type SchemaWithDesigner = SchemaForUI & {
++  __designer?: Record<string, unknown>;
++};
+ 
+ // ── Group helpers ──────────────────────────────────────────────────────────────
+ 
+@@ -26,20 +31,35 @@ const generateGroupId = (): string => {
+   return 'grp-' + Math.random().toString(36).slice(2) + Date.now().toString(36);
+ };
+ 
++const isGroupMeta = (value: unknown): value is GroupMeta => {
++  if (!value || typeof value !== 'object' || Array.isArray(value)) return false;
++  const record = value as Record<string, unknown>;
++  return (
++    typeof record.groupId === 'string' &&
++    (record.groupType === 'visual' ||
++      record.groupType === 'radio' ||
++      record.groupType === 'checkbox' ||
++      record.groupType === 'signatureBlock' ||
++      record.groupType === 'table' ||
++      record.groupType === 'repeatable')
++  );
++};
++
+ /** Returns the GroupMeta for a schema from __designer or the schema itself */
+-const getGroupMeta = (schema: SchemaForUI): GroupMeta | undefined => {
+-  const designer = (schema as SchemaForUI & { __designer?: { group?: GroupMeta } }).__designer;
+-  return designer?.group;
++const getGroupMeta = (schema: SchemaWithDesigner): GroupMeta | undefined => {
++  const designer = asRecord(schema.__designer);
++  const group = asRecord(designer?.group);
++  return isGroupMeta(group) ? group : undefined;
+ };
+ 
+ /** Returns a new schema with __designer.group set */
+-const withGroupMeta = (schema: SchemaForUI, group: GroupMeta | undefined): SchemaForUI => {
+-  const existing = (schema as SchemaForUI & { __designer?: Record<string, unknown> }).__designer ?? {};
++const withGroupMeta = (schema: SchemaWithDesigner, group: GroupMeta | undefined): SchemaWithDesigner => {
++  const existing = asRecord(schema.__designer) || {};
+   if (group === undefined) {
+-    const { group: _removed, ...rest } = existing as Record<string, unknown> & { group?: unknown };
+-    return ({ ...schema, __designer: rest } as unknown) as SchemaForUI;
++    const { group: _removed, ...rest } = existing;
++    return { ...schema, __designer: rest };
+   }
+-  return ({ ...schema, __designer: { ...existing, group } } as unknown) as SchemaForUI;
++  return { ...schema, __designer: { ...existing, group } };
+ };
+ export type AlignType =
+   | 'left'
+diff --git a/src/sisad-pdfme/ui/components/Designer/shared/transformTargetGuards.ts b/src/sisad-pdfme/ui/components/Designer/shared/transformTargetGuards.ts
+index 50a4349..59a1bec 100644
+--- a/src/sisad-pdfme/ui/components/Designer/shared/transformTargetGuards.ts
++++ b/src/sisad-pdfme/ui/components/Designer/shared/transformTargetGuards.ts
+@@ -8,38 +8,20 @@
+  * a valid Moveable target.
+  */
+ 
+-import { SELECTABLE_CLASSNAME } from '../../../constants.js';
++import { DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS, buildSelectorList } from './interactionTargetSelectors.js';
++import { isSchemaRootElement } from './objectGuards.js';
+ 
+ /** CSS selectors that Moveable must NEVER receive as transform targets. */
+-export const MOVEABLE_EXCLUDED_SELECTORS = [
+-  '[data-option-id]',
+-  '[data-role="group-add-option"]',
+-  '.sisad-pdfme-option-group__add-button',
+-  '.sisad-pdfme-option-group-floating-action',
+-  '.sisad-pdfme-option-group-action-overlay',
+-  '.moveable-control',
+-  '.moveable-line',
+-  '.moveable-control-box',
+-  '.ant-popover',
+-  '.ant-select-dropdown',
+-  'input',
+-  'textarea',
+-  'select',
+-  '[contenteditable="true"]',
+-] as const;
++export const MOVEABLE_EXCLUDED_SELECTORS = DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS;
+ 
+-const EXCLUDED_SELECTOR = MOVEABLE_EXCLUDED_SELECTORS.join(', ');
++const EXCLUDED_SELECTOR = buildSelectorList(MOVEABLE_EXCLUDED_SELECTORS);
+ 
+ /**
+  * Returns true when the element is a valid Moveable transform target:
+  * a schema root element with selectable class and data-schema-id.
+  */
+ export const isMoveableTarget = (element: Element | null | undefined): boolean => {
+-  if (!(element instanceof HTMLElement)) return false;
+-  return (
+-    element.classList.contains(SELECTABLE_CLASSNAME) &&
+-    element.hasAttribute('data-schema-id')
+-  );
++  return isSchemaRootElement(element);
+ };
+ 
+ /**
+diff --git a/src/sisad-pdfme/ui/components/shared/pageMetadata.ts b/src/sisad-pdfme/ui/components/shared/pageMetadata.ts
+index b1cca8b..4a23a62 100644
+--- a/src/sisad-pdfme/ui/components/shared/pageMetadata.ts
++++ b/src/sisad-pdfme/ui/components/shared/pageMetadata.ts
+@@ -17,3 +17,36 @@ export const buildPageMetadataAttrs = ({
+   'data-page-index': typeof pageIndex === 'number' ? String(pageIndex) : undefined,
+   'data-page-number': typeof pageNumber === 'number' ? String(pageNumber) : undefined,
+ });
++
++export const applyPageMetadataDataset = (
++  element: HTMLElement,
++  metadata: PageMetadata & { pageActive?: boolean; pageEmpty?: boolean },
++): void => {
++  const { documentId, pageIndex, pageNumber, pageActive, pageEmpty } = metadata;
++
++  if (documentId) {
++    element.dataset.documentId = documentId;
++  } else {
++    delete element.dataset.documentId;
++  }
++
++  if (typeof pageIndex === 'number') {
++    element.dataset.pageIndex = String(pageIndex);
++  } else {
++    delete element.dataset.pageIndex;
++  }
++
++  if (typeof pageNumber === 'number') {
++    element.dataset.pageNumber = String(pageNumber);
++  } else {
++    delete element.dataset.pageNumber;
++  }
++
++  if (typeof pageActive === 'boolean') {
++    element.dataset.pageActive = pageActive ? 'true' : 'false';
++  }
++
++  if (typeof pageEmpty === 'boolean') {
++    element.dataset.pageEmpty = pageEmpty ? 'true' : 'false';
++  }
++};
+diff --git a/src/sisad-pdfme/ui/components/usePreviewRuntime.ts b/src/sisad-pdfme/ui/components/usePreviewRuntime.ts
+index 4025bcc..232e035 100644
+--- a/src/sisad-pdfme/ui/components/usePreviewRuntime.ts
++++ b/src/sisad-pdfme/ui/components/usePreviewRuntime.ts
+@@ -14,6 +14,7 @@ import {
+ } from '../designerEngine.js';
+ import { emitDesignerRuntimeEvent } from './Designer/shared/designerExtensions.js';
+ import usePaperRefRegistry from './shared/usePaperRefRegistry.js';
++import { isRecord } from './Designer/shared/objectGuards.js';
+ 
+ const _cache = new Map<string | number, unknown>();
+ const MAX_RUNTIME_TEMPLATE_CACHE_ENTRIES = 12;
+@@ -38,17 +39,23 @@ const getTemplateDocumentIdentity = (template: Template) => {
+   }
+ };
+ 
++const sortJsonValue = (value: unknown): unknown => {
++  if (value === null || typeof value !== 'object') return value;
++  if (Array.isArray(value)) return value.map(sortJsonValue);
++
++  const sortedEntries = Object.entries(value).sort(([a], [b]) =>
++    a.localeCompare(b),
++  );
++
++  return sortedEntries.reduce<Record<string, unknown>>((acc, [key, entryValue]) => {
++    acc[key] = sortJsonValue(entryValue);
++    return acc;
++  }, {});
++};
++
+ const stableJsonSignature = (v: unknown) => {
+   try {
+-    const canonical = (function canon(x: any): any {
+-      if (x === null || typeof x !== 'object') return x;
+-      if (Array.isArray(x)) return x.map(canon);
+-      const keys = Object.keys(x).sort();
+-      const out: any = {};
+-      keys.forEach((k) => (out[k] = canon(x[k])));
+-      return out;
+-    })(v);
+-    return JSON.stringify(canonical);
++    return JSON.stringify(sortJsonValue(v));
+   } catch {
+     return String(v || '');
+   }
+@@ -166,7 +173,7 @@ const usePreviewRuntime = ({
+   const [zoomLevel, setZoomLevel] = useState(options.zoomLevel ?? 1);
+   const [schemasList, setSchemasList] = useState<SchemaForUI[][]>([[]] as SchemaForUI[][]);
+ 
+-  const designerEngine = useMemo(() => resolveDesignerEngine(options as Record<string, unknown>), [options]);
++  const designerEngine = useMemo(() => resolveDesignerEngine(options), [options]);
+   const designerEvents = designerEngine.extensions?.events;
+   const runtimeAdapter = useMemo(
+     () =>
+@@ -546,7 +553,8 @@ const usePreviewRuntime = ({
+             if (s.id !== schema.id) return s;
+             let ns = s;
+             nonContentArgs.forEach(({ key: _k, value }) => {
+-              if ((ns as Record<string, unknown>)[_k] !== value) {
++              const currentValue = isRecord(ns) ? ns[_k] : undefined;
++              if (currentValue !== value) {
+                 ns = { ...ns, [_k]: value } as SchemaForUI;
+                 changed = true;
+               }

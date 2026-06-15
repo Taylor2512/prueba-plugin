@@ -24,10 +24,6 @@ import { installPassiveTouchListenerGuard } from '../shared/passiveTouchListener
 
 installPassiveTouchListenerGuard();
 
-const MoveableElement = MoveableComponent as unknown as React.ForwardRefExoticComponent<
-  React.PropsWithoutRef<Record<string, unknown>> & React.RefAttributes<unknown>
->;
-
 type Props = {
   target: HTMLElement[];
   bounds: { left: number; top: number; bottom: number; right: number };
@@ -78,7 +74,7 @@ const Moveable = (props: Props, ref: Ref<MoveableComponent>) => {
   }, [props.moveableColor, props.target, props.useDefaultStyles, styleClassSelector]);
 
   return (
-    <MoveableElement
+    <MoveableComponent
       className={resolvedClassName}
       rootContainer={typeof document === 'undefined' ? undefined : document.body}
       snappable

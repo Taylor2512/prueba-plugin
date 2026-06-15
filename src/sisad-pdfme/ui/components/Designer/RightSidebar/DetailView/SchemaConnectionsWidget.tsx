@@ -1,5 +1,5 @@
 import React, { useCallback, useMemo, useState } from 'react';
-import type { PropPanelWidgetProps } from '@sisad-pdfme/common';
+import type { PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
 import { Button, Collapse, Divider, Input, InputNumber, Select, Space, Switch, Tag } from 'antd';
 import { DatabaseZap, Globe2, FileJson2 } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
@@ -174,6 +174,12 @@ const applyAuthPreset = (
   };
 };
 
+const mergeSectionPatch = <T extends Record<string, unknown>>(base: T | undefined, patch: Partial<T>): T =>
+  ({
+    ...(base || {}),
+    ...patch,
+  } as T);
+
 const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
   const { schemaConfig, designerEngine, updateSchemaConfig } = props;
   const [validationState, setValidationState] = useState<'idle' | 'ok' | 'warning'>('idle');
@@ -212,10 +218,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
   const updatePersistence = useCallback(
     (patch: Partial<SchemaPersistenceConfig>) => {
       updateSchemaConfig?.({
-        persistence: {
-          ...persistence,
-          ...patch,
-        },
+        persistence: mergeSectionPatch(persistence, patch),
       });
     },
     [persistence, updateSchemaConfig],
@@ -224,10 +227,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
   const updateApi = useCallback(
     (patch: Partial<NonNullable<SchemaDesignerConfig['api']>>) => {
       updateSchemaConfig?.({
-        api: {
-          ...api,
-          ...patch,
-        },
+        api: mergeSectionPatch(api, patch),
       });
     },
     [api, updateSchemaConfig],
@@ -236,10 +236,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
   const updateApiHttp = useCallback(
     (patch: Partial<SchemaHttpClientConfig>) => {
       updateApi({
-        http: {
-          ...api.http,
-          ...patch,
-        },
+        http: mergeSectionPatch(api.http, patch),
       });
     },
     [api.http, updateApi],
@@ -248,10 +245,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
   const updateApiAuth = useCallback(
     (patch: Partial<SchemaHttpAuthConfig>) => {
       updateApiHttp({
-        auth: {
-          ...api.http?.auth,
-          ...patch,
-        },
+        auth: mergeSectionPatch(api.http?.auth, patch),
       });
     },
     [api.http?.auth, updateApiHttp],
@@ -291,10 +285,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
   const updateFormJson = useCallback(
     (patch: Partial<SchemaFormJsonConfig>) => {
       updateSchemaConfig?.({
-        form: {
-          ...formJson,
-          ...patch,
-        },
+        form: mergeSectionPatch(formJson, patch),
       });
     },
     [formJson, updateSchemaConfig],
@@ -322,11 +313,11 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
       return;
     }
 
-    const validationSchema = {
+    const validationSchema: SchemaForUI = {
       id: 'schema-connections-validation',
       name: schemaConfig?.identity?.key || 'schemaConnections',
       type: 'text',
-    } as unknown as import('@sisad-pdfme/common').SchemaForUI;
+    } as SchemaForUI;
     const validationField = { schema: validationSchema, config: schemaConfig || null };
     const snapshot = {
       pageIndex: 0,
