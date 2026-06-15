@@ -9,6 +9,7 @@ import { useFloatingToolbarPosition } from './useFloatingToolbarPosition.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import type { SelectionToolbarMode } from './canvasContextMenuActions.js';
 import type { InteractionState } from '../../shared/interactionState.js';
+import { resolveActiveSchemasFromElements } from '../../shared/selectionIdentityResolver.js';
 import CommentsOverlay from './CommentsOverlay.js';
 import ShortcutHelpPanel from '../../Shortcuts/ShortcutHelpPanel.js';
 
@@ -40,32 +41,6 @@ type CanvasOverlayManagerProps = {
 const MICRO_TOOLBAR_SIZE = { width: 288, height: 160 };
 const COMPACT_TOOLBAR_SIZE = { width: 384, height: 224 };
 const EXPANDED_TOOLBAR_SIZE = { width: 512, height: 360 };
-
-const resolveSchemaForElement = (schemasList: SchemaForUI[][], element: HTMLElement | null | undefined): SchemaForUI | null => {
-  if (!element) return null;
-
-  const schemaId = String(element.dataset.schemaId || element.id || '').trim();
-  if (!schemaId) return null;
-
-  const pageIndex = Number(element.dataset.pageIndex);
-  if (Number.isInteger(pageIndex) && pageIndex >= 0) {
-    const pageSchemas = schemasList[pageIndex] || [];
-    const schema = pageSchemas.find((entry) => entry.id === schemaId);
-    if (schema) return schema;
-  }
-
-  for (const pageSchemas of schemasList) {
-    const schema = (pageSchemas || []).find((entry) => entry.id === schemaId);
-    if (schema) return schema;
-  }
-
-  return null;
-};
-
-const resolveActiveSchemas = (schemasList: SchemaForUI[][], activeElements: HTMLElement[]): SchemaForUI[] =>
-  activeElements
-    .map((element) => resolveSchemaForElement(schemasList, element))
-    .filter((schema): schema is SchemaForUI => Boolean(schema));
 
 const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
   const {
@@ -113,7 +88,7 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
   );
 
   const activeSchemas = useMemo(
-    () => resolveActiveSchemas(schemasList, activeElements),
+    () => resolveActiveSchemasFromElements(schemasList, activeElements),
     [activeElements, schemasList],
   );
 

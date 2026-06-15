@@ -28,6 +28,7 @@ import LeftSidebarDefault from './LeftSidebar.js';
 import Canvas from './Canvas/Canvas.js';
 import type { CanvasFeatureToggles } from './Canvas/Canvas.js';
 import { createSelectionCommands } from './shared/selectionCommands.js';
+import { resolveActiveSchemasFromElements } from './shared/selectionIdentityResolver.js';
 import {
   copySchemasToClipboard,
   cutSchemasToClipboard,
@@ -1225,25 +1226,10 @@ const TemplateEditor = ({
   );
 
   // ── Resolve the real schema objects for the current active elements ──────
-  const resolveActiveSchemasGlobal = useCallback((): SchemaForUI[] => {
-    const list = schemasListRef.current;
-    return activeElements
-      .map((el) => {
-        const schemaId = String(el?.dataset.schemaId || el?.id || '').trim();
-        if (!schemaId) return null;
-        const pi = Number(el?.dataset.pageIndex);
-        if (Number.isInteger(pi) && pi >= 0) {
-          const found = (list[pi] || []).find((s) => s.id === schemaId);
-          if (found) return found;
-        }
-        for (const page of list) {
-          const found = (page || []).find((s) => s.id === schemaId);
-          if (found) return found;
-        }
-        return null;
-      })
-      .filter((s): s is SchemaForUI => s !== null);
-  }, [activeElements]);
+  const resolveActiveSchemasGlobal = useCallback(
+    (): SchemaForUI[] => resolveActiveSchemasFromElements(schemasListRef.current, activeElements),
+    [activeElements],
+  );
 
   const handleCopySelection = useCallback(() => {
     const schemas = resolveActiveSchemasGlobal();

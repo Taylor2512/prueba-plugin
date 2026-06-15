@@ -17,6 +17,7 @@ import {
   type OptionGroupType,
 } from '../../../../schemas/options/optionGroupLayout.js';
 import { asRecord } from './objectGuards.js';
+import { resolveActiveSchemasFromElements } from './selectionIdentityResolver.js';
 
 type SchemaWithDesigner = SchemaForUI & {
   __designer?: Record<string, unknown>;
@@ -194,29 +195,8 @@ const resolvePageIndexFromActiveElements = (context: SelectionCommandsContext): 
   return Math.max(0, Math.min(context.pageCursor, Math.max(0, context.schemasList.length - 1)));
 };
 
-const resolveSchemaForActiveElement = (context: SelectionCommandsContext, element: HTMLElement): SchemaForUI | null => {
-  const schemaId = String(element.dataset.schemaId || element.id || '').trim();
-  if (!schemaId) return null;
-
-  const pageIndex = Number(element.dataset.pageIndex);
-  if (Number.isInteger(pageIndex) && pageIndex >= 0) {
-    const pageSchemas = context.schemasList[pageIndex] || [];
-    const schema = pageSchemas.find((entry) => entry.id === schemaId);
-    if (schema) return schema;
-  }
-
-  for (const pageSchemas of context.schemasList) {
-    const schema = (pageSchemas || []).find((entry) => entry.id === schemaId);
-    if (schema) return schema;
-  }
-
-  return null;
-};
-
 const getActiveSchemas = (context: SelectionCommandsContext) =>
-  context.activeElements
-    .map((element) => resolveSchemaForActiveElement(context, element))
-    .filter((schema): schema is SchemaForUI => Boolean(schema));
+  resolveActiveSchemasFromElements(context.schemasList, context.activeElements);
 
 const getPageSchemas = (context: SelectionCommandsContext) =>
   context.schemasList[resolvePageIndexFromActiveElements(context)] || [];

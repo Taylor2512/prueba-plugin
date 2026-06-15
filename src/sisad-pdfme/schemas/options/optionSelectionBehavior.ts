@@ -9,18 +9,33 @@ const normalizeOptionIds = (ids: unknown, validIds: Set<string>): string[] => {
     .filter((id) => id && validIds.has(id));
 };
 
-export const resolveSingleOptionSelection = (
+/**
+ * Core single-option matcher: resolve a stored value to a known optionId by id
+ * then by value. Returns undefined when nothing matches (no fallback applied).
+ * Shared by the Strategy resolver below and the optionValueAdapter Adapter so
+ * there is exactly one matching path.
+ */
+export const matchOptionId = (
   schemaSelected: unknown,
   options: OptionItem[],
-  fallback?: string | null,
-): string => {
+): string | undefined => {
   const validIds = new Set(options.map((option) => option.optionId));
   const byId = normalizeText(schemaSelected);
   if (byId && validIds.has(byId)) return byId;
 
   const byValue = options.find((option) => normalizeText(option.value) === byId);
-  if (byValue) return byValue.optionId;
+  return byValue?.optionId;
+};
 
+export const resolveSingleOptionSelection = (
+  schemaSelected: unknown,
+  options: OptionItem[],
+  fallback?: string | null,
+): string => {
+  const matched = matchOptionId(schemaSelected, options);
+  if (matched) return matched;
+
+  const validIds = new Set(options.map((option) => option.optionId));
   return fallback && validIds.has(fallback) ? fallback : options[0]?.optionId || 'option_1';
 };
 
