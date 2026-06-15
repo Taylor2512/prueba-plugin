@@ -51,6 +51,7 @@ import {
 } from '../shared/interactionGuards.js';
 import { isMoveableTarget } from '../shared/transformTargetGuards.js';
 import { isSelectoExcludedTarget } from '../shared/selectableTargetGuards.js';
+import { isSameDocumentPageSelection } from '../shared/selectionIdentityResolver.js';
 import { applyPageMetadataDataset } from '../../shared/pageMetadata.js';
 import CanvasOverlayManager from './overlays/CanvasOverlayManager.js';
 import CanvasContextMenu from './overlays/CanvasContextMenu.js';
@@ -92,15 +93,6 @@ const toNumber = (value: string | undefined): number | null => {
   if (!value) return null;
   const parsed = Number(value);
   return Number.isInteger(parsed) ? parsed : null;
-};
-// Selection page key = documentId:pageIndex. Used to keep Moveable group box
-// from unioning across distinct pages/documents.
-const getSelectionPageKey = (elements: HTMLElement[]): string | null => {
-  if (!elements.length) return null;
-  const keys = new Set(
-    elements.map((el) => `${el.dataset.documentId || ''}:${el.dataset.pageIndex || ''}`),
-  );
-  return keys.size === 1 ? [...keys][0] : null;
 };
 const CONTENT_DRIVEN_INLINE_EDIT_TYPES = new Set(['text', 'multivariabletext']);
 
@@ -376,8 +368,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   // Moveable renders on the cursor page only. Scoping its targets to a single
   // page prevents a group bounding box that unions schemas across pages.
   const moveableTargets = useMemo(() => {
-    const pageKey = getSelectionPageKey(activeElements);
-    if (pageKey !== null) return activeElements;
+    if (isSameDocumentPageSelection(activeElements)) return activeElements;
     return activeElements.filter((el) => toNumber(el.dataset.pageIndex) === pageCursor);
   }, [activeElements, pageCursor]);
   const placeholderVariables = useMemo(

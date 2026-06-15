@@ -4,6 +4,7 @@ import { Settings2 } from 'lucide-react'
 import PopoverMenu from './PopoverMenu.jsx'
 
 const EMPTY_ARRAY = []
+const joinClasses = (...classes) => classes.filter(Boolean).join(' ')
 
 export default function CompactControls({
   mode,
@@ -62,21 +63,21 @@ export default function CompactControls({
             <div className="sisad-pdfme-popover-grid">
               <button
                 type="button"
-                className={['sisad-pdfme-popover-action', mode === 'designer' ? 'is-active' : ''].filter(Boolean).join(' ')}
+                className={joinClasses('sisad-pdfme-popover-action', mode === 'designer' && 'is-active')}
                 onClick={applyMode(close, 'designer')}
               >
                 Diseñador
               </button>
               <button
                 type="button"
-                className={['sisad-pdfme-popover-action', mode === 'form' ? 'is-active' : ''].filter(Boolean).join(' ')}
+                className={joinClasses('sisad-pdfme-popover-action', mode === 'form' && 'is-active')}
                 onClick={applyMode(close, 'form')}
               >
                 Formulario
               </button>
               <button
                 type="button"
-                className={['sisad-pdfme-popover-action', mode === 'viewer' ? 'is-active' : ''].filter(Boolean).join(' ')}
+                className={joinClasses('sisad-pdfme-popover-action', mode === 'viewer' && 'is-active')}
                 onClick={applyMode(close, 'viewer')}
               >
                 Visor

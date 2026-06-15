@@ -1,10 +1,11 @@
 import { downloadJson } from '../../browser/downloads.js';
 import { buildExampleBundle, getExampleBundleFilename } from './buildExampleBundle.js';
 import type { ExampleBundleOptions } from './buildExampleBundle.js';
+import type { ExampleDefinition } from '../builders/exampleTemplate.js';
 
 /** Builds a data: URL href for an example bundle (JSON, utf-8 encoded). */
 export const buildExampleHref = async (
-  example: any,
+  example: ExampleDefinition,
   options: ExampleBundleOptions = {},
 ): Promise<string> => {
   const bundle = await buildExampleBundle(example, options);
@@ -16,7 +17,7 @@ export const buildExampleHref = async (
  * (revoke when done). No-op outside the browser.
  */
 export const downloadExampleBundle = async (
-  example: any,
+  example: ExampleDefinition,
   options: ExampleBundleOptions = {},
 ): Promise<string> => {
   const bundle = await buildExampleBundle(example, options);

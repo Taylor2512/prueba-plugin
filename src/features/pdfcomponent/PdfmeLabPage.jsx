@@ -21,6 +21,11 @@ import {
   resolveInitialUxMode,
   formatPageStatus,
 } from './domain/labState.js'
+import {
+  flattenSchemasFromTemplate,
+  getUniqueSchemaTypes,
+  getLabCollaborationSummary,
+} from './domain/labPresentation.js'
 import { decorateCollaborationUsers } from '@/sisad-pdfme/collaboration/recipientPalette'
 import { decorateTemplateWithCollaboration } from '@/sisad-pdfme/collaboration/schemaOwnershipAppearance'
 import PageHeader from './PageHeader.jsx'
@@ -228,9 +233,9 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
 
   const pageMetrics = useMemo(
     () => {
-      const allSchemas = template.schemas.reduce((acc, page) => acc.concat(page || []), [])
-      const schemaTypes = new Set(allSchemas.map((schema) => String(schema?.type || '').trim()).filter(Boolean))
-      const registeredSchemaTypes = new Set(schemaCatalog.map((definition) => String(definition?.type || '').trim()).filter(Boolean))
+      const allSchemas = flattenSchemasFromTemplate(template)
+      const schemaTypes = getUniqueSchemaTypes(allSchemas)
+      const registeredSchemaTypes = getUniqueSchemaTypes(schemaCatalog)
 
       return [
         { label: 'Estado', value: busy ? 'Procesando' : 'Listo' },
@@ -241,64 +246,17 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
         { label: 'Schemas', value: `${schemaTypes.size}/${registeredSchemaTypes.size}` },
       ]
     },
-    [activeCollaborator?.name, busy, isGlobalView, mode, template.schemas, uxMode],
+    [activeCollaborator?.name, busy, isGlobalView, mode, template, uxMode],
   )
 
   const collaborationSummary = useMemo(() => {
-    const allSchemas = template.schemas.reduce((acc, page) => acc.concat(page || []), [])
     const activeUserId = activeCollaborator?.id || activeCollaboratorId || ''
-    const normalizeValue = (value) => String(value || '').trim()
-    const getOwnerIds = (schema) => {
-      const ids = []
-      if (Array.isArray(schema?.ownerRecipientIds)) ids.push(...schema.ownerRecipientIds)
-      if (schema?.ownerRecipientId) ids.push(schema.ownerRecipientId)
-      return Array.from(new Set(ids.reduce((acc, value) => {
-        const normalized = normalizeValue(value)
-        if (normalized) acc.push(normalized)
-        return acc
-      }, [])))
-    }
-
-    const visibleSchemas = allSchemas.filter((schema) => {
-      if (isGlobalView) return true
-      const ownerIds = getOwnerIds(schema)
-      const schemaOwner = normalizeValue(schema?.createdBy) || normalizeValue(schema?.lastModifiedBy)
-      const sharedOwner = normalizeValue(schema?.ownerMode) === 'shared'
-      return ownerIds.length === 0 || ownerIds.includes(activeUserId) || schemaOwner === activeUserId || sharedOwner
+    return getLabCollaborationSummary({
+      schemas: flattenSchemasFromTemplate(template),
+      activeUserId,
+      isGlobalView,
     })
-
-    const editableSchemas = visibleSchemas.filter((schema) => {
-      const ownerIds = getOwnerIds(schema)
-      const schemaOwner = normalizeValue(schema?.createdBy) || normalizeValue(schema?.lastModifiedBy)
-      const sharedOwner = normalizeValue(schema?.ownerMode) === 'shared'
-      const lockedBy = normalizeValue(schema?.lock?.lockedBy)
-      const isReadonly = Boolean(schema?.readonly || schema?.__designer?.ownership?.readonly)
-      const ownershipMatches =
-        ownerIds.length === 0 || ownerIds.includes(activeUserId) || schemaOwner === activeUserId || sharedOwner
-
-      return ownershipMatches && !isReadonly && (!lockedBy || lockedBy === activeUserId)
-    })
-
-    const lockedCount = allSchemas.filter((schema) => {
-      const lockedBy = normalizeValue(schema?.lock?.lockedBy)
-      return Boolean(lockedBy && lockedBy !== activeUserId)
-    }).length
-
-    const commentCount = allSchemas.reduce((total, schema) => {
-      const inlineComments = Array.isArray(schema?.comments) ? schema.comments.length : 0
-      const commentAnchors = Array.isArray(schema?.commentAnchors) ? schema.commentAnchors.length : 0
-      const legacyAnchors = Array.isArray(schema?.commentsAnchors) ? schema.commentsAnchors.length : 0
-      const storedCount = Number(schema?.commentsCount || 0)
-      return total + Math.max(storedCount, inlineComments + commentAnchors + legacyAnchors)
-    }, 0)
-
-    return {
-      visibleCount: visibleSchemas.length,
-      editableCount: editableSchemas.length,
-      lockedCount,
-      commentCount,
-    }
-  }, [activeCollaborator?.id, activeCollaboratorId, isGlobalView, template.schemas])
+  }, [activeCollaborator?.id, activeCollaboratorId, isGlobalView, template])
 
   const setMode = useCallback((nextMode) => {
     setUiState((prev) => ({ ...prev, mode: nextMode }))

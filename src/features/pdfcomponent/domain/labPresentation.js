@@ -80,6 +80,23 @@ export const getCollaboratorToneClass = (color) => {
   return LAB_COLOR_TOKENS[normalized] ? `sisad-pdfme-lab-chip-tone-${LAB_COLOR_TOKENS[normalized]}` : ''
 }
 
+export const flattenSchemasFromTemplate = (template) => {
+  if (!template || !Array.isArray(template.schemas)) return []
+  return template.schemas.flatMap((page) => (Array.isArray(page) ? page : []))
+}
+
+export const getExampleSchemas = (example) => {
+  const mainSchemas = flattenSchemasFromTemplate(example?.template)
+  const uploadedSchemas = Array.isArray(example?.runtimeOptions?.uploadedDocuments)
+    ? example.runtimeOptions.uploadedDocuments.flatMap((document) => flattenSchemasFromTemplate(document?.template))
+    : []
+
+  return [...mainSchemas, ...uploadedSchemas]
+}
+
+export const getUniqueSchemaTypes = (schemas = []) =>
+  new Set(schemas.map((schema) => String(schema?.type || '').trim()).filter(Boolean))
+
 export const getLabCoverageCounts = (examples = []) => {
   const counts = new Map()
 
@@ -93,31 +110,16 @@ export const getLabCoverageCounts = (examples = []) => {
   return counts
 }
 
-const flattenSchemasFromTemplate = (template) => {
-  if (!template || !Array.isArray(template.schemas)) return []
-  return template.schemas.flatMap((page) => (Array.isArray(page) ? page : []))
-}
-
-const getExampleSchemas = (example) => {
-  const mainSchemas = flattenSchemasFromTemplate(example?.template)
-  const uploadedSchemas = Array.isArray(example?.runtimeOptions?.uploadedDocuments)
-    ? example.runtimeOptions.uploadedDocuments.flatMap((document) => flattenSchemasFromTemplate(document?.template))
-    : []
-
-  return [...mainSchemas, ...uploadedSchemas]
-}
-
+const EXCLUDED_SCHEMA_TYPES = new Set(['qrcode'])
 const ALL_SCHEMA_TYPES = new Set(
-  builtInSchemaDefinitions.map((definition) => String(definition?.type || '').trim()).filter(Boolean),
+  builtInSchemaDefinitions
+    .map((definition) => String(definition?.type || '').trim())
+    .filter((type) => type && !EXCLUDED_SCHEMA_TYPES.has(type)),
 )
 
 export const getLabExampleSchemaStats = (example) => {
   const schemas = getExampleSchemas(example)
-  const schemaTypes = new Set(
-    schemas
-      .map((schema) => String(schema?.type || '').trim())
-      .filter(Boolean),
-  )
+  const schemaTypes = getUniqueSchemaTypes(schemas)
 
   const registeredSchemaTypes = ALL_SCHEMA_TYPES.size
   const usedSchemaTypes = schemaTypes.size
@@ -132,3 +134,56 @@ export const getLabExampleSchemaStats = (example) => {
   }
 }
 
+export const getLabCollaborationSummary = ({
+  schemas = [],
+  activeUserId = '',
+  isGlobalView = false,
+} = {}) => {
+  const normalizeValue = (value) => String(value || '').trim()
+  const getOwnerIds = (schema) => {
+    const ids = []
+    if (Array.isArray(schema?.ownerRecipientIds)) ids.push(...schema.ownerRecipientIds)
+    if (schema?.ownerRecipientId) ids.push(schema.ownerRecipientId)
+    return Array.from(new Set(ids.map(normalizeValue).filter(Boolean)))
+  }
+
+  const visibleSchemas = schemas.filter((schema) => {
+    if (isGlobalView) return true
+    const ownerIds = getOwnerIds(schema)
+    const schemaOwner = normalizeValue(schema?.createdBy) || normalizeValue(schema?.lastModifiedBy)
+    const sharedOwner = normalizeValue(schema?.ownerMode) === 'shared'
+    return ownerIds.length === 0 || ownerIds.includes(activeUserId) || schemaOwner === activeUserId || sharedOwner
+  })
+
+  const editableSchemas = visibleSchemas.filter((schema) => {
+    const ownerIds = getOwnerIds(schema)
+    const schemaOwner = normalizeValue(schema?.createdBy) || normalizeValue(schema?.lastModifiedBy)
+    const sharedOwner = normalizeValue(schema?.ownerMode) === 'shared'
+    const lockedBy = normalizeValue(schema?.lock?.lockedBy)
+    const isReadonly = Boolean(schema?.readonly || schema?.__designer?.ownership?.readonly)
+    const ownershipMatches =
+      ownerIds.length === 0 || ownerIds.includes(activeUserId) || schemaOwner === activeUserId || sharedOwner
+
+    return ownershipMatches && !isReadonly && (!lockedBy || lockedBy === activeUserId)
+  })
+
+  const lockedCount = schemas.filter((schema) => {
+    const lockedBy = normalizeValue(schema?.lock?.lockedBy)
+    return Boolean(lockedBy && lockedBy !== activeUserId)
+  }).length
+
+  const commentCount = schemas.reduce((total, schema) => {
+    const inlineComments = Array.isArray(schema?.comments) ? schema.comments.length : 0
+    const commentAnchors = Array.isArray(schema?.commentAnchors) ? schema.commentAnchors.length : 0
+    const legacyAnchors = Array.isArray(schema?.commentsAnchors) ? schema.commentsAnchors.length : 0
+    const storedCount = Number(schema?.commentsCount || 0)
+    return total + Math.max(storedCount, inlineComments + commentAnchors + legacyAnchors)
+  }, 0)
+
+  return {
+    visibleCount: visibleSchemas.length,
+    editableCount: editableSchemas.length,
+    lockedCount,
+    commentCount,
+  }
+}

@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
 const EMPTY_ARRAY = []
+const joinClasses = (...classes) => classes.filter(Boolean).join(' ')
 
 export default function PopoverMenu({
   label,
@@ -15,8 +16,8 @@ export default function PopoverMenu({
 }) {
   const [open, setOpen] = useState(false)
   const ref = useRef(null)
-  const containerClasses = ['sisad-pdfme-popover', className].filter(Boolean).join(' ')
-  const panelClasses = ['sisad-pdfme-popover-panel', panelClassName].filter(Boolean).join(' ')
+  const containerClasses = joinClasses('sisad-pdfme-popover', className)
+  const panelClasses = joinClasses('sisad-pdfme-popover-panel', panelClassName)
   const close = () => setOpen(false)
   let customContent = null
 
@@ -52,7 +53,7 @@ export default function PopoverMenu({
     <div className={containerClasses} ref={ref} data-align={align}>
       <button
         type="button"
-        className={['sisad-pdfme-popover-button', open ? 'is-active' : ''].filter(Boolean).join(' ')}
+        className={joinClasses('sisad-pdfme-popover-button', open && 'is-active')}
         onClick={() => setOpen((current) => !current)}
         aria-haspopup="menu"
         aria-expanded={open}
@@ -68,9 +69,7 @@ export default function PopoverMenu({
             <button
               key={it.key || String(it.label)}
               type="button"
-              className={['sisad-pdfme-popover-item', it.active ? 'is-active' : '', it.tone ? `is-${it.tone}` : '']
-                .filter(Boolean)
-                .join(' ')}
+              className={joinClasses('sisad-pdfme-popover-item', it.active && 'is-active', it.tone && `is-${it.tone}`)}
               role="menuitem"
               disabled={it.disabled}
               onClick={() => {

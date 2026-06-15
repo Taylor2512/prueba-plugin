@@ -4,6 +4,7 @@ import { getCollaboratorToneClass, getLabModeLabel } from './domain/labPresentat
 import { buildCollaboratorChipStyle } from '@/sisad-pdfme/collaboration/appearance'
 
 const EMPTY_ARRAY = []
+const joinClasses = (...classes) => classes.filter(Boolean).join(' ')
 
 const getUserTitle = (user) => [user.role, user.team].filter(Boolean).join(' · ') || user.name
 
@@ -53,14 +54,12 @@ const CollaborationSection = ({
               <li key={user.id} className="sisad-pdfme-lab-chip-item">
                 <button
                   type="button"
-                  className={[
+                  className={joinClasses(
                     'sisad-pdfme-lab-chip',
                     'sisad-pdfme-lab-chip-button',
                     toneClass,
                     isActive ? 'is-active' : 'sisad-pdfme-lab-chip-muted',
-                  ]
-                    .filter(Boolean)
-                    .join(' ')}
+                  )}
                   style={chipStyle}
                   title={getUserTitle(user)}
                   aria-pressed={isActive}
@@ -175,7 +174,6 @@ export default function PageHeader({
       </div>
 
       <CollaborationSection
-        example={example}
         collaborationUsers={collaborationUsers}
         activeCollaborator={activeCollaborator}
         onActiveCollaboratorChange={onActiveCollaboratorChange}

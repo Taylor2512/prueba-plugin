@@ -10,11 +10,45 @@ export type CreateTemplateOptions = {
   pageCount?: number;
 };
 
+export type TemplatePage = Template['schemas'][number];
+
+export type UploadedDocument = {
+  id: string;
+  name: string;
+  pageCount?: number;
+  template: Template;
+};
+
+export type ExampleRuntimeOptions = {
+  uploadedDocuments?: UploadedDocument[];
+  [key: string]: unknown;
+};
+
+export type ExampleDefinition = {
+  id: string;
+  path: string;
+  title: string;
+  description: string;
+  status: string;
+  defaultMode?: string;
+  initialSchemaType?: string;
+  collaboration?: {
+    activeUserId?: string;
+    actorId?: string;
+    sessionId?: string;
+    enabled?: boolean;
+    users?: CollaboratorUser[];
+  } | null;
+  template: Template;
+  inputs?: unknown;
+  runtimeOptions?: ExampleRuntimeOptions | null;
+};
+
 /**
  * Builds a template from schema pages, padding to `pageCount` empty pages.
  * Base shape comes from `createDefaultTemplate`.
  */
-export const createTemplate = (schemas: any[][], options: CreateTemplateOptions = {}): Template => {
+export const createTemplate = (schemas: Template['schemas'], options: CreateTemplateOptions = {}): Template => {
   const initialTemplate = createDefaultTemplate();
   const nextSchemas = cloneDeep(Array.isArray(schemas) && schemas.length > 0 ? schemas : [[]]);
   const safePageCount = Math.max(
@@ -28,12 +62,12 @@ export const createTemplate = (schemas: any[][], options: CreateTemplateOptions 
     ...initialTemplate,
     basePdf: options.basePdf || initialTemplate.basePdf,
     schemas: nextSchemas,
-  } as Template;
+  };
 };
 
-export const appendTemplatePages = (template: Template, extraPages: any[][]): Template => ({
+export const appendTemplatePages = (template: Template, extraPages: Template['schemas']): Template => ({
   ...template,
-  schemas: [...((template as any).schemas || []), ...cloneDeep(extraPages)],
+  schemas: [...(template.schemas || []), ...cloneDeep(extraPages)],
 });
 
 export type CreateUploadedDocumentArgs = {
@@ -41,7 +75,7 @@ export type CreateUploadedDocumentArgs = {
   name: string;
   pdfFileName: string;
   pageCount?: number;
-  schemas: any[][];
+  schemas: Template['schemas'];
   /** Resolves a pdf file name to a basePdf (URL or bytes). Host-supplied. */
   pdfResolver: (pdfFileName: string) => Template['basePdf'];
 };
@@ -71,7 +105,7 @@ export type CreateCollaborationOptions = {
 export const createCollaboration = (
   activeUserId: string,
   users: CollaboratorUser[],
-  metadata: any = {},
+  metadata: Record<string, unknown> = {},
   options: CreateCollaborationOptions = {},
 ) => {
   const decorate = options.decorateUsers ?? ((u: CollaboratorUser[]) => decorateCollaborationUsers(u));
@@ -85,25 +119,14 @@ export const createCollaboration = (
 };
 
 /** Deep-clones an assembled example (template/inputs/runtimeOptions). */
-export const cloneExample = (example: any) => ({
+export const cloneExample = <T extends ExampleDefinition>(example: T): T => ({
   ...example,
   template: cloneDeep(example.template),
   inputs: cloneDeep(example.inputs),
   runtimeOptions: cloneDeep(example.runtimeOptions),
 });
 
-export type CreateExampleArgs = {
-  id: string;
-  path: string;
-  title: string;
-  description: string;
-  status: string;
-  defaultMode?: string;
-  initialSchemaType?: string;
-  collaboration?: any;
-  template: Template;
-  runtimeOptions?: any;
-};
+export type CreateExampleArgs = ExampleDefinition;
 
 /**
  * Assembles an example: decorates the template (and any uploaded documents)
@@ -127,7 +150,7 @@ export const createExample = ({
   const safeRuntimeOptions = runtimeOptions
     ? cloneDeep({
         ...runtimeOptions,
-        uploadedDocuments: (runtimeOptions.uploadedDocuments || []).map((document: any) => ({
+        uploadedDocuments: (runtimeOptions.uploadedDocuments || []).map((document) => ({
           ...document,
           template: decorateTemplateWithCollaboration(document.template, users),
         })),

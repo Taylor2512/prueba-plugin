@@ -2,7 +2,7 @@
 // (`@/sisad-pdfme/examples/*`, Fase 3). This file only holds lab-specific data
 // (PDF routes, demo content, example catalog) and wires it to the core builders.
 import { builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
-import { text, select, checkbox, signature } from '@sisad-pdfme/schemas'
+import { text, select, checkbox, signature, radioGroup, checkboxGroup } from '@sisad-pdfme/schemas'
 import {
   createSchema,
   createCommentAnchor,
@@ -43,24 +43,12 @@ const SORTED_SCHEMA_DEFINITIONS = builtInSchemaDefinitions
   .slice()
   .sort((a, b) => `${a.category}-${a.label}`.localeCompare(`${b.category}-${b.label}`))
 
-// Exclude QR and barcode-type schemas from showcase examples per lab requirement
-// Keep this list aligned with the canonical BARCODE_TYPES in the schemas package
-const BARCODE_SCHEMA_TYPES = new Set([
-  'japanpost',
-  'ean13',
-  'ean8',
-  'code39',
-  'code128',
-  'nw7',
-  'itf14',
-  'upca',
-  'upce',
-  'gs1datamatrix',
-  'pdf417',
-])
-const NON_QR_SCHEMA_DEFINITIONS = SORTED_SCHEMA_DEFINITIONS.filter((d) => {
-  const t = String(d?.type || '').toLowerCase()
-  return t !== 'qrcode' && !BARCODE_SCHEMA_TYPES.has(t)
+// Showcase should include every registered schema except QR, which is the only
+// explicit exclusion in this lab catalog.
+const EXCLUDED_SHOWCASE_SCHEMA_TYPES = new Set(['qrcode'])
+const SHOWCASE_SCHEMA_DEFINITIONS = SORTED_SCHEMA_DEFINITIONS.filter((definition) => {
+  const type = String(definition?.type || '').toLowerCase()
+  return !EXCLUDED_SHOWCASE_SCHEMA_TYPES.has(type)
 })
 
 const createTextSchema = (overrides = {}) =>
@@ -85,6 +73,22 @@ const createCheckboxSchema = (overrides = {}) =>
     position: { x: 18, y: 66 },
     width: 8,
     height: 8,
+    ...overrides,
+  })
+
+const createRadioGroupSchema = (overrides = {}) =>
+  createSchema(radioGroup.propPanel.defaultSchema, {
+    position: { x: 18, y: 84 },
+    width: 82,
+    height: 18,
+    ...overrides,
+  })
+
+const createCheckboxGroupSchema = (overrides = {}) =>
+  createSchema(checkboxGroup.propPanel.defaultSchema, {
+    position: { x: 18, y: 108 },
+    width: 92,
+    height: 12,
     ...overrides,
   })
 
@@ -338,6 +342,60 @@ const multiDocumentPrimaryBaseSchemas = [
       content: '2026-05-01',
       y: 24,
     }),
+    createSelectSchema({
+      schemaUid: 'multi-contract-stage',
+      fileId: 'file-contract-a',
+      fileTemplateId: 'file-contract-a',
+      pageNumber: 1,
+      ownerRecipientId: 'recipient-1',
+      ownerMode: 'single',
+      ...createAuditMetadata('routing-user-1', 'recipient-1', 90000),
+      name: 'contract_stage',
+      content: 'Pendiente',
+      options: ['Pendiente', 'Aprobado', 'Rechazado'],
+      y: 48,
+    }),
+    createRadioGroupSchema({
+      schemaUid: 'multi-contract-approval-mode',
+      fileId: 'file-contract-a',
+      fileTemplateId: 'file-contract-a',
+      pageNumber: 1,
+      ownerRecipientIds: ['recipient-1'],
+      ownerMode: 'multi',
+      ...createAuditMetadata('routing-user-1', 'recipient-1', 120000),
+      name: 'approval_mode',
+      groupId: 'multi-contract-approval-mode',
+      group: 'multi-contract-approval-mode',
+      groupName: 'Modo de aprobación',
+      content: 'option_1',
+      selectedOptionId: 'option_1',
+      defaultSelectedOptionId: 'option_1',
+      options: [
+        { optionId: 'option_1', label: 'Firma' },
+        { optionId: 'option_2', label: 'Revisión' },
+      ],
+      y: 70,
+    }),
+    createCheckboxGroupSchema({
+      schemaUid: 'multi-contract-attachments',
+      fileId: 'file-contract-a',
+      fileTemplateId: 'file-contract-a',
+      pageNumber: 1,
+      ownerRecipientIds: ['recipient-1'],
+      ownerMode: 'multi',
+      ...createAuditMetadata('routing-user-1', 'recipient-1', 150000),
+      name: 'required_documents',
+      groupId: 'multi-contract-attachments',
+      group: 'multi-contract-attachments',
+      groupName: 'Documentos requeridos',
+      selectedOptionIds: ['opt_1', 'opt_3'],
+      options: [
+        { optionId: 'opt_1', label: 'Cédula' },
+        { optionId: 'opt_2', label: 'RUC' },
+        { optionId: 'opt_3', label: 'Contrato firmado' },
+      ],
+      y: 98,
+    }),
   ],
   [],
 ]
@@ -368,13 +426,38 @@ const multiDocumentSecondaryBaseSchemas = [
       content: 'Firmado',
       y: 24,
     }),
+    createCheckboxSchema({
+      schemaUid: 'multi-annex-check',
+      fileId: 'file-contract-b',
+      fileTemplateId: 'file-contract-b',
+      pageNumber: 2,
+      ownerRecipientIds: ['recipient-2'],
+      ownerMode: 'multi',
+      ...createAuditMetadata('routing-user-1', 'recipient-2', 160000),
+      name: 'annex_confirm',
+      content: 'true',
+      y: 48,
+    }),
+    createSelectSchema({
+      schemaUid: 'multi-annex-select',
+      fileId: 'file-contract-b',
+      fileTemplateId: 'file-contract-b',
+      pageNumber: 2,
+      ownerRecipientIds: ['recipient-2'],
+      ownerMode: 'multi',
+      ...createAuditMetadata('routing-user-1', 'recipient-2', 190000),
+      name: 'annex_status',
+      content: 'En revisión',
+      options: ['En revisión', 'Aprobado', 'Observado'],
+      y: 68,
+    }),
   ],
 ]
 
 const MULTI_DOCUMENT_ROUTING_PAGE_COUNT = 5
-const routingSchemaSplitIndex = Math.ceil(NON_QR_SCHEMA_DEFINITIONS.length / 2)
-const routingPrimarySchemaDefinitions = NON_QR_SCHEMA_DEFINITIONS.slice(0, routingSchemaSplitIndex)
-const routingSecondarySchemaDefinitions = NON_QR_SCHEMA_DEFINITIONS.slice(routingSchemaSplitIndex)
+const routingSchemaSplitIndex = Math.ceil(SHOWCASE_SCHEMA_DEFINITIONS.length / 2)
+const routingPrimarySchemaDefinitions = SHOWCASE_SCHEMA_DEFINITIONS.slice(0, routingSchemaSplitIndex)
+const routingSecondarySchemaDefinitions = SHOWCASE_SCHEMA_DEFINITIONS.slice(routingSchemaSplitIndex)
 
 const multiDocumentPrimaryShowcaseSchemas = createSchemaShowcasePages({
   definitions: routingPrimarySchemaDefinitions,
@@ -435,7 +518,7 @@ const multiDocumentRoutingDocuments = [
 ]
 
 const multiuserShowcasePages = createSchemaShowcasePages({
-  definitions: NON_QR_SCHEMA_DEFINITIONS,
+  definitions: SHOWCASE_SCHEMA_DEFINITIONS,
   scope: 'multiuser-showcase',
   ownerRecipientId: 'sales-user-1',
   fileId: 'multiuser-contract',
@@ -590,7 +673,7 @@ const generatorRuntimeTemplate = createTemplate([
 ], { basePdf: LAB_PDFS.generator, pageCount: 3 })
 
 const designerShowcasePages = createSchemaShowcasePages({
-  definitions: NON_QR_SCHEMA_DEFINITIONS,
+  definitions: SHOWCASE_SCHEMA_DEFINITIONS,
   scope: 'designer-showcase',
   ownerRecipientId: 'basic-user-1',
   // place designer showcase pages after the base designer template pages
@@ -599,7 +682,7 @@ const designerShowcasePages = createSchemaShowcasePages({
 })
 
 const collaborationShowcasePages = createSchemaShowcasePages({
-  definitions: NON_QR_SCHEMA_DEFINITIONS,
+  definitions: SHOWCASE_SCHEMA_DEFINITIONS,
   scope: 'collaboration-showcase',
   ownerRecipientId: 'ops-user-1',
   fileId: 'enterprise-contract',
@@ -609,7 +692,7 @@ const collaborationShowcasePages = createSchemaShowcasePages({
 })
 
 const generatorShowcasePages = createSchemaShowcasePages({
-  definitions: NON_QR_SCHEMA_DEFINITIONS,
+  definitions: SHOWCASE_SCHEMA_DEFINITIONS,
   scope: 'generator-showcase',
   ownerRecipientId: 'generator-user-1',
   // append showcase after existing runtime template pages to avoid collisions

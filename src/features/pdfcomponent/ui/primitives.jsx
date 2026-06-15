@@ -1,5 +1,8 @@
 import React from 'react'
 import PropTypes from 'prop-types'
+import CaseCard from '../CaseCard.jsx'
+
+const joinClasses = (...classes) => classes.filter(Boolean).join(' ')
 
 // ── IconButton ────────────────────────────────────────────────────────────────
 
@@ -14,9 +17,7 @@ export function IconButton({
   ariaHasPopup,
   ariaExpanded,
 }) {
-  const classNameList = ['sisad-pdfme-compact-icon-button', isActive ? 'is-active' : '', className]
-    .filter(Boolean)
-    .join(' ')
+  const classNameList = joinClasses('sisad-pdfme-compact-icon-button', isActive && 'is-active', className)
 
   return (
     <button
@@ -84,8 +85,6 @@ Hero.propTypes = {
 }
 
 // ── CaseGrid ──────────────────────────────────────────────────────────────────
-
-import CaseCard from '../CaseCard.jsx'
 
 const EMPTY_EXAMPLES = []
 
