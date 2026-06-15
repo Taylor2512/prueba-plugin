@@ -1,7 +1,7 @@
 # Documentación Markdown Unificada
 
 **Carpeta origen:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin`  
-**Fecha de generación:** `2026-06-15T17:51:06.183Z`  
+**Fecha de generación:** `2026-06-15T20:31:56.771Z`  
 **Total de archivos incluidos:** `78`  
 **Extensiones incluidas:** `.md`
 

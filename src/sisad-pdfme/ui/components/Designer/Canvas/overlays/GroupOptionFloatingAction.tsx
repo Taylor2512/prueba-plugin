@@ -57,14 +57,17 @@ const GroupOptionFloatingAction = ({
   const element = activeElements[0];
   if (!element) return null;
 
-  const canvasRoot = element.closest('.sisad-pdfme-designer-canvas');
-  if (!(canvasRoot instanceof Element)) return null;
+  const canvasRoot = element.closest('.sisad-pdfme-designer-canvas') as HTMLElement | null;
+  if (!canvasRoot) return null;
 
   const canvasRect = canvasRoot.getBoundingClientRect();
   const elemRect = element.getBoundingClientRect();
 
-  const centerX = elemRect.left - canvasRect.left + elemRect.width / 2;
-  const topY = elemRect.bottom - canvasRect.top + BUTTON_GAP_PX;
+  // Viewport-relative coords → scroll-container-relative coords.
+  // The overlay is position:absolute inside the canvas scroll container,
+  // so absolute offsets must include what has been scrolled away.
+  const centerX = elemRect.left - canvasRect.left + elemRect.width / 2 + canvasRoot.scrollLeft;
+  const topY = elemRect.bottom - canvasRect.top + BUTTON_GAP_PX + canvasRoot.scrollTop;
 
   return (
     <div

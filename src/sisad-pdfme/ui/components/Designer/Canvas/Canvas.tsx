@@ -82,20 +82,26 @@ const buildSizeAndPositionChanges = (schemaId: string, width: string, height: st
   { key: 'position.y', value: fmt(top), schemaId },
   { key: 'position.x', value: fmt(left), schemaId },
 ];
-const dedupeById = <T extends { id: string }>(items: T[]) => {
-  const seen = new Set<string>();
-  return items.filter((item) => {
-    if (!item?.id || seen.has(item.id)) return false;
-    seen.add(item.id);
-    return true;
-  });
-};
 const getPaddingMm = (basePdf: BasePdf): [number, number, number, number] => {
   if (!isBlankPdf(basePdf)) return [0, 0, 0, 0];
   const [top, right, bottom, left] = basePdf.padding;
   return [top, right, bottom, left];
 };
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+const toNumber = (value: string | undefined): number | null => {
+  if (!value) return null;
+  const parsed = Number(value);
+  return Number.isInteger(parsed) ? parsed : null;
+};
+// Selection page key = documentId:pageIndex. Used to keep Moveable group box
+// from unioning across distinct pages/documents.
+const getSelectionPageKey = (elements: HTMLElement[]): string | null => {
+  if (!elements.length) return null;
+  const keys = new Set(
+    elements.map((el) => `${el.dataset.documentId || ''}:${el.dataset.pageIndex || ''}`),
+  );
+  return keys.size === 1 ? [...keys][0] : null;
+};
 const CONTENT_DRIVEN_INLINE_EDIT_TYPES = new Set(['text', 'multivariabletext']);
 
 const buildSchemaSelector = (schemaId: string): string => {
@@ -314,6 +320,12 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   const contextMenu = contextMenuState.contextMenu;
   const pendingContextMenu = contextMenuState.pendingContextMenu;
   const rootRef = useRef<HTMLDivElement>(null);
+  const regionSelectionSessionRef = useRef<{
+    pageIndex: number | null;
+    pageNumber: number | null;
+    documentId?: string;
+    startedInsidePaper: boolean;
+  } | null>(null);
   const coordinateService = useMemo(
     () =>
       new DesignerCoordinateService({
@@ -361,6 +373,13 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     [activeSelectionPageIndex, currentPageSchemas, pageCursor, renderedPageSchemasList],
   );
   const activePaper = paperRefs.current[activeSelectionPageIndex ?? pageCursor] || null;
+  // Moveable renders on the cursor page only. Scoping its targets to a single
+  // page prevents a group bounding box that unions schemas across pages.
+  const moveableTargets = useMemo(() => {
+    const pageKey = getSelectionPageKey(activeElements);
+    if (pageKey !== null) return activeElements;
+    return activeElements.filter((el) => toNumber(el.dataset.pageIndex) === pageCursor);
+  }, [activeElements, pageCursor]);
   const placeholderVariables = useMemo(
     () =>
       Object.fromEntries(
@@ -938,15 +957,58 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     return false;
   };
   const isEventInsideActivePaper = (target: EventTarget | null) => isEventInsideAnyPaper(target);
-  const normalizeActiveTargets = (targets: HTMLElement[]) => {
+
+  // Resolve the real paper page under a pointer target (not pageCursor).
+  const getPaperFromTarget = (target: EventTarget | null): HTMLElement | null => {
+    if (!(target instanceof Node)) return null;
+    const paperPage =
+      target instanceof Element ? target.closest('[data-paper-page="true"]') : null;
+    if (paperPage instanceof HTMLElement) return paperPage;
+    for (const paper of paperRefs.current) {
+      if (paper && (target === paper || paper.contains(target))) return paper;
+    }
+    return null;
+  };
+  const getPaperIdentity = (paper: HTMLElement | null) => ({
+    pageIndex: paper ? toNumber(paper.dataset.pageIndex) : null,
+    pageNumber: paper ? toNumber(paper.dataset.pageNumber) : null,
+    documentId: paper?.dataset.documentId || undefined,
+  });
+
+  const normalizeActiveTargets = (
+    targets: HTMLElement[],
+    options?: { pageIndex?: number | null; documentId?: string; allowCrossPage?: boolean },
+  ): HTMLElement[] => {
     const papers = paperRefs.current.filter(Boolean);
     if (!papers.length) return [];
-    return dedupeById(
-      targets.filter((target) => {
+    const seen = new Set<string>();
+    return targets
+      .map((target) => (target?.closest?.('[data-schema-id]') as HTMLElement | null) || target)
+      .filter((target): target is HTMLElement => Boolean(target))
+      .filter((target) => {
         if (!isMoveableTarget(target)) return false;
+        if (isSelectoExcludedTarget(target)) return false;
+
+        // Region/selection is scoped to the page where the drag started, so a
+        // rect crossing into page 1 never grabs page 1 schemas.
+        if (!options?.allowCrossPage && typeof options?.pageIndex === 'number') {
+          const targetPageIndex = toNumber(target.dataset.pageIndex);
+          if (targetPageIndex !== options.pageIndex) return false;
+        }
+        if (
+          options?.documentId &&
+          target.dataset.documentId &&
+          target.dataset.documentId !== options.documentId
+        ) {
+          return false;
+        }
+
+        // Dedupe by uid (cross-page safe), fall back to schemaId/id.
+        const key = target.dataset.schemaUid || target.dataset.schemaId || target.id;
+        if (!key || seen.has(key)) return false;
+        seen.add(key);
         return papers.some((paper) => target === paper || paper.contains(target));
-      }),
-    );
+      });
   };
 
   const closeContextMenu = useCallback(() => {
@@ -1164,7 +1226,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
           container={rootRef.current}
           rootContainer={rootRef.current}
           dragContainer={rootRef.current}
-          boundContainer={activePaper || rootRef.current}
+          boundContainer={rootRef.current}
           checkInput
           continueSelect={modifierKeys.shift}
           className={classNames?.selecto}
@@ -1212,49 +1274,59 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
               e.stop();
             }
 
-            if (activePaper === target) {
+            // Pin region selection to the REAL page under the pointer, not
+            // pageCursor/activePaper. Targets later get filtered to this page.
+            const paper = getPaperFromTarget(target);
+            const identity = getPaperIdentity(paper);
+            regionSelectionSessionRef.current = {
+              pageIndex: identity.pageIndex,
+              pageNumber: identity.pageNumber,
+              documentId: identity.documentId,
+              startedInsidePaper: Boolean(paper),
+            };
+
+            if (paperRefs.current.some((p) => p === target)) {
               onEdit([]);
             }
 
           }}
           onSelect={(e) => {
-            // Use type assertions to safely access properties
-            const inputEvent = e.inputEvent as MouseEvent | TouchEvent;
-            const target = inputEvent.target as Element | null;
-            const isInsidePaper = isEventInsideActivePaper(target);
-            if (!isInsidePaper) {
-              return;
-            }
-            const added = e.added as HTMLElement[];
-            const removed = e.removed as HTMLElement[];
-            const selected = e.selected as HTMLElement[];
+            const inputEvent = e.inputEvent as MouseEvent | PointerEvent | undefined;
+            const target = inputEvent?.target as Element | null;
+            if (!isEventInsideAnyPaper(target)) return;
 
-            const isClick = inputEvent.type === 'mousedown';
-            const isShiftClick = isClick && Boolean((inputEvent as MouseEvent).shiftKey);
-            let newActiveElements: HTMLElement[] = isClick ? selected : [];
+            const session = regionSelectionSessionRef.current;
+            // Session anchors the page; fall back to the page under the pointer
+            // (single click without a prior drag-start session).
+            const sessionPageIndex =
+              session?.pageIndex ?? getPaperIdentity(getPaperFromTarget(target)).pageIndex;
+            const sessionDocumentId =
+              session?.documentId ?? getPaperIdentity(getPaperFromTarget(target)).documentId;
+            const scope = { pageIndex: sessionPageIndex, documentId: sessionDocumentId, allowCrossPage: false };
 
-            if (isShiftClick) {
-              newActiveElements = normalizeActiveTargets([...activeElements, ...selected]);
-            }
+            const isAdditive = Boolean(
+              inputEvent &&
+                (('shiftKey' in inputEvent && inputEvent.shiftKey) ||
+                  ('metaKey' in inputEvent && inputEvent.metaKey) ||
+                  ('ctrlKey' in inputEvent && inputEvent.ctrlKey)),
+            );
 
-            if (!isClick && added.length > 0) {
-              newActiveElements = activeElements.concat(added);
-            }
-            if (!isClick && removed.length > 0) {
-              newActiveElements = activeElements.filter((ae) => !removed.includes(ae));
-            }
-            const normalizedSelection = normalizeActiveTargets(newActiveElements);
-            onEdit(normalizedSelection);
+            // e.selected is the source of truth for both click and region drag.
+            const selected = normalizeActiveTargets(e.selected as HTMLElement[], scope);
+            const previous = isAdditive ? normalizeActiveTargets(activeElements, scope) : [];
+            const nextSelection = normalizeActiveTargets([...previous, ...selected], scope);
+
+            onEdit(nextSelection);
 
             const selectionChanged =
-              normalizedSelection.length !== activeElements.length ||
-              normalizedSelection.some((element, index) => element.id !== activeElements[index]?.id);
+              nextSelection.length !== activeElements.length ||
+              nextSelection.some((el, i) => el.id !== activeElements[i]?.id);
             if (selectionChanged) {
               setEditing(false);
             }
 
             // For MacOS CMD+SHIFT+3/4 screenshots where the keydown event is never received, check mouse too
-            const mouseEvent = inputEvent as MouseEvent;
+            const mouseEvent = inputEvent as MouseEvent | undefined;
             if (mouseEvent && typeof mouseEvent.shiftKey === 'boolean' && !mouseEvent.shiftKey) {
               setModifierKeys({ shift: false, alt: false });
             }
@@ -1330,7 +1402,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
                   className={classNames?.moveable}
                   useDefaultStyles={useDefaultStyles}
                   moveableColor={styleOverrides?.moveable?.color}
-                  target={activeElements}
+                  target={moveableTargets}
                   bounds={{
                     left: 0,
                     top: 0,
@@ -1424,8 +1496,14 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
                     if (interactiveControl) return;
 
                     if (!isActive) {
+                      const targetPageIndex = toNumber(event.currentTarget.dataset.pageIndex);
+                      const targetDocumentId = event.currentTarget.dataset.documentId || undefined;
                       const nextTargets = event.shiftKey
-                        ? normalizeActiveTargets([...activeElements, event.currentTarget])
+                        ? normalizeActiveTargets([...activeElements, event.currentTarget], {
+                            pageIndex: targetPageIndex,
+                            documentId: targetDocumentId,
+                            allowCrossPage: false,
+                          })
                         : [event.currentTarget];
                       onEdit(nextTargets);
                       closeContextMenu();

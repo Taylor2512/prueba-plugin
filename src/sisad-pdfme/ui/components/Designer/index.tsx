@@ -28,6 +28,12 @@ import LeftSidebarDefault from './LeftSidebar.js';
 import Canvas from './Canvas/Canvas.js';
 import type { CanvasFeatureToggles } from './Canvas/Canvas.js';
 import { createSelectionCommands } from './shared/selectionCommands.js';
+import {
+  copySchemasToClipboard,
+  cutSchemasToClipboard,
+  pasteSchemasFromClipboard,
+  type SchemaClipboardPayload,
+} from './shared/schemaClipboard.js';
 import type { InteractionState } from './shared/interactionState.js';
 import {
   RULER_HEIGHT,
@@ -447,6 +453,7 @@ const TemplateEditor = ({
   const lastCommittedSchemasHashRef = useRef<string>('');
   const lastPersistedDocumentBasePdfRef = useRef<Template['basePdf']>(template.basePdf);
   const canvasDocumentIdRef = useRef<string | null>(null);
+  const schemaClipboardRef = useRef<SchemaClipboardPayload | null>(null);
   const pendingCanvasDocumentIdRef = useRef<string | null>(null);
   const loadDocumentRequestRef = useRef(0);
 
@@ -1217,6 +1224,70 @@ const TemplateEditor = ({
     [activeElements, commitSchemas, onEditEnd, pageCursor],
   );
 
+  // ── Resolve the real schema objects for the current active elements ──────
+  const resolveActiveSchemasGlobal = useCallback((): SchemaForUI[] => {
+    const list = schemasListRef.current;
+    return activeElements
+      .map((el) => {
+        const schemaId = String(el?.dataset.schemaId || el?.id || '').trim();
+        if (!schemaId) return null;
+        const pi = Number(el?.dataset.pageIndex);
+        if (Number.isInteger(pi) && pi >= 0) {
+          const found = (list[pi] || []).find((s) => s.id === schemaId);
+          if (found) return found;
+        }
+        for (const page of list) {
+          const found = (page || []).find((s) => s.id === schemaId);
+          if (found) return found;
+        }
+        return null;
+      })
+      .filter((s): s is SchemaForUI => s !== null);
+  }, [activeElements]);
+
+  const handleCopySelection = useCallback(() => {
+    const schemas = resolveActiveSchemasGlobal();
+    if (!schemas.length) return;
+    schemaClipboardRef.current = copySchemasToClipboard(schemas);
+  }, [resolveActiveSchemasGlobal]);
+
+  const handlePasteSelection = useCallback(() => {
+    const clipboard = schemaClipboardRef.current;
+    if (!clipboard?.items.length) return;
+    const list = schemasListRef.current;
+    // Target the page of the first active element, or pageCursor as fallback
+    let targetPageIndex = pageCursor;
+    for (const el of activeElements) {
+      const pi = Number(el?.dataset.pageIndex);
+      if (Number.isInteger(pi) && pi >= 0) { targetPageIndex = pi; break; }
+    }
+    const pageSchemas = list[targetPageIndex] || [];
+    const pasted = pasteSchemasFromClipboard(clipboard, {
+      pageIndex: targetPageIndex,
+      pageSize: pageSizes[targetPageIndex],
+      fileId: activeDocumentId || null,
+      existingSchemas: pageSchemas,
+      collaborationContext: {
+        fileId: collaborationContext.fileId || null,
+        actorId: collaborationContext.actorId || null,
+        ownerRecipientId: collaborationContext.ownerRecipientId || null,
+        ownerRecipientIds: collaborationContext.ownerRecipientIds,
+        ownerRecipientName: collaborationContext.ownerRecipientName || null,
+        ownerColor: collaborationContext.ownerColor || null,
+        userColor: collaborationContext.userColor || null,
+      },
+      pageCount: list.length,
+    });
+    commitSchemas([...pageSchemas, ...pasted], targetPageIndex);
+  }, [activeDocumentId, activeElements, collaborationContext, commitSchemas, pageCursor, pageSizes]);
+
+  const handleCutSelection = useCallback(() => {
+    const schemas = resolveActiveSchemasGlobal();
+    if (!schemas.length) return;
+    schemaClipboardRef.current = cutSchemasToClipboard(schemas);
+    removeSchemas(schemas.map((s) => s.id));
+  }, [removeSchemas, resolveActiveSchemasGlobal]);
+
   const changeSchemas: ChangeSchemas = useCallback(
     (objs) => {
       const stableBasePdf = resolveStableDocumentBasePdf(activeDocumentId || canvasDocumentIdRef.current || null);
@@ -1235,19 +1306,40 @@ const TemplateEditor = ({
         }, {}),
         details: { changeCount: objs.length },
       });
-      _changeSchemas({
-        objs,
-        schemas: currentPageSchemas,
-        basePdf: stableBasePdf,
-        pluginsRegistry,
-        pageSize: pageSizes[pageCursor],
-        commitSchemas,
-      });
+
+      // Route each change to the page that actually owns its schema (resolved by
+      // unique schemaId), so edits like addGroupOption on page 2+ never depend on
+      // pageCursor and never touch a same-name schema on another page.
+      const list = schemasListRef.current;
+      const resolvePageIndexForSchemaId = (schemaId: string): number => {
+        const idx = list.findIndex((pageSchemas) =>
+          (pageSchemas || []).some((schema) => schema.id === schemaId),
+        );
+        return idx >= 0 ? idx : pageCursor;
+      };
+
+      const objsByPage = new Map<number, typeof objs>();
+      for (const obj of objs) {
+        const pageIndex = obj.schemaId ? resolvePageIndexForSchemaId(obj.schemaId) : pageCursor;
+        const bucket = objsByPage.get(pageIndex);
+        if (bucket) bucket.push(obj);
+        else objsByPage.set(pageIndex, [obj]);
+      }
+
+      for (const [pageIndex, pageObjs] of objsByPage) {
+        _changeSchemas({
+          objs: pageObjs,
+          schemas: list[pageIndex] || [],
+          basePdf: stableBasePdf,
+          pluginsRegistry,
+          pageSize: pageSizes[pageIndex] || pageSizes[pageCursor],
+          commitSchemas: (next) => commitSchemas(next as SchemaForUI[], pageIndex),
+        });
+      }
     },
     [
       activeDocumentId,
       commitSchemas,
-      currentPageSchemas,
       emitDesignerEvent,
       pageCursor,
       pageSizes,
@@ -1278,6 +1370,10 @@ const TemplateEditor = ({
         onOpenProperties: openPropertiesPanel,
         requestInlineEdit,
         collaborationContext,
+        onCopySelection: handleCopySelection,
+        onPasteSelection: handlePasteSelection,
+        onCutSelection: handleCutSelection,
+        onClearSelection: () => setActiveElements([]),
         executeCommand: (command) => {
           void commandBusRef.current.execute(command);
         },
@@ -1294,6 +1390,9 @@ const TemplateEditor = ({
       requestInlineEdit,
       collaborationContext,
       commandBusRef,
+      handleCopySelection,
+      handlePasteSelection,
+      handleCutSelection,
     ],
   );
 

@@ -488,7 +488,19 @@ export const useDesignerKeyboardShortcuts = ({
       const shortcut = resolveShortcutByKeyboardEvent(event, current.shortcuts ?? getShortcuts());
       if (!shortcut) return;
 
-      if (shouldIgnoreShortcutEvent(event, shortcut, current)) return;
+      if (shouldIgnoreShortcutEvent(event, shortcut, current)) {
+        // When schemas are actively selected, allow selection- and canvas-scoped
+        // shortcuts to fire even if focus drifted outside the designer root
+        // (e.g. user clicked a schema on page 2 but the canvas container did not
+        // receive programmatic focus).
+        const canBypassFocusCheck =
+          (shortcut.scope === 'selection' || shortcut.scope === 'canvas') &&
+          current.activeSchemas.length > 0 &&
+          !current.isModalOpen &&
+          !current.isInlineEditing &&
+          !isEditableTarget(event.target);
+        if (!canBypassFocusCheck) return;
+      }
       if (shortcut.requiresSelection && current.activeSchemas.length === 0) return;
       if (shortcut.requiresEditableStructure && !current.canEditStructure) return;
       const handled = executeShortcutAction(event, shortcut, current);
