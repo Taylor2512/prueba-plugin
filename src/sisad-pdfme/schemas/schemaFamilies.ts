@@ -30,6 +30,13 @@ type FamilyPreset = PluginFamilyDefinition & {
   supportsValidation: boolean;
 };
 
+type FamilyPresetConfig = Omit<FamilyPreset, 'visibleSections' | 'propertyMap' | 'supportedActions' | 'strategies'> & {
+  visibleSections: SchemaInspectorSection[];
+  propertyMap?: Partial<Record<string, PropPanelInspectorSectionKey>>;
+  supportedActions: Array<PluginActionDefinition['command']>;
+  strategies: Array<PluginStrategyDefinition['type']>;
+};
+
 const TEXT_TYPES = new Set([
   'text', 'number', 'multivariabletext', 'select', 'dropdown',
   'date', 'time', 'datetime',
@@ -141,12 +148,26 @@ const createStrategies = (types: Array<PluginStrategyDefinition['type']>): Plugi
     label: type,
   }));
 
+const createFamilyPreset = ({
+  visibleSections,
+  propertyMap = {},
+  supportedActions,
+  strategies,
+  ...rest
+}: FamilyPresetConfig): FamilyPreset => ({
+  ...rest,
+  visibleSections,
+  propertyMap,
+  supportedActions: createActions(supportedActions),
+  strategies: createStrategies(strategies),
+});
+
 const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
-  text: {
+  text: createFamilyPreset({
     family: 'text',
     visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'help', 'collaboration', 'validation', 'advanced', 'comments'],
     propertyMap: BASE_PROPERTY_MAP,
-    supportedActions: createActions([
+    supportedActions: [
       'editText',
       'renameVariable',
       'resizeField',
@@ -159,20 +180,20 @@ const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
       'resolveComment',
       'lockField',
       'unlockField',
-    ]),
-    strategies: createStrategies(['validation', 'prefill', 'persistence', 'comments', 'locking']),
+    ],
+    strategies: ['validation', 'prefill', 'persistence', 'comments', 'locking'],
     supportsComments: true,
     supportsLocking: true,
     supportsPresence: true,
     supportsConnections: true,
     supportsCollaboration: true,
     supportsValidation: true,
-  },
-  mediaVisual: {
+  }),
+  mediaVisual: createFamilyPreset({
     family: 'mediaVisual',
     visibleSections: ['general', 'layout', 'style', 'collaboration', 'comments', 'advanced'],
     propertyMap: BASE_PROPERTY_MAP,
-    supportedActions: createActions([
+    supportedActions: [
       'resizeField',
       'moveField',
       'duplicateField',
@@ -181,20 +202,20 @@ const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
       'addComment',
       'lockField',
       'unlockField',
-    ]),
-    strategies: createStrategies(['upload', 'comments', 'locking']),
+    ],
+    strategies: ['upload', 'comments', 'locking'],
     supportsComments: true,
     supportsLocking: true,
     supportsPresence: true,
     supportsConnections: false,
     supportsCollaboration: true,
     supportsValidation: false,
-  },
-  boolean: {
+  }),
+  boolean: createFamilyPreset({
     family: 'boolean',
     visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'help', 'collaboration', 'validation', 'advanced', 'comments'],
     propertyMap: BASE_PROPERTY_MAP,
-    supportedActions: createActions([
+    supportedActions: [
       'renameVariable',
       'resizeField',
       'moveField',
@@ -206,20 +227,20 @@ const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
       'resolveComment',
       'lockField',
       'unlockField',
-    ]),
-    strategies: createStrategies(['validation', 'prefill', 'persistence', 'comments', 'locking']),
+    ],
+    strategies: ['validation', 'prefill', 'persistence', 'comments', 'locking'],
     supportsComments: true,
     supportsLocking: true,
     supportsPresence: true,
     supportsConnections: true,
     supportsCollaboration: true,
     supportsValidation: true,
-  },
-  shapeBarcode: {
+  }),
+  shapeBarcode: createFamilyPreset({
     family: 'shapeBarcode',
     visibleSections: ['general', 'layout', 'style', 'data', 'collaboration', 'comments', 'advanced'],
     propertyMap: BASE_PROPERTY_MAP,
-    supportedActions: createActions([
+    supportedActions: [
       'resizeField',
       'moveField',
       'duplicateField',
@@ -228,20 +249,20 @@ const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
       'addComment',
       'lockField',
       'unlockField',
-    ]),
-    strategies: createStrategies(['comments', 'locking']),
+    ],
+    strategies: ['comments', 'locking'],
     supportsComments: true,
     supportsLocking: true,
     supportsPresence: true,
     supportsConnections: false,
     supportsCollaboration: true,
     supportsValidation: false,
-  },
-  table: {
+  }),
+  table: createFamilyPreset({
     family: 'table',
     visibleSections: ['general', 'layout', 'data', 'style', 'connections', 'collaboration', 'advanced', 'comments'],
     propertyMap: BASE_PROPERTY_MAP,
-    supportedActions: createActions([
+    supportedActions: [
       'renameVariable',
       'resizeField',
       'moveField',
@@ -253,15 +274,15 @@ const FAMILY_PRESETS: Record<SchemaFamily, FamilyPreset> = {
       'resolveComment',
       'lockField',
       'unlockField',
-    ]),
-    strategies: createStrategies(['prefill', 'persistence', 'comments', 'locking']),
+    ],
+    strategies: ['prefill', 'persistence', 'comments', 'locking'],
     supportsComments: true,
     supportsLocking: true,
     supportsPresence: true,
     supportsConnections: true,
     supportsCollaboration: true,
     supportsValidation: false,
-  },
+  }),
 };
 
 const LEGACY_TO_CANONICAL: Record<LegacySchemaFamily, SchemaFamily> = {

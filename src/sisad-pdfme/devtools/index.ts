@@ -74,6 +74,10 @@ export {
   inlineRuntimeOptionsBasePdfs,
 } from '../examples/export/buildExampleBundle.js';
 export { buildExampleHref, downloadExampleBundle } from '../examples/export/downloadExampleBundle.js';
+export {
+  createPdfPreflightReport,
+  generatePdfWithPreflight,
+} from '../generator/index.js';
 
 // Browser helpers
 export { createObjectUrl, revokeObjectUrls } from '../browser/objectUrls.js';

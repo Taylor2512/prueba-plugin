@@ -70,6 +70,36 @@ const SelectionContextToolbar = ({
     mode: resolvedToolbarMode,
   });
   const miniPrimaryActions = isMicro ? toolbarModel.primaryActions.slice(0, 2) : toolbarModel.primaryActions;
+  const renderToolbarButton = (btn: (typeof toolbarModel.primaryActions)[number]) => (
+    <button
+      key={btn.id}
+      type="button"
+      title={btn.disabled && btn.disabledReason ? btn.disabledReason : btn.label}
+      aria-label={btn.label}
+      aria-pressed={btn.active ? 'true' : 'false'}
+      data-active={btn.active ? 'true' : 'false'}
+      data-critical={btn.critical ? 'true' : 'false'}
+      data-danger={btn.danger ? 'true' : 'false'}
+      data-loading={btn.loading ? 'true' : 'false'}
+      data-schema-interactive-control="true"
+      disabled={btn.disabled || !btn.onSelect || btn.loading}
+      aria-busy={btn.loading ? 'true' : 'false'}
+      onMouseDown={(event) => {
+        event.preventDefault();
+        event.stopPropagation();
+      }}
+      onClick={(event) => {
+        event.preventDefault();
+        event.stopPropagation();
+        btn.onSelect?.();
+      }}
+    >
+      <span className="sisad-pdfme-ui-selection-context-toolbar-action-icon" aria-hidden="true">
+        {btn.loading ? <Loader2 size={14} className="sisad-pdfme-ui-selection-context-toolbar-spinner" /> : btn.icon}
+      </span>
+      <span className="sisad-pdfme-ui-selection-context-toolbar-action-label">{btn.label}</span>
+    </button>
+  );
 
   if (!position || !commands || !activeElements.length) return null;
   if (['editing', 'dragging', 'resizing', 'rotating'].includes(interactionState.phase)) return null;
@@ -137,35 +167,7 @@ const SelectionContextToolbar = ({
       ) : null}
 
       <div className="sisad-pdfme-ui-selection-context-toolbar-actions" role="group" aria-label="Acciones rápidas">
-        {miniPrimaryActions.map((btn) => (
-          <button
-            key={btn.id}
-            type="button"
-            title={btn.disabled && btn.disabledReason ? btn.disabledReason : btn.label}
-            aria-label={btn.label}
-            aria-pressed={btn.active ? 'true' : 'false'}
-            data-active={btn.active ? 'true' : 'false'}
-            data-danger={btn.danger ? 'true' : 'false'}
-            data-loading={btn.loading ? 'true' : 'false'}
-            data-schema-interactive-control="true"
-            disabled={btn.disabled || !btn.onSelect || btn.loading}
-            aria-busy={btn.loading ? 'true' : 'false'}
-            onMouseDown={(event) => {
-              event.preventDefault();
-              event.stopPropagation();
-            }}
-            onClick={(event) => {
-              event.preventDefault();
-              event.stopPropagation();
-              btn.onSelect?.();
-            }}
-          >
-            <span className="sisad-pdfme-ui-selection-context-toolbar-action-icon" aria-hidden="true">
-              {btn.loading ? <Loader2 size={14} className="sisad-pdfme-ui-selection-context-toolbar-spinner" /> : btn.icon}
-            </span>
-            <span className="sisad-pdfme-ui-selection-context-toolbar-action-label">{btn.label}</span>
-          </button>
-        ))}
+        {miniPrimaryActions.map(renderToolbarButton)}
         {isMicro ? (
           <button
             type="button"
@@ -197,35 +199,7 @@ const SelectionContextToolbar = ({
             <section key={section.id} className="sisad-pdfme-ui-selection-context-toolbar-section">
               <div className="sisad-pdfme-ui-selection-context-toolbar-section-label">{section.label}</div>
               <div className="sisad-pdfme-ui-selection-context-toolbar-section-actions" role="group" aria-label={section.label}>
-                {section.items.map((btn) => (
-                  <button
-                    key={btn.id}
-                    type="button"
-                    title={btn.disabled && btn.disabledReason ? btn.disabledReason : btn.label}
-                    aria-label={btn.label}
-                    aria-pressed={btn.active ? 'true' : 'false'}
-                    data-active={btn.active ? 'true' : 'false'}
-                    data-danger={btn.danger ? 'true' : 'false'}
-                    data-loading={btn.loading ? 'true' : 'false'}
-                    data-schema-interactive-control="true"
-                    disabled={btn.disabled || !btn.onSelect || btn.loading}
-                    aria-busy={btn.loading ? 'true' : 'false'}
-                    onMouseDown={(event) => {
-                      event.preventDefault();
-                      event.stopPropagation();
-                    }}
-                    onClick={(event) => {
-                      event.preventDefault();
-                      event.stopPropagation();
-                      btn.onSelect?.();
-                    }}
-                  >
-                    <span className="sisad-pdfme-ui-selection-context-toolbar-action-icon" aria-hidden="true">
-                      {btn.loading ? <Loader2 size={14} className="sisad-pdfme-ui-selection-context-toolbar-spinner" /> : btn.icon}
-                    </span>
-                    <span className="sisad-pdfme-ui-selection-context-toolbar-action-label">{btn.label}</span>
-                  </button>
-                ))}
+                {section.items.map(renderToolbarButton)}
               </div>
             </section>
           ))}

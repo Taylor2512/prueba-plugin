@@ -52,7 +52,10 @@ import {
 import { isMoveableTarget } from '../shared/transformTargetGuards.js';
 import { isSelectoExcludedTarget } from '../shared/selectableTargetGuards.js';
 import { isDesignerInteractiveTarget, isOptionInternalTarget } from '../shared/interactionTargetPolicy.js';
-import { isSameDocumentPageSelection } from '../shared/selectionIdentityResolver.js';
+import {
+  isSameDocumentPageSelection,
+  resolveSelectionPageIndex,
+} from '../shared/selectionIdentityResolver.js';
 import { applyPageMetadataDataset } from '../../shared/pageMetadata.js';
 import CanvasOverlayManager from './overlays/CanvasOverlayManager.js';
 import CanvasContextMenu from './overlays/CanvasContextMenu.js';
@@ -352,15 +355,10 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     [activeElements],
   );
   const activeElementIdSet = useMemo(() => new Set(activeElementIds), [activeElementIds]);
-  const activeSelectionPageIndex = useMemo(() => {
-    for (const element of activeElements) {
-      const pageIndex = Number(element?.dataset.pageIndex);
-      if (Number.isInteger(pageIndex) && pageIndex >= 0) {
-        return pageIndex;
-      }
-    }
-    return Number.isInteger(pageCursor) && pageCursor >= 0 ? pageCursor : null;
-  }, [activeElements, pageCursor]);
+  const activeSelectionPageIndex = useMemo(
+    () => resolveSelectionPageIndex(activeElements, pageCursor),
+    [activeElements, pageCursor],
+  );
   const activeSelectionSchemas = useMemo(
     () => renderedPageSchemasList[activeSelectionPageIndex ?? pageCursor] || currentPageSchemas,
     [activeSelectionPageIndex, currentPageSchemas, pageCursor, renderedPageSchemasList],
@@ -369,9 +367,10 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   // Moveable renders on the cursor page only. Scoping its targets to a single
   // page prevents a group bounding box that unions schemas across pages.
   const moveableTargets = useMemo(() => {
+    const targetPageIndex = activeSelectionPageIndex ?? pageCursor;
     if (isSameDocumentPageSelection(activeElements)) return activeElements;
-    return activeElements.filter((el) => toNumber(el.dataset.pageIndex) === pageCursor);
-  }, [activeElements, pageCursor]);
+    return activeElements.filter((el) => toNumber(el.dataset.pageIndex) === targetPageIndex);
+  }, [activeElements, activeSelectionPageIndex, pageCursor]);
   const placeholderVariables = useMemo(
     () =>
       Object.fromEntries(

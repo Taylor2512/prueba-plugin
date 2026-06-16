@@ -16,6 +16,12 @@ interface Select extends TextSchema {
   options: string[];
 }
 
+const resolveSelectPdfValue = (value: unknown, options: string[]): string => {
+  const normalizedValue = typeof value === 'string' ? value.trim() : String(value || '').trim();
+  if (!normalizedValue) return '';
+  return options.includes(normalizedValue) ? normalizedValue : '';
+};
+
 const addOptions = (props: PropPanelWidgetProps) => {
   const { rootElement, changeSchemas, activeSchema, i18n } = props;
 
@@ -194,7 +200,14 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
       rootElement.appendChild(selectElement);
     }
   },
-  pdf: text.pdf,
+  pdf: async (arg) => {
+    const options = normalizeStringOptions(Array.isArray((arg.schema as Select).options) ? (arg.schema as Select).options : []);
+    const nextValue = resolveSelectPdfValue(arg.value, options);
+    return text.pdf({
+      ...arg,
+      value: nextValue,
+    });
+  },
   propPanel: {
     ...text.propPanel,
     inspector: createSchemaInspectorConfig('textual', {

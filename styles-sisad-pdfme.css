@@ -8020,6 +8020,15 @@
   color: var(--color-danger);
 }
 
+.sisad-pdfme-ui-selection-context-toolbar button[data-critical='true'] {
+  flex: 1 0 auto;
+  font-weight: var(--font-weight-semibold);
+}
+
+.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-mode='micro'] button[data-critical='true'] {
+  min-width: 2.4rem;
+}
+
 .sisad-pdfme-ui-selection-context-toolbar button[data-danger='true']:hover:not(:disabled) {
   background: var(--color-danger);
   border-color: var(--color-danger-light);

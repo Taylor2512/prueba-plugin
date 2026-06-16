@@ -98,5 +98,18 @@ export const resolveSelectionPageScope = (activeElements: HTMLElement[]): Select
   };
 };
 
+export const resolveSelectionPageIndex = (
+  activeElements: HTMLElement[],
+  fallbackPageIndex = 0,
+): number | null => {
+  for (const element of activeElements) {
+    const pageIndex = resolveSchemaIdentityFromElement(element).pageIndex;
+    if (typeof pageIndex === 'number' && pageIndex >= 0) {
+      return pageIndex;
+    }
+  }
+  return Number.isInteger(fallbackPageIndex) && fallbackPageIndex >= 0 ? fallbackPageIndex : null;
+};
+
 export const isSameDocumentPageSelection = (activeElements: HTMLElement[]): boolean =>
   resolveSelectionPageScope(activeElements).isSinglePage;

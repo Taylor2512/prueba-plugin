@@ -44,6 +44,40 @@ export type ExampleDefinition = {
   runtimeOptions?: ExampleRuntimeOptions | null;
 };
 
+const normalizeUploadedDocuments = (
+  runtimeOptions: ExampleRuntimeOptions | null | undefined,
+  users: CollaboratorUser[],
+): ExampleRuntimeOptions | null => {
+  if (!runtimeOptions) {
+    return null;
+  }
+
+  const cloned = cloneDeep(runtimeOptions);
+  const uploadedDocuments = Array.isArray(cloned.uploadedDocuments) ? cloned.uploadedDocuments : [];
+
+  return {
+    ...cloned,
+    uploadedDocuments: uploadedDocuments.map((document) => ({
+      ...document,
+      template: decorateTemplateWithCollaboration(document.template, users),
+    })),
+  };
+};
+
+const buildCollaborativeTemplate = (template: Template, users: CollaboratorUser[]) =>
+  decorateTemplateWithCollaboration(template, users);
+
+const buildCollaborationSnapshot = (
+  collaboration: ExampleDefinition['collaboration'],
+): ExampleDefinition['collaboration'] =>
+  collaboration ? cloneDeep(collaboration) : null;
+
+const normalizeStringValue = (value: unknown, fallback: string): string =>
+  typeof value === 'string' && value.trim() ? value : fallback;
+
+const normalizeBooleanValue = (value: unknown, fallback: boolean): boolean =>
+  typeof value === 'boolean' ? value : fallback;
+
 /**
  * Builds a template from schema pages, padding to `pageCount` empty pages.
  * Base shape comes from `createDefaultTemplate`.
@@ -87,7 +121,7 @@ export const createUploadedDocument = ({
   pageCount,
   schemas,
   pdfResolver,
-}: CreateUploadedDocumentArgs) => ({
+}: CreateUploadedDocumentArgs): UploadedDocument => ({
   id,
   name,
   pageCount,
@@ -107,13 +141,13 @@ export const createCollaboration = (
   users: CollaboratorUser[],
   metadata: Record<string, unknown> = {},
   options: CreateCollaborationOptions = {},
-) => {
+): NonNullable<ExampleDefinition['collaboration']> => {
   const decorate = options.decorateUsers ?? ((u: CollaboratorUser[]) => decorateCollaborationUsers(u));
   return {
     activeUserId,
-    actorId: metadata.actorId || activeUserId,
-    sessionId: metadata.sessionId || `lab-${activeUserId}`,
-    enabled: metadata.enabled ?? true,
+    actorId: normalizeStringValue(metadata.actorId, activeUserId),
+    sessionId: normalizeStringValue(metadata.sessionId, `lab-${activeUserId}`),
+    enabled: normalizeBooleanValue(metadata.enabled, true),
     users: decorate(users),
   };
 };
@@ -143,19 +177,11 @@ export const createExample = ({
   collaboration = null,
   template,
   runtimeOptions = null,
-}: CreateExampleArgs) => {
-  const safeCollaboration = collaboration ? cloneDeep(collaboration) : null;
+}: CreateExampleArgs): ExampleDefinition => {
+  const safeCollaboration = buildCollaborationSnapshot(collaboration);
   const users = safeCollaboration?.users || [];
-  const safeTemplate = decorateTemplateWithCollaboration(template, users);
-  const safeRuntimeOptions = runtimeOptions
-    ? cloneDeep({
-        ...runtimeOptions,
-        uploadedDocuments: (runtimeOptions.uploadedDocuments || []).map((document) => ({
-          ...document,
-          template: decorateTemplateWithCollaboration(document.template, users),
-        })),
-      })
-    : null;
+  const safeTemplate = buildCollaborativeTemplate(template, users);
+  const safeRuntimeOptions = normalizeUploadedDocuments(runtimeOptions, users);
 
   return {
     id,

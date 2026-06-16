@@ -54,18 +54,11 @@ const INLINE_EDITABLE: ReadonlySet<string> = new Set([
 
 const OPTION_BASED: ReadonlySet<string> = new Set([
   'checkbox',
-  'checkboxgroup',
-  'radiogroup',
   'select',
   'dropdown',
 ]);
 
 /** Only checkboxGroup and radioGroup have the floating "+" overlay. */
-const HAS_GROUP_FLOATING_ACTION: ReadonlySet<string> = new Set([
-  'checkboxgroup',
-  'radiogroup',
-]);
-
 const REQUIRES_PROVIDER: ReadonlySet<string> = new Set([
   'signature',
   'initials',
@@ -98,8 +91,8 @@ export const getSchemaInteractionCapabilities = (
     canResize: !NON_RESIZABLE.has(t),
     canRotate: !NON_ROTATABLE.has(t),
     canInlineEdit: INLINE_EDITABLE.has(t),
-    isOptionBased: OPTION_BASED.has(t),
-    hasGroupFloatingAction: HAS_GROUP_FLOATING_ACTION.has(t),
+    isOptionBased: OPTION_BASED.has(t) || isOptionGroupType(t),
+    hasGroupFloatingAction: isOptionGroupType(t),
     requiresProvider: REQUIRES_PROVIDER.has(t),
     isShape: SHAPES.has(t),
     isMedia: MEDIA.has(t),
@@ -119,3 +112,4 @@ export const schemaHasGroupFloatingAction = (schemaType: string): boolean =>
  */
 export const schemaIsOptionBased = (schemaType: string): boolean =>
   getSchemaInteractionCapabilities(schemaType).isOptionBased;
+import { isOptionGroupType } from '../../../../schemas/options/optionGroupLayout.js';

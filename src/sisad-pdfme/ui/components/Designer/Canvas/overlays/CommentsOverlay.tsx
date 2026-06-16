@@ -8,7 +8,7 @@ const mm2px = (mm: number) => mm * MM_TO_PX;
 type CommentsOverlayProps = {
   schemas: SchemaForUI[];
   scale: number;
-  pageCursor: number;
+  pageIndex: number;
   paperRefs: React.MutableRefObject<HTMLDivElement[]>;
   topLevelComments?: Array<{
     anchor?: {
@@ -74,7 +74,7 @@ const toStringOrUndefined = (value: unknown): string | undefined =>
 const CommentsOverlay = ({
   schemas = [],
   scale = 1,
-  pageCursor,
+  pageIndex,
   paperRefs,
   topLevelComments = [],
 }: CommentsOverlayProps) => {
@@ -83,7 +83,7 @@ const CommentsOverlay = ({
 
   useLayoutEffect(() => {
     const updateOffset = () => {
-      const paper = paperRefs.current[pageCursor];
+      const paper = paperRefs.current[pageIndex];
       const overlay = containerRef.current;
       if (!paper || !overlay) return;
       const paperRect = paper.getBoundingClientRect();
@@ -97,7 +97,7 @@ const CommentsOverlay = ({
     updateOffset();
     window.addEventListener('resize', updateOffset);
     return () => window.removeEventListener('resize', updateOffset);
-  }, [pageCursor, paperRefs, scale, schemas.length]);
+  }, [pageIndex, paperRefs, scale, schemas.length]);
 
   const anchors = useMemo(() => {
     const byId = new Map<

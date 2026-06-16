@@ -3,6 +3,7 @@ import type { SchemaForUI } from '@sisad-pdfme/common';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import type { InteractionState } from '../../shared/interactionState.js';
 import { getSchemaInteractionCapabilities } from '../../shared/schemaInteractionCapabilities.js';
+import { normalizeOptionGroupType } from '../../../../../schemas/options/optionGroupLayout.js';
 
 type Props = {
   activeElements: HTMLElement[];
@@ -53,6 +54,8 @@ const GroupOptionFloatingAction = ({
   const schema = activeSchemas[0] as SchemaForUI & { type?: string };
   if (!getSchemaInteractionCapabilities(String(schema?.type || '')).hasGroupFloatingAction) return null;
   if (!selectionCommands?.addGroupOption) return null;
+  const optionGroupType = normalizeOptionGroupType(String(schema?.type || ''));
+  if (!optionGroupType) return null;
 
   const element = activeElements[0];
   if (!element) return null;
@@ -86,7 +89,7 @@ const GroupOptionFloatingAction = ({
         className="sisad-pdfme-option-group__add-button"
         data-role="group-add-option"
         data-schema-interactive-control="true"
-        title={String(schema.type || '').toLowerCase() === 'radiogroup' ? 'Agregar opción al grupo' : 'Agregar casilla al grupo'}
+        title={optionGroupType === 'radioGroup' ? 'Agregar opción al grupo' : 'Agregar casilla al grupo'}
         style={{
           pointerEvents: 'auto',
           width: `${BUTTON_SIZE_PX}px`,

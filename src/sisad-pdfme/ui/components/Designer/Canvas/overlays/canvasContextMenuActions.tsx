@@ -34,6 +34,7 @@ import type { SchemaForUI } from '@sisad-pdfme/common';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { INLINE_EDITABLE_TEXT_TYPES } from '../../../../../schemas/schemaFamilies.js';
 import { getSchemaTypeLabel } from '../../shared/designerLabels.js';
+import { isOptionGroupType } from '../../../../../schemas/options/optionGroupLayout.js';
 
 export type CanvasContextMenuMode = 'empty' | 'single' | 'multi';
 
@@ -82,6 +83,7 @@ export type CanvasSelectionQuickAction = {
   label: string;
   icon: React.ReactNode;
   active?: boolean;
+  critical?: boolean;
   disabled?: boolean;
   disabledReason?: string;
   loading?: boolean;
@@ -157,7 +159,7 @@ const getGroupAffordanceAction = (
   canEditStructure: boolean,
 ): CanvasSelectionQuickAction | null => {
   const type = String((activeSchema as SchemaForUI & { type?: string })?.type || '').toLowerCase();
-  if (type === 'radiogroup' || type === 'checkboxgroup') {
+  if (isOptionGroupType(type)) {
     return toolbarAction('add-group-option', 'Agregar opción', <Plus size={14} />, commands?.addGroupOption, {
       disabled: !canEditStructure || !hasAction(commands?.addGroupOption),
     });
@@ -213,6 +215,7 @@ const toolbarAction = (
   loading: extra?.loading,
   danger: extra?.danger,
   active: extra?.active,
+  critical: extra?.critical,
   onSelect: command,
 });
 
@@ -242,6 +245,9 @@ const prioritizeCriticalActions = (actions: CanvasSelectionQuickAction[]) => {
   const rest = actions.filter((action) => action.id !== 'delete' && action.id !== 'duplicate');
   return [...compactItems([deleteAction, duplicateAction]), ...rest];
 };
+
+const buildCriticalPrimaryActions = (actions: CanvasSelectionQuickAction[], maxItems: number) =>
+  prioritizeCriticalActions(actions).slice(0, maxItems);
 
 const buildSelectionToolbarStateChips = (
   interactionPhase: string,
@@ -429,6 +435,7 @@ export const buildSelectionToolbarModel = (args: {
         }),
         toolbarAction('delete', 'Eliminar', <Trash2 size={14} />, commands?.deleteSelection, {
           danger: true,
+          critical: true,
           disabled: !canEditStructure || !hasAction(commands?.deleteSelection),
         }),
         toolbarAction('readonly', allReadOnly ? 'Desbloquear' : 'Bloquear', <Lock size={14} />, commands?.toggleReadOnly, {
@@ -471,6 +478,7 @@ export const buildSelectionToolbarModel = (args: {
     const microPrimary = prioritizeCriticalActions(compactItems([
       toolbarAction('delete', 'Eliminar', <Trash2 size={14} />, commands?.deleteSelection, {
         danger: true,
+        critical: true,
         disabled: !canEditStructure || !hasAction(commands?.deleteSelection),
       }),
       toolbarAction('duplicate', 'Duplicar', <Copy size={14} />, commands?.duplicateSelection, {
@@ -495,6 +503,7 @@ export const buildSelectionToolbarModel = (args: {
       }),
       toolbarAction('delete', 'Eliminar', <Trash2 size={14} />, commands?.deleteSelection, {
         danger: true,
+        critical: true,
         disabled: !canEditStructure || !hasAction(commands?.deleteSelection),
       }),
       toolbarAction('properties', 'Propiedades', <Settings2 size={14} />, commands?.openProperties, {
@@ -507,7 +516,7 @@ export const buildSelectionToolbarModel = (args: {
       getSelectionVisibilityAction(commands, allHidden, canEditStructure),
     ]);
 
-    quickActions.push(...(mode === 'micro' ? microPrimary : compactPrimary.slice(0, 5)));
+    quickActions.push(...(mode === 'micro' ? buildCriticalPrimaryActions(microPrimary, 2) : prioritizeCriticalActions(compactPrimary).slice(0, 5)));
 
     if (mode === 'expanded') {
       secondarySections.push(
@@ -576,7 +585,10 @@ export const buildSelectionToolbarModel = (args: {
     }
   }
 
-  const cappedPrimaryActions = quickActions.slice(0, mode === 'micro' ? 2 : mode === 'compact' ? 5 : 6);
+  const cappedPrimaryActions = buildCriticalPrimaryActions(
+    quickActions,
+    mode === 'micro' ? 2 : mode === 'compact' ? 5 : 6,
+  );
 
   return {
     kind,

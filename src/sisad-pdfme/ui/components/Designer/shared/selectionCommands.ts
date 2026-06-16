@@ -14,7 +14,7 @@ import type { GroupMeta } from '../../../../shared/schemaDesignerMeta.js';
 import {
   optionGroupDesignerHeightMM,
   optionGroupDesignerWidthMM,
-  type OptionGroupType,
+  isOptionGroupType,
 } from '../../../../schemas/options/optionGroupLayout.js';
 import { asRecord } from './objectGuards.js';
 import { resolveActiveSchemasFromElements } from './selectionIdentityResolver.js';
@@ -220,6 +220,27 @@ const clampSchemaPositionToPage = (
   size: number,
   pageBounds: PageBounds,
 ) => clampToPage(value, (axis === 'x' ? pageBounds.width : pageBounds.height) - size);
+
+const createSelectionOps = (
+  schemas: SchemaForUI[],
+  key: string,
+  valueFactory: (schema: SchemaForUI) => unknown,
+) =>
+  schemas.map((schema) => ({
+    key,
+    value: valueFactory(schema),
+    schemaId: schema.id,
+  }));
+
+const applySelectionSchemas = (
+  context: SelectionCommandsContext,
+  updater: (schemas: SchemaForUI[]) => SchemaForUI[],
+) => {
+  const current = getPageSchemas(context);
+  const next = updater(current);
+  context.commitSchemas(next);
+  return { current, next };
+};
 
 export const computeAlignedSchemas = (params: {
   schemas: SchemaForUI[];
@@ -491,31 +512,19 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
 
   const toggleRequired = () => {
     if (!hasSelection || !guardStructureEdit()) return;
-    const ops = getActiveSchemas(context).map((schema) => ({
-      key: 'required',
-      value: !schema.required,
-      schemaId: schema.id,
-    }));
+    const ops = createSelectionOps(getActiveSchemas(context), 'required', (schema) => !schema.required);
     context.changeSchemas(ops);
   };
 
   const toggleReadOnly = () => {
     if (!hasSelection || !guardStructureEdit()) return;
-    const ops = getActiveSchemas(context).map((schema) => ({
-      key: 'readOnly',
-      value: !schema.readOnly,
-      schemaId: schema.id,
-    }));
+    const ops = createSelectionOps(getActiveSchemas(context), 'readOnly', (schema) => !schema.readOnly);
     context.changeSchemas(ops);
   };
 
   const toggleHidden = () => {
     if (!hasSelection || !guardStructureEdit()) return;
-    const ops = getActiveSchemas(context).map((schema) => ({
-      key: 'hidden',
-      value: (schema as SchemaForUI & { hidden?: boolean }).hidden !== true,
-      schemaId: schema.id,
-    }));
+    const ops = createSelectionOps(getActiveSchemas(context), 'hidden', (schema) => (schema as SchemaForUI & { hidden?: boolean }).hidden !== true);
     context.changeSchemas(ops);
   };
 
@@ -527,7 +536,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     };
     if (!schema) return;
     const type = String(schema.type || '');
-    if (type !== 'radioGroup' && type !== 'checkboxGroup') return;
+    if (!isOptionGroupType(type)) return;
     const raw = Array.isArray(schema.options) ? schema.options : [];
     const current = raw.map((entry, index) =>
       typeof entry === 'string'
@@ -544,7 +553,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     const isRadio = type === 'radioGroup';
     const label = `${isRadio ? 'Opción' : 'Casilla'} ${current.length + 1}`;
     const nextOptions = [...current, { optionId, label }];
-    const groupType = type as OptionGroupType;
+    const groupType = type.toLowerCase() === 'radiogroup' ? 'radioGroup' : 'checkboxGroup';
     context.changeSchemas([
       { key: 'options', value: nextOptions, schemaId: schema.id },
       { key: 'width',   value: optionGroupDesignerWidthMM(groupType), schemaId: schema.id },
@@ -585,18 +594,20 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
 
   const bringForward = () => {
     if (!hasSelection || !guardStructureEdit()) return;
-    const current = getPageSchemas(context);
-    const selected = current.filter((schema) => activeIds.includes(schema.id));
-    const remaining = current.filter((schema) => !activeIds.includes(schema.id));
-    context.commitSchemas([...remaining, ...selected]);
+    applySelectionSchemas(context, (current) => {
+      const selected = current.filter((schema) => activeIds.includes(schema.id));
+      const remaining = current.filter((schema) => !activeIds.includes(schema.id));
+      return [...remaining, ...selected];
+    });
   };
 
   const sendBackward = () => {
     if (!hasSelection || !guardStructureEdit()) return;
-    const current = getPageSchemas(context);
-    const selected = current.filter((schema) => activeIds.includes(schema.id));
-    const remaining = current.filter((schema) => !activeIds.includes(schema.id));
-    context.commitSchemas([...selected, ...remaining]);
+    applySelectionSchemas(context, (current) => {
+      const selected = current.filter((schema) => activeIds.includes(schema.id));
+      const remaining = current.filter((schema) => !activeIds.includes(schema.id));
+      return [...selected, ...remaining];
+    });
   };
 
   const alignSelection = (type: AlignType) => {

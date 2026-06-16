@@ -9,7 +9,10 @@ import { useFloatingToolbarPosition } from './useFloatingToolbarPosition.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import type { SelectionToolbarMode } from './canvasContextMenuActions.js';
 import type { InteractionState } from '../../shared/interactionState.js';
-import { resolveActiveSchemasFromElements } from '../../shared/selectionIdentityResolver.js';
+import {
+  resolveActiveSchemasFromElements,
+  resolveSelectionPageIndex,
+} from '../../shared/selectionIdentityResolver.js';
 import CommentsOverlay from './CommentsOverlay.js';
 import ShortcutHelpPanel from '../../Shortcuts/ShortcutHelpPanel.js';
 
@@ -91,6 +94,10 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
     () => resolveActiveSchemasFromElements(schemasList, activeElements),
     [activeElements, schemasList],
   );
+  const activePageIndex = useMemo(
+    () => resolveSelectionPageIndex(activeElements, pageCursor) ?? pageCursor,
+    [activeElements, pageCursor],
+  );
 
   return (
     <div className={`sisad-pdfme-ui-canvas-overlay-manager ${className || ''}`}>
@@ -119,10 +126,10 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
       ) : null}
       {/* Comments overlay (pins, click handlers) */}
       <CommentsOverlay
-        schemas={schemasList[pageCursor] || []}
+        schemas={schemasList[activePageIndex] || []}
         topLevelComments={topLevelComments}
         scale={props.scale || 1}
-        pageCursor={pageCursor}
+        pageIndex={activePageIndex}
         paperRefs={paperRefs}
       />
       <ShortcutHelpPanel open={shortcutHelpOpen} onClose={() => setShortcutHelpOpen(false)} />

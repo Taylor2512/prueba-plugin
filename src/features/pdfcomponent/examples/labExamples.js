@@ -53,65 +53,56 @@ const SHOWCASE_SCHEMA_DEFINITIONS = SORTED_SCHEMA_DEFINITIONS.filter((definition
 
 const resolvePosition = (basePosition, overrides = {}) => {
   const nextPosition = { ...(basePosition || {}) }
-  if (overrides.position && typeof overrides.position === 'object') {
-    if (overrides.position.x != null) nextPosition.x = overrides.position.x
-    if (overrides.position.y != null) nextPosition.y = overrides.position.y
+  const overridePosition = overrides.position && typeof overrides.position === 'object' ? overrides.position : null
+
+  if (overridePosition) {
+    if (overridePosition.x != null) nextPosition.x = overridePosition.x
+    if (overridePosition.y != null) nextPosition.y = overridePosition.y
   }
   if (overrides.x != null) nextPosition.x = overrides.x
   if (overrides.y != null) nextPosition.y = overrides.y
   return nextPosition
 }
 
-const withPosition = (baseSchema, basePosition, overrides = {}) => {
+const createSchemaFactory = (baseSchema, basePosition, defaults = {}) => (overrides = {}) => {
   const { position, x, y, ...rest } = overrides
   return createSchema(baseSchema, {
+    ...defaults,
     ...rest,
     position: resolvePosition(basePosition, { position, x, y }),
   })
 }
 
-const createTextSchema = (overrides = {}) =>
-  withPosition(text.propPanel.defaultSchema, { x: 18, y: 24 }, {
-    width: 92,
-    height: 12,
-    fontSize: 12,
-    ...overrides,
-  })
+const createTextSchema = createSchemaFactory(text.propPanel.defaultSchema, { x: 18, y: 24 }, {
+  width: 92,
+  height: 12,
+  fontSize: 12,
+})
 
-const createSelectSchema = (overrides = {}) =>
-  withPosition(select.propPanel.defaultSchema, { x: 18, y: 46 }, {
-    width: 92,
-    height: 12,
-    ...overrides,
-  })
+const createSelectSchema = createSchemaFactory(select.propPanel.defaultSchema, { x: 18, y: 46 }, {
+  width: 92,
+  height: 12,
+})
 
-const createCheckboxSchema = (overrides = {}) =>
-  withPosition(checkbox.propPanel.defaultSchema, { x: 18, y: 66 }, {
-    width: 8,
-    height: 8,
-    ...overrides,
-  })
+const createCheckboxSchema = createSchemaFactory(checkbox.propPanel.defaultSchema, { x: 18, y: 66 }, {
+  width: 8,
+  height: 8,
+})
 
-const createRadioGroupSchema = (overrides = {}) =>
-  withPosition(radioGroup.propPanel.defaultSchema, { x: 18, y: 84 }, {
-    width: 82,
-    height: 18,
-    ...overrides,
-  })
+const createRadioGroupSchema = createSchemaFactory(radioGroup.propPanel.defaultSchema, { x: 18, y: 84 }, {
+  width: 82,
+  height: 18,
+})
 
-const createCheckboxGroupSchema = (overrides = {}) =>
-  withPosition(checkboxGroup.propPanel.defaultSchema, { x: 18, y: 108 }, {
-    width: 92,
-    height: 12,
-    ...overrides,
-  })
+const createCheckboxGroupSchema = createSchemaFactory(checkboxGroup.propPanel.defaultSchema, { x: 18, y: 108 }, {
+  width: 92,
+  height: 12,
+})
 
-const createSignatureSchema = (overrides = {}) =>
-  withPosition(signature.propPanel.defaultSchema, { x: 18, y: 88 }, {
-    width: 60,
-    height: 24,
-    ...overrides,
-  })
+const createSignatureSchema = createSchemaFactory(signature.propPanel.defaultSchema, { x: 18, y: 88 }, {
+  width: 60,
+  height: 24,
+})
 
 // Per-type example content injected into the core showcase builder.
 const SCHEMA_EXAMPLE_OVERRIDES = {
@@ -223,6 +214,25 @@ const SCHEMA_EXAMPLE_OVERRIDES = {
 const createSchemaShowcasePages = (config) =>
   createShowcasePagesCore({ ...config, overridesByType: SCHEMA_EXAMPLE_OVERRIDES })
 
+const createLabSchemaShowcasePages = ({
+  scope,
+  ownerRecipientId,
+  fileId,
+  fileTemplateId,
+  startingPageNumber,
+  auditOffset,
+  definitions = SHOWCASE_SCHEMA_DEFINITIONS,
+}) =>
+  createSchemaShowcasePages({
+    definitions,
+    scope,
+    ownerRecipientId,
+    fileId,
+    fileTemplateId,
+    startingPageNumber,
+    auditOffset,
+  })
+
 // Lab wrapper: resolve uploaded-document PDFs from the lab /templates route.
 const createUploadedDocument = (args) =>
   createUploadedDocumentCore({ ...args, pdfResolver: getTemplatePdfUrl })
@@ -252,6 +262,13 @@ const EXAMPLE_ACTIONS_BY_MODE = {
   ],
   viewer: ['open-example', 'download-template', 'reset-template'],
 }
+
+const createLabExample = (config) =>
+  createExample({
+    defaultMode: 'designer',
+    initialSchemaType: 'text',
+    ...config,
+  })
 
 const basicDesignerTemplate = createTemplate([
   [
@@ -472,7 +489,7 @@ const routingSchemaSplitIndex = Math.ceil(SHOWCASE_SCHEMA_DEFINITIONS.length / 2
 const routingPrimarySchemaDefinitions = SHOWCASE_SCHEMA_DEFINITIONS.slice(0, routingSchemaSplitIndex)
 const routingSecondarySchemaDefinitions = SHOWCASE_SCHEMA_DEFINITIONS.slice(routingSchemaSplitIndex)
 
-const multiDocumentPrimaryShowcaseSchemas = createSchemaShowcasePages({
+const multiDocumentPrimaryShowcaseSchemas = createLabSchemaShowcasePages({
   definitions: routingPrimarySchemaDefinitions,
   scope: 'routing-primary-showcase',
   ownerRecipientId: 'recipient-1',
@@ -482,7 +499,7 @@ const multiDocumentPrimaryShowcaseSchemas = createSchemaShowcasePages({
   auditOffset: 180000,
 })
 
-const multiDocumentSecondaryShowcaseSchemas = createSchemaShowcasePages({
+const multiDocumentSecondaryShowcaseSchemas = createLabSchemaShowcasePages({
   definitions: routingSecondarySchemaDefinitions,
   scope: 'routing-secondary-showcase',
   ownerRecipientId: 'recipient-2',
@@ -535,8 +552,7 @@ const multiDocumentRoutingDocuments = [
   }),
 ]
 
-const multiuserShowcasePages = createSchemaShowcasePages({
-  definitions: SHOWCASE_SCHEMA_DEFINITIONS,
+const multiuserShowcasePages = createLabSchemaShowcasePages({
   scope: 'multiuser-showcase',
   ownerRecipientId: 'sales-user-1',
   fileId: 'multiuser-contract',
@@ -690,8 +706,7 @@ const generatorRuntimeTemplate = createTemplate([
   ],
 ], { basePdf: LAB_PDFS.generator, pageCount: 3 })
 
-const designerShowcasePages = createSchemaShowcasePages({
-  definitions: SHOWCASE_SCHEMA_DEFINITIONS,
+const designerShowcasePages = createLabSchemaShowcasePages({
   scope: 'designer-showcase',
   ownerRecipientId: 'basic-user-1',
   // place designer showcase pages after the base designer template pages
@@ -699,8 +714,7 @@ const designerShowcasePages = createSchemaShowcasePages({
   auditOffset: 120000,
 })
 
-const collaborationShowcasePages = createSchemaShowcasePages({
-  definitions: SHOWCASE_SCHEMA_DEFINITIONS,
+const collaborationShowcasePages = createLabSchemaShowcasePages({
   scope: 'collaboration-showcase',
   ownerRecipientId: 'ops-user-1',
   fileId: 'enterprise-contract',
@@ -709,8 +723,7 @@ const collaborationShowcasePages = createSchemaShowcasePages({
   auditOffset: 240000,
 })
 
-const generatorShowcasePages = createSchemaShowcasePages({
-  definitions: SHOWCASE_SCHEMA_DEFINITIONS,
+const generatorShowcasePages = createLabSchemaShowcasePages({
   scope: 'generator-showcase',
   ownerRecipientId: 'generator-user-1',
   // append showcase after existing runtime template pages to avoid collisions
@@ -763,7 +776,7 @@ const BASIC_SIGNATURE_PROVIDERS = [
 ]
 
 const LAB_EXAMPLES = [
-  createExample({
+  createLabExample({
     id: 'basic-designer',
     path: '/lab/basic-designer',
     title: 'Editor integral',
@@ -780,7 +793,7 @@ const LAB_EXAMPLES = [
       signatureProviders: BASIC_SIGNATURE_PROVIDERS,
     },
   }),
-  createExample({
+  createLabExample({
     id: 'enterprise-collaboration',
     path: '/lab/enterprise-collaboration',
     title: 'Colaboración integral',
@@ -795,7 +808,7 @@ const LAB_EXAMPLES = [
     ], { sessionId: 'enterprise-collaboration-session', actorId: 'ops-user-1' }),
     template: enterpriseCollaborationShowcaseTemplate,
   }),
-  createExample({
+  createLabExample({
     id: 'multiuser-collaboration',
     path: '/lab/multiuser-collaboration',
     title: 'Colaboración multiusuario',
@@ -810,7 +823,7 @@ const LAB_EXAMPLES = [
     ], { sessionId: 'multiuser-collaboration-session', actorId: 'sales-user-1' }),
     template: multiuserCollaborationTemplate,
   }),
-  createExample({
+  createLabExample({
     id: 'multi-document-routing',
     path: '/lab/multi-document-routing',
     title: 'Multidocumento integral',
@@ -829,7 +842,7 @@ const LAB_EXAMPLES = [
       uploadedDocuments: multiDocumentRoutingDocuments,
     },
   }),
-  createExample({
+  createLabExample({
     id: 'generator-runtime',
     path: '/lab/generator-runtime',
     title: 'Runtime integral',

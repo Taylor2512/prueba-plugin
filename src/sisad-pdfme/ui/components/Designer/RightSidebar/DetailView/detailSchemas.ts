@@ -67,6 +67,39 @@ const addFieldToSection = (
   sectionProperties[sectionKey][fieldKey] = fieldSchema;
 };
 
+const createSectionField = (
+  title: string,
+  type: PropPanelSchema['type'],
+  extra: Omit<PropPanelSchema, 'title' | 'type'> = {},
+): PropPanelSchema => ({
+  title,
+  type,
+  ...extra,
+});
+
+const createBoundedNumberField = (
+  title: string,
+  max: number,
+  validatePosition: (_: unknown, value: number, fieldName: string) => boolean,
+  typedI18n: (key: string) => string,
+  fieldName: 'x' | 'y' | 'width' | 'height',
+  extra: Omit<PropPanelSchema, 'title' | 'type'> = {},
+): PropPanelSchema =>
+  createSectionField(title, 'number', {
+    ...extra,
+    widget: 'inputNumber',
+    required: true,
+    span: fieldName === 'x' || fieldName === 'y' ? 8 : fieldName === 'width' || fieldName === 'height' ? 6 : 12,
+    props: { min: 0, max, ...(extra.props || {}) },
+    rules: [
+      {
+        validator: (_: unknown, value: number) => validatePosition(_, value, fieldName),
+        message: typedI18n('validation.outOfBounds'),
+      },
+      ...(extra.rules || []),
+    ],
+  });
+
 const replaceColorWidget = (schemaNode: unknown): unknown => {
   if (!isRecord(schemaNode)) {
     return schemaNode;
@@ -179,158 +212,150 @@ export const buildInspectorSections = ({
     comments: {},
   };
 
-  addFieldToSection(sectionProperties, 'general', 'name', {
-    title: 'Nombre del campo',
-    type: 'string',
-    required: true,
-    span: 24,
-    rules: [
-      {
-        validator: validateUniqueSchemaName,
-        message: typedI18n('validation.uniqueName'),
-      },
-    ],
-    props: { autoComplete: 'off' },
-  });
+  addFieldToSection(
+    sectionProperties,
+    'general',
+    'name',
+    createSectionField('Nombre del campo', 'string', {
+      required: true,
+      span: 24,
+      rules: [
+        {
+          validator: validateUniqueSchemaName,
+          message: typedI18n('validation.uniqueName'),
+        },
+      ],
+      props: { autoComplete: 'off' },
+    }),
+  );
 
-  addFieldToSection(sectionProperties, 'general', 'inlineEditActions', {
-    title: '',
-    type: 'void',
-    widget: 'InlineEditActionsWidget',
-    span: 24,
-  });
+  addFieldToSection(
+    sectionProperties,
+    'general',
+    'inlineEditActions',
+    createSectionField('', 'void', {
+      widget: 'InlineEditActionsWidget',
+      span: 24,
+    }),
+  );
 
-  addFieldToSection(sectionProperties, 'layout', 'align', {
-    title: typedI18n('align'),
-    type: 'void',
-    widget: 'AlignWidget',
-  });
+  addFieldToSection(
+    sectionProperties,
+    'layout',
+    'align',
+    createSectionField(typedI18n('align'), 'void', {
+      widget: 'AlignWidget',
+    }),
+  );
 
   addFieldToSection(sectionProperties, 'layout', 'position', {
     type: 'object',
     widget: 'card',
     properties: {
-      x: {
-        title: 'X',
-        type: 'number',
-        widget: 'inputNumber',
-        required: true,
+      x: createBoundedNumberField('X', pageSize.width - paddingRight, validatePosition, typedI18n, 'x', {
         span: 8,
-        min: paddingLeft,
-        max: pageSize.width - paddingRight,
-        rules: [
-          {
-            validator: (_: unknown, value: number) => validatePosition(_, value, 'x'),
-            message: typedI18n('validation.outOfBounds'),
-          },
-        ],
-      },
-      y: {
-        title: 'Y',
-        type: 'number',
-        widget: 'inputNumber',
-        required: true,
+        props: { min: paddingLeft },
+      }),
+      y: createBoundedNumberField('Y', pageSize.height - paddingBottom, validatePosition, typedI18n, 'y', {
         span: 8,
-        min: paddingTop,
-        max: pageSize.height - paddingBottom,
-        rules: [
-          {
-            validator: (_: unknown, value: number) => validatePosition(_, value, 'y'),
-            message: typedI18n('validation.outOfBounds'),
-          },
-        ],
-      },
+        props: { min: paddingTop },
+      }),
     },
   });
 
-  addFieldToSection(sectionProperties, 'layout', 'width', {
-    title: typedI18n('width'),
-    type: 'number',
-    widget: 'inputNumber',
-    required: true,
-    span: 6,
-    props: { min: 0, max: maxWidth },
-    rules: [
-      {
-        validator: (_: unknown, value: number) => validatePosition(_, value, 'width'),
-        message: typedI18n('validation.outOfBounds'),
-      },
-    ],
-  });
+  addFieldToSection(
+    sectionProperties,
+    'layout',
+    'width',
+    createBoundedNumberField(typedI18n('width'), maxWidth, validatePosition, typedI18n, 'width'),
+  );
 
-  addFieldToSection(sectionProperties, 'layout', 'height', {
-    title: typedI18n('height'),
-    type: 'number',
-    widget: 'inputNumber',
-    required: true,
-    span: 6,
-    props: { min: 0, max: maxHeight },
-    rules: [
-      {
-        validator: (_: unknown, value: number) => validatePosition(_, value, 'height'),
-        message: typedI18n('validation.outOfBounds'),
-      },
-    ],
-  });
+  addFieldToSection(
+    sectionProperties,
+    'layout',
+    'height',
+    createBoundedNumberField(typedI18n('height'), maxHeight, validatePosition, typedI18n, 'height'),
+  );
 
-  addFieldToSection(sectionProperties, 'data', 'editable', {
-    title: typedI18n('editable'),
-    type: 'boolean',
-    span: 12,
-    hidden: defaultSchema.readOnly !== undefined || !canonicalVisibleSections.has('behavior'),
-  });
+  addFieldToSection(
+    sectionProperties,
+    'data',
+    'editable',
+    createSectionField(typedI18n('editable'), 'boolean', {
+      span: 12,
+      hidden: defaultSchema.readOnly !== undefined || !canonicalVisibleSections.has('behavior'),
+    }),
+  );
 
   if (shouldShowConnections) {
-    addFieldToSection(sectionProperties, 'connections', 'schemaConnections', {
-      title: 'Conexiones',
-      type: 'void',
-      widget: 'SchemaConnectionsWidget',
-    });
+    addFieldToSection(
+      sectionProperties,
+      'connections',
+      'schemaConnections',
+      createSectionField('Conexiones', 'void', {
+        widget: 'SchemaConnectionsWidget',
+      }),
+    );
   }
 
   if (shouldShowCollaboration) {
-    addFieldToSection(sectionProperties, 'collaboration', 'collaboration', {
-      title: 'Colaboración',
-      type: 'void',
-      widget: 'SchemaCollaborationWidget',
-    });
+    addFieldToSection(
+      sectionProperties,
+      'collaboration',
+      'collaboration',
+      createSectionField('Colaboración', 'void', {
+        widget: 'SchemaCollaborationWidget',
+      }),
+    );
   }
 
   if (shouldShowComments) {
-    addFieldToSection(sectionProperties, 'comments', 'fieldComments', {
-      title: 'Comentarios del campo',
-      type: 'void',
-      widget: 'SchemaFieldCommentsWidget',
-    });
+    addFieldToSection(
+      sectionProperties,
+      'comments',
+      'fieldComments',
+      createSectionField('Comentarios del campo', 'void', {
+        widget: 'SchemaFieldCommentsWidget',
+      }),
+    );
   }
 
   if (shouldShowValidation) {
-    addFieldToSection(sectionProperties, 'validation', 'required', {
-      title: typedI18n('required'),
-      type: 'boolean',
-      span: 12,
-      hidden: '{{!formData.editable}}',
-    });
+    addFieldToSection(
+      sectionProperties,
+      'validation',
+      'required',
+      createSectionField(typedI18n('required'), 'boolean', {
+        span: 12,
+        hidden: '{{!formData.editable}}',
+      }),
+    );
   }
 
-  addFieldToSection(sectionProperties, 'advanced', 'rotate', {
-    title: typedI18n('rotate'),
-    type: 'number',
-    widget: 'inputNumber',
-    disabled: defaultSchema.rotate === undefined,
-    max: 360,
-    props: { min: 0 },
-    span: 12,
-  });
+  addFieldToSection(
+    sectionProperties,
+    'advanced',
+    'rotate',
+    createSectionField(typedI18n('rotate'), 'number', {
+      widget: 'inputNumber',
+      disabled: defaultSchema.rotate === undefined,
+      max: 360,
+      props: { min: 0 },
+      span: 12,
+    }),
+  );
 
-  addFieldToSection(sectionProperties, 'advanced', 'opacity', {
-    title: typedI18n('opacity'),
-    type: 'number',
-    widget: 'inputNumber',
-    disabled: defaultSchema.opacity === undefined,
-    props: { step: 0.1, min: 0, max: 1 },
-    span: 12,
-  });
+  addFieldToSection(
+    sectionProperties,
+    'advanced',
+    'opacity',
+    createSectionField(typedI18n('opacity'), 'number', {
+      widget: 'inputNumber',
+      disabled: defaultSchema.opacity === undefined,
+      props: { step: 0.1, min: 0, max: 1 },
+      span: 12,
+    }),
+  );
 
   Object.entries(pluginProps).forEach(([fieldKey, fieldSchema]) => {
     if (/^-+$/.test(fieldKey)) return;

@@ -9,6 +9,7 @@ import { resolveSmartDropPosition, type SmartPlacementInput } from '../Canvas/ov
 import { createUniqueSchemaVariableName } from './schemaVariableName.js';
 import { filterSchemasByCollisionScope } from './schemaCollision.js';
 import { asRecord, isRecord } from './objectGuards.js';
+import { isOptionGroupType } from '../../../../schemas/options/optionGroupLayout.js';
 
 /**
  * Controls how recipient assignment and collaboration metadata are handled
@@ -159,7 +160,7 @@ const remapGroupedSchemaIdentity = (
   }
 
   const schemaType = normalizeText(record.type).toLowerCase();
-  if (schemaType !== 'radiogroup' && schemaType !== 'checkboxgroup') return;
+  if (!isOptionGroupType(schemaType)) return;
 
   const rawOptions = Array.isArray(record.options) ? record.options : [];
   const optionIdMap = new Map<string, string>();

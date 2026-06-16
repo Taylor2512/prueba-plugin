@@ -15,6 +15,8 @@ export const PX_PER_MM = 96 / 25.4;
 
 export type OptionGroupType = 'checkboxGroup' | 'radioGroup';
 
+const OPTION_GROUP_TYPES: ReadonlySet<string> = new Set(['checkboxgroup', 'radiogroup']);
+
 export type OptionGroupLayoutConfig = {
   /** Width/height of each indicator square, px. */
   boxSize: number;
@@ -63,3 +65,12 @@ export const optionGroupDesignerHeightMM = (type: OptionGroupType, optionsCount:
 
 export const optionGroupDesignerWidthMM = (type: OptionGroupType): number =>
   computeOptionGroupDesignerWidthMM(getOptionGroupLayoutConfig(type));
+
+export const normalizeOptionGroupType = (type: string): OptionGroupType | null => {
+  const normalized = String(type || '').trim().toLowerCase();
+  if (normalized === 'checkboxgroup') return 'checkboxGroup';
+  if (normalized === 'radiogroup') return 'radioGroup';
+  return null;
+};
+
+export const isOptionGroupType = (type: string): boolean => OPTION_GROUP_TYPES.has(String(type || '').trim().toLowerCase());
