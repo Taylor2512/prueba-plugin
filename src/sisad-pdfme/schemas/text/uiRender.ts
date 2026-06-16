@@ -59,6 +59,14 @@ const replaceUnsupportedChars = (text: string, fontKitFont: FontKitFont): string
 export const uiRender = async (arg: UIRenderProps<TextSchema>) => {
   const { value, schema, mode, onChange, stopEditing, tabIndex, placeholder, options, _cache } =
     arg;
+  // FieldChromePolicy hooks (TASK-014): let CSS drive text-like chrome per mode.
+  // Shared by text + number + textLike presets (all delegate to text.ui).
+  if (arg.rootElement) {
+    arg.rootElement.dataset.renderMode = String(mode);
+    arg.rootElement.dataset.schemaFamily = 'text-like';
+    arg.rootElement.dataset.schemaRequired = String(Boolean((schema as { required?: boolean }).required));
+    arg.rootElement.dataset.schemaReadonly = String(Boolean(!isEditable(mode, schema)));
+  }
   const usePlaceholder = isEditable(mode, schema) && placeholder && !value;
   const getText = (element: HTMLDivElement) => {
     let text = element.innerText;

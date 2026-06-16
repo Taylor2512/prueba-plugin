@@ -270,6 +270,10 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
       clearSchemaRoot(rootElement);
 
       rootElement.classList.add('sisad-pdfme-option-group-root');
+      // FieldChromePolicy hooks: let CSS drive mode-specific group chrome.
+      rootElement.dataset.renderMode = mode;
+      rootElement.dataset.schemaFamily = 'option-based';
+      rootElement.dataset.selectionMode = 'multiple';
       rootElement.style.pointerEvents = isDesigner ? 'none' : 'auto';
 
       if (isDesigner) {
@@ -282,6 +286,15 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
       }
 
       // ── Form / Viewer mode: labeled runtime ──────────────────────────────
+      const limits = resolveSelectionLimits(cbSchema);
+      const behaviorFlags = cbSchema as { readonly?: boolean; locked?: boolean };
+      const readOnlyGroup = Boolean(cbSchema.readOnly || behaviorFlags.readonly || behaviorFlags.locked);
+      const minRequired = limits.minSelected ?? (cbSchema.required ? 1 : 0);
+      const groupInvalid =
+        !readOnlyGroup &&
+        ((minRequired > 0 && selected.size < minRequired) ||
+          (limits.maxSelected != null && selected.size > limits.maxSelected));
+      rootElement.dataset.optionGroupInvalid = String(groupInvalid);
       rootElement.appendChild(
         createOptionGroupRuntime({
           options,
@@ -292,6 +305,10 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
           orientation: cbSchema.orientation,
           spacing: Number.isFinite(Number(cbSchema.spacing)) ? Number(cbSchema.spacing) : 3,
           groupName: cbSchema.groupName,
+          mode,
+          required: Boolean(cbSchema.required),
+          readOnly: readOnlyGroup,
+          invalid: groupInvalid,
           resolveSelection: ({ option, currentSelection }) => {
             const next = toggleSelectedIds(
               new Set(currentSelection.selectedOptionIds),

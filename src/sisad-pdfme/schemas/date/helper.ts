@@ -207,6 +207,15 @@ export const getPlugin = ({ type, icon }: { type: PickerType; icon: string }) =>
     ui: async (arg) => {
       const { schema, value, onChange, rootElement, mode, options, i18n } = arg;
 
+      // FieldChromePolicy hooks (TASK-014B): text.ui stamps a child element, so
+      // stamp the date/dateTime/time root here for parity with text-like CSS.
+      if (rootElement) {
+        rootElement.dataset.renderMode = String(mode);
+        rootElement.dataset.schemaFamily = 'text-like';
+        rootElement.dataset.schemaRequired = String(Boolean((schema as { required?: boolean }).required));
+        rootElement.dataset.schemaReadonly = String(Boolean(!isEditable(mode, schema)));
+      }
+
       const locale = getAirDatepickerLocale(schema.locale || options.lang || defaultLocale);
 
       const textElement = document.createElement('div');

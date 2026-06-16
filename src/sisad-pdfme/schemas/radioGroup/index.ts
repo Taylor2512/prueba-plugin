@@ -230,6 +230,10 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
       clearSchemaRoot(rootElement);
 
       rootElement.classList.add('sisad-pdfme-option-group-root');
+      // FieldChromePolicy hooks: let CSS drive mode-specific group chrome.
+      rootElement.dataset.renderMode = mode;
+      rootElement.dataset.schemaFamily = 'option-based';
+      rootElement.dataset.selectionMode = 'single';
       rootElement.style.pointerEvents = isDesigner ? 'none' : 'auto';
 
       if (isDesigner) {
@@ -248,6 +252,10 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
         return;
       }
 
+      const radioFlags = radioSchema as { readonly?: boolean; locked?: boolean };
+      const readOnlyGroup = Boolean(radioSchema.readOnly || radioFlags.readonly || radioFlags.locked);
+      const groupInvalid = !readOnlyGroup && Boolean(radioSchema.required) && !selectedOptionId;
+      rootElement.dataset.optionGroupInvalid = String(groupInvalid);
       rootElement.appendChild(
         createOptionGroupRuntime({
           options,
@@ -258,6 +266,10 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
           orientation: radioSchema.orientation,
           spacing: Number.isFinite(Number(radioSchema.spacing)) ? Number(radioSchema.spacing) : DESIGNER_BOX_GAP,
           groupName: radioSchema.groupName,
+          mode,
+          required: Boolean(radioSchema.required),
+          readOnly: readOnlyGroup,
+          invalid: groupInvalid,
           resolveSelection: ({ option }) => ({
             content: option.optionId,
             selectedOptionId: option.optionId,

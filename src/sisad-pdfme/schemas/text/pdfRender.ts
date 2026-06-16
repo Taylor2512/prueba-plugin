@@ -29,6 +29,7 @@ import {
   splitTextToSize,
 } from './helper.js';
 import { convertForPdfLayoutProps, rotatePoint, hex2PrintingColor } from '../utils.js';
+import { shouldRenderFieldBackgroundInPdf } from '../shared/fieldChrome.js';
 
 const embedAndGetFontObj = async (arg: {
   pdfDoc: PDFDocument;
@@ -121,7 +122,7 @@ export const pdfRender = async (arg: PDFRenderProps<TextSchema>) => {
 
   const pivotPoint = { x: x + width / 2, y: pageHeight - mm2pt(schema.position.y) - height / 2 };
 
-  if (schema.backgroundColor) {
+  if (schema.backgroundColor && shouldRenderFieldBackgroundInPdf(schema)) {
     const color = hex2PrintingColor(schema.backgroundColor, colorType);
     if (rotate.angle !== 0) {
       // Apply the same rotation logic as text rendering to match UI behavior

@@ -9,6 +9,8 @@ import {
   buildOptionLabel,
 } from '../groupSchemaRender.js';
 
+export type OptionGroupRenderMode = 'designer' | 'form' | 'viewer';
+
 export type OptionGroupRuntimeParams = {
   options: OptionItem[];
   selectionMode: 'single' | 'multiple';
@@ -19,6 +21,15 @@ export type OptionGroupRuntimeParams = {
   orientation?: 'vertical' | 'horizontal';
   spacing?: number;
   groupName?: string;
+  /** Runtime mode; drives aria + interactivity of internal option rows. */
+  mode?: OptionGroupRenderMode;
+  required?: boolean;
+  readOnly?: boolean;
+  invalid?: boolean;
+  /** Render the visual group caption. Default false: name lives in aria-label only. */
+  showGroupLabel?: boolean;
+  /** Render visible per-option text. Default false (marker-only, DocuSign-like). */
+  showOptionLabels?: boolean;
   resolveSelection?: (params: {
     option: OptionItem;
     currentSelection: {
@@ -45,14 +56,56 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
     orientation = 'vertical',
     spacing = 3,
     groupName,
+    mode,
+    required = false,
+    readOnly = false,
+    invalid = false,
+    showGroupLabel = false,
+    showOptionLabels = false,
     resolveSelection,
     onChange,
   } = params;
 
+  const isViewer = mode === 'viewer';
+  // Internal rows are non-interactive when the schema is read-only/locked or in
+  // viewer mode (Composite: options are children, never standalone schemas).
+  const rowsInteractive = editable && !readOnly && !isViewer;
+
   const wrapper = buildGroupWrapper();
   const container = buildGroupContainer({ color, gap: spacing, isHorizontal: orientation === 'horizontal' });
 
-  if (groupName) container.appendChild(buildGroupLabel(groupName, color));
+  // Group-level a11y/state hooks (root data-schema-id stays on rootElement).
+  wrapper.setAttribute('role', selectionMode === 'single' ? 'radiogroup' : 'group');
+  // Group name is exposed for assistive tech but NOT rendered as a visible
+  // caption — it would consume field height and clip options.
+  if (groupName) wrapper.setAttribute('aria-label', groupName);
+  if (required) wrapper.setAttribute('aria-required', 'true');
+  if (invalid) wrapper.setAttribute('aria-invalid', 'true');
+  if (readOnly || isViewer) wrapper.setAttribute('aria-readonly', 'true');
+  if (mode) wrapper.dataset.renderMode = mode;
+  wrapper.dataset.optionGroupInvalid = String(Boolean(invalid));
+  // Marker-only by default: option text lives in aria-label/title, not visually.
+  wrapper.dataset.optionLabels = showOptionLabels ? 'visible' : 'hidden';
+
+  // Tag the inner container so CSS can target it.
+  container.dataset.optionGroupBody = 'true';
+  // Inline overrides beat the builder's inline styles (CSS can't). The schema
+  // root/chrome owns the frame; the body must not draw its own border/bg and
+  // must never clip options (overflow:hidden was cutting the last row).
+  Object.assign(container.style, {
+    border: 'none',
+    background: 'transparent',
+    padding: '0',
+    overflow: 'visible',
+    alignItems: orientation === 'horizontal' ? 'center' : 'flex-start',
+  });
+
+  // Visual caption is opt-in (designer + __designer.showGroupLabel). Off by default.
+  if (showGroupLabel && groupName) {
+    const label = buildGroupLabel(groupName, color);
+    label.dataset.optionGroupLabel = 'true';
+    container.appendChild(label);
+  }
 
   const selectedSet = new Set(Array.isArray(selectedOptionIds) ? selectedOptionIds : []);
 
@@ -62,20 +115,52 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
     const row = buildOptionRow({
       color,
       isHorizontal: orientation === 'horizontal',
-      editable,
+      editable: rowsInteractive,
       role: selectionMode === 'single' ? 'radio' : 'checkbox',
       optionId: opt.optionId,
       dataAttr: selectionMode === 'single' ? 'data-radio-group-option' : 'data-checkbox-group-option',
     });
+    // Accessible state for the option control (button + role=checkbox/radio).
+    row.classList.add('sisad-pdfme-option-group__option');
+    row.setAttribute('aria-checked', String(Boolean(isSelected)));
+    // Option text is exposed to assistive tech but not rendered (marker-only).
+    const optionAriaLabel = String(
+      opt.label || (opt as { value?: string }).value || opt.optionId || '',
+    ).trim();
+    if (optionAriaLabel) {
+      row.setAttribute('aria-label', optionAriaLabel);
+      row.setAttribute('title', optionAriaLabel);
+    }
+    row.dataset.optionLabelHidden = String(!showOptionLabels);
+    if (!showOptionLabels) {
+      // Marker-only: collapse the row to the marker box (override inline width:100%).
+      Object.assign(row.style, {
+        width: 'auto',
+        minWidth: '14px',
+        padding: '0',
+        gap: '0',
+        justifyContent: 'center',
+        background: 'transparent',
+      });
+    }
+    if (!rowsInteractive) {
+      row.setAttribute('aria-disabled', 'true');
+      row.disabled = true;
+    }
 
     const indicator = selectionMode === 'single'
       ? buildRadioIndicator(color, !!isSelected)
       : buildCheckboxIndicator(color, !!isSelected);
 
     row.appendChild(indicator);
-    row.appendChild(buildOptionLabel(opt.label || opt.optionId, color));
+    // Visible per-option text is opt-in; default marker-only.
+    if (showOptionLabels) {
+      const optionLabel = buildOptionLabel(opt.label || opt.optionId, color);
+      optionLabel.dataset.optionLabelVisible = 'true';
+      row.appendChild(optionLabel);
+    }
 
-    if (editable && typeof onChange === 'function') {
+    if (rowsInteractive && typeof onChange === 'function') {
       row.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();

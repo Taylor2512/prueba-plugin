@@ -138,19 +138,33 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
     const { schema, value, onChange, rootElement, mode } = arg;
     await text.ui(Object.assign(arg, { mode: 'viewer' }));
 
+    // FieldChromePolicy hooks: CSS drives mode-specific chrome for the field.
+    rootElement.dataset.renderMode = String(mode);
+    rootElement.dataset.schemaFamily = 'option-based';
+    rootElement.dataset.selectionMode = 'singleCompact';
+
     if (mode !== 'viewer' && !(mode === 'form' && schema.readOnly)) {
-      const buttonWidth = 30;
+      const buttonWidth = 22;
       const selectButton = document.createElement('button');
       selectButton.type = 'button';
+      selectButton.className = 'sisad-pdfme-select-chevron';
       selectButton.innerHTML = selectIcon;
       const selectButtonStyle: CSS.Properties = {
+        // Chevron sits INSIDE the field on the right, vertically centered,
+        // decorative only (clicks pass through to the native <select> overlay).
         position: 'absolute',
-        zIndex: -1,
-        right: `-${buttonWidth}px`,
-        top: '0',
+        zIndex: '1',
+        right: '4px',
+        top: '50%',
+        transform: 'translateY(-50%)',
         padding: '0',
         margin: '0',
-        cursor: 'pointer',
+        pointerEvents: 'none',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: 'transparent',
+        border: 'none',
         height: `${buttonWidth}px`,
         width: `${buttonWidth}px`,
       };
@@ -162,10 +176,11 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
       const selectElementStyle: CSS.Properties = {
         opacity: '0',
         position: 'absolute',
-        width: `calc(100% + ${buttonWidth}px)`,
+        width: '100%',
         height: '100%',
         top: '0',
         left: '0',
+        cursor: 'pointer',
         appearance: 'initial',
       };
       Object.assign(selectElement.style, selectElementStyle);

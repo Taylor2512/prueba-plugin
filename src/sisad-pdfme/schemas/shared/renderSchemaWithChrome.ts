@@ -12,7 +12,7 @@
  */
 import type { SchemaVisualFamily, SisadSchemaBase } from './schemaTypes.js';
 import { clearSchemaRoot, setSchemaRootAttributes } from './schemaDom.js';
-import { applyFieldChrome } from './fieldChrome.js';
+import { applyFieldChrome, type SchemaRenderMode } from './fieldChrome.js';
 
 export type RenderSchemaWithChromeOptions<TSchema extends SisadSchemaBase> = {
   schema: TSchema;
@@ -26,6 +26,8 @@ export type RenderSchemaWithChromeOptions<TSchema extends SisadSchemaBase> = {
   invalid?: boolean;
   ownerColor?: string;
   compact?: boolean;
+  /** Runtime render mode; forwarded to the FieldChromePolicy. */
+  renderMode?: SchemaRenderMode;
   /** The schema-specific render function. Receives the chrome element to populate. */
   render: (chromeEl: HTMLElement) => void;
 };
@@ -50,6 +52,7 @@ export function renderSchemaWithChrome<TSchema extends SisadSchemaBase>(
     invalid,
     ownerColor,
     compact,
+    renderMode,
     render,
   } = options;
 
@@ -66,6 +69,7 @@ export function renderSchemaWithChrome<TSchema extends SisadSchemaBase>(
     invalid,
     ownerColor,
     compact,
+    renderMode,
   });
 
   render(chromeEl);

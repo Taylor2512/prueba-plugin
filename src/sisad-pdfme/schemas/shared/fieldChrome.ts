@@ -40,6 +40,157 @@ export const createDesignerGroupStack = (gapPx: number): HTMLDivElement => {
   return wrapper;
 };
 
+// ─── PDF output policy ─────────────────────────────────────────────────────────
+
+/**
+ * Decides whether a field's background fill should be painted in the FINAL PDF.
+ *
+ * Recipient tints and field background colors are designer/form chrome, not
+ * document content. The generated PDF must be clean ("sin formato"), so the
+ * background is suppressed by default and only printed when a template
+ * explicitly opts in via `__designer.printBackground === true`.
+ *
+ * Centralized here (Facade) so every pdfRender path shares one rule instead of
+ * each plugin deciding on its own.
+ */
+export const shouldRenderFieldBackgroundInPdf = (schema: unknown): boolean => {
+  if (!schema || typeof schema !== 'object') return false;
+  const designer = (schema as { __designer?: unknown }).__designer;
+  if (!designer || typeof designer !== 'object') return false;
+  return (designer as { printBackground?: unknown }).printBackground === true;
+};
+
+// ─── FieldChromePolicy (Strategy by mode + state) ─────────────────────────────
+
+export type SchemaRenderMode = 'designer' | 'form' | 'viewer' | 'pdf';
+
+export type FieldChromePolicyState =
+  | 'idle'
+  | 'hover'
+  | 'selected'
+  | 'empty'
+  | 'filled'
+  | 'invalid'
+  | 'readonly'
+  | 'locked';
+
+export type FieldChromePolicyInput = {
+  mode: SchemaRenderMode;
+  /** Base owner/recipient color. */
+  tone: string;
+  state?: FieldChromePolicyState;
+  family?: string;
+  compact?: boolean;
+  /** Source schema, used only for the pdf printBackground opt-in. */
+  schema?: unknown;
+  /** Designer-supplied border override (keeps existing designer look). */
+  outline?: string;
+};
+
+export type FieldChromePolicyResult = {
+  className: string;
+  dataAttributes: Record<string, string>;
+  styleVars: Record<string, string>;
+  surface: string;
+  border: string;
+  showDesignerChrome: boolean;
+  showFormControls: boolean;
+  showViewerChrome: boolean;
+  printBackground: boolean;
+};
+
+const mix = (tone: string, pct: number, base = 'white'): string =>
+  `color-mix(in srgb, ${tone} ${pct}%, ${base})`;
+
+/**
+ * Central visual policy: given mode + state + tone, returns the chrome pieces
+ * (surface/border + CSS vars + data attributes + capability flags).
+ *
+ * Single decision point so new modes/states extend here, not in each schema
+ * (OCP). Returns small composable pieces (ISP). No `any`.
+ */
+export const resolveFieldChromePolicy = (
+  input: FieldChromePolicyInput,
+): FieldChromePolicyResult => {
+  const { mode, tone, state = 'idle', compact = false, schema, outline } = input;
+
+  let surface = 'transparent';
+  let borderColor = 'transparent';
+  let borderWidth = '1px';
+  let showDesignerChrome = false;
+  let showFormControls = false;
+  let showViewerChrome = false;
+  let printBackground = false;
+
+  if (!compact) {
+    switch (mode) {
+      case 'designer':
+        showDesignerChrome = true;
+        surface = mix(tone, 14);
+        borderColor = mix(tone, 64);
+        break;
+      case 'form':
+        // Subtle owner tint, compact fields — not the heavy designer surface.
+        showFormControls = true;
+        surface = mix(tone, 7);
+        borderColor = mix(tone, 38);
+        break;
+      case 'viewer':
+        // Clean read: final value, no edit chrome.
+        showViewerChrome = true;
+        surface = 'transparent';
+        borderColor = 'transparent';
+        break;
+      case 'pdf':
+        surface = 'transparent';
+        borderColor = 'transparent';
+        printBackground = shouldRenderFieldBackgroundInPdf(schema);
+        break;
+    }
+  } else if (mode === 'designer') {
+    showDesignerChrome = true;
+  } else if (mode === 'form') {
+    showFormControls = true;
+  } else if (mode === 'viewer') {
+    showViewerChrome = true;
+  }
+
+  // State overrides (apply after mode baseline).
+  if ((state === 'readonly' || state === 'locked') && mode !== 'designer') {
+    surface = mode === 'form' ? mix('#94a3b8', 8) : 'transparent';
+    borderColor = mode === 'form' ? mix('#94a3b8', 30) : 'transparent';
+  }
+  if (state === 'selected' && mode === 'designer') {
+    borderColor = 'var(--sisad-schema-selected-color, #4200ca)';
+    borderWidth = '1.5px';
+  }
+  if (state === 'invalid') {
+    borderColor = 'var(--color-danger, #dc2626)';
+  }
+
+  const border = mode === 'designer' && outline ? outline : `${borderWidth} solid ${borderColor}`;
+
+  return {
+    className: 'sisad-pdfme-field-chrome',
+    dataAttributes: {
+      'data-render-mode': mode,
+      'data-schema-visual-state': state,
+    },
+    styleVars: {
+      '--schema-tone': tone,
+      '--schema-surface-tone': surface,
+      '--schema-border-tone': borderColor,
+      '--schema-text-tone': tone,
+    },
+    surface,
+    border,
+    showDesignerChrome,
+    showFormControls,
+    showViewerChrome,
+    printBackground,
+  };
+};
+
 // ─── Field chrome (generic schema visual state) ───────────────────────────────
 
 export type ApplyFieldChromeOptions<TSchema extends SisadSchemaBase> = {
@@ -51,6 +202,19 @@ export type ApplyFieldChromeOptions<TSchema extends SisadSchemaBase> = {
   invalid?: boolean;
   ownerColor?: string;
   compact?: boolean;
+  /** Runtime render mode; when set, stamps data-render-mode + policy CSS vars. */
+  renderMode?: SchemaRenderMode;
+};
+
+const toPolicyState = (state: SchemaVisualState): FieldChromePolicyState => {
+  switch (state) {
+    case 'multi-selected':
+      return 'selected';
+    case 'required':
+      return 'idle';
+    default:
+      return state;
+  }
 };
 
 function deriveVisualState<TSchema extends SisadSchemaBase>(
@@ -90,4 +254,22 @@ export const applyFieldChrome = <TSchema extends SisadSchemaBase>(
   element.dataset.schemaLocked = String(Boolean(schema.locked));
   element.dataset.schemaCompact = String(Boolean(compact));
   element.style.setProperty('--schema-tone', tone);
+
+  // When the runtime mode is known, delegate surface/border/vars to the central
+  // policy and stamp data-render-mode so CSS can drive mode-specific chrome.
+  if (options.renderMode) {
+    const policy = resolveFieldChromePolicy({
+      mode: options.renderMode,
+      tone,
+      state: toPolicyState(state),
+      family,
+      compact,
+      schema,
+    });
+    element.dataset.renderMode = policy.dataAttributes['data-render-mode'];
+    element.dataset.schemaVisualState = policy.dataAttributes['data-schema-visual-state'];
+    Object.entries(policy.styleVars).forEach(([key, value]) => {
+      element.style.setProperty(key, value);
+    });
+  }
 };

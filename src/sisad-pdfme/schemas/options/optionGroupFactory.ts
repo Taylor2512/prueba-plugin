@@ -89,10 +89,13 @@ export const createDesignerOptionBox = (
   box.setAttribute('data-option-id', option.optionId);
   box.setAttribute('aria-label', option.label);
 
+  // Single selected/deselected logic for both shapes: respect isSelected with
+  // one designer palette. (Previously radio hardcoded `false` + a different
+  // gray, so designer never reflected selection while runtime did.)
   const indicator =
     indicatorShape === 'square'
       ? buildCheckboxIndicator(DESIGNER_OPTION_BOX_BORDER, isSelected)
-      : buildRadioIndicator('#8b8b8b', false);
+      : buildRadioIndicator(DESIGNER_OPTION_BOX_BORDER, isSelected);
 
   const indicatorSize = indicatorShape === 'square' ? '14px' : '18px';
   Object.assign(indicator.style, {
