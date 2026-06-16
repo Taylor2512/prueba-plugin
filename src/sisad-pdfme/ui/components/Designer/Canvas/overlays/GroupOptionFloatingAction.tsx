@@ -12,7 +12,7 @@ type Props = {
   interactionState: InteractionState;
 };
 
-const BUTTON_GAP_PX = 6;
+const BUTTON_GAP_PX = 10;
 const BUTTON_SIZE_PX = 22;
 
 /**

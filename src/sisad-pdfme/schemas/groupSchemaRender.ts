@@ -26,6 +26,49 @@ const applyStyles = (element: HTMLElement, styles: Record<string, string>): void
   Object.assign(element.style, styles);
 };
 
+const isRecord = (value: unknown): value is Record<string, unknown> =>
+  Boolean(value) && typeof value === 'object';
+
+/**
+ * Marker-only groups hide visible labels unless the schema explicitly opts in.
+ */
+export const shouldShowOptionLabels = (schemaOrConfig: unknown): boolean => {
+  if (!isRecord(schemaOrConfig)) return false;
+  const designer = isRecord(schemaOrConfig.__designer) ? schemaOrConfig.__designer : null;
+  return Boolean(designer && designer.showOptionLabels === true);
+};
+
+export const applyOptionGroupBodyVariant = (
+  element: HTMLElement,
+  options: { showOptionLabels: boolean; isHorizontal: boolean },
+): void => {
+  element.dataset.optionGroupVariant = options.showOptionLabels ? 'labelled' : 'marker-only';
+  if (!options.showOptionLabels && !options.isHorizontal) {
+    Object.assign(element.style, {
+      width: 'fit-content',
+      maxWidth: '100%',
+      alignSelf: 'flex-start',
+    });
+  }
+};
+
+export const applyOptionGroupRowVariant = (
+  element: HTMLElement,
+  options: { showOptionLabels: boolean },
+): void => {
+  element.dataset.optionLabelHidden = String(!options.showOptionLabels);
+  if (!options.showOptionLabels) {
+    Object.assign(element.style, {
+      width: 'auto',
+      minWidth: '14px',
+      padding: '0',
+      gap: '0',
+      justifyContent: 'center',
+      background: 'transparent',
+    });
+  }
+};
+
 export type GroupRenderOptions = {
   color: string;
   gap: number;
@@ -52,14 +95,14 @@ export const buildGroupContainer = (opts: GroupRenderOptions): HTMLDivElement =>
     width: '100%',
     height: '100%',
     boxSizing: 'border-box',
-    border: `1px dashed ${hexAlpha(color, 0.45)}`,
+    border: `1px dashed ${hexAlpha(color, 0.28)}`,
     borderRadius: '4px',
-    padding: '3px 4px 3px 4px',
+    padding: '2px 3px',
     display: 'flex',
     flexDirection: isHorizontal ? 'row' : 'column',
     flexWrap: isHorizontal ? 'wrap' : 'nowrap',
-    gap: `${Math.max(1, gap)}px`,
-    background: hexAlpha(color, 0.04),
+    gap: `${Math.max(1, gap - 1)}px`,
+    background: hexAlpha(color, 0.015),
     overflow: 'hidden',
   });
   return el;
@@ -104,14 +147,14 @@ export const buildOptionRow = (opts: {
   applyStyles(btn, {
     display: 'inline-flex',
     alignItems: 'center',
-    gap: '4px',
-    padding: '1px 3px 1px 2px',
+    gap: '3px',
+    padding: '0 2px 0 1px',
     border: 'none',
     background: 'transparent',
     borderRadius: '3px',
-    color: hexAlpha(color, 0.85),
+    color: hexAlpha(color, 0.8),
     cursor: editable ? 'pointer' : 'default',
-    fontSize: '10px',
+    fontSize: '9px',
     textAlign: 'left',
     width: isHorizontal ? 'auto' : '100%',
     minHeight: '0',
@@ -122,7 +165,7 @@ export const buildOptionRow = (opts: {
   });
   if (editable) {
     btn.addEventListener('mouseenter', () => {
-      btn.style.background = hexAlpha(color, 0.08);
+      btn.style.background = hexAlpha(color, 0.04);
     });
     btn.addEventListener('mouseleave', () => {
       btn.style.background = 'transparent';
@@ -138,11 +181,11 @@ const checkSvg = (color: string) =>
 export const buildCheckboxIndicator = (color: string, isChecked: boolean): HTMLSpanElement => {
   const el = document.createElement('span');
   applyStyles(el, {
-    width: '10px',
-    height: '10px',
-    minWidth: '10px',
+    width: '9px',
+    height: '9px',
+    minWidth: '9px',
     borderRadius: '2px',
-    border: `1px solid ${hexAlpha(color, isChecked ? 0.9 : 0.55)}`,
+    border: `1px solid ${hexAlpha(color, isChecked ? 0.84 : 0.5)}`,
     background: isChecked ? color : 'rgba(255,255,255,0.9)',
     display: 'inline-flex',
     alignItems: 'center',
@@ -160,11 +203,11 @@ export const buildCheckboxIndicator = (color: string, isChecked: boolean): HTMLS
 export const buildRadioIndicator = (color: string, isSelected: boolean): HTMLSpanElement => {
   const el = document.createElement('span');
   applyStyles(el, {
-    width: '10px',
-    height: '10px',
-    minWidth: '10px',
+    width: '9px',
+    height: '9px',
+    minWidth: '9px',
     borderRadius: '50%',
-    border: `1px solid ${hexAlpha(color, isSelected ? 0.9 : 0.55)}`,
+    border: `1px solid ${hexAlpha(color, isSelected ? 0.84 : 0.5)}`,
     background: isSelected ? color : 'rgba(255,255,255,0.9)',
     display: 'inline-flex',
     alignItems: 'center',
@@ -175,8 +218,8 @@ export const buildRadioIndicator = (color: string, isSelected: boolean): HTMLSpa
   if (isSelected) {
     const dot = document.createElement('span');
     applyStyles(dot, {
-      width: '4px',
-      height: '4px',
+      width: '3px',
+      height: '3px',
       borderRadius: '50%',
       background: '#fff',
       display: 'block',

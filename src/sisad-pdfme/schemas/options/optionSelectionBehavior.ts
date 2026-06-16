@@ -1,6 +1,5 @@
 import type { OptionItem } from './optionTypes.js';
-
-const normalizeText = (value: unknown): string => String(value || '').trim();
+import { normalizeText } from './optionModel.js';
 
 const normalizeOptionIds = (ids: unknown, validIds: Set<string>): string[] => {
   if (!Array.isArray(ids)) return [];

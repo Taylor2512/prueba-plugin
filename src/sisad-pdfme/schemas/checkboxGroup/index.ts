@@ -17,6 +17,11 @@ import {
   createDesignerOptionGroupEl,
   syncDesignerOptionGroupPatch,
   createOptionGroupRuntime,
+  buildOptionGroupRuntimeSharedParams,
+  buildOptionGroupDesignerDimensions,
+  buildOptionGroupDefaultSchema,
+  renderOptionGroupUi,
+  resolveOptionGroupReadOnly,
 } from '../options/optionGroupFactory.js';
 import {
   clampMultiOptionSelection,
@@ -24,8 +29,14 @@ import {
   toggleMultiOptionSelection,
 } from '../options/optionSelectionBehavior.js';
 import { createOptionGroupEditor } from '../options/optionGroupEditorFactory.js';
-import { clearSchemaRoot } from '../shared/schemaDom.js';
 import { resolveSchemaIdByIdentity } from '../shared/schemaGuards.js';
+import type { OptionItem } from '../options/optionTypes.js';
+import {
+  buildDefaultOptionGroupOptions,
+  normalizeOptionId,
+  normalizeOptionGroupOptions,
+  normalizeText,
+} from '../options/optionModel.js';
 
 // ─── Designer compact geometry constants ────────────────────────────────────
 // The + button is rendered as an external overlay (GroupOptionFloatingAction),
@@ -33,24 +44,14 @@ import { resolveSchemaIdByIdentity } from '../shared/schemaGuards.js';
 
 import {
   CHECKBOX_GROUP_LAYOUT,
-  computeOptionGroupDesignerHeightMM,
-  computeOptionGroupDesignerWidthMM,
 } from '../options/optionGroupLayout.js';
 
 const DESIGNER_BOX_GAP  = CHECKBOX_GROUP_LAYOUT.boxGap;   // px (used in propPanel defaultSchema + editor)
 const DESIGNER_BOX_BORDER = '#65d8de';                      // used in form/viewer indicator builders
 
-const calculateDesignerHeight = (optionsCount: number): number =>
-  computeOptionGroupDesignerHeightMM(optionsCount, CHECKBOX_GROUP_LAYOUT);
-
-const DESIGNER_BOX_MM = computeOptionGroupDesignerWidthMM(CHECKBOX_GROUP_LAYOUT);
-
 // ─── Types ───────────────────────────────────────────────────────────────────
 
-type CheckboxOption = {
-  optionId: string;
-  label: string;
-};
+type CheckboxOption = OptionItem;
 
 type CheckboxGroupSchema = SchemaForUI & {
   groupId?: string;
@@ -73,8 +74,6 @@ type CheckboxGroupSchema = SchemaForUI & {
 
 // ─── Pure helpers ────────────────────────────────────────────────────────────
 
-const normalizeText = (value: unknown) => String(value || '').trim();
-const ensureOptionId = (value: string, index: number) => normalizeText(value) || `option_${index + 1}`;
 const normalizeSelectionLimit = (value: unknown): number | undefined => {
   const parsed = Number(value);
   if (!Number.isFinite(parsed) || parsed < 0) return undefined;
@@ -82,21 +81,7 @@ const normalizeSelectionLimit = (value: unknown): number | undefined => {
 };
 
 const normalizeOptions = (schema: CheckboxGroupSchema): CheckboxOption[] => {
-  const source = Array.isArray(schema.options) ? schema.options : [];
-  if (!source.length) {
-    return [
-      { optionId: 'option_1', label: 'Casilla 1' },
-      { optionId: 'option_2', label: 'Casilla 2' },
-    ];
-  }
-  return source.map((entry, index) => {
-    if (typeof entry === 'string') {
-      const optionId = ensureOptionId(entry, index);
-      return { optionId, label: entry || `Casilla ${index + 1}` };
-    }
-    const optionId = ensureOptionId(entry.optionId, index);
-    return { optionId, label: normalizeText(entry.label) || optionId };
-  });
+  return normalizeOptionGroupOptions(schema.options, 'Casilla', 2) as CheckboxOption[];
 };
 
 const resolveSelectionLimits = (schema: CheckboxGroupSchema) => {
@@ -146,11 +131,12 @@ const createDesignerCheckboxGroup = ({
   selected: Set<string>;
 }): HTMLDivElement => {
   const wrapper = createDesignerOptionGroupEl(
-    options.length ? options : [{ optionId: 'option_1', label: 'Casilla 1' }],
+    options,
     CHECKBOX_GROUP_LAYOUT,
     'square',
     selected,
     'data-checkbox-group-option',
+    'Casilla',
   );
   wrapper.setAttribute('data-checkbox-group-root', 'true');
   return wrapper;
@@ -211,8 +197,7 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
       options: nextOptions,
       content: serializeSelectedIds(nextSelected),
       selectedOptionIds: Array.from(nextSelected),
-      width: DESIGNER_BOX_MM,
-      height: calculateDesignerHeight(nextOptions.length),
+      ...buildOptionGroupDesignerDimensions(CHECKBOX_GROUP_LAYOUT, nextOptions.length),
     });
   };
 
@@ -235,12 +220,11 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
       options.map((option, optionIndex) => (optionIndex === index ? { ...option, label: label || option.label } : option)),
     createRemovedOptions: (options, index) => {
       const next = options.filter((_, optionIndex) => optionIndex !== index);
-      return next.length ? next : [{ optionId: 'option_1', label: 'Casilla 1' }];
+      return next.length ? next : buildDefaultOptionGroupOptions('Casilla', 2);
     },
     createAddedOptions: (options, label) => {
       const clean = label || `Casilla ${options.length + 1}`;
-      const idBase = clean.toLowerCase().replace(/[^a-z0-9]+/g, '_').replace(/^_+|_+$/g, '') || 'option';
-      return [...options, { optionId: `${idBase}_${options.length + 1}`, label: clean }];
+      return [...options, { optionId: normalizeOptionId(clean, options.length), label: clean }];
     },
     onCommitOptions: commitOptions,
   });
@@ -267,48 +251,37 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
       const editable = isEditable(mode, cbSchema);
       const color = cbSchema.color || '#1677ff';
 
-      clearSchemaRoot(rootElement);
-
-      rootElement.classList.add('sisad-pdfme-option-group-root');
-      // FieldChromePolicy hooks: let CSS drive mode-specific group chrome.
-      rootElement.dataset.renderMode = mode;
-      rootElement.dataset.schemaFamily = 'option-based';
-      rootElement.dataset.selectionMode = 'multiple';
-      rootElement.style.pointerEvents = isDesigner ? 'none' : 'auto';
-
-      if (isDesigner) {
-        // Sync legacy/oversized schemas to compact geometry
-        syncDesignerCheckboxGroupGeometry({ schema: cbSchema, options, rootElement, onChange });
-
-        const designerGroup = createDesignerCheckboxGroup({ options, selected });
-        rootElement.appendChild(designerGroup);
-        return;
-      }
-
       // ── Form / Viewer mode: labeled runtime ──────────────────────────────
       const limits = resolveSelectionLimits(cbSchema);
-      const behaviorFlags = cbSchema as { readonly?: boolean; locked?: boolean };
-      const readOnlyGroup = Boolean(cbSchema.readOnly || behaviorFlags.readonly || behaviorFlags.locked);
+      const readOnlyGroup = resolveOptionGroupReadOnly(cbSchema);
       const minRequired = limits.minSelected ?? (cbSchema.required ? 1 : 0);
       const groupInvalid =
         !readOnlyGroup &&
         ((minRequired > 0 && selected.size < minRequired) ||
           (limits.maxSelected != null && selected.size > limits.maxSelected));
-      rootElement.dataset.optionGroupInvalid = String(groupInvalid);
-      rootElement.appendChild(
-        createOptionGroupRuntime({
+
+      renderOptionGroupUi({
+        rootElement,
+        isDesigner,
+        mode,
+        selectionMode: 'multiple',
+        invalid: groupInvalid,
+        renderDesigner: () => {
+          // Sync legacy/oversized schemas to compact geometry
+          syncDesignerCheckboxGroupGeometry({ schema: cbSchema, options, rootElement, onChange });
+          return createDesignerCheckboxGroup({ options, selected });
+        },
+        renderRuntime: () => createOptionGroupRuntime({
           options,
           selectionMode: 'multiple',
           selectedOptionIds: Array.from(selected),
-          editable,
-          color,
-          orientation: cbSchema.orientation,
-          spacing: Number.isFinite(Number(cbSchema.spacing)) ? Number(cbSchema.spacing) : 3,
-          groupName: cbSchema.groupName,
-          mode,
-          required: Boolean(cbSchema.required),
           readOnly: readOnlyGroup,
-          invalid: groupInvalid,
+          ...buildOptionGroupRuntimeSharedParams({
+            schema: cbSchema,
+            mode,
+            editable,
+            invalid: groupInvalid,
+          }),
           resolveSelection: ({ option, currentSelection }) => {
             const next = toggleSelectedIds(
               new Set(currentSelection.selectedOptionIds),
@@ -324,7 +297,7 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
           },
           onChange,
         }),
-      );
+      });
     },
 
     pdf: async (arg) => {
@@ -415,34 +388,17 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
       }),
       widgets: { editCheckboxGroupOptions: CheckboxOptionsEditor },
       defaultSchema: {
-        id: 'checkbox-group-default',
-        name: '',
-        type: 'checkboxGroup',
-        content: '',
-        position: { x: 0, y: 0 },
-        width: DESIGNER_BOX_MM,
-        height: calculateDesignerHeight(2),
-        groupId: 'Grupo_Casillas',
-        group: 'Grupo_Casillas',
-        groupName: 'Grupo de casillas',
-        lockedAsGroup: true,
-        orientation: 'vertical',
-        spacing: DESIGNER_BOX_GAP,
-        options: [
-          { optionId: 'option_1', label: 'Casilla 1' },
-          { optionId: 'option_2', label: 'Casilla 2' },
-        ],
-        selectedOptionIds: [],
-        defaultSelectedOptionIds: [],
-        color: '#1677ff',
-        __designer: {
-          group: {
-            groupId: 'Grupo_Casillas',
-            groupType: 'checkbox',
-            groupName: 'Grupo de casillas',
-            lockedAsGroup: true,
-          },
-        },
+        ...buildOptionGroupDefaultSchema({
+          id: 'checkbox-group-default',
+          type: 'checkboxGroup',
+          groupId: 'Grupo_Casillas',
+          groupName: 'Grupo de casillas',
+          groupType: 'checkbox',
+          optionPrefix: 'Casilla',
+          selectionMode: 'multiple',
+          optionsCount: 2,
+          color: '#1677ff',
+        }),
       },
     },
     icon: renderLucideIcon(SquareCheck, { stroke: 'currentColor' }),
@@ -465,7 +421,7 @@ export const __test__ = {
   resolveSelectionLimits,
   clampSelectedIds,
   toggleSelectedIds,
-  calculateDesignerHeight,
+  buildOptionGroupDesignerDimensions,
   /** Drops selected ids that no longer exist in the option set. */
   normalizeSelectedOptionIds: (selected: string[], options: CheckboxOption[]) => {
     const valid = new Set(options.map((o) => o.optionId));

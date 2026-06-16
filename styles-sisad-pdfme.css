@@ -2,7 +2,7 @@
    ARCHIVO UNIFICADO DE ESTILOS CSS
    =====================================================================
    Carpeta origen: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
-   Fecha de generación: 2026-06-15T22:15:56.709Z
+   Fecha de generación: 2026-06-16T19:56:16.587Z
    Total de archivos incluidos: 6
    Extensiones incluidas: .css
    Objetivo: consolidar estilos CSS respetando un orden estable de cascada
@@ -25,7 +25,7 @@
    ARCHIVO #1
    Ruta relativa: src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
    Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
-   Líneas aproximadas: 6159
+   Líneas aproximadas: 6343
    ==================================================================== */
 
 @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap');
@@ -357,8 +357,10 @@
 }
 
 .sisad-pdfme-ui-control-bar-cluster--bottom-right {
-  right: 0.75rem;
+  left: 50%;
+  right: auto;
   bottom: 0.75rem;
+  transform: translateX(-50%);
 }
 
 .sisad-pdfme-ui-control-bar-pill,
@@ -738,8 +740,10 @@
 }
 
 .sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-cluster--bottom-right {
-  right: 0.5rem;
+  left: 50%;
+  right: auto;
   bottom: 0.5rem;
+  transform: translateX(-50%);
 }
 
 .sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-cluster--top-center {
@@ -3619,8 +3623,10 @@
 }
 
 .sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-cluster--bottom-right {
-  right: 0.5rem;
+  left: 50%;
+  right: auto;
   bottom: 0.5rem;
+  transform: translateX(-50%);
 }
 
 .sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-text-btn {
@@ -5884,9 +5890,9 @@
   align-items: center;
   justify-content: center;
   box-sizing: border-box;
-  border: 2px solid #65d8de;
+  border: 1.5px solid #65d8de;
   border-radius: 2px;
-  background: rgba(161, 239, 242, 0.58);
+  background: rgba(161, 239, 242, 0.34);
   padding: 0;
   margin: 0;
   flex: 0 0 auto;
@@ -5896,11 +5902,13 @@
 .sisad-pdfme-designer-group-stack {
   --designer-box-gap: 4px;
   position: relative;
-  width: 100%;
-  height: 100%;
+  width: fit-content;
+  height: fit-content;
+  min-width: 0;
+  min-height: 0;
   display: flex;
   flex-direction: column;
-  align-items: center;
+  align-items: flex-start;
   justify-content: flex-start;
   gap: var(--designer-box-gap);
   padding: 0;
@@ -5993,6 +6001,69 @@
 
 .sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-locked='true'] {
   cursor: not-allowed;
+}
+
+/* ─── FieldChromePolicy: mode-scoped chrome (TASK-012) ───────────────────────
+   Driven by data-render-mode (stamped by applyFieldChrome when a renderMode is
+   passed) and by the host data-runtime-mode ancestor (set by
+   usePdfmeRuntimeInstance) so schemas without an explicit renderMode still get
+   the correct runtime appearance. CSS vars come from resolveFieldChromePolicy.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Explicit per-element render mode (preferred source). */
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-render-mode] {
+  background: var(--schema-surface-tone, transparent);
+  border-color: var(--schema-border-tone, transparent);
+}
+
+/* Form runtime: subtle owner tint, compact, no designer chrome. */
+[data-runtime-mode='form'] .sisad-pdfme-field-chrome {
+  background: color-mix(in srgb, var(--schema-tone, #2563eb) 7%, white);
+  border-color: color-mix(in srgb, var(--schema-tone, #2563eb) 38%, white);
+}
+
+/* Viewer/PDF runtime: clean read, no edit chrome. */
+[data-runtime-mode='viewer'] .sisad-pdfme-field-chrome,
+[data-runtime-mode='pdf'] .sisad-pdfme-field-chrome,
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-render-mode='viewer'],
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-render-mode='pdf'] {
+  background: transparent;
+  border-color: transparent;
+  box-shadow: none;
+}
+
+/* Readonly in runtime: neutral surface, never the owner tint. */
+[data-runtime-mode='form'] .sisad-pdfme-field-chrome[data-schema-readonly='true'] {
+  background: color-mix(in srgb, #94a3b8 8%, white);
+  border-color: color-mix(in srgb, #94a3b8 30%, white);
+}
+
+/* Invalid: discrete danger border, any mode. */
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-visual-state='invalid'],
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-state='invalid'] {
+  border-color: var(--color-danger, #dc2626);
+}
+
+/* ─── text-like fields by render mode (TASK-014) ─────────────────────────────
+   Stamped on rootElement by text/uiRender (shared by text + number + presets).
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Form: compact, legible, stable padding. */
+[data-schema-family='text-like'][data-render-mode='form'] {
+  min-height: 24px;
+  font-size: var(--sisad-schema-font-size);
+  line-height: var(--sisad-schema-line-height);
+}
+
+/* Readonly text-like in runtime: neutral, never the owner tint. */
+[data-runtime-mode='form'] [data-schema-family='text-like'][data-schema-readonly='true'] {
+  background: color-mix(in srgb, #94a3b8 6%, white);
+}
+
+/* Viewer/PDF: clean read. */
+[data-runtime-mode='viewer'] [data-schema-family='text-like'],
+[data-runtime-mode='pdf'] [data-schema-family='text-like'] {
+  background: transparent;
 }
 
 /* ─── Option editor widget (propPanel sidebar) ───────────────────────────────
@@ -6114,6 +6185,119 @@
   box-shadow: none;
   padding: 0;
   margin: 0;
+}
+
+/* Option-group schemas should size to the marker stack, not to the legacy
+   field box dimensions stamped by the host wrapper. */
+.sisad-pdfme-ui-custom-selectable[data-schema-type='radioGroup'],
+.sisad-pdfme-ui-custom-selectable[data-schema-type='checkboxGroup'] {
+  width: fit-content !important;
+  height: fit-content !important;
+  min-width: 0;
+  min-height: 0;
+}
+
+/* ─── Option-based fields by render mode (TASK-013A) ─────────────────────────
+   Stamped by checkboxGroup/radioGroup/select uiRender:
+   data-render-mode + data-schema-family='option-based'.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+/* Form: compact group, subtle, no stretching. */
+.sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode='form'] {
+  display: block;
+  width: 100%;
+  height: auto;
+  min-height: 24px;
+  font-size: var(--sisad-schema-font-size);
+  line-height: var(--sisad-schema-line-height);
+}
+
+/* Viewer/PDF: clean read, no edit chrome, options not interactive-looking. */
+.sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode='viewer'],
+.sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode='pdf'] {
+  background: transparent;
+  border-color: transparent;
+}
+
+/* Select / dropdown: chevron lives INSIDE the field, vertically centered. */
+.sisad-pdfme-root .sisad-pdfme-select-chevron {
+  color: var(--schema-tone, #475569);
+}
+
+.sisad-pdfme-root .sisad-pdfme-select-chevron svg {
+  width: 12px;
+  height: 12px;
+  display: block;
+}
+
+/* Reserve room for the chevron so the value text never overlaps it. */
+.sisad-pdfme-root .sisad-pdfme-option-group-root[data-selection-mode='singleCompact'][data-render-mode='form'] {
+  padding-right: 22px;
+}
+
+/* Internal option rows (TASK-013B): compact + legible per mode. */
+.sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode='form'] .sisad-pdfme-option-group__option {
+  min-height: 18px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode='viewer'] .sisad-pdfme-option-group__option {
+  min-height: 16px;
+  cursor: default;
+}
+
+/* Disabled (readonly/locked/viewer) option rows read as non-interactive. */
+.sisad-pdfme-root .sisad-pdfme-option-group__option[aria-disabled='true'] {
+  cursor: default;
+  opacity: 0.85;
+}
+
+/* Invalid group: discrete danger border on the group root. */
+.sisad-pdfme-root .sisad-pdfme-option-group-root[data-option-group-invalid='true'] {
+  border: 1px solid var(--color-danger, #dc2626);
+  border-radius: var(--sisad-schema-radius);
+}
+
+/* TASK-013C: no visible group caption — name lives in aria-label only. */
+.sisad-pdfme-root .sisad-pdfme-option-group-root [data-option-group-label='true'] {
+  display: none;
+}
+
+/* Inner body owns no frame in form/viewer (root/chrome draws the border);
+   strip border/background/padding and never clip options. */
+.sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode='form'] [data-option-group-body='true'],
+.sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode='viewer'] [data-option-group-body='true'] {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  overflow: visible;
+}
+
+/* TASK-013D — marker-only option groups (DocuSign-like). Default for
+   checkboxGroup/radioGroup: no per-option text, just the checkbox/radio marker. */
+.sisad-pdfme-root .sisad-pdfme-option-group-root[data-option-labels='hidden'] [data-option-group-body='true'] {
+  border: 0;
+  background: transparent;
+  padding: 0;
+  overflow: visible;
+  align-items: flex-start;
+}
+
+.sisad-pdfme-root .sisad-pdfme-option-group-root[data-option-labels='hidden'] .sisad-pdfme-option-group__option {
+  width: auto;
+  min-width: 12px;
+  height: 12px;
+  padding: 0;
+  gap: 0;
+  justify-content: center;
+  background: transparent;
+}
+
+/* Belt-and-suspenders: hide any option text node that slips through. */
+.sisad-pdfme-root .sisad-pdfme-option-group-root[data-option-labels='hidden'] [data-option-label-visible='true'] {
+  display: none;
 }
 
 /* Select propPanel editor */
@@ -8020,15 +8204,6 @@
   color: var(--color-danger);
 }
 
-.sisad-pdfme-ui-selection-context-toolbar button[data-critical='true'] {
-  flex: 1 0 auto;
-  font-weight: var(--font-weight-semibold);
-}
-
-.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-mode='micro'] button[data-critical='true'] {
-  min-width: 2.4rem;
-}
-
 .sisad-pdfme-ui-selection-context-toolbar button[data-danger='true']:hover:not(:disabled) {
   background: var(--color-danger);
   border-color: var(--color-danger-light);
@@ -9919,6 +10094,7 @@ body {
    │   │       │   └── tokens.css
    │   │       └── types
    │   └── types
+   ├── styles-sisad-pdfme.css
    ├── test-results
    └── tests
        ├── playwright

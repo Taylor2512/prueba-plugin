@@ -22,6 +22,7 @@ import {
   createDesignerGroupStack,
   DESIGNER_OPTION_BOX_BORDER,
 } from '../shared/fieldChrome.js';
+import { clearSchemaRoot } from '../shared/schemaDom.js';
 import {
   buildCheckboxIndicator,
   buildRadioIndicator,
@@ -33,6 +34,7 @@ import {
   getOptionGroupLayoutConfig,
   type OptionGroupType,
 } from './optionGroupLayout.js';
+import { buildDefaultOptionGroupOptions, normalizeText } from './optionModel.js';
 import createOptionGroupRuntime from './optionGroupRenderer.js';
 import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
 
@@ -58,7 +60,97 @@ export type OptionGroupDesignerSchema = {
   };
 };
 
-const normalizeText = (value: unknown): string => String(value || '').trim();
+export type OptionGroupRootRuntimeParams = {
+  rootElement: HTMLElement;
+  isDesigner: boolean;
+  mode: 'designer' | 'form' | 'viewer';
+  selectionMode: 'single' | 'multiple';
+};
+
+export type OptionGroupRuntimeSharedParams = {
+  schema: {
+    color?: string;
+    groupName?: string;
+    orientation?: 'vertical' | 'horizontal';
+    spacing?: number;
+    required?: boolean;
+    readOnly?: boolean;
+    readonly?: boolean;
+    locked?: boolean;
+    [key: string]: unknown;
+  };
+  mode: 'designer' | 'form' | 'viewer';
+  editable: boolean;
+  invalid: boolean;
+};
+
+export type OptionGroupDesignerDimensions = {
+  width: number;
+  height: number;
+};
+
+export type OptionGroupUiRenderParams = {
+  rootElement: HTMLElement;
+  isDesigner: boolean;
+  mode: 'designer' | 'form' | 'viewer';
+  selectionMode: 'single' | 'multiple';
+  invalid: boolean;
+  renderDesigner: () => HTMLElement;
+  renderRuntime: () => HTMLElement;
+};
+
+export type OptionGroupDefaultSchemaParams = {
+  id: string;
+  type: OptionGroupType;
+  groupId: string;
+  groupName: string;
+  groupType: 'checkbox' | 'radio';
+  optionPrefix: string;
+  selectionMode: 'single' | 'multiple';
+  optionsCount?: number;
+  content?: string;
+  selectedOptionId?: string;
+  selectedOptionIds?: string[];
+  defaultSelectedOptionId?: string;
+  defaultSelectedOptionIds?: string[];
+  color?: string;
+  name?: string;
+};
+
+export type OptionGroupDefaultSchema = {
+  id: string;
+  name: string;
+  type: OptionGroupType;
+  content: string;
+  position: { x: number; y: number };
+  width: number;
+  height: number;
+  groupId: string;
+  group: string;
+  groupName: string;
+  lockedAsGroup: true;
+  orientation: 'vertical';
+  spacing: number;
+  options: ReturnType<typeof buildDefaultOptionGroupOptions>;
+  color: string;
+  __designer: {
+    group: {
+      groupId: string;
+      groupType: 'checkbox' | 'radio';
+      groupName: string;
+      lockedAsGroup: true;
+    };
+  };
+} & (
+  | {
+      selectedOptionId: string;
+      defaultSelectedOptionId: string;
+    }
+  | {
+      selectedOptionIds: string[];
+      defaultSelectedOptionIds: string[];
+    }
+);
 
 export const resolveOptionGroupKey = (schema: OptionGroupDesignerSchema): string =>
   schema.__designer?.group?.groupId ?? schema.groupId ?? schema.group ?? schema.name ?? '';
@@ -72,6 +164,137 @@ export const syncDesignerOptionGroupPatch = (
   '__designer.group.groupType': groupType,
   '__designer.group.lockedAsGroup': schema.lockedAsGroup !== false,
 });
+
+export const resolveOptionGroupReadOnly = (schema: {
+  readOnly?: boolean;
+  readonly?: boolean;
+  locked?: boolean;
+}): boolean => Boolean(schema.readOnly || schema.readonly || schema.locked);
+
+/**
+ * Applies the shared runtime root sizing contract for marker-only option groups.
+ * In designer mode the host geometry stays authoritative unless compact sizing
+ * is explicitly requested by the caller.
+ */
+export const applyOptionGroupRootRuntime = ({
+  rootElement,
+  isDesigner,
+  mode,
+  selectionMode,
+}: OptionGroupRootRuntimeParams): void => {
+  rootElement.classList.add('sisad-pdfme-option-group-root');
+  rootElement.dataset.renderMode = mode;
+  rootElement.dataset.schemaFamily = 'option-based';
+  rootElement.dataset.selectionMode = selectionMode;
+  rootElement.style.pointerEvents = isDesigner ? 'none' : 'auto';
+};
+
+export const buildOptionGroupRuntimeSharedParams = ({
+  schema,
+  mode,
+  editable,
+  invalid,
+}: OptionGroupRuntimeSharedParams) => ({
+  schema,
+  mode,
+  editable,
+  invalid,
+  color: schema.color || '#1677ff',
+  orientation: schema.orientation,
+  spacing: Number.isFinite(Number(schema.spacing)) ? Number(schema.spacing) : 3,
+  groupName: schema.groupName,
+  required: Boolean(schema.required),
+  readOnly: resolveOptionGroupReadOnly(schema),
+});
+
+export const buildOptionGroupDesignerDimensions = (
+  layout: OptionGroupLayoutConfig,
+  optionsCount: number,
+): OptionGroupDesignerDimensions => ({
+  width: computeOptionGroupDesignerWidthMM(layout),
+  height: computeOptionGroupDesignerHeightMM(optionsCount, layout),
+});
+
+export const renderOptionGroupUi = ({
+  rootElement,
+  isDesigner,
+  mode,
+  selectionMode,
+  invalid,
+  renderDesigner,
+  renderRuntime,
+}: OptionGroupUiRenderParams): void => {
+  clearSchemaRoot(rootElement);
+  applyOptionGroupRootRuntime({
+    rootElement,
+    isDesigner,
+    mode,
+    selectionMode,
+  });
+  rootElement.dataset.optionGroupInvalid = String(invalid);
+
+  if (isDesigner) {
+    rootElement.appendChild(renderDesigner());
+    return;
+  }
+
+  rootElement.appendChild(renderRuntime());
+};
+
+export const buildOptionGroupDefaultSchema = ({
+  id,
+  type,
+  groupId,
+  groupName,
+  groupType,
+  optionPrefix,
+  selectionMode,
+  optionsCount = 2,
+  content,
+  selectedOptionId,
+  selectedOptionIds = [],
+  defaultSelectedOptionId,
+  defaultSelectedOptionIds = [],
+  color = '#1677ff',
+  name = '',
+}: OptionGroupDefaultSchemaParams): OptionGroupDefaultSchema => {
+  const dimensions = buildOptionGroupDesignerDimensions(getOptionGroupLayoutConfig(type), optionsCount);
+  const safeSelectedId = selectedOptionId || defaultSelectedOptionId || 'option_1';
+
+  return {
+    id,
+    name,
+    type,
+    content: content ?? (selectionMode === 'single' ? safeSelectedId : ''),
+    position: { x: 0, y: 0 },
+    ...dimensions,
+    groupId,
+    group: groupId,
+    groupName,
+    lockedAsGroup: true,
+    orientation: 'vertical',
+    spacing: getOptionGroupLayoutConfig(type).boxGap,
+    options: buildDefaultOptionGroupOptions(optionPrefix, optionsCount),
+    ...(selectionMode === 'single'
+      ? {
+          selectedOptionId: safeSelectedId,
+          defaultSelectedOptionId: defaultSelectedOptionId || safeSelectedId,
+        }
+      : {
+          selectedOptionIds,
+          defaultSelectedOptionIds,
+        }),
+    color,
+    __designer: {
+      group: {
+        groupId,
+        groupType,
+        groupName,
+        lockedAsGroup: true,
+      },
+    },
+  };
+};
 
 // ─── Designer DOM builder ─────────────────────────────────────────────────────
 
@@ -118,9 +341,10 @@ export const createDesignerOptionGroupEl = (
   indicatorShape: OptionGroupIndicatorShape,
   selectedIds: Set<string>,
   dataAttr: string,
+  fallbackLabelPrefix = 'Opción',
 ): HTMLDivElement => {
   const wrapper = createDesignerGroupStack(layout.boxGap);
-  const safeOptions = options.length ? options : [{ optionId: 'option_1', label: 'Opción 1' }];
+  const safeOptions = options.length ? options : buildDefaultOptionGroupOptions(fallbackLabelPrefix, 1);
 
   for (const option of safeOptions) {
     const box = createDesignerOptionBox(option, layout, indicatorShape, selectedIds.has(option.optionId));

@@ -1,7 +1,7 @@
 # Documentación Markdown Unificada
 
 **Carpeta origen:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin`  
-**Fecha de generación:** `2026-06-15T22:15:56.711Z`  
+**Fecha de generación:** `2026-06-16T19:56:16.588Z`  
 **Total de archivos incluidos:** `78`  
 **Extensiones incluidas:** `.md`
 
@@ -3411,6 +3411,7 @@ prueba-plugin
 ├── README.md
 ├── scripts
 │   └── README.md
+├── sisad-pdfme.md
 ├── src
 │   ├── features
 │   │   └── pdfcomponent

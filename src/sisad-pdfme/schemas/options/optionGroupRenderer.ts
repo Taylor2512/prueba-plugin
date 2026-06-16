@@ -7,6 +7,9 @@ import {
   buildCheckboxIndicator,
   buildRadioIndicator,
   buildOptionLabel,
+  applyOptionGroupBodyVariant,
+  applyOptionGroupRowVariant,
+  shouldShowOptionLabels,
 } from '../groupSchemaRender.js';
 
 export type OptionGroupRenderMode = 'designer' | 'form' | 'viewer';
@@ -21,6 +24,7 @@ export type OptionGroupRuntimeParams = {
   orientation?: 'vertical' | 'horizontal';
   spacing?: number;
   groupName?: string;
+  schema?: unknown;
   /** Runtime mode; drives aria + interactivity of internal option rows. */
   mode?: OptionGroupRenderMode;
   required?: boolean;
@@ -56,6 +60,7 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
     orientation = 'vertical',
     spacing = 3,
     groupName,
+    schema,
     mode,
     required = false,
     readOnly = false,
@@ -67,6 +72,8 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
   } = params;
 
   const isViewer = mode === 'viewer';
+  const resolvedShowOptionLabels =
+    showOptionLabels ?? (mode === 'designer' ? shouldShowOptionLabels(schema) : true);
   // Internal rows are non-interactive when the schema is read-only/locked or in
   // viewer mode (Composite: options are children, never standalone schemas).
   const rowsInteractive = editable && !readOnly && !isViewer;
@@ -85,7 +92,7 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
   if (mode) wrapper.dataset.renderMode = mode;
   wrapper.dataset.optionGroupInvalid = String(Boolean(invalid));
   // Marker-only by default: option text lives in aria-label/title, not visually.
-  wrapper.dataset.optionLabels = showOptionLabels ? 'visible' : 'hidden';
+  wrapper.dataset.optionLabels = resolvedShowOptionLabels ? 'visible' : 'hidden';
 
   // Tag the inner container so CSS can target it.
   container.dataset.optionGroupBody = 'true';
@@ -98,6 +105,10 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
     padding: '0',
     overflow: 'visible',
     alignItems: orientation === 'horizontal' ? 'center' : 'flex-start',
+  });
+  applyOptionGroupBodyVariant(container, {
+    showOptionLabels: resolvedShowOptionLabels,
+    isHorizontal: orientation === 'horizontal',
   });
 
   // Visual caption is opt-in (designer + __designer.showGroupLabel). Off by default.
@@ -131,18 +142,7 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
       row.setAttribute('aria-label', optionAriaLabel);
       row.setAttribute('title', optionAriaLabel);
     }
-    row.dataset.optionLabelHidden = String(!showOptionLabels);
-    if (!showOptionLabels) {
-      // Marker-only: collapse the row to the marker box (override inline width:100%).
-      Object.assign(row.style, {
-        width: 'auto',
-        minWidth: '14px',
-        padding: '0',
-        gap: '0',
-        justifyContent: 'center',
-        background: 'transparent',
-      });
-    }
+    applyOptionGroupRowVariant(row, { showOptionLabels: resolvedShowOptionLabels });
     if (!rowsInteractive) {
       row.setAttribute('aria-disabled', 'true');
       row.disabled = true;
@@ -154,7 +154,7 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
 
     row.appendChild(indicator);
     // Visible per-option text is opt-in; default marker-only.
-    if (showOptionLabels) {
+    if (resolvedShowOptionLabels) {
       const optionLabel = buildOptionLabel(opt.label || opt.optionId, color);
       optionLabel.dataset.optionLabelVisible = 'true';
       row.appendChild(optionLabel);
