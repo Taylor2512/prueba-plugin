@@ -124,9 +124,10 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
           {featureSnapLines ? <SnapLinesSlot lines={snapLines} /> : null}
         </>
       ) : null}
-      {/* Comments overlay (pins, click handlers) */}
+      {/* Comments overlay (pins, click handlers). All pages' schema-attached
+          comments are passed so each pin renders against its own page paper. */}
       <CommentsOverlay
-        schemas={schemasList[activePageIndex] || []}
+        schemas={schemasList.flat()}
         topLevelComments={topLevelComments}
         scale={props.scale || 1}
         pageIndex={activePageIndex}

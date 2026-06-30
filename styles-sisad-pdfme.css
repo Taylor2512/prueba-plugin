@@ -2,7 +2,7 @@
    ARCHIVO UNIFICADO DE ESTILOS CSS
    =====================================================================
    Carpeta origen: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
-   Fecha de generación: 2026-06-16T19:56:16.587Z
+   Fecha de generación: 2026-06-17T15:10:46.263Z
    Total de archivos incluidos: 6
    Extensiones incluidas: .css
    Objetivo: consolidar estilos CSS respetando un orden estable de cascada
@@ -6379,7 +6379,7 @@
    ARCHIVO #2
    Ruta relativa: src/features/pdfcomponent/labRoutes.css
    Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/pdfcomponent/labRoutes.css
-   Líneas aproximadas: 1202
+   Líneas aproximadas: 1253
    ==================================================================== */
 
 .sisad-pdfme-lab-landing,
@@ -7582,6 +7582,57 @@
   .sisad-pdfme-lab-card-secondary {
     width: 100%;
   }
+}
+
+/* ─── TASK-LAB-001 — canvas-first full-height shell ───────────────────────────
+   sisad-pdfme runtime fills the viewport below a compact topbar. No magic
+   calc() heights: a 2-row grid + min-height:0 lets the canvas own the space. */
+.sisad-pdfme-lab-page[data-ux-mode='canvas-first'] {
+  height: 100dvh;
+  min-height: 100dvh;
+  grid-template-rows: var(--lab-topbar-height, 48px) 1fr;
+  gap: 0;
+  padding: 0;
+  overflow: hidden;
+}
+
+.sisad-pdfme-lab-page[data-ux-mode='canvas-first'] .sisad-pdfme-lab-workspace {
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  box-shadow: none;
+  backdrop-filter: none;
+  display: grid;
+  grid-template-rows: 1fr;
+  padding: 0;
+}
+
+.sisad-pdfme-lab-page[data-ux-mode='canvas-first'] .sisad-pdfme-lab-canvas-shell {
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+
+/* ─── Results as floating drawer (collapsed = pill) ───────────────────────── */
+.sisad-pdfme-lab-results[data-variant='drawer'] {
+  position: fixed;
+  left: 50%;
+  bottom: 0.6rem;
+  transform: translateX(-50%);
+  width: min(960px, 94vw);
+  max-height: min(320px, 60vh);
+  overflow: auto;
+  z-index: 40;
+}
+
+/* Collapsed (<details> closed): shrink to a floating pill, no body. */
+.sisad-pdfme-lab-results[data-variant='drawer']:not([open]) {
+  width: auto;
+  max-height: none;
+  overflow: visible;
 }
 
 
@@ -10073,6 +10124,7 @@ body {
    │   │   ├── shared
    │   │   ├── templates
    │   │   └── ui
+   │   │       ├── collaboration
    │   │       ├── commands
    │   │       ├── components
    │   │       │   ├── Designer
@@ -10234,6 +10286,7 @@ body {
            │   ├── shared
            │   ├── templates
            │   └── ui
+           │       ├── collaboration
            │       ├── commands
            │       ├── components
            │       │   ├── Designer

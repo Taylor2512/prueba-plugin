@@ -11,10 +11,12 @@ type CommentsOverlayProps = {
   pageIndex: number;
   paperRefs: React.MutableRefObject<HTMLDivElement[]>;
   topLevelComments?: Array<{
+    pageNumber?: number;
     anchor?: {
       id?: string;
       x?: number;
       y?: number;
+      pageNumber?: number;
       schemaUid?: string;
       authorName?: string;
       authorId?: string;
@@ -38,6 +40,7 @@ type OverlayComment = {
     id?: string;
     x?: number;
     y?: number;
+    pageNumber?: number;
     schemaUid?: string;
     authorName?: string;
     authorId?: string;
@@ -55,6 +58,7 @@ type OverlayAnchor = {
   id?: string;
   x?: number;
   y?: number;
+  pageNumber?: number;
   schemaUid?: string;
   authorName?: string;
   authorId?: string;
@@ -79,25 +83,31 @@ const CommentsOverlay = ({
   topLevelComments = [],
 }: CommentsOverlayProps) => {
   const containerRef = useRef<HTMLDivElement>(null);
-  const [pageOffset, setPageOffset] = useState({ left: 0, top: 0 });
+  // Re-measure tick: pins are positioned against EACH anchor's own page paper
+  // (not a single page), so we recompute offsets on layout/resize/scroll.
+  const [measureTick, setMeasureTick] = useState(0);
 
   useLayoutEffect(() => {
-    const updateOffset = () => {
-      const paper = paperRefs.current[pageIndex];
-      const overlay = containerRef.current;
-      if (!paper || !overlay) return;
-      const paperRect = paper.getBoundingClientRect();
-      const overlayRect = overlay.getBoundingClientRect();
-      setPageOffset({
-        left: paperRect.left - overlayRect.left,
-        top: paperRect.top - overlayRect.top,
-      });
+    const bump = () => setMeasureTick((t) => t + 1);
+    bump();
+    window.addEventListener('resize', bump);
+    window.addEventListener('scroll', bump, true);
+    return () => {
+      window.removeEventListener('resize', bump);
+      window.removeEventListener('scroll', bump, true);
     };
-
-    updateOffset();
-    window.addEventListener('resize', updateOffset);
-    return () => window.removeEventListener('resize', updateOffset);
   }, [pageIndex, paperRefs, scale, schemas.length]);
+
+  // Offset of a given page's paper relative to the overlay container.
+  const getPageOffset = (pageIdx: number): { left: number; top: number } | null => {
+    void measureTick; // re-evaluated each tick
+    const paper = paperRefs.current[pageIdx];
+    const overlay = containerRef.current;
+    if (!paper || !overlay) return null;
+    const paperRect = paper.getBoundingClientRect();
+    const overlayRect = overlay.getBoundingClientRect();
+    return { left: paperRect.left - overlayRect.left, top: paperRect.top - overlayRect.top };
+  };
 
   const anchors = useMemo(() => {
     const byId = new Map<
@@ -106,6 +116,7 @@ const CommentsOverlay = ({
         id: string;
         x: number;
         y: number;
+        pageIndex: number;
         schemaUid?: string;
         authorName?: string;
         authorColor?: string;
@@ -113,6 +124,10 @@ const CommentsOverlay = ({
         resolved?: boolean;
       }
     >();
+    const toPageIndex = (pageNumber: unknown): number => {
+      const n = Number(pageNumber);
+      return Number.isInteger(n) && n >= 1 ? n - 1 : pageIndex;
+    };
     schemas.forEach((s) => {
       const schema = s as OverlaySchema;
       const comments = schema.comments || [];
@@ -124,6 +139,7 @@ const CommentsOverlay = ({
           id,
           x: Number(anchor.x || 0),
           y: Number(anchor.y || 0),
+          pageIndex: toPageIndex(anchor.pageNumber),
           schemaUid: anchor.schemaUid || s.schemaUid,
           authorName: toStringOrUndefined(comment.authorName) || toStringOrUndefined(comment.authorId),
           authorColor: toStringOrUndefined(comment.authorColor) || toStringOrUndefined(anchor.authorColor),
@@ -138,6 +154,7 @@ const CommentsOverlay = ({
           id,
           x: Number(a.x || 0),
           y: Number(a.y || 0),
+          pageIndex: toPageIndex(a.pageNumber),
           schemaUid: a.schemaUid || s.schemaUid,
           authorName: toStringOrUndefined(a.authorName) || toStringOrUndefined(a.authorId),
           authorColor: toStringOrUndefined(a.authorColor),
@@ -155,6 +172,7 @@ const CommentsOverlay = ({
         id,
         x: Number(anchor.x || 0),
         y: Number(anchor.y || 0),
+        pageIndex: toPageIndex(anchor.pageNumber ?? entry?.pageNumber),
         schemaUid: typeof anchor.schemaUid === 'string' ? anchor.schemaUid : undefined,
         authorName:
           (typeof comment.authorName === 'string' ? comment.authorName : undefined)
@@ -169,7 +187,7 @@ const CommentsOverlay = ({
       });
     });
     return Array.from(byId.values());
-  }, [schemas, topLevelComments]);
+  }, [schemas, topLevelComments, pageIndex]);
 
   if (!anchors.length) return null;
 
@@ -180,8 +198,10 @@ const CommentsOverlay = ({
       style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
     >
       {anchors.map((a) => {
-        const left = pageOffset.left + mm2px(a.x) * scale;
-        const top = pageOffset.top + mm2px(a.y) * scale;
+        const off = getPageOffset(a.pageIndex);
+        if (!off) return null;
+        const left = off.left + mm2px(a.x) * scale;
+        const top = off.top + mm2px(a.y) * scale;
         const preview = a.text ? (a.text.length > 48 ? `${a.text.slice(0, 48)}…` : a.text) : 'Comentario';
         return (
           <button

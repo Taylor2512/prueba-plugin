@@ -147,22 +147,24 @@ export const getLabCollaborationSummary = ({
     return Array.from(new Set(ids.map(normalizeValue).filter(Boolean)))
   }
 
+  // Visibility/editability follow ASSIGNMENT (owner), not authorship — same rule
+  // as schemaMatchesCollaborationView so counters match the canvas. The old
+  // `schemaOwner === activeUserId` (createdBy/lastModifiedBy) clause leaked
+  // other recipients' schemas the active user authored.
   const visibleSchemas = schemas.filter((schema) => {
     if (isGlobalView) return true
     const ownerIds = getOwnerIds(schema)
-    const schemaOwner = normalizeValue(schema?.createdBy) || normalizeValue(schema?.lastModifiedBy)
     const sharedOwner = normalizeValue(schema?.ownerMode) === 'shared'
-    return ownerIds.length === 0 || ownerIds.includes(activeUserId) || schemaOwner === activeUserId || sharedOwner
+    return ownerIds.length === 0 || ownerIds.includes(activeUserId) || sharedOwner
   })
 
   const editableSchemas = visibleSchemas.filter((schema) => {
     const ownerIds = getOwnerIds(schema)
-    const schemaOwner = normalizeValue(schema?.createdBy) || normalizeValue(schema?.lastModifiedBy)
     const sharedOwner = normalizeValue(schema?.ownerMode) === 'shared'
     const lockedBy = normalizeValue(schema?.lock?.lockedBy)
     const isReadonly = Boolean(schema?.readonly || schema?.__designer?.ownership?.readonly)
     const ownershipMatches =
-      ownerIds.length === 0 || ownerIds.includes(activeUserId) || schemaOwner === activeUserId || sharedOwner
+      ownerIds.length === 0 || ownerIds.includes(activeUserId) || sharedOwner
 
     return ownershipMatches && !isReadonly && (!lockedBy || lockedBy === activeUserId)
   })

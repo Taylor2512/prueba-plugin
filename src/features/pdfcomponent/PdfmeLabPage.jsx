@@ -45,10 +45,7 @@ const MODE_LABELS = {
 }
 
 const schemaCatalog = sortSchemaDefinitions(builtInSchemaDefinitions)
-
 const resolveInitialCollaboratorId = (activeUserId, users) => activeUserId || users[0]?.id || ''
-
-const resolveInitialGlobalView = (isGlobalView) => Boolean(isGlobalView)
 
 const DEFAULT_SIGNATURE_PROVIDERS = [
   {
@@ -120,8 +117,6 @@ const DEFAULT_SIGNATURE_PROVIDERS = [
   },
 ]
 
-// MODE_LABELS removed: use mode strings directly where needed
-
 export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   const containerRef = useRef(null)
   const generatedPdfUrlRef = useRef('')
@@ -142,7 +137,7 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
     resolveInitialCollaboratorId(collaboration?.activeUserId, collaborationUsers),
   )
   const [isGlobalView, setIsGlobalView] = useState(() =>
-    resolveInitialGlobalView(collaboration?.isGlobalView),
+    Boolean(collaboration?.isGlobalView),
   )
   const activeCollaborator = useMemo(
     () => collaborationUsers.find((user) => user.id === activeCollaboratorId) || collaborationUsers[0] || null,
@@ -195,8 +190,22 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
     () => ({
       ...runtimeOptions,
       ...designerEngineOptions,
+      // TASK-LAB-001 Part C — expose collaboration so Form/Viewer runtime honor
+      // recipient access (visibility/editability) e2e, not only the designer.
+      collaboration: {
+        activeRecipientId: activeCollaborator?.id || activeCollaboratorId || null,
+        isGlobalView,
+        recipients: collaborationUsers,
+      },
     }),
-    [designerEngineOptions, runtimeOptions],
+    [
+      designerEngineOptions,
+      runtimeOptions,
+      activeCollaborator?.id,
+      activeCollaboratorId,
+      isGlobalView,
+      collaborationUsers,
+    ],
   )
 
   const initialTemplate = useMemo(
@@ -592,11 +601,14 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
       </section>
 
       <ResultsPanel
+        key={`${uxMode}-${uxMode === 'canvas-first' ? 'drawer' : 'inline'}`}
         generatedPdfUrl={generatedPdfUrl}
         pdfSizes={pdfSizes}
         images={images}
         roundtripPdfUrl={roundtripPdfUrl}
         hasGeneratedArtifacts={hasGeneratedArtifacts}
+        variant={uxMode === 'canvas-first' ? 'drawer' : 'inline'}
+        defaultCollapsed={uxMode === 'canvas-first'}
       />
     </main>
   )

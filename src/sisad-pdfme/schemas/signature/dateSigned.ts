@@ -5,8 +5,12 @@
  * Auto-populates when a co-located signature field is signed.
  */
 import { CalendarCheck } from 'lucide-react';
+import { format } from 'date-fns';
+import * as dateFnsLocales from 'date-fns/locale';
+import type { Locale as DateFnsLocale } from 'date-fns';
 import { renderLucideIcon } from '../schemaBuilder.js';
 import { createSigningSchemaPlugin } from './signingSchemaFactory.js';
+import text from '../text/index.js';
 
 const DATE_FORMAT_OPTIONS: Array<{ label: string; value: string }> = [
   { label: 'DD/MM/AAAA', value: 'dd/MM/yyyy' },
@@ -15,6 +19,60 @@ const DATE_FORMAT_OPTIONS: Array<{ label: string; value: string }> = [
   { label: 'D de Mes de AAAA', value: "d 'de' MMMM 'de' yyyy" },
   { label: 'Mes D, AAAA', value: 'MMMM d, yyyy' },
 ];
+
+const DATE_LOCALE_MAP: Record<string, DateFnsLocale> = {
+  es: dateFnsLocales.es,
+  en: dateFnsLocales.enUS,
+  fr: dateFnsLocales.fr,
+  pt: dateFnsLocales.pt,
+};
+
+/**
+ * Resolves the displayed date: the stored value, or today's signing date
+ * formatted per the schema when empty. Shared by ui + pdf so the auto-fill is
+ * identical on screen and in the generated PDF.
+ */
+const formatToday = (schema: { dateFormat?: string; dateLocale?: string }): string => {
+  const fmt = schema.dateFormat || 'dd/MM/yyyy';
+  const locale = DATE_LOCALE_MAP[schema.dateLocale || 'es'] || dateFnsLocales.es;
+  try {
+    return format(new Date(), fmt, { locale });
+  } catch {
+    return format(new Date(), 'dd/MM/yyyy');
+  }
+};
+
+const resolveDateSignedValue = (
+  rawValue: unknown,
+  schema: { dateFormat?: string; dateLocale?: string; autoPopulateFrom?: string },
+): string => {
+  const stored = typeof rawValue === 'string' ? rawValue.trim() : '';
+  // Linked to a signature field (autoPopulateFrom): stay BLANK until the host
+  // (Preview) signals the linked signature was signed by passing a truthy value;
+  // then stamp today's date. Standalone: always today (or the stored value).
+  if (schema.autoPopulateFrom && String(schema.autoPopulateFrom).trim()) {
+    return stored ? formatToday(schema) : '';
+  }
+  return stored || formatToday(schema);
+};
+
+/**
+ * dateSigned is auto-generated + read-only: shows today's signing date when no
+ * value is stored. Never user-editable (rendered as viewer outside designer).
+ */
+const dateSignedUi: typeof text.ui = async (arg) =>
+  text.ui({
+    ...arg,
+    value: resolveDateSignedValue(arg.value, arg.schema as { dateFormat?: string; dateLocale?: string; autoPopulateFrom?: string }),
+    mode: arg.mode === 'designer' ? arg.mode : 'viewer',
+  });
+
+/** PDF parity: auto-fill the signing date when empty, then render as text. */
+const dateSignedPdf: typeof text.pdf = async (arg) =>
+  text.pdf({
+    ...arg,
+    value: resolveDateSignedValue(arg.value, arg.schema as { dateFormat?: string; dateLocale?: string; autoPopulateFrom?: string }),
+  });
 
 const dateSignedPlugin = createSigningSchemaPlugin({
   type: 'dateSigned',
@@ -25,6 +83,8 @@ const dateSignedPlugin = createSigningSchemaPlugin({
   category: 'Firma',
   tags: ['date', 'signature', 'signing', 'auto'],
   icon: renderLucideIcon(CalendarCheck, { stroke: '#374151' }),
+  ui: dateSignedUi,
+  pdf: dateSignedPdf,
   propPanelFields: () => ({
     dateFormat: {
       title: 'Formato de fecha',

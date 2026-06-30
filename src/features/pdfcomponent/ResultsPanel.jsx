@@ -1,11 +1,212 @@
-import React from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 
 const EMPTY_ARRAY = []
+const PDF_SIZE_PROP_TYPE = PropTypes.shape({
+  width: PropTypes.number.isRequired,
+  height: PropTypes.number.isRequired,
+})
+const CARD_CONTENT_PROP_TYPE = PropTypes.shape({
+  generatedPdfUrl: PropTypes.string,
+  pdfSizes: PropTypes.arrayOf(PDF_SIZE_PROP_TYPE),
+  images: PropTypes.arrayOf(PropTypes.string),
+  roundtripPdfUrl: PropTypes.string,
+})
 
-export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, images = EMPTY_ARRAY, roundtripPdfUrl, hasGeneratedArtifacts }) {
+const RESULT_CARDS = [
+  {
+    key: 'generated-pdf',
+    title: 'PDF generado',
+    emptyMessage: (
+      <p>
+        Ejecuta <strong>Generar PDF</strong> para crear el primer artefacto.
+      </p>
+    ),
+    render: ({ generatedPdfUrl }) =>
+      generatedPdfUrl ? (
+        <a href={generatedPdfUrl} target="_blank" rel="noreferrer">
+          Abrir PDF generado
+        </a>
+      ) : null,
+  },
+  {
+    key: 'page-sizes',
+    title: 'Tamaños de página',
+    emptyMessage: (
+      <p>
+        Ejecuta <strong>Leer tamaños</strong> para inspeccionar el documento generado.
+      </p>
+    ),
+    render: ({ pdfSizes }) =>
+      pdfSizes.length > 0 ? (
+        <ul>
+          {pdfSizes.map((size, index) => (
+            <li key={`${Math.round(size.width)}-${Math.round(size.height)}`}>
+              Página {index + 1}: {Math.round(size.width)} x {Math.round(size.height)}
+            </li>
+          ))}
+        </ul>
+      ) : null,
+  },
+  {
+    key: 'images',
+    title: 'Imágenes',
+    emptyMessage: (
+      <p>
+        Ejecuta <strong>PDF → imágenes</strong> para obtener previsualizaciones.
+      </p>
+    ),
+    render: ({ images }) =>
+      images.length > 0 ? (
+        <div className="sisad-pdfme-lab-image-grid">
+          {images.map((url, index) => (
+            <figure key={url} className="sisad-pdfme-lab-image-card">
+              <img src={url} alt={`Vista previa generada ${index + 1}`} />
+              <figcaption>Página {index + 1}</figcaption>
+            </figure>
+          ))}
+        </div>
+      ) : null,
+  },
+  {
+    key: 'roundtrip',
+    title: 'Roundtrip',
+    emptyMessage: (
+      <p>
+        Ejecuta <strong>Imágenes → PDF</strong> para cerrar el ciclo.
+      </p>
+    ),
+    render: ({ roundtripPdfUrl }) =>
+      roundtripPdfUrl ? (
+        <a href={roundtripPdfUrl} target="_blank" rel="noreferrer">
+          Abrir PDF de ida y vuelta
+        </a>
+      ) : null,
+  },
+]
+
+const ResultCard = ({ card, cardProps }) => {
+  const body = card.render(cardProps)
+
   return (
-    <details className="sisad-pdfme-lab-results" aria-labelledby="lab-results-title">
+    <article className="sisad-pdfme-lab-result-card">
+      <h3>{card.title}</h3>
+      {body || card.emptyMessage}
+    </article>
+  )
+}
+
+ResultCard.propTypes = {
+  card: PropTypes.shape({
+    title: PropTypes.node.isRequired,
+    emptyMessage: PropTypes.node.isRequired,
+    render: PropTypes.func.isRequired,
+  }).isRequired,
+  cardProps: CARD_CONTENT_PROP_TYPE.isRequired,
+}
+
+function ResultsCards({ generatedPdfUrl, pdfSizes, images, roundtripPdfUrl }) {
+  const cardProps = { generatedPdfUrl, pdfSizes, images, roundtripPdfUrl }
+
+  return (
+    <div className="sisad-pdfme-lab-results-body">
+      <div className="sisad-pdfme-lab-results-grid">
+        {RESULT_CARDS.map((card) => (
+          <ResultCard key={card.key} card={card} cardProps={cardProps} />
+        ))}
+      </div>
+    </div>
+  )
+}
+
+export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, images = EMPTY_ARRAY, roundtripPdfUrl, hasGeneratedArtifacts, variant = 'inline', defaultCollapsed = false }) {
+  const [isOpen, setIsOpen] = useState(() => !defaultCollapsed)
+  const drawerCloseButtonRef = useRef(null)
+  const isDrawer = variant === 'drawer'
+  const cards = (
+    <ResultsCards
+      generatedPdfUrl={generatedPdfUrl}
+      pdfSizes={pdfSizes}
+      images={images}
+      roundtripPdfUrl={roundtripPdfUrl}
+    />
+  )
+
+  useEffect(() => {
+    if (!isDrawer || !isOpen) return undefined
+
+    const onWindowKeyDown = (event) => {
+      if (event.key === 'Escape') {
+        event.preventDefault()
+        setIsOpen(false)
+      }
+    }
+
+    globalThis.window?.addEventListener('keydown', onWindowKeyDown, true)
+    drawerCloseButtonRef.current?.focus()
+
+    return () => {
+      globalThis.window?.removeEventListener('keydown', onWindowKeyDown, true)
+    }
+  }, [isDrawer, isOpen])
+
+  // Drawer: floating pill when closed, compact overlay panel when open. The
+  // closed state renders NO body so it never covers the document/toolbar.
+  if (isDrawer) {
+    return (
+      <section className="sisad-pdfme-lab-results-drawer" data-open={isOpen ? 'true' : 'false'} aria-label="Resultados">
+        <button
+          type="button"
+          className="sisad-pdfme-lab-results-pill"
+          aria-expanded={isOpen}
+          aria-controls="sisad-pdfme-lab-results-drawer-panel"
+          onClick={() => setIsOpen((v) => !v)}
+        >
+          Resultados
+          <span className="sisad-pdfme-lab-results-badge">
+            {hasGeneratedArtifacts ? 'Con artefactos' : 'Colapsado'}
+          </span>
+        </button>
+        {isOpen ? (
+          <div
+            id="sisad-pdfme-lab-results-drawer-panel"
+            className="sisad-pdfme-lab-results-drawer-panel"
+            role="dialog"
+            aria-modal="false"
+            aria-label="Panel de resultados"
+            tabIndex={-1}
+          >
+            <div className="sisad-pdfme-lab-results-drawer-header">
+              <div className="sisad-pdfme-lab-results-drawer-heading">
+                <span className="sisad-pdfme-lab-summary-label">Resultados</span>
+                <strong>Artefactos del laboratorio</strong>
+              </div>
+              <button
+                type="button"
+                ref={drawerCloseButtonRef}
+                className="sisad-pdfme-lab-results-close"
+                onKeyDown={(event) => {
+                  if (event.key === 'Escape') {
+                    event.preventDefault()
+                    event.stopPropagation()
+                    setIsOpen(false)
+                  }
+                }}
+                onClick={() => setIsOpen(false)}
+                aria-label="Cerrar resultados"
+              >
+                Cerrar
+              </button>
+            </div>
+            <div className="sisad-pdfme-lab-results-drawer-body">{cards}</div>
+          </div>
+        ) : null}
+      </section>
+    )
+  }
+
+  return (
+    <details className="sisad-pdfme-lab-results" data-variant={variant} aria-labelledby="lab-results-title">
       <summary className="sisad-pdfme-lab-results-summary">
         <div className="sisad-pdfme-lab-section-heading sisad-pdfme-lab-section-heading-tight">
           <h2 id="lab-results-title">Resultados</h2>
@@ -13,72 +214,24 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
         </div>
         <span className="sisad-pdfme-lab-results-badge">{hasGeneratedArtifacts ? 'Con artefactos' : 'Colapsado'}</span>
       </summary>
-
-      <div className="sisad-pdfme-lab-results-body">
-        <div className="sisad-pdfme-lab-results-grid">
-          <article className="sisad-pdfme-lab-result-card">
-            <h3>PDF generado</h3>
-            {generatedPdfUrl ? (
-              <a href={generatedPdfUrl} target="_blank" rel="noreferrer">Abrir PDF generado</a>
-            ) : (
-              <p>Ejecuta <strong>Generar PDF</strong> para crear el primer artefacto.</p>
-            )}
-          </article>
-
-          <article className="sisad-pdfme-lab-result-card">
-            <h3>Tamaños de página</h3>
-            {pdfSizes.length > 0 ? (
-              <ul>
-                {pdfSizes.map((size, index) => (
-                  <li key={`${Math.round(size.width)}-${Math.round(size.height)}`}>
-                    Página {index + 1}: {Math.round(size.width)} x {Math.round(size.height)}
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p>Ejecuta <strong>Leer tamaños</strong> para inspeccionar el documento generado.</p>
-            )}
-          </article>
-
-          <article className="sisad-pdfme-lab-result-card">
-            <h3>Imágenes</h3>
-            {images.length > 0 ? (
-              <div className="sisad-pdfme-lab-image-grid">
-                {images.map((url, index) => (
-                  <figure key={url} className="sisad-pdfme-lab-image-card">
-                    <img src={url} alt={`Vista previa generada ${index + 1}`} />
-                    <figcaption>Página {index + 1}</figcaption>
-                  </figure>
-                ))}
-              </div>
-            ) : (
-              <p>Ejecuta <strong>PDF → imágenes</strong> para obtener previsualizaciones.</p>
-            )}
-          </article>
-
-          <article className="sisad-pdfme-lab-result-card">
-            <h3>Roundtrip</h3>
-            {roundtripPdfUrl ? (
-              <a href={roundtripPdfUrl} target="_blank" rel="noreferrer">Abrir PDF de ida y vuelta</a>
-            ) : (
-              <p>Ejecuta <strong>Imágenes → PDF</strong> para cerrar el ciclo.</p>
-            )}
-          </article>
-        </div>
-      </div>
+      {cards}
     </details>
   )
 }
 
+ResultsCards.propTypes = {
+  generatedPdfUrl: PropTypes.string,
+  pdfSizes: PropTypes.arrayOf(PDF_SIZE_PROP_TYPE),
+  images: PropTypes.arrayOf(PropTypes.string),
+  roundtripPdfUrl: PropTypes.string,
+}
+
 ResultsPanel.propTypes = {
   generatedPdfUrl: PropTypes.string,
-  pdfSizes: PropTypes.arrayOf(
-    PropTypes.shape({
-      width: PropTypes.number.isRequired,
-      height: PropTypes.number.isRequired,
-    }),
-  ),
+  pdfSizes: PropTypes.arrayOf(PDF_SIZE_PROP_TYPE),
   images: PropTypes.arrayOf(PropTypes.string),
   roundtripPdfUrl: PropTypes.string,
   hasGeneratedArtifacts: PropTypes.bool,
+  variant: PropTypes.oneOf(['inline', 'drawer']),
+  defaultCollapsed: PropTypes.bool,
 }

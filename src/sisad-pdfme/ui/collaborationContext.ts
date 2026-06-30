@@ -239,7 +239,12 @@ export const schemaMatchesCollaborationView = (
 ) => {
   if (!collaborationContext || collaborationContext.isGlobalView) return true;
   const state = resolveSchemaCollaborationState(schema, collaborationContext);
-  return state.isShared || state.isOwnerActive || normalizeNullableText(state.createdBy) === normalizeNullableText(collaborationContext.activeRecipientId);
+  // No-owner schemas are contextual/global → always visible.
+  if (state.ownerRecipientIds.length === 0 && !state.ownerRecipientId) return true;
+  // Visibility follows ASSIGNMENT (who fills the field), not authorship. The old
+  // `createdBy === activeRecipientId` clause leaked schemas the active user
+  // authored but that belong to another recipient — breaking "Usuario activo".
+  return state.isShared || state.isOwnerActive;
 };
 
 export const filterSchemasForCollaborationView = (

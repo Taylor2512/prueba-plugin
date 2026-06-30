@@ -47,7 +47,9 @@ export const uiRender = async (arg: UIRenderProps<BarcodeSchema>) => {
   };
   Object.assign(container.style, containerStyle);
   rootElement.appendChild(container);
-  const editable = isEditable(mode, schema);
+  // Barcode value is set at design time / via inspector — never an inline raw
+  // text input in form/viewer. Only designer shows the editable input.
+  const editable = mode === 'designer' && isEditable(mode, schema);
   if (editable) {
     const input = document.createElement('input');
     const inputStyle: CSS.Properties = {

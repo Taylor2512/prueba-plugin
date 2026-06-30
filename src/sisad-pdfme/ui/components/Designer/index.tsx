@@ -1508,10 +1508,15 @@ const TemplateEditor = ({
           schemaUid: resolvedSchemaUid,
         } satisfies Parameters<typeof createSchemaCommentAnchor>[0];
 
+        // Author = the recipient who creates the comment (dropdown "Activo"),
+        // so the pin carries that recipient's identity + color, not the session
+        // actor. Falls back to actor/userColor when no active recipient.
         const identity = {
-          authorId: collaborationContext.actorId || undefined,
+          authorId:
+            collaborationContext.activeRecipient?.id || collaborationContext.actorId || undefined,
           authorName: collaborationContext.activeRecipient?.name || collaborationContext.ownerRecipientName || undefined,
-          authorColor: collaborationContext.userColor || undefined,
+          authorColor:
+            collaborationContext.activeRecipient?.color || collaborationContext.userColor || undefined,
         } as Parameters<typeof createSchemaComment>[1];
 
         const createdAnchor = createSchemaCommentAnchor(anchor, identity) as SchemaCommentAnchor;

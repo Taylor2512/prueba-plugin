@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { SchemaForUI, PreviewProps, Size, replacePlaceholders } from '@sisad-pdfme/common';
 import { theme } from 'antd';
 import UnitPager from './UnitPager.js';
@@ -10,6 +10,8 @@ import Renderer from './Renderer.js';
 import usePreviewRuntime from './usePreviewRuntime.js';
 import type { FormJsonEnvelope } from '../designerEngine';
 import { UI_CLASSNAME } from '../constants.js';
+import { OptionsContext } from '../contexts.js';
+import { resolveRuntimeSchemaAccess } from '../collaboration/schemaRuntimeAccess.js';
 
 const Preview = ({
   template,
@@ -27,6 +29,23 @@ const Preview = ({
   size: Size;
 }) => {
   const { token } = theme.useToken();
+  const previewOptions = useContext(OptionsContext) as {
+    collaboration?: { activeRecipientId?: string | null; isGlobalView?: boolean };
+  };
+  // Recipient access only applies when the host supplies a collaboration view
+  // (active recipient or global). Otherwise the form renders all schemas as before.
+  const collab = previewOptions?.collaboration;
+  const accessCtx =
+    collab && (collab.activeRecipientId || collab.isGlobalView)
+      ? {
+          recipientColorMap: new Map<string, string>(),
+          recipientNameMap: new Map<string, string>(),
+          activeRecipientId: collab.activeRecipientId ?? null,
+          isGlobalView: collab.isGlobalView === true,
+          actorColor: null,
+          canEditStructure: true,
+        }
+      : undefined;
   const handleExportTemplate = () => {
     const exportPayload = JSON.stringify(template, null, 2);
     const safeName = String(template.basePdf || 'sisad-pdfme-preview-template')
@@ -120,19 +139,39 @@ const Preview = ({
               return null;
             }
 
-            const inputValue = input?.[schema.name];
+            // 001C — recipient access: skip schemas not visible to the active
+            // recipient; force read-only when the active recipient can't edit.
+            const access = accessCtx
+              ? resolveRuntimeSchemaAccess(schema, isForm ? 'form' : 'viewer', accessCtx)
+              : null;
+            if (access && !access.visible) {
+              return null;
+            }
+            const lockedByAccess = Boolean(access && !access.editable);
+            const effSchema =
+              lockedByAccess && !schema.readOnly
+                ? ({ ...schema, readOnly: true } as SchemaForUI)
+                : schema;
+
+            // SIGN-002 — dateSigned linked to a signature field: stay blank until
+            // the linked signature has a value, then the schema stamps the date.
+            const autoFrom = (effSchema as SchemaForUI & { autoPopulateFrom?: string }).autoPopulateFrom;
+            const isLinkedDateSigned =
+              effSchema.type === 'dateSigned' && typeof autoFrom === 'string' && autoFrom.trim().length > 0;
+
+            const inputValue = input?.[effSchema.name];
             const hasInputValue = inputValue !== undefined && inputValue !== null;
             const schemaTone =
-              (schema as SchemaForUI & { ownerColor?: string; borderColor?: string }).ownerColor ||
-              (schema as SchemaForUI & { ownerColor?: string; borderColor?: string }).borderColor ||
+              (effSchema as SchemaForUI & { ownerColor?: string; borderColor?: string }).ownerColor ||
+              (effSchema as SchemaForUI & { ownerColor?: string; borderColor?: string }).borderColor ||
               token.colorPrimary;
             let value = '';
-            if (schema.readOnly) {
+            if (effSchema.readOnly) {
               if (hasInputValue) {
                 value = String(inputValue);
               } else {
                 value = replacePlaceholders({
-                  content: schema.content || '',
+                  content: effSchema.content || '',
                   variables: { ...input, totalPages: schemasList.length, currentPage: index + 1 },
                   schemas: schemasList,
                 });
@@ -141,25 +180,31 @@ const Preview = ({
               value = String(inputValue);
             }
 
+            if (isLinkedDateSigned) {
+              // Trigger = the linked signature field has a value (was signed).
+              const signed = Boolean(input?.[autoFrom as string]);
+              value = signed ? 'signed' : '';
+            }
+
             let outline = 'transparent';
             if (isForm) {
-              outline = schema.readOnly ? `1px solid ${schemaTone}` : `1px dashed ${schemaTone}`;
+              outline = effSchema.readOnly ? `1px solid ${schemaTone}` : `1px dashed ${schemaTone}`;
             }
 
             return (
             <Renderer
-              key={schema.id}
-              schema={schema}
+              key={effSchema.id}
+              schema={effSchema}
               basePdf={template.basePdf}
               value={value}
               pageIndex={index}
               pageNumber={index + 1}
               mode={isForm ? 'form' : 'viewer'}
-              placeholder={schema.content}
+              placeholder={effSchema.content}
               tabIndex={index + 100}
                 onChange={(arg) => {
                   const args = Array.isArray(arg) ? arg : [arg];
-                  handleOnChangeRenderer(args, schema);
+                  handleOnChangeRenderer(args, effSchema);
                 }}
                 outline={outline}
                 scale={scale}

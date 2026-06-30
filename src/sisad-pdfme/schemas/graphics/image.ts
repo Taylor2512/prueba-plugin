@@ -76,7 +76,10 @@ const imageSchema: Plugin<ImageSchema> = {
       theme,
       schema,
     } = arg;
-    const editable = isEditable(mode, schema);
+    // Fixed image by default: only designer (or an explicit upload field) shows
+    // the file input / remove button. Form/viewer otherwise just render the image.
+    const uploadable = (schema as { uploadable?: boolean }).uploadable === true;
+    const editable = (mode === 'designer' || uploadable) && isEditable(mode, schema);
     const isDefault = value === defaultValue;
 
     const container = document.createElement('div');

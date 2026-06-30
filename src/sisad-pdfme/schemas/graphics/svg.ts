@@ -48,11 +48,14 @@ export type SVGSchema = Schema;
 const svgSchema: Plugin<SVGSchema> = {
   ui: (arg) => {
     const { rootElement, value, mode, onChange, theme, schema } = arg;
-    const container = document.createElement(isEditable(mode, schema) ? 'textarea' : 'div');
+    // SVG is a design asset, not a form field: only edit the raw markup in
+    // designer. Form/viewer always render the SVG visually (never XML/textarea).
+    const svgEditable = mode === 'designer' && isEditable(mode, schema);
+    const container = document.createElement(svgEditable ? 'textarea' : 'div');
     container.style.width = '100%';
     container.style.height = '100%';
     container.style.boxSizing = 'border-box';
-    if (isEditable(mode, schema)) {
+    if (svgEditable) {
       const textarea = container as HTMLTextAreaElement;
       textarea.value = value;
       textarea.style.position = 'absolute';

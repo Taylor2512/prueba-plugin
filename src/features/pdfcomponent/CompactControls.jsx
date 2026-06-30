@@ -5,6 +5,106 @@ import PopoverMenu from './PopoverMenu.jsx'
 
 const EMPTY_ARRAY = []
 const joinClasses = (...classes) => classes.filter(Boolean).join(' ')
+const MODE_OPTIONS = [
+  { id: 'designer', label: 'Diseñador' },
+  { id: 'form', label: 'Formulario' },
+  { id: 'viewer', label: 'Visor' },
+]
+const SCHEMA_DEFINITION_PROP_TYPE = PropTypes.shape({
+  type: PropTypes.string.isRequired,
+  category: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+})
+
+const ControlSection = ({ label, children, quiet = false }) => (
+  <section className={joinClasses('sisad-pdfme-popover-section', quiet && 'sisad-pdfme-popover-section-quiet')}>
+    <span className="sisad-pdfme-popover-section-label">{label}</span>
+    {children}
+  </section>
+)
+
+ControlSection.propTypes = {
+  label: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
+  quiet: PropTypes.bool,
+}
+
+const ActionButton = ({ close = null, busy, onClick, label, disabled = false, destructive = false }) => {
+  const handleClick = () => {
+    if (typeof close === 'function') close()
+    if (typeof onClick === 'function') onClick()
+  }
+
+  return (
+    <button
+      type="button"
+      className={joinClasses('sisad-pdfme-popover-action', destructive && 'is-destructive')}
+      disabled={busy || disabled}
+      onClick={handleClick}
+    >
+      {label}
+    </button>
+  )
+}
+
+ActionButton.propTypes = {
+  close: PropTypes.func,
+  busy: PropTypes.bool.isRequired,
+  onClick: PropTypes.func,
+  label: PropTypes.node.isRequired,
+  disabled: PropTypes.bool,
+  destructive: PropTypes.bool,
+}
+
+const buildActionRows = (hasGeneratedPdf, hasImages, handlers) => ({
+  pdf: [
+    { label: 'Generar PDF', onClick: handlers.onGenerate },
+    { label: 'Leer tamaños', onClick: handlers.onPdf2Size, disabled: !hasGeneratedPdf },
+    { label: 'PDF → imágenes', onClick: handlers.onPdf2Img, disabled: !hasGeneratedPdf },
+    { label: 'Imágenes → PDF', onClick: handlers.onImg2Pdf, disabled: !hasImages },
+  ],
+  canvas: [
+    { label: 'Agregar página', onClick: handlers.onAddPage },
+    { label: 'Ajustar a página', onClick: handlers.onFitPage },
+    { label: 'Ajustar al ancho', onClick: handlers.onFitWidth },
+  ],
+  schema: [
+    { label: 'Agregar schema', onClick: handlers.onAddSchema },
+  ],
+  advanced: [
+    { label: 'Reiniciar template', onClick: handlers.onReset, destructive: true },
+  ],
+})
+
+const ActionSection = ({ title, actions, close, busy }) => (
+  <ControlSection label={title}>
+    {actions.map((action) => (
+      <ActionButton
+        key={action.label}
+        close={close}
+        busy={busy}
+        onClick={action.onClick}
+        label={action.label}
+        disabled={action.disabled}
+        destructive={action.destructive}
+      />
+    ))}
+  </ControlSection>
+)
+
+ActionSection.propTypes = {
+  title: PropTypes.string.isRequired,
+  actions: PropTypes.arrayOf(
+    PropTypes.shape({
+      label: PropTypes.node.isRequired,
+      onClick: PropTypes.func,
+      disabled: PropTypes.bool,
+      destructive: PropTypes.bool,
+    }),
+  ).isRequired,
+  close: PropTypes.func,
+  busy: PropTypes.bool.isRequired,
+}
 
 export default function CompactControls({
   mode,
@@ -49,6 +149,8 @@ export default function CompactControls({
     if (typeof onModeChange === 'function') onModeChange(nextMode)
   }
 
+  const actionRows = buildActionRows(hasGeneratedPdf, hasImages, { onGenerate, onPdf2Size, onPdf2Img, onImg2Pdf, onAddPage, onFitPage, onFitWidth, onAddSchema, onReset })
+
   return (
     <PopoverMenu
       label="Controles"
@@ -58,68 +160,30 @@ export default function CompactControls({
     >
       {({ close }) => (
         <div className="sisad-pdfme-compact-controls-panel">
-          <section className="sisad-pdfme-popover-section">
-            <span className="sisad-pdfme-popover-section-label">Modo</span>
+          <ControlSection label="Modo">
             <div className="sisad-pdfme-popover-grid">
-              <button
-                type="button"
-                className={joinClasses('sisad-pdfme-popover-action', mode === 'designer' && 'is-active')}
-                onClick={applyMode(close, 'designer')}
-              >
-                Diseñador
-              </button>
-              <button
-                type="button"
-                className={joinClasses('sisad-pdfme-popover-action', mode === 'form' && 'is-active')}
-                onClick={applyMode(close, 'form')}
-              >
-                Formulario
-              </button>
-              <button
-                type="button"
-                className={joinClasses('sisad-pdfme-popover-action', mode === 'viewer' && 'is-active')}
-                onClick={applyMode(close, 'viewer')}
-              >
-                Visor
-              </button>
+              {MODE_OPTIONS.map((option) => (
+                <button
+                  key={option.id}
+                  type="button"
+                  className={joinClasses('sisad-pdfme-popover-action', mode === option.id && 'is-active')}
+                  onClick={applyMode(close, option.id)}
+                >
+                  {option.label}
+                </button>
+              ))}
             </div>
             <span className="sisad-pdfme-popover-section-caption">Modo activo: {modeLabel}</span>
-          </section>
+          </ControlSection>
 
-          <section className="sisad-pdfme-popover-section">
-            <span className="sisad-pdfme-popover-section-label">PDF</span>
-            <button type="button" className="sisad-pdfme-popover-action" disabled={busy} onClick={runAndClose(close, onGenerate)}>
-              Generar PDF
-            </button>
-            <button type="button" className="sisad-pdfme-popover-action" disabled={busy || !hasGeneratedPdf} onClick={runAndClose(close, onPdf2Size)}>
-              Leer tamaños
-            </button>
-            <button type="button" className="sisad-pdfme-popover-action" disabled={busy || !hasGeneratedPdf} onClick={runAndClose(close, onPdf2Img)}>
-              PDF → imágenes
-            </button>
-            <button type="button" className="sisad-pdfme-popover-action" disabled={busy || !hasImages} onClick={runAndClose(close, onImg2Pdf)}>
-              Imágenes → PDF
-            </button>
-          </section>
+          <ActionSection title="PDF" actions={actionRows.pdf} close={close} busy={busy} />
 
           {mode === 'designer' ? (
-            <section className="sisad-pdfme-popover-section">
-              <span className="sisad-pdfme-popover-section-label">Canvas</span>
-              <button type="button" className="sisad-pdfme-popover-action" disabled={busy} onClick={runAndClose(close, onAddPage)}>
-                Agregar página
-              </button>
-              <button type="button" className="sisad-pdfme-popover-action" disabled={busy} onClick={runAndClose(close, onFitPage)}>
-                Ajustar a página
-              </button>
-              <button type="button" className="sisad-pdfme-popover-action" disabled={busy} onClick={runAndClose(close, onFitWidth)}>
-                Ajustar al ancho
-              </button>
-            </section>
+            <ActionSection title="Canvas" actions={actionRows.canvas} close={close} busy={busy} />
           ) : null}
 
           {mode === 'designer' ? (
-            <section className="sisad-pdfme-popover-section">
-              <span className="sisad-pdfme-popover-section-label">Schema</span>
+            <ControlSection label="Schema">
               <label className="sisad-pdfme-popover-label" htmlFor="schema-type-select-compact">
                 Tipo de schema
               </label>
@@ -136,24 +200,24 @@ export default function CompactControls({
                   </option>
                 ))}
               </select>
-              <button type="button" className="sisad-pdfme-popover-action" disabled={busy} onClick={runAndClose(close, onAddSchema)}>
-                Agregar schema
-              </button>
-            </section>
+              <ActionButton
+                close={close}
+                busy={busy}
+                onClick={onAddSchema}
+                label="Agregar schema"
+              />
+            </ControlSection>
           ) : null}
 
-          <section className="sisad-pdfme-popover-section sisad-pdfme-popover-section-quiet">
-            <span className="sisad-pdfme-popover-section-label">Avanzado</span>
+          <ControlSection label="Avanzado" quiet>
             {!resetConfirmationOpen ? (
               <>
-                <button
-                  type="button"
-                  className="sisad-pdfme-popover-action is-destructive"
-                  disabled={busy}
+                <ActionButton
+                  busy={busy}
                   onClick={() => setResetConfirmationOpen(true)}
-                >
-                  Reiniciar template
-                </button>
+                  label="Reiniciar template"
+                  destructive
+                />
                 <span className="sisad-pdfme-popover-section-caption">
                   Acción de riesgo. Requiere confirmación.
                 </span>
@@ -183,7 +247,7 @@ export default function CompactControls({
                 </div>
               </div>
             )}
-          </section>
+          </ControlSection>
         </div>
       )}
     </PopoverMenu>
@@ -203,11 +267,7 @@ CompactControls.propTypes = {
   onAddSchema: PropTypes.func,
   onReset: PropTypes.func,
   schemaCatalog: PropTypes.arrayOf(
-    PropTypes.shape({
-      type: PropTypes.string.isRequired,
-      category: PropTypes.string.isRequired,
-      label: PropTypes.string.isRequired,
-    }),
+    SCHEMA_DEFINITION_PROP_TYPE,
   ),
   schemaType: PropTypes.string,
   onSchemaTypeChange: PropTypes.func,
