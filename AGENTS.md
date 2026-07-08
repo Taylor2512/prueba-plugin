@@ -1,30 +1,26 @@
-# AGENTS.md — Router neutral IA para SISAD PDFME Designer
+# AGENTS.md — Adaptador delgado
 
-## Inicio obligatorio
+Este archivo existe para herramientas que leen `AGENTS.md` por defecto.
 
-1. Leer `.ai/INDEX.md`.
-2. Leer `.ai/ROUTER.md`.
-3. Leer `.ai/CONTEXT_BUDGET.md`.
-4. Leer `.ai/memory/project-memory.md`.
-5. Seleccionar exactamente 1 task-card.
-6. Cargar máximo 1 contexto + 1 regla + 1 playbook.
-7. Inspeccionar código real con `rg`.
+No contiene documentación del componente ni instrucciones largas. La fuente de verdad para asistentes IA está en:
 
-## Agentes
+```txt
+ai/start/START.md
+ai/router/ROUTER.md
+ai/router/CONTEXT_BUDGET.md
+ai/memory/project-memory.md
+```
 
-| Agente | Uso |
-|---|---|
-| `designer-runtime-agent` | Designer general, estado, composición |
-| `canvas-runtime-agent` | Canvas, páginas, coordenadas, drop |
-| `moveable-selecto-agent` | Moveable, Selecto, guards, shortcuts |
-| `schema-architecture-agent` | schemas, families, registry, factories |
-| `inspector-agent` | DetailView, ListView, widgets, inspector contracts |
-| `commandbus-agent` | command bus, selectionCommands, undo/redo |
-| `snapshot-designer-agent` | snapshot del diseñador, import/export metadata |
-| `css-visual-agent` | CSS scoped, field chrome, visual compact |
-| `solid-refactor-agent` | SOLID, OOP, type safety, reducción any |
-| `docusign-process-agent` | análisis funcional DocuSign-like ya resumido |
+## Regla obligatoria
 
-## Regla
+Antes de modificar código, un agente debe:
 
-Un agente no puede cambiar de dominio durante la tarea. Si detecta otro dominio, debe reportar nueva task-card.
+1. Leer `ai/start/START.md`.
+2. Seguir `ai/router/ROUTER.md`.
+3. Respetar `ai/router/CONTEXT_BUDGET.md`.
+4. Seleccionar exactamente una task-card.
+5. Cargar solo el contexto/rules/playbook indicado.
+
+## No usar `docs/` para instrucciones de agentes
+
+`docs/` documenta el componente `sisad-pdfme`. No debe contener agentes, prompts, task-cards ni memoria de IA.

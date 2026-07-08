@@ -1,0 +1,19 @@
+# CLAUDE.md — Adaptador para Claude
+
+No dupliques instrucciones aquí.
+
+Empieza por:
+
+```txt
+ai/start/START.md
+```
+
+Luego usa:
+
+```txt
+ai/prompts/claude-diagnose-or-implement.md
+ai/router/ROUTER.md
+ai/router/CONTEXT_BUDGET.md
+```
+
+Claude debe trabajar por task-card cerrada y nunca realizar auditoría global salvo solicitud explícita.

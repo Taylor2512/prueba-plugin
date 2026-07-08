@@ -1,100 +1,47 @@
-# SISAD PDFME Designer — AI Architecture v3 Complete
 
-Generado: `2026-06-15T15:04:39+00:00`
+# SISAD PDFME — Arquitectura Markdown separada
 
-Arquitectura Markdown completa para continuar el desarrollo del **componente diseñador PDF** de `sisad-pdfme`, optimizada para proveedores de IA como Claude, Codex, Copilot, Gemini u otros.
+Este paquete reorganiza la documentación del proyecto en dos mundos separados:
 
-## Alcance estricto
+1. `docs/` contiene **solo documentación del componente `sisad-pdfme`**: qué es, para qué sirve, cómo se instala, cómo se implementa, cómo se configuran Designer/Form/Viewer/Generator, schemas, recipients, snapshots, theming, troubleshooting, QA y ejemplos.
+2. `ai/` contiene **todo lo relacionado con asistentes de IA**: Codex, Claude, GitHub Copilot, agentes, subagentes, skills, memoria, task-cards, reglas, playbooks, prompts y checklist operativo.
 
-Este paquete se enfoca únicamente en:
-
-```txt
-Designer
-Canvas
-Schemas
-LeftSidebar / catálogo
-RightSidebar / DetailView / ListView
-Toolbar contextual
-Moveable
-Selecto
-CommandBus
-Snapshot del diseñador
-Configuración visual y funcional de campos
-Multipágina / multidocumento dentro del diseñador
-CSS del diseñador
-Refactor SOLID/OOP del diseñador
-```
-
-No se enfoca en:
+Regla principal:
 
 ```txt
-StepOne
-StepTwo host
-ContentCustomForm negocio
-Uanataca
-liveness
-APIs SISAD
-workflow externo
-firma real backend
-externalForms como flujo de negocio
-Form/Viewer/Generator como implementación principal
+Nada sobre agentes de IA debe vivir dentro de docs/.
+Nada sobre documentación funcional del componente debe duplicarse dentro de ai/ salvo resúmenes mínimos de contexto para ahorrar tokens.
 ```
 
-Form/Viewer/Generator solo aparecen como **contrato de compatibilidad** para no romper metadata, snapshot ni schema contracts.
-
-## Objetivo
-
-Evitar que los proveedores de IA entren en loops de análisis, consuman tokens sin sentido o vuelvan a auditar todo el proyecto en cada tarea.
-
-La arquitectura está diseñada para trabajar por:
+## Estructura rápida
 
 ```txt
-Router
-→ Context budget
-→ Task-card cerrada
-→ Playbook focalizado
-→ Reglas estrictas
-→ Archivos candidatos
-→ Criterio de parada
-→ Reporte final
+sisad-pdfme-md-architecture/
+├── README.md
+├── AGENTS.md                     # Adaptador delgado para herramientas que leen AGENTS.md
+├── CLAUDE.md                     # Adaptador delgado para Claude
+├── .github/copilot-instructions.md
+├── docs/                         # Documentación pública/técnica del componente
+└── ai/                           # Sistema operativo de IA
 ```
 
-## Principio rector
+## Instalación sugerida
 
-No corregir por síntoma. Corregir por proceso:
-
-```txt
-Proceso
-→ Componentes involucrados
-→ Fuente de verdad
-→ Estados válidos
-→ Datos preservados
-→ Validación
-→ Implementación mínima
-```
-
-## Cómo usar
-
-1. Copia este paquete en la raíz del proyecto.
-2. Empieza cada tarea con `START_PROMPT.md`.
-3. Selecciona una `task-card` en `.ai/task-cards`.
-4. Ejecuta solo esa tarea.
-5. Si excede presupuesto, detenerse y crear nueva task-card.
-
-## Instalación
+Copiar el contenido en la raíz del proyecto:
 
 ```bash
-bash scripts/install-architecture.sh /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
+cp -R sisad-pdfme-md-architecture/docs ./docs
+cp -R sisad-pdfme-md-architecture/ai ./ai
+cp sisad-pdfme-md-architecture/AGENTS.md ./AGENTS.md
+cp sisad-pdfme-md-architecture/CLAUDE.md ./CLAUDE.md
+mkdir -p .github
+cp sisad-pdfme-md-architecture/.github/copilot-instructions.md ./.github/copilot-instructions.md
 ```
 
-## Limpieza previa opcional
+## Principio SOLID aplicado a Markdown
 
-Incluye scripts seguros para limpiar `.md` anteriores y carpetas vacías:
-
-```bash
-node scripts/delete-existing-markdown.mjs /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin --dry-run
-node scripts/delete-existing-markdown.mjs /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin --confirm --backup
-
-bash scripts/clean-empty-dirs.sh /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin --dry-run
-bash scripts/clean-empty-dirs.sh /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin --confirm
-```
+- **SRP:** `docs/` documenta producto/componente; `ai/` orquesta asistentes.
+- **OCP:** agregar nuevos procesos con nuevas task-cards sin reescribir todo.
+- **ISP:** cada agente carga solo el contexto que necesita.
+- **DIP:** los prompts dependen de contratos (`router`, `task-cards`, `rules`), no de documentos gigantes.
+- **DRY:** una sola fuente de verdad por tema.

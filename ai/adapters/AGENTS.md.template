@@ -1,0 +1,30 @@
+# AGENTS.md — Adaptador para Codex
+
+Este archivo es intencionalmente pequeño para evitar duplicidad.
+
+## Fuente de verdad
+
+Lee primero:
+
+```txt
+ai/start/START.md
+```
+
+Luego sigue:
+
+```txt
+ai/router/ROUTER.md
+ai/router/CONTEXT_BUDGET.md
+ai/memory/project-memory.md
+ai/project/scope.md
+```
+
+## Regla obligatoria
+
+No cargues toda la carpeta `ai/`. Usa el router para seleccionar exactamente:
+
+```txt
+1 task-card + 1 contexto + 1 regla + 1 playbook
+```
+
+Si la tarea excede presupuesto, detente y crea una nueva task-card.
