@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
+import { cn } from '@/sisad-pdfme/ui/utils/cn'
 
 const EMPTY_ARRAY = []
 const PDF_SIZE_PROP_TYPE = PropTypes.shape({
@@ -154,10 +155,14 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
   // closed state renders NO body so it never covers the document/toolbar.
   if (isDrawer) {
     return (
-      <section className="sisad-pdfme-lab-results-drawer" data-open={isOpen ? 'true' : 'false'} aria-label="Resultados">
+      <section
+        className={cn('sisad-pdfme-lab-results-drawer fixed bottom-3 left-3 z-[70] w-[min(32rem,calc(100vw-1.5rem))]')}
+        data-open={isOpen ? 'true' : 'false'}
+        aria-label="Resultados"
+      >
         <button
           type="button"
-          className="sisad-pdfme-lab-results-pill"
+          className={cn('sisad-pdfme-lab-results-pill inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white/95 px-3 py-1.5 text-xs font-semibold text-slate-700 shadow-lg backdrop-blur-md')}
           aria-expanded={isOpen}
           aria-controls="sisad-pdfme-lab-results-drawer-panel"
           onClick={() => setIsOpen((v) => !v)}
@@ -170,7 +175,7 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
         {isOpen ? (
           <div
             id="sisad-pdfme-lab-results-drawer-panel"
-            className="sisad-pdfme-lab-results-drawer-panel"
+            className={cn('sisad-pdfme-lab-results-drawer-panel mt-2 grid max-h-[min(300px,38dvh)] overflow-auto rounded-[1rem] border border-slate-200 bg-white/95 p-2.5 shadow-2xl backdrop-blur-md')}
             role="dialog"
             aria-modal="false"
             aria-label="Panel de resultados"
@@ -184,7 +189,7 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
               <button
                 type="button"
                 ref={drawerCloseButtonRef}
-                className="sisad-pdfme-lab-results-close"
+                className={cn('sisad-pdfme-lab-results-close inline-flex items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-semibold text-slate-700 hover:bg-slate-100')}
                 onKeyDown={(event) => {
                   if (event.key === 'Escape') {
                     event.preventDefault()
@@ -206,8 +211,14 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
   }
 
   return (
-    <details className="sisad-pdfme-lab-results" data-variant={variant} aria-labelledby="lab-results-title">
-      <summary className="sisad-pdfme-lab-results-summary">
+    <details
+      className={cn('sisad-pdfme-lab-results rounded-[1rem] border border-slate-200 bg-white/90 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-md')}
+      data-variant={variant}
+      aria-labelledby="lab-results-title"
+    >
+      <summary
+        className={cn('sisad-pdfme-lab-results-summary flex cursor-pointer list-none items-center justify-between gap-3 rounded-[1rem] px-3 py-2')}
+      >
         <div className="sisad-pdfme-lab-section-heading sisad-pdfme-lab-section-heading-tight">
           <h2 id="lab-results-title">Resultados</h2>
           <p>{hasGeneratedArtifacts ? 'Artefactos listos para revisar o descargar.' : 'Abre esta sección para revisar salidas de generación y conversión.'}</p>

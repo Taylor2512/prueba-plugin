@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Form } from 'antd';
 import type { PropPanelWidgetProps } from '@sisad-pdfme/common';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
+import { mergeClassNames } from '../../shared/className.js';
 import {
   AlignStartVertical,
   AlignStartHorizontal,
@@ -40,12 +41,17 @@ const AlignWidget = (props: PropPanelWidgetProps & { selectionCommands?: Selecti
   };
 
   return (
-    <Form.Item label="Alineación" className={`${DESIGNER_CLASSNAME}align-widget`}> 
-      <div className={`${DESIGNER_CLASSNAME}align-widget-grid`}>
+    <Form.Item label="Alineación" className={mergeClassNames(`${DESIGNER_CLASSNAME}align-widget`, 'm-0')}>
+      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}align-widget-grid`, 'grid grid-cols-4 gap-2')}>
         {LAYOUT_BUTTONS.map((btn) => (
           <Button
             key={btn.id}
-            className={`${DESIGNER_CLASSNAME}align-btn ${DESIGNER_CLASSNAME}align-${btn.id}`}
+            className={mergeClassNames(
+              `${DESIGNER_CLASSNAME}align-btn`,
+              `${DESIGNER_CLASSNAME}align-${btn.id}`,
+              'inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 shadow-sm transition',
+              'hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 disabled:cursor-not-allowed disabled:opacity-40',
+            )}
             onClick={() => handleClick(btn)}
             title={btn.label}
             aria-label={btn.label}

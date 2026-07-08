@@ -9,6 +9,7 @@ import { SidebarSurfaceHeader } from '../shared/SidebarSurfacePrimitives.js';
 import type { InspectorTag } from './InspectorPrimitives.js';
 import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
 import { buildDetailHeaderSummary } from './detailHeaderUtils.js';
+import { mergeClassNames } from '../../shared/className.js';
 
 type DetailHeaderCardProps = {
   activeSchema: SchemaForUI;
@@ -72,7 +73,11 @@ const DetailHeaderCard = ({
     <Tooltip title={backTooltip} placement="right">
       <button
         type="button"
-        className={`${DESIGNER_CLASSNAME}detail-header-back-btn`}
+        className={mergeClassNames(
+          `${DESIGNER_CLASSNAME}detail-header-back-btn`,
+          'inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition',
+          'hover:border-sky-200 hover:text-sky-700 hover:shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+        )}
         onClick={onBack}
         aria-label={backTooltip}
       >
@@ -84,7 +89,10 @@ const DetailHeaderCard = ({
   const trailingNode = (
     <>
       {resolvedShowPosition && (
-        <Tag color="default" className={`${DESIGNER_CLASSNAME}detail-header-card-pos`}>
+        <Tag
+          color="default"
+          className={mergeClassNames(`${DESIGNER_CLASSNAME}detail-header-card-pos`, 'm-0 rounded-full border-slate-200 px-2 py-0.5 text-[11px]')}
+        >
           {positionLabel || headerSummary.positionLabel}
         </Tag>
       )}
@@ -95,7 +103,11 @@ const DetailHeaderCard = ({
   return (
     <div ref={headerRef} data-detail-header-density={headerDensity}>
       <SidebarSurfaceHeader
-        className={[`${DESIGNER_CLASSNAME}detail-header-card`, className].filter(Boolean).join(' ')}
+        className={mergeClassNames(
+          `${DESIGNER_CLASSNAME}detail-header-card`,
+          'rounded-2xl border-slate-200/70 bg-white/90 shadow-sm',
+          className,
+        )}
         compact
         leading={leading || <Badge color={leadingColor} />}
         title={title || headerSummary.schemaName}

@@ -9,6 +9,7 @@ import type { InteractionState } from '../../shared/interactionState.js';
 import { Loader2 } from 'lucide-react';
 import { Ellipsis } from 'lucide-react';
 import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
+import { mergeClassNames } from '../../shared/className.js';
 
 type SelectionContextToolbarProps = {
   position: { top: number; left: number; width: number; height: number } | null;
@@ -93,6 +94,7 @@ const SelectionContextToolbar = ({
         event.stopPropagation();
         btn.onSelect?.();
       }}
+      className="inline-flex min-w-0 items-center gap-1.5 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-700 shadow-sm transition hover:border-sky-200 hover:text-sky-700"
     >
       <span className="sisad-pdfme-ui-selection-context-toolbar-action-icon" aria-hidden="true">
         {btn.loading ? <Loader2 size={14} className="sisad-pdfme-ui-selection-context-toolbar-spinner" /> : btn.icon}
@@ -108,7 +110,7 @@ const SelectionContextToolbar = ({
   return (
     <div
       ref={toolbarRef}
-      className="sisad-pdfme-ui-selection-context-toolbar"
+      className="sisad-pdfme-ui-selection-context-toolbar rounded-2xl border border-slate-200/70 bg-white/95 p-2 shadow-lg backdrop-blur"
       role="toolbar"
       aria-label="Barra contextual de edición"
       data-schema-interactive-control="true"
@@ -120,24 +122,24 @@ const SelectionContextToolbar = ({
       style={{
         top: `${position.top}px`,
         left: `${position.left}px`,
-        width: isExpanded ? 'min(100%, 28rem)' : isMicro ? 'min(100%, 17rem)' : 'min(100%, 22rem)',
+        width: isExpanded ? 'min(100%, 24rem)' : isMicro ? 'min(100%, 15rem)' : 'min(100%, 19rem)',
       }}
-    >
-      <div className="sisad-pdfme-ui-selection-context-toolbar-summary" aria-label="Resumen de selección">
+      >
+      <div className="sisad-pdfme-ui-selection-context-toolbar-summary flex flex-wrap items-center gap-1.5" aria-label="Resumen de selección">
         {toolbarModel.summaryChips.map((chip, index) => (
           <span
             key={`summary-${chip}`}
-            className={[
-              'sisad-pdfme-ui-selection-context-toolbar-chip',
-              index === 0 ? 'is-primary' : '',
-            ].filter(Boolean).join(' ')}
+            className={mergeClassNames(
+              'sisad-pdfme-ui-selection-context-toolbar-chip inline-flex items-center rounded-full border px-2 py-0.5 text-[11px] font-medium',
+              index === 0 ? 'is-primary border-sky-200 bg-sky-50 text-sky-700' : 'border-slate-200 bg-slate-50 text-slate-600',
+            )}
           >
             {chip}
           </span>
         ))}
         <button
           type="button"
-          className="sisad-pdfme-ui-selection-context-toolbar-toggle"
+          className="sisad-pdfme-ui-selection-context-toolbar-toggle inline-flex items-center rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-700 shadow-sm"
           aria-label={toggleLabel}
           aria-pressed={isExpanded ? 'true' : 'false'}
           data-schema-interactive-control="true"
@@ -157,16 +159,19 @@ const SelectionContextToolbar = ({
         </button>
       </div>
       {!isMicro && toolbarModel.stateChips.length > 0 ? (
-        <div className="sisad-pdfme-ui-selection-context-toolbar-state" aria-label="Estado de la selección">
+        <div className="sisad-pdfme-ui-selection-context-toolbar-state mt-2 flex flex-wrap gap-1" aria-label="Estado de la selección">
           {toolbarModel.stateChips.map((chip) => (
-            <span key={`state-${chip}`} className="sisad-pdfme-ui-selection-context-toolbar-state-chip">
+            <span
+              key={`state-${chip}`}
+              className="sisad-pdfme-ui-selection-context-toolbar-state-chip inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] text-slate-500"
+            >
               {chip}
             </span>
           ))}
         </div>
       ) : null}
 
-      <div className="sisad-pdfme-ui-selection-context-toolbar-actions" role="group" aria-label="Acciones rápidas">
+      <div className="sisad-pdfme-ui-selection-context-toolbar-actions mt-2 flex flex-wrap gap-1.5" role="group" aria-label="Acciones rápidas">
         {miniPrimaryActions.map(renderToolbarButton)}
         {isMicro ? (
           <button
@@ -186,19 +191,19 @@ const SelectionContextToolbar = ({
               onToolbarModeChange?.(nextMode);
             }}
           >
-            <span className="sisad-pdfme-ui-selection-context-toolbar-action-icon" aria-hidden="true">
+            <span className="sisad-pdfme-ui-selection-context-toolbar-action-icon inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600" aria-hidden="true">
               <Ellipsis size={14} />
             </span>
-            <span className="sisad-pdfme-ui-selection-context-toolbar-action-label">Más</span>
+            <span className="sisad-pdfme-ui-selection-context-toolbar-action-label text-[11px] font-medium text-slate-700">Más</span>
           </button>
         ) : null}
       </div>
       {isExpanded && toolbarModel.secondarySections.length > 0 ? (
-        <div className="sisad-pdfme-ui-selection-context-toolbar-sections" aria-label="Acciones avanzadas">
+        <div className="sisad-pdfme-ui-selection-context-toolbar-sections mt-2 space-y-2" aria-label="Acciones avanzadas">
           {toolbarModel.secondarySections.map((section) => (
-            <section key={section.id} className="sisad-pdfme-ui-selection-context-toolbar-section">
-              <div className="sisad-pdfme-ui-selection-context-toolbar-section-label">{section.label}</div>
-              <div className="sisad-pdfme-ui-selection-context-toolbar-section-actions" role="group" aria-label={section.label}>
+            <section key={section.id} className="sisad-pdfme-ui-selection-context-toolbar-section rounded-xl border border-slate-200 bg-slate-50 p-2">
+              <div className="sisad-pdfme-ui-selection-context-toolbar-section-label mb-1 text-[11px] font-semibold uppercase tracking-wide text-slate-500">{section.label}</div>
+              <div className="sisad-pdfme-ui-selection-context-toolbar-section-actions flex flex-wrap gap-1.5" role="group" aria-label={section.label}>
                 {section.items.map(renderToolbarButton)}
               </div>
             </section>

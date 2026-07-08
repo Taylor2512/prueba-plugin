@@ -3,6 +3,7 @@ import { Button, Form, Tooltip, theme } from 'antd';
 import React from 'react';
 import type { PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
 import { isRecord } from '../../shared/objectGuards.js';
+import { mergeClassNames } from '../../shared/className.js';
 interface ButtonConfig {
   key: string;
   icon: string;
@@ -55,7 +56,7 @@ const ButtonGroupWidget = (props: PropPanelWidgetProps) => {
   return (
     <Form.Item>
       <div
-        className={DESIGNER_CLASSNAME + 'button-group'}
+        className={mergeClassNames(DESIGNER_CLASSNAME + 'button-group', 'flex flex-wrap gap-2')}
       >
         {(schema.buttons as ButtonConfig[]).map((btn: ButtonConfig, index: number) => {
           const active = isActive(btn);
@@ -65,7 +66,11 @@ const ButtonGroupWidget = (props: PropPanelWidgetProps) => {
                 type={active ? 'primary' : 'default'}
                 onClick={() => apply(btn)}
                 icon={svgIcon(btn.icon)}
-                className={DESIGNER_CLASSNAME + "button-auto"}
+                className={mergeClassNames(
+                  DESIGNER_CLASSNAME + 'button-auto',
+                  'inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 shadow-sm transition',
+                  'hover:border-slate-300 hover:bg-slate-50',
+                )}
               />
             </Tooltip>
           );

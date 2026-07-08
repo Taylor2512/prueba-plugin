@@ -1,5 +1,6 @@
 import React from 'react';
 import type { SnapLine } from '../SnapLines.js';
+import { mergeClassNames } from '../../shared/className.js';
 
 type SnapFeedbackOverlayProps = {
   bounds: { top: number; left: number } | null;
@@ -22,14 +23,17 @@ const SnapFeedbackOverlay = ({ bounds, snapLines }: SnapFeedbackOverlayProps) =>
 
   return (
     <div
-      className="sisad-pdfme-ui-snap-feedback"
+      className={mergeClassNames(
+        'sisad-pdfme-ui-snap-feedback fixed z-[65] inline-flex -translate-y-full items-center gap-2 rounded-full border border-slate-200/80 bg-white/95 px-3 py-1.5 text-[11px] font-medium text-slate-700 shadow-lg backdrop-blur-md pointer-events-none',
+      )}
       style={{
         top: `${bounds.top - 52}px`,
         left: `${bounds.left}px`,
-      }}>
-      <span className="sisad-pdfme-ui-snap-feedback-primary">{primaryLabel}</span>
+      }}
+    >
+      <span className="sisad-pdfme-ui-snap-feedback-primary font-semibold text-slate-900">{primaryLabel}</span>
       {secondaryLabels.length > 0 ? (
-        <span className="sisad-pdfme-ui-snap-feedback-secondary">{secondaryLabels.join(' · ')}</span>
+        <span className="sisad-pdfme-ui-snap-feedback-secondary text-slate-500">{secondaryLabels.join(' · ')}</span>
       ) : null}
     </div>
   );

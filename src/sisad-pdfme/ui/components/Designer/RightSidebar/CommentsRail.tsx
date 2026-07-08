@@ -4,6 +4,7 @@ import { MessageSquare, MessageSquarePlus } from 'lucide-react';
 import type { DesignerCommentItem } from '../../../types.js';
 import { DESIGNER_CLASSNAME } from '../../../constants.js';
 import { SidebarSurfaceEmptyState, SidebarSurfaceHeader } from './shared/SidebarSurfacePrimitives.js';
+import { mergeClassNames } from '../shared/className.js';
 
 export type CommentsRailProps = {
   items: DesignerCommentItem[];
@@ -69,24 +70,15 @@ type CommentPillProps = {
 };
 
 const CommentPill = ({ children, tone = 'muted' }: CommentPillProps) => {
-  const palette =
+  const toneClassName =
     tone === 'success'
-      ? { background: 'rgba(34, 197, 94, 0.14)', color: '#15803d' }
+      ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
       : tone === 'info'
-        ? { background: 'rgba(37, 99, 235, 0.12)', color: '#1d4ed8' }
-        : { background: 'var(--sisad-pdfme-surface-soft)', color: 'var(--sisad-pdfme-text-muted)' };
+        ? 'border-sky-200 bg-sky-50 text-sky-700'
+        : 'border-slate-200 bg-[var(--sisad-pdfme-surface-soft)] text-[var(--sisad-pdfme-text-muted)]';
 
   return (
-    <span
-      style={{
-        borderRadius: 999,
-        padding: '2px 8px',
-        fontSize: 12,
-        fontWeight: 700,
-        background: palette.background,
-        color: palette.color,
-      }}
-    >
+    <span className={mergeClassNames('inline-flex items-center rounded-full border px-2 py-0.5 text-[11px] font-semibold', toneClassName)}>
       {children}
     </span>
   );
@@ -119,15 +111,13 @@ const CommentsRail = ({
 
   return (
     <div
-      className={[DESIGNER_CLASSNAME + 'comments-rail', DESIGNER_CLASSNAME + 'sidebar-section-surface', className].filter(Boolean).join(' ')}
-      style={{
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 12,
-        minHeight: 0,
-        padding: 12,
-        ...style,
-      }}
+      className={mergeClassNames(
+        DESIGNER_CLASSNAME + 'comments-rail',
+        DESIGNER_CLASSNAME + 'sidebar-section-surface',
+        'flex min-h-0 flex-1 flex-col gap-3 rounded-2xl border border-slate-200/70 bg-white/90 p-3 shadow-sm',
+        className,
+      )}
+      style={style}
     >
       <SidebarSurfaceHeader
         title={title}
@@ -150,7 +140,7 @@ const CommentsRail = ({
           description={emptyDescription}
         />
       ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 10, minHeight: 0, overflowY: 'auto' }}>
+        <div className="flex min-h-0 flex-1 flex-col gap-2 overflow-y-auto">
           {items.map((item) => {
             const replies = getVisibleReplies(item.replies);
             const resolved = Boolean(item.resolved) && replies.every((reply) => Boolean(reply.resolved));
@@ -168,23 +158,24 @@ const CommentsRail = ({
                   }
                 }}
                 data-active={isActive ? 'true' : 'false'}
-                className={[
+                className={mergeClassNames(
                   DESIGNER_CLASSNAME + 'comments-rail-thread',
                   isActive ? DESIGNER_CLASSNAME + 'comments-rail-thread-active' : '',
-                ].filter(Boolean).join(' ')}
+                  'rounded-2xl border border-slate-200 bg-slate-50/80 p-3 shadow-sm',
+                )}
               >
-                <div className={DESIGNER_CLASSNAME + 'comments-rail-thread-head'}>
-                  <div className={DESIGNER_CLASSNAME + 'comments-rail-thread-author'}>
+                <div className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-thread-head', 'flex items-start justify-between gap-3')}>
+                  <div className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-thread-author', 'flex items-center gap-2')}>
                     <span
                       aria-hidden="true"
-                      className={DESIGNER_CLASSNAME + 'comments-rail-thread-dot'}
+                      className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-thread-dot', 'h-2.5 w-2.5 rounded-full')}
                       style={{ background: item.authorColor || 'var(--sisad-pdfme-border-strong)' }}
                     />
-                    <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--sisad-pdfme-text)' }}>
+                    <span className="text-xs font-semibold text-slate-800">
                       {item.authorName || 'Autor no identificado'}
                     </span>
                   </div>
-                  <div className={DESIGNER_CLASSNAME + 'comments-rail-thread-badges'}>
+                  <div className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-thread-badges', 'flex flex-wrap justify-end gap-1')}>
                     {replyCount > 0 ? (
                       <CommentPill>
                         {formatCountLabel(replyCount, 'respuesta', 'respuestas')}
@@ -196,32 +187,32 @@ const CommentsRail = ({
                   </div>
                 </div>
 
-                <div style={{ fontSize: 13, lineHeight: 1.5, color: 'var(--sisad-pdfme-text)' }}>{item.text}</div>
+                <div className="text-sm leading-6 text-slate-700">{item.text}</div>
 
-                <div className={DESIGNER_CLASSNAME + 'comments-rail-thread-meta-row'}>
-                  <span className={DESIGNER_CLASSNAME + 'comments-rail-thread-meta-pill'}>
+                <div className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-thread-meta-row', 'mt-2')}>
+                  <span className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-thread-meta-pill', 'inline-flex rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[11px] text-slate-500')}>
                     {formatCommentMeta(item)}
                   </span>
                 </div>
 
                 {replyCount > 0 ? (
-                  <div className={DESIGNER_CLASSNAME + 'comments-rail-thread-replies'}>
-                    <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--sisad-pdfme-text-muted)' }}>
+                  <div className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-thread-replies', 'mt-3 space-y-2')}>
+                    <div className="text-xs font-semibold text-slate-500">
                       {replyLabel}
                     </div>
                     {replies.map((reply) => (
                       <div
                         key={reply.id}
-                        className={DESIGNER_CLASSNAME + 'comments-rail-reply'}
+                        className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-reply', 'rounded-xl border border-slate-200 bg-white p-3')}
                       >
-                        <div className={DESIGNER_CLASSNAME + 'comments-rail-reply-head'}>
-                          <div className={DESIGNER_CLASSNAME + 'comments-rail-reply-author'}>
+                        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-reply-head', 'flex items-start justify-between gap-3')}>
+                          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-reply-author', 'flex items-center gap-2')}>
                             <span
                               aria-hidden="true"
-                              className={DESIGNER_CLASSNAME + 'comments-rail-reply-dot'}
+                              className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-reply-dot', 'h-2.5 w-2.5 rounded-full')}
                               style={{ background: reply.authorColor || 'var(--sisad-pdfme-border-strong)' }}
                             />
-                            <span style={{ fontSize: 12, fontWeight: 700, color: 'var(--sisad-pdfme-text)' }}>
+                            <span className="text-xs font-semibold text-slate-800">
                               {reply.authorName || 'Autor no identificado'}
                             </span>
                           </div>
@@ -230,9 +221,9 @@ const CommentsRail = ({
                           </CommentPill>
                         </div>
 
-                        <div style={{ fontSize: 13, lineHeight: 1.5, color: 'var(--sisad-pdfme-text)' }}>{reply.text}</div>
+                        <div className="text-sm leading-6 text-slate-700">{reply.text}</div>
 
-                        <div style={{ fontSize: 12, color: 'var(--sisad-pdfme-text-muted)' }}>
+                        <div className="text-xs text-slate-500">
                           {formatTimestamp(reply.timestamp)}
                         </div>
                       </div>

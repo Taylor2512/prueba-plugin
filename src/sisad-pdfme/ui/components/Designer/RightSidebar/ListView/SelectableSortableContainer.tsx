@@ -23,6 +23,7 @@ import PluginIcon from '../../PluginIcon.js';
 import ListViewDragOverlay from './ListViewDragOverlay.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { resolveSchemaCollaborationState } from '../../../../collaborationContext.js';
+import { mergeClassNames } from '../../shared/className.js';
 
 const SelectableSortableContainer = (
   props: Pick<
@@ -180,7 +181,7 @@ const SelectableSortableContainer = (
     >
       <>
         <SortableContext items={visibleSchemas} strategy={verticalListSortingStrategy}>
-          <ul className={DESIGNER_CLASSNAME + 'list-view-items-wrapper'}>
+          <ul className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-items-wrapper', 'space-y-2')}>
             {visibleSchemas.map((schema) => (
               <SelectableSortableItem
                 key={schema.id}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Button, Input, Modal } from 'antd';
 import { DESIGNER_CLASSNAME } from '../../constants.js';
+import { mergeClassNames } from './shared/className.js';
 
 export type CustomFieldDef = {
   id: string;
@@ -92,8 +93,14 @@ const Section = ({
   const id = `${DESIGNER_CLASSNAME}custom-field-section-${title.toLowerCase().replace(/\s+/g, '-')}`;
   if (fieldset) {
     return (
-      <fieldset className={`${DESIGNER_CLASSNAME}custom-field-section`} aria-labelledby={id}>
-        <legend id={id} className={`${DESIGNER_CLASSNAME}custom-field-section-legend`}>
+      <fieldset
+        className={mergeClassNames(
+          `${DESIGNER_CLASSNAME}custom-field-section`,
+          'rounded-2xl border border-slate-200 bg-white p-4 shadow-sm',
+        )}
+        aria-labelledby={id}
+      >
+        <legend id={id} className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-section-legend`, 'px-2 text-sm font-semibold text-slate-900')}>
           {title}
         </legend>
         {children}
@@ -102,8 +109,16 @@ const Section = ({
   }
 
   return (
-    <section className={`${DESIGNER_CLASSNAME}custom-field-section`} aria-labelledby={id}>
-      <h4 id={id}>{title}</h4>
+    <section
+      className={mergeClassNames(
+        `${DESIGNER_CLASSNAME}custom-field-section`,
+        'rounded-2xl border border-slate-200 bg-white p-4 shadow-sm',
+      )}
+      aria-labelledby={id}
+    >
+      <h4 id={id} className="mb-3 text-sm font-semibold text-slate-900">
+        {title}
+      </h4>
       {children}
     </section>
   );
@@ -125,13 +140,20 @@ const TextField = ({
   const generatedId = React.useId();
   const id = name ? `${DESIGNER_CLASSNAME}custom-field-${name}` : generatedId;
   return (
-    <div className={`${DESIGNER_CLASSNAME}custom-field-control`}>
+    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-control`, 'space-y-1')}>
       {label ? (
-        <label htmlFor={id} className={`${DESIGNER_CLASSNAME}custom-field-label`}>
+        <label htmlFor={id} className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-label`, 'block text-xs font-medium text-slate-600')}>
           {label}
         </label>
       ) : null}
-      <Input id={id} value={value} onChange={(event) => onChange(event.target.value)} placeholder={placeholder} aria-label={label || name} />
+      <Input
+        id={id}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        placeholder={placeholder}
+        aria-label={label || name}
+        className="rounded-xl border-slate-200 bg-white shadow-sm"
+      />
     </div>
   );
 };
@@ -152,13 +174,22 @@ const SelectField = ({
   const generatedId = React.useId();
   const id = name ? `${DESIGNER_CLASSNAME}custom-field-${name}` : generatedId;
   return (
-    <div className={`${DESIGNER_CLASSNAME}custom-field-control`}>
+    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-control`, 'space-y-1')}>
       {label ? (
-        <label htmlFor={id} className={`${DESIGNER_CLASSNAME}custom-field-label`}>
+        <label htmlFor={id} className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-label`, 'block text-xs font-medium text-slate-600')}>
           {label}
         </label>
       ) : null}
-      <select id={id} value={value} onChange={(event) => onChange(event.target.value)} className={`${DESIGNER_CLASSNAME}custom-field-select`} aria-label={label || name}>
+      <select
+        id={id}
+        value={value}
+        onChange={(event) => onChange(event.target.value)}
+        className={mergeClassNames(
+          `${DESIGNER_CLASSNAME}custom-field-select`,
+          'w-full rounded-xl border border-slate-200 bg-white px-3 py-2 text-sm text-slate-800 shadow-sm',
+        )}
+        aria-label={label || name}
+      >
         {options.map((option) => (
           <option key={option.value} value={option.value}>
             {option.label}
@@ -183,9 +214,11 @@ const CheckboxField = ({
   const generatedId = React.useId();
   const id = name ? `${DESIGNER_CLASSNAME}custom-field-${name}` : generatedId;
   return (
-    <div className={`${DESIGNER_CLASSNAME}custom-field-checkbox`}>
+    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-checkbox`, 'flex items-center gap-2 rounded-xl border border-slate-100 bg-slate-50 px-3 py-2')}>
       <input id={id} type="checkbox" checked={checked} onChange={(event) => onChange(event.target.checked)} />
-      <label htmlFor={id}>{label}</label>
+      <label htmlFor={id} className="text-sm text-slate-700">
+        {label}
+      </label>
     </div>
   );
 };
@@ -197,12 +230,15 @@ const CustomFieldModal = ({ open, draft, onCancel, onSave, onChange }: Props) =>
     onCancel={onCancel}
     footer={null}
     width="min(760px, calc(100vw - 1rem))"
-    className={`${DESIGNER_CLASSNAME}custom-field-modal`}
+    className={mergeClassNames(
+      `${DESIGNER_CLASSNAME}custom-field-modal`,
+      'rounded-3xl',
+    )}
   >
-    <div className={`${DESIGNER_CLASSNAME}custom-field-form`}>
-      <div className={`${DESIGNER_CLASSNAME}custom-field-form-scroll`}>
+    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-form`, 'space-y-4 rounded-b-3xl bg-slate-50/70 p-4')}>
+      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-form-scroll`, 'space-y-4')}>
         <Section title="Identidad">
-          <div className={`${DESIGNER_CLASSNAME}custom-field-grid`}>
+          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-grid`, 'grid gap-3 md:grid-cols-2')}>
             <TextField
               label="Nombre *"
               name="name"
@@ -228,9 +264,11 @@ const CustomFieldModal = ({ open, draft, onCancel, onSave, onChange }: Props) =>
         </Section>
 
         <Section title="Opciones" fieldset>
-          <CheckboxField name="required" label="Obligatorio" checked={draft.required} onChange={(value) => onChange('required', value)} />
-          <CheckboxField name="readOnly" label="Solo lectura" checked={draft.readOnly} onChange={(value) => onChange('readOnly', value)} />
-          <CheckboxField name="shared" label="Compartido" checked={draft.shared} onChange={(value) => onChange('shared', value)} />
+          <div className="grid gap-2 md:grid-cols-3">
+            <CheckboxField name="required" label="Obligatorio" checked={draft.required} onChange={(value) => onChange('required', value)} />
+            <CheckboxField name="readOnly" label="Solo lectura" checked={draft.readOnly} onChange={(value) => onChange('readOnly', value)} />
+            <CheckboxField name="shared" label="Compartido" checked={draft.shared} onChange={(value) => onChange('shared', value)} />
+          </div>
         </Section>
 
         <Section title="Colaboración" fieldset>
@@ -243,7 +281,7 @@ const CustomFieldModal = ({ open, draft, onCancel, onSave, onChange }: Props) =>
         </Section>
 
         <Section title="Aplicar formato">
-          <div className={`${DESIGNER_CLASSNAME}custom-field-grid`}>
+          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-grid`, 'grid gap-3 md:grid-cols-2')}>
             <SelectField label="Fuente" name="font" value={draft.font} options={FONT_OPTIONS} onChange={(value) => onChange('font', value)} />
             <SelectField
               label="Color de fuente"
@@ -275,7 +313,7 @@ const CustomFieldModal = ({ open, draft, onCancel, onSave, onChange }: Props) =>
         </Section>
 
         <Section title="Tamaño">
-          <div className={`${DESIGNER_CLASSNAME}custom-field-grid`}>
+          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-grid`, 'grid gap-3 md:grid-cols-3')}>
             <TextField name="width" label="Ancho" value={draft.width} onChange={(value) => onChange('width', value)} />
             <TextField name="height" label="Altura" value={draft.height} onChange={(value) => onChange('height', value)} />
             <TextField
@@ -297,7 +335,7 @@ const CustomFieldModal = ({ open, draft, onCancel, onSave, onChange }: Props) =>
         </Section>
 
         <Section title="Avanzado predeterminado">
-          <div className={`${DESIGNER_CLASSNAME}custom-field-grid`}>
+          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-grid`, 'grid gap-3 md:grid-cols-2')}>
             <TextField
               name="helpText"
               label="Información de ayuda sobre el campo"
@@ -314,7 +352,7 @@ const CustomFieldModal = ({ open, draft, onCancel, onSave, onChange }: Props) =>
         </Section>
       </div>
 
-      <div className={`${DESIGNER_CLASSNAME}custom-field-footer`}>
+      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-footer`, 'flex items-center justify-end gap-2 border-t border-slate-200 pt-4')}>
         <Button type="primary" onClick={onSave} disabled={!draft.name.trim()}>
           Guardar
         </Button>

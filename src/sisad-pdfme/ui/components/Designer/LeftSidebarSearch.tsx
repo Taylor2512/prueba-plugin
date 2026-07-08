@@ -25,7 +25,11 @@ const LeftSidebarSearch = ({
     value={value}
     onChange={(event) => onChange(event.target.value)}
     data-use-default-style={useDefaultStyles ? 'true' : 'false'}
-    className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-search`, className || '')}
+    className={mergeUniqueClassNames(
+      `${DESIGNER_CLASSNAME}left-sidebar-search`,
+      'rounded-xl border-slate-200 bg-white text-sm shadow-sm [&_.ant-input-affix-wrapper]:h-9 [&_.ant-input-affix-wrapper]:px-3',
+      className || '',
+    )}
   />
 );
 

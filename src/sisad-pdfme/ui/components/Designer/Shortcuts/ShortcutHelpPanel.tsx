@@ -3,6 +3,7 @@ import { Empty, Input, Modal, Tag, Typography } from 'antd';
 import type { InputRef } from 'antd';
 import type { ShortcutDefinition } from '../shared/keyboardShortcuts.js';
 import { formatShortcutForPlatform, getShortcuts } from '../shared/keyboardShortcutRegistry.js';
+import { mergeClassNames } from '../shared/className.js';
 
 type ShortcutHelpPanelProps = {
   open: boolean;
@@ -103,36 +104,44 @@ const ShortcutHelpPanel = ({
       destroyOnHidden
       afterClose={() => setQuery('')}
     >
-      <div className="sisad-pdfme-shortcuts-panel-body">
+      <div className={mergeClassNames('sisad-pdfme-shortcuts-panel-body', 'space-y-4 rounded-b-2xl bg-slate-50/70 p-4')}>
         <Input
           ref={inputRef}
           value={query}
           onChange={(event) => setQuery(event.target.value)}
           placeholder={searchPlaceholder}
           allowClear
+          className="rounded-xl border-slate-200 bg-white shadow-sm"
         />
 
         {Object.keys(grouped).length === 0 ? (
           <Empty description={emptyMessage} />
         ) : (
-          <div className="sisad-pdfme-shortcuts-groups">
+          <div className={mergeClassNames('sisad-pdfme-shortcuts-groups', 'space-y-4')}>
             {scopeOrder.reduce<React.ReactNode[]>((acc, scope) => {
               if (!grouped[scope]?.length) return acc;
               acc.push(
-                <section key={scope} className="sisad-pdfme-shortcuts-group">
-                  <Typography.Title level={5} className="sisad-pdfme-shortcuts-group-title">
+                <section key={scope} className="sisad-pdfme-shortcuts-group rounded-2xl border border-slate-200 bg-white p-3 shadow-sm">
+                  <Typography.Title level={5} className="sisad-pdfme-shortcuts-group-title mb-3 text-sm font-semibold text-slate-800">
                     {scopeLabelOverrides?.[scope] || scopeLabels[scope] || scope}
                   </Typography.Title>
-                  <div className="sisad-pdfme-shortcuts-group-items">
+                  <div className="sisad-pdfme-shortcuts-group-items space-y-2">
                     {grouped[scope].map((shortcut) => (
-                      <article key={shortcut.id} className="sisad-pdfme-shortcuts-row">
-                        <div className="sisad-pdfme-shortcuts-row-copy">
-                          <strong>{shortcut.label}</strong>
-                          {shortcut.description ? <span>{shortcut.description}</span> : null}
+                      <article
+                        key={shortcut.id}
+                        className="sisad-pdfme-shortcuts-row flex items-center justify-between gap-3 rounded-xl border border-slate-100 bg-slate-50/80 px-3 py-2"
+                      >
+                        <div className="sisad-pdfme-shortcuts-row-copy min-w-0">
+                          <strong className="block text-sm font-medium text-slate-800">{shortcut.label}</strong>
+                          {shortcut.description ? <span className="block text-xs text-slate-500">{shortcut.description}</span> : null}
                         </div>
-                        <div className="sisad-pdfme-shortcuts-row-keys" aria-label={shortcut.label}>
+                        <div className="sisad-pdfme-shortcuts-row-keys flex flex-wrap justify-end gap-1" aria-label={shortcut.label}>
                           {splitShortcutCombos(formatShortcutForPlatform(shortcut)).map((keyCombo) => (
-                            <Tag key={`${shortcut.id}-${keyCombo}`} className="sisad-pdfme-shortcuts-key" bordered={false}>
+                            <Tag
+                              key={`${shortcut.id}-${keyCombo}`}
+                              className="sisad-pdfme-shortcuts-key m-0 rounded-lg border-slate-200 bg-white px-2 py-0.5 text-[11px] font-medium text-slate-700"
+                              bordered={false}
+                            >
                               {keyCombo}
                             </Tag>
                           ))}

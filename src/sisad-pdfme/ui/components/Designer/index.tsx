@@ -1683,7 +1683,18 @@ const TemplateEditor = ({
       const normalizedTemplate = normalizeTemplateSchemaPages(document.template, document.pageCount);
 
       const cachedSchemas = documentSchemasCacheRef.current.get(document.id);
-      const nextSchemas = cachedSchemas || (await template2SchemasList(normalizedTemplate));
+      let nextSchemas = cachedSchemas;
+      if (!nextSchemas) {
+        try {
+          nextSchemas = await template2SchemasList(normalizedTemplate);
+        } catch (error) {
+          console.error(
+            '[@sisad-pdfme/ui] Failed to preprocess the document basePdf, using template schemas as fallback.',
+            error,
+          );
+          nextSchemas = cloneDeep(normalizedTemplate.schemas || [[]]);
+        }
+      }
       if (requestId !== loadDocumentRequestRef.current) {
         if (pendingCanvasDocumentIdRef.current === document.id) {
           pendingCanvasDocumentIdRef.current = null;

@@ -3,6 +3,7 @@ import React from 'react';
 import type * as CSS from 'csstype';
 import { ZOOM, BasePdf, isBlankPdf } from '@sisad-pdfme/common';
 import { theme } from 'antd';
+import { mergeClassNames } from '../shared/className.js';
 
 const getPaddingStyle = (i: number, p: number, color: string): CSS.Properties => {
   const style: CSS.Properties = {
@@ -66,7 +67,7 @@ const Padding = ({ basePdf, className, style, color, opacity = 0.25 }: PaddingPr
         padding.map((p, i) => (
           <div
             key={String(i)}
-            className={resolvedClassName}
+            className={mergeClassNames(resolvedClassName, 'pointer-events-none absolute')}
             style={{
               ...getPaddingStyle(i, p, resolvedColor),
               opacity,

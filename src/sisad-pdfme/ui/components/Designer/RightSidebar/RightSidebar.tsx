@@ -227,14 +227,10 @@ const Sidebar = (props: RightSidebarProps) => {
     activeCount: activeSchemaCount,
   });
 
-  const documentsRailStyle: React.CSSProperties | undefined = showDocumentsRail
-    ? {
-      ...props.styleOverrides?.documentsRail,
-      ...(documentsRailMode === 'stacked'
-        ? { maxHeight: '40vh', minHeight: 0, overflowY: 'auto' }
-        : { minHeight: 0 }),
-    }
-    : undefined;
+  const documentsRailClassName = mergeClassNames(
+    documentsRailMode === 'stacked' && 'max-h-[40vh] min-h-0 overflow-y-auto',
+    documentsRailMode === 'split' && 'min-h-0',
+  );
 
   const railDensity = documentsRailMode === 'stacked' ? 'compact' : 'default';
   const railItems = (docsBridge?.items || pagesBridge?.items) ?? [];
@@ -249,10 +245,10 @@ const Sidebar = (props: RightSidebarProps) => {
       onDelete={pagesBridge?.onDelete}
       title={pagesBridge?.title}
       emptyTitle={pagesBridge?.emptyTitle}
-      style={documentsRailStyle}
+      style={props.styleOverrides?.documentsRail}
       useDefaultStyles={props.useDefaultStyles}
       density={railDensity}
-      className={`${DESIGNER_CLASSNAME}documentsrailcomponent-auto`}
+      className={mergeClassNames(`${DESIGNER_CLASSNAME}documentsrailcomponent-auto`, documentsRailClassName)}
     />
   ) : null;
 
@@ -309,10 +305,10 @@ const Sidebar = (props: RightSidebarProps) => {
         onDelete={docsBridge?.onDelete ?? pagesBridge?.onDelete}
         title={docsBridge?.title ?? pagesBridge?.title}
         emptyTitle={docsBridge?.emptyTitle ?? pagesBridge?.emptyTitle}
-        style={documentsRailStyle}
+        style={props.styleOverrides?.documentsRail}
         useDefaultStyles={props.useDefaultStyles}
         density={railDensity}
-        className={`${DESIGNER_CLASSNAME}documentsrailcomponent-auto`}
+        className={mergeClassNames(`${DESIGNER_CLASSNAME}documentsrailcomponent-auto`, documentsRailClassName)}
       />
     ) : listViewNode
   ) : resolvedPanelMode === 'detail' && activeSchemaCount > 0 ? (
@@ -338,6 +334,7 @@ const Sidebar = (props: RightSidebarProps) => {
       aria-hidden={sidebarOpen ? 'false' : 'true'}
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'right-sidebar',
+        'flex h-full min-h-0 flex-col',
         detached ? DESIGNER_CLASSNAME + 'right-sidebar-detached' : '',
         props.classNames?.root,
         props.className,
@@ -353,16 +350,17 @@ const Sidebar = (props: RightSidebarProps) => {
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'right-sidebar-content',
           DESIGNER_CLASSNAME + 'sidebar-surface',
+          'flex min-h-0 flex-1 flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white/95 shadow-sm',
           props.classNames?.content,
         )}
         data-sidebar-open={sidebarOpen ? 'true' : 'false'}
         data-docs-mode={documentsRailMode}
         data-panel-mode={resolvedPanelMode}>
         {props.showDocumentsAsTab !== false || contextHeaderNode ? (
-          <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-wrap`}>
+          <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-wrap flex items-center justify-between gap-3 border-b border-slate-200/70 px-4 py-3`}>
             {props.showDocumentsAsTab !== false ? (
               <div
-                className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher`}
+                className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher flex flex-wrap items-center gap-1.5`}
                 role="tablist"
                 tabIndex={0}
                 aria-label="Panel derecho"
@@ -380,7 +378,7 @@ const Sidebar = (props: RightSidebarProps) => {
                       key={`rs-mode-${mode}`}
                       type="button"
                       disabled={disabled}
-                      className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn`}
+                      className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-medium text-slate-600 shadow-sm transition hover:border-sky-200 hover:text-sky-700`}
                       role="tab"
                       data-active={isActive ? 'true' : 'false'}
                       aria-selected={isActive ? 'true' : 'false'}
@@ -393,7 +391,7 @@ const Sidebar = (props: RightSidebarProps) => {
                         onViewModeChange?.(mode);
                       }}
                     >
-                      <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-content`}>
+                      <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-content inline-flex items-center gap-2`}>
                         <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-icon`}>{modeMeta.icon}</span>
                         <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-label`}>{modeMeta.shortLabel}</span>
                       </span>
@@ -402,7 +400,7 @@ const Sidebar = (props: RightSidebarProps) => {
                 })}
               </div>
             ) : null}
-            <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-extra`}>
+            <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-extra flex items-center gap-2`}>
               {contextHeaderNode}
             </div>
           </div>
@@ -415,7 +413,7 @@ const Sidebar = (props: RightSidebarProps) => {
             aria-label={props.showDocumentsAsTab !== false ? undefined : effectiveSidebarModeMeta[resolvedPanelMode].title}
             id={panelIdByMode[resolvedPanelMode]}
           >
-            <div className={`${DESIGNER_CLASSNAME}right-sidebar-layout-grid`}>
+            <div className={`${DESIGNER_CLASSNAME}right-sidebar-layout-grid grid min-h-0 flex-1 gap-2.5`}>
               {resolvedPanelMode !== 'docs' ? documentsRailNode : null}
               {contentNode}
             </div>

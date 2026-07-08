@@ -9,6 +9,7 @@ import { DESIGNER_CLASSNAME } from "../../../constants.js";
  */
 import React from 'react';
 import { ZOOM } from '@sisad-pdfme/common';
+import { mergeClassNames } from '../shared/className.js';
 
 export interface SnapLine {
   type: 'horizontal' | 'vertical';
@@ -49,9 +50,6 @@ interface Props {
 const LINE_COLOR = '#1890ff';
 const CENTER_COLOR = '#ff4d4f';
 
-const cn = (...values: Array<string | false | null | undefined>) =>
-  values.filter(Boolean).join(' ');
-
 const SnapLines = ({
   lines,
   scrollLeft = 0,
@@ -65,9 +63,10 @@ const SnapLines = ({
   const lineColor = palette?.lineColor || LINE_COLOR;
   const centerColor = palette?.centerColor || CENTER_COLOR;
   const hasCustomClass = typeof className === 'string' && className.trim().length > 0;
-  const rootClassName = cn(
+  const rootClassName = mergeClassNames(
     `${DESIGNER_CLASSNAME}snap-lines`,
     hasCustomClass && `${DESIGNER_CLASSNAME}custom-${className?.trim()}`,
+    'pointer-events-none absolute inset-0',
   );
 
   return (
@@ -80,9 +79,10 @@ const SnapLines = ({
           return (
             <React.Fragment key={i}>
               <div
-                className={cn(
+                className={mergeClassNames(
                   `${DESIGNER_CLASSNAME}snap-line`,
                   `${DESIGNER_CLASSNAME}snap-line-horizontal`,
+                  'pointer-events-none border-solid',
                 )}
                 data-is-center={isCenter(line) ? 'true' : 'false'}
                 style={{
@@ -99,9 +99,10 @@ const SnapLines = ({
               />
               {line.label && line.label !== 'center' && (
                 <span
-                  className={cn(
+                  className={mergeClassNames(
                     `${DESIGNER_CLASSNAME}snap-label`,
                     `${DESIGNER_CLASSNAME}snap-label-horizontal`,
+                    'pointer-events-none rounded-md border border-current bg-white/90 px-1.5 py-0.5 text-[10px] leading-none shadow-sm',
                   )}
                   style={{
                     position: 'absolute',
@@ -128,9 +129,10 @@ const SnapLines = ({
         return (
           <React.Fragment key={i}>
             <div
-              className={cn(
+              className={mergeClassNames(
                 `${DESIGNER_CLASSNAME}snap-line`,
                 `${DESIGNER_CLASSNAME}snap-line-vertical`,
+                'pointer-events-none border-solid',
               )}
               data-is-center={isCenter(line) ? 'true' : 'false'}
               style={{
@@ -147,9 +149,10 @@ const SnapLines = ({
             />
             {line.label && line.label !== 'center' && (
               <span
-                className={cn(
+                className={mergeClassNames(
                   `${DESIGNER_CLASSNAME}snap-label`,
                   `${DESIGNER_CLASSNAME}snap-label-vertical`,
+                  'pointer-events-none rounded-md border border-current bg-white/90 px-1.5 py-0.5 text-[10px] leading-none shadow-sm',
                 )}
                 style={{
                   position: 'absolute',

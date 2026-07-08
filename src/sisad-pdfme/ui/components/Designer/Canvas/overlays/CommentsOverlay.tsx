@@ -228,8 +228,7 @@ const CommentsOverlay = ({
   return (
     <div
       ref={containerRef}
-      className="sisad-pdfme-ui-comments-overlay"
-      style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
+      className="sisad-pdfme-ui-comments-overlay pointer-events-none absolute inset-0"
     >
       {anchorPositions.map((a) => {
         const preview = a.text ? (a.text.length > 48 ? `${a.text.slice(0, 48)}…` : a.text) : 'Comentario';
@@ -260,6 +259,7 @@ const CommentsOverlay = ({
               cursor: 'pointer',
               opacity: a.resolved ? 0.6 : 1,
             }}
+            className="rounded-full ring-2 ring-white transition hover:scale-110"
             aria-label={`Comentario en ${a.schemaUid || 'ancla'}`}
           />
         );

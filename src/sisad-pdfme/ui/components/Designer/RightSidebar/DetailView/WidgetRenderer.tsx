@@ -26,7 +26,7 @@ const WidgetRenderer = (props: Props) => {
     };
   });
 
-  return <div ref={ref} />;
+  return <div ref={ref} className="min-w-0" />;
 };
 
 export default WidgetRenderer;

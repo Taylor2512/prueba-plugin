@@ -4,6 +4,7 @@ import { createPortal } from 'react-dom';
 import { DragOverlay } from '@dnd-kit/core';
 import { SchemaForUI } from '@sisad-pdfme/common';
 import Item from './Item.js';
+import { mergeClassNames } from '../../shared/className.js';
 
 type Props = {
   activeId: string | null;
@@ -21,7 +22,7 @@ const ListViewDragOverlay = ({ activeId, schemas, selectedSchemas, renderIcon }:
   return createPortal(
     <DragOverlay adjustScale>
       <>
-        <ul className={DESIGNER_CLASSNAME + "ul-auto"}>
+        <ul className={mergeClassNames(DESIGNER_CLASSNAME + 'ul-auto', 'space-y-2 rounded-2xl border border-slate-200 bg-white p-2 shadow-lg')}>
           <Item
             icon={renderIcon(activeId)}
             value={activeSchema.name}
@@ -29,10 +30,10 @@ const ListViewDragOverlay = ({ activeId, schemas, selectedSchemas, renderIcon }:
             required={activeSchema.required}
             readOnly={activeSchema.readOnly}
             dragOverlay
-            className={DESIGNER_CLASSNAME + 'item-auto'}
+            className={mergeClassNames(DESIGNER_CLASSNAME + 'item-auto', 'rounded-xl')}
           />
         </ul>
-        <ul className={DESIGNER_CLASSNAME + "ul-auto"}>
+        <ul className={mergeClassNames(DESIGNER_CLASSNAME + 'ul-auto', 'space-y-2 rounded-2xl border border-slate-200 bg-white p-2 shadow-lg')}>
           {selectedSchemas
             .filter((item) => item.id !== activeId)
             .map((item) => (
@@ -44,7 +45,7 @@ const ListViewDragOverlay = ({ activeId, schemas, selectedSchemas, renderIcon }:
                 required={item.required}
                 readOnly={item.readOnly}
                 dragOverlay
-                className={DESIGNER_CLASSNAME + 'item-auto'}
+                className={mergeClassNames(DESIGNER_CLASSNAME + 'item-auto', 'rounded-xl')}
               />
             ))}
         </ul>

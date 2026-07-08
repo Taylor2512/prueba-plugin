@@ -5,6 +5,7 @@ import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { SidebarSurfaceHeader } from '../shared/SidebarSurfacePrimitives.js';
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
+import { mergeClassNames } from '../../shared/className.js';
 
 type Option = { value: string; label: string };
 
@@ -67,6 +68,7 @@ const ListViewToolbar = ({
     if (filteredCount === 0) return 'Sin coincidencias';
     return `${filteredCount} visibles`;
   })();
+  const isDense = useDefaultStyles !== false;
 
   const densityStyles =
     useDefaultStyles === false
@@ -86,7 +88,7 @@ const ListViewToolbar = ({
           container: {
             display: 'flex',
             flexDirection: 'column',
-            gap: 10,
+            gap: 8,
             minWidth: 0,
             width: '100%',
           } as const,
@@ -94,7 +96,7 @@ const ListViewToolbar = ({
             display: 'flex',
             alignItems: 'flex-start',
             justifyContent: 'space-between',
-            gap: 10,
+            gap: 8,
             minWidth: 0,
             width: '100%',
           } as const,
@@ -102,7 +104,7 @@ const ListViewToolbar = ({
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'flex-start',
-            gap: 3,
+            gap: 2,
             minWidth: 0,
             flex: 1,
           } as const,
@@ -110,7 +112,7 @@ const ListViewToolbar = ({
             minWidth: 0,
             display: 'flex',
             alignItems: 'center',
-            gap: 8,
+            gap: 6,
           } as const,
           counter: {
             flexShrink: 0,
@@ -124,28 +126,34 @@ const ListViewToolbar = ({
           } as const,
           subtitle: {
             fontSize: 11,
-            lineHeight: 1.35,
+            lineHeight: 1.3,
             maxWidth: '100%',
           } as const,
           searchWrap: {
             padding: '0',
             display: 'flex',
             flexDirection: 'column',
-            gap: 8,
+            gap: 6,
             minWidth: 0,
           } as const,
-          input: { borderRadius: 10, fontSize: 12, height: 32, minWidth: 0 } as const,
+          input: { borderRadius: 10, fontSize: 12, height: 30, minWidth: 0 } as const,
           empty: { fontSize: 11, textAlign: 'left', padding: '0' } as const,
           actions: {
             display: 'inline-flex',
             alignItems: 'center',
-            gap: 6,
+            gap: 4,
             flexShrink: 0,
           } as const,
       };
 
   return (
-    <div className={DESIGNER_CLASSNAME + 'list-view-toolbar'} style={densityStyles.container}>
+    <div
+      className={mergeClassNames(
+        DESIGNER_CLASSNAME + 'list-view-toolbar',
+        'flex min-w-0 flex-col',
+        isDense && 'w-full gap-2',
+      )}
+    >
       <SidebarSurfaceHeader
         leading={<Layers size={14} className={DESIGNER_CLASSNAME + 'layers-auto'} />}
         title={title}
@@ -156,14 +164,18 @@ const ListViewToolbar = ({
         ]}
         trailing={
           showBulkAction && hasSchemas ? (
-            <div className={DESIGNER_CLASSNAME + 'list-view-toolbar-actions'}>
+            <div className={mergeClassNames(
+              DESIGNER_CLASSNAME + 'list-view-toolbar-actions',
+              'flex items-center gap-2',
+              isDense && 'shrink-0',
+            )}>
               {showBulkRecipientAction && collaborationContext?.activeRecipient && collaborationContext.canEditStructure !== false ? (
                 <Button
                   type="text"
                   size="small"
                   disabled={bulkRecipientDisabled}
                   onClick={onBulkAssignRecipient}
-                  className={DESIGNER_CLASSNAME + 'bulk-assign-recipient'}>
+                  className={mergeClassNames(DESIGNER_CLASSNAME + 'bulk-assign-recipient', 'rounded-full border-slate-200 text-slate-700 shadow-sm')}>
                   {bulkRecipientLabel || `Asignar a ${collaborationContext.activeRecipient.name}`}
                 </Button>
               ) : null}
@@ -171,7 +183,7 @@ const ListViewToolbar = ({
                 type="text"
                 size="small"
                 onClick={onStartBulk}
-                className={DESIGNER_CLASSNAME + 'bulk-update'}>
+                className={mergeClassNames(DESIGNER_CLASSNAME + 'bulk-update', 'rounded-full border-slate-200 text-slate-700 shadow-sm')}>
                 {bulkActionLabel}
               </Button>
             </div>
@@ -179,7 +191,11 @@ const ListViewToolbar = ({
         }
         compact
       />
-      <div className={DESIGNER_CLASSNAME + 'list-view-toolbar-controls'} style={densityStyles.searchWrap}>
+      <div className={mergeClassNames(
+        DESIGNER_CLASSNAME + 'list-view-toolbar-controls',
+        'flex flex-col',
+        isDense && 'gap-2',
+      )}>
         <Input
           size="small"
           allowClear
@@ -187,10 +203,13 @@ const ListViewToolbar = ({
           prefix={<Search size={12} className={DESIGNER_CLASSNAME + 'search-auto'} />}
           value={searchQuery}
           onChange={(e) => onChangeSearch(e.target.value)}
-          className={DESIGNER_CLASSNAME + 'input-auto'}
-          style={densityStyles.input}
+          className={mergeClassNames(
+            DESIGNER_CLASSNAME + 'input-auto',
+            'min-w-0 rounded-xl border-slate-200 bg-white text-sm shadow-sm',
+            isDense && 'h-8',
+          )}
         />
-        <div className={DESIGNER_CLASSNAME + 'list-view-toolbar-row'}>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-toolbar-row', 'flex items-center gap-2')}>
           {schemaTypes.length > 2 ? (
             <Select
               size="small"
@@ -198,7 +217,7 @@ const ListViewToolbar = ({
               onChange={onChangeType}
               options={schemaTypes}
               popupMatchSelectWidth={false}
-              className={DESIGNER_CLASSNAME + 'select-auto'}
+              className={mergeClassNames(DESIGNER_CLASSNAME + 'select-auto', 'min-w-0 rounded-xl')}
             />
           ) : null}
           {hasActiveSearch ? (
@@ -206,7 +225,7 @@ const ListViewToolbar = ({
               type="text"
               size="small"
               onClick={onClearFilters}
-              className={DESIGNER_CLASSNAME + 'list-view-clear-filters'}>
+              className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-clear-filters', 'rounded-xl px-2 text-slate-600')}>
               {clearLabel}
             </Button>
           ) : null}

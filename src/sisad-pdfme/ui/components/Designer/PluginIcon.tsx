@@ -95,7 +95,10 @@ const PluginIcon = (props: PluginIconProps) => {
 
   if (icon) {
     return (
-      <div className={className} {...dataAttrs}>
+      <div
+        className={useDefaultStyles ? `flex items-center justify-center ${className || ''}`.trim() : className}
+        {...dataAttrs}
+      >
         <SVGIcon svgString={icon} size={size} styles={iconStyles} label={label} />
       </div>
     );
@@ -103,14 +106,11 @@ const PluginIcon = (props: PluginIconProps) => {
 
   return (
     <div
-      className={resolvedFallbackClassName}
+      className={useDefaultStyles ? `flex items-center justify-center ${resolvedFallbackClassName}`.trim() : resolvedFallbackClassName}
       style={{
         ...(useDefaultStyles
           ? {
               color: resolvedIconColor,
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
             }
           : {}),
         ...styles,

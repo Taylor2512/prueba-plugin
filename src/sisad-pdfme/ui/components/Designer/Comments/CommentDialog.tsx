@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { mergeClassNames } from '../shared/className.js';
 
 type CommentDialogProps = {
   open: boolean;
@@ -21,37 +22,21 @@ const CommentDialog = ({ open, initialText = '', onClose, onSave, title = 'Agreg
     <div
       role="dialog"
       aria-modal="true"
-      className="sisad-pdfme-comment-dialog"
-      style={{
-        position: 'fixed',
-        inset: 0,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        zIndex: 9999,
-      }}
+      className={mergeClassNames('sisad-pdfme-comment-dialog fixed inset-0 z-[9999] flex items-center justify-center')}
     >
-      <div style={{ position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.3)' }} onClick={onClose} />
+      <div className="absolute inset-0 bg-black/30" onClick={onClose} />
       <div
-        style={{
-          minWidth: 360,
-          maxWidth: 'min(95vw, 720px)',
-          background: 'var(--color-bg-elevated, #fff)',
-          padding: 16,
-          borderRadius: 8,
-          boxShadow: '0 8px 24px rgba(0,0,0,0.12)',
-          zIndex: 99999,
-        }}
+        className="relative z-[1] min-w-[360px] max-w-[min(95vw,720px)] rounded-2xl bg-white p-4 shadow-2xl"
       >
-        <div style={{ marginBottom: 8, fontWeight: 600 }}>{title}</div>
+        <div className="mb-2 text-sm font-semibold text-slate-900">{title}</div>
         <textarea
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Escribe un comentario..."
-          style={{ width: '100%', minHeight: 100, padding: 8, boxSizing: 'border-box' }}
+          className="min-h-[100px] w-full rounded-xl border border-slate-200 p-2 text-sm text-slate-900 shadow-sm outline-none focus:border-sky-300 focus:ring-2 focus:ring-sky-100"
         />
-        <div style={{ display: 'flex', gap: 8, justifyContent: 'flex-end', marginTop: 12 }}>
-          <button type="button" onClick={onClose} style={{ padding: '8px 12px' }}>
+        <div className="mt-3 flex justify-end gap-2">
+          <button type="button" onClick={onClose} className="rounded-full border border-slate-200 bg-white px-3 py-2 text-sm font-medium text-slate-700 shadow-sm">
             Cancelar
           </button>
           <button
@@ -61,7 +46,7 @@ const CommentDialog = ({ open, initialText = '', onClose, onSave, title = 'Agreg
               if (!t) return;
               onSave(t);
             }}
-            style={{ padding: '8px 12px' }}
+            className="rounded-full border border-sky-200 bg-sky-600 px-3 py-2 text-sm font-medium text-white shadow-sm"
           >
             Guardar
           </button>

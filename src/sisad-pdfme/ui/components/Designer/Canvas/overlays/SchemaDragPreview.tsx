@@ -19,7 +19,7 @@ const SchemaDragPreview = ({
 }: SchemaDragPreviewProps) => {
   return (
     <div
-      className="sisad-pdfme-schema-drag-preview"
+      className="sisad-pdfme-schema-drag-preview pointer-events-none"
       data-over-canvas={isOverCanvas ? 'true' : 'false'}
       data-over-page={isOverPage ? 'true' : 'false'}
       style={
@@ -31,8 +31,8 @@ const SchemaDragPreview = ({
       }
       aria-label={`${schemaType} drag preview`}
     >
-      <div className="sisad-pdfme-schema-drag-preview-orb">
-        {icon ? <span className="sisad-pdfme-schema-drag-preview-icon">{icon}</span> : null}
+      <div className="sisad-pdfme-schema-drag-preview-orb flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white shadow-lg">
+        {icon ? <span className="sisad-pdfme-schema-drag-preview-icon text-slate-700">{icon}</span> : null}
       </div>
     </div>
   );

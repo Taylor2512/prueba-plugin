@@ -13,6 +13,7 @@ export default function PopoverMenu({
   panelClassName = '',
   align = 'end',
   disabled = false,
+  ariaLabel = '',
 }) {
   const [open, setOpen] = useState(false)
   const ref = useRef(null)
@@ -57,6 +58,7 @@ export default function PopoverMenu({
         onClick={() => setOpen((current) => !current)}
         aria-haspopup="menu"
         aria-expanded={open}
+        aria-label={ariaLabel || label}
         disabled={disabled}
       >
         {icon && <span className="sisad-pdfme-popover-button-icon">{icon}</span>}
@@ -108,4 +110,5 @@ PopoverMenu.propTypes = {
   panelClassName: PropTypes.string,
   align: PropTypes.oneOf(['start', 'end']),
   disabled: PropTypes.bool,
+  ariaLabel: PropTypes.string,
 }

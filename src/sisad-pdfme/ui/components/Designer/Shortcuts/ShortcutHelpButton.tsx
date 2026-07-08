@@ -2,6 +2,7 @@ import React from 'react';
 import { Button, Tooltip } from 'antd';
 import type { ReactNode } from 'react';
 import { Keyboard } from 'lucide-react';
+import { cn } from '../../../utils/cn.js';
 
 type ShortcutHelpButtonProps = {
   onClick: () => void;
@@ -18,6 +19,12 @@ const ShortcutHelpButton = ({
   tooltip = 'Ver atajos del diseñador (Ctrl+/)',
   icon = <Keyboard size={14} />,
 }: ShortcutHelpButtonProps) => {
+  const buttonClassName = cn(
+    'sisad-pdfme-shortcuts-button inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-medium text-slate-700 shadow-sm transition',
+    'hover:border-sky-200 hover:text-sky-700 hover:shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+    className,
+  );
+
   return (
     <Tooltip title={tooltip} placement="bottom">
       <Button
@@ -25,7 +32,7 @@ const ShortcutHelpButton = ({
         icon={icon}
         onClick={onClick}
         aria-label={typeof label === 'string' ? label : 'Ver atajos del diseñador'}
-        className={`sisad-pdfme-shortcuts-button ${className || ''}`.trim()}
+        className={buttonClassName}
       >
         {label}
       </Button>

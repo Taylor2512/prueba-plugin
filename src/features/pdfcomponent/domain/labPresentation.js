@@ -69,6 +69,7 @@ export const getLabExamplePresentation = (example) => {
     focus: meta.focus || example?.title || modeLabel,
     summary: meta.summary || example?.description || '',
     coverage,
+    recommended: example?.id === 'multi-document-routing',
   }
 }
 

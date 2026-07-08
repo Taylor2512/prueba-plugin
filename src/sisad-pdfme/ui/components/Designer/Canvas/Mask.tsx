@@ -16,12 +16,10 @@ const Mask = ({ width, height, className, style, maskColor, blur = 1 }: MaskProp
 
   return (
     <div
-      className={mergeClassNames(DESIGNER_CLASSNAME + 'mask', className)}
+      className={mergeClassNames(DESIGNER_CLASSNAME + 'mask', className, 'pointer-events-none absolute z-[100]')}
       style={{
-        position: 'absolute',
         top: -RULER_HEIGHT,
         left: -RULER_HEIGHT,
-        zIndex: 100,
         width,
         height,
         background: maskColor || token.colorBgMask,

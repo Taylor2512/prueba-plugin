@@ -21,6 +21,7 @@ import {
 } from '../../../../../canvas/canvasRenderState.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { deriveCanvasBlockReason, shouldDisplayBlockingMask } from './overlayState.js';
+import { mergeClassNames } from '../../shared/className.js';
 
 export interface CanvasStateOverlayProps {
   state: CanvasRenderState;
@@ -61,9 +62,9 @@ export default function CanvasStateOverlay({
         role="status"
         aria-live="polite"
       >
-        <div className={`${CLS}-skeleton`}>
-          <div className={`${CLS}-skeleton-pulse`} aria-hidden="true" />
-          <span className={`${CLS}-skeleton-text`}>{config.message}</span>
+        <div className={mergeClassNames(`${CLS}-skeleton`, 'flex items-center gap-3 rounded-2xl border border-slate-200 bg-white/90 px-4 py-3 shadow-sm')}>
+          <div className={mergeClassNames(`${CLS}-skeleton-pulse`, 'h-10 w-10 rounded-xl bg-slate-100')} aria-hidden="true" />
+          <span className={mergeClassNames(`${CLS}-skeleton-text`, 'text-sm font-medium text-slate-700')}>{config.message}</span>
         </div>
       </div>
     );
@@ -86,15 +87,15 @@ export default function CanvasStateOverlay({
         data-blocking-mask={blockingMaskVisible ? 'true' : 'false'}
         role="alert"
       >
-        <div className={`${CLS}-error`}>
-          <span className={`${CLS}-error-icon`} aria-hidden="true">
+        <div className={mergeClassNames(`${CLS}-error`, 'flex items-center gap-3 rounded-2xl border border-rose-200 bg-white/95 px-4 py-3 shadow-sm')}>
+          <span className={mergeClassNames(`${CLS}-error-icon`, 'text-rose-600')} aria-hidden="true">
             ⚠
           </span>
-          <span className={`${CLS}-error-text`}>{errorMessage}</span>
+          <span className={mergeClassNames(`${CLS}-error-text`, 'text-sm text-slate-700')}>{errorMessage}</span>
           {config.hasAction && onRetry && (
             <button
               type="button"
-              className={`${CLS}-error-action`}
+              className={mergeClassNames(`${CLS}-error-action`, 'inline-flex items-center rounded-full border border-rose-200 bg-rose-600 px-3 py-1.5 text-xs font-medium text-white shadow-sm')}
               onClick={onRetry}
             >
               {config.actionLabel}
@@ -118,11 +119,11 @@ export default function CanvasStateOverlay({
         role="status"
         aria-live="polite"
       >
-        <div className={`${CLS}-offline-banner`}>
-          <span className={`${CLS}-offline-icon`} aria-hidden="true">
+        <div className={mergeClassNames(`${CLS}-offline-banner`, 'flex items-center gap-3 rounded-2xl border border-amber-200 bg-white/95 px-4 py-3 shadow-sm')}>
+          <span className={mergeClassNames(`${CLS}-offline-icon`, 'text-amber-500')} aria-hidden="true">
             ⚡
           </span>
-          <span className={`${CLS}-offline-text`}>{config.message}</span>
+          <span className={mergeClassNames(`${CLS}-offline-text`, 'text-sm text-slate-700')}>{config.message}</span>
         </div>
       </div>
     );
@@ -140,11 +141,11 @@ export default function CanvasStateOverlay({
         data-block-reason={blockReason || 'none'}
         data-blocking-mask={blockingMaskVisible ? 'true' : 'false'}
       >
-        <div className={DESIGNER_CLASSNAME + 'canvas-empty-state-card'}>
-          <span className={DESIGNER_CLASSNAME + 'canvas-empty-state-title'}>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'canvas-empty-state-card', 'rounded-2xl border border-dashed border-slate-200 bg-white/95 px-4 py-4 shadow-sm')}>
+          <span className={mergeClassNames(DESIGNER_CLASSNAME + 'canvas-empty-state-title', 'block text-sm font-semibold text-slate-800')}>
             Esta página todavía no tiene campos
           </span>
-          <span className={DESIGNER_CLASSNAME + 'canvas-empty-state-hint'}>
+          <span className={mergeClassNames(DESIGNER_CLASSNAME + 'canvas-empty-state-hint', 'block text-xs leading-5 text-slate-500')}>
             Arrastra un campo del catálogo izquierdo para empezar a construir el documento.
           </span>
         </div>

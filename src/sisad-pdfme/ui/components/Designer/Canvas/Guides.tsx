@@ -54,7 +54,11 @@ const Guides = ({
     <>
       {/* Corner square where both rulers meet */}
       <div
-        className={mergeClassNames(DESIGNER_CLASSNAME + 'guides-corner', className)}
+        className={mergeClassNames(
+          DESIGNER_CLASSNAME + 'guides-corner',
+          className,
+          'overflow-hidden border-b border-r border-slate-700/90 bg-slate-800 shadow-sm',
+        )}
         style={guideStyle(0, 0, RULER_HEIGHT, RULER_HEIGHT)}
       />
       {/* Horizontal ruler (top) */}
@@ -63,6 +67,7 @@ const Guides = ({
           DESIGNER_CLASSNAME + 'guides-ruler',
           DESIGNER_CLASSNAME + 'guides-ruler-horizontal',
           className,
+          'overflow-hidden border-b border-slate-700/90 bg-slate-800 shadow-sm',
         )}
         style={guideStyle(0, RULER_HEIGHT, RULER_HEIGHT, paperSize.width)}
         zoom={ZOOM}
@@ -78,6 +83,7 @@ const Guides = ({
           DESIGNER_CLASSNAME + 'guides-ruler',
           DESIGNER_CLASSNAME + 'guides-ruler-vertical',
           className,
+          'overflow-hidden border-r border-slate-700/90 bg-slate-800 shadow-sm',
         )}
         style={guideStyle(RULER_HEIGHT, 0, paperSize.height, RULER_HEIGHT)}
         zoom={ZOOM}

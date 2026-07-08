@@ -371,7 +371,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
         />
       ),
       children: (
-        <Space direction="vertical" size={8} style={{ width: '100%' }}>
+        <Space direction="vertical" size={8} className="w-full">
           <div className={`${DESIGNER_CLASSNAME}schema-config-summary`}>
             <div className={`${DESIGNER_CLASSNAME}schema-config-summary-text`}>{persistenceSummary}</div>
           </div>
@@ -446,7 +446,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
         />
       ),
       children: (
-        <Space direction="vertical" size={8} style={{ width: '100%' }}>
+        <Space direction="vertical" size={8} className="w-full">
           <div className={`${DESIGNER_CLASSNAME}schema-config-summary`}>
             <div className={`${DESIGNER_CLASSNAME}schema-config-summary-text`}>{formJsonSummary}</div>
           </div>
@@ -528,7 +528,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
         />
       ),
       children: (
-        <Space direction="vertical" size={8} style={{ width: '100%' }}>
+        <Space direction="vertical" size={8} className="w-full">
           <div className={`${DESIGNER_CLASSNAME}schema-config-summary`}>
             <div className={`${DESIGNER_CLASSNAME}schema-config-summary-text`}>{apiSummary}</div>
           </div>
@@ -713,7 +713,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                 key: 'api-advanced',
                 label: 'Encabezados, parámetros y mapeos',
                 children: (
-                  <Space direction="vertical" size={10} style={{ width: '100%' }}>
+                  <Space direction="vertical" size={10} className="w-full">
                     <PairEditor
                       title="Encabezados personalizados"
                       description="Se mezclan con los heredados del sistema y pueden sobrescribir valores."

@@ -1,0 +1,11 @@
+/**
+ * style.css — neutralizado (dedup Tailwind).
+ *
+ * index.html enlaza esta hoja, pero las directivas @tailwind viven ahora
+ * en src/styles/tailwind.css (importada por src/main.jsx). Mantener las
+ * directivas aquí generaba DOBLE emisión de Tailwind (base+components+utilities
+ * duplicados en el bundle). Se deja vacío a propósito para no romper el
+ * <link> de index.html.
+ *
+ * Fuente única de Tailwind: src/styles/tailwind.css → src/main.jsx.
+ */

@@ -3,42 +3,19 @@ import { LoaderCircle } from 'lucide-react';
 import { theme } from 'antd';
 
 const Spinner: React.FC = () => {
-  const { token } = theme.useToken();
-
-  const containerStyle: React.CSSProperties = {
-    position: 'relative',
-    width: '100%',
-    height: '100%',
-    overflow: 'hidden',
-    display: 'flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderRadius: '50%',
-    color: token.colorPrimary,
-  };
-
-  const loaderStyle: React.CSSProperties = {
-    animation: 'spin 1s linear infinite',
-  };
-
-  const keyframes = `
-    @keyframes spin {
-      0% {
-        transform: rotate(0deg);
-      }
-      100% {
-        transform: rotate(360deg);
-      }
-    }
-  `;
+  const {
+    token: { colorPrimary },
+  } = theme.useToken();
 
   return (
-    <>
-      <style>{keyframes}</style>
-      <div style={containerStyle}>
-        <LoaderCircle size={50} style={loaderStyle} />
-      </div>
-    </>
+    <div
+      className="relative flex h-full w-full items-center justify-center overflow-hidden rounded-full"
+      style={{ color: colorPrimary }}
+      aria-label="Cargando"
+      role="status"
+    >
+      <LoaderCircle size={42} className="animate-spin" />
+    </div>
   );
 };
 

@@ -229,10 +229,10 @@ const ListView = (
   const showList = !isBulkUpdateFieldNamesMode && filteredSchemas.length > 0;
 
   return (
-    <SidebarFrame className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view', props.className)}>
+    <SidebarFrame className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view', 'flex h-full min-h-0 flex-col', props.className)}>
       <div
         ref={rootRef}
-        className={DESIGNER_CLASSNAME + 'list-view-density-wrap'}
+        className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-density-wrap', 'flex min-h-0 flex-1 flex-col')}
         data-list-density={densityMode}
         style={{ '--list-view-panel-width': `${panelWidth}px` } as React.CSSProperties}
       >
@@ -282,7 +282,7 @@ const ListView = (
                 details: { lineCount: e.target.value.split('\n').length },
               });
             }}
-            className={DESIGNER_CLASSNAME + 'list-view-bulk-textarea'}
+            className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-bulk-textarea', 'min-h-[11rem] rounded-2xl border-slate-200 bg-white shadow-sm')}
           />
         ) : null}
         {showList ? (
@@ -299,11 +299,11 @@ const ListView = (
           />
         ) : null}
         {showEmptyState ? (
-          <div className={DESIGNER_CLASSNAME + 'list-view-empty'}>
-            <Text strong className={DESIGNER_CLASSNAME + 'list-view-empty-title'}>
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-empty', 'flex flex-col items-start gap-2 rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-4')}>
+            <Text strong className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-empty-title', 'text-sm font-semibold text-slate-800')}>
               No hay campos que coincidan
             </Text>
-            <Text type="secondary" className={DESIGNER_CLASSNAME + 'list-view-empty-hint'}>
+            <Text type="secondary" className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-empty-hint', 'text-xs leading-5 text-slate-500')}>
               Limpia la búsqueda, cambia el tipo o vuelve a la vista general del catálogo.
             </Text>
             {hasActiveSearch ? (
@@ -314,7 +314,7 @@ const ListView = (
                   setSearchQuery('');
                   setTypeFilter('all');
                 }}
-                className={DESIGNER_CLASSNAME + 'list-view-empty-action'}>
+                className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-empty-action', 'rounded-full border-slate-200 text-slate-700 shadow-sm')}>
                 Limpiar filtros
               </Button>
             ) : null}

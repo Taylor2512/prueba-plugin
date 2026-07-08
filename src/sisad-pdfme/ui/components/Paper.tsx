@@ -46,7 +46,7 @@ const PaperPage = ({
   <div
     key={String(paperIndex) + JSON.stringify(block.paperSize)}
     data-paper-page="true"
-    className="sisad-pdfme-paper-page"
+    className="sisad-pdfme-paper-page bg-no-repeat bg-left-top"
     {...buildPageMetadataAttrs({ documentId, pageIndex: paperIndex, pageNumber: paperIndex + 1 })}
     tabIndex={-1}
     ref={(e) => registerPaperRef(paperIndex, e)}
@@ -185,7 +185,7 @@ const Paper = (props: {
   return (
     <div
       data-paper-root="true"
-      className="sisad-pdfme-paper-root"
+      className="sisad-pdfme-paper-root relative"
       {...buildPageMetadataAttrs({ documentId })}
       style={{
         '--paper-root-width': `${scaledRootWidth}px`,
@@ -194,7 +194,7 @@ const Paper = (props: {
     >
       <div
         data-paper-scale-layer="true"
-        className="sisad-pdfme-paper-scale-layer"
+        className="sisad-pdfme-paper-scale-layer relative"
         style={{
           '--paper-layer-width': `${rootWidth}px`,
           '--paper-layer-height': `${rootHeight}px`,

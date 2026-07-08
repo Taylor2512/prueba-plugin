@@ -467,15 +467,16 @@ const SidebarShell = ({
     className={mergeClassNames(
       `${DESIGNER_CLASSNAME}left-sidebar-shell`,
       `${DESIGNER_CLASSNAME}sidebar-surface`,
+      'flex h-full min-h-0 flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white/95 shadow-sm',
     )}
     style={style}
-    >
-      <div className={`${DESIGNER_CLASSNAME}left-sidebar-dock-header`}>
-      <span className={`${DESIGNER_CLASSNAME}left-sidebar-dock-kicker`}>Diseñador</span>
-      <span className={`${DESIGNER_CLASSNAME}left-sidebar-dock-title`}>
+  >
+    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-header`, 'flex items-start justify-between gap-3 border-b border-slate-200/70 px-4 py-3')}>
+      <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-kicker`, 'text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500')}>Diseñador</span>
+      <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-title`, 'flex min-w-0 flex-wrap items-center gap-2 text-sm font-semibold text-slate-900')}>
         <span>Campos</span>
         {activeRecipientLabel ? (
-          <span className={`${DESIGNER_CLASSNAME}left-sidebar-dock-recipient`}>
+          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-recipient`, 'inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs text-slate-600')}>
             {activeRecipientLabel}
           </span>
         ) : null}
@@ -489,7 +490,7 @@ const SidebarShell = ({
         ) : null}
       </span>
     </div>
-    <div className={`${DESIGNER_CLASSNAME}left-sidebar-control-band`}>
+    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-control-band`, 'space-y-2.5 border-b border-slate-200/70 px-4 py-3')}>
       <LeftSidebarTabs
         tabs={tabs}
         activeTab={activeTab}
@@ -497,11 +498,11 @@ const SidebarShell = ({
         renderTabIcon={renderTabIcon}
       />
       {searchNode ? (
-        <div className={`${DESIGNER_CLASSNAME}left-sidebar-search-wrap`}>{searchNode}</div>
+        <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-search-wrap`, 'space-y-3')}>{searchNode}</div>
       ) : null}
     </div>
     <div
-      className={`${DESIGNER_CLASSNAME}left-sidebar-main`}
+      className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-main`, 'min-h-0 flex-1 overflow-y-auto px-4 py-2.5')}
     >
       {children}
     </div>
@@ -1013,6 +1014,7 @@ const LeftSidebar = ({
   const sidebarClass = mergeClassNames(
     `${DESIGNER_CLASSNAME}left-sidebar`,
     `${DESIGNER_CLASSNAME}left-sidebar-${variant}`,
+    variant === 'compact' ? `${DESIGNER_CLASSNAME}left-sidebar-compact` : '',
     detached ? `${DESIGNER_CLASSNAME}left-sidebar-detached` : '',
     classNames?.container,
     className,
@@ -1058,7 +1060,10 @@ const LeftSidebar = ({
       >
         {({ listeners, attributes, isDragging: draggableActive }) => (
           <div
-            className={DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap'}
+            className={mergeClassNames(
+              DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap',
+              'relative rounded-2xl border border-slate-200/70 bg-white/90 p-2 shadow-sm transition',
+            )}
             style={activeRecipientWrapStyle || activeRecipientStyles}
           >
             <Button
@@ -1105,13 +1110,13 @@ const LeftSidebar = ({
                     : undefined
                 }
               />
-              <span className={`${DESIGNER_CLASSNAME}plugin-btn-label`}>
-                <span className={DESIGNER_CLASSNAME + 'plugin-btn-label-title'}>
+              <span className={mergeClassNames(`${DESIGNER_CLASSNAME}plugin-btn-label`, 'min-w-0 flex-1 text-left')}>
+                <span className={mergeClassNames(DESIGNER_CLASSNAME + 'plugin-btn-label-title', 'block truncate text-sm font-medium text-slate-800')}>
                   {highlightTerm(displayLabel, searchTerms)}
                 </span>
               </span>
               {isFavorite ? (
-                <span className={DESIGNER_CLASSNAME + 'plugin-favorite-indicator'}>
+                <span className={mergeClassNames(DESIGNER_CLASSNAME + 'plugin-favorite-indicator', 'ml-2 text-amber-500')}>
                   ★
                 </span>
               ) : null}
@@ -1119,7 +1124,10 @@ const LeftSidebar = ({
             <button
               type="button"
               aria-label="Marcar favorito"
-              className={DESIGNER_CLASSNAME + 'plugin-favorite-toggle'}
+              className={mergeClassNames(
+                DESIGNER_CLASSNAME + 'plugin-favorite-toggle',
+                'absolute right-2 top-2 inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-200 bg-white text-[11px] text-slate-400 shadow-sm transition',
+              )}
               data-active={isFavorite ? 'true' : 'false'}
               onClick={(e) => {
                 e.stopPropagation();
@@ -1165,7 +1173,10 @@ const LeftSidebar = ({
       >
         {({ listeners, attributes, isDragging: draggableActive }) => (
           <div
-            className={DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap'}
+            className={mergeClassNames(
+              DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap',
+              'relative rounded-2xl border border-slate-200/70 bg-white/90 p-2 shadow-sm transition',
+            )}
             style={activeRecipientWrapStyle || activeRecipientStyles}
           >
             <Button
@@ -1226,8 +1237,10 @@ const LeftSidebar = ({
                   }
                 />
               </span>
-              <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-copy`}>
-                <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-label`}>{definition.label}</span>
+              <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-item-copy`, 'min-w-0 flex-1 text-left')}>
+                <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-item-label`, 'block truncate text-sm font-medium text-slate-800')}>
+                  {definition.label}
+                </span>
               </span>
             </Button>
           </div>
@@ -1279,7 +1292,7 @@ const LeftSidebar = ({
     : [];
 
   const searchNode = showSearchInput ? (
-    <div className={DESIGNER_CLASSNAME + 'left-sidebar-search-stack'}>
+    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-search-stack', 'space-y-3')}>
       <LeftSidebarSearch
         value={search}
         onChange={setSearch}
@@ -1291,7 +1304,7 @@ const LeftSidebar = ({
           parsedQuery.categories.size > 0 ||
           parsedQuery.types.size > 0 ||
           parsedQuery.tags.size > 0) ? (
-        <div className={DESIGNER_CLASSNAME + 'left-sidebar-chip-row'}>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-2')}>
           {Array.from(parsedQuery.capabilities).map((cap) => (
             <Button key={`facet-cap-${cap}`} size="small" type="text">
               cap:{cap}
@@ -1317,7 +1330,7 @@ const LeftSidebar = ({
           </Button>
         </div>
       ) : null}
-      <div className={DESIGNER_CLASSNAME + 'left-sidebar-chip-row'}>
+      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-2')}>
         <Button
           className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
           size="small"
@@ -1358,7 +1371,7 @@ const LeftSidebar = ({
         ) : null}
       </div>
       {SHOW_ADVANCED_CATALOG_CONTROLS ? (
-        <div className={DESIGNER_CLASSNAME + 'left-sidebar-chip-row'}>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-2')}>
           {SUPPORTED_CAPABILITIES.map((capability) => {
             const isActive = activeCapabilities.has(capability);
             return (
@@ -1385,7 +1398,7 @@ const LeftSidebar = ({
         </div>
       ) : null}
       {SHOW_ADVANCED_CATALOG_CONTROLS && groupedPlugins.length > 0 ? (
-        <div className={DESIGNER_CLASSNAME + 'left-sidebar-chip-row'}>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-2')}>
           {groupedPlugins.slice(0, 8).map(({ category, items }) => (
             <Button
               key={`cat-${category}`}

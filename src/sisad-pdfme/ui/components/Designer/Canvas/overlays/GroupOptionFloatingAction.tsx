@@ -13,7 +13,6 @@ type Props = {
 };
 
 const BUTTON_GAP_PX = 10;
-const BUTTON_SIZE_PX = 22;
 
 /**
  * GroupOptionFloatingAction
@@ -33,7 +32,7 @@ const BUTTON_SIZE_PX = 22;
  *
  * DOM contract:
  * - data-role="group-add-option"  (no data-schema-id, no data-option-id)
- * - pointerEvents: none on container, auto on button
+ * - pointerEvents controlled by shared Tailwind bridge classes
  */
 const GroupOptionFloatingAction = ({
   activeElements,
@@ -74,40 +73,19 @@ const GroupOptionFloatingAction = ({
 
   return (
     <div
-      className="sisad-pdfme-option-group-floating-action"
+      className="sisad-pdfme-option-group-floating-action pointer-events-none absolute z-[201]"
       style={{
-        position: 'absolute',
         left: `${centerX}px`,
         top: `${topY}px`,
         transform: 'translateX(-50%)',
-        pointerEvents: 'none',
-        zIndex: 201,
       }}
     >
       <button
         type="button"
-        className="sisad-pdfme-option-group__add-button"
+        className="sisad-pdfme-option-group__add-button pointer-events-auto inline-flex h-[22px] w-[22px] select-none items-center justify-center rounded-[4px] border-[1.5px] border-[#4d00c8] bg-[#4d00c8] p-0 text-[16px] font-bold leading-none text-white shadow-[0_2px_6px_rgba(77,0,200,0.3)] transition-[box-shadow,background] duration-100 hover:bg-[#3b00a0]"
         data-role="group-add-option"
         data-schema-interactive-control="true"
         title={optionGroupType === 'radioGroup' ? 'Agregar opción al grupo' : 'Agregar casilla al grupo'}
-        style={{
-          pointerEvents: 'auto',
-          width: `${BUTTON_SIZE_PX}px`,
-          height: `${BUTTON_SIZE_PX}px`,
-          borderRadius: '4px',
-          border: '1.5px solid #4d00c8',
-          background: '#4d00c8',
-          color: '#fff',
-          fontSize: '16px',
-          fontWeight: '700',
-          cursor: 'pointer',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          boxShadow: '0 2px 6px rgba(77,0,200,0.3)',
-          padding: '0',
-          lineHeight: '1',
-        }}
         onPointerDown={(e) => e.stopPropagation()}
         onMouseDown={(e) => e.stopPropagation()}
         onClick={(e) => {

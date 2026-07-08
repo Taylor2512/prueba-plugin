@@ -110,7 +110,7 @@ const ItemStatusLabel = ({
 
   return (
     <Tooltip title={status === 'is-danger' ? `${tooltipText} ${notUniqueLabel}` : tooltipText}>
-      <span className={DESIGNER_CLASSNAME + 'list-view-item-status'}>
+      <span className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-status', 'inline-flex items-center gap-1 rounded-full border border-amber-200 bg-amber-50 px-2 py-0.5 text-[11px] font-medium text-amber-700')}>
         <CircleAlert size={14} />
         {statusText}
         {status === 'is-danger' ? notUniqueLabel : ''}
@@ -136,15 +136,15 @@ const ItemActions = ({
   isHovered?: boolean;
   label?: string;
 }) => (
-  <div className={DESIGNER_CLASSNAME + 'list-view-item-actions'}>
+  <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-actions', 'flex items-center gap-1.5')}>
     {readOnly ? (
       <Tooltip title="Solo lectura" placement="top">
-        <Lock size={13} className={DESIGNER_CLASSNAME + 'list-view-item-lock'} />
+        <Lock size={13} className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-lock', 'text-slate-500')} />
       </Tooltip>
     ) : null}
     {required ? (
       <Tooltip title="Campo requerido" placement="top">
-        <span className={DESIGNER_CLASSNAME + 'list-view-item-required'}>*</span>
+        <span className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-required', 'text-xs font-semibold text-rose-600')}>*</span>
       </Tooltip>
     ) : null}
     {onToggleVisibility ? (
@@ -152,7 +152,7 @@ const ItemActions = ({
         <button
           onClick={(e) => { e.stopPropagation(); onToggleVisibility(); }}
           title={hidden ? 'Mostrar' : 'Ocultar'}
-          className={DESIGNER_CLASSNAME + "button-auto"}
+          className={mergeClassNames(DESIGNER_CLASSNAME + 'button-auto', 'inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm')}
         >
           {hidden ? <EyeOff size={13} /> : <Eye size={13} />}
         </button>
@@ -173,8 +173,7 @@ const ItemActions = ({
             onDelete();
           }}
           title="Eliminar campo"
-          className={DESIGNER_CLASSNAME + 'button-auto'}
-          style={{ color: '#d92d20' }}
+          className={mergeClassNames(DESIGNER_CLASSNAME + 'button-auto', 'inline-flex h-7 w-7 items-center justify-center rounded-full border border-rose-200 bg-white text-rose-600 shadow-sm')}
         >
           <Trash2 size={13} />
         </button>
@@ -253,7 +252,11 @@ const Item = React.memo(
     return (
       <li
         ref={ref}
-        className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item', className)}
+        className={mergeClassNames(
+          DESIGNER_CLASSNAME + 'list-view-item',
+          'relative rounded-2xl border border-slate-200/70 bg-white/95 shadow-sm',
+          className,
+        )}
         style={dragStyle}
         data-dragging={dragging ? 'true' : 'false'}
         data-sorting={sorting ? 'true' : 'false'}
@@ -263,7 +266,7 @@ const Item = React.memo(
         data-schema-type={schemaType}>
         <button
           type="button"
-          className={DESIGNER_CLASSNAME + 'list-view-item-hit-target'}
+          className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-hit-target', 'absolute inset-0 z-0 rounded-2xl')}
           aria-label={valueTooltip}
           onMouseEnter={() => { setIsHovered(true); onMouseEnter?.(); }}
           onMouseLeave={() => { setIsHovered(false); onMouseLeave?.(); }}
@@ -276,17 +279,17 @@ const Item = React.memo(
           }}
         />
         <div
-          className={DESIGNER_CLASSNAME + 'list-view-item-content'}
+          className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-content', 'relative z-10 flex items-center gap-3 px-3 py-2.5')}
           {...props}
           aria-hidden="true">
           <Button
             {...listeners}
-            className={DESIGNER_CLASSNAME + 'list-view-item-grip'}
+            className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-grip', 'inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500')}
             icon={<GripVertical size={14} />} />
-          <div className={DESIGNER_CLASSNAME + 'list-view-item-icon'}>{icon}</div>
-          <div className={DESIGNER_CLASSNAME + 'list-view-item-main'}>
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-icon', 'flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-slate-50')}>{icon}</div>
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-main', 'min-w-0 flex-1 space-y-1')}>
             <Text
-              className={DESIGNER_CLASSNAME + 'list-view-item-value'}
+              className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-value', 'block truncate text-sm font-medium text-slate-800')}
               title={valueTooltip}
               ellipsis={{ tooltip: valueTooltip }}>
               <ItemStatusLabel
@@ -298,20 +301,13 @@ const Item = React.memo(
             </Text>
             {Array.isArray(metaBadges) && metaBadges.length > 0 ? (
               <div
-                className={DESIGNER_CLASSNAME + 'list-view-item-meta'}
-                style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}
+                className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-meta', 'flex flex-wrap gap-1.5')}
               >
                 {metaBadges.map((badge) => (
                   <span
                     key={`${badge.label}-${badge.color || 'default'}`}
-                    className={DESIGNER_CLASSNAME + 'list-view-item-meta-badge'}
+                    className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-meta-badge', 'inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-medium')}
                     style={{
-                      display: 'inline-flex',
-                      alignItems: 'center',
-                      padding: '1px 6px',
-                      borderRadius: 999,
-                      fontSize: 10,
-                      lineHeight: 1.35,
                       color: badge.color || '#667085',
                       background: badge.color ? `${badge.color}1A` : '#F2F4F7',
                       border: `1px solid ${badge.color ? `${badge.color}4D` : '#D0D5DD'}`,

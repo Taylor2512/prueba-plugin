@@ -1,4 +1,4 @@
-import React, { useContext, useMemo } from 'react';
+import React, { useContext } from 'react';
 import { Size } from '@sisad-pdfme/common';
 // Import icons from lucide-react
 // Note: In tests, these will be mocked by the mock file in __mocks__/lucide-react.js
@@ -161,22 +161,18 @@ const CtlBar = (props: CtlBarProps) => {
   const zoomChangeHandler = setZoom ?? setZoomLevel;
   const toolbarDensity: ToolbarDensity =
     size.width >= 1200 ? 'comfortable' : size.width >= 900 ? 'compact' : 'minimal';
-  const showPageNavButtons = pageNum > 1 && toolbarDensity !== 'minimal';
-  const showZoomStepper = toolbarDensity !== 'minimal';
+  const showPageNavButtons = pageNum > 1 && toolbarDensity === 'comfortable';
+  const showZoomStepper = toolbarDensity === 'comfortable';
   const showSaveText = toolbarDensity === 'comfortable';
   const showFitAction = toolbarDensity === 'comfortable';
   const statusTone = (documentStatus || '').toLowerCase().includes('edit') ? 'editing' : 'idle';
   const pageLabel = `Pág ${pageCursor + 1}/${Math.max(1, pageNum)}`;
-  const summaryLabel = `Doc · ${pageLabel}${selectionCount && selectionCount > 0 ? ` · Sel ${selectionCount}` : ''}`;
+  const summaryLabel = `Doc · ${pageLabel}${selectionCount && selectionCount > 0 ? ` · Sel ${selectionCount}` : ''}${isGroupedSelection ? ' · Grupo' : ''}`;
 
-  const pageMenuItems: MenuProps['items'] = useMemo(
-    () =>
-      Array.from({ length: Math.max(1, pageNum) }).map((_, index) => ({
-        key: `page-${index + 1}`,
-        label: `Página ${index + 1}`,
-      })),
-    [pageNum],
-  );
+  const pageMenuItems: MenuProps['items'] = Array.from({ length: Math.max(1, pageNum) }).map((_, index) => ({
+    key: `page-${index + 1}`,
+    label: `Página ${index + 1}`,
+  }));
 
   const handlePageMenuClick: NonNullable<MenuProps['onClick']> = ({ key }) => {
     const pageFromKey = Number(String(key).replace('page-', ''));
@@ -185,45 +181,42 @@ const CtlBar = (props: CtlBarProps) => {
     }
   };
 
-  const moreMenuItems: MenuProps['items'] = useMemo(() => {
-    const items: MenuProps['items'] = [];
-    if (!showFitAction && onFitWidth) {
-      items.push({ key: 'fit-width', label: 'Ajustar ancho' });
-    }
-    if (!showFitAction && onFitPage) {
-      items.push({ key: 'fit-page', label: 'Ajustar página' });
-    }
-    if (onOpenShortcuts) {
-      items.push({ key: 'shortcuts', label: 'Atajos' });
-    }
-    if (!showZoomStepper) {
-      items.push({ key: 'zoom-in', label: 'Aumentar zoom' });
-      items.push({ key: 'zoom-out', label: 'Reducir zoom' });
-    }
-    if (!showPageNavButtons && pageNum > 1) {
-      items.push({ key: 'prev-page', label: 'Página anterior' });
-      items.push({ key: 'next-page', label: 'Página siguiente' });
-    }
-    if (onToggleFeature) {
-      items.push({ key: 'toggle-grid', label: featureToggles?.grid ? 'Ocultar cuadrícula' : 'Mostrar cuadrícula' });
-      items.push({ key: 'toggle-guides', label: featureToggles?.guides ? 'Ocultar guías' : 'Mostrar guías' });
-      items.push({ key: 'toggle-snap-lines', label: featureToggles?.snapLines ? 'Ocultar snaps' : 'Mostrar snaps' });
-      items.push({ key: 'toggle-padding', label: featureToggles?.padding ? 'Ocultar padding' : 'Mostrar padding' });
-    }
-    if (addPageAfter) {
-      items.push({ key: 'add-page', label: i18n('addPageAfter') });
-    }
-    if (duplicatePageAfter) {
-      items.push({ key: 'duplicate-page', label: 'Duplicar página' });
-    }
-    if (removePage && pageNum > 1 && pageCursor !== 0) {
-      items.push({ key: 'remove-page', label: i18n('removePage') });
-    }
-    if (onExport) {
-      items.push({ key: 'export-pdf', label: 'Exportar' });
-    }
-    return items;
-  }, [addPageAfter, duplicatePageAfter, featureToggles?.grid, featureToggles?.guides, featureToggles?.padding, featureToggles?.snapLines, i18n, onExport, onFitPage, onFitWidth, onOpenShortcuts, onToggleFeature, pageCursor, pageNum, removePage, showFitAction, showPageNavButtons, showZoomStepper]);
+  const moreMenuItems: MenuProps['items'] = [];
+  if (!showFitAction && onFitWidth) {
+    moreMenuItems.push({ key: 'fit-width', label: 'Ajustar ancho' });
+  }
+  if (!showFitAction && onFitPage) {
+    moreMenuItems.push({ key: 'fit-page', label: 'Ajustar página' });
+  }
+  if (onOpenShortcuts) {
+    moreMenuItems.push({ key: 'shortcuts', label: 'Atajos' });
+  }
+  if (!showZoomStepper) {
+    moreMenuItems.push({ key: 'zoom-in', label: 'Aumentar zoom' });
+    moreMenuItems.push({ key: 'zoom-out', label: 'Reducir zoom' });
+  }
+  if (!showPageNavButtons && pageNum > 1) {
+    moreMenuItems.push({ key: 'prev-page', label: 'Página anterior' });
+    moreMenuItems.push({ key: 'next-page', label: 'Página siguiente' });
+  }
+  if (onToggleFeature) {
+    moreMenuItems.push({ key: 'toggle-grid', label: featureToggles?.grid ? 'Ocultar cuadrícula' : 'Mostrar cuadrícula' });
+    moreMenuItems.push({ key: 'toggle-guides', label: featureToggles?.guides ? 'Ocultar guías' : 'Mostrar guías' });
+    moreMenuItems.push({ key: 'toggle-snap-lines', label: featureToggles?.snapLines ? 'Ocultar snaps' : 'Mostrar snaps' });
+    moreMenuItems.push({ key: 'toggle-padding', label: featureToggles?.padding ? 'Ocultar padding' : 'Mostrar padding' });
+  }
+  if (addPageAfter) {
+    moreMenuItems.push({ key: 'add-page', label: i18n('addPageAfter') });
+  }
+  if (duplicatePageAfter) {
+    moreMenuItems.push({ key: 'duplicate-page', label: 'Duplicar página' });
+  }
+  if (removePage && pageNum > 1 && pageCursor !== 0) {
+    moreMenuItems.push({ key: 'remove-page', label: i18n('removePage') });
+  }
+  if (onExport) {
+    moreMenuItems.push({ key: 'export-pdf', label: 'Exportar' });
+  }
 
   const handleMoreMenuClick: NonNullable<MenuProps['onClick']> = ({ key }) => {
     if (key === 'fit-width') onFitWidth?.();
@@ -246,7 +239,7 @@ const CtlBar = (props: CtlBarProps) => {
   return (
     <div className={UI_CLASSNAME + 'control-bar'} data-density={toolbarDensity} data-layout="canvas-chrome">
       <div className={UI_CLASSNAME + 'control-bar-cluster ' + UI_CLASSNAME + 'control-bar-cluster--top-left'}>
-        <div className={UI_CLASSNAME + 'control-bar-summary'}>
+        <div className={UI_CLASSNAME + 'control-bar-summary rounded-full border border-slate-200/70 bg-white/95 px-3 py-2 shadow-sm'}>
           <span
             className={UI_CLASSNAME + 'control-bar-status-dot'}
             data-status={statusTone}
@@ -258,7 +251,7 @@ const CtlBar = (props: CtlBarProps) => {
       </div>
 
       <div className={UI_CLASSNAME + 'control-bar-cluster ' + UI_CLASSNAME + 'control-bar-cluster--top-center'}>
-        <div className={UI_CLASSNAME + 'control-bar-pill'}>
+        <div className={UI_CLASSNAME + 'control-bar-pill rounded-full border border-slate-200/70 bg-white/95 px-2 py-1 shadow-sm'}>
           {showPageNavButtons ? (
             <Button
               className={UI_CLASSNAME + 'control-bar-icon-btn'}
@@ -288,7 +281,7 @@ const CtlBar = (props: CtlBarProps) => {
       </div>
 
       <div className={UI_CLASSNAME + 'control-bar-cluster ' + UI_CLASSNAME + 'control-bar-cluster--top-right'}>
-        <div className={UI_CLASSNAME + 'control-bar-pill'}>
+        <div className={UI_CLASSNAME + 'control-bar-pill rounded-full border border-slate-200/70 bg-white/95 px-2 py-1 shadow-sm'}>
           <Button
             className={UI_CLASSNAME + 'control-bar-text-btn'}
             type="text"
@@ -306,7 +299,7 @@ const CtlBar = (props: CtlBarProps) => {
       </div>
 
       <div className={UI_CLASSNAME + 'control-bar-cluster ' + UI_CLASSNAME + 'control-bar-cluster--bottom-right'}>
-        <div className={UI_CLASSNAME + 'control-bar-pill'}>
+        <div className={UI_CLASSNAME + 'control-bar-pill rounded-full border border-slate-200/70 bg-white/95 px-2 py-1 shadow-sm'}>
           <Button
             className={UI_CLASSNAME + 'control-bar-icon-btn'}
             type="text"

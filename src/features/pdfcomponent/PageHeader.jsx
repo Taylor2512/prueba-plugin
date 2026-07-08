@@ -2,6 +2,7 @@ import React from 'react'
 import PropTypes from 'prop-types'
 import { getCollaboratorToneClass, getLabModeLabel } from './domain/labPresentation.js'
 import { buildCollaboratorChipStyle } from '@/sisad-pdfme/collaboration/appearance'
+import { cn } from '@/sisad-pdfme/ui/utils/cn'
 import PopoverMenu from './PopoverMenu.jsx'
 
 const EMPTY_ARRAY = []
@@ -92,15 +93,20 @@ const renderCollaboratorButtons = (users, activeCollaboratorId, onActiveCollabor
     )
   })
 
-const HeaderActionStack = ({ status, backLink, downloadLink, controls, isCompact }) => {
+const HeaderActionStack = ({ status = null, backLink = null, downloadLink = null, controls = null, isCompact = false }) => {
   if (!status && !backLink && !downloadLink && !controls) return null
 
   return (
-    <div className={joinClasses('sisad-pdfme-lab-page-actions', isCompact && 'sisad-pdfme-lab-page-actions-compact')}>
-      {status ? <span className="sisad-pdfme-lab-status sisad-pdfme-lab-status-inline">{status}</span> : null}
-      {backLink ? <div className="sisad-pdfme-lab-page-linkRow">{backLink}</div> : null}
-      {downloadLink ? <div className="sisad-pdfme-lab-page-linkRow">{downloadLink}</div> : null}
-      {controls ? <div className="sisad-pdfme-lab-page-controls">{controls}</div> : null}
+    <div
+      className={joinClasses(
+        'sisad-pdfme-lab-page-actions flex min-w-0 flex-wrap items-center justify-end gap-x-1 gap-y-1 rounded-[13px] border border-slate-200 bg-slate-50/75 p-[0.22rem_0.28rem]',
+        isCompact && 'sisad-pdfme-lab-page-actions-compact gap-x-[0.12rem] gap-y-[0.12rem] bg-transparent p-0',
+      )}
+    >
+      {status ? <span className="sisad-pdfme-lab-status sisad-pdfme-lab-status-inline inline-flex items-center rounded-[10px] bg-slate-900/[0.035] px-[0.4rem] py-[0.18rem]">{status}</span> : null}
+      {backLink ? <div className="sisad-pdfme-lab-page-linkRow flex items-center justify-end">{backLink}</div> : null}
+      {downloadLink ? <div className="sisad-pdfme-lab-page-linkRow flex items-center justify-end">{downloadLink}</div> : null}
+      {controls ? <div className="sisad-pdfme-lab-page-controls inline-flex min-w-0 flex-wrap items-center justify-end gap-[0.25rem]">{controls}</div> : null}
     </div>
   )
 }
@@ -114,12 +120,12 @@ HeaderActionStack.propTypes = {
 }
 
 const HeaderDetails = ({ example, pageMetrics }) => (
-  <details className="sisad-pdfme-lab-page-details sisad-pdfme-lab-debug-details">
-    <summary className="sisad-pdfme-lab-page-details-summary">
-      <span className="sisad-pdfme-lab-summary-label">Detalles técnicos</span>
-      <span className="sisad-pdfme-lab-page-details-title">Metadatos y estado</span>
+  <details className="sisad-pdfme-lab-page-details sisad-pdfme-lab-debug-details grid w-full gap-[0.18rem] border-0 pt-[0.08rem]">
+    <summary className="sisad-pdfme-lab-page-details-summary inline-flex w-fit cursor-pointer select-none items-center gap-[0.28rem] list-none">
+      <span className="sisad-pdfme-lab-summary-label text-[0.68rem] font-bold text-blue-700">Detalles técnicos</span>
+      <span className="sisad-pdfme-lab-page-details-title text-[0.68rem] font-bold text-blue-700">Metadatos y estado</span>
     </summary>
-    <div className="sisad-pdfme-lab-page-context">
+    <div className="sisad-pdfme-lab-page-context flex min-w-0 flex-col gap-[0.4rem]">
       {pageMetrics.length > 0 ? (
         <dl className="sisad-pdfme-lab-page-metrics" aria-label="Estado del laboratorio">
           {pageMetrics.map((metric) => (
@@ -337,10 +343,15 @@ export default function PageHeader({
   const showExpandedHeader = !isCompact
 
   return (
-    <header className="sisad-pdfme-lab-page-hero sisad-pdfme-lab-editor-shell" data-density={density}>
-      <div className="sisad-pdfme-lab-page-topbar sisad-pdfme-lab-editor-topbar">
-        <div className="sisad-pdfme-lab-page-copy">
-          <div className="sisad-pdfme-lab-page-eyebrow">
+    <header
+      className={cn(
+        'sisad-pdfme-lab-page-hero sisad-pdfme-lab-editor-shell',
+      )}
+      data-density={density}
+    >
+      <div className={cn('sisad-pdfme-lab-page-topbar sisad-pdfme-lab-editor-topbar w-full')}>
+        <div className="sisad-pdfme-lab-page-copy flex min-w-0 flex-col gap-[0.12rem]">
+          <div className="sisad-pdfme-lab-page-eyebrow inline-flex flex-wrap items-center gap-[0.3rem]">
             <span className="sisad-pdfme-lab-kicker">Lab</span>
             {modeLabel ? <span className="sisad-pdfme-lab-chip sisad-pdfme-lab-chip-muted">{modeLabel}</span> : null}
           </div>
@@ -352,7 +363,7 @@ export default function PageHeader({
           ) : null}
         </div>
 
-        <div className="sisad-pdfme-lab-page-rail">
+        <div className="sisad-pdfme-lab-page-rail grid min-w-0 justify-items-end gap-[0.18rem]">
           <HeaderActionStack
             status={showExpandedHeader ? status : null}
             backLink={showExpandedHeader ? backLink : null}
@@ -392,14 +403,6 @@ PageHeader.propTypes = {
   backLink: PropTypes.node,
   density: PropTypes.oneOf(['full', 'compact', 'hidden']),
   collaborationSummary: COLLABORATION_SUMMARY_PROP_TYPE,
-}
-
-HeaderActionStack.defaultProps = {
-  status: null,
-  backLink: null,
-  downloadLink: null,
-  controls: null,
-  isCompact: false,
 }
 
 CollaborationSection.propTypes = {

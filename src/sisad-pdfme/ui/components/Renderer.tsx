@@ -288,7 +288,7 @@ Check this document: https://sisad-pdfme.com/docs/custom-schemas`);
 
   return (
     <Wrapper {...props}>
-      <div ref={ref} style={FILL_STYLE} />
+      <div ref={ref} className="absolute inset-0" style={FILL_STYLE} />
     </Wrapper>
   );
 };

@@ -28,6 +28,7 @@ import {
 } from './domain/labPresentation.js'
 import { decorateCollaborationUsers } from '@/sisad-pdfme/collaboration/recipientPalette'
 import { decorateTemplateWithCollaboration } from '@/sisad-pdfme/collaboration/schemaOwnershipAppearance'
+import { cn } from '@/sisad-pdfme/ui/utils/cn'
 import PageHeader from './PageHeader.jsx'
 import ResultsPanel from './ResultsPanel.jsx'
 import CompactControls from './CompactControls.jsx'
@@ -536,9 +537,13 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
     setSchemaType(event.target.value)
   }, [setSchemaType])
 
+  const isCanvasFirst = uxMode === 'canvas-first'
+
   return (
     <main
-      className="sisad-pdfme-lab-page"
+      className={cn(
+        'sisad-pdfme-lab-page overflow-x-clip text-slate-900',
+      )}
       data-example-id={example.id}
       data-runtime-mode={mode}
       data-ux-mode={uxMode}
@@ -577,6 +582,7 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
             busy={busy}
             hasGeneratedPdf={Boolean(generatedPdfBytes)}
             hasImages={images.length > 0}
+            compact={isCanvasFirst}
           />
         }
         downloadLink={
@@ -587,7 +593,15 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
         density={uxMode === 'canvas-first' ? 'compact' : 'full'}
       />
 
-      <section className="sisad-pdfme-lab-workspace" aria-labelledby="lab-workspace-title" data-ux-mode={uxMode}>
+      <section
+        className={cn(
+          isCanvasFirst
+            ? 'sisad-pdfme-lab-workspace flex min-h-0 flex-1 flex-col'
+            : 'sisad-pdfme-lab-workspace flex min-h-0 flex-1 flex-col gap-2 rounded-[1.15rem] border border-slate-200/80 bg-white/90 p-2 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-md',
+        )}
+        aria-labelledby="lab-workspace-title"
+        data-ux-mode={uxMode}
+      >
         <div className="sisad-pdfme-lab-section-heading" data-ux-mode={uxMode}>
           <h2 id="lab-workspace-title">Canvas</h2>
           <p>La superficie de edición se monta dentro del runtime de <code>sisad-pdfme</code>.</p>
@@ -595,7 +609,11 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
 
         <div
           ref={containerRef}
-          className="sisad-pdfme-lab-canvas-shell"
+          className={cn(
+            isCanvasFirst
+              ? 'sisad-pdfme-lab-canvas-shell relative block w-full flex-1'
+              : 'sisad-pdfme-lab-canvas-shell relative block min-h-[min(72vh,52rem)] w-full flex-1 overflow-hidden rounded-[1rem] border border-slate-200/80 bg-white/80 shadow-inner',
+          )}
           data-ux-mode={uxMode}
         />
       </section>

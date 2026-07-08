@@ -52,14 +52,15 @@ const SchemaDropSetupModal = ({
       footer={null}
       destroyOnClose
     >
-      <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+      <div className="flex flex-col gap-2.5">
         <Input
           placeholder="texto_01"
           value={draft.name}
           onChange={(event) => onChange({ ...draft, name: event.target.value })}
+          className="rounded-xl border-slate-200 shadow-sm"
         />
 
-        {hasDuplicate ? <div>El nombre ya existe en esta página.</div> : null}
+        {hasDuplicate ? <div className="text-sm text-rose-600">El nombre ya existe en esta página.</div> : null}
 
         {requiresRecipient ? (
           <>
@@ -71,13 +72,16 @@ const SchemaDropSetupModal = ({
                 value: recipient.id,
                 label: recipient.name || recipient.id,
               }))}
+              className="rounded-xl"
             />
-            {!hasRecipient ? <div>Selecciona un destinatario.</div> : null}
+            {!hasRecipient ? <div className="text-sm text-amber-600">Selecciona un destinatario.</div> : null}
           </>
         ) : null}
 
-        <div style={{ display: 'flex', justifyContent: 'flex-end', gap: 8 }}>
-          <Button onClick={onCancel}>Cancelar</Button>
+        <div className="flex justify-end gap-2 pt-1">
+          <Button onClick={onCancel} className="rounded-full border-slate-200 text-slate-700">
+            Cancelar
+          </Button>
           <Button type="primary" disabled={!canConfirm} onClick={onConfirm}>
             Crear campo
           </Button>

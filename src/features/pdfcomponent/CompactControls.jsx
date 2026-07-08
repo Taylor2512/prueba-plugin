@@ -124,6 +124,7 @@ export default function CompactControls({
   busy = false,
   hasGeneratedPdf = false,
   hasImages = false,
+  compact = false,
 }) {
   const [resetConfirmationOpen, setResetConfirmationOpen] = useState(false)
 
@@ -153,10 +154,11 @@ export default function CompactControls({
 
   return (
     <PopoverMenu
-      label="Controles"
+      label={compact ? '' : 'Controles'}
       icon={<Settings2 size={16} />}
       align="end"
       panelClassName="sisad-pdfme-lab-command-center"
+      ariaLabel="Abrir controles"
     >
       {({ close }) => (
         <div className="sisad-pdfme-compact-controls-panel">
@@ -274,4 +276,5 @@ CompactControls.propTypes = {
   busy: PropTypes.bool,
   hasGeneratedPdf: PropTypes.bool,
   hasImages: PropTypes.bool,
+  compact: PropTypes.bool,
 }

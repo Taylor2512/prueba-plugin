@@ -74,19 +74,19 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
 
   return (
     <div
-      className="sisad-pdfme-ui-inline-edit-overlay"
+      className="sisad-pdfme-ui-inline-edit-overlay rounded-2xl border border-slate-200 bg-white p-3 shadow-xl"
       role="dialog"
       aria-modal="false"
       aria-label={sessionLabel}
       aria-describedby={`inline-edit-hint-${session.schemaId}`}
       style={{ top: `${pos.top}px`, left: `${pos.left}px`, width: `${surfaceWidth}px` }}
     >
-      <div className="sisad-pdfme-ui-inline-edit-overlay-header">
-        <div className="sisad-pdfme-ui-inline-edit-overlay-title">{sessionLabel}</div>
+      <div className="sisad-pdfme-ui-inline-edit-overlay-header flex items-center justify-between gap-3">
+        <div className="sisad-pdfme-ui-inline-edit-overlay-title text-sm font-semibold text-slate-900">{sessionLabel}</div>
         <button
           type="button"
           aria-label="Cerrar editor"
-          className="sisad-pdfme-ui-inline-edit-overlay-close"
+          className="sisad-pdfme-ui-inline-edit-overlay-close inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm"
           onMouseDown={(event) => {
             event.stopPropagation();
           }}
@@ -100,7 +100,7 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
         </button>
       </div>
 
-      <p id={`inline-edit-hint-${session.schemaId}`} className="sisad-pdfme-ui-inline-edit-overlay-hint" style={{ margin: 0 }}>
+      <p id={`inline-edit-hint-${session.schemaId}`} className="sisad-pdfme-ui-inline-edit-overlay-hint mt-2 mb-0 text-xs leading-5 text-slate-500">
         {sessionHint}
       </p>
 
@@ -130,7 +130,7 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
           }}
           placeholder={inputPlaceholder}
           autoSize={{ minRows: 4, maxRows: 10 }}
-          className="sisad-pdfme-ui-inline-edit-overlay-input"
+          className="sisad-pdfme-ui-inline-edit-overlay-input rounded-xl border-slate-200 shadow-sm"
         />
       ) : (
         <Input
@@ -157,18 +157,18 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
             event.stopPropagation();
           }}
           placeholder={inputPlaceholder}
-          className="sisad-pdfme-ui-inline-edit-overlay-input"
+          className="sisad-pdfme-ui-inline-edit-overlay-input rounded-xl border-slate-200 shadow-sm"
         />
       )}
 
-      <div className="sisad-pdfme-ui-inline-edit-overlay-footer">
-        <span className="sisad-pdfme-ui-inline-edit-overlay-hint" style={{ fontSize: 12, opacity: 0.85 }}>
+      <div className="sisad-pdfme-ui-inline-edit-overlay-footer mt-3 flex items-center justify-between gap-3">
+        <span className="sisad-pdfme-ui-inline-edit-overlay-hint text-xs text-slate-500 opacity-[0.85]">
           Esc cancela · {session.multiline ? 'Cmd/Ctrl + Enter guarda' : 'Enter guarda'}
         </span>
-        <div className="sisad-pdfme-ui-inline-edit-overlay-actions">
+        <div className="sisad-pdfme-ui-inline-edit-overlay-actions flex items-center gap-2">
           <button
             type="button"
-            className="sisad-pdfme-ui-inline-edit-overlay-action"
+            className="sisad-pdfme-ui-inline-edit-overlay-action inline-flex items-center rounded-full border border-slate-200 bg-white px-3 py-1.5 text-xs font-medium text-slate-700 shadow-sm"
             onMouseDown={(event) => {
               event.stopPropagation();
             }}
@@ -182,7 +182,7 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
           </button>
           <button
             type="button"
-            className="sisad-pdfme-ui-inline-edit-overlay-action primary"
+            className="sisad-pdfme-ui-inline-edit-overlay-action primary inline-flex items-center rounded-full border border-sky-200 bg-sky-600 px-3 py-1.5 text-xs font-medium text-white shadow-sm"
             onMouseDown={(event) => {
               event.stopPropagation();
             }}

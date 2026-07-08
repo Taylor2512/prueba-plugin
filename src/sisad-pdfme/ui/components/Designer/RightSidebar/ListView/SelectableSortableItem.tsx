@@ -94,7 +94,7 @@ const SelectableSortableItem = ({
       onClick={() => onEdit(schema.id)}
       value={schema.name}
       schemaType={schema.type}
-      className={DESIGNER_CLASSNAME + 'item-auto'}
+      className={DESIGNER_CLASSNAME + 'item-auto rounded-2xl'}
       status={status}
       title={title}
       required={schema.required}

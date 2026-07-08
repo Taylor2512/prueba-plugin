@@ -9,7 +9,6 @@ type UnitButtonProps = {
   type: 'left' | 'right' | 'doubleLeft' | 'doubleRight';
   onClick: () => void;
   disabled: boolean;
-  textStyle: { color: string; fontSize: number; margin: number };
 };
 
 const icons = {
@@ -19,12 +18,21 @@ const icons = {
   doubleRight: ChevronsRight,
 };
 
-const UnitButton: React.FC<UnitButtonProps> = ({ type, onClick, disabled, textStyle }) => {
+const clusterClassName =
+  'flex items-center gap-1 rounded-full border border-white/10 bg-slate-950/70 px-2 py-1 shadow-lg backdrop-blur';
+
+const UnitButton: React.FC<UnitButtonProps> = ({ type, onClick, disabled }) => {
   const Icon = icons[type];
 
   return (
-    <Button type="text" onClick={onClick} disabled={disabled}>
-      <Icon style={{ color: textStyle.color }} />
+    <Button
+      type="text"
+      size="small"
+      onClick={onClick}
+      disabled={disabled}
+      className="inline-flex h-7 w-7 items-center justify-center rounded-full border border-white/10 text-white"
+    >
+      <Icon size={14} className="text-white" />
     </Button>
   );
 };
@@ -42,72 +50,45 @@ const UnitPager = ({ size, unitCursor, unitNum, setUnitCursor }: Props) => {
   const { token } = theme.useToken();
 
   const buttonWrapStyle: React.CSSProperties = {
-    pointerEvents: 'initial',
-    position: 'sticky',
-    zIndex: 1,
-    display: 'flex',
-    alignItems: 'center',
-    boxSizing: 'border-box',
-    height: 40,
     padding: token.paddingSM,
     borderRadius: token.borderRadius,
     backgroundColor: token.colorBgMask,
   };
-  const textStyle = {
-    color: token.colorWhite,
-    fontSize: token.fontSize,
-    margin: token.marginXS,
-  };
 
   return (
-    <div style={{ position: 'absolute', ...size }}>
-      <div
-        style={{
-          position: 'sticky',
-          width: '100%',
-          zIndex: 1,
-          top: `calc(50% - ${(buttonWrapStyle.height as number) / 2}px)`,
-          display: 'flex',
-          alignItems: 'center',
-        }}
-      >
+    <div className="absolute" style={{ ...size }}>
+      <div className="sticky top-1/2 z-[1] flex w-full -translate-y-1/2 items-center">
         {unitCursor > 0 && (
-          <div style={{ left: '1rem', marginLeft: '1rem', ...buttonWrapStyle }}>
+          <div className={`ml-4 ${clusterClassName}`} style={buttonWrapStyle}>
             <UnitButton
               type="doubleLeft"
               onClick={() => setUnitCursor(0)}
               disabled={unitCursor <= 0}
-              textStyle={textStyle}
             />
             <UnitButton
               type="left"
               onClick={() => setUnitCursor(unitCursor - 1)}
               disabled={unitCursor <= 0}
-              textStyle={textStyle}
             />
-            <Text strong style={textStyle}>
+            <Text strong className="m-0 px-1 text-xs text-white">
               {unitCursor + 1}/{unitNum}
             </Text>
           </div>
         )}
         {unitCursor + 1 < unitNum && (
-          <div
-            style={{ right: '1rem', marginLeft: 'auto', marginRight: '1rem', ...buttonWrapStyle }}
-          >
-            <Text strong style={textStyle}>
+          <div className={`ml-auto mr-4 ${clusterClassName}`} style={buttonWrapStyle}>
+            <Text strong className="m-0 px-1 text-xs text-white">
               {unitCursor + 1}/{unitNum}
             </Text>
             <UnitButton
               type="right"
               onClick={() => setUnitCursor(unitCursor + 1)}
               disabled={unitCursor + 1 >= unitNum}
-              textStyle={textStyle}
             />
             <UnitButton
               type="doubleRight"
               onClick={() => setUnitCursor(unitNum - 1)}
               disabled={unitCursor + 1 >= unitNum}
-              textStyle={textStyle}
             />
           </div>
         )}

@@ -35,11 +35,10 @@ const SchemaDropPlaceholder = ({
 
   return (
     <div
-      className="sisad-pdfme-schema-drop-placeholder"
+      className="sisad-pdfme-schema-drop-placeholder fixed rounded-xl border border-dashed bg-white/70 shadow-sm"
       data-valid={valid ? 'true' : 'false'}
       style={
         {
-          position: 'fixed',
           left: `${left}px`,
           top: `${top}px`,
           width: `${width}px`,
@@ -48,7 +47,9 @@ const SchemaDropPlaceholder = ({
         } as React.CSSProperties
       }
     >
-      <div className="sisad-pdfme-schema-drop-placeholder-badge">{label}</div>
+      <div className="sisad-pdfme-schema-drop-placeholder-badge rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[11px] font-medium text-slate-700">
+        {label}
+      </div>
     </div>
   );
 };

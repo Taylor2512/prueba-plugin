@@ -1,4 +1,5 @@
 import React from 'react';
+import { mergeClassNames } from '../../shared/className.js';
 
 export type SchemaDropCommitFlashProps = {
   paperRect: { left: number; top: number } | null;
@@ -26,10 +27,11 @@ const SchemaDropCommitFlash = ({
 
   return (
     <div
-      className="sisad-pdfme-schema-drop-commit-flash"
+      className={mergeClassNames(
+        'sisad-pdfme-schema-drop-commit-flash fixed z-[10000] pointer-events-none -translate-x-1/2 -translate-y-1/2',
+      )}
       style={
         {
-          position: 'fixed',
           left: `${left}px`,
           top: `${top}px`,
           '--schema-owner-color': ownerColor || '#2563eb',
@@ -37,8 +39,8 @@ const SchemaDropCommitFlash = ({
       }
       aria-hidden="true"
     >
-      <div className="sisad-pdfme-schema-drop-commit-flash-orb">
-        {icon ? <span className="sisad-pdfme-schema-drop-commit-flash-icon">{icon}</span> : null}
+      <div className="sisad-pdfme-schema-drop-commit-flash-orb grid h-7 w-7 place-items-center rounded-full border border-slate-200 bg-white/95 shadow-[0_8px_18px_rgba(15,23,42,0.14)] backdrop-blur-md">
+        {icon ? <span className="sisad-pdfme-schema-drop-commit-flash-icon inline-flex items-center justify-center">{icon}</span> : null}
       </div>
     </div>
   );

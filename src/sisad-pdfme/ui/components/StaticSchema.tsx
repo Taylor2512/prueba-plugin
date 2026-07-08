@@ -19,11 +19,14 @@ const StaticSchema = (props: {
   if (!isBlankPdf(basePdf) || !basePdf.staticSchema) return null;
   const staticSchemaEntries = basePdf.staticSchema.map((schema, index) => {
     const nextSchema = schema as SchemaForUI & { id?: string };
+    const fallbackId = `static-schema-${index}-${nextSchema.name || nextSchema.type || 'field'}`;
+
     return {
       ...nextSchema,
-      id: nextSchema.id || `static-schema-${index}-${nextSchema.name || nextSchema.type || 'field'}`,
-    };
-  }) as SchemaForUI[];
+      id: nextSchema.id || fallbackId,
+    } satisfies SchemaForUI;
+  });
+
   return (
     <>
       {staticSchemaEntries.map((schema) => (
@@ -43,10 +46,10 @@ const StaticSchema = (props: {
           onChangeHoveringSchemaId={() => {
             void 0;
           }}
-          mode={'viewer'}
+          mode="viewer"
           pageIndex={currentPage - 1}
           pageNumber={currentPage}
-          outline={`none`}
+          outline="none"
           scale={scale}
           selectable={false}
         />

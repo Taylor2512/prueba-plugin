@@ -8,6 +8,7 @@ import {
 } from './canvasContextMenuActions.js';
 import { resolveAnchoredFloatingSurfacePosition } from './floatingSurfaceGeometry.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
+import { mergeClassNames } from '../../shared/className.js';
 
 export type CanvasContextMenuPosition = {
   x: number;
@@ -32,9 +33,9 @@ export type CanvasContextMenuProps = {
 };
 
 const MENU_DIMENSIONS: Record<CanvasContextMenuMode, { width: number; height: number }> = {
-  empty: { width: 272, height: 224 },
-  single: { width: 272, height: 264 },
-  multi: { width: 288, height: 304 },
+  empty: { width: 248, height: 208 },
+  single: { width: 248, height: 248 },
+  multi: { width: 264, height: 280 },
 };
 
 const CanvasContextMenu = ({
@@ -146,9 +147,9 @@ const CanvasContextMenu = ({
   };
 
   return createPortal(
-    <div className="sisad-pdfme-ui-canvas-context-menu-layer" onContextMenu={(event) => event.preventDefault()}>
+    <div className="sisad-pdfme-ui-canvas-context-menu-layer fixed inset-0 z-[80]" onContextMenu={(event) => event.preventDefault()}>
       <div
-        className="sisad-pdfme-ui-canvas-context-menu-backdrop"
+        className="sisad-pdfme-ui-canvas-context-menu-backdrop absolute inset-0 bg-transparent"
         aria-hidden="true"
         onMouseDown={() => onClose?.()}
       />
@@ -166,11 +167,13 @@ const CanvasContextMenu = ({
         data-mode={mode}
         data-selection-count={String(selectionCount)}
         data-selection-kind={selectionCount > 1 ? 'multi' : 'single'}
-        className={`sisad-pdfme-ui-canvas-context-menu ${className}`.trim()}
+        className={mergeClassNames(
+          'sisad-pdfme-ui-canvas-context-menu absolute min-w-[17rem] overflow-hidden rounded-2xl border border-slate-200 bg-white/95 p-2 text-sm text-slate-700 shadow-2xl backdrop-blur-md',
+          className,
+        )}
         style={{
           top: `${menuPosition.top}px`,
           left: `${menuPosition.left}px`,
-          visibility: 'visible',
         }}
         onContextMenu={(event) => event.preventDefault()}
         onMouseDown={(event) => event.stopPropagation()}
@@ -190,11 +193,11 @@ const CanvasContextMenu = ({
             focusMenuItem(999);
           }
         }}
-      >
+        >
         {groups.map((group, groupIndex) => (
-          <div key={group.id} className="sisad-pdfme-ui-canvas-context-menu-group">
+          <div key={group.id} className="sisad-pdfme-ui-canvas-context-menu-group space-y-1 py-1 first:pt-0 last:pb-0">
             {group.label ? (
-              <div className="sisad-pdfme-ui-canvas-context-menu-group-label">{group.label}</div>
+              <div className="sisad-pdfme-ui-canvas-context-menu-group-label px-2 pb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">{group.label}</div>
             ) : null}
             {group.items
               .filter((item) => !item.hidden)
@@ -205,7 +208,11 @@ const CanvasContextMenu = ({
                     key={item.id}
                     type="button"
                     role="menuitem"
-                    className={`sisad-pdfme-ui-canvas-context-menu-item${item.danger ? ' is-danger' : ''}`}
+                    className={mergeClassNames(
+                      'sisad-pdfme-ui-canvas-context-menu-item flex w-full items-center gap-2 rounded-xl px-2.5 py-2 text-left text-sm font-medium transition',
+                      item.danger ? 'text-rose-700 hover:bg-rose-50' : 'text-slate-700 hover:bg-slate-50',
+                      disabled && 'cursor-not-allowed opacity-40',
+                    )}
                     disabled={disabled}
                     title={item.disabled && item.disabledReason ? item.disabledReason : item.label}
                     onClick={(event) => {
@@ -216,13 +223,13 @@ const CanvasContextMenu = ({
                       onClose?.();
                     }}
                   >
-                    <span className="sisad-pdfme-ui-canvas-context-menu-item-icon">{item.icon}</span>
-                    <span className="sisad-pdfme-ui-canvas-context-menu-item-label">{item.label}</span>
+                    <span className="sisad-pdfme-ui-canvas-context-menu-item-icon inline-flex h-6 w-6 items-center justify-center rounded-lg bg-slate-50 text-slate-500">{item.icon}</span>
+                    <span className="sisad-pdfme-ui-canvas-context-menu-item-label min-w-0 flex-1 truncate">{item.label}</span>
                   </button>
                 );
               })}
             {groupIndex < groups.length - 1 ? (
-              <div className="sisad-pdfme-ui-canvas-context-menu-divider" aria-hidden="true" />
+              <div className="sisad-pdfme-ui-canvas-context-menu-divider my-1 h-px bg-slate-200" aria-hidden="true" />
             ) : null}
           </div>
         ))}

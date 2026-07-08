@@ -13,6 +13,7 @@ import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import type { SchemaComment } from '../../../../designerEngine.js';
 import { InspectorEmptyState } from './InspectorPrimitives.js';
 import { asRecord } from '../../shared/objectGuards.js';
+import { mergeClassNames } from '../../shared/className.js';
 
 type FieldCommentsWidgetProps = PropPanelWidgetProps & {
   activeSchema: SchemaForUI;
@@ -149,14 +150,15 @@ const SchemaFieldCommentsWidget = ({
   const cls = (suffix: string) => `${DESIGNER_CLASSNAME}${suffix}`;
 
   return (
-    <div className={cls('field-comments-widget')}>
+    <div className={mergeClassNames(cls('field-comments-widget'), 'space-y-3')}>
       {/* New comment input */}
-      <div className={cls('field-comments-add')}>
+      <div className={mergeClassNames(cls('field-comments-add'), 'flex flex-col gap-2 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm')}>
         <Input.TextArea
           value={newCommentText}
           onChange={(e) => setNewCommentText(e.target.value)}
           placeholder={composerPlaceholder}
           autoSize={{ minRows: 2, maxRows: 4 }}
+          className="rounded-xl border-slate-200 shadow-sm"
           onKeyDown={(e) => {
             if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
               e.preventDefault();
@@ -170,7 +172,7 @@ const SchemaFieldCommentsWidget = ({
           icon={<MessageSquarePlus size={13} />}
           onClick={handleAddComment}
           disabled={!newCommentText.trim()}
-          className={cls('field-comments-add-btn')}
+          className={mergeClassNames(cls('field-comments-add-btn'), 'self-end rounded-full bg-sky-600 text-white shadow-sm')}
         >
           {addLabel}
         </Button>
@@ -185,32 +187,36 @@ const SchemaFieldCommentsWidget = ({
           classNameSuffix="field-comments-empty"
         />
       ) : (
-        <div className={cls('field-comments-list')}>
+        <div className={mergeClassNames(cls('field-comments-list'), 'space-y-3')}>
           {comments.map((comment) => {
             const resolved = Boolean(comment.resolved);
             return (
               <div
                 key={comment.id}
-                className={`${cls('field-comments-thread')}${resolved ? ' is-resolved' : ''}`}
+                className={mergeClassNames(
+                  cls('field-comments-thread'),
+                  resolved && 'is-resolved',
+                  'space-y-3 rounded-2xl border border-slate-200 bg-slate-50/80 p-3 shadow-sm',
+                )}
               >
                 {/* Thread header */}
-                <div className={cls('field-comments-thread-header')}>
+                <div className={mergeClassNames(cls('field-comments-thread-header'), 'flex items-start justify-between gap-3')}>
                   <Space size={4} align="center">
                     {actorColor || comment.authorColor ? (
                       <span
-                        className={cls('field-comments-author-dot')}
+                        className={mergeClassNames(cls('field-comments-author-dot'), 'h-2.5 w-2.5 rounded-full')}
                         style={{ background: comment.authorColor || actorColor }}
                         aria-hidden="true"
                       />
                     ) : null}
-                    <span className={cls('field-comments-author-name')}>
+                    <span className={mergeClassNames(cls('field-comments-author-name'), 'text-sm font-semibold text-slate-800')}>
                       {comment.authorName || comment.authorId || 'Anónimo'}
                     </span>
-                    <span className={cls('field-comments-timestamp')}>
+                    <span className={mergeClassNames(cls('field-comments-timestamp'), 'text-xs text-slate-500')}>
                       {formatTimestamp(comment.timestamp || comment.createdAt)}
                     </span>
                     {resolved ? (
-                      <Tag color="success" style={{ margin: 0 }}>
+                      <Tag color="success" className="m-0 rounded-full border-0 bg-emerald-100 px-2 py-0.5 text-[11px] font-medium text-emerald-700">
                         {resolvedLabel}
                       </Tag>
                     ) : null}
@@ -245,29 +251,29 @@ const SchemaFieldCommentsWidget = ({
                 </div>
 
                 {/* Thread body */}
-                <div className={cls('field-comments-thread-body')}>{comment.text}</div>
+                <div className={mergeClassNames(cls('field-comments-thread-body'), 'text-sm leading-6 text-slate-700')}>{comment.text}</div>
 
                 {/* Replies */}
                 {(comment.replies || []).length > 0 ? (
-                  <div className={cls('field-comments-replies')}>
+                  <div className={mergeClassNames(cls('field-comments-replies'), 'space-y-2')}>
                     {(comment.replies as { id: string; authorName?: string; authorId?: string; authorColor?: string; text: string; timestamp?: number; createdAt?: number }[]).map((reply) => (
-                      <div key={reply.id} className={cls('field-comments-reply')}>
+                      <div key={reply.id} className={mergeClassNames(cls('field-comments-reply'), 'space-y-1 rounded-xl border border-slate-200 bg-white p-3')}>
                         <Space size={4} align="center">
                           {reply.authorColor ? (
                             <span
-                              className={cls('field-comments-author-dot')}
+                              className={mergeClassNames(cls('field-comments-author-dot'), 'h-2.5 w-2.5 rounded-full')}
                               style={{ background: reply.authorColor }}
                               aria-hidden="true"
                             />
                           ) : null}
-                          <span className={cls('field-comments-author-name')}>
+                          <span className={mergeClassNames(cls('field-comments-author-name'), 'text-sm font-semibold text-slate-800')}>
                             {reply.authorName || reply.authorId || 'Anónimo'}
                           </span>
-                          <span className={cls('field-comments-timestamp')}>
+                          <span className={mergeClassNames(cls('field-comments-timestamp'), 'text-xs text-slate-500')}>
                             {formatTimestamp(reply.timestamp || reply.createdAt)}
                           </span>
                         </Space>
-                        <div className={cls('field-comments-reply-text')}>{reply.text}</div>
+                        <div className={mergeClassNames(cls('field-comments-reply-text'), 'text-sm leading-6 text-slate-700')}>{reply.text}</div>
                       </div>
                     ))}
                   </div>
@@ -275,7 +281,7 @@ const SchemaFieldCommentsWidget = ({
 
                 {/* Reply input */}
                 {!resolved ? (
-                  <div className={cls('field-comments-reply-input')}>
+                  <div className={mergeClassNames(cls('field-comments-reply-input'), 'flex items-center gap-2')}>
                     <Input
                       size="small"
                       value={replyTexts[comment.id] || ''}
@@ -284,11 +290,13 @@ const SchemaFieldCommentsWidget = ({
                       }
                       placeholder={replyPlaceholder}
                       onPressEnter={() => handleAddReply(comment.id)}
+                      className="rounded-xl border-slate-200 shadow-sm"
                     />
                     <Button
                       size="small"
                       onClick={() => handleAddReply(comment.id)}
                       disabled={!(replyTexts[comment.id] || '').trim()}
+                      className="rounded-full border-slate-200 text-slate-700 shadow-sm"
                     >
                       {replyLabel}
                     </Button>

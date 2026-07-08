@@ -30,12 +30,12 @@ const Root = ({ size, scale, children }: Props, ref: Ref<HTMLDivElement>) => {
 
   return (
     <div
-      className={DESIGNER_CLASSNAME + 'root'}
+      className={`${DESIGNER_CLASSNAME}root relative overflow-hidden rounded-[1.5rem] border border-slate-200/60 shadow-sm`}
       ref={ref}
-      style={{ position: 'relative', background: BACKGROUND_COLOR, ...size }}>
+      style={{ background: BACKGROUND_COLOR, ...size }}>
       <div
-        className={DESIGNER_CLASSNAME + 'background'}
-        style={{ margin: '0 auto', display: 'flex', flexDirection: 'column', ...size }}>
+        className={`${DESIGNER_CLASSNAME}background mx-auto flex flex-col`}
+        style={{ ...size }}>
         {scale === 0 ? <Spinner /> : children}
       </div>
     </div>

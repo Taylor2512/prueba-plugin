@@ -21,6 +21,7 @@ import {
   normalizeRecipientIds,
   resolveOwnerMode,
 } from './schemaCollaborationUtils.js';
+import { mergeClassNames } from '../../shared/className.js';
 
 export { joinRecipientIds, normalizeRecipientIds, resolveOwnerMode } from './schemaCollaborationUtils.js';
 
@@ -273,7 +274,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
             ...(hasLock ? [{ label: 'Bloqueo activo', color: 'error' as const }] : []),
           ]}
         >
-          <div className={`${DESIGNER_CLASSNAME}schema-config-help`} style={{ marginTop: 4 }}>
+          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}schema-config-help`, 'mt-1 text-xs leading-5 text-slate-500')}>
             Los comentarios y anclas se administran en la sección de comentarios del inspector.
           </div>
         </InspectorSummaryCard>
