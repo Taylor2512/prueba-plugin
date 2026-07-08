@@ -81,6 +81,15 @@ export { SNAPSHOT_VERSION, isLegacySnapshot, makeEmptySnapshot } from './snapsho
 // Fase 7 — Snapshot Adapter
 export type { ValidationResult, DesignerState } from './snapshotAdapter.js';
 export { snapshotAdapter } from './snapshotAdapter.js';
+export {
+  parsePdfmeSnapshot,
+  extractDocumentsFromSnapshot,
+  resolveDocumentSnapshot,
+  resolveDocumentTemplate,
+  extractOriginalFormFromSnapshot,
+  extractAssignmentsFromSnapshot,
+  serializeSnapshotForTxt,
+} from './snapshotAdapter.js';
 
 // Template Validator — DocuSign-style pre-send validation
 export type {

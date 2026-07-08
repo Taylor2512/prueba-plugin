@@ -26,6 +26,7 @@ import {
   isLegacySnapshot,
 } from './snapshot.js';
 import { asRecord } from '../ui/components/Designer/shared/objectGuards.js';
+import { cloneDeep } from '@sisad-pdfme/common';
 
 export interface ValidationResult {
   valid: boolean;
@@ -320,3 +321,58 @@ export const snapshotAdapter = new SnapshotAdapterImpl();
 
 /** Exportar también la clase para extensión en tests */
 export { SnapshotAdapterImpl };
+
+const normalizeText = (value: unknown) => String(value || '').trim();
+
+const normalizeTemplate = (template: unknown) => {
+  if (!template || typeof template !== 'object') return null;
+  const record = asRecord(template) || {};
+  return {
+    ...cloneDeep(record),
+    schemas: Array.isArray(record.schemas) ? record.schemas : [[]],
+  };
+};
+
+const normalizeSnapshotDocuments = (snapshot: unknown) => {
+  const record = asRecord(snapshot) || {};
+  if (Array.isArray(record.documents) && record.documents.length > 0) {
+    return record.documents;
+  }
+  if (Array.isArray(record.files)) {
+    return record.files;
+  }
+  return [];
+};
+
+export const parsePdfmeSnapshot = (payload: unknown = {}) =>
+  payload && typeof payload === 'object' ? payload : {};
+
+export const extractDocumentsFromSnapshot = (snapshot: unknown = {}) =>
+  normalizeSnapshotDocuments(snapshot);
+
+export const resolveDocumentSnapshot = (snapshot: unknown = {}, documentId: string | null = null) => {
+  const normalizedId = normalizeText(documentId);
+  const documents = normalizeSnapshotDocuments(snapshot);
+  if (!normalizedId) return documents[0] || null;
+  return (
+    documents.find((document) => normalizeText((document as Record<string, unknown>)?.id) === normalizedId) ||
+    null
+  );
+};
+
+export const resolveDocumentTemplate = (snapshot: unknown = {}, documentId: string | null = null) => {
+  const document = resolveDocumentSnapshot(snapshot, documentId) as Record<string, unknown> | null;
+  if (!document) return null;
+  return normalizeTemplate(document.template || document.originalForm);
+};
+
+export const extractOriginalFormFromSnapshot = (snapshot: unknown = {}, documentId: string | null = null) =>
+  resolveDocumentTemplate(snapshot, documentId);
+
+export const extractAssignmentsFromSnapshot = (snapshot: unknown = {}, documentId: string | null = null) => {
+  const document = resolveDocumentSnapshot(snapshot, documentId) as Record<string, unknown> | null;
+  if (!document) return {};
+  return (document.assignments && typeof document.assignments === 'object' ? cloneDeep(document.assignments) : {}) as Record<string, unknown>;
+};
+
+export const serializeSnapshotForTxt = (snapshot: unknown = {}) => JSON.stringify(snapshot || {}, null, 2);
