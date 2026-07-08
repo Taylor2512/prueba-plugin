@@ -2,7 +2,7 @@ import React from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import LabLandingPage from './features/pdfcomponent/LabLandingPage.jsx'
 import PdfmeLabPage from './features/pdfcomponent/PdfmeLabPage.jsx'
-import { getLabExamples } from './features/pdfcomponent/examples/labExamples.js'
+import { getLabExamples } from './features/pdfcomponent/labs/examples/labExamples.js'
 import './features/pdfcomponent/labRoutes.css'
 
 const labExamples = getLabExamples()

@@ -1,9 +1,9 @@
 import { cloneDeep, getInputFromTemplate } from '@sisad-pdfme/common';
 import type { Template } from '@sisad-pdfme/common';
-import { createDefaultTemplate } from '../../templates/createDefaultTemplate.js';
-import { decorateCollaborationUsers } from '../../collaboration/recipientPalette.js';
-import { decorateTemplateWithCollaboration } from '../../collaboration/schemaOwnershipAppearance.js';
-import type { CollaboratorUser } from '../../collaboration/recipientPalette.js';
+import { createDefaultTemplate } from '@/sisad-pdfme/templates/createDefaultTemplate.js';
+import { decorateCollaborationUsers } from '@/sisad-pdfme/collaboration/recipientPalette.js';
+import { decorateTemplateWithCollaboration } from '@/sisad-pdfme/collaboration/schemaOwnershipAppearance.js';
+import type { CollaboratorUser } from '@/sisad-pdfme/collaboration/recipientPalette.js';
 
 export type CreateTemplateOptions = {
   basePdf?: Template['basePdf'];

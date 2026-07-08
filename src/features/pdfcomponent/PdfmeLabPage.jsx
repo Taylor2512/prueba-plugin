@@ -12,7 +12,7 @@ import { createDefaultTemplate } from '@/sisad-pdfme/templates/createDefaultTemp
 import {
   getLabExampleById,
   getLabExamples,
-} from './examples/labExamples.js'
+} from './labs/examples/labExamples.js'
 import LabExampleDownloadButton from './LabExampleDownloadButton.jsx'
 import {
   UX_MODE_STORAGE_KEY,

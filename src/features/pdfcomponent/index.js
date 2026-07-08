@@ -1,6 +1,0 @@
-export { Hero, CaseGrid, IconButton } from './ui/primitives.jsx'
-export { default as CaseCard } from './CaseCard.jsx'
-export { default as PageHeader } from './PageHeader.jsx'
-export { default as ResultsPanel } from './ResultsPanel.jsx'
-export { default as PopoverMenu } from './PopoverMenu.jsx'
-export { default as CompactControls } from './CompactControls.jsx'

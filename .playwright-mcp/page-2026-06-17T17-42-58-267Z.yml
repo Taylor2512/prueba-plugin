@@ -1,0 +1,389 @@
+- main [ref=e3]:
+  - generic [ref=e4]:
+    - generic [ref=e5]:
+      - generic [ref=e6]:
+        - generic [ref=e7]:
+          - generic [ref=e8]: Lab
+          - generic [ref=e9]: Diseñador
+        - heading "Multidocumento integral" [level=1] [ref=e10]
+      - button "Controles" [ref=e15]:
+        - img [ref=e17]
+        - text: Controles
+    - region "Colaboración del ejemplo" [ref=e20]:
+      - generic "Colaboración" [ref=e21]:
+        - generic [ref=e22]:
+          - generic [ref=e23]: Usuario
+          - combobox "Seleccionar usuario activo" [ref=e24]:
+            - option "Cliente Principal" [selected]
+            - option "Avalista"
+            - option "Mesa de entrega"
+        - button "Usuario activo" [ref=e26]
+        - button "Estado" [ref=e28]
+  - region "Canvas" [ref=e29]:
+    - generic [ref=e30]:
+      - heading "Canvas" [level=2] [ref=e31]
+      - paragraph [ref=e32]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e33]: sisad-pdfme
+        - text: .
+    - generic [ref=e37]:
+      - generic [ref=e38]:
+        - generic [ref=e39]:
+          - button "Cerrar catálogo de campos" [expanded] [ref=e40] [cursor=pointer]:
+            - img [ref=e41]
+          - generic [ref=e45]:
+            - generic [ref=e46]:
+              - generic [ref=e47]: Diseñador
+              - generic [ref=e48]:
+                - generic [ref=e49]: Campos
+                - 'generic "Color del destinatario activo #2563EB" [ref=e50]'
+            - generic [ref=e51]:
+              - tablist "Tipos de campo" [ref=e52]:
+                - tab "Campos estándar" [selected] [ref=e53] [cursor=pointer]:
+                  - img [ref=e54]
+                - tab "Campos personalizados" [ref=e56] [cursor=pointer]:
+                  - img [ref=e57]
+                - tab "Herramientas de prerrellenado" [ref=e60] [cursor=pointer]:
+                  - img [ref=e61]
+              - generic [ref=e64]:
+                - generic [ref=e65]:
+                  - img [ref=e67]
+                  - textbox "Buscar campos" [ref=e70]
+                - generic [ref=e72]:
+                  - button "Todos" [ref=e73] [cursor=pointer]:
+                    - generic [ref=e74]: Todos
+                  - button "Favoritos (0)" [ref=e75] [cursor=pointer]:
+                    - generic [ref=e76]: Favoritos (0)
+                  - button "Recientes (0)" [ref=e77] [cursor=pointer]:
+                    - generic [ref=e78]: Recientes (0)
+                  - button "Vista compacta (grid)" [ref=e79] [cursor=pointer]:
+                    - img [ref=e81]
+            - generic [ref=e86]:
+              - generic [ref=e87]:
+                - button "Alternar categoría Firmas" [expanded] [ref=e88] [cursor=pointer]:
+                  - generic [ref=e89]: Firmas
+                  - generic [ref=e90]: "3"
+                - generic [ref=e91]:
+                  - generic [ref=e94]:
+                    - button "Datesigned" [ref=e95]:
+                      - generic "Datesigned" [ref=e97]:
+                        - img [ref=e98]
+                      - generic [ref=e102]: Datesigned
+                    - button "Marcar favorito": ★
+                  - generic [ref=e105]:
+                    - button "Initials" [ref=e106]:
+                      - generic "Initials" [ref=e108]:
+                        - img [ref=e109]
+                      - generic [ref=e112]: Initials
+                    - button "Marcar favorito": ★
+                  - generic [ref=e115]:
+                    - button "Firma" [ref=e116]:
+                      - generic "Firma" [ref=e118]:
+                        - img [ref=e119]
+                      - generic [ref=e122]: Firma
+                    - button "Marcar favorito": ★
+              - generic [ref=e123]:
+                - button "Alternar categoría Texto" [expanded] [ref=e124] [cursor=pointer]:
+                  - generic [ref=e125]: Texto
+                  - generic [ref=e126]: "2"
+                - generic [ref=e127]:
+                  - generic [ref=e130]:
+                    - button "Número Número" [ref=e131]:
+                      - generic "Número" [ref=e132]
+                      - generic [ref=e134]: Número
+                    - button "Marcar favorito": ★
+                  - generic [ref=e137]:
+                    - button "Texto" [ref=e138]:
+                      - generic "Texto" [ref=e140]:
+                        - img [ref=e141]
+                      - generic [ref=e147]: Texto
+                    - button "Marcar favorito": ★
+              - generic [ref=e148]:
+                - button "Alternar categoría Imagen y medios" [expanded] [ref=e149] [cursor=pointer]:
+                  - generic [ref=e150]: Imagen y medios
+                  - generic [ref=e151]: "2"
+                - generic [ref=e152]:
+                  - generic [ref=e155]:
+                    - button "Imagen" [ref=e156]:
+                      - generic "Imagen" [ref=e158]:
+                        - img [ref=e159]
+                      - generic [ref=e164]: Imagen
+                    - button "Marcar favorito": ★
+                  - generic [ref=e167]:
+                    - button "SVG" [ref=e168]:
+                      - generic "SVG" [ref=e170]:
+                        - img [ref=e171]
+                      - generic [ref=e176]: SVG
+                    - button "Marcar favorito": ★
+              - generic [ref=e177]:
+                - button "Alternar categoría Selecciones" [expanded] [ref=e178] [cursor=pointer]:
+                  - generic [ref=e179]: Selecciones
+                  - generic [ref=e180]: "4"
+                - generic [ref=e181]:
+                  - generic [ref=e184]:
+                    - button "Casilla" [ref=e185]:
+                      - generic "Casilla" [ref=e187]:
+                        - img [ref=e188]
+                      - generic [ref=e192]: Casilla
+                    - button "Marcar favorito": ★
+                  - generic [ref=e195]:
+                    - button "Grupo de Casillas" [ref=e196]:
+                      - generic "Grupo de Casillas" [ref=e198]:
+                        - img [ref=e199]
+                      - generic [ref=e203]: Grupo de Casillas
+                    - button "Marcar favorito": ★
+                  - generic [ref=e206]:
+                    - button "Opción" [ref=e207]:
+                      - generic "Opción" [ref=e209]:
+                        - img [ref=e210]
+                      - generic [ref=e214]: Opción
+                    - button "Marcar favorito": ★
+                  - generic [ref=e217]:
+                    - button "Lista Desplegable" [ref=e218]:
+                      - generic "Lista Desplegable" [ref=e220]:
+                        - img [ref=e221]
+                      - generic [ref=e224]: Lista Desplegable
+                    - button "Marcar favorito": ★
+              - generic [ref=e225]:
+                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e226] [cursor=pointer]:
+                  - generic [ref=e227]: Fecha y Hora
+                  - generic [ref=e228]: "3"
+                - generic [ref=e229]:
+                  - generic [ref=e232]:
+                    - button "Fecha" [ref=e233]:
+                      - generic "Fecha" [ref=e235]:
+                        - img [ref=e236]
+                      - generic [ref=e239]: Fecha
+                    - button "Marcar favorito": ★
+                  - generic [ref=e242]:
+                    - button "Fecha Y Hora" [ref=e243]:
+                      - generic "Fecha Y Hora" [ref=e245]:
+                        - img [ref=e246]
+                      - generic [ref=e251]: Fecha Y Hora
+                    - button "Marcar favorito": ★
+                  - generic [ref=e254]:
+                    - button "Hora" [ref=e255]:
+                      - generic "Hora" [ref=e257]:
+                        - img [ref=e258]
+                      - generic [ref=e262]: Hora
+                    - button "Marcar favorito": ★
+              - generic [ref=e263]:
+                - button "Alternar categoría QR y Códigos" [expanded] [ref=e264] [cursor=pointer]:
+                  - generic [ref=e265]: QR y Códigos
+                  - generic [ref=e266]: "12"
+                - generic [ref=e267]:
+                  - generic [ref=e270]:
+                    - button "Código de barras" [ref=e271]:
+                      - generic "Código de barras" [ref=e273]:
+                        - img [ref=e274]
+                      - generic [ref=e276]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e279]:
+                    - button "Código de barras" [ref=e280]:
+                      - generic "Código de barras" [ref=e282]:
+                        - img [ref=e283]
+                      - generic [ref=e285]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e288]:
+                    - button "Código de barras" [ref=e289]:
+                      - generic "Código de barras" [ref=e291]:
+                        - img [ref=e292]
+                      - generic [ref=e294]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e297]:
+                    - button "Código de barras" [ref=e298]:
+                      - generic "Código de barras" [ref=e300]:
+                        - img [ref=e301]
+                      - generic [ref=e303]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e306]:
+                    - button "DataMatrix" [ref=e307]:
+                      - generic "DataMatrix" [ref=e309]:
+                        - img [ref=e310]
+                      - generic [ref=e312]: DataMatrix
+                    - button "Marcar favorito": ★
+                  - generic [ref=e315]:
+                    - button "Código de barras" [ref=e316]:
+                      - generic "Código de barras" [ref=e318]:
+                        - img [ref=e319]
+                      - generic [ref=e321]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e324]:
+                    - button "Japan Post" [ref=e325]:
+                      - generic "Japan Post" [ref=e327]:
+                        - img [ref=e328]
+                      - generic [ref=e330]: Japan Post
+                    - button "Marcar favorito": ★
+                  - generic [ref=e333]:
+                    - button "NW7" [ref=e334]:
+                      - generic "NW7" [ref=e336]:
+                        - img [ref=e337]
+                      - generic [ref=e339]: NW7
+                    - button "Marcar favorito": ★
+                  - generic [ref=e342]:
+                    - button "PDF417" [ref=e343]:
+                      - generic "PDF417" [ref=e345]:
+                        - img [ref=e346]
+                      - generic [ref=e348]: PDF417
+                    - button "Marcar favorito": ★
+                  - generic [ref=e351]:
+                    - button "Código QR" [ref=e352]:
+                      - generic "Código QR" [ref=e354]:
+                        - img [ref=e355]
+                      - generic [ref=e362]: Código QR
+                    - button "Marcar favorito": ★
+                  - generic [ref=e365]:
+                    - button "Código de barras" [ref=e366]:
+                      - generic "Código de barras" [ref=e368]:
+                        - img [ref=e369]
+                      - generic [ref=e371]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e374]:
+                    - button "Código de barras" [ref=e375]:
+                      - generic "Código de barras" [ref=e377]:
+                        - img [ref=e378]
+                      - generic [ref=e380]: Código de barras
+                    - button "Marcar favorito": ★
+              - generic [ref=e381]:
+                - button "Alternar categoría Estructura" [expanded] [ref=e382] [cursor=pointer]:
+                  - generic [ref=e383]: Estructura
+                  - generic [ref=e384]: "4"
+                - generic [ref=e385]:
+                  - generic [ref=e388]:
+                    - button "Óvalo" [ref=e389]:
+                      - generic "Óvalo" [ref=e391]:
+                        - img [ref=e392]
+                      - generic [ref=e395]: Óvalo
+                    - button "Marcar favorito": ★
+                  - generic [ref=e398]:
+                    - button "Línea" [ref=e399]:
+                      - generic "Línea" [ref=e401]:
+                        - img [ref=e402]
+                      - generic [ref=e404]: Línea
+                    - button "Marcar favorito": ★
+                  - generic [ref=e407]:
+                    - button "Rectángulo" [ref=e408]:
+                      - generic "Rectángulo" [ref=e410]:
+                        - img [ref=e411]
+                      - generic [ref=e414]: Rectángulo
+                    - button "Marcar favorito": ★
+                  - generic [ref=e417]:
+                    - button "Tabla" [ref=e418]:
+                      - generic "Tabla" [ref=e420]:
+                        - img [ref=e421]
+                      - generic [ref=e424]: Tabla
+                    - button "Marcar favorito": ★
+              - generic [ref=e425]:
+                - button "Alternar categoría Acción" [expanded] [ref=e426] [cursor=pointer]:
+                  - generic [ref=e427]: Acción
+                  - generic [ref=e428]: "4"
+                - generic [ref=e429]:
+                  - generic [ref=e432]:
+                    - button "Approve" [ref=e433]:
+                      - generic "Approve" [ref=e435]:
+                        - img [ref=e436]
+                      - generic [ref=e440]: Approve
+                    - button "Marcar favorito": ★
+                  - generic [ref=e443]:
+                    - button "Attachment" [ref=e444]:
+                      - generic "Attachment" [ref=e446]:
+                        - img [ref=e447]
+                      - generic [ref=e450]: Attachment
+                    - button "Marcar favorito": ★
+                  - generic [ref=e453]:
+                    - button "Decline" [ref=e454]:
+                      - generic "Decline" [ref=e456]:
+                        - img [ref=e457]
+                      - generic [ref=e462]: Decline
+                    - button "Marcar favorito": ★
+                  - generic [ref=e465]:
+                    - button "Note" [ref=e466]:
+                      - generic "Note" [ref=e468]:
+                        - img [ref=e469]
+                      - generic [ref=e473]: Note
+                    - button "Marcar favorito": ★
+              - generic [ref=e474]:
+                - button "Alternar categoría Destinatario" [expanded] [ref=e475] [cursor=pointer]:
+                  - generic [ref=e476]: Destinatario
+                  - generic [ref=e477]: "4"
+                - generic [ref=e478]:
+                  - generic [ref=e481]:
+                    - button "Company" [ref=e482]:
+                      - generic "Company" [ref=e484]:
+                        - img [ref=e485]
+                      - generic [ref=e490]: Company
+                    - button "Marcar favorito": ★
+                  - generic [ref=e493]:
+                    - button "Emailaddress" [ref=e494]:
+                      - generic "Emailaddress" [ref=e496]:
+                        - img [ref=e497]
+                      - generic [ref=e501]: Emailaddress
+                    - button "Marcar favorito": ★
+                  - generic [ref=e504]:
+                    - button "Fullname" [ref=e505]:
+                      - generic "Fullname" [ref=e507]:
+                        - img [ref=e508]
+                      - generic [ref=e512]: Fullname
+                    - button "Marcar favorito": ★
+                  - generic [ref=e515]:
+                    - button "Title" [ref=e516]:
+                      - generic "Title" [ref=e518]:
+                        - img [ref=e519]
+                      - generic [ref=e523]: Title
+                    - button "Marcar favorito": ★
+        - generic [ref=e524]:
+          - generic:
+            - generic [ref=e526]:
+              - generic "Editando" [ref=e527]
+              - generic [ref=e528]: Doc · Pág 1/1
+            - button "Pág 1/1" [ref=e531] [cursor=pointer]:
+              - generic [ref=e532]: Pág 1/1
+            - generic [ref=e534]:
+              - button "Guardar" [ref=e535] [cursor=pointer]:
+                - img [ref=e537]
+              - button "Más acciones" [ref=e541] [cursor=pointer]:
+                - img [ref=e543]
+            - generic [ref=e548]:
+              - button "Deshacer" [ref=e549] [cursor=pointer]:
+                - img [ref=e551]
+              - button "Rehacer" [ref=e554] [cursor=pointer]:
+                - img [ref=e556]
+              - generic [ref=e560] [cursor=pointer]:
+                - generic [ref=e562]:
+                  - combobox [ref=e564]
+                  - generic "100%" [ref=e565]
+                - generic:
+                  - img:
+                    - img
+          - button "Ocultar panel derecho" [pressed] [ref=e566]:
+            - img [ref=e567]
+          - complementary "Panel derecho del diseñador" [ref=e570]:
+            - generic [ref=e571]:
+              - tablist "Panel derecho" [ref=e573]:
+                - tab "Abrir panel Campos" [selected] [ref=e574] [cursor=pointer]:
+                  - img [ref=e577]
+                - tab "Abrir panel Detalle" [disabled] [ref=e581]:
+                  - img [ref=e584]
+                - tab "Abrir panel Comentarios" [ref=e585] [cursor=pointer]:
+                  - img [ref=e588]
+                - tab "Abrir panel Docs" [ref=e590] [cursor=pointer]:
+                  - img [ref=e593]
+              - generic [ref=e597]:
+                - generic [ref=e598]:
+                  - generic [ref=e599]:
+                    - generic [ref=e602]:
+                      - strong [ref=e604]: Campos
+                      - generic [ref=e606]: 0/0
+                    - generic [ref=e608]:
+                      - img [ref=e610]
+                      - textbox "Buscar campo o nombre" [ref=e613]
+                  - separator [ref=e615]
+                - generic "Lista de campos del documento" [ref=e616]:
+                  - generic [ref=e617]:
+                    - strong [ref=e619]: No hay campos que coincidan
+                    - generic [ref=e620]: Limpia la búsqueda, cambia el tipo o vuelve a la vista general del catálogo.
+      - status [ref=e622]
+  - region "Resultados":
+    - button "Resultados Colapsado" [ref=e623] [cursor=pointer]:
+      - text: Resultados
+      - generic [ref=e624]: Colapsado

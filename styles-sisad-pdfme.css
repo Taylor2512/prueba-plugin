@@ -2,7 +2,7 @@
    ARCHIVO UNIFICADO DE ESTILOS CSS
    =====================================================================
    Carpeta origen: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
-   Fecha de generación: 2026-06-17T15:10:46.263Z
+   Fecha de generación: 2026-06-30T03:42:57.470Z
    Total de archivos incluidos: 6
    Extensiones incluidas: .css
    Objetivo: consolidar estilos CSS respetando un orden estable de cascada
@@ -6379,7 +6379,7 @@
    ARCHIVO #2
    Ruta relativa: src/features/pdfcomponent/labRoutes.css
    Ruta absoluta: /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/src/features/pdfcomponent/labRoutes.css
-   Líneas aproximadas: 1253
+   Líneas aproximadas: 1431
    ==================================================================== */
 
 .sisad-pdfme-lab-landing,
@@ -6399,6 +6399,12 @@
   display: grid;
   gap: 0.45rem;
   align-content: start;
+  position: relative;
+  z-index: 0;
+  isolation: isolate;
+  --sisad-pdfme-z-header: 80;
+  --sisad-pdfme-z-popover: 140;
+  --sisad-pdfme-z-drawer: 70;
 }
 
 .sisad-pdfme-lab-page::before {
@@ -6446,20 +6452,47 @@
   gap: 0.24rem;
   padding: 0.28rem 0.38rem;
   align-items: start;
+  position: relative;
+  z-index: var(--sisad-pdfme-z-header);
 }
 
 .sisad-pdfme-lab-page-hero[data-density='compact'] {
-  gap: 0.28rem;
-  padding: 0.35rem 0.48rem;
+  gap: 0.2rem;
+  padding: 0.22rem 0.36rem;
+  position: relative;
+  z-index: var(--sisad-pdfme-z-header);
 }
 
 .sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-topbar {
-  grid-template-columns: minmax(0, 1.55fr) minmax(16rem, 0.95fr);
+  grid-template-columns: minmax(0, 1.45fr) minmax(14rem, 0.95fr);
+  gap: 0.16rem 0.3rem;
 }
 
 .sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-description {
   font-size: 0.78rem;
   line-height: 1.25;
+}
+
+.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-copy {
+  gap: 0.08rem;
+}
+
+.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page h1 {
+  font-size: clamp(0.92rem, 1.1vw, 1.08rem);
+}
+
+.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-rail {
+  gap: 0.14rem;
+}
+
+.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-actions {
+  padding: 0.14rem 0.2rem;
+  background: transparent;
+  border: 0;
+}
+
+.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-controls {
+  justify-content: flex-end;
 }
 
 .sisad-pdfme-lab-page-details {
@@ -6494,6 +6527,7 @@
   grid-template-columns: minmax(0, 1.4fr) minmax(17rem, 0.95fr);
   gap: 0.22rem 0.42rem;
   align-items: start;
+  min-width: 0;
 }
 
 .sisad-pdfme-lab-page-copy {
@@ -6537,6 +6571,7 @@
   gap: 0.18rem;
   align-items: start;
   min-width: 0;
+  justify-items: end;
 }
 
 .sisad-pdfme-lab-page-context {
@@ -6570,6 +6605,12 @@
   background: rgba(248, 250, 252, 0.72);
   border: 1px solid rgba(148, 163, 184, 0.15);
   min-width: 0;
+}
+
+.sisad-pdfme-lab-page-actions-compact {
+  gap: 0.15rem 0.18rem;
+  padding: 0.12rem 0.16rem;
+  background: rgba(248, 250, 252, 0.6);
 }
 
 .sisad-pdfme-lab-page-linkRow {
@@ -7068,6 +7109,7 @@
 .sisad-pdfme-popover {
   position: relative;
   display: inline-flex;
+  z-index: 90;
 }
 
 .sisad-pdfme-popover[data-align='start'] .sisad-pdfme-popover-panel {
@@ -7089,13 +7131,14 @@
   border-radius: 14px;
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.14);
   padding: 0.45rem;
-  z-index: 40;
+  z-index: var(--sisad-pdfme-z-popover);
   display: grid;
   gap: 0.45rem;
 }
 
 .sisad-pdfme-lab-command-center {
   min-width: 16rem;
+  max-width: min(22rem, calc(100vw - 1rem));
 }
 
 .sisad-pdfme-popover-custom {
@@ -7590,7 +7633,7 @@
 .sisad-pdfme-lab-page[data-ux-mode='canvas-first'] {
   height: 100dvh;
   min-height: 100dvh;
-  grid-template-rows: var(--lab-topbar-height, 48px) 1fr;
+  grid-template-rows: auto 1fr;
   gap: 0;
   padding: 0;
   overflow: hidden;
@@ -7616,23 +7659,158 @@
   overflow: hidden;
 }
 
-/* ─── Results as floating drawer (collapsed = pill) ───────────────────────── */
-.sisad-pdfme-lab-results[data-variant='drawer'] {
+/* ─── TASK-LAB-002 — Results drawer (controlled) + compact header ───────────── */
+.sisad-pdfme-lab-results-drawer {
   position: fixed;
-  left: 50%;
-  bottom: 0.6rem;
-  transform: translateX(-50%);
-  width: min(960px, 94vw);
-  max-height: min(320px, 60vh);
-  overflow: auto;
-  z-index: 40;
+  top: calc(var(--lab-topbar-height, 48px) + 0.75rem);
+  right: 0.75rem;
+  bottom: auto;
+  left: auto;
+  z-index: var(--sisad-pdfme-z-drawer);
+  pointer-events: none;            /* let clicks through except on pill/panel */
+  width: min(440px, calc(100vw - 1.5rem));
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: flex-end;
 }
 
-/* Collapsed (<details> closed): shrink to a floating pill, no body. */
-.sisad-pdfme-lab-results[data-variant='drawer']:not([open]) {
-  width: auto;
-  max-height: none;
-  overflow: visible;
+.sisad-pdfme-lab-results-pill,
+.sisad-pdfme-lab-results-drawer-panel {
+  pointer-events: auto;
+}
+
+.sisad-pdfme-lab-results-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+  background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.16);
+  font-size: 13px;
+  font-weight: 600;
+  color: #0f172a;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+}
+
+.sisad-pdfme-lab-results-drawer-panel {
+  width: 100%;
+  max-height: min(36dvh, 28rem);
+  overflow: auto;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  border-radius: 16px;
+  background: rgba(255, 255, 255, 0.98);
+  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.18);
+  padding: 10px 12px 12px;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.sisad-pdfme-lab-results-drawer-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.sisad-pdfme-lab-results-drawer-heading {
+  display: grid;
+  gap: 0.08rem;
+  min-width: 0;
+}
+
+.sisad-pdfme-lab-results-drawer-heading strong {
+  font-size: 0.88rem;
+  line-height: 1.15;
+  color: #0f172a;
+}
+
+.sisad-pdfme-lab-results-close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 1.8rem;
+  padding: 0.12rem 0.6rem;
+  border-radius: 999px;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  background: rgba(248, 250, 252, 0.98);
+  color: #334155;
+  font-size: 0.74rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.sisad-pdfme-lab-results-drawer-body {
+  min-width: 0;
+}
+
+/* Compact header (canvas-first): hide everything that isn't the topbar essentials.
+   Visible: title, mode badge, recipient/view selects, primary controls. */
+.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-collaboration-headline,
+.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-collaboration-chips,
+.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-collaboration-summary,
+.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-details,
+.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-description,
+.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-status-inline,
+.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-linkRow {
+  display: none;
+}
+
+/* ─── TASK-LAB-002 — compact collaboration popovers (recipient/view/status) ─── */
+.sisad-pdfme-lab-collaboration-bar-compact {
+  padding: 0.18rem 0.3rem;
+  border: 1px solid rgba(148, 163, 184, 0.15);
+  background: rgba(255, 255, 255, 0.7);
+  border-radius: 14px;
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.04);
+  backdrop-filter: blur(10px);
+}
+
+.sisad-pdfme-lab-collaboration-compact {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.sisad-pdfme-lab-collaboration-compact .sisad-pdfme-lab-select,
+.sisad-pdfme-lab-collaboration-controls .sisad-pdfme-lab-select {
+  min-width: 10.5rem;
+}
+
+.sisad-pdfme-lab-recipient-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  display: inline-block;
+  flex-shrink: 0;
+  box-shadow: 0 0 0 1px rgba(15, 23, 42, 0.12);
+}
+
+.sisad-pdfme-lab-recipient-option {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.sisad-pdfme-lab-status-list {
+  list-style: none;
+  margin: 0;
+  padding: 6px;
+  display: grid;
+  gap: 4px;
+  min-width: 168px;
+}
+
+.sisad-pdfme-lab-status-list li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: 13px;
+  color: #334155;
 }
 
 
@@ -10056,8 +10234,11 @@ body {
    │   ├── features
    │   │   └── pdfcomponent
    │   │       ├── domain
-   │   │       ├── examples
    │   │       ├── labRoutes.css
+   │   │       ├── labs
+   │   │       │   ├── builders
+   │   │       │   ├── examples
+   │   │       │   └── export
    │   │       └── ui
    │   ├── sisad-pdfme
    │   │   ├── assignments
@@ -10073,9 +10254,6 @@ body {
    │   │   ├── devtools
    │   │   ├── documents
    │   │   ├── editor
-   │   │   ├── examples
-   │   │   │   ├── builders
-   │   │   │   └── export
    │   │   ├── externalForms
    │   │   ├── generator
    │   │   ├── pdf-lib
@@ -10227,6 +10405,7 @@ body {
            │   └── pdfcomponent
            │       ├── domain
            │       ├── examples
+           │       ├── labs
            │       └── utils
            ├── sisad-pdfme
            │   ├── assignments
@@ -10241,7 +10420,6 @@ body {
            │   ├── converter
            │   ├── documents
            │   ├── editor
-           │   ├── examples
            │   ├── externalForms
            │   ├── generator
            │   ├── pdf-lib

@@ -6,21 +6,21 @@ import {
   createAuditMetadata,
   DEFAULT_AUDIT_BASE_TIMESTAMP,
   createCommentAnchor,
-} from '@/sisad-pdfme/examples/builders/schemaFactory';
+} from '@/features/pdfcomponent/labs/builders/schemaFactory';
 import {
   mergeSchemaPages,
   rectsIntersect,
   createSchemaShowcasePages,
   SHOWCASE_GRID_POSITIONS,
-} from '@/sisad-pdfme/examples/builders/schemaShowcase';
+} from '@/features/pdfcomponent/labs/builders/schemaShowcase';
 import {
   createTemplate,
   appendTemplatePages,
   createUploadedDocument,
   createCollaboration,
   createExample,
-} from '@/sisad-pdfme/examples/builders/exampleTemplate';
-import { buildExampleBundle, getExampleBundleFilename } from '@/sisad-pdfme/examples/export/buildExampleBundle';
+} from '@/features/pdfcomponent/labs/builders/exampleTemplate';
+import { buildExampleBundle, getExampleBundleFilename } from '@/features/pdfcomponent/labs/export/buildExampleBundle';
 
 describe('schemaFactory', () => {
   it('sanitizeIdentifier slugs', () => {

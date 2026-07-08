@@ -1,4 +1,4 @@
-import { downloadJson } from '../../browser/downloads.js';
+import { downloadJson } from '@/sisad-pdfme/browser/downloads.js';
 import { buildExampleBundle, getExampleBundleFilename } from './buildExampleBundle.js';
 import type { ExampleBundleOptions } from './buildExampleBundle.js';
 import type { ExampleDefinition } from '../builders/exampleTemplate.js';

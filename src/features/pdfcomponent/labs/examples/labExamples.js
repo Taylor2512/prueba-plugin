@@ -1,17 +1,16 @@
-// Lab examples. Generic builders/exporters live in core
-// (`@/sisad-pdfme/examples/*`, Fase 3). This file only holds lab-specific data
-// (PDF routes, demo content, example catalog) and wires it to the core builders.
+// Lab examples. Builders/exporters live beside this catalog under labs/.
+// This file holds lab-specific data and wires it to the local lab builders.
 import { builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
 import { text, select, checkbox, signature, radioGroup, checkboxGroup } from '@sisad-pdfme/schemas'
 import {
   createSchema,
   createCommentAnchor,
   createAuditMetadata,
-} from '@/sisad-pdfme/examples/builders/schemaFactory'
+} from '@/features/pdfcomponent/labs/builders/schemaFactory'
 import {
   createSchemaShowcasePages as createShowcasePagesCore,
   mergeSchemaPages,
-} from '@/sisad-pdfme/examples/builders/schemaShowcase'
+} from '@/features/pdfcomponent/labs/builders/schemaShowcase'
 import {
   createTemplate,
   appendTemplatePages,
@@ -19,12 +18,12 @@ import {
   createCollaboration,
   createExample,
   cloneExample,
-} from '@/sisad-pdfme/examples/builders/exampleTemplate'
+} from '@/features/pdfcomponent/labs/builders/exampleTemplate'
 import {
   buildExampleBundle,
   getExampleBundleFilename,
-} from '@/sisad-pdfme/examples/export/buildExampleBundle'
-import { buildExampleHref } from '@/sisad-pdfme/examples/export/downloadExampleBundle'
+} from '@/features/pdfcomponent/labs/export/buildExampleBundle'
+import { buildExampleHref } from '@/features/pdfcomponent/labs/export/downloadExampleBundle'
 
 const BASE_COLLABORATION_TIMESTAMP = 1713570000000
 

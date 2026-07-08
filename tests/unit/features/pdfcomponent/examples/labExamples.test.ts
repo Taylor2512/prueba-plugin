@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest';
-import * as moduleUnderTest from '@/features/pdfcomponent/examples/labExamples';
+import * as moduleUnderTest from '@/features/pdfcomponent/labs/examples/labExamples';
 
-describe('features/pdfcomponent/examples/labExamples.js', ()=>{
+describe('features/pdfcomponent/labs/examples/labExamples.js', ()=>{
   it('imports without crashing', ()=>{
     expect(moduleUnderTest).toBeTruthy();
   });

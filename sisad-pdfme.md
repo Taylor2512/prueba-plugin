@@ -1,7 +1,7 @@
 # Documentación Markdown Unificada
 
 **Carpeta origen:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin`  
-**Fecha de generación:** `2026-06-17T15:10:46.264Z`  
+**Fecha de generación:** `2026-06-30T03:42:57.472Z`  
 **Total de archivos incluidos:** `78`  
 **Extensiones incluidas:** `.md`
 
@@ -3416,7 +3416,10 @@ prueba-plugin
 │   ├── features
 │   │   └── pdfcomponent
 │   │       ├── domain
-│   │       ├── examples
+│   │       ├── labs
+│   │       │   ├── builders
+│   │       │   ├── examples
+│   │       │   └── export
 │   │       └── ui
 │   ├── sisad-pdfme
 │   │   ├── assignments
@@ -3432,9 +3435,6 @@ prueba-plugin
 │   │   ├── devtools
 │   │   ├── documents
 │   │   ├── editor
-│   │   ├── examples
-│   │   │   ├── builders
-│   │   │   └── export
 │   │   ├── externalForms
 │   │   ├── generator
 │   │   ├── pdf-lib
@@ -3581,6 +3581,7 @@ prueba-plugin
         │   └── pdfcomponent
         │       ├── domain
         │       ├── examples
+        │       ├── labs
         │       └── utils
         ├── sisad-pdfme
         │   ├── assignments
@@ -3595,7 +3596,6 @@ prueba-plugin
         │   ├── converter
         │   ├── documents
         │   ├── editor
-        │   ├── examples
         │   ├── externalForms
         │   ├── generator
         │   ├── pdf-lib

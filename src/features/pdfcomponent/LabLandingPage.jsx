@@ -1,6 +1,6 @@
 import React from 'react'
 import PropTypes from 'prop-types'
-import { getLabExamples } from './examples/labExamples.js'
+import { getLabExamples } from './labs/examples/labExamples.js'
 import { Hero, CaseGrid } from './ui/primitives.jsx'
 import { getLabCoverageCounts, getLabExamplePresentation, getLabExampleSchemaStats } from './domain/labPresentation.js'
 

@@ -41,39 +41,6 @@ export {
   resolveInitialUxMode,
 } from '../runtime/runtimeModes.js';
 
-// Example/fixture builders
-export {
-  sanitizeIdentifier,
-  chunkItems,
-  createSchema,
-  createSchemaByType,
-  createCommentAnchor,
-  createAuditMetadata,
-  DEFAULT_AUDIT_BASE_TIMESTAMP,
-} from '../examples/builders/schemaFactory.js';
-export {
-  SHOWCASE_GRID_POSITIONS,
-  rectsIntersect,
-  mergeSchemaPages,
-  createSchemaShowcasePages,
-} from '../examples/builders/schemaShowcase.js';
-export {
-  createTemplate,
-  appendTemplatePages,
-  createUploadedDocument,
-  createCollaboration,
-  createExample,
-  cloneExample,
-} from '../examples/builders/exampleTemplate.js';
-
-// Bundle export
-export {
-  buildExampleBundle,
-  getExampleBundleFilename,
-  inlineTemplateBasePdf,
-  inlineRuntimeOptionsBasePdfs,
-} from '../examples/export/buildExampleBundle.js';
-export { buildExampleHref, downloadExampleBundle } from '../examples/export/downloadExampleBundle.js';
 export {
   createPdfPreflightReport,
   generatePdfWithPreflight,
