@@ -29,7 +29,15 @@ const replaceUnsupportedChars = (text: string, fontKitFont: FontKitFont): string
     if (char in charSupportCache) {
       return charSupportCache[char];
     }
-    const isSupported = fontKitFont.hasGlyphForCodePoint(char.codePointAt(0) || 0);
+    let isSupported = true;
+    try {
+      isSupported = fontKitFont.hasGlyphForCodePoint(char.codePointAt(0) || 0);
+    } catch {
+      // Fuente corrupta/ilegible (p.ej. tabla GSUB/cmap inválida hace que fontkit
+      // lance "Offset is outside the bounds of the DataView"). No abortar el
+      // render del campo: se asume soportado y se conserva el carácter original.
+      isSupported = true;
+    }
     charSupportCache[char] = isSupported;
     return isSupported;
   };
@@ -88,7 +96,14 @@ export const uiRender = async (arg: UIRenderProps<TextSchema>) => {
     usePlaceholder ? placeholder : value,
   );
 
-  const processedText = replaceUnsupportedChars(value, fontKitFont);
+  // Si la fuente falla al procesar caracteres, degradar al valor original en vez
+  // de abortar el render (lo que dejaría el campo no editable).
+  let processedText = value;
+  try {
+    processedText = replaceUnsupportedChars(value, fontKitFont);
+  } catch {
+    processedText = value;
+  }
 
   if (!isEditable(mode, schema)) {
     // Read-only mode

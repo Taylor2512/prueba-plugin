@@ -16,7 +16,7 @@ import {
 
 import type { MenuProps } from 'antd';
 import { Button, Dropdown, Select } from 'antd';
-import { I18nContext } from '../contexts.js';
+import { I18nContext, OptionsContext } from '../contexts.js';
 import { useMaxZoom } from '../helper.js';
 import { UI_CLASSNAME } from '../constants.js';
 
@@ -107,10 +107,16 @@ type CtlBarProps = {
   onToggleFeature?: (key: 'grid' | 'guides' | 'snapLines' | 'padding') => void;
   selectionCount?: number;
   isGroupedSelection?: boolean;
+  /**
+   * Optional explicit visibility override. If provided, takes precedence over OptionsContext flags.
+   * When undefined, visibility is resolved from OptionsContext.hideControlBar or OptionsContext.uxMode === 'runtime'.
+   */
+  visible?: boolean;
 };
 
 const CtlBar = (props: CtlBarProps) => {
   const i18n = useContext(I18nContext);
+  const options = useContext(OptionsContext) as Record<string, unknown> | undefined;
 
   const {
     size,
@@ -136,7 +142,22 @@ const CtlBar = (props: CtlBarProps) => {
     onToggleFeature,
     selectionCount,
     isGroupedSelection,
+    visible,
   } = props;
+
+  // Resolve visibility: explicit prop visible takes precedence. When undefined,
+  // consult OptionsContext: support options.hideControlBar (boolean) and
+  // options.uxMode === 'runtime' to hide by default in runtime scenarios.
+  const visibleFromOptions = (() => {
+    if (!options) return true;
+    if (options.hideControlBar === true) return false;
+    if (String(options.uxMode || '').toLowerCase() === 'runtime') return false;
+    return true;
+  })();
+
+  const shouldRender = typeof visible === 'boolean' ? Boolean(visible) : Boolean(visibleFromOptions);
+  if (!shouldRender) return null;
+
   const zoomChangeHandler = setZoom ?? setZoomLevel;
   const toolbarDensity: ToolbarDensity =
     size.width >= 1200 ? 'comfortable' : size.width >= 900 ? 'compact' : 'minimal';

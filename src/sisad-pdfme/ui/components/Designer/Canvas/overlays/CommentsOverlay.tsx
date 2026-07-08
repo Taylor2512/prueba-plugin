@@ -86,6 +86,18 @@ const CommentsOverlay = ({
   // Re-measure tick: pins are positioned against EACH anchor's own page paper
   // (not a single page), so we recompute offsets on layout/resize/scroll.
   const [measureTick, setMeasureTick] = useState(0);
+  const [anchorPositions, setAnchorPositions] = useState<Array<{
+    id: string;
+    x: number;
+    y: number;
+    left: number;
+    top: number;
+    schemaUid?: string;
+    authorName?: string;
+    authorColor?: string;
+    text?: string;
+    resolved?: boolean;
+  }>>([]);
 
   useLayoutEffect(() => {
     const bump = () => setMeasureTick((t) => t + 1);
@@ -189,7 +201,29 @@ const CommentsOverlay = ({
     return Array.from(byId.values());
   }, [schemas, topLevelComments, pageIndex]);
 
-  if (!anchors.length) return null;
+  useLayoutEffect(() => {
+    const overlay = containerRef.current;
+    if (!overlay) {
+      setAnchorPositions([]);
+      return;
+    }
+
+    const overlayRect = overlay.getBoundingClientRect();
+    const nextPositions = anchors.flatMap((anchor) => {
+      const paper = paperRefs.current[anchor.pageIndex];
+      if (!paper) return [];
+      const paperRect = paper.getBoundingClientRect();
+      return [{
+        ...anchor,
+        left: paperRect.left - overlayRect.left + mm2px(anchor.x) * scale,
+        top: paperRect.top - overlayRect.top + mm2px(anchor.y) * scale,
+      }];
+    });
+
+    setAnchorPositions(nextPositions);
+  }, [anchors, measureTick, paperRefs, scale]);
+
+  if (!anchorPositions.length) return null;
 
   return (
     <div
@@ -197,11 +231,7 @@ const CommentsOverlay = ({
       className="sisad-pdfme-ui-comments-overlay"
       style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}
     >
-      {anchors.map((a) => {
-        const off = getPageOffset(a.pageIndex);
-        if (!off) return null;
-        const left = off.left + mm2px(a.x) * scale;
-        const top = off.top + mm2px(a.y) * scale;
+      {anchorPositions.map((a) => {
         const preview = a.text ? (a.text.length > 48 ? `${a.text.slice(0, 48)}…` : a.text) : 'Comentario';
         return (
           <button
@@ -217,8 +247,8 @@ const CommentsOverlay = ({
             }}
             style={{
               position: 'absolute',
-              left: `${left}px`,
-              top: `${top}px`,
+              left: `${a.left}px`,
+              top: `${a.top}px`,
               width: 16,
               height: 16,
               borderRadius: 8,
