@@ -74,7 +74,7 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
 
   return (
     <div
-      className="sisad-pdfme-ui-inline-edit-overlay rounded-2xl border border-slate-200/80 bg-white/95 p-2.5 shadow-lg backdrop-blur-sm"
+      className="sisad-pdfme-ui-inline-edit-overlay absolute z-[calc(var(--z-overlay)_+_6)] flex w-[min(360px,calc(100vw_-_24px))] max-w-[calc(100vw_-_24px)] origin-top-left flex-col gap-1.5 rounded-2xl border border-slate-200/80 bg-white/95 p-2.5 shadow-lg backdrop-blur-sm pointer-events-auto [transition:transform_120ms_var(--wix-ease-out),opacity_120ms_var(--wix-ease-out)]"
       role="dialog"
       aria-modal="false"
       aria-label={sessionLabel}

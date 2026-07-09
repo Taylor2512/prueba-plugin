@@ -14,9 +14,9 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `docs`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-09T13:39:54.661Z`
+- **Fecha generación:** `2026-07-09T14:57:26.715Z`
 - **Extensiones incluidas:** `.md, .mdx`
-- **Archivos candidatos incluidos:** `225`
+- **Archivos candidatos incluidos:** `232`
 - **Límite por archivo:** `120 KB`
 - **Límite total de contenido:** `1800 KB`
 
@@ -280,6 +280,7 @@ prueba-plugin
 ├── reports
 │   └── tailwind-migration
 │       ├── baseline-regression-audit.md
+│       ├── component-migration-ledger.md
 │       ├── deep-density-spacing-audit.md
 │       ├── img-version-baseline-inventory.md
 │       ├── line-by-line-style-audit.md
@@ -290,7 +291,13 @@ prueba-plugin
 │       ├── rightsidebar-detailview-tailwind-audit.md
 │       ├── runtime-form-viewer-tailwind-audit.md
 │       ├── schema-chrome-tailwind-audit.md
-│       └── tc-css-11-lab-audit.md
+│       ├── tc-css-04-left-sidebar-tailwind.md
+│       ├── tc-css-08-control-bar-toolbar-tailwind.md
+│       ├── tc-css-10-schemas-visual.md
+│       ├── tc-css-11-lab-audit.md
+│       ├── tc-css-ownership-color.md
+│       ├── ui-styles-decommission-audit.md
+│       └── ui-styles-decommission-progress.md
 ├── scripts
 │   └── README.md
 ├── SEPARATION-CONTRACT.md
@@ -510,34 +517,41 @@ prueba-plugin
 | 205 | `ai/templates/skill-template.md` | markdown | 7 | 0.1 | completo |
 | 206 | `ai/templates/task-card-template.md` | markdown | 11 | 0.2 | completo |
 | 207 | `reports/tailwind-migration/baseline-regression-audit.md` | markdown | 27 | 5.2 | completo |
-| 208 | `reports/tailwind-migration/deep-density-spacing-audit.md` | markdown | 105 | 9.6 | completo |
-| 209 | `reports/tailwind-migration/img-version-baseline-inventory.md` | markdown | 14 | 2.6 | completo |
-| 210 | `reports/tailwind-migration/line-by-line-style-audit.md` | markdown | 227 | 21.6 | completo |
-| 211 | `reports/tailwind-migration/pending-phases-progress.md` | markdown | 10 | 1.9 | completo |
-| 212 | `reports/tailwind-migration/README.md` | markdown | 76 | 4.6 | completo |
-| 213 | `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md` | markdown | 45 | 3.4 | completo |
-| 214 | `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md` | markdown | 34 | 3.2 | completo |
-| 215 | `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md` | markdown | 13 | 2.3 | completo |
-| 216 | `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md` | markdown | 20 | 1.4 | completo |
-| 217 | `reports/tailwind-migration/schema-chrome-tailwind-audit.md` | markdown | 18 | 1.3 | completo |
-| 218 | `reports/tailwind-migration/tc-css-11-lab-audit.md` | markdown | 31 | 1.2 | completo |
-| 219 | `test-results/standard-fields-standard-f-c4dc3-s-the-expected-schema-types-chromium/error-context.md` | markdown | 576 | 28.7 | completo |
-| 220 | `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md` | markdown | 21 | 0.5 | completo |
-| 221 | `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 5 | 0.2 | completo |
-| 222 | `ai/task-cards/backlog/TASK-CSS-001-tailwind-regression-stabilization.md` | markdown | 22 | 0.6 | completo |
-| 223 | `ai/task-cards/backlog/TASK-VISUAL-001-img-version-baseline.md` | markdown | 12 | 0.3 | completo |
-| 224 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
-| 225 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
+| 208 | `reports/tailwind-migration/component-migration-ledger.md` | markdown | 62 | 5.1 | completo |
+| 209 | `reports/tailwind-migration/deep-density-spacing-audit.md` | markdown | 105 | 9.6 | completo |
+| 210 | `reports/tailwind-migration/img-version-baseline-inventory.md` | markdown | 14 | 2.6 | completo |
+| 211 | `reports/tailwind-migration/line-by-line-style-audit.md` | markdown | 227 | 21.6 | completo |
+| 212 | `reports/tailwind-migration/pending-phases-progress.md` | markdown | 10 | 1.9 | completo |
+| 213 | `reports/tailwind-migration/README.md` | markdown | 76 | 4.6 | completo |
+| 214 | `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md` | markdown | 45 | 3.4 | completo |
+| 215 | `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md` | markdown | 34 | 3.2 | completo |
+| 216 | `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md` | markdown | 13 | 2.3 | completo |
+| 217 | `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md` | markdown | 20 | 1.4 | completo |
+| 218 | `reports/tailwind-migration/schema-chrome-tailwind-audit.md` | markdown | 18 | 1.3 | completo |
+| 219 | `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md` | markdown | 45 | 2.8 | completo |
+| 220 | `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md` | markdown | 43 | 2.5 | completo |
+| 221 | `reports/tailwind-migration/tc-css-10-schemas-visual.md` | markdown | 33 | 3.7 | completo |
+| 222 | `reports/tailwind-migration/tc-css-11-lab-audit.md` | markdown | 31 | 1.2 | completo |
+| 223 | `reports/tailwind-migration/tc-css-ownership-color.md` | markdown | 38 | 4.0 | completo |
+| 224 | `reports/tailwind-migration/ui-styles-decommission-audit.md` | markdown | 57 | 5.6 | completo |
+| 225 | `reports/tailwind-migration/ui-styles-decommission-progress.md` | markdown | 25 | 1.6 | completo |
+| 226 | `test-results/standard-fields-standard-f-c4dc3-s-the-expected-schema-types-chromium/error-context.md` | markdown | 576 | 28.7 | completo |
+| 227 | `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md` | markdown | 21 | 0.5 | completo |
+| 228 | `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 5 | 0.2 | completo |
+| 229 | `ai/task-cards/backlog/TASK-CSS-001-tailwind-regression-stabilization.md` | markdown | 22 | 0.6 | completo |
+| 230 | `ai/task-cards/backlog/TASK-VISUAL-001-img-version-baseline.md` | markdown | 12 | 0.3 | completo |
+| 231 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
+| 232 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1478
+- **extensión no incluida:** 1481
 - **directorio ignorado: dependencia/build/salida generada:** 7
 
 ## Totales
 
-- **KB originales candidatos:** `266.3`
-- **KB incluidos en contenido:** `266.1`
+- **KB originales candidatos:** `291.8`
+- **KB incluidos en contenido:** `291.5`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -7658,7 +7672,82 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 
 <a id="file-0208"></a>
 
-### 0208 — `reports/tailwind-migration/deep-density-spacing-audit.md`
+### 0208 — `reports/tailwind-migration/component-migration-ledger.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `62`
+- **Tamaño original:** `5.1 KB`
+- **SHA1 corto:** `8ff7eb942d`
+- **Estado:** `completo`
+
+```markdown
+# Component migration ledger — Tailwind (SISAD PDFME)
+
+Registro por componente de la migración CSS→Tailwind. Actualizado: 2026-07-09.
+Regla de la sesión: **solo Tailwind en JSX/TSX** (sin editar CSS). Validación con Playwright en `/lab/multi-document-routing`.
+
+Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pinned) · ⏳ pendiente · 🔒 no tocar.
+
+## RightSidebar — TC-CSS-05 / 06 / 07 + scroll fix
+
+| Archivo | Estado | Última task | Tailwind JSX | Bridge | Legacy KEEP | Captura | Build | Riesgo |
+|---|---|---|---|---|---|---|---|---|
+| RightSidebar/RightSidebar.tsx | ✅ | scroll+densidad | sí | no | — | right-sidebar-detail-*, scroll-* | ✅ | bajo |
+| RightSidebar/layout.tsx | ✅ | scroll owner (`SidebarBody` overflow-y-auto) | sí | no | — | scroll-detail-* | ✅ | bajo |
+| RightSidebar/shared/SidebarSurfacePrimitives.tsx | 🟡 | densidad+textos | sí | no | font-size de header CSS-pinned | detail-* | ✅ | bajo |
+| RightSidebar/DetailView/DetailViewContent.tsx | ✅ | densidad | sí | no | — | detail-* | ✅ | bajo |
+| RightSidebar/DetailView/DetailHeaderCard.tsx | 🟡 | densidad | sí | no | título `.stage` CSS-pinned (0.82rem) | detail-* | ✅ | bajo |
+| RightSidebar/DetailView/DetailSectionCard.tsx | 🟡 | densidad+colapso | sí | no | título/desc `[data-panel-mode=detail]` CSS-pinned | detail-* | ✅ | bajo |
+| RightSidebar/DetailView/DetailFormSection.tsx | ✅ | quitar card anidada (`p-0 bg-transparent`) | sí | no | gutters de form-render | detail-* | ✅ | medio |
+| RightSidebar/DetailView/InspectorPrimitives.tsx | ✅ | densidad+textos | sí | no | — | detail-* | ✅ | bajo |
+| RightSidebar/DetailView/AlignWidget.tsx | ✅ | botones h-7 w-7 rounded-lg | sí | no | — | detail-* | ✅ | bajo |
+| RightSidebar/DetailView/ButtonGroupWidget.tsx | ✅ | botones h-7 w-7 | sí | no | — | detail-* | ✅ | bajo |
+| RightSidebar/DetailView/CompactConfigPanel.tsx | ✅ | densidad+textos | sí | no | — | detail-* | ✅ | bajo |
+| RightSidebar/ListView/ListView.tsx | ✅ | densidad+scroll | sí | no | — | scroll-list-after | ✅ | bajo |
+| RightSidebar/DocumentsRail.tsx | ✅ | densidad+textos | sí | no | — | scroll-documents-after | ✅ | bajo |
+| RightSidebar/CommentsRail.tsx | ✅ | scroll (header shrink-0, lista flex-1) + quitó `style` inline | sí | no | tokens de color runtime | scroll-comments-after | ✅ | bajo |
+
+## LeftSidebar — TC-CSS-04
+
+| Archivo | Estado | Última task | Tailwind JSX | Bridge | Legacy KEEP | Captura | Build | Riesgo |
+|---|---|---|---|---|---|---|---|---|
+| Designer/LeftSidebar.tsx | 🟡 | densidad (shell, plugin-wrap, scroll owner) | sí | no | radio `left-sidebar-group` CSS-pinned; toggle-btn posición legacy | left-sidebar-after | ✅ | medio (dnd verificado OK) |
+| Designer/LeftSidebarGroup.tsx | 🟡 | densidad card categoría | sí | no | border-radius CSS-pinned (1.2rem) | left-sidebar-after | ✅ | bajo |
+
+## Control bar / overlays contextuales — TC-CSS-08
+
+| Archivo | Estado | Última task | Tailwind JSX | Bridge | Legacy KEEP | Captura | Build | Riesgo |
+|---|---|---|---|---|---|---|---|---|
+| ui/components/CtlBar.tsx | ✅ | skin pill summary `px-2.5 py-1` | sí | no | clusters posicionados por CSS (canvas-chrome) | control-bar-toolbar-after | ✅ | bajo |
+| Canvas/overlays/SelectionContextToolbar.tsx | 🟡 | skin (`p-1.5 shadow-md`) | sí | no | `style{top,left,width}` geometría; padding CSS-pinned | control-bar-toolbar-after | ✅ | medio (hit-testing verificado) |
+| Canvas/overlays/CanvasContextMenu.tsx | ✅ | skin (`shadow-lg`) | sí | no | `resolveAnchoredFloatingSurfacePosition` geometría | control-bar-toolbar-after | ✅ | medio (menú abre, 9 items, in-viewport) |
+
+## Pendientes / en curso por otra sesión (colisión — no tocar ahora)
+
+| Área | Card | Estado | Nota |
+|---|---|---|---|
+| Canvas overlay skins (InlineEditOverlay, SchemaDragPreview, SchemaDropCommitFlash, SchemaDropPlaceholder) | TC-CSS-09 | 🔒 en edición paralela | esperar a que el worker termine |
+| Lab shell (PageHeader, PdfmeLabPage, ResultsPanel, labRoutes.css) | TC-CSS-01A/01B | 🔒 en edición paralela | staged/modificado por otra sesión |
+| CSS legacy (tokens/global/runtime/canvas-interactions) | migración `@layer`/`@apply` | 🔒 worker CSS | riesgo: `@layer` en CSS importado standalone rompe build (ver nota abajo) |
+| Schemas visual (text/number/table/options…) | TC-CSS-10/11 | ⏳ | no iniciado en esta sesión |
+| Runtime Form/Viewer | TC-CSS-12 | ⏳ | no iniciado |
+
+## Notas de build
+
+- **Riesgo recurrente (@layer):** envolver un CSS importado standalone (`ui/index.ts`, `editor/index.ts`) en `@layer base/components` rompe el build (`@layer X used but no matching @tailwind X`). Fix sistémico: no envolver esos archivos en `@layer`, o enrutarlos por el entry Tailwind (`@import` tras `@tailwind base/components`).
+- Estado actual: **build ✅ (exit 0)**, **lint ✅ (0 errores, 117 warnings heredados)**.
+- Ninguna de mis ediciones tocó archivos `.css`.
+
+## Reportes de detalle
+- `right-sidebar-tailwind-only-density-fix.md`
+- `right-sidebar-scroll-tailwind-fix.md`
+- `tc-css-04-left-sidebar-tailwind.md`
+- `tc-css-08-control-bar-toolbar-tailwind.md`
+```
+
+<a id="file-0209"></a>
+
+### 0209 — `reports/tailwind-migration/deep-density-spacing-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `105`
@@ -7774,9 +7863,9 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 - [x] Reporte actualizado.
 ```
 
-<a id="file-0209"></a>
+<a id="file-0210"></a>
 
-### 0209 — `reports/tailwind-migration/img-version-baseline-inventory.md`
+### 0210 — `reports/tailwind-migration/img-version-baseline-inventory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -7801,9 +7890,9 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 | `public/img-version/Captura de pantalla 2026-07-08 a la(s) 4.48.22 p. m..jpg` | `RIGHT_SIDEBAR_DOCUMENTS` | LeftSidebar, canvas, document list, right panel tabs | Confirma que la densidad de la barra derecha es compacta y navegable. |
 ```
 
-<a id="file-0210"></a>
+<a id="file-0211"></a>
 
-### 0210 — `reports/tailwind-migration/line-by-line-style-audit.md`
+### 0211 — `reports/tailwind-migration/line-by-line-style-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `227`
@@ -8041,9 +8130,9 @@ Clasificación por sección (comentarios reales del archivo). Contadores clave: 
 - **TC-CSS-06** — Migrar `@media` de labRoutes a breakpoints Tailwind (`sm:`/`md:`) — opcional, cosmético.
 ```
 
-<a id="file-0211"></a>
+<a id="file-0212"></a>
 
-### 0211 — `reports/tailwind-migration/pending-phases-progress.md`
+### 0212 — `reports/tailwind-migration/pending-phases-progress.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -8064,9 +8153,9 @@ Clasificación por sección (comentarios reales del archivo). Contadores clave: 
 | TC-CSS-13 Docs | pending | `docs/11-migraciones/tailwind-migration.md`, `docs/09-theming/tailwind-and-css-architecture.md` | Bajo | Documentación y reportes actualizados |
 ```
 
-<a id="file-0212"></a>
+<a id="file-0213"></a>
 
-### 0212 — `reports/tailwind-migration/README.md`
+### 0213 — `reports/tailwind-migration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -8153,9 +8242,9 @@ Migración incremental de diseños a Tailwind preservando comportamiento, canvas
 - generator/pdf-lib
 ```
 
-<a id="file-0213"></a>
+<a id="file-0214"></a>
 
-### 0213 — `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md`
+### 0214 — `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -8211,9 +8300,9 @@ SCROLL  .layout-body (SidebarBody) → min-h-0 flex-1 overflow-y-auto overflow-x
 Ninguno de los archivos `.css` prohibidos fue modificado por esta tarea. Los `.css` que aparecen en `git status` (`sisad-pdfme-global.css`, `labRoutes.css`) corresponden a trabajo externo/paralelo de la migración, no a esta tarea.
 ```
 
-<a id="file-0214"></a>
+<a id="file-0215"></a>
 
-### 0214 — `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md`
+### 0215 — `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -8258,9 +8347,9 @@ Fase: RightSidebar visual density (Tailwind JSX/TSX only). Sin CSS nuevo, sin ed
 Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provienen del `Row`/`Col` interno de `form-render` (gutter por defecto). El margen negativo y el padding se compensan a cero contra el borde del form-shell, por lo que **no** producen overflow. Al dejar el form-shell en `p-0 bg-transparent`, el contenido queda alineado al borde de la sección sin card anidada. No se fuerza cambio del gutter por CSS ni por schema data (prohibido). Queda como riesgo residual estético menor.
 ```
 
-<a id="file-0215"></a>
+<a id="file-0216"></a>
 
-### 0215 — `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md`
+### 0216 — `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -8284,9 +8373,9 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx` | Shared sidebar header primitives | Shared chrome already centralised for list/detail surfaces | `KEEP_LEGACY` | Low |
 ```
 
-<a id="file-0216"></a>
+<a id="file-0217"></a>
 
-### 0216 — `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md`
+### 0217 — `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -8317,9 +8406,9 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 - El runtime mantiene la paridad Form/Viewer y la separación clara entre chrome y contenido.
 ```
 
-<a id="file-0217"></a>
+<a id="file-0218"></a>
 
-### 0217 — `reports/tailwind-migration/schema-chrome-tailwind-audit.md`
+### 0218 — `reports/tailwind-migration/schema-chrome-tailwind-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -8348,9 +8437,169 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 - `basic-designer` continúa renderizando `field-chrome` y `action-based` sin overflow ni regresiones visibles.
 ```
 
-<a id="file-0218"></a>
+<a id="file-0219"></a>
 
-### 0218 — `reports/tailwind-migration/tc-css-11-lab-audit.md`
+### 0219 — `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `45`
+- **Tamaño original:** `2.8 KB`
+- **SHA1 corto:** `f2f0066d69`
+- **Estado:** `completo`
+
+```markdown
+# TC-CSS-04 — LeftSidebar baseline (Tailwind-only)
+
+Card única del plan (Sprint A, tras RightSidebar). Solo Tailwind en JSX/TSX. Sin tocar CSS. Sin romper drag/drop, filtros, favoritos, recientes, búsqueda ni tabs.
+
+## Alcance
+Pase de densidad/consistencia para alinear el LeftSidebar con la escala ya validada en el RightSidebar, conservando la estética baseline (panel blanco flotante, tabs cápsula, search pill, filtros, categorías uppercase, cards con icono centrado).
+
+## Archivos modificados
+- `LeftSidebar.tsx`
+- `LeftSidebarGroup.tsx`
+
+## Cambios (Tailwind)
+| Componente | Antes | Después |
+|---|---|---|
+| `left-sidebar-shell` | `rounded-3xl` | `rounded-2xl` |
+| `dock-header` | `px-3.5 py-2.5` | `shrink-0 px-2.5 py-2` |
+| `control-band` | `space-y-2 px-3.5 py-2.5` | `shrink-0 space-y-1.5 px-2.5 py-2` |
+| `left-sidebar-main` (scroll owner) | `px-3.5 py-2.5` | `space-y-1.5 overflow-x-hidden overscroll-contain px-2 py-2` |
+| search stack/wrap | `space-y-2.5` | `space-y-2` |
+| `plugin-wrap` (×2) | `rounded-2xl p-1.5 shadow-sm` | `rounded-xl p-1 shadow-none` |
+| `left-sidebar-group` | `rounded-[1.2rem] p-1.5 shadow-sm` | `rounded-xl p-1.5 shadow-none` |
+| group title | `rounded-[0.9rem] px-2.5 py-1.5` | `min-h-[28px] rounded-lg px-2 py-1` |
+| group items | `mt-1.5 space-y-[0.3125rem]` | `mt-1 space-y-1` |
+
+## Validación funcional (Playwright, 0 errores de consola)
+- Filtros Todos / Favoritos / Recientes: ✅ clican y cambian.
+- Búsqueda "firma": ✅ 8 resultados.
+- Cambio de tab (Estándar → Personalizado): ✅ `data-active-tab="custom"`.
+- Colapsar/expandir categoría: ✅ `aria-expanded true→false`.
+- Drag/drop: ✅ 38 draggable shells, 76 botones de esquema con listeners dnd-kit intactos.
+- Scroll interno (`left-sidebar-main`): ✅ `overflow-y: auto`, `canScroll: true`.
+
+## Notas / límites (Tailwind-only estricto)
+- **`left-sidebar-group` border-radius** sigue en `1.2rem`: lo fija una regla CSS con selector de mayor especificidad (mismo caso que en RightSidebar). `shadow-none` y el padding SÍ aplicaron; el radio queda CSS-pinned. No se fuerza con `!important` ni editando CSS.
+- **Overflow horizontal del root (`scrollWidth 208 > clientWidth 192`, 16px):** el único elemento que sobresale es `.sisad-pdfme-designer-sidebar-toggle-btn` (el handle de colapsar el panel), posicionado por CSS legacy **por diseño**, preexistente y no tocado en esta card. El contenido (grupos, botones, search) no desborda. No se recorta para no ocultar el control de colapso.
+
+## CSS no tocado
+Ninguno `.css` fue modificado en esta card. Los `.css` que figuran en `git status` (`sisad-pdfme-global.css`, `labRoutes.css`) son trabajo paralelo, ajeno a esta tarea.
+
+## Build/Lint
+- `npm run build`: ✅ pasa.
+- `eslint` en los 2 archivos: ✅ 0 errores / 0 warnings.
+
+## Capturas
+`reports/tailwind-migration/current-screenshots/left-sidebar-before.png`, `left-sidebar-after.png`.
+```
+
+<a id="file-0220"></a>
+
+### 0220 — `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `43`
+- **Tamaño original:** `2.5 KB`
+- **SHA1 corto:** `b8ccc6fe45`
+- **Estado:** `completo`
+
+```markdown
+# TC-CSS-08 — Control bar / toolbar contextual (Tailwind-only)
+
+Card única del plan (Sprint B). Regla: **solo skin en Tailwind**; `position/transform/z-index/pointer-events/hit-testing` se conservan (legacy/tokens/`style`). No tocar Canvas/Moveable/Selecto.
+
+## Hallazgo
+Los tres archivos objetivo ya estaban **mayormente migrados a Tailwind**:
+- `SelectionContextToolbar.tsx` y `CanvasContextMenu.tsx`: layout y skin en `className` Tailwind; posición vía `style={{ top,left }}` (geometría, intacta).
+- `CtlBar.tsx`: clusters posicionados por CSS legacy (canvas-chrome, intacto); pills ya con skin Tailwind.
+
+Por tanto la card se resolvió con un **pase de consistencia de skin/densidad** de bajo riesgo, sin reescribir geometría.
+
+## Archivos modificados
+- `src/sisad-pdfme/ui/components/CtlBar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx`
+
+## Cambios (solo skin)
+| Archivo | Antes | Después |
+|---|---|---|
+| CtlBar summary pill | `px-3 py-2` | `px-2.5 py-1` (densidad consistente con las demás pills) |
+| SelectionContextToolbar contenedor | `p-2 shadow-lg` | `p-1.5 shadow-md` (sombra flotante más ligera) |
+| CanvasContextMenu contenedor | `shadow-xl` | `shadow-lg` |
+
+**No se tocó:** `style={{ top,left,width }}`, `resolveAnchoredFloatingSurfacePosition`, `floatingSurfaceGeometry`, `data-schema-interactive-control`, z-index, pointer-events, ni ninguna lógica de acciones/comandos.
+
+## Validación (Playwright, ruta multi-document-routing, 0 errores de consola)
+- Control bar: renderiza (4 clusters, 4 pills). ✅
+- Toolbar de selección: aparece al seleccionar campo; posición intacta (`top:81.6px left:504.8px` desde `style`), ancho 250px. ✅
+- Menú contextual (click derecho): abre con **9 items, dentro del viewport** → hit-testing y anclaje intactos. ✅
+- Cierre con Escape: ✅.
+
+## Notas (Tailwind-only estricto)
+- El padding del `selection-context-toolbar` computa `2px 4px`: lo fija CSS legacy con mayor especificidad (mismo patrón que en sidebars). El skin que sí aplica es el de sombra/estructura; el resto queda CSS-pinned. No se fuerza con `!important` ni editando CSS.
+
+## CSS no tocado
+Ningún `.css` modificado por esta card. Los `.css` en `git status` (`sisad-pdfme-global.css`, `labRoutes.css`) son trabajo paralelo ajeno.
+
+## Build/Lint
+- `npm run build`: ✅ pasa.
+- `eslint` (3 archivos): ✅ 0 errores / 0 warnings.
+
+## Capturas
+`reports/tailwind-migration/current-screenshots/control-bar-toolbar-after.png`.
+```
+
+<a id="file-0221"></a>
+
+### 0221 — `reports/tailwind-migration/tc-css-10-schemas-visual.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `33`
+- **Tamaño original:** `3.7 KB`
+- **SHA1 corto:** `137b461e8a`
+- **Estado:** `completo`
+
+```markdown
+# TC-CSS-10/11 — Schemas visual + comportamiento seguro
+
+Objetivo: mejorar visual/funcionalmente los schemas de `src/sisad-pdfme/schemas` sin romper Canvas/Moveable/Selecto/Snapshot/Form/Viewer/Generator ni geometría.
+
+## Hallazgo importante antes de editar
+Buena parte del spec **ya estaba implementada** por trabajo previo/paralelo:
+- **Tarea 1 (SCHEMA VISUAL SYSTEM):** ya existe en `sisad-pdfme-global.css` (21 reglas `.sisad-pdfme-field-chrome`, incluyendo `data-schema-family` de `option-based/boolean/signing-based/action-based`, estados `selected/multi-selected/readonly`, familias `note/attachment/action-button`). **Añadirlo al bridge sería duplicación/conflicto de cascada** → NO lo dupliqué. **No edité ningún `.css`.**
+- **Tareas 2/3 (option-group):** `optionGroupRenderer.ts` ya implementa `rowsInteractive = editable && !readOnly && !isViewer` (opciones internas no seleccionables en designer/viewer), `aria-checked/label/required/invalid/readonly`, `data-option-group-invalid`, clase `sisad-pdfme-option-group__option`, y sin `data-schema-id` en opciones internas. El bridge ya estiliza `__option`/`__add-button`/`[data-render-mode]`/`[data-option-labels]`. Ya cubierto.
+
+## Cambios aplicados (Tailwind/TS seguro, sin CSS)
+
+| Tarea | Archivo | Cambio | Riesgo |
+|---|---|---|---|
+| 5 select | `select/index.ts` | Separé `shouldShowChevron = mode!=='viewer'` de `shouldMountNativeSelect = mode==='form' && !readOnly`. El `<select>` invisible **ya no se monta en designer** (antes capturaba pointer events y bloqueaba drag/Moveable). Chevron sigue siendo decorativo (`pointer-events:none`). | bajo |
+| 6 approve | `actions/approve.ts` | En `mode==='form'` el botón ahora llama `onChange([{content:action},{actionStatus:'approved'}])` **y** emite `CustomEvent('sisad-pdfme:schema-action')` (bubbles). Designer/viewer: visual/no interactivo. `renderMode` forwardeado al chrome. | bajo |
+| 6 decline | `actions/decline.ts` | Igual, con `decline/declined`. | bajo |
+| 8 signature | `signature/index.ts` | `applyFieldChrome(container, {family:'signing-based', renderMode})` → el placeholder toma el mismo chrome (borde/selected/readonly/required) que el resto vía `global.css`. Enfoque de bajo riesgo (no reestructuré el flujo complejo con `renderSchemaWithChrome`, que limpiaría el root). | bajo |
+
+## Validación (Playwright, `/lab/multi-document-routing`, 0 errores de consola)
+- `nativeSelectsInCanvas: 0` (designer ya no monta el `<select>` overlay) ✅
+- Selección de campo en canvas funciona ✅
+- `signingChrome: 2` (signature con `data-schema-family="signing-based"`) ✅
+- `actionChrome: 4` (approve/decline/note/attachment) ✅
+- 24 schemas renderizan, sin errores ✅
+- Build `npm run build` ✅ (exit 0, TS compila) · lint sin errores (schemas están en el ignore pattern de eslint).
+
+## Diferido (mayor riesgo runtime / requiere pase dedicado + validación Form/Viewer/Generator)
+- **Tarea 4** (`optionGroupFactory.ts` — sync de altura mínima): toca geometría; requiere verificar callers y no romper bounding box del `+`.
+- **Tarea 7** (`checkbox/index.ts` — toggle por modo designer/form/viewer + botón "convertir a grupo" solo en designer seleccionado): cambio de comportamiento; riesgo de romper Form/designer.
+- **Tarea 2** (mover estilos inline del body a classNames): el renderer tiene overrides inline **intencionales** (comentario explícito: "inline beats builder; el body no debe dibujar borde/fondo ni clipear"). Migrarlo a clases requiere coordinar con `global.css` (dominio paralelo) para no reintroducir el clipping de la última fila.
+
+## No tocado (reglas)
+Canvas, Paper, Moveable, Selecto, coordenadas, x/y/width/height/rotation, snapshot, `pdf` render. Sin estilos inline nuevos (los existentes se conservan). Sin `setTimeout`.
+```
+
+<a id="file-0222"></a>
+
+### 0222 — `reports/tailwind-migration/tc-css-11-lab-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -8392,9 +8641,168 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 - `npm run lint`: passed with inherited warnings only
 ```
 
-<a id="file-0219"></a>
+<a id="file-0223"></a>
 
-### 0219 — `test-results/standard-fields-standard-f-c4dc3-s-the-expected-schema-types-chromium/error-context.md`
+### 0223 — `reports/tailwind-migration/tc-css-ownership-color.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `38`
+- **Tamaño original:** `4.0 KB`
+- **SHA1 corto:** `3364966c37`
+- **Estado:** `completo`
+
+```markdown
+# Ownership color — resolución central de tone por propietario
+
+Objetivo: que todo schema use el color de su propietario/asignado (`ownerColor/userColor/recipientColor`) como tono de pertenencia, no colores hardcodeados/semánticos. Sin tocar Canvas/Moveable/Selecto/Paper/Snapshot/Generator ni geometría.
+
+## Causa raíz (confirmada)
+`applyFieldChrome` resolvía el tone con prioridad **incompleta**:
+`ownerColor(param) ?? schema.ownerColor ?? schema.recipientColor ?? '#2563eb'`
+— faltaban `userColor` y `__designer.ownerColor`, y el **param iba primero** (podía pisar el color propio del schema). El motor colaborativo devuelve `ownerColor: ownerColor || userColor`, así que schemas con solo `userColor` caían al fallback.
+
+## Cambio aplicado (1 archivo, contenido)
+`src/sisad-pdfme/schemas/shared/fieldChrome.ts`:
+- **Nuevo helper exportado `resolveSchemaOwnerTone(schema, fallback)`** con prioridad completa: `ownerColor → userColor → recipientColor → __designer.ownerColor → __designer.recipientColor → fallback → #2563EB`. Deliberadamente NO lee `buttonColor/textColor/schema.color` (semánticos, no ownership).
+- `applyFieldChrome` ahora usa `resolveSchemaOwnerTone(schema, ownerColor)` → el **color propio del schema tiene prioridad**, el param es solo fallback (mejora reglas 6/8: existing schemas conservan su color; el destinatario activo solo aplica a nuevos/preview/catálogo).
+- Estampa `data-schema-owner-color` + variable `--schema-owner-color` en cada chrome, y añade `--schema-owner-color` a los `styleVars` de `resolveFieldChromePolicy`.
+
+## Validación (Playwright, `/lab/multi-document-routing`, 0 errores)
+- Build ✅ (exit 0, TS compila). Lint: sin errores (schemas en ignore pattern de eslint).
+- 6/6 field-chrome exponen `data-schema-owner-color` + `--schema-owner-color`.
+- Los schemas visibles de la escena por defecto **no traen dato de ownership** (`ownerRecipientId`/`ownerColor`/`userColor`/`recipientColor` ausentes) → muestran el fallback `#2563EB`. El fix usa el color propio **cuando existe**.
+
+## Estado por familia (realidad del sistema)
+- **text / option-based / boolean / signing-based:** ya renderizan owner color vía `--schema-tone` (border/surface en `global.css`) → correctos con el fix.
+- **action-based (approve/decline/attachment/note):** su chrome es `border-0 bg-transparent` **por diseño en `global.css`**, y el contenido (botón verde/rojo, icono gris) es semántico → el owner color no es visible. Este es el caso que el usuario percibe como "no cambian".
+
+## Por qué NO forcé el acento visible en action-based (honesto)
+Hacer visible el owner color en approve/decline/attachment/note requiere un **acento** (border/ring/bar con `--schema-owner-color`) que hoy no aparece porque:
+1. `global.css` fija `action-based` como `border-0 bg-transparent`, y **`global.css` NO está en los archivos permitidos** de esta tarea.
+2. El bridge (permitido) **carga antes** que `global.css` → una regla `.field-chrome[...]` del bridge pierde por orden/especificidad, no puede sobrescribir el `border-0`.
+3. La creación del botón (`createActionButtonEl`) vive en `schemaDom.ts`, **fuera de los archivos permitidos**.
+
+Opciones para el siguiente pase (requieren autorización de scope):
+- (a) editar `global.css` para añadir un acento owner-color en `action-based` usando la var `--schema-owner-color` que ya expongo; o
+- (b) permitir tocar `schemaDom.ts`/render de cada action schema para pintar icono/acento con `resolveSchemaOwnerTone(schema)`.
+
+La prioridad #5 del spec (resolver color desde `ownerRecipientId` + `recipientColorMap`) **no pertenece a la capa de schema** (`fieldChrome.ts` es puro, sin acceso al mapa): debe estamparse upstream por la capa de colaboración (`schemaOwnershipAppearance`), que ya debería poner `ownerColor` en el schema — el fix lo consume correctamente cuando está.
+
+## No tocado
+Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas x/y/w/h/rotation. Sin colores hardcodeados nuevos, sin `setTimeout`, sin `!important`, sin editar `.css`.
+```
+
+<a id="file-0224"></a>
+
+### 0224 — `reports/tailwind-migration/ui-styles-decommission-audit.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `57`
+- **Tamaño original:** `5.6 KB`
+- **SHA1 corto:** `8f61d3ea72`
+- **Estado:** `completo`
+
+```markdown
+# UI styles decommission audit
+
+## Métrica inicial
+
+| Archivo | Líneas | KB | Rol actual | Riesgo | Objetivo |
+|---|---:|---:|---|---|---|
+| `src/sisad-pdfme/ui/styles/tokens.css` | 374 | 16K | Tokens globales base | Alto si se reduce sin evidencia | Mantener solo variables realmente compartidas |
+| `src/sisad-pdfme/ui/styles/sisad-pdfme-runtime.css` | 240 | 8K | Runtime/Form/Viewer shell residual | Medio | Reducir skins duplicados y dejar solo residual técnico |
+| `src/sisad-pdfme/ui/styles/canvas-interactions.css` | 883 | 40K | Overlays/menus/toolbars del canvas | Alto, pero muy migrable | Bajar >20% eliminando skins ya cubiertos en TSX |
+| `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | 6408 | 172K | Shell/sidebars/schema chrome legacy mixto | Muy alto | Reducir por dominios, no en bloque |
+
+## Imports CSS activos
+
+| Archivo importador | CSS importado | Puede eliminarse ahora | Motivo |
+|---|---|---|---|
+| `src/sisad-pdfme/editor/index.ts` | `tokens.css`, `sisad-pdfme-runtime.css`, `canvas-interactions.css` | No | Entry del editor/runtime |
+| `src/sisad-pdfme/ui/index.ts` | `tokens.css`, `sisad-pdfme-runtime.css`, `canvas-interactions.css` | No | Entry compartida del paquete UI |
+| `src/main.jsx` | `src/styles/sisad-tailwind-bridge.css` | No | Bridge activo para hooks existentes |
+| `src/App.jsx` | `src/features/pdfcomponent/labRoutes.css` | No | Lab shell sigue importando su layout |
+
+## Selectores críticos no migrables todavía
+
+| Selector | Archivo | Motivo | Riesgo si se migra |
+|---|---|---|---|
+| `.sisad-pdfme-designer-stage[data-schema-dragging="true"]` | `canvas-interactions.css` | Estado runtime del canvas | Romper drag/drop y visibilidad contextual |
+| `.sisad-pdfme-ui-custom-selectable` | `canvas-interactions.css` / `fieldChrome.ts` | Chrome de schema con pseudo-elementos y data attrs | Pérdida de outline/readonly/required |
+| `.sisad-pdfme-ui-schema-toolbar` | `canvas-interactions.css` | Toolbar anclada a campo con transform dinámico | Riesgo de offset y foco |
+| `.sisad-pdfme-paper-*` | `sisad-pdfme-global.css` / `runtime.css` | Geometría paper/paper scale | Romper layout/zoom/print |
+| `.moveable-*`, `.selecto-*` | runtime externo | Compatibilidad con librería de interacción | Romper selección y transform |
+| `--schema-owner-color`, `--sisad-schema-selected-color` | `tokens.css` | Color runtime por destinatario/owner | Romper colorización por contexto |
+
+## Selectores migrables a Tailwind JSX/TSX
+
+| Selector | Archivo CSS | Componente dueño | Archivo JSX/TSX destino | Acción |
+|---|---|---|---|---|
+| `.sisad-pdfme-ui-canvas-context-menu*` | `canvas-interactions.css` | `CanvasContextMenu` | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx` | MIGRATE_JSX_TAILWIND |
+| `.sisad-pdfme-ui-inline-edit-overlay*` | `canvas-interactions.css` | `InlineEditOverlay` | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx` | MIGRATE_JSX_TAILWIND |
+| `.sisad-pdfme-schema-drag-preview*` | `canvas-interactions.css` | `SchemaDragPreview` | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview.tsx` | MIGRATE_JSX_TAILWIND |
+| `.sisad-pdfme-schema-drop-placeholder*` | `canvas-interactions.css` | `SchemaDropPlaceholder` | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx` | MIGRATE_JSX_TAILWIND |
+| `.sisad-pdfme-schema-drop-commit-flash*` | `canvas-interactions.css` | `SchemaDropCommitFlash` | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx` | MIGRATE_JSX_TAILWIND |
+| `.sisad-pdfme-ui-snap-feedback*` | `canvas-interactions.css` | `SnapFeedbackOverlay` | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx` | MIGRATE_JSX_TAILWIND |
+| `.sisad-pdfme-shortcuts-*` | `canvas-interactions.css` | `ShortcutHelpButton` / `ShortcutHelpPanel` | `src/sisad-pdfme/ui/components/Designer/Shortcuts/*.tsx` | MIGRATE_JSX_TAILWIND |
+| `.sisad-pdfme-designer-canvas-state-overlay .sisad-pdfme-designer-canvas-empty-state-*` | `canvas-interactions.css` | `CanvasStateOverlay` | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay.tsx` | MIGRATE_JSX_TAILWIND |
+
+## Selectores aparentemente muertos
+
+| Selector | Archivo | Evidencia rg | Acción |
+|---|---|---|---|
+| `.sisad-pdfme-ui-shortcuts-launcher` | `canvas-interactions.css` | `rg -n "sisad-pdfme-ui-shortcuts-launcher" src` devolvió solo CSS | DELETE_DUPLICATE_WITH_EVIDENCE |
+| `.sisad-pdfme-shortcuts-button` | `canvas-interactions.css` | El botón ya lleva Tailwind en `ShortcutHelpButton.tsx` | DELETE_DUPLICATE_WITH_EVIDENCE |
+| `.sisad-pdfme-shortcuts-panel-body` | `canvas-interactions.css` | El panel ya usa Tailwind en `ShortcutHelpPanel.tsx` | DELETE_DUPLICATE_WITH_EVIDENCE |
+| `.sisad-pdfme-shortcuts-groups` | `canvas-interactions.css` | El scroll/spacing ya está en JSX | DELETE_DUPLICATE_WITH_EVIDENCE |
+| `.sisad-pdfme-shortcuts-group`, `.sisad-pdfme-shortcuts-row`, `.sisad-pdfme-shortcuts-key` | `canvas-interactions.css` | Las cards/rows/tags ya están pintadas con Tailwind | DELETE_DUPLICATE_WITH_EVIDENCE |
+| `.sisad-pdfme-ui-canvas-context-menu*` | `canvas-interactions.css` | El componente ya trae classes completas | DELETE_DUPLICATE_WITH_EVIDENCE |
+| `.sisad-pdfme-ui-inline-edit-overlay*` | `canvas-interactions.css` | El componente ya trae classes completas | DELETE_DUPLICATE_WITH_EVIDENCE |
+| `.sisad-pdfme-schema-drag-preview-orb`, `.sisad-pdfme-schema-drag-preview-icon` | `canvas-interactions.css` | Los nodos ya usan Tailwind directo | DELETE_DUPLICATE_WITH_EVIDENCE |
+| `.sisad-pdfme-ui-snap-feedback*` | `canvas-interactions.css` | El root y labels ya están en JSX | DELETE_DUPLICATE_WITH_EVIDENCE |
+```
+
+<a id="file-0225"></a>
+
+### 0225 — `reports/tailwind-migration/ui-styles-decommission-progress.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `1.6 KB`
+- **SHA1 corto:** `46a6e3f02a`
+- **Estado:** `completo`
+
+```markdown
+# UI styles decommission progress
+
+## Métrica por archivo
+
+| Archivo | Líneas antes | Líneas después | Reducción | Estado |
+|---|---:|---:|---:|---|
+| `src/sisad-pdfme/ui/styles/tokens.css` | 374 | 383 | +9 | Conservado; normalizado a `:root` |
+| `src/sisad-pdfme/ui/styles/sisad-pdfme-runtime.css` | 240 | 184 | 56 | Reducido parcialmente |
+| `src/sisad-pdfme/ui/styles/canvas-interactions.css` | 883 | 567 | 316 | Reducido de forma significativa |
+| `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | 6408 | 4240 | 2168 | Reducido por dominios y wrappers |
+
+## CSS eliminado
+
+| Archivo | Selector/Bloque eliminado | Reemplazo Tailwind | Componente destino |
+|---|---|---|---|
+| `src/sisad-pdfme/ui/styles/canvas-interactions.css` | Drag preview, drop placeholder, commit flash, inline edit, snap feedback, context menu, shortcuts visuals | Tailwind en JSX/TSX y `className` inline | `Canvas` overlays y `Shortcuts` |
+
+## CSS residual justificado
+
+| Archivo | Selector/Bloque residual | Motivo | Fase futura |
+|---|---|---|---|
+| `src/sisad-pdfme/ui/styles/tokens.css` | Variables runtime/owner/recipient | Tokens globales compartidos y dinámicos | Mantener |
+| `src/sisad-pdfme/ui/styles/sisad-pdfme-runtime.css` | Residual de runtime/Form/Viewer | Compatibilidad y chrome mínimo inevitable | TC-CSS-10 |
+| `src/sisad-pdfme/ui/styles/canvas-interactions.css` | Selection toolbar, chrome técnico sensible | Geometría / pointer / runtime crítico | TC-CSS-08 / interacción |
+| `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | Shell, sidebars, paper, runtime layout | Cascada legacy aún compartida por múltiples vistas | TC-CSS-11 / TC-CSS-12 |
+```
+
+<a id="file-0226"></a>
+
+### 0226 — `test-results/standard-fields-standard-f-c4dc3-s-the-expected-schema-types-chromium/error-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `576`
@@ -8981,9 +9389,9 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 ``​`
 ```
 
-<a id="file-0220"></a>
+<a id="file-0227"></a>
 
-### 0220 — `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md`
+### 0227 — `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -9015,9 +9423,9 @@ Instalar carpeta `ai/` como fuente de verdad y adaptar Codex, Claude y Copilot c
 Código de runtime.
 ```
 
-<a id="file-0221"></a>
+<a id="file-0228"></a>
 
-### 0221 — `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md`
+### 0228 — `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -9033,9 +9441,9 @@ Código de runtime.
 Verificar que utilidades Tailwind no pisen `overflow:auto`, height, scale o page geometry.
 ```
 
-<a id="file-0222"></a>
+<a id="file-0229"></a>
 
-### 0222 — `ai/task-cards/backlog/TASK-CSS-001-tailwind-regression-stabilization.md`
+### 0229 — `ai/task-cards/backlog/TASK-CSS-001-tailwind-regression-stabilization.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -9068,9 +9476,9 @@ src/sisad-pdfme/ui/styles/*.css
 Moveable, Selecto, geometry, snapshot, generator/pdf-lib.
 ```
 
-<a id="file-0223"></a>
+<a id="file-0230"></a>
 
-### 0223 — `ai/task-cards/backlog/TASK-VISUAL-001-img-version-baseline.md`
+### 0230 — `ai/task-cards/backlog/TASK-VISUAL-001-img-version-baseline.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -9093,9 +9501,9 @@ reports/tailwind-migration/img-version-contact-sheet.jpg
 ``​`
 ```
 
-<a id="file-0224"></a>
+<a id="file-0231"></a>
 
-### 0224 — `ai/task-cards/completed/README.md`
+### 0231 — `ai/task-cards/completed/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -9109,9 +9517,9 @@ reports/tailwind-migration/img-version-contact-sheet.jpg
 Mover aquí task-cards completadas con reporte final.
 ```
 
-<a id="file-0225"></a>
+<a id="file-0232"></a>
 
-### 0225 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
+### 0232 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`

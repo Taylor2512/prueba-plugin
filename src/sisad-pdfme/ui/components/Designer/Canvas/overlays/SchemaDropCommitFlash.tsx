@@ -28,7 +28,7 @@ const SchemaDropCommitFlash = ({
   return (
     <div
       className={mergeClassNames(
-        'sisad-pdfme-schema-drop-commit-flash fixed pointer-events-none -translate-x-1/2 -translate-y-1/2',
+        'sisad-pdfme-schema-drop-commit-flash fixed z-[10000] pointer-events-none -translate-x-1/2 -translate-y-1/2 [animation:schema-drop-commit-flash-enter_180ms_cubic-bezier(0.16,1,0.3,1)_both]',
       )}
       style={
         {

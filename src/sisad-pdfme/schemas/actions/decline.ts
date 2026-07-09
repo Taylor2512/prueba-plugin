@@ -20,7 +20,7 @@ type DeclineSchema = ActionSchemaBase<{
 
 const declinePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
   {
-    ui: async ({ schema, rootElement, mode }) => {
+    ui: async ({ schema, rootElement, mode, onChange }) => {
       const s = schema as DeclineSchema;
       const iconSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
       renderSchemaWithChrome<DeclineSchema>({
@@ -28,6 +28,7 @@ const declinePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
         rootElement,
         family: 'action-based',
         compact: true,
+        renderMode: mode,
         render: (chromeEl) => {
           const button = createActionButtonEl({
             label: s.label || 'Rechazar',
@@ -37,6 +38,27 @@ const declinePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
             isInteractive: mode === 'form',
             iconSvg,
           });
+          // Live only in form: notify host via onChange + bubbling CustomEvent.
+          if (mode === 'form') {
+            button.addEventListener('click', (event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              onChange?.([
+                { key: 'content', value: s.action || 'decline' },
+                { key: 'actionStatus', value: 'declined' },
+              ]);
+              rootElement.dispatchEvent(
+                new CustomEvent('sisad-pdfme:schema-action', {
+                  bubbles: true,
+                  detail: {
+                    action: s.action || 'decline',
+                    schemaUid: (s as { schemaUid?: string; id?: string }).schemaUid ?? (s as { id?: string }).id,
+                    schema: s,
+                  },
+                }),
+              );
+            });
+          }
           chromeEl.appendChild(button);
         },
       });

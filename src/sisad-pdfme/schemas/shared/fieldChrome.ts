@@ -102,6 +102,45 @@ export type FieldChromePolicyResult = {
 const mix = (tone: string, pct: number, base = 'white'): string =>
   `color-mix(in srgb, ${tone} ${pct}%, ${base})`;
 
+const normalizeColor = (value: unknown): string =>
+  typeof value === 'string' && value.trim() ? value.trim() : '';
+
+/**
+ * Single source of truth for a schema's OWNERSHIP tone (who the field belongs
+ * to), independent of any semantic content color (approve=green, decline=red…).
+ *
+ * Priority: ownerColor → userColor → recipientColor → __designer.ownerColor →
+ * __designer.recipientColor → caller fallback (active recipient for NEW schemas
+ * / catalog cards only) → #2563EB.
+ *
+ * Deliberately does NOT read buttonColor/textColor/schema.color — those are
+ * semantic/content colors, never ownership.
+ */
+export const resolveSchemaOwnerTone = (
+  schema: unknown,
+  fallback?: string | null,
+): string => {
+  const source = schema as
+    | {
+        ownerColor?: string;
+        userColor?: string;
+        recipientColor?: string;
+        __designer?: { ownerColor?: string; recipientColor?: string };
+      }
+    | null
+    | undefined;
+
+  return (
+    normalizeColor(source?.ownerColor) ||
+    normalizeColor(source?.userColor) ||
+    normalizeColor(source?.recipientColor) ||
+    normalizeColor(source?.__designer?.ownerColor) ||
+    normalizeColor(source?.__designer?.recipientColor) ||
+    normalizeColor(fallback) ||
+    '#2563EB'
+  );
+};
+
 /**
  * Central visual policy: given mode + state + tone, returns the chrome pieces
  * (surface/border + CSS vars + data attributes + capability flags).
@@ -178,6 +217,7 @@ export const resolveFieldChromePolicy = (
     },
     styleVars: {
       '--schema-tone': tone,
+      '--schema-owner-color': tone,
       '--schema-surface-tone': surface,
       '--schema-border-tone': borderColor,
       '--schema-text-tone': tone,
@@ -243,7 +283,10 @@ export const applyFieldChrome = <TSchema extends SisadSchemaBase>(
   options: ApplyFieldChromeOptions<TSchema>,
 ): void => {
   const { schema, family, ownerColor, compact } = options;
-  const tone = ownerColor ?? schema.ownerColor ?? schema.recipientColor ?? '#2563eb';
+  // Ownership tone (who the field belongs to). `ownerColor` here is the caller
+  // fallback — the active recipient for NEW schemas/preview only; existing
+  // schemas keep their own ownerColor/userColor and are unaffected by it.
+  const tone = resolveSchemaOwnerTone(schema, ownerColor);
   const state = deriveVisualState(options);
 
   element.classList.add('sisad-pdfme-field-chrome');
@@ -253,7 +296,9 @@ export const applyFieldChrome = <TSchema extends SisadSchemaBase>(
   element.dataset.schemaReadonly = String(Boolean(schema.readOnly || schema.readonly));
   element.dataset.schemaLocked = String(Boolean(schema.locked));
   element.dataset.schemaCompact = String(Boolean(compact));
+  element.dataset.schemaOwnerColor = tone;
   element.style.setProperty('--schema-tone', tone);
+  element.style.setProperty('--schema-owner-color', tone);
 
   // When the runtime mode is known, delegate surface/border/vars to the central
   // policy and stamp data-render-mode so CSS can drive mode-specific chrome.

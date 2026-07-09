@@ -22,7 +22,7 @@ type ApproveSchema = ActionSchemaBase<{
 
 const approvePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
   {
-    ui: async ({ schema, rootElement, mode }) => {
+    ui: async ({ schema, rootElement, mode, onChange }) => {
       const s = schema as ApproveSchema;
       const iconSvg = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`;
       renderSchemaWithChrome<ApproveSchema>({
@@ -30,6 +30,7 @@ const approvePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
         rootElement,
         family: 'action-based',
         compact: true,
+        renderMode: mode,
         render: (chromeEl) => {
           const button = createActionButtonEl({
             label: s.label || 'Aprobar',
@@ -39,6 +40,29 @@ const approvePlugin: Plugin<Schema> = createSchemaPlugin<Schema>(
             isInteractive: mode === 'form',
             iconSvg,
           });
+          // Only in form is the action live: notify the host via onChange AND a
+          // bubbling CustomEvent (host owns confirmation/audit/routing). In
+          // designer/viewer the button stays visual/non-interactive.
+          if (mode === 'form') {
+            button.addEventListener('click', (event) => {
+              event.preventDefault();
+              event.stopPropagation();
+              onChange?.([
+                { key: 'content', value: s.action || 'approve' },
+                { key: 'actionStatus', value: 'approved' },
+              ]);
+              rootElement.dispatchEvent(
+                new CustomEvent('sisad-pdfme:schema-action', {
+                  bubbles: true,
+                  detail: {
+                    action: s.action || 'approve',
+                    schemaUid: (s as { schemaUid?: string; id?: string }).schemaUid ?? (s as { id?: string }).id,
+                    schema: s,
+                  },
+                }),
+              );
+            });
+          }
           chromeEl.appendChild(button);
         },
       });

@@ -3,6 +3,8 @@ import { PenLine } from 'lucide-react';
 import image from '../graphics/image.js';
 import { isEditable, readFile } from '../utils.js';
 import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
+import { applyFieldChrome } from '../shared/fieldChrome.js';
+import type { SisadSchemaBase } from '../shared/schemaTypes.js';
 import { propPanel } from './propPanel.js';
 import { getSignatureProvider, resolveSignatureProviderSource } from './providerRegistry.js';
 import { normalizeSignatureSchema } from './types.js';
@@ -66,6 +68,15 @@ const signatureSchema: Plugin<SignatureSchema> = createSchemaPlugin<SignatureSch
       backgroundPosition: 'center',
       backgroundSize: 'contain',
     });
+    // Shared field chrome (signing-based family) so the signature placeholder
+    // gets the same border/focus/selected/readonly/required visual state as
+    // every other schema. CSS-driven via data attributes; no geometry change.
+    applyFieldChrome(container, {
+      schema: schema as unknown as SisadSchemaBase,
+      family: 'signing-based',
+      renderMode: arg.mode,
+    });
+
     arg.rootElement.appendChild(container);
 
     if (arg.value) {

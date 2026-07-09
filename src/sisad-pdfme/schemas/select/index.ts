@@ -143,7 +143,14 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
     rootElement.dataset.schemaFamily = 'option-based';
     rootElement.dataset.selectionMode = 'singleCompact';
 
-    if (mode !== 'viewer' && !(mode === 'form' && schema.readOnly)) {
+    // Chevron is decorative (pointer-events:none) and may show in designer/form.
+    // The invisible native <select> overlay is interactive and MUST only mount in
+    // form mode — in designer it would capture pointer events and block
+    // drag/selection/Moveable.
+    const shouldShowChevron = mode !== 'viewer';
+    const shouldMountNativeSelect = mode === 'form' && !schema.readOnly;
+
+    if (shouldShowChevron) {
       const buttonWidth = 22;
       const selectButton = document.createElement('button');
       selectButton.type = 'button';
@@ -171,7 +178,9 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
       Object.assign(selectButton.style, selectButtonStyle);
 
       rootElement.appendChild(selectButton);
+    }
 
+    if (shouldMountNativeSelect) {
       const selectElement = document.createElement('select');
       const selectElementStyle: CSS.Properties = {
         opacity: '0',
