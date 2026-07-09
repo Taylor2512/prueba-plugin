@@ -16,14 +16,14 @@ import {
 import type { SelectionCommandSet, AlignType, DistributeType } from '../../shared/selectionCommands.js';
 
 const LAYOUT_BUTTONS = [
-  { id: 'left', label: 'Alinear a la izquierda', icon: <AlignStartVertical size={15} />, type: 'align', value: 'left' },
-  { id: 'center', label: 'Centrar horizontalmente', icon: <AlignCenterVertical size={15} />, type: 'align', value: 'center' },
-  { id: 'right', label: 'Alinear a la derecha', icon: <AlignEndVertical size={15} />, type: 'align', value: 'right' },
-  { id: 'top', label: 'Alinear arriba', icon: <AlignStartHorizontal size={15} />, type: 'align', value: 'top' },
-  { id: 'middle', label: 'Centrar verticalmente', icon: <AlignCenterHorizontal size={15} />, type: 'align', value: 'middle' },
-  { id: 'bottom', label: 'Alinear abajo', icon: <AlignEndHorizontal size={15} />, type: 'align', value: 'bottom' },
-  { id: 'vertical', label: 'Distribuir verticalmente', icon: <AlignVerticalSpaceAround size={15} />, type: 'distribute', value: 'vertical' },
-  { id: 'horizontal', label: 'Distribuir horizontalmente', icon: <AlignHorizontalSpaceAround size={15} />, type: 'distribute', value: 'horizontal' },
+  { id: 'left', label: 'Alinear a la izquierda', icon: <AlignStartVertical size={14} />, type: 'align', value: 'left' },
+  { id: 'center', label: 'Centrar horizontalmente', icon: <AlignCenterVertical size={14} />, type: 'align', value: 'center' },
+  { id: 'right', label: 'Alinear a la derecha', icon: <AlignEndVertical size={14} />, type: 'align', value: 'right' },
+  { id: 'top', label: 'Alinear arriba', icon: <AlignStartHorizontal size={14} />, type: 'align', value: 'top' },
+  { id: 'middle', label: 'Centrar verticalmente', icon: <AlignCenterHorizontal size={14} />, type: 'align', value: 'middle' },
+  { id: 'bottom', label: 'Alinear abajo', icon: <AlignEndHorizontal size={14} />, type: 'align', value: 'bottom' },
+  { id: 'vertical', label: 'Distribuir verticalmente', icon: <AlignVerticalSpaceAround size={14} />, type: 'distribute', value: 'vertical' },
+  { id: 'horizontal', label: 'Distribuir horizontalmente', icon: <AlignHorizontalSpaceAround size={14} />, type: 'distribute', value: 'horizontal' },
 ];
 
 const AlignWidget = (props: PropPanelWidgetProps & { selectionCommands?: SelectionCommandSet }) => {
@@ -42,14 +42,14 @@ const AlignWidget = (props: PropPanelWidgetProps & { selectionCommands?: Selecti
 
   return (
     <Form.Item label="Alineación" className={mergeClassNames(`${DESIGNER_CLASSNAME}align-widget`, 'm-0')}>
-      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}align-widget-grid`, 'grid grid-cols-4 gap-1.5')}>
+      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}align-widget-grid`, 'grid grid-cols-4 gap-1')}>
         {LAYOUT_BUTTONS.map((btn) => (
           <Button
             key={btn.id}
             className={mergeClassNames(
               `${DESIGNER_CLASSNAME}align-btn`,
               `${DESIGNER_CLASSNAME}align-${btn.id}`,
-              'inline-flex h-8 w-8 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 shadow-sm transition',
+              'inline-flex h-7 w-7 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 shadow-none transition',
               'hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 disabled:cursor-not-allowed disabled:opacity-40',
             )}
             onClick={() => handleClick(btn)}

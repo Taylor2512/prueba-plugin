@@ -239,7 +239,7 @@ const CtlBar = (props: CtlBarProps) => {
   return (
     <div className={UI_CLASSNAME + 'control-bar'} data-density={toolbarDensity} data-layout="canvas-chrome">
       <div className={UI_CLASSNAME + 'control-bar-cluster ' + UI_CLASSNAME + 'control-bar-cluster--top-left'}>
-        <div className={UI_CLASSNAME + 'control-bar-summary rounded-full border border-slate-200/70 bg-white/95 px-3 py-2 shadow-sm'}>
+        <div className={UI_CLASSNAME + 'control-bar-summary rounded-full border border-slate-200/70 bg-white/95 px-2.5 py-1 shadow-sm'}>
           <span
             className={UI_CLASSNAME + 'control-bar-status-dot'}
             data-status={statusTone}

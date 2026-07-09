@@ -110,7 +110,7 @@ const SelectionContextToolbar = ({
   return (
     <div
       ref={toolbarRef}
-      className="sisad-pdfme-ui-selection-context-toolbar rounded-2xl border border-slate-200/70 bg-white/95 p-2 shadow-lg backdrop-blur"
+      className="sisad-pdfme-ui-selection-context-toolbar rounded-2xl border border-slate-200/70 bg-white/95 p-1.5 shadow-md backdrop-blur"
       role="toolbar"
       aria-label="Barra contextual de edición"
       data-schema-interactive-control="true"

@@ -29,13 +29,13 @@ type SectionTextProps = {
 const SectionText = ({ title, description }: SectionTextProps) => (
   <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head-main', 'min-w-0 flex-1 space-y-0.5')}>
     <div
-      className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-title', 'text-[0.68rem] font-semibold uppercase tracking-[0.04em] text-slate-900')}
+      className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-title', 'truncate text-[0.62rem] font-semibold uppercase tracking-[0.04em] leading-tight text-slate-900')}
       data-has-description={description ? 'true' : 'false'}
     >
       {title}
     </div>
     {description ? (
-      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-description', 'text-[0.62rem] leading-4 text-slate-500')}>
+      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-description', 'truncate text-[0.6rem] leading-3 text-slate-500')}>
         {description}
       </div>
     ) : null}
@@ -63,7 +63,7 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
         type="button"
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'detail-section-card-head',
-          'flex w-full items-center justify-between gap-2 rounded-xl px-2.5 py-1.5 text-left transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+          'flex min-h-[30px] w-full items-center justify-between gap-1.5 rounded-lg px-2 py-1 text-left transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
         )}
         aria-expanded={!collapsed}
         aria-controls={`${bodyId}-body`}
@@ -71,8 +71,8 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
         onClick={onToggle}
       >
         {header}
-        <span className={DESIGNER_CLASSNAME + 'detail-section-card-toggle'} aria-hidden="true">
-          <ChevronDown size={12} />
+        <span className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-toggle', 'inline-flex h-6 w-6 flex-none items-center justify-center rounded-lg text-slate-400')} aria-hidden="true">
+          <ChevronDown size={11} />
         </span>
       </button>
     );
@@ -80,7 +80,7 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
 
   if (!collapsible) {
     return (
-      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head', 'flex w-full items-center justify-between gap-2 rounded-xl px-2.5 py-1.5')}>
+      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head', 'flex min-h-[30px] w-full items-center justify-between gap-1.5 rounded-lg px-2 py-1')}>
         {leading ? <div className={DESIGNER_CLASSNAME + 'detail-section-card-leading'}>{leading}</div> : null}
         <SectionText title={title} description={description} />
         {trailing ? <div className={DESIGNER_CLASSNAME + 'detail-section-card-trailing'}>{trailing}</div> : null}
@@ -93,7 +93,7 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
       type="button"
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'detail-section-card-head',
-        'flex w-full items-center justify-between gap-2 rounded-xl px-2.5 py-1.5 text-left transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+        'flex min-h-[30px] w-full items-center justify-between gap-1.5 rounded-lg px-2 py-1 text-left transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
       )}
       aria-expanded={!collapsed}
       aria-controls={`${bodyId}-body`}
@@ -140,7 +140,7 @@ const DetailSectionCard = ({
     <section
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'detail-section-card',
-        'overflow-hidden rounded-2xl border border-slate-200/70 bg-white/90 p-2.5 shadow-sm',
+        'overflow-hidden rounded-xl border border-slate-200/70 bg-white/90 p-1.5 shadow-none',
         className,
       )}
       data-section={sectionKey}
@@ -161,7 +161,7 @@ const DetailSectionCard = ({
         id={`${bodyId}-body`}
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'detail-section-card-body',
-          'mt-1.5 rounded-xl bg-slate-50/60 p-2.5',
+          'mt-1 rounded-lg bg-slate-50/50 p-1.5',
           bodyClassName,
         )}
         aria-hidden={resolvedCollapsed ? 'true' : 'false'}
@@ -169,7 +169,7 @@ const DetailSectionCard = ({
       >
         {resolvedCollapsed ? null : children}
       </div>
-      {footer ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-footer', 'mt-1.5')}>{footer}</div> : null}
+      {footer ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-footer', 'mt-1')}>{footer}</div> : null}
     </section>
   );
 };

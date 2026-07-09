@@ -40,7 +40,7 @@ export const LeftSidebarGroup = ({
   );
   const titleClassName = mergeUniqueClassNames(
     `${DESIGNER_CLASSNAME}left-sidebar-group-title`,
-    'flex w-full items-center justify-between gap-2 rounded-[0.9rem] px-2.5 py-1.5 text-left text-[0.66rem] font-semibold text-slate-800 transition',
+    'flex min-h-[28px] w-full items-center justify-between gap-2 rounded-lg px-2 py-1 text-left text-[0.66rem] font-semibold text-slate-800 transition',
     'hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
   );
 
@@ -48,7 +48,7 @@ export const LeftSidebarGroup = ({
     <section
       className={mergeUniqueClassNames(
         `${DESIGNER_CLASSNAME}left-sidebar-group`,
-        'rounded-[1.2rem] border border-slate-200/70 bg-white/92 p-1.5 shadow-sm',
+        'rounded-xl border border-slate-200/70 bg-white/92 p-1.5 shadow-none',
       )}
     >
       {collapsible ? (
@@ -76,7 +76,7 @@ export const LeftSidebarGroup = ({
       <div
         className={mergeUniqueClassNames(
           `${DESIGNER_CLASSNAME}left-sidebar-group-items`,
-          'mt-1.5 space-y-[0.3125rem]',
+          'mt-1 space-y-1',
         )}
         data-view-mode={viewMode}
         data-collapsed={collapsed ? 'true' : 'false'}

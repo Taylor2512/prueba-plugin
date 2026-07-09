@@ -316,6 +316,7 @@ const Sidebar = (props: RightSidebarProps) => {
       className={mergeClassNames(
         `${DESIGNER_CLASSNAME}detail-view-host`,
         `${DESIGNER_CLASSNAME}custom-detailView`,
+        'flex min-h-0 flex-1 flex-col overflow-hidden',
         toDesignerCustomClassName(props.classNames?.detailView),
       )}>
       <DetailViewComponent
@@ -350,17 +351,17 @@ const Sidebar = (props: RightSidebarProps) => {
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'right-sidebar-content',
           DESIGNER_CLASSNAME + 'sidebar-surface',
-          'flex min-h-0 flex-1 flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white/95 shadow-sm',
+          'flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-slate-200/70 bg-white/95 shadow-sm',
           props.classNames?.content,
         )}
         data-sidebar-open={sidebarOpen ? 'true' : 'false'}
         data-docs-mode={documentsRailMode}
         data-panel-mode={resolvedPanelMode}>
         {props.showDocumentsAsTab !== false || contextHeaderNode ? (
-          <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-wrap flex items-center justify-between gap-3 border-b border-slate-200/70 px-4 py-3`}>
+          <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-wrap flex shrink-0 items-center justify-between gap-1.5 border-b border-slate-200/70 px-2 py-1.5`}>
             {props.showDocumentsAsTab !== false ? (
               <div
-                className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher flex flex-wrap items-center gap-1.5`}
+                className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher flex flex-wrap items-center gap-1`}
                 role="tablist"
                 tabIndex={0}
                 aria-label="Panel derecho"
@@ -378,7 +379,7 @@ const Sidebar = (props: RightSidebarProps) => {
                       key={`rs-mode-${mode}`}
                       type="button"
                       disabled={disabled}
-                      className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn inline-flex items-center gap-2 rounded-full border border-slate-200 bg-white px-2.5 py-1.5 text-xs font-medium text-slate-600 shadow-sm transition hover:border-sky-200 hover:text-sky-700`}
+                      className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn inline-flex min-h-7 items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-600 shadow-sm transition hover:border-sky-200 hover:text-sky-700`}
                       role="tab"
                       data-active={isActive ? 'true' : 'false'}
                       aria-selected={isActive ? 'true' : 'false'}
@@ -391,9 +392,11 @@ const Sidebar = (props: RightSidebarProps) => {
                         onViewModeChange?.(mode);
                       }}
                     >
-                      <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-content inline-flex items-center gap-2`}>
+                      <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-content inline-flex items-center gap-1.5`}>
                         <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-icon`}>{modeMeta.icon}</span>
-                        <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-label`}>{modeMeta.shortLabel}</span>
+                        {sidebarDensityMode !== 'mini' ? (
+                          <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-label`}>{modeMeta.shortLabel}</span>
+                        ) : null}
                       </span>
                     </button>
                   );
@@ -413,7 +416,7 @@ const Sidebar = (props: RightSidebarProps) => {
             aria-label={props.showDocumentsAsTab !== false ? undefined : effectiveSidebarModeMeta[resolvedPanelMode].title}
             id={panelIdByMode[resolvedPanelMode]}
           >
-            <div className={`${DESIGNER_CLASSNAME}right-sidebar-layout-grid grid min-h-0 flex-1 gap-2.5`}>
+            <div className={`${DESIGNER_CLASSNAME}right-sidebar-layout-grid grid min-h-0 flex-1 gap-1.5`}>
               {resolvedPanelMode !== 'docs' ? documentsRailNode : null}
               {contentNode}
             </div>

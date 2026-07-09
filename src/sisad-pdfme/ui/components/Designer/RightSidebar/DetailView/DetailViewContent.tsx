@@ -39,7 +39,7 @@ const DetailViewContent = ({
           onBack={deselectSchema}
           backTooltip={backTooltip}
         />
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-view-sections', 'mt-2.5 space-y-2')}>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-view-sections', 'mt-1.5 space-y-1.5')}>
           {sections.map((section) => (
             <DetailFormSection
               key={section.key}

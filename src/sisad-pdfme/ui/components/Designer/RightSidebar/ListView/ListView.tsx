@@ -282,7 +282,7 @@ const ListView = (
                 details: { lineCount: e.target.value.split('\n').length },
               });
             }}
-            className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-bulk-textarea', 'min-h-[11rem] rounded-2xl border-slate-200 bg-white shadow-sm')}
+            className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-bulk-textarea', 'min-h-[11rem] rounded-xl border-slate-200 bg-white shadow-sm')}
           />
         ) : null}
         {showList ? (
@@ -299,7 +299,7 @@ const ListView = (
           />
         ) : null}
         {showEmptyState ? (
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-empty', 'flex flex-col items-start gap-2 rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-4')}>
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-empty', 'flex flex-col items-start gap-2 rounded-xl border border-dashed border-slate-200 bg-slate-50 p-3')}>
             <Text strong className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-empty-title', 'text-sm font-semibold text-slate-800')}>
               No hay campos que coincidan
             </Text>

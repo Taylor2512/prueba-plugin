@@ -117,22 +117,22 @@ const DocumentsRail = ({
         </SidebarHeader>
         <SidebarBody tabIndex={0} aria-label="Lista de páginas del documento">
           {hasItems ? (
-            <div className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-items', 'space-y-2')}>
+            <div className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-items', 'space-y-1.5')}>
               {canAdd && showInlineAddCard ? (
                 <button
                   type="button"
                   onClick={onAdd}
-                  className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-item', 'flex w-full items-center gap-3 rounded-2xl border border-dashed border-slate-200 bg-slate-50 px-3 py-3')}>
+                  className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-item', 'flex w-full items-center gap-2.5 rounded-xl border border-dashed border-slate-200 bg-slate-50 px-2 py-2')}>
                   <div className={DESIGNER_CLASSNAME + 'documents-rail-leading'}>
-                    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-preview', 'flex h-10 w-10 items-center justify-center rounded-xl border border-slate-200 bg-white')}>
+                    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-preview', 'flex h-9 w-9 items-center justify-center rounded-lg border border-slate-200 bg-white')}>
                       <Plus size={18} />
                     </div>
                   </div>
                   <div className={DESIGNER_CLASSNAME + 'documents-rail-meta'}>
-                    <Text strong className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-sm font-medium text-slate-800')}>
+                    <Text strong className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-[0.78rem] font-medium leading-tight text-slate-800')}>
                       {addPageLabel}
                     </Text>
-                    <Text type="secondary" className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-xs text-slate-500')}>
+                    <Text type="secondary" className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-[0.68rem] leading-tight text-slate-500')}>
                       Añade una página al final del documento
                     </Text>
                   </div>
@@ -173,21 +173,21 @@ const DocumentsRail = ({
                         )}
                       </div>
                       <div className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-meta', 'min-w-0 flex-1 space-y-1')}>
-                        <Text strong ellipsis={{ tooltip: item.name }} className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-sm font-medium text-slate-800')}>
+                        <Text strong ellipsis={{ tooltip: item.name }} className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-[0.78rem] font-medium leading-tight text-slate-800')}>
                           {item.name}
                         </Text>
                         <div className={DESIGNER_CLASSNAME + 'documents-rail-meta-row'}>
-                          <Text type="secondary" ellipsis={{ tooltip: item.pageLabel || `${index + 1}` }} className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-xs text-slate-500')}>
+                          <Text type="secondary" ellipsis={{ tooltip: item.pageLabel || `${index + 1}` }} className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-[0.68rem] leading-tight text-slate-500')}>
                             {pageLabelPrefix} {item.pageLabel || `${index + 1}`}
                           </Text>
                           {isSelected ? (
-                            <span className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-active-badge', 'inline-flex items-center rounded-full border border-sky-200 bg-sky-50 px-2 py-0.5 text-[11px] font-medium text-sky-700')}>
+                            <span className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-active-badge', 'inline-flex items-center rounded-full border border-sky-200 bg-sky-50 px-1.5 text-[10px] font-medium leading-none text-sky-700')}>
                               Activo
                             </span>
                           ) : null}
                         </div>
                         {item.meta ? (
-                          <Text type="secondary" ellipsis={{ tooltip: item.meta }} className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-xs text-slate-500')}>
+                          <Text type="secondary" ellipsis={{ tooltip: item.meta }} className={mergeClassNames(DESIGNER_CLASSNAME + 'text-auto', 'block text-[0.68rem] leading-tight text-slate-500')}>
                             {item.meta}
                           </Text>
                         ) : null}
@@ -238,7 +238,7 @@ const DocumentsRail = ({
                   {uploadLabel}
                 </Button>
               ) : null}
-              className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-empty', 'rounded-2xl border border-dashed border-slate-200 bg-slate-50 p-4')}
+              className={mergeClassNames(DESIGNER_CLASSNAME + 'documents-rail-empty', 'rounded-xl border border-dashed border-slate-200 bg-slate-50 p-3')}
             />
           )}
         </SidebarBody>

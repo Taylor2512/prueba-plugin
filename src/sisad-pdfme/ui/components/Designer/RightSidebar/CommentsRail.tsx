@@ -129,6 +129,7 @@ const CommentsRail = ({
       style={style}
     >
       <SidebarSurfaceHeader
+        className="shrink-0"
         title={title}
         subtitle={subtitle || (items.length > 0 ? formatThreadSummary(items.length, replyTotal) : emptyTitle)}
         badges={items.length > 0 ? [{ label: items.length, color: 'default' }] : []}
@@ -149,7 +150,7 @@ const CommentsRail = ({
           description={emptyDescription}
         />
       ) : (
-        <div style={{ display: 'flex', flexDirection: 'column', gap: 6, minHeight: 0, overflowY: 'auto' }}>
+        <div className="flex min-h-0 flex-1 flex-col gap-1.5 overflow-y-auto overflow-x-hidden overscroll-contain">
           {items.map((item) => {
             const replies = getVisibleReplies(item.replies);
             const resolved = Boolean(item.resolved) && replies.every((reply) => Boolean(reply.resolved));

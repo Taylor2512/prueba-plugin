@@ -162,7 +162,7 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
       >
         <button
           type="button"
-          className={cn('sisad-pdfme-lab-results-pill inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white/95 px-2.5 py-1 text-[0.72rem] font-semibold text-slate-700 shadow-md backdrop-blur-md')}
+          className={cn('sisad-pdfme-lab-results-pill inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white/95 px-2.5 py-1 text-[0.72rem] font-semibold text-slate-700 shadow-sm backdrop-blur-md')}
           aria-expanded={isOpen}
           aria-controls="sisad-pdfme-lab-results-drawer-panel"
           onClick={() => setIsOpen((v) => !v)}
@@ -175,7 +175,7 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
         {isOpen ? (
           <div
             id="sisad-pdfme-lab-results-drawer-panel"
-            className={cn('sisad-pdfme-lab-results-drawer-panel mt-2 grid max-h-[min(300px,38dvh)] overflow-auto rounded-[0.95rem] border border-slate-200 bg-white/95 p-2 shadow-xl backdrop-blur-md')}
+            className={cn('sisad-pdfme-lab-results-drawer-panel mt-2 grid max-h-[min(300px,38dvh)] overflow-auto rounded-[0.95rem] border border-slate-200 bg-white/95 p-1.5 shadow-lg backdrop-blur-md')}
             role="dialog"
             aria-modal="false"
             aria-label="Panel de resultados"
@@ -212,7 +212,7 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
 
   return (
     <details
-      className={cn('sisad-pdfme-lab-results rounded-[0.95rem] border border-slate-200 bg-white/90 shadow-lg backdrop-blur-md')}
+      className={cn('sisad-pdfme-lab-results rounded-[0.95rem] border border-slate-200 bg-white/90 shadow-md backdrop-blur-md')}
       data-variant={variant}
       aria-labelledby="lab-results-title"
     >

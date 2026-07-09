@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `css`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-09T04:36:50.850Z`
+- **Fecha generación:** `2026-07-09T13:39:55.693Z`
 - **Extensiones incluidas:** `.css, .scss, .sass, .less`
 - **Archivos candidatos incluidos:** `18`
 - **Límite por archivo:** `80 KB`
@@ -73,7 +73,7 @@ prueba-plugin
 | 8 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css` | css | 8 | 0.2 | completo |
 | 9 | `src/features/pdfcomponent/labRoutes.css` | css | 1688 | 35.7 | completo |
 | 10 | `src/sisad-pdfme/ui/styles/canvas-interactions.css` | css | 1492 | 45.4 | completo |
-| 11 | `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | css | 6394 | 170.3 | truncado 75.6 KB |
+| 11 | `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | css | 6408 | 170.8 | truncado 75.5 KB |
 | 12 | `src/sisad-pdfme/ui/styles/sisad-pdfme-runtime.css` | css | 240 | 6.9 | completo |
 | 13 | `src/sisad-pdfme/ui/styles/tokens.css` | css | 374 | 15.3 | completo |
 | 14 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css` | css | 1600 | 36.3 | completo |
@@ -84,13 +84,13 @@ prueba-plugin
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1655
+- **extensión no incluida:** 1685
 - **directorio ignorado: dependencia/build/salida generada:** 7
 
 ## Totales
 
-- **KB originales candidatos:** `870.3`
-- **KB incluidos en contenido:** `559.2`
+- **KB originales candidatos:** `870.8`
+- **KB incluidos en contenido:** `559.1`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -7117,7 +7117,7 @@ ner-compact-config-panel {
 - **Lenguaje:** `css`
 - **Líneas:** `1688`
 - **Tamaño original:** `35.7 KB`
-- **SHA1 corto:** `7a4e2f016e`
+- **SHA1 corto:** `25e67aa408`
 - **Estado:** `completo`
 - **Símbolos detectados:** `selector: .sisad-pdfme-lab-landing`, `selector: .sisad-pdfme-lab-page`, `selector: .sisad-pdfme-lab-editor-shell`, `selector: .sisad-pdfme-lab-editor-topbar`, `selector: .sisad-pdfme-lab-debug-details`, `selector: .sisad-pdfme-lab-landing-shell`, `selector: .sisad-pdfme-lab-landing-hero`, `selector: .sisad-pdfme-lab-landing-panel`, `selector: .sisad-pdfme-lab-case-grid`, `selector: .sisad-pdfme-lab-hero`, `selector: .sisad-pdfme-lab-toolbar`, `selector: .sisad-pdfme-lab-results`, `selector: .sisad-pdfme-lab-workspace`, `selector: .sisad-pdfme-lab-card`
 
@@ -8341,7 +8341,7 @@ ner-compact-config-panel {
   justify-content: space-between;
   align-items: center;
   gap: 0.45rem;
-  padding: 0.36rem 0.48rem;
+  padding: 0.3rem 0.42rem;
   list-style: none;
   cursor: pointer;
   background: linear-gradient(180deg, rgba(219, 234, 254, 0.42), rgba(248, 250, 252, 0.6));
@@ -8356,7 +8356,7 @@ ner-compact-config-panel {
 }
 
 .sisad-pdfme-lab-results-body {
-  padding: 0.4rem 0.48rem 0.52rem;
+  padding: 0.34rem 0.42rem 0.46rem;
 }
 
 .sisad-pdfme-lab-results-badge {
@@ -8669,7 +8669,7 @@ ner-compact-config-panel {
   width: min(32rem, calc(100vw - 1.5rem));
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 6px;
   align-items: flex-start;
 }
 
@@ -8682,11 +8682,11 @@ ner-compact-config-panel {
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  padding: 6px 14px;
+  padding: 5px 12px;
   border-radius: 999px;
   border: 1px solid rgba(148, 163, 184, 0.35);
   background: rgba(255, 255, 255, 0.95);
-  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.16);
+  box-shadow: 0 6px 18px rgba(15, 23, 42, 0.12);
   font-size: 13px;
   font-weight: 600;
   color: #0f172a;
@@ -8701,8 +8701,8 @@ ner-compact-config-panel {
   border: 1px solid rgba(148, 163, 184, 0.3);
   border-radius: 16px;
   background: rgba(255, 255, 255, 0.98);
-  box-shadow: 0 18px 48px rgba(15, 23, 42, 0.18);
-  padding: 10px 10px 10px;
+  box-shadow: 0 14px 34px rgba(15, 23, 42, 0.16);
+  padding: 8px 8px 8px;
   display: grid;
   gap: 0.6rem;
 }
@@ -8730,8 +8730,8 @@ ner-compact-config-panel {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  min-height: 1.8rem;
-  padding: 0.12rem 0.6rem;
+  min-height: 1.72rem;
+  padding: 0.1rem 0.55rem;
   border-radius: 999px;
   border: 1px solid rgba(148, 163, 184, 0.28);
   background: rgba(248, 250, 252, 0.98);
@@ -10323,10 +10323,10 @@ ner-compact-config-panel {
 ### 0011 — `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css`
 
 - **Lenguaje:** `css`
-- **Líneas:** `6394`
-- **Tamaño original:** `170.3 KB`
-- **SHA1 corto:** `9ca712315b`
-- **Estado:** `truncado 75.6 KB`
+- **Líneas:** `6408`
+- **Tamaño original:** `170.8 KB`
+- **SHA1 corto:** `5c6b7c8edc`
+- **Estado:** `truncado 75.5 KB`
 - **Símbolos detectados:** `selector: .sisad-pdfme-root`, `selector: .sisad-pdfme-page`, `selector: .sisad-pdfme-header`, `selector: .sisad-pdfme-grid`, `selector: .sisad-pdfme-workspace`, `selector: .sisad-pdfme-canvas`, `selector: .sisad-pdfme-designer-root`, `selector: .sisad-pdfme-designer-background`, `selector: .sisad-pdfme-designer-stage`, `selector: .sisad-pdfme-designer-canvas`
 
 ```css
@@ -10499,7 +10499,7 @@ ner-compact-config-panel {
   width: 100%;
   height: 100%;
   overflow: auto;
-  padding: 0.85rem 1rem 1.5rem;
+  padding: 0.75rem 0.875rem 1.25rem;
   background:
     radial-gradient(circle at top left, rgba(148, 163, 184, 0.08), transparent 22%),
     linear-gradient(180deg, rgba(248, 250, 252, 0.96), rgba(241, 245, 249, 0.98));
@@ -10639,7 +10639,7 @@ ner-compact-config-panel {
   pointer-events: auto;
   display: inline-flex;
   align-items: center;
-  gap: 0.25rem;
+  gap: 0.1875rem;
 }
 
 .sisad-pdfme-ui-control-bar-cluster--top-left {
@@ -10669,9 +10669,9 @@ ner-compact-config-panel {
 .sisad-pdfme-ui-control-bar-summary {
   display: inline-flex;
   align-items: center;
-  gap: 0.1875rem;
-  min-height: var(--sisad-pdfme-chrome-height, 1.875rem);
-  padding: 0.125rem 0.35rem;
+  gap: 0.125rem;
+  min-height: var(--sisad-pdfme-chrome-height, 1.75rem);
+  padding: 0.1rem 0.3rem;
   border: 1px solid var(--sisad-pdfme-chrome-border, var(--border-subtle));
   border-radius: var(--sisad-pdfme-chrome-radius, 0.625rem);
   background: var(--sisad-pdfme-chrome-bg, linear-gradient(180deg, var(--color-white-98), var(--color-gray-50-90)));
@@ -10681,9 +10681,9 @@ ner-compact-config-panel {
 
 .sisad-pdfme-ui-control-bar-summary {
   color: var(--text-secondary);
-  font-size: 0.65625rem;
+  font-size: 0.625rem;
   font-weight: 600;
-  letter-spacing: 0.01em;
+  letter-spacing: 0.005em;
   white-space: nowrap;
 }
 
@@ -10881,7 +10881,7 @@ ner-compact-config-panel {
 .sisad-pdfme-ui-control-bar-context {
   display: inline-flex;
   align-items: center;
-  gap: 0.375rem;
+  gap: 0.3125rem;
   min-width: 0;
   flex: 1 1 auto;
   flex-wrap: nowrap;
@@ -10918,12 +10918,12 @@ ner-compact-config-panel {
 .sisad-pdfme-ui-control-bar-status-chip {
   display: inline-flex;
   align-items: center;
-  min-height: 1.0625rem;
-  padding: 0 0.3125rem;
+  min-height: 1rem;
+  padding: 0 0.28rem;
   border-radius: 999px;
   background: var(--color-primary-08);
   color: var(--color-primary);
-  font-size: 0.5rem;
+  font-size: 0.46875rem;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.06em;
@@ -10946,20 +10946,20 @@ ner-compact-config-panel {
 .sisad-pdfme-ui-zoom {
   display: inline-flex;
   align-items: center;
-  gap: 0.125rem;
-  padding: 0.125rem 0.25rem;
+  gap: 0.1rem;
+  padding: 0.1rem 0.2rem;
   border: 1px solid var(--border-soft);
-  border-radius: 0.5rem;
+  border-radius: 0.45rem;
   background: var(--color-gray-100);
 }
 
 .sisad-pdfme-ui-control-bar-group {
   display: inline-flex;
   align-items: center;
-  gap: 0.125rem;
-  padding: 0.125rem 0.25rem;
+  gap: 0.1rem;
+  padding: 0.1rem 0.2rem;
   border: 1px solid var(--border-soft);
-  border-radius: 0.5rem;
+  border-radius: 0.45rem;
   background: var(--color-gray-100);
 }
 
@@ -10970,13 +10970,13 @@ ner-compact-config-panel {
 }
 
 .sisad-pdfme-ui-control-bar-shortcuts-btn {
-  height: 1.5rem;
-  min-height: 1.5rem;
-  padding: 0 0.5rem;
-  border-radius: 0.5rem;
-  font-size: 0.71875rem;
+  height: 1.4rem;
+  min-height: 1.4rem;
+  padding: 0 0.45rem;
+  border-radius: 0.45rem;
+  font-size: 0.6875rem;
   line-height: 1;
-  gap: 0.35rem;
+  gap: 0.28rem;
 }
 
 .sisad-pdfme-ui-control-bar-shortcuts-btn .ant-btn-icon {
@@ -11000,31 +11000,31 @@ ner-compact-config-panel {
 }
 
 .sisad-pdfme-ui-control-bar-icon-btn {
-  width: 1.625rem;
-  height: 1.625rem;
-  min-width: 1.625rem;
+  width: 1.5rem;
+  height: 1.5rem;
+  min-width: 1.5rem;
   padding: 0;
 }
 
 .sisad-pdfme-ui-control-bar[data-density='compact'] .sisad-pdfme-ui-control-bar-icon-btn,
 .sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-icon-btn {
-  width: 1.75rem;
-  height: 1.75rem;
-  min-width: 1.75rem;
+  width: 1.625rem;
+  height: 1.625rem;
+  min-width: 1.625rem;
 }
 
 .sisad-pdfme-ui-control-bar-text-btn {
-  height: 1.625rem;
-  padding: 0 0.375rem;
-  font-size: 0.71875rem;
+  height: 1.5rem;
+  padding: 0 0.325rem;
+  font-size: 0.6875rem;
 }
 
 .sisad-pdfme-ui-control-bar[data-density='compact'] .sisad-pdfme-ui-control-bar-text-btn,
 .sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-text-btn {
-  height: 1.75rem;
-  min-width: 1.75rem;
-  padding: 0 0.375rem;
-  font-size: 0.6875rem;
+  height: 1.625rem;
+  min-width: 1.625rem;
+  padding: 0 0.325rem;
+  font-size: 0.65625rem;
 }
 
 .sisad-pdfme-ui-control-bar[data-density='minimal'] .sisad-pdfme-ui-control-bar-summary {
@@ -12412,32 +12412,11 @@ ner-compact-config-panel {
   overscroll-behavior: contain;
   scrollbar-gutter: stable both-edges;
   scrollbar-width: thin;
-  scrollbar-color: var(--
+  scrollbar-color: var(--color-borde
 
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 93850 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 94362 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
 
-
-  font-size: 0.6875rem;
-  color: var(--text-secondary);
-  align-items: center;
-  gap: 0.375rem;
-  cursor: pointer;
-}
-
-/* ── Reduced-motion additions ────────────────────────────────────── */
-
-@media (prefers-reduced-motion: reduce) {
-  .sisad-pdfme-designer-right-sidebar-panel-switcher-btn,
-  .sisad-pdfme-designer-align-btn,
-  .sisad-pdfme-designer-button-auto,
-  .sisad-pdfme-designer-color-picker-trigger,
-  .sisad-pdfme-designer-compact-config-panel {
-    transition-duration: 1ms;
-    animation: none;
-  }
-}
-
-.sisad-pdfme-comments-rail-thread {
+pdfme-comments-rail-thread {
   border: 1px solid var(--sisad-pdfme-border);
   border-radius: 12px;
   background: var(--sisad-pdfme-surface);
@@ -12580,7 +12559,7 @@ ner-compact-config-panel {
   background: var(--action-btn-bg);
   color: var(--action-btn-color);
   border: none;
-  border-radius: 6px;
+  border-radius: 5px;
   font-weight: 600;
   font-size: var(--action-btn-font-size);
   cursor: pointer;
@@ -12588,7 +12567,7 @@ ner-compact-config-panel {
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .sisad-pdfme-action-button[data-designer-mode='true'] {
@@ -12644,6 +12623,20 @@ ner-compact-config-panel {
   background: transparent;
   border-radius: var(--sisad-schema-radius);
   overflow: visible;
+}
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family='action-based'][data-schema-compact='true'] .sisad-pdfme-action-button {
+  gap: 3px;
+  border-radius: 4px;
+}
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family='action-based'][data-schema-compact='true'] .sisad-pdfme-note-container {
+  border-radius: 3px;
+  padding: 3px 6px;
+}
+
+.sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family='action-based'][data-schema-compact='true'] .sisad-pdfme-attachment-container {
+  border-radius: 5px;
 }
 
 .sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-readonly='true'] {
@@ -12840,7 +12833,7 @@ ner-compact-config-panel {
   display: block;
   width: 100%;
   height: auto;
-  min-height: 24px;
+  min-height: 22px;
   font-size: var(--sisad-schema-font-size);
   line-height: var(--sisad-schema-line-height);
 }
@@ -12870,14 +12863,14 @@ ner-compact-config-panel {
 
 /* Internal option rows (TASK-013B): compact + legible per mode. */
 .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode='form'] .sisad-pdfme-option-group__option {
-  min-height: 18px;
+  min-height: 16px;
   display: flex;
   align-items: center;
-  gap: 6px;
+  gap: 4px;
 }
 
 .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode='viewer'] .sisad-pdfme-option-group__option {
-  min-height: 16px;
+  min-height: 14px;
   cursor: default;
 }
 

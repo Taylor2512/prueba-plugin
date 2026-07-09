@@ -75,7 +75,7 @@ const DetailHeaderCard = ({
         type="button"
         className={mergeClassNames(
           `${DESIGNER_CLASSNAME}detail-header-back-btn`,
-          'inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition',
+          'inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition',
           'hover:border-sky-200 hover:text-sky-700 hover:shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
         )}
         onClick={onBack}
@@ -91,7 +91,7 @@ const DetailHeaderCard = ({
       {resolvedShowPosition && (
         <Tag
           color="default"
-          className={mergeClassNames(`${DESIGNER_CLASSNAME}detail-header-card-pos`, 'm-0 rounded-full border-slate-200 px-2 py-0.5 text-[11px]')}
+          className={mergeClassNames(`${DESIGNER_CLASSNAME}detail-header-card-pos`, 'm-0 inline-flex h-5 items-center rounded-full border-slate-200 px-1.5 text-[10px] leading-none')}
         >
           {positionLabel || headerSummary.positionLabel}
         </Tag>
@@ -105,7 +105,7 @@ const DetailHeaderCard = ({
       <SidebarSurfaceHeader
         className={mergeClassNames(
           `${DESIGNER_CLASSNAME}detail-header-card`,
-          'rounded-2xl border-slate-200/70 bg-white/90 shadow-sm',
+          'rounded-xl border-slate-200/70 bg-white/90 shadow-sm',
           className,
         )}
         compact

@@ -39,18 +39,18 @@ const CompactConfigPanel = ({
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel', 'rounded-2xl border border-slate-200/70 bg-white/90 p-2.5 shadow-sm')}>
+    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel', 'rounded-xl border border-slate-200/70 bg-white/90 p-1.5 shadow-none')}>
       <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-head', 'flex items-start justify-between gap-2')}>
         <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-copy', 'min-w-0')}>
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-title', 'text-[0.72rem] font-semibold text-slate-900')}>{title}</div>
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-title', 'text-[0.65rem] font-semibold leading-tight text-slate-900')}>{title}</div>
           {description ? (
-            <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-description', 'text-[0.62rem] leading-4 text-slate-500')}>{description}</div>
+            <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-description', 'text-[0.6rem] leading-3 text-slate-500')}>{description}</div>
           ) : null}
         </div>
         {statusTags.length > 0 ? (
           <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-tags', 'flex flex-wrap gap-1.5')}>
             {statusTags.map((tag, index) => (
-              <Tag key={`${tag.label}-${index}`} color={tag.color} className="m-0 rounded-full border border-slate-200 px-2 py-0.5 text-[11px] leading-5">
+              <Tag key={`${tag.label}-${index}`} color={tag.color} className="m-0 inline-flex h-5 items-center rounded-full border border-slate-200 px-1.5 text-[10px] leading-none">
                 {tag.label}
               </Tag>
             ))}
@@ -59,8 +59,8 @@ const CompactConfigPanel = ({
       </div>
 
       {summary ? (
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-summary', 'mt-2 rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-1.5')}>
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-summary-text', 'text-[0.72rem] leading-5 text-slate-700')}>{summary}</div>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-summary', 'mt-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2 py-1')}>
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-summary-text', 'text-[0.68rem] leading-4 text-slate-700')}>{summary}</div>
         </div>
       ) : null}
 
@@ -75,7 +75,7 @@ const CompactConfigPanel = ({
           type="default"
           icon={<Settings2 size={14} />}
           onClick={() => setOpen(true)}
-          className="inline-flex items-center justify-center rounded-xl border-slate-200 bg-white px-3 text-[0.72rem] font-semibold text-slate-700 shadow-sm"
+          className="inline-flex items-center justify-center rounded-lg border-slate-200 bg-white px-2.5 text-[0.68rem] font-semibold text-slate-700 shadow-none"
         >
           {modalTriggerLabel}
         </Button>

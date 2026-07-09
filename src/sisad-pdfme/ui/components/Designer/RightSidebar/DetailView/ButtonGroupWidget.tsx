@@ -56,7 +56,7 @@ const ButtonGroupWidget = (props: PropPanelWidgetProps) => {
   return (
     <Form.Item>
       <div
-        className={mergeClassNames(DESIGNER_CLASSNAME + 'button-group', 'flex flex-wrap gap-2')}
+        className={mergeClassNames(DESIGNER_CLASSNAME + 'button-group', 'flex flex-wrap gap-1.5')}
       >
         {(schema.buttons as ButtonConfig[]).map((btn: ButtonConfig, index: number) => {
           const active = isActive(btn);
@@ -68,7 +68,7 @@ const ButtonGroupWidget = (props: PropPanelWidgetProps) => {
                 icon={svgIcon(btn.icon)}
                 className={mergeClassNames(
                   DESIGNER_CLASSNAME + 'button-auto',
-                  'inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-700 shadow-sm transition',
+                  'inline-flex h-7 w-7 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700 shadow-none transition',
                   'hover:border-slate-300 hover:bg-slate-50',
                 )}
               />

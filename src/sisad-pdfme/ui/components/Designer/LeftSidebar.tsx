@@ -467,11 +467,11 @@ const SidebarShell = ({
       className={mergeClassNames(
         `${DESIGNER_CLASSNAME}left-sidebar-shell`,
         `${DESIGNER_CLASSNAME}sidebar-surface`,
-        'flex h-full min-h-0 flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white/95 shadow-sm',
+        'flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-slate-200/70 bg-white/95 shadow-sm',
       )}
       style={style}
     >
-      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-header`, 'flex items-start justify-between gap-2 border-b border-slate-200/70 px-3.5 py-2.5')}>
+      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-header`, 'flex shrink-0 items-start justify-between gap-2 border-b border-slate-200/70 px-2.5 py-2')}>
         <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-kicker`, 'text-[10px] font-medium uppercase tracking-[0.18em] text-slate-500')}>
           Diseñador
         </span>
@@ -492,7 +492,7 @@ const SidebarShell = ({
           ) : null}
         </span>
       </div>
-      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-control-band`, 'space-y-2 border-b border-slate-200/70 px-3.5 py-2.5')}>
+      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-control-band`, 'shrink-0 space-y-1.5 border-b border-slate-200/70 px-2.5 py-2')}>
         <LeftSidebarTabs
           tabs={tabs}
           activeTab={activeTab}
@@ -500,11 +500,11 @@ const SidebarShell = ({
           renderTabIcon={renderTabIcon}
         />
         {searchNode ? (
-          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-search-wrap`, 'space-y-2.5')}>{searchNode}</div>
+          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-search-wrap`, 'space-y-2')}>{searchNode}</div>
         ) : null}
       </div>
       <div
-        className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-main`, 'min-h-0 flex-1 overflow-y-auto px-3.5 py-2.5')}
+        className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-main`, 'min-h-0 flex-1 space-y-1.5 overflow-y-auto overflow-x-hidden overscroll-contain px-2 py-2')}
       >
         {children}
       </div>
@@ -1064,7 +1064,7 @@ const LeftSidebar = ({
           <div
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap',
-              'relative rounded-2xl border border-slate-200/70 bg-white/90 p-1.5 shadow-sm transition',
+              'relative rounded-xl border border-slate-200/70 bg-white/90 p-1 shadow-none transition',
             )}
             style={activeRecipientWrapStyle || activeRecipientStyles}
           >
@@ -1177,7 +1177,7 @@ const LeftSidebar = ({
           <div
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap',
-              'relative rounded-2xl border border-slate-200/70 bg-white/90 p-1.5 shadow-sm transition',
+              'relative rounded-xl border border-slate-200/70 bg-white/90 p-1 shadow-none transition',
             )}
             style={activeRecipientWrapStyle || activeRecipientStyles}
           >
@@ -1294,7 +1294,7 @@ const LeftSidebar = ({
     : [];
 
   const searchNode = showSearchInput ? (
-    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-search-stack', 'space-y-2.5')}>
+    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-search-stack', 'space-y-2')}>
       <LeftSidebarSearch
         value={search}
         onChange={setSearch}

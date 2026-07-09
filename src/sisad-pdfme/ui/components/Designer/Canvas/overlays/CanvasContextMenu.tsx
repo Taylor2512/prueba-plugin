@@ -168,7 +168,7 @@ const CanvasContextMenu = ({
         data-selection-count={String(selectionCount)}
         data-selection-kind={selectionCount > 1 ? 'multi' : 'single'}
         className={mergeClassNames(
-          'sisad-pdfme-ui-canvas-context-menu absolute min-w-[15.5rem] overflow-hidden rounded-xl border border-slate-200/80 bg-white/95 p-1.5 text-[0.78rem] text-slate-700 shadow-xl backdrop-blur-md',
+          'sisad-pdfme-ui-canvas-context-menu absolute min-w-[15.5rem] overflow-hidden rounded-xl border border-slate-200/80 bg-white/95 p-1.5 text-[0.78rem] text-slate-700 shadow-lg backdrop-blur-md',
           className,
         )}
         style={{
