@@ -863,11 +863,11 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     event.preventDefault();
     event.stopPropagation();
 
-    if (isSelectableTarget && selectableTarget) {
-      const isTargetAlreadySelected = activeElementIdSet.has(selectableTarget.id);
-      const targetIds = isTargetAlreadySelected
-        ? activeElementIds
-        : [selectableTarget.id];
+      if (isSelectableTarget && selectableTarget) {
+        const isTargetAlreadySelected = activeElementIdSet.has(selectableTarget.id);
+        const targetIds = isTargetAlreadySelected
+          ? activeElementIds
+          : [selectableTarget.id];
       const mode = targetIds.length > 1 ? 'multi' : 'single';
 
       if (!isTargetAlreadySelected) {
@@ -908,9 +908,10 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
       globalThis.dispatchEvent(
         new CustomEvent('sisad-pdfme:create-comment-request', {
           detail: {
-            x: event.clientX,
-            y: event.clientY,
-            page: pageIndex,
+            coordinateSpace: 'client',
+            clientX: event.clientX,
+            clientY: event.clientY,
+            pageIndex,
             pageNumber: pageIndex + 1,
             fileId: activeDocumentId || null,
             targetIds: [],
@@ -1060,20 +1061,33 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
         try {
           if (typeof window === 'undefined' || !contextMenu) return;
           const detail = {
-            x: contextMenu.x,
-            y: contextMenu.y,
-            page: pageCursor,
-            pageNumber: pageCursor + 1,
-            fileId: activeDocumentId || null,
-            targetIds: contextMenu.targetIds,
-          };
+          coordinateSpace: 'client',
+          clientX: contextMenu.x,
+          clientY: contextMenu.y,
+          pageIndex: activeSelectionPageIndex ?? pageCursor,
+          pageNumber: (activeSelectionPageIndex ?? pageCursor) + 1,
+          fileId: activeDocumentId || null,
+          targetIds: contextMenu.targetIds,
+        };
           window.dispatchEvent(new CustomEvent('sisad-pdfme:create-comment', { detail }));
         } finally {
           closeContextMenu();
         }
       },
     }),
-    [activeDocumentId, bridge, canvasActions?.addPageAfter, canvasActions?.uploadPdf, handleInsertField, handlePaste, selectionCommands, contextMenu, pageCursor, closeContextMenu],
+    [
+      activeDocumentId,
+      activeSelectionPageIndex,
+      bridge,
+      canvasActions?.addPageAfter,
+      canvasActions?.uploadPdf,
+      handleInsertField,
+      handlePaste,
+      selectionCommands,
+      contextMenu,
+      pageCursor,
+      closeContextMenu,
+    ],
   );
   const hasClipboardData = typeof navigator !== 'undefined' && Boolean(navigator.clipboard?.readText);
   const contextMenuSelectionSchemas = useMemo(() => {

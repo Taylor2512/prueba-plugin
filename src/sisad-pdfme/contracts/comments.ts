@@ -1,6 +1,15 @@
 export type CommentAnchor = {
+  id?: string;
+  schemaUid?: string | null;
+  fileId?: string | null;
+  pageNumber?: number;
+  fieldId?: string | null;
   x: number;
   y: number;
+  resolved?: boolean;
+  authorId?: string | null;
+  authorName?: string | null;
+  authorColor?: string | null;
 };
 
 export type PdfCommentReply = {
@@ -32,15 +41,6 @@ export type PdfComment = {
 export type TopLevelPdfCommentEntry = {
   id: string;
   anchor: PdfComment['anchor'] & {
-    id?: string;
-    fileId?: string | null;
-    pageNumber?: number;
-    fieldId?: string | null;
-    schemaUid?: string | null;
-    authorId?: string | null;
-    authorName?: string | null;
-    authorColor?: string | null;
-    resolved?: boolean;
   };
   comment: PdfComment;
 };

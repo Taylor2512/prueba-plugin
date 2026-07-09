@@ -1,6 +1,7 @@
 import React, { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import { asRecord } from '../../shared/objectGuards.js';
+import { MessageSquare } from 'lucide-react';
 
 const MM_TO_PX = 3.7795275591;
 const mm2px = (mm: number) => mm * MM_TO_PX;
@@ -88,6 +89,7 @@ const CommentsOverlay = ({
   const [measureTick, setMeasureTick] = useState(0);
   const [anchorPositions, setAnchorPositions] = useState<Array<{
     id: string;
+    commentId?: string;
     x: number;
     y: number;
     left: number;
@@ -109,17 +111,6 @@ const CommentsOverlay = ({
       window.removeEventListener('scroll', bump, true);
     };
   }, [pageIndex, paperRefs, scale, schemas.length]);
-
-  // Offset of a given page's paper relative to the overlay container.
-  const getPageOffset = (pageIdx: number): { left: number; top: number } | null => {
-    void measureTick; // re-evaluated each tick
-    const paper = paperRefs.current[pageIdx];
-    const overlay = containerRef.current;
-    if (!paper || !overlay) return null;
-    const paperRect = paper.getBoundingClientRect();
-    const overlayRect = overlay.getBoundingClientRect();
-    return { left: paperRect.left - overlayRect.left, top: paperRect.top - overlayRect.top };
-  };
 
   const anchors = useMemo(() => {
     const byId = new Map<
@@ -149,6 +140,7 @@ const CommentsOverlay = ({
         const id = String(anchor.id || comment.id || `${s.schemaUid}-anchor`);
         byId.set(id, {
           id,
+          commentId: String(comment.id || anchor.id || id),
           x: Number(anchor.x || 0),
           y: Number(anchor.y || 0),
           pageIndex: toPageIndex(anchor.pageNumber),
@@ -164,6 +156,7 @@ const CommentsOverlay = ({
         const id = String(a.id || `${s.schemaUid}-anchor`);
         byId.set(id, {
           id,
+          commentId: String(a.id || id),
           x: Number(a.x || 0),
           y: Number(a.y || 0),
           pageIndex: toPageIndex(a.pageNumber),
@@ -182,6 +175,7 @@ const CommentsOverlay = ({
       if (!id) return;
       byId.set(id, {
         id,
+        commentId: String(comment.id || anchor.id || id),
         x: Number(anchor.x || 0),
         y: Number(anchor.y || 0),
         pageIndex: toPageIndex(anchor.pageNumber ?? entry?.pageNumber),
@@ -215,7 +209,7 @@ const CommentsOverlay = ({
       const paperRect = paper.getBoundingClientRect();
       return [{
         ...anchor,
-        left: paperRect.left - overlayRect.left + mm2px(anchor.x) * scale,
+        left: paperRect.right - overlayRect.left + 10,
         top: paperRect.top - overlayRect.top + mm2px(anchor.y) * scale,
       }];
     });
@@ -229,6 +223,7 @@ const CommentsOverlay = ({
     <div
       ref={containerRef}
       className="sisad-pdfme-ui-comments-overlay pointer-events-none absolute inset-0"
+      data-overlay-interactive="true"
     >
       {anchorPositions.map((a) => {
         const preview = a.text ? (a.text.length > 48 ? `${a.text.slice(0, 48)}…` : a.text) : 'Comentario';
@@ -241,27 +236,34 @@ const CommentsOverlay = ({
               ev.stopPropagation();
               ev.preventDefault();
               if (typeof window !== 'undefined') {
-                window.dispatchEvent(new CustomEvent('sisad-pdfme:pin-clicked', { detail: { anchorId: a.id, schemaUid: a.schemaUid } }));
+                window.dispatchEvent(
+                  new CustomEvent('sisad-pdfme:pin-clicked', {
+                    detail: {
+                      anchorId: a.id,
+                      commentId: a.commentId || a.id,
+                      schemaUid: a.schemaUid,
+                      pageNumber: a.pageIndex + 1,
+                    },
+                  }),
+                );
               }
             }}
             style={{
               position: 'absolute',
               left: `${a.left}px`,
               top: `${a.top}px`,
-              width: 14,
-              height: 14,
-              borderRadius: 8,
-              background: a.authorColor || 'var(--color-primary)',
-              border: '1.5px solid white',
-              boxShadow: '0 1px 2px rgba(0,0,0,0.16)',
               transform: 'translate(-50%, -50%)',
               pointerEvents: 'auto',
-              cursor: 'pointer',
-              opacity: a.resolved ? 0.6 : 1,
             }}
-            className="rounded-full ring-2 ring-white transition"
+            className={[
+              'inline-flex h-7 w-7 items-center justify-center rounded-full border border-sky-200 bg-white/95 shadow-md transition',
+              'hover:border-sky-300 hover:bg-sky-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-200',
+              a.resolved ? 'opacity-60' : 'opacity-100',
+            ].filter(Boolean).join(' ')}
             aria-label={`Comentario en ${a.schemaUid || 'ancla'}`}
-          />
+          >
+            <MessageSquare size={13} className={a.resolved ? 'text-slate-400' : 'text-sky-600'} />
+          </button>
         );
       })}
     </div>

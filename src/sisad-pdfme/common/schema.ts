@@ -134,14 +134,18 @@ export const SchemaComment = z
 
 export const CommentAnchor = z
   .object({
-    id: z.string(),
+    id: z.string().optional(),
     scope: CommentScope.optional(),
     schemaUid: z.string().optional(),
     fileId: z.string().optional(),
     pageNumber: z.number().int().positive().optional(),
+    fieldId: z.string().optional(),
     x: z.number().optional(),
     y: z.number().optional(),
     resolved: z.boolean().optional(),
+    authorId: z.string().optional(),
+    authorName: z.string().optional(),
+    authorColor: z.string().optional(),
   })
   .passthrough();
 

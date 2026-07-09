@@ -438,9 +438,10 @@ export const useInitEvents = ({
     window.dispatchEvent(
       new CustomEvent('sisad-pdfme:create-comment-request', {
         detail: {
-          x,
-          y,
-          page: pageCursor,
+          coordinateSpace: 'page-mm',
+          xMm: x,
+          yMm: y,
+          pageIndex: pageCursor,
           pageNumber: pageCursor + 1,
           fileId: collaborationContext?.fileId || null,
           schemaUid: activeSchema?.schemaUid || activeSchema?.id || undefined,

@@ -77,6 +77,9 @@ type CommentAnchorDraft = {
   x?: number;
   y?: number;
   resolved?: boolean;
+  authorId?: string;
+  authorName?: string;
+  authorColor?: string;
 };
 
 const createEntityId = (prefix: string) =>
@@ -184,6 +187,7 @@ export const createSchemaCommentAnchor = (
   y: typeof anchor.y === 'number' ? anchor.y : undefined,
   resolved: Boolean(anchor.resolved),
   authorId: normalizeText(identity.authorId) || undefined,
+  authorName: normalizeText(identity.authorName) || undefined,
   authorColor: normalizeText(identity.authorColor) || undefined,
 });
 

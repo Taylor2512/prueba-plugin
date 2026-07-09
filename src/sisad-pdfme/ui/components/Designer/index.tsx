@@ -271,13 +271,45 @@ type SchemaDragActiveLike =
   | null
   | undefined;
 
-type CreateCommentEventDetail = {
-  x?: number;
-  y?: number;
-  page?: number;
+type CreateCommentEventDetail =
+  | {
+      coordinateSpace: 'client';
+      clientX: number;
+      clientY: number;
+      pageIndex?: number;
+      pageNumber?: number;
+      schemaUid?: string;
+      fileId?: string | null;
+      targetIds?: string[];
+    }
+  | {
+      coordinateSpace: 'page-mm';
+      xMm: number;
+      yMm: number;
+      pageIndex: number;
+      pageNumber: number;
+      schemaUid?: string;
+      fileId?: string | null;
+      targetIds?: string[];
+    }
+  | {
+      x?: number;
+      y?: number;
+      page?: number;
+      pageIndex?: number;
+      pageNumber?: number;
+      schemaUid?: string;
+      fileId?: string | null;
+      targetIds?: string[];
+    };
+
+type CommentAnchorDraft = {
+  xMm: number;
+  yMm: number;
+  pageIndex: number;
+  pageNumber: number;
+  fileId: string | null;
   schemaUid?: string;
-  fileId?: string | null;
-  targetIds?: string[];
 };
 
 type TopLevelCommentEntry = Parameters<typeof upsertTopLevelComment>[1];
@@ -1079,53 +1111,96 @@ const TemplateEditor = ({
 
   // Comment dialog state and handlers
   const [commentDialogOpen, setCommentDialogOpen] = useState(false);
-  const pendingAnchorRef = useRef<null | {
-    xMm: number;
-    yMm: number;
-    pageIndex: number;
-    fileId?: string | null;
-    schemaUid?: string;
-  }>(null);
+  const pendingAnchorRef = useRef<null | CommentAnchorDraft>(null);
 
-  const openCommentDialog = useCallback(
-    (xClient: number, yClient: number, pageIndex: number, schemaUid?: string, fileId?: string | null) => {
-    try {
-      // Resolve paper: prefer the requested page, fall back to the active cursor
-      // or the first available paper ref so the dialog always opens.
-      const paper =
-        paperRefs.current[pageIndex] ||
-        paperRefs.current[pageCursor] ||
-        paperRefs.current.find(Boolean);
+  const normalizeCommentPageIndex = useCallback(
+    (pageIndex?: number | null, pageNumber?: number | null, legacyPage?: number | null) => {
+      if (Number.isInteger(pageIndex) && (pageIndex as number) >= 0) return Math.trunc(pageIndex as number);
+      if (Number.isInteger(pageNumber) && (pageNumber as number) > 0) return Math.trunc((pageNumber as number) - 1);
+      if (Number.isInteger(legacyPage) && (legacyPage as number) >= 0) return Math.trunc(legacyPage as number);
+      return pageCursor;
+    },
+    [pageCursor],
+  );
 
-      let xMm = 0;
-      let yMm = 0;
+  const resolveCommentAnchorFromEvent = useCallback(
+    (detail: CreateCommentEventDetail): CommentAnchorDraft | null => {
+      const schemaUid = String(detail.schemaUid || '').trim() || (Array.isArray(detail.targetIds) ? String(detail.targetIds[0] || '').trim() : '');
+      const fileId = typeof detail.fileId === 'string' && detail.fileId.trim()
+        ? detail.fileId.trim()
+        : activeDocumentId || null;
 
-      if (paper) {
-        const rect = paper.getBoundingClientRect();
-        const pixelPerMm = (ZOOM as number) * (scale || 1);
-        const pxX = Number(xClient) - rect.left;
-        const pxY = Number(yClient) - rect.top;
-        const rawXMm = Math.max(0, pxX / pixelPerMm);
-        const rawYMm = Math.max(0, pxY / pixelPerMm);
-        const resolvedPageIndex = paperRefs.current[pageIndex] ? pageIndex : pageCursor;
-        xMm = Math.max(0, Math.min(pageSizes[resolvedPageIndex]?.width || 0, rawXMm));
-        yMm = Math.max(0, Math.min(pageSizes[resolvedPageIndex]?.height || 0, rawYMm));
+      const resolveFromPageMm = (xMmInput: number, yMmInput: number) => {
+        const pageIndex = normalizeCommentPageIndex(
+          'pageIndex' in detail ? detail.pageIndex : undefined,
+          'pageNumber' in detail ? detail.pageNumber : undefined,
+          'page' in detail ? detail.page : undefined,
+        );
+        const pageSize = pageSizes[pageIndex] || pageSizes[pageCursor] || null;
+        const xMm = pageSize ? Math.min(Math.max(0, Number(xMmInput) || 0), Number(pageSize.width) || 0) : Math.max(0, Number(xMmInput) || 0);
+        const yMm = pageSize ? Math.min(Math.max(0, Number(yMmInput) || 0), Number(pageSize.height) || 0) : Math.max(0, Number(yMmInput) || 0);
+        const pageNumber = pageIndex >= 0 ? pageIndex + 1 : Number.isInteger(detail.pageNumber) ? Math.trunc(detail.pageNumber as number) : pageCursor + 1;
+        return {
+          xMm: Math.round(xMm * 100) / 100,
+          yMm: Math.round(yMm * 100) / 100,
+          pageIndex,
+          pageNumber,
+          fileId,
+          schemaUid: schemaUid || undefined,
+        } satisfies CommentAnchorDraft;
+      };
+
+      if (detail.coordinateSpace === 'page-mm' || ('xMm' in detail && 'yMm' in detail)) {
+        const xMm = 'xMm' in detail ? detail.xMm : ('x' in detail ? (detail.x as number) : 0);
+        const yMm = 'yMm' in detail ? detail.yMm : ('y' in detail ? (detail.y as number) : 0);
+        return resolveFromPageMm(xMm, yMm);
       }
 
-      pendingAnchorRef.current = {
-        xMm: Math.round(xMm * 100) / 100,
-        yMm: Math.round(yMm * 100) / 100,
-        pageIndex: paperRefs.current[pageIndex] ? pageIndex : pageCursor,
-        fileId: fileId || activeDocumentId || null,
-        schemaUid,
+      const clientX =
+        'clientX' in detail && Number.isFinite(detail.clientX)
+          ? detail.clientX
+          : 'x' in detail && Number.isFinite(detail.x)
+            ? detail.x
+            : null;
+      const clientY =
+        'clientY' in detail && Number.isFinite(detail.clientY)
+          ? detail.clientY
+          : 'y' in detail && Number.isFinite(detail.y)
+            ? detail.y
+            : null;
+
+      if (clientX == null || clientY == null) return null;
+
+      const target = resolvePointerDropTarget({
+        clientX,
+        clientY,
+        paperRefs,
+        pageSizes,
+        scale,
+        activeDocumentId,
+        canvasElement: canvasRef.current,
+        pageCursor,
+        preferredPageIndex: normalizeCommentPageIndex(
+          'pageIndex' in detail ? detail.pageIndex : undefined,
+          'pageNumber' in detail ? detail.pageNumber : undefined,
+          'page' in detail ? detail.page : undefined,
+        ),
+      });
+
+      if (!target.dropValid || !target.schemaPointMm || target.pageIndex < 0) {
+        return null;
+      }
+
+      return {
+        xMm: Math.round(target.schemaPointMm.x * 100) / 100,
+        yMm: Math.round(target.schemaPointMm.y * 100) / 100,
+        pageIndex: target.pageIndex,
+        pageNumber: target.pageNumber,
+        fileId,
+        schemaUid: schemaUid || undefined,
       };
-      openCommentsPanel();
-      setCommentDialogOpen(true);
-    } catch (err) {
-      console.error('openCommentDialog failed', err);
-    }
     },
-    [activeDocumentId, openCommentsPanel, pageCursor, paperRefs, pageSizes, scale],
+    [activeDocumentId, canvasRef, normalizeCommentPageIndex, pageCursor, paperRefs, pageSizes, scale],
   );
 
   const canvasWidth = size.width - leftSidebarWidth;
@@ -1173,6 +1248,42 @@ const TemplateEditor = ({
       return false;
     },
     [paperRefs, pageSizes, scale],
+  );
+
+  const setPageCursorWithScroll = useCallback(
+    (targetPageOrUpdater: number | ((currentPage: number) => number)) => {
+      if (pageSizes.length === 0) return;
+
+      const targetPage =
+        typeof targetPageOrUpdater === 'function'
+          ? targetPageOrUpdater(pageCursor)
+          : targetPageOrUpdater;
+      const safePage = Math.max(0, Math.min(targetPage, pageSizes.length - 1));
+      setPageCursor(safePage);
+      scrollPageIntoView(safePage);
+      onPageCursorChange(safePage, pageSizes.length);
+      onEditEnd();
+    },
+    [onEditEnd, onPageCursorChange, pageCursor, pageSizes.length, scrollPageIntoView],
+  );
+
+  const openCommentDialog = useCallback(
+    (detail: CreateCommentEventDetail) => {
+      try {
+        const pendingAnchor = resolveCommentAnchorFromEvent(detail);
+        if (!pendingAnchor) return;
+        pendingAnchorRef.current = pendingAnchor;
+        setPageCursor(pendingAnchor.pageIndex);
+        scrollPageIntoView(pendingAnchor.pageIndex);
+        onPageCursorChange(pendingAnchor.pageIndex, pageSizes.length);
+        onEditEnd();
+        openCommentsPanel();
+        setCommentDialogOpen(true);
+      } catch (err) {
+        console.error('openCommentDialog failed', err);
+      }
+    },
+    [onEditEnd, onPageCursorChange, openCommentsPanel, pageSizes.length, resolveCommentAnchorFromEvent, scrollPageIntoView],
   );
 
   useScrollPageCursor({
@@ -1478,15 +1589,8 @@ const TemplateEditor = ({
 
   useEffect(() => {
     const handler = (ev: Event) => {
-      const detail = (ev as CustomEvent<CreateCommentEventDetail>).detail || {};
-      const page = typeof detail.page === 'number' ? detail.page : pageCursor;
-      const x = detail.x;
-      const y = detail.y;
-      const schemaUid = Array.isArray(detail.targetIds) && detail.targetIds.length > 0 ? detail.targetIds[0] : detail.schemaUid;
-      const fileId = typeof detail.fileId === 'string' ? detail.fileId : null;
-      if (typeof x === 'number' && typeof y === 'number') {
-        openCommentDialog(x, y, page, schemaUid, fileId);
-      }
+      const detail = (((ev as CustomEvent<CreateCommentEventDetail>).detail || {}) as CreateCommentEventDetail);
+      openCommentDialog(detail);
     };
     globalThis.addEventListener('sisad-pdfme:create-comment', handler as EventListener);
     globalThis.addEventListener('sisad-pdfme:create-comment-request', handler as EventListener);
@@ -1494,7 +1598,7 @@ const TemplateEditor = ({
       globalThis.removeEventListener('sisad-pdfme:create-comment', handler as EventListener);
       globalThis.removeEventListener('sisad-pdfme:create-comment-request', handler as EventListener);
     };
-  }, [openCommentDialog, pageCursor]);
+  }, [openCommentDialog]);
 
   useEffect(() => {
     const handleCommentPinClick = (event: Event) => {
@@ -1505,6 +1609,14 @@ const TemplateEditor = ({
       } else if (typeof detail.commentId === 'string' && detail.commentId.trim()) {
         commentId = detail.commentId.trim();
       }
+      if (commentId) {
+        const allComments = filterCommentsByFileAndPage(visibleTemplate, activeDocumentId || null);
+        const matched = allComments.find((entry) => String(entry.comment?.id || entry.anchor?.id || '').trim() === commentId);
+        const targetPageNumber = Number(matched?.pageNumber || matched?.anchor?.pageNumber || 0);
+        if (Number.isInteger(targetPageNumber) && targetPageNumber > 0) {
+          setPageCursorWithScroll(targetPageNumber - 1);
+        }
+      }
       openCommentsPanel(commentId);
     };
 
@@ -1512,33 +1624,14 @@ const TemplateEditor = ({
     return () => {
       globalThis.removeEventListener('sisad-pdfme:pin-clicked', handleCommentPinClick as EventListener);
     };
-  }, [openCommentsPanel]);
+  }, [activeDocumentId, openCommentsPanel, setPageCursorWithScroll, visibleTemplate]);
 
   const handleSaveComment = useCallback(
     (text: string) => {
       const pendingAnchor = pendingAnchorRef.current;
       if (!pendingAnchor) return;
       try {
-        const pageSchemas = schemasListRef.current[pendingAnchor.pageIndex] || [];
-        const fallbackSchema = pageSchemas
-          .slice()
-          .reverse()
-          .find((schema) => {
-            const x = Number(schema.position?.x);
-            const y = Number(schema.position?.y);
-            const width = Number(schema.width);
-            const height = Number(schema.height);
-            if (!Number.isFinite(x) || !Number.isFinite(y) || !Number.isFinite(width) || !Number.isFinite(height)) {
-              return false;
-            }
-            return (
-              pendingAnchor.xMm >= x
-              && pendingAnchor.xMm <= x + width
-              && pendingAnchor.yMm >= y
-              && pendingAnchor.yMm <= y + height
-            );
-          });
-        const resolvedSchemaUid = fallbackSchema?.schemaUid || fallbackSchema?.id || pendingAnchor.schemaUid;
+        const resolvedSchemaUid = pendingAnchor.schemaUid || undefined;
 
         const anchor = {
           x: pendingAnchor.xMm,
@@ -1598,52 +1691,53 @@ const TemplateEditor = ({
             nextSchema.commentAnchors = upsertById(nextSchema.commentAnchors || [], createdAnchor);
             nextSchema.commentsCount = (Number(nextSchema.commentsCount) || 0) + 1;
             nextTemplate.schemas[target.pageIndex][target.index] = nextSchema;
-          }
-          void commandBusRef.current.execute(
-            createTemplateSnapshotCommand({
-              id: 'addComment',
-              label: 'addComment',
-              beforeTemplate,
-              afterTemplate: nextTemplate,
-              events: [createCommentCommandEvent('comment.created', createdComment.id, anchor.fileId)],
-              applyTemplate: updateTemplate,
-            }),
-          );
-        } else {
-          const nextTemplate = upsertTopLevelComment(
-            cloneDeep(visibleTemplate) as Template,
-            buildTopLevelCommentEntry({
-              id: createdComment.id,
-              anchor: createdAnchor as unknown as TopLevelCommentEntry['anchor'],
-              comment: createdComment as unknown as TopLevelCommentEntry['comment'],
-            }),
-          );
+            void commandBusRef.current.execute(
+              createTemplateSnapshotCommand({
+                id: 'addComment',
+                label: 'addComment',
+                beforeTemplate,
+                afterTemplate: nextTemplate,
+                events: [createCommentCommandEvent('comment.created', createdComment.id, anchor.fileId)],
+                applyTemplate: updateTemplate,
+              }),
+            );
+          } else {
+            const nextTopLevel = upsertTopLevelComment(
+              cloneDeep(visibleTemplate) as Template,
+              buildTopLevelCommentEntry({
+                id: createdComment.id,
+                anchor: createdAnchor as unknown as TopLevelCommentEntry['anchor'],
+                comment: createdComment as unknown as TopLevelCommentEntry['comment'],
+              }),
+            );
 
-          void commandBusRef.current.execute(
-            createTemplateSnapshotCommand({
-              id: 'addComment',
-              label: 'addComment',
-              beforeTemplate,
-              afterTemplate: nextTemplate,
-              events: [createCommentCommandEvent('comment.created', createdComment.id, anchor.fileId)],
-              applyTemplate: updateTemplate,
-            }),
-          );
+            void commandBusRef.current.execute(
+              createTemplateSnapshotCommand({
+                id: 'addComment',
+                label: 'addComment',
+                beforeTemplate,
+                afterTemplate: nextTopLevel,
+                events: [createCommentCommandEvent('comment.created', createdComment.id, anchor.fileId)],
+                applyTemplate: updateTemplate,
+              }),
+            );
 
-          if (designerEngine.collaboration?.enabled) {
-            applyCollaborationLocalChange({
-              type: 'comment.created',
-              schemaId: buildTopLevelCommentSchemaId(anchor.fileId, anchor.pageNumber),
-              comment: createdComment,
-              anchor: createdAnchor,
-              pageIndex: pendingAnchor.pageIndex,
-              actorId: collaborationContext.actorId || designerEngine.collaboration?.actorId,
-              sessionId: designerEngine.collaboration?.sessionId || activeDocumentId || 'local',
-              timestamp: Date.now(),
-            });
+            if (designerEngine.collaboration?.enabled) {
+              applyCollaborationLocalChange({
+                type: 'comment.created',
+                schemaId: buildTopLevelCommentSchemaId(anchor.fileId, anchor.pageNumber),
+                comment: createdComment,
+                anchor: createdAnchor,
+                pageIndex: pendingAnchor.pageIndex,
+                actorId: collaborationContext.actorId || designerEngine.collaboration?.actorId,
+                sessionId: designerEngine.collaboration?.sessionId || activeDocumentId || 'local',
+                timestamp: Date.now(),
+              });
+            }
           }
         }
         setActiveCommentId(createdComment.id);
+        setPageCursorWithScroll(pendingAnchor.pageIndex);
         openCommentsPanel(createdComment.id);
       } catch (err) {
         console.error('Failed to save comment', err);
@@ -1662,23 +1756,24 @@ const TemplateEditor = ({
       visibleTemplate,
       updateTemplate,
       openCommentsPanel,
+      setPageCursorWithScroll,
     ],
   );
 
   const handleAddSidebarComment = useCallback(() => {
-    const paper = paperRefs.current[pageCursor];
-    if (!paper) return;
-
-    const rect = paper.getBoundingClientRect();
     const activeSchema = currentPageSchemas.find((schema) => schema.id === activeElements[0]?.id);
-    openCommentDialog(
-      rect.left + rect.width / 2,
-      rect.top + rect.height / 2,
-      pageCursor,
-      activeSchema?.schemaUid || activeSchema?.id,
-      activeDocumentId || null,
-    );
-  }, [activeDocumentId, activeElements, currentPageSchemas, openCommentDialog, pageCursor, paperRefs]);
+    const pageSize = pageSizes[pageCursor];
+    openCommentDialog({
+      coordinateSpace: 'page-mm',
+      xMm: Number(pageSize?.width || 0) / 2,
+      yMm: Number(pageSize?.height || 0) / 2,
+      pageIndex: pageCursor,
+      pageNumber: pageCursor + 1,
+      fileId: activeDocumentId || null,
+      schemaUid: activeSchema?.schemaUid || activeSchema?.id,
+      targetIds: activeSchema ? [activeSchema.id] : [],
+    });
+  }, [activeDocumentId, activeElements, currentPageSchemas, openCommentDialog, pageCursor, pageSizes]);
 
   const commentItems = useMemo(() => {
     const items: DesignerCommentItem[] = [];
@@ -2100,23 +2195,6 @@ const TemplateEditor = ({
   const onSortEnd = (sortedSchemas: SchemaForUI[]) => {
     commitSchemas(sortedSchemas);
   };
-
-  const setPageCursorWithScroll = useCallback(
-    (targetPageOrUpdater: number | ((currentPage: number) => number)) => {
-      if (pageSizes.length === 0) return;
-
-      const targetPage =
-        typeof targetPageOrUpdater === 'function'
-          ? targetPageOrUpdater(pageCursor)
-          : targetPageOrUpdater;
-      const safePage = Math.max(0, Math.min(targetPage, pageSizes.length - 1));
-      setPageCursor(safePage);
-      scrollPageIntoView(safePage);
-      onPageCursorChange(safePage, pageSizes.length);
-      onEditEnd();
-    },
-    [onEditEnd, onPageCursorChange, pageCursor, pageSizes.length, scrollPageIntoView],
-  );
 
   const resolveTargetPageIndex = useCallback(
     (page?: number) => {
