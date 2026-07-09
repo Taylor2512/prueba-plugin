@@ -31,7 +31,7 @@ const SchemaDragPreview = ({
       }
       aria-label={`${schemaType} drag preview`}
     >
-      <div className="sisad-pdfme-schema-drag-preview-orb flex h-11 w-11 items-center justify-center rounded-2xl border border-slate-200 bg-white shadow-lg">
+      <div className="sisad-pdfme-schema-drag-preview-orb flex h-10 w-10 items-center justify-center rounded-2xl border border-slate-200/80 bg-white/95 shadow-md">
         {icon ? <span className="sisad-pdfme-schema-drag-preview-icon text-slate-700">{icon}</span> : null}
       </div>
     </div>

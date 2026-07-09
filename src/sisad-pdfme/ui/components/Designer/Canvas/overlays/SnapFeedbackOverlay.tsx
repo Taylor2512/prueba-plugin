@@ -24,11 +24,12 @@ const SnapFeedbackOverlay = ({ bounds, snapLines }: SnapFeedbackOverlayProps) =>
   return (
     <div
       className={mergeClassNames(
-        'sisad-pdfme-ui-snap-feedback fixed z-[65] inline-flex -translate-y-full items-center gap-2 rounded-full border border-slate-200/80 bg-white/95 px-3 py-1.5 text-[11px] font-medium text-slate-700 shadow-lg backdrop-blur-md pointer-events-none',
+        'sisad-pdfme-ui-snap-feedback fixed inline-flex -translate-y-full items-center gap-1.5 rounded-full border border-slate-200/80 bg-white/95 px-2.5 py-1 text-[10.5px] font-medium text-slate-700 shadow-lg backdrop-blur-md pointer-events-none',
       )}
       style={{
         top: `${bounds.top - 52}px`,
         left: `${bounds.left}px`,
+        zIndex: 'calc(var(--z-overlay) + 3)',
       }}
     >
       <span className="sisad-pdfme-ui-snap-feedback-primary font-semibold text-slate-900">{primaryLabel}</span>

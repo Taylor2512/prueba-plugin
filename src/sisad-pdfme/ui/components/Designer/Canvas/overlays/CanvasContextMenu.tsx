@@ -147,7 +147,7 @@ const CanvasContextMenu = ({
   };
 
   return createPortal(
-    <div className="sisad-pdfme-ui-canvas-context-menu-layer fixed inset-0 z-[80]" onContextMenu={(event) => event.preventDefault()}>
+    <div className="sisad-pdfme-ui-canvas-context-menu-layer fixed inset-0" onContextMenu={(event) => event.preventDefault()}>
       <div
         className="sisad-pdfme-ui-canvas-context-menu-backdrop absolute inset-0 bg-transparent"
         aria-hidden="true"
@@ -168,7 +168,7 @@ const CanvasContextMenu = ({
         data-selection-count={String(selectionCount)}
         data-selection-kind={selectionCount > 1 ? 'multi' : 'single'}
         className={mergeClassNames(
-          'sisad-pdfme-ui-canvas-context-menu absolute min-w-[17rem] overflow-hidden rounded-2xl border border-slate-200 bg-white/95 p-2 text-sm text-slate-700 shadow-2xl backdrop-blur-md',
+          'sisad-pdfme-ui-canvas-context-menu absolute min-w-[15.5rem] overflow-hidden rounded-xl border border-slate-200/80 bg-white/95 p-1.5 text-[0.78rem] text-slate-700 shadow-xl backdrop-blur-md',
           className,
         )}
         style={{
@@ -195,9 +195,9 @@ const CanvasContextMenu = ({
         }}
         >
         {groups.map((group, groupIndex) => (
-          <div key={group.id} className="sisad-pdfme-ui-canvas-context-menu-group space-y-1 py-1 first:pt-0 last:pb-0">
+          <div key={group.id} className="sisad-pdfme-ui-canvas-context-menu-group space-y-0.5 py-[3px] first:pt-0 last:pb-0">
             {group.label ? (
-              <div className="sisad-pdfme-ui-canvas-context-menu-group-label px-2 pb-1 text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500">{group.label}</div>
+              <div className="sisad-pdfme-ui-canvas-context-menu-group-label px-2 pb-0.5 text-[10.5px] font-semibold uppercase tracking-[0.14em] text-slate-500">{group.label}</div>
             ) : null}
             {group.items
               .filter((item) => !item.hidden)
@@ -209,7 +209,7 @@ const CanvasContextMenu = ({
                     type="button"
                     role="menuitem"
                     className={mergeClassNames(
-                      'sisad-pdfme-ui-canvas-context-menu-item flex w-full items-center gap-2 rounded-xl px-2.5 py-2 text-left text-sm font-medium transition',
+                      'sisad-pdfme-ui-canvas-context-menu-item flex w-full items-center gap-1.5 rounded-lg px-2 py-1.5 text-left text-[0.78rem] font-medium transition',
                       item.danger ? 'text-rose-700 hover:bg-rose-50' : 'text-slate-700 hover:bg-slate-50',
                       disabled && 'cursor-not-allowed opacity-40',
                     )}
@@ -223,13 +223,13 @@ const CanvasContextMenu = ({
                       onClose?.();
                     }}
                   >
-                    <span className="sisad-pdfme-ui-canvas-context-menu-item-icon inline-flex h-6 w-6 items-center justify-center rounded-lg bg-slate-50 text-slate-500">{item.icon}</span>
+                    <span className="sisad-pdfme-ui-canvas-context-menu-item-icon inline-flex h-5 w-5 items-center justify-center rounded-md bg-slate-50 text-slate-500">{item.icon}</span>
                     <span className="sisad-pdfme-ui-canvas-context-menu-item-label min-w-0 flex-1 truncate">{item.label}</span>
                   </button>
                 );
               })}
             {groupIndex < groups.length - 1 ? (
-              <div className="sisad-pdfme-ui-canvas-context-menu-divider my-1 h-px bg-slate-200" aria-hidden="true" />
+              <div className="sisad-pdfme-ui-canvas-context-menu-divider my-[3px] h-px bg-slate-200" aria-hidden="true" />
             ) : null}
           </div>
         ))}

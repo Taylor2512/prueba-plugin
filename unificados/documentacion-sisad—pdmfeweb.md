@@ -14,9 +14,9 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `docs`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-09T03:22:39.516Z`
+- **Fecha generación:** `2026-07-09T04:36:49.865Z`
 - **Extensiones incluidas:** `.md, .mdx`
-- **Archivos candidatos incluidos:** `217`
+- **Archivos candidatos incluidos:** `219`
 - **Límite por archivo:** `120 KB`
 - **Límite total de contenido:** `1800 KB`
 
@@ -275,14 +275,16 @@ prueba-plugin
 │   │   └── README.md
 │   └── README.md
 ├── MANIFEST.md
-├── plan-maestro-migracion-tailwind-sisad-pdfme.md
+├── plan-tailwind-completo-actualizado-sisad-pdfme.md
 ├── README.md
 ├── reports
 │   └── tailwind-migration
 │       ├── baseline-regression-audit.md
 │       ├── img-version-baseline-inventory.md
 │       ├── line-by-line-style-audit.md
-│       └── README.md
+│       ├── pending-phases-progress.md
+│       ├── README.md
+│       └── rightsidebar-detailview-tailwind-audit.md
 ├── scripts
 │   └── README.md
 ├── SEPARATION-CONTRACT.md
@@ -387,7 +389,7 @@ prueba-plugin
 | 90 | `AGENTS.md` | markdown | 26 | 0.7 | completo |
 | 91 | `CLAUDE.md` | markdown | 23 | 0.5 | completo |
 | 92 | `MANIFEST.md` | markdown | 177 | 6.1 | completo |
-| 93 | `plan-maestro-migracion-tailwind-sisad-pdfme.md` | markdown | 1036 | 204.3 | truncado 110.9 KB |
+| 93 | `plan-tailwind-completo-actualizado-sisad-pdfme.md` | markdown | 1118 | 99.4 | completo |
 | 94 | `SEPARATION-CONTRACT.md` | markdown | 35 | 0.5 | completo |
 | 95 | `.github/copilot-instructions.md` | markdown | 15 | 0.4 | completo |
 | 96 | `ai/README.md` | markdown | 38 | 0.8 | completo |
@@ -504,24 +506,26 @@ prueba-plugin
 | 207 | `reports/tailwind-migration/baseline-regression-audit.md` | markdown | 27 | 5.2 | completo |
 | 208 | `reports/tailwind-migration/img-version-baseline-inventory.md` | markdown | 14 | 2.6 | completo |
 | 209 | `reports/tailwind-migration/line-by-line-style-audit.md` | markdown | 227 | 21.6 | completo |
-| 210 | `reports/tailwind-migration/README.md` | markdown | 76 | 4.6 | completo |
-| 211 | `test-results/standard-fields-standard-f-c4dc3-s-the-expected-schema-types-chromium/error-context.md` | markdown | 576 | 28.7 | completo |
-| 212 | `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md` | markdown | 21 | 0.5 | completo |
-| 213 | `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 5 | 0.2 | completo |
-| 214 | `ai/task-cards/backlog/TASK-CSS-001-tailwind-regression-stabilization.md` | markdown | 22 | 0.6 | completo |
-| 215 | `ai/task-cards/backlog/TASK-VISUAL-001-img-version-baseline.md` | markdown | 12 | 0.3 | completo |
-| 216 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
-| 217 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
+| 210 | `reports/tailwind-migration/pending-phases-progress.md` | markdown | 9 | 1.5 | completo |
+| 211 | `reports/tailwind-migration/README.md` | markdown | 76 | 4.6 | completo |
+| 212 | `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md` | markdown | 13 | 2.3 | completo |
+| 213 | `test-results/standard-fields-standard-f-c4dc3-s-the-expected-schema-types-chromium/error-context.md` | markdown | 576 | 28.7 | completo |
+| 214 | `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md` | markdown | 21 | 0.5 | completo |
+| 215 | `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 5 | 0.2 | completo |
+| 216 | `ai/task-cards/backlog/TASK-CSS-001-tailwind-regression-stabilization.md` | markdown | 22 | 0.6 | completo |
+| 217 | `ai/task-cards/backlog/TASK-VISUAL-001-img-version-baseline.md` | markdown | 12 | 0.3 | completo |
+| 218 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
+| 219 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1442
+- **extensión no incluida:** 1454
 - **directorio ignorado: dependencia/build/salida generada:** 7
 
 ## Totales
 
-- **KB originales candidatos:** `346.9`
-- **KB incluidos en contenido:** `253.3`
+- **KB originales candidatos:** `245.8`
+- **KB incluidos en contenido:** `245.5`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -3177,698 +3181,1133 @@ ai/memory/project-memory.md
 
 <a id="file-0093"></a>
 
-### 0093 — `plan-maestro-migracion-tailwind-sisad-pdfme.md`
+### 0093 — `plan-tailwind-completo-actualizado-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `1036`
-- **Tamaño original:** `204.3 KB`
-- **SHA1 corto:** `e9a87fec7d`
-- **Estado:** `truncado 110.9 KB`
+- **Líneas:** `1118`
+- **Tamaño original:** `99.4 KB`
+- **SHA1 corto:** `14b8faa08b`
+- **Estado:** `completo`
 
 ```markdown
-# Plan maestro de migración CSS → Tailwind — SISAD PDFME
+# Plan maestro actualizado — Migración completa CSS puro → Tailwind para SISAD PDFME
 
-**Proyecto:** `/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin`
+Fecha de actualización: 2026-07-09 03:30
 
-**Fecha:** 2026-07-08
 
-**Objetivo:** migrar progresivamente de CSS puro a Tailwind sin degradar la visualización ni romper comportamiento del diseñador PDF.
+## 1. Propósito
 
-> Este documento está diseñado para ser usado por Codex/Claude como plan de implementación por fases. No es un prompt corto: es una guía operativa con inventario, reglas, riesgos, task-cards, validación y matriz por archivo.
+Este documento actualiza el plan de migración CSS puro → Tailwind tomando en cuenta:
 
-## 1. Fuentes investigadas
+- El contexto completo de código React/Vite (`codigo-frontend-sisad—pdmfe.md`).
+- La documentación y arquitectura AI/docs (`documentacion-sisad—pdmfeweb.md`).
+- El inventario CSS/Tailwind y candidatos (`styles-sisad—pdmfe.md`).
+- Las regresiones visuales vistas durante la migración: header, rightSlot, RightSidebar, LeftSidebar, canvas-first, resultados y overlays.
+- La necesidad de seguir migrando **cada componente JSX/TSX** sin afectar la visualización ni romper canvas, Moveable, Selecto, snapshot, runtime ni PDF.
 
-Se analizó el paquete consolidado subido por el usuario, compuesto por código React/Vite, documentación `.ai`/docs y CSS/Tailwind. Los hallazgos principales son:
+El objetivo no es “pasar todo a Tailwind” de forma mecánica. El objetivo es **reducir CSS legacy de manera medible, conservar el baseline visual y aplicar Tailwind por capas seguras**.
 
-| Fuente                               | Contenido                                           | Métrica relevante                                                                                                                           |
-| ------------------------------------ | --------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------- |
-| `codigo-frontend-sisad—pdmfe.md`  | Código React/Vite consolidado                      | 481 archivos candidatos incluidos; tabla con rutas, líneas, estado y estructura.                                                            |
-| `documentacion-sisad—pdmfeweb.md` | Documentación`.ai`, reglas, task-cards, reportes | 78 documentos incluidos; define presupuesto, límites, router y reglas del diseñador.                                                       |
-| `styles-sisad—pdmfe.md`           | CSS, Tailwind, bridge y candidatos                  | 18 archivos CSS/Tailwind incluidos; incluye`labRoutes`, `global`, `canvas-interactions`, `runtime`, `tokens`, bridge y candidatos. |
-| `public/img-version`               | Baseline visual externo al archivo                  | Debe inventariarse en repo real; contiene capturas de la versión previa a Tailwind.                                                         |
 
-**Conclusión de investigación:** el proyecto ya no está en estado inicial de migración. Tailwind está instalado/configurado, `src/style.css` aparece neutralizado, existe `src/styles/tailwind.css`, existe `src/styles/sisad-tailwind-bridge.css`, hay candidatos generados y un reporte `line-by-line-style-audit.md`. La tarea correcta ahora es **consolidar, corregir regresiones y migrar por capas**, no reiniciar ni reemplazar todo.
+## 2. Fuentes analizadas
 
-## 2. Restricciones arquitectónicas obligatorias
+| Archivo subido | Perfil | Fecha | Archivos incluidos | Observación |
+|---|---:|---:|---:|---|
+| `codigo-frontend-sisad—pdmfe.md` | React/Vite código | 2026-07-09T03:22:40.019Z | 481 | Base para matriz de JSX/TSX/JS/TS. Incluye 481 candidatos y marca varios como omitidos por presupuesto. |
+| `documentacion-sisad—pdmfeweb.md` | Markdown/docs/IA | 2026-07-09T03:22:39.516Z | 217 | Base para actualizar plan, task-cards, memoria, reglas y separación `docs/` vs `ai/`. |
+| `styles-sisad—pdmfe.md` | CSS/Tailwind | 2026-07-09T03:22:40.398Z | 18 | Base para decisiones CSS: Tailwind entry, bridge, candidatos, CSS activo y legacy. |
 
-La documentación del proyecto limita el alcance al diseñador: Designer, Canvas, Schemas, LeftSidebar, RightSidebar, DetailView, ListView, Toolbar contextual, Moveable, Selecto, CommandBus, Snapshot, CSS visual y compatibilidad Form/Viewer/Generator. No incluye negocio SISAD, Uanataca, StepOne/StepTwo ni firma backend.
 
-| Regla                             | Implicación en migración Tailwind                                                                                                 |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| PDF/canvas es protagonista        | El lab host no debe encajonar el editor ni robar alto útil.                                                                        |
-| No tocar geometría por estética | `x/y/width/height/rotation/zoom/transform/paper scale` no se convierten a utilidades Tailwind.                                    |
-| Moveable/Selecto protegidos       | No tocar`.moveable-*`, `.selecto-*`, guards, coordenadas ni hit-testing desde CSS host.                                         |
-| CSS scoped                        | Todo core visual debe vivir bajo`.sisad-pdfme-root` o clases del lab; no reset global `body/html`.                              |
-| Snapshot estable                  | No perder`schemaUid`, `documentId`, `pageNumber`, owner/recipient metadata, group/options, selected values ni `__designer`. |
-| Form/Viewer/PDF limpios           | La migración del designer no debe imprimir chrome en PDF ni contaminar runtime.                                                    |
-| Baseline visual                   | Las imágenes de`public/img-version` son fuente de verdad visual para restaurar intención previa.                                |
+### 2.1 Métrica de acciones detectadas en código
 
-## 3. Estado actual detectado
+| Acción | Cantidad de archivos |
+|---|---:|
+| `NO_VISUAL_MIGRATION` | 170 |
+| `DO_NOT_MIGRATE` | 160 |
+| `NO_VISUAL_OR_SPLIT` | 24 |
+| `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | 22 |
+| `MIGRATE_SCHEMA_VISUAL_SAFE` | 13 |
+| `SPLIT_RULE_MIGRATE_SKIN_ONLY` | 13 |
+| `KEEP_GEOMETRY_MIGRATE_SKIN_ONLY` | 7 |
+| `MIGRATE_VISUAL_SAFE` | 7 |
+| `MIGRATE_RIGHT_SIDEBAR_LIST_VISUAL` | 7 |
+| `MIGRATE_LEFT_SIDEBAR_VISUAL` | 6 |
+| `MIGRATE_JSX` | 5 |
+| `KEEP_GEOMETRY_MIGRATE_MINIMAL_SKIN` | 5 |
+| `MIGRATE_RIGHT_SIDEBAR_SHELL_VISUAL` | 5 |
+| `KEEP_LEGACY_GEOMETRY` | 5 |
+| `STABILIZE_AND_MIGRATE_JSX` | 4 |
+| `MIGRATE_RUNTIME_UI_SKIN` | 4 |
+| `DO_NOT_VISUAL_MIGRATE_NOW` | 3 |
+| `REVIEW_BEFORE_MIGRATE` | 3 |
+| `CONFIG_OR_SCRIPT_ONLY` | 2 |
+| `CONFIG_VERIFY_OR_FIX` | 1 |
+| `SPLIT_RULE_NEEDS_TASK_CARD` | 1 |
 
-### 3.1 Infraestructura Tailwind
 
-| Archivo                                        | Estado                                                                                             | Riesgo                                                         | Acción requerida                                                           |
-| ---------------------------------------------- | -------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- | --------------------------------------------------------------------------- |
-| `tailwind.config.js`                         | Existe;`content` incluye index/src/tests; `preflight:false`; tokens `colors.sisad` mapeados. | Bajo si solo hay un config activo.                             | Validar que no exista`tailwind.config.cjs` activo o editar solo uno.      |
-| `postcss.config.js` y `postcss.config.mjs` | Ambos aparecen en inventario.                                                                      | Medio: toolchain/IA puede editar el equivocado.                | Confirmar cuál lee Vite y eliminar/neutralizar duplicado si no hace falta. |
-| `src/styles/tailwind.css`                    | Entrada canónica con`@tailwind base/components/utilities`.                                      | Bajo.                                                          | Mantener como única fuente.                                                |
-| `src/style.css`                              | Neutralizado; conserva comentario para`<link>` de `index.html`.                                | Bajo si no reintroduce`@tailwind`.                           | No volver a poner directivas Tailwind aquí.                                |
-| `src/styles/sisad-tailwind-bridge.css`       | Bridge top-level`@apply`, no `@layer components`.                                              | Medio si se copia a`@layer` y Tailwind purga clases runtime. | Mantener top-level para selectores dinámicos/data-*.                       |
+### 2.2 Métrica por capa
 
-### 3.2 Contadores de candidatos CSS
+| Capa | Cantidad de archivos |
+|---|---:|
+| PDF/Generator | 158 |
+| Core library | 56 |
+| Schemas registry | 52 |
+| Designer shared logic | 27 |
+| Schemas logic/pdf | 24 |
+| RightSidebar DetailView | 22 |
+| UI logic/theme | 17 |
+| Schemas visual/runtime | 13 |
+| Canvas overlay skins | 13 |
+| Lab data/builders | 8 |
+| Converter | 8 |
+| Runtime/Paper/Renderer | 7 |
+| Designer dialogs/tools | 7 |
+| RightSidebar ListView | 7 |
+| LeftSidebar visual | 6 |
+| Lab landing/host | 5 |
+| Canvas core/chrome | 5 |
+| RightSidebar shell/rails | 5 |
+| Canvas overlay logic | 5 |
+| Lab shell canvas-first | 4 |
+| Runtime/UI chrome | 4 |
+| Public UI entrypoints | 3 |
+| Config/scripts/tests | 2 |
+| Runtime component | 2 |
+| Canvas Moveable/Selecto | 2 |
+| Infra Tailwind | 1 |
+| Designer shell | 1 |
+| Designer other | 1 |
+| LeftSidebar state | 1 |
+| RightSidebar helpers | 1 |
 
-El reporte de migración generó candidatos que sirven como mapa, no como reemplazo automático. La propia auditoría muestra muchas declaraciones manuales no convertibles:
 
-| CSS origen                                            | Bloques candidatos | Declaraciones manuales/unsupported | Interpretación                                               |
-| ----------------------------------------------------- | ------------------ | ---------------------------------- | ------------------------------------------------------------- |
-| `src/sisad-pdfme/ui/styles/tokens.css`              | 0                  | 0                                  | No migrar a className; mantener como fuente de verdad.        |
-| `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css`  | 772                | 1814                               | Archivo masivo: migrar por secciones, alto riesgo.            |
-| `src/sisad-pdfme/ui/styles/canvas-interactions.css` | 176                | 508                                | Overlays/transform/pointer-events: migrar solo skins.         |
-| `src/sisad-pdfme/ui/styles/sisad-pdfme-runtime.css` | 65                 | 88                                 | Migrar skins runtime; conservar Ant/data attrs/PDF.           |
-| `src/features/pdfcomponent/labRoutes.css`           | 203                | 435                                | Migrar host visual; conservar canvas-first y drawer geometry. |
+## 3. Hallazgos críticos que faltaban cubrir
 
-### 3.3 Riesgo principal
+### 3.1 El plan anterior era fuerte en fases, pero débil en ledger por archivo
 
-El error más probable no está en Tailwind como tecnología, sino en **duplicar la responsabilidad visual**: clases Tailwind directas sobre componentes que ya tenían CSS legacy activo y variables runtime. Por eso el plan evita un reemplazo masivo y exige matriz de equivalencia por selector/componente.
+Faltaba una matriz viva que diga para cada `jsx/tsx/js/ts`:
 
-## 4. Principios de migración
+- si se migra a Tailwind JSX;
+- si se migra al bridge;
+- si se conserva en CSS legacy;
+- si se prohíbe tocar;
+- qué test/captura valida ese cambio.
 
-| Tipo de regla            | Destino correcto                         | Ejemplos                                                            |
-| ------------------------ | ---------------------------------------- | ------------------------------------------------------------------- |
-| Visual puro              | Tailwind JSX o bridge                    | padding, gap, flex, border, bg, text, rounded, shadow, hover.       |
-| Clase estable compartida | `src/styles/sisad-tailwind-bridge.css` | sidebars, control bar, cards, badges, inspector section skin.       |
-| Geometría runtime       | CSS legacy/tokens                        | paper, page, scale, transform, top/left runtime, zoom, x/y, rulers. |
-| Overlays interactivos    | Mixto: skin Tailwind, posición legacy   | drag preview, context toolbar, drop placeholder, inline edit.       |
-| Ant Design               | CSS legacy de compatibilidad             | .ant-select-selector, .ant-btn, collapse, form item, inputs.        |
-| Variables/tokens         | `tokens.css` + `tailwind.config.js`  | color, spacing, radius, shadows, z-index, owner color.              |
-| CSS muerto/duplicado     | Eliminar solo con evidencia              | demo huérfano, doble PostCSS/Tailwind, selectores no usados.       |
+Este documento agrega la matriz completa en el apéndice.
 
-## 5. Baseline visual obligatorio
+### 3.2 Los candidatos CSS no son implementación directa
 
-Antes de migrar otro bloque, Codex debe inventariar y usar las capturas de:
+Los archivos `reports/tailwind-migration/candidates/*.candidate.css` son útiles para auditoría, pero no deben reemplazar CSS real sin revisión porque contienen declaraciones `Unsupported/manual` y algunas estructuras generadas. La migración debe usar esos candidatos como mapa, no como parche automático.
 
-``​`bash
+### 3.3 El bridge debe seguir a nivel raíz
+
+`src/styles/sisad-tailwind-bridge.css` debe mantener `@apply` a nivel raíz. No envolverlo en `@layer components` porque muchas clases se generan dinámicamente o dependen de `data-*`. Si Tailwind no detecta esas clases, puede purgar reglas necesarias.
+
+### 3.4 El Header ya fue parcialmente corregido, pero requiere estabilización visual
+
+Se reubicó la colaboración al `PageHeader`, pero falta:
+
+- visual del select/botones como sistema soft UI;
+- validación responsive en 1366/1440/1600;
+- que no reaparezcan controles nativos con borde negro;
+- que `PageHeader` no supere 52px salvo navegación del navegador.
+
+### 3.5 RightSidebar sigue siendo el siguiente bloqueo visual
+
+Las capturas muestran que `RightSidebar` tiene header/list toolbar roto o comprimido. Es el siguiente foco antes de tocar overlays/canvas.
+
+### 3.6 No se debe volver a pedir “continúa con todo”
+
+A partir de ahora cada intervención debe tener una task-card única. Pedir “no pares hasta terminar todo” aumenta el riesgo de que Codex toque canvas, CSS legacy y sidebars en un solo diff.
+
+
+## 4. Contrato de capas
+
+| Capa | Migración permitida | Prohibido |
+|---|---|---|
+| `features/pdfcomponent` landing | Tailwind JSX directo | tocar editor core |
+| `features/pdfcomponent` canvas-first shell | Tailwind JSX + `labRoutes.css` para layout complejo | wrappers que roben espacio al canvas |
+| `LeftSidebar` | Tailwind JSX/bridge para tabs/search/cards | romper drag/drop/data attrs |
+| `RightSidebar` | Tailwind JSX/bridge para tabs/list/detail skins | romper selección, rename, filtros, command updates |
+| Canvas core | solo skin mínimo validado | overflow, transform, zoom, page geometry |
+| Canvas overlays | split skin vs geometry | position/transform/z-index arbitrario |
+| Schemas visual | uiRender/propPanel skin seguro | metadata, values, pdfRender |
+| Runtime Form/Viewer | skin limpio por modo | chrome de diseñador en PDF |
+| Generator/pdf-lib | no migrar | cualquier Tailwind |
+| Tokens | conservar/tokenizar | borrar variables runtime |
+
+
+## 5. CSS: estado actual y decisión por archivo
+
+| Archivo CSS | Líneas | Estado | Decisión |
+|---|---:|---|---|
+| `src/styles/tailwind.css` | 11 | completo | `KEEP_SINGLE_TAILWIND_ENTRY` |
+| `src/style.css` | 11 | completo | `KEEP_NEUTRALIZED` |
+| `src/styles/sisad-tailwind-bridge.css` | 502 | completo | `MIGRATE_BRIDGE_TOP_LEVEL` |
+| `reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css` | 1600 | completo | `REFERENCE_ONLY_DO_NOT_APPLY_BLINDLY` |
+| `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__canvas-interactions.tailwind.candidate.css` | 1547 | completo | `REFERENCE_ONLY_DO_NOT_APPLY_BLINDLY` |
+| `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-global.tailwind.candidate.css` | 6417 | truncado 75.1 KB | `REFERENCE_ONLY_DO_NOT_APPLY_BLINDLY` |
+| `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css` | 443 | completo | `REFERENCE_ONLY_DO_NOT_APPLY_BLINDLY` |
+| `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css` | 8 | completo | `REFERENCE_ONLY_DO_NOT_APPLY_BLINDLY` |
+| `src/features/pdfcomponent/labRoutes.css` | 1684 | completo | `SPLIT_LAB_LAYOUT_AND_MIGRATE_BY_COMPONENT` |
+| `src/sisad-pdfme/ui/styles/canvas-interactions.css` | 1492 | completo | `SPLIT_SKIN_VS_GEOMETRY` |
+| `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | 6390 | truncado 75.6 KB | `ACTIVE_LEGACY_SPLIT_BY_DOMAIN` |
+| `src/sisad-pdfme/ui/styles/sisad-pdfme-runtime.css` | 240 | completo | `KEEP_RUNTIME_RULES_SPLIT_SKIN_ONLY` |
+| `src/sisad-pdfme/ui/styles/tokens.css` | 374 | completo | `KEEP_TOKENS` |
+
+
+## 6. Reglas de decisión por tipo de archivo
+
+### MIGRATE_JSX
+
+Usar en componentes visuales aislados:
+
+- landing;
+- cards;
+- botones;
+- filtros;
+- popovers simples;
+- empty states;
+- headers internos no geométricos.
+
+### MIGRATE_BRIDGE
+
+Usar para classNames existentes que aparecen en muchos sitios:
+
+- sidebars;
+- list rows;
+- control bar visual;
+- inspector sections;
+- runtime controls;
+- Ant Design skin overrides.
+
+### KEEP_LEGACY
+
+Mantener en CSS legacy:
+
+- paper geometry;
+- page stacking;
+- scroll canvas;
+- transform/zoom;
+- Moveable/Selecto;
+- keyframes críticos;
+- `color-mix` con variables runtime;
+- `data-*` complejos;
+- print/PDF.
+
+### SPLIT_RULE
+
+Aplicar cuando un selector mezcla:
+
+- layout + visual;
+- position + skin;
+- z-index + shadow;
+- pointer-events + border;
+- geometry + typography.
+
+
+## 7. Prompt de arranque actualizado para Codex/Claude/Copilot
+
+``​`txt
+Actúa como arquitecto frontend senior experto en React, Vite, Tailwind CSS, CSS cascade, editores PDF/canvas, pdfme, Moveable, Selecto, Ant Design, baseline visual y migración incremental segura.
+
+Proyecto:
+``​`txt
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
+``​`
+
+Plan obligatorio:
+``​`txt
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/plan-maestro-migracion-tailwind-sisad-pdfme.md
+``​`
+
+Baseline visual obligatorio:
+``​`txt
 /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/public/img-version
 ``​`
 
-### 5.1 Comando de inventario
+## Reglas de arranque obligatorias
 
+1. Antes de editar, ejecuta:
 ``​`bash
+git status --short
+sed -n '1,240p' plan-maestro-migracion-tailwind-sisad-pdfme.md
 find public/img-version -maxdepth 2 -type f \( -iname "*.png" -o -iname "*.jpg" -o -iname "*.jpeg" -o -iname "*.webp" \) | sort
 ``​`
 
-### 5.2 Reporte requerido
+2. Carga contexto mínimo:
+``​`bash
+test -f ai/start/START.md && sed -n '1,180p' ai/start/START.md
+test -f ai/router/ROUTER.md && sed -n '1,180p' ai/router/ROUTER.md
+test -f ai/router/CONTEXT_BUDGET.md && sed -n '1,180p' ai/router/CONTEXT_BUDGET.md
+test -f reports/tailwind-migration/line-by-line-style-audit.md && sed -n '1,260p' reports/tailwind-migration/line-by-line-style-audit.md
+``​`
+
+3. Selecciona exactamente una task-card. No mezcles fases. No “continúes con todo”.
+4. Usa `rg` para localizar clases y componentes reales. No asumas nombres.
+5. Si tocas JSX/TSX, decide si el estilo va a:
+   - `className` Tailwind directo;
+   - `src/styles/sisad-tailwind-bridge.css`;
+   - CSS legacy con comentario `KEEP`;
+   - o task-card separada.
+6. No tocar Canvas/Moveable/Selecto/generator/pdf-lib salvo task-card explícita.
+7. Genera captura antes/después cuando el cambio sea visual.
+8. Ejecuta build/lint si aplica.
+9. Responde con `git status --short` y lista solo archivos realmente modificados.
+
+## Contratos no negociables
+
+No tocar:
+``​`txt
+src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx
+src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx
+src/sisad-pdfme/ui/components/Designer/shared/designerCoordinateService.ts
+src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts
+src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts
+src/sisad-pdfme/shared/snapshotAdapter.ts
+src/sisad-pdfme/generator/**
+src/sisad-pdfme/pdf-lib/**
+``​`
+
+No migrar a Tailwind:
+``​`txt
+x/y/width/height/rotation
+zoom/transform/scale
+paper geometry/page stacking
+getBoundingClientRect
+Moveable/Selecto selectors
+data-schema-id/data-option-id hit-testing
+snapshot metadata
+pdfRender
+``​`
+
+## Formato de cierre
+
+``​`md
+# Resultado
+
+## Task-card ejecutada
+## Archivos modificados reales
+## Decisión Tailwind por archivo
+## CSS legacy conservado y motivo
+## Validación DOM
+## Capturas generadas
+## Build/Lint
+## Riesgos residuales
+## Siguiente task-card recomendada
+``​`
+``​`
+
+
+## 8. Task-cards actualizadas para continuar la migración
+
+### TC-CSS-00 — Baseline, ledger e infraestructura viva
+**Objetivo:** mantener congelado el baseline visual y crear un registro por componente antes de seguir migrando.
+**Archivos:** `public/img-version`, `reports/tailwind-migration/*`, `src/style.css`, `src/styles/tailwind.css`, `tailwind.config.js`, `postcss.config.*`, `src/main.jsx`.
+**Salida requerida:**
+- `reports/tailwind-migration/component-migration-ledger.md`
+- `reports/tailwind-migration/current-screenshots/*`
+- Confirmación de `preflight:false`, una sola fuente Tailwind y bridge importado una vez.
+
+### TC-CSS-01A — Header canvas-first estabilizado
+**Estado:** iniciado.
+**Objetivo:** el header no debe robar altura ni mostrar controles nativos.
+**Archivos:** `PageHeader.jsx`, `PdfmeLabPage.jsx`, `CompactControls.jsx`, `labRoutes.css`.
+**Pendiente:** pulir `rightSlot` visual, quitar bordes negros nativos, validar 1366/1440/1600 px.
+
+### TC-CSS-01B — ResultsPanel como drawer no invasivo
+**Objetivo:** que `Resultados` no tape toolbar ni canvas.
+**Archivos:** `ResultsPanel.jsx`, `labRoutes.css`.
+**Regla:** cerrado = pill; abierto = drawer compacto `max-height:min(300px,38dvh)`.
+
+### TC-CSS-02 — Landing/CaseCard/Primitives Tailwind JSX
+**Objetivo:** completar migración segura del catálogo sin tocar editor.
+**Archivos:** `LabLandingPage.jsx`, `CaseCard.jsx`, `LabExampleDownloadButton.jsx`, `PopoverMenu.jsx`, `ui/primitives.jsx`.
+**Regla:** Tailwind JSX directo permitido.
+
+### TC-CSS-03 — Bridge base sin `@layer`
+**Objetivo:** consolidar skins comunes en `src/styles/sisad-tailwind-bridge.css`.
+**Regla:** bridge a nivel raíz, no dentro de `@layer components`, para evitar purge sobre clases dinámicas/data-*.
+
+### TC-CSS-04 — LeftSidebar baseline
+**Objetivo:** restaurar estética de `public/img-version`: panel blanco flotante, tabs cápsula, search pill, filtros, categorías uppercase, cards con icono centrado.
+**Archivos:** `LeftSidebar*.tsx`, `PluginIcon.tsx`, `sisad-tailwind-bridge.css`, CSS legacy relacionado.
+**Validación:** drag/drop, filtros, favoritos, recientes, vista compact/rich.
+
+### TC-CSS-05 — RightSidebar ListView
+**Objetivo:** corregir header superior roto/cortado, tabs, búsqueda, filtro, rows, selección y badges.
+**Archivos:** `RightSidebar/ListView/**`, `RightSidebar/layout.tsx`, `RightSidebar/RightSidebar.tsx`, `SidebarSurfacePrimitives.tsx`.
+**Regla:** no romper selección, rename, filtro, dnd.
 
-Crear `reports/tailwind-migration/img-version-baseline-inventory.md` con:
+### TC-CSS-06 — RightSidebar DetailView/Inspector
+**Objetivo:** migrar cards, secciones, inputs, alineadores y widgets a skin compacta.
+**Archivos:** `RightSidebar/DetailView/**`.
+**Regla:** preservar command updates y contratos de inspector.
 
-| Imagen        | Vista inferida                               | Componentes visibles                   | Reglas visuales a preservar                   |
-| ------------- | -------------------------------------------- | -------------------------------------- | --------------------------------------------- |
-| `<archivo>` | LEFT_SIDEBAR / RIGHT_SIDEBAR / CANVAS / etc. | Paleta, tabs, campos, panel, documento | Densidad, sombras, bordes, tamaños, spacing. |
+### TC-CSS-07 — Rails de documentos/comentarios
+**Objetivo:** `DocumentsRail` y `CommentsRail` consistentes con baseline.
+**Archivos:** `DocumentsRail.tsx`, `CommentsRail.tsx`, `RightSidebar.tsx`.
+**Validación:** documentos, comentarios, empty states.
 
-### 5.3 Elementos de baseline a preservar
+### TC-CSS-08 — Control bar y toolbar contextual
+**Objetivo:** migrar visual de `CtlBar`, `SelectionContextToolbar`, `CanvasContextMenu` sin tocar posición crítica.
+**Archivos:** `CtlBar.tsx`, `Canvas/overlays/*Toolbar*`, `CanvasContextMenu.tsx`, `canvasContextMenuActions.tsx`, `canvas-interactions.css`.
+**Regla:** position/transform/z-index legacy/tokens; solo skin en Tailwind/bridge.
 
-- LeftSidebar blanco flotante, bordes redondeados grandes, sombra suave, título `DISEÑADOR / CAMPOS`, tabs en cápsula, search pill, filtros pill, categorías uppercase y cards de campos con icono centrado.
-- Canvas con grilla clara, PDF centrado, rulers oscuros y campos celeste suave con borde punteado azul.
-- RightSidebar con tabs superiores en cápsula, documentos/comentarios/lista/detalle; rows compactas e inspector con secciones redondeadas.
-- Toolbars flotantes compactas, no invasivas y sin tapar campos.
+### TC-CSS-09 — Canvas overlay skins
+**Objetivo:** drag preview, drop placeholder, commit flash, snap feedback, inline edit y comments pins.
+**Regla:** no tocar `pointerGeometry`, `floatingSurfaceGeometry`, `smartPlacement`, ni `useFloatingToolbarPosition`.
 
-## 6. Plan general por fases
+### TC-CSS-10 — Field chrome por modo
+**Objetivo:** separar Designer/Form/Viewer/PDF para que PDF no imprima chrome.
+**Archivos:** `fieldChrome.ts`, `renderSchemaWithChrome.ts`, `schemaDom.ts`, `schemas/**/uiRender.ts`.
+**Regla:** no tocar `pdfRender` salvo bug separado.
 
-| Fase    | Nombre                           | Qué hacer                                                                                               | Alcance                                               | Salida                                                               |
-| ------- | -------------------------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- | -------------------------------------------------------------------- |
-| Fase 0  | Freeze visual y respaldo         | Capturar estado actual, inventariar`public/img-version`, crear rama/commit de seguridad.               | Sin cambios de código.                               | Rollback listo.                                                      |
-| Fase 1  | Infra Tailwind                   | Confirmar una sola entrada Tailwind, un solo config efectivo, bridge importado una vez, preflight false. | Config/entrypoints.                                   | No hay doble emisión.                                               |
-| Fase 2  | Matriz CSS                       | Actualizar auditoría line-by-line con estado actual post-regresión.                                    | CSS reales + candidatos.                              | Cada bloque tiene acción: MIGRATE_JSX, BRIDGE, KEEP, SPLIT, DELETE. |
-| Fase 3  | Restaurar canvas-first           | Corregir`PdfmeLabPage`, `PageHeader`, `ResultsPanel`, `labRoutes` sin tocar core.                | Host/lab.                                             | Canvas ocupa máximo espacio y baseline visual vuelve.               |
-| Fase 4  | Landing y lab host               | Migrar landing/cards/filtros/controles a Tailwind JSX directo.                                           | features/pdfcomponent.                                | Landing moderna sin afectar editor.                                  |
-| Fase 5  | Bridge base                      | Expandir bridge top-level para root/layout/sidebars/control bar/inspector skins.                         | sisad-tailwind-bridge.css.                            | ClassNames existentes conservados.                                   |
-| Fase 6  | LeftSidebar                      | Restaurar baseline y migrar visual seguro por componentes.                                               | LeftSidebar*.tsx + CSS skin.                          | Drag/drop no se rompe.                                               |
-| Fase 7  | RightSidebar/ListView/DetailView | Compactar y migrar skin, no selección ni Ant internals.                                                 | RightSidebar/**.                                      | Tabs, list rows e inspector consistentes.                            |
-| Fase 8  | Canvas interactions skins        | Migrar solo skin de toolbar/context menu/badges; conservar overlays geometry.                            | canvas-interactions + overlays.                       | Hit-testing, drag/drop, botón + intactos.                           |
-| Fase 9  | Field chrome/runtime             | Separar designer/form/viewer/pdf; migrar skins sin tocar metadata.                                       | fieldChrome, renderSchemaWithChrome, schema uiRender. | PDF no imprime chrome.                                               |
-| Fase 10 | Reducción legacy                | Eliminar duplicados con evidencia y comentarios KEEP/TODO.                                               | CSS legacy.                                           | Menos CSS sin regressions.                                           |
-| Fase 11 | Validación total                | Build/typecheck/tests focales/screenshot diff/manual matrix.                                             | Rutas principales.                                    | Aprobación visual y funcional.                                      |
+### TC-CSS-11 — Schemas visual parity
+**Objetivo:** text, number, checkbox, groups, select, signing, action, media, table y shapes con visual consistente.
+**Archivos:** `schemas/**/uiRender.ts`, `schemas/options/*.tsx`, `schemas/*/propPanel.ts(x)`.
+**Regla:** metadata y values intactos.
 
-## 7. Plan detallado por archivo CSS
+### TC-CSS-12 — Runtime Form/Viewer
+**Objetivo:** runtime limpio, sin chrome de diseñador, con Tailwind seguro en skins.
+**Archivos:** `Form.tsx`, `Viewer.tsx`, `Preview.tsx`, `Renderer.tsx`, `StaticSchema.tsx`, `sisad-pdfme-runtime.css`.
 
-| Archivo                                                                                                                                               | Líneas | Estado           | Acción                   | Plan específico                                                                                               |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ---------------- | ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| src/styles/tailwind.css                                                                                                                               | 11      | completo         | INFRA_CANONICAL           | Mantener como única entrada Tailwind; no duplicar directivas.                                                 |
-| src/style.css                                                                                                                                         | 11      | completo         | INFRA_NEUTRALIZE          | Debe quedar neutralizado o sin @tailwind para evitar doble emisión.                                           |
-| src/styles/sisad-tailwind-bridge.css                                                                                                                  | 415     | completo         | MIGRATE_BRIDGE            | Bridge top-level @apply para clases existentes; no usar @layer si purga clases dinámicas.                     |
-| reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css                                                        | 1600    | completo         | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
-| reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__canvas-interactions.tailwind.candidate.css                                             | 1547    | completo         | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
-| reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-global.tailwind.candidate.css                                              | 6417    | truncado 75.1 KB | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
-| reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css                                             | 443     | completo         | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
-| reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css                                                          | 8       | completo         | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
-| src/features/pdfcomponent/labRoutes.css                                                                                                               | 1550    | completo         | SPLIT_LAB_CSS             | Migrar visual seguro; conservar canvas-first, drawer fixed, media compleja y gradientes críticos.             |
-| src/sisad-pdfme/ui/styles/canvas-interactions.css                                                                                                     | 1492    | completo         | SPLIT_CANVAS_INTERACTIONS | Migrar skins de toolbar/menu; conservar overlays, transform, pointer-events, z-index tokens, botón +.         |
-| src/sisad-pdfme/ui/styles/sisad-pdfme-global.css                                                                                                      | 6383    | truncado 75.6 KB | SPLIT_GLOBAL_CSS          | Migrar por sección; conservar paper geometry, Ant, Moveable/Selecto, keyframes, field chrome crítico.        |
-| src/sisad-pdfme/ui/styles/sisad-pdfme-runtime.css                                                                                                     | 240     | completo         | SPLIT_RUNTIME_CSS         | Migrar skins runtime; conservar import global, density attrs, Ant overrides y PDF/print.                       |
-| src/sisad-pdfme/ui/styles/tokens.css                                                                                                                  | 374     | completo         | KEEP_TOKEN_SOURCE         | Fuente de verdad de tokens, variables runtime, z-index, paper y owner color; no convertir a clases estáticas. |
-| .tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css            | 1600    | completo         | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
-| .tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__canvas-interactions.tailwind.candidate.css | 1547    | completo         | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
-| .tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-global.tailwind.candidate.css  | 6417    | truncado 75.1 KB | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
-| .tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css | 443     | completo         | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
-| .tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css              | 8       | completo         | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
+### TC-CSS-13 — Limpieza legacy medible
+**Objetivo:** eliminar CSS duplicado solo con evidencia.
+**Criterios:** `rg`, screenshot aprobado, tests, comentario `MIGRATED/KEEP/TODO`.
 
-### 7.1 `src/sisad-pdfme/ui/styles/tokens.css`
 
-**Decisión:** no migrar a JSX. Este archivo es la fuente de verdad. Solo se amplía el mapa en `tailwind.config.js` cuando haga falta.
+## 9. Secuencia recomendada de ejecución
 
-Mantener:
+### Sprint A — estabilización visual obligatoria
 
-- `--color-*`, `--sisad-editor-*`, `--space-*`, `--radius-*`, `--shadow-*`.
-- `--sisad-pdfme-rs-width`, `--sisad-pdfme-ls-width`, `--sisad-pdfme-chrome-z`, `--sisad-pdfme-chrome-height`.
-- tokens de paper, schema tone, owner color, moveable y z-index.
+1. `TC-CSS-01A` Header visual polish.
+2. `TC-CSS-05` RightSidebar ListView.
+3. `TC-CSS-06` RightSidebar DetailView.
+4. `TC-CSS-04` LeftSidebar baseline.
+5. `TC-CSS-01B` ResultsPanel.
 
-Prohibido:
+### Sprint B — migración visual controlada
 
-- convertir z-index/paper/owner color a clases estáticas.
-- borrar dark tokens sin `rg` y task-card.
+6. `TC-CSS-02` Landing completa.
+7. `TC-CSS-03` Bridge base.
+8. `TC-CSS-08` Control bar/toolbar/context menu.
+9. `TC-CSS-09` Canvas overlay skins.
 
-### 7.2 `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css`
+### Sprint C — runtime/schema parity
 
-**Decisión:** no migrar completo. Dividir por secciones. Este archivo contiene skins migrables y reglas críticas mezcladas.
+10. `TC-CSS-10` Field chrome por modo.
+11. `TC-CSS-11` Schema visual parity.
+12. `TC-CSS-12` Runtime Form/Viewer.
 
-Migrar a bridge/JSX:
+### Sprint D — limpieza legacy
 
-- chips, badges, cards, panel surfaces, inspector section skins, list item skins, empty state typography.
+13. `TC-CSS-13` Eliminación medible.
+14. Actualizar docs de theming.
+15. Actualizar memoria IA y checklist.
 
-Conservar legacy:
 
-- scoped reset `.sisad-pdfme-root *`, scrollbars, Ant overrides, keyframes, field chrome mode-specific, option-group roots, paper/canvas geometry, Moveable/Selecto compatibility.
+## 10. Validación obligatoria por task-card
 
-Procedimiento:
-
-1. Localizar sección por comentario real.
-2. Crear equivalencia en bridge o JSX.
-3. Validar visual.
-4. Reemplazar bloque por comentario `MIGRATED` o mantener con `KEEP`.
-5. No mezclar migración de inspector con canvas en la misma task-card.
-
-### 7.3 `src/sisad-pdfme/ui/styles/canvas-interactions.css`
-
-**Decisión:** migrar solo piel visual. El motor de interacción debe quedarse en CSS legacy/tokens.
-
-Migrable:
-
-- fondo/borde/radius/shadow de `SelectionContextToolbar`, `CanvasContextMenu`, badges, buttons.
-
-No migrable:
-
-- `position: fixed/absolute` ligado a punteros, `transform: translate3d`, `scale`, `pointer-events`, `z-index`, keyframes, `data-interaction-phase`, `data-role=group-add-option`, ocultamientos durante drag/transform.
-
-Validación obligatoria: drag/drop, selección simple/múltiple, botón `+`, página 2+, context menu, inline edit y snap feedback.
-
-### 7.4 `src/features/pdfcomponent/labRoutes.css`
-
-**Decisión:** migración host-first. Aquí sí se puede usar más Tailwind directo, pero conservar reglas canvas-first.
-
-Migrable:
-
-- landing, cards, filters, toolbar visual, compact controls, hero metrics, popover content.
-
-Conservar:
-
-- `height:100dvh`, `grid-template-rows`, `min-height:0`, drawer `fixed`, media queries complejas, gradientes si mantienen identidad visual, sr-only si ya funciona.
-
-Riesgo: si JSX Tailwind y CSS legacy controlan el mismo `height/overflow/padding`, se rompe el canvas.
-
-### 7.5 `src/sisad-pdfme/ui/styles/sisad-pdfme-runtime.css`
-
-**Decisión:** conservar como punto de carga de global y migrar skins de runtime/inspector con cuidado.
-
-Migrable:
-
-- summary cards, chips, panel skins, typography.
-
-Conservar:
-
-- `@import './sisad-pdfme-global.css'`, density data attrs, Ant selectors, variable de chrome, reglas PDF/print.
-
-### 7.6 Archivos candidatos y backups
-
-Los candidatos `reports/tailwind-migration/candidates/*.tailwind.candidate.css` y `.tailwind-migration-backups/**` son **referencias**, no deben importarse en producción. Usarlos para ver qué reglas tienen `@apply` equivalente y qué quedó como manual. No copiarlos ciegamente.
-
-## 8. Plan detallado por componentes React/lab
-
-| Archivo                                                        | Líneas | Acción             | Plan                                                                                      |
-| -------------------------------------------------------------- | ------- | ------------------- | ----------------------------------------------------------------------------------------- |
-| src/features/pdfcomponent/CaseCard.jsx                         | 123     | MIGRATE_LAB_JSX     | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones. |
-| src/features/pdfcomponent/CompactControls.jsx                  | 280     | MIGRATE_LAB_JSX     | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones. |
-| src/features/pdfcomponent/LabExampleDownloadButton.jsx         | 74      | MIGRATE_LAB_JSX     | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones. |
-| src/features/pdfcomponent/LabLandingPage.jsx                   | 242     | MIGRATE_LAB_JSX     | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones. |
-| src/features/pdfcomponent/PageHeader.jsx                       | 415     | MIGRATE_LAB_JSX     | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones. |
-| src/features/pdfcomponent/PdfmeLabPage.jsx                     | 637     | MIGRATE_LAB_JSX     | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones. |
-| src/features/pdfcomponent/PopoverMenu.jsx                      | 114     | MIGRATE_LAB_JSX     | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones. |
-| src/features/pdfcomponent/ResultsPanel.jsx                     | 248     | MIGRATE_LAB_JSX     | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones. |
-| src/features/pdfcomponent/domain/labPresentation.js            | 192     | MIGRATE_LAB_JSX     | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones. |
-| src/features/pdfcomponent/domain/labState.js                   | 18      | MIGRATE_LAB_JSX     | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones. |
-| src/features/pdfcomponent/ui/primitives.jsx                    | 103     | MIGRATE_LAB_JSX     | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones. |
-| src/features/pdfcomponent/labs/builders/exampleTemplate.ts     | 199     | KEEP_LAB_DATA_LOGIC | No migrar estilos; mantener fixtures/builders/export fuera del core.                      |
-| src/features/pdfcomponent/labs/builders/schemaFactory.ts       | 91      | KEEP_LAB_DATA_LOGIC | No migrar estilos; mantener fixtures/builders/export fuera del core.                      |
-| src/features/pdfcomponent/labs/builders/schemaShowcase.ts      | 220     | KEEP_LAB_DATA_LOGIC | No migrar estilos; mantener fixtures/builders/export fuera del core.                      |
-| src/features/pdfcomponent/labs/examples/labExamples.js         | 885     | KEEP_LAB_DATA_LOGIC | No migrar estilos; mantener fixtures/builders/export fuera del core.                      |
-| src/features/pdfcomponent/labs/export/buildExampleBundle.ts    | 78      | KEEP_LAB_DATA_LOGIC | No migrar estilos; mantener fixtures/builders/export fuera del core.                      |
-| src/features/pdfcomponent/labs/export/downloadExampleBundle.ts | 25      | KEEP_LAB_DATA_LOGIC | No migrar estilos; mantener fixtures/builders/export fuera del core.                      |
-
-### 8.1 Orden de ejecución lab
-
-1. `src/features/pdfcomponent/PdfmeLabPage.jsx`: restaurar canvas-first; quitar wrappers/card/padding que reduzcan el área útil. Mantener `commonOptions.collaboration`.
-2. `src/features/pdfcomponent/PageHeader.jsx`: compactar topbar y mover acciones secundarias a menú. Quitar botón textual `Controles` como elemento externo grande.
-3. `src/features/pdfcomponent/ResultsPanel.jsx`: cerrar como pill y abrir como drawer no invasivo, preferible bottom-left, `max-height:min(300px,38dvh)`.
-4. `src/features/pdfcomponent/LabLandingPage.jsx` y `CaseCard.jsx`: Tailwind JSX directo, card `relative`, filtros, buscador, recomendado, acción secundaria en menú.
-5. `src/features/pdfcomponent/labRoutes.css`: eliminar duplicados solo después de validar screenshot.
-
-## 9. Plan detallado por core `sisad-pdfme/ui`
-
-| Área                        | Archivos | Ejemplos                                                                                                                                                                                                                                                                                                                                                                                                         | Plan                                                                                           |
-| ---------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
-| MIGRATE_LEFT_SIDEBAR_VISUAL  | 7        | src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx, src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx, src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx, src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx, src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx...                                                                                  | Recuperar baseline visual y migrar cards/tabs/search a Tailwind/bridge; no romper drag/drop.   |
-| MIGRATE_RIGHT_SIDEBAR_VISUAL | 36       | src/sisad-pdfme/schemas/propPanel/commonInspectorFields.ts, src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx, src/sisad-pdfme/ui/components/Designer/RightSidebar/contextHeader.ts, src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx, src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx...                                                                 | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| CONTROL_BAR_REVIEW           | 2        | src/sisad-pdfme/ui/components/CtlBar.tsx, src/sisad-pdfme/ui/components/UnitPager.tsx                                                                                                                                                                                                                                                                                                                            | Compactar y migrar skin; mantener posicionamiento y densidad por tokens.                       |
-| CANVAS_VISUAL_WITH_GUARDS    | 6        | src/sisad-pdfme/ui/components/Paper.tsx, src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx, src/sisad-pdfme/ui/components/Designer/Canvas/Guides.tsx, src/sisad-pdfme/ui/components/Designer/Canvas/Mask.tsx, src/sisad-pdfme/ui/components/Designer/Canvas/Padding.tsx...                                                                                                                                | Revisar visual; conservar overflow/scroll/position/transform en CSS/tokens.                    |
-| OVERLAY_SKIN_ONLY            | 18       | src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx, src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.tsx, src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx, src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay.tsx, src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx... | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| RUNTIME_COMPAT_VALIDATE      | 5        | src/sisad-pdfme/ui/Form.tsx, src/sisad-pdfme/ui/Viewer.tsx, src/sisad-pdfme/ui/components/Preview.tsx, src/sisad-pdfme/ui/components/Renderer.tsx, src/sisad-pdfme/ui/components/StaticSchema.tsx                                                                                                                                                                                                                | No rediseñar; validar que Form/Viewer/PDF no hereden chrome de designer.                      |
-| UI_CORE_REVIEW               | 56       | src/sisad-pdfme/ui/class.ts, src/sisad-pdfme/ui/collaboration.ts, src/sisad-pdfme/ui/collaborationContext.ts, src/sisad-pdfme/ui/constants.ts, src/sisad-pdfme/ui/contexts.ts...                                                                                                                                                                                                                                 | Migrar visual solo por componentes, con bridge y validación.                                  |
-
-### 9.1 LeftSidebar
-
-Restaurar baseline: panel flotante blanco, border-radius grande, sombra suave, `DISEÑADOR / CAMPOS`, tabs en cápsula, search pill, filtros pill, categorías uppercase y field cards con icono centrado. Migración recomendada: componentes TSX para estructura y bridge para clases existentes. No romper `useDraggable`, plugin metadata, `data-*`, owner color ni `canvasDropPipeline`.
-
-### 9.2 RightSidebar/ListView/DetailView
-
-Migrar skin y densidad, no lógica. Rows objetivo 44–52px; tabs 32–38px; inspector inputs 32–36px. Mantener Ant overrides donde apliquen. Evitar borders azules fuertes repetidos por row; usar accent fino para active y hover sutil.
-
-### 9.3 Canvas y overlays
-
-No continuar migrando `Canvas.tsx` si la clase Tailwind toca `overflow`, `position`, `height` o background que el CSS legacy ya controla. Revisar que `.sisad-pdfme-designer-canvas` conserve `overflow:auto` y `min-height:0`. Overlays solo migran skin; z-index/transform/position quedan en CSS/tokens.
-
-### 9.4 Control bar
-
-El control bar puede usar Tailwind para `inline-flex`, `rounded-full`, `border`, `bg-white/95`, `shadow-sm`, pero la ubicación y `--chrome-*` deben quedarse en legacy/tokens. Densidad máxima: `h-8` aproximado; evitar toolbars con padding grande.
-
-## 10. Plan por familias de schemas y runtime
-
-| Acción                      | Archivos | Interpretación                                                                     |
-| ---------------------------- | -------- | ----------------------------------------------------------------------------------- |
-| SCHEMA_LOGIC_KEEP            | 67       | Mantener lógica de schema; solo validar contratos visuales si aplica.              |
-| SCHEMA_RENDER_VALIDATE       | 18       | Revisar visual por familia; no tocar valores, adapters, snapshot ni PDF render.     |
-| MIGRATE_RIGHT_SIDEBAR_VISUAL | 1        | Migrar skins de paneles/listas/inspector; conservar Ant y selección.               |
-| FIELD_CHROME_TASK            | 3        | Migrar visual compartido por modo; preservar x/y/size/ownerColor/readonly/required. |
-
-### 10.1 Reglas por familia
-
-| Familia      | Archivos guía                                                                   | Qué migrar                                  | Qué no tocar                                                                          |
-| ------------ | -------------------------------------------------------------------------------- | -------------------------------------------- | -------------------------------------------------------------------------------------- |
-| Text-like    | `schemas/text`, `number`, `date`, `textLike`                             | skin input/readonly/invalid por modo         | value adapters, pdfRender, formatter.                                                  |
-| Option-based | `checkbox`, `checkboxGroup`, `radioGroup`, `select`, `schemas/options` | skin visual de markers y options             | `options`, `groupId`, `optionId`, `selectedOptionIds`, botón + target policy. |
-| Signing      | `signature`, `initials`, `dateSigned`                                      | placeholder/skin designer/form/viewer        | provider registry, validation, signing data.                                           |
-| Actions      | `approve`, `decline`, `attachment`, `note`                               | skin de botones, dashed border, note surface | business state/action semantics.                                                       |
-| Media        | `graphics/image`, `svg`, `barcodes`                                        | placeholder/image/barcode container skin     | quiet zone, render value, pdf render.                                                  |
-| Table        | `schemas/tables`                                                               | viewer/form skin, toolbar if designer        | cell model, dynamic template, PDF render.                                              |
-
-### 10.2 Field chrome
-
-`fieldChrome.ts` y `renderSchemaWithChrome.ts` ya aplican el patrón Template Method: limpiar root, estampar atributos/chrome y renderizar inner schema. La migración debe apoyarse en `data-render-mode`, `data-schema-family`, `data-schema-readonly`, `data-schema-required`, `--schema-tone` y owner color. No modificar `x/y/width/height/rotation` desde ahí.
-
-## 11. Matriz de archivos críticos de alto riesgo
-
-| Archivo                                                                                       | Líneas | Acción                      | Motivo                                                                                         |
-| --------------------------------------------------------------------------------------------- | ------- | ---------------------------- | ---------------------------------------------------------------------------------------------- |
-| src/sisad-pdfme/ui/Form.tsx                                                                   | 130     | RUNTIME_COMPAT_VALIDATE      | No rediseñar; validar que Form/Viewer/PDF no hereden chrome de designer.                      |
-| src/sisad-pdfme/ui/Viewer.tsx                                                                 | 54      | RUNTIME_COMPAT_VALIDATE      | No rediseñar; validar que Form/Viewer/PDF no hereden chrome de designer.                      |
-| src/sisad-pdfme/schemas/propPanel/commonInspectorFields.ts                                    | 341     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/schemas/shared/fieldChrome.ts                                                 | 275     | FIELD_CHROME_TASK            | Migrar visual compartido por modo; preservar x/y/size/ownerColor/readonly/required.            |
-| src/sisad-pdfme/schemas/shared/renderSchemaWithChrome.ts                                      | 80      | FIELD_CHROME_TASK            | Migrar visual compartido por modo; preservar x/y/size/ownerColor/readonly/required.            |
-| src/sisad-pdfme/schemas/shared/schemaDom.ts                                                   | 116     | FIELD_CHROME_TASK            | Migrar visual compartido por modo; preservar x/y/size/ownerColor/readonly/required.            |
-| src/sisad-pdfme/ui/components/CtlBar.tsx                                                      | 349     | CONTROL_BAR_REVIEW           | Compactar y migrar skin; mantener posicionamiento y densidad por tokens.                       |
-| src/sisad-pdfme/ui/components/Paper.tsx                                                       | 222     | CANVAS_VISUAL_WITH_GUARDS    | Revisar visual; conservar overflow/scroll/position/transform en CSS/tokens.                    |
-| src/sisad-pdfme/ui/components/Preview.tsx                                                     | 220     | RUNTIME_COMPAT_VALIDATE      | No rediseñar; validar que Form/Viewer/PDF no hereden chrome de designer.                      |
-| src/sisad-pdfme/ui/components/Renderer.tsx                                                    | 311     | RUNTIME_COMPAT_VALIDATE      | No rediseñar; validar que Form/Viewer/PDF no hereden chrome de designer.                      |
-| src/sisad-pdfme/ui/components/StaticSchema.tsx                                                | 61      | RUNTIME_COMPAT_VALIDATE      | No rediseñar; validar que Form/Viewer/PDF no hereden chrome de designer.                      |
-| src/sisad-pdfme/ui/components/UnitPager.tsx                                                   | 100     | CONTROL_BAR_REVIEW           | Compactar y migrar skin; mantener posicionamiento y densidad por tokens.                       |
-| src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx                                        | 1530    | MIGRATE_LEFT_SIDEBAR_VISUAL  | Recuperar baseline visual y migrar cards/tabs/search a Tailwind/bridge; no romper drag/drop.   |
-| src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx                        | 365     | MIGRATE_LEFT_SIDEBAR_VISUAL  | Recuperar baseline visual y migrar cards/tabs/search a Tailwind/bridge; no romper drag/drop.   |
-| src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx                             | 111     | MIGRATE_LEFT_SIDEBAR_VISUAL  | Recuperar baseline visual y migrar cards/tabs/search a Tailwind/bridge; no romper drag/drop.   |
-| src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx                                   | 98      | MIGRATE_LEFT_SIDEBAR_VISUAL  | Recuperar baseline visual y migrar cards/tabs/search a Tailwind/bridge; no romper drag/drop.   |
-| src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx                                  | 36      | MIGRATE_LEFT_SIDEBAR_VISUAL  | Recuperar baseline visual y migrar cards/tabs/search a Tailwind/bridge; no romper drag/drop.   |
-| src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx                                    | 57      | MIGRATE_LEFT_SIDEBAR_VISUAL  | Recuperar baseline visual y migrar cards/tabs/search a Tailwind/bridge; no romper drag/drop.   |
-| src/sisad-pdfme/ui/components/Designer/useLeftSidebarCatalogState.ts                          | 155     | MIGRATE_LEFT_SIDEBAR_VISUAL  | Recuperar baseline visual y migrar cards/tabs/search a Tailwind/bridge; no romper drag/drop.   |
-| src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx                                      | 1589    | CANVAS_VISUAL_WITH_GUARDS    | Revisar visual; conservar overflow/scroll/position/transform en CSS/tokens.                    |
-| src/sisad-pdfme/ui/components/Designer/Canvas/Guides.tsx                                      | 100     | CANVAS_VISUAL_WITH_GUARDS    | Revisar visual; conservar overflow/scroll/position/transform en CSS/tokens.                    |
-| src/sisad-pdfme/ui/components/Designer/Canvas/Mask.tsx                                        | 33      | CANVAS_VISUAL_WITH_GUARDS    | Revisar visual; conservar overflow/scroll/position/transform en CSS/tokens.                    |
-| src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx                                    | 127     | PROTECT_GEOMETRY_INTERACTION | No migrar geometría/hit-testing; cambios visuales solo con evidencia y tests.                 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/Padding.tsx                                     | 82      | CANVAS_VISUAL_WITH_GUARDS    | Revisar visual; conservar overflow/scroll/position/transform en CSS/tokens.                    |
-| src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx                                     | 110     | PROTECT_GEOMETRY_INTERACTION | No migrar geometría/hit-testing; cambios visuales solo con evidencia y tests.                 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/SnapLines.tsx                                   | 349     | CANVAS_VISUAL_WITH_GUARDS    | Revisar visual; conservar overflow/scroll/position/transform en CSS/tokens.                    |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx                          | 250     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/contextHeader.ts                          | 19      | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx                         | 250     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx                                | 66      | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx                          | 432     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts                           | 112     | PROTECT_GEOMETRY_INTERACTION | No migrar geometría/hit-testing; cambios visuales solo con evidencia y tests.                 |
-| src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts                               | 145     | PROTECT_GEOMETRY_INTERACTION | No migrar geometría/hit-testing; cambios visuales solo con evidencia y tests.                 |
-| src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts                              | 101     | PROTECT_GEOMETRY_INTERACTION | No migrar geometría/hit-testing; cambios visuales solo con evidencia y tests.                 |
-| src/sisad-pdfme/ui/components/Designer/shared/selectableTargetGuards.ts                       | 34      | PROTECT_GEOMETRY_INTERACTION | No migrar geometría/hit-testing; cambios visuales solo con evidencia y tests.                 |
-| src/sisad-pdfme/ui/components/Designer/shared/transformTargetGuards.ts                        | 29      | PROTECT_GEOMETRY_INTERACTION | No migrar geometría/hit-testing; cambios visuales solo con evidencia y tests.                 |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx                  | 242     | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.tsx           | 921     | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx               | 141     | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay.tsx                 | 158     | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx                    | 271     | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry.ts             | 97      | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/GroupOptionFloatingAction.tsx          | 103     | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx                  | 204     | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx               | 23      | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState.ts                        | 40      | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/pointerGeometry.ts                     | 133     | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview.tsx                  | 41      | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx              | 49      | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx              | 57      | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx            | 217     | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.ts                      | 196     | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx                | 42      | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/useFloatingToolbarPosition.ts          | 69      | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx                | 67      | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx          | 83      | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel.tsx         | 99      | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx          | 55      | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx           | 136     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailHeaderUtils.ts           | 85      | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts               | 430     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx          | 177     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts       | 405     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx                 | 417     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx          | 63      | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx       | 141     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.tsx              | 108     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorContracts.ts          | 366     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives.tsx        | 217     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts    | 18      | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx  | 485     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared.tsx    | 146     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation.ts | 83      | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx    | 825     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.tsx  | 314     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx             | 32      | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx                         | 341     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListView.tsx                     | 345     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewDragOverlay.tsx          | 58      | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewFooter.tsx               | 56      | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx              | 238     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableContainer.tsx  | 217     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableItem.tsx       | 119     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx       | 112     | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-
-## 12. Estrategia de reducción de CSS legacy
-
-La reducción de CSS debe ser medible y reversible. Cada bloque legacy debe terminar en uno de estos estados:
-
-| Estado                      | Comentario requerido                                                             | Ejemplo                                          |
-| --------------------------- | -------------------------------------------------------------------------------- | ------------------------------------------------ |
-| Migrado                     | `/* MIGRATED: covered by src/styles/sisad-tailwind-bridge.css */`              | skin de card/sidebar ya movido al bridge.        |
-| Conservado por geometría   | `/* KEEP: paper geometry and page stacking. Do not migrate. */`                | paper scale, page root, canvas page.             |
-| Conservado por interacción | `/* KEEP: Moveable/Selecto/hit-testing compatibility. */`                      | selecto/moveable, target guards, pointer-events. |
-| Conservado por Ant          | `/* KEEP: Ant Design compatibility override. */`                               | .ant-select-selector, .ant-btn, collapse.        |
-| Pendiente                   | `/* TODO(TAILWIND): migrate in TC-CSS-XX after visual regression coverage. */` | section card animations.                         |
-| Eliminado                   | Commit message + reporte con`rg`                                               | selector no usado y sin generación runtime.     |
-
-Criterios para eliminar:
-
-1. `rg` confirma que el selector no se usa.
-2. No es generado por librería, runtime ni `data-*`.
-3. No aparece en tests ni visual baseline.
-4. Hay equivalente Tailwind/bridge validado.
-5. Screenshot antes/después aprobado.
-
-## 13. Task-cards propuestas para Codex
-
-| Task-card | Nombre                            | Objetivo                                                                                                 | Archivos                                                    | Restricción                                      |
-| --------- | --------------------------------- | -------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- | ------------------------------------------------- |
-| TC-CSS-00 | Baseline visual e infraestructura | Inventariar`public/img-version`, capturas actuales, confirmar única entrada Tailwind, config/postcss. | style.css, tailwind.css, tailwind.config, postcss, main.jsx | No editar core UI.                                |
-| TC-CSS-01 | Restaurar canvas-first lab shell  | Corregir PageHeader/PdfmeLabPage/ResultsPanel/labRoutes para no encajonar canvas.                        | features/pdfcomponent                                       | No tocar src/sisad-pdfme excepto si falla import. |
-| TC-CSS-02 | Landing y CaseCard Tailwind       | Migrar landing/cards/filtros a Tailwind JSX directo.                                                     | LabLandingPage, CaseCard, primitives                        | No tocar editor.                                  |
-| TC-CSS-03 | Bridge root/layout/control bar    | Expandir bridge con tokens`sisad` y clases existentes sin `@layer`.                                  | sisad-tailwind-bridge.css                                   | No tocar geometry.                                |
-| TC-CSS-04 | LeftSidebar baseline              | Migrar visual search/tabs/filters/cards manteniendo drag/drop.                                           | LeftSidebar*.tsx, global/bridge                             | No canvasDropPipeline.                            |
-| TC-CSS-05 | RightSidebar ListView baseline    | Compactar tabs, toolbar, rows, badges.                                                                   | RightSidebar/ListView/**                                    | No romper selección/rename/filter.               |
-| TC-CSS-06 | RightSidebar DetailView baseline  | Migrar section cards/inputs/widgets visual con Ant compat.                                               | DetailView/**, runtime/global                               | No romper inspector command update.               |
-| TC-CSS-07 | Canvas toolbar/context menu skins | Migrar skins, conservar z-index/transform/position.                                                      | canvas-interactions, overlays                               | Validar hit-testing y botón +.                   |
-| TC-CSS-08 | Field chrome por modo             | Separar designer/form/viewer/pdf visual.                                                                 | fieldChrome, renderSchemaWithChrome, global/runtime         | No tocar geometry/metadata.                       |
-| TC-CSS-09 | Schema family visual parity       | Validar text/option/action/media/table/signing visual y runtime.                                         | schemas/**/uiRender/index                                   | No tocar pdfRender salvo bug.                     |
-| TC-CSS-10 | Limpieza legacy                   | Eliminar duplicados y demo huérfano con evidencia.                                                      | CSS legacy/reportes                                         | Solo tras validación visual.                     |
-
-## 14. Validación requerida
-
-### 14.1 Comandos
+### 10.1 Comandos base
 
 ``​`bash
 npm run build
-npm run typecheck  # si existe
-npm run lint       # si existe y no bloquea por reglas externas
+npm run lint
 ``​`
 
-Tests focalizados sugeridos:
+Si existe:
 
 ``​`bash
-npx vitest run tests/unit/features/pdfcomponent
-npx vitest run tests/unit/sisad-pdfme/ui
-npx vitest run tests/unit/sisad-pdfme/schemas
-npx playwright test tests/playwright/multi-document-routing-design.spec.ts --project=chromium
-npx playwright test tests/playwright/form-viewer-generator-parity.spec.ts --project=chromium
+npm run typecheck
+npm run test
 ``​`
 
-### 14.2 Checklist manual
-
-| Ruta                        | Validaciones mínimas                                                                                                                                                |
-| --------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| /                           | Landing usa baseline/estética correcta; filtros y búsqueda funcionan; cards abren rutas y descarga plantilla.                                                      |
-| /lab/multi-document-routing | Header compacto; canvas máximo; LeftSidebar/RightSidebar baseline; drag/drop; selección; move/resize/rotate; página 2+; multi-recipient; Results no tapa toolbar. |
-| /lab/generator-runtime      | Form limpio; Viewer limpio; generator no rompe; PDF final sin chrome/fondos.                                                                                         |
-
-### 14.3 Screenshot regression
-
-Guardar capturas actuales en `reports/tailwind-migration/current-screenshots` y comparar contra `public/img-version`. No se exige pixel-perfect, sí densidad, jerarquía, tamaño de paneles, espacio de canvas y chrome de campos.
-
-## 15. Criterios de aceptación
-
-- No hay doble emisión Tailwind.
-- No hay `preflight` activo.
-- El editor conserva o recupera la estética de `public/img-version`.
-- El canvas vuelve a ser protagonista y no queda encerrado en una card del host.
-- LeftSidebar y RightSidebar mantienen baseline visual y densidad.
-- No se tocó Moveable/Selecto/coordinate service/schema collision/snapshot por diseño.
-- No hay nuevas reglas globales fuera de `.sisad-pdfme-root` o clases del lab.
-- No hay nuevos `as any`.
-- Form/Viewer/Generator conservan comportamiento y PDF final no imprime chrome.
-- Todo CSS eliminado tiene evidencia `rg` + screenshot + validación.
-
-## 16. Prompt operativo para Codex
+### 10.2 Capturas obligatorias
 
 ``​`txt
-Actúa como arquitecto frontend senior experto en React, Vite, Tailwind, CSS cascade y editores PDF/canvas. Ejecuta la task-card TC-CSS-00 primero. Usa /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/public/img-version como baseline visual obligatorio. No rediseñes desde cero: restaura intención visual previa y corrige regresiones de Tailwind.
-
-Reglas: preflight false, no tocar Moveable/Selecto, no migrar geometry/paper/transform/zoom/x/y/width/height/rotation a Tailwind, no borrar tokens.css, no crear runtime paralelo, no tocar generator/pdf-lib/snapshot. Mantén bridge top-level @apply, no @layer components para clases runtime.
-
-Flujo: inventario visual -> capturas actuales -> infraestructura Tailwind -> canvas-first lab shell -> bridge -> sidebars -> overlays skins -> field chrome -> cleanup legacy. Cada bloque CSS debe clasificarse como MIGRATE_JSX, MIGRATE_BRIDGE, KEEP_LEGACY, TOKENIZE, DELETE_DUPLICATE, SPLIT_RULE o NEEDS_TASK_CARD. Implementa cambios reales por task-card y entrega reporte con validación.
+reports/tailwind-migration/current-screenshots/
 ``​`
 
-## Apéndice A — Inventario completo de archivos de código y decisión de migración
+Mínimo por cada task visual:
 
-> Esta tabla cubre todos los archivos incluidos en `codigo-frontend-sisad—pdmfe.md`. La decisión no significa que todos deban editarse; marca el rol del archivo durante la migración CSS/Tailwind.
+- antes;
+- después;
+- viewport 1366x900;
+- viewport 1440x900;
+- viewport 1600x1200 si aplica.
 
-| Archivo                                                                                       | Líneas | Estado                        | Decisión                    | Nota                                                                                           |
-| --------------------------------------------------------------------------------------------- | ------- | ----------------------------- | ---------------------------- | ---------------------------------------------------------------------------------------------- |
-| package.json                                                                                  | 98      | completo                      | INFRA_VALIDATE               | Verificar scripts, dependencias Tailwind, no ejecutar migración destructiva.                  |
-| vite.config.js                                                                                | 24      | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| tailwind.config.js                                                                            | 80      | completo                      | INFRA_VALIDATE               | Dejar una sola configuración activa; preflight false; tokens sisad mapeados.                  |
-| postcss.config.js                                                                             | 6       | completo                      | INFRA_DEDUP                  | Dejar un solo PostCSS config si el toolchain no requiere ambos.                                |
-| postcss.config.mjs                                                                            | 6       | completo                      | INFRA_DEDUP                  | Dejar un solo PostCSS config si el toolchain no requiere ambos.                                |
-| eslint.config.cjs                                                                             | 126     | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| tsconfig.json                                                                                 | 65      | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/main.jsx                                                                                  | 13      | completo                      | INFRA_ENTRY                  | Importar tailwind.css y bridge una sola vez; evitar imports duplicados.                        |
-| src/App.jsx                                                                                   | 25      | completo                      | ROUTING_ONLY                 | No tocar diseño core; solo rutas de laboratorio.                                              |
-| src/features/pdfcomponent/CaseCard.jsx                                                        | 123     | completo                      | MIGRATE_LAB_JSX              | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones.      |
-| src/features/pdfcomponent/CompactControls.jsx                                                 | 280     | completo                      | MIGRATE_LAB_JSX              | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones.      |
-| src/features/pdfcomponent/LabExampleDownloadButton.jsx                                        | 74      | completo                      | MIGRATE_LAB_JSX              | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones.      |
-| src/features/pdfcomponent/LabLandingPage.jsx                                                  | 242     | completo                      | MIGRATE_LAB_JSX              | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones.      |
-| src/features/pdfcomponent/PageHeader.jsx                                                      | 415     | completo                      | MIGRATE_LAB_JSX              | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones.      |
-| src/features/pdfcomponent/PdfmeLabPage.jsx                                                    | 637     | completo                      | MIGRATE_LAB_JSX              | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones.      |
-| src/features/pdfcomponent/PopoverMenu.jsx                                                     | 114     | completo                      | MIGRATE_LAB_JSX              | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones.      |
-| src/features/pdfcomponent/ResultsPanel.jsx                                                    | 248     | completo                      | MIGRATE_LAB_JSX              | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones.      |
-| src/features/pdfcomponent/domain/labPresentation.js                                           | 192     | completo                      | MIGRATE_LAB_JSX              | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones.      |
-| src/features/pdfcomponent/domain/labState.js                                                  | 18      | completo                      | MIGRATE_LAB_JSX              | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones.      |
-| src/features/pdfcomponent/ui/primitives.jsx                                                   | 103     | completo                      | MIGRATE_LAB_JSX              | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones.      |
-| src/features/pdfcomponent/labs/builders/exampleTemplate.ts                                    | 199     | completo                      | KEEP_LAB_DATA_LOGIC          | No migrar estilos; mantener fixtures/builders/export fuera del core.                           |
-| src/features/pdfcomponent/labs/builders/schemaFactory.ts                                      | 91      | completo                      | KEEP_LAB_DATA_LOGIC          | No migrar estilos; mantener fixtures/builders/export fuera del core.                           |
-| src/features/pdfcomponent/labs/builders/schemaShowcase.ts                                     | 220     | completo                      | KEEP_LAB_DATA_LOGIC          | No migrar estilos; mantener fixtures/builders/export fuera del core.                           |
-| src/features/pdfcomponent/labs/examples/labExamples.js                                        | 885     | completo                      | KEEP_LAB_DATA_LOGIC          | No migrar estilos; mantener fixtures/builders/export fuera del core.                           |
-| src/features/pdfcomponent/labs/export/buildExampleBundle.ts                                   | 78      | completo                      | KEEP_LAB_DATA_LOGIC          | No migrar estilos; mantener fixtures/builders/export fuera del core.                           |
-| src/features/pdfcomponent/labs/export/downloadExampleBundle.ts                                | 25      | completo                      | KEEP_LAB_DATA_LOGIC          | No migrar estilos; mantener fixtures/builders/export fuera del core.                           |
-| .eslintrc.cjs                                                                                 | 49      | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| playwright.config.ts                                                                          | 27      | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| test-script.js                                                                                | 5       | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| vite.config copy.js                                                                           | 487     | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| vitest.config.ts                                                                              | 22      | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| scripts/delete-existing-markdown.mjs                                                          | 54      | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| scripts/migrate-design-to-tailwind.mjs                                                        | 864     | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/types/custom.d.ts                                                                         | 23      | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/assignments/index.ts                                                          | 612     | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/browser/downloads.ts                                                          | 44      | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/browser/objectUrls.ts                                                         | 32      | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/canvas/canvasRenderState.ts                                                   | 146     | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/canvas/overlayManager.ts                                                      | 249     | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/canvas/useCanvasRenderState.ts                                                | 171     | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/collaboration/appearance.ts                                                   | 55      | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/collaboration/index.ts                                                        | 459     | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/collaboration/lockManager.ts                                                  | 253     | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/collaboration/recipientPalette.ts                                             | 69      | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/collaboration/schemaLockGuard.ts                                              | 96      | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/collaboration/schemaOwnershipAppearance.ts                                    | 157     | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/commands/index.ts                                                             | 52      | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/comments/index.ts                                                             | 199     | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/common/collaboration.ts                                                       | 364     | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/common/comments.ts                                                            | 280     | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/common/constants.ts                                                           | 31      | omitido minificado            | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/common/dynamicTemplate.ts                                                     | 319     | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/common/expression.ts                                                          | 460     | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/common/helper.ts                                                              | 284     | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/common/index.ts                                                               | 121     | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/common/pluginRegistry.ts                                                      | 63      | completo                      | NO_SCOPE_REVIEW              | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| src/sisad-pdfme/common/schema.ts                                                              | 300     | completo                      | NO_SCOPE_REVIEW              | Revisar
+### 10.3 Rutas base
 
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 95402 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
+``​`txt
+http://localhost:5174
+http://localhost:5174/lab/basic-designer
+http://localhost:5174/lab/multi-document-routing
+http://localhost:5174/lab/generator-runtime
+``​`
 
-or componentes, con bridge y validación.                                  |
-| src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcutRegistry.ts                     | 290     | completo                      | UI_CORE_REVIEW               | Migrar visual solo por componentes, con bridge y validación.                                  |
-| src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts.ts                            | 568     | completo                      | UI_CORE_REVIEW               | Migrar visual solo por componentes, con bridge y validación.                                  |
-| src/sisad-pdfme/ui/components/Designer/shared/objectGuards.ts                                 | 12      | completo                      | UI_CORE_REVIEW               | Migrar visual solo por componentes, con bridge y validación.                                  |
-| src/sisad-pdfme/ui/components/Designer/shared/passiveTouchListeners.ts                        | 38      | completo                      | UI_CORE_REVIEW               | Migrar visual solo por componentes, con bridge y validación.                                  |
-| src/sisad-pdfme/ui/components/Designer/shared/recipientColor.ts                               | 143     | completo                      | UI_CORE_REVIEW               | Migrar visual solo por componentes, con bridge y validación.                                  |
-| src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts                              | 96      | completo                      | UI_CORE_REVIEW               | Migrar visual solo por componentes, con bridge y validación.                                  |
-| src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts                              | 426     | completo                      | UI_CORE_REVIEW               | Migrar visual solo por componentes, con bridge y validación.                                  |
-| src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts                              | 101     | truncado 2.3 KB               | PROTECT_GEOMETRY_INTERACTION | No migrar geometría/hit-testing; cambios visuales solo con evidencia y tests.                 |
-| src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionCapabilities.ts                | 115     | omitido por presupuesto total | UI_CORE_REVIEW               | Migrar visual solo por componentes, con bridge y validación.                                  |
-| src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts                                   | 90      | omitido por presupuesto total | UI_CORE_REVIEW               | Migrar visual solo por componentes, con bridge y validación.                                  |
-| src/sisad-pdfme/ui/components/Designer/shared/schemaVariableName.ts                           | 49      | omitido por presupuesto total | UI_CORE_REVIEW               | Migrar visual solo por componentes, con bridge y validación.                                  |
-| src/sisad-pdfme/ui/components/Designer/shared/selectableTargetGuards.ts                       | 34      | omitido por presupuesto total | PROTECT_GEOMETRY_INTERACTION | No migrar geometría/hit-testing; cambios visuales solo con evidencia y tests.                 |
-| src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts                            | 885     | omitido por presupuesto total | UI_CORE_REVIEW               | Migrar visual solo por componentes, con bridge y validación.                                  |
-| src/sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver.ts                    | 115     | omitido por presupuesto total | UI_CORE_REVIEW               | Migrar visual solo por componentes, con bridge y validación.                                  |
-| src/sisad-pdfme/ui/components/Designer/shared/transformTargetGuards.ts                        | 29      | omitido por presupuesto total | PROTECT_GEOMETRY_INTERACTION | No migrar geometría/hit-testing; cambios visuales solo con evidencia y tests.                 |
-| src/sisad-pdfme/ui/components/Designer/shared/useDesignerKeyboardShortcuts.ts                 | 546     | omitido por presupuesto total | UI_CORE_REVIEW               | Migrar visual solo por componentes, con bridge y validación.                                  |
-| src/sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity.ts                         | 81      | omitido por presupuesto total | UI_CORE_REVIEW               | Migrar visual solo por componentes, con bridge y validación.                                  |
-| src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpButton.tsx                       | 43      | omitido por presupuesto total | UI_CORE_REVIEW               | Migrar visual solo por componentes, con bridge y validación.                                  |
-| src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpPanel.tsx                        | 163     | omitido por presupuesto total | UI_CORE_REVIEW               | Migrar visual solo por componentes, con bridge y validación.                                  |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx                  | 242     | omitido por presupuesto total | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.tsx           | 921     | omitido por presupuesto total | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx               | 141     | omitido por presupuesto total | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay.tsx                 | 158     | omitido por presupuesto total | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx                    | 271     | omitido por presupuesto total | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry.ts             | 97      | omitido por presupuesto total | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/GroupOptionFloatingAction.tsx          | 103     | omitido por presupuesto total | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx                  | 204     | omitido por presupuesto total | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx               | 23      | omitido por presupuesto total | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState.ts                        | 40      | omitido por presupuesto total | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/pointerGeometry.ts                     | 133     | omitido por presupuesto total | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview.tsx                  | 41      | omitido por presupuesto total | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx              | 49      | omitido por presupuesto total | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx              | 57      | omitido por presupuesto total | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx            | 217     | omitido por presupuesto total | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.ts                      | 196     | omitido por presupuesto total | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx                | 42      | omitido por presupuesto total | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/Canvas/overlays/useFloatingToolbarPosition.ts          | 69      | omitido por presupuesto total | OVERLAY_SKIN_ONLY            | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx                | 67      | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx          | 83      | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel.tsx         | 99      | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx          | 55      | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx           | 136     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailHeaderUtils.ts           | 85      | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts               | 430     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx          | 177     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts       | 405     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx                 | 417     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx          | 63      | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx       | 141     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.tsx              | 108     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorContracts.ts          | 366     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives.tsx        | 217     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts    | 18      | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx  | 485     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared.tsx    | 146     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation.ts | 83      | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx    | 825     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.tsx  | 314     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx             | 32      | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx                         | 341     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListView.tsx                     | 345     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewDragOverlay.tsx          | 58      | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewFooter.tsx               | 56      | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx              | 238     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableContainer.tsx  | 217     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableItem.tsx       | 119     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx       | 112     | omitido por presupuesto total | MIGRATE_RIGHT_SIDEBAR_VISUAL | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
+### 10.4 DOM checks clave
 
-## Apéndice B — Inventario completo de CSS/Tailwind
+``​`js
+document.querySelector('.sisad-pdfme-lab-page-hero + .sisad-pdfme-lab-collaboration-bar') === null
+document.querySelector('.sisad-pdfme-lab-header-collaboration') !== null
+``​`
 
-| Archivo                                                                                                                                               | Líneas | Estado           | Decisión                 | Nota                                                                                                           |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------- | ---------------- | ------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| src/styles/tailwind.css                                                                                                                               | 11      | completo         | INFRA_CANONICAL           | Mantener como única entrada Tailwind; no duplicar directivas.                                                 |
-| src/style.css                                                                                                                                         | 11      | completo         | INFRA_NEUTRALIZE          | Debe quedar neutralizado o sin @tailwind para evitar doble emisión.                                           |
-| src/styles/sisad-tailwind-bridge.css                                                                                                                  | 415     | completo         | MIGRATE_BRIDGE            | Bridge top-level @apply para clases existentes; no usar @layer si purga clases dinámicas.                     |
-| reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css                                                        | 1600    | completo         | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
-| reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__canvas-interactions.tailwind.candidate.css                                             | 1547    | completo         | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
-| reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-global.tailwind.candidate.css                                              | 6417    | truncado 75.1 KB | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
-| reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css                                             | 443     | completo         | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
-| reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css                                                          | 8       | completo         | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
-| src/features/pdfcomponent/labRoutes.css                                                                                                               | 1550    | completo         | SPLIT_LAB_CSS             | Migrar visual seguro; conservar canvas-first, drawer fixed, media compleja y gradientes críticos.             |
-| src/sisad-pdfme/ui/styles/canvas-interactions.css                                                                                                     | 1492    | completo         | SPLIT_CANVAS_INTERACTIONS | Migrar skins de toolbar/menu; conservar overlays, transform, pointer-events, z-index tokens, botón +.         |
-| src/sisad-pdfme/ui/styles/sisad-pdfme-global.css                                                                                                      | 6383    | truncado 75.6 KB | SPLIT_GLOBAL_CSS          | Migrar por sección; conservar paper geometry, Ant, Moveable/Selecto, keyframes, field chrome crítico.        |
-| src/sisad-pdfme/ui/styles/sisad-pdfme-runtime.css                                                                                                     | 240     | completo         | SPLIT_RUNTIME_CSS         | Migrar skins runtime; conservar import global, density attrs, Ant overrides y PDF/print.                       |
-| src/sisad-pdfme/ui/styles/tokens.css                                                                                                                  | 374     | completo         | KEEP_TOKEN_SOURCE         | Fuente de verdad de tokens, variables runtime, z-index, paper y owner color; no convertir a clases estáticas. |
-| .tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css            | 1600    | completo         | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
-| .tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__canvas-interactions.tailwind.candidate.css | 1547    | completo         | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
-| .tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-global.tailwind.candidate.css  | 6417    | truncado 75.1 KB | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
-| .tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css | 443     | completo         | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
-| .tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css              | 8       | completo         | REFERENCE_ONLY            | Archivo candidato generado; no copiar ciegamente, usar como mapa de @apply/manual.                             |
+Para RightSidebar:
 
-## Apéndice C — Resumen por decisión
+``​`js
+Array.from(document.querySelectorAll('.sisad-pdfme-designer-right-sidebar input, .sisad-pdfme-designer-right-sidebar select, .sisad-pdfme-designer-right-sidebar button'))
+  .filter(el => {
+    const r = el.getBoundingClientRect()
+    const visible = r.width > 0 && r.height > 0
+    const iconOnly = el.getAttribute('aria-label') && r.width <= 40
+    return visible && !iconOnly && (r.height < 24 || r.width < 40)
+  })
+``​`
 
-| Decisión                    | Cantidad de archivos | Líneas aprox. | Nota                                                                                           |
-| ---------------------------- | -------------------- | -------------- | ---------------------------------------------------------------------------------------------- |
-| DO_NOT_TOUCH_VISUAL          | 166                  | 27140          | Fuera de migración visual; motor PDF/generator/converter.                                     |
-| SCHEMA_LOGIC_KEEP            | 67                   | 10024          | Mantener lógica de schema; solo validar contratos visuales si aplica.                         |
-| NO_SCOPE_REVIEW              | 64                   | 10586          | Revisar solo si aparece en dependencias de CSS visual.                                         |
-| UI_CORE_REVIEW               | 56                   | 16789          | Migrar visual solo por componentes, con bridge y validación.                                  |
-| MIGRATE_RIGHT_SIDEBAR_VISUAL | 36                   | 7596           | Migrar skins de paneles/listas/inspector; conservar Ant y selección.                          |
-| OVERLAY_SKIN_ONLY            | 18                   | 3004           | Tailwind solo para skin; posición, transform, z-index, pointer-events críticos se conservan. |
-| SCHEMA_RENDER_VALIDATE       | 18                   | 3227           | Revisar visual por familia; no tocar valores, adapters, snapshot ni PDF render.                |
-| MIGRATE_LAB_JSX              | 11                   | 2446           | Migrar visual host/landing/cards/header/results con Tailwind directo y mantener acciones.      |
-| MIGRATE_LEFT_SIDEBAR_VISUAL  | 7                    | 2352           | Recuperar baseline visual y migrar cards/tabs/search a Tailwind/bridge; no romper drag/drop.   |
-| PROTECT_GEOMETRY_INTERACTION | 7                    | 658            | No migrar geometría/hit-testing; cambios visuales solo con evidencia y tests.                 |
-| CANVAS_VISUAL_WITH_GUARDS    | 6                    | 2375           | Revisar visual; conservar overflow/scroll/position/transform en CSS/tokens.                    |
-| KEEP_LAB_DATA_LOGIC          | 6                    | 1498           | No migrar estilos; mantener fixtures/builders/export fuera del core.                           |
-| RUNTIME_COMPAT_VALIDATE      | 5                    | 776            | No rediseñar; validar que Form/Viewer/PDF no hereden chrome de designer.                      |
-| FIELD_CHROME_TASK            | 3                    | 471            | Migrar visual compartido por modo; preservar x/y/size/ownerColor/readonly/required.            |
-| PROTECT_SNAPSHOT             | 3                    | 684            | No tocar por CSS; preservar metadata y roundtrip.                                              |
-| CONTROL_BAR_REVIEW           | 2                    | 449            | Compactar y migrar skin; mantener posicionamiento y densidad por tokens.                       |
-| INFRA_DEDUP                  | 2                    | 12             | Dejar un solo PostCSS config si el toolchain no requiere ambos.                                |
-| INFRA_VALIDATE               | 2                    | 178            | Verificar scripts, dependencias Tailwind, no ejecutar migración destructiva.                  |
-| INFRA_ENTRY                  | 1                    | 13             | Importar tailwind.css y bridge una sola vez; evitar imports duplicados.                        |
-| ROUTING_ONLY                 | 1                    | 25             | No tocar diseño core; solo rutas de laboratorio.                                              |
+Debe devolver `[]` o justificar cada caso.
 
-## Apéndice D — Mapa rápido de exclusiones
 
-| Excluir                                                 | Motivo                                                        |
-| ------------------------------------------------------- | ------------------------------------------------------------- |
-| `src/sisad-pdfme/pdf-lib/**`                          | Motor PDF; no tiene migración visual.                        |
-| `src/sisad-pdfme/generator/**`                        | Generación PDF; solo compatibilidad visual final.            |
-| `src/sisad-pdfme/converter/**`                        | Conversión PDF/imagen; fuera de UI.                          |
-| `Moveable.tsx`, `Selecto.tsx`                       | Interacción y hit-testing; no tocar desde migración visual. |
-| `designerCoordinateService.ts`, `coordinateMath.ts` | Geometría y conversión coordenadas.                         |
-| `schemaCollision.ts`, `canvasDropPipeline.ts`       | Drop/collision; no tocar por estilo.                          |
-| `snapshotAdapter.ts`, `schemaMigration.ts`          | Persistencia y roundtrip de metadata.                         |
-| `tokens.css`                                          | Fuente de verdad visual y runtime; no eliminar.               |
+## 11. Archivos nuevos recomendados para control de migración
+
+Crear o mantener:
+
+``​`txt
+reports/tailwind-migration/component-migration-ledger.md
+reports/tailwind-migration/visual-regression-checkpoints.md
+reports/tailwind-migration/current-screenshots/README.md
+ai/task-cards/active/
+ai/memory/changelog.md
+ai/memory/pending-checklist.md
+``​`
+
+### 11.1 Formato de ledger
+
+``​`md
+| Archivo | Estado | Última task | Tailwind JSX | Bridge | Legacy KEEP | Captura | Build | Riesgo |
+|---|---|---|---|---|---|---|---|---|
+``​`
+
+
+## 12. Criterio de salida de la migración completa
+
+La migración se considera terminada cuando:
+
+1. Cada archivo visual JSX/TSX tiene estado en ledger.
+2. Cada selector legacy tiene comentario `MIGRATED`, `KEEP`, `TODO` o `DELETE`.
+3. No hay doble emisión Tailwind.
+4. No hay `@layer components` en bridge crítico dinámico.
+5. No se toca Moveable/Selecto.
+6. Canvas page 2+ funciona.
+7. Multi-recipient no muta ownerColor.
+8. Form/Viewer/Generator no imprimen chrome de diseñador.
+9. Capturas comparadas contra `public/img-version`.
+10. Build/lint/tests focales ejecutados.
+11. Documentación `docs/09-theming` actualizada.
+12. Memoria IA y checklist actualizados.
+
+
+# Apéndice A — Matriz prioritaria de archivos visuales
+
+| Archivo | Capa | Acción | Prioridad | Riesgo | Validación |
+|---|---|---|---|---|---|
+| `src/features/pdfcomponent/CaseCard.jsx` | Lab landing/host | `MIGRATE_JSX` | P2 | Bajo | landing + screenshots |
+| `src/features/pdfcomponent/CompactControls.jsx` | Lab shell canvas-first | `STABILIZE_AND_MIGRATE_JSX` | P0/P1 | Medio | DOM + screenshot multi-document-routing |
+| `src/features/pdfcomponent/LabExampleDownloadButton.jsx` | Lab landing/host | `MIGRATE_JSX` | P2 | Bajo | landing + screenshots |
+| `src/features/pdfcomponent/LabLandingPage.jsx` | Lab landing/host | `MIGRATE_JSX` | P2 | Bajo | landing + screenshots |
+| `src/features/pdfcomponent/PageHeader.jsx` | Lab shell canvas-first | `STABILIZE_AND_MIGRATE_JSX` | P0/P1 | Medio | DOM + screenshot multi-document-routing |
+| `src/features/pdfcomponent/PdfmeLabPage.jsx` | Lab shell canvas-first | `STABILIZE_AND_MIGRATE_JSX` | P0/P1 | Medio | DOM + screenshot multi-document-routing |
+| `src/features/pdfcomponent/PopoverMenu.jsx` | Lab landing/host | `MIGRATE_JSX` | P2 | Bajo | landing + screenshots |
+| `src/features/pdfcomponent/ResultsPanel.jsx` | Lab shell canvas-first | `STABILIZE_AND_MIGRATE_JSX` | P0/P1 | Medio | DOM + screenshot multi-document-routing |
+| `src/features/pdfcomponent/ui/primitives.jsx` | Lab landing/host | `MIGRATE_JSX` | P2 | Bajo | landing + screenshots |
+| `src/sisad-pdfme/schemas/barcodes/propPanel.ts` | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/schemas/barcodes/uiRender.ts` | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/schemas/multiVariableText/propPanel.ts` | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/schemas/multiVariableText/uiRender.ts` | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/schemas/options/OptionListWidget.tsx` | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/schemas/options/optionPropPanel.tsx` | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/schemas/propPanel/commonInspectorFields.ts` | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/schemas/propPanel/index.ts` | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/schemas/signature/propPanel.ts` | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/schemas/tables/propPanel.ts` | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/schemas/tables/uiRender.ts` | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/schemas/text/propPanel.ts` | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/schemas/text/uiRender.ts` | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/ui/components/CtlBar.tsx` | Runtime/UI chrome | `MIGRATE_RUNTIME_UI_SKIN` | P6 | Medio | viewer/designer smoke |
+| `src/sisad-pdfme/ui/components/ErrorScreen.tsx` | Runtime/UI chrome | `MIGRATE_RUNTIME_UI_SKIN` | P6 | Medio | viewer/designer smoke |
+| `src/sisad-pdfme/ui/components/Paper.tsx` | Runtime/Paper/Renderer | `KEEP_GEOMETRY_MIGRATE_SKIN_ONLY` | P6 | Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/ui/components/Preview.tsx` | Runtime/Paper/Renderer | `KEEP_GEOMETRY_MIGRATE_SKIN_ONLY` | P6 | Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/ui/components/Renderer.tsx` | Runtime/Paper/Renderer | `KEEP_GEOMETRY_MIGRATE_SKIN_ONLY` | P6 | Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/ui/components/Root.tsx` | Runtime/Paper/Renderer | `KEEP_GEOMETRY_MIGRATE_SKIN_ONLY` | P6 | Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/ui/components/Spinner.tsx` | Runtime/UI chrome | `MIGRATE_RUNTIME_UI_SKIN` | P6 | Medio | viewer/designer smoke |
+| `src/sisad-pdfme/ui/components/StaticSchema.tsx` | Runtime/Paper/Renderer | `KEEP_GEOMETRY_MIGRATE_SKIN_ONLY` | P6 | Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/ui/components/UnitPager.tsx` | Runtime/UI chrome | `MIGRATE_RUNTIME_UI_SKIN` | P6 | Medio | viewer/designer smoke |
+| `src/sisad-pdfme/ui/components/usePreviewRuntime.ts` | Runtime/Paper/Renderer | `KEEP_GEOMETRY_MIGRATE_SKIN_ONLY` | P6 | Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/ui/components/Designer/index.tsx` | Designer shell | `SPLIT_RULE_NEEDS_TASK_CARD` | P0/P6 | Alto | all editor smoke tests |
+| `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx` | LeftSidebar visual | `MIGRATE_LEFT_SIDEBAR_VISUAL` | P4 | Medio | drag/drop + screenshot |
+| `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx` | LeftSidebar visual | `MIGRATE_LEFT_SIDEBAR_VISUAL` | P4 | Medio | drag/drop + screenshot |
+| `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx` | LeftSidebar visual | `MIGRATE_LEFT_SIDEBAR_VISUAL` | P4 | Medio | drag/drop + screenshot |
+| `src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx` | LeftSidebar visual | `MIGRATE_LEFT_SIDEBAR_VISUAL` | P4 | Medio | drag/drop + screenshot |
+| `src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx` | LeftSidebar visual | `MIGRATE_LEFT_SIDEBAR_VISUAL` | P4 | Medio | drag/drop + screenshot |
+| `src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx` | LeftSidebar visual | `MIGRATE_LEFT_SIDEBAR_VISUAL` | P4 | Medio | drag/drop + screenshot |
+| `src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx` | Designer dialogs/tools | `MIGRATE_VISUAL_SAFE` | P6 | Medio | interaction smoke |
+| `src/sisad-pdfme/ui/components/Designer/SchemaDropSetupModal.tsx` | Designer dialogs/tools | `MIGRATE_VISUAL_SAFE` | P6 | Medio | interaction smoke |
+| `src/sisad-pdfme/ui/components/shared/usePaperRefRegistry.ts` | Runtime/Paper/Renderer | `KEEP_GEOMETRY_MIGRATE_SKIN_ONLY` | P6 | Alto | form/viewer/generator parity |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx` | Canvas core/chrome | `KEEP_GEOMETRY_MIGRATE_MINIMAL_SKIN` | P6/P0 guard | Alto | scroll/page2+/select |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/Guides.tsx` | Canvas core/chrome | `KEEP_GEOMETRY_MIGRATE_MINIMAL_SKIN` | P6/P0 guard | Alto | scroll/page2+/select |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/Mask.tsx` | Canvas core/chrome | `KEEP_GEOMETRY_MIGRATE_MINIMAL_SKIN` | P6/P0 guard | Alto | scroll/page2+/select |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/Padding.tsx` | Canvas core/chrome | `KEEP_GEOMETRY_MIGRATE_MINIMAL_SKIN` | P6/P0 guard | Alto | scroll/page2+/select |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/SnapLines.tsx` | Canvas core/chrome | `KEEP_GEOMETRY_MIGRATE_MINIMAL_SKIN` | P6/P0 guard | Alto | scroll/page2+/select |
+| `src/sisad-pdfme/ui/components/Designer/Comments/CommentDialog.tsx` | Designer dialogs/tools | `MIGRATE_VISUAL_SAFE` | P6 | Medio | interaction smoke |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx` | RightSidebar shell/rails | `MIGRATE_RIGHT_SIDEBAR_SHELL_VISUAL` | P1/P5 | Medio | documents/comments/list/detail screenshots |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx` | RightSidebar shell/rails | `MIGRATE_RIGHT_SIDEBAR_SHELL_VISUAL` | P1/P5 | Medio | documents/comments/list/detail screenshots |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx` | RightSidebar shell/rails | `MIGRATE_RIGHT_SIDEBAR_SHELL_VISUAL` | P1/P5 | Medio | documents/comments/list/detail screenshots |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx` | RightSidebar shell/rails | `MIGRATE_RIGHT_SIDEBAR_SHELL_VISUAL` | P1/P5 | Medio | documents/comments/list/detail screenshots |
+| `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts.ts` | Designer dialogs/tools | `MIGRATE_VISUAL_SAFE` | P6 | Medio | interaction smoke |
+| `src/sisad-pdfme/ui/components/Designer/shared/useDesignerKeyboardShortcuts.ts` | Designer dialogs/tools | `MIGRATE_VISUAL_SAFE` | P6 | Medio | interaction smoke |
+| `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpButton.tsx` | Designer dialogs/tools | `MIGRATE_VISUAL_SAFE` | P6 | Medio | interaction smoke |
+| `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpPanel.tsx` | Designer dialogs/tools | `MIGRATE_VISUAL_SAFE` | P6 | Medio | interaction smoke |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx` | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto | hit-testing + screenshots |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.tsx` | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto | hit-testing + screenshots |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx` | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto | hit-testing + screenshots |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay.tsx` | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto | hit-testing + screenshots |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx` | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto | hit-testing + screenshots |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/GroupOptionFloatingAction.tsx` | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto | hit-testing + screenshots |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx` | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto | hit-testing + screenshots |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx` | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto | hit-testing + screenshots |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview.tsx` | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto | hit-testing + screenshots |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx` | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto | hit-testing + screenshots |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx` | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto | hit-testing + screenshots |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx` | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto | hit-testing + screenshots |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx` | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto | hit-testing + screenshots |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel.tsx` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailHeaderUtils.ts` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.tsx` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorContracts.ts` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives.tsx` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared.tsx` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation.ts` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.tsx` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx` | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto | detail screenshot + inspector tests |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx` | RightSidebar ListView | `MIGRATE_RIGHT_SIDEBAR_LIST_VISUAL` | P1/P5 | Medio | DOM + list screenshot |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListView.tsx` | RightSidebar ListView | `MIGRATE_RIGHT_SIDEBAR_LIST_VISUAL` | P1/P5 | Medio | DOM + list screenshot |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewDragOverlay.tsx` | RightSidebar ListView | `MIGRATE_RIGHT_SIDEBAR_LIST_VISUAL` | P1/P5 | Medio | DOM + list screenshot |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewFooter.tsx` | RightSidebar ListView | `MIGRATE_RIGHT_SIDEBAR_LIST_VISUAL` | P1/P5 | Medio | DOM + list screenshot |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx` | RightSidebar ListView | `MIGRATE_RIGHT_SIDEBAR_LIST_VISUAL` | P1/P5 | Medio | DOM + list screenshot |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableContainer.tsx` | RightSidebar ListView | `MIGRATE_RIGHT_SIDEBAR_LIST_VISUAL` | P1/P5 | Medio | DOM + list screenshot |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableItem.tsx` | RightSidebar ListView | `MIGRATE_RIGHT_SIDEBAR_LIST_VISUAL` | P1/P5 | Medio | DOM + list screenshot |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx` | RightSidebar shell/rails | `MIGRATE_RIGHT_SIDEBAR_SHELL_VISUAL` | P1/P5 | Medio | documents/comments/list/detail screenshots |
+
+
+# Apéndice B — Matriz completa de archivos `src/**/*.js|jsx|ts|tsx`
+
+> Esta matriz permite continuar la migración sin alucinaciones. Antes de tocar un archivo, revisar su fila.
+
+| Archivo | Lenguaje | Líneas | Capa | Acción | Prioridad | Riesgo |
+|---|---:|---:|---|---|---|---|
+| `src/main.jsx` | jsx | 13 | Infra Tailwind | `CONFIG_VERIFY_OR_FIX` | P0 | Medio |
+| `src/App.jsx` | jsx | 25 | Config/scripts/tests | `CONFIG_OR_SCRIPT_ONLY` | P3 | Bajo |
+| `src/features/pdfcomponent/CaseCard.jsx` | jsx | 123 | Lab landing/host | `MIGRATE_JSX` | P2 | Bajo |
+| `src/features/pdfcomponent/CompactControls.jsx` | jsx | 282 | Lab shell canvas-first | `STABILIZE_AND_MIGRATE_JSX` | P0/P1 | Medio |
+| `src/features/pdfcomponent/LabExampleDownloadButton.jsx` | jsx | 74 | Lab landing/host | `MIGRATE_JSX` | P2 | Bajo |
+| `src/features/pdfcomponent/LabLandingPage.jsx` | jsx | 242 | Lab landing/host | `MIGRATE_JSX` | P2 | Bajo |
+| `src/features/pdfcomponent/PageHeader.jsx` | jsx | 420 | Lab shell canvas-first | `STABILIZE_AND_MIGRATE_JSX` | P0/P1 | Medio |
+| `src/features/pdfcomponent/PdfmeLabPage.jsx` | jsx | 650 | Lab shell canvas-first | `STABILIZE_AND_MIGRATE_JSX` | P0/P1 | Medio |
+| `src/features/pdfcomponent/PopoverMenu.jsx` | jsx | 114 | Lab landing/host | `MIGRATE_JSX` | P2 | Bajo |
+| `src/features/pdfcomponent/ResultsPanel.jsx` | jsx | 248 | Lab shell canvas-first | `STABILIZE_AND_MIGRATE_JSX` | P0/P1 | Medio |
+| `src/features/pdfcomponent/domain/labPresentation.js` | javascript | 192 | Lab data/builders | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/features/pdfcomponent/domain/labState.js` | javascript | 18 | Lab data/builders | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/features/pdfcomponent/ui/primitives.jsx` | jsx | 103 | Lab landing/host | `MIGRATE_JSX` | P2 | Bajo |
+| `src/features/pdfcomponent/labs/builders/exampleTemplate.ts` | typescript | 199 | Lab data/builders | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/features/pdfcomponent/labs/builders/schemaFactory.ts` | typescript | 91 | Lab data/builders | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/features/pdfcomponent/labs/builders/schemaShowcase.ts` | typescript | 220 | Lab data/builders | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/features/pdfcomponent/labs/examples/labExamples.js` | javascript | 885 | Lab data/builders | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/features/pdfcomponent/labs/export/buildExampleBundle.ts` | typescript | 78 | Lab data/builders | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/features/pdfcomponent/labs/export/downloadExampleBundle.ts` | typescript | 25 | Lab data/builders | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/types/custom.d.ts` | typescript | 23 | Config/scripts/tests | `CONFIG_OR_SCRIPT_ONLY` | P3 | Bajo |
+| `src/sisad-pdfme/assignments/index.ts` | typescript | 612 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/browser/downloads.ts` | typescript | 44 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/browser/objectUrls.ts` | typescript | 32 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/canvas/canvasRenderState.ts` | typescript | 146 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/canvas/overlayManager.ts` | typescript | 249 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/canvas/useCanvasRenderState.ts` | typescript | 171 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/collaboration/appearance.ts` | typescript | 55 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/collaboration/index.ts` | typescript | 459 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/collaboration/lockManager.ts` | typescript | 253 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/collaboration/recipientPalette.ts` | typescript | 69 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/collaboration/schemaLockGuard.ts` | typescript | 96 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/collaboration/schemaOwnershipAppearance.ts` | typescript | 157 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/commands/index.ts` | typescript | 52 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/comments/index.ts` | typescript | 199 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/common/collaboration.ts` | typescript | 364 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/common/comments.ts` | typescript | 280 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/common/constants.ts` | typescript | 31 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/common/dynamicTemplate.ts` | typescript | 319 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/common/expression.ts` | typescript | 460 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/common/helper.ts` | typescript | 284 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/common/index.ts` | typescript | 121 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/common/pluginRegistry.ts` | typescript | 63 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/common/schema.ts` | typescript | 300 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/common/types.ts` | typescript | 250 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/common/version.ts` | typescript | 1 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/context/RecipientContext.ts` | typescript | 111 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/contracts/assignments.ts` | typescript | 3 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/contracts/commands.ts` | typescript | 33 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/contracts/comments.ts` | typescript | 46 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/contracts/index.ts` | typescript | 71 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/contracts/plugins.ts` | typescript | 48 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/contracts/schema.ts` | typescript | 32 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/converter/img2pdf.ts` | typescript | 113 | Converter | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/converter/index.browser.ts` | typescript | 56 | Converter | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/converter/index.node.ts` | typescript | 35 | Converter | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/converter/index.ts` | typescript | 7 | Converter | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/converter/modules.d.ts` | typescript | 9 | Converter | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/converter/pdf2img.ts` | typescript | 64 | Converter | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/converter/pdf2size.ts` | typescript | 33 | Converter | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/converter/types.d.ts` | typescript | 1 | Converter | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/devtools/index.ts` | typescript | 68 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/documents/index.ts` | typescript | 188 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/editor/index.ts` | typescript | 24 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/externalForms/externalFormRunner.ts` | typescript | 173 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/generator/constants.ts` | typescript | 1 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/generator/generate.ts` | typescript | 167 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/generator/helper.ts` | typescript | 171 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/generator/index.ts` | typescript | 27 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/generator/preflight.ts` | typescript | 447 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/generator/types.ts` | typescript | 5 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/integration/index.ts` | typescript | 102 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/integration/schemaController.ts` | typescript | 73 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/pdf-lib/index.ts` | typescript | 4 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/runtime/options.ts` | typescript | 74 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/runtime/runtimeModes.ts` | typescript | 59 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/runtime/usePdfmeArtifacts.ts` | typescript | 213 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/runtime/usePdfmeRuntimeInstance.ts` | typescript | 227 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/schemas/constants.ts` | typescript | 2 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/groupSchemaRender.ts` | typescript | 288 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/index.ts` | typescript | 407 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/modules.d.ts` | typescript | 32 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/schemaBuilder.ts` | typescript | 167 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/schemaFamilies.ts` | typescript | 364 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/utils.ts` | typescript | 294 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/shared/commandTypes.ts` | typescript | 129 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/shared/index.ts` | typescript | 121 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/shared/interactionGuards.ts` | typescript | 167 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/shared/keyboardShortcuts.ts` | typescript | 339 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/shared/localFormStorage.ts` | typescript | 243 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/shared/localMode.ts` | typescript | 187 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/shared/localSnapshotStore.ts` | typescript | 198 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/shared/schemaDesignerMeta.ts` | typescript | 318 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/shared/schemaMigration.ts` | typescript | 124 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/shared/signatureRegistry.ts` | typescript | 166 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/shared/snapshot.ts` | typescript | 182 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/shared/snapshotAdapter.ts` | typescript | 378 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/shared/templateValidator.ts` | typescript | 323 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/templates/createDefaultTemplate.ts` | typescript | 37 | Core library | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/ui/class.ts` | typescript | 299 | UI logic/theme | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/ui/collaboration.ts` | typescript | 1497 | UI logic/theme | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/ui/collaborationContext.ts` | typescript | 256 | UI logic/theme | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/ui/constants.ts` | typescript | 21 | UI logic/theme | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/ui/contexts.ts` | typescript | 14 | UI logic/theme | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/ui/Designer.tsx` | tsx | 348 | Public UI entrypoints | `DO_NOT_VISUAL_MIGRATE_NOW` | P0 guard | Alto |
+| `src/sisad-pdfme/ui/designerEngine.ts` | typescript | 1433 | UI logic/theme | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/ui/Form.tsx` | tsx | 130 | Public UI entrypoints | `DO_NOT_VISUAL_MIGRATE_NOW` | P0 guard | Alto |
+| `src/sisad-pdfme/ui/helper.ts` | typescript | 601 | UI logic/theme | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/ui/hooks.ts` | typescript | 495 | UI logic/theme | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/ui/i18n.ts` | typescript | 903 | UI logic/theme | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/ui/index.ts` | typescript | 25 | UI logic/theme | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/ui/theme.ts` | typescript | 63 | UI logic/theme | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/ui/types.ts` | typescript | 147 | UI logic/theme | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/ui/Viewer.tsx` | tsx | 54 | Public UI entrypoints | `DO_NOT_VISUAL_MIGRATE_NOW` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/colors.ts` | typescript | 109 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/Embeddable.ts` | typescript | 7 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/errors.ts` | typescript | 118 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/index.ts` | typescript | 20 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/objects.ts` | typescript | 10 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/operations.ts` | typescript | 873 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/operators.ts` | typescript | 335 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/PDFDocument.ts` | typescript | 1389 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/PDFDocumentOptions.ts` | typescript | 45 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/PDFEmbeddedFile.ts` | typescript | 87 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/PDFEmbeddedPage.ts` | typescript | 100 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/PDFFont.ts` | typescript | 149 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/PDFImage.ts` | typescript | 143 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/PDFJavaScript.ts` | typescript | 75 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/PDFPage.ts` | typescript | 1604 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/PDFPageOptions.ts` | typescript | 175 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/rotations.ts` | typescript | 84 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/sizes.ts` | typescript | 52 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/StandardFonts.ts` | typescript | 16 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/svg.ts` | typescript | 891 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/svgPath.ts` | typescript | 460 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/crypto.ts` | typescript | 1845 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/errors.ts` | typescript | 219 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/index.ts` | typescript | 63 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/PDFContext.ts` | typescript | 274 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/PDFObjectCopier.ts` | typescript | 142 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/types/fontkit.ts` | typescript | 643 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/types/index.ts` | typescript | 30 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/types/matrix.ts` | typescript | 22 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/arrays.ts` | typescript | 157 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/async.ts` | typescript | 8 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/base64.ts` | typescript | 98 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/Cache.ts` | typescript | 28 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/errors.ts` | typescript | 3 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/index.ts` | typescript | 11 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/intersections.ts` | typescript | 237 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/maths.ts` | typescript | 96 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/numbers.ts` | typescript | 55 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/objects.ts` | typescript | 13 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/pdfDocEncoding.ts` | typescript | 69 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/png.ts` | typescript | 70 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/rng.ts` | typescript | 21 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/strings.ts` | typescript | 191 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/unicode.ts` | typescript | 373 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/validators.ts` | typescript | 200 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/schemas/actions/actionSchemaFactory.ts` | typescript | 93 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/actions/approve.ts` | typescript | 156 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/actions/attachment.ts` | typescript | 211 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/actions/decline.ts` | typescript | 145 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/actions/note.ts` | typescript | 121 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/barcodes/constants.ts` | typescript | 20 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/barcodes/helper.ts` | typescript | 187 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/barcodes/index.ts` | typescript | 23 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/barcodes/pdfRender.ts` | typescript | 37 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/barcodes/propPanel.ts` | typescript | 258 | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto |
+| `src/sisad-pdfme/schemas/barcodes/types.ts` | typescript | 12 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/barcodes/uiRender.ts` | typescript | 97 | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto |
+| `src/sisad-pdfme/schemas/checkbox/index.ts` | typescript | 159 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/checkboxGroup/index.ts` | typescript | 445 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/date/date.ts` | typescript | 16 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/date/dateTime.ts` | typescript | 16 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/date/helper.ts` | typescript | 523 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/date/time.ts` | typescript | 16 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/date/types.ts` | typescript | 21 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/graphics/image.ts` | typescript | 209 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/graphics/imagehelper.ts` | typescript | 156 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/graphics/svg.ts` | typescript | 123 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/multiVariableText/helper.ts` | typescript | 89 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/multiVariableText/index.ts` | typescript | 23 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/multiVariableText/pdfRender.ts` | typescript | 21 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/multiVariableText/propPanel.ts` | typescript | 166 | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto |
+| `src/sisad-pdfme/schemas/multiVariableText/types.ts` | typescript | 6 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/multiVariableText/uiRender.ts` | typescript | 170 | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto |
+| `src/sisad-pdfme/schemas/number/index.ts` | typescript | 86 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/options/index.ts` | typescript | 8 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/options/optionGroupEditorFactory.ts` | typescript | 121 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/options/optionGroupFactory.ts` | typescript | 432 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/options/optionGroupLayout.ts` | typescript | 76 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/options/optionGroupPdfRender.ts` | typescript | 59 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/options/optionGroupRenderer.ts` | typescript | 218 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/options/OptionListWidget.tsx` | tsx | 14 | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto |
+| `src/sisad-pdfme/schemas/options/optionModel.ts` | typescript | 76 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/options/optionPropPanel.tsx` | tsx | 33 | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto |
+| `src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts` | typescript | 124 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/options/optionTypes.ts` | typescript | 19 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/options/optionValueAdapter.ts` | typescript | 15 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/propPanel/commonInspectorFields.ts` | typescript | 341 | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto |
+| `src/sisad-pdfme/schemas/propPanel/index.ts` | typescript | 1 | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto |
+| `src/sisad-pdfme/schemas/radioGroup/index.ts` | typescript | 392 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/select/index.ts` | typescript | 278 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/shapes/line.ts` | typescript | 100 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/shapes/rectAndEllipse.ts` | typescript | 161 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/shared/fieldChrome.ts` | typescript | 275 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/shared/renderSchemaWithChrome.ts` | typescript | 80 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/shared/schemaDom.ts` | typescript | 116 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/shared/schemaGuards.ts` | typescript | 167 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/shared/schemaTypes.ts` | typescript | 171 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/signature/dateSigned.ts` | typescript | 136 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/signature/index.ts` | typescript | 312 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/signature/initials.ts` | typescript | 44 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/signature/propPanel.ts` | typescript | 697 | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto |
+| `src/sisad-pdfme/schemas/signature/providerRegistry.ts` | typescript | 217 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/signature/signingSchemaFactory.ts` | typescript | 119 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/signature/types.ts` | typescript | 325 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/signature/validation.ts` | typescript | 70 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/tables/cell.ts` | typescript | 152 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/tables/classes.ts` | typescript | 402 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/tables/dynamicTemplate.ts` | typescript | 88 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/tables/helper.ts` | typescript | 216 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/tables/index.ts` | typescript | 22 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/tables/pdfRender.ts` | typescript | 144 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/tables/propPanel.ts` | typescript | 122 | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto |
+| `src/sisad-pdfme/schemas/tables/tableHelper.ts` | typescript | 278 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/tables/types.ts` | typescript | 87 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/tables/uiRender.ts` | typescript | 437 | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto |
+| `src/sisad-pdfme/schemas/text/constants.ts` | typescript | 104 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/text/extraFormatter.ts` | typescript | 83 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/text/helper.ts` | typescript | 550 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/text/index.ts` | typescript | 23 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/text/pdfRender.ts` | typescript | 240 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/text/propPanel.ts` | typescript | 210 | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto |
+| `src/sisad-pdfme/schemas/text/types.ts` | typescript | 30 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/text/uiRender.ts` | typescript | 314 | Schemas visual/runtime | `MIGRATE_SCHEMA_VISUAL_SAFE` | P5 | Medio/Alto |
+| `src/sisad-pdfme/schemas/textLike/textLikePresets.ts` | typescript | 44 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/schemas/textLike/textLikeSchemaFactory.ts` | typescript | 82 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/schemas/values/schemaValueAdapter.ts` | typescript | 49 | Schemas logic/pdf | `NO_VISUAL_OR_SPLIT` | P3 | Medio |
+| `src/sisad-pdfme/ui/collaboration/schemaRuntimeAccess.ts` | typescript | 153 | UI logic/theme | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/ui/commands/commandBus.ts` | typescript | 163 | UI logic/theme | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/ui/commands/designerCommands.ts` | typescript | 123 | UI logic/theme | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/ui/components/AppContextProvider.tsx` | tsx | 86 | Runtime component | `REVIEW_BEFORE_MIGRATE` | P6 | Medio |
+| `src/sisad-pdfme/ui/components/CtlBar.tsx` | tsx | 349 | Runtime/UI chrome | `MIGRATE_RUNTIME_UI_SKIN` | P6 | Medio |
+| `src/sisad-pdfme/ui/components/ErrorScreen.tsx` | tsx | 26 | Runtime/UI chrome | `MIGRATE_RUNTIME_UI_SKIN` | P6 | Medio |
+| `src/sisad-pdfme/ui/components/Paper.tsx` | tsx | 222 | Runtime/Paper/Renderer | `KEEP_GEOMETRY_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/Preview.tsx` | tsx | 220 | Runtime/Paper/Renderer | `KEEP_GEOMETRY_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/Renderer.tsx` | tsx | 311 | Runtime/Paper/Renderer | `KEEP_GEOMETRY_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/Root.tsx` | tsx | 45 | Runtime/Paper/Renderer | `KEEP_GEOMETRY_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/Spinner.tsx` | tsx | 22 | Runtime/UI chrome | `MIGRATE_RUNTIME_UI_SKIN` | P6 | Medio |
+| `src/sisad-pdfme/ui/components/StaticSchema.tsx` | tsx | 61 | Runtime/Paper/Renderer | `KEEP_GEOMETRY_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/UnitPager.tsx` | tsx | 100 | Runtime/UI chrome | `MIGRATE_RUNTIME_UI_SKIN` | P6 | Medio |
+| `src/sisad-pdfme/ui/components/usePreviewRuntime.ts` | typescript | 602 | Runtime/Paper/Renderer | `KEEP_GEOMETRY_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/types/customSchemaRegistry.ts` | typescript | 24 | UI logic/theme | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/ui/utils/cn.ts` | typescript | 3 | UI logic/theme | `NO_VISUAL_MIGRATION` | P3 | Bajo/Medio |
+| `src/sisad-pdfme/pdf-lib/api/form/appearances.ts` | typescript | 655 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/form/index.ts` | typescript | 10 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/form/PDFButton.ts` | typescript | 242 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/form/PDFCheckBox.ts` | typescript | 247 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/form/PDFDropdown.ts` | typescript | 637 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/form/PDFField.ts` | typescript | 491 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/form/PDFForm.ts` | typescript | 842 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/form/PDFOptionList.ts` | typescript | 555 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/form/PDFRadioGroup.ts` | typescript | 455 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/form/PDFSignature.ts` | typescript | 44 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/form/PDFTextField.ts` | typescript | 811 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/text/alignment.ts` | typescript | 5 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/text/index.ts` | typescript | 2 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/api/text/layout.ts` | typescript | 328 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/acroform/flags.ts` | typescript | 162 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/acroform/index.ts` | typescript | 15 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/acroform/PDFAcroButton.ts` | typescript | 104 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/acroform/PDFAcroCheckBox.ts` | typescript | 48 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/acroform/PDFAcroChoice.ts` | typescript | 143 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/acroform/PDFAcroComboBox.ts` | typescript | 21 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/acroform/PDFAcroField.ts` | typescript | 167 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/acroform/PDFAcroForm.ts` | typescript | 96 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/acroform/PDFAcroListBox.ts` | typescript | 19 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/acroform/PDFAcroNonTerminal.ts` | typescript | 33 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/acroform/PDFAcroPushButton.ts` | typescript | 21 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/acroform/PDFAcroRadioButton.ts` | typescript | 57 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/acroform/PDFAcroSignature.ts` | typescript | 9 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/acroform/PDFAcroTerminal.ts` | typescript | 70 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/acroform/PDFAcroText.ts` | typescript | 76 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/acroform/utils.ts` | typescript | 129 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/annotation/AppearanceCharacteristics.ts` | typescript | 133 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/annotation/BorderStyle.ts` | typescript | 31 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/annotation/flags.ts` | typescript | 90 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/annotation/index.ts` | typescript | 4 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/annotation/PDFAnnotation.ts` | typescript | 148 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/annotation/PDFWidgetAnnotation.ts` | typescript | 111 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/document/PDFCrossRefSection.ts` | typescript | 161 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/document/PDFHeader.ts` | typescript | 48 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/document/PDFTrailer.ts` | typescript | 48 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/document/PDFTrailerDict.ts` | typescript | 39 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/embedders/CMap.ts` | typescript | 65 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/embedders/CustomFontEmbedder.ts` | typescript | 237 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/embedders/CustomFontSubsetEmbedder.ts` | typescript | 89 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/embedders/FileEmbedder.ts` | typescript | 77 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/embedders/FontFlags.ts` | typescript | 45 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/embedders/JavaScriptEmbedder.ts` | typescript | 34 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/embedders/JpegEmbedder.ts` | typescript | 118 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/embedders/PDFPageEmbedder.ts` | typescript | 139 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/embedders/PngEmbedder.ts` | typescript | 69 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/embedders/StandardFontEmbedder.ts` | typescript | 121 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/interactive/ViewerPreferences.ts` | typescript | 565 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/objects/PDFArray.ts` | typescript | 179 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/objects/PDFBool.ts` | typescript | 53 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/objects/PDFDict.ts` | typescript | 220 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/objects/PDFHexString.ts` | typescript | 94 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/objects/PDFInvalidObject.ts` | typescript | 34 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/objects/PDFName.ts` | typescript | 152 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/objects/PDFNull.ts` | typescript | 30 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/objects/PDFNumber.ts` | typescript | 44 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/objects/PDFObject.ts` | typescript | 22 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/objects/PDFRawStream.ts` | typescript | 41 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/objects/PDFRef.ts` | typescript | 51 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/objects/PDFStream.ts` | typescript | 87 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/objects/PDFString.ts` | typescript | 118 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/operators/PDFOperator.ts` | typescript | 72 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/operators/PDFOperatorNames.ts` | typescript | 92 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/parser/BaseParser.ts` | typescript | 119 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/parser/ByteStream.ts` | typescript | 76 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/parser/PDFObjectParser.ts` | typescript | 302 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/parser/PDFObjectStreamParser.ts` | typescript | 65 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/parser/PDFParser.ts` | typescript | 363 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/parser/PDFXRefStreamParser.ts` | typescript | 129 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/streams/Ascii85Stream.ts` | typescript | 97 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/streams/AsciiHexStream.ts` | typescript | 77 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/streams/decode.ts` | typescript | 70 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/streams/DecodeStream.ts` | typescript | 170 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/streams/DecryptStream.ts` | typescript | 49 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/streams/FlateStream.ts` | typescript | 397 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/streams/LZWStream.ts` | typescript | 157 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/streams/RunLengthStream.ts` | typescript | 55 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/streams/Stream.ts` | typescript | 126 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/structures/PDFCatalog.ts` | typescript | 81 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/structures/PDFContentStream.ts` | typescript | 58 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/structures/PDFCrossRefStream.ts` | typescript | 238 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/structures/PDFFlateStream.ts` | typescript | 40 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/structures/PDFObjectStream.ts` | typescript | 91 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/structures/PDFPageLeaf.ts` | typescript | 244 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/structures/PDFPageTree.ts` | typescript | 192 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/syntax/CharCodes.ts` | typescript | 62 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/syntax/Delimiters.ts` | typescript | 14 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/syntax/Irregular.ts` | typescript | 10 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/syntax/Keywords.ts` | typescript | 57 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/syntax/Numeric.ts` | typescript | 26 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/syntax/Whitespace.ts` | typescript | 10 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/writers/PDFStreamWriter.ts` | typescript | 114 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/core/writers/PDFWriter.ts` | typescript | 146 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/elements/Arc.ts` | typescript | 97 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/elements/Circle.ts` | typescript | 47 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/elements/Ellipse.ts` | typescript | 117 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/elements/GraphElement.ts` | typescript | 14 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/elements/index.ts` | typescript | 9 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/elements/Line.ts` | typescript | 83 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/elements/Plot.ts` | typescript | 50 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/elements/Point.ts` | typescript | 37 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/elements/Rectangle.ts` | typescript | 65 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/pdf-lib/utils/elements/Segment.ts` | typescript | 81 | PDF/Generator | `DO_NOT_MIGRATE` | P0 guard | Alto |
+| `src/sisad-pdfme/schemas/text/icons/index.ts` | typescript | 30 | Schemas registry | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/ui/components/Designer/index.tsx` | tsx | 3755 | Designer shell | `SPLIT_RULE_NEEDS_TASK_CARD` | P0/P6 | Alto |
+| `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx` | tsx | 1530 | LeftSidebar visual | `MIGRATE_LEFT_SIDEBAR_VISUAL` | P4 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx` | tsx | 365 | LeftSidebar visual | `MIGRATE_LEFT_SIDEBAR_VISUAL` | P4 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx` | tsx | 111 | LeftSidebar visual | `MIGRATE_LEFT_SIDEBAR_VISUAL` | P4 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx` | tsx | 98 | LeftSidebar visual | `MIGRATE_LEFT_SIDEBAR_VISUAL` | P4 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx` | tsx | 36 | LeftSidebar visual | `MIGRATE_LEFT_SIDEBAR_VISUAL` | P4 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx` | tsx | 57 | LeftSidebar visual | `MIGRATE_LEFT_SIDEBAR_VISUAL` | P4 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx` | tsx | 125 | Designer dialogs/tools | `MIGRATE_VISUAL_SAFE` | P6 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/SchemaDropSetupModal.tsx` | tsx | 94 | Designer dialogs/tools | `MIGRATE_VISUAL_SAFE` | P6 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/schemaRegistry.ts` | typescript | 212 | Designer other | `REVIEW_BEFORE_MIGRATE` | P6 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/useLeftSidebarCatalogState.ts` | typescript | 155 | LeftSidebar state | `NO_VISUAL_MIGRATION` | P4 | Bajo |
+| `src/sisad-pdfme/ui/components/shared/pageMetadata.ts` | typescript | 52 | Runtime component | `REVIEW_BEFORE_MIGRATE` | P6 | Medio |
+| `src/sisad-pdfme/ui/components/shared/usePaperRefRegistry.ts` | typescript | 20 | Runtime/Paper/Renderer | `KEEP_GEOMETRY_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx` | tsx | 1589 | Canvas core/chrome | `KEEP_GEOMETRY_MIGRATE_MINIMAL_SKIN` | P6/P0 guard | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/Guides.tsx` | tsx | 100 | Canvas core/chrome | `KEEP_GEOMETRY_MIGRATE_MINIMAL_SKIN` | P6/P0 guard | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/Mask.tsx` | tsx | 33 | Canvas core/chrome | `KEEP_GEOMETRY_MIGRATE_MINIMAL_SKIN` | P6/P0 guard | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx` | tsx | 127 | Canvas Moveable/Selecto | `DO_NOT_MIGRATE` | P0 guard | Crítico |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/Padding.tsx` | tsx | 82 | Canvas core/chrome | `KEEP_GEOMETRY_MIGRATE_MINIMAL_SKIN` | P6/P0 guard | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx` | tsx | 110 | Canvas Moveable/Selecto | `DO_NOT_MIGRATE` | P0 guard | Crítico |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/SnapLines.tsx` | tsx | 349 | Canvas core/chrome | `KEEP_GEOMETRY_MIGRATE_MINIMAL_SKIN` | P6/P0 guard | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Comments/CommentDialog.tsx` | tsx | 59 | Designer dialogs/tools | `MIGRATE_VISUAL_SAFE` | P6 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx` | tsx | 250 | RightSidebar shell/rails | `MIGRATE_RIGHT_SIDEBAR_SHELL_VISUAL` | P1/P5 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/contextHeader.ts` | typescript | 19 | RightSidebar helpers | `NO_VISUAL_MIGRATION` | P3 | Bajo |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx` | tsx | 250 | RightSidebar shell/rails | `MIGRATE_RIGHT_SIDEBAR_SHELL_VISUAL` | P1/P5 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx` | tsx | 66 | RightSidebar shell/rails | `MIGRATE_RIGHT_SIDEBAR_SHELL_VISUAL` | P1/P5 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx` | tsx | 432 | RightSidebar shell/rails | `MIGRATE_RIGHT_SIDEBAR_SHELL_VISUAL` | P1/P5 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts` | typescript | 495 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts` | typescript | 112 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/className.ts` | typescript | 17 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts` | typescript | 145 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/DesignerContextSummary.tsx` | tsx | 83 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/designerCoordinateService.ts` | typescript | 182 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/designerExtensions.ts` | typescript | 98 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/designerLabels.ts` | typescript | 98 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.ts` | typescript | 298 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/interactionState.ts` | typescript | 62 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetPolicy.ts` | typescript | 62 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetSelectors.ts` | typescript | 68 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcutRegistry.ts` | typescript | 290 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts.ts` | typescript | 568 | Designer dialogs/tools | `MIGRATE_VISUAL_SAFE` | P6 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/shared/objectGuards.ts` | typescript | 12 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/passiveTouchListeners.ts` | typescript | 38 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/recipientColor.ts` | typescript | 143 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts` | typescript | 96 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts` | typescript | 426 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts` | typescript | 101 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionCapabilities.ts` | typescript | 115 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts` | typescript | 90 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/schemaVariableName.ts` | typescript | 49 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/selectableTargetGuards.ts` | typescript | 34 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts` | typescript | 885 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver.ts` | typescript | 115 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/transformTargetGuards.ts` | typescript | 29 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/shared/useDesignerKeyboardShortcuts.ts` | typescript | 546 | Designer dialogs/tools | `MIGRATE_VISUAL_SAFE` | P6 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity.ts` | typescript | 81 | Designer shared logic | `NO_VISUAL_MIGRATION` | P0/P3 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpButton.tsx` | tsx | 43 | Designer dialogs/tools | `MIGRATE_VISUAL_SAFE` | P6 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpPanel.tsx` | tsx | 163 | Designer dialogs/tools | `MIGRATE_VISUAL_SAFE` | P6 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx` | tsx | 242 | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.tsx` | tsx | 921 | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx` | tsx | 141 | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay.tsx` | tsx | 158 | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx` | tsx | 271 | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry.ts` | typescript | 97 | Canvas overlay logic | `KEEP_LEGACY_GEOMETRY` | P0 guard | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/GroupOptionFloatingAction.tsx` | tsx | 103 | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx` | tsx | 204 | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx` | tsx | 23 | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState.ts` | typescript | 40 | Canvas overlay logic | `KEEP_LEGACY_GEOMETRY` | P0 guard | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/pointerGeometry.ts` | typescript | 133 | Canvas overlay logic | `KEEP_LEGACY_GEOMETRY` | P0 guard | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview.tsx` | tsx | 41 | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx` | tsx | 49 | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx` | tsx | 57 | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx` | tsx | 217 | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.ts` | typescript | 196 | Canvas overlay logic | `KEEP_LEGACY_GEOMETRY` | P0 guard | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx` | tsx | 42 | Canvas overlay skins | `SPLIT_RULE_MIGRATE_SKIN_ONLY` | P6 | Alto |
+| `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/useFloatingToolbarPosition.ts` | typescript | 69 | Canvas overlay logic | `KEEP_LEGACY_GEOMETRY` | P0 guard | Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx` | tsx | 67 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx` | tsx | 83 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel.tsx` | tsx | 99 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx` | tsx | 55 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx` | tsx | 136 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailHeaderUtils.ts` | typescript | 85 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts` | typescript | 430 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx` | tsx | 177 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts` | typescript | 405 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx` | tsx | 417 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx` | tsx | 63 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx` | tsx | 141 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.tsx` | tsx | 108 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorContracts.ts` | typescript | 366 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives.tsx` | tsx | 217 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts` | typescript | 18 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx` | tsx | 485 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared.tsx` | tsx | 146 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation.ts` | typescript | 83 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx` | tsx | 825 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.tsx` | tsx | 314 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx` | tsx | 32 | RightSidebar DetailView | `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | P1/P5 | Medio/Alto |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx` | tsx | 341 | RightSidebar ListView | `MIGRATE_RIGHT_SIDEBAR_LIST_VISUAL` | P1/P5 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListView.tsx` | tsx | 345 | RightSidebar ListView | `MIGRATE_RIGHT_SIDEBAR_LIST_VISUAL` | P1/P5 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewDragOverlay.tsx` | tsx | 58 | RightSidebar ListView | `MIGRATE_RIGHT_SIDEBAR_LIST_VISUAL` | P1/P5 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewFooter.tsx` | tsx | 56 | RightSidebar ListView | `MIGRATE_RIGHT_SIDEBAR_LIST_VISUAL` | P1/P5 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx` | tsx | 238 | RightSidebar ListView | `MIGRATE_RIGHT_SIDEBAR_LIST_VISUAL` | P1/P5 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableContainer.tsx` | tsx | 217 | RightSidebar ListView | `MIGRATE_RIGHT_SIDEBAR_LIST_VISUAL` | P1/P5 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableItem.tsx` | tsx | 119 | RightSidebar ListView | `MIGRATE_RIGHT_SIDEBAR_LIST_VISUAL` | P1/P5 | Medio |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx` | tsx | 112 | RightSidebar shell/rails | `MIGRATE_RIGHT_SIDEBAR_SHELL_VISUAL` | P1/P5 | Medio |
+
+
+# Apéndice C — Definición de acciones
+
+| Acción | Significado |
+|---|---|
+| `CONFIG_VERIFY_OR_FIX` | Verificar config/entrypoint. Solo cambios mínimos. |
+| `STABILIZE_AND_MIGRATE_JSX` | Corregir regresión visual y migrar Tailwind seguro. |
+| `MIGRATE_JSX` | Tailwind directo en `className`. |
+| `MIGRATE_LEFT_SIDEBAR_VISUAL` | Migrar visual LeftSidebar preservando drag/drop. |
+| `MIGRATE_RIGHT_SIDEBAR_LIST_VISUAL` | Migrar ListView/toolbar/rows preservando selección. |
+| `MIGRATE_RIGHT_SIDEBAR_DETAIL_VISUAL` | Migrar inspector/cards/widgets preservando commands. |
+| `MIGRATE_RIGHT_SIDEBAR_SHELL_VISUAL` | Migrar tabs/rails/superficies. |
+| `MIGRATE_RUNTIME_UI_SKIN` | Skin de controles runtime sin tocar geometría. |
+| `MIGRATE_SCHEMA_VISUAL_SAFE` | Skin schema ui/propPanel preservando metadata y pdfRender. |
+| `SPLIT_RULE_MIGRATE_SKIN_ONLY` | Separar visual de posición/geometry antes de migrar. |
+| `KEEP_GEOMETRY_MIGRATE_SKIN_ONLY` | No tocar geometría; solo piel visual mínima. |
+| `KEEP_GEOMETRY_MIGRATE_MINIMAL_SKIN` | Canvas: skin mínimo si es inevitable. |
+| `KEEP_LEGACY_GEOMETRY` | Mantener legacy por geometría/posición. |
+| `NO_VISUAL_MIGRATION` | Archivo lógico; no aplica Tailwind. |
+| `NO_VISUAL_OR_SPLIT` | No visual salvo sub-sección muy concreta. |
+| `DO_NOT_MIGRATE` | Prohibido migrar en esta iniciativa. |
+| `DO_NOT_VISUAL_MIGRATE_NOW` | Entrada pública o API: no tocar sin task-card. |
+| `SPLIT_RULE_NEEDS_TASK_CARD` | Archivo grande/riesgoso, requiere task-card propia. |
 ```
 
 <a id="file-0094"></a>
@@ -7474,7 +7913,29 @@ Clasificación por sección (comentarios reales del archivo). Contadores clave: 
 
 <a id="file-0210"></a>
 
-### 0210 — `reports/tailwind-migration/README.md`
+### 0210 — `reports/tailwind-migration/pending-phases-progress.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `9`
+- **Tamaño original:** `1.5 KB`
+- **SHA1 corto:** `53cb7b07df`
+- **Estado:** `completo`
+
+```markdown
+| Fase | Estado | Archivos objetivo | Riesgo | Resultado |
+|---|---|---|---|---|
+| TC-CSS-07 LeftSidebar | completed | `src/sisad-pdfme/ui/components/Designer/LeftSidebar/**`, `src/styles/sisad-tailwind-bridge.css`, `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | Medio | Compactación aplicada sin romper drag/drop |
+| TC-CSS-08 Overlays | completed | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/**`, `src/styles/sisad-tailwind-bridge.css`, `src/sisad-pdfme/ui/styles/canvas-interactions.css` | Alto | Toolbars/menus compactos sin tocar geometría |
+| TC-CSS-09 Schema chrome | pending | `src/sisad-pdfme/schemas/**`, `src/styles/sisad-tailwind-bridge.css`, `src/sisad-pdfme/ui/styles/canvas-interactions.css` | Alto | Field chrome visual sin tocar data/render |
+| TC-CSS-10 Runtime | pending | `src/sisad-pdfme/ui/styles/sisad-pdfme-runtime.css`, `src/styles/sisad-tailwind-bridge.css` | Medio | Paridad Form/Viewer/PDF |
+| TC-CSS-11 Lab | pending | `src/features/pdfcomponent/**`, `src/styles/sisad-tailwind-bridge.css`, `src/features/pdfcomponent/labRoutes.css` | Medio | Landing, results drawer y CSS lab restante |
+| TC-CSS-12 Cleanup | pending | `src/features/pdfcomponent/labRoutes.css`, `src/sisad-pdfme/ui/styles/*.css`, `src/styles/sisad-tailwind-bridge.css` | Medio | Reducir legacy muerto con evidencia |
+| TC-CSS-13 Docs | pending | `docs/11-migraciones/tailwind-migration.md`, `docs/09-theming/tailwind-and-css-architecture.md` | Bajo | Documentación y reportes actualizados |
+```
+
+<a id="file-0211"></a>
+
+### 0211 — `reports/tailwind-migration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -7561,9 +8022,35 @@ Migración incremental de diseños a Tailwind preservando comportamiento, canvas
 - generator/pdf-lib
 ```
 
-<a id="file-0211"></a>
+<a id="file-0212"></a>
 
-### 0211 — `test-results/standard-fields-standard-f-c4dc3-s-the-expected-schema-types-chromium/error-context.md`
+### 0212 — `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `13`
+- **Tamaño original:** `2.3 KB`
+- **SHA1 corto:** `307fbf576f`
+- **Estado:** `completo`
+
+```markdown
+| File | Component | Current state | Action | Risk |
+|---|---|---|---|---|
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx` | `DetailViewContent` | Shell already split from canvas; sections still have extra vertical air | `MIGRATE_JSX_TAILWIND` | Low |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx` | `DetailSectionCard` | Stable section wrapper with compact logic; padding can be reduced safely | `MIGRATE_JSX_TAILWIND` | Low |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives.tsx` | Inspector primitives | Shared summary/action/metric skins still feel heavy in detail mode | `MIGRATE_BRIDGE_APPLY` | Medium |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx` | `AlignWidget` | Safe button grid; compact icon controls only | `MIGRATE_JSX_TAILWIND` | Low |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel.tsx` | `CompactConfigPanel` | Shared config card used by inspector widgets; can be tightened safely | `MIGRATE_JSX_TAILWIND` | Low |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx` | Detail form shell | Form-render wrapper still carries legacy padding/shadow | `MIGRATE_BRIDGE_APPLY` | Medium |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx` | Inline edit actions | Logic-heavy registry; visual skin should come from shared selectors | `KEEP_LEGACY` | Medium |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx` | Collaboration inspector widget | Runtime-heavy widget with shared panel skin | `KEEP_LEGACY` | Medium |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx` | Connections inspector widget | Runtime-heavy widget with nested Ant controls | `KEEP_LEGACY` | Medium |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx` | Detail header card | Already compact and slot-driven; header skin can stay centralized | `KEEP_LEGACY` | Low |
+| `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx` | Shared sidebar header primitives | Shared chrome already centralised for list/detail surfaces | `KEEP_LEGACY` | Low |
+```
+
+<a id="file-0213"></a>
+
+### 0213 — `test-results/standard-fields-standard-f-c4dc3-s-the-expected-schema-types-chromium/error-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `576`
@@ -8150,9 +8637,9 @@ Migración incremental de diseños a Tailwind preservando comportamiento, canvas
 ``​`
 ```
 
-<a id="file-0212"></a>
+<a id="file-0214"></a>
 
-### 0212 — `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md`
+### 0214 — `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -8184,9 +8671,9 @@ Instalar carpeta `ai/` como fuente de verdad y adaptar Codex, Claude y Copilot c
 Código de runtime.
 ```
 
-<a id="file-0213"></a>
+<a id="file-0215"></a>
 
-### 0213 — `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md`
+### 0215 — `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -8202,9 +8689,9 @@ Código de runtime.
 Verificar que utilidades Tailwind no pisen `overflow:auto`, height, scale o page geometry.
 ```
 
-<a id="file-0214"></a>
+<a id="file-0216"></a>
 
-### 0214 — `ai/task-cards/backlog/TASK-CSS-001-tailwind-regression-stabilization.md`
+### 0216 — `ai/task-cards/backlog/TASK-CSS-001-tailwind-regression-stabilization.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -8237,9 +8724,9 @@ src/sisad-pdfme/ui/styles/*.css
 Moveable, Selecto, geometry, snapshot, generator/pdf-lib.
 ```
 
-<a id="file-0215"></a>
+<a id="file-0217"></a>
 
-### 0215 — `ai/task-cards/backlog/TASK-VISUAL-001-img-version-baseline.md`
+### 0217 — `ai/task-cards/backlog/TASK-VISUAL-001-img-version-baseline.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -8262,9 +8749,9 @@ reports/tailwind-migration/img-version-contact-sheet.jpg
 ``​`
 ```
 
-<a id="file-0216"></a>
+<a id="file-0218"></a>
 
-### 0216 — `ai/task-cards/completed/README.md`
+### 0218 — `ai/task-cards/completed/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -8278,9 +8765,9 @@ reports/tailwind-migration/img-version-contact-sheet.jpg
 Mover aquí task-cards completadas con reporte final.
 ```
 
-<a id="file-0217"></a>
+<a id="file-0219"></a>
 
-### 0217 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
+### 0219 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`

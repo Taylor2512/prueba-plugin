@@ -248,18 +248,18 @@ const CommentsOverlay = ({
               position: 'absolute',
               left: `${a.left}px`,
               top: `${a.top}px`,
-              width: 16,
-              height: 16,
+              width: 14,
+              height: 14,
               borderRadius: 8,
               background: a.authorColor || 'var(--color-primary)',
-              border: '2px solid white',
-              boxShadow: '0 1px 2px rgba(0,0,0,0.2)',
+              border: '1.5px solid white',
+              boxShadow: '0 1px 2px rgba(0,0,0,0.16)',
               transform: 'translate(-50%, -50%)',
               pointerEvents: 'auto',
               cursor: 'pointer',
               opacity: a.resolved ? 0.6 : 1,
             }}
-            className="rounded-full ring-2 ring-white transition hover:scale-110"
+            className="rounded-full ring-2 ring-white transition"
             aria-label={`Comentario en ${a.schemaUid || 'ancla'}`}
           />
         );

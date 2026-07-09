@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `react`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-09T03:22:40.019Z`
+- **Fecha generación:** `2026-07-09T04:36:50.425Z`
 - **Extensiones incluidas:** `.js, .jsx, .ts, .tsx, .mjs, .cjs, .json`
 - **Archivos candidatos incluidos:** `481`
 - **Límite por archivo:** `90 KB`
@@ -933,10 +933,10 @@ prueba-plugin
 | 375 | `src/sisad-pdfme/pdf-lib/utils/elements/Segment.ts` | typescript | 81 | 2.2 | completo |
 | 376 | `src/sisad-pdfme/schemas/text/icons/index.ts` | typescript | 30 | 1.0 | completo |
 | 377 | `src/sisad-pdfme/ui/components/Designer/index.tsx` | tsx | 3755 | 141.6 | truncado 83.0 KB |
-| 378 | `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx` | tsx | 1530 | 54.6 | completo |
+| 378 | `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx` | tsx | 1532 | 54.8 | completo |
 | 379 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx` | tsx | 365 | 12.0 | completo |
-| 380 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx` | tsx | 111 | 4.6 | completo |
-| 381 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx` | tsx | 98 | 2.9 | completo |
+| 380 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx` | tsx | 111 | 4.7 | completo |
+| 381 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx` | tsx | 98 | 3.0 | completo |
 | 382 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx` | tsx | 36 | 1.0 | completo |
 | 383 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx` | tsx | 57 | 2.2 | completo |
 | 384 | `src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx` | tsx | 125 | 3.9 | completo |
@@ -956,7 +956,7 @@ prueba-plugin
 | 398 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx` | tsx | 250 | 9.3 | completo |
 | 399 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/contextHeader.ts` | typescript | 19 | 0.6 | completo |
 | 400 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx` | tsx | 250 | 11.0 | completo |
-| 401 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx` | tsx | 66 | 1.9 | completo |
+| 401 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx` | tsx | 76 | 2.2 | completo |
 | 402 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx` | tsx | 432 | 17.2 | completo |
 | 403 | `src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts` | typescript | 495 | 14.2 | completo |
 | 404 | `src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts` | typescript | 112 | 3.6 | completo |
@@ -977,7 +977,7 @@ prueba-plugin
 | 419 | `src/sisad-pdfme/ui/components/Designer/shared/recipientColor.ts` | typescript | 143 | 4.2 | completo |
 | 420 | `src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts` | typescript | 96 | 3.7 | completo |
 | 421 | `src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts` | typescript | 426 | 15.0 | completo |
-| 422 | `src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts` | typescript | 101 | 3.6 | truncado 1.5 KB |
+| 422 | `src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts` | typescript | 101 | 3.6 | omitido por presupuesto total |
 | 423 | `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionCapabilities.ts` | typescript | 115 | 3.8 | omitido por presupuesto total |
 | 424 | `src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts` | typescript | 90 | 2.5 | omitido por presupuesto total |
 | 425 | `src/sisad-pdfme/ui/components/Designer/shared/schemaVariableName.ts` | typescript | 49 | 1.5 | omitido por presupuesto total |
@@ -995,8 +995,8 @@ prueba-plugin
 | 437 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay.tsx` | tsx | 158 | 6.4 | omitido por presupuesto total |
 | 438 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx` | tsx | 271 | 8.6 | omitido por presupuesto total |
 | 439 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry.ts` | typescript | 97 | 3.3 | omitido por presupuesto total |
-| 440 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/GroupOptionFloatingAction.tsx` | tsx | 103 | 3.8 | omitido por presupuesto total |
-| 441 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx` | tsx | 204 | 7.5 | omitido por presupuesto total |
+| 440 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/GroupOptionFloatingAction.tsx` | tsx | 104 | 3.9 | omitido por presupuesto total |
+| 441 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx` | tsx | 204 | 7.6 | omitido por presupuesto total |
 | 442 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx` | tsx | 23 | 0.7 | omitido por presupuesto total |
 | 443 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState.ts` | typescript | 40 | 0.8 | omitido por presupuesto total |
 | 444 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/pointerGeometry.ts` | typescript | 133 | 3.7 | omitido por presupuesto total |
@@ -1005,23 +1005,23 @@ prueba-plugin
 | 447 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx` | tsx | 57 | 1.4 | omitido por presupuesto total |
 | 448 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx` | tsx | 217 | 9.3 | omitido por presupuesto total |
 | 449 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.ts` | typescript | 196 | 4.6 | omitido por presupuesto total |
-| 450 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx` | tsx | 42 | 1.5 | omitido por presupuesto total |
+| 450 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx` | tsx | 43 | 1.6 | omitido por presupuesto total |
 | 451 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/useFloatingToolbarPosition.ts` | typescript | 69 | 2.4 | omitido por presupuesto total |
 | 452 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx` | tsx | 67 | 3.2 | omitido por presupuesto total |
 | 453 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx` | tsx | 83 | 2.9 | omitido por presupuesto total |
-| 454 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel.tsx` | tsx | 99 | 3.6 | omitido por presupuesto total |
+| 454 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel.tsx` | tsx | 99 | 3.7 | omitido por presupuesto total |
 | 455 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx` | tsx | 55 | 1.5 | omitido por presupuesto total |
 | 456 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx` | tsx | 136 | 4.9 | omitido por presupuesto total |
 | 457 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailHeaderUtils.ts` | typescript | 85 | 4.2 | omitido por presupuesto total |
 | 458 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts` | typescript | 430 | 13.5 | omitido por presupuesto total |
-| 459 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx` | tsx | 177 | 6.0 | omitido por presupuesto total |
+| 459 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx` | tsx | 177 | 6.1 | omitido por presupuesto total |
 | 460 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts` | typescript | 405 | 12.4 | omitido por presupuesto total |
 | 461 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx` | tsx | 417 | 12.9 | omitido por presupuesto total |
 | 462 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx` | tsx | 63 | 2.2 | omitido por presupuesto total |
 | 463 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx` | tsx | 141 | 5.5 | omitido por presupuesto total |
 | 464 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.tsx` | tsx | 108 | 3.7 | omitido por presupuesto total |
 | 465 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorContracts.ts` | typescript | 366 | 8.2 | omitido por presupuesto total |
-| 466 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives.tsx` | tsx | 217 | 7.1 | omitido por presupuesto total |
+| 466 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives.tsx` | tsx | 217 | 7.2 | omitido por presupuesto total |
 | 467 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts` | typescript | 18 | 0.8 | omitido por presupuesto total |
 | 468 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx` | tsx | 485 | 22.5 | omitido por presupuesto total |
 | 469 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared.tsx` | tsx | 146 | 4.6 | omitido por presupuesto total |
@@ -1041,18 +1041,18 @@ prueba-plugin
 ## Resumen de exclusiones
 
 - **test omitido:** 885
-- **extensión no incluida:** 289
+- **extensión no incluida:** 303
 - **directorio ignorado: dependencia/build/salida generada:** 7
 - **json de datos omitido en perfil react:** 3
 - **generado detectado por contenido:** 2
 - **archivo binario/minificado/lock ignorado:** 1
 - **minificado detectado por contenido:** 1
-- **omitidos por presupuesto total:** 59
+- **omitidos por presupuesto total:** 60
 
 ## Totales
 
-- **KB originales candidatos:** `3135.4`
-- **KB incluidos en contenido:** `2500.0`
+- **KB originales candidatos:** `3136.5`
+- **KB incluidos en contenido:** `2499.1`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -73472,9 +73472,9 @@ export default TemplateEditor;
 ### 0378 — `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx`
 
 - **Lenguaje:** `tsx`
-- **Líneas:** `1530`
-- **Tamaño original:** `54.6 KB`
-- **SHA1 corto:** `9ca7985ea2`
+- **Líneas:** `1532`
+- **Tamaño original:** `54.8 KB`
+- **SHA1 corto:** `ba1cc7defd`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export type/class: CatalogViewMode`, `export type/class: CatalogQuickFilter`, `export type/class: CatalogCapability`, `export type/class: LeftSidebarProps`, `component/const: SidebarButtons`, `component/const: Draggable`, `component/const: SidebarShell`, `component/const: LeftSidebar`
 
@@ -73944,49 +73944,51 @@ const SidebarShell = ({
   style?: React.CSSProperties;
   children: React.ReactNode;
 }) => (
-  <div
-    className={mergeClassNames(
-      `${DESIGNER_CLASSNAME}left-sidebar-shell`,
-      `${DESIGNER_CLASSNAME}sidebar-surface`,
-      'flex h-full min-h-0 flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white/95 shadow-sm',
-    )}
-    style={style}
-  >
-    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-header`, 'flex items-start justify-between gap-3 border-b border-slate-200/70 px-4 py-3')}>
-      <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-kicker`, 'text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500')}>Diseñador</span>
-      <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-title`, 'flex min-w-0 flex-wrap items-center gap-2 text-sm font-semibold text-slate-900')}>
-        <span>Campos</span>
-        {activeRecipientLabel ? (
-          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-recipient`, 'inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs text-slate-600')}>
-            {activeRecipientLabel}
-          </span>
-        ) : null}
-        {activeRecipientColor ? (
-          <span
-            aria-label={`Color del destinatario activo ${activeRecipientColor}`}
-            title={`Color del destinatario activo: ${activeRecipientColor}`}
-            className={`${DESIGNER_CLASSNAME}left-sidebar-active-recipient-dot`}
-            style={{ '--active-recipient-color': activeRecipientColor } as React.CSSProperties}
-          />
-        ) : null}
-      </span>
-    </div>
-    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-control-band`, 'space-y-2.5 border-b border-slate-200/70 px-4 py-3')}>
-      <LeftSidebarTabs
-        tabs={tabs}
-        activeTab={activeTab}
-        onChangeTab={onChangeTab}
-        renderTabIcon={renderTabIcon}
-      />
-      {searchNode ? (
-        <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-search-wrap`, 'space-y-3')}>{searchNode}</div>
-      ) : null}
-    </div>
     <div
-      className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-main`, 'min-h-0 flex-1 overflow-y-auto px-4 py-2.5')}
+      className={mergeClassNames(
+        `${DESIGNER_CLASSNAME}left-sidebar-shell`,
+        `${DESIGNER_CLASSNAME}sidebar-surface`,
+        'flex h-full min-h-0 flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white/95 shadow-sm',
+      )}
+      style={style}
     >
-      {children}
-    </div>
+      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-header`, 'flex items-start justify-between gap-2 border-b border-slate-200/70 px-3.5 py-2.5')}>
+        <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-kicker`, 'text-[10px] font-medium uppercase tracking-[0.18em] text-slate-500')}>
+          Diseñador
+        </span>
+        <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-title`, 'flex min-w-0 flex-wrap items-center gap-1.5 text-[0.78rem] font-semibold text-slate-900')}>
+          <span>Campos</span>
+          {activeRecipientLabel ? (
+            <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-recipient`, 'inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-1.5 py-0.5 text-[11px] text-slate-600')}>
+              {activeRecipientLabel}
+            </span>
+          ) : null}
+          {activeRecipientColor ? (
+            <span
+              aria-label={`Color del destinatario activo ${activeRecipientColor}`}
+              title={`Color del destinatario activo: ${activeRecipientColor}`}
+              className={`${DESIGNER_CLASSNAME}left-sidebar-active-recipient-dot`}
+              style={{ '--active-recipient-color': activeRecipientColor } as React.CSSProperties}
+            />
+          ) : null}
+        </span>
+      </div>
+      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-control-band`, 'space-y-2 border-b border-slate-200/70 px-3.5 py-2.5')}>
+        <LeftSidebarTabs
+          tabs={tabs}
+          activeTab={activeTab}
+          onChangeTab={onChangeTab}
+          renderTabIcon={renderTabIcon}
+        />
+        {searchNode ? (
+          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-search-wrap`, 'space-y-2.5')}>{searchNode}</div>
+        ) : null}
+      </div>
+      <div
+        className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-main`, 'min-h-0 flex-1 overflow-y-auto px-3.5 py-2.5')}
+      >
+        {children}
+      </div>
   </div>
 );
 
@@ -74543,7 +74545,7 @@ const LeftSidebar = ({
           <div
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap',
-              'relative rounded-2xl border border-slate-200/70 bg-white/90 p-2 shadow-sm transition',
+              'relative rounded-2xl border border-slate-200/70 bg-white/90 p-1.5 shadow-sm transition',
             )}
             style={activeRecipientWrapStyle || activeRecipientStyles}
           >
@@ -74592,7 +74594,7 @@ const LeftSidebar = ({
                 }
               />
               <span className={mergeClassNames(`${DESIGNER_CLASSNAME}plugin-btn-label`, 'min-w-0 flex-1 text-left')}>
-                <span className={mergeClassNames(DESIGNER_CLASSNAME + 'plugin-btn-label-title', 'block truncate text-sm font-medium text-slate-800')}>
+                <span className={mergeClassNames(DESIGNER_CLASSNAME + 'plugin-btn-label-title', 'block truncate text-[0.72rem] font-medium text-slate-800')}>
                   {highlightTerm(displayLabel, searchTerms)}
                 </span>
               </span>
@@ -74607,7 +74609,7 @@ const LeftSidebar = ({
               aria-label="Marcar favorito"
               className={mergeClassNames(
                 DESIGNER_CLASSNAME + 'plugin-favorite-toggle',
-                'absolute right-2 top-2 inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-200 bg-white text-[11px] text-slate-400 shadow-sm transition',
+                'absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-slate-200 bg-white text-[10px] text-slate-400 shadow-sm transition',
               )}
               data-active={isFavorite ? 'true' : 'false'}
               onClick={(e) => {
@@ -74656,7 +74658,7 @@ const LeftSidebar = ({
           <div
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap',
-              'relative rounded-2xl border border-slate-200/70 bg-white/90 p-2 shadow-sm transition',
+              'relative rounded-2xl border border-slate-200/70 bg-white/90 p-1.5 shadow-sm transition',
             )}
             style={activeRecipientWrapStyle || activeRecipientStyles}
           >
@@ -74719,7 +74721,7 @@ const LeftSidebar = ({
                 />
               </span>
               <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-item-copy`, 'min-w-0 flex-1 text-left')}>
-                <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-item-label`, 'block truncate text-sm font-medium text-slate-800')}>
+                <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-item-label`, 'block truncate text-[0.72rem] font-medium text-slate-800')}>
                   {definition.label}
                 </span>
               </span>
@@ -74773,7 +74775,7 @@ const LeftSidebar = ({
     : [];
 
   const searchNode = showSearchInput ? (
-    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-search-stack', 'space-y-3')}>
+    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-search-stack', 'space-y-2.5')}>
       <LeftSidebarSearch
         value={search}
         onChange={setSearch}
@@ -74785,7 +74787,7 @@ const LeftSidebar = ({
           parsedQuery.categories.size > 0 ||
           parsedQuery.types.size > 0 ||
           parsedQuery.tags.size > 0) ? (
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-2')}>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-1.5')}>
           {Array.from(parsedQuery.capabilities).map((cap) => (
             <Button key={`facet-cap-${cap}`} size="small" type="text">
               cap:{cap}
@@ -74811,7 +74813,7 @@ const LeftSidebar = ({
           </Button>
         </div>
       ) : null}
-      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-2')}>
+      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-1.5')}>
         <Button
           className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
           size="small"
@@ -74852,7 +74854,7 @@ const LeftSidebar = ({
         ) : null}
       </div>
       {SHOW_ADVANCED_CATALOG_CONTROLS ? (
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-2')}>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-1.5')}>
           {SUPPORTED_CAPABILITIES.map((capability) => {
             const isActive = activeCapabilities.has(capability);
             return (
@@ -74879,7 +74881,7 @@ const LeftSidebar = ({
         </div>
       ) : null}
       {SHOW_ADVANCED_CATALOG_CONTROLS && groupedPlugins.length > 0 ? (
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-2')}>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-1.5')}>
           {groupedPlugins.slice(0, 8).map(({ category, items }) => (
             <Button
               key={`cat-${category}`}
@@ -75396,8 +75398,8 @@ export default CustomFieldModal;
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `111`
-- **Tamaño original:** `4.6 KB`
-- **SHA1 corto:** `cae7bb2005`
+- **Tamaño original:** `4.7 KB`
+- **SHA1 corto:** `506a238fa1`
 - **Estado:** `completo`
 - **Símbolos detectados:** `component/const: LeftSidebarCustomPanel`
 
@@ -75436,19 +75438,19 @@ const LeftSidebarCustomPanel = ({
   <div
     className={mergeUniqueClassNames(
       `${DESIGNER_CLASSNAME}left-sidebar-custom`,
-      'rounded-2xl border border-slate-200/70 bg-slate-50/80 p-3 shadow-sm',
+      'rounded-[1.2rem] border border-slate-200/70 bg-slate-50/80 p-2.5 shadow-sm',
     )}
   >
-    <div className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-head`, 'flex items-start justify-between gap-3')}>
+    <div className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-head`, 'flex items-start justify-between gap-2.5')}>
       <div className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-head-copy`, 'min-w-0')}>
-        <strong className="block text-sm font-semibold tracking-tight text-slate-900">Campos personalizados</strong>
-        <span className="block text-xs text-slate-500">{definitions.length} disponibles</span>
+        <strong className="block text-[0.8rem] font-semibold tracking-tight text-slate-900">Campos personalizados</strong>
+        <span className="block text-[11px] text-slate-500">{definitions.length} disponibles</span>
       </div>
       <button
         type="button"
         className={mergeUniqueClassNames(
           `${DESIGNER_CLASSNAME}left-sidebar-custom-add`,
-          'inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-white text-lg font-semibold text-slate-700 shadow-sm transition',
+          'inline-flex h-7 w-7 items-center justify-center rounded-xl border border-slate-200 bg-white text-base font-semibold text-slate-700 shadow-sm transition',
           'hover:border-sky-200 hover:text-sky-700 hover:shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
         )}
         onClick={onOpenCreate}
@@ -75457,9 +75459,9 @@ const LeftSidebarCustomPanel = ({
         +
       </button>
     </div>
-    <div className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-list`, 'mt-3 space-y-1.5')}>
+    <div className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-list`, 'mt-2.5 space-y-[0.3125rem]')}>
       {definitions.length === 0 ? (
-        <span className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-empty`, 'block rounded-xl border border-dashed border-slate-200 bg-white px-3 py-4 text-sm text-slate-500')}>
+        <span className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-empty`, 'block rounded-xl border border-dashed border-slate-200 bg-white px-3 py-3.5 text-[0.8rem] text-slate-500')}>
           No hay campos personalizados
         </span>
       ) : (
@@ -75474,14 +75476,14 @@ const LeftSidebarCustomPanel = ({
       )}
     </div>
     {variant === 'panel' ? (
-      <div className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-preview`, 'mt-3 rounded-2xl border border-slate-200/70 bg-white p-2.5 shadow-sm')}>
+      <div className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-preview`, 'mt-2.5 rounded-2xl border border-slate-200/70 bg-white p-2.5 shadow-sm')}>
         {definitions.slice(0, 2).map((definition) => {
           const plugin = resolvePlugin(definition.pluginType);
           if (!plugin) return null;
 
           return (
             <Tooltip key={`${definition.id}-preview`} title={definition.label}>
-              <div className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-preview-item`, 'flex items-center gap-3 rounded-xl px-2 py-1.5')}>
+              <div className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-preview-item`, 'flex items-center gap-2.5 rounded-xl px-2 py-1.5')}>
                 <span
                   className={mergeUniqueClassNames(
                     `${DESIGNER_CLASSNAME}left-sidebar-custom-preview-icon`,
@@ -75502,7 +75504,7 @@ const LeftSidebarCustomPanel = ({
         <Button
           type="default"
           onClick={onOpenCreate}
-          className="mt-3 w-full rounded-xl border-slate-200 text-slate-700 shadow-none"
+          className="mt-3 h-8 w-full rounded-xl border-slate-200 text-[0.75rem] font-semibold text-slate-700 shadow-none"
         >
           Crear campo personalizado
         </Button>
@@ -75521,8 +75523,8 @@ export default LeftSidebarCustomPanel;
 
 - **Lenguaje:** `tsx`
 - **Líneas:** `98`
-- **Tamaño original:** `2.9 KB`
-- **SHA1 corto:** `d51afc2a79`
+- **Tamaño original:** `3.0 KB`
+- **SHA1 corto:** `2a9f4d5333`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export const: LeftSidebarGroup`, `export const: LeftSidebarEmptyState`
 
@@ -75556,12 +75558,12 @@ export const LeftSidebarGroup = ({
   const titleContent = (
     <>
       <span
-        className={`${DESIGNER_CLASSNAME}left-sidebar-group-title-label text-[11px] font-bold uppercase tracking-[0.12em]`}
+        className={`${DESIGNER_CLASSNAME}left-sidebar-group-title-label text-[9px] font-bold uppercase tracking-[0.04em]`}
       >
         {category}
       </span>
       <span
-        className={`${DESIGNER_CLASSNAME}left-sidebar-group-title-count inline-flex min-h-5 items-center rounded-full border border-slate-200 bg-slate-50 px-2 text-[11px] font-semibold text-slate-600`}
+        className={`${DESIGNER_CLASSNAME}left-sidebar-group-title-count inline-flex min-h-[1rem] items-center rounded-full border border-slate-200 bg-slate-50 px-1.5 text-[9px] font-semibold text-slate-600`}
       >
         {typeof count === 'number' ? count : items.length}
       </span>
@@ -75569,7 +75571,7 @@ export const LeftSidebarGroup = ({
   );
   const titleClassName = mergeUniqueClassNames(
     `${DESIGNER_CLASSNAME}left-sidebar-group-title`,
-    'flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2 text-left text-sm font-semibold text-slate-800 transition',
+    'flex w-full items-center justify-between gap-2 rounded-[0.9rem] px-2.5 py-1.5 text-left text-[0.66rem] font-semibold text-slate-800 transition',
     'hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
   );
 
@@ -75577,7 +75579,7 @@ export const LeftSidebarGroup = ({
     <section
       className={mergeUniqueClassNames(
         `${DESIGNER_CLASSNAME}left-sidebar-group`,
-        'rounded-2xl border border-slate-200/70 bg-white/92 p-2 shadow-sm',
+        'rounded-[1.2rem] border border-slate-200/70 bg-white/92 p-1.5 shadow-sm',
       )}
     >
       {collapsible ? (
@@ -75605,7 +75607,7 @@ export const LeftSidebarGroup = ({
       <div
         className={mergeUniqueClassNames(
           `${DESIGNER_CLASSNAME}left-sidebar-group-items`,
-          'mt-2 space-y-1.5',
+          'mt-1.5 space-y-[0.3125rem]',
         )}
         data-view-mode={viewMode}
         data-collapsed={collapsed ? 'true' : 'false'}
@@ -75634,7 +75636,7 @@ export const LeftSidebarEmptyState = ({ description }: LeftSidebarEmptyStateProp
 - **Lenguaje:** `tsx`
 - **Líneas:** `36`
 - **Tamaño original:** `1.0 KB`
-- **SHA1 corto:** `efd1b6c412`
+- **SHA1 corto:** `2cce49739d`
 - **Estado:** `completo`
 - **Símbolos detectados:** `component/const: LeftSidebarSearch`
 
@@ -75662,13 +75664,13 @@ const LeftSidebarSearch = ({
     size="small"
     allowClear
     placeholder="Buscar campos"
-    prefix={<Search size={14} />}
+    prefix={<Search size={13} />}
     value={value}
     onChange={(event) => onChange(event.target.value)}
     data-use-default-style={useDefaultStyles ? 'true' : 'false'}
     className={mergeUniqueClassNames(
       `${DESIGNER_CLASSNAME}left-sidebar-search`,
-      'rounded-xl border-slate-200 bg-white text-sm shadow-sm [&_.ant-input-affix-wrapper]:h-9 [&_.ant-input-affix-wrapper]:px-3',
+      'rounded-xl border-slate-200 bg-white text-[0.75rem] shadow-sm [&_.ant-input-affix-wrapper]:h-8 [&_.ant-input-affix-wrapper]:px-3 [&_.ant-input-affix-wrapper]:rounded-xl',
       className || '',
     )}
   />
@@ -75684,7 +75686,7 @@ export default LeftSidebarSearch;
 - **Lenguaje:** `tsx`
 - **Líneas:** `57`
 - **Tamaño original:** `2.2 KB`
-- **SHA1 corto:** `bd322a00e5`
+- **SHA1 corto:** `452d3cda53`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export type/class: LeftSidebarTab`, `export type/class: SidebarTabOption`, `component/const: LeftSidebarTabs`
 
@@ -75712,7 +75714,7 @@ const LeftSidebarTabs = ({
   <ul
     className={mergeUniqueClassNames(
       `${DESIGNER_CLASSNAME}left-sidebar-tablist`,
-      'flex items-stretch gap-1.5 overflow-x-auto rounded-2xl border border-slate-200/70 bg-slate-50/90 p-1 shadow-sm',
+      'flex items-stretch gap-1 overflow-x-auto rounded-2xl border border-slate-200/70 bg-slate-50/90 p-0.5 shadow-sm',
     )}
     role="tablist"
     aria-orientation="horizontal"
@@ -75728,7 +75730,7 @@ const LeftSidebarTabs = ({
           title={tab.label}
           className={mergeUniqueClassNames(
             `${DESIGNER_CLASSNAME}left-sidebar-tab-btn`,
-            'inline-flex min-w-0 items-center gap-2 rounded-xl border border-transparent px-2.5 py-1.5 text-sm font-semibold text-slate-600 transition',
+            'inline-flex min-w-0 items-center gap-1.5 rounded-xl border border-transparent px-2 py-[0.3125rem] text-[0.72rem] font-semibold text-slate-600 transition',
             'hover:border-slate-200 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
             activeTab === tab.id ? `${DESIGNER_CLASSNAME}left-sidebar-tab-btn-active` : '',
             activeTab === tab.id ? 'border-sky-200 bg-white text-sky-700 shadow-sm shadow-sky-100' : '',
@@ -79615,9 +79617,9 @@ export default DocumentsRail;
 ### 0401 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx`
 
 - **Lenguaje:** `tsx`
-- **Líneas:** `66`
-- **Tamaño original:** `1.9 KB`
-- **SHA1 corto:** `319538643d`
+- **Líneas:** `76`
+- **Tamaño original:** `2.2 KB`
+- **SHA1 corto:** `40814732b0`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export const: SIDEBAR_H_PADDING_PX`, `export const: SIDEBAR_V_PADDING_PX`, `export const: SIDEBAR_HEADER_HEIGHT`, `export const: SidebarFrame`, `export const: SidebarHeader`, `export const: SidebarBody`, `export const: SidebarFooter`
 
@@ -79637,6 +79639,9 @@ type SectionProps = React.HTMLAttributes<HTMLDivElement> & {
 type SidebarFrameProps = SectionProps & {
   className?: string;
 };
+type SidebarHeaderProps = SectionProps & {
+  stacked?: boolean;
+};
 
 export const SidebarFrame = ({ children, className, ...props }: SidebarFrameProps) => (
   <div
@@ -79652,17 +79657,24 @@ export const SidebarFrame = ({ children, className, ...props }: SidebarFrameProp
   </div>
 );
 
-export const SidebarHeader = ({ children, className, ...props }: SectionProps) => (
+export const SidebarHeader = ({ children, className, stacked = false, ...props }: SidebarHeaderProps) => (
   <div
     className={mergeClassNames(
       DESIGNER_CLASSNAME + 'right-sidebar-layout-header',
-      'flex flex-none items-center justify-between gap-3 border-b border-slate-200/70 px-4 py-3',
+      stacked
+        ? 'flex flex-none flex-col items-stretch justify-start gap-2 border-b border-slate-200/70 px-4 py-3'
+        : 'flex flex-none items-center justify-between gap-3 border-b border-slate-200/70 px-4 py-3',
       className,
     )}
     {...props}
   >
     {children}
-    <Divider className={DESIGNER_CLASSNAME + 'right-sidebar-layout-header-divider my-0 border-slate-200'} />
+    <Divider
+      className={mergeClassNames(
+        DESIGNER_CLASSNAME + 'right-sidebar-layout-header-divider my-0 border-slate-200',
+        stacked ? 'w-full' : '',
+      )}
+    />
   </div>
 );
 
@@ -83693,69 +83705,6 @@ export const pasteSchemasFromClipboard = (
 
 export const duplicateSchemas = (schemas: SchemaForUI[], context: SchemaClipboardContext): SchemaForUI[] =>
   pasteSchemasFromClipboard(copySchemasToClipboard(schemas), context);
-```
-
-<a id="file-0422"></a>
-
-### 0422 — `src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts`
-
-- **Lenguaje:** `typescript`
-- **Líneas:** `101`
-- **Tamaño original:** `3.6 KB`
-- **SHA1 corto:** `b599188951`
-- **Estado:** `truncado 1.5 KB`
-- **Símbolos detectados:** `export type/class: CollisionScopeFallback`, `export const: filterSchemasByCollisionScope`
-
-```typescript
-import type { SchemaForUI } from '@sisad-pdfme/common';
-
-type CollisionSchemaLike = Partial<SchemaForUI> & {
-  id?: string;
-  fileId?: string | null;
-  fileTemplateId?: string | null;
-  pageNumber?: number | null;
-  ownerRecipientId?: string | null;
-  ownerRecipientIds?: string[] | string | null;
-};
-
-export type CollisionScopeFallback = {
-  fileId?: string | null;
-  pageNumber?: number | null;
-  ownerRecipientId?: string | null;
-  ownerRecipientIds?: string[] | null;
-};
-
-const normalizeText = (value: unknown) =>
-  typeof value === 'string' && value.trim().length > 0 ? value.trim() : '';
-
-const normalizeNumber = (value: unknown) => {
-  if (typeof value === 'number' && Number.isFinite(value)) return value;
-  if (typeof value === 'string') {
-    const parsed = Number(value);
-    if (Number.isFinite(parsed)) return parsed;
-  }
-  return undefined;
-};
-
-const toRecipientIdList = (value: unknown): string[] => {
-  if (Array.isArray(value)) {
-    return value
-      .map((entry) => normalizeText(entry))
-      .filter((entry, inde
-
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 2263 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
-
-f (typeof schemaPageNumber === 'number' && schemaPageNumber !== referencePageNumber) return false;
-    }
-
-    const schemaOwnerIds = resolveSchemaOwnerRecipientIds(schema);
-    if (referenceOwnerIds.length > 0) {
-      return schemaOwnerIds.length > 0 && hasCommonRecipient(referenceOwnerIds, schemaOwnerIds);
-    }
-
-    return schemaOwnerIds.length === 0;
-  });
-};
 ```
 
 ---

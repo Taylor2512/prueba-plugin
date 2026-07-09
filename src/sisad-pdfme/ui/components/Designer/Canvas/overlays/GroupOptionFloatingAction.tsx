@@ -73,16 +73,17 @@ const GroupOptionFloatingAction = ({
 
   return (
     <div
-      className="sisad-pdfme-option-group-floating-action pointer-events-none absolute z-[201]"
+      className="sisad-pdfme-option-group-floating-action pointer-events-none absolute"
       style={{
         left: `${centerX}px`,
         top: `${topY}px`,
         transform: 'translateX(-50%)',
+        zIndex: 'calc(var(--z-overlay) + 1)',
       }}
     >
       <button
         type="button"
-        className="sisad-pdfme-option-group__add-button pointer-events-auto inline-flex h-[22px] w-[22px] select-none items-center justify-center rounded-[4px] border-[1.5px] border-[#4d00c8] bg-[#4d00c8] p-0 text-[16px] font-bold leading-none text-white shadow-[0_2px_6px_rgba(77,0,200,0.3)] transition-[box-shadow,background] duration-100 hover:bg-[#3b00a0]"
+        className="sisad-pdfme-option-group__add-button pointer-events-auto inline-flex h-5 w-5 select-none items-center justify-center rounded-[5px] border-[1.25px] border-[#4d00c8] bg-[#4d00c8] p-0 text-[14px] font-bold leading-none text-white shadow-[0_2px_6px_rgba(77,0,200,0.28)] transition-[box-shadow,background] duration-100 hover:bg-[#3b00a0]"
         data-role="group-add-option"
         data-schema-interactive-control="true"
         title={optionGroupType === 'radioGroup' ? 'Agregar opción al grupo' : 'Agregar casilla al grupo'}
