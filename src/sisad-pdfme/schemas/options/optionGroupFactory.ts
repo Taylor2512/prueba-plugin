@@ -100,8 +100,15 @@ export type OptionGroupUiRenderParams = {
   mode: 'designer' | 'form' | 'viewer';
   selectionMode: 'single' | 'multiple';
   invalid: boolean;
-  renderDesigner: () => HTMLElement;
+  renderDesigner?: () => HTMLElement;
   renderRuntime: () => HTMLElement;
+  /**
+   * Designer-only side effect run on every render: keeps the schema's
+   * width/height compacted to the option count (legacy/oversized groups shrink
+   * to fit their markers). Runs here because designer/form/viewer all share the
+   * same runtime markers and `renderDesigner` is intentionally not invoked.
+   */
+  syncDesignerGeometry?: () => void;
 };
 
 export type OptionGroupDefaultSchemaParams = {
@@ -251,6 +258,7 @@ export const renderOptionGroupUi = ({
   // a different (cyan designer-box) design — selection chrome (frame/handles/+)
   // is drawn by Moveable/Selecto on top, never inside the schema DOM.
   renderRuntime,
+  syncDesignerGeometry,
 }: OptionGroupUiRenderParams): void => {
   clearSchemaRoot(rootElement);
   applyOptionGroupRootRuntime({
@@ -260,6 +268,13 @@ export const renderOptionGroupUi = ({
     selectionMode,
   });
   rootElement.dataset.optionGroupInvalid = String(invalid);
+
+  // Compact the schema box to its option count in designer. This must live in
+  // the shared render path (not inside the ignored `renderDesigner`) so legacy
+  // oversized groups actually shrink to fit their markers.
+  if (isDesigner) {
+    syncDesignerGeometry?.();
+  }
 
   rootElement.appendChild(renderRuntime());
 };

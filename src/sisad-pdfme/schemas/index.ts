@@ -395,6 +395,13 @@ export {
   getDynamicHeightsForTable
 } from './tables/dynamicTemplate.js';
 
+// Compact designer geometry helpers for option-based groups (radio/checkbox),
+// so callers can size a group's width/height to its option count.
+export {
+  optionGroupDesignerWidthMM,
+  optionGroupDesignerHeightMM,
+} from './options/optionGroupLayout.js';
+
 export {
   createSvgStr,
   isEditable,

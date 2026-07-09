@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `docs`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-09T19:35:57.590Z`
+- **Fecha generación:** `2026-07-09T20:22:39.773Z`
 - **Extensiones incluidas:** `.md, .mdx`
 - **Archivos candidatos incluidos:** `234`
 - **Límite por archivo:** `120 KB`
@@ -549,7 +549,7 @@ prueba-plugin
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1485
+- **extensión no incluida:** 1486
 - **directorio ignorado: dependencia/build/salida generada:** 7
 
 ## Totales

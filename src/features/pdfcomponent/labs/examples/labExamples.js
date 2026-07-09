@@ -2,6 +2,7 @@
 // This file holds lab-specific data and wires it to the local lab builders.
 import { builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
 import { text, select, checkbox, signature, radioGroup, checkboxGroup } from '@sisad-pdfme/schemas'
+import { optionGroupDesignerWidthMM, optionGroupDesignerHeightMM } from '@sisad-pdfme/schemas'
 import {
   createSchema,
   createCommentAnchor,
@@ -88,15 +89,23 @@ const createCheckboxSchema = createSchemaFactory(checkbox.propPanel.defaultSchem
   height: 8,
 })
 
-const createRadioGroupSchema = createSchemaFactory(radioGroup.propPanel.defaultSchema, { x: 18, y: 84 }, {
-  width: 82,
-  height: 18,
-})
+// Option groups are marker-only in the designer: their box must hug the stacked
+// indicators and grow with the option count, not span a text-field width.
+const createOptionGroupFactory = (baseSchema, type, basePosition) => (overrides = {}) => {
+  const { position, x, y, options, width, height, ...rest } = overrides
+  const count = Array.isArray(options) ? options.length : 2
+  return createSchema(baseSchema, {
+    width: width ?? optionGroupDesignerWidthMM(type),
+    height: height ?? optionGroupDesignerHeightMM(type, count),
+    ...(options ? { options } : {}),
+    ...rest,
+    position: resolvePosition(basePosition, { position, x, y }),
+  })
+}
 
-const createCheckboxGroupSchema = createSchemaFactory(checkboxGroup.propPanel.defaultSchema, { x: 18, y: 108 }, {
-  width: 92,
-  height: 12,
-})
+const createRadioGroupSchema = createOptionGroupFactory(radioGroup.propPanel.defaultSchema, 'radioGroup', { x: 18, y: 84 })
+
+const createCheckboxGroupSchema = createOptionGroupFactory(checkboxGroup.propPanel.defaultSchema, 'checkboxGroup', { x: 18, y: 108 })
 
 const createSignatureSchema = createSchemaFactory(signature.propPanel.defaultSchema, { x: 18, y: 88 }, {
   width: 60,

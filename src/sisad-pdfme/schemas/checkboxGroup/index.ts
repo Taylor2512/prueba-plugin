@@ -248,11 +248,9 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
         mode,
         selectionMode: 'multiple',
         invalid: groupInvalid,
-        renderDesigner: () => {
-          // Sync legacy/oversized schemas to compact geometry
-          syncDesignerCheckboxGroupGeometry({ schema: cbSchema, options, rootElement, onChange });
-          return createDesignerCheckboxGroup({ options, selected });
-        },
+        // Sync legacy/oversized schemas to compact geometry (designer only).
+        syncDesignerGeometry: () => syncDesignerCheckboxGroupGeometry({ schema: cbSchema, options, rootElement, onChange }),
+        renderDesigner: () => createDesignerCheckboxGroup({ options, selected }),
         renderRuntime: () => createOptionGroupRuntime({
           options,
           selectionMode: 'multiple',

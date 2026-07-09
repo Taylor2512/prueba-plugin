@@ -74,7 +74,7 @@ const createSvgMarkup = (params: OptionIndicatorParams): string => {
         <circle cx="8" cy="8" r="4.1" fill="${innerTone}" stroke="${innerStroke}" stroke-width="0.9"/>
         ${
           checked
-            ? `<circle cx="8" cy="8" r="2.35" fill="${tone}"/>`
+            ? `<circle cx="8" cy="8" r="2.9" fill="${tone}"/>`
             : ''
         }
       </svg>
@@ -85,7 +85,7 @@ const createSvgMarkup = (params: OptionIndicatorParams): string => {
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" width="100%" height="100%" aria-hidden="true" focusable="false">
       <rect x="0.5" y="0.5" width="15" height="15" rx="3.5" fill="${outerFill}" stroke="${outerStroke}" stroke-width="1"/>
       <rect x="${coreX}" y="${coreY}" width="${coreSize}" height="${coreSize}" rx="1.5" fill="${innerTone}" stroke="${innerStroke}" stroke-width="0.85"/>
-      ${checked ? `<path d="M4.05 8.05 6.2 10.2 11.05 5.1" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>` : ''}
+      ${checked ? `<polyline points="4.05,8.05 6.2,10.2 11.05,5.1" fill="none" stroke="#ffffff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/>` : ''}
     </svg>
   `;
 };
@@ -93,7 +93,11 @@ const createSvgMarkup = (params: OptionIndicatorParams): string => {
 export const getOptionIndicatorAriaRole = (
   params: Pick<OptionIndicatorParams, 'mode' | 'shape' | 'readOnly' | 'disabled'>,
 ): string => {
-  if (params.mode === 'viewer' || params.mode === 'pdf') return 'presentation';
+  // The indicator itself is decorative outside interactive form controls: in
+  // designer the root/row owns selection, and viewer/pdf/readOnly are static.
+  // Only an interactive form control exposes a real checkbox/radio role.
+  if (params.mode === 'viewer' || params.mode === 'pdf' || params.mode === 'designer') return 'presentation';
+  if (params.readOnly || params.disabled) return 'presentation';
   return params.shape === 'circle' ? 'radio' : 'checkbox';
 };
 
@@ -181,9 +185,12 @@ export const createOptionIndicatorElement = (params: OptionIndicatorParams): HTM
     } else {
       const dot = document.createElement('span');
       dot.className = 'sisad-pdfme-option-indicator__dot';
+      // Dot fills roughly half the inner core so the selected radio reads clearly
+      // (the previous 0.18 ratio rendered a ~3px dot that looked almost empty).
+      const dotSize = Math.max(5, Math.round(size * 0.34));
       Object.assign(dot.style, {
-        width: `${Math.max(3, Math.round(size * 0.18))}px`,
-        height: `${Math.max(3, Math.round(size * 0.18))}px`,
+        width: `${dotSize}px`,
+        height: `${dotSize}px`,
         borderRadius: '999px',
         background: tone,
         boxShadow: '0 0 0 1px rgba(255,255,255,0.35)',

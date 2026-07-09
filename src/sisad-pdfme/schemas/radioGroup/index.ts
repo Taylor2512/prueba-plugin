@@ -180,25 +180,22 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
         mode,
         selectionMode: 'single',
         invalid: groupInvalid,
-        renderDesigner: () => {
-          syncOptionGroupDesignerGeometry({
-            schema: radioSchema,
-            options,
-            rootElement,
-            onChange,
-            layout: RADIO_GROUP_LAYOUT,
-            datasetKey: 'radioGroupGeometrySync',
-          });
-
-          return createDesignerOptionGroupEl(
-            options,
-            RADIO_GROUP_LAYOUT,
-            'circle',
-            new Set([selectedOptionId]),
-            'data-radio-group-option',
-            'Opción',
-          );
-        },
+        syncDesignerGeometry: () => syncOptionGroupDesignerGeometry({
+          schema: radioSchema,
+          options,
+          rootElement,
+          onChange,
+          layout: RADIO_GROUP_LAYOUT,
+          datasetKey: 'radioGroupGeometrySync',
+        }),
+        renderDesigner: () => createDesignerOptionGroupEl(
+          options,
+          RADIO_GROUP_LAYOUT,
+          'circle',
+          new Set([selectedOptionId]),
+          'data-radio-group-option',
+          'Opción',
+        ),
         renderRuntime: () => createOptionGroupRuntime({
           options,
           selectionMode: 'single',
