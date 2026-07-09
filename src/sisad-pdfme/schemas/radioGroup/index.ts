@@ -30,7 +30,6 @@ import {
   RADIO_GROUP_LAYOUT,
 } from '../options/optionGroupLayout.js';
 import {
-  syncOptionGroupDesignerGeometry,
   createDesignerOptionGroupEl,
   syncDesignerOptionGroupPatch,
   createOptionGroupRuntime,
@@ -180,14 +179,6 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
         mode,
         selectionMode: 'single',
         invalid: groupInvalid,
-        syncDesignerGeometry: () => syncOptionGroupDesignerGeometry({
-          schema: radioSchema,
-          options,
-          rootElement,
-          onChange,
-          layout: RADIO_GROUP_LAYOUT,
-          datasetKey: 'radioGroupGeometrySync',
-        }),
         renderDesigner: () => createDesignerOptionGroupEl(
           options,
           RADIO_GROUP_LAYOUT,

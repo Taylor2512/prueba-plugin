@@ -11,6 +11,13 @@ import { buildCheckboxToGroupPatch } from '../options/optionValueAdapter.js';
 
 const getCheckedIcon = (stroke = 'currentColor') => renderLucideIcon(SquareCheck, { stroke });
 
+// Designer double-click detection by click timing. Selecting the checkbox
+// re-renders (rebuilds its DOM) between the two physical clicks, so the native
+// `dblclick` never fires on a stable node. We compare `mouseup` timestamps in a
+// module map that survives re-renders. No timers involved.
+const CHECKBOX_DOUBLE_CLICK_MS = 450;
+const lastCheckboxMouseUpAt = new Map<string, number>();
+
 interface Checkbox extends Schema {
   groupId?: string;
   color: string;
@@ -80,10 +87,26 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
         onChange([{ key: 'content', value: checked ? 'false' : 'true' }]);
       });
     } else if (onChange && isDesigner && canToggle) {
-      wrapper.addEventListener('dblclick', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        onChange([{ key: 'content', value: checked ? 'false' : 'true' }]);
+      // Designer: single click keeps the root selected; double click (two mouseups
+      // within the threshold) toggles. mouseup, not dblclick, because selecting the
+      // schema rebuilds this DOM between the two clicks.
+      const clickKey = String(
+        (schema as { schemaUid?: string; id?: string; name?: string }).schemaUid
+        || (schema as { id?: string }).id
+        || schema.name
+        || 'checkbox',
+      );
+      wrapper.addEventListener('mouseup', (e) => {
+        const now = Date.now();
+        const prev = lastCheckboxMouseUpAt.get(clickKey) || 0;
+        if (now - prev <= CHECKBOX_DOUBLE_CLICK_MS) {
+          lastCheckboxMouseUpAt.delete(clickKey);
+          e.preventDefault();
+          e.stopPropagation();
+          onChange([{ key: 'content', value: checked ? 'false' : 'true' }]);
+          return;
+        }
+        lastCheckboxMouseUpAt.set(clickKey, now);
       });
     }
 

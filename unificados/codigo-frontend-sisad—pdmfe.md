@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `react`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-09T20:22:40.387Z`
+- **Fecha generación:** `2026-07-09T20:40:09.104Z`
 - **Extensiones incluidas:** `.js, .jsx, .ts, .tsx, .mjs, .cjs, .json`
 - **Archivos candidatos incluidos:** `483`
 - **Límite por archivo:** `90 KB`
@@ -581,10 +581,10 @@ prueba-plugin
 | 21 | `src/features/pdfcomponent/labs/builders/exampleTemplate.ts` | typescript | 199 | 5.9 | completo |
 | 22 | `src/features/pdfcomponent/labs/builders/schemaFactory.ts` | typescript | 91 | 2.3 | completo |
 | 23 | `src/features/pdfcomponent/labs/builders/schemaShowcase.ts` | typescript | 220 | 7.1 | completo |
-| 24 | `src/features/pdfcomponent/labs/examples/labExamples.js` | javascript | 885 | 29.0 | completo |
+| 24 | `src/features/pdfcomponent/labs/examples/labExamples.js` | javascript | 894 | 29.7 | completo |
 | 25 | `src/features/pdfcomponent/labs/export/buildExampleBundle.ts` | typescript | 78 | 2.9 | completo |
 | 26 | `src/features/pdfcomponent/labs/export/downloadExampleBundle.ts` | typescript | 25 | 1.1 | completo |
-| 27 | `_pw_dbg.mjs` | javascript | 17 | 1.1 | completo |
+| 27 | `_pw_dbg.mjs` | javascript | 16 | 1.3 | completo |
 | 28 | `.eslintrc.cjs` | javascript | 49 | 1.2 | completo |
 | 29 | `playwright.config.ts` | typescript | 27 | 0.7 | completo |
 | 30 | `test-script.js` | javascript | 5 | 0.3 | completo |
@@ -652,7 +652,7 @@ prueba-plugin
 | 92 | `src/sisad-pdfme/runtime/usePdfmeRuntimeInstance.ts` | typescript | 227 | 8.2 | completo |
 | 93 | `src/sisad-pdfme/schemas/constants.ts` | typescript | 2 | 0.1 | completo |
 | 94 | `src/sisad-pdfme/schemas/groupSchemaRender.ts` | typescript | 254 | 7.8 | completo |
-| 95 | `src/sisad-pdfme/schemas/index.ts` | typescript | 407 | 12.8 | completo |
+| 95 | `src/sisad-pdfme/schemas/index.ts` | typescript | 414 | 13.0 | completo |
 | 96 | `src/sisad-pdfme/schemas/modules.d.ts` | typescript | 32 | 0.9 | completo |
 | 97 | `src/sisad-pdfme/schemas/schemaBuilder.ts` | typescript | 167 | 5.2 | completo |
 | 98 | `src/sisad-pdfme/schemas/schemaFamilies.ts` | typescript | 364 | 11.8 | completo |
@@ -765,7 +765,7 @@ prueba-plugin
 | 205 | `src/sisad-pdfme/schemas/options/optionGroupFactory.ts` | typescript | 535 | 16.6 | completo |
 | 206 | `src/sisad-pdfme/schemas/options/optionGroupLayout.ts` | typescript | 76 | 2.7 | completo |
 | 207 | `src/sisad-pdfme/schemas/options/optionGroupPdfRender.ts` | typescript | 76 | 2.2 | completo |
-| 208 | `src/sisad-pdfme/schemas/options/optionGroupRenderer.ts` | typescript | 254 | 8.9 | completo |
+| 208 | `src/sisad-pdfme/schemas/options/optionGroupRenderer.ts` | typescript | 279 | 10.2 | completo |
 | 209 | `src/sisad-pdfme/schemas/options/optionIndicator.ts` | typescript | 213 | 8.2 | completo |
 | 210 | `src/sisad-pdfme/schemas/options/OptionListWidget.tsx` | tsx | 14 | 0.4 | completo |
 | 211 | `src/sisad-pdfme/schemas/options/optionModel.ts` | typescript | 76 | 2.2 | completo |
@@ -977,8 +977,8 @@ prueba-plugin
 | 417 | `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcutRegistry.ts` | typescript | 290 | 8.7 | completo |
 | 418 | `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts.ts` | typescript | 568 | 16.9 | completo |
 | 419 | `src/sisad-pdfme/ui/components/Designer/shared/objectGuards.ts` | typescript | 12 | 0.6 | completo |
-| 420 | `src/sisad-pdfme/ui/components/Designer/shared/passiveTouchListeners.ts` | typescript | 38 | 1.4 | completo |
-| 421 | `src/sisad-pdfme/ui/components/Designer/shared/recipientColor.ts` | typescript | 143 | 4.2 | truncado 1.8 KB |
+| 420 | `src/sisad-pdfme/ui/components/Designer/shared/passiveTouchListeners.ts` | typescript | 38 | 1.4 | omitido por presupuesto total |
+| 421 | `src/sisad-pdfme/ui/components/Designer/shared/recipientColor.ts` | typescript | 143 | 4.2 | omitido por presupuesto total |
 | 422 | `src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts` | typescript | 96 | 3.7 | omitido por presupuesto total |
 | 423 | `src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts` | typescript | 568 | 20.6 | omitido por presupuesto total |
 | 424 | `src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts` | typescript | 101 | 3.6 | omitido por presupuesto total |
@@ -993,13 +993,13 @@ prueba-plugin
 | 433 | `src/sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity.ts` | typescript | 81 | 2.2 | omitido por presupuesto total |
 | 434 | `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpButton.tsx` | tsx | 43 | 1.2 | omitido por presupuesto total |
 | 435 | `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpPanel.tsx` | tsx | 163 | 5.9 | omitido por presupuesto total |
-| 436 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx` | tsx | 242 | 8.7 | omitido por presupuesto total |
+| 436 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx` | tsx | 251 | 9.3 | omitido por presupuesto total |
 | 437 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.tsx` | tsx | 921 | 35.3 | omitido por presupuesto total |
 | 438 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx` | tsx | 141 | 5.0 | omitido por presupuesto total |
 | 439 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay.tsx` | tsx | 158 | 6.4 | omitido por presupuesto total |
 | 440 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx` | tsx | 271 | 8.6 | omitido por presupuesto total |
 | 441 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry.ts` | typescript | 97 | 3.3 | omitido por presupuesto total |
-| 442 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/GroupOptionFloatingAction.tsx` | tsx | 104 | 3.9 | omitido por presupuesto total |
+| 442 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/GroupOptionFloatingAction.tsx` | tsx | 104 | 4.0 | omitido por presupuesto total |
 | 443 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx` | tsx | 204 | 7.8 | omitido por presupuesto total |
 | 444 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx` | tsx | 23 | 0.7 | omitido por presupuesto total |
 | 445 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState.ts` | typescript | 40 | 0.8 | omitido por presupuesto total |
@@ -1007,7 +1007,7 @@ prueba-plugin
 | 447 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview.tsx` | tsx | 48 | 1.8 | omitido por presupuesto total |
 | 448 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx` | tsx | 49 | 1.5 | omitido por presupuesto total |
 | 449 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx` | tsx | 64 | 1.9 | omitido por presupuesto total |
-| 450 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx` | tsx | 217 | 9.3 | omitido por presupuesto total |
+| 450 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx` | tsx | 220 | 10.0 | omitido por presupuesto total |
 | 451 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.ts` | typescript | 178 | 4.2 | omitido por presupuesto total |
 | 452 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx` | tsx | 43 | 1.6 | omitido por presupuesto total |
 | 453 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/useFloatingToolbarPosition.ts` | typescript | 69 | 2.4 | omitido por presupuesto total |
@@ -1051,12 +1051,12 @@ prueba-plugin
 - **generado detectado por contenido:** 2
 - **archivo binario/minificado/lock ignorado:** 1
 - **minificado detectado por contenido:** 1
-- **omitidos por presupuesto total:** 62
+- **omitidos por presupuesto total:** 64
 
 ## Totales
 
-- **KB originales candidatos:** `3171.1`
-- **KB incluidos en contenido:** `2500.1`
+- **KB originales candidatos:** `3175.0`
+- **KB incluidos en contenido:** `2499.4`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -4803,9 +4803,9 @@ export const createSchemaShowcasePages = ({
 ### 0024 — `src/features/pdfcomponent/labs/examples/labExamples.js`
 
 - **Lenguaje:** `javascript`
-- **Líneas:** `885`
-- **Tamaño original:** `29.0 KB`
-- **SHA1 corto:** `02dfa5de74`
+- **Líneas:** `894`
+- **Tamaño original:** `29.7 KB`
+- **SHA1 corto:** `db53cd1797`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export const: getLabExampleDownloadFilename`, `export const: getLabExampleActions`, `export const: buildLabExampleDownloadBundle`, `export const: buildLabExampleDownloadHref`, `export const: getLabExamples`, `export const: getLabExampleById`, `export const: getLabExampleByPath`, `export const: LAB_EXAMPLES_COUNT`
 
@@ -4814,6 +4814,7 @@ export const createSchemaShowcasePages = ({
 // This file holds lab-specific data and wires it to the local lab builders.
 import { builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
 import { text, select, checkbox, signature, radioGroup, checkboxGroup } from '@sisad-pdfme/schemas'
+import { optionGroupDesignerWidthMM, optionGroupDesignerHeightMM } from '@sisad-pdfme/schemas'
 import {
   createSchema,
   createCommentAnchor,
@@ -4900,15 +4901,23 @@ const createCheckboxSchema = createSchemaFactory(checkbox.propPanel.defaultSchem
   height: 8,
 })
 
-const createRadioGroupSchema = createSchemaFactory(radioGroup.propPanel.defaultSchema, { x: 18, y: 84 }, {
-  width: 82,
-  height: 18,
-})
+// Option groups are marker-only in the designer: their box must hug the stacked
+// indicators and grow with the option count, not span a text-field width.
+const createOptionGroupFactory = (baseSchema, type, basePosition) => (overrides = {}) => {
+  const { position, x, y, options, width, height, ...rest } = overrides
+  const count = Array.isArray(options) ? options.length : 2
+  return createSchema(baseSchema, {
+    width: width ?? optionGroupDesignerWidthMM(type),
+    height: height ?? optionGroupDesignerHeightMM(type, count),
+    ...(options ? { options } : {}),
+    ...rest,
+    position: resolvePosition(basePosition, { position, x, y }),
+  })
+}
 
-const createCheckboxGroupSchema = createSchemaFactory(checkboxGroup.propPanel.defaultSchema, { x: 18, y: 108 }, {
-  width: 92,
-  height: 12,
-})
+const createRadioGroupSchema = createOptionGroupFactory(radioGroup.propPanel.defaultSchema, 'radioGroup', { x: 18, y: 84 })
+
+const createCheckboxGroupSchema = createOptionGroupFactory(checkboxGroup.propPanel.defaultSchema, 'checkboxGroup', { x: 18, y: 108 })
 
 const createSignatureSchema = createSchemaFactory(signature.propPanel.defaultSchema, { x: 18, y: 88 }, {
   width: 60,
@@ -5833,28 +5842,27 @@ export const downloadExampleBundle = async (
 ### 0027 — `_pw_dbg.mjs`
 
 - **Lenguaje:** `javascript`
-- **Líneas:** `17`
-- **Tamaño original:** `1.1 KB`
-- **SHA1 corto:** `e07ddbfb3b`
+- **Líneas:** `16`
+- **Tamaño original:** `1.3 KB`
+- **SHA1 corto:** `d7ed9ba0d0`
 - **Estado:** `completo`
 
 ```javascript
 import { chromium } from 'playwright';
-const URL = 'http://localhost:5174/lab/multi-document-routing';
-const browser = await chromium.launch();
-const page = await browser.newPage({ viewport: { width: 1600, height: 1000 } });
-await page.goto(URL, { waitUntil: 'networkidle', timeout: 60000 });
-await page.waitForSelector('.sisad-pdfme-ui-custom-selectable', { timeout: 30000 }).catch(() => {});
+const URL='http://localhost:5174/lab/multi-document-routing';
+const browser=await chromium.launch();
+const page=await browser.newPage({viewport:{width:1600,height:1000}});
+await page.goto(URL,{waitUntil:'networkidle',timeout:60000});
+await page.waitForSelector('.sisad-pdfme-ui-custom-selectable',{timeout:30000}).catch(()=>{});
 await page.waitForTimeout(2500);
-const measure = async () => page.$eval('[data-schema-type="radioGroup"]', el => { const r = el.getBoundingClientRect(); return { w: Math.round(r.width), h: Math.round(r.height) }; });
-console.log('BEFORE select:', JSON.stringify(await measure()));
-// click center of the radioGroup to select it
-const box = await page.$eval('[data-schema-type="radioGroup"]', el => { const r = el.getBoundingClientRect(); return { x: r.x + r.width/2, y: r.y + r.height/2 }; });
-await page.mouse.click(box.x, box.y);
-await page.waitForTimeout(2000);
-console.log('AFTER select:', JSON.stringify(await measure()));
-await page.waitForTimeout(1500);
-console.log('AFTER wait:', JSON.stringify(await measure()));
+const sel='.sisad-pdfme-ui-custom-selectable[data-schema-type="checkboxGroup"]';
+const m0=await page.$(`${sel} [data-option-id]`); const b0=await m0.boundingBox();
+await page.mouse.click(b0.x+b0.width/2, b0.y+b0.height/2); await page.waitForTimeout(1200);
+// what element is at opt_2's center now?
+const ms=await page.$$(`${sel} [data-option-id]`); const b1=await ms[1].boundingBox();
+const cx=b1.x+b1.width/2, cy=b1.y+b1.height/2;
+const info=await page.evaluate(({x,y})=>{ const el=document.elementFromPoint(x,y); const path=[]; let n=el; for(let i=0;i<5&&n;i++){ path.push(n.tagName+'.'+(n.className&&n.className.toString&&n.className.toString().split(' ')[0])+(n.dataset&&n.dataset.optionId?'[opt='+n.dataset.optionId+']':'')); n=n.parentElement;} return {top: path[0], path}; }, {x:cx,y:cy});
+console.log('elementFromPoint at opt_2 (selected):', JSON.stringify(info,null,1));
 await browser.close();
 ```
 
@@ -16283,9 +16291,9 @@ export const buildAddOptionButton = (color: string, title: string, dataAttr: str
 ### 0095 — `src/sisad-pdfme/schemas/index.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `407`
-- **Tamaño original:** `12.8 KB`
-- **SHA1 corto:** `7280e33ced`
+- **Líneas:** `414`
+- **Tamaño original:** `13.0 KB`
+- **SHA1 corto:** `f673b41789`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export const: registerFieldPlugin`, `export const: registerPlugins`, `export const: getSchemaPluginByType`, `export const: getBuiltInFields`, `export const: getSchemaDefinition`, `export const: getSchemaFamily`, `export const: generateUniqueSchemaName`, `export const: validateSchemaNameUniqueness`, `export const: createDefaultSchema`, `export const: changeSchemas`, `export const: createSchemaBuilder`
 
@@ -16686,6 +16694,13 @@ export type {
 export {
   getDynamicHeightsForTable
 } from './tables/dynamicTemplate.js';
+
+// Compact designer geometry helpers for option-based groups (radio/checkbox),
+// so callers can size a group's width/height to its option count.
+export {
+  optionGroupDesignerWidthMM,
+  optionGroupDesignerHeightMM,
+} from './options/optionGroupLayout.js';
 
 export {
   createSvgStr,
@@ -44378,9 +44393,9 @@ export default renderOptionGroupPdf;
 ### 0208 — `src/sisad-pdfme/schemas/options/optionGroupRenderer.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `254`
-- **Tamaño original:** `8.9 KB`
-- **SHA1 corto:** `c2a03b0100`
+- **Líneas:** `279`
+- **Tamaño original:** `10.2 KB`
+- **SHA1 corto:** `b534165f2f`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export type/class: OptionGroupRenderMode`, `export type/class: OptionGroupRuntimeParams`, `export const: createOptionGroupRuntime`
 
@@ -44399,6 +44414,14 @@ import {
 import { createOptionIndicatorElement } from './optionIndicator.js';
 
 export type OptionGroupRenderMode = 'designer' | 'form' | 'viewer';
+
+// Designer double-click detection by click timing. The native `dblclick` event
+// is unreliable here: selecting the group re-renders (rebuilds the option DOM)
+// between the two physical clicks, so the browser never fires `dblclick` on a
+// stable node. We instead compare click timestamps stored in a module-level map
+// keyed by group+option, which survives re-renders. No timers involved.
+const OPTION_DOUBLE_CLICK_MS = 450;
+const lastOptionClickAt = new Map<string, number>();
 
 export type OptionGroupRuntimeParams = {
   options: OptionItem[];
@@ -44460,6 +44483,11 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
   } = params;
 
   const isViewer = mode === 'viewer';
+  // Stable-ish key for this group so double-click timing survives re-renders.
+  const groupKey = (() => {
+    const s = schema as Record<string, unknown> | undefined;
+    return String((s?.schemaUid ?? s?.id ?? s?.name ?? groupName ?? 'option-group') || 'option-group');
+  })();
   const resolvedShowOptionLabels =
     showOptionLabels ?? (mode === 'designer' ? shouldShowOptionLabels(schema) : true);
   // Form toggles values on click. Designer only toggles values on double click
@@ -44624,10 +44652,22 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
     }
 
     if (rowsDesignerInteractive && typeof onChange === 'function') {
-      row.addEventListener('dblclick', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        commitSelection();
+      // Designer: a SINGLE click bubbles so the root schema stays selected; a
+      // DOUBLE click (two clicks within the threshold) toggles the value. Detected
+      // by timing rather than the native dblclick event (see note at top of file).
+      const clickKey = `${groupKey}:${opt.optionId}`;
+      row.addEventListener('click', (e) => {
+        const now = Date.now();
+        const prev = lastOptionClickAt.get(clickKey) || 0;
+        if (now - prev <= OPTION_DOUBLE_CLICK_MS) {
+          lastOptionClickAt.delete(clickKey);
+          e.preventDefault();
+          e.stopPropagation();
+          commitSelection();
+          return;
+        }
+        lastOptionClickAt.set(clickKey, now);
+        // Single click: let it bubble so Moveable/Selecto selects the root.
       });
     }
 
@@ -83575,140 +83615,6 @@ export const isSchemaRootElement = (element: Element | null | undefined): elemen
   if (!(element instanceof HTMLElement)) return false;
   return element.classList.contains(SELECTABLE_CLASSNAME) && element.hasAttribute('data-schema-id');
 };
-```
-
-<a id="file-0420"></a>
-
-### 0420 — `src/sisad-pdfme/ui/components/Designer/shared/passiveTouchListeners.ts`
-
-- **Lenguaje:** `typescript`
-- **Líneas:** `38`
-- **Tamaño original:** `1.4 KB`
-- **SHA1 corto:** `adc38840ef`
-- **Estado:** `completo`
-- **Símbolos detectados:** `export const: installPassiveTouchListenerGuard`
-
-```typescript
-const PASSIVE_EVENT_TYPES = new Set(['touchstart', 'touchmove', 'touchend', 'touchcancel', 'wheel']);
-
-let passiveTouchListenersInstalled = false;
-
-const isDesktopLikeEnvironment = () => {
-  if (typeof window === 'undefined' || typeof navigator === 'undefined') return false;
-  if (navigator.maxTouchPoints > 0) return false;
-  if (typeof window.matchMedia === 'function' && window.matchMedia('(pointer: coarse)').matches) return false;
-  return true;
-};
-
-export const installPassiveTouchListenerGuard = () => {
-  if (passiveTouchListenersInstalled || !isDesktopLikeEnvironment() || typeof EventTarget === 'undefined') {
-    return;
-  }
-
-  const originalAddEventListener = EventTarget.prototype.addEventListener;
-
-  EventTarget.prototype.addEventListener = function addEventListener(
-    type: string,
-    listener: EventListenerOrEventListenerObject | null,
-    options?: boolean | AddEventListenerOptions,
-  ) {
-    if (PASSIVE_EVENT_TYPES.has(type)) {
-      if (typeof options === 'boolean') {
-        options = { capture: options, passive: true };
-      } else if (options && options.passive !== true) {
-        options = { ...options, passive: true };
-      } else if (!options) {
-        options = { passive: true };
-      }
-    }
-
-    return originalAddEventListener.call(this, type, listener, options as AddEventListenerOptions | boolean | undefined);
-  };
-
-  passiveTouchListenersInstalled = true;
-};
-```
-
-<a id="file-0421"></a>
-
-### 0421 — `src/sisad-pdfme/ui/components/Designer/shared/recipientColor.ts`
-
-- **Lenguaje:** `typescript`
-- **Líneas:** `143`
-- **Tamaño original:** `4.2 KB`
-- **SHA1 corto:** `7c7e19f38c`
-- **Estado:** `truncado 1.8 KB`
-- **Símbolos detectados:** `export function: resolveRecipientColor`, `export function: resolveAllRecipientColors`, `export type/class: RecipientColorToken`, `export const: normalizeHexColor`
-
-```typescript
-const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
-
-export const normalizeHexColor = (rawColor: unknown) => {
-  const value = normalizeText(rawColor);
-  if (!value || value[0] !== '#') return null;
-
-  const shorthand = /^#([0-9a-fA-F]{3})$/;
-  const standard = /^#([0-9a-fA-F]{6})$/;
-  const alpha = /^#([0-9a-fA-F]{8})$/;
-
-  if (shorthand.test(value)) {
-    const match = value.match(shorthand);
-    if (!match) return null;
-    const hex = match[1];
-    return `#${hex
-      .split('')
-      .map((char) => `${char}${char}`)
-      .join('')
-      .toUpperCase()}`;
-  }
-
-  if (standard.test(value)) {
-    const match = value.match(standard);
-    return match ? `#${match[1].toUpperCase()}` : null;
-  }
-
-  if (alpha.test(value)) {
-    const match = value.match(alpha);
-    return match ? `#${match[1].slice(0, 6).toUpperCase()}` : null;
-  }
-
-  return null;
-};
-
-// ── Recipient color resolution ─────────────────────────────────────────────
-
-const DEFAULT_RECIPIENT_PALETTE: readonly string[] = [
-  '#2563EB',
-  '#DC2626',
-  '#16A34A',
-  '#D97706',
-  '#7C3AED',
-  '#0891B2',
-  '#DB2777',
-  '#65A30D',
-  '#EA580C',
-  '#0D9488',
-];
-
-const DEFAULT_FALLBACK_COLOR = '#6B7280';
-
-expo
-
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 2561 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
-
-  const explicit = normalizeHexColor(r.color);
-    if (explicit) {
-      return { recipientId: id, color: explicit, source: 'explicit' as const };
-    }
-
-    if (paletteIndex < availablePaletteSlots.length) {
-      const color = availablePaletteSlots[paletteIndex++];
-      return { recipientId: id, color, source: 'palette' as const };
-    }
-
-    return { recipientId: id, color: fallback, source: 'fallback' as const };
-  });
-}
 ```
 
 ---

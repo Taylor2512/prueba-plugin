@@ -10,6 +10,12 @@ export type OptionIndicatorParams = {
   size?: number;
   readOnly?: boolean;
   disabled?: boolean;
+  /**
+   * When true the indicator fills its container (square, driven by the row
+   * height) instead of a fixed `size`. Lets the group markers scale when the
+   * schema box is resized. Inner parts (core/dot) become percentage-based.
+   */
+  fill?: boolean;
 };
 
 const isHexColor = (value: string): boolean => /^#([0-9a-f]{3,4}|[0-9a-f]{6}|[0-9a-f]{8})$/i.test(value.trim());
@@ -129,22 +135,41 @@ export const createOptionIndicatorElement = (params: OptionIndicatorParams): HTM
     }
   }
 
-  Object.assign(el.style, {
-    width: `${size}px`,
-    height: `${size}px`,
-    minWidth: `${size}px`,
-    minHeight: `${size}px`,
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    position: 'relative',
-    boxSizing: 'border-box',
-    flexShrink: '0',
-    overflow: 'hidden',
-    pointerEvents: 'none',
-    opacity: params.disabled || params.readOnly ? '0.82' : '1',
-    transition: 'opacity 100ms ease, transform 100ms ease',
-  });
+  const fill = Boolean(params.fill);
+  Object.assign(el.style, fill
+    ? {
+        height: '100%',
+        width: 'auto',
+        aspectRatio: '1 / 1',
+        maxWidth: '100%',
+        maxHeight: '100%',
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        boxSizing: 'border-box',
+        flexShrink: '0',
+        overflow: 'hidden',
+        pointerEvents: 'none',
+        opacity: params.disabled || params.readOnly ? '0.82' : '1',
+        transition: 'opacity 100ms ease, transform 100ms ease',
+      }
+    : {
+        width: `${size}px`,
+        height: `${size}px`,
+        minWidth: `${size}px`,
+        minHeight: `${size}px`,
+        display: 'inline-flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        position: 'relative',
+        boxSizing: 'border-box',
+        flexShrink: '0',
+        overflow: 'hidden',
+        pointerEvents: 'none',
+        opacity: params.disabled || params.readOnly ? '0.82' : '1',
+        transition: 'opacity 100ms ease, transform 100ms ease',
+      });
 
   const outer = document.createElement('span');
   outer.className = 'sisad-pdfme-option-indicator__outer';
@@ -165,8 +190,8 @@ export const createOptionIndicatorElement = (params: OptionIndicatorParams): HTM
   const core = document.createElement('span');
   core.className = 'sisad-pdfme-option-indicator__core';
   Object.assign(core.style, {
-    width: `${Math.max(7, size - 6)}px`,
-    height: `${Math.max(7, size - 6)}px`,
+    width: fill ? '62%' : `${Math.max(7, size - 6)}px`,
+    height: fill ? '62%' : `${Math.max(7, size - 6)}px`,
     display: 'inline-flex',
     alignItems: 'center',
     justifyContent: 'center',
@@ -188,13 +213,21 @@ export const createOptionIndicatorElement = (params: OptionIndicatorParams): HTM
       // Dot fills roughly half the inner core so the selected radio reads clearly
       // (the previous 0.18 ratio rendered a ~3px dot that looked almost empty).
       const dotSize = Math.max(5, Math.round(size * 0.34));
-      Object.assign(dot.style, {
-        width: `${dotSize}px`,
-        height: `${dotSize}px`,
-        borderRadius: '999px',
-        background: tone,
-        boxShadow: '0 0 0 1px rgba(255,255,255,0.35)',
-      });
+      Object.assign(dot.style, fill
+        ? {
+            width: '52%',
+            height: '52%',
+            borderRadius: '999px',
+            background: tone,
+            boxShadow: '0 0 0 1px rgba(255,255,255,0.35)',
+          }
+        : {
+            width: `${dotSize}px`,
+            height: `${dotSize}px`,
+            borderRadius: '999px',
+            background: tone,
+            boxShadow: '0 0 0 1px rgba(255,255,255,0.35)',
+          });
       core.style.background = 'rgba(255, 255, 255, 0.94)';
       core.style.border = '1px solid rgba(148, 163, 184, 0.84)';
       core.innerHTML = '';

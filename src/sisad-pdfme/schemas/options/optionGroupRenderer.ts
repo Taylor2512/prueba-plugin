@@ -13,6 +13,14 @@ import { createOptionIndicatorElement } from './optionIndicator.js';
 
 export type OptionGroupRenderMode = 'designer' | 'form' | 'viewer';
 
+// Designer double-click detection by click timing. The native `dblclick` event
+// is unreliable here: selecting the group re-renders (rebuilds the option DOM)
+// between the two physical clicks, so the browser never fires `dblclick` on a
+// stable node. We instead compare click timestamps stored in a module-level map
+// keyed by group+option, which survives re-renders. No timers involved.
+const OPTION_DOUBLE_CLICK_MS = 450;
+const lastOptionClickAt = new Map<string, number>();
+
 export type OptionGroupRuntimeParams = {
   options: OptionItem[];
   selectionMode: 'single' | 'multiple';
@@ -73,6 +81,11 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
   } = params;
 
   const isViewer = mode === 'viewer';
+  // Stable-ish key for this group so double-click timing survives re-renders.
+  const groupKey = (() => {
+    const s = schema as Record<string, unknown> | undefined;
+    return String((s?.schemaUid ?? s?.id ?? s?.name ?? groupName ?? 'option-group') || 'option-group');
+  })();
   const resolvedShowOptionLabels =
     showOptionLabels ?? (mode === 'designer' ? shouldShowOptionLabels(schema) : true);
   // Form toggles values on click. Designer only toggles values on double click
@@ -110,6 +123,9 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
     padding: '0',
     overflow: 'visible',
     alignItems: orientation === 'horizontal' ? 'center' : 'flex-start',
+    // Fill the schema box so the markers scale when the group is resized.
+    width: '100%',
+    height: '100%',
   });
   applyOptionGroupBodyVariant(container, {
     showOptionLabels: resolvedShowOptionLabels,
@@ -152,28 +168,30 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
       row.setAttribute('aria-disabled', 'true');
       row.disabled = true;
     }
+    // Interactive rows must opt back INTO pointer events: the option-group root is
+    // pointer-events:none so Moveable/Selecto can grab the schema, but that makes
+    // the rows click-through too. Re-enabling here lets clicks land on the option
+    // (so single-click keeps the root selected and double-click toggles the value)
+    // while empty group areas still fall through to the root for selection/drag.
+    row.style.pointerEvents = rowsValueInteractive ? 'auto' : 'none';
+    // Rows split the box evenly so the markers scale with the group size (resize).
+    row.style.flex = '1 1 0';
+    row.style.minHeight = '0';
+    row.style.minWidth = '0';
+    row.style.alignItems = 'center';
 
-    const indicator = selectionMode === 'single'
-      ? createOptionIndicatorElement({
-        shape: 'circle',
-        checked: !!isSelected,
-        color,
-        ownerColor,
-        mode: mode ?? 'viewer',
-        size: 16,
-        readOnly: readOnly || isViewer,
-        disabled: !rowsValueInteractive,
-      })
-      : createOptionIndicatorElement({
-        shape: 'square',
-        checked: !!isSelected,
-        color,
-        ownerColor,
-        mode: mode ?? 'viewer',
-        size: 16,
-        readOnly: readOnly || isViewer,
-        disabled: !rowsValueInteractive,
-      });
+    const indicator = createOptionIndicatorElement({
+      shape: selectionMode === 'single' ? 'circle' : 'square',
+      checked: !!isSelected,
+      color,
+      ownerColor,
+      mode: mode ?? 'viewer',
+      size: 16,
+      // Scale with the group box so resizing the schema resizes every marker.
+      fill: true,
+      readOnly: readOnly || isViewer,
+      disabled: !rowsValueInteractive,
+    });
     indicator.classList.add('sisad-pdfme-option-group-indicator');
 
     row.appendChild(indicator);
@@ -237,10 +255,26 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
     }
 
     if (rowsDesignerInteractive && typeof onChange === 'function') {
-      row.addEventListener('dblclick', (e) => {
-        e.preventDefault();
-        e.stopPropagation();
-        commitSelection();
+      // Designer: a SINGLE click bubbles so the root schema stays selected; a
+      // DOUBLE click (two clicks within the threshold) toggles the value. Detected
+      // by timing rather than the native dblclick event (see note at top of file).
+      const clickKey = `${groupKey}:${opt.optionId}`;
+      // Use `mouseup` (not `click`/`dblclick`): selecting the group rebuilds the
+      // option DOM on mousedown, so the browser never fires `click`/`dblclick` on
+      // a stable node. `mouseup` fires reliably on each press; two within the
+      // threshold count as a double-click and toggle the value.
+      row.addEventListener('mouseup', (e) => {
+        const now = Date.now();
+        const prev = lastOptionClickAt.get(clickKey) || 0;
+        if (now - prev <= OPTION_DOUBLE_CLICK_MS) {
+          lastOptionClickAt.delete(clickKey);
+          e.preventDefault();
+          e.stopPropagation();
+          commitSelection();
+          return;
+        }
+        lastOptionClickAt.set(clickKey, now);
+        // Single press: no value change; the root stays selected.
       });
     }
 

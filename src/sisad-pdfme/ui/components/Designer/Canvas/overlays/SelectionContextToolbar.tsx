@@ -1,15 +1,11 @@
 import React from 'react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
-import {
-  buildSelectionToolbarModel,
-  type SelectionToolbarMode,
-} from './canvasContextMenuActions.js';
+import { Copy, Ellipsis, Trash2 } from 'lucide-react';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import type { InteractionState } from '../../shared/interactionState.js';
-import { Loader2 } from 'lucide-react';
-import { Ellipsis } from 'lucide-react';
-import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
 import { mergeClassNames } from '../../shared/className.js';
+import CanvasContextMenu from './CanvasContextMenu.js';
+import { resolveAnchoredFloatingSurfacePosition } from './floatingSurfaceGeometry.js';
 
 type SelectionContextToolbarProps = {
   position: { top: number; left: number; width: number; height: number } | null;
@@ -18,10 +14,13 @@ type SelectionContextToolbarProps = {
   activeSchemas: SchemaForUI[];
   interactionState: InteractionState;
   contextMenuOpen?: boolean;
-  toolbarMode?: SelectionToolbarMode;
-  defaultToolbarMode?: SelectionToolbarMode;
-  onToolbarModeChange?: (mode: SelectionToolbarMode) => void;
 };
+
+const getSchemaFlag = (schemas: SchemaForUI[], key: 'readOnly' | 'required' | 'hidden') =>
+  schemas.length > 0 && schemas.every((schema) => {
+    if (key === 'hidden') return (schema as SchemaForUI & { hidden?: boolean }).hidden === true;
+    return Boolean((schema as SchemaForUI & Record<string, unknown>)[key]);
+  });
 
 const SelectionContextToolbar = ({
   position,
@@ -30,155 +29,123 @@ const SelectionContextToolbar = ({
   activeSchemas,
   interactionState,
   contextMenuOpen = false,
-  toolbarMode,
-  defaultToolbarMode,
-  onToolbarModeChange,
 }: SelectionContextToolbarProps) => {
   const toolbarRef = React.useRef<HTMLDivElement | null>(null);
-  const { mode: toolbarDensityMode } = useResponsiveDensity(toolbarRef, {
-    comfortable: 340,
-    compact: 268,
-    mini: 214,
-  });
-  const [internalToolbarMode, setInternalToolbarMode] = React.useState<SelectionToolbarMode>(
-    defaultToolbarMode ?? (interactionState.selectionCount > 1 ? 'compact' : 'micro'),
-  );
-  const primarySchemaId = activeSchemas[0]?.id ?? '';
-  const toolbarSeed = defaultToolbarMode ?? (interactionState.selectionCount > 1 ? 'compact' : 'micro');
+  const [moreMenuOpen, setMoreMenuOpen] = React.useState(false);
 
   React.useEffect(() => {
-    setInternalToolbarMode(toolbarSeed);
-  }, [toolbarSeed, primarySchemaId]);
+    if (contextMenuOpen) setMoreMenuOpen(false);
+  }, [contextMenuOpen]);
 
-  const requestedToolbarMode = toolbarMode ?? internalToolbarMode;
-  const resolvedToolbarMode: SelectionToolbarMode =
-    toolbarDensityMode === 'mini'
-      ? 'micro'
-      : toolbarDensityMode === 'compact' && requestedToolbarMode === 'expanded'
-        ? 'compact'
-        : requestedToolbarMode;
-  const isExpanded = resolvedToolbarMode === 'expanded';
-  const isMicro = resolvedToolbarMode === 'micro';
-  const nextToolbarMode: SelectionToolbarMode = isMicro ? 'compact' : isExpanded ? 'compact' : 'expanded';
-  const toggleLabel = isMicro ? 'Compacto' : isExpanded ? 'Menos' : 'Expandir';
-
+  const canEditStructure = commands?.canEditStructure !== false;
+  const activeReadOnly = getSchemaFlag(activeSchemas, 'readOnly');
+  const activeRequired = getSchemaFlag(activeSchemas, 'required');
+  const activeHidden = getSchemaFlag(activeSchemas, 'hidden');
   const selectionCount = interactionState.selectionCount;
-  const toolbarModel = buildSelectionToolbarModel({
-    commands,
-    activeSchemas,
-    selectionCount,
-    interactionPhase: interactionState.phase,
-    mode: resolvedToolbarMode,
-  });
-  const miniPrimaryActions = isMicro ? toolbarModel.primaryActions.slice(0, 2) : toolbarModel.primaryActions;
-  const renderToolbarButton = (btn: (typeof toolbarModel.primaryActions)[number]) => (
-    <button
-      key={btn.id}
-      type="button"
-      title={btn.disabled && btn.disabledReason ? btn.disabledReason : btn.label}
-      aria-label={btn.label}
-      aria-pressed={btn.active ? 'true' : 'false'}
-      data-active={btn.active ? 'true' : 'false'}
-      data-critical={btn.critical ? 'true' : 'false'}
-      data-danger={btn.danger ? 'true' : 'false'}
-      data-loading={btn.loading ? 'true' : 'false'}
-      data-schema-interactive-control="true"
-      disabled={btn.disabled || !btn.onSelect || btn.loading}
-      aria-busy={btn.loading ? 'true' : 'false'}
-      onMouseDown={(event) => {
-        event.preventDefault();
-        event.stopPropagation();
-      }}
-      onClick={(event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        btn.onSelect?.();
-      }}
-      className="inline-flex min-w-0 items-center gap-1.5 rounded-full border border-slate-200 bg-white px-2.5 py-1 text-[11px] font-medium text-slate-700 shadow-sm transition hover:border-sky-200 hover:text-sky-700"
-    >
-      <span className="sisad-pdfme-ui-selection-context-toolbar-action-icon" aria-hidden="true">
-        {btn.loading ? <Loader2 size={14} className="sisad-pdfme-ui-selection-context-toolbar-spinner" /> : btn.icon}
-      </span>
-      <span className="sisad-pdfme-ui-selection-context-toolbar-action-label">{btn.label}</span>
-    </button>
+  const isMulti = selectionCount > 1;
+
+  const quickActions = React.useMemo(
+    () =>
+      [
+        commands?.deleteSelection
+          ? {
+              id: 'delete',
+              label: 'Eliminar',
+              danger: true,
+              onSelect: commands.deleteSelection,
+              disabled: !canEditStructure,
+            }
+          : null,
+        commands?.duplicateSelection
+          ? {
+              id: 'duplicate',
+              label: 'Duplicar',
+              onSelect: commands.duplicateSelection,
+              disabled: !canEditStructure,
+            }
+          : null,
+      ].filter((item): item is { id: string; label: string; danger?: boolean; onSelect: () => void; disabled?: boolean } => Boolean(item)),
+    [canEditStructure, commands],
   );
+
+  const openMoreMenu = React.useCallback(() => {
+    setMoreMenuOpen(true);
+  }, []);
 
   if (!position || !commands || !activeElements.length) return null;
   if (['editing', 'dragging', 'resizing', 'rotating'].includes(interactionState.phase)) return null;
   if (contextMenuOpen) return null;
 
-  return (
-    <div
-      ref={toolbarRef}
-      className="sisad-pdfme-ui-selection-context-toolbar rounded-2xl border border-slate-200/70 bg-white/95 p-1.5 shadow-md backdrop-blur"
-      role="toolbar"
-      aria-label="Barra contextual de edición"
-      data-schema-interactive-control="true"
-      data-selection-count={String(selectionCount)}
-      data-interaction-phase={interactionState.phase}
-      data-selection-kind={toolbarModel.kind}
-      data-toolbar-mode={resolvedToolbarMode}
-      data-toolbar-density={toolbarDensityMode}
-      style={{
-        top: `${position.top}px`,
-        left: `${position.left}px`,
-        width: isExpanded ? 'min(100%, 24rem)' : isMicro ? 'min(100%, 15rem)' : 'min(100%, 19rem)',
-      }}
-      >
-      <div className="sisad-pdfme-ui-selection-context-toolbar-summary flex flex-wrap items-center gap-1" aria-label="Resumen de selección">
-        {toolbarModel.summaryChips.map((chip, index) => (
-          <span
-            key={`summary-${chip}`}
-            className={mergeClassNames(
-              'sisad-pdfme-ui-selection-context-toolbar-chip inline-flex items-center rounded-full border px-2 py-0.5 text-[10.5px] font-medium',
-              index === 0 ? 'is-primary border-sky-200 bg-sky-50 text-sky-700' : 'border-slate-200 bg-slate-50 text-slate-600',
-            )}
-          >
-            {chip}
-          </span>
-        ))}
-        <button
-          type="button"
-          className="sisad-pdfme-ui-selection-context-toolbar-toggle inline-flex items-center rounded-full border border-slate-200 bg-white px-2 py-0.5 text-[10.5px] font-semibold text-slate-700 shadow-sm"
-          aria-label={toggleLabel}
-          aria-pressed={isExpanded ? 'true' : 'false'}
-          data-schema-interactive-control="true"
-          onMouseDown={(event) => {
-            event.preventDefault();
-            event.stopPropagation();
-          }}
-          onClick={(event) => {
-            event.preventDefault();
-            event.stopPropagation();
-            const nextMode = nextToolbarMode;
-            setInternalToolbarMode(nextMode);
-            onToolbarModeChange?.(nextMode);
-          }}
-        >
-          {toggleLabel}
-        </button>
-      </div>
-      {!isMicro && toolbarModel.stateChips.length > 0 ? (
-        <div className="sisad-pdfme-ui-selection-context-toolbar-state mt-1.5 flex flex-wrap gap-1" aria-label="Estado de la selección">
-          {toolbarModel.stateChips.map((chip) => (
-            <span
-              key={`state-${chip}`}
-              className="sisad-pdfme-ui-selection-context-toolbar-state-chip inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[10.5px] text-slate-500"
-            >
-              {chip}
-            </span>
-          ))}
-        </div>
-      ) : null}
+  const menuPosition = resolveAnchoredFloatingSurfacePosition(
+    { x: position.left, y: position.top + position.height + 8 },
+    { width: 260, height: isMulti ? 280 : 248 },
+    { width: typeof window !== 'undefined' ? window.innerWidth : 0, height: typeof window !== 'undefined' ? window.innerHeight : 0 },
+  );
 
-      <div className="sisad-pdfme-ui-selection-context-toolbar-actions mt-1.5 flex flex-wrap gap-1" role="group" aria-label="Acciones rápidas">
-        {miniPrimaryActions.map(renderToolbarButton)}
-        {isMicro ? (
+  return (
+    <>
+      <div
+        ref={toolbarRef}
+        className="sisad-pdfme-ui-selection-context-toolbar rounded-2xl border border-slate-200/80 bg-white/95 p-1 shadow-[0_14px_34px_rgba(15,23,42,0.12)] backdrop-blur-md"
+        role="toolbar"
+        aria-label="Barra contextual de edición"
+        data-schema-interactive-control="true"
+        data-overlay-interactive="true"
+        data-selection-count={String(selectionCount)}
+        data-interaction-phase={interactionState.phase}
+        data-selection-kind={isMulti ? 'multi' : 'single'}
+        style={{
+          top: `${position.top}px`,
+          left: `${position.left}px`,
+          width: 'min(100%, 15.75rem)',
+        }}
+      >
+        <div className="flex items-center gap-1">
+          {quickActions.map((btn) => (
+            <button
+              key={btn.id}
+              type="button"
+              title={btn.label}
+              aria-label={btn.label}
+              data-active="false"
+              data-danger={btn.danger ? 'true' : 'false'}
+              data-schema-interactive-control="true"
+              disabled={btn.disabled}
+              onMouseDown={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+              }}
+              onClick={(event) => {
+                event.preventDefault();
+                event.stopPropagation();
+                btn.onSelect?.();
+              }}
+              className={mergeClassNames(
+                'inline-flex min-h-8 min-w-0 items-center gap-1.5 rounded-xl border border-slate-200/80 bg-white/90 px-2.5 py-1 text-[11.5px] font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200',
+                btn.danger && 'text-red-600 hover:border-red-200 hover:bg-red-50 hover:text-red-700',
+                btn.disabled && 'cursor-not-allowed opacity-50',
+              )}
+            >
+              <span
+                className={mergeClassNames(
+                  'inline-flex h-[18px] w-[18px] flex-none items-center justify-center rounded-md bg-slate-50/90 text-slate-500',
+                  btn.danger && 'text-red-500',
+                )}
+                aria-hidden="true"
+              >
+                {btn.id === 'delete' ? <Trash2 size={14} /> : <Copy size={14} />}
+              </span>
+              <span className="truncate">{btn.label}</span>
+            </button>
+          ))}
           <button
             type="button"
             title="Más acciones"
             aria-label="Más acciones"
+            aria-haspopup="menu"
+            aria-expanded={moreMenuOpen ? 'true' : 'false'}
             data-schema-interactive-control="true"
+            data-overlay-interactive="true"
             onMouseDown={(event) => {
               event.preventDefault();
               event.stopPropagation();
@@ -186,31 +153,32 @@ const SelectionContextToolbar = ({
             onClick={(event) => {
               event.preventDefault();
               event.stopPropagation();
-              const nextMode: SelectionToolbarMode = 'compact';
-              setInternalToolbarMode(nextMode);
-              onToolbarModeChange?.(nextMode);
+              openMoreMenu();
             }}
+            className="inline-flex min-h-8 min-w-0 items-center gap-1.5 rounded-xl border border-slate-200/80 bg-white/90 px-2.5 py-1 text-[11.5px] font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200"
           >
-            <span className="sisad-pdfme-ui-selection-context-toolbar-action-icon inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600" aria-hidden="true">
+            <span className="inline-flex h-[18px] w-[18px] flex-none items-center justify-center rounded-md bg-slate-50/90 text-slate-500" aria-hidden="true">
               <Ellipsis size={14} />
             </span>
-            <span className="sisad-pdfme-ui-selection-context-toolbar-action-label text-[10.5px] font-medium text-slate-700">Más</span>
+            <span>Más</span>
           </button>
-        ) : null}
-      </div>
-      {isExpanded && toolbarModel.secondarySections.length > 0 ? (
-        <div className="sisad-pdfme-ui-selection-context-toolbar-sections mt-1.5 space-y-1.5" aria-label="Acciones avanzadas">
-          {toolbarModel.secondarySections.map((section) => (
-            <section key={section.id} className="sisad-pdfme-ui-selection-context-toolbar-section rounded-xl border border-slate-200 bg-slate-50 p-1.5">
-              <div className="sisad-pdfme-ui-selection-context-toolbar-section-label mb-0.5 text-[10.5px] font-semibold uppercase tracking-wide text-slate-500">{section.label}</div>
-              <div className="sisad-pdfme-ui-selection-context-toolbar-section-actions flex flex-wrap gap-1" role="group" aria-label={section.label}>
-                {section.items.map(renderToolbarButton)}
-              </div>
-            </section>
-          ))}
         </div>
-      ) : null}
-    </div>
+      </div>
+      <CanvasContextMenu
+        open={moreMenuOpen}
+        mode={isMulti ? 'multi' : 'single'}
+        position={moreMenuOpen ? { x: menuPosition.left, y: menuPosition.top } : null}
+        commands={commands}
+        hasClipboardData={false}
+        selectionCount={selectionCount}
+        selectionSchemas={activeSchemas}
+        activeReadOnly={activeReadOnly}
+        activeRequired={activeRequired}
+        activeHidden={activeHidden}
+        canEditStructure={canEditStructure}
+        onClose={() => setMoreMenuOpen(false)}
+      />
+    </>
   );
 };
 

@@ -4,7 +4,6 @@ import { createSchemaPlugin, renderLucideIcon } from '../schemaBuilder.js';
 import { SquareCheck } from 'lucide-react';
 import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
 import {
-  syncOptionGroupDesignerGeometry,
   createDesignerOptionGroupEl,
   syncDesignerOptionGroupPatch,
   createOptionGroupRuntime,
@@ -130,27 +129,6 @@ const createDesignerCheckboxGroup = ({
   return wrapper;
 };
 
-const syncDesignerCheckboxGroupGeometry = ({
-  schema,
-  options,
-  rootElement,
-  onChange,
-}: {
-  schema: CheckboxGroupSchema;
-  options: CheckboxOption[];
-  rootElement: HTMLElement;
-  onChange?: (arg: unknown) => void;
-}) => {
-  syncOptionGroupDesignerGeometry({
-    schema,
-    options,
-    rootElement,
-    onChange,
-    layout: CHECKBOX_GROUP_LAYOUT,
-    datasetKey: 'cbGroupGeometrySync',
-  });
-};
-
 // ─── PropPanel options editor ─────────────────────────────────────────────────
 
 const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
@@ -248,8 +226,6 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
         mode,
         selectionMode: 'multiple',
         invalid: groupInvalid,
-        // Sync legacy/oversized schemas to compact geometry (designer only).
-        syncDesignerGeometry: () => syncDesignerCheckboxGroupGeometry({ schema: cbSchema, options, rootElement, onChange }),
         renderDesigner: () => createDesignerCheckboxGroup({ options, selected }),
         renderRuntime: () => createOptionGroupRuntime({
           options,

@@ -83,7 +83,7 @@ const GroupOptionFloatingAction = ({
     >
       <button
         type="button"
-        className="sisad-pdfme-option-group__add-button pointer-events-auto inline-flex h-5 w-5 select-none items-center justify-center rounded-[5px] border-[1.25px] border-[#4d00c8] bg-[#4d00c8] p-0 text-[14px] font-bold leading-none text-white shadow-[0_2px_6px_rgba(77,0,200,0.28)] transition-[box-shadow,background] duration-100 hover:bg-[#3b00a0]"
+        className="sisad-pdfme-option-group__add-button pointer-events-auto inline-flex h-6 w-6 select-none items-center justify-center rounded-[10px] border border-[#5a16d7] bg-[#4d00c8] p-0 text-[13px] font-bold leading-none text-white shadow-[0_8px_18px_rgba(77,0,200,0.28)] transition-[background-color,box-shadow,transform] duration-150 hover:bg-[#3b00a0] hover:shadow-[0_10px_22px_rgba(77,0,200,0.34)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-violet-200 focus-visible:ring-offset-2 focus-visible:ring-offset-white"
         data-role="group-add-option"
         data-schema-interactive-control="true"
         title={optionGroupType === 'radioGroup' ? 'Agregar opción al grupo' : 'Agregar casilla al grupo'}
