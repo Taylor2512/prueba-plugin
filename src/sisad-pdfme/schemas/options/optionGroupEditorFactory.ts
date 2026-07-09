@@ -1,4 +1,5 @@
 import { clearSchemaRoot } from '../shared/schemaDom.js';
+import { createOptionIndicatorElement, type OptionIndicatorShape } from './optionIndicator.js';
 
 export type OptionGroupEditorItem = {
   optionId: string;
@@ -18,6 +19,15 @@ export type OptionGroupEditorConfig<TOption extends OptionGroupEditorItem> = {
   createRemovedOptions: (currentOptions: TOption[], index: number) => TOption[];
   createAddedOptions: (currentOptions: TOption[], label: string) => TOption[];
   onCommitOptions: (nextOptions: TOption[]) => void;
+};
+
+export type CreateOptionGroupOptionsEditorConfig<TOption extends OptionGroupEditorItem> = Omit<
+  OptionGroupEditorConfig<TOption>,
+  'createIndicator'
+> & {
+  indicatorShape: OptionIndicatorShape;
+  indicatorColor: string;
+  indicatorSize?: number;
 };
 
 const normalizeText = (value: unknown): string => String(value || '').trim();
@@ -119,3 +129,20 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
 
   return { render };
 };
+
+export const createOptionGroupOptionsEditor = <TOption extends OptionGroupEditorItem>(
+  config: CreateOptionGroupOptionsEditorConfig<TOption>,
+): { render: () => void } =>
+  createOptionGroupEditor<TOption>({
+    ...config,
+    createIndicator: (_option, index) =>
+      createOptionIndicatorElement({
+        shape: config.indicatorShape,
+        checked: false,
+        color: config.indicatorColor,
+        mode: 'designer',
+        size: config.indicatorSize ?? (config.indicatorShape === 'circle' ? 18 : 16),
+        readOnly: true,
+        disabled: true,
+      }),
+  });

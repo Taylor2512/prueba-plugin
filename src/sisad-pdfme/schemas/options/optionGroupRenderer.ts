@@ -4,13 +4,12 @@ import {
   buildGroupContainer,
   buildGroupLabel,
   buildOptionRow,
-  buildCheckboxIndicator,
-  buildRadioIndicator,
   buildOptionLabel,
   applyOptionGroupBodyVariant,
   applyOptionGroupRowVariant,
   shouldShowOptionLabels,
 } from '../groupSchemaRender.js';
+import { createOptionIndicatorElement } from './optionIndicator.js';
 
 export type OptionGroupRenderMode = 'designer' | 'form' | 'viewer';
 
@@ -21,6 +20,7 @@ export type OptionGroupRuntimeParams = {
   selectedOptionIds?: string[];
   editable?: boolean;
   color?: string;
+  ownerColor?: string;
   orientation?: 'vertical' | 'horizontal';
   spacing?: number;
   groupName?: string;
@@ -57,6 +57,7 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
     selectedOptionIds,
     editable = false,
     color = '#1677ff',
+    ownerColor,
     orientation = 'vertical',
     spacing = 3,
     groupName,
@@ -74,12 +75,16 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
   const isViewer = mode === 'viewer';
   const resolvedShowOptionLabels =
     showOptionLabels ?? (mode === 'designer' ? shouldShowOptionLabels(schema) : true);
-  // Internal rows are non-interactive when the schema is read-only/locked or in
-  // viewer mode (Composite: options are children, never standalone schemas).
-  const rowsInteractive = editable && !readOnly && !isViewer;
+  // Form toggles values on click. Designer only toggles values on double click
+  // so a single click can still select the root schema wrapper.
+  const rowsInteractive = mode === 'form' && editable && !readOnly;
+  const rowsDesignerInteractive = mode === 'designer' && editable && !readOnly;
+  const rowsValueInteractive = rowsInteractive || rowsDesignerInteractive;
 
   const wrapper = buildGroupWrapper();
+  wrapper.classList.add('sisad-pdfme-option-group-wrapper');
   const container = buildGroupContainer({ color, gap: spacing, isHorizontal: orientation === 'horizontal' });
+  container.classList.add('sisad-pdfme-option-group-body');
 
   // Group-level a11y/state hooks (root data-schema-id stays on rootElement).
   wrapper.setAttribute('role', selectionMode === 'single' ? 'radiogroup' : 'group');
@@ -126,7 +131,7 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
     const row = buildOptionRow({
       color,
       isHorizontal: orientation === 'horizontal',
-      editable: rowsInteractive,
+      editable: rowsValueInteractive,
       role: selectionMode === 'single' ? 'radio' : 'checkbox',
       optionId: opt.optionId,
       dataAttr: selectionMode === 'single' ? 'data-radio-group-option' : 'data-checkbox-group-option',
@@ -143,14 +148,33 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
       row.setAttribute('title', optionAriaLabel);
     }
     applyOptionGroupRowVariant(row, { showOptionLabels: resolvedShowOptionLabels });
-    if (!rowsInteractive) {
+    if (mode === 'viewer' || mode === 'pdf' || readOnly || !rowsValueInteractive) {
       row.setAttribute('aria-disabled', 'true');
       row.disabled = true;
     }
 
     const indicator = selectionMode === 'single'
-      ? buildRadioIndicator(color, !!isSelected)
-      : buildCheckboxIndicator(color, !!isSelected);
+      ? createOptionIndicatorElement({
+        shape: 'circle',
+        checked: !!isSelected,
+        color,
+        ownerColor,
+        mode: mode ?? 'viewer',
+        size: 16,
+        readOnly: readOnly || isViewer,
+        disabled: !rowsValueInteractive,
+      })
+      : createOptionIndicatorElement({
+        shape: 'square',
+        checked: !!isSelected,
+        color,
+        ownerColor,
+        mode: mode ?? 'viewer',
+        size: 16,
+        readOnly: readOnly || isViewer,
+        disabled: !rowsValueInteractive,
+      });
+    indicator.classList.add('sisad-pdfme-option-group-indicator');
 
     row.appendChild(indicator);
     // Visible per-option text is opt-in; default marker-only.
@@ -160,51 +184,63 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
       row.appendChild(optionLabel);
     }
 
+    const commitSelection = () => {
+      if (typeof onChange !== 'function') return;
+
+      if (resolveSelection) {
+        const nextSelection = resolveSelection({
+          option: opt,
+          currentSelection: {
+            selectedOptionId,
+            selectedOptionIds: Array.from(selectedSet),
+          },
+        });
+
+        if (nextSelection) {
+          const changes: Array<{ key: string; value: unknown }> = [];
+          if ('content' in nextSelection) changes.push({ key: 'content', value: nextSelection.content });
+          if ('selectedOptionId' in nextSelection) {
+            changes.push({ key: 'selectedOptionId', value: nextSelection.selectedOptionId });
+          }
+          if ('selectedOptionIds' in nextSelection) {
+            changes.push({ key: 'selectedOptionIds', value: nextSelection.selectedOptionIds });
+          }
+          onChange(changes);
+        }
+        return;
+      }
+
+      if (selectionMode === 'single') {
+        onChange([
+          { key: 'content', value: opt.optionId },
+          { key: 'selectedOptionId', value: opt.optionId },
+        ]);
+        return;
+      }
+
+      const current = new Set(selectedSet);
+      if (current.has(opt.optionId)) current.delete(opt.optionId);
+      else current.add(opt.optionId);
+      const next = Array.from(current);
+      onChange([
+        { key: 'content', value: next.join(',') },
+        { key: 'selectedOptionIds', value: next },
+      ]);
+    };
+
     if (rowsInteractive && typeof onChange === 'function') {
       row.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
+        commitSelection();
+      });
+    }
 
-        if (resolveSelection) {
-          const nextSelection = resolveSelection({
-            option: opt,
-            currentSelection: {
-              selectedOptionId,
-              selectedOptionIds: Array.from(selectedSet),
-            },
-          });
-
-          if (nextSelection) {
-            const changes: Array<{ key: string; value: unknown }> = [];
-            if ('content' in nextSelection) changes.push({ key: 'content', value: nextSelection.content });
-            if ('selectedOptionId' in nextSelection) {
-              changes.push({ key: 'selectedOptionId', value: nextSelection.selectedOptionId });
-            }
-            if ('selectedOptionIds' in nextSelection) {
-              changes.push({ key: 'selectedOptionIds', value: nextSelection.selectedOptionIds });
-            }
-            onChange(changes);
-          }
-          return;
-        }
-
-        if (selectionMode === 'single') {
-          onChange([
-            { key: 'content', value: opt.optionId },
-            { key: 'selectedOptionId', value: opt.optionId },
-          ]);
-          return;
-        }
-
-        // multiple
-        const current = new Set(selectedSet);
-        if (current.has(opt.optionId)) current.delete(opt.optionId);
-        else current.add(opt.optionId);
-        const next = Array.from(current);
-        onChange([
-          { key: 'content', value: next.join(',') },
-          { key: 'selectedOptionIds', value: next },
-        ]);
+    if (rowsDesignerInteractive && typeof onChange === 'function') {
+      row.addEventListener('dblclick', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        commitSelection();
       });
     }
 

@@ -1,22 +1,35 @@
 import { describe, expect, it } from 'vitest';
-import { resolveSelectedOptionId } from '@/sisad-pdfme/schemas/options/optionValueAdapter.js';
+import { buildCheckboxToGroupPatch } from '@/sisad-pdfme/schemas/options/optionValueAdapter.js';
 
-describe('optionValueAdapter', () => {
-  const options = [
-    { optionId: 'opt_1', label: 'One', value: 'v1' },
-    { optionId: 'opt_2', label: 'Two', value: 'v2' },
-  ];
+describe('sisad-pdfme/schemas/options/optionValueAdapter.ts', () => {
+  it('builds a checkbox to checkboxGroup patch without regenerating identity fields', () => {
+    const patch = buildCheckboxToGroupPatch({ width: 42 }, true);
+    const keys = patch.map((entry) => entry.key);
 
-  it('resolves by option id', () => {
-    expect(resolveSelectedOptionId('opt_2', options)).toBe('opt_2');
+    expect(keys).toContain('type');
+    expect(keys).toContain('groupName');
+    expect(keys).toContain('groupId');
+    expect(keys).toContain('lockedAsGroup');
+    expect(keys).toContain('orientation');
+    expect(keys).toContain('spacing');
+    expect(keys).toContain('options');
+    expect(keys).toContain('selectedOptionIds');
+    expect(keys).toContain('__designer.group.groupId');
+    expect(keys).not.toContain('schemaUid');
+    expect(keys).not.toContain('ownerRecipientId');
+    expect(keys).not.toContain('recipientId');
+
+    expect(patch.find((entry) => entry.key === 'type')?.value).toBe('checkboxGroup');
+    expect(patch.find((entry) => entry.key === 'content')?.value).toBe('option_1');
+    expect(patch.find((entry) => entry.key === 'selectedOptionIds')?.value).toEqual(['option_1']);
+    expect(patch.find((entry) => entry.key === 'width')?.value).toBe(55);
   });
 
-  it('resolves by value', () => {
-    expect(resolveSelectedOptionId('v1', options)).toBe('opt_1');
-  });
+  it('builds an unchecked patch with empty selection', () => {
+    const patch = buildCheckboxToGroupPatch({}, false);
 
-  it('returns undefined when not found', () => {
-    expect(resolveSelectedOptionId('missing', options)).toBeUndefined();
-    expect(resolveSelectedOptionId(null, options)).toBeUndefined();
+    expect(patch.find((entry) => entry.key === 'content')?.value).toBe('');
+    expect(patch.find((entry) => entry.key === 'selectedOptionIds')?.value).toEqual([]);
+    expect(patch.find((entry) => entry.key === 'options')?.value).toHaveLength(2);
   });
 });

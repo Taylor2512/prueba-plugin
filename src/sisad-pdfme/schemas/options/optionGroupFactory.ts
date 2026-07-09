@@ -23,10 +23,14 @@ import {
   DESIGNER_OPTION_BOX_BORDER,
 } from '../shared/fieldChrome.js';
 import { clearSchemaRoot } from '../shared/schemaDom.js';
+import { HEX_COLOR_PATTERN } from '../constants.js';
+import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 import {
-  buildCheckboxIndicator,
-  buildRadioIndicator,
-} from '../groupSchemaRender.js';
+  basicsFields,
+  helpFields,
+  dataLabelFields,
+  COMMON_PROPERTY_MAP,
+} from '../propPanel/commonInspectorFields.js';
 import {
   type OptionGroupLayoutConfig,
   computeOptionGroupDesignerHeightMM,
@@ -37,6 +41,7 @@ import {
 import { buildDefaultOptionGroupOptions, normalizeText } from './optionModel.js';
 import createOptionGroupRuntime from './optionGroupRenderer.js';
 import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
+import { createOptionIndicatorElement } from './optionIndicator.js';
 
 export type OptionGroupIndicatorShape = 'square' | 'circle';
 
@@ -152,6 +157,20 @@ export type OptionGroupDefaultSchema = {
     }
 );
 
+export type OptionGroupPropPanelConfig = {
+  optionsTitle: string;
+  optionsWidget: string;
+  groupNameTitle: string;
+  groupIdTitle?: string;
+  lockedAsGroupTitle?: string;
+  includeMinMax?: boolean;
+  minSelectedTitle?: string;
+  maxSelectedTitle?: string;
+  propertyMap?: Record<string, string>;
+  widgets: Record<string, unknown>;
+  defaultSchema: Record<string, unknown>;
+};
+
 export const resolveOptionGroupKey = (schema: OptionGroupDesignerSchema): string =>
   schema.__designer?.group?.groupId ?? schema.groupId ?? schema.group ?? schema.name ?? '';
 
@@ -186,7 +205,13 @@ export const applyOptionGroupRootRuntime = ({
   rootElement.dataset.renderMode = mode;
   rootElement.dataset.schemaFamily = 'option-based';
   rootElement.dataset.selectionMode = selectionMode;
-  rootElement.style.pointerEvents = isDesigner ? 'none' : 'auto';
+  // Designer/viewer: the group root is transparent to pointer events so clicks
+  // fall through to the .sisad-pdfme-ui-custom-selectable wrapper (Selecto/
+  // Moveable target). Only form makes internal option rows interactive.
+  rootElement.style.pointerEvents = mode === 'form' ? 'auto' : 'none';
+  if (isDesigner) {
+    rootElement.dataset.designerSelectionMode = 'root-only';
+  }
 };
 
 export const buildOptionGroupRuntimeSharedParams = ({
@@ -221,7 +246,10 @@ export const renderOptionGroupUi = ({
   mode,
   selectionMode,
   invalid,
-  renderDesigner,
+  // `renderDesigner` is intentionally ignored: designer, viewer and form all
+  // render the SAME compact runtime markers. Selecting a group must NOT swap to
+  // a different (cyan designer-box) design — selection chrome (frame/handles/+)
+  // is drawn by Moveable/Selecto on top, never inside the schema DOM.
   renderRuntime,
 }: OptionGroupUiRenderParams): void => {
   clearSchemaRoot(rootElement);
@@ -232,11 +260,6 @@ export const renderOptionGroupUi = ({
     selectionMode,
   });
   rootElement.dataset.optionGroupInvalid = String(invalid);
-
-  if (isDesigner) {
-    rootElement.appendChild(renderDesigner());
-    return;
-  }
 
   rootElement.appendChild(renderRuntime());
 };
@@ -296,6 +319,73 @@ export const buildOptionGroupDefaultSchema = ({
   };
 };
 
+export const createOptionGroupPropPanelConfig = (config: OptionGroupPropPanelConfig) => ({
+  schema: ({ i18n }: { i18n: (key: string) => string }) => ({
+    ...basicsFields(),
+    color: {
+      title: i18n('schemas.color'),
+      type: 'string',
+      widget: 'color',
+      props: { disabledAlpha: true },
+      required: true,
+      rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
+    },
+    groupName: { title: config.groupNameTitle, type: 'string', span: 12 },
+    orientation: {
+      title: 'Orientación',
+      type: 'string',
+      widget: 'select',
+      span: 12,
+      props: { options: [{ label: 'Vertical', value: 'vertical' }, { label: 'Horizontal', value: 'horizontal' }] },
+    },
+    spacing: { title: 'Espaciado', type: 'number', widget: 'inputNumber', span: 8, props: { min: 0, precision: 0 } },
+    ...(config.includeMinMax
+      ? {
+          minSelected: {
+            title: config.minSelectedTitle || 'Mín. seleccionadas',
+            type: 'number',
+            widget: 'inputNumber',
+            span: 8,
+            props: { min: 0, precision: 0 },
+          },
+          maxSelected: {
+            title: config.maxSelectedTitle || 'Máx. seleccionadas',
+            type: 'number',
+            widget: 'inputNumber',
+            span: 8,
+            props: { min: 0, precision: 0 },
+          },
+        }
+      : {}),
+    optionsContainer: {
+      title: config.optionsTitle,
+      type: 'string',
+      widget: 'card',
+      span: 24,
+      properties: { options: { widget: config.optionsWidget, span: 24 } },
+    },
+    ...helpFields(),
+    ...dataLabelFields(),
+    groupId: { title: config.groupIdTitle || 'ID del grupo', type: 'string', span: 12, description: 'ID técnico del grupo.' },
+    lockedAsGroup: { title: config.lockedAsGroupTitle || 'Bloquear como grupo', type: 'boolean', span: 12 },
+  }),
+  inspector: createSchemaInspectorConfig('choice', {
+    propertyMap: {
+      ...COMMON_PROPERTY_MAP,
+      color: 'style',
+      groupName: 'data',
+      orientation: 'data',
+      spacing: 'data',
+      optionsContainer: 'data',
+      ...(config.includeMinMax ? { minSelected: 'data', maxSelected: 'data' } : {}),
+      ...(config.propertyMap || {}),
+    },
+    includeConnections: true,
+  }),
+  widgets: config.widgets,
+  defaultSchema: config.defaultSchema,
+});
+
 // ─── Designer DOM builder ─────────────────────────────────────────────────────
 
 /**
@@ -316,17 +406,15 @@ export const createDesignerOptionBox = (
   // one designer palette. (Previously radio hardcoded `false` + a different
   // gray, so designer never reflected selection while runtime did.)
   const indicator =
-    indicatorShape === 'square'
-      ? buildCheckboxIndicator(DESIGNER_OPTION_BOX_BORDER, isSelected)
-      : buildRadioIndicator(DESIGNER_OPTION_BOX_BORDER, isSelected);
-
-  const indicatorSize = indicatorShape === 'square' ? '14px' : '18px';
-  Object.assign(indicator.style, {
-    width: indicatorSize,
-    height: indicatorSize,
-    minWidth: indicatorSize,
-    minHeight: indicatorSize,
-  });
+    createOptionIndicatorElement({
+      shape: indicatorShape,
+      checked: isSelected,
+      color: DESIGNER_OPTION_BOX_BORDER,
+      mode: 'designer',
+      size: indicatorShape === 'square' ? 14 : 18,
+      readOnly: true,
+      disabled: true,
+    });
 
   box.appendChild(indicator);
   return box;

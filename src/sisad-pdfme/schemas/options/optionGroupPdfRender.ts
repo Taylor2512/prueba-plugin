@@ -7,16 +7,29 @@ export type OptionGroupPdfParams = {
   schema: Schema;
   options: OptionItem[];
   selectionMode: 'single' | 'multiple';
+  indicatorShape?: 'square' | 'circle';
+  selectedOptionId?: string | null;
+  selectedOptionIds?: string[];
   color?: string;
 };
 
 // Simple PDF renderer for option groups (draws small radio circles or checkbox squares)
-export const renderOptionGroupPdf = ({ page, schema, options, selectionMode, color = '#1677ff' }: OptionGroupPdfParams) => {
+export const renderOptionGroupPdf = ({
+  page,
+  schema,
+  options,
+  selectionMode,
+  indicatorShape = selectionMode === 'single' ? 'circle' : 'square',
+  selectedOptionId,
+  selectedOptionIds,
+  color = '#1677ff',
+}: OptionGroupPdfParams) => {
   const pageHeight = page.getHeight();
   const {
     position: { x: left, y: top },
   } = convertForPdfLayoutProps({ schema, pageHeight, applyRotateTranslate: false });
   const printingColor = hex2PrintingColor(color);
+  const selectedSet = new Set(Array.isArray(selectedOptionIds) ? selectedOptionIds : []);
 
   const BOX_SIZE = 8; // small marker in PDF units
   const GAP = 6;
@@ -26,14 +39,18 @@ export const renderOptionGroupPdf = ({ page, schema, options, selectionMode, col
   options.forEach((opt) => {
     const markerX = left;
     const labelX = left + BOX_SIZE + 6;
+    const isSelected =
+      selectionMode === 'single'
+        ? opt.optionId === selectedOptionId
+        : selectedSet.has(opt.optionId);
 
-    if (selectionMode === 'single') {
+    if (indicatorShape === 'circle') {
       // radio circle
       page.drawCircle({
         x: markerX + BOX_SIZE / 2,
         y: cursorY + BOX_SIZE / 2,
         size: BOX_SIZE / 2,
-        color: printingColor,
+        color: isSelected ? printingColor : undefined,
         borderColor: printingColor,
         borderWidth: 0.8,
       });
@@ -44,7 +61,7 @@ export const renderOptionGroupPdf = ({ page, schema, options, selectionMode, col
         y: cursorY,
         width: BOX_SIZE,
         height: BOX_SIZE,
-        color: undefined,
+        color: isSelected ? printingColor : undefined,
         borderColor: printingColor,
         borderWidth: 0.8,
       });

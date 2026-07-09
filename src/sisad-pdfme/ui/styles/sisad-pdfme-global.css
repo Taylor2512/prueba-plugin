@@ -3859,13 +3859,31 @@
     @apply [overflow:visible] bg-transparent border-0 [box-shadow:none] p-0 m-0;
   }
 
-  /* Option-group schemas should size to the marker stack, not to the legacy
-   field box dimensions stamped by the host wrapper. */
+  /* The selectable wrapper MUST keep schema.width/height (it is the Selecto/
+     Moveable target). Never collapse it to fit-content — that shrank the hit
+     area to ~2px and broke group selection. Only the inner content may look
+     compact. */
   .sisad-pdfme-ui-custom-selectable[data-schema-type="radioGroup"],
-.sisad-pdfme-ui-custom-selectable[data-schema-type="checkboxGroup"] {
-    @apply min-w-0 min-h-0;
-    width: fit-content !important;
-    height: fit-content !important;
+  .sisad-pdfme-ui-custom-selectable[data-schema-type="checkboxGroup"] {
+    @apply overflow-visible bg-transparent;
+  }
+
+  /* Designer: options can receive double click, but clicks still bubble to the
+     root selectable wrapper because the row does not stop propagation. */
+  .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="designer"] [data-option-id] {
+    pointer-events: auto;
+  }
+
+  /* Viewer/PDF stay read-only. */
+  .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="viewer"] [data-option-id],
+.sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="pdf"] [data-option-id] {
+    pointer-events: none;
+  }
+
+  /* Form: internal option rows are interactive (value change). */
+  .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="form"],
+  .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="form"] [data-option-id] {
+    pointer-events: auto;
   }
 
   /* ─── Option-based fields by render mode (TASK-013A) ─────────────────────────
@@ -3898,7 +3916,8 @@
   }
 
   /* Internal option rows (TASK-013B): compact + legible per mode. */
-  .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="form"] .sisad-pdfme-option-group__option {
+  .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="form"] .sisad-pdfme-option-group__option,
+  .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="designer"] .sisad-pdfme-option-group__option {
     @apply min-h-[16px] flex items-center gap-[4px];
   }
 
@@ -3924,7 +3943,8 @@
   /* Inner body owns no frame in form/viewer (root/chrome draws the border);
    strip border/background/padding and never clip options. */
   .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="form"] [data-option-group-body="true"],
-.sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="viewer"] [data-option-group-body="true"] {
+.sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="viewer"] [data-option-group-body="true"],
+.sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="pdf"] [data-option-group-body="true"] {
     @apply border-0 bg-transparent p-0 [overflow:visible];
   }
 
@@ -3934,8 +3954,24 @@
     @apply border-0 bg-transparent p-0 [overflow:visible] items-start;
   }
 
+  /* The body is a COMPACT marker stack, never a filled panel — guaranteed in
+     EVERY mode (including designer, which the mode-scoped rules above miss).
+     Width follows content, height auto, fully transparent: selecting a group
+     must never paint a rectangular band behind the checks/radios. */
+  .sisad-pdfme-root .sisad-pdfme-option-group-root .sisad-pdfme-option-group-body,
+  .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="designer"] [data-option-group-body="true"] {
+    @apply inline-flex h-auto w-max max-w-none items-start justify-start overflow-visible border-0 bg-transparent p-0 shadow-none;
+  }
+
+  /* DocuSign-like: each option is a compact rounded chip — light-cyan fill +
+     cyan border — with the checkbox/radio marker centered inside. Same look in
+     designer/viewer/form (selection chrome is drawn by Moveable on top). */
   .sisad-pdfme-root .sisad-pdfme-option-group-root[data-option-labels="hidden"] .sisad-pdfme-option-group__option {
-    @apply w-[auto] min-w-[12px] h-[12px] p-0 gap-[0] justify-center bg-transparent;
+    @apply inline-flex h-auto min-h-0 min-w-0 items-center justify-center gap-0 rounded-none border-0 bg-transparent p-0 shadow-none;
+  }
+
+  .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="form"][data-option-labels="hidden"] .sisad-pdfme-option-group__option:hover {
+    @apply bg-transparent;
   }
 
   /* Belt-and-suspenders: hide any option text node that slips through. */

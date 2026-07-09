@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `css`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-09T14:57:27.635Z`
+- **Fecha generación:** `2026-07-09T17:27:28.575Z`
 - **Extensiones incluidas:** `.css, .scss, .sass, .less`
 - **Archivos candidatos incluidos:** `18`
 - **Límite por archivo:** `80 KB`
@@ -73,7 +73,7 @@ prueba-plugin
 | 8 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css` | css | 8 | 0.2 | completo |
 | 9 | `src/features/pdfcomponent/labRoutes.css` | css | 1688 | 35.7 | completo |
 | 10 | `src/sisad-pdfme/ui/styles/canvas-interactions.css` | css | 567 | 24.7 | completo |
-| 11 | `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | css | 4240 | 164.4 | truncado 75.5 KB |
+| 11 | `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | css | 4276 | 166.6 | truncado 75.0 KB |
 | 12 | `src/sisad-pdfme/ui/styles/sisad-pdfme-runtime.css` | css | 184 | 7.3 | completo |
 | 13 | `src/sisad-pdfme/ui/styles/tokens.css` | css | 383 | 16.4 | completo |
 | 14 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css` | css | 1600 | 36.3 | completo |
@@ -84,13 +84,13 @@ prueba-plugin
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1695
+- **extensión no incluida:** 1701
 - **directorio ignorado: dependencia/build/salida generada:** 7
 
 ## Totales
 
-- **KB originales candidatos:** `845.1`
-- **KB incluidos en contenido:** `539.7`
+- **KB originales candidatos:** `847.2`
+- **KB incluidos en contenido:** `539.3`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -9398,10 +9398,10 @@ ner-compact-config-panel {
 ### 0011 — `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css`
 
 - **Lenguaje:** `css`
-- **Líneas:** `4240`
-- **Tamaño original:** `164.4 KB`
-- **SHA1 corto:** `413c09f479`
-- **Estado:** `truncado 75.5 KB`
+- **Líneas:** `4276`
+- **Tamaño original:** `166.6 KB`
+- **SHA1 corto:** `153d2c0318`
+- **Estado:** `truncado 75.0 KB`
 - **Símbolos detectados:** `selector: .sisad-pdfme-root`, `selector: .sisad-pdfme-page`, `selector: .sisad-pdfme-header`, `selector: .sisad-pdfme-grid`, `selector: .sisad-pdfme-workspace`, `selector: .sisad-pdfme-canvas`, `selector: .sisad-pdfme-designer-root`, `selector: .sisad-pdfme-designer-background`, `selector: .sisad-pdfme-designer-stage`, `selector: .sisad-pdfme-designer-canvas`
 
 ```css
@@ -10766,54 +10766,9 @@ ner-compact-config-panel {
     @apply
       mb-[0.25rem] p-[0.375rem_0.5rem] [borde
 
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 87782 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 89976 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
 
-
-  .sisad-pdfme-comments-rail-thread-replies {
-    @apply flex flex-col gap-[8px] mt-[2px] pl-[12px] [border-left:2px_solid_rgba(37,_99,_235,_0.18)];
-  }
-
-  .sisad-pdfme-comments-rail-reply {
-    @apply [border:1px_solid_rgba(37,_99,_235,_0.12)] rounded-[10px] p-[10px] bg-[rgba(255,_255,_255,_0.82)] flex flex-col gap-[8px];
-  }
-
-  /* ─── Schema shared visual chrome ───────────────────────────────────────────
-   Classes used by schemas/shared/fieldChrome.ts and schemaDom.ts.
-   Size/gap/color customized per instance via CSS custom properties.
-   ─────────────────────────────────────────────────────────────────────────── */
-  .sisad-pdfme-designer-option-box {
-    @apply
-      w-[var(--designer-box-size)] h-[var(--designer-box-size)] min-w-[var(--designer-box-size)] min-h-[var(--designer-box-size)]
-      max-w-[var(--designer-box-size)] max-h-[var(--designer-box-size)] flex items-center justify-center box-border [border:1.5px_solid_#65d8de]
-      rounded-[2px] bg-[rgba(161,_239,_242,_0.34)] p-0 m-0 flex-none pointer-events-none;
-    --designer-box-size: 22px;
-  }
-
-  .sisad-pdfme-designer-group-stack {
-    @apply
-      relative w-[fit-content] h-[fit-content] min-w-0 min-h-0 flex flex-col items-start justify-start gap-[var(--designer-box-gap)] p-0 m-0 border-0
-      bg-transparent box-border [overflow:visible] pointer-events-none;
-    --designer-box-gap: 4px;
-  }
-
-  .sisad-pdfme-action-button {
-    @apply
-      w-full h-full bg-[var(--action-btn-bg)] text-[var(--action-btn-color)] border-0 rounded-[5px] font-semibold text-[var(--action-btn-font-size)]
-      cursor-pointer box-border flex items-center justify-center gap-[4px];
-    --action-btn-bg: #16a34a;
-    --action-btn-color: #ffffff;
-    --action-btn-font-size: 11px;
-  }
-
-  .sisad-pdfme-action-button[data-designer-mode="true"] {
-    @apply cursor-default;
-  }
-
-  /* ─── Field chrome — generic schema visual state ─────────────────────────────
-   Applied by applyFieldChrome() in schemas/shared/fieldChrome.ts.
-   All visual state is CSS-driven via data attributes + --schema-tone variable.
-   ─────────────────────────────────────────────────────────────────────────── */
-  .sisad-pdfme-root .sisad-pdfme-field-chrome {
+hrome {
     @apply
       relative w-full h-full box-border
       [border:1px_solid_color-mix(in_srgb,_var(--schema-tone,_#2563eb)_var(--sisad-schema-border-alpha-pct,_64%),_transparent)]
@@ -10972,13 +10927,31 @@ ner-compact-config-panel {
     @apply [overflow:visible] bg-transparent border-0 [box-shadow:none] p-0 m-0;
   }
 
-  /* Option-group schemas should size to the marker stack, not to the legacy
-   field box dimensions stamped by the host wrapper. */
+  /* The selectable wrapper MUST keep schema.width/height (it is the Selecto/
+     Moveable target). Never collapse it to fit-content — that shrank the hit
+     area to ~2px and broke group selection. Only the inner content may look
+     compact. */
   .sisad-pdfme-ui-custom-selectable[data-schema-type="radioGroup"],
-.sisad-pdfme-ui-custom-selectable[data-schema-type="checkboxGroup"] {
-    @apply min-w-0 min-h-0;
-    width: fit-content !important;
-    height: fit-content !important;
+  .sisad-pdfme-ui-custom-selectable[data-schema-type="checkboxGroup"] {
+    @apply overflow-visible bg-transparent;
+  }
+
+  /* Designer: options can receive double click, but clicks still bubble to the
+     root selectable wrapper because the row does not stop propagation. */
+  .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="designer"] [data-option-id] {
+    pointer-events: auto;
+  }
+
+  /* Viewer/PDF stay read-only. */
+  .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="viewer"] [data-option-id],
+.sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="pdf"] [data-option-id] {
+    pointer-events: none;
+  }
+
+  /* Form: internal option rows are interactive (value change). */
+  .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="form"],
+  .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="form"] [data-option-id] {
+    pointer-events: auto;
   }
 
   /* ─── Option-based fields by render mode (TASK-013A) ─────────────────────────
@@ -11011,7 +10984,8 @@ ner-compact-config-panel {
   }
 
   /* Internal option rows (TASK-013B): compact + legible per mode. */
-  .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="form"] .sisad-pdfme-option-group__option {
+  .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="form"] .sisad-pdfme-option-group__option,
+  .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="designer"] .sisad-pdfme-option-group__option {
     @apply min-h-[16px] flex items-center gap-[4px];
   }
 
@@ -11037,7 +11011,8 @@ ner-compact-config-panel {
   /* Inner body owns no frame in form/viewer (root/chrome draws the border);
    strip border/background/padding and never clip options. */
   .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="form"] [data-option-group-body="true"],
-.sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="viewer"] [data-option-group-body="true"] {
+.sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="viewer"] [data-option-group-body="true"],
+.sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="pdf"] [data-option-group-body="true"] {
     @apply border-0 bg-transparent p-0 [overflow:visible];
   }
 
@@ -11047,8 +11022,24 @@ ner-compact-config-panel {
     @apply border-0 bg-transparent p-0 [overflow:visible] items-start;
   }
 
+  /* The body is a COMPACT marker stack, never a filled panel — guaranteed in
+     EVERY mode (including designer, which the mode-scoped rules above miss).
+     Width follows content, height auto, fully transparent: selecting a group
+     must never paint a rectangular band behind the checks/radios. */
+  .sisad-pdfme-root .sisad-pdfme-option-group-root .sisad-pdfme-option-group-body,
+  .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="designer"] [data-option-group-body="true"] {
+    @apply inline-flex h-auto w-max max-w-none items-start justify-start overflow-visible border-0 bg-transparent p-0 shadow-none;
+  }
+
+  /* DocuSign-like: each option is a compact rounded chip — light-cyan fill +
+     cyan border — with the checkbox/radio marker centered inside. Same look in
+     designer/viewer/form (selection chrome is drawn by Moveable on top). */
   .sisad-pdfme-root .sisad-pdfme-option-group-root[data-option-labels="hidden"] .sisad-pdfme-option-group__option {
-    @apply w-[auto] min-w-[12px] h-[12px] p-0 gap-[0] justify-center bg-transparent;
+    @apply inline-flex h-auto min-h-0 min-w-0 items-center justify-center gap-0 rounded-none border-0 bg-transparent p-0 shadow-none;
+  }
+
+  .sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="form"][data-option-labels="hidden"] .sisad-pdfme-option-group__option:hover {
+    @apply bg-transparent;
   }
 
   /* Belt-and-suspenders: hide any option text node that slips through. */

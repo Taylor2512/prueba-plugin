@@ -14,9 +14,9 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `docs`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-09T14:57:26.715Z`
+- **Fecha generación:** `2026-07-09T17:27:27.650Z`
 - **Extensiones incluidas:** `.md, .mdx`
-- **Archivos candidatos incluidos:** `232`
+- **Archivos candidatos incluidos:** `234`
 - **Límite por archivo:** `120 KB`
 - **Límite total de contenido:** `1800 KB`
 
@@ -152,7 +152,8 @@ prueba-plugin
 │   │   └── tailwind-migrator.md
 │   ├── task-cards
 │   │   ├── active
-│   │   │   └── TASK-DOCS-001-ai-architecture-install.md
+│   │   │   ├── TASK-DOCS-001-ai-architecture-install.md
+│   │   │   └── TASK-SCHEMA-001-option-indicator-docusign.md
 │   │   ├── backlog
 │   │   │   ├── TASK-CANVAS-001-protect-canvas-overflow.md
 │   │   │   ├── TASK-CSS-001-tailwind-regression-stabilization.md
@@ -295,6 +296,7 @@ prueba-plugin
 │       ├── tc-css-08-control-bar-toolbar-tailwind.md
 │       ├── tc-css-10-schemas-visual.md
 │       ├── tc-css-11-lab-audit.md
+│       ├── tc-css-option-group-selection-fix.md
 │       ├── tc-css-ownership-color.md
 │       ├── ui-styles-decommission-audit.md
 │       └── ui-styles-decommission-progress.md
@@ -532,26 +534,28 @@ prueba-plugin
 | 220 | `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md` | markdown | 43 | 2.5 | completo |
 | 221 | `reports/tailwind-migration/tc-css-10-schemas-visual.md` | markdown | 33 | 3.7 | completo |
 | 222 | `reports/tailwind-migration/tc-css-11-lab-audit.md` | markdown | 31 | 1.2 | completo |
-| 223 | `reports/tailwind-migration/tc-css-ownership-color.md` | markdown | 38 | 4.0 | completo |
-| 224 | `reports/tailwind-migration/ui-styles-decommission-audit.md` | markdown | 57 | 5.6 | completo |
-| 225 | `reports/tailwind-migration/ui-styles-decommission-progress.md` | markdown | 25 | 1.6 | completo |
-| 226 | `test-results/standard-fields-standard-f-c4dc3-s-the-expected-schema-types-chromium/error-context.md` | markdown | 576 | 28.7 | completo |
-| 227 | `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md` | markdown | 21 | 0.5 | completo |
-| 228 | `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 5 | 0.2 | completo |
-| 229 | `ai/task-cards/backlog/TASK-CSS-001-tailwind-regression-stabilization.md` | markdown | 22 | 0.6 | completo |
-| 230 | `ai/task-cards/backlog/TASK-VISUAL-001-img-version-baseline.md` | markdown | 12 | 0.3 | completo |
-| 231 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
-| 232 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
+| 223 | `reports/tailwind-migration/tc-css-option-group-selection-fix.md` | markdown | 38 | 4.3 | completo |
+| 224 | `reports/tailwind-migration/tc-css-ownership-color.md` | markdown | 38 | 4.0 | completo |
+| 225 | `reports/tailwind-migration/ui-styles-decommission-audit.md` | markdown | 57 | 5.6 | completo |
+| 226 | `reports/tailwind-migration/ui-styles-decommission-progress.md` | markdown | 25 | 1.6 | completo |
+| 227 | `test-results/standard-fields-standard-f-c4dc3-s-the-expected-schema-types-chromium/error-context.md` | markdown | 576 | 28.7 | completo |
+| 228 | `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md` | markdown | 21 | 0.5 | completo |
+| 229 | `ai/task-cards/active/TASK-SCHEMA-001-option-indicator-docusign.md` | markdown | 49 | 1.7 | completo |
+| 230 | `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 5 | 0.2 | completo |
+| 231 | `ai/task-cards/backlog/TASK-CSS-001-tailwind-regression-stabilization.md` | markdown | 22 | 0.6 | completo |
+| 232 | `ai/task-cards/backlog/TASK-VISUAL-001-img-version-baseline.md` | markdown | 12 | 0.3 | completo |
+| 233 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
+| 234 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1481
+- **extensión no incluida:** 1485
 - **directorio ignorado: dependencia/build/salida generada:** 7
 
 ## Totales
 
-- **KB originales candidatos:** `291.8`
-- **KB incluidos en contenido:** `291.5`
+- **KB originales candidatos:** `297.8`
+- **KB incluidos en contenido:** `297.5`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -8643,7 +8647,58 @@ Canvas, Paper, Moveable, Selecto, coordenadas, x/y/width/height/rotation, snapsh
 
 <a id="file-0223"></a>
 
-### 0223 — `reports/tailwind-migration/tc-css-ownership-color.md`
+### 0223 — `reports/tailwind-migration/tc-css-option-group-selection-fix.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `38`
+- **Tamaño original:** `4.3 KB`
+- **SHA1 corto:** `de51019d12`
+- **Estado:** `completo`
+
+```markdown
+# radioGroup / checkboxGroup — fix de selección y doble diseño
+
+Problema: en `/lab/multi-document-routing` no se podían seleccionar radioGroup/checkboxGroup; wrapper colapsado a ~`2px × 81px`; doble diseño (checkboxGroup); grupos fuera de Selecto/Moveable.
+
+## Causa raíz (confirmada empíricamente)
+1. **`global.css` colapsaba el target seleccionable**: `.sisad-pdfme-ui-custom-selectable[data-schema-type="radioGroup"|"checkboxGroup"] { width: fit-content !important; height: fit-content !important; }` → el wrapper (target de Selecto/Moveable) quedaba a ~2px, ignorando `schema.width/height` del inline. **Ese `!important` es el causante del `2px × 81px`.**
+2. **`Renderer.tsx`**: `isCompactChoiceSchema = schemaType === 'radioGroup'` — solo radioGroup → checkboxGroup recibía wrapper de schema normal + su render interno = **doble diseño**.
+
+## Cambios (4 archivos — sin tocar Canvas/Moveable/Selecto)
+| Archivo | Cambio |
+|---|---|
+| `ui/components/Renderer.tsx` | `isCompactChoiceSchema` incluye `checkboxGroup` (wrapper transparente, sin doble diseño). Añade `--schema-owner-color` al wrapperStyle. Geometría sigue de `schema.width/height`. |
+| `ui/styles/sisad-pdfme-global.css` | **Elimina el `width/height: fit-content !important`** sobre el wrapper → conserva geometría del schema. Añade `overflow-visible bg-transparent`. Añade `pointer-events` por modo sobre `[data-option-id]` (designer/viewer: none; form: auto). |
+| `schemas/options/optionGroupFactory.ts` | `applyOptionGroupRootRuntime`: `pointerEvents = mode === 'form' ? 'auto' : 'none'` (antes `isDesigner ? 'none' : 'auto'` — viewer quedaba interactivo). + `data-designer-selection-mode="root-only"`. |
+| `schemas/options/optionGroupRenderer.ts` | `rowsInteractive = mode === 'form' && editable && !readOnly` (designer/viewer NO interactivos). Añade clases `sisad-pdfme-option-group-wrapper` / `-body` / `-indicator`. |
+
+## Por qué NO toqué Canvas.tsx (regla 4)
+La solución elegante evita modificar la integración de Moveable/Selecto: con el `option-group-root` en `pointer-events: none` (designer/viewer), los clicks sobre las opciones **pasan a través** al wrapper `.sisad-pdfme-ui-custom-selectable[data-schema-id]`, que ES el target de selección. No hace falta rutear el evento en `onMouseDownCapture`. Menor riesgo.
+
+## Validación (Playwright, `/lab/multi-document-routing`, 0 errores)
+- radioGroup wrapper **242×53px**, checkboxGroup **271×35px** (unscaled ~309×68 / 347×45) — **geometría real, ya no colapsado**. ✅
+- **Click sobre el grupo → `data-schema-active="true"`** (selecciona el grupo completo). ✅
+- `option-group-root` con `pointer-events: none` en designer/viewer (clicks caen al wrapper). ✅
+- checkboxGroup compacto/transparente (sin doble diseño). ✅
+- Build `npm run build` ✅ (exit 0) · lint Renderer.tsx sin errores.
+
+## Reglas respetadas
+No toqué coordenadas x/y/width/height/rotation (la geometría sale del schema/inline). No toqué SnapshotAdapter, Generator/PDF, Moveable, Selecto, ni Canvas.tsx. Sin `setTimeout`, sin z-index, sin `!important` nuevo (de hecho **eliminé** uno). Las opciones internas NO son schemas (sin `data-schema-id`).
+
+## Fix del "doble diseño" (2ª iteración)
+La captura reveló que los "dos diseños" **no eran dos estados** sino **dos renders distintos**: pdfme renderiza el schema **activo/seleccionado en modo `designer`** y los inactivos en `viewer`. El render de designer (`createDesignerOptionGroupEl`) dibujaba **cajas cian `#65d8de`**; el de runtime (`createOptionGroupRuntime`) dibuja los indicadores compactos. Al seleccionar, el grupo cambiaba a las cajas cian → "doble diseño".
+
+**Fix:** en `optionGroupFactory.ts::renderOptionGroupUi`, **ignorar `renderDesigner` y usar siempre `renderRuntime`** → designer/viewer/form renderizan el MISMO diseño compacto. La selección la dibuja Moveable/Selecto encima (marco/handles/+), nunca dentro del schema.
+
+Validación: al seleccionar un radioGroup → `activeHasDesignerBoxes: 0`, `activeHasRuntimeRows: 2`, `anyDesignerBoxesInCanvas: 0` (las cajas cian desaparecieron), diseño idéntico seleccionado/no seleccionado, geometría 242×53 intacta, 0 errores.
+
+## Nota de colisión
+`global.css` lo edita una sesión paralela en vivo (cambió durante esta tarea). Reapliqué sobre el estado actual y el build pasa; si el worker reintroduce el `fit-content`, reaplicar este cambio.
+```
+
+<a id="file-0224"></a>
+
+### 0224 — `reports/tailwind-migration/tc-css-ownership-color.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -8692,9 +8747,9 @@ La prioridad #5 del spec (resolver color desde `ownerRecipientId` + `recipientCo
 Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas x/y/w/h/rotation. Sin colores hardcodeados nuevos, sin `setTimeout`, sin `!important`, sin editar `.css`.
 ```
 
-<a id="file-0224"></a>
+<a id="file-0225"></a>
 
-### 0224 — `reports/tailwind-migration/ui-styles-decommission-audit.md`
+### 0225 — `reports/tailwind-migration/ui-styles-decommission-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `57`
@@ -8762,9 +8817,9 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 | `.sisad-pdfme-ui-snap-feedback*` | `canvas-interactions.css` | El root y labels ya están en JSX | DELETE_DUPLICATE_WITH_EVIDENCE |
 ```
 
-<a id="file-0225"></a>
+<a id="file-0226"></a>
 
-### 0225 — `reports/tailwind-migration/ui-styles-decommission-progress.md`
+### 0226 — `reports/tailwind-migration/ui-styles-decommission-progress.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -8800,9 +8855,9 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 | `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | Shell, sidebars, paper, runtime layout | Cascada legacy aún compartida por múltiples vistas | TC-CSS-11 / TC-CSS-12 |
 ```
 
-<a id="file-0226"></a>
+<a id="file-0227"></a>
 
-### 0226 — `test-results/standard-fields-standard-f-c4dc3-s-the-expected-schema-types-chromium/error-context.md`
+### 0227 — `test-results/standard-fields-standard-f-c4dc3-s-the-expected-schema-types-chromium/error-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `576`
@@ -9389,9 +9444,9 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 ``​`
 ```
 
-<a id="file-0227"></a>
+<a id="file-0228"></a>
 
-### 0227 — `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md`
+### 0228 — `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -9423,9 +9478,71 @@ Instalar carpeta `ai/` como fuente de verdad y adaptar Codex, Claude y Copilot c
 Código de runtime.
 ```
 
-<a id="file-0228"></a>
+<a id="file-0229"></a>
 
-### 0228 — `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md`
+### 0229 — `ai/task-cards/active/TASK-SCHEMA-001-option-indicator-docusign.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `49`
+- **Tamaño original:** `1.7 KB`
+- **SHA1 corto:** `a6a9d2a237`
+- **Estado:** `completo`
+
+```markdown
+# TASK-SCHEMA-001 — Option indicators DocuSign-like
+
+## Objetivo
+Unificar el indicador visual y el comportamiento de checkbox, checkboxGroup y radioGroup para Designer/Form/Viewer/PDF sin duplicar DOM o lógica.
+
+## Alcance
+- `optionIndicator.ts` como fuente visual central.
+- `optionGroupRenderer.ts` para click/double click por modo.
+- `checkbox/index.ts` para checkbox individual.
+- CSS de option groups para evitar paneles o franjas internas.
+
+## Fuera de alcance
+- `SnapshotAdapter`
+- `Generator` global
+- `Moveable.tsx`
+- `Selecto.tsx`
+- Coordenadas globales x/y/width/height/rotation salvo sincronía existente de altura de grupo.
+
+## Archivos candidatos
+- `src/sisad-pdfme/schemas/options/optionIndicator.ts`
+- `src/sisad-pdfme/schemas/options/optionGroupRenderer.ts`
+- `src/sisad-pdfme/schemas/checkbox/index.ts`
+- `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css`
+- `src/styles/sisad-tailwind-bridge.css`
+
+## Archivos prohibidos
+- `src/sisad-pdfme/ui/components/Designer/Moveable.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Selecto.tsx`
+- `SnapshotAdapter`
+- `Generator` global
+
+## Pasos
+1. Centralizar visual en `optionIndicator.ts`.
+2. Ajustar render de grupo para designer/form/viewer/pdf.
+3. Hacer checkbox individual consistente con el helper común.
+4. Reforzar CSS para eliminar paneles/fondos extra.
+
+## Validación
+- `npm run build`
+- `npm run lint` si existe y no está roto por configuración
+- Verificación manual en `http://localhost:5174/lab/multi-document-routing`
+
+## Criterio de parada
+Detenerse si para cumplir el objetivo hay que tocar Moveable/Selecto, snapshot, generator o geometría global.
+
+## Entrega final
+- Resumen de archivos modificados.
+- Confirmación de límites respetados.
+- Resultado de build/lint.
+```
+
+<a id="file-0230"></a>
+
+### 0230 — `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -9441,9 +9558,9 @@ Código de runtime.
 Verificar que utilidades Tailwind no pisen `overflow:auto`, height, scale o page geometry.
 ```
 
-<a id="file-0229"></a>
+<a id="file-0231"></a>
 
-### 0229 — `ai/task-cards/backlog/TASK-CSS-001-tailwind-regression-stabilization.md`
+### 0231 — `ai/task-cards/backlog/TASK-CSS-001-tailwind-regression-stabilization.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -9476,9 +9593,9 @@ src/sisad-pdfme/ui/styles/*.css
 Moveable, Selecto, geometry, snapshot, generator/pdf-lib.
 ```
 
-<a id="file-0230"></a>
+<a id="file-0232"></a>
 
-### 0230 — `ai/task-cards/backlog/TASK-VISUAL-001-img-version-baseline.md`
+### 0232 — `ai/task-cards/backlog/TASK-VISUAL-001-img-version-baseline.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -9501,9 +9618,9 @@ reports/tailwind-migration/img-version-contact-sheet.jpg
 ``​`
 ```
 
-<a id="file-0231"></a>
+<a id="file-0233"></a>
 
-### 0231 — `ai/task-cards/completed/README.md`
+### 0233 — `ai/task-cards/completed/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -9517,9 +9634,9 @@ reports/tailwind-migration/img-version-contact-sheet.jpg
 Mover aquí task-cards completadas con reporte final.
 ```
 
-<a id="file-0232"></a>
+<a id="file-0234"></a>
 
-### 0232 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
+### 0234 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`

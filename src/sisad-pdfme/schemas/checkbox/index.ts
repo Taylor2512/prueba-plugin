@@ -5,7 +5,9 @@ import { HEX_COLOR_PATTERN } from '../constants.js';
 import { SquareCheck } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
-import { buildAddOptionButton, hexAlpha } from '../groupSchemaRender.js';
+import { buildAddOptionButton } from '../groupSchemaRender.js';
+import { renderOptionIndicatorSvg, createOptionIndicatorElement } from '../options/optionIndicator.js';
+import { buildCheckboxToGroupPatch } from '../options/optionValueAdapter.js';
 
 const getCheckedIcon = (stroke = 'currentColor') => renderLucideIcon(SquareCheck, { stroke });
 
@@ -18,55 +20,72 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
   ui: (arg) => {
     const { schema, value, onChange, rootElement, mode } = arg;
     const color = (schema as Checkbox).color || '#1677ff';
+    const ownerColor = (schema as Checkbox & { ownerColor?: string; __designer?: { ownerColor?: string } }).ownerColor
+      || (schema as Checkbox & { __designer?: { ownerColor?: string } }).__designer?.ownerColor;
     const isDesigner = mode === 'designer';
     const editable = isEditable(mode, schema);
+    const isReadOnly = Boolean(
+      (schema as Checkbox & { readOnly?: boolean; readonly?: boolean; locked?: boolean }).readOnly
+      || (schema as Checkbox & { readOnly?: boolean; readonly?: boolean; locked?: boolean }).readonly
+      || (schema as Checkbox & { readOnly?: boolean; readonly?: boolean; locked?: boolean }).locked,
+    );
+    const canToggle = editable && !isReadOnly;
     const checked = value === 'true';
 
-    // Root wrapper — needed for + button absolute positioning
+    // Root wrapper — no panel/card; just a transparent hit area for the chip.
     const wrapper = document.createElement('div');
     Object.assign(wrapper.style, {
       position: 'relative',
       width: '100%',
       height: '100%',
-    });
-
-    // Main box — clean, lightweight square indicator
-    const box = document.createElement('div');
-    Object.assign(box.style, {
-      width: '100%',
-      height: '100%',
-      boxSizing: 'border-box',
-      border: `1px solid ${hexAlpha(color, checked ? 0.85 : 0.5)}`,
-      borderRadius: '3px',
-      background: checked ? hexAlpha(color, 0.12) : hexAlpha(color, 0.03),
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'center',
-      cursor: editable ? 'pointer' : 'default',
-      overflow: 'hidden',
-      transition: 'background 100ms ease, border-color 100ms ease',
+      background: 'transparent',
+      border: '0',
+      padding: '0',
+      margin: '0',
+    });
+    wrapper.setAttribute('role', mode !== 'viewer' && mode !== 'pdf' ? 'checkbox' : 'presentation');
+    if (mode !== 'viewer' && mode !== 'pdf') {
+      wrapper.setAttribute('aria-checked', String(checked));
+      if (!canToggle) {
+        wrapper.setAttribute('aria-disabled', 'true');
+      }
+    } else {
+      wrapper.setAttribute('aria-hidden', 'true');
+    }
+
+    // Visual chip drawn by the shared option indicator helper.
+    const box = createOptionIndicatorElement({
+      shape: 'square',
+      checked,
+      color,
+      ownerColor,
+      mode: mode === 'viewer' || mode === 'pdf' ? mode : isDesigner ? 'designer' : 'form',
+      size: 18,
+      readOnly: !canToggle,
+      disabled: !canToggle,
+    });
+    box.setAttribute('data-option-id', schema.groupId || schema.name || 'checkbox');
+    Object.assign(box.style, {
+      cursor: canToggle ? 'pointer' : 'default',
+      pointerEvents: 'auto',
     });
 
-    if (editable && onChange) {
-      box.addEventListener('click', (e) => {
+    if (onChange && canToggle && mode === 'form') {
+      wrapper.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        onChange([{ key: 'content', value: checked ? 'false' : 'true' }]);
+      });
+    } else if (onChange && isDesigner && canToggle) {
+      wrapper.addEventListener('dblclick', (e) => {
+        e.preventDefault();
         e.stopPropagation();
         onChange([{ key: 'content', value: checked ? 'false' : 'true' }]);
       });
     }
-
-    if (checked) {
-      const markWrap = document.createElement('div');
-      Object.assign(markWrap.style, {
-        width: '72%',
-        height: '72%',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      });
-      markWrap.innerHTML = renderLucideIcon(SquareCheck, { stroke: color, fill: 'none', width: '100%', height: '100%' });
-      box.appendChild(markWrap);
-    }
-    // Unchecked: empty box, clean minimal look
 
     wrapper.appendChild(box);
 
@@ -78,32 +97,8 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
       addBtn.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        // Convert this lone checkbox into a checkboxGroup, preserving its checked state
-        const wasChecked = checked;
-        onChange([
-          { key: 'type', value: 'checkboxGroup' },
-          { key: 'groupName', value: 'Grupo de casillas' },
-          { key: 'groupId', value: 'Grupo_Casillas' },
-          { key: 'lockedAsGroup', value: true },
-          { key: 'orientation', value: 'vertical' },
-          { key: 'spacing', value: 3 },
-          { key: 'height', value: 24 },
-          { key: 'width', value: Math.max(55, Number(schema.width) || 0) },
-          {
-            key: 'options',
-            value: [
-              { optionId: 'option_1', label: 'Casilla 1' },
-              { optionId: 'option_2', label: 'Casilla 2' },
-            ],
-          },
-          { key: 'content', value: wasChecked ? 'option_1' : '' },
-          { key: 'selectedOptionIds', value: wasChecked ? ['option_1'] : [] },
-          // Group identity — preserved/extended without regenerating schemaUid or owner
-          { key: '__designer.group.groupId', value: 'Grupo_Casillas' },
-          { key: '__designer.group.groupType', value: 'checkbox' },
-          { key: '__designer.group.groupName', value: 'Grupo de casillas' },
-          { key: '__designer.group.lockedAsGroup', value: true },
-        ]);
+        // Convert this lone checkbox into a checkboxGroup, preserving its checked state.
+        onChange(buildCheckboxToGroupPatch(schema, checked));
       });
 
       wrapper.appendChild(addBtn);
@@ -113,9 +108,13 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
   },
   pdf: (arg) =>
     svg.pdf(Object.assign(arg, {
-      value: arg.value === 'true'
-        ? renderLucideIcon(SquareCheck, { stroke: arg.schema.color })
-        : `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="${arg.schema.color}" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/></svg>`,
+      value: renderOptionIndicatorSvg({
+        shape: 'square',
+        checked: arg.value === 'true',
+        color: String(arg.schema.color || '#1677ff'),
+        mode: 'pdf',
+        size: 24,
+      }),
     })),
   propPanel: {
     schema: ({ i18n }) => ({

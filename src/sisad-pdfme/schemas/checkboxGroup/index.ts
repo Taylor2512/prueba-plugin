@@ -1,15 +1,6 @@
 import type { Plugin, PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
-import { hex2PrintingColor, convertForPdfLayoutProps } from '../utils.js';
 import { isEditable } from '../utils.js';
-import { HEX_COLOR_PATTERN } from '../constants.js';
 import { createSchemaPlugin, renderLucideIcon } from '../schemaBuilder.js';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
-import {
-  basicsFields,
-  helpFields,
-  dataLabelFields,
-  COMMON_PROPERTY_MAP,
-} from '../propPanel/commonInspectorFields.js';
 import { SquareCheck } from 'lucide-react';
 import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
 import {
@@ -22,13 +13,14 @@ import {
   buildOptionGroupDefaultSchema,
   renderOptionGroupUi,
   resolveOptionGroupReadOnly,
+  createOptionGroupPropPanelConfig,
 } from '../options/optionGroupFactory.js';
 import {
   clampMultiOptionSelection,
   resolveMultiOptionSelection,
   toggleMultiOptionSelection,
 } from '../options/optionSelectionBehavior.js';
-import { createOptionGroupEditor } from '../options/optionGroupEditorFactory.js';
+import { createOptionGroupOptionsEditor } from '../options/optionGroupEditorFactory.js';
 import { resolveSchemaIdByIdentity } from '../shared/schemaGuards.js';
 import type { OptionItem } from '../options/optionTypes.js';
 import {
@@ -37,17 +29,13 @@ import {
   normalizeOptionGroupOptions,
   normalizeText,
 } from '../options/optionModel.js';
+import { renderOptionGroupPdf } from '../options/optionGroupPdfRender.js';
 
 // ─── Designer compact geometry constants ────────────────────────────────────
 // The + button is rendered as an external overlay (GroupOptionFloatingAction),
 // so the bounding box covers ONLY the stacked indicator squares.
 
-import {
-  CHECKBOX_GROUP_LAYOUT,
-} from '../options/optionGroupLayout.js';
-
-const DESIGNER_BOX_GAP  = CHECKBOX_GROUP_LAYOUT.boxGap;   // px (used in propPanel defaultSchema + editor)
-const DESIGNER_BOX_BORDER = '#65d8de';                      // used in form/viewer indicator builders
+import { CHECKBOX_GROUP_LAYOUT } from '../options/optionGroupLayout.js';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -201,17 +189,14 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
     });
   };
 
-  const editor = createOptionGroupEditor<CheckboxOption>({
+  const editor = createOptionGroupOptionsEditor<CheckboxOption>({
     rootElement,
     headerText: 'Valores de las casillas',
     rowClassName: 'sisad-option-editor-row sisad-option-editor-row--checkbox',
     newInputPlaceholder: 'Nueva casilla…',
     optionInputPlaceholder: (index) => `Casilla ${index + 1}`,
-    createIndicator: () => {
-      const indicator = document.createElement('div');
-      indicator.className = 'sisad-option-editor-cb-indicator';
-      return indicator;
-    },
+    indicatorShape: 'square',
+    indicatorColor: schema.color || '#1677ff',
     getOptions: () => currentOptions,
     setOptions: (nextOptions) => {
       currentOptions = nextOptions;
@@ -232,8 +217,6 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
   editor.render();
 };
 
-// ─── Plugin ──────────────────────────────────────────────────────────────────
-
 const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSchema>(
   {
     ui: (arg) => {
@@ -249,7 +232,6 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
         cbSchema,
       );
       const editable = isEditable(mode, cbSchema);
-      const color = cbSchema.color || '#1677ff';
 
       // ── Form / Viewer mode: labeled runtime ──────────────────────────────
       const limits = resolveSelectionLimits(cbSchema);
@@ -301,105 +283,50 @@ const schema: Plugin<CheckboxGroupSchema> = createSchemaPlugin<CheckboxGroupSche
     },
 
     pdf: async (arg) => {
-      const { page, schema, options } = arg;
+      const { page, schema } = arg;
       const cbSchema = schema as CheckboxGroupSchema;
       const resolvedOptions = normalizeOptions(cbSchema);
       if (!resolvedOptions.length) return;
-
-      const pageHeight = page.getHeight();
-      const { position, width, height } = convertForPdfLayoutProps({ schema: cbSchema, pageHeight, applyRotateTranslate: false });
-      const x = position.x;
-      const y = position.y;
-      const borderColor = hex2PrintingColor(cbSchema.color, options.colorType);
-      const selected = resolveSelectedIds(cbSchema);
-      const rowHeight = Math.max(12, Math.floor(height / Math.max(1, resolvedOptions.length)));
-      const pad = 4;
-      const boxSize = 7;
-      const fontSize = 9;
-
-      page.drawRectangle({ x, y, width, height, borderColor, borderWidth: 1, borderDashArray: [3, 3], color: undefined, opacity: undefined });
-
-      if (cbSchema.groupName) {
-        page.drawText(cbSchema.groupName, { x: x + pad, y: y + height - fontSize - 2, size: fontSize, color: borderColor });
-      }
-
-      resolvedOptions.forEach((option, index) => {
-        const rowTop = y + height - (index + 1) * rowHeight;
-        const rowCenterY = rowTop + rowHeight / 2;
-        const boxX = x + pad;
-        const boxY = rowCenterY - boxSize / 2;
-        const textX = boxX + boxSize + 6;
-        const textY = rowTop + 2;
-        const isChecked = selected.has(option.optionId);
-
-        page.drawRectangle({ x: boxX, y: boxY, width: boxSize, height: boxSize, borderColor, borderWidth: 1, color: isChecked ? borderColor : undefined });
-        page.drawText(option.label, { x: textX, y: textY, size: fontSize, color: borderColor });
+      renderOptionGroupPdf({
+        page,
+        schema: cbSchema,
+        options: resolvedOptions,
+        selectionMode: 'multiple',
+        indicatorShape: 'square',
+        selectedOptionIds: Array.from(resolveSelectedIds(cbSchema)),
+        color: cbSchema.color,
       });
     },
 
     propPanel: {
-      schema: ({ i18n }) => ({
-        ...basicsFields(),
-        color: {
-          title: i18n('schemas.color'),
-          type: 'string',
-          widget: 'color',
-          props: { disabledAlpha: true },
-          required: true,
-          rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
-        },
-        groupName: { title: 'Nombre del grupo', type: 'string', span: 12 },
-        orientation: {
-          title: 'Orientación',
-          type: 'string',
-          widget: 'select',
-          span: 12,
-          props: { options: [{ label: 'Vertical', value: 'vertical' }, { label: 'Horizontal', value: 'horizontal' }] },
-        },
-        spacing: { title: 'Espaciado', type: 'number', widget: 'inputNumber', span: 8, props: { min: 0, precision: 0 } },
-        minSelected: { title: 'Mín. seleccionadas', type: 'number', widget: 'inputNumber', span: 8, props: { min: 0, precision: 0 } },
-        maxSelected: { title: 'Máx. seleccionadas', type: 'number', widget: 'inputNumber', span: 8, props: { min: 0, precision: 0 } },
-        optionsContainer: {
-          title: 'Casillas',
-          type: 'string',
-          widget: 'card',
-          span: 24,
-          properties: { options: { widget: 'editCheckboxGroupOptions', span: 24 } },
-        },
-        ...helpFields(),
-        ...dataLabelFields(),
-        groupId: { title: 'ID del grupo', type: 'string', span: 12, description: 'ID técnico del grupo.' },
-        lockedAsGroup: { title: 'Bloquear como grupo', type: 'boolean', span: 12 },
-      }),
-      inspector: createSchemaInspectorConfig('choice', {
+      ...createOptionGroupPropPanelConfig({
+        optionsTitle: 'Casillas',
+        optionsWidget: 'editCheckboxGroupOptions',
+        groupNameTitle: 'Nombre del grupo',
+        groupIdTitle: 'ID del grupo',
+        lockedAsGroupTitle: 'Bloquear como grupo',
+        includeMinMax: true,
+        minSelectedTitle: 'Mín. seleccionadas',
+        maxSelectedTitle: 'Máx. seleccionadas',
         propertyMap: {
-          ...COMMON_PROPERTY_MAP,
-          color: 'style',
-          groupName: 'data',
-          orientation: 'data',
-          spacing: 'data',
           minSelected: 'data',
           maxSelected: 'data',
-          optionsContainer: 'data',
-          groupId: 'advanced',
-          lockedAsGroup: 'advanced',
         },
-        includeConnections: true,
+        widgets: { editCheckboxGroupOptions: CheckboxOptionsEditor },
+        defaultSchema: {
+          ...buildOptionGroupDefaultSchema({
+            id: 'checkbox-group-default',
+            type: 'checkboxGroup',
+            groupId: 'Grupo_Casillas',
+            groupName: 'Grupo de casillas',
+            groupType: 'checkbox',
+            optionPrefix: 'Casilla',
+            selectionMode: 'multiple',
+            optionsCount: 2,
+            color: '#1677ff',
+          }),
+        },
       }),
-      widgets: { editCheckboxGroupOptions: CheckboxOptionsEditor },
-      defaultSchema: {
-        ...buildOptionGroupDefaultSchema({
-          id: 'checkbox-group-default',
-          type: 'checkboxGroup',
-          groupId: 'Grupo_Casillas',
-          groupName: 'Grupo de casillas',
-          groupType: 'checkbox',
-          optionPrefix: 'Casilla',
-          selectionMode: 'multiple',
-          optionsCount: 2,
-          color: '#1677ff',
-        }),
-      },
     },
     icon: renderLucideIcon(SquareCheck, { stroke: 'currentColor' }),
   },

@@ -1,15 +1,6 @@
 import type { Plugin, PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
-import { hex2PrintingColor, convertForPdfLayoutProps } from '../utils.js';
 import { isEditable } from '../utils.js';
-import { HEX_COLOR_PATTERN } from '../constants.js';
 import { createSchemaPlugin, renderLucideIcon } from '../schemaBuilder.js';
-import { createSchemaInspectorConfig } from '../schemaFamilies.js';
-import {
-  basicsFields,
-  helpFields,
-  dataLabelFields,
-  COMMON_PROPERTY_MAP,
-} from '../propPanel/commonInspectorFields.js';
 import { CircleDot } from 'lucide-react';
 import type { GroupMeta } from '../../shared/schemaDesignerMeta.js';
 import type { OptionItem } from '../options/optionTypes.js';
@@ -35,14 +26,9 @@ type RadioGroupSchema = SchemaForUI & {
   };
 };
 
-// The + button is rendered as an external overlay (GroupOptionFloatingAction),
-// so the bounding box covers ONLY the stacked indicator squares.
 import {
   RADIO_GROUP_LAYOUT,
 } from '../options/optionGroupLayout.js';
-
-const DESIGNER_BOX_SIZE = RADIO_GROUP_LAYOUT.boxSize;  // px
-const DESIGNER_BOX_GAP  = RADIO_GROUP_LAYOUT.boxGap;   // px
 import {
   syncOptionGroupDesignerGeometry,
   createDesignerOptionGroupEl,
@@ -53,12 +39,14 @@ import {
   buildOptionGroupDefaultSchema,
   renderOptionGroupUi,
   resolveOptionGroupReadOnly,
+  createOptionGroupPropPanelConfig,
 } from '../options/optionGroupFactory.js';
 import {
   resolveSingleOptionSelection,
 } from '../options/optionSelectionBehavior.js';
-import { createOptionGroupEditor } from '../options/optionGroupEditorFactory.js';
+import { createOptionGroupOptionsEditor } from '../options/optionGroupEditorFactory.js';
 import { resolveSchemaIdByIdentity } from '../shared/schemaGuards.js';
+import { renderOptionGroupPdf } from '../options/optionGroupPdfRender.js';
 
 type RadioOption = OptionItem;
 
@@ -132,48 +120,14 @@ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
     });
   };
 
-  const editor = createOptionGroupEditor<RadioOption>({
+  const editor = createOptionGroupOptionsEditor<RadioOption>({
     rootElement,
     headerText: 'Opciones del radio button',
     rowClassName: 'sisad-option-editor-row sisad-option-editor-row--radio',
     newInputPlaceholder: 'Nueva opción…',
     optionInputPlaceholder: (index) => `Opción ${index + 1}`,
-    createIndicator: (option) => {
-      const button = document.createElement('button');
-
-      button.type = 'button';
-      button.setAttribute('role', 'radio');
-      button.setAttribute('data-radio-group-option', option.optionId);
-      button.setAttribute('aria-label', option.label);
-      button.setAttribute('aria-checked', option.optionId === currentSelected ? 'true' : 'false');
-
-      Object.assign(button.style, {
-        width: '18px',
-        height: '18px',
-        minWidth: '18px',
-        minHeight: '18px',
-        border: `1.5px solid ${schema.color || '#1677ff'}`,
-        borderRadius: '999px',
-        background: option.optionId === currentSelected
-          ? `radial-gradient(circle at center, ${schema.color || '#1677ff'} 0 35%, transparent 38% 100%)`
-          : '#ffffff',
-        boxSizing: 'border-box',
-        padding: '0',
-        margin: '0',
-        cursor: 'pointer',
-        pointerEvents: 'auto',
-      });
-
-      button.addEventListener('click', (event) => {
-        event.preventDefault();
-        event.stopPropagation();
-        currentSelected = option.optionId;
-        commitOptions(currentOptions, option.optionId);
-        editor.render();
-      });
-
-      return button;
-    },
+    indicatorShape: 'circle',
+    indicatorColor: schema.color || '#1677ff',
     getOptions: () => currentOptions,
     setOptions: (nextOptions) => {
       currentOptions = nextOptions;
@@ -216,7 +170,6 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
       const selectedOptionId = resolveSelectedOptionId(radioSchema, options);
       const editable = isEditable(mode, radioSchema);
       const isDesigner = mode === 'designer';
-      const color = radioSchema.color || '#1677ff';
 
       const readOnlyGroup = resolveOptionGroupReadOnly(radioSchema);
       const groupInvalid = !readOnlyGroup && Boolean(radioSchema.required) && !selectedOptionId;
@@ -267,114 +220,48 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
     },
 
     pdf: async (arg) => {
-      const { page, schema, options } = arg;
+      const { page, schema } = arg;
       const radioSchema = schema as RadioGroupSchema;
       const resolvedOptions = normalizeOptions(radioSchema);
 
       if (!resolvedOptions.length) return;
-
-      const pageHeight = page.getHeight();
-
-      const { position, height } = convertForPdfLayoutProps({
+      renderOptionGroupPdf({
+        page,
         schema: radioSchema,
-        pageHeight,
-        applyRotateTranslate: false,
-      });
-
-      const x = position.x;
-      const y = position.y;
-      const borderColor = hex2PrintingColor(radioSchema.color, options.colorType);
-      const selectedOptionId = resolveSelectedOptionId(radioSchema, resolvedOptions);
-
-      const circleRadius = 3.4;
-      const step = DESIGNER_BOX_SIZE * 0.72;
-      const startY = y + height - circleRadius;
-
-      resolvedOptions.forEach((option, index) => {
-        const circleCenterX = x + circleRadius + 1;
-        const circleCenterY = startY - index * step;
-
-        page.drawCircle({
-          x: circleCenterX,
-          y: circleCenterY,
-          size: circleRadius,
-          borderColor,
-          borderWidth: 1,
-          color: option.optionId === selectedOptionId ? borderColor : undefined,
-        });
+        options: resolvedOptions,
+        selectionMode: 'single',
+        indicatorShape: 'circle',
+        selectedOptionId: resolveSelectedOptionId(radioSchema, resolvedOptions),
+        color: radioSchema.color,
       });
     },
 
     propPanel: {
-      schema: ({ i18n }) => ({
-        // ── basics ──
-        ...basicsFields(),
-        // ── color ──
-        color: {
-          title: i18n('schemas.color'),
-          type: 'string',
-          widget: 'color',
-          props: { disabledAlpha: true },
-          required: true,
-          rules: [{ pattern: HEX_COLOR_PATTERN, message: i18n('validation.hexColor') }],
+      ...createOptionGroupPropPanelConfig({
+        optionsTitle: 'Opciones',
+        optionsWidget: 'editRadioGroupOptions',
+        groupNameTitle: 'Nombre del grupo',
+        groupIdTitle: 'ID del grupo',
+        lockedAsGroupTitle: 'Bloquear como grupo',
+        propertyMap: {},
+        widgets: { editRadioGroupOptions: RadioOptionsEditor },
+        defaultSchema: {
+          ...buildOptionGroupDefaultSchema({
+            id: 'radio-group-default',
+            type: 'radioGroup',
+            groupId: 'Grupo_Opcion',
+            groupName: 'Grupo de opción',
+            groupType: 'radio',
+            optionPrefix: 'Opción',
+            selectionMode: 'single',
+            optionsCount: 2,
+            content: 'option_1',
+            selectedOptionId: 'option_1',
+            defaultSelectedOptionId: 'option_1',
+            color: '#1677ff',
+          }),
         },
-        // ── options / group config ──
-        groupName: { title: 'Nombre del grupo', type: 'string', span: 12 },
-        orientation: {
-          title: 'Orientación',
-          type: 'string',
-          widget: 'select',
-          span: 12,
-          props: { options: [{ label: 'Vertical', value: 'vertical' }, { label: 'Horizontal', value: 'horizontal' }] },
-        },
-        spacing: { title: 'Espaciado', type: 'number', widget: 'inputNumber', span: 8, props: { min: 0, precision: 0 } },
-        optionsContainer: {
-          title: 'Opciones',
-          type: 'string',
-          widget: 'card',
-          span: 24,
-          properties: { options: { widget: 'editRadioGroupOptions', span: 24 } },
-        },
-        // ── help ──
-        ...helpFields(),
-        // ── dataLabel ──
-        ...dataLabelFields(),
-        // ── advanced ──
-        groupId: { title: 'ID del grupo', type: 'string', span: 12, description: 'ID técnico del grupo.' },
-        lockedAsGroup: { title: 'Bloquear como grupo', type: 'boolean', span: 12 },
       }),
-      inspector: createSchemaInspectorConfig('choice', {
-        propertyMap: {
-          ...COMMON_PROPERTY_MAP,
-          color: 'style',
-          groupName: 'data',
-          orientation: 'data',
-          spacing: 'data',
-          optionsContainer: 'data',
-          groupId: 'advanced',
-          lockedAsGroup: 'advanced',
-        },
-        includeConnections: true,
-      }),
-      widgets: {
-        editRadioGroupOptions: RadioOptionsEditor,
-      },
-      defaultSchema: {
-        ...buildOptionGroupDefaultSchema({
-          id: 'radio-group-default',
-          type: 'radioGroup',
-          groupId: 'Grupo_Opcion',
-          groupName: 'Grupo de opción',
-          groupType: 'radio',
-          optionPrefix: 'Opción',
-          selectionMode: 'single',
-          optionsCount: 2,
-          content: 'option_1',
-          selectedOptionId: 'option_1',
-          defaultSelectedOptionId: 'option_1',
-          color: '#1677ff',
-        }),
-      },
     },
 
     icon: renderLucideIcon(CircleDot, { stroke: 'currentColor' }),

@@ -13,6 +13,8 @@
  */
 
 /** Hex → rgba with a given alpha (0–1). Handles both 6 and 3-char hex. */
+import { createOptionIndicatorElement } from './options/optionIndicator.js';
+
 export const hexAlpha = (hex: string, alpha: number): string => {
   const h = hex.replace('#', '');
   const full = h.length === 3 ? h.split('').map((c) => c + c).join('') : h;
@@ -144,33 +146,25 @@ export const buildOptionRow = (opts: {
   btn.setAttribute('role', opts.role);
   btn.setAttribute(opts.dataAttr, opts.optionId);
   btn.setAttribute('data-option-id', opts.optionId);
+  // The DocuSign-like chip (light-cyan fill + cyan border + radius + padding)
+  // is drawn in CSS (option-group__option), so it stays overridable and hot-
+  // reloadable. Here we only set layout-neutral props (no inline bg/border that
+  // would beat the CSS).
   applyStyles(btn, {
     display: 'inline-flex',
     alignItems: 'center',
+    justifyContent: 'center',
     gap: '3px',
-    padding: '0 2px 0 1px',
-    border: 'none',
-    background: 'transparent',
-    borderRadius: '3px',
     color: hexAlpha(color, 0.8),
     cursor: editable ? 'pointer' : 'default',
     fontSize: '9px',
     textAlign: 'left',
-    width: isHorizontal ? 'auto' : '100%',
     minHeight: '0',
     flexShrink: '0',
     userSelect: 'none',
     outline: 'none',
     transition: 'background 100ms ease',
   });
-  if (editable) {
-    btn.addEventListener('mouseenter', () => {
-      btn.style.background = hexAlpha(color, 0.04);
-    });
-    btn.addEventListener('mouseleave', () => {
-      btn.style.background = 'transparent';
-    });
-  }
   return btn;
 };
 
@@ -179,54 +173,26 @@ const checkSvg = (color: string) =>
 
 /** Checkbox indicator (square with optional checkmark). */
 export const buildCheckboxIndicator = (color: string, isChecked: boolean): HTMLSpanElement => {
-  const el = document.createElement('span');
-  applyStyles(el, {
-    width: '9px',
-    height: '9px',
-    minWidth: '9px',
-    borderRadius: '2px',
-    border: `1px solid ${hexAlpha(color, isChecked ? 0.84 : 0.5)}`,
-    background: isChecked ? color : 'rgba(255,255,255,0.9)',
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: '0',
-    transition: 'background 100ms ease, border-color 100ms ease',
+  return createOptionIndicatorElement({
+    shape: 'square',
+    checked: isChecked,
+    color,
+    mode: 'viewer',
+    size: 9,
+    readOnly: true,
   });
-  if (isChecked) {
-    el.innerHTML = checkSvg('#fff');
-  }
-  return el;
 };
 
 /** Radio indicator (circle with optional center dot). */
 export const buildRadioIndicator = (color: string, isSelected: boolean): HTMLSpanElement => {
-  const el = document.createElement('span');
-  applyStyles(el, {
-    width: '9px',
-    height: '9px',
-    minWidth: '9px',
-    borderRadius: '50%',
-    border: `1px solid ${hexAlpha(color, isSelected ? 0.84 : 0.5)}`,
-    background: isSelected ? color : 'rgba(255,255,255,0.9)',
-    display: 'inline-flex',
-    alignItems: 'center',
-    justifyContent: 'center',
-    flexShrink: '0',
-    transition: 'background 100ms ease, border-color 100ms ease',
+  return createOptionIndicatorElement({
+    shape: 'circle',
+    checked: isSelected,
+    color,
+    mode: 'viewer',
+    size: 9,
+    readOnly: true,
   });
-  if (isSelected) {
-    const dot = document.createElement('span');
-    applyStyles(dot, {
-      width: '3px',
-      height: '3px',
-      borderRadius: '50%',
-      background: '#fff',
-      display: 'block',
-    });
-    el.appendChild(dot);
-  }
-  return el;
 };
 
 /** Option label text span. */
