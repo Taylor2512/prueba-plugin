@@ -463,49 +463,51 @@ const SidebarShell = ({
   style?: React.CSSProperties;
   children: React.ReactNode;
 }) => (
-  <div
-    className={mergeClassNames(
-      `${DESIGNER_CLASSNAME}left-sidebar-shell`,
-      `${DESIGNER_CLASSNAME}sidebar-surface`,
-      'flex h-full min-h-0 flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white/95 shadow-sm',
-    )}
-    style={style}
-  >
-    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-header`, 'flex items-start justify-between gap-3 border-b border-slate-200/70 px-4 py-3')}>
-      <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-kicker`, 'text-[11px] font-medium uppercase tracking-[0.18em] text-slate-500')}>Diseñador</span>
-      <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-title`, 'flex min-w-0 flex-wrap items-center gap-2 text-sm font-semibold text-slate-900')}>
-        <span>Campos</span>
-        {activeRecipientLabel ? (
-          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-recipient`, 'inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-xs text-slate-600')}>
-            {activeRecipientLabel}
-          </span>
-        ) : null}
-        {activeRecipientColor ? (
-          <span
-            aria-label={`Color del destinatario activo ${activeRecipientColor}`}
-            title={`Color del destinatario activo: ${activeRecipientColor}`}
-            className={`${DESIGNER_CLASSNAME}left-sidebar-active-recipient-dot`}
-            style={{ '--active-recipient-color': activeRecipientColor } as React.CSSProperties}
-          />
-        ) : null}
-      </span>
-    </div>
-    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-control-band`, 'space-y-2.5 border-b border-slate-200/70 px-4 py-3')}>
-      <LeftSidebarTabs
-        tabs={tabs}
-        activeTab={activeTab}
-        onChangeTab={onChangeTab}
-        renderTabIcon={renderTabIcon}
-      />
-      {searchNode ? (
-        <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-search-wrap`, 'space-y-3')}>{searchNode}</div>
-      ) : null}
-    </div>
     <div
-      className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-main`, 'min-h-0 flex-1 overflow-y-auto px-4 py-2.5')}
+      className={mergeClassNames(
+        `${DESIGNER_CLASSNAME}left-sidebar-shell`,
+        `${DESIGNER_CLASSNAME}sidebar-surface`,
+        'flex h-full min-h-0 flex-col overflow-hidden rounded-3xl border border-slate-200/70 bg-white/95 shadow-sm',
+      )}
+      style={style}
     >
-      {children}
-    </div>
+      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-header`, 'flex items-start justify-between gap-2 border-b border-slate-200/70 px-3.5 py-2.5')}>
+        <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-kicker`, 'text-[10px] font-medium uppercase tracking-[0.18em] text-slate-500')}>
+          Diseñador
+        </span>
+        <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-title`, 'flex min-w-0 flex-wrap items-center gap-1.5 text-[0.78rem] font-semibold text-slate-900')}>
+          <span>Campos</span>
+          {activeRecipientLabel ? (
+            <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-recipient`, 'inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-1.5 py-0.5 text-[11px] text-slate-600')}>
+              {activeRecipientLabel}
+            </span>
+          ) : null}
+          {activeRecipientColor ? (
+            <span
+              aria-label={`Color del destinatario activo ${activeRecipientColor}`}
+              title={`Color del destinatario activo: ${activeRecipientColor}`}
+              className={`${DESIGNER_CLASSNAME}left-sidebar-active-recipient-dot`}
+              style={{ '--active-recipient-color': activeRecipientColor } as React.CSSProperties}
+            />
+          ) : null}
+        </span>
+      </div>
+      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-control-band`, 'space-y-2 border-b border-slate-200/70 px-3.5 py-2.5')}>
+        <LeftSidebarTabs
+          tabs={tabs}
+          activeTab={activeTab}
+          onChangeTab={onChangeTab}
+          renderTabIcon={renderTabIcon}
+        />
+        {searchNode ? (
+          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-search-wrap`, 'space-y-2.5')}>{searchNode}</div>
+        ) : null}
+      </div>
+      <div
+        className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-main`, 'min-h-0 flex-1 overflow-y-auto px-3.5 py-2.5')}
+      >
+        {children}
+      </div>
   </div>
 );
 
@@ -1062,7 +1064,7 @@ const LeftSidebar = ({
           <div
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap',
-              'relative rounded-2xl border border-slate-200/70 bg-white/90 p-2 shadow-sm transition',
+              'relative rounded-2xl border border-slate-200/70 bg-white/90 p-1.5 shadow-sm transition',
             )}
             style={activeRecipientWrapStyle || activeRecipientStyles}
           >
@@ -1111,7 +1113,7 @@ const LeftSidebar = ({
                 }
               />
               <span className={mergeClassNames(`${DESIGNER_CLASSNAME}plugin-btn-label`, 'min-w-0 flex-1 text-left')}>
-                <span className={mergeClassNames(DESIGNER_CLASSNAME + 'plugin-btn-label-title', 'block truncate text-sm font-medium text-slate-800')}>
+                <span className={mergeClassNames(DESIGNER_CLASSNAME + 'plugin-btn-label-title', 'block truncate text-[0.72rem] font-medium text-slate-800')}>
                   {highlightTerm(displayLabel, searchTerms)}
                 </span>
               </span>
@@ -1126,7 +1128,7 @@ const LeftSidebar = ({
               aria-label="Marcar favorito"
               className={mergeClassNames(
                 DESIGNER_CLASSNAME + 'plugin-favorite-toggle',
-                'absolute right-2 top-2 inline-flex h-6 w-6 items-center justify-center rounded-full border border-slate-200 bg-white text-[11px] text-slate-400 shadow-sm transition',
+                'absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-slate-200 bg-white text-[10px] text-slate-400 shadow-sm transition',
               )}
               data-active={isFavorite ? 'true' : 'false'}
               onClick={(e) => {
@@ -1175,7 +1177,7 @@ const LeftSidebar = ({
           <div
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap',
-              'relative rounded-2xl border border-slate-200/70 bg-white/90 p-2 shadow-sm transition',
+              'relative rounded-2xl border border-slate-200/70 bg-white/90 p-1.5 shadow-sm transition',
             )}
             style={activeRecipientWrapStyle || activeRecipientStyles}
           >
@@ -1238,7 +1240,7 @@ const LeftSidebar = ({
                 />
               </span>
               <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-item-copy`, 'min-w-0 flex-1 text-left')}>
-                <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-item-label`, 'block truncate text-sm font-medium text-slate-800')}>
+                <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-item-label`, 'block truncate text-[0.72rem] font-medium text-slate-800')}>
                   {definition.label}
                 </span>
               </span>
@@ -1292,7 +1294,7 @@ const LeftSidebar = ({
     : [];
 
   const searchNode = showSearchInput ? (
-    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-search-stack', 'space-y-3')}>
+    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-search-stack', 'space-y-2.5')}>
       <LeftSidebarSearch
         value={search}
         onChange={setSearch}
@@ -1304,7 +1306,7 @@ const LeftSidebar = ({
           parsedQuery.categories.size > 0 ||
           parsedQuery.types.size > 0 ||
           parsedQuery.tags.size > 0) ? (
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-2')}>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-1.5')}>
           {Array.from(parsedQuery.capabilities).map((cap) => (
             <Button key={`facet-cap-${cap}`} size="small" type="text">
               cap:{cap}
@@ -1330,7 +1332,7 @@ const LeftSidebar = ({
           </Button>
         </div>
       ) : null}
-      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-2')}>
+      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-1.5')}>
         <Button
           className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
           size="small"
@@ -1371,7 +1373,7 @@ const LeftSidebar = ({
         ) : null}
       </div>
       {SHOW_ADVANCED_CATALOG_CONTROLS ? (
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-2')}>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-1.5')}>
           {SUPPORTED_CAPABILITIES.map((capability) => {
             const isActive = activeCapabilities.has(capability);
             return (
@@ -1398,7 +1400,7 @@ const LeftSidebar = ({
         </div>
       ) : null}
       {SHOW_ADVANCED_CATALOG_CONTROLS && groupedPlugins.length > 0 ? (
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-2')}>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-1.5')}>
           {groupedPlugins.slice(0, 8).map(({ category, items }) => (
             <Button
               key={`cat-${category}`}

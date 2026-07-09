@@ -21,7 +21,7 @@ const LeftSidebarTabs = ({
   <ul
     className={mergeUniqueClassNames(
       `${DESIGNER_CLASSNAME}left-sidebar-tablist`,
-      'flex items-stretch gap-1.5 overflow-x-auto rounded-2xl border border-slate-200/70 bg-slate-50/90 p-1 shadow-sm',
+      'flex items-stretch gap-1 overflow-x-auto rounded-2xl border border-slate-200/70 bg-slate-50/90 p-0.5 shadow-sm',
     )}
     role="tablist"
     aria-orientation="horizontal"
@@ -37,7 +37,7 @@ const LeftSidebarTabs = ({
           title={tab.label}
           className={mergeUniqueClassNames(
             `${DESIGNER_CLASSNAME}left-sidebar-tab-btn`,
-            'inline-flex min-w-0 items-center gap-2 rounded-xl border border-transparent px-2.5 py-1.5 text-sm font-semibold text-slate-600 transition',
+            'inline-flex min-w-0 items-center gap-1.5 rounded-xl border border-transparent px-2 py-[0.3125rem] text-[0.72rem] font-semibold text-slate-600 transition',
             'hover:border-slate-200 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
             activeTab === tab.id ? `${DESIGNER_CLASSNAME}left-sidebar-tab-btn-active` : '',
             activeTab === tab.id ? 'border-sky-200 bg-white text-sky-700 shadow-sm shadow-sky-100' : '',

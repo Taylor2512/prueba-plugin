@@ -107,7 +107,7 @@
 
 /* ── E. Sidebars (visual; ancho colapsado / transform → legacy) ── */
 .sisad-pdfme-designer-left-sidebar {
-  @apply relative flex flex-col h-full min-h-0 shrink-0 bg-white border-r border-slate-200;
+  @apply relative flex flex-col h-full min-h-0 shrink-0 bg-white border-r border-slate-200 overflow-x-hidden;
 }
 
 .sisad-pdfme-designer-left-sidebar-content {
@@ -116,6 +116,38 @@
 
 .sisad-pdfme-designer-left-sidebar-main {
   @apply flex-1 min-h-0 overflow-y-auto overflow-x-hidden;
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-dock-header {
+  @apply gap-2 px-3.5 py-2.5;
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-dock-kicker {
+  @apply text-[10px];
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-dock-title {
+  @apply gap-1.5 text-[0.78rem];
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-dock-recipient {
+  @apply px-1.5 py-0.5 text-[11px];
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-control-band {
+  @apply gap-2 px-3.5 py-2.5;
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-search-wrap {
+  @apply space-y-2.5;
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-tablist {
+  @apply gap-1 p-0.5;
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-tab-btn {
+  @apply gap-1.5 px-2 py-[0.3125rem] text-[0.72rem];
 }
 
 /* ── F. Inspector / sidebar surface headers ───────────────────── */
@@ -165,19 +197,72 @@
 
 /* ── F.2 Inspector density / sidebar groups ───────────────────── */
 .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-group {
-  @apply gap-[0.35rem];
+  @apply gap-[0.35rem] rounded-[1.2rem] p-1.5;
 }
 
 .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-group-title {
-  @apply min-h-[1.7rem] px-[0.45rem] py-[0.3rem] text-[0.68rem] tracking-[0.02em];
+  @apply min-h-[1.6rem] gap-2 px-2.5 py-1.5 text-[0.66rem];
 }
 
 .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-group-title-label {
-  @apply text-[0.69rem];
+  @apply text-[9px];
+  letter-spacing: 0.04em;
 }
 
 .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-group-title-count {
-  @apply text-[0.6rem];
+  @apply min-h-[1rem] px-1.5 text-[9px];
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-plugin-wrap {
+  @apply p-1.5;
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-view-mode='compact'] {
+  @apply min-h-[3rem] gap-1 rounded-xl px-2 py-1.5;
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-view-mode='compact'] > div {
+  @apply h-[1.7rem] w-[1.7rem];
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn-label-title {
+  @apply text-[0.72rem];
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn-label-meta {
+  @apply text-[0.58rem];
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-favorite-toggle {
+  @apply h-5 w-5 text-[10px];
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom {
+  @apply rounded-[1.2rem] p-2.5;
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-head {
+  @apply gap-2.5;
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-head-copy strong {
+  @apply text-[0.8rem];
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-head-copy span {
+  @apply text-[11px];
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-add {
+  @apply h-7 w-7 rounded-xl text-base;
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-list {
+  @apply mt-2.5;
+}
+
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-empty {
+  @apply py-3.5 text-[0.8rem];
 }
 
 .sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar,

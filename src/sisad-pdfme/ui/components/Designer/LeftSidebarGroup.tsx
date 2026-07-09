@@ -27,12 +27,12 @@ export const LeftSidebarGroup = ({
   const titleContent = (
     <>
       <span
-        className={`${DESIGNER_CLASSNAME}left-sidebar-group-title-label text-[11px] font-bold uppercase tracking-[0.12em]`}
+        className={`${DESIGNER_CLASSNAME}left-sidebar-group-title-label text-[9px] font-bold uppercase tracking-[0.04em]`}
       >
         {category}
       </span>
       <span
-        className={`${DESIGNER_CLASSNAME}left-sidebar-group-title-count inline-flex min-h-5 items-center rounded-full border border-slate-200 bg-slate-50 px-2 text-[11px] font-semibold text-slate-600`}
+        className={`${DESIGNER_CLASSNAME}left-sidebar-group-title-count inline-flex min-h-[1rem] items-center rounded-full border border-slate-200 bg-slate-50 px-1.5 text-[9px] font-semibold text-slate-600`}
       >
         {typeof count === 'number' ? count : items.length}
       </span>
@@ -40,7 +40,7 @@ export const LeftSidebarGroup = ({
   );
   const titleClassName = mergeUniqueClassNames(
     `${DESIGNER_CLASSNAME}left-sidebar-group-title`,
-    'flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2 text-left text-sm font-semibold text-slate-800 transition',
+    'flex w-full items-center justify-between gap-2 rounded-[0.9rem] px-2.5 py-1.5 text-left text-[0.66rem] font-semibold text-slate-800 transition',
     'hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
   );
 
@@ -48,7 +48,7 @@ export const LeftSidebarGroup = ({
     <section
       className={mergeUniqueClassNames(
         `${DESIGNER_CLASSNAME}left-sidebar-group`,
-        'rounded-2xl border border-slate-200/70 bg-white/92 p-2 shadow-sm',
+        'rounded-[1.2rem] border border-slate-200/70 bg-white/92 p-1.5 shadow-sm',
       )}
     >
       {collapsible ? (
@@ -76,7 +76,7 @@ export const LeftSidebarGroup = ({
       <div
         className={mergeUniqueClassNames(
           `${DESIGNER_CLASSNAME}left-sidebar-group-items`,
-          'mt-2 space-y-1.5',
+          'mt-1.5 space-y-[0.3125rem]',
         )}
         data-view-mode={viewMode}
         data-collapsed={collapsed ? 'true' : 'false'}
