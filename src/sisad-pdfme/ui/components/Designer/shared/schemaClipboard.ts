@@ -59,10 +59,26 @@ type ClipboardTransientRecord = Record<string, unknown> & {
   __designer?: unknown;
 };
 
+export type SchemaGroupBounds = { x: number; y: number; width: number; height: number };
+
+/**
+ * Optional rigid-group metadata captured when 2+ schemas are copied together.
+ * Lets paste translate the whole selection by a single delta so the visual
+ * bounding box, relative offsets, order, size and direction are preserved
+ * (DocuSign/Figma-style group paste).
+ */
+export type SchemaGroupClipboardMeta = {
+  anchor: { x: number; y: number };
+  bounds: SchemaGroupBounds;
+  itemOffsets: Record<string, { x: number; y: number }>;
+  sourcePageIndex: number;
+};
+
 export type SchemaClipboardPayload = {
   source: 'copy' | 'cut';
   items: SchemaForUI[];
   removeIds: string[];
+  group?: SchemaGroupClipboardMeta;
 };
 
 export type SchemaClipboardContext = {
@@ -74,6 +90,12 @@ export type SchemaClipboardContext = {
   collaborationContext?: ClipboardCollaborationContext;
   timestamp?: number;
   resolvePlacement?: (input: SmartPlacementInput) => { x: number; y: number };
+  /**
+   * Preferred top-left anchor (mm) for a rigid-group paste. When present, the
+   * whole group is translated so its bounding box starts here (clamped to page).
+   * When absent, group paste falls back to a fixed +10mm/+10mm offset.
+   */
+  targetAnchor?: { x: number; y: number };
 };
 
 const transientKeys: string[] = [
@@ -225,16 +247,78 @@ export const sanitizeCopiedSchema = (schema: SchemaForUI): SchemaForUI => {
   return next as SchemaForUI;
 };
 
-export const copySchemasToClipboard = (schemas: SchemaForUI[]): SchemaClipboardPayload => ({
+/** Fixed offset (mm) applied to a rigid-group paste when no target anchor exists. */
+export const GROUP_PASTE_FALLBACK_OFFSET_MM = 10;
+
+const schemaPosition = (schema: SchemaForUI) => {
+  const position = schema.position || { x: 0, y: 0 };
+  return { x: Number(position.x) || 0, y: Number(position.y) || 0 };
+};
+
+/** Visual bounding box (mm) of a set of schemas from position + width/height. */
+export const computeSchemasBounds = (items: SchemaForUI[]): SchemaGroupBounds => {
+  if (!items.length) return { x: 0, y: 0, width: 0, height: 0 };
+  let minX = Infinity;
+  let minY = Infinity;
+  let maxX = -Infinity;
+  let maxY = -Infinity;
+  for (const schema of items) {
+    const { x, y } = schemaPosition(schema);
+    const width = Number(schema.width) || 0;
+    const height = Number(schema.height) || 0;
+    minX = Math.min(minX, x);
+    minY = Math.min(minY, y);
+    maxX = Math.max(maxX, x + width);
+    maxY = Math.max(maxY, y + height);
+  }
+  return { x: minX, y: minY, width: maxX - minX, height: maxY - minY };
+};
+
+/** Builds rigid-group metadata for a multi-schema selection (undefined for <2). */
+export const buildGroupClipboardMetadata = (
+  items: SchemaForUI[],
+  sourcePageIndex: number,
+): SchemaGroupClipboardMeta | undefined => {
+  if (items.length < 2) return undefined;
+  const bounds = computeSchemasBounds(items);
+  const itemOffsets: Record<string, { x: number; y: number }> = {};
+  for (const schema of items) {
+    const { x, y } = schemaPosition(schema);
+    if (schema.id) {
+      itemOffsets[schema.id] = { x: x - bounds.x, y: y - bounds.y };
+    }
+  }
+  return { anchor: { x: bounds.x, y: bounds.y }, bounds, itemOffsets, sourcePageIndex };
+};
+
+/** Clamps a group top-left anchor so the whole bounding box stays inside the page. */
+export const clampGroupAnchorToPage = (
+  target: { x: number; y: number },
+  groupBounds: SchemaGroupBounds,
+  pageSize: Size,
+): { x: number; y: number } => ({
+  x: Math.max(0, Math.min(target.x, Math.max(0, pageSize.width - groupBounds.width))),
+  y: Math.max(0, Math.min(target.y, Math.max(0, pageSize.height - groupBounds.height))),
+});
+
+export const copySchemasToClipboard = (
+  schemas: SchemaForUI[],
+  sourcePageIndex = 0,
+): SchemaClipboardPayload => ({
   source: 'copy',
   items: schemas.map((schema) => sanitizeCopiedSchema(schema)),
   removeIds: [],
+  group: buildGroupClipboardMetadata(schemas, sourcePageIndex),
 });
 
-export const cutSchemasToClipboard = (schemas: SchemaForUI[]): SchemaClipboardPayload => ({
+export const cutSchemasToClipboard = (
+  schemas: SchemaForUI[],
+  sourcePageIndex = 0,
+): SchemaClipboardPayload => ({
   source: 'cut',
   items: schemas.map((schema) => sanitizeCopiedSchema(schema)),
   removeIds: schemas.map((schema) => schema.id),
+  group: buildGroupClipboardMetadata(schemas, sourcePageIndex),
 });
 
 export const resolvePasteOffset = (index: number) => {
@@ -256,12 +340,19 @@ export const resolveUniqueSchemaName = (
   return uniqueName;
 };
 
+/**
+ * Rigid-group placement: translate the schema by a single shared delta and skip
+ * all per-item collision/smart placement so the group geometry is preserved.
+ */
+export type GroupPlacement = { delta: { x: number; y: number } };
+
 export const buildPastedSchema = (
   schema: SchemaForUI,
   context: SchemaClipboardContext,
   index = 0,
   stackUniqueSchemaNames: string[] = [],
   policy: PastePolicy = { mode: 'preserveAssignments' },
+  placement?: GroupPlacement,
 ): SchemaForUI => {
   // Capture transient fields from the original BEFORE sanitization so that
   // PastePolicy.preserveLocks / preserveComments can selectively restore them.
@@ -279,12 +370,18 @@ export const buildPastedSchema = (
   const offset = resolvePasteOffset(index);
   const sourcePosition = schema.position || { x: 0, y: 0 };
   const sourceSize = { width: schema.width || 0, height: schema.height || 0 };
-  const candidate = {
-    x: Math.max(0, sourcePosition.x + offset.x),
-    y: Math.max(0, sourcePosition.y + offset.y),
-  };
+  // Rigid-group paste: apply the single shared delta and skip smart placement.
+  const candidate = placement
+    ? {
+        x: Math.max(0, sourcePosition.x + placement.delta.x),
+        y: Math.max(0, sourcePosition.y + placement.delta.y),
+      }
+    : {
+        x: Math.max(0, sourcePosition.x + offset.x),
+        y: Math.max(0, sourcePosition.y + offset.y),
+      };
   const position =
-    context.pageSize && (context.resolvePlacement || existingSchemas.length > 0)
+    !placement && context.pageSize && (context.resolvePlacement || existingSchemas.length > 0)
       ? (context.resolvePlacement
           ? context.resolvePlacement({
               candidate,
@@ -383,7 +480,9 @@ export const buildPastedSchema = (
     finalResult.lock = originalLock;
   }
 
-  if (context.pageSize) {
+  // Skip per-item collision resolution for rigid-group paste: the group already
+  // carries a single shared delta, so the geometry must not be recomputed here.
+  if (context.pageSize && !placement) {
     const collisionScopedSchemas = filterSchemasByCollisionScope(existingSchemas, finalResult as SchemaForUI, {
       fileId: targetFileId ?? null,
       pageNumber,
@@ -396,9 +495,44 @@ export const buildPastedSchema = (
       stepMm: offset.x,
       maxAttempts: 12,
     });
+  } else if (placement) {
+    // Ensure the rigid delta position is authoritative even after collaborative defaults.
+    finalResult.position = candidate;
   }
 
   return finalResult as SchemaForUI;
+};
+
+/**
+ * Rigid-group paste: translate every schema by ONE shared delta derived from the
+ * group bounding box, so order, spacing, size and direction are preserved. No
+ * per-item smart placement or collision resolution runs; a single clamp keeps the
+ * whole box inside the page.
+ */
+export const pasteSchemaGroupFromClipboard = (
+  items: SchemaForUI[],
+  group: SchemaGroupClipboardMeta | undefined,
+  context: SchemaClipboardContext,
+  policy: PastePolicy = { mode: 'preserveAssignments' },
+): SchemaForUI[] => {
+  const bounds = group?.bounds ?? computeSchemasBounds(items);
+  const rawAnchor = context.targetAnchor ?? {
+    x: bounds.x + GROUP_PASTE_FALLBACK_OFFSET_MM,
+    y: bounds.y + GROUP_PASTE_FALLBACK_OFFSET_MM,
+  };
+  const anchor = context.pageSize ? clampGroupAnchorToPage(rawAnchor, bounds, context.pageSize) : rawAnchor;
+  const delta = { x: anchor.x - bounds.x, y: anchor.y - bounds.y };
+  const placement: GroupPlacement = { delta };
+
+  const stackUniqueSchemaNames: string[] = [];
+  const groupIdMap = new Map<string, string>();
+  const pasted: SchemaForUI[] = [];
+  for (const [index, schema] of items.entries()) {
+    const next = buildPastedSchema(schema, context, index, stackUniqueSchemaNames, policy, placement);
+    remapGroupedSchemaIdentity(next, schema, groupIdMap);
+    pasted.push(next);
+  }
+  return pasted;
 };
 
 export const pasteSchemasFromClipboard = (
@@ -407,6 +541,14 @@ export const pasteSchemasFromClipboard = (
   policy: PastePolicy = { mode: 'preserveAssignments' },
 ): SchemaForUI[] => {
   const items = Array.isArray(clipboard) ? clipboard : clipboard.items;
+  const group = Array.isArray(clipboard) ? undefined : clipboard.group;
+
+  // Multi-schema selections paste as a rigid group (single delta, no per-item
+  // placement). Single schemas keep the existing smart-placement behavior.
+  if (items.length > 1) {
+    return pasteSchemaGroupFromClipboard(items, group, context, policy);
+  }
+
   const existingSchemas = context.existingSchemas || [];
   const stackUniqueSchemaNames: string[] = [];
   const groupIdMap = new Map<string, string>();
@@ -423,4 +565,4 @@ export const pasteSchemasFromClipboard = (
 };
 
 export const duplicateSchemas = (schemas: SchemaForUI[], context: SchemaClipboardContext): SchemaForUI[] =>
-  pasteSchemasFromClipboard(copySchemasToClipboard(schemas), context);
+  pasteSchemasFromClipboard(copySchemasToClipboard(schemas, context.pageIndex), context);

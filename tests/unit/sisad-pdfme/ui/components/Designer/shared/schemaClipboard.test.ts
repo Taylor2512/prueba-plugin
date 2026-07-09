@@ -4,6 +4,10 @@ import {
   copySchemasToClipboard,
   cutSchemasToClipboard,
   resolvePasteOffset,
+  computeSchemasBounds,
+  buildGroupClipboardMetadata,
+  clampGroupAnchorToPage,
+  pasteSchemasFromClipboard,
 } from '@/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.js';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 
@@ -118,5 +122,106 @@ describe('resolvePasteOffset', () => {
   it('subsequent items get offset 8', () => {
     expect(resolvePasteOffset(1)).toEqual({ x: 8, y: 8 });
     expect(resolvePasteOffset(5)).toEqual({ x: 8, y: 8 });
+  });
+});
+
+// ─── Rigid-group paste ────────────────────────────────────────────────────────
+
+const makePositioned = (id: string, x: number, y: number, width = 80, height = 20): SchemaForUI =>
+  ({
+    id,
+    name: id,
+    type: 'text',
+    content: 'x',
+    width,
+    height,
+    position: { x, y },
+    rotate: 0,
+  } as unknown as SchemaForUI);
+
+// Three vertically-stacked text fields (contract_name/date/stage layout).
+const groupInput = () => [
+  makePositioned('a', 20, 30),
+  makePositioned('b', 20, 60),
+  makePositioned('c', 20, 90),
+];
+
+describe('computeSchemasBounds', () => {
+  it('computes the visual bounding box from position + size', () => {
+    expect(computeSchemasBounds(groupInput())).toEqual({ x: 20, y: 30, width: 80, height: 80 });
+  });
+
+  it('returns a zero box for an empty selection', () => {
+    expect(computeSchemasBounds([])).toEqual({ x: 0, y: 0, width: 0, height: 0 });
+  });
+});
+
+describe('buildGroupClipboardMetadata', () => {
+  it('is undefined for a single schema', () => {
+    expect(buildGroupClipboardMetadata([makePositioned('a', 20, 30)], 0)).toBeUndefined();
+  });
+
+  it('captures anchor, bounds and per-id relative offsets', () => {
+    const meta = buildGroupClipboardMetadata(groupInput(), 2)!;
+    expect(meta.sourcePageIndex).toBe(2);
+    expect(meta.anchor).toEqual({ x: 20, y: 30 });
+    expect(meta.itemOffsets.a).toEqual({ x: 0, y: 0 });
+    expect(meta.itemOffsets.b).toEqual({ x: 0, y: 30 });
+    expect(meta.itemOffsets.c).toEqual({ x: 0, y: 60 });
+  });
+});
+
+describe('clampGroupAnchorToPage', () => {
+  const bounds = { x: 20, y: 30, width: 80, height: 80 };
+  const page = { width: 210, height: 297 };
+
+  it('keeps the whole box inside the page (right/bottom edge)', () => {
+    expect(clampGroupAnchorToPage({ x: 999, y: 999 }, bounds, page)).toEqual({ x: 130, y: 217 });
+  });
+
+  it('never allows a negative anchor', () => {
+    expect(clampGroupAnchorToPage({ x: -50, y: -50 }, bounds, page)).toEqual({ x: 0, y: 0 });
+  });
+});
+
+describe('pasteSchemasFromClipboard — rigid group', () => {
+  const page = { width: 210, height: 297 };
+
+  it('translates the whole group by one delta, preserving relative spacing', () => {
+    const payload = copySchemasToClipboard(groupInput(), 0);
+    const pasted = pasteSchemasFromClipboard(payload, {
+      pageIndex: 0,
+      pageSize: page,
+      existingSchemas: [],
+      targetAnchor: { x: 100, y: 130 },
+    });
+    // Anchor (bounds top-left 20,30) → 100,130 means delta = (80,100).
+    expect(pasted.map((s) => s.position)).toEqual([
+      { x: 100, y: 130 },
+      { x: 100, y: 160 },
+      { x: 100, y: 190 },
+    ]);
+  });
+
+  it('falls back to +10mm/+10mm when no target anchor is given', () => {
+    const payload = copySchemasToClipboard(groupInput(), 0);
+    const pasted = pasteSchemasFromClipboard(payload, {
+      pageIndex: 0,
+      pageSize: page,
+      existingSchemas: [],
+    });
+    expect(pasted.map((s) => s.position)).toEqual([
+      { x: 30, y: 40 },
+      { x: 30, y: 70 },
+      { x: 30, y: 100 },
+    ]);
+  });
+
+  it('assigns fresh ids to every pasted schema', () => {
+    const payload = copySchemasToClipboard(groupInput(), 0);
+    const pasted = pasteSchemasFromClipboard(payload, { pageIndex: 0, pageSize: page, existingSchemas: [] });
+    const ids = pasted.map((s) => s.id);
+    expect(new Set(ids).size).toBe(3);
+    expect(ids).not.toContain('a');
   });
 });

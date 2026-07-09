@@ -458,6 +458,17 @@ const TemplateEditor = ({
   const schemaClipboardRef = useRef<SchemaClipboardPayload | null>(null);
   const pendingCanvasDocumentIdRef = useRef<string | null>(null);
   const loadDocumentRequestRef = useRef(0);
+  // Last valid pointer over a page (mm), used as the rigid-group paste anchor.
+  const lastCanvasPointerRef = useRef<{
+    pageIndex: number;
+    pageNumber: number;
+    pointMm: { x: number; y: number };
+    clientX: number;
+    clientY: number;
+    timestamp: number;
+  } | null>(null);
+  // Schema ids waiting to be re-selected once they render after a paste/duplicate.
+  const pendingSelectionIdsRef = useRef<string[] | null>(null);
 
   const resolveStableDocumentBasePdf = useCallback((documentId: string | null) => {
     const documentTemplate = uploadedDocumentsRef.current.find((doc) => doc.id === documentId)?.template || null;
@@ -1237,22 +1248,41 @@ const TemplateEditor = ({
     [activeElements],
   );
 
+  const resolveSelectionPageIndex = useCallback(() => {
+    for (const el of activeElements) {
+      const pi = Number(el?.dataset.pageIndex);
+      if (Number.isInteger(pi) && pi >= 0) return pi;
+    }
+    return pageCursor;
+  }, [activeElements, pageCursor]);
+
   const handleCopySelection = useCallback(() => {
     const schemas = resolveActiveSchemasGlobal();
     if (!schemas.length) return;
-    schemaClipboardRef.current = copySchemasToClipboard(schemas);
-  }, [resolveActiveSchemasGlobal]);
+    schemaClipboardRef.current = copySchemasToClipboard(schemas, resolveSelectionPageIndex());
+  }, [resolveActiveSchemasGlobal, resolveSelectionPageIndex]);
 
   const handlePasteSelection = useCallback(() => {
     const clipboard = schemaClipboardRef.current;
     if (!clipboard?.items.length) return;
     const list = schemasListRef.current;
-    // Target the page of the first active element, or pageCursor as fallback
+
+    // Prefer the last valid pointer over a page as the paste anchor; only use it
+    // when it targets a real page. Otherwise fall back to the active selection's
+    // page (or pageCursor). resolvePointerDropTarget, not event.target, drives this.
+    const pointer = lastCanvasPointerRef.current;
     let targetPageIndex = pageCursor;
-    for (const el of activeElements) {
-      const pi = Number(el?.dataset.pageIndex);
-      if (Number.isInteger(pi) && pi >= 0) { targetPageIndex = pi; break; }
+    let targetAnchor: { x: number; y: number } | undefined;
+    if (pointer && list[pointer.pageIndex]) {
+      targetPageIndex = pointer.pageIndex;
+      targetAnchor = { x: pointer.pointMm.x, y: pointer.pointMm.y };
+    } else {
+      for (const el of activeElements) {
+        const pi = Number(el?.dataset.pageIndex);
+        if (Number.isInteger(pi) && pi >= 0) { targetPageIndex = pi; break; }
+      }
     }
+
     const pageSchemas = list[targetPageIndex] || [];
     const pasted = pasteSchemasFromClipboard(clipboard, {
       pageIndex: targetPageIndex,
@@ -1269,16 +1299,20 @@ const TemplateEditor = ({
         userColor: collaborationContext.userColor || null,
       },
       pageCount: list.length,
+      targetAnchor,
     });
+    if (!pasted.length) return;
+    // Select the pasted group once it renders; clears the previous selection.
+    pendingSelectionIdsRef.current = pasted.map((schema) => schema.id);
     commitSchemas([...pageSchemas, ...pasted], targetPageIndex);
   }, [activeDocumentId, activeElements, collaborationContext, commitSchemas, pageCursor, pageSizes]);
 
   const handleCutSelection = useCallback(() => {
     const schemas = resolveActiveSchemasGlobal();
     if (!schemas.length) return;
-    schemaClipboardRef.current = cutSchemasToClipboard(schemas);
+    schemaClipboardRef.current = cutSchemasToClipboard(schemas, resolveSelectionPageIndex());
     removeSchemas(schemas.map((s) => s.id));
-  }, [removeSchemas, resolveActiveSchemasGlobal]);
+  }, [removeSchemas, resolveActiveSchemasGlobal, resolveSelectionPageIndex]);
 
   const changeSchemas: ChangeSchemas = useCallback(
     (objs) => {
@@ -2841,6 +2875,65 @@ const TemplateEditor = ({
     },
     [],
   );
+
+  // Track the last pointerdown that lands over a page, in page-local mm. Used as
+  // the anchor for rigid-group paste. Clicks outside any page clear the anchor so
+  // paste falls back to a fixed offset instead of pasting off the PDF.
+  useEffect(() => {
+    const canvasEl = canvasRef.current;
+    if (!canvasEl) return;
+    const handleCanvasPointerDown = (event: PointerEvent) => {
+      const target = resolvePointerDropTarget({
+        clientX: event.clientX,
+        clientY: event.clientY,
+        paperRefs: paperRefs.current,
+        pageSizes,
+        scale,
+        activeDocumentId,
+        canvasElement: canvasRef.current,
+        pageCursor,
+      });
+      if (target.isOverPage && target.schemaPointMm && target.pageIndex >= 0) {
+        lastCanvasPointerRef.current = {
+          pageIndex: target.pageIndex,
+          pageNumber: target.pageNumber,
+          pointMm: { x: target.schemaPointMm.x, y: target.schemaPointMm.y },
+          clientX: event.clientX,
+          clientY: event.clientY,
+          timestamp: Date.now(),
+        };
+      } else {
+        lastCanvasPointerRef.current = null;
+      }
+    };
+    canvasEl.addEventListener('pointerdown', handleCanvasPointerDown, true);
+    return () => canvasEl.removeEventListener('pointerdown', handleCanvasPointerDown, true);
+  }, [activeDocumentId, pageCursor, pageSizes, paperRefs, scale]);
+
+  // After a paste/duplicate commit, re-select the newly created schemas once they
+  // render (keyed on schemasList so it runs post-render — no timers involved).
+  useEffect(() => {
+    const ids = pendingSelectionIdsRef.current;
+    if (!ids || !ids.length) return;
+    const selector = (id: string) =>
+      typeof CSS !== 'undefined' && typeof CSS.escape === 'function'
+        ? `[data-schema-id="${CSS.escape(id)}"]`
+        : `[data-schema-id="${id.replace(/"/g, '\\"')}"]`;
+    const elements: HTMLElement[] = [];
+    for (const id of ids) {
+      let element: HTMLElement | null = null;
+      for (const paper of paperRefs.current) {
+        element = paper?.querySelector<HTMLElement>(selector(id)) || null;
+        if (element) break;
+      }
+      if (element && element.classList.contains(SELECTABLE_CLASSNAME)) elements.push(element);
+    }
+    if (elements.length === ids.length) {
+      pendingSelectionIdsRef.current = null;
+      setActiveElements(elements);
+      setHoveringSchemaId(null);
+    }
+  }, [schemasList, paperRefs]);
 
   const resolveSchemaDragSession = useCallback(
     (active: SchemaDragActiveLike, pointer: { x: number; y: number }) => {
