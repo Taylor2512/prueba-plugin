@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `react`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-08T22:03:36.285Z`
+- **Fecha generación:** `2026-07-09T03:22:40.019Z`
 - **Extensiones incluidas:** `.js, .jsx, .ts, .tsx, .mjs, .cjs, .json`
 - **Archivos candidatos incluidos:** `481`
 - **Límite por archivo:** `90 KB`
@@ -566,11 +566,11 @@ prueba-plugin
 | 8 | `src/main.jsx` | jsx | 13 | 0.4 | completo |
 | 9 | `src/App.jsx` | jsx | 25 | 0.9 | completo |
 | 10 | `src/features/pdfcomponent/CaseCard.jsx` | jsx | 123 | 5.2 | completo |
-| 11 | `src/features/pdfcomponent/CompactControls.jsx` | jsx | 280 | 8.5 | completo |
+| 11 | `src/features/pdfcomponent/CompactControls.jsx` | jsx | 282 | 8.6 | completo |
 | 12 | `src/features/pdfcomponent/LabExampleDownloadButton.jsx` | jsx | 74 | 2.0 | completo |
 | 13 | `src/features/pdfcomponent/LabLandingPage.jsx` | jsx | 242 | 10.5 | completo |
-| 14 | `src/features/pdfcomponent/PageHeader.jsx` | jsx | 415 | 15.1 | completo |
-| 15 | `src/features/pdfcomponent/PdfmeLabPage.jsx` | jsx | 637 | 20.8 | completo |
+| 14 | `src/features/pdfcomponent/PageHeader.jsx` | jsx | 420 | 15.3 | completo |
+| 15 | `src/features/pdfcomponent/PdfmeLabPage.jsx` | jsx | 650 | 21.4 | completo |
 | 16 | `src/features/pdfcomponent/PopoverMenu.jsx` | jsx | 114 | 3.4 | completo |
 | 17 | `src/features/pdfcomponent/ResultsPanel.jsx` | jsx | 248 | 8.2 | completo |
 | 18 | `src/features/pdfcomponent/domain/labPresentation.js` | javascript | 192 | 6.7 | completo |
@@ -977,7 +977,7 @@ prueba-plugin
 | 419 | `src/sisad-pdfme/ui/components/Designer/shared/recipientColor.ts` | typescript | 143 | 4.2 | completo |
 | 420 | `src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts` | typescript | 96 | 3.7 | completo |
 | 421 | `src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts` | typescript | 426 | 15.0 | completo |
-| 422 | `src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts` | typescript | 101 | 3.6 | truncado 2.3 KB |
+| 422 | `src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts` | typescript | 101 | 3.6 | truncado 1.5 KB |
 | 423 | `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionCapabilities.ts` | typescript | 115 | 3.8 | omitido por presupuesto total |
 | 424 | `src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts` | typescript | 90 | 2.5 | omitido por presupuesto total |
 | 425 | `src/sisad-pdfme/ui/components/Designer/shared/schemaVariableName.ts` | typescript | 49 | 1.5 | omitido por presupuesto total |
@@ -1041,9 +1041,9 @@ prueba-plugin
 ## Resumen de exclusiones
 
 - **test omitido:** 885
-- **extensión no incluida:** 141
+- **extensión no incluida:** 289
 - **directorio ignorado: dependencia/build/salida generada:** 7
-- **json de datos omitido en perfil react:** 7
+- **json de datos omitido en perfil react:** 3
 - **generado detectado por contenido:** 2
 - **archivo binario/minificado/lock ignorado:** 1
 - **minificado detectado por contenido:** 1
@@ -1051,8 +1051,8 @@ prueba-plugin
 
 ## Totales
 
-- **KB originales candidatos:** `3134.5`
-- **KB incluidos en contenido:** `2499.9`
+- **KB originales candidatos:** `3135.4`
+- **KB incluidos en contenido:** `2500.0`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -1764,9 +1764,9 @@ CaseCard.propTypes = {
 ### 0011 — `src/features/pdfcomponent/CompactControls.jsx`
 
 - **Lenguaje:** `jsx`
-- **Líneas:** `280`
-- **Tamaño original:** `8.5 KB`
-- **SHA1 corto:** `6c8ce856ef`
+- **Líneas:** `282`
+- **Tamaño original:** `8.6 KB`
+- **SHA1 corto:** `030ba0378d`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export function: CompactControls`, `component/const: ControlSection`, `component/const: ActionButton`, `component/const: ActionSection`
 
@@ -1927,7 +1927,9 @@ export default function CompactControls({
 
   return (
     <PopoverMenu
-      label={compact ? '' : 'Controles'}
+      // Canvas-first keeps the command center icon-only to avoid consuming
+      // horizontal space in the header chrome.
+      label=""
       icon={<Settings2 size={16} />}
       align="end"
       panelClassName="sisad-pdfme-lab-command-center"
@@ -2402,11 +2404,11 @@ LabLandingPage.propTypes = {
 ### 0014 — `src/features/pdfcomponent/PageHeader.jsx`
 
 - **Lenguaje:** `jsx`
-- **Líneas:** `415`
-- **Tamaño original:** `15.1 KB`
-- **SHA1 corto:** `265ede618c`
+- **Líneas:** `420`
+- **Tamaño original:** `15.3 KB`
+- **SHA1 corto:** `4a8e196b30`
 - **Estado:** `completo`
-- **Símbolos detectados:** `export function: PageHeader`, `component/const: HeaderActionStack`, `component/const: HeaderDetails`, `component/const: CollaborationSelect`, `component/const: CompactCollaborationBar`, `component/const: CompactMetric`, `component/const: CollaborationSection`
+- **Símbolos detectados:** `export function: PageHeader`, `export const: CompactCollaborationBar`, `component/const: HeaderActionStack`, `component/const: HeaderDetails`, `component/const: CollaborationSelect`, `component/const: CompactMetric`, `component/const: CollaborationSection`
 
 ```jsx
 import React from 'react'
@@ -2593,7 +2595,7 @@ CollaborationSelect.propTypes = {
 
 // Compact collaboration bar (canvas-first): recipient + view + status as small
 // popovers with color dots — no permanent chips/counters in the header.
-const CompactCollaborationBar = ({
+export const CompactCollaborationBar = ({
   collaborationUsers,
   activeCollaborator,
   onActiveCollaboratorChange,
@@ -2743,6 +2745,7 @@ export default function PageHeader({
   status,
   downloadLink = null,
   controls = null,
+  rightSlot = null,
   backLink = null,
   density = 'full',
   collaborationSummary = null,
@@ -2775,6 +2778,7 @@ export default function PageHeader({
         </div>
 
         <div className="sisad-pdfme-lab-page-rail grid min-w-0 justify-items-end gap-[0.18rem]">
+          {rightSlot ? <div className="sisad-pdfme-lab-page-rightSlot">{rightSlot}</div> : null}
           <HeaderActionStack
             status={showExpandedHeader ? status : null}
             backLink={showExpandedHeader ? backLink : null}
@@ -2785,15 +2789,17 @@ export default function PageHeader({
         </div>
       </div>
 
-      <CollaborationSection
-        collaborationUsers={collaborationUsers}
-        activeCollaborator={activeCollaborator}
-        onActiveCollaboratorChange={onActiveCollaboratorChange}
-        isGlobalView={isGlobalView}
-        onToggleGlobalView={onToggleGlobalView}
-        collaborationSummary={collaborationSummary}
-        isCompact={isCompact}
-      />
+      {!isCompact ? (
+        <CollaborationSection
+          collaborationUsers={collaborationUsers}
+          activeCollaborator={activeCollaborator}
+          onActiveCollaboratorChange={onActiveCollaboratorChange}
+          isGlobalView={isGlobalView}
+          onToggleGlobalView={onToggleGlobalView}
+          collaborationSummary={collaborationSummary}
+          isCompact={isCompact}
+        />
+      ) : null}
 
       {showExpandedHeader ? <HeaderDetails example={example} pageMetrics={pageMetrics} /> : null}
     </header>
@@ -2811,6 +2817,7 @@ PageHeader.propTypes = {
   status: PropTypes.node,
   downloadLink: PropTypes.node,
   controls: PropTypes.node,
+  rightSlot: PropTypes.node,
   backLink: PropTypes.node,
   density: PropTypes.oneOf(['full', 'compact', 'hidden']),
   collaborationSummary: COLLABORATION_SUMMARY_PROP_TYPE,
@@ -2831,9 +2838,9 @@ CollaborationSection.propTypes = {
 ### 0015 — `src/features/pdfcomponent/PdfmeLabPage.jsx`
 
 - **Lenguaje:** `jsx`
-- **Líneas:** `637`
-- **Tamaño original:** `20.8 KB`
-- **SHA1 corto:** `ee65bed767`
+- **Líneas:** `650`
+- **Tamaño original:** `21.4 KB`
+- **SHA1 corto:** `d4650bf56a`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export function: PdfmeLabPage`
 
@@ -2869,7 +2876,7 @@ import {
 import { decorateCollaborationUsers } from '@/sisad-pdfme/collaboration/recipientPalette'
 import { decorateTemplateWithCollaboration } from '@/sisad-pdfme/collaboration/schemaOwnershipAppearance'
 import { cn } from '@/sisad-pdfme/ui/utils/cn'
-import PageHeader from './PageHeader.jsx'
+import PageHeader, { CompactCollaborationBar } from './PageHeader.jsx'
 import ResultsPanel from './ResultsPanel.jsx'
 import CompactControls from './CompactControls.jsx'
 
@@ -3378,6 +3385,18 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   }, [setSchemaType])
 
   const isCanvasFirst = uxMode === 'canvas-first'
+  const headerCollaborationControls = isCanvasFirst && collaborationUsers.length > 0 ? (
+    <div className="sisad-pdfme-lab-header-collaboration" aria-label="Colaboración del ejemplo">
+      <CompactCollaborationBar
+        collaborationUsers={collaborationUsers}
+        activeCollaborator={activeCollaborator}
+        onActiveCollaboratorChange={setActiveCollaboratorId}
+        isGlobalView={isGlobalView}
+        onToggleGlobalView={setIsGlobalView}
+        collaborationSummary={collaborationSummary}
+      />
+    </div>
+  ) : null
 
   return (
     <main
@@ -3430,6 +3449,7 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
             Descargar plantilla
           </LabExampleDownloadButton>
         }
+        rightSlot={headerCollaborationControls}
         density={uxMode === 'canvas-first' ? 'compact' : 'full'}
       />
 
@@ -83683,7 +83703,7 @@ export const duplicateSchemas = (schemas: SchemaForUI[], context: SchemaClipboar
 - **Líneas:** `101`
 - **Tamaño original:** `3.6 KB`
 - **SHA1 corto:** `b599188951`
-- **Estado:** `truncado 2.3 KB`
+- **Estado:** `truncado 1.5 KB`
 - **Símbolos detectados:** `export type/class: CollisionScopeFallback`, `export const: filterSchemasByCollisionScope`
 
 ```typescript
@@ -83721,32 +83741,11 @@ const toRecipientIdList = (value: unknown): string[] => {
   if (Array.isArray(value)) {
     return value
       .map((entry) => normalizeText(entry))
-      .filter((entry, index, arr) => entry.length > 0 && arr.indexOf(entry) === index);
-  }
-  const single = normalizeText(value);
-  return single ? [single] : [];
-};
+      .filter((entry, inde
 
-const resolveSchemaOwnerRecipientIds = (schema: CollisionSchemaLike, fallback?: CollisionScopeFallback): string[] => {
-  const fromSchema = toRecipientIdList(schema.ownerRecipientIds);
-  if (fromSchema.length > 0) return fromSchema;
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 2263 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
 
-  const fromPrimary = normalizeText(schema.ownerRecipientId);
-  if (fromPrimary) return [fromPrimary];
-
-  if (!fallback) return [];
-  const fromFallback = toRecipientIdList(fallback.ownerRecipientIds);
-  if (fromFallback.length > 0) return fromFallbac
-
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 1415 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
-
-maFileId(schema);
-      if (schemaFileId && schemaFileId !== referenceFileId) return false;
-    }
-
-    if (typeof referencePageNumber === 'number') {
-      const schemaPageNumber = resolveSchemaPageNumber(schema);
-      if (typeof schemaPageNumber === 'number' && schemaPageNumber !== referencePageNumber) return false;
+f (typeof schemaPageNumber === 'number' && schemaPageNumber !== referencePageNumber) return false;
     }
 
     const schemaOwnerIds = resolveSchemaOwnerRecipientIds(schema);

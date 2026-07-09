@@ -42,14 +42,14 @@ const AlignWidget = (props: PropPanelWidgetProps & { selectionCommands?: Selecti
 
   return (
     <Form.Item label="Alineación" className={mergeClassNames(`${DESIGNER_CLASSNAME}align-widget`, 'm-0')}>
-      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}align-widget-grid`, 'grid grid-cols-4 gap-2')}>
+      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}align-widget-grid`, 'grid grid-cols-4 gap-1.5')}>
         {LAYOUT_BUTTONS.map((btn) => (
           <Button
             key={btn.id}
             className={mergeClassNames(
               `${DESIGNER_CLASSNAME}align-btn`,
               `${DESIGNER_CLASSNAME}align-${btn.id}`,
-              'inline-flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 shadow-sm transition',
+              'inline-flex h-8 w-8 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 shadow-sm transition',
               'hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 disabled:cursor-not-allowed disabled:opacity-40',
             )}
             onClick={() => handleClick(btn)}

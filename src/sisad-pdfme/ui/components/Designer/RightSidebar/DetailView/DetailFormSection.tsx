@@ -35,7 +35,7 @@ const DetailFormSection = ({
     description={description}
     defaultCollapsed={defaultCollapsed}
   >
-    <div className={`${DESIGNER_CLASSNAME}detail-view-form-shell rounded-2xl bg-white p-3 shadow-sm`}>
+    <div className={`${DESIGNER_CLASSNAME}detail-view-form-shell rounded-2xl bg-white/90 p-2.5 shadow-sm`}>
       <FormRenderComponent
         form={form}
         schema={schema}

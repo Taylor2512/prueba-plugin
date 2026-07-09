@@ -29,7 +29,7 @@ import {
 import { decorateCollaborationUsers } from '@/sisad-pdfme/collaboration/recipientPalette'
 import { decorateTemplateWithCollaboration } from '@/sisad-pdfme/collaboration/schemaOwnershipAppearance'
 import { cn } from '@/sisad-pdfme/ui/utils/cn'
-import PageHeader from './PageHeader.jsx'
+import PageHeader, { CompactCollaborationBar } from './PageHeader.jsx'
 import ResultsPanel from './ResultsPanel.jsx'
 import CompactControls from './CompactControls.jsx'
 
@@ -538,6 +538,18 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   }, [setSchemaType])
 
   const isCanvasFirst = uxMode === 'canvas-first'
+  const headerCollaborationControls = isCanvasFirst && collaborationUsers.length > 0 ? (
+    <div className="sisad-pdfme-lab-header-collaboration" aria-label="Colaboración del ejemplo">
+      <CompactCollaborationBar
+        collaborationUsers={collaborationUsers}
+        activeCollaborator={activeCollaborator}
+        onActiveCollaboratorChange={setActiveCollaboratorId}
+        isGlobalView={isGlobalView}
+        onToggleGlobalView={setIsGlobalView}
+        collaborationSummary={collaborationSummary}
+      />
+    </div>
+  ) : null
 
   return (
     <main
@@ -590,6 +602,7 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
             Descargar plantilla
           </LabExampleDownloadButton>
         }
+        rightSlot={headerCollaborationControls}
         density={uxMode === 'canvas-first' ? 'compact' : 'full'}
       />
 

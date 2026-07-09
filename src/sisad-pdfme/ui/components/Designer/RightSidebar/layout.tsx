@@ -13,6 +13,9 @@ type SectionProps = React.HTMLAttributes<HTMLDivElement> & {
 type SidebarFrameProps = SectionProps & {
   className?: string;
 };
+type SidebarHeaderProps = SectionProps & {
+  stacked?: boolean;
+};
 
 export const SidebarFrame = ({ children, className, ...props }: SidebarFrameProps) => (
   <div
@@ -28,17 +31,24 @@ export const SidebarFrame = ({ children, className, ...props }: SidebarFrameProp
   </div>
 );
 
-export const SidebarHeader = ({ children, className, ...props }: SectionProps) => (
+export const SidebarHeader = ({ children, className, stacked = false, ...props }: SidebarHeaderProps) => (
   <div
     className={mergeClassNames(
       DESIGNER_CLASSNAME + 'right-sidebar-layout-header',
-      'flex flex-none items-center justify-between gap-3 border-b border-slate-200/70 px-4 py-3',
+      stacked
+        ? 'flex flex-none flex-col items-stretch justify-start gap-2 border-b border-slate-200/70 px-4 py-3'
+        : 'flex flex-none items-center justify-between gap-3 border-b border-slate-200/70 px-4 py-3',
       className,
     )}
     {...props}
   >
     {children}
-    <Divider className={DESIGNER_CLASSNAME + 'right-sidebar-layout-header-divider my-0 border-slate-200'} />
+    <Divider
+      className={mergeClassNames(
+        DESIGNER_CLASSNAME + 'right-sidebar-layout-header-divider my-0 border-slate-200',
+        stacked ? 'w-full' : '',
+      )}
+    />
   </div>
 );
 

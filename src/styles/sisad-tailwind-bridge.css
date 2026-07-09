@@ -127,12 +127,40 @@
   @apply flex items-start min-w-0 flex-1;
 }
 
+.sisad-pdfme-sidebar-surface-header-compact {
+  @apply items-center gap-2 px-3 py-2;
+}
+
+.sisad-pdfme-sidebar-surface-header-compact .sisad-pdfme-sidebar-surface-header-main {
+  @apply items-center;
+}
+
+.sisad-pdfme-sidebar-surface-header-compact .sisad-pdfme-sidebar-surface-header-copy {
+  @apply space-y-0.5;
+}
+
 .sisad-pdfme-sidebar-surface-header-title {
   @apply block overflow-hidden text-ellipsis whitespace-nowrap min-w-0 font-bold text-slate-900;
 }
 
 .sisad-pdfme-sidebar-surface-header-subtitle {
   @apply block overflow-hidden text-ellipsis whitespace-nowrap min-w-0 text-slate-500;
+}
+
+.sisad-pdfme-sidebar-surface-header-compact .sisad-pdfme-sidebar-surface-header-title {
+  @apply text-[0.78rem] leading-tight;
+}
+
+.sisad-pdfme-sidebar-surface-header-compact .sisad-pdfme-sidebar-surface-header-subtitle {
+  @apply text-[0.64rem] leading-tight;
+}
+
+.sisad-pdfme-sidebar-surface-header-compact .ant-tag {
+  @apply m-0 rounded-full border-slate-200 px-2 py-0.5 text-[11px] leading-5;
+}
+
+.sisad-pdfme-sidebar-surface-header-compact .sisad-pdfme-sidebar-surface-header-trailing {
+  @apply gap-1.5;
 }
 
 /* ── F.2 Inspector density / sidebar groups ───────────────────── */
@@ -157,6 +185,18 @@
   @apply gap-2;
 }
 
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar {
+  @apply gap-1.5;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar-controls {
+  @apply gap-1.5;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar-row {
+  @apply flex-wrap gap-1.5;
+}
+
 .sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar .sisad-pdfme-designer-sidebar-surface-header-title {
   @apply text-[0.82rem];
 }
@@ -175,6 +215,196 @@
 
 .sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-section-card-body {
   @apply px-[0.65rem] pb-[0.55rem] pt-[0.35rem];
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-header-card {
+  @apply rounded-2xl border border-slate-200/80 bg-white/95 px-3 py-2 shadow-sm;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-header-card .sisad-pdfme-sidebar-surface-header-copy {
+  @apply space-y-0.5;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-header-card .sisad-pdfme-sidebar-surface-header-trailing {
+  @apply gap-1.5;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-header-card .ant-tag {
+  @apply m-0 rounded-full border border-slate-200 px-2 py-0.5 text-[11px] leading-5;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell {
+  @apply rounded-2xl border border-slate-200/80 bg-white/90 p-2.5 shadow-sm;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inline-edit-actions {
+  @apply flex flex-wrap gap-1.5;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inline-edit-actions .ant-btn {
+  @apply min-h-[30px] rounded-xl border border-slate-200/80 bg-white/90 px-3 text-[0.72rem] font-semibold text-slate-700 shadow-sm;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inline-edit-actions .ant-btn-icon-only {
+  @apply w-[30px] min-w-[30px] px-0;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inspector-summary-card {
+  @apply gap-2 rounded-2xl border border-slate-200/80 bg-white/90 p-2.5 shadow-sm backdrop-blur-sm;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inspector-summary-card-head {
+  @apply gap-2;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inspector-summary-card-tags,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inspector-tag-list {
+  @apply gap-1.5;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inspector-summary-card-tags .ant-tag,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inspector-tag-list .ant-tag {
+  @apply rounded-full border border-slate-200 px-2 py-0.5 text-[11px] leading-5;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inspector-metric-row,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inspector-action-row {
+  @apply gap-1.5;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inspector-metric-chip {
+  @apply rounded-xl border border-slate-200 bg-white px-2.5 py-1.5 shadow-sm;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inspector-metric-label {
+  @apply text-[10px] uppercase tracking-[0.12em] text-slate-500;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inspector-metric-value {
+  @apply text-[0.78rem] font-semibold text-slate-900;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inspector-action-row .ant-btn,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel .ant-btn {
+  @apply min-h-[30px] rounded-xl border border-slate-200/80 bg-white/90 px-3 text-[0.72rem] font-semibold text-slate-700 shadow-sm;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inspector-action-row .ant-btn-icon-only,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel .ant-btn-icon-only {
+  @apply w-[30px] min-w-[30px] px-0;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel {
+  @apply gap-2 rounded-2xl border border-slate-200/80 bg-white/90 p-2.5 shadow-sm;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel-head {
+  @apply gap-2;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel-tags {
+  @apply gap-1.5;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel-summary {
+  @apply mt-2 rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-1.5;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel-summary-text {
+  @apply text-[0.72rem] leading-5 text-slate-700;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel-actions {
+  @apply mt-2 flex flex-wrap gap-1.5;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel-footer {
+  @apply mt-2 gap-1.5;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel-footer-actions {
+  @apply gap-1.5;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-align-widget-grid {
+  @apply grid grid-cols-4 gap-1.5;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-align-widget-grid .ant-btn {
+  @apply h-8 w-8 min-h-0 rounded-xl border border-slate-200/80 bg-white/90 p-0 text-slate-600 shadow-sm;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-align-widget-grid .ant-btn:hover {
+  @apply border-slate-300 bg-slate-50 text-slate-900;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell .ant-form,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell .fr-form {
+  @apply gap-2;
+}
+
+.sisad-pdfme-designer-right-sidebar[data-panel-mode='detail'] .sisad-pdfme-designer-detail-view-form-shell .ant-input-affix-wrapper,
+.sisad-pdfme-designer-right-sidebar[data-panel-mode='detail'] .sisad-pdfme-designer-detail-view-form-shell .ant-select .ant-select-selector,
+.sisad-pdfme-designer-right-sidebar[data-panel-mode='detail'] .sisad-pdfme-designer-detail-view-form-shell .ant-input-number,
+.sisad-pdfme-designer-right-sidebar[data-panel-mode='detail'] .sisad-pdfme-designer-detail-view-form-shell .ant-btn {
+  @apply border border-slate-200/80 bg-white/90 text-slate-900 shadow-sm;
+}
+
+.sisad-pdfme-designer-right-sidebar[data-panel-mode='detail'] .sisad-pdfme-designer-detail-view-form-shell .ant-input-affix-wrapper,
+.sisad-pdfme-designer-right-sidebar[data-panel-mode='detail'] .sisad-pdfme-designer-detail-view-form-shell .ant-select .ant-select-selector {
+  @apply min-h-[30px] rounded-xl px-2;
+}
+
+.sisad-pdfme-designer-right-sidebar[data-panel-mode='detail'] .sisad-pdfme-designer-detail-view-form-shell .ant-input,
+.sisad-pdfme-designer-right-sidebar[data-panel-mode='detail'] .sisad-pdfme-designer-detail-view-form-shell .ant-input-number-input {
+  @apply min-h-[30px] text-[0.75rem];
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar .ant-input-affix-wrapper,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar .ant-select .ant-select-selector,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar .ant-btn,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-sidebar-surface-header-compact .ant-btn,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-sidebar-surface-header-compact .ant-select .ant-select-selector,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-sidebar-surface-header-compact .ant-input-affix-wrapper {
+  @apply border border-slate-200/80 bg-white/90 text-slate-900 shadow-sm;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar .ant-input-affix-wrapper,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-sidebar-surface-header-compact .ant-input-affix-wrapper,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-sidebar-surface-header-compact .ant-select .ant-select-selector {
+  @apply rounded-xl;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar .ant-input-affix-wrapper,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-sidebar-surface-header-compact .ant-input-affix-wrapper {
+  @apply min-h-[30px] px-2;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar .ant-input,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-sidebar-surface-header-compact .ant-input,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-sidebar-surface-header-compact .ant-input-number-input {
+  @apply min-h-[30px] text-[0.75rem];
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar .ant-select .ant-select-selector {
+  @apply min-h-[30px] px-2;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar .ant-btn,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-sidebar-surface-header-compact .ant-btn {
+  @apply min-h-[30px] rounded-xl px-3 text-[0.72rem] font-semibold;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar .ant-btn-icon-only,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-sidebar-surface-header-compact .ant-btn-icon-only {
+  @apply w-[30px] min-w-[30px] px-0;
+}
+
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar .ant-input-affix-wrapper:focus-within,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-sidebar-surface-header-compact .ant-input-affix-wrapper:focus-within,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar .ant-select-focused .ant-select-selector,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-sidebar-surface-header-compact .ant-select-focused .ant-select-selector {
+  @apply border-sky-300 shadow-[0_0_0_2px_rgba(59,130,246,0.12)];
 }
 
 /* ── H. Option group floating action ──────────────────────────── */

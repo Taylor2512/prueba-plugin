@@ -39,18 +39,18 @@ const CompactConfigPanel = ({
   const [open, setOpen] = React.useState(false);
 
   return (
-    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel', 'rounded-2xl border border-slate-200/70 bg-white/90 p-3 shadow-sm')}>
-      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-head', 'flex items-start justify-between gap-3')}>
+    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel', 'rounded-2xl border border-slate-200/70 bg-white/90 p-2.5 shadow-sm')}>
+      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-head', 'flex items-start justify-between gap-2')}>
         <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-copy', 'min-w-0')}>
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-title', 'text-sm font-semibold text-slate-900')}>{title}</div>
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-title', 'text-[0.72rem] font-semibold text-slate-900')}>{title}</div>
           {description ? (
-            <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-description', 'text-xs leading-5 text-slate-500')}>{description}</div>
+            <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-description', 'text-[0.62rem] leading-4 text-slate-500')}>{description}</div>
           ) : null}
         </div>
         {statusTags.length > 0 ? (
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-tags', 'flex flex-wrap gap-1')}>
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-tags', 'flex flex-wrap gap-1.5')}>
             {statusTags.map((tag, index) => (
-              <Tag key={`${tag.label}-${index}`} color={tag.color} className="m-0 rounded-full border-slate-200 px-2 py-0.5 text-[11px]">
+              <Tag key={`${tag.label}-${index}`} color={tag.color} className="m-0 rounded-full border border-slate-200 px-2 py-0.5 text-[11px] leading-5">
                 {tag.label}
               </Tag>
             ))}
@@ -59,23 +59,23 @@ const CompactConfigPanel = ({
       </div>
 
       {summary ? (
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-summary', 'mt-3 rounded-xl border border-slate-200 bg-slate-50 px-3 py-2')}>
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-summary-text', 'text-sm text-slate-700')}>{summary}</div>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-summary', 'mt-2 rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-1.5')}>
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-summary-text', 'text-[0.72rem] leading-5 text-slate-700')}>{summary}</div>
         </div>
       ) : null}
 
       {quickActions ? (
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-actions', 'mt-3 flex flex-wrap gap-2')}>{quickActions}</div>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-actions', 'mt-2 flex flex-wrap gap-1.5')}>{quickActions}</div>
       ) : null}
 
-      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-footer', 'mt-3 flex items-center justify-end gap-2')}>
-        {footerActions ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-footer-actions', 'flex items-center gap-2')}>{footerActions}</div> : null}
+      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-footer', 'mt-2 flex items-center justify-end gap-1.5')}>
+        {footerActions ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-footer-actions', 'flex items-center gap-1.5')}>{footerActions}</div> : null}
         <Button
           size="small"
           type="default"
           icon={<Settings2 size={14} />}
           onClick={() => setOpen(true)}
-          className="rounded-full border-slate-200 text-slate-700 shadow-sm"
+          className="inline-flex items-center justify-center rounded-xl border-slate-200 bg-white px-3 text-[0.72rem] font-semibold text-slate-700 shadow-sm"
         >
           {modalTriggerLabel}
         </Button>

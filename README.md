@@ -1,3 +1,4 @@
+/
 
 # SISAD PDFME — Arquitectura Markdown separada
 

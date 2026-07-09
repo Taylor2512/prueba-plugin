@@ -121,42 +121,180 @@
 }
 
 .sisad-pdfme-lab-page-hero[data-density='compact'] {
-  gap: 0.2rem;
-  padding: 0.22rem 0.36rem;
+  min-height: 46px;
+  max-height: 50px;
+  gap: 0.06rem;
+  padding: 0.16rem 0.34rem;
   position: relative;
   z-index: var(--sisad-pdfme-z-header);
 }
 
 .sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-topbar {
-  grid-template-columns: minmax(0, 1.45fr) minmax(14rem, 0.95fr);
-  gap: 0.16rem 0.3rem;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 0.08rem 0.35rem;
 }
 
 .sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-description {
-  font-size: 0.78rem;
-  line-height: 1.25;
+  font-size: 0.76rem;
+  line-height: 1.2;
 }
 
 .sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-copy {
-  gap: 0.08rem;
+  gap: 0.04rem;
 }
 
 .sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page h1 {
-  font-size: clamp(0.92rem, 1.1vw, 1.08rem);
+  font-size: clamp(0.88rem, 1vw, 1rem);
+  line-height: 1;
 }
 
 .sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-rail {
-  gap: 0.14rem;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.25rem;
+  flex-wrap: nowrap;
 }
 
 .sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-actions {
-  padding: 0.14rem 0.2rem;
+  padding: 0.1rem 0.16rem;
   background: transparent;
   border: 0;
 }
 
 .sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-controls {
   justify-content: flex-end;
+}
+
+.sisad-pdfme-lab-header-collaboration {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.2rem;
+  min-width: 0;
+  white-space: nowrap;
+}
+
+.sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-collaboration-compact {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  flex-wrap: nowrap;
+  min-width: 0;
+}
+
+.sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-collaboration-select-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.18rem;
+  min-width: 0;
+}
+
+.sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-collaboration-select-label {
+  font-size: 0.64rem;
+  line-height: 1;
+}
+
+.sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-select,
+.sisad-pdfme-lab-header-collaboration .sisad-pdfme-popover-button {
+  height: 28px;
+  min-height: 28px;
+  padding: 0 0.6rem;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 0.7rem;
+  background: rgba(255, 255, 255, 0.88);
+  color: #0f172a;
+  font-family: inherit;
+  font-size: 0.72rem;
+  font-weight: 700;
+  line-height: 1;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+  transition:
+    border-color 150ms ease,
+    box-shadow 150ms ease,
+    background-color 150ms ease,
+    color 150ms ease;
+}
+
+.sisad-pdfme-lab-header-collaboration .sisad-pdfme-popover-button {
+  appearance: none;
+  -webkit-appearance: none;
+  font: inherit;
+  justify-content: center;
+  gap: 0.25rem;
+}
+
+.sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-select {
+  appearance: none;
+  -webkit-appearance: none;
+  padding-right: 1.35rem;
+}
+
+.sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-collaboration-select {
+  min-width: 10rem;
+  max-width: 12.75rem;
+}
+
+.sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-select:focus-visible,
+.sisad-pdfme-lab-header-collaboration .sisad-pdfme-popover-button:focus-visible {
+  outline: 2px solid rgba(37, 99, 235, 0.28);
+  outline-offset: 2px;
+}
+
+@media (max-width: 96rem) {
+  .sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-collaboration-select {
+    min-width: 8.5rem;
+    max-width: 10.75rem;
+  }
+
+  .sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-collaboration-select-label {
+    font-size: 0.62rem;
+  }
+}
+
+@media (max-width: 84rem) {
+  .sisad-pdfme-lab-header-collaboration {
+    gap: 0.18rem;
+  }
+
+  .sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-collaboration-select {
+    min-width: 7.25rem;
+    max-width: 9rem;
+  }
+
+  .sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-select,
+  .sisad-pdfme-lab-header-collaboration .sisad-pdfme-popover-button {
+    height: 26px;
+    min-height: 26px;
+  }
+}
+
+.sisad-pdfme-lab-page-rightSlot {
+  display: inline-flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 0.2rem;
+  min-width: 0;
+}
+
+.sisad-pdfme-lab-page-actions-compact .sisad-pdfme-popover-button {
+  appearance: none;
+  -webkit-appearance: none;
+  min-height: 28px;
+  height: 28px;
+  padding: 0 0.65rem;
+  border: 1px solid rgba(148, 163, 184, 0.28);
+  border-radius: 0.7rem;
+  background: rgba(255, 255, 255, 0.88);
+  color: #0f172a;
+  font-family: inherit;
+  box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
+}
+
+.sisad-pdfme-lab-page-actions-compact .sisad-pdfme-popover-button:focus-visible {
+  outline: 2px solid rgba(37, 99, 235, 0.28);
+  outline-offset: 2px;
 }
 
 .sisad-pdfme-lab-kicker {

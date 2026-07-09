@@ -237,7 +237,7 @@ const ListView = (
         style={{ '--list-view-panel-width': `${panelWidth}px` } as React.CSSProperties}
       >
       {showToolbar ? (
-      <SidebarHeader>
+      <SidebarHeader stacked>
         <ListViewToolbar
           searchQuery={searchQuery}
           typeFilter={typeFilter}

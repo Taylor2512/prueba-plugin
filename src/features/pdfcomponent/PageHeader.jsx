@@ -182,7 +182,7 @@ CollaborationSelect.propTypes = {
 
 // Compact collaboration bar (canvas-first): recipient + view + status as small
 // popovers with color dots — no permanent chips/counters in the header.
-const CompactCollaborationBar = ({
+export const CompactCollaborationBar = ({
   collaborationUsers,
   activeCollaborator,
   onActiveCollaboratorChange,
@@ -332,6 +332,7 @@ export default function PageHeader({
   status,
   downloadLink = null,
   controls = null,
+  rightSlot = null,
   backLink = null,
   density = 'full',
   collaborationSummary = null,
@@ -364,6 +365,7 @@ export default function PageHeader({
         </div>
 
         <div className="sisad-pdfme-lab-page-rail grid min-w-0 justify-items-end gap-[0.18rem]">
+          {rightSlot ? <div className="sisad-pdfme-lab-page-rightSlot">{rightSlot}</div> : null}
           <HeaderActionStack
             status={showExpandedHeader ? status : null}
             backLink={showExpandedHeader ? backLink : null}
@@ -374,15 +376,17 @@ export default function PageHeader({
         </div>
       </div>
 
-      <CollaborationSection
-        collaborationUsers={collaborationUsers}
-        activeCollaborator={activeCollaborator}
-        onActiveCollaboratorChange={onActiveCollaboratorChange}
-        isGlobalView={isGlobalView}
-        onToggleGlobalView={onToggleGlobalView}
-        collaborationSummary={collaborationSummary}
-        isCompact={isCompact}
-      />
+      {!isCompact ? (
+        <CollaborationSection
+          collaborationUsers={collaborationUsers}
+          activeCollaborator={activeCollaborator}
+          onActiveCollaboratorChange={onActiveCollaboratorChange}
+          isGlobalView={isGlobalView}
+          onToggleGlobalView={onToggleGlobalView}
+          collaborationSummary={collaborationSummary}
+          isCompact={isCompact}
+        />
+      ) : null}
 
       {showExpandedHeader ? <HeaderDetails example={example} pageMetrics={pageMetrics} /> : null}
     </header>
@@ -400,6 +404,7 @@ PageHeader.propTypes = {
   status: PropTypes.node,
   downloadLink: PropTypes.node,
   controls: PropTypes.node,
+  rightSlot: PropTypes.node,
   backLink: PropTypes.node,
   density: PropTypes.oneOf(['full', 'compact', 'hidden']),
   collaborationSummary: COLLABORATION_SUMMARY_PROP_TYPE,

@@ -154,7 +154,9 @@ export default function CompactControls({
 
   return (
     <PopoverMenu
-      label={compact ? '' : 'Controles'}
+      // Canvas-first keeps the command center icon-only to avoid consuming
+      // horizontal space in the header chrome.
+      label=""
       icon={<Settings2 size={16} />}
       align="end"
       panelClassName="sisad-pdfme-lab-command-center"
