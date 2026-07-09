@@ -108,14 +108,14 @@ const findGridPosition = ({
   return null;
 };
 
-export const resolveNonOverlappingDropPosition = ({
+export const resolveSmartDropPosition = ({
   candidate,
   pageSize,
   schemaSize,
   existingSchemas = [],
   stepMm = 6,
   maxAttempts = 12,
-}: SmartPlacementInput): { x: number; y: number } | null => {
+}: SmartPlacementInput) => {
   const step = clampStep(stepMm);
   const clampedCandidate = clampPointToPageBounds(candidate, pageSize, schemaSize);
 
@@ -162,32 +162,14 @@ export const resolveNonOverlappingDropPosition = ({
     }
   }
 
-  return findGridPosition({
+  const fallback = findGridPosition({
     pageSize,
     schemaSize,
     existingSchemas,
     step,
   });
-};
 
-export const resolveSmartDropPosition = ({
-  candidate,
-  pageSize,
-  schemaSize,
-  existingSchemas = [],
-  stepMm = 6,
-  maxAttempts = 12,
-}: SmartPlacementInput) => {
-  const resolved = resolveNonOverlappingDropPosition({
-    candidate,
-    pageSize,
-    schemaSize,
-    existingSchemas,
-    stepMm,
-    maxAttempts,
-  });
-
-  if (resolved) return resolved;
+  if (fallback) return fallback;
 
   return {
     x: Math.max(0, Math.round((pageSize.width - schemaSize.width) / 2)),

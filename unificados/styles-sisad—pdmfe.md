@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `css`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-09T17:27:28.575Z`
+- **Fecha generación:** `2026-07-09T19:35:58.680Z`
 - **Extensiones incluidas:** `.css, .scss, .sass, .less`
 - **Archivos candidatos incluidos:** `18`
 - **Límite por archivo:** `80 KB`
@@ -72,7 +72,7 @@ prueba-plugin
 | 7 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css` | css | 443 | 14.0 | completo |
 | 8 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css` | css | 8 | 0.2 | completo |
 | 9 | `src/features/pdfcomponent/labRoutes.css` | css | 1688 | 35.7 | completo |
-| 10 | `src/sisad-pdfme/ui/styles/canvas-interactions.css` | css | 567 | 24.7 | completo |
+| 10 | `src/sisad-pdfme/ui/styles/canvas-interactions.css` | css | 525 | 23.9 | completo |
 | 11 | `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | css | 4276 | 166.6 | truncado 75.0 KB |
 | 12 | `src/sisad-pdfme/ui/styles/sisad-pdfme-runtime.css` | css | 184 | 7.3 | completo |
 | 13 | `src/sisad-pdfme/ui/styles/tokens.css` | css | 383 | 16.4 | completo |
@@ -89,8 +89,8 @@ prueba-plugin
 
 ## Totales
 
-- **KB originales candidatos:** `847.2`
-- **KB incluidos en contenido:** `539.3`
+- **KB originales candidatos:** `846.5`
+- **KB incluidos en contenido:** `538.5`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -8817,9 +8817,9 @@ ner-compact-config-panel {
 ### 0010 — `src/sisad-pdfme/ui/styles/canvas-interactions.css`
 
 - **Lenguaje:** `css`
-- **Líneas:** `567`
-- **Tamaño original:** `24.7 KB`
-- **SHA1 corto:** `3f8889bfae`
+- **Líneas:** `525`
+- **Tamaño original:** `23.9 KB`
+- **SHA1 corto:** `eba47163fb`
 - **Estado:** `completo`
 - **Símbolos detectados:** `selector: .sisad-pdfme-ui-canvas-overlay-manager`, `selector: .sisad-pdfme-ui-selection-context-toolbar`
 
@@ -9264,52 +9264,10 @@ ner-compact-config-panel {
 @keyframes schema-drag-preview-enter {
   from {
     opacity: 0;
-    transform: translate3d(calc(var(--drag-x) + 8px), calc(var(--drag-y) + 8px), 0) scale(0.72);
-    filter: blur(1px);
-  }
-  60% {
-    transform: translate3d(calc(var(--drag-x) + 8px), calc(var(--drag-y) + 8px), 0) scale(1.03);
+    transform: translate3d(calc(var(--drag-x) + 18px), calc(var(--drag-y) - 42px), 0) scale(0.82);
   }
   to {
-    opacity: 1;
-    transform: translate3d(calc(var(--drag-x) + 8px), calc(var(--drag-y) + 8px), 0) scale(1);
-    filter: blur(0);
-  }
-}
-
-@keyframes schema-drag-preview-glow {
-  0%,
-  100% {
-    box-shadow:
-      0 12px 28px rgba(15, 23, 42, 0.18),
-      0 0 0 1px rgba(255, 255, 255, 0.45) inset;
-  }
-  50% {
-    box-shadow:
-      0 14px 32px rgba(15, 23, 42, 0.22),
-      0 0 0 1px rgba(255, 255, 255, 0.52) inset;
-  }
-}
-
-@keyframes schema-drag-preview-pulse {
-  0%,
-  100% {
-    transform: scale(0.94);
-    opacity: 0.6;
-  }
-  50% {
-    transform: scale(1.06);
-    opacity: 1;
-  }
-}
-
-@keyframes schema-drag-preview-icon-bounce {
-  0%,
-  100% {
-    transform: translateY(0) scale(0.92);
-  }
-  50% {
-    transform: translateY(-1px) scale(0.98);
+    transform: translate3d(calc(var(--drag-x) + 18px), calc(var(--drag-y) - 42px), 0) scale(1);
   }
 }
 

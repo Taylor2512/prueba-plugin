@@ -339,7 +339,6 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   }, []);
 
   const renderedPageSchemasList = renderedSchemasList || schemasList;
-  const prevSchemas = usePrevious(renderedPageSchemasList[pageCursor]);
   const currentPageSchemas = useMemo(
     () => renderedPageSchemasList[pageCursor] || [],
     [pageCursor, renderedPageSchemasList],
@@ -359,18 +358,23 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     () => resolveSelectionPageIndex(activeElements, pageCursor),
     [activeElements, pageCursor],
   );
-  const activeSelectionSchemas = useMemo(
-    () => renderedPageSchemasList[activeSelectionPageIndex ?? pageCursor] || currentPageSchemas,
-    [activeSelectionPageIndex, currentPageSchemas, pageCursor, renderedPageSchemasList],
+  const moveablePageIndex = activeSelectionPageIndex ?? pageCursor;
+  const moveablePageSchemas = useMemo(
+    () => renderedPageSchemasList[moveablePageIndex] || [],
+    [moveablePageIndex, renderedPageSchemasList],
   );
-  const activePaper = paperRefs.current[activeSelectionPageIndex ?? pageCursor] || null;
-  // Moveable renders on the cursor page only. Scoping its targets to a single
-  // page prevents a group bounding box that unions schemas across pages.
+  const prevSchemas = usePrevious(moveablePageSchemas);
+  const activeSelectionSchemas = useMemo(
+    () => renderedPageSchemasList[moveablePageIndex] || currentPageSchemas,
+    [currentPageSchemas, moveablePageIndex, renderedPageSchemasList],
+  );
+  // Keep Moveable scoped to the real page of the current selection, not the
+  // global cursor page, so multi-page selections don't drift.
   const moveableTargets = useMemo(() => {
-    const targetPageIndex = activeSelectionPageIndex ?? pageCursor;
+    const targetPageIndex = moveablePageIndex;
     if (isSameDocumentPageSelection(activeElements)) return activeElements;
     return activeElements.filter((el) => toNumber(el.dataset.pageIndex) === targetPageIndex);
-  }, [activeElements, activeSelectionPageIndex, pageCursor]);
+  }, [activeElements, moveablePageIndex]);
   const placeholderVariables = useMemo(
     () =>
       Object.fromEntries(
@@ -433,12 +437,12 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     }
 
     const prevSchemaKeys = JSON.stringify(prevSchemas || []);
-    const schemaKeys = JSON.stringify(renderedPageSchemasList[pageCursor] || []);
+    const schemaKeys = JSON.stringify(moveablePageSchemas || []);
 
     if (prevSchemaKeys === schemaKeys) {
       moveable.current?.updateRect();
     }
-  }, [pageCursor, renderedPageSchemasList, prevSchemas]);
+  }, [moveablePageSchemas, prevSchemas]);
 
   const onDrag = ({ target, top, left }: OnDrag) => {
     const { width: _width, height: _height } = target.style;
@@ -1344,7 +1348,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
                 opacity={styleOverrides?.padding?.opacity}
               />
             ) : null}
-            {pageCursor === index ? (
+            {moveablePageIndex === index ? (
               <CanvasStateOverlay
                 state={canvasRenderState}
                 onRetry={onRetryRender}
@@ -1377,7 +1381,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
                 }}
               />
             ) : null}
-            {pageCursor !== index ? (
+            {moveablePageIndex !== index ? (
               feature.mask ? (
                 <MaskSlot
                   className={classNames?.mask}
@@ -1483,10 +1487,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
                     // checkbox option toggles) and internal options must receive
                     // their own clicks instead of starting a Moveable drag. Hit-test
                     // via the central policy, not inline selectors.
-                    if (
-                      isDesignerInteractiveTarget(event.target) ||
-                      isOptionInternalTarget(event.target)
-                    ) {
+                    if (isDesignerInteractiveTarget(event.target)) {
                       return;
                     }
 
@@ -1505,6 +1506,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
                       return;
                     }
 
+                    if (isOptionInternalTarget(event.target)) return;
                     if (event.detail > 1) return;
                     moveable.current?.dragStart(event.nativeEvent, event.currentTarget);
                     event.preventDefault();

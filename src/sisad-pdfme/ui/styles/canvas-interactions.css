@@ -438,52 +438,10 @@
 @keyframes schema-drag-preview-enter {
   from {
     opacity: 0;
-    transform: translate3d(calc(var(--drag-x) + 8px), calc(var(--drag-y) + 8px), 0) scale(0.72);
-    filter: blur(1px);
-  }
-  60% {
-    transform: translate3d(calc(var(--drag-x) + 8px), calc(var(--drag-y) + 8px), 0) scale(1.03);
+    transform: translate3d(calc(var(--drag-x) + 18px), calc(var(--drag-y) - 42px), 0) scale(0.82);
   }
   to {
-    opacity: 1;
-    transform: translate3d(calc(var(--drag-x) + 8px), calc(var(--drag-y) + 8px), 0) scale(1);
-    filter: blur(0);
-  }
-}
-
-@keyframes schema-drag-preview-glow {
-  0%,
-  100% {
-    box-shadow:
-      0 12px 28px rgba(15, 23, 42, 0.18),
-      0 0 0 1px rgba(255, 255, 255, 0.45) inset;
-  }
-  50% {
-    box-shadow:
-      0 14px 32px rgba(15, 23, 42, 0.22),
-      0 0 0 1px rgba(255, 255, 255, 0.52) inset;
-  }
-}
-
-@keyframes schema-drag-preview-pulse {
-  0%,
-  100% {
-    transform: scale(0.94);
-    opacity: 0.6;
-  }
-  50% {
-    transform: scale(1.06);
-    opacity: 1;
-  }
-}
-
-@keyframes schema-drag-preview-icon-bounce {
-  0%,
-  100% {
-    transform: translateY(0) scale(0.92);
-  }
-  50% {
-    transform: translateY(-1px) scale(0.98);
+    transform: translate3d(calc(var(--drag-x) + 18px), calc(var(--drag-y) - 42px), 0) scale(1);
   }
 }
 

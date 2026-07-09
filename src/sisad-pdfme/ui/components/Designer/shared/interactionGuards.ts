@@ -30,6 +30,119 @@ export const isAntDPopupOpen = (): boolean => {
   return Boolean(document.querySelector(ANTD_POPUP_SELECTOR));
 };
 
+const LEFT_SIDEBAR_SCROLL_LOCK_SELECTOR = buildSelectorList([
+  '.sisad-pdfme-designer-left-sidebar',
+  '.sisad-pdfme-designer-left-sidebar-main',
+  '.sisad-pdfme-designer-left-sidebar-content',
+  '.sisad-pdfme-designer-left-sidebar-group-items',
+  '[data-left-sidebar-scroll]',
+  '[data-sidebar-scroll-container]',
+] as const);
+
+type SidebarScrollSnapshot = {
+  element: HTMLElement;
+  left: number;
+  top: number;
+};
+
+export type SidebarScrollLockRelease = () => void;
+
+const collectSidebarScrollContainers = (root: HTMLElement): HTMLElement[] => {
+  const candidates = Array.from(root.querySelectorAll<HTMLElement>(LEFT_SIDEBAR_SCROLL_LOCK_SELECTOR));
+  const unique = new Set<HTMLElement>();
+  candidates.forEach((element) => {
+    if (root.contains(element)) {
+      unique.add(element);
+    }
+  });
+  return Array.from(unique);
+};
+
+const isSidebarScrollTarget = (target: EventTarget | null | undefined): boolean => {
+  if (!(target instanceof HTMLElement)) return false;
+  return Boolean(target.closest(LEFT_SIDEBAR_SCROLL_LOCK_SELECTOR) || target.matches(LEFT_SIDEBAR_SCROLL_LOCK_SELECTOR));
+};
+
+const restoreScrollSnapshots = (snapshots: SidebarScrollSnapshot[]) => {
+  snapshots.forEach(({ element, left, top }) => {
+    if (element.scrollLeft !== left) {
+      element.scrollLeft = left;
+    }
+    if (element.scrollTop !== top) {
+      element.scrollTop = top;
+    }
+  });
+};
+
+export const lockDesignerSidebarScroll = (
+  root: HTMLElement | null | undefined,
+): SidebarScrollLockRelease | null => {
+  if (!root || typeof window === 'undefined' || typeof document === 'undefined') {
+    return null;
+  }
+
+  const containers = collectSidebarScrollContainers(root);
+  if (containers.length === 0) {
+    return () => {};
+  }
+
+  const snapshots: SidebarScrollSnapshot[] = containers.map((element) => ({
+    element,
+    left: element.scrollLeft,
+    top: element.scrollTop,
+  }));
+
+  let released = false;
+
+  const restore = () => restoreScrollSnapshots(snapshots);
+
+  const preventScroll = (event: Event) => {
+    if (!isSidebarScrollTarget(event.target)) {
+      return;
+    }
+    if (event.cancelable) {
+      event.preventDefault();
+    }
+    event.stopPropagation();
+    restore();
+  };
+
+  const onScroll = (event: Event) => {
+    const target = event.currentTarget;
+    if (!(target instanceof HTMLElement)) return;
+    const snapshot = snapshots.find((entry) => entry.element === target);
+    if (!snapshot) return;
+    if (target.scrollLeft !== snapshot.left || target.scrollTop !== snapshot.top) {
+      target.scrollLeft = snapshot.left;
+      target.scrollTop = snapshot.top;
+    }
+  };
+
+  containers.forEach((element) => {
+    element.addEventListener('scroll', onScroll, { passive: true });
+  });
+
+  root.addEventListener('wheel', preventScroll, { capture: true, passive: false });
+  root.addEventListener('touchmove', preventScroll, { capture: true, passive: false });
+
+  restore();
+
+  return () => {
+    if (released) return;
+    released = true;
+    root.removeEventListener('wheel', preventScroll, true);
+    root.removeEventListener('touchmove', preventScroll, true);
+    containers.forEach((element) => {
+      element.removeEventListener('scroll', onScroll);
+    });
+    restore();
+  };
+};
+
+export const unlockDesignerSidebarScroll = (release: SidebarScrollLockRelease | null | undefined) => {
+  release?.();
+};
+
 export type DesignerInteractionMode =
   | 'idle'
   | 'dragging-plugin'

@@ -21,6 +21,13 @@
  */
 
 import { asRecord } from './objectGuards.js';
+import {
+  clientPointToPagePoint,
+  getPageRectInViewport,
+  pagePointToSchemaPoint,
+  type DOMRectLike,
+  type Point,
+} from './coordinateMath.js';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -57,6 +64,101 @@ export type DropResult =
   | { status: 'noSpace'; reason: string }
   | { status: 'cancelled' }
   | { status: 'error'; reason: string };
+
+export type ResolvePointerDropTargetInput = {
+  clientX: number;
+  clientY: number;
+  paperRefs: Array<HTMLElement | null | undefined> | { current?: Array<HTMLElement | null | undefined> | null };
+  pageSizes?: Array<{ width: number; height: number } | null | undefined>;
+  scale?: number;
+  activeDocumentId?: string | null;
+  canvasElement?: HTMLElement | null;
+  pageCursor?: number;
+  preferredPageIndex?: number | null;
+};
+
+export type ResolvePointerDropTargetResult = {
+  documentId: string | null;
+  pageIndex: number;
+  pageNumber: number;
+  paperRect: DOMRectLike | null;
+  pagePointPx: Point | null;
+  schemaPointMm: Point | null;
+  isOverPage: boolean;
+  isOverCanvas: boolean;
+  dropValid: boolean;
+};
+
+const isPointInRect = (x: number, y: number, rect: DOMRectLike) =>
+  x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+
+const pointDistanceToRect = (x: number, y: number, rect: DOMRectLike) => {
+  const dx =
+    x < rect.left ? rect.left - x : x > rect.right ? x - rect.right : 0;
+  const dy =
+    y < rect.top ? rect.top - y : y > rect.bottom ? y - rect.bottom : 0;
+  return Math.hypot(dx, dy);
+};
+
+const resolvePaperElements = (
+  paperRefs: ResolvePointerDropTargetInput['paperRefs'],
+): Array<HTMLElement | null | undefined> => (Array.isArray(paperRefs) ? paperRefs : paperRefs.current || []);
+
+export const resolvePointerDropTarget = ({
+  clientX,
+  clientY,
+  paperRefs,
+  pageSizes = [],
+  scale = 1,
+  activeDocumentId = null,
+  canvasElement = null,
+  pageCursor = -1,
+  preferredPageIndex = null,
+}: ResolvePointerDropTargetInput): ResolvePointerDropTargetResult => {
+  const papers = resolvePaperElements(paperRefs);
+  const canvasRect = canvasElement ? canvasElement.getBoundingClientRect() : null;
+  const hitIndex = papers.findIndex((paper) => {
+    if (!paper) return false;
+    const rect = getPageRectInViewport(paper);
+    return isPointInRect(clientX, clientY, rect);
+  });
+
+  const isOverCanvas = canvasRect ? isPointInRect(clientX, clientY, canvasRect) : hitIndex >= 0;
+  const hasHit = hitIndex >= 0;
+  const preferredIndex =
+    Number.isInteger(preferredPageIndex) && preferredPageIndex != null && preferredPageIndex >= 0
+      ? preferredPageIndex
+      : -1;
+  const preferredPaper = preferredIndex >= 0 ? papers[preferredIndex] || null : null;
+  const preferredDistance =
+    preferredPaper && isOverCanvas ? pointDistanceToRect(clientX, clientY, getPageRectInViewport(preferredPaper)) : Number.POSITIVE_INFINITY;
+  const seamTolerancePx = Math.max(16, 24 * Math.max(1, scale));
+  const preferredWithinTolerance = preferredDistance <= seamTolerancePx;
+  const fallbackPageIndex = Number.isInteger(pageCursor) && pageCursor >= 0 ? pageCursor : -1;
+  const pageIndex = hasHit
+    ? hitIndex
+    : preferredWithinTolerance && preferredIndex >= 0
+      ? preferredIndex
+      : fallbackPageIndex;
+  const paperElement =
+    pageIndex >= 0 ? papers[pageIndex] || null : null;
+  const paperRect = paperElement ? getPageRectInViewport(paperElement) : null;
+  const pagePointPx = paperRect ? clientPointToPagePoint(clientX, clientY, paperRect, scale) : null;
+  const schemaPointMm = pagePointPx ? pagePointToSchemaPoint(pagePointPx) : null;
+  const isOverPage = hasHit || (preferredWithinTolerance && preferredIndex >= 0) || fallbackPageIndex >= 0;
+
+  return {
+    documentId: activeDocumentId || null,
+    pageIndex,
+    pageNumber: pageIndex >= 0 ? pageIndex + 1 : 0,
+    paperRect,
+    pagePointPx,
+    schemaPointMm,
+    isOverPage,
+    isOverCanvas,
+    dropValid: isOverPage && isOverCanvas,
+  };
+};
 
 // ─── Validation ───────────────────────────────────────────────────────────────
 

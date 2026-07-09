@@ -505,6 +505,8 @@ const SidebarShell = ({
       </div>
       <div
         className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-main`, 'min-h-0 flex-1 space-y-1.5 overflow-y-auto overflow-x-hidden overscroll-contain px-2 py-2')}
+        data-left-sidebar-scroll="true"
+        data-sidebar-scroll-container="true"
       >
         {children}
       </div>

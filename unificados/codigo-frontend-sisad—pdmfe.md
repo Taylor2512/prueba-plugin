@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `react`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-09T17:27:28.170Z`
+- **Fecha generación:** `2026-07-09T19:35:58.191Z`
 - **Extensiones incluidas:** `.js, .jsx, .ts, .tsx, .mjs, .cjs, .json`
 - **Archivos candidatos incluidos:** `482`
 - **Límite por archivo:** `90 KB`
@@ -678,7 +678,7 @@ prueba-plugin
 | 119 | `src/sisad-pdfme/ui/designerEngine.ts` | typescript | 1433 | 48.1 | completo |
 | 120 | `src/sisad-pdfme/ui/Form.tsx` | tsx | 130 | 4.2 | completo |
 | 121 | `src/sisad-pdfme/ui/helper.ts` | typescript | 601 | 16.8 | completo |
-| 122 | `src/sisad-pdfme/ui/hooks.ts` | typescript | 495 | 16.2 | completo |
+| 122 | `src/sisad-pdfme/ui/hooks.ts` | typescript | 498 | 16.3 | completo |
 | 123 | `src/sisad-pdfme/ui/i18n.ts` | typescript | 903 | 37.3 | completo |
 | 124 | `src/sisad-pdfme/ui/index.ts` | typescript | 25 | 1.0 | completo |
 | 125 | `src/sisad-pdfme/ui/theme.ts` | typescript | 63 | 1.3 | completo |
@@ -748,7 +748,7 @@ prueba-plugin
 | 189 | `src/sisad-pdfme/schemas/date/helper.ts` | typescript | 523 | 36.9 | completo |
 | 190 | `src/sisad-pdfme/schemas/date/time.ts` | typescript | 16 | 0.4 | completo |
 | 191 | `src/sisad-pdfme/schemas/date/types.ts` | typescript | 21 | 0.5 | completo |
-| 192 | `src/sisad-pdfme/schemas/graphics/image.ts` | typescript | 209 | 10.3 | completo |
+| 192 | `src/sisad-pdfme/schemas/graphics/image.ts` | typescript | 252 | 11.8 | completo |
 | 193 | `src/sisad-pdfme/schemas/graphics/imagehelper.ts` | typescript | 156 | 4.4 | completo |
 | 194 | `src/sisad-pdfme/schemas/graphics/svg.ts` | typescript | 123 | 6.8 | completo |
 | 195 | `src/sisad-pdfme/schemas/multiVariableText/helper.ts` | typescript | 89 | 2.5 | completo |
@@ -934,8 +934,8 @@ prueba-plugin
 | 375 | `src/sisad-pdfme/pdf-lib/utils/elements/Rectangle.ts` | typescript | 65 | 1.6 | completo |
 | 376 | `src/sisad-pdfme/pdf-lib/utils/elements/Segment.ts` | typescript | 81 | 2.2 | completo |
 | 377 | `src/sisad-pdfme/schemas/text/icons/index.ts` | typescript | 30 | 1.0 | completo |
-| 378 | `src/sisad-pdfme/ui/components/Designer/index.tsx` | tsx | 3755 | 141.6 | truncado 83.0 KB |
-| 379 | `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx` | tsx | 1532 | 54.8 | completo |
+| 378 | `src/sisad-pdfme/ui/components/Designer/index.tsx` | tsx | 3814 | 143.4 | truncado 83.0 KB |
+| 379 | `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx` | tsx | 1534 | 54.9 | completo |
 | 380 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx` | tsx | 365 | 12.0 | completo |
 | 381 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx` | tsx | 111 | 4.7 | completo |
 | 382 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx` | tsx | 98 | 3.0 | completo |
@@ -947,7 +947,7 @@ prueba-plugin
 | 388 | `src/sisad-pdfme/ui/components/Designer/useLeftSidebarCatalogState.ts` | typescript | 155 | 5.0 | completo |
 | 389 | `src/sisad-pdfme/ui/components/shared/pageMetadata.ts` | typescript | 52 | 1.4 | completo |
 | 390 | `src/sisad-pdfme/ui/components/shared/usePaperRefRegistry.ts` | typescript | 20 | 0.5 | completo |
-| 391 | `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx` | tsx | 1587 | 58.1 | completo |
+| 391 | `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx` | tsx | 1591 | 58.1 | completo |
 | 392 | `src/sisad-pdfme/ui/components/Designer/Canvas/Guides.tsx` | tsx | 100 | 2.9 | completo |
 | 393 | `src/sisad-pdfme/ui/components/Designer/Canvas/Mask.tsx` | tsx | 33 | 0.9 | completo |
 | 394 | `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx` | tsx | 127 | 4.2 | completo |
@@ -961,14 +961,14 @@ prueba-plugin
 | 402 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx` | tsx | 76 | 2.2 | completo |
 | 403 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx` | tsx | 435 | 17.4 | completo |
 | 404 | `src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts` | typescript | 495 | 14.2 | completo |
-| 405 | `src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts` | typescript | 112 | 3.6 | completo |
+| 405 | `src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts` | typescript | 214 | 7.3 | completo |
 | 406 | `src/sisad-pdfme/ui/components/Designer/shared/className.ts` | typescript | 17 | 0.7 | completo |
 | 407 | `src/sisad-pdfme/ui/components/Designer/shared/coordinateMath.ts` | typescript | 145 | 3.9 | completo |
 | 408 | `src/sisad-pdfme/ui/components/Designer/shared/DesignerContextSummary.tsx` | tsx | 83 | 4.7 | completo |
 | 409 | `src/sisad-pdfme/ui/components/Designer/shared/designerCoordinateService.ts` | typescript | 182 | 5.6 | completo |
 | 410 | `src/sisad-pdfme/ui/components/Designer/shared/designerExtensions.ts` | typescript | 98 | 2.7 | completo |
 | 411 | `src/sisad-pdfme/ui/components/Designer/shared/designerLabels.ts` | typescript | 98 | 2.8 | completo |
-| 412 | `src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.ts` | typescript | 298 | 9.3 | completo |
+| 412 | `src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.ts` | typescript | 411 | 12.6 | completo |
 | 413 | `src/sisad-pdfme/ui/components/Designer/shared/interactionState.ts` | typescript | 62 | 1.4 | completo |
 | 414 | `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetPolicy.ts` | typescript | 62 | 2.9 | completo |
 | 415 | `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetSelectors.ts` | typescript | 68 | 1.8 | completo |
@@ -976,9 +976,9 @@ prueba-plugin
 | 417 | `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts.ts` | typescript | 568 | 16.9 | completo |
 | 418 | `src/sisad-pdfme/ui/components/Designer/shared/objectGuards.ts` | typescript | 12 | 0.6 | completo |
 | 419 | `src/sisad-pdfme/ui/components/Designer/shared/passiveTouchListeners.ts` | typescript | 38 | 1.4 | completo |
-| 420 | `src/sisad-pdfme/ui/components/Designer/shared/recipientColor.ts` | typescript | 143 | 4.2 | completo |
-| 421 | `src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts` | typescript | 96 | 3.7 | completo |
-| 422 | `src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts` | typescript | 426 | 15.0 | truncado 4.4 KB |
+| 420 | `src/sisad-pdfme/ui/components/Designer/shared/recipientColor.ts` | typescript | 143 | 4.2 | truncado 3.9 KB |
+| 421 | `src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts` | typescript | 96 | 3.7 | omitido por presupuesto total |
+| 422 | `src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts` | typescript | 426 | 15.0 | omitido por presupuesto total |
 | 423 | `src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts` | typescript | 101 | 3.6 | omitido por presupuesto total |
 | 424 | `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionCapabilities.ts` | typescript | 115 | 3.8 | omitido por presupuesto total |
 | 425 | `src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts` | typescript | 90 | 2.5 | omitido por presupuesto total |
@@ -1002,11 +1002,11 @@ prueba-plugin
 | 443 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx` | tsx | 23 | 0.7 | omitido por presupuesto total |
 | 444 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState.ts` | typescript | 40 | 0.8 | omitido por presupuesto total |
 | 445 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/pointerGeometry.ts` | typescript | 133 | 3.7 | omitido por presupuesto total |
-| 446 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview.tsx` | tsx | 44 | 2.5 | omitido por presupuesto total |
+| 446 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview.tsx` | tsx | 48 | 1.8 | omitido por presupuesto total |
 | 447 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx` | tsx | 49 | 1.5 | omitido por presupuesto total |
-| 448 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx` | tsx | 61 | 1.8 | omitido por presupuesto total |
+| 448 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx` | tsx | 64 | 1.9 | omitido por presupuesto total |
 | 449 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx` | tsx | 217 | 9.3 | omitido por presupuesto total |
-| 450 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.ts` | typescript | 196 | 4.6 | omitido por presupuesto total |
+| 450 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.ts` | typescript | 178 | 4.2 | omitido por presupuesto total |
 | 451 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx` | tsx | 43 | 1.6 | omitido por presupuesto total |
 | 452 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/useFloatingToolbarPosition.ts` | typescript | 69 | 2.4 | omitido por presupuesto total |
 | 453 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx` | tsx | 67 | 3.2 | omitido por presupuesto total |
@@ -1049,12 +1049,12 @@ prueba-plugin
 - **generado detectado por contenido:** 2
 - **archivo binario/minificado/lock ignorado:** 1
 - **minificado detectado por contenido:** 1
-- **omitidos por presupuesto total:** 60
+- **omitidos por presupuesto total:** 62
 
 ## Totales
 
-- **KB originales candidatos:** `3150.2`
-- **KB incluidos en contenido:** `2499.8`
+- **KB originales candidatos:** `3159.5`
+- **KB incluidos en contenido:** `2499.9`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -25415,9 +25415,9 @@ export const setFontNameRecursively = (
 ### 0122 — `src/sisad-pdfme/ui/hooks.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `495`
-- **Tamaño original:** `16.2 KB`
-- **SHA1 corto:** `120bb01fff`
+- **Líneas:** `498`
+- **Tamaño original:** `16.3 KB`
+- **SHA1 corto:** `1500e4a3ca`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export function: usePrevious`, `export const: useUIPreProcessor`, `export const: useScrollPageCursor`, `export const: useMountStatus`, `export const: useInitEvents`
 
@@ -25704,6 +25704,7 @@ type ScrollPageCursorProps = {
   scale: number;
   pageCursor: number;
   onChangePageCursor: (page: number) => void;
+  disabled?: boolean;
 };
 
 export const useScrollPageCursor = ({
@@ -25713,8 +25714,10 @@ export const useScrollPageCursor = ({
   scale,
   pageCursor,
   onChangePageCursor,
+  disabled = false,
 }: ScrollPageCursorProps) => {
   useEffect(() => {
+    if (disabled) return;
     const scrollContainer = ref.current;
     if (!scrollContainer) {
       return;
@@ -25778,7 +25781,7 @@ export const useScrollPageCursor = ({
     return () => {
       scrollContainer?.removeEventListener('scroll', onScroll);
     };
-  }, [onChangePageCursor, pageCursor, pageSizes, paperRefs, ref, scale]);
+  }, [disabled, onChangePageCursor, pageCursor, pageSizes, paperRefs, ref, scale]);
 };
 
 export const useMountStatus = () => {
@@ -42204,9 +42207,9 @@ export interface DateSchema extends Schema {
 ### 0192 — `src/sisad-pdfme/schemas/graphics/image.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `209`
-- **Tamaño original:** `10.3 KB`
-- **SHA1 corto:** `a13d815f71`
+- **Líneas:** `252`
+- **Tamaño original:** `11.8 KB`
+- **SHA1 corto:** `460457e4bb`
 - **Estado:** `completo`
 
 ```typescript
@@ -42293,11 +42296,13 @@ const imageSchema: Plugin<ImageSchema> = {
     const uploadable = (schema as { uploadable?: boolean }).uploadable === true;
     const editable = (mode === 'designer' || uploadable) && isEditable(mode, schema);
     const isDefault = value === defaultValue;
+    const showCompactPlaceholder = !value || isDefault;
 
     const container = document.createElement('div');
     const backgroundStyle = placeholder ? `url(${placeholder})` : 'none';
     const containerStyle: CSS.Properties = {
       ...fullSize,
+      position: 'relative',
       backgroundImage: value ? 'none' : backgroundStyle,
       backgroundSize: `contain`,
       backgroundRepeat: 'no-repeat',
@@ -42311,8 +42316,49 @@ const imageSchema: Plugin<ImageSchema> = {
     });
     rootElement.appendChild(container);
 
-    // image tag
-    if (value) {
+    if (showCompactPlaceholder) {
+      const placeholderNode = document.createElement('div');
+      const placeholderNodeStyle: CSS.Properties = {
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '6px',
+        border: '1px solid rgba(148, 163, 184, 0.22)',
+        borderRadius: '10px',
+        background:
+          'linear-gradient(180deg, rgba(255,255,255,0.97), rgba(241,245,249,0.92))',
+        color: '#64748b',
+        pointerEvents: 'none',
+      };
+      Object.assign(placeholderNode.style, placeholderNodeStyle);
+
+      const placeholderIcon = document.createElement('div');
+      Object.assign(placeholderIcon.style, {
+        width: '26px',
+        height: '26px',
+        backgroundImage: `url(${createSvgStr(Image)})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundSize: 'contain',
+        opacity: '0.82',
+      } as CSS.Properties);
+      placeholderNode.appendChild(placeholderIcon);
+
+      const placeholderLabel = document.createElement('div');
+      placeholderLabel.textContent = 'Imagen';
+      Object.assign(placeholderLabel.style, {
+        fontSize: '11px',
+        fontWeight: '600',
+        lineHeight: '1',
+        letterSpacing: '0.01em',
+      } as CSS.Properties);
+      placeholderNode.appendChild(placeholderLabel);
+
+      container.appendChild(placeholderNode);
+    } else if (value) {
       const img = document.createElement('img');
       const imgStyle: CSS.Properties = {
         height: '100%',
@@ -71659,9 +71705,9 @@ export const TextVerticalAlignBottomIcon = createSvgStr(ArrowDownToLine);
 ### 0378 — `src/sisad-pdfme/ui/components/Designer/index.tsx`
 
 - **Lenguaje:** `tsx`
-- **Líneas:** `3755`
-- **Tamaño original:** `141.6 KB`
-- **SHA1 corto:** `33feae4a13`
+- **Líneas:** `3814`
+- **Tamaño original:** `143.4 KB`
+- **SHA1 corto:** `abb534ccac`
 - **Estado:** `truncado 83.0 KB`
 - **Símbolos detectados:** `function: handleRemovePage`, `function: handleAddPageAfter`, `component/const: DetachedHost`, `component/const: TemplateEditor`
 
@@ -71733,19 +71779,20 @@ import type { DesignerRuntimeApi, DesignerSidebarPresentation, DesignerCommentIt
 import type { SchemaComment, SchemaCommentAnchor } from '../../designerEngine.js';
 import {
   extractClientPoint,
-  clampPointToPageBounds,
-  resolveClientPointToPagePoint,
-  resolveDropPageIndex,
 } from './Canvas/overlays/pointerGeometry.js';
 import {
-  resolveNonOverlappingDropPosition,
   resolveSmartDropPosition,
 } from './Canvas/overlays/smartPlacement.js';
 import SchemaDragPreview from './Canvas/overlays/SchemaDragPreview.js';
 import SchemaDropCommitFlash from './Canvas/overlays/SchemaDropCommitFlash.js';
 import SchemaDropPlaceholder from './Canvas/overlays/SchemaDropPlaceholder.js';
 import { installPassiveTouchListenerGuard } from './shared/passiveTouchListeners.js';
+import {
+  lockDesignerSidebarScroll,
+  unlockDesignerSidebarScroll,
+} from './shared/interactionGuards.js';
 import { filterSchemasByCollisionScope } from './shared/schemaCollision.js';
+import { resolvePointerDropTarget } from './shared/canvasDropPipeline.js';
 
 installPassiveTouchListenerGuard();
 
@@ -72324,7 +72371,11 @@ const TemplateEditor = ({
   const [isDraggingOverPage, setIsDraggingOverPage] = useState(false);
   const [dropValid, setDropValid] = useState(false);
   const [activeDragData, setActiveDragData] = useState<SchemaDragSession | null>(null);
+  const activeDragDataRef = useRef<SchemaDragSession | null>(null);
   const schemaDragStartPointRef = useRef<{ x: number; y: number } | null>(null);
+  const lastDragPointerRef = useRef<{ x: number; y: number } | null>(null);
+  const designerRootRef = useRef<HTMLDivElement | null>(null);
+  const sidebarScrollLockRef = useRef<ReturnType<typeof lockDesignerSidebarScroll> | null>(null);
   const [dropCommitFlash, setDropCommitFlash] = useState<{
     pageIndex: number;
     point: { x: number; y: number };
@@ -72833,6 +72884,7 @@ const TemplateEditor = ({
     pageSizes,
     scale,
     pageCursor,
+    disabled: isSchemaDragging,
     onChangePageCursor: (p) => {
       setPageCursor(p);
       onPageCursorChange(p, pageSizes.length);
@@ -73250,21 +73302,41 @@ const TemplateEditor = ({
           void commandBusRef.current.execute(
             createTemplateSnapshotCommand({
               id: 'addComment',
-              label: 'addComment',
-              beforeTemplate,
-              afterTemplate: nextTemplate,
-              events: [createCommentCommandEvent('comment.created', createdComment.id, anchor.fileId)],
-              applyTemplate: updateTemplate,
-            }),
-          );
+              label
 
-          if (designerEngine.collaboration?.enabled) {
-            applyCollaborationLocalChange({
-              type: 'comment.creat
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 62001 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
 
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 60205 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
+ons: designerEngine.extensions || rightSidebarEngineExtensions,
+  });
 
-       typeof options.leftSidebarClassName === 'string' ? options.leftSidebarClassName : '',
+  const leftSidebarNode = leftSidebarVisible ? (
+    <LeftSidebar
+      scale={scale}
+      basePdf={activeBasePdf}
+      activeRecipientColor={
+        designerEngine.extensions?.resolveRecipientColor?.(collaborationContext.activeRecipient || null) ||
+        (typeof options.activeRecipientColor === 'string' && options.activeRecipientColor.trim()
+          ? options.activeRecipientColor.trim()
+          : null) ||
+        collaborationContext.userColor ||
+        collaborationContext.ownerColor ||
+        collaborationContext.activeRecipient?.color ||
+        null
+      }
+      variant={leftSidebarVariant}
+      useLayoutFrame={leftSidebarUseLayout}
+      showSearch={leftSidebarSearchable}
+      showItemMeta={leftSidebarShowItemMeta}
+      showItemDescription={leftSidebarShowItemDescription}
+      showTechnicalLabels={leftSidebarShowTechnicalLabels}
+      showCatalogViewSwitcher={leftSidebarShowCatalogViewSwitcher}
+      detached={leftSidebarDetached}
+      presentation={leftSidebarPresentation}
+      responsiveBreakpoint={Number.isFinite(leftSidebarResponsiveBreakpoint) ? leftSidebarResponsiveBreakpoint : 1080}
+      viewportWidth={viewportWidth}
+      className={
+        [
+          typeof options.leftSidebarClassName === 'string' ? options.leftSidebarClassName : '',
           typeof leftSidebarEngineClassName === 'string' ? leftSidebarEngineClassName : '',
         ]
           .filter(Boolean)
@@ -73413,13 +73485,7 @@ const TemplateEditor = ({
       }
     : { width: 0, height: 0 };
   const activeDragPlugin = activeDragData ? pluginsRegistry.findByType(activeDragData.type) : null;
-  const activeDragPlaceholderPoint = activeDragData?.dropPointMm
-    ? clampPointToPageBounds(
-        activeDragData.dropPointMm,
-        pageSizes[activeDragPageIndex] || pageSizes[pageCursor] || { width: 0, height: 0 },
-        activeDragSchemaSize,
-      )
-    : null;
+  const activeDragPlaceholderPoint = activeDragData?.dropPointMm || null;
   const dragOverlayPortal =
     activeDragData && typeof document !== 'undefined' ? (
       createPortal(
@@ -73439,7 +73505,7 @@ const TemplateEditor = ({
           ) : null}
           <SchemaDragPreview
             schemaType={activeDragData.type}
-            icon={activeDragPlugin ? <PluginIcon plugin={activeDragPlugin} label={activeDragData.label} size={22} /> : null}
+            icon={activeDragPlugin ? <PluginIcon plugin={activeDragPlugin} label={activeDragData.label} size={20} /> : null}
             pointer={activeDragData.pointer}
             ownerColor={activeDragData.ownerColor || undefined}
             isOverCanvas={activeDragData.isOverCanvas}
@@ -73486,7 +73552,7 @@ const TemplateEditor = ({
       : null;
 
   return (
-    <Root size={size} scale={scale}>
+    <Root ref={designerRootRef} size={size} scale={scale}>
       <input
         ref={pdfUploadInputRef}
         id="sisad-pdfme-pdf-upload"
@@ -73500,12 +73566,15 @@ const TemplateEditor = ({
       {dragOverlayPortal}
       {dropCommitFlashPortal}
       <DndContext
+        autoScroll={false}
         onDragStart={(event) => {
           if (!isSchemaDragActive(event?.active)) return;
           onEditEnd();
           setIsSchemaDragging(true);
+          applySidebarScrollLock();
           const startPoint = extractClientPoint(event.activatorEvent as Event | null | undefined);
           schemaDragStartPointRef.current = startPoint;
+          lastDragPointerRef.current = startPoint;
           if (!startPoint) {
             resetSchemaDragState();
             setIsSchemaDragging(true);
@@ -73517,10 +73586,7 @@ const TemplateEditor = ({
             setIsSchemaDragging(true);
             return;
           }
-          setActiveDragData(resolved.preview);
-          setIsDraggingOverCanvas(resolved.preview.isOverCanvas);
-          setIsDraggingOverPage(resolved.preview.isOverPage);
-          setDropValid(resolved.preview.dropValid);
+          syncSchemaDragState(resolved.preview);
         }}
         onDragMove={(event) => {
           if (!isSchemaDragActive(event?.active)) {
@@ -73536,33 +73602,17 @@ const TemplateEditor = ({
             resetSchemaDragState();
             return;
           }
+          const latestPointer = lastDragPointerRef.current;
           const pointer = {
-            x: startPoint.x + (event.delta?.x || 0),
-            y: startPoint.y + (event.delta?.y || 0),
+            x: latestPointer?.x ?? (startPoint.x + (event.delta?.x || 0)),
+            y: latestPointer?.y ?? (startPoint.y + (event.delta?.y || 0)),
           };
           const resolved = resolveSchemaDragSession(event.active, pointer);
           if (!resolved) {
             resetSchemaDragState();
             return;
           }
-          setActiveDragData((prev) => {
-            const next = resolved.preview;
-            if (
-              prev &&
-              prev.pointer.x === next.pointer.x &&
-              prev.pointer.y === next.pointer.y &&
-              prev.pageIndex === next.pageIndex &&
-              prev.isOverCanvas === next.isOverCanvas &&
-              prev.isOverPage === next.isOverPage &&
-              prev.dropValid === next.dropValid
-            ) {
-              return prev;
-            }
-            return next;
-          });
-          setIsDraggingOverCanvas((prev) => (prev === resolved.preview.isOverCanvas ? prev : resolved.preview.isOverCanvas));
-          setIsDraggingOverPage((prev) => (prev === resolved.preview.isOverPage ? prev : resolved.preview.isOverPage));
-          setDropValid((prev) => (prev === resolved.preview.dropValid ? prev : resolved.preview.dropValid));
+          syncSchemaDragState(resolved.preview);
         }}
         onDragCancel={() => {
           resetSchemaDragState();
@@ -73578,9 +73628,8 @@ const TemplateEditor = ({
           const payload = (active.data.current || {}) as { schema?: Schema };
           const draggedSchema = cloneDeep(payload.schema || (active.data.current as Schema));
           if (!draggedSchema) return;
-          const session = activeDragData;
-          if (!session) {
-            addSchemaAtCenter(draggedSchema);
+          const session = activeDragDataRef.current || activeDragData;
+          if (!session?.dropValid || !session.dropPointMm) {
             resetSchemaDragState();
             return;
           }
@@ -73591,9 +73640,6 @@ const TemplateEditor = ({
           const schemaWidth = Number(draggedSchema.width || 45);
           const schemaHeight = Number(draggedSchema.height || 10);
           const schemaSize = { width: schemaWidth, height: schemaHeight };
-          const candidate = session.dropValid
-            ? session.dropPointMm || { x: Math.max(0, (pageSize.width - schemaSize.width) / 2), y: Math.max(0, (pageSize.height - schemaSize.height) / 2) }
-            : { x: Math.max(0, (pageSize.width - schemaSize.width) / 2), y: Math.max(0, (pageSize.height - schemaSize.height) / 2) };
           const collisionScopedSchemas = filterSchemasByCollisionScope(existingSchemas, draggedSchema as SchemaForUI, {
             ownerRecipientId: collaborationContext.ownerRecipientId,
             ownerRecipientIds: collaborationContext.ownerRecipientIds,
@@ -73601,7 +73647,7 @@ const TemplateEditor = ({
             pageNumber: pageIndex + 1,
           });
           const position = resolveSmartDropPosition({
-            candidate,
+            candidate: session.dropPointMm,
             pageSize,
             schemaSize,
             existingSchemas: collisionScopedSchemas,
@@ -73782,9 +73828,9 @@ export default TemplateEditor;
 ### 0379 — `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx`
 
 - **Lenguaje:** `tsx`
-- **Líneas:** `1532`
-- **Tamaño original:** `54.8 KB`
-- **SHA1 corto:** `0639ecd32a`
+- **Líneas:** `1534`
+- **Tamaño original:** `54.9 KB`
+- **SHA1 corto:** `d375562162`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export type/class: CatalogViewMode`, `export type/class: CatalogQuickFilter`, `export type/class: CatalogCapability`, `export type/class: LeftSidebarProps`, `component/const: SidebarButtons`, `component/const: Draggable`, `component/const: SidebarShell`, `component/const: LeftSidebar`
 
@@ -74296,6 +74342,8 @@ const SidebarShell = ({
       </div>
       <div
         className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-main`, 'min-h-0 flex-1 space-y-1.5 overflow-y-auto overflow-x-hidden overscroll-contain px-2 py-2')}
+        data-left-sidebar-scroll="true"
+        data-sidebar-scroll-container="true"
       >
         {children}
       </div>
@@ -76805,9 +76853,9 @@ export default usePaperRefRegistry;
 ### 0391 — `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx`
 
 - **Lenguaje:** `tsx`
-- **Líneas:** `1587`
+- **Líneas:** `1591`
 - **Tamaño original:** `58.1 KB`
-- **SHA1 corto:** `f083a1aa01`
+- **SHA1 corto:** `c22dbf4244`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export type/class: CanvasFeatureToggles`, `export type/class: CanvasStyleOverrides`, `export type/class: CanvasClassNames`, `export type/class: CanvasComponentSlots`, `export type/class: CanvasProps`, `component/const: Canvas`
 
@@ -77153,7 +77201,6 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   }, []);
 
   const renderedPageSchemasList = renderedSchemasList || schemasList;
-  const prevSchemas = usePrevious(renderedPageSchemasList[pageCursor]);
   const currentPageSchemas = useMemo(
     () => renderedPageSchemasList[pageCursor] || [],
     [pageCursor, renderedPageSchemasList],
@@ -77173,18 +77220,23 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     () => resolveSelectionPageIndex(activeElements, pageCursor),
     [activeElements, pageCursor],
   );
-  const activeSelectionSchemas = useMemo(
-    () => renderedPageSchemasList[activeSelectionPageIndex ?? pageCursor] || currentPageSchemas,
-    [activeSelectionPageIndex, currentPageSchemas, pageCursor, renderedPageSchemasList],
+  const moveablePageIndex = activeSelectionPageIndex ?? pageCursor;
+  const moveablePageSchemas = useMemo(
+    () => renderedPageSchemasList[moveablePageIndex] || [],
+    [moveablePageIndex, renderedPageSchemasList],
   );
-  const activePaper = paperRefs.current[activeSelectionPageIndex ?? pageCursor] || null;
-  // Moveable renders on the cursor page only. Scoping its targets to a single
-  // page prevents a group bounding box that unions schemas across pages.
+  const prevSchemas = usePrevious(moveablePageSchemas);
+  const activeSelectionSchemas = useMemo(
+    () => renderedPageSchemasList[moveablePageIndex] || currentPageSchemas,
+    [currentPageSchemas, moveablePageIndex, renderedPageSchemasList],
+  );
+  // Keep Moveable scoped to the real page of the current selection, not the
+  // global cursor page, so multi-page selections don't drift.
   const moveableTargets = useMemo(() => {
-    const targetPageIndex = activeSelectionPageIndex ?? pageCursor;
+    const targetPageIndex = moveablePageIndex;
     if (isSameDocumentPageSelection(activeElements)) return activeElements;
     return activeElements.filter((el) => toNumber(el.dataset.pageIndex) === targetPageIndex);
-  }, [activeElements, activeSelectionPageIndex, pageCursor]);
+  }, [activeElements, moveablePageIndex]);
   const placeholderVariables = useMemo(
     () =>
       Object.fromEntries(
@@ -77247,12 +77299,12 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     }
 
     const prevSchemaKeys = JSON.stringify(prevSchemas || []);
-    const schemaKeys = JSON.stringify(renderedPageSchemasList[pageCursor] || []);
+    const schemaKeys = JSON.stringify(moveablePageSchemas || []);
 
     if (prevSchemaKeys === schemaKeys) {
       moveable.current?.updateRect();
     }
-  }, [pageCursor, renderedPageSchemasList, prevSchemas]);
+  }, [moveablePageSchemas, prevSchemas]);
 
   const onDrag = ({ target, top, left }: OnDrag) => {
     const { width: _width, height: _height } = target.style;
@@ -78158,7 +78210,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
                 opacity={styleOverrides?.padding?.opacity}
               />
             ) : null}
-            {pageCursor === index ? (
+            {moveablePageIndex === index ? (
               <CanvasStateOverlay
                 state={canvasRenderState}
                 onRetry={onRetryRender}
@@ -78191,7 +78243,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
                 }}
               />
             ) : null}
-            {pageCursor !== index ? (
+            {moveablePageIndex !== index ? (
               feature.mask ? (
                 <MaskSlot
                   className={classNames?.mask}
@@ -80974,11 +81026,11 @@ registerActions(CORE_ACTIONS);
 ### 0405 — `src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `112`
-- **Tamaño original:** `3.6 KB`
-- **SHA1 corto:** `a005a16cf6`
+- **Líneas:** `214`
+- **Tamaño original:** `7.3 KB`
+- **SHA1 corto:** `6c85ec08b6`
 - **Estado:** `completo`
-- **Símbolos detectados:** `export type/class: DropPayload`, `export type/class: DropTarget`, `export type/class: DropOwner`, `export type/class: DropResult`, `export const: isValidDropPayload`, `export const: isValidDropTarget`, `export const: clampDropPositionToPage`
+- **Símbolos detectados:** `export type/class: DropPayload`, `export type/class: DropTarget`, `export type/class: DropOwner`, `export type/class: DropResult`, `export type/class: ResolvePointerDropTargetInput`, `export type/class: ResolvePointerDropTargetResult`, `export const: resolvePointerDropTarget`, `export const: isValidDropPayload`, `export const: isValidDropTarget`, `export const: clampDropPositionToPage`
 
 ```typescript
 /**
@@ -81004,6 +81056,13 @@ registerActions(CORE_ACTIONS);
  */
 
 import { asRecord } from './objectGuards.js';
+import {
+  clientPointToPagePoint,
+  getPageRectInViewport,
+  pagePointToSchemaPoint,
+  type DOMRectLike,
+  type Point,
+} from './coordinateMath.js';
 
 // ─── Types ───────────────────────────────────────────────────────────────────
 
@@ -81040,6 +81099,101 @@ export type DropResult =
   | { status: 'noSpace'; reason: string }
   | { status: 'cancelled' }
   | { status: 'error'; reason: string };
+
+export type ResolvePointerDropTargetInput = {
+  clientX: number;
+  clientY: number;
+  paperRefs: Array<HTMLElement | null | undefined> | { current?: Array<HTMLElement | null | undefined> | null };
+  pageSizes?: Array<{ width: number; height: number } | null | undefined>;
+  scale?: number;
+  activeDocumentId?: string | null;
+  canvasElement?: HTMLElement | null;
+  pageCursor?: number;
+  preferredPageIndex?: number | null;
+};
+
+export type ResolvePointerDropTargetResult = {
+  documentId: string | null;
+  pageIndex: number;
+  pageNumber: number;
+  paperRect: DOMRectLike | null;
+  pagePointPx: Point | null;
+  schemaPointMm: Point | null;
+  isOverPage: boolean;
+  isOverCanvas: boolean;
+  dropValid: boolean;
+};
+
+const isPointInRect = (x: number, y: number, rect: DOMRectLike) =>
+  x >= rect.left && x <= rect.right && y >= rect.top && y <= rect.bottom;
+
+const pointDistanceToRect = (x: number, y: number, rect: DOMRectLike) => {
+  const dx =
+    x < rect.left ? rect.left - x : x > rect.right ? x - rect.right : 0;
+  const dy =
+    y < rect.top ? rect.top - y : y > rect.bottom ? y - rect.bottom : 0;
+  return Math.hypot(dx, dy);
+};
+
+const resolvePaperElements = (
+  paperRefs: ResolvePointerDropTargetInput['paperRefs'],
+): Array<HTMLElement | null | undefined> => (Array.isArray(paperRefs) ? paperRefs : paperRefs.current || []);
+
+export const resolvePointerDropTarget = ({
+  clientX,
+  clientY,
+  paperRefs,
+  pageSizes = [],
+  scale = 1,
+  activeDocumentId = null,
+  canvasElement = null,
+  pageCursor = -1,
+  preferredPageIndex = null,
+}: ResolvePointerDropTargetInput): ResolvePointerDropTargetResult => {
+  const papers = resolvePaperElements(paperRefs);
+  const canvasRect = canvasElement ? canvasElement.getBoundingClientRect() : null;
+  const hitIndex = papers.findIndex((paper) => {
+    if (!paper) return false;
+    const rect = getPageRectInViewport(paper);
+    return isPointInRect(clientX, clientY, rect);
+  });
+
+  const isOverCanvas = canvasRect ? isPointInRect(clientX, clientY, canvasRect) : hitIndex >= 0;
+  const hasHit = hitIndex >= 0;
+  const preferredIndex =
+    Number.isInteger(preferredPageIndex) && preferredPageIndex != null && preferredPageIndex >= 0
+      ? preferredPageIndex
+      : -1;
+  const preferredPaper = preferredIndex >= 0 ? papers[preferredIndex] || null : null;
+  const preferredDistance =
+    preferredPaper && isOverCanvas ? pointDistanceToRect(clientX, clientY, getPageRectInViewport(preferredPaper)) : Number.POSITIVE_INFINITY;
+  const seamTolerancePx = Math.max(16, 24 * Math.max(1, scale));
+  const preferredWithinTolerance = preferredDistance <= seamTolerancePx;
+  const fallbackPageIndex = Number.isInteger(pageCursor) && pageCursor >= 0 ? pageCursor : -1;
+  const pageIndex = hasHit
+    ? hitIndex
+    : preferredWithinTolerance && preferredIndex >= 0
+      ? preferredIndex
+      : fallbackPageIndex;
+  const paperElement =
+    pageIndex >= 0 ? papers[pageIndex] || null : null;
+  const paperRect = paperElement ? getPageRectInViewport(paperElement) : null;
+  const pagePointPx = paperRect ? clientPointToPagePoint(clientX, clientY, paperRect, scale) : null;
+  const schemaPointMm = pagePointPx ? pagePointToSchemaPoint(pagePointPx) : null;
+  const isOverPage = hasHit || (preferredWithinTolerance && preferredIndex >= 0) || fallbackPageIndex >= 0;
+
+  return {
+    documentId: activeDocumentId || null,
+    pageIndex,
+    pageNumber: pageIndex >= 0 ? pageIndex + 1 : 0,
+    paperRect,
+    pagePointPx,
+    schemaPointMm,
+    isOverPage,
+    isOverCanvas,
+    dropValid: isOverPage && isOverCanvas,
+  };
+};
 
 // ─── Validation ───────────────────────────────────────────────────────────────
 
@@ -81807,11 +81961,11 @@ export const getCatalogLabel = (label: unknown, type: unknown, source?: 'builtin
 ### 0412 — `src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `298`
-- **Tamaño original:** `9.3 KB`
-- **SHA1 corto:** `450bc69194`
+- **Líneas:** `411`
+- **Tamaño original:** `12.6 KB`
+- **SHA1 corto:** `532b370122`
 - **Estado:** `completo`
-- **Símbolos detectados:** `export type/class: DesignerInteractionMode`, `export type/class: DesignerInteractionState`, `export type/class: DesignerInteractionBlockContext`, `export type/class: ShortcutHandlerOpts`, `export type/class: SchemaMutationSource`, `export type/class: SchemaMutationGuardContext`, `export type/class: SchemaMutationDecision`, `export const: isEditableTarget`, `export const: isAntDPopupTarget`, `export const: isAntDPopupOpen`, `export const: canStartInteraction`, `export const: shouldSuppressDesignerShortcuts`, `export const: shouldHandleDesignerShortcut`, `export const: isFocusInsideDesigner`, `export const: shouldSuppressCanvasRegionSelection`, `export const: evaluateSchemaMutationPermission`
+- **Símbolos detectados:** `export type/class: SidebarScrollLockRelease`, `export type/class: DesignerInteractionMode`, `export type/class: DesignerInteractionState`, `export type/class: DesignerInteractionBlockContext`, `export type/class: ShortcutHandlerOpts`, `export type/class: SchemaMutationSource`, `export type/class: SchemaMutationGuardContext`, `export type/class: SchemaMutationDecision`, `export const: isEditableTarget`, `export const: isAntDPopupTarget`, `export const: isAntDPopupOpen`, `export const: lockDesignerSidebarScroll`, `export const: unlockDesignerSidebarScroll`, `export const: canStartInteraction`, `export const: shouldSuppressDesignerShortcuts`, `export const: shouldHandleDesignerShortcut`, `export const: isFocusInsideDesigner`, `export const: shouldSuppressCanvasRegionSelection`, `export const: evaluateSchemaMutationPermission`
 
 ```typescript
 import {
@@ -81844,6 +81998,119 @@ export const isAntDPopupTarget = (target: EventTarget | null | undefined): boole
 export const isAntDPopupOpen = (): boolean => {
   if (typeof document === 'undefined') return false;
   return Boolean(document.querySelector(ANTD_POPUP_SELECTOR));
+};
+
+const LEFT_SIDEBAR_SCROLL_LOCK_SELECTOR = buildSelectorList([
+  '.sisad-pdfme-designer-left-sidebar',
+  '.sisad-pdfme-designer-left-sidebar-main',
+  '.sisad-pdfme-designer-left-sidebar-content',
+  '.sisad-pdfme-designer-left-sidebar-group-items',
+  '[data-left-sidebar-scroll]',
+  '[data-sidebar-scroll-container]',
+] as const);
+
+type SidebarScrollSnapshot = {
+  element: HTMLElement;
+  left: number;
+  top: number;
+};
+
+export type SidebarScrollLockRelease = () => void;
+
+const collectSidebarScrollContainers = (root: HTMLElement): HTMLElement[] => {
+  const candidates = Array.from(root.querySelectorAll<HTMLElement>(LEFT_SIDEBAR_SCROLL_LOCK_SELECTOR));
+  const unique = new Set<HTMLElement>();
+  candidates.forEach((element) => {
+    if (root.contains(element)) {
+      unique.add(element);
+    }
+  });
+  return Array.from(unique);
+};
+
+const isSidebarScrollTarget = (target: EventTarget | null | undefined): boolean => {
+  if (!(target instanceof HTMLElement)) return false;
+  return Boolean(target.closest(LEFT_SIDEBAR_SCROLL_LOCK_SELECTOR) || target.matches(LEFT_SIDEBAR_SCROLL_LOCK_SELECTOR));
+};
+
+const restoreScrollSnapshots = (snapshots: SidebarScrollSnapshot[]) => {
+  snapshots.forEach(({ element, left, top }) => {
+    if (element.scrollLeft !== left) {
+      element.scrollLeft = left;
+    }
+    if (element.scrollTop !== top) {
+      element.scrollTop = top;
+    }
+  });
+};
+
+export const lockDesignerSidebarScroll = (
+  root: HTMLElement | null | undefined,
+): SidebarScrollLockRelease | null => {
+  if (!root || typeof window === 'undefined' || typeof document === 'undefined') {
+    return null;
+  }
+
+  const containers = collectSidebarScrollContainers(root);
+  if (containers.length === 0) {
+    return () => {};
+  }
+
+  const snapshots: SidebarScrollSnapshot[] = containers.map((element) => ({
+    element,
+    left: element.scrollLeft,
+    top: element.scrollTop,
+  }));
+
+  let released = false;
+
+  const restore = () => restoreScrollSnapshots(snapshots);
+
+  const preventScroll = (event: Event) => {
+    if (!isSidebarScrollTarget(event.target)) {
+      return;
+    }
+    if (event.cancelable) {
+      event.preventDefault();
+    }
+    event.stopPropagation();
+    restore();
+  };
+
+  const onScroll = (event: Event) => {
+    const target = event.currentTarget;
+    if (!(target instanceof HTMLElement)) return;
+    const snapshot = snapshots.find((entry) => entry.element === target);
+    if (!snapshot) return;
+    if (target.scrollLeft !== snapshot.left || target.scrollTop !== snapshot.top) {
+      target.scrollLeft = snapshot.left;
+      target.scrollTop = snapshot.top;
+    }
+  };
+
+  containers.forEach((element) => {
+    element.addEventListener('scroll', onScroll, { passive: true });
+  });
+
+  root.addEventListener('wheel', preventScroll, { capture: true, passive: false });
+  root.addEventListener('touchmove', preventScroll, { capture: true, passive: false });
+
+  restore();
+
+  return () => {
+    if (released) return;
+    released = true;
+    root.removeEventListener('wheel', preventScroll, true);
+    root.removeEventListener('touchmove', preventScroll, true);
+    containers.forEach((element) => {
+      element.removeEventListener('scroll', onScroll);
+    });
+    restore();
+  };
+};
+
+export const unlockDesignerSidebarScroll = (release: SidebarScrollLockRelease | null | undefined) => {
+  release?.();
 };
 
 export type DesignerInteractionMode =
@@ -83320,7 +83587,7 @@ export const installPassiveTouchListenerGuard = () => {
 - **Líneas:** `143`
 - **Tamaño original:** `4.2 KB`
 - **SHA1 corto:** `7c7e19f38c`
-- **Estado:** `completo`
+- **Estado:** `truncado 3.9 KB`
 - **Símbolos detectados:** `export function: resolveRecipientColor`, `export function: resolveAllRecipientColors`, `export type/class: RecipientColorToken`, `export const: normalizeHexColor`
 
 ```typescript
@@ -83425,18 +83692,11 @@ export function resolveRecipientColor(
 }
 
 /**
- * Resolves colors for all recipients, ensuring uniqueness across palette slots.
- * Recipients with explicit colors keep them. The rest get palette slots by
- * their position, skipping colors already taken by explicit recipients.
- */
-export function resolveAllRecipientColors(
-  recipients: ReadonlyArray<{ id: string; color?: string | null }>,
-  options?: {
-    fallbackColor?: string;
-    palette?: string[];
-  },
-): RecipientColorToken[] {
-  const fallback = options?.fallbackColor ?? DEFAULT_FALLBACK_COLOR;
+ * Resolves colors for al
+
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 471 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
+
+FALLBACK_COLOR;
   const palette = options?.palette ?? DEFAULT_RECIPIENT_PALETTE;
 
   const explicitColors = new Set<string>();
@@ -83467,260 +83727,6 @@ export function resolveAllRecipientColors(
     return { recipientId: id, color: fallback, source: 'fallback' as const };
   });
 }
-```
-
-<a id="file-0421"></a>
-
-### 0421 — `src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts`
-
-- **Lenguaje:** `typescript`
-- **Líneas:** `96`
-- **Tamaño original:** `3.7 KB`
-- **SHA1 corto:** `763e51f62a`
-- **Estado:** `completo`
-- **Símbolos detectados:** `export const: buildAutoPlaceDescriptor`, `export const: resolveSchemaAutoPlaceDescriptor`, `export const: collectAutoPlaceRulesFromDocuments`
-
-```typescript
-import { asRecord, isRecord } from './objectGuards.js';
-
-const DEFAULT_AUTO_PLACE_SCOPE = 'document';
-const DEFAULT_AUTO_PLACE_MATCH_MODE = 'contains';
-
-const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
-
-export const buildAutoPlaceDescriptor = (keyword: unknown, options: Record<string, unknown> = {}) => {
-  const normalizedKeyword = normalizeText(keyword);
-  if (!normalizedKeyword) return null;
-
-  const normalizedScope = normalizeText(options.scope) || DEFAULT_AUTO_PLACE_SCOPE;
-  const normalizedMatchMode = normalizeText(options.matchMode) || DEFAULT_AUTO_PLACE_MATCH_MODE;
-
-  return {
-    enabled: true as const,
-    keyword: normalizedKeyword,
-    scope: normalizedScope,
-    matchMode: normalizedMatchMode,
-    fieldType: normalizeText(options.fieldType) || null,
-    schemaUid: normalizeText(options.schemaUid) || null,
-    schemaName: normalizeText(options.schemaName) || null,
-    documentId: normalizeText(options.documentId) || null,
-    pageIndex: Number.isFinite(Number(options.pageIndex)) ? Number(options.pageIndex) : undefined,
-  };
-};
-
-export const resolveSchemaAutoPlaceDescriptor = (schema: Record<string, unknown> = {}, options: Record<string, unknown> = {}) => {
-  const s = schema;
-  const designer = isRecord(s.__designer) ? s.__designer : undefined;
-  const autoPlace = isRecord(designer?.autoPlace) ? designer.autoPlace : undefined;
-  const keyword =
-    normalizeText(s?.autoPlaceText) ||
-    normalizeText(autoPlace?.keyword) ||
-    normalizeText(options.keyword) ||
-    '';
-  if (!keyword) return null;
-
-  return buildAutoPlaceDescriptor(keyword, {
-    scope:
-      options.scope ||
-      autoPlace?.scope ||
-      s?.autoPlaceScope ||
-      DEFAULT_AUTO_PLACE_SCOPE,
-    matchMode:
-      options.matchMode ||
-      autoPlace?.matchMode ||
-      s?.autoPlaceMatchMode ||
-      DEFAULT_AUTO_PLACE_MATCH_MODE,
-    fieldType: options.fieldType || s?.type,
-    schemaUid: options.schemaUid || s?.schemaUid || s?.id,
-    schemaName: options.schemaName || s?.name,
-    documentId: options.documentId || s?.documentId || s?.fileTemplateId || s?.fileId,
-    pageIndex:
-      options.pageIndex !== undefined
-        ? options.pageIndex
-        : s?.pageIndex !== undefined
-          ? s.pageIndex
-          : s?.pageNumber !== undefined
-            ? Math.max(0, Number(s.pageNumber) - 1)
-            : undefined,
-  });
-};
-
-export const collectAutoPlaceRulesFromDocuments = (documents: unknown[] = []) => {
-  if (!Array.isArray(documents) || !documents.length) return [];
-
-  const rules: Record<string, unknown>[] = [];
-  documents.forEach((documentRaw: unknown = {}) => {
-    const document = asRecord(documentRaw);
-    if (!document) return;
-    const documentId = normalizeText(document?.id || document?.fileId || document?.fileTemplateId);
-    const template = isRecord(document.template) ? document.template : undefined;
-    const templateSchemas = Array.isArray(template?.schemas) ? template.schemas : [];
-    templateSchemas.forEach((page: unknown[] = [], pageIndex: number) => {
-      (Array.isArray(page) ? page : []).forEach((schemaRaw: unknown = {}) => {
-        if (!isRecord(schemaRaw)) return;
-        const schema = schemaRaw;
-        const descriptor = resolveSchemaAutoPlaceDescriptor(schema, {
-          documentId,
-          pageIndex,
-        });
-        if (!descriptor) return;
-        rules.push({
-          ...descriptor,
-          documentId: descriptor.documentId || documentId || null,
-          pageIndex: descriptor.pageIndex !== undefined ? descriptor.pageIndex : pageIndex,
-          schemaUid: descriptor.schemaUid || normalizeText(schema?.schemaUid || schema?.id) || null,
-          schemaName: descriptor.schemaName || normalizeText(schema?.name) || null,
-        });
-      });
-    });
-  });
-
-  return rules;
-};
-```
-
-<a id="file-0422"></a>
-
-### 0422 — `src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts`
-
-- **Lenguaje:** `typescript`
-- **Líneas:** `426`
-- **Tamaño original:** `15.0 KB`
-- **SHA1 corto:** `1973e44505`
-- **Estado:** `truncado 4.4 KB`
-- **Símbolos detectados:** `export type/class: ClipboardPasteMode`, `export type/class: PastePolicy`, `export type/class: SchemaClipboardPayload`, `export type/class: SchemaClipboardContext`, `export const: sanitizeCopiedSchema`, `export const: copySchemasToClipboard`, `export const: cutSchemasToClipboard`, `export const: resolvePasteOffset`, `export const: resolveUniqueSchemaName`, `export const: buildPastedSchema`, `export const: pasteSchemasFromClipboard`, `export const: duplicateSchemas`
-
-```typescript
-import { cloneDeep, type SchemaForUI, type Size } from '@sisad-pdfme/common';
-import {
-  applySchemaCollaborativeDefaults,
-  createSchemaCreationContext,
-  DEFAULT_SCHEMA_CONFIG_STORAGE_KEY,
-} from '../../../designerEngine.js';
-import { uuid } from '../../../helper.js';
-import { resolveSmartDropPosition, type SmartPlacementInput } from '../Canvas/overlays/smartPlacement.js';
-import { createUniqueSchemaVariableName } from './schemaVariableName.js';
-import { filterSchemasByCollisionScope } from './schemaCollision.js';
-import { asRecord, isRecord } from './objectGuards.js';
-import { isOptionGroupType } from '../../../../schemas/options/optionGroupLayout.js';
-
-/**
- * Controls how recipient assignment and collaboration metadata are handled
- * when pasting schemas into the designer.
- *
- * - preserveAssignments: keeps the original recipientId/color from the copied schema.
- *   Used when duplicating within the same recipient context.
- * - assignToActiveRecipient: strips legacy assignment and applies the currently active
- *   recipient from collaborationContext. Used when dropping into a different recipient slot.
- */
-export type ClipboardPasteMode = 'preserveAssignments' | 'assignToActiveRecipient';
-
-export type PastePolicy = {
-  /** Controls assignment behavior on paste. Defaults to 'preserveAssignments'. */
-  mode: ClipboardPasteMode;
-  /** When false (default), locks are always stripped on paste. */
-  preserveLocks?: boolean;
-  /** When false (default), comments and commentAnchors are stripped on paste. */
-  preserveComments?: boolean;
-  /** Placement offset strategy. 'smart' uses collision-avoidance; 'fixed' applies a constant delta. */
-  offsetStrategy?: 'smart' | 'fixed';
-};
-
-type ClipboardCollaborationContext = {
-  fileId?: string | null;
-  actorId?: string | null;
-  ownerRecipientId?: string | null;
-  ownerRecipientIds?: string[];
-  ownerRecipientName?: string | null;
-  ownerColor?: string | null;
-  userColor?: string | null;
-};
-
-type SchemaRecord = SchemaForUI & Record<string, unknown>;
-type DesignerRecord = Record<string, unknown> & {
-  recipientId?: unknown;
-  recipientName?: unknown;
-  recipientColor?: unknown;
-  group?: Record<string, unknown>;
-  identity?: Record<string, unknown>;
-};
-type ClipboardTransientRecord = Record<string, unknown> & {
-  lock?: SchemaForUI['lock'];
-  comments?: SchemaForUI['comments'];
-  commentAnchors?: SchemaForUI['commentAnchors'];
-  commentsAnchors?: SchemaForUI['commentsAnchors'];
-  __designer?: unknown;
-};
-
-export type SchemaClipboardPayload = {
-  source: 'copy' | 'cut';
-  items: SchemaForUI[];
-  removeIds: string[];
-};
-
-export type SchemaClipboardContext = {
-  pageIndex: number;
-  pageCount?: number;
-  pageSize?: Size;
-  fileId?: string | null;
-  existingSchemas?: SchemaForUI[];
-  collaborationContext?: ClipboardCollaborationContext;
-  timestamp?: number;
-  resolvePlacement?: (input: SmartPlacementInput) => { x: number; y: number };
-};
-
-const transientKeys: string[] = [
-  'id',
-  'schemaUid',
-  'fileId',
-  'fileTemplateId',
-  'pageNumber',
-  'ownerMode',
-  'ownerRecipientId',
-  'ownerRecipientIds',
-  'ownerRecipientName',
-  'ownerColor',
-  'userColor',
-  'createdBy',
-  'lastModifiedBy',
-  'createdAt',
-  'updatedAt',
-  'last
-
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 10980 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
-
-: collisionScopedSchemas,
-      stepMm: offset.x,
-      maxAttempts: 12,
-    });
-  }
-
-  return finalResult as SchemaForUI;
-};
-
-export const pasteSchemasFromClipboard = (
-  clipboard: SchemaClipboardPayload | SchemaForUI[],
-  context: SchemaClipboardContext,
-  policy: PastePolicy = { mode: 'preserveAssignments' },
-): SchemaForUI[] => {
-  const items = Array.isArray(clipboard) ? clipboard : clipboard.items;
-  const existingSchemas = context.existingSchemas || [];
-  const stackUniqueSchemaNames: string[] = [];
-  const groupIdMap = new Map<string, string>();
-  const pasted: SchemaForUI[] = [];
-
-  for (const [index, schema] of items.entries()) {
-    const nextExistingSchemas = existingSchemas.concat(pasted);
-    const next = buildPastedSchema(schema, { ...context, existingSchemas: nextExistingSchemas }, index, stackUniqueSchemaNames, policy);
-    remapGroupedSchemaIdentity(next, schema, groupIdMap);
-    pasted.push(next);
-  }
-
-  return pasted;
-};
-
-export const duplicateSchemas = (schemas: SchemaForUI[], context: SchemaClipboardContext): SchemaForUI[] =>
-  pasteSchemasFromClipboard(copySchemasToClipboard(schemas), context);
 ```
 
 ---

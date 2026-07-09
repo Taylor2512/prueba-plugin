@@ -139,7 +139,7 @@ const Wrapper = ({
   const schemaTone = resolveSchemaTone(schema, selectable ? '#38a0ff' : '#94a3b8');
   const schemaSurfaceTone = resolveSchemaToneSurface(schema, '#ffffff', schema.readOnly ? 0.08 : 0.12);
   const schemaHidden = (schema as SchemaForUI & { hidden?: boolean }).hidden === true;
-  const isCompactChoiceSchema = schemaType === 'radioGroup';
+  const isCompactChoiceSchema = schemaType === 'radioGroup' || schemaType === 'checkboxGroup';
 
   const schemaCaption = isCompactChoiceSchema
     ? undefined
@@ -172,6 +172,7 @@ const Wrapper = ({
     backgroundColor: isCompactChoiceSchema ? 'transparent' : schemaSurfaceTone,
     border: isCompactChoiceSchema ? '1px solid transparent' : outline || `1px solid ${schemaTone}`,
     '--schema-tone': schemaTone,
+    '--schema-owner-color': schemaTone,
     '--schema-surface-tone': isCompactChoiceSchema ? 'transparent' : schemaSurfaceTone,
     '--schema-outline': isCompactChoiceSchema ? '1px solid transparent' : outline || `1px solid ${schemaTone}`,
   } as React.CSSProperties;

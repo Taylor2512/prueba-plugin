@@ -81,11 +81,13 @@ const imageSchema: Plugin<ImageSchema> = {
     const uploadable = (schema as { uploadable?: boolean }).uploadable === true;
     const editable = (mode === 'designer' || uploadable) && isEditable(mode, schema);
     const isDefault = value === defaultValue;
+    const showCompactPlaceholder = !value || isDefault;
 
     const container = document.createElement('div');
     const backgroundStyle = placeholder ? `url(${placeholder})` : 'none';
     const containerStyle: CSS.Properties = {
       ...fullSize,
+      position: 'relative',
       backgroundImage: value ? 'none' : backgroundStyle,
       backgroundSize: `contain`,
       backgroundRepeat: 'no-repeat',
@@ -99,8 +101,49 @@ const imageSchema: Plugin<ImageSchema> = {
     });
     rootElement.appendChild(container);
 
-    // image tag
-    if (value) {
+    if (showCompactPlaceholder) {
+      const placeholderNode = document.createElement('div');
+      const placeholderNodeStyle: CSS.Properties = {
+        position: 'absolute',
+        inset: 0,
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        justifyContent: 'center',
+        gap: '6px',
+        border: '1px solid rgba(148, 163, 184, 0.22)',
+        borderRadius: '10px',
+        background:
+          'linear-gradient(180deg, rgba(255,255,255,0.97), rgba(241,245,249,0.92))',
+        color: '#64748b',
+        pointerEvents: 'none',
+      };
+      Object.assign(placeholderNode.style, placeholderNodeStyle);
+
+      const placeholderIcon = document.createElement('div');
+      Object.assign(placeholderIcon.style, {
+        width: '26px',
+        height: '26px',
+        backgroundImage: `url(${createSvgStr(Image)})`,
+        backgroundRepeat: 'no-repeat',
+        backgroundPosition: 'center',
+        backgroundSize: 'contain',
+        opacity: '0.82',
+      } as CSS.Properties);
+      placeholderNode.appendChild(placeholderIcon);
+
+      const placeholderLabel = document.createElement('div');
+      placeholderLabel.textContent = 'Imagen';
+      Object.assign(placeholderLabel.style, {
+        fontSize: '11px',
+        fontWeight: '600',
+        lineHeight: '1',
+        letterSpacing: '0.01em',
+      } as CSS.Properties);
+      placeholderNode.appendChild(placeholderLabel);
+
+      container.appendChild(placeholderNode);
+    } else if (value) {
       const img = document.createElement('img');
       const imgStyle: CSS.Properties = {
         height: '100%',

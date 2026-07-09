@@ -65,19 +65,20 @@ import type { DesignerRuntimeApi, DesignerSidebarPresentation, DesignerCommentIt
 import type { SchemaComment, SchemaCommentAnchor } from '../../designerEngine.js';
 import {
   extractClientPoint,
-  clampPointToPageBounds,
-  resolveClientPointToPagePoint,
-  resolveDropPageIndex,
 } from './Canvas/overlays/pointerGeometry.js';
 import {
-  resolveNonOverlappingDropPosition,
   resolveSmartDropPosition,
 } from './Canvas/overlays/smartPlacement.js';
 import SchemaDragPreview from './Canvas/overlays/SchemaDragPreview.js';
 import SchemaDropCommitFlash from './Canvas/overlays/SchemaDropCommitFlash.js';
 import SchemaDropPlaceholder from './Canvas/overlays/SchemaDropPlaceholder.js';
 import { installPassiveTouchListenerGuard } from './shared/passiveTouchListeners.js';
+import {
+  lockDesignerSidebarScroll,
+  unlockDesignerSidebarScroll,
+} from './shared/interactionGuards.js';
 import { filterSchemasByCollisionScope } from './shared/schemaCollision.js';
+import { resolvePointerDropTarget } from './shared/canvasDropPipeline.js';
 
 installPassiveTouchListenerGuard();
 
@@ -656,7 +657,11 @@ const TemplateEditor = ({
   const [isDraggingOverPage, setIsDraggingOverPage] = useState(false);
   const [dropValid, setDropValid] = useState(false);
   const [activeDragData, setActiveDragData] = useState<SchemaDragSession | null>(null);
+  const activeDragDataRef = useRef<SchemaDragSession | null>(null);
   const schemaDragStartPointRef = useRef<{ x: number; y: number } | null>(null);
+  const lastDragPointerRef = useRef<{ x: number; y: number } | null>(null);
+  const designerRootRef = useRef<HTMLDivElement | null>(null);
+  const sidebarScrollLockRef = useRef<ReturnType<typeof lockDesignerSidebarScroll> | null>(null);
   const [dropCommitFlash, setDropCommitFlash] = useState<{
     pageIndex: number;
     point: { x: number; y: number };
@@ -1165,6 +1170,7 @@ const TemplateEditor = ({
     pageSizes,
     scale,
     pageCursor,
+    disabled: isSchemaDragging,
     onChangePageCursor: (p) => {
       setPageCursor(p);
       onPageCursorChange(p, pageSizes.length);
@@ -1943,7 +1949,7 @@ const TemplateEditor = ({
           },
         );
 
-        const freePosition = resolveNonOverlappingDropPosition({
+        const freePosition = resolveSmartDropPosition({
           candidate: preferredCandidatePosition,
           pageSize: candidatePageSize,
           schemaSize: {
@@ -2757,13 +2763,77 @@ const TemplateEditor = ({
   };
 
   const resetSchemaDragState = useCallback(() => {
+    unlockDesignerSidebarScroll(sidebarScrollLockRef.current);
+    sidebarScrollLockRef.current = null;
     schemaDragStartPointRef.current = null;
+    lastDragPointerRef.current = null;
+    activeDragDataRef.current = null;
     setIsSchemaDragging(false);
     setIsDraggingOverCanvas(false);
     setIsDraggingOverPage(false);
     setDropValid(false);
     setActiveDragData(null);
   }, []);
+
+  const syncSchemaDragState = useCallback((next: SchemaDragSession | null) => {
+    activeDragDataRef.current = next;
+    setActiveDragData(next);
+    setIsDraggingOverCanvas(Boolean(next?.isOverCanvas));
+    setIsDraggingOverPage(Boolean(next?.isOverPage));
+    setDropValid(Boolean(next?.dropValid));
+  }, []);
+
+  const releaseSidebarScrollLock = useCallback(() => {
+    unlockDesignerSidebarScroll(sidebarScrollLockRef.current);
+    sidebarScrollLockRef.current = null;
+  }, []);
+
+  const applySidebarScrollLock = useCallback(() => {
+    if (sidebarScrollLockRef.current) return;
+    sidebarScrollLockRef.current = lockDesignerSidebarScroll(designerRootRef.current);
+  }, []);
+
+  useEffect(() => {
+    const root = designerRootRef.current;
+    if (root) {
+      root.dataset.schemaDragging = isSchemaDragging ? 'true' : 'false';
+      root.dataset.sidebarScrollLocked = isSchemaDragging ? 'true' : 'false';
+    }
+    if (isSchemaDragging) {
+      applySidebarScrollLock();
+    } else {
+      releaseSidebarScrollLock();
+    }
+
+    return () => {
+      if (!isSchemaDragging) {
+        releaseSidebarScrollLock();
+      }
+    };
+  }, [applySidebarScrollLock, isSchemaDragging, releaseSidebarScrollLock]);
+
+  useEffect(() => {
+    if (!isSchemaDragging) return;
+
+    const updatePointer = (event: Event | null | undefined) => {
+      const point = extractClientPoint(event);
+      if (point) {
+        lastDragPointerRef.current = point;
+      }
+    };
+
+    const handlePointerMove = (event: Event) => updatePointer(event);
+
+    window.addEventListener('pointermove', handlePointerMove, true);
+    window.addEventListener('mousemove', handlePointerMove, true);
+    window.addEventListener('touchmove', handlePointerMove, true);
+
+    return () => {
+      window.removeEventListener('pointermove', handlePointerMove, true);
+      window.removeEventListener('mousemove', handlePointerMove, true);
+      window.removeEventListener('touchmove', handlePointerMove, true);
+    };
+  }, [isSchemaDragging]);
 
   useEffect(
     () => () => {
@@ -2778,46 +2848,25 @@ const TemplateEditor = ({
       const schema = cloneDeep(data.schema || (active?.data?.current as Schema | undefined));
       if (!schema) return null;
 
-      const startPoint = schemaDragStartPointRef.current || pointer;
-      const deltaX = pointer.x - startPoint.x;
-      const deltaY = pointer.y - startPoint.y;
-      const projectedPoint = {
-        x: startPoint.x + deltaX,
-        y: startPoint.y + deltaY,
-      };
-      const pageIndex = Math.max(
-        0,
-        resolveDropPageIndex(projectedPoint, paperRefs.current) >= 0
-          ? resolveDropPageIndex(projectedPoint, paperRefs.current)
-          : pageCursor,
-      );
-      const paper = paperRefs.current[pageIndex] || paperRefs.current[pageCursor];
-      const canvasElement = canvasRef.current;
-      const canvasRect = canvasElement?.getBoundingClientRect();
-      const isOverCanvas = Boolean(
-        canvasRect &&
-          projectedPoint.x >= canvasRect.left &&
-          projectedPoint.x <= canvasRect.right &&
-          projectedPoint.y >= canvasRect.top &&
-          projectedPoint.y <= canvasRect.bottom,
-      );
-      const isOverPage = Boolean(
-        paper &&
-          projectedPoint.x >= paper.getBoundingClientRect().left &&
-          projectedPoint.x <= paper.getBoundingClientRect().right &&
-          projectedPoint.y >= paper.getBoundingClientRect().top &&
-          projectedPoint.y <= paper.getBoundingClientRect().bottom,
-      );
-
-      const pagePoint = paper && canvasElement
-        ? resolveClientPointToPagePoint({
-            clientX: projectedPoint.x,
-            clientY: projectedPoint.y,
-            canvasElement,
-            paperElement: paper,
-            zoom: scale,
-          })
-        : null;
+      const startPoint = schemaDragStartPointRef.current;
+      const projectedPoint =
+        lastDragPointerRef.current &&
+        (!startPoint ||
+          lastDragPointerRef.current.x !== startPoint.x ||
+          lastDragPointerRef.current.y !== startPoint.y)
+          ? lastDragPointerRef.current
+          : pointer;
+      const resolvedTarget = resolvePointerDropTarget({
+        clientX: projectedPoint.x,
+        clientY: projectedPoint.y,
+        paperRefs: paperRefs.current,
+        pageSizes,
+        scale,
+        activeDocumentId,
+        canvasElement: canvasRef.current,
+        pageCursor,
+        preferredPageIndex: activeDragDataRef.current?.pageIndex ?? null,
+      });
       const schemaWidthMm = Number(schema.width || 45);
       const schemaHeightMm = Number(schema.height || 10);
       const sizePreview = {
@@ -2825,14 +2874,39 @@ const TemplateEditor = ({
         height: Math.max(72, Math.min(180, Math.round(schemaHeightMm * ZOOM * scale))),
       };
       const ownerColor = (schema as SchemaForUI & { ownerColor?: string | null }).ownerColor || collaborationContext.ownerColor || designerEngine.collaboration?.actorColor || undefined;
+      const resolvedPageIndex = Math.max(0, resolvedTarget.pageIndex);
+      const pageSize = pageSizes[resolvedPageIndex] || pageSizes[pageCursor] || { width: 0, height: 0 };
+      const candidatePoint = resolvedTarget.schemaPointMm
+        ? { x: resolvedTarget.schemaPointMm.x, y: resolvedTarget.schemaPointMm.y }
+        : null;
+      const collisionScopedSchemas = candidatePoint
+        ? filterSchemasByCollisionScope(schemasList[resolvedPageIndex] || [], schema as SchemaForUI, {
+            ownerRecipientId: collaborationContext.ownerRecipientId,
+            ownerRecipientIds: collaborationContext.ownerRecipientIds,
+            fileId: activeDocumentId || null,
+            pageNumber: resolvedPageIndex + 1,
+          })
+        : [];
+      const dropPointMm =
+        candidatePoint && resolvedTarget.paperRect
+          ? resolveSmartDropPosition({
+              candidate: candidatePoint,
+              pageSize,
+              schemaSize: {
+                width: schemaWidthMm,
+                height: schemaHeightMm,
+              },
+              existingSchemas: collisionScopedSchemas,
+            })
+          : candidatePoint;
 
       const preview: SchemaDragSession = {
         pointer: projectedPoint,
-        dropPointMm: pagePoint ? { x: pagePoint.xMm, y: pagePoint.yMm } : null,
-        pageIndex,
-        isOverCanvas,
-        isOverPage,
-        dropValid: Boolean(pagePoint?.insidePage && isOverPage),
+        dropPointMm,
+        pageIndex: resolvedTarget.pageIndex,
+        isOverCanvas: resolvedTarget.isOverCanvas,
+        isOverPage: resolvedTarget.isOverPage,
+        dropValid: resolvedTarget.dropValid,
         schema,
         type: data.type || schema.type || 'schema',
         label: schema.name || data.type || schema.type || 'Campo',
@@ -2842,10 +2916,21 @@ const TemplateEditor = ({
 
       return {
         preview,
-        pagePoint,
+        target: resolvedTarget,
       };
     },
-    [collaborationContext.ownerColor, designerEngine.collaboration?.actorColor, pageCursor, paperRefs, scale],
+    [
+      activeDocumentId,
+      collaborationContext.ownerColor,
+      collaborationContext.ownerRecipientId,
+      collaborationContext.ownerRecipientIds,
+      designerEngine.collaboration?.actorColor,
+      pageCursor,
+      pageSizes,
+      paperRefs,
+      scale,
+      schemasList,
+    ],
   );
 
   function handleRemovePage() {
@@ -3391,13 +3476,7 @@ const TemplateEditor = ({
       }
     : { width: 0, height: 0 };
   const activeDragPlugin = activeDragData ? pluginsRegistry.findByType(activeDragData.type) : null;
-  const activeDragPlaceholderPoint = activeDragData?.dropPointMm
-    ? clampPointToPageBounds(
-        activeDragData.dropPointMm,
-        pageSizes[activeDragPageIndex] || pageSizes[pageCursor] || { width: 0, height: 0 },
-        activeDragSchemaSize,
-      )
-    : null;
+  const activeDragPlaceholderPoint = activeDragData?.dropPointMm || null;
   const dragOverlayPortal =
     activeDragData && typeof document !== 'undefined' ? (
       createPortal(
@@ -3417,7 +3496,7 @@ const TemplateEditor = ({
           ) : null}
           <SchemaDragPreview
             schemaType={activeDragData.type}
-            icon={activeDragPlugin ? <PluginIcon plugin={activeDragPlugin} label={activeDragData.label} size={22} /> : null}
+            icon={activeDragPlugin ? <PluginIcon plugin={activeDragPlugin} label={activeDragData.label} size={20} /> : null}
             pointer={activeDragData.pointer}
             ownerColor={activeDragData.ownerColor || undefined}
             isOverCanvas={activeDragData.isOverCanvas}
@@ -3464,7 +3543,7 @@ const TemplateEditor = ({
       : null;
 
   return (
-    <Root size={size} scale={scale}>
+    <Root ref={designerRootRef} size={size} scale={scale}>
       <input
         ref={pdfUploadInputRef}
         id="sisad-pdfme-pdf-upload"
@@ -3478,12 +3557,15 @@ const TemplateEditor = ({
       {dragOverlayPortal}
       {dropCommitFlashPortal}
       <DndContext
+        autoScroll={false}
         onDragStart={(event) => {
           if (!isSchemaDragActive(event?.active)) return;
           onEditEnd();
           setIsSchemaDragging(true);
+          applySidebarScrollLock();
           const startPoint = extractClientPoint(event.activatorEvent as Event | null | undefined);
           schemaDragStartPointRef.current = startPoint;
+          lastDragPointerRef.current = startPoint;
           if (!startPoint) {
             resetSchemaDragState();
             setIsSchemaDragging(true);
@@ -3495,10 +3577,7 @@ const TemplateEditor = ({
             setIsSchemaDragging(true);
             return;
           }
-          setActiveDragData(resolved.preview);
-          setIsDraggingOverCanvas(resolved.preview.isOverCanvas);
-          setIsDraggingOverPage(resolved.preview.isOverPage);
-          setDropValid(resolved.preview.dropValid);
+          syncSchemaDragState(resolved.preview);
         }}
         onDragMove={(event) => {
           if (!isSchemaDragActive(event?.active)) {
@@ -3514,33 +3593,17 @@ const TemplateEditor = ({
             resetSchemaDragState();
             return;
           }
+          const latestPointer = lastDragPointerRef.current;
           const pointer = {
-            x: startPoint.x + (event.delta?.x || 0),
-            y: startPoint.y + (event.delta?.y || 0),
+            x: latestPointer?.x ?? (startPoint.x + (event.delta?.x || 0)),
+            y: latestPointer?.y ?? (startPoint.y + (event.delta?.y || 0)),
           };
           const resolved = resolveSchemaDragSession(event.active, pointer);
           if (!resolved) {
             resetSchemaDragState();
             return;
           }
-          setActiveDragData((prev) => {
-            const next = resolved.preview;
-            if (
-              prev &&
-              prev.pointer.x === next.pointer.x &&
-              prev.pointer.y === next.pointer.y &&
-              prev.pageIndex === next.pageIndex &&
-              prev.isOverCanvas === next.isOverCanvas &&
-              prev.isOverPage === next.isOverPage &&
-              prev.dropValid === next.dropValid
-            ) {
-              return prev;
-            }
-            return next;
-          });
-          setIsDraggingOverCanvas((prev) => (prev === resolved.preview.isOverCanvas ? prev : resolved.preview.isOverCanvas));
-          setIsDraggingOverPage((prev) => (prev === resolved.preview.isOverPage ? prev : resolved.preview.isOverPage));
-          setDropValid((prev) => (prev === resolved.preview.dropValid ? prev : resolved.preview.dropValid));
+          syncSchemaDragState(resolved.preview);
         }}
         onDragCancel={() => {
           resetSchemaDragState();
@@ -3556,9 +3619,8 @@ const TemplateEditor = ({
           const payload = (active.data.current || {}) as { schema?: Schema };
           const draggedSchema = cloneDeep(payload.schema || (active.data.current as Schema));
           if (!draggedSchema) return;
-          const session = activeDragData;
-          if (!session) {
-            addSchemaAtCenter(draggedSchema);
+          const session = activeDragDataRef.current || activeDragData;
+          if (!session?.dropValid || !session.dropPointMm) {
             resetSchemaDragState();
             return;
           }
@@ -3569,9 +3631,6 @@ const TemplateEditor = ({
           const schemaWidth = Number(draggedSchema.width || 45);
           const schemaHeight = Number(draggedSchema.height || 10);
           const schemaSize = { width: schemaWidth, height: schemaHeight };
-          const candidate = session.dropValid
-            ? session.dropPointMm || { x: Math.max(0, (pageSize.width - schemaSize.width) / 2), y: Math.max(0, (pageSize.height - schemaSize.height) / 2) }
-            : { x: Math.max(0, (pageSize.width - schemaSize.width) / 2), y: Math.max(0, (pageSize.height - schemaSize.height) / 2) };
           const collisionScopedSchemas = filterSchemasByCollisionScope(existingSchemas, draggedSchema as SchemaForUI, {
             ownerRecipientId: collaborationContext.ownerRecipientId,
             ownerRecipientIds: collaborationContext.ownerRecipientIds,
@@ -3579,7 +3638,7 @@ const TemplateEditor = ({
             pageNumber: pageIndex + 1,
           });
           const position = resolveSmartDropPosition({
-            candidate,
+            candidate: session.dropPointMm,
             pageSize,
             schemaSize,
             existingSchemas: collisionScopedSchemas,

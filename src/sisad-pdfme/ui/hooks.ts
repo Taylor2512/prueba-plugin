@@ -280,6 +280,7 @@ type ScrollPageCursorProps = {
   scale: number;
   pageCursor: number;
   onChangePageCursor: (page: number) => void;
+  disabled?: boolean;
 };
 
 export const useScrollPageCursor = ({
@@ -289,8 +290,10 @@ export const useScrollPageCursor = ({
   scale,
   pageCursor,
   onChangePageCursor,
+  disabled = false,
 }: ScrollPageCursorProps) => {
   useEffect(() => {
+    if (disabled) return;
     const scrollContainer = ref.current;
     if (!scrollContainer) {
       return;
@@ -354,7 +357,7 @@ export const useScrollPageCursor = ({
     return () => {
       scrollContainer?.removeEventListener('scroll', onScroll);
     };
-  }, [onChangePageCursor, pageCursor, pageSizes, paperRefs, ref, scale]);
+  }, [disabled, onChangePageCursor, pageCursor, pageSizes, paperRefs, ref, scale]);
 };
 
 export const useMountStatus = () => {
