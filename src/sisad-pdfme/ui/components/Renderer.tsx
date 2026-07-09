@@ -139,7 +139,11 @@ const Wrapper = ({
   const schemaTone = resolveSchemaTone(schema, selectable ? '#38a0ff' : '#94a3b8');
   const schemaSurfaceTone = resolveSchemaToneSurface(schema, '#ffffff', schema.readOnly ? 0.08 : 0.12);
   const schemaHidden = (schema as SchemaForUI & { hidden?: boolean }).hidden === true;
-  const isCompactChoiceSchema = schemaType === 'radioGroup' || schemaType === 'checkboxGroup';
+  // Choice-family schemas draw their own marker chrome, so the field wrapper must
+  // stay transparent (no surface tint / border) — otherwise the indicator looks
+  // like a box inside a box. Includes the standalone checkbox.
+  const isCompactChoiceSchema =
+    schemaType === 'radioGroup' || schemaType === 'checkboxGroup' || schemaType === 'checkbox';
 
   const schemaCaption = isCompactChoiceSchema
     ? undefined

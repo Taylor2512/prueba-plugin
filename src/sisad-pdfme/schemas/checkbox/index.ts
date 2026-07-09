@@ -63,7 +63,9 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
       wrapper.setAttribute('aria-hidden', 'true');
     }
 
-    // Visual chip drawn by the shared option indicator helper.
+    // Visual chip drawn by the shared option indicator helper. `fill` makes it
+    // scale to the schema box (resizable) and cover the field so there is no
+    // "box inside a box".
     const box = createOptionIndicatorElement({
       shape: 'square',
       checked,
@@ -71,6 +73,7 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
       ownerColor,
       mode: mode === 'viewer' || mode === 'pdf' ? mode : isDesigner ? 'designer' : 'form',
       size: 18,
+      fill: true,
       readOnly: !canToggle,
       disabled: !canToggle,
     });
@@ -112,10 +115,16 @@ const schema: Plugin<Checkbox> = createSchemaPlugin<Checkbox>({
 
     wrapper.appendChild(box);
 
-    // + button below — designer only. Converts to checkboxGroup
+    // + button — designer only. Converts to checkboxGroup. Sits OUTSIDE the box,
+    // just below it, so it never overlaps the (now box-filling) checkbox marker.
     if (isDesigner && onChange) {
+      wrapper.style.overflow = 'visible';
       const addBtn = buildAddOptionButton(color, 'Convertir en grupo de casillas', 'data-checkbox-convert-to-group-btn');
       addBtn.setAttribute('data-checkbox-convert-to-group', 'true');
+      Object.assign(addBtn.style, {
+        bottom: 'auto',
+        top: 'calc(100% + 4px)',
+      });
       addBtn.addEventListener('pointerdown', (e) => e.stopPropagation());
       addBtn.addEventListener('click', (e) => {
         e.preventDefault();

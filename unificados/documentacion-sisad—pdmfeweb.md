@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `docs`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-09T20:40:08.533Z`
+- **Fecha generación:** `2026-07-09T21:25:32.115Z`
 - **Extensiones incluidas:** `.md, .mdx`
 - **Archivos candidatos incluidos:** `234`
 - **Límite por archivo:** `120 KB`

@@ -136,18 +136,37 @@ const addOptions = (props: PropPanelWidgetProps) => {
 const schema: Plugin<Select> = createSchemaPlugin<Select>({
   ui: async (arg) => {
     const { schema, value, onChange, rootElement, mode } = arg;
-    await text.ui(Object.assign(arg, { mode: 'viewer' }));
+    // Show a muted "Seleccionar" placeholder when no option is chosen. Uses the
+    // RAW content (not resolveCompactSelection, which would force the first
+    // option), so an unselected field stays empty and shows the placeholder. It
+    // renders through the same styled text container and is purely visual.
+    const rawValue = typeof value === 'string' ? value.trim() : '';
+    const isPlaceholder = !rawValue;
+    await text.ui(Object.assign(arg, {
+      mode: 'viewer',
+      value: isPlaceholder ? 'Seleccionar' : rawValue,
+    }));
+
+    if (isPlaceholder) {
+      rootElement.dataset.selectPlaceholder = 'true';
+      const placeholderColor = 'rgba(100, 116, 139, 0.75)';
+      rootElement.querySelectorAll<HTMLElement>('div, span').forEach((el) => {
+        el.style.color = placeholderColor;
+      });
+    } else {
+      delete rootElement.dataset.selectPlaceholder;
+    }
 
     // FieldChromePolicy hooks: CSS drives mode-specific chrome for the field.
     rootElement.dataset.renderMode = String(mode);
     rootElement.dataset.schemaFamily = 'option-based';
     rootElement.dataset.selectionMode = 'singleCompact';
 
-    // Chevron is decorative (pointer-events:none) and may show in designer/form.
-    // The invisible native <select> overlay is interactive and MUST only mount in
-    // form mode — in designer it would capture pointer events and block
-    // drag/selection/Moveable.
-    const shouldShowChevron = mode !== 'viewer';
+    // Chevron is decorative (pointer-events:none). Shown in every UI mode so the
+    // field always reads as a dropdown; the native <select> overlay (interactive)
+    // MUST only mount in form mode — in designer it would capture pointer events
+    // and block drag/selection/Moveable.
+    const shouldShowChevron = mode !== 'pdf';
     const shouldMountNativeSelect = mode === 'form' && !schema.readOnly;
 
     if (shouldShowChevron) {
