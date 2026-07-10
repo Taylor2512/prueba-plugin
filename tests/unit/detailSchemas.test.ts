@@ -53,7 +53,7 @@ describe('buildInspectorSections', () => {
     expect(byKey.has('identity')).toBe(true);
     expect(byKey.has('box')).toBe(true);
     expect(byKey.has('behavior')).toBe(true);
-    expect(byKey.has('advanced')).toBe(true);
+    expect(byKey.has('advanced')).toBe(false);
 
     const identity = byKey.get('identity');
     const box = byKey.get('box');
@@ -68,18 +68,47 @@ describe('buildInspectorSections', () => {
     expect(box?.schema.properties?.width).toBeDefined();
     expect(box?.schema.properties?.height).toBeDefined();
 
-    expect(behavior?.schema.properties?.editable).toBeDefined();
-    expect(behavior?.schema.properties?.required).toBeDefined();
+    expect(behavior?.schema.properties).toBeDefined();
 
-    expect(advanced?.schema.properties?.rotate).toBeDefined();
-    expect(advanced?.schema.properties?.opacity).toBeDefined();
+    expect(advanced).toBeUndefined();
+  });
+
+  test('hides empty technical section and uses attachment-specific labels', () => {
+    const sections = buildInspectorSections(
+      createParams({
+        activeSchemaType: 'attachment',
+        activeSchema: {
+          id: 'attachment-1',
+          name: 'attach_file',
+          type: 'attachment',
+          position: { x: 10, y: 20 },
+          width: 60,
+          height: 24,
+        } as SchemaForUI,
+        pluginProps: {
+          readonly: {
+            title: 'Solo lectura',
+            type: 'boolean',
+            widget: 'checkbox',
+          },
+          allowReplace: {
+            title: 'Reemplazar',
+            type: 'boolean',
+            widget: 'checkbox',
+          },
+        },
+      }),
+    );
+
+    const keys = sections.map((section) => section.key);
+    expect(keys).not.toContain('advanced');
   });
 
   test('replaces color widget by nativeColor recursively', () => {
     const sections = buildInspectorSections(
       createParams({
         pluginProps: {
-          fill: {
+          backgroundColor: {
             title: 'Fill',
             type: 'object',
             properties: {
@@ -95,9 +124,9 @@ describe('buildInspectorSections', () => {
     );
 
     const sectionWithFill = sections.find((section) =>
-      Boolean(section.schema.properties?.fill),
+      Boolean(section.schema.properties?.backgroundColor),
     );
-    const fill = sectionWithFill?.schema.properties?.fill as {
+    const fill = sectionWithFill?.schema.properties?.backgroundColor as {
       properties?: { primary?: { widget?: string } };
     };
     expect(fill?.properties?.primary?.widget).toBe('nativeColor');
@@ -140,9 +169,9 @@ describe('buildInspectorSections', () => {
 
     expect(Array.isArray(name?.rules)).toBe(true);
     expect(name?.rules?.length).toBeGreaterThan(0);
-    expect(position?.properties?.x?.min).toBe(0);
-    expect(position?.properties?.x?.max).toBe(210);
-    expect(position?.properties?.y?.min).toBe(0);
-    expect(position?.properties?.y?.max).toBe(297);
+    expect(position?.properties?.x?.props?.min).toBe(0);
+    expect(position?.properties?.x?.props?.max).toBe(210);
+    expect(position?.properties?.y?.props?.min).toBe(0);
+    expect(position?.properties?.y?.props?.max).toBe(297);
   });
 });

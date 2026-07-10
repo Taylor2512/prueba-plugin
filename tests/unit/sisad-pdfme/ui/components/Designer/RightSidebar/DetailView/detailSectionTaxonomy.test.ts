@@ -3,6 +3,9 @@ import {
   CANONICAL_DETAIL_SECTION_ORDER,
   LEGACY_TO_CANONICAL_DETAIL_SECTION,
   CANONICAL_DETAIL_SECTION_LABELS,
+  getDetailProfile,
+  getDefaultOpenSections,
+  getVisibleDetailSections,
   toCanonicalDetailSection,
   shouldRenderDetailSection,
   sortCanonicalDetailSections,
@@ -71,7 +74,7 @@ describe('toCanonicalDetailSection', () => {
   it('resolves legacy sections', () => {
     expect(toCanonicalDetailSection('general')).toBe('identity');
     expect(toCanonicalDetailSection('connections')).toBe('dataBindings');
-    expect(toCanonicalDetailSection('validation')).toBe('behavior');
+    expect(toCanonicalDetailSection('validation')).toBe('validation');
   });
 
   it('passes through lowercase canonical sections', () => {
@@ -96,19 +99,10 @@ describe('shouldRenderDetailSection - help', () => {
   it('renders when tooltip field present in fields array', () => {
     const result = shouldRenderDetailSection({
       section: 'help',
-      schema: emptySchema,
-      schemaType: 'text',
-      fields: [{ key: 'tooltip', widget: 'textarea' }],
-    });
-    expect(result).toBe(true);
-  });
-
-  it('renders when tooltip value set on schema', () => {
-    const result = shouldRenderDetailSection({
-      section: 'help',
       schema: schemaWithTooltip,
       schemaType: 'text',
-      fields: [],
+      fields: [{ key: 'tooltip', widget: 'textarea' }],
+      context: { hasHelpContent: true },
     });
     expect(result).toBe(true);
   });
@@ -116,9 +110,10 @@ describe('shouldRenderDetailSection - help', () => {
   it('renders when helpText field present', () => {
     const result = shouldRenderDetailSection({
       section: 'help',
-      schema: emptySchema,
+      schema: { ...emptySchema, helpText: 'Description' },
       schemaType: 'text',
       fields: [{ key: 'helpText', widget: 'textarea' }],
+      context: { hasHelpContent: true },
     });
     expect(result).toBe(true);
   });
@@ -131,6 +126,56 @@ describe('shouldRenderDetailSection - help', () => {
       fields: [],
     });
     expect(result).toBe(false);
+  });
+});
+
+describe('shouldRenderDetailSection - advanced', () => {
+  const schema = { type: 'text', position: { x: 0, y: 0 }, width: 50, height: 10 } as any;
+
+  it('hides technical section when there is no real metadata', () => {
+    expect(
+      shouldRenderDetailSection({
+        section: 'advanced',
+        schema,
+        schemaType: 'text',
+        fields: [{ key: 'schemaUid', widget: 'input' }],
+        context: { hasAdvancedOverrides: false },
+      }),
+    ).toBe(false);
+  });
+
+  it('renders technical section when metadata is present', () => {
+    expect(
+      shouldRenderDetailSection({
+        section: 'advanced',
+        schema: { ...schema, schemaUid: 'schema-1' },
+        schemaType: 'text',
+        fields: [{ key: 'schemaUid', widget: 'input' }],
+        context: { hasAdvancedOverrides: true },
+      }),
+    ).toBe(true);
+  });
+});
+
+describe('detail section visibility by type', () => {
+  it('uses attachment-specific sections and defaults', () => {
+    expect(getVisibleDetailSections('attachment')).toEqual([
+      'identity',
+      'behavior',
+      'box',
+      'dataBindings',
+      'help',
+      'collaboration',
+      'advanced',
+    ]);
+    expect(getDefaultOpenSections('attachment')).toEqual(['identity', 'behavior', 'box']);
+  });
+
+  it('exposes a profile contract per schema family', () => {
+    expect(getDetailProfile('select').visibleSections).toContain('options');
+    expect(getDetailProfile('checkboxgroup').defaultOpenSections).toEqual(['identity', 'options']);
+    expect(getDetailProfile('attachment').visibleSections).not.toContain('appearance');
+    expect(getDetailProfile('note').visibleSections).toContain('appearance');
   });
 });
 

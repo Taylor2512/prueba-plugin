@@ -9,7 +9,7 @@ import type { PropPanelSchema } from '@sisad-pdfme/common';
 // ── Behavior / basics ──────────────────────────────────────────────────────
 
 export const requiredField = (): PropPanelSchema => ({
-  title: 'Campo obligatorio',
+  title: 'Obligatorio',
   type: 'boolean',
   widget: 'switch',
   span: 12,
@@ -146,15 +146,13 @@ export const validationTypeField = (): PropPanelSchema => ({
   span: 12,
   props: {
     options: [
-      { label: 'Ninguna', value: 'none' },
+      { label: 'Sin validación', value: 'none' },
       { label: 'Correo electrónico', value: 'email' },
       { label: 'Solo números', value: 'number' },
       { label: 'Solo letras', value: 'letters' },
       { label: 'Fecha', value: 'date' },
-      { label: 'Código postal', value: 'zip' },
-      { label: 'Código postal ext.', value: 'zipExtended' },
-      { label: 'SSN', value: 'ssn' },
-      { label: 'Expresión regular', value: 'regex' },
+      { label: 'Cédula / identificación', value: 'id' },
+      { label: 'Código personalizado', value: 'regex' },
     ],
   },
 });
@@ -173,6 +171,7 @@ export const validationMessageField = (): PropPanelSchema => ({
   type: 'string',
   widget: 'input',
   span: 24,
+  hidden: '{{!(formData.required || formData.mandatory || (formData["validation.type"] && formData["validation.type"] !== "none"))}}',
 });
 
 export const validationMinField = (): PropPanelSchema => ({
@@ -273,7 +272,7 @@ export const numberFormatFields = (): Record<string, PropPanelSchema> => ({
 // ── Permissions ────────────────────────────────────────────────────────────
 
 export const mandatoryField = (): PropPanelSchema => ({
-  title: 'Obligatorio para remitente',
+  title: 'Obligatorio',
   type: 'boolean',
   widget: 'switch',
   span: 12,
@@ -306,11 +305,11 @@ export const permissionsFields = (): Record<string, PropPanelSchema> => ({
  * Merge this with your schema-specific propertyMap to route fields correctly.
  */
 export const COMMON_PROPERTY_MAP: Partial<Record<string, 'general' | 'layout' | 'style' | 'data' | 'connections' | 'help' | 'collaboration' | 'validation' | 'advanced' | 'comments'>> = {
-  // basics → behavior (data)
-  required: 'data',
+  // basics → explicit sections
+  required: 'validation',
   readOnly: 'data',
-  locked: 'data',
-  restrictChanges: 'data',
+  locked: 'collaboration',
+  restrictChanges: 'collaboration',
   // content → data
   placeholder: 'data',
   defaultValue: 'data',
@@ -334,8 +333,8 @@ export const COMMON_PROPERTY_MAP: Partial<Record<string, 'general' | 'layout' | 
   allowNegative: 'data',
   positiveFormat: 'data',
   negativeFormat: 'data',
-  // permissions → advanced
-  mandatory: 'advanced',
-  editableBySender: 'advanced',
-  editableByRecipient: 'advanced',
+  // permissions → collaboration
+  mandatory: 'validation',
+  editableBySender: 'collaboration',
+  editableByRecipient: 'collaboration',
 };

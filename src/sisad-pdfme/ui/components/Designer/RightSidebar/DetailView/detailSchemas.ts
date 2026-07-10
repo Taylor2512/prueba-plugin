@@ -2,12 +2,11 @@ import type { PropPanelInspectorConfig, PropPanelSchema, SchemaForUI } from '@si
 import type { SchemaDesignerConfig } from '../../../../../ui/designerEngine.js';
 import { asRecord, isRecord } from '../../shared/objectGuards.js';
 import {
+  getDetailProfile,
   CANONICAL_DETAIL_SECTION_LABELS,
   CANONICAL_DETAIL_SECTION_ORDER,
-  resolveDetailSectionDefaultCollapsed,
   type CanonicalDetailSection,
   type LegacyDetailSection,
-  toCanonicalDetailSection,
   shouldRenderDetailSection,
 } from './detailSectionTaxonomy.js';
 import { contractSectionEnabled, resolveInspectorContract } from './inspectorContracts.js';
@@ -77,6 +76,29 @@ const createSectionField = (
   ...extra,
 });
 
+const EMPTY_TEXT_VALUES = new Set(['', '-', '—', '–', 'n/a', 'na', 'null', 'undefined']);
+
+const hasMeaningfulText = (value: unknown): boolean => {
+  if (Array.isArray(value)) {
+    return value.some((entry) => hasMeaningfulText(entry));
+  }
+
+  if (isRecord(value)) {
+    return Object.values(value).some((entry) => hasMeaningfulText(entry));
+  }
+
+  if (typeof value === 'number' || typeof value === 'boolean') {
+    return true;
+  }
+
+  if (typeof value !== 'string') {
+    return false;
+  }
+
+  const normalized = value.trim().toLowerCase();
+  return normalized.length > 0 && !EMPTY_TEXT_VALUES.has(normalized);
+};
+
 const createBoundedNumberField = (
   title: string,
   max: number,
@@ -144,11 +166,6 @@ export const buildInspectorSections = ({
   const semanticFamily = resolveSchemaSemanticFamily(activeSchemaType);
   const inspectorContract = resolveInspectorContract(activeSchemaType);
   const activeSchemaRecord = asRecord(activeSchema);
-  const canonicalVisibleSections = new Set(
-    (inspectorConfig?.visibleSections?.length ? inspectorConfig.visibleSections : familyPreset.visibleSections)
-      .map((sectionKey) => toCanonicalDetailSection(sectionKey))
-      .filter((sectionKey): sectionKey is CanonicalDetailSection => Boolean(sectionKey)),
-  );
   const hasSchemaBindings = Boolean(
     schemaConfig?.persistence?.enabled ||
       schemaConfig?.api?.enabled ||
@@ -177,9 +194,20 @@ export const buildInspectorSections = ({
         (Array.isArray(activeSchemaRecord.commentAnchors) && activeSchemaRecord.commentAnchors.length > 0) ||
         (Array.isArray(activeSchemaRecord.commentsAnchors) && activeSchemaRecord.commentsAnchors.length > 0)),
   );
+  const hasSchemaHelpContent = Boolean(
+    activeSchemaRecord &&
+      (hasMeaningfulText(activeSchemaRecord.tooltip) ||
+        hasMeaningfulText(activeSchemaRecord.helpText) ||
+        hasMeaningfulText(activeSchemaRecord.helptext) ||
+        hasMeaningfulText(activeSchemaRecord.description) ||
+        hasMeaningfulText(activeSchemaRecord.helpDescription)),
+  );
+  const hasExplicitOpacity =
+    activeSchemaRecord?.opacity !== undefined ||
+    (typeof (defaultSchema as { opacity?: unknown }).opacity !== 'undefined' &&
+      (defaultSchema as { opacity?: unknown }).opacity !== null);
   const contractSupportsConnections = contractSectionEnabled(inspectorContract, 'dataBindings');
   const contractSupportsCollaboration = contractSectionEnabled(inspectorContract, 'collaboration');
-  const contractSupportsValidation = contractSectionEnabled(inspectorContract, 'validation');
   const shouldShowConnections =
     Boolean(inspectorConfig?.supportsConnections ?? inspectorConfig?.includeConnections ?? familyPreset.supportsConnections) ||
     contractSupportsConnections ||
@@ -188,19 +216,19 @@ export const buildInspectorSections = ({
     Boolean(inspectorConfig?.supportsCollaboration ?? inspectorConfig?.includeCollaboration) ||
     contractSupportsCollaboration ||
     hasSchemaCollaboration;
-  const shouldShowValidation =
-    semanticFamily !== 'action' &&
-    (Boolean(inspectorConfig?.supportsValidation ?? inspectorConfig?.includeValidation ?? familyPreset.supportsValidation) ||
-      contractSupportsValidation);
   const shouldShowComments = hasSchemaComments;
   const fieldSections = {
     ...familyPreset.propertyMap,
     ...(inspectorConfig?.propertyMap || {}),
     ...(inspectorConfig?.fieldSections || {}),
   };
+  const pluginFieldKeys = new Set(
+    Object.keys(pluginProps).map((fieldKey) => fieldKey.trim().toLowerCase()),
+  );
 
   const sectionProperties: Record<LegacyDetailSection, Record<string, PropPanelSchema>> = {
     general: {},
+    options: {},
     layout: {},
     style: {},
     data: {},
@@ -252,11 +280,11 @@ export const buildInspectorSections = ({
     type: 'object',
     widget: 'card',
     properties: {
-      x: createBoundedNumberField('X', pageSize.width - paddingRight, validatePosition, typedI18n, 'x', {
+      x: createBoundedNumberField('X mm', pageSize.width - paddingRight, validatePosition, typedI18n, 'x', {
         span: 8,
         props: { min: paddingLeft },
       }),
-      y: createBoundedNumberField('Y', pageSize.height - paddingBottom, validatePosition, typedI18n, 'y', {
+      y: createBoundedNumberField('Y mm', pageSize.height - paddingBottom, validatePosition, typedI18n, 'y', {
         span: 8,
         props: { min: paddingTop },
       }),
@@ -267,23 +295,27 @@ export const buildInspectorSections = ({
     sectionProperties,
     'layout',
     'width',
-    createBoundedNumberField(typedI18n('width'), maxWidth, validatePosition, typedI18n, 'width'),
+    createBoundedNumberField('Ancho mm', maxWidth, validatePosition, typedI18n, 'width'),
   );
 
   addFieldToSection(
     sectionProperties,
     'layout',
     'height',
-    createBoundedNumberField(typedI18n('height'), maxHeight, validatePosition, typedI18n, 'height'),
+    createBoundedNumberField('Alto mm', maxHeight, validatePosition, typedI18n, 'height'),
   );
 
   addFieldToSection(
     sectionProperties,
-    'data',
-    'editable',
-    createSectionField(typedI18n('editable'), 'boolean', {
+    'layout',
+    'rotate',
+    createSectionField('Rotación', 'number', {
+      widget: 'inputNumber',
+      disabled: defaultSchema.rotate === undefined,
+      default: 0,
+      max: 360,
+      props: { min: 0 },
       span: 12,
-      hidden: defaultSchema.readOnly !== undefined || !canonicalVisibleSections.has('behavior'),
     }),
   );
 
@@ -314,60 +346,69 @@ export const buildInspectorSections = ({
       sectionProperties,
       'comments',
       'fieldComments',
-      createSectionField('Comentarios del campo', 'void', {
+      createSectionField('Comentarios', 'void', {
         widget: 'SchemaFieldCommentsWidget',
       }),
     );
   }
 
-  if (shouldShowValidation) {
+  if (hasExplicitOpacity) {
     addFieldToSection(
       sectionProperties,
-      'validation',
-      'required',
-      createSectionField(typedI18n('required'), 'boolean', {
+      'style',
+      'opacity',
+      createSectionField(typedI18n('opacity'), 'number', {
+        widget: 'inputNumber',
+        disabled: defaultSchema.opacity === undefined,
+        props: { step: 0.1, min: 0, max: 1 },
         span: 12,
-        hidden: '{{!formData.editable}}',
       }),
     );
   }
 
-  addFieldToSection(
-    sectionProperties,
-    'advanced',
-    'rotate',
-    createSectionField(typedI18n('rotate'), 'number', {
-      widget: 'inputNumber',
-      disabled: defaultSchema.rotate === undefined,
-      max: 360,
-      props: { min: 0 },
-      span: 12,
-    }),
-  );
-
-  addFieldToSection(
-    sectionProperties,
-    'advanced',
-    'opacity',
-    createSectionField(typedI18n('opacity'), 'number', {
-      widget: 'inputNumber',
-      disabled: defaultSchema.opacity === undefined,
-      props: { step: 0.1, min: 0, max: 1 },
-      span: 12,
-    }),
-  );
+  const isOptionsSectionField = (fieldKey: string, fieldSchema: PropPanelSchema) => {
+    const normalizedFieldKey = fieldKey.trim().toLowerCase();
+    const normalizedWidget = String(fieldSchema.widget || '').trim().toLowerCase();
+    return (
+      normalizedFieldKey === 'optionscontainer' ||
+      normalizedFieldKey === 'options' ||
+      normalizedFieldKey.includes('option') ||
+      normalizedWidget.includes('option')
+    );
+  };
 
   Object.entries(pluginProps).forEach(([fieldKey, fieldSchema]) => {
     if (/^-+$/.test(fieldKey)) return;
-    const sectionKey = (fieldSections[fieldKey] || 'advanced') as LegacyDetailSection;
-    addFieldToSection(sectionProperties, sectionKey, fieldKey, fieldSchema);
+    const normalizedFieldKey = fieldKey.trim().toLowerCase();
+    if (normalizedFieldKey === 'mandatory' && pluginFieldKeys.has('required')) return;
+    if (normalizedFieldKey === 'readonly' && pluginFieldKeys.has('editable')) return;
+    const nextFieldSchema =
+      activeSchemaType === 'attachment' && normalizedFieldKey === 'allowreplace'
+        ? {
+            ...fieldSchema,
+            title: 'Reemplazo',
+          }
+        : fieldSchema;
+    const baseSectionKey =
+      normalizedFieldKey === 'rotate'
+        ? 'layout'
+        : normalizedFieldKey === 'opacity'
+          ? 'style'
+          : (fieldSections[fieldKey] || 'advanced');
+    const sectionKey =
+      contractSectionEnabled(inspectorContract, 'options') && isOptionsSectionField(fieldKey, fieldSchema)
+        ? 'options'
+        : (baseSectionKey as LegacyDetailSection);
+    addFieldToSection(sectionProperties, sectionKey, fieldKey, nextFieldSchema);
   });
 
   const canonicalSectionProperties: Record<CanonicalDetailSection, Record<string, PropPanelSchema>> = {
     identity: { ...sectionProperties.general },
+    options: { ...sectionProperties.options },
+    validation: { ...sectionProperties.validation },
     box: { ...sectionProperties.layout },
     appearance: { ...sectionProperties.style },
-    behavior: { ...sectionProperties.data, ...sectionProperties.validation },
+    behavior: { ...sectionProperties.data },
     help: { ...sectionProperties.help },
     dataBindings: { ...sectionProperties.connections },
     collaboration: { ...sectionProperties.collaboration },
@@ -380,6 +421,15 @@ export const buildInspectorSections = ({
     hasComments: hasSchemaComments,
     hasAnchors: hasSchemaComments,
     hasDataBindings: hasSchemaBindings,
+    hasHelpContent: hasSchemaHelpContent,
+    hasCollaborationContent: hasSchemaCollaboration,
+    hasAdvancedOverrides:
+      hasMeaningfulText(activeSchemaRecord?.schemaUid) ||
+      hasMeaningfulText(activeSchemaRecord?.documentId) ||
+      hasMeaningfulText(activeSchemaRecord?.pageNumber) ||
+      hasMeaningfulText(activeSchemaRecord?.metadata) ||
+      hasMeaningfulText(activeSchemaRecord?.debug) ||
+      hasMeaningfulText(activeSchemaRecord?.__designer),
     supportsComments: shouldShowComments,
     supportsCollaboration: shouldShowCollaboration,
     supportsDataBindings: shouldShowConnections,
@@ -389,13 +439,43 @@ export const buildInspectorSections = ({
   };
 
   const visibilitySchema = (activeSchema || (defaultSchema as SchemaForUI)) as SchemaForUI;
+  const detailProfile = getDetailProfile(activeSchemaType);
+  const visibleSections = detailProfile.visibleSections;
+  const defaultOpenSections = new Set(detailProfile.defaultOpenSections);
 
-  const sections = CANONICAL_DETAIL_SECTION_ORDER.map((sectionKey) => {
+  const resolveSectionMeta = (sectionKey: CanonicalDetailSection) => {
+    const base = SECTION_META[sectionKey];
+    if (activeSchemaType === 'attachment') {
+      if (sectionKey === 'behavior') {
+        return {
+          ...base,
+          title: 'Reglas del archivo',
+          description: 'Tipo, tamaño y reemplazo.',
+        };
+      }
+      if (sectionKey === 'box') {
+        return {
+          ...base,
+          description: 'Posición, tamaño y rotación.',
+        };
+      }
+    }
+    if (sectionKey === 'appearance' && activeSchemaType === 'attachment') {
+      return {
+        ...base,
+        title: 'Formato',
+        description: 'Estilo visual y opacidad.',
+      };
+    }
+    return base;
+  };
+
+  const sections = visibleSections.map((sectionKey) => {
     const schema = replaceColorWidget(buildSectionSchema(canonicalSectionProperties[sectionKey])) as PropPanelSchema;
-    const defaultCollapsed = resolveDetailSectionDefaultCollapsed(sectionKey, semanticFamily);
+    const defaultCollapsed = !defaultOpenSections.has(sectionKey);
 
     return {
-      ...SECTION_META[sectionKey],
+      ...resolveSectionMeta(sectionKey),
       defaultCollapsed,
       schema,
       canonicalKey: sectionKey,

@@ -81,8 +81,8 @@ const SchemaFieldCommentsWidget = ({
   designerEngine,
   composerPlaceholder = 'Escribe un comentario sobre este campo…',
   addLabel = 'Agregar',
-  emptyLabel = 'Sin comentarios en este campo',
-  emptyDescription = 'Crea el primer hilo para este campo.',
+  emptyLabel = 'Sin comentarios',
+  emptyDescription = 'Añade el primer hilo.',
   replyPlaceholder = 'Responder…',
   replyLabel = 'Respuestas',
   resolvedLabel = 'Resuelto',
@@ -113,8 +113,8 @@ const SchemaFieldCommentsWidget = ({
     setNewCommentText('');
   };
 
-  const resolvedEmptyLabel = resolveText(emptyLabel, 'Sin comentarios en este campo');
-  const resolvedEmptyDescription = resolveText(emptyDescription, 'Crea el primer hilo para este campo.');
+  const resolvedEmptyLabel = resolveText(emptyLabel, 'Sin comentarios');
+  const resolvedEmptyDescription = resolveText(emptyDescription, 'Añade el primer hilo.');
 
   const handleResolveToggle = (commentId: string, resolved: boolean) => {
     const next = comments.map((c) => (c.id === commentId ? { ...c, resolved } : c));
@@ -154,6 +154,8 @@ const SchemaFieldCommentsWidget = ({
       {/* New comment input */}
       <div className={mergeClassNames(cls('field-comments-add'), 'flex flex-col gap-2 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm')}>
         <Input.TextArea
+          id={`comments-new-${activeSchema.id}`}
+          name={`comments-new-${activeSchema.id}`}
           value={newCommentText}
           onChange={(e) => setNewCommentText(e.target.value)}
           placeholder={composerPlaceholder}
@@ -284,6 +286,8 @@ const SchemaFieldCommentsWidget = ({
                   <div className={mergeClassNames(cls('field-comments-reply-input'), 'flex items-center gap-2')}>
                     <Input
                       size="small"
+                      id={`comment-reply-${comment.id}`}
+                      name={`comment-reply-${comment.id}`}
                       value={replyTexts[comment.id] || ''}
                       onChange={(e) =>
                         setReplyTexts((prev) => ({ ...prev, [comment.id]: e.target.value }))

@@ -14,5 +14,5 @@ export const resolveOwnerMode = (ownerRecipientIds: string[]) => {
 export const buildStateTag = (state?: SchemaCollaborativeState) => {
   if (state === 'locked') return { label: 'Bloqueado', color: 'error' as const };
   if (state === 'merged') return { label: 'Fusionado', color: 'success' as const };
-  return { label: 'Borrador', color: 'default' as const };
+  return { label: 'Disponible', color: 'warning' as const };
 };

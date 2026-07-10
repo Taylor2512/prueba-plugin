@@ -1,13 +1,23 @@
 import React, { useContext } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { SchemaForUI } from '@sisad-pdfme/common';
-import { PluginsRegistry, I18nContext } from '../../../../contexts.js';
+import { PluginsRegistry } from '../../../../contexts.js';
 import { resolveSchemaCollaborationState } from '../../../../collaborationContext.js';
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
 import Item from './Item.js';
 import { useMountStatus } from '../../../../hooks.js';
 import PluginIcon from '../../PluginIcon.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
+import { getSchemaTypeLabel } from '../../shared/designerLabels.js';
+
+const resolveDisplayLabel = (schema: SchemaForUI) => {
+  const readableLabel =
+    typeof (schema as SchemaForUI & { label?: string }).label === 'string' &&
+    String((schema as SchemaForUI & { label?: string }).label).trim()
+      ? String((schema as SchemaForUI & { label?: string }).label).trim()
+      : '';
+  return readableLabel || String(schema.name || '').trim() || 'Campo';
+};
 
 interface Props {
   isSelected: boolean;
@@ -35,7 +45,6 @@ const SelectableSortableItem = ({
   onMouseLeave,
   collaborationContext,
 }: Props) => {
-  const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
   const { setNodeRef, listeners, isDragging, isSorting, transform, transition } = useSortable({
     id: schema.id,
@@ -71,6 +80,8 @@ const SelectableSortableItem = ({
     }
     return items.slice(0, 2);
   }, [collaborationColor, collaborationState]);
+  const primaryLabel = resolveDisplayLabel(schema);
+  const secondaryLabel = `${String(schema.name || '').trim() || 'Campo'} · ${getSchemaTypeLabel(schema.type)}`;
 
   let status: undefined | 'is-warning' | 'is-danger';
   if (!schema.name) {
@@ -79,24 +90,17 @@ const SelectableSortableItem = ({
     status = 'is-danger';
   }
 
-  let title = i18n('edit');
-  if (status === 'is-warning') {
-    title = i18n('plsInputName');
-  } else if (status === 'is-danger') {
-    title = i18n('fieldMustUniq');
-  }
-
   return (
     <Item
       ref={setNodeRef}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
       onClick={() => onEdit(schema.id)}
-      value={schema.name}
+      value={primaryLabel}
       schemaType={schema.type}
+      title={secondaryLabel}
       className={DESIGNER_CLASSNAME + 'item-auto rounded-2xl'}
       status={status}
-      title={title}
       required={schema.required}
       readOnly={schema.readOnly}
       dragging={isDragging}

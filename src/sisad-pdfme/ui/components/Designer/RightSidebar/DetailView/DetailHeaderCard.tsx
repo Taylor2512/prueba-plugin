@@ -38,7 +38,7 @@ const DetailHeaderCard = ({
   typeLabel,
   positionLabel,
   tags,
-  maxVisibleTags = 3,
+  maxVisibleTags = 2,
   showType = true,
   showPosition = true,
   showStateTags = true,
@@ -68,6 +68,9 @@ const DetailHeaderCard = ({
   const visibleTags = resolvedShowStateTags ? effectiveTags.slice(0, adaptiveMaxVisibleTags) : [];
   const overflowCount = resolvedShowStateTags ? Math.max(0, effectiveTags.length - adaptiveMaxVisibleTags) : 0;
   const resolvedOverflowTooltip = overflowTooltip || metaTooltip || headerSummary.overflowTooltip;
+  const resolvedSubtitle = showType
+    ? [typeLabel || headerSummary.schemaType, headerSummary.contextLabel].filter(Boolean).join(' · ')
+    : headerSummary.contextLabel || (positionLabel || headerSummary.positionLabel);
 
   const backBtn = onBack ? (
     <Tooltip title={backTooltip} placement="right">
@@ -111,7 +114,7 @@ const DetailHeaderCard = ({
         compact
         leading={leading || <Badge color={leadingColor} />}
         title={title || headerSummary.schemaName}
-        subtitle={showType ? (typeLabel || headerSummary.schemaType) : resolvedShowPosition ? (positionLabel || headerSummary.positionLabel) : undefined}
+        subtitle={resolvedSubtitle || (resolvedShowPosition ? (positionLabel || headerSummary.positionLabel) : undefined)}
         badges={
           resolvedShowStateTags
             ? [

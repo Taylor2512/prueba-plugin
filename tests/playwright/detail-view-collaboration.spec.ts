@@ -5,9 +5,11 @@ test.describe('detail-view collaboration', () => {
     await page.goto('/lab/multi-document-routing');
     await page.locator('button[aria-label="contract_name"]').click();
 
-    await page.getByRole('button', { name: 'Expandir sección Colaboración' }).click();
+    await page.getByRole('button', { name: 'Expandir sección Asignación y bloqueo' }).click();
 
-    await expect(page.getByRole('button', { name: 'Gestionar colaboración' })).toBeVisible();
-    await expect(page.getByText('Owner, bloqueo y trazabilidad.')).toBeVisible();
+    await expect(page.getByText('Propietario y acceso.')).toBeVisible();
+    await expect(page.getByText('Estado')).toBeVisible();
+    await expect(page.getByText('Bloqueado para edición')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Gestionar' })).toBeVisible();
   });
 });

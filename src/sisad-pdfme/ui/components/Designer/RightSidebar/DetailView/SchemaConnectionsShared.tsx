@@ -89,6 +89,8 @@ export const PairEditor = ({
           <div key={row.id} className={`${DESIGNER_CLASSNAME}schema-config-pair-row`}>
             <Input
               size="small"
+              id={`pair-${row.id}-key`}
+              name={`pair-${row.id}-key`}
               value={row.key}
               placeholder={placeholderKey}
               onChange={(event) => updateRow(index, 'key', event.target.value)}
@@ -96,6 +98,8 @@ export const PairEditor = ({
             />
             <Input
               size="small"
+              id={`pair-${row.id}-value`}
+              name={`pair-${row.id}-value`}
               value={row.value}
               placeholder={placeholderValue}
               onChange={(event) => updateRow(index, 'value', event.target.value)}

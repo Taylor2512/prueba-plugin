@@ -2909,11 +2909,11 @@
   }
 
   .sisad-pdfme-designer-compact-config-panel-title {
-    @apply text-[0.875rem] font-bold leading-[1.2] text-[var(--color-gray-900)] [word-break:normal] [overflow-wrap:anywhere];
+    @apply overflow-hidden text-ellipsis whitespace-nowrap text-[0.875rem] font-bold leading-[1.2] text-[var(--color-gray-900)];
   }
 
   .sisad-pdfme-designer-compact-config-panel-description {
-    @apply mt-[0.1875rem] text-[0.75rem] leading-[1.4] text-[var(--color-gray-500)] [word-break:normal] [overflow-wrap:anywhere];
+    @apply mt-[0.1875rem] overflow-hidden text-ellipsis whitespace-nowrap text-[0.75rem] leading-[1.4] text-[var(--color-gray-500)];
   }
 
   .sisad-pdfme-designer-compact-config-panel-tags {
@@ -3535,12 +3535,12 @@
   }
 
   .sisad-pdfme-designer-compact-config-panel-title {
-    @apply text-[0.71875rem] font-bold [word-break:normal] [overflow-wrap:anywhere];
+    @apply overflow-hidden text-ellipsis whitespace-nowrap text-[0.71875rem] font-bold;
     /* down from 0.875rem */
   }
 
   .sisad-pdfme-designer-compact-config-panel-description {
-    @apply text-[0.625rem] leading-[1.35] mt-[0.125rem] [word-break:normal] [overflow-wrap:anywhere];
+    @apply mt-[0.125rem] overflow-hidden text-ellipsis whitespace-nowrap text-[0.625rem] leading-[1.35];
     /* down from 0.75rem */
   }
 

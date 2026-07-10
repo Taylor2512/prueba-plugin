@@ -70,82 +70,6 @@ const ListViewToolbar = ({
   })();
   const isDense = useDefaultStyles !== false;
 
-  const densityStyles =
-    useDefaultStyles === false
-      ? {
-        container: {} as React.CSSProperties,
-        header: {} as React.CSSProperties,
-        titleWrap: {} as React.CSSProperties,
-        title: {} as React.CSSProperties,
-        counter: {} as React.CSSProperties,
-        subtitle: {} as React.CSSProperties,
-        searchWrap: {} as React.CSSProperties,
-        input: {} as React.CSSProperties,
-        empty: {} as React.CSSProperties,
-        actions: {} as React.CSSProperties,
-      }
-      : {
-          container: {
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 8,
-            minWidth: 0,
-            width: '100%',
-          } as const,
-          header: {
-            display: 'flex',
-            alignItems: 'flex-start',
-            justifyContent: 'space-between',
-            gap: 8,
-            minWidth: 0,
-            width: '100%',
-          } as const,
-          titleWrap: {
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'flex-start',
-            gap: 2,
-            minWidth: 0,
-            flex: 1,
-          } as const,
-          title: {
-            minWidth: 0,
-            display: 'flex',
-            alignItems: 'center',
-            gap: 6,
-          } as const,
-          counter: {
-            flexShrink: 0,
-            fontSize: 9.5,
-            letterSpacing: '0.05em',
-            textTransform: 'uppercase',
-            border: '1px solid rgba(148, 163, 184, 0.18)',
-            borderRadius: 999,
-            padding: '0 7px',
-            lineHeight: '18px',
-          } as const,
-          subtitle: {
-            fontSize: 11,
-            lineHeight: 1.3,
-            maxWidth: '100%',
-          } as const,
-          searchWrap: {
-            padding: '0',
-            display: 'flex',
-            flexDirection: 'column',
-            gap: 6,
-            minWidth: 0,
-          } as const,
-          input: { borderRadius: 10, fontSize: 12, height: 30, minWidth: 0 } as const,
-          empty: { fontSize: 11, textAlign: 'left', padding: '0' } as const,
-          actions: {
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: 4,
-            flexShrink: 0,
-          } as const,
-      };
-
   return (
     <div
       className={mergeClassNames(
@@ -197,6 +121,8 @@ const ListViewToolbar = ({
         isDense && 'gap-2',
       )}>
         <Input
+          id="right-sidebar-fields-search"
+          name="right-sidebar-fields-search"
           size="small"
           allowClear
           placeholder={searchPlaceholder}
@@ -212,6 +138,8 @@ const ListViewToolbar = ({
         <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-toolbar-row', 'flex items-center gap-2')}>
           {schemaTypes.length > 2 ? (
             <Select
+              id="right-sidebar-fields-type-filter"
+              name="right-sidebar-fields-type-filter"
               size="small"
               value={typeFilter}
               onChange={onChangeType}

@@ -4,9 +4,11 @@ import { asRecord, isRecord } from '../../shared/objectGuards.js';
 
 export type CanonicalDetailSection =
   | 'identity'
+  | 'options'
+  | 'validation'
+  | 'behavior'
   | 'box'
   | 'appearance'
-  | 'behavior'
   | 'help'
   | 'dataBindings'
   | 'collaboration'
@@ -15,6 +17,7 @@ export type CanonicalDetailSection =
 
 export type LegacyDetailSection =
   | 'general'
+  | 'options'
   | 'layout'
   | 'style'
   | 'data'
@@ -27,6 +30,7 @@ export type LegacyDetailSection =
 
 export const LEGACY_TO_CANONICAL_DETAIL_SECTION = {
   general: 'identity',
+  options: 'options',
   layout: 'box',
   style: 'appearance',
   data: 'behavior',
@@ -40,9 +44,11 @@ export const LEGACY_TO_CANONICAL_DETAIL_SECTION = {
 
 export const CANONICAL_DETAIL_SECTION_ORDER = [
   'identity',
+  'options',
+  'validation',
+  'behavior',
   'box',
   'appearance',
-  'behavior',
   'help',
   'dataBindings',
   'collaboration',
@@ -52,50 +58,168 @@ export const CANONICAL_DETAIL_SECTION_ORDER = [
 
 export const CANONICAL_DETAIL_SECTION_LABELS: Record<CanonicalDetailSection, { title: string; description: string; defaultCollapsed?: boolean }> = {
   identity: {
-    title: 'Identidad',
-    description: 'Nombre, identidad y metadatos esenciales.',
+    title: 'Información del campo',
+    description: 'Nombre visible y metadatos.',
     defaultCollapsed: false,
   },
+  options: {
+    title: 'Opciones',
+    description: 'Valores, orden y selección del campo.',
+    defaultCollapsed: true,
+  },
+  validation: {
+    title: 'Reglas de llenado',
+    description: 'Reglas y restricciones del valor.',
+    defaultCollapsed: true,
+  },
   box: {
-    title: 'Caja',
-    description: 'Posición, tamaño y orden espacial.',
+    title: 'Ubicación y tamaño',
+    description: 'Posición, tamaño y rotación.',
     defaultCollapsed: false,
   },
   appearance: {
-    title: 'Apariencia',
-    description: 'Tratamiento visual específico de la familia.',
+    title: 'Formato',
+    description: 'Estilo visual y opacidad.',
     defaultCollapsed: true,
   },
   behavior: {
-    title: 'Comportamiento',
-    description: 'Semántica, reglas y opciones del campo.',
+    title: 'Interacción',
+    description: 'Edición y visibilidad.',
     defaultCollapsed: true,
   },
   help: {
-    title: 'Ayuda',
-    description: 'Tooltips y textos de asistencia para el usuario.',
+    title: 'Ayuda del campo',
+    description: 'Texto de ayuda y descripción.',
     defaultCollapsed: true,
   },
   dataBindings: {
-    title: 'Datos conectados',
-    description: 'Persistencia, JSON y API.',
+    title: 'Datos y conexión',
+    description: 'Persistencia, salida JSON y API.',
     defaultCollapsed: true,
   },
   collaboration: {
-    title: 'Colaboración',
-    description: 'Owner, bloqueo y trazabilidad.',
+    title: 'Asignación y bloqueo',
+    description: 'Propietario y acceso.',
     defaultCollapsed: true,
   },
   comments: {
     title: 'Comentarios',
-    description: 'Hilos, anchors y navegación de revisión.',
+    description: 'Hilos y referencias.',
     defaultCollapsed: true,
   },
   advanced: {
-    title: 'Avanzado',
-    description: 'Propiedades poco frecuentes o de bajo nivel.',
+    title: 'Técnico',
+    description: 'IDs y metadata de depuración.',
     defaultCollapsed: true,
   },
+};
+
+const normalizeSchemaType = (schemaType?: string) => normalizeText(schemaType);
+const EMPTY_TEXT_VALUES = new Set(['', '-', '—', '–', 'n/a', 'na', 'null', 'undefined']);
+
+const isMeaningfulInspectorText = (value: unknown) => {
+  if (Array.isArray(value)) {
+    return value.some((entry) => isMeaningfulInspectorText(entry));
+  }
+
+  if (isRecord(value)) {
+    return Object.values(value).some((entry) => isMeaningfulInspectorText(entry));
+  }
+
+  if (typeof value === 'number' || typeof value === 'boolean') {
+    return true;
+  }
+
+  if (typeof value !== 'string') {
+    return false;
+  }
+
+  const normalized = value.trim().toLowerCase();
+  return normalized.length > 0 && !EMPTY_TEXT_VALUES.has(normalized);
+};
+
+const OPTION_BASED_TYPES = new Set(['select', 'dropdown', 'radiogroup', 'checkboxgroup']);
+const CHECKBOX_TYPES = new Set(['checkbox']);
+const TEXT_LIKE_TYPES = new Set([
+  'text',
+  'multivariabletext',
+  'fullname',
+  'emailaddress',
+  'company',
+  'title',
+]);
+const NUMBER_LIKE_TYPES = new Set(['number']);
+const SIGNING_TYPES = new Set(['signature', 'initials', 'datesigned']);
+const ACTION_TYPES = new Set(['attachment', 'approve', 'decline', 'note']);
+
+export type DetailProfile = {
+  schemaType: string;
+  visibleSections: CanonicalDetailSection[];
+  defaultOpenSections: CanonicalDetailSection[];
+};
+
+const createDetailProfile = (schemaType: string, visibleSections: CanonicalDetailSection[], defaultOpenSections: CanonicalDetailSection[]): DetailProfile => ({
+  schemaType,
+  visibleSections,
+  defaultOpenSections,
+});
+
+const DEFAULT_DETAIL_SECTION_VISIBILITY: CanonicalDetailSection[] = [
+  'identity',
+  'box',
+  'appearance',
+  'behavior',
+  'help',
+  'dataBindings',
+  'collaboration',
+  'comments',
+  'advanced',
+];
+
+export const getDetailProfile = (schemaType: string): DetailProfile => {
+  const normalized = normalizeSchemaType(schemaType);
+
+  if (normalized === 'attachment') {
+    return createDetailProfile(normalized, ['identity', 'behavior', 'box', 'dataBindings', 'help', 'collaboration', 'advanced'], ['identity', 'behavior', 'box']);
+  }
+
+  if (normalized === 'approve' || normalized === 'decline') {
+    return createDetailProfile(normalized, ['identity', 'behavior', 'box', 'collaboration', 'advanced'], ['identity', 'behavior', 'box']);
+  }
+
+  if (normalized === 'note') {
+    return createDetailProfile(normalized, ['identity', 'behavior', 'box', 'appearance', 'help', 'advanced'], ['identity', 'behavior', 'box']);
+  }
+
+  if (OPTION_BASED_TYPES.has(normalized)) {
+    return createDetailProfile(normalized, ['identity', 'options', 'validation', 'behavior', 'box', 'dataBindings', 'appearance', 'help', 'collaboration', 'comments', 'advanced'], ['identity', 'options']);
+  }
+
+  if (CHECKBOX_TYPES.has(normalized)) {
+    return createDetailProfile(normalized, ['identity', 'validation', 'behavior', 'box', 'appearance', 'dataBindings', 'help', 'collaboration', 'comments', 'advanced'], ['identity', 'validation', 'behavior']);
+  }
+
+  if (TEXT_LIKE_TYPES.has(normalized) || NUMBER_LIKE_TYPES.has(normalized)) {
+    return createDetailProfile(normalized, ['identity', 'validation', 'behavior', 'box', 'appearance', 'dataBindings', 'help', 'collaboration', 'comments', 'advanced'], ['identity', 'validation', 'behavior']);
+  }
+
+  if (SIGNING_TYPES.has(normalized)) {
+    return createDetailProfile(normalized, ['identity', 'behavior', 'box', 'collaboration', 'help', 'comments', 'advanced'], ['identity', 'behavior']);
+  }
+
+  if (ACTION_TYPES.has(normalized)) {
+    return createDetailProfile(normalized, ['identity', 'behavior', 'box', 'collaboration', 'advanced'], ['identity', 'behavior', 'box']);
+  }
+
+  return createDetailProfile(normalized, [...DEFAULT_DETAIL_SECTION_VISIBILITY], ['identity', 'box']);
+};
+
+export const getDefaultOpenSections = (schemaType: string): CanonicalDetailSection[] => {
+  return getDetailProfile(schemaType).defaultOpenSections;
+};
+
+export const getVisibleDetailSections = (schemaType: string): CanonicalDetailSection[] => {
+  return getDetailProfile(schemaType).visibleSections;
 };
 
 export const resolveDetailSectionDefaultCollapsed = (
@@ -103,25 +227,16 @@ export const resolveDetailSectionDefaultCollapsed = (
   semanticFamily?: SchemaSemanticFamily | string,
 ): boolean => {
   const baseCollapsed = Boolean(CANONICAL_DETAIL_SECTION_LABELS[section]?.defaultCollapsed);
+  const normalizedFamily = normalizeText(semanticFamily);
 
-  if (section === 'identity' || section === 'box') {
-    return false;
-  }
-
+  if (section === 'identity') return false;
+  if (section === 'options') return false;
+  if (section === 'validation') return baseCollapsed;
   if (section === 'behavior') {
-    const normalizedFamily = normalizeText(semanticFamily);
-    const keepBehaviorExpanded = new Set([
-      'text',
-      'multivariabletext',
-      'signature',
-      'table',
-      'choice',
-      'boolean',
-      'datetime',
-    ]);
+    const keepBehaviorExpanded = new Set(['text', 'multivariabletext', 'signature', 'choice', 'boolean', 'datetime', 'number']);
     return !keepBehaviorExpanded.has(normalizedFamily);
   }
-
+  if (section === 'box') return false;
   return baseCollapsed;
 };
 
@@ -185,6 +300,8 @@ const hasDefinedSchemaValue = (schema: SchemaForUI, key: string) => {
 };
 
 const hasAnyValue = (schema: SchemaForUI, keys: string[]) => keys.some((key) => hasDefinedSchemaValue(schema, key));
+const hasMeaningfulSchemaValue = (schema: SchemaForUI, keys: string[]) =>
+  keys.some((key) => isMeaningfulInspectorText(getSchemaValue(schema, key)));
 
 const hasWidget = (fields: FieldLike[], widgetNames: string[]) => fieldNames(fields).some((field) => widgetNames.includes(field.widget));
 
@@ -214,13 +331,15 @@ export function shouldRenderDetailSection(params: {
   semanticFamily?: SchemaSemanticFamily | string;
   fields?: FieldLike[];
   widgets?: Array<string | { name?: string; widget?: string }>;
-  context?: {
-    isMultiUser?: boolean;
-    hasComments?: boolean;
-    hasAnchors?: boolean;
-    hasDataBindings?: boolean;
-    hasAdvancedOverrides?: boolean;
-    supportsComments?: boolean;
+    context?: {
+      isMultiUser?: boolean;
+      hasComments?: boolean;
+      hasAnchors?: boolean;
+      hasHelpContent?: boolean;
+      hasCollaborationContent?: boolean;
+      hasDataBindings?: boolean;
+      hasAdvancedOverrides?: boolean;
+      supportsComments?: boolean;
     supportsCollaboration?: boolean;
     supportsDataBindings?: boolean;
     supportsAppearance?: boolean;
@@ -239,8 +358,30 @@ export function shouldRenderDetailSection(params: {
     return Boolean(schema);
   }
 
+  if (section === 'options') {
+    const optionFields = [
+      'optionscontainer',
+      'options',
+      'defaultselectedoptionid',
+      'selectedoptionid',
+      'defaultvalue',
+      'placeholder',
+      'placeholdertext',
+      'selectionmode',
+      'orientation',
+      'group',
+      'groupname',
+    ];
+    return hasField(entries, optionFields) || hasWidget(fields, widgetNames) || hasAnyValue(schemaObject, ['options', 'optionsContainer', 'defaultSelectedOptionId', 'selectedOptionId', 'placeholder', 'placeholderText', 'selectionMode', 'orientation']);
+  }
+
+  if (section === 'validation') {
+    const validationFields = ['required', 'validation', 'validation.type', 'validation.pattern', 'validation.message', 'min', 'max', 'minLength', 'maxLength', 'decimals'];
+    return Boolean(context.supportsBehavior !== false) && (hasField(entries, validationFields) || hasAnyValue(schemaObject, ['required', 'validation', 'min', 'max', 'minLength', 'maxLength', 'decimals']));
+  }
+
   if (section === 'box') {
-    return Boolean(context.supportsBox !== false) && (hasAnyValue(schemaObject, ['position', 'width', 'height', 'rotate']) || hasField(entries, ['position', 'x', 'y', 'width', 'height']) || hasRenderableField(entries));
+    return Boolean(context.supportsBox !== false) && (hasAnyValue(schemaObject, ['position', 'width', 'height', 'rotate']) || hasField(entries, ['position', 'x', 'y', 'width', 'height', 'rotate']) || hasRenderableField(entries));
   }
 
   if (section === 'appearance') {
@@ -272,14 +413,13 @@ export function shouldRenderDetailSection(params: {
       'placeholdertext',
       'optionscontainer',
     ];
-    return Boolean(context.supportsAppearance !== false) && (hasField(entries, visualFields) || hasWidget(fields, widgetNames) || hasRenderableField(entries) || hasAnyValue(schemaObject, ['fontName', 'fontSize', 'fontColor', 'textColor', 'backgroundColor', 'strokeColor', 'borderColor', 'borderWidth', 'color', 'radius', 'barColor', 'tableStyles', 'headStyles', 'bodyStyles', 'columnStyles', 'signatureDisplay', 'signatureMode', 'signatureProviderKey', 'signatureProviderConfig', 'placeholderText', 'optionsContainer']));
+    return Boolean(context.supportsAppearance !== false) && (hasField(entries, visualFields) || hasWidget(fields, widgetNames) || hasRenderableField(entries) || hasAnyValue(schemaObject, ['fontName', 'fontSize', 'fontColor', 'textColor', 'backgroundColor', 'strokeColor', 'borderColor', 'borderWidth', 'color', 'radius', 'barColor', 'tableStyles', 'headStyles', 'bodyStyles', 'columnStyles', 'signatureDisplay', 'signatureMode', 'signatureProviderKey', 'signatureProviderConfig', 'placeholderText', 'optionsContainer', 'opacity']));
   }
 
   if (section === 'behavior') {
     const behaviorFields = [
       'editable',
       'readonly',
-      'required',
       'readOnly',
       'locked',
       'restrictchanges',
@@ -311,12 +451,11 @@ export function shouldRenderDetailSection(params: {
       'editablebysender',
       'editablebyrecipient',
     ];
-    return Boolean(context.supportsBehavior !== false) && (hasField(entries, behaviorFields) || hasRenderableField(entries) || hasAnyValue(schemaObject, ['editable', 'readOnly', 'required', 'locked', 'format', 'locale', 'options', 'group', 'mandatory']));
+    return Boolean(context.supportsBehavior !== false) && (hasField(entries, behaviorFields) || hasRenderableField(entries) || hasAnyValue(schemaObject, ['editable', 'readOnly', 'locked', 'format', 'locale', 'options', 'group']));
   }
 
   if (section === 'help') {
-    const helpKeys = ['tooltip', 'helptext', 'helpText'];
-    return hasField(entries, helpKeys) || hasAnyValue(schemaObject, ['tooltip', 'helpText']);
+    return Boolean(context.hasHelpContent) && hasMeaningfulSchemaValue(schemaObject, ['tooltip', 'helpText', 'helptext', 'description', 'helpDescription']);
   }
 
   if (section === 'dataBindings') {
@@ -345,7 +484,7 @@ export function shouldRenderDetailSection(params: {
       'externalkey',
       'externalKey',
     ];
-    return hasField(entries, bindingFields) || hasWidget(fields, widgetNames) || hasAnyValue(schemaObject, ['schemaConnections', 'persistence', 'api', 'form', 'prefill', 'rootKey', 'endpoint', 'baseUrl', 'headers', 'params', 'storageKey', 'requestMapping', 'responseMapping', 'mapping', 'dataLabel', 'tabLabel', 'fieldKey']);
+    return Boolean(context.hasDataBindings) && (hasField(entries, bindingFields) || hasWidget(fields, widgetNames) || hasAnyValue(schemaObject, ['schemaConnections', 'persistence', 'api', 'form', 'prefill', 'rootKey', 'endpoint', 'baseUrl', 'headers', 'params', 'storageKey', 'requestMapping', 'responseMapping', 'mapping', 'dataLabel', 'tabLabel', 'fieldKey']));
   }
 
   if (section === 'collaboration') {
@@ -368,7 +507,7 @@ export function shouldRenderDetailSection(params: {
       'authorname',
       'authorcolor',
     ];
-    return hasField(entries, collaborationFields) || hasAnyValue(schemaObject, ['ownerRecipientId', 'ownerRecipientIds', 'ownerMode', 'ownerColor', 'userColor', 'lock', 'state', 'createdBy', 'lastModifiedBy']) || hasWidget(fields, widgetNames) || Boolean(context.isMultiUser);
+    return Boolean(context.hasCollaborationContent || context.isMultiUser) && (hasField(entries, collaborationFields) || hasAnyValue(schemaObject, ['ownerRecipientId', 'ownerRecipientIds', 'ownerMode', 'ownerColor', 'userColor', 'lock', 'state', 'createdBy', 'lastModifiedBy']) || hasWidget(fields, widgetNames));
   }
 
   if (section === 'comments') {
@@ -376,28 +515,22 @@ export function shouldRenderDetailSection(params: {
     const comments = (schemaObject as { comments?: unknown[] }).comments;
     const anchors = (schemaObject as { commentAnchors?: unknown[]; commentsAnchors?: unknown[] }).commentAnchors || (schemaObject as { commentsAnchors?: unknown[] }).commentsAnchors;
     const hasComments = Boolean(context.hasComments || context.hasAnchors || commentCount > 0 || (Array.isArray(comments) && comments.length > 0) || (Array.isArray(anchors) && anchors.length > 0));
-    return hasComments || hasWidget(fields, widgetNames);
+    return hasComments;
   }
 
   if (section === 'advanced') {
     const advancedFields = [
-      'rotate',
-      'opacity',
+      'schemauid',
+      'documentid',
+      'pagenumber',
       'metadata',
-      'providerconfig',
-      'providerkey',
-      'capabilities',
-      'display',
-      'style',
-      'custom',
+      'debug',
       '__designer',
     ];
-    return Boolean(
-      context.hasAdvancedOverrides ||
-        entries.some((field) => advancedFields.includes(field.key) && !field.disabled) ||
-        hasWidget(fields, widgetNames) ||
-        hasAnyValue(schemaObject, ['rotate', 'opacity']) ||
-        hasRenderableField(entries),
+    return Boolean(context.hasAdvancedOverrides) && (
+      hasMeaningfulSchemaValue(schemaObject, advancedFields) ||
+      hasWidget(fields, widgetNames) ||
+      hasAnyValue(schemaObject, ['schemaUid', 'documentId', 'pageNumber', 'metadata', 'debug', '__designer'])
     );
   }
 

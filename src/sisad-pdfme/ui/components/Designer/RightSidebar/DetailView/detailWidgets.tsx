@@ -90,6 +90,8 @@ export const ColorPickerWidget = ({
         <Pipette size={12} aria-hidden="true" />
         <input
           type="color"
+          id={`${DESIGNER_CLASSNAME}color-picker-native`}
+          name={`${DESIGNER_CLASSNAME}color-picker-native`}
           className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-input`, 'h-4 w-4 cursor-pointer overflow-hidden rounded-full border-0 bg-transparent p-0')}
           value={hex}
           onChange={(e) => onChange?.(e.target.value)}
@@ -97,6 +99,8 @@ export const ColorPickerWidget = ({
         />
       </label>
       <Input
+        id={`${DESIGNER_CLASSNAME}color-picker-hex`}
+        name={`${DESIGNER_CLASSNAME}color-picker-hex`}
         className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-hex`, 'min-w-[7rem] rounded-xl border-slate-200 shadow-sm')}
         value={currentColor}
         onChange={(e) => onChange?.(e.target.value)}

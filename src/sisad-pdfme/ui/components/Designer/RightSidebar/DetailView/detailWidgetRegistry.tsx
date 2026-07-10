@@ -60,7 +60,7 @@ const buildDetailWidgets = ({
       const canEdit = props.selectionCommands?.canEditStructure !== false;
       return (
         <div className={`${DESIGNER_CLASSNAME}inline-edit-actions`}>
-          <Tooltip title="Renombrar variable (F2)" placement="bottom">
+          <Tooltip title="Renombrar campo (F2)" placement="bottom">
             <Button
               size="small"
               icon={<Pencil size={12} />}

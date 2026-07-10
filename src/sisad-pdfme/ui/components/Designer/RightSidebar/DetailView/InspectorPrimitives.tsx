@@ -36,7 +36,7 @@ export const InspectorTagList = ({
         <Tag
           key={tag.key ?? tag.label ?? index}
           color={tag.color}
-          className="m-0 inline-flex h-5 items-center rounded-full border border-slate-200 bg-white px-1.5 text-[10px] font-medium leading-none text-slate-700"
+          className="m-0 inline-flex h-5 items-center rounded-full border border-slate-200 bg-white px-1.5 text-[9px] font-medium leading-none text-slate-700"
         >
           {tag.label}
         </Tag>
@@ -45,7 +45,7 @@ export const InspectorTagList = ({
         <Tag
           color="default"
           title={overflowTooltip}
-          className="m-0 inline-flex h-5 items-center rounded-full border border-slate-200 bg-slate-50 px-1.5 text-[10px] font-semibold leading-none text-slate-600"
+          className="m-0 inline-flex h-5 items-center rounded-full border border-slate-200 bg-slate-50 px-1.5 text-[9px] font-semibold leading-none text-slate-600"
         >
           {overflowLabel}
           {overflowCount}
@@ -85,7 +85,7 @@ export const InspectorActionRow = ({
           type={action.type || 'default'}
           onClick={action.onClick}
           disabled={action.disabled}
-          className="inline-flex items-center justify-center rounded-lg border-slate-200 bg-white px-2.5 text-[0.68rem] font-semibold text-slate-700 shadow-none transition hover:border-slate-300 hover:bg-slate-50"
+          className="inline-flex h-7 items-center justify-center rounded-lg border-slate-200 bg-white px-2 text-[0.66rem] font-semibold text-slate-700 shadow-none transition hover:border-slate-300 hover:bg-slate-50"
         >
           {action.label}
         </Button>
@@ -120,13 +120,13 @@ export const InspectorMetricRow = ({
           key={metric.key ?? metric.label}
           className={mergeClassNames(
             `${DESIGNER_CLASSNAME}inspector-metric-chip`,
-            'rounded-lg border border-slate-200 bg-white px-2 py-1 shadow-none',
+            'rounded-lg border border-slate-200 bg-white px-1.5 py-0.5 shadow-none',
           )}
         >
-          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-metric-label`, 'block text-[10px] uppercase tracking-[0.12em] text-slate-500')}>
+          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-metric-label`, 'block text-[9px] uppercase tracking-[0.12em] text-slate-500')}>
             {metric.label}
           </span>
-          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-metric-value`, 'block text-[0.7rem] font-semibold text-slate-900')}>
+          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-metric-value`, 'block text-[0.65rem] font-semibold text-slate-900')}>
             {metric.value}
           </span>
         </div>
@@ -167,16 +167,16 @@ export const InspectorSummaryCard = ({
       ref={summaryCardRef}
       className={mergeClassNames(
         `${DESIGNER_CLASSNAME}${classNameSuffix}`,
-        'space-y-1.5 rounded-xl border border-slate-200/80 bg-white/90 p-1.5 shadow-none backdrop-blur-sm',
+        'space-y-1 rounded-xl border border-slate-200/80 bg-white/90 p-1 shadow-none backdrop-blur-sm',
       )}
       data-inspector-density={inspectorDensity}
     >
       <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-summary-card-head`, 'flex items-start justify-between gap-2')}>
-        <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-summary-card-copy`, 'min-w-0 space-y-0.5')}>
-          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-summary-card-title`, 'text-[0.65rem] font-semibold leading-tight text-slate-900')}>
+        <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-summary-card-copy`, 'min-w-0 space-y-0')}>
+          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-summary-card-title`, 'text-[0.62rem] font-semibold leading-tight text-slate-900')}>
             {title}
           </div>
-          {description ? <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-summary-card-description`, 'text-[0.62rem] leading-4 text-slate-500')}>{description}</div> : null}
+          {description ? <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-summary-card-description`, 'text-[0.58rem] leading-4 text-slate-500')}>{description}</div> : null}
         </div>
         {tags && tags.length > 0 ? (
           <InspectorTagList
@@ -210,8 +210,8 @@ export const InspectorEmptyState = ({
   return (
     <div className={mergeClassNames(`${DESIGNER_CLASSNAME}${classNameSuffix}`, 'flex flex-col items-center gap-2 rounded-xl border border-dashed border-slate-200 bg-slate-50 px-3 py-3 text-center')}>
       {icon ? <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-empty-state-icon`, 'text-slate-400')}>{icon}</div> : null}
-      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-empty-state-label`, 'text-[0.65rem] font-semibold text-slate-800')}>{label}</div>
-      {description ? <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-empty-state-description`, 'text-[0.62rem] leading-4 text-slate-500')}>{description}</div> : null}
+      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-empty-state-label`, 'text-[0.62rem] font-semibold text-slate-800')}>{label}</div>
+      {description ? <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-empty-state-description`, 'text-[0.58rem] leading-4 text-slate-500')}>{description}</div> : null}
     </div>
   );
 };

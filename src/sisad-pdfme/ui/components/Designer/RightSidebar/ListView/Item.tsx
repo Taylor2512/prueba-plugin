@@ -2,11 +2,9 @@ import React, { useEffect, useContext, useState } from 'react';
 import { DraggableSyntheticListeners } from '@dnd-kit/core';
 import { I18nContext } from '../../../../contexts.js';
 import { GripVertical, CircleAlert, Lock, Eye, EyeOff, Trash2 } from 'lucide-react';
-import { Button, Typography, Tooltip } from 'antd';
+import { Button, Tooltip } from 'antd';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { mergeClassNames } from '../../shared/className.js';
-
-const { Text } = Typography;
 
 // Schema type → accent color mapping (Wix-like color coding)
 const SCHEMA_TYPE_COLORS: Record<string, string> = {
@@ -236,7 +234,8 @@ const Item = React.memo(
     const typeAccent = getTypeColor(schemaType);
     const normalizedValue =
       typeof value === 'string' || typeof value === 'number' ? String(value) : undefined;
-    const valueTooltip = normalizedValue || title || '';
+    const secondaryValue = typeof title === 'string' && title.trim() && title !== normalizedValue ? title.trim() : '';
+    const valueTooltip = [normalizedValue, secondaryValue].filter(Boolean).join(' · ') || secondaryValue || normalizedValue || '';
     const dragStyle: React.CSSProperties = {
       transform: `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0) scale(${scaleX}, ${scaleY})`,
       transition,
@@ -279,7 +278,7 @@ const Item = React.memo(
           }}
         />
         <div
-          className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-content', 'relative z-10 flex items-center gap-3 px-3 py-2.5')}
+          className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-content', 'relative z-10 flex items-start gap-3 px-3 py-2.5')}
           {...props}
           aria-hidden="true">
           <Button
@@ -287,18 +286,23 @@ const Item = React.memo(
             className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-grip', 'inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500')}
             icon={<GripVertical size={14} />} />
           <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-icon', 'flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-slate-50')}>{icon}</div>
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-main', 'min-w-0 flex-1 space-y-1')}>
-            <Text
-              className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-value', 'block truncate text-sm font-medium text-slate-800')}
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-main', 'min-w-0 flex-1 space-y-0.5')}>
+            <div
+              className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-value', 'block text-sm font-medium leading-tight text-slate-800')}
               title={valueTooltip}
-              ellipsis={{ tooltip: valueTooltip }}>
+            >
               <ItemStatusLabel
                 value={value}
                 status={status}
                 noKeyNameLabel={i18n('noKeyName')}
                 notUniqueLabel={i18n('notUniq')}
               />
-            </Text>
+            </div>
+            {secondaryValue ? (
+              <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-secondary', 'truncate text-[11px] leading-tight text-slate-500')}>
+                {secondaryValue}
+              </div>
+            ) : null}
             {Array.isArray(metaBadges) && metaBadges.length > 0 ? (
               <div
                 className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-meta', 'flex flex-wrap gap-1.5')}

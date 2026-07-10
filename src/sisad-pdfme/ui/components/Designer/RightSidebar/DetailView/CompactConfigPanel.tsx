@@ -12,7 +12,7 @@ type StatusTag = {
 type CompactConfigPanelProps = {
   title: string;
   description?: string;
-  summary?: string;
+  summary?: React.ReactNode;
   statusTags?: StatusTag[];
   quickActions?: React.ReactNode;
   footerActions?: React.ReactNode;
@@ -41,10 +41,24 @@ const CompactConfigPanel = ({
   return (
     <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel', 'rounded-xl border border-slate-200/70 bg-white/90 p-1.5 shadow-none')}>
       <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-head', 'flex items-start justify-between gap-2')}>
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-copy', 'min-w-0')}>
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-title', 'text-[0.65rem] font-semibold leading-tight text-slate-900')}>{title}</div>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-copy', 'min-w-0 flex-1')}>
+          <div
+            className={mergeClassNames(
+              DESIGNER_CLASSNAME + 'compact-config-panel-title',
+              'min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-[0.65rem] font-semibold leading-tight text-slate-900',
+            )}
+          >
+            {title}
+          </div>
           {description ? (
-            <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-description', 'text-[0.6rem] leading-3 text-slate-500')}>{description}</div>
+            <div
+              className={mergeClassNames(
+                DESIGNER_CLASSNAME + 'compact-config-panel-description',
+                'min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-[0.6rem] leading-3 text-slate-500',
+              )}
+            >
+              {description}
+            </div>
           ) : null}
         </div>
         {statusTags.length > 0 ? (
@@ -60,7 +74,9 @@ const CompactConfigPanel = ({
 
       {summary ? (
         <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-summary', 'mt-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2 py-1')}>
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-summary-text', 'text-[0.68rem] leading-4 text-slate-700')}>{summary}</div>
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-summary-text', 'text-[0.68rem] leading-4 text-slate-700')}>
+            {summary}
+          </div>
         </div>
       ) : null}
 

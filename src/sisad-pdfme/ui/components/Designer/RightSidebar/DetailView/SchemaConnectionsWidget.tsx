@@ -183,7 +183,7 @@ const mergeSectionPatch = <T extends Record<string, unknown>>(base: T | undefine
 const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
   const { schemaConfig, designerEngine, updateSchemaConfig } = props;
   const [validationState, setValidationState] = useState<'idle' | 'ok' | 'warning'>('idle');
-  const [validationMessage, setValidationMessage] = useState('Sin validar');
+  const [validationMessage, setValidationMessage] = useState('Sin configurar');
   const [isValidating, setIsValidating] = useState(false);
   const persistence = useMemo<SchemaPersistenceConfig>(() => schemaConfig?.persistence || {}, [schemaConfig?.persistence]);
   const api = useMemo(() => schemaConfig?.api || {}, [schemaConfig?.api]);
@@ -353,8 +353,17 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
   };
 
   const validationTag = useMemo(() => buildValidationTag(validationState), [validationState]);
+  const compactStateTag = useMemo(() => {
+    if (validationState === 'warning') {
+      return { label: 'Error', color: 'warning' as const };
+    }
 
-  const headerTags = runtimeStatusTags.slice(0, 3);
+    if (persistence.enabled || formJson.enabled || api.enabled) {
+      return { label: 'Activo', color: 'success' as const };
+    }
+
+    return { label: 'Sin configurar', color: 'default' as const };
+  }, [api.enabled, formJson.enabled, persistence.enabled, validationState]);
   const persistenceSummary = describePersistence(persistence);
   const formJsonSummary = describeFormJson(formJson);
   const apiSummary = describeApi(api, resolvedHttpClient);
@@ -365,9 +374,9 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
       label: (
         <SectionHeader
           icon={<DatabaseZap size={14} />}
-          title="Persistencia de datos"
+          title="Persistencia"
           active={Boolean(persistence.enabled)}
-          description="Guarda el valor capturado en la configuración del schema."
+          description="Guarda el valor capturado."
         />
       ),
       children: (
@@ -376,7 +385,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
             <div className={`${DESIGNER_CLASSNAME}schema-config-summary-text`}>{persistenceSummary}</div>
           </div>
           <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
-            <span>Guardar datos ingresados</span>
+            <span>Persistir valor</span>
             <Switch checked={Boolean(persistence.enabled)} onChange={(checked) => updatePersistence({ enabled: checked })} />
           </div>
           <Collapse
@@ -392,6 +401,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                     <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
                       <span>Modo</span>
                       <Select
+                        id="connections-persistence-mode"
+                        name="connections-persistence-mode"
                         size="small"
                         value={persistence.mode || 'local'}
                         onChange={(value) => updatePersistence({ mode: value })}
@@ -405,6 +416,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                     <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
                       <span>Clave de almacenamiento</span>
                       <Input
+                        id="connections-persistence-key"
+                        name="connections-persistence-key"
                         size="small"
                         value={persistence.key || ''}
                         placeholder="campo.identificador"
@@ -440,9 +453,9 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
       label: (
         <SectionHeader
           icon={<FileJson2 size={14} />}
-          title="Salida de formulario JSON"
+          title="Salida JSON"
           active={Boolean(formJson.enabled)}
-          description="Agrupa todos los campos seleccionados en una estructura generada dinámicamente."
+          description="Agrupa campos seleccionados."
         />
       ),
       children: (
@@ -471,6 +484,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                     <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
                       <span>Formato</span>
                       <Select
+                        id="connections-json-format"
+                        name="connections-json-format"
                         size="small"
                         value={formJson.format || 'nested'}
                         onChange={(value) => updateFormJson({ format: value })}
@@ -483,6 +498,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                     <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
                       <span>Raíz JSON</span>
                       <Input
+                        id="connections-json-root"
+                        name="connections-json-root"
                         size="small"
                         value={formJson.rootKey || ''}
                         placeholder="formData"
@@ -522,9 +539,9 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
       label: (
         <SectionHeader
           icon={<Globe2 size={14} />}
-          title="Consulta API / Axios"
+          title="Consulta API"
           active={Boolean(api.enabled)}
-          description="Obtiene valores, opciones o estados desde un endpoint, heredando la configuración global cuando aplique."
+          description="Obtiene valores, opciones o estados desde un endpoint."
         />
       ),
       children: (
@@ -533,7 +550,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
             <div className={`${DESIGNER_CLASSNAME}schema-config-summary-text`}>{apiSummary}</div>
           </div>
           <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
-            <span>Consultar API</span>
+            <span>Cargar opciones desde API</span>
             <Switch checked={Boolean(api.enabled)} onChange={(checked) => updateApi({ enabled: checked })} />
           </div>
           <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
@@ -547,6 +564,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
             <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
               <span>Endpoint</span>
               <Input
+                id="connections-api-endpoint"
+                name="connections-api-endpoint"
                 size="small"
                 value={api.endpoint || ''}
                 placeholder="/api/fields/options"
@@ -556,6 +575,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
             <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
               <span>Método</span>
               <Select
+                id="connections-api-method"
+                name="connections-api-method"
                 size="small"
                 value={api.method || 'GET'}
                 onChange={(value) => updateApi({ method: value })}
@@ -571,6 +592,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
             <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
               <span>Base URL</span>
               <Input
+                id="connections-api-base-url"
+                name="connections-api-base-url"
                 size="small"
                 value={api.http?.baseURL || ''}
                 placeholder="https://api.ejemplo.com"
@@ -580,6 +603,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
             <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
               <span>Timeout (ms)</span>
               <InputNumber
+                id="connections-api-timeout"
+                name="connections-api-timeout"
                 size="small"
                 min={0}
                 className={`${DESIGNER_CLASSNAME}schema-config-number`}
@@ -592,6 +617,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
             <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
               <span>Modo de ejecución</span>
               <Select
+                id="connections-api-request-mode"
+                name="connections-api-request-mode"
                 size="small"
                 value={api.requestMode || 'read'}
                 onChange={(value) => updateApi({ requestMode: value })}
@@ -606,6 +633,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
             <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
               <span>Tipo de autenticación</span>
               <Select
+                id="connections-api-auth-mode"
+                name="connections-api-auth-mode"
                 size="small"
                 value={api.http?.auth?.mode || 'inherit'}
                 onChange={(value) => updateApiAuthMode(value)}
@@ -639,6 +668,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                       <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
                         <span>Tipo de token</span>
                         <Select
+                          id="connections-api-auth-type"
+                          name="connections-api-auth-type"
                           size="small"
                           value={api.http?.auth?.type || 'bearer'}
                           onChange={(value) => updateApiAuthType(value)}
@@ -653,6 +684,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                       <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
                         <span>Nombre del header</span>
                         <Input
+                          id="connections-api-auth-header"
+                          name="connections-api-auth-header"
                           size="small"
                           value={api.http?.auth?.headerName || ''}
                         placeholder="Autorización"
@@ -664,6 +697,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                           <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
                             <span>Usuario</span>
                             <Input
+                              id="connections-api-auth-user"
+                              name="connections-api-auth-user"
                               size="small"
                               value={api.http?.auth?.username || ''}
                               placeholder="usuario"
@@ -673,6 +708,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                           <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
                             <span>Contraseña</span>
                             <Input.Password
+                              id="connections-api-auth-password"
+                              name="connections-api-auth-password"
                               size="small"
                               value={api.http?.auth?.password || ''}
                               placeholder="••••••••"
@@ -684,6 +721,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                         <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
                           <span>Valor / token</span>
                           <Input
+                            id="connections-api-auth-token"
+                            name="connections-api-auth-token"
                             size="small"
                             value={api.http?.auth?.token || api.http?.auth?.headerValue || ''}
                         placeholder={(api.http?.auth?.type || 'bearer') === 'apiKey' ? 'clave-api' : 'token...'}
@@ -711,12 +750,12 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
             items={[
               {
                 key: 'api-advanced',
-                label: 'Encabezados, parámetros y mapeos',
+                label: 'Avanzado',
                 children: (
                   <Space direction="vertical" size={10} className="w-full">
                     <PairEditor
                       title="Encabezados personalizados"
-                      description="Se mezclan con los heredados del sistema y pueden sobrescribir valores."
+                      description="Se combinan con los heredados del sistema."
                       values={api.http?.headers}
                       onChange={(next) => updateApiHttp({ headers: next })}
                       placeholderKey="Header"
@@ -724,7 +763,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                     />
                     <PairEditor
                       title="Parámetros"
-                      description="Parámetros de consulta para la petición."
+                      description="Parámetros de consulta."
                       values={api.params}
                       onChange={(next) => updateApi({ params: next })}
                       placeholderKey="Clave"
@@ -732,7 +771,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                     />
                     <PairEditor
                       title="Mapeo de entrada"
-                      description="Relaciona datos del schema con el body/payload de salida."
+                      description="Relaciona datos del schema con la salida."
                       values={api.requestMapping}
                       onChange={(next) => updateApi({ requestMapping: next })}
                       placeholderKey="Campo"
@@ -740,7 +779,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                     />
                     <PairEditor
                       title="Mapeo de respuesta"
-                      description="Extrae o transforma la respuesta para rellenar el schema."
+                      description="Extrae o transforma la respuesta."
                       values={api.responseMapping}
                       onChange={(next) => updateApi({ responseMapping: next })}
                       placeholderKey="Ruta"
@@ -765,40 +804,20 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
 
   return (
     <CompactConfigPanel
-      title="Conexiones y persistencia"
-      description="Activa guardado, salida JSON y consultas remotas sin ocupar el panel completo."
+      title="Datos y conexión"
+      description="Persistencia, JSON y API."
       summary={validationMessage}
       statusTags={[
-        ...headerTags,
-        ...(validationTag ? [validationTag] : []),
-        ...(api.enabled && !api.endpoint ? [{ label: 'Falta endpoint', color: 'warning' as const }] : []),
-        ...(formJson.enabled && formJson.collect && !formJson.rootKey
-          ? [{ label: 'Falta raíz JSON', color: 'warning' as const }]
-          : []),
+        compactStateTag,
+        ...(validationTag && validationState === 'warning' ? [validationTag] : []),
       ]}
-      quickActions={
-        <>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
-            <span>Guardar datos</span>
-            <Switch checked={Boolean(persistence.enabled)} onChange={(checked) => updatePersistence({ enabled: checked })} />
-          </div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
-            <span>Salida JSON</span>
-            <Switch checked={Boolean(formJson.enabled)} onChange={(checked) => updateFormJson({ enabled: checked })} />
-          </div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
-            <span>Consultar API</span>
-            <Switch checked={Boolean(api.enabled)} onChange={(checked) => updateApi({ enabled: checked })} />
-          </div>
-        </>
-      }
       footerActions={
         <Button size="small" type="text" loading={isValidating} onClick={handleValidateConfig}>
           Validar
         </Button>
       }
-      modalTitle="Configurar conexiones y persistencia"
-      modalTriggerLabel="Configuración avanzada"
+      modalTitle="Configurar datos y conexión"
+      modalTriggerLabel="Configurar conexión"
     >
       <div className={`${DESIGNER_CLASSNAME}schema-config-widget`}>
         <div className={`${DESIGNER_CLASSNAME}schema-config-summary-row`}>
@@ -811,12 +830,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
         <div className={`${DESIGNER_CLASSNAME}schema-config-summary`}>
           <div className={`${DESIGNER_CLASSNAME}schema-config-summary-text`}>{validationMessage}</div>
         </div>
-        <Collapse
-          ghost
-          items={items}
-          defaultActiveKey={['persistence']}
-          className={`${DESIGNER_CLASSNAME}schema-config-collapse`}
-        />
+        <Collapse ghost items={items} defaultActiveKey={['persistence']} className={`${DESIGNER_CLASSNAME}schema-config-collapse`} />
       </div>
     </CompactConfigPanel>
   );

@@ -6,6 +6,8 @@ type HeaderSummary = {
   tags: Array<{ label: string; color: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue' }>;
   overflowTooltip: string;
   positionLabel: string;
+  contextLabel: string;
+  statusLabel: string;
   schemaName: string;
   schemaType: string;
   recipientColor: string | null;
@@ -29,15 +31,10 @@ export const buildMetaTooltip = (
   if (activeSchema.ownerRecipientId) lines.push(`Propietario: ${activeSchema.ownerRecipientId}`);
   if (activeSchema.state) lines.push(`Estado: ${getSchemaStateLabel(activeSchema.state)}`);
   if (activeSchema.ownerMode) lines.push(`Modo de propiedad: ${activeSchema.ownerMode}`);
-  if (activeSchema.saveValue === false) lines.push('No guarda valor');
   if (schemaConfig?.persistence?.enabled) lines.push('Persistencia activa');
   if (schemaConfig?.api?.enabled) lines.push('API activa');
   if (schemaConfig?.form?.enabled) lines.push('JSON del formulario activo');
   if (schemaConfig?.prefill?.enabled) lines.push('Rellenado previo activo');
-  const commentCount = activeSchema.commentsCount || activeSchema.comments?.length || 0;
-  const anchorCount = activeSchema.commentAnchors?.length || activeSchema.commentsAnchors?.length || 0;
-  if (commentCount > 0) lines.push(`Comentarios: ${commentCount}`);
-  if (anchorCount > 0) lines.push(`Anclas: ${anchorCount}`);
   return lines.join('\n') || 'Sin metadatos adicionales';
 };
 
@@ -51,9 +48,16 @@ export const buildDetailHeaderSummary = (
   const ownerLabel =
     typeof activeSchema.ownerRecipientName === 'string' && activeSchema.ownerRecipientName.trim()
       ? activeSchema.ownerRecipientName.trim()
-      : typeof activeSchema.ownerRecipientId === 'string' && activeSchema.ownerRecipientId.trim()
-        ? activeSchema.ownerRecipientId.trim()
+    : typeof activeSchema.ownerRecipientId === 'string' && activeSchema.ownerRecipientId.trim()
+      ? activeSchema.ownerRecipientId.trim()
+      : '';
+  const fileId =
+    typeof activeSchema.fileId === 'string' && activeSchema.fileId.trim()
+      ? activeSchema.fileId.trim()
+      : typeof activeSchema.fileTemplateId === 'string' && activeSchema.fileTemplateId.trim()
+        ? activeSchema.fileTemplateId.trim()
         : '';
+  const pageNumber = typeof activeSchema.pageNumber === 'number' && Number.isFinite(activeSchema.pageNumber) ? Math.trunc(activeSchema.pageNumber) : 0;
   const recipientColor =
     typeof activeSchema.ownerColor === 'string' && activeSchema.ownerColor.trim()
       ? activeSchema.ownerColor.trim()
@@ -63,21 +67,37 @@ export const buildDetailHeaderSummary = (
 
   const tags: HeaderSummary['tags'] = [];
   if (!schemaName.trim()) tags.push({ label: 'Sin nombre', color: 'warning' });
-  if (activeSchema.required) tags.push({ label: 'Requerido', color: 'error' });
-  if (activeSchema.readOnly) tags.push({ label: 'Solo lectura', color: 'gold' });
-  if (schemaHidden) tags.push({ label: 'Oculto', color: 'default' });
-  if (schemaConfig?.persistence?.enabled || activeSchema.saveValue !== false) {
-    tags.push({ label: 'Guardar', color: 'success' });
-  }
-  if (ownerLabel) tags.push({ label: ownerLabel, color: 'processing' });
+  const statusLabel =
+    activeSchema.readOnly || schemaHidden
+      ? 'Solo lectura'
+      : activeSchema.lock || activeSchema.state === 'locked'
+        ? 'Bloqueado para edición'
+        : schemaConfig?.persistence?.enabled || activeSchema.saveValue !== false
+          ? 'Guardado'
+          : 'Cambios pendientes';
+  const statusColor =
+    statusLabel === 'Guardado'
+      ? 'success'
+      : statusLabel === 'Bloqueado para edición'
+        ? 'warning'
+        : statusLabel === 'Solo lectura'
+          ? 'gold'
+          : 'processing';
+  tags.push({ label: statusLabel, color: statusColor });
 
   const posX = Number((activeSchema.position?.x ?? 0).toFixed(1));
   const posY = Number((activeSchema.position?.y ?? 0).toFixed(1));
+  const contextParts: string[] = [];
+  if (ownerLabel) contextParts.push(ownerLabel);
+  if (fileId) contextParts.push(`Doc. ${fileId}`);
+  if (pageNumber > 0) contextParts.push(`Pág. ${pageNumber}`);
 
   return {
     tags,
     overflowTooltip: buildMetaTooltip(activeSchema, schemaConfig),
     positionLabel: `${posX},${posY}`,
+    contextLabel: contextParts.join(' · '),
+    statusLabel,
     schemaName,
     schemaType,
     recipientColor,
