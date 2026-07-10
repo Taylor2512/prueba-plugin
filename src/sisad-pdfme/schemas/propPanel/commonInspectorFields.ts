@@ -143,8 +143,13 @@ export const validationTypeField = (): PropPanelSchema => ({
   title: 'Tipo de validación',
   type: 'string',
   widget: 'select',
-  span: 12,
+  // Full-width trigger so the selected label never truncates ("Sin val…").
+  span: 24,
   props: {
+    // Let the dropdown size to its content (≥220px via CSS) instead of matching
+    // the trigger width — keeps option labels fully readable.
+    popupMatchSelectWidth: false,
+    popupClassName: 'sisad-inspector-select-popup',
     options: [
       { label: 'Sin validación', value: 'none' },
       { label: 'Correo electrónico', value: 'email' },

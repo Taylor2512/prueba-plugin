@@ -47,6 +47,7 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
 
   const render = () => {
     clearSchemaRoot(config.rootElement);
+    config.rootElement.setAttribute('data-testid', 'detail-options-section');
 
     const header = document.createElement('div');
     header.className = 'sisad-option-editor-header';
@@ -61,6 +62,7 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
     currentOptions.forEach((option, index) => {
       const row = document.createElement('div');
       row.className = config.rowClassName;
+      row.setAttribute('data-testid', 'option-row');
 
       row.appendChild(config.createIndicator(option, index));
 
@@ -69,11 +71,16 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
       labelInput.value = option.label;
       labelInput.placeholder = config.optionInputPlaceholder(index, option);
       labelInput.className = 'sisad-option-editor-input';
+      labelInput.setAttribute('data-testid', 'option-label-input');
+      labelInput.setAttribute('aria-label', `Opción ${index + 1}`);
 
       const removeBtn = document.createElement('button');
       removeBtn.type = 'button';
       removeBtn.textContent = '×';
       removeBtn.className = 'sisad-option-editor-remove-btn';
+      removeBtn.setAttribute('data-testid', 'option-delete-button');
+      removeBtn.setAttribute('aria-label', `Eliminar opción ${index + 1}`);
+      removeBtn.title = 'Eliminar opción';
 
       labelInput.addEventListener('change', createAction((currentOptions) =>
         config.createRenamedOptions(currentOptions, index, normalizeText(labelInput.value)),
@@ -99,11 +106,14 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
     newInput.type = 'text';
     newInput.placeholder = config.newInputPlaceholder;
     newInput.className = 'sisad-option-editor-input';
+    newInput.setAttribute('data-testid', 'option-new-input');
 
     const addBtn = document.createElement('button');
     addBtn.type = 'button';
-    addBtn.textContent = '+';
+    addBtn.textContent = 'Agregar opción';
     addBtn.className = 'sisad-option-editor-add-btn';
+    addBtn.setAttribute('data-testid', 'option-add-button');
+    addBtn.setAttribute('aria-label', 'Agregar opción');
 
     const doAdd = (event: Event) => {
       event.preventDefault();

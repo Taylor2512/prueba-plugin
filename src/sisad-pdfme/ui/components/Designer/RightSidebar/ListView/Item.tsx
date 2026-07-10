@@ -262,6 +262,7 @@ const Item = React.memo(
         data-fade-in={fadeIn ? 'true' : 'false'}
         data-selected={selected ? 'true' : 'false'}
         data-hovered={hovered ? 'true' : 'false'}
+        data-testid="right-sidebar-field-item"
         data-schema-type={schemaType}>
         <button
           type="button"
@@ -290,6 +291,7 @@ const Item = React.memo(
             <div
               className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-value', 'block text-sm font-medium leading-tight text-slate-800')}
               title={valueTooltip}
+              data-testid="right-sidebar-field-label"
             >
               <ItemStatusLabel
                 value={value}
@@ -299,7 +301,10 @@ const Item = React.memo(
               />
             </div>
             {secondaryValue ? (
-              <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-secondary', 'truncate text-[11px] leading-tight text-slate-500')}>
+              <div
+                className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-secondary', 'truncate text-[11px] leading-tight text-slate-500')}
+                data-testid="right-sidebar-field-technical-name"
+              >
                 {secondaryValue}
               </div>
             ) : null}

@@ -1,13 +1,13 @@
 import { expect, test } from '@playwright/test';
 
-test.describe('detail-view connections', () => {
-  test('expanding data bindings exposes persistence, form and api controls', async ({ page }) => {
+test.describe('detail-view attachment', () => {
+  test('attachment exposes file rules and hides empty format/data sections', async ({ page }) => {
     await page.goto('/lab/multi-document-routing');
-    await page.locator('button[aria-label="contract_name"]').click();
+    await page.locator('.sisad-pdfme-ui-custom-selectable[data-schema-name="routing-primary-showcase_attachment"]').first().click({ force: true });
 
-    await page.getByRole('button', { name: 'Expandir sección Datos y conexión' }).click();
-
-    await expect(page.getByText('Persistencia, JSON y API.')).toBeVisible();
-    await expect(page.getByRole('button', { name: 'Validar' })).toBeVisible();
+    await expect(page.getByText('Reglas del archivo')).toBeVisible();
+    await expect(page.getByText('Asignación y bloqueo')).toBeVisible();
+    await expect(page.getByText('Técnico')).toBeVisible();
+    await expect(page.locator('.sisad-pdfme-designer-detail-section-card-title').filter({ hasText: 'Formato' })).toHaveCount(0);
   });
 });

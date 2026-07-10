@@ -25,7 +25,9 @@ test.describe('list view regression', () => {
 
     await openCatalog(page);
     await ensureCategoryOpen(page, 'Selecciones');
-    await page.getByRole('button', { name: 'Opción' }).dblclick();
+    // Scope to the catalog button — the readable ListView labels now also contain
+    // the type label "Opción", so an inexact match would collide with list rows.
+    await page.locator('button[data-schema-type="radioGroup"][data-schema-label="Opción"]').first().dblclick();
 
     // Return to the list panel after adding the group so the contract is tested in list view.
     await page.keyboard.press('Escape');

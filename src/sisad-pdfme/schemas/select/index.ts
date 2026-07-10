@@ -26,6 +26,7 @@ const addOptions = (props: PropPanelWidgetProps) => {
   const { rootElement, changeSchemas, activeSchema, i18n } = props;
 
   rootElement.className = 'sisad-option-editor-select-root';
+  rootElement.setAttribute('data-testid', 'detail-options-section');
 
   const selectSchema = activeSchema as SchemaForUI & Select;
   const currentOptions = normalizeStringOptions(Array.isArray(selectSchema.options) ? selectSchema.options : []);
@@ -52,11 +53,14 @@ const addOptions = (props: PropPanelWidgetProps) => {
   input.type = 'text';
   input.placeholder = i18n('schemas.select.optionPlaceholder');
   input.className = 'sisad-option-editor-input';
+  input.setAttribute('data-testid', 'option-new-input');
 
   const addButton = document.createElement('button');
   addButton.type = 'button';
-  addButton.textContent = '+';
+  addButton.textContent = 'Agregar opción';
   addButton.className = 'sisad-option-editor-add-btn';
+  addButton.setAttribute('data-testid', 'option-add-button');
+  addButton.setAttribute('aria-label', 'Agregar opción');
 
   const handleAddOption = (event: Event) => {
     event.preventDefault();
@@ -85,19 +89,22 @@ const addOptions = (props: PropPanelWidgetProps) => {
   formContainer.appendChild(input);
   formContainer.appendChild(addButton);
 
-  const optionsList = document.createElement('ul');
-  optionsList.className = 'sisad-option-editor-select-list';
+  const optionsList = document.createElement('div');
+  optionsList.className = 'sisad-option-editor-list sisad-option-editor-select-list';
 
   const renderOptions = () => {
     optionsList.replaceChildren();
     currentOptions.forEach((option, index) => {
-      const li = document.createElement('li');
-      li.className = 'sisad-option-editor-select-item';
+      const li = document.createElement('div');
+      li.className = 'sisad-option-editor-row sisad-option-editor-row--select sisad-option-editor-select-item';
+      li.setAttribute('data-testid', 'option-row');
 
       const optionInput = document.createElement('input');
       optionInput.type = 'text';
       optionInput.value = option;
       optionInput.className = 'sisad-option-editor-input';
+      optionInput.setAttribute('data-testid', 'option-label-input');
+      optionInput.setAttribute('aria-label', `Opción ${index + 1}`);
 
       optionInput.addEventListener('change', () => {
         const nextValue = optionInput.value.trim();
@@ -112,6 +119,9 @@ const addOptions = (props: PropPanelWidgetProps) => {
       removeButton.type = 'button';
       removeButton.textContent = '×';
       removeButton.className = 'sisad-option-editor-remove-btn';
+      removeButton.setAttribute('data-testid', 'option-delete-button');
+      removeButton.setAttribute('aria-label', `Eliminar opción ${index + 1}`);
+      removeButton.title = 'Eliminar opción';
 
       removeButton.addEventListener('click', (event) => {
         event.preventDefault();
@@ -127,8 +137,8 @@ const addOptions = (props: PropPanelWidgetProps) => {
     });
   };
 
-  rootElement.appendChild(formContainer);
   rootElement.appendChild(optionsList);
+  rootElement.appendChild(formContainer);
 
   renderOptions();
 };

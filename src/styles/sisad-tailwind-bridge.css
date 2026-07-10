@@ -492,6 +492,19 @@
   @apply border-sky-300 shadow-[0_0_0_2px_rgba(59,130,246,0.12)];
 }
 
+/* ── Inspector select popup (portaled to body) ─────────────────────────────
+   Validation-type and similar inspector dropdowns: give the popup a readable
+   minimum width and never truncate option labels. */
+.sisad-inspector-select-popup {
+  min-width: 220px !important;
+}
+
+.sisad-inspector-select-popup .ant-select-item-option-content {
+  overflow: visible;
+  white-space: normal;
+  text-overflow: clip;
+}
+
 /* ── H. Option group floating action ──────────────────────────── */
 .sisad-pdfme-option-group-floating-action {
   @apply pointer-events-none absolute;

@@ -181,7 +181,7 @@ const SelectableSortableContainer = (
     >
       <>
         <SortableContext items={visibleSchemas} strategy={verticalListSortingStrategy}>
-          <ul className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-items-wrapper', 'space-y-2')}>
+          <ul className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-items-wrapper', 'space-y-2')} data-testid="right-sidebar-field-list">
             {visibleSchemas.map((schema) => (
               <SelectableSortableItem
                 key={schema.id}

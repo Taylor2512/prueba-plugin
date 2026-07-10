@@ -3795,58 +3795,88 @@
    Replaces Object.assign(style) calls in radioGroup/checkboxGroup propPanel editors.
    Scoped inside .sisad-pdfme-root to avoid leaking into host app.
    ─────────────────────────────────────────────────────────────────────────── */
+  /* Option editor — homogenised with the inspector design system:
+     compact card rows, no native bullets, soft borders + focus ring, a single
+     full-width "Agregar opción" affordance. Shared by select/radio/checkbox. */
   .sisad-pdfme-root .sisad-option-editor-header {
-    @apply text-[12px] font-semibold text-[#555] mb-[8px];
+    @apply text-[11px] font-semibold uppercase tracking-wide text-slate-500 mb-2;
   }
 
   .sisad-pdfme-root .sisad-option-editor-list {
-    @apply flex flex-col gap-[6px] mb-[10px] max-h-[220px] overflow-y-auto;
+    @apply flex flex-col gap-1.5 mb-2 max-h-[220px] overflow-y-auto pr-0.5;
   }
 
   .sisad-pdfme-root .sisad-option-editor-row {
-    @apply grid gap-[6px] items-center;
+    @apply grid gap-1.5 items-center rounded-lg border border-slate-200/80 bg-white/90 px-1.5 py-1 shadow-sm transition-colors;
+  }
+
+  .sisad-pdfme-root .sisad-option-editor-row:hover {
+    @apply border-slate-300;
   }
 
   .sisad-pdfme-root .sisad-option-editor-row--radio {
-    @apply [grid-template-columns:20px_1fr_28px];
+    @apply [grid-template-columns:18px_1fr_26px];
   }
 
   .sisad-pdfme-root .sisad-option-editor-row--checkbox {
-    @apply [grid-template-columns:18px_1fr_28px];
+    @apply [grid-template-columns:16px_1fr_26px];
+  }
+
+  .sisad-pdfme-root .sisad-option-editor-row--select {
+    @apply [grid-template-columns:1fr_26px];
   }
 
   .sisad-pdfme-root .sisad-option-editor-input {
-    @apply w-full p-[5px_8px] [border:1px_solid_#d9d9d9] rounded-[4px] text-[13px] outline-none;
+    @apply w-full min-w-0 bg-transparent border-0 px-1.5 py-1 text-[13px] text-slate-700 outline-none rounded-md;
   }
 
-  .sisad-pdfme-root .sisad-option-editor-input:focus {
-    @apply border-[#1677ff] [box-shadow:0_0_0_2px_rgba(22,_119,_255,_0.1)];
+  .sisad-pdfme-root .sisad-option-editor-input::placeholder {
+    @apply text-slate-400;
+  }
+
+  .sisad-pdfme-root .sisad-option-editor-input:focus-visible {
+    @apply ring-2 ring-sky-500/40;
   }
 
   .sisad-pdfme-root .sisad-option-editor-remove-btn {
-    @apply w-[24px] h-[24px] border-0 bg-transparent text-[#999] text-[16px] flex items-center justify-center rounded-[3px] p-0 cursor-pointer;
+    @apply w-[26px] h-[26px] border-0 bg-transparent text-slate-400 text-[16px] leading-none inline-flex items-center justify-center rounded-md p-0 cursor-pointer transition-colors;
   }
 
   .sisad-pdfme-root .sisad-option-editor-remove-btn:hover:not(:disabled) {
-    @apply bg-[#fee2e2] text-[#dc2626];
+    @apply bg-rose-50 text-rose-600;
+  }
+
+  .sisad-pdfme-root .sisad-option-editor-remove-btn:focus-visible {
+    @apply ring-2 ring-rose-500/40 outline-none;
   }
 
   .sisad-pdfme-root .sisad-option-editor-remove-btn[data-disabled="true"] {
-    @apply [opacity:0.45] cursor-not-allowed;
+    @apply opacity-40 cursor-not-allowed;
   }
 
   .sisad-pdfme-root .sisad-option-editor-add-row {
-    @apply grid [grid-template-columns:1fr_32px] gap-[6px] items-center;
+    @apply grid [grid-template-columns:1fr_auto] gap-1.5 items-center;
+  }
+
+  .sisad-pdfme-root .sisad-option-editor-add-row .sisad-option-editor-input {
+    @apply rounded-lg border border-dashed border-slate-300 bg-white/70;
   }
 
   .sisad-pdfme-root .sisad-option-editor-add-btn {
-    @apply
-      w-[28px] h-[28px] [border:1.5px_solid_#1677ff] bg-[#1677ff] text-[#fff] text-[18px] font-bold flex items-center justify-center rounded-[4px] p-0
-      cursor-pointer;
+    @apply inline-flex h-[30px] items-center justify-center gap-1 whitespace-nowrap rounded-lg border border-sky-200 bg-sky-50 px-3 text-[12px] font-semibold text-sky-700 cursor-pointer transition-colors;
+  }
+
+  .sisad-pdfme-root .sisad-option-editor-add-btn::before {
+    content: "+";
+    @apply text-[14px] font-bold leading-none;
   }
 
   .sisad-pdfme-root .sisad-option-editor-add-btn:hover {
-    @apply bg-[#0958d9] border-[#0958d9];
+    @apply bg-sky-100 border-sky-300;
+  }
+
+  .sisad-pdfme-root .sisad-option-editor-add-btn:focus-visible {
+    @apply ring-2 ring-sky-500/40 outline-none;
   }
 
   /* Checkbox indicator in propPanel editor */
@@ -3979,17 +4009,14 @@
     @apply hidden;
   }
 
-  /* Select propPanel editor */
+  /* Select propPanel editor — inherits the shared option-editor list/row skin
+     above; these only pin the root width and kill any residual list styling. */
   .sisad-pdfme-root .sisad-option-editor-select-root {
     @apply w-full min-w-0;
   }
 
   .sisad-pdfme-root .sisad-option-editor-select-list {
-    @apply list-none p-0 pr-[4px] m-0 max-h-[220px] overflow-y-auto overflow-x-hidden;
-  }
-
-  .sisad-pdfme-root .sisad-option-editor-select-item {
-    @apply flex items-center gap-[6px] mb-[5px];
+    @apply list-none overflow-x-hidden;
   }
 
   /* Note schema — action-based informative variant */
