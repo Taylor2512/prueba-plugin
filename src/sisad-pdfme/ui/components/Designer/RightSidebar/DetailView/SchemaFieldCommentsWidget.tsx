@@ -14,6 +14,7 @@ import type { SchemaComment } from '../../../../designerEngine.js';
 import { InspectorEmptyState } from './InspectorPrimitives.js';
 import { asRecord } from '../../shared/objectGuards.js';
 import { mergeClassNames } from '../../shared/className.js';
+import { stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
 
 type FieldCommentsWidgetProps = PropPanelWidgetProps & {
   activeSchema: SchemaForUI;
@@ -150,7 +151,16 @@ const SchemaFieldCommentsWidget = ({
   const cls = (suffix: string) => `${DESIGNER_CLASSNAME}${suffix}`;
 
   return (
-    <div className={mergeClassNames(cls('field-comments-widget'), 'space-y-3')}>
+    <div
+      className={mergeClassNames(cls('field-comments-widget'), 'space-y-3')}
+      data-sisad-inspector-interactive="true"
+      data-selecto-ignore="true"
+      data-moveable-ignore="true"
+      data-canvas-drop-ignore="true"
+      onPointerDown={stopInspectorPointerEvent}
+      onMouseDown={stopInspectorPointerEvent}
+      onClick={stopInspectorPointerEvent}
+    >
       {/* New comment input */}
       <div className={mergeClassNames(cls('field-comments-add'), 'flex flex-col gap-2 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm')}>
         <Input.TextArea
@@ -161,6 +171,7 @@ const SchemaFieldCommentsWidget = ({
           placeholder={composerPlaceholder}
           autoSize={{ minRows: 2, maxRows: 4 }}
           className="rounded-xl border-slate-200 shadow-sm"
+          onPointerDown={stopInspectorPointerEvent}
           onKeyDown={(e) => {
             if (e.key === 'Enter' && (e.ctrlKey || e.metaKey)) {
               e.preventDefault();
@@ -173,6 +184,7 @@ const SchemaFieldCommentsWidget = ({
           size="small"
           icon={<MessageSquarePlus size={13} />}
           onClick={handleAddComment}
+          onPointerDown={stopInspectorPointerEvent}
           disabled={!newCommentText.trim()}
           className={mergeClassNames(cls('field-comments-add-btn'), 'self-end rounded-full bg-sky-600 text-white shadow-sm')}
         >
@@ -236,6 +248,7 @@ const SchemaFieldCommentsWidget = ({
                           )
                         }
                         onClick={() => handleResolveToggle(comment.id, !resolved)}
+                        onPointerDown={stopInspectorPointerEvent}
                         aria-label={resolved ? 'Reabrir hilo' : 'Marcar como resuelto'}
                       />
                     </Tooltip>
@@ -246,6 +259,7 @@ const SchemaFieldCommentsWidget = ({
                         danger
                         icon={<Trash2 size={12} />}
                         onClick={() => handleDeleteComment(comment.id)}
+                        onPointerDown={stopInspectorPointerEvent}
                         aria-label="Eliminar hilo de comentarios"
                       />
                     </Tooltip>

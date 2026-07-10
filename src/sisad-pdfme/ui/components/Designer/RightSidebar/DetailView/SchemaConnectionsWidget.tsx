@@ -1,6 +1,6 @@
 import React, { useCallback, useMemo, useState } from 'react';
 import type { PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
-import { Button, Collapse, Divider, Input, InputNumber, Select, Space, Switch, Tag } from 'antd';
+import { Button, Collapse, Divider, Input, InputNumber, Select, Space, Tag } from 'antd';
 import { DatabaseZap, Globe2, FileJson2 } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import {
@@ -16,6 +16,7 @@ import {
 import { PairEditor, SectionHeader } from './SchemaConnectionsShared.js';
 import { getMissingConnectionFields } from './schemaConnectionsValidation.js';
 import CompactConfigPanel from './CompactConfigPanel.js';
+import { BooleanSwitchWidget } from './InspectorPrimitives.js';
 
 type ConfigWidgetProps = PropPanelWidgetProps & {
   schemaConfig?: SchemaDesignerConfig | null;
@@ -386,7 +387,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
           </div>
           <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
             <span>Persistir valor</span>
-            <Switch checked={Boolean(persistence.enabled)} onChange={(checked) => updatePersistence({ enabled: checked })} />
+            <BooleanSwitchWidget value={persistence.enabled} onChange={(checked) => updatePersistence({ enabled: checked })} />
           </div>
           <Collapse
             ghost
@@ -433,11 +434,11 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                 children: (
                   <div className={`${DESIGNER_CLASSNAME}schema-config-inline-checks`}>
                     <div>
-                      <Switch checked={Boolean(persistence.includeHidden)} onChange={(checked) => updatePersistence({ includeHidden: checked })} />
+                      <BooleanSwitchWidget value={persistence.includeHidden} onChange={(checked) => updatePersistence({ includeHidden: checked })} />
                       <span>Incluir ocultos</span>
                     </div>
                     <div>
-                      <Switch checked={Boolean(persistence.includeMeta)} onChange={(checked) => updatePersistence({ includeMeta: checked })} />
+                      <BooleanSwitchWidget value={persistence.includeMeta} onChange={(checked) => updatePersistence({ includeMeta: checked })} />
                       <span>Incluir metadatos</span>
                     </div>
                   </div>
@@ -465,11 +466,11 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
           </div>
           <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
             <span>Activar salida JSON</span>
-            <Switch checked={Boolean(formJson.enabled)} onChange={(checked) => updateFormJson({ enabled: checked })} />
+            <BooleanSwitchWidget value={formJson.enabled} onChange={(checked) => updateFormJson({ enabled: checked })} />
           </div>
           <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
             <span>Recolectar valores</span>
-            <Switch checked={Boolean(formJson.collect)} onChange={(checked) => updateFormJson({ collect: checked })} />
+            <BooleanSwitchWidget value={formJson.collect} onChange={(checked) => updateFormJson({ collect: checked })} />
           </div>
           <Collapse
             ghost
@@ -515,15 +516,15 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                 children: (
                   <div className={`${DESIGNER_CLASSNAME}schema-config-inline-checks`}>
                     <div>
-                      <Switch checked={Boolean(formJson.includeEmpty)} onChange={(checked) => updateFormJson({ includeEmpty: checked })} />
+                      <BooleanSwitchWidget value={formJson.includeEmpty} onChange={(checked) => updateFormJson({ includeEmpty: checked })} />
                       <span>Incluir vacíos</span>
                     </div>
                     <div>
-                      <Switch checked={Boolean(formJson.includeHidden)} onChange={(checked) => updateFormJson({ includeHidden: checked })} />
+                      <BooleanSwitchWidget value={formJson.includeHidden} onChange={(checked) => updateFormJson({ includeHidden: checked })} />
                       <span>Incluir ocultos</span>
                     </div>
                     <div>
-                      <Switch checked={Boolean(formJson.includeMeta)} onChange={(checked) => updateFormJson({ includeMeta: checked })} />
+                      <BooleanSwitchWidget value={formJson.includeMeta} onChange={(checked) => updateFormJson({ includeMeta: checked })} />
                       <span>Incluir meta</span>
                     </div>
                   </div>
@@ -551,14 +552,11 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
           </div>
           <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
             <span>Cargar opciones desde API</span>
-            <Switch checked={Boolean(api.enabled)} onChange={(checked) => updateApi({ enabled: checked })} />
+            <BooleanSwitchWidget value={api.enabled} onChange={(checked) => updateApi({ enabled: checked })} />
           </div>
           <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
             <span>Heredar Axios del sistema</span>
-            <Switch
-              checked={Boolean(api.http?.inheritSystem ?? true)}
-              onChange={(checked) => updateApiHttp({ inheritSystem: checked })}
-            />
+            <BooleanSwitchWidget value={api.http?.inheritSystem ?? true} onChange={(checked) => updateApiHttp({ inheritSystem: checked })} />
           </div>
           <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
             <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
@@ -647,10 +645,7 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
           </div>
           <div className={`${DESIGNER_CLASSNAME}schema-config-inline-checks`}>
             <div>
-              <Switch
-                checked={Boolean(api.http?.withCredentials)}
-                onChange={(checked) => updateApiHttp({ withCredentials: checked })}
-              />
+              <BooleanSwitchWidget value={api.http?.withCredentials} onChange={(checked) => updateApiHttp({ withCredentials: checked })} />
               <span>Enviar credenciales</span>
             </div>
           </div>

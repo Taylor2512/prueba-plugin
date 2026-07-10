@@ -7,8 +7,8 @@ import { ChevronDown } from 'lucide-react';
 import { renderLucideIcon, createSchemaPlugin } from '../schemaBuilder.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
 import { basicsFields, helpFields, dataLabelFields, COMMON_PROPERTY_MAP } from '../propPanel/commonInspectorFields.js';
-import { resolveSchemaIdByIdentity } from '../shared/schemaGuards.js';
 import { normalizeStringOptions, resolveCompactSelection } from '../options/optionSelectionBehavior.js';
+import { markInspectorInteractive, stopInspectorPointerEvent } from '../../ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.js';
 
 const selectIcon = renderLucideIcon(ChevronDown);
 
@@ -27,16 +27,13 @@ const addOptions = (props: PropPanelWidgetProps) => {
 
   rootElement.className = 'sisad-option-editor-select-root';
   rootElement.setAttribute('data-testid', 'detail-options-section');
+  markInspectorInteractive(rootElement);
 
   const selectSchema = activeSchema as SchemaForUI & Select;
   const currentOptions = normalizeStringOptions(Array.isArray(selectSchema.options) ? selectSchema.options : []);
-
-  const resolveActiveSchemaId = (): string | undefined => {
-    return resolveSchemaIdByIdentity(props.schemas, selectSchema);
-  };
+  const activeSchemaId = activeSchema.id;
 
   const updateSchemas = () => {
-    const activeSchemaId = resolveActiveSchemaId();
     if (!activeSchemaId) return;
     const currentContent = typeof selectSchema.content === 'string' ? selectSchema.content : '';
     const nextContent = resolveCompactSelection(currentContent, currentOptions);
@@ -74,10 +71,8 @@ const addOptions = (props: PropPanelWidgetProps) => {
     input.value = '';
   };
 
-  addButton.addEventListener('pointerdown', (event) => {
-    event.preventDefault();
-    event.stopPropagation();
-  });
+  addButton.addEventListener('pointerdown', stopInspectorPointerEvent);
+  addButton.addEventListener('mousedown', stopInspectorPointerEvent);
   addButton.addEventListener('click', handleAddOption);
   input.addEventListener('keydown', (event) => {
     if (!['Enter', 'NumpadEnter'].includes(event.key)) return;
@@ -287,12 +282,14 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
         ...dataLabelFields(),
         '-------': { type: 'void', widget: 'Divider' },
 
+        // Rendered by the DetailView as a direct React editor (SchemaOptionsEditor):
+        // no Ant Card, no nested form properties. `addOptions` (imperative) stays
+        // registered in `widgets` only as a legacy fallback for other hosts.
         optionsContainer: {
           title: (propPanelProps as PropPanelWidgetProps).i18n('schemas.select.options'),
           type: 'string',
-          widget: 'Card',
+          widget: 'SchemaOptionsEditor',
           span: 24,
-          properties: { options: { widget: 'addOptions', span: 24 } },
         },
       };
     },

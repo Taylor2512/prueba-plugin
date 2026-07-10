@@ -9,7 +9,6 @@ import {
 import {
   resolveSchemaCollaborativeMetadata,
   type DesignerEngine,
-  type SchemaCollaborativeLock,
   type SchemaCollaborativeState,
 } from '../../../../designerEngine.js';
 import { normalizeHexColor } from '../../shared/recipientColor.js';
@@ -71,56 +70,6 @@ const formatTimestampLabel = (value: unknown) => {
     dateStyle: 'medium',
     timeStyle: 'short',
   }).format(date);
-};
-
-type CollaborationLockSectionProps = {
-  isVisible: boolean;
-  lock?: SchemaCollaborativeLock;
-  onChangeLock: (patch: Partial<SchemaCollaborativeLock>) => void;
-};
-
-const CollaborationLockSection = ({ isVisible, lock, onChangeLock }: CollaborationLockSectionProps) => {
-  if (!isVisible) return null;
-
-  return (
-    <>
-      <Divider className={`${DESIGNER_CLASSNAME}schema-config-divider`} />
-      <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Bloqueado por</div>
-          <Input
-            id="collaboration-locked-by"
-            name="collaboration-locked-by"
-            value={String(lock?.lockedBy || '')}
-            onChange={(event) => onChangeLock({ ...lock, lockedBy: event.target.value || undefined })}
-            placeholder="user-2"
-          />
-        </div>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Fecha de bloqueo</div>
-          <InputNumber
-            id="collaboration-locked-at"
-            name="collaboration-locked-at"
-            className={`${DESIGNER_CLASSNAME}schema-config-number`}
-            value={typeof lock?.lockedAt === 'number' ? lock.lockedAt : undefined}
-            onChange={(value) => onChangeLock({ ...lock, lockedAt: typeof value === 'number' ? value : undefined })}
-          />
-          <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>Fecha: {formatTimestampLabel(lock?.lockedAt)}</div>
-        </div>
-      </div>
-      <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Motivo</div>
-        <Input.TextArea
-          id="collaboration-lock-reason"
-          name="collaboration-lock-reason"
-          value={String(lock?.reason || '')}
-          onChange={(event) => onChangeLock({ ...lock, reason: event.target.value || undefined })}
-          placeholder="Edición concurrente"
-          autoSize={{ minRows: 2, maxRows: 4 }}
-        />
-      </div>
-    </>
-  );
 };
 
 const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
@@ -252,20 +201,100 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
       modalTriggerLabel={resolveStringLabel(props.modalTriggerLabel, triggerLabel)}
     >
       <div className={`${DESIGNER_CLASSNAME}schema-collaboration-widget`}>
+        {/* ── Vista normal: solo campos de negocio ─────────────────────────── */}
+        <div data-testid="collaboration-normal-view">
+          <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
+            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+              <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Estado</div>
+              <Select id="collaboration-state" name="collaboration-state" value={state} options={STATE_OPTIONS} onChange={(value) => updateState(value)} />
+            </div>
+            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+              <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Nombre visible</div>
+              <Input
+                id="collaboration-visible-name"
+                name="collaboration-visible-name"
+                value={resolvedOwnerLabel}
+                onChange={(event) => commit({ ownerRecipientName: event.target.value || undefined })}
+                placeholder="Nombre visible"
+              />
+            </div>
+          </div>
+          <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+            <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Asignado a</div>
+            {hasRecipientOptions ? (
+              <Select
+                id="collaboration-owner"
+                name="collaboration-owner"
+                value={activeSchema.ownerRecipientId || collaborative.ownerRecipientId || undefined}
+                options={recipientSelectOptions}
+                onChange={(value) => updateRecipientIds([value])}
+                placeholder="Selecciona un propietario"
+                allowClear
+                onClear={() => updateRecipientIds([])}
+              />
+            ) : (
+              <Input
+                id="collaboration-owner-raw"
+                name="collaboration-owner-raw"
+                value={activeSchema.ownerRecipientId || collaborative.ownerRecipientId || ''}
+                onChange={(event) => commit({ ownerRecipientId: event.target.value || undefined })}
+                placeholder="recipient-1"
+              />
+            )}
+          </div>
+          <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+            <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Co-propietarios</div>
+            {hasRecipientOptions ? (
+              <Select
+                id="collaboration-coowners"
+                name="collaboration-coowners"
+                mode="multiple"
+                value={ownerRecipientIds}
+                options={recipientSelectOptions}
+                onChange={(value) => updateRecipientIds(value)}
+                placeholder="Selecciona propietarios"
+              />
+            ) : (
+              <Input
+                id="collaboration-coowners-raw"
+                name="collaboration-coowners-raw"
+                value={joinRecipientIds(ownerRecipientIds)}
+                onChange={(event) => updateRecipientIds(event.target.value)}
+                placeholder="recipient-1, recipient-2"
+              />
+            )}
+          </div>
+          {hasLock ? (
+            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+              <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Bloqueado por</div>
+              <Input
+                id="collaboration-locked-by"
+                name="collaboration-locked-by"
+                value={String(lock?.lockedBy || '')}
+                onChange={(event) => commit({ lock: { ...lock, lockedBy: event.target.value || undefined } })}
+                placeholder="user-2"
+              />
+            </div>
+          ) : null}
+        </div>
+
+        {/* ── Avanzado (colapsado): IDs, auditoría y depuración ─────────────── */}
         <Collapse
           className={`${DESIGNER_CLASSNAME}schema-config-collapse`}
           ghost
           defaultActiveKey={[]}
           items={[
             {
-              key: 'metadata',
+              key: 'advanced',
               label: (
                 <Space size={6} align="center">
-                  <span className={`${DESIGNER_CLASSNAME}schema-collaboration-widget-title`}>Información técnica</span>
+                  <span className={`${DESIGNER_CLASSNAME}schema-collaboration-widget-title`} data-testid="collaboration-advanced-toggle">
+                    Avanzado
+                  </span>
                 </Space>
               ),
               children: (
-                <>
+                <div data-testid="collaboration-advanced-view">
                   <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
                     <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
                       <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>UID técnico</div>
@@ -299,10 +328,6 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                       <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>Página visible: {typeof activeSchema.pageNumber === 'number' ? activeSchema.pageNumber : collaborative.pageNumber || '—'}</div>
                     </div>
                     <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Estado</div>
-                      <Select id="collaboration-state" name="collaboration-state" value={state} options={STATE_OPTIONS} onChange={(value) => updateState(value)} />
-                    </div>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
                       <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Modo de asignación</div>
                       <Input
                         id="collaboration-owner-mode"
@@ -312,69 +337,34 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                         placeholder="único / múltiple / compartido"
                       />
                     </div>
+                    {hasLock ? (
+                      <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                        <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Fecha de bloqueo</div>
+                        <InputNumber
+                          id="collaboration-locked-at"
+                          name="collaboration-locked-at"
+                          className={`${DESIGNER_CLASSNAME}schema-config-number`}
+                          value={typeof lock?.lockedAt === 'number' ? lock.lockedAt : undefined}
+                          onChange={(value) => commit({ lock: { ...lock, lockedAt: typeof value === 'number' ? value : undefined } })}
+                        />
+                        <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>Fecha: {formatTimestampLabel(lock?.lockedAt)}</div>
+                      </div>
+                    ) : null}
                   </div>
 
-                  {(activeSchema.createdBy || collaborative.createdBy) ? (
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>
-                      Autor {String(activeSchema.createdBy || collaborative.createdBy)}
+                  {hasLock ? (
+                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
+                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Motivo técnico</div>
+                      <Input.TextArea
+                        id="collaboration-lock-reason"
+                        name="collaboration-lock-reason"
+                        value={String(lock?.reason || '')}
+                        onChange={(event) => commit({ lock: { ...lock, reason: event.target.value || undefined } })}
+                        placeholder="Edición concurrente"
+                        autoSize={{ minRows: 2, maxRows: 4 }}
+                      />
                     </div>
                   ) : null}
-
-                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Propietario</div>
-                    {hasRecipientOptions ? (
-                      <Select
-                        id="collaboration-owner"
-                        name="collaboration-owner"
-                        value={activeSchema.ownerRecipientId || collaborative.ownerRecipientId || undefined}
-                        options={recipientSelectOptions}
-                        onChange={(value) => updateRecipientIds([value])}
-                        placeholder="Selecciona un propietario"
-                        allowClear
-                        onClear={() => updateRecipientIds([])}
-                      />
-                    ) : (
-                      <Input
-                        id="collaboration-owner-raw"
-                        name="collaboration-owner-raw"
-                        value={activeSchema.ownerRecipientId || collaborative.ownerRecipientId || ''}
-                        onChange={(event) => commit({ ownerRecipientId: event.target.value || undefined })}
-                        placeholder="recipient-1"
-                      />
-                    )}
-                  </div>
-                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Co-propietarios</div>
-                    {hasRecipientOptions ? (
-                      <Select
-                        id="collaboration-coowners"
-                        name="collaboration-coowners"
-                        mode="multiple"
-                        value={ownerRecipientIds}
-                        options={recipientSelectOptions}
-                        onChange={(value) => updateRecipientIds(value)}
-                        placeholder="Selecciona propietarios"
-                      />
-                    ) : (
-                      <Input
-                        id="collaboration-coowners-raw"
-                        name="collaboration-coowners-raw"
-                        value={joinRecipientIds(ownerRecipientIds)}
-                        onChange={(event) => updateRecipientIds(event.target.value)}
-                        placeholder="recipient-1, recipient-2"
-                      />
-                    )}
-                  </div>
-                  <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Visible</div>
-                    <Input
-                      id="collaboration-visible-name"
-                      name="collaboration-visible-name"
-                      value={resolvedOwnerLabel}
-                      onChange={(event) => commit({ ownerRecipientName: event.target.value || undefined })}
-                      placeholder="Nombre visible"
-                    />
-                  </div>
 
                   <Divider className={`${DESIGNER_CLASSNAME}schema-config-divider`} />
 
@@ -472,16 +462,10 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                       />
                     </div>
                   </div>
-                </>
+                </div>
               ),
             },
           ]}
-        />
-
-        <CollaborationLockSection
-          isVisible={hasLock}
-          lock={lock}
-          onChangeLock={(patch) => commit({ lock: patch })}
         />
       </div>
     </CompactConfigPanel>

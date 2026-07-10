@@ -81,7 +81,8 @@ const SelectableSortableItem = ({
     return items.slice(0, 2);
   }, [collaborationColor, collaborationState]);
   const primaryLabel = resolveDisplayLabel(schema);
-  const secondaryLabel = `${String(schema.name || '').trim() || 'Campo'} · ${getSchemaTypeLabel(schema.type)}`;
+  const technicalName = String(schema.name || '').trim() || 'Campo';
+  const schemaTypeLabel = getSchemaTypeLabel(schema.type);
 
   let status: undefined | 'is-warning' | 'is-danger';
   if (!schema.name) {
@@ -98,7 +99,8 @@ const SelectableSortableItem = ({
       onClick={() => onEdit(schema.id)}
       value={primaryLabel}
       schemaType={schema.type}
-      title={secondaryLabel}
+      title={technicalName}
+      typeLabel={schemaTypeLabel}
       className={DESIGNER_CLASSNAME + 'item-auto rounded-2xl'}
       status={status}
       required={schema.required}

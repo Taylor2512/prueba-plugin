@@ -3,7 +3,8 @@ import { defineConfig, devices } from '@playwright/test';
 const baseURL = process.env.PLAYWRIGHT_BASE_URL || 'http://localhost:5174';
 
 export default defineConfig({
-  testDir: 'tests/playwright',
+  testDir: '.',
+  testMatch: ['tests/playwright/**/*.spec.ts', 'tests/e2e/**/*.spec.ts'],
   timeout: 30_000,
   forbidOnly: Boolean(process.env.CI),
   fullyParallel: false,

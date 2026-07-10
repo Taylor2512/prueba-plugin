@@ -45,8 +45,10 @@ interface Props {
   style?: React.CSSProperties;
   /** Status indicator for the item */
   status?: 'is-warning' | 'is-danger';
-  /** Title attribute for the item */
+  /** Title attribute for the item (technical name when it differs from value) */
   title?: string;
+  /** Human-readable schema type label, rendered as its own secondary segment */
+  typeLabel?: string;
   /** Whether the item is required */
   required?: boolean;
   /** Whether the item is read-only */
@@ -137,12 +139,20 @@ const ItemActions = ({
   <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-actions', 'flex items-center gap-1.5')}>
     {readOnly ? (
       <Tooltip title="Solo lectura" placement="top">
-        <Lock size={13} className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-lock', 'text-slate-500')} />
+        <span data-testid="right-sidebar-field-badge" data-badge="readonly" className="inline-flex">
+          <Lock size={13} className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-lock', 'text-slate-500')} />
+        </span>
       </Tooltip>
     ) : null}
     {required ? (
       <Tooltip title="Campo requerido" placement="top">
-        <span className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-required', 'text-xs font-semibold text-rose-600')}>*</span>
+        <span
+          data-testid="right-sidebar-field-badge"
+          data-badge="required"
+          className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-required', 'text-xs font-semibold text-rose-600')}
+        >
+          *
+        </span>
       </Tooltip>
     ) : null}
     {onToggleVisibility ? (
@@ -150,6 +160,7 @@ const ItemActions = ({
         <button
           onClick={(e) => { e.stopPropagation(); onToggleVisibility(); }}
           title={hidden ? 'Mostrar' : 'Ocultar'}
+          {...(hidden ? { 'data-testid': 'right-sidebar-field-badge', 'data-badge': 'hidden' } : {})}
           className={mergeClassNames(DESIGNER_CLASSNAME + 'button-auto', 'inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm')}
         >
           {hidden ? <EyeOff size={13} /> : <Eye size={13} />}
@@ -190,6 +201,7 @@ const Item = React.memo(
       schemaType,
       status,
       title,
+      typeLabel,
       required,
       readOnly,
       hidden,
@@ -235,12 +247,18 @@ const Item = React.memo(
     const normalizedValue =
       typeof value === 'string' || typeof value === 'number' ? String(value) : undefined;
     const secondaryValue = typeof title === 'string' && title.trim() && title !== normalizedValue ? title.trim() : '';
-    const valueTooltip = [normalizedValue, secondaryValue].filter(Boolean).join(' · ') || secondaryValue || normalizedValue || '';
+    const normalizedTypeLabel = typeof typeLabel === 'string' && typeLabel.trim() ? typeLabel.trim() : '';
+    const valueTooltip =
+      [normalizedValue, secondaryValue, normalizedTypeLabel].filter(Boolean).join(' · ') ||
+      secondaryValue ||
+      normalizedValue ||
+      '';
     const dragStyle: React.CSSProperties = {
       transform: `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0) scale(${scaleX}, ${scaleY})`,
       transition,
       ...style,
       '--type-accent': typeAccent,
+      ...(accentColor ? { '--schema-owner-color': accentColor } : null),
       ...(accentColor
         ? {
             boxShadow: `inset 3px 0 0 ${accentColor}${style?.boxShadow ? `, ${style.boxShadow}` : ''}`,
@@ -263,7 +281,8 @@ const Item = React.memo(
         data-selected={selected ? 'true' : 'false'}
         data-hovered={hovered ? 'true' : 'false'}
         data-testid="right-sidebar-field-item"
-        data-schema-type={schemaType}>
+        data-schema-type={schemaType}
+        data-schema-owner-color={accentColor || undefined}>
         <button
           type="button"
           className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-hit-target', 'absolute inset-0 z-0 rounded-2xl')}
@@ -300,12 +319,16 @@ const Item = React.memo(
                 notUniqueLabel={i18n('notUniq')}
               />
             </div>
-            {secondaryValue ? (
+            {secondaryValue || normalizedTypeLabel ? (
               <div
                 className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-secondary', 'truncate text-[11px] leading-tight text-slate-500')}
                 data-testid="right-sidebar-field-technical-name"
               >
                 {secondaryValue}
+                {secondaryValue && normalizedTypeLabel ? ' · ' : ''}
+                {normalizedTypeLabel ? (
+                  <span data-testid="right-sidebar-field-type">{normalizedTypeLabel}</span>
+                ) : null}
               </div>
             ) : null}
             {Array.isArray(metaBadges) && metaBadges.length > 0 ? (

@@ -1,5 +1,6 @@
 import { clearSchemaRoot } from '../shared/schemaDom.js';
 import { createOptionIndicatorElement, type OptionIndicatorShape } from './optionIndicator.js';
+import { markInspectorInteractive, stopInspectorPointerEvent } from '../../ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.js';
 
 export type OptionGroupEditorItem = {
   optionId: string;
@@ -48,6 +49,7 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
   const render = () => {
     clearSchemaRoot(config.rootElement);
     config.rootElement.setAttribute('data-testid', 'detail-options-section');
+    markInspectorInteractive(config.rootElement);
 
     const header = document.createElement('div');
     header.className = 'sisad-option-editor-header';
@@ -63,6 +65,7 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
       const row = document.createElement('div');
       row.className = config.rowClassName;
       row.setAttribute('data-testid', 'option-row');
+      markInspectorInteractive(row);
 
       row.appendChild(config.createIndicator(option, index));
 
@@ -73,6 +76,8 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
       labelInput.className = 'sisad-option-editor-input';
       labelInput.setAttribute('data-testid', 'option-label-input');
       labelInput.setAttribute('aria-label', `Opción ${index + 1}`);
+      labelInput.addEventListener('pointerdown', stopInspectorPointerEvent);
+      labelInput.addEventListener('mousedown', stopInspectorPointerEvent);
 
       const removeBtn = document.createElement('button');
       removeBtn.type = 'button';
@@ -81,6 +86,7 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
       removeBtn.setAttribute('data-testid', 'option-delete-button');
       removeBtn.setAttribute('aria-label', `Eliminar opción ${index + 1}`);
       removeBtn.title = 'Eliminar opción';
+      removeBtn.addEventListener('pointerdown', stopInspectorPointerEvent);
 
       labelInput.addEventListener('change', createAction((currentOptions) =>
         config.createRenamedOptions(currentOptions, index, normalizeText(labelInput.value)),
@@ -107,6 +113,8 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
     newInput.placeholder = config.newInputPlaceholder;
     newInput.className = 'sisad-option-editor-input';
     newInput.setAttribute('data-testid', 'option-new-input');
+    newInput.addEventListener('pointerdown', stopInspectorPointerEvent);
+    newInput.addEventListener('mousedown', stopInspectorPointerEvent);
 
     const addBtn = document.createElement('button');
     addBtn.type = 'button';
@@ -124,7 +132,7 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
       newInput.value = '';
     };
 
-    addBtn.addEventListener('pointerdown', (event) => event.stopPropagation());
+    addBtn.addEventListener('pointerdown', stopInspectorPointerEvent);
     addBtn.addEventListener('click', doAdd);
     newInput.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === 'NumpadEnter') {

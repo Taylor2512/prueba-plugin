@@ -8,6 +8,7 @@ import DetailHeaderCard from './DetailHeaderCard.js';
 import DetailFormSection from './DetailFormSection.js';
 import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
 import type { DetailInspectorSection } from './detailSchemas.js';
+import { stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
 
 type DetailViewContentProps = {
   activeSchema: SchemaForUI;
@@ -31,8 +32,25 @@ const DetailViewContent = ({
   backTooltip = 'Volver a campos',
 }: DetailViewContentProps) => {
   return (
-    <SidebarFrame className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-view', 'flex h-full min-h-0 flex-col')}>
-      <SidebarBody tabIndex={0} aria-label="Secciones del detalle del campo">
+    <SidebarFrame
+      className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-view', 'flex h-full min-h-0 flex-col')}
+      data-testid="detail-view"
+    >
+      <SidebarBody
+        tabIndex={0}
+        aria-label="Secciones del detalle del campo"
+        data-sisad-inspector-interactive="true"
+        data-selecto-ignore="true"
+        data-moveable-ignore="true"
+        data-canvas-drop-ignore="true"
+        onPointerDown={stopInspectorPointerEvent}
+        onMouseDown={stopInspectorPointerEvent}
+        onClick={stopInspectorPointerEvent}
+        onDoubleClick={stopInspectorPointerEvent}
+        onDragStart={stopInspectorPointerEvent}
+        onDrop={stopInspectorPointerEvent}
+        onContextMenu={stopInspectorPointerEvent}
+      >
         <DetailHeaderCard
           activeSchema={activeSchema}
           schemaConfig={schemaConfig}

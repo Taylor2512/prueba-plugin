@@ -13,6 +13,8 @@ interface PluginIconProps {
   className?: string;
   useDefaultStyles?: boolean;
   activeRecipientColor?: string | null;
+  /** Optional data-testid stamped on the icon root (surface-specific, e.g. left-sidebar-schema-icon). */
+  testId?: string;
   'data-schema-type'?: string;
   'data-active-recipient-color'?: string;
 }
@@ -64,7 +66,7 @@ const SVGIcon = ({ svgString, size, styles, label }: {
 };
 
 const PluginIcon = (props: PluginIconProps) => {
-  const { plugin, label, size, styles, className, useDefaultStyles = true, activeRecipientColor } = props;
+  const { plugin, label, size, styles, className, useDefaultStyles = true, activeRecipientColor, testId } = props;
   const { token } = theme.useToken();
   const options = useContext(OptionsContext);
   const hasCustomClass = typeof className === 'string' && className.trim().length > 0;
@@ -89,6 +91,7 @@ const PluginIcon = (props: PluginIconProps) => {
   };
 
   const dataAttrs = {
+    ...(testId ? { 'data-testid': testId } : {}),
     'data-schema-type': schemaType || undefined,
     ...(activeRecipientColor ? { 'data-active-recipient-color': activeRecipientColor } : {}),
   };

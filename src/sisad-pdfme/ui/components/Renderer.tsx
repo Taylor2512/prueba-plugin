@@ -11,6 +11,7 @@ import { getSchemaPluginByType as getBuiltInSchemaPluginByType } from '@sisad-pd
 import { SELECTABLE_CLASSNAME, UI_CLASSNAME } from '../constants.js';
 import { PluginsRegistry, OptionsContext, I18nContext, CacheContext } from '../contexts.js';
 import { resolveSchemaTone, resolveSchemaToneSurface } from './Designer/shared/schemaTone.js';
+import { resolveSchemaOwnerColorValue } from '../../schemas/shared/fieldChrome.js';
 import { buildPageMetadataAttrs } from './shared/pageMetadata.js';
 
 type RendererProps = Omit<
@@ -129,12 +130,9 @@ const Wrapper = ({
     designerStyleSchema.__designer?.collaboration?.recipientId ||
     designerStyleSchema.__designer?.recipientId ||
     undefined;
-  const schemaOwnerColor =
-    designerStyleSchema.__designer?.collaboration?.recipientColor ||
-    designerStyleSchema.__designer?.recipientColor ||
-    designerStyleSchema.ownerColor ||
-    designerStyleSchema.userColor ||
-    undefined;
+  // Ownership accent comes from the single shared resolver (fieldChrome) so the
+  // canvas wrapper, inner field chrome and sidebars all agree on the color.
+  const schemaOwnerColor = resolveSchemaOwnerColorValue(schema) || undefined;
   const schemaTitle = getSchemaTitle(schema);
   const schemaTone = resolveSchemaTone(schema, selectable ? '#38a0ff' : '#94a3b8');
   const schemaSurfaceTone = resolveSchemaToneSurface(schema, '#ffffff', schema.readOnly ? 0.08 : 0.12);
@@ -176,7 +174,9 @@ const Wrapper = ({
     backgroundColor: isCompactChoiceSchema ? 'transparent' : schemaSurfaceTone,
     border: isCompactChoiceSchema ? '1px solid transparent' : outline || `1px solid ${schemaTone}`,
     '--schema-tone': schemaTone,
-    '--schema-owner-color': schemaTone,
+    // Owner color must reflect the assigned recipient; the semantic type tone is
+    // only a fallback so unowned schemas keep a sensible accent.
+    '--schema-owner-color': schemaOwnerColor || schemaTone,
     '--schema-surface-tone': isCompactChoiceSchema ? 'transparent' : schemaSurfaceTone,
     '--schema-outline': isCompactChoiceSchema ? '1px solid transparent' : outline || `1px solid ${schemaTone}`,
   } as React.CSSProperties;

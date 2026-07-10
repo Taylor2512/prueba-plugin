@@ -21,6 +21,24 @@ type DetailSectionCardProps = {
   resetToken?: unknown;
 };
 
+/** Canonical section key → stable test id (contract for e2e specs). */
+const SECTION_TESTIDS: Record<string, string> = {
+  identity: 'detail-section-info',
+  options: 'detail-section-options',
+  validation: 'detail-section-fill-rules',
+  box: 'detail-section-layout',
+  appearance: 'detail-section-format',
+  behavior: 'detail-section-behavior',
+  dataBindings: 'detail-section-data',
+  help: 'detail-section-help',
+  collaboration: 'detail-section-assignment',
+  comments: 'detail-section-comments',
+  advanced: 'detail-section-technical',
+};
+
+const resolveSectionTestId = (sectionKey?: string): string | undefined =>
+  sectionKey ? SECTION_TESTIDS[sectionKey] || `detail-section-${sectionKey}` : undefined;
+
 type SectionTextProps = {
   title: string;
   description?: string;
@@ -144,6 +162,7 @@ const DetailSectionCard = ({
         className,
       )}
       data-section={sectionKey}
+      data-testid={resolveSectionTestId(sectionKey)}
       data-collapsible={collapsible ? 'true' : 'false'}
       data-collapsed={resolvedCollapsed ? 'true' : 'false'}>
       <SectionHead

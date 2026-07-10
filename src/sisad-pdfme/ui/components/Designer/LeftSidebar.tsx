@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect, useMemo, useCallback, useRef } 
 import { Schema, Plugin, BasePdf, getFallbackFontName, cloneDeep } from '@sisad-pdfme/common';
 import { Button } from 'antd';
 import { useDraggable } from '@dnd-kit/core';
-import { LayoutGrid, List, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
+import { Grip, LayoutGrid, List, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../constants.js';
 import { setFontNameRecursively } from '../../helper.js';
 import { OptionsContext, PluginsRegistry } from '../../contexts.js';
@@ -161,7 +161,7 @@ type ActiveRecipientOption = {
   massiveId?: string | null;
 };
 
-export type CatalogViewMode = 'compact' | 'rich';
+export type CatalogViewMode = 'compact' | 'rich' | 'mini';
 export type CatalogQuickFilter = 'all' | 'favorites' | 'recent';
 export type CatalogCapability = 'designer' | 'content' | 'layout' | 'selection' | 'prefill' | 'dynamic';
 const SHOW_ADVANCED_CATALOG_CONTROLS = false;
@@ -484,8 +484,16 @@ const SidebarShell = ({
           ) : null}
           {activeRecipientColor ? (
             <span
-              aria-label={`Color del destinatario activo ${activeRecipientColor}`}
-              title={`Color del destinatario activo: ${activeRecipientColor}`}
+              aria-label={
+                activeRecipientLabel
+                  ? `Campos asignados a ${activeRecipientLabel}`
+                  : `Color del destinatario activo ${activeRecipientColor}`
+              }
+              title={
+                activeRecipientLabel
+                  ? `Campos asignados a ${activeRecipientLabel}`
+                  : `Color del destinatario activo: ${activeRecipientColor}`
+              }
               className={`${DESIGNER_CLASSNAME}left-sidebar-active-recipient-dot`}
               style={{ '--active-recipient-color': activeRecipientColor } as React.CSSProperties}
             />
@@ -997,7 +1005,7 @@ const LeftSidebar = ({
   useEffect(() => {
     if (catalogViewMode !== undefined || hasManualViewMode) return;
     const targetViewMode: CatalogViewMode =
-      sidebarDensityMode === 'compact' || sidebarDensityMode === 'mini' ? 'compact' : 'rich';
+      sidebarDensityMode === 'mini' ? 'mini' : sidebarDensityMode === 'compact' ? 'compact' : 'rich';
     if (targetViewMode === resolvedViewMode) return;
     setInternalViewMode(targetViewMode);
     onCatalogViewModeChange?.(targetViewMode);
@@ -1072,6 +1080,7 @@ const LeftSidebar = ({
           >
             <Button
               className={buttonClass}
+              data-testid="left-sidebar-schema-tile"
               data-schema-type={pluginType}
               data-schema-category={category}
               data-schema-kind={item.source}
@@ -1103,6 +1112,7 @@ const LeftSidebar = ({
               <PluginIcon
                 plugin={plugin}
                 label={displayLabel}
+                testId="left-sidebar-schema-icon"
                 activeRecipientColor={pluginTone ?? null}
                 styles={
                   pluginTone
@@ -1190,6 +1200,7 @@ const LeftSidebar = ({
                 `${DESIGNER_CLASSNAME}plugin-btn`,
                 `${DESIGNER_CLASSNAME}plugin-btn-${variant}`,
               )}
+              data-testid="left-sidebar-schema-tile"
               data-schema-type={definition.pluginType}
               data-schema-category={definition.category}
               data-schema-kind="custom"
@@ -1229,6 +1240,7 @@ const LeftSidebar = ({
                   <PluginIcon
                     plugin={plugin}
                     label={definition.label}
+                    testId="left-sidebar-schema-icon"
                     activeRecipientColor={activeRecipientTone ?? null}
                     styles={
                       activeRecipientTone
@@ -1338,6 +1350,7 @@ const LeftSidebar = ({
         <Button
           className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
           size="small"
+          data-testid="left-sidebar-filter-all"
           type={quickFilter === 'all' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('all')}
         >
@@ -1346,6 +1359,7 @@ const LeftSidebar = ({
         <Button
           className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
           size="small"
+          data-testid="left-sidebar-filter-favorites"
           type={quickFilter === 'favorites' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('favorites')}
         >
@@ -1354,6 +1368,7 @@ const LeftSidebar = ({
         <Button
           className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
           size="small"
+          data-testid="left-sidebar-filter-recent"
           type={quickFilter === 'recent' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('recent')}
         >
@@ -1363,11 +1378,35 @@ const LeftSidebar = ({
           <Button
             className={DESIGNER_CLASSNAME + 'left-sidebar-view-toggle-btn'}
             size="small"
-            icon={resolvedViewMode === 'compact' ? <List size={14} /> : <LayoutGrid size={14} />}
-            title={resolvedViewMode === 'compact' ? 'Vista detalle (lista)' : 'Vista compacta (grid)'}
-            aria-label={resolvedViewMode === 'compact' ? 'Vista detalle (lista)' : 'Vista compacta (grid)'}
+            data-testid="left-sidebar-view-toggle"
+            data-view-mode={resolvedViewMode}
+            icon={
+              resolvedViewMode === 'rich' ? (
+                <List size={14} />
+              ) : resolvedViewMode === 'compact' ? (
+                <Grip size={14} />
+              ) : (
+                <LayoutGrid size={14} />
+              )
+            }
+            title={
+              resolvedViewMode === 'rich'
+                ? 'Cambiar a vista compacta (lista)'
+                : resolvedViewMode === 'compact'
+                  ? 'Cambiar a vista mini (solo iconos)'
+                  : 'Cambiar a vista cómoda (grid)'
+            }
+            aria-label={
+              resolvedViewMode === 'rich'
+                ? 'Cambiar a vista compacta (lista)'
+                : resolvedViewMode === 'compact'
+                  ? 'Cambiar a vista mini (solo iconos)'
+                  : 'Cambiar a vista cómoda (grid)'
+            }
             onClick={() => {
-              const nextMode: CatalogViewMode = resolvedViewMode === 'compact' ? 'rich' : 'compact';
+              // Cómodo (rich) → Compacto (compact) → Mini → Cómodo…
+              const nextMode: CatalogViewMode =
+                resolvedViewMode === 'rich' ? 'compact' : resolvedViewMode === 'compact' ? 'mini' : 'rich';
               setUserViewMode(nextMode);
               onCatalogViewModeChange?.(nextMode);
             }}
@@ -1429,6 +1468,7 @@ const LeftSidebar = ({
     <div
       ref={sidebarRootRef}
       className={sidebarClass}
+      data-testid="left-sidebar"
       data-sidebar-variant={variant}
       data-sidebar-detached={detached ? 'true' : 'false'}
       data-sidebar-collapsed={sidebarExpanded ? 'false' : 'true'}

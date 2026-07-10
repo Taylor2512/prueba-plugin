@@ -116,30 +116,41 @@ const normalizeColor = (value: unknown): string =>
  * Deliberately does NOT read buttonColor/textColor/schema.color — those are
  * semantic/content colors, never ownership.
  */
-export const resolveSchemaOwnerTone = (
-  schema: unknown,
-  fallback?: string | null,
-): string => {
-  const source = schema as
-    | {
-        ownerColor?: string;
-        userColor?: string;
-        recipientColor?: string;
-        __designer?: { ownerColor?: string; recipientColor?: string };
-      }
-    | null
-    | undefined;
+type OwnerColorAwareSchema = {
+  ownerColor?: string;
+  userColor?: string;
+  recipientColor?: string;
+  __designer?: {
+    ownerColor?: string;
+    recipientColor?: string;
+    collaboration?: { recipientColor?: string };
+  };
+};
 
+/**
+ * Raw ownership color: same chain as `resolveSchemaOwnerTone` but WITHOUT any
+ * fallback — returns '' when the schema has no owner color at all. Use this
+ * when the consumer needs to distinguish "no owner" (e.g. data attributes)
+ * from "render something anyway" (chrome tones).
+ */
+export const resolveSchemaOwnerColorValue = (schema: unknown): string => {
+  const source = schema as OwnerColorAwareSchema | null | undefined;
   return (
     normalizeColor(source?.ownerColor) ||
     normalizeColor(source?.userColor) ||
     normalizeColor(source?.recipientColor) ||
+    normalizeColor(source?.__designer?.collaboration?.recipientColor) ||
     normalizeColor(source?.__designer?.ownerColor) ||
     normalizeColor(source?.__designer?.recipientColor) ||
-    normalizeColor(fallback) ||
-    '#2563EB'
+    ''
   );
 };
+
+export const resolveSchemaOwnerTone = (
+  schema: unknown,
+  fallback?: string | null,
+): string =>
+  resolveSchemaOwnerColorValue(schema) || normalizeColor(fallback) || '#2563EB';
 
 /**
  * Central visual policy: given mode + state + tone, returns the chrome pieces

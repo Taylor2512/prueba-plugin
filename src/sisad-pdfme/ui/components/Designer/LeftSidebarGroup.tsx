@@ -9,7 +9,7 @@ type LeftSidebarGroupProps = {
   category: string;
   items: LeftSidebarGroupItem[];
   count?: number;
-  viewMode?: 'compact' | 'rich';
+  viewMode?: 'compact' | 'rich' | 'mini';
   collapsed?: boolean;
   collapsible?: boolean;
   onToggle?: () => void;
@@ -50,6 +50,7 @@ export const LeftSidebarGroup = ({
         `${DESIGNER_CLASSNAME}left-sidebar-group`,
         'rounded-xl border border-slate-200/70 bg-white/92 p-1.5 shadow-none',
       )}
+      data-testid="left-sidebar-group"
     >
       {collapsible ? (
         <button

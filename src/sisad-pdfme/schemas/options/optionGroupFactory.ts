@@ -362,12 +362,14 @@ export const createOptionGroupPropPanelConfig = (config: OptionGroupPropPanelCon
           },
         }
       : {}),
+    // Rendered by the DetailView as a direct React editor (SchemaOptionsEditor):
+    // no Ant Card wrapper. The imperative `config.optionsWidget` remains
+    // registered in `widgets` only as a legacy fallback for other hosts.
     optionsContainer: {
       title: config.optionsTitle,
       type: 'string',
-      widget: 'card',
+      widget: 'SchemaOptionsEditor',
       span: 24,
-      properties: { options: { widget: config.optionsWidget, span: 24 } },
     },
     ...helpFields(),
     ...dataLabelFields(),

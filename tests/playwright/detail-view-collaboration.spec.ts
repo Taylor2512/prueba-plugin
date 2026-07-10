@@ -17,11 +17,23 @@ test.describe('detail-view collaboration', () => {
       await expect(collaborationSection.getByRole('button', { name: 'Gestionar' })).toBeVisible();
     });
 
-    await test.step('open technical modal section', async () => {
+    await test.step('modal separates business view from collapsed advanced view', async () => {
       await collaborationSection.getByRole('button', { name: 'Gestionar' }).click();
-      await page.getByText('Información técnica').click();
 
+      // Normal view: business fields visible up-front, no raw technical IDs.
+      const normalView = page.getByTestId('collaboration-normal-view');
+      await expect(normalView).toBeVisible();
       await expect(page.locator('#collaboration-state')).toBeVisible();
+      await expect(normalView).toContainText('Asignado a');
+      await expect(normalView).toContainText('Nombre visible');
+
+      // Advanced starts collapsed: technical fields hidden until invoked.
+      await expect(page.getByTestId('collaboration-advanced-view')).not.toBeVisible();
+      await expect(page.locator('#collaboration-schema-uid')).not.toBeVisible();
+
+      await page.getByTestId('collaboration-advanced-toggle').click();
+
+      await expect(page.getByTestId('collaboration-advanced-view')).toBeVisible();
       await expect(page.getByText('UID técnico')).toBeVisible();
       await expect(page.locator('#collaboration-file')).toBeVisible();
       await expect(page.locator('#collaboration-page-number')).toBeVisible();

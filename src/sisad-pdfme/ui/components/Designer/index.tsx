@@ -77,6 +77,7 @@ import {
   lockDesignerSidebarScroll,
   unlockDesignerSidebarScroll,
 } from './shared/interactionGuards.js';
+import { isInspectorInteractiveTarget } from './RightSidebar/DetailView/inspectorInteractionGuards.js';
 import { filterSchemasByCollisionScope } from './shared/schemaCollision.js';
 import { resolvePointerDropTarget } from './shared/canvasDropPipeline.js';
 
@@ -3730,6 +3731,10 @@ const TemplateEditor = ({
       <DndContext
         autoScroll={false}
         onDragStart={(event) => {
+          if (isInspectorInteractiveTarget((event as { activatorEvent?: Event | null }).activatorEvent?.target || null)) {
+            resetSchemaDragState();
+            return;
+          }
           if (!isSchemaDragActive(event?.active)) return;
           onEditEnd();
           setIsSchemaDragging(true);
@@ -3780,6 +3785,10 @@ const TemplateEditor = ({
           resetSchemaDragState();
         }}
         onDragEnd={(event) => {
+          if (isInspectorInteractiveTarget((event as { activatorEvent?: Event | null }).activatorEvent?.target || null)) {
+            resetSchemaDragState();
+            return;
+          }
           if (!isSchemaDragActive(event?.active)) {
             resetSchemaDragState();
             return;

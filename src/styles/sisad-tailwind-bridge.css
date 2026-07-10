@@ -492,6 +492,32 @@
   @apply border-sky-300 shadow-[0_0_0_2px_rgba(59,130,246,0.12)];
 }
 
+/* ── Inspector: flatten any residual Ant Card inside detail sections ────────
+   Legacy propPanel fields may still use widget 'card'; inside the inspector a
+   Card must read as a plain group: no border/shadow, tiny head, zero padding. */
+.sisad-pdfme-designer-detail-view-form-shell .ant-card {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.sisad-pdfme-designer-detail-view-form-shell .ant-card-head {
+  min-height: 0;
+  padding: 0 2px 4px;
+  border-bottom: 0;
+}
+
+.sisad-pdfme-designer-detail-view-form-shell .ant-card-head-title {
+  padding: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgb(100 116 139);
+}
+
+.sisad-pdfme-designer-detail-view-form-shell .ant-card-body {
+  padding: 0;
+}
+
 /* ── Inspector select popup (portaled to body) ─────────────────────────────
    Validation-type and similar inspector dropdowns: give the popup a readable
    minimum width and never truncate option labels. */

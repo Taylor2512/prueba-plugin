@@ -1,8 +1,9 @@
 import React from 'react';
-import { Button, Tag } from 'antd';
+import { Button, Switch, Tag } from 'antd';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
 import { mergeClassNames } from '../../shared/className.js';
+import { stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
 
 export type InspectorTag = {
   key?: React.Key;
@@ -84,6 +85,7 @@ export const InspectorActionRow = ({
           size="small"
           type={action.type || 'default'}
           onClick={action.onClick}
+          onPointerDown={stopInspectorPointerEvent}
           disabled={action.disabled}
           className="inline-flex h-7 items-center justify-center rounded-lg border-slate-200 bg-white px-2 text-[0.66rem] font-semibold text-slate-700 shadow-none transition hover:border-slate-300 hover:bg-slate-50"
         >
@@ -191,6 +193,66 @@ export const InspectorSummaryCard = ({
       {actions && actions.length > 0 ? <InspectorActionRow actions={actions} /> : null}
       {children}
     </div>
+  );
+};
+
+type BooleanSwitchWidgetProps = {
+  value: unknown;
+  onChange?: (nextValue: boolean) => void;
+  disabled?: boolean;
+  readOnly?: boolean;
+  checkedLabel?: string;
+  uncheckedLabel?: string;
+};
+
+const normalizeBoolean = (value: unknown): boolean => {
+  if (typeof value === 'boolean') return value;
+  if (typeof value === 'number') return value !== 0;
+  if (typeof value === 'string') {
+    const normalized = value.trim().toLowerCase();
+    if (!normalized) return false;
+    return ['true', '1', 'yes', 'y', 'on', 'checked'].includes(normalized);
+  }
+  return Boolean(value);
+};
+
+export const BooleanSwitchWidget = ({
+  value,
+  onChange,
+  disabled,
+  readOnly,
+  checkedLabel,
+  uncheckedLabel,
+}: BooleanSwitchWidgetProps) => {
+  const checked = normalizeBoolean(value);
+  const [internalChecked, setInternalChecked] = React.useState(checked);
+
+  React.useEffect(() => {
+    setInternalChecked(checked);
+  }, [checked]);
+
+  const commit = (nextChecked: boolean) => {
+    setInternalChecked(nextChecked);
+    onChange?.(nextChecked);
+  };
+
+  return (
+    <span
+      data-sisad-inspector-interactive="true"
+      data-selecto-ignore="true"
+      data-moveable-ignore="true"
+      data-canvas-drop-ignore="true"
+    >
+      <Switch
+        checked={internalChecked}
+        disabled={disabled || readOnly}
+        onChange={(next) => commit(Boolean(next))}
+        onClick={(next) => commit(Boolean(next))}
+      />
+      {checkedLabel || uncheckedLabel ? (
+        <span className="sr-only">{internalChecked ? checkedLabel || 'Activado' : uncheckedLabel || 'Desactivado'}</span>
+      ) : null}
+    </span>
   );
 };
 

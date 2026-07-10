@@ -104,7 +104,13 @@ const DetailHeaderCard = ({
   );
 
   return (
-    <div ref={headerRef} data-detail-header-density={headerDensity}>
+    <div
+      ref={headerRef}
+      data-detail-header-density={headerDensity}
+      data-testid="detail-header-card"
+      data-schema-owner-color={headerSummary.recipientColor || undefined}
+      style={{ '--schema-owner-color': leadingColor } as React.CSSProperties}
+    >
       <SidebarSurfaceHeader
         className={mergeClassNames(
           `${DESIGNER_CLASSNAME}detail-header-card`,

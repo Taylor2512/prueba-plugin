@@ -9,10 +9,12 @@ import WidgetRenderer from './WidgetRenderer.js';
 import SchemaCollaborationWidget from './SchemaCollaborationWidget.js';
 import SchemaConnectionsWidget from './SchemaConnectionsWidget.js';
 import SchemaFieldCommentsWidget from './SchemaFieldCommentsWidget.js';
+import SchemaOptionsEditor from './SchemaOptionsEditor.js';
 import { getSchemaTypeInspectorPreset, INLINE_EDITABLE_TEXT_TYPES } from '../../../../../schemas/schemaFamilies.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import type { DesignerEngine, SchemaDesignerConfig } from '../../../../designerEngine.js';
 import type { SidebarProps } from '../../../../types.js';
+import { BooleanSwitchWidget } from './InspectorPrimitives.js';
 import { ColorPickerWidget } from './detailWidgets.js';
 
 type BuildWidgetsParams = {
@@ -54,6 +56,19 @@ const buildDetailWidgets = ({
     Divider: () => <Divider className={`${DESIGNER_CLASSNAME}detail-view-divider`} />,
     ButtonGroup: (p) => <ButtonGroupWidget {...p} {...props} options={options} />,
     nativeColor: (p) => <ColorPickerWidget value={p.value} onChange={p.onChange} normalizeHex={normalizeColorHex} />,
+    // Unified React options editor (select/radioGroup/checkboxGroup) — replaces
+    // the imperative rootElement editors inside the DetailView.
+    SchemaOptionsEditor: () => (
+      <SchemaOptionsEditor activeSchema={props.activeSchema} changeSchemas={props.changeSchemas} />
+    ),
+    switch: (p) => (
+      <BooleanSwitchWidget
+        value={p.value}
+        onChange={(nextValue) => p.onChange?.(nextValue)}
+        disabled={p.disabled}
+        readOnly={p.readOnly}
+      />
+    ),
     InlineEditActionsWidget: () => {
       const schemaType = typeof props.activeSchema?.type === 'string' ? props.activeSchema.type : '';
       const isTextType = INLINE_EDITABLE_TEXT_TYPES.has(schemaType);

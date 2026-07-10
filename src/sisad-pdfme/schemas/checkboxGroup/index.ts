@@ -20,7 +20,6 @@ import {
   toggleMultiOptionSelection,
 } from '../options/optionSelectionBehavior.js';
 import { createOptionGroupOptionsEditor } from '../options/optionGroupEditorFactory.js';
-import { resolveSchemaIdByIdentity } from '../shared/schemaGuards.js';
 import type { OptionItem } from '../options/optionTypes.js';
 import {
   buildDefaultOptionGroupOptions,
@@ -29,6 +28,7 @@ import {
   normalizeText,
 } from '../options/optionModel.js';
 import { renderOptionGroupPdf } from '../options/optionGroupPdfRender.js';
+import { markInspectorInteractive } from '../../ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.js';
 
 // ─── Designer compact geometry constants ────────────────────────────────────
 // The + button is rendered as an external overlay (GroupOptionFloatingAction),
@@ -135,13 +135,10 @@ const CheckboxOptionsEditor = (props: PropPanelWidgetProps) => {
   const { rootElement, changeSchemas, activeSchema } = props;
   const schema = activeSchema as CheckboxGroupSchema;
   rootElement.style.width = '100%';
-
-  const getSchemaId = (): string | undefined => {
-    return resolveSchemaIdByIdentity(props.schemas, schema);
-  };
+  markInspectorInteractive(rootElement);
+  const schemaId = schema.id;
 
   const commit = (patch: Record<string, unknown>) => {
-    const schemaId = getSchemaId();
     if (!schemaId) return;
     changeSchemas(
       Object.entries({

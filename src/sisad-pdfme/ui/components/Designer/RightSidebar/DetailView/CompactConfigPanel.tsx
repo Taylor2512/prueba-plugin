@@ -3,6 +3,7 @@ import { Button, Modal, Tag } from 'antd';
 import { Settings2 } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { mergeClassNames } from '../../shared/className.js';
+import { markInspectorInteractive, stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
 
 type StatusTag = {
   label: string;
@@ -37,6 +38,13 @@ const CompactConfigPanel = ({
   children,
 }: CompactConfigPanelProps) => {
   const [open, setOpen] = React.useState(false);
+  const modalBodyRef = React.useRef<HTMLDivElement | null>(null);
+
+  React.useEffect(() => {
+    if (open) {
+      markInspectorInteractive(modalBodyRef.current);
+    }
+  }, [open]);
 
   return (
     <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel', 'rounded-xl border border-slate-200/70 bg-white/90 p-1.5 shadow-none')}>
@@ -106,7 +114,22 @@ const CompactConfigPanel = ({
         centered
         footer={null}
       >
-        {children}
+        <div
+          ref={modalBodyRef}
+          data-sisad-inspector-interactive="true"
+          data-selecto-ignore="true"
+          data-moveable-ignore="true"
+          data-canvas-drop-ignore="true"
+          onPointerDown={stopInspectorPointerEvent}
+          onMouseDown={stopInspectorPointerEvent}
+          onClick={stopInspectorPointerEvent}
+          onDoubleClick={stopInspectorPointerEvent}
+          onDragStart={stopInspectorPointerEvent}
+          onDrop={stopInspectorPointerEvent}
+          onContextMenu={stopInspectorPointerEvent}
+        >
+          {children}
+        </div>
       </Modal>
     </div>
   );

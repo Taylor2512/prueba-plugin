@@ -1,5 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import type { PropPanelWidgetProps } from '@sisad-pdfme/common';
+import { markInspectorInteractive } from './inspectorInteractionGuards.js';
 
 type Props = PropPanelWidgetProps & {
   widget: (props: PropPanelWidgetProps) => void;
@@ -17,6 +18,7 @@ const WidgetRenderer = (props: Props) => {
 
   useEffect(() => {
     if (ref.current) {
+      markInspectorInteractive(ref.current);
       clearRoot();
       widget({ ...otherProps, rootElement: ref.current });
     }

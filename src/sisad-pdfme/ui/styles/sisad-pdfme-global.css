@@ -784,6 +784,11 @@
     @apply [grid-template-columns:repeat(2,_minmax(0,_1fr))] gap-[0.3125rem];
   }
 
+  /* ── Mini mode: dense icon-only grid (tooltip carries the label) ─ */
+  .sisad-pdfme-designer-left-sidebar-group-items[data-view-mode="mini"] {
+    @apply [grid-template-columns:repeat(4,_minmax(0,_1fr))] gap-[0.25rem];
+  }
+
   .sisad-pdfme-designer-left-sidebar-highlight {
     @apply p-[0_1px] bg-[var(--color-warning-40)] rounded-[2px];
   }
@@ -859,6 +864,42 @@
       [box-shadow:inset_0_1px_0_var(--color-white-80),_0_1px_3px_var(--color-gray-900-04)] overflow-hidden text-center
       [transition:border-color_150ms_ease,_background_150ms_ease,_box-shadow_150ms_ease,_transform_150ms_ease];
     /* Tight DocuSign-style tile with a clear icon cap and centered label */
+  }
+
+  /* ── Mini tile: square icon-only button; label/favorite live in tooltip ── */
+  .sisad-pdfme-designer-plugin-btn[data-view-mode="mini"] {
+    @apply
+      w-full aspect-square min-h-0 flex items-center justify-center p-[0.25rem] [border:1px_solid_var(--color-border-18)]
+      rounded-[0.5rem] [background:linear-gradient(_180deg,_var(--color-white),_var(--color-gray-50)_)] cursor-grab
+      [box-shadow:inset_0_1px_0_var(--color-white-80),_0_1px_2px_var(--color-gray-900-04)] overflow-hidden
+      [transition:border-color_150ms_ease,_background_150ms_ease,_box-shadow_150ms_ease];
+  }
+
+  .sisad-pdfme-designer-plugin-btn[data-view-mode="mini"]:hover {
+    @apply border-[var(--schema-owner-color,_var(--color-primary-30))];
+  }
+
+  .sisad-pdfme-designer-plugin-btn[data-view-mode="mini"] .sisad-pdfme-designer-plugin-btn-label,
+  .sisad-pdfme-designer-plugin-btn[data-view-mode="mini"] .sisad-pdfme-designer-plugin-favorite-indicator,
+  .sisad-pdfme-designer-plugin-btn[data-view-mode="mini"] .sisad-pdfme-designer-left-sidebar-custom-item-copy {
+    @apply hidden;
+  }
+
+  /* The floating favorite toggle would cover the whole mini tile — hide it. */
+  .sisad-pdfme-designer-left-sidebar-plugin-wrap:has(> .sisad-pdfme-designer-plugin-btn[data-view-mode="mini"]) .sisad-pdfme-designer-plugin-favorite-toggle {
+    @apply hidden;
+  }
+
+  /* Favorite toggle only surfaces on hover/focus or when already active —
+     keeps the tile quiet at rest (still hover-revealed for pointer + keyboard). */
+  .sisad-pdfme-designer-left-sidebar-plugin-wrap .sisad-pdfme-designer-plugin-favorite-toggle {
+    @apply opacity-0 [transition:opacity_120ms_ease];
+  }
+
+  .sisad-pdfme-designer-left-sidebar-plugin-wrap:hover .sisad-pdfme-designer-plugin-favorite-toggle,
+  .sisad-pdfme-designer-left-sidebar-plugin-wrap:focus-within .sisad-pdfme-designer-plugin-favorite-toggle,
+  .sisad-pdfme-designer-left-sidebar-plugin-wrap .sisad-pdfme-designer-plugin-favorite-toggle[data-active="true"] {
+    @apply opacity-100;
   }
 
   .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-schema-category="Selecciones"] {
@@ -4137,6 +4178,19 @@
 
   .sisad-pdfme-designer-list-view-item-content {
     @apply gap-[0.45rem];
+  }
+
+  /* The content layer is decorative (aria-hidden) and sits above the full-row
+     hit-target button; without this, hovering/clicking the row text never
+     reaches the hit target. Interactive children opt back in. */
+  .sisad-pdfme-designer-list-view-item-content {
+    pointer-events: none;
+  }
+
+  .sisad-pdfme-designer-list-view-item-content button,
+  .sisad-pdfme-designer-list-view-item-content .ant-btn,
+  .sisad-pdfme-designer-list-view-item-content [data-testid="right-sidebar-field-badge"] {
+    pointer-events: auto;
   }
 
   .sisad-pdfme-designer-right-sidebar-layout-header,

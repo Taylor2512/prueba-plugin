@@ -7,7 +7,7 @@ test.describe('detail-view attachment', () => {
 
     await expect(page.getByText('Reglas del archivo')).toBeVisible();
     await expect(page.getByText('Asignación y bloqueo')).toBeVisible();
-    await expect(page.getByText('Técnico')).toBeVisible();
-    await expect(page.locator('.sisad-pdfme-designer-detail-section-card-title').filter({ hasText: 'Formato' })).toHaveCount(0);
+    await expect(page.getByTestId('detail-section-technical')).toHaveCount(0);
+    await expect(page.getByTestId('detail-section-format')).toHaveCount(0);
   });
 });

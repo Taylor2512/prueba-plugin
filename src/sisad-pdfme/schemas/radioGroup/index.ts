@@ -44,7 +44,7 @@ import {
   resolveSingleOptionSelection,
 } from '../options/optionSelectionBehavior.js';
 import { createOptionGroupOptionsEditor } from '../options/optionGroupEditorFactory.js';
-import { resolveSchemaIdByIdentity } from '../shared/schemaGuards.js';
+import { markInspectorInteractive } from '../../ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.js';
 import { renderOptionGroupPdf } from '../options/optionGroupPdfRender.js';
 
 type RadioOption = OptionItem;
@@ -71,16 +71,13 @@ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
   const schema = activeSchema as RadioGroupSchema;
 
   rootElement.style.width = '100%';
+  markInspectorInteractive(rootElement);
 
   let currentOptions = normalizeOptions(schema);
   let currentSelected = resolveSelectedOptionId(schema, currentOptions);
-
-  const getSchemaId = (): string | undefined => {
-    return resolveSchemaIdByIdentity(props.schemas, schema);
-  };
+  const schemaId = schema.id;
 
   const commit = (patch: Record<string, unknown>) => {
-    const schemaId = getSchemaId();
     if (!schemaId) return;
 
     const nextSchema = {
@@ -113,7 +110,7 @@ const RadioOptionsEditor = (props: PropPanelWidgetProps) => {
       selectedOptionId: currentSelected,
       defaultSelectedOptionId: currentSelected,
       orientation: 'vertical',
-      spacing: DESIGNER_BOX_GAP,
+      spacing: RADIO_GROUP_LAYOUT.boxGap,
       // width/height in mm (schema coordinate system, not CSS pixels)
       ...buildOptionGroupDesignerDimensions(RADIO_GROUP_LAYOUT, currentOptions.length),
     });

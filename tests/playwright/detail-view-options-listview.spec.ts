@@ -25,10 +25,13 @@ test.describe('RightSidebar · ListView', () => {
       const item = page.getByTestId('right-sidebar-field-item').first();
       await expect(item).toBeVisible();
       await expect(item.getByTestId('right-sidebar-field-label').first()).toBeVisible();
-      // Secondary line is "<technical name> · <type label>"
+      // Secondary line is "<technical name> · <type label>" (type-only when the
+      // field has no readable label, since the technical name is then primary).
       const technical = item.getByTestId('right-sidebar-field-technical-name').first();
       await expect(technical).toBeVisible();
-      await expect(technical).toContainText('·');
+      const typeSegment = item.getByTestId('right-sidebar-field-type').first();
+      await expect(typeSegment).toBeVisible();
+      await expect(typeSegment).not.toHaveText('');
     });
   });
 });

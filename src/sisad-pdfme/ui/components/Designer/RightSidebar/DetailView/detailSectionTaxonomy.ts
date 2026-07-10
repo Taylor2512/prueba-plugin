@@ -519,18 +519,12 @@ export function shouldRenderDetailSection(params: {
   }
 
   if (section === 'advanced') {
-    const advancedFields = [
-      'schemauid',
-      'documentid',
-      'pagenumber',
-      'metadata',
-      'debug',
-      '__designer',
-    ];
-    return Boolean(context.hasAdvancedOverrides) && (
-      hasMeaningfulSchemaValue(schemaObject, advancedFields) ||
-      hasWidget(fields, widgetNames) ||
-      hasAnyValue(schemaObject, ['schemaUid', 'documentId', 'pageNumber', 'metadata', 'debug', '__designer'])
+    const advancedFields = ['schemauid', 'documentid', 'pagenumber', 'metadata', 'debug', '__designer'];
+    return (
+      Boolean(context.hasAdvancedOverrides) &&
+      (hasMeaningfulSchemaValue(schemaObject, advancedFields) ||
+        hasWidget(fields, widgetNames) ||
+        hasAnyFields)
     );
   }
 

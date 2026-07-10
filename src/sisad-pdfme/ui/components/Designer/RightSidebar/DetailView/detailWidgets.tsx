@@ -3,6 +3,7 @@ import { Input, Popover, Tooltip } from 'antd';
 import { Palette, Pipette } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { mergeClassNames } from '../../shared/className.js';
+import { stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
 
 const COLOR_PRESETS = [
   '#000000',
@@ -36,12 +37,25 @@ export const ColorPickerWidget = ({
   const hex = normalizeHex(currentColor);
 
   const swatches = (
-    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'color-picker-swatches', 'grid grid-cols-8 gap-1 p-1')}>
+    <div
+      className={mergeClassNames(DESIGNER_CLASSNAME + 'color-picker-swatches', 'grid grid-cols-8 gap-1 p-1')}
+      data-sisad-inspector-interactive="true"
+      data-selecto-ignore="true"
+      data-moveable-ignore="true"
+      data-canvas-drop-ignore="true"
+      onPointerDown={stopInspectorPointerEvent}
+      onMouseDown={stopInspectorPointerEvent}
+      onClick={stopInspectorPointerEvent}
+    >
       {COLOR_PRESETS.map((preset) => (
         <Tooltip key={preset} title={preset} placement="top">
           <button
             type="button"
-            onClick={() => onChange?.(preset)}
+            onPointerDown={stopInspectorPointerEvent}
+            onClick={(event) => {
+              stopInspectorPointerEvent(event);
+              onChange?.(preset);
+            }}
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'color-picker-swatch-option',
               'h-5 w-5 rounded-md border border-slate-200 shadow-sm transition hover:scale-105 hover:border-slate-400',
@@ -55,12 +69,22 @@ export const ColorPickerWidget = ({
   );
 
   return (
-    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-container`, 'flex flex-wrap items-center gap-2')}>
+    <div
+      className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-container`, 'flex flex-wrap items-center gap-2')}
+      data-sisad-inspector-interactive="true"
+      data-selecto-ignore="true"
+      data-moveable-ignore="true"
+      data-canvas-drop-ignore="true"
+      onPointerDown={stopInspectorPointerEvent}
+      onMouseDown={stopInspectorPointerEvent}
+      onClick={stopInspectorPointerEvent}
+    >
       <Popover content={swatches} trigger="click" placement="bottomLeft">
         <button
           type="button"
           title="Paleta de colores"
           aria-label="Paleta de colores"
+          onPointerDown={stopInspectorPointerEvent}
           className={mergeClassNames(
             `${DESIGNER_CLASSNAME}color-picker-trigger`,
             'inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-2 py-1 text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50',
@@ -81,6 +105,7 @@ export const ColorPickerWidget = ({
         )}
         aria-label="Selector nativo de color"
         title="Selector nativo de color"
+        onPointerDown={stopInspectorPointerEvent}
       >
         <span
           className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-preview`, 'h-3.5 w-3.5 rounded-full border border-slate-200')}
@@ -104,6 +129,7 @@ export const ColorPickerWidget = ({
         className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-hex`, 'min-w-[7rem] rounded-xl border-slate-200 shadow-sm')}
         value={currentColor}
         onChange={(e) => onChange?.(e.target.value)}
+        onPointerDown={stopInspectorPointerEvent}
         placeholder="#000000"
         size="small"
       />

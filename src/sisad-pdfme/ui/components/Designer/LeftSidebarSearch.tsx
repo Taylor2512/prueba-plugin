@@ -20,10 +20,11 @@ const LeftSidebarSearch = ({
   <Input
     size="small"
     allowClear
-    placeholder="Buscar campos"
+    placeholder="Buscar campo"
     prefix={<Search size={13} />}
     value={value}
     onChange={(event) => onChange(event.target.value)}
+    data-testid="left-sidebar-search"
     data-use-default-style={useDefaultStyles ? 'true' : 'false'}
     className={mergeUniqueClassNames(
       `${DESIGNER_CLASSNAME}left-sidebar-search`,
