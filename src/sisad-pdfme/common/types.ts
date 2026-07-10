@@ -1,3 +1,17 @@
+/**
+ * @file types.ts
+ *
+ * Tipos TypeScript públicos derivados de schema.ts y contratos externos.
+ *
+ * Responsabilidades:
+ * - exponer tipos para render PDF/UI;
+ * - definir contratos de propPanel/inspector;
+ * - tipar plugins, schemas, templates, comments, options y props públicas.
+ *
+ * Nota:
+ * Este archivo debe mantenerse alineado con schema.ts para evitar diferencias entre tipo estático y validación runtime.
+ */
+
 import { z } from 'zod';
 import type {
   PdfComment as ContractPdfComment,
@@ -38,12 +52,15 @@ import {
   SchemaPageArray,
 } from './schema.js';
 
+/** Alias del schema de form-render usado por propPanel. */
 export type PropPanelSchema = _PropPanelSchema;
+/** Cambio unitario de propiedad sobre un schema. */
 export type ChangeSchemaItem = {
   key: string;
   value: unknown;
   schemaId: string;
 };
+/** Función para aplicar cambios batch sobre schemas. */
 export type ChangeSchemas = (objs: ChangeSchemaItem[]) => void;
 
 /**
@@ -130,10 +147,13 @@ type PropPanelProps = {
   i18n: (key: string) => string;
 };
 
+/** Props disponibles para widgets custom del propPanel. */
 export type PropPanelWidgetProps = _PropPanelWidgetProps & PropPanelProps;
 
+/** Token visual global de Ant Design. */
 export type GlobalToken = AntGlobalToken;
 
+/** Secciones canónicas soportadas por el inspector/DetailView. */
 export type PropPanelInspectorSectionKey =
   | 'general'
   | 'layout'
@@ -146,6 +166,7 @@ export type PropPanelInspectorSectionKey =
   | 'advanced'
   | 'comments';
 
+/** Configuración declarativa del inspector por plugin/schema. */
 export type PropPanelInspectorConfig = {
   visibleSections?: PropPanelInspectorSectionKey[];
   fieldSections?: Partial<Record<string, PropPanelInspectorSectionKey>>;
@@ -197,6 +218,7 @@ export type Plugin<T = Schema> = {
 };
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
+/** Mapa de plugins registrados por label/key. */
 export type Plugins = { [key: string]: Plugin<any> };
 
 export interface PluginRegistry {

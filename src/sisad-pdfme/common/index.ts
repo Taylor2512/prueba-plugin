@@ -1,4 +1,17 @@
+/**
+ * @file index.ts
+ *
+ * Barrel público de @sisad-pdfme/common.
+ *
+ * Este archivo define qué APIs salen del paquete common hacia Designer, Form, Viewer,
+ * Generator, integrations y módulos de alto nivel.
+ *
+ * Regla:
+ * Mantener exports explícitos. Evitar export * masivo para no exponer APIs internas por accidente.
+ */
+
 export { PDFME_VERSION } from './version.js';
+/** Reexporta contratos públicos usados por command bus, assignments y comentarios top-level. */
 export type {
   Command,
   CommandExecutionContext,
@@ -8,6 +21,7 @@ export type {
   SchemaIdentity,
   TopLevelPdfCommentEntry,
 } from '../contracts/index.js';
+/** Constantes de unidades, PDF base y fuente por defecto. */
 export {
   MM_TO_PT_RATIO,
   PT_TO_MM_RATIO,
@@ -18,6 +32,7 @@ export {
   ZOOM,
   DEFAULT_FONT_NAME,
 } from './constants.js';
+/** Helpers generales de validación, conversión, fuentes y templates. */
 export {
   cloneDeep,
   getFallbackFontName,
@@ -40,6 +55,7 @@ export {
   getInputFromTemplate,
   isBlankPdf,
 } from './helper.js';
+/** Helpers de colaboración, comments y assignments. */
 export {
   buildSchemaAssignments,
   buildUserRecipientAssignments,
@@ -55,6 +71,7 @@ export {
   upsertById,
   validateCollaborativeSchemas,
 } from './collaboration.js';
+/** Helpers de comentarios embebidos y top-level. */
 export {
   findSchemaByUid,
   addAnchorToSchema,
@@ -67,14 +84,19 @@ export {
   resolveCommentInSchema,
   filterCommentsByFileAndPage,
 } from './comments.js';
+/** Tipos de assignments colaborativos. */
 export type {
   SchemaAssignments,
   UserRecipientSchemaAssignments,
   UserRecipientAssignmentOptions,
 } from './collaboration.js';
+/** Motor de template dinámico para contenido con reflujo/paginación. */
 export { getDynamicTemplate } from './dynamicTemplate.js';
+/** Motor de placeholders/expresiones seguras. */
 export { replacePlaceholders } from './expression.js';
+/** Registry utilitario para plugins. */
 export { pluginRegistry } from './pluginRegistry.js';
+/** Tipos principales públicos de @sisad-pdfme/common. */
 export type {
   ChangeSchemaItem,
   ChangeSchemas,

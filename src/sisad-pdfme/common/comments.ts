@@ -1,3 +1,16 @@
+/**
+ * @file comments.ts
+ *
+ * Fachada común para comentarios del template y de schemas.
+ *
+ * Maneja dos modelos de almacenamiento:
+ * - comentarios embebidos en schema.comments / schema.commentAnchors;
+ * - comentarios top-level en template.pdfComments y alias legacy __commentAnchors.
+ *
+ * Regla arquitectónica:
+ * Este módulo solo manipula datos. No debe pintar CommentsRail ni depender de UI.
+ */
+
 import { cloneDeep } from './helper.js';
 import type { Template, SchemaForUI, CommentAnchor } from './types.js';
 import type { PdfComment, TopLevelPdfCommentEntry } from '../contracts/index.js';
@@ -8,13 +21,16 @@ import {
   removeById,
 } from './collaboration.js';
 
+/** Identidad mínima del autor usada para comments y anchors. */
 type Identity = { authorId?: string | null; authorName?: string | null; authorColor?: string | null };
 
+/** Template extendido con almacenamiento canónico y legacy de comentarios top-level. */
 type TemplateWithComments = Template & {
   pdfComments?: TopLevelPdfCommentEntry[];
   __commentAnchors?: Array<{ id: string; anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
 };
 
+/** Obtiene comentarios top-level desde pdfComments o desde el alias legacy __commentAnchors. */
 const getTopLevelEntries = (template: TemplateWithComments): TopLevelPdfCommentEntry[] => {
   if (Array.isArray(template.pdfComments)) {
     return template.pdfComments as TopLevelPdfCommentEntry[];
@@ -29,6 +45,7 @@ const getTopLevelEntries = (template: TemplateWithComments): TopLevelPdfCommentE
   return [];
 };
 
+/** Sincroniza comentarios top-level en pdfComments y __commentAnchors para compatibilidad legacy. */
 const setTopLevelEntries = (template: TemplateWithComments, entries: TopLevelPdfCommentEntry[]) => {
   template.pdfComments = entries.map((entry) => ({
     id: entry.id,
@@ -42,6 +59,7 @@ const setTopLevelEntries = (template: TemplateWithComments, entries: TopLevelPdf
   }));
 };
 
+/** Crea un CommentAnchor normalizado preservando identidad del autor cuando viene embebida en el anchor. */
 const cloneAnchor = (
   anchor: Partial<CommentAnchor> & {
     authorId?: string | null;
@@ -55,6 +73,7 @@ const cloneAnchor = (
     authorName: anchor.authorName || undefined,
   } as any);
 
+/** Busca un schema por schemaUid/id/name y devuelve su ubicación dentro de template.schemas. */
 export const findSchemaByUid = (template: Template, schemaUid: string) => {
   const schemas = template?.schemas || [];
   for (let p = 0; p < schemas.length; p++) {
@@ -68,6 +87,7 @@ export const findSchemaByUid = (template: Template, schemaUid: string) => {
   return null;
 };
 
+/** Agrega o actualiza un anchor dentro de schema.commentAnchors sin mutar el schema original. */
 export const addAnchorToSchema = (
   schema: SchemaForUI,
   anchor: Partial<CommentAnchor>,
@@ -84,6 +104,7 @@ export const addAnchorToSchema = (
   return next;
 };
 
+/** Agrega un comentario a un schema y, opcionalmente, crea/anexa su anchor asociado. */
 export const addCommentToSchema = (
   schema: SchemaForUI,
   text: string,
@@ -123,6 +144,7 @@ export const addCommentToSchema = (
   return next;
 };
 
+/** Agrega comentario al schema si existe schemaUid; si no, lo guarda como comentario top-level del template. */
 export const addCommentWithAnchorToTemplate = (
   template: Template,
   anchor: Partial<CommentAnchor> & { schemaUid?: string },
@@ -167,6 +189,7 @@ export const addCommentWithAnchorToTemplate = (
   return next;
 };
 
+/** Inserta o reemplaza un comentario top-level usando su id. */
 export const upsertTopLevelComment = (
   template: Template,
   entry: TopLevelPdfCommentEntry,
@@ -177,6 +200,7 @@ export const upsertTopLevelComment = (
   return next;
 };
 
+/** Elimina un comentario top-level por id y mantiene sincronizados pdfComments/__commentAnchors. */
 export const removeTopLevelComment = (template: Template, commentId: string): Template => {
   const next = cloneDeep(template) as TemplateWithComments;
   const currentEntries = getTopLevelEntries(next);
@@ -184,6 +208,7 @@ export const removeTopLevelComment = (template: Template, commentId: string): Te
   return next;
 };
 
+/** Actualiza texto, estado o metadata de un comentario embebido en un schema. */
 export const updateCommentInSchema = (
   schema: SchemaForUI,
   commentId: string,
@@ -211,6 +236,7 @@ export const updateCommentInSchema = (
   return next;
 };
 
+/** Elimina un comentario y su anchor asociado dentro de un schema. */
 export const deleteCommentFromSchema = (schema: SchemaForUI, commentId: string): SchemaForUI => {
   const next = cloneDeep(schema) as unknown as SchemaForUI;
   const comment = (next.comments || []).find((entry: any) => entry.id === commentId) as any | undefined;
@@ -221,9 +247,11 @@ export const deleteCommentFromSchema = (schema: SchemaForUI, commentId: string):
   return next;
 };
 
+/** Marca un comentario de schema como resuelto o reabierto. */
 export const resolveCommentInSchema = (schema: SchemaForUI, commentId: string, resolved = true): SchemaForUI =>
   updateCommentInSchema(schema, commentId, { resolved });
 
+/** Devuelve comentarios del template filtrados por fileId y opcionalmente por pageNumber. */
 export const filterCommentsByFileAndPage = (template: Template, fileId?: string | null, pageNumber?: number) => {
   const results: Array<{ schemaUid?: string; fileId?: string | null; pageNumber?: number; comment: any; anchor?: any }> = [];
   const seenCommentIds = new Set<string>();

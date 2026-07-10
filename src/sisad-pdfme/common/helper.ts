@@ -1,3 +1,17 @@
+/**
+ * @file helper.ts
+ *
+ * Helpers comunes para conversión de unidades, fuentes, PDF base64, migración legacy
+ * y validación Zod de contratos públicos.
+ *
+ * Responsabilidades:
+ * - convertir mm/pt/px;
+ * - cargar PDF base en data URI;
+ * - validar template/inputs/options/props;
+ * - migrar schemas legacy keyed-object a arreglo por página;
+ * - validar fuentes y fallback font.
+ */
+
 import { z } from 'zod';
 import { Buffer } from 'buffer';
 import {
@@ -28,10 +42,13 @@ import {
   DEFAULT_FONT_VALUE,
 } from './constants.js';
 
+/** Clonado profundo usado como política común de inmutabilidad. */
 export const cloneDeep = structuredClone;
 
+/** Elimina duplicados preservando el primer orden de aparición. */
 const uniq = <T,>(array: Array<T>) => Array.from(new Set(array));
 
+/** Devuelve el nombre de la única fuente marcada como fallback. */
 export const getFallbackFontName = (font: Font) => {
   const initial = '';
   const fallbackFontName = Object.entries(font).reduce((acc, cur) => {
@@ -48,28 +65,34 @@ export const getFallbackFontName = (font: Font) => {
   return fallbackFontName;
 };
 
+/** Construye el mapa de fuente por defecto usando DEFAULT_FONT_VALUE. */
 export const getDefaultFont = (): Font => ({
   [DEFAULT_FONT_NAME]: { data: b64toUint8Array(DEFAULT_FONT_VALUE), fallback: true },
 });
 
+/** Convierte milímetros a puntos PDF. */
 export const mm2pt = (mm: number): number => {
   return parseFloat(String(mm)) * MM_TO_PT_RATIO;
 };
 
+/** Convierte puntos PDF a milímetros. */
 export const pt2mm = (pt: number): number => {
   return pt * PT_TO_MM_RATIO;
 };
 
+/** Convierte puntos PDF a píxeles CSS aproximados. */
 export const pt2px = (pt: number): number => {
   return pt * PT_TO_PX_RATIO;
 };
 
+/** Convierte píxeles CSS a milímetros aproximados. */
 export const px2mm = (px: number): number => {
   // http://www.endmemo.com/sconvert/millimeterpixel.php
   const ratio = 0.26458333333333;
   return parseFloat(String(px)) * ratio;
 };
 
+/** Lee un Blob PDF y lo convierte a data URI base64 validado. */
 const blob2Base64Pdf = (blob: Blob) => {
   return new Promise<string>((resolve, reject) => {
     const reader = new FileReader();
@@ -84,6 +107,7 @@ const blob2Base64Pdf = (blob: Blob) => {
   });
 };
 
+/** Valida colores HEX de 3/4/6/8 dígitos. */
 export const isHexValid = (hex: string): boolean => {
   return /^#(?:[A-Fa-f0-9]{3,4}|[A-Fa-f0-9]{6}|[A-Fa-f0-9]{8})$/i.test(hex);
 };
@@ -112,6 +136,7 @@ export const migrateTemplate = (template: Template) => {
   }
 };
 
+/** Genera input inicial desde schemas no readOnly del template. */
 export const getInputFromTemplate = (template: Template): { [key: string]: string }[] => {
   migrateTemplate(template);
 
@@ -127,6 +152,7 @@ export const getInputFromTemplate = (template: Template): { [key: string]: strin
   return [input];
 };
 
+/** Normaliza PDF base desde URL/string/ArrayBuffer/Uint8Array hacia data URI PDF base64. */
 export const getB64BasePdf = async (
   customPdf: ArrayBuffer | Uint8Array | string,
 ): Promise<string> => {
@@ -148,11 +174,14 @@ export const getB64BasePdf = async (
   return 'data:application/pdf;base64,' + Buffer.from(uint8Array).toString('base64');
 };
 
+/** Type guard para detectar basePdf tipo BlankPdf. */
 export const isBlankPdf = (basePdf: BasePdf): basePdf is BlankPdf =>
   BlankPdfSchema.safeParse(basePdf).success;
 
+/** Decodifica base64 a string binario. */
 const getByteString = (base64: string) => Buffer.from(base64, 'base64').toString('binary');
 
+/** Convierte base64/data URI a Uint8Array. */
 export const b64toUint8Array = (base64: string) => {
   const data = base64.split(';base64,')[1] ? base64.split(';base64,')[1] : base64;
 
@@ -165,6 +194,7 @@ export const b64toUint8Array = (base64: string) => {
   return unit8arr;
 };
 
+/** Extrae nombres de fuentes usados por los schemas. */
 const getFontNamesInSchemas = (schemas: SchemaPageArray) =>
   uniq(
     schemas
@@ -173,6 +203,7 @@ const getFontNamesInSchemas = (schemas: SchemaPageArray) =>
       .filter(Boolean) as string[],
   );
 
+/** Valida que font tenga un único fallback y cubra las fuentes usadas por el template. */
 export const checkFont = (arg: { font: Font; template: Template }) => {
   const {
     font,
@@ -262,20 +293,27 @@ ${messages.join('\n')}`);
   }
 };
 
+/** Valida inputs del generator/runtime con Zod. */
 export const checkInputs = (data: unknown) => checkProps(data, InputsSchema);
+/** Valida opciones UI compartidas de Designer/Form/Viewer. */
 export const checkUIOptions = (data: unknown) => checkProps(data, UIOptionsSchema);
+/** Valida props de Preview. */
 export const checkPreviewProps = (data: unknown) => checkProps(data, PreviewPropsSchema);
+/** Valida props de Designer. */
 export const checkDesignerProps = (data: unknown) => checkProps(data, DesignerPropsSchema);
+/** Valida props comunes UI. */
 export const checkUIProps = (data: unknown) => {
   if (typeof data === 'object' && data !== null && 'template' in data) {
     migrateTemplate(data.template as Template);
   }
   checkProps(data, UIPropsSchema);
 };
+/** Valida y migra un Template antes de usarlo. */
 export const checkTemplate = (template: unknown) => {
   migrateTemplate(template as Template);
   checkProps(template, TemplateSchema);
 };
+/** Valida props de Generator. */
 export const checkGenerateProps = (data: unknown) => {
   if (typeof data === 'object' && data !== null && 'template' in data) {
     migrateTemplate(data.template as Template);

@@ -1,8 +1,25 @@
+/**
+ * @file expression.ts
+ *
+ * Evaluador seguro de expresiones para placeholders.
+ *
+ * Responsabilidades:
+ * - parsear valores JSON de entrada;
+ * - validar AST con acorn antes de evaluar;
+ * - evaluar expresiones con un conjunto reducido de globals permitidos;
+ * - bloquear acceso a prototype/constructor/__proto__ para evitar prototype pollution.
+ *
+ * Regla de seguridad:
+ * No reemplazar por eval/new Function sin validación estricta de AST.
+ */
+
 import * as acorn from 'acorn';
 import type { Node as AcornNode, Identifier, Property } from 'estree';
 import type { SchemaPageArray } from './types.js';
 
+/** Cachea expresiones compiladas para no parsear el mismo placeholder repetidamente. */
 const expressionCache = new Map<string, (context: Record<string, unknown>) => unknown>();
+/** Cachea datos normalizados desde strings JSON para reducir trabajo repetido. */
 const parseDataCache = new Map<string, Record<string, unknown>>();
 
 const parseData = (data: Record<string, unknown>): Record<string, unknown> => {
@@ -29,15 +46,19 @@ const parseData = (data: Record<string, unknown>): Record<string, unknown> => {
   return parsed;
 };
 
+/** Formatea números de fecha/hora con dos dígitos. */
 const padZero = (num: number): string => String(num).padStart(2, '0');
 
+/** Formatea una fecha como yyyy/mm/dd. */
 const formatDate = (date: Date): string =>
   `${date.getFullYear()}/${padZero(date.getMonth() + 1)}/${padZero(date.getDate())}`;
 
+/** Formatea una fecha como yyyy/mm/dd hh:mm. */
 const formatDateTime = (date: Date): string =>
   `${formatDate(date)} ${padZero(date.getHours())}:${padZero(date.getMinutes())}`;
 
 // Safe assign function that prevents prototype pollution
+/** Implementación segura de Object.assign que bloquea claves de prototype pollution. */
 const safeAssign = (
   target: Record<string, unknown>,
   ...sources: Array<Record<string, unknown> | null | undefined>
@@ -67,6 +88,7 @@ const safeAssign = (
 };
 
 // Create a safe copy of Object with dangerous methods excluded
+/** Subconjunto seguro de Object expuesto al evaluador de expresiones. */
 const safeObject = {
   keys: Object.keys,
   values: Object.values,
@@ -81,6 +103,7 @@ const safeObject = {
   //   defineProperty, defineProperties, getOwnPropertyNames, getOwnPropertySymbols
 };
 
+/** Globals permitidos dentro de expresiones evaluadas. */
 const allowedGlobals: Record<string, unknown> = {
   Math,
   String,
@@ -99,6 +122,7 @@ const allowedGlobals: Record<string, unknown> = {
   encodeURIComponent,
 };
 
+/** Valida que el AST use solo sintaxis permitida y bloquee acceso a propiedades peligrosas. */
 const validateAST = (node: AcornNode): void => {
   switch (node.type) {
     case 'Literal':
@@ -182,6 +206,7 @@ const validateAST = (node: AcornNode): void => {
   }
 };
 
+/** Evalúa recursivamente un AST ya validado usando el contexto seguro. */
 const evaluateAST = (node: AcornNode, context: Record<string, unknown>): unknown => {
   switch (node.type) {
     case 'Literal': {
@@ -422,6 +447,7 @@ const evaluatePlaceholders = (arg: {
   return resultContent;
 };
 
+/** Reemplaza placeholders del template usando expresiones evaluadas contra input/schemas. */
 export const replacePlaceholders = (arg: {
   content: string;
   variables: Record<string, unknown>;

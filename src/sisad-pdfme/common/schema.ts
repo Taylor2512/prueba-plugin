@@ -1,9 +1,28 @@
+/**
+ * @file schema.ts
+ *
+ * Contratos Zod runtime para @sisad-pdfme/common.
+ *
+ * Responsabilidades:
+ * - validar idiomas, diccionario, modo de render, tamaños y colores;
+ * - validar comments/anchors;
+ * - validar Schema, Template, Options y Props públicas;
+ * - permitir passthrough donde el runtime necesita compatibilidad con plugins/extensiones.
+ *
+ * Nota:
+ * Este archivo es fuente de verdad runtime. Mantenerlo alineado con types.ts.
+ */
+
 import { z } from 'zod';
 
+/** Idiomas soportados por el runtime de i18n. */
 const langs = ['en', 'zh', 'ja', 'ko', 'ar', 'th', 'pl', 'it', 'de', 'es', 'fr'] as const;
 
+/** Validador Zod para idioma activo. */
 export const Lang = z.enum(langs);
+/** Scope permitido para comentarios: documento, página o schema. */
 export const CommentScope = z.enum(['document', 'page', 'schema']);
+/** Diccionario mínimo requerido para labels de UI y schemas. */
 export const Dict = z.object({
   // -----------------used in ui-----------------
   cancel: z.string(),
@@ -93,12 +112,16 @@ export const Dict = z.object({
 
   'schemas.radioGroup.groupName': z.string(),
 });
+/** Modo de render UI: viewer, form o designer. */
 export const Mode = z.enum(['viewer', 'form', 'designer']);
 
+/** Tipo de color usado por render PDF cuando aplica. */
 export const ColorType = z.enum(['rgb', 'cmyk']).optional();
 
+/** Tamaño rectangular genérico. */
 export const Size = z.object({ height: z.number(), width: z.number() });
 
+/** Contrato runtime para replies de comentarios. */
 export const SchemaCommentReply = z
   .object({
     id: z.string(),
@@ -132,6 +155,7 @@ export const SchemaComment = z
   })
   .passthrough();
 
+/** Contrato runtime para anclas visuales de comentarios. */
 export const CommentAnchor = z
   .object({
     id: z.string().optional(),
@@ -197,6 +221,7 @@ export const Schema = z
   .passthrough();
 
 const SchemaForUIAdditionalInfo = z.object({ id: z.string() });
+/** Schema extendido usado por Designer/Form/Viewer. */
 export const SchemaForUI = Schema.merge(SchemaForUIAdditionalInfo);
 
 const ArrayBufferSchema: z.ZodSchema<ArrayBuffer> = z.any().refine((v) => v instanceof ArrayBuffer);
@@ -213,12 +238,14 @@ export const BlankPdf = z.object({
 
 export const CustomPdf = z.union([z.string(), ArrayBufferSchema, Uint8ArraySchema]);
 
+/** Contrato de PDF base, custom o blank. */
 export const BasePdf = z.union([CustomPdf, BlankPdf]);
 
 // Legacy keyed structure for BC - we convert to SchemaPageArray on import
 export const LegacySchemaPageArray = z.array(z.record(z.string(), Schema));
 export const SchemaPageArray = z.array(z.array(Schema));
 
+/** Contrato runtime del template completo. */
 export const Template = z
   .object({
     schemas: SchemaPageArray,
@@ -229,6 +256,7 @@ export const Template = z
 
 export const Inputs = z.array(z.record(z.string(), z.any())).min(1);
 
+/** Contrato de fuentes registradas en generator/runtime. */
 export const Font = z.record(
   z.string(),
   z.object({
@@ -251,6 +279,7 @@ export const Plugin = z
   })
   .passthrough();
 
+/** Opciones comunes compartidas por runtime/generator. */
 export const CommonOptions = z.object({ font: Font.optional() }).passthrough();
 
 const CommonProps = z.object({
@@ -274,6 +303,7 @@ export const GeneratorOptions = CommonOptions.extend({
   title: z.string().optional(),
 });
 
+/** Props validadas para generación PDF. */
 export const GenerateProps = CommonProps.extend({
   inputs: Inputs,
   options: GeneratorOptions.optional(),
@@ -281,6 +311,7 @@ export const GenerateProps = CommonProps.extend({
 
 // ---------------------ui------------------------
 
+/** Opciones UI compartidas por Designer/Form/Viewer. */
 export const UIOptions = CommonOptions.extend({
   lang: Lang.optional(),
   labels: z.record(z.string(), z.string()).optional(),
@@ -301,4 +332,5 @@ export const UIProps = CommonProps.extend({
 
 export const PreviewProps = UIProps.extend({ inputs: Inputs }).strict();
 
+/** Props públicas del Designer. */
 export const DesignerProps = UIProps.extend({}).strict();

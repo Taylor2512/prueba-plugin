@@ -1,9 +1,25 @@
+/**
+ * @file dynamicTemplate.ts
+ *
+ * Motor de reflujo para templates con contenido dinámico, especialmente tablas.
+ *
+ * Responsabilidades:
+ * - calcular alturas dinámicas por schema;
+ * - reubicar schemas cuando crece una tabla/campo dinámico;
+ * - dividir contenido entre páginas respetando padding;
+ * - conservar el orden visual original dentro de cada página.
+ *
+ * Riesgo:
+ * Este módulo toca layout/paginación. Evitar cambios amplios sin pruebas con PDFs multipágina.
+ */
+
 import { Schema, Template, BasePdf, BlankPdf, CommonOptions } from './types.js';
 import { cloneDeep, isBlankPdf } from './helper.js';
 
 /** Floating point tolerance for comparisons */
 const EPSILON = 0.01;
 
+/** Argumentos necesarios para recalcular un template con contenido dinámico. */
 interface ModifyTemplateForDynamicTableArg {
   template: Template;
   input: Record<string, string>;
@@ -20,6 +36,7 @@ interface ModifyTemplateForDynamicTableArg {
   ) => Promise<number[]>;
 }
 
+/** Representación interna de un schema normalizado para cálculo de layout. */
 interface LayoutItem {
   schema: Schema;
   baseY: number;
