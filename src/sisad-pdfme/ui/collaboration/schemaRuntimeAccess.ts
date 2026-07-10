@@ -12,6 +12,7 @@
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import {
   resolveSchemaCollaborationState,
+  type CollaborationRecipientOption,
   type EffectiveCollaborationContext,
 } from '../collaborationContext.js';
 
@@ -44,11 +45,148 @@ export type RuntimeSchemaAccess = {
 
 type CollabCtx = Pick<
   EffectiveCollaborationContext,
-  'recipientColorMap' | 'recipientNameMap' | 'activeRecipientId' | 'isGlobalView' | 'actorColor' | 'canEditStructure'
+  | 'recipientColorMap'
+  | 'recipientNameMap'
+  | 'activeRecipientId'
+  | 'activeRecipient'
+  | 'isGlobalView'
+  | 'actorColor'
+  | 'canEditStructure'
+  | 'actorId'
 >;
 
 const boolField = (schema: SchemaForUI, key: string): boolean =>
   Boolean((schema as SchemaForUI & Record<string, unknown>)[key]);
+
+const normalizeText = (value: unknown): string => (typeof value === 'string' ? value.trim() : '');
+
+const normalizeNullableText = (value: unknown): string | null => {
+  const normalized = normalizeText(value);
+  return normalized || null;
+};
+
+const resolveLockOwnerLabel = (
+  lockOwnerId: string | null,
+  collaborationContext?: CollabCtx,
+  activeRecipient?: CollaborationRecipientOption | null,
+): string => {
+  if (!lockOwnerId) return '';
+  return collaborationContext?.recipientNameMap?.get(lockOwnerId) || activeRecipient?.name || lockOwnerId;
+};
+
+export type SchemaAccessState = {
+  ownerLabel: string;
+  hasCollaborationLock: boolean;
+  isLockedByMe: boolean;
+  isLockedByOther: boolean;
+  lockedByLabel: string;
+  isObjectLocked: boolean;
+  isReadonly: boolean;
+  canEdit: boolean;
+  canMove: boolean;
+  canResize: boolean;
+  canDelete: boolean;
+  contextMenuLockLabel: string;
+  contextMenuLockDisabled: boolean;
+  inspectorStatusLabel: string;
+  inspectorStatusTone: 'success' | 'warning' | 'error' | 'processing';
+};
+
+const resolveAccessTone = (
+  hasCollaborationLock: boolean,
+  isLockedByMe: boolean,
+  isLockedByOther: boolean,
+  isObjectLocked: boolean,
+): SchemaAccessState['inspectorStatusTone'] => {
+  if (isLockedByOther) return 'error';
+  if (isLockedByMe || hasCollaborationLock) return 'success';
+  if (isObjectLocked) return 'warning';
+  return 'warning';
+};
+
+/**
+ * Single access resolver shared by inspector, toolbar and canvas menus.
+ * Keeps collaboration lock, object protection and readonly copy separated.
+ */
+export const resolveSchemaAccessState = (
+  schema: SchemaForUI,
+  collaborationContext?: CollabCtx,
+  activeRecipient?: CollaborationRecipientOption | null,
+): SchemaAccessState => {
+  const state = resolveSchemaCollaborationState(schema, collaborationContext);
+  const schemaRecord = schema as SchemaForUI & {
+    lock?: { lockedBy?: string | null; lockedAt?: number | null; reason?: string | null };
+    readOnly?: boolean;
+    readonly?: boolean;
+    locked?: boolean;
+    ownerRecipientName?: string | null;
+    ownerRecipientId?: string | null;
+  };
+
+  const isReadonly = boolField(schema, 'readOnly') || boolField(schema, 'readonly');
+  const isObjectLocked = boolField(schema, 'locked');
+  const hasCollaborationLock = Boolean(
+    schema.state === 'locked' ||
+      schemaRecord.lock?.lockedBy ||
+      schemaRecord.lock?.lockedAt ||
+      schemaRecord.lock?.reason,
+  );
+
+  const currentActorId = normalizeText(collaborationContext?.actorId);
+  const currentRecipientId = normalizeText(collaborationContext?.activeRecipientId);
+  const lockOwnerId = normalizeNullableText(schemaRecord.lock?.lockedBy) || normalizeNullableText(state.ownerRecipientId);
+  const isLockedByMe = Boolean(
+    hasCollaborationLock &&
+      lockOwnerId &&
+      [currentActorId, currentRecipientId].filter(Boolean).includes(lockOwnerId),
+  );
+  const isLockedByOther = Boolean(hasCollaborationLock && !isLockedByMe);
+  const ownerLabel =
+    normalizeNullableText(state.ownerRecipientName) ||
+    resolveLockOwnerLabel(state.ownerRecipientId, collaborationContext, activeRecipient) ||
+    'Sin asignar';
+  const lockedByLabel =
+    isLockedByOther || isLockedByMe
+      ? resolveLockOwnerLabel(lockOwnerId, collaborationContext, activeRecipient)
+      : '';
+
+  const canEdit = Boolean(
+    collaborationContext?.canEditStructure !== false &&
+      !isReadonly &&
+      !isObjectLocked &&
+      (!hasCollaborationLock || isLockedByMe),
+  );
+
+  return {
+    ownerLabel,
+    hasCollaborationLock,
+    isLockedByMe,
+    isLockedByOther,
+    lockedByLabel,
+    isObjectLocked,
+    isReadonly,
+    canEdit,
+    canMove: canEdit,
+    canResize: canEdit,
+    canDelete: canEdit,
+    contextMenuLockLabel: isLockedByOther
+      ? `Bloqueado por ${lockedByLabel || 'otro usuario'}`
+      : isLockedByMe
+        ? 'Liberar edición'
+        : isObjectLocked
+          ? 'Desbloquear posición'
+          : 'Bloquear edición',
+    contextMenuLockDisabled: isLockedByOther || collaborationContext?.canEditStructure === false,
+    inspectorStatusLabel: isLockedByOther
+      ? `Bloqueado por ${lockedByLabel || 'otro usuario'}`
+      : isLockedByMe
+        ? 'En edición por ti'
+        : isObjectLocked
+          ? 'Bloqueado'
+          : 'Disponible',
+    inspectorStatusTone: resolveAccessTone(hasCollaborationLock, isLockedByMe, isLockedByOther, isObjectLocked),
+  };
+};
 
 /**
  * Resolves the runtime access for one schema. Pure: same inputs → same output.

@@ -14,11 +14,11 @@ import {
 import { normalizeHexColor } from '../../shared/recipientColor.js';
 import CompactConfigPanel from './CompactConfigPanel.js';
 import {
-  buildStateTag,
   joinRecipientIds,
   normalizeRecipientIds,
   resolveOwnerMode,
 } from './schemaCollaborationUtils.js';
+import { resolveSchemaAccessState } from '../../../../collaboration/schemaRuntimeAccess.js';
 
 export { joinRecipientIds, normalizeRecipientIds, resolveOwnerMode } from './schemaCollaborationUtils.js';
 
@@ -101,13 +101,13 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
   const resolvedSchemaState = resolveSchemaCollaborationState(activeSchema, collaborationContext);
   const ownerMode = collaborative.ownerMode || resolvedSchemaState.ownerMode || resolveOwnerMode(ownerRecipientIds);
   const lock = collaborative.lock || activeSchema.lock;
-  const stateTag = buildStateTag(state);
   const recipientOptions = collaborationContext.recipientOptions || [];
   const hasRecipientOptions = recipientOptions.length > 0;
   const recipientSelectOptions = recipientOptions.map((recipient) => ({
     label: recipient.role ? `${recipient.name} · ${recipient.role}` : recipient.name,
     value: recipient.id,
   }));
+  const accessState = resolveSchemaAccessState(activeSchema, collaborationContext, collaborationContext.activeRecipient);
 
   const commit = (patch: Partial<Record<CollaborationPatchKey, unknown>>) => {
     changeSchemas(
@@ -155,18 +155,20 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
     });
   };
 
-  const hasLock = state === 'locked' || Boolean(lock?.lockedBy || lock?.lockedAt || lock?.reason);
+  const hasLock = accessState.hasCollaborationLock;
   const authorOptions = recipientSelectOptions;
-  const resolvedOwnerLabel =
-    resolvedSchemaState.ownerRecipientName ||
-    collaborationContext.recipientNameMap.get(resolvedSchemaState.ownerRecipientId || '') ||
-    'Sin asignar';
+  const resolvedOwnerLabel = accessState.ownerLabel || 'Sin asignar';
   const assignedToLabel = resolvedOwnerLabel === 'Sin asignar' ? '' : resolvedOwnerLabel;
-  const resolvedLockedByLabel =
-    lock?.lockedBy ? collaborationContext.recipientNameMap.get(lock.lockedBy) || '' : '';
-  const stateLabel = hasLock ? 'Bloqueado para edición' : 'Disponible';
+  const resolvedLockedByLabel = accessState.lockedByLabel || '';
+  const stateLabel = accessState.inspectorStatusLabel;
   const showLockedByRow = hasLock || Boolean(resolvedLockedByLabel);
   const triggerLabel = assignedToLabel ? 'Gestionar' : 'Asignar';
+  const stateTagColor =
+    accessState.inspectorStatusTone === 'error'
+      ? 'error'
+      : accessState.inspectorStatusTone === 'success'
+        ? 'success'
+        : 'warning';
   const summaryNode = assignedToLabel ? (
     <dl className="grid gap-1.5">
       <div className="grid gap-0.5">
@@ -196,7 +198,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
       title={props.summaryTitle || 'Asignación y bloqueo'}
       description={props.summaryDescription || 'Propietario y acceso.'}
       summary={summaryNode}
-      statusTags={[{ label: stateTag.label, color: stateTag.color }]}
+      statusTags={[{ label: stateLabel, color: stateTagColor }]}
       modalTitle={props.modalTitle || 'Gestionar asignación y bloqueo'}
       modalTriggerLabel={resolveStringLabel(props.modalTriggerLabel, triggerLabel)}
     >

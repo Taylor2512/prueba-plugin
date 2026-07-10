@@ -6,6 +6,7 @@ import type { InteractionState } from '../../shared/interactionState.js';
 import { mergeClassNames } from '../../shared/className.js';
 import CanvasContextMenu from './CanvasContextMenu.js';
 import { resolveAnchoredFloatingSurfacePosition } from './floatingSurfaceGeometry.js';
+import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
 
 type SelectionContextToolbarProps = {
   position: { top: number; left: number; width: number; height: number } | null;
@@ -14,6 +15,10 @@ type SelectionContextToolbarProps = {
   activeSchemas: SchemaForUI[];
   interactionState: InteractionState;
   contextMenuOpen?: boolean;
+  collaborationContext?: Pick<
+    EffectiveCollaborationContext,
+    'actorId' | 'activeRecipientId' | 'activeRecipient' | 'recipientNameMap' | 'canEditStructure'
+  >;
 };
 
 const getSchemaFlag = (schemas: SchemaForUI[], key: 'readOnly' | 'required' | 'hidden') =>
@@ -29,6 +34,7 @@ const SelectionContextToolbar = ({
   activeSchemas,
   interactionState,
   contextMenuOpen = false,
+  collaborationContext,
 }: SelectionContextToolbarProps) => {
   const toolbarRef = React.useRef<HTMLDivElement | null>(null);
   const [moreMenuOpen, setMoreMenuOpen] = React.useState(false);
@@ -78,7 +84,7 @@ const SelectionContextToolbar = ({
 
   const menuPosition = resolveAnchoredFloatingSurfacePosition(
     { x: position.left, y: position.top + position.height + 8 },
-    { width: 260, height: isMulti ? 280 : 248 },
+    { width: 280, height: isMulti ? 424 : 392 },
     { width: typeof window !== 'undefined' ? window.innerWidth : 0, height: typeof window !== 'undefined' ? window.innerHeight : 0 },
   );
 
@@ -172,6 +178,7 @@ const SelectionContextToolbar = ({
         hasClipboardData={false}
         selectionCount={selectionCount}
         selectionSchemas={activeSchemas}
+        collaborationContext={collaborationContext}
         activeReadOnly={activeReadOnly}
         activeRequired={activeRequired}
         activeHidden={activeHidden}

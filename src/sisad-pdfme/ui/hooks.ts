@@ -1,3 +1,18 @@
+/**
+ * Hooks compartidos del runtime UI y del Designer.
+ *
+ * Rol arquitectónico:
+ * - Preprocesa PDFs para obtener backgrounds, pageSizes y escala.
+ * - Maneja cache de preprocesamiento para evitar recomputar imágenes/tamaños.
+ * - Calcula zoom/scale del canvas según tamaño del contenedor.
+ * - Agrupa hooks de estado y comandos usados por Designer/Preview.
+ *
+ * Riesgos:
+ * - El preprocesamiento usa tareas async; se protege con requestId para evitar carreras.
+ * - El cache debe mantenerse acotado para no crecer indefinidamente.
+ * - Cambios en escala impactan coordenadas visuales y selección.
+ */
+
 import { RefObject, useRef, useState, useCallback, useEffect, useMemo } from 'react';
 import {
   ZOOM,
@@ -23,6 +38,7 @@ import {
 } from './components/Designer/shared/useDesignerKeyboardShortcuts.js';
 import type { SchemaCreationContext } from './designerEngine.js';
 
+/** Guarda el valor previo de una variable React. */
 export function usePrevious<T>(value: T) {
   const [previous, setPrevious] = useState<T | null>(null);
   useEffect(() => {
@@ -57,6 +73,7 @@ const getBasePdfCacheKey = (basePdf: Template['basePdf']) => {
   }
 };
 
+/** Preprocesa basePdf para backgrounds, tamaños de página y escala del canvas. */
 export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreProcessorProps) => {
   const [backgrounds, setBackgrounds] = useState<string[]>([]);
   const [pageSizes, setPageSizes] = useState<Size[]>([]);

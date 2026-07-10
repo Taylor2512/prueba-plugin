@@ -3970,8 +3970,15 @@ const TemplateEditor = ({
               addPageAfter: pageManipulation.addPageAfter,
               uploadPdf: handleUploadPdfClick,
           }}
-          selectionCommands={selectionCommands}
-          onInteractionStateChange={handleInteractionStateChange}
+            selectionCommands={selectionCommands}
+            collaborationContext={{
+              actorId: collaborationContext.actorId,
+              activeRecipientId: collaborationContext.activeRecipientId,
+              activeRecipient: collaborationContext.activeRecipient,
+              recipientNameMap: collaborationContext.recipientNameMap,
+              canEditStructure: collaborationContext.canEditStructure,
+            }}
+            onInteractionStateChange={handleInteractionStateChange}
           />
           <CommentDialog
             open={commentDialogOpen}

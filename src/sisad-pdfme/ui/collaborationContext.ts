@@ -1,3 +1,18 @@
+/**
+ * Resolución de contexto colaborativo para schemas y destinatarios.
+ *
+ * Rol arquitectónico:
+ * - Normaliza destinatarios/usuarios de colaboración.
+ * - Resuelve recipient activo, color, nombre, rol y permisos de edición estructural.
+ * - Construye el contexto efectivo usado al crear schemas.
+ * - Resuelve metadata colaborativa de un schema frente al contexto actual.
+ *
+ * Reglas clave:
+ * - El color activo aplica a schemas nuevos; no debe sobrescribir owners existentes sin intención.
+ * - Roles viewer/reviewer/commenter no deben editar estructura por defecto.
+ * - `ownerMode` se deriva de ownerRecipientIds si no viene explícito.
+ */
+
 import { normalizeRecipientIds, type SchemaForUI } from '@sisad-pdfme/common';
 import type { CollaborationSyncConfig, SchemaCreationContext } from './designerEngine.js';
 
@@ -71,6 +86,7 @@ const normalizeNullableText = (value: unknown) => {
   return normalized || null;
 };
 
+/** Convierte opciones crudas de recipients/users en una lista deduplicada y segura. */
 export const normalizeCollaborationRecipients = (options: unknown): CollaborationRecipientOption[] => {
   if (!Array.isArray(options)) return [];
 
@@ -130,6 +146,7 @@ export const resolveActiveRecipient = (
   };
 };
 
+/** Construye el contexto colaborativo efectivo para creación/edición de schemas. */
 export const buildEffectiveCollaborationContext = (
   collaboration: CollaborationSyncConfig | undefined,
   fileId: string | null,
@@ -176,6 +193,7 @@ export const resolveOwnerMode = (
   return undefined;
 };
 
+/** Resuelve estado visual/funcional de ownership de un schema. */
 export const resolveSchemaCollaborationState = (
   schema: SchemaForUI,
   collaborationContext?: Pick<

@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `css`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-09T21:25:33.028Z`
+- **Fecha generación:** `2026-07-10T15:35:52.940Z`
 - **Extensiones incluidas:** `.css, .scss, .sass, .less`
 - **Archivos candidatos incluidos:** `18`
 - **Límite por archivo:** `80 KB`
@@ -65,7 +65,7 @@ prueba-plugin
 |---:|---|---|---:|---:|---|
 | 1 | `src/styles/tailwind.css` | css | 11 | 0.3 | completo |
 | 2 | `src/style.css` | css | 11 | 0.5 | completo |
-| 3 | `src/styles/sisad-tailwind-bridge.css` | css | 730 | 26.4 | completo |
+| 3 | `src/styles/sisad-tailwind-bridge.css` | css | 769 | 27.6 | completo |
 | 4 | `reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css` | css | 1600 | 36.3 | completo |
 | 5 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__canvas-interactions.tailwind.candidate.css` | css | 1547 | 51.0 | completo |
 | 6 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-global.tailwind.candidate.css` | css | 6417 | 183.3 | truncado 75.1 KB |
@@ -73,7 +73,7 @@ prueba-plugin
 | 8 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css` | css | 8 | 0.2 | completo |
 | 9 | `src/features/pdfcomponent/labRoutes.css` | css | 1688 | 35.7 | completo |
 | 10 | `src/sisad-pdfme/ui/styles/canvas-interactions.css` | css | 525 | 22.7 | completo |
-| 11 | `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | css | 4276 | 166.6 | truncado 75.0 KB |
+| 11 | `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | css | 4357 | 170.4 | truncado 75.1 KB |
 | 12 | `src/sisad-pdfme/ui/styles/sisad-pdfme-runtime.css` | css | 184 | 7.3 | completo |
 | 13 | `src/sisad-pdfme/ui/styles/tokens.css` | css | 383 | 16.4 | completo |
 | 14 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css` | css | 1600 | 36.3 | completo |
@@ -84,13 +84,13 @@ prueba-plugin
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1702
+- **extensión no incluida:** 1715
 - **directorio ignorado: dependencia/build/salida generada:** 7
 
 ## Totales
 
-- **KB originales candidatos:** `845.3`
-- **KB incluidos en contenido:** `537.3`
+- **KB originales candidatos:** `850.3`
+- **KB incluidos en contenido:** `538.5`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -152,9 +152,9 @@ prueba-plugin
 ### 0003 — `src/styles/sisad-tailwind-bridge.css`
 
 - **Lenguaje:** `css`
-- **Líneas:** `730`
-- **Tamaño original:** `26.4 KB`
-- **SHA1 corto:** `6e449dc046`
+- **Líneas:** `769`
+- **Tamaño original:** `27.6 KB`
+- **SHA1 corto:** `1781766f33`
 - **Estado:** `completo`
 - **Símbolos detectados:** `selector: .sisad-pdfme-root`, `selector: .sisad-pdfme-page`, `selector: .sisad-pdfme-grid`, `selector: .sisad-pdfme-workspace`, `selector: .sisad-pdfme-designer-root`, `selector: .sisad-pdfme-designer-background`, `selector: .sisad-pdfme-designer-workspace`, `selector: .sisad-pdfme-designer-stage`, `selector: .sisad-pdfme-designer-canvas`, `selector: .sisad-pdfme-ui-preview-scroll`, `selector: .sisad-pdfme-ui-control-bar`, `selector: .sisad-pdfme-ui-control-bar-cluster`, `selector: .sisad-pdfme-ui-control-bar-cluster--top-left`, `selector: .sisad-pdfme-ui-control-bar-cluster--top-center`, `selector: .sisad-pdfme-ui-control-bar-cluster--top-right`, `selector: .sisad-pdfme-ui-control-bar-cluster--bottom-right`
 
@@ -651,6 +651,45 @@ prueba-plugin
 .sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar .ant-select-focused .ant-select-selector,
 .sisad-pdfme-designer-right-sidebar .sisad-pdfme-sidebar-surface-header-compact .ant-select-focused .ant-select-selector {
   @apply border-sky-300 shadow-[0_0_0_2px_rgba(59,130,246,0.12)];
+}
+
+/* ── Inspector: flatten any residual Ant Card inside detail sections ────────
+   Legacy propPanel fields may still use widget 'card'; inside the inspector a
+   Card must read as a plain group: no border/shadow, tiny head, zero padding. */
+.sisad-pdfme-designer-detail-view-form-shell .ant-card {
+  border: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+.sisad-pdfme-designer-detail-view-form-shell .ant-card-head {
+  min-height: 0;
+  padding: 0 2px 4px;
+  border-bottom: 0;
+}
+
+.sisad-pdfme-designer-detail-view-form-shell .ant-card-head-title {
+  padding: 0;
+  font-size: 11px;
+  font-weight: 600;
+  color: rgb(100 116 139);
+}
+
+.sisad-pdfme-designer-detail-view-form-shell .ant-card-body {
+  padding: 0;
+}
+
+/* ── Inspector select popup (portaled to body) ─────────────────────────────
+   Validation-type and similar inspector dropdowns: give the popup a readable
+   minimum width and never truncate option labels. */
+.sisad-inspector-select-popup {
+  min-width: 220px !important;
+}
+
+.sisad-inspector-select-popup .ant-select-item-option-content {
+  overflow: visible;
+  white-space: normal;
+  text-overflow: clip;
 }
 
 /* ── H. Option group floating action ──────────────────────────── */
@@ -9356,10 +9395,10 @@ ner-compact-config-panel {
 ### 0011 — `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css`
 
 - **Lenguaje:** `css`
-- **Líneas:** `4276`
-- **Tamaño original:** `166.6 KB`
-- **SHA1 corto:** `153d2c0318`
-- **Estado:** `truncado 75.0 KB`
+- **Líneas:** `4357`
+- **Tamaño original:** `170.4 KB`
+- **SHA1 corto:** `b512630d50`
+- **Estado:** `truncado 75.1 KB`
 - **Símbolos detectados:** `selector: .sisad-pdfme-root`, `selector: .sisad-pdfme-page`, `selector: .sisad-pdfme-header`, `selector: .sisad-pdfme-grid`, `selector: .sisad-pdfme-workspace`, `selector: .sisad-pdfme-canvas`, `selector: .sisad-pdfme-designer-root`, `selector: .sisad-pdfme-designer-background`, `selector: .sisad-pdfme-designer-stage`, `selector: .sisad-pdfme-designer-canvas`
 
 ```css
@@ -10149,6 +10188,11 @@ ner-compact-config-panel {
     @apply [grid-template-columns:repeat(2,_minmax(0,_1fr))] gap-[0.3125rem];
   }
 
+  /* ── Mini mode: dense icon-only grid (tooltip carries the label) ─ */
+  .sisad-pdfme-designer-left-sidebar-group-items[data-view-mode="mini"] {
+    @apply [grid-template-columns:repeat(4,_minmax(0,_1fr))] gap-[0.25rem];
+  }
+
   .sisad-pdfme-designer-left-sidebar-highlight {
     @apply p-[0_1px] bg-[var(--color-warning-40)] rounded-[2px];
   }
@@ -10224,6 +10268,42 @@ ner-compact-config-panel {
       [box-shadow:inset_0_1px_0_var(--color-white-80),_0_1px_3px_var(--color-gray-900-04)] overflow-hidden text-center
       [transition:border-color_150ms_ease,_background_150ms_ease,_box-shadow_150ms_ease,_transform_150ms_ease];
     /* Tight DocuSign-style tile with a clear icon cap and centered label */
+  }
+
+  /* ── Mini tile: square icon-only button; label/favorite live in tooltip ── */
+  .sisad-pdfme-designer-plugin-btn[data-view-mode="mini"] {
+    @apply
+      w-full aspect-square min-h-0 flex items-center justify-center p-[0.25rem] [border:1px_solid_var(--color-border-18)]
+      rounded-[0.5rem] [background:linear-gradient(_180deg,_var(--color-white),_var(--color-gray-50)_)] cursor-grab
+      [box-shadow:inset_0_1px_0_var(--color-white-80),_0_1px_2px_var(--color-gray-900-04)] overflow-hidden
+      [transition:border-color_150ms_ease,_background_150ms_ease,_box-shadow_150ms_ease];
+  }
+
+  .sisad-pdfme-designer-plugin-btn[data-view-mode="mini"]:hover {
+    @apply border-[var(--schema-owner-color,_var(--color-primary-30))];
+  }
+
+  .sisad-pdfme-designer-plugin-btn[data-view-mode="mini"] .sisad-pdfme-designer-plugin-btn-label,
+  .sisad-pdfme-designer-plugin-btn[data-view-mode="mini"] .sisad-pdfme-designer-plugin-favorite-indicator,
+  .sisad-pdfme-designer-plugin-btn[data-view-mode="mini"] .sisad-pdfme-designer-left-sidebar-custom-item-copy {
+    @apply hidden;
+  }
+
+  /* The floating favorite toggle would cover the whole mini tile — hide it. */
+  .sisad-pdfme-designer-left-sidebar-plugin-wrap:has(> .sisad-pdfme-designer-plugin-btn[data-view-mode="mini"]) .sisad-pdfme-designer-plugin-favorite-toggle {
+    @apply hidden;
+  }
+
+  /* Favorite toggle only surfaces on hover/focus or when already active —
+     keeps the tile quiet at rest (still hover-revealed for pointer + keyboard). */
+  .sisad-pdfme-designer-left-sidebar-plugin-wrap .sisad-pdfme-designer-plugin-favorite-toggle {
+    @apply opacity-0 [transition:opacity_120ms_ease];
+  }
+
+  .sisad-pdfme-designer-left-sidebar-plugin-wrap:hover .sisad-pdfme-designer-plugin-favorite-toggle,
+  .sisad-pdfme-designer-left-sidebar-plugin-wrap:focus-within .sisad-pdfme-designer-plugin-favorite-toggle,
+  .sisad-pdfme-designer-left-sidebar-plugin-wrap .sisad-pdfme-designer-plugin-favorite-toggle[data-active="true"] {
+    @apply opacity-100;
   }
 
   .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-schema-category="Selecciones"] {
@@ -10655,113 +10735,9 @@ ner-compact-config-panel {
       bg-[var(--color-white)];
   }
 
-  .sisad-pdfme-designer-right-sidebar-layout-body:focus-visible {
-    @apply [outline:2px_solid_var(--color-primary)] [outline-offset:-2px];
-  }
+  .sisad-pdfm
 
-  .sisad-pdfme-designer-detail-view-sections {
-    @apply flex flex-col gap-[0.125rem] min-h-0;
-  }
-
-  .sisad-pdfme-designer-detail-view,
-.sisad-pdfme-designer-detail-view-host,
-.sisad-pdfme-designer-list-view {
-    @apply flex flex-col min-h-0 h-full;
-  }
-
-  .sisad-pdfme-designer-detail-view-form-shell {
-    @apply flex flex-col min-h-0 w-full;
-  }
-
-  .sisad-pdfme-designer-detail-view-form-shell .fr-form,
-.sisad-pdfme-designer-detail-view-form-shell .ant-form {
-    @apply w-full min-w-0;
-  }
-
-  /* Reset ant grid gutters inside the form shell using high specificity */
-  .sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell .ant-row {
-    @apply ml-[0] mr-[0];
-  }
-
-  .sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell .ant-col {
-    @apply pl-[0.1875rem] pr-[0.1875rem];
-  }
-
-  /* Compact ant-form-item inside right sidebar */
-  .sisad-pdfme-designer-right-sidebar .ant-form-item {
-    @apply mb-[0.3125rem];
-  }
-
-  .sisad-pdfme-designer-right-sidebar .ant-form-item-label {
-    @apply pb-[0.0625rem];
-  }
-
-  .sisad-pdfme-designer-right-sidebar .ant-form-item-label>label {
-    @apply text-[0.5938rem] font-semibold text-[var(--color-gray-600)] tracking-[0.02em];
-  }
-
-  .sisad-pdfme-designer-right-sidebar .ant-input,
-.sisad-pdfme-designer-right-sidebar .ant-input-number-input {
-    @apply text-[0.6875rem];
-  }
-
-  .sisad-pdfme-designer-right-sidebar .ant-select-selection-item {
-    @apply text-[0.6875rem];
-  }
-
-  .sisad-pdfme-designer-detail-header-back-btn {
-    @apply
-      inline-flex items-center justify-center w-[1.375rem] h-[1.375rem] p-0 [border:1px_solid_var(--color-border-18)] rounded-[var(--radius-full)]
-      bg-[var(--color-bg-elevated)] text-[var(--text-secondary)] cursor-pointer shrink-0
-      [transition:border-color_var(--transition-fast),_color_var(--transition-fast)];
-  }
-
-  .sisad-pdfme-designer-detail-header-back-btn:hover {
-    @apply border-[var(--color-primary-25)] text-[var(--color-primary)];
-  }
-
-  .sisad-pdfme-designer-detail-header-card {
-    @apply
-      mb-[0.25rem] p-[0.375rem_0.5rem] [borde
-
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 89976 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
-
-hrome {
-    @apply
-      relative w-full h-full box-border
-      [border:1px_solid_color-mix(in_srgb,_var(--schema-tone,_#2563eb)_var(--sisad-schema-border-alpha-pct,_64%),_transparent)]
-      bg-[color-mix(in_srgb,_var(--schema-tone,_#2563eb)_var(--sisad-schema-surface-alpha-pct,_14%),_white)] rounded-[var(--sisad-schema-radius)]
-      text-[var(--sisad-schema-font-size)] leading-[var(--sisad-schema-line-height)] text-[var(--text-primary,_#1f2937)] overflow-hidden;
-  }
-
-  .sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-state="selected"] {
-    @apply border-[var(--sisad-schema-selected-color)] [box-shadow:var(--sisad-schema-selected-shadow)];
-  }
-
-  .sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-state="multi-selected"] {
-    @apply border-[var(--sisad-schema-selected-color)];
-  }
-
-  .sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family="option-based"] {
-    @apply bg-transparent [border-style:dashed];
-  }
-
-  .sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family="boolean"] {
-    @apply inline-flex items-center justify-center;
-  }
-
-  .sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family="signing-based"] {
-    @apply bg-[color-mix(in_srgb,_var(--schema-tone,_#2563eb)_12%,_white)];
-  }
-
-  /* Action schemas: button is the visual — chrome wrapper stays transparent */
-  .sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family="action-based"] {
-    @apply border-0 bg-transparent rounded-[var(--sisad-schema-radius)] [overflow:visible];
-  }
-
-  .sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family="action-based"][data-schema-compact="true"] .sisad-pdfme-action-button {
-    @apply gap-[3px] rounded-[4px];
-  }
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 93908 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
 
   .sisad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family="action-based"][data-schema-compact="true"] .sisad-pdfme-note-container {
     @apply rounded-[3px] p-[3px_6px];
@@ -10821,58 +10797,88 @@ hrome {
    Replaces Object.assign(style) calls in radioGroup/checkboxGroup propPanel editors.
    Scoped inside .sisad-pdfme-root to avoid leaking into host app.
    ─────────────────────────────────────────────────────────────────────────── */
+  /* Option editor — homogenised with the inspector design system:
+     compact card rows, no native bullets, soft borders + focus ring, a single
+     full-width "Agregar opción" affordance. Shared by select/radio/checkbox. */
   .sisad-pdfme-root .sisad-option-editor-header {
-    @apply text-[12px] font-semibold text-[#555] mb-[8px];
+    @apply text-[11px] font-semibold uppercase tracking-wide text-slate-500 mb-2;
   }
 
   .sisad-pdfme-root .sisad-option-editor-list {
-    @apply flex flex-col gap-[6px] mb-[10px] max-h-[220px] overflow-y-auto;
+    @apply flex flex-col gap-1.5 mb-2 max-h-[220px] overflow-y-auto pr-0.5;
   }
 
   .sisad-pdfme-root .sisad-option-editor-row {
-    @apply grid gap-[6px] items-center;
+    @apply grid gap-1.5 items-center rounded-lg border border-slate-200/80 bg-white/90 px-1.5 py-1 shadow-sm transition-colors;
+  }
+
+  .sisad-pdfme-root .sisad-option-editor-row:hover {
+    @apply border-slate-300;
   }
 
   .sisad-pdfme-root .sisad-option-editor-row--radio {
-    @apply [grid-template-columns:20px_1fr_28px];
+    @apply [grid-template-columns:18px_1fr_26px];
   }
 
   .sisad-pdfme-root .sisad-option-editor-row--checkbox {
-    @apply [grid-template-columns:18px_1fr_28px];
+    @apply [grid-template-columns:16px_1fr_26px];
+  }
+
+  .sisad-pdfme-root .sisad-option-editor-row--select {
+    @apply [grid-template-columns:1fr_26px];
   }
 
   .sisad-pdfme-root .sisad-option-editor-input {
-    @apply w-full p-[5px_8px] [border:1px_solid_#d9d9d9] rounded-[4px] text-[13px] outline-none;
+    @apply w-full min-w-0 bg-transparent border-0 px-1.5 py-1 text-[13px] text-slate-700 outline-none rounded-md;
   }
 
-  .sisad-pdfme-root .sisad-option-editor-input:focus {
-    @apply border-[#1677ff] [box-shadow:0_0_0_2px_rgba(22,_119,_255,_0.1)];
+  .sisad-pdfme-root .sisad-option-editor-input::placeholder {
+    @apply text-slate-400;
+  }
+
+  .sisad-pdfme-root .sisad-option-editor-input:focus-visible {
+    @apply ring-2 ring-sky-500/40;
   }
 
   .sisad-pdfme-root .sisad-option-editor-remove-btn {
-    @apply w-[24px] h-[24px] border-0 bg-transparent text-[#999] text-[16px] flex items-center justify-center rounded-[3px] p-0 cursor-pointer;
+    @apply w-[26px] h-[26px] border-0 bg-transparent text-slate-400 text-[16px] leading-none inline-flex items-center justify-center rounded-md p-0 cursor-pointer transition-colors;
   }
 
   .sisad-pdfme-root .sisad-option-editor-remove-btn:hover:not(:disabled) {
-    @apply bg-[#fee2e2] text-[#dc2626];
+    @apply bg-rose-50 text-rose-600;
+  }
+
+  .sisad-pdfme-root .sisad-option-editor-remove-btn:focus-visible {
+    @apply ring-2 ring-rose-500/40 outline-none;
   }
 
   .sisad-pdfme-root .sisad-option-editor-remove-btn[data-disabled="true"] {
-    @apply [opacity:0.45] cursor-not-allowed;
+    @apply opacity-40 cursor-not-allowed;
   }
 
   .sisad-pdfme-root .sisad-option-editor-add-row {
-    @apply grid [grid-template-columns:1fr_32px] gap-[6px] items-center;
+    @apply grid [grid-template-columns:1fr_auto] gap-1.5 items-center;
+  }
+
+  .sisad-pdfme-root .sisad-option-editor-add-row .sisad-option-editor-input {
+    @apply rounded-lg border border-dashed border-slate-300 bg-white/70;
   }
 
   .sisad-pdfme-root .sisad-option-editor-add-btn {
-    @apply
-      w-[28px] h-[28px] [border:1.5px_solid_#1677ff] bg-[#1677ff] text-[#fff] text-[18px] font-bold flex items-center justify-center rounded-[4px] p-0
-      cursor-pointer;
+    @apply inline-flex h-[30px] items-center justify-center gap-1 whitespace-nowrap rounded-lg border border-sky-200 bg-sky-50 px-3 text-[12px] font-semibold text-sky-700 cursor-pointer transition-colors;
+  }
+
+  .sisad-pdfme-root .sisad-option-editor-add-btn::before {
+    content: "+";
+    @apply text-[14px] font-bold leading-none;
   }
 
   .sisad-pdfme-root .sisad-option-editor-add-btn:hover {
-    @apply bg-[#0958d9] border-[#0958d9];
+    @apply bg-sky-100 border-sky-300;
+  }
+
+  .sisad-pdfme-root .sisad-option-editor-add-btn:focus-visible {
+    @apply ring-2 ring-sky-500/40 outline-none;
   }
 
   /* Checkbox indicator in propPanel editor */
@@ -11005,17 +11011,14 @@ hrome {
     @apply hidden;
   }
 
-  /* Select propPanel editor */
+  /* Select propPanel editor — inherits the shared option-editor list/row skin
+     above; these only pin the root width and kill any residual list styling. */
   .sisad-pdfme-root .sisad-option-editor-select-root {
     @apply w-full min-w-0;
   }
 
   .sisad-pdfme-root .sisad-option-editor-select-list {
-    @apply list-none p-0 pr-[4px] m-0 max-h-[220px] overflow-y-auto overflow-x-hidden;
-  }
-
-  .sisad-pdfme-root .sisad-option-editor-select-item {
-    @apply flex items-center gap-[6px] mb-[5px];
+    @apply list-none overflow-x-hidden;
   }
 
   /* Note schema — action-based informative variant */
@@ -11136,6 +11139,19 @@ hrome {
 
   .sisad-pdfme-designer-list-view-item-content {
     @apply gap-[0.45rem];
+  }
+
+  /* The content layer is decorative (aria-hidden) and sits above the full-row
+     hit-target button; without this, hovering/clicking the row text never
+     reaches the hit target. Interactive children opt back in. */
+  .sisad-pdfme-designer-list-view-item-content {
+    pointer-events: none;
+  }
+
+  .sisad-pdfme-designer-list-view-item-content button,
+  .sisad-pdfme-designer-list-view-item-content .ant-btn,
+  .sisad-pdfme-designer-list-view-item-content [data-testid="right-sidebar-field-badge"] {
+    pointer-events: auto;
   }
 
   .sisad-pdfme-designer-right-sidebar-layout-header,

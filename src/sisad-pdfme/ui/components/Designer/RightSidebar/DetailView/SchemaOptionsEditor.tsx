@@ -183,8 +183,8 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
     return duplicated ? 'Ya existe una opción con esa etiqueta.' : '';
   };
 
-  const addOption = () => {
-    const label = draft.trim();
+  const addOption = (rawLabel: string = draft) => {
+    const label = rawLabel.trim();
     const validation = validateLabel(label, -1);
     if (validation) {
       setError(validation);
@@ -349,18 +349,21 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
               </button>
               <input
                 type="text"
-                defaultValue={row.label}
-                aria-label={`Opción ${index + 1}`}
-                data-testid="option-label-input"
-                className={mergeClassNames(
-                  DESIGNER_CLASSNAME + 'options-editor-input',
-                  'w-full min-w-0 flex-1 rounded-md border-0 bg-transparent px-1 py-0.5 text-[12px] text-slate-700 outline-none placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-sky-500/40',
-                )}
-                onBlur={(event) => {
-                  if (event.target.value.trim() !== row.label) renameOption(index, event.target.value);
-                }}
-                onKeyDown={(event) => {
-                  if (event.key === 'Enter') {
+              defaultValue={row.label}
+              aria-label={`Opción ${index + 1}`}
+              data-testid="option-label-input"
+              className={mergeClassNames(
+                DESIGNER_CLASSNAME + 'options-editor-input',
+                'w-full min-w-0 flex-1 rounded-md border-0 bg-transparent px-1 py-0.5 text-[12px] text-slate-700 outline-none placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-sky-500/40',
+              )}
+              onChange={(event) => {
+                if (event.target.value.trim() !== row.label) renameOption(index, event.target.value);
+              }}
+              onBlur={(event) => {
+                if (event.target.value.trim() !== row.label) renameOption(index, event.target.value);
+              }}
+              onKeyDown={(event) => {
+                if (event.key === 'Enter') {
                     event.preventDefault();
                     (event.target as HTMLInputElement).blur();
                   }
@@ -419,7 +422,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
           onKeyDown={(event) => {
             if (event.key === 'Enter' || event.key === 'NumpadEnter') {
               event.preventDefault();
-              addOption();
+              addOption((event.target as HTMLInputElement).value);
             }
           }}
         />
@@ -432,7 +435,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
           )}
           aria-label="Agregar opción"
           data-testid="option-add-button"
-          onClick={addOption}
+          onClick={() => addOption()}
         >
           <Plus size={12} strokeWidth={2.5} />
           Agregar opción

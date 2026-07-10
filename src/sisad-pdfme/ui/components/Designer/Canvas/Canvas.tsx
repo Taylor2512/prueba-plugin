@@ -57,6 +57,7 @@ import {
   resolveSelectionPageIndex,
 } from '../shared/selectionIdentityResolver.js';
 import { applyPageMetadataDataset } from '../../shared/pageMetadata.js';
+import type { EffectiveCollaborationContext } from '../../../collaborationContext.js';
 import CanvasOverlayManager from './overlays/CanvasOverlayManager.js';
 import CanvasContextMenu from './overlays/CanvasContextMenu.js';
 import CanvasStateOverlay from './overlays/CanvasStateOverlay.js';
@@ -218,6 +219,10 @@ export interface CanvasProps {
     uploadPdf?: () => void;
   };
   selectionCommands?: SelectionCommandSet;
+  collaborationContext?: Pick<
+    EffectiveCollaborationContext,
+    'actorId' | 'activeRecipientId' | 'activeRecipient' | 'recipientNameMap' | 'canEditStructure'
+  >;
   onInteractionStateChange?: (state: InteractionState) => void;
 
   // ── Canvas render state inputs (Phase 4) ────────────────────────────
@@ -262,6 +267,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     externalSchemaDragActive = false,
     canvasActions,
     selectionCommands,
+    collaborationContext,
     onInteractionStateChange,
     isLoadingDocument = false,
     isSwitchingDocument = false,
@@ -1556,22 +1562,23 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
           );
         }}
       />
-      <CanvasOverlayManager
-        activeElements={activeElements}
-        schemasList={renderedPageSchemasList}
-        topLevelComments={topLevelComments}
-        pageCursor={pageCursor}
+        <CanvasOverlayManager
+          activeElements={activeElements}
+          schemasList={renderedPageSchemasList}
+          topLevelComments={topLevelComments}
+          pageCursor={pageCursor}
         pageSize={pageSizes[pageCursor] ?? { width: 0, height: 0 }}
         paperRefs={paperRefs}
         scale={scale}
         snapLines={snapLines}
         SnapLinesSlot={SnapLinesSlot}
         selectionCommands={selectionCommands}
-        interactionState={interactionState}
-        featureSnapLines={feature.snapLines}
-        externalSchemaDragActive={externalSchemaDragActive}
-        contextMenuOpen={Boolean(contextMenu)}
-      />
+          interactionState={interactionState}
+          featureSnapLines={feature.snapLines}
+          externalSchemaDragActive={externalSchemaDragActive}
+          contextMenuOpen={Boolean(contextMenu)}
+          collaborationContext={collaborationContext}
+        />
       {!externalSchemaDragActive ? (
         <InlineEditOverlay
         session={inlineEditSession}
@@ -1592,6 +1599,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
         activeRequired={contextMenuSelectionRequired}
         activeHidden={contextMenuSelectionHidden}
         selectionSchemas={contextMenuSelectionSchemas}
+        collaborationContext={collaborationContext}
         canEditStructure={selectionCommands?.canEditStructure !== false}
         onClose={closeContextMenu}
       />

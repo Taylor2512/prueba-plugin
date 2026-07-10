@@ -1,3 +1,23 @@
+/**
+ * Infraestructura base para clases UI de SISAD PDFME.
+ *
+ * Rol arquitectónico:
+ * - Define `BaseUIClass`, la base común para Designer/Form/Viewer.
+ * - Gestiona contenedor DOM, root React, ResizeObserver, opciones, idioma, fuentes,
+ *   plugins, template y ciclo de vida de destrucción.
+ * - Define `PreviewUI`, base especializada para runtimes que usan inputs como Form/Viewer.
+ *
+ * Contratos clave:
+ * - La instancia no debe operar después de `destroy()`.
+ * - `updateTemplate` siempre valida y clona el template.
+ * - `updateOptions` debe producir nueva referencia para refrescar context providers.
+ * - El root React se asocia al contenedor para evitar múltiples roots en el mismo nodo.
+ *
+ * Riesgos:
+ * - Cualquier cambio en medición de tamaño afecta zoom, canvas y sidebars.
+ * - El teardown debe ser defensivo para evitar errores DOM en React concurrente.
+ */
+
 import { createRoot, Root } from 'react-dom/client';
 import { DESTROYED_ERR_MSG, DEFAULT_LANG } from './constants.js';
 import { debounce } from './helper.js';
@@ -23,6 +43,7 @@ import {
 const PDFME_ROOT_KEY = '__pdfmeReactRoot__';
 type ContainerWithPdfmeRoot = HTMLElement & { [PDFME_ROOT_KEY]?: Root };
 
+/** Base común de lifecycle, contexto, sizing y render root. */
 export abstract class BaseUIClass {
   protected domContainer!: HTMLElement | null;
   protected reactRoot: Root | null = null;
@@ -163,6 +184,7 @@ export abstract class BaseUIClass {
     return this.template;
   }
 
+  /** Actualiza template de forma validada y defensiva. */
   public updateTemplate(template: Template) {
     checkTemplate(template);
     if (!this.domContainer) throw Error(DESTROYED_ERR_MSG);
@@ -172,6 +194,7 @@ export abstract class BaseUIClass {
     this.render();
   }
 
+  /** Fusiona opciones UI y fuerza nueva referencia para context consumers. */
   public updateOptions(options: UIOptions) {
     checkUIOptions(options);
     const { lang, font } = options || {};
@@ -189,6 +212,7 @@ export abstract class BaseUIClass {
     this.render();
   }
 
+  /** Desmonta React, libera ResizeObserver y marca la instancia como destruida. */
   public destroy() {
     if (!this.domContainer) return;
 
@@ -249,6 +273,7 @@ export abstract class BaseUIClass {
 
   protected abstract render(): void;
 }
+/** Base para runtimes Preview con inputs: Form y Viewer. */
 export abstract class PreviewUI extends BaseUIClass {
   protected inputs!: { [key: string]: string }[];
 

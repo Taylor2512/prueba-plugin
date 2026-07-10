@@ -1,3 +1,15 @@
+/**
+ * Constantes visuales y de runtime UI.
+ *
+ * Rol arquitectónico:
+ * - Centraliza valores base para idioma, errores, clases CSS, dimensiones de layout,
+ *   separación de páginas, sidebars, fondo y zoom máximo.
+ *
+ * Regla:
+ * - No agregar aquí configuración de negocio ni valores específicos de un host.
+ * - Cambios en PAGE_GAP, sidebar widths o class prefixes pueden afectar tests visuales.
+ */
+
 export const DEFAULT_LANG = 'en';
 
 export const DESTROYED_ERR_MSG = '[@sisad-pdfme/ui] this instance is already destroyed';

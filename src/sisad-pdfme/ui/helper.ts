@@ -1,3 +1,20 @@
+/**
+ * Helpers generales del runtime UI.
+ *
+ * Rol arquitectónico:
+ * - Atajos de teclado del diseñador.
+ * - Utilidades matemáticas y de arrays.
+ * - Conversión de PDF/template a listas de schemas UI.
+ * - Conversión de ArrayBuffer a base64/data URL.
+ * - Cálculo de tamaños de páginas PDF y normalización de schemas dentro de límites.
+ * - Helpers de nombres únicos, ordenamiento y utilidades de interacción.
+ *
+ * Riesgos:
+ * - Cambios en atajos pueden afectar edición, undo/redo y selección.
+ * - Cambios en `template2SchemasList` afectan multipágina, PDFs reales y blank PDFs.
+ * - Evitar mutaciones accidentales sobre templates externos; clonar cuando aplique.
+ */
+
 import hotkeysJs from 'hotkeys-js';
 import { useContext } from 'react';
 import {
@@ -41,6 +58,7 @@ hotkeys.unbind = function (keys: string) {
   }
 };
 
+/** Genera ids locales para schemas y objetos UI. */
 export const uuid = () =>
   'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
     const r = (Math.random() * 16) | 0;
@@ -141,6 +159,7 @@ const keys = [
   selectAllMac,
 ];
 
+/** Registra atajos globales del diseñador evitando targets de escritura. */
 export const initShortCuts = (arg: {
   move: (command: 'up' | 'down' | 'left' | 'right', isShift: boolean) => void;
   remove: () => void;
@@ -291,6 +310,7 @@ const convertSchemasForUI = (template: Template): SchemaForUI[][] => {
   return template.schemas as SchemaForUI[][];
 };
 
+/** Convierte template en lista de schemas UI sincronizada con páginas del PDF. */
 export const template2SchemasList = async (_template: Template) => {
   const template = cloneDeep(_template);
   const { basePdf, schemas } = template;
@@ -334,6 +354,7 @@ export const template2SchemasList = async (_template: Template) => {
   });
 };
 
+/** Convierte schemas UI de vuelta a Template serializable. */
 export const schemasList2template = (schemasList: SchemaForUI[][], basePdf: BasePdf): Template => ({
   schemas: cloneDeep(schemasList).map((page) =>
     page.map((schema) => {

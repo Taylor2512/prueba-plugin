@@ -1,3 +1,15 @@
+/**
+ * Temas Ant Design usados por el runtime UI.
+ *
+ * Rol arquitectónico:
+ * - Define `defaultTheme` y `sisadTheme` para componentes AntD usados en el Designer.
+ * - Centraliza tokens visuales de color, bordes, tipografía y spacing de formularios.
+ *
+ * Regla:
+ * - Mantener estos temas genéricos del runtime.
+ * - No incluir CSS específico de pantallas host; para eso usar opciones/config del host.
+ */
+
 import type { ThemeConfig } from 'antd';
 
 export const defaultTheme: ThemeConfig = {

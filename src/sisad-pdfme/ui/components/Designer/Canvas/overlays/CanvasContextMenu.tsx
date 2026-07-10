@@ -9,6 +9,7 @@ import {
 import { resolveAnchoredFloatingSurfacePosition } from './floatingSurfaceGeometry.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { mergeClassNames } from '../../shared/className.js';
+import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
 
 export type CanvasContextMenuPosition = {
   x: number;
@@ -24,6 +25,10 @@ export type CanvasContextMenuProps = {
   hasClipboardData?: boolean;
   selectionCount?: number;
   selectionSchemas: SchemaForUI[];
+  collaborationContext?: Pick<
+    EffectiveCollaborationContext,
+    'actorId' | 'activeRecipientId' | 'activeRecipient' | 'recipientNameMap' | 'canEditStructure'
+  >;
   activeReadOnly?: boolean;
   activeRequired?: boolean;
   activeHidden?: boolean;
@@ -34,8 +39,8 @@ export type CanvasContextMenuProps = {
 
 const MENU_DIMENSIONS: Record<CanvasContextMenuMode, { width: number; height: number }> = {
   empty: { width: 248, height: 208 },
-  single: { width: 248, height: 248 },
-  multi: { width: 264, height: 280 },
+  single: { width: 272, height: 392 },
+  multi: { width: 280, height: 424 },
 };
 
 const CanvasContextMenu = ({
@@ -47,6 +52,7 @@ const CanvasContextMenu = ({
   hasClipboardData = false,
   selectionCount = 0,
   selectionSchemas,
+  collaborationContext,
   activeReadOnly = false,
   activeRequired = false,
   activeHidden = false,
@@ -65,12 +71,13 @@ const CanvasContextMenu = ({
         hasClipboardData,
         selectionCount,
         selectionSchemas,
+        collaborationContext,
         activeReadOnly,
         activeRequired,
         activeHidden,
         canEditStructure,
       }),
-    [mode, commands, externalActions, hasClipboardData, selectionCount, selectionSchemas, activeReadOnly, activeRequired, activeHidden, canEditStructure],
+    [mode, commands, externalActions, hasClipboardData, selectionCount, selectionSchemas, collaborationContext, activeReadOnly, activeRequired, activeHidden, canEditStructure],
   );
 
   useEffect(() => {

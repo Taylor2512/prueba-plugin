@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `docs`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-09T21:25:32.115Z`
+- **Fecha generación:** `2026-07-10T15:35:52.055Z`
 - **Extensiones incluidas:** `.md, .mdx`
 - **Archivos candidatos incluidos:** `234`
 - **Límite por archivo:** `120 KB`
@@ -153,6 +153,7 @@ prueba-plugin
 │   ├── task-cards
 │   │   ├── active
 │   │   │   ├── TASK-DOCS-001-ai-architecture-install.md
+│   │   │   ├── TASK-INSPECTOR-001-detailview-density.md
 │   │   │   └── TASK-SCHEMA-001-option-indicator-docusign.md
 │   │   ├── backlog
 │   │   │   ├── TASK-CANVAS-001-protect-canvas-overflow.md
@@ -302,10 +303,7 @@ prueba-plugin
 │       └── ui-styles-decommission-progress.md
 ├── scripts
 │   └── README.md
-├── SEPARATION-CONTRACT.md
-└── test-results
-    └── standard-fields-standard-f-c4dc3-s-the-expected-schema-types-chromium
-        └── error-context.md
+└── SEPARATION-CONTRACT.md
 ```
 
 ## Archivos incluidos
@@ -538,8 +536,8 @@ prueba-plugin
 | 224 | `reports/tailwind-migration/tc-css-ownership-color.md` | markdown | 38 | 4.0 | completo |
 | 225 | `reports/tailwind-migration/ui-styles-decommission-audit.md` | markdown | 57 | 5.6 | completo |
 | 226 | `reports/tailwind-migration/ui-styles-decommission-progress.md` | markdown | 25 | 1.6 | completo |
-| 227 | `test-results/standard-fields-standard-f-c4dc3-s-the-expected-schema-types-chromium/error-context.md` | markdown | 576 | 28.7 | completo |
-| 228 | `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md` | markdown | 21 | 0.5 | completo |
+| 227 | `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md` | markdown | 21 | 0.5 | completo |
+| 228 | `ai/task-cards/active/TASK-INSPECTOR-001-detailview-density.md` | markdown | 55 | 1.7 | completo |
 | 229 | `ai/task-cards/active/TASK-SCHEMA-001-option-indicator-docusign.md` | markdown | 49 | 1.7 | completo |
 | 230 | `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 5 | 0.2 | completo |
 | 231 | `ai/task-cards/backlog/TASK-CSS-001-tailwind-regression-stabilization.md` | markdown | 22 | 0.6 | completo |
@@ -549,13 +547,13 @@ prueba-plugin
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1486
+- **extensión no incluida:** 1499
 - **directorio ignorado: dependencia/build/salida generada:** 7
 
 ## Totales
 
-- **KB originales candidatos:** `297.8`
-- **KB incluidos en contenido:** `297.5`
+- **KB originales candidatos:** `270.8`
+- **KB incluidos en contenido:** `270.6`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -8857,596 +8855,7 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 
 <a id="file-0227"></a>
 
-### 0227 — `test-results/standard-fields-standard-f-c4dc3-s-the-expected-schema-types-chromium/error-context.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `576`
-- **Tamaño original:** `28.7 KB`
-- **SHA1 corto:** `8d1e443f41`
-- **Estado:** `completo`
-
-```markdown
-# Page snapshot
-
-``​`yaml
-- main [ref=e3]:
-  - generic [ref=e4]:
-    - generic [ref=e5]:
-      - generic [ref=e6]:
-        - generic [ref=e7]:
-          - generic [ref=e8]: Lab
-          - generic [ref=e9]: Diseñador
-        - heading "Multidocumento integral" [level=1] [ref=e10]
-      - button "Controles" [ref=e15]:
-        - img [ref=e17]
-        - text: Controles
-    - region "Colaboración del ejemplo" [ref=e20]:
-      - generic "Colaboración" [ref=e21]:
-        - generic [ref=e22]:
-          - generic [ref=e23]: Usuario
-          - combobox "Seleccionar usuario activo" [ref=e24]:
-            - option "Cliente Principal" [selected]
-            - option "Avalista"
-            - option "Mesa de entrega"
-        - button "Usuario activo" [ref=e26]
-        - button "Estado" [ref=e28]
-  - region "Canvas" [ref=e29]:
-    - generic [ref=e30]:
-      - heading "Canvas" [level=2] [ref=e31]
-      - paragraph [ref=e32]:
-        - text: La superficie de edición se monta dentro del runtime de
-        - code [ref=e33]: sisad-pdfme
-        - text: .
-    - generic [ref=e37]:
-      - generic [ref=e38]:
-        - generic [ref=e39]:
-          - button "Cerrar catálogo de campos" [expanded] [ref=e40] [cursor=pointer]:
-            - img [ref=e41]
-          - generic [ref=e45]:
-            - generic [ref=e46]:
-              - generic [ref=e47]: Diseñador
-              - generic [ref=e48]:
-                - generic [ref=e49]: Campos
-                - 'generic "Color del destinatario activo #2563EB" [ref=e50]'
-            - generic [ref=e51]:
-              - tablist "Tipos de campo" [ref=e52]:
-                - tab "Campos estándar" [selected] [ref=e53] [cursor=pointer]:
-                  - img [ref=e54]
-                - tab "Campos personalizados" [ref=e56] [cursor=pointer]:
-                  - img [ref=e57]
-                - tab "Herramientas de prerrellenado" [ref=e60] [cursor=pointer]:
-                  - img [ref=e61]
-              - generic [ref=e64]:
-                - generic [ref=e65]:
-                  - img [ref=e67]
-                  - textbox "Buscar campos" [ref=e70]
-                - generic [ref=e72]:
-                  - button "Todos" [ref=e73] [cursor=pointer]:
-                    - generic [ref=e74]: Todos
-                  - button "Favoritos (0)" [ref=e75] [cursor=pointer]:
-                    - generic [ref=e76]: Favoritos (0)
-                  - button "Recientes (0)" [ref=e77] [cursor=pointer]:
-                    - generic [ref=e78]: Recientes (0)
-                  - button "Vista detalle (lista)" [ref=e79] [cursor=pointer]:
-                    - img [ref=e81]
-            - generic [ref=e82]:
-              - generic [ref=e83]:
-                - button "Alternar categoría Firmas" [expanded] [ref=e84] [cursor=pointer]:
-                  - generic [ref=e85]: Firmas
-                  - generic [ref=e86]: "3"
-                - generic [ref=e87]:
-                  - generic [ref=e90]:
-                    - button "Datesigned" [ref=e91]:
-                      - generic "Datesigned" [ref=e93]:
-                        - img [ref=e94]
-                      - generic [ref=e98]: Datesigned
-                    - button "Marcar favorito": ★
-                  - generic [ref=e101]:
-                    - button "Initials" [ref=e102]:
-                      - generic "Initials" [ref=e104]:
-                        - img [ref=e105]
-                      - generic [ref=e108]: Initials
-                    - button "Marcar favorito": ★
-                  - generic [ref=e111]:
-                    - button "Firma" [ref=e112]:
-                      - generic "Firma" [ref=e114]:
-                        - img [ref=e115]
-                      - generic [ref=e118]: Firma
-                    - button "Marcar favorito": ★
-              - generic [ref=e119]:
-                - button "Alternar categoría Texto" [expanded] [ref=e120] [cursor=pointer]:
-                  - generic [ref=e121]: Texto
-                  - generic [ref=e122]: "2"
-                - generic [ref=e123]:
-                  - generic [ref=e126]:
-                    - button "Número Número" [ref=e127]:
-                      - generic "Número" [ref=e128]
-                      - generic [ref=e130]: Número
-                    - button "Marcar favorito": ★
-                  - generic [ref=e133]:
-                    - button "Texto" [ref=e134]:
-                      - generic "Texto" [ref=e136]:
-                        - img [ref=e137]
-                      - generic [ref=e143]: Texto
-                    - button "Marcar favorito": ★
-              - generic [ref=e144]:
-                - button "Alternar categoría Imagen y medios" [expanded] [ref=e145] [cursor=pointer]:
-                  - generic [ref=e146]: Imagen y medios
-                  - generic [ref=e147]: "2"
-                - generic [ref=e148]:
-                  - generic [ref=e151]:
-                    - button "Imagen" [ref=e152]:
-                      - generic "Imagen" [ref=e154]:
-                        - img [ref=e155]
-                      - generic [ref=e160]: Imagen
-                    - button "Marcar favorito": ★
-                  - generic [ref=e163]:
-                    - button "SVG" [ref=e164]:
-                      - generic "SVG" [ref=e166]:
-                        - img [ref=e167]
-                      - generic [ref=e172]: SVG
-                    - button "Marcar favorito": ★
-              - generic [ref=e173]:
-                - button "Alternar categoría Selecciones" [expanded] [ref=e174] [cursor=pointer]:
-                  - generic [ref=e175]: Selecciones
-                  - generic [ref=e176]: "4"
-                - generic [ref=e177]:
-                  - generic [ref=e180]:
-                    - button "Casilla" [ref=e181]:
-                      - generic "Casilla" [ref=e183]:
-                        - img [ref=e184]
-                      - generic [ref=e188]: Casilla
-                    - button "Marcar favorito": ★
-                  - generic [ref=e191]:
-                    - button "Grupo de Casillas" [ref=e192]:
-                      - generic "Grupo de Casillas" [ref=e194]:
-                        - img [ref=e195]
-                      - generic [ref=e199]: Grupo de Casillas
-                    - button "Marcar favorito": ★
-                  - generic [ref=e202]:
-                    - button "Opción" [ref=e203]:
-                      - generic "Opción" [ref=e205]:
-                        - img [ref=e206]
-                      - generic [ref=e210]: Opción
-                    - button "Marcar favorito": ★
-                  - generic [ref=e213]:
-                    - button "Lista Desplegable" [ref=e214]:
-                      - generic "Lista Desplegable" [ref=e216]:
-                        - img [ref=e217]
-                      - generic [ref=e220]: Lista Desplegable
-                    - button "Marcar favorito": ★
-              - generic [ref=e221]:
-                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e222] [cursor=pointer]:
-                  - generic [ref=e223]: Fecha y Hora
-                  - generic [ref=e224]: "3"
-                - generic [ref=e225]:
-                  - generic [ref=e228]:
-                    - button "Fecha" [ref=e229]:
-                      - generic "Fecha" [ref=e231]:
-                        - img [ref=e232]
-                      - generic [ref=e235]: Fecha
-                    - button "Marcar favorito": ★
-                  - generic [ref=e238]:
-                    - button "Fecha Y Hora" [ref=e239]:
-                      - generic "Fecha Y Hora" [ref=e241]:
-                        - img [ref=e242]
-                      - generic [ref=e247]: Fecha Y Hora
-                    - button "Marcar favorito": ★
-                  - generic [ref=e250]:
-                    - button "Hora" [ref=e251]:
-                      - generic "Hora" [ref=e253]:
-                        - img [ref=e254]
-                      - generic [ref=e258]: Hora
-                    - button "Marcar favorito": ★
-              - generic [ref=e259]:
-                - button "Alternar categoría QR y Códigos" [expanded] [ref=e260] [cursor=pointer]:
-                  - generic [ref=e261]: QR y Códigos
-                  - generic [ref=e262]: "12"
-                - generic [ref=e263]:
-                  - generic [ref=e266]:
-                    - button "Código de barras" [ref=e267]:
-                      - generic "Código de barras" [ref=e269]:
-                        - img [ref=e270]
-                      - generic [ref=e272]: Código de barras
-                    - button "Marcar favorito": ★
-                  - generic [ref=e275]:
-                    - button "Código de barras" [ref=e276]:
-                      - generic "Código de barras" [ref=e278]:
-                        - img [ref=e279]
-                      - generic [ref=e281]: Código de barras
-                    - button "Marcar favorito": ★
-                  - generic [ref=e284]:
-                    - button "Código de barras" [ref=e285]:
-                      - generic "Código de barras" [ref=e287]:
-                        - img [ref=e288]
-                      - generic [ref=e290]: Código de barras
-                    - button "Marcar favorito": ★
-                  - generic [ref=e293]:
-                    - button "Código de barras" [ref=e294]:
-                      - generic "Código de barras" [ref=e296]:
-                        - img [ref=e297]
-                      - generic [ref=e299]: Código de barras
-                    - button "Marcar favorito": ★
-                  - generic [ref=e302]:
-                    - button "DataMatrix" [ref=e303]:
-                      - generic "DataMatrix" [ref=e305]:
-                        - img [ref=e306]
-                      - generic [ref=e308]: DataMatrix
-                    - button "Marcar favorito": ★
-                  - generic [ref=e311]:
-                    - button "Código de barras" [ref=e312]:
-                      - generic "Código de barras" [ref=e314]:
-                        - img [ref=e315]
-                      - generic [ref=e317]: Código de barras
-                    - button "Marcar favorito": ★
-                  - generic [ref=e320]:
-                    - button "Japan Post" [ref=e321]:
-                      - generic "Japan Post" [ref=e323]:
-                        - img [ref=e324]
-                      - generic [ref=e326]: Japan Post
-                    - button "Marcar favorito": ★
-                  - generic [ref=e329]:
-                    - button "NW7" [ref=e330]:
-                      - generic "NW7" [ref=e332]:
-                        - img [ref=e333]
-                      - generic [ref=e335]: NW7
-                    - button "Marcar favorito": ★
-                  - generic [ref=e338]:
-                    - button "PDF417" [ref=e339]:
-                      - generic "PDF417" [ref=e341]:
-                        - img [ref=e342]
-                      - generic [ref=e344]: PDF417
-                    - button "Marcar favorito": ★
-                  - generic [ref=e347]:
-                    - button "Código QR" [ref=e348]:
-                      - generic "Código QR" [ref=e350]:
-                        - img [ref=e351]
-                      - generic [ref=e358]: Código QR
-                    - button "Marcar favorito": ★
-                  - generic [ref=e361]:
-                    - button "Código de barras" [ref=e362]:
-                      - generic "Código de barras" [ref=e364]:
-                        - img [ref=e365]
-                      - generic [ref=e367]: Código de barras
-                    - button "Marcar favorito": ★
-                  - generic [ref=e370]:
-                    - button "Código de barras" [ref=e371]:
-                      - generic "Código de barras" [ref=e373]:
-                        - img [ref=e374]
-                      - generic [ref=e376]: Código de barras
-                    - button "Marcar favorito": ★
-              - generic [ref=e377]:
-                - button "Alternar categoría Estructura" [expanded] [ref=e378] [cursor=pointer]:
-                  - generic [ref=e379]: Estructura
-                  - generic [ref=e380]: "4"
-                - generic [ref=e381]:
-                  - generic [ref=e384]:
-                    - button "Óvalo" [ref=e385]:
-                      - generic "Óvalo" [ref=e387]:
-                        - img [ref=e388]
-                      - generic [ref=e391]: Óvalo
-                    - button "Marcar favorito": ★
-                  - generic [ref=e394]:
-                    - button "Línea" [ref=e395]:
-                      - generic "Línea" [ref=e397]:
-                        - img [ref=e398]
-                      - generic [ref=e400]: Línea
-                    - button "Marcar favorito": ★
-                  - generic [ref=e403]:
-                    - button "Rectángulo" [ref=e404]:
-                      - generic "Rectángulo" [ref=e406]:
-                        - img [ref=e407]
-                      - generic [ref=e410]: Rectángulo
-                    - button "Marcar favorito": ★
-                  - generic [ref=e413]:
-                    - button "Tabla" [ref=e414]:
-                      - generic "Tabla" [ref=e416]:
-                        - img [ref=e417]
-                      - generic [ref=e420]: Tabla
-                    - button "Marcar favorito": ★
-              - generic [ref=e421]:
-                - button "Alternar categoría Acción" [expanded] [ref=e422] [cursor=pointer]:
-                  - generic [ref=e423]: Acción
-                  - generic [ref=e424]: "4"
-                - generic [ref=e425]:
-                  - generic [ref=e428]:
-                    - button "Approve" [ref=e429]:
-                      - generic "Approve" [ref=e431]:
-                        - img [ref=e432]
-                      - generic [ref=e436]: Approve
-                    - button "Marcar favorito": ★
-                  - generic [ref=e439]:
-                    - button "Attachment" [ref=e440]:
-                      - generic "Attachment" [ref=e442]:
-                        - img [ref=e443]
-                      - generic [ref=e446]: Attachment
-                    - button "Marcar favorito": ★
-                  - generic [ref=e449]:
-                    - button "Decline" [ref=e450]:
-                      - generic "Decline" [ref=e452]:
-                        - img [ref=e453]
-                      - generic [ref=e458]: Decline
-                    - button "Marcar favorito": ★
-                  - generic [ref=e461]:
-                    - button "Note" [ref=e462]:
-                      - generic "Note" [ref=e464]:
-                        - img [ref=e465]
-                      - generic [ref=e469]: Note
-                    - button "Marcar favorito": ★
-              - generic [ref=e470]:
-                - button "Alternar categoría Destinatario" [expanded] [ref=e471] [cursor=pointer]:
-                  - generic [ref=e472]: Destinatario
-                  - generic [ref=e473]: "4"
-                - generic [ref=e474]:
-                  - generic [ref=e477]:
-                    - button "Company" [ref=e478]:
-                      - generic "Company" [ref=e480]:
-                        - img [ref=e481]
-                      - generic [ref=e486]: Company
-                    - button "Marcar favorito": ★
-                  - generic [ref=e489]:
-                    - button "Emailaddress" [ref=e490]:
-                      - generic "Emailaddress" [ref=e492]:
-                        - img [ref=e493]
-                      - generic [ref=e497]: Emailaddress
-                    - button "Marcar favorito": ★
-                  - generic [ref=e500]:
-                    - button "Fullname" [ref=e501]:
-                      - generic "Fullname" [ref=e503]:
-                        - img [ref=e504]
-                      - generic [ref=e508]: Fullname
-                    - button "Marcar favorito": ★
-                  - generic [ref=e511]:
-                    - button "Title" [ref=e512]:
-                      - generic "Title" [ref=e514]:
-                        - img [ref=e515]
-                      - generic [ref=e519]: Title
-                    - button "Marcar favorito": ★
-        - generic [ref=e520]:
-          - generic:
-            - generic [ref=e522]:
-              - generic "Editando" [ref=e523]
-              - generic [ref=e524]: Doc · Pág 1/14
-            - generic [ref=e526]:
-              - button "Página anterior" [disabled] [ref=e527]:
-                - generic:
-                  - img
-              - button "Pág 1/14" [ref=e528] [cursor=pointer]:
-                - generic [ref=e529]: Pág 1/14
-              - button "Página siguiente" [ref=e530] [cursor=pointer]:
-                - img [ref=e532]
-            - generic [ref=e535]:
-              - button "Guardar" [ref=e536] [cursor=pointer]:
-                - img [ref=e538]
-                - generic [ref=e542]: Guardar
-              - button "Más acciones" [ref=e543] [cursor=pointer]:
-                - img [ref=e545]
-            - generic [ref=e550]:
-              - button "Deshacer" [ref=e551] [cursor=pointer]:
-                - img [ref=e553]
-              - button "Rehacer" [ref=e556] [cursor=pointer]:
-                - img [ref=e558]
-              - button "Ajustar página" [ref=e561] [cursor=pointer]:
-                - img [ref=e563]
-              - generic [ref=e568]:
-                - button "Reducir zoom" [ref=e569] [cursor=pointer]:
-                  - img [ref=e571]
-                - generic [ref=e572] [cursor=pointer]:
-                  - generic [ref=e574]:
-                    - combobox [ref=e576]
-                    - generic "100%" [ref=e577]
-                  - generic:
-                    - img:
-                      - img
-                - button "Aumentar zoom" [ref=e578] [cursor=pointer]:
-                  - img [ref=e580]
-          - button "Ocultar panel derecho" [pressed] [ref=e581]:
-            - img [ref=e582]
-          - complementary "Panel derecho del diseñador" [ref=e585]:
-            - generic [ref=e586]:
-              - tablist "Panel derecho" [ref=e588]:
-                - tab "Abrir panel Campos" [selected] [ref=e589] [cursor=pointer]:
-                  - img [ref=e592]
-                - tab "Abrir panel Detalle" [disabled] [ref=e596]:
-                  - img [ref=e599]
-                - tab "Abrir panel Comentarios" [ref=e600] [cursor=pointer]:
-                  - img [ref=e603]
-                - tab "Abrir panel Docs" [ref=e605] [cursor=pointer]:
-                  - img [ref=e608]
-              - generic [ref=e612]:
-                - generic [ref=e613]:
-                  - generic [ref=e614]:
-                    - generic [ref=e615]:
-                      - generic [ref=e617]:
-                        - strong [ref=e619]: Campos
-                        - generic [ref=e621]: 11/11
-                      - button "Renombrar" [ref=e624] [cursor=pointer]:
-                        - generic [ref=e625]: Renombrar
-                    - generic [ref=e626]:
-                      - generic [ref=e627]:
-                        - img [ref=e629]
-                        - textbox "Buscar campo o nombre" [ref=e632]
-                      - generic [ref=e635] [cursor=pointer]:
-                        - generic [ref=e637]:
-                          - combobox [ref=e639]
-                          - generic "Todos los tipos" [ref=e640]
-                        - generic:
-                          - img:
-                            - img
-                  - separator [ref=e641]
-                - generic "Lista de campos del documento" [ref=e642]:
-                  - list [ref=e643]:
-                    - listitem [ref=e644] [cursor=pointer]:
-                      - button "contract_name" [ref=e645]
-                      - generic [ref=e646]:
-                        - button [ref=e647]:
-                          - img [ref=e649]
-                        - img [ref=e659]
-                        - generic [ref=e665]: contract_name
-                    - listitem [ref=e666] [cursor=pointer]:
-                      - button "contract_date" [ref=e667]
-                      - generic [ref=e668]:
-                        - button [ref=e669]:
-                          - img [ref=e671]
-                        - img [ref=e681]
-                        - generic [ref=e687]: contract_date
-                    - listitem [ref=e688] [cursor=pointer]:
-                      - button "contract_stage" [ref=e689]
-                      - generic [ref=e690]:
-                        - button [ref=e691]:
-                          - img [ref=e693]
-                        - img [ref=e703]
-                        - generic [ref=e706]: contract_stage
-                    - listitem [ref=e707] [cursor=pointer]:
-                      - button "approval_mode" [ref=e708]
-                      - generic [ref=e709]:
-                        - button [ref=e710]:
-                          - img [ref=e712]
-                        - img [ref=e722]
-                        - generic [ref=e726]: approval_mode
-                    - listitem [ref=e727] [cursor=pointer]:
-                      - button "required_documents" [ref=e728]
-                      - generic [ref=e729]:
-                        - button [ref=e730]:
-                          - img [ref=e732]
-                        - img [ref=e742]
-                        - generic [ref=e746]: required_documents
-                    - listitem [ref=e747] [cursor=pointer]:
-                      - button "routing-primary-showcase_attachment" [ref=e748]
-                      - generic [ref=e749]:
-                        - button [ref=e750]:
-                          - img [ref=e752]
-                        - img [ref=e762]
-                        - generic [ref=e765]: routing-primary-showcase_attachment
-                    - listitem [ref=e766] [cursor=pointer]:
-                      - button "routing-primary-showcase_approve" [ref=e767]
-                      - generic [ref=e768]:
-                        - button [ref=e769]:
-                          - img [ref=e771]
-                        - img [ref=e781]
-                        - generic [ref=e785]: routing-primary-showcase_approve
-                    - listitem [ref=e786] [cursor=pointer]:
-                      - button "routing-primary-showcase_note" [ref=e787]
-                      - generic [ref=e788]:
-                        - button [ref=e789]:
-                          - img [ref=e791]
-                        - img [ref=e801]
-                        - generic [ref=e805]: routing-primary-showcase_note
-                        - img [ref=e807]
-                    - listitem [ref=e810] [cursor=pointer]:
-                      - button "routing-primary-showcase_decline" [ref=e811]
-                      - generic [ref=e812]:
-                        - button [ref=e813]:
-                          - img [ref=e815]
-                        - img [ref=e825]
-                        - generic [ref=e830]: routing-primary-showcase_decline
-                    - listitem [ref=e831] [cursor=pointer]:
-                      - button "routing-primary-showcase_title" [ref=e832]
-                      - generic [ref=e833]:
-                        - button [ref=e834]:
-                          - img [ref=e836]
-                        - img [ref=e846]
-                        - generic [ref=e850]: routing-primary-showcase_title
-                    - listitem [ref=e851] [cursor=pointer]:
-                      - button "routing-primary-showcase_emailaddress" [ref=e852]
-                      - generic [ref=e853]:
-                        - button [ref=e854]:
-                          - img [ref=e856]
-                        - img [ref=e866]
-                        - generic [ref=e870]: routing-primary-showcase_emailaddress
-                  - status [ref=e871]
-          - generic [ref=e874]:
-            - generic [ref=e875]:
-              - generic "contract_name" [ref=e877] [cursor=pointer]:
-                - generic [ref=e880]: Contrato principal
-                - text: contract_name · text
-              - generic "contract_date" [ref=e881] [cursor=pointer]:
-                - generic [ref=e884]: 2026-05-01
-                - text: contract_date · text
-              - generic "contract_stage" [ref=e885] [cursor=pointer]:
-                - generic [ref=e888]: Pendiente
-                - text: contract_stage · select
-              - generic "approval_mode" [ref=e889] [cursor=pointer]:
-                - radiogroup "Modo de aprobación" [ref=e891]:
-                  - generic [ref=e892]:
-                    - radio "Firma" [checked] [disabled] [ref=e893]
-                    - radio "Revisión" [disabled] [ref=e896]
-              - generic "required_documents" [ref=e898] [cursor=pointer]:
-                - group "Documentos requeridos" [ref=e900]:
-                  - generic [ref=e901]:
-                    - checkbox "Cédula" [checked] [disabled] [ref=e902]:
-                      - img [ref=e904]
-                    - checkbox "RUC" [disabled] [ref=e906]
-                    - checkbox "Contrato firmado" [checked] [disabled] [ref=e908]:
-                      - img [ref=e910]
-                - text: required_documents · checkboxGroup
-              - generic "routing-primary-showcase_attachment" [ref=e912] [cursor=pointer]:
-                - generic [ref=e915]:
-                  - img [ref=e916]
-                  - text: Adjuntar archivo
-                - text: routing-primary-showcase_attachment · attachment
-              - generic "routing-primary-showcase_approve" [ref=e918] [cursor=pointer]:
-                - button "Aprobar" [ref=e921]:
-                  - img [ref=e922]
-                  - text: Aprobar
-                - text: routing-primary-showcase_approve · approve
-              - generic "Solo lectura" [ref=e924] [cursor=pointer]:
-                - generic [ref=e926]: Nota informativa
-                - text: solo lectura
-              - generic "routing-primary-showcase_decline" [ref=e927] [cursor=pointer]:
-                - button "Rechazar" [ref=e930]:
-                  - img [ref=e931]
-                  - text: Rechazar
-                - text: routing-primary-showcase_decline · decline
-              - generic "routing-primary-showcase_title" [ref=e934] [cursor=pointer]: routing-primary-showcase_title · title
-              - generic "routing-primary-showcase_emailaddress" [ref=e938] [cursor=pointer]: routing-primary-showcase_emailaddress · emailAddress
-            - generic [ref=e942]:
-              - generic "routing-primary-showcase_company" [ref=e944] [cursor=pointer]: routing-primary-showcase_company · company
-              - generic "routing-primary-showcase_fullname" [ref=e948] [cursor=pointer]: routing-primary-showcase_fullname · fullName
-              - generic "routing-primary-showcase_table" [ref=e952] [cursor=pointer]:
-                - generic [ref=e953]:
-                  - generic [ref=e957]: Name
-                  - generic [ref=e961]: City
-                  - generic [ref=e965]: Description
-                  - generic [ref=e969]: Alice
-                  - generic [ref=e977]: New York
-                  - generic [ref=e985]: Alice is a freelance web designer and developer
-                  - generic [ref=e993]: Bob
-                  - generic [ref=e1001]: Paris
-                  - generic [ref=e1009]: Bob is a freelance illustrator and graphic designer
-                - text: routing-primary-showcase_table · table
-              - generic "routing-primary-showcase_date" [ref=e1014] [cursor=pointer]: routing-primary-showcase_date · date
-              - generic "routing-primary-showcase_datetime" [ref=e1018] [cursor=pointer]: routing-primary-showcase_datetime · dateTime
-              - generic "routing-primary-showcase_time" [ref=e1022] [cursor=pointer]: routing-primary-showcase_time · time
-            - generic [ref=e1026]:
-              - generic "Solo lectura" [ref=e1028] [cursor=pointer]:
-                - generic [ref=e1031]: 08/07/2026
-                - text: solo lectura
-              - generic "routing-primary-showcase_signature" [ref=e1032] [cursor=pointer]: routing-primary-showcase_signature · signature
-              - generic "routing-primary-showcase_initials" [ref=e1035] [cursor=pointer]: routing-primary-showcase_initials · initials
-              - generic "routing-primary-showcase_code128" [ref=e1038] [cursor=pointer]:
-                - img [ref=e1041]
-                - text: routing-primary-showcase_code128 · code128
-              - generic "routing-primary-showcase_code39" [ref=e1042] [cursor=pointer]:
-                - img [ref=e1045]
-                - text: routing-primary-showcase_code39 · code39
-              - generic "routing-primary-showcase_ean13" [ref=e1046] [cursor=pointer]:
-                - img [ref=e1049]
-                - text: routing-primary-showcase_ean13 · ean13
-            - generic "routing-primary-showcase_ean8" [ref=e1052] [cursor=pointer]:
-              - img [ref=e1055]
-              - text: routing-primary-showcase_ean8 · ean8
-      - status [ref=e1076]
-  - region "Resultados":
-    - button "Resultados Colapsado" [ref=e1077] [cursor=pointer]:
-      - text: Resultados
-      - generic [ref=e1078]: Colapsado
-``​`
-```
-
-<a id="file-0228"></a>
-
-### 0228 — `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md`
+### 0227 — `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -9476,6 +8885,74 @@ Instalar carpeta `ai/` como fuente de verdad y adaptar Codex, Claude y Copilot c
 ## No tocar
 
 Código de runtime.
+```
+
+<a id="file-0228"></a>
+
+### 0228 — `ai/task-cards/active/TASK-INSPECTOR-001-detailview-density.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `55`
+- **Tamaño original:** `1.7 KB`
+- **SHA1 corto:** `2b2c127a97`
+- **Estado:** `completo`
+
+```markdown
+# TASK-INSPECTOR-001 — Compactar el DetailView
+
+## Objetivo
+Reducir densidad visual del `RightSidebar` DetailView sin cambiar el contrato funcional ni las secciones canónicas ya definidas.
+
+## Alcance
+- Header del inspector
+- Tarjetas de sección
+- Widgets del DetailView con skin/densidad
+- Descripciones y espaciado
+
+## Fuera de alcance
+- Canvas
+- Moveable
+- Selecto
+- Paper
+- Drag/drop
+- Coordenadas de schema
+- SnapshotAdapter
+- Generator
+- pdf-lib
+
+## Archivos candidatos
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailHeaderUtils.ts`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives.tsx`
+- `src/styles/sisad-tailwind-bridge.css`
+
+## Archivos prohibidos
+- `src/sisad-pdfme/ui/components/Designer/Canvas/**`
+- `src/sisad-pdfme/ui/components/Paper.tsx`
+- `src/sisad-pdfme/shared/snapshotAdapter.ts`
+- `src/sisad-pdfme/generator/**`
+- `src/sisad-pdfme/pdf-lib/**`
+
+## Pasos
+1. Compactar header y subtítulo.
+2. Reducir padding/altura de cards.
+3. Ajustar descripciones y jerarquía visual.
+4. Aligerar widgets sin cambiar lógica.
+
+## Validación
+- `contract_stage` muestra un inspector más compacto.
+- La densidad visual baja sin perder secciones.
+- No se rompe selección ni interacción del canvas.
+
+## Criterio de parada
+- Si hace falta tocar canvas o geometría, detenerse.
+
+## Entrega final
+- Resumen corto de archivos modificados
+- Confirmación de build/lint
 ```
 
 <a id="file-0229"></a>

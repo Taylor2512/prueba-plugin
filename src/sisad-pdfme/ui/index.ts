@@ -1,3 +1,17 @@
+/**
+ * Entrypoint público del paquete UI de SISAD PDFME.
+ *
+ * Rol arquitectónico:
+ * - Exporta Designer, Form, Viewer y DesignerEngineBuilder.
+ * - Carga estilos base requeridos por el runtime.
+ * - Expone alias semánticos: PdfEditor, PdfFormView, PdfViewer y PdfEditorEngineBuilder.
+ * - Reexporta tipos públicos, designer engine, eventos/extensiones y colaboración.
+ *
+ * Regla:
+ * - Mantener este archivo como fachada del paquete.
+ * - No agregar lógica de negocio ni imports profundos innecesarios para el host.
+ */
+
 import Designer from './Designer';
 import Form from './Form';
 import Viewer from './Viewer';

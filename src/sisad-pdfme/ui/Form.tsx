@@ -1,3 +1,21 @@
+/**
+ * Clase pública `Form` del runtime UI.
+ *
+ * Rol arquitectónico:
+ * - Renderiza el modo interactivo de llenado usando el componente `Preview`.
+ * - Hereda de `PreviewUI`, por lo que comparte template, plugins, opciones, fuentes e inputs.
+ * - Expone callbacks granulares para cambios de input, cambios masivos de inputs,
+ *   cambios del JSON de formulario y cambio de página.
+ *
+ * Diferencia frente a Viewer:
+ * - `Form` sí permite modificar inputs.
+ * - `Viewer` solo muestra contenido en modo lectura.
+ *
+ * Notas de mantenimiento:
+ * - `setInputs` calcula diferencias para notificar cambios por campo.
+ * - Evitar reglas de negocio del host; la clase debe seguir siendo runtime genérico.
+ */
+
 import React from 'react';
 import { PreviewProps } from '@sisad-pdfme/common';
 import { PreviewUI } from './class';
@@ -6,6 +24,7 @@ import AppContextProvider from './components/AppContextProvider';
 import Preview from './components/Preview';
 import { FormJsonEnvelope } from './designerEngine';
 
+/** Runtime interactivo para llenar campos del template. */
 class Form extends PreviewUI {
   private onChangeInputCallback?: (arg: { index: number; value: string; name: string }) => void;
   private onChangeInputsCallback?: (arg: { index: number; values: Record<string, string> }) => void;
@@ -47,6 +66,7 @@ class Form extends PreviewUI {
     return this.template.schemas.length;
   }
 
+  /** Reemplaza inputs y emite eventos por campo cambiado. */
   public setInputs(inputs: { [key: string]: string }[]): void {
     const previousInputs = this.getInputs();
 
@@ -76,6 +96,7 @@ class Form extends PreviewUI {
     });
   }
 
+  /** Renderiza Preview en modo formulario y sincroniza inputs/formJson. */
   protected render() {
     if (!this.domContainer) throw new Error(DESTROYED_ERR_MSG);
     this.getOrCreateRoot().render(

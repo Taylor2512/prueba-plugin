@@ -1,3 +1,24 @@
+/**
+ * Clase pública `Designer` del runtime UI de SISAD PDFME.
+ *
+ * Rol arquitectónico:
+ * - Actúa como fachada imperativa sobre el componente React interno `DesignerComponent`.
+ * - Normaliza templates incompletos antes de renderizar el editor.
+ * - Expone operaciones públicas de edición: zoom, paginación, sidebar, foco, resaltado,
+ *   creación de schemas, lectura/escritura de configuración y prellenado externo.
+ * - Mantiene sincronizados callbacks del host: save, change template y page change.
+ *
+ * Límites del módulo:
+ * - No debe contener reglas de negocio SISAD, Uanataca, StepTwo ni APIs externas.
+ * - No debe manipular directamente Moveable, Selecto ni geometría interna del canvas.
+ * - No debe crear snapshots paralelos; solo mantiene el `template` runtime.
+ *
+ * Notas de mantenimiento:
+ * - `ensureDesignerTemplate` protege al host cuando no entrega `basePdf` real.
+ * - Si el archivo usa JSX, debe compilarse como `.tsx`.
+ * - Toda llamada pública debe validar que la instancia no esté destruida con `DESTROYED_ERR_MSG`.
+ */
+
 import React from 'react';
 import {
   cloneDeep,
@@ -26,6 +47,7 @@ type DesignerTemplateChangeContext = {
   updatedAt?: number;
 };
 
+/** Normaliza y sanea el template recibido antes de montar el editor. */
 const ensureDesignerTemplate = (template: Template): Template => {
   const basePdf = (template as Partial<Template>)?.basePdf;
   const hasBasePdf =
@@ -101,6 +123,7 @@ const ensureDesignerTemplate = (template: Template): Template => {
   };
 };
 
+/** Fachada imperativa que adapta DesignerComponent a consumidores externos. */
 class Designer extends BaseUIClass {
   private onSaveTemplateCallback?: (template: Template) => void;
   private onChangeTemplateCallback?: (template: Template, context?: DesignerTemplateChangeContext) => void;
@@ -292,6 +315,7 @@ class Designer extends BaseUIClass {
     return this.template.schemas.length;
   }
 
+  /** Renderiza el árbol React interno y conecta callbacks/runtimeApi. */
   protected render() {
     if (!this.domContainer) throw new Error(DESTROYED_ERR_MSG);
     if (!this.domContainer.isConnected) return;

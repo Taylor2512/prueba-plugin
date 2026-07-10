@@ -15,6 +15,7 @@ import {
 } from '../../shared/selectionIdentityResolver.js';
 import CommentsOverlay from './CommentsOverlay.js';
 import ShortcutHelpPanel from '../../Shortcuts/ShortcutHelpPanel.js';
+import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
 
 export type SnapLinesSlot = React.ComponentType<{
   lines: SnapLine[];
@@ -38,6 +39,10 @@ type CanvasOverlayManagerProps = {
   featureSnapLines: boolean;
   externalSchemaDragActive?: boolean;
   contextMenuOpen?: boolean;
+  collaborationContext?: Pick<
+    EffectiveCollaborationContext,
+    'actorId' | 'activeRecipientId' | 'activeRecipient' | 'recipientNameMap' | 'canEditStructure'
+  >;
   className?: string;
 };
 
@@ -60,6 +65,7 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
     featureSnapLines,
     externalSchemaDragActive = false,
     contextMenuOpen = false,
+    collaborationContext,
     className,
   } = props;
 
@@ -110,6 +116,7 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
             activeSchemas={activeSchemas}
             interactionState={interactionState}
             contextMenuOpen={contextMenuOpen}
+            collaborationContext={collaborationContext}
             toolbarMode={toolbarMode}
             onToolbarModeChange={setToolbarMode}
           />

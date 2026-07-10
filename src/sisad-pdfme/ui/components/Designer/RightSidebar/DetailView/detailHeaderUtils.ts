@@ -71,14 +71,20 @@ export const buildDetailHeaderSummary = (
     activeSchema.readOnly || schemaHidden
       ? 'Solo lectura'
       : activeSchema.lock || activeSchema.state === 'locked'
-        ? 'Bloqueado para edición'
+        ? String((activeSchema.lock as { lockedBy?: string } | undefined)?.lockedBy || '').trim() &&
+          String((activeSchema.lock as { lockedBy?: string } | undefined)?.lockedBy || '').trim() ===
+            String(activeSchema.ownerRecipientId || '').trim()
+          ? 'En edición'
+          : 'Bloqueado para edición'
         : schemaConfig?.persistence?.enabled || activeSchema.saveValue !== false
           ? 'Guardado'
           : 'Cambios pendientes';
   const statusColor =
     statusLabel === 'Guardado'
       ? 'success'
-      : statusLabel === 'Bloqueado para edición'
+      : statusLabel === 'En edición'
+        ? 'processing'
+        : statusLabel === 'Bloqueado para edición'
         ? 'warning'
         : statusLabel === 'Solo lectura'
           ? 'gold'

@@ -1,3 +1,24 @@
+/**
+ * Hook runtime compartido para Preview/Form/Viewer de SISAD PDFME.
+ *
+ * Este módulo concentra la preparación del template para renderizado runtime:
+ *
+ * - calcula templates dinámicos para tablas y contenido variable;
+ * - convierte el template en schemas listos para UI;
+ * - precarga fondos/imágenes del PDF mediante useUIPreProcessor;
+ * - mantiene zoom, página activa y unidad/registro activo;
+ * - construye snapshots de campos para persistencia, prefill, API y Form JSON;
+ * - sincroniza inputs locales/remotos sin acoplarse a un backend específico;
+ * - emite eventos públicos del runtime para extensiones del designer engine.
+ *
+ * Reglas arquitectónicas:
+ *
+ * - No debe importar componentes visuales específicos del host.
+ * - No debe conocer reglas de negocio SISAD, Uanataca, workflow ni APIs concretas.
+ * - No debe modificar geometry/canvas del Designer; solo prepara schemas para Preview.
+ * - El adapter de datos (`createSchemaDataRuntimeAdapter`) es la frontera con
+ *   persistencia, prefill, requests e integraciones externas.
+ */
 import { useCallback, useContext, useEffect, useMemo, useRef, useState, type MutableRefObject } from 'react';
 import { Template, SchemaForUI, Size, getDynamicTemplate } from '@sisad-pdfme/common';
 import { getDynamicHeightsForTable } from '@sisad-pdfme/schemas';
@@ -16,9 +37,33 @@ import { emitDesignerRuntimeEvent } from './Designer/shared/designerExtensions.j
 import usePaperRefRegistry from './shared/usePaperRefRegistry.js';
 import { isRecord } from './Designer/shared/objectGuards.js';
 
+/**
+ * Cache compartido para getDynamicTemplate.
+ *
+ * Se mantiene fuera del hook para reutilizar cálculos entre renders,
+ * especialmente en templates dinámicos con tablas.
+ */
 const _cache = new Map<string | number, unknown>();
+/**
+ * Límite de caché de templates dinámicos procesados.
+ *
+ * Evita crecimiento indefinido cuando el host cambia entre documentos,
+ * inputs o páginas con distintas firmas de runtime.
+ */
 const MAX_RUNTIME_TEMPLATE_CACHE_ENTRIES = 12;
 
+/**
+ * Resuelve una identidad estable del documento renderizado.
+ *
+ * Prioridad:
+ *
+ * 1. fileId / fileTemplateId del template.
+ * 2. URL o data URL de basePdf.
+ * 3. Firma corta del objeto basePdf.
+ *
+ * Esta identidad se usa para saber cuándo el Preview debe recalcular
+ * backgrounds, pageSizes y schemas dinámicos.
+ */
 const getTemplateDocumentIdentity = (template: Template) => {
   const scopedTemplate = template as Template & { fileId?: string; fileTemplateId?: string };
   const id = String(scopedTemplate?.fileId || scopedTemplate?.fileTemplateId || '');
@@ -39,6 +84,12 @@ const getTemplateDocumentIdentity = (template: Template) => {
   }
 };
 
+/**
+ * Ordena recursivamente objetos JSON para generar firmas estables.
+ *
+ * Sin este paso, dos objetos con las mismas claves en distinto orden
+ * producirían firmas diferentes y dispararían recalculados innecesarios.
+ */
 const sortJsonValue = (value: unknown): unknown => {
   if (value === null || typeof value !== 'object') return value;
   if (Array.isArray(value)) return value.map(sortJsonValue);
@@ -53,6 +104,12 @@ const sortJsonValue = (value: unknown): unknown => {
   }, {});
 };
 
+/**
+ * Crea una firma JSON estable y tolerante a errores.
+ *
+ * Se usa como key de deduplicación para evitar rehidratar o recalcular
+ * runtime cuando el contenido relevante no cambió.
+ */
 const stableJsonSignature = (v: unknown) => {
   try {
     return JSON.stringify(sortJsonValue(v));
@@ -61,10 +118,23 @@ const stableJsonSignature = (v: unknown) => {
   }
 };
 
+/**
+ * Genera una key compacta de layout para comparar schemas.
+ *
+ * Incluye identidad, página, posición, tamaño y tipo.
+ * No compara todo el schema para evitar renders por cambios de metadata
+ * que no afectan el layout del Preview.
+ */
 const getSchemaLayoutKey = (schema: SchemaForUI) =>
   [schema?.schemaUid || schema?.id || schema?.name || 'field', schema?.pageNumber || '', schema?.position?.x || 0, schema?.position?.y || 0, schema?.width || 0, schema?.height || 0, schema?.type || '']
     .join(':');
 
+/**
+ * Compara dos listas de schemas por layout, no por referencia.
+ *
+ * Retorna true si ambas listas tienen la misma cantidad de páginas,
+ * misma cantidad de schemas por página y la misma key de layout por schema.
+ */
 const areSchemasListEquivalent = (a: SchemaForUI[][] = [[]], b: SchemaForUI[][] = [[]]) => {
   if ((a || [[]]).length !== (b || [[]]).length) return false;
   for (let i = 0; i < (a || [[]]).length; i += 1) {
@@ -78,6 +148,14 @@ const areSchemasListEquivalent = (a: SchemaForUI[][] = [[]], b: SchemaForUI[][] 
   return true;
 };
 
+/**
+ * Firma los elementos del template que obligan a reconstruir el runtime.
+ *
+ * Considera:
+ * - identidad del documento;
+ * - número de páginas;
+ * - layout de schemas.
+ */
 const createPreviewRuntimeSignature = (template: Template) => {
   const documentKey = getTemplateDocumentIdentity(template);
   const schemaSignature = (template?.schemas || [])
@@ -88,6 +166,12 @@ const createPreviewRuntimeSignature = (template: Template) => {
   return stableJsonSignature({ documentKey, pageCount: template?.schemas?.length || 0, schemaSignature });
 };
 
+/**
+ * Firma únicamente inputs que afectan templates dinámicos.
+ *
+ * Actualmente filtra campos tipo `table`, porque son los que pueden cambiar
+ * altura, saltos de página o layout mediante getDynamicTemplate.
+ */
 const createInputRuntimeSignature = (template: Template, input: Record<string, string> = {}) => {
   const dynamicNames = new Set<string>();
   (template?.schemas || []).flat().forEach((s: SchemaForUI) => {
@@ -100,10 +184,23 @@ const createInputRuntimeSignature = (template: Template, input: Record<string, s
   return stableJsonSignature(filtered);
 };
 
+/**
+ * Resuelve localStorage desde globalThis.
+ *
+ * Mantenerlo como función permite sustituir/aislar esta dependencia si
+ * en el futuro se ejecuta en entornos sin browser real.
+ */
 const resolveLocalStorage = () => {
   return globalThis.localStorage;
 };
 
+/**
+ * Ejecuta una petición de prefill y aplica solo valores seguros.
+ *
+ * Regla importante:
+ * Solo rellena campos vacíos. Si el usuario ya escribió un valor,
+ * no lo sobrescribe con la respuesta remota.
+ */
 const applyPrefillResponse = (
   runtimeAdapter: ReturnType<typeof createSchemaDataRuntimeAdapter>,
   field: SchemaDataFieldSnapshot,
@@ -130,6 +227,12 @@ const applyPrefillResponse = (
   });
 };
 
+/**
+ * Ejecuta una request runtime de sync/submit sin romper el render.
+ *
+ * Las fallas se reportan por console.warn porque este hook no debe
+ * bloquear la experiencia visual del formulario/visor.
+ */
 const runRuntimeRequest = (
   runtimeAdapter: ReturnType<typeof createSchemaDataRuntimeAdapter>,
   request: NonNullable<ReturnType<ReturnType<typeof createSchemaDataRuntimeAdapter>['resolveRequest']>>,
@@ -142,6 +245,14 @@ const runRuntimeRequest = (
   });
 };
 
+/**
+ * Props de entrada del hook de Preview runtime.
+ *
+ * Este hook es compartido por Form y Viewer:
+ *
+ * - con onChangeInput/onChangeInputs actúa como Form interactivo;
+ * - sin esos callbacks actúa como Viewer/preview de solo lectura.
+ */
 type UsePreviewRuntimeArgs = {
   template: Template;
   inputs: Array<Record<string, string>>;
@@ -152,6 +263,12 @@ type UsePreviewRuntimeArgs = {
   onPageChange?: (_pageInfo: { currentPage: number; totalPages: number }) => void;
 };
 
+/**
+ * Orquesta el runtime de Preview/Form/Viewer.
+ *
+ * Devuelve estado y handlers necesarios para que el componente Preview pinte
+ * páginas, backgrounds, schemas, scroll, zoom, inputs, Form JSON y eventos.
+ */
 const usePreviewRuntime = ({
   template,
   inputs,
@@ -161,20 +278,25 @@ const usePreviewRuntime = ({
   onFormJsonChange,
   onPageChange,
 }: UsePreviewRuntimeArgs) => {
+  /** Contexto visual y funcional del runtime. */
   const font = useContext(FontContext);
   const options = useContext(OptionsContext);
   const maxZoom = useMaxZoom();
 
+  /** Contenedor principal con scroll del Preview. */
   const containerRef = useRef<HTMLDivElement>(null);
   const { paperRefs, registerPaperRef } = usePaperRefRegistry();
 
+  /** Índice del input activo cuando hay múltiples registros/unidades. */
   const [unitCursor, setUnitCursor] = useState(0);
   const [pageCursor, setPageCursor] = useState(0);
   const [zoomLevel, setZoomLevel] = useState(options.zoomLevel ?? 1);
   const [schemasList, setSchemasList] = useState<SchemaForUI[][]>([[]] as SchemaForUI[][]);
 
+  /** Engine configurado desde options.designerEngine. */
   const designerEngine = useMemo(() => resolveDesignerEngine(options), [options]);
   const designerEvents = designerEngine.extensions?.events;
+  /** Adapter de datos para Form JSON, persistencia, prefill y requests. */
   const runtimeAdapter = useMemo(
     () =>
       createSchemaDataRuntimeAdapter({
@@ -185,6 +307,7 @@ const usePreviewRuntime = ({
     [designerEngine],
   );
 
+  /** Emisor de eventos públicos para extensiones del runtime. */
   const emitRuntimeEvent = useCallback(
     (event: Parameters<typeof emitDesignerRuntimeEvent>[1]) => {
       emitDesignerRuntimeEvent(designerEvents, event);
@@ -192,6 +315,7 @@ const usePreviewRuntime = ({
     [designerEvents],
   );
 
+  /** Preprocesa basePdf a backgrounds, tamaños de páginas y escala. */
   const { backgrounds, pageSizes, scale, error, refresh } = useUIPreProcessor({
     template,
     size,
@@ -199,6 +323,7 @@ const usePreviewRuntime = ({
     maxZoom,
   });
 
+  /** Detecta si el runtime está en modo Form interactivo. */
   const isForm = Boolean(onChangeInput);
   const input = inputs[unitCursor];
   const currentInputRef = useRef<Record<string, string>>(input || {});
@@ -214,6 +339,7 @@ const usePreviewRuntime = ({
     currentInputRef.current = input || {};
   }, [input]);
 
+  /** Firma que dispara reconstrucción cuando cambia template o input dinámico. */
   const triggerSignature = useMemo(() => {
     try {
       const tSig = createPreviewRuntimeSignature(template);
@@ -224,6 +350,7 @@ const usePreviewRuntime = ({
     }
   }, [template, input]);
 
+  /** Snapshot plano de campos + configuración de designer engine. */
   const fieldSnapshots = useMemo<SchemaDataFieldSnapshot[]>(
     () =>
       schemasList.flat().map((schema) => ({
@@ -233,6 +360,7 @@ const usePreviewRuntime = ({
     [designerEngine, schemasList],
   );
 
+  /** Snapshot runtime completo usado por adapter de datos. */
   const snapshot = useMemo<SchemaDataSnapshot>(
     () => ({
       pageIndex: pageCursor,
@@ -244,6 +372,12 @@ const usePreviewRuntime = ({
     [fieldSnapshots, input, pageCursor, schemasList.length, unitCursor],
   );
 
+  /**
+   * Aplica cambios de input hacia el host.
+   *
+   * Si existe onChangeInputs, emite un cambio batch. Si no, emite
+   * un cambio individual por cada campo modificado.
+   */
   const commitInputPatch = useCallback(
     (patch: Record<string, string>) => {
       const entries = Object.entries(patch).filter(([, value]) => value !== undefined);
@@ -277,8 +411,19 @@ const usePreviewRuntime = ({
     [emitRuntimeEvent, isForm, onChangeInput, onChangeInputs, unitCursor],
   );
 
+  /** Form JSON derivado del snapshot actual. */
   const formJsonEnvelope = useMemo(() => runtimeAdapter.buildFormJson(snapshot), [runtimeAdapter, snapshot]);
 
+  /**
+   * Inicializa o recalcula el runtime visual.
+   *
+   * Flujo:
+   * 1. Genera firma runtime.
+   * 2. Reusa caché si existe.
+   * 3. Calcula dynamicTemplate.
+   * 4. Convierte template a schemasList de UI.
+   * 5. Refresca backgrounds/pageSizes mediante useUIPreProcessor.
+   */
   const init = useCallback(
     (nextTemplate: Template, inputOverride?: Record<string, string>) => {
       const currentInput = inputOverride ?? currentInputRef.current;
@@ -324,6 +469,7 @@ const usePreviewRuntime = ({
     [font, refresh],
   );
 
+  /** Notifica cambios del Form JSON al host y a las extensiones. */
   useEffect(() => {
     if (onFormJsonChange) {
       onFormJsonChange(formJsonEnvelope);
@@ -339,6 +485,12 @@ const usePreviewRuntime = ({
     });
   }, [emitRuntimeEvent, formJsonEnvelope, isForm, onFormJsonChange, pageSizes.length]);
 
+  /**
+   * Hidratación inicial de campos persistidos y prefill remoto.
+   *
+   * Solo corre en modo Form. Usa firmas para no repetir hidrataciones
+   * sobre la misma combinación de campos/configuración.
+   */
   useEffect(() => {
     if (!isForm) return;
 
@@ -412,6 +564,12 @@ const usePreviewRuntime = ({
     });
   }, [commitInputPatch, fieldSnapshots, isForm, runtimeAdapter, snapshot]);
 
+  /**
+   * Sincroniza cambios del formulario hacia persistencia local o APIs remotas.
+   *
+   * Tiene debounce manual de 250ms para evitar requests/escrituras por cada
+   * pulsación inmediata del usuario.
+   */
   useEffect(() => {
     if (!isForm) return;
 
@@ -457,18 +615,21 @@ const usePreviewRuntime = ({
     return () => globalThis.clearTimeout(timer);
   }, [fieldSnapshots, isForm, runtimeAdapter, snapshot, unitCursor, input]);
 
+  /** Sincroniza zoomLevel externo desde options. */
   useEffect(() => {
     if (typeof options.zoomLevel === 'number' && options.zoomLevel !== zoomLevel) {
       setZoomLevel(options.zoomLevel);
     }
   }, [options.zoomLevel, zoomLevel]);
 
+  /** Evita que unitCursor apunte fuera del arreglo de inputs. */
   useEffect(() => {
     if (unitCursor > inputs.length - 1) {
       setUnitCursor(inputs.length - 1);
     }
   }, [inputs.length, unitCursor]);
 
+  /** Emite evento cuando cambia la página activa. */
   useEffect(() => {
     emitRuntimeEvent({
       type: 'runtime.view.page.changed',
@@ -480,6 +641,7 @@ const usePreviewRuntime = ({
     });
   }, [emitRuntimeEvent, isForm, pageCursor, pageSizes.length, unitCursor]);
 
+  /** Emite evento cuando cambia zoom/escala/viewport. */
   useEffect(() => {
     emitRuntimeEvent({
       type: 'runtime.view.zoom.changed',
@@ -490,6 +652,7 @@ const usePreviewRuntime = ({
     });
   }, [emitRuntimeEvent, scale, size.height, size.width, zoomLevel]);
 
+  /** Recalcula runtime cuando cambia la firma relevante. */
   useEffect(() => {
     if (!triggerSignature) return;
     if (runtimeSignatureRef.current === triggerSignature) return;
@@ -497,6 +660,7 @@ const usePreviewRuntime = ({
     init(template);
   }, [triggerSignature, init, template]);
 
+  /** Sincroniza pageCursor con el scroll real del contenedor. */
   useScrollPageCursor({
     ref: containerRef,
     paperRefs,
@@ -511,6 +675,7 @@ const usePreviewRuntime = ({
     },
   });
 
+  /** Emite un cambio de input individual. */
   const handleChangeInput = useCallback(
     ({ name, value }: { name: string; value: string }) => {
       emitRuntimeEvent({
@@ -526,6 +691,13 @@ const usePreviewRuntime = ({
     [emitRuntimeEvent, isForm, onChangeInput, unitCursor],
   );
 
+  /**
+   * Handler usado por renderers de schemas.
+   *
+   * - Cambios `content` actualizan input.
+   * - Cambios distintos de `content` actualizan el schema en schemasList.
+   * - Si el schema es tabla y cambia content, recalcula dynamic template.
+   */
   const handleOnChangeRenderer = useCallback(
     (args: { key: string; value: unknown }[], schema: SchemaForUI) => {
       let isNeedInit = false;
@@ -574,6 +746,7 @@ const usePreviewRuntime = ({
     [handleChangeInput, init, pageCursor, template],
   );
 
+  /** API de estado/acciones consumida por el componente Preview. */
   return {
     font,
     options,

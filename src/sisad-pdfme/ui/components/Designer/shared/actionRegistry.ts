@@ -203,7 +203,7 @@ const CORE_ACTIONS: SchemaActionDefinition[] = [
   },
   {
     id: 'toggleReadOnly',
-    label: 'Bloquear',
+    label: 'Bloquear posición',
     section: 'state',
     priority: 'secondary',
     presentationMode: 'contextMenu',
@@ -440,7 +440,7 @@ const CORE_ACTIONS: SchemaActionDefinition[] = [
   },
   {
     id: 'lockToggle',
-    label: 'Bloquear o desbloquear',
+    label: 'Bloquear edición',
     section: 'collaboration',
     priority: 'secondary',
     presentationMode: 'hidden',

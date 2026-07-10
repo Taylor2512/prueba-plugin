@@ -1,3 +1,17 @@
+/**
+ * Tipos públicos del runtime UI y bridges del Designer.
+ *
+ * Rol arquitectónico:
+ * - Define contratos para sidebars, documentos, comentarios, runtime bridge y API imperativa.
+ * - Permite que hosts externos integren Designer sin depender de componentes internos.
+ * - Declara la superficie pública de operaciones como zoom, páginas, sidebar, canvas toggles,
+ *   focus/highlight, addSchema, schema config y prefill externo.
+ *
+ * Regla:
+ * - Este archivo es contrato público: cambiar nombres/firmas puede romper integraciones.
+ * - Preferir extender con campos opcionales antes que romper tipos existentes.
+ */
+
 import type { SchemaForUI, SchemaCommentReply, Size, ChangeSchemas, BasePdf } from '@sisad-pdfme/common';
 import type { SchemaDesignerConfig } from './designerEngine';
 import type { EffectiveCollaborationContext } from './collaborationContext';

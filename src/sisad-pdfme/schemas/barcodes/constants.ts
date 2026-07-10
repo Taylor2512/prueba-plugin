@@ -1,3 +1,6 @@
+/**
+ * This file contains constants related to barcode types and their default properties.
+ */
 export const BARCODE_TYPES = [
   'qrcode',
   'japanpost',

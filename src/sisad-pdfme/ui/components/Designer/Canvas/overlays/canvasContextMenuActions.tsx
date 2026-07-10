@@ -35,6 +35,11 @@ import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { INLINE_EDITABLE_TEXT_TYPES } from '../../../../../schemas/schemaFamilies.js';
 import { getSchemaTypeLabel } from '../../shared/designerLabels.js';
 import { isOptionGroupType } from '../../../../../schemas/options/optionGroupLayout.js';
+import {
+  resolveSchemaAccessState,
+  type SchemaAccessState,
+} from '../../../../collaboration/schemaRuntimeAccess.js';
+import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
 
 export type CanvasContextMenuMode = 'empty' | 'single' | 'multi';
 
@@ -113,6 +118,10 @@ type BuildContextMenuGroupsArgs = {
   hasClipboardData?: boolean;
   selectionCount?: number;
   selectionSchemas: SchemaForUI[];
+  collaborationContext?: Pick<
+    EffectiveCollaborationContext,
+    'actorId' | 'activeRecipientId' | 'activeRecipient' | 'recipientNameMap' | 'canEditStructure'
+  >;
   activeReadOnly?: boolean;
   activeRequired?: boolean;
   activeHidden?: boolean;
@@ -239,6 +248,15 @@ const buildSelectionSummaryChips = (activeSchemas: SchemaForUI[], selectionCount
 
 const hasAction = (command?: () => void) => typeof command === 'function';
 
+const resolveSelectionAccessState = (
+  selectionSchemas: SchemaForUI[],
+  collaborationContext?: BuildContextMenuGroupsArgs['collaborationContext'],
+): SchemaAccessState | null => {
+  const activeSchema = selectionSchemas[0];
+  if (!activeSchema) return null;
+  return resolveSchemaAccessState(activeSchema, collaborationContext, collaborationContext?.activeRecipient ?? null);
+};
+
 const prioritizeCriticalActions = (actions: CanvasSelectionQuickAction[]) => {
   const deleteAction = actions.find((action) => action.id === 'delete');
   const duplicateAction = actions.find((action) => action.id === 'duplicate');
@@ -283,7 +301,7 @@ const getSelectionStyleActions = (commands?: SelectionCommandSet, activeReadOnly
   }),
   toolbarAction(
     'readonly',
-    activeReadOnly ? 'Desbloquear' : 'Bloquear',
+    activeReadOnly ? 'Desbloquear posición' : 'Bloquear posición',
     <Lock size={14} />,
     commands?.toggleReadOnly,
     {
@@ -394,6 +412,7 @@ export const buildSelectionToolbarModel = (args: {
   selectionCount: number;
   interactionPhase: string;
   mode?: SelectionToolbarMode;
+  collaborationContext?: BuildContextMenuGroupsArgs['collaborationContext'];
 }): SelectionToolbarModel => {
   const {
     commands,
@@ -401,8 +420,10 @@ export const buildSelectionToolbarModel = (args: {
     selectionCount,
     interactionPhase,
     mode = selectionCount > 1 ? 'expanded' : 'compact',
+    collaborationContext,
   } = args;
   const canEditStructure = commands?.canEditStructure !== false;
+  const accessState = collaborationContext ? resolveSelectionAccessState(activeSchemas, collaborationContext) : null;
 
   const kind = resolveSelectionToolbarKind(activeSchemas);
   const allReadOnly = activeSchemas.length > 0 && activeSchemas.every((schema) => schema.readOnly);
@@ -438,9 +459,12 @@ export const buildSelectionToolbarModel = (args: {
           critical: true,
           disabled: !canEditStructure || !hasAction(commands?.deleteSelection),
         }),
-        toolbarAction('readonly', allReadOnly ? 'Desbloquear' : 'Bloquear', <Lock size={14} />, commands?.toggleReadOnly, {
+        toolbarAction('readonly', allReadOnly ? 'Desbloquear posición' : 'Bloquear posición', <Lock size={14} />, commands?.toggleReadOnly, {
           active: allReadOnly,
-          disabled: !canEditStructure || !hasAction(commands?.toggleReadOnly),
+          disabled: !canEditStructure || !hasAction(commands?.toggleReadOnly) || Boolean(accessState?.isLockedByOther),
+          disabledReason: accessState?.isLockedByOther
+            ? `Bloqueado por ${accessState.lockedByLabel || 'otro usuario'}`
+            : undefined,
         }),
         getSelectionVisibilityAction(commands, allHidden, canEditStructure),
         toolbarAction('properties', 'Propiedades', <Settings2 size={14} />, commands?.openProperties, {
@@ -509,9 +533,12 @@ export const buildSelectionToolbarModel = (args: {
       toolbarAction('properties', 'Propiedades', <Settings2 size={14} />, commands?.openProperties, {
         disabled: !canEditStructure || !hasAction(commands?.openProperties),
       }),
-      toolbarAction('readonly', allReadOnly ? 'Desbloquear' : 'Bloquear', <Lock size={14} />, commands?.toggleReadOnly, {
+      toolbarAction('readonly', allReadOnly ? 'Desbloquear posición' : 'Bloquear posición', <Lock size={14} />, commands?.toggleReadOnly, {
         active: allReadOnly,
-        disabled: !canEditStructure || !hasAction(commands?.toggleReadOnly),
+        disabled: !canEditStructure || !hasAction(commands?.toggleReadOnly) || Boolean(accessState?.isLockedByOther),
+        disabledReason: accessState?.isLockedByOther
+          ? `Bloqueado por ${accessState.lockedByLabel || 'otro usuario'}`
+          : undefined,
       }),
       getSelectionVisibilityAction(commands, allHidden, canEditStructure),
     ]);
@@ -526,7 +553,7 @@ export const buildSelectionToolbarModel = (args: {
             label: 'Estado',
             items: compactItems([
               getSelectionVisibilityAction(commands, allHidden, canEditStructure),
-              toolbarAction('readonly', allReadOnly ? 'Desbloquear' : 'Bloquear', <Lock size={14} />, commands?.toggleReadOnly, {
+              toolbarAction('readonly', allReadOnly ? 'Desbloquear posición' : 'Bloquear posición', <Lock size={14} />, commands?.toggleReadOnly, {
                 active: allReadOnly,
                 disabled: !canEditStructure || !hasAction(commands?.toggleReadOnly),
               }),
@@ -607,14 +634,14 @@ const commandItem = (
   label: string,
   icon: React.ReactNode,
   command?: () => void,
-  extra?: Partial<CanvasContextMenuItem>,
+  extra?: Partial<CanvasContextMenuItem> & { forceVisible?: boolean },
 ): CanvasContextMenuItem | null => {
-  if (!command) return null;
+  if (!command && !extra?.forceVisible) return null;
   return {
     id,
     label,
     icon,
-    disabled: Boolean(extra?.disabled),
+    disabled: Boolean(extra?.disabled) || !command,
     onSelect: command,
     ...extra,
   };
@@ -630,12 +657,14 @@ export const buildCanvasContextMenuGroups = (
     hasClipboardData = false,
     selectionCount = 0,
     selectionSchemas,
+    collaborationContext,
     activeReadOnly = false,
     activeRequired = false,
     activeHidden = false,
     canEditStructure = true,
   } = args;
   const hasFieldSelection = hasFormFieldSelection(selectionSchemas);
+  const accessState = resolveSelectionAccessState(selectionSchemas, collaborationContext);
 
   if (mode === 'empty') {
     return compactItems<CanvasContextMenuGroup>([
@@ -713,8 +742,8 @@ export const buildCanvasContextMenuGroups = (
         ]),
       },
       {
-        id: 'single-order',
-        label: 'Orden',
+        id: 'single-visibility',
+        label: 'Visibilidad',
         items: compactItems([
           commandItem(
             activeHidden ? 'show' : 'hide',
@@ -726,17 +755,56 @@ export const buildCanvasContextMenuGroups = (
               disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
             },
           ),
+        ]),
+      },
+      {
+        id: 'single-protection',
+        label: 'Protección',
+        items: compactItems([
           commandItem(
             'lock',
-            resolveToggleLabel(activeReadOnly, 'Desbloquear', 'Bloquear'),
+            resolveToggleLabel(activeReadOnly, 'Desbloquear posición', 'Bloquear posición'),
             <Lock size={14} />,
             commands?.toggleReadOnly,
             {
               active: activeReadOnly,
-              disabled: !canEditStructure,
-              disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+              disabled: !canEditStructure || Boolean(accessState?.isLockedByOther),
+              disabledReason: accessState?.isLockedByOther
+                ? `Bloqueado por ${accessState.lockedByLabel || 'otro usuario'}`
+                : canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
             },
           ),
+        ]),
+      },
+      {
+        id: 'single-collaboration',
+        label: 'Colaboración',
+        items: compactItems([
+          commandItem(
+            'collaboration-lock',
+            accessState?.contextMenuLockLabel || 'Bloquear edición',
+            <Lock size={14} />,
+            accessState?.isLockedByMe ? commands?.clearSelection : undefined,
+            {
+              active: Boolean(accessState?.isLockedByMe),
+              disabled:
+                !canEditStructure ||
+                Boolean(accessState?.isLockedByOther) ||
+                !hasAction(commands?.clearSelection),
+              disabledReason: accessState?.isLockedByOther
+                ? `Bloqueado por ${accessState.lockedByLabel || 'otro usuario'}`
+                : accessState?.isLockedByMe
+                  ? 'Libera la edición actual para cambiar de campo'
+                  : 'La edición se bloquea al seleccionar el campo',
+              forceVisible: true,
+            },
+          ),
+        ]),
+      },
+      {
+        id: 'single-order',
+        label: 'Orden',
+        items: compactItems([
           commandItem('bring-forward', 'Traer al frente', <ArrowUpToLine size={14} />, commands?.bringForward, {
             disabled: !canEditStructure,
             disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
@@ -785,7 +853,7 @@ export const buildCanvasContextMenuGroups = (
     {
       id: 'multi-align',
       label: 'Alinear',
-        items: compactItems([
+      items: compactItems([
           commandItem(
             'align-left',
             'Alinear izquierda',
@@ -856,66 +924,119 @@ export const buildCanvasContextMenuGroups = (
         ),
       ]),
     },
-    {
-      id: 'multi-main',
-      label: 'Selección',
-      items: compactItems([
-        commandItem(
-          activeHidden ? 'show-multi' : 'hide-multi',
-          activeHidden ? 'Mostrar' : 'Ocultar',
-          activeHidden ? <EyeOff size={14} /> : <Eye size={14} />,
-          commands?.toggleHidden,
-          {
+      {
+        id: 'multi-main',
+        label: 'Selección',
+        items: compactItems([
+          hasFieldSelection
+            ? commandItem(
+                'required-multi',
+                resolveToggleLabel(activeRequired, 'Quitar requerido', 'Activar requerido'),
+                <Asterisk size={14} />,
+                commands?.toggleRequired,
+                {
+                  active: activeRequired,
+                  disabled: !canEditStructure,
+                  disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+                },
+              )
+            : null,
+          commandItem('delete-multi', 'Eliminar selección', <Trash2 size={14} />, commands?.deleteSelection, {
+            danger: true,
             disabled: !canEditStructure,
             disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
-          },
-        ),
-        commandItem(
-          'lock-multi',
-          resolveToggleLabel(activeReadOnly, 'Desbloquear', 'Bloquear'),
-          <Lock size={14} />,
-          commands?.toggleReadOnly,
-          {
-            active: activeReadOnly,
+          }),
+        ]),
+      },
+      {
+        id: 'multi-visibility',
+        label: 'Visibilidad',
+        items: compactItems([
+          commandItem(
+            activeHidden ? 'show-multi' : 'hide-multi',
+            activeHidden ? 'Mostrar' : 'Ocultar',
+            activeHidden ? <EyeOff size={14} /> : <Eye size={14} />,
+            commands?.toggleHidden,
+            {
+              disabled: !canEditStructure,
+              disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+            },
+          ),
+        ]),
+      },
+      {
+        id: 'multi-protection',
+        label: 'Protección',
+        items: compactItems([
+          commandItem(
+            'lock-multi',
+            resolveToggleLabel(activeReadOnly, 'Desbloquear posición', 'Bloquear posición'),
+            <Lock size={14} />,
+            commands?.toggleReadOnly,
+            {
+              active: activeReadOnly,
+              disabled: !canEditStructure || Boolean(accessState?.isLockedByOther),
+              disabledReason: accessState?.isLockedByOther
+                ? `Bloqueado por ${accessState.lockedByLabel || 'otro usuario'}`
+                : canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+            },
+          ),
+        ]),
+      },
+      {
+        id: 'multi-collaboration',
+        label: 'Colaboración',
+        items: compactItems([
+          commandItem(
+            'collaboration-lock-multi',
+            accessState?.contextMenuLockLabel || 'Bloquear edición',
+            <Lock size={14} />,
+            accessState?.isLockedByMe ? commands?.clearSelection : undefined,
+            {
+              active: Boolean(accessState?.isLockedByMe),
+              disabled:
+                !canEditStructure ||
+                Boolean(accessState?.isLockedByOther) ||
+                !hasAction(commands?.clearSelection),
+              disabledReason: accessState?.isLockedByOther
+                ? `Bloqueado por ${accessState.lockedByLabel || 'otro usuario'}`
+                : accessState?.isLockedByMe
+                  ? 'Libera la edición actual para cambiar de campo'
+                  : 'La edición se bloquea al seleccionar el campo',
+              forceVisible: true,
+            },
+          ),
+        ]),
+      },
+      {
+        id: 'multi-order',
+        label: 'Orden',
+        items: compactItems([
+          commandItem('bring-forward', 'Traer al frente', <ArrowUpToLine size={14} />, commands?.bringForward, {
             disabled: !canEditStructure,
             disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
-          },
-        ),
-        hasFieldSelection
-          ? commandItem(
-              'required-multi',
-              resolveToggleLabel(activeRequired, 'Quitar requerido', 'Activar requerido'),
-              <Asterisk size={14} />,
-              commands?.toggleRequired,
-              {
-                active: activeRequired,
-                disabled: !canEditStructure,
-                disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
-              },
-            )
-          : null,
-        commandItem('delete-multi', 'Eliminar selección', <Trash2 size={14} />, commands?.deleteSelection, {
-          danger: true,
-          disabled: !canEditStructure,
-          disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
-        }),
-      ]),
-    },
-    {
-      id: 'multi-inspector',
-      label: 'Inspector',
-      items: compactItems([
-        commandItem(
-          'open-group-properties',
-          selectionCount > 1 ? 'Propiedades del grupo' : 'Abrir propiedades',
-          <SlidersHorizontal size={14} />,
-          externalActions?.onOpenGroupProperties || commands?.openProperties,
-          {
+          }),
+          commandItem('send-backward', 'Enviar atrás', <ArrowDownToLine size={14} />, commands?.sendBackward, {
             disabled: !canEditStructure,
             disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
-          },
-        ),
-      ]),
-    },
+          }),
+        ]),
+      },
+      {
+        id: 'multi-inspector',
+        label: 'Inspector',
+        items: compactItems([
+          commandItem(
+            'open-group-properties',
+            selectionCount > 1 ? 'Propiedades del grupo' : 'Abrir propiedades',
+            <SlidersHorizontal size={14} />,
+            externalActions?.onOpenGroupProperties || commands?.openProperties,
+            {
+              disabled: !canEditStructure,
+              disabledReason: canEditStructure ? undefined : 'El rol actual solo permite revisar y comentar',
+            },
+          ),
+        ]),
+      },
   ].filter((group) => group.items.length > 0);
 };

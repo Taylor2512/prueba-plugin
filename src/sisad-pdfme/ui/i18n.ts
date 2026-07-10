@@ -1,3 +1,15 @@
+/**
+ * Diccionarios de internacionalización del runtime UI.
+ *
+ * Rol arquitectónico:
+ * - Define traducciones por idioma para etiquetas, validaciones y propiedades de schemas.
+ * - Exporta el diccionario base usado por `I18nContext`.
+ *
+ * Mantenimiento:
+ * - Toda key debe existir para cada idioma soportado por `Dict`.
+ * - Evitar textos específicos de un host; este archivo debe seguir siendo genérico.
+ */
+
 import type { Lang, Dict } from '@sisad-pdfme/common';
 import { DEFAULT_LANG } from './constants.js';
 

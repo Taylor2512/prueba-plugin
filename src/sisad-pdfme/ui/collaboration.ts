@@ -1,3 +1,22 @@
+/**
+ * Motor runtime de colaboración del Designer.
+ *
+ * Rol arquitectónico:
+ * - Define eventos colaborativos de schemas, comentarios, locks, presencia e historial.
+ * - Aplica eventos sobre `SchemaForUI[][]` de forma inmutable.
+ * - Calcula diffs entre listas de schemas para generar eventos colaborativos.
+ * - Implementa adaptadores de sincronización legacy/Yjs para sesiones locales o compartidas.
+ * - Expone `useCollaborationSync` para conectar el runtime React con la sincronización.
+ *
+ * Fuente de verdad:
+ * - El schema base se separa de datos auxiliares como comentarios y locks.
+ * - Los eventos usan timestamps para evitar aplicar cambios obsoletos.
+ *
+ * Riesgos:
+ * - Locks y comentarios deben preservar `schemaUid`, `fileId`, `pageNumber`, `owner*` y timestamps.
+ * - No debe depender de UI visual, CSS, sidebars ni reglas de negocio del host.
+ */
+
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import * as Y from 'yjs';
 import { Awareness } from 'y-protocols/awareness';
@@ -13,90 +32,91 @@ import type {
   SchemaCommentAnchor,
 } from './designerEngine.js';
 
+/** Evento de sincronización colaborativa soportado por el diseñador. */
 export type CollaborationEvent =
   | {
-      type: 'create';
-      schema: SchemaForUI;
-      pageIndex?: number;
-      actorId?: string;
-      sessionId?: string;
-      timestamp?: number;
-    }
+    type: 'create';
+    schema: SchemaForUI;
+    pageIndex?: number;
+    actorId?: string;
+    sessionId?: string;
+    timestamp?: number;
+  }
   | {
-      type: 'update';
-      schemaId: string;
-      patch: Partial<SchemaForUI>;
-      pageIndex?: number;
-      actorId?: string;
-      sessionId?: string;
-      timestamp?: number;
-    }
+    type: 'update';
+    schemaId: string;
+    patch: Partial<SchemaForUI>;
+    pageIndex?: number;
+    actorId?: string;
+    sessionId?: string;
+    timestamp?: number;
+  }
   | {
-      type: 'comment.created';
-      schemaId: string;
-      comment: SchemaComment;
-      anchor?: SchemaCommentAnchor;
-      pageIndex?: number;
-      actorId?: string;
-      sessionId?: string;
-      timestamp?: number;
-    }
+    type: 'comment.created';
+    schemaId: string;
+    comment: SchemaComment;
+    anchor?: SchemaCommentAnchor;
+    pageIndex?: number;
+    actorId?: string;
+    sessionId?: string;
+    timestamp?: number;
+  }
   | {
-      type: 'comment.updated';
-      schemaId: string;
-      comment: SchemaComment;
-      anchor?: SchemaCommentAnchor;
-      pageIndex?: number;
-      actorId?: string;
-      sessionId?: string;
-      timestamp?: number;
-    }
+    type: 'comment.updated';
+    schemaId: string;
+    comment: SchemaComment;
+    anchor?: SchemaCommentAnchor;
+    pageIndex?: number;
+    actorId?: string;
+    sessionId?: string;
+    timestamp?: number;
+  }
   | {
-      type: 'comment.deleted';
-      schemaId: string;
-      commentId: string;
-      anchorId?: string;
-      pageIndex?: number;
-      actorId?: string;
-      sessionId?: string;
-      timestamp?: number;
-    }
+    type: 'comment.deleted';
+    schemaId: string;
+    commentId: string;
+    anchorId?: string;
+    pageIndex?: number;
+    actorId?: string;
+    sessionId?: string;
+    timestamp?: number;
+  }
   | {
-      type: 'delete';
-      schemaId: string;
-      pageIndex?: number;
-      actorId?: string;
-      sessionId?: string;
-      timestamp?: number;
-    }
+    type: 'delete';
+    schemaId: string;
+    pageIndex?: number;
+    actorId?: string;
+    sessionId?: string;
+    timestamp?: number;
+  }
   | {
-      type: 'lock';
-      schemaId: string;
-      lock: SchemaCollaborativeLock;
-      state?: SchemaCollaborativeState;
-      pageIndex?: number;
-      actorId?: string;
-      sessionId?: string;
-      timestamp?: number;
-    }
+    type: 'lock';
+    schemaId: string;
+    lock: SchemaCollaborativeLock;
+    state?: SchemaCollaborativeState;
+    pageIndex?: number;
+    actorId?: string;
+    sessionId?: string;
+    timestamp?: number;
+  }
   | {
-      type: 'unlock';
-      schemaId: string;
-      pageIndex?: number;
-      actorId?: string;
-      sessionId?: string;
-      timestamp?: number;
-    }
+    type: 'unlock';
+    schemaId: string;
+    pageIndex?: number;
+    actorId?: string;
+    sessionId?: string;
+    timestamp?: number;
+  }
   | {
-      type: 'comment';
-      schemaId?: string;
-      comment?: SchemaComment;
-      anchor?: SchemaCommentAnchor;
-      pageIndex?: number;
-      actorId?: string;
-      sessionId?: string;
-      timestamp?: number;
-    };
+    type: 'comment';
+    schemaId?: string;
+    comment?: SchemaComment;
+    anchor?: SchemaCommentAnchor;
+    pageIndex?: number;
+    actorId?: string;
+    sessionId?: string;
+    timestamp?: number;
+  };
 
 export type CollaborationSyncState = {
   status: 'idle' | 'connecting' | 'open' | 'closed' | 'error';
@@ -241,22 +261,22 @@ const mergeAuxIntoSchema = (
   ...cloneDeep(schema),
   ...(commentsEntry
     ? {
-        comments: cloneDeep(commentsEntry.comments || []),
-        commentAnchors: cloneDeep(commentsEntry.commentAnchors || commentsEntry.commentsAnchors || []),
-        commentsAnchors: cloneDeep(commentsEntry.commentsAnchors || commentsEntry.commentAnchors || []),
-        commentsCount:
-          typeof commentsEntry.commentsCount === 'number'
-            ? commentsEntry.commentsCount
-            : Array.isArray(commentsEntry.comments)
-              ? commentsEntry.comments.length
-              : 0,
-      }
+      comments: cloneDeep(commentsEntry.comments || []),
+      commentAnchors: cloneDeep(commentsEntry.commentAnchors || commentsEntry.commentsAnchors || []),
+      commentsAnchors: cloneDeep(commentsEntry.commentsAnchors || commentsEntry.commentAnchors || []),
+      commentsCount:
+        typeof commentsEntry.commentsCount === 'number'
+          ? commentsEntry.commentsCount
+          : Array.isArray(commentsEntry.comments)
+            ? commentsEntry.comments.length
+            : 0,
+    }
     : null),
   ...(lockEntry
     ? {
-        lock: lockEntry.lock ? cloneDeep(lockEntry.lock) : undefined,
-        state: lockEntry.state,
-      }
+      lock: lockEntry.lock ? cloneDeep(lockEntry.lock) : undefined,
+      state: lockEntry.state,
+    }
     : null),
 });
 
@@ -283,9 +303,9 @@ const createHistoryEntryFromEvent = (event: CollaborationEvent): CollaborationHi
               ? 'comment.updated'
               : event.type === 'comment.deleted'
                 ? 'comment.deleted'
-            : event.type === 'lock' || event.type === 'unlock'
-              ? 'lock.changed'
-              : 'schema.updated',
+                : event.type === 'lock' || event.type === 'unlock'
+                  ? 'lock.changed'
+                  : 'schema.updated',
     schemaId,
     schemaUid,
     fileId,
@@ -299,15 +319,15 @@ const createHistoryEntryFromEvent = (event: CollaborationEvent): CollaborationHi
           ? { schemaUid: event.schema.schemaUid, pageNumber: event.schema.pageNumber }
           : event.type === 'comment' || event.type === 'comment.created' || event.type === 'comment.updated'
             ? {
-                commentId: event.comment?.id,
-                schemaId: event.schemaId,
-                pageNumber: event.comment?.anchor?.pageNumber || event.anchor?.pageNumber || event.pageIndex,
-                text: event.comment?.text,
-                resolved: event.comment?.resolved,
-              }
-          : event.type === 'comment.deleted'
-            ? { commentId: event.commentId, anchorId: event.anchorId }
-          : undefined,
+              commentId: event.comment?.id,
+              schemaId: event.schemaId,
+              pageNumber: event.comment?.anchor?.pageNumber || event.anchor?.pageNumber || event.pageIndex,
+              text: event.comment?.text,
+              resolved: event.comment?.resolved,
+            }
+            : event.type === 'comment.deleted'
+              ? { commentId: event.commentId, anchorId: event.anchorId }
+              : undefined,
   };
 };
 
@@ -329,9 +349,9 @@ const commentSignature = (comment: SchemaComment) =>
     ...comment,
     anchor: comment.anchor
       ? {
-          ...comment.anchor,
-          resolved: Boolean(comment.anchor.resolved),
-        }
+        ...comment.anchor,
+        resolved: Boolean(comment.anchor.resolved),
+      }
       : undefined,
     replies: Array.isArray(comment.replies) ? comment.replies : [],
   });
@@ -478,6 +498,7 @@ const buildCommentCollectionsFromEvent = (
   };
 };
 
+/** Aplica un evento colaborativo a la matriz de schemas sin mutar la entrada. */
 export const applyCollaborationEvent = (
   schemasList: SchemaForUI[][],
   event: CollaborationEvent,
@@ -627,6 +648,7 @@ export const applyCollaborationEvent = (
   return nextSchemasList;
 };
 
+/** Calcula eventos colaborativos entre dos estados de schemas. */
 export const diffCollaborationEvents = (
   previousSchemasList: SchemaForUI[][],
   nextSchemasList: SchemaForUI[][],
@@ -866,9 +888,9 @@ export const createYjsCollaborationProvider = ({
   const emitPresence = () => {
     const values = room
       ? Array.from(room.awareness.getStates().values())
-          .map((entry) => entry as CollaborationPresence | null)
-          .filter((entry): entry is CollaborationPresence => Boolean(entry?.userId))
-          .sort((left, right) => right.updatedAt - left.updatedAt)
+        .map((entry) => entry as CollaborationPresence | null)
+        .filter((entry): entry is CollaborationPresence => Boolean(entry?.userId))
+        .sort((left, right) => right.updatedAt - left.updatedAt)
       : [];
     presenceListeners.forEach((listener) => listener(values));
   };
@@ -1360,8 +1382,8 @@ export const createYjsCollaborationProvider = ({
     getPresence: () =>
       room
         ? Array.from(room.awareness.getStates().values())
-            .map((entry) => entry as CollaborationPresence | null)
-            .filter((entry): entry is CollaborationPresence => Boolean(entry?.userId))
+          .map((entry) => entry as CollaborationPresence | null)
+          .filter((entry): entry is CollaborationPresence => Boolean(entry?.userId))
         : [],
     getHistory: () =>
       room ? cloneDeep(room.doc.getArray<CollaborationHistoryEntry>('history').toArray()) : [],

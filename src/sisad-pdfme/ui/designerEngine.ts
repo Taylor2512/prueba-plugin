@@ -1,3 +1,19 @@
+/**
+ * Contratos y utilidades del Designer Engine.
+ *
+ * Rol arquitectónico:
+ * - Define el modelo de configuración extensible para canvas, sidebars, schemas,
+ *   colaboración, firma, HTTP, prefill, persistencia, request/form JSON e integraciones.
+ * - Centraliza cómo se guarda/lee configuración avanzada dentro de cada schema.
+ * - Aplica metadata colaborativa por defecto al crear o refrescar schemas.
+ * - Provee builder/merge helpers para construir un engine sin mutar objetos originales.
+ *
+ * Principios:
+ * - Extender por configuración, factories y hooks; evitar switches duplicados por schema.type.
+ * - Preservar `schemaUid`, owner metadata, page/file metadata, comments y lock state.
+ * - Mantener el engine serializable donde sea parte de snapshot/configuración.
+ */
+
 import { cloneDeep, Schema, SchemaForUI, UIOptions, type CommentScope } from '@sisad-pdfme/common';
 import type React from 'react';
 import type { LeftSidebarProps } from './components/Designer/LeftSidebar';
@@ -302,6 +318,7 @@ const normalizeCreationOwnerIds = (value: unknown): string[] => {
   return [];
 };
 
+/** Crea contexto de creación con timestamp, página, archivo y metadata colaborativa. */
 export const createSchemaCreationContext = (input: SchemaCreationContextInput): SchemaCreationContext => {
   const nextTimestamp = Number.isFinite(input.timestamp as number) ? Number(input.timestamp) : Date.now();
   const collaboration = input.collaboration || {};
@@ -519,6 +536,7 @@ const mergeCollaborationLock = (
   };
 };
 
+/** Fusiona metadata colaborativa preservando owner ids y locks. */
 export const mergeSchemaCollaborativeMetadata = (
   current?: SchemaCollaborativeMetadata,
   patch?: Partial<SchemaCollaborativeMetadata>,
@@ -533,6 +551,7 @@ export const mergeSchemaCollaborativeMetadata = (
   };
 };
 
+/** Lee metadata colaborativa desde campos directos y config avanzada del schema. */
 export const resolveSchemaCollaborativeMetadata = (
   schema: SchemaForUI,
   engine?: DesignerEngine,
@@ -582,6 +601,7 @@ export const resolveSchemaCollaborativeMetadata = (
   return merged || undefined;
 };
 
+/** Aplica defaults colaborativos a un schema recién creado. */
 export const applySchemaCollaborativeDefaults = (
   schema: SchemaForUI,
   context: SchemaCreationContext,
@@ -1297,6 +1317,7 @@ export const applySchemaCreationHook = (
   return hook(schema, context);
 };
 
+/** Builder fluido para configurar el DesignerEngine sin mutar la entrada. */
 export class DesignerEngineBuilder {
   private engine: DesignerEngine;
 
