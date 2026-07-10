@@ -1,9 +1,31 @@
+/**
+ * Hook for generated PDF artifacts in SISAD PDFME runtime screens.
+ *
+ * Responsibility:
+ * - Generate a PDF from template + inputs + plugins.
+ * - Run converter helpers: pdf2size, pdf2img and img2pdf.
+ * - Manage object URL lifecycle to avoid memory leaks.
+ * - Report status events to the host without rendering UI directly.
+ *
+ * Architectural rule:
+ * Heavy dependencies are injected. This keeps the hook testable and prevents
+ * the host/runtime adapter from importing generator/converter packages directly.
+ */
 import { useCallback, useEffect, useRef, useState } from 'react';
 import {
   createObjectUrl as defaultCreateObjectUrl,
   revokeObjectUrls as defaultRevokeObjectUrls,
 } from '../browser/objectUrls.js';
 
+/**
+ * State produced by the artifacts pipeline.
+ *
+ * generatedPdfUrl: object URL for preview/download of generated PDF.
+ * generatedPdfBytes: raw PDF bytes used by converters.
+ * pdfSizes: page sizes returned by pdf2size.
+ * images: object URLs generated from pdf2img buffers.
+ * roundtripPdfUrl: PDF rebuilt from image buffers through img2pdf.
+ */
 export type PdfmeArtifactsState = {
   generatedPdfUrl: string;
   generatedPdfBytes: Uint8Array | ArrayBuffer | null;
@@ -12,6 +34,7 @@ export type PdfmeArtifactsState = {
   roundtripPdfUrl: string;
 };
 
+/** Initial empty state. Kept immutable by convention through setState copies. */
 const EMPTY_STATE: PdfmeArtifactsState = {
   generatedPdfUrl: '',
   generatedPdfBytes: null,
@@ -20,6 +43,13 @@ const EMPTY_STATE: PdfmeArtifactsState = {
   roundtripPdfUrl: '',
 };
 
+/**
+ * Dependency-injected configuration for usePdfmeArtifacts.
+ *
+ * The hook does not import generator/converter packages directly. Instead,
+ * the host passes generate/pdf2size/pdf2img/img2pdf functions. This makes the
+ * hook reusable in lab, integration and tests.
+ */
 export type UsePdfmeArtifactsConfig = {
   template: any;
   inputs: any;
@@ -38,6 +68,7 @@ export type UsePdfmeArtifactsConfig = {
   revokeObjectUrls?: (urls: Array<string | null | undefined>) => void;
 };
 
+/** Fallback error formatter when the host does not provide one. */
 const defaultGetErrorMessage = (error: unknown) =>
   error instanceof Error ? error.message : 'Unexpected error';
 
@@ -47,13 +78,22 @@ const defaultGetErrorMessage = (error: unknown) =>
  * from the generator/converter packages and is unit-testable with mocks.
  */
 export function usePdfmeArtifacts(config: UsePdfmeArtifactsConfig) {
+  /** Indicates that one artifact operation is currently running. */
   const [busy, setBusy] = useState(false);
   const [state, setState] = useState<PdfmeArtifactsState>(EMPTY_STATE);
 
+  /**
+   * Refs mirror URL values so cleanup callbacks can revoke the latest URLs
+   * without depending on stale render closures.
+   */
   const generatedPdfUrlRef = useRef('');
   const roundtripPdfUrlRef = useRef('');
   const imagesRef = useRef<string[]>([]);
 
+  /**
+   * Stores the latest config so stable callbacks can always call the newest
+   * injected dependencies and status handlers.
+   */
   const latest = useRef(config);
   latest.current = config;
 
@@ -67,22 +107,32 @@ export function usePdfmeArtifacts(config: UsePdfmeArtifactsConfig) {
     imagesRef.current = state.images;
   }, [state.images]);
 
+  /** Revokes object URLs using the host override or default browser helper. */
   const revoke = useCallback(
     (urls: Array<string | null | undefined>) => (latest.current.revokeObjectUrls ?? defaultRevokeObjectUrls)(urls),
     [],
   );
+  /** Creates object URLs using the host override or default browser helper. */
   const makeUrl = useCallback(
     (bytes: any, mime: string) => (latest.current.createObjectUrl ?? defaultCreateObjectUrl)(bytes, mime),
     [],
   );
+  /** Emits semantic status events; UI rendering stays in the host. */
   const status = useCallback((event: { type: string; message?: string; context?: any }) => {
     latest.current.onStatus?.(event);
   }, []);
+  /** Converts unknown errors into messages for status events. */
   const errMsg = useCallback(
     (error: unknown) => (latest.current.getErrorMessage ?? defaultGetErrorMessage)(error),
     [],
   );
 
+  /**
+   * Clears converter-derived artifacts and revokes their object URLs.
+   *
+   * clearGeneratedPdf = false keeps the generated PDF, but removes sizes,
+   * images and roundtrip output. This is useful before re-running converters.
+   */
   const clearDerivedResults = useCallback(
     ({ clearGeneratedPdf = false }: { clearGeneratedPdf?: boolean } = {}) => {
       setState((prev) => {
@@ -110,6 +160,16 @@ export function usePdfmeArtifacts(config: UsePdfmeArtifactsConfig) {
     [revoke],
   );
 
+  /**
+   * Runs the PDF generator.
+   *
+   * Flow:
+   * 1. Optional validation.
+   * 2. Clear derived converter results.
+   * 3. Generate PDF bytes.
+   * 4. Create preview/download object URL.
+   * 5. Report status to the host.
+   */
   const generatePdf = useCallback(async () => {
     const cfg = latest.current;
     if (cfg.validate) {
@@ -139,6 +199,7 @@ export function usePdfmeArtifacts(config: UsePdfmeArtifactsConfig) {
     }
   }, [clearDerivedResults, errMsg, makeUrl, revoke, status]);
 
+  /** Reads page sizes from the latest generated PDF bytes. */
   const runPdf2Size = useCallback(async () => {
     const cfg = latest.current;
     if (!state.generatedPdfBytes) return;
@@ -155,6 +216,7 @@ export function usePdfmeArtifacts(config: UsePdfmeArtifactsConfig) {
     }
   }, [errMsg, state.generatedPdfBytes, status]);
 
+  /** Converts the latest generated PDF into page image object URLs. */
   const runPdf2Img = useCallback(async () => {
     const cfg = latest.current;
     if (!state.generatedPdfBytes) return;
@@ -177,6 +239,12 @@ export function usePdfmeArtifacts(config: UsePdfmeArtifactsConfig) {
     }
   }, [errMsg, makeUrl, revoke, state.generatedPdfBytes, status]);
 
+  /**
+   * Rebuilds a PDF from the current generated image URLs.
+   *
+   * Note: this fetches object URLs created by runPdf2Img, converts them back
+   * to ArrayBuffer and passes them to img2pdf.
+   */
   const runImg2Pdf = useCallback(async () => {
     const cfg = latest.current;
     if (state.images.length === 0) return;
@@ -196,7 +264,7 @@ export function usePdfmeArtifacts(config: UsePdfmeArtifactsConfig) {
     }
   }, [errMsg, makeUrl, revoke, state.images, status]);
 
-  // Revoke all object URLs on unmount.
+  /** Revoke all object URLs on unmount to prevent memory leaks. */
   useEffect(() => {
     return () => {
       if (generatedPdfUrlRef.current) (latest.current.revokeObjectUrls ?? defaultRevokeObjectUrls)([generatedPdfUrlRef.current]);
