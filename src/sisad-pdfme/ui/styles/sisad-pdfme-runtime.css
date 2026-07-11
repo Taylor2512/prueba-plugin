@@ -9,6 +9,7 @@
    ============================================================ */
 
 @import "./sisad-pdfme-global.css";
+@import "./sisad-pdfme-sidebar.css";
 
   [data-detail-header-density="compact"] .sisad-pdfme-designer-sidebar-surface-header-badges .ant-tag {
     @apply max-w-[7.4rem] overflow-hidden [text-overflow:ellipsis] whitespace-nowrap;
@@ -175,10 +176,10 @@
     @apply rounded-full;
   }
 
-  .sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar {
-    --sisad-pdfme-chrome-height: 1.65rem;
-  }
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar {
+  --sisad-pdfme-chrome-height: 1.65rem;
+}
 
-  .sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-context {
-    @apply max-w-[min(32vw,_24rem)];
-  }
+.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-context {
+  @apply max-w-[min(32vw,_24rem)];
+}
