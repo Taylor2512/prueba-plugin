@@ -1,3 +1,10 @@
+/**
+ * CompactConfigPanel — tarjeta resumida con modal de configuración avanzada.
+ *
+ * Sirve para widgets complejos del inspector que necesitan mostrar un resumen
+ * compacto en el sidebar y abrir una edición detallada en modal. Marca su cuerpo
+ * como interactivo para que Selecto, Moveable y canvas drop no capturen eventos.
+ */
 import React from 'react';
 import { Button, Modal, Tag } from 'antd';
 import { Settings2 } from 'lucide-react';
@@ -5,11 +12,20 @@ import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { mergeClassNames } from '../../shared/className.js';
 import { markInspectorInteractive, stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
 
+/**
+ * Tag de estado mostrado en el resumen compacto del panel.
+ */
 type StatusTag = {
   label: string;
   color?: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue' | 'cyan' | 'purple';
 };
 
+/**
+ * Props del panel compacto de configuración.
+ *
+ * Permite combinar una tarjeta de resumen con un modal que aloja controles más
+ * extensos sin saturar el sidebar.
+ */
 type CompactConfigPanelProps = {
   title: string;
   description?: string;
@@ -23,8 +39,15 @@ type CompactConfigPanelProps = {
   children: React.ReactNode;
 };
 
+/** Lista estable para evitar recrear arrays por defecto. */
 const EMPTY_TAGS: StatusTag[] = [];
 
+/**
+ * Panel compacto con resumen, acciones rápidas y modal de edición detallada.
+ *
+ * @param props Configuración visual y contenido del panel.
+ * @returns Tarjeta compacta del inspector con modal opcional.
+ */
 const CompactConfigPanel = ({
   title,
   description,

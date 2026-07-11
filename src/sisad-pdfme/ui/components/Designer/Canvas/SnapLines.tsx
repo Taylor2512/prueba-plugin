@@ -1,3 +1,10 @@
+/**
+ * SnapLines — overlay de guías de alineación estilo Wix/DocuSign.
+ *
+ * Renderiza líneas horizontales/verticales y calcula snapping contra bordes,
+ * centros de página y otros schemas. Las posiciones se calculan en milímetros
+ * y se convierten a píxeles usando ZOOM.
+ */
 import { DESIGNER_CLASSNAME } from "../../../constants.js";
 /**
  * SnapLines – Wix-style alignment guide overlay shown during element drag/resize.
@@ -11,6 +18,9 @@ import React from 'react';
 import { ZOOM } from '@sisad-pdfme/common';
 import { mergeClassNames } from '../shared/className.js';
 
+/**
+ * Línea guía calculada en milímetros.
+ */
 export interface SnapLine {
   type: 'horizontal' | 'vertical';
   /** Position in mm */
@@ -19,6 +29,9 @@ export interface SnapLine {
   label?: string;
 }
 
+/**
+ * Resultado completo de snapping: líneas visuales y coordenada ajustada.
+ */
 export interface SnapComputation {
   lines: SnapLine[];
   snapped: {
@@ -27,12 +40,18 @@ export interface SnapComputation {
   };
 }
 
+/**
+ * Mejor coincidencia de snap para un eje.
+ */
 type SnapMatch = {
   delta: number;
   guide: number;
   snappedOrigin: number;
 };
 
+/**
+ * Props del overlay visual de snap lines.
+ */
 interface Props {
   lines: SnapLine[];
   /** Canvas scroll offsets (px) so lines stay aligned with the paper */
@@ -47,9 +66,15 @@ interface Props {
   };
 }
 
+/**
+ * Colores por defecto de guías normales y guías de centro.
+ */
 const LINE_COLOR = '#1890ff';
 const CENTER_COLOR = '#ff4d4f';
 
+/**
+ * Renderiza líneas de alineación y etiquetas de distancia.
+ */
 const SnapLines = ({
   lines,
   scrollLeft = 0,
@@ -198,6 +223,9 @@ export function computeSnapLines(
   return computeSnapResult(dragged, page, others, threshold).lines;
 }
 
+/**
+ * Busca el candidato de snap más cercano para un eje.
+ */
 const findBestSnap = ({
   candidates,
   edgeStart,
@@ -238,6 +266,9 @@ const findBestSnap = ({
   return best;
 };
 
+/**
+ * Calcula snapping en X/Y contra página y elementos vecinos.
+ */
 export function computeSnapResult(
   dragged: { x: number; y: number; width: number; height: number },
   page: { width: number; height: number },

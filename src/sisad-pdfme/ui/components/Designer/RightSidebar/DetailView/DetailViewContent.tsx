@@ -1,3 +1,10 @@
+/**
+ * DetailViewContent — layout visual del inspector de propiedades.
+ *
+ * Renderiza header y secciones del DetailView dentro del frame de sidebar, además
+ * de marcar el área como interactiva para que el canvas no capture clicks,
+ * arrastres o context menu provenientes del inspector.
+ */
 import React from 'react';
 import type { SchemaForUI, PropPanelWidgetProps } from '@sisad-pdfme/common';
 import type { useForm } from 'form-render';
@@ -10,6 +17,9 @@ import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
 import type { DetailInspectorSection } from './detailSchemas.js';
 import { stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
 
+/**
+ * Props del layout visual del DetailView.
+ */
 type DetailViewContentProps = {
   activeSchema: SchemaForUI;
   schemaConfig: SchemaDesignerConfig | null;
@@ -21,6 +31,12 @@ type DetailViewContentProps = {
   backTooltip?: string;
 };
 
+/**
+ * Renderiza header y secciones del inspector dentro del sidebar.
+ *
+ * @param props Datos visuales y form state del DetailView.
+ * @returns Contenido interactivo del inspector.
+ */
 const DetailViewContent = ({
   activeSchema,
   schemaConfig,

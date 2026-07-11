@@ -1,11 +1,31 @@
+/**
+ * CommentsOverlay — renderiza pins de comentarios sobre el canvas.
+ *
+ * Consolida comentarios embebidos en schemas, anchors sueltos y comentarios
+ * top-level del template/snapshot. Cada pin se posiciona contra el paper real
+ * de su propia página para soportar documentos multipágina y multidocumento.
+ */
+
 import React, { useLayoutEffect, useMemo, useRef, useState } from 'react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import { asRecord } from '../../shared/objectGuards.js';
 import { MessageSquare } from 'lucide-react';
 
+/**
+ * Factor de conversión de milímetros PDF a píxeles CSS a 96 DPI.
+ */
 const MM_TO_PX = 3.7795275591;
+/**
+ * Convierte una medida en milímetros a píxeles CSS antes de aplicar zoom.
+ */
 const mm2px = (mm: number) => mm * MM_TO_PX;
 
+/**
+ * Props del overlay de comentarios.
+ *
+ * Recibe todos los schemas relevantes, los comentarios top-level y referencias
+ * a cada paper para ubicar pins según página, escala y posición real del DOM.
+ */
 type CommentsOverlayProps = {
   schemas: SchemaForUI[];
   scale: number;
@@ -35,6 +55,9 @@ type CommentsOverlayProps = {
   }>;
 };
 
+/**
+ * Forma mínima de comentario embebido en un schema para pintar un pin.
+ */
 type OverlayComment = {
   id?: string;
   anchor?: {
@@ -55,6 +78,9 @@ type OverlayComment = {
   resolved?: boolean;
 };
 
+/**
+ * Forma mínima de anchor suelto asociado a un schema.
+ */
 type OverlayAnchor = {
   id?: string;
   x?: number;
@@ -68,14 +94,26 @@ type OverlayAnchor = {
   resolved?: boolean;
 };
 
+/**
+ * Extensión local de SchemaForUI con comentarios y anchors compatibles.
+ */
 type OverlaySchema = SchemaForUI & {
   comments?: OverlayComment[];
   commentAnchors?: OverlayAnchor[];
 };
 
+/**
+ * Normaliza valores dinámicos a string no vacío o undefined.
+ */
 const toStringOrUndefined = (value: unknown): string | undefined =>
   typeof value === 'string' && value.trim() ? value : undefined;
 
+/**
+ * Renderiza botones/pins de comentario posicionados sobre cada página.
+ *
+ * Los pins emiten `sisad-pdfme:pin-clicked` para que paneles externos abran el
+ * hilo correspondiente sin acoplar este overlay al estado de comentarios.
+ */
 const CommentsOverlay = ({
   schemas = [],
   scale = 1,
@@ -101,6 +139,9 @@ const CommentsOverlay = ({
     resolved?: boolean;
   }>>([]);
 
+/**
+ * Fuerza recomputo de posiciones cuando cambia layout, scroll o tamaño.
+ */
   useLayoutEffect(() => {
     const bump = () => setMeasureTick((t) => t + 1);
     bump();
@@ -112,6 +153,12 @@ const CommentsOverlay = ({
     };
   }, [pageIndex, paperRefs, scale, schemas.length]);
 
+/**
+ * Consolida comentarios embebidos, anchors y comentarios top-level.
+ *
+ * Usa un Map por id para evitar pins duplicados cuando el mismo comentario
+ * aparece en más de una fuente serializada.
+ */
   const anchors = useMemo(() => {
     const byId = new Map<
       string,
@@ -195,6 +242,9 @@ const CommentsOverlay = ({
     return Array.from(byId.values());
   }, [schemas, topLevelComments, pageIndex]);
 
+/**
+ * Mide overlay/papers reales y transforma anchors en posiciones absolutas.
+ */
   useLayoutEffect(() => {
     const overlay = containerRef.current;
     if (!overlay) {

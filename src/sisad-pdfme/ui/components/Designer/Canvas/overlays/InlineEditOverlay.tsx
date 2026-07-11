@@ -1,8 +1,21 @@
+/**
+ * InlineEditOverlay — editor flotante para texto o nombre de schema.
+ *
+ * Se posiciona cerca del schema activo, mantiene un draft local y confirma o
+ * cancela cambios mediante callbacks externos. No muta schemas directamente.
+ */
+
 import React, { useEffect, useRef, useState } from 'react';
 import { Input } from 'antd';
 import type { InputRef } from 'antd';
 import { resolveSelectionToolbarPosition } from './floatingSurfaceGeometry.js';
 
+/**
+ * Sesión de edición inline activa.
+ *
+ * Describe qué schema se está editando, qué atributo se modificará y dónde se
+ * ubica el target para posicionar el editor flotante.
+ */
 type InlineEditSession = {
   schemaId: string;
   target: 'content' | 'name';
@@ -11,6 +24,9 @@ type InlineEditSession = {
   multiline?: boolean;
 };
 
+/**
+ * Props del editor inline flotante.
+ */
 type InlineEditOverlayProps = {
   session: InlineEditSession | null;
   canvasSize: { width: number; height: number };
@@ -18,6 +34,12 @@ type InlineEditOverlayProps = {
   onCancel: () => void;
 };
 
+/**
+ * Renderiza un editor flotante para modificar texto visible o nombre interno.
+ *
+ * Mantiene un draft local y delega persistencia/cancelación mediante callbacks
+ * para no acoplar el overlay al store ni al modelo de schemas.
+ */
 const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEditOverlayProps) => {
   const [draft, setDraft] = useState(session?.value ?? '');
   const inputRef = useRef<InputRef | null>(null);
@@ -28,10 +50,16 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
       : 'Actualiza el contenido visible en el lienzo.';
   const inputPlaceholder = session?.target === 'name' ? 'Nombre del campo' : 'Escribe el contenido';
 
+/**
+ * Sincroniza el draft cuando cambia la sesión activa.
+ */
   useEffect(() => {
     setDraft(session?.value ?? '');
   }, [session?.schemaId, session?.target, session?.value]);
 
+/**
+ * Enfoca y selecciona el input al abrir la sesión de edición.
+ */
   useEffect(() => {
     if (!session) return;
     const raf = requestAnimationFrame(() => {
@@ -47,10 +75,16 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
     return () => cancelAnimationFrame(raf);
   }, [session]);
 
+/**
+ * Confirma el valor actual del draft.
+ */
   const commit = () => {
     onCommit(draft);
   };
 
+/**
+ * Cancela la edición sin confirmar el draft.
+ */
   const cancel = () => {
     onCancel();
   };

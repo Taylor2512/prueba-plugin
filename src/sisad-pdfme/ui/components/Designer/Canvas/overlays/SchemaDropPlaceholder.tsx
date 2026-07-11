@@ -1,5 +1,15 @@
+/**
+ * SchemaDropPlaceholder — placeholder visual de inserción de schema.
+ *
+ * Dibuja el rectángulo estimado del campo durante drag/drop externo, usando
+ * coordenadas en milímetros, zoom actual y rect del paper.
+ */
+
 import React from 'react';
 
+/**
+ * Props del placeholder de drop calculado en coordenadas PDF.
+ */
 type SchemaDropPlaceholderProps = {
   label: string;
   xMm: number;
@@ -12,8 +22,14 @@ type SchemaDropPlaceholderProps = {
   paperRect: { left: number; top: number } | null;
 };
 
+/**
+ * Factor de conversión de milímetros PDF a píxeles CSS.
+ */
 const MM_TO_PX = 3.7795275591;
 
+/**
+ * Dibuja el rectángulo estimado del schema antes de confirmar inserción.
+ */
 const SchemaDropPlaceholder = ({
   label,
   xMm,

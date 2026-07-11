@@ -1,3 +1,18 @@
+/**
+ * Field list item row used by the right sidebar ListView.
+ *
+ * This component renders the visual representation of a schema inside the
+ * sortable field list. It combines the schema label, technical name, type label,
+ * validation/status markers, collaboration accents, visibility controls, delete
+ * affordance and the dnd-kit drag handle.
+ *
+ * Design contract:
+ * - selection and hover state are reflected through data attributes;
+ * - drag listeners are attached only to the grip button;
+ * - row-level click is handled by the transparent hit target;
+ * - dangerous actions stop propagation so they do not select or drag the row;
+ * - owner/recipient color is exposed as `--schema-owner-color`.
+ */
 import React, { useEffect, useContext, useState } from 'react';
 import { DraggableSyntheticListeners } from '@dnd-kit/core';
 import { I18nContext } from '../../../../contexts.js';
@@ -6,7 +21,12 @@ import { Button, Tooltip } from 'antd';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { mergeClassNames } from '../../shared/className.js';
 
-// Schema type → accent color mapping (Wix-like color coding)
+/**
+ * Color palette used to visually distinguish schema families in the field list.
+ *
+ * These colors are only visual accents. They do not determine ownership,
+ * permissions or collaboration state.
+ */
 const SCHEMA_TYPE_COLORS: Record<string, string> = {
   text: '#4F8EF7',
   number: '#F59E0B',
@@ -28,10 +48,24 @@ const SCHEMA_TYPE_COLORS: Record<string, string> = {
   code39: '#073B4C',
   code128: '#073B4C',
 };
+
+/**
+ * Resolves the accent color associated with a schema type.
+ *
+ * @param type Schema type from the plugin/runtime.
+ * @returns Hex color used as fallback visual accent.
+ */
 const getTypeColor = (type?: string) => (type ? (SCHEMA_TYPE_COLORS[type] ?? '#888') : '#888');
 
 
 // Define prop types for Item component
+
+/**
+ * Props for a single field-list row.
+ *
+ * The row is intentionally presentational: it receives drag listeners, status,
+ * metadata and action callbacks from the sortable container.
+ */
 interface Props {
   /** Content to display in the item */
   value: React.ReactNode;
@@ -89,6 +123,13 @@ interface Props {
   metaBadges?: Array<{ label: string; color?: string }>;
 }
 
+
+/**
+ * Renders the main field label or a warning/danger status pill.
+ *
+ * Warning is used for schemas without a name. Danger is used for duplicated
+ * names, preserving the visible label while adding an explicit warning suffix.
+ */
 const ItemStatusLabel = ({
   value,
   status,
@@ -119,6 +160,13 @@ const ItemStatusLabel = ({
   );
 };
 
+
+/**
+ * Renders compact row actions and state badges.
+ *
+ * The action area is separated from the row hit target so toggling visibility
+ * or deleting a schema does not accidentally select or drag the row.
+ */
 const ItemActions = ({
   readOnly,
   required,
@@ -191,8 +239,13 @@ const ItemActions = ({
   </div>
 );
 
-// Using React.memo and forwardRef for optimized rendering
-// Using TypeScript interface for prop validation instead of PropTypes
+/**
+ * Memoized, ref-forwarding schema row.
+ *
+ * `Item` is used both in the real list and inside drag overlays. It exposes
+ * status through data attributes for tests/CSS and keeps the draggable handle
+ * isolated from the rest of the row.
+ */
 const Item = React.memo(
   React.forwardRef<HTMLLIElement, Props>(function Item(
     {

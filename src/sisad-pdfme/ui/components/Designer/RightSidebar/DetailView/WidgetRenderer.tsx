@@ -2,20 +2,66 @@ import React, { useEffect, useRef } from 'react';
 import type { PropPanelWidgetProps } from '@sisad-pdfme/common';
 import { markInspectorInteractive } from './inspectorInteractionGuards.js';
 
+/**
+ * Props del wrapper para widgets imperativos heredados de plugins.
+ *
+ * `WidgetRenderer` adapta widgets que esperan recibir un `rootElement`
+ * real donde pintar manualmente su UI, manteniendo compatibilidad con
+ * plugins no migrados a React declarativo.
+ */
 type Props = PropPanelWidgetProps & {
+  /**
+   * Widget imperativo del plugin.
+   *
+   * El widget recibe todas las props del PropPanel más `rootElement` para
+   * montar contenido dentro del contenedor administrado por este wrapper.
+   */
   widget: (props: PropPanelWidgetProps) => void;
 };
 
+/**
+ * Renderizador puente para widgets imperativos del prop panel.
+ *
+ * Responsabilidades:
+ *
+ * - crear un contenedor DOM estable;
+ * - marcar el contenedor como interacción del inspector para que Selecto,
+ *   Moveable y el canvas ignoren sus eventos;
+ * - limpiar el contenido antes de cada render imperativo;
+ * - invocar el widget con `rootElement`;
+ * - limpiar el nodo al desmontar o re-renderizar.
+ *
+ * Restricciones:
+ *
+ * - no debe interpretar el contenido del widget;
+ * - no debe persistir cambios por sí mismo;
+ * - no debe acoplarse a plugins específicos;
+ * - no debe tocar selección ni geometría del canvas.
+ */
 const WidgetRenderer = (props: Props) => {
   const { widget, ...otherProps } = props;
+
+  /** Contenedor DOM entregado al widget imperativo. */
   const ref = useRef<HTMLDivElement>(null);
 
+  /**
+   * Limpia el contenido imperativo del contenedor.
+   *
+   * Se usa antes de montar el widget y durante cleanup para evitar nodos
+   * duplicados, listeners obsoletos o restos visuales entre renders.
+   */
   const clearRoot = () => {
     if (ref.current) {
       ref.current.innerHTML = '';
     }
   };
 
+  /**
+   * Monta el widget imperativo en cada render.
+   *
+   * No se declara dependency array para preservar el comportamiento original:
+   * el widget se reconstruye con las props más recientes en cada render.
+   */
   useEffect(() => {
     if (ref.current) {
       markInspectorInteractive(ref.current);

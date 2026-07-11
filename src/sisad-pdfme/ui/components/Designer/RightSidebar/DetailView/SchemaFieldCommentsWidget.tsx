@@ -16,25 +16,78 @@ import { asRecord } from '../../shared/objectGuards.js';
 import { mergeClassNames } from '../../shared/className.js';
 import { stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
 
+/**
+ * Props del widget de comentarios por campo del inspector.
+ *
+ * Este widget trabaja sobre el schema activo y persiste los hilos en la
+ * propiedad `comments` mediante `changeSchemas`. No conoce el panel padre,
+ * el canvas, Moveable ni Selecto; únicamente emite cambios de datos.
+ */
 type FieldCommentsWidgetProps = PropPanelWidgetProps & {
+  /** Schema actualmente seleccionado en el DetailView. */
   activeSchema: SchemaForUI;
+
+  /**
+   * Callback oficial del diseñador para persistir cambios sobre el schema.
+   *
+   * El widget lo usa exclusivamente con `key: 'comments'`.
+   */
   changeSchemas: (_objs: { key: string; value: unknown; schemaId: string }[]) => void;
+
+  /**
+   * Información opcional del actor colaborativo actual.
+   *
+   * Se usa para completar autor, nombre visible y color de nuevos comentarios
+   * o respuestas. Si no existe, se usa el actor local.
+   */
   designerEngine?: { collaboration?: { actorId?: string; actorName?: string; actorColor?: string } };
+
+  /** Placeholder del composer principal de nuevo comentario. */
   composerPlaceholder?: string;
+
+  /** Texto visible del botón para agregar un comentario. */
   addLabel?: React.ReactNode;
+
+  /** Título del estado vacío. */
   emptyLabel?: React.ReactNode;
+
+  /** Descripción del estado vacío. */
   emptyDescription?: React.ReactNode;
+
+  /** Placeholder del input de respuesta dentro de cada hilo. */
   replyPlaceholder?: string;
+
+  /** Texto visible del botón de respuesta. */
   replyLabel?: React.ReactNode;
+
+  /** Etiqueta usada para hilos resueltos. */
   resolvedLabel?: React.ReactNode;
+
+  /** Etiqueta disponible para hilos abiertos. Reservada para estados futuros. */
   openLabel?: React.ReactNode;
 };
 
+/**
+ * Normaliza una entrada desconocida a lista de comentarios.
+ *
+ * Los schemas antiguos o incompletos pueden traer `comments` ausente,
+ * nulo o con una forma inválida. En esos casos se devuelve una lista vacía
+ * para que el widget pueda renderizar sin fallar.
+ */
 const normalizeComments = (value: unknown): SchemaComment[] =>
   Array.isArray(value) ? (value as SchemaComment[]) : [];
 
+/**
+ * Genera timestamp en milisegundos para comentarios/respuestas creados
+ * desde el inspector.
+ */
 const createTimestamp = () => Date.now();
 
+/**
+ * Formateador compacto de fecha/hora para hilos de comentarios.
+ *
+ * Se mantiene fuera del componente para evitar recrearlo en cada render.
+ */
 const COMMENT_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat('es-ES', {
   day: '2-digit',
   month: 'short',
@@ -42,8 +95,15 @@ const COMMENT_TIMESTAMP_FORMATTER = new Intl.DateTimeFormat('es-ES', {
   minute: '2-digit',
 });
 
+/**
+ * Formatea un timestamp opcional.
+ *
+ * Devuelve string vacío si el timestamp no es finito o no puede convertirse
+ * a una fecha válida.
+ */
 const formatTimestamp = (ts?: number): string => {
   if (!ts || !Number.isFinite(ts)) return '';
+
   try {
     return COMMENT_TIMESTAMP_FORMATTER.format(new Date(ts));
   } catch {
@@ -51,9 +111,22 @@ const formatTimestamp = (ts?: number): string => {
   }
 };
 
+/**
+ * Resuelve un texto configurable cuando el valor recibido es un string útil.
+ *
+ * Si el usuario pasa un nodo React no-string o un string vacío, se usa el
+ * fallback para conservar etiquetas seguras dentro de componentes que esperan
+ * texto plano.
+ */
 const resolveText = (value: React.ReactNode, fallback: string) =>
   typeof value === 'string' && value.trim() ? value : fallback;
 
+/**
+ * Construye una respuesta de comentario con metadata del actor actual.
+ *
+ * Las respuestas usan un prefijo `reply-` para distinguirlas visualmente
+ * de hilos raíz creados por `createSchemaComment`.
+ */
 const buildReplyComment = (args: {
   actorId: string;
   actorName: string;
@@ -70,11 +143,24 @@ const buildReplyComment = (args: {
 });
 
 /**
- * Per-field inspector comments tab.
+ * Widget de comentarios por campo dentro del DetailView.
  *
- * Reads `activeSchema.comments`, lets the inspector user add new threads,
- * reply to threads, and resolve / reopen them.  Changes are persisted through
- * `changeSchemas` using the key `"comments"`.
+ * Responsabilidades:
+ *
+ * - leer `activeSchema.comments`;
+ * - crear hilos nuevos asociados al schema activo;
+ * - agregar respuestas a un hilo existente;
+ * - marcar hilos como resueltos o abiertos;
+ * - eliminar hilos;
+ * - persistir cambios mediante `changeSchemas`.
+ *
+ * Restricciones:
+ *
+ * - no modifica anchors de comentarios;
+ * - no posiciona pins en canvas;
+ * - no dispara eventos globales;
+ * - no toca Moveable, Selecto ni selección del canvas;
+ * - no conoce estructura multi-documento más allá del schema activo.
  */
 const SchemaFieldCommentsWidget = ({
   activeSchema,
@@ -89,27 +175,45 @@ const SchemaFieldCommentsWidget = ({
   resolvedLabel = 'Resuelto',
   openLabel = 'Abierto',
 }: FieldCommentsWidgetProps) => {
+  /** Texto local del composer principal de comentario. */
   const [newCommentText, setNewCommentText] = useState('');
+
+  /**
+   * Drafts de respuestas por comentario.
+   *
+   * La key es el `comment.id`; el valor es el texto aún no persistido.
+   */
   const [replyTexts, setReplyTexts] = useState<Record<string, string>>({});
 
+  /** Actor colaborativo actual con fallback local. */
   const actorId = designerEngine?.collaboration?.actorId || 'local';
   const actorName = designerEngine?.collaboration?.actorName || actorId;
   const actorColor = designerEngine?.collaboration?.actorColor;
 
+  /** Comentarios normalizados desde el schema activo. */
   const comments = normalizeComments(asRecord(activeSchema)?.comments);
 
+  /**
+   * Persiste la lista completa de comentarios sobre el schema activo.
+   *
+   * Mantiene una única ruta de escritura para altas, bajas, respuestas
+   * y cambios de estado.
+   */
   const persistComments = (next: SchemaComment[]) => {
     changeSchemas([{ key: 'comments', value: next, schemaId: activeSchema.id }]);
   };
 
+  /** Crea un hilo raíz nuevo si el composer tiene texto válido. */
   const handleAddComment = () => {
     const text = newCommentText.trim();
     if (!text) return;
+
     const comment = createSchemaComment(text, {
       authorId: actorId,
       authorName: actorName,
       authorColor: actorColor,
     });
+
     persistComments([...comments, comment as SchemaComment]);
     setNewCommentText('');
   };
@@ -117,26 +221,32 @@ const SchemaFieldCommentsWidget = ({
   const resolvedEmptyLabel = resolveText(emptyLabel, 'Sin comentarios');
   const resolvedEmptyDescription = resolveText(emptyDescription, 'Añade el primer hilo.');
 
+  /** Cambia el estado resuelto/abierto de un hilo existente. */
   const handleResolveToggle = (commentId: string, resolved: boolean) => {
     const next = comments.map((c) => (c.id === commentId ? { ...c, resolved } : c));
     persistComments(next);
   };
 
+  /** Elimina un hilo completo por ID. */
   const handleDeleteComment = (commentId: string) => {
     persistComments(removeById(comments, commentId));
   };
 
+  /** Agrega una respuesta a un hilo existente. */
   const handleAddReply = (commentId: string) => {
     const text = (replyTexts[commentId] || '').trim();
     if (!text) return;
+
     const existingComment = comments.find((c) => c.id === commentId);
     if (!existingComment) return;
+
     const reply = buildReplyComment({
       actorId,
       actorName,
       actorColor,
       text,
     });
+
     const next = upsertById(
       comments,
       {
@@ -144,10 +254,12 @@ const SchemaFieldCommentsWidget = ({
         replies: [...((existingComment.replies as typeof reply[]) || []), reply],
       } as SchemaComment,
     );
+
     persistComments(next);
     setReplyTexts((prev) => ({ ...prev, [commentId]: '' }));
   };
 
+  /** Helper local para construir clases BEM/prefijadas del diseñador. */
   const cls = (suffix: string) => `${DESIGNER_CLASSNAME}${suffix}`;
 
   return (
@@ -161,7 +273,7 @@ const SchemaFieldCommentsWidget = ({
       onMouseDown={stopInspectorPointerEvent}
       onClick={stopInspectorPointerEvent}
     >
-      {/* New comment input */}
+      {/** Composer principal para crear un hilo raíz. */}
       <div className={mergeClassNames(cls('field-comments-add'), 'flex flex-col gap-2 rounded-2xl border border-slate-200 bg-white p-3 shadow-sm')}>
         <Input.TextArea
           id={`comments-new-${activeSchema.id}`}
@@ -192,7 +304,7 @@ const SchemaFieldCommentsWidget = ({
         </Button>
       </div>
 
-      {/* Thread list */}
+      {/** Lista de hilos o estado vacío cuando el campo no tiene comentarios. */}
       {comments.length === 0 ? (
         <InspectorEmptyState
           icon={<MessageSquare size={18} />}
@@ -204,6 +316,7 @@ const SchemaFieldCommentsWidget = ({
         <div className={mergeClassNames(cls('field-comments-list'), 'space-y-3')}>
           {comments.map((comment) => {
             const resolved = Boolean(comment.resolved);
+
             return (
               <div
                 key={comment.id}
@@ -213,7 +326,7 @@ const SchemaFieldCommentsWidget = ({
                   'space-y-3 rounded-2xl border border-slate-200 bg-slate-50/80 p-3 shadow-sm',
                 )}
               >
-                {/* Thread header */}
+                {/** Header del hilo: autor, fecha, estado y acciones. */}
                 <div className={mergeClassNames(cls('field-comments-thread-header'), 'flex items-start justify-between gap-3')}>
                   <Space size={4} align="center">
                     {actorColor || comment.authorColor ? (
@@ -235,6 +348,7 @@ const SchemaFieldCommentsWidget = ({
                       </Tag>
                     ) : null}
                   </Space>
+
                   <Space size={4}>
                     <Tooltip title={resolved ? 'Reabrir hilo' : 'Marcar como resuelto'}>
                       <Button
@@ -266,10 +380,10 @@ const SchemaFieldCommentsWidget = ({
                   </Space>
                 </div>
 
-                {/* Thread body */}
+                {/** Texto principal del comentario raíz. */}
                 <div className={mergeClassNames(cls('field-comments-thread-body'), 'text-sm leading-6 text-slate-700')}>{comment.text}</div>
 
-                {/* Replies */}
+                {/** Respuestas del hilo, si existen. */}
                 {(comment.replies || []).length > 0 ? (
                   <div className={mergeClassNames(cls('field-comments-replies'), 'space-y-2')}>
                     {(comment.replies as { id: string; authorName?: string; authorId?: string; authorColor?: string; text: string; timestamp?: number; createdAt?: number }[]).map((reply) => (
@@ -295,7 +409,7 @@ const SchemaFieldCommentsWidget = ({
                   </div>
                 ) : null}
 
-                {/* Reply input */}
+                {/** Composer de respuesta. Solo se muestra si el hilo sigue abierto. */}
                 {!resolved ? (
                   <div className={mergeClassNames(cls('field-comments-reply-input'), 'flex items-center gap-2')}>
                     <Input

@@ -1,3 +1,10 @@
+/**
+ * detailWidgetRegistry — registro de widgets disponibles para form-render.
+ *
+ * Construye el mapa final de widgets combinando primitives internas, widgets de
+ * colaboración/conexiones/comentarios y widgets declarados por plugins. Mantiene
+ * el DetailView desacoplado de implementaciones específicas.
+ */
 import React from 'react';
 import type { GlobalToken, PropPanelWidgetProps, SchemaForUI, UIOptions } from '@sisad-pdfme/common';
 import { Button, Divider, Tooltip } from 'antd';
@@ -17,6 +24,9 @@ import type { SidebarProps } from '../../../../types.js';
 import { BooleanSwitchWidget } from './InspectorPrimitives.js';
 import { ColorPickerWidget } from './detailWidgets.js';
 
+/**
+ * Parámetros usados para construir el registro final de widgets.
+ */
 type BuildWidgetsParams = {
   pluginsRegistry: {
     values: () => Iterable<{
@@ -41,6 +51,12 @@ type BuildWidgetsParams = {
   };
 };
 
+/**
+ * Construye el mapa de widgets que form-render puede usar en el DetailView.
+ *
+ * @param params Registry de plugins, opciones, tema y props del sidebar.
+ * @returns Registro de widgets internos y de plugin.
+ */
 const buildDetailWidgets = ({
   pluginsRegistry,
   options,

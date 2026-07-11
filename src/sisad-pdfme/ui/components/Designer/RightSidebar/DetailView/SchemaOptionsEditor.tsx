@@ -24,13 +24,24 @@ import {
 } from '../../../../../schemas/options/optionGroupFactory.js';
 import { RADIO_GROUP_LAYOUT, CHECKBOX_GROUP_LAYOUT } from '../../../../../schemas/options/optionGroupLayout.js';
 
+/** Callback estándar para persistir cambios de schemas desde el inspector. */
 type ChangeSchemas = (_objs: { key: string; value: unknown; schemaId: string }[]) => void;
 
+/** Props del editor React de opciones para select, radioGroup y checkboxGroup. */
 type SchemaOptionsEditorProps = {
+  /** Schema activo que contiene la configuración de opciones. */
   activeSchema: SchemaForUI;
+
+  /** Callback del diseñador usado para persistir cada patch. */
   changeSchemas: ChangeSchemas;
 };
 
+/**
+ * Extensión tipada del schema activo cuando pertenece a familias de opciones.
+ *
+ * Agrupa propiedades usadas por select, radioGroup y checkboxGroup sin forzar
+ * que todos los tipos tengan todas las claves.
+ */
 type OptionGroupSchema = SchemaForUI & {
   options?: unknown[];
   content?: string;
@@ -42,15 +53,27 @@ type OptionGroupSchema = SchemaForUI & {
   color?: string;
 };
 
+/** Tipo funcional del editor según el schema seleccionado. */
 type EditorKind = 'select' | 'radio' | 'checkbox';
 
+/** Fila normalizada que el editor renderiza para cualquier tipo de opción. */
 type EditorRow = {
-  /** Stable identity: optionId for groups, the value itself for select. */
+  /** Identidad estable: optionId en grupos; value en select. */
   key: string;
+
+  /** Etiqueta editable visible en la fila. */
   label: string;
+
+  /** Indica si la fila representa valor por defecto o selección activa. */
   isDefault: boolean;
 };
 
+/**
+ * Resuelve el tipo de editor a partir del `schema.type`.
+ *
+ * Devuelve null si el schema no pertenece a select/dropdown/radioGroup/
+ * checkboxGroup, evitando renderizar un editor incorrecto.
+ */
 const resolveKind = (schemaType: unknown): EditorKind | null => {
   const normalized = String(schemaType || '').trim().toLowerCase();
   if (normalized === 'select' || normalized === 'dropdown') return 'select';
@@ -59,24 +82,49 @@ const resolveKind = (schemaType: unknown): EditorKind | null => {
   return null;
 };
 
+/** Microcopy por tipo de editor. */
 const KIND_COPY: Record<EditorKind, { addPlaceholder: string; defaultHint: string; itemNoun: string }> = {
   select: { addPlaceholder: 'Nueva opción…', defaultHint: 'Valor por defecto', itemNoun: 'opción' },
   radio: { addPlaceholder: 'Nueva opción…', defaultHint: 'Seleccionada por defecto', itemNoun: 'opción' },
   checkbox: { addPlaceholder: 'Nueva casilla…', defaultHint: 'Marcada por defecto', itemNoun: 'casilla' },
 };
 
+/**
+ * Obtiene límites de selección múltiple configurados en un checkboxGroup.
+ *
+ * Si no existen, deja undefined para que las funciones de comportamiento
+ * apliquen sus defaults internos.
+ */
 const selectionLimits = (schema: OptionGroupSchema) => ({
   minSelected: typeof schema.minSelected === 'number' ? schema.minSelected : undefined,
   maxSelected: typeof schema.maxSelected === 'number' ? schema.maxSelected : undefined,
 });
 
 /**
- * Single React editor for select/radioGroup/checkboxGroup options.
- * Renders directly under DetailSectionCard — no Ant Card, no form-render.
- * Commit semantics mirror the schema plugins exactly:
- *  - select: options[] + content (compact selection).
- *  - radioGroup: options + content/selectedOptionId/defaultSelectedOptionId + group patch/dimensions.
- *  - checkboxGroup: options + content/selectedOptionIds (clamped) + group patch/dimensions.
+ * Editor React único para opciones de `select`, `radioGroup` y `checkboxGroup`.
+ *
+ * Responsabilidades:
+ *
+ * - derivar filas desde el schema vivo;
+ * - agregar, renombrar, eliminar y reordenar opciones;
+ * - marcar valor por defecto o selección inicial;
+ * - sincronizar `content`, `selectedOptionId`, `selectedOptionIds` y dimensiones;
+ * - evitar wrappers de `form-render` cuando el widget se renderiza directo
+ *   dentro de `DetailSectionCard`.
+ *
+ * Semántica de persistencia:
+ *
+ * - select: persiste `options[]` y `content` compacto;
+ * - radioGroup: persiste `options`, `content`, `selectedOptionId`,
+ *   `defaultSelectedOptionId`, orientación y dimensiones del grupo;
+ * - checkboxGroup: persiste `options`, `content`, `selectedOptionIds` y
+ *   dimensiones del grupo.
+ *
+ * Restricciones:
+ *
+ * - no manipula directamente el canvas;
+ * - no toca Moveable ni Selecto;
+ * - no muta `activeSchema`; todos los cambios salen por `changeSchemas`.
  */
 const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEditorProps) => {
   const schema = activeSchema as OptionGroupSchema;
@@ -89,17 +137,22 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
   const copy = KIND_COPY[kind];
   const schemaId = schema.id;
 
-  // ── Derive rows from the live schema (source of truth survives remounts) ──
+  /** Opciones normalizadas de grupos radio/checkbox. */
   const groupNoun = kind === 'checkbox' ? 'Casilla' : 'Opción';
   const groupOptions: OptionItem[] =
     kind === 'select' ? [] : (normalizeOptionGroupOptions(schema.options, groupNoun) as OptionItem[]);
+
+  /** Opciones normalizadas de select/dropdown. */
   const selectValues: string[] = kind === 'select'
     ? normalizeStringOptions(Array.isArray(schema.options) ? schema.options : [])
     : [];
 
+  /** Valor default compacto para select/dropdown. */
   const selectDefault = kind === 'select'
     ? resolveCompactSelection(typeof schema.content === 'string' ? schema.content : '', selectValues)
     : '';
+
+  /** Opción seleccionada/default de radioGroup. */
   const radioSelected = kind === 'radio'
     ? resolveSingleOptionSelection(
         schema.selectedOptionId || schema.content || schema.defaultSelectedOptionId,
@@ -107,6 +160,8 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
         groupOptions[0]?.optionId || 'option_1',
       )
     : '';
+
+  /** Set de opciones marcadas/default para checkboxGroup. */
   const checkboxSelected: Set<string> = kind === 'checkbox'
     ? new Set(
         resolveMultiOptionSelection(
@@ -118,6 +173,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
       )
     : new Set();
 
+  /** Filas renderizables derivadas de la fuente de verdad del schema. */
   const rows: EditorRow[] =
     kind === 'select'
       ? selectValues.map((value) => ({ key: value, label: value, isDefault: value === selectDefault }))
@@ -127,12 +183,18 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
           isDefault: kind === 'radio' ? option.optionId === radioSelected : checkboxSelected.has(option.optionId),
         }));
 
-  // ── Commits (mirror plugin semantics) ──────────────────────────────────────
+  /**
+   * Persiste un patch arbitrario sobre el schema activo.
+   *
+   * Mantiene una sola ruta de escritura y convierte el objeto a la forma
+   * esperada por `changeSchemas`.
+   */
   const commit = (patch: Record<string, unknown>) => {
     if (!schemaId) return;
     changeSchemas(Object.entries(patch).map(([key, value]) => ({ key, value, schemaId })));
   };
 
+  /** Persiste opciones de select/dropdown conservando un default válido. */
   const commitSelect = (nextValues: string[], nextDefault?: string) => {
     const desired = nextDefault !== undefined ? nextDefault : (typeof schema.content === 'string' ? schema.content : '');
     commit({
@@ -141,6 +203,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
     });
   };
 
+  /** Persiste opciones de radioGroup y recalcula metadata visual del grupo. */
   const commitRadio = (nextOptions: OptionItem[], desiredSelected?: string) => {
     const safeOptions = nextOptions.length ? nextOptions : (buildDefaultOptionGroupOptions('Opción', 1) as OptionItem[]);
     const fallback = safeOptions[0]?.optionId || 'option_1';
@@ -162,6 +225,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
     commit({ ...patch, ...syncDesignerOptionGroupPatch({ ...schema, ...patch } as SchemaForUI, 'radio') });
   };
 
+  /** Persiste opciones de checkboxGroup y ajusta selección múltiple válida. */
   const commitCheckbox = (nextOptions: OptionItem[], desiredSelected?: Set<string>) => {
     const safeOptions = nextOptions.length ? nextOptions : (buildDefaultOptionGroupOptions('Casilla', 2) as OptionItem[]);
     const validIds = new Set(safeOptions.map((option) => option.optionId));
@@ -176,13 +240,14 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
     commit({ ...patch, ...syncDesignerOptionGroupPatch({ ...schema, ...patch } as SchemaForUI, 'checkbox') });
   };
 
-  // ── Row operations ─────────────────────────────────────────────────────────
+  /** Valida etiqueta requerida y unicidad visual entre opciones. */
   const validateLabel = (label: string, currentIndex: number): string => {
     if (!label) return 'La etiqueta no puede estar vacía.';
     const duplicated = rows.some((row, index) => index !== currentIndex && row.label === label);
     return duplicated ? 'Ya existe una opción con esa etiqueta.' : '';
   };
 
+  /** Agrega una nueva opción/casilla al final de la lista. */
   const addOption = (rawLabel: string = draft) => {
     const label = rawLabel.trim();
     const validation = validateLabel(label, -1);
@@ -190,12 +255,15 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
       setError(validation);
       return;
     }
+
     setError('');
     setDraft('');
+
     if (kind === 'select') {
       commitSelect([...selectValues, label]);
       return;
     }
+
     const nextOption: OptionItem = {
       optionId:
         kind === 'checkbox'
@@ -208,6 +276,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
     else commitCheckbox(nextOptions);
   };
 
+  /** Renombra una opción existente y actualiza default si era necesario. */
   const renameOption = (index: number, rawLabel: string) => {
     const label = rawLabel.trim();
     const validation = validateLabel(label, index);
@@ -215,13 +284,16 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
       setError(validation);
       return;
     }
+
     setError('');
+
     if (kind === 'select') {
       const previous = selectValues[index];
       const nextValues = selectValues.map((value, valueIndex) => (valueIndex === index ? label : value));
       commitSelect(nextValues, selectDefault === previous ? label : undefined);
       return;
     }
+
     const nextOptions = groupOptions.map((option, optionIndex) =>
       optionIndex === index ? { ...option, label: label || option.label } : option,
     );
@@ -229,22 +301,29 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
     else commitCheckbox(nextOptions);
   };
 
+  /** Elimina una opción. En grupos mantiene al menos una opción disponible. */
   const removeOption = (index: number) => {
     setError('');
+
     if (kind === 'select') {
       commitSelect(selectValues.filter((_, valueIndex) => valueIndex !== index));
       return;
     }
+
     if (groupOptions.length <= 1) return;
+
     const nextOptions = groupOptions.filter((_, optionIndex) => optionIndex !== index);
     if (kind === 'radio') commitRadio(nextOptions);
     else commitCheckbox(nextOptions);
   };
 
+  /** Reordena una opción hacia arriba o abajo. */
   const moveOption = (index: number, direction: -1 | 1) => {
     const target = index + direction;
     if (target < 0) return;
+
     setError('');
+
     if (kind === 'select') {
       if (target >= selectValues.length) return;
       const nextValues = [...selectValues];
@@ -252,6 +331,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
       commitSelect(nextValues);
       return;
     }
+
     if (target >= groupOptions.length) return;
     const nextOptions = [...groupOptions];
     [nextOptions[index], nextOptions[target]] = [nextOptions[target], nextOptions[index]];
@@ -259,25 +339,30 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
     else commitCheckbox(nextOptions);
   };
 
+  /** Marca una opción como default/seleccionada. */
   const markDefault = (index: number) => {
     setError('');
+
     if (kind === 'select') {
       commitSelect(selectValues, selectValues[index]);
       return;
     }
+
     if (kind === 'radio') {
       commitRadio(groupOptions, groupOptions[index]?.optionId);
       return;
     }
+
     const optionId = groupOptions[index]?.optionId;
     if (!optionId) return;
+
     const nextSelected = new Set(
       toggleMultiOptionSelection(Array.from(checkboxSelected), optionId, groupOptions, selectionLimits(schema)),
     );
     commitCheckbox(groupOptions, nextSelected);
   };
 
-  // ── Render ─────────────────────────────────────────────────────────────────
+  /** Atributos que impiden que Selecto/Moveable interpreten interacción del inspector. */
   const interactiveAttrs = {
     [INSPECTOR_INTERACTIVE_ATTR]: 'true',
     'data-selecto-ignore': 'true',
@@ -285,6 +370,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
     'data-canvas-drop-ignore': 'true',
   } as const;
 
+  /** Clases base compartidas por botones pequeños de fila. */
   const iconButtonClass = mergeClassNames(
     DESIGNER_CLASSNAME + 'options-editor-icon-btn',
     'inline-flex h-6 w-6 flex-none items-center justify-center rounded-md border-0 bg-transparent p-0 text-slate-400 transition-colors',
@@ -349,21 +435,21 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
               </button>
               <input
                 type="text"
-              defaultValue={row.label}
-              aria-label={`Opción ${index + 1}`}
-              data-testid="option-label-input"
-              className={mergeClassNames(
-                DESIGNER_CLASSNAME + 'options-editor-input',
-                'w-full min-w-0 flex-1 rounded-md border-0 bg-transparent px-1 py-0.5 text-[12px] text-slate-700 outline-none placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-sky-500/40',
-              )}
-              onChange={(event) => {
-                if (event.target.value.trim() !== row.label) renameOption(index, event.target.value);
-              }}
-              onBlur={(event) => {
-                if (event.target.value.trim() !== row.label) renameOption(index, event.target.value);
-              }}
-              onKeyDown={(event) => {
-                if (event.key === 'Enter') {
+                defaultValue={row.label}
+                aria-label={`Opción ${index + 1}`}
+                data-testid="option-label-input"
+                className={mergeClassNames(
+                  DESIGNER_CLASSNAME + 'options-editor-input',
+                  'w-full min-w-0 flex-1 rounded-md border-0 bg-transparent px-1 py-0.5 text-[12px] text-slate-700 outline-none placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-sky-500/40',
+                )}
+                onChange={(event) => {
+                  if (event.target.value.trim() !== row.label) renameOption(index, event.target.value);
+                }}
+                onBlur={(event) => {
+                  if (event.target.value.trim() !== row.label) renameOption(index, event.target.value);
+                }}
+                onKeyDown={(event) => {
+                  if (event.key === 'Enter') {
                     event.preventDefault();
                     (event.target as HTMLInputElement).blur();
                   }

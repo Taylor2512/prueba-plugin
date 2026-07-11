@@ -1,3 +1,18 @@
+/**
+ * Right sidebar list view for all schemas/fields in the current document page.
+ *
+ * The view provides:
+ * - searchable and filterable schema list;
+ * - sortable field order through dnd-kit;
+ * - multi-selection awareness from the canvas/selection runtime;
+ * - bulk field-name editing;
+ * - optional recipient assignment for selected fields;
+ * - runtime event emission for analytics/integration hooks.
+ *
+ * The component intentionally delegates rendering of rows and drag behavior to
+ * `SelectableSortableContainer` so ListView remains focused on filtering,
+ * toolbar state, bulk actions and sidebar layout.
+ */
 import React, { useContext, useState, useMemo, useCallback, useRef } from 'react';
 import type { SidebarProps } from '../../../../types.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
@@ -17,6 +32,17 @@ import { getSchemaTypeLabel } from '../../shared/designerLabels.js';
 const { TextArea } = Input;
 const { Text } = Typography;
 
+
+/**
+ * Main field-list sidebar view.
+ *
+ * Responsibilities:
+ * - apply collaboration visibility filters;
+ * - maintain search/type filters;
+ * - orchestrate bulk rename mode;
+ * - delegate sorting/selection to `SelectableSortableContainer`;
+ * - expose bulk recipient assignment when collaboration state allows it.
+ */
 const ListView = (
   props: Pick<
     SidebarProps,
@@ -63,6 +89,10 @@ const ListView = (
     [collaborationContext, schemas],
   );
 
+
+  /**
+   * Normalizes searchable scalar values for case-insensitive filtering.
+   */
   const normalizeText = (value: unknown) => {
     if (typeof value === 'string' || typeof value === 'number' || typeof value === 'boolean') {
       return String(value).trim().toLowerCase();
@@ -71,7 +101,9 @@ const ListView = (
     return '';
   };
 
-  // Collect unique schema types for the filter dropdown
+  /**
+   * Collects unique schema types for the toolbar filter dropdown.
+   */
   const schemaTypes = useMemo(() => {
     const types = Array.from(new Set(viewSchemas.map((s) => s.type)));
     return [
@@ -80,7 +112,9 @@ const ListView = (
     ];
   }, [viewSchemas]);
 
-  // Filter schemas by search query and type
+  /**
+   * Applies text search and type filtering to the collaboration-visible schemas.
+   */
   const filteredSchemas = useMemo(() => {
     return viewSchemas.filter((s) => {
       const query = normalizeText(searchQuery);
@@ -160,6 +194,13 @@ const ListView = (
     });
   }, [emitRuntimeEvent]);
 
+
+  /**
+   * Assigns the currently active recipient to all selected schemas.
+   *
+   * Uses the selection command when available; otherwise falls back to writing
+   * the collaboration metadata directly through `changeSchemas`.
+   */
   const handleBulkAssignRecipient = () => {
     if (!hasSelectableRecipient || selectedSchemas.length === 0 || hasLockedSelection) return;
     const nextRecipient = activeRecipient;
@@ -200,6 +241,13 @@ const ListView = (
     );
   };
 
+
+  /**
+   * Commits one field name per line to the filtered collaboration-visible list.
+   *
+   * The operation is intentionally all-or-nothing by line count so names are not
+   * accidentally shifted across fields.
+   */
   const commitBulk = () => {
     const names = fieldNamesValue.split('\n');
     if (names.length === viewSchemas.length) {

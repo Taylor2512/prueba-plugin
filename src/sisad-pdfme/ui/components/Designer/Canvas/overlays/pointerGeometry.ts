@@ -1,11 +1,24 @@
+/**
+ * pointerGeometry — conversión de coordenadas de puntero a coordenadas de PDF.
+ *
+ * Centraliza utilidades para drops, placeholders y posicionamiento de schemas:
+ * client point → canvas/page point, conversión px/mm y clamp dentro de página.
+ */
+
 import { px2mm } from '@sisad-pdfme/common';
 import { getPageRectInViewport } from '../../shared/coordinateMath.js';
 
+/**
+ * Punto bidimensional genérico en píxeles o milímetros según contexto.
+ */
 export type PointLike = {
   x: number;
   y: number;
 };
 
+/**
+ * Rectángulo genérico compatible con DOMRect-like values.
+ */
 export type RectLike = {
   left: number;
   top: number;
@@ -15,6 +28,9 @@ export type RectLike = {
   height: number;
 };
 
+/**
+ * Entrada necesaria para convertir coordenadas clientX/clientY a página PDF.
+ */
 export type PointerToPaperInput = {
   clientX: number;
   clientY: number;
@@ -31,6 +47,9 @@ export type PointerToPaperInput = {
   };
 };
 
+/**
+ * Resultado normalizado de coordenadas de puntero sobre una página.
+ */
 export type PointerToPaperResult = {
   xPx: number;
   yPx: number;
@@ -40,13 +59,27 @@ export type PointerToPaperResult = {
   pageIndex: number;
 };
 
+/**
+ * Type guard para números finitos.
+ */
 const isFiniteNumber = (value: unknown): value is number =>
   typeof value === 'number' && Number.isFinite(value);
 
+/**
+ * Normaliza zoom inválido a 1 para evitar divisiones inestables.
+ */
 const normalizeZoom = (zoom: number) => (Number.isFinite(zoom) && zoom > 0 ? zoom : 1);
 
+/**
+ * Convierte píxeles de pantalla a milímetros del documento considerando zoom.
+ */
 const toMm = (px: number, zoom: number) => px2mm(px / normalizeZoom(zoom));
 
+/**
+ * Convierte un punto de viewport/client a coordenadas relativas al paper.
+ *
+ * Devuelve px, mm y flags de pertenencia al canvas/página para drops externos.
+ */
 export const resolveClientPointToCanvasPoint = (
   input: PointerToPaperInput,
 ): PointerToPaperResult => {
@@ -81,10 +114,16 @@ export const resolveClientPointToCanvasPoint = (
   };
 };
 
+/**
+ * Alias semántico de `resolveClientPointToCanvasPoint` para flujos por página.
+ */
 export const resolveClientPointToPagePoint = (
   input: PointerToPaperInput,
 ): PointerToPaperResult => resolveClientPointToCanvasPoint(input);
 
+/**
+ * Ajusta un punto para que un schema completo quede dentro de los límites de página.
+ */
 export const clampPointToPageBounds = (
   point: PointLike,
   pageSize: { width: number; height: number },
@@ -100,6 +139,11 @@ export const clampPointToPageBounds = (
   };
 };
 
+/**
+ * Resuelve qué página contiene un punto client de drop.
+ *
+ * Retorna -1 cuando el punto no pertenece a ningún paper.
+ */
 export const resolveDropPageIndex = (
   point: PointLike,
   paperElements: Array<HTMLElement | null | undefined>,
@@ -116,6 +160,9 @@ export const resolveDropPageIndex = (
   return -1;
 };
 
+/**
+ * Extrae coordenadas clientX/clientY desde eventos mouse/pointer/touch.
+ */
 export const extractClientPoint = (event: Event | null | undefined): PointLike | null => {
   if (!event) return null;
   if ('clientX' in event && isFiniteNumber(event.clientX) && 'clientY' in event && isFiniteNumber(event.clientY)) {

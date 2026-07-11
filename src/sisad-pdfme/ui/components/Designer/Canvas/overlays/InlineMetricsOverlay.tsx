@@ -1,9 +1,22 @@
+/**
+ * InlineMetricsOverlay — muestra métricas rápidas de selección.
+ *
+ * Presenta ancho y alto calculados desde los bounds activos. Es un overlay
+ * puramente visual: no participa en selección, drag, resize ni persistencia.
+ */
+
 import React from 'react';
 
+/**
+ * Props del overlay de métricas inline.
+ */
 type InlineMetricsOverlayProps = {
   bounds: { top: number; left: number; width: number; height: number } | null;
 };
 
+/**
+ * Muestra ancho y alto redondeados de la selección activa.
+ */
 const InlineMetricsOverlay = ({ bounds }: InlineMetricsOverlayProps) => {
   if (!bounds) return null;
   const width = Math.max(0, Math.round(bounds.width));

@@ -1,3 +1,10 @@
+/**
+ * Toolbar for the right sidebar schema list.
+ *
+ * It contains the list header, count badges, search input, optional schema type
+ * filter, clear filter action, mass rename action and optional bulk recipient
+ * assignment action for collaborative workflows.
+ */
 import React from 'react';
 import { Button, Input, Select } from 'antd';
 import { Layers, Search } from 'lucide-react';
@@ -7,8 +14,19 @@ import type { EffectiveCollaborationContext } from '../../../../collaborationCon
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { mergeClassNames } from '../../shared/className.js';
 
+
+/**
+ * Generic select option used by the type filter.
+ */
 type Option = { value: string; label: string };
 
+
+/**
+ * Props for the ListView toolbar.
+ *
+ * The toolbar is controlled by ListView and only emits user intents through
+ * callbacks. It does not mutate schemas directly.
+ */
 type Props = {
   searchQuery: string;
   typeFilter: string;
@@ -37,6 +55,13 @@ type Props = {
   useDefaultStyles?: boolean;
 };
 
+
+/**
+ * Header and filter controls for the field list.
+ *
+ * Shows count badges, search box, type filter, filter reset, bulk rename and
+ * collaboration assignment actions.
+ */
 const ListViewToolbar = ({
   searchQuery,
   typeFilter,

@@ -1,3 +1,10 @@
+/**
+ * Drag overlay for the right sidebar schema list.
+ *
+ * During dnd-kit drag operations this component renders a portal-backed preview
+ * of the active field plus any additional selected fields. The overlay is
+ * rendered into `document.body` so it is not clipped by sidebar overflow.
+ */
 import { DESIGNER_CLASSNAME } from "../../../../constants.js";
 import React, { ReactNode } from 'react';
 import { createPortal } from 'react-dom';
@@ -6,6 +13,10 @@ import { SchemaForUI } from '@sisad-pdfme/common';
 import Item from './Item.js';
 import { mergeClassNames } from '../../shared/className.js';
 
+
+/**
+ * Props required to render the current drag preview.
+ */
 type Props = {
   activeId: string | null;
   schemas: SchemaForUI[];
@@ -13,6 +24,13 @@ type Props = {
   renderIcon: (schema: string | SchemaForUI) => ReactNode;
 };
 
+
+/**
+ * Renders the dnd-kit drag overlay for one active schema and the rest of the
+ * selected schemas.
+ *
+ * @returns A body-level portal containing the overlay, or null when no drag is active.
+ */
 const ListViewDragOverlay = ({ activeId, schemas, selectedSchemas, renderIcon }: Props) => {
   if (typeof document === 'undefined' || !activeId) return null;
 

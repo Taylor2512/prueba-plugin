@@ -1,3 +1,11 @@
+/**
+ * DetailView — inspector principal del schema activo.
+ *
+ * Orquesta hidratación del formulario, validaciones de posición/nombre,
+ * construcción de widgets, generación de secciones y emisión de cambios al
+ * canvas. Este componente debe coordinar contratos, pero no manipular DOM del
+ * canvas, Moveable ni Selecto.
+ */
 import { useForm } from 'form-render';
 import React, { useContext, useEffect, useCallback, useMemo, useState } from 'react';
 import type {
@@ -26,6 +34,9 @@ import {
   type SchemaDesignerConfig,
 } from '../../../../designerEngine.js';
 
+/**
+ * Props requeridas por el inspector principal del schema activo.
+ */
 type DetailViewProps = Pick<
   SidebarProps,
   | 'size'
@@ -41,8 +52,10 @@ type DetailViewProps = Pick<
   selectionCommands?: SelectionCommandSet;
 };
 
+/** Campos geométricos validados por límites de página. */
 type PositionFieldName = 'x' | 'y' | 'width' | 'height';
 
+/** Límites efectivos usados para validar posición y tamaño. */
 type PositionBounds = {
   pageWidth: number;
   pageHeight: number;
@@ -52,12 +65,18 @@ type PositionBounds = {
   paddingLeft: number;
 };
 
+/**
+ * Crea valores iniciales para hidratar form-render desde un schema.
+ */
 const createHydrationValues = (schema: SchemaForUI): Record<string, unknown> => {
   const values: Record<string, unknown> = { ...schema };
   values.editable = !Boolean(values.readOnly);
   return values;
 };
 
+/**
+ * Crea un validador de posición/tamaño acotado por página y padding.
+ */
 const createPositionValidator =
   (getFormValues: () => Record<string, unknown>, bounds: PositionBounds) =>
   (_: unknown, value: number, fieldName: PositionFieldName): boolean => {
@@ -96,6 +115,9 @@ const createPositionValidator =
     return validators[fieldName]();
   };
 
+/**
+ * Compara valores de formulario contra el schema actual y genera cambios.
+ */
 const buildChangeSet = (nextValues: Record<string, unknown>, currentSchema: SchemaForUI): ChangeSchemaItem[] => {
   const ignoredKeys = new Set(['id', 'content']);
   const nullableKeys = new Set(['rotate', 'opacity']);
@@ -134,6 +156,9 @@ const buildChangeSet = (nextValues: Record<string, unknown>, currentSchema: Sche
   return changes;
 };
 
+/**
+ * Remueve cambios cuyo campo está reportado como inválido por form-render.
+ */
 const filterInvalidChanges = (
   changes: ChangeSchemaItem[],
   reason: ValidateErrorEntity,
@@ -145,6 +170,12 @@ const filterInvalidChanges = (
       ),
   );
 
+/**
+ * Inspector principal del schema activo.
+ *
+ * @param props Contexto del sidebar, schema activo y comandos de selección.
+ * @returns Vista de detalle con header y secciones dinámicas.
+ */
 const DetailView = (props: DetailViewProps) => {
   const { token } = theme.useToken();
   const { schemasList, changeSchemas, deselectSchema, activeSchema, pageSize, basePdf } = props;
@@ -372,6 +403,9 @@ const DetailView = (props: DetailViewProps) => {
   );
 };
 
+/**
+ * Construye una huella estable para evitar renders innecesarios del DetailView.
+ */
 const schemaFingerprint = (schema: SchemaForUI) => {
   const coreKeys = new Set([
     'id',
@@ -411,6 +445,9 @@ const schemaFingerprint = (schema: SchemaForUI) => {
   ].join('|');
 };
 
+/**
+ * Comparador personalizado para React.memo basado en huella del schema activo.
+ */
 const propsAreUnchanged = (prevProps: DetailViewProps, nextProps: DetailViewProps) =>
   schemaFingerprint(prevProps.activeSchema) === schemaFingerprint(nextProps.activeSchema);
 

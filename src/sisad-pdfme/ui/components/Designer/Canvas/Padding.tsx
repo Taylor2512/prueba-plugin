@@ -1,3 +1,10 @@
+/**
+ * Padding — overlay de márgenes internos para PDFs en blanco.
+ *
+ * Renderiza las cuatro franjas de padding declaradas en BasePdf cuando el PDF
+ * base es blank. En PDFs reales no dibuja padding porque el documento ya define
+ * su propia superficie visual.
+ */
 import { DESIGNER_CLASSNAME } from "../../../constants.js";
 import React from 'react';
 import type * as CSS from 'csstype';
@@ -5,6 +12,11 @@ import { ZOOM, BasePdf, isBlankPdf } from '@sisad-pdfme/common';
 import { theme } from 'antd';
 import { mergeClassNames } from '../shared/className.js';
 
+/**
+ * Construye la franja visual de padding según índice:
+ *
+ * 0: top, 1: right, 2: bottom, 3: left.
+ */
 const getPaddingStyle = (i: number, p: number, color: string): CSS.Properties => {
   const style: CSS.Properties = {
     position: 'absolute',
@@ -44,6 +56,9 @@ const getPaddingStyle = (i: number, p: number, color: string): CSS.Properties =>
   return style;
 };
 
+/**
+ * Props del overlay de padding para PDFs en blanco.
+ */
 export type PaddingProps = {
   basePdf: BasePdf;
   className?: string;
@@ -52,6 +67,9 @@ export type PaddingProps = {
   opacity?: number;
 };
 
+/**
+ * Renderiza las franjas de padding si el documento base es blank PDF.
+ */
 const Padding = ({ basePdf, className, style, color, opacity = 0.25 }: PaddingProps) => {
   const { token } = theme.useToken();
   const resolvedColor = color || token.colorError;

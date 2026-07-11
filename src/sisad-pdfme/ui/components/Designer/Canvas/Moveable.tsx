@@ -1,3 +1,10 @@
+/**
+ * Moveable — adapter aislado sobre react-moveable.
+ *
+ * Centraliza configuración de drag/resize/rotate, guidelines, bounds y color
+ * de controles, evitando que Canvas dependa directamente de detalles visuales
+ * o quirks del paquete externo.
+ */
 import React, { useEffect, forwardRef, Ref, useId } from 'react';
 import MoveableComponent, {
   type OnClick,
@@ -24,6 +31,12 @@ import { installPassiveTouchListenerGuard } from '../shared/passiveTouchListener
 
 installPassiveTouchListenerGuard();
 
+/**
+ * Props del adapter Moveable.
+ *
+ * Mantiene tipados todos los callbacks usados por Canvas para drag, resize,
+ * rotate, operaciones grupales y click sobre controles.
+ */
 type Props = {
   target: HTMLElement[];
   bounds: { left: number; top: number; bottom: number; right: number };
@@ -50,13 +63,22 @@ type Props = {
   zoom?: number;
 };
 
+/**
+ * Clase base usada para encontrar y tematizar los controles de Moveable.
+ */
 const baseClassName = 'sisad-pdfme-moveable';
 
+/**
+ * Adapter de Moveable con configuración SISAD PDFME.
+ */
 const Moveable = (props: Props, ref: Ref<MoveableComponent>) => {
   const instanceId = useId();
   const resolvedClassName = props.className || `${baseClassName}-${instanceId.replace(/:/g, '-')}`;
   const styleClassSelector = resolveFirstClassSelector(resolvedClassName, baseClassName);
 
+  /**
+   * Aplica el color de controles Moveable mediante CSS variables en el nodo raíz.
+   */
   useEffect(() => {
     if (props.useDefaultStyles === false) return;
     if (!styleClassSelector) return;

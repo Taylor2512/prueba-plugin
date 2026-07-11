@@ -1,8 +1,18 @@
+/**
+ * DetailSectionCard — contenedor visual colapsable para secciones del inspector.
+ *
+ * Provee estructura, test ids estables, encabezado accesible, estado colapsado y
+ * slots de leading/trailing/header/footer. Debe mantenerse genérico para servir a
+ * todas las secciones del DetailView.
+ */
 import React from 'react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { ChevronDown } from 'lucide-react';
 import { mergeClassNames } from '../../shared/className.js';
 
+/**
+ * Props del contenedor de sección del inspector.
+ */
 type DetailSectionCardProps = {
   sectionKey?: string;
   title: string;
@@ -22,6 +32,9 @@ type DetailSectionCardProps = {
 };
 
 /** Canonical section key → stable test id (contract for e2e specs). */
+/**
+ * Mapa de sección canónica a test id estable para Playwright/Vitest.
+ */
 const SECTION_TESTIDS: Record<string, string> = {
   identity: 'detail-section-info',
   options: 'detail-section-options',
@@ -36,14 +49,21 @@ const SECTION_TESTIDS: Record<string, string> = {
   advanced: 'detail-section-technical',
 };
 
+/**
+ * Resuelve el test id público de una sección.
+ */
 const resolveSectionTestId = (sectionKey?: string): string | undefined =>
   sectionKey ? SECTION_TESTIDS[sectionKey] || `detail-section-${sectionKey}` : undefined;
 
+/** Props del bloque textual del header de sección. */
 type SectionTextProps = {
   title: string;
   description?: string;
 };
 
+/**
+ * Renderiza título y descripción de sección con truncado compacto.
+ */
 const SectionText = ({ title, description }: SectionTextProps) => (
   <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head-main', 'min-w-0 flex-1 space-y-0')}>
     <div
@@ -60,6 +80,7 @@ const SectionText = ({ title, description }: SectionTextProps) => (
   </div>
 );
 
+/** Props del encabezado colapsable/no colapsable. */
 type SectionHeadProps = SectionTextProps & {
   collapsible: boolean;
   collapsed: boolean;
@@ -70,6 +91,9 @@ type SectionHeadProps = SectionTextProps & {
   header?: React.ReactNode;
 };
 
+/**
+ * Renderiza el encabezado de sección y su control de colapso.
+ */
 const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, description, leading, trailing, header }: SectionHeadProps) => {
   if (header) {
     if (!collapsible) {
@@ -128,6 +152,12 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
   );
 };
 
+/**
+ * Card colapsable usada por cada sección del DetailView.
+ *
+ * @param props Configuración visual y contenido de la sección.
+ * @returns Contenedor semántico de sección.
+ */
 const DetailSectionCard = ({
   sectionKey,
   title,

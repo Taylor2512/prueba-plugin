@@ -1,10 +1,21 @@
+/**
+ * SchemaConnectionsShared — primitives compartidos para editores de conexiones.
+ *
+ * Incluye conversores key/value y componentes visuales para listas de pares y
+ * encabezados de sección. Se usa para formularios de persistencia, API, headers,
+ * params y otras configuraciones de integración.
+ */
 import React, { useCallback, useEffect, useState } from 'react';
 import { Button, Input } from 'antd';
 import { Plus, Trash2 } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 
+/** Fila key/value editable dentro de configuraciones de conexión. */
 export type Pair = { id: string; key: string; value: string };
 
+/**
+ * Convierte un record plano a filas editables con id estable.
+ */
 export const toPairs = (values?: Record<string, string> | null): Pair[] => {
   if (!values) return [];
   return Object.entries(values).map(([key, value], index) => ({
@@ -16,6 +27,9 @@ export const toPairs = (values?: Record<string, string> | null): Pair[] => {
   }));
 };
 
+/**
+ * Convierte filas editables a record, ignorando claves vacías.
+ */
 export const toRecord = (pairs: Pair[]): Record<string, string> =>
   pairs.reduce<Record<string, string>>((acc, pair) => {
     const key = pair.key.trim();
@@ -24,6 +38,9 @@ export const toRecord = (pairs: Pair[]): Record<string, string> =>
     return acc;
   }, {});
 
+/**
+ * Editor compacto de pares clave/valor para headers, params o mappings.
+ */
 export const PairEditor = ({
   title,
   description,
@@ -122,6 +139,9 @@ export const PairEditor = ({
   );
 };
 
+/**
+ * Encabezado visual reutilizable para secciones de configuración.
+ */
 export const SectionHeader = ({
   icon,
   title,

@@ -1,3 +1,10 @@
+/**
+ * InspectorPrimitives — componentes pequeños reutilizables del inspector.
+ *
+ * Agrupa tags, filas de acciones, métricas, tarjetas resumen, switches y estados
+ * vacíos. Estos primitives permiten mantener widgets complejos consistentes sin
+ * duplicar markup ni clases del sistema SISAD PDFME.
+ */
 import React from 'react';
 import { Button, Switch, Tag } from 'antd';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
@@ -5,12 +12,14 @@ import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
 import { mergeClassNames } from '../../shared/className.js';
 import { stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
 
+/** Tag visual pequeño usado por tarjetas y headers del inspector. */
 export type InspectorTag = {
   key?: React.Key;
   label: string;
   color?: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue' | 'cyan' | 'purple';
 };
 
+/** Props para renderizar listas compactas de tags. */
 type InspectorTagListProps = {
   tags?: InspectorTag[];
   classNameSuffix?: string;
@@ -21,6 +30,9 @@ type InspectorTagListProps = {
 
 const EMPTY_TAGS: InspectorTag[] = [];
 
+/**
+ * Renderiza tags con soporte de overflow `+N`.
+ */
 export const InspectorTagList = ({
   tags = EMPTY_TAGS,
   classNameSuffix = 'inspector-tag-list',
@@ -56,6 +68,7 @@ export const InspectorTagList = ({
   );
 };
 
+/** Acción renderizable en filas compactas del inspector. */
 type InspectorAction = {
   key?: React.Key;
   label: string;
@@ -71,6 +84,7 @@ type InspectorActionRowProps = {
 
 const EMPTY_ACTIONS: InspectorAction[] = [];
 
+/** Renderiza una fila de acciones compactas. */
 export const InspectorActionRow = ({
   actions = EMPTY_ACTIONS,
   classNameSuffix = 'inspector-action-row',
@@ -96,6 +110,7 @@ export const InspectorActionRow = ({
   );
 };
 
+/** Métrica label/value mostrada como chip. */
 type InspectorMetric = {
   key?: React.Key;
   label: string;
@@ -109,6 +124,7 @@ type InspectorMetricRowProps = {
 
 const EMPTY_METRICS: InspectorMetric[] = [];
 
+/** Renderiza una grilla de métricas compactas. */
 export const InspectorMetricRow = ({
   metrics = EMPTY_METRICS,
   classNameSuffix = 'inspector-metric-row',
@@ -137,6 +153,7 @@ export const InspectorMetricRow = ({
   );
 };
 
+/** Props de tarjeta resumen reutilizable del inspector. */
 type InspectorSummaryCardProps = {
   title: string;
   description?: string;
@@ -147,6 +164,9 @@ type InspectorSummaryCardProps = {
   classNameSuffix?: string;
 };
 
+/**
+ * Tarjeta resumen responsiva con tags, métricas, acciones y contenido opcional.
+ */
 export const InspectorSummaryCard = ({
   title,
   description,
@@ -196,6 +216,7 @@ export const InspectorSummaryCard = ({
   );
 };
 
+/** Props del switch booleano compatible con form-render. */
 type BooleanSwitchWidgetProps = {
   value: unknown;
   onChange?: (nextValue: boolean) => void;
@@ -205,6 +226,7 @@ type BooleanSwitchWidgetProps = {
   uncheckedLabel?: string;
 };
 
+/** Normaliza valores variados a booleano para el switch. */
 const normalizeBoolean = (value: unknown): boolean => {
   if (typeof value === 'boolean') return value;
   if (typeof value === 'number') return value !== 0;
@@ -216,6 +238,9 @@ const normalizeBoolean = (value: unknown): boolean => {
   return Boolean(value);
 };
 
+/**
+ * Switch booleano controlado con estado interno sincronizado.
+ */
 export const BooleanSwitchWidget = ({
   value,
   onChange,
@@ -256,6 +281,7 @@ export const BooleanSwitchWidget = ({
   );
 };
 
+/** Props del estado vacío visual del inspector. */
 type InspectorEmptyStateProps = {
   icon?: React.ReactNode;
   label: string;
@@ -263,6 +289,7 @@ type InspectorEmptyStateProps = {
   classNameSuffix?: string;
 };
 
+/** Renderiza un estado vacío consistente para widgets del inspector. */
 export const InspectorEmptyState = ({
   icon,
   label,

@@ -1,3 +1,9 @@
+/**
+ * Footer action area for ListView bulk edit mode.
+ *
+ * In bulk mode it renders commit/cancel actions. Outside bulk mode it exposes
+ * the entry point for mass-renaming field names when schemas exist.
+ */
 import React from 'react';
 import { Button, Typography, Tooltip } from 'antd';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
@@ -5,6 +11,10 @@ import { mergeClassNames } from '../../shared/className.js';
 
 const { Text } = Typography;
 
+
+/**
+ * Props for the ListView footer.
+ */
 type Props = {
   bulkMode: boolean;
   hasSchemas: boolean;
@@ -18,6 +28,11 @@ type Props = {
   };
 };
 
+
+/**
+ * Renders either the bulk-mode commit/cancel footer or the idle bulk-entry
+ * button, depending on `bulkMode`.
+ */
 const ListViewFooter = ({ bulkMode, hasSchemas, onCommit, onCancel, onStartBulk, labels }: Props) =>
   bulkMode ? (
     <div className={mergeClassNames(DESIGNER_CLASSNAME + 'bulk-footer', 'flex items-center justify-between gap-2 rounded-2xl border border-slate-200 bg-white px-3 py-2 shadow-sm')}>

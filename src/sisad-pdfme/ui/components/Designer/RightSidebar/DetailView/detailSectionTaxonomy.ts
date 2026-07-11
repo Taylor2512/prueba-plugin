@@ -1,7 +1,17 @@
+/**
+ * detailSectionTaxonomy — taxonomía canónica de secciones del DetailView.
+ *
+ * Mapea nombres legacy a secciones actuales, define orden/labels y decide si una
+ * sección debe renderizarse según tipo de schema, familia semántica, campos,
+ * widgets y señales de contenido real.
+ */
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import type { SchemaSemanticFamily } from '../../../../../schemas/schemaFamilies.js';
 import { asRecord, isRecord } from '../../shared/objectGuards.js';
 
+/**
+ * Secciones canónicas actuales del DetailView.
+ */
 export type CanonicalDetailSection =
   | 'identity'
   | 'options'
@@ -15,6 +25,9 @@ export type CanonicalDetailSection =
   | 'comments'
   | 'advanced';
 
+/**
+ * Secciones legacy aceptadas para compatibilidad con plugins existentes.
+ */
 export type LegacyDetailSection =
   | 'general'
   | 'options'
@@ -28,6 +41,9 @@ export type LegacyDetailSection =
   | 'comments'
   | 'advanced';
 
+/**
+ * Mapa de normalización desde secciones legacy a secciones canónicas.
+ */
 export const LEGACY_TO_CANONICAL_DETAIL_SECTION = {
   general: 'identity',
   options: 'options',
@@ -42,6 +58,9 @@ export const LEGACY_TO_CANONICAL_DETAIL_SECTION = {
   advanced: 'advanced',
 } as const satisfies Record<LegacyDetailSection, CanonicalDetailSection>;
 
+/**
+ * Orden visual estable del inspector.
+ */
 export const CANONICAL_DETAIL_SECTION_ORDER = [
   'identity',
   'options',
@@ -56,6 +75,9 @@ export const CANONICAL_DETAIL_SECTION_ORDER = [
   'advanced',
 ] as const satisfies readonly CanonicalDetailSection[];
 
+/**
+ * Labels y descripciones por sección canónica.
+ */
 export const CANONICAL_DETAIL_SECTION_LABELS: Record<CanonicalDetailSection, { title: string; description: string; defaultCollapsed?: boolean }> = {
   identity: {
     title: 'Información del campo',
@@ -152,12 +174,18 @@ const NUMBER_LIKE_TYPES = new Set(['number']);
 const SIGNING_TYPES = new Set(['signature', 'initials', 'datesigned']);
 const ACTION_TYPES = new Set(['attachment', 'approve', 'decline', 'note']);
 
+/**
+ * Perfil de visibilidad del inspector para un tipo de schema.
+ */
 export type DetailProfile = {
   schemaType: string;
   visibleSections: CanonicalDetailSection[];
   defaultOpenSections: CanonicalDetailSection[];
 };
 
+/**
+ * Factory de perfil de detalle.
+ */
 const createDetailProfile = (schemaType: string, visibleSections: CanonicalDetailSection[], defaultOpenSections: CanonicalDetailSection[]): DetailProfile => ({
   schemaType,
   visibleSections,
@@ -176,6 +204,12 @@ const DEFAULT_DETAIL_SECTION_VISIBILITY: CanonicalDetailSection[] = [
   'advanced',
 ];
 
+/**
+ * Resuelve el perfil de secciones visibles y abiertas por defecto.
+ *
+ * @param schemaType Tipo del schema activo.
+ * @returns Perfil canónico de detalle.
+ */
 export const getDetailProfile = (schemaType: string): DetailProfile => {
   const normalized = normalizeSchemaType(schemaType);
 
@@ -214,14 +248,19 @@ export const getDetailProfile = (schemaType: string): DetailProfile => {
   return createDetailProfile(normalized, [...DEFAULT_DETAIL_SECTION_VISIBILITY], ['identity', 'box']);
 };
 
+/** Devuelve secciones abiertas por defecto para un tipo de schema. */
 export const getDefaultOpenSections = (schemaType: string): CanonicalDetailSection[] => {
   return getDetailProfile(schemaType).defaultOpenSections;
 };
 
+/** Devuelve secciones visibles para un tipo de schema. */
 export const getVisibleDetailSections = (schemaType: string): CanonicalDetailSection[] => {
   return getDetailProfile(schemaType).visibleSections;
 };
 
+/**
+ * Decide si una sección debe iniciar colapsada según sección y familia.
+ */
 export const resolveDetailSectionDefaultCollapsed = (
   section: CanonicalDetailSection,
   semanticFamily?: SchemaSemanticFamily | string,
@@ -240,6 +279,7 @@ export const resolveDetailSectionDefaultCollapsed = (
   return baseCollapsed;
 };
 
+/** Entrada flexible de campo usada por reglas de visibilidad. */
 type FieldLike =
   | string
   | [string, unknown]
@@ -252,6 +292,7 @@ type FieldLike =
       schema?: unknown;
     };
 
+/** Campo normalizado para reglas internas de sección. */
 type NormalizedField = {
   key: string;
   hidden: boolean;
@@ -262,6 +303,7 @@ type NormalizedField = {
 
 const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim().toLowerCase() : '');
 
+/** Normaliza diferentes formas de campo a un contrato uniforme. */
 const normalizeFieldEntry = (field: FieldLike): NormalizedField => {
   if (typeof field === 'string') {
     return { key: normalizeText(field), hidden: false, disabled: false, widget: '' };
@@ -309,6 +351,9 @@ const hasField = (fields: FieldLike[], names: string[]) => fieldNames(fields).so
 
 const hasRenderableField = (fields: FieldLike[]) => fieldNames(fields).some((field) => !field.hidden && !field.disabled);
 
+/**
+ * Convierte una sección legacy o canónica a sección canónica.
+ */
 export const toCanonicalDetailSection = (section: string): CanonicalDetailSection | null => {
   const normalized = normalizeText(section) as LegacyDetailSection | CanonicalDetailSection;
   if (!normalized) return null;
@@ -318,11 +363,18 @@ export const toCanonicalDetailSection = (section: string): CanonicalDetailSectio
   return LEGACY_TO_CANONICAL_DETAIL_SECTION[normalized as LegacyDetailSection] || null;
 };
 
+/** Ordena y deduplica secciones según el orden canónico. */
 export const sortCanonicalDetailSections = (sections: CanonicalDetailSection[]) =>
   [...new Set(sections)].sort(
     (left, right) => CANONICAL_DETAIL_SECTION_ORDER.indexOf(left) - CANONICAL_DETAIL_SECTION_ORDER.indexOf(right),
   );
 
+/**
+ * Determina si una sección debe renderizarse para el schema/contexto actual.
+ *
+ * @param params Contexto del schema, campos, widgets y señales de contenido.
+ * @returns `true` si la sección contiene información o capacidades relevantes.
+ */
 export function shouldRenderDetailSection(params: {
   section: CanonicalDetailSection;
   legacySection?: LegacyDetailSection | string;

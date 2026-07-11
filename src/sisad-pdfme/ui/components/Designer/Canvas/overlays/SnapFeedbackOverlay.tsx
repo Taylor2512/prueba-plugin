@@ -1,12 +1,25 @@
+/**
+ * SnapFeedbackOverlay — etiqueta visual de alineación/snap activo.
+ *
+ * Muestra un resumen textual de las snap lines activas cerca de la selección.
+ * Es feedback visual, no calcula geometría ni modifica schemas.
+ */
+
 import React from 'react';
 import type { SnapLine } from '../SnapLines.js';
 import { mergeClassNames } from '../../shared/className.js';
 
+/**
+ * Props del feedback visual de snap activo.
+ */
 type SnapFeedbackOverlayProps = {
   bounds: { top: number; left: number } | null;
   snapLines: SnapLine[];
 };
 
+/**
+ * Renderiza una etiqueta resumida de las líneas snap activas.
+ */
 const SnapFeedbackOverlay = ({ bounds, snapLines }: SnapFeedbackOverlayProps) => {
   if (!bounds || !snapLines.length) return null;
   const labels = snapLines

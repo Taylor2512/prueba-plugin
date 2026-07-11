@@ -1,3 +1,13 @@
+/**
+ * Sortable and selectable schema-list container.
+ *
+ * This component bridges the right sidebar list with dnd-kit:
+ * - creates drag sensors;
+ * - keeps local multi-selection state for Shift selection;
+ * - merges reordered visible results back into the full schema list;
+ * - renders sortable rows and a body-level drag overlay;
+ * - resolves plugin icons and collaboration colors for row previews.
+ */
 import React, { useState, useContext, ReactNode } from 'react';
 import { useEffect, useMemo } from 'react';
 import {
@@ -25,6 +35,13 @@ import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { resolveSchemaCollaborationState } from '../../../../collaborationContext.js';
 import { mergeClassNames } from '../../shared/className.js';
 
+
+/**
+ * Container responsible for selectable and sortable schema rows.
+ *
+ * It owns local Shift-selection state while syncing external active selection
+ * from the canvas through `activeSchemaIds`.
+ */
 const SelectableSortableContainer = (
   props: Pick<
     SidebarProps,
@@ -55,6 +72,12 @@ const SelectableSortableContainer = (
     useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
   );
 
+
+  /**
+   * Merges a reordered filtered/visible list back into the full schema order.
+   *
+   * Non-visible schemas preserve their original relative positions.
+   */
   const mergeVisibleOrder = (nextVisibleOrder: SchemaForUI[]) => {
     const visibleIdSet = new Set(visibleSchemas.map((schema) => schema.id));
     const orderedVisible = [...nextVisibleOrder];
@@ -86,6 +109,10 @@ const SelectableSortableContainer = (
     setSelectedSchemas(externalSelected);
   }, [activeId, controlledSelectedIdSet, visibleSchemas]);
 
+
+  /**
+   * Updates local Shift-selection state for list-only multi selection.
+   */
   const onSelectionChanged = (id: string, isShiftSelect: boolean) => {
     if (isShiftSelect) {
       if (isItemSelected(id)) {
@@ -102,6 +129,11 @@ const SelectableSortableContainer = (
     }
   };
 
+
+  /**
+   * Resolves the plugin icon for a schema and tints it with collaboration color
+   * when ownership/recipient metadata is available.
+   */
   const getPluginIcon = (inSchema: string | SchemaForUI): ReactNode => {
     // Get schema by ID or use directly
     const thisSchema =

@@ -1,5 +1,15 @@
+/**
+ * smartPlacement — resolución de posiciones de drop sin superposición.
+ *
+ * Busca una posición válida para insertar schemas dentro de la página evitando
+ * colisiones con campos existentes. Trabaja en unidades del template/PDF.
+ */
+
 import { clampPointToPageBounds, type PointLike } from './pointerGeometry.js';
 
+/**
+ * Entrada para resolver una posición de inserción inteligente.
+ */
 export type SmartPlacementInput = {
   candidate: PointLike;
   pageSize: { width: number; height: number };
@@ -13,12 +23,18 @@ export type SmartPlacementInput = {
   maxAttempts?: number;
 };
 
+/**
+ * Normaliza el paso de búsqueda en milímetros.
+ */
 const clampStep = (value: number) => {
   const numeric = Number(value);
   if (!Number.isFinite(numeric) || numeric <= 0) return 6;
   return Math.max(1, Math.round(numeric));
 };
 
+/**
+ * Determina si dos rectángulos se superponen.
+ */
 const overlaps = (
   leftA: number,
   topA: number,
@@ -34,6 +50,9 @@ const overlaps = (
   topA < bottomB &&
   bottomA > topB;
 
+/**
+ * Convierte un schema existente en caja rectangular comparable.
+ */
 const schemaBox = (
   schema: {
     position?: { x?: number; y?: number };
@@ -53,6 +72,9 @@ const schemaBox = (
   };
 };
 
+/**
+ * Indica si un candidato colisiona con algún schema existente.
+ */
 const hasOverlap = (
   candidate: { x: number; y: number },
   size: { width: number; height: number },
@@ -70,6 +92,9 @@ const hasOverlap = (
   });
 };
 
+/**
+ * Busca una posición libre recorriendo la página en grilla.
+ */
 const findGridPosition = ({
   pageSize,
   schemaSize,
@@ -108,6 +133,15 @@ const findGridPosition = ({
   return null;
 };
 
+/**
+ * Resuelve una posición de drop dentro de página evitando superposición.
+ *
+ * Estrategia:
+ * 1. prueba candidato clamped;
+ * 2. desplaza diagonal/abajo/derecha por intentos;
+ * 3. recorre grilla;
+ * 4. cae al centro si no hay espacio libre.
+ */
 export const resolveSmartDropPosition = ({
   candidate,
   pageSize,

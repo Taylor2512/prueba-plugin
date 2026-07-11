@@ -1,3 +1,10 @@
+/**
+ * SchemaCollaborationWidget — editor de asignación, propietario y bloqueo.
+ *
+ * Renderiza un resumen compacto y un modal de configuración para metadata
+ * colaborativa del schema. Integra destinatarios del engine, lock state, auditoría
+ * y colores de propietario sin mezclar lógica de canvas.
+ */
 import React, { useMemo } from 'react';
 import { type PropPanelWidgetProps, type SchemaForUI } from '@sisad-pdfme/common';
 import { Collapse, Divider, Input, InputNumber, Select, Space } from 'antd';
@@ -22,6 +29,9 @@ import { resolveSchemaAccessState } from '../../../../collaboration/schemaRuntim
 
 export { joinRecipientIds, normalizeRecipientIds, resolveOwnerMode } from './schemaCollaborationUtils.js';
 
+/**
+ * Props del widget de colaboración del schema.
+ */
 type CollaborationWidgetProps = PropPanelWidgetProps & {
   activeSchema: SchemaForUI;
   changeSchemas: (_objs: { key: string; value: unknown; schemaId: string }[]) => void;
@@ -33,6 +43,9 @@ type CollaborationWidgetProps = PropPanelWidgetProps & {
   quickActionLabel?: React.ReactNode;
 };
 
+/**
+ * Claves de schema que el widget puede modificar.
+ */
 type CollaborationPatchKey =
   | 'ownerRecipientIds'
   | 'ownerRecipientId'
@@ -51,15 +64,20 @@ type CollaborationPatchKey =
   | 'createdAt'
   | 'updatedAt';
 
+/** Opciones de estado colaborativo visibles en el selector. */
 const STATE_OPTIONS: Array<{ label: string; value: SchemaCollaborativeState }> = [
   { label: 'Borrador', value: 'draft' },
   { label: 'Bloqueado', value: 'locked' },
   { label: 'Fusionado', value: 'merged' },
 ];
 
+/** Devuelve un label string o fallback para props ReactNode. */
 const resolveStringLabel = (value: React.ReactNode, fallback: string) =>
   typeof value === 'string' && value.trim() ? value : fallback;
 
+/**
+ * Formatea timestamps segundos/milisegundos para mostrar auditoría.
+ */
 const formatTimestampLabel = (value: unknown) => {
   const numericValue = typeof value === 'number' && Number.isFinite(value) ? value : null;
   if (numericValue === null) return '—';
@@ -72,6 +90,12 @@ const formatTimestampLabel = (value: unknown) => {
   }).format(date);
 };
 
+/**
+ * Widget de asignación, ownership, lock y auditoría colaborativa.
+ *
+ * @param props Props del panel con schema activo y engine del diseñador.
+ * @returns Panel compacto y modal de colaboración.
+ */
 const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
   const { activeSchema, changeSchemas, designerEngine } = props;
   const collaborative = useMemo(

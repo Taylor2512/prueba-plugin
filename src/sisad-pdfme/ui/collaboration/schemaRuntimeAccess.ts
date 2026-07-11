@@ -1,48 +1,171 @@
 /**
- * schemaRuntimeAccess — single contract for "can this schema be seen / edited"
- * given the runtime mode and the active recipient / view.
+ * schemaRuntimeAccess — contrato único para resolver si un schema puede verse,
+ * editarse, moverse, redimensionarse, eliminarse o bloquearse según:
  *
- * Source of truth: reuses resolveSchemaCollaborationState (collaborationContext)
- * so visibility/ownership logic is NOT duplicated. This module only layers the
- * runtime-mode rules (designer/form/viewer/pdf) on top and returns one flat
- * RuntimeSchemaAccess object that every renderer/counter can consume.
+ * - modo runtime: designer, form, viewer o pdf;
+ * - destinatario activo;
+ * - vista global;
+ * - ownership colaborativo;
+ * - locks colaborativos;
+ * - flags readonly/locked/hidden del schema.
  *
- * No CSS, no display:none, no opacity — visibility here is a data decision.
+ * Fuente de verdad:
+ * Reutiliza `resolveSchemaCollaborationState` desde `collaborationContext`,
+ * evitando duplicar reglas de visibilidad, owner, destinatario activo o color.
+ *
+ * Importante:
+ * Este módulo solo toma decisiones de datos. No aplica CSS, no usa display:none,
+ * no modifica opacidad y no manipula DOM. Renderers, contadores, toolbar,
+ * inspector y menús deben consumir este resultado para mantenerse sincronizados.
  */
 import type { SchemaForUI } from '@sisad-pdfme/common';
+
 import {
   resolveSchemaCollaborationState,
   type CollaborationRecipientOption,
   type EffectiveCollaborationContext,
 } from '../collaborationContext.js';
 
+/**
+ * Modo runtime donde se evalúa el acceso del schema.
+ *
+ * designer:
+ * Modo de edición estructural del documento.
+ *
+ * form:
+ * Modo de llenado por destinatario.
+ *
+ * viewer:
+ * Modo de visualización sin edición.
+ *
+ * pdf:
+ * Modo de generación/exportación PDF.
+ */
 export type RuntimeMode = 'designer' | 'form' | 'viewer' | 'pdf';
 
+/**
+ * Razón normalizada del resultado de acceso runtime.
+ *
+ * Esta razón permite que UI, logs, contadores, inspector y tests expliquen
+ * por qué un schema está visible, oculto, editable o readonly.
+ */
 export type RuntimeSchemaAccessReason =
+  /**
+   * El destinatario activo es propietario del schema.
+   */
   | 'active-owner'
+
+  /**
+   * El schema está compartido entre varios destinatarios.
+   */
   | 'shared'
+
+  /**
+   * La vista global permite visualizar schemas sin filtrar por destinatario.
+   */
   | 'global-view'
+
+  /**
+   * El schema está visible, pero solo lectura.
+   */
   | 'readonly'
+
+  /**
+   * El schema está bloqueado y no puede editarse.
+   */
   | 'locked'
+
+  /**
+   * El schema está oculto explícitamente.
+   */
   | 'hidden'
+
+  /**
+   * El schema pertenece a otro destinatario.
+   */
   | 'other-recipient'
+
+  /**
+   * El schema no tiene propietario asignado.
+   */
   | 'no-owner'
+
+  /**
+   * El schema se evalúa en modo designer.
+   */
   | 'designer'
+
+  /**
+   * El modo runtime recibido no es reconocido.
+   */
   | 'invalid-mode';
 
+/**
+ * Resultado plano de acceso runtime para un schema.
+ *
+ * Este contrato debe ser consumido por renderers, contadores, canvas,
+ * inspector y toolbar para que todos apliquen la misma regla.
+ */
 export type RuntimeSchemaAccess = {
+  /**
+   * Indica si el schema debe renderizarse o contarse como visible.
+   */
   visible: boolean;
+
+  /**
+   * Indica si el schema puede editarse en el modo actual.
+   */
   editable: boolean;
+
+  /**
+   * Indica si el schema debe tratarse como solo lectura.
+   */
   readonly: boolean;
+
+  /**
+   * Motivo principal que explica el estado de acceso.
+   */
   reason: RuntimeSchemaAccessReason;
+
+  /**
+   * Destinatario propietario principal del schema.
+   */
   ownerRecipientId: string | null;
+
+  /**
+   * Lista de destinatarios propietarios o participantes del schema.
+   */
   ownerRecipientIds: string[];
+
+  /**
+   * Color visual del propietario resuelto por colaboración.
+   */
   ownerColor: string | null;
+
+  /**
+   * Destinatario activo usado para resolver visibilidad/editabilidad.
+   *
+   * En vista global se normaliza a null.
+   */
   activeRecipientId: string | null;
+
+  /**
+   * Modo runtime evaluado.
+   */
   mode: RuntimeMode;
+
+  /**
+   * Indica si la evaluación se hizo en vista global.
+   */
   isGlobalView: boolean;
 };
 
+/**
+ * Subconjunto del contexto colaborativo necesario para resolver acceso runtime.
+ *
+ * Se usa `Pick` para mantener este módulo desacoplado del contexto completo
+ * y evitar arrastrar dependencias que no son necesarias para acceso.
+ */
 type CollabCtx = Pick<
   EffectiveCollaborationContext,
   | 'recipientColorMap'
@@ -55,43 +178,161 @@ type CollabCtx = Pick<
   | 'actorId'
 >;
 
+/**
+ * Lee un campo booleano flexible desde el schema.
+ *
+ * Se usa para flags que pueden venir como propiedades dinámicas:
+ *
+ * - hidden;
+ * - locked;
+ * - readOnly;
+ * - readonly.
+ */
 const boolField = (schema: SchemaForUI, key: string): boolean =>
   Boolean((schema as SchemaForUI & Record<string, unknown>)[key]);
 
-const normalizeText = (value: unknown): string => (typeof value === 'string' ? value.trim() : '');
+/**
+ * Normaliza texto dinámico.
+ *
+ * Devuelve string vacío si el valor no es string.
+ */
+const normalizeText = (value: unknown): string =>
+  typeof value === 'string' ? value.trim() : '';
 
+/**
+ * Normaliza texto dinámico a string o null.
+ *
+ * Útil para IDs opcionales donde string vacío debe tratarse como ausencia.
+ */
 const normalizeNullableText = (value: unknown): string | null => {
   const normalized = normalizeText(value);
   return normalized || null;
 };
 
+/**
+ * Resuelve la etiqueta visible del dueño de un lock o propietario.
+ *
+ * Prioridad:
+ *
+ * 1. nombre dentro del mapa de destinatarios;
+ * 2. nombre del destinatario activo;
+ * 3. ID crudo como fallback.
+ */
 const resolveLockOwnerLabel = (
   lockOwnerId: string | null,
   collaborationContext?: CollabCtx,
   activeRecipient?: CollaborationRecipientOption | null,
 ): string => {
   if (!lockOwnerId) return '';
-  return collaborationContext?.recipientNameMap?.get(lockOwnerId) || activeRecipient?.name || lockOwnerId;
+
+  return (
+    collaborationContext?.recipientNameMap?.get(lockOwnerId) ||
+    activeRecipient?.name ||
+    lockOwnerId
+  );
 };
 
+/**
+ * Estado de acceso operativo usado por inspector, toolbar y menús del canvas.
+ *
+ * A diferencia de `RuntimeSchemaAccess`, este contrato está más enfocado
+ * en acciones de edición dentro del diseñador:
+ *
+ * - mover;
+ * - redimensionar;
+ * - eliminar;
+ * - bloquear/desbloquear;
+ * - mostrar estado en inspector;
+ * - decidir si un menú contextual debe estar deshabilitado.
+ */
 export type SchemaAccessState = {
+  /**
+   * Etiqueta visible del propietario del schema.
+   */
   ownerLabel: string;
+
+  /**
+   * Indica si el schema tiene lock colaborativo activo.
+   */
   hasCollaborationLock: boolean;
+
+  /**
+   * Indica si el lock activo pertenece al actor/destinatario actual.
+   */
   isLockedByMe: boolean;
+
+  /**
+   * Indica si el schema está bloqueado por otro actor/destinatario.
+   */
   isLockedByOther: boolean;
+
+  /**
+   * Etiqueta visible del usuario/destinatario que bloqueó el schema.
+   */
   lockedByLabel: string;
+
+  /**
+   * Indica si el objeto está bloqueado por flag propio del schema.
+   *
+   * Este bloqueo es distinto del lock colaborativo.
+   */
   isObjectLocked: boolean;
+
+  /**
+   * Indica si el schema es solo lectura por flags `readOnly` o `readonly`.
+   */
   isReadonly: boolean;
+
+  /**
+   * Permiso final de edición general.
+   */
   canEdit: boolean;
+
+  /**
+   * Permiso final para mover el schema.
+   */
   canMove: boolean;
+
+  /**
+   * Permiso final para redimensionar el schema.
+   */
   canResize: boolean;
+
+  /**
+   * Permiso final para eliminar el schema.
+   */
   canDelete: boolean;
+
+  /**
+   * Texto que debe mostrar el menú contextual para bloquear/desbloquear.
+   */
   contextMenuLockLabel: string;
+
+  /**
+   * Indica si la acción de lock del menú contextual está deshabilitada.
+   */
   contextMenuLockDisabled: boolean;
+
+  /**
+   * Texto de estado para el inspector.
+   */
   inspectorStatusLabel: string;
+
+  /**
+   * Tono visual sugerido para el inspector.
+   */
   inspectorStatusTone: 'success' | 'warning' | 'error' | 'processing';
 };
 
+/**
+ * Resuelve el tono visual del estado de acceso.
+ *
+ * Prioridad:
+ *
+ * - error: bloqueado por otro;
+ * - success: bloqueado/editado por mí o lock colaborativo propio;
+ * - warning: bloqueo local o estado no editable.
+ */
 const resolveAccessTone = (
   hasCollaborationLock: boolean,
   isLockedByMe: boolean,
@@ -101,12 +342,31 @@ const resolveAccessTone = (
   if (isLockedByOther) return 'error';
   if (isLockedByMe || hasCollaborationLock) return 'success';
   if (isObjectLocked) return 'warning';
+
   return 'warning';
 };
 
 /**
- * Single access resolver shared by inspector, toolbar and canvas menus.
- * Keeps collaboration lock, object protection and readonly copy separated.
+ * Resuelve el estado operativo de acceso de un schema.
+ *
+ * Este resolver es compartido por:
+ *
+ * - inspector;
+ * - toolbar;
+ * - canvas context menu;
+ * - acciones de lock/unlock;
+ * - acciones de mover/redimensionar/eliminar.
+ *
+ * Mantiene separadas tres fuentes de restricción:
+ *
+ * 1. lock colaborativo;
+ * 2. bloqueo propio del objeto;
+ * 3. modo readonly.
+ *
+ * @param schema Schema evaluado.
+ * @param collaborationContext Contexto colaborativo actual.
+ * @param activeRecipient Destinatario activo opcional usado como fallback visual.
+ * @returns Estado final de acceso y etiquetas listas para UI.
  */
 export const resolveSchemaAccessState = (
   schema: SchemaForUI,
@@ -114,8 +374,13 @@ export const resolveSchemaAccessState = (
   activeRecipient?: CollaborationRecipientOption | null,
 ): SchemaAccessState => {
   const state = resolveSchemaCollaborationState(schema, collaborationContext);
+
   const schemaRecord = schema as SchemaForUI & {
-    lock?: { lockedBy?: string | null; lockedAt?: number | null; reason?: string | null };
+    lock?: {
+      lockedBy?: string | null;
+      lockedAt?: number | null;
+      reason?: string | null;
+    };
     readOnly?: boolean;
     readonly?: boolean;
     locked?: boolean;
@@ -125,6 +390,7 @@ export const resolveSchemaAccessState = (
 
   const isReadonly = boolField(schema, 'readOnly') || boolField(schema, 'readonly');
   const isObjectLocked = boolField(schema, 'locked');
+
   const hasCollaborationLock = Boolean(
     schema.state === 'locked' ||
       schemaRecord.lock?.lockedBy ||
@@ -134,17 +400,24 @@ export const resolveSchemaAccessState = (
 
   const currentActorId = normalizeText(collaborationContext?.actorId);
   const currentRecipientId = normalizeText(collaborationContext?.activeRecipientId);
-  const lockOwnerId = normalizeNullableText(schemaRecord.lock?.lockedBy) || normalizeNullableText(state.ownerRecipientId);
+
+  const lockOwnerId =
+    normalizeNullableText(schemaRecord.lock?.lockedBy) ||
+    normalizeNullableText(state.ownerRecipientId);
+
   const isLockedByMe = Boolean(
     hasCollaborationLock &&
       lockOwnerId &&
       [currentActorId, currentRecipientId].filter(Boolean).includes(lockOwnerId),
   );
+
   const isLockedByOther = Boolean(hasCollaborationLock && !isLockedByMe);
+
   const ownerLabel =
     normalizeNullableText(state.ownerRecipientName) ||
     resolveLockOwnerLabel(state.ownerRecipientId, collaborationContext, activeRecipient) ||
     'Sin asignar';
+
   const lockedByLabel =
     isLockedByOther || isLockedByMe
       ? resolveLockOwnerLabel(lockOwnerId, collaborationContext, activeRecipient)
@@ -176,7 +449,8 @@ export const resolveSchemaAccessState = (
         : isObjectLocked
           ? 'Desbloquear posición'
           : 'Bloquear edición',
-    contextMenuLockDisabled: isLockedByOther || collaborationContext?.canEditStructure === false,
+    contextMenuLockDisabled:
+      isLockedByOther || collaborationContext?.canEditStructure === false,
     inspectorStatusLabel: isLockedByOther
       ? `Bloqueado por ${lockedByLabel || 'otro usuario'}`
       : isLockedByMe
@@ -184,14 +458,40 @@ export const resolveSchemaAccessState = (
         : isObjectLocked
           ? 'Bloqueado'
           : 'Disponible',
-    inspectorStatusTone: resolveAccessTone(hasCollaborationLock, isLockedByMe, isLockedByOther, isObjectLocked),
+    inspectorStatusTone: resolveAccessTone(
+      hasCollaborationLock,
+      isLockedByMe,
+      isLockedByOther,
+      isObjectLocked,
+    ),
   };
 };
 
 /**
- * Resolves the runtime access for one schema. Pure: same inputs → same output.
- * Rules mirror the TASK-RUNTIME-001 matrix (hidden/locked/readonly precedence,
- * then mode + active-recipient / global-view).
+ * Resuelve el acceso runtime de un schema.
+ *
+ * Es una función pura:
+ *
+ * - no modifica el schema;
+ * - no modifica contexto;
+ * - no toca DOM;
+ * - no aplica estilos;
+ * - mismos inputs producen el mismo output.
+ *
+ * Reglas principales:
+ *
+ * 1. `hidden` gana siempre y oculta el schema.
+ * 2. modo inválido deja visible pero readonly.
+ * 3. visibilidad por destinatario se evalúa antes que editabilidad.
+ * 4. vista global y pdf pueden ver todo.
+ * 5. viewer y pdf nunca editan.
+ * 6. designer puede editar si `canEditStructure` lo permite y no está locked.
+ * 7. form edita solo si el destinatario activo es owner o el schema es shared.
+ *
+ * @param schema Schema evaluado.
+ * @param mode Modo runtime donde se evalúa el acceso.
+ * @param collaborationContext Contexto colaborativo actual.
+ * @returns Resultado plano de visibilidad/editabilidad para renderers.
  */
 export const resolveRuntimeSchemaAccess = (
   schema: SchemaForUI,
@@ -199,8 +499,11 @@ export const resolveRuntimeSchemaAccess = (
   collaborationContext?: CollabCtx,
 ): RuntimeSchemaAccess => {
   const state = resolveSchemaCollaborationState(schema, collaborationContext);
+
   const isGlobalView = collaborationContext?.isGlobalView === true;
-  const activeRecipientId = isGlobalView ? null : collaborationContext?.activeRecipientId ?? null;
+  const activeRecipientId = isGlobalView
+    ? null
+    : collaborationContext?.activeRecipientId ?? null;
 
   const base = {
     ownerRecipientId: state.ownerRecipientId,
@@ -215,54 +518,139 @@ export const resolveRuntimeSchemaAccess = (
   const locked = boolField(schema, 'locked');
   const readOnly = boolField(schema, 'readOnly') || boolField(schema, 'readonly');
 
-  // 1. hidden wins everywhere.
+  /**
+   * Regla 1:
+   * hidden gana sobre cualquier otro estado y aplica en todos los modos.
+   */
   if (hidden) {
-    return { ...base, visible: false, editable: false, readonly: true, reason: 'hidden' };
+    return {
+      ...base,
+      visible: false,
+      editable: false,
+      readonly: true,
+      reason: 'hidden',
+    };
   }
 
-  // Invalid / unknown mode: visible, never editable.
+  /**
+   * Modo inválido/desconocido:
+   * se conserva visible para no desaparecer datos, pero nunca editable.
+   */
   if (mode !== 'designer' && mode !== 'form' && mode !== 'viewer' && mode !== 'pdf') {
-    return { ...base, visible: true, editable: false, readonly: true, reason: 'invalid-mode' };
+    return {
+      ...base,
+      visible: true,
+      editable: false,
+      readonly: true,
+      reason: 'invalid-mode',
+    };
   }
 
-  // Recipient visibility is independent of mode: global view (or pdf generation)
-  // shows everything; otherwise a schema is visible only to its owner / when
-  // shared / when it has no owner (contextual/global). Designer with
-  // Vista=Usuario activo MUST honor this — it is not "show all".
+  /**
+   * Visibilidad por destinatario:
+   *
+   * - global view muestra todo;
+   * - pdf muestra todo para exportación;
+   * - schemas sin owner son visibles;
+   * - schemas shared son visibles;
+   * - schemas del owner activo son visibles.
+   *
+   * Designer con vista de usuario activo también respeta esta regla.
+   */
   const noOwner = state.ownerRecipientIds.length === 0 && !state.ownerRecipientId;
+
   const visibleByRecipient =
-    isGlobalView || mode === 'pdf' || noOwner || state.isShared || state.isOwnerActive;
+    isGlobalView ||
+    mode === 'pdf' ||
+    noOwner ||
+    state.isShared ||
+    state.isOwnerActive;
 
   if (!visibleByRecipient) {
-    return { ...base, visible: false, editable: false, readonly: true, reason: 'other-recipient' };
+    return {
+      ...base,
+      visible: false,
+      editable: false,
+      readonly: true,
+      reason: 'other-recipient',
+    };
   }
 
-  // 4. designer: visible (per recipient rule above); structural editability gated.
+  /**
+   * Modo designer:
+   * visible según destinatario, editable solo si la estructura puede editarse
+   * y el schema no está bloqueado.
+   */
   if (mode === 'designer') {
     const canStructure = collaborationContext?.canEditStructure !== false;
+
     return {
       ...base,
       visible: true,
       editable: canStructure && !locked,
       readonly: locked || readOnly,
-      reason: state.isShared ? 'shared' : state.isOwnerActive ? 'active-owner' : 'designer',
+      reason: state.isShared
+        ? 'shared'
+        : state.isOwnerActive
+          ? 'active-owner'
+          : 'designer',
     };
   }
 
-  // 7/8. viewer + pdf are never editable.
+  /**
+   * Viewer y PDF:
+   * siempre readonly, nunca editables.
+   */
   if (mode === 'viewer' || mode === 'pdf') {
-    return { ...base, visible: true, editable: false, readonly: true, reason: state.isShared ? 'shared' : 'global-view' };
+    return {
+      ...base,
+      visible: true,
+      editable: false,
+      readonly: true,
+      reason: state.isShared ? 'shared' : 'global-view',
+    };
   }
 
-  // 2/3. locked / readonly: visible, not editable.
-  if (locked) return { ...base, visible: true, editable: false, readonly: true, reason: 'locked' };
-  if (readOnly) return { ...base, visible: true, editable: false, readonly: true, reason: 'readonly' };
+  /**
+   * Form:
+   * locked y readonly se mantienen visibles, pero no editables.
+   */
+  if (locked) {
+    return {
+      ...base,
+      visible: true,
+      editable: false,
+      readonly: true,
+      reason: 'locked',
+    };
+  }
 
-  // 5/6. form: editable only for the active owner (or shared), never other recipients.
+  if (readOnly) {
+    return {
+      ...base,
+      visible: true,
+      editable: false,
+      readonly: true,
+      reason: 'readonly',
+    };
+  }
+
+  /**
+   * Form:
+   * editable únicamente si el schema es shared o pertenece al destinatario activo.
+   */
   const editable = state.isShared || state.isOwnerActive;
+
   if (!editable) {
-    return { ...base, visible: true, editable: false, readonly: true, reason: isGlobalView ? 'global-view' : 'other-recipient' };
+    return {
+      ...base,
+      visible: true,
+      editable: false,
+      readonly: true,
+      reason: isGlobalView ? 'global-view' : 'other-recipient',
+    };
   }
+
   return {
     ...base,
     visible: true,
@@ -272,7 +660,22 @@ export const resolveRuntimeSchemaAccess = (
   };
 };
 
-/** Convenience: counters parity — same rule the renderers must use. */
+/**
+ * Cuenta schemas visibles, editables y bloqueados usando la misma regla
+ * que deben usar los renderers.
+ *
+ * Esta función evita desalineaciones entre:
+ *
+ * - lo que se renderiza;
+ * - lo que se cuenta en UI;
+ * - lo que se muestra en badges;
+ * - lo que se valida en tests.
+ *
+ * @param schemas Lista de schemas a evaluar.
+ * @param mode Modo runtime donde se evaluará el acceso.
+ * @param collaborationContext Contexto colaborativo actual.
+ * @returns Contadores de schemas visibles, editables y bloqueados.
+ */
 export const countRuntimeAccess = (
   schemas: SchemaForUI[],
   mode: RuntimeMode,
@@ -281,11 +684,14 @@ export const countRuntimeAccess = (
   let visible = 0;
   let editable = 0;
   let locked = 0;
+
   for (const schema of schemas) {
     const access = resolveRuntimeSchemaAccess(schema, mode, collaborationContext);
+
     if (access.visible) visible += 1;
     if (access.editable) editable += 1;
     if (access.reason === 'locked') locked += 1;
   }
+
   return { visible, editable, locked };
 };

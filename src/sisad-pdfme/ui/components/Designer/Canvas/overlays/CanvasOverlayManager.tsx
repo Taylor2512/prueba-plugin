@@ -1,55 +1,226 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import type { SchemaForUI, Size } from '@sisad-pdfme/common';
 import type { SnapLine } from '../SnapLines.js';
+
 import SelectionContextToolbar from './SelectionContextToolbar.js';
 import InlineMetricsOverlay from './InlineMetricsOverlay.js';
 import SnapFeedbackOverlay from './SnapFeedbackOverlay.js';
 import GroupOptionFloatingAction from './GroupOptionFloatingAction.js';
 import { useFloatingToolbarPosition } from './useFloatingToolbarPosition.js';
+
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import type { SelectionToolbarMode } from './canvasContextMenuActions.js';
 import type { InteractionState } from '../../shared/interactionState.js';
+
 import {
   resolveActiveSchemasFromElements,
   resolveSelectionPageIndex,
 } from '../../shared/selectionIdentityResolver.js';
+
 import CommentsOverlay from './CommentsOverlay.js';
 import ShortcutHelpPanel from '../../Shortcuts/ShortcutHelpPanel.js';
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
 
+/**
+ * Slot visual para renderizar snap lines.
+ *
+ * Permite inyectar el componente real de líneas guía sin acoplar
+ * `CanvasOverlayManager` a una implementación concreta.
+ */
 export type SnapLinesSlot = React.ComponentType<{
+  /**
+   * Líneas guía activas calculadas durante drag/resize/alineación.
+   */
   lines: SnapLine[];
+
+  /**
+   * Clase CSS opcional para customización visual.
+   */
   className?: string;
+
+  /**
+   * Estilos inline opcionales.
+   */
   style?: React.CSSProperties;
+
+  /**
+   * Indica si el slot debe aplicar estilos por defecto.
+   */
   useDefaultStyles?: boolean;
 }>;
 
+/**
+ * Props del orquestador de overlays del canvas.
+ *
+ * Este componente no calcula comandos ni modifica schemas directamente.
+ * Su responsabilidad es montar/desmontar overlays visuales según el estado
+ * actual de selección, interacción, snap lines, comentarios y ayudas.
+ */
 type CanvasOverlayManagerProps = {
+  /**
+   * Elementos DOM actualmente seleccionados en el canvas.
+   *
+   * Normalmente corresponden a nodos de schemas renderizados.
+   */
   activeElements: HTMLElement[];
+
+  /**
+   * Lista de schemas agrupados por página.
+   *
+   * Se usa para resolver qué schemas corresponden a los elementos DOM activos.
+   */
   schemasList: SchemaForUI[][];
-  topLevelComments?: Array<{ anchor?: Record<string, unknown>; comment?: Record<string, unknown> }>;
+
+  /**
+   * Comentarios top-level del template/snapshot.
+   *
+   * Son comentarios globales o desacoplados del schema embebido.
+   */
+  topLevelComments?: Array<{
+    /**
+     * Anchor visual/lógico del comentario.
+     */
+    anchor?: Record<string, unknown>;
+
+    /**
+     * Datos del comentario.
+     */
+    comment?: Record<string, unknown>;
+  }>;
+
+  /**
+   * Página actual del canvas.
+   */
   pageCursor: number;
+
+  /**
+   * Tamaño de página actual.
+   *
+   * Se usa para calcular posición segura del toolbar flotante.
+   */
   pageSize: Size;
+
+  /**
+   * Referencias DOM de los papers/páginas renderizadas.
+   *
+   * CommentsOverlay las usa para ubicar pins en su página correspondiente.
+   */
   paperRefs: React.MutableRefObject<HTMLDivElement[]>;
+
+  /**
+   * Escala actual del canvas.
+   *
+   * Se usa principalmente para posicionar overlays de comentarios.
+   */
   scale?: number;
+
+  /**
+   * Líneas snap activas.
+   */
   snapLines: SnapLine[];
+
+  /**
+   * Componente inyectado para renderizar líneas snap.
+   */
   SnapLinesSlot: SnapLinesSlot;
+
+  /**
+   * Comandos disponibles para operar sobre la selección.
+   *
+   * Se pasan al toolbar contextual y a acciones flotantes.
+   */
   selectionCommands?: SelectionCommandSet;
+
+  /**
+   * Estado de interacción actual del canvas.
+   *
+   * Incluye selección, fase de interacción, conteo y flags relevantes
+   * para decidir qué overlays mostrar.
+   */
   interactionState: InteractionState;
+
+  /**
+   * Feature flag para mostrar u ocultar snap lines.
+   */
   featureSnapLines: boolean;
+
+  /**
+   * Indica si hay un drag externo de schema activo.
+   *
+   * Cuando está activo, se ocultan overlays de selección para evitar
+   * interferencias visuales y de puntero durante drop externo.
+   */
   externalSchemaDragActive?: boolean;
+
+  /**
+   * Indica si el menú contextual del canvas está abierto.
+   *
+   * Permite que el toolbar contextual adapte comportamiento visual
+   * mientras el menú contextual está activo.
+   */
   contextMenuOpen?: boolean;
+
+  /**
+   * Subconjunto de contexto colaborativo necesario para permisos,
+   * labels y estado de toolbar.
+   */
   collaborationContext?: Pick<
     EffectiveCollaborationContext,
-    'actorId' | 'activeRecipientId' | 'activeRecipient' | 'recipientNameMap' | 'canEditStructure'
+    | 'actorId'
+    | 'activeRecipientId'
+    | 'activeRecipient'
+    | 'recipientNameMap'
+    | 'canEditStructure'
   >;
+
+  /**
+   * Clase CSS adicional para el contenedor raíz.
+   */
   className?: string;
 };
 
+/**
+ * Tamaño estimado para toolbar en modo micro.
+ *
+ * Se usa para calcular una posición flotante segura alrededor
+ * de la selección activa.
+ */
 const MICRO_TOOLBAR_SIZE = { width: 288, height: 160 };
+
+/**
+ * Tamaño estimado para toolbar en modo compacto.
+ */
 const COMPACT_TOOLBAR_SIZE = { width: 384, height: 224 };
+
+/**
+ * Tamaño estimado para toolbar en modo expandido.
+ */
 const EXPANDED_TOOLBAR_SIZE = { width: 512, height: 360 };
 
+/**
+ * Orquestador de overlays del canvas.
+ *
+ * Responsabilidades:
+ *
+ * - resolver schemas activos desde elementos DOM seleccionados;
+ * - calcular página activa de la selección;
+ * - calcular posición del toolbar flotante;
+ * - montar toolbar contextual de selección;
+ * - montar acción flotante para option groups;
+ * - montar métricas inline;
+ * - montar feedback de snap;
+ * - montar snap lines si el feature flag está activo;
+ * - montar pins/comentarios;
+ * - abrir/cerrar panel de atajos.
+ *
+ * Restricciones:
+ *
+ * - no manipular geometría de schemas;
+ * - no mutar `schemasList`;
+ * - no ejecutar comandos directamente;
+ * - no tocar Moveable ni Selecto;
+ * - no aplicar reglas de negocio del host.
+ */
 const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
   const {
     activeElements,
@@ -69,37 +240,98 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
     className,
   } = props;
 
+  /**
+   * Modo visual del toolbar contextual.
+   *
+   * Por defecto:
+   *
+   * - selección múltiple: compact;
+   * - selección única: micro.
+   */
   const [toolbarMode, setToolbarMode] = useState<SelectionToolbarMode>(
     interactionState.selectionCount > 1 ? 'compact' : 'micro',
   );
+
+  /**
+   * Controla la visibilidad del panel de ayuda de atajos.
+   */
   const [shortcutHelpOpen, setShortcutHelpOpen] = useState(false);
 
+  /**
+   * Sincroniza el modo del toolbar cuando cambia el número de seleccionados.
+   *
+   * La intención es regresar automáticamente a un modo razonable cuando
+   * el usuario cambia de selección única a múltiple o viceversa.
+   */
   useEffect(() => {
     const nextMode = interactionState.selectionCount > 1 ? 'compact' : 'micro';
+
     setToolbarMode((prev) => (prev === nextMode ? prev : nextMode));
   }, [interactionState.selectionCount]);
 
+  /**
+   * Escucha un evento global para abrir el panel de ayuda de atajos.
+   *
+   * Este evento permite que otros módulos, como botones o comandos de teclado,
+   * soliciten abrir la ayuda sin acoplarse directamente a este componente.
+   */
   useEffect(() => {
     const openShortcutPanel = () => setShortcutHelpOpen(true);
-    window.addEventListener('sisad-pdfme:shortcut-open-panel', openShortcutPanel as EventListener);
+
+    window.addEventListener(
+      'sisad-pdfme:shortcut-open-panel',
+      openShortcutPanel as EventListener,
+    );
+
     return () => {
-      window.removeEventListener('sisad-pdfme:shortcut-open-panel', openShortcutPanel as EventListener);
+      window.removeEventListener(
+        'sisad-pdfme:shortcut-open-panel',
+        openShortcutPanel as EventListener,
+      );
     };
   }, []);
 
+  /**
+   * Tamaño estimado del toolbar según el modo visual activo.
+   *
+   * Este tamaño alimenta el cálculo de posición flotante.
+   */
   const toolbarSize =
-    toolbarMode === 'expanded' ? EXPANDED_TOOLBAR_SIZE : toolbarMode === 'compact' ? COMPACT_TOOLBAR_SIZE : MICRO_TOOLBAR_SIZE;
+    toolbarMode === 'expanded'
+      ? EXPANDED_TOOLBAR_SIZE
+      : toolbarMode === 'compact'
+        ? COMPACT_TOOLBAR_SIZE
+        : MICRO_TOOLBAR_SIZE;
 
+  /**
+   * Posición calculada del toolbar flotante tomando en cuenta:
+   *
+   * - elementos seleccionados;
+   * - tamaño de página;
+   * - tamaño estimado del toolbar.
+   */
   const selectionBounds = useFloatingToolbarPosition(
     activeElements,
     pageSize,
     toolbarSize,
   );
 
+  /**
+   * Schemas activos resueltos desde los elementos DOM seleccionados.
+   *
+   * Este paso mantiene desacoplada la selección visual del modelo de schemas.
+   */
   const activeSchemas = useMemo(
     () => resolveActiveSchemasFromElements(schemasList, activeElements),
     [activeElements, schemasList],
   );
+
+  /**
+   * Página activa de la selección.
+   *
+   * Si no puede resolverse desde los elementos seleccionados,
+   * usa `pageCursor` como fallback.
+   */
   const activePageIndex = useMemo(
     () => resolveSelectionPageIndex(activeElements, pageCursor) ?? pageCursor,
     [activeElements, pageCursor],
@@ -109,6 +341,12 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
     <div className={`sisad-pdfme-ui-canvas-overlay-manager ${className || ''}`}>
       {!externalSchemaDragActive ? (
         <>
+          {/**
+           * Toolbar contextual de selección.
+           *
+           * Muestra acciones rápidas según selección, comandos disponibles,
+           * modo visual, estado de interacción y contexto colaborativo.
+           */}
           <SelectionContextToolbar
             position={selectionBounds}
             commands={selectionCommands}
@@ -120,19 +358,49 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
             toolbarMode={toolbarMode}
             onToolbarModeChange={setToolbarMode}
           />
+
+          {/**
+           * Acción flotante específica para grupos de opciones.
+           *
+           * Permite mostrar affordances como agregar opción o convertir
+           * checkbox individual a grupo, según selección activa.
+           */}
           <GroupOptionFloatingAction
             activeElements={activeElements}
             activeSchemas={activeSchemas}
             selectionCommands={selectionCommands}
             interactionState={interactionState}
           />
+
+          {/**
+           * Overlay de métricas inline de selección.
+           *
+           * Usa los mismos bounds del toolbar para mostrar datos visuales
+           * como tamaño, posición o indicadores contextuales.
+           */}
           <InlineMetricsOverlay bounds={selectionBounds} />
+
+          {/**
+           * Feedback visual de snap activo cerca de la selección.
+           */}
           <SnapFeedbackOverlay bounds={selectionBounds} snapLines={snapLines} />
+
+          {/**
+           * Líneas guía de snap.
+           *
+           * Se renderizan solo si la feature está activa.
+           */}
           {featureSnapLines ? <SnapLinesSlot lines={snapLines} /> : null}
         </>
       ) : null}
-      {/* Comments overlay (pins, click handlers). All pages' schema-attached
-          comments are passed so each pin renders against its own page paper. */}
+
+      {/**
+       * Overlay de comentarios.
+       *
+       * Recibe schemas de todas las páginas y comentarios top-level.
+       * Cada pin debe posicionarse contra el paper correspondiente usando
+       * `paperRefs`, no únicamente contra la página activa.
+       */}
       <CommentsOverlay
         schemas={schemasList.flat()}
         topLevelComments={topLevelComments}
@@ -140,7 +408,17 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
         pageIndex={activePageIndex}
         paperRefs={paperRefs}
       />
-      <ShortcutHelpPanel open={shortcutHelpOpen} onClose={() => setShortcutHelpOpen(false)} />
+
+      {/**
+       * Panel de ayuda de atajos.
+       *
+       * Se abre mediante evento global `sisad-pdfme:shortcut-open-panel`
+       * y se cierra con el callback local.
+       */}
+      <ShortcutHelpPanel
+        open={shortcutHelpOpen}
+        onClose={() => setShortcutHelpOpen(false)}
+      />
     </div>
   );
 };

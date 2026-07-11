@@ -1,3 +1,22 @@
+/**
+ * SchemaConnectionsWidget — inspector widget for schema data/runtime connections.
+ *
+ * This component centralizes the DetailView UI used to configure three runtime
+ * concerns for a selected schema:
+ *
+ * - persistence: how the value is stored locally/remotely;
+ * - form JSON output: how the value is collected into an output payload;
+ * - API connection: how values/options/states can be read from or submitted to
+ *   an endpoint using the designer engine HTTP/runtime adapter.
+ *
+ * Architectural boundary:
+ *
+ * - the widget only edits `SchemaDesignerConfig` through `updateSchemaConfig`;
+ * - it does not mutate schemas directly;
+ * - it does not know Canvas, Moveable, Selecto or document geometry;
+ * - shared pair editors and section headers live in `SchemaConnectionsShared`;
+ * - validation rules live in `schemaConnectionsValidation`.
+ */
 import React, { useCallback, useMemo, useState } from 'react';
 import type { PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
 import { Button, Collapse, Divider, Input, InputNumber, Select, Space, Tag } from 'antd';
@@ -18,14 +37,45 @@ import { getMissingConnectionFields } from './schemaConnectionsValidation.js';
 import CompactConfigPanel from './CompactConfigPanel.js';
 import { BooleanSwitchWidget } from './InspectorPrimitives.js';
 
+/**
+ * Props injected into the schema connections widget by DetailView.
+ *
+ * `PropPanelWidgetProps` provides the standard pdfme prop-panel contract,
+ * while the extra fields connect this widget to SISAD's designer engine
+ * metadata model.
+ */
 type ConfigWidgetProps = PropPanelWidgetProps & {
+  /**
+   * Current designer-level configuration resolved for the active schema.
+   *
+   * It may be null when the schema has no saved runtime metadata yet.
+   */
   schemaConfig?: SchemaDesignerConfig | null;
+
+  /**
+   * Optional engine that provides global runtime settings, HTTP inheritance,
+   * recipient/color extensions and data adapters.
+   */
   designerEngine?: DesignerEngine;
+
+  /**
+   * Persists a partial patch into the active schema's designer config.
+   *
+   * The parent DetailView owns the actual `changeSchemas` call, so this widget
+   * stays declarative and focused on configuration UI.
+   */
   updateSchemaConfig?: (_patch: Partial<SchemaDesignerConfig>) => void;
 };
 
 // Shared UI moved to SchemaConnectionsShared.tsx to keep this widget focused.
 
+/**
+ * Builds a compact status tag describing the effective authentication mode.
+ *
+ * Manual authentication is highlighted as warning because it usually requires
+ * the user to complete token/header/credential fields. Inherited authentication
+ * is neutral because it comes from the global designer engine configuration.
+ */
 const buildAuthTag = (resolvedHttpClient: ReturnType<typeof resolveDesignerHttpClientConfig>) => {
   if (!resolvedHttpClient) return null;
 
@@ -44,6 +94,12 @@ const buildAuthTag = (resolvedHttpClient: ReturnType<typeof resolveDesignerHttpC
   return { label: 'Autenticación heredada', color: 'default' as const };
 };
 
+/**
+ * Converts the local validation state into an Ant Design-compatible status tag.
+ *
+ * `idle` intentionally returns null so the compact summary does not show a
+ * validation badge before the user runs validation.
+ */
 const buildValidationTag = (validationState: 'idle' | 'ok' | 'warning') => {
   if (validationState === 'ok') {
     return { label: 'Validación OK', color: 'success' as const };
@@ -56,8 +112,17 @@ const buildValidationTag = (validationState: 'idle' | 'ok' | 'warning') => {
   return null;
 };
 
+/**
+ * Formats a boolean flag for compact Spanish summaries.
+ */
 const describeBoolean = (value?: boolean) => (value ? 'Sí' : 'No');
 
+/**
+ * Produces the one-line summary shown for the Persistence section.
+ *
+ * The output is intentionally compact because it is rendered inside a small
+ * inspector panel before the user opens the full modal.
+ */
 const describePersistence = (persistence: SchemaPersistenceConfig) => {
   if (!persistence.enabled) return 'Inactiva';
   return [
@@ -68,6 +133,9 @@ const describePersistence = (persistence: SchemaPersistenceConfig) => {
   ].join(' · ');
 };
 
+/**
+ * Produces the one-line summary shown for the Form JSON output section.
+ */
 const describeFormJson = (formJson: SchemaFormJsonConfig) => {
   if (!formJson.enabled) return 'Inactivo';
   return [
@@ -78,6 +146,12 @@ const describeFormJson = (formJson: SchemaFormJsonConfig) => {
   ].join(' · ');
 };
 
+/**
+ * Describes the effective HTTP authentication configuration in human terms.
+ *
+ * This function avoids exposing secrets; it only shows the auth mode, auth type,
+ * username/header presence and whether the system configuration is inherited.
+ */
 const describeHttpAuth = (auth?: SchemaHttpAuthConfig) => {
   if (auth?.mode !== 'manual') return 'Autenticación heredada';
   if ((auth.type || 'bearer') === 'basic') {
@@ -94,6 +168,9 @@ const describeHttpAuth = (auth?: SchemaHttpAuthConfig) => {
   return `portador · ${header}`;
 };
 
+/**
+ * Maps internal validation keys to labels understandable by users.
+ */
 const CONNECTION_FIELD_LABELS: Record<string, string> = {
   storageKey: 'clave de almacenamiento',
   rootKey: 'raíz JSON',
@@ -102,9 +179,18 @@ const CONNECTION_FIELD_LABELS: Record<string, string> = {
   auth: 'autenticación manual',
 };
 
+/**
+ * Formats missing validation keys as a comma-separated Spanish message.
+ */
 const formatMissingConnectionFields = (missing: string[]) =>
   missing.map((field) => CONNECTION_FIELD_LABELS[field] || field).join(', ');
 
+/**
+ * Produces the one-line summary shown for the API connection section.
+ *
+ * It combines request method, endpoint, Axios inheritance/local mode and the
+ * effective authentication description.
+ */
 const describeApi = (
   api: NonNullable<SchemaDesignerConfig['api']>,
   resolvedHttpClient: ReturnType<typeof resolveDesignerHttpClientConfig>,
@@ -118,6 +204,13 @@ const describeApi = (
   ].join(' · ');
 };
 
+/**
+ * Creates a safe manual-auth configuration when the user changes auth type.
+ *
+ * Each preset keeps compatible existing values and clears fields that do not
+ * apply to the selected mode, preventing stale bearer/basic/api-key data from
+ * leaking across auth modes.
+ */
 const applyAuthPreset = (
   type: SchemaHttpAuthConfig['type'] | undefined,
   current: SchemaHttpAuthConfig | undefined,
@@ -175,24 +268,63 @@ const applyAuthPreset = (
   };
 };
 
+/**
+ * Shallow-merges a config section patch while preserving unmodified keys.
+ *
+ * The cast keeps generic section types ergonomic for persistence/api/form
+ * config updates without forcing each caller to rebuild the whole section.
+ */
 const mergeSectionPatch = <T extends Record<string, unknown>>(base: T | undefined, patch: Partial<T>): T =>
   ({
     ...(base || {}),
     ...patch,
   } as T);
 
+/**
+ * DetailView widget for configuring data/runtime connections of a schema.
+ *
+ * Render model:
+ *
+ * - compact `CompactConfigPanel` summary in the inspector;
+ * - modal with three collapsible groups: Persistence, JSON output and API;
+ * - validation action that checks required fields and optionally performs a
+ *   runtime request through `createSchemaDataRuntimeAdapter`.
+ */
 const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
   const { schemaConfig, designerEngine, updateSchemaConfig } = props;
+
+  /**
+   * Local validation state for the compact panel and modal summary.
+   *
+   * It is intentionally local because validation is an inspector aid, not a
+   * persisted schema property.
+   */
   const [validationState, setValidationState] = useState<'idle' | 'ok' | 'warning'>('idle');
   const [validationMessage, setValidationMessage] = useState('Sin configurar');
   const [isValidating, setIsValidating] = useState(false);
+  /**
+   * Effective persistence configuration for the active schema.
+   */
   const persistence = useMemo<SchemaPersistenceConfig>(() => schemaConfig?.persistence || {}, [schemaConfig?.persistence]);
+  /**
+   * Effective API configuration for the active schema.
+   */
   const api = useMemo(() => schemaConfig?.api || {}, [schemaConfig?.api]);
+  /**
+   * Effective Form JSON output configuration for the active schema.
+   */
   const formJson = useMemo<SchemaFormJsonConfig>(() => schemaConfig?.form || {}, [schemaConfig?.form]);
+  /**
+   * Effective HTTP client after applying designer engine inheritance rules.
+   */
   const resolvedHttpClient = useMemo(
     () => resolveDesignerHttpClientConfig(schemaConfig || undefined, designerEngine),
     [designerEngine, schemaConfig],
   );
+  /**
+   * Runtime adapter used only by the validation action to resolve/execute a
+   * synthetic request without coupling this UI to fetch/Axios directly.
+   */
   const runtimeAdapter = useMemo(
     () =>
       createSchemaDataRuntimeAdapter({
@@ -202,6 +334,9 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
     [designerEngine],
   );
   const authTag = useMemo(() => buildAuthTag(resolvedHttpClient), [resolvedHttpClient]);
+  /**
+   * Compact status tags shown above the full configuration form.
+   */
   const runtimeStatusTags = useMemo(
     () =>
       [
@@ -216,6 +351,9 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
     [api.enabled, api.endpoint, authTag, formJson.enabled, formJson.format, persistence.enabled, persistence.mode, resolvedHttpClient],
   );
 
+  /**
+   * Patches the persistence section while preserving its existing keys.
+   */
   const updatePersistence = useCallback(
     (patch: Partial<SchemaPersistenceConfig>) => {
       updateSchemaConfig?.({
@@ -225,6 +363,9 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
     [persistence, updateSchemaConfig],
   );
 
+  /**
+   * Patches the API section while preserving its existing keys.
+   */
   const updateApi = useCallback(
     (patch: Partial<NonNullable<SchemaDesignerConfig['api']>>) => {
       updateSchemaConfig?.({
@@ -234,6 +375,9 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
     [api, updateSchemaConfig],
   );
 
+  /**
+   * Patches the nested API HTTP-client configuration.
+   */
   const updateApiHttp = useCallback(
     (patch: Partial<SchemaHttpClientConfig>) => {
       updateApi({
@@ -243,6 +387,9 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
     [api.http, updateApi],
   );
 
+  /**
+   * Patches the nested manual/inherited authentication configuration.
+   */
   const updateApiAuth = useCallback(
     (patch: Partial<SchemaHttpAuthConfig>) => {
       updateApiHttp({
@@ -252,6 +399,12 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
     [api.http?.auth, updateApiHttp],
   );
 
+  /**
+   * Switches between inherited system authentication and manual auth.
+   *
+   * When moving to manual mode, it applies a preset so required fields exist
+   * for the selected auth type.
+   */
   const updateApiAuthMode = useCallback(
     (mode: 'inherit' | 'manual') => {
       if (mode === 'inherit') {
@@ -274,6 +427,9 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
     [api.http?.auth, updateApiHttp],
   );
 
+  /**
+   * Changes the manual authentication type and normalizes compatible fields.
+   */
   const updateApiAuthType = useCallback(
     (type: SchemaHttpAuthConfig['type']) => {
       updateApiHttp({
@@ -283,6 +439,9 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
     [api.http?.auth, updateApiHttp],
   );
 
+  /**
+   * Patches the Form JSON output section while preserving existing keys.
+   */
   const updateFormJson = useCallback(
     (patch: Partial<SchemaFormJsonConfig>) => {
       updateSchemaConfig?.({
@@ -292,6 +451,15 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
     [formJson, updateSchemaConfig],
   );
 
+  /**
+   * Validates the current connection configuration.
+   *
+   * Validation has two levels:
+   *
+   * 1. static required-field validation through `getMissingConnectionFields`;
+   * 2. optional runtime API validation by resolving a synthetic request and
+   *    executing it through the schema data runtime adapter.
+   */
   const handleValidateConfig = () => {
     const enabledSections = [persistence.enabled, formJson.enabled, api.enabled].filter(Boolean).length;
     if (enabledSections === 0) {
@@ -353,7 +521,13 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
       });
   };
 
+  /**
+   * Derived validation tag used in the compact panel.
+   */
   const validationTag = useMemo(() => buildValidationTag(validationState), [validationState]);
+  /**
+   * Overall compact state tag for the inspector card.
+   */
   const compactStateTag = useMemo(() => {
     if (validationState === 'warning') {
       return { label: 'Error', color: 'warning' as const };
@@ -369,6 +543,12 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
   const formJsonSummary = describeFormJson(formJson);
   const apiSummary = describeApi(api, resolvedHttpClient);
 
+  /**
+   * Collapse items that make up the full modal configuration form.
+   *
+   * Each item owns one runtime concern and delegates repeated key/value editing
+   * to `PairEditor`.
+   */
   const items = [
     {
       key: 'persistence',

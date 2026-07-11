@@ -8,37 +8,112 @@ import { SidebarSurfaceEmptyState, SidebarSurfaceHeader } from './shared/Sidebar
 
 const { Text } = Typography;
 
+/**
+ * Representa una página/documento visible dentro del rail de documentos.
+ *
+ * En modo multi-documento puede mapear a un archivo PDF; en modo simple puede
+ * representar páginas del documento activo.
+ */
 export type DesignerDocumentItem = {
+  /** Identificador estable del documento/página. */
   id: string;
+
+  /** Nombre visible del documento/página. */
   name: string;
+
+  /** Etiqueta secundaria de página, por ejemplo `1`, `2`, `A-1`. */
   pageLabel?: string;
+
+  /** URL/data URI de preview opcional. */
   previewSrc?: string | null;
+
+  /** Estado seleccionado controlado por el host. */
   selected?: boolean;
+
+  /** Deshabilita interacción de selección para este item. */
   disabled?: boolean;
+
+  /** Metadata secundaria opcional. */
   meta?: string;
 };
 
+/**
+ * Props del rail de documentos/páginas del sidebar derecho.
+ */
 export type DocumentsRailProps = {
+  /** Items de documentos o páginas disponibles. */
   items: DesignerDocumentItem[];
+
+  /** ID seleccionado cuando el estado lo controla el host. */
   selectedId?: string | null;
+
+  /** Callback de selección de documento/página. */
   onSelect?: (_id: string) => void;
+
+  /** Callback para agregar una nueva página/documento. */
   onAdd?: () => void;
+
+  /** Callback para subir/reemplazar PDF. */
   onUploadPdf?: () => void;
+
+  /** Callback para eliminar un documento/página. */
   onDelete?: (_id: string) => void;
+
+  /** Título del rail. */
   title?: React.ReactNode;
+
+  /** Título del estado vacío. */
   emptyTitle?: React.ReactNode;
+
+  /** Subtítulo opcional del header. */
   subtitle?: React.ReactNode;
+
+  /** Clase adicional para el frame. */
   className?: string;
+
+  /** Estilos inline del wrapper. */
   style?: React.CSSProperties;
+
+  /** Controla si se aplican clases/estilos por defecto del runtime. */
   useDefaultStyles?: boolean;
+
+  /** Densidad visual del rail. */
   density?: 'default' | 'compact';
+
+  /** Muestra una tarjeta inline para agregar página al inicio de la lista. */
   showInlineAddCard?: boolean;
+
+  /** Texto/nodo para subir PDF. */
   uploadLabel?: React.ReactNode;
+
+  /** Texto/nodo para agregar página. */
   addPageLabel?: React.ReactNode;
+
+  /** Prefijo de etiqueta de página. */
   pageLabelPrefix?: string;
+
+  /** Descripción del estado vacío. */
   emptyDescription?: React.ReactNode;
 };
 
+/**
+ * Rail de documentos/páginas para el sidebar derecho.
+ *
+ * Responsabilidades:
+ *
+ * - mostrar páginas/documentos disponibles;
+ * - permitir selección;
+ * - exponer acciones de subir PDF, agregar página y eliminar;
+ * - renderizar preview si existe;
+ * - mostrar estado vacío cuando no hay items.
+ *
+ * Restricciones:
+ *
+ * - no modifica documentos directamente;
+ * - no realiza uploads por sí mismo;
+ * - no conoce schemas ni geometría del canvas;
+ * - delega toda mutación al host mediante callbacks.
+ */
 const DocumentsRail = ({
   items,
   selectedId,

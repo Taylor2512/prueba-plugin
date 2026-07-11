@@ -1,5 +1,15 @@
+/**
+ * SchemaDragPreview — preview flotante durante drag externo de schemas.
+ *
+ * Sigue el puntero y comunica visualmente si el usuario está sobre el canvas o
+ * sobre una página válida. No participa en hit testing ni persistencia.
+ */
+
 import React from 'react';
 
+/**
+ * Props del preview visual de drag externo de schema.
+ */
 type SchemaDragPreviewProps = {
   schemaType: string;
   icon?: React.ReactNode;
@@ -9,6 +19,9 @@ type SchemaDragPreviewProps = {
   isOverPage: boolean;
 };
 
+/**
+ * Renderiza un preview fijo que sigue el puntero durante drag de un schema.
+ */
 const SchemaDragPreview = ({
   schemaType,
   icon,

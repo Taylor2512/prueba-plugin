@@ -1,5 +1,15 @@
+/**
+ * overlayState — reglas de bloqueo visual para estados del canvas.
+ *
+ * Convierte estados de render en razones de bloqueo y decide cuándo mostrar
+ * una máscara de interacción. Mantiene esta decisión fuera de Canvas.tsx.
+ */
+
 import type { CanvasRenderState } from '../../../../../canvas/canvasRenderState.js';
 
+/**
+ * Razones normalizadas por las que el canvas debe bloquear interacción.
+ */
 export type CanvasBlockReason =
   | 'loading'
   | 'error'
@@ -7,6 +17,9 @@ export type CanvasBlockReason =
   | 'saving'
   | 'modal';
 
+/**
+ * Modos de interacción considerados por la capa de overlays.
+ */
 export type CanvasInteractionMode =
   | 'idle'
   | 'selecting'
@@ -16,6 +29,9 @@ export type CanvasInteractionMode =
   | 'editing-text'
   | 'dragging-new-schema';
 
+/**
+ * Deriva una razón de bloqueo desde el estado de render del canvas.
+ */
 export const deriveCanvasBlockReason = (
   state: CanvasRenderState,
 ): CanvasBlockReason | null => {
@@ -32,6 +48,12 @@ export const deriveCanvasBlockReason = (
   }
 };
 
+/**
+ * Decide si debe mostrarse máscara de bloqueo para el estado actual.
+ *
+ * Hoy cualquier razón de bloqueo muestra máscara; el modo queda disponible para
+ * reglas futuras que dependan de drag/resize/edición.
+ */
 export const shouldDisplayBlockingMask = (
   blockReason: CanvasBlockReason | null,
   _interactionMode: CanvasInteractionMode,

@@ -1,3 +1,10 @@
+/**
+ * SelectionContextToolbar — toolbar contextual compacto para selección activa.
+ *
+ * Muestra acciones rápidas como eliminar, duplicar y abrir más acciones. Delega
+ * el menú completo a CanvasContextMenu y no modifica schemas directamente.
+ */
+
 import React from 'react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import { Copy, Ellipsis, Trash2 } from 'lucide-react';
@@ -8,6 +15,9 @@ import CanvasContextMenu from './CanvasContextMenu.js';
 import { resolveAnchoredFloatingSurfacePosition } from './floatingSurfaceGeometry.js';
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
 
+/**
+ * Props del toolbar contextual de selección.
+ */
 type SelectionContextToolbarProps = {
   position: { top: number; left: number; width: number; height: number } | null;
   commands?: SelectionCommandSet;
@@ -21,12 +31,18 @@ type SelectionContextToolbarProps = {
   >;
 };
 
+/**
+ * Evalúa si todos los schemas seleccionados comparten un flag booleano.
+ */
 const getSchemaFlag = (schemas: SchemaForUI[], key: 'readOnly' | 'required' | 'hidden') =>
   schemas.length > 0 && schemas.every((schema) => {
     if (key === 'hidden') return (schema as SchemaForUI & { hidden?: boolean }).hidden === true;
     return Boolean((schema as SchemaForUI & Record<string, unknown>)[key]);
   });
 
+/**
+ * Renderiza acciones rápidas junto a la selección y abre el menú completo.
+ */
 const SelectionContextToolbar = ({
   position,
   commands,
@@ -50,6 +66,9 @@ const SelectionContextToolbar = ({
   const selectionCount = interactionState.selectionCount;
   const isMulti = selectionCount > 1;
 
+/**
+ * Acciones rápidas visibles directamente en el toolbar compacto.
+ */
   const quickActions = React.useMemo(
     () =>
       [
@@ -74,6 +93,9 @@ const SelectionContextToolbar = ({
     [canEditStructure, commands],
   );
 
+/**
+ * Abre el menú contextual completo anclado al toolbar.
+ */
   const openMoreMenu = React.useCallback(() => {
     setMoreMenuOpen(true);
   }, []);

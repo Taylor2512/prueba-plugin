@@ -1,9 +1,18 @@
+/**
+ * Guides — wrapper visual de @scena/react-guides para reglas del diseñador.
+ *
+ * Renderiza la esquina, regla horizontal y regla vertical alrededor del Paper.
+ * Permite customizar colores/unidad sin acoplar Canvas a detalles de Scena.
+ */
 import React, { Ref } from 'react';
 import GuidesComponent from '@scena/react-guides';
 import { ZOOM, Size } from '@sisad-pdfme/common';
 import { RULER_HEIGHT, DESIGNER_CLASSNAME } from '../../../constants.js';
 import { mergeClassNames } from '../shared/className.js';
 
+/**
+ * Construye estilos absolutos comunes para esquina y reglas.
+ */
 const guideStyle = (
   top: number,
   left: number,
@@ -19,6 +28,9 @@ const guideStyle = (
   ...extra,
 });
 
+/**
+ * Paleta visual configurable de reglas.
+ */
 export type GuidesPalette = {
   backgroundColor?: string;
   lineColor?: string;
@@ -26,6 +38,9 @@ export type GuidesPalette = {
   cornerBackground?: string;
 };
 
+/**
+ * Props del wrapper de reglas del diseñador.
+ */
 export type GuidesProps = {
   paperSize: Size;
   horizontalRef: Ref<GuidesComponent> | undefined;
@@ -35,6 +50,9 @@ export type GuidesProps = {
   palette?: GuidesPalette;
 };
 
+/**
+ * Renderiza esquina, regla horizontal y regla vertical del Paper.
+ */
 const Guides = ({
   paperSize,
   horizontalRef,

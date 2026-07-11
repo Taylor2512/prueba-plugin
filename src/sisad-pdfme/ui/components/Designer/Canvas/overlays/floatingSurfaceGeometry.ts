@@ -1,13 +1,26 @@
+/**
+ * Utilidades geométricas para posicionar superficies flotantes del canvas.
+ *
+ * Este módulo calcula posiciones seguras para toolbars, menús contextuales y
+ * overlays anclados, evitando que se salgan del viewport. No toca DOM ni React.
+ */
+
 type ViewportSize = {
   width: number;
   height: number;
 };
 
+/**
+ * Tamaño estimado o medido de la superficie flotante.
+ */
 type FloatingSurfaceSize = {
   width: number;
   height: number;
 };
 
+/**
+ * Bounds rectangulares de la selección usados como ancla de posicionamiento.
+ */
 type SelectionBounds = {
   top: number;
   left: number;
@@ -15,8 +28,17 @@ type SelectionBounds = {
   bottom: number;
 };
 
+/**
+ * Separación mínima contra bordes del viewport y contra la selección/ancla.
+ */
 export const FLOATING_SURFACE_EDGE_GAP = 8;
 
+/**
+ * Posiciona una superficie centrada sobre la selección cuando hay espacio.
+ *
+ * Si no cabe arriba, usa una posición inferior controlada y clamp contra los
+ * bordes del viewport.
+ */
 export const resolveCenteredFloatingSurfacePosition = (
   bounds: SelectionBounds,
   surfaceSize: FloatingSurfaceSize,
@@ -40,6 +62,10 @@ export const resolveCenteredFloatingSurfacePosition = (
   return { top, left };
 };
 
+/**
+ * Posiciona el toolbar de selección priorizando el lateral derecho, luego el
+ * lateral izquierdo y finalmente una posición superior/inferior centrada.
+ */
 export const resolveSelectionToolbarPosition = (
   bounds: SelectionBounds,
   surfaceSize: FloatingSurfaceSize,
@@ -80,6 +106,10 @@ export const resolveSelectionToolbarPosition = (
   };
 };
 
+/**
+ * Posiciona una superficie a partir de un punto ancla, normalmente un click o
+ * contextmenu, evitando que exceda los límites del viewport.
+ */
 export const resolveAnchoredFloatingSurfacePosition = (
   anchor: { x: number; y: number },
   surfaceSize: FloatingSurfaceSize,

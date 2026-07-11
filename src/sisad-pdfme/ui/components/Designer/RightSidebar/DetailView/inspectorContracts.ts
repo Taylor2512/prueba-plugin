@@ -1,9 +1,19 @@
 /**
+ * inspectorContracts — sistema central de contratos del inspector.
+ *
+ * Cada tipo/familia de schema declara qué secciones, capacidades y acciones de
+ * footer necesita. DetailView consume estos contratos para evitar cadenas de
+ * condiciones dispersas por tipo de campo.
+ */
+/**
  * Central inspector contract system.
  * Each schema family declares which sidebar sections it needs.
  * DetailView renders sections based on this contract, not per-type if-chains.
  */
 
+/**
+ * Familias semánticas de schemas usadas por el contrato del inspector.
+ */
 export type SchemaInspectorFamily =
   | 'textLike'
   | 'numberLike'
@@ -21,6 +31,9 @@ export type SchemaInspectorFamily =
   | 'shape'
   | 'advanced';
 
+/**
+ * Flags de secciones/capacidades que puede activar un contrato.
+ */
 export type SchemaInspectorSections = {
   identity?: boolean;
   basics?: boolean;
@@ -44,12 +57,16 @@ export type SchemaInspectorSections = {
   advanced?: boolean;
 };
 
+/** Acciones de footer disponibles para una familia de schema. */
 export type SchemaInspectorFooterActions = {
   saveAsCustom?: boolean;
   duplicate?: boolean;
   delete?: boolean;
 };
 
+/**
+ * Contrato completo de inspector para un tipo de schema.
+ */
 export type SchemaInspectorContract = {
   type: string;
   family: SchemaInspectorFamily;
@@ -57,6 +74,7 @@ export type SchemaInspectorContract = {
   footerActions: SchemaInspectorFooterActions;
 };
 
+/** Footer estándar para la mayoría de schemas editables. */
 const DEFAULT_FOOTER: SchemaInspectorFooterActions = {
   saveAsCustom: false,
   duplicate: true,
@@ -287,6 +305,9 @@ const ATTACHMENT_CONTRACT: Omit<SchemaInspectorContract, 'type'> = {
   footerActions: DEFAULT_FOOTER,
 };
 
+/**
+ * Contratos incluidos por defecto para tipos conocidos del diseñador.
+ */
 const BUILTIN_CONTRACTS: Record<string, Omit<SchemaInspectorContract, 'type'>> = {
   text: TEXT_LIKE_CONTRACT,
   multivariabletext: TEXT_LIKE_CONTRACT,
@@ -335,6 +356,9 @@ const BUILTIN_CONTRACTS: Record<string, Omit<SchemaInspectorContract, 'type'>> =
 
 const _pluginContracts = new Map<string, Omit<SchemaInspectorContract, 'type'>>();
 
+/**
+ * Registra o sobrescribe un contrato de inspector provisto por plugin.
+ */
 export const registerInspectorContract = (
   type: string,
   contract: Omit<SchemaInspectorContract, 'type'>,
@@ -342,6 +366,9 @@ export const registerInspectorContract = (
   _pluginContracts.set(type.trim().toLowerCase(), contract);
 };
 
+/**
+ * Resuelve el contrato aplicable a un tipo de schema.
+ */
 export const resolveInspectorContract = (schemaType: string): SchemaInspectorContract => {
   const key = String(schemaType || '').trim().toLowerCase();
   const contract = _pluginContracts.get(key) || BUILTIN_CONTRACTS[key];
@@ -360,6 +387,9 @@ export const resolveInspectorContract = (schemaType: string): SchemaInspectorCon
   };
 };
 
+/**
+ * Consulta si una sección está habilitada dentro de un contrato.
+ */
 export const contractSectionEnabled = (
   contract: SchemaInspectorContract,
   section: keyof SchemaInspectorSections,

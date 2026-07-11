@@ -1,3 +1,10 @@
+/**
+ * Sortable row wrapper for a single schema in the right sidebar ListView.
+ *
+ * It connects a schema row to dnd-kit via `useSortable`, resolves plugin icon,
+ * schema type label, collaboration badges and duplicate-name status, then passes
+ * the visual contract down to the generic `Item` component.
+ */
 import React, { useContext } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { SchemaForUI } from '@sisad-pdfme/common';
@@ -10,6 +17,13 @@ import PluginIcon from '../../PluginIcon.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { getSchemaTypeLabel } from '../../shared/designerLabels.js';
 
+
+/**
+ * Resolves the human-facing row label.
+ *
+ * A custom `label` takes precedence over the technical schema name; fallback is
+ * the generic "Campo" label.
+ */
 const resolveDisplayLabel = (schema: SchemaForUI) => {
   const readableLabel =
     typeof (schema as SchemaForUI & { label?: string }).label === 'string' &&
@@ -19,6 +33,10 @@ const resolveDisplayLabel = (schema: SchemaForUI) => {
   return readableLabel || String(schema.name || '').trim() || 'Campo';
 };
 
+
+/**
+ * Props for a sortable schema row.
+ */
 interface Props {
   isSelected: boolean;
   isHovering?: boolean;
@@ -32,6 +50,10 @@ interface Props {
   onMouseLeave: () => void;
   collaborationContext?: EffectiveCollaborationContext;
 }
+
+/**
+ * Connects one schema row to dnd-kit sorting and collaboration-aware metadata.
+ */
 const SelectableSortableItem = ({
   isSelected,
   isHovering,

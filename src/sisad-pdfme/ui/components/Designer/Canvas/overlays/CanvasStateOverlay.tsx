@@ -23,6 +23,12 @@ import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { deriveCanvasBlockReason, shouldDisplayBlockingMask } from './overlayState.js';
 import { mergeClassNames } from '../../shared/className.js';
 
+/**
+ * Props del overlay de estado del canvas.
+ *
+ * Agrupa el estado semántico del canvas y callbacks opcionales para acciones de
+ * recuperación, manteniendo la UI de estados desacoplada del runtime principal.
+ */
 export interface CanvasStateOverlayProps {
   state: CanvasRenderState;
   /** Callback for retry actions (render_error, pdf_load_error) */
@@ -31,6 +37,9 @@ export interface CanvasStateOverlayProps {
   className?: string;
 }
 
+/**
+ * Prefijo CSS estable para clases BEM-like del overlay.
+ */
 const CLS = DESIGNER_CLASSNAME + 'canvas-state-overlay';
 
 /**

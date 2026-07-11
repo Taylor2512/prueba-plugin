@@ -6,22 +6,61 @@ import { DESIGNER_CLASSNAME } from '../../../constants.js';
 import { SidebarSurfaceEmptyState, SidebarSurfaceHeader } from './shared/SidebarSurfacePrimitives.js';
 import { mergeClassNames } from '../shared/className.js';
 
+/**
+ * Props del rail lateral de comentarios.
+ *
+ * Este rail presenta hilos asociados al diseñador y funciona como vista
+ * compacta/scrollable dentro del RightSidebar. No persiste comentarios ni
+ * ejecuta mutaciones; recibe los hilos ya normalizados y delega la creación
+ * de nuevos comentarios mediante `onAdd`.
+ */
 export type CommentsRailProps = {
+  /** Lista de hilos de comentarios que se deben renderizar. */
   items: DesignerCommentItem[];
+
+  /** Callback opcional para solicitar la creación de un nuevo comentario. */
   onAdd?: () => void;
+
+  /** Título principal del rail. */
   title?: string;
+
+  /** Título mostrado cuando no existen comentarios. */
   emptyTitle?: string;
+
+  /** Subtítulo opcional; si no se provee, se deriva de la cantidad de hilos/respuestas. */
   subtitle?: React.ReactNode;
+
+  /** Texto/nodo del botón de agregar comentario. */
   addLabel?: React.ReactNode;
+
+  /** Descripción del estado vacío. */
   emptyDescription?: React.ReactNode;
+
+  /** Etiqueta para la sección de respuestas de un hilo. */
   replyLabel?: React.ReactNode;
+
+  /** Etiqueta visible para hilos/respuestas resueltos. */
   resolvedLabel?: React.ReactNode;
+
+  /** Etiqueta visible para hilos/respuestas abiertos. */
   openLabel?: React.ReactNode;
+
+  /** ID del comentario activo; cuando cambia, el rail intenta hacer scroll hacia ese hilo. */
   activeCommentId?: string | null;
+
+  /** Clase adicional para el contenedor raíz. */
   className?: string;
+
+  /** Estilos inline opcionales para el contenedor raíz. */
   style?: React.CSSProperties;
 };
 
+/**
+ * Formatea una fecha de comentario de forma corta para UI compacta.
+ *
+ * @param timestamp Marca de tiempo en milisegundos o segundos ya normalizada por la capa superior.
+ * @returns Fecha legible o `Sin fecha` cuando el valor no es válido.
+ */
 const formatTimestamp = (timestamp?: number) => {
   if (!timestamp || !Number.isFinite(timestamp)) return 'Sin fecha';
 
@@ -32,6 +71,7 @@ const formatTimestamp = (timestamp?: number) => {
   }
 };
 
+/** Formatter compartido para fechas de comentarios dentro del rail. */
 const COMMENT_DATE_FORMATTER = new Intl.DateTimeFormat('es-ES', {
   day: '2-digit',
   month: 'short',
@@ -39,14 +79,28 @@ const COMMENT_DATE_FORMATTER = new Intl.DateTimeFormat('es-ES', {
   minute: '2-digit',
 });
 
+/**
+ * Construye una etiqueta singular/plural para contadores compactos.
+ */
 const formatCountLabel = (count: number, singular: string, plural: string) => `${count} ${count === 1 ? singular : plural}`;
 
+/**
+ * Construye el resumen del header del rail.
+ *
+ * Incluye cantidad de hilos y, si aplica, cantidad de respuestas visibles.
+ */
 const formatThreadSummary = (threadCount: number, replyCount: number) => {
   const threadLabel = formatCountLabel(threadCount, 'hilo', 'hilos');
   if (replyCount <= 0) return threadLabel;
   return `${threadLabel} · ${formatCountLabel(replyCount, 'respuesta', 'respuestas')} en la página actual`;
 };
 
+/**
+ * Construye la metadata compacta de un comentario.
+ *
+ * Prioriza referencia de campo, página y fecha para que el usuario pueda
+ * ubicar el hilo dentro del documento sin abrir más paneles.
+ */
 const formatCommentMeta = (item: DesignerCommentItem) => {
   const segments: string[] = [];
   if (item.schemaUid) segments.push(`Campo ${item.schemaUid}`);
@@ -56,6 +110,11 @@ const formatCommentMeta = (item: DesignerCommentItem) => {
   return segments.join(' · ');
 };
 
+/**
+ * Devuelve respuestas visibles y ordenadas cronológicamente.
+ *
+ * Se descartan respuestas sin texto para evitar ruido visual en el rail.
+ */
 const getVisibleReplies = (replies?: DesignerCommentItem['replies']) =>
   Array.isArray(replies)
     ? replies
@@ -65,10 +124,16 @@ const getVisibleReplies = (replies?: DesignerCommentItem['replies']) =>
     : [];
 
 type CommentPillProps = {
+  /** Contenido visible dentro del pill. */
   children: React.ReactNode;
+
+  /** Tono visual del pill. */
   tone?: 'muted' | 'info' | 'success';
 };
 
+/**
+ * Badge/pill pequeño usado para estado de hilo y conteo de respuestas.
+ */
 const CommentPill = ({ children, tone = 'muted' }: CommentPillProps) => {
   const palette =
     tone === 'success'
@@ -93,6 +158,24 @@ const CommentPill = ({ children, tone = 'muted' }: CommentPillProps) => {
   );
 };
 
+/**
+ * Rail de comentarios del sidebar derecho.
+ *
+ * Responsabilidades:
+ *
+ * - presentar hilos y respuestas de comentarios;
+ * - mostrar estado abierto/resuelto;
+ * - hacer scroll automático hacia el comentario activo;
+ * - mostrar estado vacío cuando no hay hilos;
+ * - exponer acción opcional para crear nuevo comentario.
+ *
+ * Restricciones:
+ *
+ * - no modifica comentarios directamente;
+ * - no conoce la geometría del canvas;
+ * - no abre modales por sí mismo;
+ * - no resuelve permisos colaborativos.
+ */
 const CommentsRail = ({
   items,
   onAdd,
@@ -108,9 +191,13 @@ const CommentsRail = ({
   className,
   style,
 }: CommentsRailProps) => {
+  /** Mapa de refs por ID de comentario para soportar scroll hacia el hilo activo. */
   const itemRefs = useRef(new Map<string, HTMLElement>());
+
+  /** Total de respuestas visibles en todos los hilos renderizados. */
   const replyTotal = items.reduce((total, item) => total + getVisibleReplies(item.replies).length, 0);
 
+  /** Centra visualmente el hilo activo cuando `activeCommentId` cambia. */
   useEffect(() => {
     if (!activeCommentId) return;
     const activeNode = itemRefs.current.get(activeCommentId);

@@ -1,6 +1,16 @@
+/**
+ * SchemaDropCommitFlash — micro feedback al confirmar un drop.
+ *
+ * Muestra un destello visual en la coordenada donde se creó el schema, usando
+ * la posición del paper y la conversión mm→px. No altera el modelo de datos.
+ */
+
 import React from 'react';
 import { mergeClassNames } from '../../shared/className.js';
 
+/**
+ * Props del destello visual de confirmación de drop.
+ */
 export type SchemaDropCommitFlashProps = {
   paperRect: { left: number; top: number } | null;
   xMm: number;
@@ -10,8 +20,14 @@ export type SchemaDropCommitFlashProps = {
   icon?: React.ReactNode;
 };
 
+/**
+ * Factor de conversión de milímetros PDF a píxeles CSS.
+ */
 const MM_TO_PX = 3.7795275591;
 
+/**
+ * Renderiza una animación breve en el punto donde se confirmó el drop.
+ */
 const SchemaDropCommitFlash = ({
   paperRect,
   xMm,

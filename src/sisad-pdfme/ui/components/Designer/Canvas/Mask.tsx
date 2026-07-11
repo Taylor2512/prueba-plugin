@@ -1,9 +1,21 @@
+/**
+ * Mask — overlay visual para páginas no activas o bloqueadas del canvas.
+ *
+ * Se usa para comunicar que una página existe/renderiza, pero no es la página
+ * actualmente interactiva para Moveable/Selecto. No debe ocultar información
+ * crítica ni reemplazar reglas de acceso de datos.
+ */
 import React from 'react';
 import { Size } from '@sisad-pdfme/common';
 import { RULER_HEIGHT, DESIGNER_CLASSNAME } from '../../../constants.js';
 import { theme } from 'antd';
 import { mergeClassNames } from '../shared/className.js';
 
+/**
+ * Props del overlay de máscara.
+ *
+ * Extiende `Size` porque la máscara se dimensiona con width/height del Paper.
+ */
 export type MaskProps = Size & {
   className?: string;
   style?: React.CSSProperties;
@@ -11,6 +23,9 @@ export type MaskProps = Size & {
   blur?: number;
 };
 
+/**
+ * Renderiza una capa no interactiva sobre una página.
+ */
 const Mask = ({ width, height, className, style, maskColor, blur = 1 }: MaskProps) => {
   const { token } = theme.useToken();
 

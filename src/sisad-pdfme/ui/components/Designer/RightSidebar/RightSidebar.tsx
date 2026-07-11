@@ -21,24 +21,56 @@ import {
   type RightSidebarContextHeader,
 } from './contextHeader.js';
 
+/**
+ * Props extendidas del sidebar derecho del diseñador.
+ *
+ * Este componente orquesta las vistas de campos, detalle, documentos y
+ * comentarios. También controla presentación responsive, tabs internas,
+ * customización de slots y configuración de rails auxiliares.
+ */
 export type RightSidebarProps = SidebarProps & {
+  /** Ancho deseado del sidebar cuando el host lo usa como panel acoplado. */
   width?: number;
+
+  /** Indica si el sidebar se renderiza desacoplado del layout principal. */
   detached?: boolean;
+
+  /** Presentación forzada o automática del sidebar. */
   presentation?: DesignerSidebarPresentation;
+
+  /** Breakpoint para alternar entre presentación docked/overlay. */
   responsiveBreakpoint?: number;
+
+  /** Ancho de viewport inyectado por el host; si falta, se usa `window.innerWidth`. */
   viewportWidth?: number;
+
+  /** Envuelve el contenido con `SidebarFrame` adicional para layouts compuestos. */
   useLayoutFrame?: boolean;
+
+  /** Clase adicional del root. */
   className?: string;
+
+  /** ID del aside raíz. */
   rootId?: string;
+
+  /** Controla aplicación de estilos por defecto. */
   useDefaultStyles?: boolean;
+
+  /** Indica si el canvas debe preservar espacio para el sidebar. */
   preserveCanvasSpace?: boolean;
+
+  /** Modo de rail documental cuando comparte espacio con el contenido. */
   documentsRailMode?: 'split' | 'stacked' | 'auto';
+
+  /** Clases por subregión. */
   classNames?: {
     root?: string;
     content?: string;
     listView?: string;
     detailView?: string;
   };
+
+  /** Overrides de estilo por subregión. */
   styleOverrides?: {
     root?: React.CSSProperties;
     content?: React.CSSProperties;
@@ -46,19 +78,47 @@ export type RightSidebarProps = SidebarProps & {
     listView?: React.CSSProperties;
     detailView?: React.CSSProperties;
   };
+
+  /** Bridge imperativo del diseñador. */
   bridge?: DesignerComponentBridge;
+
+  /** Bridge para documentos multi-archivo. */
   documents?: DesignerDocumentsBridge;
+
+  /** Bridge alternativo/alias para páginas. */
   pages?: DesignerDocumentsBridge;
+
+  /** Bridge de comentarios. */
   comments?: DesignerCommentsBridge;
+
+  /** Controla si se muestra rail/tab de documentos. */
   showDocumentsRail?: boolean;
+
+  /** Vista solicitada por el host o `auto` para control interno. */
   viewMode?: 'auto' | 'fields' | 'detail' | 'docs' | 'comments';
+
+  /** Cuando hay un único schema seleccionado, enfoca automáticamente detalle. */
   autoFocusDetail?: boolean;
+
+  /** Muestra tabs internas de documentos/comentarios/campos. */
   showDocumentsAsTab?: boolean;
+
+  /** Modo de acceso documental reservado para compatibilidad con hosts. */
   documentsAccessMode?: 'always' | 'tab';
+
+  /** Notifica cambios de vista efectivos al host. */
   onViewModeChange?: (_mode: 'fields' | 'detail' | 'docs' | 'comments') => void;
+
+  /** Header contextual adicional, estático o derivado del modo activo. */
   contextHeader?: RightSidebarContextHeader;
+
+  /** Comandos de selección disponibles para ListView/DetailView. */
   selectionCommands?: SelectionCommandSet;
+
+  /** Overrides de etiquetas/iconos por modo. */
   modeMetaOverrides?: Partial<Record<'fields' | 'detail' | 'docs' | 'comments', Partial<SidebarModeMeta>>>;
+
+  /** Componentes reemplazables para adaptar el sidebar desde el host. */
   components?: {
     listView?: typeof ListView;
     detailView?: typeof DetailView;
@@ -67,6 +127,12 @@ export type RightSidebarProps = SidebarProps & {
   };
 };
 
+/**
+ * Normaliza una clase del host para convertirla en clase custom del runtime.
+ *
+ * @param value Clase declarada por el host.
+ * @returns Clase prefijada con `DESIGNER_CLASSNAME` o string vacío.
+ */
 const toDesignerCustomClassName = (value?: string) => {
   if (typeof value !== 'string') return '';
   const normalized = value.trim();
@@ -75,13 +141,20 @@ const toDesignerCustomClassName = (value?: string) => {
 };
 
 type SidebarModeMeta = {
+  /** Etiqueta corta mostrada en tab. */
   shortLabel: string;
+
+  /** Ícono visible en tab. */
   icon: React.ReactNode;
+
+  /** Tooltip/título del tab. */
   title: string;
+
+  /** Etiqueta accesible del tab. */
   ariaLabel: string;
 };
 
-// Static — never changes, no reason to recreate inside render
+/** IDs estables de paneles para relaciones tab/tabpanel. */
 const PANEL_ID_BY_MODE: Record<'fields' | 'detail' | 'docs' | 'comments', string> = {
   fields: 'sisad-pdfme-right-sidebar-panel-fields',
   detail: 'sisad-pdfme-right-sidebar-panel-detail',
@@ -89,6 +162,7 @@ const PANEL_ID_BY_MODE: Record<'fields' | 'detail' | 'docs' | 'comments', string
   docs: 'sisad-pdfme-right-sidebar-panel-docs',
 };
 
+/** IDs estables de tabs para accesibilidad. */
 const TAB_ID_BY_MODE: Record<'fields' | 'detail' | 'docs' | 'comments', string> = {
   fields: 'sisad-pdfme-right-sidebar-tab-fields',
   detail: 'sisad-pdfme-right-sidebar-tab-detail',
@@ -96,6 +170,7 @@ const TAB_ID_BY_MODE: Record<'fields' | 'detail' | 'docs' | 'comments', string> 
   docs: 'sisad-pdfme-right-sidebar-tab-docs',
 };
 
+/** Metadata visual por modo del sidebar. */
 const sidebarModeMeta: Record<'fields' | 'detail' | 'docs' | 'comments', SidebarModeMeta> = {
   fields: {
     shortLabel: 'Campos',
@@ -123,8 +198,29 @@ const sidebarModeMeta: Record<'fields' | 'detail' | 'docs' | 'comments', Sidebar
   },
 };
 
+/** Orden de navegación por teclado entre tabs del sidebar. */
 const sidebarModes = ['fields', 'detail', 'comments', 'docs'] as const;
 
+/**
+ * Sidebar derecho principal del diseñador.
+ *
+ * Responsabilidades:
+ *
+ * - resolver selección activa desde `activeElements`;
+ * - alternar entre lista, detalle, documentos y comentarios;
+ * - decidir presentación docked/overlay según viewport;
+ * - renderizar tabs accesibles cuando aplica;
+ * - inyectar componentes reemplazables;
+ * - coordinar rail de documentos con contenido principal;
+ * - notificar cambios de vista al host.
+ *
+ * Restricciones:
+ *
+ * - no debe mutar schemas directamente;
+ * - no debe manipular DOM del canvas;
+ * - no debe conocer reglas internas de Moveable/Selecto;
+ * - debe delegar acciones de edición a ListView, DetailView o comandos.
+ */
 const Sidebar = (props: RightSidebarProps) => {
   const { sidebarOpen, activeElements, schemas } = props;
   const { autoFocusDetail, onViewModeChange } = props;
@@ -147,6 +243,8 @@ const Sidebar = (props: RightSidebarProps) => {
   const CommentsViewComponent = props.components?.commentsView || CommentsRail;
   const ListViewComponent = props.components?.listView || ListView;
   const DetailViewComponent = props.components?.detailView || DetailView;
+
+  /** Selección activa derivada de elementos DOM seleccionados. */
   const { activeSchemas, activeSchemaIds } = useMemo(() => {
     const idSet = new Set<string>();
     const ids: string[] = [];
@@ -158,27 +256,35 @@ const Sidebar = (props: RightSidebarProps) => {
       activeSchemaIds: ids,
     };
   }, [activeElements, schemas]);
+
   const activeSchemaCount = activeSchemas.length;
   const [internalViewMode, setInternalViewMode] = useState<'fields' | 'detail' | 'docs' | 'comments'>('fields');
   const requestedViewMode = props.viewMode || 'auto';
   const showDocumentsRail = props.showDocumentsRail !== false && (Boolean(props.pages) || Boolean(props.documents));
   const showCommentsRail = Boolean(props.comments);
+
+  /** Presentación responsive final del sidebar. */
   const actualPresentation = useMemo<DesignerSidebarPresentation>(() => {
     if (props.presentation === 'overlay') return 'overlay';
     if (props.presentation === 'docked') return 'docked';
     return viewportWidth <= responsiveBreakpoint ? 'overlay' : 'docked';
   }, [props.presentation, responsiveBreakpoint, viewportWidth]);
+
+  /** Decide si el rail documental comparte fila o se apila arriba del contenido. */
   const documentsRailMode = useMemo<'split' | 'stacked'>(() => {
     if ((props.documentsRailMode || 'auto') === 'split') return 'split';
     if (props.documentsRailMode === 'stacked') return 'stacked';
     return viewportWidth <= responsiveBreakpoint + 140 ? 'stacked' : 'split';
   }, [props.documentsRailMode, responsiveBreakpoint, viewportWidth]);
+
   const resolvedViewMode: 'fields' | 'detail' | 'docs' | 'comments' =
     requestedViewMode !== 'auto' ? requestedViewMode : internalViewMode;
   const pagesBridge = props.pages || props.documents;
   const docsBridge = props.documents;
   const panelIdByMode = PANEL_ID_BY_MODE;
   const tabIdByMode = TAB_ID_BY_MODE;
+
+  /** Metadata visual final por modo, con overrides opcionales del host. */
   const effectiveSidebarModeMeta = useMemo(() => {
     const overrides = props.modeMetaOverrides || {};
     return {
@@ -189,6 +295,7 @@ const Sidebar = (props: RightSidebarProps) => {
     } as Record<'fields' | 'detail' | 'docs' | 'comments', SidebarModeMeta>;
   }, [props.modeMetaOverrides]);
 
+  /** Sincroniza auto-focus de detalle cuando el modo solicitado es `auto`. */
   useEffect(() => {
     if (requestedViewMode !== 'auto') return;
 
@@ -209,6 +316,7 @@ const Sidebar = (props: RightSidebarProps) => {
     }
   }, [requestedViewMode, activeSchemaCount, autoFocusDetail, internalViewMode, onViewModeChange, showCommentsRail]);
 
+  /** Modo semántico final del panel renderizado. */
   const resolvedPanelMode: 'list' | 'detail' | 'bulk' | 'docs' | 'comments' =
     resolvedViewMode === 'docs'
       ? 'docs'
@@ -252,6 +360,7 @@ const Sidebar = (props: RightSidebarProps) => {
     />
   ) : null;
 
+  /** Navegación por teclado entre tabs del panel derecho. */
   const handlePanelSwitcherKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (requestedViewMode !== 'auto') return;
 
@@ -286,6 +395,7 @@ const Sidebar = (props: RightSidebarProps) => {
     />
   );
 
+  /** Nodo principal renderizado según el modo efectivo. */
   const contentNode = resolvedPanelMode === 'comments' ? (
     <CommentsViewComponent
       items={props.comments?.items ?? []}

@@ -1,3 +1,10 @@
+/**
+ * detailWidgets — widgets visuales especializados del inspector.
+ *
+ * Actualmente contiene el selector de color híbrido usado por `nativeColor`, con
+ * paleta rápida, input nativo y campo HEX. Sus eventos se aíslan para evitar
+ * interferencia con Selecto, Moveable o drop del canvas.
+ */
 import React from 'react';
 import { Input, Popover, Tooltip } from 'antd';
 import { Palette, Pipette } from 'lucide-react';
@@ -5,6 +12,9 @@ import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { mergeClassNames } from '../../shared/className.js';
 import { stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
 
+/**
+ * Paleta rápida de colores frecuentes para el inspector.
+ */
 const COLOR_PRESETS = [
   '#000000',
   '#ffffff',
@@ -24,6 +34,12 @@ const COLOR_PRESETS = [
   '#78350f',
 ];
 
+/**
+ * Selector de color híbrido con presets, input nativo y campo HEX.
+ *
+ * @param props Valor actual, callback de cambio y normalizador hexadecimal.
+ * @returns Widget de color aislado de eventos del canvas.
+ */
 export const ColorPickerWidget = ({
   value,
   onChange,

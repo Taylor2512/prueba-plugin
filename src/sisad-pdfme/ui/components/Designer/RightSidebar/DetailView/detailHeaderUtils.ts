@@ -1,7 +1,17 @@
+/**
+ * detailHeaderUtils — helpers puros para construir el resumen del header.
+ *
+ * Centraliza etiquetas de estado, tooltip de metadata, posición, propietario y
+ * color del schema activo. No depende de React ni de Ant Design, por lo que puede
+ * reutilizarse en tests, previews o documentación del inspector.
+ */
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
 import { getSchemaStateLabel, getSchemaTypeLabel } from '../../shared/designerLabels.js';
 
+/**
+ * Resumen normalizado usado por `DetailHeaderCard`.
+ */
 type HeaderSummary = {
   tags: Array<{ label: string; color: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue' }>;
   overflowTooltip: string;
@@ -14,6 +24,13 @@ type HeaderSummary = {
 };
 
 /** Build the short metadata tooltip shown on the "+N" overflow indicator. */
+/**
+ * Construye el tooltip de metadata técnica para el indicador de overflow.
+ *
+ * @param activeSchema Schema activo del inspector.
+ * @param schemaConfig Configuración designer asociada al schema.
+ * @returns Texto multilinea con metadata disponible o fallback.
+ */
 export const buildMetaTooltip = (
   activeSchema: SchemaForUI,
   schemaConfig: SchemaDesignerConfig | null | undefined,
@@ -38,6 +55,13 @@ export const buildMetaTooltip = (
   return lines.join('\n') || 'Sin metadatos adicionales';
 };
 
+/**
+ * Normaliza nombre, tipo, estado, posición, contexto y color del header.
+ *
+ * @param activeSchema Schema activo del inspector.
+ * @param schemaConfig Configuración designer asociada al schema.
+ * @returns Resumen listo para renderizar por `DetailHeaderCard`.
+ */
 export const buildDetailHeaderSummary = (
   activeSchema: SchemaForUI,
   schemaConfig: SchemaDesignerConfig | null | undefined,

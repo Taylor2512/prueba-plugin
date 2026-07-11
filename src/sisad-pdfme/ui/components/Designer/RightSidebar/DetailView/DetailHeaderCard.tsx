@@ -1,3 +1,10 @@
+/**
+ * DetailHeaderCard — resumen superior del schema activo en el inspector.
+ *
+ * Muestra nombre, tipo, estado, destinatario, posición y acción de regreso con
+ * densidad responsiva. Consume helpers puros de metadata para evitar duplicar
+ * reglas visuales dentro del componente React.
+ */
 import React from 'react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import { Badge, Tag, Tooltip } from 'antd';
@@ -11,6 +18,9 @@ import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
 import { buildDetailHeaderSummary } from './detailHeaderUtils.js';
 import { mergeClassNames } from '../../shared/className.js';
 
+/**
+ * Props del header compacto del DetailView.
+ */
 type DetailHeaderCardProps = {
   activeSchema: SchemaForUI;
   schemaConfig?: SchemaDesignerConfig | null;
@@ -31,6 +41,12 @@ type DetailHeaderCardProps = {
   backTooltip?: string;
 };
 
+/**
+ * Renderiza el resumen del schema activo con densidad adaptativa.
+ *
+ * @param props Metadata del schema, tags y acciones del header.
+ * @returns Header visual del inspector.
+ */
 const DetailHeaderCard = ({
   activeSchema,
   schemaConfig,

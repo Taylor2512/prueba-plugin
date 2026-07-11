@@ -1,16 +1,47 @@
+/**
+ * useFloatingToolbarPosition — calcula posición del toolbar contextual.
+ *
+ * Resuelve bounds de elementos DOM seleccionados relativos al canvas y delega
+ * el posicionamiento seguro a las utilidades de floatingSurfaceGeometry.
+ */
+
 import {
   resolveCenteredFloatingSurfacePosition,
   resolveSelectionToolbarPosition,
 } from './floatingSurfaceGeometry.js';
 
+/**
+ * Bounds agregados de una o varias selecciones en coordenadas del canvas.
+ */
 type Bounds = { top: number; left: number; right: number; bottom: number };
+/**
+ * Tamaño de página usado como fallback para el viewport de posicionamiento.
+ */
 type PageSize = { width: number; height: number };
+/**
+ * Tamaño de la superficie flotante que se debe posicionar.
+ */
 type SurfaceSize = { width: number; height: number };
 
+/**
+ * Ancho default estimado del toolbar flotante.
+ */
 const TOOLBAR_WIDTH = 384;
+/**
+ * Alto default estimado del toolbar flotante.
+ */
 const TOOLBAR_HEIGHT = 224;
+/**
+ * Tamaño por defecto para cálculos cuando el caller no provee uno.
+ */
 const DEFAULT_SURFACE_SIZE: SurfaceSize = { width: TOOLBAR_WIDTH, height: TOOLBAR_HEIGHT };
 
+/**
+ * Calcula posición y tamaño de la selección activa para ubicar el toolbar.
+ *
+ * Aunque se expone como hook por convención de consumo React, no usa hooks
+ * internos; calcula sin side effects a partir del DOM actual.
+ */
 export const useFloatingToolbarPosition = (
   activeElements: HTMLElement[],
   pageSize: PageSize,

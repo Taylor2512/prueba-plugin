@@ -1,3 +1,24 @@
+/**
+ * Canvas — núcleo visual e interactivo del diseñador SISAD PDFME.
+ *
+ * Este componente orquesta el lienzo completo del editor:
+ *
+ * - renderizado de páginas/Paper y schemas;
+ * - selección con Selecto;
+ * - transformación con Moveable;
+ * - guías, padding, máscara, snap lines y overlays;
+ * - menú contextual y toolbar de selección;
+ * - edición inline de texto/nombre;
+ * - creación de comentarios libres;
+ * - estados no listos del canvas: loading, error, página vacía y desconexión;
+ * - compatibilidad multidocumento/multipágina.
+ *
+ * Regla arquitectónica:
+ * Este archivo coordina interacciones del canvas, pero no debe contener reglas
+ * de negocio del host, lógica Uanataca, lógica de StepOne/StepTwo ni hacks de
+ * integración externos. Las operaciones deben pasar por comandos, bridge o
+ * callbacks inyectados.
+ */
 import React,
 {
   Ref,
@@ -70,37 +91,81 @@ import {
 import { useCanvasRenderState } from '../../../../canvas/useCanvasRenderState.js';
 import { isCanvasInteractive } from '../../../../canvas/canvasRenderState.js';
 
+/**
+ * Convierte milímetros a píxeles usando el factor CSS estándar de 96 DPI.
+ *
+ * Se usa para calcular bounds visuales de Moveable y overlays dentro del Paper.
+ */
 const mm2px = (mm: number) => mm * 3.7795275591;
 
+/**
+ * Convierte una medida CSS en px a número crudo.
+ */
 const fmt4Num = (prop: string) => Number(prop.replace('px', ''));
+/**
+ * Convierte una medida CSS en px a milímetros de template, redondeada.
+ */
 const fmt = (prop: string) => round(fmt4Num(prop) / ZOOM, 2);
+/**
+ * Indica si el handle de resize modifica el origen superior/izquierdo.
+ */
 const isTopLeftResize = (d: string) => d === '-1,-1' || d === '-1,0' || d === '0,-1';
+/**
+ * Normaliza rotación a un rango positivo 0..359.
+ */
 const normalizeRotate = (angle: number) => ((angle % 360) + 360) % 360;
+/**
+ * Extrae el ángulo desde un transform CSS `rotate(Xdeg)` y lo normaliza.
+ */
 const parseRotateFromTransform = (transform: string) =>
   normalizeRotate(Number(transform.replace('rotate(', '').replace('deg)', '')));
+/**
+ * Construye cambios de posición compatibles con `changeSchemas`.
+ */
 const buildPositionChanges = (schemaId: string, top: string, left: string) => [
   { key: 'position.y', value: fmt(top), schemaId },
   { key: 'position.x', value: fmt(left), schemaId },
 ];
+/**
+ * Construye cambios de tamaño y posición compatibles con `changeSchemas`.
+ */
 const buildSizeAndPositionChanges = (schemaId: string, width: string, height: string, top: string, left: string) => [
   { key: 'width', value: fmt(width), schemaId },
   { key: 'height', value: fmt(height), schemaId },
   { key: 'position.y', value: fmt(top), schemaId },
   { key: 'position.x', value: fmt(left), schemaId },
 ];
+/**
+ * Resuelve padding del PDF base en milímetros.
+ *
+ * Solo aplica cuando el template usa PDF en blanco; para PDFs reales el padding
+ * se considera cero porque el contenido del documento define el área útil.
+ */
 const getPaddingMm = (basePdf: BasePdf): [number, number, number, number] => {
   if (!isBlankPdf(basePdf)) return [0, 0, 0, 0];
   const [top, right, bottom, left] = basePdf.padding;
   return [top, right, bottom, left];
 };
+/**
+ * Limita un valor numérico dentro de un rango inclusivo.
+ */
 const clamp = (value: number, min: number, max: number) => Math.min(Math.max(value, min), max);
+/**
+ * Convierte dataset numérico a number entero seguro.
+ */
 const toNumber = (value: string | undefined): number | null => {
   if (!value) return null;
   const parsed = Number(value);
   return Number.isInteger(parsed) ? parsed : null;
 };
+/**
+ * Tipos cuyo doble click debe priorizar edición de contenido visible.
+ */
 const CONTENT_DRIVEN_INLINE_EDIT_TYPES = new Set(['text', 'multivariabletext']);
 
+/**
+ * Construye selector CSS seguro para ubicar un schema por `data-schema-id`.
+ */
 const buildSchemaSelector = (schemaId: string): string => {
   if (typeof CSS !== 'undefined' && typeof CSS.escape === 'function') {
     return `[data-schema-id="${CSS.escape(schemaId)}"]`;
@@ -108,6 +173,12 @@ const buildSchemaSelector = (schemaId: string): string => {
   return `[data-schema-id="${schemaId.replace(/"/g, '\\"')}"]`;
 };
 
+/**
+ * Estado serializable del menú contextual del canvas.
+ *
+ * Guarda modo, coordenada de apertura y schemas objetivo para evitar depender
+ * del evento original después de que React lo libere.
+ */
 type CanvasContextMenuState = {
   mode: 'empty' | 'single' | 'multi';
   x: number;
@@ -115,6 +186,9 @@ type CanvasContextMenuState = {
   targetIds: string[];
 };
 
+/**
+ * Interfaz mínima consumida por Canvas desde @scena/react-guides.
+ */
 interface GuidesInterface {
   getGuides(): number[];
   scroll(pos: number): void;
@@ -123,6 +197,12 @@ interface GuidesInterface {
   resize(): void;
 }
 
+/**
+ * Feature flags visuales/interactivos del canvas.
+ *
+ * Permiten apagar Selecto, Moveable, guías, padding, máscara o snap lines sin
+ * modificar el flujo principal del diseñador.
+ */
 export type CanvasFeatureToggles = {
   selecto?: boolean;
   snapLines?: boolean;
@@ -134,6 +214,11 @@ export type CanvasFeatureToggles = {
   deleteButton?: boolean;
 };
 
+/**
+ * Overrides visuales opcionales para slots del canvas.
+ *
+ * Se usan para tematizar sin introducir CSS host contra clases internas.
+ */
 export type CanvasStyleOverrides = {
   canvasContainer?: React.CSSProperties;
   selectoSelection?: {
@@ -165,6 +250,9 @@ export type CanvasStyleOverrides = {
   };
 };
 
+/**
+ * Clases CSS opcionales para slots controlados del canvas.
+ */
 export type CanvasClassNames = {
   canvasContainer?: string;
   selecto?: string;
@@ -176,6 +264,12 @@ export type CanvasClassNames = {
   emptyState?: string;
 };
 
+/**
+ * Slots reemplazables del canvas.
+ *
+ * Útil para tests, laboratorios visuales o integraciones que necesitan usar
+ * variantes controladas de Selecto/Moveable/Guides sin duplicar Canvas.
+ */
 export type CanvasComponentSlots = {
   Selecto?: typeof Selecto;
   SnapLines?: typeof SnapLines;
@@ -185,6 +279,13 @@ export type CanvasComponentSlots = {
   Moveable?: typeof Moveable;
 };
 
+/**
+ * Props principales del Canvas del diseñador.
+ *
+ * Agrupan documento base, páginas, schemas, selección, callbacks de edición,
+ * refs de Paper, slots visuales, bridge runtime, comandos, colaboración y estado
+ * de renderizado.
+ */
 export interface CanvasProps {
   basePdf: BasePdf;
   height: number;
@@ -239,6 +340,13 @@ export interface CanvasProps {
   onRetryRender?: () => void;
 }
 
+/**
+ * Componente principal de canvas.
+ *
+ * Coordina renderizado del documento y todas las capas de interacción. Exporta
+ * un ref imperativo extendido para abrir/cancelar edición inline desde comandos
+ * externos del diseñador.
+ */
 const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | null>) {
   const {
     basePdf,
@@ -281,6 +389,11 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     lastSyncAt,
     onRetryRender,
 } = props;
+  /**
+   * Slots efectivos usados por el canvas.
+   *
+   * Cada slot puede reemplazarse desde props para pruebas o personalización.
+   */
   const SelectoSlot = components?.Selecto || Selecto;
   const SnapLinesSlot = components?.SnapLines || SnapLines;
   const GuidesSlot = components?.Guides || Guides;
@@ -288,6 +401,11 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   const PaddingSlot = components?.Padding || Padding;
   const MoveableSlot = components?.Moveable || Moveable;
 
+  /**
+   * Feature flags normalizados.
+   *
+   * Por defecto todo está activo salvo que el host lo apague explícitamente.
+   */
   const feature = {
     selecto: featureToggles?.selecto !== false,
     snapLines: featureToggles?.snapLines !== false,
@@ -297,21 +415,51 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     mask: featureToggles?.mask !== false,
     moveable: featureToggles?.moveable !== false,
   };
+  /**
+   * Tokens visuales Ant Design usados para tonos de selección/outline.
+   */
   const { token } = theme.useToken();
+  /**
+   * Registry de plugins necesario para determinar capacidades como rotación.
+   */
   const pluginsRegistry = useContext(PluginsRegistry);
+  /**
+   * Refs a guías verticales/horizontales por página.
+   */
   const verticalGuides = useRef<GuidesInterface[]>([]);
   const horizontalGuides = useRef<GuidesInterface[]>([]);
+  /**
+   * Ref al adapter Moveable para actualizar rects y delegar dragStart manual.
+   */
   const moveable = useRef<MoveableComponent>(null);
 
+  /**
+   * Estado de teclas modificadoras usadas para selección múltiple, ratio y snap.
+   */
   const [modifierKeys, setModifierKeys] = useState({ shift: false, alt: false });
+  /**
+   * Estado local de edición inline activa.
+   */
   const [editing, setEditing] = useState(false);
   const [inlineEditSession, setInlineEditSession] = useState<InlineEditSession | null>(null);
+  /**
+   * Snap lines visibles durante drag/resize.
+   */
   const [snapLines, setSnapLines] = useState<SnapLine[]>([]);
   const snapRafRef = useRef<number | null>(null);
   const snapLinesKeyRef = useRef<string>('');
+  /**
+   * Flags de interacción transformacional usados por overlays y guards.
+   */
   const [isDragging, setIsDragging] = useState(false);
   const [isResizing, setIsResizing] = useState(false);
   const [isRotating, setIsRotating] = useState(false);
+  /**
+   * Estado del menú contextual.
+   *
+   * `pendingContextMenu` permite abrir menú sobre un target que primero debe
+   * sincronizarse como selección activa.
+   */
   const [contextMenuState, setContextMenuState] = useState<{
     contextMenu: CanvasContextMenuState | null;
     pendingContextMenu: CanvasContextMenuState | null;
@@ -321,13 +469,25 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   });
   const contextMenu = contextMenuState.contextMenu;
   const pendingContextMenu = contextMenuState.pendingContextMenu;
+  /**
+   * Nodo raíz scrollable del canvas.
+   */
   const rootRef = useRef<HTMLDivElement>(null);
+  /**
+   * Sesión de selección por región anclada a página/documento real.
+   *
+   * Evita que un rect de selección que cruza visualmente otra página capture
+   * schemas fuera de la página donde inició el gesto.
+   */
   const regionSelectionSessionRef = useRef<{
     pageIndex: number | null;
     pageNumber: number | null;
     documentId?: string;
     startedInsidePaper: boolean;
   } | null>(null);
+  /**
+   * Servicio de coordenadas usado para adaptar Selecto al sistema del diseñador.
+   */
   const coordinateService = useMemo(
     () =>
       new DesignerCoordinateService({
@@ -344,11 +504,22 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     setContextMenuState((prev) => ({ ...prev, pendingContextMenu: next }));
   }, []);
 
+  /**
+   * Lista efectiva de schemas renderizados.
+   *
+   * Puede diferir de `schemasList` cuando existe una vista filtrada o preprocesada.
+   */
   const renderedPageSchemasList = renderedSchemasList || schemasList;
+  /**
+   * Schemas visibles de la página actual del cursor.
+   */
   const currentPageSchemas = useMemo(
     () => renderedPageSchemasList[pageCursor] || [],
     [pageCursor, renderedPageSchemasList],
   );
+  /**
+   * IDs DOM de elementos seleccionados.
+   */
   const activeElementIds = useMemo(
     () => {
       const ids: string[] = [];
@@ -376,11 +547,20 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   );
   // Keep Moveable scoped to the real page of the current selection, not the
   // global cursor page, so multi-page selections don't drift.
+  /**
+   * Targets efectivos para Moveable.
+   *
+   * En selección multipágina, filtra al pageIndex real para evitar drift de
+   * transformaciones entre páginas.
+   */
   const moveableTargets = useMemo(() => {
     const targetPageIndex = moveablePageIndex;
     if (isSameDocumentPageSelection(activeElements)) return activeElements;
     return activeElements.filter((el) => toNumber(el.dataset.pageIndex) === targetPageIndex);
   }, [activeElements, moveablePageIndex]);
+  /**
+   * Variables disponibles para reemplazo de placeholders en modo viewer/readOnly.
+   */
   const placeholderVariables = useMemo(
     () =>
       Object.fromEntries(
@@ -388,11 +568,17 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
       ) as Record<string, string>,
     [schemasList],
   );
+  /**
+   * Template mínimo usado por StaticSchema/Renderer para render de página.
+   */
   const paperTemplate = useMemo(
     () => ({ schemas: renderedPageSchemasList, basePdf }),
     [basePdf, renderedPageSchemasList],
   );
 
+  /**
+   * Sincroniza teclas modificadoras globales.
+   */
   const onKeydown = (e: KeyboardEvent) => {
     if (e.shiftKey || e.altKey) {
       setModifierKeys({
@@ -401,6 +587,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
       });
     }
   };
+  /**
+   * Libera modificadores y cancela edición con Escape.
+   */
   const onKeyup = (e: KeyboardEvent) => {
     setModifierKeys({
       shift: Boolean(e.shiftKey && e.key !== 'Shift'),
@@ -450,6 +639,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     }
   }, [moveablePageSchemas, prevSchemas]);
 
+  /**
+   * Maneja drag individual de Moveable con snap lines y límites de página.
+   */
   const onDrag = ({ target, top, left }: OnDrag) => {
     const { width: _width, height: _height } = target.style;
     const targetWidthMm = fmt(_width);
@@ -501,6 +693,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     });
   };
 
+  /**
+   * Persiste posición final de drag individual.
+   */
   const onDragEnd = ({ target }: { target: HTMLElement | SVGElement }) => {
     setIsDragging(false);
     const { top, left } = target.style;
@@ -509,6 +704,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     snapLinesKeyRef.current = '';
   };
 
+  /**
+   * Persiste posiciones finales de drag grupal.
+   */
   const onDragEnds = ({ targets }: { targets: (HTMLElement | SVGElement)[] }) => {
     setIsDragging(false);
     const arg = targets.map(({ style: { top, left }, id }) => buildPositionChanges(id, top, left));
@@ -517,10 +715,16 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     snapLinesKeyRef.current = '';
   };
 
+  /**
+   * Aplica rotación visual durante la interacción.
+   */
   const onRotate = ({ target, rotate }: OnRotate) => {
     target.style.transform = `rotate(${rotate}deg)`;
   };
 
+  /**
+   * Persiste rotación final de un schema.
+   */
   const onRotateEnd = ({ target }: { target: HTMLElement | SVGElement }) => {
     setIsRotating(false);
     const normalizedRotate = parseRotateFromTransform(target.style.transform);
@@ -561,6 +765,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     changeSchemas(flatten(arg));
   };
 
+  /**
+   * Aplica resize visual respetando padding y bounds de página.
+   */
   const onResize = ({ target, width, height, direction }: OnResize) => {
     if (!target) return;
     let topPadding = 0;
@@ -617,6 +824,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   const getGuideLines = (guides: GuidesInterface[], index: number) =>
     guides[index] && guides[index].getGuides().map((g) => g * ZOOM);
 
+  /**
+   * Resuelve la página real de un schema desde dataset, selección activa o fallback.
+   */
   const resolvePageIndexForSchema = useCallback(
     (schemaId: string, targetElement?: HTMLElement | null): number | null => {
       const targetPageIndex = targetElement?.dataset.pageIndex;
@@ -647,6 +857,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     [activeElements, pageCursor],
   );
 
+  /**
+   * Busca un schema por ID priorizando página conocida y luego todas las páginas.
+   */
   const resolveSchemaById = useCallback(
     (schemaId: string, pageIndex?: number | null) => {
       const candidates = [
@@ -670,6 +883,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     [pageCursor, renderedPageSchemasList, resolvePageIndexForSchema],
   );
 
+  /**
+   * Ubica el nodo DOM de un schema, con búsqueda scoped por página antes de global.
+   */
   const resolveSchemaElementById = useCallback(
     (schemaId: string, pageIndex?: number | null) => {
       const selector = buildSchemaSelector(schemaId);
@@ -701,6 +917,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     [activeElements, pageCursor, paperRefs, resolvePageIndexForSchema],
   );
 
+  /**
+   * Convierte el rect viewport de un schema a coordenadas relativas al canvas.
+   */
   const resolveInlineEditRect = useCallback((element: HTMLElement) => {
     const canvasRoot = document.querySelector('.sisad-pdfme-designer-canvas') as HTMLElement | null;
     const canvasRect = canvasRoot?.getBoundingClientRect();
@@ -713,6 +932,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     };
   }, []);
 
+  /**
+   * Decide si la edición inline apunta a contenido visible o nombre interno.
+   */
   const resolveInlineEditTarget = useCallback((schemaId: string, target?: InlineEditTarget) => {
     if (target) return target;
     const schema = resolveSchemaById(schemaId);
@@ -724,6 +946,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     return 'name';
   }, [resolveSchemaById]);
 
+  /**
+   * Inicia edición inline para un schema seleccionado.
+   */
   const startInlineEdit = useCallback(
     (schemaId: string, targetRect: HTMLElement, target?: InlineEditTarget) => {
       const schema = resolveSchemaById(schemaId);
@@ -756,6 +981,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     ],
   );
 
+  /**
+   * Devuelve foco a la selección activa o al paper tras cerrar overlays.
+   */
   const refocusCanvas = useCallback(() => {
     requestAnimationFrame(() => {
       const activeEl = activeElements.find(Boolean);
@@ -768,6 +996,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     });
   }, [activeElements]);
 
+  /**
+   * Confirma edición inline y emite cambio si el valor realmente cambió.
+   */
   const finishInlineEdit = useCallback(
     (nextValue: string) => {
       if (!inlineEditSession) return;
@@ -801,6 +1032,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     refocusCanvas();
   }, [refocusCanvas]);
 
+  /**
+   * Expone API imperativa mínima sobre el nodo raíz del canvas.
+   */
   useImperativeHandle(ref, () => {
     const node = rootRef.current;
     if (!node) return null;
@@ -857,6 +1091,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   const handleDragStart = () => setIsDragging(true);
   const handleResizeStart = () => setIsResizing(true);
   const handleRotateStart = () => setIsRotating(true);
+  /**
+   * Abre menú contextual diferenciando canvas vacío, selección única y múltiple.
+   */
   const handleCanvasContextMenu = (event: React.MouseEvent<HTMLDivElement>) => {
     const target = event.target as Element | null;
     if (!target) return;
@@ -904,6 +1141,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     });
   };
 
+  /**
+   * Solicita creación de comentario libre en la página bajo el doble click.
+   */
   const dispatchFreeCommentRequest = useCallback(
     (event: MouseEvent, pageIndex: number) => {
       const target = event.target as Element | null;
@@ -928,6 +1168,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     [activeDocumentId],
   );
 
+  /**
+   * Determina si todos los tipos seleccionados soportan rotación según plugins.
+   */
   const rotatable = useMemo(() => {
     const selectedSchemas = activeSelectionSchemas.filter((s) => activeElementIdSet.has(s.id));
     const schemaTypes = selectedSchemas.map((s) => s.type);
@@ -951,6 +1194,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
 
   // Multi-page: selection/interaction is valid inside ANY rendered paper, not
   // only the cursor page. Scoping to a single paper broke selection on page 2+.
+  /**
+   * Valida si un evento ocurrió dentro de cualquier paper renderizado.
+   */
   const isEventInsideAnyPaper = (target: EventTarget | null) => {
     if (!(target instanceof Node)) return false;
     for (const paper of paperRefs.current) {
@@ -961,6 +1207,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   const isEventInsideActivePaper = (target: EventTarget | null) => isEventInsideAnyPaper(target);
 
   // Resolve the real paper page under a pointer target (not pageCursor).
+  /**
+   * Resuelve el Paper real bajo un target/evento.
+   */
   const getPaperFromTarget = (target: EventTarget | null): HTMLElement | null => {
     if (!(target instanceof Node)) return null;
     const paperPage =
@@ -977,6 +1226,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     documentId: paper?.dataset.documentId || undefined,
   });
 
+  /**
+   * Normaliza targets seleccionables filtrando página, documento, deduplicados y exclusiones.
+   */
   const normalizeActiveTargets = (
     targets: HTMLElement[],
     options?: { pageIndex?: number | null; documentId?: string; allowCrossPage?: boolean },
@@ -1018,10 +1270,16 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     setPendingContextMenu(null);
   }, [setContextMenu, setPendingContextMenu]);
 
+  /**
+   * Inserta campo por defecto desde menú contextual de canvas vacío.
+   */
   const handleInsertField = useCallback(() => {
     bridge?.runtime.addSchemaByType('text');
   }, [bridge]);
 
+  /**
+   * Intenta interpretar clipboard como tipo de schema o payload simple de schema.
+   */
   const handlePaste = useCallback(async () => {
     if (typeof navigator === 'undefined' || !navigator.clipboard?.readText) return;
     const clipboardText = (await navigator.clipboard.readText().catch(() => '')).trim();
@@ -1055,6 +1313,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     };
   }, [bridge]);
 
+  /**
+   * Acciones externas entregadas al menú contextual del canvas.
+   */
   const canvasContextMenuExternalActions = useMemo(
     () => ({
       onInsertField: handleInsertField,
@@ -1096,6 +1357,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     ],
   );
   const hasClipboardData = typeof navigator !== 'undefined' && Boolean(navigator.clipboard?.readText);
+  /**
+   * Schemas asociados al menú contextual abierto.
+   */
   const contextMenuSelectionSchemas = useMemo(() => {
     if (!contextMenu) return [];
     const targetIds = new Set(contextMenu.targetIds);
@@ -1134,6 +1398,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   const zoomPercent = Math.max(1, Math.round(scale * 100));
   const zoomTier = zoomPercent < 80 ? 'low' : zoomPercent > 140 ? 'high' : 'medium';
   const activePageSchemaCount = currentPageSchemas.length;
+  /**
+   * Estado derivado de interacción usado por overlays, data attributes y host.
+   */
   const interactionState = useMemo(
     () =>
       deriveInteractionState({
@@ -1166,6 +1433,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   }, [interactionState, onInteractionStateChange]);
 
   // ── Canvas render state (Phase 4) ───────────────────────────────────
+  /**
+   * Estado visual/no listo del canvas, centralizado en canvasRenderState.
+   */
   const canvasRenderState = useCanvasRenderState({
     schemaCount: activePageSchemaCount,
     pageCursor,

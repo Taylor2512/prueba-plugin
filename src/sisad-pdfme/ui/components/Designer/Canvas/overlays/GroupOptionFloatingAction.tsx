@@ -1,3 +1,10 @@
+/**
+ * GroupOptionFloatingAction — botón flotante para agregar opciones a grupos.
+ *
+ * Renderiza un botón “+” fuera del target de Moveable para que el control de
+ * transformación mida únicamente el grupo y no el affordance de agregar opción.
+ */
+
 import React from 'react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
@@ -5,6 +12,9 @@ import type { InteractionState } from '../../shared/interactionState.js';
 import { getSchemaInteractionCapabilities } from '../../shared/schemaInteractionCapabilities.js';
 import { normalizeOptionGroupType } from '../../../../../schemas/options/optionGroupLayout.js';
 
+/**
+ * Props de la acción flotante de grupos de opciones.
+ */
 type Props = {
   activeElements: HTMLElement[];
   activeSchemas: SchemaForUI[];
@@ -12,6 +22,9 @@ type Props = {
   interactionState: InteractionState;
 };
 
+/**
+ * Separación vertical entre el grupo seleccionado y el botón flotante.
+ */
 const BUTTON_GAP_PX = 10;
 
 /**

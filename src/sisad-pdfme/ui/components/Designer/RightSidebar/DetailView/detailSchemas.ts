@@ -1,3 +1,10 @@
+/**
+ * detailSchemas — builder declarativo de secciones para el DetailView.
+ *
+ * Convierte el schema del plugin, contratos del inspector, metadata del schema y
+ * contexto de página en una lista canónica de secciones renderizables. Este módulo
+ * es la frontera entre los plugins y la UI del inspector.
+ */
 import type { PropPanelInspectorConfig, PropPanelSchema, SchemaForUI } from '@sisad-pdfme/common';
 import type { SchemaDesignerConfig } from '../../../../../ui/designerEngine.js';
 import { asRecord, isRecord } from '../../shared/objectGuards.js';
@@ -12,8 +19,12 @@ import {
 import { contractSectionEnabled, resolveInspectorContract } from './inspectorContracts.js';
 import { getSchemaTypeInspectorPreset, resolveSchemaSemanticFamily } from '../../../../../schemas/schemaFamilies.js';
 
+/** Clave canónica de sección usada por el DetailView. */
 export type DetailInspectorSectionKey = CanonicalDetailSection;
 
+/**
+ * Sección final que DetailViewContent puede renderizar.
+ */
 export type DetailInspectorSection = {
   key: DetailInspectorSectionKey;
   title: string;
@@ -22,6 +33,9 @@ export type DetailInspectorSection = {
   schema: PropPanelSchema;
 };
 
+/**
+ * Parámetros necesarios para construir las secciones del inspector.
+ */
 type BuildInspectorSchemasParams = {
   activeSchemaType: string;
   activeSchema?: SchemaForUI | null;
@@ -41,6 +55,7 @@ type BuildInspectorSchemasParams = {
   validatePosition: (_: unknown, value: number, fieldName: string) => boolean;
 };
 
+/** Metadata visual base por sección canónica. */
 const SECTION_META: Record<DetailInspectorSectionKey, Omit<DetailInspectorSection, 'schema'>> = Object.fromEntries(
   CANONICAL_DETAIL_SECTION_ORDER.map((sectionKey) => [
     sectionKey,
@@ -51,12 +66,18 @@ const SECTION_META: Record<DetailInspectorSectionKey, Omit<DetailInspectorSectio
   ]),
 ) as Record<DetailInspectorSectionKey, Omit<DetailInspectorSection, 'schema'>>;
 
+/**
+ * Envuelve propiedades de una sección en un schema object de form-render.
+ */
 const buildSectionSchema = (properties: Record<string, PropPanelSchema>): PropPanelSchema => ({
   type: 'object',
   column: 2,
   properties,
 });
 
+/**
+ * Agrega un campo al bucket legacy indicado.
+ */
 const addFieldToSection = (
   sectionProperties: Record<LegacyDetailSection, Record<string, PropPanelSchema>>,
   sectionKey: LegacyDetailSection,
@@ -66,6 +87,9 @@ const addFieldToSection = (
   sectionProperties[sectionKey][fieldKey] = fieldSchema;
 };
 
+/**
+ * Factory pequeña para campos de form-render dentro del inspector.
+ */
 const createSectionField = (
   title: string,
   type: PropPanelSchema['type'],
@@ -78,6 +102,9 @@ const createSectionField = (
 
 const EMPTY_TEXT_VALUES = new Set(['', '-', '—', '–', 'n/a', 'na', 'null', 'undefined']);
 
+/**
+ * Determina si un valor contiene información significativa para mostrar secciones.
+ */
 const hasMeaningfulText = (value: unknown): boolean => {
   if (Array.isArray(value)) {
     return value.some((entry) => hasMeaningfulText(entry));
@@ -99,6 +126,9 @@ const hasMeaningfulText = (value: unknown): boolean => {
   return normalized.length > 0 && !EMPTY_TEXT_VALUES.has(normalized);
 };
 
+/**
+ * Crea un campo numérico acotado por página/padding y validación externa.
+ */
 const createBoundedNumberField = (
   title: string,
   max: number,
@@ -122,6 +152,9 @@ const createBoundedNumberField = (
     ],
   });
 
+/**
+ * Reemplaza widgets `color` legacy por el widget `nativeColor` soportado.
+ */
 const replaceColorWidget = (schemaNode: unknown): unknown => {
   if (!isRecord(schemaNode)) {
     return schemaNode;
@@ -144,6 +177,15 @@ const replaceColorWidget = (schemaNode: unknown): unknown => {
   return nextNode;
 };
 
+/**
+ * Construye las secciones visibles del inspector para el schema activo.
+ *
+ * Combina preset por familia, contrato del inspector, plugin props, metadata del
+ * schema y reglas de visibilidad para entregar una lista canónica filtrada.
+ *
+ * @param params Contexto completo del schema activo y límites de página.
+ * @returns Secciones del DetailView listas para renderizar.
+ */
 export const buildInspectorSections = ({
   activeSchemaType,
   activeSchema,
@@ -495,6 +537,9 @@ export const buildInspectorSections = ({
   return sections;
 };
 
+/**
+ * Extrae metadata mínima de campos desde una sección ya construida.
+ */
 const sectionFieldsFromSection = (section: DetailInspectorSection & { canonicalKey?: CanonicalDetailSection }) =>
   Object.entries((section.schema as { properties?: Record<string, PropPanelSchema> }).properties || {}).map(([fieldKey, fieldSchema]) => ({
     key: fieldKey,
@@ -504,6 +549,9 @@ const sectionFieldsFromSection = (section: DetailInspectorSection & { canonicalK
     schema: fieldSchema,
   }));
 
+/**
+ * Extrae nombres de widgets presentes en una sección.
+ */
 const sectionWidgetsFromSection = (section: DetailInspectorSection & { canonicalKey?: CanonicalDetailSection }) =>
   sectionFieldsFromSection(section)
     .map((field) => field.widget)

@@ -1,3 +1,10 @@
+/**
+ * Selecto — adapter aislado sobre react-selecto.
+ *
+ * Centraliza selección por click/región, contenedores de drag, límites y estilo
+ * del rectángulo de selección. Canvas decide cuándo se puede iniciar selección;
+ * este wrapper solo configura y propaga eventos.
+ */
 import React, { useEffect } from 'react';
 import SelectoComponent, {
   OnSelect as SelectoOnSelect,
@@ -12,6 +19,9 @@ import { installPassiveTouchListenerGuard } from '../shared/passiveTouchListener
 
 installPassiveTouchListenerGuard();
 
+/**
+ * Área de puntos usada por Selecto para hit testing geométrico.
+ */
 type SelectoPointArea = {
   pos1: number[];
   pos2: number[];
@@ -19,6 +29,9 @@ type SelectoPointArea = {
   pos4: number[];
 };
 
+/**
+ * Props del adapter Selecto.
+ */
 type Props = {
   container: HTMLElement | null;
   rootContainer?: HTMLElement | null;
@@ -39,8 +52,14 @@ type Props = {
   };
 };
 
+/**
+ * Clase base del rectángulo de selección.
+ */
 const defaultClassName = 'sisad-pdfme-selecto';
 
+/**
+ * Normaliza dragContainer aceptando Window, Element, arrays o fallback local.
+ */
 const normalizeDragContainer = (
   container: Props['dragContainer'],
   fallback: HTMLElement | null,
@@ -56,6 +75,9 @@ const normalizeDragContainer = (
   return elementContainers.length > 0 ? elementContainers : fallback;
 };
 
+/**
+ * Renderiza Selecto configurado para schemas del canvas.
+ */
 const Selecto = (props: Props) => {
   const { token } = theme.useToken();
   const className = props.className || defaultClassName;

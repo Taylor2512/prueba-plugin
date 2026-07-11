@@ -1,9 +1,21 @@
+/**
+ * ButtonGroupWidget — widget genérico para grupos de botones declarados por plugin.
+ *
+ * Permite alternar propiedades booleanas o asignar valores select sobre todos los
+ * schemas activos. Se usa como adaptador visual entre `form-render`, Ant Design y
+ * configuraciones de plugins sin acoplar el DetailView a un tipo concreto.
+ */
 import { DESIGNER_CLASSNAME } from "../../../../constants.js";
 import { Button, Form, Tooltip, theme } from 'antd';
 import React from 'react';
 import type { PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
 import { isRecord } from '../../shared/objectGuards.js';
 import { mergeClassNames } from '../../shared/className.js';
+/**
+ * Configuración declarativa de cada botón del grupo.
+ *
+ * `boolean` alterna el valor actual; `select` asigna `value` directamente.
+ */
 interface ButtonConfig {
   key: string;
   icon: string;
@@ -11,10 +23,21 @@ interface ButtonConfig {
   value?: string;
 }
 
+/**
+ * Renderiza un grupo de botones configurable desde el schema del plugin.
+ *
+ * @param props Props entregadas por form-render/PropPanel.
+ * @returns Widget visual de botones para mutar propiedades de schemas activos.
+ */
 const ButtonGroupWidget = (props: PropPanelWidgetProps) => {
   const { activeElements, changeSchemas, schemas, schema } = props;
   const { token } = theme.useToken();
 
+  /**
+   * Aplica la acción declarada sobre todos los schemas seleccionados.
+   *
+   * @param btn Configuración del botón seleccionado.
+   */
   const apply = (btn: ButtonConfig) => {
     const key = btn.key;
     const type = btn.type;
@@ -29,6 +52,12 @@ const ButtonGroupWidget = (props: PropPanelWidgetProps) => {
     );
   };
 
+  /**
+   * Determina si el botón debe mostrarse activo según la selección actual.
+   *
+   * @param btn Configuración del botón evaluado.
+   * @returns `true` cuando el último schema evaluado cumple el valor esperado.
+   */
   const isActive = (btn: ButtonConfig) => {
     const key = btn.key;
     const type = btn.type;
@@ -43,9 +72,15 @@ const ButtonGroupWidget = (props: PropPanelWidgetProps) => {
     return active;
   };
 
+  /**
+   * Reemplaza `currentColor` dentro del SVG para heredar el color del tema.
+   */
   const replaceCurrentColor = (svgString: string, color?: string) =>
     color ? svgString.replace(/="currentColor"/g, `="${color}"`) : svgString;
 
+  /**
+   * Convierte un string SVG en una imagen embebida segura para Ant Button.
+   */
   const svgIcon = (svgString: string) => {
     const svgDataUrl = `data:image/svg+xml;utf8,${encodeURIComponent(
       replaceCurrentColor(svgString, token.colorText),

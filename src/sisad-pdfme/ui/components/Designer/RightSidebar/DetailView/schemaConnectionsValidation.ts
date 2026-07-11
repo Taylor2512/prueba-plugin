@@ -1,5 +1,15 @@
+/**
+ * schemaConnectionsValidation — validadores puros para conexiones del schema.
+ *
+ * Revisa campos mínimos de persistencia, salida JSON/form y API. Devuelve claves
+ * faltantes normalizadas para que la UI pueda mostrar estados o advertencias sin
+ * duplicar reglas de validación.
+ */
 import type { SchemaDesignerConfig, SchemaPersistenceConfig } from '../../../../designerEngine.js';
 
+/**
+ * Valida configuración de persistencia y devuelve claves faltantes.
+ */
 export const validatePersistenceConfig = (persistence?: SchemaPersistenceConfig): string[] => {
   if (!persistence?.enabled) return [];
 
@@ -11,6 +21,9 @@ export const validatePersistenceConfig = (persistence?: SchemaPersistenceConfig)
   return missing;
 };
 
+/**
+ * Valida configuración de salida/form JSON del schema.
+ */
 export const validateFormConfig = (formJson?: SchemaDesignerConfig['form']): string[] => {
   if (!formJson?.enabled || !formJson.collect) return [];
 
@@ -22,6 +35,9 @@ export const validateFormConfig = (formJson?: SchemaDesignerConfig['form']): str
   return missing;
 };
 
+/**
+ * Valida configuración API y cliente HTTP resuelto.
+ */
 export const validateApiConfig = (
   api: SchemaDesignerConfig['api'],
   resolvedHttpClient?: {
@@ -71,6 +87,9 @@ export const validateApiConfig = (
   return missing;
 };
 
+/**
+ * Consolida campos faltantes de persistencia, form y API sin duplicados.
+ */
 export const getMissingConnectionFields = (
   persistence: SchemaPersistenceConfig,
   api: NonNullable<SchemaDesignerConfig['api']>,

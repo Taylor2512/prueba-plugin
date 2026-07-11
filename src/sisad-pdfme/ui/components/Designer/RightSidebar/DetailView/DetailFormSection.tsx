@@ -1,3 +1,10 @@
+/**
+ * DetailFormSection — puente entre una sección del inspector y form-render.
+ *
+ * Renderiza cada sección dentro de `DetailSectionCard` y decide si debe usar el
+ * shell de `FormRenderComponent` o montar un widget React directo. Mantiene las
+ * secciones del DetailView pequeñas, colapsables y desacopladas de plugins.
+ */
 import React from 'react';
 import type { PropPanelSchema, PropPanelWidgetProps } from '@sisad-pdfme/common';
 import type { useForm } from 'form-render';
@@ -5,6 +12,9 @@ import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import DetailSectionCard from './DetailSectionCard.js';
 import FormRenderComponent from 'form-render';
 
+/**
+ * Props de una sección renderizable del DetailView.
+ */
 type DetailFormSectionProps = {
   sectionKey?: string;
   title: string;
@@ -19,8 +29,20 @@ type DetailFormSectionProps = {
 
 /** Widgets that render as direct React children of the section card, skipping
  * form-render entirely (no form shell, no ant Row/Col, no Ant Card). */
+/**
+ * Widgets que se montan directamente, sin shell de form-render.
+ *
+ * Útil para editores React complejos que ya manejan su propio layout.
+ */
 const DIRECT_RENDER_WIDGETS = new Set(['SchemaOptionsEditor']);
 
+/**
+ * Detecta si una sección contiene un único widget directo.
+ *
+ * @param schema Schema de form-render para la sección.
+ * @param widgets Registro de widgets disponibles.
+ * @returns Componente directo o null si debe usarse form-render.
+ */
 const resolveDirectWidget = (
   schema: PropPanelSchema,
   widgets: Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element>,
@@ -33,6 +55,12 @@ const resolveDirectWidget = (
   return widgets[widgetName] || null;
 };
 
+/**
+ * Renderiza una sección del inspector usando card colapsable.
+ *
+ * @param props Datos, schema y widgets requeridos para la sección.
+ * @returns Sección visual del DetailView.
+ */
 const DetailFormSection = ({
   sectionKey,
   title,

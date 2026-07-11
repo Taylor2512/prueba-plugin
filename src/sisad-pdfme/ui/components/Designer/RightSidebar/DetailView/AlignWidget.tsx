@@ -1,3 +1,11 @@
+/**
+ * AlignWidget — controles compactos de alineación y distribución del inspector.
+ *
+ * Este widget expone acciones de layout sobre la selección activa usando el
+ * `SelectionCommandSet` compartido por Canvas, toolbar contextual y DetailView.
+ * No calcula geometría ni modifica schemas directamente; delega las operaciones
+ * a comandos ya normalizados para mantener un único contrato de selección.
+ */
 import React from 'react';
 import { Button, Form } from 'antd';
 import type { PropPanelWidgetProps } from '@sisad-pdfme/common';
@@ -15,6 +23,12 @@ import {
 } from 'lucide-react';
 import type { SelectionCommandSet, AlignType, DistributeType } from '../../shared/selectionCommands.js';
 
+/**
+ * Botones declarativos disponibles para alinear o distribuir la selección.
+ *
+ * `type` decide qué comando del `SelectionCommandSet` se ejecutará y `value`
+ * contiene el contrato esperado por `alignSelection` o `distributeSelection`.
+ */
 const LAYOUT_BUTTONS = [
   { id: 'left', label: 'Alinear a la izquierda', icon: <AlignStartVertical size={14} />, type: 'align', value: 'left' },
   { id: 'center', label: 'Centrar horizontalmente', icon: <AlignCenterVertical size={14} />, type: 'align', value: 'center' },
@@ -26,11 +40,22 @@ const LAYOUT_BUTTONS = [
   { id: 'horizontal', label: 'Distribuir horizontalmente', icon: <AlignHorizontalSpaceAround size={14} />, type: 'distribute', value: 'horizontal' },
 ];
 
+/**
+ * Widget del inspector para alineación y distribución de elementos activos.
+ *
+ * @param props Props del panel de propiedades extendidas con comandos de selección.
+ * @returns Grupo de botones de layout conectado a `SelectionCommandSet`.
+ */
 const AlignWidget = (props: PropPanelWidgetProps & { selectionCommands?: SelectionCommandSet }) => {
   const { activeElements, selectionCommands } = props;
   const hasSelection = activeElements.length > 0;
   const canDistribute = activeElements.length >= 3;
 
+  /**
+   * Ejecuta el comando correspondiente al botón seleccionado.
+   *
+   * @param btn Configuración declarativa del botón pulsado.
+   */
   const handleClick = (btn: typeof LAYOUT_BUTTONS[number]) => {
     if (!selectionCommands) return;
     if (btn.type === 'align') {
