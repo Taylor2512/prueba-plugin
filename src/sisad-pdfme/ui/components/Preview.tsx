@@ -1,3 +1,10 @@
+/**
+ * Preview runtime para visor/formulario SISAD PDFME.
+ *
+ * Consume usePreviewRuntime para preparar páginas, backgrounds, zoom e inputs,
+ * y delega cada schema a Renderer. También aplica reglas runtime de visibilidad,
+ * acceso por destinatario y autocompletado de dateSigned enlazado a firma.
+ */
 import React, { useContext } from 'react';
 import { SchemaForUI, PreviewProps, Size, replacePlaceholders } from '@sisad-pdfme/common';
 import { theme } from 'antd';
@@ -13,6 +20,12 @@ import { UI_CLASSNAME } from '../constants.js';
 import { OptionsContext } from '../contexts.js';
 import { resolveRuntimeSchemaAccess } from '../collaboration/schemaRuntimeAccess.js';
 
+/**
+ * Componente runtime de vista previa/formulario.
+ *
+ * Prepara Root, CtlBar, UnitPager, Paper y Renderer para pintar el template con
+ * los inputs activos. En modo Form propaga cambios de plugins hacia callbacks.
+ */
 const Preview = ({
   template,
   inputs,

@@ -1,3 +1,10 @@
+/**
+ * Barra superior/flotante de control para Preview/Form/Viewer.
+ *
+ * Agrupa navegación de páginas, zoom, guardar/exportar, undo/redo, ajustes de
+ * vista y menú de acciones secundarias. La visibilidad puede controlarse desde
+ * props o desde OptionsContext para soportar experiencias runtime sin chrome.
+ */
 import React, { useContext } from 'react';
 import { Size } from '@sisad-pdfme/common';
 // Import icons from lucide-react
@@ -20,8 +27,17 @@ import { I18nContext, OptionsContext } from '../contexts.js';
 import { useMaxZoom } from '../helper.js';
 import { UI_CLASSNAME } from '../constants.js';
 
+/**
+ * Densidad visual de la barra de control.
+ *
+ * Controla cuántos botones se muestran directamente y cuáles se envían al menú
+ * de más acciones en anchos reducidos.
+ */
 type ToolbarDensity = 'comfortable' | 'compact' | 'minimal';
 
+/**
+ * Props del selector de zoom embebido en la barra de control.
+ */
 type ZoomProps = {
   zoomLevel: number;
   setZoomLevel: (zoom: number) => void;
@@ -29,6 +45,12 @@ type ZoomProps = {
   density?: ToolbarDensity;
 };
 
+/**
+ * Control compacto de zoom.
+ *
+ * Expone presets de escala y, en modo comfortable, botones de incremento y
+ * decremento respetando los límites de zoom calculados por useMaxZoom.
+ */
 const Zoom = ({ zoomLevel, setZoomLevel, iconColor, density = 'comfortable' }: ZoomProps) => {
   const zoomStep = 0.25;
   const maxZoom = useMaxZoom();
@@ -78,6 +100,12 @@ const Zoom = ({ zoomLevel, setZoomLevel, iconColor, density = 'comfortable' }: Z
   );
 };
 
+/**
+ * Props de la barra de control runtime.
+ *
+ * Reúne navegación de página, zoom, acciones de documento, feature toggles y
+ * datos de estado para construir una barra adaptable por ancho.
+ */
 type CtlBarProps = {
   size: Size;
   pageCursor: number;
@@ -114,6 +142,12 @@ type CtlBarProps = {
   visible?: boolean;
 };
 
+/**
+ * Barra de control principal para Preview/Form/Viewer.
+ *
+ * Decide visibilidad desde props u OptionsContext y adapta su layout según el
+ * ancho disponible. No modifica templates directamente; delega todo a callbacks.
+ */
 const CtlBar = (props: CtlBarProps) => {
   const i18n = useContext(I18nContext);
   const options = useContext(OptionsContext) as Record<string, unknown> | undefined;

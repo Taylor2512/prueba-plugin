@@ -1,7 +1,19 @@
+/**
+ * Renderizador de staticSchema para PDFs en blanco.
+ *
+ * Permite pintar elementos fijos definidos en basePdf.staticSchema, resolviendo
+ * placeholders cuando el schema es readOnly y evitando que sean seleccionables.
+ */
 import React from 'react';
 import { isBlankPdf, replacePlaceholders, Template, type SchemaForUI } from '@sisad-pdfme/common';
 import Renderer from './Renderer.js';
 
+/**
+ * Renderiza schemas estáticos declarados en basePdf.staticSchema.
+ *
+ * Estos elementos son decorativos/runtime y no participan en selección ni edición
+ * del diseñador.
+ */
 const StaticSchema = (props: {
   template: Template;
   input: Record<string, string>;

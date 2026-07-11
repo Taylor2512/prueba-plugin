@@ -1,3 +1,12 @@
+/**
+ * AppContextProvider centraliza los contextos globales del runtime SISAD PDFME.
+ *
+ * Responsabilidades:
+ * - aplicar tema Ant Design/default/SISAD;
+ * - mezclar overrides de tema y etiquetas;
+ * - publicar i18n, fuentes, plugins y opciones UI;
+ * - mantener al árbol React desacoplado de la configuración externa.
+ */
 import React, { useCallback, useMemo } from 'react';
 import { ConfigProvider as ThemeConfigProvider } from 'antd';
 import { I18nContext, FontContext, PluginsRegistry, OptionsContext } from '../contexts.js';
@@ -5,6 +14,12 @@ import { i18n, getDict } from '../i18n.js';
 import { defaultTheme, sisadTheme } from '../theme.js';
 import type { Dict, Font, Lang, UIOptions, PluginRegistry } from '@sisad-pdfme/common';
 
+/**
+ * Props requeridas por el provider de aplicación.
+ *
+ * Estos valores provienen del host que instancia Designer/Form/Viewer y se
+ * publican hacia componentes internos mediante React Context.
+ */
 type Props = {
   children: React.ReactNode;
   lang: Lang;
@@ -13,9 +28,18 @@ type Props = {
   options: UIOptions;
 };
 
+/**
+ * Verifica si un valor puede tratarse como objeto plano para mezcla profunda.
+ */
 const isObject = (item: unknown): item is Record<string, unknown> =>
   Boolean(item) && typeof item === 'object' && !Array.isArray(item);
 
+/**
+ * Mezcla profunda de objetos de configuración.
+ *
+ * Se usa para combinar temas y diccionarios sin perder claves anidadas
+ * previamente definidas por los presets base.
+ */
 const deepMerge = <T extends Record<string, unknown>, U extends Record<string, unknown>>(
   target: T,
   source: U,
@@ -45,6 +69,12 @@ const deepMerge = <T extends Record<string, unknown>, U extends Record<string, u
   return output;
 };
 
+/**
+ * Provider raíz de contextos para el runtime UI.
+ *
+ * Memoiza tema y diccionario para evitar recalcularlos en cada render y expone
+ * una función i18n estable con useCallback.
+ */
 const AppContextProvider = ({ children, lang, font, plugins, options }: Props) => {
   const theme = useMemo(() => {
     let nextTheme = options.themePreset === 'sisad' ? sisadTheme : defaultTheme;

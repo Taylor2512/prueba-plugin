@@ -1,11 +1,26 @@
+/**
+ * Contenedor raíz del runtime PDFME.
+ *
+ * Aplica tamaño, fondo base, carga fuentes declaradas en FontContext y muestra
+ * Spinner mientras el cálculo de escala no está listo.
+ */
 import React, { useContext, forwardRef, ReactNode, Ref, useEffect } from 'react';
 import { Size } from '@sisad-pdfme/common';
 import { FontContext } from '../contexts.js';
 import { BACKGROUND_COLOR, DESIGNER_CLASSNAME } from '../constants.js';
 import Spinner from './Spinner.js';
 
+/**
+ * Props del contenedor raíz del runtime.
+ */
 type Props = { size: Size; scale: number; children: ReactNode };
 
+/**
+ * Root visual del runtime.
+ *
+ * Carga fuentes declaradas, aplica tamaño/fondo y decide si mostrar Spinner o
+ * contenido según la escala calculada.
+ */
 const Root = ({ size, scale, children }: Props, ref: Ref<HTMLDivElement>) => {
   const font = useContext(FontContext);
 

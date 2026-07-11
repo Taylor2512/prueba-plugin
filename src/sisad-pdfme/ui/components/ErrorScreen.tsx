@@ -1,9 +1,23 @@
+/**
+ * Pantalla de error visual del runtime.
+ *
+ * Renderiza una superficie consistente con Ant Design Result cuando el
+ * preprocesamiento del PDF/template falla. No intenta recuperar ni mutar estado;
+ * solo muestra el mensaje de error recibido.
+ */
 import React, { useContext } from 'react';
 import { Size } from '@sisad-pdfme/common';
 import { I18nContext } from '../contexts.js';
 import { UI_CLASSNAME } from '../constants.js';
 import { Result } from 'antd';
 
+/**
+ * Renderiza el estado de error del runtime.
+ *
+ * @param size Tamaño disponible del contenedor; actualmente se conserva por
+ * compatibilidad de API.
+ * @param error Error recibido desde el preprocesador/render runtime.
+ */
 const ErrorScreen = ({ size, error }: { size: Size; error: Error }) => {
   const i18n = useContext(I18nContext);
   void size;

@@ -1,3 +1,10 @@
+/**
+ * Renderer es el puente entre schemas SISAD PDFME y plugins visuales.
+ *
+ * Crea un wrapper posicionable/seleccionable con metadata de canvas y monta la
+ * UI imperativa del plugin dentro de un rootElement aislado. Esta frontera evita
+ * que los plugins manipulen directamente la geometría del contenedor.
+ */
 import React, { useEffect, useContext, ReactNode, useRef, useCallback } from 'react';
 import {
   ZOOM,
@@ -14,6 +21,12 @@ import { resolveSchemaTone, resolveSchemaToneSurface } from './Designer/shared/s
 import { resolveSchemaOwnerColorValue } from '../../schemas/shared/fieldChrome.js';
 import { buildPageMetadataAttrs } from './shared/pageMetadata.js';
 
+/**
+ * Props externas del Renderer.
+ *
+ * Extienden las props de UI de plugins con información de wrapper, selección,
+ * página, documento, hover, edición y geometría runtime.
+ */
 type RendererProps = Omit<
   UIRenderProps<Schema>,
   'schema' | 'rootElement' | 'options' | 'theme' | 'i18n' | '_cache'
@@ -35,7 +48,16 @@ type RendererProps = Omit<
   onMouseDownCapture?: (event: React.MouseEvent<HTMLDivElement>) => void;
 };
 
+/**
+ * Schema enriquecido con datos de propietario usados para labels accesibles.
+ */
 type OwnerAwareSchema = SchemaForUI & { ownerRecipientName?: string };
+/**
+ * Schema con metadata visual de diseñador.
+ *
+ * Solo se aceptan estilos seguros; la geometría real del wrapper se controla
+ * desde position/width/height/rotate del schema.
+ */
 type DesignerStyleAwareSchema = SchemaForUI & {
   designerClassName?: string;
   designerStyle?: React.CSSProperties;
@@ -54,7 +76,16 @@ type DesignerStyleAwareSchema = SchemaForUI & {
   ownerColor?: string;
   userColor?: string;
 };
+/**
+ * Estilo fijo para que el root imperativo del plugin ocupe todo el wrapper.
+ */
 const FILL_STYLE: React.CSSProperties = { height: '100%', width: '100%' };
+/**
+ * Propiedades CSS bloqueadas en designerStyle.
+ *
+ * Evita que metadata visual sobrescriba la geometría, transformaciones o
+ * comportamiento de puntero controlado por el canvas.
+ */
 const BLOCKED_DESIGNER_STYLE_KEYS = new Set([
   'position',
   'top',
@@ -77,17 +108,26 @@ const BLOCKED_DESIGNER_STYLE_KEYS = new Set([
   'pointerEvents',
 ]);
 
+/**
+ * Resuelve el title accesible del schema según estado readOnly/propietario.
+ */
 const getSchemaTitle = (schema: SchemaForUI): string => {
   if (!schema.readOnly) return schema.name;
   const ownerName = (schema as OwnerAwareSchema).ownerRecipientName;
   return ownerName ? `Solo lectura · ${ownerName}` : 'Solo lectura';
 };
 
+/**
+ * Convierte una medida en mm del schema a px de canvas usando ZOOM base.
+ */
 const toCanvasPx = (value: unknown): number => {
   const numericValue = Number(value);
   return Number.isFinite(numericValue) ? numericValue * ZOOM : 0;
 };
 
+/**
+ * Filtra estilos visuales del diseñador para permitir solo decoración segura.
+ */
 const sanitizeDesignerStyle = (
   value: React.CSSProperties | undefined,
 ): React.CSSProperties => {
@@ -99,6 +139,12 @@ const sanitizeDesignerStyle = (
   }, {} as React.CSSProperties);
 };
 
+/**
+ * Wrapper posicionable y seleccionable alrededor de la UI del plugin.
+ *
+ * Expone dataset estable para Selecto, Moveable, overlays, comentarios, pruebas
+ * E2E y colaboración. La UI del plugin vive dentro como contenido aislado.
+ */
 const Wrapper = ({
   children,
   outline,
@@ -226,6 +272,12 @@ const Wrapper = ({
   );
 };
 
+/**
+ * Monta el plugin correspondiente al tipo de schema.
+ *
+ * Limpia el rootElement antes/después de renderizar para que plugins imperativos
+ * no acumulen DOM entre renders.
+ */
 const Renderer = (props: RendererProps) => {
   const { schema, basePdf, value, mode, onChange, stopEditing, tabIndex, placeholder, scale } =
     props;
@@ -298,6 +350,9 @@ Check this document: https://sisad-pdfme.com/docs/custom-schemas`);
   );
 };
 
+/**
+ * Comparador memoizado enfocado en cambios que afectan visualmente el renderer.
+ */
 const areRendererPropsEqual = (prev: RendererProps, next: RendererProps) => {
   return (
     prev.basePdf === next.basePdf &&

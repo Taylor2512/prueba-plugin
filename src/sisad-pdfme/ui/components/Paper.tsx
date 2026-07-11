@@ -1,12 +1,25 @@
+/**
+ * Paper renderiza las páginas del documento y posiciona schemas por página.
+ *
+ * Este componente es la capa visual común del Designer, Preview, Form y Viewer:
+ * calcula bloques de página, fondos, tamaños y metadatos DOM para cada paper,
+ * manteniendo una última versión estable para evitar parpadeos durante cargas.
+ */
 import React, { ReactNode, useContext, useEffect, useMemo, useState } from 'react';
 import { ZOOM, SchemaForUI, Size, getFallbackFontName } from '@sisad-pdfme/common';
 import { FontContext } from '../contexts.js';
 import { RULER_HEIGHT, PAGE_GAP } from '../constants.js';
 import { buildPageMetadataAttrs } from './shared/pageMetadata.js';
 
+/**
+ * Imagen transparente usada como fallback cuando una página aún no tiene fondo.
+ */
 const TRANSPARENT_PNG =
   'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mP8/x8AAwMCAO+pR6QAAAAASUVORK5CYII=';
 
+/**
+ * Bloque calculado de página en coordenadas de canvas.
+ */
 type PageBlock = {
   background: string;
   pageSize: Size;
@@ -14,6 +27,12 @@ type PageBlock = {
   pageTop: number;
 };
 
+/**
+ * Snapshot estable del layout de páginas.
+ *
+ * Permite mantener la última estructura válida mientras se recalcula o refresca
+ * el preprocesamiento de fondos.
+ */
 type StablePaperState = {
   key: string;
   pageBlocks: PageBlock[];
@@ -22,6 +41,9 @@ type StablePaperState = {
   rootHeight: number;
 };
 
+/**
+ * Props internas para renderizar una página física del documento.
+ */
 type PaperPageProps = {
   block: PageBlock;
   paperIndex: number;
@@ -33,6 +55,12 @@ type PaperPageProps = {
   registerPaperRef: (paperIndex: number, element: HTMLDivElement | null) => void;
 };
 
+/**
+ * Página individual del documento.
+ *
+ * Aplica background, metadata DOM, ref registrable y delega renderPaper/renderSchema
+ * para que Designer, Preview y Form agreguen su propio contenido.
+ */
 const PaperPage = ({
   block,
   paperIndex,
@@ -80,6 +108,12 @@ const PaperPage = ({
   </div>
 );
 
+/**
+ * Renderiza el conjunto de páginas del documento.
+ *
+ * Normaliza schemas por página, calcula tamaños en píxeles y mantiene el layer
+ * escalado que sirve como base común del canvas y preview.
+ */
 const Paper = (props: {
   scale: number;
   size: Size;

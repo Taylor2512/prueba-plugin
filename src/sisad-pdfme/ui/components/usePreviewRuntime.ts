@@ -269,6 +269,12 @@ type UsePreviewRuntimeArgs = {
  * Devuelve estado y handlers necesarios para que el componente Preview pinte
  * páginas, backgrounds, schemas, scroll, zoom, inputs, Form JSON y eventos.
  */
+/**
+ * Implementación del hook runtime.
+ *
+ * Mantiene separados los cálculos de template/schemas/backgrounds del componente
+ * visual Preview y expone una API estable de estado + callbacks.
+ */
 const usePreviewRuntime = ({
   template,
   inputs,

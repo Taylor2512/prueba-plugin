@@ -1,3 +1,9 @@
+/**
+ * Navegador lateral de unidades/registros del Preview/Form.
+ *
+ * Se muestra cuando existen múltiples inputs y permite saltar al primero,
+ * anterior, siguiente o último registro sin interferir con el scroll de páginas.
+ */
 import React from 'react';
 import { Size } from '@sisad-pdfme/common';
 import { theme, Typography, Button } from 'antd';
@@ -5,12 +11,18 @@ import { ChevronLeft, ChevronRight, ChevronsLeft, ChevronsRight } from 'lucide-r
 
 const { Text } = Typography;
 
+/**
+ * Props de botón de navegación entre unidades.
+ */
 type UnitButtonProps = {
   type: 'left' | 'right' | 'doubleLeft' | 'doubleRight';
   onClick: () => void;
   disabled: boolean;
 };
 
+/**
+ * Mapa de tipo de botón a icono visual.
+ */
 const icons = {
   left: ChevronLeft,
   right: ChevronRight,
@@ -18,9 +30,15 @@ const icons = {
   doubleRight: ChevronsRight,
 };
 
+/**
+ * Clases compartidas de los clusters flotantes de paginación.
+ */
 const clusterClassName =
   'flex items-center gap-1 rounded-full border border-white/10 bg-slate-950/70 px-2 py-1 shadow-lg backdrop-blur';
 
+/**
+ * Botón individual del paginador de unidades.
+ */
 const UnitButton: React.FC<UnitButtonProps> = ({ type, onClick, disabled }) => {
   const Icon = icons[type];
 
@@ -37,6 +55,9 @@ const UnitButton: React.FC<UnitButtonProps> = ({ type, onClick, disabled }) => {
   );
 };
 
+/**
+ * Props del paginador de unidades/inputs.
+ */
 type Props = {
   size: Size;
   unitCursor: number;
@@ -44,6 +65,9 @@ type Props = {
   setUnitCursor: (page: number) => void;
 };
 
+/**
+ * Control flotante para cambiar de unidad cuando Preview/Form recibe múltiples inputs.
+ */
 const UnitPager = ({ size, unitCursor, unitNum, setUnitCursor }: Props) => {
   if (unitNum <= 1) return null;
 
