@@ -85,7 +85,6 @@ installPassiveTouchListenerGuard();
 
 import { buildEffectiveCollaborationContext, filterSchemasForCollaborationView } from '../../collaborationContext.js';
 import type { RightSidebarContextHeader, RightSidebarContextHeaderContext } from './RightSidebar/contextHeader.js';
-import DesignerContextSummary from './shared/DesignerContextSummary.js';
 import { asRecord } from './shared/objectGuards.js';
 import {
   resolveDesignerEngine,
@@ -127,30 +126,10 @@ type RightSidebarContextHeaderRendererDeps = {
 };
 
 const renderRightSidebarContextHeader = (
-  ctx: RightSidebarContextHeaderContext,
-  deps: RightSidebarContextHeaderRendererDeps,
+  _ctx: RightSidebarContextHeaderContext,
+  _deps: RightSidebarContextHeaderRendererDeps,
 ): React.ReactNode => {
-  if (!ctx || (ctx.mode !== 'list' && ctx.mode !== 'bulk')) return null;
-
-  const activeDocument = deps.uploadedDocuments.find((doc) => doc.id === deps.activeDocumentId) || null;
-  const activeDocumentLabel =
-    activeDocument?.name ||
-    activeDocument?.id ||
-    deps.fallbackBaseDocumentItem?.name ||
-    deps.activeDocumentId ||
-    'Documento local';
-
-  return (
-    <DesignerContextSummary
-      documentName={`Documento: ${activeDocumentLabel}`}
-      pageIndex={deps.pageCursor}
-      pageCount={deps.pageItemsLength}
-      selectionCount={deps.activeElementsLength}
-      density="compact"
-      placement="sidebar"
-      className={DESIGNER_CLASSNAME + 'detail-view-context-strip'}
-    />
-  );
+  return null;
 };
 
 const DESIGNER_THEME_CSS = `

@@ -1215,7 +1215,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   return (
     <div
       className={[DESIGNER_CLASSNAME + 'canvas', classNames?.canvasContainer]
-        .concat(['relative flex min-h-0 flex-1 overflow-hidden bg-slate-50'])
+        .concat(['relative flex min-h-0 flex-1 overflow-auto bg-slate-50'])
         .filter(Boolean)
         .join(' ')}
       onContextMenu={handleCanvasContextMenu}
