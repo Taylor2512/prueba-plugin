@@ -46,23 +46,26 @@ test.describe('LeftSidebar · catálogo compacto', () => {
       await expect.poll(async () => tiles.count()).toBeGreaterThan(0);
     });
 
-    await test.step('view toggle cycles through the three densities', async () => {
-      const toggleBtn = sidebar.getByTestId('left-sidebar-view-toggle');
-      await expect(toggleBtn).toBeVisible();
+    await test.step('view selector exposes explicit densities', async () => {
+      const richView = sidebar.getByTestId('left-sidebar-view-rich');
+      const compactView = sidebar.getByTestId('left-sidebar-view-compact');
+      const miniView = sidebar.getByTestId('left-sidebar-view-mini');
 
-      const seenModes = new Set<string>();
-      for (let i = 0; i < 3; i += 1) {
-        const mode = await tiles.first().getAttribute('data-view-mode');
-        if (mode) seenModes.add(mode);
-        await toggleBtn.click();
-        await expect
-          .poll(async () => tiles.first().getAttribute('data-view-mode'))
-          .not.toBe(mode);
-      }
-      // rich, compact and mini must all be reachable from the toggle.
-      const finalMode = await tiles.first().getAttribute('data-view-mode');
-      if (finalMode) seenModes.add(finalMode);
-      expect([...seenModes].sort()).toEqual(['compact', 'mini', 'rich']);
+      await expect(richView).toBeVisible();
+      await expect(compactView).toBeVisible();
+      await expect(miniView).toBeVisible();
+
+      await richView.click();
+      await expect(richView).toHaveAttribute('data-active', 'true');
+      await expect(tiles.first()).toHaveAttribute('data-view-mode', 'rich');
+
+      await compactView.click();
+      await expect(compactView).toHaveAttribute('data-active', 'true');
+      await expect(tiles.first()).toHaveAttribute('data-view-mode', 'compact');
+
+      await miniView.click();
+      await expect(miniView).toHaveAttribute('data-active', 'true');
+      await expect(tiles.first()).toHaveAttribute('data-view-mode', 'mini');
     });
   });
 });

@@ -54,7 +54,10 @@ export const ColorPickerWidget = ({
 
   const swatches = (
     <div
-      className={mergeClassNames(DESIGNER_CLASSNAME + 'color-picker-swatches', 'grid grid-cols-8 gap-1 p-1')}
+      className={mergeClassNames(
+        DESIGNER_CLASSNAME + 'color-picker-swatches',
+        'grid [grid-template-columns:repeat(auto-fill,minmax(1.25rem,1fr))] gap-0.5 p-0.5',
+      )}
       data-sisad-inspector-interactive="true"
       data-selecto-ignore="true"
       data-moveable-ignore="true"
@@ -74,7 +77,7 @@ export const ColorPickerWidget = ({
             }}
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'color-picker-swatch-option',
-              'h-5 w-5 rounded-md border border-slate-200 shadow-sm transition hover:scale-105 hover:border-slate-400',
+              'h-[1.125rem] w-[1.125rem] rounded-md border border-slate-200 shadow-sm transition hover:scale-105 hover:border-slate-400',
             )}
             style={{ backgroundColor: preset }}
             aria-label={`Aplicar color ${preset}`}
@@ -96,49 +99,51 @@ export const ColorPickerWidget = ({
       onClick={stopInspectorPointerEvent}
     >
       <Popover content={swatches} trigger="click" placement="bottomLeft">
-        <button
-          type="button"
-          title="Paleta de colores"
-          aria-label="Paleta de colores"
-          onPointerDown={stopInspectorPointerEvent}
+        <Tooltip title="Paleta de colores" placement="top">
+          <button
+            type="button"
+            aria-label="Paleta de colores"
+            onPointerDown={stopInspectorPointerEvent}
+            className={mergeClassNames(
+              `${DESIGNER_CLASSNAME}color-picker-trigger`,
+              'inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-2 py-1 text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50',
+            )}
+          >
+            <span
+              className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-preview`, 'h-3.5 w-3.5 rounded-full border border-slate-200')}
+              style={{ backgroundColor: hex }}
+              aria-hidden="true"
+            />
+            <Palette size={12} aria-hidden="true" />
+          </button>
+        </Tooltip>
+      </Popover>
+      <Tooltip title="Selector nativo de color" placement="top">
+        <label
           className={mergeClassNames(
             `${DESIGNER_CLASSNAME}color-picker-trigger`,
-            'inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-2 py-1 text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50',
+            'inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-2 py-1 text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50',
           )}
+          aria-label="Selector nativo de color"
+          onPointerDown={stopInspectorPointerEvent}
         >
           <span
             className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-preview`, 'h-3.5 w-3.5 rounded-full border border-slate-200')}
             style={{ backgroundColor: hex }}
             aria-hidden="true"
           />
-          <Palette size={12} aria-hidden="true" />
-        </button>
-      </Popover>
-      <label
-        className={mergeClassNames(
-          `${DESIGNER_CLASSNAME}color-picker-trigger`,
-          'inline-flex items-center gap-2 rounded-xl border border-slate-200 bg-white px-2 py-1 text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50',
-        )}
-        aria-label="Selector nativo de color"
-        title="Selector nativo de color"
-        onPointerDown={stopInspectorPointerEvent}
-      >
-        <span
-          className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-preview`, 'h-3.5 w-3.5 rounded-full border border-slate-200')}
-          style={{ backgroundColor: hex }}
-          aria-hidden="true"
-        />
-        <Pipette size={12} aria-hidden="true" />
-        <input
-          type="color"
-          id={`${DESIGNER_CLASSNAME}color-picker-native`}
-          name={`${DESIGNER_CLASSNAME}color-picker-native`}
-          className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-input`, 'h-4 w-4 cursor-pointer overflow-hidden rounded-full border-0 bg-transparent p-0')}
-          value={hex}
-          onChange={(e) => onChange?.(e.target.value)}
-          aria-label="Selector nativo de color"
-        />
-      </label>
+          <Pipette size={12} aria-hidden="true" />
+          <input
+            type="color"
+            id={`${DESIGNER_CLASSNAME}color-picker-native`}
+            name={`${DESIGNER_CLASSNAME}color-picker-native`}
+            className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-input`, 'h-4 w-4 cursor-pointer overflow-hidden rounded-full border-0 bg-transparent p-0')}
+            value={hex}
+            onChange={(e) => onChange?.(e.target.value)}
+            aria-label="Selector nativo de color"
+          />
+        </label>
+      </Tooltip>
       <Input
         id={`${DESIGNER_CLASSNAME}color-picker-hex`}
         name={`${DESIGNER_CLASSNAME}color-picker-hex`}

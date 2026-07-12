@@ -1,5 +1,6 @@
 import React from 'react';
 import { Empty } from 'antd';
+import { ChevronDown } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../constants.js';
 import { mergeUniqueClassNames } from './shared/className.js';
 
@@ -26,6 +27,16 @@ export const LeftSidebarGroup = ({
 }: LeftSidebarGroupProps) => {
   const titleContent = (
     <>
+      <span
+        className={mergeUniqueClassNames(
+          `${DESIGNER_CLASSNAME}left-sidebar-group-title-chevron`,
+          'inline-flex h-4 w-4 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition',
+          collapsed ? 'rotate-[-90deg]' : '',
+        )}
+        aria-hidden="true"
+      >
+        <ChevronDown size={10} strokeWidth={2.5} />
+      </span>
       <span
         className={`${DESIGNER_CLASSNAME}left-sidebar-group-title-label text-[9px] font-bold uppercase tracking-[0.04em]`}
       >

@@ -493,7 +493,7 @@ export const propPanel: PropPanel<SignatureSchema> = {
         },
       },
       placeholderText: {
-        title: 'Texto de ayuda',
+        title: 'Ayuda del campo',
         type: 'string',
         span: 24,
       },

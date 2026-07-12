@@ -115,8 +115,8 @@ export const CANONICAL_DETAIL_SECTION_LABELS: Record<CanonicalDetailSection, { t
     defaultCollapsed: true,
   },
   dataBindings: {
-    title: 'Datos y conexión',
-    description: 'Persistencia, salida JSON y API.',
+    title: 'Datos y conexiones',
+    description: 'Persistencia, JSON y API.',
     defaultCollapsed: true,
   },
   collaboration: {

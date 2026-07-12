@@ -71,6 +71,7 @@ interface Props {
  */
 const LINE_COLOR = '#1890ff';
 const CENTER_COLOR = '#ff4d4f';
+const roundMm = (value: number) => Math.round(value * 100) / 100;
 
 /**
  * Renderiza líneas de alineación y etiquetas de distancia.
@@ -98,7 +99,7 @@ const SnapLines = ({
     <div className={rootClassName} style={useDefaultStyles ? undefined : style}>
       {lines.map((line, i) => {
         const color = isCenter(line) ? centerColor : lineColor;
-        const posPx = line.pos * ZOOM;
+        const posPx = Math.round(line.pos * ZOOM);
 
         if (line.type === 'horizontal') {
           return (
@@ -258,7 +259,7 @@ const findBestSnap = ({
       const absDelta = Math.abs(check.delta);
       if (absDelta > threshold) continue;
       if (!best || absDelta < Math.abs(best.delta)) {
-        best = { delta: check.delta, guide: candidate, snappedOrigin: check.snappedOrigin };
+        best = { delta: check.delta, guide: roundMm(candidate), snappedOrigin: roundMm(check.snappedOrigin) };
       }
     }
   }
@@ -287,13 +288,15 @@ export function computeSnapResult(
   const pageCY = page.height / 2;
 
   const addH = (pos: number, label?: string) => {
-    if (!lines.find((l) => l.type === 'horizontal' && l.pos === pos)) {
-      lines.push({ type: 'horizontal', pos, label });
+    const normalizedPos = roundMm(pos);
+    if (!lines.find((l) => l.type === 'horizontal' && l.pos === normalizedPos)) {
+      lines.push({ type: 'horizontal', pos: normalizedPos, label });
     }
   };
   const addV = (pos: number, label?: string) => {
-    if (!lines.find((l) => l.type === 'vertical' && l.pos === pos)) {
-      lines.push({ type: 'vertical', pos, label });
+    const normalizedPos = roundMm(pos);
+    if (!lines.find((l) => l.type === 'vertical' && l.pos === normalizedPos)) {
+      lines.push({ type: 'vertical', pos: normalizedPos, label });
     }
   };
 
@@ -373,8 +376,8 @@ export function computeSnapResult(
   return {
     lines,
     snapped: {
-      x: snapX ? snapX.snappedOrigin : x,
-      y: snapY ? snapY.snappedOrigin : y,
+      x: snapX ? roundMm(snapX.snappedOrigin) : roundMm(x),
+      y: snapY ? roundMm(snapY.snappedOrigin) : roundMm(y),
     },
   };
 }

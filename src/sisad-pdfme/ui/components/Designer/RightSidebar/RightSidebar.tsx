@@ -231,6 +231,7 @@ const Sidebar = (props: RightSidebarProps) => {
     compact: 318,
     mini: 256,
   });
+  const sidebarIsCollapsed = !sidebarOpen;
   const useLayoutFrame = Boolean(props.useLayoutFrame);
   const viewportWidth =
     props.viewportWidth && Number.isFinite(props.viewportWidth)
@@ -356,9 +357,17 @@ const Sidebar = (props: RightSidebarProps) => {
       style={props.styleOverrides?.documentsRail}
       useDefaultStyles={props.useDefaultStyles}
       density={railDensity}
-      className={mergeClassNames(`${DESIGNER_CLASSNAME}documentsrailcomponent-auto`, documentsRailClassName)}
+    className={mergeClassNames(`${DESIGNER_CLASSNAME}documentsrailcomponent-auto`, documentsRailClassName)}
     />
   ) : null;
+
+  const handleModeChange = (mode: 'fields' | 'detail' | 'docs' | 'comments') => {
+    if (requestedViewMode === 'auto') {
+      setInternalViewMode(mode);
+    }
+    props.setSidebarOpen?.(true);
+    onViewModeChange?.(mode);
+  };
 
   /** Navegación por teclado entre tabs del panel derecho. */
   const handlePanelSwitcherKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
@@ -382,9 +391,39 @@ const Sidebar = (props: RightSidebarProps) => {
 
     event.preventDefault();
     const nextMode = sidebarModes[nextIndex];
-    setInternalViewMode(nextMode);
-    onViewModeChange?.(nextMode);
+    handleModeChange(nextMode);
   };
+
+  const collapsedRailNode = (
+    <div className={`${DESIGNER_CLASSNAME}right-sidebar-collapsed-rail flex h-full min-h-0 flex-col gap-1 px-1 py-1.5`}>
+      <div className={`${DESIGNER_CLASSNAME}right-sidebar-collapsed-rail-header flex items-center justify-center`}>
+        <span className="sr-only">Panel derecho</span>
+      </div>
+      <div className="flex min-h-0 flex-1 flex-col gap-[0.1875rem]">
+        {(['fields', 'detail', 'comments', 'docs'] as const).map((mode) => {
+          if (mode === 'docs' && !showDocumentsRail) return null;
+          if (mode === 'comments' && !showCommentsRail) return null;
+          const isActive = resolvedViewMode === mode;
+          const modeMeta = effectiveSidebarModeMeta[mode];
+          return (
+            <button
+              key={`rs-rail-mode-${mode}`}
+              type="button"
+              className={`${DESIGNER_CLASSNAME}right-sidebar-collapsed-rail-btn inline-flex h-7 w-7 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-sky-200 hover:text-sky-700`}
+              data-active={isActive ? 'true' : 'false'}
+              aria-pressed={isActive ? 'true' : 'false'}
+              aria-label={modeMeta.ariaLabel}
+              onClick={() => handleModeChange(mode)}
+            >
+              <span className={`${DESIGNER_CLASSNAME}right-sidebar-collapsed-rail-btn-icon`} aria-hidden="true">
+                {React.cloneElement(modeMeta.icon as React.ReactElement, { size: 13 })}
+              </span>
+            </button>
+          );
+        })}
+      </div>
+    </div>
+  );
 
   const listViewNode = (
     <ListViewComponent
@@ -442,7 +481,7 @@ const Sidebar = (props: RightSidebarProps) => {
       ref={sidebarRootRef}
       id={props.rootId}
       aria-label="Panel derecho del diseñador"
-      aria-hidden={sidebarOpen ? 'false' : 'true'}
+      aria-hidden="false"
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'right-sidebar',
         'flex h-full min-h-0 flex-col',
@@ -450,94 +489,107 @@ const Sidebar = (props: RightSidebarProps) => {
         props.classNames?.root,
         props.className,
       )}
+      style={
+        sidebarIsCollapsed
+            ? {
+              ...(props.styleOverrides?.root || {}),
+              width: '3rem',
+              maxWidth: '3rem',
+              transform: 'translateX(0)',
+              opacity: 1,
+              pointerEvents: 'auto',
+            }
+          : props.styleOverrides?.root
+      }
       data-sidebar-detached={detached ? 'true' : 'false'}
       data-right-sidebar-density={sidebarDensityMode}
       data-sidebar-presentation={actualPresentation}
       data-sidebar-open={sidebarOpen ? 'true' : 'false'}
+      data-sidebar-collapsed={sidebarIsCollapsed ? 'true' : 'false'}
+      data-right-sidebar-expanded={sidebarOpen ? 'true' : 'false'}
       data-panel-mode={resolvedPanelMode}
       data-sidebar-mode={resolvedPanelMode}>
-    
-      <div
-        className={mergeClassNames(
-          DESIGNER_CLASSNAME + 'right-sidebar-content',
-          DESIGNER_CLASSNAME + 'sidebar-surface',
-          'flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-slate-200/70 bg-white/95 shadow-sm',
-          props.classNames?.content,
-        )}
-        data-sidebar-open={sidebarOpen ? 'true' : 'false'}
-        data-docs-mode={documentsRailMode}
-        data-panel-mode={resolvedPanelMode}>
-        {props.showDocumentsAsTab !== false || contextHeaderNode ? (
-          <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-wrap flex shrink-0 items-center justify-between gap-1.5 border-b border-slate-200/70 px-2 py-1.5`}>
-            {props.showDocumentsAsTab !== false ? (
-              <div
-                className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher flex flex-wrap items-center gap-1`}
-                role="tablist"
-                tabIndex={0}
-                aria-label="Panel derecho"
-                aria-orientation="horizontal"
-                onKeyDown={handlePanelSwitcherKeyDown}
-              >
-                {(['fields', 'detail', 'comments', 'docs'] as const).map((mode) => {
-                  if (mode === 'docs' && !showDocumentsRail) return null;
-                  if (mode === 'comments' && !showCommentsRail) return null;
-                  const disabled = mode === 'detail' && activeSchemaCount !== 1;
-                  const isActive = resolvedViewMode === mode;
-                  const modeMeta = effectiveSidebarModeMeta[mode];
-                  return (
-                    <button
-                      key={`rs-mode-${mode}`}
-                      type="button"
-                      disabled={disabled}
-                      className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn inline-flex min-h-7 items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-600 shadow-sm transition hover:border-sky-200 hover:text-sky-700`}
-                      role="tab"
-                      data-active={isActive ? 'true' : 'false'}
-                      aria-selected={isActive ? 'true' : 'false'}
-                      aria-controls={panelIdByMode[mode]}
-                      id={tabIdByMode[mode]}
-                      title={modeMeta.title}
-                      aria-label={modeMeta.ariaLabel}
-                      onClick={() => {
-                        if (requestedViewMode === 'auto') setInternalViewMode(mode);
-                        onViewModeChange?.(mode);
-                      }}
-                    >
-                      <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-content inline-flex items-center gap-1.5`}>
-                        <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-icon`}>{modeMeta.icon}</span>
-                        {sidebarDensityMode !== 'mini' ? (
-                          <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-label`}>{modeMeta.shortLabel}</span>
-                        ) : null}
-                      </span>
-                    </button>
-                  );
-                })}
+      {sidebarIsCollapsed ? collapsedRailNode : null}
+      {!sidebarIsCollapsed ? (
+        <div
+          className={mergeClassNames(
+            DESIGNER_CLASSNAME + 'right-sidebar-content',
+            DESIGNER_CLASSNAME + 'sidebar-surface',
+            'flex min-h-0 flex-1 flex-col overflow-hidden rounded-2xl border border-slate-200/70 bg-white/95 shadow-sm',
+            props.classNames?.content,
+          )}
+          data-sidebar-open={sidebarOpen ? 'true' : 'false'}
+          data-sidebar-collapsed={sidebarIsCollapsed ? 'true' : 'false'}
+          data-docs-mode={documentsRailMode}
+          data-panel-mode={resolvedPanelMode}>
+          {props.showDocumentsAsTab !== false || contextHeaderNode ? (
+            <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-wrap flex shrink-0 items-center justify-between gap-1.5 border-b border-slate-200/70 px-2 py-1.5`}>
+              {props.showDocumentsAsTab !== false ? (
+                <div
+                  className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher flex flex-wrap items-center gap-1`}
+                  role="tablist"
+                  tabIndex={0}
+                  aria-label="Panel derecho"
+                  aria-orientation="horizontal"
+                  onKeyDown={handlePanelSwitcherKeyDown}
+                >
+                  {(['fields', 'detail', 'comments', 'docs'] as const).map((mode) => {
+                    if (mode === 'docs' && !showDocumentsRail) return null;
+                    if (mode === 'comments' && !showCommentsRail) return null;
+                    const disabled = mode === 'detail' && activeSchemaCount !== 1;
+                    const isActive = resolvedViewMode === mode;
+                    const modeMeta = effectiveSidebarModeMeta[mode];
+                    return (
+                      <button
+                        key={`rs-mode-${mode}`}
+                        type="button"
+                        disabled={disabled}
+                        className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn inline-flex min-h-7 items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-600 shadow-sm transition hover:border-sky-200 hover:text-sky-700`}
+                        role="tab"
+                        data-active={isActive ? 'true' : 'false'}
+                        aria-selected={isActive ? 'true' : 'false'}
+                        aria-controls={panelIdByMode[mode]}
+                        id={tabIdByMode[mode]}
+                        aria-label={modeMeta.ariaLabel}
+                        onClick={() => handleModeChange(mode)}
+                      >
+                        <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-content inline-flex items-center gap-1.5`}>
+                          <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-icon`}>{modeMeta.icon}</span>
+                          {sidebarDensityMode !== 'mini' ? (
+                            <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-label`}>{modeMeta.shortLabel}</span>
+                          ) : null}
+                        </span>
+                      </button>
+                    );
+                  })}
+                </div>
+              ) : null}
+              <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-extra flex items-center gap-2`}>
+                {contextHeaderNode}
               </div>
-            ) : null}
-            <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-extra flex items-center gap-2`}>
-              {contextHeaderNode}
             </div>
-          </div>
-        ) : null}
-        {useLayoutFrame ? (
-          <SidebarFrame
-            className={`${DESIGNER_CLASSNAME}right-sidebar-frame`}
-            role="tabpanel"
-            aria-labelledby={props.showDocumentsAsTab !== false ? tabIdByMode[resolvedPanelMode] : undefined}
-            aria-label={props.showDocumentsAsTab !== false ? undefined : effectiveSidebarModeMeta[resolvedPanelMode].title}
-            id={panelIdByMode[resolvedPanelMode]}
-          >
-            <div className={`${DESIGNER_CLASSNAME}right-sidebar-layout-grid grid min-h-0 flex-1 gap-1.5`}>
+          ) : null}
+          {useLayoutFrame ? (
+            <SidebarFrame
+              className={`${DESIGNER_CLASSNAME}right-sidebar-frame`}
+              role="tabpanel"
+              aria-labelledby={props.showDocumentsAsTab !== false ? tabIdByMode[resolvedPanelMode] : undefined}
+              aria-label={props.showDocumentsAsTab !== false ? undefined : effectiveSidebarModeMeta[resolvedPanelMode].title}
+              id={panelIdByMode[resolvedPanelMode]}
+            >
+              <div className={`${DESIGNER_CLASSNAME}right-sidebar-layout-grid grid min-h-0 flex-1 gap-1.5`}>
+                {resolvedPanelMode !== 'docs' ? documentsRailNode : null}
+                {contentNode}
+              </div>
+            </SidebarFrame>
+          ) : (
+            <>
               {resolvedPanelMode !== 'docs' ? documentsRailNode : null}
               {contentNode}
-            </div>
-          </SidebarFrame>
-        ) : (
-          <>
-            {resolvedPanelMode !== 'docs' ? documentsRailNode : null}
-            {contentNode}
-          </>
-        )}
-      </div>
+            </>
+          )}
+        </div>
+      ) : null}
     </aside>
   );
 };

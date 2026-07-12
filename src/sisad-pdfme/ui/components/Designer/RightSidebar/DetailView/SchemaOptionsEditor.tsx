@@ -1,4 +1,5 @@
 import React from 'react';
+import { Tooltip } from 'antd';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import { Check, ChevronDown, ChevronUp, Plus, X } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
@@ -416,23 +417,30 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
               )}
               data-testid="option-row"
             >
-              <button
-                type="button"
-                className={mergeClassNames(
-                  iconButtonClass,
-                  'h-5 w-5 rounded-full border',
-                  row.isDefault
-                    ? 'border-sky-400 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700'
-                    : 'border-slate-200 text-transparent hover:text-slate-300',
-                )}
-                title={copy.defaultHint}
-                aria-label={`${copy.defaultHint}: ${row.label}`}
-                aria-pressed={row.isDefault}
-                data-testid="option-default-control"
-                onClick={() => markDefault(index)}
-              >
-                <Check size={11} strokeWidth={3} />
-              </button>
+              <Tooltip title={copy.defaultHint} placement="top">
+                <button
+                  type="button"
+                  className={mergeClassNames(
+                    iconButtonClass,
+                    'h-5 w-5 rounded-full border',
+                    row.isDefault
+                      ? 'border-sky-400 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700'
+                      : 'border-slate-200 text-transparent hover:text-slate-300',
+                  )}
+                  aria-label={`${copy.defaultHint}: ${row.label}`}
+                  aria-pressed={row.isDefault}
+                  data-testid="option-default-control"
+                  onMouseDown={stopInspectorPointerEvent}
+                  onPointerDown={stopInspectorPointerEvent}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    markDefault(index);
+                  }}
+                >
+                  <Check size={11} strokeWidth={3} />
+                </button>
+              </Tooltip>
               <input
                 type="text"
                 defaultValue={row.label}
@@ -442,6 +450,8 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
                   DESIGNER_CLASSNAME + 'options-editor-input',
                   'w-full min-w-0 flex-1 rounded-md border-0 bg-transparent px-1 py-0.5 text-[12px] text-slate-700 outline-none placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-sky-500/40',
                 )}
+                onMouseDown={stopInspectorPointerEvent}
+                onPointerDown={stopInspectorPointerEvent}
                 onChange={(event) => {
                   if (event.target.value.trim() !== row.label) renameOption(index, event.target.value);
                 }}
@@ -461,7 +471,13 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
                 disabled={index === 0}
                 aria-label={`Subir ${row.label}`}
                 data-testid="option-move-up"
-                onClick={() => moveOption(index, -1)}
+                onMouseDown={stopInspectorPointerEvent}
+                onPointerDown={stopInspectorPointerEvent}
+                onClick={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  moveOption(index, -1);
+                }}
               >
                 <ChevronUp size={12} />
               </button>
@@ -471,21 +487,34 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
                 disabled={index === rows.length - 1}
                 aria-label={`Bajar ${row.label}`}
                 data-testid="option-move-down"
-                onClick={() => moveOption(index, 1)}
+                onMouseDown={stopInspectorPointerEvent}
+                onPointerDown={stopInspectorPointerEvent}
+                onClick={(event) => {
+                  event.preventDefault();
+                  event.stopPropagation();
+                  moveOption(index, 1);
+                }}
               >
                 <ChevronDown size={12} />
               </button>
-              <button
-                type="button"
-                className={mergeClassNames(iconButtonClass, 'hover:bg-rose-50 hover:text-rose-600')}
-                disabled={kind !== 'select' && rows.length <= 1}
-                aria-label={`Eliminar opción ${index + 1}`}
-                title="Eliminar opción"
-                data-testid="option-delete-button"
-                onClick={() => removeOption(index)}
-              >
-                <X size={12} />
-              </button>
+              <Tooltip title="Eliminar opción" placement="top">
+                <button
+                  type="button"
+                  className={mergeClassNames(iconButtonClass, 'hover:bg-rose-50 hover:text-rose-600')}
+                  disabled={kind !== 'select' && rows.length <= 1}
+                  aria-label={`Eliminar opción ${index + 1}`}
+                  data-testid="option-delete-button"
+                  onMouseDown={stopInspectorPointerEvent}
+                  onPointerDown={stopInspectorPointerEvent}
+                  onClick={(event) => {
+                    event.preventDefault();
+                    event.stopPropagation();
+                    removeOption(index);
+                  }}
+                >
+                  <X size={12} />
+                </button>
+              </Tooltip>
             </div>
           ))}
         </div>
@@ -505,6 +534,8 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
             setDraft(event.target.value);
             if (error) setError('');
           }}
+          onMouseDown={stopInspectorPointerEvent}
+          onPointerDown={stopInspectorPointerEvent}
           onKeyDown={(event) => {
             if (event.key === 'Enter' || event.key === 'NumpadEnter') {
               event.preventDefault();
@@ -521,7 +552,13 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
           )}
           aria-label="Agregar opción"
           data-testid="option-add-button"
-          onClick={() => addOption()}
+          onMouseDown={stopInspectorPointerEvent}
+          onPointerDown={stopInspectorPointerEvent}
+          onClick={(event) => {
+            event.preventDefault();
+            event.stopPropagation();
+            addOption();
+          }}
         >
           <Plus size={12} strokeWidth={2.5} />
           Agregar opción

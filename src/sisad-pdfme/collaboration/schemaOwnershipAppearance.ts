@@ -9,6 +9,11 @@ const normalizeId = (value: unknown): string =>
 type OwnerColorSource =
   | 'schema.userColor'
   | 'schema.ownerColor'
+  | 'schema.recipientColor'
+  | 'schema.__designer.collaboration.recipientColor'
+  | 'schema.__designer.ownerColor'
+  | 'schema.__designer.recipientColor'
+  | 'fallback.actorColor'
   | 'recipient.color'
   | 'fallback';
 
@@ -19,11 +24,17 @@ export type SchemaOwnershipAppearanceOptions = {
    * resolved recipient/author color, then empty.
    */
   ownerColorPriority?: readonly OwnerColorSource[];
+  actorColor?: string;
 };
 
 const DEFAULT_PRIORITY: readonly OwnerColorSource[] = [
-  'schema.userColor',
   'schema.ownerColor',
+  'schema.userColor',
+  'schema.recipientColor',
+  'schema.__designer.collaboration.recipientColor',
+  'schema.__designer.ownerColor',
+  'schema.__designer.recipientColor',
+  'fallback.actorColor',
   'recipient.color',
   'fallback',
 ];
@@ -34,6 +45,14 @@ type OwnerAwareSchema = SchemaForUI & {
   ownerMode?: string;
   ownerColor?: string;
   userColor?: string;
+  recipientColor?: string;
+  __designer?: {
+    ownerColor?: string;
+    recipientColor?: string;
+    collaboration?: {
+      recipientColor?: string;
+    };
+  };
   lastModifiedBy?: string;
   createdBy?: string;
 };
@@ -79,6 +98,21 @@ export function resolveSchemaOwnerColor(
       if (c) return c;
     } else if (source === 'schema.ownerColor') {
       const c = typeof toneSchema?.ownerColor === 'string' ? toneSchema.ownerColor.trim() : '';
+      if (c) return c;
+    } else if (source === 'schema.recipientColor') {
+      const c = typeof toneSchema?.recipientColor === 'string' ? toneSchema.recipientColor.trim() : '';
+      if (c) return c;
+    } else if (source === 'schema.__designer.collaboration.recipientColor') {
+      const c = typeof toneSchema?.__designer?.collaboration?.recipientColor === 'string' ? toneSchema.__designer.collaboration.recipientColor.trim() : '';
+      if (c) return c;
+    } else if (source === 'schema.__designer.ownerColor') {
+      const c = typeof toneSchema?.__designer?.ownerColor === 'string' ? toneSchema.__designer.ownerColor.trim() : '';
+      if (c) return c;
+    } else if (source === 'schema.__designer.recipientColor') {
+      const c = typeof toneSchema?.__designer?.recipientColor === 'string' ? toneSchema.__designer.recipientColor.trim() : '';
+      if (c) return c;
+    } else if (source === 'fallback.actorColor') {
+      const c = typeof options.actorColor === 'string' ? options.actorColor.trim() : '';
       if (c) return c;
     } else if (source === 'recipient.color') {
       const c = resolveRecipientColor(toneSchema, users);

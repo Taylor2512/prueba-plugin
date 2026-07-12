@@ -26,6 +26,7 @@ import {
   resolveOwnerMode,
 } from './schemaCollaborationUtils.js';
 import { resolveSchemaAccessState } from '../../../../collaboration/schemaRuntimeAccess.js';
+import { resolveSchemaInteractionState } from '../../shared/schemaInteractionState.js';
 
 export { joinRecipientIds, normalizeRecipientIds, resolveOwnerMode } from './schemaCollaborationUtils.js';
 
@@ -123,6 +124,10 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
     collaborative.ownerRecipientIds || collaborative.ownerRecipientId || activeSchema.ownerRecipientIds || activeSchema.ownerRecipientId,
   );
   const resolvedSchemaState = resolveSchemaCollaborationState(activeSchema, collaborationContext);
+  const interactionState = useMemo(
+    () => resolveSchemaInteractionState(activeSchema, { collaborationContext }),
+    [activeSchema, collaborationContext],
+  );
   const ownerMode = collaborative.ownerMode || resolvedSchemaState.ownerMode || resolveOwnerMode(ownerRecipientIds);
   const lock = collaborative.lock || activeSchema.lock;
   const recipientOptions = collaborationContext.recipientOptions || [];
@@ -181,18 +186,19 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
 
   const hasLock = accessState.hasCollaborationLock;
   const authorOptions = recipientSelectOptions;
-  const resolvedOwnerLabel = accessState.ownerLabel || 'Sin asignar';
+  const resolvedOwnerLabel = accessState.ownerLabel || interactionState.owner.name || 'Sin asignar';
   const assignedToLabel = resolvedOwnerLabel === 'Sin asignar' ? '' : resolvedOwnerLabel;
   const resolvedLockedByLabel = accessState.lockedByLabel || '';
   const stateLabel = accessState.inspectorStatusLabel;
   const showLockedByRow = hasLock || Boolean(resolvedLockedByLabel);
   const triggerLabel = assignedToLabel ? 'Gestionar' : 'Asignar';
   const stateTagColor =
-    accessState.inspectorStatusTone === 'error'
+    interactionState.visibleBadge?.color ||
+    (accessState.inspectorStatusTone === 'error'
       ? 'error'
       : accessState.inspectorStatusTone === 'success'
         ? 'success'
-        : 'warning';
+        : 'warning');
   const summaryNode = assignedToLabel ? (
     <dl className="grid gap-1.5">
       <div className="grid gap-0.5">

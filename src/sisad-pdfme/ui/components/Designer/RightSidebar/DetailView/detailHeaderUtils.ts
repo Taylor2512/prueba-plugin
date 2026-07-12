@@ -8,6 +8,8 @@
 import type { SchemaForUI } from '@sisad-pdfme/common';
 import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
 import { getSchemaStateLabel, getSchemaTypeLabel } from '../../shared/designerLabels.js';
+import { resolveSchemaInteractionState } from '../../shared/schemaInteractionState.js';
+import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
 
 /**
  * Resumen normalizado usado por `DetailHeaderCard`.
@@ -65,7 +67,14 @@ export const buildMetaTooltip = (
 export const buildDetailHeaderSummary = (
   activeSchema: SchemaForUI,
   schemaConfig: SchemaDesignerConfig | null | undefined,
+  collaborationContext?: Pick<
+    EffectiveCollaborationContext,
+    'recipientOptions' | 'recipientColorMap' | 'recipientNameMap' | 'activeRecipientId' | 'isGlobalView' | 'actorColor' | 'canEditStructure'
+  > | null,
 ): HeaderSummary => {
+  const interactionState = resolveSchemaInteractionState(activeSchema, {
+    collaborationContext: collaborationContext || undefined,
+  });
   const schemaName = typeof activeSchema.name === 'string' ? activeSchema.name : 'Campo';
   const schemaType = getSchemaTypeLabel(activeSchema.type || 'schema');
   const schemaHidden = (activeSchema as SchemaForUI & { hidden?: boolean }).hidden === true;
@@ -82,37 +91,27 @@ export const buildDetailHeaderSummary = (
         ? activeSchema.fileTemplateId.trim()
         : '';
   const pageNumber = typeof activeSchema.pageNumber === 'number' && Number.isFinite(activeSchema.pageNumber) ? Math.trunc(activeSchema.pageNumber) : 0;
-  const recipientColor =
-    typeof activeSchema.ownerColor === 'string' && activeSchema.ownerColor.trim()
-      ? activeSchema.ownerColor.trim()
-      : typeof (activeSchema as SchemaForUI & { userColor?: string }).userColor === 'string'
-        ? ((activeSchema as SchemaForUI & { userColor?: string }).userColor ?? null)
-        : null;
+  const recipientColor = interactionState.ownerColor;
 
   const tags: HeaderSummary['tags'] = [];
   if (!schemaName.trim()) tags.push({ label: 'Sin nombre', color: 'warning' });
   const statusLabel =
-    activeSchema.readOnly || schemaHidden
+    interactionState.isReadOnly || schemaHidden
       ? 'Solo lectura'
-      : activeSchema.lock || activeSchema.state === 'locked'
-        ? String((activeSchema.lock as { lockedBy?: string } | undefined)?.lockedBy || '').trim() &&
-          String((activeSchema.lock as { lockedBy?: string } | undefined)?.lockedBy || '').trim() ===
-            String(activeSchema.ownerRecipientId || '').trim()
-          ? 'En edición'
-          : 'Bloqueado para edición'
+      : interactionState.isLocked
+        ? 'Bloqueado para edición'
         : schemaConfig?.persistence?.enabled || activeSchema.saveValue !== false
           ? 'Guardado'
           : 'Cambios pendientes';
   const statusColor =
-    statusLabel === 'Guardado'
+    interactionState.visibleBadge?.color ||
+    (statusLabel === 'Guardado'
       ? 'success'
-      : statusLabel === 'En edición'
-        ? 'processing'
-        : statusLabel === 'Bloqueado para edición'
+      : statusLabel === 'Bloqueado para edición'
         ? 'warning'
         : statusLabel === 'Solo lectura'
           ? 'gold'
-          : 'processing';
+          : 'processing');
   tags.push({ label: statusLabel, color: statusColor });
 
   const posX = Number((activeSchema.position?.x ?? 0).toFixed(1));

@@ -12,6 +12,7 @@ import { DragOverlay } from '@dnd-kit/core';
 import { SchemaForUI } from '@sisad-pdfme/common';
 import Item from './Item.js';
 import { mergeClassNames } from '../../shared/className.js';
+import { resolveListViewItemDescriptor } from './listViewItemResolver.js';
 
 
 /**
@@ -36,6 +37,13 @@ const ListViewDragOverlay = ({ activeId, schemas, selectedSchemas, renderIcon }:
 
   const activeSchema = schemas.find((schema) => schema.id === activeId);
   if (!activeSchema) return null;
+  const activeDescriptor = resolveListViewItemDescriptor(activeSchema);
+  const selectedDescriptors = selectedSchemas
+    .filter((item) => item.id !== activeId)
+    .map((item) => ({
+      item,
+      descriptor: resolveListViewItemDescriptor(item),
+    }));
 
   return createPortal(
     <DragOverlay adjustScale>
@@ -43,29 +51,33 @@ const ListViewDragOverlay = ({ activeId, schemas, selectedSchemas, renderIcon }:
         <ul className={mergeClassNames(DESIGNER_CLASSNAME + 'ul-auto', 'space-y-2 rounded-2xl border border-slate-200 bg-white p-2 shadow-lg')}>
           <Item
             icon={renderIcon(activeId)}
-            value={activeSchema.name}
-            title={activeSchema.name}
-            required={activeSchema.required}
-            readOnly={activeSchema.readOnly}
+            value={activeDescriptor.primaryLabel}
+            title={activeDescriptor.secondaryLabel || activeDescriptor.primaryLabel}
+            typeLabel={activeDescriptor.typeLabel}
+            required={activeDescriptor.isRequired}
+            readOnly={activeDescriptor.isReadOnly}
+            accentColor={activeDescriptor.ownerColor || undefined}
+            metaBadges={activeDescriptor.badges}
             dragOverlay
             className={mergeClassNames(DESIGNER_CLASSNAME + 'item-auto', 'rounded-xl')}
           />
         </ul>
         <ul className={mergeClassNames(DESIGNER_CLASSNAME + 'ul-auto', 'space-y-2 rounded-2xl border border-slate-200 bg-white p-2 shadow-lg')}>
-          {selectedSchemas
-            .filter((item) => item.id !== activeId)
-            .map((item) => (
-              <Item
-                icon={renderIcon(item)}
-                key={item.id}
-                value={item.name}
-                title={item.name}
-                required={item.required}
-                readOnly={item.readOnly}
-                dragOverlay
-                className={mergeClassNames(DESIGNER_CLASSNAME + 'item-auto', 'rounded-xl')}
-              />
-            ))}
+          {selectedDescriptors.map(({ item, descriptor }) => (
+            <Item
+              icon={renderIcon(item)}
+              key={item.id}
+              value={descriptor.primaryLabel}
+              title={descriptor.secondaryLabel || descriptor.primaryLabel}
+              typeLabel={descriptor.typeLabel}
+              required={descriptor.isRequired}
+              readOnly={descriptor.isReadOnly}
+              accentColor={descriptor.ownerColor || undefined}
+              metaBadges={descriptor.badges}
+              dragOverlay
+              className={mergeClassNames(DESIGNER_CLASSNAME + 'item-auto', 'rounded-xl')}
+            />
+          ))}
         </ul>
       </>
     </DragOverlay>,

@@ -1,7 +1,6 @@
 import React from 'react';
-import { Button, Tooltip } from 'antd';
+import { Button } from 'antd';
 import type { Plugin, Schema } from '@sisad-pdfme/common';
-import PluginIcon from './PluginIcon.js';
 import { DESIGNER_CLASSNAME } from '../../constants.js';
 import { mergeUniqueClassNames } from './shared/className.js';
 
@@ -70,39 +69,13 @@ const LeftSidebarCustomPanel = ({
       )}
     </div>
     {variant === 'panel' ? (
-      <div className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-preview`, 'mt-2.5 rounded-2xl border border-slate-200/70 bg-white p-2.5 shadow-sm')}>
-        {definitions.slice(0, 2).map((definition) => {
-          const plugin = resolvePlugin(definition.pluginType);
-          if (!plugin) return null;
-
-          return (
-            <Tooltip key={`${definition.id}-preview`} title={definition.label}>
-              <div className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-preview-item`, 'flex items-center gap-2.5 rounded-xl px-2 py-1.5')}>
-                <span
-                  className={mergeUniqueClassNames(
-                    `${DESIGNER_CLASSNAME}left-sidebar-custom-preview-icon`,
-                    'inline-flex h-8 w-8 items-center justify-center rounded-lg border border-slate-200 bg-slate-50 text-slate-700',
-                  )}
-                >
-                  <PluginIcon plugin={plugin} label={definition.label} size={16} />
-                </span>
-                <div className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-preview-copy`, 'min-w-0')}>
-                  <div className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-preview-title`, 'truncate text-sm font-medium text-slate-800')}>
-                    {definition.label}
-                  </div>
-                </div>
-              </div>
-            </Tooltip>
-          );
-        })}
-        <Button
-          type="default"
-          onClick={onOpenCreate}
-          className="mt-3 h-8 w-full rounded-xl border-slate-200 text-[0.75rem] font-semibold text-slate-700 shadow-none"
-        >
-          Crear campo personalizado
-        </Button>
-      </div>
+      <Button
+        type="default"
+        onClick={onOpenCreate}
+        className="mt-2.5 h-8 w-full rounded-xl border-slate-200 text-[0.75rem] font-semibold text-slate-700 shadow-none"
+      >
+        Crear campo personalizado
+      </Button>
     ) : null}
   </div>
 );

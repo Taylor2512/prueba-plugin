@@ -34,7 +34,6 @@ const LeftSidebarTabs = ({
           role="tab"
           aria-selected={activeTab === tab.id}
           aria-label={tab.label}
-          title={tab.label}
           className={mergeUniqueClassNames(
             `${DESIGNER_CLASSNAME}left-sidebar-tab-btn`,
             'inline-flex min-w-0 items-center gap-1.5 rounded-xl border border-transparent px-2 py-[0.3125rem] text-[0.72rem] font-semibold text-slate-600 transition',

@@ -35,6 +35,14 @@ const SCHEMA_TYPE_TONES: Record<string, string> = {
 type ToneAwareSchema = (SchemaForUI | Schema) & {
   userColor?: string;
   ownerColor?: string;
+  recipientColor?: string;
+  __designer?: {
+    ownerColor?: string;
+    recipientColor?: string;
+    collaboration?: {
+      recipientColor?: string;
+    };
+  };
   borderColor?: string;
   color?: string;
   strokeColor?: string;
@@ -68,7 +76,15 @@ const hexToRgb = (hex: string) => {
 export const resolveSchemaTone = (schema: SchemaForUI | Schema, fallback: string): string => {
   const toneSchema = schema as ToneAwareSchema;
   const candidate =
-    toneSchema.userColor || toneSchema.ownerColor || toneSchema.borderColor || toneSchema.strokeColor || toneSchema.color;
+    toneSchema.ownerColor ||
+    toneSchema.userColor ||
+    toneSchema.recipientColor ||
+    toneSchema.__designer?.collaboration?.recipientColor ||
+    toneSchema.__designer?.ownerColor ||
+    toneSchema.__designer?.recipientColor ||
+    toneSchema.borderColor ||
+    toneSchema.strokeColor ||
+    toneSchema.color;
 
   const typeTone = SCHEMA_TYPE_TONES[normalizeTypeKey((schema as SchemaForUI)?.type)];
 

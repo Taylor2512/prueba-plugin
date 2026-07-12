@@ -188,7 +188,7 @@ const DetailSectionCard = ({
     <section
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'detail-section-card',
-        'overflow-hidden rounded-xl border border-slate-200/70 bg-white/90 p-1 shadow-none',
+        'overflow-hidden rounded-xl border border-slate-200/70 bg-white/95 shadow-none',
         className,
       )}
       data-section={sectionKey}
@@ -210,7 +210,7 @@ const DetailSectionCard = ({
         id={`${bodyId}-body`}
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'detail-section-card-body',
-          'mt-0.5 rounded-lg bg-slate-50/50 p-1',
+          'mt-0.5 p-0',
           bodyClassName,
         )}
         aria-hidden={resolvedCollapsed ? 'true' : 'false'}

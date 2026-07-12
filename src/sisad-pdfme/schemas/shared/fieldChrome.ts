@@ -152,6 +152,19 @@ export const resolveSchemaOwnerTone = (
 ): string =>
   resolveSchemaOwnerColorValue(schema) || normalizeColor(fallback) || '#2563EB';
 
+export const resolveSchemaOwnerStyleVars = (
+  schema: unknown,
+  fallback?: string | null,
+): Record<string, string> => {
+  const tone = resolveSchemaOwnerTone(schema, fallback);
+  return {
+    '--schema-owner-color': tone,
+    '--schema-tone': tone,
+    '--schema-border-tone': tone,
+    '--schema-text-tone': tone,
+  };
+};
+
 /**
  * Central visual policy: given mode + state + tone, returns the chrome pieces
  * (surface/border + CSS vars + data attributes + capability flags).

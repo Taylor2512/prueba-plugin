@@ -83,7 +83,7 @@ export const fixedWidthField = (): PropPanelSchema => ({
 // ── Help / tooltip ─────────────────────────────────────────────────────────
 
 export const tooltipField = (): PropPanelSchema => ({
-  title: 'Texto de ayuda (tooltip)',
+  title: 'Ayuda del campo',
   type: 'string',
   widget: 'textarea',
   span: 24,

@@ -25,6 +25,12 @@ const SVGIcon = ({ svgString, size, styles, label }: {
   styles?: React.CSSProperties;
   label: string;
 }) => {
+  const normalizePaintToCurrentColor = (value: string) =>
+    value.replace(
+      /\b(stroke|fill)="(?!none\b|transparent\b|url\(|currentColor\b)([^"]+)"/gi,
+      (_match, attr) => `${attr}="currentColor"`,
+    );
+
   const processedSVG = useMemo(() => {
     // First sanitize the SVG string using DOMPurify with SVG profile.
     const sanitizedSVG = DOMPurify.sanitize(svgString, {
@@ -40,8 +46,10 @@ const SVGIcon = ({ svgString, size, styles, label }: {
       return null;
     }
 
+    const colorAwareSVG = normalizePaintToCurrentColor(sanitizedSVG);
+
     if (size) {
-      return sanitizedSVG.replace(/<svg\b([^>]*)>/i, (_match, attrs) => {
+      return colorAwareSVG.replace(/<svg\b([^>]*)>/i, (_match, attrs) => {
         const safeAttrs = String(attrs || '')
           .replace(/\swidth="[^"]*"/i, '')
           .replace(/\sheight="[^"]*"/i, '');
@@ -49,7 +57,7 @@ const SVGIcon = ({ svgString, size, styles, label }: {
       });
     }
 
-    return sanitizedSVG;
+    return colorAwareSVG;
   }, [svgString, size]);
 
   if (!processedSVG) {
@@ -59,7 +67,6 @@ const SVGIcon = ({ svgString, size, styles, label }: {
   return (
     <div
       style={styles}
-      title={label}
       dangerouslySetInnerHTML={{ __html: processedSVG }}
     />
   );
@@ -118,7 +125,6 @@ const PluginIcon = (props: PluginIconProps) => {
           : {}),
         ...styles,
       }}
-      title={label}
       {...dataAttrs}>
       {label}
     </div>

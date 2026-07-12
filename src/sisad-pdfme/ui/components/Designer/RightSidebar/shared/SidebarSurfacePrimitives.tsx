@@ -1,5 +1,5 @@
 import React from 'react';
-import { Tag, Typography } from 'antd';
+import { Tag, Tooltip, Typography } from 'antd';
 
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { mergeClassNames } from '../../shared/className.js';
@@ -203,14 +203,24 @@ export const SidebarSurfaceHeader = ({
               )}
             >
               {badges.map((badge, index) => (
-                <Tag
-                  key={badge.key ?? badge.tooltip ?? String(badge.label) ?? index}
-                  color={badge.color}
-                  title={badge.tooltip}
-                  className="m-0 inline-flex h-5 items-center rounded-full border-slate-200 px-1.5 text-[10px] leading-none"
-                >
-                  {badge.label}
-                </Tag>
+                badge.tooltip ? (
+                  <Tooltip key={badge.key ?? badge.tooltip ?? String(badge.label) ?? index} title={badge.tooltip} placement="top">
+                    <Tag
+                      color={badge.color}
+                      className="m-0 inline-flex h-5 items-center rounded-full border-slate-200 px-1.5 text-[10px] leading-none"
+                    >
+                      {badge.label}
+                    </Tag>
+                  </Tooltip>
+                ) : (
+                  <Tag
+                    key={badge.key ?? badge.tooltip ?? String(badge.label) ?? index}
+                    color={badge.color}
+                    className="m-0 inline-flex h-5 items-center rounded-full border-slate-200 px-1.5 text-[10px] leading-none"
+                  >
+                    {badge.label}
+                  </Tag>
+                )
               ))}
             </div>
           ) : null}

@@ -1,6 +1,6 @@
 import React, { useRef, useState, useContext, useCallback, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-import { PanelRightClose, PanelRightOpen } from 'lucide-react';
+import SidebarCollapseHandle from './shared/SidebarCollapseHandle.js';
 import {
   cloneDeep,
   ZOOM,
@@ -3891,17 +3891,16 @@ const TemplateEditor = ({
             })()}
           />
           {!rightSidebarDetached ? (
-            <button
-              type="button"
+            <SidebarCollapseHandle
+              side="right"
+              expanded={sidebarOpen}
+              presentation={rightSidebarPresentation}
+              density={rightSidebarPresentation === 'overlay' ? 'compact' : 'full'}
+              labelExpanded="Ocultar panel derecho"
+              labelCollapsed="Mostrar panel derecho"
+              onToggle={() => setSidebarOpen((prev) => !prev)}
               className={`${DESIGNER_CLASSNAME}right-sidebar-toggle-btn`}
-              title={sidebarOpen ? 'Ocultar panel derecho' : 'Mostrar panel derecho'}
-              aria-label={sidebarOpen ? 'Ocultar panel derecho' : 'Mostrar panel derecho'}
-              aria-pressed={sidebarOpen ? 'true' : 'false'}
-              data-active={sidebarOpen ? 'true' : 'false'}
-              onClick={() => setSidebarOpen((prev) => !prev)}
-            >
-              {sidebarOpen ? <PanelRightClose size={16} strokeWidth={2.2} /> : <PanelRightOpen size={16} strokeWidth={2.2} />}
-            </button>
+            />
           ) : null}
           {!rightSidebarDetached ? rightSidebarNode : null}
 

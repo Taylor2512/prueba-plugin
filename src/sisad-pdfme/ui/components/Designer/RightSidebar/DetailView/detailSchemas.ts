@@ -34,6 +34,24 @@ export type DetailInspectorSection = {
 };
 
 /**
+ * Perfil inspector normalizado para un schema activo.
+ *
+ * Mantiene juntas la familia semántica y las secciones visibles/abiertas,
+ * evitando que el render de JSX tenga que recomponer esta lógica.
+ */
+export type InspectorProfile = {
+  schemaType: string;
+  family: string;
+  visibleSections: CanonicalDetailSection[];
+  defaultOpenSections: CanonicalDetailSection[];
+};
+
+/**
+ * Input flexible aceptado por el contrato del inspector.
+ */
+type InspectorProfileInput = string | Pick<SchemaForUI, 'type'> | null | undefined;
+
+/**
  * Parámetros necesarios para construir las secciones del inspector.
  */
 type BuildInspectorSchemasParams = {
@@ -54,6 +72,31 @@ type BuildInspectorSchemasParams = {
   validateUniqueSchemaName: (_: unknown, value: string) => boolean;
   validatePosition: (_: unknown, value: number, fieldName: string) => boolean;
 };
+
+/**
+ * Resuelve el perfil inspector de alto nivel para un tipo de schema.
+ *
+ * Sirve como contrato estable para consumers externos y para `buildInspectorSections`.
+ */
+export const getInspectorProfile = (schema: InspectorProfileInput, _context?: unknown): InspectorProfile => {
+  const normalizedSchemaType = String((typeof schema === 'string' ? schema : schema?.type) || '').trim().toLowerCase();
+  const profile = getDetailProfile(normalizedSchemaType);
+
+  return {
+    schemaType: normalizedSchemaType,
+    family: resolveSchemaSemanticFamily(normalizedSchemaType),
+    visibleSections: profile.visibleSections,
+    defaultOpenSections: profile.defaultOpenSections,
+  };
+};
+
+/** Devuelve las secciones visibles para un schema activo. */
+export const getVisibleDetailSections = (schema: InspectorProfileInput, context?: unknown): CanonicalDetailSection[] =>
+  getInspectorProfile(schema, context).visibleSections;
+
+/** Devuelve las secciones abiertas por defecto para un schema activo. */
+export const getDefaultOpenSections = (schema: InspectorProfileInput, context?: unknown): CanonicalDetailSection[] =>
+  getInspectorProfile(schema, context).defaultOpenSections;
 
 /** Metadata visual base por sección canónica. */
 const SECTION_META: Record<DetailInspectorSectionKey, Omit<DetailInspectorSection, 'schema'>> = Object.fromEntries(
@@ -481,7 +524,7 @@ export const buildInspectorSections = ({
   };
 
   const visibilitySchema = (activeSchema || (defaultSchema as SchemaForUI)) as SchemaForUI;
-  const detailProfile = getDetailProfile(activeSchemaType);
+  const detailProfile = getInspectorProfile(activeSchemaType, activeSchema);
   const visibleSections = detailProfile.visibleSections;
   const defaultOpenSections = new Set(detailProfile.defaultOpenSections);
 
@@ -556,3 +599,15 @@ const sectionWidgetsFromSection = (section: DetailInspectorSection & { canonical
   sectionFieldsFromSection(section)
     .map((field) => field.widget)
     .filter((widget): widget is string => Boolean(widget));
+
+/**
+ * Devuelve los widgets presentes en una sección del inspector.
+ *
+ * El parámetro `schema` se mantiene en la firma pública para permitir futura
+ * autoconfiguración por contexto sin romper el contrato actual.
+ */
+export const getSectionWidgets = (
+  section: DetailInspectorSection,
+  _schema?: SchemaForUI | Record<string, unknown> | null,
+  _context?: unknown,
+): string[] => sectionWidgetsFromSection(section);

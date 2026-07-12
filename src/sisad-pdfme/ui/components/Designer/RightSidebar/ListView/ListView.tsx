@@ -28,6 +28,7 @@ import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { emitDesignerRuntimeEvent } from '../../shared/designerExtensions.js';
 import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
 import { getSchemaTypeLabel } from '../../shared/designerLabels.js';
+import { resolveSchemaInteractionState } from '../../shared/schemaInteractionState.js';
 
 const { TextArea } = Input;
 const { Text } = Typography;
@@ -132,7 +133,10 @@ const ListView = (
     [activeSchemaIds, viewSchemas],
   );
   const hasSelectableRecipient = Boolean(activeRecipient?.id) && collaborationContext?.canEditStructure !== false;
-  const hasLockedSelection = selectedSchemas.some((schema) => schema.readOnly === true || schema.state === 'locked');
+  const hasLockedSelection = selectedSchemas.some((schema) => {
+    const interactionState = resolveSchemaInteractionState(schema, { collaborationContext });
+    return interactionState.isLocked || interactionState.isReadOnly;
+  });
 
   const emitRuntimeEvent = useCallback(
     (event: Parameters<typeof emitDesignerRuntimeEvent>[1]) => {

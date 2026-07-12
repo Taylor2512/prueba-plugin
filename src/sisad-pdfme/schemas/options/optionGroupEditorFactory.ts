@@ -87,6 +87,7 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
       removeBtn.setAttribute('aria-label', `Eliminar opción ${index + 1}`);
       removeBtn.title = 'Eliminar opción';
       removeBtn.addEventListener('pointerdown', stopInspectorPointerEvent);
+      removeBtn.addEventListener('mousedown', stopInspectorPointerEvent);
 
       labelInput.addEventListener('change', createAction((currentOptions) =>
         config.createRenamedOptions(currentOptions, index, normalizeText(labelInput.value)),
@@ -133,6 +134,7 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
     };
 
     addBtn.addEventListener('pointerdown', stopInspectorPointerEvent);
+    addBtn.addEventListener('mousedown', stopInspectorPointerEvent);
     addBtn.addEventListener('click', doAdd);
     newInput.addEventListener('keydown', (event) => {
       if (event.key === 'Enter' || event.key === 'NumpadEnter') {

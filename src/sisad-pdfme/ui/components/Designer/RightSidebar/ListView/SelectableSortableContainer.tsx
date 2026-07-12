@@ -32,8 +32,8 @@ import SelectableSortableItem from './SelectableSortableItem.js';
 import PluginIcon from '../../PluginIcon.js';
 import ListViewDragOverlay from './ListViewDragOverlay.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
-import { resolveSchemaCollaborationState } from '../../../../collaborationContext.js';
 import { mergeClassNames } from '../../shared/className.js';
+import { resolveSchemaInteractionState } from '../../shared/schemaInteractionState.js';
 
 
 /**
@@ -147,8 +147,8 @@ const SelectableSortableContainer = (
       return <></>;
     }
 
-    const collaborationState = resolveSchemaCollaborationState(thisSchema, collaborationContext);
-    const collaborationColor = collaborationState.userColor || collaborationState.ownerColor || undefined;
+    const collaborationState = resolveSchemaInteractionState(thisSchema, { collaborationContext });
+    const collaborationColor = collaborationState.ownerColor || undefined;
 
     return (
       <PluginIcon

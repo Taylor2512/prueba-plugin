@@ -2,7 +2,7 @@ import React, { useContext, useState, useEffect, useMemo, useCallback, useRef } 
 import { Schema, Plugin, BasePdf, getFallbackFontName, cloneDeep } from '@sisad-pdfme/common';
 import { Button } from 'antd';
 import { useDraggable } from '@dnd-kit/core';
-import { Grip, LayoutGrid, List, PanelLeftClose, PanelLeftOpen } from 'lucide-react';
+import { Grip, Grid3X3, List } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../constants.js';
 import { setFontNameRecursively } from '../../helper.js';
 import { OptionsContext, PluginsRegistry } from '../../contexts.js';
@@ -29,6 +29,8 @@ import { normalizeHexColor } from './shared/recipientColor.js';
 import { buildAutoPlaceDescriptor } from './shared/schemaAutoPlace.js';
 import { useResponsiveDensity } from './shared/useResponsiveDensity.js';
 import { getCatalogLabel } from './shared/designerLabels.js';
+import { lockDesignerSidebarScroll, unlockDesignerSidebarScroll } from './shared/interactionGuards.js';
+import SidebarCollapseHandle from './shared/SidebarCollapseHandle.js';
 
 const schemaTypeCategoryMap: Record<string, string> = {
   text: 'Texto',
@@ -162,9 +164,27 @@ type ActiveRecipientOption = {
 };
 
 export type CatalogViewMode = 'compact' | 'rich' | 'mini';
+type CatalogLayout = 'list' | 'tiles' | 'icons';
 export type CatalogQuickFilter = 'all' | 'favorites' | 'recent';
 export type CatalogCapability = 'designer' | 'content' | 'layout' | 'selection' | 'prefill' | 'dynamic';
 const SHOW_ADVANCED_CATALOG_CONTROLS = false;
+
+const CATALOG_VIEW_OPTIONS: Array<{
+  mode: CatalogViewMode;
+  layout: CatalogLayout;
+  label: string;
+  title: string;
+  icon: React.ReactNode;
+}> = [
+  { mode: 'rich', layout: 'list', label: 'Lista', title: 'Vista de lista', icon: <List size={14} /> },
+  { mode: 'compact', layout: 'tiles', label: 'Tarjetas', title: 'Vista de tarjetas', icon: <Grid3X3 size={14} /> },
+  { mode: 'mini', layout: 'icons', label: 'Iconos', title: 'Vista de iconos', icon: <Grip size={14} /> },
+];
+const CATALOG_LAYOUT_BY_MODE: Record<CatalogViewMode, CatalogLayout> = {
+  rich: 'list',
+  compact: 'tiles',
+  mini: 'icons',
+};
 
 type CatalogSchemaItem = {
   key: string;
@@ -407,13 +427,14 @@ const Draggable = (props: {
   basePdf: BasePdf;
   schema?: Schema;
   schemaFactory?: () => Schema | null;
+  onDragStateChange?: (isDragging: boolean) => void;
   children: (drag: {
     listeners: ReturnType<typeof useDraggable>['listeners'];
     attributes: ReturnType<typeof useDraggable>['attributes'];
     isDragging: boolean;
   }) => React.ReactNode;
 }) => {
-  const { plugin } = props;
+  const { plugin, onDragStateChange } = props;
   const options = useContext(OptionsContext);
   const baseSchema = cloneDeep(props.schemaFactory?.() || props.schema || plugin.propPanel.defaultSchema);
   if (options.font) {
@@ -429,13 +450,23 @@ const Draggable = (props: {
   });
   const { listeners, setNodeRef, attributes, isDragging } = draggable;
 
+  useEffect(() => {
+    onDragStateChange?.(isDragging);
+  }, [isDragging, onDragStateChange]);
+
   return (
     <div ref={setNodeRef}>
       <div
         className={DESIGNER_CLASSNAME + 'left-sidebar-draggable-shell'}
         data-dragging={isDragging ? 'true' : 'false'}
         data-drag-source={isDragging ? 'true' : 'false'}
-        data-dragging-schema-type={String(baseSchema.type || '')}>
+        data-dragging-schema-type={String(baseSchema.type || '')}
+        onPointerDownCapture={() => {
+          onDragStateChange?.(true);
+        }}
+        onPointerUpCapture={() => {
+          onDragStateChange?.(false);
+        }}>
         {props.children({ listeners, attributes, isDragging })}
       </div>
     </div>
@@ -488,11 +519,6 @@ const SidebarShell = ({
                 activeRecipientLabel
                   ? `Campos asignados a ${activeRecipientLabel}`
                   : `Color del destinatario activo ${activeRecipientColor}`
-              }
-              title={
-                activeRecipientLabel
-                  ? `Campos asignados a ${activeRecipientLabel}`
-                  : `Color del destinatario activo: ${activeRecipientColor}`
               }
               className={`${DESIGNER_CLASSNAME}left-sidebar-active-recipient-dot`}
               style={{ '--active-recipient-color': activeRecipientColor } as React.CSSProperties}
@@ -636,12 +662,12 @@ const LeftSidebar = ({
     activeCapabilities,
     setActiveCapabilities,
     resolvedViewMode,
-    setInternalViewMode,
     setUserViewMode,
     collapsedCategories,
     setCollapsedCategories,
-    hasManualViewMode,
     markRecent,
+    isDragging,
+    setIsDragging,
   } = useLeftSidebarCatalogState({ catalogViewMode });
 
   const normalizedSearch = search.trim().toLowerCase();
@@ -996,6 +1022,7 @@ const LeftSidebar = ({
   const [sidebarExpanded, setSidebarExpanded] = useState(() => resolvedPresentation === 'docked');
   const showSearchInput = showSearch ?? isPanel;
   const sidebarRootRef = useRef<HTMLDivElement | null>(null);
+  const sidebarScrollLockRef = useRef<ReturnType<typeof lockDesignerSidebarScroll> | null>(null);
   const { mode: sidebarDensityMode, width: sidebarLiveWidth } = useResponsiveDensity(sidebarRootRef, {
     comfortable: 430,
     compact: 330,
@@ -1003,26 +1030,33 @@ const LeftSidebar = ({
   });
 
   useEffect(() => {
-    if (catalogViewMode !== undefined || hasManualViewMode) return;
-    const targetViewMode: CatalogViewMode =
-      sidebarDensityMode === 'mini' ? 'mini' : sidebarDensityMode === 'compact' ? 'compact' : 'rich';
-    if (targetViewMode === resolvedViewMode) return;
-    setInternalViewMode(targetViewMode);
-    onCatalogViewModeChange?.(targetViewMode);
-  }, [
-    catalogViewMode,
-    hasManualViewMode,
-    onCatalogViewModeChange,
-    resolvedViewMode,
-    setInternalViewMode,
-    sidebarDensityMode,
-  ]);
-
-  useEffect(() => {
     if (resolvedPresentation === 'overlay') {
       setSidebarExpanded(false);
     }
   }, [resolvedPresentation]);
+
+  useEffect(() => {
+    const root = sidebarRootRef.current;
+    if (!root) return;
+
+    if (isDragging) {
+      if (!sidebarScrollLockRef.current) {
+        sidebarScrollLockRef.current = lockDesignerSidebarScroll(root);
+      }
+      return;
+    }
+
+    unlockDesignerSidebarScroll(sidebarScrollLockRef.current);
+    sidebarScrollLockRef.current = null;
+  }, [isDragging]);
+
+  useEffect(
+    () => () => {
+      unlockDesignerSidebarScroll(sidebarScrollLockRef.current);
+      sidebarScrollLockRef.current = null;
+    },
+    [],
+  );
   const sidebarClass = mergeClassNames(
     `${DESIGNER_CLASSNAME}left-sidebar`,
     `${DESIGNER_CLASSNAME}left-sidebar-${variant}`,
@@ -1060,7 +1094,6 @@ const LeftSidebar = ({
     };
     const pluginTone = activeRecipientTone || null;
     const pluginToneSurface = pluginTone ? `${pluginTone}18` : undefined;
-    const tooltipText = displayLabel;
 
     return (
       <Draggable
@@ -1069,6 +1102,7 @@ const LeftSidebar = ({
         scale={scale}
         basePdf={basePdf}
         plugin={plugin}
+        onDragStateChange={setIsDragging}
       >
         {({ listeners, attributes, isDragging: draggableActive }) => (
           <div
@@ -1085,23 +1119,20 @@ const LeftSidebar = ({
               data-schema-category={category}
               data-schema-kind={item.source}
               data-schema-label={displayLabel}
+              data-catalog-layout={CATALOG_LAYOUT_BY_MODE[resolvedViewMode]}
               data-dragging={draggableActive ? 'true' : 'false'}
               data-view-mode={resolvedViewMode}
               data-is-panel={isPanel ? 'true' : 'false'}
               style={activeRecipientButtonStyle}
-              title={tooltipText}
+              onMouseDownCapture={() => {
+                setIsDragging(true);
+              }}
+              onMouseUpCapture={() => {
+                setIsDragging(false);
+              }}
               {...listeners}
               {...attributes}
               onClick={() => {
-                if (draggableActive) return;
-                if (typeof onSchemaClick === 'function') {
-                  onSchemaClick(cloneDeep(plugin.propPanel.defaultSchema), pluginType);
-                  markRecent(pluginType);
-                }
-              }}
-              onDoubleClick={(event) => {
-                event.preventDefault();
-                event.stopPropagation();
                 if (draggableActive) return;
                 if (typeof onSchemaClick === 'function') {
                   onSchemaClick(cloneDeep(plugin.propPanel.defaultSchema), pluginType);
@@ -1184,6 +1215,7 @@ const LeftSidebar = ({
         basePdf={basePdf}
         plugin={plugin}
         schemaFactory={createSchemaInstance}
+        onDragStateChange={setIsDragging}
       >
         {({ listeners, attributes, isDragging: draggableActive }) => (
           <div
@@ -1205,26 +1237,16 @@ const LeftSidebar = ({
               data-schema-category={definition.category}
               data-schema-kind="custom"
               data-schema-label={definition.label}
-              title={[
-                definition.label,
-                getCatalogLabel(definition.label, definition.pluginType, 'custom'),
-              ]
-                .filter(Boolean)
-                .join(' • ')}
+              data-catalog-layout={CATALOG_LAYOUT_BY_MODE[resolvedViewMode]}
+              onMouseDownCapture={() => {
+                setIsDragging(true);
+              }}
+              onMouseUpCapture={() => {
+                setIsDragging(false);
+              }}
               {...listeners}
               {...attributes}
               onClick={() => {
-                if (draggableActive) return;
-                if (typeof onSchemaClick === 'function') {
-                  const schema = createSchemaInstance();
-                  if (!schema) return;
-                  onSchemaClick(cloneDeep(schema), definition.pluginType);
-                  markRecent(definition.pluginType);
-                }
-              }}
-              onDoubleClick={(event) => {
-                event.preventDefault();
-                event.stopPropagation();
                 if (draggableActive) return;
                 if (typeof onSchemaClick === 'function') {
                   const schema = createSchemaInstance();
@@ -1375,42 +1397,48 @@ const LeftSidebar = ({
           Recientes ({recentPlugins.length})
         </Button>
         {showCatalogViewSwitcher ? (
-          <Button
-            className={DESIGNER_CLASSNAME + 'left-sidebar-view-toggle-btn'}
-            size="small"
-            data-testid="left-sidebar-view-toggle"
-            data-view-mode={resolvedViewMode}
-            icon={
-              resolvedViewMode === 'rich' ? (
-                <List size={14} />
-              ) : resolvedViewMode === 'compact' ? (
-                <Grip size={14} />
-              ) : (
-                <LayoutGrid size={14} />
-              )
-            }
-            title={
-              resolvedViewMode === 'rich'
-                ? 'Cambiar a vista compacta (lista)'
-                : resolvedViewMode === 'compact'
-                  ? 'Cambiar a vista mini (solo iconos)'
-                  : 'Cambiar a vista cómoda (grid)'
-            }
-            aria-label={
-              resolvedViewMode === 'rich'
-                ? 'Cambiar a vista compacta (lista)'
-                : resolvedViewMode === 'compact'
-                  ? 'Cambiar a vista mini (solo iconos)'
-                  : 'Cambiar a vista cómoda (grid)'
-            }
-            onClick={() => {
-              // Cómodo (rich) → Compacto (compact) → Mini → Cómodo…
-              const nextMode: CatalogViewMode =
-                resolvedViewMode === 'rich' ? 'compact' : resolvedViewMode === 'compact' ? 'mini' : 'rich';
-              setUserViewMode(nextMode);
-              onCatalogViewModeChange?.(nextMode);
-            }}
-          />
+          <div
+            role="group"
+            aria-label="Vista del catálogo"
+            className={mergeClassNames(
+              `${DESIGNER_CLASSNAME}left-sidebar-view-toggle-group`,
+              'inline-flex items-center gap-1 rounded-lg border border-slate-200/70 bg-white/90 p-1 shadow-none',
+            )}
+          >
+            {CATALOG_VIEW_OPTIONS.map((option) => {
+              const active = resolvedViewMode === option.mode;
+              return (
+                <Button
+                  key={option.mode}
+                  className={mergeClassNames(
+                    `${DESIGNER_CLASSNAME}left-sidebar-view-toggle-btn`,
+                    `${DESIGNER_CLASSNAME}left-sidebar-view-toggle-btn-${option.mode}`,
+                  )}
+                  size="small"
+                  data-testid={`left-sidebar-view-${option.mode}`}
+                  data-view-mode={option.mode}
+                  data-catalog-layout={option.layout}
+                  data-active={active ? 'true' : 'false'}
+                  type={active ? 'primary' : 'default'}
+                  aria-pressed={active}
+                  aria-label={option.title}
+                  onClick={() => {
+                    setUserViewMode(option.mode);
+                    onCatalogViewModeChange?.(option.mode);
+                  }}
+                >
+                  <span className="inline-flex items-center gap-1">
+                    <span aria-hidden="true">{option.icon}</span>
+                    {sidebarDensityMode === 'mini' ? (
+                      <span className="sr-only">{option.label}</span>
+                    ) : (
+                      <span>{option.label}</span>
+                    )}
+                  </span>
+                </Button>
+              );
+            })}
+          </div>
         ) : null}
       </div>
       {SHOW_ADVANCED_CATALOG_CONTROLS ? (
@@ -1470,6 +1498,7 @@ const LeftSidebar = ({
       className={sidebarClass}
       data-testid="left-sidebar"
       data-sidebar-variant={variant}
+      data-catalog-layout={CATALOG_LAYOUT_BY_MODE[resolvedViewMode]}
       data-sidebar-detached={detached ? 'true' : 'false'}
       data-sidebar-collapsed={sidebarExpanded ? 'false' : 'true'}
       data-left-sidebar-mode={resolvedPresentation}
@@ -1480,20 +1509,18 @@ const LeftSidebar = ({
       data-discovery-mode={isDiscoveryMode ? 'true' : 'false'}
       data-expanded={sidebarExpanded ? 'true' : 'false'}
       data-left-sidebar-density={sidebarDensityMode}
+      data-sidebar-scroll-locked={isDragging ? 'true' : 'false'}
       style={{ '--left-sidebar-live-width': `${sidebarLiveWidth}px` } as React.CSSProperties}>
-      <button
-        type="button"
-        className={mergeClassNames(
-          `${DESIGNER_CLASSNAME}sidebar-toggle-btn`,
-          `${DESIGNER_CLASSNAME}left-sidebar-toggle-btn`,
-        )}
-        aria-label={sidebarExpanded ? 'Cerrar catálogo de campos' : 'Abrir catálogo de campos'}
-        title={sidebarExpanded ? 'Cerrar catálogo de campos' : 'Abrir catálogo de campos'}
-        aria-expanded={sidebarExpanded}
-        onClick={() => setSidebarExpanded(prev => !prev)}
-      >
-        {sidebarExpanded ? <PanelLeftClose size={16} strokeWidth={2.2} /> : <PanelLeftOpen size={16} strokeWidth={2.2} />}
-      </button>
+      <SidebarCollapseHandle
+        side="left"
+        expanded={sidebarExpanded}
+        presentation={resolvedPresentation}
+        density={sidebarDensityMode}
+        labelExpanded="Cerrar catálogo de campos"
+        labelCollapsed="Abrir catálogo de campos"
+        onToggle={() => setSidebarExpanded((prev) => !prev)}
+        className={`${DESIGNER_CLASSNAME}left-sidebar-toggle-btn`}
+      />
       {useLayoutFrame ? (
         <SidebarFrame className={`${DESIGNER_CLASSNAME}left-sidebar-frame`}>
           <SidebarShell

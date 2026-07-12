@@ -330,7 +330,7 @@
     --sisad-pdfme-rs-gap: 0.875rem;
     --sisad-pdfme-rs-width: clamp(15.5rem, 19vw, 19.5rem);
     --sisad-pdfme-ls-width: clamp(13rem, 16vw, 16.5rem);
-    --sisad-pdfme-ls-rail-width: 3rem;
+    --sisad-pdfme-ls-rail-width: 2.625rem;
     --sisad-pdfme-stage-inline-gap: clamp(1.25rem, 2.6vw, 2rem);
     --sisad-pdfme-stage-top-gap: 4.25rem;
     --sisad-pdfme-stage-right-dock-width: clamp(17rem, 20vw, 21rem);

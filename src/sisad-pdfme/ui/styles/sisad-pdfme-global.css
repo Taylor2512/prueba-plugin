@@ -1217,7 +1217,7 @@
   /* ── LEFT SIDEBAR TOGGLE BUTTON ─────────────────────────────── */
   .sisad-pdfme-designer-left-sidebar-toggle-btn {
     @apply
-      absolute [top:1rem] [right:calc(-1_*_(var(--sisad-pdfme-ls-rail-width)_/_3))] z-[90] min-w-[1.625rem] h-[1.625rem] p-0
+      absolute [top:0.875rem] [right:0.5rem] z-[90] min-w-[1.625rem] h-[1.625rem] p-0
       [transition:right_220ms_var(--wix-ease-out),_border-color_var(--transition-fast),_color_var(--transition-fast),_opacity_150ms_ease,_transform_220ms_var(--wix-ease-out)];
   }
 

@@ -9,13 +9,12 @@ import React, { useContext } from 'react';
 import { useSortable } from '@dnd-kit/sortable';
 import { SchemaForUI } from '@sisad-pdfme/common';
 import { PluginsRegistry } from '../../../../contexts.js';
-import { resolveSchemaCollaborationState } from '../../../../collaborationContext.js';
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
 import Item from './Item.js';
 import { useMountStatus } from '../../../../hooks.js';
 import PluginIcon from '../../PluginIcon.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import { getSchemaTypeLabel } from '../../shared/designerLabels.js';
+import { resolveListViewItemDescriptor } from './listViewItemResolver.js';
 
 
 /**
@@ -83,28 +82,15 @@ const SelectableSortableItem = ({
     () => pluginsRegistry.findWithLabelByType(schema.type),
     [pluginsRegistry, schema.type],
   );
-  const collaborationState = React.useMemo(
-    () => resolveSchemaCollaborationState(schema, collaborationContext),
+  const itemDescriptor = React.useMemo(
+    () => resolveListViewItemDescriptor(schema, collaborationContext),
     [collaborationContext, schema],
   );
-  const collaborationColor = collaborationState.userColor || collaborationState.ownerColor || undefined;
-  const collaborationBadges = React.useMemo(() => {
-    const items: Array<{ label: string; color?: string }> = [];
-    if (collaborationState.isShared) {
-      items.push({ label: 'Compartido', color: collaborationColor });
-    } else if (collaborationState.isOwnerOther) {
-      items.push({ label: 'Ajeno', color: collaborationColor });
-    } else if (collaborationState.isOwnerActive) {
-      items.push({ label: 'Propio', color: collaborationColor });
-    }
-    if (collaborationState.ownerRecipientName) {
-      items.push({ label: collaborationState.ownerRecipientName, color: collaborationColor });
-    }
-    return items.slice(0, 2);
-  }, [collaborationColor, collaborationState]);
-  const primaryLabel = resolveDisplayLabel(schema);
-  const technicalName = String(schema.name || '').trim() || 'Campo';
-  const schemaTypeLabel = getSchemaTypeLabel(schema.type);
+  const collaborationColor = itemDescriptor.ownerColor || undefined;
+  const primaryLabel = itemDescriptor.primaryLabel || resolveDisplayLabel(schema);
+  const technicalName = itemDescriptor.secondaryLabel || String(schema.name || '').trim() || 'Campo';
+  const schemaTypeLabel = itemDescriptor.typeLabel;
+  const collaborationBadges = itemDescriptor.badges;
 
   let status: undefined | 'is-warning' | 'is-danger';
   if (!schema.name) {
@@ -125,8 +111,8 @@ const SelectableSortableItem = ({
       typeLabel={schemaTypeLabel}
       className={DESIGNER_CLASSNAME + 'item-auto rounded-2xl'}
       status={status}
-      required={schema.required}
-      readOnly={schema.readOnly}
+      required={itemDescriptor.isRequired}
+      readOnly={itemDescriptor.isReadOnly}
       dragging={isDragging}
       sorting={isSorting}
       transition={transition}
