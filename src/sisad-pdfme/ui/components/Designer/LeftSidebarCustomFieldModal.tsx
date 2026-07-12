@@ -48,75 +48,23 @@ type Props = {
   onChange: <K extends keyof CustomFieldDef>(_key: K, _value: CustomFieldDef[K]) => void;
 };
 
-const FONT_OPTIONS = [
-  { value: '__DEFAULT__', label: '-- Predeterminada --' },
-  { value: 'arial', label: 'Arial' },
-  { value: 'calibri', label: 'Calibri' },
-  { value: 'couriernew', label: 'Courier New' },
-  { value: 'lucidaconsole', label: 'Lucida Console' },
-  { value: 'tahoma', label: 'Tahoma' },
-];
-
-const FONT_COLOR_OPTIONS = [
-  { value: '__DEFAULT__', label: '-- Predeterminada --' },
-  { value: 'black', label: 'Negro' },
-  { value: 'purple', label: 'Morado' },
-  { value: 'darkred', label: 'Rojo oscuro' },
-  { value: 'green', label: 'Verde' },
-];
-
-const FONT_SIZE_OPTIONS = [
-  { value: '__DEFAULT__', label: '-- Predeterminada --' },
-  { value: '9', label: '9' },
-  { value: '10', label: '10' },
-  { value: '11', label: '11' },
-  { value: '12', label: '12' },
-  { value: '14', label: '14' },
-];
-
-const VALIDATION_OPTIONS = [
-  { value: 'None', label: 'Ninguno' },
-  { value: 'Email', label: 'Correo electrónico' },
-  { value: 'Number', label: 'Números' },
-  { value: 'Date', label: 'Fecha' },
-];
-
 const Section = ({
   title,
   children,
-  fieldset = false,
 }: {
   title: string;
   children: React.ReactNode;
-  fieldset?: boolean;
 }) => {
   const id = `${DESIGNER_CLASSNAME}custom-field-section-${title.toLowerCase().replace(/\s+/g, '-')}`;
-  if (fieldset) {
-    return (
-      <fieldset
-        className={mergeClassNames(
-          `${DESIGNER_CLASSNAME}custom-field-section`,
-          'rounded-2xl border border-slate-200 bg-white p-4 shadow-sm',
-        )}
-        aria-labelledby={id}
-      >
-        <legend id={id} className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-section-legend`, 'px-2 text-sm font-semibold text-slate-900')}>
-          {title}
-        </legend>
-        {children}
-      </fieldset>
-    );
-  }
-
   return (
     <section
       className={mergeClassNames(
         `${DESIGNER_CLASSNAME}custom-field-section`,
-        'rounded-2xl border border-slate-200 bg-white p-4 shadow-sm',
+        'border-b border-slate-200/80 pb-3 last:border-b-0 last:pb-0',
       )}
       aria-labelledby={id}
     >
-      <h4 id={id} className="mb-3 text-sm font-semibold text-slate-900">
+      <h4 id={id} className="mb-2 text-[0.68rem] font-semibold uppercase tracking-[0.08em] text-slate-900">
         {title}
       </h4>
       {children}
@@ -229,16 +177,13 @@ const CustomFieldModal = ({ open, draft, onCancel, onSave, onChange }: Props) =>
     title="Detalles de campos personalizados"
     onCancel={onCancel}
     footer={null}
-    width="min(760px, calc(100vw - 1rem))"
-    className={mergeClassNames(
-      `${DESIGNER_CLASSNAME}custom-field-modal`,
-      'rounded-3xl',
-    )}
+    width="min(720px, calc(100vw - 1rem))"
+    className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-modal`, 'rounded-3xl')}
   >
-    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-form`, 'space-y-4 rounded-b-3xl bg-slate-50/70 p-4')}>
-      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-form-scroll`, 'space-y-4')}>
+    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-form`, 'flex max-h-[80dvh] flex-col rounded-b-3xl bg-slate-50/70 p-3')}>
+      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-form-scroll`, 'min-h-0 flex-1 space-y-3 overflow-y-auto pr-0.5')}>
         <Section title="Identidad">
-          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-grid`, 'grid gap-3 md:grid-cols-2')}>
+          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-grid`, 'grid gap-2.5 md:grid-cols-2')}>
             <TextField
               label="Nombre *"
               name="name"
@@ -263,7 +208,7 @@ const CustomFieldModal = ({ open, draft, onCancel, onSave, onChange }: Props) =>
           </div>
         </Section>
 
-        <Section title="Opciones" fieldset>
+        <Section title="Opciones">
           <div className="grid gap-2 md:grid-cols-3">
             <CheckboxField name="required" label="Obligatorio" checked={draft.required} onChange={(value) => onChange('required', value)} />
             <CheckboxField name="readOnly" label="Solo lectura" checked={draft.readOnly} onChange={(value) => onChange('readOnly', value)} />
@@ -271,88 +216,24 @@ const CustomFieldModal = ({ open, draft, onCancel, onSave, onChange }: Props) =>
           </div>
         </Section>
 
-        <Section title="Colaboración" fieldset>
-          <CheckboxField
-            name="collaborative"
-            label="Los destinatarios pueden colaborar"
-            checked={draft.collaborative}
-            onChange={(value) => onChange('collaborative', value)}
-          />
-        </Section>
-
-        <Section title="Aplicar formato">
-          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-grid`, 'grid gap-3 md:grid-cols-2')}>
-            <SelectField label="Fuente" name="font" value={draft.font} options={FONT_OPTIONS} onChange={(value) => onChange('font', value)} />
-            <SelectField
-              label="Color de fuente"
-              name="fontColor"
-              value={draft.fontColor}
-              options={FONT_COLOR_OPTIONS}
-              onChange={(value) => onChange('fontColor', value)}
-            />
-            <SelectField
-              label="Tamaño de fuente"
-              name="fontSize"
-              value={draft.fontSize}
-              options={FONT_SIZE_OPTIONS}
-              onChange={(value) => onChange('fontSize', value)}
-            />
-          </div>
-          <div className={`${DESIGNER_CLASSNAME}custom-field-inline-checks`}>
-            <CheckboxField name="bold" label="Negrita" checked={draft.bold} onChange={(value) => onChange('bold', value)} />
-            <CheckboxField name="italic" label="Cursiva" checked={draft.italic} onChange={(value) => onChange('italic', value)} />
-            <CheckboxField name="underline" label="Subrayado" checked={draft.underline} onChange={(value) => onChange('underline', value)} />
-            <CheckboxField
-              name="maskAsterisks"
-              label="Ocultar texto con asteriscos"
-              checked={draft.maskAsterisks}
-              onChange={(value) => onChange('maskAsterisks', value)}
-            />
-            <CheckboxField name="fixedWidth" label="Anchura fija" checked={draft.fixedWidth} onChange={(value) => onChange('fixedWidth', value)} />
-          </div>
-        </Section>
-
         <Section title="Tamaño">
-          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-grid`, 'grid gap-3 md:grid-cols-3')}>
+          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-grid`, 'grid gap-2.5 md:grid-cols-2')}>
             <TextField name="width" label="Ancho" value={draft.width} onChange={(value) => onChange('width', value)} />
             <TextField name="height" label="Altura" value={draft.height} onChange={(value) => onChange('height', value)} />
-            <TextField
-              name="maxChars"
-              label="N.º máx. de caracteres"
-              value={draft.maxChars}
-              onChange={(value) => onChange('maxChars', value)}
-            />
           </div>
         </Section>
 
-        <Section title="Validación predeterminada">
-          <SelectField
-            name="validation"
-            value={draft.validation}
-            options={VALIDATION_OPTIONS}
-            onChange={(value) => onChange('validation', value)}
+        <Section title="Colocación automática">
+          <TextField
+            name="autoPlaceText"
+            label="Colocar automáticamente texto"
+            value={draft.autoPlaceText}
+            onChange={(value) => onChange('autoPlaceText', value)}
           />
-        </Section>
-
-        <Section title="Avanzado predeterminado">
-          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-grid`, 'grid gap-3 md:grid-cols-2')}>
-            <TextField
-              name="helpText"
-              label="Información de ayuda sobre el campo"
-              value={draft.helpText}
-              onChange={(value) => onChange('helpText', value)}
-            />
-            <TextField
-              name="autoPlaceText"
-              label="Colocar automáticamente texto"
-              value={draft.autoPlaceText}
-              onChange={(value) => onChange('autoPlaceText', value)}
-            />
-          </div>
         </Section>
       </div>
 
-      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-footer`, 'flex items-center justify-end gap-2 border-t border-slate-200 pt-4')}>
+      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-footer`, 'mt-3 flex shrink-0 items-center justify-end gap-2 border-t border-slate-200 pt-3')}>
         <Button type="primary" onClick={onSave} disabled={!draft.name.trim()}>
           Guardar
         </Button>

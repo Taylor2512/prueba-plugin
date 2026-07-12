@@ -97,7 +97,7 @@ type SectionHeadProps = SectionTextProps & {
 const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, description, leading, trailing, header }: SectionHeadProps) => {
   if (header) {
     if (!collapsible) {
-      return <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head', 'flex items-center justify-between gap-2')}>{header}</div>;
+      return <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head', 'flex items-center justify-between gap-1.5')}>{header}</div>;
     }
 
     return (
@@ -105,7 +105,7 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
         type="button"
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'detail-section-card-head',
-          'flex min-h-[28px] w-full items-center justify-between gap-1.5 rounded-lg px-1.5 py-0.5 text-left transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+          'flex min-h-[24px] w-full items-center justify-between gap-1 rounded-lg px-[5px] py-0.5 text-left transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
         )}
         aria-expanded={!collapsed}
         aria-controls={`${bodyId}-body`}
@@ -113,7 +113,7 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
         onClick={onToggle}
       >
         {header}
-        <span className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-toggle', 'inline-flex h-6 w-6 flex-none items-center justify-center rounded-lg text-slate-400')} aria-hidden="true">
+        <span className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-toggle', 'inline-flex h-[1.375rem] w-[1.375rem] flex-none items-center justify-center rounded-lg text-slate-400')} aria-hidden="true">
           <ChevronDown size={11} />
         </span>
       </button>
@@ -122,7 +122,7 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
 
   if (!collapsible) {
     return (
-      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head', 'flex min-h-[28px] w-full items-center justify-between gap-1.5 rounded-lg px-1.5 py-0.5')}>
+      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head', 'flex min-h-[24px] w-full items-center justify-between gap-1 rounded-lg px-[5px] py-0.5')}>
         {leading ? <div className={DESIGNER_CLASSNAME + 'detail-section-card-leading'}>{leading}</div> : null}
         <SectionText title={title} description={description} />
         {trailing ? <div className={DESIGNER_CLASSNAME + 'detail-section-card-trailing'}>{trailing}</div> : null}
@@ -210,7 +210,7 @@ const DetailSectionCard = ({
         id={`${bodyId}-body`}
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'detail-section-card-body',
-          'mt-0.5 p-0',
+          'mt-[1px] p-0',
           bodyClassName,
         )}
         aria-hidden={resolvedCollapsed ? 'true' : 'false'}

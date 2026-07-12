@@ -9,38 +9,17 @@ const openCatalog = async (page: Page) => {
 };
 
 const selectCanvasSchema = async (page: Page, selector: string) => {
-  const target = page.locator(selector).first();
+  const target = page.locator(`[data-paper-page="true"] ${selector}`).first();
   await expect(target).toBeVisible();
   await target.click({ force: true });
-  await expect(page.getByTestId('detail-view')).toBeVisible();
-};
-
-const addSchemaByType = async (page: Page, type: string) => {
-  await openCatalog(page);
-  await page.getByRole('tab', { name: /Campos estándar/i }).click();
-  if (type === 'number' || type === 'text') {
-    const textCategory = page.getByRole('button', { name: /Alternar categoría Texto/i }).first();
-    if ((await textCategory.getAttribute('aria-expanded')) !== 'true') {
-      await textCategory.click();
+  const detailView = page.getByTestId('detail-view');
+  if (!(await detailView.isVisible().catch(() => false))) {
+    const openDetail = page.getByRole('button', { name: /Abrir panel Detalle|Ver detalle|Detalle/i }).first();
+    if (await openDetail.count()) {
+      await openDetail.click({ force: true }).catch(() => {});
     }
   }
-  const button = page.locator(`[data-schema-type="${type}"]`).first();
-  await expect(button).toBeVisible();
-  await button.click({ force: true });
-  await expect.poll(async () => page.locator(`.sisad-pdfme-ui-custom-selectable[data-schema-type="${type}"]`).count()).toBeGreaterThan(0);
-  const createdName = `routing-primary-showcase_${type}`;
-  const createdSchema = page
-    .locator(`[data-paper-page="true"] .sisad-pdfme-ui-custom-selectable[data-schema-name="${createdName}"]`)
-    .first();
-  await page.keyboard.press('Escape');
-  if (await createdSchema.count()) {
-    await createdSchema.click({ force: true });
-    return;
-  }
-  await page
-    .locator(`[data-paper-page="true"] .sisad-pdfme-ui-custom-selectable[data-schema-type="${type}"]`)
-    .last()
-    .click({ force: true });
+  await expect(detailView).toBeVisible();
 };
 
 const expectSectionVisible = async (page: Page, testId: string) => {

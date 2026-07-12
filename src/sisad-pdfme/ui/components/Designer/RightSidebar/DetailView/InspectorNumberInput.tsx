@@ -27,7 +27,7 @@ export const InspectorNumberInput = ({
   max,
   step,
 }: InspectorNumberInputProps) => (
-  <label className={mergeClassNames('flex min-h-8 flex-col gap-1 text-[11px] text-slate-700', className)}>
+  <label className={mergeClassNames('flex min-h-7 flex-col gap-0.5 text-[10px] text-slate-700', className)}>
     {label ? <span className="font-medium text-slate-900">{label}</span> : null}
     <InputNumber
       data-testid={testId}

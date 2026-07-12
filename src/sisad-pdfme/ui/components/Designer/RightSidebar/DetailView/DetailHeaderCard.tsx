@@ -54,7 +54,7 @@ const DetailHeaderCard = ({
   typeLabel,
   positionLabel,
   tags,
-  maxVisibleTags = 2,
+  maxVisibleTags = 1,
   showType = true,
   showPosition = true,
   showStateTags = true,
