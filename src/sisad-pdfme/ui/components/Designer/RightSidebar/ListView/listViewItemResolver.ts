@@ -39,12 +39,15 @@ export const resolveListViewItemDescriptor = (
   if (interactionState.visibleBadge) {
     badges.push({ label: interactionState.visibleBadge.label, color: interactionState.visibleBadge.color });
   }
+  // Keep the ownership line compact: a single chip per row instead of stacking
+  // "Propio" + owner name on every field. When the field belongs to the active
+  // user the redundant name is dropped; fields owned by someone else surface the
+  // owner name (the distinguishing information).
   if (interactionState.owner.isShared) {
     badges.push({ label: 'Compartido', color: interactionState.owner.color || undefined });
   } else if (interactionState.owner.isActive) {
     badges.push({ label: 'Propio', color: interactionState.owner.color || undefined });
-  }
-  if (interactionState.owner.name) {
+  } else if (interactionState.owner.name) {
     badges.push({ label: interactionState.owner.name, color: interactionState.owner.color || undefined });
   }
 

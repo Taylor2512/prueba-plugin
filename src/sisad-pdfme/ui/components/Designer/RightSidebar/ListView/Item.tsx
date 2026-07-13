@@ -311,12 +311,10 @@ const Item = React.memo(
       transition,
       ...style,
       '--type-accent': typeAccent,
+      // Owner accent is exposed only as a CSS variable; the subtle left border
+      // and the selection ring are drawn by CSS so real selection always wins
+      // over the owner color and both never read as the same state.
       ...(accentColor ? { '--schema-owner-color': accentColor } : null),
-      ...(accentColor
-        ? {
-            boxShadow: `inset 3px 0 0 ${accentColor}${style?.boxShadow ? `, ${style.boxShadow}` : ''}`,
-          }
-        : null),
     } as React.CSSProperties;
 
     return (
@@ -324,7 +322,7 @@ const Item = React.memo(
         ref={ref}
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'list-view-item',
-          'relative rounded-2xl border border-slate-200/70 bg-white/95 shadow-sm',
+          'relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white/95 shadow-sm',
           className,
         )}
         style={dragStyle}
@@ -362,7 +360,6 @@ const Item = React.memo(
           <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-main', 'min-w-0 flex-1 space-y-0.5')}>
             <div
               className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-value', 'block text-sm font-medium leading-tight text-slate-800')}
-              title={valueTooltip}
               data-testid="right-sidebar-field-label"
             >
               <ItemStatusLabel
@@ -404,11 +401,11 @@ const Item = React.memo(
               </div>
             ) : null}
           </div>
-          <ItemActions
-            readOnly={readOnly}
-            required={required}
-            hidden={hidden}
-            onToggleVisibility={onToggleVisibility}
+        <ItemActions
+          readOnly={readOnly}
+          required={required}
+          hidden={hidden}
+          onToggleVisibility={onToggleVisibility}
             onDelete={onDelete}
             isHovered={isHovered}
             label={valueTooltip}

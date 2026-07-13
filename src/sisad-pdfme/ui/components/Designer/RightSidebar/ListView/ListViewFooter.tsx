@@ -5,11 +5,10 @@
  * the entry point for mass-renaming field names when schemas exist.
  */
 import React from 'react';
-import { Button, Typography, Tooltip } from 'antd';
+import { Button, Tooltip } from 'antd';
+import { Check, PencilLine, X } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { mergeClassNames } from '../../shared/className.js';
-
-const { Text } = Typography;
 
 
 /**
@@ -35,37 +34,46 @@ type Props = {
  */
 const ListViewFooter = ({ bulkMode, hasSchemas, onCommit, onCancel, onStartBulk, labels }: Props) =>
   bulkMode ? (
-    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'bulk-footer', 'flex items-center justify-between gap-2 rounded-2xl border border-slate-200 bg-white px-3 py-2 shadow-sm')}>
-      <Text type="secondary" className={mergeClassNames(DESIGNER_CLASSNAME + 'bulk-footer-hint', 'text-xs font-medium text-slate-500')}>
-        Cambios masivos pendientes
-      </Text>
-      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'bulk-footer-actions', 'flex items-center gap-2')}>
+    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'bulk-footer', 'flex flex-col gap-2 rounded-2xl border border-slate-200 bg-white px-3 py-2 shadow-sm')}>
+      <Tooltip title="Edición masiva" placement="top">
+        <span className={mergeClassNames(DESIGNER_CLASSNAME + 'bulk-footer-hint', 'inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-50 text-slate-600')}>
+          <PencilLine size={12} />
+        </span>
+      </Tooltip>
+      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'bulk-footer-actions', 'flex items-center justify-end gap-2')}>
         <Button
-          className={mergeClassNames(DESIGNER_CLASSNAME + 'bulk-commit', 'rounded-full bg-sky-600 text-white shadow-sm')}
+          className={mergeClassNames(DESIGNER_CLASSNAME + 'bulk-commit', 'inline-flex items-center gap-1 rounded-full bg-sky-600 text-white shadow-sm')}
           size="small"
           type="primary"
           onClick={onCommit}>
+          <Check size={14} />
           {labels.commitBulkUpdateFieldName}
         </Button>
         <Button
-          className={mergeClassNames(DESIGNER_CLASSNAME + 'bulk-cancel', 'rounded-full border-slate-200 text-slate-700 shadow-sm')}
+          className={mergeClassNames(DESIGNER_CLASSNAME + 'bulk-cancel', 'inline-flex items-center gap-1 rounded-full border-slate-200 text-slate-700 shadow-sm')}
           size="small"
           onClick={onCancel}>
+          <X size={14} />
           {labels.cancel}
         </Button>
       </div>
     </div>
 ) : (
-      <Tooltip title={labels.bulkUpdateFieldName} placement="top">
-        <Button
-        className={mergeClassNames(DESIGNER_CLASSNAME + 'bulk-update', 'rounded-full border-slate-200 text-slate-700 shadow-sm')}
-          size="small"
-          type="text"
-        onClick={onStartBulk}
-        disabled={!hasSchemas}>
-        {labels.bulkUpdateFieldName}
-      </Button>
-    </Tooltip>
+  <Tooltip title={labels.bulkUpdateFieldName} placement="top">
+    <Button
+      className={mergeClassNames(
+        DESIGNER_CLASSNAME + 'bulk-update',
+        'inline-flex h-8 w-8 items-center justify-center rounded-full border-slate-200 text-slate-700 shadow-sm',
+      )}
+      size="small"
+      type="text"
+      onClick={onStartBulk}
+      disabled={!hasSchemas}
+      aria-label={labels.bulkUpdateFieldName}
+    >
+      <PencilLine size={14} />
+    </Button>
+  </Tooltip>
   );
 
 export default ListViewFooter;

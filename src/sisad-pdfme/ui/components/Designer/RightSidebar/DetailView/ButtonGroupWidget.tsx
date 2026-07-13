@@ -96,18 +96,18 @@ const ButtonGroupWidget = (props: PropPanelWidgetProps) => {
         {(schema.buttons as ButtonConfig[]).map((btn: ButtonConfig, index: number) => {
           const active = isActive(btn);
           return (
-            <Tooltip key={index} title={btn.key} placement="top">
-              <Button
-                type={active ? 'primary' : 'default'}
-                onClick={() => apply(btn)}
-                icon={svgIcon(btn.icon)}
-                className={mergeClassNames(
-                  DESIGNER_CLASSNAME + 'button-auto',
-                  'inline-flex h-7 w-7 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700 shadow-none transition',
-                  'hover:border-slate-300 hover:bg-slate-50',
-                )}
-              />
-            </Tooltip>
+          <Tooltip key={index} title={btn.key} placement="top" mouseEnterDelay={0.35}>
+            <Button
+              type={active ? 'primary' : 'default'}
+              onClick={() => apply(btn)}
+              icon={svgIcon(btn.icon)}
+              className={mergeClassNames(
+                DESIGNER_CLASSNAME + 'button-auto',
+                'inline-flex h-[1.75rem] w-[1.75rem] items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700 shadow-none transition',
+                'hover:border-slate-300 hover:bg-slate-50',
+              )}
+            />
+          </Tooltip>
           );
         })}
       </div>

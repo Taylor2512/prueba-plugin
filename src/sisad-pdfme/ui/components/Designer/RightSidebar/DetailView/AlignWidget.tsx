@@ -7,7 +7,7 @@
  * a comandos ya normalizados para mantener un único contrato de selección.
  */
 import React from 'react';
-import { Button, Form } from 'antd';
+import { Button, Form, Tooltip } from 'antd';
 import type { PropPanelWidgetProps } from '@sisad-pdfme/common';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { mergeClassNames } from '../../shared/className.js';
@@ -69,20 +69,20 @@ const AlignWidget = (props: PropPanelWidgetProps & { selectionCommands?: Selecti
     <Form.Item label="Alineación" className={mergeClassNames(`${DESIGNER_CLASSNAME}align-widget`, 'm-0')}>
       <div className={mergeClassNames(`${DESIGNER_CLASSNAME}align-widget-grid`, 'grid grid-cols-4 gap-1')}>
         {LAYOUT_BUTTONS.map((btn) => (
-          <Button
-            key={btn.id}
-            className={mergeClassNames(
-              `${DESIGNER_CLASSNAME}align-btn`,
-              `${DESIGNER_CLASSNAME}align-${btn.id}`,
-              'inline-flex h-7 w-7 items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 shadow-none transition',
-              'hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 disabled:cursor-not-allowed disabled:opacity-40',
-            )}
-            onClick={() => handleClick(btn)}
-            title={btn.label}
-            aria-label={btn.label}
-            disabled={!hasSelection || (btn.type === 'distribute' && !canDistribute)}
-            icon={btn.icon}
-          />
+          <Tooltip key={btn.id} title={btn.label} placement="top" mouseEnterDelay={0.35}>
+            <Button
+              className={mergeClassNames(
+                `${DESIGNER_CLASSNAME}align-btn`,
+                `${DESIGNER_CLASSNAME}align-${btn.id}`,
+                'inline-flex h-[1.75rem] w-[1.75rem] items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-600 shadow-none transition',
+                'hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 disabled:cursor-not-allowed disabled:opacity-40',
+              )}
+              onClick={() => handleClick(btn)}
+              aria-label={btn.label}
+              disabled={!hasSelection || (btn.type === 'distribute' && !canDistribute)}
+              icon={btn.icon}
+            />
+          </Tooltip>
         ))}
       </div>
     </Form.Item>

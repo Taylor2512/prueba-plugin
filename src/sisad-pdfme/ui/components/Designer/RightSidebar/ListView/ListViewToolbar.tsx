@@ -6,8 +6,8 @@
  * assignment action for collaborative workflows.
  */
 import React from 'react';
-import { Button, Input, Select } from 'antd';
-import { Layers, Search } from 'lucide-react';
+import { Button, Dropdown, Input, Select, Tooltip } from 'antd';
+import { Layers, Search, Users, MoreHorizontal, PencilLine, Eraser } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { SidebarSurfaceHeader } from '../shared/SidebarSurfacePrimitives.js';
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
@@ -19,6 +19,9 @@ import { mergeClassNames } from '../../shared/className.js';
  * Generic select option used by the type filter.
  */
 type Option = { value: string; label: string };
+
+const resolveAriaLabel = (value: React.ReactNode | undefined, fallback: string) =>
+  typeof value === 'string' && value.trim() ? value : fallback;
 
 
 /**
@@ -109,7 +112,18 @@ const ListViewToolbar = ({
         subtitle={resolvedSubtitle || undefined}
         badges={[
           { label: `${filteredCount}/${totalCount}`, color: 'default' },
-          ...(selectedCount > 0 ? [{ label: `${selectedCount} seleccionados`, color: 'processing' as const }] : []),
+          ...(selectedCount > 0
+            ? [{
+                label: (
+                  <span className="inline-flex items-center gap-1">
+                    <Users size={10} />
+                    <span>{selectedCount}</span>
+                  </span>
+                ),
+                color: 'processing' as const,
+                tooltip: `${selectedCount} seleccionados`,
+              }]
+            : []),
         ]}
         trailing={
           showBulkAction && hasSchemas ? (
@@ -119,22 +133,57 @@ const ListViewToolbar = ({
               isDense && 'shrink-0',
             )}>
               {showBulkRecipientAction && collaborationContext?.activeRecipient && collaborationContext.canEditStructure !== false ? (
-                <Button
-                  type="text"
-                  size="small"
-                  disabled={bulkRecipientDisabled}
-                  onClick={onBulkAssignRecipient}
-                  className={mergeClassNames(DESIGNER_CLASSNAME + 'bulk-assign-recipient', 'rounded-full border-slate-200 text-slate-700 shadow-sm')}>
-                  {bulkRecipientLabel || `Asignar a ${collaborationContext.activeRecipient.name}`}
-                </Button>
+                <Tooltip title="Reasignar responsable" placement="top">
+                  <Button
+                    type="text"
+                    size="small"
+                    disabled={bulkRecipientDisabled}
+                    onClick={onBulkAssignRecipient}
+                    data-testid="right-sidebar-reassign"
+                    aria-label={resolveAriaLabel(bulkRecipientLabel, 'Reasignar responsable')}
+                    className={mergeClassNames(
+                      DESIGNER_CLASSNAME + 'bulk-assign-recipient',
+                      'inline-flex h-8 items-center gap-1.5 rounded-full border border-sky-200 bg-sky-50 px-2 text-xs font-semibold text-sky-700 shadow-sm',
+                    )}
+                  >
+                    <Users size={14} />
+                    <span className="hidden lg:inline">Reasignar</span>
+                  </Button>
+                </Tooltip>
               ) : null}
-              <Button
-                type="text"
-                size="small"
-                onClick={onStartBulk}
-                className={mergeClassNames(DESIGNER_CLASSNAME + 'bulk-update', 'rounded-full border-slate-200 text-slate-700 shadow-sm')}>
-                {bulkActionLabel}
-              </Button>
+              <Dropdown
+                trigger={['click']}
+                placement="bottomRight"
+                menu={{
+                  items: [
+                    {
+                      key: 'rename',
+                      label: <span data-testid="right-sidebar-more-rename">{bulkActionLabel || 'Renombrar campos'}</span>,
+                      icon: <PencilLine size={14} />,
+                    },
+                  ],
+                  onClick: ({ key }) => {
+                    if (key === 'rename') {
+                      onStartBulk();
+                    }
+                  },
+                }}
+              >
+                <Tooltip title={bulkActionLabel || 'Más acciones'} placement="top">
+                  <Button
+                    type="text"
+                    size="small"
+                    data-testid="right-sidebar-more"
+                    aria-label={resolveAriaLabel(bulkActionLabel, 'Más acciones')}
+                    className={mergeClassNames(
+                      DESIGNER_CLASSNAME + 'bulk-update',
+                      'inline-flex h-8 w-8 items-center justify-center rounded-full border-slate-200 text-slate-700 shadow-sm',
+                    )}
+                  >
+                    <MoreHorizontal size={14} />
+                  </Button>
+                </Tooltip>
+              </Dropdown>
             </div>
           ) : null
         }
@@ -174,13 +223,20 @@ const ListViewToolbar = ({
             />
           ) : null}
           {hasActiveSearch ? (
-            <Button
-              type="text"
-              size="small"
-              onClick={onClearFilters}
-              className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-clear-filters', 'rounded-xl px-2 text-slate-600')}>
-              {clearLabel}
-            </Button>
+            <Tooltip title={clearLabel || 'Limpiar filtros'} placement="top">
+              <Button
+                type="text"
+                size="small"
+                onClick={onClearFilters}
+                aria-label={resolveAriaLabel(clearLabel, 'Limpiar filtros')}
+                className={mergeClassNames(
+                  DESIGNER_CLASSNAME + 'list-view-clear-filters',
+                  'inline-flex h-8 w-8 items-center justify-center rounded-full text-slate-600',
+                )}
+              >
+                <Eraser size={14} />
+              </Button>
+            </Tooltip>
           ) : null}
         </div>
       </div>

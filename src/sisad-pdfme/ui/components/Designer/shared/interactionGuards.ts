@@ -1,10 +1,12 @@
 import {
   ANTD_POPUP_SELECTORS,
+  DESKTOP_EDITABLE_TARGET_SELECTORS,
   buildSelectorList,
 } from './interactionTargetSelectors.js';
 import { resolveInteractionTarget } from './interactionTargetResolver.js';
 
 const ANTD_POPUP_SELECTOR = buildSelectorList(ANTD_POPUP_SELECTORS);
+const DESKTOP_EDITABLE_TARGET_SELECTOR = buildSelectorList(DESKTOP_EDITABLE_TARGET_SELECTORS);
 
 /**
  * Determina si el target es un elemento de edición (input, selector, dropdown).
@@ -12,7 +14,14 @@ const ANTD_POPUP_SELECTOR = buildSelectorList(ANTD_POPUP_SELECTORS);
 export const isEditableTarget = (target: EventTarget | null | undefined): boolean => {
   if (!(target instanceof HTMLElement)) return false;
   const resolved = resolveInteractionTarget(target);
-  return resolved.type === 'option-internal';
+  if (
+    resolved.kind === 'option-internal' ||
+    resolved.kind === 'group-add-option' ||
+    resolved.kind === 'interactive-control'
+  ) {
+    return true;
+  }
+  return Boolean(target.closest(DESKTOP_EDITABLE_TARGET_SELECTOR) || target.matches(DESKTOP_EDITABLE_TARGET_SELECTOR));
 };
 
 /**

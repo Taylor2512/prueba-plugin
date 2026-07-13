@@ -94,8 +94,8 @@ const DetailHeaderCard = ({
         type="button"
         className={mergeClassNames(
           `${DESIGNER_CLASSNAME}detail-header-back-btn`,
-          'inline-flex h-[1.625rem] w-[1.625rem] items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition',
-          'hover:border-sky-200 hover:text-sky-700 hover:shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+          'inline-flex h-[1.375rem] w-[1.375rem] items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-none transition',
+          'hover:border-sky-200 hover:text-sky-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
         )}
         onClick={onBack}
         aria-label={backTooltip}
@@ -110,7 +110,7 @@ const DetailHeaderCard = ({
       {resolvedShowPosition && (
         <Tag
           color="default"
-          className={mergeClassNames(`${DESIGNER_CLASSNAME}detail-header-card-pos`, 'm-0 inline-flex h-[1.125rem] items-center rounded-full border-slate-200 px-[0.3125rem] text-[9px] leading-none')}
+          className={mergeClassNames(`${DESIGNER_CLASSNAME}detail-header-card-pos`, 'm-0 inline-flex h-[0.9rem] items-center rounded-full border-slate-200 px-[0.2rem] text-[7px] leading-none')}
         >
           {positionLabel || headerSummary.positionLabel}
         </Tag>
@@ -130,7 +130,7 @@ const DetailHeaderCard = ({
       <SidebarSurfaceHeader
         className={mergeClassNames(
           `${DESIGNER_CLASSNAME}detail-header-card`,
-          'rounded-lg border-slate-200/70 bg-white/92 shadow-sm',
+          'rounded-lg border-slate-200/60 bg-white/92 shadow-none',
           className,
         )}
         compact
@@ -155,14 +155,14 @@ const DetailHeaderCard = ({
         trailing={trailingNode}
       />
       {headerDensity === 'comfortable' && (headerSummary.uid || headerSummary.ownerName) && (
-        <div className={mergeClassNames(`${DESIGNER_CLASSNAME}detail-header-tech-row`, 'mt-1 flex items-center gap-2 border-t border-slate-100 px-2.5 pt-1')}>
+        <div className={mergeClassNames(`${DESIGNER_CLASSNAME}detail-header-tech-row`, 'mt-[0.125rem] flex items-center gap-1.5 border-t border-slate-100 px-2 pt-[0.125rem]')}>
           {headerSummary.uid && (
-            <span className="inline-flex items-center text-[8px] font-mono text-slate-400">
+            <span className="inline-flex items-center text-[6px] font-mono text-slate-400">
               ID: {headerSummary.uid}
             </span>
           )}
           {headerSummary.ownerName && (
-            <span className="inline-flex items-center gap-1 text-[8px] font-medium text-slate-500">
+            <span className="inline-flex items-center gap-1 text-[6px] font-medium text-slate-500">
               <span className="h-1 w-1 rounded-full bg-slate-300" />
               {headerSummary.ownerName}
             </span>

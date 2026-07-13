@@ -6,12 +6,13 @@
  * - sortable field order through dnd-kit;
  * - multi-selection awareness from the canvas/selection runtime;
  * - bulk field-name editing;
- * - optional recipient assignment for selected fields;
+ * - optional recipient reassignment for selected fields;
  * - runtime event emission for analytics/integration hooks.
  *
  * The component intentionally delegates rendering of rows and drag behavior to
- * `SelectableSortableContainer` so ListView remains focused on filtering,
- * toolbar state, bulk actions and sidebar layout.
+ * `SelectableSortableContainer` and the reassignment UI to
+ * `SchemaAssignmentDialog`, so ListView remains focused on filtering, toolbar
+ * state, bulk actions and sidebar layout.
  */
 import React, { useContext, useState, useMemo, useCallback, useRef } from 'react';
 import type { SidebarProps } from '../../../../types.js';
@@ -24,12 +25,14 @@ import { mergeClassNames } from '../../shared/className.js';
 import { SidebarEmptyState } from '../../shared/SidebarEmptyState.js';
 import ListViewToolbar from './ListViewToolbar.js';
 import ListViewFooter from './ListViewFooter.js';
+import SchemaAssignmentDialog from '../shared/SchemaAssignmentDialog.js';
 import { filterSchemasForCollaborationView } from '../../../../collaborationContext.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { emitDesignerRuntimeEvent } from '../../shared/designerExtensions.js';
 import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
 import { getSchemaTypeLabel } from '../../shared/designerLabels.js';
 import { resolveSchemaInteractionState } from '../../shared/schemaInteractionState.js';
+import { buildAssignSchemaOwnerOps, resolveSelectionOwner } from '../../shared/schemaAssignmentService.js';
 
 const { TextArea } = Input;
 
@@ -42,7 +45,7 @@ const { TextArea } = Input;
  * - maintain search/type filters;
  * - orchestrate bulk rename mode;
  * - delegate sorting/selection to `SelectableSortableContainer`;
- * - expose bulk recipient assignment when collaboration state allows it.
+ * - expose recipient reassignment through `SchemaAssignmentDialog`.
  */
 const ListView = (
   props: Pick<
@@ -85,10 +88,12 @@ const ListView = (
   const [fieldNamesValue, setFieldNamesValue] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
   const [typeFilter, setTypeFilter] = useState<string>('all');
+  const [isAssignmentDialogOpen, setIsAssignmentDialogOpen] = useState(false);
   const viewSchemas = useMemo(
     () => filterSchemasForCollaborationView(schemas, collaborationContext),
     [collaborationContext, schemas],
   );
+  const recipientOptions = useMemo(() => collaborationContext?.recipientOptions || [], [collaborationContext]);
 
 
   /**
@@ -127,16 +132,17 @@ const ListView = (
     });
   }, [viewSchemas, searchQuery, typeFilter]);
 
-  const activeRecipient = collaborationContext?.activeRecipient || null;
   const selectedSchemas = useMemo(
     () => viewSchemas.filter((schema) => activeSchemaIds.includes(schema.id)),
     [activeSchemaIds, viewSchemas],
   );
-  const hasSelectableRecipient = Boolean(activeRecipient?.id) && collaborationContext?.canEditStructure !== false;
+  const hasSelectableRecipient = recipientOptions.length > 0 && collaborationContext?.canEditStructure !== false;
   const hasLockedSelection = selectedSchemas.some((schema) => {
     const interactionState = resolveSchemaInteractionState(schema, { collaborationContext });
     return interactionState.isLocked || interactionState.isReadOnly;
   });
+  const canAssignSelected = hasSelectableRecipient && selectedSchemas.length > 0 && !hasLockedSelection;
+  const selectionOwner = useMemo(() => resolveSelectionOwner(selectedSchemas), [selectedSchemas]);
 
   const emitRuntimeEvent = useCallback(
     (event: Parameters<typeof emitDesignerRuntimeEvent>[1]) => {
@@ -178,7 +184,23 @@ const ListView = (
     setIsBulkUpdateFieldNamesMode(true);
   }, [viewSchemas]);
 
+  /**
+   * Opens rename from the "Más" menu.
+   *
+   * With a single selected field, prefers inline/DetailView rename so users are
+   * not forced into the bulk textarea; otherwise opens compact bulk rename.
+   */
   const handleStartBulk = useCallback(() => {
+    if (selectedSchemas.length === 1 && selectionCommands?.requestInlineEdit) {
+      selectionCommands.requestInlineEdit({ schemaId: selectedSchemas[0].id, target: 'name' });
+      emitRuntimeEvent({
+        type: 'sidebar.list.rename.inline',
+        source: 'toolbar',
+        component: 'ListView',
+        schemaIds: [selectedSchemas[0].id],
+      });
+      return;
+    }
     emitRuntimeEvent({
       type: 'sidebar.list.bulk.start',
       source: 'toolbar',
@@ -186,7 +208,7 @@ const ListView = (
       details: { schemaCount: viewSchemas.length },
     });
     startBulk();
-  }, [emitRuntimeEvent, startBulk, viewSchemas.length]);
+  }, [emitRuntimeEvent, selectedSchemas, selectionCommands, startBulk, viewSchemas.length]);
 
   const handleClearFilters = useCallback(() => {
     setSearchQuery('');
@@ -200,50 +222,55 @@ const ListView = (
 
 
   /**
-   * Assigns the currently active recipient to all selected schemas.
-   *
-   * Uses the selection command when available; otherwise falls back to writing
-   * the collaboration metadata directly through `changeSchemas`.
+   * Opens the "Reasignar responsable" dialog for the current selection.
    */
-  const handleBulkAssignRecipient = () => {
-    if (!hasSelectableRecipient || selectedSchemas.length === 0 || hasLockedSelection) return;
-    const nextRecipient = activeRecipient;
-    if (!nextRecipient?.id) return;
+  const openAssignmentDialog = useCallback(() => {
+    if (!canAssignSelected) return;
+    setIsAssignmentDialogOpen(true);
+  }, [canAssignSelected]);
 
-    emitRuntimeEvent({
-      type: 'sidebar.list.bulk.assign-recipient',
-      source: 'toolbar',
-      component: 'ListView',
-      schemaIds: selectedSchemas.map((schema) => schema.id),
-      details: { recipientId: nextRecipient.id, recipientName: nextRecipient.name || nextRecipient.tag || nextRecipient.id },
-    });
 
-    if (selectionCommands?.assignRecipient) {
-      selectionCommands.assignRecipient({
+  /**
+   * Reassigns the chosen recipient to every selected schema.
+   *
+   * Prefers the command-bus-backed selection command (reversible, matches the
+   * canvas selection); otherwise applies the shared owner patch through
+   * `changeSchemas`. Neither path touches lock/readOnly state.
+   */
+  const handleConfirmAssignment = useCallback(
+    (recipientId: string) => {
+      const nextRecipientId = String(recipientId || '').trim();
+      if (!nextRecipientId || selectedSchemas.length === 0 || hasLockedSelection) return;
+
+      const nextRecipient = recipientOptions.find((recipient) => recipient.id === nextRecipientId);
+      if (!nextRecipient) return;
+
+      const recipient = {
         id: nextRecipient.id,
         name: nextRecipient.name || nextRecipient.tag || nextRecipient.id,
         color: nextRecipient.color || null,
-      });
-      return;
-    }
+      };
 
-    const nextOwnerColor = nextRecipient.color || null;
-    changeSchemas(
-      selectedSchemas.flatMap((schema) => [
-        { schemaId: schema.id, key: 'ownerRecipientId', value: nextRecipient.id },
-        { schemaId: schema.id, key: 'ownerRecipientIds', value: [nextRecipient.id] },
-        { schemaId: schema.id, key: 'recipientId', value: nextRecipient.id },
-        { schemaId: schema.id, key: 'ownerRecipientName', value: nextRecipient.name || nextRecipient.tag || nextRecipient.id },
-        { schemaId: schema.id, key: 'ownerColor', value: nextOwnerColor },
-        { schemaId: schema.id, key: 'userColor', value: nextOwnerColor },
-        {
-          schemaId: schema.id,
-          key: 'ownerMode',
-          value: 'single',
-        },
-      ]),
-    );
-  };
+      emitRuntimeEvent({
+        type: 'sidebar.list.bulk.assign-recipient',
+        source: 'toolbar',
+        component: 'ListView',
+        schemaIds: selectedSchemas.map((schema) => schema.id),
+        details: { recipientId: recipient.id, recipientName: recipient.name },
+      });
+
+      if (selectionCommands?.assignRecipient) {
+        selectionCommands.assignRecipient(recipient);
+      } else {
+        changeSchemas(
+          buildAssignSchemaOwnerOps(selectedSchemas, selectedSchemas.map((schema) => schema.id), recipient),
+        );
+      }
+
+      setIsAssignmentDialogOpen(false);
+    },
+    [changeSchemas, emitRuntimeEvent, hasLockedSelection, recipientOptions, selectionCommands, selectedSchemas],
+  );
 
 
   /**
@@ -306,14 +333,12 @@ const ListView = (
           collaborationContext={collaborationContext}
           selectionCommands={selectionCommands}
           showBulkRecipientAction={selectedSchemas.length > 0}
-          bulkRecipientDisabled={hasLockedSelection || !hasSelectableRecipient}
-          onBulkAssignRecipient={handleBulkAssignRecipient}
+          bulkRecipientDisabled={!canAssignSelected}
+          onBulkAssignRecipient={openAssignmentDialog}
           bulkRecipientLabel={
-            selectedSchemas.length > 1 && activeRecipient
-              ? `Asignar ${selectedSchemas.length} campos a ${activeRecipient.name}`
-              : activeRecipient
-                ? `Asignar a ${activeRecipient.name}`
-                : 'Asignar destinatario'
+            selectedSchemas.length > 1
+              ? `Reasignar ${selectedSchemas.length} campos`
+              : 'Reasignar responsable'
           }
           useDefaultStyles={props.useDefaultStyles}
         />
@@ -376,6 +401,15 @@ const ListView = (
           />
         </SidebarFooter>
       ) : null}
+      <SchemaAssignmentDialog
+        open={isAssignmentDialogOpen}
+        selectedSchemas={selectedSchemas}
+        recipients={recipientOptions}
+        currentRecipientId={selectionOwner.recipientId}
+        currentOwnerMixed={selectionOwner.mixed}
+        onClose={() => setIsAssignmentDialogOpen(false)}
+        onConfirm={handleConfirmAssignment}
+      />
       </div>
     </SidebarFrame>
   );

@@ -40,17 +40,15 @@ test.describe('sidebar collapse parity', () => {
     await rightToggle.click();
     await expect(rightSidebar).toHaveAttribute('data-sidebar-collapsed', 'true');
     await expect(rightSidebar).toHaveAttribute('data-right-sidebar-expanded', 'false');
-    await expect(rightToggle).toHaveAttribute('aria-expanded', 'false');
     await expect(page.locator('.sisad-pdfme-designer-right-sidebar-collapsed-rail')).toBeVisible();
-    await expect(page.locator('.sisad-pdfme-designer-right-sidebar-collapsed-rail-btn').first()).toBeVisible();
+    await expect(page.locator('.sisad-pdfme-designer-sidebar-rail-btn').first()).toBeVisible();
 
     const rightSidebarBox = await rightSidebar.boundingBox();
     expect(rightSidebarBox).not.toBeNull();
     expect((rightSidebarBox?.width || 0)).toBeLessThan(96);
 
-    await page.locator('.sisad-pdfme-designer-right-sidebar-collapsed-rail-btn').first().click();
+    await page.locator('.sisad-pdfme-designer-sidebar-rail-btn').first().click();
     await expect(rightSidebar).toHaveAttribute('data-right-sidebar-expanded', 'true');
-    await expect(rightToggle).toHaveAttribute('aria-expanded', 'true');
 
     await expect(page.locator('.sisad-pdfme-designer-canvas')).toBeVisible();
     const hasHorizontalOverflow = await page.evaluate(

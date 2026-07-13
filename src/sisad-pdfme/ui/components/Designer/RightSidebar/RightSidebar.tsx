@@ -491,8 +491,8 @@ const Sidebar = (props: RightSidebarProps) => {
         sidebarIsCollapsed
             ? {
               ...(props.styleOverrides?.root || {}),
-              width: '2.5rem',
-              maxWidth: '2.5rem',
+              width: '2.25rem',
+              maxWidth: '2.25rem',
               transform: 'translateX(0)',
               opacity: 1,
               pointerEvents: 'auto',
@@ -571,6 +571,8 @@ const Sidebar = (props: RightSidebarProps) => {
                     onToggle={() => props.setSidebarOpen?.(false)}
                     presentation={actualPresentation}
                     density="mini"
+                    labelExpanded="Ocultar panel derecho"
+                    labelCollapsed="Mostrar panel derecho"
                     className="!static !m-0 !translate-x-0"
                   />
                 </div>

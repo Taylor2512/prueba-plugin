@@ -35,7 +35,9 @@ type CompactConfigPanelProps = {
   footerActions?: React.ReactNode;
   modalTitle?: string;
   modalWidth?: number;
-  modalTriggerLabel?: string;
+  modalTriggerLabel?: React.ReactNode;
+  modalTriggerIcon?: React.ReactNode;
+  modalTriggerAriaLabel?: string;
   children: React.ReactNode;
 };
 
@@ -58,10 +60,13 @@ const CompactConfigPanel = ({
   modalTitle,
   modalWidth = 720,
   modalTriggerLabel = 'Configurar',
+  modalTriggerIcon,
+  modalTriggerAriaLabel,
   children,
 }: CompactConfigPanelProps) => {
   const [open, setOpen] = React.useState(false);
   const modalBodyRef = React.useRef<HTMLDivElement | null>(null);
+  const isIconOnlyTrigger = modalTriggerLabel == null || modalTriggerLabel === '';
 
   React.useEffect(() => {
     if (open) {
@@ -120,11 +125,15 @@ const CompactConfigPanel = ({
         <Button
           size="small"
           type="default"
-          icon={<Settings2 size={14} />}
+          icon={modalTriggerIcon || <Settings2 size={14} />}
           onClick={() => setOpen(true)}
-          className="inline-flex items-center justify-center rounded-lg border-slate-200 bg-white px-2.5 text-[0.68rem] font-semibold text-slate-700 shadow-none"
+          aria-label={modalTriggerAriaLabel || (typeof modalTriggerLabel === 'string' ? modalTriggerLabel : modalTitle || title)}
+          className={mergeClassNames(
+            'inline-flex items-center justify-center rounded-lg border-slate-200 bg-white text-[0.68rem] font-semibold text-slate-700 shadow-none',
+            isIconOnlyTrigger ? 'h-8 w-8 px-0' : 'px-2.5',
+          )}
         >
-          {modalTriggerLabel}
+          {isIconOnlyTrigger ? null : modalTriggerLabel}
         </Button>
       </div>
 

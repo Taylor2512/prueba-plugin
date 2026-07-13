@@ -184,7 +184,7 @@ const createBoundedNumberField = (
     ...extra,
     widget: 'inputNumber',
     required: true,
-    span: fieldName === 'x' || fieldName === 'y' ? 8 : fieldName === 'width' || fieldName === 'height' ? 6 : 12,
+    span: 12,
     props: { min: 0, max, ...(extra.props || {}) },
     rules: [
       {
@@ -363,14 +363,14 @@ export const buildInspectorSections = ({
 
   addFieldToSection(sectionProperties, 'layout', 'position', {
     type: 'object',
-    widget: 'card',
+    column: 2,
     properties: {
       x: createBoundedNumberField('X mm', pageSize.width - paddingRight, validatePosition, typedI18n, 'x', {
-        span: 8,
+        span: 12,
         props: { min: paddingLeft },
       }),
       y: createBoundedNumberField('Y mm', pageSize.height - paddingBottom, validatePosition, typedI18n, 'y', {
-        span: 8,
+        span: 12,
         props: { min: paddingTop },
       }),
     },
@@ -400,7 +400,7 @@ export const buildInspectorSections = ({
       default: 0,
       max: 360,
       props: { min: 0 },
-      span: 12,
+      span: 24,
     }),
   );
 
@@ -446,7 +446,7 @@ export const buildInspectorSections = ({
         widget: 'inputNumber',
         disabled: defaultSchema.opacity === undefined,
         props: { step: 0.1, min: 0, max: 1 },
-        span: 12,
+        span: 24,
       }),
     );
   }

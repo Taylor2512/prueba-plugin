@@ -8,6 +8,7 @@
 import React, { useMemo } from 'react';
 import { type PropPanelWidgetProps, type SchemaForUI } from '@sisad-pdfme/common';
 import { Collapse, Divider, Input, InputNumber, Select, Space } from 'antd';
+import { Users } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import {
   buildEffectiveCollaborationContext,
@@ -18,10 +19,9 @@ import {
   type DesignerEngine,
   type SchemaCollaborativeState,
 } from '../../../../designerEngine.js';
-import { normalizeHexColor } from '../../shared/recipientColor.js';
+import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import CompactConfigPanel from './CompactConfigPanel.js';
 import {
-  joinRecipientIds,
   normalizeRecipientIds,
   resolveOwnerMode,
 } from './schemaCollaborationUtils.js';
@@ -36,6 +36,8 @@ export { joinRecipientIds, normalizeRecipientIds, resolveOwnerMode } from './sch
 type CollaborationWidgetProps = PropPanelWidgetProps & {
   activeSchema: SchemaForUI;
   changeSchemas: (_objs: { key: string; value: unknown; schemaId: string }[]) => void;
+  activeElements?: HTMLElement[];
+  selectionCommands?: SelectionCommandSet;
   designerEngine?: DesignerEngine;
   summaryTitle?: string;
   summaryDescription?: string;
@@ -71,10 +73,6 @@ const STATE_OPTIONS: Array<{ label: string; value: SchemaCollaborativeState }> =
   { label: 'Bloqueado', value: 'locked' },
   { label: 'Fusionado', value: 'merged' },
 ];
-
-/** Devuelve un label string o fallback para props ReactNode. */
-const resolveStringLabel = (value: React.ReactNode, fallback: string) =>
-  typeof value === 'string' && value.trim() ? value : fallback;
 
 /**
  * Formatea timestamps segundos/milisegundos para mostrar auditoría.
@@ -130,15 +128,26 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
   );
   const ownerMode = collaborative.ownerMode || resolvedSchemaState.ownerMode || resolveOwnerMode(ownerRecipientIds);
   const lock = collaborative.lock || activeSchema.lock;
+  const selectedCount = Array.isArray(props.activeElements) ? props.activeElements.length : 0;
+  const selectedSchemaIds = useMemo(() => {
+    const ids = Array.isArray(props.activeElements)
+      ? props.activeElements
+          .map((element) => String(element?.dataset?.schemaId || element?.id || '').trim())
+          .filter(Boolean)
+      : [];
+
+    if (ids.length > 0) {
+      return Array.from(new Set(ids));
+    }
+
+    return [activeSchema.id];
+  }, [activeSchema.id, props.activeElements]);
   const recipientOptions = collaborationContext.recipientOptions || [];
   const hasRecipientOptions = recipientOptions.length > 0;
   const recipientSelectOptions = recipientOptions.map((recipient) => ({
     label: recipient.role ? `${recipient.name} · ${recipient.role}` : recipient.name,
     value: recipient.id,
   }));
-  const primaryOwnerId = activeSchema.ownerRecipientId || collaborative.ownerRecipientId;
-  const coOwnerOptions = recipientSelectOptions.filter(opt => opt.value !== primaryOwnerId);
-  const coOwnerValues = ownerRecipientIds.filter(id => id !== primaryOwnerId);
   const accessState = resolveSchemaAccessState(activeSchema, collaborationContext, collaborationContext.activeRecipient);
 
   const commit = (patch: Partial<Record<CollaborationPatchKey, unknown>>) => {
@@ -151,39 +160,16 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
     );
   };
 
-  const updateRecipientIds = (value: string[] | string, isCoOwnerUpdate?: boolean) => {
-    let nextRecipientIds = normalizeRecipientIds(value);
-    
-    if (isCoOwnerUpdate && primaryOwnerId) {
-      // Si actualizamos co-propietarios, preservamos el primario al inicio
-      nextRecipientIds = [primaryOwnerId, ...nextRecipientIds.filter(id => id !== primaryOwnerId)];
-    }
-
-    const nextPrimaryRecipientId = nextRecipientIds[0];
-    const nextPrimaryRecipient =
-      recipientOptions.find((recipient) => recipient.id === nextPrimaryRecipientId) || null;
-    const nextPrimaryRecipientColor =
-      designerEngine?.extensions?.resolveRecipientColor?.(nextPrimaryRecipient) ||
-      normalizeHexColor(nextPrimaryRecipient?.color) ||
-      normalizeHexColor(collaborative.ownerColor) ||
-      normalizeHexColor(activeSchema.ownerColor) ||
-      normalizeHexColor(activeSchema.userColor) ||
-      undefined;
-    const nextOwnerMode =
-      nextRecipientIds.length === 0
-        ? undefined
-        : nextRecipientIds.length === recipientOptions.length && recipientOptions.length > 1
-          ? 'shared'
-          : resolveOwnerMode(nextRecipientIds);
-    commit({
-      ownerRecipientIds: nextRecipientIds,
-      ownerRecipientId: nextPrimaryRecipientId,
-      recipientId: nextPrimaryRecipientId,
-      ownerRecipientName: nextPrimaryRecipient?.name || undefined,
-      ownerColor: nextPrimaryRecipientColor,
-      userColor: nextPrimaryRecipientColor,
-      ownerMode: nextOwnerMode,
-    });
+  const commitOwnerPatch = (patch: Partial<Record<CollaborationPatchKey, unknown>>) => {
+    changeSchemas(
+      selectedSchemaIds.flatMap((schemaId) =>
+        Object.entries(patch).map(([key, value]) => ({
+          key,
+          value,
+          schemaId,
+        })),
+      ),
+    );
   };
 
   const updateState = (nextState: SchemaCollaborativeState) => {
@@ -196,12 +182,11 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
   const hasLock = accessState.hasCollaborationLock;
   const authorOptions = recipientSelectOptions;
   const resolvedOwnerLabel = accessState.ownerLabel || interactionState.owner.name || 'Sin asignar';
-  const assignedToLabel = resolvedOwnerLabel === 'Sin asignar' ? '' : resolvedOwnerLabel;
   const resolvedLockedBy = recipientOptions.find(r => r.id === lock?.lockedBy);
   const resolvedLockedByText = resolvedLockedBy ? (resolvedLockedBy.role ? `${resolvedLockedBy.name} (${resolvedLockedBy.role})` : resolvedLockedBy.name) : (lock?.lockedBy || '');
-  
+  const selectionHint = selectedCount > 1 ? ` · ${selectedCount} seleccionados` : '';
+
   const stateLabel = accessState.inspectorStatusLabel;
-  const triggerLabel = assignedToLabel ? 'Gestionar' : 'Asignar';
   const stateTagColor =
     interactionState.visibleBadge?.color ||
     (accessState.inspectorStatusTone === 'error'
@@ -213,10 +198,12 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
   return (
     <CompactConfigPanel
       title={props.summaryTitle || 'Asignación y bloqueo'}
-      description={props.summaryDescription || 'Propietario y acceso.'}
+      description={props.summaryDescription || `Propietario y acceso${selectionHint}.`}
       statusTags={[{ label: stateLabel, color: stateTagColor }]}
       modalTitle={props.modalTitle || 'Gestionar asignación y bloqueo'}
-      modalTriggerLabel={resolveStringLabel(props.modalTriggerLabel, triggerLabel)}
+      modalTriggerLabel={props.modalTriggerLabel ?? null}
+      modalTriggerIcon={<Users size={14} />}
+      modalTriggerAriaLabel={props.modalTitle || 'Cambiar propietario'}
     >
       <div className={`${DESIGNER_CLASSNAME}schema-collaboration-widget`}>
         {/* ── Vista normal: solo campos de negocio ─────────────────────────── */}
@@ -238,49 +225,61 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
             </div>
           </div>
           <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Asignado a</div>
+            <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Propietario registrado</div>
             {hasRecipientOptions ? (
               <Select
                 id="collaboration-owner"
                 name="collaboration-owner"
                 value={activeSchema.ownerRecipientId || collaborative.ownerRecipientId || undefined}
                 options={recipientSelectOptions}
-                onChange={(value) => updateRecipientIds([value])}
-                placeholder="Selecciona un propietario"
+                onChange={(value) => {
+                  const nextRecipient = recipientOptions.find((recipient) => recipient.id === value) || null;
+                  const nextRecipientColor = nextRecipient?.color || collaborative.ownerColor || activeSchema.ownerColor || activeSchema.userColor || undefined;
+
+                  commitOwnerPatch({
+                    ownerRecipientIds: value ? [value] : [],
+                    ownerRecipientId: value || undefined,
+                    recipientId: value || undefined,
+                    ownerRecipientName: nextRecipient?.name || undefined,
+                    ownerColor: nextRecipientColor,
+                    userColor: nextRecipientColor,
+                    ownerMode: value ? 'single' : undefined,
+                  });
+                }}
+                placeholder="Selecciona un usuario registrado"
                 allowClear
-                onClear={() => updateRecipientIds([])}
+                showSearch
+                optionFilterProp="label"
+                onClear={() =>
+                  commitOwnerPatch({
+                    ownerRecipientIds: [],
+                    ownerRecipientId: undefined,
+                    recipientId: undefined,
+                    ownerRecipientName: undefined,
+                    ownerColor: undefined,
+                    userColor: undefined,
+                    ownerMode: undefined,
+                  })
+                }
               />
             ) : (
               <Input
                 id="collaboration-owner-raw"
                 name="collaboration-owner-raw"
                 value={activeSchema.ownerRecipientId || collaborative.ownerRecipientId || ''}
-                onChange={(event) => commit({ ownerRecipientId: event.target.value || undefined })}
-                placeholder="recipient-1"
+                onChange={(event) => commitOwnerPatch({ ownerRecipientId: event.target.value || undefined })}
+                placeholder="Sin usuarios registrados"
               />
             )}
           </div>
           <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Co-propietarios</div>
-            {hasRecipientOptions ? (
-              <Select
-                id="collaboration-coowners"
-                name="collaboration-coowners"
-                mode="multiple"
-                value={coOwnerValues}
-                options={coOwnerOptions}
-                onChange={(value) => updateRecipientIds(value, true)}
-                placeholder="Selecciona otros propietarios"
-              />
-            ) : (
-              <Input
-                id="collaboration-coowners-raw"
-                name="collaboration-coowners-raw"
-                value={joinRecipientIds(coOwnerValues)}
-                onChange={(event) => updateRecipientIds(event.target.value, true)}
-                placeholder="recipient-2, recipient-3"
-              />
-            )}
+            <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Propiedad</div>
+            <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
+              <div className="truncate text-sm font-medium text-slate-900">{resolvedOwnerLabel}</div>
+              <div className="mt-0.5 truncate text-xs text-slate-500">
+                {hasRecipientOptions ? 'Usa el icono de usuarios para reasignar destinatarios.' : 'Sin usuarios registrados en este contexto.'}
+              </div>
+            </div>
           </div>
           {hasLock ? (
             <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>

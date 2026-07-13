@@ -91,7 +91,7 @@ const ResultCard = ({ card, cardProps }) => {
 
   return (
     <article className="sisad-pdfme-lab-result-card">
-      <h3>{card.title}</h3>
+      <h3 className="sisad-pdfme-lab-result-card-title">{card.title}</h3>
       {body || card.emptyMessage}
     </article>
   )
@@ -151,32 +151,37 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
     }
   }, [isDrawer, isOpen])
 
-  // Drawer: floating pill when closed, compact overlay panel when open. The
-  // closed state renders NO body so it never covers the document/toolbar.
+  // Drawer: compact in-flow bar below the workspace. The closed state renders
+  // no body, so it stays lightweight and never overlays the canvas.
   if (isDrawer) {
     return (
       <section
-        className={cn('sisad-pdfme-lab-results-drawer fixed bottom-3 left-1/2 z-[70] flex w-[min(32rem,calc(100vw-1.5rem))] -translate-x-1/2 flex-col-reverse items-center gap-2')}
+        className={cn('sisad-pdfme-lab-results-drawer sisad-pdfme-lab-results flex w-full flex-col gap-2 rounded-[1rem] border border-slate-200 bg-white/92 p-2 shadow-md backdrop-blur-md')}
         data-open={isOpen ? 'true' : 'false'}
         aria-label="Resultados"
       >
-        <button
-          type="button"
-          className={cn('sisad-pdfme-lab-results-pill inline-flex items-center gap-1.5 rounded-full border border-slate-200/60 bg-white/95 px-3 py-1.5 text-[0.72rem] font-bold text-slate-700 shadow-md backdrop-blur-md transition-all hover:scale-105 active:scale-95')}
-          aria-expanded={isOpen}
-          aria-controls="sisad-pdfme-lab-results-drawer-panel"
-          onClick={() => setIsOpen((v) => !v)}
-        >
-          <span className={cn('block h-2 w-2 rounded-full', hasGeneratedArtifacts ? 'bg-green-500 animate-pulse' : 'bg-slate-300')} />
-          Resultados
-          <span className="sisad-pdfme-lab-results-badge ml-0.5 pl-1.5 font-normal text-slate-400 opacity-60">
-            {hasGeneratedArtifacts ? 'Artefactos listos' : 'Vacio'}
+        <div className="sisad-pdfme-lab-results-drawer-rail flex flex-wrap items-center justify-between gap-2">
+          <button
+            type="button"
+            className={cn('sisad-pdfme-lab-results-pill inline-flex items-center gap-2 rounded-full border border-slate-200/60 bg-white/95 px-3 py-1.5 text-[0.72rem] font-bold text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-slate-300 hover:bg-white active:scale-95')}
+            aria-expanded={isOpen}
+            aria-controls="sisad-pdfme-lab-results-drawer-panel"
+            onClick={() => setIsOpen((v) => !v)}
+          >
+            <span className={cn('block h-2 w-2 rounded-full', hasGeneratedArtifacts ? 'bg-green-500 animate-pulse' : 'bg-slate-300')} />
+            Resultados
+            <span className="sisad-pdfme-lab-results-badge ml-0.5 rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 font-normal text-slate-500">
+              {hasGeneratedArtifacts ? 'Artefactos listos' : 'Sin artefactos'}
+            </span>
+          </button>
+          <span className="text-[0.7rem] font-medium text-slate-400">
+            {isOpen ? 'Abierto' : 'Cerrado'}
           </span>
-        </button>
+        </div>
         {isOpen ? (
           <div
             id="sisad-pdfme-lab-results-drawer-panel"
-            className={cn('sisad-pdfme-lab-results-drawer-panel grid max-h-[min(320px,45dvh)] overflow-auto rounded-[1rem] border border-slate-200 bg-white/95 p-1.5 shadow-2xl backdrop-blur-md')}
+            className={cn('sisad-pdfme-lab-results-drawer-panel grid max-h-[min(280px,36dvh)] overflow-auto rounded-[0.9rem] border border-slate-200 bg-white/95 p-[0.3125rem] shadow-none backdrop-blur-md')}
             role="dialog"
             aria-modal="false"
             aria-label="Panel de resultados"
@@ -224,7 +229,7 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
           <h2 id="lab-results-title">Resultados</h2>
           <p>{hasGeneratedArtifacts ? 'Artefactos listos para revisar o descargar.' : 'Abre esta sección para revisar salidas de generación y conversión.'}</p>
         </div>
-        <span className="sisad-pdfme-lab-results-badge">{hasGeneratedArtifacts ? 'Con artefactos' : 'Colapsado'}</span>
+        <span className="sisad-pdfme-lab-results-badge">{hasGeneratedArtifacts ? 'Con artefactos' : 'Cerrado'}</span>
       </summary>
       {cards}
     </details>

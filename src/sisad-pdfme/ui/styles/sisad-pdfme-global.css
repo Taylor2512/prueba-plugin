@@ -2500,11 +2500,23 @@
   }
 
   .sisad-pdfme-designer-list-view-item {
-    @apply relative [border-bottom:1px_solid_var(--color-border-subtle)] [transition:background_100ms_ease];
+    @apply relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white/95 shadow-sm [transition:background_100ms_ease,_transform_120ms_ease,_border-color_120ms_ease,_box-shadow_120ms_ease];
   }
 
   .sisad-pdfme-designer-list-view-item:hover {
     @apply bg-[var(--color-bg-hover)];
+  }
+
+  .sisad-pdfme-designer-list-view-item[data-schema-owner-color] {
+    @apply [border-left-width:2px] [border-left-color:var(--schema-owner-color,_var(--color-primary))];
+  }
+
+  .sisad-pdfme-designer-list-view-item[data-selected='true'] {
+    @apply border-[var(--sisad-schema-selected-color)] bg-[color-mix(in_srgb,_var(--sisad-schema-selected-color)_8%,_white)] [box-shadow:0_0_0_1px_var(--sisad-schema-selected-color)] [transform:translateX(1px)];
+  }
+
+  .sisad-pdfme-designer-list-view-item[data-selected='true'][data-schema-owner-color] {
+    @apply [border-left-color:var(--sisad-schema-selected-color)];
   }
 
   .sisad-pdfme-designer-list-view-item-hit-target {

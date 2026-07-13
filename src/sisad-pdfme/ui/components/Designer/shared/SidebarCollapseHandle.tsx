@@ -41,6 +41,7 @@ export const SidebarCollapseHandle = ({
       <button
         type="button"
         aria-expanded={expanded}
+        aria-label={label}
         data-side={side}
         data-expanded={expanded ? 'true' : 'false'}
         data-presentation={presentation}

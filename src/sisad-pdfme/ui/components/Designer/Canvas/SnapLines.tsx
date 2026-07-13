@@ -106,7 +106,9 @@ const SnapLines = ({
     <div className={rootClassName} style={useDefaultStyles ? undefined : style}>
       {lines.map((line, i) => {
         const color = isCenter(line) ? centerColor : lineColor;
-        const posPx = snapToDevicePixel(line.pos * ZOOM);
+        const posPx = line.pos * ZOOM;
+        const snappedTop = snapToDevicePixel(posPx - scrollTop);
+        const snappedLeft = snapToDevicePixel(posPx - scrollLeft);
 
         if (line.type === 'horizontal') {
           return (
@@ -122,7 +124,7 @@ const SnapLines = ({
                   position: 'absolute',
                   left: 0,
                   right: 0,
-                  top: `${snapToDevicePixel(posPx - scrollTop)}px`,
+                  top: `${snappedTop}px`,
                   height: 0,
                   borderTop: `1px solid ${color}`,
                   pointerEvents: 'none',
@@ -139,7 +141,7 @@ const SnapLines = ({
                   )}
                   style={{
                     position: 'absolute',
-                    top: `${snapToDevicePixel(posPx - scrollTop - 14)}px`,
+                    top: `${snapToDevicePixel(snappedTop - 14)}px`,
                     left: 8,
                     fontSize: 10,
                     lineHeight: 1,
@@ -172,7 +174,7 @@ const SnapLines = ({
                 position: 'absolute',
                 top: 0,
                 bottom: 0,
-                left: `${snapToDevicePixel(posPx - scrollLeft)}px`,
+                left: `${snappedLeft}px`,
                 width: 0,
                 borderLeft: `1px solid ${color}`,
                 pointerEvents: 'none',
@@ -187,13 +189,13 @@ const SnapLines = ({
                   `${DESIGNER_CLASSNAME}snap-label-vertical`,
                   'pointer-events-none rounded-md border border-current bg-white/90 px-1.5 py-0.5 text-[10px] leading-none shadow-sm',
                 )}
-                style={{
-                  position: 'absolute',
-                  top: 8,
-                  left: `${snapToDevicePixel(posPx - scrollLeft + 5)}px`,
-                  fontSize: 10,
-                  lineHeight: 1,
-                  padding: '2px 5px',
+              style={{
+                position: 'absolute',
+                top: 8,
+                left: `${snapToDevicePixel(snappedLeft + 5)}px`,
+                fontSize: 10,
+                lineHeight: 1,
+                padding: '2px 5px',
                   borderRadius: 8,
                   color,
                   background: 'rgba(255,255,255,0.9)',
