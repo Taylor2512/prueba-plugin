@@ -11,6 +11,14 @@ import {
 } from '@/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.js';
 import type { SchemaForUI } from '@sisad-pdfme/common';
 
+type ClipboardSchema = SchemaForUI & {
+  commentsCount?: number;
+  state?: string;
+  ownerRecipientId?: string;
+  ownerColor?: string;
+  lock?: unknown;
+};
+
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 
 const makeSchema = (overrides: Partial<SchemaForUI & Record<string, unknown>> = {}): SchemaForUI =>
@@ -39,14 +47,14 @@ describe('sanitizeCopiedSchema', () => {
   });
 
   it('resets commentsCount to 0', () => {
-    const s = makeSchema({ commentsCount: 5 } as any);
-    const result = sanitizeCopiedSchema(s) as any;
+    const s = makeSchema({ commentsCount: 5 });
+    const result = sanitizeCopiedSchema(s) as ClipboardSchema;
     expect(result.commentsCount).toBe(0);
   });
 
   it('sets state to draft', () => {
-    const s = makeSchema({ state: 'published' } as any);
-    const result = sanitizeCopiedSchema(s) as any;
+    const s = makeSchema({ state: 'published' });
+    const result = sanitizeCopiedSchema(s) as ClipboardSchema;
     expect(result.state).toBe('draft');
   });
 
@@ -59,14 +67,14 @@ describe('sanitizeCopiedSchema', () => {
 
   it('strips transient fields ownerRecipientId and ownerColor', () => {
     const s = makeSchema({ ownerRecipientId: 'rec-1', ownerColor: '#AABBCC' });
-    const result = sanitizeCopiedSchema(s) as any;
+    const result = sanitizeCopiedSchema(s) as ClipboardSchema;
     expect(result.ownerRecipientId).toBeUndefined();
     expect(result.ownerColor).toBeUndefined();
   });
 
   it('strips lock metadata', () => {
-    const s = makeSchema({ lock: { lockedBy: 'user-x' } } as any);
-    const result = sanitizeCopiedSchema(s) as any;
+    const s = makeSchema({ lock: { lockedBy: 'user-x' } });
+    const result = sanitizeCopiedSchema(s) as ClipboardSchema;
     expect(result.lock).toBeUndefined();
   });
 });
@@ -90,9 +98,9 @@ describe('copySchemasToClipboard', () => {
   });
 
   it('schemas are sanitized (commentsCount reset)', () => {
-    const s = makeSchema({ commentsCount: 3 } as any);
+    const s = makeSchema({ commentsCount: 3 });
     const payload = copySchemasToClipboard([s]);
-    expect((payload.items[0] as any).commentsCount).toBe(0);
+    expect((payload.items[0] as ClipboardSchema).commentsCount).toBe(0);
   });
 });
 

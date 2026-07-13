@@ -1,4 +1,5 @@
 import { describe, it, expect } from 'vitest';
+import type { Template } from '@sisad-pdfme/common';
 import { createDefaultTemplate } from '@/sisad-pdfme/templates/createDefaultTemplate';
 
 describe('createDefaultTemplate', () => {
@@ -19,7 +20,7 @@ describe('createDefaultTemplate', () => {
   });
 
   it('uses provided schema pages', () => {
-    const schemas = [[{ name: 'a', type: 'text' }]] as any;
+    const schemas = [[{ name: 'a', type: 'text' }]] as Template['schemas'];
     const t = createDefaultTemplate({ schemas });
     expect(t.schemas).toBe(schemas);
   });

@@ -1,8 +1,8 @@
 import React from 'react';
-import { Empty } from 'antd';
 import { ChevronDown } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../constants.js';
 import { mergeUniqueClassNames } from './shared/className.js';
+import { SidebarEmptyState } from './shared/SidebarEmptyState.js';
 
 type LeftSidebarGroupItem = React.ReactNode;
 
@@ -10,7 +10,8 @@ type LeftSidebarGroupProps = {
   category: string;
   items: LeftSidebarGroupItem[];
   count?: number;
-  viewMode?: 'compact' | 'rich' | 'mini';
+  layout?: 'list' | 'tiles' | 'icons';
+  density?: 'comfortable' | 'compact' | 'mini';
   collapsed?: boolean;
   collapsible?: boolean;
   onToggle?: () => void;
@@ -20,48 +21,64 @@ export const LeftSidebarGroup = ({
   category,
   items,
   count,
-  viewMode = 'rich',
+  layout = 'list',
+  density = 'comfortable',
   collapsed = true,
   collapsible = true,
   onToggle,
 }: LeftSidebarGroupProps) => {
+  const isMini = density === 'mini';
+  const isCompact = density === 'compact' || density === 'mini';
+  
   const titleContent = (
     <>
+      <div className="flex items-center gap-1.5 min-w-0">
+        <span
+          className={mergeUniqueClassNames(
+            `${DESIGNER_CLASSNAME}left-sidebar-group-title-chevron`,
+            'inline-flex h-3.5 w-3.5 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition-transform duration-200',
+            collapsed ? 'rotate-[-90deg]' : '',
+            isMini ? 'scale-75' : isCompact ? 'scale-90' : ''
+          )}
+          aria-hidden="true"
+        >
+          <ChevronDown size={isMini ? 8 : 10} strokeWidth={2.5} />
+        </span>
+        <span
+          className={mergeUniqueClassNames(
+            `${DESIGNER_CLASSNAME}left-sidebar-group-title-label font-bold uppercase tracking-[0.06em] truncate`,
+            isMini ? 'text-[7px]' : isCompact ? 'text-[8.5px]' : 'text-[9.5px]'
+          )}
+        >
+          {category}
+        </span>
+      </div>
       <span
         className={mergeUniqueClassNames(
-          `${DESIGNER_CLASSNAME}left-sidebar-group-title-chevron`,
-          'inline-flex h-4 w-4 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition',
-          collapsed ? 'rotate-[-90deg]' : '',
+          `${DESIGNER_CLASSNAME}left-sidebar-group-title-count inline-flex min-h-[0.875rem] items-center rounded-full border border-slate-200 bg-slate-50/50 px-1 text-[8px] font-semibold text-slate-500`,
+          isMini ? 'hidden' : ''
         )}
-        aria-hidden="true"
-      >
-        <ChevronDown size={10} strokeWidth={2.5} />
-      </span>
-      <span
-        className={`${DESIGNER_CLASSNAME}left-sidebar-group-title-label text-[9px] font-bold uppercase tracking-[0.04em]`}
-      >
-        {category}
-      </span>
-      <span
-        className={`${DESIGNER_CLASSNAME}left-sidebar-group-title-count inline-flex min-h-[1rem] items-center rounded-full border border-slate-200 bg-slate-50 px-1.5 text-[9px] font-semibold text-slate-600`}
       >
         {typeof count === 'number' ? count : items.length}
       </span>
     </>
   );
+
   const titleClassName = mergeUniqueClassNames(
     `${DESIGNER_CLASSNAME}left-sidebar-group-title`,
-    'flex min-h-[28px] w-full items-center justify-between gap-2 rounded-lg px-2 py-1 text-left text-[0.66rem] font-semibold text-slate-800 transition',
-    'hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+    'flex w-full items-center justify-between gap-2 px-2 py-0.5 text-left font-semibold text-slate-700 transition-colors',
+    isMini ? 'min-h-[20px]' : isCompact ? 'min-h-[24px]' : 'min-h-[28px]',
+    'hover:bg-slate-50/80 focus-visible:outline-none'
   );
 
   return (
     <section
       className={mergeUniqueClassNames(
         `${DESIGNER_CLASSNAME}left-sidebar-group`,
-        'rounded-xl border border-slate-200/70 bg-white/92 p-1.5 shadow-none',
+        'border-b border-slate-100/60 pb-1.5 last:border-b-0'
       )}
       data-testid="left-sidebar-group"
+      data-density={density}
     >
       {collapsible ? (
         <button
@@ -78,7 +95,7 @@ export const LeftSidebarGroup = ({
         <div
           className={mergeUniqueClassNames(
             `${DESIGNER_CLASSNAME}left-sidebar-group-title`,
-            'flex w-full items-center justify-between gap-3 rounded-xl px-3 py-2 text-left text-sm font-semibold text-slate-800',
+            'flex w-full items-center justify-between gap-3 px-3 py-2 text-left text-sm font-semibold text-slate-800',
           )}
           data-collapsed={collapsed ? 'true' : 'false'}
         >
@@ -88,23 +105,33 @@ export const LeftSidebarGroup = ({
       <div
         className={mergeUniqueClassNames(
           `${DESIGNER_CLASSNAME}left-sidebar-group-items`,
-          'mt-1 space-y-1',
+          'mt-0.5',
+          layout === 'icons' 
+            ? (isMini ? 'grid grid-cols-3 gap-0.5 px-0.5' : isCompact ? 'grid grid-cols-4 gap-1 px-1' : 'grid grid-cols-5 gap-1 px-1.5')
+            : (isMini ? 'px-0.5 space-y-[1px]' : isCompact ? 'px-1 space-y-0.5' : 'px-1.5 space-y-1')
         )}
-        data-view-mode={viewMode}
+        data-catalog-layout={layout}
         data-collapsed={collapsed ? 'true' : 'false'}
       >
-        {items}
+        {!collapsed && items}
       </div>
     </section>
   );
 };
 
 type LeftSidebarEmptyStateProps = {
-  description: string;
+  description?: string;
+  density?: 'comfortable' | 'compact' | 'mini';
 };
 
-export const LeftSidebarEmptyState = ({ description }: LeftSidebarEmptyStateProps) => (
-  <div className={`${DESIGNER_CLASSNAME}left-sidebar-empty`}>
-    <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} description={description} />
-  </div>
+/**
+ * Empty state unified with RightSidebar.
+ */
+export const LeftSidebarEmptyState = ({ description, density = 'comfortable' }: LeftSidebarEmptyStateProps) => (
+  <SidebarEmptyState
+    title="Sin resultados"
+    description={description || 'No hay campos disponibles según los filtros aplicados.'}
+    density={density}
+    className="mx-2 mb-4"
+  />
 );

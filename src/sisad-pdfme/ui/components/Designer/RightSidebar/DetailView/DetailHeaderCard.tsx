@@ -154,6 +154,21 @@ const DetailHeaderCard = ({
         }
         trailing={trailingNode}
       />
+      {headerDensity !== 'mini' && (headerSummary.uid || headerSummary.ownerName) && (
+        <div className={mergeClassNames(`${DESIGNER_CLASSNAME}detail-header-tech-row`, 'mt-1.5 flex items-center gap-2 border-t border-slate-100 px-3 pt-1.5')}>
+          {headerSummary.uid && (
+            <span className="inline-flex items-center text-[9px] font-mono text-slate-400">
+              ID: {headerSummary.uid}
+            </span>
+          )}
+          {headerSummary.ownerName && (
+            <span className="inline-flex items-center gap-1 text-[9px] font-medium text-slate-500">
+              <span className="h-1 w-1 rounded-full bg-slate-300" />
+              {headerSummary.ownerName}
+            </span>
+          )}
+        </div>
+      )}
     </div>
   );
 };

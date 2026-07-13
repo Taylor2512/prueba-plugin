@@ -145,7 +145,7 @@ export const SidebarSurfaceHeader = ({
     <div
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'sidebar-surface-header',
-        'flex items-start justify-between gap-2 rounded-xl border border-slate-200/70 bg-white/92 px-2.5 py-2 shadow-sm',
+        'flex items-center justify-between gap-1.5 rounded-xl border border-slate-200/70 bg-white/92 px-2 py-1.5 shadow-sm',
         compact ? DESIGNER_CLASSNAME + 'sidebar-surface-header-compact' : '',
         className,
       )}

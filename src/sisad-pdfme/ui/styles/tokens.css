@@ -252,6 +252,13 @@
     --letter-spacing-wider: 0.05em;
     --letter-spacing-widest: 0.1em;
   
+    /* ── DENSITY TOKENS ───────────────────────────────────────── */
+    --inspector-field-min-height: 22px;
+    --inspector-field-px: 0.4rem;
+    --inspector-field-py: 0.2rem;
+    --inspector-label-size: 0.62rem;
+    --inspector-input-size: 0.68rem;
+  
     /* ── SHADOW TOKENS ───────────────────────────────────────── */
     --shadow-sm: 0 0.0625rem 0.1875rem rgba(15, 23, 42, 0.06), 0 0.0625rem 0.125rem rgba(15, 23, 42, 0.04);
     --shadow-md: 0 0.25rem 0.5rem rgba(15, 23, 42, 0.08), 0 0.125rem 0.25rem rgba(15, 23, 42, 0.05);

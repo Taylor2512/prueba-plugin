@@ -12,14 +12,18 @@
  * never in two guard files.
  */
 import {
-  DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS,
   DESIGNER_INTERACTIVE_CONTROL_SELECTORS,
   buildSelectorList,
 } from './interactionTargetSelectors.js';
 import { isSchemaRootElement } from './objectGuards.js';
+import {
+  resolveInteractionTarget,
+  shouldIgnoreForSelecto,
+  shouldSelectTarget,
+  shouldTransformTarget,
+} from './interactionTargetResolver.js';
 
 /** Everything Selecto/Moveable must NEVER treat as an interaction target. */
-const EXCLUDED_SELECTOR = buildSelectorList(DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS);
 const OPTION_INTERNAL_SELECTOR = '[data-option-id]';
 const GROUP_ADD_OPTION_SELECTOR = '[data-role="group-add-option"]';
 const INTERACTIVE_CONTROL_SELECTOR = buildSelectorList(DESIGNER_INTERACTIVE_CONTROL_SELECTORS);
@@ -46,17 +50,25 @@ export const isGroupAddOptionTarget = (target: EventTarget | null | undefined): 
   matchesSelector(target, GROUP_ADD_OPTION_SELECTOR);
 
 /** Selecto may select this element (schema root only). */
-export const isSelectableCanvasTarget = (element: Element | null | undefined): boolean =>
-  isSchemaRootTarget(element);
+export const isSelectableCanvasTarget = (element: Element | null | undefined): boolean => {
+  const result = resolveInteractionTarget(element);
+  return shouldSelectTarget(result) && result.kind === 'schema-root';
+};
 
 /** Moveable may transform this element (schema root only). */
-export const isTransformableCanvasTarget = (element: Element | null | undefined): boolean =>
-  isSchemaRootTarget(element);
+export const isTransformableCanvasTarget = (element: Element | null | undefined): boolean => {
+  const result = resolveInteractionTarget(element);
+  return shouldTransformTarget(result) && result.kind === 'schema-root';
+};
 
 /** Target (or ancestor) that must suppress Selecto region/click selection. */
-export const isCanvasSelectionExcludedTarget = (target: EventTarget | null | undefined): boolean =>
-  matchesSelector(target, EXCLUDED_SELECTOR);
+export const isCanvasSelectionExcludedTarget = (target: EventTarget | null | undefined): boolean => {
+  const result = resolveInteractionTarget(target);
+  return shouldIgnoreForSelecto(result);
+};
 
 /** Target (or ancestor) that must be excluded from Moveable transform. */
-export const isCanvasTransformExcludedTarget = (target: EventTarget | null | undefined): boolean =>
-  matchesSelector(target, EXCLUDED_SELECTOR);
+export const isCanvasTransformExcludedTarget = (target: EventTarget | null | undefined): boolean => {
+  const result = resolveInteractionTarget(target);
+  return !shouldTransformTarget(result);
+};

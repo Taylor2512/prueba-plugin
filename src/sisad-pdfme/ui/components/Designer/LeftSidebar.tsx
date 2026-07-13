@@ -2,7 +2,6 @@ import React, { useContext, useState, useEffect, useMemo, useCallback, useRef } 
 import { Schema, Plugin, BasePdf, getFallbackFontName, cloneDeep } from '@sisad-pdfme/common';
 import { Button } from 'antd';
 import { useDraggable } from '@dnd-kit/core';
-import { Grip, Grid3X3, List } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../constants.js';
 import { setFontNameRecursively } from '../../helper.js';
 import { OptionsContext, PluginsRegistry } from '../../contexts.js';
@@ -28,6 +27,8 @@ import useLeftSidebarCatalogState from './useLeftSidebarCatalogState.js';
 import { normalizeHexColor } from './shared/recipientColor.js';
 import { buildAutoPlaceDescriptor } from './shared/schemaAutoPlace.js';
 import { useResponsiveDensity } from './shared/useResponsiveDensity.js';
+import { SidebarRail } from './shared/SidebarRail.js';
+import { CatalogLayoutToggle, type CatalogLayout } from './shared/CatalogLayoutToggle.js';
 import { getCatalogLabel } from './shared/designerLabels.js';
 import { lockDesignerSidebarScroll, unlockDesignerSidebarScroll } from './shared/interactionGuards.js';
 import SidebarCollapseHandle from './shared/SidebarCollapseHandle.js';
@@ -163,28 +164,12 @@ type ActiveRecipientOption = {
   massiveId?: string | null;
 };
 
-export type CatalogViewMode = 'compact' | 'rich' | 'mini';
-type CatalogLayout = 'list' | 'tiles' | 'icons';
+export type CatalogLayout = 'list' | 'tiles' | 'icons';
+export type SidebarDensity = 'comfortable' | 'compact' | 'narrow';
 export type CatalogQuickFilter = 'all' | 'favorites' | 'recent';
 export type CatalogCapability = 'designer' | 'content' | 'layout' | 'selection' | 'prefill' | 'dynamic';
 const SHOW_ADVANCED_CATALOG_CONTROLS = false;
 
-const CATALOG_VIEW_OPTIONS: Array<{
-  mode: CatalogViewMode;
-  layout: CatalogLayout;
-  label: string;
-  title: string;
-  icon: React.ReactNode;
-}> = [
-  { mode: 'rich', layout: 'list', label: 'Lista', title: 'Vista de lista', icon: <List size={14} /> },
-  { mode: 'compact', layout: 'tiles', label: 'Tarjetas', title: 'Vista de tarjetas', icon: <Grid3X3 size={14} /> },
-  { mode: 'mini', layout: 'icons', label: 'Iconos', title: 'Vista de iconos', icon: <Grip size={14} /> },
-];
-const CATALOG_LAYOUT_BY_MODE: Record<CatalogViewMode, CatalogLayout> = {
-  rich: 'list',
-  compact: 'tiles',
-  mini: 'icons',
-};
 
 type CatalogSchemaItem = {
   key: string;
@@ -204,12 +189,13 @@ type CatalogSchemaItem = {
 type SidebarButtonsProps = {
   activeTab: LeftSidebarTab;
   variant: 'compact' | 'panel';
+  sidebarDensityMode: 'comfortable' | 'compact' | 'mini';
   groupedPlugins: Array<{ category: string; items: CatalogSchemaItem[] }>;
   recentCatalogItems: CatalogSchemaItem[];
   collapsedCategories: Record<string, boolean>;
   quickFilter: CatalogQuickFilter;
   normalizedSearch: string;
-  resolvedViewMode: CatalogViewMode;
+  resolvedLayout: CatalogLayout;
   hasPlugins: boolean;
   filteredCustomDefinitions: RuntimeCustomSchemaDefinition[];
   renderPluginButton: (item: CatalogSchemaItem) => React.ReactNode;
@@ -222,12 +208,13 @@ type SidebarButtonsProps = {
 const SidebarButtons = ({
   activeTab,
   variant,
+  sidebarDensityMode,
   groupedPlugins,
   recentCatalogItems,
   collapsedCategories,
   quickFilter,
   normalizedSearch,
-  resolvedViewMode,
+  resolvedLayout,
   hasPlugins,
   filteredCustomDefinitions,
   renderPluginButton,
@@ -237,24 +224,17 @@ const SidebarButtons = ({
   onToggleCategory,
 }: SidebarButtonsProps) => (
   <>
-    {activeTab === 'custom' ? (
-      <LeftSidebarCustomPanel
-        definitions={filteredCustomDefinitions}
-        variant={variant}
-        onOpenCreate={onOpenCreate}
-        resolvePlugin={resolvePlugin}
-        renderDraggableItem={renderCustomFieldItem}
-      />
-    ) : !hasPlugins ? (
-      <LeftSidebarEmptyState description="Sin resultados" />
-    ) : null}
     {activeTab !== 'custom' && quickFilter === 'all' && !normalizedSearch && recentCatalogItems.length > 0 ? (
       <LeftSidebarGroup
         key="__recent"
         category="Recientes"
         count={recentCatalogItems.length}
-        viewMode={resolvedViewMode}
-        items={recentCatalogItems.map(renderPluginButton)}
+        layout={resolvedLayout}
+        density={sidebarDensityMode}
+        collapsed={Boolean(collapsedCategories['__recent'])}
+        collapsible
+        onToggle={() => onToggleCategory('__recent')}
+        items={collapsedCategories['__recent'] ? [] : recentCatalogItems.map(renderPluginButton)}
       />
     ) : null}
     {activeTab !== 'custom'
@@ -263,7 +243,8 @@ const SidebarButtons = ({
           key={category}
           category={category}
           count={items.length}
-          viewMode={resolvedViewMode}
+          layout={resolvedLayout}
+          density={sidebarDensityMode}
           collapsed={Boolean(collapsedCategories[category])}
           collapsible
           onToggle={() => onToggleCategory(category)}
@@ -271,6 +252,19 @@ const SidebarButtons = ({
         />
       ))
       : null}
+    {activeTab !== 'custom' && groupedPlugins.length === 0 ? (
+      <LeftSidebarEmptyState density={sidebarDensityMode} />
+    ) : null}
+    {activeTab === 'custom' ? (
+      <LeftSidebarCustomPanel
+        definitions={filteredCustomDefinitions}
+        variant={variant}
+        density={sidebarDensityMode}
+        renderItem={renderCustomFieldItem}
+        resolvePlugin={resolvePlugin}
+        onOpenCreate={onOpenCreate}
+      />
+    ) : null}
   </>
 );
 
@@ -482,6 +476,7 @@ const SidebarShell = ({
   activeRecipientLabel,
   activeRecipientColor,
   style,
+  density = 'comfortable',
   children,
 }: {
   tabs: SidebarTabOption[];
@@ -492,6 +487,7 @@ const SidebarShell = ({
   activeRecipientLabel?: string | null;
   activeRecipientColor?: string | null;
   style?: React.CSSProperties;
+  density?: 'comfortable' | 'compact' | 'mini';
   children: React.ReactNode;
 }) => (
     <div
@@ -501,32 +497,32 @@ const SidebarShell = ({
         'flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-slate-200/70 bg-white/95 shadow-sm',
       )}
       style={style}
+      data-density={density}
     >
-      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-header`, 'flex shrink-0 items-start justify-between gap-2 border-b border-slate-200/70 px-2.5 py-2')}>
-        <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-kicker`, 'text-[10px] font-medium uppercase tracking-[0.18em] text-slate-500')}>
-          Diseñador
-        </span>
-        <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-title`, 'flex min-w-0 flex-wrap items-center gap-1.5 text-[0.78rem] font-semibold text-slate-900')}>
+      <div className={mergeClassNames(
+        `${DESIGNER_CLASSNAME}left-sidebar-dock-header`, 
+        'flex shrink-0 items-start justify-between gap-2 border-b border-slate-200/70 px-2 py-1.5',
+        density === 'mini' ? 'hidden' : ''
+      )}>
+        {density !== 'compact' && (
+          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-kicker`, 'text-[9px] font-medium uppercase tracking-[0.18em] text-slate-400')}>
+            Diseñador
+          </span>
+        )}
+        <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-title`, 'flex min-w-0 flex-wrap items-center gap-1.5 text-[0.72rem] font-semibold text-slate-900')}>
           <span>Campos</span>
           {activeRecipientLabel ? (
-            <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-recipient`, 'inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-1.5 py-0.5 text-[11px] text-slate-600')}>
+            <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-recipient`, 'inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-1 py-0.5 text-[10px] text-slate-600')}>
               {activeRecipientLabel}
             </span>
           ) : null}
-          {activeRecipientColor ? (
-            <span
-              aria-label={
-                activeRecipientLabel
-                  ? `Campos asignados a ${activeRecipientLabel}`
-                  : `Color del destinatario activo ${activeRecipientColor}`
-              }
-              className={`${DESIGNER_CLASSNAME}left-sidebar-active-recipient-dot`}
-              style={{ '--active-recipient-color': activeRecipientColor } as React.CSSProperties}
-            />
-          ) : null}
         </span>
       </div>
-      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-control-band`, 'shrink-0 space-y-1.5 border-b border-slate-200/70 px-2.5 py-2')}>
+      <div className={mergeClassNames(
+        `${DESIGNER_CLASSNAME}left-sidebar-control-band`, 
+        'shrink-0 border-b border-slate-200/70',
+        density === 'mini' ? 'px-1 py-1 space-y-1' : 'px-2 py-1.5 space-y-1.5'
+      )}>
         <LeftSidebarTabs
           tabs={tabs}
           activeTab={activeTab}
@@ -534,11 +530,15 @@ const SidebarShell = ({
           renderTabIcon={renderTabIcon}
         />
         {searchNode ? (
-          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-search-wrap`, 'space-y-2')}>{searchNode}</div>
+          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-search-wrap`)}>{searchNode}</div>
         ) : null}
       </div>
       <div
-        className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-main`, 'min-h-0 flex-1 space-y-1.5 overflow-y-auto overflow-x-hidden overscroll-contain px-2 py-2')}
+        className={mergeClassNames(
+          `${DESIGNER_CLASSNAME}left-sidebar-main`, 
+          'min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain',
+          density === 'mini' ? 'px-1 py-1 space-y-1' : 'px-2 py-1.5 space-y-1.5'
+        )}
         data-left-sidebar-scroll="true"
         data-sidebar-scroll-container="true"
       >
@@ -577,8 +577,8 @@ export type LeftSidebarProps = {
   onSchemaClick?: (schema: Schema, schemaType: string) => void;
   bridge?: DesignerComponentBridge;
   extensions?: DesignerRuntimeExtensions;
-  catalogViewMode?: CatalogViewMode;
-  onCatalogViewModeChange?: (mode: CatalogViewMode) => void;
+  catalogLayout?: CatalogLayout;
+  onCatalogLayoutChange?: (layout: CatalogLayout) => void;
 };
 
 const LeftSidebar = ({
@@ -597,8 +597,8 @@ const LeftSidebar = ({
   classNames,
   styleOverrides: _styleOverrides,
   onSchemaClick,
-  catalogViewMode,
-  onCatalogViewModeChange,
+  catalogLayout,
+  onCatalogLayoutChange,
   showCatalogViewSwitcher = true,
   extensions,
 }: LeftSidebarProps) => {
@@ -661,14 +661,36 @@ const LeftSidebar = ({
     setQuickFilter,
     activeCapabilities,
     setActiveCapabilities,
-    resolvedViewMode,
-    setUserViewMode,
+    resolvedLayout,
+    setUserLayout,
     collapsedCategories,
     setCollapsedCategories,
     markRecent,
     isDragging,
     setIsDragging,
-  } = useLeftSidebarCatalogState({ catalogViewMode });
+  } = useLeftSidebarCatalogState({ catalogLayout });
+
+  const clickCooldownRef = useRef(0);
+
+  /**
+   * Ejecuta la acción de clic en un schema con cooldown para evitar
+   * duplicaciones por doble clic accidental.
+   */
+  const handleSchemaClick = useCallback(
+    (schema: Schema, schemaType: string) => {
+      const now = Date.now();
+      if (now - clickCooldownRef.current < 450) {
+        return;
+      }
+      clickCooldownRef.current = now;
+
+      if (typeof onSchemaClick === 'function') {
+        onSchemaClick(schema, schemaType);
+        markRecent(schemaType);
+      }
+    },
+    [onSchemaClick, markRecent],
+  );
 
   const normalizedSearch = search.trim().toLowerCase();
   const parsedQuery = useMemo(() => parseSearchQuery(normalizedSearch), [normalizedSearch]);
@@ -952,6 +974,17 @@ const LeftSidebar = ({
           }
         : undefined,
     } as Schema;
+
+    if (customField.type === 'select' || customField.type === 'radioGroup') {
+      const options = (customField.options || '')
+        .split(/,|\n/)
+        .map((opt) => opt.trim())
+        .filter(Boolean);
+      if (options.length > 0) {
+        (schema as Schema & { options?: string[] }).options = options;
+      }
+    }
+
     return schema;
   };
 
@@ -1007,6 +1040,7 @@ const LeftSidebar = ({
       validation: 'None',
       helpText: '',
       autoPlaceText: '',
+      options: '',
     });
   };
 
@@ -1108,20 +1142,25 @@ const LeftSidebar = ({
           <div
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap',
-              'relative rounded-xl border border-slate-200/70 bg-white/90 p-1 shadow-none transition',
+              'group relative',
             )}
             style={activeRecipientWrapStyle || activeRecipientStyles}
           >
             <Button
-              className={buttonClass}
+              className={mergeClassNames(
+                buttonClass,
+                'flex w-full items-center gap-2 rounded-lg border border-transparent px-2 py-1.5 transition-all duration-200',
+                'hover:border-slate-200 hover:bg-slate-50/80 active:scale-[0.98]',
+                draggableActive ? 'opacity-50' : ''
+              )}
               data-testid="left-sidebar-schema-tile"
               data-schema-type={pluginType}
               data-schema-category={category}
               data-schema-kind={item.source}
               data-schema-label={displayLabel}
-              data-catalog-layout={CATALOG_LAYOUT_BY_MODE[resolvedViewMode]}
+              data-catalog-layout={resolvedLayout}
+              data-density={sidebarDensityMode}
               data-dragging={draggableActive ? 'true' : 'false'}
-              data-view-mode={resolvedViewMode}
               data-is-panel={isPanel ? 'true' : 'false'}
               style={activeRecipientButtonStyle}
               onMouseDownCapture={() => {
@@ -1134,10 +1173,7 @@ const LeftSidebar = ({
               {...attributes}
               onClick={() => {
                 if (draggableActive) return;
-                if (typeof onSchemaClick === 'function') {
-                  onSchemaClick(cloneDeep(plugin.propPanel.defaultSchema), pluginType);
-                  markRecent(pluginType);
-                }
+                handleSchemaClick(cloneDeep(plugin.propPanel.defaultSchema), pluginType);
               }}
             >
               <PluginIcon
@@ -1145,6 +1181,7 @@ const LeftSidebar = ({
                 label={displayLabel}
                 testId="left-sidebar-schema-icon"
                 activeRecipientColor={pluginTone ?? null}
+                density={sidebarDensityMode}
                 styles={
                   pluginTone
                     ? {
@@ -1156,7 +1193,11 @@ const LeftSidebar = ({
                 }
               />
               <span className={mergeClassNames(`${DESIGNER_CLASSNAME}plugin-btn-label`, 'min-w-0 flex-1 text-left')}>
-                <span className={mergeClassNames(DESIGNER_CLASSNAME + 'plugin-btn-label-title', 'block truncate text-[0.72rem] font-medium text-slate-800')}>
+                <span className={mergeClassNames(
+                  DESIGNER_CLASSNAME + 'plugin-btn-label-title', 
+                  'block truncate font-medium text-slate-800',
+                  sidebarDensityMode === 'mini' ? 'text-[7.5px]' : sidebarDensityMode === 'compact' ? 'text-[0.68rem]' : 'text-[0.72rem]'
+                )}>
                   {highlightTerm(displayLabel, searchTerms)}
                 </span>
               </span>
@@ -1171,9 +1212,10 @@ const LeftSidebar = ({
               aria-label="Marcar favorito"
               className={mergeClassNames(
                 DESIGNER_CLASSNAME + 'plugin-favorite-toggle',
-                'absolute right-2 top-2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-slate-200 bg-white text-[10px] text-slate-400 shadow-sm transition',
+                'absolute right-1 top-1/2 -translate-y-1/2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-slate-200 bg-white text-[10px] text-slate-300 shadow-sm opacity-0 transition group-hover:opacity-100',
               )}
               data-active={isFavorite ? 'true' : 'false'}
+              style={isFavorite ? { opacity: 1, color: '#f59e0b', borderColor: '#fef3c7' } : undefined}
               onClick={(e) => {
                 e.stopPropagation();
                 toggleFavorite(pluginType);
@@ -1237,7 +1279,7 @@ const LeftSidebar = ({
               data-schema-category={definition.category}
               data-schema-kind="custom"
               data-schema-label={definition.label}
-              data-catalog-layout={CATALOG_LAYOUT_BY_MODE[resolvedViewMode]}
+              data-catalog-layout={resolvedLayout}
               onMouseDownCapture={() => {
                 setIsDragging(true);
               }}
@@ -1248,14 +1290,10 @@ const LeftSidebar = ({
               {...attributes}
               onClick={() => {
                 if (draggableActive) return;
-                if (typeof onSchemaClick === 'function') {
-                  const schema = createSchemaInstance();
-                  if (!schema) return;
-                  onSchemaClick(cloneDeep(schema), definition.pluginType);
-                  markRecent(definition.pluginType);
-                }
+                const schema = createSchemaInstance();
+                if (!schema) return;
+                handleSchemaClick(cloneDeep(schema), definition.pluginType);
               }}
-              data-view-mode={resolvedViewMode}
               style={activeRecipientButtonStyle}
               >
                 <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-icon`}>
@@ -1264,6 +1302,7 @@ const LeftSidebar = ({
                     label={definition.label}
                     testId="left-sidebar-schema-icon"
                     activeRecipientColor={activeRecipientTone ?? null}
+                    density={sidebarDensityMode}
                     styles={
                       activeRecipientTone
                         ? {
@@ -1276,7 +1315,11 @@ const LeftSidebar = ({
                 />
               </span>
               <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-item-copy`, 'min-w-0 flex-1 text-left')}>
-                <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-item-label`, 'block truncate text-[0.72rem] font-medium text-slate-800')}>
+                <span className={mergeClassNames(
+                  `${DESIGNER_CLASSNAME}left-sidebar-custom-item-label`, 
+                  'block truncate font-medium text-slate-800',
+                  sidebarDensityMode === 'mini' ? 'text-[7.5px]' : sidebarDensityMode === 'compact' ? 'text-[0.68rem]' : 'text-[0.72rem]'
+                )}>
                   {definition.label}
                 </span>
               </span>
@@ -1321,21 +1364,45 @@ const LeftSidebar = ({
     );
   };
 
+  const tabCounts = useMemo(() => {
+    const counts = { standard: 0, custom: filteredCustomDefinitions.length, prefill: 0 };
+    
+    plugins.forEach(([label, plugin]) => {
+      const type = String(plugin?.propPanel?.defaultSchema?.type || '').toLowerCase();
+      const normalizedLabel = String(label || '').toLowerCase();
+      const isPrefillByLabel = PREFILL_LABEL_TOKENS.some((token) => normalizedLabel.includes(token));
+      const isPrefill = isPrefillByLabel && PREFILL_SCHEMA_TYPES.has(type);
+      const isCustom = CUSTOM_LABEL_TOKENS.some((token) => normalizedLabel.includes(token));
+
+      if (isPrefill) {
+        counts.prefill++;
+      } else if (!isCustom) {
+        counts.standard++;
+      }
+    });
+
+    return counts;
+  }, [plugins, filteredCustomDefinitions.length]);
+
   const sidebarTabs: SidebarTabOption[] = showCatalogViewSwitcher
     ? [
-        { id: 'standard', label: 'Campos estándar' },
-        { id: 'custom', label: 'Campos personalizados' },
-        { id: 'prefill', label: 'Herramientas de prerrellenado' },
+        { id: 'standard', label: 'Estándar', badge: tabCounts.standard },
+        { id: 'custom', label: 'Personalizados', badge: tabCounts.custom },
+        { id: 'prefill', label: 'Prerrellenado', badge: tabCounts.prefill },
       ]
     : [];
 
   const searchNode = showSearchInput ? (
-    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-search-stack', 'space-y-2')}>
+    <div className={mergeClassNames(
+      DESIGNER_CLASSNAME + 'left-sidebar-search-stack', 
+      sidebarDensityMode === 'mini' ? 'space-y-1' : 'space-y-2'
+    )}>
       <LeftSidebarSearch
         value={search}
         onChange={setSearch}
         className={classNames?.searchInput}
         useDefaultStyles={useDefaultStyles}
+        density={sidebarDensityMode}
       />
       {SHOW_ADVANCED_CATALOG_CONTROLS &&
         (parsedQuery.capabilities.size > 0 ||
@@ -1368,78 +1435,52 @@ const LeftSidebar = ({
           </Button>
         </div>
       ) : null}
-      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-1.5')}>
+      <div className={mergeClassNames(
+        DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 
+        'flex flex-wrap items-center gap-1.5',
+        sidebarDensityMode === 'mini' ? 'gap-1' : ''
+      )}>
         <Button
           className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
-          size="small"
+          size={sidebarDensityMode === 'mini' ? 'small' : 'small'}
+          style={sidebarDensityMode === 'mini' ? { fontSize: '9px', padding: '0 4px', height: '20px' } : {}}
           data-testid="left-sidebar-filter-all"
           type={quickFilter === 'all' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('all')}
         >
-          Todos
+          {sidebarDensityMode === 'mini' ? 'Todo' : 'Todos'}
         </Button>
         <Button
           className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
-          size="small"
+          size={sidebarDensityMode === 'mini' ? 'small' : 'small'}
+          style={sidebarDensityMode === 'mini' ? { fontSize: '9px', padding: '0 4px', height: '20px' } : {}}
           data-testid="left-sidebar-filter-favorites"
           type={quickFilter === 'favorites' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('favorites')}
         >
-          Favoritos ({favoritePlugins.size})
+          {sidebarDensityMode === 'mini' ? `★ ${favoritePlugins.size}` : `Favoritos (${favoritePlugins.size})`}
         </Button>
         <Button
           className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
-          size="small"
+          size={sidebarDensityMode === 'mini' ? 'small' : 'small'}
+          style={sidebarDensityMode === 'mini' ? { fontSize: '9px', padding: '0 4px', height: '20px' } : {}}
           data-testid="left-sidebar-filter-recent"
           type={quickFilter === 'recent' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('recent')}
         >
-          Recientes ({recentPlugins.length})
+          {sidebarDensityMode === 'mini' ? `⟳ ${recentPlugins.length}` : `Recientes (${recentPlugins.length})`}
         </Button>
-        {showCatalogViewSwitcher ? (
-          <div
-            role="group"
-            aria-label="Vista del catálogo"
-            className={mergeClassNames(
-              `${DESIGNER_CLASSNAME}left-sidebar-view-toggle-group`,
-              'inline-flex items-center gap-1 rounded-lg border border-slate-200/70 bg-white/90 p-1 shadow-none',
-            )}
-          >
-            {CATALOG_VIEW_OPTIONS.map((option) => {
-              const active = resolvedViewMode === option.mode;
-              return (
-                <Button
-                  key={option.mode}
-                  className={mergeClassNames(
-                    `${DESIGNER_CLASSNAME}left-sidebar-view-toggle-btn`,
-                    `${DESIGNER_CLASSNAME}left-sidebar-view-toggle-btn-${option.mode}`,
-                  )}
-                  size="small"
-                  data-testid={`left-sidebar-view-${option.mode}`}
-                  data-view-mode={option.mode}
-                  data-catalog-layout={option.layout}
-                  data-active={active ? 'true' : 'false'}
-                  type={active ? 'primary' : 'default'}
-                  aria-pressed={active}
-                  aria-label={option.title}
-                  onClick={() => {
-                    setUserViewMode(option.mode);
-                    onCatalogViewModeChange?.(option.mode);
-                  }}
-                >
-                  <span className="inline-flex items-center gap-1">
-                    <span aria-hidden="true">{option.icon}</span>
-                    {sidebarDensityMode === 'mini' ? (
-                      <span className="sr-only">{option.label}</span>
-                    ) : (
-                      <span>{option.label}</span>
-                    )}
-                  </span>
-                </Button>
-              );
-            })}
-          </div>
-        ) : null}
+        {showCatalogViewSwitcher && (
+          <CatalogLayoutToggle
+            layout={resolvedLayout}
+            density={sidebarDensityMode}
+            onChange={(layout) => {
+              setUserLayout(layout);
+              onCatalogLayoutChange?.(layout);
+            }}
+            className={`${DESIGNER_CLASSNAME}left-sidebar-view-toggle`}
+          />
+        )}
       </div>
       {SHOW_ADVANCED_CATALOG_CONTROLS ? (
         <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-1.5')}>
@@ -1498,7 +1539,7 @@ const LeftSidebar = ({
       className={sidebarClass}
       data-testid="left-sidebar"
       data-sidebar-variant={variant}
-      data-catalog-layout={CATALOG_LAYOUT_BY_MODE[resolvedViewMode]}
+      data-catalog-layout={resolvedLayout}
       data-sidebar-detached={detached ? 'true' : 'false'}
       data-sidebar-collapsed={sidebarExpanded ? 'false' : 'true'}
       data-left-sidebar-mode={resolvedPresentation}
@@ -1521,6 +1562,25 @@ const LeftSidebar = ({
         onToggle={() => setSidebarExpanded((prev) => !prev)}
         className={`${DESIGNER_CLASSNAME}left-sidebar-toggle-btn`}
       />
+
+      {!sidebarExpanded && (
+        <SidebarRail
+          side="left"
+          items={sidebarTabs.map((tab) => ({
+            key: tab.id,
+            icon: renderTabIcon(tab.id),
+            label: tab.label,
+            ariaLabel: `Abrir ${tab.label}`,
+            active: activeTab === tab.id,
+            onClick: () => {
+              setActiveTab(tab.id);
+              setSidebarExpanded(true);
+            },
+          }))}
+          density={sidebarDensityMode}
+          className={`${DESIGNER_CLASSNAME}left-sidebar-collapsed-rail`}
+        />
+      )}
       {useLayoutFrame ? (
         <SidebarFrame className={`${DESIGNER_CLASSNAME}left-sidebar-frame`}>
           <SidebarShell
@@ -1531,17 +1591,19 @@ const LeftSidebar = ({
             searchNode={searchNode}
             activeRecipientLabel={activeRecipientLabel}
             activeRecipientColor={activeRecipientColor}
+            density={sidebarDensityMode}
             style={activeRecipientStyles}
           >
             <SidebarButtons
               activeTab={activeTab}
               variant={variant}
+              sidebarDensityMode={sidebarDensityMode}
               groupedPlugins={groupedPlugins}
               recentCatalogItems={recentCatalogItems}
               collapsedCategories={collapsedCategories}
               quickFilter={quickFilter}
               normalizedSearch={normalizedSearch}
-              resolvedViewMode={resolvedViewMode}
+              resolvedLayout={resolvedLayout}
               hasPlugins={plugins.length > 0}
               filteredCustomDefinitions={filteredCustomDefinitions}
               renderPluginButton={renderPluginButton}
@@ -1563,17 +1625,19 @@ const LeftSidebar = ({
             searchNode={searchNode}
             activeRecipientLabel={activeRecipientLabel}
             activeRecipientColor={activeRecipientColor}
+            density={sidebarDensityMode}
             style={activeRecipientStyles}
           >
             <SidebarButtons
               activeTab={activeTab}
               variant={variant}
+              sidebarDensityMode={sidebarDensityMode}
               groupedPlugins={groupedPlugins}
               recentCatalogItems={recentCatalogItems}
               collapsedCategories={collapsedCategories}
               quickFilter={quickFilter}
               normalizedSearch={normalizedSearch}
-              resolvedViewMode={resolvedViewMode}
+              resolvedLayout={resolvedLayout}
               hasPlugins={plugins.length > 0}
               filteredCustomDefinitions={filteredCustomDefinitions}
               renderPluginButton={renderPluginButton}

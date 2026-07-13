@@ -20,7 +20,36 @@ import { cloneDeep } from '@sisad-pdfme/common';
  * Used to dedupe template updates and avoid echo loops between the Designer
  * and the React host state.
  */
-export const getTemplateSignature = (template: any): string => {
+export type RuntimeTemplateLike = {
+  basePdf?: unknown;
+  schemas?: unknown[];
+};
+
+export type RuntimeOptionsLike = Record<string, unknown>;
+export type RuntimeInputsLike = unknown;
+export type RuntimePluginsLike = Record<string, unknown>;
+
+export type RuntimeInstanceLike = {
+  destroy: () => void;
+  updateOptions: (options: RuntimeOptionsLike) => void;
+  updateTemplate: (template: RuntimeTemplateLike) => void;
+  setInputs: (inputs: RuntimeInputsLike) => void;
+  fitToWidth?: () => void;
+  fitToPage?: () => void;
+  onChangeTemplate?: (handler: (template: RuntimeTemplateLike) => void) => void;
+  onChangeInput?: (handler: (payload: { index: number; name: string; value: unknown }) => void) => void;
+  onPageChange?: (handler: (pageInfo: unknown) => void) => void;
+};
+
+export type RuntimeConstructorLike = new (props: {
+  domContainer: HTMLElement;
+  template: RuntimeTemplateLike;
+  plugins: RuntimePluginsLike;
+  options: RuntimeOptionsLike;
+  inputs?: RuntimeInputsLike;
+}) => RuntimeInstanceLike;
+
+export const getTemplateSignature = (template: RuntimeTemplateLike | null | undefined): string => {
   try {
     // Exclude `inputs` from the signature — inputs are synced separately
     // and must not trigger template dedupe/echo logic.
@@ -40,7 +69,7 @@ export const getTemplateSignature = (template: any): string => {
  * NotFoundError is swallowed because it can happen when the DOM node was
  * already removed by React or by container.replaceChildren.
  */
-export const scheduleDestroyInstance = (instance: any): void => {
+export const scheduleDestroyInstance = (instance: RuntimeInstanceLike | null | undefined): void => {
   if (!instance) return;
   globalThis.setTimeout(() => {
     try {
@@ -62,9 +91,9 @@ export type PdfmeRuntimeMode = 'designer' | 'form' | 'viewer';
  * This also makes the hook testable with lightweight fake classes.
  */
 export type PdfmeRuntimeConstructors = {
-  Designer: any;
-  Form: any;
-  Viewer: any;
+  Designer: RuntimeConstructorLike;
+  Form: RuntimeConstructorLike;
+  Viewer: RuntimeConstructorLike;
 };
 
 /**
@@ -77,27 +106,27 @@ export type UsePdfmeRuntimeInstanceConfig = {
   containerRef: React.MutableRefObject<HTMLElement | null>;
   mode: PdfmeRuntimeMode;
   uxMode?: string;
-  template: any;
-  inputs: any;
-  options: any;
-  plugins: Record<string, any>;
+  template: RuntimeTemplateLike;
+  inputs: RuntimeInputsLike;
+  options: RuntimeOptionsLike;
+  plugins: RuntimePluginsLike;
   /** Designer/Form/Viewer classes (injected to avoid a hard dependency + ease testing). */
   runtime: PdfmeRuntimeConstructors;
   /** Transforms a designer-emitted template before propagating (e.g. collaboration decoration). */
-  decorateTemplate?: (template: any) => any;
+  decorateTemplate?: (template: RuntimeTemplateLike) => RuntimeTemplateLike;
   /** Called with the (decorated) template when the designer edits it. */
-  onTemplateChange: (template: any) => void;
+  onTemplateChange: (template: RuntimeTemplateLike) => void;
   /** Called with `{ index, name, value }` when a form input changes. */
   onInputChange?: (payload: { index: number; name: string; value: unknown }) => void;
   /** Called with page info on designer page change. */
-  onPageChange?: (pageInfo: any) => void;
+  onPageChange?: (pageInfo: unknown) => void;
   /** Auto-fit the designer on mount. Default 'page'. */
   autoFit?: 'page' | 'width' | 'none';
 };
 
 /** Public handle returned to the host for advanced imperative access. */
 export type PdfmeRuntimeInstanceHandle = {
-  instanceRef: React.MutableRefObject<any>;
+  instanceRef: React.MutableRefObject<RuntimeInstanceLike | null>;
 };
 
 /**
@@ -110,16 +139,16 @@ export function usePdfmeRuntimeInstance(
   config: UsePdfmeRuntimeInstanceConfig,
 ): PdfmeRuntimeInstanceHandle {
   /** Holds the currently mounted Designer/Form/Viewer instance. */
-  const instanceRef = useRef<any>(null);
+  const instanceRef = useRef<RuntimeInstanceLike | null>(null);
   /**
    * Last values pushed into the runtime instance.
    *
    * These refs prevent unnecessary updateOptions/updateTemplate/setInputs calls
    * and help avoid host ↔ runtime echo loops.
    */
-  const lastAppliedTemplateRef = useRef<any>(null);
-  const lastAppliedOptionsRef = useRef<any>(null);
-  const lastAppliedInputsRef = useRef<any>(null);
+  const lastAppliedTemplateRef = useRef<RuntimeTemplateLike | null>(null);
+  const lastAppliedOptionsRef = useRef<RuntimeOptionsLike | null>(null);
+  const lastAppliedInputsRef = useRef<RuntimeInputsLike | null>(null);
   /** Flags used to skip the immediate echo after runtime-originated changes. */
   const templateSyncFromDesignerRef = useRef(false);
   const inputsSyncFromRuntimeRef = useRef(false);
@@ -133,7 +162,9 @@ export function usePdfmeRuntimeInstance(
   // Keep the latest config readable from the mode-keyed mount effect without
   // making it a dependency (mirrors the original closure-on-[mode] behavior).
   const latest = useRef(config);
-  latest.current = config;
+  useEffect(() => {
+    latest.current = config;
+  }, [config]);
 
   const { mode, template, options, inputs } = config;
 
@@ -161,7 +192,7 @@ export function usePdfmeRuntimeInstance(
       options: cfg.options,
     };
 
-    let instance: any = null;
+    let instance: RuntimeInstanceLike | null = null;
     const { Designer, Form, Viewer } = cfg.runtime;
 
     /** Designer: emits template/page changes and supports auto-fit. */
@@ -175,8 +206,8 @@ export function usePdfmeRuntimeInstance(
           if (typeof fit === 'function') fit.call(designer);
         });
       }
-      designer.onChangeTemplate((nextTemplate: any) => {
-        const decorate = latest.current.decorateTemplate ?? ((t: any) => t);
+      designer.onChangeTemplate((nextTemplate: RuntimeTemplateLike) => {
+        const decorate = latest.current.decorateTemplate ?? ((t: RuntimeTemplateLike) => t);
         const decoratedTemplate = decorate(nextTemplate);
         const nextSignature = getTemplateSignature(decoratedTemplate);
         if (lastAppliedTemplateSignatureRef.current === nextSignature) return;
@@ -184,7 +215,7 @@ export function usePdfmeRuntimeInstance(
         templateSyncFromDesignerRef.current = true;
         latest.current.onTemplateChange(decoratedTemplate);
       });
-      designer.onPageChange((pageInfo: any) => {
+      designer.onPageChange((pageInfo: unknown) => {
         latest.current.onPageChange?.(pageInfo);
       });
       instance = designer;
@@ -215,7 +246,7 @@ export function usePdfmeRuntimeInstance(
       scheduleDestroyInstance(instance);
       if (host.parentNode === container) host.remove();
     };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+     
   }, [mode]);
 
   /** Destroys the active runtime instance when the hook unmounts. */
@@ -252,13 +283,13 @@ export function usePdfmeRuntimeInstance(
       try {
         // Lightweight diagnostic to help detect unexpected signature churns
         // during development without interfering in production.
-        // eslint-disable-next-line no-console
+         
         console.debug('[usePdfmeRuntimeInstance] template sync', {
           mode,
           previousSignature: lastAppliedTemplateSignatureRef.current,
           nextSignature,
         });
-      } catch (err) {
+      } catch {
         // swallow logging errors
       }
     }

@@ -13,9 +13,11 @@ import { mergeClassNames } from '../../shared/className.js';
 import { SidebarBody, SidebarFrame } from '../layout.js';
 import DetailHeaderCard from './DetailHeaderCard.js';
 import DetailFormSection from './DetailFormSection.js';
+import { Lock } from 'lucide-react';
 import type { SchemaDesignerConfig } from '../../../../designerEngine.js';
 import type { DetailInspectorSection } from './detailSchemas.js';
 import { stopInspectorPointerEvent } from './inspectorInteractionGuards.js';
+import type { SchemaAccessState } from '../../shared/accessPolicy.js';
 
 /**
  * Props del layout visual del DetailView.
@@ -29,6 +31,8 @@ type DetailViewContentProps = {
   widgets: Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element>;
   watchHandler: (..._args: unknown[]) => void;
   backTooltip?: string;
+  readOnly?: boolean;
+  accessState?: SchemaAccessState;
 };
 
 /**
@@ -46,7 +50,11 @@ const DetailViewContent = ({
   widgets,
   watchHandler,
   backTooltip = 'Volver a campos',
+  readOnly = false,
+  accessState,
 }: DetailViewContentProps) => {
+  const isLockedByOther = accessState?.isLockedByOther ?? false;
+
   return (
     <SidebarFrame
       className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-view', 'flex h-full min-h-0 flex-col')}
@@ -74,6 +82,14 @@ const DetailViewContent = ({
           backTooltip={backTooltip}
           showPosition={false}
         />
+
+        {isLockedByOther && (
+          <div className="mx-3 my-2 flex items-center gap-2 rounded-md bg-amber-50 p-2 text-xs text-amber-700 border border-amber-200">
+            <Lock size={14} className="shrink-0" />
+            <span>Este campo está siendo editado por otro usuario y no puede modificarse.</span>
+          </div>
+        )}
+
         <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-view-sections', 'mt-0.5 space-y-0.5')}>
           {sections.map((section) => (
             <DetailFormSection
@@ -85,8 +101,7 @@ const DetailViewContent = ({
               form={form}
               widgets={widgets}
               watchHandler={watchHandler}
-              defaultCollapsed={section.defaultCollapsed}
-              resetToken={`${activeSchema.id}:${section.key}`}
+              readOnly={readOnly}
             />
           ))}
         </div>

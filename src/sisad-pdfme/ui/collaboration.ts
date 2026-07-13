@@ -1097,12 +1097,13 @@ export const createYjsCollaborationProvider = ({
       () => room?.awareness.off('change', emitPresence),
     );
 
-    const currentUser = (users || []).find((user) => user.id === safeActorId);
+    const currentUser = (users || []).find((user) => String(user.id) === safeActorId);
     room.awareness.setLocalState({
       userId: safeActorId,
       name: currentUser?.name || safeActorId,
       color: actorColor || currentUser?.color || null,
       role: currentUser?.role || null,
+      activeDocumentId: safeSessionId,
       activeSchemaIds: [],
       updatedAt: Date.now(),
     } satisfies CollaborationPresence);

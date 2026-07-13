@@ -1,6 +1,5 @@
 import React, { useRef, useState, useContext, useCallback, useEffect, useMemo } from 'react';
 import { createPortal } from 'react-dom';
-import SidebarCollapseHandle from './shared/SidebarCollapseHandle.js';
 import {
   cloneDeep,
   ZOOM,
@@ -43,6 +42,10 @@ import {
   DESIGNER_CLASSNAME,
   SELECTABLE_CLASSNAME,
 } from '../../constants.js';
+import {
+  resolveSchemaAccessState,
+  canRunSchemaCommand,
+} from './shared/accessPolicy.js';
 import { I18nContext, OptionsContext, PluginsRegistry } from '../../contexts.js';
 import {
   schemasList2template,
@@ -73,6 +76,18 @@ import SchemaDragPreview from './Canvas/overlays/SchemaDragPreview.js';
 import SchemaDropCommitFlash from './Canvas/overlays/SchemaDropCommitFlash.js';
 import SchemaDropPlaceholder from './Canvas/overlays/SchemaDropPlaceholder.js';
 import { installPassiveTouchListenerGuard } from './shared/passiveTouchListeners.js';
+
+type CatalogLayout = 'list' | 'tiles' | 'icons';
+
+type DesignerOptionsBridge = {
+  uploadedDocuments?: unknown;
+  activeDocumentId?: unknown;
+  catalogLayout?: CatalogLayout;
+  onCatalogLayoutChange?: ((layout: CatalogLayout) => void) | null;
+  rightSidebarViewMode?: 'auto' | 'fields' | 'detail' | 'docs' | 'comments';
+  onRightSidebarViewModeChange?: ((mode: 'auto' | 'fields' | 'detail' | 'docs' | 'comments') => void) | null;
+  onUploadedDocumentsChange?: ((documents: UploadedPdfDocument[], activeDocumentId: string | null) => void) | null;
+};
 import {
   lockDesignerSidebarScroll,
   unlockDesignerSidebarScroll,
@@ -101,7 +116,7 @@ import {
   createCommentCommandEvent,
   createPageSnapshotCommand,
   createTemplateSnapshotCommand,
-} from '../../commands/designerCommands.js';
+} from '../../../commands/index.js';
 import { emitDesignerRuntimeEvent } from '../Designer/shared/designerExtensions.js';
 const DESIGNER_THEME_STYLE_ID = DESIGNER_CLASSNAME + 'theme-base';
 
@@ -434,6 +449,28 @@ const DetachedHost = ({
   </div>
 );
 
+/**
+ * Resuelve los IDs de los schemas que han cambiado entre dos snapshots.
+ */
+function resolveChangedSchemaUids(before: SchemaForUI[], after: SchemaForUI[]): string[] {
+  const changed = new Set<string>();
+  const beforeMap = new Map((before || []).map((s) => [s.id, s]));
+  const afterMap = new Map((after || []).map((s) => [s.id, s]));
+
+  for (const s of after) {
+    const prev = beforeMap.get(s.id);
+    if (!prev || JSON.stringify(prev) !== JSON.stringify(s)) {
+      changed.add(s.id);
+    }
+  }
+  for (const s of before) {
+    if (!afterMap.has(s.id)) {
+      changed.add(s.id);
+    }
+  }
+  return Array.from(changed);
+}
+
 const TemplateEditor = ({
   template,
   size,
@@ -441,11 +478,15 @@ const TemplateEditor = ({
   onChangeTemplate,
   onPageCursorChange,
   onApiReady,
+  catalogLayout,
+  onCatalogLayoutChange,
 }: Omit<DesignerProps, 'domContainer'> & {
   size: Size;
   onSaveTemplate: (t: Template) => void;
   onChangeTemplate: (t: Template, context?: TemplateChangeContext) => void;
   onApiReady?: (api: DesignerRuntimeApi | null) => void;
+  catalogLayout?: 'list' | 'tiles' | 'icons';
+  onCatalogLayoutChange?: (layout: 'list' | 'tiles' | 'icons') => void;
 } & {
   onChangeTemplate: (t: Template, context?: TemplateChangeContext) => void;
   onPageCursorChange: (newPageCursor: number, totalPages: number) => void; // NOSONAR
@@ -701,10 +742,13 @@ const TemplateEditor = ({
   useEffect(() => {
     pageCursorRef.current = pageCursor;
   }, [pageCursor]);
-  const uploadedDocumentsOption = (options as Record<string, unknown>).uploadedDocuments;
-  const activeDocumentIdOption = (options as Record<string, unknown>).activeDocumentId;
-  const rightSidebarViewModeOption = (options as Record<string, unknown>).rightSidebarViewMode;
-  const onRightSidebarViewModeChangeOption = (options as Record<string, unknown>).onRightSidebarViewModeChange;
+  const optionsBridge = options as DesignerOptionsBridge;
+  const uploadedDocumentsOption = optionsBridge.uploadedDocuments;
+  const activeDocumentIdOption = optionsBridge.activeDocumentId;
+  const catalogLayoutOption = catalogLayout ?? optionsBridge.catalogLayout ?? 'list';
+  const onCatalogLayoutChangeOption = onCatalogLayoutChange ?? optionsBridge.onCatalogLayoutChange ?? null;
+  const rightSidebarViewModeOption = optionsBridge.rightSidebarViewMode;
+  const onRightSidebarViewModeChangeOption = optionsBridge.onRightSidebarViewModeChange;
   const uploadedDocumentsSeed = useMemo<UploadedPdfDocument[]>(
     () => (Array.isArray(uploadedDocumentsOption) ? (uploadedDocumentsOption as UploadedPdfDocument[]) : []),
     [uploadedDocumentsOption],
@@ -788,13 +832,13 @@ const TemplateEditor = ({
   }, [activeDocumentIdOption]);
 
   useEffect(() => {
-    const handler = (options as Record<string, unknown>).onUploadedDocumentsChange;
+    const handler = optionsBridge.onUploadedDocumentsChange;
     if (typeof handler !== 'function') return;
     handler(
       uploadedDocuments.map((doc) => ({ ...doc })),
       activeDocumentId || null,
     );
-  }, [activeDocumentId, options, uploadedDocuments]);
+  }, [activeDocumentId, optionsBridge, uploadedDocuments]);
 
   useEffect(() => {
     if (
@@ -837,6 +881,42 @@ const TemplateEditor = ({
       if (idleTimerRef.current) clearTimeout(idleTimerRef.current);
     };
   }, []);
+
+  // Register CommandBus guard for Access Control
+  useEffect(() => {
+    const bus = commandBusRef.current;
+    if (!bus) return;
+
+    const accessGuard = (command: { meta?: { schemaUids?: string[]; schemaUid?: string } }) => {
+      // 1. Identify schemas targetted by command
+      const meta = command.meta;
+      const targetUids = meta?.schemaUids || (meta?.schemaUid ? [meta.schemaUid] : []);
+
+      if (targetUids.length === 0) return true;
+
+      // 2. Resolve access state for targets
+      const accessCtx = {
+        collaborationContext,
+        canEditStructure: collaborationContext.canEditStructure,
+      };
+
+      for (const uid of targetUids) {
+        // Buscamos el schema en la lista actual (referencia reactiva)
+        const schema = schemasList.flat().find((s) => s.id === uid);
+        if (!schema) continue;
+
+        const accessState = resolveSchemaAccessState(schema, accessCtx);
+        if (!canRunSchemaCommand(command.id, accessState)) {
+          console.warn(`[CommandBus] Access denied for command "${command.id}" on schema ${uid}`);
+          return false;
+        }
+      }
+
+      return true;
+    };
+
+    return bus.addGuard(accessGuard);
+  }, [collaborationContext, schemasList]);
 
   useEffect(() => {
     ensureDesignerThemeStyles();
@@ -994,9 +1074,9 @@ const TemplateEditor = ({
     protocols: designerEngine.collaboration?.protocols,
     sessionId: designerEngine.collaboration?.sessionId || activeDocumentId || 'local',
     provider: designerEngine.collaboration?.provider,
-    actorId: designerEngine.collaboration?.actorId,
-    actorColor: designerEngine.collaboration?.actorColor,
-    users: designerEngine.collaboration?.users,
+    actorId: collaborationContext.actorId || designerEngine.collaboration?.actorId,
+    actorColor: collaborationContext.actorColor || designerEngine.collaboration?.actorColor,
+    users: collaborationContext.recipientOptions || designerEngine.collaboration?.users,
     reconnectMs: designerEngine.collaboration?.reconnectMs,
     onEvent: handleCollaborationEvent,
   });
@@ -1298,6 +1378,9 @@ const TemplateEditor = ({
           beforeSchemas,
           afterSchemas,
           schemaEvents: [{ type: eventType, pageIndex: targetPageIndex }],
+          meta: {
+            schemaUids: resolveChangedSchemaUids(beforeSchemas, afterSchemas),
+          },
           applyPageSchemas: (targetPageIndex, nextPageSchemas) => {
             const nextSchemasList = replacePageSchemas(schemasListRef.current, targetPageIndex, nextPageSchemas);
             schemasListRef.current = nextSchemasList;
@@ -1315,6 +1398,17 @@ const TemplateEditor = ({
     (ids: string[]) => {
       const normalizedIds = new Set(ids.map((id) => String(id || '').trim()).filter(Boolean));
       if (!normalizedIds.size) return;
+
+      // Access Control Guard - Blocks deletion of locked schemas
+      const schemaUids = Array.from(normalizedIds);
+      if (commandBusRef.current) {
+        const isAllowed = commandBusRef.current.check({
+          id: 'removeSchemas',
+          label: 'Remove Schemas',
+          meta: { schemaUids },
+        } as any);
+        if (!isAllowed) return;
+      }
 
       const activeElement = activeElements.find((element) => normalizedIds.has(String(element.dataset.schemaId || element.id || '').trim()));
       const activePageIndex = Number(activeElement?.dataset.pageIndex);
@@ -1407,6 +1501,17 @@ const TemplateEditor = ({
 
   const changeSchemas: ChangeSchemas = useCallback(
     (objs) => {
+      // Access Control Guard - Blocks property updates on locked schemas
+      const schemaUids = objs.map((o) => o.schemaId).filter(Boolean) as string[];
+      if (schemaUids.length > 0 && commandBusRef.current) {
+        const isAllowed = commandBusRef.current.check({
+          id: 'changeSchemas',
+          label: 'Change Schemas',
+          meta: { schemaUids },
+        } as any);
+        if (!isAllowed) return;
+      }
+
       const stableBasePdf = resolveStableDocumentBasePdf(activeDocumentId || canvasDocumentIdRef.current || null);
       emitDesignerEvent({
         type: 'designer.schema.change',
@@ -1958,6 +2063,7 @@ const TemplateEditor = ({
 
       let s = {
         id: uuid(),
+        readOnly: false, // Default for new schemas
         ...defaultSchema,
         width: safeWidth,
         height: safeHeight,
@@ -1978,6 +2084,11 @@ const TemplateEditor = ({
           ? false
           : options.requiredByDefault || defaultSchema.required || false,
       } as SchemaForUI;
+
+      // Force schemaUid to match id for new schemas if not provided
+      if (!s.schemaUid) {
+        s.schemaUid = s.id;
+      }
 
       if (!preservePosition && Number(defaultSchema.position?.y) === 0) {
         const paper = paperRefs.current[targetPageIndex] || paperRefs.current[pageCursor];
@@ -3476,6 +3587,8 @@ const TemplateEditor = ({
       presentation={leftSidebarPresentation}
       responsiveBreakpoint={Number.isFinite(leftSidebarResponsiveBreakpoint) ? leftSidebarResponsiveBreakpoint : 1080}
       viewportWidth={viewportWidth}
+      catalogLayout={catalogLayoutOption}
+      onCatalogLayoutChange={onCatalogLayoutChangeOption}
       className={
         [
           typeof options.leftSidebarClassName === 'string' ? options.leftSidebarClassName : '',
@@ -3890,18 +4003,6 @@ const TemplateEditor = ({
               return groupIds.every((g) => g != null && g === groupIds[0]);
             })()}
           />
-          {!rightSidebarDetached ? (
-            <SidebarCollapseHandle
-              side="right"
-              expanded={sidebarOpen}
-              presentation={rightSidebarPresentation}
-              density={rightSidebarPresentation === 'overlay' ? 'compact' : 'full'}
-              labelExpanded="Ocultar panel derecho"
-              labelCollapsed="Mostrar panel derecho"
-              onToggle={() => setSidebarOpen((prev) => !prev)}
-              className={`${DESIGNER_CLASSNAME}right-sidebar-toggle-btn`}
-            />
-          ) : null}
           {!rightSidebarDetached ? rightSidebarNode : null}
 
           <Canvas

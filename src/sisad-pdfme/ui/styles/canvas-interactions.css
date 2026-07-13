@@ -51,7 +51,7 @@
   @apply opacity-0 pointer-events-none;
 }
 
-.sisad-pdfme-designer-plugin-btn[data-view-mode="compact"]:active {
+.sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"]:active {
   @apply cursor-grabbing;
 }
 

@@ -13,6 +13,8 @@ import { SidebarFrame } from './layout.js';
 import DocumentsRail, { DocumentsRailProps } from './DocumentsRail.js';
 import CommentsRail, { CommentsRailProps } from './CommentsRail.js';
 import { mergeClassNames } from '../shared/className.js';
+import { SidebarRail, type SidebarRailItem } from '../shared/SidebarRail.js';
+import { SidebarCollapseHandle } from '../shared/SidebarCollapseHandle.js';
 import type { SelectionCommandSet } from '../shared/selectionCommands.js';
 import { useResponsiveDensity } from '../shared/useResponsiveDensity.js';
 import { Layers, SlidersHorizontal, FileText, MessageSquareText } from 'lucide-react';
@@ -394,35 +396,31 @@ const Sidebar = (props: RightSidebarProps) => {
     handleModeChange(nextMode);
   };
 
+  const collapsedRailItems: SidebarRailItem[] = (['fields', 'detail', 'comments', 'docs'] as const)
+    .filter((mode) => {
+      if (mode === 'docs') return showDocumentsRail;
+      if (mode === 'comments') return showCommentsRail;
+      return true;
+    })
+    .map((mode) => {
+      const modeMeta = effectiveSidebarModeMeta[mode];
+      return {
+        key: mode,
+        icon: modeMeta.icon,
+        label: modeMeta.shortLabel,
+        ariaLabel: modeMeta.ariaLabel,
+        active: resolvedViewMode === mode,
+        onClick: () => handleModeChange(mode),
+      };
+    });
+
   const collapsedRailNode = (
-    <div className={`${DESIGNER_CLASSNAME}right-sidebar-collapsed-rail flex h-full min-h-0 flex-col gap-1 px-1 py-1.5`}>
-      <div className={`${DESIGNER_CLASSNAME}right-sidebar-collapsed-rail-header flex items-center justify-center`}>
-        <span className="sr-only">Panel derecho</span>
-      </div>
-      <div className="flex min-h-0 flex-1 flex-col gap-[0.1875rem]">
-        {(['fields', 'detail', 'comments', 'docs'] as const).map((mode) => {
-          if (mode === 'docs' && !showDocumentsRail) return null;
-          if (mode === 'comments' && !showCommentsRail) return null;
-          const isActive = resolvedViewMode === mode;
-          const modeMeta = effectiveSidebarModeMeta[mode];
-          return (
-            <button
-              key={`rs-rail-mode-${mode}`}
-              type="button"
-              className={`${DESIGNER_CLASSNAME}right-sidebar-collapsed-rail-btn inline-flex h-7 w-7 items-center justify-center rounded-xl border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-sky-200 hover:text-sky-700`}
-              data-active={isActive ? 'true' : 'false'}
-              aria-pressed={isActive ? 'true' : 'false'}
-              aria-label={modeMeta.ariaLabel}
-              onClick={() => handleModeChange(mode)}
-            >
-              <span className={`${DESIGNER_CLASSNAME}right-sidebar-collapsed-rail-btn-icon`} aria-hidden="true">
-                {React.cloneElement(modeMeta.icon as React.ReactElement, { size: 13 })}
-              </span>
-            </button>
-          );
-        })}
-      </div>
-    </div>
+    <SidebarRail
+      side="right"
+      items={collapsedRailItems}
+      density={sidebarDensityMode === 'mini' ? 'mini' : 'comfortable'}
+      className={`${DESIGNER_CLASSNAME}right-sidebar-collapsed-rail`}
+    />
   );
 
   const listViewNode = (
@@ -566,6 +564,16 @@ const Sidebar = (props: RightSidebarProps) => {
               ) : null}
               <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-extra flex items-center gap-2`}>
                 {contextHeaderNode}
+                <div className="ml-1 flex items-center border-l border-slate-200/60 pl-2">
+                  <SidebarCollapseHandle
+                    side="right"
+                    expanded={true}
+                    onToggle={() => props.setSidebarOpen?.(false)}
+                    presentation={actualPresentation}
+                    density="mini"
+                    className="!static !m-0 !h-7 !w-7 !translate-x-0 !shadow-none hover:bg-slate-50"
+                  />
+                </div>
               </div>
             </div>
           ) : null}

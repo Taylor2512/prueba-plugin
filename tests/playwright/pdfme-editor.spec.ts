@@ -132,7 +132,7 @@ test.describe('pdfme editor canvas chrome', () => {
       await expect
         .poll(async () => Number(await xInput.inputValue()), { timeout: 5000 })
         .toBeCloseTo(before, 1);
-    } catch (err) {
+    } catch {
       // Resilient: if any of these inspector-specific interactions fail, don't fail whole test.
       return;
     }

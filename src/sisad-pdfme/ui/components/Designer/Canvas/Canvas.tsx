@@ -64,6 +64,17 @@ import {
   type InlineEditTarget,
   type SelectionCommandSet,
 } from '../shared/selectionCommands.js';
+import {
+  detectPlatform,
+  resolveSelectionIntent,
+  isAdditiveSelectionIntent,
+  type PlatformKind,
+} from '../shared/selectionPolicy.js';
+import {
+  resolveSchemaAccess,
+  isTransformable,
+  type SchemaAccessContext,
+} from '../shared/accessPolicy.js';
 import { DesignerCoordinateService } from '../shared/designerCoordinateService.js';
 import {
   shouldSuppressCanvasRegionSelection,
@@ -72,7 +83,7 @@ import {
 } from '../shared/interactionGuards.js';
 import { isMoveableTarget } from '../shared/transformTargetGuards.js';
 import { isSelectoExcludedTarget } from '../shared/selectableTargetGuards.js';
-import { isDesignerInteractiveTarget, isOptionInternalTarget } from '../shared/interactionTargetPolicy.js';
+import { isCanvasSelectionExcludedTarget } from '../shared/interactionTargetPolicy.js';
 import {
   isSameDocumentPageSelection,
   resolveSelectionPageIndex,
@@ -424,6 +435,38 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
    */
   const pluginsRegistry = useContext(PluginsRegistry);
   /**
+   * Plataforma detectada para normalización de atajos y selección.
+   */
+  const platform = useMemo<PlatformKind>(() => detectPlatform(), []);
+
+  /**
+   * Estado de teclas modificadoras usadas para selección múltiple, ratio y snap.
+   */
+  const [modifierKeys, setModifierKeys] = useState({
+    shift: false,
+    alt: false,
+    ctrl: false,
+    meta: false,
+  });
+
+  /**
+   * Indica si la intención de selección actual es acumulativa (Shift/Ctrl/Cmd).
+   */
+  const isMultiSelectActive = useMemo(() => {
+    const isMac = platform === 'mac';
+    return isMac ? modifierKeys.meta || modifierKeys.shift : modifierKeys.ctrl || modifierKeys.shift;
+  }, [platform, modifierKeys]);
+
+  /**
+   * Contexto de acceso para reglas de bloqueo y edición.
+   */
+  const accessContext = useMemo<SchemaAccessContext>(() => ({
+    isReadonly: false, // Por ahora el diseñador es siempre escritura, o depende de feature
+    activeUserId: collaborationContext?.actorId,
+    canEditStructure: collaborationContext?.canEditStructure ?? true,
+  }), [collaborationContext?.actorId, collaborationContext?.canEditStructure]);
+
+  /**
    * Refs a guías verticales/horizontales por página.
    */
   const verticalGuides = useRef<GuidesInterface[]>([]);
@@ -432,11 +475,6 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
    * Ref al adapter Moveable para actualizar rects y delegar dragStart manual.
    */
   const moveable = useRef<MoveableComponent>(null);
-
-  /**
-   * Estado de teclas modificadoras usadas para selección múltiple, ratio y snap.
-   */
-  const [modifierKeys, setModifierKeys] = useState({ shift: false, alt: false });
   /**
    * Estado local de edición inline activa.
    */
@@ -551,13 +589,23 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
    * Targets efectivos para Moveable.
    *
    * En selección multipágina, filtra al pageIndex real para evitar drift de
-   * transformaciones entre páginas.
+   * transformaciones entre páginas. Además, excluye elementos bloqueados.
    */
   const moveableTargets = useMemo(() => {
     const targetPageIndex = moveablePageIndex;
-    if (isSameDocumentPageSelection(activeElements)) return activeElements;
-    return activeElements.filter((el) => toNumber(el.dataset.pageIndex) === targetPageIndex);
-  }, [activeElements, moveablePageIndex]);
+    const samePageElements = isSameDocumentPageSelection(activeElements)
+      ? activeElements
+      : activeElements.filter((el) => toNumber(el.dataset.pageIndex) === targetPageIndex);
+
+    // Filtrar transformables usando la política de acceso
+    return samePageElements.filter((el) => {
+      const id = el.dataset.schemaId;
+      if (!id) return false;
+      const schema = schemasList.flat().find((s) => s.id === id);
+      if (!schema) return false;
+      return isTransformable(resolveSchemaAccess(schema, accessContext));
+    });
+  }, [activeElements, moveablePageIndex, schemasList, accessContext]);
   /**
    * Variables disponibles para reemplazo de placeholders en modo viewer/readOnly.
    */
@@ -580,20 +628,22 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
    * Sincroniza teclas modificadoras globales.
    */
   const onKeydown = (e: KeyboardEvent) => {
-    if (e.shiftKey || e.altKey) {
-      setModifierKeys({
-        shift: Boolean(e.shiftKey),
-        alt: Boolean(e.altKey),
-      });
-    }
+    setModifierKeys({
+      shift: e.shiftKey,
+      alt: e.altKey,
+      ctrl: e.ctrlKey,
+      meta: e.metaKey,
+    });
   };
   /**
    * Libera modificadores y cancela edición con Escape.
    */
   const onKeyup = (e: KeyboardEvent) => {
     setModifierKeys({
-      shift: Boolean(e.shiftKey && e.key !== 'Shift'),
-      alt: Boolean(e.altKey && e.key !== 'Alt'),
+      shift: e.shiftKey,
+      alt: e.altKey,
+      ctrl: e.ctrlKey,
+      meta: e.metaKey,
     });
     if (e.key === 'Escape' || e.key === 'Esc') {
       setEditing(false);
@@ -1514,7 +1564,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
           dragContainer={rootRef.current}
           boundContainer={rootRef.current}
           checkInput
-          continueSelect={modifierKeys.shift}
+          continueSelect={isMultiSelectActive}
           className={classNames?.selecto}
           useDefaultStyles={useDefaultStyles}
           getElementRect={(element) => coordinateService.elementRectToViewportRect(element)}
@@ -1590,12 +1640,11 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
               session?.documentId ?? getPaperIdentity(getPaperFromTarget(target)).documentId;
             const scope = { pageIndex: sessionPageIndex, documentId: sessionDocumentId, allowCrossPage: false };
 
-            const isAdditive = Boolean(
-              inputEvent &&
-                (('shiftKey' in inputEvent && inputEvent.shiftKey) ||
-                  ('metaKey' in inputEvent && inputEvent.metaKey) ||
-                  ('ctrlKey' in inputEvent && inputEvent.ctrlKey)),
-            );
+            const isAdditive = inputEvent ? isAdditiveSelectionIntent(resolveSelectionIntent({
+              platform,
+              event: inputEvent,
+              pointerKind: session ? 'drag-region' : 'click'
+            })) : false;
 
             // e.selected is the source of truth for both click and region drag.
             const selected = normalizeActiveTargets(e.selected as HTMLElement[], scope);
@@ -1613,8 +1662,13 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
 
             // For MacOS CMD+SHIFT+3/4 screenshots where the keydown event is never received, check mouse too
             const mouseEvent = inputEvent as MouseEvent | undefined;
-            if (mouseEvent && typeof mouseEvent.shiftKey === 'boolean' && !mouseEvent.shiftKey) {
-              setModifierKeys({ shift: false, alt: false });
+            if (mouseEvent && typeof mouseEvent.shiftKey === 'boolean') {
+              setModifierKeys({
+                shift: mouseEvent.shiftKey,
+                alt: mouseEvent.altKey,
+                ctrl: mouseEvent.ctrlKey,
+                meta: mouseEvent.metaKey,
+              });
             }
           }}
         />
@@ -1777,7 +1831,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
                     // checkbox option toggles) and internal options must receive
                     // their own clicks instead of starting a Moveable drag. Hit-test
                     // via the central policy, not inline selectors.
-                    if (isDesignerInteractiveTarget(event.target)) {
+                    if (isCanvasSelectionExcludedTarget(event.target)) {
                       return;
                     }
 
@@ -1796,7 +1850,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
                       return;
                     }
 
-                    if (isOptionInternalTarget(event.target)) return;
+                    if (isCanvasSelectionExcludedTarget(event.target)) return;
                     if (event.detail > 1) return;
                     moveable.current?.dragStart(event.nativeEvent, event.currentTarget);
                     event.preventDefault();

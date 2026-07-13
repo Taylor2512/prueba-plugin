@@ -9,6 +9,7 @@ type LeftSidebarSearchProps = {
   onChange: (value: string) => void;
   className?: string;
   useDefaultStyles?: boolean;
+  density?: 'comfortable' | 'compact' | 'mini';
 };
 
 const LeftSidebarSearch = ({
@@ -16,19 +17,23 @@ const LeftSidebarSearch = ({
   onChange,
   className,
   useDefaultStyles = true,
+  density = 'comfortable'
 }: LeftSidebarSearchProps) => (
   <Input
     size="small"
     allowClear
-    placeholder="Buscar campo"
-    prefix={<Search size={13} />}
+    placeholder={density === 'mini' ? 'Buscar...' : 'Buscar campo...'}
+    prefix={<Search size={density === 'mini' ? 10 : 12} className="text-slate-400" />}
     value={value}
     onChange={(event) => onChange(event.target.value)}
     data-testid="left-sidebar-search"
     data-use-default-style={useDefaultStyles ? 'true' : 'false'}
     className={mergeUniqueClassNames(
       `${DESIGNER_CLASSNAME}left-sidebar-search`,
-      'rounded-xl border-slate-200 bg-white text-[0.75rem] shadow-sm [&_.ant-input-affix-wrapper]:h-8 [&_.ant-input-affix-wrapper]:px-3 [&_.ant-input-affix-wrapper]:rounded-xl',
+      density === 'mini' ? 'h-6.5 text-[10px]' : 'h-7.5 text-[0.72rem]',
+      'rounded-lg border-slate-200/60 bg-slate-50/30 transition-all hover:bg-white focus:bg-white px-2',
+      density === 'mini' ? '[&_.ant-input]:text-[10px]' : '[&_.ant-input]:text-[0.72rem]',
+      '[&_.ant-input-affix-wrapper-focused]:shadow-[0_0_0_2px_rgba(56,189,248,0.1)]',
       className || '',
     )}
   />

@@ -4,7 +4,8 @@ import {
   resolveSchemaToneSurface,
 } from '@/sisad-pdfme/ui/components/Designer/shared/schemaTone.js';
 
-const schema = (overrides: Record<string, unknown> = {}) => ({ type: 'text', ...overrides } as any);
+const schema = (overrides: Record<string, unknown> = {}) =>
+  ({ type: 'text', ...overrides } as Parameters<typeof resolveSchemaTone>[0]);
 
 describe('resolveSchemaTone', () => {
   it('returns userColor when set (highest priority)', () => {

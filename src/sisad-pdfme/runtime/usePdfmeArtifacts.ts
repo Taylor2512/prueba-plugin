@@ -29,7 +29,7 @@ import {
 export type PdfmeArtifactsState = {
   generatedPdfUrl: string;
   generatedPdfBytes: Uint8Array | ArrayBuffer | null;
-  pdfSizes: any[];
+  pdfSizes: Array<unknown>;
   images: string[];
   roundtripPdfUrl: string;
 };
@@ -51,20 +51,24 @@ const EMPTY_STATE: PdfmeArtifactsState = {
  * hook reusable in lab, integration and tests.
  */
 export type UsePdfmeArtifactsConfig = {
-  template: any;
-  inputs: any;
-  plugins: Record<string, any>;
+  template: Record<string, unknown> & { schemas?: unknown[] };
+  inputs: unknown;
+  plugins: Record<string, unknown>;
   /** Generator + converter functions (injected to avoid hard deps / ease testing). */
-  generate: (args: { template: any; inputs: any; plugins: Record<string, any> }) => Promise<any>;
-  pdf2size: (bytes: any) => Promise<any[]>;
-  pdf2img: (bytes: any, opts: any) => Promise<any[]>;
-  img2pdf: (buffers: any[], opts: any) => Promise<any>;
+  generate: (args: {
+    template: Record<string, unknown> & { schemas?: unknown[] };
+    inputs: unknown;
+    plugins: Record<string, unknown>;
+  }) => Promise<Uint8Array | ArrayBuffer>;
+  pdf2size: (bytes: Uint8Array | ArrayBuffer) => Promise<Array<unknown>>;
+  pdf2img: (bytes: Uint8Array | ArrayBuffer, opts: Record<string, unknown>) => Promise<Array<Uint8Array | ArrayBuffer>>;
+  img2pdf: (buffers: Array<Uint8Array | ArrayBuffer>, opts: Record<string, unknown>) => Promise<Uint8Array | ArrayBuffer>;
   /** Optional pre-generate validation. Return { valid, issues }. */
-  validate?: (schemas: any[]) => { valid: boolean; issues: Array<{ schemaUid: string; reason: string }> };
+  validate?: (schemas: unknown[]) => { valid: boolean; issues: Array<{ schemaUid: string; reason: string }> };
   /** Status reporter. Receives a key and context; host renders text. */
-  onStatus?: (event: { type: string; message?: string; context?: any }) => void;
+  onStatus?: (event: { type: string; message?: string; context?: unknown }) => void;
   getErrorMessage?: (error: unknown) => string;
-  createObjectUrl?: (bytes: any, mimeType: string) => string;
+  createObjectUrl?: (bytes: Uint8Array | ArrayBuffer, mimeType: string) => string;
   revokeObjectUrls?: (urls: Array<string | null | undefined>) => void;
 };
 
@@ -114,11 +118,11 @@ export function usePdfmeArtifacts(config: UsePdfmeArtifactsConfig) {
   );
   /** Creates object URLs using the host override or default browser helper. */
   const makeUrl = useCallback(
-    (bytes: any, mime: string) => (latest.current.createObjectUrl ?? defaultCreateObjectUrl)(bytes, mime),
+    (bytes: Uint8Array | ArrayBuffer, mime: string) => (latest.current.createObjectUrl ?? defaultCreateObjectUrl)(bytes, mime),
     [],
   );
   /** Emits semantic status events; UI rendering stays in the host. */
-  const status = useCallback((event: { type: string; message?: string; context?: any }) => {
+  const status = useCallback((event: { type: string; message?: string; context?: unknown }) => {
     latest.current.onStatus?.(event);
   }, []);
   /** Converts unknown errors into messages for status events. */

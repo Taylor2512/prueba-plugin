@@ -1,5 +1,5 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
-import { render, act, cleanup } from '@testing-library/react';
+import { render, cleanup } from '@testing-library/react';
 import React, { useRef } from 'react';
 import {
   usePdfmeRuntimeInstance,
@@ -49,7 +49,13 @@ describe('scheduleDestroyInstance', () => {
 describe('usePdfmeRuntimeInstance', () => {
   afterEach(() => cleanup());
 
-  const Harness = ({ instances, mode = 'designer' }: { instances: any[]; mode?: any }) => {
+  const Harness = ({
+    instances,
+    mode = 'designer',
+  }: {
+    instances: Array<ReturnType<typeof makeMockInstance>>;
+    mode?: 'designer' | 'form' | 'viewer';
+  }) => {
     const containerRef = useRef<HTMLDivElement | null>(null);
     let i = 0;
     const Designer = vi.fn(function () { return instances[i++]; });

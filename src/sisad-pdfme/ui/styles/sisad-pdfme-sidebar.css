@@ -98,6 +98,29 @@
   @apply w-full min-w-0;
 }
 
+/* Property Field Density */
+.sisad-pdfme-designer-detail-view-form-shell .ant-form-item {
+  @apply mb-1.5;
+}
+
+.sisad-pdfme-designer-detail-view-form-shell .ant-form-item-label > label {
+  @apply h-auto text-[var(--inspector-label-size)] font-medium leading-tight text-slate-500;
+}
+
+.sisad-pdfme-designer-detail-view-form-shell .ant-input,
+.sisad-pdfme-designer-detail-view-form-shell .ant-input-number,
+.sisad-pdfme-designer-detail-view-form-shell .ant-select-selector {
+  @apply min-h-[var(--inspector-field-min-height)] text-[var(--inspector-input-size)] rounded-md border-slate-200 shadow-none !important;
+}
+
+.sisad-pdfme-designer-detail-view-form-shell .ant-input-number-input {
+  @apply h-[var(--inspector-field-min-height)] leading-none !important;
+}
+
+.sisad-pdfme-designer-detail-view-form-shell .ant-select-selection-item {
+  @apply leading-[var(--inspector-field-min-height)] !important;
+}
+
 .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-chip-row {
   @apply flex-wrap gap-[0.35rem];
 }
@@ -118,8 +141,8 @@
   display: none !important;
 }
 
-.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-view-mode="rich"],
-.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"],
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-catalog-layout="list"],
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"],
 .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item {
   @apply min-h-[2.55rem] p-[0.32rem_0.44rem] gap-[0.4rem];
 }
@@ -129,8 +152,8 @@
   @apply text-[0.66rem] leading-[1.15];
 }
 
-.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] > div,
-.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-view-mode="rich"] > div,
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"] > div,
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-catalog-layout="list"] > div,
 .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item .sisad-pdfme-designer-left-sidebar-custom-item-icon {
   @apply w-[1.55rem] h-[1.55rem] min-w-[1.55rem] min-h-[1.55rem];
 }
@@ -147,11 +170,11 @@
   @apply [grid-template-columns:repeat(auto-fill,_minmax(2.4rem,_1fr))] gap-[0.25rem];
 }
 
-.sisad-pdfme-designer-left-sidebar[data-catalog-layout='icons'] .sisad-pdfme-designer-plugin-btn[data-view-mode='mini'] {
+.sisad-pdfme-designer-left-sidebar[data-catalog-layout='icons'] .sisad-pdfme-designer-plugin-btn[data-catalog-layout='icons'] {
   @apply min-h-[2.55rem] p-[0.22rem_0.3rem] gap-[0.22rem];
 }
 
-.sisad-pdfme-designer-left-sidebar[data-catalog-layout='icons'] .sisad-pdfme-designer-plugin-btn[data-view-mode='mini'] .sisad-pdfme-designer-plugin-btn-label {
+.sisad-pdfme-designer-left-sidebar[data-catalog-layout='icons'] .sisad-pdfme-designer-plugin-btn[data-catalog-layout='icons'] .sisad-pdfme-designer-plugin-btn-label {
   @apply hidden;
 }
 
@@ -425,21 +448,21 @@
   display: none;
 }
 
-.sisad-pdfme-designer-left-sidebar[data-left-sidebar-density='compact'] .sisad-pdfme-designer-left-sidebar-group-items[data-view-mode='compact'] {
+.sisad-pdfme-designer-left-sidebar[data-left-sidebar-density='compact'] .sisad-pdfme-designer-left-sidebar-group-items[data-catalog-layout='tiles'] {
   grid-template-columns: repeat(2, minmax(0, 1fr));
 }
 
-.sisad-pdfme-designer-left-sidebar[data-left-sidebar-density='mini'] .sisad-pdfme-designer-left-sidebar-group-items[data-view-mode='compact'] {
+.sisad-pdfme-designer-left-sidebar[data-left-sidebar-density='mini'] .sisad-pdfme-designer-left-sidebar-group-items[data-catalog-layout='tiles'] {
   gap: 0.22rem;
 }
 
-.sisad-pdfme-designer-left-sidebar[data-left-sidebar-density='mini'] .sisad-pdfme-designer-plugin-btn[data-view-mode='compact'] {
+.sisad-pdfme-designer-left-sidebar[data-left-sidebar-density='mini'] .sisad-pdfme-designer-plugin-btn[data-catalog-layout='tiles'] {
   min-height: 3rem;
   padding: 0.28rem 0.3rem;
   gap: 0.18rem;
 }
 
-.sisad-pdfme-designer-left-sidebar[data-left-sidebar-density='mini'] .sisad-pdfme-designer-plugin-btn[data-view-mode='compact'] > div {
+.sisad-pdfme-designer-left-sidebar[data-left-sidebar-density='mini'] .sisad-pdfme-designer-plugin-btn[data-catalog-layout='tiles'] > div {
   width: 1.52rem;
   height: 1.52rem;
 }
@@ -527,3 +550,68 @@
   white-space: normal;
   text-overflow: clip;
 }
+
+/* ============================================================
+   Designer Additions & Overrides (v12 / Plan P0)
+   ============================================================ */
+
+/* Documents Rail - Wix Density & Interaction */
+.sisad-pdfme-designer-documents-rail-item-wrapper {
+  @apply relative rounded-xl transition-all;
+}
+
+.sisad-pdfme-designer-documents-rail-item {
+  @apply flex w-full items-center gap-2.5 rounded-xl border border-transparent bg-transparent p-[9px] transition-all !important;
+}
+
+.sisad-pdfme-designer-documents-rail-item:hover {
+  @apply bg-slate-50;
+}
+
+.sisad-pdfme-designer-documents-rail-item-active {
+  @apply border-sky-100 bg-sky-50/50 shadow-sm;
+}
+
+.sisad-pdfme-designer-documents-rail-preview {
+  @apply h-8 w-8 min-w-[2rem] rounded-lg border border-slate-200 bg-white overflow-hidden flex items-center justify-center transition-transform;
+}
+
+.sisad-pdfme-designer-documents-rail-item:active .sisad-pdfme-designer-documents-rail-preview {
+  @apply scale-95;
+}
+
+.sisad-pdfme-designer-documents-rail-delete-btn {
+  @apply absolute right-2 top-2 z-10 opacity-0 transition-opacity !important;
+}
+
+.sisad-pdfme-designer-documents-rail-item-wrapper:hover .sisad-pdfme-designer-documents-rail-delete-btn {
+  @apply opacity-100 !important;
+}
+
+/* Sidebar Toggle Handles */
+.sisad-pdfme-designer-sidebar-collapse-handle {
+  @apply flex h-8 w-8 cursor-pointer items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 shadow-sm transition-all hover:bg-slate-50 hover:text-slate-900;
+}
+
+.sisad-pdfme-designer-right-sidebar-toggle-btn {
+  @apply absolute left-0 top-3 -translate-x-1/2 z-[100];
+}
+
+/* Sidebar Rail Wix Style */
+.sisad-pdfme-designer-sidebar-rail {
+  @apply border-r border-slate-200/60 bg-white/80 backdrop-blur-md transition-all;
+}
+
+.sisad-pdfme-designer-sidebar-rail-right {
+  @apply border-r-0 border-l;
+}
+
+.sisad-pdfme-designer-sidebar-rail-btn {
+  @apply transition-all duration-200 active:scale-90;
+}
+
+/* Integrated Header Toggle */
+.sisad-pdfme-designer-right-sidebar-panel-switcher-extra .sisad-pdfme-designer-sidebar-collapse-handle {
+  @apply static translate-x-0 border-none shadow-none text-slate-400 hover:text-slate-600 hover:bg-slate-100/60;
+}
+

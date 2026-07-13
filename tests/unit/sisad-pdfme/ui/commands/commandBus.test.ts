@@ -1,6 +1,6 @@
 import { describe, it, expect, vi } from 'vitest';
 import { CommandBus, buildCommandMeta, createCommandBus } from '@/sisad-pdfme/ui/commands/commandBus.js';
-import type { Command, CommandExecutionContext } from '@sisad-pdfme/common';
+import type { Command, CommandExecutionContext, CommandObserverPayload } from '@sisad-pdfme/common';
 
 // ─── Helpers ─────────────────────────────────────────────────────────────────
 
@@ -155,7 +155,7 @@ describe('CommandBus.subscribe', () => {
     bus.subscribe(listener);
     const cmd = makeCommand({
       execute: vi.fn().mockImplementation(async (ctx: CommandExecutionContext) => {
-        ctx.emit({ type: 'executed' } as any);
+        ctx.emit({ type: 'executed' } as CommandObserverPayload);
       }),
     });
     await bus.execute(cmd);
@@ -169,7 +169,7 @@ describe('CommandBus.subscribe', () => {
     unsubscribe();
     const cmd = makeCommand({
       execute: vi.fn().mockImplementation(async (ctx: CommandExecutionContext) => {
-        ctx.emit({ type: 'after-unsub' } as any);
+        ctx.emit({ type: 'after-unsub' } as CommandObserverPayload);
       }),
     });
     await bus.execute(cmd);

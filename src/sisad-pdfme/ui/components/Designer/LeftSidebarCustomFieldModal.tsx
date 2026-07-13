@@ -26,6 +26,7 @@ export type CustomFieldDef = {
   validation: string;
   helpText: string;
   autoPlaceText: string;
+  options: string;
 };
 
 export const CUSTOM_FIELD_TYPE_OPTIONS = [
@@ -231,6 +232,21 @@ const CustomFieldModal = ({ open, draft, onCancel, onSave, onChange }: Props) =>
             onChange={(value) => onChange('autoPlaceText', value)}
           />
         </Section>
+
+        {(draft.type === 'select' || draft.type === 'radioGroup') && (
+          <Section title="Opciones de Selección">
+            <TextField
+              label="Opciones (una por línea o separadas por comas)"
+              name="options"
+              value={draft.options || ''}
+              placeholder="Ej: Opción 1, Opción 2, Opción 3"
+              onChange={(value) => onChange('options', value)}
+            />
+            <p className="mt-1 text-[0.625rem] text-slate-500">
+              Define las opciones disponibles para este campo.
+            </p>
+          </Section>
+        )}
       </div>
 
       <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-footer`, 'mt-3 flex shrink-0 items-center justify-end gap-2 border-t border-slate-200 pt-3')}>

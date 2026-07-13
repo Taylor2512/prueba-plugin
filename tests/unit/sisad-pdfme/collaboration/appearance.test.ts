@@ -14,9 +14,14 @@ import {
   decorateTemplateWithCollaboration,
 } from '@/sisad-pdfme/collaboration/schemaOwnershipAppearance';
 
+type CollaboratorInput = Parameters<typeof decorateCollaborationUsers>[0][number];
+type OwnerColorSchema = Parameters<typeof resolveSchemaOwnerColor>[0];
+type CollaborationSchema = Parameters<typeof decorateSchemaWithCollaboration>[0];
+type CollaborationTemplate = Parameters<typeof decorateTemplateWithCollaboration>[0];
+
 describe('decorateCollaborationUsers (default palette parity)', () => {
   it('assigns palette colors in order when none explicit', () => {
-    const out = decorateCollaborationUsers([{ id: 'a' }, { id: 'b' }, { id: 'c' }] as any);
+    const out = decorateCollaborationUsers([{ id: 'a' }, { id: 'b' }, { id: 'c' }] as CollaboratorInput[]);
     expect(out.map((u) => u.color)).toEqual([
       LAB_COLLABORATOR_PALETTE[0],
       LAB_COLLABORATOR_PALETTE[1],
@@ -28,7 +33,7 @@ describe('decorateCollaborationUsers (default palette parity)', () => {
     const out = decorateCollaborationUsers([
       { id: 'a', color: '#2563eb' }, // == palette[0], normalized upper
       { id: 'b' },
-    ] as any);
+    ] as CollaboratorInput[]);
     expect(out[0].color).toBe('#2563EB');
     // b must NOT reuse the slot taken by a's explicit color
     expect(out[1].color).toBe(LAB_COLLABORATOR_PALETTE[1]);
@@ -76,28 +81,28 @@ describe('schema ownership appearance', () => {
   ];
 
   it('resolveSchemaOwnerColor prefers explicit userColor', () => {
-    expect(resolveSchemaOwnerColor({ userColor: '#FF00FF', ownerRecipientId: 'owner1' } as any, users)).toBe('#FF00FF');
+    expect(resolveSchemaOwnerColor({ userColor: '#FF00FF', ownerRecipientId: 'owner1' } as OwnerColorSchema, users)).toBe('#FF00FF');
   });
   it('falls back to recipient color', () => {
-    expect(resolveSchemaOwnerColor({ ownerRecipientId: 'owner1' } as any, users)).toBe('#AA0000');
+    expect(resolveSchemaOwnerColor({ ownerRecipientId: 'owner1' } as OwnerColorSchema, users)).toBe('#AA0000');
   });
   it('returns empty when unresolved', () => {
-    expect(resolveSchemaOwnerColor({} as any, users)).toBe('');
+    expect(resolveSchemaOwnerColor({} as OwnerColorSchema, users)).toBe('');
   });
 
   it('decorateSchemaWithCollaboration derives owner fields + colors', () => {
     const out = decorateSchemaWithCollaboration(
-      { name: 's1', type: 'text', ownerRecipientId: 'owner1', lastModifiedBy: 'editor1' } as any,
+      { name: 's1', type: 'text', ownerRecipientId: 'owner1', lastModifiedBy: 'editor1' } as CollaborationSchema,
       users,
     );
     expect(out.ownerRecipientId).toBe('owner1');
-    expect((out as any).ownerMode).toBe('single');
-    expect((out as any).ownerColor).toBe('#AA0000');
-    expect((out as any).userColor).toBe('#00BB00'); // author = lastModifiedBy
+    expect(out.ownerMode).toBe('single');
+    expect(out.ownerColor).toBe('#AA0000');
+    expect(out.userColor).toBe('#00BB00'); // author = lastModifiedBy
   });
 
   it('decorateTemplateWithCollaboration maps all pages and deep-clones', () => {
-    const template = { basePdf: { width: 1, height: 1 }, schemas: [[{ name: 's', type: 'text', ownerRecipientId: 'owner1' }]] } as any;
+    const template = { basePdf: { width: 1, height: 1 }, schemas: [[{ name: 's', type: 'text', ownerRecipientId: 'owner1' }]] } as CollaborationTemplate;
     const out = decorateTemplateWithCollaboration(template, users);
     expect(out.schemas[0][0]).toMatchObject({ ownerRecipientId: 'owner1', ownerColor: '#AA0000' });
     expect(out.schemas[0][0]).not.toBe(template.schemas[0][0]);

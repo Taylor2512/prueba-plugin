@@ -303,16 +303,6 @@ export function computeSnapResult(
   const xCandidates: number[] = [0, page.width, pageCX];
   const yCandidates: number[] = [0, page.height, pageCY];
 
-  // Page centre alignment
-  if (Math.abs(dragCX - pageCX) < threshold) addV(pageCX, 'center');
-  if (Math.abs(dragCY - pageCY) < threshold) addH(pageCY, 'center');
-
-  // Page edges
-  if (Math.abs(x) < threshold) addV(0);
-  if (Math.abs(dragRight - page.width) < threshold) addV(page.width);
-  if (Math.abs(y) < threshold) addH(0);
-  if (Math.abs(dragBottom - page.height) < threshold) addH(page.height);
-
   // Alignment with other elements
   for (const other of others) {
     const oRight = other.x + other.width;
@@ -322,26 +312,6 @@ export function computeSnapResult(
 
     xCandidates.push(other.x, oRight, oCX);
     yCandidates.push(other.y, oBottom, oCY);
-
-    // Vertical guides
-    if (Math.abs(x - other.x) < threshold) addV(other.x);
-    if (Math.abs(x - oRight) < threshold) addV(oRight);
-    if (Math.abs(dragRight - other.x) < threshold) addV(other.x);
-    if (Math.abs(dragRight - oRight) < threshold) addV(oRight);
-    if (Math.abs(dragCX - oCX) < threshold) addV(oCX);
-
-    // Horizontal guides
-    if (Math.abs(y - other.y) < threshold) addH(other.y);
-    if (Math.abs(y - oBottom) < threshold) addH(oBottom);
-    if (Math.abs(dragBottom - other.y) < threshold) addH(other.y);
-    if (Math.abs(dragBottom - oBottom) < threshold) addH(oBottom);
-    if (Math.abs(dragCY - oCY) < threshold) addH(oCY);
-
-    // Distance label between dragged right edge and other left edge
-    if (Math.abs(other.x - dragRight) < threshold * 3 && other.x > dragRight) {
-      const dist = Math.round((other.x - dragRight) * 10) / 10;
-      addV(dragRight + (other.x - dragRight) / 2, `${dist}mm`);
-    }
   }
 
   const snapX: SnapMatch | null = findBestSnap({

@@ -87,6 +87,12 @@ describe('shouldSuppressCanvasRegionSelection', () => {
     expect(shouldSuppressCanvasRegionSelection(div, {})).toBe(true);
   });
 
+  it('does not suppress when target is the paper surface', () => {
+    const paper = document.createElement('div');
+    paper.setAttribute('data-paper-page', 'true');
+    expect(shouldSuppressCanvasRegionSelection(paper, {})).toBe(false);
+  });
+
   it('suppresses when externalSchemaDragActive', () => {
     expect(shouldSuppressCanvasRegionSelection(document.createElement('div'), { externalSchemaDragActive: true })).toBe(true);
   });

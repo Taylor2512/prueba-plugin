@@ -4,7 +4,19 @@ const DEFAULT_TEMPLATE_SCHEMA_VERSION = 2;
 
 const normalizeText = (value: unknown) => String(value || '').trim();
 
-const normalizeSchemaForLoad = (schema: any, context: Record<string, unknown> = {}) => {
+type SchemaLike = Record<string, unknown> & {
+  schemaUid?: string;
+  id?: string;
+  name?: string;
+  required?: boolean;
+  editable?: boolean;
+};
+
+type TemplateLike = Record<string, unknown> & {
+  schemas?: Array<Array<SchemaLike> | SchemaLike[]>;
+};
+
+const normalizeSchemaForLoad = (schema: SchemaLike, context: Record<string, unknown> = {}) => {
   if (!schema || typeof schema !== 'object') return schema;
 
   const schemaUid = normalizeText(schema.schemaUid || schema.id || context.schemaUid || '');
@@ -21,7 +33,7 @@ const normalizeSchemaForLoad = (schema: any, context: Record<string, unknown> = 
   return normalized;
 };
 
-const normalizeTemplate = (template: any = {}, context: Record<string, unknown> = {}) => {
+const normalizeTemplate = (template: TemplateLike = {}, context: Record<string, unknown> = {}) => {
   if (!template || typeof template !== 'object') return template;
   const schemas = Array.isArray(template.schemas) ? template.schemas : [[]];
 
@@ -38,14 +50,19 @@ const normalizeTemplate = (template: any = {}, context: Record<string, unknown> 
 
 export const createSchemaController = (customConfig: Record<string, unknown> = {}) => {
   const { eventHandlers = {} } = customConfig || {};
-  const handlersRecord = eventHandlers as Record<string, any>;
+  const handlersRecord = eventHandlers as Record<string, unknown>;
   const handlers = {
-    onSchemaCreate: typeof handlersRecord.onSchemaCreate === 'function' ? handlersRecord.onSchemaCreate : () => {},
-    onSchemaUpdate: typeof handlersRecord.onSchemaUpdate === 'function' ? handlersRecord.onSchemaUpdate : () => {},
-    onSchemaNormalize: typeof handlersRecord.onSchemaNormalize === 'function' ? handlersRecord.onSchemaNormalize : () => {},
+    onSchemaCreate:
+      typeof handlersRecord.onSchemaCreate === 'function' ? (handlersRecord.onSchemaCreate as (schema: SchemaLike, context: Record<string, unknown>) => void) : () => {},
+    onSchemaUpdate:
+      typeof handlersRecord.onSchemaUpdate === 'function' ? (handlersRecord.onSchemaUpdate as (schema: SchemaLike, context: Record<string, unknown>) => void) : () => {},
+    onSchemaNormalize:
+      typeof handlersRecord.onSchemaNormalize === 'function'
+        ? (handlersRecord.onSchemaNormalize as (schema: SchemaLike, context: Record<string, unknown>) => void)
+        : () => {},
   };
 
-  const processSchema = (schema: any, context: Record<string, unknown> = {}) => {
+  const processSchema = (schema: SchemaLike, context: Record<string, unknown> = {}) => {
     const normalized = normalizeSchemaForLoad(schema, context);
     if (context.source === 'onSchemaCreate' || context.isNewSchema === true) {
       handlers.onSchemaCreate(normalized, context);
@@ -56,10 +73,10 @@ export const createSchemaController = (customConfig: Record<string, unknown> = {
     return normalized;
   };
 
-  const processTemplate = (template: any = {}, context: Record<string, unknown> = {}) => normalizeTemplate(template, context);
-  const normalizeTemplateForLoad = (template: any = {}, context: Record<string, unknown> = {}) => normalizeTemplate(template, context);
-  const normalizeTemplateForCreate = (template: any = {}, context: Record<string, unknown> = {}) => normalizeTemplate(template, context);
-  const normalizeTemplateForSave = (template: any = {}, context: Record<string, unknown> = {}) => normalizeTemplate(template, context);
+  const processTemplate = (template: TemplateLike = {}, context: Record<string, unknown> = {}) => normalizeTemplate(template, context);
+  const normalizeTemplateForLoad = (template: TemplateLike = {}, context: Record<string, unknown> = {}) => normalizeTemplate(template, context);
+  const normalizeTemplateForCreate = (template: TemplateLike = {}, context: Record<string, unknown> = {}) => normalizeTemplate(template, context);
+  const normalizeTemplateForSave = (template: TemplateLike = {}, context: Record<string, unknown> = {}) => normalizeTemplate(template, context);
 
   return {
     handlers,

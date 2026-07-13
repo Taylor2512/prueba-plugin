@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { getCustomSchemaDefinitions, subscribeCustomSchemaDefinitions } from './schemaRegistry.js';
-import type { CatalogCapability, CatalogQuickFilter, CatalogViewMode } from './LeftSidebar.js';
+import type { CatalogCapability, CatalogQuickFilter, CatalogLayout } from './LeftSidebar.js';
 import type { LeftSidebarTab } from './LeftSidebarTabs.js';
 import type { RuntimeCustomSchemaDefinition } from './LeftSidebarCustomPanel.js';
 import type { CustomFieldDef } from './LeftSidebarCustomFieldModal.js';
@@ -28,13 +28,14 @@ const makeDefaultCustomField = (): CustomFieldDef => ({
   validation: 'None',
   helpText: '',
   autoPlaceText: '',
+  options: [],
 });
 
 type UseLeftSidebarCatalogStateArgs = {
-  catalogViewMode?: CatalogViewMode;
+  catalogLayout?: CatalogLayout;
 };
 
-const useLeftSidebarCatalogState = ({ catalogViewMode }: UseLeftSidebarCatalogStateArgs = {}) => {
+const useLeftSidebarCatalogState = ({ catalogLayout }: UseLeftSidebarCatalogStateArgs = {}) => {
   const [isDragging, setIsDragging] = useState(false);
   const [search, setSearch] = useState('');
   const [activeTab, setActiveTab] = useState<LeftSidebarTab>('standard');
@@ -64,8 +65,8 @@ const useLeftSidebarCatalogState = ({ catalogViewMode }: UseLeftSidebarCatalogSt
   });
   const [quickFilter, setQuickFilter] = useState<CatalogQuickFilter>('all');
   const [activeCapabilities, setActiveCapabilities] = useState<Set<CatalogCapability>>(new Set());
-  const [internalViewMode, setInternalViewMode] = useState<CatalogViewMode>(catalogViewMode || 'compact');
-  const [hasManualViewMode, setHasManualViewMode] = useState(false);
+  const [internalLayout, setInternalLayout] = useState<CatalogLayout>(catalogLayout || 'list');
+  const [hasManualLayout, setHasManualLayout] = useState(false);
   const [collapsedCategories, setCollapsedCategories] = useState<Record<string, boolean>>({});
 
   useEffect(() => {
@@ -82,18 +83,18 @@ const useLeftSidebarCatalogState = ({ catalogViewMode }: UseLeftSidebarCatalogSt
   }), []);
 
   useEffect(() => {
-    if (catalogViewMode !== undefined) {
-      setInternalViewMode(catalogViewMode);
-      setHasManualViewMode(false);
+    if (catalogLayout !== undefined) {
+      setInternalLayout(catalogLayout);
+      setHasManualLayout(false);
     }
-  }, [catalogViewMode]);
+  }, [catalogLayout]);
 
-  const setUserViewMode = useCallback((mode: CatalogViewMode) => {
-    setHasManualViewMode(true);
-    setInternalViewMode(mode);
+  const setUserLayout = useCallback((layout: CatalogLayout) => {
+    setHasManualLayout(true);
+    setInternalLayout(layout);
   }, []);
 
-  const resolvedViewMode = catalogViewMode ?? internalViewMode;
+  const resolvedLayout = catalogLayout ?? internalLayout;
 
   const saveRecentPlugins = useCallback((next: string[]) => {
     const normalized = next.filter(Boolean).slice(0, 8);
@@ -140,13 +141,13 @@ const useLeftSidebarCatalogState = ({ catalogViewMode }: UseLeftSidebarCatalogSt
     setQuickFilter,
     activeCapabilities,
     setActiveCapabilities,
-    internalViewMode,
-    setInternalViewMode,
-    setUserViewMode,
-    resolvedViewMode,
+    internalLayout,
+    setInternalLayout,
+    setUserLayout,
+    resolvedLayout,
     collapsedCategories,
     setCollapsedCategories,
-    hasManualViewMode,
+    hasManualLayout,
     saveRecentPlugins,
     markRecent,
   };

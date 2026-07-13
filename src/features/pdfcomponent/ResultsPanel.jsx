@@ -156,26 +156,27 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
   if (isDrawer) {
     return (
       <section
-        className={cn('sisad-pdfme-lab-results-drawer fixed bottom-3 left-3 z-[70] w-[min(32rem,calc(100vw-1.5rem))]')}
+        className={cn('sisad-pdfme-lab-results-drawer fixed bottom-3 left-1/2 z-[70] flex w-[min(32rem,calc(100vw-1.5rem))] -translate-x-1/2 flex-col-reverse items-center gap-2')}
         data-open={isOpen ? 'true' : 'false'}
         aria-label="Resultados"
       >
         <button
           type="button"
-          className={cn('sisad-pdfme-lab-results-pill inline-flex items-center gap-1.5 rounded-full border border-slate-200 bg-white/95 px-2.5 py-1 text-[0.72rem] font-semibold text-slate-700 shadow-sm backdrop-blur-md')}
+          className={cn('sisad-pdfme-lab-results-pill inline-flex items-center gap-1.5 rounded-full border border-slate-200/60 bg-white/95 px-3 py-1.5 text-[0.72rem] font-bold text-slate-700 shadow-md backdrop-blur-md transition-all hover:scale-105 active:scale-95')}
           aria-expanded={isOpen}
           aria-controls="sisad-pdfme-lab-results-drawer-panel"
           onClick={() => setIsOpen((v) => !v)}
         >
+          <span className={cn('block h-2 w-2 rounded-full', hasGeneratedArtifacts ? 'bg-green-500 animate-pulse' : 'bg-slate-300')} />
           Resultados
-          <span className="sisad-pdfme-lab-results-badge">
-            {hasGeneratedArtifacts ? 'Con artefactos' : 'Colapsado'}
+          <span className="sisad-pdfme-lab-results-badge ml-0.5 pl-1.5 font-normal text-slate-400 opacity-60">
+            {hasGeneratedArtifacts ? 'Artefactos listos' : 'Vacio'}
           </span>
         </button>
         {isOpen ? (
           <div
             id="sisad-pdfme-lab-results-drawer-panel"
-            className={cn('sisad-pdfme-lab-results-drawer-panel mt-2 grid max-h-[min(300px,38dvh)] overflow-auto rounded-[0.95rem] border border-slate-200 bg-white/95 p-1.5 shadow-lg backdrop-blur-md')}
+            className={cn('sisad-pdfme-lab-results-drawer-panel grid max-h-[min(320px,45dvh)] overflow-auto rounded-[1rem] border border-slate-200 bg-white/95 p-1.5 shadow-2xl backdrop-blur-md')}
             role="dialog"
             aria-modal="false"
             aria-label="Panel de resultados"

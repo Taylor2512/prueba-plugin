@@ -23,6 +23,11 @@ import { theme } from 'antd';
 import { InternalNamePath, ValidateErrorEntity } from 'rc-field-form/es/interface.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { asRecord, isRecord } from '../../shared/objectGuards.js';
+import {
+  resolveSchemaAccessState,
+  type SchemaAccessState,
+  type SchemaAccessContext,
+} from '../../shared/accessPolicy.js';
 import { buildInspectorSections } from './detailSchemas.js';
 import buildDetailWidgets from './detailWidgetRegistry.js';
 import DetailViewContent from './DetailViewContent.js';
@@ -47,6 +52,7 @@ type DetailViewProps = Pick<
   | 'changeSchemas'
   | 'activeElements'
   | 'deselectSchema'
+  | 'collaborationContext'
 > & {
   activeSchema: SchemaForUI;
   selectionCommands?: SelectionCommandSet;
@@ -178,12 +184,37 @@ const filterInvalidChanges = (
  */
 const DetailView = (props: DetailViewProps) => {
   const { token } = theme.useToken();
-  const { schemasList, changeSchemas, deselectSchema, activeSchema, pageSize, basePdf } = props;
+  const {
+    schemasList,
+    changeSchemas,
+    deselectSchema,
+    activeSchema,
+    pageSize,
+    basePdf,
+    collaborationContext,
+  } = props;
   const form = useForm();
   const i18n = useContext(I18nContext);
   const pluginsRegistry = useContext(PluginsRegistry);
   const options = useContext(OptionsContext);
   const designerEngine = useMemo(() => resolveDesignerEngine(asRecord(options) || {}), [options]);
+
+  const accessContext = useMemo<SchemaAccessContext>(
+    () => ({
+      actorId: collaborationContext?.actorId || null,
+      isGlobalView: collaborationContext?.isGlobalView ?? false,
+      canEditStructure: collaborationContext?.canEditStructure ?? true,
+    }),
+    [collaborationContext],
+  );
+
+  const accessState = useMemo<SchemaAccessState>(
+    () => resolveSchemaAccessState(activeSchema, accessContext),
+    [activeSchema, accessContext],
+  );
+
+  const isReadOnly = useMemo(() => accessState.isLockedByOther || !accessState.isEditable, [accessState]);
+
   const schemaConfig = useMemo(
     () => getSchemaDesignerConfig(activeSchema, designerEngine) || null,
     [activeSchema, designerEngine],
@@ -399,6 +430,8 @@ const DetailView = (props: DetailViewProps) => {
       sections={sections}
       widgets={widgets}
       watchHandler={handleWatch}
+      readOnly={isReadOnly}
+      accessState={accessState}
     />
   );
 };

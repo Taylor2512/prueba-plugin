@@ -123,8 +123,8 @@
     display: none !important;
   }
 
-  .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-view-mode="rich"],
-.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"],
+  .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-catalog-layout="list"],
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"],
 .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item {
     @apply min-h-[2.55rem] p-[0.32rem_0.44rem] gap-[0.4rem];
   }
@@ -134,8 +134,8 @@
     @apply text-[0.66rem] leading-[1.15];
   }
 
-  .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-view-mode="compact"] > div,
-.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-view-mode="rich"] > div,
+  .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"] > div,
+.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-catalog-layout="list"] > div,
 .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item .sisad-pdfme-designer-left-sidebar-custom-item-icon {
     @apply w-[1.55rem] h-[1.55rem] min-w-[1.55rem] min-h-[1.55rem];
   }

@@ -1,6 +1,6 @@
-import { test } from '@playwright/test';
+import { test, type Page } from '@playwright/test';
 
-const openCatalog = async (page: any) => {
+const openCatalog = async (page: Page) => {
   const toggle = page
     .getByRole('button', { name: /Abrir catálogo de campos|Cerrar catálogo de campos/i })
     .first();
@@ -10,27 +10,11 @@ const openCatalog = async (page: any) => {
   }
 };
 
-const ensureCategoryOpen = async (page: any, category: string) => {
+const ensureCategoryOpen = async (page: Page, category: string) => {
   const toggle = page.getByRole('button', { name: new RegExp(`^Alternar categoría ${category}$`, 'i') }).first();
   await toggle.waitFor({ state: 'visible' });
   if ((await toggle.getAttribute('aria-expanded')) !== 'true') {
     await toggle.click();
-  }
-};
-
-const addCheckboxGroup = async (page: any) => {
-  const canvasGroups = page.locator('.sisad-pdfme-ui-custom-selectable[data-schema-type="checkboxGroup"]');
-  const catalogBtn = page.locator('button[data-schema-type="checkboxGroup"]').first();
-  await catalogBtn.waitFor({ state: 'visible' });
-  for (let attempt = 0; attempt < 4; attempt += 1) {
-    const before = await canvasGroups.count();
-    await catalogBtn.dblclick();
-    try {
-      await expect.poll(async () => canvasGroups.count(), { timeout: 2500 });
-      return;
-    } catch {
-      /* retry */
-    }
   }
 };
 

@@ -235,10 +235,28 @@ const createSelectionOps = (
 const applySelectionSchemas = (
   context: SelectionCommandsContext,
   updater: (schemas: SchemaForUI[]) => SchemaForUI[],
+  options: { id?: string; label?: string; meta?: Record<string, unknown>; origin?: DeleteSchemasOptions['origin'] } = {},
 ) => {
   const current = getPageSchemas(context);
   const next = updater(current);
-  context.commitSchemas(next);
+
+  if (context.executeCommand && options.id) {
+    context.executeCommand({
+      id: options.id,
+      label: options.label || options.id,
+      meta: {
+        timestamp: Date.now(),
+        undoable: true,
+        source: 'system',
+        ...options.meta,
+      },
+      execute: () => context.commitSchemas(next),
+      undo: () => context.commitSchemas(current),
+    });
+  } else {
+    context.commitSchemas(next);
+  }
+
   return { current, next };
 };
 
@@ -449,6 +467,13 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
       context.executeCommand({
         id: 'deleteField',
         label: 'deleteField',
+        meta: {
+          schemaUids: normalizedIds,
+          commandId: 'deleteField',
+          source: options.origin || 'system',
+          undoable: true,
+          timestamp: Date.now(),
+        },
         execute: () => {
           context.commitSchemas(afterSchemas as SchemaForUI[]);
           finishDelete();
@@ -498,6 +523,13 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
       context.executeCommand({
         id: 'duplicateField',
         label: 'duplicateField',
+        meta: {
+          schemaUids: activeIds,
+          commandId: 'duplicateField',
+          source: 'system', // Default for selection menu duplication
+          undoable: true,
+          timestamp: Date.now(),
+        },
         execute: () => {
           context.commitSchemas(nextSchemas);
         },
@@ -594,20 +626,36 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
 
   const bringForward = () => {
     if (!hasSelection || !guardStructureEdit()) return;
-    applySelectionSchemas(context, (current) => {
-      const selected = current.filter((schema) => activeIds.includes(schema.id));
-      const remaining = current.filter((schema) => !activeIds.includes(schema.id));
-      return [...remaining, ...selected];
-    });
+    applySelectionSchemas(
+      context,
+      (current) => {
+        const selected = current.filter((schema) => activeIds.includes(schema.id));
+        const remaining = current.filter((schema) => !activeIds.includes(schema.id));
+        return [...remaining, ...selected];
+      },
+      {
+        id: 'bringForward',
+        label: 'Traer al frente',
+        meta: { schemaUids: activeIds, commandId: 'bringForward' },
+      },
+    );
   };
 
   const sendBackward = () => {
     if (!hasSelection || !guardStructureEdit()) return;
-    applySelectionSchemas(context, (current) => {
-      const selected = current.filter((schema) => activeIds.includes(schema.id));
-      const remaining = current.filter((schema) => !activeIds.includes(schema.id));
-      return [...selected, ...remaining];
-    });
+    applySelectionSchemas(
+      context,
+      (current) => {
+        const selected = current.filter((schema) => activeIds.includes(schema.id));
+        const remaining = current.filter((schema) => !activeIds.includes(schema.id));
+        return [...selected, ...remaining];
+      },
+      {
+        id: 'sendBackward',
+        label: 'Enviar al fondo',
+        meta: { schemaUids: activeIds, commandId: 'sendBackward' },
+      },
+    );
   };
 
   const alignSelection = (type: AlignType) => {
@@ -631,6 +679,13 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
       context.executeCommand({
         id: 'alignSelection',
         label: 'alignSelection',
+        meta: {
+          schemaUids: activeIds,
+          commandId: 'alignSelection',
+          source: 'canvas-toolbar', // Usually triggered from toolbar
+          undoable: true,
+          timestamp: Date.now(),
+        },
         execute: () => {
           context.commitSchemas(afterSchemas);
         },
@@ -667,6 +722,13 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
       context.executeCommand({
         id: 'distributeSelection',
         label: 'distributeSelection',
+        meta: {
+          schemaUids: activeIds,
+          commandId: 'distributeSelection',
+          source: 'canvas-toolbar',
+          undoable: true,
+          timestamp: Date.now(),
+        },
         execute: () => {
           context.commitSchemas(afterSchemas);
         },
@@ -708,6 +770,13 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
       context.executeCommand({
         id: 'groupSchemas',
         label: 'Agrupar campos',
+        meta: {
+          schemaUids: activeIds,
+          commandId: 'groupSchemas',
+          source: 'context-menu',
+          undoable: true,
+          timestamp: Date.now(),
+        },
         execute: () => {
           context.commitSchemas(afterSchemas);
           message.success(`${activeIds.length} campos agrupados`);
@@ -753,6 +822,13 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
       context.executeCommand({
         id: 'ungroupSchemas',
         label: 'Desagrupar campos',
+        meta: {
+          schemaUids: [...activeIds],
+          commandId: 'ungroupSchemas',
+          source: 'context-menu',
+          undoable: true,
+          timestamp: Date.now(),
+        },
         execute: () => {
           context.commitSchemas(afterSchemas);
           message.success('Grupo disuelto');

@@ -25,6 +25,7 @@ type DetailFormSectionProps = {
   watchHandler: (..._args: unknown[]) => void;
   defaultCollapsed?: boolean;
   resetToken?: string;
+  readOnly?: boolean;
 };
 
 /** Widgets that render as direct React children of the section card, skipping
@@ -71,6 +72,7 @@ const DetailFormSection = ({
   watchHandler,
   defaultCollapsed = false,
   resetToken,
+  readOnly = false,
 }: DetailFormSectionProps) => {
   const directWidget = resolveDirectWidget(schema, widgets);
 
@@ -84,7 +86,7 @@ const DetailFormSection = ({
     >
       {directWidget ? (
         // DetailSectionCard → widget. No form shell / Ant Card levels in between.
-        directWidget({} as PropPanelWidgetProps)
+        directWidget({ readOnly } as PropPanelWidgetProps)
       ) : (
         <div className={`${DESIGNER_CLASSNAME}detail-view-form-shell rounded-lg bg-transparent p-0 shadow-none`}>
           <FormRenderComponent
@@ -92,6 +94,7 @@ const DetailFormSection = ({
             schema={schema}
             widgets={widgets}
             watch={{ '#': watchHandler }}
+            readOnly={readOnly}
             // form-render types only accept 'zh-CN' | 'en-US'. Use 'en-US' to satisfy typing.
             locale="en-US"
             footer={{

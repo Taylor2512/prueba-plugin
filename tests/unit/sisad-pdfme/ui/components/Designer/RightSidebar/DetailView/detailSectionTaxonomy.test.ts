@@ -11,6 +11,10 @@ import {
   sortCanonicalDetailSections,
 } from '@/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.js';
 
+type DetailSectionParams = Parameters<typeof shouldRenderDetailSection>[0];
+type DetailSchema = DetailSectionParams['schema'];
+type CanonicalSection = Parameters<typeof sortCanonicalDetailSections>[0][number];
+
 describe('CANONICAL_DETAIL_SECTION_ORDER', () => {
   it('contains help section between behavior and dataBindings', () => {
     const behaviorIdx = CANONICAL_DETAIL_SECTION_ORDER.indexOf('behavior');
@@ -93,8 +97,8 @@ describe('toCanonicalDetailSection', () => {
 });
 
 describe('shouldRenderDetailSection - help', () => {
-  const schemaWithTooltip = { tooltip: 'Some help', type: 'text', position: { x: 0, y: 0 }, width: 50, height: 10 } as any;
-  const emptySchema = { type: 'text', position: { x: 0, y: 0 }, width: 50, height: 10 } as any;
+  const schemaWithTooltip = { tooltip: 'Some help', type: 'text', position: { x: 0, y: 0 }, width: 50, height: 10 } as DetailSchema;
+  const emptySchema = { type: 'text', position: { x: 0, y: 0 }, width: 50, height: 10 } as DetailSchema;
 
   it('renders when tooltip field present in fields array', () => {
     const result = shouldRenderDetailSection({
@@ -130,7 +134,7 @@ describe('shouldRenderDetailSection - help', () => {
 });
 
 describe('shouldRenderDetailSection - advanced', () => {
-  const schema = { type: 'text', position: { x: 0, y: 0 }, width: 50, height: 10 } as any;
+  const schema = { type: 'text', position: { x: 0, y: 0 }, width: 50, height: 10 } as DetailSchema;
 
   it('hides technical section when there is no real metadata', () => {
     expect(
@@ -181,7 +185,7 @@ describe('detail section visibility by type', () => {
 
 describe('sortCanonicalDetailSections', () => {
   it('orders help between behavior and dataBindings', () => {
-    const unsorted = ['advanced', 'help', 'identity', 'behavior', 'dataBindings'] as any[];
+    const unsorted = ['advanced', 'help', 'identity', 'behavior', 'dataBindings'] as CanonicalSection[];
     const sorted = sortCanonicalDetailSections(unsorted);
     expect(sorted[0]).toBe('identity');
     const helpIdx = sorted.indexOf('help');
@@ -193,7 +197,7 @@ describe('sortCanonicalDetailSections', () => {
   });
 
   it('deduplicates sections', () => {
-    const dupes = ['help', 'help', 'identity'] as any[];
+    const dupes = ['help', 'help', 'identity'] as CanonicalSection[];
     const sorted = sortCanonicalDetailSections(dupes);
     expect(sorted.filter((s) => s === 'help').length).toBe(1);
   });

@@ -17,10 +17,11 @@ import React, { useContext, useState, useMemo, useCallback, useRef } from 'react
 import type { SidebarProps } from '../../../../types.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { I18nContext } from '../../../../contexts.js';
-import { Button, Input, Typography } from 'antd';
+import { Input } from 'antd';
 import SelectableSortableContainer from './SelectableSortableContainer.js';
 import { SidebarBody, SidebarFooter, SidebarFrame, SidebarHeader } from '../layout.js';
 import { mergeClassNames } from '../../shared/className.js';
+import { SidebarEmptyState } from '../../shared/SidebarEmptyState.js';
 import ListViewToolbar from './ListViewToolbar.js';
 import ListViewFooter from './ListViewFooter.js';
 import { filterSchemasForCollaborationView } from '../../../../collaborationContext.js';
@@ -31,7 +32,6 @@ import { getSchemaTypeLabel } from '../../shared/designerLabels.js';
 import { resolveSchemaInteractionState } from '../../shared/schemaInteractionState.js';
 
 const { TextArea } = Input;
-const { Text } = Typography;
 
 
 /**
@@ -351,26 +351,13 @@ const ListView = (
           />
         ) : null}
         {showEmptyState ? (
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-empty', 'flex flex-col items-start gap-2 rounded-xl border border-dashed border-slate-200 bg-slate-50 p-3')}>
-            <Text strong className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-empty-title', 'text-sm font-semibold text-slate-800')}>
-              No hay campos que coincidan
-            </Text>
-            <Text type="secondary" className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-empty-hint', 'text-xs leading-5 text-slate-500')}>
-              Limpia la búsqueda, cambia el tipo o vuelve a la vista general del catálogo.
-            </Text>
-            {hasActiveSearch ? (
-              <Button
-                size="small"
-                type="default"
-                onClick={() => {
-                  setSearchQuery('');
-                  setTypeFilter('all');
-                }}
-                className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-empty-action', 'rounded-full border-slate-200 text-slate-700 shadow-sm')}>
-                Limpiar filtros
-              </Button>
-            ) : null}
-          </div>
+          <SidebarEmptyState
+            title="No hay campos que coincidan"
+            description="Limpia la búsqueda, cambia el tipo o vuelve a la vista general del catálogo."
+            density={densityMode}
+            actionLabel={hasActiveSearch ? "Limpiar filtros" : undefined}
+            onAction={hasActiveSearch ? handleClearFilters : undefined}
+          />
         ) : null}
       </SidebarBody>
       {isBulkUpdateFieldNamesMode ? (

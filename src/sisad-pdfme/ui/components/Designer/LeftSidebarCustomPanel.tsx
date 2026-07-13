@@ -3,6 +3,7 @@ import { Button } from 'antd';
 import type { Plugin, Schema } from '@sisad-pdfme/common';
 import { DESIGNER_CLASSNAME } from '../../constants.js';
 import { mergeUniqueClassNames } from './shared/className.js';
+import { SidebarEmptyState } from './shared/SidebarEmptyState.js';
 
 type RuntimeCustomSchemaDefinition = {
   id: string;
@@ -16,6 +17,7 @@ type RuntimeCustomSchemaDefinition = {
 type LeftSidebarCustomPanelProps = {
   definitions: RuntimeCustomSchemaDefinition[];
   variant: 'compact' | 'panel';
+  density?: 'comfortable' | 'compact' | 'mini';
   onOpenCreate: () => void;
   renderDraggableItem: (definition: RuntimeCustomSchemaDefinition, plugin: Plugin<Schema>) => React.ReactNode;
   resolvePlugin: (pluginType: string) => Plugin<Schema> | undefined;
@@ -24,6 +26,7 @@ type LeftSidebarCustomPanelProps = {
 const LeftSidebarCustomPanel = ({
   definitions,
   variant,
+  density = 'comfortable',
   onOpenCreate,
   renderDraggableItem,
   resolvePlugin,
@@ -32,12 +35,13 @@ const LeftSidebarCustomPanel = ({
     className={mergeUniqueClassNames(
       `${DESIGNER_CLASSNAME}left-sidebar-custom`,
       'rounded-[1.2rem] border border-slate-200/70 bg-slate-50/80 p-2.5 shadow-sm',
+      density === 'mini' ? 'p-1.5' : ''
     )}
   >
     <div className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-head`, 'flex items-start justify-between gap-2.5')}>
       <div className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-head-copy`, 'min-w-0')}>
-        <strong className="block text-[0.8rem] font-semibold tracking-tight text-slate-900">Campos personalizados</strong>
-        <span className="block text-[11px] text-slate-500">{definitions.length} disponibles</span>
+        <strong className={mergeUniqueClassNames('block font-semibold tracking-tight text-slate-900', density === 'mini' ? 'text-[9px]' : 'text-[0.8rem]')}>Campos personalizados</strong>
+        <span className={mergeUniqueClassNames('block text-slate-500', density === 'mini' ? 'text-[8px]' : 'text-[11px]')}>{definitions.length} disponibles</span>
       </div>
       <button
         type="button"
@@ -45,6 +49,7 @@ const LeftSidebarCustomPanel = ({
           `${DESIGNER_CLASSNAME}left-sidebar-custom-add`,
           'inline-flex h-7 w-7 items-center justify-center rounded-xl border border-slate-200 bg-white text-base font-semibold text-slate-700 shadow-sm transition',
           'hover:border-sky-200 hover:text-sky-700 hover:shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+          density === 'mini' ? 'h-5 w-5 text-sm rounded-lg' : ''
         )}
         onClick={onOpenCreate}
         aria-label="Añadir un campo personalizado"
@@ -54,9 +59,11 @@ const LeftSidebarCustomPanel = ({
     </div>
     <div className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-list`, 'mt-2.5 space-y-[0.3125rem]')}>
       {definitions.length === 0 ? (
-        <span className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-empty`, 'block rounded-xl border border-dashed border-slate-200 bg-white px-3 py-3.5 text-[0.8rem] text-slate-500')}>
-          No hay campos personalizados
-        </span>
+        <SidebarEmptyState
+          title="Sin campos personalizados"
+          description="Crea campos reutilizables con estilos y configuraciones específicas."
+          density={density}
+        />
       ) : (
         definitions.map((definition) => {
           const plugin = resolvePlugin(definition.pluginType);
@@ -72,7 +79,10 @@ const LeftSidebarCustomPanel = ({
       <Button
         type="default"
         onClick={onOpenCreate}
-        className="mt-2.5 h-8 w-full rounded-xl border-slate-200 text-[0.75rem] font-semibold text-slate-700 shadow-none"
+        className={mergeUniqueClassNames(
+          'mt-2.5 w-full rounded-xl border-slate-200 font-semibold text-slate-700 shadow-none',
+          density === 'mini' ? 'h-6 text-[9px]' : 'h-8 text-[0.75rem]'
+        )}
       >
         Crear campo personalizado
       </Button>

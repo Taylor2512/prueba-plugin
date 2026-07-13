@@ -1,9 +1,12 @@
-import { DESIGNER_CLASSNAME } from "../../constants.js";
+import { DESIGNER_CLASSNAME } from '../../constants.js';
 import React, { useContext, useMemo } from 'react';
 import { Plugin, Schema } from '@sisad-pdfme/common';
 import { OptionsContext } from '../../contexts.js';
 import { theme } from 'antd';
 import DOMPurify from 'dompurify';
+import { mergeClassNames } from './shared/className.js';
+
+export type PluginIconColorMode = 'owner' | 'semantic' | 'original';
 
 interface PluginIconProps {
   plugin: Plugin<Schema>;
@@ -13,26 +16,37 @@ interface PluginIconProps {
   className?: string;
   useDefaultStyles?: boolean;
   activeRecipientColor?: string | null;
+  /** Color mode policy: 'owner' (default) follows recipient, 'semantic' keeps green/red, 'original' keeps all. */
+  colorMode?: PluginIconColorMode;
   /** Optional data-testid stamped on the icon root (surface-specific, e.g. left-sidebar-schema-icon). */
   testId?: string;
+  density?: 'comfortable' | 'compact' | 'mini';
   'data-schema-type'?: string;
   'data-active-recipient-color'?: string;
 }
 
-const SVGIcon = ({ svgString, size, styles, label }: {
+const SVGIcon = ({ svgString, size, styles, label, colorMode = 'owner' }: {
   svgString: string;
   size?: number;
   styles?: React.CSSProperties;
   label: string;
+  colorMode?: PluginIconColorMode;
 }) => {
-  const normalizePaintToCurrentColor = (value: string) =>
-    value.replace(
-      /\b(stroke|fill)="(?!none\b|transparent\b|url\(|currentColor\b)([^"]+)"/gi,
-      (_match, attr) => `${attr}="currentColor"`,
-    );
+  const normalizePaintToCurrentColor = useMemo(() => {
+    return (value: string) => {
+      if (colorMode === 'original') return value;
+
+      return value.replace(
+        /\b(stroke|fill)="(?!none\b|transparent\b|url\(|currentColor\b)([^"]+)"/gi,
+        (_match, attr) => {
+          if (colorMode === 'semantic') return _match;
+          return `${attr}="currentColor"`;
+        },
+      );
+    };
+  }, [colorMode]);
 
   const processedSVG = useMemo(() => {
-    // First sanitize the SVG string using DOMPurify with SVG profile.
     const sanitizedSVG = DOMPurify.sanitize(svgString, {
       USE_PROFILES: { svg: true, svgFilters: true },
       ALLOWED_TAGS: ['svg', 'path', 'circle', 'rect', 'line', 'polygon', 'polyline', 'ellipse', 'g', 'defs', 'title', 'desc', 'metadata'],
@@ -58,7 +72,7 @@ const SVGIcon = ({ svgString, size, styles, label }: {
     }
 
     return colorAwareSVG;
-  }, [svgString, size]);
+  }, [svgString, size, normalizePaintToCurrentColor]);
 
   if (!processedSVG) {
     return null;
@@ -66,6 +80,7 @@ const SVGIcon = ({ svgString, size, styles, label }: {
 
   return (
     <div
+      aria-label={label}
       style={styles}
       dangerouslySetInnerHTML={{ __html: processedSVG }}
     />
@@ -73,60 +88,71 @@ const SVGIcon = ({ svgString, size, styles, label }: {
 };
 
 const PluginIcon = (props: PluginIconProps) => {
-  const { plugin, label, size, styles, className, useDefaultStyles = true, activeRecipientColor, testId } = props;
+  const { 
+    plugin, 
+    label, 
+    size: userSize, 
+    styles, 
+    className, 
+    useDefaultStyles = true, 
+    activeRecipientColor, 
+    colorMode = 'owner', 
+    testId,
+    density = 'comfortable'
+  } = props;
+  
   const { token } = theme.useToken();
-  const options = useContext(OptionsContext);
-  const hasCustomClass = typeof className === 'string' && className.trim().length > 0;
-  const resolvedFallbackClassName = hasCustomClass
-    ? `${DESIGNER_CLASSNAME}custom-${className.trim()}`
-    : `${DESIGNER_CLASSNAME}plugin-icon-fallback`;
+  useContext(OptionsContext);
 
-  const schemaType = plugin.propPanel.defaultSchema?.type ?? '';
-  const resolvedIconColor = activeRecipientColor || token.colorText;
+  const resolvedSize = useMemo(() => {
+    if (userSize) return userSize;
+    if (density === 'mini') return 14;
+    if (density === 'compact') return 18;
+    return 20;
+  }, [userSize, density]);
 
-  const icon = options.icons?.[schemaType] ?? plugin.icon;
-  const iconStyles = {
-    ...(useDefaultStyles
-      ? {
-        color: resolvedIconColor,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }
-      : {}),
+  const iconColor = useMemo(() => {
+    if (colorMode === 'original') return undefined;
+    if (activeRecipientColor) return activeRecipientColor;
+    return token.colorText;
+  }, [activeRecipientColor, colorMode, token.colorText]);
+
+  const baseStyles: React.CSSProperties = useMemo(() => ({
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    width: resolvedSize,
+    height: resolvedSize,
+    color: iconColor,
     ...styles,
-  };
+  }), [resolvedSize, iconColor, styles]);
 
-  const dataAttrs = {
-    ...(testId ? { 'data-testid': testId } : {}),
-    'data-schema-type': schemaType || undefined,
-    ...(activeRecipientColor ? { 'data-active-recipient-color': activeRecipientColor } : {}),
-  };
+  const iconName = label || plugin?.key || 'schema-icon';
 
-  if (icon) {
-    return (
-      <div
-        className={useDefaultStyles ? `flex items-center justify-center ${className || ''}`.trim() : className}
-        {...dataAttrs}
-      >
-        <SVGIcon svgString={icon} size={size} styles={iconStyles} label={label} />
-      </div>
-    );
-  }
+  const iconContent = useMemo(() => {
+    if (typeof plugin.icon === 'string') {
+      return <SVGIcon svgString={plugin.icon} size={resolvedSize} label={iconName} colorMode={colorMode} />;
+    }
+    if (typeof plugin.icon === 'function') {
+      const IconComp = plugin.icon as React.ComponentType<{ size?: number }>;
+      return <IconComp size={resolvedSize} />;
+    }
+    return null;
+  }, [plugin.icon, resolvedSize, iconName, colorMode]);
 
   return (
     <div
-      className={useDefaultStyles ? `flex items-center justify-center ${resolvedFallbackClassName}`.trim() : resolvedFallbackClassName}
-      style={{
-        ...(useDefaultStyles
-          ? {
-              color: resolvedIconColor,
-            }
-          : {}),
-        ...styles,
-      }}
-      {...dataAttrs}>
-      {label}
+      className={mergeClassNames(
+        `${DESIGNER_CLASSNAME}plugin-icon`,
+        useDefaultStyles && 'transition-colors duration-200',
+        className
+      )}
+      style={baseStyles}
+      data-testid={testId}
+      data-schema-type={props['data-schema-type']}
+      data-active-recipient-color={props['data-active-recipient-color']}
+    >
+      {iconContent}
     </div>
   );
 };

@@ -106,13 +106,13 @@ export class CommandBus {
   }
 
   /** Returns true if all guards allow the command. */
-  private checkGuards(command: Command): boolean {
-    if (!hasRequiredBaseCommandFields(command)) return false;
-    return this.guards.every((guard) => guard(command));
+  public check(command: Partial<Command> & { id: string; label: string }): boolean {
+    if (!hasRequiredBaseCommandFields(command as Command)) return false;
+    return this.guards.every((guard) => guard(command as Command));
   }
 
   async execute(command: Command) {
-    if (!this.checkGuards(command)) return;
+    if (!this.check(command)) return;
     const context = createExecutionContext(this.listeners);
     await command.execute(context);
     this.undoStack.push(command);

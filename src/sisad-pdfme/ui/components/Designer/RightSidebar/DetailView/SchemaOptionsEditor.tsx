@@ -529,6 +529,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
           className={mergeClassNames(
             DESIGNER_CLASSNAME + 'options-editor-add-input',
             'w-full min-w-0 flex-1 rounded-lg border border-dashed border-slate-300 bg-white/70 px-2 py-1 text-[12px] text-slate-700 outline-none placeholder:text-slate-400 focus-visible:border-solid focus-visible:ring-2 focus-visible:ring-sky-500/40',
+            error ? 'border-rose-300 bg-rose-50/50 focus-visible:border-rose-400 focus-visible:ring-rose-500/20' : '',
           )}
           onChange={(event) => {
             setDraft(event.target.value);
@@ -561,17 +562,20 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
           }}
         >
           <Plus size={12} strokeWidth={2.5} />
-          Agregar opción
+          Agregar
         </button>
       </div>
 
       {error ? (
         <div
-          className={mergeClassNames(DESIGNER_CLASSNAME + 'options-editor-error', 'px-0.5 text-[0.62rem] font-medium text-rose-600')}
+          className={mergeClassNames(
+            DESIGNER_CLASSNAME + 'options-editor-error',
+            'mt-2 animate-in fade-in slide-in-from-top-1 px-1 text-[10px] font-bold text-rose-600',
+          )}
           role="alert"
           data-testid="options-editor-error"
         >
-          {error}
+          ⚠️ {error}
         </div>
       ) : null}
     </div>

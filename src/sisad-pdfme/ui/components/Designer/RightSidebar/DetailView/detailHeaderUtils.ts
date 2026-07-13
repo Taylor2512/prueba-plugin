@@ -23,6 +23,8 @@ type HeaderSummary = {
   schemaName: string;
   schemaType: string;
   recipientColor: string | null;
+  uid: string;
+  ownerName: string;
 };
 
 /** Build the short metadata tooltip shown on the "+N" overflow indicator. */
@@ -121,6 +123,11 @@ export const buildDetailHeaderSummary = (
   if (fileId) contextParts.push(`Doc. ${fileId}`);
   if (pageNumber > 0) contextParts.push(`Pág. ${pageNumber}`);
 
+  const uid =
+    typeof activeSchema.schemaUid === 'string' && activeSchema.schemaUid.trim()
+      ? activeSchema.schemaUid.trim()
+      : String(activeSchema.id || '').slice(0, 8);
+
   return {
     tags,
     overflowTooltip: buildMetaTooltip(activeSchema, schemaConfig),
@@ -130,5 +137,7 @@ export const buildDetailHeaderSummary = (
     schemaName,
     schemaType,
     recipientColor,
+    uid,
+    ownerName: ownerLabel,
   };
 };

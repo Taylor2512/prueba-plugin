@@ -131,7 +131,7 @@ const DocumentsRail = ({
   showInlineAddCard = true,
   uploadLabel = 'Subir PDF',
   addPageLabel = 'Nueva página',
-  pageLabelPrefix = 'Pág.',
+  pageLabelPrefix = '',
   emptyDescription = 'Carga un PDF para empezar.',
 }: DocumentsRailProps) => {
   const canDelete = typeof onDelete === 'function';
@@ -242,8 +242,11 @@ const DocumentsRail = ({
                             />
                           </div>
                         ) : (
-                          <div className={DESIGNER_CLASSNAME + 'documents-rail-preview'}>
-                            <FileText size={20} />
+                          <div className={mergeClassNames(
+                            DESIGNER_CLASSNAME + 'documents-rail-preview',
+                            'bg-sky-50 text-sky-600 border-sky-100'
+                          )}>
+                            <span className="text-[0.68rem] font-bold">{(item.pageLabel || `${index + 1}`).substring(0, 2)}</span>
                           </div>
                         )}
                       </div>

@@ -136,6 +136,9 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
     label: recipient.role ? `${recipient.name} · ${recipient.role}` : recipient.name,
     value: recipient.id,
   }));
+  const primaryOwnerId = activeSchema.ownerRecipientId || collaborative.ownerRecipientId;
+  const coOwnerOptions = recipientSelectOptions.filter(opt => opt.value !== primaryOwnerId);
+  const coOwnerValues = ownerRecipientIds.filter(id => id !== primaryOwnerId);
   const accessState = resolveSchemaAccessState(activeSchema, collaborationContext, collaborationContext.activeRecipient);
 
   const commit = (patch: Partial<Record<CollaborationPatchKey, unknown>>) => {
@@ -148,8 +151,14 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
     );
   };
 
-  const updateRecipientIds = (value: string[] | string) => {
-    const nextRecipientIds = normalizeRecipientIds(value);
+  const updateRecipientIds = (value: string[] | string, isCoOwnerUpdate?: boolean) => {
+    let nextRecipientIds = normalizeRecipientIds(value);
+    
+    if (isCoOwnerUpdate && primaryOwnerId) {
+      // Si actualizamos co-propietarios, preservamos el primario al inicio
+      nextRecipientIds = [primaryOwnerId, ...nextRecipientIds.filter(id => id !== primaryOwnerId)];
+    }
+
     const nextPrimaryRecipientId = nextRecipientIds[0];
     const nextPrimaryRecipient =
       recipientOptions.find((recipient) => recipient.id === nextPrimaryRecipientId) || null;
@@ -188,9 +197,10 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
   const authorOptions = recipientSelectOptions;
   const resolvedOwnerLabel = accessState.ownerLabel || interactionState.owner.name || 'Sin asignar';
   const assignedToLabel = resolvedOwnerLabel === 'Sin asignar' ? '' : resolvedOwnerLabel;
-  const resolvedLockedByLabel = accessState.lockedByLabel || '';
+  const resolvedLockedBy = recipientOptions.find(r => r.id === lock?.lockedBy);
+  const resolvedLockedByText = resolvedLockedBy ? (resolvedLockedBy.role ? `${resolvedLockedBy.name} (${resolvedLockedBy.role})` : resolvedLockedBy.name) : (lock?.lockedBy || '');
+  
   const stateLabel = accessState.inspectorStatusLabel;
-  const showLockedByRow = hasLock || Boolean(resolvedLockedByLabel);
   const triggerLabel = assignedToLabel ? 'Gestionar' : 'Asignar';
   const stateTagColor =
     interactionState.visibleBadge?.color ||
@@ -199,35 +209,11 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
       : accessState.inspectorStatusTone === 'success'
         ? 'success'
         : 'warning');
-  const summaryNode = assignedToLabel ? (
-    <dl className="grid gap-1.5">
-      <div className="grid gap-0.5">
-        <dt className="text-[0.62rem] font-medium uppercase tracking-[0.08em] text-slate-500">Estado</dt>
-        <dd className="text-[0.72rem] font-semibold text-slate-800">{stateLabel}</dd>
-      </div>
-      <div className="grid gap-0.5">
-        <dt className="text-[0.62rem] font-medium uppercase tracking-[0.08em] text-slate-500">Asignado a</dt>
-        <dd className="text-[0.72rem] font-semibold text-slate-800">{assignedToLabel}</dd>
-      </div>
-      {showLockedByRow ? (
-        <div className="grid gap-0.5">
-          <dt className="text-[0.62rem] font-medium uppercase tracking-[0.08em] text-slate-500">Bloqueado por</dt>
-          <dd className="text-[0.72rem] font-semibold text-slate-800">{resolvedLockedByLabel || assignedToLabel || 'Sin asignación'}</dd>
-        </div>
-      ) : null}
-    </dl>
-  ) : (
-    <div className="space-y-0.5">
-      <div className="text-[0.62rem] font-medium uppercase tracking-[0.08em] text-slate-500">Sin asignación</div>
-      <div className="text-[0.68rem] leading-4 text-slate-700">Este campo todavía no tiene responsable.</div>
-    </div>
-  );
 
   return (
     <CompactConfigPanel
       title={props.summaryTitle || 'Asignación y bloqueo'}
       description={props.summaryDescription || 'Propietario y acceso.'}
-      summary={summaryNode}
       statusTags={[{ label: stateLabel, color: stateTagColor }]}
       modalTitle={props.modalTitle || 'Gestionar asignación y bloqueo'}
       modalTriggerLabel={resolveStringLabel(props.modalTriggerLabel, triggerLabel)}
@@ -281,31 +267,27 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                 id="collaboration-coowners"
                 name="collaboration-coowners"
                 mode="multiple"
-                value={ownerRecipientIds}
-                options={recipientSelectOptions}
-                onChange={(value) => updateRecipientIds(value)}
-                placeholder="Selecciona propietarios"
+                value={coOwnerValues}
+                options={coOwnerOptions}
+                onChange={(value) => updateRecipientIds(value, true)}
+                placeholder="Selecciona otros propietarios"
               />
             ) : (
               <Input
                 id="collaboration-coowners-raw"
                 name="collaboration-coowners-raw"
-                value={joinRecipientIds(ownerRecipientIds)}
-                onChange={(event) => updateRecipientIds(event.target.value)}
-                placeholder="recipient-1, recipient-2"
+                value={joinRecipientIds(coOwnerValues)}
+                onChange={(event) => updateRecipientIds(event.target.value, true)}
+                placeholder="recipient-2, recipient-3"
               />
             )}
           </div>
           {hasLock ? (
             <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
               <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Bloqueado por</div>
-              <Input
-                id="collaboration-locked-by"
-                name="collaboration-locked-by"
-                value={String(lock?.lockedBy || '')}
-                onChange={(event) => commit({ lock: { ...lock, lockedBy: event.target.value || undefined } })}
-                placeholder="user-2"
-              />
+              <div className="flex h-7 items-center rounded-md border border-slate-200 bg-slate-50 px-2 text-[0.62rem] font-medium text-slate-600">
+                {resolvedLockedByText}
+              </div>
             </div>
           ) : null}
         </div>
