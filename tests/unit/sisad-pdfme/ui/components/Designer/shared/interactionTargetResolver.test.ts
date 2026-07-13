@@ -8,7 +8,7 @@ import {
 
 const makeSchemaRoot = (): HTMLElement => {
   const el = document.createElement('div');
-  el.classList.add('sisad-pdfme-ui-custom-selectable');
+  el.classList.add('selectable');
   el.setAttribute('data-schema-id', 'schema-1');
   return el;
 };

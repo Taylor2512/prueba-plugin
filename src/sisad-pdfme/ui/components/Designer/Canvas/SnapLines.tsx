@@ -71,7 +71,14 @@ interface Props {
  */
 const LINE_COLOR = '#1890ff';
 const CENTER_COLOR = '#ff4d4f';
-const roundMm = (value: number) => Math.round(value * 100) / 100;
+const roundMm = (value: number) => Math.round(value * 1000) / 1000;
+
+const snapToDevicePixel = (value: number) => {
+  const ratio = typeof window !== 'undefined' && Number.isFinite(window.devicePixelRatio)
+    ? window.devicePixelRatio || 1
+    : 1;
+  return Math.round(value * ratio) / ratio;
+};
 
 /**
  * Renderiza líneas de alineación y etiquetas de distancia.
@@ -99,7 +106,7 @@ const SnapLines = ({
     <div className={rootClassName} style={useDefaultStyles ? undefined : style}>
       {lines.map((line, i) => {
         const color = isCenter(line) ? centerColor : lineColor;
-        const posPx = Math.round(line.pos * ZOOM);
+        const posPx = snapToDevicePixel(line.pos * ZOOM);
 
         if (line.type === 'horizontal') {
           return (
@@ -115,7 +122,7 @@ const SnapLines = ({
                   position: 'absolute',
                   left: 0,
                   right: 0,
-                  top: `${posPx - scrollTop}px`,
+                  top: `${snapToDevicePixel(posPx - scrollTop)}px`,
                   height: 0,
                   borderTop: `1px solid ${color}`,
                   pointerEvents: 'none',
@@ -132,7 +139,7 @@ const SnapLines = ({
                   )}
                   style={{
                     position: 'absolute',
-                    top: `${posPx - scrollTop - 14}px`,
+                    top: `${snapToDevicePixel(posPx - scrollTop - 14)}px`,
                     left: 8,
                     fontSize: 10,
                     lineHeight: 1,
@@ -165,7 +172,7 @@ const SnapLines = ({
                 position: 'absolute',
                 top: 0,
                 bottom: 0,
-                left: `${posPx - scrollLeft}px`,
+                left: `${snapToDevicePixel(posPx - scrollLeft)}px`,
                 width: 0,
                 borderLeft: `1px solid ${color}`,
                 pointerEvents: 'none',
@@ -183,7 +190,7 @@ const SnapLines = ({
                 style={{
                   position: 'absolute',
                   top: 8,
-                  left: `${posPx - scrollLeft + 5}px`,
+                  left: `${snapToDevicePixel(posPx - scrollLeft + 5)}px`,
                   fontSize: 10,
                   lineHeight: 1,
                   padding: '2px 5px',

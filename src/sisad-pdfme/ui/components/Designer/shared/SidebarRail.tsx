@@ -28,28 +28,40 @@ export const SidebarRail = ({
   className,
   topSpacer = true,
 }: SidebarRailProps) => {
+  const railPaddingClass = density === 'mini'
+    ? 'py-1 px-0.5 gap-1'
+    : density === 'compact'
+      ? 'py-1.5 px-[0.1875rem] gap-[0.3125rem]'
+      : 'py-2 px-1 gap-1.5';
+  const buttonSizeClass = density === 'mini'
+    ? 'h-[1.75rem] w-[1.75rem] rounded-lg'
+    : density === 'compact'
+      ? 'h-[1.875rem] w-[1.875rem] rounded-xl'
+      : 'h-[1.9rem] w-[1.9rem] rounded-xl';
   return (
     <div
       className={mergeClassNames(
         `${DESIGNER_CLASSNAME}sidebar-rail`,
         `${DESIGNER_CLASSNAME}sidebar-rail-${side}`,
-        'flex flex-col items-center py-2 px-1 gap-1.5',
+        'flex flex-col items-center',
+        railPaddingClass,
         className,
       )}
       data-side={side}
       data-density={density}
     >
       {topSpacer && (
-         <div className="h-14 shrink-0 pointer-events-none" aria-hidden="true" />
+         <div className={density === 'mini' ? 'h-10 shrink-0 pointer-events-none' : 'h-12 shrink-0 pointer-events-none'} aria-hidden="true" />
       )}
-      <div className="flex min-h-0 flex-1 flex-col gap-[0.1875rem]">
+      <div className={mergeClassNames('flex min-h-0 flex-1 flex-col', density === 'mini' ? 'gap-0.5' : 'gap-[0.1875rem]')}>
         {items.map((item) => (
           <button
             key={item.key}
             type="button"
             className={mergeClassNames(
               `${DESIGNER_CLASSNAME}sidebar-rail-btn`,
-              'group relative inline-flex h-[1.9rem] w-[1.9rem] items-center justify-center rounded-xl border border-transparent bg-transparent text-slate-500 transition-all duration-200 hover:bg-slate-100 hover:text-slate-900',
+              'group relative inline-flex items-center justify-center border border-transparent bg-transparent text-slate-500 transition-all duration-200 hover:bg-slate-100 hover:text-slate-900',
+              buttonSizeClass,
               item.active && 'bg-white text-sky-600 shadow-md ring-1 ring-slate-200/60'
             )}
             disabled={item.disabled}

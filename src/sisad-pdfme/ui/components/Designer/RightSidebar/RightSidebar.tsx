@@ -418,7 +418,7 @@ const Sidebar = (props: RightSidebarProps) => {
     <SidebarRail
       side="right"
       items={collapsedRailItems}
-      density={sidebarDensityMode === 'mini' ? 'mini' : 'comfortable'}
+      density={sidebarDensityMode === 'mini' ? 'mini' : sidebarDensityMode === 'compact' ? 'compact' : 'comfortable'}
       className={`${DESIGNER_CLASSNAME}right-sidebar-collapsed-rail`}
     />
   );
@@ -491,8 +491,8 @@ const Sidebar = (props: RightSidebarProps) => {
         sidebarIsCollapsed
             ? {
               ...(props.styleOverrides?.root || {}),
-              width: '3rem',
-              maxWidth: '3rem',
+              width: '2.5rem',
+              maxWidth: '2.5rem',
               transform: 'translateX(0)',
               opacity: 1,
               pointerEvents: 'auto',
@@ -521,10 +521,10 @@ const Sidebar = (props: RightSidebarProps) => {
           data-docs-mode={documentsRailMode}
           data-panel-mode={resolvedPanelMode}>
           {props.showDocumentsAsTab !== false || contextHeaderNode ? (
-            <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-wrap flex shrink-0 items-center justify-between gap-1.5 border-b border-slate-200/70 px-2 py-1.5`}>
+            <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-wrap flex shrink-0 items-center justify-between gap-1 border-b border-slate-200/70 px-1.5 py-1`}>
               {props.showDocumentsAsTab !== false ? (
                 <div
-                  className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher flex flex-wrap items-center gap-1`}
+                  className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher flex flex-wrap items-center gap-0.5`}
                   role="tablist"
                   tabIndex={0}
                   aria-label="Panel derecho"
@@ -542,7 +542,7 @@ const Sidebar = (props: RightSidebarProps) => {
                         key={`rs-mode-${mode}`}
                         type="button"
                         disabled={disabled}
-                        className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn inline-flex min-h-7 items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-2 py-1 text-[11px] font-medium text-slate-600 shadow-sm transition hover:border-sky-200 hover:text-sky-700`}
+                        className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn inline-flex min-h-7 items-center gap-1 rounded-lg border border-slate-200 bg-white px-1.5 py-0.5 text-[11px] font-medium text-slate-600 shadow-sm transition hover:border-sky-200 hover:text-sky-700`}
                         role="tab"
                         data-active={isActive ? 'true' : 'false'}
                         aria-selected={isActive ? 'true' : 'false'}
@@ -553,7 +553,7 @@ const Sidebar = (props: RightSidebarProps) => {
                       >
                         <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-content inline-flex items-center gap-1.5`}>
                           <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-icon`}>{modeMeta.icon}</span>
-                          {sidebarDensityMode !== 'mini' ? (
+                          {sidebarDensityMode === 'comfortable' ? (
                             <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-label`}>{modeMeta.shortLabel}</span>
                           ) : null}
                         </span>
@@ -571,7 +571,7 @@ const Sidebar = (props: RightSidebarProps) => {
                     onToggle={() => props.setSidebarOpen?.(false)}
                     presentation={actualPresentation}
                     density="mini"
-                    className="!static !m-0 !h-7 !w-7 !translate-x-0 !shadow-none hover:bg-slate-50"
+                    className="!static !m-0 !translate-x-0"
                   />
                 </div>
               </div>

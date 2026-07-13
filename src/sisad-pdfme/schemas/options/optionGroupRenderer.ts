@@ -20,6 +20,7 @@ export type OptionGroupRenderMode = 'designer' | 'form' | 'viewer';
 // keyed by group+option, which survives re-renders. No timers involved.
 const OPTION_DOUBLE_CLICK_MS = 450;
 const lastOptionClickAt = new Map<string, number>();
+const lastFormOptionCommitAt = new Map<string, number>();
 
 export type OptionGroupRuntimeParams = {
   options: OptionItem[];
@@ -109,7 +110,7 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
   if (readOnly || isViewer) wrapper.setAttribute('aria-readonly', 'true');
   if (mode) wrapper.dataset.renderMode = mode;
   wrapper.dataset.optionGroupInvalid = String(Boolean(invalid));
-  // Marker-only by default: option text lives in aria-label/title, not visually.
+  // Marker-only by default: option text lives in aria-label, not visually.
   wrapper.dataset.optionLabels = resolvedShowOptionLabels ? 'visible' : 'hidden';
 
   // Tag the inner container so CSS can target it.
@@ -161,7 +162,6 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
     ).trim();
     if (optionAriaLabel) {
       row.setAttribute('aria-label', optionAriaLabel);
-      row.setAttribute('title', optionAriaLabel);
     }
     applyOptionGroupRowVariant(row, { showOptionLabels: resolvedShowOptionLabels });
     if (mode === 'viewer' || mode === 'pdf' || readOnly || !rowsValueInteractive) {
@@ -247,7 +247,17 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
     };
 
     if (rowsInteractive && typeof onChange === 'function') {
-      row.addEventListener('click', (e) => {
+      const clickKey = `${groupKey}:${opt.optionId}:form`;
+      row.addEventListener('mouseup', (e) => {
+        const now = Date.now();
+        const prev = lastFormOptionCommitAt.get(clickKey) || 0;
+        if (now - prev <= OPTION_DOUBLE_CLICK_MS) {
+          lastFormOptionCommitAt.delete(clickKey);
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
+        lastFormOptionCommitAt.set(clickKey, now);
         e.preventDefault();
         e.stopPropagation();
         commitSelection();

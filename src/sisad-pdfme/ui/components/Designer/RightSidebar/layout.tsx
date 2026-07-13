@@ -1,5 +1,4 @@
 import React from 'react';
-import { Divider } from 'antd';
 import { DESIGNER_CLASSNAME } from '../../../constants.js';
 import { mergeClassNames } from '../shared/className.js';
 
@@ -66,10 +65,12 @@ export const SidebarHeader = ({ children, className, stacked = false, ...props }
     {...props}
   >
     {children}
-    <Divider
+    <div
+      aria-hidden="true"
       className={mergeClassNames(
-        DESIGNER_CLASSNAME + 'right-sidebar-layout-header-divider my-0 border-slate-200',
-        stacked ? 'w-full' : '',
+        DESIGNER_CLASSNAME + 'right-sidebar-layout-header-divider',
+        'my-0 border-t border-slate-200',
+        stacked ? 'w-full' : 'hidden',
       )}
     />
   </div>

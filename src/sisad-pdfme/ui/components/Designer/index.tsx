@@ -1402,11 +1402,12 @@ const TemplateEditor = ({
       // Access Control Guard - Blocks deletion of locked schemas
       const schemaUids = Array.from(normalizedIds);
       if (commandBusRef.current) {
-        const isAllowed = commandBusRef.current.check({
+        const removeSchemasCommand: Parameters<CommandBus['check']>[0] = {
           id: 'removeSchemas',
           label: 'Remove Schemas',
           meta: { schemaUids },
-        } as any);
+        };
+        const isAllowed = commandBusRef.current.check(removeSchemasCommand);
         if (!isAllowed) return;
       }
 
@@ -1504,11 +1505,12 @@ const TemplateEditor = ({
       // Access Control Guard - Blocks property updates on locked schemas
       const schemaUids = objs.map((o) => o.schemaId).filter(Boolean) as string[];
       if (schemaUids.length > 0 && commandBusRef.current) {
-        const isAllowed = commandBusRef.current.check({
+        const changeSchemasCommand: Parameters<CommandBus['check']>[0] = {
           id: 'changeSchemas',
           label: 'Change Schemas',
           meta: { schemaUids },
-        } as any);
+        };
+        const isAllowed = commandBusRef.current.check(changeSchemasCommand);
         if (!isAllowed) return;
       }
 

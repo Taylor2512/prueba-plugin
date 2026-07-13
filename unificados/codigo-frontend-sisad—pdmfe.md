@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `react`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-12T17:44:49.345Z`
+- **Fecha generación:** `2026-07-13T02:26:09.938Z`
 - **Extensiones incluidas:** `.js, .jsx, .ts, .tsx, .mjs, .cjs, .json`
 - **Archivos candidatos incluidos:** `514`
 - **Límite por archivo:** `90 KB`
@@ -673,7 +673,7 @@ prueba-plugin
 | 96 | `src/sisad-pdfme/runtime/usePdfmeArtifacts.ts` | typescript | 285 | 10.8 | completo |
 | 97 | `src/sisad-pdfme/runtime/usePdfmeRuntimeInstance.ts` | typescript | 316 | 11.8 | completo |
 | 98 | `src/sisad-pdfme/schemas/constants.ts` | typescript | 2 | 0.1 | completo |
-| 99 | `src/sisad-pdfme/schemas/groupSchemaRender.ts` | typescript | 254 | 7.8 | completo |
+| 99 | `src/sisad-pdfme/schemas/groupSchemaRender.ts` | typescript | 252 | 7.6 | completo |
 | 100 | `src/sisad-pdfme/schemas/index.ts` | typescript | 414 | 13.0 | completo |
 | 101 | `src/sisad-pdfme/schemas/modules.d.ts` | typescript | 32 | 0.9 | completo |
 | 102 | `src/sisad-pdfme/schemas/schemaBuilder.ts` | typescript | 167 | 5.2 | completo |
@@ -783,11 +783,11 @@ prueba-plugin
 | 206 | `src/sisad-pdfme/schemas/multiVariableText/uiRender.ts` | typescript | 170 | 5.5 | completo |
 | 207 | `src/sisad-pdfme/schemas/number/index.ts` | typescript | 86 | 2.3 | completo |
 | 208 | `src/sisad-pdfme/schemas/options/index.ts` | typescript | 8 | 0.3 | completo |
-| 209 | `src/sisad-pdfme/schemas/options/optionGroupEditorFactory.ts` | typescript | 168 | 6.3 | completo |
+| 209 | `src/sisad-pdfme/schemas/options/optionGroupEditorFactory.ts` | typescript | 167 | 6.3 | completo |
 | 210 | `src/sisad-pdfme/schemas/options/optionGroupFactory.ts` | typescript | 527 | 16.5 | completo |
 | 211 | `src/sisad-pdfme/schemas/options/optionGroupLayout.ts` | typescript | 76 | 2.7 | completo |
 | 212 | `src/sisad-pdfme/schemas/options/optionGroupPdfRender.ts` | typescript | 76 | 2.2 | completo |
-| 213 | `src/sisad-pdfme/schemas/options/optionGroupRenderer.ts` | typescript | 288 | 11.1 | completo |
+| 213 | `src/sisad-pdfme/schemas/options/optionGroupRenderer.ts` | typescript | 298 | 11.5 | completo |
 | 214 | `src/sisad-pdfme/schemas/options/optionIndicator.ts` | typescript | 246 | 9.4 | completo |
 | 215 | `src/sisad-pdfme/schemas/options/OptionListWidget.tsx` | tsx | 14 | 0.4 | completo |
 | 216 | `src/sisad-pdfme/schemas/options/optionModel.ts` | typescript | 76 | 2.2 | completo |
@@ -798,7 +798,7 @@ prueba-plugin
 | 221 | `src/sisad-pdfme/schemas/propPanel/commonInspectorFields.ts` | typescript | 345 | 9.9 | completo |
 | 222 | `src/sisad-pdfme/schemas/propPanel/index.ts` | typescript | 1 | 0.0 | completo |
 | 223 | `src/sisad-pdfme/schemas/radioGroup/index.ts` | typescript | 264 | 8.7 | completo |
-| 224 | `src/sisad-pdfme/schemas/select/index.ts` | typescript | 313 | 11.7 | completo |
+| 224 | `src/sisad-pdfme/schemas/select/index.ts` | typescript | 312 | 11.6 | completo |
 | 225 | `src/sisad-pdfme/schemas/shapes/line.ts` | typescript | 100 | 2.7 | completo |
 | 226 | `src/sisad-pdfme/schemas/shapes/rectAndEllipse.ts` | typescript | 161 | 4.6 | completo |
 | 227 | `src/sisad-pdfme/schemas/shared/fieldChrome.ts` | typescript | 344 | 12.2 | completo |
@@ -960,7 +960,7 @@ prueba-plugin
 | 383 | `src/sisad-pdfme/pdf-lib/utils/elements/Segment.ts` | typescript | 81 | 2.2 | completo |
 | 384 | `src/sisad-pdfme/schemas/text/icons/index.ts` | typescript | 30 | 1.0 | completo |
 | 385 | `src/sisad-pdfme/ui/components/Designer/constants.js` | javascript | 1 | 0.0 | completo |
-| 386 | `src/sisad-pdfme/ui/components/Designer/index.tsx` | tsx | 4080 | 153.7 | truncado 83.0 KB |
+| 386 | `src/sisad-pdfme/ui/components/Designer/index.tsx` | tsx | 4082 | 153.8 | truncado 83.0 KB |
 | 387 | `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx` | tsx | 1665 | 59.1 | completo |
 | 388 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx` | tsx | 262 | 8.4 | completo |
 | 389 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx` | tsx | 94 | 3.6 | completo |
@@ -973,18 +973,18 @@ prueba-plugin
 | 396 | `src/sisad-pdfme/ui/components/Designer/useLeftSidebarCatalogState.ts` | typescript | 156 | 5.0 | completo |
 | 397 | `src/sisad-pdfme/ui/components/shared/pageMetadata.ts` | typescript | 52 | 1.4 | completo |
 | 398 | `src/sisad-pdfme/ui/components/shared/usePaperRefRegistry.ts` | typescript | 20 | 0.5 | completo |
-| 399 | `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx` | tsx | 1937 | 68.1 | completo |
+| 399 | `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx` | tsx | 1954 | 68.7 | completo |
 | 400 | `src/sisad-pdfme/ui/components/Designer/Canvas/Guides.tsx` | tsx | 118 | 3.3 | completo |
 | 401 | `src/sisad-pdfme/ui/components/Designer/Canvas/Mask.tsx` | tsx | 48 | 1.3 | completo |
 | 402 | `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx` | tsx | 149 | 4.9 | completo |
 | 403 | `src/sisad-pdfme/ui/components/Designer/Canvas/Padding.tsx` | tsx | 100 | 2.6 | completo |
-| 404 | `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx` | tsx | 132 | 4.3 | truncado 2.1 KB |
-| 405 | `src/sisad-pdfme/ui/components/Designer/Canvas/SnapLines.tsx` | tsx | 353 | 10.7 | omitido por presupuesto total |
+| 404 | `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx` | tsx | 132 | 4.3 | truncado 1.5 KB |
+| 405 | `src/sisad-pdfme/ui/components/Designer/Canvas/SnapLines.tsx` | tsx | 360 | 11.0 | omitido por presupuesto total |
 | 406 | `src/sisad-pdfme/ui/components/Designer/Comments/CommentDialog.tsx` | tsx | 167 | 4.3 | omitido por presupuesto total |
 | 407 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx` | tsx | 338 | 12.2 | omitido por presupuesto total |
 | 408 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/contextHeader.ts` | typescript | 44 | 1.4 | omitido por presupuesto total |
 | 409 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx` | tsx | 328 | 13.4 | omitido por presupuesto total |
-| 410 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx` | tsx | 109 | 3.3 | omitido por presupuesto total |
+| 410 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx` | tsx | 110 | 3.3 | omitido por presupuesto total |
 | 411 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx` | tsx | 605 | 23.3 | omitido por presupuesto total |
 | 412 | `src/sisad-pdfme/ui/components/Designer/shared/accessPolicy.ts` | typescript | 139 | 4.1 | omitido por presupuesto total |
 | 413 | `src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts` | typescript | 495 | 14.2 | omitido por presupuesto total |
@@ -999,7 +999,7 @@ prueba-plugin
 | 422 | `src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.ts` | typescript | 231 | 7.2 | omitido por presupuesto total |
 | 423 | `src/sisad-pdfme/ui/components/Designer/shared/interactionState.ts` | typescript | 62 | 1.4 | omitido por presupuesto total |
 | 424 | `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetPolicy.ts` | typescript | 74 | 3.2 | omitido por presupuesto total |
-| 425 | `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetResolver.ts` | typescript | 126 | 4.4 | omitido por presupuesto total |
+| 425 | `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetResolver.ts` | typescript | 131 | 4.6 | omitido por presupuesto total |
 | 426 | `src/sisad-pdfme/ui/components/Designer/shared/interactionTargetSelectors.ts` | typescript | 68 | 1.8 | omitido por presupuesto total |
 | 427 | `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcutRegistry.ts` | typescript | 290 | 8.7 | omitido por presupuesto total |
 | 428 | `src/sisad-pdfme/ui/components/Designer/shared/keyboardShortcuts.ts` | typescript | 568 | 16.9 | omitido por presupuesto total |
@@ -1018,9 +1018,9 @@ prueba-plugin
 | 441 | `src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts` | typescript | 961 | 32.4 | omitido por presupuesto total |
 | 442 | `src/sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver.ts` | typescript | 115 | 4.1 | omitido por presupuesto total |
 | 443 | `src/sisad-pdfme/ui/components/Designer/shared/selectionPolicy.ts` | typescript | 79 | 2.5 | omitido por presupuesto total |
-| 444 | `src/sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle.tsx` | tsx | 63 | 1.7 | omitido por presupuesto total |
+| 444 | `src/sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle.tsx` | tsx | 64 | 2.0 | omitido por presupuesto total |
 | 445 | `src/sisad-pdfme/ui/components/Designer/shared/SidebarEmptyState.tsx` | tsx | 81 | 2.2 | omitido por presupuesto total |
-| 446 | `src/sisad-pdfme/ui/components/Designer/shared/SidebarRail.tsx` | tsx | 74 | 2.5 | omitido por presupuesto total |
+| 446 | `src/sisad-pdfme/ui/components/Designer/shared/SidebarRail.tsx` | tsx | 86 | 3.0 | omitido por presupuesto total |
 | 447 | `src/sisad-pdfme/ui/components/Designer/shared/transformTargetGuards.ts` | typescript | 29 | 1.3 | omitido por presupuesto total |
 | 448 | `src/sisad-pdfme/ui/components/Designer/shared/useDesignerKeyboardShortcuts.ts` | typescript | 546 | 13.8 | omitido por presupuesto total |
 | 449 | `src/sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity.ts` | typescript | 81 | 2.2 | omitido por presupuesto total |
@@ -1069,7 +1069,7 @@ prueba-plugin
 | 492 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSummaryCard.tsx` | tsx | 1 | 0.1 | omitido por presupuesto total |
 | 493 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSwitch.tsx` | tsx | 47 | 1.3 | omitido por presupuesto total |
 | 494 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts` | typescript | 35 | 1.4 | omitido por presupuesto total |
-| 495 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx` | tsx | 489 | 23.5 | omitido por presupuesto total |
+| 495 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx` | tsx | 492 | 23.4 | omitido por presupuesto total |
 | 496 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared.tsx` | tsx | 170 | 5.4 | omitido por presupuesto total |
 | 497 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation.ts` | typescript | 102 | 3.0 | omitido por presupuesto total |
 | 498 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx` | tsx | 1014 | 38.7 | omitido por presupuesto total |
@@ -1092,7 +1092,7 @@ prueba-plugin
 
 ## Resumen de exclusiones
 
-- **test omitido:** 906
+- **test omitido:** 908
 - **extensión no incluida:** 395
 - **directorio ignorado: dependencia/build/salida generada:** 7
 - **json de datos omitido en perfil react:** 5
@@ -1102,7 +1102,7 @@ prueba-plugin
 
 ## Totales
 
-- **KB originales candidatos:** `3500.8`
+- **KB originales candidatos:** `3503.0`
 - **KB incluidos en contenido:** `2500.0`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
@@ -19334,9 +19334,9 @@ export const HEX_COLOR_PATTERN = '^#(?:[A-Fa-f0-9]{6})$';
 ### 0099 — `src/sisad-pdfme/schemas/groupSchemaRender.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `254`
-- **Tamaño original:** `7.8 KB`
-- **SHA1 corto:** `c2d21ae43c`
+- **Líneas:** `252`
+- **Tamaño original:** `7.6 KB`
+- **SHA1 corto:** `a7c4ea2579`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export type/class: GroupRenderOptions`, `export const: hexAlpha`, `export const: shouldShowOptionLabels`, `export const: applyOptionGroupBodyVariant`, `export const: applyOptionGroupRowVariant`, `export const: buildGroupWrapper`, `export const: buildGroupContainer`, `export const: buildGroupLabel`, `export const: buildOptionRow`, `export const: buildCheckboxIndicator`, `export const: buildRadioIndicator`, `export const: buildOptionLabel`, `export const: buildAddOptionButton`
 
@@ -19511,9 +19511,6 @@ export const buildOptionRow = (opts: {
   return btn;
 };
 
-const checkSvg = (color: string) =>
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" width="100%" height="100%"><polyline points="1.5,5 4,8 8.5,2" fill="none" stroke="${color}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-
 /** Checkbox indicator (square with optional checkmark). */
 export const buildCheckboxIndicator = (color: string, isChecked: boolean): HTMLSpanElement => {
   return createOptionIndicatorElement({
@@ -19560,7 +19557,8 @@ export const buildAddOptionButton = (color: string, title: string, dataAttr: str
   const btn = document.createElement('button');
   btn.type = 'button';
   btn.textContent = '+';
-  btn.title = title;
+  btn.setAttribute('aria-label', title);
+  btn.setAttribute('data-tooltip', title);
   btn.setAttribute(dataAttr, 'true');
   applyStyles(btn, {
     position: 'absolute',
@@ -47084,9 +47082,9 @@ export { default as OptionPropPanel } from './optionPropPanel';
 ### 0209 — `src/sisad-pdfme/schemas/options/optionGroupEditorFactory.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `168`
+- **Líneas:** `167`
 - **Tamaño original:** `6.3 KB`
-- **SHA1 corto:** `a3b82503a4`
+- **SHA1 corto:** `388bc64ff5`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export type/class: OptionGroupEditorItem`, `export type/class: OptionGroupEditorConfig`, `export type/class: CreateOptionGroupOptionsEditorConfig`, `export const: createOptionGroupEditor`, `export const: createOptionGroupOptionsEditor`
 
@@ -47178,7 +47176,6 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
       removeBtn.className = 'sisad-option-editor-remove-btn';
       removeBtn.setAttribute('data-testid', 'option-delete-button');
       removeBtn.setAttribute('aria-label', `Eliminar opción ${index + 1}`);
-      removeBtn.title = 'Eliminar opción';
       removeBtn.addEventListener('pointerdown', stopInspectorPointerEvent);
       removeBtn.addEventListener('mousedown', stopInspectorPointerEvent);
 
@@ -47987,9 +47984,9 @@ export default renderOptionGroupPdf;
 ### 0213 — `src/sisad-pdfme/schemas/options/optionGroupRenderer.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `288`
-- **Tamaño original:** `11.1 KB`
-- **SHA1 corto:** `c80dc3afd4`
+- **Líneas:** `298`
+- **Tamaño original:** `11.5 KB`
+- **SHA1 corto:** `c0f95484e6`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export type/class: OptionGroupRenderMode`, `export type/class: OptionGroupRuntimeParams`, `export const: createOptionGroupRuntime`
 
@@ -48016,6 +48013,7 @@ export type OptionGroupRenderMode = 'designer' | 'form' | 'viewer';
 // keyed by group+option, which survives re-renders. No timers involved.
 const OPTION_DOUBLE_CLICK_MS = 450;
 const lastOptionClickAt = new Map<string, number>();
+const lastFormOptionCommitAt = new Map<string, number>();
 
 export type OptionGroupRuntimeParams = {
   options: OptionItem[];
@@ -48105,7 +48103,7 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
   if (readOnly || isViewer) wrapper.setAttribute('aria-readonly', 'true');
   if (mode) wrapper.dataset.renderMode = mode;
   wrapper.dataset.optionGroupInvalid = String(Boolean(invalid));
-  // Marker-only by default: option text lives in aria-label/title, not visually.
+  // Marker-only by default: option text lives in aria-label, not visually.
   wrapper.dataset.optionLabels = resolvedShowOptionLabels ? 'visible' : 'hidden';
 
   // Tag the inner container so CSS can target it.
@@ -48157,7 +48155,6 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
     ).trim();
     if (optionAriaLabel) {
       row.setAttribute('aria-label', optionAriaLabel);
-      row.setAttribute('title', optionAriaLabel);
     }
     applyOptionGroupRowVariant(row, { showOptionLabels: resolvedShowOptionLabels });
     if (mode === 'viewer' || mode === 'pdf' || readOnly || !rowsValueInteractive) {
@@ -48243,7 +48240,17 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
     };
 
     if (rowsInteractive && typeof onChange === 'function') {
-      row.addEventListener('click', (e) => {
+      const clickKey = `${groupKey}:${opt.optionId}:form`;
+      row.addEventListener('mouseup', (e) => {
+        const now = Date.now();
+        const prev = lastFormOptionCommitAt.get(clickKey) || 0;
+        if (now - prev <= OPTION_DOUBLE_CLICK_MS) {
+          lastFormOptionCommitAt.delete(clickKey);
+          e.preventDefault();
+          e.stopPropagation();
+          return;
+        }
+        lastFormOptionCommitAt.set(clickKey, now);
         e.preventDefault();
         e.stopPropagation();
         commitSelection();
@@ -49594,9 +49601,9 @@ export default schema;
 ### 0224 — `src/sisad-pdfme/schemas/select/index.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `313`
-- **Tamaño original:** `11.7 KB`
-- **SHA1 corto:** `f32b7cab0e`
+- **Líneas:** `312`
+- **Tamaño original:** `11.6 KB`
+- **SHA1 corto:** `bbc8e2522a`
 - **Estado:** `completo`
 
 ```typescript
@@ -49718,7 +49725,6 @@ const addOptions = (props: PropPanelWidgetProps) => {
       removeButton.className = 'sisad-option-editor-remove-btn';
       removeButton.setAttribute('data-testid', 'option-delete-button');
       removeButton.setAttribute('aria-label', `Eliminar opción ${index + 1}`);
-      removeButton.title = 'Eliminar opción';
 
       removeButton.addEventListener('click', (event) => {
         event.preventDefault();
@@ -76542,9 +76548,9 @@ export * from '../../constants.ts';
 ### 0386 — `src/sisad-pdfme/ui/components/Designer/index.tsx`
 
 - **Lenguaje:** `tsx`
-- **Líneas:** `4080`
-- **Tamaño original:** `153.7 KB`
-- **SHA1 corto:** `c3009544ec`
+- **Líneas:** `4082`
+- **Tamaño original:** `153.8 KB`
+- **SHA1 corto:** `df3226b4a9`
 - **Estado:** `truncado 83.0 KB`
 - **Símbolos detectados:** `function: resolveChangedSchemaUids`, `function: handleRemovePage`, `function: handleAddPageAfter`, `component/const: DetachedHost`, `component/const: TemplateEditor`
 
@@ -77953,11 +77959,12 @@ const TemplateEditor = ({
       // Access Control Guard - Blocks deletion of locked schemas
       const schemaUids = Array.from(normalizedIds);
       if (commandBusRef.current) {
-        const isAllowed = commandBusRef.current.check({
+        const removeSchemasCommand: Parameters<CommandBus['check']>[0] = {
           id: 'removeSchemas',
           label: 'Remove Schemas',
           meta: { schemaUids },
-        } as any);
+        };
+        const isAllowed = commandBusRef.current.check(removeSchemasCommand);
         if (!isAllowed) return;
       }
 
@@ -78055,11 +78062,12 @@ const TemplateEditor = ({
       // Access Control Guard - Blocks property updates on locked schemas
       const schemaUids = objs.map((o) => o.schemaId).filter(Boolean) as string[];
       if (schemaUids.length > 0 && commandBusRef.current) {
-        const isAllowed = commandBusRef.current.check({
+        const changeSchemasCommand: Parameters<CommandBus['check']>[0] = {
           id: 'changeSchemas',
           label: 'Change Schemas',
           meta: { schemaUids },
-        } as any);
+        };
+        const isAllowed = commandBusRef.current.check(changeSchemasCommand);
         if (!isAllowed) return;
       }
 
@@ -78143,12 +78151,9 @@ const TemplateEditor = ({
         onOpenProperties: openPropertiesPanel,
         requestInlineEdit,
         collaborationContext,
-        onCopySelection: handleCopySelection,
-        onPasteSelection: handlePasteSelection,
-        onCutSelection: handleCutSelection,
-        onClearSelection: () => setActiveElements([])
+        onCopyS
 
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 72529 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 72705 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
 
 tiveBasePdf}
       activeRecipientColor={
@@ -81795,9 +81800,9 @@ export default usePaperRefRegistry;
 ### 0399 — `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx`
 
 - **Lenguaje:** `tsx`
-- **Líneas:** `1937`
-- **Tamaño original:** `68.1 KB`
-- **SHA1 corto:** `5cc7c3be5d`
+- **Líneas:** `1954`
+- **Tamaño original:** `68.7 KB`
+- **SHA1 corto:** `cc072cdd45`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export type/class: CanvasFeatureToggles`, `export type/class: CanvasStyleOverrides`, `export type/class: CanvasClassNames`, `export type/class: CanvasComponentSlots`, `export type/class: CanvasProps`, `component/const: Canvas`
 
@@ -82327,6 +82332,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     documentId?: string;
     startedInsidePaper: boolean;
   } | null>(null);
+  const clearRegionSelectionSession = useCallback(() => {
+    regionSelectionSessionRef.current = null;
+  }, []);
   /**
    * Servicio de coordenadas usado para adaptar Selecto al sistema del diseñador.
    */
@@ -83376,8 +83384,11 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
           dragCondition={(dragStart) => {
             const inputEvent = dragStart.inputEvent as MouseEvent | TouchEvent;
             const target = inputEvent.target as EventTarget | null;
-            if (isSelectoExcludedTarget(target)) return false;
-            return !shouldSuppressCanvasRegionSelection(target, {
+            if (isSelectoExcludedTarget(target)) {
+              clearRegionSelectionSession();
+              return false;
+            }
+            const shouldSuppress = shouldSuppressCanvasRegionSelection(target, {
               phase: interactionState.phase,
               isModalOpen: contextMenu !== null,
               isInlineEditing: editing,
@@ -83386,6 +83397,10 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
               isRotating,
               externalSchemaDragActive,
             });
+            if (shouldSuppress) {
+              clearRegionSelectionSession();
+            }
+            return !shouldSuppress;
           }}
           onDragStart={(e) => {
             // Use type assertion to safely access inputEvent properties
@@ -83401,17 +83416,20 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
                 isInlineEditing: editing,
                 isSchemaDragging: isDragging,
                 isResizing,
-                isRotating,
-                externalSchemaDragActive,
-              })
+              isRotating,
+              externalSchemaDragActive,
+            })
             ) {
+              clearRegionSelectionSession();
               e.stop();
               return;
             }
             const isMoveableElement = moveable.current?.isMoveableElement(target as Element);
 
             if ((inputEvent.type === 'touchstart' && e.isTrusted) || isMoveableElement) {
+              clearRegionSelectionSession();
               e.stop();
+              return;
             }
 
             // Pin region selection to the REAL page under the pointer, not
@@ -83433,46 +83451,50 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
           onSelect={(e) => {
             const inputEvent = e.inputEvent as MouseEvent | PointerEvent | undefined;
             const target = inputEvent?.target as Element | null;
-            if (!isEventInsideAnyPaper(target)) return;
+            try {
+              if (!isEventInsideAnyPaper(target)) return;
 
-            const session = regionSelectionSessionRef.current;
-            // Session anchors the page; fall back to the page under the pointer
-            // (single click without a prior drag-start session).
-            const sessionPageIndex =
-              session?.pageIndex ?? getPaperIdentity(getPaperFromTarget(target)).pageIndex;
-            const sessionDocumentId =
-              session?.documentId ?? getPaperIdentity(getPaperFromTarget(target)).documentId;
-            const scope = { pageIndex: sessionPageIndex, documentId: sessionDocumentId, allowCrossPage: false };
+              const session = regionSelectionSessionRef.current;
+              // Session anchors the page; fall back to the page under the pointer
+              // (single click without a prior drag-start session).
+              const sessionPageIndex =
+                session?.pageIndex ?? getPaperIdentity(getPaperFromTarget(target)).pageIndex;
+              const sessionDocumentId =
+                session?.documentId ?? getPaperIdentity(getPaperFromTarget(target)).documentId;
+              const scope = { pageIndex: sessionPageIndex, documentId: sessionDocumentId, allowCrossPage: false };
 
-            const isAdditive = inputEvent ? isAdditiveSelectionIntent(resolveSelectionIntent({
-              platform,
-              event: inputEvent,
-              pointerKind: session ? 'drag-region' : 'click'
-            })) : false;
+              const isAdditive = inputEvent ? isAdditiveSelectionIntent(resolveSelectionIntent({
+                platform,
+                event: inputEvent,
+                pointerKind: session ? 'drag-region' : 'click'
+              })) : false;
 
-            // e.selected is the source of truth for both click and region drag.
-            const selected = normalizeActiveTargets(e.selected as HTMLElement[], scope);
-            const previous = isAdditive ? normalizeActiveTargets(activeElements, scope) : [];
-            const nextSelection = normalizeActiveTargets([...previous, ...selected], scope);
+              // e.selected is the source of truth for both click and region drag.
+              const selected = normalizeActiveTargets(e.selected as HTMLElement[], scope);
+              const previous = isAdditive ? normalizeActiveTargets(activeElements, scope) : [];
+              const nextSelection = normalizeActiveTargets([...previous, ...selected], scope);
 
-            onEdit(nextSelection);
+              onEdit(nextSelection);
 
-            const selectionChanged =
-              nextSelection.length !== activeElements.length ||
-              nextSelection.some((el, i) => el.id !== activeElements[i]?.id);
-            if (selectionChanged) {
-              setEditing(false);
-            }
+              const selectionChanged =
+                nextSelection.length !== activeElements.length ||
+                nextSelection.some((el, i) => el.id !== activeElements[i]?.id);
+              if (selectionChanged) {
+                setEditing(false);
+              }
 
-            // For MacOS CMD+SHIFT+3/4 screenshots where the keydown event is never received, check mouse too
-            const mouseEvent = inputEvent as MouseEvent | undefined;
-            if (mouseEvent && typeof mouseEvent.shiftKey === 'boolean') {
-              setModifierKeys({
-                shift: mouseEvent.shiftKey,
-                alt: mouseEvent.altKey,
-                ctrl: mouseEvent.ctrlKey,
-                meta: mouseEvent.metaKey,
-              });
+              // For MacOS CMD+SHIFT+3/4 screenshots where the keydown event is never received, check mouse too
+              const mouseEvent = inputEvent as MouseEvent | undefined;
+              if (mouseEvent && typeof mouseEvent.shiftKey === 'boolean') {
+                setModifierKeys({
+                  shift: mouseEvent.shiftKey,
+                  alt: mouseEvent.altKey,
+                  ctrl: mouseEvent.ctrlKey,
+                  meta: mouseEvent.metaKey,
+                });
+              }
+            } finally {
+              clearRegionSelectionSession();
             }
           }}
         />
@@ -84220,7 +84242,7 @@ export default Padding;
 - **Líneas:** `132`
 - **Tamaño original:** `4.3 KB`
 - **SHA1 corto:** `4d0ffd5458`
-- **Estado:** `truncado 2.1 KB`
+- **Estado:** `truncado 1.5 KB`
 - **Símbolos detectados:** `component/const: Selecto`
 
 ```tsx
@@ -84255,27 +84277,11 @@ type SelectoPointArea = {
   pos4: number[];
 };
 
-/**
- * Props del adapter Selecto.
- */
-type Props = {
-  container: HTMLElement | null;
-  rootContainer?: HTMLElement | null;
-  dragContainer?: HTMLElement | Window | Element | Array<HTMLElement | Window | Element> | string | null;
-  boundContainer?: HTMLElement | string | boolean | null;
-  checkInput?: boolean;
-  dragCondition?: (e: GestoOnDragStart) => boolean;
-  continueSelect: boolean;
-  onDragStart: (e: SelectoOnDragStart) => void;
-  onSelect: (e: SelectoOnSelect) => void;
-  classN
+/*
 
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 2365 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 3024 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
 
-tainer={props.container}
-      rootContainer={props.rootContainer ?? null}
-      dragContainer={dragContainer}
-      boundContainer={props.boundContainer ?? props.container}
+}
       checkInput={props.checkInput ?? true}
       dragCondition={props.dragCondition ?? null}
       getElementRect={props.getElementRect ?? ((element) => rectToPointArea(element.getBoundingClientRect()))}

@@ -225,12 +225,12 @@ export const getDetailProfile = (schemaType: string): DetailProfile => {
     return createDetailProfile(normalized, ['identity', 'behavior', 'box', 'appearance', 'help', 'advanced'], ['identity', 'behavior', 'box']);
   }
 
-  if (OPTION_BASED_TYPES.has(normalized)) {
-    return createDetailProfile(normalized, ['identity', 'options', 'validation', 'behavior', 'box', 'dataBindings', 'appearance', 'help', 'collaboration', 'comments', 'advanced'], ['identity', 'options']);
-  }
-
   if (CHECKBOX_TYPES.has(normalized)) {
     return createDetailProfile(normalized, ['identity', 'validation', 'behavior', 'box', 'appearance', 'dataBindings', 'help', 'collaboration', 'comments', 'advanced'], ['identity', 'validation', 'behavior']);
+  }
+
+  if (OPTION_BASED_TYPES.has(normalized)) {
+    return createDetailProfile(normalized, ['identity', 'options', 'validation', 'behavior', 'box', 'dataBindings', 'appearance', 'help', 'collaboration', 'comments', 'advanced'], ['identity', 'options']);
   }
 
   if (TEXT_LIKE_TYPES.has(normalized) || NUMBER_LIKE_TYPES.has(normalized)) {

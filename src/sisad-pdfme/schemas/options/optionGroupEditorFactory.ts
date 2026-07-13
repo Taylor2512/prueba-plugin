@@ -85,7 +85,6 @@ export const createOptionGroupEditor = <TOption extends OptionGroupEditorItem>(
       removeBtn.className = 'sisad-option-editor-remove-btn';
       removeBtn.setAttribute('data-testid', 'option-delete-button');
       removeBtn.setAttribute('aria-label', `Eliminar opción ${index + 1}`);
-      removeBtn.title = 'Eliminar opción';
       removeBtn.addEventListener('pointerdown', stopInspectorPointerEvent);
       removeBtn.addEventListener('mousedown', stopInspectorPointerEvent);
 

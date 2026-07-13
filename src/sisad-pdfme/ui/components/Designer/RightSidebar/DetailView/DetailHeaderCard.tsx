@@ -67,10 +67,10 @@ const DetailHeaderCard = ({
 }: DetailHeaderCardProps) => {
   const headerRef = React.useRef<HTMLDivElement | null>(null);
   const { mode: headerDensity } = useResponsiveDensity(headerRef, {
-    comfortable: 350,
-    compact: 286,
-    mini: 232,
-    initialWidth: 350,
+    comfortable: 342,
+    compact: 276,
+    mini: 224,
+    initialWidth: 342,
   });
   const tone = resolveSchemaTone(activeSchema, '#7c3aed');
   const headerSummary = buildDetailHeaderSummary(activeSchema, schemaConfig);
@@ -94,7 +94,7 @@ const DetailHeaderCard = ({
         type="button"
         className={mergeClassNames(
           `${DESIGNER_CLASSNAME}detail-header-back-btn`,
-          'inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition',
+          'inline-flex h-[1.625rem] w-[1.625rem] items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition',
           'hover:border-sky-200 hover:text-sky-700 hover:shadow focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
         )}
         onClick={onBack}
@@ -110,7 +110,7 @@ const DetailHeaderCard = ({
       {resolvedShowPosition && (
         <Tag
           color="default"
-          className={mergeClassNames(`${DESIGNER_CLASSNAME}detail-header-card-pos`, 'm-0 inline-flex h-5 items-center rounded-full border-slate-200 px-1.5 text-[10px] leading-none')}
+          className={mergeClassNames(`${DESIGNER_CLASSNAME}detail-header-card-pos`, 'm-0 inline-flex h-[1.125rem] items-center rounded-full border-slate-200 px-[0.3125rem] text-[9px] leading-none')}
         >
           {positionLabel || headerSummary.positionLabel}
         </Tag>
@@ -130,7 +130,7 @@ const DetailHeaderCard = ({
       <SidebarSurfaceHeader
         className={mergeClassNames(
           `${DESIGNER_CLASSNAME}detail-header-card`,
-          'rounded-xl border-slate-200/70 bg-white/90 shadow-sm',
+          'rounded-lg border-slate-200/70 bg-white/92 shadow-sm',
           className,
         )}
         compact
@@ -154,15 +154,15 @@ const DetailHeaderCard = ({
         }
         trailing={trailingNode}
       />
-      {headerDensity !== 'mini' && (headerSummary.uid || headerSummary.ownerName) && (
-        <div className={mergeClassNames(`${DESIGNER_CLASSNAME}detail-header-tech-row`, 'mt-1.5 flex items-center gap-2 border-t border-slate-100 px-3 pt-1.5')}>
+      {headerDensity === 'comfortable' && (headerSummary.uid || headerSummary.ownerName) && (
+        <div className={mergeClassNames(`${DESIGNER_CLASSNAME}detail-header-tech-row`, 'mt-1 flex items-center gap-2 border-t border-slate-100 px-2.5 pt-1')}>
           {headerSummary.uid && (
-            <span className="inline-flex items-center text-[9px] font-mono text-slate-400">
+            <span className="inline-flex items-center text-[8px] font-mono text-slate-400">
               ID: {headerSummary.uid}
             </span>
           )}
           {headerSummary.ownerName && (
-            <span className="inline-flex items-center gap-1 text-[9px] font-medium text-slate-500">
+            <span className="inline-flex items-center gap-1 text-[8px] font-medium text-slate-500">
               <span className="h-1 w-1 rounded-full bg-slate-300" />
               {headerSummary.ownerName}
             </span>

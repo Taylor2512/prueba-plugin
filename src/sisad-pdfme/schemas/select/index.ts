@@ -116,7 +116,6 @@ const addOptions = (props: PropPanelWidgetProps) => {
       removeButton.className = 'sisad-option-editor-remove-btn';
       removeButton.setAttribute('data-testid', 'option-delete-button');
       removeButton.setAttribute('aria-label', `Eliminar opción ${index + 1}`);
-      removeButton.title = 'Eliminar opción';
 
       removeButton.addEventListener('click', (event) => {
         event.preventDefault();

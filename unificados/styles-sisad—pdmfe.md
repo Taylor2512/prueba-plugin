@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `css`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-12T17:44:49.757Z`
+- **Fecha generación:** `2026-07-13T02:26:10.400Z`
 - **Extensiones incluidas:** `.css, .scss, .sass, .less`
 - **Archivos candidatos incluidos:** `19`
 - **Límite por archivo:** `80 KB`
@@ -86,7 +86,7 @@ prueba-plugin
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1802
+- **extensión no incluida:** 1804
 - **directorio ignorado: dependencia/build/salida generada:** 7
 
 ## Totales
@@ -12100,7 +12100,7 @@ ad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family="action-based"][data-
 - **Lenguaje:** `css`
 - **Líneas:** `390`
 - **Tamaño original:** `16.7 KB`
-- **SHA1 corto:** `311571a2cb`
+- **SHA1 corto:** `7fb63bafe7`
 - **Estado:** `completo`
 - **Símbolos detectados:** `selector: :root`
 
@@ -12442,12 +12442,12 @@ ad-pdfme-root .sisad-pdfme-field-chrome[data-schema-family="action-based"][data-
     --sisad-pdfme-rs-layout-columns: minmax(0, 1fr);
     --sisad-pdfme-rs-layout-rows: none;
     --sisad-pdfme-rs-gap: 0.875rem;
-    --sisad-pdfme-rs-width: clamp(15.5rem, 19vw, 19.5rem);
-    --sisad-pdfme-ls-width: clamp(13rem, 16vw, 16.5rem);
-    --sisad-pdfme-ls-rail-width: 2.625rem;
+    --sisad-pdfme-rs-width: clamp(14.25rem, 17vw, 18rem);
+    --sisad-pdfme-ls-width: clamp(12rem, 14.5vw, 15rem);
+    --sisad-pdfme-ls-rail-width: 2.375rem;
     --sisad-pdfme-stage-inline-gap: clamp(1.25rem, 2.6vw, 2rem);
     --sisad-pdfme-stage-top-gap: 4.25rem;
-    --sisad-pdfme-stage-right-dock-width: clamp(17rem, 20vw, 21rem);
+    --sisad-pdfme-stage-right-dock-width: clamp(15.75rem, 18vw, 19.5rem);
     --sisad-pdfme-stage-right-dock-gap: 1.125rem;
     --sisad-pdfme-chrome-bg: linear-gradient(180deg, var(--color-white-98), var(--color-gray-50-90));
     --sisad-pdfme-chrome-border: var(--color-border-20);

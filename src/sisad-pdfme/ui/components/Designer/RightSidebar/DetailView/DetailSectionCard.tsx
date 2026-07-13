@@ -67,13 +67,13 @@ type SectionTextProps = {
 const SectionText = ({ title, description }: SectionTextProps) => (
   <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head-main', 'min-w-0 flex-1 space-y-0')}>
     <div
-      className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-title', 'truncate text-[0.58rem] font-semibold uppercase tracking-[0.04em] leading-tight text-slate-900')}
+      className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-title', 'truncate text-[0.56rem] font-semibold uppercase tracking-[0.04em] leading-tight text-slate-900')}
       data-has-description={description ? 'true' : 'false'}
     >
       {title}
     </div>
     {description ? (
-      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-description', 'truncate text-[0.55rem] leading-3 text-slate-500')}>
+      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-description', 'truncate text-[0.53rem] leading-3 text-slate-500')}>
         {description}
       </div>
     ) : null}
@@ -97,7 +97,7 @@ type SectionHeadProps = SectionTextProps & {
 const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, description, leading, trailing, header }: SectionHeadProps) => {
   if (header) {
     if (!collapsible) {
-      return <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head', 'flex items-center justify-between gap-1.5')}>{header}</div>;
+      return <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head', 'flex items-center justify-between gap-1')}>{header}</div>;
     }
 
     return (
@@ -105,7 +105,7 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
         type="button"
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'detail-section-card-head',
-          'flex min-h-[24px] w-full items-center justify-between gap-1 rounded-lg px-[5px] py-0.5 text-left transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+          'flex min-h-[22px] w-full items-center justify-between gap-1 rounded-lg px-[4px] py-[0.125rem] text-left transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
         )}
         aria-expanded={!collapsed}
         aria-controls={`${bodyId}-body`}
@@ -121,7 +121,7 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
   }
 
   if (!collapsible) {
-    return (
+      return (
       <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head', 'flex min-h-[24px] w-full items-center justify-between gap-1 rounded-lg px-[5px] py-0.5')}>
         {leading ? <div className={DESIGNER_CLASSNAME + 'detail-section-card-leading'}>{leading}</div> : null}
         <SectionText title={title} description={description} />
@@ -135,7 +135,7 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
       type="button"
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'detail-section-card-head',
-        'flex min-h-[22px] w-full items-center justify-between gap-1.5 rounded-lg px-2 py-0.5 text-left transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+        'flex min-h-[22px] w-full items-center justify-between gap-1.5 rounded-lg px-1.5 py-[0.125rem] text-left transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
       )}
       aria-expanded={!collapsed}
       aria-controls={`${bodyId}-body`}
@@ -188,7 +188,7 @@ const DetailSectionCard = ({
     <section
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'detail-section-card',
-        'overflow-hidden rounded-xl border border-slate-200/70 bg-white/95 shadow-none',
+        'overflow-hidden rounded-lg border border-slate-200/70 bg-white/95 shadow-none',
         className,
       )}
       data-section={sectionKey}
@@ -210,7 +210,7 @@ const DetailSectionCard = ({
         id={`${bodyId}-body`}
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'detail-section-card-body',
-          'mt-[1px] p-0',
+          'mt-0.5 p-0',
           bodyClassName,
         )}
         aria-hidden={resolvedCollapsed ? 'true' : 'false'}

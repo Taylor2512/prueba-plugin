@@ -354,14 +354,15 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                     {hasLock ? (
                       <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
                         <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Fecha de bloqueo</div>
-                        <InputNumber
+                        <Input
                           id="collaboration-locked-at"
                           name="collaboration-locked-at"
                           className={`${DESIGNER_CLASSNAME}schema-config-number`}
-                          value={typeof lock?.lockedAt === 'number' ? lock.lockedAt : undefined}
-                          onChange={(value) => commit({ lock: { ...lock, lockedAt: typeof value === 'number' ? value : undefined } })}
+                          value={formatTimestampLabel(lock?.lockedAt)}
+                          disabled
+                          readOnly
                         />
-                        <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>Fecha: {formatTimestampLabel(lock?.lockedAt)}</div>
+                        <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>Dato técnico: {typeof lock?.lockedAt === 'number' ? lock.lockedAt : '—'}</div>
                       </div>
                     ) : null}
                   </div>
@@ -435,25 +436,27 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                     </div>
                     <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
                       <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Creado el</div>
-                      <InputNumber
+                      <Input
                         id="collaboration-created-at"
                         name="collaboration-created-at"
                         className={`${DESIGNER_CLASSNAME}schema-config-number`}
-                        value={typeof activeSchema.createdAt === 'number' ? activeSchema.createdAt : collaborative.createdAt}
-                        onChange={(value) => commit({ createdAt: typeof value === 'number' ? value : undefined })}
+                        value={formatTimestampLabel(activeSchema.createdAt ?? collaborative.createdAt)}
+                        readOnly
+                        disabled
                       />
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>Fecha: {formatTimestampLabel(activeSchema.createdAt ?? collaborative.createdAt)}</div>
+                      <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>Dato técnico: {typeof (activeSchema.createdAt ?? collaborative.createdAt) === 'number' ? (activeSchema.createdAt ?? collaborative.createdAt) : '—'}</div>
                     </div>
                     <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
                       <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Actualizado el</div>
-                      <InputNumber
+                      <Input
                         id="collaboration-updated-at"
                         name="collaboration-updated-at"
                         className={`${DESIGNER_CLASSNAME}schema-config-number`}
-                        value={typeof activeSchema.updatedAt === 'number' ? activeSchema.updatedAt : collaborative.updatedAt}
-                        onChange={(value) => commit({ updatedAt: typeof value === 'number' ? value : undefined })}
+                        value={formatTimestampLabel(activeSchema.updatedAt ?? collaborative.updatedAt)}
+                        readOnly
+                        disabled
                       />
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>Fecha: {formatTimestampLabel(activeSchema.updatedAt ?? collaborative.updatedAt)}</div>
+                      <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>Dato técnico: {typeof (activeSchema.updatedAt ?? collaborative.updatedAt) === 'number' ? (activeSchema.updatedAt ?? collaborative.updatedAt) : '—'}</div>
                     </div>
                     <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
                       <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Color del propietario</div>

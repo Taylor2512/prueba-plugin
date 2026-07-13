@@ -168,9 +168,6 @@ export const buildOptionRow = (opts: {
   return btn;
 };
 
-const checkSvg = (color: string) =>
-  `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 10 10" width="100%" height="100%"><polyline points="1.5,5 4,8 8.5,2" fill="none" stroke="${color}" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
-
 /** Checkbox indicator (square with optional checkmark). */
 export const buildCheckboxIndicator = (color: string, isChecked: boolean): HTMLSpanElement => {
   return createOptionIndicatorElement({
@@ -217,7 +214,8 @@ export const buildAddOptionButton = (color: string, title: string, dataAttr: str
   const btn = document.createElement('button');
   btn.type = 'button';
   btn.textContent = '+';
-  btn.title = title;
+  btn.setAttribute('aria-label', title);
+  btn.setAttribute('data-tooltip', title);
   btn.setAttribute(dataAttr, 'true');
   applyStyles(btn, {
     position: 'absolute',

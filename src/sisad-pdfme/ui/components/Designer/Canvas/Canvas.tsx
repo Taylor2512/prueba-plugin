@@ -523,6 +523,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     documentId?: string;
     startedInsidePaper: boolean;
   } | null>(null);
+  const clearRegionSelectionSession = useCallback(() => {
+    regionSelectionSessionRef.current = null;
+  }, []);
   /**
    * Servicio de coordenadas usado para adaptar Selecto al sistema del diseñador.
    */
@@ -1572,8 +1575,11 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
           dragCondition={(dragStart) => {
             const inputEvent = dragStart.inputEvent as MouseEvent | TouchEvent;
             const target = inputEvent.target as EventTarget | null;
-            if (isSelectoExcludedTarget(target)) return false;
-            return !shouldSuppressCanvasRegionSelection(target, {
+            if (isSelectoExcludedTarget(target)) {
+              clearRegionSelectionSession();
+              return false;
+            }
+            const shouldSuppress = shouldSuppressCanvasRegionSelection(target, {
               phase: interactionState.phase,
               isModalOpen: contextMenu !== null,
               isInlineEditing: editing,
@@ -1582,6 +1588,10 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
               isRotating,
               externalSchemaDragActive,
             });
+            if (shouldSuppress) {
+              clearRegionSelectionSession();
+            }
+            return !shouldSuppress;
           }}
           onDragStart={(e) => {
             // Use type assertion to safely access inputEvent properties
@@ -1597,17 +1607,20 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
                 isInlineEditing: editing,
                 isSchemaDragging: isDragging,
                 isResizing,
-                isRotating,
-                externalSchemaDragActive,
-              })
+              isRotating,
+              externalSchemaDragActive,
+            })
             ) {
+              clearRegionSelectionSession();
               e.stop();
               return;
             }
             const isMoveableElement = moveable.current?.isMoveableElement(target as Element);
 
             if ((inputEvent.type === 'touchstart' && e.isTrusted) || isMoveableElement) {
+              clearRegionSelectionSession();
               e.stop();
+              return;
             }
 
             // Pin region selection to the REAL page under the pointer, not
@@ -1629,46 +1642,50 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
           onSelect={(e) => {
             const inputEvent = e.inputEvent as MouseEvent | PointerEvent | undefined;
             const target = inputEvent?.target as Element | null;
-            if (!isEventInsideAnyPaper(target)) return;
+            try {
+              if (!isEventInsideAnyPaper(target)) return;
 
-            const session = regionSelectionSessionRef.current;
-            // Session anchors the page; fall back to the page under the pointer
-            // (single click without a prior drag-start session).
-            const sessionPageIndex =
-              session?.pageIndex ?? getPaperIdentity(getPaperFromTarget(target)).pageIndex;
-            const sessionDocumentId =
-              session?.documentId ?? getPaperIdentity(getPaperFromTarget(target)).documentId;
-            const scope = { pageIndex: sessionPageIndex, documentId: sessionDocumentId, allowCrossPage: false };
+              const session = regionSelectionSessionRef.current;
+              // Session anchors the page; fall back to the page under the pointer
+              // (single click without a prior drag-start session).
+              const sessionPageIndex =
+                session?.pageIndex ?? getPaperIdentity(getPaperFromTarget(target)).pageIndex;
+              const sessionDocumentId =
+                session?.documentId ?? getPaperIdentity(getPaperFromTarget(target)).documentId;
+              const scope = { pageIndex: sessionPageIndex, documentId: sessionDocumentId, allowCrossPage: false };
 
-            const isAdditive = inputEvent ? isAdditiveSelectionIntent(resolveSelectionIntent({
-              platform,
-              event: inputEvent,
-              pointerKind: session ? 'drag-region' : 'click'
-            })) : false;
+              const isAdditive = inputEvent ? isAdditiveSelectionIntent(resolveSelectionIntent({
+                platform,
+                event: inputEvent,
+                pointerKind: session ? 'drag-region' : 'click'
+              })) : false;
 
-            // e.selected is the source of truth for both click and region drag.
-            const selected = normalizeActiveTargets(e.selected as HTMLElement[], scope);
-            const previous = isAdditive ? normalizeActiveTargets(activeElements, scope) : [];
-            const nextSelection = normalizeActiveTargets([...previous, ...selected], scope);
+              // e.selected is the source of truth for both click and region drag.
+              const selected = normalizeActiveTargets(e.selected as HTMLElement[], scope);
+              const previous = isAdditive ? normalizeActiveTargets(activeElements, scope) : [];
+              const nextSelection = normalizeActiveTargets([...previous, ...selected], scope);
 
-            onEdit(nextSelection);
+              onEdit(nextSelection);
 
-            const selectionChanged =
-              nextSelection.length !== activeElements.length ||
-              nextSelection.some((el, i) => el.id !== activeElements[i]?.id);
-            if (selectionChanged) {
-              setEditing(false);
-            }
+              const selectionChanged =
+                nextSelection.length !== activeElements.length ||
+                nextSelection.some((el, i) => el.id !== activeElements[i]?.id);
+              if (selectionChanged) {
+                setEditing(false);
+              }
 
-            // For MacOS CMD+SHIFT+3/4 screenshots where the keydown event is never received, check mouse too
-            const mouseEvent = inputEvent as MouseEvent | undefined;
-            if (mouseEvent && typeof mouseEvent.shiftKey === 'boolean') {
-              setModifierKeys({
-                shift: mouseEvent.shiftKey,
-                alt: mouseEvent.altKey,
-                ctrl: mouseEvent.ctrlKey,
-                meta: mouseEvent.metaKey,
-              });
+              // For MacOS CMD+SHIFT+3/4 screenshots where the keydown event is never received, check mouse too
+              const mouseEvent = inputEvent as MouseEvent | undefined;
+              if (mouseEvent && typeof mouseEvent.shiftKey === 'boolean') {
+                setModifierKeys({
+                  shift: mouseEvent.shiftKey,
+                  alt: mouseEvent.altKey,
+                  ctrl: mouseEvent.ctrlKey,
+                  meta: mouseEvent.metaKey,
+                });
+              }
+            } finally {
+              clearRegionSelectionSession();
             }
           }}
         />

@@ -181,6 +181,11 @@ describe('detail section visibility by type', () => {
     expect(getDetailProfile('attachment').visibleSections).not.toContain('appearance');
     expect(getDetailProfile('note').visibleSections).toContain('appearance');
   });
+
+  it('does not route checkbox fields into the option-group profile', () => {
+    expect(getVisibleDetailSections('checkbox')).not.toContain('options');
+    expect(getDefaultOpenSections('checkbox')).toEqual(['identity', 'validation', 'behavior']);
+  });
 });
 
 describe('sortCanonicalDetailSections', () => {
