@@ -71,7 +71,7 @@ import {
   type PlatformKind,
 } from '../shared/selectionPolicy.js';
 import {
-  resolveSchemaAccess,
+  resolveSchemaAccessState,
   isTransformable,
   type SchemaAccessContext,
 } from '../shared/accessPolicy.js';
@@ -448,13 +448,21 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     ctrl: false,
     meta: false,
   });
+  const clearModifierKeys = useCallback(() => {
+    setModifierKeys({
+      shift: false,
+      alt: false,
+      ctrl: false,
+      meta: false,
+    });
+  }, []);
 
   /**
    * Indica si la intención de selección actual es acumulativa (Shift/Ctrl/Cmd).
    */
   const isMultiSelectActive = useMemo(() => {
     const isMac = platform === 'mac';
-    return isMac ? modifierKeys.meta || modifierKeys.shift : modifierKeys.ctrl || modifierKeys.shift;
+    return isMac ? modifierKeys.meta : modifierKeys.ctrl;
   }, [platform, modifierKeys]);
 
   /**
@@ -526,6 +534,12 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   const clearRegionSelectionSession = useCallback(() => {
     regionSelectionSessionRef.current = null;
   }, []);
+  const resetTransientCanvasInteraction = useCallback(() => {
+    clearModifierKeys();
+    clearRegionSelectionSession();
+    setEditing(false);
+    setInlineEditSession(null);
+  }, [clearModifierKeys, clearRegionSelectionSession]);
   /**
    * Servicio de coordenadas usado para adaptar Selecto al sistema del diseñador.
    */
@@ -606,7 +620,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
       if (!id) return false;
       const schema = schemasList.flat().find((s) => s.id === id);
       if (!schema) return false;
-      return isTransformable(resolveSchemaAccess(schema, accessContext));
+      return isTransformable(resolveSchemaAccessState(schema, accessContext));
     });
   }, [activeElements, moveablePageIndex, schemasList, accessContext]);
   /**
@@ -661,12 +675,18 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   const initEvents = useCallback(() => {
     globalThis.addEventListener('keydown', onKeydown);
     globalThis.addEventListener('keyup', onKeyup);
-  }, []);
+    globalThis.addEventListener('blur', resetTransientCanvasInteraction);
+    globalThis.addEventListener('sisad-pdfme:designer-interaction-reset', resetTransientCanvasInteraction as EventListener);
+    document.addEventListener('visibilitychange', resetTransientCanvasInteraction);
+  }, [resetTransientCanvasInteraction]);
 
   const destroyEvents = useCallback(() => {
     globalThis.removeEventListener('keydown', onKeydown);
     globalThis.removeEventListener('keyup', onKeyup);
-  }, []);
+    globalThis.removeEventListener('blur', resetTransientCanvasInteraction);
+    globalThis.removeEventListener('sisad-pdfme:designer-interaction-reset', resetTransientCanvasInteraction as EventListener);
+    document.removeEventListener('visibilitychange', resetTransientCanvasInteraction);
+  }, [resetTransientCanvasInteraction]);
 
   useEffect(() => {
     initEvents();
@@ -1580,7 +1600,6 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
               return false;
             }
             const shouldSuppress = shouldSuppressCanvasRegionSelection(target, {
-              phase: interactionState.phase,
               isModalOpen: contextMenu !== null,
               isInlineEditing: editing,
               isSchemaDragging: isDragging,
@@ -1602,7 +1621,6 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
               !isInsidePaper ||
               isSelectoExcludedTarget(target) ||
               shouldSuppressCanvasRegionSelection(target, {
-                phase: interactionState.phase,
                 isModalOpen: contextMenu !== null,
                 isInlineEditing: editing,
                 isSchemaDragging: isDragging,
@@ -1852,22 +1870,40 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
                       return;
                     }
 
-                    if (!isActive) {
-                      const targetPageIndex = toNumber(event.currentTarget.dataset.pageIndex);
-                      const targetDocumentId = event.currentTarget.dataset.documentId || undefined;
-                      const nextTargets = event.shiftKey
-                        ? normalizeActiveTargets([...activeElements, event.currentTarget], {
-                            pageIndex: targetPageIndex,
-                            documentId: targetDocumentId,
-                            allowCrossPage: false,
-                          })
-                        : [event.currentTarget];
+                    const targetPageIndex = toNumber(event.currentTarget.dataset.pageIndex);
+                    const targetDocumentId = event.currentTarget.dataset.documentId || undefined;
+                    const scope = {
+                      pageIndex: targetPageIndex,
+                      documentId: targetDocumentId,
+                      allowCrossPage: false,
+                    };
+                    const selectionIntent = resolveSelectionIntent({
+                      platform,
+                      event: event.nativeEvent,
+                      pointerKind: 'click',
+                      isTargetSelected: isActive,
+                    });
+                    const isAdditive = isAdditiveSelectionIntent(selectionIntent);
+
+                    if (isAdditive) {
+                      const currentTargets = normalizeActiveTargets(activeElements, scope);
+                      const alreadySelected = activeElementIdSet.has(event.currentTarget.id);
+                      const nextTargets = alreadySelected
+                        ? currentTargets.filter((element) => element.id !== event.currentTarget.id)
+                        : normalizeActiveTargets([...currentTargets, event.currentTarget], scope);
                       onEdit(nextTargets);
+                      closeContextMenu();
+                      event.preventDefault();
+                      event.stopPropagation();
+                      return;
+                    }
+
+                    if (!isActive) {
+                      onEdit([event.currentTarget]);
                       closeContextMenu();
                       return;
                     }
 
-                    if (isCanvasSelectionExcludedTarget(event.target)) return;
                     if (event.detail > 1) return;
                     moveable.current?.dragStart(event.nativeEvent, event.currentTarget);
                     event.preventDefault();

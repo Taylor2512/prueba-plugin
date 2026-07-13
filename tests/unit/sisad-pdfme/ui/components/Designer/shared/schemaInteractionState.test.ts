@@ -36,6 +36,7 @@ describe('schemaInteractionState', () => {
     const state = resolveSchemaInteractionState(makeInteractionSchema({ id: 'field-2', state: 'locked' }));
 
     expect(state.isLocked).toBe(true);
+    expect(state.visibleBadge).toEqual({ label: 'Bloqueado para edición', color: 'error' });
     expect(state.disabledControls).toContain('toggle-visibility');
     expect(state.disabledControls).not.toContain('assign-recipient');
   });

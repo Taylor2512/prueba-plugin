@@ -44,4 +44,10 @@ describe('DetailHeaderCard', () => {
 
     expect(screen.getByText('+2')).toBeInTheDocument();
   });
+
+  test('shows selection count in the detail header when provided', () => {
+    render(<DetailHeaderCard activeSchema={schema} selectionCount={1} />);
+
+    expect(screen.getByText('1 seleccionado')).toBeInTheDocument();
+  });
 });

@@ -189,6 +189,7 @@ const DetailView = (props: DetailViewProps) => {
     changeSchemas,
     deselectSchema,
     activeSchema,
+    activeElements,
     pageSize,
     basePdf,
     collaborationContext,
@@ -212,6 +213,7 @@ const DetailView = (props: DetailViewProps) => {
     () => resolveSchemaAccessState(activeSchema, accessContext),
     [activeSchema, accessContext],
   );
+  const selectionCount = Array.isArray(activeElements) ? activeElements.length : 0;
 
   const isReadOnly = useMemo(() => accessState.isLockedByOther || !accessState.isEditable, [accessState]);
 
@@ -422,11 +424,12 @@ const DetailView = (props: DetailViewProps) => {
   });
 
   return (
-    <DetailViewContent
-      activeSchema={activeSchema}
-      schemaConfig={schemaConfig}
-      deselectSchema={deselectSchema}
-      form={form}
+        <DetailViewContent
+          activeSchema={activeSchema}
+          schemaConfig={schemaConfig}
+          selectionCount={selectionCount}
+          deselectSchema={deselectSchema}
+          form={form}
       sections={sections}
       widgets={widgets}
       watchHandler={handleWatch}

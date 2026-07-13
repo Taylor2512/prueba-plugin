@@ -18,7 +18,6 @@ import type { SchemaForUI } from '@sisad-pdfme/common';
 import type { CollaborationRecipientOption } from '../../../../collaborationContext.js';
 import { markInspectorInteractive, stopInspectorPointerEvent } from '../DetailView/inspectorInteractionGuards.js';
 import { resolveSchemaUid } from '../../shared/schemaAssignmentService.js';
-import { stopDesignerControlEvent } from '../../shared/interactionExclusions.js';
 import { resetDesignerTransientInteractionState } from '../../shared/designerInteractionReset.js';
 
 /**
@@ -118,10 +117,7 @@ const SchemaAssignmentDialog = ({
   return (
     <Modal
       open={open}
-      onCancel={(event) => {
-        stopDesignerControlEvent(event);
-        onClose();
-      }}
+      onCancel={onClose}
       title="Reasignar responsable"
       width={460}
       centered
@@ -139,19 +135,9 @@ const SchemaAssignmentDialog = ({
         'data-testid': 'schema-assignment-confirm',
       }}
       cancelButtonProps={{ 'data-testid': 'schema-assignment-cancel' }}
-      onOk={(event) => {
-        stopDesignerControlEvent(event);
-        handleConfirm();
-      }}
+      onOk={handleConfirm}
       modalRender={(node) => (
-        <div
-          data-designer-modal="true"
-          data-interaction-exclusion="true"
-          onPointerDownCapture={stopDesignerControlEvent}
-          onMouseDownCapture={stopDesignerControlEvent}
-          onClickCapture={stopDesignerControlEvent}
-          onDoubleClickCapture={stopDesignerControlEvent}
-        >
+        <div data-designer-modal="true" data-interaction-exclusion="true">
           {node}
         </div>
       )}

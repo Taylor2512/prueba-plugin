@@ -469,6 +469,7 @@ const Sidebar = (props: RightSidebarProps) => {
       <DetailViewComponent
         {...props}
         activeSchema={activeSchemas[activeSchemas.length - 1]}
+        activeElements={activeElements}
         selectionCommands={props.selectionCommands}
       />
     </div>

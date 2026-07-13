@@ -24,6 +24,7 @@ import { mergeClassNames } from '../../shared/className.js';
 type DetailHeaderCardProps = {
   activeSchema: SchemaForUI;
   schemaConfig?: SchemaDesignerConfig | null;
+  selectionCount?: number;
   title?: React.ReactNode;
   typeLabel?: React.ReactNode;
   positionLabel?: React.ReactNode;
@@ -50,6 +51,7 @@ type DetailHeaderCardProps = {
 const DetailHeaderCard = ({
   activeSchema,
   schemaConfig,
+  selectionCount,
   title,
   typeLabel,
   positionLabel,
@@ -84,6 +86,10 @@ const DetailHeaderCard = ({
   const visibleTags = resolvedShowStateTags ? effectiveTags.slice(0, adaptiveMaxVisibleTags) : [];
   const overflowCount = resolvedShowStateTags ? Math.max(0, effectiveTags.length - adaptiveMaxVisibleTags) : 0;
   const resolvedOverflowTooltip = overflowTooltip || metaTooltip || headerSummary.overflowTooltip;
+  const selectionTag =
+    typeof selectionCount === 'number' && selectionCount > 0
+      ? { label: selectionCount === 1 ? '1 seleccionado' : `${selectionCount} seleccionados`, color: 'processing' as const }
+      : null;
   const resolvedSubtitle = showType
     ? [typeLabel || headerSummary.schemaType, headerSummary.contextLabel].filter(Boolean).join(' · ')
     : headerSummary.contextLabel || (positionLabel || headerSummary.positionLabel);
@@ -143,6 +149,7 @@ const DetailHeaderCard = ({
         badges={
           resolvedShowStateTags
             ? [
+                ...(selectionTag ? [selectionTag] : []),
                 ...visibleTags.map((tag, index) => ({
                   key: tag.key || `${String(tag.label)}-${String(tag.color ?? 'default')}-${index}`,
                   label: tag.label,

@@ -42,6 +42,7 @@ const makeSchema = (overrides: Partial<SchemaForUI> & { id: string }): SchemaFor
 describe('SchemaAssignmentDialog', () => {
   it('marks the dialog as an interaction exclusion and resets on close', () => {
     capturedModalProps = null;
+    const onClose = vi.fn();
     const onAfterClose = vi.fn();
 
     render(
@@ -49,7 +50,7 @@ describe('SchemaAssignmentDialog', () => {
         open
         selectedSchemas={[makeSchema({ id: 'schema-1' })]}
         recipients={[{ id: 'recipient-1', name: 'Cliente Principal' }]}
-        onClose={vi.fn()}
+        onClose={onClose}
         onConfirm={vi.fn()}
         onAfterClose={onAfterClose}
       />,
@@ -65,6 +66,9 @@ describe('SchemaAssignmentDialog', () => {
     ) as React.ReactElement | undefined;
     expect(rendered?.props['data-designer-modal']).toBe('true');
     expect(rendered?.props['data-interaction-exclusion']).toBe('true');
+
+    (capturedModalProps?.onCancel as (() => void) | undefined)?.();
+    expect(onClose).toHaveBeenCalledTimes(1);
 
     (capturedModalProps?.afterOpenChange as ((visible: boolean) => void) | undefined)?.(false);
     expect(onAfterClose).toHaveBeenCalledTimes(1);

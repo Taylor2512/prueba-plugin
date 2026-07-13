@@ -236,8 +236,9 @@ const ListView = (
   const closeAssignmentDialog = useCallback(() => {
     assignmentDialogOpenRef.current = false;
     setIsAssignmentDialogOpen(false);
+    selectionCommands?.clearSelection?.();
     resetDesignerTransientInteractionState();
-  }, []);
+  }, [selectionCommands]);
 
 
   /**

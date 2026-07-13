@@ -25,6 +25,7 @@ import type { SchemaAccessState } from '../../shared/accessPolicy.js';
 type DetailViewContentProps = {
   activeSchema: SchemaForUI;
   schemaConfig: SchemaDesignerConfig | null;
+  selectionCount?: number;
   deselectSchema: () => void;
   form: ReturnType<typeof useForm>;
   sections: DetailInspectorSection[];
@@ -44,6 +45,7 @@ type DetailViewContentProps = {
 const DetailViewContent = ({
   activeSchema,
   schemaConfig,
+  selectionCount,
   deselectSchema,
   form,
   sections,
@@ -78,6 +80,7 @@ const DetailViewContent = ({
         <DetailHeaderCard
           activeSchema={activeSchema}
           schemaConfig={schemaConfig}
+          selectionCount={selectionCount}
           onBack={deselectSchema}
           backTooltip={backTooltip}
           showPosition={false}

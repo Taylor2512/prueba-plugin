@@ -37,4 +37,8 @@ export const resetDesignerTransientInteractionState = ({
     document.body.style.pointerEvents = '';
     document.body.style.overflow = '';
   }
+
+  if (typeof window !== 'undefined') {
+    window.dispatchEvent(new CustomEvent('sisad-pdfme:designer-interaction-reset'));
+  }
 };

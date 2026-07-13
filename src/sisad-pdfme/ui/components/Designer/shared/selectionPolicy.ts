@@ -35,7 +35,7 @@ export function detectPlatform(): PlatformKind {
  */
 export function resolveSelectionIntent(input: SelectionPolicyInput): SelectionIntent {
   const { platform, event, isTargetLocked, pointerKind } = input;
-  
+
   const isMac = platform === 'mac';
   const ctrlKey = event.ctrlKey;
   const metaKey = event.metaKey;
@@ -46,22 +46,26 @@ export function resolveSelectionIntent(input: SelectionPolicyInput): SelectionIn
     return 'inspect-only';
   }
 
-  // 2. Lógica por plataforma para multi-selección
-  if (isMac) {
-    // macOS: Command es la tecla principal de multi-selección
-    if (metaKey && !shiftKey) return 'toggle';
-    if (metaKey && shiftKey) return 'add';
-    if (shiftKey && !metaKey) return 'add';
-  } else {
-    // Windows/Linux: Control es la tecla principal
-    if (ctrlKey && !shiftKey) return 'toggle';
-    if (ctrlKey && shiftKey) return 'add';
-    if (shiftKey && !ctrlKey) return 'add';
+  // 2. Región
+  if (pointerKind === 'drag-region') {
+    return isMac
+      ? metaKey || shiftKey
+        ? 'add'
+        : 'replace'
+      : ctrlKey || shiftKey
+        ? 'add'
+        : 'replace';
   }
 
-  // 3. Región
-  if (pointerKind === 'drag-region') {
-    return (isMac ? metaKey || shiftKey : ctrlKey || shiftKey) ? 'add' : 'replace';
+  // 3. Lógica por plataforma para multi-selección por click.
+  if (isMac) {
+    // macOS: Command es la tecla principal de multi-selección.
+    if (metaKey && !shiftKey) return 'toggle';
+    if (metaKey && shiftKey) return 'add';
+  } else {
+    // Windows/Linux: Control es la tecla principal.
+    if (ctrlKey && !shiftKey) return 'toggle';
+    if (ctrlKey && shiftKey) return 'add';
   }
 
   // 4. Doble click (por ahora lo tratamos como replace, pero podría ser edit)

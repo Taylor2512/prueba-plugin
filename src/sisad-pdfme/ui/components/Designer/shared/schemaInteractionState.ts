@@ -105,7 +105,7 @@ export const resolveSchemaInteractionState = (
     isReadOnly
       ? { label: 'Solo lectura', color: 'gold' as const }
       : isLocked
-        ? { label: 'Bloqueado', color: 'error' as const }
+        ? { label: 'Bloqueado para edición', color: 'error' as const }
         : !activeUserCanEdit
           ? { label: 'Sin permisos', color: 'warning' as const }
           : null;
