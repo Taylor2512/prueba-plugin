@@ -14,9 +14,9 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `docs`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-13T06:15:57.025Z`
+- **Fecha generación:** `2026-07-13T19:25:57.838Z`
 - **Extensiones incluidas:** `.md, .mdx`
-- **Archivos candidatos incluidos:** `263`
+- **Archivos candidatos incluidos:** `259`
 - **Límite por archivo:** `120 KB`
 - **Límite total de contenido:** `1800 KB`
 
@@ -278,12 +278,7 @@ prueba-plugin
 │   │   ├── 02-firma.md
 │   │   └── README.md
 │   └── README.md
-├── Investigación UX y arquitectura para Dynamic Forms.md
 ├── MANIFEST.md
-├── plan-accion-ux-ui-sidebar-derecho-sisad-pdfme.md
-├── plan-integracion-detailview-wix-sisad-pdfme.md
-├── plan-post-codex-sisad-pdfme.md
-├── plan-profundo-sisad-pdfme-diseniador.md
 ├── README.md
 ├── reports
 │   ├── designer-deep-audit
@@ -313,36 +308,39 @@ prueba-plugin
 │       └── ui-styles-decommission-progress.md
 ├── scripts
 │   └── README.md
-└── src
-    └── sisad-pdfme
-        ├── common
-        │   ├── documentacion-common-sisad-pdfme.md
-        │   └── README.md
-        ├── converter
-        │   ├── documentacion-converter-sisad-pdfme.md
-        │   └── README.md
-        ├── runtime
-        │   ├── documentacion-runtime-sisad-pdfme.md
-        │   └── README.md
-        └── ui
-            ├── components
-            │   ├── Designer
-            │   │   ├── Canvas
-            │   │   │   ├── documentacion-canvas-core-jsdoc.md
-            │   │   │   ├── overlays
-            │   │   │   │   └── …
-            │   │   │   └── README.md
-            │   │   └── RightSidebar
-            │   │       ├── DetailView
-            │   │       │   └── …
-            │   │       ├── documentacion-right-sidebar-rails-jsdoc.md
-            │   │       ├── ListView
-            │   │       │   └── …
-            │   │       └── README.md
-            │   ├── documentacion-runtime-preview-base-jsdoc.md
-            │   └── README.md
-            ├── documentacion-ui-runtime-sisad-pdfme.md
-            └── README.md
+├── src
+│   └── sisad-pdfme
+│       ├── common
+│       │   ├── documentacion-common-sisad-pdfme.md
+│       │   └── README.md
+│       ├── converter
+│       │   ├── documentacion-converter-sisad-pdfme.md
+│       │   └── README.md
+│       ├── runtime
+│       │   ├── documentacion-runtime-sisad-pdfme.md
+│       │   └── README.md
+│       └── ui
+│           ├── components
+│           │   ├── Designer
+│           │   │   ├── Canvas
+│           │   │   │   ├── documentacion-canvas-core-jsdoc.md
+│           │   │   │   ├── overlays
+│           │   │   │   │   └── …
+│           │   │   │   └── README.md
+│           │   │   └── RightSidebar
+│           │   │       ├── DetailView
+│           │   │       │   └── …
+│           │   │       ├── documentacion-right-sidebar-rails-jsdoc.md
+│           │   │       ├── ListView
+│           │   │       │   └── …
+│           │   │       └── README.md
+│           │   ├── documentacion-runtime-preview-base-jsdoc.md
+│           │   └── README.md
+│           ├── documentacion-ui-runtime-sisad-pdfme.md
+│           └── README.md
+└── test-results
+    └── tests-e2e-right-sidebar-li-d300b-ld-owner-through-the-dialog-chromium
+        └── error-context.md
 ```
 
 ## Archivos incluidos
@@ -440,188 +438,184 @@ prueba-plugin
 | 89 | `docs/14-seguridad/README.md` | markdown | 4 | 0.1 | completo |
 | 90 | `AGENTS.md` | markdown | 26 | 0.7 | completo |
 | 91 | `CLAUDE.md` | markdown | 23 | 0.5 | completo |
-| 92 | `Investigación UX y arquitectura para Dynamic Forms.md` | markdown | 249 | 31.8 | completo |
-| 93 | `MANIFEST.md` | markdown | 177 | 6.1 | completo |
-| 94 | `plan-accion-ux-ui-sidebar-derecho-sisad-pdfme.md` | markdown | 635 | 17.4 | completo |
-| 95 | `plan-integracion-detailview-wix-sisad-pdfme.md` | markdown | 686 | 23.2 | completo |
-| 96 | `plan-post-codex-sisad-pdfme.md` | markdown | 2144 | 50.1 | completo |
-| 97 | `plan-profundo-sisad-pdfme-diseniador.md` | markdown | 1720 | 47.8 | completo |
-| 98 | `.github/copilot-instructions.md` | markdown | 15 | 0.4 | completo |
-| 99 | `ai/README.md` | markdown | 38 | 0.8 | completo |
-| 100 | `ai/tree.md` | markdown | 26 | 0.4 | completo |
-| 101 | `reports/jsdoc-missing-report.md` | markdown | 2254 | 78.0 | completo |
-| 102 | `scripts/README.md` | markdown | 21 | 0.4 | completo |
-| 103 | `ai/adapters/README.md` | markdown | 3 | 0.1 | completo |
-| 104 | `ai/agents/canvas-agent.md` | markdown | 37 | 0.6 | completo |
-| 105 | `ai/agents/css-tailwind-agent.md` | markdown | 37 | 0.6 | completo |
-| 106 | `ai/agents/designer-runtime-agent.md` | markdown | 37 | 0.6 | completo |
-| 107 | `ai/agents/docs-architecture-agent.md` | markdown | 37 | 0.6 | completo |
-| 108 | `ai/agents/inspector-agent.md` | markdown | 37 | 0.6 | completo |
-| 109 | `ai/agents/interaction-agent.md` | markdown | 37 | 0.6 | completo |
-| 110 | `ai/agents/lab-shell-agent.md` | markdown | 37 | 0.6 | completo |
-| 111 | `ai/agents/README.md` | markdown | 3 | 0.1 | completo |
-| 112 | `ai/agents/registry.md` | markdown | 12 | 1.3 | completo |
-| 113 | `ai/agents/schema-agent.md` | markdown | 37 | 0.6 | completo |
-| 114 | `ai/agents/snapshot-agent.md` | markdown | 37 | 0.6 | completo |
-| 115 | `ai/agents/visual-baseline-agent.md` | markdown | 37 | 0.6 | completo |
-| 116 | `ai/baselines/img-version-baseline-protocol.md` | markdown | 29 | 0.4 | completo |
-| 117 | `ai/baselines/README.md` | markdown | 3 | 0.1 | completo |
-| 118 | `ai/checklists/done-vs-pending.md` | markdown | 12 | 0.2 | completo |
-| 119 | `ai/checklists/global-validation.md` | markdown | 8 | 0.2 | completo |
-| 120 | `ai/checklists/improvement-backlog.md` | markdown | 9 | 0.3 | completo |
-| 121 | `ai/checklists/manual-ui-regression.md` | markdown | 19 | 0.4 | completo |
-| 122 | `ai/checklists/README.md` | markdown | 3 | 0.1 | completo |
-| 123 | `ai/checklists/tailwind-migration.md` | markdown | 11 | 0.3 | completo |
-| 124 | `ai/context/ai-docs-context.md` | markdown | 3 | 0.1 | completo |
-| 125 | `ai/context/canvas-multipage-context.md` | markdown | 9 | 0.2 | completo |
-| 126 | `ai/context/css-tailwind-context.md` | markdown | 23 | 0.6 | completo |
-| 127 | `ai/context/inspector-context.md` | markdown | 3 | 0.1 | completo |
-| 128 | `ai/context/README.md` | markdown | 3 | 0.1 | completo |
-| 129 | `ai/context/schema-families-context.md` | markdown | 5 | 0.2 | completo |
-| 130 | `ai/context/selection-transform-context.md` | markdown | 3 | 0.2 | completo |
-| 131 | `ai/context/snapshot-context.md` | markdown | 3 | 0.1 | completo |
-| 132 | `ai/context/visual-baseline-context.md` | markdown | 18 | 0.2 | completo |
-| 133 | `ai/docs-migration/MIGRATION_FROM_OLD_STRUCTURE.md` | markdown | 30 | 0.7 | completo |
-| 134 | `ai/memory/changelog.md` | markdown | 7 | 0.3 | completo |
-| 135 | `ai/memory/completed-checklist.md` | markdown | 7 | 0.3 | completo |
-| 136 | `ai/memory/decisions.md` | markdown | 21 | 0.8 | completo |
-| 137 | `ai/memory/known-risks.md` | markdown | 10 | 0.5 | completo |
-| 138 | `ai/memory/memory-update-protocol.md` | markdown | 29 | 0.6 | completo |
-| 139 | `ai/memory/pending-checklist.md` | markdown | 15 | 0.5 | completo |
-| 140 | `ai/memory/project-memory.md` | markdown | 20 | 0.8 | completo |
-| 141 | `ai/memory/README.md` | markdown | 13 | 0.4 | completo |
-| 142 | `ai/memory/session-handoff.md` | markdown | 13 | 0.5 | completo |
-| 143 | `ai/playbooks/pb-ai-docs-refactor.md` | markdown | 7 | 0.2 | completo |
-| 144 | `ai/playbooks/pb-canvas-multipage.md` | markdown | 6 | 0.2 | completo |
-| 145 | `ai/playbooks/pb-css-tailwind-migration.md` | markdown | 9 | 0.3 | completo |
-| 146 | `ai/playbooks/pb-inspector.md` | markdown | 6 | 0.1 | completo |
-| 147 | `ai/playbooks/pb-schema-families.md` | markdown | 6 | 0.2 | completo |
-| 148 | `ai/playbooks/pb-selection-transform.md` | markdown | 6 | 0.1 | completo |
-| 149 | `ai/playbooks/pb-snapshot.md` | markdown | 6 | 0.1 | completo |
-| 150 | `ai/playbooks/pb-visual-regression.md` | markdown | 8 | 0.2 | completo |
-| 151 | `ai/playbooks/README.md` | markdown | 3 | 0.1 | completo |
-| 152 | `ai/project/architecture-principles.md` | markdown | 34 | 1.0 | completo |
-| 153 | `ai/project/definition-of-done.md` | markdown | 12 | 0.4 | completo |
-| 154 | `ai/project/file-ownership-map.md` | markdown | 14 | 0.8 | completo |
-| 155 | `ai/project/glossary.md` | markdown | 16 | 0.7 | completo |
-| 156 | `ai/project/goals.md` | markdown | 24 | 0.9 | completo |
-| 157 | `ai/project/non-goals.md` | markdown | 12 | 0.3 | completo |
-| 158 | `ai/project/scope.md` | markdown | 38 | 0.6 | completo |
-| 159 | `ai/prompts/claude-diagnose-or-implement.md` | markdown | 7 | 0.2 | completo |
-| 160 | `ai/prompts/codex-master-prompt.md` | markdown | 5 | 0.3 | completo |
-| 161 | `ai/prompts/copilot-task-context.md` | markdown | 11 | 0.2 | completo |
-| 162 | `ai/prompts/create-task-card.md` | markdown | 11 | 0.2 | completo |
-| 163 | `ai/prompts/README.md` | markdown | 3 | 0.1 | completo |
-| 164 | `ai/prompts/update-memory.md` | markdown | 3 | 0.1 | completo |
-| 165 | `ai/reports/README.md` | markdown | 3 | 0.1 | completo |
-| 166 | `ai/reports/report-template.md` | markdown | 10 | 0.1 | completo |
-| 167 | `ai/router/CONTEXT_BUDGET.md` | markdown | 45 | 0.8 | completo |
-| 168 | `ai/router/ROUTER.md` | markdown | 27 | 1.2 | completo |
-| 169 | `ai/router/TASK_INTAKE.md` | markdown | 15 | 0.4 | completo |
-| 170 | `ai/rules/ai-docs-rules.md` | markdown | 6 | 0.2 | completo |
-| 171 | `ai/rules/canvas-rules.md` | markdown | 3 | 0.1 | completo |
-| 172 | `ai/rules/css-migration-rules.md` | markdown | 8 | 0.3 | completo |
-| 173 | `ai/rules/global-rules.md` | markdown | 7 | 0.2 | completo |
-| 174 | `ai/rules/inspector-rules.md` | markdown | 3 | 0.1 | completo |
-| 175 | `ai/rules/moveable-selecto-rules.md` | markdown | 5 | 0.2 | completo |
-| 176 | `ai/rules/README.md` | markdown | 3 | 0.1 | completo |
-| 177 | `ai/rules/schema-rules.md` | markdown | 3 | 0.1 | completo |
-| 178 | `ai/rules/snapshot-rules.md` | markdown | 3 | 0.1 | completo |
-| 179 | `ai/skills/canvas-multipage-skill.md` | markdown | 29 | 0.4 | completo |
-| 180 | `ai/skills/inspector-skill.md` | markdown | 29 | 0.4 | completo |
-| 181 | `ai/skills/memory-update-skill.md` | markdown | 29 | 0.4 | completo |
-| 182 | `ai/skills/moveable-selecto-skill.md` | markdown | 29 | 0.4 | completo |
-| 183 | `ai/skills/option-groups-skill.md` | markdown | 29 | 0.4 | completo |
-| 184 | `ai/skills/prompting-skill.md` | markdown | 29 | 0.4 | completo |
-| 185 | `ai/skills/README.md` | markdown | 3 | 0.1 | completo |
-| 186 | `ai/skills/snapshot-safety-skill.md` | markdown | 29 | 0.4 | completo |
-| 187 | `ai/skills/tailwind-migration-skill.md` | markdown | 29 | 0.4 | completo |
-| 188 | `ai/skills/visual-regression-skill.md` | markdown | 29 | 0.4 | completo |
-| 189 | `ai/start/QUICKSTART-CLAUDE.md` | markdown | 15 | 0.4 | completo |
-| 190 | `ai/start/QUICKSTART-CODEX.md` | markdown | 34 | 0.7 | completo |
-| 191 | `ai/start/QUICKSTART-COPILOT.md` | markdown | 18 | 0.4 | completo |
-| 192 | `ai/start/START.md` | markdown | 76 | 1.2 | completo |
-| 193 | `ai/subagents/anti-hallucination-reviewer.md` | markdown | 13 | 0.3 | completo |
-| 194 | `ai/subagents/baseline-visual-critic.md` | markdown | 13 | 0.3 | completo |
-| 195 | `ai/subagents/code-docs-writer.md` | markdown | 13 | 0.3 | completo |
-| 196 | `ai/subagents/css-auditor.md` | markdown | 13 | 0.3 | completo |
-| 197 | `ai/subagents/legacy-css-guardian.md` | markdown | 13 | 0.3 | completo |
-| 198 | `ai/subagents/memory-curator.md` | markdown | 13 | 0.3 | completo |
-| 199 | `ai/subagents/prompt-engineer.md` | markdown | 13 | 0.3 | completo |
-| 200 | `ai/subagents/README.md` | markdown | 3 | 0.1 | completo |
-| 201 | `ai/subagents/regression-tester.md` | markdown | 13 | 0.3 | completo |
-| 202 | `ai/subagents/tailwind-migrator.md` | markdown | 13 | 0.3 | completo |
-| 203 | `ai/task-cards/README.md` | markdown | 11 | 0.2 | completo |
-| 204 | `ai/templates/agent-template.md` | markdown | 7 | 0.1 | completo |
-| 205 | `ai/templates/checklist-template.md` | markdown | 5 | 0.1 | completo |
-| 206 | `ai/templates/decision-template.md` | markdown | 7 | 0.1 | completo |
-| 207 | `ai/templates/memory-update-template.md` | markdown | 7 | 0.1 | completo |
-| 208 | `ai/templates/README.md` | markdown | 3 | 0.1 | completo |
-| 209 | `ai/templates/skill-template.md` | markdown | 7 | 0.1 | completo |
-| 210 | `ai/templates/task-card-template.md` | markdown | 11 | 0.2 | completo |
-| 211 | `reports/designer-deep-audit/duplication-map.md` | markdown | 24 | 1.4 | completo |
-| 212 | `reports/designer-deep-audit/risk-map.md` | markdown | 19 | 1.1 | completo |
-| 213 | `reports/tailwind-migration/baseline-regression-audit.md` | markdown | 27 | 5.2 | completo |
-| 214 | `reports/tailwind-migration/component-migration-ledger.md` | markdown | 62 | 5.1 | completo |
-| 215 | `reports/tailwind-migration/deep-density-spacing-audit.md` | markdown | 105 | 9.6 | completo |
-| 216 | `reports/tailwind-migration/img-version-baseline-inventory.md` | markdown | 14 | 2.6 | completo |
-| 217 | `reports/tailwind-migration/line-by-line-style-audit.md` | markdown | 227 | 21.6 | completo |
-| 218 | `reports/tailwind-migration/pending-phases-progress.md` | markdown | 10 | 1.9 | completo |
-| 219 | `reports/tailwind-migration/README.md` | markdown | 76 | 4.6 | completo |
-| 220 | `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md` | markdown | 45 | 3.4 | completo |
-| 221 | `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md` | markdown | 34 | 3.2 | completo |
-| 222 | `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md` | markdown | 13 | 2.3 | completo |
-| 223 | `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md` | markdown | 20 | 1.4 | completo |
-| 224 | `reports/tailwind-migration/schema-chrome-tailwind-audit.md` | markdown | 18 | 1.3 | completo |
-| 225 | `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md` | markdown | 45 | 2.8 | completo |
-| 226 | `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md` | markdown | 43 | 2.5 | completo |
-| 227 | `reports/tailwind-migration/tc-css-10-schemas-visual.md` | markdown | 33 | 3.7 | completo |
-| 228 | `reports/tailwind-migration/tc-css-11-lab-audit.md` | markdown | 31 | 1.2 | completo |
-| 229 | `reports/tailwind-migration/tc-css-option-group-selection-fix.md` | markdown | 38 | 4.3 | completo |
-| 230 | `reports/tailwind-migration/tc-css-ownership-color.md` | markdown | 38 | 4.0 | completo |
-| 231 | `reports/tailwind-migration/ui-styles-decommission-audit.md` | markdown | 57 | 5.6 | completo |
-| 232 | `reports/tailwind-migration/ui-styles-decommission-progress.md` | markdown | 25 | 1.6 | completo |
-| 233 | `ai/task-cards/active/TASK-CANVAS-002-snap-lines-and-sidebar-compactness.md` | markdown | 36 | 1.1 | completo |
-| 234 | `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md` | markdown | 21 | 0.5 | completo |
-| 235 | `ai/task-cards/active/TASK-INSPECTOR-001-detailview-density.md` | markdown | 55 | 1.7 | completo |
-| 236 | `ai/task-cards/active/TASK-LAB-001-results-panel-placement.md` | markdown | 35 | 1.1 | completo |
-| 237 | `ai/task-cards/active/TASK-SCHEMA-001-option-indicator-docusign.md` | markdown | 49 | 1.7 | completo |
-| 238 | `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 5 | 0.2 | completo |
-| 239 | `ai/task-cards/backlog/TASK-CSS-001-tailwind-regression-stabilization.md` | markdown | 22 | 0.6 | completo |
-| 240 | `ai/task-cards/backlog/TASK-VISUAL-001-img-version-baseline.md` | markdown | 12 | 0.3 | completo |
-| 241 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
-| 242 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 784 | 21.6 | completo |
-| 243 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
-| 244 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
-| 245 | `src/sisad-pdfme/converter/README.md` | markdown | 42 | 0.9 | completo |
-| 246 | `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md` | markdown | 151 | 4.6 | completo |
-| 247 | `src/sisad-pdfme/runtime/README.md` | markdown | 15 | 0.7 | completo |
-| 248 | `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md` | markdown | 168 | 5.7 | completo |
-| 249 | `src/sisad-pdfme/ui/README.md` | markdown | 38 | 2.2 | completo |
-| 250 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
-| 251 | `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md` | markdown | 30 | 1.6 | completo |
-| 252 | `src/sisad-pdfme/ui/components/README.md` | markdown | 28 | 1.1 | completo |
-| 253 | `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md` | markdown | 18 | 0.9 | completo |
-| 254 | `src/sisad-pdfme/ui/components/Designer/Canvas/README.md` | markdown | 24 | 1.2 | completo |
-| 255 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md` | markdown | 15 | 1.0 | completo |
-| 256 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md` | markdown | 18 | 0.7 | completo |
-| 257 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md` | markdown | 21 | 0.7 | completo |
-| 258 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md` | markdown | 35 | 1.3 | completo |
-| 259 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md` | markdown | 42 | 1.6 | completo |
-| 260 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md` | markdown | 38 | 1.4 | completo |
-| 261 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md` | markdown | 20 | 1.0 | completo |
-| 262 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md` | markdown | 31 | 1.8 | completo |
-| 263 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md` | markdown | 24 | 0.8 | completo |
+| 92 | `MANIFEST.md` | markdown | 177 | 6.1 | completo |
+| 93 | `.github/copilot-instructions.md` | markdown | 15 | 0.4 | completo |
+| 94 | `ai/README.md` | markdown | 38 | 0.8 | completo |
+| 95 | `ai/tree.md` | markdown | 26 | 0.4 | completo |
+| 96 | `reports/jsdoc-missing-report.md` | markdown | 2254 | 78.0 | completo |
+| 97 | `scripts/README.md` | markdown | 21 | 0.4 | completo |
+| 98 | `ai/adapters/README.md` | markdown | 3 | 0.1 | completo |
+| 99 | `ai/agents/canvas-agent.md` | markdown | 37 | 0.6 | completo |
+| 100 | `ai/agents/css-tailwind-agent.md` | markdown | 37 | 0.6 | completo |
+| 101 | `ai/agents/designer-runtime-agent.md` | markdown | 37 | 0.6 | completo |
+| 102 | `ai/agents/docs-architecture-agent.md` | markdown | 37 | 0.6 | completo |
+| 103 | `ai/agents/inspector-agent.md` | markdown | 37 | 0.6 | completo |
+| 104 | `ai/agents/interaction-agent.md` | markdown | 37 | 0.6 | completo |
+| 105 | `ai/agents/lab-shell-agent.md` | markdown | 37 | 0.6 | completo |
+| 106 | `ai/agents/README.md` | markdown | 3 | 0.1 | completo |
+| 107 | `ai/agents/registry.md` | markdown | 12 | 1.3 | completo |
+| 108 | `ai/agents/schema-agent.md` | markdown | 37 | 0.6 | completo |
+| 109 | `ai/agents/snapshot-agent.md` | markdown | 37 | 0.6 | completo |
+| 110 | `ai/agents/visual-baseline-agent.md` | markdown | 37 | 0.6 | completo |
+| 111 | `ai/baselines/img-version-baseline-protocol.md` | markdown | 29 | 0.4 | completo |
+| 112 | `ai/baselines/README.md` | markdown | 3 | 0.1 | completo |
+| 113 | `ai/checklists/done-vs-pending.md` | markdown | 12 | 0.2 | completo |
+| 114 | `ai/checklists/global-validation.md` | markdown | 8 | 0.2 | completo |
+| 115 | `ai/checklists/improvement-backlog.md` | markdown | 9 | 0.3 | completo |
+| 116 | `ai/checklists/manual-ui-regression.md` | markdown | 19 | 0.4 | completo |
+| 117 | `ai/checklists/README.md` | markdown | 3 | 0.1 | completo |
+| 118 | `ai/checklists/tailwind-migration.md` | markdown | 11 | 0.3 | completo |
+| 119 | `ai/context/ai-docs-context.md` | markdown | 3 | 0.1 | completo |
+| 120 | `ai/context/canvas-multipage-context.md` | markdown | 9 | 0.2 | completo |
+| 121 | `ai/context/css-tailwind-context.md` | markdown | 23 | 0.6 | completo |
+| 122 | `ai/context/inspector-context.md` | markdown | 3 | 0.1 | completo |
+| 123 | `ai/context/README.md` | markdown | 3 | 0.1 | completo |
+| 124 | `ai/context/schema-families-context.md` | markdown | 5 | 0.2 | completo |
+| 125 | `ai/context/selection-transform-context.md` | markdown | 3 | 0.2 | completo |
+| 126 | `ai/context/snapshot-context.md` | markdown | 3 | 0.1 | completo |
+| 127 | `ai/context/visual-baseline-context.md` | markdown | 18 | 0.2 | completo |
+| 128 | `ai/docs-migration/MIGRATION_FROM_OLD_STRUCTURE.md` | markdown | 30 | 0.7 | completo |
+| 129 | `ai/memory/changelog.md` | markdown | 7 | 0.3 | completo |
+| 130 | `ai/memory/completed-checklist.md` | markdown | 7 | 0.3 | completo |
+| 131 | `ai/memory/decisions.md` | markdown | 21 | 0.8 | completo |
+| 132 | `ai/memory/known-risks.md` | markdown | 10 | 0.5 | completo |
+| 133 | `ai/memory/memory-update-protocol.md` | markdown | 29 | 0.6 | completo |
+| 134 | `ai/memory/pending-checklist.md` | markdown | 15 | 0.5 | completo |
+| 135 | `ai/memory/project-memory.md` | markdown | 20 | 0.8 | completo |
+| 136 | `ai/memory/README.md` | markdown | 13 | 0.4 | completo |
+| 137 | `ai/memory/session-handoff.md` | markdown | 13 | 0.5 | completo |
+| 138 | `ai/playbooks/pb-ai-docs-refactor.md` | markdown | 7 | 0.2 | completo |
+| 139 | `ai/playbooks/pb-canvas-multipage.md` | markdown | 6 | 0.2 | completo |
+| 140 | `ai/playbooks/pb-css-tailwind-migration.md` | markdown | 9 | 0.3 | completo |
+| 141 | `ai/playbooks/pb-inspector.md` | markdown | 6 | 0.1 | completo |
+| 142 | `ai/playbooks/pb-schema-families.md` | markdown | 6 | 0.2 | completo |
+| 143 | `ai/playbooks/pb-selection-transform.md` | markdown | 6 | 0.1 | completo |
+| 144 | `ai/playbooks/pb-snapshot.md` | markdown | 6 | 0.1 | completo |
+| 145 | `ai/playbooks/pb-visual-regression.md` | markdown | 8 | 0.2 | completo |
+| 146 | `ai/playbooks/README.md` | markdown | 3 | 0.1 | completo |
+| 147 | `ai/project/architecture-principles.md` | markdown | 34 | 1.0 | completo |
+| 148 | `ai/project/definition-of-done.md` | markdown | 12 | 0.4 | completo |
+| 149 | `ai/project/file-ownership-map.md` | markdown | 14 | 0.8 | completo |
+| 150 | `ai/project/glossary.md` | markdown | 16 | 0.7 | completo |
+| 151 | `ai/project/goals.md` | markdown | 24 | 0.9 | completo |
+| 152 | `ai/project/non-goals.md` | markdown | 12 | 0.3 | completo |
+| 153 | `ai/project/scope.md` | markdown | 38 | 0.6 | completo |
+| 154 | `ai/prompts/claude-diagnose-or-implement.md` | markdown | 7 | 0.2 | completo |
+| 155 | `ai/prompts/codex-master-prompt.md` | markdown | 5 | 0.3 | completo |
+| 156 | `ai/prompts/copilot-task-context.md` | markdown | 11 | 0.2 | completo |
+| 157 | `ai/prompts/create-task-card.md` | markdown | 11 | 0.2 | completo |
+| 158 | `ai/prompts/README.md` | markdown | 3 | 0.1 | completo |
+| 159 | `ai/prompts/update-memory.md` | markdown | 3 | 0.1 | completo |
+| 160 | `ai/reports/README.md` | markdown | 3 | 0.1 | completo |
+| 161 | `ai/reports/report-template.md` | markdown | 10 | 0.1 | completo |
+| 162 | `ai/router/CONTEXT_BUDGET.md` | markdown | 45 | 0.8 | completo |
+| 163 | `ai/router/ROUTER.md` | markdown | 27 | 1.2 | completo |
+| 164 | `ai/router/TASK_INTAKE.md` | markdown | 15 | 0.4 | completo |
+| 165 | `ai/rules/ai-docs-rules.md` | markdown | 6 | 0.2 | completo |
+| 166 | `ai/rules/canvas-rules.md` | markdown | 3 | 0.1 | completo |
+| 167 | `ai/rules/css-migration-rules.md` | markdown | 8 | 0.3 | completo |
+| 168 | `ai/rules/global-rules.md` | markdown | 7 | 0.2 | completo |
+| 169 | `ai/rules/inspector-rules.md` | markdown | 3 | 0.1 | completo |
+| 170 | `ai/rules/moveable-selecto-rules.md` | markdown | 5 | 0.2 | completo |
+| 171 | `ai/rules/README.md` | markdown | 3 | 0.1 | completo |
+| 172 | `ai/rules/schema-rules.md` | markdown | 3 | 0.1 | completo |
+| 173 | `ai/rules/snapshot-rules.md` | markdown | 3 | 0.1 | completo |
+| 174 | `ai/skills/canvas-multipage-skill.md` | markdown | 29 | 0.4 | completo |
+| 175 | `ai/skills/inspector-skill.md` | markdown | 29 | 0.4 | completo |
+| 176 | `ai/skills/memory-update-skill.md` | markdown | 29 | 0.4 | completo |
+| 177 | `ai/skills/moveable-selecto-skill.md` | markdown | 29 | 0.4 | completo |
+| 178 | `ai/skills/option-groups-skill.md` | markdown | 29 | 0.4 | completo |
+| 179 | `ai/skills/prompting-skill.md` | markdown | 29 | 0.4 | completo |
+| 180 | `ai/skills/README.md` | markdown | 3 | 0.1 | completo |
+| 181 | `ai/skills/snapshot-safety-skill.md` | markdown | 29 | 0.4 | completo |
+| 182 | `ai/skills/tailwind-migration-skill.md` | markdown | 29 | 0.4 | completo |
+| 183 | `ai/skills/visual-regression-skill.md` | markdown | 29 | 0.4 | completo |
+| 184 | `ai/start/QUICKSTART-CLAUDE.md` | markdown | 15 | 0.4 | completo |
+| 185 | `ai/start/QUICKSTART-CODEX.md` | markdown | 34 | 0.7 | completo |
+| 186 | `ai/start/QUICKSTART-COPILOT.md` | markdown | 18 | 0.4 | completo |
+| 187 | `ai/start/START.md` | markdown | 76 | 1.2 | completo |
+| 188 | `ai/subagents/anti-hallucination-reviewer.md` | markdown | 13 | 0.3 | completo |
+| 189 | `ai/subagents/baseline-visual-critic.md` | markdown | 13 | 0.3 | completo |
+| 190 | `ai/subagents/code-docs-writer.md` | markdown | 13 | 0.3 | completo |
+| 191 | `ai/subagents/css-auditor.md` | markdown | 13 | 0.3 | completo |
+| 192 | `ai/subagents/legacy-css-guardian.md` | markdown | 13 | 0.3 | completo |
+| 193 | `ai/subagents/memory-curator.md` | markdown | 13 | 0.3 | completo |
+| 194 | `ai/subagents/prompt-engineer.md` | markdown | 13 | 0.3 | completo |
+| 195 | `ai/subagents/README.md` | markdown | 3 | 0.1 | completo |
+| 196 | `ai/subagents/regression-tester.md` | markdown | 13 | 0.3 | completo |
+| 197 | `ai/subagents/tailwind-migrator.md` | markdown | 13 | 0.3 | completo |
+| 198 | `ai/task-cards/README.md` | markdown | 11 | 0.2 | completo |
+| 199 | `ai/templates/agent-template.md` | markdown | 7 | 0.1 | completo |
+| 200 | `ai/templates/checklist-template.md` | markdown | 5 | 0.1 | completo |
+| 201 | `ai/templates/decision-template.md` | markdown | 7 | 0.1 | completo |
+| 202 | `ai/templates/memory-update-template.md` | markdown | 7 | 0.1 | completo |
+| 203 | `ai/templates/README.md` | markdown | 3 | 0.1 | completo |
+| 204 | `ai/templates/skill-template.md` | markdown | 7 | 0.1 | completo |
+| 205 | `ai/templates/task-card-template.md` | markdown | 11 | 0.2 | completo |
+| 206 | `reports/designer-deep-audit/duplication-map.md` | markdown | 24 | 1.4 | completo |
+| 207 | `reports/designer-deep-audit/risk-map.md` | markdown | 19 | 1.1 | completo |
+| 208 | `reports/tailwind-migration/baseline-regression-audit.md` | markdown | 27 | 5.2 | completo |
+| 209 | `reports/tailwind-migration/component-migration-ledger.md` | markdown | 62 | 5.1 | completo |
+| 210 | `reports/tailwind-migration/deep-density-spacing-audit.md` | markdown | 105 | 9.6 | completo |
+| 211 | `reports/tailwind-migration/img-version-baseline-inventory.md` | markdown | 14 | 2.6 | completo |
+| 212 | `reports/tailwind-migration/line-by-line-style-audit.md` | markdown | 227 | 21.6 | completo |
+| 213 | `reports/tailwind-migration/pending-phases-progress.md` | markdown | 10 | 1.9 | completo |
+| 214 | `reports/tailwind-migration/README.md` | markdown | 76 | 4.6 | completo |
+| 215 | `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md` | markdown | 45 | 3.4 | completo |
+| 216 | `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md` | markdown | 34 | 3.2 | completo |
+| 217 | `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md` | markdown | 13 | 2.3 | completo |
+| 218 | `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md` | markdown | 20 | 1.4 | completo |
+| 219 | `reports/tailwind-migration/schema-chrome-tailwind-audit.md` | markdown | 18 | 1.3 | completo |
+| 220 | `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md` | markdown | 45 | 2.8 | completo |
+| 221 | `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md` | markdown | 43 | 2.5 | completo |
+| 222 | `reports/tailwind-migration/tc-css-10-schemas-visual.md` | markdown | 33 | 3.7 | completo |
+| 223 | `reports/tailwind-migration/tc-css-11-lab-audit.md` | markdown | 31 | 1.2 | completo |
+| 224 | `reports/tailwind-migration/tc-css-option-group-selection-fix.md` | markdown | 38 | 4.3 | completo |
+| 225 | `reports/tailwind-migration/tc-css-ownership-color.md` | markdown | 38 | 4.0 | completo |
+| 226 | `reports/tailwind-migration/ui-styles-decommission-audit.md` | markdown | 57 | 5.6 | completo |
+| 227 | `reports/tailwind-migration/ui-styles-decommission-progress.md` | markdown | 25 | 1.6 | completo |
+| 228 | `test-results/tests-e2e-right-sidebar-li-d300b-ld-owner-through-the-dialog-chromium/error-context.md` | markdown | 681 | 33.3 | completo |
+| 229 | `ai/task-cards/active/TASK-CANVAS-002-snap-lines-and-sidebar-compactness.md` | markdown | 36 | 1.1 | completo |
+| 230 | `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md` | markdown | 21 | 0.5 | completo |
+| 231 | `ai/task-cards/active/TASK-INSPECTOR-001-detailview-density.md` | markdown | 55 | 1.7 | completo |
+| 232 | `ai/task-cards/active/TASK-LAB-001-results-panel-placement.md` | markdown | 35 | 1.1 | completo |
+| 233 | `ai/task-cards/active/TASK-SCHEMA-001-option-indicator-docusign.md` | markdown | 49 | 1.7 | completo |
+| 234 | `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 5 | 0.2 | completo |
+| 235 | `ai/task-cards/backlog/TASK-CSS-001-tailwind-regression-stabilization.md` | markdown | 22 | 0.6 | completo |
+| 236 | `ai/task-cards/backlog/TASK-VISUAL-001-img-version-baseline.md` | markdown | 12 | 0.3 | completo |
+| 237 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
+| 238 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 784 | 21.6 | completo |
+| 239 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
+| 240 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
+| 241 | `src/sisad-pdfme/converter/README.md` | markdown | 42 | 0.9 | completo |
+| 242 | `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md` | markdown | 151 | 4.6 | completo |
+| 243 | `src/sisad-pdfme/runtime/README.md` | markdown | 15 | 0.7 | completo |
+| 244 | `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md` | markdown | 168 | 5.7 | completo |
+| 245 | `src/sisad-pdfme/ui/README.md` | markdown | 38 | 2.2 | completo |
+| 246 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
+| 247 | `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md` | markdown | 30 | 1.6 | completo |
+| 248 | `src/sisad-pdfme/ui/components/README.md` | markdown | 28 | 1.1 | completo |
+| 249 | `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md` | markdown | 18 | 0.9 | completo |
+| 250 | `src/sisad-pdfme/ui/components/Designer/Canvas/README.md` | markdown | 24 | 1.2 | completo |
+| 251 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md` | markdown | 15 | 1.0 | completo |
+| 252 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md` | markdown | 18 | 0.7 | completo |
+| 253 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md` | markdown | 21 | 0.7 | completo |
+| 254 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md` | markdown | 35 | 1.3 | completo |
+| 255 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md` | markdown | 42 | 1.6 | completo |
+| 256 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md` | markdown | 38 | 1.4 | completo |
+| 257 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md` | markdown | 20 | 1.0 | completo |
+| 258 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md` | markdown | 31 | 1.8 | completo |
+| 259 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md` | markdown | 24 | 0.8 | completo |
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1563
+- **extensión no incluida:** 1573
 - **directorio ignorado: dependencia/build/salida generada:** 7
 
 ## Totales
 
-- **KB originales candidatos:** `481.5`
-- **KB incluidos en contenido:** `481.3`
+- **KB originales candidatos:** `344.5`
+- **KB incluidos en contenido:** `344.2`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -3087,269 +3081,7 @@ ai/memory/project-memory.md
 
 <a id="file-0092"></a>
 
-### 0092 — `Investigación UX y arquitectura para Dynamic Forms.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `249`
-- **Tamaño original:** `31.8 KB`
-- **SHA1 corto:** `7f02b6c708`
-- **Estado:** `completo`
-
-```markdown
-# Investigación UX y arquitectura para Dynamic Forms
-
-## Alcance y supuestos
-
-El objetivo de esta investigación es definir cómo evolucionar **dynamic_forms** desde un constructor centrado en formularios hacia un **builder capaz de crear formularios, páginas y sitios web**, mejorando visualización, interacción y arquitectura sin perder su condición de producto **standalone** y desacoplado del consumidor empresarial. La documentación interna subida a la conversación confirma precisamente esa restricción y, además, establece como principio rector que no conviene ampliar el catálogo visual antes de consolidar el contrato entre editor, esquema, preview, publicación y runtime. fileciteturn8file0 fileciteturn11file6
-
-También quedan dos supuestos explícitos del encargo: todavía **no se había especificado el formato preferido de entrega** y, por tanto, las opciones razonables siguen siendo **HTML** para revisión colaborativa y **PDF** para distribución ejecutiva; además, aunque se subieron dos ZIP llamados `imagenes_dynamic_forms(2).zip` y `imagenes_wix(3).zip`, en esta sesión **no fue posible extraer programáticamente su inventario interno de imágenes**, por lo que el catálogo exhaustivo por archivo individual queda marcado como **“no especificado”** allí donde no existe verificación directa. En consecuencia, el análisis visual comparativo se apoya en tres fuentes complementarias: nombres de los ZIP, documentación/código del producto actual y benchmarking oficial de Wix y otras plataformas comparables.
-
-En la documentación interna sí quedó verificado que el producto actual usa un workspace compuesto por **topbar, rail, drawer, canvas, inspector, bottom panel y managers flotantes**, con separación entre `workspaceViewport` y `canvasDeviceMode`, un Insert Center todavía MVP, inspector schema-driven, Form Manager, Rule Manager, adapters local/REST y smoke tests básicos para apertura, inserción, drag and drop, preview y auditoría responsive. También se documenta que **Pages, Layers, Theme, Data e Integrations** siguen teniendo madurez parcial. fileciteturn9file0 fileciteturn9file13
-
-## Resumen ejecutivo
-
-La conclusión principal es clara: **dynamic_forms no necesita parecerse a Wix en todo; necesita adoptar la estructura mental que hace que Wix, Squarespace, Framer o Webflow se sientan como “constructores de experiencias” y no solo como editores de campos**. En el estado actual, dynamic_forms ya tiene piezas importantes de un estudio de edición serio —canvas, inspector, rail, paneles, managers, drag overlays, focus ring, reduced motion y una base de schema/layout consistente—, pero todavía enfrenta tres límites: poca profundidad en navegación por intención, insuficiente madurez de los managers de páginas/tema/datos/integraciones y una prioridad arquitectónica pendiente entre schema, reglas, preview, publicación y runtime. fileciteturn9file0 fileciteturn9file3 fileciteturn9file15
-
-Wix, en su oferta oficial en español, se posiciona como un creador híbrido donde el usuario puede empezar por IA, por plantilla o desde cero, con **más de 900 plantillas**, edición de **arrastrar y soltar** con precisión de píxel, **landing pages**, vista móvil editable, paneles de negocio, SEO, CRM, reservas y una biblioteca amplia de recursos y animaciones. Squarespace comunica un patrón parecido, pero con un tono más curado: IA + plantillas + drag and drop + páginas prediseñadas + marketing integrado. Webflow y Framer, por su parte, empujan un modelo más “sistema de diseño/CMS first”, donde las páginas y los componentes reutilizables son ciudadanos de primera clase. Typeform y Jotform muestran la otra mitad del problema: cómo convertir el formulario en experiencia, lógica conversacional, automatización y extensión hacia landing pages o apps. citeturn16view0turn18view0turn18view1turn18view2turn18view3turn17view0turn17view1turn17view2turn5view0turn5view2turn15view0turn15view1turn15view2turn15view3
-
-La implicación estratégica es que **dynamic_forms debe reposicionarse como “Dynamic Builder Studio”** con un modelo de documento jerárquico: páginas, secciones, contenedores, grupos, campos, contenido, acciones, media, reglas y datos. La documentación interna ya camina en esa dirección: propone una experiencia final con topbar compacta, rail por intención, panel izquierdo invocable, canvas jerárquico, inspector contextual, managers especializados, preview fiel y workspaces de settings/submissions; además, el modelo de nodos contempla layout con `absolute`, `flow`, `grid` y `flex`, responsive por breakpoint, rules, bindings, acciones y accesibilidad. fileciteturn11file6 fileciteturn11file18 fileciteturn10file15
-
-La decisión de producto más importante no es “agregar más widgets”, sino **reordenar la experiencia**. Hoy, el producto parece tener la base de un editor técnico; la mejora debe convertirlo en un **estudio visual**. Eso implica: inicio por objetivo, panel de páginas y secciones antes que lista de campos, presets de bloques, responsive semántico, gestor de tema, gestor de assets, estados de publicación visibles, microinteracciones más claras y un runtime de reglas real antes de escalar la promesa de sitios completos. La propia documentación interna ya lo sugiere: “el canvas manda; los paneles asisten”. fileciteturn11file6
-
-## Metodología y estado actual del producto
-
-La metodología pedida tiene sentido y conviene conservarla como estándar operativo del proyecto, incluso aunque en esta sesión no se haya podido ejecutar completa sobre el contenido de los ZIP. El proceso recomendado consta de cuatro tramos: **descompresión**, **catalogación**, **etiquetado** y **comparación**. La catalogación debe registrar nombre de archivo, peso, resolución, tipo de captura, familia UI, patrones visuales y variantes; el etiquetado debe ser mixto, con heurísticas automáticas para detectar paneles, barras, modales, canvas, cards, grids y estados, y revisión manual para corregir ambigüedades; la comparación debe medir consistencia de UI, jerarquía visual, densidad informativa, contraste, legibilidad, claridad de estados, escalabilidad responsive y alineación WCAG.
-
-Ese enfoque encaja bien con el estado documentado del producto. La base interna ya ofrece un ecosistema compatible con una evolución a builder visual más serio: React 19, Vite 8, Tailwind 4, `@dnd-kit/core`, smoke tests, baseline visual con Playwright y un shell de edición desacoplado. También se confirma que la auditoría responsive actual existe, pero todavía se centra en el breakpoint detectado y en variantes del inspector/drawer más que en el reflow real de todos los componentes o en errores de overflow horizontal, foco atrapado, DnD inválido, publicación end-to-end y documentos grandes. fileciteturn8file0 fileciteturn9file0
-
-A nivel visual, la documentación interna detecta fortalezas y riesgos muy concretos. Entre lo positivo: un solo CSS global, tokens, sombras, radios, tamaños del workspace, scrollbars, focus ring y soporte a `prefers-reduced-motion`. Entre lo problemático: el fondo radial aplicado al `body`, el `color-scheme: light` forzado y una escala de z-index incompleta que todavía no contempla explícitamente `canvasOverlay`, `dragOverlay`, `backdrop`, `popover`, `contextMenu`, `tooltip`, `bottomSheet`, `toast` o `commandPalette`. Eso importa mucho para un builder que quiere pasar de “editor de formularios” a “editor de páginas”, porque la superposición de capas, menus y ayudas contextuales deja de ser un detalle de CSS y se vuelve parte crítica de la experiencia de autoría. fileciteturn9file15
-
-También resulta relevante que el modelo recomendado por la documentación interna ya contempla **páginas**, **nodos jerárquicos**, **reglas**, **assets** y **dataSources**, junto con categorías de catálogo como `primitive`, `variantPreset`, `treePreset`, `managedBlock`, `integration`, `reusableReference`, `managerLauncher` y `overlay`. Es decir: la arquitectura conceptual ya está más cerca de un **site builder modular** que de un simple constructor plano de campos. Lo que falta no es tanto inventar el modelo, sino completar la relación entre navegación, presets, runtime, publicación y gestores especializados. fileciteturn11file18 fileciteturn10file15
-
-En accesibilidad, las recomendaciones de este informe se apoyan en estándares primarios. W3C recomienda usar **WCAG 2.2** como referencia vigente; el criterio 1.4.3 exige una relación de contraste mínima de **4.5:1** para texto normal y **3:1** para texto grande; el criterio 2.4.7 exige un **indicador visible de foco** para toda interfaz operable por teclado; el criterio 2.5.8 fija un tamaño mínimo de objetivo táctil/puntero de **24 × 24 CSS px** o, alternativamente, suficiente espaciado; y `prefers-reduced-motion` debe respetar la preferencia del usuario para reducir o reemplazar animaciones no esenciales. citeturn11view0turn13view0turn13view2turn19view0turn12view0
-
-## Catálogo verificable y análisis comparativo entre ZIP A y ZIP B
-
-### Catálogo verificable del material recibido
-
-La siguiente tabla refleja **lo verificable de forma directa en esta sesión**. Dado que no se pudo descomprimir ni enumerar el contenido interno de ambos ZIP, los campos exigidos por imagen individual se marcan como **“no especificado”** cuando no existe evidencia verificable.
-
-| Conjunto | Archivo recibido | Tamaño | Resolución | Tipo de componente UI | Etiquetas visuales | Número de variantes | Estado de verificación |
-|---|---|---:|---:|---|---|---:|---|
-| ZIP A | `imagenes_dynamic_forms(2).zip` | no especificado | no especificado | no especificado | no especificado | no especificado | Recibido, pero sin extracción interna verificable |
-| ZIP B | `imagenes_wix(3).zip` | no especificado | no especificado | no especificado | no especificado | no especificado | Recibido, pero sin extracción interna verificable |
-
-### Catálogo funcional inferido por componente
-
-Aunque el inventario por imagen no quedó accesible, sí es posible construir un **catálogo funcional inferido** de los componentes relevantes para comparar ambos conjuntos, usando el nombre de los ZIP, la documentación actual de dynamic_forms y las superficies oficiales de Wix. Esta tabla es útil para orientar el rediseño porque organiza el análisis por **familia de componente**, que es como debe evolucionar el sistema de diseño del producto.
-
-| Componente | ZIP A dinámico_forms | ZIP B Wix | Lectura UX |
-|---|---|---|---|
-| Topbar / barra principal | Confirmada en docs como parte del workspace. fileciteturn9file0 | Wix usa entrada clara a edición, publicación y paneles de negocio. citeturn16view0turn18view2 | Dynamic Forms debe convertir la topbar en barra de intención: documento, página, preview, publicar, estado y device mode |
-| Rail lateral | Confirmado: rail + drawer + paneles. fileciteturn9file0 | Wix expone biblioteca, negocio, SEO, marketing y mobile view. citeturn16view0turn18view0turn18view2 | El rail actual debe pasar de “herramientas técnicas” a “navegación por objetivo” |
-| Canvas | Confirmado y ya central en la visión objetivo interna. fileciteturn11file6 | Wix enfatiza canvas fluido y edición pixel-perfect. citeturn18view0 | El canvas debe ser el centro visual y el contexto primario de edición |
-| Inspector | Confirmado y schema-driven. fileciteturn9file0 | Wix es menos “form-heavy” y más progresivo/contextual. citeturn18view0turn16view0 | El inspector debe volverse más progresivo y menos denso por defecto |
-| Insert / Add panel | Insert Center aún MVP. fileciteturn9file0 | Wix muestra biblioteca amplia de componentes, gráficos y animaciones. citeturn16view0turn18view0 | Insertar debe reorganizarse por bloques, secciones y presets, no solo por controles |
-| Páginas | Parcial: Pages requiere mayor densidad y profundidad. fileciteturn9file0 | Wix crea sitios completos, landing pages y múltiples páginas. citeturn18view3turn16view0 | Pages no puede seguir siendo secundaria; debe ser un primer espacio de navegación |
-| Tema / branding | Parcial: Theme requiere profundidad. fileciteturn9file0 | Wix propaga tipografías, colores y estilos por el sitio. citeturn16view0turn18view0 | Theme Manager debe ser global, no solo propiedades dispersas |
-| Datos / reglas | Rule Manager existe, pero el runtime de reglas aún se documenta como hueco de prioridad. fileciteturn9file0 fileciteturn9file15 | Wix y competidores conectan negocio, CRM, reservas, analytics y SEO. citeturn18view2turn16view0 | Expandir a “sitios” sin motor de reglas y data sólido generaría deuda rápida |
-| Responsive | Auditoría actual limitada; docs piden responsive semántico. fileciteturn10file1 fileciteturn11file5 | Wix permite revisar y ajustar vista móvil; Squarespace y Elementor también lo priorizan. citeturn18view2turn17view0turn14view2 | El responsive debe estar modelado a nivel de documento y no solo de viewport |
-| Estados / overlays | Hay drag overlay y feature flags de guías, grid y snapping; z-index todavía incompleto. fileciteturn9file2 fileciteturn9file3 fileciteturn9file15 | Wix comunica feedback de generación y de adición contextual. citeturn16view0turn18view0 | Hace falta un sistema coherente de overlays, estados y feedback contextual |
-
-### Similitudes y diferencias por componente
-
-La diferencia central entre ZIP A y ZIP B no es cosmética; es **de modelo mental**. Dynamic_forms, según la evidencia interna, ya tiene un editor serio pero orientado a documento/formulario. Wix, según su producto oficial, opera como un **orquestador de creación web completa**: IA, plantillas, canvas libre, páginas, negocios, mobile view, SEO, CRM, marketing y dashboard. Donde dynamic_forms hoy muestra superficies parciales —Pages, Theme, Data, Integrations— Wix muestra cadenas de valor completas y conectadas. fileciteturn9file0 citeturn16view0turn18view0turn18view2
-
-La similitud importante es que ambos comparten una base útil para converger: canvas visual, componentes editables, paneles laterales, posibilidades de drag and drop y personalización. La diferencia importante es que en Wix el usuario percibe inmediatamente que puede construir **sitios**; en dynamic_forms, por la documentación disponible, todavía se percibe principalmente que puede construir **formularios con superficies adicionales**. Esa es exactamente la brecha UX que conviene cerrar. fileciteturn11file6 citeturn18view0turn17view0turn5view0
-
-## Benchmarking oficial de competidores
-
-### Comparativa estratégica
-
-| Competidor | Posicionamiento oficial | Fortalezas relevantes para Dynamic Forms | Riesgos si se copia sin filtro | Fuente oficial |
-|---|---|---|---|---|
-| Wix | Creador híbrido con IA, plantillas, drag and drop, landing pages, móvil, SEO, CRM y panel de negocio. | Excelente modelo de “de idea a sitio publicado”, biblioteca amplia, vista móvil editable, integración de negocio. | Puede llevar a sobrecargar el producto con módulos comerciales antes de madurar schema/runtime. | citeturn16view0turn18view0turn18view1turn18view2turn18view3 |
-| Squarespace | Editor más curado: IA + plantillas + drag and drop + páginas y funciones + marketing. | Muy buen patrón para páginas prediseñadas, bloques curados y flujo simple de publicación. | Riesgo de quedarse en una experiencia “bonita pero rígida” si no se conserva la flexibilidad del canvas. | citeturn17view0turn17view1turn17view2 |
-| Webflow | Plataforma visual para sitios/pages con CMS componible, reusable components y herramientas para marketing. | Excelente referencia para componentes reutilizables, CMS visual y page building serio. | Exceso de complejidad si se traslada su gramática completa a usuarios de negocio. | citeturn5view0turn4view3turn4view5 |
-| Framer | Builder profesional con CMS conectado al canvas, SEO, rendimiento fuerte y colaboración. | Gran inspiración para sincronía entre contenido y canvas, publishing, previews sociales y performance. | Riesgo de priorizar estética/motion sin cerrar antes reglas, datos y contratos internos. | citeturn5view2turn14view0 |
-| Typeform | Plataforma de formularios conversacionales con automatización, analytics y landing page builder. | Muy fuerte para formularios adaptativos, experiencia conversacional y analítica de drop-off. | Si se extrapola demasiado, puede empujar el producto hacia flujos lineales y no hacia páginas jerárquicas. | citeturn8view0turn15view0turn15view1 |
-| Jotform | Constructor no-code de formularios con lógica condicional, pagos, integraciones y extensiones como Apps. | Referencia fuerte para ecosistema alrededor del formulario: apps, pagos, workflows e integraciones. | Riesgo de derivar hacia “suite utilitaria” sin una experiencia de builder visual coherente. | citeturn15view2turn15view3turn15view4 |
-
-### Patrones que conviene absorber
-
-El patrón más valioso del benchmark es la **entrada por intención**. Wix y Squarespace no obligan al usuario a pensar primero en el control UI; le dejan pensar en el resultado: sitio, landing, tienda, blog, portafolio, cita, reserva, campaña o formulario. Dynamic_forms debería absorber exactamente esa lógica y reorganizar su rail, Insert Center y catálogo alrededor de **página, sección, formulario, contenido, acción, media, datos, integraciones y publicación**. citeturn16view0turn17view1turn5view0
-
-El segundo patrón es la **progresividad del editor**. Webflow y Framer reservan más densidad técnica para situaciones donde el usuario ya está dentro del ciclo de edición. No saturan el lienzo desde el minuto uno. Dynamic_forms debería heredar eso: paneles compactos, inspector progresivo, gestores especializados en overlays o drawers grandes y una topbar corta, con estados visibles de guardado, preview y publicación. citeturn5view0turn5view2 fileciteturn11file6
-
-El tercer patrón es la **coherencia entre canvas y sistema de contenido**. Framer conecta CMS y canvas; Webflow une CMS visual y page building; Typeform y Jotform extienden el formulario hacia automatización, landing y apps. Para Dynamic Forms, eso se traduce en una idea muy concreta: **no separar el documento visual del documento de datos**. Páginas, nodos, reglas, datos y assets deben vivir dentro de un único documento versionado, con publicación consistente y preview fiel. citeturn5view0turn5view2turn15view0turn15view3 fileciteturn11file18
-
-## Recomendaciones de UX, navegación, arquitectura y ejemplos
-
-### Lista priorizada de cambios
-
-| Tipo | Cambio recomendado | Prioridad | Razonamiento | Esfuerzo |
-|---|---|---|---|---|
-| Modificar | Reposicionar el producto como **studio** y no como simple form builder | Alta | Cambia la percepción del producto y ordena todo lo demás | Media |
-| Modificar | Convertir **Pages** en un panel de primer nivel con sitemap, slugs y estados | Alta | Sin páginas de primer nivel no hay arquitectura real de sitio | Alta |
-| Modificar | Rediseñar **Insert Center** por intención: secciones, formularios, contenido, media, CTA, data | Alta | Hoy el Insert Center se documenta como MVP; debe pasar a ser motor de creación | Alta |
-| Añadir | Biblioteca de **bloques/presets**: hero, two-column, FAQ, pricing, testimonial, contact, lead form | Alta | Es la forma más rápida de pasar de formulario a página/sitio | Alta |
-| Modificar | Hacer el **inspector contextual y progresivo** | Alta | Menos fricción inicial, más profundidad cuando hace falta | Media |
-| Añadir | **Theme Manager** real: color, tipografía, radio, spacing, botones, campos, superficies | Alta | Wix y Squarespace muestran que la marca debe propagarse globalmente | Media |
-| Añadir | **Asset Manager** y media panel de primer nivel | Alta | Sitios y landing pages viven de media, no solo de campos | Alta |
-| Modificar | Diseñar un **responsive semántico** por documento y componente | Alta | La documentación ya pide separar viewport del canvas/device mode | Alta |
-| Modificar | Completar el **runtime de reglas** antes de escalar la promesa del producto | Alta | La documentación interna identifica este punto como estructural | Alta |
-| Eliminar | Fondo radial global en `body` y modo claro forzado | Media | Rompe embebibilidad y flexibilidad temática | Baja |
-| Modificar | Formalizar sistema de **overlays/z-index** | Media | Imprescindible para menu, popover, drag overlays, command palette y toasts | Media |
-| Añadir | **Preflight** visible con checklist de accesibilidad, responsive y publicación | Media | Hace tangible la calidad antes de publicar | Media |
-| Añadir | Historial, clipboard, autosave y versionado visibles en UI | Media | Mejoran confianza y control del editor | Alta |
-| Añadir | **Data Manager** e **Integrations Manager** con resúmenes compactos + modal avanzado | Media | Evita inflar el inspector | Alta |
-| Eliminar | Campos y acciones “huérfanos” expuestos sin narrativa de uso | Media | El catálogo debe hablar en bloques y resultados, no en widgets aislados | Baja |
-
-### Navegación, layout responsive, accesibilidad y microinteracciones
-
-La navegación recomendada es una combinación de **rail por intención + panel izquierdo invocable + inspector contextual + managers especializados**. Esa dirección coincide con la visión interna ya documentada y es consistente con la forma en que Wix, Squarespace y Webflow distribuyen complejidad. El rail debería contener: **Insertar, Secciones, Páginas, Capas, Tema, Recursos, Datos, Integraciones, Preview y Publicar**. El panel izquierdo no debe intentar mostrarlo todo a la vez; debe actuar como superficie especializada. fileciteturn11file6 citeturn16view0turn17view1turn5view0
-
-En responsive, la recomendación no es “apilar todo” sino distinguir entre **responsive de aplicación** y **responsive de documento**, algo que la documentación interna ya destaca. En desktop, conviene usar layout de tres zonas: rail + panel + canvas + inspector. En tablet, el inspector debe pasar a overlay lateral y el panel izquierdo debe ocupar ancho variable. En móvil, el canvas debe entrar en **focus mode**, con rail reducido, bottom sheet para inspector y edición por bloques, no por propiedades avanzadas. Las propias reglas internas sugeridas ya apuntan a que en móvil los `Field` vayan a `width: 100%`, altura mínima suficiente y los `Heading` usen `clamp` y `overflow-wrap`. fileciteturn9file0 fileciteturn11file5
-
-En accesibilidad, hay cuatro mínimos no negociables. Primero, contraste AA: **4.5:1** para texto normal y **3:1** para texto grande. Segundo, **foco visible** en todos los elementos operables por teclado. Tercero, targets de al menos **24 × 24 CSS px**, idealmente más generosos en móvil y en controles críticos. Cuarto, respeto a `prefers-reduced-motion`, reduciendo animaciones no esenciales o sustituyéndolas por transiciones de opacidad. Dynamic_forms ya tiene foco y reduced motion documentados, lo cual es una buena base. citeturn13view0turn13view2turn19view0turn12view0 fileciteturn9file15
-
-Las microinteracciones deben ayudar al entendimiento, no decorar. Para este producto, convienen especialmente estas: halo de selección consistente; drop zones con estados **válido/invalidado**; toast discreto de guardado; badge persistente de draft/no publicado; breadcrumb de página/sección; indicador de foco en canvas; skeleton breve al cargar presets; confirmación optimista al publicar; y modo reducido de motion que reemplace desplazamientos grandes por disoluciones breves. Esta lógica encaja tanto con las guías WCAG y MDN como con las prácticas observables en productos como Wix, Framer y Typeform. citeturn12view0turn13view2turn18view0turn14view0turn15view1
-
-### Arquitectura de componentes recomendada
-
-La arquitectura recomendada debe separar con disciplina **superficies de navegación**, **superficies de edición** y **servicios de dominio**, un principio que aparece explícitamente en la documentación interna. Eso evitará que el inspector, el catálogo o los managers absorban lógica de reglas, bindings o red de publicación. El documento central debe seguir siendo un **BuilderDocument JSON versionado** con `pages`, `nodes`, `rules`, `assets` y `dataSources`, y no JSX o HTML final. fileciteturn11file7 fileciteturn11file18 fileciteturn11file6
-
-``​`mermaid
-flowchart LR
-  A[BuilderShell] --> B[Workspace Rail]
-  A --> C[Left Panel]
-  A --> D[Canvas]
-  A --> E[Inspector]
-  A --> F[Managers]
-
-  C --> C1[Insertar]
-  C --> C2[Secciones]
-  C --> C3[Páginas]
-  C --> C4[Capas]
-  C --> C5[Tema]
-  C --> C6[Recursos]
-  C --> C7[Datos]
-  C --> C8[Integraciones]
-
-  D --> G[Documento JSON]
-  E --> G
-  F --> G
-
-  G --> H[Preview]
-  G --> I[Preflight]
-  G --> J[Publish Service]
-  J --> K[Runtime]
-``​`
-
-La estructura de componentes debería parecerse a esto:
-
-| Capa | Responsabilidad | Qué debe evitar |
-|---|---|---|
-| `BuilderShell` | Orquestar layout, paneles y estado global de workspace | Lógica de negocio por componente |
-| `WorkspaceRail` | Navegación por intención | Contener formularios complejos |
-| `WorkspaceDrawer` | Superficies grandes: páginas, secciones, presets, recursos | Duplicar el inspector |
-| `Canvas` | Edición visual, selección, drop zones, overlays y focus mode | Resolver datos/red/publicación |
-| `Inspector` | Configuración contextual de nodo seleccionado | Ejecutar reglas o integraciones directamente |
-| `Managers` | Flujos especializados: form, rules, theme, assets, data | Vivir permanentemente abiertos |
-| `Registry` | Definición de primitives, presets, blocks y overlays | Lógica visual embebida de consumidor específico |
-| `Adapters` | Persistencia, publicación, runtime, fuentes de datos | Mezclarse con render visual |
-| `Runtime` | Render del documento publicado y evaluación de reglas | Incorporar dependencias de editor |
-
-Ese modelo además encaja con el tipo de nodo ya documentado internamente, donde `layout.mode` contempla `absolute`, `flow`, `grid` y `flex`, y donde cada nodo puede incorporar `binding`, `validation`, `ruleIds` y `actionIds`. La oportunidad de UX está en hacer visible esa potencia sin obligar al usuario a entenderla toda desde el principio. fileciteturn10file15 fileciteturn11file0
-
-### Wireframes y flujos sugeridos
-
-``​`mermaid
-flowchart TD
-  A[Inicio del builder] --> B{Modo de entrada}
-  B --> C[Empezar con plantilla]
-  B --> D[Empezar con IA]
-  B --> E[Empezar desde cero]
-
-  C --> F[Elegir preset de sitio o formulario]
-  D --> F
-  E --> F
-
-  F --> G[Canvas con página inicial]
-  G --> H[Agregar secciones y bloques]
-  H --> I[Configurar tema global]
-  I --> J[Conectar datos e integraciones]
-  J --> K[Revisar tablet y mobile]
-  K --> L[Preflight]
-  L --> M[Publicar]
-  M --> N[Runtime y submissions]
-``​`
-
-``​`mermaid
-flowchart LR
-  A[Rail por intención] --> B[Panel de páginas]
-  A --> C[Panel de secciones]
-  A --> D[Insert Center]
-  D --> E[Hero]
-  D --> F[Formulario]
-  D --> G[Testimonio]
-  D --> H[CTA]
-  D --> I[FAQ]
-  D --> J[Footer]
-``​`
-
-Como ejemplos visuales de referencia oficial, las superficies más útiles para estudiar son: la portada/editor híbrido y biblioteca de componentes de Wix, el constructor de páginas y bloques de Squarespace, el page building con CMS visual de Webflow, el CMS conectado al canvas y SEO en Framer, y la lógica conversacional/adaptativa de Typeform y Jotform. citeturn16view0turn17view0turn5view0turn5view2turn8view0turn8view1
-
-## Plan de implementación y roadmap
-
-La documentación interna ya propone un roadmap general de **12 a 16 semanas** con fases de diagnóstico, fundamentos de workspace, sistema visual, canvas, responsive, inspector, managers, Insert Center, páginas/reglas, preview/publicación, backend/integraciones y QA. Esa secuencia es sólida y conviene conservarla, pero con un ajuste táctico: la expansión hacia “sitios” debe empezar en UX y navegación, pero **no debe adelantarse al cierre del modelo de documento y del runtime de reglas**. fileciteturn10file1 fileciteturn10file15
-
-### Roadmap recomendado
-
-| Tramo | Objetivo | Resultado esperado | Esfuerzo |
-|---|---|---|---|
-| Diagnóstico | Baseline visual, descompresión reproducible, inventario de superficies y mapa del estado | Catálogo real de ZIP, baseline Playwright, matriz de componentes | Media |
-| Fundamentos | Limpiar shell, overlays, z-index, theming global y estado de workspace | Builder más estable y embebible | Media |
-| Navegación | Rail por intención, panel de páginas, secciones e Insert Center rediseñado | Cambio perceptivo de “form builder” a “studio” | Alta |
-| Sistema de bloques | Presets de hero, section, form block, CTA, FAQ, testimonial y footer | Aceleración de creación de páginas/sitios | Alta |
-| Responsive | Breakpoints semánticos, mobile focus mode y reglas por componente | Páginas realmente editables en desktop/tablet/mobile | Alta |
-| Profundidad funcional | Theme Manager, Asset Manager, Data Manager, Integrations Manager | Builder escalable y menos dependiente del inspector | Alta |
-| Runtime y publicación | Reglas reales, preflight, preview fiel y publicación consistente | Sitios y formularios publicables con confianza | Alta |
-| Calidad | E2E, visual regression, accesibilidad, rendimiento y documentos grandes | Menos deuda al crecer catálogo y flujos | Media |
-
-### Cronología sugerida
-
-``​`mermaid
-flowchart LR
-  A[Semanas 1-2\nDiagnóstico y baseline] --> B[Semanas 3-4\nShell, overlays y theming]
-  B --> C[Semanas 5-7\nPages + Sections + Insert Center]
-  C --> D[Semanas 8-9\nResponsive semántico]
-  D --> E[Semanas 10-12\nManagers: Theme, Assets, Data]
-  E --> F[Semanas 13-14\nRules, preflight y publicación]
-  F --> G[Semanas 15-16\nQA, accesibilidad y rollout]
-``​`
-
-### Criterio de priorización por recomendación
-
-| Recomendación | Dependencia crítica | Riesgo si se pospone | Esfuerzo |
-|---|---|---|---|
-| Panel de páginas + sitemap | Estado de documento | El producto seguirá percibiéndose como editor de formularios | Alta |
-| Insert Center por intención | Registry y catálogo | El crecimiento de componentes seguirá desordenado | Alta |
-| Theme Manager | Tokens y primitives | Branding inconsistente y trabajo repetitivo | Media |
-| Asset Manager | Publicación y storage | Sitios pobres en media o media dispersa | Alta |
-| Responsive semántico | Layout por nodo | Mala experiencia tablet/mobile y más bugs de overflow | Alta |
-| Z-index y overlays | Shell y CSS base | Menús, popovers y DnD poco fiables | Media |
-| Runtime de reglas real | Backend + preview + runtime | Sitios/formularios dinámicos poco confiables | Alta |
-| Preflight + publish UX | Publicación | Más errores al pasar de edición a producción | Media |
-| Accesibilidad sistemática | Design system | Deuda técnica acumulativa y problemas de usabilidad | Media |
-| Baseline visual automatizado | QA | Cada mejora visual puede romper el editor silenciosamente | Baja |
-
-La recomendación final de implementación es **empezar por la estructura de experiencia y no por el detalle gráfico**. Si se intenta embellecer antes de ordenar Pages, Sections, Insert Center, Theme y publicación, Dynamic Forms solo obtendrá una interfaz más pulida para una promesa todavía incompleta. En cambio, si se siguen el orden y los principios ya sugeridos por la documentación interna —schema como fuente de verdad, core desacoplado, canvas central y paneles asistentes—, el producto puede evolucionar de forma creíble hacia un constructor de formularios, páginas y sitios web con una base más robusta y más fácil de mantener. fileciteturn11file6 fileciteturn10file15
-```
-
-<a id="file-0093"></a>
-
-### 0093 — `MANIFEST.md`
+### 0092 — `MANIFEST.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `177`
@@ -3537,5246 +3269,9 @@ La recomendación final de implementación es **empezar por la estructura de exp
 - `docs/README.md`
 ```
 
-<a id="file-0094"></a>
+<a id="file-0093"></a>
 
-### 0094 — `plan-accion-ux-ui-sidebar-derecho-sisad-pdfme.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `635`
-- **Tamaño original:** `17.4 KB`
-- **SHA1 corto:** `a580193503`
-- **Estado:** `completo`
-
-```markdown
-# Plan de acción UX/UI y comportamiento — SISAD PDFME
-
-## Objetivo
-
-Corregir las regresiones visuales y de interacción observadas en el diseñador `multi-document-routing`, priorizando:
-
-1. que el botón flotante de colapso del sidebar derecho **no aparezca cuando el panel está colapsado**;
-2. que el rail colapsado sea la única vía visible para reabrir el panel;
-3. que documentos, inspector, validaciones y asignación/bloqueo funcionen con una jerarquía clara;
-4. que el canvas conserve su protagonismo sin tocar Moveable, Selecto, Paper, coordenadas, zoom ni generator.
-
----
-
-# 1. Diagnóstico principal
-
-## 1.1 Causa del botón superpuesto del sidebar derecho
-
-En `src/sisad-pdfme/ui/components/Designer/index.tsx`, el `SidebarCollapseHandle` derecho se renderiza siempre que el sidebar no esté detached:
-
-``​`tsx
-{!rightSidebarDetached ? (
-  <SidebarCollapseHandle
-    side="right"
-    expanded={sidebarOpen}
-    ...
-  />
-) : null}
-``​`
-
-La condición no comprueba `sidebarOpen`. Por eso, al colapsar el panel, el botón sigue flotando sobre el rail.
-
-Además, el CSS lo posiciona desde el `stage`:
-
-``​`css
-.sisad-pdfme-designer-stage > .sisad-pdfme-designer-right-sidebar-toggle-btn {
-  top: 3.75rem;
-  right: 0.75rem;
-}
-``​`
-
-Cuando el panel está cerrado, el botón vuelve a `right: 0.75rem`, exactamente sobre la zona del rail. El resultado visual es la superposición observada sobre el icono de Campos/Capas.
-
-## 1.2 Comportamiento objetivo
-
-### Panel expandido
-
-- Mostrar un botón de colapso integrado visualmente en el panel.
-- El botón puede estar dentro del encabezado o en el borde interno del panel.
-- No debe flotar sobre el canvas ni sobre los tabs.
-
-### Panel colapsado
-
-- No renderizar `SidebarCollapseHandle`.
-- Mantener únicamente el `SidebarRail` con los modos:
-  - Campos;
-  - Propiedades;
-  - Comentarios;
-  - Documentos.
-- Al pulsar cualquier icono del rail:
-  1. seleccionar ese modo;
-  2. abrir el sidebar;
-  3. enfocar el encabezado del panel correspondiente.
-
-El rail pasa a ser el mecanismo de reapertura. No se necesita un segundo botón de “expandir”.
-
----
-
-# 2. Corrección inmediata del sidebar derecho
-
-## Archivos
-
-``​`text
-src/sisad-pdfme/ui/components/Designer/index.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx
-src/sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle.tsx
-src/sisad-pdfme/ui/components/Designer/shared/SidebarRail.tsx
-src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
-src/sisad-pdfme/ui/styles/sisad-pdfme-sidebar.css
-``​`
-
-## 2.1 Renderizar el handle solo cuando está abierto
-
-Cambio mínimo en `Designer/index.tsx`:
-
-``​`tsx
-{!rightSidebarDetached && sidebarOpen ? (
-  <SidebarCollapseHandle
-    side="right"
-    expanded
-    presentation={rightSidebarPresentation}
-    density={rightSidebarPresentation === 'overlay' ? 'compact' : 'full'}
-    labelExpanded="Ocultar panel derecho"
-    labelCollapsed="Mostrar panel derecho"
-    onToggle={() => setSidebarOpen(false)}
-    className={`${DESIGNER_CLASSNAME}right-sidebar-toggle-btn`}
-  />
-) : null}
-``​`
-
-No pasar `expanded={false}` al handle derecho. En estado cerrado no debe existir en el DOM.
-
-## 2.2 Abrir desde el rail
-
-El rail debe recibir un callback único:
-
-``​`ts
-type RightSidebarMode = 'fields' | 'detail' | 'comments' | 'docs';
-
-const openModeFromRail = (mode: RightSidebarMode) => {
-  setInternalViewMode(mode);
-  onViewModeChange?.(mode);
-  setSidebarOpen(true);
-};
-``​`
-
-Cada botón del rail debe usar:
-
-``​`tsx
-onClick={() => openModeFromRail(item.key)}
-aria-label={`Abrir ${item.label}`}
-aria-controls={rootId}
-aria-expanded={false}
-``​`
-
-## 2.3 Integrar el botón de cierre dentro del panel expandido
-
-La opción más estable es mover el handle al `panel-switcher-wrap` o al header principal de `RightSidebar`, en lugar de posicionarlo desde el `stage`.
-
-Diseño recomendado:
-
-``​`text
-[ Campos | Propiedades | Comentarios | Documentos ] [ ‹ ]
-``​`
-
-- botón de 28 × 28 px;
-- sin posición absoluta;
-- tooltip controlado;
-- `aria-label="Ocultar panel derecho"`;
-- no debe desplazar los tabs de forma perceptible.
-
-Después de integrarlo, eliminar la regla global de posición del toggle derecho en el stage.
-
-## 2.4 Dimensiones del rail
-
-``​`text
-Ancho: 44 px
-Padding superior: 8 px
-Botón: 32 × 32 px
-Separación: 6 px
-Radio: 10–12 px
-Indicador activo: borde izquierdo o fondo tonal suave
-``​`
-
-No usar pills verticales grandes. No colocar sombras fuertes en cada botón.
-
----
-
-# 3. Panel de documentos
-
-## Problemas observados
-
-- El título dice “Selecciona una página”, pero la lista representa documentos.
-- El contador `2` aparece separado y sin contexto.
-- El botón `Subir` queda apretado o parcialmente cortado.
-- La acción eliminar está visualmente separada de la tarjeta activa.
-- La tarjeta activa tiene demasiado fondo y altura.
-- Documento y página se mezclan en la misma jerarquía.
-
-## Comportamiento objetivo
-
-### Header
-
-``​`text
-Documentos                         [Subir]
-2 documentos
-``​`
-
-No usar “Selecciona una página” si la lista principal es documental.
-
-### Ítem
-
-``​`text
-[icono] Declaración de datos        [⋮]
-        14 páginas · Página 1 activa
-``​`
-
-El menú `⋮` debe contener:
-
-- Cambiar nombre, si aplica.
-- Reemplazar PDF.
-- Eliminar documento.
-
-No mostrar un botón rojo de papelera flotando fuera de la tarjeta.
-
-### Selección
-
-- Un clic cambia el documento activo.
-- No cambiar zoom de manera automática.
-- No restablecer el scroll del canvas salvo que cambie de página/documento.
-- La selección activa debe tener un acento del color del usuario, no un gran bloque azul.
-
-## Archivos
-
-``​`text
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx
-``​`
-
----
-
-# 4. DetailView e inspector
-
-## 4.1 Anchura real y diseño responsive
-
-Las métricas actuales sitúan el sidebar derecho alrededor de 276 px. El inspector debe diseñarse para esa anchura, no para 340–400 px.
-
-### Reglas
-
-- Usar `minmax(0, 1fr)` en todas las columnas.
-- Cada input debe tener `min-width: 0`.
-- No permitir que labels reduzcan el ancho útil del input.
-- Evitar grids fijos que fuercen tres campos en una sola fila.
-
-## 4.2 Ubicación y tamaño
-
-Distribución objetivo:
-
-``​`text
-Alineación
-[8 botones en grid 4 × 2]
-
-X                  Y
-[input]            [input]
-
-Ancho              Alto
-[input]            [input]
-
-Rotación
-[input ancho completo]
-``​`
-
-Los valores no pueden verse cortados como `9?` o `1?`.
-
-Usar `InputNumber` con:
-
-- ancho 100%;
-- mínimo 0;
-- step correcto;
-- validación visible;
-- no cambiar valor con rueda del mouse si el control no tiene foco.
-
-## 4.3 Formato
-
-Dividir internamente:
-
-``​`text
-TIPOGRAFÍA
-Fuente | Tamaño
-
-ESTILO
-Negrita | Cursiva | Subrayado
-
-ALINEACIÓN
-Horizontal
-Vertical
-
-ESPACIADO
-Altura de línea | Espaciado
-
-COLORES
-Texto | Fondo
-``​`
-
-No presentar los nueve botones como una matriz sin subtítulos.
-
-Ocultar propiedades no aplicables al tipo de schema. Por ejemplo, un action schema no necesita toda la configuración tipográfica de un campo de texto.
-
-## 4.4 Perfiles de expansión
-
-Para `select`:
-
-- `identity`: abierto;
-- `options`: abierto;
-- `validation`: cerrado;
-- `interaction`: cerrado;
-- `box`: cerrado;
-- `appearance`: cerrado;
-- `collaboration`: cerrado;
-- `advanced`: oculto o cerrado.
-
-Solo una o dos secciones abiertas por defecto. Abrir varias secciones produce un panel excesivamente largo.
-
-## Archivos
-
-``​`text
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaDetailProfiles.ts
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorNumberInput.tsx
-``​`
-
----
-
-# 5. Dropdown de validación
-
-## Problemas
-
-- El popup ocupa demasiada altura.
-- Cubre las secciones siguientes.
-- Las opciones son demasiado grandes.
-- No aprovecha el espacio lateral disponible.
-
-## Solución
-
-En `InspectorSelect.tsx`:
-
-- portal al `document.body`;
-- `popupClassName="sisad-inspector-select-popup"`;
-- `listHeight={224}`;
-- placement dinámico o `bottomRight` para el sidebar derecho;
-- ancho mínimo 220 px y máximo 280 px;
-- altura de fila 32–36 px;
-- scroll interno cuando existan más opciones;
-- cierre con Escape;
-- devolver foco al trigger.
-
-CSS:
-
-``​`css
-.sisad-inspector-select-popup {
-  min-width: 220px;
-  max-width: min(280px, calc(100vw - 24px));
-}
-
-.sisad-inspector-select-popup .ant-select-item {
-  min-height: 34px;
-  padding: 6px 10px;
-}
-``​`
-
-No resolverlo aumentando z-index de forma arbitraria.
-
----
-
-# 6. Editor de opciones
-
-## Problemas
-
-- Las acciones de mover/eliminar tienen poco contraste.
-- El indicador de valor predeterminado no es suficientemente claro.
-- El input y botón “Agregar” quedan apretados.
-- Reordenar con flechas genera demasiados controles repetidos.
-
-## Diseño objetivo
-
-``​`text
-☰  Pendiente                         ● Predeterminado  ⋮
-☰  Aprobado                                             ⋮
-☰  Rechazado                                            ⋮
-
-[Nueva opción…                         ] [Agregar]
-``​`
-
-- usar drag handle para reordenar;
-- menú `⋮` para eliminar o duplicar;
-- radio/check explícito para valor predeterminado;
-- Enter agrega opción;
-- Escape limpia el input;
-- impedir nombres vacíos o duplicados según política;
-- conservar `optionId` al renombrar o reordenar;
-- ningún evento debe propagarse al canvas o crear otro schema.
-
-## Archivos
-
-``​`text
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaOptionsEditor.tsx
-src/sisad-pdfme/schemas/options/optionModel.ts
-src/sisad-pdfme/schemas/options/optionValueAdapter.ts
-``​`
-
----
-
-# 7. Asignación y bloqueo
-
-## Problemas críticos
-
-- El panel muestra “Bloqueado para edición”, mientras el modal muestra “Bloqueado” y la tarjeta inferior puede indicar “En edición por ti”.
-- Se expone `recipient-1` en lugar del nombre visible.
-- El propietario aparece también como co-propietario.
-- “Avanzado” se abre por defecto y domina el modal.
-- Se muestran timestamps epoch sin formato.
-- `Bloqueado por` se representa como input, aunque debería ser informativo.
-- El modal no prioriza las acciones Guardar/Cancelar.
-
-## Modelo de estado único
-
-Crear o consolidar:
-
-``​`ts
-type SchemaAccessState = {
-  collaborationLock: 'none' | 'mine' | 'other';
-  objectLocked: boolean;
-  readOnly: boolean;
-  canEdit: boolean;
-  canMove: boolean;
-  canDelete: boolean;
-  lockOwnerId: string | null;
-  lockOwnerLabel: string | null;
-  statusLabel: string;
-  statusTone: 'neutral' | 'info' | 'warning' | 'danger';
-};
-``​`
-
-Usar el mismo resolver en:
-
-- canvas chrome;
-- DetailHeader;
-- ListView;
-- SchemaCollaborationWidget;
-- toolbar contextual;
-- menú contextual.
-
-## Modal objetivo
-
-``​`text
-Gestionar asignación y acceso
-
-Estado
-[ En edición por ti ]
-
-Propietario
-[ Cliente Principal · Firmante ]
-
-Co-propietarios
-[ Seleccionar participantes… ]
-
-Bloqueo
-Bloqueado por Cliente Principal
-Desde 12 jul 2026, 10:02
-
-Opciones técnicas ▸
-
-Cancelar                         Guardar cambios
-``​`
-
-### Reglas
-
-- Excluir al propietario principal de `coOwners`.
-- Resolver todos los IDs con `recipientNameMap`/usuarios.
-- `Avanzado` cerrado por defecto.
-- Ocultar datos técnicos en producción salvo `developerMode`.
-- Formatear fechas con `Intl.DateTimeFormat`.
-- Modal con `max-height: 80dvh`.
-- Body con scroll interno.
-- Footer sticky siempre visible.
-- No permitir guardar un owner dentro de co-owners duplicado.
-
-## Archivos
-
-``​`text
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts
-src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionState.ts
-src/sisad-pdfme/collaboration/lockManager.ts
-src/sisad-pdfme/collaboration/schemaLockGuard.ts
-``​`
-
----
-
-# 8. Canvas y overlays
-
-## Problemas observados
-
-- La toolbar contextual puede cubrir un schema vecino.
-- El tooltip técnico `contract_stage` aparece mientras ya existe el label inferior del schema.
-- La medición, toolbar, tooltip y selección se muestran simultáneamente.
-- `Resultados` y zoom compiten en la parte inferior.
-
-## Acciones
-
-1. Mantener la geometría existente de overlays.
-2. Aplicar una política visual:
-   - toolbar al seleccionar;
-   - métrica solo durante resize/move o hover breve;
-   - tooltip técnico solo cuando no esté abierta la toolbar;
-   - inline edit únicamente durante edición.
-3. Reducir la toolbar a:
-
-``​`text
-Eliminar | Duplicar | Más
-``​`
-
-4. Cerrar toolbar al hacer click fuera o pulsar Escape.
-5. Convertir `Resultados` en un elemento de status bar o separarlo al menos 8–12 px del zoom.
-
-No modificar:
-
-``​`text
-Canvas.tsx
-Moveable.tsx
-Selecto.tsx
-Paper.tsx
-coordinateMath.ts
-designerCoordinateService.ts
-``​`
-
-Los ajustes deben limitarse a skins, políticas de visibilidad y composición de overlays existentes.
-
----
-
-# 9. Orden de implementación
-
-## P0 — Regresiones funcionales y de confianza
-
-1. Ocultar el `SidebarCollapseHandle` derecho cuando `sidebarOpen === false`.
-2. Reabrir el panel únicamente desde los iconos del rail.
-3. Mover el botón de cierre al encabezado del panel expandido.
-4. Unificar estados de bloqueo y nombres de usuario.
-5. Cerrar “Avanzado” por defecto en asignación/bloqueo.
-6. Evitar propietario duplicado en co-propietarios.
-7. Corregir inputs numéricos cortados del inspector.
-8. Limitar y portar el popup de validación.
-
-## P1 — Jerarquía y densidad
-
-1. Rediseñar `DocumentsRail`.
-2. Ajustar perfiles de secciones del inspector.
-3. Reorganizar Formato por subgrupos.
-4. Simplificar editor de opciones.
-5. Reducir superficies anidadas y sombras.
-6. Mejorar estados hover/focus/active del rail.
-
-## P2 — Comportamiento fino
-
-1. Preservar scroll y zoom al abrir/cerrar paneles.
-2. En overlay, Escape cierra el panel.
-3. El modo seleccionado del rail se conserva al reabrir.
-4. Restaurar foco al botón que abrió el panel.
-5. Cerrar popups cuando cambia schema/documento.
-6. Evitar overlays simultáneos innecesarios.
-
----
-
-# 10. Pruebas obligatorias
-
-## `tests/e2e/sidebar-collapse-parity.spec.ts`
-
-``​`text
-- panel derecho abierto: existe botón Ocultar panel derecho;
-- panel derecho cerrado: NO existe right-sidebar-toggle-btn;
-- panel cerrado: existe rail con 4 modos;
-- click Campos abre panel en fields;
-- click Propiedades abre panel en detail;
-- click Comentarios abre panel en comments;
-- click Documentos abre panel en docs;
-- rail no tiene botones superpuestos;
-- aria-expanded y aria-controls correctos;
-- navegación completa con teclado;
-- no hay overflow horizontal.
-``​`
-
-## `tests/e2e/inspector-detailview-profiles.spec.ts`
-
-``​`text
-- select abre identity y options solamente;
-- validation popup cabe en viewport;
-- X/Y/ancho/alto/rotación no se cortan;
-- no existen secciones vacías;
-- formato solo muestra propiedades aplicables.
-``​`
-
-## `tests/e2e/schema-lock-state-consistency.spec.ts`
-
-``​`text
-- lock mío => “En edición por ti” en header, modal, lista y menú;
-- lock ajeno => “Bloqueado por <nombre>”;
-- ningún ID técnico visible fuera de developerMode;
-- owner no aparece duplicado como co-owner;
-- advanced cerrado por defecto;
-- Guardar/Cancelar siempre visibles.
-``​`
-
-## `tests/e2e/documents-rail.spec.ts`
-
-``​`text
-- muestra conteo correcto de documentos;
-- seleccionar documento cambia el activo;
-- subir PDF no queda cortado;
-- eliminar está dentro del menú del ítem;
-- no confunde documento con página;
-- mantiene zoom al cambiar de tab del sidebar.
-``​`
-
-## Comandos
-
-``​`bash
-npm run build
-npm run lint
-npx playwright test tests/e2e/sidebar-collapse-parity.spec.ts --project=chromium
-npx playwright test tests/e2e/inspector-detailview-profiles.spec.ts --project=chromium
-npx playwright test tests/e2e/schema-lock-state-consistency.spec.ts --project=chromium
-npx playwright test tests/e2e/documents-rail.spec.ts --project=chromium
-``​`
-
----
-
-# 11. Criterios de aceptación
-
-``​`text
-[ ] El botón flotante derecho no existe cuando el sidebar está colapsado.
-[ ] El rail es la única vía visible para reabrir el sidebar.
-[ ] El botón de cierre no tapa tabs, Guardar ni iconos del rail.
-[ ] Los cuatro iconos del rail son accesibles y abren su modo correspondiente.
-[ ] El panel de documentos distingue documento y página.
-[ ] El botón Subir nunca queda cortado.
-[ ] X/Y/ancho/alto/rotación se leen completos a 276 px.
-[ ] El popup de validación no cubre todo el inspector.
-[ ] El editor de opciones conserva optionId y no crea schemas accidentales.
-[ ] No se muestran IDs como recipient-1 al usuario final.
-[ ] El propietario no aparece duplicado como co-propietario.
-[ ] El estado de bloqueo coincide en canvas, inspector, lista y modal.
-[ ] Avanzado está cerrado por defecto y los timestamps están formateados.
-[ ] Guardar y Cancelar permanecen visibles en el modal.
-[ ] Abrir/cerrar paneles no cambia zoom ni selección.
-[ ] No se modifican Moveable, Selecto, Paper, SnapshotAdapter, Generator ni pdf-lib.
-``​`
-
----
-
-# 12. Nota sobre los archivos de contexto
-
-El archivo nombrado como backend continúa apuntando a la carpeta `prueba-plugin` y no contiene controladores, servicios o entidades C#. Este plan está basado en el frontend React/TypeScript, estilos y documentación de SISAD PDFME. Para analizar persistencia o contratos backend del Dynamic Builder se debe regenerar el paquete C# desde la carpeta correcta.
-```
-
-<a id="file-0095"></a>
-
-### 0095 — `plan-integracion-detailview-wix-sisad-pdfme.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `686`
-- **Tamaño original:** `23.2 KB`
-- **SHA1 corto:** `f2c32986ef`
-- **Estado:** `completo`
-
-```markdown
-# Plan integral de mejoras — SISAD PDFME Designer DetailView, Canvas, Sidebars y UX tipo Wix
-
-**Fecha:** 2026-07-13
-**Ruta de validación:** `http://localhost:5174/lab/multi-document-routing`
-**Archivos base analizados:**
-
-- `codigo-frontend-sisad—pdmfe(14).md`
-- `documentacion-sisad—pdmfe-web(4).md`
-- `styles-sisad—pdmfe(14).md`
-- capturas del diseñador, RightSidebar ListView, DetailView, secciones `Opciones`, `Reglas de llenado`, `Formato`, `Asignación y bloqueo`, `Ubicación y tamaño`
-
----
-
-## 1. Diagnóstico ejecutivo
-
-El diseñador ya tiene una base fuerte: catálogo izquierdo, canvas con selección, panel derecho con lista/detalle/documentos/comentarios, perfiles por schema, widgets de inspector, owner color, collapse handle compartido y una arquitectura de task-cards. El problema actual está en la **conexión completa entre lo visual y lo funcional**.
-
-La prioridad no debe ser “decorar” el RightSidebar, sino asegurar que cada control visible tenga un contrato real:
-
-``​`txt
-Control visible
-→ propiedad real del schema
-→ widget correcto
-→ onChange conectado
-→ CommandBus / update centralizado
-→ access state respetado
-→ snapshot roundtrip
-→ Form/Viewer/PDF compatible si aplica
-→ test unitario/E2E
-``​`
-
-Problemas principales detectados en las capturas:
-
-1. **RightSidebar ListView:** visualmente todos los campos parecen seleccionados por la barra azul. Debe reservarse la barra/accent azul para selección real o estado activo.
-2. **DetailHeader:** el chip “Bloqueado para edición” aparece demasiado agresivo y puede no coincidir con el estado real del canvas/lista.
-3. **Información del campo:** existe input `Nombre del campo` y botón `Renombrar campo`, duplicando intención.
-4. **Opciones:** la sección ya es útil, pero necesita reordenamiento más claro, drag handle y validación de opción vacía/duplicada.
-5. **Reglas de llenado:** el `Select` de validación aparece sin ancho/placeholder útil; debe ocupar todo el ancho y mostrar opciones proporcionales al schema.
-6. **Formato:** los inputs de opacidad, fuente, tamaño, espaciado, altura de línea, colores y botones de formato están desbalanceados. Algunos controles no tienen ancho suficiente o están en una grilla incompatible con un sidebar estrecho.
-7. **Ubicación y tamaño:** `X`, `Y`, `Ancho`, `Alto`, `Rotación` se cortan por columnas pequeñas. La grilla no debe usar 3 columnas fijas en un panel estrecho.
-8. **Asignación y bloqueo:** repite título, estado y chips; debe mostrar un resumen colaborativo compacto y conectar acciones reales de lock/unlock/assign.
-9. **Resultados:** sigue flotando cerca del zoom/canvas; debe moverse a barra inferior o drawer.
-10. **Wix-like UX:** falta una estrategia de inspector progresivo: primero controles frecuentes, luego avanzado, con paneles que responden al contexto y no todo abierto como formulario pesado.
-
----
-
-## 2. Principios obligatorios para la siguiente pasada
-
-### 2.1. No tocar en esta pasada
-
-``​`txt
-src/sisad-pdfme/pdf-lib/**
-src/sisad-pdfme/generator/**
-src/sisad-pdfme/shared/snapshotAdapter.ts
-src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx
-src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx
-StepOne / StepTwo host / ContentCustomForm negocio / Uanataca
-``​`
-
-Solo se toca Canvas si una función visible del inspector depende de selección o focus y no hay otra vía. La geometría visual se corrige desde widgets, layout y command/update, no con hacks de z-index.
-
-### 2.2. No más CSS disperso
-
-Toda corrección visual debe ir en:
-
-``​`txt
-src/styles/sisad-tailwind-bridge.css
-src/sisad-pdfme/ui/styles/sisad-pdfme-sidebar.css
-src/sisad-pdfme/ui/styles/tokens.css
-``​`
-
-o directamente en `className` Tailwind del componente, si el cambio pertenece al componente y no a reglas legacy.
-
-### 2.3. Cada componente visual debe tener funcionamiento real
-
-No mostrar controles que no persisten. Ejemplo:
-
-``​`txt
-Si Formato muestra fontName → debe leer/escribir schema.fontName.
-Si Formato muestra opacity → debe leer/escribir schema.opacity y renderizarlo.
-Si Reglas muestra validation → debe persistir schema.validation.
-Si Ubicación muestra x/y/width/height → debe actualizar schema con CommandBus/update central.
-Si Bloqueo muestra Gestionar → debe abrir modal o ejecutar action real.
-``​`
-
----
-
-## 3. Investigación Wix aplicada al diseñador SISAD PDFME
-
-Wix Studio usa un inspector contextual para editar propiedades de elementos, secciones y páginas, incluyendo resizing por breakpoint, diseño, interacciones y contenido/CMS. Para SISAD PDFME, esto se traduce en un `DetailView` por perfiles: cada schema muestra solo propiedades aplicables y un modo avanzado colapsado.
-
-Ideas Wix que sí conviene adoptar:
-
-1. **Inspector progresivo:** mostrar primero diseño, contenido, layout y comportamiento frecuente; ocultar técnico.
-2. **Breakpoints / responsive mental model:** aunque PDF no sea responsive como web, sí se puede usar la idea de “contexto activo”: documento, página, destinatario y modo runtime.
-3. **Layers panel:** RightSidebar ListView debe funcionar como panel de capas: jerarquía, selección difícil en canvas, localizar elemento, ordenar, bloquear.
-4. **Align/distribute/match size:** debe funcionar solo con selección múltiple y comunicar cuándo está deshabilitado.
-5. **CMS/dynamic pages:** para SISAD, esto inspira `dataBindings`: fieldKey, dataLabel, JSON path, datos conectados y repetición de campos por plantilla.
-6. **Responsive AI / auto layout:** no copiar IA, pero sí crear sugerencias automáticas: “ajustar ancho”, “alinear al campo anterior”, “distribuir campos seleccionados”, “normalizar tamaños”.
-7. **Stacks / spacing directo:** para grupos de opciones, permitir editar spacing/orientation desde inspector y con + en canvas.
-
----
-
-## 4. Plan por fases
-
-## Fase 0 — Auditoría focalizada antes de modificar
-
-Crear reporte:
-
-``​`bash
-mkdir -p reports/detailview-functional-audit
-
-rg "InspectorNumberInput|InspectorColorInput|InspectorSelect|InspectorSwitch|InspectorField|DetailSectionCard|DetailFormSection|AlignWidget|ButtonGroupWidget|detailWidgetRegistry|detailSchemas|schemaDetailProfiles|WidgetRenderer" src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView > reports/detailview-functional-audit/inspector-widgets.txt
-
-rg "opacity|fontName|fontSize|characterSpacing|lineHeight|textColor|backgroundColor|bgColor|x:|y:|width|height|rotation|rotate|readOnly|readonly|locked|required|validation|dataLabel|tooltip" src/sisad-pdfme > reports/detailview-functional-audit/schema-properties.txt
-
-rg "onChange|updateSchema|setSchema|commandBus|executeCommand|selectionCommands|bulk|patch|fieldName|commit" src/sisad-pdfme/ui/components/Designer/RightSidebar src/sisad-pdfme/ui/commands src/sisad-pdfme/ui/components/Designer/shared > reports/detailview-functional-audit/update-paths.txt
-
-rg "Resultados|Colapsado|bottom: 12|z-index: 70|lab-results|results" src reports tests > reports/detailview-functional-audit/results-panel.txt
-``​`
-
-Criterio de cierre:
-
-``​`txt
-[ ] Listar controles visibles del DetailView.
-[ ] Mapear cada control a propiedad real.
-[ ] Mapear cada propiedad a update path.
-[ ] Marcar controles visibles sin persistencia.
-[ ] Marcar funciones existentes no usadas.
-``​`
-
----
-
-## Fase 1 — Crear contrato `InspectorWidgetContract`
-
-### Objetivo
-
-Conectar visual + funcionalidad + persistencia en una sola definición.
-
-### Archivos
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorContracts.ts
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx
-``​`
-
-### Contrato recomendado
-
-``​`ts
-export type InspectorWidgetContract = {
-  id: string;
-  section: InspectorSectionKey;
-  label: string;
-  description?: string;
-  propertyPath: string;
-  widget: 'text' | 'number' | 'select' | 'switch' | 'color' | 'buttonGroup' | 'align' | 'optionEditor' | 'definitionList' | 'custom';
-  read: (schema: SchemaForUI, context: InspectorContext) => unknown;
-  write: (value: unknown, schema: SchemaForUI, context: InspectorContext) => SchemaPatch | DesignerCommand;
-  visibleWhen?: (schema: SchemaForUI, context: InspectorContext) => boolean;
-  disabledWhen?: (schema: SchemaForUI, context: InspectorContext) => boolean;
-  validate?: (value: unknown, schema: SchemaForUI, context: InspectorContext) => string | null;
-  layout?: {
-    colSpan?: 1 | 2 | 3 | 'full';
-    minWidth?: number;
-    compact?: boolean;
-  };
-};
-``​`
-
-### Reglas
-
-- No usar widgets que solo pintan UI sin `write`.
-- No mutar schema directo dentro del widget.
-- No meter lógica de tipo de schema en el JSX final; usar `visibleWhen` y perfil.
-
----
-
-## Fase 2 — Layout adaptativo para `Ubicación y tamaño`
-
-### Problema visual
-
-En las capturas, `Ancho`, `Alto` y `Rotación` quedan cortados. El layout actual intenta meter demasiadas columnas en un panel estrecho.
-
-### Cambio requerido
-
-Crear componente:
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/widgets/GeometryFields.tsx
-``​`
-
-### Diseño objetivo
-
-Para panel `< 360px`:
-
-``​`txt
-Alineación
-[8 botones en 4x2]
-
-Posición
-[X mm] [Y mm]
-
-Tamaño
-[Ancho mm] [Alto mm]
-
-Rotación
-[Rotación °]  ancho completo
-``​`
-
-Para panel `>= 360px`:
-
-``​`txt
-X | Y
-Ancho | Alto
-Rotación full
-``​`
-
-### Implementación Tailwind
-
-``​`tsx
-<div className="grid grid-cols-2 gap-2" data-inspector-grid="geometry">
-  <InspectorNumberInput className="min-w-0" inputClassName="w-full min-w-[96px]" label="X mm" />
-  <InspectorNumberInput className="min-w-0" inputClassName="w-full min-w-[96px]" label="Y mm" />
-  <InspectorNumberInput className="min-w-0" inputClassName="w-full min-w-[96px]" label="Ancho mm" />
-  <InspectorNumberInput className="min-w-0" inputClassName="w-full min-w-[96px]" label="Alto mm" />
-  <InspectorNumberInput className="col-span-2 min-w-0" inputClassName="w-full" label="Rotación" />
-</div>
-``​`
-
-### Cambiar `InspectorNumberInput`
-
-El componente debe aceptar:
-
-``​`ts
-inputClassName?: string;
-suffix?: string;
-precision?: number;
-controls?: boolean;
-fullWidth?: boolean;
-``​`
-
-Y renderizar:
-
-``​`tsx
-<label className={mergeClassNames('flex min-w-0 flex-col gap-1 text-[11px] text-slate-600', className)}>
-  <span className="truncate font-semibold">{label}</span>
-  <InputNumber
-    className={mergeClassNames('w-full min-w-0', inputClassName)}
-    controls={controls ?? false}
-    suffix={suffix}
-  />
-</label>
-``​`
-
-### Tests
-
-``​`txt
-[ ] X/Y/Ancho/Alto/Rotación no se cortan en panel 320px.
-[ ] Rotación ocupa ancho completo.
-[ ] Cambiar X/Y actualiza canvas.
-[ ] Cambiar width/height actualiza canvas.
-[ ] Campos readonly se ven deshabilitados.
-``​`
-
----
-
-## Fase 3 — Layout adaptativo para `Formato`
-
-### Problema visual
-
-La sección `Formato` mezcla entradas numéricas, select de fuente, botones de formato, color pickers e inputs HEX en una grilla que no cabe bien.
-
-### Nuevo componente
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/widgets/AppearanceFields.tsx
-``​`
-
-### Distribución objetivo
-
-``​`txt
-Opacidad            Fuente
-[ 100% slider/input ][Roboto ▼]
-
-Tamaño              Espaciado
-[13]                [0]
-
-Formato
-[B] [I] [U] [Alineación horizontal]
-[Alineación vertical]
-
-Color del texto
-[swatch] [#000000] [pipeta/restablecer]
-
-Color del fondo
-[swatch] [Heredar / #FFFFFF] [reset]
-``​`
-
-### Cambios funcionales
-
-1. `opacity` debe mostrarse como porcentaje, no `1.0`.
-2. `fontName` debe ocupar ancho completo si el panel es estrecho.
-3. `fontSize`, `spacing`, `lineHeight` deben usar números compactos, pero no menores a `80px`.
-4. `dynamicFontSize` debe ser un switch claro, no checkbox pequeño perdido.
-5. Colores deben usar componente único `ColorField`.
-6. No mostrar `Formato` en schemas que no soportan propiedades visuales.
-
-### Crear `ColorField`
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/widgets/ColorField.tsx
-``​`
-
-Props:
-
-``​`ts
-type ColorFieldProps = {
-  label: string;
-  value?: string;
-  inheritedValue?: string;
-  inheritLabel?: string;
-  allowInherit?: boolean;
-  onChange: (value: string | null, mode?: 'custom' | 'inherit') => void;
-  disabled?: boolean;
-};
-``​`
-
-Estados:
-
-``​`txt
-- Heredar color del destinatario.
-- Usar color personalizado.
-- Restablecer.
-- Validar HEX.
-``​`
-
----
-
-## Fase 4 — Conectar AlignWidget y ButtonGroupWidget a comandos reales
-
-### Problema
-
-Los botones de alineación se ven, pero deben comunicar cuándo están deshabilitados y ejecutar comandos reales.
-
-### Archivos
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx
-src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts
-src/sisad-pdfme/ui/commands/designerCommands.ts
-src/sisad-pdfme/ui/commands/commandBus.ts
-``​`
-
-### Contrato
-
-``​`ts
-type InspectorAction = {
-  id: string;
-  label: string;
-  icon: ReactNode;
-  requiresSelection?: 'single' | 'multi';
-  disabledReason?: string;
-  execute: (context: InspectorContext) => void;
-};
-``​`
-
-### Reglas
-
-- Alinear izquierda/centro/derecha puede funcionar con 1 o N campos.
-- Distribuir horizontal/vertical requiere N >= 3.
-- Igualar ancho/alto requiere N >= 2.
-- Si hay campos bloqueados o readonly, excluirlos o deshabilitar con tooltip.
-
----
-
-## Fase 5 — Unificar estado real de bloqueo/readonly
-
-### Problema observado
-
-En la captura `contract_stage` aparece “Bloqueado para edición”. Ese estado debe coincidir con canvas, ListView, toolbar flotante y acciones.
-
-### Archivos
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionState.ts
-src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionCapabilities.ts
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaInteractionState.ts
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx
-src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx
-``​`
-
-### Crear/fortalecer resolver
-
-``​`ts
-export type SchemaAccessViewModel = {
-  selectable: boolean;
-  inspectable: boolean;
-  editable: boolean;
-  movable: boolean;
-  resizable: boolean;
-  deletable: boolean;
-  duplicable: boolean;
-  lockState: 'unlocked' | 'locked-by-me' | 'locked-by-other';
-  readonlyState: 'editable' | 'readonly' | 'runtime-readonly';
-  label: string;
-  reason?: string;
-};
-``​`
-
-### Resultado esperado
-
-``​`txt
-Si DetailView dice bloqueado:
-- Canvas no permite drag/resize.
-- Toolbar no permite eliminar/duplicar si política lo bloquea.
-- ListView muestra el mismo candado.
-- Inputs se deshabilitan.
-``​`
-
----
-
-## Fase 6 — Inspector por perfil de schema
-
-### Usar secciones oficiales
-
-``​`txt
-identity        Información del campo
-content         Contenido
-options         Opciones
-validation      Reglas de llenado
-fileRules       Reglas del archivo
-signature       Firma
-action          Acción
-behavior        Interacción
-box             Ubicación y tamaño
-appearance      Formato
-dataBindings    Datos y conexiones
-comments        Comentarios
-collaboration   Asignación y acceso
-advanced        Técnico
-``​`
-
-### Matriz por tipo
-
-| Schema | Secciones visibles |
-|---|---|
-| text | identity, content, validation, behavior, box, appearance, dataBindings, collaboration, advanced |
-| number | identity, content, validation, numberFormat, behavior, box, appearance, dataBindings, collaboration, advanced |
-| select | identity, options, validation, behavior, box, appearance, dataBindings, collaboration, advanced |
-| checkbox | identity, validation, behavior, box, appearance, collaboration, advanced |
-| checkboxGroup | identity, options, validation, behavior, box, appearance, collaboration, advanced |
-| radioGroup | identity, options, validation, behavior, box, appearance, collaboration, advanced |
-| signature | identity, signature, behavior, box, collaboration, advanced |
-| dateSigned | identity, signature, box, appearance, collaboration, advanced |
-| attachment | identity, fileRules, validation, behavior, box, appearance, collaboration, advanced |
-| approve/decline | identity, action, validation, behavior, box, appearance, collaboration, advanced |
-| note | identity, content, behavior, box, appearance, collaboration, advanced |
-| image/svg/barcode | identity, content/source, box, appearance, dataBindings, advanced |
-| line/rect/ellipse/table | identity, structure, box, appearance, advanced |
-
-### Regla
-
-No renderizar sección sin widgets visibles. No mostrar `Opciones` en `approve`, `decline`, `attachment`, `signature`, `image`. No mostrar `Formato` si el schema no consume esas propiedades.
-
----
-
-## Fase 7 — Conectar funciones existentes no utilizadas
-
-### Candidatos ya existentes a integrar
-
-``​`txt
-selectionPolicy.ts
-interactionTargetResolver.ts
-schemaInteractionState.ts
-schemaInteractionCapabilities.ts
-actionRegistry.ts
-commandBus.ts
-designerCommands.ts
-schemaTone.ts
-recipientColor.ts
-SchemaOptionsEditor.tsx
-InspectorOptionEditor.tsx
-SidebarCollapseHandle.tsx
-SidebarRail.tsx
-CatalogLayoutToggle.tsx
-``​`
-
-### Integración esperada
-
-1. `detailWidgetRegistry` debe renderizar widgets desde contratos, no desde `switch` disperso.
-2. `SchemaOptionsEditor` debe ser el editor único para `select`, `radioGroup`, `checkboxGroup`.
-3. `InspectorOptionEditor.tsx` no debe ser solo re-export si se requieren props normalizadas; debe actuar como adapter mínimo.
-4. `actionRegistry` debe alimentar `AlignWidget`, toolbar contextual y menús de lista/canvas.
-5. `schemaInteractionState` debe alimentar DetailHeader, inputs disabled y ListView.
-6. `schemaTone` debe alimentar DetailHeader, ListView, field chrome y PluginIcon.
-
----
-
-## Fase 8 — Mejorar RightSidebar ListView como panel de capas
-
-### Problema
-
-La barra azul izquierda aparece en todas las tarjetas, por lo que deja de indicar selección.
-
-### Cambios
-
-- Estado normal: sin barra azul; borde gris suave.
-- Hover: fondo suave.
-- Seleccionado: barra azul + fondo azul claro.
-- Locked: candado y chip; no barra roja.
-- Owner color: punto o borde sutil, no confundirlo con selección.
-
-### Fila recomendada
-
-``​`txt
-[drag] [icono] Nombre visible               [estado]
-              Tipo · Destinatario · Pág. N
-``​`
-
-Acciones por fila:
-
-``​`txt
-Localizar en documento
-Abrir propiedades
-Renombrar
-Duplicar
-Cambiar destinatario
-Bloquear/desbloquear
-Eliminar
-``​`
-
----
-
-## Fase 9 — Reubicar `Resultados`
-
-### Problema
-
-La píldora `Resultados · Vacío` queda cerca del zoom y canvas.
-
-### Cambio recomendado
-
-En lab:
-
-``​`txt
-Barra inferior: Resultados 0 · Sin errores · Última validación OK
-``​`
-
-En producción:
-
-``​`txt
-Drawer inferior solo si hay warning/error.
-``​`
-
-Archivos:
-
-``​`txt
-src/features/pdfcomponent/ResultsPanel.jsx
-src/features/pdfcomponent/PdfmeLabPage.jsx
-src/features/pdfcomponent/labRoutes.css
-src/styles/sisad-tailwind-bridge.css
-``​`
-
----
-
-## Fase 10 — Tests obligatorios
-
-``​`txt
-tests/e2e/inspector-geometry-layout.spec.ts
-tests/e2e/inspector-format-layout.spec.ts
-tests/e2e/inspector-widget-persistence.spec.ts
-tests/e2e/inspector-access-sync.spec.ts
-tests/e2e/listview-layer-panel.spec.ts
-tests/e2e/results-panel-placement.spec.ts
-tests/e2e/wix-like-inspector-progressive.spec.ts
-``​`
-
-Casos mínimos:
-
-``​`txt
-[ ] X/Y/Ancho/Alto/Rotación no se cortan.
-[ ] Cambiar X actualiza canvas.
-[ ] Cambiar ancho actualiza canvas.
-[ ] Opacity 80% persiste como 0.8.
-[ ] Color text/background persiste y renderiza.
-[ ] Select options agregar/eliminar/reordenar persiste.
-[ ] Sección Opciones no aparece en approve/decline.
-[ ] Campos bloqueados deshabilitan inputs.
-[ ] ListView selecciona y localiza schema.
-[ ] Resultados no tapa zoom ni sidebar.
-``​`
-
----
-
-## 5. Prompt listo para Codex
-
-``​`txt
-Actúa como arquitecto frontend senior experto en React, TypeScript, Tailwind, pdfme, editores tipo Wix/Figma/DocuSign, inspectors schema-driven, CommandBus, SOLID y Playwright.
-
-Proyecto:
-~/Documents/Taylor/frontend/prueba-plugin
-
-Ruta de validación:
-http://localhost:5174/lab/multi-document-routing
-
-Objetivo de esta pasada:
-Mejorar el RightSidebar DetailView y conectar cada control visible con funcionamiento real. En especial corregir las secciones Formato y Ubicación y tamaño, cuyos inputs se cortan o no tienen ancho suficiente, y asegurar que cada widget visible persista su valor en el schema por la vía correcta.
-
-No tocar:
-- pdf-lib
-- generator
-- SnapshotAdapter
-- Moveable
-- Selecto
-- StepOne / StepTwo host / ContentCustomForm negocio / Uanataca
-- geometría global del canvas salvo consumo de comandos existentes
-
-Primero audita:
-1. widgets del DetailView;
-2. propiedades visibles vs propiedades persistidas;
-3. funciones existentes no conectadas;
-4. estilos que cortan inputs;
-5. tests existentes.
-
-Archivos candidatos:
-- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorNumberInput.tsx
-- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorColorInput.tsx
-- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSelect.tsx
-- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSwitch.tsx
-- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx
-- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx
-- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx
-- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx
-- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx
-- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts
-- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx
-- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaOptionsEditor.tsx
-- src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts
-- src/sisad-pdfme/ui/commands/commandBus.ts
-- src/sisad-pdfme/ui/commands/designerCommands.ts
-- src/styles/sisad-tailwind-bridge.css
-- src/sisad-pdfme/ui/styles/sisad-pdfme-sidebar.css
-
-Implementa:
-1. InspectorNumberInput con inputClassName, suffix, precision, controls=false, min-width seguro.
-2. GeometryFields para Ubicación y tamaño con layout 2 columnas + rotación full width.
-3. AppearanceFields para Formato con layout progresivo.
-4. ColorField único para color texto/fondo con herencia de owner color.
-5. AlignWidget conectado a actionRegistry/CommandBus, con disabledReason.
-6. shouldRenderDetailSection para ocultar secciones vacías.
-7. access state unificado para bloquear inputs si schema está locked/readonly.
-8. ListView como layer panel: barra azul solo en selected.
-9. ResultsPanel reubicado fuera de canvas/zoom.
-
-No uses setTimeout, z-index arbitrario ni !important nuevo.
-No muestres controles sin persistencia.
-No agregues `as any` nuevo.
-
-Entrega:
-- diagnóstico corto;
-- archivos modificados;
-- funciones conectadas;
-- funciones eliminadas/no usadas;
-- tests ejecutados;
-- riesgos pendientes.
-``​`
-
----
-
-## 6. Criterios de aceptación global
-
-``​`txt
-[ ] Cada control visible tiene propiedad real.
-[ ] Cada propiedad visible persiste en schema.
-[ ] Cada update pasa por vía centralizada.
-[ ] Formato no corta inputs ni colores.
-[ ] Ubicación y tamaño no corta X/Y/Ancho/Alto/Rotación.
-[ ] Align/distribute funciona o muestra disabled reason.
-[ ] Estado locked/readonly coincide en canvas, ListView y DetailView.
-[ ] ListView funciona como panel de capas.
-[ ] Resultados no tapa canvas/zoom/sidebars.
-[ ] Secciones por schema son proporcionales.
-[ ] Build, lint y E2E críticos pasan.
-``​`
-```
-
-<a id="file-0096"></a>
-
-### 0096 — `plan-post-codex-sisad-pdfme.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `2144`
-- **Tamaño original:** `50.1 KB`
-- **SHA1 corto:** `38f1a7cdf6`
-- **Estado:** `completo`
-
-```markdown
-# Plan post-Codex — SISAD PDFME Designer
-
-**Fecha:** 2026-07-12
-**Proyecto:** `~/Documents/Taylor/frontend/prueba-plugin`
-**Ruta de validación principal:** `http://localhost:5174/lab/multi-document-routing`
-**Objetivo:** consolidar lo que Codex ya implementó y continuar con una hoja de ruta ordenada para mejorar sidebars, inspector, catálogo, propagación de color, comportamiento por schema, densidad visual y pruebas Playwright, sin tocar canvas, geometría ni generación PDF.
-
----
-
-## 0. Resumen ejecutivo
-
-Codex ya realizó una tercera pasada enfocada en **owner color** y **collapse parity** entre sidebars. Esa pasada dejó una base importante:
-
-- Se creó `SidebarCollapseHandle` como componente compartido.
-- `LeftSidebar` ya usa el handle compartido.
-- `RightSidebar` ya no desaparece al colapsar; ahora conserva un rail compacto.
-- Se reforzó la propagación de `ownerColor`, `userColor`, `recipientColor` y `__designer.*`.
-- `PluginIcon` normaliza `stroke/fill` hacia `currentColor` para que el color activo no quede bloqueado por SVGs fijos.
-- Se corrigieron labels de ayuda del inspector a `Ayuda del campo`.
-- Se agregaron pruebas Playwright para paridad de collapse.
-- Build, lint y specs críticas quedaron en verde.
-
-La siguiente fase no debe repetir lo mismo. Debe enfocarse en:
-
-1. Validar que lo hecho por Codex no introduzca regresiones visuales o semánticas.
-2. Separar definitivamente `CatalogLayout` de `SidebarDensity`.
-3. Compactar realmente el LeftSidebar sin romper `drag`, favoritos, recientes ni modos.
-4. Normalizar el RightSidebar como inspector profesional por tipo de schema.
-5. Corregir editor de opciones para `select`, `radioGroup` y `checkboxGroup`.
-6. Eliminar acciones duplicadas y secciones vacías.
-7. Garantizar que todo schema muestre solo funcionalidades proporcionales a su tipo.
-8. Fortalecer Playwright por caso de uso real.
-
----
-
-## 1. Estado actual detectado en la pasada de Codex
-
-### 1.1 Cambios realizados por Codex
-
-#### Owner color / schema tone
-
-Archivos tocados:
-
-``​`txt
-src/sisad-pdfme/collaboration/schemaOwnershipAppearance.ts
-src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts
-src/sisad-pdfme/schemas/shared/fieldChrome.ts
-src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx
-``​`
-
-Cambios principales:
-
-- `schemaOwnershipAppearance.ts` amplió las fuentes de color:
-
-``​`txt
-schema.ownerColor
-schema.userColor
-schema.recipientColor
-schema.__designer.collaboration.recipientColor
-schema.__designer.ownerColor
-schema.__designer.recipientColor
-fallback.actorColor
-recipient.color
-``​`
-
-- `schemaTone.ts` ahora revisa más fuentes antes de caer en `borderColor`, `strokeColor` o `color`.
-- `fieldChrome.ts` agregó `resolveSchemaOwnerStyleVars` para estandarizar variables CSS.
-- `PluginIcon.tsx` normaliza SVGs del catálogo para que `stroke` y `fill` usen `currentColor`, salvo `none`, `transparent`, `url(...)` o `currentColor`.
-
-#### Collapse parity
-
-Archivos tocados:
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle.tsx
-src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx
-src/sisad-pdfme/ui/components/Designer/index.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx
-src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
-``​`
-
-Cambios principales:
-
-- Se creó `SidebarCollapseHandle` con props:
-
-``​`ts
-type SidebarCollapseHandleProps = {
-  side: 'left' | 'right';
-  expanded: boolean;
-  presentation: 'docked' | 'overlay';
-  density?: 'full' | 'comfortable' | 'compact' | 'mini';
-  labelExpanded: string;
-  labelCollapsed: string;
-  onToggle: () => void;
-  className?: string;
-};
-``​`
-
-- `LeftSidebar` reemplazó su botón propio por `SidebarCollapseHandle`.
-- `Designer/index.tsx` reemplazó el toggle derecho por `SidebarCollapseHandle`.
-- `RightSidebar` introdujo:
-
-``​`txt
-data-sidebar-collapsed
-data-right-sidebar-expanded
-right-sidebar-collapsed-rail
-right-sidebar-collapsed-rail-btn
-``​`
-
-- El CSS del botón izquierdo dejó de usar offset negativo:
-
-``​`css
-right: 0.5rem;
-top: 0.875rem;
-``​`
-
-#### Inspector labels
-
-Archivos tocados:
-
-``​`txt
-src/sisad-pdfme/schemas/propPanel/commonInspectorFields.ts
-src/sisad-pdfme/schemas/signature/propPanel.ts
-``​`
-
-Cambio:
-
-``​`txt
-Texto de ayuda / Texto de ayuda (tooltip) → Ayuda del campo
-``​`
-
-#### Tests agregados o ejecutados
-
-Archivo agregado:
-
-``​`txt
-tests/e2e/sidebar-collapse-parity.spec.ts
-``​`
-
-Specs ejecutadas:
-
-``​`bash
-npm run build
-npm run lint
-npx playwright test tests/e2e/schema-owner-color.spec.ts tests/e2e/left-sidebar-view-modes.spec.ts tests/e2e/schema-options-editor.spec.ts tests/e2e/schema-lock-state-consistency.spec.ts tests/e2e/sidebar-collapse-parity.spec.ts --project=chromium
-npx playwright test tests/e2e/inspector-detailview-profiles.spec.ts --project=chromium
-``​`
-
-Resultado reportado:
-
-``​`txt
-build OK
-lint OK
-7 passed
-3 passed
-``​`
-
----
-
-## 2. Restricciones que deben mantenerse
-
-### 2.1 Archivos que NO deben tocarse en esta hoja de ruta
-
-Esta línea de trabajo no debe modificar:
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/Canvas/**
-src/sisad-pdfme/ui/components/Paper.tsx
-src/sisad-pdfme/ui/components/Renderer.tsx salvo validación de variables ya existentes
-src/sisad-pdfme/ui/components/Moveable*.tsx
-src/sisad-pdfme/ui/components/Selecto*.tsx
-src/sisad-pdfme/pdf-lib/**
-src/sisad-pdfme/generator/**
-src/sisad-pdfme/**/SnapshotAdapter*
-``​`
-
-### 2.2 Temas fuera de alcance
-
-No mezclar esta hoja de ruta con:
-
-``​`txt
-- drag/drop profundo;
-- coordenadas;
-- zoom;
-- no-overlap;
-- generator/pdf-lib;
-- externalForms;
-- Uanataca/OneShot;
-- StepOne;
-- lógica de negocio de SISAD Web;
-- refactor general del repository.
-``​`
-
-### 2.3 Regla de implementación
-
-Cada fase debe cerrar con:
-
-``​`bash
-npm run build
-npm run lint
-npx playwright test <spec-relacionado> --project=chromium
-``​`
-
-Si una fase requiere tocar más de 6 archivos productivos, detenerse y dividirla en otra task-card.
-
----
-
-## 3. Problemas residuales después de Codex
-
-### 3.1 El worktree tiene cambios previos no controlados
-
-Codex reportó:
-
-``​`txt
-D SEPARATION-CONTRACT.md
-D plan-tailwind-completo-actualizado-sisad-pdfme.md
-?? tests/e2e/sidebar-drag-scroll-guard.spec.ts
-?? unificados/
-``​`
-
-Acción obligatoria:
-
-``​`bash
-git status --short
-git diff --stat
-git diff --name-only
-``​`
-
-Antes de continuar, clasificar cambios:
-
-| Estado                  | Acción                           |
-| ----------------------- | --------------------------------- |
-| Cambios de esta fase    | mantener                          |
-| Cambios previos útiles | mover a commit separado           |
-| Cambios accidentales    | revertir                          |
-| Archivos`unificados/` | revisar si son generados o basura |
-| Docs eliminados         | confirmar si deben restaurarse    |
-
-### 3.2 `SidebarCollapseHandle` todavía usa `title` nativo
-
-Codex creó un componente compartido, pero mantiene:
-
-``​`tsx
-title={label}
-``​`
-
-Esto contradice el diagnóstico previo: los tooltips nativos negros cubren la UI y no son controlables.
-
-Acción:
-
-- Reemplazar `title` por `Tooltip` controlado o prop opcional.
-- Si se decide mantener `title` por accesibilidad mínima, no usarlo en iconos que ya tengan tooltip visual.
-- Mantener `aria-label` siempre.
-
-### 3.3 El rail derecho funciona pero no está completamente alineado visualmente con el izquierdo
-
-Codex dejó un rail compacto funcional, pero el mismo reporte indica que todavía falta afinar densidad y miniatura de tabs.
-
-Acción:
-
-- Sustituir el placeholder `RS` por icono contextual.
-- Alinear tamaño, borde, radio, hover y active state con rail izquierdo.
-- Evitar que el rail derecho parezca un componente distinto.
-
-### 3.4 `CatalogLayout` y `SidebarDensity` siguen siendo conceptos mezclados
-
-Aún debe resolverse el problema principal del LeftSidebar:
-
-``​`ts
-type CatalogLayout = 'list' | 'tiles' | 'icons';
-type SidebarDensity = 'comfortable' | 'compact' | 'narrow';
-``​`
-
-La vista es elección del usuario. La densidad es respuesta al ancho. No se deben convertir mutuamente.
-
-### 3.5 El selector de vista sigue siendo ambiguo
-
-El ciclo `rich → compact → mini → rich` debe reemplazarse por control segmentado o menú explícito.
-
-### 3.6 El catálogo mantiene superficies anidadas
-
-Debe revisarse:
-
-``​`txt
-left-sidebar-plugin-wrap
-Button
-PluginIcon container
-favorite button
-``​`
-
-La meta es una sola superficie interactiva por item.
-
-### 3.7 Riesgo en `PluginIcon` al normalizar SVGs
-
-La normalización de `stroke/fill` a `currentColor` es útil para owner color, pero debe validarse que no rompa iconos semánticos o multicolor en catálogo.
-
-Acciones:
-
-- Agregar tests visuales o snapshots de iconos críticos.
-- Confirmar que approve/decline mantienen su color semántico cuando aplica.
-- Confirmar que el catálogo sí toma `activeRecipientColor`.
-
-### 3.8 Inspector todavía requiere limpieza por perfil de schema
-
-Debe verificarse que cada schema muestre solo secciones útiles.
-
-Problemas a evitar:
-
-``​`txt
-- Options en schemas sin opciones.
-- Formato en schemas no visuales.
-- Técnico abierto por defecto.
-- Secciones vacías.
-- Switches que requieren doble click.
-- Editor de opciones que crea otro schema accidentalmente.
-- Labels artificiales: Caja, Comportamiento, Datos conectados, Avanzado.
-``​`
-
----
-
-## 4. Hoja de ruta por fases
-
-## Fase 0 — Congelar estado y separar cambios previos
-
-### Objetivo
-
-Evitar que la siguiente pasada mezcle cambios de Codex con cambios previos del worktree.
-
-### Comandos
-
-``​`bash
-git status --short
-git diff --stat
-git diff --name-only
-git diff -- src/sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle.tsx
-git diff -- src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx
-git diff -- src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx
-git diff -- src/sisad-pdfme/ui/components/Designer/index.tsx
-git diff -- src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx
-git diff -- src/sisad-pdfme/collaboration/schemaOwnershipAppearance.ts
-git diff -- src/sisad-pdfme/schemas/shared/fieldChrome.ts
-git diff -- src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts
-``​`
-
-### Acciones
-
-1. Crear un branch limpio si no existe:
-
-``​`bash
-git checkout -b chore/sisad-pdfme-post-codex-plan
-``​`
-
-2. Separar commits:
-
-``​`txt
-commit 1: owner color resolvers + PluginIcon
-commit 2: SidebarCollapseHandle + LeftSidebar/RightSidebar parity
-commit 3: inspector labels + tests
-commit 4: documentación/plan
-``​`
-
-3. No continuar si hay archivos eliminados sin explicación:
-
-``​`txt
-SEPARATION-CONTRACT.md
-plan-tailwind-completo-actualizado-sisad-pdfme.md
-``​`
-
-### Criterio de aceptación
-
-- `git status --short` entendido y documentado.
-- No hay cambios accidentales mezclados con la siguiente fase.
-- Existe una lista de archivos previos no tocados.
-
----
-
-## Fase 1 — Validar y endurecer owner color
-
-### Objetivo
-
-Asegurar que todos los schemas consuman el mismo contrato de color del usuario/destinatario sin confundirlo con color semántico.
-
-### Archivos a revisar
-
-``​`txt
-src/sisad-pdfme/collaboration/schemaOwnershipAppearance.ts
-src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts
-src/sisad-pdfme/schemas/shared/fieldChrome.ts
-src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx
-src/sisad-pdfme/ui/components/Renderer.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx
-src/sisad-pdfme/schemas/**/index.ts
-src/sisad-pdfme/schemas/actions/*.ts
-src/sisad-pdfme/schemas/signature/*.ts
-src/sisad-pdfme/schemas/options/*.ts
-``​`
-
-### Fuente de verdad
-
-Usar un solo orden:
-
-``​`txt
-1. schema.ownerColor
-2. schema.userColor
-3. schema.recipientColor
-4. schema.__designer?.collaboration?.recipientColor
-5. schema.__designer?.ownerColor
-6. schema.__designer?.recipientColor
-7. fallback.actorColor / activeRecipientColor
-8. recipient.color
-9. #2563EB
-``​`
-
-### Acciones
-
-1. Revisar si existen resolvers paralelos:
-
-``​`bash
-rg "ownerColor|userColor|recipientColor|__designer.*recipientColor|resolveSchemaOwner|schemaTone|schema-owner-color|--schema-owner-color" src/sisad-pdfme
-``​`
-
-2. Eliminar o redirigir helpers duplicados hacia el facade central.
-3. Asegurar que `resolveSchemaOwnerStyleVars` retorne variables estables:
-
-``​`ts
-{
-  '--schema-owner-color': tone,
-  '--schema-tone': tone,
-  '--schema-border-tone': tone,
-  '--schema-text-tone': tone,
-}
-``​`
-
-4. Validar por schema:
-
-| Schema         | Owner color               | Semantic color     | Reglas                                |
-| -------------- | ------------------------- | ------------------ | ------------------------------------- |
-| text           | borde, fondo sutil, label | ninguno            | debe heredar owner tone               |
-| number         | borde, fondo sutil, label | ninguno            | debe heredar owner tone               |
-| select         | borde, chevron/focus      | ninguno            | no usar color fijo                    |
-| checkbox       | borde/indicador           | check visual       | owner tone en contorno/chrome         |
-| checkboxGroup  | root/borde/indicadores    | selección interna | opciones no son schemas               |
-| radioGroup     | root/borde/indicadores    | punto seleccionado | opciones no son schemas               |
-| signature      | borde/placeholder         | firma/provider     | no hardcodear provider                |
-| initials       | borde/placeholder         | firma/provider     | mismo contrato que signature          |
-| dateSigned     | borde/texto               | fecha automática  | readOnly                              |
-| approve        | owner accent externo      | verde              | no reemplazar verde                   |
-| decline        | owner accent externo      | rojo               | no reemplazar rojo                    |
-| attachment     | owner accent/borde        | icono archivo      | reglas archivo aparte                 |
-| note           | owner accent/borde        | color informativo  | no mezclar con comentario             |
-| image/svg      | selección/borde          | contenido visual   | no recolorear imagen                  |
-| barcode/qr     | selección/borde          | barras/código     | color del código es propiedad propia |
-| table          | selección/borde          | estilo tabla       | owner solo chrome                     |
-| rectangle/line | selección/borde          | forma visual       | color de forma separado               |
-
-### Tests
-
-Actualizar o crear:
-
-``​`txt
-tests/e2e/schema-owner-color.spec.ts
-``​`
-
-Casos mínimos:
-
-``​`txt
-- Usuario A crea text, checkbox, checkboxGroup, radioGroup, select, signature, initials, approve, decline, attachment, note.
-- Cambiar a Usuario B.
-- Los schemas existentes conservan color A.
-- Schema nuevo usa color B.
-- Canvas wrapper, ListView item y DetailHeader muestran el mismo owner color.
-- approve/decline mantienen verde/rojo semántico, pero owner accent coincide.
-``​`
-
-Comandos:
-
-``​`bash
-npm run build
-npm run lint
-npx playwright test tests/e2e/schema-owner-color.spec.ts --project=chromium
-``​`
-
----
-
-## Fase 2 — Corregir `PluginIcon` con política segura de color
-
-### Objetivo
-
-Evitar que iconos del catálogo bloqueen el color del destinatario sin romper iconos semánticos o multicolor.
-
-### Problema
-
-Codex normalizó `stroke/fill` a `currentColor`. Es correcto para la mayoría del catálogo, pero puede ser peligroso para iconos que usan colores semánticos.
-
-### Acciones
-
-1. Crear una política explícita:
-
-``​`ts
-type PluginIconColorMode = 'owner' | 'semantic' | 'original';
-``​`
-
-2. Para catálogo de schemas estándar usar:
-
-``​`txt
-owner
-``​`
-
-3. Para iconos semánticos de acciones usar:
-
-``​`txt
-semantic
-``​`
-
-4. Para SVGs externos o imágenes usar:
-
-``​`txt
-original
-``​`
-
-5. Evitar normalización global sin perfil.
-
-### Archivos candidatos
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx
-src/sisad-pdfme/schemas/schemaFamilies.ts
-src/sisad-pdfme/schemas/**/index.ts
-src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx
-``​`
-
-### Tests
-
-Agregar en `left-sidebar-view-modes.spec.ts`:
-
-``​`txt
-- iconos del catálogo cambian con activeRecipientColor.
-- approve/decline conservan semántica cuando el schema lo requiere.
-- SVG con fill="none" no se rompe.
-- SVG con url(...) no se transforma.
-``​`
-
----
-
-## Fase 3 — Unificar definitivamente collapse de sidebars
-
-### Objetivo
-
-Completar lo iniciado por Codex: ambos laterales deben compartir comportamiento, diseño, accesibilidad y modo rail.
-
-### Estado actual
-
-Codex ya creó:
-
-``​`txt
-SidebarCollapseHandle
-LeftSidebar usa handle
-RightSidebar usa handle
-RightSidebar colapsado muestra rail
-``​`
-
-### Pendientes
-
-#### 3.1 Eliminar `title` nativo del handle
-
-Archivo:
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle.tsx
-``​`
-
-Cambiar:
-
-``​`tsx
-title={label}
-``​`
-
-Por una estrategia controlada:
-
-``​`tsx
-<Tooltip title={label} placement={side === 'left' ? 'right' : 'left'}>
-  <button ... />
-</Tooltip>
-``​`
-
-Si no se desea Ant Design aquí, crear:
-
-``​`txt
-SidebarTooltip
-``​`
-
-pero mantenerlo genérico.
-
-#### 3.2 Normalizar rail izquierdo y derecho
-
-Crear contrato:
-
-``​`ts
-type SidebarRailItem = {
-  key: string;
-  icon: React.ReactNode;
-  label: string;
-  active?: boolean;
-  disabled?: boolean;
-  badge?: number | string;
-  onClick: () => void;
-};
-``​`
-
-Crear componente compartido:
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/shared/SidebarRail.tsx
-``​`
-
-Usar para:
-
-``​`txt
-LeftSidebar collapsed rail
-RightSidebar collapsed rail
-``​`
-
-#### 3.3 Reemplazar placeholder `RS`
-
-El rail derecho no debe mostrar `RS`. Debe mostrar el modo activo:
-
-``​`txt
-Campos
-Propiedades
-Comentarios
-Documentos
-``​`
-
-con iconos y tooltips.
-
-#### 3.4 Alinear atributos
-
-Ambos sidebars deben exponer:
-
-``​`txt
-data-sidebar-side="left|right"
-data-sidebar-expanded="true|false"
-data-sidebar-collapsed="true|false"
-data-sidebar-density="comfortable|compact|narrow"
-data-sidebar-presentation="docked|overlay"
-aria-expanded="true|false"
-``​`
-
-### Archivos a modificar
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle.tsx
-src/sisad-pdfme/ui/components/Designer/shared/SidebarRail.tsx
-src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx
-src/sisad-pdfme/ui/components/Designer/index.tsx
-src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
-``​`
-
-### Tests
-
-Actualizar:
-
-``​`txt
-tests/e2e/sidebar-collapse-parity.spec.ts
-``​`
-
-Casos:
-
-``​`txt
-- LeftSidebar expandido muestra handle completo y no cortado.
-- LeftSidebar colapsado muestra rail y handle.
-- RightSidebar expandido muestra handle equivalente.
-- RightSidebar colapsado muestra rail, no desaparece totalmente.
-- Ambos tienen aria-expanded correcto.
-- No existen tooltips nativos negros por title.
-- No hay overflow horizontal.
-- El canvas sigue visible.
-- El rail derecho permite reabrir modo fields/detail/comments/docs.
-``​`
-
----
-
-## Fase 4 — Separar `CatalogLayout` de `SidebarDensity`
-
-### Objetivo
-
-Resolver la causa raíz del LeftSidebar: los nombres actuales mezclan vista, densidad y ancho.
-
-### Problema actual
-
-Conceptos mezclados:
-
-``​`txt
-CatalogViewMode: rich | compact | mini
-Densidad: full | comfortable | compact | mini
-Ancho real del sidebar
-``​`
-
-Mapeo real:
-
-``​`txt
-rich    → list
-compact → tiles
-mini    → icons
-``​`
-
-### Nuevo contrato
-
-``​`ts
-export type CatalogLayout = 'list' | 'tiles' | 'icons';
-export type SidebarDensity = 'comfortable' | 'compact' | 'narrow';
-``​`
-
-### Reglas
-
-`CatalogLayout` define:
-
-``​`txt
-list   → fila horizontal con icono + texto
-tiles  → tarjeta compacta con icono arriba + texto
-icons  → solo iconos
-``​`
-
-`SidebarDensity` define:
-
-``​`txt
-comfortable → padding/gap mayor
-compact     → padding/gap medio
-narrow      → padding/gap mínimo
-``​`
-
-La densidad nunca debe cambiar:
-
-``​`txt
-- orientación;
-- visibilidad del texto;
-- número semántico de columnas;
-- significado del tooltip;
-- selección del usuario.
-``​`
-
-### Acciones
-
-1. Crear alias de compatibilidad temporal:
-
-``​`ts
-type LegacyCatalogViewMode = 'rich' | 'compact' | 'mini';
-
-function normalizeCatalogLayout(value: LegacyCatalogViewMode | CatalogLayout): CatalogLayout {
-  if (value === 'rich') return 'list';
-  if (value === 'compact') return 'tiles';
-  if (value === 'mini') return 'icons';
-  return value;
-}
-``​`
-
-2. Reemplazar `viewMode` interno por `catalogLayout`.
-3. Mantener compatibilidad de props públicas durante una fase:
-
-``​`txt
-viewMode deprecated
-catalogLayout recomendado
-``​`
-
-4. Persistir la elección:
-
-``​`txt
-sisad-pdfme:catalog-layout
-``​`
-
-5. No persistir densidad.
-
-### Archivos candidatos
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx
-src/sisad-pdfme/ui/components/Designer/SidebarButtons.tsx
-src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx
-src/sisad-pdfme/ui/components/Designer/types.ts
-src/sisad-pdfme/ui/styles/sisad-pdfme-sidebar.css
-src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
-src/styles/sisad-tailwind-bridge.css
-``​`
-
-### CSS a eliminar o transformar
-
-Buscar:
-
-``​`bash
-rg "data-view-mode|left-sidebar-density|compact|mini|rich" src/sisad-pdfme/ui/styles src/styles/sisad-tailwind-bridge.css
-``​`
-
-Eliminar reglas como:
-
-``​`css
-[data-left-sidebar-density='mini'] [data-view-mode='compact'] {
-  grid-template-columns: minmax(0, 1fr);
-}
-``​`
-
-### Tests
-
-Actualizar:
-
-``​`txt
-tests/e2e/left-sidebar-view-modes.spec.ts
-``​`
-
-Casos:
-
-``​`txt
-- list mantiene filas horizontales en density comfortable/compact/narrow.
-- tiles mantiene tarjetas en dos columnas cuando hay ancho suficiente.
-- icons mantiene solo iconos.
-- resize no cambia layout elegido por el usuario.
-- density solo cambia spacing, no orientación.
-``​`
-
----
-
-## Fase 5 — Rediseñar selector de vista del catálogo
-
-### Objetivo
-
-Eliminar el botón cíclico ambiguo.
-
-### Estado actual
-
-Hay un botón que cambia:
-
-``​`txt
-rich → compact → mini → rich
-``​`
-
-y muestra el icono de la próxima vista, no la actual.
-
-### Nuevo diseño
-
-Control segmentado:
-
-``​`txt
-[Lista] [Tarjetas] [Iconos]
-``​`
-
-En UI compacta:
-
-``​`txt
-[≡] [▦] [⠿]
-``​`
-
-con tooltip controlado.
-
-### Acciones
-
-1. Crear componente:
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/shared/CatalogLayoutToggle.tsx
-``​`
-
-Props:
-
-``​`ts
-type CatalogLayoutToggleProps = {
-  value: CatalogLayout;
-  onChange: (layout: CatalogLayout) => void;
-  density: SidebarDensity;
-};
-``​`
-
-2. Reemplazar botón cíclico en `LeftSidebar`.
-3. Eliminar `title` nativo.
-4. Usar `aria-pressed` por botón.
-5. Soportar teclado con flechas.
-
-### Tests
-
-``​`txt
-- Click en Lista cambia a list.
-- Click en Tarjetas cambia a tiles.
-- Click en Iconos cambia a icons.
-- La vista seleccionada se conserva tras resize.
-- La vista seleccionada se conserva al colapsar/expandir sidebar.
-``​`
-
----
-
-## Fase 6 — Compactar LeftSidebar sin perder funciones
-
-### Objetivo
-
-Hacer el catálogo más compacto, predecible y consistente con estilo tipo DocuSign/Wix, usando Tailwind/bridge existente.
-
-### Problemas actuales
-
-``​`txt
-- Header alto.
-- Tabs sin texto pero con tooltips nativos.
-- Filtros grandes.
-- Categorías como tarjetas pesadas.
-- Items con superficie dentro de superficie.
-- Favoritos duplicados.
-- Resultados flotante invade el catálogo.
-``​`
-
-### Nuevo layout del header
-
-Altura objetivo: `124–140px`.
-
-``​`txt
-Fila 1: Campos · ● Cliente principal                    [collapse]
-Fila 2: [Estándar] [Personalizados] [Prefill]
-Fila 3: Buscar campo...
-Fila 4: Todos | ★ Favoritos | Recientes                 [Vista]
-``​`
-
-### Diseño de `list`
-
-``​`txt
-Altura: 36–40 px
-Icono: 20–22 px
-Gap: 8 px
-Padding horizontal: 8–10 px
-Label: 11.5–12 px
-Sombra: ninguna
-Borde: hover/active solamente
-``​`
-
-### Diseño de `tiles`
-
-``​`txt
-Altura: 52–58 px
-Columnas: auto-fill minmax(96px, 1fr) o 2 columnas según ancho
-Icono: 22–24 px
-Label: una línea
-Padding: 6–8 px
-Sin card interna del icono
-``​`
-
-### Diseño de `icons`
-
-``​`txt
-Botón: 38–42 px
-Icono: 18–22 px
-Grid: repeat(auto-fill, minmax(38px, 1fr))
-Gap: 5–6 px
-Tooltip obligatorio
-Sin estrella flotante
-``​`
-
-### Acciones por componente
-
-#### `LeftSidebarGroup`
-
-- Añadir chevron visible.
-- Reducir padding del header.
-- Eliminar card pesada en modo icons.
-- Mantener contador compacto.
-
-#### `SidebarButtons` / item del catálogo
-
-- Una sola superficie visible.
-- Wrapper sin fondo/borde/sombra.
-- Button controla hover/focus/drag.
-- `PluginIcon` sin tarjeta interna.
-- Favorito integrado según layout:
-  - list: estrella al final.
-  - tiles: visible en hover o si activo.
-  - icons: oculto o en menú contextual.
-
-#### Filtros
-
-Cambiar:
-
-``​`txt
-Todos, Favoritos (0), Recientes (1)
-``​`
-
-por:
-
-``​`txt
-Todos | ★ 0 | Recientes 1
-``​`
-
-### Archivos candidatos
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx
-src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx
-src/sisad-pdfme/ui/components/Designer/SidebarButtons.tsx
-src/sisad-pdfme/ui/components/Designer/PluginIcon.tsx
-src/sisad-pdfme/ui/styles/sisad-pdfme-sidebar.css
-src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
-src/styles/sisad-tailwind-bridge.css
-``​`
-
-### Tests
-
-``​`txt
-- list muestra al menos 14 items en 700px útiles.
-- tiles muestra 10–14 items.
-- icons muestra 24–36 items.
-- favoritos funciona igual en los tres layouts.
-- recientes no queda colapsado accidentalmente.
-- drag bloquea scroll del sidebar durante arrastre.
-``​`
-
----
-
-## Fase 7 — Corregir inserción por click/double click del catálogo
-
-### Objetivo
-
-Evitar inserciones duplicadas de schemas.
-
-### Problema
-
-Si `onClick` y `onDoubleClick` ejecutan `onSchemaClick`, el navegador puede disparar:
-
-``​`txt
-click
-click
-dblclick
-``​`
-
-Resultado posible: 2 o 3 schemas creados.
-
-### Decisión recomendada
-
-Contrato simple:
-
-``​`txt
-Click simple: insertar una vez
-Drag: colocar con precisión
-Doble click: sin acción adicional
-``​`
-
-### Acciones
-
-1. Buscar handlers duplicados:
-
-``​`bash
-rg "onDoubleClick|onClick.*onSchemaClick|onSchemaClick" src/sisad-pdfme/ui/components/Designer
-``​`
-
-2. Eliminar `onDoubleClick` si duplica inserción.
-3. Si se mantiene doble click, implementar guard:
-
-``​`ts
-const clickGuard = useRef<number | null>(null);
-``​`
-
-pero preferir no hacerlo.
-
-4. Agregar telemetría opcional solo en dev para detectar doble inserción.
-
-### Tests
-
-``​`txt
-- doble click sobre item del catálogo crea solo un schema.
-- click simple crea solo un schema.
-- drag crea un schema en coordenada esperada.
-``​`
-
----
-
-## Fase 8 — Reubicar “Resultados · Colapsado”
-
-### Objetivo
-
-Evitar que el panel de resultados tape el LeftSidebar o el canvas.
-
-### Problema
-
-Está fijado al viewport con:
-
-``​`txt
-position: fixed
-bottom: 12px
-left: 12px
-z-index: 70
-``​`
-
-### Opciones
-
-#### Opción A — Barra inferior del laboratorio
-
-``​`txt
-Resultados 0 · Sin errores · Última validación: OK
-``​`
-
-#### Opción B — Pill dentro del canvas workspace
-
-Anclado al workspace, no al viewport.
-
-#### Opción C — Drawer inferior
-
-Se abre solo cuando hay resultados, warnings o errores.
-
-### Recomendación
-
-Implementar Opción A para laboratorio y Opción C para producción si aplica.
-
-### Archivos a buscar
-
-``​`bash
-rg "Resultados|Colapsado|results|collapsed|bottom: 12|z-index: 70" src tests
-``​`
-
-### Tests
-
-``​`txt
-- Resultados no tapa últimos items del LeftSidebar.
-- Resultados no tapa zoom toolbar.
-- Resultados no genera overflow horizontal.
-``​`
-
----
-
-## Fase 9 — Inspector: taxonomía final por tipo de schema
-
-### Objetivo
-
-El DetailView debe mostrar solo lo que corresponde al tipo de schema, sin duplicidades ni secciones vacías.
-
-### Labels oficiales
-
-| Key               | Label visible          | Contenido                             |
-| ----------------- | ---------------------- | ------------------------------------- |
-| `identity`      | Información del campo | nombre, tipo, label visible           |
-| `content`       | Contenido              | valor/texto principal                 |
-| `options`       | Opciones               | select/radio/checkboxGroup            |
-| `validation`    | Reglas de llenado      | requerido, validación, mensaje error |
-| `fileRules`     | Reglas del archivo     | max files, tipos, tamaño, reemplazo  |
-| `signature`     | Firma                  | tipo/proveedor si aplica              |
-| `action`        | Acción                | approve/decline/note actions          |
-| `behavior`      | Interacción           | readonly, hidden, editable            |
-| `box`           | Ubicación y tamaño   | x, y, ancho, alto, rotación          |
-| `appearance`    | Formato                | font, color, opacity                  |
-| `dataBindings`  | Datos y conexiones     | fieldKey, API, JSON, persistencia     |
-| `comments`      | Comentarios            | comentarios del campo                 |
-| `collaboration` | Asignación y acceso   | owner, lock, permisos                 |
-| `advanced`      | Técnico               | IDs y metadata debug                  |
-
-### Labels prohibidos
-
-| Evitar              | Usar                                             |
-| ------------------- | ------------------------------------------------ |
-| Caja                | Ubicación y tamaño                             |
-| Comportamiento      | Interacción                                     |
-| Validación         | Reglas de llenado                                |
-| Avanzado            | Técnico                                         |
-| Datos conectados    | Datos y conexiones                               |
-| Colaboración       | Asignación y acceso                             |
-| Bloqueado genérico | En edición / Bloqueado por / Bloquear posición |
-
-### Política de secciones vacías
-
-Crear o reforzar:
-
-``​`ts
-export function shouldRenderDetailSection(
-  section: InspectorSectionKey,
-  profile: InspectorProfile,
-  schema: SchemaForUI,
-  context: InspectorContext,
-): boolean;
-``​`
-
-Reglas:
-
-``​`txt
-- No renderizar sección sin widgets visibles.
-- No renderizar sección con solo guiones o placeholders.
-- Técnico colapsado por defecto.
-- Datos y conexiones oculto si no hay configuración ni soporte.
-- Formato oculto si no hay propiedades visuales reales.
-- Opciones oculto si el schema no soporta opciones.
-``​`
-
-### Perfiles por schema
-
-#### `text`
-
-Secciones:
-
-``​`txt
-identity
-content
-validation
-behavior
-box
-appearance
-dataBindings
-comments
-collaboration
-advanced
-``​`
-
-Abiertas por defecto:
-
-``​`txt
-identity
-content
-validation
-``​`
-
-#### `number`
-
-Secciones:
-
-``​`txt
-identity
-content
-validation
-numberFormat
-behavior
-box
-appearance
-dataBindings
-collaboration
-advanced
-``​`
-
-#### `select`
-
-Secciones:
-
-``​`txt
-identity
-options
-validation
-behavior
-box
-appearance
-dataBindings
-collaboration
-advanced
-``​`
-
-Abiertas por defecto:
-
-``​`txt
-identity
-options
-``​`
-
-#### `checkbox`
-
-Secciones:
-
-``​`txt
-identity
-validation
-behavior
-box
-appearance
-collaboration
-advanced
-``​`
-
-No mostrar `options`.
-
-#### `checkboxGroup`
-
-Secciones:
-
-``​`txt
-identity
-options
-validation
-behavior
-box
-appearance
-collaboration
-advanced
-``​`
-
-Abiertas por defecto:
-
-``​`txt
-identity
-options
-``​`
-
-#### `radioGroup`
-
-Igual a `checkboxGroup`, pero selección única.
-
-#### `signature`
-
-Secciones:
-
-``​`txt
-identity
-signature
-behavior
-box
-appearance
-dataBindings
-comments
-collaboration
-advanced
-``​`
-
-No mostrar `options`.
-
-#### `initials`
-
-Mismo perfil que signature, con `signatureKind = initials`.
-
-#### `dateSigned`
-
-``​`txt
-identity
-content/date format
-box
-appearance
-dataBindings
-collaboration
-advanced
-``​`
-
-Debe ser readOnly.
-
-#### `attachment`
-
-``​`txt
-identity
-fileRules
-behavior
-box
-appearance
-dataBindings
-comments
-collaboration
-advanced
-``​`
-
-#### `approve` / `decline`
-
-``​`txt
-identity
-action
-behavior
-box
-appearance
-dataBindings
-collaboration
-advanced
-``​`
-
-Designer no ejecuta acción; solo representa.
-
-#### `note`
-
-``​`txt
-identity
-content
-behavior
-box
-appearance
-comments
-collaboration
-advanced
-``​`
-
-#### `image` / `svg`
-
-``​`txt
-identity
-media
-box
-appearance
-collaboration
-advanced
-``​`
-
-#### `barcode` / `qr`
-
-``​`txt
-identity
-code
-box
-appearance
-dataBindings
-collaboration
-advanced
-``​`
-
-#### `table`
-
-``​`txt
-identity
-table
-box
-appearance
-dataBindings
-collaboration
-advanced
-``​`
-
-### Archivos candidatos
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaDisplayInfo.ts
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaInteractionState.ts
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/widgets/*.tsx
-src/sisad-pdfme/schemas/**/propPanel.ts
-``​`
-
-### Tests
-
-``​`txt
-tests/e2e/inspector-detailview-profiles.spec.ts
-``​`
-
-Casos:
-
-``​`txt
-- text no muestra options.
-- select muestra options principal.
-- checkbox individual no muestra options.
-- checkboxGroup muestra options y selection rules.
-- radioGroup muestra options y selección única.
-- signature muestra signature y no options.
-- attachment muestra fileRules.
-- approve/decline muestra action.
-- no hay secciones vacías.
-- Técnico siempre colapsado por defecto.
-``​`
-
----
-
-## Fase 10 — Corregir editor de opciones
-
-### Objetivo
-
-Evitar que al agregar opciones se cree accidentalmente un schema de imagen, firma u otro tipo.
-
-### Problema reportado
-
-En el inspector, al agregar una opción nueva, por alguna razón se crea un schema de imagen o firma. Esto indica conflicto de eventos, foco, submit o command bus.
-
-### Archivos candidatos
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/widgets/InspectorOptionEditor.tsx
-src/sisad-pdfme/schemas/options/optionModel.ts
-src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts
-src/sisad-pdfme/schemas/options/optionValueAdapter.ts
-src/sisad-pdfme/schemas/select/index.ts
-src/sisad-pdfme/schemas/checkboxGroup/index.ts
-src/sisad-pdfme/schemas/radioGroup/index.ts
-src/sisad-pdfme/ui/components/Designer/commandBus*
-``​`
-
-### Diagnóstico técnico
-
-Buscar:
-
-``​`bash
-rg "Agregar opción|addOption|options|onSubmit|preventDefault|stopPropagation|command|insertSchema|createSchema|onKeyDown" src/sisad-pdfme
-``​`
-
-Hipótesis:
-
-1. Botón dentro de `<form>` sin `type="button"` dispara submit.
-2. `Enter` en input burbujea y activa handler global de inserción.
-3. El editor comparte `onSchemaClick` o command de catálogo.
-4. El foco queda en catálogo izquierdo y no en inspector.
-5. `onKeyDown` global interpreta tecla como shortcut.
-
-### Reglas de corrección
-
-``​`tsx
-<button type="button" ...>
-``​`
-
-En acciones internas del option editor:
-
-``​`ts
-event.preventDefault();
-event.stopPropagation();
-``​`
-
-Solo si se confirma que el evento burbujea al canvas/command bus.
-
-### Contrato de datos
-
-``​`ts
-type SchemaOption = {
-  id: string;
-  optionId?: string;
-  label: string;
-  value: string;
-  disabled?: boolean;
-  order?: number;
-};
-``​`
-
-### Reglas por tipo
-
-``​`txt
-select:
-- selectedValue/defaultValue
-- una opción activa por valor
-
-radioGroup:
-- selectedOptionId/defaultSelectedOptionId
-- selección única
-
-checkboxGroup:
-- selectedOptionIds/defaultSelectedOptionIds
-- selección múltiple
-``​`
-
-### Tests
-
-``​`txt
-tests/e2e/schema-options-editor.spec.ts
-``​`
-
-Casos:
-
-``​`txt
-- agregar opción en select no crea schema nuevo.
-- agregar opción en radioGroup no crea schema nuevo.
-- agregar opción en checkboxGroup no crea schema nuevo.
-- eliminar opción no elimina schema root.
-- renombrar opción actualiza canvas/form/viewer.
-- reordenar opción conserva ids.
-- Enter en input no inserta schema.
-- Botón Agregar opción tiene type button.
-``​`
-
----
-
-## Fase 11 — Switches de inspector con un solo click
-
-### Objetivo
-
-Corregir switches que a veces requieren doble click.
-
-### Hipótesis
-
-``​`txt
-- Overlay/pointer-events sobre el switch.
-- Label capturando evento y luego switch lo recibe en segundo click.
-- Remount del DetailView reseteando estado local.
-- onChange actualiza schema pero el componente vuelve a montar con valor anterior.
-- Switch mezclando checked/defaultChecked.
-``​`
-
-### Archivos candidatos
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/widgets/InspectorSwitch.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/widgets/InspectorField.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaInteractionState.ts
-``​`
-
-### Acciones
-
-1. Verificar controlled component:
-
-``​`tsx
-checked={Boolean(value)}
-onChange={(next) => update(next)}
-``​`
-
-2. No usar `defaultChecked`.
-3. No renderizar switch dentro de label si el label genera doble evento.
-4. Agregar `data-testid` para switches críticos.
-5. Verificar que no haya overlay absoluto encima.
-
-### Tests
-
-``​`txt
-- solo lectura cambia con un click.
-- obligatorio cambia con un click.
-- mostrar nombre en attachment cambia con un click.
-- reemplazo en attachment cambia con un click.
-- checked en checkbox cambia con un click en Form y no en Designer si aplica.
-``​`
-
----
-
-## Fase 12 — Reducir duplicidad de acciones entre toolbar, context menu e inspector
-
-### Objetivo
-
-Cada acción debe vivir en un lugar claro.
-
-### Regla de ownership de acciones
-
-| Acción                       | Lugar principal               | También permitido                    |
-| ----------------------------- | ----------------------------- | ------------------------------------- |
-| Eliminar                      | toolbar/context menu          | inspector footer si hay confirmación |
-| Duplicar                      | toolbar/context menu          | lista campos menú fila               |
-| Agregar comentario            | context menu / comments panel | toolbar si schema seleccionado        |
-| Bloquear                      | Asignación y acceso          | context menu rápido                  |
-| Ocultar                       | Interacción                  | context menu rápido                  |
-| Traer al frente/enviar atrás | context menu                  | toolbar si multiselect                |
-| Renombrar campo               | Información del campo        | lista de campos                       |
-| Editar opciones               | Opciones                      | no en canvas                          |
-| Configurar archivo            | Reglas del archivo            | no en canvas                          |
-| Configurar firma              | Firma                         | no en canvas                          |
-
-### Acciones
-
-1. Auditar duplicidades:
-
-``​`bash
-rg "Eliminar|Duplicar|Agregar comentario|Bloquear|Ocultar|Traer al frente|Enviar atrás|Renombrar|Abrir propiedades" src/sisad-pdfme/ui/components/Designer
-``​`
-
-2. Crear mapa central:
-
-``​`ts
-type SchemaActionKey =
-  | 'delete'
-  | 'duplicate'
-  | 'comment'
-  | 'lock'
-  | 'hide'
-  | 'bringForward'
-  | 'sendBackward'
-  | 'rename'
-  | 'openProperties';
-``​`
-
-3. Deshabilitar acciones si schema está bloqueado por otro usuario.
-4. El inspector no debe duplicar botones rápidos salvo que cambien configuración persistente.
-
-### Tests
-
-``​`txt
-- schema bloqueado por otro usuario no permite eliminar ni mover.
-- schema bloqueado por mí permite editar si política lo permite.
-- toolbar y context menu reflejan mismo disabled state.
-- inspector muestra estado coherente.
-``​`
-
----
-
-## Fase 13 — Comentarios con coordenadas y anclas tipo Office/PDF
-
-### Objetivo
-
-Implementar comentarios anclados a coordenadas del PDF y a schemas, mostrando ícono lateral según la posición.
-
-### Estado de contexto
-
-Ya existen módulos de comentarios/anclas en core:
-
-``​`txt
-src/sisad-pdfme/comments/index.ts
-src/sisad-pdfme/common/comments.ts
-``​`
-
-Se debe usar esa capa core, no inventar otra estructura.
-
-### Contrato funcional
-
-Cuando el usuario hace click en `Agregar comentario`:
-
-1. Capturar coordenada del click en sistema del documento:
-
-``​`txt
-documentId
-pageNumber
-x
-y
-schemaUid opcional
-``​`
-
-2. Crear comentario top-level o de schema:
-
-``​`ts
-createSchemaComment(text, identity, overrides)
-createSchemaCommentAnchor(anchor, identity)
-``​`
-
-3. Mostrar ícono lateral junto al PDF, alineado verticalmente con `y`.
-4. Al hacer click en el ícono, abrir hilo del comentario.
-5. Permitir mover ancla.
-6. Permitir resolver/reabrir.
-7. Guardar en snapshot.
-
-### Archivos candidatos
-
-``​`txt
-src/sisad-pdfme/comments/index.ts
-src/sisad-pdfme/common/comments.ts
-src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx
-src/sisad-pdfme/ui/components/Designer/Canvas/overlays/*Comment*.tsx
-src/sisad-pdfme/ui/components/Designer/contextMenu*
-src/sisad-pdfme/ui/components/Designer/shared/designerCoordinateService.ts
-``​`
-
-### Reglas de seguridad
-
-- No usar coordenadas viewport como fuente final.
-- Convertir a coordenadas del documento/página.
-- Preservar `documentId`, `pageNumber`, `schemaUid`.
-- No guardar comentarios dentro de `formData`.
-- No mezclar comentarios con schemas.
-
-### Tests
-
-``​`txt
-tests/e2e/schema-comments-anchors.spec.ts
-``​`
-
-Casos:
-
-``​`txt
-- click derecho/agregar comentario guarda documentId/pageNumber/x/y.
-- ícono lateral aparece en la página correcta.
-- click en ícono abre comentario.
-- mover comentario actualiza x/y.
-- comentario asociado a schema aparece en CommentsRail.
-- resolver comentario cambia estado.
-- snapshot round-trip conserva comentarios.
-``​`
-
----
-
-## Fase 14 — Modal de campos personalizados
-
-### Objetivo
-
-No mostrar controles que no persisten y reducir densidad visual.
-
-### Problema
-
-`CustomFieldDef` contiene muchas propiedades, pero `createSchemaFromCustomField` solo copia algunas. Esto rompe confianza.
-
-### Regla inmediata
-
-``​`txt
-No mostrar controles que no persisten.
-``​`
-
-### Acciones
-
-1. Buscar definición:
-
-``​`bash
-rg "CustomFieldDef|createSchemaFromCustomField|custom field|Campo personalizado|Guardar campo" src/sisad-pdfme src
-``​`
-
-2. Crear matriz:
-
-| Control visible | Se guarda en schema | Se guarda en __designer | Se usa en Form | Se usa en Viewer/PDF |
-| --------------- | ------------------- | ----------------------- | -------------- | -------------------- |
-| font            | pendiente           | pendiente               | pendiente      | pendiente            |
-| validation      | pendiente           | pendiente               | pendiente      | pendiente            |
-| helpText        | pendiente           | pendiente               | pendiente      | pendiente            |
-| collaborative   | pendiente           | pendiente               | pendiente      | pendiente            |
-
-3. Ocultar controles no persistidos.
-4. Agregar `defaultSchema` para controles reales.
-5. Reducir modal:
-
-``​`txt
-Header: 48px
-Footer sticky: 52px
-Body scroll interno
-Secciones con divisores, no cards anidadas
-Inputs 32–34px
-Labels 11–12px
-``​`
-
-### Tests
-
-``​`txt
-- crear campo personalizado text con font/color/validation si están visibles.
-- guardar y volver a abrir conserva valores.
-- crear select/radioGroup permite options[].
-- controles ocultos no aparecen si no persisten.
-``​`
-
----
-
-## Fase 15 — Refactor CSS/Tailwind controlado
-
-### Objetivo
-
-Reducir colisiones entre:
-
-``​`txt
-sisad-pdfme-global.css
-sisad-pdfme-sidebar.css
-sisad-tailwind-bridge.css
-``​`
-
-### Reglas
-
-- No crear CSS disperso.
-- Preferir Tailwind en JSX para nuevos componentes.
-- CSS solo para:
-  - tokens globales;
-  - estados complejos data-attributes;
-  - compat legacy;
-  - estilos que Tailwind no puede expresar bien.
-- No usar `!important` nuevo salvo justificación.
-- No tocar `.moveable-*` ni `.selecto-*`.
-
-### Acciones
-
-1. Inventario:
-
-``​`bash
-rg "left-sidebar|right-sidebar|detail-view|schema-owner|catalog|data-view-mode|data-left-sidebar-density|sidebar-toggle" src/sisad-pdfme/ui/styles src/styles/sisad-tailwind-bridge.css
-``​`
-
-2. Clasificar reglas:
-
-| Regla | Mantener | Migrar a Tailwind | Eliminar | Motivo |
-| ----- | -------- | ----------------- | -------- | ------ |
-
-3. Mover diseños nuevos de sidebars a componentes con Tailwind.
-4. Dejar CSS únicamente para transiciones y data states.
-
-### Tests visuales
-
-``​`txt
-- laboratorio y SISAD Web se ven consistentes.
-- no hay colisión de line-height/font-size en catálogo.
-- no hay overflow horizontal.
-- botones del inspector conservan tamaño.
-``​`
-
----
-
-## 5. Plan de commits recomendado
-
-### Commit 1
-
-``​`txt
-refactor(theme): consolidate schema owner tone resolution
-``​`
-
-Incluye:
-
-``​`txt
-schemaOwnershipAppearance.ts
-schemaTone.ts
-fieldChrome.ts
-PluginIcon.tsx
-schema-owner-color.spec.ts
-``​`
-
-### Commit 2
-
-``​`txt
-refactor(sidebars): share collapse handle and right rail behavior
-``​`
-
-Incluye:
-
-``​`txt
-SidebarCollapseHandle.tsx
-SidebarRail.tsx si se crea
-LeftSidebar.tsx
-RightSidebar.tsx
-Designer/index.tsx
-sidebar-collapse-parity.spec.ts
-``​`
-
-### Commit 3
-
-``​`txt
-refactor(catalog): separate layout from responsive density
-``​`
-
-Incluye:
-
-``​`txt
-CatalogLayout types
-LeftSidebar.tsx
-SidebarButtons.tsx
-LeftSidebarGroup.tsx
-CSS relacionado
-left-sidebar-view-modes.spec.ts
-``​`
-
-### Commit 4
-
-``​`txt
-fix(catalog): prevent duplicate insertions on double click
-``​`
-
-Incluye:
-
-``​`txt
-SidebarButtons.tsx
-left-sidebar-view-modes.spec.ts o catalog-insertion.spec.ts
-``​`
-
-### Commit 5
-
-``​`txt
-refactor(inspector): apply schema-specific detail profiles
-``​`
-
-Incluye:
-
-``​`txt
-detailSchemas.ts
-detailSectionTaxonomy.ts
-DetailViewContent.tsx
-widgets
-inspector-detailview-profiles.spec.ts
-``​`
-
-### Commit 6
-
-``​`txt
-fix(options): isolate option editor events from schema insertion
-``​`
-
-Incluye:
-
-``​`txt
-InspectorOptionEditor.tsx
-optionModel.ts
-optionValueAdapter.ts
-schema-options-editor.spec.ts
-``​`
-
-### Commit 7
-
-``​`txt
-feat(comments): add coordinate-based comment anchors
-``​`
-
-Incluye:
-
-``​`txt
-comments core
-comments overlay
-CommentsRail
-schema-comments-anchors.spec.ts
-``​`
-
-### Commit 8
-
-``​`txt
-docs(designer): document post-codex sidebar and inspector roadmap
-``​`
-
-Incluye:
-
-``​`txt
-.ai/task-cards/*
-docs/03-designer/*
-plan-post-codex-sisad-pdfme.md
-``​`
-
----
-
-## 6. Prompt recomendado para la siguiente sesión de Codex
-
-``​`txt
-Actúa como arquitecto frontend senior experto en React, TypeScript, Tailwind, pdfme, editores PDF tipo DocuSign/Wix, Moveable, Selecto, sidebars, inspector, command bus y Playwright.
-
-Proyecto:
-~/Documents/Taylor/frontend/prueba-plugin
-
-Ruta principal:
-http://localhost:5174/lab/multi-document-routing
-
-Contexto:
-Codex ya realizó una tercera pasada donde:
-- creó SidebarCollapseHandle;
-- conectó LeftSidebar y RightSidebar al handle compartido;
-- hizo que RightSidebar colapsado muestre rail compacto;
-- amplió ownerColor/userColor/recipientColor/__designer.*;
-- normalizó PluginIcon para currentColor;
-- corrigió labels de ayuda del inspector;
-- agregó sidebar-collapse-parity.spec.ts;
-- build, lint y Playwright críticos quedaron OK.
-
-Tu tarea NO es rehacer eso. Tu tarea es continuar desde ese estado y cerrar la siguiente fase definida en la task-card seleccionada.
-
-Restricciones absolutas:
-- No tocar Canvas/**.
-- No tocar Moveable.
-- No tocar Selecto.
-- No tocar Paper.
-- No tocar SnapshotAdapter.
-- No tocar Generator ni pdf-lib.
-- No tocar coordenadas, zoom, drag/drop profundo ni no-overlap.
-- No tocar StepOne ni negocio SISAD Web.
-- No introducir !important nuevo salvo justificación.
-- No usar z-index arbitrario para tapar problemas.
-- No crear CSS disperso; usar Tailwind/bridge existente.
-
-Antes de modificar:
-1. Ejecuta git status --short.
-2. Revisa diff de archivos tocados por Codex.
-3. Confirma que no hay cambios previos mezclados.
-4. Escoge una sola fase/task-card.
-5. No abras más de 8 archivos productivos.
-6. No modifiques más de 6 archivos productivos por pasada.
-
-Fase recomendada inmediata:
-Separar CatalogLayout de SidebarDensity.
-
-Implementar:
-- CatalogLayout = list | tiles | icons.
-- SidebarDensity = comfortable | compact | narrow.
-- rich -> list.
-- compact -> tiles.
-- mini -> icons.
-- density nunca cambia orientación ni visibilidad de texto.
-- resize no cambia layout elegido por el usuario.
-- reemplazar botón cíclico por control segmentado o menú explícito.
-- eliminar title nativo en tooltips del catálogo.
-- mantener favoritos, recientes y drag en los tres layouts.
-
-Archivos candidatos:
-- src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx
-- src/sisad-pdfme/ui/components/Designer/SidebarButtons.tsx
-- src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx
-- src/sisad-pdfme/ui/components/Designer/shared/CatalogLayoutToggle.tsx
-- src/sisad-pdfme/ui/styles/sisad-pdfme-sidebar.css
-- src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
-- src/styles/sisad-tailwind-bridge.css
-- tests/e2e/left-sidebar-view-modes.spec.ts
-
-Validación obligatoria:
-- npm run build
-- npm run lint
-- npx playwright test tests/e2e/left-sidebar-view-modes.spec.ts --project=chromium
-- npx playwright test tests/e2e/sidebar-collapse-parity.spec.ts --project=chromium
-
-Entrega final:
-- Diagnóstico corto.
-- Causa raíz.
-- Archivos modificados.
-- Archivos prohibidos no tocados.
-- Contratos preservados.
-- Tests ejecutados.
-- Riesgos residuales.
-``​`
-
----
-
-## 7. Checklist final por fase
-
-### Antes de cada fase
-
-``​`txt
-[ ] git status revisado.
-[ ] cambios previos clasificados.
-[ ] una sola task-card seleccionada.
-[ ] archivos prohibidos identificados.
-[ ] tests relacionados definidos.
-``​`
-
-### Durante cada fase
-
-``​`txt
-[ ] no tocar Canvas/Moveable/Selecto/Paper/Snapshot/Generator/pdf-lib.
-[ ] no tocar geometría ni coordenadas.
-[ ] no mezclar UI con lógica de negocio.
-[ ] no crear helpers paralelos si ya existe facade.
-[ ] no introducir labels artificiales.
-[ ] no mostrar controles que no persisten.
-[ ] no dejar secciones vacías.
-``​`
-
-### Después de cada fase
-
-``​`txt
-[ ] npm run build OK.
-[ ] npm run lint OK.
-[ ] Playwright específico OK.
-[ ] screenshots antes/después si es cambio visual.
-[ ] tabla de archivos modificados.
-[ ] riesgos residuales documentados.
-[ ] commit pequeño y semántico.
-``​`
-
----
-
-## 8. Orden recomendado de ejecución
-
-``​`txt
-0. Congelar estado y limpiar worktree.
-1. Validar owner color y PluginIcon.
-2. Completar paridad visual de sidebars y eliminar title nativo.
-3. Separar CatalogLayout de SidebarDensity.
-4. Rediseñar selector de layout.
-5. Compactar catálogo.
-6. Corregir click/double click de inserción.
-7. Reubicar Resultados.
-8. Reperfilar DetailView por schema.
-9. Corregir editor de opciones.
-10. Corregir switches de un click.
-11. Normalizar acciones rápidas vs persistentes.
-12. Implementar comentarios con coordenadas.
-13. Revisar modal de campos personalizados.
-14. Consolidar CSS/Tailwind.
-15. Documentar task-cards finales.
-``​`
-
----
-
-## 9. Conclusión técnica
-
-La pasada de Codex fue correcta como base, pero todavía no cierra la deuda principal de UX/UI. Ya resolvió dos cimientos importantes: color de owner y collapse compartido. Ahora el riesgo es seguir agregando parches visuales. La siguiente etapa debe ser más estructural:
-
-``​`txt
-Estado visual único
-→ Contratos de layout claros
-→ Densidad independiente
-→ Inspector por perfil de schema
-→ Acciones sin duplicidad
-→ Pruebas Playwright por caso de uso
-``​`
-
-El objetivo final no es que el diseñador “se vea más bonito”, sino que sea:
-
-``​`txt
-predecible
-compacto
-genérico
-autoconfigurable
-proporcional al tipo de schema
-seguro para multiusuario
-estable entre laboratorio y SISAD Web
-``​`
-```
-
-<a id="file-0097"></a>
-
-### 0097 — `plan-profundo-sisad-pdfme-diseniador.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `1720`
-- **Tamaño original:** `47.8 KB`
-- **SHA1 corto:** `5aed20856c`
-- **Estado:** `completo`
-
-```markdown
-# Plan profundo de estabilización y refactor del diseñador SISAD PDFME
-
-**Fecha:** 2026-07-12
-**Proyecto:** `prueba-plugin / sisad-pdfme`
-**Ruta funcional de referencia:** `http://localhost:5174/lab/multi-document-routing`
-**Objetivo:** recuperar comportamiento funcional completo del diseñador, reducir duplicidad, compactar UI con Tailwind y dejar una arquitectura genérica, autoconfigurable y mantenible.
-
----
-
-## 0. Resumen ejecutivo
-
-El diseñador está en un punto donde las mejoras visuales ya no pueden tratarse como CSS aislado. Los problemas actuales —selección simple/múltiple rota, schemas que nacen bloqueados o readonly, estados desincronizados entre canvas e inspector, sidebars inconsistentes, propagación parcial de owner color, comportamiento desigual entre schemas, duplicidad en opciones, DetailView y comandos— indican una **fractura de contratos internos**.
-
-La corrección debe ejecutarse en capas:
-
-1. **Contrato de interacción:** selección, hit-testing, región, Moveable, Selecto, comandos y shortcuts.
-2. **Contrato de acceso:** locked, readOnly, readonly, disabled, owner, permisos, estado colaborativo.
-3. **Contrato de schema:** familias, capacidades, inspector, defaults, snapshot, Form/Viewer/Generator parity.
-4. **Contrato visual:** field chrome, owner color, semantic color, density, sidebars, catalog layout, right sidebar list/detail.
-5. **Contrato de ejecución para agentes:** task-cards, presupuesto de análisis, rutas permitidas, rutas prohibidas, validación y criterios de parada.
-
-La prioridad no debe ser “hacer que se vea más bonito”, sino **hacer que cada acción tenga una única fuente de verdad**. Después de eso, la compactación visual con Tailwind será mucho más segura.
-
----
-
-## 1. Investigación consolidada
-
-### 1.1 Arquitectura real detectada
-
-El proyecto ya está estructurado con capas fuertes:
-
-``​`txt
-sisad-pdfme/
-├── ui/
-│   ├── Designer
-│   ├── Form
-│   ├── Viewer
-│   └── components
-├── schemas/
-│   ├── text-like
-│   ├── option-based
-│   ├── signing-based
-│   ├── action-based
-│   ├── media
-│   └── shared
-├── runtime/
-├── generator/
-├── shared/
-├── commands/
-└── styles/
-``​`
-
-Principio que debe respetarse:
-
-``​`txt
-Designer controla:
-- canvas;
-- sidebars;
-- overlays;
-- toolbar;
-- selección;
-- configuración.
-
-Form/Viewer consumen el mismo modelo de schemas.
-Generator usa el snapshot y los valores finales.
-Host apps solo pasan datos, callbacks y adaptadores.
-``​`
-
-Esto implica que el host no debe reconstruir sidebars, inspector, toolbar ni renderer de schemas. El host puede elegir documento, destinatario y acciones de negocio, pero el runtime visual debe vivir dentro de `sisad-pdfme`.
-
----
-
-### 1.2 Problemas funcionales confirmados por comportamiento observado
-
-| Área | Problema | Causa probable | Impacto |
-|---|---|---|---|
-| Selección | No funciona bien selección simple/múltiple | Click, Selecto, Moveable y comandos resuelven selección por separado | Alto |
-| Selección por SO | macOS y Windows no respetan combinaciones esperadas | No existe `selectionPolicy` por plataforma | Alto |
-| Región | Selección de región no cubre todos los schemas | Hit-testing mezclado con overlays/options/toolbar | Alto |
-| Lock/readonly | Schemas nacen bloqueados o aparecen bloqueados en inspector | Defaults y acceso resueltos desde múltiples capas | Crítico |
-| Inspector | Dice bloqueado cuando canvas no lo refleja | `DetailView` infiere estado en vez de leer un view model único | Crítico |
-| Owner color | Algunos schemas no heredan color de usuario | SVGs/estilos internos/resolvers duplicados | Medio/alto |
-| LeftSidebar | Botón collapse se corta o se superpone | Handle vive dentro de área con overflow/posición desigual | Medio |
-| RightSidebar | Collapse no es simétrico al izquierdo | Contrato distinto (`sidebarOpen` vs expanded/rail) | Medio/alto |
-| Catálogo | Vistas rich/compact/mini confusas | Layout y densidad mezclados | Medio |
-| DetailView | Demasiadas secciones genéricas | Falta matriz por familia de schema | Medio/alto |
-| Custom fields | Controles visuales no persisten todas las propiedades | `CustomFieldDef` y schema creado no coinciden | Alto |
-| CommandBus | Mutaciones se disparan desde varias rutas | No hay pipeline único de comandos mutables | Alto |
-| Snapshot | Riesgo de perder metadata | Varios adapters/helpers pueden tocar estructura | Alto |
-| CSS | Tailwind bridge + global + sidebar pisan selectores | Multiplicidad de CSS sobre mismo runtime | Medio/alto |
-
----
-
-### 1.3 Investigación de modelo DocuSign-like aplicable
-
-No se debe copiar UI, HTML, CSS ni branding. Debe tomarse como referencia funcional.
-
-Mapping mínimo:
-
-| DocuSign-like | SISAD PDFME |
-|---|---|
-| SignHere | `signature` |
-| InitialHere | `initials` |
-| DateSigned | `dateSigned` |
-| Text | `text` |
-| Number | `number` |
-| Checkbox | `checkbox` |
-| RadioGroup | `radioGroup` |
-| List/Dropdown | `select` / `dropdown` |
-| SignerAttachment | `attachment` |
-| Note | `note` |
-| Approve/Decline | `approve` / `decline` |
-| Formula | `formula` futuro |
-| Prefill | modo/propiedad de schema readonly/prefill |
-| AutoPlace | anchor text + offsets + occurrence |
-
-La conclusión funcional es que cada campo debe tener:
-
-``​`ts
-type SchemaCoreIdentity = {
-  schemaUid: string;
-  type: string;
-  documentId?: string;
-  fileId?: string;
-  pageNumber: number;
-  pageIndex?: number;
-  x: number;
-  y: number;
-  width: number;
-  height: number;
-  rotation?: number;
-  ownerRecipientId?: string;
-  ownerRecipientIds?: string[];
-  ownerColor?: string;
-  recipientColor?: string;
-  userColor?: string;
-  required?: boolean;
-  readOnly?: boolean;
-  readonly?: boolean;
-  locked?: boolean;
-  hidden?: boolean;
-  dataLabel?: string;
-  tooltip?: string;
-  __designer?: Record<string, unknown>;
-};
-``​`
-
-Regla crítica: **`schemaUid` identifica el campo; `dataLabel`/`fieldKey` conecta con negocio; `name`/`label` es visual.**
-
----
-
-## 2. Principios de refactor
-
-### 2.1 No corregir por síntoma
-
-Proceso obligatorio:
-
-``​`txt
-Proceso afectado
-→ componentes involucrados
-→ fuente de verdad
-→ estados válidos
-→ datos preservados
-→ validación mínima
-→ implementación
-``​`
-
-Ejemplo:
-
-``​`txt
-Problema: checkboxGroup no se selecciona correctamente.
-Mala solución: agregar stopPropagation en un componente.
-Buena solución: resolver hit-testing root/option/toolbar desde interactionTargetResolver.
-``​`
-
----
-
-### 2.2 SOLID aplicado al diseñador
-
-| Principio | Aplicación práctica |
-|---|---|
-| SRP | `Canvas.tsx` orquesta; `selectionPolicy.ts` decide intención; `schemaAccessResolver.ts` decide permisos; `interactionTargetResolver.ts` decide targets. |
-| OCP | Un schema nuevo registra perfil/capacidades/secciones; no modifica `DetailView.tsx` ni `Canvas.tsx`. |
-| LSP | Todos los schemas cumplen base serializable y no rompen Form/Viewer/Generator. |
-| ISP | Props pequeñas por widget: `InspectorWidgetProps`, `SchemaListItemProps`, `CanvasInteractionContext`. |
-| DIP | Componentes visuales dependen de view models y command interfaces, no de raw schema + lock manager directamente. |
-
----
-
-### 2.3 Patrones recomendados
-
-| Proceso | Patrón |
-|---|---|
-| Crear schema | Factory Method + Registry |
-| Render schema | Template Method + Decorator |
-| Editar propiedades | Strategy + Registry |
-| Valores | Adapter + Strategy |
-| Transformar | Command + State |
-| Grupos | Composite + Command |
-| Snapshot | Adapter + Memento |
-| Host bridge | Facade |
-| Inspector | Registry + Strategy |
-| Access control | Policy/Resolver |
-| Owner color | Facade + Token adapter |
-
----
-
-## 3. Arquitectura objetivo
-
-### 3.1 Nuevos módulos obligatorios
-
-Crear o consolidar:
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/shared/selectionPolicy.ts
-src/sisad-pdfme/ui/components/Designer/shared/schemaAccessModel.ts
-src/sisad-pdfme/ui/components/Designer/shared/schemaAccessResolver.ts
-src/sisad-pdfme/ui/components/Designer/shared/interactionTargetResolver.ts
-src/sisad-pdfme/ui/components/Designer/shared/schemaOwnerAppearance.ts
-src/sisad-pdfme/ui/components/Designer/shared/selectedSchemaViewModel.ts
-src/sisad-pdfme/ui/components/Designer/shared/schemaCreationPolicy.ts
-src/sisad-pdfme/ui/components/Designer/shared/schemaProfileRegistry.ts
-src/sisad-pdfme/ui/components/Designer/shared/sidebarPanelContract.ts
-``​`
-
-No crear estos módulos como wrappers decorativos. Deben reemplazar lógica repetida.
-
----
-
-### 3.2 Mapa de dependencias objetivo
-
-``​`txt
-Canvas.tsx
-  -> selectionPolicy
-  -> interactionTargetResolver
-  -> schemaAccessResolver
-  -> selectedSchemaViewModel
-  -> commandBus
-
-Moveable.tsx
-  -> schemaAccessResolver
-  -> transformTargetGuards / interactionTargetResolver
-
-Selecto.tsx
-  -> selectionPolicy
-  -> interactionTargetResolver
-
-RightSidebar/ListView
-  -> selectedSchemaViewModel
-  -> schemaAccessResolver
-  -> schemaOwnerAppearance
-  -> commandBus
-
-RightSidebar/DetailView
-  -> selectedSchemaViewModel
-  -> schemaProfileRegistry
-  -> schemaAccessResolver
-  -> commandBus
-
-Schemas/*
-  -> schemaProfileRegistry
-  -> fieldChrome
-  -> schemaOwnerAppearance
-  -> value adapters
-
-Snapshot
-  -> schema metadata contracts
-  -> migrations only when needed
-``​`
-
----
-
-## 4. Fase 0 — Auditoría profunda obligatoria
-
-### 4.1 Objetivo
-
-Antes de modificar, generar evidencia de duplicidad. No tocar archivos hasta completar reportes.
-
-### 4.2 Comandos
-
-``​`bash
-mkdir -p reports/designer-deep-audit
-
-rg "selectSchema|selectAll|deselectAll|activeElements|onEdit|onSelect|Selecto|Moveable|regionSelection|metaKey|ctrlKey|shiftKey|altKey" src/sisad-pdfme > reports/designer-deep-audit/selection-audit.txt
-
-rg "locked|lock|readOnly|readonly|disabled|editable|canEdit|canMove|canResize|canDelete|restrictChanges|isOwner|ownerMode" src/sisad-pdfme > reports/designer-deep-audit/access-audit.txt
-
-rg "ownerColor|recipientColor|userColor|schemaTone|resolve.*Color|--schema-owner-color|data-schema-owner-color" src/sisad-pdfme > reports/designer-deep-audit/owner-color-audit.txt
-
-rg "pageNumber|pageIndex|documentId|fileId|activeDocumentId|paperRefs|pageCursor|pages\[0\]|pageNumber \|\| 1" src/sisad-pdfme > reports/designer-deep-audit/multipage-audit.txt
-
-rg "options|optionGroup|selectedOption|selectedOptionIds|selectedOptionId|checkboxGroup|radioGroup|dropdown|select|OptionListWidget|data-option-id" src/sisad-pdfme > reports/designer-deep-audit/options-audit.txt
-
-rg "DetailView|detailSchemas|detailSectionTaxonomy|inspectorContracts|SchemaCollaborationWidget|schemaCollaborationUtils|detailWidgetRegistry" src/sisad-pdfme/ui/components/Designer/RightSidebar > reports/designer-deep-audit/inspector-audit.txt
-
-rg "CommandBus|commandBus|selectionCommands|designerCommands|undo|redo|keyboardShortcuts|useDesignerKeyboardShortcuts" src/sisad-pdfme > reports/designer-deep-audit/commandbus-audit.txt
-
-rg "data-view-mode|rich|compact|mini|CatalogViewMode|sidebarDensity|data-left-sidebar-density|data-right-sidebar-density|sidebarExpanded|sidebarOpen" src/sisad-pdfme > reports/designer-deep-audit/sidebar-density-audit.txt
-
-rg "any|as any|Record<string, any>|unknown as" src/sisad-pdfme/ui src/sisad-pdfme/schemas src/sisad-pdfme/shared > reports/designer-deep-audit/type-safety-audit.txt
-``​`
-
-### 4.3 Entregables de auditoría
-
-``​`txt
-reports/designer-deep-audit/
-  selection-audit.txt
-  access-audit.txt
-  owner-color-audit.txt
-  multipage-audit.txt
-  options-audit.txt
-  inspector-audit.txt
-  commandbus-audit.txt
-  sidebar-density-audit.txt
-  type-safety-audit.txt
-  duplication-map.md
-  risk-map.md
-``​`
-
-### 4.4 Formato de `duplication-map.md`
-
-``​`md
-# Duplication map
-
-## Selección
-- Funciones equivalentes:
-- Archivos:
-- Fuente única propuesta:
-- Qué se elimina:
-
-## Access / lock / readonly
-...
-``​`
-
----
-
-## 5. Fase 1 — Política única de selección
-
-### 5.1 Problema
-
-La selección simple, selección múltiple, selección por región, shortcuts, ListView y toolbar no pueden operar con reglas distintas.
-
-### 5.2 Implementar `selectionPolicy.ts`
-
-``​`ts
-export type PlatformKind = 'mac' | 'windows' | 'linux' | 'unknown';
-
-export type SelectionIntent =
-  | 'replace'
-  | 'toggle'
-  | 'add'
-  | 'region-replace'
-  | 'region-add'
-  | 'clear'
-  | 'inspect-only';
-
-export type SelectionPolicyInput = {
-  platform: PlatformKind;
-  metaKey?: boolean;
-  ctrlKey?: boolean;
-  shiftKey?: boolean;
-  altKey?: boolean;
-  targetKind?: 'schema-root' | 'option-internal' | 'interactive-control' | 'canvas-empty' | 'overlay' | 'moveable-control';
-  pointerKind?: 'click' | 'double-click' | 'drag-region' | 'keyboard';
-};
-
-export function detectPlatform(): PlatformKind;
-export function resolveSelectionIntent(input: SelectionPolicyInput): SelectionIntent;
-export function isAdditiveSelectionIntent(intent: SelectionIntent): boolean;
-``​`
-
-### 5.3 Reglas por sistema operativo
-
-| Acción | Windows/Linux | macOS | Resultado |
-|---|---|---|---|
-| Click normal en schema | sin modificador | sin modificador | reemplaza selección |
-| Multi click principal | `Ctrl + Shift + click` | `Command + click` | toggle/add |
-| Compatibilidad | `Ctrl + click` | `Command + Shift + click` | toggle/add |
-| Región normal | drag en vacío | drag en vacío | reemplaza con región |
-| Región acumulativa | `Ctrl` o `Shift` + región | `Command` o `Shift` + región | agrega región |
-| Click vacío | sin modificador | sin modificador | limpia selección |
-| Click schema bloqueado | cualquiera | cualquiera | selecciona para inspección, no transforma |
-
-### 5.4 Archivos a modificar
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx
-src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx
-src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts
-src/sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver.ts
-src/sisad-pdfme/ui/components/Designer/shared/useDesignerKeyboardShortcuts.ts
-``​`
-
-### 5.5 Criterios de aceptación
-
-- Click normal reemplaza selección.
-- macOS `Command + click` alterna selección.
-- Windows/Linux `Ctrl + Shift + click` alterna selección.
-- Región selecciona roots `[data-schema-id]` únicamente.
-- Región acumulativa no borra selección previa.
-- Click en option interna no crea selección independiente.
-- Click en toolbar/Moveable handles no dispara Selecto.
-
----
-
-## 6. Fase 2 — Hit-testing y target resolver
-
-### 6.1 Problema
-
-Selecto, Moveable, opciones internas, botón `+`, inputs, toolbar contextual y comentarios compiten por eventos.
-
-### 6.2 Implementar `interactionTargetResolver.ts`
-
-``​`ts
-export type InteractionTargetKind =
-  | 'schema-root'
-  | 'option-internal'
-  | 'group-add-option'
-  | 'interactive-control'
-  | 'moveable-control'
-  | 'selection-toolbar'
-  | 'canvas-context-menu'
-  | 'comment-anchor'
-  | 'canvas-empty'
-  | 'unknown';
-
-export function resolveInteractionTarget(target: EventTarget | null): {
-  kind: InteractionTargetKind;
-  schemaRoot: HTMLElement | null;
-  schemaUid?: string;
-  optionId?: string;
-};
-
-export function shouldSelectTarget(result): boolean;
-export function shouldTransformTarget(result): boolean;
-export function shouldIgnoreForSelecto(result): boolean;
-``​`
-
-### 6.3 Reglas de target
-
-| Target | Selección | Transformación | Edición valor |
-|---|---:|---:|---:|
-| `[data-schema-id]` root | sí | según permisos | no |
-| `[data-option-id]` en designer | root only | no opción interna | doble click |
-| `[data-role="group-add-option"]` | no | no | agrega opción |
-| input/select/textarea | no | no | sí |
-| toolbar contextual | no | no | acción |
-| `.moveable-*` | no | sí | no |
-| comment anchor | no o inspect | no | abre comentario |
-| canvas vacío | limpia/region | no | no |
-
-### 6.4 Archivos a revisar por duplicidad
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/shared/selectableTargetGuards.ts
-src/sisad-pdfme/ui/components/Designer/shared/transformTargetGuards.ts
-src/sisad-pdfme/ui/components/Designer/shared/interactionTargetSelectors.ts
-src/sisad-pdfme/ui/components/Designer/shared/interactionTargetPolicy.ts
-src/sisad-pdfme/ui/components/Designer/Canvas/overlays/*
-``​`
-
----
-
-## 7. Fase 3 — Access model único: locked, readonly, owner y permisos
-
-### 7.1 Problema
-
-El canvas, DetailView, ListView y menú contextual no muestran el mismo estado. A veces el inspector dice bloqueado cuando el schema no está realmente bloqueado.
-
-### 7.2 Implementar `schemaAccessModel.ts`
-
-``​`ts
-export type SchemaLockState =
-  | 'unlocked'
-  | 'locked-by-me'
-  | 'locked-by-other'
-  | 'unknown';
-
-export type SchemaReadonlyState =
-  | 'editable'
-  | 'readonly'
-  | 'runtime-readonly'
-  | 'disabled';
-
-export type SchemaAccessState = {
-  selectable: boolean;
-  inspectable: boolean;
-  editable: boolean;
-  movable: boolean;
-  resizable: boolean;
-  rotatable: boolean;
-  deletable: boolean;
-  duplicable: boolean;
-  canChangeOwner: boolean;
-  canComment: boolean;
-  lockState: SchemaLockState;
-  readonlyState: SchemaReadonlyState;
-  ownerState: 'mine' | 'other' | 'shared' | 'unassigned';
-  reason?: string;
-};
-``​`
-
-### 7.3 Implementar `schemaAccessResolver.ts`
-
-``​`ts
-export type ResolveSchemaAccessInput = {
-  schema: SchemaForUI;
-  activeUserId?: string | null;
-  activeRecipientId?: string | null;
-  runtimeMode: 'designer' | 'form' | 'viewer' | 'pdf';
-  commandId?: string;
-  lockSnapshot?: unknown;
-  collaborationContext?: unknown;
-};
-
-export function resolveSchemaAccessState(input: ResolveSchemaAccessInput): SchemaAccessState;
-export function canRunSchemaCommand(commandId: string, access: SchemaAccessState): boolean;
-``​`
-
-### 7.4 Reglas funcionales
-
-| Estado | Selecciona | Mueve | Edita DetailView | Duplicar | Eliminar |
-|---|---:|---:|---:|---:|---:|
-| normal | sí | sí | sí | sí | sí |
-| readonly | sí | no | no | depende política | no |
-| locked-by-me | sí | sí | sí | sí | sí |
-| locked-by-other | sí | no | no | no | no |
-| hidden | no visible o tenue | no | solo si lista lo permite | no | no |
-| other-owner | sí | depende permiso | depende permiso | depende permiso | depende permiso |
-
-### 7.5 Acciones explícitamente permitidas aunque haya lock
-
-``​`txt
-selectSchema
-selectAll
-deselectAll
-openProperties
-zoom
-navigatePage
-viewDetails
-copyTechnicalId
-commentView
-``​`
-
-### 7.6 Archivos a modificar
-
-``​`txt
-src/sisad-pdfme/collaboration/lockManager.ts
-src/sisad-pdfme/collaboration/schemaLockGuard.ts
-src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts
-src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx
-src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx
-src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/*
-src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/*
-``​`
-
----
-
-## 8. Fase 4 — Defaults de schemas al crear/arrastrar
-
-### 8.1 Problema
-
-Algunos schemas aparecen bloqueados o readonly al arrastrarlos al canvas.
-
-### 8.2 Implementar `schemaCreationPolicy.ts`
-
-``​`ts
-export type SchemaCreationContext = {
-  type: string;
-  activeRecipientId?: string | null;
-  activeRecipientColor?: string | null;
-  activeUserId?: string | null;
-  documentId?: string;
-  pageNumber: number;
-  x: number;
-  y: number;
-  source: 'drag-drop' | 'click-insert' | 'paste' | 'duplicate' | 'import';
-};
-
-export function normalizeNewSchemaState<T extends SchemaForUI>(schema: T, context: SchemaCreationContext): T;
-``​`
-
-### 8.3 Defaults esperados
-
-``​`txt
-readOnly: false por defecto
-readonly: undefined salvo legacy
-locked: false
-hidden: false
-disabled: false
-ownerRecipientId: activeRecipientId
-ownerColor: activeRecipientColor
-__designer.createdByDrop: true si aplica
-__designer.access.defaultEditable: true
-``​`
-
-### 8.4 Excepciones permitidas
-
-- `dateSigned`: puede ser readonly en Form, pero no locked en Designer.
-- `formula`: readonly por naturaleza, pero seleccionable e inspeccionable.
-- `prefill`: readonly en runtime, editable por sender/designer.
-- schemas importados legacy: respetar estado original si viene explícito.
-
-### 8.5 Archivos a revisar
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/shared/canvasDropPipeline.ts
-src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts
-src/sisad-pdfme/schemas/schemaBuilder.ts
-src/sisad-pdfme/schemas/actions/actionSchemaFactory.ts
-src/sisad-pdfme/schemas/signature/signingSchemaFactory.ts
-src/sisad-pdfme/shared/schemaDesignerMeta.ts
-``​`
-
----
-
-## 9. Fase 5 — CommandBus como única vía de mutación
-
-### 9.1 Problema
-
-Canvas, DetailView, ListView, context menu y shortcuts pueden mutar schemas por rutas distintas.
-
-### 9.2 Pipeline objetivo
-
-``​`txt
-UI event
-  -> interactionTargetResolver
-  -> selectionPolicy / schemaAccessResolver
-  -> commandBus
-  -> guard
-  -> reducer/update
-  -> snapshot dirty state
-  -> view model refresh
-``​`
-
-### 9.3 Comandos mínimos a centralizar
-
-``​`txt
-selectSchema
-toggleSchemaSelection
-selectRegion
-deselectAll
-moveSchema
-resizeSchema
-rotateSchema
-duplicateSchema
-deleteSchema
-lockSchema
-unlockSchema
-setReadonly
-assignOwner
-updateSchemaField
-updateSchemaOptions
-updateSchemaValidation
-updateSchemaAppearance
-updateSchemaGeometry
-``​`
-
-### 9.4 Archivos clave
-
-``​`txt
-src/sisad-pdfme/ui/commands/commandBus.ts
-src/sisad-pdfme/ui/commands/designerCommands.ts
-src/sisad-pdfme/commands/index.ts
-src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts
-src/sisad-pdfme/ui/components/Designer/shared/actionRegistry.ts
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.tsx
-``​`
-
-### 9.5 Criterios
-
-- Ningún widget de DetailView hace mutación directa sin pasar por comando.
-- Undo/redo puede reconocer el cambio.
-- Lock guard se aplica igual para toolbar, keyboard y inspector.
-- Snapshot dirty state se actualiza una vez.
-
----
-
-## 10. Fase 6 — Selected schema view model
-
-### 10.1 Problema
-
-DetailView, ListView y canvas calculan labels, owner, status y geometría por separado.
-
-### 10.2 Implementar `selectedSchemaViewModel.ts`
-
-``​`ts
-export type SelectedSchemaViewModel = {
-  schemaUid: string;
-  schemaId?: string;
-  type: string;
-  family: string;
-  label: string;
-  technicalName: string;
-  documentId?: string;
-  pageNumber: number;
-  owner: {
-    recipientId: string | null;
-    label: string;
-    color: string;
-    mode: 'single' | 'multi' | 'shared' | 'unassigned';
-  };
-  access: SchemaAccessState;
-  geometry: {
-    x: number;
-    y: number;
-    width: number;
-    height: number;
-    rotation: number;
-  };
-  badges: Array<{ key: string; label: string; tone: 'neutral' | 'info' | 'warning' | 'danger' | 'success' }>;
-};
-
-export function buildSelectedSchemaViewModel(input): SelectedSchemaViewModel;
-``​`
-
-### 10.3 Consumidores
-
-``​`txt
-SelectionContextToolbar
-CanvasContextMenu
-DetailHeaderCard
-DetailViewContent
-SchemaCollaborationWidget
-ListView Item
-DocumentsRail field counters
-CommentsRail field context
-``​`
-
----
-
-## 11. Fase 7 — Owner color y field chrome unificados
-
-### 11.1 Problema
-
-Algunos schemas heredan color y otros usan colores fijos internos.
-
-### 11.2 Separar conceptos
-
-``​`txt
-Owner color:
-- identifica destinatario/usuario dueño.
-- debe aparecer en borde, foco, list item, inspector, drag preview.
-
-Semantic color:
-- representa significado del campo.
-- approve = verde, decline = rojo, note = amarillo, etc.
-``​`
-
-### 11.3 Implementar `schemaOwnerAppearance.ts`
-
-``​`ts
-export type SchemaOwnerAppearance = {
-  ownerRecipientId: string | null;
-  ownerLabel: string;
-  ownerColor: string;
-  borderColor: string;
-  backgroundColor: string;
-  textColor: string;
-  focusRingColor: string;
-  cssVars: React.CSSProperties;
-  dataAttributes: Record<string, string>;
-};
-
-export function resolveSchemaOwnerAppearance(input): SchemaOwnerAppearance;
-``​`
-
-### 11.4 Orden de resolución de color
-
-``​`txt
-1. schema.ownerColor
-2. schema.userColor
-3. schema.recipientColor
-4. schema.__designer?.collaboration?.recipientColor
-5. schema.__designer?.ownerColor
-6. schema.__designer?.recipientColor
-7. fallback activeRecipientColor
-8. recipient.color
-9. #2563EB
-``​`
-
-### 11.5 Schemas a validar uno por uno
-
-``​`txt
-src/sisad-pdfme/schemas/checkbox/index.ts
-src/sisad-pdfme/schemas/checkboxGroup/index.ts
-src/sisad-pdfme/schemas/radioGroup/index.ts
-src/sisad-pdfme/schemas/select/index.ts
-src/sisad-pdfme/schemas/text/uiRender.ts
-src/sisad-pdfme/schemas/number/index.ts
-src/sisad-pdfme/schemas/signature/index.ts
-src/sisad-pdfme/schemas/signature/initials.ts
-src/sisad-pdfme/schemas/signature/dateSigned.ts
-src/sisad-pdfme/schemas/actions/approve.ts
-src/sisad-pdfme/schemas/actions/decline.ts
-src/sisad-pdfme/schemas/actions/attachment.ts
-src/sisad-pdfme/schemas/actions/note.ts
-src/sisad-pdfme/schemas/graphics/image.ts
-src/sisad-pdfme/schemas/graphics/svg.ts
-src/sisad-pdfme/schemas/barcodes/*
-src/sisad-pdfme/schemas/tables/*
-src/sisad-pdfme/schemas/shapes/*
-``​`
-
-### 11.6 Reglas visuales
-
-- El wrapper debe exponer `--schema-owner-color`.
-- El root debe tener `data-schema-owner-color` si aplica.
-- SVGs del catálogo deben preferir `currentColor`.
-- Semantic color no debe borrar owner accent.
-- `approve`/`decline` mantienen verde/rojo en contenido, pero borde/focus/list/detail usan owner color.
-
----
-
-## 12. Fase 8 — Schemas por familia y perfiles autoconfigurables
-
-### 12.1 Problema
-
-Cada schema tiende a inventar qué aparece en DetailView, qué capacidades tiene y cómo se renderiza.
-
-### 12.2 Implementar `schemaProfileRegistry.ts`
-
-``​`ts
-export type SchemaFamily =
-  | 'text-like'
-  | 'option-based'
-  | 'boolean'
-  | 'signing'
-  | 'action'
-  | 'media'
-  | 'layout'
-  | 'table'
-  | 'custom';
-
-export type SchemaCapability =
-  | 'selectable'
-  | 'movable'
-  | 'resizable'
-  | 'rotatable'
-  | 'editable-content'
-  | 'editable-options'
-  | 'required'
-  | 'readonly'
-  | 'validation'
-  | 'appearance'
-  | 'autoplace'
-  | 'comments'
-  | 'collaboration';
-
-export type SchemaProfile = {
-  type: string;
-  family: SchemaFamily;
-  displayName: string;
-  capabilities: Partial<Record<SchemaCapability, boolean>>;
-  inspectorSections: string[];
-  defaultSize: { width: number; height: number };
-  creationPolicy?: string;
-  runtimeModes: Array<'designer' | 'form' | 'viewer' | 'pdf'>;
-};
-``​`
-
-### 12.3 Perfiles mínimos
-
-| Familia | Schemas | Secciones |
-|---|---|---|
-| text-like | text, number, date, time, emailAddress, fullname, company, title | basics, content, validation, appearance, dataLabel, help, location, collaboration, advanced |
-| signing | signature, initials, dateSigned | basics, signing, appearance, dataLabel, help, location, collaboration, advanced |
-| option-based | select, radioGroup, checkboxGroup | basics, options, validation, appearance, dataLabel, help, location, collaboration, advanced |
-| boolean | checkbox | basics, value, validation, appearance, dataLabel, help, location, collaboration, advanced |
-| action | approve, decline, attachment, note | basics, action/content/file, appearance, dataLabel, help, location, collaboration, advanced |
-| media | image, svg, barcode, qr | basics, source, appearance, dataLabel, location, advanced |
-| layout | line, rect, ellipse | basics, appearance, location, advanced |
-| table | table, cell | basics, structure, appearance, data, location, advanced |
-
----
-
-## 13. Fase 9 — DetailView / Inspector por contrato
-
-### 13.1 Problema
-
-El inspector debe cambiar por familia y tipo, no por parches dispersos.
-
-### 13.2 Archivos a modificar
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorContracts.ts
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx
-``​`
-
-### 13.3 Taxonomía de secciones
-
-``​`txt
-identity
-content
-options
-behavior
-validation
-appearance
-dataBindings
-help
-location
-autoPlace
-collaboration
-comments
-advanced
-``​`
-
-### 13.4 Reglas de UI
-
-- No mostrar secciones vacías.
-- No duplicar `Renombrar` si ya existe input de nombre.
-- `Guardar` del inspector debe llamarse `Aplicar cambios` o ser eliminado si cambios son live.
-- `locked/readOnly` debe venir de `SchemaAccessState`.
-- `owner` debe venir de `selectedSchemaViewModel.owner`.
-- Ubicación debe adaptarse a ancho: 1 o 2 columnas, nunca 3 si el panel es estrecho.
-- Las acciones destructivas deben estar en footer contextual o menú, no mezcladas con metadata técnica.
-
-### 13.5 Orden recomendado de secciones
-
-1. Identidad y estado.
-2. Configuración principal del tipo.
-3. Valor/opciones/acción/firma.
-4. Validación/comportamiento.
-5. Apariencia.
-6. Asignación y acceso.
-7. Ubicación y tamaño.
-8. Datos conectados.
-9. Comentarios.
-10. Técnico.
-
----
-
-## 14. Fase 10 — Option groups, checkbox y radio
-
-### 14.1 Problema
-
-Checkbox, checkboxGroup y radioGroup deben compartir indicador visual, comportamiento de selección y value adapters.
-
-### 14.2 Rutas
-
-``​`txt
-src/sisad-pdfme/schemas/options/optionIndicator.ts
-src/sisad-pdfme/schemas/options/optionGroupFactory.ts
-src/sisad-pdfme/schemas/options/optionGroupRenderer.ts
-src/sisad-pdfme/schemas/options/optionGroupLayout.ts
-src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts
-src/sisad-pdfme/schemas/options/optionValueAdapter.ts
-src/sisad-pdfme/schemas/checkbox/index.ts
-src/sisad-pdfme/schemas/checkboxGroup/index.ts
-src/sisad-pdfme/schemas/radioGroup/index.ts
-src/sisad-pdfme/schemas/groupSchemaRender.ts
-src/sisad-pdfme/ui/components/Designer/Canvas/overlays/GroupOptionFloatingAction.tsx
-``​`
-
-### 14.3 Contrato de comportamiento
-
-| Modo | Click simple | Doble click | Notas |
-|---|---|---|---|
-| Designer checkbox | selecciona schema | toggle checked | no ejecutar en click simple |
-| Designer checkboxGroup | selecciona grupo | alterna opción | opción interna no es schema |
-| Designer radioGroup | selecciona grupo | selecciona opción | deselecciona otras |
-| Form checkbox | toggle | igual o sin extra | formulario real |
-| Form radioGroup | selecciona opción | igual o sin extra | formulario real |
-| Viewer/PDF | no interactúa | no interactúa | solo visual |
-
-### 14.4 Reglas DOM
-
-``​`txt
-Root del grupo: data-schema-id
-Opción interna: data-option-id
-Botón agregar: data-role="group-add-option"
-``​`
-
-No poner `data-schema-id` en opciones internas.
-
-### 14.5 Indicador común
-
-`optionIndicator.ts` debe soportar:
-
-``​`ts
-type OptionIndicatorProps = {
-  shape: 'square' | 'circle';
-  checked: boolean;
-  ownerColor?: string;
-  semanticColor?: string;
-  mode: 'designer' | 'form' | 'viewer' | 'pdf';
-  disabled?: boolean;
-  readOnly?: boolean;
-  size?: number;
-};
-``​`
-
----
-
-## 15. Fase 11 — LeftSidebar y RightSidebar simétricos
-
-### 15.1 Problema
-
-El LeftSidebar tiene colapso propio; el RightSidebar usa otra lógica. El botón del izquierdo se corta y el derecho no conserva rail simétrico.
-
-### 15.2 Crear contrato compartido
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle.tsx
-src/sisad-pdfme/ui/components/Designer/shared/sidebarPanelContract.ts
-``​`
-
-``​`ts
-type SidebarSide = 'left' | 'right';
-type SidebarPresentation = 'docked' | 'overlay';
-type SidebarDensity = 'comfortable' | 'compact' | 'narrow' | 'mini';
-
-type SidebarCollapseHandleProps = {
-  side: SidebarSide;
-  expanded: boolean;
-  presentation: SidebarPresentation;
-  density?: SidebarDensity;
-  labelExpanded: string;
-  labelCollapsed: string;
-  onToggle: () => void;
-};
-``​`
-
-### 15.3 Reglas
-
-- Mismo tamaño, borde, sombra, hover, focus y tooltip en ambos lados.
-- No debe quedar recortado por `overflow-hidden`.
-- `aria-expanded` obligatorio.
-- `data-side` y `data-expanded` obligatorios.
-- Rail colapsado de 40–44 px.
-- Panel izquierdo abierto 272–304 px.
-- Panel derecho abierto 336–368 px.
-- Preservar scroll, zoom y selección al abrir/cerrar.
-
-### 15.4 Archivos
-
-``​`txt
-src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx
-src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx
-src/sisad-pdfme/ui/components/Designer/index.tsx
-src/sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle.tsx
-src/sisad-pdfme/ui/styles/sisad-pdfme-sidebar.css
-src/styles/sisad-tailwind-bridge.css
-``​`
-
----
-
-## 16. Fase 12 — Catálogo izquierdo compacto y autoconfigurable
-
-### 16.1 Problema
-
-`rich`, `compact`, `mini` mezclan layout y densidad. El usuario ve modos confusos; la densidad cambia la semántica del layout.
-
-### 16.2 Renombrar conceptos
-
-``​`ts
-type CatalogLayout = 'list' | 'tiles' | 'icons';
-type SidebarDensity = 'comfortable' | 'compact' | 'narrow';
-``​`
-
-Mapeo:
-
-| Actual | Apariencia | Nuevo nombre |
-|---|---|---|
-| rich | fila horizontal con icono y texto | list |
-| compact | tarjeta vertical | tiles |
-| mini | solo iconos | icons |
-
-### 16.3 Reglas
-
-- `CatalogLayout` es decisión del usuario.
-- `SidebarDensity` depende del ancho.
-- La densidad no cambia `list` a `tiles` ni `tiles` a `icons`.
-- El resize no debe reemplazar la preferencia del usuario.
-
-### 16.4 Diseño objetivo
-
-#### List
-
-``​`txt
-Altura: 36–40 px
-Icono: 20–22 px
-Texto: 11.5–12 px
-Sin sombra permanente
-Borde solo en hover/focus
-``​`
-
-#### Tiles
-
-``​`txt
-Altura: 52–58 px
-Dos columnas si hay espacio
-Icono: 22–24 px
-Label: 1 línea
-Sin card dentro de card
-``​`
-
-#### Icons
-
-``​`txt
-Botón: 38–42 px
-Icono: 18–22 px
-Grid: repeat(auto-fill, minmax(38px, 1fr))
-Tooltip controlado
-``​`
-
-### 16.5 Corregir eventos
-
-El catálogo no debe tener `onClick` y `onDoubleClick` haciendo la misma inserción. Contrato recomendado:
-
-``​`txt
-Click simple: insertar una vez con autoplace.
-Drag: colocar con precisión.
-Doble click: sin acción adicional o abre ayuda; no duplica inserción.
-``​`
-
----
-
-## 17. Fase 13 — RightSidebar ListView compacto
-
-### 17.1 Problema
-
-Todos los elementos parecen seleccionados por la barra azul. La información secundaria es inconsistente.
-
-### 17.2 Fila estándar
-
-``​`txt
-[drag] [icono] Nombre visible                 [estado]
-               Tipo · Destinatario · Pág. N
-``​`
-
-### 17.3 Estados visuales
-
-| Estado | UI |
-|---|---|
-| normal | fondo neutro, sin barra azul |
-| hover | fondo suave |
-| seleccionado | barra owner color + fondo sutil |
-| locked | candado/chip, no toda la tarjeta roja |
-| readonly | chip compacto |
-| hidden | opacidad o badge |
-
-### 17.4 Funciones
-
-- Click fila selecciona schema.
-- Cambia a documento/página correcta.
-- Scroll al campo.
-- Pulso visual corto.
-- Abre propiedades si está configurado.
-- Soporta búsqueda, filtro y agrupación.
-
-### 17.5 Agrupación futura
-
-``​`txt
-por documento
-por página
-por destinatario
-por tipo
-por estado
-``​`
-
----
-
-## 18. Fase 14 — CSS/Tailwind sin romper geometría
-
-### 18.1 Regla fundamental
-
-No tocar con CSS:
-
-``​`txt
-.moveable-*
-.selecto-*
-transform
-left/top calculados
-width/height de schema runtime
-zoom geometry
-paper position
-scroll position
-``​`
-
-### 18.2 Tailwind permitido
-
-- Clases en JSX para componentes nuevos.
-- `sisad-tailwind-bridge.css` para compatibilidad de classNames existentes.
-- Tokens CSS para colores, radios, sombras, density.
-- No crear hojas nuevas dispersas.
-
-### 18.3 Riesgos detectados
-
-- `src/styles/tailwind.css` es fuente de Tailwind.
-- `src/style.css` fue neutralizado para evitar doble emisión.
-- Existen `sisad-pdfme-global.css`, `sisad-pdfme-sidebar.css`, `canvas-interactions.css`, `sisad-tailwind-bridge.css` con solapamientos.
-
-### 18.4 Plan de decommission CSS
-
-1. Inventariar selectores duplicados.
-2. Clasificar:
-   - geometry protected;
-   - visual-only;
-   - legacy removable;
-   - host-only;
-   - runtime required.
-3. Migrar visual-only a Tailwind JSX o bridge.
-4. Mantener geometry protected intacto.
-5. Crear reporte:
-
-``​`txt
-reports/tailwind-migration/ui-styles-decommission-audit-v2.md
-``​`
-
----
-
-## 19. Fase 15 — Custom fields modal
-
-### 19.1 Problema
-
-El modal muestra propiedades que no siempre se guardan en el schema creado.
-
-### 19.2 Regla P0
-
-No mostrar un control si no persiste.
-
-### 19.3 Contrato de definición
-
-``​`ts
-type CustomFieldDef = {
-  id: string;
-  type: string;
-  label: string;
-  description?: string;
-  defaultSchema: Partial<SchemaForUI>;
-  inspectorProfile?: string;
-  capabilities?: SchemaCapability[];
-};
-``​`
-
-### 19.4 Propiedades que deben persistir si se muestran
-
-``​`txt
-fontName
-fontSize
-fontColor
-bold
-italic
-underline
-fixedWidth
-maskAsterisks
-maxLength
-validation
-helpText
-collaborationEnabled
-ownerMode
-options[]
-defaultValue
-required
-readOnly
-``​`
-
-### 19.5 UI por tipo
-
-- Text-like: valor, formato, validación, ayuda.
-- Checkbox: default checked, requerido, ayuda.
-- Select/radio: options editor.
-- Line/shape: color, grosor, estilo.
-- Attachment: mime types, max files, preview, replace.
-
----
-
-## 20. Fase 16 — Snapshot y metadata
-
-### 20.1 Datos que nunca deben perderse
-
-``​`txt
-schemaUid
-type
-documentId
-fileId
-pageNumber
-pageIndex
-x
-y
-width
-height
-rotation
-ownerRecipientId
-ownerRecipientIds
-recipientId
-ownerColor
-recipientColor
-userColor
-required
-readOnly
-readonly
-locked
-hidden
-groupId
-optionId
-selectedOptionIds
-selectedOptionId
-selectedValue
-defaultValue
-options
-__designer
-dataLabel
-tooltip
-comments
-commentAnchors
-``​`
-
-### 20.2 Tests de roundtrip
-
-- Guardar/importar mantiene documentos.
-- Guardar/importar mantiene páginas.
-- Duplicar conserva offset pero nuevo schemaUid.
-- Paste conserva orden y offset.
-- Option groups conservan options y selected values.
-- Owner color no se recalcula erróneamente al cambiar usuario activo.
-
----
-
-## 21. Fase 17 — Tests obligatorios
-
-### 21.1 Unit tests
-
-``​`bash
-npx vitest run \
-  tests/unit/selectionPolicy.test.ts \
-  tests/unit/interactionTargetResolver.test.ts \
-  tests/unit/schemaAccessResolver.test.ts \
-  tests/unit/schemaCreationPolicy.test.ts \
-  tests/unit/schemaOwnerAppearance.test.ts \
-  tests/unit/schemaProfileRegistry.test.ts \
-  tests/unit/detailView.schemaMatrix.test.ts \
-  tests/unit/optionSelectionBehavior.test.ts \
-  tests/unit/optionValueAdapter.test.ts \
-  tests/unit/snapshotAdapter.test.ts
-``​`
-
-### 21.2 Playwright
-
-``​`bash
-npx playwright test tests/e2e/designer-selection-modifiers.spec.ts --project=chromium
-npx playwright test tests/e2e/designer-selection-region.spec.ts --project=chromium
-npx playwright test tests/e2e/designer-lock-readonly-sync.spec.ts --project=chromium
-npx playwright test tests/e2e/designer-drag-drop-default-state.spec.ts --project=chromium
-npx playwright test tests/e2e/designer-sidebar-canvas-sync.spec.ts --project=chromium
-npx playwright test tests/e2e/designer-option-groups-selection.spec.ts --project=chromium
-npx playwright test tests/e2e/designer-owner-color-sync.spec.ts --project=chromium
-npx playwright test tests/e2e/designer-snapshot-roundtrip.spec.ts --project=chromium
-npx playwright test tests/e2e/designer-catalog-layout-density.spec.ts --project=chromium
-npx playwright test tests/e2e/designer-right-sidebar-listview.spec.ts --project=chromium
-``​`
-
-### 21.3 Manual QA
-
-``​`txt
-[ ] Drag text al canvas nace editable.
-[ ] Drag attachment al canvas no nace locked.
-[ ] Drag note al canvas no nace readonly salvo configuración explícita.
-[ ] macOS Command+click selecciona múltiples.
-[ ] Windows Ctrl+Shift+click selecciona múltiples.
-[ ] Región selecciona varios schemas.
-[ ] Región no selecciona botón + ni toolbar.
-[ ] Locked-by-other se selecciona pero no se mueve.
-[ ] Inspector muestra el mismo locked/readonly que canvas.
-[ ] ListView y canvas usan mismo owner color.
-[ ] LeftSidebar y RightSidebar colapsan con mismo patrón.
-[ ] No hay scroll reset al colapsar paneles.
-[ ] Option group root se selecciona con click.
-[ ] Doble click en opción cambia valor solo en designer.
-[ ] Form usa click simple para cambiar valores.
-[ ] Viewer/PDF no interactúa.
-[ ] Snapshot roundtrip conserva pageNumber/documentId/ownerColor.
-``​`
-
----
-
-## 22. Orden de implementación recomendado
-
-### Sprint 0 — Congelar y auditar
-
-``​`txt
-1. git status --short
-2. crear branch limpio
-3. ejecutar auditorías rg
-4. crear duplication-map.md
-5. no modificar UI todavía
-``​`
-
-### Sprint 1 — Selección e interacción
-
-``​`txt
-1. selectionPolicy.ts
-2. interactionTargetResolver.ts
-3. integrar Selecto/Canvas
-4. tests unitarios de policy
-5. Playwright selección simple/múltiple/región
-``​`
-
-### Sprint 2 — Access y creación de schemas
-
-``​`txt
-1. schemaAccessModel.ts
-2. schemaAccessResolver.ts
-3. schemaCreationPolicy.ts
-4. corregir defaults al drag/drop
-5. sincronizar inspector/canvas/list
-``​`
-
-### Sprint 3 — CommandBus y view models
-
-``​`txt
-1. comandos mutables centralizados
-2. selectedSchemaViewModel.ts
-3. DetailHeaderCard/ListView consumen view model
-4. toolbar contextual usa access state
-``​`
-
-### Sprint 4 — Owner color y schema profiles
-
-``​`txt
-1. schemaOwnerAppearance.ts
-2. fieldChrome consume variables unificadas
-3. PluginIcon currentColor
-4. schemaProfileRegistry.ts
-5. matriz por familia
-``​`
-
-### Sprint 5 — DetailView y sidebars compactos
-
-``​`txt
-1. inspector por contrato
-2. layout de campos adaptativo
-3. SidebarCollapseHandle compartido
-4. CatalogLayout list/tiles/icons
-5. RightSidebar ListView compacto
-``​`
-
-### Sprint 6 — Option groups y custom fields
-
-``​`txt
-1. optionIndicator único
-2. optionSelectionBehavior central
-3. doble click designer/click form
-4. custom fields: no mostrar propiedades no persistidas
-``​`
-
-### Sprint 7 — Snapshot y regresión final
-
-``​`txt
-1. snapshot roundtrip
-2. tests E2E completos
-3. visual baseline
-4. build/lint
-5. reporte final
-``​`
-
----
-
-## 23. Task-cards recomendadas
-
-### TASK-SEL-001 — SelectionPolicy y selección múltiple por plataforma
-
-**Archivos permitidos:**
-
-``​`txt
-Canvas.tsx
-Selecto.tsx
-selectionCommands.ts
-selectionIdentityResolver.ts
-useDesignerKeyboardShortcuts.ts
-selectionPolicy.ts
-interactionTargetResolver.ts
-``​`
-
-**No tocar:** schemas, DetailView, SnapshotAdapter, CSS global.
-
-**Criterio de cierre:** tests unitarios + Playwright selección modifiers.
-
----
-
-### TASK-ACC-001 — AccessResolver lock/readonly sync
-
-**Archivos permitidos:**
-
-``​`txt
-schemaAccessModel.ts
-schemaAccessResolver.ts
-schemaLockGuard.ts
-lockManager.ts
-SelectionContextToolbar.tsx
-CanvasContextMenu.tsx
-DetailHeaderCard.tsx
-ListView/Item.tsx
-``​`
-
-**No tocar:** Moveable salvo consumo de access state.
-
-**Criterio de cierre:** inspector y canvas muestran el mismo estado.
-
----
-
-### TASK-DROP-001 — SchemaCreationPolicy defaults
-
-**Archivos permitidos:**
-
-``​`txt
-schemaCreationPolicy.ts
-canvasDropPipeline.ts
-schemaAutoPlace.ts
-schemaBuilder.ts
-actionSchemaFactory.ts
-signingSchemaFactory.ts
-``​`
-
-**Criterio de cierre:** ningún schema nuevo nace locked/readonly accidental.
-
----
-
-### TASK-UI-001 — SidebarCollapseHandle simétrico
-
-**Archivos permitidos:**
-
-``​`txt
-SidebarCollapseHandle.tsx
-sidebarPanelContract.ts
-LeftSidebar.tsx
-RightSidebar.tsx
-RightSidebar/layout.tsx
-sisad-tailwind-bridge.css
-``​`
-
-**Criterio de cierre:** mismo patrón visual/funcional en ambos sidebars.
-
----
-
-### TASK-SCHEMA-001 — SchemaProfileRegistry e inspector matrix
-
-**Archivos permitidos:**
-
-``​`txt
-schemaProfileRegistry.ts
-detailSchemas.ts
-inspectorContracts.ts
-detailSectionTaxonomy.ts
-detailWidgetRegistry.tsx
-schemaFamilies.ts
-``​`
-
-**Criterio de cierre:** cada schema declara familia, capacidades y secciones.
-
----
-
-### TASK-OPTION-001 — Option groups y checkbox/radio unified
-
-**Archivos permitidos:**
-
-``​`txt
-optionIndicator.ts
-optionGroupFactory.ts
-optionGroupRenderer.ts
-optionSelectionBehavior.ts
-optionValueAdapter.ts
-checkbox/index.ts
-checkboxGroup/index.ts
-radioGroup/index.ts
-GroupOptionFloatingAction.tsx
-``​`
-
-**Criterio de cierre:** click selecciona grupo; doble click cambia valor en designer.
-
----
-
-### TASK-CSS-001 — CatalogLayout + density sin duplicidad
-
-**Archivos permitidos:**
-
-``​`txt
-LeftSidebar.tsx
-LeftSidebarGroup.tsx
-CatalogLayoutToggle.tsx
-useLeftSidebarCatalogState.ts
-sisad-tailwind-bridge.css
-sisad-pdfme-sidebar.css
-``​`
-
-**Criterio de cierre:** list/tiles/icons no cambian por density.
-
----
-
-## 24. Prompt maestro para Codex
-
-``​`txt
-Actúa como arquitecto frontend senior experto en React, TypeScript, Tailwind, pdfme, Moveable, Selecto, CommandBus, SOLID, schemas plugin-based e inspectores tipo DocuSign-like.
-
-Proyecto:
-~/Documents/Taylor/frontend/prueba-plugin
-
-Ruta de validación:
-http://localhost:5174/lab/multi-document-routing
-
-Problema:
-El diseñador SISAD PDFME tiene regresiones funcionales en selección, canvas, schemas, lock/readonly, sidebars, owner color y DetailView. No hagas parches visuales. Primero estabiliza contratos.
-
-Inicio obligatorio:
-1. git status --short
-2. Leer:
-   - ai/start/START.md
-   - ai/router/ROUTER.md
-   - ai/router/CONTEXT_BUDGET.md
-   - ai/memory/project-memory.md
-3. Elegir una sola task-card.
-4. Máximo 2 búsquedas rg generales.
-5. Máximo 8 archivos abiertos.
-6. Máximo 5 archivos modificados por pasada.
-7. Si requiere más, detenerse y crear nueva task-card.
-
-Reglas:
-- No tocar StepOne, StepTwo host, ContentCustomForm negocio, Uanataca, liveness, APIs SISAD, externalForms negocio.
-- No tocar Generator/pdf-lib salvo contrato explícito.
-- No tocar SnapshotAdapter salvo task específica.
-- No modificar Moveable/Selecto por z-index; resolver con policies/guards.
-- No usar setTimeout para geometría, selección ni render.
-- No crear CSS disperso.
-- No usar as any nuevo.
-- No duplicar inspector, sidebars, canvas ni renderer de schemas.
-- Cada componente nuevo debe ser genérico y autoconfigurable.
-
-Datos que nunca deben perderse:
-schemaUid, type, documentId, fileId, pageNumber, pageIndex, x, y, width, height, rotation, ownerRecipientId, ownerRecipientIds, ownerColor, recipientColor, userColor, required, readOnly, readonly, locked, hidden, groupId, optionId, selectedOptionIds, selectedOptionId, selectedValue, defaultValue, options, __designer, dataLabel, tooltip.
-
-Objetivo de esta pasada:
-Selecciona solo una de estas tareas:
-- SelectionPolicy + interactionTargetResolver.
-- SchemaAccessResolver + lock/readonly sync.
-- SchemaCreationPolicy para defaults de drag/drop.
-- SidebarCollapseHandle simétrico.
-- SchemaProfileRegistry + inspector matrix.
-- Option groups unified behavior.
-- CatalogLayout + density.
-
-Entrega final:
-# Resultado
-## Task-card ejecutada
-## Router decision
-## Archivos revisados
-## Diagnóstico
-## Causa raíz
-## Cambios realizados
-## Archivos modificados
-## Tests ejecutados
-## Riesgos pendientes
-## Siguiente task-card recomendada
-``​`
-
----
-
-## 25. Criterios finales de aceptación global
-
-El plan se considera completo cuando:
-
-``​`txt
-[ ] selección simple funciona en todos los schemas;
-[ ] selección múltiple funciona en macOS y Windows/Linux;
-[ ] selección por región funciona sin capturar overlays;
-[ ] locked/readonly se sincroniza entre canvas, list y inspector;
-[ ] schemas nuevos no nacen bloqueados accidentalmente;
-[ ] owner color se propaga igual en wrapper, catálogo, list, detail y preview;
-[ ] LeftSidebar y RightSidebar tienen colapso simétrico;
-[ ] catálogo usa list/tiles/icons + density separada;
-[ ] DetailView renderiza por perfil de schema;
-[ ] checkbox/radio/groups comparten optionIndicator;
-[ ] custom fields no muestran controles no persistidos;
-[ ] CommandBus es la vía única de mutación;
-[ ] snapshot roundtrip conserva metadata crítica;
-[ ] no hay hacks de z-index ni setTimeout;
-[ ] no se crea CSS disperso fuera del bridge/runtime;
-[ ] build, lint, unit tests y E2E críticos pasan.
-``​`
-
----
-
-## 26. Riesgos y decisiones pendientes
-
-| Riesgo | Decisión recomendada |
-|---|---|
-| Cambios previos de Codex mezclados | Crear branch limpio y separar commits. |
-| CSS global pisa Tailwind bridge | Crear auditoría de selectores y decommission por fases. |
-| SnapshotAdapter muy sensible | No tocar hasta tener tests de roundtrip. |
-| Moveable/Selecto frágiles | Resolver con interactionTargetResolver antes de editar componentes. |
-| Inspector muy genérico | Crear matriz por familia antes de tocar widgets. |
-| `any` acumulado | Task específica después de estabilizar comportamiento. |
-| Option groups complejos | Mantener root como schema; options internas nunca schemas. |
-| Host SISAD puede contaminar estilos | Aislar runtime y evitar selectores host sobre clases internas. |
-
----
-
-## 27. Conclusión
-
-La solución no debe ser una nueva capa visual sobre un comportamiento inestable. El diseñador necesita primero una base contractual:
-
-``​`txt
-SelectionPolicy
-+ InteractionTargetResolver
-+ SchemaAccessResolver
-+ SchemaCreationPolicy
-+ SelectedSchemaViewModel
-+ SchemaOwnerAppearance
-+ SchemaProfileRegistry
-+ CommandBus mutation pipeline
-``​`
-
-Después de eso, la mejora UX/UI con Tailwind será estable y reutilizable. Si se empieza por compactar sidebars o cambiar estilos sin resolver esos contratos, los bugs de selección, bloqueo y sincronización volverán a aparecer.
-```
-
-<a id="file-0098"></a>
-
-### 0098 — `.github/copilot-instructions.md`
+### 0093 — `.github/copilot-instructions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -8802,9 +3297,9 @@ Copilot debe seguir estas reglas mínimas:
 - Preferir cambios pequeños y focalizados.
 ```
 
-<a id="file-0099"></a>
+<a id="file-0094"></a>
 
-### 0099 — `ai/README.md`
+### 0094 — `ai/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -8853,9 +3348,9 @@ Esta carpeta centraliza todo lo que un asistente necesita para trabajar sin aluc
 ``​`
 ```
 
-<a id="file-0100"></a>
+<a id="file-0095"></a>
 
-### 0100 — `ai/tree.md`
+### 0095 — `ai/tree.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `26`
@@ -8892,9 +3387,9 @@ ai/
 ``​`
 ```
 
-<a id="file-0101"></a>
+<a id="file-0096"></a>
 
-### 0101 — `reports/jsdoc-missing-report.md`
+### 0096 — `reports/jsdoc-missing-report.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `2254`
@@ -11159,9 +5654,9 @@ ai/
 - Línea 103: `type` `DesignerRuntimeApi`
 ```
 
-<a id="file-0102"></a>
+<a id="file-0097"></a>
 
-### 0102 — `scripts/README.md`
+### 0097 — `scripts/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -11193,9 +5688,9 @@ bash scripts/clean-empty-dirs.sh /ruta/proyecto --confirm
 ``​`
 ```
 
-<a id="file-0103"></a>
+<a id="file-0098"></a>
 
-### 0103 — `ai/adapters/README.md`
+### 0098 — `ai/adapters/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -11209,9 +5704,9 @@ bash scripts/clean-empty-dirs.sh /ruta/proyecto --confirm
 Adaptadores para herramientas. Los archivos raíz deben ser copias delgadas de estos o apuntar a `ai/start/START.md`.
 ```
 
-<a id="file-0104"></a>
+<a id="file-0099"></a>
 
-### 0104 — `ai/agents/canvas-agent.md`
+### 0099 — `ai/agents/canvas-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -11259,9 +5754,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0105"></a>
+<a id="file-0100"></a>
 
-### 0105 — `ai/agents/css-tailwind-agent.md`
+### 0100 — `ai/agents/css-tailwind-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -11309,9 +5804,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0106"></a>
+<a id="file-0101"></a>
 
-### 0106 — `ai/agents/designer-runtime-agent.md`
+### 0101 — `ai/agents/designer-runtime-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -11359,9 +5854,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0107"></a>
+<a id="file-0102"></a>
 
-### 0107 — `ai/agents/docs-architecture-agent.md`
+### 0102 — `ai/agents/docs-architecture-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -11409,9 +5904,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0108"></a>
+<a id="file-0103"></a>
 
-### 0108 — `ai/agents/inspector-agent.md`
+### 0103 — `ai/agents/inspector-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -11459,9 +5954,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0109"></a>
+<a id="file-0104"></a>
 
-### 0109 — `ai/agents/interaction-agent.md`
+### 0104 — `ai/agents/interaction-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -11509,9 +6004,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0110"></a>
+<a id="file-0105"></a>
 
-### 0110 — `ai/agents/lab-shell-agent.md`
+### 0105 — `ai/agents/lab-shell-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -11559,9 +6054,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0111"></a>
+<a id="file-0106"></a>
 
-### 0111 — `ai/agents/README.md`
+### 0106 — `ai/agents/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -11575,9 +6070,9 @@ playbook del dominio
 Cada agente representa un dominio principal. Un agente no debe cambiar de dominio durante una task-card.
 ```
 
-<a id="file-0112"></a>
+<a id="file-0107"></a>
 
-### 0112 — `ai/agents/registry.md`
+### 0107 — `ai/agents/registry.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -11600,9 +6095,9 @@ Cada agente representa un dominio principal. Un agente no debe cambiar de domini
 - `docs-architecture-agent.md` — Docs Architecture Agent: Mantiene ai/ sin duplicidad, memoria, reglas, prompts y task-cards.
 ```
 
-<a id="file-0113"></a>
+<a id="file-0108"></a>
 
-### 0113 — `ai/agents/schema-agent.md`
+### 0108 — `ai/agents/schema-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -11650,9 +6145,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0114"></a>
+<a id="file-0109"></a>
 
-### 0114 — `ai/agents/snapshot-agent.md`
+### 0109 — `ai/agents/snapshot-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -11700,9 +6195,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0115"></a>
+<a id="file-0110"></a>
 
-### 0115 — `ai/agents/visual-baseline-agent.md`
+### 0110 — `ai/agents/visual-baseline-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -11750,9 +6245,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0116"></a>
+<a id="file-0111"></a>
 
-### 0116 — `ai/baselines/img-version-baseline-protocol.md`
+### 0111 — `ai/baselines/img-version-baseline-protocol.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -11792,9 +6287,9 @@ Evaluar:
 - consistencia.
 ```
 
-<a id="file-0117"></a>
+<a id="file-0112"></a>
 
-### 0117 — `ai/baselines/README.md`
+### 0112 — `ai/baselines/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -11808,9 +6303,9 @@ Evaluar:
 Protocolos de referencia visual y funcional.
 ```
 
-<a id="file-0118"></a>
+<a id="file-0113"></a>
 
-### 0118 — `ai/checklists/done-vs-pending.md`
+### 0113 — `ai/checklists/done-vs-pending.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -11833,9 +6328,9 @@ Protocolos de referencia visual y funcional.
 - [ ] Ejecutar TASK-CSS-001.
 ```
 
-<a id="file-0119"></a>
+<a id="file-0114"></a>
 
-### 0119 — `ai/checklists/global-validation.md`
+### 0114 — `ai/checklists/global-validation.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -11854,9 +6349,9 @@ Protocolos de referencia visual y funcional.
 - [ ] Nueva memoria si hubo decisión.
 ```
 
-<a id="file-0120"></a>
+<a id="file-0115"></a>
 
-### 0120 — `ai/checklists/improvement-backlog.md`
+### 0115 — `ai/checklists/improvement-backlog.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -11876,9 +6371,9 @@ Protocolos de referencia visual y funcional.
 | Media | Mejorar LeftSidebar truncation | Pendiente |
 ```
 
-<a id="file-0121"></a>
+<a id="file-0116"></a>
 
-### 0121 — `ai/checklists/manual-ui-regression.md`
+### 0116 — `ai/checklists/manual-ui-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -11908,9 +6403,9 @@ Protocolos de referencia visual y funcional.
 - [ ] PDF sin chrome.
 ```
 
-<a id="file-0122"></a>
+<a id="file-0117"></a>
 
-### 0122 — `ai/checklists/README.md`
+### 0117 — `ai/checklists/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -11924,9 +6419,9 @@ Protocolos de referencia visual y funcional.
 Checklists vivos para validar tareas y controlar pendientes.
 ```
 
-<a id="file-0123"></a>
+<a id="file-0118"></a>
 
-### 0123 — `ai/checklists/tailwind-migration.md`
+### 0118 — `ai/checklists/tailwind-migration.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -11948,9 +6443,9 @@ Checklists vivos para validar tareas y controlar pendientes.
 - [ ] PDF final sin chrome no deseado.
 ```
 
-<a id="file-0124"></a>
+<a id="file-0119"></a>
 
-### 0124 — `ai/context/ai-docs-context.md`
+### 0119 — `ai/context/ai-docs-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -11964,9 +6459,9 @@ Checklists vivos para validar tareas y controlar pendientes.
 La carpeta `ai/` es fuente de verdad. Documentación antigua puede migrarse, pero no duplicarse.
 ```
 
-<a id="file-0125"></a>
+<a id="file-0120"></a>
 
-### 0125 — `ai/context/canvas-multipage-context.md`
+### 0120 — `ai/context/canvas-multipage-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -11986,9 +6481,9 @@ event → page target → coordinate conversion → schema metadata → render p
 Validar siempre página 2+.
 ```
 
-<a id="file-0126"></a>
+<a id="file-0121"></a>
 
-### 0126 — `ai/context/css-tailwind-context.md`
+### 0121 — `ai/context/css-tailwind-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -12022,9 +6517,9 @@ reports/tailwind-migration/*
 - `public/img-version` es baseline visual.
 ```
 
-<a id="file-0127"></a>
+<a id="file-0122"></a>
 
-### 0127 — `ai/context/inspector-context.md`
+### 0122 — `ai/context/inspector-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -12038,9 +6533,9 @@ reports/tailwind-migration/*
 Inspector usa secciones declarativas. Widgets actualizan schema por command/update centralizado, no por mutación directa.
 ```
 
-<a id="file-0128"></a>
+<a id="file-0123"></a>
 
-### 0128 — `ai/context/README.md`
+### 0123 — `ai/context/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -12054,9 +6549,9 @@ Inspector usa secciones declarativas. Widgets actualizan schema por command/upda
 Contextos focales. Cargar solo uno por task-card.
 ```
 
-<a id="file-0129"></a>
+<a id="file-0124"></a>
 
-### 0129 — `ai/context/schema-families-context.md`
+### 0124 — `ai/context/schema-families-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -12072,9 +6567,9 @@ Familias: text-like, boolean, option-based, signing-based, action-based, media, 
 Cada familia define render, inspector, value adapter y compatibilidad Form/Viewer/PDF.
 ```
 
-<a id="file-0130"></a>
+<a id="file-0125"></a>
 
-### 0130 — `ai/context/selection-transform-context.md`
+### 0125 — `ai/context/selection-transform-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -12088,9 +6583,9 @@ Cada familia define render, inspector, value adapter y compatibilidad Form/Viewe
 Selecto selecciona roots con `data-schema-id`. Moveable transforma roots. Excluir option internals, botón +, toolbar, inputs, contenteditable y overlays.
 ```
 
-<a id="file-0131"></a>
+<a id="file-0126"></a>
 
-### 0131 — `ai/context/snapshot-context.md`
+### 0126 — `ai/context/snapshot-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -12104,9 +6599,9 @@ Selecto selecciona roots con `data-schema-id`. Moveable transforma roots. Exclui
 Snapshot preserva document/page, geometry, ownership, options, selected values y `__designer`.
 ```
 
-<a id="file-0132"></a>
+<a id="file-0127"></a>
 
-### 0132 — `ai/context/visual-baseline-context.md`
+### 0127 — `ai/context/visual-baseline-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -12135,9 +6630,9 @@ Comparar intención visual, no pixel-perfect:
 - canvas-first.
 ```
 
-<a id="file-0133"></a>
+<a id="file-0128"></a>
 
-### 0133 — `ai/docs-migration/MIGRATION_FROM_OLD_STRUCTURE.md`
+### 0128 — `ai/docs-migration/MIGRATION_FROM_OLD_STRUCTURE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -12178,9 +6673,9 @@ AGENTS.md/CLAUDE.md si existen
 | `reports/*` | conservar como evidencia, no cargar por defecto |
 ```
 
-<a id="file-0134"></a>
+<a id="file-0129"></a>
 
-### 0134 — `ai/memory/changelog.md`
+### 0129 — `ai/memory/changelog.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -12198,9 +6693,9 @@ AGENTS.md/CLAUDE.md si existen
 - Se agregan adaptadores para Codex, Claude y GitHub Copilot.
 ```
 
-<a id="file-0135"></a>
+<a id="file-0130"></a>
 
-### 0135 — `ai/memory/completed-checklist.md`
+### 0130 — `ai/memory/completed-checklist.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -12218,9 +6713,9 @@ AGENTS.md/CLAUDE.md si existen
 - [x] Identificar que `tokens.css` no debe eliminarse.
 ```
 
-<a id="file-0136"></a>
+<a id="file-0131"></a>
 
-### 0136 — `ai/memory/decisions.md`
+### 0131 — `ai/memory/decisions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -12252,9 +6747,9 @@ Las imágenes de `public/img-version` son referencia de intención visual previa
 Paper, transform, zoom, x/y/width/height, Moveable/Selecto y z-index crítico permanecen en CSS/tokens o inline controlado.
 ```
 
-<a id="file-0137"></a>
+<a id="file-0132"></a>
 
-### 0137 — `ai/memory/known-risks.md`
+### 0132 — `ai/memory/known-risks.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -12275,9 +6770,9 @@ Paper, transform, zoom, x/y/width/height, Moveable/Selecto y z-index crítico pe
 | Agentes duplican reglas | Alucinaciones/inconsistencias | Adaptadores delgados |
 ```
 
-<a id="file-0138"></a>
+<a id="file-0133"></a>
 
-### 0138 — `ai/memory/memory-update-protocol.md`
+### 0133 — `ai/memory/memory-update-protocol.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -12317,9 +6812,9 @@ Actualizar memoria solo si ocurrió una decisión estable o cambio relevante.
 ``​`
 ```
 
-<a id="file-0139"></a>
+<a id="file-0134"></a>
 
-### 0139 — `ai/memory/pending-checklist.md`
+### 0134 — `ai/memory/pending-checklist.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -12345,9 +6840,9 @@ Actualizar memoria solo si ocurrió una decisión estable o cambio relevante.
 - [ ] Crear prompts específicos por agente.
 ```
 
-<a id="file-0140"></a>
+<a id="file-0135"></a>
 
-### 0140 — `ai/memory/project-memory.md`
+### 0135 — `ai/memory/project-memory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -12378,9 +6873,9 @@ El proyecto `sisad-pdfme` es un diseñador PDF con laboratorios bajo `src/featur
 La migración Tailwind puede romper layout por doble fuente de verdad: Tailwind JSX + bridge + CSS legacy. Corregir por capas.
 ```
 
-<a id="file-0141"></a>
+<a id="file-0136"></a>
 
-### 0141 — `ai/memory/README.md`
+### 0136 — `ai/memory/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -12404,9 +6899,9 @@ La memoria evita repetir decisiones y reduce tokens. Debe mantenerse corta, obje
 - `pending-checklist.md`: pendientes priorizados.
 ```
 
-<a id="file-0142"></a>
+<a id="file-0137"></a>
 
-### 0142 — `ai/memory/session-handoff.md`
+### 0137 — `ai/memory/session-handoff.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -12430,9 +6925,9 @@ Instalar esta estructura y migrar progresivamente contenido existente desde `.ai
 No eliminar documentación antigua hasta validar que sus contenidos importantes ya están referenciados o migrados.
 ```
 
-<a id="file-0143"></a>
+<a id="file-0138"></a>
 
-### 0143 — `ai/playbooks/pb-ai-docs-refactor.md`
+### 0138 — `ai/playbooks/pb-ai-docs-refactor.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -12450,9 +6945,9 @@ No eliminar documentación antigua hasta validar que sus contenidos importantes 
 5. Actualizar memoria.
 ```
 
-<a id="file-0144"></a>
+<a id="file-0139"></a>
 
-### 0144 — `ai/playbooks/pb-canvas-multipage.md`
+### 0139 — `ai/playbooks/pb-canvas-multipage.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -12469,9 +6964,9 @@ No eliminar documentación antigua hasta validar que sus contenidos importantes 
 4. Validar snapshot.
 ```
 
-<a id="file-0145"></a>
+<a id="file-0140"></a>
 
-### 0145 — `ai/playbooks/pb-css-tailwind-migration.md`
+### 0140 — `ai/playbooks/pb-css-tailwind-migration.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -12491,9 +6986,9 @@ No eliminar documentación antigua hasta validar que sus contenidos importantes 
 7. Validar `/lab/multi-document-routing` y `/lab/generator-runtime`.
 ```
 
-<a id="file-0146"></a>
+<a id="file-0141"></a>
 
-### 0146 — `ai/playbooks/pb-inspector.md`
+### 0141 — `ai/playbooks/pb-inspector.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -12510,9 +7005,9 @@ No eliminar documentación antigua hasta validar que sus contenidos importantes 
 4. Validar ListView/DetailView.
 ```
 
-<a id="file-0147"></a>
+<a id="file-0142"></a>
 
-### 0147 — `ai/playbooks/pb-schema-families.md`
+### 0142 — `ai/playbooks/pb-schema-families.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -12529,9 +7024,9 @@ No eliminar documentación antigua hasta validar que sus contenidos importantes 
 4. Validar snapshot.
 ```
 
-<a id="file-0148"></a>
+<a id="file-0143"></a>
 
-### 0148 — `ai/playbooks/pb-selection-transform.md`
+### 0143 — `ai/playbooks/pb-selection-transform.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -12548,9 +7043,9 @@ No eliminar documentación antigua hasta validar que sus contenidos importantes 
 4. Validar Moveable root-only.
 ```
 
-<a id="file-0149"></a>
+<a id="file-0144"></a>
 
-### 0149 — `ai/playbooks/pb-snapshot.md`
+### 0144 — `ai/playbooks/pb-snapshot.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -12567,9 +7062,9 @@ No eliminar documentación antigua hasta validar que sus contenidos importantes 
 4. No tocar generator salvo task explícita.
 ```
 
-<a id="file-0150"></a>
+<a id="file-0145"></a>
 
-### 0150 — `ai/playbooks/pb-visual-regression.md`
+### 0145 — `ai/playbooks/pb-visual-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -12588,9 +7083,9 @@ No eliminar documentación antigua hasta validar que sus contenidos importantes 
 6. Corregir por componente.
 ```
 
-<a id="file-0151"></a>
+<a id="file-0146"></a>
 
-### 0151 — `ai/playbooks/README.md`
+### 0146 — `ai/playbooks/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -12604,9 +7099,9 @@ No eliminar documentación antigua hasta validar que sus contenidos importantes 
 Procedimientos. Cargar uno por task-card.
 ```
 
-<a id="file-0152"></a>
+<a id="file-0147"></a>
 
-### 0152 — `ai/project/architecture-principles.md`
+### 0147 — `ai/project/architecture-principles.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -12651,9 +7146,9 @@ Las instrucciones dependen de contratos (`task-card`, `rules`, `context`) y no d
 No duplicar reglas en `AGENTS.md`, `CLAUDE.md` y Copilot. Esos archivos solo apuntan a `ai/start/START.md`.
 ```
 
-<a id="file-0153"></a>
+<a id="file-0148"></a>
 
-### 0153 — `ai/project/definition-of-done.md`
+### 0148 — `ai/project/definition-of-done.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -12676,9 +7171,9 @@ Una task-card se considera completa cuando:
 - Se propuso nueva task-card si quedó trabajo fuera de alcance.
 ```
 
-<a id="file-0154"></a>
+<a id="file-0149"></a>
 
-### 0154 — `ai/project/file-ownership-map.md`
+### 0149 — `ai/project/file-ownership-map.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -12703,9 +7198,9 @@ Una task-card se considera completa cuando:
 | AI docs | `ai/**` | docs-architecture-agent |
 ```
 
-<a id="file-0155"></a>
+<a id="file-0150"></a>
 
-### 0155 — `ai/project/glossary.md`
+### 0150 — `ai/project/glossary.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -12732,9 +7227,9 @@ Una task-card se considera completa cuando:
 | Bridge Tailwind | CSS con `@apply` que conserva classNames existentes |
 ```
 
-<a id="file-0156"></a>
+<a id="file-0151"></a>
 
-### 0156 — `ai/project/goals.md`
+### 0151 — `ai/project/goals.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -12769,9 +7264,9 @@ Construir y estabilizar `sisad-pdfme` como componente diseñador PDF reutilizabl
 - Dividir tareas grandes en pasos verificables.
 ```
 
-<a id="file-0157"></a>
+<a id="file-0152"></a>
 
-### 0157 — `ai/project/non-goals.md`
+### 0152 — `ai/project/non-goals.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -12794,9 +7289,9 @@ No hacer por defecto:
 - Resolver permisos con CSS.
 ```
 
-<a id="file-0158"></a>
+<a id="file-0153"></a>
 
-### 0158 — `ai/project/scope.md`
+### 0153 — `ai/project/scope.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -12845,9 +7340,9 @@ infra backend
 Form/Viewer/Generator no son foco principal, pero no deben romperse. Cualquier cambio en Designer debe preservar metadata y render compatible.
 ```
 
-<a id="file-0159"></a>
+<a id="file-0154"></a>
 
-### 0159 — `ai/prompts/claude-diagnose-or-implement.md`
+### 0154 — `ai/prompts/claude-diagnose-or-implement.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -12865,9 +7360,9 @@ Modo implementación: modificar solo archivos de la task-card, validar y reporta
 Siempre respetar contexto budget.
 ```
 
-<a id="file-0160"></a>
+<a id="file-0155"></a>
 
-### 0160 — `ai/prompts/codex-master-prompt.md`
+### 0155 — `ai/prompts/codex-master-prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -12883,9 +7378,9 @@ Lee `ai/start/START.md`. Enruta con `ai/router/ROUTER.md`. Usa presupuesto de `a
 Trabaja una sola task-card. Antes de editar, declara Router decision. No hagas auditoría global salvo que la task lo pida.
 ```
 
-<a id="file-0161"></a>
+<a id="file-0156"></a>
 
-### 0161 — `ai/prompts/copilot-task-context.md`
+### 0156 — `ai/prompts/copilot-task-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -12907,9 +7402,9 @@ Cambios pequeños y focalizados.
 ``​`
 ```
 
-<a id="file-0162"></a>
+<a id="file-0157"></a>
 
-### 0162 — `ai/prompts/create-task-card.md`
+### 0157 — `ai/prompts/create-task-card.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -12931,9 +7426,9 @@ Convierte la petición del usuario en una task-card cerrada con:
 - criterio de parada.
 ```
 
-<a id="file-0163"></a>
+<a id="file-0158"></a>
 
-### 0163 — `ai/prompts/README.md`
+### 0158 — `ai/prompts/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -12947,9 +7442,9 @@ Convierte la petición del usuario en una task-card cerrada con:
 Prompts reutilizables. No reemplazan task-cards.
 ```
 
-<a id="file-0164"></a>
+<a id="file-0159"></a>
 
-### 0164 — `ai/prompts/update-memory.md`
+### 0159 — `ai/prompts/update-memory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -12963,9 +7458,9 @@ Prompts reutilizables. No reemplazan task-cards.
 Actualiza memoria solo si hubo decisión estable. Usa `ai/memory/memory-update-protocol.md`.
 ```
 
-<a id="file-0165"></a>
+<a id="file-0160"></a>
 
-### 0165 — `ai/reports/README.md`
+### 0160 — `ai/reports/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -12979,9 +7474,9 @@ Actualiza memoria solo si hubo decisión estable. Usa `ai/memory/memory-update-p
 Guardar reportes generados por tareas. No cargar reportes históricos salvo evidencia necesaria.
 ```
 
-<a id="file-0166"></a>
+<a id="file-0161"></a>
 
-### 0166 — `ai/reports/report-template.md`
+### 0161 — `ai/reports/report-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -13002,9 +7497,9 @@ Guardar reportes generados por tareas. No cargar reportes históricos salvo evid
 ## Nueva task-card
 ```
 
-<a id="file-0167"></a>
+<a id="file-0162"></a>
 
-### 0167 — `ai/router/CONTEXT_BUDGET.md`
+### 0162 — `ai/router/CONTEXT_BUDGET.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -13060,9 +7555,9 @@ No cargar:
 - reportes históricos salvo evidencia necesaria.
 ```
 
-<a id="file-0168"></a>
+<a id="file-0163"></a>
 
-### 0168 — `ai/router/ROUTER.md`
+### 0163 — `ai/router/ROUTER.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `27`
@@ -13100,9 +7595,9 @@ No cargar:
 ``​`
 ```
 
-<a id="file-0169"></a>
+<a id="file-0164"></a>
 
-### 0169 — `ai/router/TASK_INTAKE.md`
+### 0164 — `ai/router/TASK_INTAKE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -13128,9 +7623,9 @@ No cargar:
 Crear o seleccionar task-card.
 ```
 
-<a id="file-0170"></a>
+<a id="file-0165"></a>
 
-### 0170 — `ai/rules/ai-docs-rules.md`
+### 0165 — `ai/rules/ai-docs-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -13147,9 +7642,9 @@ Crear o seleccionar task-card.
 - Cada archivo Markdown tiene única responsabilidad.
 ```
 
-<a id="file-0171"></a>
+<a id="file-0166"></a>
 
-### 0171 — `ai/rules/canvas-rules.md`
+### 0166 — `ai/rules/canvas-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -13163,9 +7658,9 @@ Crear o seleccionar task-card.
 No usar `pages[0]`, `pageNumber || 1`, ni query selector del primer paper para operaciones multipágina. Siempre resolver página real.
 ```
 
-<a id="file-0172"></a>
+<a id="file-0167"></a>
 
-### 0172 — `ai/rules/css-migration-rules.md`
+### 0167 — `ai/rules/css-migration-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -13184,9 +7679,9 @@ No usar `pages[0]`, `pageNumber || 1`, ni query selector del primer paper para o
 - Usar `public/img-version` para baseline.
 ```
 
-<a id="file-0173"></a>
+<a id="file-0168"></a>
 
-### 0173 — `ai/rules/global-rules.md`
+### 0168 — `ai/rules/global-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -13204,9 +7699,9 @@ No usar `pages[0]`, `pageNumber || 1`, ni query selector del primer paper para o
 - No cargar todo el proyecto.
 ```
 
-<a id="file-0174"></a>
+<a id="file-0169"></a>
 
-### 0174 — `ai/rules/inspector-rules.md`
+### 0169 — `ai/rules/inspector-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -13220,9 +7715,9 @@ No usar `pages[0]`, `pageNumber || 1`, ni query selector del primer paper para o
 Widgets no mutan schemas directamente. Usar command/update centralizado.
 ```
 
-<a id="file-0175"></a>
+<a id="file-0170"></a>
 
-### 0175 — `ai/rules/moveable-selecto-rules.md`
+### 0170 — `ai/rules/moveable-selecto-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -13238,9 +7733,9 @@ Widgets no mutan schemas directamente. Usar command/update centralizado.
 - No resolver hit-testing con z-index.
 ```
 
-<a id="file-0176"></a>
+<a id="file-0171"></a>
 
-### 0176 — `ai/rules/README.md`
+### 0171 — `ai/rules/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -13254,9 +7749,9 @@ Widgets no mutan schemas directamente. Usar command/update centralizado.
 Reglas duras. Cargar solo la regla principal de la task-card.
 ```
 
-<a id="file-0177"></a>
+<a id="file-0172"></a>
 
-### 0177 — `ai/rules/schema-rules.md`
+### 0172 — `ai/rules/schema-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -13270,9 +7765,9 @@ Reglas duras. Cargar solo la regla principal de la task-card.
 Preservar schemaUid, documentId, pageNumber, ownerRecipientId, colors, groupId, optionId, selected values, options y `__designer`.
 ```
 
-<a id="file-0178"></a>
+<a id="file-0173"></a>
 
-### 0178 — `ai/rules/snapshot-rules.md`
+### 0173 — `ai/rules/snapshot-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -13286,9 +7781,9 @@ Preservar schemaUid, documentId, pageNumber, ownerRecipientId, colors, groupId, 
 No crear snapshot paralelo. No perder metadata. Todo roundtrip debe conservar el modelo.
 ```
 
-<a id="file-0179"></a>
+<a id="file-0174"></a>
 
-### 0179 — `ai/skills/canvas-multipage-skill.md`
+### 0174 — `ai/skills/canvas-multipage-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -13328,9 +7823,9 @@ Validar drop, selección, move, resize y snapshot en páginas 2+.
 ``​`
 ```
 
-<a id="file-0180"></a>
+<a id="file-0175"></a>
 
-### 0180 — `ai/skills/inspector-skill.md`
+### 0175 — `ai/skills/inspector-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -13370,9 +7865,9 @@ Mejorar DetailView/ListView sin romper CommandBus.
 ``​`
 ```
 
-<a id="file-0181"></a>
+<a id="file-0176"></a>
 
-### 0181 — `ai/skills/memory-update-skill.md`
+### 0176 — `ai/skills/memory-update-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -13412,9 +7907,9 @@ Actualizar memoria con decisiones útiles.
 ``​`
 ```
 
-<a id="file-0182"></a>
+<a id="file-0177"></a>
 
-### 0182 — `ai/skills/moveable-selecto-skill.md`
+### 0177 — `ai/skills/moveable-selecto-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -13454,9 +7949,9 @@ Proteger targets, guards, overlays y shortcuts.
 ``​`
 ```
 
-<a id="file-0183"></a>
+<a id="file-0178"></a>
 
-### 0183 — `ai/skills/option-groups-skill.md`
+### 0178 — `ai/skills/option-groups-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -13496,9 +7991,9 @@ Gestionar checkboxGroup/radioGroup/select y botón +.
 ``​`
 ```
 
-<a id="file-0184"></a>
+<a id="file-0179"></a>
 
-### 0184 — `ai/skills/prompting-skill.md`
+### 0179 — `ai/skills/prompting-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -13538,9 +8033,9 @@ Diseñar prompts/task-cards de bajo consumo de tokens.
 ``​`
 ```
 
-<a id="file-0185"></a>
+<a id="file-0180"></a>
 
-### 0185 — `ai/skills/README.md`
+### 0180 — `ai/skills/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -13554,9 +8049,9 @@ Diseñar prompts/task-cards de bajo consumo de tokens.
 Skills son procedimientos reutilizables. Cada skill describe entradas, pasos y salida esperada.
 ```
 
-<a id="file-0186"></a>
+<a id="file-0181"></a>
 
-### 0186 — `ai/skills/snapshot-safety-skill.md`
+### 0181 — `ai/skills/snapshot-safety-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -13596,9 +8091,9 @@ Preservar metadata en import/export/roundtrip.
 ``​`
 ```
 
-<a id="file-0187"></a>
+<a id="file-0182"></a>
 
-### 0187 — `ai/skills/tailwind-migration-skill.md`
+### 0182 — `ai/skills/tailwind-migration-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -13638,9 +8133,9 @@ Migrar CSS puro a Tailwind por capas sin afectar geometría.
 ``​`
 ```
 
-<a id="file-0188"></a>
+<a id="file-0183"></a>
 
-### 0188 — `ai/skills/visual-regression-skill.md`
+### 0183 — `ai/skills/visual-regression-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -13680,9 +8175,9 @@ Usar public/img-version como baseline y comparar visualmente.
 ``​`
 ```
 
-<a id="file-0189"></a>
+<a id="file-0184"></a>
 
-### 0189 — `ai/start/QUICKSTART-CLAUDE.md`
+### 0184 — `ai/start/QUICKSTART-CLAUDE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -13708,9 +8203,9 @@ Usar `ai/prompts/claude-diagnose-or-implement.md` en modo `diagnose-only` cuando
 Usar una sola task-card. No mezclar Tailwind, schemas, canvas, runtime y snapshot en la misma pasada.
 ```
 
-<a id="file-0190"></a>
+<a id="file-0185"></a>
 
-### 0190 — `ai/start/QUICKSTART-CODEX.md`
+### 0185 — `ai/start/QUICKSTART-CODEX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -13755,9 +8250,9 @@ No revises todo. Enruta, selecciona task-card, inspecciona con rg y modifica poc
 ``​`
 ```
 
-<a id="file-0191"></a>
+<a id="file-0186"></a>
 
-### 0191 — `ai/start/QUICKSTART-COPILOT.md`
+### 0186 — `ai/start/QUICKSTART-COPILOT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -13786,9 +8281,9 @@ Preservar metadata de schemas.
 `.github/copilot-instructions.md` solo debe apuntar a esta carpeta y contener restricciones mínimas.
 ```
 
-<a id="file-0192"></a>
+<a id="file-0187"></a>
 
-### 0192 — `ai/start/START.md`
+### 0187 — `ai/start/START.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -13875,9 +8370,9 @@ Detente si necesitas:
 - resolver por CSS un problema de permisos, metadata o geometría.
 ```
 
-<a id="file-0193"></a>
+<a id="file-0188"></a>
 
-### 0193 — `ai/subagents/anti-hallucination-reviewer.md`
+### 0188 — `ai/subagents/anti-hallucination-reviewer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -13901,9 +8396,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0194"></a>
+<a id="file-0189"></a>
 
-### 0194 — `ai/subagents/baseline-visual-critic.md`
+### 0189 — `ai/subagents/baseline-visual-critic.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -13927,9 +8422,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0195"></a>
+<a id="file-0190"></a>
 
-### 0195 — `ai/subagents/code-docs-writer.md`
+### 0190 — `ai/subagents/code-docs-writer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -13953,9 +8448,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0196"></a>
+<a id="file-0191"></a>
 
-### 0196 — `ai/subagents/css-auditor.md`
+### 0191 — `ai/subagents/css-auditor.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -13979,9 +8474,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0197"></a>
+<a id="file-0192"></a>
 
-### 0197 — `ai/subagents/legacy-css-guardian.md`
+### 0192 — `ai/subagents/legacy-css-guardian.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -14005,9 +8500,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0198"></a>
+<a id="file-0193"></a>
 
-### 0198 — `ai/subagents/memory-curator.md`
+### 0193 — `ai/subagents/memory-curator.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -14031,9 +8526,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0199"></a>
+<a id="file-0194"></a>
 
-### 0199 — `ai/subagents/prompt-engineer.md`
+### 0194 — `ai/subagents/prompt-engineer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -14057,9 +8552,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0200"></a>
+<a id="file-0195"></a>
 
-### 0200 — `ai/subagents/README.md`
+### 0195 — `ai/subagents/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -14073,9 +8568,9 @@ No modificar código por sí solo. Debe apoyar al agente principal.
 Los subagentes son apoyo especializado. No son dueños de procesos completos.
 ```
 
-<a id="file-0201"></a>
+<a id="file-0196"></a>
 
-### 0201 — `ai/subagents/regression-tester.md`
+### 0196 — `ai/subagents/regression-tester.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -14099,9 +8594,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0202"></a>
+<a id="file-0197"></a>
 
-### 0202 — `ai/subagents/tailwind-migrator.md`
+### 0197 — `ai/subagents/tailwind-migrator.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -14125,9 +8620,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0203"></a>
+<a id="file-0198"></a>
 
-### 0203 — `ai/task-cards/README.md`
+### 0198 — `ai/task-cards/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -14149,9 +8644,9 @@ completed/  tareas completadas
 ``​`
 ```
 
-<a id="file-0204"></a>
+<a id="file-0199"></a>
 
-### 0204 — `ai/templates/agent-template.md`
+### 0199 — `ai/templates/agent-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -14169,9 +8664,9 @@ completed/  tareas completadas
 ## Salida esperada
 ```
 
-<a id="file-0205"></a>
+<a id="file-0200"></a>
 
-### 0205 — `ai/templates/checklist-template.md`
+### 0200 — `ai/templates/checklist-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -14187,9 +8682,9 @@ completed/  tareas completadas
 - [ ] Validación
 ```
 
-<a id="file-0206"></a>
+<a id="file-0201"></a>
 
-### 0206 — `ai/templates/decision-template.md`
+### 0201 — `ai/templates/decision-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -14207,9 +8702,9 @@ completed/  tareas completadas
 ## Consecuencias
 ```
 
-<a id="file-0207"></a>
+<a id="file-0202"></a>
 
-### 0207 — `ai/templates/memory-update-template.md`
+### 0202 — `ai/templates/memory-update-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -14227,9 +8722,9 @@ completed/  tareas completadas
 - Próxima acción:
 ```
 
-<a id="file-0208"></a>
+<a id="file-0203"></a>
 
-### 0208 — `ai/templates/README.md`
+### 0203 — `ai/templates/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -14243,9 +8738,9 @@ completed/  tareas completadas
 Plantillas para extender la arquitectura sin duplicar estilo.
 ```
 
-<a id="file-0209"></a>
+<a id="file-0204"></a>
 
-### 0209 — `ai/templates/skill-template.md`
+### 0204 — `ai/templates/skill-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -14263,9 +8758,9 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 ## Salida
 ```
 
-<a id="file-0210"></a>
+<a id="file-0205"></a>
 
-### 0210 — `ai/templates/task-card-template.md`
+### 0205 — `ai/templates/task-card-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -14287,9 +8782,9 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 ## Entrega final
 ```
 
-<a id="file-0211"></a>
+<a id="file-0206"></a>
 
-### 0211 — `reports/designer-deep-audit/duplication-map.md`
+### 0206 — `reports/designer-deep-audit/duplication-map.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -14324,9 +8819,9 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 - **Fuente única propuesta:** Centralizar en `sidebarPanelContract.ts` y tokens de Tailwind.
 ```
 
-<a id="file-0212"></a>
+<a id="file-0207"></a>
 
-### 0212 — `reports/designer-deep-audit/risk-map.md`
+### 0207 — `reports/designer-deep-audit/risk-map.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -14356,9 +8851,9 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 - **Impacto:** Medio.
 ```
 
-<a id="file-0213"></a>
+<a id="file-0208"></a>
 
-### 0213 — `reports/tailwind-migration/baseline-regression-audit.md`
+### 0208 — `reports/tailwind-migration/baseline-regression-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `27`
@@ -14396,9 +8891,9 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 | Runtime Form | `public/img-version` no aporta evidencia directa | Layout de formulario limpio y protagonista | Ruta actual no se rompió | Riesgo indirecto por wrappers del host | Host lab puede influir en viewport | Validar en `/lab/generator-runtime` |
 ```
 
-<a id="file-0214"></a>
+<a id="file-0209"></a>
 
-### 0214 — `reports/tailwind-migration/component-migration-ledger.md`
+### 0209 — `reports/tailwind-migration/component-migration-ledger.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `62`
@@ -14471,9 +8966,9 @@ Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pin
 - `tc-css-08-control-bar-toolbar-tailwind.md`
 ```
 
-<a id="file-0215"></a>
+<a id="file-0210"></a>
 
-### 0215 — `reports/tailwind-migration/deep-density-spacing-audit.md`
+### 0210 — `reports/tailwind-migration/deep-density-spacing-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `105`
@@ -14589,9 +9084,9 @@ Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pin
 - [x] Reporte actualizado.
 ```
 
-<a id="file-0216"></a>
+<a id="file-0211"></a>
 
-### 0216 — `reports/tailwind-migration/img-version-baseline-inventory.md`
+### 0211 — `reports/tailwind-migration/img-version-baseline-inventory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -14616,9 +9111,9 @@ Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pin
 | `public/img-version/Captura de pantalla 2026-07-08 a la(s) 4.48.22 p. m..jpg` | `RIGHT_SIDEBAR_DOCUMENTS` | LeftSidebar, canvas, document list, right panel tabs | Confirma que la densidad de la barra derecha es compacta y navegable. |
 ```
 
-<a id="file-0217"></a>
+<a id="file-0212"></a>
 
-### 0217 — `reports/tailwind-migration/line-by-line-style-audit.md`
+### 0212 — `reports/tailwind-migration/line-by-line-style-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `227`
@@ -14856,9 +9351,9 @@ Clasificación por sección (comentarios reales del archivo). Contadores clave: 
 - **TC-CSS-06** — Migrar `@media` de labRoutes a breakpoints Tailwind (`sm:`/`md:`) — opcional, cosmético.
 ```
 
-<a id="file-0218"></a>
+<a id="file-0213"></a>
 
-### 0218 — `reports/tailwind-migration/pending-phases-progress.md`
+### 0213 — `reports/tailwind-migration/pending-phases-progress.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -14879,9 +9374,9 @@ Clasificación por sección (comentarios reales del archivo). Contadores clave: 
 | TC-CSS-13 Docs | pending | `docs/11-migraciones/tailwind-migration.md`, `docs/09-theming/tailwind-and-css-architecture.md` | Bajo | Documentación y reportes actualizados |
 ```
 
-<a id="file-0219"></a>
+<a id="file-0214"></a>
 
-### 0219 — `reports/tailwind-migration/README.md`
+### 0214 — `reports/tailwind-migration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -14968,9 +9463,9 @@ Migración incremental de diseños a Tailwind preservando comportamiento, canvas
 - generator/pdf-lib
 ```
 
-<a id="file-0220"></a>
+<a id="file-0215"></a>
 
-### 0220 — `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md`
+### 0215 — `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -15026,9 +9521,9 @@ SCROLL  .layout-body (SidebarBody) → min-h-0 flex-1 overflow-y-auto overflow-x
 Ninguno de los archivos `.css` prohibidos fue modificado por esta tarea. Los `.css` que aparecen en `git status` (`sisad-pdfme-global.css`, `labRoutes.css`) corresponden a trabajo externo/paralelo de la migración, no a esta tarea.
 ```
 
-<a id="file-0221"></a>
+<a id="file-0216"></a>
 
-### 0221 — `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md`
+### 0216 — `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -15073,9 +9568,9 @@ Fase: RightSidebar visual density (Tailwind JSX/TSX only). Sin CSS nuevo, sin ed
 Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provienen del `Row`/`Col` interno de `form-render` (gutter por defecto). El margen negativo y el padding se compensan a cero contra el borde del form-shell, por lo que **no** producen overflow. Al dejar el form-shell en `p-0 bg-transparent`, el contenido queda alineado al borde de la sección sin card anidada. No se fuerza cambio del gutter por CSS ni por schema data (prohibido). Queda como riesgo residual estético menor.
 ```
 
-<a id="file-0222"></a>
+<a id="file-0217"></a>
 
-### 0222 — `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md`
+### 0217 — `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -15099,9 +9594,9 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx` | Shared sidebar header primitives | Shared chrome already centralised for list/detail surfaces | `KEEP_LEGACY` | Low |
 ```
 
-<a id="file-0223"></a>
+<a id="file-0218"></a>
 
-### 0223 — `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md`
+### 0218 — `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -15132,9 +9627,9 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 - El runtime mantiene la paridad Form/Viewer y la separación clara entre chrome y contenido.
 ```
 
-<a id="file-0224"></a>
+<a id="file-0219"></a>
 
-### 0224 — `reports/tailwind-migration/schema-chrome-tailwind-audit.md`
+### 0219 — `reports/tailwind-migration/schema-chrome-tailwind-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -15163,9 +9658,9 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 - `basic-designer` continúa renderizando `field-chrome` y `action-based` sin overflow ni regresiones visibles.
 ```
 
-<a id="file-0225"></a>
+<a id="file-0220"></a>
 
-### 0225 — `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md`
+### 0220 — `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -15221,9 +9716,9 @@ Ninguno `.css` fue modificado en esta card. Los `.css` que figuran en `git statu
 `reports/tailwind-migration/current-screenshots/left-sidebar-before.png`, `left-sidebar-after.png`.
 ```
 
-<a id="file-0226"></a>
+<a id="file-0221"></a>
 
-### 0226 — `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md`
+### 0221 — `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `43`
@@ -15277,9 +9772,9 @@ Ningún `.css` modificado por esta card. Los `.css` en `git status` (`sisad-pdfm
 `reports/tailwind-migration/current-screenshots/control-bar-toolbar-after.png`.
 ```
 
-<a id="file-0227"></a>
+<a id="file-0222"></a>
 
-### 0227 — `reports/tailwind-migration/tc-css-10-schemas-visual.md`
+### 0222 — `reports/tailwind-migration/tc-css-10-schemas-visual.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -15323,9 +9818,9 @@ Buena parte del spec **ya estaba implementada** por trabajo previo/paralelo:
 Canvas, Paper, Moveable, Selecto, coordenadas, x/y/width/height/rotation, snapshot, `pdf` render. Sin estilos inline nuevos (los existentes se conservan). Sin `setTimeout`.
 ```
 
-<a id="file-0228"></a>
+<a id="file-0223"></a>
 
-### 0228 — `reports/tailwind-migration/tc-css-11-lab-audit.md`
+### 0223 — `reports/tailwind-migration/tc-css-11-lab-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -15367,9 +9862,9 @@ Canvas, Paper, Moveable, Selecto, coordenadas, x/y/width/height/rotation, snapsh
 - `npm run lint`: passed with inherited warnings only
 ```
 
-<a id="file-0229"></a>
+<a id="file-0224"></a>
 
-### 0229 — `reports/tailwind-migration/tc-css-option-group-selection-fix.md`
+### 0224 — `reports/tailwind-migration/tc-css-option-group-selection-fix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -15418,9 +9913,9 @@ Validación: al seleccionar un radioGroup → `activeHasDesignerBoxes: 0`, `acti
 `global.css` lo edita una sesión paralela en vivo (cambió durante esta tarea). Reapliqué sobre el estado actual y el build pasa; si el worker reintroduce el `fit-content`, reaplicar este cambio.
 ```
 
-<a id="file-0230"></a>
+<a id="file-0225"></a>
 
-### 0230 — `reports/tailwind-migration/tc-css-ownership-color.md`
+### 0225 — `reports/tailwind-migration/tc-css-ownership-color.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -15469,9 +9964,9 @@ La prioridad #5 del spec (resolver color desde `ownerRecipientId` + `recipientCo
 Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas x/y/w/h/rotation. Sin colores hardcodeados nuevos, sin `setTimeout`, sin `!important`, sin editar `.css`.
 ```
 
-<a id="file-0231"></a>
+<a id="file-0226"></a>
 
-### 0231 — `reports/tailwind-migration/ui-styles-decommission-audit.md`
+### 0226 — `reports/tailwind-migration/ui-styles-decommission-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `57`
@@ -15539,9 +10034,9 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 | `.sisad-pdfme-ui-snap-feedback*` | `canvas-interactions.css` | El root y labels ya están en JSX | DELETE_DUPLICATE_WITH_EVIDENCE |
 ```
 
-<a id="file-0232"></a>
+<a id="file-0227"></a>
 
-### 0232 — `reports/tailwind-migration/ui-styles-decommission-progress.md`
+### 0227 — `reports/tailwind-migration/ui-styles-decommission-progress.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -15577,9 +10072,703 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 | `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | Shell, sidebars, paper, runtime layout | Cascada legacy aún compartida por múltiples vistas | TC-CSS-11 / TC-CSS-12 |
 ```
 
-<a id="file-0233"></a>
+<a id="file-0228"></a>
 
-### 0233 — `ai/task-cards/active/TASK-CANVAS-002-snap-lines-and-sidebar-compactness.md`
+### 0228 — `test-results/tests-e2e-right-sidebar-li-d300b-ld-owner-through-the-dialog-chromium/error-context.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `681`
+- **Tamaño original:** `33.3 KB`
+- **SHA1 corto:** `67d8442214`
+- **Estado:** `completo`
+
+```markdown
+# Page snapshot
+
+``​`yaml
+- main [ref=e3]:
+  - generic [ref=e5]:
+    - generic [ref=e6]:
+      - generic [ref=e7]:
+        - generic [ref=e8]: Lab
+        - generic [ref=e9]: Diseñador
+      - heading "Multidocumento integral" [level=1] [ref=e10]
+    - generic [ref=e11]:
+      - generic "Colaboración del ejemplo" [ref=e13]:
+        - generic "Colaboración" [ref=e14]:
+          - generic [ref=e15]:
+            - generic [ref=e16]: Usuario
+            - combobox "Seleccionar usuario activo" [ref=e17]:
+              - option "Cliente Principal" [selected]
+              - option "Avalista"
+              - option "Mesa de entrega"
+          - button "Usuario activo" [ref=e19]
+          - button "Estado" [ref=e21]
+      - button "Abrir controles" [ref=e25]:
+        - img [ref=e27]
+  - region "Canvas" [ref=e30]:
+    - generic [ref=e31]:
+      - heading "Canvas" [level=2] [ref=e32]
+      - paragraph [ref=e33]:
+        - text: La superficie de edición se monta dentro del runtime de
+        - code [ref=e34]: sisad-pdfme
+        - text: .
+    - generic [ref=e38]:
+      - generic [ref=e39]:
+        - generic [ref=e40]:
+          - button "Cerrar catálogo de campos" [expanded] [ref=e41] [cursor=pointer]:
+            - img [ref=e42]
+          - generic [ref=e46]:
+            - generic [ref=e47]:
+              - generic [ref=e48]: Diseñador
+              - generic [ref=e50]: Campos
+            - generic [ref=e51]:
+              - tablist "Tipos de campo" [ref=e52]:
+                - tab "Estándar" [selected] [ref=e53] [cursor=pointer]:
+                  - generic [ref=e55]: "38"
+                - tab "Personalizados" [ref=e56] [cursor=pointer]:
+                  - generic [ref=e59]: "0"
+                - tab "Prerrellenado" [ref=e60] [cursor=pointer]:
+                  - generic [ref=e62]: "0"
+              - generic [ref=e64]:
+                - generic [ref=e65]:
+                  - img [ref=e67]
+                  - textbox "Buscar..." [ref=e70]
+                - generic [ref=e72]:
+                  - button "Todo" [ref=e73] [cursor=pointer]:
+                    - generic [ref=e74]: Todo
+                  - button "★ 0" [ref=e75] [cursor=pointer]:
+                    - generic [ref=e76]: ★ 0
+                  - button "⟳ 0" [ref=e77] [cursor=pointer]:
+                    - generic [ref=e78]: ⟳ 0
+                  - group "Diseño del catálogo" [ref=e79]:
+                    - button "Ver como lista detallada (≡)" [pressed] [ref=e80] [cursor=pointer]:
+                      - generic [ref=e81]:
+                        - img [ref=e83]
+                        - generic [ref=e86]: Lista
+                    - button "Ver como tarjetas densas (▦)" [ref=e87] [cursor=pointer]:
+                      - generic [ref=e88]:
+                        - img [ref=e90]
+                        - generic [ref=e92]: Tarjetas
+                    - button "Ver solo iconos (⠿)" [ref=e93] [cursor=pointer]:
+                      - generic [ref=e94]:
+                        - img [ref=e96]
+                        - generic [ref=e99]: Iconos
+            - generic [ref=e100]:
+              - generic [ref=e101]:
+                - button "Alternar categoría Firmas" [expanded] [ref=e102] [cursor=pointer]:
+                  - generic [ref=e103]:
+                    - img [ref=e105]
+                    - generic [ref=e107]: Firmas
+                - generic [ref=e108]:
+                  - generic [ref=e111]:
+                    - button "Datesigned Datesigned" [ref=e112]:
+                      - generic "Datesigned" [ref=e114]:
+                        - img [ref=e115]
+                      - generic [ref=e119]: Datesigned
+                    - button "Marcar favorito": ★
+                  - generic [ref=e122]:
+                    - button "Initials Initials" [ref=e123]:
+                      - generic "Initials" [ref=e125]:
+                        - img [ref=e126]
+                      - generic [ref=e129]: Initials
+                    - button "Marcar favorito": ★
+                  - generic [ref=e132]:
+                    - button "Firma Firma" [ref=e133]:
+                      - generic "Firma" [ref=e135]:
+                        - img [ref=e136]
+                      - generic [ref=e139]: Firma
+                    - button "Marcar favorito": ★
+              - generic [ref=e140]:
+                - button "Alternar categoría Texto" [expanded] [ref=e141] [cursor=pointer]:
+                  - generic [ref=e142]:
+                    - img [ref=e144]
+                    - generic [ref=e146]: Texto
+                - generic [ref=e147]:
+                  - generic [ref=e150]:
+                    - button "Número" [ref=e151]:
+                      - generic [ref=e154]: Número
+                    - button "Marcar favorito": ★
+                  - generic [ref=e157]:
+                    - button "Texto Texto" [ref=e158]:
+                      - generic "Texto" [ref=e160]:
+                        - img [ref=e161]
+                      - generic [ref=e167]: Texto
+                    - button "Marcar favorito": ★
+              - generic [ref=e168]:
+                - button "Alternar categoría Imagen y medios" [expanded] [ref=e169] [cursor=pointer]:
+                  - generic [ref=e170]:
+                    - img [ref=e172]
+                    - generic [ref=e174]: Imagen y medios
+                - generic [ref=e175]:
+                  - generic [ref=e178]:
+                    - button "Imagen Imagen" [ref=e179]:
+                      - generic "Imagen" [ref=e181]:
+                        - img [ref=e182]
+                      - generic [ref=e187]: Imagen
+                    - button "Marcar favorito": ★
+                  - generic [ref=e190]:
+                    - button "SVG SVG" [ref=e191]:
+                      - generic "SVG" [ref=e193]:
+                        - img [ref=e194]
+                      - generic [ref=e199]: SVG
+                    - button "Marcar favorito": ★
+              - generic [ref=e200]:
+                - button "Alternar categoría Selecciones" [expanded] [ref=e201] [cursor=pointer]:
+                  - generic [ref=e202]:
+                    - img [ref=e204]
+                    - generic [ref=e206]: Selecciones
+                - generic [ref=e207]:
+                  - generic [ref=e210]:
+                    - button "Casilla Casilla" [ref=e211]:
+                      - generic "Casilla" [ref=e213]:
+                        - img [ref=e214]
+                      - generic [ref=e218]: Casilla
+                    - button "Marcar favorito": ★
+                  - generic [ref=e221]:
+                    - button "Grupo de Casillas Grupo de Casillas" [ref=e222]:
+                      - generic "Grupo de Casillas" [ref=e224]:
+                        - img [ref=e225]
+                      - generic [ref=e229]: Grupo de Casillas
+                    - button "Marcar favorito": ★
+                  - generic [ref=e232]:
+                    - button "Opción Opción" [ref=e233]:
+                      - generic "Opción" [ref=e235]:
+                        - img [ref=e236]
+                      - generic [ref=e240]: Opción
+                    - button "Marcar favorito": ★
+                  - generic [ref=e243]:
+                    - button "Lista Desplegable Lista Desplegable" [ref=e244]:
+                      - generic "Lista Desplegable" [ref=e246]:
+                        - img [ref=e247]
+                      - generic [ref=e250]: Lista Desplegable
+                    - button "Marcar favorito": ★
+              - generic [ref=e251]:
+                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e252] [cursor=pointer]:
+                  - generic [ref=e253]:
+                    - img [ref=e255]
+                    - generic [ref=e257]: Fecha y Hora
+                - generic [ref=e258]:
+                  - generic [ref=e261]:
+                    - button "Fecha Fecha" [ref=e262]:
+                      - generic "Fecha" [ref=e264]:
+                        - img [ref=e265]
+                      - generic [ref=e268]: Fecha
+                    - button "Marcar favorito": ★
+                  - generic [ref=e271]:
+                    - button "Fecha Y Hora Fecha Y Hora" [ref=e272]:
+                      - generic "Fecha Y Hora" [ref=e274]:
+                        - img [ref=e275]
+                      - generic [ref=e280]: Fecha Y Hora
+                    - button "Marcar favorito": ★
+                  - generic [ref=e283]:
+                    - button "Hora Hora" [ref=e284]:
+                      - generic "Hora" [ref=e286]:
+                        - img [ref=e287]
+                      - generic [ref=e291]: Hora
+                    - button "Marcar favorito": ★
+              - generic [ref=e292]:
+                - button "Alternar categoría QR y Códigos" [expanded] [ref=e293] [cursor=pointer]:
+                  - generic [ref=e294]:
+                    - img [ref=e296]
+                    - generic [ref=e298]: QR y Códigos
+                - generic [ref=e299]:
+                  - generic [ref=e302]:
+                    - button "Código de barras Código de barras" [ref=e303]:
+                      - generic "Código de barras" [ref=e305]:
+                        - img [ref=e306]
+                      - generic [ref=e308]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e311]:
+                    - button "Código de barras Código de barras" [ref=e312]:
+                      - generic "Código de barras" [ref=e314]:
+                        - img [ref=e315]
+                      - generic [ref=e317]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e320]:
+                    - button "Código de barras Código de barras" [ref=e321]:
+                      - generic "Código de barras" [ref=e323]:
+                        - img [ref=e324]
+                      - generic [ref=e326]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e329]:
+                    - button "Código de barras Código de barras" [ref=e330]:
+                      - generic "Código de barras" [ref=e332]:
+                        - img [ref=e333]
+                      - generic [ref=e335]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e338]:
+                    - button "DataMatrix DataMatrix" [ref=e339]:
+                      - generic "DataMatrix" [ref=e341]:
+                        - img [ref=e342]
+                      - generic [ref=e344]: DataMatrix
+                    - button "Marcar favorito": ★
+                  - generic [ref=e347]:
+                    - button "Código de barras Código de barras" [ref=e348]:
+                      - generic "Código de barras" [ref=e350]:
+                        - img [ref=e351]
+                      - generic [ref=e353]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e356]:
+                    - button "Japan Post Japan Post" [ref=e357]:
+                      - generic "Japan Post" [ref=e359]:
+                        - img [ref=e360]
+                      - generic [ref=e362]: Japan Post
+                    - button "Marcar favorito": ★
+                  - generic [ref=e365]:
+                    - button "NW7 NW7" [ref=e366]:
+                      - generic "NW7" [ref=e368]:
+                        - img [ref=e369]
+                      - generic [ref=e371]: NW7
+                    - button "Marcar favorito": ★
+                  - generic [ref=e374]:
+                    - button "PDF417 PDF417" [ref=e375]:
+                      - generic "PDF417" [ref=e377]:
+                        - img [ref=e378]
+                      - generic [ref=e380]: PDF417
+                    - button "Marcar favorito": ★
+                  - generic [ref=e383]:
+                    - button "Código QR Código QR" [ref=e384]:
+                      - generic "Código QR" [ref=e386]:
+                        - img [ref=e387]
+                      - generic [ref=e394]: Código QR
+                    - button "Marcar favorito": ★
+                  - generic [ref=e397]:
+                    - button "Código de barras Código de barras" [ref=e398]:
+                      - generic "Código de barras" [ref=e400]:
+                        - img [ref=e401]
+                      - generic [ref=e403]: Código de barras
+                    - button "Marcar favorito": ★
+                  - generic [ref=e406]:
+                    - button "Código de barras Código de barras" [ref=e407]:
+                      - generic "Código de barras" [ref=e409]:
+                        - img [ref=e410]
+                      - generic [ref=e412]: Código de barras
+                    - button "Marcar favorito": ★
+              - generic [ref=e413]:
+                - button "Alternar categoría Estructura" [expanded] [ref=e414] [cursor=pointer]:
+                  - generic [ref=e415]:
+                    - img [ref=e417]
+                    - generic [ref=e419]: Estructura
+                - generic [ref=e420]:
+                  - generic [ref=e423]:
+                    - button "Óvalo Óvalo" [ref=e424]:
+                      - generic "Óvalo" [ref=e426]:
+                        - img [ref=e427]
+                      - generic [ref=e430]: Óvalo
+                    - button "Marcar favorito": ★
+                  - generic [ref=e433]:
+                    - button "Línea Línea" [ref=e434]:
+                      - generic "Línea" [ref=e436]:
+                        - img [ref=e437]
+                      - generic [ref=e439]: Línea
+                    - button "Marcar favorito": ★
+                  - generic [ref=e442]:
+                    - button "Rectángulo Rectángulo" [ref=e443]:
+                      - generic "Rectángulo" [ref=e445]:
+                        - img [ref=e446]
+                      - generic [ref=e449]: Rectángulo
+                    - button "Marcar favorito": ★
+                  - generic [ref=e452]:
+                    - button "Tabla Tabla" [ref=e453]:
+                      - generic "Tabla" [ref=e455]:
+                        - img [ref=e456]
+                      - generic [ref=e459]: Tabla
+                    - button "Marcar favorito": ★
+              - generic [ref=e460]:
+                - button "Alternar categoría Acción" [expanded] [ref=e461] [cursor=pointer]:
+                  - generic [ref=e462]:
+                    - img [ref=e464]
+                    - generic [ref=e466]: Acción
+                - generic [ref=e467]:
+                  - generic [ref=e470]:
+                    - button "Approve Approve" [ref=e471]:
+                      - generic "Approve" [ref=e473]:
+                        - img [ref=e474]
+                      - generic [ref=e478]: Approve
+                    - button "Marcar favorito": ★
+                  - generic [ref=e481]:
+                    - button "Attachment Attachment" [ref=e482]:
+                      - generic "Attachment" [ref=e484]:
+                        - img [ref=e485]
+                      - generic [ref=e488]: Attachment
+                    - button "Marcar favorito": ★
+                  - generic [ref=e491]:
+                    - button "Decline Decline" [ref=e492]:
+                      - generic "Decline" [ref=e494]:
+                        - img [ref=e495]
+                      - generic [ref=e500]: Decline
+                    - button "Marcar favorito": ★
+                  - generic [ref=e503]:
+                    - button "Note Note" [ref=e504]:
+                      - generic "Note" [ref=e506]:
+                        - img [ref=e507]
+                      - generic [ref=e511]: Note
+                    - button "Marcar favorito": ★
+              - generic [ref=e512]:
+                - button "Alternar categoría Destinatario" [expanded] [ref=e513] [cursor=pointer]:
+                  - generic [ref=e514]:
+                    - img [ref=e516]
+                    - generic [ref=e518]: Destinatario
+                - generic [ref=e519]:
+                  - generic [ref=e522]:
+                    - button "Company Company" [ref=e523]:
+                      - generic "Company" [ref=e525]:
+                        - img [ref=e526]
+                      - generic [ref=e531]: Company
+                    - button "Marcar favorito": ★
+                  - generic [ref=e534]:
+                    - button "Emailaddress Emailaddress" [ref=e535]:
+                      - generic "Emailaddress" [ref=e537]:
+                        - img [ref=e538]
+                      - generic [ref=e542]: Emailaddress
+                    - button "Marcar favorito": ★
+                  - generic [ref=e545]:
+                    - button "Fullname Fullname" [ref=e546]:
+                      - generic "Fullname" [ref=e548]:
+                        - img [ref=e549]
+                      - generic [ref=e553]: Fullname
+                    - button "Marcar favorito": ★
+                  - generic [ref=e556]:
+                    - button "Title Title" [ref=e557]:
+                      - generic "Title" [ref=e559]:
+                        - img [ref=e560]
+                      - generic [ref=e564]: Title
+                    - button "Marcar favorito": ★
+        - generic [ref=e565]:
+          - generic:
+            - generic [ref=e567]:
+              - generic "Editando" [ref=e568]
+              - generic [ref=e569]: Doc · Pág 1/14 · Sel 1
+            - generic [ref=e571]:
+              - button "Página anterior" [disabled] [ref=e572]:
+                - generic:
+                  - img
+              - button "Pág 1/14" [ref=e573] [cursor=pointer]:
+                - generic [ref=e574]: Pág 1/14
+              - button "Página siguiente" [ref=e575] [cursor=pointer]:
+                - img [ref=e577]
+            - generic [ref=e580]:
+              - button "Guardar" [ref=e581] [cursor=pointer]:
+                - img [ref=e583]
+                - generic [ref=e587]: Guardar
+              - button "Más acciones" [ref=e588] [cursor=pointer]:
+                - img [ref=e590]
+            - generic [ref=e595]:
+              - button "Deshacer" [ref=e596] [cursor=pointer]:
+                - img [ref=e598]
+              - button "Rehacer" [ref=e601] [cursor=pointer]:
+                - img [ref=e603]
+              - button "Ajustar página" [ref=e606] [cursor=pointer]:
+                - img [ref=e608]
+              - generic [ref=e613]:
+                - button "Reducir zoom" [ref=e614] [cursor=pointer]:
+                  - img [ref=e616]
+                - generic [ref=e617] [cursor=pointer]:
+                  - generic [ref=e619]:
+                    - combobox [ref=e621]
+                    - generic "100%" [ref=e622]
+                  - generic:
+                    - img:
+                      - img
+                - button "Aumentar zoom" [ref=e623] [cursor=pointer]:
+                  - img [ref=e625]
+          - complementary "Panel derecho del diseñador" [ref=e626]:
+            - generic [ref=e627]:
+              - generic [ref=e628]:
+                - tablist "Panel derecho" [ref=e629]:
+                  - tab "Abrir panel Campos" [active] [selected] [ref=e630] [cursor=pointer]:
+                    - img [ref=e633]
+                  - tab "Abrir panel Detalle" [ref=e637] [cursor=pointer]:
+                    - img [ref=e640]
+                  - tab "Abrir panel Comentarios" [ref=e641] [cursor=pointer]:
+                    - img [ref=e644]
+                  - tab "Abrir panel Docs" [ref=e646] [cursor=pointer]:
+                    - img [ref=e649]
+                - button "Ocultar panel derecho" [expanded] [ref=e654] [cursor=pointer]:
+                  - img [ref=e655]
+              - generic [ref=e659]:
+                - generic [ref=e661]:
+                  - generic [ref=e662]:
+                    - img [ref=e664]
+                    - generic [ref=e669]:
+                      - strong [ref=e671]: Campos
+                      - generic [ref=e672]:
+                        - generic [ref=e673]: 11/11
+                        - generic [ref=e675]:
+                          - img [ref=e676]
+                          - generic [ref=e681]: "1"
+                    - generic [ref=e683]:
+                      - button "Reasignar responsable" [disabled] [ref=e684]:
+                        - img
+                        - generic: Reasignar
+                      - button "Renombrar" [ref=e685] [cursor=pointer]:
+                        - img [ref=e686]
+                  - generic [ref=e690]:
+                    - generic [ref=e691]:
+                      - img [ref=e693]
+                      - textbox "Buscar campo o nombre" [ref=e696]
+                    - generic [ref=e699] [cursor=pointer]:
+                      - generic [ref=e701]:
+                        - combobox [ref=e703]
+                        - generic "Todos los tipos" [ref=e704]
+                      - generic:
+                        - img:
+                          - img
+                - generic "Lista de campos del documento" [ref=e705]:
+                  - list [ref=e706]:
+                    - listitem [ref=e707] [cursor=pointer]:
+                      - button "contract_name · Texto" [ref=e708]
+                      - generic:
+                        - button [ref=e709]:
+                          - img [ref=e711]
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+                        - generic:
+                          - generic: contract_name
+                          - generic: Texto
+                    - listitem [ref=e718] [cursor=pointer]:
+                      - button "contract_date · Texto" [ref=e719]
+                      - generic:
+                        - button [ref=e720]:
+                          - img [ref=e722]
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+                        - generic:
+                          - generic: contract_date
+                          - generic: Texto
+                    - listitem [ref=e729] [cursor=pointer]:
+                      - button "contract_stage · Lista Desplegable" [ref=e730]
+                      - generic:
+                        - button [ref=e731]:
+                          - img [ref=e733]
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+                        - generic:
+                          - generic: contract_stage
+                          - generic: Lista Desplegable
+                    - listitem [ref=e740] [cursor=pointer]:
+                      - button "approval_mode · Opción" [ref=e741]
+                      - generic:
+                        - button [ref=e742]:
+                          - img [ref=e744]
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+                        - generic:
+                          - generic: approval_mode
+                          - generic: Opción
+                    - listitem [ref=e751] [cursor=pointer]:
+                      - button "required_documents · Grupo de Casillas" [ref=e752]
+                      - generic:
+                        - button [ref=e753]:
+                          - img [ref=e755]
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+                        - generic:
+                          - generic: required_documents
+                          - generic: Grupo de Casillas
+                    - listitem [ref=e762] [cursor=pointer]:
+                      - button "routing-primary-showcase_attachment · Attachment" [ref=e763]
+                      - generic:
+                        - button [ref=e764]:
+                          - img [ref=e766]
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+                        - generic:
+                          - generic: routing-primary-showcase_attachment
+                          - generic: Attachment
+                    - listitem [ref=e773] [cursor=pointer]:
+                      - button "Aprobar · routing-primary-showcase_approve · Approve" [ref=e774]
+                      - generic:
+                        - button [ref=e775]:
+                          - img [ref=e777]
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+                        - generic:
+                          - generic: Aprobar
+                          - generic: routing-primary-showcase_approve · Approve
+                    - listitem [ref=e784] [cursor=pointer]:
+                      - button "routing-primary-showcase_note · Note" [ref=e785]
+                      - generic:
+                        - button [ref=e786]:
+                          - img [ref=e788]
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+                        - generic:
+                          - generic: routing-primary-showcase_note
+                          - generic: Note
+                        - img [ref=e796]
+                    - listitem [ref=e799] [cursor=pointer]:
+                      - button "Rechazar · routing-primary-showcase_decline · Decline" [ref=e800]
+                      - generic:
+                        - button [ref=e801]:
+                          - img [ref=e803]
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+                        - generic:
+                          - generic: Rechazar
+                          - generic: routing-primary-showcase_decline · Decline
+                    - listitem [ref=e810] [cursor=pointer]:
+                      - button "routing-primary-showcase_title · Title" [ref=e811]
+                      - generic:
+                        - button [ref=e812]:
+                          - img [ref=e814]
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+                        - generic:
+                          - generic: routing-primary-showcase_title
+                          - generic: Title
+                    - listitem [ref=e821] [cursor=pointer]:
+                      - button "routing-primary-showcase_emailaddress · Emailaddress" [ref=e822]
+                      - generic:
+                        - button [ref=e823]:
+                          - img [ref=e825]
+                        - generic:
+                          - generic:
+                            - generic:
+                              - img
+                        - generic:
+                          - generic: routing-primary-showcase_emailaddress
+                          - generic: Emailaddress
+                  - status [ref=e832]
+          - generic [ref=e833]:
+            - generic [ref=e835]:
+              - generic [ref=e836]:
+                - generic "contract_name" [ref=e854] [cursor=pointer]:
+                  - generic [ref=e857]: Contrato principal
+                  - text: contract_name · text
+                - generic "contract_date" [ref=e858] [cursor=pointer]:
+                  - generic [ref=e861]: 2026-05-01
+                  - text: contract_date · text
+                - generic "contract_stage" [ref=e862] [cursor=pointer]:
+                  - generic [ref=e863]:
+                    - generic [ref=e865]: Pendiente
+                    - button:
+                      - img
+                  - text: contract_stage · select
+                - generic "approval_mode" [ref=e866] [cursor=pointer]:
+                  - generic:
+                    - radiogroup "Modo de aprobación":
+                      - generic:
+                        - radio "Firma" [checked] [disabled]
+                        - radio "Revisión" [disabled]
+                - generic "required_documents" [ref=e867] [cursor=pointer]:
+                  - generic:
+                    - group "Documentos requeridos":
+                      - generic:
+                        - checkbox "Cédula" [checked] [disabled]:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - img
+                        - checkbox "RUC" [disabled]
+                        - checkbox "Contrato firmado" [checked] [disabled]:
+                          - generic:
+                            - generic:
+                              - generic:
+                                - img
+                - generic "routing-primary-showcase_attachment" [ref=e868] [cursor=pointer]:
+                  - generic [ref=e871]:
+                    - img [ref=e872]
+                    - text: Adjuntar archivo
+                  - text: routing-primary-showcase_attachment · attachment
+                - generic "routing-primary-showcase_approve" [ref=e874] [cursor=pointer]:
+                  - button "Aprobar" [ref=e877]:
+                    - img [ref=e878]
+                    - text: Aprobar
+                  - text: routing-primary-showcase_approve · approve
+                - generic "Solo lectura" [ref=e880] [cursor=pointer]:
+                  - generic [ref=e882]: Nota informativa
+                  - text: solo lectura
+                - generic "routing-primary-showcase_decline" [ref=e883] [cursor=pointer]:
+                  - button "Rechazar" [ref=e886]:
+                    - img [ref=e887]
+                    - text: Rechazar
+                  - text: routing-primary-showcase_decline · decline
+                - generic "routing-primary-showcase_title" [ref=e890] [cursor=pointer]: routing-primary-showcase_title · title
+                - generic "routing-primary-showcase_emailaddress" [ref=e894] [cursor=pointer]: routing-primary-showcase_emailaddress · emailAddress
+              - generic [ref=e895]:
+                - generic "routing-primary-showcase_company" [ref=e897] [cursor=pointer]: routing-primary-showcase_company · company
+                - generic "routing-primary-showcase_fullname" [ref=e901] [cursor=pointer]: routing-primary-showcase_fullname · fullName
+                - generic "routing-primary-showcase_table" [ref=e905] [cursor=pointer]:
+                  - generic [ref=e906]:
+                    - generic [ref=e910]: Name
+                    - generic [ref=e914]: City
+                    - generic [ref=e918]: Description
+                    - generic [ref=e922]: Alice
+                    - generic [ref=e930]: New York
+                    - generic [ref=e938]: Alice is a freelance web designer and developer
+                    - generic [ref=e946]: Bob
+                    - generic [ref=e954]: Paris
+                    - generic [ref=e962]: Bob is a freelance illustrator and graphic designer
+                  - text: routing-primary-showcase_table · table
+                - generic "routing-primary-showcase_date" [ref=e967] [cursor=pointer]: routing-primary-showcase_date · date
+                - generic "routing-primary-showcase_datetime" [ref=e971] [cursor=pointer]: routing-primary-showcase_datetime · dateTime
+                - generic "routing-primary-showcase_time" [ref=e975] [cursor=pointer]: routing-primary-showcase_time · time
+              - generic [ref=e979]:
+                - generic "Solo lectura" [ref=e981] [cursor=pointer]:
+                  - generic [ref=e984]: 13/07/2026
+                  - text: solo lectura
+                - generic "routing-primary-showcase_signature" [ref=e985] [cursor=pointer]: routing-primary-showcase_signature · signature
+                - generic "routing-primary-showcase_initials" [ref=e988] [cursor=pointer]: routing-primary-showcase_initials · initials
+                - generic "routing-primary-showcase_code128" [ref=e991] [cursor=pointer]:
+                  - img [ref=e994]
+                  - text: routing-primary-showcase_code128 · code128
+                - generic "routing-primary-showcase_code39" [ref=e995] [cursor=pointer]:
+                  - img [ref=e998]
+                  - text: routing-primary-showcase_code39 · code39
+                - generic "routing-primary-showcase_ean13" [ref=e999] [cursor=pointer]:
+                  - img [ref=e1002]
+                  - text: routing-primary-showcase_ean13 · ean13
+              - generic "routing-primary-showcase_ean8" [ref=e1005] [cursor=pointer]:
+                - img [ref=e1008]
+                - text: routing-primary-showcase_ean8 · ean8
+            - generic:
+              - toolbar "Barra contextual de edición" [ref=e1029]:
+                - generic [ref=e1030]:
+                  - button "Eliminar" [ref=e1031] [cursor=pointer]:
+                    - img [ref=e1033]
+                    - generic [ref=e1036]: Eliminar
+                  - button "Duplicar" [ref=e1037] [cursor=pointer]:
+                    - img [ref=e1039]
+                    - generic [ref=e1042]: Duplicar
+                  - button "Más acciones" [ref=e1043] [cursor=pointer]:
+                    - img [ref=e1045]
+                    - generic [ref=e1049]: Más
+              - generic: 90px × 14px
+      - status [ref=e1050]
+  - region "Resultados" [ref=e1051]:
+    - generic [ref=e1052]:
+      - button "Resultados Sin artefactos" [ref=e1053] [cursor=pointer]:
+        - text: Resultados
+        - generic [ref=e1055]: Sin artefactos
+      - generic [ref=e1056]: Cerrado
+``​`
+```
+
+<a id="file-0229"></a>
+
+### 0229 — `ai/task-cards/active/TASK-CANVAS-002-snap-lines-and-sidebar-compactness.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `36`
@@ -15626,9 +10815,9 @@ Mejorar la precisión visual de las snap lines al mover schemas y compactar el c
 - Validación ejecutada
 ```
 
-<a id="file-0234"></a>
+<a id="file-0230"></a>
 
-### 0234 — `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md`
+### 0230 — `ai/task-cards/active/TASK-DOCS-001-ai-architecture-install.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -15660,9 +10849,9 @@ Instalar carpeta `ai/` como fuente de verdad y adaptar Codex, Claude y Copilot c
 Código de runtime.
 ```
 
-<a id="file-0235"></a>
+<a id="file-0231"></a>
 
-### 0235 — `ai/task-cards/active/TASK-INSPECTOR-001-detailview-density.md`
+### 0231 — `ai/task-cards/active/TASK-INSPECTOR-001-detailview-density.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `55`
@@ -15728,9 +10917,9 @@ Reducir densidad visual del `RightSidebar` DetailView sin cambiar el contrato fu
 - Confirmación de build/lint
 ```
 
-<a id="file-0236"></a>
+<a id="file-0232"></a>
 
-### 0236 — `ai/task-cards/active/TASK-LAB-001-results-panel-placement.md`
+### 0232 — `ai/task-cards/active/TASK-LAB-001-results-panel-placement.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -15776,9 +10965,9 @@ Mover `ResultsPanel` fuera de la zona de canvas/zoom y compactar su presentació
 - Validación ejecutada
 ```
 
-<a id="file-0237"></a>
+<a id="file-0233"></a>
 
-### 0237 — `ai/task-cards/active/TASK-SCHEMA-001-option-indicator-docusign.md`
+### 0233 — `ai/task-cards/active/TASK-SCHEMA-001-option-indicator-docusign.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `49`
@@ -15838,9 +11027,9 @@ Detenerse si para cumplir el objetivo hay que tocar Moveable/Selecto, snapshot, 
 - Resultado de build/lint.
 ```
 
-<a id="file-0238"></a>
+<a id="file-0234"></a>
 
-### 0238 — `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md`
+### 0234 — `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -15856,9 +11045,9 @@ Detenerse si para cumplir el objetivo hay que tocar Moveable/Selecto, snapshot, 
 Verificar que utilidades Tailwind no pisen `overflow:auto`, height, scale o page geometry.
 ```
 
-<a id="file-0239"></a>
+<a id="file-0235"></a>
 
-### 0239 — `ai/task-cards/backlog/TASK-CSS-001-tailwind-regression-stabilization.md`
+### 0235 — `ai/task-cards/backlog/TASK-CSS-001-tailwind-regression-stabilization.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -15891,9 +11080,9 @@ src/sisad-pdfme/ui/styles/*.css
 Moveable, Selecto, geometry, snapshot, generator/pdf-lib.
 ```
 
-<a id="file-0240"></a>
+<a id="file-0236"></a>
 
-### 0240 — `ai/task-cards/backlog/TASK-VISUAL-001-img-version-baseline.md`
+### 0236 — `ai/task-cards/backlog/TASK-VISUAL-001-img-version-baseline.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -15916,9 +11105,9 @@ reports/tailwind-migration/img-version-contact-sheet.jpg
 ``​`
 ```
 
-<a id="file-0241"></a>
+<a id="file-0237"></a>
 
-### 0241 — `ai/task-cards/completed/README.md`
+### 0237 — `ai/task-cards/completed/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -15932,9 +11121,9 @@ reports/tailwind-migration/img-version-contact-sheet.jpg
 Mover aquí task-cards completadas con reporte final.
 ```
 
-<a id="file-0242"></a>
+<a id="file-0238"></a>
 
-### 0242 — `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md`
+### 0238 — `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `784`
@@ -16729,9 +11918,9 @@ No reemplazar las validaciones actuales si ya se usan en runtime.
 7. En `expression.ts`, agregar límites o limpieza de cache para evitar crecimiento indefinido.
 ```
 
-<a id="file-0243"></a>
+<a id="file-0239"></a>
 
-### 0243 — `src/sisad-pdfme/common/README.md`
+### 0239 — `src/sisad-pdfme/common/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -16775,9 +11964,9 @@ Este ZIP contiene los archivos `.ts` del paquete `common` con comentarios de arq
 - Revisar alineación de `ownerRecipientIds` entre Zod (`string[]`) y utilidades que aceptan `string | string[]`.
 ```
 
-<a id="file-0244"></a>
+<a id="file-0240"></a>
 
-### 0244 — `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md`
+### 0240 — `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -16956,9 +12145,9 @@ Debe exponer utilidades puras consumibles por UI, generator, importadores o adap
 ``​`
 ```
 
-<a id="file-0245"></a>
+<a id="file-0241"></a>
 
-### 0245 — `src/sisad-pdfme/converter/README.md`
+### 0241 — `src/sisad-pdfme/converter/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -17011,9 +12200,9 @@ Este módulo no debe conocer:
 Debe mantenerse como utilidad técnica reutilizable por el runtime.
 ```
 
-<a id="file-0246"></a>
+<a id="file-0242"></a>
 
-### 0246 — `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md`
+### 0242 — `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `151`
@@ -17175,9 +12364,9 @@ Riesgos técnicos:
 ``​`
 ```
 
-<a id="file-0247"></a>
+<a id="file-0243"></a>
 
-### 0247 — `src/sisad-pdfme/runtime/README.md`
+### 0243 — `src/sisad-pdfme/runtime/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -17203,9 +12392,9 @@ Este paquete contiene una versión comentada de los helpers/hooks de runtime env
 Estos archivos deben vivir como capa de runtime/adaptador. No deben contener reglas de negocio SISAD, lógica Uanataca, manipulación de canvas, CSS, Moveable, Selecto ni detalles de StepOne/StepTwo.
 ```
 
-<a id="file-0248"></a>
+<a id="file-0244"></a>
 
-### 0248 — `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md`
+### 0244 — `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -17384,9 +12573,9 @@ Este documento acompaña los archivos comentados del runtime UI. Resume responsa
 | types.ts | 147 | 161 |
 ```
 
-<a id="file-0249"></a>
+<a id="file-0245"></a>
 
-### 0249 — `src/sisad-pdfme/ui/README.md`
+### 0245 — `src/sisad-pdfme/ui/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -17435,9 +12624,9 @@ git diff -- src/sisad-pdfme/ui
 ``​`
 ```
 
-<a id="file-0250"></a>
+<a id="file-0246"></a>
 
-### 0250 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
+### 0246 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -17524,9 +12713,9 @@ Migración incremental de diseños a Tailwind preservando comportamiento, canvas
 - generator/pdf-lib
 ```
 
-<a id="file-0251"></a>
+<a id="file-0247"></a>
 
-### 0251 — `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md`
+### 0247 — `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -17567,9 +12756,9 @@ Este bloque contiene la base visual y funcional usada por Preview/Form/Viewer en
 6. Validar persistencia/prefill/API del hook sin sobrescribir valores ya digitados por usuario.
 ```
 
-<a id="file-0252"></a>
+<a id="file-0248"></a>
 
-### 0252 — `src/sisad-pdfme/ui/components/README.md`
+### 0248 — `src/sisad-pdfme/ui/components/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -17608,9 +12797,9 @@ Este paquete contiene una copia completa de los archivos runtime/base UI enviado
 Este bloque es sensible porque conecta el runtime visual con plugins imperativos (`Renderer`), preprocesamiento de PDF (`Paper`/`Preview`) y sincronización de datos (`usePreviewRuntime`). La documentación refuerza que la geometría del canvas debe seguir controlada por schemas y servicios internos, no por estilos arbitrarios de plugins o hosts.
 ```
 
-<a id="file-0253"></a>
+<a id="file-0249"></a>
 
-### 0253 — `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md`
+### 0249 — `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -17639,9 +12828,9 @@ Este bloque es sensible porque conecta el runtime visual con plugins imperativos
 - `Guides.tsx`, `Mask.tsx` y `Padding.tsx` quedan como slots visuales puros.
 ```
 
-<a id="file-0254"></a>
+<a id="file-0250"></a>
 
-### 0254 — `src/sisad-pdfme/ui/components/Designer/Canvas/README.md`
+### 0250 — `src/sisad-pdfme/ui/components/Designer/Canvas/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -17676,9 +12865,9 @@ Este paquete contiene copias completas de los archivos del core visual/interacti
 Estos archivos pertenecen al núcleo visual del diseñador. No deben incorporar lógica de host (`DigitalAgreements`, `ContentCustomForm`, `ExternalForms`), reglas de firma/Uanataca ni manipulación externa del DOM fuera de los adapters explícitos.
 ```
 
-<a id="file-0255"></a>
+<a id="file-0251"></a>
 
-### 0255 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md`
+### 0251 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -17704,9 +12893,9 @@ Se documentó el bloque de composición del sidebar derecho del diseñador SISAD
 Estos archivos deben mantenerse como capa de composición visual y navegación del sidebar. No deberían incorporar reglas internas del canvas, manipulación directa de Moveable/Selecto, ni persistencia de negocio. Las mutaciones deben seguir delegándose a callbacks, bridges o comandos ya recibidos por props.
 ```
 
-<a id="file-0256"></a>
+<a id="file-0252"></a>
 
-### 0256 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md`
+### 0252 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -17735,9 +12924,9 @@ Este paquete contiene versiones documentadas de los archivos del sidebar derecho
 - Se conservó la separación esperada: el sidebar orquesta vistas, pero no manipula canvas, Moveable, Selecto ni schemas directamente.
 ```
 
-<a id="file-0257"></a>
+<a id="file-0253"></a>
 
-### 0257 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md`
+### 0253 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -17769,9 +12958,9 @@ Se generó documentación para los 18 archivos de overlays del canvas:
 5. Documentar restricciones arquitectónicas importantes cuando aplicaba.
 ```
 
-<a id="file-0258"></a>
+<a id="file-0254"></a>
 
-### 0258 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md`
+### 0254 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -17817,9 +13006,9 @@ Este paquete contiene copias completas de los archivos enviados, con documentaci
 Estos módulos pertenecen a la capa visual/interactiva del canvas. Deben seguir sin contener reglas de negocio del host, lógica Uanataca, persistencia HTTP, manipulación directa de Moveable/Selecto ni hacks de z-index para ocultar problemas.
 ```
 
-<a id="file-0259"></a>
+<a id="file-0255"></a>
 
-### 0259 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md`
+### 0255 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -17872,9 +13061,9 @@ La documentación se agregó con JSDoc en puntos de extensión y mantenimiento:
 5. En colaboración, validar casos de owner único, multi-owner, shared, locked by me y locked by other.
 ```
 
-<a id="file-0260"></a>
+<a id="file-0256"></a>
 
-### 0260 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md`
+### 0256 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -17923,9 +13112,9 @@ Wrapper de compatibilidad para widgets imperativos de plugins. Se documentaron:
 - Confirmar que clicks dentro del inspector no disparen Selecto, Moveable ni drag/drop del canvas.
 ```
 
-<a id="file-0261"></a>
+<a id="file-0257"></a>
 
-### 0261 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md`
+### 0257 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -17956,9 +13145,9 @@ Este paquete contiene copias documentadas de tres archivos del inspector del dis
 - `WidgetRenderer` conserva el render imperativo en cada render para no cambiar el contrato heredado.
 ```
 
-<a id="file-0262"></a>
+<a id="file-0258"></a>
 
-### 0262 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md`
+### 0258 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -18000,9 +13189,9 @@ El bloque `ListView` representa la lista lateral derecha de campos/schemas del d
 - Si se cambia el DOM del row, preservar `data-testid="right-sidebar-field-item"` y el drag handle.
 ```
 
-<a id="file-0263"></a>
+<a id="file-0259"></a>
 
-### 0263 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md`
+### 0259 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`

@@ -16,6 +16,7 @@ import { theme } from 'antd';
 import { rectToPointArea } from '../shared/coordinateMath.js';
 import { resolveFirstClassSelector } from '../shared/className.js';
 import { installPassiveTouchListenerGuard } from '../shared/passiveTouchListeners.js';
+import { isDesignerInteractionExcluded } from '../shared/interactionExclusions.js';
 
 installPassiveTouchListenerGuard();
 
@@ -120,7 +121,12 @@ const Selecto = (props: Props) => {
       dragContainer={dragContainer}
       boundContainer={props.boundContainer ?? props.container}
       checkInput={props.checkInput ?? true}
-      dragCondition={props.dragCondition ?? null}
+      dragCondition={(dragStart) => {
+        const inputEvent = dragStart.inputEvent as MouseEvent | TouchEvent;
+        const target = inputEvent?.target as EventTarget | null;
+        if (isDesignerInteractionExcluded(target)) return false;
+        return props.dragCondition ? props.dragCondition(dragStart) : true;
+      }}
       getElementRect={props.getElementRect ?? ((element) => rectToPointArea(element.getBoundingClientRect()))}
       continueSelect={props.continueSelect}
       onDragStart={props.onDragStart}

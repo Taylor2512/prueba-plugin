@@ -84,13 +84,13 @@ const DetailViewContent = ({
         />
 
         {isLockedByOther && (
-          <div className="mx-2.5 my-1 flex items-center gap-1.5 rounded-md border border-amber-200 bg-amber-50 px-2 py-[0.1875rem] text-[0.61rem] leading-tight text-amber-700">
+          <div className="mx-2 my-1.5 flex items-start gap-1.5 rounded-lg border border-amber-200/80 bg-amber-50/90 px-2 py-1 text-[0.61rem] leading-tight text-amber-700">
             <Lock size={14} className="shrink-0" />
             <span>Este campo está siendo editado por otro usuario y no puede modificarse.</span>
           </div>
         )}
 
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-view-sections', 'mt-0.5 space-y-1')}>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-view-sections', 'mt-1 space-y-1.5 pb-2')}>
           {sections.map((section) => (
             <DetailFormSection
               key={section.key}

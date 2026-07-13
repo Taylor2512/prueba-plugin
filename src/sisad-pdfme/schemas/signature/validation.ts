@@ -44,8 +44,10 @@ export const validateSignatureSchema = (
 
   if (normalized.signatureMode === 'p12') {
     const metadata = normalized.signatureMetadata || {};
+    const hasMeaningfulValue = (value: unknown) =>
+      typeof value === 'string' ? value.trim().length > 0 : value !== null && value !== undefined;
     ['digestAlgorithm', 'certSubject', 'certIssuer', 'certSerial'].forEach((field) => {
-      if (!(field in metadata)) {
+      if (!hasMeaningfulValue(metadata[field])) {
         errors.push({
           code: 'signature.p12.metadata',
           field: `signatureMetadata.${field}`,

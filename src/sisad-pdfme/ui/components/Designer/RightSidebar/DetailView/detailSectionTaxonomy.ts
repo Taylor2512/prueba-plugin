@@ -238,7 +238,11 @@ export const getDetailProfile = (schemaType: string): DetailProfile => {
   }
 
   if (SIGNING_TYPES.has(normalized)) {
-    return createDetailProfile(normalized, ['identity', 'behavior', 'box', 'collaboration', 'help', 'comments', 'advanced'], ['identity', 'behavior']);
+    return createDetailProfile(
+      normalized,
+      ['identity', 'behavior', 'box', 'appearance', 'collaboration', 'help', 'comments', 'advanced'],
+      ['identity', 'behavior', 'box', 'appearance'],
+    );
   }
 
   if (ACTION_TYPES.has(normalized)) {

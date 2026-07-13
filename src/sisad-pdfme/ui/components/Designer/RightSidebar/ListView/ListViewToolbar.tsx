@@ -13,6 +13,7 @@ import { SidebarSurfaceHeader } from '../shared/SidebarSurfacePrimitives.js';
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { mergeClassNames } from '../../shared/className.js';
+import { stopDesignerControlEvent } from '../../shared/interactionExclusions.js';
 
 
 /**
@@ -138,8 +139,16 @@ const ListViewToolbar = ({
                     type="text"
                     size="small"
                     disabled={bulkRecipientDisabled}
-                    onClick={onBulkAssignRecipient}
+                    onPointerDownCapture={stopDesignerControlEvent}
+                    onMouseDownCapture={stopDesignerControlEvent}
+                    onDoubleClickCapture={stopDesignerControlEvent}
+                    onClick={(event) => {
+                      stopDesignerControlEvent(event);
+                      onBulkAssignRecipient?.();
+                    }}
                     data-testid="right-sidebar-reassign"
+                    data-designer-control="true"
+                    data-interaction-exclusion="true"
                     aria-label={resolveAriaLabel(bulkRecipientLabel, 'Reasignar responsable')}
                     className={mergeClassNames(
                       DESIGNER_CLASSNAME + 'bulk-assign-recipient',

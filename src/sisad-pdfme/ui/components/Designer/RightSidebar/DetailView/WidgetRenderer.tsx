@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useMemo, useRef } from 'react';
 import type { PropPanelWidgetProps } from '@sisad-pdfme/common';
 import { markInspectorInteractive } from './inspectorInteractionGuards.js';
 
@@ -43,6 +43,23 @@ const WidgetRenderer = (props: Props) => {
 
   /** Contenedor DOM entregado al widget imperativo. */
   const ref = useRef<HTMLDivElement>(null);
+  const latestPropsRef = useRef(otherProps);
+  const activeSchema = (otherProps as { activeSchema?: { id?: string; type?: string } }).activeSchema;
+  const renderSignature = useMemo(
+    () =>
+      JSON.stringify({
+        value: otherProps.value,
+        readOnly: otherProps.readOnly,
+        disabled: otherProps.disabled,
+        hidden: otherProps.hidden,
+        schemaId: activeSchema?.id || null,
+        schemaType: activeSchema?.type || null,
+      }),
+    [activeSchema?.id, activeSchema?.type, otherProps.disabled, otherProps.hidden, otherProps.readOnly, otherProps.value],
+  );
+  useEffect(() => {
+    latestPropsRef.current = otherProps;
+  }, [otherProps]);
 
   /**
    * Limpia el contenido imperativo del contenedor.
@@ -66,13 +83,13 @@ const WidgetRenderer = (props: Props) => {
     if (ref.current) {
       markInspectorInteractive(ref.current);
       clearRoot();
-      widget({ ...otherProps, rootElement: ref.current });
+      widget({ ...latestPropsRef.current, rootElement: ref.current });
     }
 
     return () => {
       clearRoot();
     };
-  });
+  }, [renderSignature, widget]);
 
   return <div ref={ref} className="min-w-0" />;
 };

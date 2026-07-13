@@ -112,7 +112,7 @@ export const resolveSchemaInteractionState = (
 
   const disabledControls = [
     ...(isReadOnly || isLocked || !activeUserCanEdit ? ['edit', 'duplicate', 'delete', 'toggle-lock'] : []),
-    ...(isReadOnly || isLocked ? ['toggle-required', 'toggle-visibility', 'assign-recipient'] : []),
+    ...(isReadOnly || isLocked ? ['toggle-required', 'toggle-visibility'] : []),
   ];
 
   return {

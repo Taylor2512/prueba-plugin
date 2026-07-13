@@ -67,13 +67,13 @@ type SectionTextProps = {
 const SectionText = ({ title, description }: SectionTextProps) => (
   <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head-main', 'min-w-0 flex-1 space-y-0')}>
     <div
-      className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-title', 'truncate text-[0.54rem] font-semibold uppercase tracking-[0.04em] leading-tight text-slate-900')}
+      className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-title', 'truncate text-[0.57rem] font-semibold uppercase tracking-[0.045em] leading-tight text-slate-900')}
       data-has-description={description ? 'true' : 'false'}
     >
       {title}
     </div>
     {description ? (
-      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-description', 'truncate text-[0.5rem] leading-3 text-slate-500')}>
+      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-description', 'truncate text-[0.52rem] leading-3 text-slate-500')}>
         {description}
       </div>
     ) : null}
@@ -105,7 +105,7 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
         type="button"
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'detail-section-card-head',
-          'flex min-h-[22px] w-full items-center justify-between gap-1 rounded-lg px-[4px] py-[0.125rem] text-left transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+          'group flex min-h-[24px] w-full items-center justify-between gap-1 rounded-lg px-1 py-[0.125rem] text-left transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
         )}
         aria-expanded={!collapsed}
         aria-controls={`${bodyId}-body`}
@@ -113,7 +113,7 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
         onClick={onToggle}
       >
         {header}
-        <span className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-toggle', 'inline-flex h-[1.375rem] w-[1.375rem] flex-none items-center justify-center rounded-lg text-slate-400')} aria-hidden="true">
+        <span className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-toggle', 'inline-flex h-[1.375rem] w-[1.375rem] flex-none items-center justify-center rounded-lg text-slate-400 transition-colors group-hover:text-slate-600')} aria-hidden="true">
           <ChevronDown size={11} />
         </span>
       </button>
@@ -121,8 +121,8 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
   }
 
   if (!collapsible) {
-      return (
-      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head', 'flex min-h-[22px] w-full items-center justify-between gap-1 rounded-md px-[4px] py-[0.125rem]')}>
+    return (
+      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-head', 'flex min-h-[24px] w-full items-center justify-between gap-1 rounded-md px-1 py-[0.125rem]')}>
         {leading ? <div className={DESIGNER_CLASSNAME + 'detail-section-card-leading'}>{leading}</div> : null}
         <SectionText title={title} description={description} />
         {trailing ? <div className={DESIGNER_CLASSNAME + 'detail-section-card-trailing'}>{trailing}</div> : null}
@@ -135,8 +135,8 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
       type="button"
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'detail-section-card-head',
-          'flex min-h-[20px] w-full items-center justify-between gap-[0.3125rem] rounded-md px-[3px] py-[0.1rem] text-left transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
-        )}
+        'group flex min-h-[22px] w-full items-center justify-between gap-[0.3125rem] rounded-md px-[3px] py-[0.1rem] text-left transition hover:bg-slate-50 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+      )}
       aria-expanded={!collapsed}
       aria-controls={`${bodyId}-body`}
       aria-label={`${collapsed ? 'Expandir' : 'Colapsar'} sección ${title}`}
@@ -145,7 +145,7 @@ const SectionHead = ({ collapsible, collapsed, bodyId, onToggle, title, descript
       {leading ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-leading', 'flex-none')}>{leading}</div> : null}
       <SectionText title={title} description={description} />
       {trailing ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-trailing', 'flex-none')}>{trailing}</div> : null}
-      <span className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-toggle', 'ml-0.5 inline-flex h-3.5 w-3.5 items-center justify-center text-slate-400 transition-transform duration-200', !collapsed && 'rotate-180')} aria-hidden="true">
+      <span className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-toggle', 'ml-0.5 inline-flex h-3.5 w-3.5 items-center justify-center text-slate-400 transition-transform duration-200 group-hover:text-slate-600', !collapsed && 'rotate-180')} aria-hidden="true">
         <ChevronDown size={10} strokeWidth={2.5} />
       </span>
     </button>
@@ -188,7 +188,7 @@ const DetailSectionCard = ({
     <section
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'detail-section-card',
-        'overflow-hidden rounded-md border border-slate-200/60 bg-white/90 shadow-none',
+        'overflow-hidden rounded-xl border border-slate-200/70 bg-white/92 shadow-sm shadow-slate-900/[0.02]',
         className,
       )}
       data-section={sectionKey}
@@ -210,7 +210,7 @@ const DetailSectionCard = ({
         id={`${bodyId}-body`}
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'detail-section-card-body',
-          'mt-px p-0',
+          'mt-px px-1 pb-1 pt-0.5',
           bodyClassName,
         )}
         aria-hidden={resolvedCollapsed ? 'true' : 'false'}
@@ -218,7 +218,7 @@ const DetailSectionCard = ({
       >
         {resolvedCollapsed ? null : children}
       </div>
-      {footer ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-footer', 'mt-px')}>{footer}</div> : null}
+      {footer ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-footer', 'mt-px px-1 pb-1')}>{footer}</div> : null}
     </section>
   );
 };

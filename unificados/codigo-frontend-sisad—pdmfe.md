@@ -14,9 +14,9 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `react`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-13T06:15:57.578Z`
+- **Fecha generación:** `2026-07-13T19:25:58.386Z`
 - **Extensiones incluidas:** `.js, .jsx, .ts, .tsx, .mjs, .cjs, .json`
-- **Archivos candidatos incluidos:** `514`
+- **Archivos candidatos incluidos:** `516`
 - **Límite por archivo:** `90 KB`
 - **Límite total de contenido:** `2500 KB`
 
@@ -511,6 +511,7 @@ prueba-plugin
 │   │       │   │   │   ├── objectGuards.ts
 │   │       │   │   │   ├── passiveTouchListeners.ts
 │   │       │   │   │   ├── recipientColor.ts
+│   │       │   │   │   ├── schemaAssignmentService.ts
 │   │       │   │   │   ├── schemaAutoPlace.ts
 │   │       │   │   │   ├── schemaClipboard.ts
 │   │       │   │   │   ├── schemaCollision.ts
@@ -809,11 +810,11 @@ prueba-plugin
 | 232 | `src/sisad-pdfme/schemas/signature/dateSigned.ts` | typescript | 136 | 4.4 | omitido generado |
 | 233 | `src/sisad-pdfme/schemas/signature/index.ts` | typescript | 323 | 11.1 | completo |
 | 234 | `src/sisad-pdfme/schemas/signature/initials.ts` | typescript | 44 | 1.4 | completo |
-| 235 | `src/sisad-pdfme/schemas/signature/propPanel.ts` | typescript | 697 | 24.6 | completo |
+| 235 | `src/sisad-pdfme/schemas/signature/propPanel.ts` | typescript | 728 | 26.1 | completo |
 | 236 | `src/sisad-pdfme/schemas/signature/providerRegistry.ts` | typescript | 217 | 7.0 | completo |
 | 237 | `src/sisad-pdfme/schemas/signature/signingSchemaFactory.ts` | typescript | 119 | 3.6 | omitido generado |
-| 238 | `src/sisad-pdfme/schemas/signature/types.ts` | typescript | 325 | 9.9 | completo |
-| 239 | `src/sisad-pdfme/schemas/signature/validation.ts` | typescript | 70 | 2.1 | completo |
+| 238 | `src/sisad-pdfme/schemas/signature/types.ts` | typescript | 340 | 10.6 | completo |
+| 239 | `src/sisad-pdfme/schemas/signature/validation.ts` | typescript | 72 | 2.3 | completo |
 | 240 | `src/sisad-pdfme/schemas/tables/cell.ts` | typescript | 152 | 4.8 | completo |
 | 241 | `src/sisad-pdfme/schemas/tables/classes.ts` | typescript | 402 | 11.7 | completo |
 | 242 | `src/sisad-pdfme/schemas/tables/dynamicTemplate.ts` | typescript | 88 | 3.0 | completo |
@@ -977,8 +978,8 @@ prueba-plugin
 | 400 | `src/sisad-pdfme/ui/components/Designer/Canvas/Guides.tsx` | tsx | 118 | 3.3 | completo |
 | 401 | `src/sisad-pdfme/ui/components/Designer/Canvas/Mask.tsx` | tsx | 48 | 1.3 | completo |
 | 402 | `src/sisad-pdfme/ui/components/Designer/Canvas/Moveable.tsx` | tsx | 149 | 4.9 | completo |
-| 403 | `src/sisad-pdfme/ui/components/Designer/Canvas/Padding.tsx` | tsx | 100 | 2.6 | completo |
-| 404 | `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx` | tsx | 132 | 4.3 | truncado 1.1 KB |
+| 403 | `src/sisad-pdfme/ui/components/Designer/Canvas/Padding.tsx` | tsx | 100 | 2.6 | truncado 1.3 KB |
+| 404 | `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx` | tsx | 132 | 4.3 | omitido por presupuesto total |
 | 405 | `src/sisad-pdfme/ui/components/Designer/Canvas/SnapLines.tsx` | tsx | 362 | 11.0 | omitido por presupuesto total |
 | 406 | `src/sisad-pdfme/ui/components/Designer/Comments/CommentDialog.tsx` | tsx | 167 | 4.3 | omitido por presupuesto total |
 | 407 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx` | tsx | 338 | 12.2 | omitido por presupuesto total |
@@ -1006,104 +1007,106 @@ prueba-plugin
 | 429 | `src/sisad-pdfme/ui/components/Designer/shared/objectGuards.ts` | typescript | 12 | 0.6 | omitido por presupuesto total |
 | 430 | `src/sisad-pdfme/ui/components/Designer/shared/passiveTouchListeners.ts` | typescript | 38 | 1.4 | omitido por presupuesto total |
 | 431 | `src/sisad-pdfme/ui/components/Designer/shared/recipientColor.ts` | typescript | 143 | 4.2 | omitido por presupuesto total |
-| 432 | `src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts` | typescript | 96 | 3.7 | omitido por presupuesto total |
-| 433 | `src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts` | typescript | 568 | 20.6 | omitido por presupuesto total |
-| 434 | `src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts` | typescript | 101 | 3.6 | omitido por presupuesto total |
-| 435 | `src/sisad-pdfme/ui/components/Designer/shared/schemaFamilies.ts` | typescript | 65 | 1.8 | omitido por presupuesto total |
-| 436 | `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionCapabilities.ts` | typescript | 115 | 3.8 | omitido por presupuesto total |
-| 437 | `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionState.ts` | typescript | 137 | 4.9 | omitido por presupuesto total |
-| 438 | `src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts` | typescript | 106 | 2.8 | omitido por presupuesto total |
-| 439 | `src/sisad-pdfme/ui/components/Designer/shared/schemaVariableName.ts` | typescript | 49 | 1.5 | omitido por presupuesto total |
-| 440 | `src/sisad-pdfme/ui/components/Designer/shared/selectableTargetGuards.ts` | typescript | 34 | 1.4 | omitido por presupuesto total |
-| 441 | `src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts` | typescript | 961 | 32.4 | omitido por presupuesto total |
-| 442 | `src/sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver.ts` | typescript | 115 | 4.1 | omitido por presupuesto total |
-| 443 | `src/sisad-pdfme/ui/components/Designer/shared/selectionPolicy.ts` | typescript | 79 | 2.5 | omitido por presupuesto total |
-| 444 | `src/sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle.tsx` | tsx | 65 | 2.0 | omitido por presupuesto total |
-| 445 | `src/sisad-pdfme/ui/components/Designer/shared/SidebarEmptyState.tsx` | tsx | 81 | 2.2 | omitido por presupuesto total |
-| 446 | `src/sisad-pdfme/ui/components/Designer/shared/SidebarRail.tsx` | tsx | 86 | 3.0 | omitido por presupuesto total |
-| 447 | `src/sisad-pdfme/ui/components/Designer/shared/transformTargetGuards.ts` | typescript | 29 | 1.3 | omitido por presupuesto total |
-| 448 | `src/sisad-pdfme/ui/components/Designer/shared/useDesignerKeyboardShortcuts.ts` | typescript | 546 | 13.8 | omitido por presupuesto total |
-| 449 | `src/sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity.ts` | typescript | 81 | 2.2 | omitido por presupuesto total |
-| 450 | `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpButton.tsx` | tsx | 43 | 1.2 | omitido por presupuesto total |
-| 451 | `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpPanel.tsx` | tsx | 163 | 5.9 | omitido por presupuesto total |
-| 452 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx` | tsx | 547 | 15.3 | omitido por presupuesto total |
-| 453 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.tsx` | tsx | 2057 | 54.7 | omitido por presupuesto total |
-| 454 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx` | tsx | 426 | 11.7 | omitido por presupuesto total |
-| 455 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay.tsx` | tsx | 167 | 6.7 | omitido por presupuesto total |
-| 456 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx` | tsx | 323 | 10.2 | omitido por presupuesto total |
-| 457 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry.ts` | typescript | 127 | 4.3 | omitido por presupuesto total |
-| 458 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/GroupOptionFloatingAction.tsx` | tsx | 117 | 4.4 | omitido por presupuesto total |
-| 459 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx` | tsx | 238 | 8.8 | omitido por presupuesto total |
-| 460 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx` | tsx | 36 | 1.1 | omitido por presupuesto total |
-| 461 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState.ts` | typescript | 62 | 1.5 | omitido por presupuesto total |
-| 462 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/pointerGeometry.ts` | typescript | 180 | 5.0 | omitido por presupuesto total |
-| 463 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview.tsx` | tsx | 61 | 2.2 | omitido por presupuesto total |
-| 464 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx` | tsx | 65 | 1.9 | omitido por presupuesto total |
-| 465 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx` | tsx | 80 | 2.3 | omitido por presupuesto total |
-| 466 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx` | tsx | 214 | 8.3 | omitido por presupuesto total |
-| 467 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.ts` | typescript | 212 | 5.1 | omitido por presupuesto total |
-| 468 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx` | tsx | 56 | 1.9 | omitido por presupuesto total |
-| 469 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/useFloatingToolbarPosition.ts` | typescript | 100 | 3.3 | omitido por presupuesto total |
-| 470 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx` | tsx | 92 | 4.3 | omitido por presupuesto total |
-| 471 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx` | tsx | 118 | 4.2 | omitido por presupuesto total |
-| 472 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel.tsx` | tsx | 166 | 6.1 | omitido por presupuesto total |
-| 473 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx` | tsx | 111 | 3.7 | omitido por presupuesto total |
-| 474 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx` | tsx | 176 | 6.6 | omitido por presupuesto total |
-| 475 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailHeaderUtils.ts` | typescript | 143 | 6.1 | omitido por presupuesto total |
-| 476 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts` | typescript | 613 | 19.8 | omitido por presupuesto total |
-| 477 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx` | tsx | 226 | 8.1 | omitido por presupuesto total |
-| 478 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts` | typescript | 584 | 19.4 | omitido por presupuesto total |
-| 479 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx` | tsx | 487 | 14.9 | omitido por presupuesto total |
-| 480 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx` | tsx | 113 | 3.9 | omitido por presupuesto total |
-| 481 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx` | tsx | 172 | 6.7 | omitido por presupuesto total |
-| 482 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.tsx` | tsx | 159 | 5.7 | omitido por presupuesto total |
-| 483 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorColorInput.tsx` | tsx | 36 | 0.9 | omitido por presupuesto total |
-| 484 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorContracts.ts` | typescript | 396 | 9.1 | omitido por presupuesto total |
-| 485 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorDefinitionList.tsx` | tsx | 38 | 1.2 | omitido por presupuesto total |
-| 486 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorField.tsx` | tsx | 40 | 1.1 | omitido por presupuesto total |
-| 487 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.ts` | typescript | 46 | 1.9 | omitido por presupuesto total |
-| 488 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorNumberInput.tsx` | tsx | 46 | 1.1 | omitido por presupuesto total |
-| 489 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorOptionEditor.tsx` | tsx | 2 | 0.1 | omitido por presupuesto total |
-| 490 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives.tsx` | tsx | 310 | 10.2 | omitido por presupuesto total |
-| 491 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSelect.tsx` | tsx | 42 | 1.0 | omitido por presupuesto total |
-| 492 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSummaryCard.tsx` | tsx | 1 | 0.1 | omitido por presupuesto total |
-| 493 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSwitch.tsx` | tsx | 47 | 1.3 | omitido por presupuesto total |
-| 494 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts` | typescript | 35 | 1.4 | omitido por presupuesto total |
-| 495 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx` | tsx | 558 | 25.5 | omitido por presupuesto total |
-| 496 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared.tsx` | tsx | 170 | 5.4 | omitido por presupuesto total |
-| 497 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation.ts` | typescript | 102 | 3.0 | omitido por presupuesto total |
-| 498 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx` | tsx | 1014 | 38.7 | omitido por presupuesto total |
-| 499 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaDetailProfiles.ts` | typescript | 9 | 0.2 | omitido por presupuesto total |
-| 500 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaDisplayInfo.ts` | typescript | 24 | 0.8 | omitido por presupuesto total |
-| 501 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.tsx` | tsx | 446 | 16.7 | omitido por presupuesto total |
-| 502 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaInteractionState.ts` | typescript | 7 | 0.2 | omitido por presupuesto total |
-| 503 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaOptionsEditor.tsx` | tsx | 585 | 22.9 | omitido por presupuesto total |
-| 504 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx` | tsx | 80 | 2.4 | omitido por presupuesto total |
-| 505 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx` | tsx | 421 | 14.6 | omitido por presupuesto total |
-| 506 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListView.tsx` | tsx | 384 | 13.6 | omitido por presupuesto total |
-| 507 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewDragOverlay.tsx` | tsx | 88 | 3.3 | omitido por presupuesto total |
-| 508 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewFooter.tsx` | tsx | 79 | 2.7 | omitido por presupuesto total |
-| 509 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/listViewItemResolver.ts` | typescript | 62 | 2.6 | omitido por presupuesto total |
-| 510 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx` | tsx | 226 | 7.9 | omitido por presupuesto total |
-| 511 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/schemaListItemViewModel.ts` | typescript | 2 | 0.1 | omitido por presupuesto total |
-| 512 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableContainer.tsx` | tsx | 249 | 8.6 | omitido por presupuesto total |
-| 513 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableItem.tsx` | tsx | 133 | 4.3 | omitido por presupuesto total |
-| 514 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx` | tsx | 351 | 8.6 | omitido por presupuesto total |
+| 432 | `src/sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService.ts` | typescript | 190 | 5.9 | omitido por presupuesto total |
+| 433 | `src/sisad-pdfme/ui/components/Designer/shared/schemaAutoPlace.ts` | typescript | 96 | 3.7 | omitido por presupuesto total |
+| 434 | `src/sisad-pdfme/ui/components/Designer/shared/schemaClipboard.ts` | typescript | 568 | 20.6 | omitido por presupuesto total |
+| 435 | `src/sisad-pdfme/ui/components/Designer/shared/schemaCollision.ts` | typescript | 101 | 3.6 | omitido por presupuesto total |
+| 436 | `src/sisad-pdfme/ui/components/Designer/shared/schemaFamilies.ts` | typescript | 65 | 1.8 | omitido por presupuesto total |
+| 437 | `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionCapabilities.ts` | typescript | 115 | 3.8 | omitido por presupuesto total |
+| 438 | `src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionState.ts` | typescript | 137 | 4.8 | omitido por presupuesto total |
+| 439 | `src/sisad-pdfme/ui/components/Designer/shared/schemaTone.ts` | typescript | 106 | 2.8 | omitido por presupuesto total |
+| 440 | `src/sisad-pdfme/ui/components/Designer/shared/schemaVariableName.ts` | typescript | 49 | 1.5 | omitido por presupuesto total |
+| 441 | `src/sisad-pdfme/ui/components/Designer/shared/selectableTargetGuards.ts` | typescript | 34 | 1.4 | omitido por presupuesto total |
+| 442 | `src/sisad-pdfme/ui/components/Designer/shared/selectionCommands.ts` | typescript | 961 | 32.4 | omitido por presupuesto total |
+| 443 | `src/sisad-pdfme/ui/components/Designer/shared/selectionIdentityResolver.ts` | typescript | 115 | 4.1 | omitido por presupuesto total |
+| 444 | `src/sisad-pdfme/ui/components/Designer/shared/selectionPolicy.ts` | typescript | 79 | 2.5 | omitido por presupuesto total |
+| 445 | `src/sisad-pdfme/ui/components/Designer/shared/SidebarCollapseHandle.tsx` | tsx | 65 | 2.0 | omitido por presupuesto total |
+| 446 | `src/sisad-pdfme/ui/components/Designer/shared/SidebarEmptyState.tsx` | tsx | 81 | 2.2 | omitido por presupuesto total |
+| 447 | `src/sisad-pdfme/ui/components/Designer/shared/SidebarRail.tsx` | tsx | 86 | 3.0 | omitido por presupuesto total |
+| 448 | `src/sisad-pdfme/ui/components/Designer/shared/transformTargetGuards.ts` | typescript | 29 | 1.3 | omitido por presupuesto total |
+| 449 | `src/sisad-pdfme/ui/components/Designer/shared/useDesignerKeyboardShortcuts.ts` | typescript | 546 | 13.8 | omitido por presupuesto total |
+| 450 | `src/sisad-pdfme/ui/components/Designer/shared/useResponsiveDensity.ts` | typescript | 81 | 2.2 | omitido por presupuesto total |
+| 451 | `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpButton.tsx` | tsx | 43 | 1.2 | omitido por presupuesto total |
+| 452 | `src/sisad-pdfme/ui/components/Designer/Shortcuts/ShortcutHelpPanel.tsx` | tsx | 163 | 5.9 | omitido por presupuesto total |
+| 453 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx` | tsx | 547 | 15.3 | omitido por presupuesto total |
+| 454 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/canvasContextMenuActions.tsx` | tsx | 2057 | 54.7 | omitido por presupuesto total |
+| 455 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx` | tsx | 426 | 11.7 | omitido por presupuesto total |
+| 456 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasStateOverlay.tsx` | tsx | 167 | 6.7 | omitido por presupuesto total |
+| 457 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CommentsOverlay.tsx` | tsx | 323 | 10.2 | omitido por presupuesto total |
+| 458 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/floatingSurfaceGeometry.ts` | typescript | 127 | 4.3 | omitido por presupuesto total |
+| 459 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/GroupOptionFloatingAction.tsx` | tsx | 117 | 4.4 | omitido por presupuesto total |
+| 460 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineEditOverlay.tsx` | tsx | 238 | 8.8 | omitido por presupuesto total |
+| 461 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/InlineMetricsOverlay.tsx` | tsx | 36 | 1.1 | omitido por presupuesto total |
+| 462 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/overlayState.ts` | typescript | 62 | 1.5 | omitido por presupuesto total |
+| 463 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/pointerGeometry.ts` | typescript | 180 | 5.0 | omitido por presupuesto total |
+| 464 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDragPreview.tsx` | tsx | 61 | 2.2 | omitido por presupuesto total |
+| 465 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx` | tsx | 65 | 1.9 | omitido por presupuesto total |
+| 466 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropPlaceholder.tsx` | tsx | 80 | 2.3 | omitido por presupuesto total |
+| 467 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SelectionContextToolbar.tsx` | tsx | 214 | 8.3 | omitido por presupuesto total |
+| 468 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/smartPlacement.ts` | typescript | 212 | 5.1 | omitido por presupuesto total |
+| 469 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SnapFeedbackOverlay.tsx` | tsx | 56 | 1.9 | omitido por presupuesto total |
+| 470 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/useFloatingToolbarPosition.ts` | typescript | 100 | 3.3 | omitido por presupuesto total |
+| 471 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/AlignWidget.tsx` | tsx | 92 | 4.3 | omitido por presupuesto total |
+| 472 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/ButtonGroupWidget.tsx` | tsx | 118 | 4.2 | omitido por presupuesto total |
+| 473 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/CompactConfigPanel.tsx` | tsx | 170 | 6.3 | omitido por presupuesto total |
+| 474 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailFormSection.tsx` | tsx | 111 | 3.7 | omitido por presupuesto total |
+| 475 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx` | tsx | 179 | 6.9 | omitido por presupuesto total |
+| 476 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailHeaderUtils.ts` | typescript | 143 | 6.1 | omitido por presupuesto total |
+| 477 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts` | typescript | 613 | 19.8 | omitido por presupuesto total |
+| 478 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx` | tsx | 226 | 8.3 | omitido por presupuesto total |
+| 479 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSectionTaxonomy.ts` | typescript | 588 | 19.4 | omitido por presupuesto total |
+| 480 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailView.tsx` | tsx | 487 | 14.9 | omitido por presupuesto total |
+| 481 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx` | tsx | 113 | 3.9 | omitido por presupuesto total |
+| 482 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgetRegistry.tsx` | tsx | 172 | 6.7 | omitido por presupuesto total |
+| 483 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.tsx` | tsx | 159 | 5.7 | omitido por presupuesto total |
+| 484 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorColorInput.tsx` | tsx | 36 | 0.9 | omitido por presupuesto total |
+| 485 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorContracts.ts` | typescript | 396 | 9.1 | omitido por presupuesto total |
+| 486 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorDefinitionList.tsx` | tsx | 38 | 1.2 | omitido por presupuesto total |
+| 487 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorField.tsx` | tsx | 40 | 1.1 | omitido por presupuesto total |
+| 488 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.ts` | typescript | 46 | 1.9 | omitido por presupuesto total |
+| 489 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorNumberInput.tsx` | tsx | 46 | 1.1 | omitido por presupuesto total |
+| 490 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorOptionEditor.tsx` | tsx | 2 | 0.1 | omitido por presupuesto total |
+| 491 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives.tsx` | tsx | 311 | 10.3 | omitido por presupuesto total |
+| 492 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSelect.tsx` | tsx | 42 | 1.0 | omitido por presupuesto total |
+| 493 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSummaryCard.tsx` | tsx | 1 | 0.1 | omitido por presupuesto total |
+| 494 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSwitch.tsx` | tsx | 47 | 1.3 | omitido por presupuesto total |
+| 495 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts` | typescript | 35 | 1.4 | omitido por presupuesto total |
+| 496 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx` | tsx | 491 | 23.3 | omitido por presupuesto total |
+| 497 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared.tsx` | tsx | 170 | 5.4 | omitido por presupuesto total |
+| 498 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation.ts` | typescript | 102 | 3.0 | omitido por presupuesto total |
+| 499 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx` | tsx | 1014 | 38.7 | omitido por presupuesto total |
+| 500 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaDetailProfiles.ts` | typescript | 9 | 0.2 | omitido por presupuesto total |
+| 501 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaDisplayInfo.ts` | typescript | 24 | 0.8 | omitido por presupuesto total |
+| 502 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaFieldCommentsWidget.tsx` | tsx | 446 | 16.7 | omitido por presupuesto total |
+| 503 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaInteractionState.ts` | typescript | 7 | 0.2 | omitido por presupuesto total |
+| 504 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaOptionsEditor.tsx` | tsx | 585 | 22.9 | omitido por presupuesto total |
+| 505 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/WidgetRenderer.tsx` | tsx | 97 | 3.1 | omitido por presupuesto total |
+| 506 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx` | tsx | 423 | 14.7 | omitido por presupuesto total |
+| 507 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListView.tsx` | tsx | 413 | 14.6 | omitido por presupuesto total |
+| 508 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewDragOverlay.tsx` | tsx | 88 | 3.3 | omitido por presupuesto total |
+| 509 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewFooter.tsx` | tsx | 79 | 2.7 | omitido por presupuesto total |
+| 510 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/listViewItemResolver.ts` | typescript | 65 | 2.9 | omitido por presupuesto total |
+| 511 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx` | tsx | 247 | 8.6 | omitido por presupuesto total |
+| 512 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/schemaListItemViewModel.ts` | typescript | 2 | 0.1 | omitido por presupuesto total |
+| 513 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableContainer.tsx` | tsx | 249 | 8.6 | omitido por presupuesto total |
+| 514 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/SelectableSortableItem.tsx` | tsx | 133 | 4.3 | omitido por presupuesto total |
+| 515 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SchemaAssignmentDialog.tsx` | tsx | 241 | 9.3 | omitido por presupuesto total |
+| 516 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx` | tsx | 351 | 8.6 | omitido por presupuesto total |
 
 ## Resumen de exclusiones
 
-- **test omitido:** 909
-- **extensión no incluida:** 397
+- **test omitido:** 914
+- **extensión no incluida:** 396
 - **directorio ignorado: dependencia/build/salida generada:** 7
 - **json de datos omitido en perfil react:** 5
 - **generado detectado por contenido:** 2
 - **archivo binario/minificado/lock ignorado:** 1
-- **omitidos por presupuesto total:** 110
+- **omitidos por presupuesto total:** 113
 
 ## Totales
 
-- **KB originales candidatos:** `3508.1`
-- **KB incluidos en contenido:** `2500.1`
+- **KB originales candidatos:** `3527.0`
+- **KB incluidos en contenido:** `2500.0`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -51561,9 +51564,9 @@ export default initialsPlugin;
 ### 0235 — `src/sisad-pdfme/schemas/signature/propPanel.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `697`
-- **Tamaño original:** `24.6 KB`
-- **SHA1 corto:** `43b5d50900`
+- **Líneas:** `728`
+- **Tamaño original:** `26.1 KB`
+- **SHA1 corto:** `e79a38ae2b`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export const: propPanel`, `component/const: SignatureModeWidget`, `component/const: SignatureProviderStatusWidget`, `component/const: SignatureProviderWidget`, `component/const: SignatureProviderConfigWidget`
 
@@ -51574,6 +51577,7 @@ import type { PropPanel, PropPanelSchema, PropPanelWidgetProps } from '@sisad-pd
 import type { SignatureSchema, SignatureMode } from './types.js';
 import { DEFAULT_OPACITY, HEX_COLOR_PATTERN } from '../constants.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import { markInspectorInteractive, stopInspectorPointerEvent } from '../../ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.js';
 import {
   getAvailableSignatureProviders,
   getSignatureProvider,
@@ -51641,22 +51645,30 @@ const buildModePatch = (schema: SignatureSchema, mode: SignatureMode, options: u
 
   return {
     signatureMode: mode,
+    signatureType: mode,
     signatureProvider: undefined,
     signatureProviderKey: mode === 'provider' ? nextProviderKey || undefined : null,
     signatureProviderConfig:
       mode === 'provider' && nextProvider
         ? sanitizeSignatureProviderConfig(nextProvider.key, nextProvider.defaultConfig || {}, providerSource)
         : {},
-    signatureMetadata: sanitizeSignatureMetadata({}, mode),
-    signatureCapabilities: createModeAwareCapabilities(mode),
-    signatureDisplay: createModeAwareDisplay(mode, undefined, nextProvider?.capabilities),
+    signatureMetadata: sanitizeSignatureMetadata(schema.signatureMetadata, mode),
+    signatureCapabilities: createModeAwareCapabilities(mode, schema.signatureCapabilities),
+    signatureDisplay: createModeAwareDisplay(mode, schema.signatureDisplay, nextProvider?.capabilities),
   };
+};
+
+const prepareInteractiveSignatureWidget = (rootElement: HTMLElement) => {
+  rootElement.style.width = '100%';
+  markInspectorInteractive(rootElement);
 };
 
 const SignatureModeWidget = ({ rootElement, activeSchema, changeSchemas, options }: PropPanelWidgetProps) => {
   const resolvedSchema = normalizeSignatureSchema(activeSchema as SignatureSchema);
   const ownerRole = String(getBlockedOwnerRole(activeSchema as SignatureSchema, options) || '').toLowerCase();
   const isBlocked = ownerRole === 'viewer' || ownerRole === 'reviewer';
+
+  prepareInteractiveSignatureWidget(rootElement);
 
   const wrapper = document.createElement('div');
   wrapper.style.display = 'grid';
@@ -51670,6 +51682,9 @@ const SignatureModeWidget = ({ rootElement, activeSchema, changeSchemas, options
   select.style.padding = '8px';
   select.value = resolvedSchema.signatureMode || 'draw';
   select.disabled = isBlocked;
+  select.addEventListener('pointerdown', stopInspectorPointerEvent);
+  select.addEventListener('mousedown', stopInspectorPointerEvent);
+  select.addEventListener('click', stopInspectorPointerEvent);
 
   SIGNATURE_MODE_OPTIONS.forEach((option) => {
     const node = document.createElement('option');
@@ -51716,6 +51731,7 @@ const SignatureProviderStatusWidget = ({ rootElement, activeSchema }: PropPanelW
   wrapper.style.border = `1px solid ${isPositive ? '#abefc6' : '#d0d5dd'}`;
   wrapper.textContent = `${badgeLabel} · ${providerStatus}`;
 
+  prepareInteractiveSignatureWidget(rootElement);
   rootElement.appendChild(wrapper);
 };
 
@@ -51723,6 +51739,8 @@ const SignatureProviderWidget = ({ rootElement, activeSchema, changeSchemas, opt
   const resolvedSchema = normalizeSignatureSchema(activeSchema as SignatureSchema);
   const providerSource = getProviderSourceFromOptions(options);
   const providers = getAvailableSignatureProviders(providerSource);
+
+  prepareInteractiveSignatureWidget(rootElement);
 
   const wrapper = document.createElement('div');
   wrapper.style.display = 'grid';
@@ -51781,6 +51799,8 @@ const SignatureProviderConfigWidget = ({ rootElement, activeSchema, changeSchema
   const providerSource = getProviderSourceFromOptions(options);
   const provider = getSignatureProvider(resolvedSchema.signatureProviderKey, providerSource);
 
+  prepareInteractiveSignatureWidget(rootElement);
+
   const wrapper = document.createElement('div');
   wrapper.style.display = 'grid';
   wrapper.style.gap = '8px';
@@ -51827,6 +51847,9 @@ const SignatureProviderConfigWidget = ({ rootElement, activeSchema, changeSchema
   button.style.borderRadius = '8px';
   button.style.background = '#ffffff';
   button.style.cursor = provider ? 'pointer' : 'not-allowed';
+  button.addEventListener('pointerdown', stopInspectorPointerEvent);
+  button.addEventListener('mousedown', stopInspectorPointerEvent);
+  button.addEventListener('click', stopInspectorPointerEvent);
 
   button.onclick = () => {
     if (!provider) return;
@@ -51841,6 +51864,10 @@ const SignatureProviderConfigWidget = ({ rootElement, activeSchema, changeSchema
       justifyContent: 'center',
       zIndex: '9999',
     });
+    markInspectorInteractive(overlay);
+    overlay.addEventListener('pointerdown', stopInspectorPointerEvent);
+    overlay.addEventListener('mousedown', stopInspectorPointerEvent);
+    overlay.addEventListener('click', stopInspectorPointerEvent);
 
     const panel = document.createElement('div');
     Object.assign(panel.style, {
@@ -51853,6 +51880,10 @@ const SignatureProviderConfigWidget = ({ rootElement, activeSchema, changeSchema
       display: 'grid',
       gap: '12px',
     });
+    markInspectorInteractive(panel);
+    panel.addEventListener('pointerdown', stopInspectorPointerEvent);
+    panel.addEventListener('mousedown', stopInspectorPointerEvent);
+    panel.addEventListener('click', stopInspectorPointerEvent);
 
     const header = document.createElement('div');
     header.style.display = 'grid';
@@ -52032,12 +52063,14 @@ export const propPanel: PropPanel<SignatureSchema> = {
         widget: 'SignatureProviderStatusWidget',
         bind: false,
         span: 24,
+        hidden: !isProviderMode,
       },
       signatureProviderDisplay: {
         title: 'Visual del proveedor',
         type: 'object',
         widget: 'card',
         column: 2,
+        hidden: !isProviderMode,
         properties: {
           label: {
             title: 'Etiqueta',
@@ -52231,6 +52264,7 @@ export const propPanel: PropPanel<SignatureSchema> = {
     opacity: DEFAULT_OPACITY,
     placeholderText: 'Firmar aqui',
     signatureMode: 'draw',
+    signatureType: 'draw',
     signatureProviderKey: undefined,
     signatureProviderConfig: {},
     signatureProviderStatus: 'pending',
@@ -52503,9 +52537,9 @@ registerSignatureProviders([
 ### 0238 — `src/sisad-pdfme/schemas/signature/types.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `325`
-- **Tamaño original:** `9.9 KB`
-- **SHA1 corto:** `d15c350395`
+- **Líneas:** `340`
+- **Tamaño original:** `10.6 KB`
+- **SHA1 corto:** `6a0b1a5218`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export type/class: SignatureMode`, `export type/class: SignatureProviderKey`, `export type/class: SignatureProviderConfig`, `export type/class: SignatureProviderStatus`, `export type/class: SignatureProviderDisplay`, `export type/class: SignatureCapabilities`, `export type/class: SignatureDisplayConfig`, `export type/class: SignatureProviderSupport`, `export type/class: SignatureSchema`, `export const: SIGNATURE_MODE_OPTIONS`, `export const: SIGNATURE_TYPE_OPTIONS`, `export const: DEFAULT_SIGNATURE_CAPABILITIES`, `export const: DEFAULT_SIGNATURE_DISPLAY`, `export const: resolveLegacySignatureMode`, `export const: resolveSignatureProviderKey`, `export const: sanitizeSignatureMetadata`, `export const: createModeAwareCapabilities`, `export const: createModeAwareDisplay`, `export const: normalizeSignatureSchema`
 
@@ -52700,6 +52734,9 @@ export const resolveLegacySignatureMode = (schema: Partial<SignatureSchema> | un
   const explicitMode = schema?.signatureMode;
   if (isSignatureMode(explicitMode)) return explicitMode;
 
+  const legacyType = schema?.signatureType;
+  if (isSignatureMode(legacyType)) return legacyType;
+
   const providerKey = normalizeText(schema?.signatureProviderKey || schema?.signatureProvider);
   if (!providerKey) return 'draw';
   if (LEGACY_PROVIDER_MODE_MAP[providerKey]) return LEGACY_PROVIDER_MODE_MAP[providerKey];
@@ -52708,11 +52745,12 @@ export const resolveLegacySignatureMode = (schema: Partial<SignatureSchema> | un
 
 export const resolveSignatureProviderKey = (schema: Partial<SignatureSchema> | undefined, mode?: SignatureMode) => {
   const resolvedMode = mode || resolveLegacySignatureMode(schema);
+  if (resolvedMode !== 'provider') return null;
+
   const explicitProviderKey = normalizeText(schema?.signatureProviderKey);
   const legacyProvider = normalizeText(schema?.signatureProvider);
   const providerKey = explicitProviderKey || legacyProvider;
-  if (!providerKey) return resolvedMode === 'provider' ? undefined : null;
-  if (resolvedMode !== 'provider' && LEGACY_PROVIDER_MODE_MAP[providerKey]) return null;
+  if (!providerKey) return undefined;
   return providerKey;
 };
 
@@ -52776,8 +52814,13 @@ export const createModeAwareCapabilities = (
   mode: SignatureMode,
   current?: Partial<SignatureCapabilities>,
 ): SignatureCapabilities => ({
-  ...MODE_CAPABILITIES[mode],
-  ...(current || {}),
+  allowDraw: MODE_CAPABILITIES[mode].allowDraw,
+  allowUploadImage: MODE_CAPABILITIES[mode].allowUploadImage,
+  allowP12: MODE_CAPABILITIES[mode].allowP12,
+  allowExternalProvider: MODE_CAPABILITIES[mode].allowExternalProvider,
+  allowClear: current?.allowClear ?? MODE_CAPABILITIES[mode].allowClear,
+  allowReplace: current?.allowReplace ?? MODE_CAPABILITIES[mode].allowReplace,
+  allowPreview: current?.allowPreview ?? MODE_CAPABILITIES[mode].allowPreview,
 });
 
 export const createModeAwareDisplay = (
@@ -52822,14 +52865,20 @@ export const normalizeSignatureSchema = (
   const baseSchema = (schema || {}) as SignatureSchema;
   const signatureMode = resolveLegacySignatureMode(baseSchema);
   const signatureProviderKey = resolveSignatureProviderKey(baseSchema, signatureMode);
+  const signatureProviderConfig = signatureMode === 'provider' ? asRecord(baseSchema.signatureProviderConfig) : {};
+  const signatureProviderStatus =
+    signatureMode === 'provider' ? normalizeSignatureProviderStatus(baseSchema.signatureProviderStatus) : undefined;
+  const signatureProviderDisplay =
+    signatureMode === 'provider' ? normalizeSignatureProviderDisplay(baseSchema.signatureProviderDisplay) : undefined;
   return {
     ...baseSchema,
     signatureMode,
-    signatureType: baseSchema.signatureType || signatureMode,
+    signatureType: signatureMode,
+    signatureProvider: signatureMode === 'provider' ? normalizeText(baseSchema.signatureProvider) || undefined : undefined,
     signatureProviderKey,
-    signatureProviderConfig: asRecord(baseSchema.signatureProviderConfig),
-    signatureProviderStatus: normalizeSignatureProviderStatus(baseSchema.signatureProviderStatus),
-    signatureProviderDisplay: normalizeSignatureProviderDisplay(baseSchema.signatureProviderDisplay),
+    signatureProviderConfig,
+    signatureProviderStatus,
+    signatureProviderDisplay,
     signatureCapabilities: createModeAwareCapabilities(signatureMode, baseSchema.signatureCapabilities),
     signatureDisplay: createModeAwareDisplay(signatureMode, baseSchema.signatureDisplay, providerSupport),
     signatureMetadata: sanitizeSignatureMetadata(baseSchema.signatureMetadata, signatureMode),
@@ -52842,9 +52891,9 @@ export const normalizeSignatureSchema = (
 ### 0239 — `src/sisad-pdfme/schemas/signature/validation.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `70`
-- **Tamaño original:** `2.1 KB`
-- **SHA1 corto:** `154b6ebb2a`
+- **Líneas:** `72`
+- **Tamaño original:** `2.3 KB`
+- **SHA1 corto:** `1fc22a2f5a`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export type/class: SignatureValidationResult`, `export const: validateSignatureSchema`
 
@@ -52895,8 +52944,10 @@ export const validateSignatureSchema = (
 
   if (normalized.signatureMode === 'p12') {
     const metadata = normalized.signatureMetadata || {};
+    const hasMeaningfulValue = (value: unknown) =>
+      typeof value === 'string' ? value.trim().length > 0 : value !== null && value !== undefined;
     ['digestAlgorithm', 'certSubject', 'certIssuer', 'certSerial'].forEach((field) => {
-      if (!(field in metadata)) {
+      if (!hasMeaningfulValue(metadata[field])) {
         errors.push({
           code: 'signature.p12.metadata',
           field: `signatureMetadata.${field}`,
@@ -84133,7 +84184,7 @@ export default forwardRef<MoveableComponent, Props>(Moveable);
 - **Líneas:** `100`
 - **Tamaño original:** `2.6 KB`
 - **SHA1 corto:** `cadb06ccdc`
-- **Estado:** `completo`
+- **Estado:** `truncado 1.3 KB`
 - **Símbolos detectados:** `export type/class: PaddingProps`, `component/const: Padding`
 
 ```tsx
@@ -84161,69 +84212,10 @@ const getPaddingStyle = (i: number, p: number, color: string): CSS.Properties =>
     position: 'absolute',
     background: color,
     opacity: 0.25,
-    pointerEvents: 'none',
-  };
-  switch (i) {
-    case 0:
-      style.top = 0;
-      style.height = `${p * ZOOM}px`;
-      style.left = 0;
-      style.right = 0;
-      break;
-    case 1:
-      style.right = 0;
-      style.width = `${p * ZOOM}px`;
-      style.top = 0;
-      style.bottom = 0;
-      break;
-    case 2:
-      style.bottom = 0;
-      style.height = `${p * ZOOM}px`;
-      style.left = 0;
-      style.right = 0;
-      break;
-    case 3:
-      style.left = 0;
-      style.width = `${p * ZOOM}px`;
-      style.top = 0;
-      style.bottom = 0;
-      break;
-    default:
-      break;
-  }
+    pointerEvents: 'n
 
-  return style;
-};
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 1518 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
 
-/**
- * Props del overlay de padding para PDFs en blanco.
- */
-export type PaddingProps = {
-  basePdf: BasePdf;
-  className?: string;
-  style?: React.CSSProperties;
-  color?: string;
-  opacity?: number;
-};
-
-/**
- * Renderiza las franjas de padding si el documento base es blank PDF.
- */
-const Padding = ({ basePdf, className, style, color, opacity = 0.25 }: PaddingProps) => {
-  const { token } = theme.useToken();
-  const resolvedColor = color || token.colorError;
-  const hasCustomClass = typeof className === 'string' && className.trim().length > 0;
-  const resolvedClassName = hasCustomClass
-    ? `${DESIGNER_CLASSNAME}custom-${className.trim()}`
-    : `${DESIGNER_CLASSNAME}padding`;
-  const padding = isBlankPdf(basePdf) ? (basePdf.padding as [number, number, number, number]) : [0, 0, 0, 0];
-
-  return (
-    <>
-      {isBlankPdf(basePdf) &&
-        padding.map((p, i) => (
-          <div
-            key={String(i)}
             className={mergeClassNames(resolvedClassName, 'pointer-events-none absolute')}
             style={{
               ...getPaddingStyle(i, p, resolvedColor),
@@ -84237,50 +84229,6 @@ const Padding = ({ basePdf, className, style, color, opacity = 0.25 }: PaddingPr
 };
 
 export default Padding;
-```
-
-<a id="file-0404"></a>
-
-### 0404 — `src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx`
-
-- **Lenguaje:** `tsx`
-- **Líneas:** `132`
-- **Tamaño original:** `4.3 KB`
-- **SHA1 corto:** `4d0ffd5458`
-- **Estado:** `truncado 1.1 KB`
-- **Símbolos detectados:** `component/const: Selecto`
-
-```tsx
-/**
- * Selecto — adapter aislado sobre react-selecto.
- *
- * Centraliza selección por click/región, contenedores de drag, límites y estilo
- * del rectángulo de selección. Canvas decide cuándo se puede iniciar selección;
- * este wrapper solo configura y propaga eventos.
- */
-import React, { useEffect } from 'react';
-import SelectoComponent, {
-  OnSelect as SelectoOnSelect,
-  OnDragStart as SelectoOnDragStart,
-} from 'react-selecto';
-import type { OnDragStart as GestoOnDragStart } from 'gesto';
-import { SELECTABLE_CLASSNAME } from '../../../constants.js';
-import { theme } from 'antd';
-import { rectToPointArea } from '../shared/coordinateMath.js';
-import { resolveFirstClassSelector } from '../shared/className.js';
-import { installP
-
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 3410 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
-
- getElementRect={props.getElementRect ?? ((element) => rectToPointArea(element.getBoundingClientRect()))}
-      continueSelect={props.continueSelect}
-      onDragStart={props.onDragStart}
-      onSelect={props.onSelect}
-    />
-  );
-};
-
-export default Selecto;
 ```
 
 ---

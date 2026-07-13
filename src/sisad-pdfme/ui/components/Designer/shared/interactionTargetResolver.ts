@@ -5,6 +5,7 @@
  * Replaces fragmented guards with a structured result.
  */
 import { SELECTABLE_CLASSNAME } from '../../../constants.js';
+import { isDesignerInteractionExcluded } from './interactionExclusions.js';
 
 export type InteractionTargetKind =
   | 'schema-root'
@@ -33,6 +34,10 @@ const isSchemaRoot = (element: Element | null | undefined): element is HTMLEleme
 export function resolveInteractionTarget(target: EventTarget | null): InteractionTargetResult {
   if (!(target instanceof HTMLElement)) {
     return { kind: 'unknown', element: null, schemaRoot: null, schemaUid: null, optionId: null };
+  }
+
+  if (isDesignerInteractionExcluded(target)) {
+    return { kind: 'selection-toolbar', element: target, schemaRoot: null, schemaUid: null, optionId: null };
   }
 
   // 1. Moveable controls (highest priority as they live over everything)

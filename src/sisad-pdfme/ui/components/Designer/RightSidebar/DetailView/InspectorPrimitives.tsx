@@ -49,7 +49,7 @@ export const InspectorTagList = ({
         <Tag
           key={tag.key ?? tag.label ?? index}
           color={tag.color}
-          className="m-0 inline-flex h-[1.1rem] items-center rounded-full border border-slate-200 bg-white px-[0.3125rem] text-[8px] font-medium leading-none text-slate-700"
+          className="m-0 inline-flex h-[1.08rem] items-center rounded-full border border-slate-200/80 bg-white px-[0.3125rem] text-[8px] font-medium leading-none text-slate-700"
         >
           {tag.label}
         </Tag>
@@ -58,7 +58,7 @@ export const InspectorTagList = ({
         <Tag
           color="default"
           title={overflowTooltip}
-          className="m-0 inline-flex h-[1.1rem] items-center rounded-full border border-slate-200 bg-slate-50 px-[0.3125rem] text-[8px] font-semibold leading-none text-slate-600"
+          className="m-0 inline-flex h-[1.08rem] items-center rounded-full border border-slate-200 bg-slate-50 px-[0.3125rem] text-[8px] font-semibold leading-none text-slate-600"
         >
           {overflowLabel}
           {overflowCount}
@@ -101,7 +101,7 @@ export const InspectorActionRow = ({
           onClick={action.onClick}
           onPointerDown={stopInspectorPointerEvent}
           disabled={action.disabled}
-          className="inline-flex h-[1.4rem] items-center justify-center rounded-lg border-slate-200 bg-white px-1.5 text-[0.62rem] font-semibold text-slate-700 shadow-none transition hover:border-slate-300 hover:bg-slate-50"
+          className="inline-flex h-6 items-center justify-center rounded-lg border-slate-200 bg-white px-1.5 text-[0.62rem] font-semibold text-slate-700 shadow-none transition hover:border-slate-300 hover:bg-slate-50"
         >
           {action.label}
         </Button>
@@ -132,13 +132,13 @@ export const InspectorMetricRow = ({
   if (metrics.length === 0) return null;
 
   return (
-    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}${classNameSuffix}`, 'grid grid-cols-2 gap-0.5')}>
+    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}${classNameSuffix}`, 'grid grid-cols-2 gap-1')}>
       {metrics.map((metric) => (
         <div
           key={metric.key ?? metric.label}
           className={mergeClassNames(
             `${DESIGNER_CLASSNAME}inspector-metric-chip`,
-            'rounded-lg border border-slate-200 bg-white px-1 py-[0.125rem] shadow-none',
+            'rounded-lg border border-slate-200/80 bg-slate-50/70 px-1.5 py-[0.2rem] shadow-none',
           )}
         >
           <span className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-metric-label`, 'block text-[7px] uppercase tracking-wider text-slate-500')}>
@@ -189,17 +189,17 @@ export const InspectorSummaryCard = ({
       ref={summaryCardRef}
       className={mergeClassNames(
         `${DESIGNER_CLASSNAME}${classNameSuffix}`,
-        'space-y-0.5 rounded-lg border border-slate-200/80 bg-white/90 p-[0.1875rem] shadow-none backdrop-blur-sm',
+        'space-y-0.5 rounded-xl border border-slate-200/80 bg-white/92 p-1 shadow-sm shadow-slate-900/[0.02] backdrop-blur-sm',
       )}
       data-inspector-density={inspectorDensity}
     >
-      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-summary-card-head`, 'flex items-start justify-between gap-1')}>
+      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-summary-card-head`, 'flex items-start justify-between gap-1.5')}>
         <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-summary-card-copy`, 'min-w-0 flex-1 space-y-0')}>
-          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-summary-card-title`, 'truncate text-[0.6rem] font-semibold leading-tight text-slate-800')}>
+          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-summary-card-title`, 'truncate text-[0.62rem] font-semibold leading-tight text-slate-800')}>
             {title}
           </div>
           {description ? (
-            <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-summary-card-description`, 'truncate text-[0.56rem] leading-tight text-slate-500')}>
+            <div className={mergeClassNames(`${DESIGNER_CLASSNAME}inspector-summary-card-description`, 'truncate text-[0.58rem] leading-tight text-slate-500')}>
               {description}
             </div>
           ) : null}
@@ -277,6 +277,7 @@ export const BooleanSwitchWidget = ({
         disabled={disabled || readOnly}
         onChange={(next) => commit(Boolean(next))}
         onClick={(next) => commit(Boolean(next))}
+        size="small"
       />
       {checkedLabel || uncheckedLabel ? (
         <span className="sr-only">{internalChecked ? checkedLabel || 'Activado' : uncheckedLabel || 'Desactivado'}</span>

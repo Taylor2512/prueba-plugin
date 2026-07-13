@@ -14,7 +14,7 @@
  * `SchemaAssignmentDialog`, so ListView remains focused on filtering, toolbar
  * state, bulk actions and sidebar layout.
  */
-import React, { useContext, useState, useMemo, useCallback, useRef } from 'react';
+import React, { useContext, useState, useMemo, useCallback, useRef, useEffect } from 'react';
 import type { SidebarProps } from '../../../../types.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { I18nContext } from '../../../../contexts.js';
@@ -31,8 +31,8 @@ import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { emitDesignerRuntimeEvent } from '../../shared/designerExtensions.js';
 import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
 import { getSchemaTypeLabel } from '../../shared/designerLabels.js';
-import { resolveSchemaInteractionState } from '../../shared/schemaInteractionState.js';
 import { buildAssignSchemaOwnerOps, resolveSelectionOwner } from '../../shared/schemaAssignmentService.js';
+import { resetDesignerTransientInteractionState } from '../../shared/designerInteractionReset.js';
 
 const { TextArea } = Input;
 
@@ -89,6 +89,7 @@ const ListView = (
   const [searchQuery, setSearchQuery] = useState('');
   const [typeFilter, setTypeFilter] = useState<string>('all');
   const [isAssignmentDialogOpen, setIsAssignmentDialogOpen] = useState(false);
+  const assignmentDialogOpenRef = useRef(false);
   const viewSchemas = useMemo(
     () => filterSchemasForCollaborationView(schemas, collaborationContext),
     [collaborationContext, schemas],
@@ -137,12 +138,12 @@ const ListView = (
     [activeSchemaIds, viewSchemas],
   );
   const hasSelectableRecipient = recipientOptions.length > 0 && collaborationContext?.canEditStructure !== false;
-  const hasLockedSelection = selectedSchemas.some((schema) => {
-    const interactionState = resolveSchemaInteractionState(schema, { collaborationContext });
-    return interactionState.isLocked || interactionState.isReadOnly;
-  });
-  const canAssignSelected = hasSelectableRecipient && selectedSchemas.length > 0 && !hasLockedSelection;
+  const canAssignSelected = hasSelectableRecipient && selectedSchemas.length > 0;
   const selectionOwner = useMemo(() => resolveSelectionOwner(selectedSchemas), [selectedSchemas]);
+
+  useEffect(() => {
+    assignmentDialogOpenRef.current = isAssignmentDialogOpen;
+  }, [isAssignmentDialogOpen]);
 
   const emitRuntimeEvent = useCallback(
     (event: Parameters<typeof emitDesignerRuntimeEvent>[1]) => {
@@ -224,10 +225,19 @@ const ListView = (
   /**
    * Opens the "Reasignar responsable" dialog for the current selection.
    */
-  const openAssignmentDialog = useCallback(() => {
-    if (!canAssignSelected) return;
+  const openAssignmentDialog = useCallback((event?: React.SyntheticEvent) => {
+    event?.preventDefault?.();
+    event?.stopPropagation?.();
+    if (!canAssignSelected || assignmentDialogOpenRef.current) return;
+    assignmentDialogOpenRef.current = true;
     setIsAssignmentDialogOpen(true);
   }, [canAssignSelected]);
+
+  const closeAssignmentDialog = useCallback(() => {
+    assignmentDialogOpenRef.current = false;
+    setIsAssignmentDialogOpen(false);
+    resetDesignerTransientInteractionState();
+  }, []);
 
 
   /**
@@ -240,7 +250,7 @@ const ListView = (
   const handleConfirmAssignment = useCallback(
     (recipientId: string) => {
       const nextRecipientId = String(recipientId || '').trim();
-      if (!nextRecipientId || selectedSchemas.length === 0 || hasLockedSelection) return;
+      if (!nextRecipientId || selectedSchemas.length === 0) return;
 
       const nextRecipient = recipientOptions.find((recipient) => recipient.id === nextRecipientId);
       if (!nextRecipient) return;
@@ -267,9 +277,9 @@ const ListView = (
         );
       }
 
-      setIsAssignmentDialogOpen(false);
+      closeAssignmentDialog();
     },
-    [changeSchemas, emitRuntimeEvent, hasLockedSelection, recipientOptions, selectionCommands, selectedSchemas],
+    [changeSchemas, closeAssignmentDialog, emitRuntimeEvent, recipientOptions, selectionCommands, selectedSchemas],
   );
 
 
@@ -407,7 +417,8 @@ const ListView = (
         recipients={recipientOptions}
         currentRecipientId={selectionOwner.recipientId}
         currentOwnerMixed={selectionOwner.mixed}
-        onClose={() => setIsAssignmentDialogOpen(false)}
+        onClose={closeAssignmentDialog}
+        onAfterClose={closeAssignmentDialog}
         onConfirm={handleConfirmAssignment}
       />
       </div>

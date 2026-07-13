@@ -77,7 +77,7 @@ export const ColorPickerWidget = ({
             }}
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'color-picker-swatch-option',
-              'h-[1.125rem] w-[1.125rem] rounded-md border border-slate-200 shadow-sm transition hover:scale-105 hover:border-slate-400',
+              'h-[1.05rem] w-[1.05rem] rounded-md border border-slate-200 shadow-sm transition hover:scale-105 hover:border-slate-400',
             )}
             style={{ backgroundColor: preset }}
             aria-label={`Aplicar color ${preset}`}
@@ -106,11 +106,11 @@ export const ColorPickerWidget = ({
             onPointerDown={stopInspectorPointerEvent}
             className={mergeClassNames(
               `${DESIGNER_CLASSNAME}color-picker-trigger`,
-              'inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-2 py-1 text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50',
+              'inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-1.5 py-0.5 text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50',
             )}
           >
             <span
-              className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-preview`, 'h-3.5 w-3.5 rounded-full border border-slate-200')}
+              className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-preview`, 'h-3 w-3 rounded-full border border-slate-200')}
               style={{ backgroundColor: hex }}
               aria-hidden="true"
             />
@@ -122,13 +122,13 @@ export const ColorPickerWidget = ({
         <label
           className={mergeClassNames(
             `${DESIGNER_CLASSNAME}color-picker-trigger`,
-            'inline-flex items-center gap-1.5 rounded-xl border border-slate-200 bg-white px-2 py-1 text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50',
+            'inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-1.5 py-0.5 text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50',
           )}
           aria-label="Selector nativo de color"
           onPointerDown={stopInspectorPointerEvent}
         >
           <span
-            className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-preview`, 'h-3.5 w-3.5 rounded-full border border-slate-200')}
+            className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-preview`, 'h-3 w-3 rounded-full border border-slate-200')}
             style={{ backgroundColor: hex }}
             aria-hidden="true"
           />
@@ -147,7 +147,7 @@ export const ColorPickerWidget = ({
       <Input
         id={`${DESIGNER_CLASSNAME}color-picker-hex`}
         name={`${DESIGNER_CLASSNAME}color-picker-hex`}
-        className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-hex`, 'min-w-[7rem] rounded-xl border-slate-200 shadow-sm')}
+        className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-hex`, 'min-w-[6.5rem] rounded-lg border-slate-200 shadow-sm')}
         value={currentColor}
         onChange={(e) => onChange?.(e.target.value)}
         onPointerDown={stopInspectorPointerEvent}

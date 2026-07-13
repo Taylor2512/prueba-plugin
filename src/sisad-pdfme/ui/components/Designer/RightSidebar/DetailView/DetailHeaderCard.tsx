@@ -67,10 +67,10 @@ const DetailHeaderCard = ({
 }: DetailHeaderCardProps) => {
   const headerRef = React.useRef<HTMLDivElement | null>(null);
   const { mode: headerDensity } = useResponsiveDensity(headerRef, {
-    comfortable: 342,
-    compact: 276,
-    mini: 224,
-    initialWidth: 342,
+    comfortable: 336,
+    compact: 268,
+    mini: 216,
+    initialWidth: 336,
   });
   const tone = resolveSchemaTone(activeSchema, '#7c3aed');
   const headerSummary = buildDetailHeaderSummary(activeSchema, schemaConfig);
@@ -89,17 +89,17 @@ const DetailHeaderCard = ({
     : headerSummary.contextLabel || (positionLabel || headerSummary.positionLabel);
 
   const backBtn = onBack ? (
-    <Tooltip title={backTooltip} placement="right">
-      <button
-        type="button"
-        className={mergeClassNames(
-          `${DESIGNER_CLASSNAME}detail-header-back-btn`,
-          'inline-flex h-[1.375rem] w-[1.375rem] items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-none transition',
-          'hover:border-sky-200 hover:text-sky-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
-        )}
-        onClick={onBack}
-        aria-label={backTooltip}
-      >
+      <Tooltip title={backTooltip} placement="right">
+        <button
+          type="button"
+          className={mergeClassNames(
+            `${DESIGNER_CLASSNAME}detail-header-back-btn`,
+            'inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-200/80 bg-white text-slate-600 shadow-none transition',
+            'hover:border-sky-200 hover:bg-sky-50 hover:text-sky-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+          )}
+          onClick={onBack}
+          aria-label={backTooltip}
+        >
         <ArrowLeft strokeWidth={1.5} size={14} />
       </button>
     </Tooltip>
@@ -110,7 +110,10 @@ const DetailHeaderCard = ({
       {resolvedShowPosition && (
         <Tag
           color="default"
-          className={mergeClassNames(`${DESIGNER_CLASSNAME}detail-header-card-pos`, 'm-0 inline-flex h-[0.9rem] items-center rounded-full border-slate-200 px-[0.2rem] text-[7px] leading-none')}
+          className={mergeClassNames(
+            `${DESIGNER_CLASSNAME}detail-header-card-pos`,
+            'm-0 inline-flex h-[1rem] items-center rounded-full border-slate-200 bg-white px-1.5 text-[7px] leading-none text-slate-600',
+          )}
         >
           {positionLabel || headerSummary.positionLabel}
         </Tag>
@@ -130,7 +133,7 @@ const DetailHeaderCard = ({
       <SidebarSurfaceHeader
         className={mergeClassNames(
           `${DESIGNER_CLASSNAME}detail-header-card`,
-          'rounded-lg border-slate-200/60 bg-white/92 shadow-none',
+          'rounded-xl border-slate-200/60 bg-white/94 shadow-sm shadow-slate-900/[0.02] backdrop-blur-[2px]',
           className,
         )}
         compact
@@ -155,14 +158,14 @@ const DetailHeaderCard = ({
         trailing={trailingNode}
       />
       {headerDensity === 'comfortable' && (headerSummary.uid || headerSummary.ownerName) && (
-        <div className={mergeClassNames(`${DESIGNER_CLASSNAME}detail-header-tech-row`, 'mt-[0.125rem] flex items-center gap-1.5 border-t border-slate-100 px-2 pt-[0.125rem]')}>
+        <div className={mergeClassNames(`${DESIGNER_CLASSNAME}detail-header-tech-row`, 'mt-0.5 flex flex-wrap items-center gap-1 px-2 pb-0.5 pt-1')}>
           {headerSummary.uid && (
-            <span className="inline-flex items-center text-[6px] font-mono text-slate-400">
+            <span className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-1.5 py-[0.0625rem] font-mono text-[6px] text-slate-500">
               ID: {headerSummary.uid}
             </span>
           )}
           {headerSummary.ownerName && (
-            <span className="inline-flex items-center gap-1 text-[6px] font-medium text-slate-500">
+            <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-1.5 py-[0.0625rem] text-[6px] font-medium text-slate-500">
               <span className="h-1 w-1 rounded-full bg-slate-300" />
               {headerSummary.ownerName}
             </span>

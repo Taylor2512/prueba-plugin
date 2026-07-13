@@ -4,6 +4,7 @@ import type { PropPanel, PropPanelSchema, PropPanelWidgetProps } from '@sisad-pd
 import type { SignatureSchema, SignatureMode } from './types.js';
 import { DEFAULT_OPACITY, HEX_COLOR_PATTERN } from '../constants.js';
 import { createSchemaInspectorConfig } from '../schemaFamilies.js';
+import { markInspectorInteractive, stopInspectorPointerEvent } from '../../ui/components/Designer/RightSidebar/DetailView/inspectorInteractionGuards.js';
 import {
   getAvailableSignatureProviders,
   getSignatureProvider,
@@ -71,22 +72,30 @@ const buildModePatch = (schema: SignatureSchema, mode: SignatureMode, options: u
 
   return {
     signatureMode: mode,
+    signatureType: mode,
     signatureProvider: undefined,
     signatureProviderKey: mode === 'provider' ? nextProviderKey || undefined : null,
     signatureProviderConfig:
       mode === 'provider' && nextProvider
         ? sanitizeSignatureProviderConfig(nextProvider.key, nextProvider.defaultConfig || {}, providerSource)
         : {},
-    signatureMetadata: sanitizeSignatureMetadata({}, mode),
-    signatureCapabilities: createModeAwareCapabilities(mode),
-    signatureDisplay: createModeAwareDisplay(mode, undefined, nextProvider?.capabilities),
+    signatureMetadata: sanitizeSignatureMetadata(schema.signatureMetadata, mode),
+    signatureCapabilities: createModeAwareCapabilities(mode, schema.signatureCapabilities),
+    signatureDisplay: createModeAwareDisplay(mode, schema.signatureDisplay, nextProvider?.capabilities),
   };
+};
+
+const prepareInteractiveSignatureWidget = (rootElement: HTMLElement) => {
+  rootElement.style.width = '100%';
+  markInspectorInteractive(rootElement);
 };
 
 const SignatureModeWidget = ({ rootElement, activeSchema, changeSchemas, options }: PropPanelWidgetProps) => {
   const resolvedSchema = normalizeSignatureSchema(activeSchema as SignatureSchema);
   const ownerRole = String(getBlockedOwnerRole(activeSchema as SignatureSchema, options) || '').toLowerCase();
   const isBlocked = ownerRole === 'viewer' || ownerRole === 'reviewer';
+
+  prepareInteractiveSignatureWidget(rootElement);
 
   const wrapper = document.createElement('div');
   wrapper.style.display = 'grid';
@@ -100,6 +109,9 @@ const SignatureModeWidget = ({ rootElement, activeSchema, changeSchemas, options
   select.style.padding = '8px';
   select.value = resolvedSchema.signatureMode || 'draw';
   select.disabled = isBlocked;
+  select.addEventListener('pointerdown', stopInspectorPointerEvent);
+  select.addEventListener('mousedown', stopInspectorPointerEvent);
+  select.addEventListener('click', stopInspectorPointerEvent);
 
   SIGNATURE_MODE_OPTIONS.forEach((option) => {
     const node = document.createElement('option');
@@ -146,6 +158,7 @@ const SignatureProviderStatusWidget = ({ rootElement, activeSchema }: PropPanelW
   wrapper.style.border = `1px solid ${isPositive ? '#abefc6' : '#d0d5dd'}`;
   wrapper.textContent = `${badgeLabel} · ${providerStatus}`;
 
+  prepareInteractiveSignatureWidget(rootElement);
   rootElement.appendChild(wrapper);
 };
 
@@ -153,6 +166,8 @@ const SignatureProviderWidget = ({ rootElement, activeSchema, changeSchemas, opt
   const resolvedSchema = normalizeSignatureSchema(activeSchema as SignatureSchema);
   const providerSource = getProviderSourceFromOptions(options);
   const providers = getAvailableSignatureProviders(providerSource);
+
+  prepareInteractiveSignatureWidget(rootElement);
 
   const wrapper = document.createElement('div');
   wrapper.style.display = 'grid';
@@ -211,6 +226,8 @@ const SignatureProviderConfigWidget = ({ rootElement, activeSchema, changeSchema
   const providerSource = getProviderSourceFromOptions(options);
   const provider = getSignatureProvider(resolvedSchema.signatureProviderKey, providerSource);
 
+  prepareInteractiveSignatureWidget(rootElement);
+
   const wrapper = document.createElement('div');
   wrapper.style.display = 'grid';
   wrapper.style.gap = '8px';
@@ -257,6 +274,9 @@ const SignatureProviderConfigWidget = ({ rootElement, activeSchema, changeSchema
   button.style.borderRadius = '8px';
   button.style.background = '#ffffff';
   button.style.cursor = provider ? 'pointer' : 'not-allowed';
+  button.addEventListener('pointerdown', stopInspectorPointerEvent);
+  button.addEventListener('mousedown', stopInspectorPointerEvent);
+  button.addEventListener('click', stopInspectorPointerEvent);
 
   button.onclick = () => {
     if (!provider) return;
@@ -271,6 +291,10 @@ const SignatureProviderConfigWidget = ({ rootElement, activeSchema, changeSchema
       justifyContent: 'center',
       zIndex: '9999',
     });
+    markInspectorInteractive(overlay);
+    overlay.addEventListener('pointerdown', stopInspectorPointerEvent);
+    overlay.addEventListener('mousedown', stopInspectorPointerEvent);
+    overlay.addEventListener('click', stopInspectorPointerEvent);
 
     const panel = document.createElement('div');
     Object.assign(panel.style, {
@@ -283,6 +307,10 @@ const SignatureProviderConfigWidget = ({ rootElement, activeSchema, changeSchema
       display: 'grid',
       gap: '12px',
     });
+    markInspectorInteractive(panel);
+    panel.addEventListener('pointerdown', stopInspectorPointerEvent);
+    panel.addEventListener('mousedown', stopInspectorPointerEvent);
+    panel.addEventListener('click', stopInspectorPointerEvent);
 
     const header = document.createElement('div');
     header.style.display = 'grid';
@@ -462,12 +490,14 @@ export const propPanel: PropPanel<SignatureSchema> = {
         widget: 'SignatureProviderStatusWidget',
         bind: false,
         span: 24,
+        hidden: !isProviderMode,
       },
       signatureProviderDisplay: {
         title: 'Visual del proveedor',
         type: 'object',
         widget: 'card',
         column: 2,
+        hidden: !isProviderMode,
         properties: {
           label: {
             title: 'Etiqueta',
@@ -661,6 +691,7 @@ export const propPanel: PropPanel<SignatureSchema> = {
     opacity: DEFAULT_OPACITY,
     placeholderText: 'Firmar aqui',
     signatureMode: 'draw',
+    signatureType: 'draw',
     signatureProviderKey: undefined,
     signatureProviderConfig: {},
     signatureProviderStatus: 'pending',

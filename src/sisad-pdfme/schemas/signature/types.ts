@@ -188,6 +188,9 @@ export const resolveLegacySignatureMode = (schema: Partial<SignatureSchema> | un
   const explicitMode = schema?.signatureMode;
   if (isSignatureMode(explicitMode)) return explicitMode;
 
+  const legacyType = schema?.signatureType;
+  if (isSignatureMode(legacyType)) return legacyType;
+
   const providerKey = normalizeText(schema?.signatureProviderKey || schema?.signatureProvider);
   if (!providerKey) return 'draw';
   if (LEGACY_PROVIDER_MODE_MAP[providerKey]) return LEGACY_PROVIDER_MODE_MAP[providerKey];
@@ -196,11 +199,12 @@ export const resolveLegacySignatureMode = (schema: Partial<SignatureSchema> | un
 
 export const resolveSignatureProviderKey = (schema: Partial<SignatureSchema> | undefined, mode?: SignatureMode) => {
   const resolvedMode = mode || resolveLegacySignatureMode(schema);
+  if (resolvedMode !== 'provider') return null;
+
   const explicitProviderKey = normalizeText(schema?.signatureProviderKey);
   const legacyProvider = normalizeText(schema?.signatureProvider);
   const providerKey = explicitProviderKey || legacyProvider;
-  if (!providerKey) return resolvedMode === 'provider' ? undefined : null;
-  if (resolvedMode !== 'provider' && LEGACY_PROVIDER_MODE_MAP[providerKey]) return null;
+  if (!providerKey) return undefined;
   return providerKey;
 };
 
@@ -264,8 +268,13 @@ export const createModeAwareCapabilities = (
   mode: SignatureMode,
   current?: Partial<SignatureCapabilities>,
 ): SignatureCapabilities => ({
-  ...MODE_CAPABILITIES[mode],
-  ...(current || {}),
+  allowDraw: MODE_CAPABILITIES[mode].allowDraw,
+  allowUploadImage: MODE_CAPABILITIES[mode].allowUploadImage,
+  allowP12: MODE_CAPABILITIES[mode].allowP12,
+  allowExternalProvider: MODE_CAPABILITIES[mode].allowExternalProvider,
+  allowClear: current?.allowClear ?? MODE_CAPABILITIES[mode].allowClear,
+  allowReplace: current?.allowReplace ?? MODE_CAPABILITIES[mode].allowReplace,
+  allowPreview: current?.allowPreview ?? MODE_CAPABILITIES[mode].allowPreview,
 });
 
 export const createModeAwareDisplay = (
@@ -310,14 +319,20 @@ export const normalizeSignatureSchema = (
   const baseSchema = (schema || {}) as SignatureSchema;
   const signatureMode = resolveLegacySignatureMode(baseSchema);
   const signatureProviderKey = resolveSignatureProviderKey(baseSchema, signatureMode);
+  const signatureProviderConfig = signatureMode === 'provider' ? asRecord(baseSchema.signatureProviderConfig) : {};
+  const signatureProviderStatus =
+    signatureMode === 'provider' ? normalizeSignatureProviderStatus(baseSchema.signatureProviderStatus) : undefined;
+  const signatureProviderDisplay =
+    signatureMode === 'provider' ? normalizeSignatureProviderDisplay(baseSchema.signatureProviderDisplay) : undefined;
   return {
     ...baseSchema,
     signatureMode,
-    signatureType: baseSchema.signatureType || signatureMode,
+    signatureType: signatureMode,
+    signatureProvider: signatureMode === 'provider' ? normalizeText(baseSchema.signatureProvider) || undefined : undefined,
     signatureProviderKey,
-    signatureProviderConfig: asRecord(baseSchema.signatureProviderConfig),
-    signatureProviderStatus: normalizeSignatureProviderStatus(baseSchema.signatureProviderStatus),
-    signatureProviderDisplay: normalizeSignatureProviderDisplay(baseSchema.signatureProviderDisplay),
+    signatureProviderConfig,
+    signatureProviderStatus,
+    signatureProviderDisplay,
     signatureCapabilities: createModeAwareCapabilities(signatureMode, baseSchema.signatureCapabilities),
     signatureDisplay: createModeAwareDisplay(signatureMode, baseSchema.signatureDisplay, providerSupport),
     signatureMetadata: sanitizeSignatureMetadata(baseSchema.signatureMetadata, signatureMode),

@@ -15,6 +15,7 @@ import {
   DESIGNER_INTERACTIVE_CONTROL_SELECTORS,
   buildSelectorList,
 } from './interactionTargetSelectors.js';
+import { isDesignerInteractionExcluded } from './interactionExclusions.js';
 import { isSchemaRootElement } from './objectGuards.js';
 import {
   resolveInteractionTarget,
@@ -39,7 +40,7 @@ export const isSchemaRootTarget = (element: Element | null | undefined): boolean
 
 /** In-schema interactive control (group "+" button, toggle, etc.). */
 export const isDesignerInteractiveTarget = (target: EventTarget | null | undefined): boolean =>
-  matchesSelector(target, INTERACTIVE_CONTROL_SELECTOR);
+  matchesSelector(target, INTERACTIVE_CONTROL_SELECTOR) || isDesignerInteractionExcluded(target);
 
 /** Internal option of a checkbox/radio group (carries data-option-id). */
 export const isOptionInternalTarget = (target: EventTarget | null | undefined): boolean =>

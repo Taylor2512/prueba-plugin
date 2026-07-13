@@ -18,14 +18,40 @@ const makeSchema = (overrides: Partial<SchemaForUI> & { id: string }): SchemaFor
     ...overrides,
   }) as unknown as SchemaForUI;
 
+type AssignmentSchemaOverrides = Partial<SchemaForUI> & {
+  id: string;
+  schemaUid?: string;
+  ownerRecipientId?: string;
+  ownerRecipientIds?: string[] | string;
+  recipientId?: string;
+  readOnly?: boolean;
+  locked?: boolean;
+  objectLocked?: boolean;
+  state?: string;
+};
+
+type AssignmentSchemaView = SchemaForUI & {
+  ownerRecipientId?: string;
+  ownerRecipientIds?: string[];
+  ownerColor?: string | null;
+  userColor?: string | null;
+  ownerMode?: string | null;
+  readOnly?: boolean;
+  locked?: boolean;
+  objectLocked?: boolean;
+};
+
+const makeAssignmentSchema = (overrides: AssignmentSchemaOverrides): SchemaForUI =>
+  makeSchema(overrides);
+
 const RECIPIENT = { id: 'recipient-2', name: 'Avalista', color: '#D946EF' };
 
 describe('schemaAssignmentService', () => {
   describe('resolveSchemaUid', () => {
     it('prefers schemaUid, then id, then name', () => {
-      expect(resolveSchemaUid(makeSchema({ id: 'a', schemaUid: 'uid-1' } as any))).toBe('uid-1');
+      expect(resolveSchemaUid(makeAssignmentSchema({ id: 'a', schemaUid: 'uid-1' }))).toBe('uid-1');
       expect(resolveSchemaUid(makeSchema({ id: 'b' }))).toBe('b');
-      expect(resolveSchemaUid(makeSchema({ id: '', name: 'field-c' } as any))).toBe('field-c');
+      expect(resolveSchemaUid(makeAssignmentSchema({ id: '', name: 'field-c' }))).toBe('field-c');
     });
   });
 
@@ -58,21 +84,21 @@ describe('schemaAssignmentService', () => {
     it('reassigns owner + color of the targeted schema while preserving lock/readOnly/objectLocked', () => {
       const pages: SchemaForUI[][] = [
         [
-          makeSchema({
+          makeAssignmentSchema({
             id: 'contract_name',
             ownerRecipientId: 'recipient-1',
             ownerColor: '#2563EB',
             readOnly: true,
             locked: true,
             objectLocked: true,
-          } as any),
-          makeSchema({ id: 'contract_date', ownerRecipientId: 'recipient-1' } as any),
+          }),
+          makeAssignmentSchema({ id: 'contract_date', ownerRecipientId: 'recipient-1' }),
         ],
       ];
 
       const result = assignSchemaOwner({ pages, schemaUids: ['contract_name'], recipient: RECIPIENT });
 
-      const changed = result.pages[0][0] as any;
+      const changed = result.pages[0][0] as AssignmentSchemaView;
       expect(result.changedSchemaUids).toEqual(['contract_name']);
       expect(changed.ownerRecipientId).toBe('recipient-2');
       expect(changed.ownerRecipientIds).toEqual(['recipient-2']);
@@ -85,11 +111,11 @@ describe('schemaAssignmentService', () => {
       expect(changed.objectLocked).toBe(true);
 
       // Los schemas no seleccionados no se tocan.
-      expect((result.pages[0][1] as any).ownerRecipientId).toBe('recipient-1');
+      expect((result.pages[0][1] as AssignmentSchemaView).ownerRecipientId).toBe('recipient-1');
     });
 
     it('is a no-op when the recipient id is empty', () => {
-      const pages: SchemaForUI[][] = [[makeSchema({ id: 'a', ownerRecipientId: 'recipient-1' } as any)]];
+      const pages: SchemaForUI[][] = [[makeAssignmentSchema({ id: 'a', ownerRecipientId: 'recipient-1' })]];
       const result = assignSchemaOwner({ pages, schemaUids: ['a'], recipient: { id: '  ' } });
       expect(result.changedSchemaUids).toEqual([]);
       expect(result.pages).toBe(pages);
@@ -131,23 +157,23 @@ describe('schemaAssignmentService', () => {
   describe('resolveSelectionOwner', () => {
     it('returns the shared owner when every schema has the same recipient', () => {
       const schemas = [
-        makeSchema({ id: 'a', ownerRecipientId: 'recipient-1' } as any),
-        makeSchema({ id: 'b', ownerRecipientId: 'recipient-1' } as any),
+        makeAssignmentSchema({ id: 'a', ownerRecipientId: 'recipient-1' }),
+        makeAssignmentSchema({ id: 'b', ownerRecipientId: 'recipient-1' }),
       ];
       expect(resolveSelectionOwner(schemas)).toEqual({ recipientId: 'recipient-1', mixed: false });
     });
 
     it('flags mixed ownership when recipients differ', () => {
       const schemas = [
-        makeSchema({ id: 'a', ownerRecipientId: 'recipient-1' } as any),
-        makeSchema({ id: 'b', ownerRecipientId: 'recipient-2' } as any),
+        makeAssignmentSchema({ id: 'a', ownerRecipientId: 'recipient-1' }),
+        makeAssignmentSchema({ id: 'b', ownerRecipientId: 'recipient-2' }),
       ];
       expect(resolveSelectionOwner(schemas)).toEqual({ recipientId: null, mixed: true });
     });
 
     it('flags mixed ownership when some schemas are unassigned', () => {
       const schemas = [
-        makeSchema({ id: 'a', ownerRecipientId: 'recipient-1' } as any),
+        makeAssignmentSchema({ id: 'a', ownerRecipientId: 'recipient-1' }),
         makeSchema({ id: 'b' }),
       ];
       expect(resolveSelectionOwner(schemas)).toEqual({ recipientId: null, mixed: true });

@@ -18,6 +18,8 @@ import type { SchemaForUI } from '@sisad-pdfme/common';
 import type { CollaborationRecipientOption } from '../../../../collaborationContext.js';
 import { markInspectorInteractive, stopInspectorPointerEvent } from '../DetailView/inspectorInteractionGuards.js';
 import { resolveSchemaUid } from '../../shared/schemaAssignmentService.js';
+import { stopDesignerControlEvent } from '../../shared/interactionExclusions.js';
+import { resetDesignerTransientInteractionState } from '../../shared/designerInteractionReset.js';
 
 /**
  * Props del modal de reasignación.
@@ -34,6 +36,7 @@ export type SchemaAssignmentDialogProps = {
   selectedCount?: number;
   onClose: () => void;
   onConfirm: (_recipientId: string) => void;
+  onAfterClose?: () => void;
 };
 
 const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
@@ -56,6 +59,7 @@ const SchemaAssignmentDialog = ({
   selectedCount,
   onClose,
   onConfirm,
+  onAfterClose,
 }: SchemaAssignmentDialogProps) => {
   const [query, setQuery] = useState('');
   const [nextRecipientId, setNextRecipientId] = useState<string | null>(null);
@@ -114,11 +118,20 @@ const SchemaAssignmentDialog = ({
   return (
     <Modal
       open={open}
-      onCancel={onClose}
+      onCancel={(event) => {
+        stopDesignerControlEvent(event);
+        onClose();
+      }}
       title="Reasignar responsable"
       width={460}
       centered
       destroyOnHidden
+      afterOpenChange={(visible) => {
+        if (!visible) {
+          resetDesignerTransientInteractionState();
+          onAfterClose?.();
+        }
+      }}
       okText={alreadyAssigned ? 'Ya asignado' : 'Reasignar'}
       cancelText="Cancelar"
       okButtonProps={{
@@ -126,7 +139,22 @@ const SchemaAssignmentDialog = ({
         'data-testid': 'schema-assignment-confirm',
       }}
       cancelButtonProps={{ 'data-testid': 'schema-assignment-cancel' }}
-      onOk={handleConfirm}
+      onOk={(event) => {
+        stopDesignerControlEvent(event);
+        handleConfirm();
+      }}
+      modalRender={(node) => (
+        <div
+          data-designer-modal="true"
+          data-interaction-exclusion="true"
+          onPointerDownCapture={stopDesignerControlEvent}
+          onMouseDownCapture={stopDesignerControlEvent}
+          onClickCapture={stopDesignerControlEvent}
+          onDoubleClickCapture={stopDesignerControlEvent}
+        >
+          {node}
+        </div>
+      )}
       rootClassName="sisad-pdfme-schema-assignment-dialog"
     >
       <div
