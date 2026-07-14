@@ -2,10 +2,3 @@
 @tailwind components;
 @tailwind utilities;
 
-/**
- * Tailwind base stylesheet.
- *
- * Mantener preflight desactivado en tailwind.config.js.
- * El bridge sisad-tailwind-bridge.css conserva classNames existentes
- * y migra progresivamente estilos a @apply sin romper comportamiento.
- */
