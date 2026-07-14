@@ -47,3 +47,19 @@ Detenerse si para cumplir el objetivo hay que tocar Moveable/Selecto, snapshot, 
 - Resumen de archivos modificados.
 - Confirmación de límites respetados.
 - Resultado de build/lint.
+
+## Cierre (2026-07-14, Claude)
+
+Implementación previamente commiteada (ed26f5f): `optionIndicator.ts` como fuente
+visual central y `renderOptionGroupUi` unificando designer/form/viewer sobre los
+mismos marcadores runtime (sin DOM duplicado por modo).
+
+Ajuste de esta sesión: la unificación había perdido el marcador raíz estable;
+se restauró en `applyOptionGroupRootRuntime` (`data-checkbox-group-root` /
+`data-radio-group-root`), contrato DOM usado por tests y hosts.
+
+Validación ejecutada:
+- [x] `npm run build` → exit 0; `npm run lint` → exit 0.
+- [x] `checkbox-group-docusign-behavior.spec.ts` → 2 passed (grupo con contenedor,
+      opciones con ids estables, affordance de agregar opción).
+- [x] Límites respetados: sin tocar Moveable/Selecto/snapshot/generator/geometría.

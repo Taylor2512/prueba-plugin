@@ -53,3 +53,17 @@ Reducir densidad visual del `RightSidebar` DetailView sin cambiar el contrato fu
 ## Entrega final
 - Resumen corto de archivos modificados
 - Confirmación de build/lint
+
+## Cierre (2026-07-14, Claude)
+
+Implementación previamente commiteada: DetailHeaderCard con densidades
+comfortable/compact/mini (`data-detail-header-density`), cards compactas y
+widgets aligerados (p. ej. botón "Agregar" con aria-label completo).
+
+Validación ejecutada:
+- [x] `npm run build` → exit 0; `npm run lint` → exit 0.
+- [x] Specs e2e del inspector en verde: detail-view-inspector, detail-view-alignment,
+      detailview-switches, detail-view-options-listview, detail-view-collaboration.
+- [x] Se actualizaron specs desactualizados al contrato compacto (secciones expandidas
+      por defecto; labels compactados con aria-label completo; trigger "Reasignar").
+- [x] Selección e interacción del canvas intactas (specs pasan seleccionando schemas).

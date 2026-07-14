@@ -1,45 +1,58 @@
-# CONTEXT_BUDGET
+# Context Budget
 
-## Presupuesto estándar
+## Objetivo
 
-```txt
-1 task-card
-1 contexto
-1 regla principal
-1 playbook
-2-3 comandos rg
-8 archivos abiertos
-5 archivos modificados
-1 proceso por pasada
-```
+Evitar que los agentes carguen demasiado contexto y reabran tareas completadas.
 
-## Presupuesto extendido
-
-Solo para auditorías explícitas pedidas por el usuario:
+## Carga base obligatoria por sesión
 
 ```txt
-1 auditoría
-máximo 20 archivos inspeccionados
-máximo 0-3 archivos modificados
-reporte obligatorio
-sin cambios de lógica
+AGENTS.md o CLAUDE.md según proveedor
+ai/start/START.md
+ai/router/ROUTER.md
+ai/router/TASK_INTAKE.md
+ai/memory/project-memory.md
+ai/memory/pending-checklist.md
+ai/memory/known-risks.md
+ai/memory/decisions.md
 ```
 
-## Criterio de parada
+## Carga por tarea
 
-Detenerse si:
+Cargar solo:
 
-- se requiere tocar otro dominio;
-- se exceden 5 archivos modificados;
-- se necesita `Moveable`, `Selecto`, snapshot o generator sin task-card;
-- no hay evidencia suficiente;
-- un archivo buscado no existe.
+```txt
+ai/task-cards/active/<task>.md
+ai/playbooks/<playbook-del-dominio>.md
+ai/rules/<reglas-del-dominio>.md
+ai/context/<contexto-del-dominio>.md
+```
 
-## Anti-token
+## Carga permitida como memoria histórica
 
-No cargar:
+```txt
+ai/task-cards/completed/completed-summary.md
+ai/memory/completed-checklist.md
+```
 
-- todo `codigo-sisad-pdfme.txt`;
-- todos los markdown;
-- todos los CSS completos si solo se toca un selector;
-- reportes históricos salvo evidencia necesaria.
+## No cargar por defecto
+
+```txt
+ai/task-cards/completed/TASK-*.md
+ai/archive/**
+reports/**
+dist/**
+test-results/**
+.tailwind-migration-backups/**
+unificados/**
+eslint_output.json
+tsconfig.tsbuildinfo
+```
+
+## Presupuesto por pase
+
+- Máximo 1 task-card activa.
+- Máximo 2 consultas globales `rg` antes de abrir archivos.
+- Máximo 8 archivos fuente abiertos.
+- Máximo 5 archivos modificados.
+- No modificar `pdf-lib`, `generator`, `Moveable`, `Selecto`, `snapshotAdapter` o geometría sin task-card explícita.

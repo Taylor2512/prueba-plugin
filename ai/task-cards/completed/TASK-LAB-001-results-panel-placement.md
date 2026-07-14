@@ -33,3 +33,15 @@ Mover `ResultsPanel` fuera de la zona de canvas/zoom y compactar su presentació
 ## Entrega final
 - Resumen corto de archivos modificados
 - Validación ejecutada
+
+## Cierre (2026-07-14, Claude)
+
+Implementación previamente commiteada (4c40ca1): ResultsPanel en variante drawer
+como barra inferior compacta (rail siempre visible, panel `max-h min(280px,36dvh)`
+con scroll propio), sin cubrir el canvas cuando está cerrada.
+
+Validación ejecutada:
+- [x] `npm run lint` → exit 0.
+- [x] `npm run build` → exit 0.
+- [x] El layout del lab no rompe overflow horizontal (cubierto por
+      sidebar-collapse-parity.spec, que valida document.scrollWidth).
