@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useRef, useState } from 'react';
 import type {
   SidebarProps,
   DesignerComponentBridge,
@@ -13,11 +13,13 @@ import { SidebarFrame } from './layout.js';
 import DocumentsRail, { DocumentsRailProps } from './DocumentsRail.js';
 import CommentsRail, { CommentsRailProps } from './CommentsRail.js';
 import { mergeClassNames } from '../shared/className.js';
+import { asRecord } from '../shared/objectGuards.js';
 import { SidebarRail, type SidebarRailItem } from '../shared/SidebarRail.js';
 import { SidebarCollapseHandle } from '../shared/SidebarCollapseHandle.js';
 import type { SelectionCommandSet } from '../shared/selectionCommands.js';
 import { useResponsiveDensity } from '../shared/useResponsiveDensity.js';
 import { Layers, SlidersHorizontal, FileText, MessageSquareText } from 'lucide-react';
+import { OptionsContext } from '../../../contexts.js';
 import {
   resolveRightSidebarContextHeader,
   type RightSidebarContextHeader,
@@ -226,6 +228,12 @@ const sidebarModes = ['fields', 'detail', 'comments', 'docs'] as const;
 const Sidebar = (props: RightSidebarProps) => {
   const { sidebarOpen, activeElements, schemas } = props;
   const { autoFocusDetail, onViewModeChange } = props;
+  const options = useContext(OptionsContext);
+  const optionsRecord = asRecord(options);
+  const visibility = asRecord(optionsRecord?.visibility);
+  const rightSidebarVisibility = asRecord(asRecord(visibility?.sidebars)?.right);
+  const rightSidebarPanelsVisibility = asRecord(rightSidebarVisibility?.panels);
+  if (rightSidebarVisibility?.visible === false) return null;
   const detached = Boolean(props.detached);
   const sidebarRootRef = useRef<HTMLElement | null>(null);
   const { mode: sidebarDensityMode } = useResponsiveDensity(sidebarRootRef, {
@@ -263,11 +271,17 @@ const Sidebar = (props: RightSidebarProps) => {
   const activeSchemaCount = activeSchemas.length;
   const [internalViewMode, setInternalViewMode] = useState<'fields' | 'detail' | 'docs' | 'comments'>('fields');
   const requestedViewMode = props.viewMode || 'auto';
-  const showDocumentsRail = props.showDocumentsRail !== false && (Boolean(props.pages) || Boolean(props.documents));
-  const showCommentsRail = Boolean(props.comments);
+  const showDocumentsRail =
+    props.showDocumentsRail !== false &&
+    (Boolean(props.pages) || Boolean(props.documents)) &&
+    rightSidebarPanelsVisibility?.documents !== false;
+  const showCommentsRail = Boolean(props.comments) && rightSidebarPanelsVisibility?.comments !== false;
+  const showTabs = rightSidebarVisibility?.tabs !== false;
+  const showContextHeader = rightSidebarVisibility?.contextHeader !== false;
+  const showCollapseButton = rightSidebarVisibility?.collapseButton !== false;
 
   /** Presentación responsive final del sidebar. */
-  const actualPresentation = useMemo<DesignerSidebarPresentation>(() => {
+  const actualPresentation = useMemo<'overlay' | 'docked'>(() => {
     if (props.presentation === 'overlay') return 'overlay';
     if (props.presentation === 'docked') return 'docked';
     return viewportWidth <= responsiveBreakpoint ? 'overlay' : 'docked';
@@ -280,8 +294,19 @@ const Sidebar = (props: RightSidebarProps) => {
     return viewportWidth <= responsiveBreakpoint + 140 ? 'stacked' : 'split';
   }, [props.documentsRailMode, responsiveBreakpoint, viewportWidth]);
 
-  const resolvedViewMode: 'fields' | 'detail' | 'docs' | 'comments' =
-    requestedViewMode !== 'auto' ? requestedViewMode : internalViewMode;
+  const visibleModes = useMemo(() => (['fields', 'detail', 'comments', 'docs'] as const).filter((mode) => {
+    if (mode === 'docs') return showDocumentsRail;
+    if (mode === 'comments') return showCommentsRail;
+    if (mode === 'fields') return rightSidebarPanelsVisibility?.fields !== false;
+    if (mode === 'detail') return rightSidebarPanelsVisibility?.detail !== false;
+    return true;
+  }), [rightSidebarPanelsVisibility, showCommentsRail, showDocumentsRail]);
+  const fallbackViewMode = visibleModes[0] || 'fields';
+  if (visibleModes.length === 0) return null;
+  const resolvedViewMode: 'fields' | 'detail' | 'docs' | 'comments' = useMemo(() => {
+    const requested = requestedViewMode !== 'auto' ? requestedViewMode : internalViewMode;
+    return visibleModes.includes(requested) ? requested : fallbackViewMode;
+  }, [fallbackViewMode, internalViewMode, requestedViewMode, visibleModes]);
   const pagesBridge = props.pages || props.documents;
   const docsBridge = props.documents;
   const panelIdByMode = PANEL_ID_BY_MODE;
@@ -302,22 +327,28 @@ const Sidebar = (props: RightSidebarProps) => {
   useEffect(() => {
     if (requestedViewMode !== 'auto') return;
 
-    if (activeSchemaCount === 1 && autoFocusDetail && internalViewMode !== 'detail') {
+    if (!visibleModes.includes(internalViewMode)) {
+      setInternalViewMode(fallbackViewMode);
+      onViewModeChange?.(fallbackViewMode);
+      return;
+    }
+
+    if (activeSchemaCount === 1 && autoFocusDetail && internalViewMode !== 'detail' && visibleModes.includes('detail')) {
       setInternalViewMode('detail');
       onViewModeChange?.('detail');
       return;
     }
 
     if (activeSchemaCount !== 1 && internalViewMode === 'detail') {
-      setInternalViewMode('fields');
-      onViewModeChange?.('fields');
+      setInternalViewMode(fallbackViewMode);
+      onViewModeChange?.(fallbackViewMode);
     }
 
     if (!showCommentsRail && internalViewMode === 'comments') {
-      setInternalViewMode('fields');
-      onViewModeChange?.('fields');
+      setInternalViewMode(fallbackViewMode);
+      onViewModeChange?.(fallbackViewMode);
     }
-  }, [requestedViewMode, activeSchemaCount, autoFocusDetail, internalViewMode, onViewModeChange, showCommentsRail]);
+  }, [requestedViewMode, activeSchemaCount, autoFocusDetail, fallbackViewMode, internalViewMode, onViewModeChange, showCommentsRail, visibleModes]);
 
   /** Modo semántico final del panel renderizado. */
   const resolvedPanelMode: 'list' | 'detail' | 'bulk' | 'docs' | 'comments' =
@@ -333,10 +364,12 @@ const Sidebar = (props: RightSidebarProps) => {
 
   const shouldRenderDocumentsRail =
     resolvedViewMode === 'docs' && Boolean(docsBridge || pagesBridge);
-  const contextHeaderNode = resolveRightSidebarContextHeader(props.contextHeader, {
-    mode: resolvedPanelMode,
-    activeCount: activeSchemaCount,
-  });
+  const contextHeaderNode = showContextHeader
+    ? resolveRightSidebarContextHeader(props.contextHeader, {
+        mode: resolvedPanelMode,
+        activeCount: activeSchemaCount,
+      })
+    : null;
 
   const documentsRailClassName = mergeClassNames(
     documentsRailMode === 'stacked' && 'max-h-[40vh] min-h-0 overflow-y-auto',
@@ -364,6 +397,7 @@ const Sidebar = (props: RightSidebarProps) => {
   ) : null;
 
   const handleModeChange = (mode: 'fields' | 'detail' | 'docs' | 'comments') => {
+    if (!visibleModes.includes(mode)) return;
     if (requestedViewMode === 'auto') {
       setInternalViewMode(mode);
     }
@@ -375,33 +409,28 @@ const Sidebar = (props: RightSidebarProps) => {
   const handlePanelSwitcherKeyDown = (event: React.KeyboardEvent<HTMLDivElement>) => {
     if (requestedViewMode !== 'auto') return;
 
-    const currentIndex = sidebarModes.indexOf(resolvedViewMode);
+    const currentIndex = visibleModes.indexOf(resolvedViewMode);
     if (currentIndex < 0) return;
 
     let nextIndex = currentIndex;
     if (event.key === 'ArrowRight' || event.key === 'ArrowDown') {
-      nextIndex = (currentIndex + 1) % sidebarModes.length;
+      nextIndex = (currentIndex + 1) % visibleModes.length;
     } else if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') {
-      nextIndex = (currentIndex - 1 + sidebarModes.length) % sidebarModes.length;
+      nextIndex = (currentIndex - 1 + visibleModes.length) % visibleModes.length;
     } else if (event.key === 'Home') {
       nextIndex = 0;
     } else if (event.key === 'End') {
-      nextIndex = sidebarModes.length - 1;
+      nextIndex = visibleModes.length - 1;
     } else {
       return;
     }
 
     event.preventDefault();
-    const nextMode = sidebarModes[nextIndex];
+    const nextMode = visibleModes[nextIndex];
     handleModeChange(nextMode);
   };
 
-  const collapsedRailItems: SidebarRailItem[] = (['fields', 'detail', 'comments', 'docs'] as const)
-    .filter((mode) => {
-      if (mode === 'docs') return showDocumentsRail;
-      if (mode === 'comments') return showCommentsRail;
-      return true;
-    })
+  const collapsedRailItems: SidebarRailItem[] = visibleModes
     .map((mode) => {
       const modeMeta = effectiveSidebarModeMeta[mode];
       return {
@@ -508,7 +537,7 @@ const Sidebar = (props: RightSidebarProps) => {
       data-right-sidebar-expanded={sidebarOpen ? 'true' : 'false'}
       data-panel-mode={resolvedPanelMode}
       data-sidebar-mode={resolvedPanelMode}>
-      {sidebarIsCollapsed ? collapsedRailNode : null}
+      {sidebarIsCollapsed ? (showTabs ? collapsedRailNode : null) : null}
       {!sidebarIsCollapsed ? (
         <div
           className={mergeClassNames(
@@ -521,9 +550,9 @@ const Sidebar = (props: RightSidebarProps) => {
           data-sidebar-collapsed={sidebarIsCollapsed ? 'true' : 'false'}
           data-docs-mode={documentsRailMode}
           data-panel-mode={resolvedPanelMode}>
-          {props.showDocumentsAsTab !== false || contextHeaderNode ? (
+          {showTabs || contextHeaderNode ? (
             <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-wrap flex shrink-0 items-center justify-between gap-1 border-b border-slate-200/70 px-1.5 py-1`}>
-              {props.showDocumentsAsTab !== false ? (
+              {showTabs ? (
                 <div
                   className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher flex flex-wrap items-center gap-0.5`}
                   role="tablist"
@@ -532,9 +561,7 @@ const Sidebar = (props: RightSidebarProps) => {
                   aria-orientation="horizontal"
                   onKeyDown={handlePanelSwitcherKeyDown}
                 >
-                  {(['fields', 'detail', 'comments', 'docs'] as const).map((mode) => {
-                    if (mode === 'docs' && !showDocumentsRail) return null;
-                    if (mode === 'comments' && !showCommentsRail) return null;
+                  {visibleModes.map((mode) => {
                     const disabled = mode === 'detail' && activeSchemaCount !== 1;
                     const isActive = resolvedViewMode === mode;
                     const modeMeta = effectiveSidebarModeMeta[mode];
@@ -565,18 +592,20 @@ const Sidebar = (props: RightSidebarProps) => {
               ) : null}
               <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-extra flex items-center gap-2`}>
                 {contextHeaderNode}
-                <div className="ml-1 flex items-center border-l border-slate-200/60 pl-2">
-                  <SidebarCollapseHandle
-                    side="right"
-                    expanded={true}
-                    onToggle={() => props.setSidebarOpen?.(false)}
-                    presentation={actualPresentation}
-                    density="mini"
-                    labelExpanded="Ocultar panel derecho"
-                    labelCollapsed="Mostrar panel derecho"
-                    className="!static !m-0 !translate-x-0"
-                  />
-                </div>
+                {showCollapseButton ? (
+                  <div className="ml-1 flex items-center border-l border-slate-200/60 pl-2">
+                    <SidebarCollapseHandle
+                      side="right"
+                      expanded={true}
+                      onToggle={() => props.setSidebarOpen?.(false)}
+                      presentation={actualPresentation}
+                      density="mini"
+                      labelExpanded="Ocultar panel derecho"
+                      labelCollapsed="Mostrar panel derecho"
+                      className="!static !m-0 !translate-x-0"
+                    />
+                  </div>
+                ) : null}
               </div>
             </div>
           ) : null}
@@ -584,8 +613,8 @@ const Sidebar = (props: RightSidebarProps) => {
             <SidebarFrame
               className={`${DESIGNER_CLASSNAME}right-sidebar-frame`}
               role="tabpanel"
-              aria-labelledby={props.showDocumentsAsTab !== false ? tabIdByMode[resolvedPanelMode] : undefined}
-              aria-label={props.showDocumentsAsTab !== false ? undefined : effectiveSidebarModeMeta[resolvedPanelMode].title}
+              aria-labelledby={showTabs ? tabIdByMode[resolvedPanelMode] : undefined}
+              aria-label={showTabs ? undefined : effectiveSidebarModeMeta[resolvedPanelMode].title}
               id={panelIdByMode[resolvedPanelMode]}
             >
               <div className={`${DESIGNER_CLASSNAME}right-sidebar-layout-grid grid min-h-0 flex-1 gap-1.5`}>

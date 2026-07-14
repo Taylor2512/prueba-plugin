@@ -877,6 +877,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     const nextRecipientColor = String(recipient?.color || '').trim() || null;
     const beforeSchemas = cloneDeep(getPageSchemas(context));
     const activeSchemaIds = new Set(activeIds);
+    const actorId = String(context.collaborationContext?.actorId || '').trim();
     const afterSchemas = beforeSchemas.map((schema) =>
       schemaMatchesSelectionIdentity(schema, activeSchemaIds)
         ? {
@@ -886,8 +887,10 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
             recipientId: nextRecipientId,
             ownerRecipientName: nextRecipientName,
             ownerColor: nextRecipientColor,
+            recipientColor: nextRecipientColor,
             userColor: nextRecipientColor,
             ownerMode: 'single',
+            ...(actorId ? { lastModifiedBy: actorId } : {}),
           }
         : schema,
     );

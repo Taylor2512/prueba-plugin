@@ -1,0 +1,26 @@
+import type { SisadPdfmeRecipient, SisadPdfmeRecipientsAdapter } from '../config/SisadPdfmeConfig.js';
+
+export type { SisadPdfmeRecipient, SisadPdfmeRecipientsAdapter };
+
+export const createRecipientsAdapter = <THostUser = unknown>(): SisadPdfmeRecipientsAdapter<THostUser> => ({
+  toRecipient(input) {
+    if (input && typeof input === 'object') {
+      const record = input as Record<string, unknown>;
+      const id = String(record.id ?? record.recipientId ?? record.userId ?? '').trim();
+      const label = String(record.label ?? record.name ?? record.fullName ?? id).trim();
+      return {
+        id: id || label || 'recipient',
+        label: label || id || 'Recipient',
+        role: String(record.role ?? '').trim() || undefined,
+        email: String(record.email ?? '').trim() || undefined,
+        color: String(record.color ?? '').trim() || undefined,
+        metadata: record,
+      };
+    }
+    const value = String(input ?? '').trim();
+    return { id: value || 'recipient', label: value || 'Recipient' };
+  },
+  toRecipients(input) {
+    return Array.isArray(input) ? input.map((entry) => this.toRecipient(entry)) : [];
+  },
+});

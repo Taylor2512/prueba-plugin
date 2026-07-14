@@ -11,7 +11,7 @@
  *   readonly  → Viewer de sisad-pdfme
  *   hidden    → no renderizado
  */
-import type { OfficialTemplateSnapshot, SnapshotAssignment } from '../shared/snapshot.js';
+import type { OfficialTemplateSnapshot, SnapshotAssignment, SchemaWithDesigner } from '../shared/snapshot.js';
 import type { SignaturePolicy } from '../shared/signatureRegistry.js';
 
 // ── Estado del flujo ────────────────────────────────────────────────────────
@@ -63,6 +63,98 @@ export interface ExternalFormRunnerProps {
 
 export type SchemaVisibility = 'editable' | 'readonly' | 'hidden';
 
+export type ExternalFormSchemaState = {
+  documentId: string;
+  pageNumber: number;
+  schemaUid: string;
+  visibility: SchemaVisibility;
+  hasValue: boolean;
+  assignment?: SnapshotAssignment;
+  isSignatureSchema: boolean;
+};
+
+export type ExternalFormPageState = {
+  documentId: string;
+  pageNumber: number;
+  editableSchemaUids: string[];
+  readonlySchemaUids: string[];
+  hiddenSchemaUids: string[];
+  visibleSchemaUids: string[];
+  hasEditableFields: boolean;
+  canRenderForm: boolean;
+};
+
+export type ExternalFormDocumentState = {
+  documentId: string;
+  name: string;
+  order: number;
+  pageCount: number;
+  pageNumbers: number[];
+  visibleSchemaUids: string[];
+  editableSchemaUids: string[];
+  readonlySchemaUids: string[];
+  hiddenSchemaUids: string[];
+  canRenderForm: boolean;
+};
+
+export type ExternalFormRuntimeState = {
+  snapshotVersion: string;
+  templateSchemaVersion: string | null;
+  currentRecipientId: string;
+  mode: 'form' | 'viewer';
+  documents: ExternalFormDocumentState[];
+  pages: ExternalFormPageState[];
+  editableSchemaUids: string[];
+  readonlySchemaUids: string[];
+  hiddenSchemaUids: string[];
+  schemaStates: ExternalFormSchemaState[];
+  savedInputs: Record<string, unknown>;
+  canComplete: boolean;
+};
+
+export type ExternalFormRuntimeStateOptions = {
+  snapshot: OfficialTemplateSnapshot;
+  currentRecipientId: string;
+  flowState: FlowState;
+  storage: ExternalFormStorage;
+  isSignatureSchema?: (schema: SchemaWithDesigner) => boolean;
+};
+
+const normalizeText = (value: unknown): string => String(value ?? '').trim();
+
+const asRecord = (value: unknown): Record<string, unknown> =>
+  value && typeof value === 'object' ? (value as Record<string, unknown>) : {};
+
+const extractSchemaUid = (schema: SchemaWithDesigner): string => {
+  const record = asRecord(schema);
+  const designer = asRecord(record.__designer);
+  const identity = asRecord(designer.identity);
+  return (
+    normalizeText(identity.schemaUid) ||
+    normalizeText(designer.schemaUid) ||
+    normalizeText(record.schemaUid) ||
+    normalizeText(record.id) ||
+    normalizeText(record.name)
+  );
+};
+
+const extractAssignment = (snapshot: OfficialTemplateSnapshot, schemaUid: string): SnapshotAssignment | undefined =>
+  snapshot.assignments.find((assignment) => normalizeText(assignment.schemaUid) === normalizeText(schemaUid));
+
+const extractSignatureSchema = (schema: SchemaWithDesigner): boolean => {
+  const record = asRecord(schema);
+  const type = normalizeText(record.type);
+  if (type === 'signature') return true;
+
+  const designer = asRecord(record.__designer);
+  const runtimeSignature = asRecord(designer.signature);
+  return (
+    Boolean(normalizeText(runtimeSignature.mode)) ||
+    Boolean(normalizeText(runtimeSignature.providerKey)) ||
+    Boolean(normalizeText(runtimeSignature.defaultProvider))
+  );
+};
+
 /**
  * Determina la visibilidad de un schema para el destinatario actual.
  *
@@ -110,6 +202,137 @@ export function getSchemaVisibility(
   }
 
   return 'hidden';
+}
+
+/**
+ * Recorre el snapshot y resuelve el estado runtime de cada schema.
+ *
+ * externalForms usa este helper para decidir qué delegar al Form y qué
+ * degradar a Viewer, sin duplicar reglas de assignments/ownership.
+ */
+export function resolveExternalFormRuntimeState(
+  options: ExternalFormRuntimeStateOptions,
+): ExternalFormRuntimeState {
+  const isSignatureSchema = options.isSignatureSchema ?? extractSignatureSchema;
+  const schemaStates: ExternalFormSchemaState[] = [];
+
+  for (const document of options.snapshot.documents || []) {
+    for (const page of document.pages || []) {
+      for (const schema of page.schemas || []) {
+        const schemaUid = extractSchemaUid(schema);
+        if (!schemaUid) continue;
+
+        const assignment = extractAssignment(options.snapshot, schemaUid);
+        const record = asRecord(schema);
+        const designer = asRecord(record.__designer);
+        const ownership = asRecord(designer.ownership);
+        const hasValue = options.storage.hasInput(schemaUid);
+        const visibility = getSchemaVisibility(
+          assignment,
+          schemaUid,
+          Boolean(record.readOnly || record.readonly || ownership.readonly),
+          options.currentRecipientId,
+          options.flowState,
+          hasValue,
+          isSignatureSchema(schema),
+        );
+
+        schemaStates.push({
+          documentId: normalizeText(document.documentId),
+          pageNumber: Number(page.pageNumber) || 0,
+          schemaUid,
+          visibility,
+          hasValue,
+          assignment,
+          isSignatureSchema: isSignatureSchema(schema),
+        });
+      }
+    }
+  }
+
+  const editableSchemaUids = schemaStates.filter((entry) => entry.visibility === 'editable').map((entry) => entry.schemaUid);
+  const readonlySchemaUids = schemaStates.filter((entry) => entry.visibility === 'readonly').map((entry) => entry.schemaUid);
+  const hiddenSchemaUids = schemaStates.filter((entry) => entry.visibility === 'hidden').map((entry) => entry.schemaUid);
+  const pagesByKey = new Map<string, ExternalFormPageState>();
+  const documentsById = new Map<string, ExternalFormDocumentState>();
+
+  for (const document of options.snapshot.documents || []) {
+    const documentId = normalizeText(document.documentId);
+    const documentName = normalizeText(document.name) || documentId || 'Documento';
+    const pageNumbers = Array.from(new Set((document.pages || []).map((page) => Number(page.pageNumber) || 0).filter((pageNumber) => pageNumber > 0)));
+
+    documentsById.set(documentId, {
+      documentId,
+      name: documentName,
+      order: Number(document.order) || 0,
+      pageCount: pageNumbers.length,
+      pageNumbers,
+      visibleSchemaUids: [],
+      editableSchemaUids: [],
+      readonlySchemaUids: [],
+      hiddenSchemaUids: [],
+      canRenderForm: false,
+    });
+  }
+
+  for (const state of schemaStates) {
+    const key = `${state.documentId}:${state.pageNumber}`;
+    const pageState = pagesByKey.get(key) ?? {
+      documentId: state.documentId,
+      pageNumber: state.pageNumber,
+      editableSchemaUids: [],
+      readonlySchemaUids: [],
+      hiddenSchemaUids: [],
+      visibleSchemaUids: [],
+      hasEditableFields: false,
+      canRenderForm: false,
+    };
+
+    pageState.visibleSchemaUids.push(state.schemaUid);
+    if (state.visibility === 'editable') {
+      pageState.editableSchemaUids.push(state.schemaUid);
+      pageState.hasEditableFields = true;
+      pageState.canRenderForm = true;
+    } else if (state.visibility === 'readonly') {
+      pageState.readonlySchemaUids.push(state.schemaUid);
+    } else {
+      pageState.hiddenSchemaUids.push(state.schemaUid);
+    }
+
+    pagesByKey.set(key, pageState);
+
+    const documentState = documentsById.get(state.documentId);
+    if (documentState) {
+      documentState.visibleSchemaUids.push(state.schemaUid);
+      if (state.visibility === 'editable') {
+        documentState.editableSchemaUids.push(state.schemaUid);
+        documentState.canRenderForm = true;
+      } else if (state.visibility === 'readonly') {
+        documentState.readonlySchemaUids.push(state.schemaUid);
+      } else {
+        documentState.hiddenSchemaUids.push(state.schemaUid);
+      }
+    }
+  }
+
+  return {
+    snapshotVersion: normalizeText(options.snapshot.version),
+    templateSchemaVersion: normalizeText(options.snapshot.templateSchemaVersion) || null,
+    currentRecipientId: normalizeText(options.currentRecipientId),
+    mode: editableSchemaUids.length > 0 ? 'form' : 'viewer',
+    documents: Array.from(documentsById.values()).sort((a, b) => a.order - b.order),
+    pages: Array.from(pagesByKey.values()).sort((a, b) =>
+      a.documentId === b.documentId
+        ? a.pageNumber - b.pageNumber
+        : a.documentId.localeCompare(b.documentId),
+    ),
+    editableSchemaUids,
+    readonlySchemaUids,
+    hiddenSchemaUids,
+    schemaStates,
+    savedInputs: options.storage.getInputs(options.currentRecipientId),
+    canComplete: editableSchemaUids.length === 0 || areAllRequiredFieldsComplete(editableSchemaUids, options.storage),
+  };
 }
 
 /**

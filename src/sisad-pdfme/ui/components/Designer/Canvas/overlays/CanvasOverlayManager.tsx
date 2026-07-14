@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useContext, useEffect, useMemo, useState } from 'react';
 import type { SchemaForUI, Size } from '@sisad-pdfme/common';
 import type { SnapLine } from '../SnapLines.js';
 
@@ -20,6 +20,8 @@ import {
 import CommentsOverlay from './CommentsOverlay.js';
 import ShortcutHelpPanel from '../../Shortcuts/ShortcutHelpPanel.js';
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
+import { OptionsContext } from '../../../../contexts.js';
+import { asRecord } from '../../shared/objectGuards.js';
 
 /**
  * Slot visual para renderizar snap lines.
@@ -222,6 +224,9 @@ const EXPANDED_TOOLBAR_SIZE = { width: 512, height: 360 };
  * - no aplicar reglas de negocio del host.
  */
 const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
+  const options = useContext(OptionsContext);
+  const visibility = asRecord(asRecord(options)?.visibility);
+  const canvasVisibility = asRecord(visibility?.canvas);
   const {
     activeElements,
     schemasList,
@@ -336,10 +341,11 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
     () => resolveSelectionPageIndex(activeElements, pageCursor) ?? pageCursor,
     [activeElements, pageCursor],
   );
+  const showSelectionOverlays = canvasVisibility?.toolbar !== false && canvasVisibility?.floatingToolbar !== false;
 
   return (
     <div className={`sisad-pdfme-ui-canvas-overlay-manager ${className || ''}`}>
-      {!externalSchemaDragActive ? (
+      {!externalSchemaDragActive && showSelectionOverlays ? (
         <>
           {/**
            * Toolbar contextual de selección.
@@ -355,8 +361,6 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
             interactionState={interactionState}
             contextMenuOpen={contextMenuOpen}
             collaborationContext={collaborationContext}
-            toolbarMode={toolbarMode}
-            onToolbarModeChange={setToolbarMode}
           />
 
           {/**

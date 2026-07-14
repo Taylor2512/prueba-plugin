@@ -35,7 +35,7 @@ const mergeThemeToken = (themeToken = DEFAULT_THEME_TOKEN) => ({
  * The function avoids mutating the original host options object.
  */
 const mergeRuntimeOptions = (runtimeOptions = {}, themeToken = DEFAULT_THEME_TOKEN) => {
-  const next = runtimeOptions && typeof runtimeOptions === "object" ? { ...runtimeOptions } : {};
+  const next = runtimeOptions && typeof runtimeOptions === "object" ? { ...(runtimeOptions as Record<string, unknown>) } : {};
   next.theme = {
     ...(next.theme && typeof next.theme === "object" ? next.theme : {}),
     token: mergeThemeToken(themeToken),
@@ -49,12 +49,30 @@ const mergeRuntimeOptions = (runtimeOptions = {}, themeToken = DEFAULT_THEME_TOK
  * The host can inject i18n labels, language and low-level runtime options,
  * while this helper guarantees a complete theme token.
  */
+type RuntimeOptionsInput = {
+  i18n?: unknown;
+  lang?: string;
+  themeToken?: Record<string, unknown>;
+  runtimeOptions?: Record<string, unknown>;
+};
+
+type DesignerRuntimeOptionsInput = RuntimeOptionsInput & {
+  designerEngine?: unknown;
+  themePreset?: string;
+};
+
+type FormRuntimeOptionsInput = RuntimeOptionsInput & {
+  zoomLevel?: number;
+  signatureSessionKey?: string;
+  signatureSigner?: unknown;
+};
+
 export const buildRuntimeOptions = ({
   i18n,
   lang = "es",
   themeToken = DEFAULT_THEME_TOKEN,
   runtimeOptions = {},
-} = {}) => {
+}: RuntimeOptionsInput = {}) => {
   const next = mergeRuntimeOptions(runtimeOptions, themeToken);
   next.lang = lang;
   next.i18n = i18n;
@@ -74,7 +92,7 @@ export const buildDesignerRuntimeOptions = ({
   lang = "es",
   themeToken = DEFAULT_THEME_TOKEN,
   runtimeOptions = {},
-} = {}) => {
+}: DesignerRuntimeOptionsInput = {}) => {
   const next = buildRuntimeOptions({ i18n, lang, themeToken, runtimeOptions });
   next.themePreset = themePreset;
   if (designerEngine) {
@@ -97,7 +115,7 @@ export const buildRuntimeFormOptions = ({
   signatureSigner = {},
   themeToken = DEFAULT_THEME_TOKEN,
   runtimeOptions = {},
-} = {}) => {
+}: FormRuntimeOptionsInput = {}) => {
   const next = buildRuntimeOptions({ i18n, lang, themeToken, runtimeOptions });
   next.zoomLevel = zoomLevel;
   next.signatureModalFlow = true;

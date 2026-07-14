@@ -8,23 +8,26 @@ test.describe('detail-view collaboration', () => {
     const collaborationSection = page.locator('section[data-section="collaboration"]');
 
     await test.step('open collaboration section', async () => {
-      await page.getByRole('button', { name: 'Expandir sección Asignación y bloqueo' }).click();
-      await expect(collaborationSection).toContainText('Propietario y acceso.');
-      await expect(collaborationSection).toContainText('Estado');
+      // La sección puede venir expandida por defecto: expandir solo si hace falta.
+      const collaborationToggle = page.getByRole('button', { name: /(?:Expandir|Colapsar) sección Asignación y bloqueo/ });
+      await expect(collaborationToggle).toBeVisible();
+      if (/Expandir/.test((await collaborationToggle.getAttribute('aria-label')) || (await collaborationToggle.textContent()) || '')) {
+        await collaborationToggle.click();
+      }
+      // Resumen compacto: título, descripción, tag de estado y trigger Reasignar.
+      await expect(collaborationSection).toContainText('Propietario y acceso');
       await expect(collaborationSection).toContainText('Disponible');
-      await expect(collaborationSection).toContainText('Asignado a');
-      await expect(collaborationSection).toContainText('Cliente Principal');
-      await expect(collaborationSection.getByRole('button', { name: 'Gestionar' })).toBeVisible();
+      await expect(collaborationSection.getByRole('button', { name: /Reasignar|Cambiar propietario/ })).toBeVisible();
     });
 
     await test.step('modal separates business view from collapsed advanced view', async () => {
-      await collaborationSection.getByRole('button', { name: 'Gestionar' }).click();
+      await collaborationSection.getByRole('button', { name: /Reasignar|Cambiar propietario/ }).click();
 
       // Normal view: business fields visible up-front, no raw technical IDs.
       const normalView = page.getByTestId('collaboration-normal-view');
       await expect(normalView).toBeVisible();
       await expect(page.locator('#collaboration-state')).toBeVisible();
-      await expect(normalView).toContainText('Asignado a');
+      await expect(normalView).toContainText('Propietario registrado');
       await expect(normalView).toContainText('Nombre visible');
 
       // Advanced starts collapsed: technical fields hidden until invoked.

@@ -5,7 +5,7 @@
  * filter, clear filter action, mass rename action and optional bulk recipient
  * assignment action for collaborative workflows.
  */
-import React from 'react';
+import React, { useContext } from 'react';
 import { Button, Dropdown, Input, Select, Tooltip } from 'antd';
 import { Layers, Search, Users, MoreHorizontal, PencilLine, Eraser } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
@@ -14,6 +14,9 @@ import type { EffectiveCollaborationContext } from '../../../../collaborationCon
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { mergeClassNames } from '../../shared/className.js';
 import { stopDesignerControlEvent } from '../../shared/interactionExclusions.js';
+import { OptionsContext } from '../../../../contexts.js';
+import { asRecord } from '../../shared/objectGuards.js';
+import { resolveReassignActionState } from './reassignActionState.js';
 
 
 /**
@@ -92,6 +95,23 @@ const ListViewToolbar = ({
   onBulkAssignRecipient,
   collaborationContext,
 }: Props) => {
+  const options = useContext(OptionsContext);
+  const optionsRecord = asRecord(options);
+  const visibility = asRecord(optionsRecord?.visibility);
+  const actionsVisibility = asRecord(visibility?.actions);
+  const modalsVisibility = asRecord(visibility?.modals);
+  const assignmentEnabled = asRecord(optionsRecord?.assignment)?.enabled === true;
+  const reassignVisible = actionsVisibility?.reassign !== false && assignmentEnabled;
+  const reassignActionState = resolveReassignActionState({
+    assignmentEnabled,
+    reassignVisible,
+    assignmentModalVisible: modalsVisibility?.assignment !== false,
+    selectedCount,
+    hasHandler: typeof onBulkAssignRecipient === 'function',
+    hasAssignableRecipients: showBulkRecipientAction,
+    bulkRecipientDisabled,
+    collaborationContext,
+  });
   const resolvedSubtitle = subtitle ?? (() => {
     if (!hasActiveSearch) return null;
     if (filteredCount === 0) return 'Sin coincidencias';
@@ -133,12 +153,12 @@ const ListViewToolbar = ({
               'flex items-center gap-2',
               isDense && 'shrink-0',
             )}>
-              {showBulkRecipientAction && collaborationContext?.activeRecipient && collaborationContext.canEditStructure !== false ? (
+              {reassignActionState.showButton ? (
                 <Tooltip title="Reasignar responsable" placement="top">
                   <Button
                     type="text"
                     size="small"
-                    disabled={bulkRecipientDisabled}
+                    disabled={reassignActionState.buttonDisabled}
                     onPointerDownCapture={stopDesignerControlEvent}
                     onMouseDownCapture={stopDesignerControlEvent}
                     onDoubleClickCapture={stopDesignerControlEvent}
@@ -165,6 +185,18 @@ const ListViewToolbar = ({
                 placement="bottomRight"
                 menu={{
                   items: [
+                    ...(reassignActionState.showSelectionHint
+                      ? [{
+                          key: 'reassign-hint',
+                          label: (
+                            <span data-testid="right-sidebar-reassign-hint">
+                              {reassignActionState.selectionHintLabel || 'Selecciona campos'}
+                            </span>
+                          ),
+                          disabled: true,
+                          icon: <Users size={14} />,
+                        }]
+                      : []),
                     {
                       key: 'rename',
                       label: <span data-testid="right-sidebar-more-rename">{bulkActionLabel || 'Renombrar campos'}</span>,
@@ -220,9 +252,8 @@ const ListViewToolbar = ({
         />
         <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-toolbar-row', 'flex items-center gap-2')}>
           {schemaTypes.length > 2 ? (
-            <Select
+            <Select<string, Option>
               id="right-sidebar-fields-type-filter"
-              name="right-sidebar-fields-type-filter"
               size="small"
               value={typeFilter}
               onChange={onChangeType}

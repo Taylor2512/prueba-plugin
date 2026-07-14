@@ -18,6 +18,9 @@ import { resolveAnchoredFloatingSurfacePosition } from './floatingSurfaceGeometr
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { mergeClassNames } from '../../shared/className.js';
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
+import { OptionsContext } from '../../../../contexts.js';
+import { asRecord } from '../../shared/objectGuards.js';
+import type { SisadPdfmeVisibilityConfig } from '../../../../../config/SisadPdfmeConfig.js';
 
 /**
  * Coordenada ancla donde debe abrirse el menú contextual.
@@ -208,6 +211,9 @@ const CanvasContextMenu = ({
   onClose,
   className = '',
 }: CanvasContextMenuProps) => {
+  const options = React.useContext(OptionsContext);
+  const visibility = asRecord(asRecord(options)?.visibility);
+  const canvasVisibility = asRecord(visibility?.canvas);
   /**
    * Referencia al nodo raíz del menú.
    *
@@ -249,6 +255,7 @@ const CanvasContextMenu = ({
         activeRequired,
         activeHidden,
         canEditStructure,
+        visibility: visibility as SisadPdfmeVisibilityConfig,
       }),
     [
       mode,
@@ -376,7 +383,7 @@ const CanvasContextMenu = ({
    * - no existe posición ancla;
    * - no existe document, por ejemplo en SSR.
    */
-  if (!open || !position || typeof document === 'undefined') return null;
+  if (!open || !position || typeof document === 'undefined' || canvasVisibility?.contextMenu === false) return null;
 
   /**
    * Posición efectiva del menú.

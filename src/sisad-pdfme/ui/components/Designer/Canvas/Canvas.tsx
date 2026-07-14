@@ -101,6 +101,8 @@ import {
 } from './overlays/overlayState.js';
 import { useCanvasRenderState } from '../../../../canvas/useCanvasRenderState.js';
 import { isCanvasInteractive } from '../../../../canvas/canvasRenderState.js';
+import { OptionsContext } from '../../../contexts.js';
+import { asRecord } from '../shared/objectGuards.js';
 
 /**
  * Convierte milímetros a píxeles usando el factor CSS estándar de 96 DPI.
@@ -434,6 +436,9 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
    * Registry de plugins necesario para determinar capacidades como rotación.
    */
   const pluginsRegistry = useContext(PluginsRegistry);
+  const options = useContext(OptionsContext);
+  const visibility = asRecord(asRecord(options)?.visibility);
+  const canvasVisibility = asRecord(visibility?.canvas);
   /**
    * Plataforma detectada para normalización de atajos y selección.
    */
@@ -1571,10 +1576,14 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
       data-interaction-dragging={interactionState.isDragging ? 'true' : 'false'}
       data-interaction-resizing={interactionState.isResizing ? 'true' : 'false'}
       data-interaction-rotating={interactionState.isRotating ? 'true' : 'false'}
-      data-grid-visible={feature.grid ? 'true' : 'false'}
-      data-guides-visible={feature.guides ? 'true' : 'false'}
-      data-snaps-enabled={feature.snapLines ? 'true' : 'false'}
-      data-snaps-visible={feature.snapLines ? 'true' : 'false'}
+      data-grid-visible={feature.grid && canvasVisibility?.grid !== false ? 'true' : 'false'}
+      data-guides-visible={feature.guides && canvasVisibility?.guides !== false ? 'true' : 'false'}
+      data-rulers-visible={feature.guides && canvasVisibility?.rulers !== false ? 'true' : 'false'}
+      data-snaps-enabled={feature.snapLines && canvasVisibility?.snapLines !== false ? 'true' : 'false'}
+      data-snaps-visible={feature.snapLines && canvasVisibility?.snapLines !== false ? 'true' : 'false'}
+      data-owner-badges-visible={canvasVisibility?.ownerBadges !== false ? 'true' : 'false'}
+      data-required-markers-visible={canvasVisibility?.requiredMarkers !== false ? 'true' : 'false'}
+      data-lock-badges-visible={canvasVisibility?.lockBadges !== false ? 'true' : 'false'}
       data-padding-visible={feature.padding ? 'true' : 'false'}
       data-canvas-state={canvasRenderState.type}
       data-canvas-blocked={canvasBlockingMaskVisible ? 'true' : 'false'}

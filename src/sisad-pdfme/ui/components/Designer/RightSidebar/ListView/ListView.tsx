@@ -84,6 +84,8 @@ const ListView = (
     compact: 332,
     mini: 252,
   });
+  const sidebarDensityMode: 'compact' | 'comfortable' | 'mini' =
+    densityMode === 'full' ? 'comfortable' : densityMode;
   const [isBulkUpdateFieldNamesMode, setIsBulkUpdateFieldNamesMode] = useState(false);
   const [fieldNamesValue, setFieldNamesValue] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
@@ -274,13 +276,18 @@ const ListView = (
         selectionCommands.assignRecipient(recipient);
       } else {
         changeSchemas(
-          buildAssignSchemaOwnerOps(selectedSchemas, selectedSchemas.map((schema) => schema.id), recipient),
+          buildAssignSchemaOwnerOps(
+            selectedSchemas,
+            selectedSchemas.map((schema) => schema.id),
+            recipient,
+            { actorId: collaborationContext?.actorId },
+          ),
         );
       }
 
       closeAssignmentDialog();
     },
-    [changeSchemas, closeAssignmentDialog, emitRuntimeEvent, recipientOptions, selectionCommands, selectedSchemas],
+    [changeSchemas, closeAssignmentDialog, collaborationContext, emitRuntimeEvent, recipientOptions, selectionCommands, selectedSchemas],
   );
 
 
@@ -323,7 +330,7 @@ const ListView = (
       <div
         ref={rootRef}
         className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-density-wrap', 'flex min-h-0 flex-1 flex-col')}
-        data-list-density={densityMode}
+        data-list-density={sidebarDensityMode}
         style={{ '--list-view-panel-width': `${panelWidth}px` } as React.CSSProperties}
       >
       {showToolbar ? (
@@ -343,7 +350,7 @@ const ListView = (
           onClearFilters={handleClearFilters}
           collaborationContext={collaborationContext}
           selectionCommands={selectionCommands}
-          showBulkRecipientAction={selectedSchemas.length > 0}
+          showBulkRecipientAction={selectedSchemas.length > 0 && recipientOptions.length > 0}
           bulkRecipientDisabled={!canAssignSelected}
           onBulkAssignRecipient={openAssignmentDialog}
           bulkRecipientLabel={
@@ -390,7 +397,7 @@ const ListView = (
           <SidebarEmptyState
             title="No hay campos que coincidan"
             description="Limpia la búsqueda, cambia el tipo o vuelve a la vista general del catálogo."
-            density={densityMode}
+            density={sidebarDensityMode}
             actionLabel={hasActiveSearch ? "Limpiar filtros" : undefined}
             onAction={hasActiveSearch ? handleClearFilters : undefined}
           />

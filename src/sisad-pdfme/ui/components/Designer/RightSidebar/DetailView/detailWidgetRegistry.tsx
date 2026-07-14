@@ -23,6 +23,7 @@ import type { DesignerEngine, SchemaDesignerConfig } from '../../../../designerE
 import type { SidebarProps } from '../../../../types.js';
 import { BooleanSwitchWidget } from './InspectorPrimitives.js';
 import { ColorPickerWidget } from './detailWidgets.js';
+import { asRecord } from '../../shared/objectGuards.js';
 
 /**
  * Parámetros usados para construir el registro final de widgets.
@@ -89,19 +90,24 @@ const buildDetailWidgets = ({
       const schemaType = typeof props.activeSchema?.type === 'string' ? props.activeSchema.type : '';
       const isTextType = INLINE_EDITABLE_TEXT_TYPES.has(schemaType);
       const canEdit = props.selectionCommands?.canEditStructure !== false;
+      const visibility = asRecord(asRecord(options)?.visibility);
+      const actionsVisibility = asRecord(visibility?.actions);
+      const showRename = actionsVisibility?.rename !== false;
       return (
         <div className={`${DESIGNER_CLASSNAME}inline-edit-actions`}>
-          <Tooltip title="Renombrar campo (F2)" placement="bottom">
-            <Button
-              size="small"
-              icon={<Pencil size={12} />}
-              disabled={!canEdit}
-              onClick={() => props.selectionCommands?.renameLabel?.()}
-              className={`${DESIGNER_CLASSNAME}inline-edit-btn`}
-            >
-              Renombrar campo
-            </Button>
-          </Tooltip>
+          {showRename ? (
+            <Tooltip title="Renombrar campo (F2)" placement="bottom">
+              <Button
+                size="small"
+                icon={<Pencil size={12} />}
+                disabled={!canEdit}
+                onClick={() => props.selectionCommands?.renameLabel?.()}
+                className={`${DESIGNER_CLASSNAME}inline-edit-btn`}
+              >
+                Renombrar campo
+              </Button>
+            </Tooltip>
+          ) : null}
           {isTextType && (
             <Tooltip title="Editar texto (Enter)" placement="bottom">
               <Button

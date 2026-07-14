@@ -23,6 +23,7 @@ import { theme } from 'antd';
 import { InternalNamePath, ValidateErrorEntity } from 'rc-field-form/es/interface.js';
 import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { asRecord, isRecord } from '../../shared/objectGuards.js';
+import type { SisadPdfmeVisibilityConfig } from '../../../../../config/SisadPdfmeConfig.js';
 import {
   resolveSchemaAccessState,
   type SchemaAccessState,
@@ -404,6 +405,7 @@ const DetailView = (props: DetailViewProps) => {
 
   const maxWidth = pageSize.width - paddingLeft - paddingRight;
   const maxHeight = pageSize.height - paddingTop - paddingBottom;
+  const visibility = asRecord(asRecord(options)?.visibility) as SisadPdfmeVisibilityConfig | undefined;
   const sections = buildInspectorSections({
     activeSchemaType: activeSchema.type,
     activeSchema,
@@ -421,6 +423,7 @@ const DetailView = (props: DetailViewProps) => {
     maxHeight,
     validateUniqueSchemaName,
     validatePosition,
+    visibility,
   });
 
   return (

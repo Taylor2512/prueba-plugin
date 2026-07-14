@@ -44,6 +44,7 @@ import {
 } from '../../../../collaboration/schemaRuntimeAccess.js';
 
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
+import type { SisadPdfmeVisibilityConfig } from '../../../../../config/SisadPdfmeConfig.js';
 
 /**
  * Modo del menú contextual del canvas.
@@ -438,6 +439,11 @@ type BuildContextMenuGroupsArgs = {
    * Permiso final para editar estructura.
    */
   canEditStructure?: boolean;
+
+  /**
+   * Configuración global de visibilidad.
+   */
+  visibility?: SisadPdfmeVisibilityConfig;
 };
 
 /**
@@ -686,7 +692,7 @@ const resolveSelectionAccessState = (
 
   return resolveSchemaAccessState(
     activeSchema,
-    collaborationContext,
+    collaborationContext as never,
     collaborationContext?.activeRecipient ?? null,
   );
 };
@@ -717,6 +723,68 @@ const buildCriticalPrimaryActions = (
   actions: CanvasSelectionQuickAction[],
   maxItems: number,
 ) => prioritizeCriticalActions(actions).slice(0, maxItems);
+
+/**
+ * Determina si una acción contextual debe mostrarse según la visibilidad global.
+ */
+const isContextActionVisible = (
+  actionId: string,
+  visibility?: SisadPdfmeVisibilityConfig['actions'],
+) => {
+  if (!visibility) return true;
+
+  switch (actionId) {
+    case 'delete':
+    case 'delete-multi':
+      return visibility.delete !== false;
+    case 'duplicate':
+      return visibility.duplicate !== false;
+    case 'rename-label':
+      return visibility.rename !== false;
+    case 'copy-style':
+      return visibility.copy !== false;
+    case 'paste-style':
+      return visibility.paste !== false;
+    case 'readonly':
+    case 'lock':
+    case 'lock-multi':
+    case 'collaboration-lock':
+    case 'collaboration-lock-multi':
+      return visibility.lock !== false || visibility.unlock !== false;
+    case 'hidden':
+    case 'show':
+    case 'show-multi':
+    case 'hide':
+    case 'hide-multi':
+      return visibility.hide !== false || visibility.show !== false;
+    case 'align-left':
+    case 'align-center':
+    case 'align-right':
+    case 'align-top':
+    case 'align-middle':
+    case 'align-bottom':
+      return visibility.align !== false;
+    case 'distribute-horizontal':
+    case 'distribute-vertical':
+      return visibility.distribute !== false;
+    default:
+      return true;
+  }
+};
+
+/**
+ * Filtra grupos de acciones según la visibilidad global.
+ */
+const filterVisibleGroups = (
+  groups: CanvasContextMenuGroup[],
+  visibility?: SisadPdfmeVisibilityConfig['actions'],
+) =>
+  groups
+    .map((group) => ({
+      ...group,
+      items: group.items.filter((item) => isContextActionVisible(item.id, visibility)),
+    }))
+    .filter((group) => group.items.length > 0);
 
 /**
  * Construye chips de estado para toolbar de selección.
@@ -1526,6 +1594,7 @@ export const buildCanvasContextMenuGroups = (
     activeRequired = false,
     activeHidden = false,
     canEditStructure = true,
+    visibility,
   } = args;
 
   const hasFieldSelection = hasFormFieldSelection(selectionSchemas);
@@ -1536,7 +1605,7 @@ export const buildCanvasContextMenuGroups = (
    * inserción, pegado, páginas, comentarios y acciones de documento.
    */
   if (mode === 'empty') {
-    return compactItems<CanvasContextMenuGroup>([
+    const groups = compactItems<CanvasContextMenuGroup>([
       {
         id: 'canvas-create',
         label: 'Inserción',
@@ -1611,7 +1680,9 @@ export const buildCanvasContextMenuGroups = (
           ),
         ]),
       },
-    ]).filter((group) => group.items.length > 0);
+    ]);
+
+    return filterVisibleGroups(groups, visibility?.actions);
   }
 
   /**
@@ -1619,7 +1690,7 @@ export const buildCanvasContextMenuGroups = (
    * edición, visibilidad, protección, colaboración, orden e inspector.
    */
   if (mode === 'single') {
-    return [
+    const groups = [
       {
         id: 'single-main',
         label: 'Edición',
@@ -1784,7 +1855,9 @@ export const buildCanvasContextMenuGroups = (
           ),
         ]),
       },
-    ].filter((group) => group.items.length > 0);
+    ];
+
+    return filterVisibleGroups(groups, visibility?.actions);
   }
 
   /**
@@ -1794,7 +1867,7 @@ export const buildCanvasContextMenuGroups = (
    */
   const canDistribute = selectionCount >= 3;
 
-  return [
+  const groups = [
     {
       id: 'multi-align',
       label: 'Alinear',
@@ -2053,5 +2126,7 @@ export const buildCanvasContextMenuGroups = (
         ),
       ]),
     },
-  ].filter((group) => group.items.length > 0);
+  ];
+
+  return filterVisibleGroups(groups, visibility?.actions);
 };

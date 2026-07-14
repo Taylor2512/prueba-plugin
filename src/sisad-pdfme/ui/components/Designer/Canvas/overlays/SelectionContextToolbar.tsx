@@ -14,6 +14,8 @@ import { mergeClassNames } from '../../shared/className.js';
 import CanvasContextMenu from './CanvasContextMenu.js';
 import { resolveAnchoredFloatingSurfacePosition } from './floatingSurfaceGeometry.js';
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
+import { OptionsContext } from '../../../../contexts.js';
+import { asRecord } from '../../shared/objectGuards.js';
 
 /**
  * Props del toolbar contextual de selección.
@@ -29,6 +31,14 @@ type SelectionContextToolbarProps = {
     EffectiveCollaborationContext,
     'actorId' | 'activeRecipientId' | 'activeRecipient' | 'recipientNameMap' | 'canEditStructure'
   >;
+};
+
+type QuickAction = {
+  id: string;
+  label: string;
+  danger?: boolean;
+  onSelect: () => void;
+  disabled?: boolean;
 };
 
 /**
@@ -54,6 +64,8 @@ const SelectionContextToolbar = ({
 }: SelectionContextToolbarProps) => {
   const toolbarRef = React.useRef<HTMLDivElement | null>(null);
   const [moreMenuOpen, setMoreMenuOpen] = React.useState(false);
+  const options = React.useContext(OptionsContext);
+  const actionsVisibility = asRecord(asRecord(options)?.visibility)?.actions as Record<string, boolean> | null;
 
   React.useEffect(() => {
     if (contextMenuOpen) setMoreMenuOpen(false);
@@ -71,17 +83,17 @@ const SelectionContextToolbar = ({
  */
   const quickActions = React.useMemo(
     () =>
-      [
-        commands?.deleteSelection
-          ? {
+      ([
+        actionsVisibility?.delete === false || !commands?.deleteSelection
+          ? null
+          : {
               id: 'delete',
               label: 'Eliminar',
               danger: true,
               onSelect: commands.deleteSelection,
               disabled: !canEditStructure,
-            }
-          : null,
-        commands?.duplicateSelection
+            },
+        actionsVisibility?.duplicate === false || !commands?.duplicateSelection
           ? {
               id: 'duplicate',
               label: 'Duplicar',
@@ -89,8 +101,8 @@ const SelectionContextToolbar = ({
               disabled: !canEditStructure,
             }
           : null,
-      ].filter((item): item is { id: string; label: string; danger?: boolean; onSelect: () => void; disabled?: boolean } => Boolean(item)),
-    [canEditStructure, commands],
+      ] as Array<QuickAction | null>).filter((item): item is QuickAction => item !== null),
+    [actionsVisibility?.delete, actionsVisibility?.duplicate, canEditStructure, commands],
   );
 
 /**

@@ -64,6 +64,22 @@ export interface SnapshotAssignment {
   readonly?: boolean;
 }
 
+export interface SnapshotConnectivity {
+  byFile?: Record<string, unknown>;
+  bySchema?: Record<string, unknown>;
+  byRecipient?: Record<string, unknown>;
+  legacyMapping?: Record<string, unknown>;
+}
+
+export interface SnapshotContributor {
+  id: string;
+  name?: string;
+  role?: string;
+  email?: string;
+  color?: string;
+  metadata?: Record<string, unknown>;
+}
+
 export interface SignatureConfig {
   defaultMode: 'draw' | 'image' | 'p12' | 'provider';
   /** Lista de providerKeys permitidos */
@@ -104,16 +120,32 @@ export interface SnapshotMetadata {
 export interface OfficialTemplateSnapshot {
   /** Semver del formato: "2.0.0" */
   version: string;
+  /** Versión estructural del template si el host la controla aparte del snapshot. */
+  templateSchemaVersion?: string;
   /** UUID inmutable del template desde su creación */
   templateId: string;
   createdAt: string;
   updatedAt: string;
   metadata: SnapshotMetadata;
+  /** Documento activo al serializar. */
+  activeDocumentId?: string | null;
   documents: SnapshotDocument[];
+  /** Copia explícita de documentos subidos si el host la mantiene separada. */
+  uploadedDocuments?: SnapshotDocument[];
   recipients: SnapshotRecipient[];
   assignments: SnapshotAssignment[];
+  connectivity?: SnapshotConnectivity;
+  inputs?: Array<Record<string, unknown>>;
+  contributors?: SnapshotContributor[];
+  history?: Array<Record<string, unknown>>;
   signatureConfig: SignatureConfig;
+  signaturePolicyId?: string | null;
+  signatureMode?: string | null;
+  signatureProviderKey?: string | null;
   providerConfig: ProviderConfig;
+  delivery?: Record<string, unknown>;
+  message?: Record<string, unknown>;
+  security?: Record<string, unknown>;
   /** Comentarios — referencia de solo lectura, los locks NO se incluyen */
   comments?: SnapshotComment[];
 }

@@ -37,3 +37,12 @@ export const PdfEditorEngineBuilder = DesignerEngineBuilder;
 export { Designer, Viewer, Form, DesignerEngineBuilder };
 export * from './designerEngine';
 export { applyCollaborationEvent, useCollaborationSync } from './collaboration';
+export { defaultSisadPdfmeConfig, createSisadPdfmeConfig } from '../config/index.js';
+export {
+  SisadPdfmeProvider,
+  SisadPdfmeDesigner,
+  SisadPdfmeForm,
+  SisadPdfmeViewer,
+  useSisadPdfmeConfig,
+  useSisadPdfmeController,
+} from '../react/index.js';

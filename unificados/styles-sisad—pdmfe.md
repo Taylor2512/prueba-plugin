@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `css`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-14T17:03:41.344Z`
+- **Fecha generación:** `2026-07-14T21:23:38.842Z`
 - **Extensiones incluidas:** `.css, .scss, .sass, .less`
 - **Archivos candidatos incluidos:** `16`
 - **Límite por archivo:** `80 KB`
@@ -70,7 +70,7 @@ prueba-plugin
 | 7 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css` | css | 443 | 14.0 | completo |
 | 8 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css` | css | 8 | 0.2 | completo |
 | 9 | `src/features/pdfcomponent/labRoutes.css` | css | 1707 | 36.0 | completo |
-| 10 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 4192 | 194.5 | truncado 74.0 KB |
+| 10 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 4192 | 194.4 | truncado 74.0 KB |
 | 11 | `src/sisad-pdfme/ui/styles/tokens.css` | css | 323 | 13.7 | completo |
 | 12 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css` | css | 1600 | 36.3 | completo |
 | 13 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__canvas-interactions.tailwind.candidate.css` | css | 1547 | 51.0 | completo |
@@ -80,12 +80,12 @@ prueba-plugin
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1820
+- **extensión no incluida:** 1866
 - **directorio ignorado: dependencia/build/salida generada:** 7
 
 ## Totales
 
-- **KB originales candidatos:** `814.2`
+- **KB originales candidatos:** `814.1`
 - **KB incluidos en contenido:** `477.4`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
@@ -8095,8 +8095,8 @@ ner-compact-config-panel {
 
 - **Lenguaje:** `css`
 - **Líneas:** `4192`
-- **Tamaño original:** `194.5 KB`
-- **SHA1 corto:** `01741e923b`
+- **Tamaño original:** `194.4 KB`
+- **SHA1 corto:** `b6b8b65cc1`
 - **Estado:** `truncado 74.0 KB`
 - **Símbolos detectados:** `selector: .sisad-pdfme-root`, `selector: .sisad-pdfme-page`, `selector: .sisad-pdfme-header`, `selector: .sisad-pdfme-grid`, `selector: .sisad-pdfme-workspace`, `selector: .sisad-pdfme-canvas`, `selector: .sisad-pdfme-designer-root`, `selector: .sisad-pdfme-designer-background`, `selector: .sisad-pdfme-designer-stage`, `selector: .sisad-pdfme-designer-canvas`
 
@@ -8106,9 +8106,9 @@ ner-compact-config-panel {
 
    Fuente única del diseño del diseñador PDF.
    Reemplaza:
-   - canvas-interactions.css
+   - sisad-pdfme.css
    - sisad-pdfme-global.css
-   - sisad-pdfme-runtime.css
+   - sisad-pdfme.css
    - sisad-pdfme-sidebar.css
 
    Mantiene selectores originales para no tocar JSX/TSX.
@@ -9205,11 +9205,11 @@ ner-compact-config-panel {
 .sisad-pdfme-designer-detail-header-card {
     @apply
       mb-[0.25rem] p-[0.375rem_0.5rem] [border:1px_solid_var(--color-border-18)] rounded-[0.625rem]
-      [background:radial-gradient(circle_at_top_right,
+      [background:radial-gradient(circle_at_top_right,_var(--color-pri
 
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 123385 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 123282 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
 
-signer-left-sidebar .sisad-pdfme-designer-left-sidebar-control-band {
+pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-control-band {
   @apply gap-[0.45rem] [padding-inline:0.75rem];
 }
 .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-search-wrap {
@@ -9618,7 +9618,7 @@ signer-left-sidebar .sisad-pdfme-designer-left-sidebar-control-band {
 }
 
 
-/* ── sisad-pdfme-runtime.css ───────────────────────────────────────── */
+/* ── sisad-pdfme.css ───────────────────────────────────────── */
 .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-view-toggle-btn {
     @apply w-[1.75rem] [padding-inline:0];
   }

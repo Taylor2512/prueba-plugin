@@ -55,16 +55,22 @@ test.describe('RightSidebar · Options editor (select)', () => {
       expect(await rows.count()).toBeGreaterThanOrEqual(3);
     });
 
-    await test.step('add button reads "Agregar opción"', async () => {
-      await expect(section.getByTestId('option-add-button').first()).toContainText(/Agregar opción/i);
+    await test.step('add button keeps the "Agregar opción" accessible name', async () => {
+      // Texto visible compactado a "Agregar"; el nombre accesible conserva el
+      // label completo vía aria-label.
+      const addButton = section.getByTestId('option-add-button').first();
+      await expect(addButton).toContainText(/Agregar/i);
+      await expect(addButton).toHaveAttribute('aria-label', /Agregar opción/i);
     });
 
     await test.step('add control is a labelled editable input + button (not native +)', async () => {
       await expect(section.getByTestId('option-new-input').first()).toBeEditable();
       const addBtn = section.getByTestId('option-add-button').first();
       await expect(addBtn).toBeEnabled();
-      // Redesigned button carries a real label, not a bare "+" glyph.
-      await expect(addBtn).toHaveText(/Agregar opción/i);
+      // Redesigned button carries a real label, not a bare "+" glyph. The
+      // visible text is compacted to "Agregar"; the full label lives in aria-label.
+      await expect(addBtn).toHaveText(/Agregar/i);
+      await expect(addBtn).toHaveAttribute('aria-label', /Agregar opción/i);
     });
 
     await test.step('each row exposes a compact accessible delete affordance', async () => {

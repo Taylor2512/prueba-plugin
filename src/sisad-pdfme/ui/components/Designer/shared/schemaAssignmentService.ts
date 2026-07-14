@@ -55,14 +55,28 @@ export const resolveSchemaUid = (schema: SchemaForUI): string => {
 };
 
 /**
+ * Opciones del patch de reasignación.
+ *
+ * `actorId` identifica a quien ejecuta la reasignación para trazar
+ * `lastModifiedBy`; si falta, el campo no se toca.
+ */
+export type SchemaOwnerPatchOptions = {
+  actorId?: string | null;
+};
+
+/**
  * Construye el patch de propietario único aplicado por una reasignación.
  *
  * Intencionalmente NO incluye `locked`, `readOnly` ni `objectLocked`.
  */
-export const buildSchemaOwnerPatch = (recipient: AssignableRecipient): Record<string, unknown> => {
+export const buildSchemaOwnerPatch = (
+  recipient: AssignableRecipient,
+  options: SchemaOwnerPatchOptions = {},
+): Record<string, unknown> => {
   const nextRecipientId = normalizeText(recipient?.id);
   const nextRecipientName = normalizeText(recipient?.name) || nextRecipientId;
   const nextRecipientColor = normalizeText(recipient?.color) || null;
+  const actorId = normalizeText(options.actorId);
 
   return {
     ownerRecipientId: nextRecipientId,
@@ -70,8 +84,10 @@ export const buildSchemaOwnerPatch = (recipient: AssignableRecipient): Record<st
     recipientId: nextRecipientId,
     ownerRecipientName: nextRecipientName,
     ownerColor: nextRecipientColor,
+    recipientColor: nextRecipientColor,
     userColor: nextRecipientColor,
     ownerMode: 'single',
+    ...(actorId ? { lastModifiedBy: actorId } : {}),
   };
 };
 
@@ -83,11 +99,12 @@ export const buildAssignSchemaOwnerOps = (
   schemas: SchemaForUI[],
   schemaIds: string[],
   recipient: AssignableRecipient,
+  options: SchemaOwnerPatchOptions = {},
 ): SchemaChangeOp[] => {
   const nextRecipientId = normalizeText(recipient?.id);
   if (!nextRecipientId) return [];
   const idSet = new Set(schemaIds.map((id) => normalizeText(id)).filter(Boolean));
-  const patch = buildSchemaOwnerPatch(recipient);
+  const patch = buildSchemaOwnerPatch(recipient, options);
 
   return schemas
     .filter((schema) => {
@@ -112,6 +129,7 @@ export const assignSchemaOwner = (input: {
   pages: SchemaForUI[][];
   schemaUids: string[];
   recipient: AssignableRecipient;
+  actorId?: string | null;
 }): AssignSchemaOwnerResult => {
   const nextRecipientId = normalizeText(input.recipient?.id);
   if (!nextRecipientId) {
@@ -123,7 +141,7 @@ export const assignSchemaOwner = (input: {
     return { pages: input.pages, changedSchemaUids: [] };
   }
 
-  const patch = buildSchemaOwnerPatch(input.recipient);
+  const patch = buildSchemaOwnerPatch(input.recipient, { actorId: input.actorId });
   const changedSchemaUids: string[] = [];
 
   const pages = input.pages.map((page) =>

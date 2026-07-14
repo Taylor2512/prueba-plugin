@@ -16,6 +16,8 @@ import type {
   SnapshotPage,
   SnapshotRecipient,
   SnapshotAssignment,
+  SnapshotConnectivity,
+  SnapshotContributor,
   SignatureConfig,
   ProviderConfig,
   SerializeOptions,
@@ -35,11 +37,24 @@ export interface ValidationResult {
 
 /** Estado interno del designer que se puede serializar */
 export interface DesignerState {
+  templateSchemaVersion?: string;
+  activeDocumentId?: string | null;
   documents: SnapshotDocument[];
+  uploadedDocuments?: SnapshotDocument[];
   recipients: SnapshotRecipient[];
   assignments: SnapshotAssignment[];
+  connectivity?: SnapshotConnectivity;
+  inputs?: Array<Record<string, unknown>>;
+  contributors?: SnapshotContributor[];
+  history?: Array<Record<string, unknown>>;
   signatureConfig: SignatureConfig;
+  signaturePolicyId?: string | null;
+  signatureMode?: string | null;
+  signatureProviderKey?: string | null;
   providerConfig: ProviderConfig;
+  delivery?: Record<string, unknown>;
+  message?: Record<string, unknown>;
+  security?: Record<string, unknown>;
   comments?: OfficialTemplateSnapshot['comments'];
 }
 
@@ -59,29 +74,57 @@ class SnapshotAdapterImpl {
       ? state.documents
       : this._convertBackgroundsToBase64(state.documents);
 
-    return {
+    const snapshot: OfficialTemplateSnapshot = {
       version: SNAPSHOT_VERSION,
+      templateSchemaVersion: state.templateSchemaVersion || SNAPSHOT_VERSION,
       templateId: this._generateTemplateId(),
       createdAt: now,
       updatedAt: now,
       metadata,
+      activeDocumentId: state.activeDocumentId ?? null,
       documents,
+      uploadedDocuments: state.uploadedDocuments ?? state.documents,
       recipients: state.recipients,
       assignments: state.assignments,
+      connectivity: state.connectivity,
+      inputs: state.inputs,
+      contributors: state.contributors,
+      history: state.history,
       signatureConfig: state.signatureConfig,
+      signaturePolicyId: state.signaturePolicyId ?? null,
+      signatureMode: state.signatureMode ?? null,
+      signatureProviderKey: state.signatureProviderKey ?? null,
       providerConfig: state.providerConfig,
+      delivery: state.delivery,
+      message: state.message,
+      security: state.security,
       comments: state.comments,
     };
+
+    return snapshot;
   }
 
   /** Restaura el estado del designer desde un snapshot */
   deserialize(snapshot: OfficialTemplateSnapshot): DesignerState {
     return {
+      templateSchemaVersion: snapshot.templateSchemaVersion,
+      activeDocumentId: snapshot.activeDocumentId ?? null,
       documents: snapshot.documents,
+      uploadedDocuments: snapshot.uploadedDocuments,
       recipients: snapshot.recipients,
       assignments: snapshot.assignments,
+      connectivity: snapshot.connectivity,
+      inputs: snapshot.inputs,
+      contributors: snapshot.contributors,
+      history: snapshot.history,
       signatureConfig: snapshot.signatureConfig,
+      signaturePolicyId: snapshot.signaturePolicyId ?? null,
+      signatureMode: snapshot.signatureMode ?? null,
+      signatureProviderKey: snapshot.signatureProviderKey ?? null,
       providerConfig: snapshot.providerConfig,
+      delivery: snapshot.delivery,
+      message: snapshot.message,
+      security: snapshot.security,
       comments: snapshot.comments,
     };
   }
@@ -102,6 +145,13 @@ class SnapshotAdapterImpl {
     const now = new Date().toISOString();
     const legacySchemas = this._extractLegacySchemas(legacy);
     const legacyRecipients = this._extractLegacyRecipients(legacy);
+    const uploadedDocuments =
+      Array.isArray(legacy.uploadedDocuments) && legacy.uploadedDocuments.length > 0
+        ? (legacy.uploadedDocuments as SnapshotDocument[])
+        : undefined;
+    const legacySignaturePolicyId = this._resolveLegacySignaturePolicyId(legacy);
+    const legacySignatureMode = this._resolveLegacySignatureMode(legacy, legacySignaturePolicyId);
+    const legacyConnectivity = this._resolveLegacyConnectivity(legacy);
 
     const documents: SnapshotDocument[] = [
       {
@@ -120,6 +170,10 @@ class SnapshotAdapterImpl {
 
     return {
       version: SNAPSHOT_VERSION,
+      templateSchemaVersion:
+        typeof legacy.templateSchemaVersion === 'string'
+          ? legacy.templateSchemaVersion
+          : SNAPSHOT_VERSION,
       templateId: typeof legacy.templateId === 'string' ? legacy.templateId : this._generateId(),
       createdAt: now,
       updatedAt: now,
@@ -128,17 +182,39 @@ class SnapshotAdapterImpl {
         createdByUserId: 'migration',
         description: 'Migrado automáticamente desde formato pdfme v1',
       },
+      activeDocumentId:
+        typeof legacy.activeDocumentId === 'string' && legacy.activeDocumentId.trim()
+          ? legacy.activeDocumentId.trim()
+          : documents[0]?.documentId ?? null,
       documents,
+      uploadedDocuments: uploadedDocuments ?? documents,
       recipients: legacyRecipients,
       assignments: this._extractLegacyAssignments(legacySchemas),
+      connectivity: legacyConnectivity,
+      inputs: Array.isArray(legacy.inputs) ? (legacy.inputs as Array<Record<string, unknown>>) : undefined,
+      contributors: Array.isArray(legacy.contributors)
+        ? (legacy.contributors as SnapshotContributor[])
+        : undefined,
+      history: Array.isArray(legacy.history) ? (legacy.history as Array<Record<string, unknown>>) : undefined,
       signatureConfig: {
-        defaultMode: 'draw',
-        allowedModes: ['draw', 'image', 'p12'],
+        defaultMode: legacySignatureMode,
+        allowedModes: ['draw', 'image', 'p12', 'provider'],
       },
+      signaturePolicyId: legacySignaturePolicyId,
+      signatureMode: legacySignatureMode,
+      signatureProviderKey:
+        typeof legacy.signatureProviderKey === 'string'
+          ? legacy.signatureProviderKey
+          : typeof legacy.signatureProvider === 'string'
+            ? legacy.signatureProvider
+            : null,
       providerConfig: {
-        defaultProvider: 'draw',
-        allowedProviders: ['draw', 'image', 'p12'],
+        defaultProvider: legacySignatureMode === 'provider' ? 'provider' : 'draw',
+        allowedProviders: ['draw', 'image', 'p12', 'provider'],
       },
+      delivery: asRecord(legacy.delivery) || undefined,
+      message: asRecord(legacy.message) || undefined,
+      security: asRecord(legacy.security) || undefined,
     };
   }
 
@@ -233,6 +309,56 @@ class SnapshotAdapterImpl {
       }
     }
     return assignments;
+  }
+
+  private _resolveLegacyConnectivity(legacy: Record<string, unknown>): SnapshotConnectivity | undefined {
+    const legacyMapping = asRecord(legacy.connectivityMapping);
+    const connectivity = asRecord(legacy.connectivity);
+    const byFile = asRecord(connectivity?.byFile);
+    const bySchema = asRecord(connectivity?.bySchema);
+    const byRecipient = asRecord(connectivity?.byRecipient);
+
+    if (!legacyMapping && !byFile && !bySchema && !byRecipient) return undefined;
+
+    return {
+      byFile: byFile || legacyMapping || undefined,
+      bySchema: bySchema || undefined,
+      byRecipient: byRecipient || undefined,
+      legacyMapping: legacyMapping || undefined,
+    };
+  }
+
+  private _resolveLegacySignaturePolicyId(legacy: Record<string, unknown>): string | null {
+    const policy = typeof legacy.signaturePolicyId === 'string'
+      ? legacy.signaturePolicyId.trim()
+      : typeof legacy.singType === 'string'
+        ? legacy.singType.trim()
+        : typeof legacy.signaturePolicy === 'string'
+          ? legacy.signaturePolicy.trim()
+          : '';
+
+    return policy || null;
+  }
+
+  private _resolveLegacySignatureMode(
+    legacy: Record<string, unknown>,
+    signaturePolicyId: string | null,
+  ): SignatureConfig['defaultMode'] {
+    const rawMode = typeof legacy.signatureMode === 'string'
+      ? legacy.signatureMode.trim()
+      : typeof legacy.signatureType === 'string'
+        ? legacy.signatureType.trim()
+        : '';
+
+    const normalizedMode = rawMode.toLowerCase();
+    if (normalizedMode === 'draw' || normalizedMode === 'image' || normalizedMode === 'p12' || normalizedMode === 'provider') {
+      return normalizedMode;
+    }
+
+    const normalizedPolicy = (signaturePolicyId || '').toLowerCase();
+    if (normalizedPolicy === 'electronica' || normalizedPolicy === 'p12') return 'p12';
+    if (normalizedPolicy === 'oneshot' || normalizedPolicy === 'provider') return 'provider';
+    return 'draw';
   }
 
   private _migrateSchema(

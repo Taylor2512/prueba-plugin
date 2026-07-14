@@ -1,4 +1,15 @@
 export {
+  getSchemaVisibility,
+  resolveExternalFormRuntimeState,
+  areAllRequiredFieldsComplete,
+  InMemoryExternalFormStorage,
+  type ExternalFormRuntimeState,
+  type ExternalFormRuntimeStateOptions,
+  type ExternalFormSchemaState,
+  type ExternalFormRunnerProps,
+  type SchemaVisibility,
+} from '../externalForms/externalFormRunner.js';
+export {
   Designer,
   Form,
   Viewer,
@@ -8,6 +19,62 @@ export {
   PdfViewer,
   createDesignerRuntimeEventHub,
 } from '../ui/index.js';
+export {
+  createSisadPdfmeConfig,
+  defaultSisadPdfmeConfig,
+  resolveSisadPdfmeConfig,
+} from '../config/index.js';
+export {
+  SisadPdfmeProvider,
+  SisadPdfmeDesigner,
+  SisadPdfmeForm,
+  SisadPdfmeViewer,
+  useSisadPdfmeConfig,
+  useSisadPdfmeController,
+} from '../react/index.js';
+export type {
+  ResolvedSisadPdfmeConfig,
+  SisadPdfmeController,
+  SisadPdfmeDocument,
+  SisadPdfmeDocumentsAdapter,
+  SisadPdfmeEventHandlers,
+  SisadPdfmeEventName,
+  SisadPdfmeGlobalConfig,
+  SisadPdfmePersistenceAdapter,
+  SisadPdfmeRecipient,
+  SisadPdfmeRecipientsAdapter,
+  SisadPdfmeSignatureProvider,
+  SisadPdfmeSignatureProviderAdapter,
+} from '../config/index.js';
+export {
+  createRecipientRegistry,
+  normalizeRecipients,
+  resolveSchemaOwnerAppearance,
+  resolveOwnerRecipientId,
+  buildCollaborationSyncFromRegistry,
+  buildAssignmentContextFromRegistry,
+  buildRecipientOptionsFromRegistry,
+  resolveRecipientColors,
+  buildRecipientColorMap,
+  createRecipientPermissionResolver,
+  recipientsToSnapshot,
+  recipientsFromSnapshot,
+  useRecipientRegistry,
+} from '../recipients/index.js';
+export type {
+  SchemaOwnerAppearance,
+  SisadPdfmeAssignmentChangePayload,
+  SisadPdfmeRecipientRegistry,
+  SisadPdfmeRecipientRegistryState,
+  SisadPdfmeRecipientsConfig,
+  SisadPdfmeRecipientsSnapshot,
+} from '../recipients/index.js';
+export {
+  createDocumentsAdapter,
+  createPersistenceAdapter,
+  createRecipientsAdapter,
+  createSignatureProviderAdapter,
+} from '../adapters/index.js';
 export {
   generatePdf as generateTemplatePdf,
   generatePdf,

@@ -7,6 +7,7 @@
  */
 import type { PropPanelInspectorConfig, PropPanelSchema, SchemaForUI } from '@sisad-pdfme/common';
 import type { SchemaDesignerConfig } from '../../../../../ui/designerEngine.js';
+import type { SisadPdfmeVisibilityConfig } from '../../../../../config/SisadPdfmeConfig.js';
 import { asRecord, isRecord } from '../../shared/objectGuards.js';
 import {
   getDetailProfile,
@@ -71,6 +72,7 @@ type BuildInspectorSchemasParams = {
   maxHeight: number;
   validateUniqueSchemaName: (_: unknown, value: string) => boolean;
   validatePosition: (_: unknown, value: number, fieldName: string) => boolean;
+  visibility?: SisadPdfmeVisibilityConfig;
 };
 
 /**
@@ -246,6 +248,7 @@ export const buildInspectorSections = ({
   maxHeight,
   validateUniqueSchemaName,
   validatePosition,
+  visibility,
 }: BuildInspectorSchemasParams) => {
   const familyPreset = getSchemaTypeInspectorPreset(activeSchemaType);
   const semanticFamily = resolveSchemaSemanticFamily(activeSchemaType);
@@ -501,6 +504,31 @@ export const buildInspectorSections = ({
     advanced: { ...sectionProperties.advanced },
   };
 
+  const inspectorVisibility = visibility?.inspector;
+  const isInspectorVisible = inspectorVisibility?.visible !== false;
+  if (!isInspectorVisible) return [];
+
+  const visibleFieldsBySchemaType =
+    inspectorVisibility?.fieldsBySchemaType?.[activeSchemaType] ??
+    inspectorVisibility?.fieldsBySchemaType?.[activeSchemaType.toLowerCase()] ??
+    {};
+
+  const isFieldVisible = (fieldKey: string): boolean => {
+    if (inspectorVisibility?.fields?.[fieldKey] === false) return false;
+    if (visibleFieldsBySchemaType[fieldKey] === false) return false;
+    return true;
+  };
+
+  const filteredCanonicalSectionProperties: Record<CanonicalDetailSection, Record<string, PropPanelSchema>> =
+    Object.fromEntries(
+      Object.entries(canonicalSectionProperties).map(([sectionKey, fields]) => [
+        sectionKey,
+        Object.fromEntries(
+          Object.entries(fields).filter(([fieldKey]) => isFieldVisible(fieldKey)),
+        ),
+      ]),
+    ) as Record<CanonicalDetailSection, Record<string, PropPanelSchema>>;
+
   const sectionContext = {
     isMultiUser: shouldShowCollaboration,
     hasComments: hasSchemaComments,
@@ -525,7 +553,15 @@ export const buildInspectorSections = ({
 
   const visibilitySchema = (activeSchema || (defaultSchema as SchemaForUI)) as SchemaForUI;
   const detailProfile = getInspectorProfile(activeSchemaType, activeSchema);
-  const visibleSections = detailProfile.visibleSections;
+  const visibleSections = detailProfile.visibleSections.filter((sectionKey) => {
+    if (inspectorVisibility?.sections?.[sectionKey] === false) return false;
+    if (sectionKey === 'advanced' && (inspectorVisibility?.showAdvanced === false || inspectorVisibility?.showTechnical === false)) {
+      return false;
+    }
+    if (sectionKey === 'comments' && inspectorVisibility?.showComments === false) return false;
+    if (sectionKey === 'collaboration' && inspectorVisibility?.showCollaboration === false) return false;
+    return true;
+  });
   const defaultOpenSections = new Set(detailProfile.defaultOpenSections);
 
   const resolveSectionMeta = (sectionKey: CanonicalDetailSection) => {
@@ -556,7 +592,9 @@ export const buildInspectorSections = ({
   };
 
   const sections = visibleSections.map((sectionKey) => {
-    const schema = replaceColorWidget(buildSectionSchema(canonicalSectionProperties[sectionKey])) as PropPanelSchema;
+    const sectionFields = filteredCanonicalSectionProperties[sectionKey];
+    if (!sectionFields || Object.keys(sectionFields).length === 0) return null;
+    const schema = replaceColorWidget(buildSectionSchema(sectionFields)) as PropPanelSchema;
     const defaultCollapsed = !defaultOpenSections.has(sectionKey);
 
     return {
@@ -565,7 +603,7 @@ export const buildInspectorSections = ({
       schema,
       canonicalKey: sectionKey,
     } as DetailInspectorSection & { canonicalKey: CanonicalDetailSection };
-  }).filter((section) =>
+  }).filter((section): section is DetailInspectorSection & { canonicalKey: CanonicalDetailSection } => Boolean(section)).filter((section) =>
     shouldRenderDetailSection({
       section: section.canonicalKey,
       schema: visibilitySchema,

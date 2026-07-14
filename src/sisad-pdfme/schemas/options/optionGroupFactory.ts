@@ -205,6 +205,13 @@ export const applyOptionGroupRootRuntime = ({
   rootElement.dataset.renderMode = mode;
   rootElement.dataset.schemaFamily = 'option-based';
   rootElement.dataset.selectionMode = selectionMode;
+  // Marcador raíz estable por familia: contrato DOM para tests/hosts que la
+  // unificación designer/runtime no debe perder.
+  if (selectionMode === 'single') {
+    rootElement.dataset.radioGroupRoot = 'true';
+  } else {
+    rootElement.dataset.checkboxGroupRoot = 'true';
+  }
   // Designer/viewer: the group root is transparent to pointer events so clicks
   // fall through to the .sisad-pdfme-ui-custom-selectable wrapper (Selecto/
   // Moveable target). Only form makes internal option rows interactive.

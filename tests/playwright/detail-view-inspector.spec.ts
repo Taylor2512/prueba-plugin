@@ -6,8 +6,12 @@ test.describe('detail-view inspector', () => {
 
     await page.locator('.sisad-pdfme-ui-custom-selectable[data-schema-name="contract_name"]').first().click({ force: true });
 
-    await expect(page.getByRole('button', { name: 'Expandir sección Ubicación y tamaño' })).toBeVisible();
-    await page.getByRole('button', { name: 'Expandir sección Ubicación y tamaño' }).click();
+    // La sección puede venir expandida por defecto: expandir solo si hace falta.
+    const layoutToggle = page.getByRole('button', { name: /(?:Expandir|Colapsar) sección Ubicación y tamaño/ });
+    await expect(layoutToggle).toBeVisible();
+    if (/Expandir/.test((await layoutToggle.getAttribute('aria-label')) || (await layoutToggle.textContent()) || '')) {
+      await layoutToggle.click();
+    }
 
     await expect(page.locator('input#name')).toHaveValue('contract_name');
     await expect(page.locator('input#position_x')).toHaveValue('18');

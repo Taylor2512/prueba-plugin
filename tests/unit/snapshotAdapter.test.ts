@@ -1,8 +1,10 @@
 import { describe, expect, test } from 'vitest';
 import { makeEmptySnapshot } from '@/sisad-pdfme/shared/snapshot.js';
-import { snapshotAdapter } from '@/sisad-pdfme/shared/snapshotAdapter.js';
+import { snapshotAdapter, type DesignerState } from '@/sisad-pdfme/shared/snapshotAdapter.js';
 
-const baseState = {
+const baseState: DesignerState = {
+  templateSchemaVersion: '3.1.0',
+  activeDocumentId: 'doc-1',
   documents: [
     {
       documentId: 'doc-1',
@@ -39,14 +41,36 @@ const baseState = {
       ],
     },
   ],
+  uploadedDocuments: [
+    {
+      documentId: 'doc-1',
+      name: 'Documento 1',
+      order: 0,
+      pages: [],
+    },
+  ],
   recipients: [
     { id: 'recipient-1', name: 'Cliente Principal', color: '#2563EB' },
   ],
   assignments: [
     { schemaUid: 'uid-1', recipientId: 'recipient-1', scope: 'recipient' as const },
   ],
+  connectivity: {
+    byFile: {
+      'doc-1': { route: 'step-two' },
+    },
+  },
+  inputs: [{ field_1: 'value-1' }],
+  contributors: [{ id: 'user-1', name: 'Reviewer', role: 'editor' }],
+  history: [{ id: 'evt-1', type: 'schema.updated', timestamp: 1 }],
   signatureConfig: { defaultMode: 'draw' as const, allowedModes: ['draw'] },
+  signaturePolicyId: 'sisad',
+  signatureMode: 'draw',
+  signatureProviderKey: null,
   providerConfig: { defaultProvider: 'draw', allowedProviders: ['draw'] },
+  delivery: { channel: 'email' },
+  message: { subject: 'Guardar borrador' },
+  security: { visibility: 'internal' },
   comments: [
     {
       commentId: 'c-1',
@@ -68,13 +92,24 @@ describe('snapshotAdapter', () => {
     });
 
     expect(snapshot.version).toBe('2.0.0');
+    expect(snapshot.templateSchemaVersion).toBe('3.1.0');
+    expect(snapshot.activeDocumentId).toBe('doc-1');
     expect(snapshot.documents[0]?.pages[0]?.schemas[0]?.__designer.recipientColor).toBe('#2563EB');
+    expect(snapshot.uploadedDocuments).toHaveLength(1);
+    expect(snapshot.connectivity?.byFile?.['doc-1']).toMatchObject({ route: 'step-two' });
+    expect(snapshot.inputs).toHaveLength(1);
+    expect(snapshot.contributors).toHaveLength(1);
+    expect(snapshot.history).toHaveLength(1);
+    expect(snapshot.signaturePolicyId).toBe('sisad');
+    expect(snapshot.signatureMode).toBe('draw');
 
     const restored = snapshotAdapter.deserialize(snapshot);
     expect(restored.documents).toHaveLength(1);
     expect(restored.recipients).toHaveLength(1);
     expect(restored.assignments).toHaveLength(1);
     expect(restored.comments).toHaveLength(1);
+    expect(restored.activeDocumentId).toBe('doc-1');
+    expect(restored.signaturePolicyId).toBe('sisad');
   });
 
   test('migrates legacy snapshots and preserves recipient color precedence', () => {
@@ -94,15 +129,22 @@ describe('snapshotAdapter', () => {
         },
       ]],
       basePdf: 'data:application/pdf;base64,AAA=',
+      singType: 'oneshot',
+      connectivityMapping: {
+        'legacy-doc': { route: 'connected' },
+      },
     });
 
     expect(migrated.version).toBe('2.0.0');
     expect(migrated.documents[0]?.pages[0]?.background.type).toBe('base64');
     expect(migrated.documents[0]?.pages[0]?.schemas[0]?.__designer.recipientColor).toBe('#112233');
+    expect(migrated.signaturePolicyId).toBe('oneshot');
+    expect(migrated.signatureMode).toBe('provider');
+    expect(migrated.connectivity?.byFile?.['legacy-doc']).toMatchObject({ route: 'connected' });
   });
 
   test('preserves checkboxGroup options, selectedOptionIds and group metadata in round-trip', () => {
-    const state = {
+    const state: DesignerState = {
       ...baseState,
       documents: [
         {
@@ -167,7 +209,7 @@ describe('snapshotAdapter', () => {
   });
 
   test('preserves radioGroup options, selectedOptionId and group metadata in round-trip', () => {
-    const state = {
+    const state: DesignerState = {
       ...baseState,
       documents: [
         {

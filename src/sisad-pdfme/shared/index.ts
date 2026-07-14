@@ -69,6 +69,8 @@ export type {
   SnapshotPage,
   SnapshotRecipient,
   SnapshotAssignment,
+  SnapshotConnectivity,
+  SnapshotContributor,
   SignatureConfig,
   ProviderConfig,
   SnapshotComment,
