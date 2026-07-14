@@ -186,6 +186,45 @@ type CatalogSchemaItem = {
   definitionId?: string;
 };
 
+const HIDDEN_CATALOG_TYPE_SYNONYMS: Record<string, string[]> = {
+  qrcode: [
+    'barcode',
+    'barcodes',
+    'qrcode',
+    'qr',
+    'ean13',
+    'ean8',
+    'code39',
+    'code128',
+    'itf14',
+    'upca',
+    'upce',
+    'gs1datamatrix',
+    'pdf417',
+    'japanpost',
+    'nw7',
+  ],
+};
+
+const normalizeCatalogType = (value: unknown): string =>
+  String(value || '')
+    .trim()
+    .toLowerCase();
+
+const buildHiddenCatalogTypeSet = (values: unknown): Set<string> => {
+  const entries = Array.isArray(values) ? values : [];
+  const normalized = new Set<string>();
+
+  entries.forEach((value) => {
+    const type = normalizeCatalogType(value);
+    if (!type) return;
+    normalized.add(type);
+    (HIDDEN_CATALOG_TYPE_SYNONYMS[type] || []).forEach((synonym) => normalized.add(synonym));
+  });
+
+  return normalized;
+};
+
 type SidebarButtonsProps = {
   activeTab: LeftSidebarTab;
   variant: 'compact' | 'panel';
@@ -669,6 +708,10 @@ const LeftSidebar = ({
     isDragging,
     setIsDragging,
   } = useLeftSidebarCatalogState({ catalogLayout });
+  const hiddenCatalogTypes = useMemo(
+    () => buildHiddenCatalogTypeSet(options.hiddenCatalogTypes),
+    [options.hiddenCatalogTypes],
+  );
 
   const clickCooldownRef = useRef(0);
 
@@ -739,6 +782,7 @@ const LeftSidebar = ({
     plugins
       .filter(([label, plugin]) => {
         const schemaType = String(plugin?.propPanel?.defaultSchema?.type || '').toLowerCase();
+        if (hiddenCatalogTypes.has(schemaType)) return false;
         const normalizedLabel = String(label || '').toLowerCase();
         const isPrefillByLabel = PREFILL_LABEL_TOKENS.some((token) => normalizedLabel.includes(token));
         const isPrefill = isPrefillByLabel && PREFILL_SCHEMA_TYPES.has(schemaType);
@@ -887,6 +931,7 @@ const LeftSidebar = ({
     activeCapabilities,
     parsedQuery,
     searchTerms,
+    hiddenCatalogTypes,
   ]);
 
   const recentCatalogItems = useMemo(() => {

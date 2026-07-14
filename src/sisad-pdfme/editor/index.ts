@@ -34,10 +34,10 @@ import { DesignerEngineBuilder } from '../ui/designerEngine.js';
  * tokens.css:
  * Define variables/tokens visuales compartidos.
  *
- * sisad-pdfme-runtime.css:
+ * sisad-pdfme.css:
  * Define estilos estructurales del runtime.
  *
- * canvas-interactions.css:
+ * sisad-pdfme.css:
  * Define estilos relacionados con selección, interacción visual,
  * overlays o estados del canvas.
  *
@@ -46,8 +46,8 @@ import { DesignerEngineBuilder } from '../ui/designerEngine.js';
  * Uanataca, workflows o pantallas externas.
  */
 import '../ui/styles/tokens.css';
-import '../ui/styles/sisad-pdfme-runtime.css';
-import '../ui/styles/canvas-interactions.css';
+import '../ui/styles/sisad-pdfme.css';
+import '../ui/styles/sisad-pdfme.css';
 
 /**
  * Alias público del diseñador PDF.

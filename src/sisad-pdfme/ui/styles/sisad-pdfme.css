@@ -3,9 +3,9 @@
 
    Fuente única del diseño del diseñador PDF.
    Reemplaza:
-   - canvas-interactions.css
+   - sisad-pdfme.css
    - sisad-pdfme-global.css
-   - sisad-pdfme-runtime.css
+   - sisad-pdfme.css
    - sisad-pdfme-sidebar.css
 
    Mantiene selectores originales para no tocar JSX/TSX.
@@ -3305,7 +3305,7 @@
 }
 
 
-/* ── canvas-interactions.css ───────────────────────────────────────── */
+/* ── sisad-pdfme.css ───────────────────────────────────────── */
 .sisad-pdfme-ui-canvas-overlay-manager {
   @apply absolute inset-0 pointer-events-none z-[var(--z-overlay)];
 }
@@ -3598,7 +3598,7 @@
   @apply absolute top-0 left-1/2 [transform:translate(-50%,calc(-100%_-_0.125rem))] z-[35] inline-flex items-center gap-px py-[0.125rem] px-[0.1875rem] [background:rgba(255,255,255,0.97)] rounded-[var(--radius-md)] border border-[color:var(--color-border-soft)] shadow-[var(--shadow-md)] opacity-0 pointer-events-none [transition:opacity_var(--transition-fast),transform_var(--transition-fast)] whitespace-nowrap [backdrop-filter:blur(4px)];
 }
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-schema-toolbar-btn {
-  @apply inline-flex items-center justify-center min-w-[1.375rem] min-h-[1.375rem] border-0 bg-transparent text-[color:var(--color-text-muted)] rounded-[var(--radius-sm)] [padding:0.125rem] cursor-pointer text-[var(--font-size-base)] [transition:background_var(--transition-fast),color_var(--transition-fast)];
+  @apply inline-flex items-center justify-center min-w-[1.375rem] min-h-[1.375rem] border-0 bg-transparent rounded-[var(--radius-sm)] [padding:0.125rem] cursor-pointer text-[var(--font-size-base)] [transition:background_var(--transition-fast),color_var(--transition-fast)];
 }
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-schema-toolbar-btn:hover {
   @apply bg-[var(--color-bg-hover)] text-[color:var(--color-text-primary)];
@@ -3616,7 +3616,7 @@
   @apply bg-[var(--color-danger-dim)] text-[color:var(--color-danger)];
 }
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-span-auto {
-  @apply inline-flex items-center justify-center min-w-[1rem] min-h-[1rem] py-[0] px-[0.25rem] rounded-[var(--radius-full)] bg-[var(--color-primary-10)] text-[color:var(--color-primary)] text-[var(--font-size-xs)] font-[var(--font-weight-bold)] [font-family:var(--font-family-mono)] leading-none border border-[color:var(--color-primary-20)] [transition:background_var(--transition-fast),color_var(--transition-fast)];
+  @apply inline-flex items-center justify-center min-w-[1rem] min-h-[1rem] py-[0] px-[0.25rem] rounded-[var(--radius-full)] bg-[var(--color-primary-10)] text-[var(--font-size-xs)] font-[var(--font-weight-bold)] [font-family:var(--font-family-mono)] leading-none border border-[color:var(--color-primary-20)] [transition:background_var(--transition-fast),color_var(--transition-fast)];
 }
 :is(.app-shell, .sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-required="true"]:hover .sisad-pdfme-ui-span-auto {
   @apply bg-[var(--color-danger-dim)] text-[color:var(--color-danger)];
@@ -4183,7 +4183,7 @@
 }
 
 
-/* ── sisad-pdfme-runtime.css ───────────────────────────────────────── */
+/* ── sisad-pdfme.css ───────────────────────────────────────── */
 .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-view-toggle-btn {
     @apply w-[1.75rem] [padding-inline:0];
   }

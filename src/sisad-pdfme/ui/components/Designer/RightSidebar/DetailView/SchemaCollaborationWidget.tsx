@@ -133,6 +133,16 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
     const ids = Array.isArray(props.activeElements)
       ? props.activeElements
           .map((element) => String(element?.dataset?.schemaId || element?.id || '').trim())
+          .map((value, index) => {
+            const element = props.activeElements?.[index];
+            return String(
+              value ||
+                element?.dataset?.schemaUid ||
+                element?.dataset?.schemaId ||
+                element?.id ||
+                '',
+            ).trim();
+          })
           .filter(Boolean)
       : [];
 
@@ -201,7 +211,7 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
       description={props.summaryDescription || `Propietario y acceso${selectionHint}.`}
       statusTags={[{ label: stateLabel, color: stateTagColor }]}
       modalTitle={props.modalTitle || 'Gestionar asignación y bloqueo'}
-      modalTriggerLabel={props.modalTriggerLabel ?? null}
+      modalTriggerLabel={props.modalTriggerLabel ?? 'Reasignar'}
       modalTriggerIcon={<Users size={14} />}
       modalTriggerAriaLabel={props.modalTitle || 'Cambiar propietario'}
     >

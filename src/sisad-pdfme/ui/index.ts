@@ -18,6 +18,7 @@ import Viewer from './Viewer';
 import { DesignerEngineBuilder } from './designerEngine';
 import './styles/tokens.css';
 import './styles/sisad-pdfme.css';
+import './styles/sisad-pdfme.css';
 export type { DesignerComponentBridge, DesignerRuntimeApi, SidebarProps } from './types';
 export type { DesignerDocumentsBridge } from './types';
 export type {

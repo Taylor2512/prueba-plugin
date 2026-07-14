@@ -168,6 +168,7 @@ export type CollaborationSyncConfig = {
   activeRecipientId?: string | null;
   activeUserId?: string | null;
   isGlobalView?: boolean;
+  hiddenSchemaTypes?: string[];
   canEditStructure?: boolean | ((context: {
     fileId: string | null;
     activeRecipientId: string | null;

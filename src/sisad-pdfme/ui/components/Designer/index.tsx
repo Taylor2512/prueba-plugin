@@ -83,6 +83,7 @@ type DesignerOptionsBridge = {
   uploadedDocuments?: unknown;
   activeDocumentId?: unknown;
   catalogLayout?: CatalogLayout;
+  hiddenCatalogTypes?: unknown;
   onCatalogLayoutChange?: ((layout: CatalogLayout) => void) | null;
   rightSidebarViewMode?: 'auto' | 'fields' | 'detail' | 'docs' | 'comments';
   onRightSidebarViewModeChange?: ((mode: 'auto' | 'fields' | 'detail' | 'docs' | 'comments') => void) | null;

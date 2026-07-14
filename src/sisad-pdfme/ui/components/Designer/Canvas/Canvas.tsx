@@ -1925,7 +1925,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
               isHovering={isHovering}
               isEditing={editing && isActive}
               outline={
-                // When selected, let CSS outline (canvas-interactions.css) handle
+                // When selected, let CSS outline (sisad-pdfme.css) handle
                 // the visual frame — avoid double-border from both inline border + CSS outline.
                 isActive
                   ? '1px solid transparent'

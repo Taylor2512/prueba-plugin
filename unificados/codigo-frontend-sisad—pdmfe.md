@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `react`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-13T21:07:33.801Z`
+- **Fecha generación:** `2026-07-14T17:03:40.907Z`
 - **Extensiones incluidas:** `.js, .jsx, .ts, .tsx, .mjs, .cjs, .json`
 - **Archivos candidatos incluidos:** `518`
 - **Límite por archivo:** `90 KB`
@@ -585,7 +585,7 @@ prueba-plugin
 | 5 | `postcss.config.mjs` | javascript | 6 | 0.1 | completo |
 | 6 | `eslint.config.cjs` | javascript | 126 | 4.0 | completo |
 | 7 | `tsconfig.json` | json | 65 | 1.3 | completo |
-| 8 | `src/main.jsx` | jsx | 13 | 0.4 | completo |
+| 8 | `src/main.jsx` | jsx | 12 | 0.4 | completo |
 | 9 | `src/App.jsx` | jsx | 25 | 0.9 | completo |
 | 10 | `src/features/pdfcomponent/CaseCard.jsx` | jsx | 123 | 5.2 | completo |
 | 11 | `src/features/pdfcomponent/CaseGrid.jsx` | jsx | 1 | 0.1 | completo |
@@ -707,7 +707,7 @@ prueba-plugin
 | 127 | `src/sisad-pdfme/ui/helper.ts` | typescript | 622 | 17.8 | completo |
 | 128 | `src/sisad-pdfme/ui/hooks.ts` | typescript | 516 | 17.0 | completo |
 | 129 | `src/sisad-pdfme/ui/i18n.ts` | typescript | 915 | 37.7 | completo |
-| 130 | `src/sisad-pdfme/ui/index.ts` | typescript | 39 | 1.5 | completo |
+| 130 | `src/sisad-pdfme/ui/index.ts` | typescript | 38 | 1.5 | completo |
 | 131 | `src/sisad-pdfme/ui/theme.ts` | typescript | 75 | 1.7 | completo |
 | 132 | `src/sisad-pdfme/ui/types.ts` | typescript | 161 | 5.3 | completo |
 | 133 | `src/sisad-pdfme/ui/Viewer.tsx` | tsx | 70 | 2.1 | completo |
@@ -1100,7 +1100,7 @@ prueba-plugin
 ## Resumen de exclusiones
 
 - **test omitido:** 918
-- **extensión no incluida:** 396
+- **extensión no incluida:** 394
 - **directorio ignorado: dependencia/build/salida generada:** 7
 - **json de datos omitido en perfil react:** 5
 - **generado detectado por contenido:** 2
@@ -1109,7 +1109,7 @@ prueba-plugin
 
 ## Totales
 
-- **KB originales candidatos:** `3534.2`
+- **KB originales candidatos:** `3534.1`
 - **KB incluidos en contenido:** `2499.8`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
@@ -1620,9 +1620,9 @@ module.exports = [
 ### 0008 — `src/main.jsx`
 
 - **Lenguaje:** `jsx`
-- **Líneas:** `13`
+- **Líneas:** `12`
 - **Tamaño original:** `0.4 KB`
-- **SHA1 corto:** `b39aece82a`
+- **SHA1 corto:** `67cf2b4bed`
 - **Estado:** `completo`
 
 ```jsx
@@ -1631,7 +1631,6 @@ import { createRoot } from 'react-dom/client'
 import { BrowserRouter } from 'react-router-dom'
 import App from './App'
 import './styles/tailwind.css';
-import './styles/sisad-tailwind-bridge.css';
 
 const root = createRoot(document.getElementById('root'))
 root.render(
@@ -30419,9 +30418,9 @@ export const i18n = (key: keyof Dict, dict?: Dict) => (dict || getDict(DEFAULT_L
 ### 0130 — `src/sisad-pdfme/ui/index.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `39`
+- **Líneas:** `38`
 - **Tamaño original:** `1.5 KB`
-- **SHA1 corto:** `7974e6810d`
+- **SHA1 corto:** `0fd7b9a013`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export const: PdfEditor`, `export const: PdfFormView`, `export const: PdfViewer`, `export const: PdfEditorEngineBuilder`
 
@@ -30445,8 +30444,7 @@ import Form from './Form';
 import Viewer from './Viewer';
 import { DesignerEngineBuilder } from './designerEngine';
 import './styles/tokens.css';
-import './styles/sisad-pdfme-runtime.css';
-import './styles/canvas-interactions.css';
+import './styles/sisad-pdfme.css';
 export type { DesignerComponentBridge, DesignerRuntimeApi, SidebarProps } from './types';
 export type { DesignerDocumentsBridge } from './types';
 export type {
@@ -84155,11 +84153,13 @@ const Moveable = (props: Props, ref: Ref<MoveableComponent>) => {
     if (containerElement instanceof HTMLElement) {
       containerElement.style.setProperty('--moveable-color', color);
       moveableLines.forEach((element) => {
-        if (element instanceof HTMLEleme
+        if (element instanceof HTMLElement) {
+          element.style.setProperty('--moveable-color', col
 
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 811 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 723 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
 
-art={props.onRotateStart}
+otate}
+      onRotateStart={props.onRotateStart}
       onRotateEnd={props.onRotateEnd}
       onRotateGroupStart={({ events }: OnRotateGroupStart) => {
         events.forEach((event) => props.onRotateStart?.(event));

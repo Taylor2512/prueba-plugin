@@ -540,7 +540,10 @@ export function shouldRenderDetailSection(params: {
       'externalkey',
       'externalKey',
     ];
-    return Boolean(context.hasDataBindings) && (hasField(entries, bindingFields) || hasWidget(fields, widgetNames) || hasAnyValue(schemaObject, ['schemaConnections', 'persistence', 'api', 'form', 'prefill', 'rootKey', 'endpoint', 'baseUrl', 'headers', 'params', 'storageKey', 'requestMapping', 'responseMapping', 'mapping', 'dataLabel', 'tabLabel', 'fieldKey']));
+    // Render la sección también cuando la familia soporta conexiones aunque el
+    // schema aún no tenga bindings, para poder crear la PRIMERA conexión desde el
+    // SchemaConnectionsWidget (antes: `hasDataBindings` bloqueaba el chicken-and-egg).
+    return Boolean(context.hasDataBindings || context.supportsDataBindings) && (hasField(entries, bindingFields) || hasWidget(fields, widgetNames) || hasAnyValue(schemaObject, ['schemaConnections', 'persistence', 'api', 'form', 'prefill', 'rootKey', 'endpoint', 'baseUrl', 'headers', 'params', 'storageKey', 'requestMapping', 'responseMapping', 'mapping', 'dataLabel', 'tabLabel', 'fieldKey']));
   }
 
   if (section === 'collaboration') {

@@ -31,7 +31,7 @@ import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { emitDesignerRuntimeEvent } from '../../shared/designerExtensions.js';
 import { useResponsiveDensity } from '../../shared/useResponsiveDensity.js';
 import { getSchemaTypeLabel } from '../../shared/designerLabels.js';
-import { buildAssignSchemaOwnerOps, resolveSelectionOwner } from '../../shared/schemaAssignmentService.js';
+import { buildAssignSchemaOwnerOps, resolveSelectionOwner, resolveSchemaUid } from '../../shared/schemaAssignmentService.js';
 import { resetDesignerTransientInteractionState } from '../../shared/designerInteractionReset.js';
 
 const { TextArea } = Input;
@@ -134,7 +134,7 @@ const ListView = (
   }, [viewSchemas, searchQuery, typeFilter]);
 
   const selectedSchemas = useMemo(
-    () => viewSchemas.filter((schema) => activeSchemaIds.includes(schema.id)),
+    () => viewSchemas.filter((schema) => activeSchemaIds.includes(schema.id) || activeSchemaIds.includes(resolveSchemaUid(schema))),
     [activeSchemaIds, viewSchemas],
   );
   const hasSelectableRecipient = recipientOptions.length > 0 && collaborationContext?.canEditStructure !== false;

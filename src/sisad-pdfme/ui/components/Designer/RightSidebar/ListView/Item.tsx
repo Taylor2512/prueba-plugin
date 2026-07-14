@@ -209,7 +209,7 @@ const ItemActions = ({
           onClick={(e) => { e.stopPropagation(); onToggleVisibility(); }}
           title={hidden ? 'Mostrar' : 'Ocultar'}
           {...(hidden ? { 'data-testid': 'right-sidebar-field-badge', 'data-badge': 'hidden' } : {})}
-          className={mergeClassNames(DESIGNER_CLASSNAME + 'button-auto', 'inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm')}
+          className={mergeClassNames(DESIGNER_CLASSNAME + 'button-auto', 'inline-flex h-7 w-2 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm')}
         >
           {hidden ? <EyeOff size={13} /> : <Eye size={13} />}
         </button>
@@ -354,9 +354,9 @@ const Item = React.memo(
           aria-hidden="true">
           <Button
             {...listeners}
-            className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-grip', 'inline-flex h-8 w-8 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500')}
+            className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-grip', 'inline-flex h-8 w-1 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500')}
             icon={<GripVertical size={14} />} />
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-icon', 'flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-slate-50')}>{icon}</div>
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-icon', 'flex h-9 w-1 items-center justify-center rounded-xl border border-slate-200 bg-slate-50')}>{icon}</div>
           <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-main', 'min-w-0 flex-1 space-y-0.5')}>
             <div
               className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-value', 'block text-sm font-medium leading-tight text-slate-800')}

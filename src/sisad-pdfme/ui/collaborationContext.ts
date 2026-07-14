@@ -48,6 +48,7 @@ export type EffectiveCollaborationContext = Pick<
   activeRecipientId: string | null;
   activeRecipient: CollaborationRecipientOption | null;
   isGlobalView: boolean;
+  hiddenSchemaTypes?: string[];
   canEditStructure: boolean;
 };
 
@@ -157,6 +158,11 @@ export const buildEffectiveCollaborationContext = (
   const activeRecipientRole = normalizeNullableText(activeRecipient?.role);
   const ownerRecipientId = activeRecipientId || actorId || null;
   const ownerColor = activeRecipient?.color || actorColor || null;
+  const hiddenSchemaTypes = Array.isArray(collaboration?.hiddenSchemaTypes)
+    ? collaboration.hiddenSchemaTypes
+        .map((type) => normalizeText(type).toLowerCase())
+        .filter(Boolean)
+    : [];
 
   return {
     fileId,
@@ -174,6 +180,7 @@ export const buildEffectiveCollaborationContext = (
     activeRecipient,
     activeRecipientRole,
     isGlobalView: collaboration?.isGlobalView === true,
+    hiddenSchemaTypes,
     canEditStructure: resolveCanEditStructure(collaboration, {
       fileId,
       activeRecipientId,
@@ -252,9 +259,11 @@ export const schemaMatchesCollaborationView = (
   schema: SchemaForUI,
   collaborationContext?: Pick<
     EffectiveCollaborationContext,
-    'recipientColorMap' | 'recipientNameMap' | 'activeRecipientId' | 'isGlobalView' | 'actorColor'
+    'recipientColorMap' | 'recipientNameMap' | 'activeRecipientId' | 'isGlobalView' | 'actorColor' | 'hiddenSchemaTypes'
   >,
 ) => {
+  const schemaType = String((schema as SchemaForUI & { type?: string }).type || '').trim().toLowerCase();
+  if (collaborationContext?.hiddenSchemaTypes?.includes(schemaType)) return false;
   if (!collaborationContext || collaborationContext.isGlobalView) return true;
   const state = resolveSchemaCollaborationState(schema, collaborationContext);
   // No-owner schemas are contextual/global → always visible.

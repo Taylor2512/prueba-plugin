@@ -18,6 +18,7 @@ import {
 } from '../../../../schemas/options/optionGroupLayout.js';
 import { asRecord } from './objectGuards.js';
 import { resolveActiveSchemasFromElements } from './selectionIdentityResolver.js';
+import { resolveSchemaUid } from './schemaAssignmentService.js';
 
 type SchemaWithDesigner = SchemaForUI & {
   __designer?: Record<string, unknown>;
@@ -200,6 +201,11 @@ const getActiveSchemas = (context: SelectionCommandsContext) =>
 
 const getPageSchemas = (context: SelectionCommandsContext) =>
   context.schemasList[resolvePageIndexFromActiveElements(context)] || [];
+
+const schemaMatchesSelectionIdentity = (schema: SchemaForUI, ids: Set<string>) => {
+  if (ids.has(schema.id)) return true;
+  return ids.has(resolveSchemaUid(schema));
+};
 
 const getPageBounds = (schemas: SchemaForUI[], tgtPos: 'x' | 'y', tgtSize: 'width' | 'height') => {
   if (!schemas.length) return { min: 0, max: 0 };
@@ -872,7 +878,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     const beforeSchemas = cloneDeep(getPageSchemas(context));
     const activeSchemaIds = new Set(activeIds);
     const afterSchemas = beforeSchemas.map((schema) =>
-      activeSchemaIds.has(schema.id)
+      schemaMatchesSelectionIdentity(schema, activeSchemaIds)
         ? {
             ...schema,
             ownerRecipientId: nextRecipientId,

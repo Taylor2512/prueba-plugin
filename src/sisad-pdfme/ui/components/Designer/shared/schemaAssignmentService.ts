@@ -90,7 +90,10 @@ export const buildAssignSchemaOwnerOps = (
   const patch = buildSchemaOwnerPatch(recipient);
 
   return schemas
-    .filter((schema) => idSet.has(normalizeText(schema.id)))
+    .filter((schema) => {
+      const schemaUid = resolveSchemaUid(schema);
+      return idSet.has(normalizeText(schema.id)) || idSet.has(schemaUid);
+    })
     .flatMap((schema) =>
       Object.entries(patch).map(([key, value]) => ({ key, value, schemaId: schema.id })),
     );
