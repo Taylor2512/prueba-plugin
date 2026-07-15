@@ -6,7 +6,7 @@ Mantiene ai/ sin duplicidad, memoria, reglas, prompts y task-cards.
 
 ## Puede tocar
 
-Ver `ai/project/file-ownership-map.md`.
+Solo los archivos listados por la task-card activa de arquitectura IA.
 
 ## No puede tocar
 

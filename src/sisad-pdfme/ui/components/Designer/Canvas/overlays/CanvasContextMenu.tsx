@@ -269,6 +269,7 @@ const CanvasContextMenu = ({
       activeRequired,
       activeHidden,
       canEditStructure,
+      visibility,
     ],
   );
 

@@ -1,5 +1,4 @@
 import React from 'react';
-import { DESIGNER_CLASSNAME } from '../../constants.js';
 import { mergeUniqueClassNames } from './shared/className.js';
 
 export type LeftSidebarTab = 'standard' | 'custom' | 'prefill';
@@ -20,14 +19,13 @@ const LeftSidebarTabs = ({
 }: LeftSidebarTabsProps) => (
   <ul
     className={mergeUniqueClassNames(
-      `${DESIGNER_CLASSNAME}left-sidebar-tablist`,
-      'flex items-stretch gap-1 overflow-x-auto rounded-2xl border border-slate-200/70 bg-slate-50/90 p-0.5 shadow-sm',
+      'flex w-full min-w-0 items-center gap-[0.125rem] overflow-hidden rounded-[0.75rem] border border-[var(--border-subtle)] bg-[var(--color-gray-100-60)] p-[0.125rem]',
     )}
     role="tablist"
     aria-orientation="horizontal"
     aria-label="Tipos de campo">
     {tabs.map((tab) => (
-      <li key={tab.id} role="none" className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-tab`, 'flex')}>
+      <li key={tab.id} role="none" className="flex-1 min-w-0">
         <button
           type="button"
           id={tab.label.toLowerCase().replace(/\s+/g, '-')}
@@ -35,24 +33,29 @@ const LeftSidebarTabs = ({
           aria-selected={activeTab === tab.id}
           aria-label={tab.label}
           className={mergeUniqueClassNames(
-            `${DESIGNER_CLASSNAME}left-sidebar-tab-btn`,
-            'group inline-flex min-w-0 items-center gap-1.5 rounded-xl border border-transparent px-2 py-[0.3125rem] text-[0.72rem] font-semibold text-slate-600 transition',
-            'hover:border-slate-200 hover:bg-white hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
-            activeTab === tab.id ? `${DESIGNER_CLASSNAME}left-sidebar-tab-btn-active` : '',
-            activeTab === tab.id ? 'border-sky-200 bg-white text-sky-700 shadow-sm shadow-sky-100' : '',
+            'group relative inline-flex h-[1.875rem] w-full min-w-0 items-center justify-center gap-1.5 rounded-[0.625rem] border border-transparent bg-transparent px-2 text-[0.72rem] font-semibold text-[var(--color-gray-500)] cursor-pointer transition-[background,color,border-color,box-shadow]',
+            'hover:border-[var(--color-border-20)] hover:bg-[var(--color-bg-elevated)] hover:text-[var(--text-primary)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+            activeTab === tab.id
+              ? 'border-[var(--color-border-14)] bg-[var(--color-bg-elevated)] text-[var(--color-primary)] shadow-[0_1px_3px_var(--color-gray-900-05),_inset_0_1px_0_var(--color-white-80)] after:absolute after:bottom-[3px] after:left-[25%] after:right-[25%] after:h-[2px] after:rounded-[1px] after:bg-[var(--color-primary)] after:content-[\'\']'
+              : '',
           )}
           onClick={() => onChangeTab(tab.id)}
         >
-          {renderTabIcon(tab.id)}
-          <span className={mergeUniqueClassNames(`${DESIGNER_CLASSNAME}left-sidebar-tab-label`, 'whitespace-nowrap')}>
+          <span className="inline-flex items-center justify-center [&>svg]:h-4 [&>svg]:w-4 [&>svg]:transition-transform group-hover:[&>svg]:scale-110">
+            {renderTabIcon(tab.id)}
+          </span>
+          <span className="hidden whitespace-nowrap">
             {tab.label}
           </span>
           {typeof tab.badge === 'number' && (
-            <span className={mergeUniqueClassNames(
-              `${DESIGNER_CLASSNAME}left-sidebar-tab-badge`,
-              'inline-flex h-4 min-w-[1rem] items-center justify-center rounded-full px-1 text-[8px] font-bold transition-colors',
-              activeTab === tab.id ? 'bg-sky-100 text-sky-700' : 'bg-slate-200 text-slate-500 group-hover:bg-slate-300 group-hover:text-slate-600'
-            )}>
+            <span
+              className={mergeUniqueClassNames(
+                'inline-flex h-4 min-w-[1rem] items-center justify-center rounded-full px-1 text-[8px] font-bold transition-colors',
+                activeTab === tab.id
+                  ? 'bg-sky-100 text-sky-700'
+                  : 'bg-slate-200 text-slate-500 group-hover:bg-slate-300 group-hover:text-slate-600',
+              )}
+            >
               {tab.badge}
             </span>
           )}

@@ -10,7 +10,7 @@ Corregir cualquier paquete, documentación o prompt que cree carpetas paralelas 
 
 ## Contexto
 
-El repo ya contiene una arquitectura IA formal:
+El repo ya contiene una arquitectura IA formal y viva:
 
 ```txt
 ai/start
@@ -18,12 +18,10 @@ ai/router
 ai/memory
 ai/task-cards
 ai/agents
-ai/subagents
-ai/skills
+ai/adapters
 ai/playbooks
 ai/rules
 ai/context
-ai/checklists
 ai/prompts
 ai/reports
 docs
@@ -33,7 +31,7 @@ src
 tests
 ```
 
-No se deben crear carpetas como `architecture/`, `migration/`, `repo-patch/`, `01-resumen/`, `02-inventarios/`.
+No se deben crear carpetas como `architecture/`, `migration/`, `repo-patch/`, `01-resumen/`, `02-inventarios/` ni árboles paralelos como `ai/project/`.
 
 ## Archivos foco
 
@@ -52,12 +50,12 @@ No se deben crear carpetas como `architecture/`, `migration/`, `repo-patch/`, `0
 
 ## Tareas
 
-- [ ] Auditar referencias a carpetas paralelas.
-- [ ] Eliminar de prompts cualquier instrucción que cree estructuras fuera del repo real.
-- [ ] Confirmar que completed no se trate como active.
-- [ ] Confirmar que docs públicas no contengan prompts operativos.
-- [ ] Confirmar que ai no duplique documentación pública extensa.
-- [ ] Crear reporte en `ai/reports/architecture-correction-YYYY-MM-DD.md`.
+- [x] Auditar referencias a carpetas paralelas.
+- [x] Eliminar de prompts cualquier instrucción que cree estructuras fuera del repo real.
+- [x] Confirmar que completed no se trate como active.
+- [x] Confirmar que docs públicas no contengan prompts operativos.
+- [x] Confirmar que ai no duplique documentación pública extensa.
+- [x] Crear reporte en `ai/reports/architecture-correction-YYYY-MM-DD.md`.
 
 ## Criterios de aceptación
 

@@ -569,7 +569,7 @@ const SidebarShell = ({
           renderTabIcon={renderTabIcon}
         />
         {searchNode ? (
-          <div className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-search-wrap`)}>{searchNode}</div>
+          <div className="py-1">{searchNode}</div>
         ) : null}
       </div>
       <div
@@ -1439,8 +1439,8 @@ const LeftSidebar = ({
 
   const searchNode = showSearchInput ? (
     <div className={mergeClassNames(
-      DESIGNER_CLASSNAME + 'left-sidebar-search-stack', 
-      sidebarDensityMode === 'mini' ? 'space-y-1' : 'space-y-2'
+      'flex flex-col',
+      sidebarDensityMode === 'mini' ? 'gap-1' : 'gap-2',
     )}>
       <LeftSidebarSearch
         value={search}
@@ -1481,7 +1481,7 @@ const LeftSidebar = ({
         </div>
       ) : null}
       <div className={mergeClassNames(
-        DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 
+        DESIGNER_CLASSNAME + 'left-sidebar-chip-row',
         'flex flex-wrap items-center gap-1.5',
         sidebarDensityMode === 'mini' ? 'gap-1' : ''
       )}>

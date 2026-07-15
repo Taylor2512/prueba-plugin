@@ -184,20 +184,20 @@ const ItemActions = ({
   isHovered?: boolean;
   label?: string;
 }) => (
-  <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-actions', 'flex items-center gap-1.5')}>
-    {readOnly ? (
-      <Tooltip title="Solo lectura" placement="top">
-        <span data-testid="right-sidebar-field-badge" data-badge="readonly" className="inline-flex">
+    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-actions', 'flex items-center gap-1.5')}>
+      {readOnly ? (
+        <Tooltip title="Solo lectura" placement="top">
+        <span data-testid="right-sidebar-field-badge" data-badge="readonly" className="pointer-events-auto inline-flex">
           <Lock size={13} className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-lock', 'text-slate-500')} />
         </span>
-      </Tooltip>
-    ) : null}
+        </Tooltip>
+      ) : null}
     {required ? (
       <Tooltip title="Campo requerido" placement="top">
         <span
           data-testid="right-sidebar-field-badge"
           data-badge="required"
-          className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-required', 'text-xs font-semibold text-rose-600')}
+          className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-required', 'pointer-events-auto text-xs font-semibold text-rose-600')}
         >
           *
         </span>
@@ -209,7 +209,7 @@ const ItemActions = ({
           onClick={(e) => { e.stopPropagation(); onToggleVisibility(); }}
           title={hidden ? 'Mostrar' : 'Ocultar'}
           {...(hidden ? { 'data-testid': 'right-sidebar-field-badge', 'data-badge': 'hidden' } : {})}
-          className={mergeClassNames(DESIGNER_CLASSNAME + 'button-auto', 'inline-flex h-7 w-2 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm')}
+          className={mergeClassNames(DESIGNER_CLASSNAME + 'button-auto', 'pointer-events-auto inline-flex h-7 w-2 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm')}
         >
           {hidden ? <EyeOff size={13} /> : <Eye size={13} />}
         </button>
@@ -230,7 +230,7 @@ const ItemActions = ({
             onDelete();
           }}
           title="Eliminar campo"
-          className={mergeClassNames(DESIGNER_CLASSNAME + 'button-auto', 'inline-flex h-7 w-7 items-center justify-center rounded-full border border-rose-200 bg-white text-rose-600 shadow-sm')}
+          className={mergeClassNames(DESIGNER_CLASSNAME + 'button-auto', 'pointer-events-auto inline-flex h-7 w-7 items-center justify-center rounded-full border border-rose-200 bg-white text-rose-600 shadow-sm')}
         >
           <Trash2 size={13} />
         </button>
@@ -349,12 +349,12 @@ const Item = React.memo(
           }}
         />
         <div
-          className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-content', 'relative z-10 flex items-start gap-3 px-3 py-2.5')}
+          className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-content', 'pointer-events-none relative z-10 flex items-start gap-3 px-3 py-2.5')}
           {...props}
           aria-hidden="true">
           <Button
             {...listeners}
-            className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-grip', 'inline-flex h-8 w-1 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500')}
+            className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-grip', 'pointer-events-auto inline-flex h-8 w-1 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500')}
             icon={<GripVertical size={14} />} />
           <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-icon', 'flex h-9 w-1 items-center justify-center rounded-xl border border-slate-200 bg-slate-50')}>{icon}</div>
           <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-main', 'min-w-0 flex-1 space-y-0.5')}>

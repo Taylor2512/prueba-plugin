@@ -24,6 +24,7 @@ import {
   resolveRightSidebarContextHeader,
   type RightSidebarContextHeader,
 } from './contextHeader.js';
+import { resolveSchemaIdentityFromElement } from '../shared/selectionIdentityResolver.js';
 
 /**
  * Props extendidas del sidebar derecho del diseñador.
@@ -202,9 +203,6 @@ const sidebarModeMeta: Record<'fields' | 'detail' | 'docs' | 'comments', Sidebar
   },
 };
 
-/** Orden de navegación por teclado entre tabs del sidebar. */
-const sidebarModes = ['fields', 'detail', 'comments', 'docs'] as const;
-
 /**
  * Sidebar derecho principal del diseñador.
  *
@@ -233,7 +231,7 @@ const Sidebar = (props: RightSidebarProps) => {
   const visibility = asRecord(optionsRecord?.visibility);
   const rightSidebarVisibility = asRecord(asRecord(visibility?.sidebars)?.right);
   const rightSidebarPanelsVisibility = asRecord(rightSidebarVisibility?.panels);
-  if (rightSidebarVisibility?.visible === false) return null;
+  const sidebarVisible = rightSidebarVisibility?.visible !== false;
   const detached = Boolean(props.detached);
   const sidebarRootRef = useRef<HTMLElement | null>(null);
   const { mode: sidebarDensityMode } = useResponsiveDensity(sidebarRootRef, {
@@ -260,10 +258,21 @@ const Sidebar = (props: RightSidebarProps) => {
     const idSet = new Set<string>();
     const ids: string[] = [];
     for (const element of activeElements) {
-      if (element) { idSet.add(element.id); ids.push(element.id); }
+      if (!element) continue;
+      const identity = resolveSchemaIdentityFromElement(element);
+      const candidates = [identity.schemaId, identity.schemaUid, identity.schemaName, element.id].filter(Boolean) as string[];
+      for (const id of candidates) {
+        if (idSet.has(id)) continue;
+        idSet.add(id);
+        ids.push(id);
+      }
     }
     return {
-      activeSchemas: schemas.filter((s) => idSet.has(s.id)),
+      activeSchemas: schemas.filter((s) =>
+        idSet.has(s.id) ||
+        idSet.has((s as { schemaUid?: string }).schemaUid || '') ||
+        idSet.has(s.name || ''),
+      ),
       activeSchemaIds: ids,
     };
   }, [activeElements, schemas]);
@@ -301,8 +310,8 @@ const Sidebar = (props: RightSidebarProps) => {
     if (mode === 'detail') return rightSidebarPanelsVisibility?.detail !== false;
     return true;
   }), [rightSidebarPanelsVisibility, showCommentsRail, showDocumentsRail]);
+  const hasVisibleModes = visibleModes.length > 0;
   const fallbackViewMode = visibleModes[0] || 'fields';
-  if (visibleModes.length === 0) return null;
   const resolvedViewMode: 'fields' | 'detail' | 'docs' | 'comments' = useMemo(() => {
     const requested = requestedViewMode !== 'auto' ? requestedViewMode : internalViewMode;
     return visibleModes.includes(requested) ? requested : fallbackViewMode;
@@ -349,6 +358,8 @@ const Sidebar = (props: RightSidebarProps) => {
       onViewModeChange?.(fallbackViewMode);
     }
   }, [requestedViewMode, activeSchemaCount, autoFocusDetail, fallbackViewMode, internalViewMode, onViewModeChange, showCommentsRail, visibleModes]);
+
+  if (!sidebarVisible || !hasVisibleModes) return null;
 
   /** Modo semántico final del panel renderizado. */
   const resolvedPanelMode: 'list' | 'detail' | 'bulk' | 'docs' | 'comments' =

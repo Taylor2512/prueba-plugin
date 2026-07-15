@@ -27,7 +27,10 @@ import LeftSidebarDefault from './LeftSidebar.js';
 import Canvas from './Canvas/Canvas.js';
 import type { CanvasFeatureToggles } from './Canvas/Canvas.js';
 import { createSelectionCommands } from './shared/selectionCommands.js';
-import { resolveActiveSchemasFromElements } from './shared/selectionIdentityResolver.js';
+import {
+  resolveActiveSchemasFromElements,
+  resolveSchemaIdentityFromElement,
+} from './shared/selectionIdentityResolver.js';
 import {
   copySchemasToClipboard,
   cutSchemasToClipboard,
@@ -645,8 +648,16 @@ const TemplateEditor = ({
   const activeElementIds = useMemo(
     () => {
       const ids: string[] = [];
+      const seen = new Set<string>();
       for (const element of activeElements) {
-        if (element) ids.push(element.id);
+        if (!element) continue;
+        const identity = resolveSchemaIdentityFromElement(element);
+        const candidates = [identity.schemaId, identity.schemaUid, identity.schemaName, element.id].filter(Boolean) as string[];
+        for (const id of candidates) {
+          if (seen.has(id)) continue;
+          seen.add(id);
+          ids.push(id);
+        }
       }
       return ids;
     },
@@ -980,7 +991,7 @@ const TemplateEditor = ({
         Number.isInteger(parsedPageIndex) && parsedPageIndex >= 0
           ? paperRefs.current[parsedPageIndex]
           : null;
-      const sel = selector(element.id);
+      const sel = selector(resolveSchemaIdentityFromElement(element).schemaId || element.id);
       const fromOwnPaper = ownPaper?.querySelector<HTMLElement>(sel) || null;
       if (fromOwnPaper) return fromOwnPaper;
       for (const paper of paperRefs.current) {
@@ -3641,7 +3652,11 @@ const TemplateEditor = ({
       changeSchemas={changeSchemas}
       onSortEnd={onSortEnd}
       onEdit={(id) => {
-        const editingElem = document.getElementById(id);
+        const selector =
+          typeof CSS !== 'undefined' && typeof CSS.escape === 'function'
+            ? `[data-schema-id="${CSS.escape(id)}"]`
+            : `[data-schema-id="${id.replace(/"/g, '\\"')}"]`;
+        const editingElem = document.querySelector<HTMLElement>(selector);
         if (editingElem) {
           onEdit([editingElem]);
         }

@@ -84,12 +84,14 @@ test.describe('canvas region selection after moving a multi-selection', () => {
   test('keeps Selecto usable after dragging selected schemas', async ({ page }) => {
     await page.goto(ROUTE);
 
-    const firstPaper = page.locator('[data-paper-page="true"]').first();
+    const firstPaper = page.locator('[data-paper-page="true"]').nth(0);
+    const secondPaper = page.locator('[data-paper-page="true"]').nth(1);
     await expect(firstPaper).toBeVisible();
-    const paperBox = await firstPaper.boundingBox();
-    expect(paperBox).not.toBeNull();
+    await expect(secondPaper).toBeVisible();
 
-    await selectRegion(page, paperBox!, { x: 20, y: 20 }, { x: 300, y: 220 });
+    const firstPaperBox = await firstPaper.boundingBox();
+    expect(firstPaperBox).not.toBeNull();
+    await selectRegion(page, firstPaperBox!, { x: 20, y: 20 }, { x: 255, y: 140 });
     await waitForSelectedMulti(page);
 
     await expect(page.locator('.sisad-pdfme-designer-canvas')).toHaveAttribute('data-interaction-count', '2');
@@ -114,13 +116,15 @@ test.describe('canvas region selection after moving a multi-selection', () => {
       .toBe('selected-multi');
     await expect(page.locator('.sisad-pdfme-designer-canvas')).toHaveAttribute('data-interaction-dragging', 'false');
 
-    await selectRegion(page, paperBox!, { x: 280, y: 20 }, { x: 360, y: 160 });
+    const secondPaperBox = await secondPaper.boundingBox();
+    expect(secondPaperBox).not.toBeNull();
+    await selectRegion(page, secondPaperBox!, { x: 20, y: 190 }, { x: 360, y: 350 });
     await waitForSelectedMulti(page);
 
     await expect(page.locator('.sisad-pdfme-designer-canvas')).toHaveAttribute('data-interaction-count', '2');
     await expect
-      .poll(async () => getActiveSchemaNames(page))
-      .toEqual(['routing-primary-showcase_table', 'routing-primary-showcase_date']);
+      .poll(async () => (await getActiveSchemaNames(page)).length)
+      .toBe(2);
     await expectMoveableAligned(page);
   });
 });

@@ -14,9 +14,9 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `docs`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-14T21:23:37.291Z`
+- **Fecha generación:** `2026-07-14T23:46:44.206Z`
 - **Extensiones incluidas:** `.md, .mdx`
-- **Archivos candidatos incluidos:** `271`
+- **Archivos candidatos incluidos:** `267`
 - **Límite por archivo:** `120 KB`
 - **Límite total de contenido:** `1800 KB`
 
@@ -107,10 +107,7 @@ prueba-plugin
 │   │   └── update-memory.md
 │   ├── README.md
 │   ├── reports
-│   │   ├── claude-codex-handoff-2026-07-14.md
-│   │   ├── lab-parity-multidocument-routing.md
-│   │   ├── README.md
-│   │   └── report-template.md
+│   │   └── architecture-correction-2026-07-14.md
 │   ├── router
 │   │   ├── CONTEXT_BUDGET.md
 │   │   ├── ROUTER.md
@@ -154,26 +151,21 @@ prueba-plugin
 │   │   └── tailwind-migrator.md
 │   ├── task-cards
 │   │   ├── active
+│   │   │   ├── TASK-ARCH-003-enforce-existing-ai-folder-architecture.md
+│   │   │   ├── TASK-CSS-012-inline-tailwind-css-reduction.md
 │   │   │   ├── TASK-PDFME-005-digital-agreements-runtime-adapter.md
 │   │   │   ├── TASK-PDFME-008-signature-policies-firma-sisad.md
 │   │   │   └── TASK-PDFME-009-externalforms-runner-contract.md
 │   │   ├── backlog
 │   │   │   ├── TASK-CANVAS-001-protect-canvas-overflow.md
 │   │   │   ├── TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md
-│   │   │   └── TASK-PDFME-011-connectivity-sisad-restore.md
+│   │   │   ├── TASK-PDFME-011-connectivity-sisad-restore.md
+│   │   │   ├── TASK-PDFME-012-global-visibility-wiring-continuity.md
+│   │   │   ├── TASK-PDFME-013-controller-real-api-no-noop.md
+│   │   │   └── TASK-PDFME-014-rightsidebar-reassign-state-regression.md
 │   │   ├── completed
-│   │   │   ├── README.md
-│   │   │   ├── TASK-ARCH-001-sisad-pdfme-global-config-portability.md
-│   │   │   ├── TASK-ARCH-002-recipient-registry.md
-│   │   │   ├── TASK-CANVAS-002-snap-lines-and-sidebar-compactness.md
-│   │   │   ├── TASK-DOCS-001-ai-architecture-install.md
-│   │   │   ├── TASK-INSPECTOR-001-detailview-density.md
-│   │   │   ├── TASK-LAB-001-results-panel-placement.md
-│   │   │   ├── TASK-PDFME-003-reassign-recipient-dialog-persistence.md
-│   │   │   ├── TASK-PDFME-004-lab-parity-multidocument-routing.md
-│   │   │   ├── TASK-PDFME-006-runtime-form-preview-by-recipient.md
-│   │   │   ├── TASK-PDFME-007-snapshot-persistence-contract.md
-│   │   │   └── TASK-SCHEMA-001-option-indicator-docusign.md
+│   │   │   ├── completed-summary.md
+│   │   │   └── README.md
 │   │   └── README.md
 │   ├── templates
 │   │   ├── agent-template.md
@@ -248,6 +240,8 @@ prueba-plugin
 │   │   ├── 02-host-app.md
 │   │   ├── 03-signature-providers.md
 │   │   ├── 04-external-forms.md
+│   │   ├── 05-global-config.md
+│   │   ├── 06-host-adapters.md
 │   │   └── README.md
 │   ├── 08-api-reference
 │   │   ├── 01-designer-api.md
@@ -261,6 +255,7 @@ prueba-plugin
 │   │   ├── 02-tailwind-bridge.md
 │   │   ├── 03-baseline-visual.md
 │   │   ├── 04-css-migration.md
+│   │   ├── 05-css-reduction-tailwind-inline.md
 │   │   └── README.md
 │   ├── 10-testing-qa
 │   │   ├── 01-manual-checklist.md
@@ -298,6 +293,7 @@ prueba-plugin
 │   │   └── risk-map.md
 │   ├── jsdoc-missing-report.md
 │   └── tailwind-migration
+│       ├── active-css-inventory.md
 │       ├── baseline-regression-audit.md
 │       ├── component-migration-ledger.md
 │       ├── deep-density-spacing-audit.md
@@ -414,121 +410,121 @@ prueba-plugin
 | 54 | `docs/07-integraciones/02-host-app.md` | markdown | 18 | 0.3 | completo |
 | 55 | `docs/07-integraciones/03-signature-providers.md` | markdown | 14 | 0.3 | completo |
 | 56 | `docs/07-integraciones/04-external-forms.md` | markdown | 9 | 0.2 | completo |
-| 57 | `docs/07-integraciones/README.md` | markdown | 6 | 0.2 | completo |
-| 58 | `docs/08-api-reference/01-designer-api.md` | markdown | 10 | 0.3 | completo |
-| 59 | `docs/08-api-reference/02-form-api.md` | markdown | 9 | 0.2 | completo |
-| 60 | `docs/08-api-reference/03-viewer-api.md` | markdown | 7 | 0.1 | completo |
-| 61 | `docs/08-api-reference/04-generator-api.md` | markdown | 9 | 0.2 | completo |
-| 62 | `docs/08-api-reference/05-plugin-api.md` | markdown | 14 | 0.2 | completo |
-| 63 | `docs/08-api-reference/README.md` | markdown | 7 | 0.2 | completo |
-| 64 | `docs/09-theming/01-tokens-css.md` | markdown | 14 | 0.2 | completo |
-| 65 | `docs/09-theming/02-tailwind-bridge.md` | markdown | 10 | 0.3 | completo |
-| 66 | `docs/09-theming/03-baseline-visual.md` | markdown | 11 | 0.2 | completo |
-| 67 | `docs/09-theming/04-css-migration.md` | markdown | 11 | 0.2 | completo |
-| 68 | `docs/09-theming/README.md` | markdown | 6 | 0.2 | completo |
-| 69 | `docs/10-testing-qa/01-manual-checklist.md` | markdown | 26 | 0.3 | completo |
-| 70 | `docs/10-testing-qa/02-regression-matrix.md` | markdown | 10 | 0.3 | completo |
-| 71 | `docs/10-testing-qa/03-playwright.md` | markdown | 12 | 0.2 | completo |
-| 72 | `docs/10-testing-qa/04-vitest.md` | markdown | 10 | 0.2 | completo |
-| 73 | `docs/10-testing-qa/README.md` | markdown | 6 | 0.2 | completo |
-| 74 | `docs/11-migraciones/01-legacy-templates.md` | markdown | 10 | 0.3 | completo |
-| 75 | `docs/11-migraciones/02-snapshot-versioning.md` | markdown | 9 | 0.2 | completo |
-| 76 | `docs/11-migraciones/03-pdfme-upstream.md` | markdown | 12 | 0.2 | completo |
-| 77 | `docs/11-migraciones/README.md` | markdown | 5 | 0.2 | completo |
-| 78 | `docs/12-troubleshooting/01-canvas.md` | markdown | 14 | 0.3 | completo |
-| 79 | `docs/12-troubleshooting/02-pdf-worker.md` | markdown | 9 | 0.2 | completo |
-| 80 | `docs/12-troubleshooting/03-tailwind-regressions.md` | markdown | 10 | 0.3 | completo |
-| 81 | `docs/12-troubleshooting/04-runtime.md` | markdown | 16 | 0.2 | completo |
-| 82 | `docs/12-troubleshooting/README.md` | markdown | 6 | 0.2 | completo |
-| 83 | `docs/13-ejemplos/01-basic-designer.md` | markdown | 11 | 0.2 | completo |
-| 84 | `docs/13-ejemplos/02-multi-document-routing.md` | markdown | 10 | 0.2 | completo |
-| 85 | `docs/13-ejemplos/03-generator-runtime.md` | markdown | 9 | 0.1 | completo |
-| 86 | `docs/13-ejemplos/README.md` | markdown | 5 | 0.2 | completo |
-| 87 | `docs/14-seguridad/01-archivos.md` | markdown | 9 | 0.2 | completo |
-| 88 | `docs/14-seguridad/02-firma.md` | markdown | 5 | 0.2 | completo |
-| 89 | `docs/14-seguridad/README.md` | markdown | 4 | 0.1 | completo |
-| 90 | `AGENTS.md` | markdown | 26 | 0.7 | completo |
-| 91 | `CLAUDE.md` | markdown | 23 | 0.5 | completo |
-| 92 | `MANIFEST.md` | markdown | 27 | 1.0 | completo |
-| 93 | `plan-maestro-portabilidad-sisad-pdfme-agentes.md` | markdown | 843 | 22.5 | completo |
-| 94 | `.github/copilot-instructions.md` | markdown | 15 | 0.4 | completo |
-| 95 | `ai/README.md` | markdown | 38 | 0.8 | completo |
-| 96 | `ai/tree.md` | markdown | 26 | 0.4 | completo |
-| 97 | `reports/jsdoc-missing-report.md` | markdown | 2254 | 78.0 | completo |
-| 98 | `scripts/README.md` | markdown | 21 | 0.4 | completo |
-| 99 | `ai/adapters/README.md` | markdown | 3 | 0.1 | completo |
-| 100 | `ai/agents/canvas-agent.md` | markdown | 37 | 0.6 | completo |
-| 101 | `ai/agents/css-tailwind-agent.md` | markdown | 37 | 0.6 | completo |
-| 102 | `ai/agents/designer-runtime-agent.md` | markdown | 37 | 0.6 | completo |
-| 103 | `ai/agents/docs-architecture-agent.md` | markdown | 37 | 0.6 | completo |
-| 104 | `ai/agents/inspector-agent.md` | markdown | 37 | 0.6 | completo |
-| 105 | `ai/agents/interaction-agent.md` | markdown | 37 | 0.6 | completo |
-| 106 | `ai/agents/lab-shell-agent.md` | markdown | 37 | 0.6 | completo |
-| 107 | `ai/agents/README.md` | markdown | 3 | 0.1 | completo |
-| 108 | `ai/agents/registry.md` | markdown | 12 | 1.3 | completo |
-| 109 | `ai/agents/schema-agent.md` | markdown | 37 | 0.6 | completo |
-| 110 | `ai/agents/snapshot-agent.md` | markdown | 37 | 0.6 | completo |
-| 111 | `ai/agents/visual-baseline-agent.md` | markdown | 37 | 0.6 | completo |
-| 112 | `ai/baselines/img-version-baseline-protocol.md` | markdown | 29 | 0.4 | completo |
-| 113 | `ai/baselines/README.md` | markdown | 3 | 0.1 | completo |
-| 114 | `ai/checklists/done-vs-pending.md` | markdown | 12 | 0.2 | completo |
-| 115 | `ai/checklists/global-validation.md` | markdown | 8 | 0.2 | completo |
-| 116 | `ai/checklists/improvement-backlog.md` | markdown | 9 | 0.3 | completo |
-| 117 | `ai/checklists/manual-ui-regression.md` | markdown | 19 | 0.4 | completo |
-| 118 | `ai/checklists/README.md` | markdown | 3 | 0.1 | completo |
-| 119 | `ai/checklists/tailwind-migration.md` | markdown | 11 | 0.3 | completo |
-| 120 | `ai/context/ai-docs-context.md` | markdown | 3 | 0.1 | completo |
-| 121 | `ai/context/canvas-multipage-context.md` | markdown | 9 | 0.2 | completo |
-| 122 | `ai/context/css-tailwind-context.md` | markdown | 23 | 0.6 | completo |
-| 123 | `ai/context/inspector-context.md` | markdown | 3 | 0.1 | completo |
-| 124 | `ai/context/README.md` | markdown | 3 | 0.1 | completo |
-| 125 | `ai/context/schema-families-context.md` | markdown | 5 | 0.2 | completo |
-| 126 | `ai/context/selection-transform-context.md` | markdown | 3 | 0.2 | completo |
-| 127 | `ai/context/snapshot-context.md` | markdown | 3 | 0.1 | completo |
-| 128 | `ai/context/visual-baseline-context.md` | markdown | 18 | 0.2 | completo |
-| 129 | `ai/docs-migration/MIGRATION_FROM_OLD_STRUCTURE.md` | markdown | 30 | 0.7 | completo |
-| 130 | `ai/memory/changelog.md` | markdown | 7 | 0.3 | completo |
-| 131 | `ai/memory/completed-checklist.md` | markdown | 7 | 0.4 | completo |
-| 132 | `ai/memory/decisions.md` | markdown | 21 | 0.8 | completo |
-| 133 | `ai/memory/known-risks.md` | markdown | 10 | 0.5 | completo |
-| 134 | `ai/memory/memory-update-protocol.md` | markdown | 29 | 0.6 | completo |
-| 135 | `ai/memory/pending-checklist.md` | markdown | 10 | 0.6 | completo |
-| 136 | `ai/memory/project-memory.md` | markdown | 20 | 0.8 | completo |
-| 137 | `ai/memory/README.md` | markdown | 13 | 0.4 | completo |
-| 138 | `ai/memory/session-handoff.md` | markdown | 40 | 1.9 | completo |
-| 139 | `ai/playbooks/pb-ai-docs-refactor.md` | markdown | 7 | 0.2 | completo |
-| 140 | `ai/playbooks/pb-canvas-multipage.md` | markdown | 6 | 0.2 | completo |
-| 141 | `ai/playbooks/pb-css-tailwind-migration.md` | markdown | 9 | 0.3 | completo |
-| 142 | `ai/playbooks/pb-inspector.md` | markdown | 6 | 0.1 | completo |
-| 143 | `ai/playbooks/pb-schema-families.md` | markdown | 6 | 0.2 | completo |
-| 144 | `ai/playbooks/pb-selection-transform.md` | markdown | 6 | 0.1 | completo |
-| 145 | `ai/playbooks/pb-snapshot.md` | markdown | 6 | 0.1 | completo |
-| 146 | `ai/playbooks/pb-visual-regression.md` | markdown | 8 | 0.2 | completo |
-| 147 | `ai/playbooks/README.md` | markdown | 3 | 0.1 | completo |
-| 148 | `ai/project/architecture-principles.md` | markdown | 34 | 1.0 | completo |
-| 149 | `ai/project/definition-of-done.md` | markdown | 12 | 0.4 | completo |
-| 150 | `ai/project/file-ownership-map.md` | markdown | 14 | 0.8 | completo |
-| 151 | `ai/project/glossary.md` | markdown | 16 | 0.7 | completo |
-| 152 | `ai/project/goals.md` | markdown | 24 | 0.9 | completo |
-| 153 | `ai/project/non-goals.md` | markdown | 12 | 0.3 | completo |
-| 154 | `ai/project/scope.md` | markdown | 38 | 0.6 | completo |
-| 155 | `ai/prompts/claude-diagnose-or-implement.md` | markdown | 7 | 0.2 | completo |
-| 156 | `ai/prompts/codex-master-prompt.md` | markdown | 5 | 0.3 | completo |
-| 157 | `ai/prompts/copilot-task-context.md` | markdown | 11 | 0.2 | completo |
-| 158 | `ai/prompts/create-task-card.md` | markdown | 11 | 0.2 | completo |
-| 159 | `ai/prompts/README.md` | markdown | 3 | 0.1 | completo |
-| 160 | `ai/prompts/update-memory.md` | markdown | 3 | 0.1 | completo |
-| 161 | `ai/reports/claude-codex-handoff-2026-07-14.md` | markdown | 36 | 1.2 | completo |
-| 162 | `ai/reports/lab-parity-multidocument-routing.md` | markdown | 83 | 5.6 | completo |
-| 163 | `ai/reports/README.md` | markdown | 3 | 0.1 | completo |
-| 164 | `ai/reports/report-template.md` | markdown | 10 | 0.1 | completo |
-| 165 | `ai/router/CONTEXT_BUDGET.md` | markdown | 45 | 0.8 | completo |
-| 166 | `ai/router/ROUTER.md` | markdown | 27 | 1.2 | completo |
-| 167 | `ai/router/TASK_INTAKE.md` | markdown | 15 | 0.4 | completo |
+| 57 | `docs/07-integraciones/05-global-config.md` | markdown | 36 | 0.7 | completo |
+| 58 | `docs/07-integraciones/06-host-adapters.md` | markdown | 26 | 0.6 | completo |
+| 59 | `docs/07-integraciones/README.md` | markdown | 6 | 0.2 | completo |
+| 60 | `docs/08-api-reference/01-designer-api.md` | markdown | 10 | 0.3 | completo |
+| 61 | `docs/08-api-reference/02-form-api.md` | markdown | 9 | 0.2 | completo |
+| 62 | `docs/08-api-reference/03-viewer-api.md` | markdown | 7 | 0.1 | completo |
+| 63 | `docs/08-api-reference/04-generator-api.md` | markdown | 9 | 0.2 | completo |
+| 64 | `docs/08-api-reference/05-plugin-api.md` | markdown | 14 | 0.2 | completo |
+| 65 | `docs/08-api-reference/README.md` | markdown | 7 | 0.2 | completo |
+| 66 | `docs/09-theming/01-tokens-css.md` | markdown | 14 | 0.2 | completo |
+| 67 | `docs/09-theming/02-tailwind-bridge.md` | markdown | 10 | 0.3 | completo |
+| 68 | `docs/09-theming/03-baseline-visual.md` | markdown | 11 | 0.2 | completo |
+| 69 | `docs/09-theming/04-css-migration.md` | markdown | 11 | 0.2 | completo |
+| 70 | `docs/09-theming/05-css-reduction-tailwind-inline.md` | markdown | 35 | 0.7 | completo |
+| 71 | `docs/09-theming/README.md` | markdown | 6 | 0.2 | completo |
+| 72 | `docs/10-testing-qa/01-manual-checklist.md` | markdown | 26 | 0.3 | completo |
+| 73 | `docs/10-testing-qa/02-regression-matrix.md` | markdown | 10 | 0.3 | completo |
+| 74 | `docs/10-testing-qa/03-playwright.md` | markdown | 12 | 0.2 | completo |
+| 75 | `docs/10-testing-qa/04-vitest.md` | markdown | 10 | 0.2 | completo |
+| 76 | `docs/10-testing-qa/README.md` | markdown | 6 | 0.2 | completo |
+| 77 | `docs/11-migraciones/01-legacy-templates.md` | markdown | 10 | 0.3 | completo |
+| 78 | `docs/11-migraciones/02-snapshot-versioning.md` | markdown | 9 | 0.2 | completo |
+| 79 | `docs/11-migraciones/03-pdfme-upstream.md` | markdown | 12 | 0.2 | completo |
+| 80 | `docs/11-migraciones/README.md` | markdown | 5 | 0.2 | completo |
+| 81 | `docs/12-troubleshooting/01-canvas.md` | markdown | 14 | 0.3 | completo |
+| 82 | `docs/12-troubleshooting/02-pdf-worker.md` | markdown | 9 | 0.2 | completo |
+| 83 | `docs/12-troubleshooting/03-tailwind-regressions.md` | markdown | 10 | 0.3 | completo |
+| 84 | `docs/12-troubleshooting/04-runtime.md` | markdown | 16 | 0.2 | completo |
+| 85 | `docs/12-troubleshooting/README.md` | markdown | 6 | 0.2 | completo |
+| 86 | `docs/13-ejemplos/01-basic-designer.md` | markdown | 11 | 0.2 | completo |
+| 87 | `docs/13-ejemplos/02-multi-document-routing.md` | markdown | 10 | 0.2 | completo |
+| 88 | `docs/13-ejemplos/03-generator-runtime.md` | markdown | 9 | 0.1 | completo |
+| 89 | `docs/13-ejemplos/README.md` | markdown | 5 | 0.2 | completo |
+| 90 | `docs/14-seguridad/01-archivos.md` | markdown | 9 | 0.2 | completo |
+| 91 | `docs/14-seguridad/02-firma.md` | markdown | 5 | 0.2 | completo |
+| 92 | `docs/14-seguridad/README.md` | markdown | 4 | 0.1 | completo |
+| 93 | `AGENTS.md` | markdown | 26 | 0.7 | completo |
+| 94 | `CLAUDE.md` | markdown | 23 | 0.5 | completo |
+| 95 | `MANIFEST.md` | markdown | 27 | 1.0 | completo |
+| 96 | `plan-maestro-portabilidad-sisad-pdfme-agentes.md` | markdown | 843 | 22.5 | completo |
+| 97 | `.github/copilot-instructions.md` | markdown | 15 | 0.4 | completo |
+| 98 | `ai/README.md` | markdown | 38 | 0.8 | completo |
+| 99 | `ai/tree.md` | markdown | 26 | 0.4 | completo |
+| 100 | `reports/jsdoc-missing-report.md` | markdown | 2254 | 78.0 | completo |
+| 101 | `scripts/README.md` | markdown | 21 | 0.4 | completo |
+| 102 | `ai/adapters/README.md` | markdown | 3 | 0.1 | completo |
+| 103 | `ai/agents/canvas-agent.md` | markdown | 37 | 0.6 | completo |
+| 104 | `ai/agents/css-tailwind-agent.md` | markdown | 37 | 0.6 | completo |
+| 105 | `ai/agents/designer-runtime-agent.md` | markdown | 37 | 0.6 | completo |
+| 106 | `ai/agents/docs-architecture-agent.md` | markdown | 37 | 0.6 | completo |
+| 107 | `ai/agents/inspector-agent.md` | markdown | 37 | 0.6 | completo |
+| 108 | `ai/agents/interaction-agent.md` | markdown | 37 | 0.6 | completo |
+| 109 | `ai/agents/lab-shell-agent.md` | markdown | 37 | 0.6 | completo |
+| 110 | `ai/agents/README.md` | markdown | 3 | 0.1 | completo |
+| 111 | `ai/agents/registry.md` | markdown | 12 | 1.3 | completo |
+| 112 | `ai/agents/schema-agent.md` | markdown | 37 | 0.6 | completo |
+| 113 | `ai/agents/snapshot-agent.md` | markdown | 37 | 0.6 | completo |
+| 114 | `ai/agents/visual-baseline-agent.md` | markdown | 37 | 0.6 | completo |
+| 115 | `ai/baselines/img-version-baseline-protocol.md` | markdown | 29 | 0.4 | completo |
+| 116 | `ai/baselines/README.md` | markdown | 3 | 0.1 | completo |
+| 117 | `ai/checklists/done-vs-pending.md` | markdown | 41 | 0.7 | completo |
+| 118 | `ai/checklists/global-validation.md` | markdown | 8 | 0.2 | completo |
+| 119 | `ai/checklists/improvement-backlog.md` | markdown | 9 | 0.3 | completo |
+| 120 | `ai/checklists/manual-ui-regression.md` | markdown | 19 | 0.4 | completo |
+| 121 | `ai/checklists/README.md` | markdown | 3 | 0.1 | completo |
+| 122 | `ai/checklists/tailwind-migration.md` | markdown | 11 | 0.3 | completo |
+| 123 | `ai/context/ai-docs-context.md` | markdown | 3 | 0.1 | completo |
+| 124 | `ai/context/canvas-multipage-context.md` | markdown | 9 | 0.2 | completo |
+| 125 | `ai/context/css-tailwind-context.md` | markdown | 26 | 0.6 | completo |
+| 126 | `ai/context/inspector-context.md` | markdown | 3 | 0.1 | completo |
+| 127 | `ai/context/README.md` | markdown | 3 | 0.1 | completo |
+| 128 | `ai/context/schema-families-context.md` | markdown | 5 | 0.2 | completo |
+| 129 | `ai/context/selection-transform-context.md` | markdown | 3 | 0.2 | completo |
+| 130 | `ai/context/snapshot-context.md` | markdown | 3 | 0.1 | completo |
+| 131 | `ai/context/visual-baseline-context.md` | markdown | 18 | 0.2 | completo |
+| 132 | `ai/docs-migration/MIGRATION_FROM_OLD_STRUCTURE.md` | markdown | 30 | 0.7 | completo |
+| 133 | `ai/memory/changelog.md` | markdown | 7 | 0.3 | completo |
+| 134 | `ai/memory/completed-checklist.md` | markdown | 21 | 0.9 | completo |
+| 135 | `ai/memory/decisions.md` | markdown | 21 | 0.8 | completo |
+| 136 | `ai/memory/known-risks.md` | markdown | 10 | 0.5 | completo |
+| 137 | `ai/memory/memory-update-protocol.md` | markdown | 29 | 0.6 | completo |
+| 138 | `ai/memory/pending-checklist.md` | markdown | 29 | 1.3 | completo |
+| 139 | `ai/memory/project-memory.md` | markdown | 20 | 0.8 | completo |
+| 140 | `ai/memory/README.md` | markdown | 13 | 0.4 | completo |
+| 141 | `ai/memory/session-handoff.md` | markdown | 40 | 1.9 | completo |
+| 142 | `ai/playbooks/pb-ai-docs-refactor.md` | markdown | 26 | 0.8 | completo |
+| 143 | `ai/playbooks/pb-canvas-multipage.md` | markdown | 6 | 0.2 | completo |
+| 144 | `ai/playbooks/pb-css-tailwind-migration.md` | markdown | 28 | 0.7 | completo |
+| 145 | `ai/playbooks/pb-inspector.md` | markdown | 6 | 0.1 | completo |
+| 146 | `ai/playbooks/pb-schema-families.md` | markdown | 6 | 0.2 | completo |
+| 147 | `ai/playbooks/pb-selection-transform.md` | markdown | 6 | 0.1 | completo |
+| 148 | `ai/playbooks/pb-snapshot.md` | markdown | 6 | 0.1 | completo |
+| 149 | `ai/playbooks/pb-visual-regression.md` | markdown | 8 | 0.2 | completo |
+| 150 | `ai/playbooks/README.md` | markdown | 3 | 0.1 | completo |
+| 151 | `ai/project/architecture-principles.md` | markdown | 34 | 1.0 | completo |
+| 152 | `ai/project/definition-of-done.md` | markdown | 12 | 0.4 | completo |
+| 153 | `ai/project/file-ownership-map.md` | markdown | 14 | 0.8 | completo |
+| 154 | `ai/project/glossary.md` | markdown | 16 | 0.7 | completo |
+| 155 | `ai/project/goals.md` | markdown | 24 | 0.9 | completo |
+| 156 | `ai/project/non-goals.md` | markdown | 12 | 0.3 | completo |
+| 157 | `ai/project/scope.md` | markdown | 38 | 0.6 | completo |
+| 158 | `ai/prompts/claude-diagnose-or-implement.md` | markdown | 7 | 0.2 | completo |
+| 159 | `ai/prompts/codex-master-prompt.md` | markdown | 5 | 0.3 | completo |
+| 160 | `ai/prompts/copilot-task-context.md` | markdown | 11 | 0.2 | completo |
+| 161 | `ai/prompts/create-task-card.md` | markdown | 11 | 0.2 | completo |
+| 162 | `ai/prompts/README.md` | markdown | 3 | 0.1 | completo |
+| 163 | `ai/prompts/update-memory.md` | markdown | 3 | 0.1 | completo |
+| 164 | `ai/reports/architecture-correction-2026-07-14.md` | markdown | 28 | 1.6 | completo |
+| 165 | `ai/router/CONTEXT_BUDGET.md` | markdown | 58 | 1.2 | completo |
+| 166 | `ai/router/ROUTER.md` | markdown | 30 | 2.0 | completo |
+| 167 | `ai/router/TASK_INTAKE.md` | markdown | 35 | 0.9 | completo |
 | 168 | `ai/rules/ai-docs-rules.md` | markdown | 6 | 0.2 | completo |
 | 169 | `ai/rules/canvas-rules.md` | markdown | 3 | 0.1 | completo |
-| 170 | `ai/rules/css-migration-rules.md` | markdown | 8 | 0.3 | completo |
-| 171 | `ai/rules/global-rules.md` | markdown | 7 | 0.2 | completo |
+| 170 | `ai/rules/css-migration-rules.md` | markdown | 35 | 0.8 | completo |
+| 171 | `ai/rules/global-rules.md` | markdown | 9 | 0.7 | completo |
 | 172 | `ai/rules/inspector-rules.md` | markdown | 3 | 0.1 | completo |
 | 173 | `ai/rules/moveable-selecto-rules.md` | markdown | 5 | 0.2 | completo |
 | 174 | `ai/rules/README.md` | markdown | 3 | 0.1 | completo |
@@ -568,77 +564,73 @@ prueba-plugin
 | 208 | `ai/templates/task-card-template.md` | markdown | 11 | 0.2 | completo |
 | 209 | `reports/designer-deep-audit/duplication-map.md` | markdown | 24 | 1.4 | completo |
 | 210 | `reports/designer-deep-audit/risk-map.md` | markdown | 19 | 1.1 | completo |
-| 211 | `reports/tailwind-migration/baseline-regression-audit.md` | markdown | 27 | 5.2 | completo |
-| 212 | `reports/tailwind-migration/component-migration-ledger.md` | markdown | 62 | 5.1 | completo |
-| 213 | `reports/tailwind-migration/deep-density-spacing-audit.md` | markdown | 105 | 9.6 | completo |
-| 214 | `reports/tailwind-migration/img-version-baseline-inventory.md` | markdown | 14 | 2.6 | completo |
-| 215 | `reports/tailwind-migration/line-by-line-style-audit.md` | markdown | 227 | 21.6 | completo |
-| 216 | `reports/tailwind-migration/pending-phases-progress.md` | markdown | 10 | 1.9 | completo |
-| 217 | `reports/tailwind-migration/README.md` | markdown | 76 | 4.6 | completo |
-| 218 | `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md` | markdown | 45 | 3.4 | completo |
-| 219 | `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md` | markdown | 34 | 3.2 | completo |
-| 220 | `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md` | markdown | 13 | 2.3 | completo |
-| 221 | `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md` | markdown | 20 | 1.4 | completo |
-| 222 | `reports/tailwind-migration/schema-chrome-tailwind-audit.md` | markdown | 18 | 1.3 | completo |
-| 223 | `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md` | markdown | 45 | 2.8 | completo |
-| 224 | `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md` | markdown | 43 | 2.5 | completo |
-| 225 | `reports/tailwind-migration/tc-css-10-schemas-visual.md` | markdown | 33 | 3.7 | completo |
-| 226 | `reports/tailwind-migration/tc-css-11-lab-audit.md` | markdown | 31 | 1.2 | completo |
-| 227 | `reports/tailwind-migration/tc-css-option-group-selection-fix.md` | markdown | 38 | 4.3 | completo |
-| 228 | `reports/tailwind-migration/tc-css-ownership-color.md` | markdown | 38 | 4.0 | completo |
-| 229 | `reports/tailwind-migration/ui-styles-decommission-audit.md` | markdown | 57 | 5.6 | completo |
-| 230 | `reports/tailwind-migration/ui-styles-decommission-progress.md` | markdown | 25 | 1.6 | completo |
-| 231 | `ai/task-cards/active/TASK-PDFME-005-digital-agreements-runtime-adapter.md` | markdown | 48 | 1.8 | completo |
-| 232 | `ai/task-cards/active/TASK-PDFME-008-signature-policies-firma-sisad.md` | markdown | 48 | 1.8 | completo |
-| 233 | `ai/task-cards/active/TASK-PDFME-009-externalforms-runner-contract.md` | markdown | 53 | 1.9 | completo |
-| 234 | `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 5 | 0.2 | completo |
-| 235 | `ai/task-cards/backlog/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md` | markdown | 28 | 0.7 | completo |
-| 236 | `ai/task-cards/backlog/TASK-PDFME-011-connectivity-sisad-restore.md` | markdown | 31 | 0.6 | completo |
-| 237 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
-| 238 | `ai/task-cards/completed/TASK-ARCH-001-sisad-pdfme-global-config-portability.md` | markdown | 52 | 2.9 | completo |
-| 239 | `ai/task-cards/completed/TASK-ARCH-002-recipient-registry.md` | markdown | 53 | 2.6 | completo |
-| 240 | `ai/task-cards/completed/TASK-CANVAS-002-snap-lines-and-sidebar-compactness.md` | markdown | 48 | 1.6 | completo |
-| 241 | `ai/task-cards/completed/TASK-DOCS-001-ai-architecture-install.md` | markdown | 29 | 0.9 | completo |
-| 242 | `ai/task-cards/completed/TASK-INSPECTOR-001-detailview-density.md` | markdown | 69 | 2.5 | completo |
-| 243 | `ai/task-cards/completed/TASK-LAB-001-results-panel-placement.md` | markdown | 47 | 1.5 | completo |
-| 244 | `ai/task-cards/completed/TASK-PDFME-003-reassign-recipient-dialog-persistence.md` | markdown | 111 | 4.9 | completo |
-| 245 | `ai/task-cards/completed/TASK-PDFME-004-lab-parity-multidocument-routing.md` | markdown | 64 | 2.4 | completo |
-| 246 | `ai/task-cards/completed/TASK-PDFME-006-runtime-form-preview-by-recipient.md` | markdown | 62 | 2.4 | completo |
-| 247 | `ai/task-cards/completed/TASK-PDFME-007-snapshot-persistence-contract.md` | markdown | 83 | 3.0 | completo |
-| 248 | `ai/task-cards/completed/TASK-SCHEMA-001-option-indicator-docusign.md` | markdown | 65 | 2.5 | completo |
-| 249 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 784 | 21.6 | completo |
-| 250 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
-| 251 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
-| 252 | `src/sisad-pdfme/converter/README.md` | markdown | 42 | 0.9 | completo |
-| 253 | `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md` | markdown | 151 | 4.6 | completo |
-| 254 | `src/sisad-pdfme/runtime/README.md` | markdown | 15 | 0.7 | completo |
-| 255 | `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md` | markdown | 168 | 5.7 | completo |
-| 256 | `src/sisad-pdfme/ui/README.md` | markdown | 38 | 2.2 | completo |
-| 257 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
-| 258 | `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md` | markdown | 30 | 1.6 | completo |
-| 259 | `src/sisad-pdfme/ui/components/README.md` | markdown | 28 | 1.1 | completo |
-| 260 | `src/sisad-pdfme/ui/styles/README.md` | markdown | 22 | 0.5 | completo |
-| 261 | `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md` | markdown | 18 | 0.9 | completo |
-| 262 | `src/sisad-pdfme/ui/components/Designer/Canvas/README.md` | markdown | 24 | 1.2 | completo |
-| 263 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md` | markdown | 15 | 1.0 | completo |
-| 264 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md` | markdown | 18 | 0.7 | completo |
-| 265 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md` | markdown | 21 | 0.7 | completo |
-| 266 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md` | markdown | 35 | 1.3 | completo |
-| 267 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md` | markdown | 42 | 1.6 | completo |
-| 268 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md` | markdown | 38 | 1.4 | completo |
-| 269 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md` | markdown | 20 | 1.0 | completo |
-| 270 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md` | markdown | 31 | 1.8 | completo |
-| 271 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md` | markdown | 24 | 0.8 | completo |
+| 211 | `reports/tailwind-migration/active-css-inventory.md` | markdown | 12 | 0.6 | completo |
+| 212 | `reports/tailwind-migration/baseline-regression-audit.md` | markdown | 27 | 5.2 | completo |
+| 213 | `reports/tailwind-migration/component-migration-ledger.md` | markdown | 62 | 5.2 | completo |
+| 214 | `reports/tailwind-migration/deep-density-spacing-audit.md` | markdown | 105 | 9.6 | completo |
+| 215 | `reports/tailwind-migration/img-version-baseline-inventory.md` | markdown | 14 | 2.6 | completo |
+| 216 | `reports/tailwind-migration/line-by-line-style-audit.md` | markdown | 227 | 21.6 | completo |
+| 217 | `reports/tailwind-migration/pending-phases-progress.md` | markdown | 10 | 1.9 | completo |
+| 218 | `reports/tailwind-migration/README.md` | markdown | 76 | 4.6 | completo |
+| 219 | `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md` | markdown | 45 | 3.4 | completo |
+| 220 | `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md` | markdown | 34 | 3.2 | completo |
+| 221 | `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md` | markdown | 13 | 2.3 | completo |
+| 222 | `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md` | markdown | 20 | 1.4 | completo |
+| 223 | `reports/tailwind-migration/schema-chrome-tailwind-audit.md` | markdown | 18 | 1.3 | completo |
+| 224 | `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md` | markdown | 45 | 2.8 | completo |
+| 225 | `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md` | markdown | 43 | 2.5 | completo |
+| 226 | `reports/tailwind-migration/tc-css-10-schemas-visual.md` | markdown | 33 | 3.7 | completo |
+| 227 | `reports/tailwind-migration/tc-css-11-lab-audit.md` | markdown | 31 | 1.2 | completo |
+| 228 | `reports/tailwind-migration/tc-css-option-group-selection-fix.md` | markdown | 38 | 4.3 | completo |
+| 229 | `reports/tailwind-migration/tc-css-ownership-color.md` | markdown | 38 | 4.0 | completo |
+| 230 | `reports/tailwind-migration/ui-styles-decommission-audit.md` | markdown | 57 | 5.6 | completo |
+| 231 | `reports/tailwind-migration/ui-styles-decommission-progress.md` | markdown | 25 | 1.6 | completo |
+| 232 | `ai/task-cards/active/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md` | markdown | 66 | 1.5 | completo |
+| 233 | `ai/task-cards/active/TASK-CSS-012-inline-tailwind-css-reduction.md` | markdown | 85 | 2.4 | completo |
+| 234 | `ai/task-cards/active/TASK-PDFME-005-digital-agreements-runtime-adapter.md` | markdown | 48 | 1.8 | completo |
+| 235 | `ai/task-cards/active/TASK-PDFME-008-signature-policies-firma-sisad.md` | markdown | 48 | 1.8 | completo |
+| 236 | `ai/task-cards/active/TASK-PDFME-009-externalforms-runner-contract.md` | markdown | 53 | 1.9 | completo |
+| 237 | `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 5 | 0.2 | completo |
+| 238 | `ai/task-cards/backlog/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md` | markdown | 28 | 0.7 | completo |
+| 239 | `ai/task-cards/backlog/TASK-PDFME-011-connectivity-sisad-restore.md` | markdown | 31 | 0.6 | completo |
+| 240 | `ai/task-cards/backlog/TASK-PDFME-012-global-visibility-wiring-continuity.md` | markdown | 42 | 1.1 | completo |
+| 241 | `ai/task-cards/backlog/TASK-PDFME-013-controller-real-api-no-noop.md` | markdown | 31 | 0.8 | completo |
+| 242 | `ai/task-cards/backlog/TASK-PDFME-014-rightsidebar-reassign-state-regression.md` | markdown | 45 | 1.2 | completo |
+| 243 | `ai/task-cards/completed/completed-summary.md` | markdown | 50 | 2.1 | completo |
+| 244 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
+| 245 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 784 | 21.6 | completo |
+| 246 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
+| 247 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
+| 248 | `src/sisad-pdfme/converter/README.md` | markdown | 42 | 0.9 | completo |
+| 249 | `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md` | markdown | 151 | 4.6 | completo |
+| 250 | `src/sisad-pdfme/runtime/README.md` | markdown | 15 | 0.7 | completo |
+| 251 | `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md` | markdown | 168 | 5.7 | completo |
+| 252 | `src/sisad-pdfme/ui/README.md` | markdown | 38 | 2.2 | completo |
+| 253 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
+| 254 | `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md` | markdown | 30 | 1.6 | completo |
+| 255 | `src/sisad-pdfme/ui/components/README.md` | markdown | 28 | 1.1 | completo |
+| 256 | `src/sisad-pdfme/ui/styles/README.md` | markdown | 22 | 0.5 | completo |
+| 257 | `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md` | markdown | 18 | 0.9 | completo |
+| 258 | `src/sisad-pdfme/ui/components/Designer/Canvas/README.md` | markdown | 24 | 1.2 | completo |
+| 259 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md` | markdown | 15 | 1.0 | completo |
+| 260 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md` | markdown | 18 | 0.7 | completo |
+| 261 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md` | markdown | 21 | 0.7 | completo |
+| 262 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md` | markdown | 35 | 1.3 | completo |
+| 263 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md` | markdown | 42 | 1.6 | completo |
+| 264 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md` | markdown | 38 | 1.4 | completo |
+| 265 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md` | markdown | 20 | 1.0 | completo |
+| 266 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md` | markdown | 31 | 1.8 | completo |
+| 267 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md` | markdown | 24 | 0.8 | completo |
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1611
-- **directorio ignorado: dependencia/build/salida generada:** 7
+- **extensión no incluida:** 1612
+- **directorio ignorado: dependencia/build/salida generada:** 8
 
 ## Totales
 
-- **KB originales candidatos:** `363.8`
-- **KB incluidos en contenido:** `363.4`
+- **KB originales candidatos:** `348.2`
+- **KB incluidos en contenido:** `347.9`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -2256,7 +2248,95 @@ snapshot -> resolve document -> resolve recipient -> Form -> values -> Viewer ->
 
 <a id="file-0057"></a>
 
-### 0057 — `docs/07-integraciones/README.md`
+### 0057 — `docs/07-integraciones/05-global-config.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `36`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `4685ea26d3`
+- **Estado:** `completo`
+
+```markdown
+# Configuración global portable
+
+`src/sisad-pdfme` debe integrarse en cualquier host mediante configuración, datos y callbacks genéricos.
+
+## Uso mínimo
+
+``​`tsx
+<SisadPdfmeDesigner
+  template={template}
+  documents={documents}
+  onTemplateChange={setTemplate}
+/>
+``​`
+
+## Uso con recipients
+
+``​`tsx
+<SisadPdfmeDesigner
+  config={config}
+  template={template}
+  documents={documents}
+  recipients={recipients}
+  onTemplateChange={setTemplate}
+  onSave={handleSave}
+/>
+``​`
+
+## Separación de conceptos
+
+``​`txt
+enabled = la capacidad existe
+visible = el usuario la ve
+allowed = el usuario puede ejecutarla
+``​`
+
+El host no debe importar internals como Canvas, RightSidebar, DetailView, ListView o SchemaAssignmentDialog.
+```
+
+<a id="file-0058"></a>
+
+### 0058 — `docs/07-integraciones/06-host-adapters.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `26`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `97861256c4`
+- **Estado:** `completo`
+
+```markdown
+# Adaptadores del host
+
+El host debe convertir sus datos reales a contratos genéricos.
+
+## Recipient
+
+``​`ts
+type SisadPdfmeRecipient = {
+  id: string;
+  label: string;
+  role?: string;
+  email?: string;
+  color?: string;
+  metadata?: Record<string, unknown>;
+};
+``​`
+
+## Regla
+
+El host entrega recipients una vez. El componente los registra en `RecipientRegistry` y los reutiliza en Canvas, schema creation, RightSidebar, DetailView, AssignmentDialog, Form, Viewer, Snapshot y eventos.
+
+## No hacer
+
+- No crear mapas locales de recipients en cada pantalla.
+- No crear un modal de reasignación propio.
+- No duplicar owner color resolvers.
+```
+
+<a id="file-0059"></a>
+
+### 0059 — `docs/07-integraciones/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -2273,9 +2353,9 @@ snapshot -> resolve document -> resolve recipient -> Form -> values -> Viewer ->
 - [04-external-forms.md](./04-external-forms.md)
 ```
 
-<a id="file-0058"></a>
+<a id="file-0060"></a>
 
-### 0058 — `docs/08-api-reference/01-designer-api.md`
+### 0060 — `docs/08-api-reference/01-designer-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -2296,9 +2376,9 @@ snapshot -> resolve document -> resolve recipient -> Form -> values -> Viewer ->
 | onSave | function | Guardado. |
 ```
 
-<a id="file-0059"></a>
+<a id="file-0061"></a>
 
-### 0059 — `docs/08-api-reference/02-form-api.md`
+### 0061 — `docs/08-api-reference/02-form-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -2318,9 +2398,9 @@ snapshot -> resolve document -> resolve recipient -> Form -> values -> Viewer ->
 | readonly | Bloqueo global opcional. |
 ```
 
-<a id="file-0060"></a>
+<a id="file-0062"></a>
 
-### 0060 — `docs/08-api-reference/03-viewer-api.md`
+### 0062 — `docs/08-api-reference/03-viewer-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -2338,9 +2418,9 @@ Viewer recibe template y valores para mostrar salida readonly.
 ``​`
 ```
 
-<a id="file-0061"></a>
+<a id="file-0063"></a>
 
-### 0061 — `docs/08-api-reference/04-generator-api.md`
+### 0063 — `docs/08-api-reference/04-generator-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -2360,9 +2440,9 @@ const pdfBytes = await generate({ template, values });
 Debe usarse con snapshots válidos y assets disponibles.
 ```
 
-<a id="file-0062"></a>
+<a id="file-0064"></a>
 
-### 0062 — `docs/08-api-reference/05-plugin-api.md`
+### 0064 — `docs/08-api-reference/05-plugin-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -2387,9 +2467,9 @@ Un plugin de schema declara:
 - value adapter.
 ```
 
-<a id="file-0063"></a>
+<a id="file-0065"></a>
 
-### 0063 — `docs/08-api-reference/README.md`
+### 0065 — `docs/08-api-reference/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -2407,9 +2487,9 @@ Un plugin de schema declara:
 - [05-plugin-api.md](./05-plugin-api.md)
 ```
 
-<a id="file-0064"></a>
+<a id="file-0066"></a>
 
-### 0064 — `docs/09-theming/01-tokens-css.md`
+### 0066 — `docs/09-theming/01-tokens-css.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -2434,9 +2514,9 @@ No eliminar variables críticas:
 Los tokens pueden mapearse a Tailwind, pero no deben duplicarse.
 ```
 
-<a id="file-0065"></a>
+<a id="file-0067"></a>
 
-### 0065 — `docs/09-theming/02-tailwind-bridge.md`
+### 0067 — `docs/09-theming/02-tailwind-bridge.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -2457,9 +2537,9 @@ Reglas:
 - no duplicar reglas entre CSS legacy y Tailwind.
 ```
 
-<a id="file-0066"></a>
+<a id="file-0068"></a>
 
-### 0066 — `docs/09-theming/03-baseline-visual.md`
+### 0068 — `docs/09-theming/03-baseline-visual.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -2481,9 +2561,9 @@ public/img-version
 El objetivo de Tailwind es preservar la intención visual, no rediseñar sin control.
 ```
 
-<a id="file-0067"></a>
+<a id="file-0069"></a>
 
-### 0067 — `docs/09-theming/04-css-migration.md`
+### 0069 — `docs/09-theming/04-css-migration.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -2505,9 +2585,57 @@ Clasificar cada regla:
 Nunca migrar ciegamente reglas de canvas, transform, scale, paper o overlays.
 ```
 
-<a id="file-0068"></a>
+<a id="file-0070"></a>
 
-### 0068 — `docs/09-theming/README.md`
+### 0070 — `docs/09-theming/05-css-reduction-tailwind-inline.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `35`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `7e41dd0da9`
+- **Estado:** `completo`
+
+```markdown
+# Reducción CSS con Tailwind inline
+
+## Objetivo
+
+Mover estilos visuales seguros a `className` en JSX/TSX y reducir CSS legacy.
+
+## Conservar en CSS
+
+- `tokens.css`
+- Variables CSS runtime.
+- Moveable/Selecto.
+- Geometría del PDF/canvas/paper.
+- Zoom/transforms críticos.
+- Print/PDF.
+- Pseudo-elementos complejos.
+
+## Migrar a Tailwind inline
+
+- Cards.
+- Buttons.
+- Labels.
+- Pills/chips.
+- Spacing simple.
+- Tipografía.
+- Borders.
+- Shadows no críticas.
+- Sidebars e inspector cuando no afecte medidas críticas.
+
+## Validación
+
+Cada migración debe registrar:
+- componente migrado
+- reglas CSS eliminadas
+- reglas CSS conservadas
+- baseline visual revisada
+```
+
+<a id="file-0071"></a>
+
+### 0071 — `docs/09-theming/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -2524,9 +2652,9 @@ Nunca migrar ciegamente reglas de canvas, transform, scale, paper o overlays.
 - [04-css-migration.md](./04-css-migration.md)
 ```
 
-<a id="file-0069"></a>
+<a id="file-0072"></a>
 
-### 0069 — `docs/10-testing-qa/01-manual-checklist.md`
+### 0072 — `docs/10-testing-qa/01-manual-checklist.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `26`
@@ -2563,9 +2691,9 @@ Nunca migrar ciegamente reglas de canvas, transform, scale, paper o overlays.
 - Roundtrip.
 ```
 
-<a id="file-0070"></a>
+<a id="file-0073"></a>
 
-### 0070 — `docs/10-testing-qa/02-regression-matrix.md`
+### 0073 — `docs/10-testing-qa/02-regression-matrix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -2586,9 +2714,9 @@ Nunca migrar ciegamente reglas de canvas, transform, scale, paper o overlays.
 | PDF | sin chrome de diseñador |
 ```
 
-<a id="file-0071"></a>
+<a id="file-0074"></a>
 
-### 0071 — `docs/10-testing-qa/03-playwright.md`
+### 0074 — `docs/10-testing-qa/03-playwright.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -2611,9 +2739,9 @@ Usar Playwright para:
 No reemplaza tests unitarios de contratos.
 ```
 
-<a id="file-0072"></a>
+<a id="file-0075"></a>
 
-### 0072 — `docs/10-testing-qa/04-vitest.md`
+### 0075 — `docs/10-testing-qa/04-vitest.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -2634,9 +2762,9 @@ Usar Vitest para:
 - validation rules.
 ```
 
-<a id="file-0073"></a>
+<a id="file-0076"></a>
 
-### 0073 — `docs/10-testing-qa/README.md`
+### 0076 — `docs/10-testing-qa/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -2653,9 +2781,9 @@ Usar Vitest para:
 - [04-vitest.md](./04-vitest.md)
 ```
 
-<a id="file-0074"></a>
+<a id="file-0077"></a>
 
-### 0074 — `docs/11-migraciones/01-legacy-templates.md`
+### 0077 — `docs/11-migraciones/01-legacy-templates.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -2676,9 +2804,9 @@ Reglas:
 - no mutar destructivamente sin versión.
 ```
 
-<a id="file-0075"></a>
+<a id="file-0078"></a>
 
-### 0075 — `docs/11-migraciones/02-snapshot-versioning.md`
+### 0078 — `docs/11-migraciones/02-snapshot-versioning.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -2698,9 +2826,9 @@ snapshotVersion: 'v1' | 'v2' | 'v3'
 Las migraciones deben ser puras, testeables e idempotentes.
 ```
 
-<a id="file-0076"></a>
+<a id="file-0079"></a>
 
-### 0076 — `docs/11-migraciones/03-pdfme-upstream.md`
+### 0079 — `docs/11-migraciones/03-pdfme-upstream.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -2723,9 +2851,9 @@ Las migraciones deben ser puras, testeables e idempotentes.
 - snapshot extendido.
 ```
 
-<a id="file-0077"></a>
+<a id="file-0080"></a>
 
-### 0077 — `docs/11-migraciones/README.md`
+### 0080 — `docs/11-migraciones/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -2741,9 +2869,9 @@ Las migraciones deben ser puras, testeables e idempotentes.
 - [03-pdfme-upstream.md](./03-pdfme-upstream.md)
 ```
 
-<a id="file-0078"></a>
+<a id="file-0081"></a>
 
-### 0078 — `docs/12-troubleshooting/01-canvas.md`
+### 0081 — `docs/12-troubleshooting/01-canvas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -2768,9 +2896,9 @@ Revisar:
 Revisar `overflow` en contenedores host y canvas.
 ```
 
-<a id="file-0079"></a>
+<a id="file-0082"></a>
 
-### 0079 — `docs/12-troubleshooting/02-pdf-worker.md`
+### 0082 — `docs/12-troubleshooting/02-pdf-worker.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -2790,9 +2918,9 @@ Síntomas:
 Revisar configuración del worker y assets públicos.
 ```
 
-<a id="file-0080"></a>
+<a id="file-0083"></a>
 
-### 0080 — `docs/12-troubleshooting/03-tailwind-regressions.md`
+### 0083 — `docs/12-troubleshooting/03-tailwind-regressions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -2813,9 +2941,9 @@ Problemas comunes:
 - duplicidad entre bridge y CSS legacy.
 ```
 
-<a id="file-0081"></a>
+<a id="file-0084"></a>
 
-### 0081 — `docs/12-troubleshooting/04-runtime.md`
+### 0084 — `docs/12-troubleshooting/04-runtime.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -2842,9 +2970,9 @@ Revisar:
 Viewer nunca debe permitir edición.
 ```
 
-<a id="file-0082"></a>
+<a id="file-0085"></a>
 
-### 0082 — `docs/12-troubleshooting/README.md`
+### 0085 — `docs/12-troubleshooting/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -2861,9 +2989,9 @@ Viewer nunca debe permitir edición.
 - [04-runtime.md](./04-runtime.md)
 ```
 
-<a id="file-0083"></a>
+<a id="file-0086"></a>
 
-### 0083 — `docs/13-ejemplos/01-basic-designer.md`
+### 0086 — `docs/13-ejemplos/01-basic-designer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -2885,9 +3013,9 @@ Validar:
 - Save snapshot.
 ```
 
-<a id="file-0084"></a>
+<a id="file-0087"></a>
 
-### 0084 — `docs/13-ejemplos/02-multi-document-routing.md`
+### 0087 — `docs/13-ejemplos/02-multi-document-routing.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -2908,9 +3036,9 @@ Valida:
 - todos los schemas estándar.
 ```
 
-<a id="file-0085"></a>
+<a id="file-0088"></a>
 
-### 0085 — `docs/13-ejemplos/03-generator-runtime.md`
+### 0088 — `docs/13-ejemplos/03-generator-runtime.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -2930,9 +3058,9 @@ Valida:
 - parity de schemas.
 ```
 
-<a id="file-0086"></a>
+<a id="file-0089"></a>
 
-### 0086 — `docs/13-ejemplos/README.md`
+### 0089 — `docs/13-ejemplos/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -2948,9 +3076,9 @@ Valida:
 - [03-generator-runtime.md](./03-generator-runtime.md)
 ```
 
-<a id="file-0087"></a>
+<a id="file-0090"></a>
 
-### 0087 — `docs/14-seguridad/01-archivos.md`
+### 0090 — `docs/14-seguridad/01-archivos.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -2970,9 +3098,9 @@ Validar:
 - no guardar binarios sensibles en snapshot.
 ```
 
-<a id="file-0088"></a>
+<a id="file-0091"></a>
 
-### 0088 — `docs/14-seguridad/02-firma.md`
+### 0091 — `docs/14-seguridad/02-firma.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -2988,9 +3116,9 @@ La firma se integra por providers externos.
 No guardar claves privadas, archivos P12 o secretos dentro del snapshot del diseñador.
 ```
 
-<a id="file-0089"></a>
+<a id="file-0092"></a>
 
-### 0089 — `docs/14-seguridad/README.md`
+### 0092 — `docs/14-seguridad/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `4`
@@ -3005,9 +3133,9 @@ No guardar claves privadas, archivos P12 o secretos dentro del snapshot del dise
 - [02-firma.md](./02-firma.md)
 ```
 
-<a id="file-0090"></a>
+<a id="file-0093"></a>
 
-### 0090 — `AGENTS.md`
+### 0093 — `AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `26`
@@ -3044,9 +3172,9 @@ Antes de modificar código, un agente debe:
 `docs/` documenta el componente `sisad-pdfme`. No debe contener agentes, prompts, task-cards ni memoria de IA.
 ```
 
-<a id="file-0091"></a>
+<a id="file-0094"></a>
 
-### 0091 — `CLAUDE.md`
+### 0094 — `CLAUDE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -3080,9 +3208,9 @@ ai/memory/project-memory.md
 ``​`
 ```
 
-<a id="file-0092"></a>
+<a id="file-0095"></a>
 
-### 0092 — `MANIFEST.md`
+### 0095 — `MANIFEST.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `27`
@@ -3120,9 +3248,9 @@ ai/memory/project-memory.md
 - `ai/reports/claude-codex-handoff-2026-07-14.md`
 ```
 
-<a id="file-0093"></a>
+<a id="file-0096"></a>
 
-### 0093 — `plan-maestro-portabilidad-sisad-pdfme-agentes.md`
+### 0096 — `plan-maestro-portabilidad-sisad-pdfme-agentes.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `843`
@@ -3976,9 +4104,9 @@ rg "DigitalAgreements|StepOne|StepTwo|Uanataca|Workflow|Documentary|axiosClient|
    - baseline visual.
 ```
 
-<a id="file-0094"></a>
+<a id="file-0097"></a>
 
-### 0094 — `.github/copilot-instructions.md`
+### 0097 — `.github/copilot-instructions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -4004,9 +4132,9 @@ Copilot debe seguir estas reglas mínimas:
 - Preferir cambios pequeños y focalizados.
 ```
 
-<a id="file-0095"></a>
+<a id="file-0098"></a>
 
-### 0095 — `ai/README.md`
+### 0098 — `ai/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -4055,9 +4183,9 @@ Esta carpeta centraliza todo lo que un asistente necesita para trabajar sin aluc
 ``​`
 ```
 
-<a id="file-0096"></a>
+<a id="file-0099"></a>
 
-### 0096 — `ai/tree.md`
+### 0099 — `ai/tree.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `26`
@@ -4094,9 +4222,9 @@ ai/
 ``​`
 ```
 
-<a id="file-0097"></a>
+<a id="file-0100"></a>
 
-### 0097 — `reports/jsdoc-missing-report.md`
+### 0100 — `reports/jsdoc-missing-report.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `2254`
@@ -6361,9 +6489,9 @@ ai/
 - Línea 103: `type` `DesignerRuntimeApi`
 ```
 
-<a id="file-0098"></a>
+<a id="file-0101"></a>
 
-### 0098 — `scripts/README.md`
+### 0101 — `scripts/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -6395,9 +6523,9 @@ bash scripts/clean-empty-dirs.sh /ruta/proyecto --confirm
 ``​`
 ```
 
-<a id="file-0099"></a>
+<a id="file-0102"></a>
 
-### 0099 — `ai/adapters/README.md`
+### 0102 — `ai/adapters/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -6411,9 +6539,9 @@ bash scripts/clean-empty-dirs.sh /ruta/proyecto --confirm
 Adaptadores para herramientas. Los archivos raíz deben ser copias delgadas de estos o apuntar a `ai/start/START.md`.
 ```
 
-<a id="file-0100"></a>
+<a id="file-0103"></a>
 
-### 0100 — `ai/agents/canvas-agent.md`
+### 0103 — `ai/agents/canvas-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -6461,9 +6589,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0101"></a>
+<a id="file-0104"></a>
 
-### 0101 — `ai/agents/css-tailwind-agent.md`
+### 0104 — `ai/agents/css-tailwind-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -6511,9 +6639,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0102"></a>
+<a id="file-0105"></a>
 
-### 0102 — `ai/agents/designer-runtime-agent.md`
+### 0105 — `ai/agents/designer-runtime-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -6561,14 +6689,14 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0103"></a>
+<a id="file-0106"></a>
 
-### 0103 — `ai/agents/docs-architecture-agent.md`
+### 0106 — `ai/agents/docs-architecture-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
 - **Tamaño original:** `0.6 KB`
-- **SHA1 corto:** `53e4b75611`
+- **SHA1 corto:** `b7aeee8485`
 - **Estado:** `completo`
 
 ```markdown
@@ -6580,7 +6708,7 @@ Mantiene ai/ sin duplicidad, memoria, reglas, prompts y task-cards.
 
 ## Puede tocar
 
-Ver `ai/project/file-ownership-map.md`.
+Solo los archivos listados por la task-card activa de arquitectura IA.
 
 ## No puede tocar
 
@@ -6611,9 +6739,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0104"></a>
+<a id="file-0107"></a>
 
-### 0104 — `ai/agents/inspector-agent.md`
+### 0107 — `ai/agents/inspector-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -6661,9 +6789,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0105"></a>
+<a id="file-0108"></a>
 
-### 0105 — `ai/agents/interaction-agent.md`
+### 0108 — `ai/agents/interaction-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -6711,9 +6839,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0106"></a>
+<a id="file-0109"></a>
 
-### 0106 — `ai/agents/lab-shell-agent.md`
+### 0109 — `ai/agents/lab-shell-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -6761,9 +6889,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0107"></a>
+<a id="file-0110"></a>
 
-### 0107 — `ai/agents/README.md`
+### 0110 — `ai/agents/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -6777,9 +6905,9 @@ playbook del dominio
 Cada agente representa un dominio principal. Un agente no debe cambiar de dominio durante una task-card.
 ```
 
-<a id="file-0108"></a>
+<a id="file-0111"></a>
 
-### 0108 — `ai/agents/registry.md`
+### 0111 — `ai/agents/registry.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -6802,9 +6930,9 @@ Cada agente representa un dominio principal. Un agente no debe cambiar de domini
 - `docs-architecture-agent.md` — Docs Architecture Agent: Mantiene ai/ sin duplicidad, memoria, reglas, prompts y task-cards.
 ```
 
-<a id="file-0109"></a>
+<a id="file-0112"></a>
 
-### 0109 — `ai/agents/schema-agent.md`
+### 0112 — `ai/agents/schema-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -6852,9 +6980,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0110"></a>
+<a id="file-0113"></a>
 
-### 0110 — `ai/agents/snapshot-agent.md`
+### 0113 — `ai/agents/snapshot-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -6902,9 +7030,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0111"></a>
+<a id="file-0114"></a>
 
-### 0111 — `ai/agents/visual-baseline-agent.md`
+### 0114 — `ai/agents/visual-baseline-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -6952,9 +7080,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0112"></a>
+<a id="file-0115"></a>
 
-### 0112 — `ai/baselines/img-version-baseline-protocol.md`
+### 0115 — `ai/baselines/img-version-baseline-protocol.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -6994,9 +7122,9 @@ Evaluar:
 - consistencia.
 ```
 
-<a id="file-0113"></a>
+<a id="file-0116"></a>
 
-### 0113 — `ai/baselines/README.md`
+### 0116 — `ai/baselines/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7010,34 +7138,63 @@ Evaluar:
 Protocolos de referencia visual y funcional.
 ```
 
-<a id="file-0114"></a>
+<a id="file-0117"></a>
 
-### 0114 — `ai/checklists/done-vs-pending.md`
+### 0117 — `ai/checklists/done-vs-pending.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `12`
-- **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `3d97a52b18`
+- **Líneas:** `41`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `8f1de8e902`
 - **Estado:** `completo`
 
 ```markdown
 # Done vs Pending
 
-## Done
+## Done protegido
 
-- [x] Definir arquitectura IA unificada.
+Ver `ai/task-cards/completed/completed-summary.md`.
 
-## Pending
+No cargar por defecto:
 
-- [ ] Instalar en proyecto real.
-- [ ] Migrar documentación útil.
-- [ ] Ejecutar TASK-VISUAL-001.
-- [ ] Ejecutar TASK-CSS-001.
+``​`txt
+ai/task-cards/completed/**
+reports/**
+dist/**
+test-results/**
+.tailwind-migration-backups/**
+unificados/**
+``​`
+
+## Pending activo
+
+``​`txt
+ai/task-cards/active/**
+``​`
+
+## Pending futuro
+
+``​`txt
+ai/task-cards/backlog/**
+``​`
+
+## Regla para agentes
+
+Antes de implementar:
+
+1. Leer `ai/start/START.md`.
+2. Leer `ai/router/ROUTER.md`.
+3. Leer `ai/router/CONTEXT_BUDGET.md`.
+4. Leer `ai/memory/pending-checklist.md`.
+5. Leer solo la task-card asignada.
+6. Consultar `completed-summary.md` solo para no romper fixes previos.
+
+No usar `completed/**` como fuente de tareas pendientes.
 ```
 
-<a id="file-0115"></a>
+<a id="file-0118"></a>
 
-### 0115 — `ai/checklists/global-validation.md`
+### 0118 — `ai/checklists/global-validation.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -7056,9 +7213,9 @@ Protocolos de referencia visual y funcional.
 - [ ] Nueva memoria si hubo decisión.
 ```
 
-<a id="file-0116"></a>
+<a id="file-0119"></a>
 
-### 0116 — `ai/checklists/improvement-backlog.md`
+### 0119 — `ai/checklists/improvement-backlog.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -7078,9 +7235,9 @@ Protocolos de referencia visual y funcional.
 | Media | Mejorar LeftSidebar truncation | Pendiente |
 ```
 
-<a id="file-0117"></a>
+<a id="file-0120"></a>
 
-### 0117 — `ai/checklists/manual-ui-regression.md`
+### 0120 — `ai/checklists/manual-ui-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -7110,9 +7267,9 @@ Protocolos de referencia visual y funcional.
 - [ ] PDF sin chrome.
 ```
 
-<a id="file-0118"></a>
+<a id="file-0121"></a>
 
-### 0118 — `ai/checklists/README.md`
+### 0121 — `ai/checklists/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7126,9 +7283,9 @@ Protocolos de referencia visual y funcional.
 Checklists vivos para validar tareas y controlar pendientes.
 ```
 
-<a id="file-0119"></a>
+<a id="file-0122"></a>
 
-### 0119 — `ai/checklists/tailwind-migration.md`
+### 0122 — `ai/checklists/tailwind-migration.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -7150,9 +7307,9 @@ Checklists vivos para validar tareas y controlar pendientes.
 - [ ] PDF final sin chrome no deseado.
 ```
 
-<a id="file-0120"></a>
+<a id="file-0123"></a>
 
-### 0120 — `ai/context/ai-docs-context.md`
+### 0123 — `ai/context/ai-docs-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7166,9 +7323,9 @@ Checklists vivos para validar tareas y controlar pendientes.
 La carpeta `ai/` es fuente de verdad. Documentación antigua puede migrarse, pero no duplicarse.
 ```
 
-<a id="file-0121"></a>
+<a id="file-0124"></a>
 
-### 0121 — `ai/context/canvas-multipage-context.md`
+### 0124 — `ai/context/canvas-multipage-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -7188,45 +7345,48 @@ event → page target → coordinate conversion → schema metadata → render p
 Validar siempre página 2+.
 ```
 
-<a id="file-0122"></a>
+<a id="file-0125"></a>
 
-### 0122 — `ai/context/css-tailwind-context.md`
+### 0125 — `ai/context/css-tailwind-context.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `23`
+- **Líneas:** `26`
 - **Tamaño original:** `0.6 KB`
-- **SHA1 corto:** `4312247736`
+- **SHA1 corto:** `0f650fbc72`
 - **Estado:** `completo`
 
 ```markdown
-# CSS/Tailwind Context
+# Contexto CSS/Tailwind
 
-## Fuentes principales
+## Archivos CSS reales
 
 ``​`txt
 src/styles/tailwind.css
 src/style.css
 src/styles/sisad-tailwind-bridge.css
-src/sisad-pdfme/ui/styles/tokens.css
-src/sisad-pdfme/ui/styles/sisad-pdfme-global.css
-src/sisad-pdfme/ui/styles/canvas-interactions.css
-src/sisad-pdfme/ui/styles/sisad-pdfme-runtime.css
 src/features/pdfcomponent/labRoutes.css
-reports/tailwind-migration/*
+src/sisad-pdfme/ui/styles/sisad-pdfme.css
+src/sisad-pdfme/ui/styles/tokens.css
 ``​`
 
-## Decisiones
+## Evidencia/reports
 
-- Tailwind sin preflight.
-- Una sola entrada Tailwind.
-- Bridge a nivel raíz si hay clases dinámicas.
-- Geometry/paper/transform no migran.
-- `public/img-version` es baseline visual.
+``​`txt
+reports/tailwind-migration/**
+.tailwind-migration-backups/**
+``​`
+
+Los reports y backups no son fuente activa. Sirven para auditoría.
+
+## Regla de seguridad
+
+Migrar clases visuales a JSX/TSX, pero conservar CSS crítico:
+tokens, geometry, zoom, transforms, Moveable, Selecto, print/PDF, canvas/paper, pseudo-elementos complejos.
 ```
 
-<a id="file-0123"></a>
+<a id="file-0126"></a>
 
-### 0123 — `ai/context/inspector-context.md`
+### 0126 — `ai/context/inspector-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7240,9 +7400,9 @@ reports/tailwind-migration/*
 Inspector usa secciones declarativas. Widgets actualizan schema por command/update centralizado, no por mutación directa.
 ```
 
-<a id="file-0124"></a>
+<a id="file-0127"></a>
 
-### 0124 — `ai/context/README.md`
+### 0127 — `ai/context/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7256,9 +7416,9 @@ Inspector usa secciones declarativas. Widgets actualizan schema por command/upda
 Contextos focales. Cargar solo uno por task-card.
 ```
 
-<a id="file-0125"></a>
+<a id="file-0128"></a>
 
-### 0125 — `ai/context/schema-families-context.md`
+### 0128 — `ai/context/schema-families-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -7274,9 +7434,9 @@ Familias: text-like, boolean, option-based, signing-based, action-based, media, 
 Cada familia define render, inspector, value adapter y compatibilidad Form/Viewer/PDF.
 ```
 
-<a id="file-0126"></a>
+<a id="file-0129"></a>
 
-### 0126 — `ai/context/selection-transform-context.md`
+### 0129 — `ai/context/selection-transform-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7290,9 +7450,9 @@ Cada familia define render, inspector, value adapter y compatibilidad Form/Viewe
 Selecto selecciona roots con `data-schema-id`. Moveable transforma roots. Excluir option internals, botón +, toolbar, inputs, contenteditable y overlays.
 ```
 
-<a id="file-0127"></a>
+<a id="file-0130"></a>
 
-### 0127 — `ai/context/snapshot-context.md`
+### 0130 — `ai/context/snapshot-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7306,9 +7466,9 @@ Selecto selecciona roots con `data-schema-id`. Moveable transforma roots. Exclui
 Snapshot preserva document/page, geometry, ownership, options, selected values y `__designer`.
 ```
 
-<a id="file-0128"></a>
+<a id="file-0131"></a>
 
-### 0128 — `ai/context/visual-baseline-context.md`
+### 0131 — `ai/context/visual-baseline-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -7337,9 +7497,9 @@ Comparar intención visual, no pixel-perfect:
 - canvas-first.
 ```
 
-<a id="file-0129"></a>
+<a id="file-0132"></a>
 
-### 0129 — `ai/docs-migration/MIGRATION_FROM_OLD_STRUCTURE.md`
+### 0132 — `ai/docs-migration/MIGRATION_FROM_OLD_STRUCTURE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -7380,9 +7540,9 @@ AGENTS.md/CLAUDE.md si existen
 | `reports/*` | conservar como evidencia, no cargar por defecto |
 ```
 
-<a id="file-0130"></a>
+<a id="file-0133"></a>
 
-### 0130 — `ai/memory/changelog.md`
+### 0133 — `ai/memory/changelog.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -7400,29 +7560,43 @@ AGENTS.md/CLAUDE.md si existen
 - Se agregan adaptadores para Codex, Claude y GitHub Copilot.
 ```
 
-<a id="file-0131"></a>
+<a id="file-0134"></a>
 
-### 0131 — `ai/memory/completed-checklist.md`
+### 0134 — `ai/memory/completed-checklist.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `7`
-- **Tamaño original:** `0.4 KB`
-- **SHA1 corto:** `a5d404b256`
+- **Líneas:** `21`
+- **Tamaño original:** `0.9 KB`
+- **SHA1 corto:** `b092cef452`
 - **Estado:** `completo`
 
 ```markdown
-# Completed Checklist
+# Checklist de completados protegidos
 
-- [x] TASK-ARCH-001 — Capa de visibility/global config implementada en `src/sisad-pdfme`.
-- [x] TASK-ARCH-002 — Registry/resolver/controller de recipients en validación con pruebas dedicadas.
-- [ ] Reasignación de destinatarios con persistencia real.
-- [ ] Paridad completa con `lab/multi-document-routing`.
-- [ ] Preview runtime FORM por destinatario.
+## Estado protegido
+
+- [x] Config global portable creada (`TASK-ARCH-001`).
+- [x] Recipient Registry creado (`TASK-ARCH-002`).
+- [x] Reasignación base con persistencia creada (`TASK-PDFME-003`).
+- [x] Paridad multidocumento base (`TASK-PDFME-004`).
+- [x] Runtime Form preview por recipient (`TASK-PDFME-006`).
+- [x] Snapshot persistence contract (`TASK-PDFME-007`).
+- [x] Snap-lines y compactación inicial (`TASK-CANVAS-002`).
+- [x] Densidad inicial de DetailView (`TASK-INSPECTOR-001`).
+- [x] Indicadores DocuSign para option groups (`TASK-SCHEMA-001`).
+
+## Política de no regresión
+
+- No reimplementar features completadas desde cero.
+- No duplicar lógica en host.
+- No añadir carpetas paralelas.
+- No tocar PDF-lib, Moveable, Selecto, geometría o snapshot sin task-card explícita.
+- No convertir reports/completed en contexto activo.
 ```
 
-<a id="file-0132"></a>
+<a id="file-0135"></a>
 
-### 0132 — `ai/memory/decisions.md`
+### 0135 — `ai/memory/decisions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -7454,9 +7628,9 @@ Las imágenes de `public/img-version` son referencia de intención visual previa
 Paper, transform, zoom, x/y/width/height, Moveable/Selecto y z-index crítico permanecen en CSS/tokens o inline controlado.
 ```
 
-<a id="file-0133"></a>
+<a id="file-0136"></a>
 
-### 0133 — `ai/memory/known-risks.md`
+### 0136 — `ai/memory/known-risks.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -7477,9 +7651,9 @@ Paper, transform, zoom, x/y/width/height, Moveable/Selecto y z-index crítico pe
 | Agentes duplican reglas | Alucinaciones/inconsistencias | Adaptadores delgados |
 ```
 
-<a id="file-0134"></a>
+<a id="file-0137"></a>
 
-### 0134 — `ai/memory/memory-update-protocol.md`
+### 0137 — `ai/memory/memory-update-protocol.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -7519,32 +7693,51 @@ Actualizar memoria solo si ocurrió una decisión estable o cambio relevante.
 ``​`
 ```
 
-<a id="file-0135"></a>
+<a id="file-0138"></a>
 
-### 0135 — `ai/memory/pending-checklist.md`
+### 0138 — `ai/memory/pending-checklist.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `10`
-- **Tamaño original:** `0.6 KB`
-- **SHA1 corto:** `40768db8df`
+- **Líneas:** `29`
+- **Tamaño original:** `1.3 KB`
+- **SHA1 corto:** `7a8f14a7ea`
 - **Estado:** `completo`
 
 ```markdown
-# Pending Checklist
+# Checklist pendiente real
 
-- [ ] Cerrar circuito `onBulkAssignRecipient → SchemaAssignmentDialog → onTemplateChange → persistencia`.
-- [ ] Comparar LAB vs SISAD-WEB y documentar matriz de paridad.
-- [ ] Crear adapter `pdfDesignerRuntimeConfig.js` solo después de validar reasignación.
-- [ ] Garantizar que `assignment.enabled` y `visibility.actions.reassign` no apaguen Reasignar.
-- [ ] Implementar preview FORM por destinatario usando runtime real.
-- [ ] Consolidar snapshot/request para DigitalAgreements y externalForms.
-- [ ] Restaurar conectividad SISAD por archivo/schema.
-- [ ] Validar drag preview, scroll canvas y posicionamiento.
+Este archivo contiene solo trabajo pendiente o continuidad. Las tareas completadas viven en `ai/task-cards/completed/` y se resumen en `ai/task-cards/completed/completed-summary.md`.
+
+## Active existente
+
+- [ ] `TASK-PDFME-005-digital-agreements-runtime-adapter.md`
+- [ ] `TASK-PDFME-008-signature-policies-firma-sisad.md`
+- [ ] `TASK-PDFME-009-externalforms-runner-contract.md`
+
+## Active nuevo de arquitectura IA
+
+- [ ] `TASK-ARCH-003-enforce-existing-ai-folder-architecture.md`
+- [ ] `TASK-CSS-012-inline-tailwind-css-reduction.md`
+
+## Backlog / continuidad
+
+- [ ] `TASK-CANVAS-001-protect-canvas-overflow.md`
+- [ ] `TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md`
+- [ ] `TASK-PDFME-011-connectivity-sisad-restore.md`
+- [ ] `TASK-PDFME-012-global-visibility-wiring-continuity.md`
+- [ ] `TASK-PDFME-013-controller-real-api-no-noop.md`
+- [ ] `TASK-PDFME-014-rightsidebar-reassign-state-regression.md`
+
+## Pendientes transversales
+
+- [ ] Confirmar que `src/sisad-pdfme/docs/**` no se use como copia ni reemplazo de `docs/**`.
+- [ ] Confirmar que `reports/**`, `dist/**`, `test-results/**` y `.tailwind-migration-backups/**` están excluidos del contexto activo por defecto.
+- [ ] Confirmar que el CSS migrado a Tailwind inline no rompe geometry, zoom, canvas, paper, Moveable, Selecto o print/PDF.
 ```
 
-<a id="file-0136"></a>
+<a id="file-0139"></a>
 
-### 0136 — `ai/memory/project-memory.md`
+### 0139 — `ai/memory/project-memory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -7575,9 +7768,9 @@ El proyecto `sisad-pdfme` es un diseñador PDF con laboratorios bajo `src/featur
 La migración Tailwind puede romper layout por doble fuente de verdad: Tailwind JSX + bridge + CSS legacy. Corregir por capas.
 ```
 
-<a id="file-0137"></a>
+<a id="file-0140"></a>
 
-### 0137 — `ai/memory/README.md`
+### 0140 — `ai/memory/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -7601,9 +7794,9 @@ La memoria evita repetir decisiones y reduce tokens. Debe mantenerse corta, obje
 - `pending-checklist.md`: pendientes priorizados.
 ```
 
-<a id="file-0138"></a>
+<a id="file-0141"></a>
 
-### 0138 — `ai/memory/session-handoff.md`
+### 0141 — `ai/memory/session-handoff.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `40`
@@ -7654,29 +7847,48 @@ DetailView compacto/expandido por defecto y al trigger "Reasignar").
 - No usar git stash (hay 4 stashes ajenos, ver memoria).
 ```
 
-<a id="file-0139"></a>
+<a id="file-0142"></a>
 
-### 0139 — `ai/playbooks/pb-ai-docs-refactor.md`
+### 0142 — `ai/playbooks/pb-ai-docs-refactor.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `7`
-- **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `4d945ecb85`
+- **Líneas:** `26`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `61deaf82b5`
 - **Estado:** `completo`
 
 ```markdown
-# Playbook — AI Docs Refactor
+# Playbook — Refactor de arquitectura IA/docs
 
-1. Inventariar documentación existente.
-2. Clasificar por SRP: context/rules/playbooks/memory/task-cards.
-3. Migrar sin duplicar.
-4. Crear adaptadores delgados.
-5. Actualizar memoria.
+## Objetivo
+
+Modificar documentación o archivos IA respetando la estructura real del repositorio.
+
+## Pasos
+
+1. Leer `ai/start/START.md`.
+2. Leer `ai/router/ROUTER.md`.
+3. Leer `ai/router/CONTEXT_BUDGET.md`.
+4. Leer `ai/memory/pending-checklist.md`.
+5. Revisar `ai/task-cards/completed/completed-summary.md` solo como guardrail.
+6. No crear carpetas nuevas fuera del árbol real.
+7. Clasificar el cambio:
+   - operativo IA -> `ai/**`
+   - documentación pública -> `docs/**`
+   - evidencia -> `ai/reports/**` o `reports/**`
+   - script -> `scripts/**`
+8. Actualizar memoria si cambia el estado de una tarea.
+
+## Validación
+
+- No hay carpetas paralelas.
+- No se duplican docs públicas dentro de `ai/**`.
+- No se duplican prompts operativos dentro de `docs/**`.
 ```
 
-<a id="file-0140"></a>
+<a id="file-0143"></a>
 
-### 0140 — `ai/playbooks/pb-canvas-multipage.md`
+### 0143 — `ai/playbooks/pb-canvas-multipage.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -7693,31 +7905,50 @@ DetailView compacto/expandido por defecto y al trigger "Reasignar").
 4. Validar snapshot.
 ```
 
-<a id="file-0141"></a>
+<a id="file-0144"></a>
 
-### 0141 — `ai/playbooks/pb-css-tailwind-migration.md`
+### 0144 — `ai/playbooks/pb-css-tailwind-migration.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `9`
-- **Tamaño original:** `0.3 KB`
-- **SHA1 corto:** `a2c148115a`
+- **Líneas:** `28`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `a88d5e6c85`
 - **Estado:** `completo`
 
 ```markdown
-# Playbook — CSS/Tailwind Migration
+# Playbook — Migración CSS a Tailwind inline
 
-1. Confirmar baseline visual.
-2. Verificar una sola entrada Tailwind.
-3. Clasificar CSS: JSX, bridge, legacy, token, eliminar.
-4. Migrar primero host/lab.
-5. Migrar sidebars e inspector con bridge.
-6. Mantener geometry legacy.
-7. Validar `/lab/multi-document-routing` y `/lab/generator-runtime`.
+## Objetivo
+
+Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
+
+## Pasos
+
+1. Leer `ai/rules/css-migration-rules.md`.
+2. Ejecutar `node scripts/css-inventory.mjs`.
+3. Elegir una sola zona:
+   - Lab shell
+   - LeftSidebar
+   - RightSidebar
+   - DetailView
+   - ListView
+   - Canvas overlays no geométricos
+4. Migrar a Tailwind inline solo clases visuales.
+5. No tocar geometry, zoom, Moveable, Selecto, paper/canvas.
+6. Actualizar `reports/tailwind-migration/component-migration-ledger.md`.
+7. Correr pruebas o baseline visual.
+8. Reportar reglas CSS eliminadas y reglas conservadas.
+
+## Cierre
+
+- No aumenta CSS.
+- No hay doble Tailwind.
+- No se rompe canvas ni runtime.
 ```
 
-<a id="file-0142"></a>
+<a id="file-0145"></a>
 
-### 0142 — `ai/playbooks/pb-inspector.md`
+### 0145 — `ai/playbooks/pb-inspector.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -7734,9 +7965,9 @@ DetailView compacto/expandido por defecto y al trigger "Reasignar").
 4. Validar ListView/DetailView.
 ```
 
-<a id="file-0143"></a>
+<a id="file-0146"></a>
 
-### 0143 — `ai/playbooks/pb-schema-families.md`
+### 0146 — `ai/playbooks/pb-schema-families.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -7753,9 +7984,9 @@ DetailView compacto/expandido por defecto y al trigger "Reasignar").
 4. Validar snapshot.
 ```
 
-<a id="file-0144"></a>
+<a id="file-0147"></a>
 
-### 0144 — `ai/playbooks/pb-selection-transform.md`
+### 0147 — `ai/playbooks/pb-selection-transform.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -7772,9 +8003,9 @@ DetailView compacto/expandido por defecto y al trigger "Reasignar").
 4. Validar Moveable root-only.
 ```
 
-<a id="file-0145"></a>
+<a id="file-0148"></a>
 
-### 0145 — `ai/playbooks/pb-snapshot.md`
+### 0148 — `ai/playbooks/pb-snapshot.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -7791,9 +8022,9 @@ DetailView compacto/expandido por defecto y al trigger "Reasignar").
 4. No tocar generator salvo task explícita.
 ```
 
-<a id="file-0146"></a>
+<a id="file-0149"></a>
 
-### 0146 — `ai/playbooks/pb-visual-regression.md`
+### 0149 — `ai/playbooks/pb-visual-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -7812,9 +8043,9 @@ DetailView compacto/expandido por defecto y al trigger "Reasignar").
 6. Corregir por componente.
 ```
 
-<a id="file-0147"></a>
+<a id="file-0150"></a>
 
-### 0147 — `ai/playbooks/README.md`
+### 0150 — `ai/playbooks/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7828,9 +8059,9 @@ DetailView compacto/expandido por defecto y al trigger "Reasignar").
 Procedimientos. Cargar uno por task-card.
 ```
 
-<a id="file-0148"></a>
+<a id="file-0151"></a>
 
-### 0148 — `ai/project/architecture-principles.md`
+### 0151 — `ai/project/architecture-principles.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -7875,9 +8106,9 @@ Las instrucciones dependen de contratos (`task-card`, `rules`, `context`) y no d
 No duplicar reglas en `AGENTS.md`, `CLAUDE.md` y Copilot. Esos archivos solo apuntan a `ai/start/START.md`.
 ```
 
-<a id="file-0149"></a>
+<a id="file-0152"></a>
 
-### 0149 — `ai/project/definition-of-done.md`
+### 0152 — `ai/project/definition-of-done.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -7900,9 +8131,9 @@ Una task-card se considera completa cuando:
 - Se propuso nueva task-card si quedó trabajo fuera de alcance.
 ```
 
-<a id="file-0150"></a>
+<a id="file-0153"></a>
 
-### 0150 — `ai/project/file-ownership-map.md`
+### 0153 — `ai/project/file-ownership-map.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -7927,9 +8158,9 @@ Una task-card se considera completa cuando:
 | AI docs | `ai/**` | docs-architecture-agent |
 ```
 
-<a id="file-0151"></a>
+<a id="file-0154"></a>
 
-### 0151 — `ai/project/glossary.md`
+### 0154 — `ai/project/glossary.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -7956,9 +8187,9 @@ Una task-card se considera completa cuando:
 | Bridge Tailwind | CSS con `@apply` que conserva classNames existentes |
 ```
 
-<a id="file-0152"></a>
+<a id="file-0155"></a>
 
-### 0152 — `ai/project/goals.md`
+### 0155 — `ai/project/goals.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -7993,9 +8224,9 @@ Construir y estabilizar `sisad-pdfme` como componente diseñador PDF reutilizabl
 - Dividir tareas grandes en pasos verificables.
 ```
 
-<a id="file-0153"></a>
+<a id="file-0156"></a>
 
-### 0153 — `ai/project/non-goals.md`
+### 0156 — `ai/project/non-goals.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -8018,9 +8249,9 @@ No hacer por defecto:
 - Resolver permisos con CSS.
 ```
 
-<a id="file-0154"></a>
+<a id="file-0157"></a>
 
-### 0154 — `ai/project/scope.md`
+### 0157 — `ai/project/scope.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -8069,9 +8300,9 @@ infra backend
 Form/Viewer/Generator no son foco principal, pero no deben romperse. Cualquier cambio en Designer debe preservar metadata y render compatible.
 ```
 
-<a id="file-0155"></a>
+<a id="file-0158"></a>
 
-### 0155 — `ai/prompts/claude-diagnose-or-implement.md`
+### 0158 — `ai/prompts/claude-diagnose-or-implement.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -8089,9 +8320,9 @@ Modo implementación: modificar solo archivos de la task-card, validar y reporta
 Siempre respetar contexto budget.
 ```
 
-<a id="file-0156"></a>
+<a id="file-0159"></a>
 
-### 0156 — `ai/prompts/codex-master-prompt.md`
+### 0159 — `ai/prompts/codex-master-prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -8107,9 +8338,9 @@ Lee `ai/start/START.md`. Enruta con `ai/router/ROUTER.md`. Usa presupuesto de `a
 Trabaja una sola task-card. Antes de editar, declara Router decision. No hagas auditoría global salvo que la task lo pida.
 ```
 
-<a id="file-0157"></a>
+<a id="file-0160"></a>
 
-### 0157 — `ai/prompts/copilot-task-context.md`
+### 0160 — `ai/prompts/copilot-task-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -8131,9 +8362,9 @@ Cambios pequeños y focalizados.
 ``​`
 ```
 
-<a id="file-0158"></a>
+<a id="file-0161"></a>
 
-### 0158 — `ai/prompts/create-task-card.md`
+### 0161 — `ai/prompts/create-task-card.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -8155,9 +8386,9 @@ Convierte la petición del usuario en una task-card cerrada con:
 - criterio de parada.
 ```
 
-<a id="file-0159"></a>
+<a id="file-0162"></a>
 
-### 0159 — `ai/prompts/README.md`
+### 0162 — `ai/prompts/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -8171,9 +8402,9 @@ Convierte la petición del usuario en una task-card cerrada con:
 Prompts reutilizables. No reemplazan task-cards.
 ```
 
-<a id="file-0160"></a>
+<a id="file-0163"></a>
 
-### 0160 — `ai/prompts/update-memory.md`
+### 0163 — `ai/prompts/update-memory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -8187,188 +8418,45 @@ Prompts reutilizables. No reemplazan task-cards.
 Actualiza memoria solo si hubo decisión estable. Usa `ai/memory/memory-update-protocol.md`.
 ```
 
-<a id="file-0161"></a>
-
-### 0161 — `ai/reports/claude-codex-handoff-2026-07-14.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `36`
-- **Tamaño original:** `1.2 KB`
-- **SHA1 corto:** `c74e11a0e2`
-- **Estado:** `completo`
-
-```markdown
-# Handoff — Claude/Codex sisad-pdfme
-
-## Estado leído
-
-Claude se ve mejor enfocado que Codex para este tramo porque está validando recipient registry, recipient resolver, controller recipients y collaborationContext con pruebas dedicadas antes de seguir con reasignación.
-
-Codex avanzó una capa útil de visibility/global config, pero ese slice no repara la reasignación.
-
-## Decisión
-
-Cerrar primero:
-
-``​`txt
-recipient registry/controller
-→ collaborationContext
-→ SchemaAssignmentDialog
-→ schemaAssignmentService
-→ onTemplateChange
-→ persistencia
-``​`
-
-No avanzar a preview FORM ni refactor grande hasta que Reasignar persista.
-
-## Orden recomendado
-
-1. Completar pruebas de recipients/controller.
-2. Completar `TASK-PDFME-003`.
-3. Validar manualmente en laboratorio.
-4. Portar diferencia mínima a SISAD-WEB.
-5. Recién entonces ejecutar `TASK-PDFME-005`, `TASK-PDFME-006` y `TASK-PDFME-007`.
-
-## Comando actual de Claude
-
-``​`bash
-npx vitest run   tests/unit/recipientRegistry.test.ts   tests/unit/recipientResolver.test.ts   tests/unit/useSisadPdfmeController.recipients.test.tsx   tests/unit/sisad-pdfme/config/visibility.test.ts   tests/unit/sisad-pdfme/ui/collaborationContext.test.ts
-``​`
-```
-
-<a id="file-0162"></a>
-
-### 0162 — `ai/reports/lab-parity-multidocument-routing.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `83`
-- **Tamaño original:** `5.6 KB`
-- **SHA1 corto:** `455122acf5`
-- **Estado:** `completo`
-
-```markdown
-# Reporte — Paridad funcional con lab/multi-document-routing
-
-## Task-card
-
-TASK-PDFME-004 — Paridad funcional con `lab/multi-document-routing` (2026-07-14, Claude).
-
-## Diagnóstico
-
-`/lab/multi-document-routing` (`src/features/pdfcomponent/labs/examples/labExamples.js:834-852`)
-es el contrato funcional de referencia. Este repo no contiene el host
-SISAD-WEB/DigitalAgreements (`Sisad-Web-FRONTEND` es otro repositorio), por lo
-que la columna "SISAD-WEB actual" queda como verificación pendiente en ese repo;
-aquí se documenta el contrato LAB y su equivalente portable ya disponible en
-`src/sisad-pdfme` para que el host lo consuma sin fixtures ni runtime paralelo.
-
-## Baseline observado del LAB
-
-``​`js
-defaultMode: 'designer',
-initialSchemaType: 'text',
-collaboration: createCollaboration('recipient-1', [
-  { id: 'recipient-1', name: 'Cliente Principal', role: 'signer', color: '#2563EB' },
-  { id: 'recipient-2', name: 'Avalista', role: 'signer', color: '#D946EF' },
-  { id: 'routing-user-1', name: 'Mesa de entrega', role: 'coordinator', color: '#F97316' },
-], { sessionId: 'multi-document-routing-session', actorId: 'routing-user-1' }),
-template: multiDocumentRoutingTemplate,
-runtimeOptions: {
-  activeDocumentId: 'file-contract-a',
-  uploadedDocuments: multiDocumentRoutingDocuments,
-},
-``​`
-
-## Matriz de capacidades
-
-| Capacidad | LAB multi-document-routing | Equivalente portable en `src/sisad-pdfme` | SISAD-WEB actual | Estado | Acción |
-|---|---|---|---|---|---|
-| `uploadedDocuments` | `runtimeOptions.uploadedDocuments` con 2+ PDFs | Prop `documents` de `SisadPdfmeDesigner` → `adapters.documents.toDocuments` | Verificar en Sisad-Web-FRONTEND | Core listo | Host pasa sus files al prop `documents` |
-| `activeDocumentId` | `runtimeOptions.activeDocumentId` | Derivado del primer documento en el wrapper; override vía `runtimeOptions` | Verificar | Core listo | Exponer selección de documento activo del host |
-| Callbacks de documentos | Handoff entre archivos del lab | `documents/index.ts` (`resolveActiveDocument`, `reconcileTemplateDocuments`) | Verificar | Core listo | Host escucha `onDocumentChange` (evento declarado en config) |
-| `collaboration` recipients + colores | `createCollaboration(...)` con 3 recipients y colores fijos | **RecipientRegistry**: prop `recipients` + adapter; colores estables (paleta lab) | Verificar | Core listo | Host pasa recipients una vez; sin mapas manuales |
-| `activeRecipientId` | `createCollaboration('recipient-1', …)` | `config.recipients.activeRecipientId` o prop `activeRecipientId`; `controller.setActiveRecipient` | Verificar | Core listo | Host controla con prop o controller |
-| `actorId` | `{ actorId: 'routing-user-1' }` | Derivado del active recipient del registry; `base.actorId` respetado si no hay activo | Verificar | Core listo | — |
-| `sessionId` | `{ sessionId: 'multi-document-routing-session' }` | Passthrough en `designerEngine.collaboration` (base) | Verificar | Core listo | Host lo pasa en config collaboration |
-| `canEditStructure` | Implícito por rol (coordinator/signer) | `config.collaboration.canEditStructure` + regla por rol (viewer/reviewer/commenter) | Verificar | Core listo | No dejarlo en `false` si se quiere Reasignar |
-| Schema ownership | Schemas con `ownerRecipientId`/colores en template | `schemaAssignmentService` + `resolveSchemaOwnerAppearance` (fuente única) | Verificar | Core listo | — |
-| `SchemaAssignmentDialog` | Botón Reasignar del ListView/DetailView | Conectado vía `collaborationContext` alimentado por el registry (TASK-PDFME-003) | Verificar | Core listo | `assignment.enabled` ya es `true` por defecto |
-| `onBulkAssignRecipient` | Toolbar del ListView | `ListViewToolbar` (testeado: `ListViewToolbar.assignment.test.tsx`) | Verificar | Core listo | — |
-| `onTemplateChange` | El lab actualiza su estado local | Prop `onTemplateChange` del wrapper; reasignación fluye por aquí | Verificar | Core listo | Host persiste el template recibido |
-| Identity (`schemaUid \|\| id \|\| name`) | Resolución tolerante del lab | `resolveSchemaUid` (service compartido) | Verificar | Core listo | — |
-| Form runtime preview | Modo form del lab | `SisadPdfmeForm`/`SisadPdfmeViewer` + `resolveRuntimeSchemaAccess` filtrando por active recipient del registry | Verificar | Core listo | Host monta preview con `activeRecipientId` |
-
-## Evidencia
-
-- Lab: `src/features/pdfcomponent/labs/examples/labExamples.js:834`.
-- Wrappers/registry: `src/sisad-pdfme/react/*`, `src/sisad-pdfme/recipients/*`.
-- Reasignación: `src/sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService.ts`.
-- Runtime access: `src/sisad-pdfme/ui/collaboration/schemaRuntimeAccess.ts`.
-- Tests: `recipientRegistry` (11), `recipientResolver` (14),
-  `useSisadPdfmeController.recipients` (7), `ListViewToolbar.assignment` (5),
-  `runtimeAccessAfterReassignment` (3), `snapshotReassignmentPersistence` (2).
-
-## Validación
-
-- No se copiaron fixtures del lab (solo se leyó su config como contrato).
-- No existe runtime paralelo: los wrappers montan `Designer`/`Form`/`Viewer` reales.
-- e2e del lab en verde: `sidebar-collapse-parity`, `detail-view-*`,
-  `checkbox-group-docusign-behavior`.
-
-## Riesgos
-
-- La columna "SISAD-WEB actual" no puede auditarse desde este repo. Ejecutar en
-  `Sisad-Web-FRONTEND`:
-
-``​`bash
-rg -n "SchemaAssignmentDialog|onBulkAssignRecipient|schemaAssignmentService|ownerRecipientId|ownerRecipientIds" src
-rg -n "runtimeOptions|activeDocumentId|uploadedDocuments|createCollaboration" src/features/DigitalAgreements
-``​`
-
-## Nueva task-card
-
-Si la auditoría en Sisad-Web-FRONTEND detecta diferencias, abrir
-TASK-PDFME-004B con la matriz completada y las acciones por capacidad
-(corresponde a TASK-PDFME-005 para el adapter de DigitalAgreements).
-```
-
-<a id="file-0163"></a>
-
-### 0163 — `ai/reports/README.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `3`
-- **Tamaño original:** `0.1 KB`
-- **SHA1 corto:** `b29048ecba`
-- **Estado:** `completo`
-
-```markdown
-# Reports
-
-Guardar reportes generados por tareas. No cargar reportes históricos salvo evidencia necesaria.
-```
-
 <a id="file-0164"></a>
 
-### 0164 — `ai/reports/report-template.md`
+### 0164 — `ai/reports/architecture-correction-2026-07-14.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `10`
-- **Tamaño original:** `0.1 KB`
-- **SHA1 corto:** `bcbebd6b00`
+- **Líneas:** `28`
+- **Tamaño original:** `1.6 KB`
+- **SHA1 corto:** `b135092da3`
 - **Estado:** `completo`
 
 ```markdown
-# Report Template
+# Architecture Correction Report
 
-## Task-card
 ## Diagnóstico
-## Evidencia
+
+Se encontraron referencias de documentación IA que apuntaban a una arquitectura paralela o a rutas no activas para esta base de repo:
+
+- `ai/task-cards/active/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md` listaba carpetas inexistentes en el árbol real actual, incluyendo `ai/subagents`, `ai/skills` y `ai/checklists`.
+- `ai/agents/docs-architecture-agent.md` remitía a `ai/project/file-ownership-map.md` como si fuera la fuente operativa.
+- `ai/adapters/AGENTS.md.template` remitía a `ai/project/scope.md`, reforzando el árbol paralelo `ai/project/`.
+- `ai/memory/pending-checklist.md` todavía formulaba la relación entre `src/sisad-pdfme/docs/**` y `docs/**` en términos de duplicación, así que el texto se ajustó para dejar claro que no debe usarse como copia ni reemplazo.
+
 ## Archivos modificados
-## Cambios
+
+- `ai/task-cards/active/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md`
+- `ai/agents/docs-architecture-agent.md`
+- `ai/adapters/AGENTS.md.template`
+- `ai/memory/pending-checklist.md`
+
 ## Validación
+
+- Revisé los archivos vivos de entrada para confirmar el drift antes de editar.
+- Verifiqué que la task-card ahora enumera solo carpetas reales del árbol IA actual.
+- Eliminé las referencias operativas a `ai/project/` desde los adaptadores activos.
+
 ## Riesgos
-## Nueva task-card
+
+- `ai/project/` sigue existiendo como carpeta histórica. Ya no está referenciada por los adaptadores tocados en esta corrección, pero conviene no reintroducirla en futuras instrucciones.
+- No se tocaron archivos fuera del alcance de docs/IA, por lo que el contenido público y el código fuente permanecen intactos.
 ```
 
 <a id="file-0165"></a>
@@ -8376,57 +8464,70 @@ Guardar reportes generados por tareas. No cargar reportes históricos salvo evid
 ### 0165 — `ai/router/CONTEXT_BUDGET.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `45`
-- **Tamaño original:** `0.8 KB`
-- **SHA1 corto:** `cdb52f770b`
+- **Líneas:** `58`
+- **Tamaño original:** `1.2 KB`
+- **SHA1 corto:** `d1b27c0781`
 - **Estado:** `completo`
 
 ```markdown
-# CONTEXT_BUDGET
+# Context Budget
 
-## Presupuesto estándar
+## Objetivo
 
-``​`txt
-1 task-card
-1 contexto
-1 regla principal
-1 playbook
-2-3 comandos rg
-8 archivos abiertos
-5 archivos modificados
-1 proceso por pasada
-``​`
+Evitar que los agentes carguen demasiado contexto y reabran tareas completadas.
 
-## Presupuesto extendido
-
-Solo para auditorías explícitas pedidas por el usuario:
+## Carga base obligatoria por sesión
 
 ``​`txt
-1 auditoría
-máximo 20 archivos inspeccionados
-máximo 0-3 archivos modificados
-reporte obligatorio
-sin cambios de lógica
+AGENTS.md o CLAUDE.md según proveedor
+ai/start/START.md
+ai/router/ROUTER.md
+ai/router/TASK_INTAKE.md
+ai/memory/project-memory.md
+ai/memory/pending-checklist.md
+ai/memory/known-risks.md
+ai/memory/decisions.md
 ``​`
 
-## Criterio de parada
+## Carga por tarea
 
-Detenerse si:
+Cargar solo:
 
-- se requiere tocar otro dominio;
-- se exceden 5 archivos modificados;
-- se necesita `Moveable`, `Selecto`, snapshot o generator sin task-card;
-- no hay evidencia suficiente;
-- un archivo buscado no existe.
+``​`txt
+ai/task-cards/active/<task>.md
+ai/playbooks/<playbook-del-dominio>.md
+ai/rules/<reglas-del-dominio>.md
+ai/context/<contexto-del-dominio>.md
+``​`
 
-## Anti-token
+## Carga permitida como memoria histórica
 
-No cargar:
+``​`txt
+ai/task-cards/completed/completed-summary.md
+ai/memory/completed-checklist.md
+``​`
 
-- todo `codigo-sisad-pdfme.txt`;
-- todos los markdown;
-- todos los CSS completos si solo se toca un selector;
-- reportes históricos salvo evidencia necesaria.
+## No cargar por defecto
+
+``​`txt
+ai/task-cards/completed/TASK-*.md
+ai/archive/**
+reports/**
+dist/**
+test-results/**
+.tailwind-migration-backups/**
+unificados/**
+eslint_output.json
+tsconfig.tsbuildinfo
+``​`
+
+## Presupuesto por pase
+
+- Máximo 1 task-card activa.
+- Máximo 2 consultas globales `rg` antes de abrir archivos.
+- Máximo 8 archivos fuente abiertos.
+- Máximo 5 archivos modificados.
+- No modificar `pdf-lib`, `generator`, `Moveable`, `Selecto`, `snapshotAdapter` o geometría sin task-card explícita.
 ```
 
 <a id="file-0166"></a>
@@ -8434,39 +8535,42 @@ No cargar:
 ### 0166 — `ai/router/ROUTER.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `27`
-- **Tamaño original:** `1.2 KB`
-- **SHA1 corto:** `b15fc986ff`
+- **Líneas:** `30`
+- **Tamaño original:** `2.0 KB`
+- **SHA1 corto:** `57d14435dc`
 - **Estado:** `completo`
 
 ```markdown
-# ROUTER — Selección de task-card
+# Router de tareas IA
 
-## Tabla de enrutamiento
+## Prioridad de fuentes
 
-| Señal del usuario | Task-card sugerida | Contexto | Regla | Playbook |
+1. `ai/task-cards/active/**`
+2. `ai/task-cards/backlog/**` solo si el usuario lo solicita o si una active lo referencia.
+3. `ai/memory/pending-checklist.md`
+4. `ai/task-cards/completed/completed-summary.md` solo como guardrail de no regresión.
+
+## Rutas por dominio
+
+| Dominio | Agente | Playbook | Rules | Context |
 |---|---|---|---|---|
-| Tailwind, CSS, diseño, visual | TASK-CSS-* | css-tailwind-context | css-migration-rules | pb-css-tailwind-migration |
-| Baseline visual, screenshots | TASK-VISUAL-* | visual-baseline-context | visual-regression-rules | pb-visual-regression |
-| Página 2, multipágina, coordenadas | TASK-CANVAS-* | canvas-multipage-context | canvas-rules | pb-canvas-multipage |
-| Selección, mover, resize, rotate | TASK-INTERACTION-* | selection-transform-context | moveable-selecto-rules | pb-selection-transform |
-| checkboxGroup/radioGroup/select | TASK-SCHEMA-* | schema-families-context | schema-rules | pb-schema-families |
-| DetailView/ListView/Inspector | TASK-INSPECTOR-* | inspector-context | inspector-rules | pb-inspector |
-| Snapshot/import/export | TASK-SNAPSHOT-* | snapshot-context | snapshot-rules | pb-snapshot |
-| Memoria/documentación IA | TASK-DOCS-* | ai-docs-context | ai-docs-rules | pb-ai-docs-refactor |
+| Arquitectura IA | `docs-architecture-agent` | `pb-ai-docs-refactor.md` | `ai-docs-rules.md`, `global-rules.md` | `ai-docs-context.md` |
+| CSS/Tailwind | `css-tailwind-agent` | `pb-css-tailwind-migration.md` | `css-migration-rules.md` | `css-tailwind-context.md` |
+| Canvas | `canvas-agent` | `pb-canvas-multipage.md` | `canvas-rules.md`, `moveable-selecto-rules.md` | `canvas-multipage-context.md` |
+| Interacción | `interaction-agent` | `pb-selection-transform.md` | `moveable-selecto-rules.md`, `global-rules.md` | `selection-transform-context.md` |
+| Inspector | `inspector-agent` | `pb-inspector.md` | `inspector-rules.md` | `inspector-context.md` |
+| Schemas | `schema-agent` | `pb-schema-families.md` | `schema-rules.md` | `schema-families-context.md` |
+| Snapshot | `snapshot-agent` | `pb-snapshot.md` | `snapshot-rules.md` | `snapshot-context.md` |
+| Visual QA | `visual-baseline-agent` | `pb-visual-regression.md` | `css-migration-rules.md` | `visual-baseline-context.md` |
 
-## Resultado requerido antes de editar
+## Reglas de enrutamiento
 
-``​`md
-## Router decision
-- Task-card:
-- Contexto:
-- Regla:
-- Playbook:
-- Archivos candidatos:
-- Archivos prohibidos:
-- Presupuesto:
-``​`
+- Si una tarea menciona carpetas IA, no crear carpetas nuevas fuera de `ai/**`, `docs/**`, `scripts/**` o `reports/**`.
+- Si una tarea menciona documentación pública, escribir en `docs/**`.
+- Si una tarea menciona memoria, estado, handoff o pendientes, escribir en `ai/memory/**`.
+- Si una tarea menciona prompts o agentes, escribir en `ai/prompts/**`, `ai/agents/**`, `ai/subagents/**`, `ai/skills/**`, `ai/playbooks/**` o `ai/rules/**`.
+- Si una tarea menciona evidencias, escribir en `ai/reports/**` o `reports/**` según corresponda.
+- Si una tarea menciona CSS, primero revisar `reports/tailwind-migration/**` y luego modificar `src/**`.
 ```
 
 <a id="file-0167"></a>
@@ -8474,27 +8578,47 @@ No cargar:
 ### 0167 — `ai/router/TASK_INTAKE.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `15`
-- **Tamaño original:** `0.4 KB`
-- **SHA1 corto:** `d006b1ade0`
+- **Líneas:** `35`
+- **Tamaño original:** `0.9 KB`
+- **SHA1 corto:** `c9c195ed06`
 - **Estado:** `completo`
 
 ```markdown
-# TASK INTAKE — Plantilla para entender una petición
+# Task Intake
 
-## Preguntas internas
+## Antes de aceptar una tarea
 
-1. ¿Qué proceso toca?
-2. ¿Es bug, diseño, refactor, migración o documentación?
-3. ¿Cuál es la evidencia?
-4. ¿Qué archivos candidatos existen?
-5. ¿Qué archivos están prohibidos?
-6. ¿Qué metadata no se puede perder?
-7. ¿Qué validación mínima prueba el cambio?
+- [ ] ¿Existe una task-card activa?
+- [ ] ¿La tarea está duplicando una completed?
+- [ ] ¿El cambio corresponde a `ai/**`, `docs/**`, `src/**`, `scripts/**` o `reports/**`?
+- [ ] ¿Hay riesgo sobre CSS, Moveable, Selecto, zoom, canvas, snapshot o pdf-lib?
+- [ ] ¿La tarea requiere crear una regression/continuity task-card en vez de reabrir una completada?
 
-## Salida
+## Si la tarea toca arquitectura IA
 
-Crear o seleccionar task-card.
+No crear carpetas nuevas. Usar:
+
+``​`txt
+ai/start
+ai/router
+ai/memory
+ai/task-cards
+ai/rules
+ai/playbooks
+ai/context
+ai/checklists
+ai/prompts
+ai/reports
+docs
+scripts
+``​`
+
+## Si la tarea toca CSS
+
+- Migrar a clases Tailwind inline en `.jsx/.tsx` cuando sea seguro.
+- Mantener `tokens.css`.
+- Mantener CSS crítico de geometry, zoom, paper, canvas, Moveable, Selecto, print/PDF, pseudo-elementos complejos y variables runtime.
+- Documentar cada regla que se elimina.
 ```
 
 <a id="file-0168"></a>
@@ -8537,20 +8661,47 @@ No usar `pages[0]`, `pageNumber || 1`, ni query selector del primer paper para o
 ### 0170 — `ai/rules/css-migration-rules.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `8`
-- **Tamaño original:** `0.3 KB`
-- **SHA1 corto:** `e3a14cffa5`
+- **Líneas:** `35`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `8f58894aed`
 - **Estado:** `completo`
 
 ```markdown
-# CSS Migration Rules
+# Reglas CSS/Tailwind
 
-- Tailwind `preflight: false`.
-- Una entrada Tailwind.
-- `tokens.css` se conserva.
-- Geometry, transform, zoom, paper, z-index crítico y Moveable/Selecto no se migran a utilidades Tailwind.
-- Bridge conserva classNames existentes.
-- Usar `public/img-version` para baseline.
+## Fuente única de Tailwind
+
+``​`txt
+src/styles/tailwind.css -> importado por src/main.jsx
+``​`
+
+`src/style.css` permanece neutralizado para evitar doble emisión.
+
+## Mantener como CSS
+
+- `src/sisad-pdfme/ui/styles/tokens.css`
+- Variables CSS runtime.
+- Moveable/Selecto.
+- Geometría PDF/canvas/paper.
+- Zoom y transforms críticos.
+- Print/PDF.
+- Pseudo-elementos complejos.
+- Reglas dependientes de mediciones o bounding boxes.
+
+## Migrar a Tailwind inline
+
+- Componentes React con estilos visuales simples.
+- Cards, buttons, labels, sidebars, inspector, chips, pills.
+- Spacing y tipografía no geométrica.
+- Borders y shadows no críticas.
+
+## Proceso
+
+1. Elegir 1 componente.
+2. Migrar clases seguras.
+3. Eliminar regla CSS solo si queda sin uso.
+4. Actualizar ledger.
+5. Comparar baseline visual.
 ```
 
 <a id="file-0171"></a>
@@ -8558,19 +8709,21 @@ No usar `pages[0]`, `pageNumber || 1`, ni query selector del primer paper para o
 ### 0171 — `ai/rules/global-rules.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `7`
-- **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `5b90db1367`
+- **Líneas:** `9`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `c4a18caacf`
 - **Estado:** `completo`
 
 ```markdown
-# Global Rules
+# Reglas globales
 
-- No tocar negocio externo por defecto.
-- No duplicar arquitectura.
-- No crear `any` nuevo.
-- No asumir archivos inexistentes.
-- No cargar todo el proyecto.
+- `src/sisad-pdfme` es portable y no conoce hosts externos.
+- Prohibido importar desde `src/features` o `src/modules` dentro de `src/sisad-pdfme`.
+- Prohibido crear carpetas paralelas fuera de la arquitectura real del repo.
+- Prohibido tratar `ai/task-cards/completed/TASK-*.md` como pendiente.
+- Prohibido cargar `reports/**`, `dist/**`, `test-results/**`, `.tailwind-migration-backups/**` y `unificados/**` como contexto activo por defecto.
+- No tocar `pdf-lib`, `generator`, `Moveable`, `Selecto`, snapshot o geometría sin task-card explícita.
+- Cualquier regresión de una tarea completada debe tener una nueva task-card de regression/continuity.
 ```
 
 <a id="file-0172"></a>
@@ -9727,7 +9880,32 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 
 <a id="file-0211"></a>
 
-### 0211 — `reports/tailwind-migration/baseline-regression-audit.md`
+### 0211 — `reports/tailwind-migration/active-css-inventory.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `12`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `553115df49`
+- **Estado:** `completo`
+
+```markdown
+# Inventario CSS activo
+
+| Archivo | Líneas | KB | Nota |
+|---|---:|---:|---|
+| `src/styles/tailwind.css` | 5 | 0.1 | fuente única Tailwind |
+| `src/style.css` | 12 | 0.5 | mantener neutralizado |
+| `src/styles/sisad-tailwind-bridge.css` | 1 | 0.0 | revisar |
+| `src/features/pdfcomponent/labRoutes.css` | 1708 | 36.0 | migrar lab UI por componentes |
+| `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | 4193 | 194.4 | migrar solo reglas visuales seguras |
+| `src/sisad-pdfme/ui/styles/tokens.css` | 324 | 13.7 | conservar tokens |
+
+No incluir `reports/**` ni `.tailwind-migration-backups/**` como CSS activo.
+```
+
+<a id="file-0212"></a>
+
+### 0212 — `reports/tailwind-migration/baseline-regression-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `27`
@@ -9765,14 +9943,14 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 | Runtime Form | `public/img-version` no aporta evidencia directa | Layout de formulario limpio y protagonista | Ruta actual no se rompió | Riesgo indirecto por wrappers del host | Host lab puede influir en viewport | Validar en `/lab/generator-runtime` |
 ```
 
-<a id="file-0212"></a>
+<a id="file-0213"></a>
 
-### 0212 — `reports/tailwind-migration/component-migration-ledger.md`
+### 0213 — `reports/tailwind-migration/component-migration-ledger.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `62`
-- **Tamaño original:** `5.1 KB`
-- **SHA1 corto:** `8ff7eb942d`
+- **Tamaño original:** `5.2 KB`
+- **SHA1 corto:** `642f2a9552`
 - **Estado:** `completo`
 
 ```markdown
@@ -9806,14 +9984,14 @@ Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pin
 
 | Archivo | Estado | Última task | Tailwind JSX | Bridge | Legacy KEEP | Captura | Build | Riesgo |
 |---|---|---|---|---|---|---|---|---|
-| Designer/LeftSidebar.tsx | 🟡 | densidad (shell, plugin-wrap, scroll owner) | sí | no | radio `left-sidebar-group` CSS-pinned; toggle-btn posición legacy | left-sidebar-after | ✅ | medio (dnd verificado OK) |
+| Designer/LeftSidebar.tsx | 🟡 | tab/search shell inline Tailwind | sí | no | radio `left-sidebar-group` CSS-pinned; toggle-btn posición legacy | left-sidebar-after | ✅ | medio (dnd verificado OK) |
 | Designer/LeftSidebarGroup.tsx | 🟡 | densidad card categoría | sí | no | border-radius CSS-pinned (1.2rem) | left-sidebar-after | ✅ | bajo |
 
 ## Control bar / overlays contextuales — TC-CSS-08
 
 | Archivo | Estado | Última task | Tailwind JSX | Bridge | Legacy KEEP | Captura | Build | Riesgo |
 |---|---|---|---|---|---|---|---|---|
-| ui/components/CtlBar.tsx | ✅ | skin pill summary `px-2.5 py-1` | sí | no | clusters posicionados por CSS (canvas-chrome) | control-bar-toolbar-after | ✅ | bajo |
+| ui/components/CtlBar.tsx | ✅ | zoom buttons Tailwind-only + pill summary `px-2.5 py-1` | sí | no | clusters posicionados por CSS (canvas-chrome); `zoom-select` selector sigue CSS-pinned | control-bar-toolbar-after | ✅ | bajo |
 | Canvas/overlays/SelectionContextToolbar.tsx | 🟡 | skin (`p-1.5 shadow-md`) | sí | no | `style{top,left,width}` geometría; padding CSS-pinned | control-bar-toolbar-after | ✅ | medio (hit-testing verificado) |
 | Canvas/overlays/CanvasContextMenu.tsx | ✅ | skin (`shadow-lg`) | sí | no | `resolveAnchoredFloatingSurfacePosition` geometría | control-bar-toolbar-after | ✅ | medio (menú abre, 9 items, in-viewport) |
 
@@ -9840,9 +10018,9 @@ Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pin
 - `tc-css-08-control-bar-toolbar-tailwind.md`
 ```
 
-<a id="file-0213"></a>
+<a id="file-0214"></a>
 
-### 0213 — `reports/tailwind-migration/deep-density-spacing-audit.md`
+### 0214 — `reports/tailwind-migration/deep-density-spacing-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `105`
@@ -9958,9 +10136,9 @@ Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pin
 - [x] Reporte actualizado.
 ```
 
-<a id="file-0214"></a>
+<a id="file-0215"></a>
 
-### 0214 — `reports/tailwind-migration/img-version-baseline-inventory.md`
+### 0215 — `reports/tailwind-migration/img-version-baseline-inventory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -9985,9 +10163,9 @@ Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pin
 | `public/img-version/Captura de pantalla 2026-07-08 a la(s) 4.48.22 p. m..jpg` | `RIGHT_SIDEBAR_DOCUMENTS` | LeftSidebar, canvas, document list, right panel tabs | Confirma que la densidad de la barra derecha es compacta y navegable. |
 ```
 
-<a id="file-0215"></a>
+<a id="file-0216"></a>
 
-### 0215 — `reports/tailwind-migration/line-by-line-style-audit.md`
+### 0216 — `reports/tailwind-migration/line-by-line-style-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `227`
@@ -10225,9 +10403,9 @@ Clasificación por sección (comentarios reales del archivo). Contadores clave: 
 - **TC-CSS-06** — Migrar `@media` de labRoutes a breakpoints Tailwind (`sm:`/`md:`) — opcional, cosmético.
 ```
 
-<a id="file-0216"></a>
+<a id="file-0217"></a>
 
-### 0216 — `reports/tailwind-migration/pending-phases-progress.md`
+### 0217 — `reports/tailwind-migration/pending-phases-progress.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -10248,9 +10426,9 @@ Clasificación por sección (comentarios reales del archivo). Contadores clave: 
 | TC-CSS-13 Docs | pending | `docs/11-migraciones/tailwind-migration.md`, `docs/09-theming/tailwind-and-css-architecture.md` | Bajo | Documentación y reportes actualizados |
 ```
 
-<a id="file-0217"></a>
+<a id="file-0218"></a>
 
-### 0217 — `reports/tailwind-migration/README.md`
+### 0218 — `reports/tailwind-migration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -10337,9 +10515,9 @@ Migración incremental de diseños a Tailwind preservando comportamiento, canvas
 - generator/pdf-lib
 ```
 
-<a id="file-0218"></a>
+<a id="file-0219"></a>
 
-### 0218 — `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md`
+### 0219 — `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -10395,9 +10573,9 @@ SCROLL  .layout-body (SidebarBody) → min-h-0 flex-1 overflow-y-auto overflow-x
 Ninguno de los archivos `.css` prohibidos fue modificado por esta tarea. Los `.css` que aparecen en `git status` (`sisad-pdfme-global.css`, `labRoutes.css`) corresponden a trabajo externo/paralelo de la migración, no a esta tarea.
 ```
 
-<a id="file-0219"></a>
+<a id="file-0220"></a>
 
-### 0219 — `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md`
+### 0220 — `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -10442,9 +10620,9 @@ Fase: RightSidebar visual density (Tailwind JSX/TSX only). Sin CSS nuevo, sin ed
 Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provienen del `Row`/`Col` interno de `form-render` (gutter por defecto). El margen negativo y el padding se compensan a cero contra el borde del form-shell, por lo que **no** producen overflow. Al dejar el form-shell en `p-0 bg-transparent`, el contenido queda alineado al borde de la sección sin card anidada. No se fuerza cambio del gutter por CSS ni por schema data (prohibido). Queda como riesgo residual estético menor.
 ```
 
-<a id="file-0220"></a>
+<a id="file-0221"></a>
 
-### 0220 — `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md`
+### 0221 — `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -10468,9 +10646,9 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx` | Shared sidebar header primitives | Shared chrome already centralised for list/detail surfaces | `KEEP_LEGACY` | Low |
 ```
 
-<a id="file-0221"></a>
+<a id="file-0222"></a>
 
-### 0221 — `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md`
+### 0222 — `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -10501,9 +10679,9 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 - El runtime mantiene la paridad Form/Viewer y la separación clara entre chrome y contenido.
 ```
 
-<a id="file-0222"></a>
+<a id="file-0223"></a>
 
-### 0222 — `reports/tailwind-migration/schema-chrome-tailwind-audit.md`
+### 0223 — `reports/tailwind-migration/schema-chrome-tailwind-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -10532,9 +10710,9 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 - `basic-designer` continúa renderizando `field-chrome` y `action-based` sin overflow ni regresiones visibles.
 ```
 
-<a id="file-0223"></a>
+<a id="file-0224"></a>
 
-### 0223 — `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md`
+### 0224 — `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -10590,9 +10768,9 @@ Ninguno `.css` fue modificado en esta card. Los `.css` que figuran en `git statu
 `reports/tailwind-migration/current-screenshots/left-sidebar-before.png`, `left-sidebar-after.png`.
 ```
 
-<a id="file-0224"></a>
+<a id="file-0225"></a>
 
-### 0224 — `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md`
+### 0225 — `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `43`
@@ -10646,9 +10824,9 @@ Ningún `.css` modificado por esta card. Los `.css` en `git status` (`sisad-pdfm
 `reports/tailwind-migration/current-screenshots/control-bar-toolbar-after.png`.
 ```
 
-<a id="file-0225"></a>
+<a id="file-0226"></a>
 
-### 0225 — `reports/tailwind-migration/tc-css-10-schemas-visual.md`
+### 0226 — `reports/tailwind-migration/tc-css-10-schemas-visual.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -10692,9 +10870,9 @@ Buena parte del spec **ya estaba implementada** por trabajo previo/paralelo:
 Canvas, Paper, Moveable, Selecto, coordenadas, x/y/width/height/rotation, snapshot, `pdf` render. Sin estilos inline nuevos (los existentes se conservan). Sin `setTimeout`.
 ```
 
-<a id="file-0226"></a>
+<a id="file-0227"></a>
 
-### 0226 — `reports/tailwind-migration/tc-css-11-lab-audit.md`
+### 0227 — `reports/tailwind-migration/tc-css-11-lab-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -10736,9 +10914,9 @@ Canvas, Paper, Moveable, Selecto, coordenadas, x/y/width/height/rotation, snapsh
 - `npm run lint`: passed with inherited warnings only
 ```
 
-<a id="file-0227"></a>
+<a id="file-0228"></a>
 
-### 0227 — `reports/tailwind-migration/tc-css-option-group-selection-fix.md`
+### 0228 — `reports/tailwind-migration/tc-css-option-group-selection-fix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -10787,9 +10965,9 @@ Validación: al seleccionar un radioGroup → `activeHasDesignerBoxes: 0`, `acti
 `global.css` lo edita una sesión paralela en vivo (cambió durante esta tarea). Reapliqué sobre el estado actual y el build pasa; si el worker reintroduce el `fit-content`, reaplicar este cambio.
 ```
 
-<a id="file-0228"></a>
+<a id="file-0229"></a>
 
-### 0228 — `reports/tailwind-migration/tc-css-ownership-color.md`
+### 0229 — `reports/tailwind-migration/tc-css-ownership-color.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -10838,9 +11016,9 @@ La prioridad #5 del spec (resolver color desde `ownerRecipientId` + `recipientCo
 Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas x/y/w/h/rotation. Sin colores hardcodeados nuevos, sin `setTimeout`, sin `!important`, sin editar `.css`.
 ```
 
-<a id="file-0229"></a>
+<a id="file-0230"></a>
 
-### 0229 — `reports/tailwind-migration/ui-styles-decommission-audit.md`
+### 0230 — `reports/tailwind-migration/ui-styles-decommission-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `57`
@@ -10908,9 +11086,9 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 | `.sisad-pdfme-ui-snap-feedback*` | `canvas-interactions.css` | El root y labels ya están en JSX | DELETE_DUPLICATE_WITH_EVIDENCE |
 ```
 
-<a id="file-0230"></a>
+<a id="file-0231"></a>
 
-### 0230 — `reports/tailwind-migration/ui-styles-decommission-progress.md`
+### 0231 — `reports/tailwind-migration/ui-styles-decommission-progress.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -10946,9 +11124,186 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 | `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | Shell, sidebars, paper, runtime layout | Cascada legacy aún compartida por múltiples vistas | TC-CSS-11 / TC-CSS-12 |
 ```
 
-<a id="file-0231"></a>
+<a id="file-0232"></a>
 
-### 0231 — `ai/task-cards/active/TASK-PDFME-005-digital-agreements-runtime-adapter.md`
+### 0232 — `ai/task-cards/active/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `66`
+- **Tamaño original:** `1.5 KB`
+- **SHA1 corto:** `6f2dba37f3`
+- **Estado:** `completo`
+
+```markdown
+# TASK-ARCH-003 — Respetar arquitectura real de carpetas IA
+
+## Estado
+
+active
+
+## Objetivo
+
+Corregir cualquier paquete, documentación o prompt que cree carpetas paralelas fuera de la arquitectura real del repositorio.
+
+## Contexto
+
+El repo ya contiene una arquitectura IA formal y viva:
+
+``​`txt
+ai/start
+ai/router
+ai/memory
+ai/task-cards
+ai/agents
+ai/adapters
+ai/playbooks
+ai/rules
+ai/context
+ai/prompts
+ai/reports
+docs
+reports
+scripts
+src
+tests
+``​`
+
+No se deben crear carpetas como `architecture/`, `migration/`, `repo-patch/`, `01-resumen/`, `02-inventarios/` ni árboles paralelos como `ai/project/`.
+
+## Archivos foco
+
+- `AGENTS.md`
+- `CLAUDE.md`
+- `.github/copilot-instructions.md`
+- `ai/start/START.md`
+- `ai/router/ROUTER.md`
+- `ai/router/CONTEXT_BUDGET.md`
+- `ai/router/TASK_INTAKE.md`
+- `ai/memory/*.md`
+- `ai/task-cards/**/*.md`
+- `ai/rules/*.md`
+- `ai/playbooks/*.md`
+- `ai/context/*.md`
+
+## Tareas
+
+- [x] Auditar referencias a carpetas paralelas.
+- [x] Eliminar de prompts cualquier instrucción que cree estructuras fuera del repo real.
+- [x] Confirmar que completed no se trate como active.
+- [x] Confirmar que docs públicas no contengan prompts operativos.
+- [x] Confirmar que ai no duplique documentación pública extensa.
+- [x] Crear reporte en `ai/reports/architecture-correction-YYYY-MM-DD.md`.
+
+## Criterios de aceptación
+
+- No hay nueva carpeta raíz no reconocida.
+- `ai/**` conserva su función operativa.
+- `docs/**` conserva su función pública.
+- `reports/**` queda como evidencia, no contexto activo.
+- Completed no se reabre.
+```
+
+<a id="file-0233"></a>
+
+### 0233 — `ai/task-cards/active/TASK-CSS-012-inline-tailwind-css-reduction.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `85`
+- **Tamaño original:** `2.4 KB`
+- **SHA1 corto:** `2a90087990`
+- **Estado:** `completo`
+
+```markdown
+# TASK-CSS-012 — Reducir CSS moviendo estilos seguros a Tailwind inline
+
+## Estado
+
+active
+
+## Objetivo
+
+Reducir CSS repetido desplazando clases visuales seguras a JSX/TSX con Tailwind, sin romper geometría, canvas, Moveable, Selecto, zoom, paper, runtime ni print/PDF.
+
+## Contexto
+
+El repo mantiene CSS real en:
+
+``​`txt
+src/styles/tailwind.css
+src/style.css
+src/styles/sisad-tailwind-bridge.css
+src/features/pdfcomponent/labRoutes.css
+src/sisad-pdfme/ui/styles/sisad-pdfme.css
+src/sisad-pdfme/ui/styles/tokens.css
+``​`
+
+También existen candidates y reports en `reports/tailwind-migration/**`, que son evidencia, no fuente activa.
+
+## Regla principal
+
+``​`txt
+Migrar a Tailwind inline solo cuando la regla sea visual y esté localizada en un componente JSX/TSX.
+No migrar reglas críticas de layout geométrico del PDF/canvas.
+``​`
+
+## Migrable
+
+- Spacing simple.
+- Tipografía.
+- Borders.
+- Rounded.
+- Shadows no críticas.
+- Flex/grid de paneles no geométricos.
+- Estados hover/focus simples.
+- Cards, buttons, labels, pills, chips.
+- Sidebars e inspector, si la captura baseline no cambia.
+
+## No migrable sin task-card específica
+
+- `.moveable-*`
+- `.selecto-*`
+- coordenadas PDF
+- `transform` de canvas/paper/schema
+- `zoom`
+- `position:absolute` ligado a PDF coordinates
+- scroll principal del canvas
+- print/PDF
+- variables CSS runtime
+- pseudo-elementos complejos
+- `content: attr(...)`
+- reglas usadas por medición visual o bounding boxes
+
+## Archivos foco inicial
+
+- `src/features/pdfcomponent/*.jsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebar*.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/**/*.tsx`
+- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/*.tsx`
+- `src/sisad-pdfme/ui/components/CtlBar.tsx`
+
+## Tareas
+
+- [ ] Ejecutar `node scripts/css-inventory.mjs`.
+- [ ] Revisar `reports/tailwind-migration/line-by-line-style-audit.md`.
+- [ ] Seleccionar máximo 1 componente por pase.
+- [ ] Migrar solo clases visuales seguras al JSX/TSX.
+- [ ] Eliminar del CSS solo reglas migradas y comprobadas.
+- [ ] Actualizar `reports/tailwind-migration/component-migration-ledger.md`.
+- [ ] Correr pruebas visuales/manuales de sidebars/canvas/runtime.
+- [ ] No tocar `tokens.css`.
+
+## Criterios de aceptación
+
+- Tailwind se importa una sola vez desde `src/styles/tailwind.css`.
+- `src/style.css` permanece neutralizado.
+- No se duplica CSS antiguo.
+- No cambia la geometría del canvas.
+- No se rompen screenshots baseline.
+```
+
+<a id="file-0234"></a>
+
+### 0234 — `ai/task-cards/active/TASK-PDFME-005-digital-agreements-runtime-adapter.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `48`
@@ -11007,9 +11362,9 @@ real) y la matriz de referencia en
 y `assignment.enabled` ya quedan activos por defecto en el core.
 ```
 
-<a id="file-0232"></a>
+<a id="file-0235"></a>
 
-### 0232 — `ai/task-cards/active/TASK-PDFME-008-signature-policies-firma-sisad.md`
+### 0235 — `ai/task-cards/active/TASK-PDFME-008-signature-policies-firma-sisad.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `48`
@@ -11068,9 +11423,9 @@ StepOne, legacy `singType`, creación de schemas de firma en StepTwo con la
 política de negocio (sisad→draw, electronica→p12, oneshot→provider+providerKey).
 ```
 
-<a id="file-0233"></a>
+<a id="file-0236"></a>
 
-### 0233 — `ai/task-cards/active/TASK-PDFME-009-externalforms-runner-contract.md`
+### 0236 — `ai/task-cards/active/TASK-PDFME-009-externalforms-runner-contract.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `53`
@@ -11134,9 +11489,9 @@ este repositorio.** Lo que el core ya ofrece para esa migración:
 - Generación PDF vía `generator/` exportado por `integration/index.ts`.
 ```
 
-<a id="file-0234"></a>
+<a id="file-0237"></a>
 
-### 0234 — `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md`
+### 0237 — `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -11152,9 +11507,9 @@ este repositorio.** Lo que el core ya ofrece para esa migración:
 Verificar que utilidades Tailwind no pisen `overflow:auto`, height, scale o page geometry.
 ```
 
-<a id="file-0235"></a>
+<a id="file-0238"></a>
 
-### 0235 — `ai/task-cards/backlog/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md`
+### 0238 — `ai/task-cards/backlog/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -11193,9 +11548,9 @@ Body no scrollea dentro del diseñador fullscreen.
 ``​`
 ```
 
-<a id="file-0236"></a>
+<a id="file-0239"></a>
 
-### 0236 — `ai/task-cards/backlog/TASK-PDFME-011-connectivity-sisad-restore.md`
+### 0239 — `ai/task-cards/backlog/TASK-PDFME-011-connectivity-sisad-restore.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -11237,9 +11592,229 @@ connectivity: {
 - [ ] Snapshot/request incluye connectivity.
 ```
 
-<a id="file-0237"></a>
+<a id="file-0240"></a>
 
-### 0237 — `ai/task-cards/completed/README.md`
+### 0240 — `ai/task-cards/backlog/TASK-PDFME-012-global-visibility-wiring-continuity.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `42`
+- **Tamaño original:** `1.1 KB`
+- **SHA1 corto:** `71e613fd4b`
+- **Estado:** `completo`
+
+```markdown
+# TASK-PDFME-012 — Continuidad de wiring de visibility config
+
+## Estado
+
+backlog
+
+## Objetivo
+
+Completar la conexión de `visibility` en todo el componente sin crear props sueltos ni lógica duplicada.
+
+## Contexto
+
+La configuración global ya existe, pero cada componente debe consumir una fuente resuelta común.
+
+## Áreas
+
+- LeftSidebar
+- RightSidebar
+- ListView
+- DetailView
+- Canvas overlays
+- Context menu
+- Selection toolbar
+- SchemaDropSetupModal
+- Runtime Form
+- Viewer
+
+## Reglas
+
+- `enabled` significa que la capacidad existe.
+- `visible` significa que se muestra.
+- `allowed` significa que el usuario puede ejecutarla.
+- No mostrar UI si la acción no está conectada.
+- No duplicar condiciones de visibility en múltiples componentes; crear view models/resolvers.
+
+## Criterios
+
+- `visibility.actions.reassign=false` oculta Reasignar.
+- `assignment.enabled=false` oculta Reasignar aunque visibility sea true.
+- `visibility.sidebars.right.panels.comments=false` oculta comentarios.
+- `visibility.inspector.sections.advanced=false` oculta Técnico.
+- No quedan secciones vacías en DetailView.
+```
+
+<a id="file-0241"></a>
+
+### 0241 — `ai/task-cards/backlog/TASK-PDFME-013-controller-real-api-no-noop.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `31`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `5a6ce993cb`
+- **Estado:** `completo`
+
+```markdown
+# TASK-PDFME-013 — Controller público sin no-op silencioso
+
+## Estado
+
+backlog
+
+## Objetivo
+
+Evitar que `useSisadPdfmeController` exponga métodos que aparentan funcionar pero no hacen nada.
+
+## Tareas
+
+- [ ] Auditar `src/sisad-pdfme/react/useSisadPdfmeController.ts`.
+- [ ] Identificar métodos no-op.
+- [ ] Conectar métodos reales a runtime/controller interno cuando exista.
+- [ ] Si un método no puede implementarse todavía, lanzar warning controlado en dev.
+- [ ] Agregar pruebas para:
+  - `getRecipients`
+  - `setRecipients`
+  - `getActiveRecipient`
+  - `setActiveRecipient`
+  - `assignSchemasToRecipient`
+  - `getSelectedSchemaIds`
+  - `selectSchemas`
+  - `clearSelection`
+
+## Criterios
+
+- No hay no-op silencioso en API pública.
+- El host no necesita importar internals.
+- La API pública documenta claramente qué métodos están disponibles.
+```
+
+<a id="file-0242"></a>
+
+### 0242 — `ai/task-cards/backlog/TASK-PDFME-014-rightsidebar-reassign-state-regression.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `45`
+- **Tamaño original:** `1.2 KB`
+- **SHA1 corto:** `ddac424132`
+- **Estado:** `completo`
+
+```markdown
+# TASK-PDFME-014 — Regresión de estado visual del botón Reasignar
+
+## Estado
+
+backlog
+
+## Objetivo
+
+Asegurar que el botón `Reasignar` del RightSidebar se muestre solamente cuando corresponde y no desaparezca por pérdida de selección real.
+
+## Condición esperada
+
+Mostrar botón principal solo si:
+
+``​`txt
+assignment.enabled === true
+visibility.actions.reassign === true
+visibility.modals.assignment === true
+selectedSchemaIds.length > 0
+activeRecipient existe
+canEditStructure !== false
+hay recipients asignables
+handler/controller disponible
+``​`
+
+## Tareas
+
+- [ ] Crear `resolveReassignActionState`.
+- [ ] Usarlo en `ListViewToolbar`.
+- [ ] Usarlo en menú `...` para mostrar acción deshabilitada con explicación cuando no hay selección.
+- [ ] Confirmar que owner accent no se confunde con selected state.
+- [ ] Agregar tests:
+  - sin selección no muestra botón principal
+  - con selección muestra botón
+  - assignment disabled oculta botón
+  - visibility reassign false oculta botón
+  - activeRecipient missing oculta botón
+  - cancelar modal conserva selección
+
+## No hacer
+
+- No crear modal paralelo.
+- No pasar manualmente AssignmentDialog desde host.
+- No duplicar recipients.
+- No limpiar selección al cerrar modal.
+```
+
+<a id="file-0243"></a>
+
+### 0243 — `ai/task-cards/completed/completed-summary.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `50`
+- **Tamaño original:** `2.1 KB`
+- **SHA1 corto:** `63ecaba066`
+- **Estado:** `completo`
+
+```markdown
+# Resumen de tareas completadas protegidas
+
+Este archivo es memoria histórica compacta. Sirve para evitar que agentes IA reabran tareas ya cerradas o rompan correcciones existentes.
+
+## Protegidas: no reabrir salvo regresión demostrada
+
+- `TASK-ARCH-001-sisad-pdfme-global-config-portability.md`
+  - Configuración global portable creada.
+  - No crear otra carpeta de configuración paralela.
+  - Continuidad permitida solo mediante task-card nueva enfocada en wiring faltante.
+
+- `TASK-ARCH-002-recipient-registry.md`
+  - Recipient Registry creado.
+  - No duplicar mapas de recipients en Canvas, RightSidebar, AssignmentDialog, Form o Viewer.
+  - Cualquier ajuste debe consumir el registry existente.
+
+- `TASK-PDFME-003-reassign-recipient-dialog-persistence.md`
+  - Reasignación y persistencia base completadas.
+  - No crear modal paralelo.
+  - No volver a pasar `SchemaAssignmentDialog` desde el host.
+  - Las regresiones deben corregirse dentro del flujo existente.
+
+- `TASK-PDFME-004-lab-parity-multidocument-routing.md`
+  - Paridad base de laboratorio multidocumento completada.
+  - No romper `documentId`, `fileId`, `pageNumber`, `pageIndex`.
+
+- `TASK-PDFME-006-runtime-form-preview-by-recipient.md`
+  - Vista runtime por recipient implementada.
+  - No mezclar Form runtime con Designer estructural.
+  - No activar Moveable/Selecto en Form.
+
+- `TASK-PDFME-007-snapshot-persistence-contract.md`
+  - Contrato de snapshot persistente protegido.
+  - No eliminar metadata crítica de schemas.
+
+- `TASK-CANVAS-002-snap-lines-and-sidebar-compactness.md`
+  - Compactación y snap-lines base protegidos.
+  - No tocar Moveable/Selecto por cambios CSS generales.
+
+- `TASK-INSPECTOR-001-detailview-density.md`
+  - Densidad base del DetailView protegida.
+  - Ajustes nuevos deben usar contracts/widgets existentes.
+
+- `TASK-SCHEMA-001-option-indicator-docusign.md`
+  - Indicadores de option groups protegidos.
+  - No regresar a estados visuales ambiguos.
+
+## Regla
+
+Si un agente detecta una falla relacionada con una tarea completada, debe crear una task-card nueva con sufijo `regression` o `continuity`, no editar la tarea completada como si estuviera pendiente.
+```
+
+<a id="file-0244"></a>
+
+### 0244 — `ai/task-cards/completed/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -11253,835 +11828,9 @@ connectivity: {
 Mover aquí task-cards completadas con reporte final.
 ```
 
-<a id="file-0238"></a>
-
-### 0238 — `ai/task-cards/completed/TASK-ARCH-001-sisad-pdfme-global-config-portability.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `52`
-- **Tamaño original:** `2.9 KB`
-- **SHA1 corto:** `f03d2808fb`
-- **Estado:** `completo`
-
-```markdown
-# TASK-ARCH-001 — sisad-pdfme global config portability
-
-**Estado:** completed (verificación final 2026-07-14, Claude)
-**Fecha:** 2026-07-14
-**Responsable sugerido:** Claude o Codex
-**Área:** `src/sisad-pdfme/config`, `src/sisad-pdfme/runtime`, `src/sisad-pdfme/ui`
-
-## Resultado observado
-
-Se implementó una capa de configuración global/visibility para controlar visibilidad del runtime sin acoplarla al host.
-
-Cambios reportados:
-- `src/sisad-pdfme/config/SisadPdfmeConfig.ts`
-- `src/sisad-pdfme/config/defaultSisadPdfmeConfig.ts`
-- `src/sisad-pdfme/config/resolveSisadPdfmeConfig.ts`
-- `src/sisad-pdfme/runtime/options.ts`
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx`
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx`
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.ts`
-- `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx`
-- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasOverlayManager.tsx`
-- `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/CanvasContextMenu.tsx`
-
-## Validación reportada
-
-Se agregaron y ejecutaron pruebas de visibility/runtime wrappers:
-- `tests/unit/sisad-pdfme/config/visibility.test.ts`
-- `tests/unit/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.visibility.test.tsx`
-- `tests/unit/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.visibility.test.tsx`
-- `tests/unit/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailSchemas.visibility.test.ts`
-- `tests/unit/sisad-pdfme/react/runtime-modes.test.tsx`
-
-## Criterios de cierre
-
-- [x] Confirmar que `npx vitest run` de las pruebas de visibility pasa en el repo local.
-      (2026-07-14: 5 archivos / 8 tests en verde, incluye runtime-modes.)
-- [x] Confirmar que `visibility.actions.reassign` no queda apagando el botón de reasignación por defecto.
-      (`defaultSisadPdfmeVisibilityConfig.actions.reassign = true`.)
-- [x] Confirmar que `assignment.enabled` queda activo por defecto.
-      (Corregido en esta verificación: `defaultSisadPdfmeConfig.assignment.enabled` pasó de `false` a `true`;
-      `ListViewToolbar` exige `enabled === true` para mostrar Reasignar.)
-- [x] Confirmar que `hiddenCatalogTypes` se deriva de `visibility.schemas.catalog`.
-      (`resolveSisadPdfmeConfig` filtra entradas `false` del catálogo y las pasa a runtimeOptions.)
-- [x] Confirmar que el cambio no afecta scroll, drag/drop, zoom ni selección múltiple.
-      (Config/visibility no toca Canvas/Moveable/Selecto; tests de canvas existentes sin cambios.
-      Verificación visual pendiente de sesión manual en lab — sin señales de regresión en unit tests.)
-
-## Riesgos
-
-- Puede ocultar acciones necesarias si DigitalAgreements envía config incompleta.
-- No resuelve por sí solo la reasignación ni la persistencia.
-- El `tsc --noEmit` global seguía mostrando errores heredados; no usar como señal de aceptación completa hasta limpiar o aislar.
-```
-
-<a id="file-0239"></a>
-
-### 0239 — `ai/task-cards/completed/TASK-ARCH-002-recipient-registry.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `53`
-- **Tamaño original:** `2.6 KB`
-- **SHA1 corto:** `2ae0ed73ca`
-- **Estado:** `completo`
-
-```markdown
-# TASK-ARCH-002 — recipient registry and recipient controller contract
-
-**Estado:** completed (verificación final 2026-07-14, Claude)
-**Fecha:** 2026-07-14
-**Responsable sugerido:** Claude
-**Área:** `src/sisad-pdfme/recipients`, `src/sisad-pdfme/react`, `src/sisad-pdfme/ui/collaborationContext.ts`
-
-## Resultado observado
-
-Claude está validando el nuevo contrato de recipients mediante:
-
-``​`bash
-npx vitest run   tests/unit/recipientRegistry.test.ts   tests/unit/recipientResolver.test.ts   tests/unit/useSisadPdfmeController.recipients.test.tsx   tests/unit/sisad-pdfme/config/visibility.test.ts   tests/unit/sisad-pdfme/ui/collaborationContext.test.ts
-``​`
-
-Esto apunta a una dirección correcta: cerrar primero registry/resolver/controller antes de conectar el botón de reasignación.
-
-## Objetivo técnico
-
-Centralizar y normalizar recipients para que Designer, Form, Viewer y controller compartan el mismo contrato:
-
-- `getRecipients()`
-- `setRecipients(recipients)`
-- `getRecipientById(recipientId)`
-- `getActiveRecipient()`
-- `setActiveRecipient(recipientId)`
-- `recipientResolver`
-- `recipientColorResolver`
-- `recipientPermissionResolver`
-- `recipientSnapshot`
-
-## Criterios de cierre
-
-- [x] Las pruebas `recipientRegistry.test.ts` pasan. (11 tests, 2026-07-14.)
-- [x] Las pruebas `recipientResolver.test.ts` pasan. (14 tests.)
-- [x] Las pruebas `useSisadPdfmeController.recipients.test.tsx` pasan. (7 tests: controller real,
-      reasignación preservando locks, snapshot roundtrip, hook con recipients async.)
-- [x] `collaborationContext.test.ts` pasa.
-- [x] `getActiveRecipient()` devuelve el recipient correcto cuando existe `activeRecipientId`.
-- [x] `setActiveRecipient()` no rompe el contexto de colaboración: los wrappers derivan
-      `designerEngine.collaboration` del registry (`buildCollaborationSyncFromRegistry`) y el
-      runtime recibe `updateOptions`, así que el contexto se recalcula de la misma fuente.
-- [x] `getRecipientById()` resuelve por `id` normalizado (trim en registry).
-- [x] El controller no deja no-op silencioso: recipients/reasignación son reales; los métodos aún
-      no soportados (`selectSchemas`, `addSchema`, etc.) emiten `console.warn` en desarrollo.
-- [x] La API es usable por host apps sin deep imports: todo se exporta desde
-      `src/sisad-pdfme/integration/index.ts` (registry, resolvers, hook, tipos).
-
-## Riesgos
-
-- No convertir registry en lógica SISAD; debe ser reusable.
-- No mezclar recipients de negocio de DigitalAgreements con recipients runtime.
-- No romper snapshots legacy que usen `recipientId`, `ownerRecipientId` u `ownerRecipientIds`.
-```
-
-<a id="file-0240"></a>
-
-### 0240 — `ai/task-cards/completed/TASK-CANVAS-002-snap-lines-and-sidebar-compactness.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `48`
-- **Tamaño original:** `1.6 KB`
-- **SHA1 corto:** `17747172ae`
-- **Estado:** `completo`
-
-```markdown
-# TASK-CANVAS-002 — Snap lines exactas y sidebars compactos
-
-## Objetivo
-Mejorar la precisión visual de las snap lines al mover schemas y compactar el comportamiento visual de ambos sidebars sin tocar geometría global ni persistencia.
-
-## Alcance
-- `src/sisad-pdfme/ui/components/Designer/Canvas/SnapLines.tsx`
-- `src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx`
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx`
-- `src/sisad-pdfme/ui/styles/tokens.css`
-
-## Fuera de alcance
-- `Paper.tsx`
-- `Selecto.tsx`
-- `Moveable.tsx`
-- `snapshotAdapter`
-- `generator`
-- `pdf-lib`
-
-## Pasos
-1. Endurecer el snap para que la guía se vea alineada con más precisión.
-2. Compactar el rail colapsado del lado derecho.
-3. Reducir el ancho del rail colapsado del lado izquierdo.
-4. Validar que no se rompa el layout horizontal.
-
-## Validación
-- `npm run build`
-- `npm run lint`
-- `npx playwright test tests/e2e/sidebar-collapse-parity.spec.ts --project=chromium`
-
-## Criterio de parada
-- Si hace falta tocar geometría global, detenerse.
-
-## Entrega final
-- Resumen corto de archivos modificados
-- Validación ejecutada
-
-## Cierre (2026-07-14, Claude)
-
-Implementación previamente commiteada (4c40ca1, d8aaf73): SnapLines con snapping
-por bordes/centros en mm, rail derecho colapsado compacto y rail izquierdo con
-`--sisad-pdfme-ls-rail-width: 2.25rem`.
-
-Validación ejecutada:
-- [x] `npm run build` → exit 0.
-- [x] `npm run lint` → exit 0.
-- [x] `npx playwright test tests/e2e/sidebar-collapse-parity.spec.ts --project=chromium` → 1 passed
-      (rail derecho < 96px, handles visibles, sin overflow horizontal).
-```
-
-<a id="file-0241"></a>
-
-### 0241 — `ai/task-cards/completed/TASK-DOCS-001-ai-architecture-install.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `29`
-- **Tamaño original:** `0.9 KB`
-- **SHA1 corto:** `ff0cc900f3`
-- **Estado:** `completo`
-
-```markdown
-# TASK-DOCS-001 — Instalar arquitectura IA unificada
-
-## Objetivo
-
-Instalar carpeta `ai/` como fuente de verdad y adaptar Codex, Claude y Copilot con archivos puente.
-
-## Alcance
-
-- Copiar estructura `ai/`.
-- Mantener `AGENTS.md`, `CLAUDE.md`, `.github/copilot-instructions.md` como adaptadores.
-- No eliminar documentación antigua aún.
-
-## Validación
-
-- `ai/start/START.md` existe.
-- `AGENTS.md` apunta a `ai/start/START.md`.
-- No hay reglas duplicadas extensas en adaptadores.
-
-## No tocar
-
-Código de runtime.
-
-## Cierre (2026-07-14, Claude)
-
-- [x] `ai/start/START.md` existe.
-- [x] `AGENTS.md` apunta a `ai/start/START.md` (adaptador delgado, 26 líneas).
-- [x] `.github/copilot-instructions.md` y `CLAUDE.md` también son adaptadores delgados (15/23 líneas).
-- [x] Sin reglas duplicadas extensas en adaptadores; la fuente de verdad vive en `ai/`.
-- [x] No se tocó código de runtime.
-```
-
-<a id="file-0242"></a>
-
-### 0242 — `ai/task-cards/completed/TASK-INSPECTOR-001-detailview-density.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `69`
-- **Tamaño original:** `2.5 KB`
-- **SHA1 corto:** `baba07b654`
-- **Estado:** `completo`
-
-```markdown
-# TASK-INSPECTOR-001 — Compactar el DetailView
-
-## Objetivo
-Reducir densidad visual del `RightSidebar` DetailView sin cambiar el contrato funcional ni las secciones canónicas ya definidas.
-
-## Alcance
-- Header del inspector
-- Tarjetas de sección
-- Widgets del DetailView con skin/densidad
-- Descripciones y espaciado
-
-## Fuera de alcance
-- Canvas
-- Moveable
-- Selecto
-- Paper
-- Drag/drop
-- Coordenadas de schema
-- SnapshotAdapter
-- Generator
-- pdf-lib
-
-## Archivos candidatos
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailHeaderCard.tsx`
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx`
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.tsx`
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailHeaderUtils.ts`
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/detailWidgets.tsx`
-- `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorPrimitives.tsx`
-- `src/styles/sisad-tailwind-bridge.css`
-
-## Archivos prohibidos
-- `src/sisad-pdfme/ui/components/Designer/Canvas/**`
-- `src/sisad-pdfme/ui/components/Paper.tsx`
-- `src/sisad-pdfme/shared/snapshotAdapter.ts`
-- `src/sisad-pdfme/generator/**`
-- `src/sisad-pdfme/pdf-lib/**`
-
-## Pasos
-1. Compactar header y subtítulo.
-2. Reducir padding/altura de cards.
-3. Ajustar descripciones y jerarquía visual.
-4. Aligerar widgets sin cambiar lógica.
-
-## Validación
-- `contract_stage` muestra un inspector más compacto.
-- La densidad visual baja sin perder secciones.
-- No se rompe selección ni interacción del canvas.
-
-## Criterio de parada
-- Si hace falta tocar canvas o geometría, detenerse.
-
-## Entrega final
-- Resumen corto de archivos modificados
-- Confirmación de build/lint
-
-## Cierre (2026-07-14, Claude)
-
-Implementación previamente commiteada: DetailHeaderCard con densidades
-comfortable/compact/mini (`data-detail-header-density`), cards compactas y
-widgets aligerados (p. ej. botón "Agregar" con aria-label completo).
-
-Validación ejecutada:
-- [x] `npm run build` → exit 0; `npm run lint` → exit 0.
-- [x] Specs e2e del inspector en verde: detail-view-inspector, detail-view-alignment,
-      detailview-switches, detail-view-options-listview, detail-view-collaboration.
-- [x] Se actualizaron specs desactualizados al contrato compacto (secciones expandidas
-      por defecto; labels compactados con aria-label completo; trigger "Reasignar").
-- [x] Selección e interacción del canvas intactas (specs pasan seleccionando schemas).
-```
-
-<a id="file-0243"></a>
-
-### 0243 — `ai/task-cards/completed/TASK-LAB-001-results-panel-placement.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `47`
-- **Tamaño original:** `1.5 KB`
-- **SHA1 corto:** `86ba7b2375`
-- **Estado:** `completo`
-
-```markdown
-# TASK-LAB-001 — Reubicar el panel de resultados del laboratorio
-
-## Objetivo
-Mover `ResultsPanel` fuera de la zona de canvas/zoom y compactar su presentación para que no interfiera con el workspace del laboratorio.
-
-## Alcance
-- `src/features/pdfcomponent/ResultsPanel.jsx`
-- `src/features/pdfcomponent/PdfmeLabPage.jsx`
-- `src/features/pdfcomponent/labRoutes.css`
-- `src/styles/sisad-tailwind-bridge.css`
-
-## Fuera de alcance
-- `src/sisad-pdfme/**`
-- `Moveable`
-- `Selecto`
-- `snapshotAdapter`
-- `generator`
-- `pdf-lib`
-
-## Pasos
-1. Convertir el modo drawer en una barra inferior compacta que no cubra el canvas cuando está cerrada.
-2. Reducir la altura y densidad del cuerpo de resultados.
-3. Ajustar el copy de estado vacío/cerrado a una etiqueta más breve.
-4. Verificar que la colocación no rompa el layout del laboratorio.
-
-## Validación
-- `npm run lint`
-- `npm run build`
-
-## Criterio de parada
-- Si hace falta tocar el runtime del diseñador o geometría del canvas, detenerse.
-
-## Entrega final
-- Resumen corto de archivos modificados
-- Validación ejecutada
-
-## Cierre (2026-07-14, Claude)
-
-Implementación previamente commiteada (4c40ca1): ResultsPanel en variante drawer
-como barra inferior compacta (rail siempre visible, panel `max-h min(280px,36dvh)`
-con scroll propio), sin cubrir el canvas cuando está cerrada.
-
-Validación ejecutada:
-- [x] `npm run lint` → exit 0.
-- [x] `npm run build` → exit 0.
-- [x] El layout del lab no rompe overflow horizontal (cubierto por
-      sidebar-collapse-parity.spec, que valida document.scrollWidth).
-```
-
-<a id="file-0244"></a>
-
-### 0244 — `ai/task-cards/completed/TASK-PDFME-003-reassign-recipient-dialog-persistence.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `111`
-- **Tamaño original:** `4.9 KB`
-- **SHA1 corto:** `caac53c0eb`
-- **Estado:** `completo`
-
-```markdown
-# TASK-PDFME-003 — Reasignación de destinatarios con persistencia real
-
-**Estado:** active
-**Prioridad:** P0
-**Responsable sugerido:** Claude
-**Área:** `src/sisad-pdfme/ui/components/Designer`, `src/sisad-pdfme/ui/components/Designer/shared`, `src/sisad-pdfme/react`
-
-## Objetivo
-
-Habilitar por completo el botón **Reasignar responsable** usando las capacidades existentes del runtime, sin crear modal paralelo en el host.
-
-## Circuito obligatorio
-
-``​`txt
-RightSidebar/ListViewToolbar
-→ onBulkAssignRecipient
-→ SchemaAssignmentDialog
-→ seleccionar nuevo destinatario
-→ schemaAssignmentService
-→ actualizar ownerRecipientId / ownerRecipientIds / recipientId / colors
-→ emitir onTemplateChange
-→ host actualiza documento
-→ guardado conserva reasignación
-``​`
-
-## Archivos a auditar
-
-``​`bash
-rg -n "SchemaAssignmentDialog|onBulkAssignRecipient|showBulkRecipientAction|bulkRecipientDisabled|Reasignar|right-sidebar-reassign|schemaAssignmentService|assign.*Recipient|ownerRecipientId|ownerRecipientIds" src/sisad-pdfme
-rg -n "getSchemaIdentity|schemaUid|selectionIdentityResolver|selectedSchemaIds|activeElements" src/sisad-pdfme/ui/components/Designer
-``​`
-
-## Reglas
-
-- No crear `ReassignSchemasModal` en el host.
-- No tocar Canvas, Moveable, Selecto, scroll, zoom ni coordenadas.
-- No modificar `x`, `y`, `width`, `height`, `pageIndex`, `pageNumber`, `fileId`, `name`, `schemaUid`.
-- Reasignar no debe bloquearse por `locked`, `readOnly`, `readonly` u `objectLocked`.
-- El cambio debe llegar por `onTemplateChange`, no por estado visual local.
-- Resolver identidad con tolerancia: `schema.schemaUid || schema.id || schema.name`.
-
-## Implementación esperada
-
-1. Confirmar que `ListViewToolbar` recibe `onBulkAssignRecipient`.
-2. Confirmar que el botón existe solo si hay selección, hay recipients, `assignment.enabled !== false` y `visibility.actions.reassign !== false`.
-3. Conectar apertura del `SchemaAssignmentDialog`.
-4. El modal debe recibir schemas seleccionados, recipients, activeRecipient y actorId/currentUser.
-5. Al confirmar destino distinto al actual, actualizar `ownerMode`, `ownerRecipientId`, `ownerRecipientIds`, `recipientId`, `ownerRecipientName`, `ownerColor`, `recipientColor`, `userColor`, `lastModifiedBy`.
-6. Emitir `onTemplateChange(nextTemplate)`.
-
-## Validación manual
-
-- [ ] Seleccionar un schema texto.
-- [ ] Click en Reasignar.
-- [ ] Modal abre.
-- [ ] Elegir Avalista.
-- [ ] Botón interno Reasignar se habilita.
-- [ ] Confirmar.
-- [ ] Cambia color y owner.
-- [ ] ListView refleja nuevo responsable.
-- [ ] DetailView refleja nuevo responsable.
-- [ ] Guardar y recargar mantiene el cambio.
-- [ ] Repetir con Firma.
-- [ ] Repetir con selección múltiple.
-- [ ] Repetir en página 2.
-- [ ] Repetir con dos documentos.
-
-## Tests sugeridos
-
-``​`bash
-npx vitest run   tests/unit/sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService.test.ts   tests/unit/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.assignment.test.tsx
-``​`
-
-## Definición de hecho
-
-- Reasignar cambia ownership real.
-- `onTemplateChange` se dispara.
-- No se altera geometría.
-- El cambio persiste en snapshot/documento.
-
-## Cierre (2026-07-14, Claude)
-
-Circuito verificado end-to-end en el core:
-
-- `ListViewToolbar` recibe `onBulkAssignRecipient`; botón `right-sidebar-reassign`
-  gated por selección + `assignment.enabled === true` (ahora default `true` en
-  `defaultSisadPdfmeConfig`) + `visibility.actions.reassign !== false` +
-  `canEditStructure !== false`.
-- `ListView.handleConfirmAssignment` → `selectionCommands.assignRecipient`
-  (command bus, con undo) o `buildAssignSchemaOwnerOps` → `changeSchemas` →
-  `onTemplateChange` (flujo estándar del Designer, no estado visual local).
-- Patch de owner ampliado según esta card: ahora incluye `recipientColor` y
-  `lastModifiedBy` (actor desde `collaborationContext.actorId`), además de
-  `ownerMode/ownerRecipientId/ownerRecipientIds/recipientId/ownerRecipientName/
-  ownerColor/userColor`. Ambos caminos (service y selectionCommands) alineados.
-- No toca `locked/readOnly/objectLocked/lock` ni geometría (invariante testeada).
-- Identidad tolerante: `schemaUid || id || name` (`resolveSchemaUid`).
-- El controller público (`assignSchemasToRecipient`) usa el mismo service con
-  actor = active recipient del registry y emite `onAssignmentChange`.
-
-Validación automatizada:
-- [x] `schemaAssignmentService.test.ts` (7 tests).
-- [x] `ListViewToolbar.assignment.test.tsx` (nuevo, 5 tests: click emite intent,
-      disabled no emite, oculto sin permiso estructural, oculto sin selección,
-      aria-label estable).
-- [x] `ListViewToolbar.visibility.test.tsx` (3), `selectionCommands.test.ts` (3),
-      `useSisadPdfmeController.recipients.test.tsx` (7).
-- [x] e2e `detail-view-collaboration.spec.ts`: modal Reasignar del DetailView.
-
-Pendiente fuera de este repo: la validación manual de guardar/recargar en el
-host SISAD-WEB (persistencia del documento es responsabilidad del host).
-```
-
 <a id="file-0245"></a>
 
-### 0245 — `ai/task-cards/completed/TASK-PDFME-004-lab-parity-multidocument-routing.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `64`
-- **Tamaño original:** `2.4 KB`
-- **SHA1 corto:** `8c0e48e958`
-- **Estado:** `completo`
-
-```markdown
-# TASK-PDFME-004 — Paridad funcional con lab/multi-document-routing
-
-**Estado:** active
-**Prioridad:** P0
-**Responsable sugerido:** Codex
-**Área:** `src/features/pdfcomponent/labs/examples`, `src/sisad-pdfme`, host apps
-
-## Objetivo
-
-Tomar `http://localhost:5174/lab/multi-document-routing` como contrato funcional de referencia para portar las capacidades al host SISAD-WEB/DigitalAgreements.
-
-## Baseline
-
-El laboratorio usa:
-- `defaultMode: "designer"`
-- `initialSchemaType: "text"`
-- `collaboration` con recipients y colores
-- `sessionId`
-- `actorId`
-- `template`
-- `runtimeOptions.activeDocumentId`
-- `runtimeOptions.uploadedDocuments`
-
-## Matriz obligatoria
-
-Crear reporte:
-
-``​`txt
-Capacidad | LAB multi-document-routing | SISAD-WEB actual | Estado | Acción
-``​`
-
-Incluir uploadedDocuments, activeDocumentId, callbacks de documentos, collaboration, activeRecipientId, actorId, canEditStructure, schema ownership, SchemaAssignmentDialog, onBulkAssignRecipient, onTemplateChange, identity y Form runtime preview.
-
-## Comandos
-
-``​`bash
-rg -n "multi-document-routing|createLabExample|createCollaboration|multiDocumentRoutingDocuments|multiDocumentRoutingTemplate|runtimeOptions|activeDocumentId|uploadedDocuments" src
-rg -n "SchemaAssignmentDialog|onBulkAssignRecipient|schemaAssignmentService|ownerRecipientId|ownerRecipientIds" src/sisad-pdfme
-``​`
-
-## Criterios
-
-- [ ] La tabla LAB vs host está documentada.
-- [ ] No se copian fixtures del lab.
-- [ ] Solo se portan capacidades reusable.
-- [ ] Se detectan diferencias reales antes de modificar.
-- [ ] No se crea runtime paralelo.
-- [ ] El host puede montar Designer con el mismo contrato semántico del lab.
-
-## Salida esperada
-
-`ai/reports/lab-parity-multidocument-routing.md`
-
-## Cierre parcial (2026-07-14, Claude)
-
-- [x] La tabla LAB vs host está documentada → `ai/reports/lab-parity-multidocument-routing.md`.
-- [x] No se copian fixtures del lab (solo se leyó su config como contrato).
-- [x] Solo se portan capacidades reusables (registry/wrappers/service, sin lógica SISAD).
-- [x] No se crea runtime paralelo (wrappers montan Designer/Form/Viewer reales).
-- [x] El host puede montar Designer con el mismo contrato semántico del lab
-      (documents/recipients/activeRecipientId/collaboration vía config + props).
-- [ ] "Se detectan diferencias reales antes de modificar" en SISAD-WEB: requiere
-      auditar `Sisad-Web-FRONTEND` (otro repositorio, no disponible aquí). Los
-      comandos rg a ejecutar quedaron en el reporte.
-```
-
-<a id="file-0246"></a>
-
-### 0246 — `ai/task-cards/completed/TASK-PDFME-006-runtime-form-preview-by-recipient.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `62`
-- **Tamaño original:** `2.4 KB`
-- **SHA1 corto:** `0440fcf519`
-- **Estado:** `completo`
-
-```markdown
-# TASK-PDFME-006 — Preview runtime FORM por destinatario
-
-**Estado:** active
-**Prioridad:** P1
-**Responsable sugerido:** Claude
-**Área:** `src/sisad-pdfme/react`, `src/sisad-pdfme/runtime`, host DigitalAgreements
-
-## Objetivo
-
-Habilitar vista previa de llenado por usuario usando el runtime real `Form`, no un renderer inventado.
-
-## Contrato
-
-Debe reutilizar `Form`, `Viewer`, `SisadPdfmeForm`, `SisadPdfmeViewer`, `usePdfmeRuntimeInstance`, `buildRuntimeFormOptions`, plugins oficiales y recipient filtering / schemaRuntimeAccess.
-
-## Casos
-
-- Vista global.
-- Destinatario específico.
-- Schema sin owner.
-- Schema con `ownerRecipientId`.
-- Schema con `ownerRecipientIds`.
-- Campos requeridos.
-- Firma SISAD.
-- OneShot provider.
-- Dos documentos.
-- Página 2.
-- Inputs temporales sin guardar.
-- Inputs guardados parcial.
-
-## Criterios
-
-- [ ] Preview usa `mode: "form"`.
-- [ ] No existe renderer paralelo.
-- [ ] El destinatario anterior no puede editar campos reasignados.
-- [ ] El nuevo destinatario sí puede editar.
-- [ ] Se puede simular llenado sin persistir automáticamente.
-- [ ] Viewer se usa para modo lectura.
-
-## Cierre parte core (2026-07-14, Claude)
-
-Contrato verificado en este repo (`src/sisad-pdfme`):
-
-- [x] Preview usa `mode: "form"`: `SisadPdfmeForm` monta `ui/Form` vía
-      `usePdfmeRuntimeInstance` con `mode: 'form'`; `SisadPdfmeViewer` usa
-      `mode: 'viewer'` para lectura.
-- [x] No existe renderer paralelo: los wrappers reutilizan `Form`/`Viewer`
-      oficiales; el filtrado vive en `Preview` → `resolveRuntimeSchemaAccess`.
-- [x] El destinatario anterior no puede editar campos reasignados y el nuevo sí:
-      test nuevo `runtimeAccessAfterReassignment.test.ts` (3 tests) une
-      `assignSchemaOwner` (mismo service del diseñador) con
-      `resolveRuntimeSchemaAccess` (mismo resolver del Form runtime).
-- [x] Casos owner/ownerRecipientIds/sin owner/shared/locked/global cubiertos por
-      `schemaRuntimeAccess.test.ts` (11 tests, en verde).
-- [x] Se puede simular llenado sin persistir: `SisadPdfmeForm` recibe `values`
-      y no persiste automáticamente (persistencia = decisión del host).
-- [x] El activeRecipient del Form/Viewer nace del RecipientRegistry
-      (`options.collaboration.activeRecipientId`), no de props sueltos.
-
-Pendiente fuera de este repo (host DigitalAgreements):
-- Casos Firma SISAD / OneShot provider con backend real.
-- Preview embebido en el wizard del host con inputs guardados parciales.
-```
-
-<a id="file-0247"></a>
-
-### 0247 — `ai/task-cards/completed/TASK-PDFME-007-snapshot-persistence-contract.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `83`
-- **Tamaño original:** `3.0 KB`
-- **SHA1 corto:** `92321dfb4f`
-- **Estado:** `completo`
-
-```markdown
-# TASK-PDFME-007 — Contrato snapshot/request para persistencia
-
-**Estado:** active
-**Prioridad:** P0
-**Responsable sugerido:** Codex
-**Área:** `src/sisad-pdfme/shared`, `DigitalAgreements`, `externalForms`
-
-## Objetivo
-
-Garantizar que todas las acciones del diseñador persisten en snapshot/request/TXT y luego son consumibles por externalForms.
-
-## Debe persistir
-
-- `templateSchemaVersion`
-- documents
-- uploadedDocuments
-- activeDocumentId
-- schemas por documento/página
-- recipients
-- recipient registry
-- assignments
-- ownership
-- colors
-- signaturePolicyId
-- signatureMode
-- signatureProviderKey
-- connectivity
-- inputs
-- contributors
-- history
-- delivery/message/security
-
-## Flujo de aceptación
-
-``​`txt
-Designer modifica schema
-→ onTemplateChange
-→ documento actualizado
-→ Guardar borrador / plantilla
-→ snapshot/request
-→ recargar
-→ externalForms/Form consume el mismo contrato
-``​`
-
-## Criterios
-
-- [ ] Reasignación se guarda.
-- [ ] Firma SISAD se guarda.
-- [ ] OneShot se guarda.
-- [ ] Connectivity se guarda por archivo/schema.
-- [ ] Inputs runtime no contaminan template base.
-- [ ] Legacy `singType` puede migrarse a `signaturePolicyId`.
-- [ ] Legacy `connectivityMapping` puede migrarse a `connectivity.byFile`.
-
-## Cierre parte core (2026-07-14, Claude)
-
-Contrato core verificado en `src/sisad-pdfme/shared` (snapshot v2):
-
-- [x] `version` (semver del formato), `templateId`, metadata.
-- [x] `documents` → páginas → `schemas` con `__designer` completo (por documento/página).
-- [x] `recipients` (+ sección de registry en snapshots de template vía
-      `recipientsToSnapshot`: activeRecipientId + mapas de color/nombre).
-- [x] `assignments` (schemaUid/recipientId/scope) y derivables desde schemas
-      (`buildRecipientAssignments` con fileId/pageNumber).
-- [x] Ownership + colores: test nuevo `snapshotReassignmentPersistence.test.ts`
-      (2 tests): reasignar → serialize → deserialize conserva
-      ownerRecipientId/Ids, recipientId, ownerRecipientName, ownerColor,
-      recipientColor, userColor, lastModifiedBy, locks y geometría.
-- [x] Reasignación se guarda (criterio de la card).
-- [x] `signatureMode` (`signatureConfig.defaultMode`) y `signatureProviderKey`
-      (`providerConfig.defaultProvider` + allowedProviders) se guardan.
-- [x] Inputs runtime NO contaminan el template base: los inputs viven fuera del
-      snapshot de template (se pasan a Form por separado).
-- [x] `snapshotAdapter.test.ts` (6 tests) + migración legacy pdfme 4.x en verde.
-
-Pendiente fuera del core (host DigitalAgreements/externalForms):
-- `activeDocumentId` es estado de UI del host; si se quiere persistir, va en
-  `metadata`/request del host, no en el contrato core.
-- `signaturePolicyId` (negocio), `connectivity.byFile`, contributors/history/
-  delivery/message/security: conceptos del host; el core ofrece
-  `providerConfig.tenantConfig` opaco como transporte.
-- Migraciones legacy `singType` → `signaturePolicyId` y `connectivityMapping`
-  → `connectivity.byFile`: implementarlas en el host que posee esos campos.
-```
-
-<a id="file-0248"></a>
-
-### 0248 — `ai/task-cards/completed/TASK-SCHEMA-001-option-indicator-docusign.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `65`
-- **Tamaño original:** `2.5 KB`
-- **SHA1 corto:** `5223c616e4`
-- **Estado:** `completo`
-
-```markdown
-# TASK-SCHEMA-001 — Option indicators DocuSign-like
-
-## Objetivo
-Unificar el indicador visual y el comportamiento de checkbox, checkboxGroup y radioGroup para Designer/Form/Viewer/PDF sin duplicar DOM o lógica.
-
-## Alcance
-- `optionIndicator.ts` como fuente visual central.
-- `optionGroupRenderer.ts` para click/double click por modo.
-- `checkbox/index.ts` para checkbox individual.
-- CSS de option groups para evitar paneles o franjas internas.
-
-## Fuera de alcance
-- `SnapshotAdapter`
-- `Generator` global
-- `Moveable.tsx`
-- `Selecto.tsx`
-- Coordenadas globales x/y/width/height/rotation salvo sincronía existente de altura de grupo.
-
-## Archivos candidatos
-- `src/sisad-pdfme/schemas/options/optionIndicator.ts`
-- `src/sisad-pdfme/schemas/options/optionGroupRenderer.ts`
-- `src/sisad-pdfme/schemas/checkbox/index.ts`
-- `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css`
-- `src/styles/sisad-tailwind-bridge.css`
-
-## Archivos prohibidos
-- `src/sisad-pdfme/ui/components/Designer/Moveable.tsx`
-- `src/sisad-pdfme/ui/components/Designer/Selecto.tsx`
-- `SnapshotAdapter`
-- `Generator` global
-
-## Pasos
-1. Centralizar visual en `optionIndicator.ts`.
-2. Ajustar render de grupo para designer/form/viewer/pdf.
-3. Hacer checkbox individual consistente con el helper común.
-4. Reforzar CSS para eliminar paneles/fondos extra.
-
-## Validación
-- `npm run build`
-- `npm run lint` si existe y no está roto por configuración
-- Verificación manual en `http://localhost:5174/lab/multi-document-routing`
-
-## Criterio de parada
-Detenerse si para cumplir el objetivo hay que tocar Moveable/Selecto, snapshot, generator o geometría global.
-
-## Entrega final
-- Resumen de archivos modificados.
-- Confirmación de límites respetados.
-- Resultado de build/lint.
-
-## Cierre (2026-07-14, Claude)
-
-Implementación previamente commiteada (ed26f5f): `optionIndicator.ts` como fuente
-visual central y `renderOptionGroupUi` unificando designer/form/viewer sobre los
-mismos marcadores runtime (sin DOM duplicado por modo).
-
-Ajuste de esta sesión: la unificación había perdido el marcador raíz estable;
-se restauró en `applyOptionGroupRootRuntime` (`data-checkbox-group-root` /
-`data-radio-group-root`), contrato DOM usado por tests y hosts.
-
-Validación ejecutada:
-- [x] `npm run build` → exit 0; `npm run lint` → exit 0.
-- [x] `checkbox-group-docusign-behavior.spec.ts` → 2 passed (grupo con contenedor,
-      opciones con ids estables, affordance de agregar opción).
-- [x] Límites respetados: sin tocar Moveable/Selecto/snapshot/generator/geometría.
-```
-
-<a id="file-0249"></a>
-
-### 0249 — `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md`
+### 0245 — `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `784`
@@ -12876,9 +12625,9 @@ No reemplazar las validaciones actuales si ya se usan en runtime.
 7. En `expression.ts`, agregar límites o limpieza de cache para evitar crecimiento indefinido.
 ```
 
-<a id="file-0250"></a>
+<a id="file-0246"></a>
 
-### 0250 — `src/sisad-pdfme/common/README.md`
+### 0246 — `src/sisad-pdfme/common/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -12922,9 +12671,9 @@ Este ZIP contiene los archivos `.ts` del paquete `common` con comentarios de arq
 - Revisar alineación de `ownerRecipientIds` entre Zod (`string[]`) y utilidades que aceptan `string | string[]`.
 ```
 
-<a id="file-0251"></a>
+<a id="file-0247"></a>
 
-### 0251 — `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md`
+### 0247 — `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -13103,9 +12852,9 @@ Debe exponer utilidades puras consumibles por UI, generator, importadores o adap
 ``​`
 ```
 
-<a id="file-0252"></a>
+<a id="file-0248"></a>
 
-### 0252 — `src/sisad-pdfme/converter/README.md`
+### 0248 — `src/sisad-pdfme/converter/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -13158,9 +12907,9 @@ Este módulo no debe conocer:
 Debe mantenerse como utilidad técnica reutilizable por el runtime.
 ```
 
-<a id="file-0253"></a>
+<a id="file-0249"></a>
 
-### 0253 — `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md`
+### 0249 — `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `151`
@@ -13322,9 +13071,9 @@ Riesgos técnicos:
 ``​`
 ```
 
-<a id="file-0254"></a>
+<a id="file-0250"></a>
 
-### 0254 — `src/sisad-pdfme/runtime/README.md`
+### 0250 — `src/sisad-pdfme/runtime/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -13350,9 +13099,9 @@ Este paquete contiene una versión comentada de los helpers/hooks de runtime env
 Estos archivos deben vivir como capa de runtime/adaptador. No deben contener reglas de negocio SISAD, lógica Uanataca, manipulación de canvas, CSS, Moveable, Selecto ni detalles de StepOne/StepTwo.
 ```
 
-<a id="file-0255"></a>
+<a id="file-0251"></a>
 
-### 0255 — `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md`
+### 0251 — `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -13531,9 +13280,9 @@ Este documento acompaña los archivos comentados del runtime UI. Resume responsa
 | types.ts | 147 | 161 |
 ```
 
-<a id="file-0256"></a>
+<a id="file-0252"></a>
 
-### 0256 — `src/sisad-pdfme/ui/README.md`
+### 0252 — `src/sisad-pdfme/ui/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -13582,9 +13331,9 @@ git diff -- src/sisad-pdfme/ui
 ``​`
 ```
 
-<a id="file-0257"></a>
+<a id="file-0253"></a>
 
-### 0257 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
+### 0253 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -13671,9 +13420,9 @@ Migración incremental de diseños a Tailwind preservando comportamiento, canvas
 - generator/pdf-lib
 ```
 
-<a id="file-0258"></a>
+<a id="file-0254"></a>
 
-### 0258 — `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md`
+### 0254 — `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -13714,9 +13463,9 @@ Este bloque contiene la base visual y funcional usada por Preview/Form/Viewer en
 6. Validar persistencia/prefill/API del hook sin sobrescribir valores ya digitados por usuario.
 ```
 
-<a id="file-0259"></a>
+<a id="file-0255"></a>
 
-### 0259 — `src/sisad-pdfme/ui/components/README.md`
+### 0255 — `src/sisad-pdfme/ui/components/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -13755,9 +13504,9 @@ Este paquete contiene una copia completa de los archivos runtime/base UI enviado
 Este bloque es sensible porque conecta el runtime visual con plugins imperativos (`Renderer`), preprocesamiento de PDF (`Paper`/`Preview`) y sincronización de datos (`usePreviewRuntime`). La documentación refuerza que la geometría del canvas debe seguir controlada por schemas y servicios internos, no por estilos arbitrarios de plugins o hosts.
 ```
 
-<a id="file-0260"></a>
+<a id="file-0256"></a>
 
-### 0260 — `src/sisad-pdfme/ui/styles/README.md`
+### 0256 — `src/sisad-pdfme/ui/styles/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -13790,9 +13539,9 @@ import './styles/sisad-pdfme.css';
 El resto del diseño queda centralizado en `sisad-pdfme.css`.
 ```
 
-<a id="file-0261"></a>
+<a id="file-0257"></a>
 
-### 0261 — `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md`
+### 0257 — `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -13821,9 +13570,9 @@ El resto del diseño queda centralizado en `sisad-pdfme.css`.
 - `Guides.tsx`, `Mask.tsx` y `Padding.tsx` quedan como slots visuales puros.
 ```
 
-<a id="file-0262"></a>
+<a id="file-0258"></a>
 
-### 0262 — `src/sisad-pdfme/ui/components/Designer/Canvas/README.md`
+### 0258 — `src/sisad-pdfme/ui/components/Designer/Canvas/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -13858,9 +13607,9 @@ Este paquete contiene copias completas de los archivos del core visual/interacti
 Estos archivos pertenecen al núcleo visual del diseñador. No deben incorporar lógica de host (`DigitalAgreements`, `ContentCustomForm`, `ExternalForms`), reglas de firma/Uanataca ni manipulación externa del DOM fuera de los adapters explícitos.
 ```
 
-<a id="file-0263"></a>
+<a id="file-0259"></a>
 
-### 0263 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md`
+### 0259 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -13886,9 +13635,9 @@ Se documentó el bloque de composición del sidebar derecho del diseñador SISAD
 Estos archivos deben mantenerse como capa de composición visual y navegación del sidebar. No deberían incorporar reglas internas del canvas, manipulación directa de Moveable/Selecto, ni persistencia de negocio. Las mutaciones deben seguir delegándose a callbacks, bridges o comandos ya recibidos por props.
 ```
 
-<a id="file-0264"></a>
+<a id="file-0260"></a>
 
-### 0264 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md`
+### 0260 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -13917,9 +13666,9 @@ Este paquete contiene versiones documentadas de los archivos del sidebar derecho
 - Se conservó la separación esperada: el sidebar orquesta vistas, pero no manipula canvas, Moveable, Selecto ni schemas directamente.
 ```
 
-<a id="file-0265"></a>
+<a id="file-0261"></a>
 
-### 0265 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md`
+### 0261 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -13951,9 +13700,9 @@ Se generó documentación para los 18 archivos de overlays del canvas:
 5. Documentar restricciones arquitectónicas importantes cuando aplicaba.
 ```
 
-<a id="file-0266"></a>
+<a id="file-0262"></a>
 
-### 0266 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md`
+### 0262 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -13999,9 +13748,9 @@ Este paquete contiene copias completas de los archivos enviados, con documentaci
 Estos módulos pertenecen a la capa visual/interactiva del canvas. Deben seguir sin contener reglas de negocio del host, lógica Uanataca, persistencia HTTP, manipulación directa de Moveable/Selecto ni hacks de z-index para ocultar problemas.
 ```
 
-<a id="file-0267"></a>
+<a id="file-0263"></a>
 
-### 0267 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md`
+### 0263 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -14054,9 +13803,9 @@ La documentación se agregó con JSDoc en puntos de extensión y mantenimiento:
 5. En colaboración, validar casos de owner único, multi-owner, shared, locked by me y locked by other.
 ```
 
-<a id="file-0268"></a>
+<a id="file-0264"></a>
 
-### 0268 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md`
+### 0264 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -14105,9 +13854,9 @@ Wrapper de compatibilidad para widgets imperativos de plugins. Se documentaron:
 - Confirmar que clicks dentro del inspector no disparen Selecto, Moveable ni drag/drop del canvas.
 ```
 
-<a id="file-0269"></a>
+<a id="file-0265"></a>
 
-### 0269 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md`
+### 0265 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -14138,9 +13887,9 @@ Este paquete contiene copias documentadas de tres archivos del inspector del dis
 - `WidgetRenderer` conserva el render imperativo en cada render para no cambiar el contrato heredado.
 ```
 
-<a id="file-0270"></a>
+<a id="file-0266"></a>
 
-### 0270 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md`
+### 0266 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -14182,9 +13931,9 @@ El bloque `ListView` representa la lista lateral derecha de campos/schemas del d
 - Si se cambia el DOM del row, preservar `data-testid="right-sidebar-field-item"` y el drag handle.
 ```
 
-<a id="file-0271"></a>
+<a id="file-0267"></a>
 
-### 0271 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md`
+### 0267 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`

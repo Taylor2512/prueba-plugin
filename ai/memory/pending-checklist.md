@@ -24,6 +24,6 @@ Este archivo contiene solo trabajo pendiente o continuidad. Las tareas completad
 
 ## Pendientes transversales
 
-- [ ] Confirmar que `src/sisad-pdfme/docs/**` no duplique innecesariamente `docs/**`.
+- [ ] Confirmar que `src/sisad-pdfme/docs/**` no se use como copia ni reemplazo de `docs/**`.
 - [ ] Confirmar que `reports/**`, `dist/**`, `test-results/**` y `.tailwind-migration-backups/**` están excluidos del contexto activo por defecto.
 - [ ] Confirmar que el CSS migrado a Tailwind inline no rompe geometry, zoom, canvas, paper, Moveable, Selecto o print/PDF.

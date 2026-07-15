@@ -15,6 +15,7 @@ import { asRecord } from './objectGuards.js';
 export type SchemaElementIdentity = {
   schemaId?: string;
   schemaUid?: string;
+  schemaName?: string;
   documentId?: string;
   pageNumber?: number;
   pageIndex?: number;
@@ -41,6 +42,7 @@ const schemaUidOf = (schema: SchemaForUI): string | undefined => {
 export const resolveSchemaIdentityFromElement = (element: HTMLElement): SchemaElementIdentity => ({
   schemaId: element.dataset.schemaId || element.id || undefined,
   schemaUid: element.dataset.schemaUid || undefined,
+  schemaName: element.dataset.schemaName || undefined,
   documentId: element.dataset.documentId || undefined,
   pageNumber: toInt(element.dataset.pageNumber),
   pageIndex: toInt(element.dataset.pageIndex),

@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `css`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-14T21:23:38.842Z`
+- **Fecha generación:** `2026-07-14T23:46:45.206Z`
 - **Extensiones incluidas:** `.css, .scss, .sass, .less`
 - **Archivos candidatos incluidos:** `16`
 - **Límite por archivo:** `80 KB`
@@ -70,7 +70,7 @@ prueba-plugin
 | 7 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css` | css | 443 | 14.0 | completo |
 | 8 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css` | css | 8 | 0.2 | completo |
 | 9 | `src/features/pdfcomponent/labRoutes.css` | css | 1707 | 36.0 | completo |
-| 10 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 4192 | 194.4 | truncado 74.0 KB |
+| 10 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 4208 | 195.2 | truncado 74.0 KB |
 | 11 | `src/sisad-pdfme/ui/styles/tokens.css` | css | 323 | 13.7 | completo |
 | 12 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css` | css | 1600 | 36.3 | completo |
 | 13 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__canvas-interactions.tailwind.candidate.css` | css | 1547 | 51.0 | completo |
@@ -80,12 +80,12 @@ prueba-plugin
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1866
-- **directorio ignorado: dependencia/build/salida generada:** 7
+- **extensión no incluida:** 1863
+- **directorio ignorado: dependencia/build/salida generada:** 8
 
 ## Totales
 
-- **KB originales candidatos:** `814.1`
+- **KB originales candidatos:** `814.9`
 - **KB incluidos en contenido:** `477.4`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
@@ -8094,9 +8094,9 @@ ner-compact-config-panel {
 ### 0010 — `src/sisad-pdfme/ui/styles/sisad-pdfme.css`
 
 - **Lenguaje:** `css`
-- **Líneas:** `4192`
-- **Tamaño original:** `194.4 KB`
-- **SHA1 corto:** `b6b8b65cc1`
+- **Líneas:** `4208`
+- **Tamaño original:** `195.2 KB`
+- **SHA1 corto:** `e86009be04`
 - **Estado:** `truncado 74.0 KB`
 - **Símbolos detectados:** `selector: .sisad-pdfme-root`, `selector: .sisad-pdfme-page`, `selector: .sisad-pdfme-header`, `selector: .sisad-pdfme-grid`, `selector: .sisad-pdfme-workspace`, `selector: .sisad-pdfme-canvas`, `selector: .sisad-pdfme-designer-root`, `selector: .sisad-pdfme-designer-background`, `selector: .sisad-pdfme-designer-stage`, `selector: .sisad-pdfme-designer-canvas`
 
@@ -8508,14 +8508,6 @@ ner-compact-config-panel {
 .sisad-pdfme-ui-control-bar .ant-select.sisad-pdfme-ui-control-bar-page-select .ant-select-selector {
     @apply min-w-[7.5rem];
   }
-.sisad-pdfme-ui-zoom-out,
-.sisad-pdfme-ui-zoom-in,
-.sisad-pdfme-ui-page-prev,
-.sisad-pdfme-ui-page-next {
-    @apply
-      w-[1.25rem] h-[1.25rem] min-w-[1.25rem] p-0 [border:1px_solid_transparent] rounded-[0.375rem] bg-transparent text-[var(--text-secondary)]
-      [transition:all_var(--transition-fast)];
-  }
 .sisad-pdfme-ui-zoom .sisad-pdfme-ui-zoom-select .ant-select-selector,
 .sisad-pdfme-ui-zoom .ant-select-selector {
     @apply min-w-[3.625rem] text-[0.6875rem];
@@ -8523,12 +8515,6 @@ ner-compact-config-panel {
 .sisad-pdfme-ui-control-bar[data-density="minimal"] .sisad-pdfme-ui-zoom .sisad-pdfme-ui-zoom-select .ant-select-selector,
 .sisad-pdfme-ui-control-bar[data-density="minimal"] .sisad-pdfme-ui-zoom .ant-select-selector {
     @apply min-w-[3.5rem] max-w-[3.5rem];
-  }
-.sisad-pdfme-ui-zoom-out:hover,
-.sisad-pdfme-ui-zoom-in:hover,
-.sisad-pdfme-ui-page-prev:hover,
-.sisad-pdfme-ui-page-next:hover {
-    @apply border-[var(--color-primary-30)] bg-[var(--color-primary-08)] text-[var(--color-primary)];
   }
 .sisad-pdfme-ui-control-bar-icon-btn[data-active="true"] {
     @apply text-[var(--color-primary)] bg-[var(--color-primary-08)];
@@ -9205,9 +9191,21 @@ ner-compact-config-panel {
 .sisad-pdfme-designer-detail-header-card {
     @apply
       mb-[0.25rem] p-[0.375rem_0.5rem] [border:1px_solid_var(--color-border-18)] rounded-[0.625rem]
-      [background:radial-gradient(circle_at_top_right,_var(--color-pri
+      [background:radial-gradient(circle_at_top_right,_var(--color-primary-200-20),_transparent_38%),_linear-gradient(180deg,_var(--color-white),_var(--color-gray-50))]
+      [box-shadow:0_0.25rem_0.75rem_var(--color-gray-900-06)];
+  }
+.sisad-pdfme-designer-detail-header-card-head {
+    @apply flex flex-nowrap items-center gap-[0.375rem] mb-[0.25rem];
+  }
+.sisad-pdfme-designer-detail-header-card-title-wrap {
+    @apply flex flex-auto min-w-0 flex-row items-center gap-[0.375rem] flex-wrap;
+  }
+.sisad-pdfme-designer-detail-header-card-meta {
+    @apply flex flex-wrap gap-[0.2rem];
+  }
+.sisad-pdfme-designer-detail
 
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 123282 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 124055 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
 
 pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-control-band {
   @apply gap-[0.45rem] [padding-inline:0.75rem];

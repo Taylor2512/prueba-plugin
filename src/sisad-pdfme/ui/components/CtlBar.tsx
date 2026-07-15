@@ -56,6 +56,9 @@ const Zoom = ({ zoomLevel, setZoomLevel, iconColor, density = 'comfortable' }: Z
   const maxZoom = useMaxZoom();
   const minZoom = 0.25;
   const presets = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 3];
+  const zoomButtonClassName =
+    UI_CLASSNAME +
+    'zoom-button inline-flex h-5 w-5 min-w-5 items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-[var(--text-secondary)] transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50';
 
   const nextZoomOut = zoomLevel - zoomStep;
   const nextZoomIn = zoomLevel + zoomStep;
@@ -65,7 +68,7 @@ const Zoom = ({ zoomLevel, setZoomLevel, iconColor, density = 'comfortable' }: Z
     <div className={UI_CLASSNAME + 'zoom'}>
       {showStepButtons ? (
         <Button
-          className={UI_CLASSNAME + 'zoom-out'}
+          className={zoomButtonClassName + ' ' + UI_CLASSNAME + 'zoom-out'}
           type="text"
           title="Reducir zoom"
           disabled={minZoom >= nextZoomOut}
@@ -88,7 +91,7 @@ const Zoom = ({ zoomLevel, setZoomLevel, iconColor, density = 'comfortable' }: Z
       />
       {showStepButtons ? (
         <Button
-          className={UI_CLASSNAME + 'zoom-in'}
+          className={zoomButtonClassName + ' ' + UI_CLASSNAME + 'zoom-in'}
           type="text"
           title="Aumentar zoom"
           disabled={maxZoom < nextZoomIn}
