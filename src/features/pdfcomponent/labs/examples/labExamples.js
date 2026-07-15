@@ -848,6 +848,15 @@ const LAB_EXAMPLES = [
     runtimeOptions: {
       activeDocumentId: 'file-contract-a',
       uploadedDocuments: multiDocumentRoutingDocuments,
+      visibility: {
+        sidebars: {
+          right: {
+            panels: {
+              documents: true,
+            },
+          },
+        },
+      },
     },
   }),
   createLabExample({
