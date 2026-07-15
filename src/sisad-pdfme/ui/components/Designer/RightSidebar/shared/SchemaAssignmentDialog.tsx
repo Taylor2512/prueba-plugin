@@ -139,6 +139,21 @@ const SchemaAssignmentDialog = ({
     [],
   );
 
+  // Escape a nivel documento: el Escape nativo de antd exige foco dentro del
+  // wrap, pero el botón Reasignar previene el focus (stopDesignerControlEvent
+  // en pointerdown), así que el foco puede quedar fuera del modal. Mismo
+  // lifecycle único: pasa por requestClose('escape').
+  useEffect(() => {
+    if (!open || typeof document === 'undefined') return undefined;
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key !== 'Escape') return;
+      event.stopPropagation();
+      requestClose('escape');
+    };
+    document.addEventListener('keydown', onKeyDown, true);
+    return () => document.removeEventListener('keydown', onKeyDown, true);
+  }, [open, requestClose]);
+
   const totalSelected = typeof selectedCount === 'number' ? selectedCount : selectedSchemas.length;
 
   const currentRecipient = useMemo(

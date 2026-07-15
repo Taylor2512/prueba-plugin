@@ -64,12 +64,15 @@ export const isTransformableCanvasTarget = (element: Element | null | undefined)
 
 /** Target (or ancestor) that must suppress Selecto region/click selection. */
 export const isCanvasSelectionExcludedTarget = (target: EventTarget | null | undefined): boolean => {
+  // Sin target no hay nada que excluir (contrato legacy de los guards).
+  if (!(target instanceof Element)) return false;
   const result = resolveInteractionTarget(target);
   return shouldIgnoreForSelecto(result);
 };
 
 /** Target (or ancestor) that must be excluded from Moveable transform. */
 export const isCanvasTransformExcludedTarget = (target: EventTarget | null | undefined): boolean => {
+  if (!(target instanceof Element)) return false;
   const result = resolveInteractionTarget(target);
   return !shouldTransformTarget(result);
 };
