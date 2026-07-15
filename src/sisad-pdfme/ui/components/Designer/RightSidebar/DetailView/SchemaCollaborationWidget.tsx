@@ -207,8 +207,8 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
 
   return (
     <CompactConfigPanel
-      title={props.summaryTitle || 'Asignación y bloqueo'}
-      description={props.summaryDescription || `Propietario y acceso${selectionHint}.`}
+      title={props.summaryTitle || 'Estado de acceso'}
+      description={props.summaryDescription || `Propietario, bloqueo y auditoría${selectionHint}.`}
       statusTags={[{ label: stateLabel, color: stateTagColor }]}
       modalTitle={props.modalTitle || 'Gestionar asignación y bloqueo'}
       modalTriggerLabel={props.modalTriggerLabel ?? 'Reasignar'}

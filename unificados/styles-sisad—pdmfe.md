@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `css`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-15T04:39:20.162Z`
+- **Fecha generación:** `2026-07-15T13:45:57.441Z`
 - **Extensiones incluidas:** `.css, .scss, .sass, .less`
 - **Archivos candidatos incluidos:** `16`
 - **Límite por archivo:** `80 KB`
@@ -70,7 +70,7 @@ prueba-plugin
 | 7 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css` | css | 443 | 14.0 | completo |
 | 8 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css` | css | 8 | 0.2 | completo |
 | 9 | `src/features/pdfcomponent/labRoutes.css` | css | 1707 | 36.0 | completo |
-| 10 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 4113 | 191.1 | truncado 74.0 KB |
+| 10 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 4208 | 195.2 | truncado 74.0 KB |
 | 11 | `src/sisad-pdfme/ui/styles/tokens.css` | css | 323 | 13.7 | completo |
 | 12 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css` | css | 1600 | 36.3 | completo |
 | 13 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__canvas-interactions.tailwind.candidate.css` | css | 1547 | 51.0 | completo |
@@ -80,12 +80,12 @@ prueba-plugin
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1866
+- **extensión no incluida:** 1902
 - **directorio ignorado: dependencia/build/salida generada:** 8
 
 ## Totales
 
-- **KB originales candidatos:** `810.8`
+- **KB originales candidatos:** `814.9`
 - **KB incluidos en contenido:** `477.4`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
@@ -8094,9 +8094,9 @@ ner-compact-config-panel {
 ### 0010 — `src/sisad-pdfme/ui/styles/sisad-pdfme.css`
 
 - **Lenguaje:** `css`
-- **Líneas:** `4113`
-- **Tamaño original:** `191.1 KB`
-- **SHA1 corto:** `4b60fb5603`
+- **Líneas:** `4208`
+- **Tamaño original:** `195.2 KB`
+- **SHA1 corto:** `e55b38fe49`
 - **Estado:** `truncado 74.0 KB`
 - **Símbolos detectados:** `selector: .sisad-pdfme-root`, `selector: .sisad-pdfme-page`, `selector: .sisad-pdfme-header`, `selector: .sisad-pdfme-grid`, `selector: .sisad-pdfme-workspace`, `selector: .sisad-pdfme-canvas`, `selector: .sisad-pdfme-designer-root`, `selector: .sisad-pdfme-designer-background`, `selector: .sisad-pdfme-designer-stage`, `selector: .sisad-pdfme-designer-canvas`
 
@@ -9205,34 +9205,9 @@ ner-compact-config-panel {
   }
 .sisad-pdfme-designer-detail
 
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 119861 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 124058 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
 
-
-.sisad-pdfme-designer-inspector-metric-label,
-.sisad-pdfme-designer-inspector-metric-value {
-  @apply overflow-hidden [text-overflow:ellipsis] whitespace-nowrap;
-}
-[data-inspector-density="mini"] .sisad-pdfme-designer-inspector-summary-card-head {
-  @apply flex-col items-stretch;
-}
-[data-inspector-density="mini"] .sisad-pdfme-designer-inspector-summary-card-tags {
-  @apply justify-start;
-}
-[data-inspector-density="mini"] .sisad-pdfme-designer-inspector-action-row .ant-btn {
-  @apply [padding-inline:0.35rem] h-[1.45rem] text-[0.68rem];
-}
-.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-dock-header {
-  @apply flex flex-col gap-[0.125rem] p-[0.5rem_0.75rem_0.35rem];
-}
-.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-dock-title {
-  @apply flex items-center gap-[0.35rem] min-w-0 text-[0.825rem] font-bold text-[var(--sisad-editor-primary)];
-}
-.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-dock-recipient {
-  @apply
-    inline-flex items-center max-w-full p-[0.06rem_0.4rem] rounded-full bg-[var(--sisad-editor-primary-soft)] text-[var(--sisad-editor-primary)]
-    text-[0.63rem] font-semibold whitespace-nowrap overflow-hidden [text-overflow:ellipsis];
-}
-.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-control-band {
+pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-control-band {
   @apply gap-[0.45rem] [padding-inline:0.75rem];
 }
 .sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-search-wrap {
@@ -9383,11 +9358,37 @@ ner-compact-config-panel {
 .sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inspector-metric-value {
   @apply text-[0.78rem] font-semibold text-slate-900;
 }
-.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inspector-action-row .ant-btn {
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inspector-action-row .ant-btn,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel .ant-btn {
   @apply min-h-[30px] rounded-xl border border-slate-200/80 bg-white/90 px-3 text-[0.72rem] font-semibold text-slate-700 shadow-sm;
 }
-.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inspector-action-row .ant-btn-icon-only {
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-inspector-action-row .ant-btn-icon-only,
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel .ant-btn-icon-only {
   @apply w-[30px] min-w-[30px] px-0;
+}
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel {
+  @apply gap-2 rounded-2xl border border-slate-200/80 bg-white/90 p-2.5 shadow-sm;
+}
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel-head {
+  @apply gap-2;
+}
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel-tags {
+  @apply gap-1.5;
+}
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel-summary {
+  @apply mt-2 rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-1.5;
+}
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel-summary-text {
+  @apply text-[0.72rem] leading-5 text-slate-700;
+}
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel-actions {
+  @apply mt-2 flex flex-wrap gap-1.5;
+}
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel-footer {
+  @apply mt-2 gap-1.5;
+}
+.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-compact-config-panel-footer-actions {
+  @apply gap-1.5;
 }
 .sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-align-widget-grid {
   @apply grid grid-cols-4 gap-1.5;

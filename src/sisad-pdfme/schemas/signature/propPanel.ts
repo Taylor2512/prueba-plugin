@@ -466,18 +466,6 @@ export const propPanel: PropPanel<SignatureSchema> = {
         bind: false,
         span: 24,
       },
-      signatureType: {
-        title: 'Tipo de firma',
-        type: 'string',
-        widget: 'select',
-        props: {
-          options: SIGNATURE_MODE_OPTIONS.map((option) => ({
-            label: option.label,
-            value: option.value,
-          })),
-        },
-        hidden: true,
-      },
       signatureProviderKey: {
         type: 'void',
         widget: 'SignatureProviderWidget',
@@ -665,9 +653,8 @@ export const propPanel: PropPanel<SignatureSchema> = {
   },
   inspector: createSchemaInspectorConfig('signature', {
     propertyMap: {
-      signatureMode: 'data',
-      signatureType: 'data',
-      signatureProviderKey: 'data',
+    signatureMode: 'data',
+    signatureProviderKey: 'data',
       signatureProviderStatus: 'data',
       signatureProviderDisplay: 'data',
       placeholderText: 'data',
@@ -691,7 +678,6 @@ export const propPanel: PropPanel<SignatureSchema> = {
     opacity: DEFAULT_OPACITY,
     placeholderText: 'Firmar aqui',
     signatureMode: 'draw',
-    signatureType: 'draw',
     signatureProviderKey: undefined,
     signatureProviderConfig: {},
     signatureProviderStatus: 'pending',

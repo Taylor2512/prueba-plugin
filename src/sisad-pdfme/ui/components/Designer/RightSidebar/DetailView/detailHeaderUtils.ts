@@ -98,10 +98,10 @@ export const buildDetailHeaderSummary = (
   const tags: HeaderSummary['tags'] = [];
   if (!schemaName.trim()) tags.push({ label: 'Sin nombre', color: 'warning' });
   const statusLabel =
-    interactionState.isReadOnly || schemaHidden
+    schemaHidden
       ? 'Solo lectura'
-      : interactionState.isLocked
-        ? 'Bloqueado para edición'
+      : interactionState.statusLabel !== 'Disponible'
+        ? interactionState.statusLabel
         : schemaConfig?.persistence?.enabled || activeSchema.saveValue !== false
           ? 'Guardado'
           : 'Cambios pendientes';
@@ -109,11 +109,11 @@ export const buildDetailHeaderSummary = (
     interactionState.visibleBadge?.color ||
     (statusLabel === 'Guardado'
       ? 'success'
-      : statusLabel === 'Bloqueado para edición'
+      : statusLabel === 'Solo lectura'
+        ? 'gold'
+        : statusLabel.includes('Bloqueado') || statusLabel.includes('Posición')
         ? 'warning'
-        : statusLabel === 'Solo lectura'
-          ? 'gold'
-          : 'processing');
+        : 'processing');
   tags.push({ label: statusLabel, color: statusColor });
 
   const posX = Number((activeSchema.position?.x ?? 0).toFixed(1));

@@ -224,10 +224,12 @@ const resolveLockOwnerLabel = (
   activeRecipient?: CollaborationRecipientOption | null,
 ): string => {
   if (!lockOwnerId) return '';
+  if (activeRecipient?.id === lockOwnerId && activeRecipient.name) {
+    return activeRecipient.name;
+  }
 
   return (
     collaborationContext?.recipientNameMap?.get(lockOwnerId) ||
-    activeRecipient?.name ||
     lockOwnerId
   );
 };
@@ -246,6 +248,66 @@ const resolveLockOwnerLabel = (
  * - decidir si un menú contextual debe estar deshabilitado.
  */
 export type SchemaAccessState = {
+  /**
+   * Estado resumido del lock colaborativo.
+   */
+  collaborationLock: 'none' | 'mine' | 'other' | 'unknown';
+
+  /**
+   * Indica si el schema tiene bloqueo de posición propio.
+   */
+  objectLocked: boolean;
+
+  /**
+   * Indica si el schema está en modo solo lectura.
+   */
+  readonly: boolean;
+
+  /**
+   * Permiso de edición de propiedades no geométricas.
+   */
+  canEditProperties: boolean;
+
+  /**
+   * Permiso de reubicación del schema.
+   */
+  canMove: boolean;
+
+  /**
+   * Permiso de redimensionamiento del schema.
+   */
+  canResize: boolean;
+
+  /**
+   * Permiso de eliminación del schema.
+   */
+  canDelete: boolean;
+
+  /**
+   * Permiso de reasignación del schema.
+   */
+  canReassign: boolean;
+
+  /**
+   * Etiqueta de estado unificada para inspector y widgets.
+   */
+  statusLabel: string;
+
+  /**
+   * Tono visual sugerido para el estado unificado.
+   */
+  statusTone: 'success' | 'warning' | 'error' | 'processing';
+
+  /**
+   * Identificador del dueño del lock colaborativo.
+   */
+  lockOwnerId: string | null;
+
+  /**
+   * Nombre visible del dueño del lock colaborativo.
+   */
+  lockOwnerLabel: string | null;
+
   /**
    * Etiqueta visible del propietario del schema.
    */
@@ -340,7 +402,8 @@ const resolveAccessTone = (
   isObjectLocked: boolean,
 ): SchemaAccessState['inspectorStatusTone'] => {
   if (isLockedByOther) return 'error';
-  if (isLockedByMe || hasCollaborationLock) return 'success';
+  if (isLockedByMe) return 'success';
+  if (hasCollaborationLock) return 'warning';
   if (isObjectLocked) return 'warning';
 
   return 'warning';
@@ -378,14 +441,16 @@ export const resolveSchemaAccessState = (
   const schemaRecord = schema as SchemaForUI & {
     lock?: {
       lockedBy?: string | null;
+      ownerUserId?: string | null;
       lockedAt?: number | null;
       reason?: string | null;
-    };
+    } | null;
     readOnly?: boolean;
     readonly?: boolean;
     locked?: boolean;
     ownerRecipientName?: string | null;
     ownerRecipientId?: string | null;
+    lockedByActorId?: string | null;
   };
 
   const isReadonly = boolField(schema, 'readOnly') || boolField(schema, 'readonly');
@@ -394,8 +459,10 @@ export const resolveSchemaAccessState = (
   const hasCollaborationLock = Boolean(
     schema.state === 'locked' ||
       schemaRecord.lock?.lockedBy ||
+      schemaRecord.lock?.ownerUserId ||
       schemaRecord.lock?.lockedAt ||
-      schemaRecord.lock?.reason,
+      schemaRecord.lock?.reason ||
+      schemaRecord.lockedByActorId,
   );
 
   const currentActorId = normalizeText(collaborationContext?.actorId);
@@ -403,7 +470,8 @@ export const resolveSchemaAccessState = (
 
   const lockOwnerId =
     normalizeNullableText(schemaRecord.lock?.lockedBy) ||
-    normalizeNullableText(state.ownerRecipientId);
+    normalizeNullableText(schemaRecord.lock?.ownerUserId) ||
+    normalizeNullableText(schemaRecord.lockedByActorId);
 
   const isLockedByMe = Boolean(
     hasCollaborationLock &&
@@ -411,7 +479,14 @@ export const resolveSchemaAccessState = (
       [currentActorId, currentRecipientId].filter(Boolean).includes(lockOwnerId),
   );
 
-  const isLockedByOther = Boolean(hasCollaborationLock && !isLockedByMe);
+  const collaborationLock: SchemaAccessState['collaborationLock'] = !hasCollaborationLock
+    ? 'none'
+    : lockOwnerId
+      ? isLockedByMe
+        ? 'mine'
+        : 'other'
+      : 'unknown';
+  const isLockedByOther = collaborationLock === 'other';
 
   const ownerLabel =
     normalizeNullableText(state.ownerRecipientName) ||
@@ -419,18 +494,59 @@ export const resolveSchemaAccessState = (
     'Sin asignar';
 
   const lockedByLabel =
-    isLockedByOther || isLockedByMe
+    collaborationLock === 'other' || collaborationLock === 'mine'
       ? resolveLockOwnerLabel(lockOwnerId, collaborationContext, activeRecipient)
       : '';
 
-  const canEdit = Boolean(
-    collaborationContext?.canEditStructure !== false &&
+  const hasStructurePermission = collaborationContext?.canEditStructure !== false;
+  const canEditProperties = Boolean(
+    hasStructurePermission &&
       !isReadonly &&
-      !isObjectLocked &&
-      (!hasCollaborationLock || isLockedByMe),
+      collaborationLock !== 'other' &&
+      collaborationLock !== 'unknown',
   );
+  const canMove = Boolean(canEditProperties && !isObjectLocked);
+  const canResize = Boolean(canEditProperties && !isObjectLocked);
+  const canDelete = Boolean(canEditProperties && !isObjectLocked);
+  const canReassign = Boolean(hasStructurePermission && collaborationLock !== 'other');
+
+  const statusLabel =
+    !hasStructurePermission
+      ? 'Sin permiso de edición'
+      : collaborationLock === 'other'
+        ? `Bloqueado por ${lockedByLabel || 'otro usuario'}`
+        : collaborationLock === 'mine'
+          ? 'En edición por ti'
+          : isReadonly
+            ? 'Solo lectura'
+            : isObjectLocked
+              ? 'Posición bloqueada'
+              : collaborationLock === 'unknown'
+                ? 'Bloqueado'
+                : 'Disponible';
 
   return {
+    collaborationLock,
+    objectLocked: isObjectLocked,
+    readonly: isReadonly,
+    canEditProperties,
+    canMove,
+    canResize,
+    canDelete,
+    canReassign,
+    statusLabel,
+    statusTone:
+      !hasStructurePermission || collaborationLock === 'other'
+        ? 'error'
+        : collaborationLock === 'mine'
+          ? 'success'
+          : isReadonly || collaborationLock === 'unknown'
+            ? 'warning'
+            : isObjectLocked
+              ? 'processing'
+              : 'warning',
+    lockOwnerId: lockOwnerId || null,
+    lockOwnerLabel: lockedByLabel || null,
     ownerLabel,
     hasCollaborationLock,
     isLockedByMe,
@@ -438,10 +554,7 @@ export const resolveSchemaAccessState = (
     lockedByLabel,
     isObjectLocked,
     isReadonly,
-    canEdit,
-    canMove: canEdit,
-    canResize: canEdit,
-    canDelete: canEdit,
+    canEdit: canEditProperties,
     contextMenuLockLabel: isLockedByOther
       ? `Bloqueado por ${lockedByLabel || 'otro usuario'}`
       : isLockedByMe

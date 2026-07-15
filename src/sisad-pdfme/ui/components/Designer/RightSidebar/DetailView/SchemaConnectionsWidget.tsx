@@ -1002,9 +1002,6 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
             </Tag>
           ))}
         </div>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-summary`}>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-summary-text`}>{validationMessage}</div>
-        </div>
         <Collapse ghost items={items} defaultActiveKey={['persistence']} className={`${DESIGNER_CLASSNAME}schema-config-collapse`} />
       </div>
     </CompactConfigPanel>

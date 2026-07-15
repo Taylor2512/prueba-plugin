@@ -13,7 +13,15 @@ import { resolveSchemaCollaborationState } from '../../../collaborationContext.j
 
 type OwnerColorContext = Pick<
   EffectiveCollaborationContext,
-  'recipientOptions' | 'recipientColorMap' | 'recipientNameMap' | 'activeRecipientId' | 'isGlobalView' | 'actorColor' | 'canEditStructure'
+  | 'recipientOptions'
+  | 'recipientColorMap'
+  | 'recipientNameMap'
+  | 'activeRecipientId'
+  | 'isGlobalView'
+  | 'actorColor'
+  | 'canEditStructure'
+  | 'actorId'
+  | 'activeRecipient'
 >;
 
 export type SchemaInteractionBadge = {
@@ -21,7 +29,21 @@ export type SchemaInteractionBadge = {
   color?: 'default' | 'processing' | 'success' | 'warning' | 'error' | 'gold' | 'blue';
 };
 
+export type SchemaInteractionStatusTone = 'neutral' | 'info' | 'warning' | 'danger' | 'success';
+
 export type SchemaInteractionState = {
+  collaborationLock: 'none' | 'mine' | 'other' | 'unknown';
+  objectLocked: boolean;
+  readonly: boolean;
+  canEditProperties: boolean;
+  canMove: boolean;
+  canResize: boolean;
+  canDelete: boolean;
+  canReassign: boolean;
+  statusLabel: string;
+  statusTone: SchemaInteractionStatusTone;
+  lockOwnerId: string | null;
+  lockOwnerLabel: string | null;
   isLocked: boolean;
   isReadOnly: boolean;
   isEditable: boolean;
@@ -53,10 +75,27 @@ export type SchemaInteractionStateContext = {
 
 const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim() : '');
 
+const resolveLockOwnerLabel = (
+  lockOwnerId: string | null,
+  collaborationContext?: OwnerColorContext | null,
+  activeRecipient?: { id?: string | null; name?: string | null } | null,
+): string => {
+  if (!lockOwnerId) return '';
+  if (activeRecipient?.id && activeRecipient.id === lockOwnerId && activeRecipient.name) {
+    return activeRecipient.name;
+  }
+  return (
+    collaborationContext?.recipientNameMap?.get(lockOwnerId) ||
+    lockOwnerId
+  );
+};
+
 const resolveLockOwnerId = (schema: SchemaForUI, context?: SchemaInteractionStateContext): string | null =>
   normalizeText(context?.lock?.lockedBy) ||
   normalizeText(context?.lock?.ownerUserId) ||
   normalizeText((schema as SchemaForUI & { lock?: { lockedBy?: string } }).lock?.lockedBy) ||
+  normalizeText((schema as SchemaForUI & { lock?: { ownerUserId?: string } }).lock?.ownerUserId) ||
+  normalizeText((schema as SchemaForUI & { lockedByActorId?: string }).lockedByActorId) ||
   normalizeText((schema as SchemaForUI & { lockedBy?: string }).lockedBy) ||
   null;
 
@@ -79,43 +118,127 @@ export const resolveSchemaInteractionState = (
 ): SchemaInteractionState => {
   const collaboration = resolveSchemaCollaborationState(schema, context?.collaborationContext || undefined);
   const activeUserCanEdit = context?.collaborationContext?.canEditStructure !== false;
-  const isReadOnly = Boolean((schema as SchemaForUI & { readOnly?: boolean }).readOnly);
-  const lockOwnerId = resolveLockOwnerId(schema, context);
-  const schemaLocked = Boolean(
-    (schema as SchemaForUI & { state?: string }).state === 'locked' ||
-      (schema as SchemaForUI & { lock?: unknown }).lock ||
-      lockOwnerId,
+  const isReadOnly = Boolean(
+    (schema as SchemaForUI & { readOnly?: boolean; readonly?: boolean }).readOnly ||
+      (schema as SchemaForUI & { readOnly?: boolean; readonly?: boolean }).readonly,
   );
-  const isLocked = schemaLocked && !isReadOnly;
+  const lockOwnerId = resolveLockOwnerId(schema, context);
+  const lockRecord = (schema as SchemaForUI & {
+    state?: string;
+    locked?: boolean;
+    lock?: {
+      lockedBy?: string | null;
+      ownerUserId?: string | null;
+      ownerDisplayName?: string | null;
+      reason?: string | null;
+    } | null;
+  }).lock;
+  const hasCollaborationLock = Boolean(
+    (schema as SchemaForUI & { state?: string }).state === 'locked' ||
+      lockRecord?.lockedBy ||
+      lockRecord?.ownerUserId ||
+      lockOwnerId ||
+      lockRecord?.reason,
+  );
+  const objectLocked = Boolean((schema as SchemaForUI & { locked?: boolean }).locked);
+  const collaborationLock: SchemaInteractionState['collaborationLock'] = hasCollaborationLock
+    ? lockOwnerId
+      ? [context?.collaborationContext?.actorId, context?.collaborationContext?.activeRecipientId]
+          .filter(Boolean)
+          .includes(lockOwnerId)
+        ? 'mine'
+        : 'other'
+      : 'unknown'
+    : 'none';
+  const isLocked = collaborationLock !== 'none' || objectLocked;
   const lockReason = isReadOnly
     ? 'read-only'
     : !activeUserCanEdit
       ? 'no-structure-permission'
-      : isLocked
+      : collaborationLock !== 'none' || objectLocked
         ? 'locked'
         : null;
-  const isEditable = !isReadOnly && !isLocked && activeUserCanEdit;
+  const canEditProperties = Boolean(activeUserCanEdit && !isReadOnly && collaborationLock !== 'other' && collaborationLock !== 'unknown');
+  const canMove = Boolean(canEditProperties && !objectLocked);
+  const canResize = Boolean(canEditProperties && !objectLocked);
+  const canDelete = Boolean(canEditProperties && !objectLocked);
+  const canReassign = Boolean(activeUserCanEdit && collaborationLock !== 'other');
+  const isEditable = canEditProperties;
   const ownerColor =
     resolveSchemaOwnerColor(schema, context?.collaborationContext || undefined) ||
     collaboration.ownerColor ||
     collaboration.userColor ||
     null;
 
+  const statusLabel =
+    !activeUserCanEdit
+      ? 'Sin permiso de edición'
+      : collaborationLock === 'other'
+        ? `Bloqueado por ${resolveLockOwnerLabel(lockOwnerId, context?.collaborationContext || undefined, context?.collaborationContext?.activeRecipient || null) || 'otro usuario'}`
+        : collaborationLock === 'mine'
+          ? 'En edición por ti'
+          : isReadOnly
+            ? 'Solo lectura'
+            : objectLocked
+              ? 'Posición bloqueada'
+              : collaborationLock === 'unknown'
+                ? 'Bloqueado'
+                : 'Disponible';
+
+  const statusTone: SchemaInteractionStatusTone =
+    !activeUserCanEdit
+      ? 'danger'
+      : collaborationLock === 'other'
+        ? 'danger'
+        : collaborationLock === 'mine'
+          ? 'success'
+          : isReadOnly
+            ? 'warning'
+            : objectLocked
+              ? 'info'
+              : collaborationLock === 'unknown'
+                ? 'warning'
+                : 'neutral';
+
   const visibleBadge =
-    isReadOnly
-      ? { label: 'Solo lectura', color: 'gold' as const }
-      : isLocked
-        ? { label: 'Bloqueado para edición', color: 'error' as const }
-        : !activeUserCanEdit
-          ? { label: 'Sin permisos', color: 'warning' as const }
-          : null;
+    statusLabel === 'Disponible'
+      ? null
+      : {
+          label: statusLabel,
+          color:
+            statusTone === 'danger'
+              ? 'error'
+              : statusTone === 'success'
+                ? 'success'
+                : statusTone === 'warning'
+                  ? 'warning'
+                  : statusTone === 'info'
+                    ? 'processing'
+                    : 'default',
+        };
 
   const disabledControls = [
-    ...(isReadOnly || isLocked || !activeUserCanEdit ? ['edit', 'duplicate', 'delete', 'toggle-lock'] : []),
-    ...(isReadOnly || isLocked ? ['toggle-required', 'toggle-visibility'] : []),
+    ...(!canEditProperties ? ['edit', 'duplicate', 'delete'] : []),
+    ...(objectLocked ? ['move', 'resize'] : []),
+    ...(isReadOnly ? ['toggle-required', 'toggle-visibility'] : []),
   ];
 
   return {
+    collaborationLock,
+    objectLocked,
+    readonly: isReadOnly,
+    canEditProperties,
+    canMove,
+    canResize,
+    canDelete,
+    canReassign,
+    statusLabel,
+    statusTone,
+    lockOwnerId,
+    lockOwnerLabel:
+      lockOwnerId
+        ? resolveLockOwnerLabel(lockOwnerId, context?.collaborationContext || undefined, context?.collaborationContext?.activeRecipient || null) || null
+        : null,
     isLocked,
     isReadOnly,
     isEditable,

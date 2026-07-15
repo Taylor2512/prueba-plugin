@@ -121,7 +121,7 @@ export const CANONICAL_DETAIL_SECTION_LABELS: Record<CanonicalDetailSection, { t
   },
   collaboration: {
     title: 'Asignación y bloqueo',
-    description: 'Propietario y acceso.',
+    description: 'Permisos, estado y auditoría.',
     defaultCollapsed: true,
   },
   comments: {

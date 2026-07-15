@@ -14,9 +14,9 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `docs`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-15T04:39:18.842Z`
+- **Fecha generación:** `2026-07-15T13:45:56.357Z`
 - **Extensiones incluidas:** `.md, .mdx`
-- **Archivos candidatos incluidos:** `267`
+- **Archivos candidatos incluidos:** `268`
 - **Límite por archivo:** `120 KB`
 - **Límite total de contenido:** `1800 KB`
 
@@ -151,6 +151,7 @@ prueba-plugin
 │   │   └── tailwind-migrator.md
 │   ├── task-cards
 │   │   ├── active
+│   │   │   ├── TASK-CSS-013-selector-dedup-current-design-polish.md
 │   │   │   ├── TASK-PDFME-005-digital-agreements-runtime-adapter.md
 │   │   │   ├── TASK-PDFME-008-signature-policies-firma-sisad.md
 │   │   │   └── TASK-PDFME-009-externalforms-runner-contract.md
@@ -305,6 +306,7 @@ prueba-plugin
 │       ├── rightsidebar-detailview-tailwind-audit.md
 │       ├── runtime-form-viewer-tailwind-audit.md
 │       ├── schema-chrome-tailwind-audit.md
+│       ├── selector-duplicates-current.md
 │       ├── tc-css-04-left-sidebar-tailwind.md
 │       ├── tc-css-08-control-bar-toolbar-tailwind.md
 │       ├── tc-css-10-schemas-visual.md
@@ -344,9 +346,7 @@ prueba-plugin
             │   ├── documentacion-runtime-preview-base-jsdoc.md
             │   └── README.md
             ├── documentacion-ui-runtime-sisad-pdfme.md
-            ├── README.md
-            └── styles
-                └── README.md
+            └── README.md
 ```
 
 ## Archivos incluidos
@@ -576,60 +576,61 @@ prueba-plugin
 | 221 | `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md` | markdown | 13 | 2.3 | completo |
 | 222 | `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md` | markdown | 20 | 1.4 | completo |
 | 223 | `reports/tailwind-migration/schema-chrome-tailwind-audit.md` | markdown | 18 | 1.3 | completo |
-| 224 | `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md` | markdown | 45 | 2.8 | completo |
-| 225 | `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md` | markdown | 43 | 2.5 | completo |
-| 226 | `reports/tailwind-migration/tc-css-10-schemas-visual.md` | markdown | 33 | 3.7 | completo |
-| 227 | `reports/tailwind-migration/tc-css-11-lab-audit.md` | markdown | 31 | 1.2 | completo |
-| 228 | `reports/tailwind-migration/tc-css-option-group-selection-fix.md` | markdown | 38 | 4.3 | completo |
-| 229 | `reports/tailwind-migration/tc-css-ownership-color.md` | markdown | 38 | 4.0 | completo |
-| 230 | `reports/tailwind-migration/ui-styles-decommission-audit.md` | markdown | 57 | 5.6 | completo |
-| 231 | `reports/tailwind-migration/ui-styles-decommission-progress.md` | markdown | 25 | 1.6 | completo |
-| 232 | `ai/task-cards/active/TASK-PDFME-005-digital-agreements-runtime-adapter.md` | markdown | 48 | 1.8 | completo |
-| 233 | `ai/task-cards/active/TASK-PDFME-008-signature-policies-firma-sisad.md` | markdown | 48 | 1.8 | completo |
-| 234 | `ai/task-cards/active/TASK-PDFME-009-externalforms-runner-contract.md` | markdown | 53 | 1.9 | completo |
-| 235 | `ai/task-cards/completed/completed-summary.md` | markdown | 87 | 4.4 | completo |
-| 236 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
-| 237 | `ai/task-cards/completed/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md` | markdown | 66 | 1.5 | completo |
-| 238 | `ai/task-cards/completed/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 21 | 0.5 | completo |
-| 239 | `ai/task-cards/completed/TASK-CSS-012-inline-tailwind-css-reduction.md` | markdown | 91 | 2.7 | completo |
-| 240 | `ai/task-cards/completed/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md` | markdown | 40 | 1.0 | completo |
-| 241 | `ai/task-cards/completed/TASK-PDFME-011-connectivity-sisad-restore.md` | markdown | 37 | 1.0 | completo |
-| 242 | `ai/task-cards/completed/TASK-PDFME-012-global-visibility-wiring-continuity.md` | markdown | 48 | 1.4 | completo |
-| 243 | `ai/task-cards/completed/TASK-PDFME-013-controller-real-api-no-noop.md` | markdown | 37 | 1.3 | completo |
-| 244 | `ai/task-cards/completed/TASK-PDFME-014-rightsidebar-reassign-state-regression.md` | markdown | 45 | 1.2 | completo |
-| 245 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 784 | 21.6 | completo |
-| 246 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
-| 247 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
-| 248 | `src/sisad-pdfme/converter/README.md` | markdown | 42 | 0.9 | completo |
-| 249 | `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md` | markdown | 151 | 4.6 | completo |
-| 250 | `src/sisad-pdfme/runtime/README.md` | markdown | 15 | 0.7 | completo |
-| 251 | `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md` | markdown | 168 | 5.7 | completo |
-| 252 | `src/sisad-pdfme/ui/README.md` | markdown | 38 | 2.2 | completo |
-| 253 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
-| 254 | `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md` | markdown | 30 | 1.6 | completo |
-| 255 | `src/sisad-pdfme/ui/components/README.md` | markdown | 28 | 1.1 | completo |
-| 256 | `src/sisad-pdfme/ui/styles/README.md` | markdown | 22 | 0.5 | completo |
-| 257 | `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md` | markdown | 18 | 0.9 | completo |
-| 258 | `src/sisad-pdfme/ui/components/Designer/Canvas/README.md` | markdown | 24 | 1.2 | completo |
-| 259 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md` | markdown | 15 | 1.0 | completo |
-| 260 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md` | markdown | 18 | 0.7 | completo |
-| 261 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md` | markdown | 21 | 0.7 | completo |
-| 262 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md` | markdown | 35 | 1.3 | completo |
-| 263 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md` | markdown | 42 | 1.6 | completo |
-| 264 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md` | markdown | 38 | 1.4 | completo |
-| 265 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md` | markdown | 20 | 1.0 | completo |
-| 266 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md` | markdown | 31 | 1.8 | completo |
-| 267 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md` | markdown | 24 | 0.8 | completo |
+| 224 | `reports/tailwind-migration/selector-duplicates-current.md` | markdown | 655 | 140.6 | truncado 110.5 KB |
+| 225 | `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md` | markdown | 45 | 2.8 | completo |
+| 226 | `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md` | markdown | 43 | 2.5 | completo |
+| 227 | `reports/tailwind-migration/tc-css-10-schemas-visual.md` | markdown | 33 | 3.7 | completo |
+| 228 | `reports/tailwind-migration/tc-css-11-lab-audit.md` | markdown | 31 | 1.2 | completo |
+| 229 | `reports/tailwind-migration/tc-css-option-group-selection-fix.md` | markdown | 38 | 4.3 | completo |
+| 230 | `reports/tailwind-migration/tc-css-ownership-color.md` | markdown | 38 | 4.0 | completo |
+| 231 | `reports/tailwind-migration/ui-styles-decommission-audit.md` | markdown | 57 | 5.6 | completo |
+| 232 | `reports/tailwind-migration/ui-styles-decommission-progress.md` | markdown | 25 | 1.6 | completo |
+| 233 | `ai/task-cards/active/TASK-CSS-013-selector-dedup-current-design-polish.md` | markdown | 75 | 2.4 | completo |
+| 234 | `ai/task-cards/active/TASK-PDFME-005-digital-agreements-runtime-adapter.md` | markdown | 48 | 1.8 | completo |
+| 235 | `ai/task-cards/active/TASK-PDFME-008-signature-policies-firma-sisad.md` | markdown | 48 | 1.8 | completo |
+| 236 | `ai/task-cards/active/TASK-PDFME-009-externalforms-runner-contract.md` | markdown | 53 | 1.9 | completo |
+| 237 | `ai/task-cards/completed/completed-summary.md` | markdown | 87 | 4.4 | completo |
+| 238 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
+| 239 | `ai/task-cards/completed/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md` | markdown | 66 | 1.5 | completo |
+| 240 | `ai/task-cards/completed/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 21 | 0.5 | completo |
+| 241 | `ai/task-cards/completed/TASK-CSS-012-inline-tailwind-css-reduction.md` | markdown | 91 | 2.7 | completo |
+| 242 | `ai/task-cards/completed/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md` | markdown | 40 | 1.0 | completo |
+| 243 | `ai/task-cards/completed/TASK-PDFME-011-connectivity-sisad-restore.md` | markdown | 37 | 1.0 | completo |
+| 244 | `ai/task-cards/completed/TASK-PDFME-012-global-visibility-wiring-continuity.md` | markdown | 48 | 1.4 | completo |
+| 245 | `ai/task-cards/completed/TASK-PDFME-013-controller-real-api-no-noop.md` | markdown | 37 | 1.3 | completo |
+| 246 | `ai/task-cards/completed/TASK-PDFME-014-rightsidebar-reassign-state-regression.md` | markdown | 45 | 1.2 | completo |
+| 247 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 784 | 21.6 | completo |
+| 248 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
+| 249 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
+| 250 | `src/sisad-pdfme/converter/README.md` | markdown | 42 | 0.9 | completo |
+| 251 | `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md` | markdown | 151 | 4.6 | completo |
+| 252 | `src/sisad-pdfme/runtime/README.md` | markdown | 15 | 0.7 | completo |
+| 253 | `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md` | markdown | 168 | 5.7 | completo |
+| 254 | `src/sisad-pdfme/ui/README.md` | markdown | 38 | 2.2 | completo |
+| 255 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
+| 256 | `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md` | markdown | 30 | 1.6 | completo |
+| 257 | `src/sisad-pdfme/ui/components/README.md` | markdown | 28 | 1.1 | completo |
+| 258 | `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md` | markdown | 18 | 0.9 | completo |
+| 259 | `src/sisad-pdfme/ui/components/Designer/Canvas/README.md` | markdown | 24 | 1.2 | completo |
+| 260 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md` | markdown | 15 | 1.0 | completo |
+| 261 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md` | markdown | 18 | 0.7 | completo |
+| 262 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md` | markdown | 21 | 0.7 | completo |
+| 263 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md` | markdown | 35 | 1.3 | completo |
+| 264 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md` | markdown | 42 | 1.6 | completo |
+| 265 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md` | markdown | 38 | 1.4 | completo |
+| 266 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md` | markdown | 20 | 1.0 | completo |
+| 267 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md` | markdown | 31 | 1.8 | completo |
+| 268 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md` | markdown | 24 | 0.8 | completo |
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1615
+- **extensión no incluida:** 1650
 - **directorio ignorado: dependencia/build/salida generada:** 8
 
 ## Totales
 
-- **KB originales candidatos:** `352.3`
-- **KB incluidos en contenido:** `352.0`
+- **KB originales candidatos:** `494.9`
+- **KB incluidos en contenido:** `464.5`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -9879,7 +9880,7 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
 - **Tamaño original:** `0.6 KB`
-- **SHA1 corto:** `a1592505e0`
+- **SHA1 corto:** `160ef5c9ef`
 - **Estado:** `completo`
 
 ```markdown
@@ -9891,7 +9892,7 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 | `src/style.css` | 12 | 0.5 | mantener neutralizado |
 | `src/styles/sisad-tailwind-bridge.css` | 1 | 0.0 | revisar |
 | `src/features/pdfcomponent/labRoutes.css` | 1708 | 36.0 | migrar lab UI por componentes |
-| `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | 4209 | 195.2 | migrar solo reglas visuales seguras |
+| `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | 4114 | 191.1 | migrar solo reglas visuales seguras |
 | `src/sisad-pdfme/ui/styles/tokens.css` | 324 | 13.7 | conservar tokens |
 
 No incluir `reports/**` ni `.tailwind-migration-backups/**` como CSS activo.
@@ -10706,7 +10707,531 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 
 <a id="file-0224"></a>
 
-### 0224 — `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md`
+### 0224 — `reports/tailwind-migration/selector-duplicates-current.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `655`
+- **Tamaño original:** `140.6 KB`
+- **SHA1 corto:** `45bb9a57b8`
+- **Estado:** `truncado 110.5 KB`
+
+```markdown
+# Selector duplicates current
+
+Auditoría generada sobre CSS activo del proyecto.
+
+| Selector | Apariciones | Archivos | Líneas aprox. | Clasificación |
+|---|---:|---|---|---|
+| `:is(.app-shell` | 44 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:362, src/sisad-pdfme/ui/styles/sisad-pdfme.css:367, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3514, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3519, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3522, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3525, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3528, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3531, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3534, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3537, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3537, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3541, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3541, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3545, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3548, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3556, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3559, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3562, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3565, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3568, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3571, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3574, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3574, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3578, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3582, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3585, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3585, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3589, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3593, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3596, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3600, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3603, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3606, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3606, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3610, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3613, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3616, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3619, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3622, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3625, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3628, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3631, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3634, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3637 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar-layout-header` | 7 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1002, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2207, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2601, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2756, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3072, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3088, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3177 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar` | 6 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:918, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1389, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1395, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1513, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1675, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1685 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar-layout-body` | 6 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1020, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2546, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2770, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3072, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3088, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3177 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-header-card` | 5 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1088, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1403, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2223, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2601, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2654 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-section-card` | 5 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1139, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1403, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2320, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2601, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2688 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-tablist` | 5 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:502, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3072, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3088, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3103, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3109 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-list-view-item` | 5 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1966, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2588, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3072, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3088, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3163 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-compact-config-panel` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2279, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2601, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2728, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2783 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-context-summary` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:212, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3072, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3103, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3129 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-header-card-stat` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1122, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2245, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2601, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2679 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-header-card-state-tag` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1106, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2263, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2601, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2673 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-section-card-body[data-collapsed="false"]` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1382, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2364, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2601, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2694 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-compact[data-sidebar-collapsed="false"]` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1697, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1743, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1757, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1771 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-group` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:579, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3072, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3088, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3151 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-list-view-toolbar` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1500, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3072, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3088, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3160 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar-content.sisad-pdfme-designer-sidebar-surface` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:937, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2141, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3072, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3088 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar-panel-switcher-btn` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:982, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2157, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2641, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2783 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-schema-config-switch-row` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1210, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1335, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2508, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2750 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-schema-config-widget` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1145, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1331, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2473, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2601 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-stage` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:81, src/sisad-pdfme/ui/styles/sisad-pdfme.css:91, src/sisad-pdfme/ui/styles/sisad-pdfme.css:107, src/sisad-pdfme/ui/styles/sisad-pdfme.css:817 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1747, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1761, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1775, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1850 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"][data-sidebar-open="true"] .sisad-pdfme-designer-canvas` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1751, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1765, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1779, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1853 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-card-secondary` | 4 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:841, src/features/pdfcomponent/labRoutes.css:861, src/features/pdfcomponent/labRoutes.css:871, src/features/pdfcomponent/labRoutes.css:1433 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-hero` | 4 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:96, src/features/pdfcomponent/labRoutes.css:114, src/features/pdfcomponent/labRoutes.css:1286, src/features/pdfcomponent/labRoutes.css:1313 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-page-metrics` | 4 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:453, src/features/pdfcomponent/labRoutes.css:473, src/features/pdfcomponent/labRoutes.css:1305, src/features/pdfcomponent/labRoutes.css:1406 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-toolbar` | 4 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:96, src/features/pdfcomponent/labRoutes.css:882, src/features/pdfcomponent/labRoutes.css:1357, src/features/pdfcomponent/labRoutes.css:1374 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-sidebar-surface-empty` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:272, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3072, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3088, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3138 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-sidebar-surface-header` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:239, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3072, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3088, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3135 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-ui-control-bar-summary` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:195, src/sisad-pdfme/ui/styles/sisad-pdfme.css:203, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3072, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3103 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-ui-error-screen-body` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:167, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3072, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3088, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3181 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-align-btn` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2378, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2706, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2783 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-background` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:81, src/sisad-pdfme/ui/styles/sisad-pdfme.css:91, src/sisad-pdfme/ui/styles/sisad-pdfme.css:101 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-button-auto` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2402, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2713, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2783 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-canvas` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:91, src/sisad-pdfme/ui/styles/sisad-pdfme.css:110, src/sisad-pdfme/ui/styles/sisad-pdfme.css:820 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-color-picker-trigger` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2430, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2719, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2783 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-compact-config-panel-actions` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2305, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2627, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2746 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-header-card-stat-label` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1127, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2260, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2685 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-header-card-stat-value` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1130, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2257, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2682 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-header-card-title` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1109, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2240, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2660 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-section-card-head` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1340, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2346, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2691 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-view-context-strip` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1150, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2266, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2601 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-view-host` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1045, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2200, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2601 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-view-title` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1164, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1385, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2762 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-view-toggle-btn` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3823, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3827, src/sisad-pdfme/ui/styles/sisad-pdfme.css:4203 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-draggable-shell[data-dragging="true"]` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:626, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3343, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3350 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-toggle-btn` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:949, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1685, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2558 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-list-view-item-content` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1984, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3166, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3169 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-list-view-item:hover` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1969, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2591, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2616 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-plugin-btn[data-catalog-layout="list"]:hover` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:670, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2582, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2616 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"]:hover` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:722, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2585, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2616 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar-panel-switcher` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:979, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2154, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2638 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar-panel-switcher-wrap` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:976, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2151, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2632 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar[data-sidebar-open="true"]` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1679, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2138, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2601 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-root` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:81, src/sisad-pdfme/ui/styles/sisad-pdfme.css:91, src/sisad-pdfme/ui/styles/sisad-pdfme.css:98 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-schema-config-section-icon` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1173, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1310, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2493 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-schema-config-section-state[data-active="true"]` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1318, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2488, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2601 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-schema-config-summary` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1198, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1403, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2476 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-button` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1100, src/features/pdfcomponent/labRoutes.css:1113, src/features/pdfcomponent/labRoutes.css:1378 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-card` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:96, src/features/pdfcomponent/labRoutes.css:704, src/features/pdfcomponent/labRoutes.css:709 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-card-primary` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:841, src/features/pdfcomponent/labRoutes.css:855, src/features/pdfcomponent/labRoutes.css:1433 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-collaboration-summary` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:547, src/features/pdfcomponent/labRoutes.css:560, src/features/pdfcomponent/labRoutes.css:1425 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-collaboration-select` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:234, src/features/pdfcomponent/labRoutes.css:246, src/features/pdfcomponent/labRoutes.css:261 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-select` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:199, src/features/pdfcomponent/labRoutes.css:228, src/features/pdfcomponent/labRoutes.css:266 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-header-collaboration .sisad-pdfme-popover-button` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:199, src/features/pdfcomponent/labRoutes.css:220, src/features/pdfcomponent/labRoutes.css:266 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-hero h1` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:309, src/features/pdfcomponent/labRoutes.css:316, src/features/pdfcomponent/labRoutes.css:1321 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-page` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1, src/features/pdfcomponent/labRoutes.css:41, src/features/pdfcomponent/labRoutes.css:1393 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-page h1` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:309, src/features/pdfcomponent/labRoutes.css:316, src/features/pdfcomponent/labRoutes.css:1321 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-page-actions` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:387, src/features/pdfcomponent/labRoutes.css:1348, src/features/pdfcomponent/labRoutes.css:1412 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-results` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:96, src/features/pdfcomponent/labRoutes.css:1207, src/features/pdfcomponent/labRoutes.css:1357 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-select` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1100, src/features/pdfcomponent/labRoutes.css:1109, src/features/pdfcomponent/labRoutes.css:1378 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-toolbar-grid` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:770, src/features/pdfcomponent/labRoutes.css:1286, src/features/pdfcomponent/labRoutes.css:1309 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-workspace` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:96, src/features/pdfcomponent/labRoutes.css:1172, src/features/pdfcomponent/labRoutes.css:1357 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-ui-control-bar` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:170, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1663, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2563 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-ui-control-bar-icon-btn` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:326, src/sisad-pdfme/ui/styles/sisad-pdfme.css:345, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2566 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-ui-control-bar-pill` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:195, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3072, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3103 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-ui-control-bar-text-btn` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:326, src/sisad-pdfme/ui/styles/sisad-pdfme.css:352, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2566 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-canvas` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:81, src/sisad-pdfme/ui/styles/sisad-pdfme.css:91 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-align-btn:hover:not(:disabled)` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2385, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2616 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-align-widget-grid` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2375, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2703 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-button-auto:hover:not(:disabled)` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2409, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2616 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-button-group` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2399, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2710 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-canvas [data-paper-root="true"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:124, src/sisad-pdfme/ui/styles/sisad-pdfme.css:149 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-canvas-empty-state-hint` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:855, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2031 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-canvas-empty-state-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:852, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2028 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-color-picker-container` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2427, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2716 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-color-picker-hex` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2451, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2722 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-color-picker-preview` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2445, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2725 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-compact-config-panel-description` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2293, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2735 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-compact-config-panel-footer` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2311, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2753 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-compact-config-panel-summary` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2299, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2739 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-compact-config-panel-summary-text` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2302, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2742 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-compact-config-panel-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2290, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2731 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-context-summary-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:219, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3132 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-custom-field-footer` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1626, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1653 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-custom-field-footer .ant-btn` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1631, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1657 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-custom-field-form` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1549, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1644 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-custom-field-grid` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1576, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1648 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-custom-field-inline-checks` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1623, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1648 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-custom-field-section-legend` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1569, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1573 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-header-card-head` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1094, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2657 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-header-card-stat:hover` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2252, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2616 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-header-card-state-row` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1103, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2670 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-header-card-stats` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1119, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2676 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-header-card-tag-base` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1112, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2667 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-header-card-title-wrap` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1097, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2664 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-section-card-description` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1361, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2372 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-section-card-head:focus-visible` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1352, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2355 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-section-card-head:hover` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1349, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2352 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-section-card-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1358, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2367 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-section-card-toggle` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1364, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2358 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-view-context-chip` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1153, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2269 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-detail-view-sections` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1042, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2317 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-documents-rail-item` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2099, src/sisad-pdfme/ui/styles/sisad-pdfme.css:4161 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-documents-rail-item-active` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2107, src/sisad-pdfme/ui/styles/sisad-pdfme.css:4167 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-documents-rail-item-wrapper` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2090, src/sisad-pdfme/ui/styles/sisad-pdfme.css:4158 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-documents-rail-item-wrapper:hover .sisad-pdfme-designer-documents-rail-delete-btn` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2096, src/sisad-pdfme/ui/styles/sisad-pdfme.css:4179 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-documents-rail-item:hover` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2104, src/sisad-pdfme/ui/styles/sisad-pdfme.css:4164 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-documents-rail-preview` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2113, src/sisad-pdfme/ui/styles/sisad-pdfme.css:4170 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:464, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1667 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:633, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3836 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-chip-row` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:553, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1685 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-control-band` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1712, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1725 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1787, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1951 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group-items[data-catalog-layout="tiles"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1799, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1957 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1790, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1954 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn-label-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1811, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1844 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1802, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1819 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"] .sisad-pdfme-designer-plugin-icon-fallback` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1830, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1838 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"] > div` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1805, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1830 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"] > div svg` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1808, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1838 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-custom-panel` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3072, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3088 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-group-items` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:603, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3157 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-group-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:585, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3154 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-plugin-wrap:hover .sisad-pdfme-designer-plugin-favorite-toggle` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:704, src/sisad-pdfme/ui/styles/sisad-pdfme.css:800 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-search-stack` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:498, src/sisad-pdfme/ui/styles/sisad-pdfme.css:550 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-search-wrap` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:547, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3144 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-search[data-use-default-style="true"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:539, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3141 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-tab-btn` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:510, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3112 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-tab-btn-active` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:525, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3115 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-tab-btn-active::after` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:530, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3120 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-tab-label` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:536, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3126 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-list-view` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1045, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1509 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-plugin-btn[data-catalog-layout="list"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:663, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2578 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-plugin-btn[data-catalog-layout="list"] .sisad-pdfme-designer-plugin-btn-label-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:776, src/sisad-pdfme/ui/styles/sisad-pdfme.css:788 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:675, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2578 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"]:active` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:751, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3356 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar .ant-form-item` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1063, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2697 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar .ant-input` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1072, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2517 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar .ant-input-number-input` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1072, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2517 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell .ant-col` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1060, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2773 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell .ant-row` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1057, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2776 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-density-wrap` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3865, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3985 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3865, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3869 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar-content` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:934, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1399 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar-layout-body::-webkit-scrollbar` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1025, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2549 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar-layout-body::-webkit-scrollbar-thumb` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1031, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2552 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar-layout-frame` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:999, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2204 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar-layout-header-divider` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1017, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2759 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar-panel-switcher-btn-content` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2185, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2645 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar-panel-switcher-btn-icon` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2188, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2648 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar-panel-switcher-btn-label` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2197, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2651 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar-panel-switcher-btn:hover` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:987, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2171 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar-panel-switcher-btn[data-active="true"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:990, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2174 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-right-sidebar[data-panel-mode="detail"] .sisad-pdfme-designer-right-sidebar-layout-body` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1221, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2766 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-active="true"]::before` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3548, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3551 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1278, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2502 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-schema-config-grid-2` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1218, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1322 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-schema-config-pair-row` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1262, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1322 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-schema-config-section-head` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1161, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1301 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-schema-config-section-head-main` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1170, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1304 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-schema-config-section-state` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1181, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1315 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-schema-config-section-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1164, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1307 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-schema-config-summary::before` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1203, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2482 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-schema-config-tags` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1178, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1327 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-schema-config-tags .ant-tag` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1181, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1186 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-snap-label` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:451, src/sisad-pdfme/ui/styles/sisad-pdfme.css:458 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-content` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1918, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1921 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-meta-badge` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1940, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1946 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-value` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1930, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1933 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1882, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1891 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn-label` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1888, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1897 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-advanced-tools` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1256, src/features/pdfcomponent/labRoutes.css:1383 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-advanced-tools-summary` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1264, src/features/pdfcomponent/labRoutes.css:1417 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-card-actions` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:833, src/features/pdfcomponent/labRoutes.css:1429 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-card-grid` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:689, src/features/pdfcomponent/labRoutes.css:1357 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-card-list` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:697, src/features/pdfcomponent/labRoutes.css:1352 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-card-summary` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:738, src/features/pdfcomponent/labRoutes.css:818 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-card-topline` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:753, src/features/pdfcomponent/labRoutes.css:761 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-collaboration-bar` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:517, src/features/pdfcomponent/labRoutes.css:1292 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-collaboration-controls` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:554, src/features/pdfcomponent/labRoutes.css:1296 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-collaboration-disclosure` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:506, src/features/pdfcomponent/labRoutes.css:1421 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-collaboration-select` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:616, src/features/pdfcomponent/labRoutes.css:1397 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-collaboration-select-wrap` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:601, src/features/pdfcomponent/labRoutes.css:1401 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-description` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:444, src/features/pdfcomponent/labRoutes.css:1326 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-header-collaboration` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:170, src/features/pdfcomponent/labRoutes.css:257 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-collaboration-select-label` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:194, src/features/pdfcomponent/labRoutes.css:251 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-hero-metric` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:477, src/features/pdfcomponent/labRoutes.css:1334 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-hero-metrics` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:453, src/features/pdfcomponent/labRoutes.css:1406 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-hero-summary` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:453, src/features/pdfcomponent/labRoutes.css:1406 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-hero-summary > div` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:477, src/features/pdfcomponent/labRoutes.css:1334 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-hero-text` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:444, src/features/pdfcomponent/labRoutes.css:1326 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-landing` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1, src/features/pdfcomponent/labRoutes.css:15 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-landing::after` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:20, src/features/pdfcomponent/labRoutes.css:35 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-landing::before` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:20, src/features/pdfcomponent/labRoutes.css:29 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-meta` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:753, src/features/pdfcomponent/labRoutes.css:775 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-page-context` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:379, src/features/pdfcomponent/labRoutes.css:1300 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-page-controls` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:412, src/features/pdfcomponent/labRoutes.css:1344 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-page-copy` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:357, src/features/pdfcomponent/labRoutes.css:1317 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-description` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:138, src/features/pdfcomponent/labRoutes.css:1645 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-page-linkRow` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:406, src/features/pdfcomponent/labRoutes.css:1340 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-page-metric` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:477, src/features/pdfcomponent/labRoutes.css:1334 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-page-rail` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:371, src/features/pdfcomponent/labRoutes.css:1300 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-page-topbar` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:349, src/features/pdfcomponent/labRoutes.css:1286 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-result-card` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:96, src/features/pdfcomponent/labRoutes.css:704 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-results-drawer-panel` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1553, src/features/pdfcomponent/labRoutes.css:1576 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-results-grid` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:697, src/features/pdfcomponent/labRoutes.css:1352 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-results-pill` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1553, src/features/pdfcomponent/labRoutes.css:1558 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-results-summary` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1214, src/features/pdfcomponent/labRoutes.css:1364 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-runtime-host` | 2 | `src/features/pdfcomponent/labRoutes.css`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/features/pdfcomponent/labRoutes.css:1195, src/sisad-pdfme/ui/styles/sisad-pdfme.css:161 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-section-heading p` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:444, src/features/pdfcomponent/labRoutes.css:1326 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-lab-toolbar-heading` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:753, src/features/pdfcomponent/labRoutes.css:765 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-output-grid` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1458, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1519 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-popover-panel` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:929, src/features/pdfcomponent/labRoutes.css:1387 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-root` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:48, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3069 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="form"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2990, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2994 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-ui-control-bar-icon-btn:hover:not(:disabled)` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:419, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2570 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-ui-control-bar-icon-btn[data-active="true"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:341, src/sisad-pdfme/ui/styles/sisad-pdfme.css:416 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-ui-control-bar-shortcuts-btn` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:330, src/sisad-pdfme/ui/styles/sisad-pdfme.css:336 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-ui-control-bar-text-btn:hover:not(:disabled)` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:419, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2570 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-ui-preview-scroll [data-paper-root="true"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:124, src/sisad-pdfme/ui/styles/sisad-pdfme.css:146 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-mode="micro"] .sisad-pdfme-ui-selection-context-toolbar-summary` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3402, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3432 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-workspace` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:81, src/sisad-pdfme/ui/styles/sisad-pdfme.css:88 | MERGE_SAME_SELECTOR |
+| `.ant-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1419 | REVIEW_ANTD_OVERRIDE |
+| `.ant-btn-default:not(.sisad-pdfme-designer-left-sidebar-filter-btn)` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1422 | REVIEW_ANTD_OVERRIDE |
+| `.ant-btn-default:not(.sisad-pdfme-designer-left-sidebar-filter-btn):hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1425 | REVIEW_ANTD_OVERRIDE |
+| `.ant-btn-text` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1428 | REVIEW_ANTD_OVERRIDE |
+| `.ant-btn-text:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1431 | REVIEW_ANTD_OVERRIDE |
+| `.ant-collapse-item:hover .sisad-pdfme-designer-schema-config-section-icon` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2499 | REVIEW_ANTD_OVERRIDE |
+| `.ant-divider-horizontal` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1410 | REVIEW_ANTD_OVERRIDE |
+| `.ant-input` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1446 | REVIEW_ANTD_OVERRIDE |
+| `.ant-input-affix-wrapper` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1434 | REVIEW_ANTD_OVERRIDE |
+| `.ant-input-affix-wrapper-focused` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1442 | REVIEW_ANTD_OVERRIDE |
+| `.ant-input-affix-wrapper:focus-within` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1442 | REVIEW_ANTD_OVERRIDE |
+| `.ant-input-affix-wrapper:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1439 | REVIEW_ANTD_OVERRIDE |
+| `.ant-input::placeholder` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1449 | REVIEW_ANTD_OVERRIDE |
+| `.ant-select-selection-item` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1455 | REVIEW_ANTD_OVERRIDE |
+| `.ant-select-selector` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1452 | KEEP_GEOMETRY |
+| `.ant-typography` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1413 | REVIEW_ANTD_OVERRIDE |
+| `.ant-typography-secondary` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1416 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-inspector-select-popup .ant-select-item-option-content` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:4153 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-canvas .sisad-pdfme-ui-canvas-overlay-manager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:152 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:858 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:889 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-control` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:896 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-line` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:893 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-origin` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:901 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-rotation-line` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:904 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .scena-guides-guide-origin` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:883 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .scena-guides-guide.scena-guides-adder` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:886 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .scena-guides-manager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:880 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"]>.sisad-pdfme-designer-custom-undefined` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:868 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"]>.sisad-pdfme-designer-padding` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:871 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-paper-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:155 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas-empty-state` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:840 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas-empty-state-card` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:846 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas[data-grid-visible="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:116 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas[data-guides-visible="false"] [data-canvas-page="true"] .scena-guides-manager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:877 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas[data-padding-visible="false"] [data-canvas-page="true"]>.sisad-pdfme-designer-padding` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:874 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-custom-field-footer .ant-btn-default` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1634 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-custom-field-footer .ant-btn-primary` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1637 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-custom-field-footer .ant-btn:disabled` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1640 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-custom-field-form-scroll` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1552 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-custom-field-form-scroll::-webkit-scrollbar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1555 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-custom-field-form-scroll::-webkit-scrollbar-thumb` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1561 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-custom-field-form-scroll::-webkit-scrollbar-track` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1558 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-custom-field-modal .ant-input` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1588 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-custom-field-modal .ant-input-focused` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1598 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-custom-field-modal .ant-input::placeholder` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1603 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-custom-field-modal .ant-input:focus` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1598 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-custom-field-modal .ant-input:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1594 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-custom-field-modal .ant-modal-body` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1546 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-custom-field-modal .ant-modal-close` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1535 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-custom-field-modal .ant-modal-close:active` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1543 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-custom-field-modal .ant-modal-close:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1540 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-custom-field-modal .ant-modal-content` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1524 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-custom-field-modal .ant-modal-header` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1529 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-custom-field-modal .ant-modal-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1532 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-detail-view-form-shell .ant-card` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:4131 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-detail-view-form-shell .ant-card-body` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:4147 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-detail-view-form-shell .ant-card-head` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:4136 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-detail-view-form-shell .ant-card-head-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:4141 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-detail-view-form-shell .ant-form` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1053 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-detail-view-form-shell .ant-form-item` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3803 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-detail-view-form-shell .ant-form-item-label > label` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3806 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-detail-view-form-shell .ant-input` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3809 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-detail-view-form-shell .ant-input-number` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3809 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-detail-view-form-shell .ant-input-number-input` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3814 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-detail-view-form-shell .ant-select-selection-item` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3817 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-detail-view-form-shell .ant-select-selector` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3809 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-documents-rail .sisad-pdfme-designer-documents-rail-meta .ant-typography` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2127 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-documents-rail-header-title .ant-typography` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2049 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-documents-rail-page-label` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2121 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-inspector-summary-card-tags .ant-tag` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3758 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-inspector-tag-list .ant-tag` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3758 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-chip-row` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3820 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-control-band` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3793 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item .sisad-pdfme-designer-left-sidebar-custom-item-icon` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3845 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item-desc` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3830 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item-label` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3841 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item-meta` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3830 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:649 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item[data-catalog-layout="list"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:639 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item[data-catalog-layout="tiles"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:639 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-dock-header` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3782 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-dock-recipient` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3788 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-dock-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3785 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-filter-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3823 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-plugin-wrap > .ant-btn.sisad-pdfme-designer-plugin-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:633 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-plugin-wrap > .sisad-pdfme-designer-plugin-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:633 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-plugin-wrap > .sisad-pdfme-designer-plugin-btn:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:649 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-plugin-wrap > .sisad-pdfme-designer-plugin-btn[data-catalog-layout="list"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:639 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-plugin-wrap > .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:639 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-search-wrap` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3796 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-search-wrap .ant-input` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3799 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-search-wrap .ant-input-affix-wrapper` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3799 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn-label-desc` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3830 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn-label-meta` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3830 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn-label-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3841 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-catalog-layout="list"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3836 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-catalog-layout="list"] > div` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3845 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3836 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"] > div` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3845 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-schema-category="Selecciones"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:709 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-schema-category="Selecciones"] .sisad-pdfme-designer-plugin-btn-label-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:719 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-schema-category="Selecciones"] > div` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:714 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-schema-kind="builtin"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:767 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-schema-kind="custom"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:770 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-icon-fallback` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:657 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar-active-recipient-dot` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:141 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar-chip-row::-webkit-scrollbar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:556 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-left-sidebar-compact` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1694 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-chip-row` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1736 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-dock-header` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1703 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-dock-kicker` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1706 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-dock-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1709 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-filter-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1739 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group-title-count` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1796 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group-title-label` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1793 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-main` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1784 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-plugin-wrap` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1814 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-search-stack` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1712 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-search-wrap` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/si
+
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 30968 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
+
+"] .sisad-pdfme-designer-right-sidebar-panel-switcher-wrap` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:4044 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-right-sidebar[data-right-sidebar-density="mini"] .sisad-pdfme-designer-right-sidebar-panel-switcher` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:4055 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-right-sidebar[data-right-sidebar-density="mini"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:4058 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-right-sidebar[data-right-sidebar-density="mini"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn-label` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:4063 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-right-sidebar[data-right-sidebar-density="mini"] .sisad-pdfme-designer-right-sidebar-panel-switcher-extra` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:4067 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-right-sidebar[data-right-sidebar-density="mini"] .sisad-pdfme-designer-right-sidebar-panel-switcher-wrap` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:4044 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item > .ant-collapse-content` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1286 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item > .ant-collapse-content > .ant-collapse-content-box` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1289 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item > .ant-collapse-header` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1283 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2505 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-schema-config-nested-collapse > .ant-collapse-item > .ant-collapse-content > .ant-collapse-content-box` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1298 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-schema-config-nested-collapse > .ant-collapse-item > .ant-collapse-header` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1295 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-schema-config-summary-row .ant-tag` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1181 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-stage .sisad-pdfme-designer-detail-header-card .sisad-pdfme-designer-sidebar-surface-header-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:4103 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage .sisad-pdfme-designer-right-sidebar-panel-switcher-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:4128 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage .sisad-pdfme-designer-schema-config-field .ant-input` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:4123 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-stage .sisad-pdfme-designer-schema-config-field .ant-select-selector` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:4123 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage .sisad-pdfme-designer-sidebar-surface-header-subtitle` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:4107 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage .sisad-pdfme-designer-sidebar-surface-header-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:4103 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-interaction-phase="dragging"] .sisad-pdfme-designer-mask` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3503 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-interaction-phase="dragging"] .sisad-pdfme-ui-control-bar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3498 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-context-summary-chip` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1915 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-context-summary-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1912 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-actions .ant-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1960 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-grip` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1927 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-icon` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1924 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-meta` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1936 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-layout-body` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1909 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-layout-header` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1900 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn-content` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1894 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn-icon` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1885 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-wrap` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1879 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-sidebar-surface-header-badges .ant-tag` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1906 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-sidebar-surface-header-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1903 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1856 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-cluster--bottom-right` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1870 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-context` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:4206 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-page-select` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1876 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-text-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1873 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density="comfortable"] .sisad-pdfme-ui-control-bar-cluster--top-center` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1862 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density="comfortable"] .sisad-pdfme-ui-control-bar-cluster--top-left` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1862 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density="comfortable"] .sisad-pdfme-ui-control-bar-cluster--top-right` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1862 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density="compact"] .sisad-pdfme-ui-control-bar-cluster--top-center` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1862 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density="compact"] .sisad-pdfme-ui-control-bar-cluster--top-left` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1862 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density="compact"] .sisad-pdfme-ui-control-bar-cluster--top-right` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1862 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"][data-sidebar-open="true"] .sisad-pdfme-ui-control-bar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1859 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .moveable-control-box` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3337 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .sisad-pdfme-designer-canvas` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3328 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .sisad-pdfme-option-group-floating-action` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3643 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .sisad-pdfme-ui-inline-edit-overlay` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3337 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .sisad-pdfme-ui-selection-context-toolbar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3337 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-schema-dragging="true"][data-drop-valid="false"] [data-canvas-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3334 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-schema-dragging="true"][data-schema-over-canvas="true"] [data-canvas-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3331 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-sidebar-open="true"] .sisad-pdfme-designer-canvas` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:928 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-canvas-shell` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1180 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-canvas-shell > *` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1191 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-hero-metrics::-webkit-scrollbar` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:467 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-hero-summary::-webkit-scrollbar` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:467 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page .sisad-pdfme-canvas` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1203 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-actions-compact` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:400 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-actions-compact .sisad-pdfme-popover-button` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:281 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-actions-compact .sisad-pdfme-popover-button:focus-visible` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:295 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-controls .sisad-pdfme-lab-summary-label` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:421 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-details` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:322 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-details-summary` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:329 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-details-summary::-webkit-details-marker` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:339 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-details-title` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:343 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-eyebrow` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:364 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-hero[data-density='compact']` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:123 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-collaboration-chips` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1645 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-collaboration-headline` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1645 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-collaboration-summary` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1645 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page h1` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:147 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-actions` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:160 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-controls` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:166 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-copy` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:143 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-details` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1645 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-linkRow` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1645 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-rail` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:152 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-topbar` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:132 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-status-inline` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1645 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-metric dd` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:497 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-metrics::-webkit-scrollbar` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:467 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page-rightSlot` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:273 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page::before` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:53 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page[data-density='compact']` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1476 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-collaboration-bar-compact` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1517 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-collaboration-bar-compact .sisad-pdfme-lab-collaboration-select-wrap` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1523 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-collaboration-bar-compact .sisad-pdfme-lab-select` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1527 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-collaboration-bar-compact .sisad-pdfme-popover-button` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1532 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-page h1` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1499 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-page-actions` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1507 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-page-actions-compact` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1512 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-page-copy` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1495 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-page-hero` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1480 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-page-rail` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1503 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-page-topbar` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1489 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page[data-ux-mode='canvas-first']` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1442 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page[data-ux-mode='canvas-first'] .sisad-pdfme-lab-canvas-shell` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1465 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-page[data-ux-mode='canvas-first'] .sisad-pdfme-lab-workspace` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1451 | KEEP_GEOMETRY |
+| `.sisad-pdfme-lab-workspace[data-ux-mode='canvas-first'] .sisad-pdfme-lab-section-heading` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:432 | KEEP_GEOMETRY |
+| `.sisad-pdfme-page` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:66 | KEEP_GEOMETRY |
+| `.sisad-pdfme-paper-page` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:136 | KEEP_GEOMETRY |
+| `.sisad-pdfme-paper-root` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:128 | KEEP_GEOMETRY |
+| `.sisad-pdfme-paper-scale-layer` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:131 | KEEP_GEOMETRY |
+| `.sisad-pdfme-root ::-webkit-scrollbar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:54 | KEEP_GEOMETRY |
+| `.sisad-pdfme-root ::-webkit-scrollbar-thumb` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:60 | KEEP_GEOMETRY |
+| `.sisad-pdfme-root ::-webkit-scrollbar-thumb:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:63 | KEEP_GEOMETRY |
+| `.sisad-pdfme-root ::-webkit-scrollbar-track` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:57 | KEEP_GEOMETRY |
+| `.sisad-pdfme-root .sisad-pdfme-designer-canvas[data-grid-visible="false"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:827 | KEEP_GEOMETRY |
+| `.sisad-pdfme-root .sisad-pdfme-designer-canvas[data-grid-visible="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:832 | KEEP_GEOMETRY |
+| `.sisad-pdfme-shortcuts-panel .ant-modal-content` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3640 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-sidebar-surface-header-badges` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:269 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-sidebar-surface-header-compact` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:242 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-sidebar-surface-header-compact .sisad-pdfme-sidebar-surface-header-copy` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:248 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-sidebar-surface-header-compact .sisad-pdfme-sidebar-surface-header-main` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:245 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-sidebar-surface-header-copy` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:258 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-sidebar-surface-header-leading` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:254 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-sidebar-surface-header-main` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:251 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-sidebar-surface-header-subtitle` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:266 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-sidebar-surface-header-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:261 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-sidebar-surface-header-trailing` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:254 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-ui-canvas-overlay-manager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3325 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-control-bar .ant-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:394 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-ui-control-bar .ant-btn:disabled` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:399 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-ui-control-bar .ant-select .ant-select-selector` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:402 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-control-bar .ant-select-arrow` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:394 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-ui-control-bar .ant-select-selection-item` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:394 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-ui-control-bar .ant-select.sisad-pdfme-ui-control-bar-page-select .ant-select-selector` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:405 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-control-bar .ant-typography` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:391 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-ui-control-bar-page` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:299 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-control-bar-page-select` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:381 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-control-bar-shortcuts-btn .ant-btn-icon` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:333 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-ui-control-bar[data-density="compact"] .sisad-pdfme-ui-control-bar-page-select` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:384 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-control-bar[data-density="minimal"] .sisad-pdfme-ui-control-bar-page-select` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:384 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-control-bar[data-density="minimal"] .sisad-pdfme-ui-zoom .ant-select-selector` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:412 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-control-bar[data-density="minimal"] .sisad-pdfme-ui-zoom .sisad-pdfme-ui-zoom-select .ant-select-selector` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:412 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-pager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:319 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-preview-scroll` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:110 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-preview-scroll [data-paper-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:155 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-zoom` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:319 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-zoom .ant-select-selector` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:408 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-zoom .sisad-pdfme-ui-zoom-select .ant-select-selector` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:408 | KEEP_GEOMETRY |
+| `[data-detail-header-density="compact"] .sisad-pdfme-designer-sidebar-surface-header-badges .ant-tag` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3732 | REVIEW_ANTD_OVERRIDE |
+| `[data-detail-header-density="mini"] .sisad-pdfme-designer-detail-header-card .sisad-pdfme-designer-sidebar-surface-header-subtitle` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3735 | MIGRATE_TO_TSX |
+| `[data-detail-header-density="mini"] .sisad-pdfme-designer-detail-header-card .sisad-pdfme-designer-sidebar-surface-header-trailing` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3738 | MIGRATE_TO_TSX |
+| `[data-inspector-density="mini"] .sisad-pdfme-designer-inspector-action-row .ant-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3779 | REVIEW_ANTD_OVERRIDE |
+
+Ignora `reports/**`, `.tailwind-migration-backups/**` y reglas de keyframes.
+```
+
+<a id="file-0225"></a>
+
+### 0225 — `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -10762,9 +11287,9 @@ Ninguno `.css` fue modificado en esta card. Los `.css` que figuran en `git statu
 `reports/tailwind-migration/current-screenshots/left-sidebar-before.png`, `left-sidebar-after.png`.
 ```
 
-<a id="file-0225"></a>
+<a id="file-0226"></a>
 
-### 0225 — `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md`
+### 0226 — `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `43`
@@ -10818,9 +11343,9 @@ Ningún `.css` modificado por esta card. Los `.css` en `git status` (`sisad-pdfm
 `reports/tailwind-migration/current-screenshots/control-bar-toolbar-after.png`.
 ```
 
-<a id="file-0226"></a>
+<a id="file-0227"></a>
 
-### 0226 — `reports/tailwind-migration/tc-css-10-schemas-visual.md`
+### 0227 — `reports/tailwind-migration/tc-css-10-schemas-visual.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -10864,9 +11389,9 @@ Buena parte del spec **ya estaba implementada** por trabajo previo/paralelo:
 Canvas, Paper, Moveable, Selecto, coordenadas, x/y/width/height/rotation, snapshot, `pdf` render. Sin estilos inline nuevos (los existentes se conservan). Sin `setTimeout`.
 ```
 
-<a id="file-0227"></a>
+<a id="file-0228"></a>
 
-### 0227 — `reports/tailwind-migration/tc-css-11-lab-audit.md`
+### 0228 — `reports/tailwind-migration/tc-css-11-lab-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -10908,9 +11433,9 @@ Canvas, Paper, Moveable, Selecto, coordenadas, x/y/width/height/rotation, snapsh
 - `npm run lint`: passed with inherited warnings only
 ```
 
-<a id="file-0228"></a>
+<a id="file-0229"></a>
 
-### 0228 — `reports/tailwind-migration/tc-css-option-group-selection-fix.md`
+### 0229 — `reports/tailwind-migration/tc-css-option-group-selection-fix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -10959,9 +11484,9 @@ Validación: al seleccionar un radioGroup → `activeHasDesignerBoxes: 0`, `acti
 `global.css` lo edita una sesión paralela en vivo (cambió durante esta tarea). Reapliqué sobre el estado actual y el build pasa; si el worker reintroduce el `fit-content`, reaplicar este cambio.
 ```
 
-<a id="file-0229"></a>
+<a id="file-0230"></a>
 
-### 0229 — `reports/tailwind-migration/tc-css-ownership-color.md`
+### 0230 — `reports/tailwind-migration/tc-css-ownership-color.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -11010,9 +11535,9 @@ La prioridad #5 del spec (resolver color desde `ownerRecipientId` + `recipientCo
 Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas x/y/w/h/rotation. Sin colores hardcodeados nuevos, sin `setTimeout`, sin `!important`, sin editar `.css`.
 ```
 
-<a id="file-0230"></a>
+<a id="file-0231"></a>
 
-### 0230 — `reports/tailwind-migration/ui-styles-decommission-audit.md`
+### 0231 — `reports/tailwind-migration/ui-styles-decommission-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `57`
@@ -11080,9 +11605,9 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 | `.sisad-pdfme-ui-snap-feedback*` | `canvas-interactions.css` | El root y labels ya están en JSX | DELETE_DUPLICATE_WITH_EVIDENCE |
 ```
 
-<a id="file-0231"></a>
+<a id="file-0232"></a>
 
-### 0231 — `reports/tailwind-migration/ui-styles-decommission-progress.md`
+### 0232 — `reports/tailwind-migration/ui-styles-decommission-progress.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -11118,9 +11643,97 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 | `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | Shell, sidebars, paper, runtime layout | Cascada legacy aún compartida por múltiples vistas | TC-CSS-11 / TC-CSS-12 |
 ```
 
-<a id="file-0232"></a>
+<a id="file-0233"></a>
 
-### 0232 — `ai/task-cards/active/TASK-PDFME-005-digital-agreements-runtime-adapter.md`
+### 0233 — `ai/task-cards/active/TASK-CSS-013-selector-dedup-current-design-polish.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `75`
+- **Tamaño original:** `2.4 KB`
+- **SHA1 corto:** `ffcc8da069`
+- **Estado:** `completo`
+
+```markdown
+# TASK-CSS-013 — selector dedup y polish visual actual
+
+**Estado:** active
+**Prioridad:** P1
+**Responsable sugerido:** Codex
+**Área:** `sisad-pdfme` / CSS / UI polish
+
+## Objetivo
+
+Reducir selectores CSS duplicados del diseñador y mejorar el skin actual del
+`RightSidebar`, `LeftSidebar`, `ListView` y panel switcher sin tocar geometría
+del canvas, Moveable, Selecto, zoom ni coordenadas PDF.
+
+## Alcance
+
+- Auditoría real de selectores duplicados en CSS activo.
+- Polish visual seguro del panel switcher derecho.
+- Polish visual seguro de filas y toolbar del `ListView`.
+- Preparar la siguiente pasada para `LeftSidebar`.
+- Eliminar solo reglas migradas y verificadas en `sisad-pdfme.css`.
+
+## Fuera de alcance
+
+- Canvas geometry.
+- Scroll principal del canvas.
+- Moveable, Selecto, zoom.
+- Print/PDF.
+- Tokens CSS salvo lectura.
+- CSS nuevo paralelo.
+- Hacks de `z-index`.
+
+## Archivos candidatos
+
+- `scripts/css-selector-duplicates.mjs`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx`
+- `src/sisad-pdfme/ui/styles/sisad-pdfme.css`
+- `reports/tailwind-migration/selector-duplicates-current.md`
+
+## Archivos prohibidos
+
+- `src/sisad-pdfme/ui/components/Designer/Canvas/**`
+- `src/sisad-pdfme/ui/components/Designer/Moveable/**`
+- `src/sisad-pdfme/ui/components/Designer/Selecto/**`
+- `src/sisad-pdfme/ui/components/Designer/**/zoom/**`
+- `src/sisad-pdfme/ui/styles/tokens.css`
+
+## Pasos
+
+1. Crear el auditor `scripts/css-selector-duplicates.mjs`.
+2. Generar `reports/tailwind-migration/selector-duplicates-current.md`.
+3. Ajustar skin seguro del `RightSidebar` y `ListView`.
+4. Eliminar del CSS solo reglas ya migradas y verificadas.
+5. Validar con build y pruebas existentes.
+
+## Validación
+
+- `node scripts/css-inventory.mjs`
+- `node scripts/css-selector-duplicates.mjs`
+- `npm run build`
+- `npx playwright test tests/playwright/canvas-overflow-regression.spec.ts`
+- `npx playwright test tests/playwright/drag-preview-and-canvas-scroll-regression.spec.ts`
+
+## Criterio de parada
+
+- Si aparece una regresión de selección, drag/drop o reasignación.
+- Si una regla toca geometría del canvas o scroll principal.
+- Si la limpieza exige más de 5 archivos modificados en un solo slice.
+
+## Entrega final
+
+- Reporte de duplicados actualizado.
+- Switcher derecho sin borde negro.
+- Rows del ListView con selección y owner accent separados.
+- CSS duplicado reducido de forma verificable.
+```
+
+<a id="file-0234"></a>
+
+### 0234 — `ai/task-cards/active/TASK-PDFME-005-digital-agreements-runtime-adapter.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `48`
@@ -11179,9 +11792,9 @@ real) y la matriz de referencia en
 y `assignment.enabled` ya quedan activos por defecto en el core.
 ```
 
-<a id="file-0233"></a>
+<a id="file-0235"></a>
 
-### 0233 — `ai/task-cards/active/TASK-PDFME-008-signature-policies-firma-sisad.md`
+### 0235 — `ai/task-cards/active/TASK-PDFME-008-signature-policies-firma-sisad.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `48`
@@ -11240,9 +11853,9 @@ StepOne, legacy `singType`, creación de schemas de firma en StepTwo con la
 política de negocio (sisad→draw, electronica→p12, oneshot→provider+providerKey).
 ```
 
-<a id="file-0234"></a>
+<a id="file-0236"></a>
 
-### 0234 — `ai/task-cards/active/TASK-PDFME-009-externalforms-runner-contract.md`
+### 0236 — `ai/task-cards/active/TASK-PDFME-009-externalforms-runner-contract.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `53`
@@ -11306,9 +11919,9 @@ este repositorio.** Lo que el core ya ofrece para esa migración:
 - Generación PDF vía `generator/` exportado por `integration/index.ts`.
 ```
 
-<a id="file-0235"></a>
+<a id="file-0237"></a>
 
-### 0235 — `ai/task-cards/completed/completed-summary.md`
+### 0237 — `ai/task-cards/completed/completed-summary.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `87`
@@ -11406,9 +12019,9 @@ Este archivo es memoria histórica compacta. Sirve para evitar que agentes IA re
 Si un agente detecta una falla relacionada con una tarea completada, debe crear una task-card nueva con sufijo `regression` o `continuity`, no editar la tarea completada como si estuviera pendiente.
 ```
 
-<a id="file-0236"></a>
+<a id="file-0238"></a>
 
-### 0236 — `ai/task-cards/completed/README.md`
+### 0238 — `ai/task-cards/completed/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -11422,9 +12035,9 @@ Si un agente detecta una falla relacionada con una tarea completada, debe crear 
 Mover aquí task-cards completadas con reporte final.
 ```
 
-<a id="file-0237"></a>
+<a id="file-0239"></a>
 
-### 0237 — `ai/task-cards/completed/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md`
+### 0239 — `ai/task-cards/completed/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `66`
@@ -11501,9 +12114,9 @@ No se deben crear carpetas como `architecture/`, `migration/`, `repo-patch/`, `0
 - Completed no se reabre.
 ```
 
-<a id="file-0238"></a>
+<a id="file-0240"></a>
 
-### 0238 — `ai/task-cards/completed/TASK-CANVAS-001-protect-canvas-overflow.md`
+### 0240 — `ai/task-cards/completed/TASK-CANVAS-001-protect-canvas-overflow.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -11535,9 +12148,9 @@ Verificar que utilidades Tailwind no pisen `overflow:auto`, height, scale o page
 - No resolver el overflow con hacks del host.
 ```
 
-<a id="file-0239"></a>
+<a id="file-0241"></a>
 
-### 0239 — `ai/task-cards/completed/TASK-CSS-012-inline-tailwind-css-reduction.md`
+### 0241 — `ai/task-cards/completed/TASK-CSS-012-inline-tailwind-css-reduction.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `91`
@@ -11639,9 +12252,9 @@ No migrar reglas críticas de layout geométrico del PDF/canvas.
 - No se rompen screenshots baseline.
 ```
 
-<a id="file-0240"></a>
+<a id="file-0242"></a>
 
-### 0240 — `ai/task-cards/completed/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md`
+### 0242 — `ai/task-cards/completed/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `40`
@@ -11692,9 +12305,9 @@ Body no scrollea dentro del diseñador fullscreen.
 - No resolver el caso con hacks de host.
 ```
 
-<a id="file-0241"></a>
+<a id="file-0243"></a>
 
-### 0241 — `ai/task-cards/completed/TASK-PDFME-011-connectivity-sisad-restore.md`
+### 0243 — `ai/task-cards/completed/TASK-PDFME-011-connectivity-sisad-restore.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -11742,9 +12355,9 @@ connectivity: {
 - Se validó con pruebas unitarias de round-trip y lookup.
 ```
 
-<a id="file-0242"></a>
+<a id="file-0244"></a>
 
-### 0242 — `ai/task-cards/completed/TASK-PDFME-012-global-visibility-wiring-continuity.md`
+### 0244 — `ai/task-cards/completed/TASK-PDFME-012-global-visibility-wiring-continuity.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `48`
@@ -11803,9 +12416,9 @@ La configuración global ya existe, pero cada componente debe consumir una fuent
 - Se agregaron pruebas de `advanced` y visibilidad total del inspector.
 ```
 
-<a id="file-0243"></a>
+<a id="file-0245"></a>
 
-### 0243 — `ai/task-cards/completed/TASK-PDFME-013-controller-real-api-no-noop.md`
+### 0245 — `ai/task-cards/completed/TASK-PDFME-013-controller-real-api-no-noop.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -11853,9 +12466,9 @@ Evitar que `useSisadPdfmeController` exponga métodos que aparentan funcionar pe
 - La API pública documenta claramente qué métodos están disponibles.
 ```
 
-<a id="file-0244"></a>
+<a id="file-0246"></a>
 
-### 0244 — `ai/task-cards/completed/TASK-PDFME-014-rightsidebar-reassign-state-regression.md`
+### 0246 — `ai/task-cards/completed/TASK-PDFME-014-rightsidebar-reassign-state-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -11911,9 +12524,9 @@ handler/controller disponible
 - No limpiar selección al cerrar modal.
 ```
 
-<a id="file-0245"></a>
+<a id="file-0247"></a>
 
-### 0245 — `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md`
+### 0247 — `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `784`
@@ -12708,9 +13321,9 @@ No reemplazar las validaciones actuales si ya se usan en runtime.
 7. En `expression.ts`, agregar límites o limpieza de cache para evitar crecimiento indefinido.
 ```
 
-<a id="file-0246"></a>
+<a id="file-0248"></a>
 
-### 0246 — `src/sisad-pdfme/common/README.md`
+### 0248 — `src/sisad-pdfme/common/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -12754,9 +13367,9 @@ Este ZIP contiene los archivos `.ts` del paquete `common` con comentarios de arq
 - Revisar alineación de `ownerRecipientIds` entre Zod (`string[]`) y utilidades que aceptan `string | string[]`.
 ```
 
-<a id="file-0247"></a>
+<a id="file-0249"></a>
 
-### 0247 — `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md`
+### 0249 — `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -12935,9 +13548,9 @@ Debe exponer utilidades puras consumibles por UI, generator, importadores o adap
 ``​`
 ```
 
-<a id="file-0248"></a>
+<a id="file-0250"></a>
 
-### 0248 — `src/sisad-pdfme/converter/README.md`
+### 0250 — `src/sisad-pdfme/converter/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -12990,9 +13603,9 @@ Este módulo no debe conocer:
 Debe mantenerse como utilidad técnica reutilizable por el runtime.
 ```
 
-<a id="file-0249"></a>
+<a id="file-0251"></a>
 
-### 0249 — `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md`
+### 0251 — `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `151`
@@ -13154,9 +13767,9 @@ Riesgos técnicos:
 ``​`
 ```
 
-<a id="file-0250"></a>
+<a id="file-0252"></a>
 
-### 0250 — `src/sisad-pdfme/runtime/README.md`
+### 0252 — `src/sisad-pdfme/runtime/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -13182,9 +13795,9 @@ Este paquete contiene una versión comentada de los helpers/hooks de runtime env
 Estos archivos deben vivir como capa de runtime/adaptador. No deben contener reglas de negocio SISAD, lógica Uanataca, manipulación de canvas, CSS, Moveable, Selecto ni detalles de StepOne/StepTwo.
 ```
 
-<a id="file-0251"></a>
+<a id="file-0253"></a>
 
-### 0251 — `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md`
+### 0253 — `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -13363,9 +13976,9 @@ Este documento acompaña los archivos comentados del runtime UI. Resume responsa
 | types.ts | 147 | 161 |
 ```
 
-<a id="file-0252"></a>
+<a id="file-0254"></a>
 
-### 0252 — `src/sisad-pdfme/ui/README.md`
+### 0254 — `src/sisad-pdfme/ui/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -13414,9 +14027,9 @@ git diff -- src/sisad-pdfme/ui
 ``​`
 ```
 
-<a id="file-0253"></a>
+<a id="file-0255"></a>
 
-### 0253 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
+### 0255 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -13503,9 +14116,9 @@ Migración incremental de diseños a Tailwind preservando comportamiento, canvas
 - generator/pdf-lib
 ```
 
-<a id="file-0254"></a>
+<a id="file-0256"></a>
 
-### 0254 — `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md`
+### 0256 — `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -13546,9 +14159,9 @@ Este bloque contiene la base visual y funcional usada por Preview/Form/Viewer en
 6. Validar persistencia/prefill/API del hook sin sobrescribir valores ya digitados por usuario.
 ```
 
-<a id="file-0255"></a>
+<a id="file-0257"></a>
 
-### 0255 — `src/sisad-pdfme/ui/components/README.md`
+### 0257 — `src/sisad-pdfme/ui/components/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -13587,44 +14200,9 @@ Este paquete contiene una copia completa de los archivos runtime/base UI enviado
 Este bloque es sensible porque conecta el runtime visual con plugins imperativos (`Renderer`), preprocesamiento de PDF (`Paper`/`Preview`) y sincronización de datos (`usePreviewRuntime`). La documentación refuerza que la geometría del canvas debe seguir controlada por schemas y servicios internos, no por estilos arbitrarios de plugins o hosts.
 ```
 
-<a id="file-0256"></a>
+<a id="file-0258"></a>
 
-### 0256 — `src/sisad-pdfme/ui/styles/README.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `22`
-- **Tamaño original:** `0.5 KB`
-- **SHA1 corto:** `f3f4b5f8ef`
-- **Estado:** `completo`
-
-```markdown
-# Estilos SISAD PDFME consolidados
-
-Este paquete contiene una propuesta de limpieza para reducir duplicidad CSS y diseño repetido usando Tailwind.
-
-## Estructura
-
-``​`txt
-src/sisad-pdfme/ui/styles/
-├── sisad-pdfme.css
-└── tokens.css
-``​`
-
-## Uso
-
-``​`ts
-import './styles/sisad-pdfme.css';
-``​`
-
-## Nota
-
-`tokens.css` no usa `@apply` porque su responsabilidad es declarar variables reutilizables.
-El resto del diseño queda centralizado en `sisad-pdfme.css`.
-```
-
-<a id="file-0257"></a>
-
-### 0257 — `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md`
+### 0258 — `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -13653,9 +14231,9 @@ El resto del diseño queda centralizado en `sisad-pdfme.css`.
 - `Guides.tsx`, `Mask.tsx` y `Padding.tsx` quedan como slots visuales puros.
 ```
 
-<a id="file-0258"></a>
+<a id="file-0259"></a>
 
-### 0258 — `src/sisad-pdfme/ui/components/Designer/Canvas/README.md`
+### 0259 — `src/sisad-pdfme/ui/components/Designer/Canvas/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -13690,9 +14268,9 @@ Este paquete contiene copias completas de los archivos del core visual/interacti
 Estos archivos pertenecen al núcleo visual del diseñador. No deben incorporar lógica de host (`DigitalAgreements`, `ContentCustomForm`, `ExternalForms`), reglas de firma/Uanataca ni manipulación externa del DOM fuera de los adapters explícitos.
 ```
 
-<a id="file-0259"></a>
+<a id="file-0260"></a>
 
-### 0259 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md`
+### 0260 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -13718,9 +14296,9 @@ Se documentó el bloque de composición del sidebar derecho del diseñador SISAD
 Estos archivos deben mantenerse como capa de composición visual y navegación del sidebar. No deberían incorporar reglas internas del canvas, manipulación directa de Moveable/Selecto, ni persistencia de negocio. Las mutaciones deben seguir delegándose a callbacks, bridges o comandos ya recibidos por props.
 ```
 
-<a id="file-0260"></a>
+<a id="file-0261"></a>
 
-### 0260 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md`
+### 0261 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -13749,9 +14327,9 @@ Este paquete contiene versiones documentadas de los archivos del sidebar derecho
 - Se conservó la separación esperada: el sidebar orquesta vistas, pero no manipula canvas, Moveable, Selecto ni schemas directamente.
 ```
 
-<a id="file-0261"></a>
+<a id="file-0262"></a>
 
-### 0261 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md`
+### 0262 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -13783,9 +14361,9 @@ Se generó documentación para los 18 archivos de overlays del canvas:
 5. Documentar restricciones arquitectónicas importantes cuando aplicaba.
 ```
 
-<a id="file-0262"></a>
+<a id="file-0263"></a>
 
-### 0262 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md`
+### 0263 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -13831,9 +14409,9 @@ Este paquete contiene copias completas de los archivos enviados, con documentaci
 Estos módulos pertenecen a la capa visual/interactiva del canvas. Deben seguir sin contener reglas de negocio del host, lógica Uanataca, persistencia HTTP, manipulación directa de Moveable/Selecto ni hacks de z-index para ocultar problemas.
 ```
 
-<a id="file-0263"></a>
+<a id="file-0264"></a>
 
-### 0263 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md`
+### 0264 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -13886,9 +14464,9 @@ La documentación se agregó con JSDoc en puntos de extensión y mantenimiento:
 5. En colaboración, validar casos de owner único, multi-owner, shared, locked by me y locked by other.
 ```
 
-<a id="file-0264"></a>
+<a id="file-0265"></a>
 
-### 0264 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md`
+### 0265 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -13937,9 +14515,9 @@ Wrapper de compatibilidad para widgets imperativos de plugins. Se documentaron:
 - Confirmar que clicks dentro del inspector no disparen Selecto, Moveable ni drag/drop del canvas.
 ```
 
-<a id="file-0265"></a>
+<a id="file-0266"></a>
 
-### 0265 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md`
+### 0266 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -13970,9 +14548,9 @@ Este paquete contiene copias documentadas de tres archivos del inspector del dis
 - `WidgetRenderer` conserva el render imperativo en cada render para no cambiar el contrato heredado.
 ```
 
-<a id="file-0266"></a>
+<a id="file-0267"></a>
 
-### 0266 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md`
+### 0267 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -14014,9 +14592,9 @@ El bloque `ListView` representa la lista lateral derecha de campos/schemas del d
 - Si se cambia el DOM del row, preservar `data-testid="right-sidebar-field-item"` y el drag handle.
 ```
 
-<a id="file-0267"></a>
+<a id="file-0268"></a>
 
-### 0267 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md`
+### 0268 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
