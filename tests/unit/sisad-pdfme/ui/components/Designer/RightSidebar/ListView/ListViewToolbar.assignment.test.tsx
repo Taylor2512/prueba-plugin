@@ -41,6 +41,21 @@ describe('ListViewToolbar assignment action', () => {
     expect(onBulkAssignRecipient).toHaveBeenCalledTimes(1);
   });
 
+  it('shows the reassign button when a selection exists and recipients are assignable', () => {
+    render(
+      <OptionsContext.Provider value={enabledOptions as any}>
+        <ListViewToolbar
+          {...baseProps}
+          selectedCount={2}
+          showBulkRecipientAction
+          onBulkAssignRecipient={() => undefined}
+        />
+      </OptionsContext.Provider>,
+    );
+
+    expect(screen.getByTestId('right-sidebar-reassign')).toBeVisible();
+  });
+
   it('does not emit when the action is disabled (bulkRecipientDisabled)', async () => {
     const onBulkAssignRecipient = vi.fn();
     render(
@@ -57,6 +72,30 @@ describe('ListViewToolbar assignment action', () => {
     expect(button).toBeDisabled();
     await userEvent.click(button).catch(() => undefined);
     expect(onBulkAssignRecipient).not.toHaveBeenCalled();
+  });
+
+  it('hides the action when the handler is missing', () => {
+    render(
+      <OptionsContext.Provider value={enabledOptions as any}>
+        <ListViewToolbar {...baseProps} onBulkAssignRecipient={undefined} />
+      </OptionsContext.Provider>,
+    );
+
+    expect(screen.queryByTestId('right-sidebar-reassign')).toBeNull();
+  });
+
+  it('hides the action when there are no assignable recipients', () => {
+    render(
+      <OptionsContext.Provider value={enabledOptions as any}>
+        <ListViewToolbar
+          {...baseProps}
+          selectedCount={1}
+          showBulkRecipientAction={false}
+        />
+      </OptionsContext.Provider>,
+    );
+
+    expect(screen.queryByTestId('right-sidebar-reassign')).toBeNull();
   });
 
   it('hides the action when collaboration forbids structure edits', () => {
@@ -85,7 +124,7 @@ describe('ListViewToolbar assignment action', () => {
   it('keeps an accessible label for the reassign intent', () => {
     render(
       <OptionsContext.Provider value={enabledOptions as any}>
-        <ListViewToolbar {...baseProps} />
+        <ListViewToolbar {...baseProps} onBulkAssignRecipient={() => undefined} />
       </OptionsContext.Provider>,
     );
 

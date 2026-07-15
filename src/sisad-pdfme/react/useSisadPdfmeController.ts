@@ -30,6 +30,9 @@ type InstanceLike = {
   setZoom?: (zoom: number) => void;
   saveTemplate?: () => void;
   onSaveTemplate?: (cb: () => void) => void;
+  getSelectedSchemaIds?: () => string[];
+  selectSchemas?: (ids: string[], mode?: 'replace' | 'add' | 'toggle') => void;
+  clearSelection?: () => void;
 };
 
 export type SisadPdfmeControllerContext = {
@@ -50,6 +53,8 @@ const warnUnsupported = (method: string) => {
     console.warn(`[sisad-pdfme] Controller method not implemented: ${method}`);
   }
 };
+
+const getInstance = (instanceRef: MutableRefObject<InstanceLike | null>) => instanceRef.current;
 
 export const useSisadPdfmeController = (
   instanceRef: MutableRefObject<InstanceLike | null>,
@@ -76,9 +81,31 @@ export const useSisadPdfmeController = (
       instanceRef.current?.updateTemplate?.(snapshot);
     },
 
-    getSelectedSchemaIds: () => [],
-    selectSchemas: () => warnUnsupported('selectSchemas'),
-    clearSelection: () => warnUnsupported('clearSelection'),
+    getSelectedSchemaIds: () => {
+      const instance = getInstance(instanceRef);
+      const ids = instance?.getSelectedSchemaIds?.();
+      if (Array.isArray(ids)) {
+        return ids.map((id) => String(id ?? '').trim()).filter(Boolean);
+      }
+      warnUnsupported('getSelectedSchemaIds');
+      return [];
+    },
+    selectSchemas: (ids, mode) => {
+      const instance = getInstance(instanceRef);
+      if (typeof instance?.selectSchemas === 'function') {
+        instance.selectSchemas(ids, mode);
+        return;
+      }
+      warnUnsupported('selectSchemas');
+    },
+    clearSelection: () => {
+      const instance = getInstance(instanceRef);
+      if (typeof instance?.clearSelection === 'function') {
+        instance.clearSelection();
+        return;
+      }
+      warnUnsupported('clearSelection');
+    },
     addSchema: () => {
       warnUnsupported('addSchema');
       return '';

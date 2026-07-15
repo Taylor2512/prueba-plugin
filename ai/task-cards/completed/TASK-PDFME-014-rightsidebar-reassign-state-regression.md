@@ -2,7 +2,7 @@
 
 ## Estado
 
-backlog
+completed
 
 ## Objetivo
 
@@ -25,11 +25,11 @@ handler/controller disponible
 
 ## Tareas
 
-- [ ] Crear `resolveReassignActionState`.
-- [ ] Usarlo en `ListViewToolbar`.
-- [ ] Usarlo en menú `...` para mostrar acción deshabilitada con explicación cuando no hay selección.
-- [ ] Confirmar que owner accent no se confunde con selected state.
-- [ ] Agregar tests:
+- [x] Crear `resolveReassignActionState`.
+- [x] Usarlo en `ListViewToolbar`.
+- [x] Usarlo en menú `...` para mostrar acción deshabilitada con explicación cuando no hay selección.
+- [x] Confirmar que owner accent no se confunde con selected state.
+- [x] Agregar tests:
   - sin selección no muestra botón principal
   - con selección muestra botón
   - assignment disabled oculta botón

@@ -17,6 +17,8 @@ import type {
   SnapshotRecipient,
   SnapshotAssignment,
   SnapshotConnectivity,
+  SnapshotFileConnectivity,
+  SnapshotSchemaConnectivity,
   SnapshotContributor,
   SignatureConfig,
   ProviderConfig,
@@ -58,6 +60,45 @@ export interface DesignerState {
   comments?: OfficialTemplateSnapshot['comments'];
 }
 
+const normalizeConnectivityRecord = <T extends Record<string, unknown>>(value: unknown): T | undefined => {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return undefined;
+  return cloneDeep(value) as T;
+};
+
+export const normalizeSnapshotConnectivity = (
+  connectivity?: SnapshotConnectivity | null,
+): SnapshotConnectivity | undefined => {
+  if (!connectivity || typeof connectivity !== 'object') return undefined;
+  const byFile = normalizeConnectivityRecord<Record<string, SnapshotFileConnectivity>>(connectivity.byFile);
+  const bySchema = normalizeConnectivityRecord<Record<string, Record<string, SnapshotSchemaConnectivity>>>(connectivity.bySchema);
+  const byRecipient = normalizeConnectivityRecord<Record<string, unknown>>(connectivity.byRecipient);
+  const legacyMapping = normalizeConnectivityRecord<Record<string, unknown>>(connectivity.legacyMapping);
+
+  if (!byFile && !bySchema && !byRecipient && !legacyMapping) return undefined;
+
+  return {
+    byFile: byFile || legacyMapping || undefined,
+    bySchema: bySchema || undefined,
+    byRecipient: byRecipient || undefined,
+    legacyMapping: legacyMapping || undefined,
+  };
+};
+
+const resolveSnapshotConnectivityRecord = (snapshot: unknown): SnapshotConnectivity | undefined => {
+  const record = asRecord(snapshot) || {};
+  const connectivity = asRecord(record.connectivity);
+  const legacyMapping = asRecord(record.connectivityMapping);
+  if (!connectivity && !legacyMapping) return undefined;
+  return normalizeSnapshotConnectivity({
+    byFile: asRecord(connectivity?.byFile) || legacyMapping || undefined,
+    bySchema: asRecord(connectivity?.bySchema) || undefined,
+    byRecipient: asRecord(connectivity?.byRecipient) || undefined,
+    legacyMapping: legacyMapping || undefined,
+  });
+};
+
+const normalizeConnectivityKey = (value: unknown): string => String(value || '').trim();
+
 class SnapshotAdapterImpl {
   /**
    * Serializa el estado del designer a OfficialTemplateSnapshot.
@@ -86,7 +127,7 @@ class SnapshotAdapterImpl {
       uploadedDocuments: state.uploadedDocuments ?? state.documents,
       recipients: state.recipients,
       assignments: state.assignments,
-      connectivity: state.connectivity,
+      connectivity: normalizeSnapshotConnectivity(state.connectivity),
       inputs: state.inputs,
       contributors: state.contributors,
       history: state.history,
@@ -113,7 +154,7 @@ class SnapshotAdapterImpl {
       uploadedDocuments: snapshot.uploadedDocuments,
       recipients: snapshot.recipients,
       assignments: snapshot.assignments,
-      connectivity: snapshot.connectivity,
+      connectivity: normalizeSnapshotConnectivity(snapshot.connectivity),
       inputs: snapshot.inputs,
       contributors: snapshot.contributors,
       history: snapshot.history,
@@ -190,7 +231,7 @@ class SnapshotAdapterImpl {
       uploadedDocuments: uploadedDocuments ?? documents,
       recipients: legacyRecipients,
       assignments: this._extractLegacyAssignments(legacySchemas),
-      connectivity: legacyConnectivity,
+      connectivity: normalizeSnapshotConnectivity(legacyConnectivity),
       inputs: Array.isArray(legacy.inputs) ? (legacy.inputs as Array<Record<string, unknown>>) : undefined,
       contributors: Array.isArray(legacy.contributors)
         ? (legacy.contributors as SnapshotContributor[])
@@ -320,12 +361,12 @@ class SnapshotAdapterImpl {
 
     if (!legacyMapping && !byFile && !bySchema && !byRecipient) return undefined;
 
-    return {
+    return normalizeSnapshotConnectivity({
       byFile: byFile || legacyMapping || undefined,
       bySchema: bySchema || undefined,
       byRecipient: byRecipient || undefined,
       legacyMapping: legacyMapping || undefined,
-    };
+    });
   }
 
   private _resolveLegacySignaturePolicyId(legacy: Record<string, unknown>): string | null {
@@ -499,6 +540,46 @@ export const extractAssignmentsFromSnapshot = (snapshot: unknown = {}, documentI
   const document = resolveDocumentSnapshot(snapshot, documentId) as Record<string, unknown> | null;
   if (!document) return {};
   return (document.assignments && typeof document.assignments === 'object' ? cloneDeep(document.assignments) : {}) as Record<string, unknown>;
+};
+
+export const resolveSnapshotConnectivity = (snapshot: unknown = {}): SnapshotConnectivity | undefined =>
+  resolveSnapshotConnectivityRecord(snapshot);
+
+export const resolveSnapshotConnectivityByFile = (
+  snapshot: unknown = {},
+  fileId: string | null = null,
+): SnapshotFileConnectivity | null => {
+  const normalizedFileId = normalizeConnectivityKey(fileId);
+  if (!normalizedFileId) return null;
+  const connectivity = resolveSnapshotConnectivityRecord(snapshot);
+  const byFile = asRecord(connectivity?.byFile);
+  return (byFile ? asRecord(byFile[normalizedFileId]) : null) as SnapshotFileConnectivity | null;
+};
+
+export const resolveSnapshotConnectivityBySchema = (
+  snapshot: unknown = {},
+  fileId: string | null = null,
+  schemaUid: string | null = null,
+): SnapshotSchemaConnectivity | null => {
+  const normalizedSchemaUid = normalizeConnectivityKey(schemaUid);
+  if (!normalizedSchemaUid) return null;
+  const connectivity = resolveSnapshotConnectivityRecord(snapshot);
+  const bySchema = asRecord(connectivity?.bySchema);
+  const normalizedFileId = normalizeConnectivityKey(fileId);
+
+  if (normalizedFileId) {
+    const fileSchemas = asRecord(bySchema?.[normalizedFileId]);
+    return (fileSchemas ? asRecord(fileSchemas[normalizedSchemaUid]) : null) as SnapshotSchemaConnectivity | null;
+  }
+
+  for (const fileSchemas of Object.values(bySchema || {})) {
+    const schemaEntry = asRecord(fileSchemas);
+    if (!schemaEntry) continue;
+    const resolved = asRecord(schemaEntry[normalizedSchemaUid]);
+    if (resolved) return resolved as SnapshotSchemaConnectivity;
+  }
+
+  return null;
 };
 
 export const serializeSnapshotForTxt = (snapshot: unknown = {}) => JSON.stringify(snapshot || {}, null, 2);

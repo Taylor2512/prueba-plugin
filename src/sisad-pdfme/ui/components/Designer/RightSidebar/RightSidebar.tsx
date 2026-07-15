@@ -260,7 +260,7 @@ const Sidebar = (props: RightSidebarProps) => {
     for (const element of activeElements) {
       if (!element) continue;
       const identity = resolveSchemaIdentityFromElement(element);
-      const candidates = [identity.schemaId, identity.schemaUid, identity.schemaName, element.id].filter(Boolean) as string[];
+      const candidates = [identity.schemaId, identity.schemaUid].filter(Boolean) as string[];
       for (const id of candidates) {
         if (idSet.has(id)) continue;
         idSet.add(id);
@@ -562,10 +562,10 @@ const Sidebar = (props: RightSidebarProps) => {
           data-docs-mode={documentsRailMode}
           data-panel-mode={resolvedPanelMode}>
           {showTabs || contextHeaderNode ? (
-            <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-wrap flex shrink-0 items-center justify-between gap-1 border-b border-slate-200/70 px-1.5 py-1`}>
+            <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-wrap flex shrink-0 items-center justify-between gap-2 border-b border-slate-200/70 bg-slate-50/80 px-1.5 py-1.5`}>
               {showTabs ? (
                 <div
-                  className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher flex flex-wrap items-center gap-0.5`}
+                  className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher flex flex-wrap items-center gap-1 rounded-full border border-slate-200/80 bg-slate-100/80 p-1 shadow-sm`}
                   role="tablist"
                   tabIndex={0}
                   aria-label="Panel derecho"
@@ -581,7 +581,7 @@ const Sidebar = (props: RightSidebarProps) => {
                         key={`rs-mode-${mode}`}
                         type="button"
                         disabled={disabled}
-                        className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn inline-flex min-h-7 items-center gap-1 rounded-lg border border-slate-200 bg-white px-1.5 py-0.5 text-[11px] font-medium text-slate-600 shadow-sm transition hover:border-sky-200 hover:text-sky-700`}
+                        className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn inline-flex min-h-7 items-center gap-1.5 rounded-full border border-transparent bg-transparent px-2.5 py-1 text-[11px] font-semibold text-slate-500 transition-colors duration-150 hover:bg-white hover:text-sky-700 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/50 focus-visible:ring-offset-1 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-45 data-[active=true]:border-sky-200 data-[active=true]:bg-white data-[active=true]:text-sky-700 data-[active=true]:shadow-sm data-[active=true]:ring-1 data-[active=true]:ring-sky-200`}
                         role="tab"
                         data-active={isActive ? 'true' : 'false'}
                         aria-selected={isActive ? 'true' : 'false'}

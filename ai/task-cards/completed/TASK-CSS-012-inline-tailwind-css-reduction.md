@@ -2,7 +2,7 @@
 
 ## Estado
 
-active
+completed
 
 ## Objetivo
 
@@ -67,14 +67,20 @@ No migrar reglas críticas de layout geométrico del PDF/canvas.
 
 ## Tareas
 
-- [ ] Ejecutar `node scripts/css-inventory.mjs`.
-- [ ] Revisar `reports/tailwind-migration/line-by-line-style-audit.md`.
-- [ ] Seleccionar máximo 1 componente por pase.
-- [ ] Migrar solo clases visuales seguras al JSX/TSX.
-- [ ] Eliminar del CSS solo reglas migradas y comprobadas.
-- [ ] Actualizar `reports/tailwind-migration/component-migration-ledger.md`.
-- [ ] Correr pruebas visuales/manuales de sidebars/canvas/runtime.
-- [ ] No tocar `tokens.css`.
+- [x] Ejecutar `node scripts/css-inventory.mjs`.
+- [x] Revisar `reports/tailwind-migration/line-by-line-style-audit.md`.
+- [x] Seleccionar máximo 1 componente por pase.
+- [x] Migrar solo clases visuales seguras al JSX/TSX.
+- [x] Eliminar del CSS solo reglas migradas y comprobadas.
+- [x] Actualizar `reports/tailwind-migration/component-migration-ledger.md`.
+- [x] Correr pruebas visuales/manuales de sidebars/canvas/runtime.
+- [x] No tocar `tokens.css`.
+
+## Estado (2026-07-14, Claude)
+
+- Pase aplicado sobre `RightSidebar/DetailView/CompactConfigPanel.tsx`.
+- Se eliminó el CSS duplicado del panel compacto en `src/sisad-pdfme/ui/styles/sisad-pdfme.css`.
+- Validado con `npm run build` y smoke e2e del RightSidebar.
 
 ## Criterios de aceptación
 

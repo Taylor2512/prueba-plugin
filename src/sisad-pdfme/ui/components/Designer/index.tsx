@@ -652,7 +652,7 @@ const TemplateEditor = ({
       for (const element of activeElements) {
         if (!element) continue;
         const identity = resolveSchemaIdentityFromElement(element);
-        const candidates = [identity.schemaId, identity.schemaUid, identity.schemaName, element.id].filter(Boolean) as string[];
+        const candidates = [identity.schemaId, identity.schemaUid].filter(Boolean) as string[];
         for (const id of candidates) {
           if (seen.has(id)) continue;
           seen.add(id);
@@ -3652,13 +3652,27 @@ const TemplateEditor = ({
       changeSchemas={changeSchemas}
       onSortEnd={onSortEnd}
       onEdit={(id) => {
+        const normalizedId = String(id || '').trim();
+        const schema = schemasListRef.current
+          .flat()
+          .find((item) => item.id === normalizedId || String((item as { schemaUid?: string }).schemaUid || '').trim() === normalizedId);
+        const resolvedSchemaId = String((schema as { schemaUid?: string } | undefined)?.schemaUid || schema?.id || normalizedId).trim();
         const selector =
           typeof CSS !== 'undefined' && typeof CSS.escape === 'function'
-            ? `[data-schema-id="${CSS.escape(id)}"]`
-            : `[data-schema-id="${id.replace(/"/g, '\\"')}"]`;
+            ? `[data-schema-id="${CSS.escape(resolvedSchemaId)}"]`
+            : `[data-schema-id="${resolvedSchemaId.replace(/"/g, '\\"')}"]`;
         const editingElem = document.querySelector<HTMLElement>(selector);
         if (editingElem) {
           onEdit([editingElem]);
+          return;
+        }
+
+        const fallbackElement = activeElements.find((element) => {
+          const identity = resolveSchemaIdentityFromElement(element);
+          return [identity.schemaId, identity.schemaUid, element.id].some((candidate) => String(candidate || '').trim() === normalizedId);
+        });
+        if (fallbackElement) {
+          onEdit([fallbackElement]);
         }
       }}
       onEditEnd={onEditEnd}

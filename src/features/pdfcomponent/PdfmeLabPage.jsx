@@ -13,6 +13,7 @@ import {
   getLabExampleById,
   getLabExamples,
 } from './labs/examples/labExamples.js'
+import { defaultSisadPdfmeConfig } from '@/sisad-pdfme/config/defaultSisadPdfmeConfig'
 import LabExampleDownloadButton from './LabExampleDownloadButton.jsx'
 import {
   UX_MODE_STORAGE_KEY,
@@ -190,6 +191,8 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   const commonOptions = useMemo(
     () => ({
       ...runtimeOptions,
+      assignment: runtimeOptions.assignment || defaultSisadPdfmeConfig.assignment,
+      visibility: runtimeOptions.visibility || defaultSisadPdfmeConfig.visibility,
       ...designerEngineOptions,
       // TASK-LAB-001 Part C — expose collaboration so Form/Viewer runtime honor
       // recipient access (visibility/editability) e2e, not only the designer.

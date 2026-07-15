@@ -36,7 +36,7 @@ export const LeftSidebarGroup = ({
         <span
           className={mergeUniqueClassNames(
             `${DESIGNER_CLASSNAME}left-sidebar-group-title-chevron`,
-            'inline-flex h-3.5 w-3.5 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition-transform duration-200',
+            'inline-flex h-4 w-4 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-500 transition-transform duration-200',
             collapsed ? 'rotate-[-90deg]' : '',
             isMini ? 'scale-75' : isCompact ? 'scale-90' : ''
           )}
@@ -66,16 +66,15 @@ export const LeftSidebarGroup = ({
 
   const titleClassName = mergeUniqueClassNames(
     `${DESIGNER_CLASSNAME}left-sidebar-group-title`,
-    'flex w-full items-center justify-between gap-2 px-2 py-0.5 text-left font-semibold text-slate-700 transition-colors',
+    'flex w-full items-center justify-between gap-2 rounded-full border border-transparent px-2 py-1 text-left font-semibold text-slate-700 transition-colors duration-150 hover:border-slate-200 hover:bg-slate-50/80 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/50',
     isMini ? 'min-h-[20px]' : isCompact ? 'min-h-[24px]' : 'min-h-[28px]',
-    'hover:bg-slate-50/80 focus-visible:outline-none'
   );
 
   return (
     <section
       className={mergeUniqueClassNames(
         `${DESIGNER_CLASSNAME}left-sidebar-group`,
-        'border-b border-slate-100/60 pb-1.5 last:border-b-0'
+        'rounded-2xl border border-slate-200/70 bg-white/90 px-1.5 py-1.5 shadow-sm last:border-b-0'
       )}
       data-testid="left-sidebar-group"
       data-density={density}
@@ -95,7 +94,7 @@ export const LeftSidebarGroup = ({
         <div
           className={mergeUniqueClassNames(
             `${DESIGNER_CLASSNAME}left-sidebar-group-title`,
-            'flex w-full items-center justify-between gap-3 px-3 py-2 text-left text-sm font-semibold text-slate-800',
+            'flex w-full items-center justify-between gap-3 rounded-full px-3 py-2 text-left text-sm font-semibold text-slate-800',
           )}
           data-collapsed={collapsed ? 'true' : 'false'}
         >
@@ -105,7 +104,7 @@ export const LeftSidebarGroup = ({
       <div
         className={mergeUniqueClassNames(
           `${DESIGNER_CLASSNAME}left-sidebar-group-items`,
-          'mt-0.5',
+          'mt-1',
           layout === 'icons' 
             ? (isMini ? 'grid grid-cols-3 gap-0.5 px-0.5' : isCompact ? 'grid grid-cols-4 gap-1 px-1' : 'grid grid-cols-5 gap-1 px-1.5')
             : (isMini ? 'px-0.5 space-y-[1px]' : isCompact ? 'px-1 space-y-0.5' : 'px-1.5 space-y-1')

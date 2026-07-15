@@ -65,10 +65,26 @@ export interface SnapshotAssignment {
 }
 
 export interface SnapshotConnectivity {
-  byFile?: Record<string, unknown>;
-  bySchema?: Record<string, unknown>;
+  byFile?: Record<string, SnapshotFileConnectivity>;
+  bySchema?: Record<string, Record<string, SnapshotSchemaConnectivity>>;
   byRecipient?: Record<string, unknown>;
   legacyMapping?: Record<string, unknown>;
+}
+
+export interface SnapshotFileConnectivity {
+  cabinetId?: string | null;
+  folderId?: string | null;
+  subfolderId?: string | null;
+  fileTypeId?: string | null;
+  [key: string]: unknown;
+}
+
+export interface SnapshotSchemaConnectivity {
+  indexId?: string | null;
+  indexName?: string | null;
+  schemaName?: string | null;
+  schemaType?: string | null;
+  [key: string]: unknown;
 }
 
 export interface SnapshotContributor {

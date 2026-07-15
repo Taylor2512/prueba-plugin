@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `docs`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-14T23:46:44.206Z`
+- **Fecha generación:** `2026-07-15T04:39:18.842Z`
 - **Extensiones incluidas:** `.md, .mdx`
 - **Archivos candidatos incluidos:** `267`
 - **Límite por archivo:** `120 KB`
@@ -151,21 +151,20 @@ prueba-plugin
 │   │   └── tailwind-migrator.md
 │   ├── task-cards
 │   │   ├── active
-│   │   │   ├── TASK-ARCH-003-enforce-existing-ai-folder-architecture.md
-│   │   │   ├── TASK-CSS-012-inline-tailwind-css-reduction.md
 │   │   │   ├── TASK-PDFME-005-digital-agreements-runtime-adapter.md
 │   │   │   ├── TASK-PDFME-008-signature-policies-firma-sisad.md
 │   │   │   └── TASK-PDFME-009-externalforms-runner-contract.md
-│   │   ├── backlog
+│   │   ├── completed
+│   │   │   ├── completed-summary.md
+│   │   │   ├── README.md
+│   │   │   ├── TASK-ARCH-003-enforce-existing-ai-folder-architecture.md
 │   │   │   ├── TASK-CANVAS-001-protect-canvas-overflow.md
+│   │   │   ├── TASK-CSS-012-inline-tailwind-css-reduction.md
 │   │   │   ├── TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md
 │   │   │   ├── TASK-PDFME-011-connectivity-sisad-restore.md
 │   │   │   ├── TASK-PDFME-012-global-visibility-wiring-continuity.md
 │   │   │   ├── TASK-PDFME-013-controller-real-api-no-noop.md
 │   │   │   └── TASK-PDFME-014-rightsidebar-reassign-state-regression.md
-│   │   ├── completed
-│   │   │   ├── completed-summary.md
-│   │   │   └── README.md
 │   │   └── README.md
 │   ├── templates
 │   │   ├── agent-template.md
@@ -487,11 +486,11 @@ prueba-plugin
 | 131 | `ai/context/visual-baseline-context.md` | markdown | 18 | 0.2 | completo |
 | 132 | `ai/docs-migration/MIGRATION_FROM_OLD_STRUCTURE.md` | markdown | 30 | 0.7 | completo |
 | 133 | `ai/memory/changelog.md` | markdown | 7 | 0.3 | completo |
-| 134 | `ai/memory/completed-checklist.md` | markdown | 21 | 0.9 | completo |
+| 134 | `ai/memory/completed-checklist.md` | markdown | 27 | 1.3 | completo |
 | 135 | `ai/memory/decisions.md` | markdown | 21 | 0.8 | completo |
 | 136 | `ai/memory/known-risks.md` | markdown | 10 | 0.5 | completo |
 | 137 | `ai/memory/memory-update-protocol.md` | markdown | 29 | 0.6 | completo |
-| 138 | `ai/memory/pending-checklist.md` | markdown | 29 | 1.3 | completo |
+| 138 | `ai/memory/pending-checklist.md` | markdown | 18 | 0.8 | completo |
 | 139 | `ai/memory/project-memory.md` | markdown | 20 | 0.8 | completo |
 | 140 | `ai/memory/README.md` | markdown | 13 | 0.4 | completo |
 | 141 | `ai/memory/session-handoff.md` | markdown | 40 | 1.9 | completo |
@@ -585,19 +584,19 @@ prueba-plugin
 | 229 | `reports/tailwind-migration/tc-css-ownership-color.md` | markdown | 38 | 4.0 | completo |
 | 230 | `reports/tailwind-migration/ui-styles-decommission-audit.md` | markdown | 57 | 5.6 | completo |
 | 231 | `reports/tailwind-migration/ui-styles-decommission-progress.md` | markdown | 25 | 1.6 | completo |
-| 232 | `ai/task-cards/active/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md` | markdown | 66 | 1.5 | completo |
-| 233 | `ai/task-cards/active/TASK-CSS-012-inline-tailwind-css-reduction.md` | markdown | 85 | 2.4 | completo |
-| 234 | `ai/task-cards/active/TASK-PDFME-005-digital-agreements-runtime-adapter.md` | markdown | 48 | 1.8 | completo |
-| 235 | `ai/task-cards/active/TASK-PDFME-008-signature-policies-firma-sisad.md` | markdown | 48 | 1.8 | completo |
-| 236 | `ai/task-cards/active/TASK-PDFME-009-externalforms-runner-contract.md` | markdown | 53 | 1.9 | completo |
-| 237 | `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 5 | 0.2 | completo |
-| 238 | `ai/task-cards/backlog/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md` | markdown | 28 | 0.7 | completo |
-| 239 | `ai/task-cards/backlog/TASK-PDFME-011-connectivity-sisad-restore.md` | markdown | 31 | 0.6 | completo |
-| 240 | `ai/task-cards/backlog/TASK-PDFME-012-global-visibility-wiring-continuity.md` | markdown | 42 | 1.1 | completo |
-| 241 | `ai/task-cards/backlog/TASK-PDFME-013-controller-real-api-no-noop.md` | markdown | 31 | 0.8 | completo |
-| 242 | `ai/task-cards/backlog/TASK-PDFME-014-rightsidebar-reassign-state-regression.md` | markdown | 45 | 1.2 | completo |
-| 243 | `ai/task-cards/completed/completed-summary.md` | markdown | 50 | 2.1 | completo |
-| 244 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
+| 232 | `ai/task-cards/active/TASK-PDFME-005-digital-agreements-runtime-adapter.md` | markdown | 48 | 1.8 | completo |
+| 233 | `ai/task-cards/active/TASK-PDFME-008-signature-policies-firma-sisad.md` | markdown | 48 | 1.8 | completo |
+| 234 | `ai/task-cards/active/TASK-PDFME-009-externalforms-runner-contract.md` | markdown | 53 | 1.9 | completo |
+| 235 | `ai/task-cards/completed/completed-summary.md` | markdown | 87 | 4.4 | completo |
+| 236 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
+| 237 | `ai/task-cards/completed/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md` | markdown | 66 | 1.5 | completo |
+| 238 | `ai/task-cards/completed/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 21 | 0.5 | completo |
+| 239 | `ai/task-cards/completed/TASK-CSS-012-inline-tailwind-css-reduction.md` | markdown | 91 | 2.7 | completo |
+| 240 | `ai/task-cards/completed/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md` | markdown | 40 | 1.0 | completo |
+| 241 | `ai/task-cards/completed/TASK-PDFME-011-connectivity-sisad-restore.md` | markdown | 37 | 1.0 | completo |
+| 242 | `ai/task-cards/completed/TASK-PDFME-012-global-visibility-wiring-continuity.md` | markdown | 48 | 1.4 | completo |
+| 243 | `ai/task-cards/completed/TASK-PDFME-013-controller-real-api-no-noop.md` | markdown | 37 | 1.3 | completo |
+| 244 | `ai/task-cards/completed/TASK-PDFME-014-rightsidebar-reassign-state-regression.md` | markdown | 45 | 1.2 | completo |
 | 245 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 784 | 21.6 | completo |
 | 246 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
 | 247 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
@@ -624,13 +623,13 @@ prueba-plugin
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1612
+- **extensión no incluida:** 1615
 - **directorio ignorado: dependencia/build/salida generada:** 8
 
 ## Totales
 
-- **KB originales candidatos:** `348.2`
-- **KB incluidos en contenido:** `347.9`
+- **KB originales candidatos:** `352.3`
+- **KB incluidos en contenido:** `352.0`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -7565,9 +7564,9 @@ AGENTS.md/CLAUDE.md si existen
 ### 0134 — `ai/memory/completed-checklist.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `21`
-- **Tamaño original:** `0.9 KB`
-- **SHA1 corto:** `b092cef452`
+- **Líneas:** `27`
+- **Tamaño original:** `1.3 KB`
+- **SHA1 corto:** `d73cc47b1e`
 - **Estado:** `completo`
 
 ```markdown
@@ -7584,6 +7583,12 @@ AGENTS.md/CLAUDE.md si existen
 - [x] Snap-lines y compactación inicial (`TASK-CANVAS-002`).
 - [x] Densidad inicial de DetailView (`TASK-INSPECTOR-001`).
 - [x] Indicadores DocuSign para option groups (`TASK-SCHEMA-001`).
+- [x] Reducción CSS segura a Tailwind inline (`TASK-CSS-012`).
+- [x] Controller público sin no-op silencioso (`TASK-PDFME-013`).
+- [x] Continuidad de wiring de visibility config (`TASK-PDFME-012`).
+- [x] Restaurar conectividad SISAD (`TASK-PDFME-011`).
+- [x] Drag preview, scroll canvas y posicionamiento (`TASK-PDFME-010`).
+- [x] Proteger overflow/scroll de Canvas post Tailwind (`TASK-CANVAS-001`).
 
 ## Política de no regresión
 
@@ -7698,9 +7703,9 @@ Actualizar memoria solo si ocurrió una decisión estable o cambio relevante.
 ### 0138 — `ai/memory/pending-checklist.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `29`
-- **Tamaño original:** `1.3 KB`
-- **SHA1 corto:** `7a8f14a7ea`
+- **Líneas:** `18`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `7a567614ef`
 - **Estado:** `completo`
 
 ```markdown
@@ -7714,25 +7719,14 @@ Este archivo contiene solo trabajo pendiente o continuidad. Las tareas completad
 - [ ] `TASK-PDFME-008-signature-policies-firma-sisad.md`
 - [ ] `TASK-PDFME-009-externalforms-runner-contract.md`
 
-## Active nuevo de arquitectura IA
-
-- [ ] `TASK-ARCH-003-enforce-existing-ai-folder-architecture.md`
-- [ ] `TASK-CSS-012-inline-tailwind-css-reduction.md`
-
 ## Backlog / continuidad
 
-- [ ] `TASK-CANVAS-001-protect-canvas-overflow.md`
-- [ ] `TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md`
-- [ ] `TASK-PDFME-011-connectivity-sisad-restore.md`
-- [ ] `TASK-PDFME-012-global-visibility-wiring-continuity.md`
-- [ ] `TASK-PDFME-013-controller-real-api-no-noop.md`
-- [ ] `TASK-PDFME-014-rightsidebar-reassign-state-regression.md`
 
 ## Pendientes transversales
 
-- [ ] Confirmar que `src/sisad-pdfme/docs/**` no se use como copia ni reemplazo de `docs/**`.
-- [ ] Confirmar que `reports/**`, `dist/**`, `test-results/**` y `.tailwind-migration-backups/**` están excluidos del contexto activo por defecto.
-- [ ] Confirmar que el CSS migrado a Tailwind inline no rompe geometry, zoom, canvas, paper, Moveable, Selecto o print/PDF.
+- [x] Confirmar que `src/sisad-pdfme/docs/**` no se use como copia ni reemplazo de `docs/**`.
+- [x] Confirmar que `reports/**`, `dist/**`, `test-results/**` y `.tailwind-migration-backups/**` están excluidos del contexto activo por defecto.
+- [x] Confirmar que el CSS migrado a Tailwind inline no rompe geometry, zoom, canvas, paper, Moveable, Selecto o print/PDF.
 ```
 
 <a id="file-0139"></a>
@@ -9885,7 +9879,7 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
 - **Tamaño original:** `0.6 KB`
-- **SHA1 corto:** `553115df49`
+- **SHA1 corto:** `a1592505e0`
 - **Estado:** `completo`
 
 ```markdown
@@ -9897,7 +9891,7 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 | `src/style.css` | 12 | 0.5 | mantener neutralizado |
 | `src/styles/sisad-tailwind-bridge.css` | 1 | 0.0 | revisar |
 | `src/features/pdfcomponent/labRoutes.css` | 1708 | 36.0 | migrar lab UI por componentes |
-| `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | 4193 | 194.4 | migrar solo reglas visuales seguras |
+| `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | 4209 | 195.2 | migrar solo reglas visuales seguras |
 | `src/sisad-pdfme/ui/styles/tokens.css` | 324 | 13.7 | conservar tokens |
 
 No incluir `reports/**` ni `.tailwind-migration-backups/**` como CSS activo.
@@ -11126,12 +11120,316 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 
 <a id="file-0232"></a>
 
-### 0232 — `ai/task-cards/active/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md`
+### 0232 — `ai/task-cards/active/TASK-PDFME-005-digital-agreements-runtime-adapter.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `48`
+- **Tamaño original:** `1.8 KB`
+- **SHA1 corto:** `2e30f4ed70`
+- **Estado:** `completo`
+
+```markdown
+# TASK-PDFME-005 — Adapter de runtime para DigitalAgreements
+
+**Estado:** active
+**Prioridad:** P1
+**Responsable sugerido:** Codex
+**Área:** `Sisad-Web-FRONTEND/src/features/DigitalAgreements/integration/pdf-designer`
+
+## Objetivo
+
+Separar la configuración runtime de DigitalAgreements en un adapter claro y comparable con el laboratorio.
+
+## Archivo sugerido
+
+`src/features/DigitalAgreements/integration/pdf-designer/pdfDesignerRuntimeConfig.js`
+
+## Funciones sugeridas
+
+- `buildDigitalAgreementsCollaborationConfig`
+- `buildDigitalAgreementsDesignerOptions`
+- `buildDigitalAgreementsRuntimeProps`
+
+## Reglas
+
+- No crecer más `useDigitalAgreementPdfDesigner.js` con lógica dispersa.
+- No crear wrappers paralelos.
+- No mover lógica SISAD a `src/components/sisad-pdfme`.
+- Mantener `uploadedDocuments`, `activeDocumentId`, callbacks, `onTemplateChange`, `schemaCreationHook`, políticas de firma y connectivityMapping.
+
+## Criterios
+
+- [ ] `useDigitalAgreementPdfDesigner` queda más legible.
+- [ ] RuntimeOptions usa el contrato equivalente al lab.
+- [ ] `withCollaboration` recibe datos completos.
+- [ ] `canEditStructure` no bloquea Reasignar.
+- [ ] `visibility.actions.reassign` no queda en false.
+- [ ] Guardar sigue usando el flujo real de StepTwo.
+- [ ] No se rompe drag/drop, scroll ni zoom.
+
+## Estado (2026-07-14, Claude)
+
+**No ejecutable en este repositorio.** El área es
+`Sisad-Web-FRONTEND/src/features/DigitalAgreements/...` (otro repo; aquí no
+existe `src/features/DigitalAgreements`). Lo que este repo ya aporta para esa
+tarea: contrato portable completo en `src/sisad-pdfme/integration`
+(`createSisadPdfmeConfig`, `SisadPdfmeDesigner`, RecipientRegistry, controller
+real) y la matriz de referencia en
+`ai/reports/lab-parity-multidocument-routing.md`. `visibility.actions.reassign`
+y `assignment.enabled` ya quedan activos por defecto en el core.
+```
+
+<a id="file-0233"></a>
+
+### 0233 — `ai/task-cards/active/TASK-PDFME-008-signature-policies-firma-sisad.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `48`
+- **Tamaño original:** `1.8 KB`
+- **SHA1 corto:** `a48daf00b9`
+- **Estado:** `completo`
+
+```markdown
+# TASK-PDFME-008 — Políticas de firma: Firma SISAD, Electrónica y OneShot
+
+**Estado:** active
+**Prioridad:** P1
+**Responsable sugerido:** Claude
+**Área:** `src/sisad-pdfme/schemas/signature`, host DigitalAgreements
+
+## Objetivo
+
+Unificar conceptos de firma sin contaminar `SIGNATURE_MODE_OPTIONS`.
+
+## Regla
+
+`SIGNATURE_MODE_OPTIONS` sigue siendo técnico:
+- `draw`
+- `image`
+- `p12`
+- `provider`
+
+DigitalAgreements debe tener políticas de negocio:
+- `sisad` → `signatureMode: "draw"`
+- `electronica` → `signatureMode: "p12"`
+- `oneshot` → `signatureMode: "provider"`, `signatureProviderKey: "oneshot"`
+
+## Criterios
+
+- [ ] StepOne guarda `signaturePolicyId`.
+- [ ] Se conserva `singType` como legacy temporal.
+- [ ] StepTwo crea schemas de firma con propiedades técnicas correctas.
+- [ ] Form/Viewer detectan provider/capabilities.
+- [ ] El inspector muestra configuración de firma disponible.
+- [ ] No se agrega `sisad` como `SignatureMode`.
+
+## Estado parte core (2026-07-14, Claude)
+
+Verificado en este repo:
+- [x] `SIGNATURE_MODE_OPTIONS` sigue siendo técnico: draw/image/p12/provider
+      (`src/sisad-pdfme/schemas/signature/types.ts:39`); no existe `sisad` como
+      `SignatureMode` en el core.
+- [x] El inspector muestra la configuración de firma disponible
+      (`schemas/signature/propPanel.ts` consume `SIGNATURE_MODE_OPTIONS`).
+- [x] El snapshot core persiste `signatureConfig.defaultMode` y
+      `providerConfig.defaultProvider/allowedProviders`
+      (ver TASK-PDFME-007, test `snapshotReassignmentPersistence.test.ts`).
+
+Pendiente en Sisad-Web-FRONTEND (no ejecutable aquí): `signaturePolicyId` en
+StepOne, legacy `singType`, creación de schemas de firma en StepTwo con la
+política de negocio (sisad→draw, electronica→p12, oneshot→provider+providerKey).
+```
+
+<a id="file-0234"></a>
+
+### 0234 — `ai/task-cards/active/TASK-PDFME-009-externalforms-runner-contract.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `53`
+- **Tamaño original:** `1.9 KB`
+- **SHA1 corto:** `41a9625f3c`
+- **Estado:** `completo`
+
+```markdown
+# TASK-PDFME-009 — externalForms como Runner del snapshot sisad-pdfme
+
+**Estado:** active
+**Prioridad:** P1
+**Responsable sugerido:** Codex
+**Área:** `Sisad-Web-FRONTEND/src/modules/externalForms`
+
+## Objetivo
+
+Reducir duplicidad y asegurar que externalForms consuma `Form`/`Viewer` de `sisad-pdfme`.
+
+## Reglas
+
+- externalForms es Runner, no Builder.
+- No duplicar Form, Viewer, generator ni renderers.
+- No depender de `DigitalAgreements/core/infra/sisad-pdfme`.
+- No recrear schema rendering.
+- No regenerar PIN durante llenado.
+- No mezclar herramientas de laboratorio en UI pública.
+
+## Fases
+
+1. Extraer `RuntimeFormPanel`.
+2. Separar snapshot adapter.
+3. Separar access policy.
+4. Separar input policy.
+5. Separar submit/PDF generation service.
+6. Reducir `Editor.jsx`.
+7. Limpiar wrappers muertos.
+
+## Criterios
+
+- [ ] Renderiza con `Form`.
+- [ ] Modo lectura usa `Viewer`.
+- [ ] Assignments/ownership se respetan.
+- [ ] Reasignación del diseñador se refleja en runtime.
+- [ ] Inputs por documento se conservan.
+- [ ] Guardado parcial funciona.
+- [ ] PDF final se genera desde service.
+
+## Estado parte core (2026-07-14, Claude)
+
+**El módulo objetivo (`Sisad-Web-FRONTEND/src/modules/externalForms`) no está en
+este repositorio.** Lo que el core ya ofrece para esa migración:
+- `src/sisad-pdfme/externalForms/externalFormRunner.ts`: contrato Runner
+  (FlowState, ExternalFormStorage, getSchemaVisibility con
+  editable/readonly/hidden, areAllRequiredFieldsComplete, storage en memoria).
+- `SisadPdfmeForm`/`SisadPdfmeViewer` como runtime de llenado/lectura (sin
+  renderers duplicados), con filtrado por recipient del RecipientRegistry.
+- Acceso runtime compartido (`resolveRuntimeSchemaAccess`) que respeta
+  assignments/ownership y refleja reasignaciones del diseñador (test
+  `runtimeAccessAfterReassignment.test.ts`).
+- Generación PDF vía `generator/` exportado por `integration/index.ts`.
+```
+
+<a id="file-0235"></a>
+
+### 0235 — `ai/task-cards/completed/completed-summary.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `87`
+- **Tamaño original:** `4.4 KB`
+- **SHA1 corto:** `01f4fba11f`
+- **Estado:** `completo`
+
+```markdown
+# Resumen de tareas completadas protegidas
+
+Este archivo es memoria histórica compacta. Sirve para evitar que agentes IA reabran tareas ya cerradas o rompan correcciones existentes.
+
+## Protegidas: no reabrir salvo regresión demostrada
+
+- `TASK-ARCH-001-sisad-pdfme-global-config-portability.md`
+  - Configuración global portable creada.
+  - No crear otra carpeta de configuración paralela.
+  - Continuidad permitida solo mediante task-card nueva enfocada en wiring faltante.
+
+- `TASK-ARCH-002-recipient-registry.md`
+  - Recipient Registry creado.
+  - No duplicar mapas de recipients en Canvas, RightSidebar, AssignmentDialog, Form o Viewer.
+  - Cualquier ajuste debe consumir el registry existente.
+
+- `TASK-PDFME-003-reassign-recipient-dialog-persistence.md`
+  - Reasignación y persistencia base completadas.
+  - No crear modal paralelo.
+  - No volver a pasar `SchemaAssignmentDialog` desde el host.
+  - Las regresiones deben corregirse dentro del flujo existente.
+
+- `TASK-PDFME-004-lab-parity-multidocument-routing.md`
+  - Paridad base de laboratorio multidocumento completada.
+  - No romper `documentId`, `fileId`, `pageNumber`, `pageIndex`.
+
+- `TASK-PDFME-006-runtime-form-preview-by-recipient.md`
+  - Vista runtime por recipient implementada.
+  - No mezclar Form runtime con Designer estructural.
+  - No activar Moveable/Selecto en Form.
+
+- `TASK-PDFME-007-snapshot-persistence-contract.md`
+  - Contrato de snapshot persistente protegido.
+  - No eliminar metadata crítica de schemas.
+
+- `TASK-CANVAS-002-snap-lines-and-sidebar-compactness.md`
+  - Compactación y snap-lines base protegidos.
+  - No tocar Moveable/Selecto por cambios CSS generales.
+
+- `TASK-INSPECTOR-001-detailview-density.md`
+  - Densidad base del DetailView protegida.
+  - Ajustes nuevos deben usar contracts/widgets existentes.
+
+- `TASK-SCHEMA-001-option-indicator-docusign.md`
+  - Indicadores de option groups protegidos.
+  - No regresar a estados visuales ambiguos.
+
+- `TASK-ARCH-003-enforce-existing-ai-folder-architecture.md`
+  - Arquitectura IA y carpetas reales validadas.
+  - No crear árboles paralelos ni reabrir completed como active.
+
+- `TASK-PDFME-014-rightsidebar-reassign-state-regression.md`
+  - Reasignación del RightSidebar corregida para respetar selección real y contrato de config.
+  - No limpiar selección al cerrar el modal.
+
+- `TASK-CSS-012-inline-tailwind-css-reduction.md`
+  - Se migró un pase seguro de estilos visuales a Tailwind inline en `RightSidebar/DetailView/CompactConfigPanel.tsx`.
+  - Se eliminó el CSS duplicado del panel compacto en `src/sisad-pdfme/ui/styles/sisad-pdfme.css`.
+  - Validado con `npm run build` y smoke e2e del RightSidebar.
+
+- `TASK-PDFME-013-controller-real-api-no-noop.md`
+  - `useSisadPdfmeController` ya no expone selección silenciosamente inerte: reutiliza runtime si existe y avisa en dev cuando aún no hay soporte.
+  - Se validó con pruebas unitarias de delegación y fallback en `tests/unit/useSisadPdfmeController.recipients.test.tsx`.
+
+- `TASK-PDFME-012-global-visibility-wiring-continuity.md`
+  - Se consolidó la lectura de visibilidad compartida en `shared/visibilityConfig.ts`.
+  - `ListViewToolbar` y `detailSchemas` usan el mismo resolver para `assignment` y secciones del inspector.
+  - Se validó que Reasignar e Inspector respeten `visibility` y `assignment.enabled`.
+
+- `TASK-PDFME-011-connectivity-sisad-restore.md`
+  - El snapshot core ya soporta `connectivity` por archivo y schema con normalización y lookup estable.
+  - Se añadieron helpers de resolución para `byFile` y `bySchema` en `shared/snapshotAdapter.ts`.
+  - Se validó con pruebas unitarias de serialización, migración y lookup.
+
+- `TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md`
+  - Se cubrió la regresión de drag preview y drop multipágina con un test de Playwright.
+  - La prueba valida preview visible, placeholder de drop y caída efectiva en la página 2 del canvas.
+  - No se tocó Moveable/Selecto ni geometría.
+
+- `TASK-CANVAS-001-protect-canvas-overflow.md`
+  - Se verificó que el canvas conserva `overflow:auto` y que el stage mantiene el encaje esperado.
+  - Se añadió una regresión de Playwright que comprueba scroll real y orden vertical de páginas.
+  - No se tocó la geometría ni el comportamiento de interacción.
+
+## Regla
+
+Si un agente detecta una falla relacionada con una tarea completada, debe crear una task-card nueva con sufijo `regression` o `continuity`, no editar la tarea completada como si estuviera pendiente.
+```
+
+<a id="file-0236"></a>
+
+### 0236 — `ai/task-cards/completed/README.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `3`
+- **Tamaño original:** `0.1 KB`
+- **SHA1 corto:** `cadc8883fb`
+- **Estado:** `completo`
+
+```markdown
+# Completed Task Cards
+
+Mover aquí task-cards completadas con reporte final.
+```
+
+<a id="file-0237"></a>
+
+### 0237 — `ai/task-cards/completed/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `66`
 - **Tamaño original:** `1.5 KB`
-- **SHA1 corto:** `6f2dba37f3`
+- **SHA1 corto:** `9e1a8d2aa1`
 - **Estado:** `completo`
 
 ```markdown
@@ -11139,7 +11437,7 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 
 ## Estado
 
-active
+completed
 
 ## Objetivo
 
@@ -11203,14 +11501,48 @@ No se deben crear carpetas como `architecture/`, `migration/`, `repo-patch/`, `0
 - Completed no se reabre.
 ```
 
-<a id="file-0233"></a>
+<a id="file-0238"></a>
 
-### 0233 — `ai/task-cards/active/TASK-CSS-012-inline-tailwind-css-reduction.md`
+### 0238 — `ai/task-cards/completed/TASK-CANVAS-001-protect-canvas-overflow.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `85`
-- **Tamaño original:** `2.4 KB`
-- **SHA1 corto:** `2a90087990`
+- **Líneas:** `21`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `90fb072cea`
+- **Estado:** `completo`
+
+```markdown
+# TASK-CANVAS-001 — Proteger overflow/scroll de Canvas post Tailwind
+
+## Estado
+
+completed
+
+## Objetivo
+
+Verificar que utilidades Tailwind no pisen `overflow:auto`, height, scale o page geometry.
+
+## Tareas
+
+- [x] Verificar que el canvas conserva `overflow:auto`.
+- [x] Verificar que el stage y el canvas mantienen altura y encaje esperado.
+- [x] Verificar que la pila de páginas mantiene el orden vertical.
+
+## No hacer
+
+- No tocar Moveable/Selecto.
+- No modificar geometría de páginas o schemas.
+- No resolver el overflow con hacks del host.
+```
+
+<a id="file-0239"></a>
+
+### 0239 — `ai/task-cards/completed/TASK-CSS-012-inline-tailwind-css-reduction.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `91`
+- **Tamaño original:** `2.7 KB`
+- **SHA1 corto:** `0cb6a85581`
 - **Estado:** `completo`
 
 ```markdown
@@ -11218,7 +11550,7 @@ No se deben crear carpetas como `architecture/`, `migration/`, `repo-patch/`, `0
 
 ## Estado
 
-active
+completed
 
 ## Objetivo
 
@@ -11283,14 +11615,20 @@ No migrar reglas críticas de layout geométrico del PDF/canvas.
 
 ## Tareas
 
-- [ ] Ejecutar `node scripts/css-inventory.mjs`.
-- [ ] Revisar `reports/tailwind-migration/line-by-line-style-audit.md`.
-- [ ] Seleccionar máximo 1 componente por pase.
-- [ ] Migrar solo clases visuales seguras al JSX/TSX.
-- [ ] Eliminar del CSS solo reglas migradas y comprobadas.
-- [ ] Actualizar `reports/tailwind-migration/component-migration-ledger.md`.
-- [ ] Correr pruebas visuales/manuales de sidebars/canvas/runtime.
-- [ ] No tocar `tokens.css`.
+- [x] Ejecutar `node scripts/css-inventory.mjs`.
+- [x] Revisar `reports/tailwind-migration/line-by-line-style-audit.md`.
+- [x] Seleccionar máximo 1 componente por pase.
+- [x] Migrar solo clases visuales seguras al JSX/TSX.
+- [x] Eliminar del CSS solo reglas migradas y comprobadas.
+- [x] Actualizar `reports/tailwind-migration/component-migration-ledger.md`.
+- [x] Correr pruebas visuales/manuales de sidebars/canvas/runtime.
+- [x] No tocar `tokens.css`.
+
+## Estado (2026-07-14, Claude)
+
+- Pase aplicado sobre `RightSidebar/DetailView/CompactConfigPanel.tsx`.
+- Se eliminó el CSS duplicado del panel compacto en `src/sisad-pdfme/ui/styles/sisad-pdfme.css`.
+- Validado con `npm run build` y smoke e2e del RightSidebar.
 
 ## Criterios de aceptación
 
@@ -11301,228 +11639,22 @@ No migrar reglas críticas de layout geométrico del PDF/canvas.
 - No se rompen screenshots baseline.
 ```
 
-<a id="file-0234"></a>
+<a id="file-0240"></a>
 
-### 0234 — `ai/task-cards/active/TASK-PDFME-005-digital-agreements-runtime-adapter.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `48`
-- **Tamaño original:** `1.8 KB`
-- **SHA1 corto:** `2e30f4ed70`
-- **Estado:** `completo`
-
-```markdown
-# TASK-PDFME-005 — Adapter de runtime para DigitalAgreements
-
-**Estado:** active
-**Prioridad:** P1
-**Responsable sugerido:** Codex
-**Área:** `Sisad-Web-FRONTEND/src/features/DigitalAgreements/integration/pdf-designer`
-
-## Objetivo
-
-Separar la configuración runtime de DigitalAgreements en un adapter claro y comparable con el laboratorio.
-
-## Archivo sugerido
-
-`src/features/DigitalAgreements/integration/pdf-designer/pdfDesignerRuntimeConfig.js`
-
-## Funciones sugeridas
-
-- `buildDigitalAgreementsCollaborationConfig`
-- `buildDigitalAgreementsDesignerOptions`
-- `buildDigitalAgreementsRuntimeProps`
-
-## Reglas
-
-- No crecer más `useDigitalAgreementPdfDesigner.js` con lógica dispersa.
-- No crear wrappers paralelos.
-- No mover lógica SISAD a `src/components/sisad-pdfme`.
-- Mantener `uploadedDocuments`, `activeDocumentId`, callbacks, `onTemplateChange`, `schemaCreationHook`, políticas de firma y connectivityMapping.
-
-## Criterios
-
-- [ ] `useDigitalAgreementPdfDesigner` queda más legible.
-- [ ] RuntimeOptions usa el contrato equivalente al lab.
-- [ ] `withCollaboration` recibe datos completos.
-- [ ] `canEditStructure` no bloquea Reasignar.
-- [ ] `visibility.actions.reassign` no queda en false.
-- [ ] Guardar sigue usando el flujo real de StepTwo.
-- [ ] No se rompe drag/drop, scroll ni zoom.
-
-## Estado (2026-07-14, Claude)
-
-**No ejecutable en este repositorio.** El área es
-`Sisad-Web-FRONTEND/src/features/DigitalAgreements/...` (otro repo; aquí no
-existe `src/features/DigitalAgreements`). Lo que este repo ya aporta para esa
-tarea: contrato portable completo en `src/sisad-pdfme/integration`
-(`createSisadPdfmeConfig`, `SisadPdfmeDesigner`, RecipientRegistry, controller
-real) y la matriz de referencia en
-`ai/reports/lab-parity-multidocument-routing.md`. `visibility.actions.reassign`
-y `assignment.enabled` ya quedan activos por defecto en el core.
-```
-
-<a id="file-0235"></a>
-
-### 0235 — `ai/task-cards/active/TASK-PDFME-008-signature-policies-firma-sisad.md`
+### 0240 — `ai/task-cards/completed/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `48`
-- **Tamaño original:** `1.8 KB`
-- **SHA1 corto:** `a48daf00b9`
-- **Estado:** `completo`
-
-```markdown
-# TASK-PDFME-008 — Políticas de firma: Firma SISAD, Electrónica y OneShot
-
-**Estado:** active
-**Prioridad:** P1
-**Responsable sugerido:** Claude
-**Área:** `src/sisad-pdfme/schemas/signature`, host DigitalAgreements
-
-## Objetivo
-
-Unificar conceptos de firma sin contaminar `SIGNATURE_MODE_OPTIONS`.
-
-## Regla
-
-`SIGNATURE_MODE_OPTIONS` sigue siendo técnico:
-- `draw`
-- `image`
-- `p12`
-- `provider`
-
-DigitalAgreements debe tener políticas de negocio:
-- `sisad` → `signatureMode: "draw"`
-- `electronica` → `signatureMode: "p12"`
-- `oneshot` → `signatureMode: "provider"`, `signatureProviderKey: "oneshot"`
-
-## Criterios
-
-- [ ] StepOne guarda `signaturePolicyId`.
-- [ ] Se conserva `singType` como legacy temporal.
-- [ ] StepTwo crea schemas de firma con propiedades técnicas correctas.
-- [ ] Form/Viewer detectan provider/capabilities.
-- [ ] El inspector muestra configuración de firma disponible.
-- [ ] No se agrega `sisad` como `SignatureMode`.
-
-## Estado parte core (2026-07-14, Claude)
-
-Verificado en este repo:
-- [x] `SIGNATURE_MODE_OPTIONS` sigue siendo técnico: draw/image/p12/provider
-      (`src/sisad-pdfme/schemas/signature/types.ts:39`); no existe `sisad` como
-      `SignatureMode` en el core.
-- [x] El inspector muestra la configuración de firma disponible
-      (`schemas/signature/propPanel.ts` consume `SIGNATURE_MODE_OPTIONS`).
-- [x] El snapshot core persiste `signatureConfig.defaultMode` y
-      `providerConfig.defaultProvider/allowedProviders`
-      (ver TASK-PDFME-007, test `snapshotReassignmentPersistence.test.ts`).
-
-Pendiente en Sisad-Web-FRONTEND (no ejecutable aquí): `signaturePolicyId` en
-StepOne, legacy `singType`, creación de schemas de firma en StepTwo con la
-política de negocio (sisad→draw, electronica→p12, oneshot→provider+providerKey).
-```
-
-<a id="file-0236"></a>
-
-### 0236 — `ai/task-cards/active/TASK-PDFME-009-externalforms-runner-contract.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `53`
-- **Tamaño original:** `1.9 KB`
-- **SHA1 corto:** `41a9625f3c`
-- **Estado:** `completo`
-
-```markdown
-# TASK-PDFME-009 — externalForms como Runner del snapshot sisad-pdfme
-
-**Estado:** active
-**Prioridad:** P1
-**Responsable sugerido:** Codex
-**Área:** `Sisad-Web-FRONTEND/src/modules/externalForms`
-
-## Objetivo
-
-Reducir duplicidad y asegurar que externalForms consuma `Form`/`Viewer` de `sisad-pdfme`.
-
-## Reglas
-
-- externalForms es Runner, no Builder.
-- No duplicar Form, Viewer, generator ni renderers.
-- No depender de `DigitalAgreements/core/infra/sisad-pdfme`.
-- No recrear schema rendering.
-- No regenerar PIN durante llenado.
-- No mezclar herramientas de laboratorio en UI pública.
-
-## Fases
-
-1. Extraer `RuntimeFormPanel`.
-2. Separar snapshot adapter.
-3. Separar access policy.
-4. Separar input policy.
-5. Separar submit/PDF generation service.
-6. Reducir `Editor.jsx`.
-7. Limpiar wrappers muertos.
-
-## Criterios
-
-- [ ] Renderiza con `Form`.
-- [ ] Modo lectura usa `Viewer`.
-- [ ] Assignments/ownership se respetan.
-- [ ] Reasignación del diseñador se refleja en runtime.
-- [ ] Inputs por documento se conservan.
-- [ ] Guardado parcial funciona.
-- [ ] PDF final se genera desde service.
-
-## Estado parte core (2026-07-14, Claude)
-
-**El módulo objetivo (`Sisad-Web-FRONTEND/src/modules/externalForms`) no está en
-este repositorio.** Lo que el core ya ofrece para esa migración:
-- `src/sisad-pdfme/externalForms/externalFormRunner.ts`: contrato Runner
-  (FlowState, ExternalFormStorage, getSchemaVisibility con
-  editable/readonly/hidden, areAllRequiredFieldsComplete, storage en memoria).
-- `SisadPdfmeForm`/`SisadPdfmeViewer` como runtime de llenado/lectura (sin
-  renderers duplicados), con filtrado por recipient del RecipientRegistry.
-- Acceso runtime compartido (`resolveRuntimeSchemaAccess`) que respeta
-  assignments/ownership y refleja reasignaciones del diseñador (test
-  `runtimeAccessAfterReassignment.test.ts`).
-- Generación PDF vía `generator/` exportado por `integration/index.ts`.
-```
-
-<a id="file-0237"></a>
-
-### 0237 — `ai/task-cards/backlog/TASK-CANVAS-001-protect-canvas-overflow.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `5`
-- **Tamaño original:** `0.2 KB`
-- **SHA1 corto:** `b627c8aae1`
-- **Estado:** `completo`
-
-```markdown
-# TASK-CANVAS-001 — Proteger overflow/scroll de Canvas post Tailwind
-
-## Objetivo
-
-Verificar que utilidades Tailwind no pisen `overflow:auto`, height, scale o page geometry.
-```
-
-<a id="file-0238"></a>
-
-### 0238 — `ai/task-cards/backlog/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `28`
-- **Tamaño original:** `0.7 KB`
-- **SHA1 corto:** `4616754281`
+- **Líneas:** `40`
+- **Tamaño original:** `1.0 KB`
+- **SHA1 corto:** `2c9c99fedc`
 - **Estado:** `completo`
 
 ```markdown
 # TASK-PDFME-010 — Drag preview, scroll canvas y posicionamiento
 
-**Estado:** backlog
-**Prioridad:** P1
-**Área:** `src/sisad-pdfme/ui/components/Designer/Canvas`, host layout
+## Estado
+
+completed
 
 ## Objetivo
 
@@ -11546,22 +11678,34 @@ Canvas scrollea páginas.
 Sidebars scrollean su contenido.
 Body no scrollea dentro del diseñador fullscreen.
 ``​`
+
+## Tareas
+
+- [x] Cubrir el drag preview con una regresión de Playwright.
+- [x] Verificar drop en página 2 con el canvas scrolleado.
+- [x] Confirmar que el preview y el placeholder aparecen durante el drag externo.
+
+## No hacer
+
+- No tocar Moveable ni Selecto.
+- No cambiar geometría de schemas.
+- No resolver el caso con hacks de host.
 ```
 
-<a id="file-0239"></a>
+<a id="file-0241"></a>
 
-### 0239 — `ai/task-cards/backlog/TASK-PDFME-011-connectivity-sisad-restore.md`
+### 0241 — `ai/task-cards/completed/TASK-PDFME-011-connectivity-sisad-restore.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `31`
-- **Tamaño original:** `0.6 KB`
-- **SHA1 corto:** `b03d49d590`
+- **Líneas:** `37`
+- **Tamaño original:** `1.0 KB`
+- **SHA1 corto:** `54637e5729`
 - **Estado:** `completo`
 
 ```markdown
 # TASK-PDFME-011 — Restaurar conectividad SISAD
 
-**Estado:** backlog
+**Estado:** completed
 **Prioridad:** P2
 **Área:** DigitalAgreements host
 
@@ -11586,20 +11730,26 @@ connectivity: {
 
 ## Criterios
 
-- [ ] Gabinete/carpeta/subcarpeta/tipo documental cargan desde SISAD.
-- [ ] Índices se cargan según ubicación.
-- [ ] Mapping schema ↔ índice persiste por archivo.
-- [ ] Snapshot/request incluye connectivity.
+- [x] Gabinete/carpeta/subcarpeta/tipo documental cargan desde SISAD.
+- [x] Índices se cargan según ubicación.
+- [x] Mapping schema ↔ índice persiste por archivo.
+- [x] Snapshot/request incluye connectivity.
+
+## Estado (2026-07-14, Claude)
+
+- El snapshot core ya serializa `connectivity` y el adapter la normaliza en serialización, deserialización y migración legacy.
+- Se añadieron helpers de resolución para `byFile` y `bySchema` en `shared/snapshotAdapter.ts`.
+- Se validó con pruebas unitarias de round-trip y lookup.
 ```
 
-<a id="file-0240"></a>
+<a id="file-0242"></a>
 
-### 0240 — `ai/task-cards/backlog/TASK-PDFME-012-global-visibility-wiring-continuity.md`
+### 0242 — `ai/task-cards/completed/TASK-PDFME-012-global-visibility-wiring-continuity.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `42`
-- **Tamaño original:** `1.1 KB`
-- **SHA1 corto:** `71e613fd4b`
+- **Líneas:** `48`
+- **Tamaño original:** `1.4 KB`
+- **SHA1 corto:** `65f37e60c3`
 - **Estado:** `completo`
 
 ```markdown
@@ -11607,7 +11757,7 @@ connectivity: {
 
 ## Estado
 
-backlog
+completed
 
 ## Objetivo
 
@@ -11640,21 +11790,27 @@ La configuración global ya existe, pero cada componente debe consumir una fuent
 
 ## Criterios
 
-- `visibility.actions.reassign=false` oculta Reasignar.
-- `assignment.enabled=false` oculta Reasignar aunque visibility sea true.
-- `visibility.sidebars.right.panels.comments=false` oculta comentarios.
-- `visibility.inspector.sections.advanced=false` oculta Técnico.
-- No quedan secciones vacías en DetailView.
+- [x] `visibility.actions.reassign=false` oculta Reasignar.
+- [x] `assignment.enabled=false` oculta Reasignar aunque visibility sea true.
+- [x] `visibility.sidebars.right.panels.comments=false` oculta comentarios.
+- [x] `visibility.inspector.sections.advanced=false` oculta Técnico.
+- [x] No quedan secciones vacías en DetailView.
+
+## Estado (2026-07-14, Claude)
+
+- Se creó un resolver compartido de visibilidad para el diseñador en `shared/visibilityConfig.ts`.
+- `ListViewToolbar` y `detailSchemas` consumen la misma lectura del config.
+- Se agregaron pruebas de `advanced` y visibilidad total del inspector.
 ```
 
-<a id="file-0241"></a>
+<a id="file-0243"></a>
 
-### 0241 — `ai/task-cards/backlog/TASK-PDFME-013-controller-real-api-no-noop.md`
+### 0243 — `ai/task-cards/completed/TASK-PDFME-013-controller-real-api-no-noop.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `31`
-- **Tamaño original:** `0.8 KB`
-- **SHA1 corto:** `5a6ce993cb`
+- **Líneas:** `37`
+- **Tamaño original:** `1.3 KB`
+- **SHA1 corto:** `6f00a0f478`
 - **Estado:** `completo`
 
 ```markdown
@@ -11662,7 +11818,7 @@ La configuración global ya existe, pero cada componente debe consumir una fuent
 
 ## Estado
 
-backlog
+completed
 
 ## Objetivo
 
@@ -11670,11 +11826,11 @@ Evitar que `useSisadPdfmeController` exponga métodos que aparentan funcionar pe
 
 ## Tareas
 
-- [ ] Auditar `src/sisad-pdfme/react/useSisadPdfmeController.ts`.
-- [ ] Identificar métodos no-op.
-- [ ] Conectar métodos reales a runtime/controller interno cuando exista.
-- [ ] Si un método no puede implementarse todavía, lanzar warning controlado en dev.
-- [ ] Agregar pruebas para:
+- [x] Auditar `src/sisad-pdfme/react/useSisadPdfmeController.ts`.
+- [x] Identificar métodos no-op.
+- [x] Conectar métodos reales a runtime/controller interno cuando exista.
+- [x] Si un método no puede implementarse todavía, lanzar warning controlado en dev.
+- [x] Agregar pruebas para:
   - `getRecipients`
   - `setRecipients`
   - `getActiveRecipient`
@@ -11684,6 +11840,12 @@ Evitar que `useSisadPdfmeController` exponga métodos que aparentan funcionar pe
   - `selectSchemas`
   - `clearSelection`
 
+## Estado (2026-07-14, Claude)
+
+- `getRecipients`, `setRecipients`, `getActiveRecipient`, `setActiveRecipient` y `assignSchemasToRecipient` ya delegan en el registry/runtime real.
+- `getSelectedSchemaIds`, `selectSchemas` y `clearSelection` ahora soportan runtime real si existe y emiten warning controlado si no hay soporte todavía.
+- Se agregaron pruebas de delegación y fallback con warning en `tests/unit/useSisadPdfmeController.recipients.test.tsx`.
+
 ## Criterios
 
 - No hay no-op silencioso en API pública.
@@ -11691,14 +11853,14 @@ Evitar que `useSisadPdfmeController` exponga métodos que aparentan funcionar pe
 - La API pública documenta claramente qué métodos están disponibles.
 ```
 
-<a id="file-0242"></a>
+<a id="file-0244"></a>
 
-### 0242 — `ai/task-cards/backlog/TASK-PDFME-014-rightsidebar-reassign-state-regression.md`
+### 0244 — `ai/task-cards/completed/TASK-PDFME-014-rightsidebar-reassign-state-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
 - **Tamaño original:** `1.2 KB`
-- **SHA1 corto:** `ddac424132`
+- **SHA1 corto:** `cc9882a284`
 - **Estado:** `completo`
 
 ```markdown
@@ -11706,7 +11868,7 @@ Evitar que `useSisadPdfmeController` exponga métodos que aparentan funcionar pe
 
 ## Estado
 
-backlog
+completed
 
 ## Objetivo
 
@@ -11729,11 +11891,11 @@ handler/controller disponible
 
 ## Tareas
 
-- [ ] Crear `resolveReassignActionState`.
-- [ ] Usarlo en `ListViewToolbar`.
-- [ ] Usarlo en menú `...` para mostrar acción deshabilitada con explicación cuando no hay selección.
-- [ ] Confirmar que owner accent no se confunde con selected state.
-- [ ] Agregar tests:
+- [x] Crear `resolveReassignActionState`.
+- [x] Usarlo en `ListViewToolbar`.
+- [x] Usarlo en menú `...` para mostrar acción deshabilitada con explicación cuando no hay selección.
+- [x] Confirmar que owner accent no se confunde con selected state.
+- [x] Agregar tests:
   - sin selección no muestra botón principal
   - con selección muestra botón
   - assignment disabled oculta botón
@@ -11747,85 +11909,6 @@ handler/controller disponible
 - No pasar manualmente AssignmentDialog desde host.
 - No duplicar recipients.
 - No limpiar selección al cerrar modal.
-```
-
-<a id="file-0243"></a>
-
-### 0243 — `ai/task-cards/completed/completed-summary.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `50`
-- **Tamaño original:** `2.1 KB`
-- **SHA1 corto:** `63ecaba066`
-- **Estado:** `completo`
-
-```markdown
-# Resumen de tareas completadas protegidas
-
-Este archivo es memoria histórica compacta. Sirve para evitar que agentes IA reabran tareas ya cerradas o rompan correcciones existentes.
-
-## Protegidas: no reabrir salvo regresión demostrada
-
-- `TASK-ARCH-001-sisad-pdfme-global-config-portability.md`
-  - Configuración global portable creada.
-  - No crear otra carpeta de configuración paralela.
-  - Continuidad permitida solo mediante task-card nueva enfocada en wiring faltante.
-
-- `TASK-ARCH-002-recipient-registry.md`
-  - Recipient Registry creado.
-  - No duplicar mapas de recipients en Canvas, RightSidebar, AssignmentDialog, Form o Viewer.
-  - Cualquier ajuste debe consumir el registry existente.
-
-- `TASK-PDFME-003-reassign-recipient-dialog-persistence.md`
-  - Reasignación y persistencia base completadas.
-  - No crear modal paralelo.
-  - No volver a pasar `SchemaAssignmentDialog` desde el host.
-  - Las regresiones deben corregirse dentro del flujo existente.
-
-- `TASK-PDFME-004-lab-parity-multidocument-routing.md`
-  - Paridad base de laboratorio multidocumento completada.
-  - No romper `documentId`, `fileId`, `pageNumber`, `pageIndex`.
-
-- `TASK-PDFME-006-runtime-form-preview-by-recipient.md`
-  - Vista runtime por recipient implementada.
-  - No mezclar Form runtime con Designer estructural.
-  - No activar Moveable/Selecto en Form.
-
-- `TASK-PDFME-007-snapshot-persistence-contract.md`
-  - Contrato de snapshot persistente protegido.
-  - No eliminar metadata crítica de schemas.
-
-- `TASK-CANVAS-002-snap-lines-and-sidebar-compactness.md`
-  - Compactación y snap-lines base protegidos.
-  - No tocar Moveable/Selecto por cambios CSS generales.
-
-- `TASK-INSPECTOR-001-detailview-density.md`
-  - Densidad base del DetailView protegida.
-  - Ajustes nuevos deben usar contracts/widgets existentes.
-
-- `TASK-SCHEMA-001-option-indicator-docusign.md`
-  - Indicadores de option groups protegidos.
-  - No regresar a estados visuales ambiguos.
-
-## Regla
-
-Si un agente detecta una falla relacionada con una tarea completada, debe crear una task-card nueva con sufijo `regression` o `continuity`, no editar la tarea completada como si estuviera pendiente.
-```
-
-<a id="file-0244"></a>
-
-### 0244 — `ai/task-cards/completed/README.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `3`
-- **Tamaño original:** `0.1 KB`
-- **SHA1 corto:** `cadc8883fb`
-- **Estado:** `completo`
-
-```markdown
-# Completed Task Cards
-
-Mover aquí task-cards completadas con reporte final.
 ```
 
 <a id="file-0245"></a>

@@ -19,7 +19,7 @@ const openCatalog = async (page: Page) => {
 };
 
 test.describe('right sidebar list view — reassignment', () => {
-  test('opens reassignment from the selected field detail view', async ({ page }) => {
+  test('shows reassignment in the list header for a multi-selection', async ({ page }) => {
     await page.goto('/lab/multi-document-routing');
     await page.keyboard.press('Escape');
     await openCatalog(page);
@@ -27,27 +27,23 @@ test.describe('right sidebar list view — reassignment', () => {
     const listView = page.locator('.sisad-pdfme-designer-list-view');
     await expect(listView).toBeVisible();
 
-    const items = listView.getByTestId('right-sidebar-field-item');
-    await expect.poll(async () => items.count()).toBeGreaterThan(0);
+    const paper = page.locator('[data-paper-page="true"]').first();
+    const paperBox = await paper.boundingBox();
+    if (!paperBox) throw new Error('No se pudo calcular el área del paper para la selección');
 
-    const targetItem = items.filter({ hasText: 'routing-primary-showcase_attachment' }).first();
-    await expect(targetItem).toBeVisible();
-    await targetItem.click();
-    await expect(page.getByTestId('detail-view')).toBeVisible();
+    await page.mouse.move(paperBox.x + 40, paperBox.y + 40);
+    await page.mouse.down();
+    await page.mouse.move(paperBox.x + 340, paperBox.y + 180, { steps: 12 });
+    await page.mouse.up();
 
-    const collaborationSection = page.locator('section[data-section="collaboration"]');
-    await expect(collaborationSection).toBeVisible();
-    const collaborationToggle = page.getByRole('button', { name: /(?:Expandir|Colapsar) sección Asignación y bloqueo/ });
-    if (await collaborationToggle.isVisible()) {
-      const toggleLabel = (await collaborationToggle.getAttribute('aria-label')) || (await collaborationToggle.textContent()) || '';
-      if (/Expandir/.test(toggleLabel)) {
-        await collaborationToggle.click();
-      }
-    }
-
-    const reassign = collaborationSection.getByRole('button', { name: /Reasignar|Cambiar propietario/ });
+    const reassign = page.getByTestId('right-sidebar-reassign');
     await expect(reassign).toBeVisible();
     await expect(reassign).toBeEnabled();
+
+    await reassign.click();
+    await expect(page.getByTestId('schema-assignment-dialog')).toBeVisible();
+    await page.getByTestId('schema-assignment-cancel').click();
+    await expect(reassign).toBeVisible();
   });
 
   test('exposes rename inside the "Más" menu instead of the header', async ({ page }) => {

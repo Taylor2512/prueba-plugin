@@ -136,8 +136,8 @@ const ListView = (
   }, [viewSchemas, searchQuery, typeFilter]);
 
   const selectedSchemas = useMemo(
-    () => viewSchemas.filter((schema) => activeSchemaIds.includes(schema.id) || activeSchemaIds.includes(resolveSchemaUid(schema))),
-    [activeSchemaIds, viewSchemas],
+    () => schemas.filter((schema) => activeSchemaIds.includes(schema.id) || activeSchemaIds.includes(resolveSchemaUid(schema))),
+    [activeSchemaIds, schemas],
   );
   const hasSelectableRecipient = recipientOptions.length > 0 && collaborationContext?.canEditStructure !== false;
   const canAssignSelected = hasSelectableRecipient && selectedSchemas.length > 0;
@@ -238,9 +238,8 @@ const ListView = (
   const closeAssignmentDialog = useCallback(() => {
     assignmentDialogOpenRef.current = false;
     setIsAssignmentDialogOpen(false);
-    selectionCommands?.clearSelection?.();
     resetDesignerTransientInteractionState();
-  }, [selectionCommands]);
+  }, []);
 
 
   /**

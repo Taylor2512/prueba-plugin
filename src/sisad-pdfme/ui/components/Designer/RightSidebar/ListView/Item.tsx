@@ -322,7 +322,7 @@ const Item = React.memo(
         ref={ref}
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'list-view-item',
-          'relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white/95 shadow-sm',
+          'relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white/95 shadow-sm transition-[background,border-color,box-shadow,transform] duration-150 hover:border-slate-300 hover:bg-slate-50/80 data-[selected=true]:border-sky-300 data-[selected=true]:bg-sky-50/70 data-[selected=true]:shadow-[0_0_0_1px_rgba(56,189,248,0.18)]',
           className,
         )}
         style={dragStyle}
@@ -336,7 +336,7 @@ const Item = React.memo(
         data-schema-owner-color={accentColor || undefined}>
         <button
           type="button"
-          className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-hit-target', 'absolute inset-0 z-0 rounded-2xl')}
+          className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-hit-target', 'absolute inset-0 z-0 rounded-2xl focus-visible:outline-none')}
           aria-label={valueTooltip}
           onMouseEnter={() => { setIsHovered(true); onMouseEnter?.(); }}
           onMouseLeave={() => { setIsHovered(false); onMouseLeave?.(); }}
@@ -349,14 +349,14 @@ const Item = React.memo(
           }}
         />
         <div
-          className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-content', 'pointer-events-none relative z-10 flex items-start gap-3 px-3 py-2.5')}
+          className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-content', 'pointer-events-none relative z-10 flex items-start gap-3 px-3 py-2.5 pl-4 before:pointer-events-none before:absolute before:inset-y-2 before:left-2 before:w-[2px] before:rounded-full before:bg-[var(--schema-owner-color,_transparent)] before:opacity-30 before:content-[\'\']')}
           {...props}
           aria-hidden="true">
           <Button
             {...listeners}
-            className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-grip', 'pointer-events-auto inline-flex h-8 w-1 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500')}
+            className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-grip', 'pointer-events-auto inline-flex h-8 w-1 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500 transition-colors hover:border-sky-200 hover:bg-sky-50 hover:text-sky-700 data-[selected=true]:border-sky-300')}
             icon={<GripVertical size={14} />} />
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-icon', 'flex h-9 w-1 items-center justify-center rounded-xl border border-slate-200 bg-slate-50')}>{icon}</div>
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-icon', 'flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-slate-600 shadow-inner shadow-white/40')}>{icon}</div>
           <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-main', 'min-w-0 flex-1 space-y-0.5')}>
             <div
               className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-value', 'block text-sm font-medium leading-tight text-slate-800')}
@@ -401,7 +401,7 @@ const Item = React.memo(
               </div>
             ) : null}
           </div>
-        <ItemActions
+          <ItemActions
           readOnly={readOnly}
           required={required}
           hidden={hidden}

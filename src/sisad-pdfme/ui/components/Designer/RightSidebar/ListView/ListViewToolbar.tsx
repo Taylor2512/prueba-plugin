@@ -15,7 +15,7 @@ import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { mergeClassNames } from '../../shared/className.js';
 import { stopDesignerControlEvent } from '../../shared/interactionExclusions.js';
 import { OptionsContext } from '../../../../contexts.js';
-import { asRecord } from '../../shared/objectGuards.js';
+import { resolveReassignVisibilityState } from '../../shared/visibilityConfig.js';
 import { resolveReassignActionState } from './reassignActionState.js';
 
 
@@ -96,16 +96,11 @@ const ListViewToolbar = ({
   collaborationContext,
 }: Props) => {
   const options = useContext(OptionsContext);
-  const optionsRecord = asRecord(options);
-  const visibility = asRecord(optionsRecord?.visibility);
-  const actionsVisibility = asRecord(visibility?.actions);
-  const modalsVisibility = asRecord(visibility?.modals);
-  const assignmentEnabled = asRecord(optionsRecord?.assignment)?.enabled === true;
-  const reassignVisible = actionsVisibility?.reassign !== false && assignmentEnabled;
+  const { assignmentEnabled, reassignVisible, assignmentModalVisible } = resolveReassignVisibilityState(options);
   const reassignActionState = resolveReassignActionState({
     assignmentEnabled,
     reassignVisible,
-    assignmentModalVisible: modalsVisibility?.assignment !== false,
+    assignmentModalVisible,
     selectedCount,
     hasHandler: typeof onBulkAssignRecipient === 'function',
     hasAssignableRecipients: showBulkRecipientAction,

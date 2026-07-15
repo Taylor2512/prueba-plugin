@@ -68,6 +68,7 @@ describe('ListViewToolbar visibility', () => {
           {...baseProps}
           selectedCount={0}
           showBulkRecipientAction={false}
+          onBulkAssignRecipient={() => undefined}
         />
       </OptionsContext.Provider>,
     );

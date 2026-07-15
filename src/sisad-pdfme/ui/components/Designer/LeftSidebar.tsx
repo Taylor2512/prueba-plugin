@@ -540,7 +540,7 @@ const SidebarShell = ({
     >
       <div className={mergeClassNames(
         `${DESIGNER_CLASSNAME}left-sidebar-dock-header`, 
-        'flex shrink-0 items-start justify-between gap-2 border-b border-slate-200/70 px-2 py-1.5',
+        'flex shrink-0 items-start justify-between gap-2 border-b border-slate-200/70 bg-slate-50/60 px-2 py-1.5',
         density === 'mini' ? 'hidden' : ''
       )}>
         {density !== 'compact' && (
@@ -548,18 +548,18 @@ const SidebarShell = ({
             Diseñador
           </span>
         )}
-        <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-title`, 'flex min-w-0 flex-wrap items-center gap-1.5 text-[0.72rem] font-semibold text-slate-900')}>
-          <span>Campos</span>
-          {activeRecipientLabel ? (
-            <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-recipient`, 'inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-1 py-0.5 text-[10px] text-slate-600')}>
+          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-title`, 'flex min-w-0 flex-wrap items-center gap-1.5 text-[0.72rem] font-semibold text-slate-900')}>
+            <span>Campos</span>
+          {activeRecipientLabel && density === 'comfortable' ? (
+            <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-recipient`, 'inline-flex max-w-[8rem] items-center overflow-hidden text-ellipsis whitespace-nowrap rounded-full border border-slate-200 bg-slate-50 px-1 py-0.5 text-[10px] text-slate-600')}>
               {activeRecipientLabel}
             </span>
           ) : null}
-        </span>
+          </span>
       </div>
       <div className={mergeClassNames(
         `${DESIGNER_CLASSNAME}left-sidebar-control-band`, 
-        'shrink-0 border-b border-slate-200/70',
+        'shrink-0 border-b border-slate-200/70 bg-slate-50/40',
         density === 'mini' ? 'px-1 py-1 space-y-1' : 'px-2 py-1.5 space-y-1.5'
       )}>
         <LeftSidebarTabs
@@ -567,6 +567,7 @@ const SidebarShell = ({
           activeTab={activeTab}
           onChangeTab={onChangeTab}
           renderTabIcon={renderTabIcon}
+          density={density}
         />
         {searchNode ? (
           <div className="py-1">{searchNode}</div>
@@ -575,7 +576,7 @@ const SidebarShell = ({
       <div
         className={mergeClassNames(
           `${DESIGNER_CLASSNAME}left-sidebar-main`, 
-          'min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain',
+          'min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain bg-[linear-gradient(180deg,rgba(255,255,255,0.32),rgba(248,250,252,0.7))]',
           density === 'mini' ? 'px-1 py-1 space-y-1' : 'px-2 py-1.5 space-y-1.5'
         )}
         data-left-sidebar-scroll="true"
@@ -1194,8 +1195,8 @@ const LeftSidebar = ({
             <Button
               className={mergeClassNames(
                 buttonClass,
-                'flex w-full items-center gap-2 rounded-lg border border-transparent px-2 py-1.5 transition-all duration-200',
-                'hover:border-slate-200 hover:bg-slate-50/80 active:scale-[0.98]',
+                'flex w-full items-center gap-2 rounded-xl border border-slate-200/70 bg-white/95 px-2 py-1.5 shadow-sm transition-all duration-200',
+                'hover:border-sky-200 hover:bg-slate-50/80 active:scale-[0.98]',
                 draggableActive ? 'opacity-50' : ''
               )}
               data-testid="left-sidebar-schema-tile"
@@ -1318,6 +1319,7 @@ const LeftSidebar = ({
                 `${DESIGNER_CLASSNAME}plugin-${definition.pluginType}`,
                 `${DESIGNER_CLASSNAME}plugin-btn`,
                 `${DESIGNER_CLASSNAME}plugin-btn-${variant}`,
+                'flex w-full items-center gap-2 rounded-xl border border-slate-200/70 bg-white/95 px-2 py-1.5 shadow-sm transition-all duration-200 hover:border-sky-200 hover:bg-slate-50/80 active:scale-[0.98]',
               )}
               data-testid="left-sidebar-schema-tile"
               data-schema-type={definition.pluginType}
@@ -1454,39 +1456,47 @@ const LeftSidebar = ({
           parsedQuery.categories.size > 0 ||
           parsedQuery.types.size > 0 ||
           parsedQuery.tags.size > 0) ? (
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'left-sidebar-chip-row', 'flex flex-wrap gap-1.5')}>
+        <div className={mergeClassNames(
+          DESIGNER_CLASSNAME + 'left-sidebar-chip-row',
+          'flex flex-wrap items-center gap-1.5 rounded-full border border-slate-200/70 bg-slate-50/50 px-1.5 py-1 shadow-sm',
+          sidebarDensityMode === 'mini' ? 'gap-1 px-1 py-0.5' : '',
+        )}>
           {Array.from(parsedQuery.capabilities).map((cap) => (
-            <Button key={`facet-cap-${cap}`} size="small" type="text">
+            <Button key={`facet-cap-${cap}`} size="small" type="text" className="rounded-full border border-slate-200/70 bg-white/90 px-2 text-[10px] text-slate-600 shadow-none hover:border-sky-200 hover:bg-white">
               cap:{cap}
             </Button>
           ))}
           {Array.from(parsedQuery.categories).map((cat) => (
-            <Button key={`facet-cat-${cat}`} size="small" type="text">
+            <Button key={`facet-cat-${cat}`} size="small" type="text" className="rounded-full border border-slate-200/70 bg-white/90 px-2 text-[10px] text-slate-600 shadow-none hover:border-sky-200 hover:bg-white">
               cat:{cat}
             </Button>
           ))}
           {Array.from(parsedQuery.types).map((typeFacet) => (
-            <Button key={`facet-type-${typeFacet}`} size="small" type="text">
+            <Button key={`facet-type-${typeFacet}`} size="small" type="text" className="rounded-full border border-slate-200/70 bg-white/90 px-2 text-[10px] text-slate-600 shadow-none hover:border-sky-200 hover:bg-white">
               type:{typeFacet}
             </Button>
           ))}
           {Array.from(parsedQuery.tags).map((tag) => (
-            <Button key={`facet-tag-${tag}`} size="small" type="text">
+            <Button key={`facet-tag-${tag}`} size="small" type="text" className="rounded-full border border-slate-200/70 bg-white/90 px-2 text-[10px] text-slate-600 shadow-none hover:border-sky-200 hover:bg-white">
               tag:{tag}
             </Button>
           ))}
-          <Button size="small" onClick={() => setSearch('')}>
+          <Button size="small" onClick={() => setSearch('')} className="rounded-full border border-slate-200/70 bg-white/90 px-2 text-[10px] text-slate-600 shadow-none hover:border-sky-200 hover:bg-white">
             Limpiar
           </Button>
         </div>
       ) : null}
       <div className={mergeClassNames(
         DESIGNER_CLASSNAME + 'left-sidebar-chip-row',
-        'flex flex-wrap items-center gap-1.5',
-        sidebarDensityMode === 'mini' ? 'gap-1' : ''
+        'flex flex-wrap items-center gap-1.5 rounded-full border border-slate-200/70 bg-white/85 px-1.5 py-1 shadow-sm',
+        sidebarDensityMode === 'mini' ? 'gap-1 px-1 py-0.5' : ''
       )}>
         <Button
-          className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
+          className={mergeClassNames(
+            DESIGNER_CLASSNAME + 'left-sidebar-filter-btn',
+            'rounded-full border border-slate-200/70 bg-white px-2 text-[10px] font-medium text-slate-600 shadow-none hover:border-sky-200 hover:bg-slate-50',
+            quickFilter === 'all' ? 'border-sky-200 bg-sky-50 text-sky-700' : '',
+          )}
           size={sidebarDensityMode === 'mini' ? 'small' : 'small'}
           style={sidebarDensityMode === 'mini' ? { fontSize: '9px', padding: '0 4px', height: '20px' } : {}}
           data-testid="left-sidebar-filter-all"
@@ -1496,7 +1506,11 @@ const LeftSidebar = ({
           {sidebarDensityMode === 'mini' ? 'Todo' : 'Todos'}
         </Button>
         <Button
-          className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
+          className={mergeClassNames(
+            DESIGNER_CLASSNAME + 'left-sidebar-filter-btn',
+            'rounded-full border border-slate-200/70 bg-white px-2 text-[10px] font-medium text-slate-600 shadow-none hover:border-sky-200 hover:bg-slate-50',
+            quickFilter === 'favorites' ? 'border-sky-200 bg-sky-50 text-sky-700' : '',
+          )}
           size={sidebarDensityMode === 'mini' ? 'small' : 'small'}
           style={sidebarDensityMode === 'mini' ? { fontSize: '9px', padding: '0 4px', height: '20px' } : {}}
           data-testid="left-sidebar-filter-favorites"
@@ -1506,7 +1520,11 @@ const LeftSidebar = ({
           {sidebarDensityMode === 'mini' ? `★ ${favoritePlugins.size}` : `Favoritos (${favoritePlugins.size})`}
         </Button>
         <Button
-          className={DESIGNER_CLASSNAME + 'left-sidebar-filter-btn'}
+          className={mergeClassNames(
+            DESIGNER_CLASSNAME + 'left-sidebar-filter-btn',
+            'rounded-full border border-slate-200/70 bg-white px-2 text-[10px] font-medium text-slate-600 shadow-none hover:border-sky-200 hover:bg-slate-50',
+            quickFilter === 'recent' ? 'border-sky-200 bg-sky-50 text-sky-700' : '',
+          )}
           size={sidebarDensityMode === 'mini' ? 'small' : 'small'}
           style={sidebarDensityMode === 'mini' ? { fontSize: '9px', padding: '0 4px', height: '20px' } : {}}
           data-testid="left-sidebar-filter-recent"

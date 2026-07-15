@@ -11,6 +11,12 @@
 - [x] Snap-lines y compactación inicial (`TASK-CANVAS-002`).
 - [x] Densidad inicial de DetailView (`TASK-INSPECTOR-001`).
 - [x] Indicadores DocuSign para option groups (`TASK-SCHEMA-001`).
+- [x] Reducción CSS segura a Tailwind inline (`TASK-CSS-012`).
+- [x] Controller público sin no-op silencioso (`TASK-PDFME-013`).
+- [x] Continuidad de wiring de visibility config (`TASK-PDFME-012`).
+- [x] Restaurar conectividad SISAD (`TASK-PDFME-011`).
+- [x] Drag preview, scroll canvas y posicionamiento (`TASK-PDFME-010`).
+- [x] Proteger overflow/scroll de Canvas post Tailwind (`TASK-CANVAS-001`).
 
 ## Política de no regresión
 

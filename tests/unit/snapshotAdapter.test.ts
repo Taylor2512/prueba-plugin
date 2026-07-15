@@ -1,6 +1,11 @@
 import { describe, expect, test } from 'vitest';
 import { makeEmptySnapshot } from '@/sisad-pdfme/shared/snapshot.js';
-import { snapshotAdapter, type DesignerState } from '@/sisad-pdfme/shared/snapshotAdapter.js';
+import {
+  snapshotAdapter,
+  resolveSnapshotConnectivityByFile,
+  resolveSnapshotConnectivityBySchema,
+  type DesignerState,
+} from '@/sisad-pdfme/shared/snapshotAdapter.js';
 
 const baseState: DesignerState = {
   templateSchemaVersion: '3.1.0',
@@ -97,6 +102,33 @@ describe('snapshotAdapter', () => {
     expect(snapshot.documents[0]?.pages[0]?.schemas[0]?.__designer.recipientColor).toBe('#2563EB');
     expect(snapshot.uploadedDocuments).toHaveLength(1);
     expect(snapshot.connectivity?.byFile?.['doc-1']).toMatchObject({ route: 'step-two' });
+    expect(resolveSnapshotConnectivityByFile(snapshot, 'doc-1')).toMatchObject({ route: 'step-two' });
+    expect(
+      resolveSnapshotConnectivityBySchema(
+        {
+          ...snapshot,
+          connectivity: {
+            bySchema: {
+              'doc-1': {
+                'uid-1': {
+                  indexId: 'index-1',
+                  indexName: 'Nro. Documento',
+                  schemaName: 'field_name',
+                  schemaType: 'text',
+                },
+              },
+            },
+          },
+        },
+        'doc-1',
+        'uid-1',
+      ),
+    ).toMatchObject({
+      indexId: 'index-1',
+      indexName: 'Nro. Documento',
+      schemaName: 'field_name',
+      schemaType: 'text',
+    });
     expect(snapshot.inputs).toHaveLength(1);
     expect(snapshot.contributors).toHaveLength(1);
     expect(snapshot.history).toHaveLength(1);
@@ -141,6 +173,44 @@ describe('snapshotAdapter', () => {
     expect(migrated.signaturePolicyId).toBe('oneshot');
     expect(migrated.signatureMode).toBe('provider');
     expect(migrated.connectivity?.byFile?.['legacy-doc']).toMatchObject({ route: 'connected' });
+  });
+
+  test('normalizes connectivity helper lookups when bySchema is nested by file', () => {
+    const snapshot = makeEmptySnapshot({
+      connectivity: {
+        byFile: {
+          'doc-2': {
+            cabinetId: 'cab-1',
+            folderId: 'fold-1',
+            subfolderId: 'sub-1',
+            fileTypeId: 'ft-1',
+          },
+        },
+        bySchema: {
+          'doc-2': {
+            'uid-2': {
+              indexId: 'idx-2',
+              indexName: 'Cliente',
+              schemaName: 'customer',
+              schemaType: 'text',
+            },
+          },
+        },
+      },
+    });
+
+    expect(resolveSnapshotConnectivityByFile(snapshot, 'doc-2')).toMatchObject({
+      cabinetId: 'cab-1',
+      folderId: 'fold-1',
+      subfolderId: 'sub-1',
+      fileTypeId: 'ft-1',
+    });
+    expect(resolveSnapshotConnectivityBySchema(snapshot, 'doc-2', 'uid-2')).toMatchObject({
+      indexId: 'idx-2',
+      indexName: 'Cliente',
+      schemaName: 'customer',
+      schemaType: 'text',
+    });
   });
 
   test('preserves checkboxGroup options, selectedOptionIds and group metadata in round-trip', () => {

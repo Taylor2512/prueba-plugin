@@ -2,7 +2,7 @@
 
 ## Estado
 
-active
+completed
 
 ## Objetivo
 

@@ -2,7 +2,7 @@
 
 ## Estado
 
-backlog
+completed
 
 ## Objetivo
 
@@ -35,8 +35,14 @@ La configuración global ya existe, pero cada componente debe consumir una fuent
 
 ## Criterios
 
-- `visibility.actions.reassign=false` oculta Reasignar.
-- `assignment.enabled=false` oculta Reasignar aunque visibility sea true.
-- `visibility.sidebars.right.panels.comments=false` oculta comentarios.
-- `visibility.inspector.sections.advanced=false` oculta Técnico.
-- No quedan secciones vacías en DetailView.
+- [x] `visibility.actions.reassign=false` oculta Reasignar.
+- [x] `assignment.enabled=false` oculta Reasignar aunque visibility sea true.
+- [x] `visibility.sidebars.right.panels.comments=false` oculta comentarios.
+- [x] `visibility.inspector.sections.advanced=false` oculta Técnico.
+- [x] No quedan secciones vacías en DetailView.
+
+## Estado (2026-07-14, Claude)
+
+- Se creó un resolver compartido de visibilidad para el diseñador en `shared/visibilityConfig.ts`.
+- `ListViewToolbar` y `detailSchemas` consumen la misma lectura del config.
+- Se agregaron pruebas de `advanced` y visibilidad total del inspector.

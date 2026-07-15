@@ -1,8 +1,8 @@
 # TASK-PDFME-010 — Drag preview, scroll canvas y posicionamiento
 
-**Estado:** backlog  
-**Prioridad:** P1  
-**Área:** `src/sisad-pdfme/ui/components/Designer/Canvas`, host layout
+## Estado
+
+completed
 
 ## Objetivo
 
@@ -26,3 +26,15 @@ Canvas scrollea páginas.
 Sidebars scrollean su contenido.
 Body no scrollea dentro del diseñador fullscreen.
 ```
+
+## Tareas
+
+- [x] Cubrir el drag preview con una regresión de Playwright.
+- [x] Verificar drop en página 2 con el canvas scrolleado.
+- [x] Confirmar que el preview y el placeholder aparecen durante el drag externo.
+
+## No hacer
+
+- No tocar Moveable ni Selecto.
+- No cambiar geometría de schemas.
+- No resolver el caso con hacks de host.

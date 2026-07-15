@@ -19,6 +19,7 @@ import {
 } from './detailSectionTaxonomy.js';
 import { contractSectionEnabled, resolveInspectorContract } from './inspectorContracts.js';
 import { getSchemaTypeInspectorPreset, resolveSchemaSemanticFamily } from '../../../../../schemas/schemaFamilies.js';
+import { shouldShowInspectorSection } from '../../shared/visibilityConfig.js';
 
 /** Clave canónica de sección usada por el DetailView. */
 export type DetailInspectorSectionKey = CanonicalDetailSection;
@@ -505,8 +506,7 @@ export const buildInspectorSections = ({
   };
 
   const inspectorVisibility = visibility?.inspector;
-  const isInspectorVisible = inspectorVisibility?.visible !== false;
-  if (!isInspectorVisible) return [];
+  if (inspectorVisibility?.visible === false) return [];
 
   const visibleFieldsBySchemaType =
     inspectorVisibility?.fieldsBySchemaType?.[activeSchemaType] ??
@@ -554,13 +554,7 @@ export const buildInspectorSections = ({
   const visibilitySchema = (activeSchema || (defaultSchema as SchemaForUI)) as SchemaForUI;
   const detailProfile = getInspectorProfile(activeSchemaType, activeSchema);
   const visibleSections = detailProfile.visibleSections.filter((sectionKey) => {
-    if (inspectorVisibility?.sections?.[sectionKey] === false) return false;
-    if (sectionKey === 'advanced' && (inspectorVisibility?.showAdvanced === false || inspectorVisibility?.showTechnical === false)) {
-      return false;
-    }
-    if (sectionKey === 'comments' && inspectorVisibility?.showComments === false) return false;
-    if (sectionKey === 'collaboration' && inspectorVisibility?.showCollaboration === false) return false;
-    return true;
+    return shouldShowInspectorSection(sectionKey, visibility);
   });
   const defaultOpenSections = new Set(detailProfile.defaultOpenSections);
 

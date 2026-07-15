@@ -142,6 +142,48 @@ describe('useSisadPdfmeController + RecipientRegistry', () => {
     expect(freshRegistry.getActiveRecipientId()).toBe('client');
     expect(freshInstance.updateTemplate).toHaveBeenCalledWith(snapshot);
   });
+
+  test('selection methods avisan cuando el runtime no expone soporte de selección', () => {
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const registry = makeRegistry();
+    const { result } = renderHook(() =>
+      useSisadPdfmeController({ current: null }, { registry }),
+    );
+
+    expect(result.current.getSelectedSchemaIds()).toEqual([]);
+    result.current.selectSchemas(['schema-1']);
+    result.current.clearSelection();
+
+    expect(warn).toHaveBeenCalledWith('[sisad-pdfme] Controller method not implemented: getSelectedSchemaIds');
+    expect(warn).toHaveBeenCalledWith('[sisad-pdfme] Controller method not implemented: selectSchemas');
+    expect(warn).toHaveBeenCalledWith('[sisad-pdfme] Controller method not implemented: clearSelection');
+
+    warn.mockRestore();
+  });
+
+  test('selection methods delegan en el runtime cuando existen', () => {
+    const registry = makeRegistry();
+    const instance = {
+      ...makeInstance(makeTemplate()),
+      getSelectedSchemaIds: vi.fn(() => ['uid-1', 'uid-2']),
+      selectSchemas: vi.fn(),
+      clearSelection: vi.fn(),
+    };
+    const warn = vi.spyOn(console, 'warn').mockImplementation(() => undefined);
+    const { result } = renderHook(() =>
+      useSisadPdfmeController({ current: instance }, { registry }),
+    );
+
+    expect(result.current.getSelectedSchemaIds()).toEqual(['uid-1', 'uid-2']);
+    act(() => result.current.selectSchemas(['uid-1'], 'add'));
+    act(() => result.current.clearSelection());
+
+    expect(instance.selectSchemas).toHaveBeenCalledWith(['uid-1'], 'add');
+    expect(instance.clearSelection).toHaveBeenCalledTimes(1);
+    expect(warn).not.toHaveBeenCalled();
+
+    warn.mockRestore();
+  });
 });
 
 describe('useRecipientRegistry', () => {

@@ -70,6 +70,8 @@ export type {
   SnapshotRecipient,
   SnapshotAssignment,
   SnapshotConnectivity,
+  SnapshotFileConnectivity,
+  SnapshotSchemaConnectivity,
   SnapshotContributor,
   SignatureConfig,
   ProviderConfig,
@@ -82,7 +84,13 @@ export { SNAPSHOT_VERSION, isLegacySnapshot, makeEmptySnapshot } from './snapsho
 
 // Fase 7 — Snapshot Adapter
 export type { ValidationResult, DesignerState } from './snapshotAdapter.js';
-export { snapshotAdapter } from './snapshotAdapter.js';
+export {
+  snapshotAdapter,
+  normalizeSnapshotConnectivity,
+  resolveSnapshotConnectivity,
+  resolveSnapshotConnectivityByFile,
+  resolveSnapshotConnectivityBySchema,
+} from './snapshotAdapter.js';
 
 // Template Validator — DocuSign-style pre-send validation
 export type {

@@ -30,10 +30,10 @@ const LeftSidebarSearch = ({
     data-use-default-style={useDefaultStyles ? 'true' : 'false'}
     className={mergeUniqueClassNames(
       `${DESIGNER_CLASSNAME}left-sidebar-search`,
-      density === 'mini' ? 'h-6.5 text-[10px]' : 'h-7.5 text-[0.72rem]',
-      'rounded-lg border-slate-200/60 bg-slate-50/30 transition-all hover:bg-white focus:bg-white px-2',
+      'w-full rounded-full border border-slate-200/70 bg-slate-50/70 px-2.5 shadow-sm transition-colors duration-150 hover:bg-white focus-within:border-sky-200 focus-within:bg-white focus-within:shadow-[0_0_0_1px_rgba(186,230,253,0.75)]',
+      density === 'mini' ? 'h-7 text-[10px]' : 'h-8 text-[0.72rem]',
       density === 'mini' ? '[&_.ant-input]:text-[10px]' : '[&_.ant-input]:text-[0.72rem]',
-      '[&_.ant-input-affix-wrapper-focused]:shadow-[0_0_0_2px_rgba(56,189,248,0.1)]',
+      '[&_.ant-input-affix-wrapper-focused]:shadow-none',
       className || '',
     )}
   />

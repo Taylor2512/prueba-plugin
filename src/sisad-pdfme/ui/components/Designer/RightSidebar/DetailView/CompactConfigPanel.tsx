@@ -75,13 +75,13 @@ const CompactConfigPanel = ({
   }, [open]);
 
   return (
-    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel', 'rounded-xl border border-slate-200/70 bg-white/90 p-1.5 shadow-none')}>
+    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel', 'flex flex-col gap-2 rounded-2xl border border-slate-200/80 bg-white/90 p-2.5 shadow-sm')}>
       <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-head', 'flex items-start justify-between gap-2')}>
         <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-copy', 'min-w-0 flex-1')}>
           <div
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'compact-config-panel-title',
-              'min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-[0.65rem] font-semibold leading-tight text-slate-900',
+              'min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-[0.875rem] font-bold leading-[1.2] text-[var(--color-gray-900)]',
             )}
           >
             {title}
@@ -90,7 +90,7 @@ const CompactConfigPanel = ({
             <div
               className={mergeClassNames(
                 DESIGNER_CLASSNAME + 'compact-config-panel-description',
-                'min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-[0.6rem] leading-3 text-slate-500',
+                'mt-0.5 min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-[0.75rem] leading-[1.4] text-[var(--color-gray-500)]',
               )}
             >
               {description}
@@ -98,7 +98,7 @@ const CompactConfigPanel = ({
           ) : null}
         </div>
         {statusTags.length > 0 ? (
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-tags', 'flex flex-wrap gap-1.5')}>
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-tags', 'flex flex-wrap justify-end gap-1.5')}>
             {statusTags.map((tag, index) => (
               <Tag key={`${tag.label}-${index}`} color={tag.color} className="m-0 inline-flex h-5 items-center rounded-full border border-slate-200 px-1.5 text-[10px] leading-none">
                 {tag.label}
@@ -109,18 +109,18 @@ const CompactConfigPanel = ({
       </div>
 
       {summary ? (
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-summary', 'mt-1.5 rounded-lg border border-slate-200 bg-slate-50 px-2 py-1')}>
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-summary-text', 'text-[0.68rem] leading-4 text-slate-700')}>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-summary', 'rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-1.5')}>
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-summary-text', 'text-[0.72rem] leading-5 text-slate-700')}>
             {summary}
           </div>
         </div>
       ) : null}
 
       {quickActions ? (
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-actions', 'mt-2 flex flex-wrap gap-1.5')}>{quickActions}</div>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-actions', 'grid grid-cols-3 gap-2 max-[960px]:grid-cols-1 [&>*]:min-w-0')}>{quickActions}</div>
       ) : null}
 
-      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-footer', 'mt-2 flex items-center justify-end gap-1.5')}>
+      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-footer', 'flex flex-wrap items-center justify-between gap-1.5')}>
         {footerActions ? <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-footer-actions', 'flex items-center gap-1.5')}>{footerActions}</div> : null}
         <Button
           size="small"
@@ -129,8 +129,8 @@ const CompactConfigPanel = ({
           onClick={() => setOpen(true)}
           aria-label={modalTriggerAriaLabel || (typeof modalTriggerLabel === 'string' ? modalTriggerLabel : modalTitle || title)}
           className={mergeClassNames(
-            'inline-flex items-center justify-center rounded-lg border-slate-200 bg-white text-[0.68rem] font-semibold text-slate-700 shadow-none',
-            isIconOnlyTrigger ? 'h-8 w-8 px-0' : 'px-2.5',
+            'inline-flex h-[30px] items-center justify-center rounded-xl border border-slate-200/80 bg-white/90 px-3 text-[0.72rem] font-semibold text-slate-700 shadow-sm',
+            isIconOnlyTrigger ? 'w-[30px] min-w-[30px] px-0' : '',
           )}
         >
           {isIconOnlyTrigger ? null : modalTriggerLabel}
