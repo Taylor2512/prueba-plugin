@@ -90,15 +90,54 @@ const SchemaAssignmentDialog = ({
   const [query, setQuery] = useState('');
   const [nextRecipientId, setNextRecipientId] = useState<string | null>(null);
   const bodyRef = React.useRef<HTMLDivElement | null>(null);
+  const options = useContext(OptionsContext) as { debug?: { enabled?: boolean } } | undefined;
+  const debugEnabled = options?.debug?.enabled === true;
+  const openRef = useRef(open);
+
+  const logLifecycle = useCallback(
+    (phase: 'open' | 'close' | 'after-close', reason?: SchemaAssignmentCloseReason) => {
+      if (!debugEnabled) return;
+      // Log temporal de diagnóstico (TASK-INTERACTION-016), solo con debug.enabled.
+      console.info('[assignment-modal-lifecycle]', {
+        phase,
+        reason: reason ?? null,
+        isModalOpen: openRef.current,
+        activeElementsCount: selectedSchemas.length,
+      });
+    },
+    [debugEnabled, selectedSchemas.length],
+  );
+
+  /** Lifecycle único: TODO cierre (Cancelar/X/Escape/mask/Confirmar/unmount) pasa por aquí. */
+  const requestClose = useCallback(
+    (reason: SchemaAssignmentCloseReason) => {
+      logLifecycle('close', reason);
+      onClose?.({ reason });
+    },
+    [logLifecycle, onClose],
+  );
 
   // Reinicia el estado local cada vez que se abre para no arrastrar selecciones.
   useEffect(() => {
+    openRef.current = open;
     if (open) {
       setQuery('');
       setNextRecipientId(null);
       markInspectorInteractive(bodyRef.current);
+      logLifecycle('open');
     }
-  }, [open]);
+  }, [open, logLifecycle]);
+
+  // Safety de unmount: si el modal desaparece abierto (p. ej. cambio de panel),
+  // el estado transitorio del diseñador no puede quedar bloqueado.
+  useEffect(
+    () => () => {
+      if (openRef.current) {
+        resetDesignerTransientInteractionState();
+      }
+    },
+    [],
+  );
 
   const totalSelected = typeof selectedCount === 'number' ? selectedCount : selectedSchemas.length;
 
@@ -139,19 +178,24 @@ const SchemaAssignmentDialog = ({
   const handleConfirm = () => {
     if (!nextRecipientId || !canConfirm) return;
     onConfirm(nextRecipientId);
+    requestClose('confirm');
   };
 
   return (
     <Modal
       open={open}
-      onCancel={onClose}
+      onCancel={(event) => requestClose(resolveCancelReason(event))}
       title="Reasignar responsable"
       width={460}
       centered
       destroyOnHidden
+      keyboard
+      maskClosable
       afterOpenChange={(visible) => {
         if (!visible) {
+          // keepSelection implícito: el reset transitorio NUNCA toca activeElements.
           resetDesignerTransientInteractionState();
+          logLifecycle('after-close');
           onAfterClose?.();
         }
       }}
@@ -164,7 +208,24 @@ const SchemaAssignmentDialog = ({
       cancelButtonProps={{ 'data-testid': 'schema-assignment-cancel' }}
       onOk={handleConfirm}
       modalRender={(node) => (
-        <div data-designer-modal="true" data-interaction-exclusion="true">
+        // Stops en bubble: cortan la fuga hacia el árbol React padre sin romper
+        // los controles internos (un stop en capture detendría el descenso del
+        // evento antes de llegar a Radio/Input del propio modal).
+        <div
+          data-designer-modal="true"
+          data-interaction-exclusion="true"
+          onPointerDown={stopInspectorPointerEvent}
+          onMouseDown={stopInspectorPointerEvent}
+          onClick={stopInspectorPointerEvent}
+          onDoubleClickCapture={(event) => {
+            const target = event.target as HTMLElement | null;
+            // El doble click no tiene interacción interna salvo selección de
+            // texto en inputs; fuera de ellos se detiene en capture.
+            if (target?.closest('input, textarea, [contenteditable="true"]')) return;
+            event.preventDefault();
+            event.stopPropagation();
+          }}
+        >
           {node}
         </div>
       )}
