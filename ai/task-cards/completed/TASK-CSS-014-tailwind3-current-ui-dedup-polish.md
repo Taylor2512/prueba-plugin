@@ -68,3 +68,18 @@ npx playwright test tests/playwright/drag-preview-and-canvas-scroll-regression.s
 ## Notas / guardrails
 
 No tocar `.moveable-*`, `.selecto-*`, transform, zoom math, paper/canvas geometry, print/PDF ni tokens.
+
+## Cierre (2026-07-15, Claude)
+
+- [x] `node scripts/css-active-selector-audit.mjs` ejecutado
+      (`active-selector-duplicates.md`).
+- [x] Rail derecho colapsado estable sin invadir canvas
+      (sidebar-rail-collapse-actions + sidebar-collapse-parity).
+- [x] Guardar no parece parte del rail (assert de no-solape en spec).
+- [x] Panel switcher sin borde negro; ListView owner accent separado
+      (polish commiteado previamente, validado por detail-view specs).
+- [x] Zoom trigger muestra `90%`, no `0.9` (`buildZoomSelectOptions` +
+      zoom-toolbar-contract.spec).
+- [x] Ledger actualizado (`component-migration-ledger.md`, pasada 2026-07-15);
+      la reducción de duplicados se ejecuta por slice usando los reportes,
+      sin tocar geometría crítica.

@@ -68,3 +68,19 @@ npm run build
 ## Notas / guardrails
 
 No usar clicks frágiles por texto duplicado. Preferir data-testid.
+
+## Cierre (2026-07-15, Claude)
+
+Suite creada y en verde:
+- `tests/playwright/action-contract-smoke.spec.ts` (3 tests: topbar con
+  testids/handlers, Reasignar gated con modal, cluster undo/redo/zoom sin
+  botones muertos ni overflow).
+- `tests/playwright/sidebar-rail-collapse-actions.spec.ts` (2 tests).
+- `tests/playwright/zoom-toolbar-contract.spec.ts` (4 tests, porcentajes).
+- `tests/unit/sisad-pdfme/ui/actions/` (designerActionState 7 + zoomContract 5).
+
+- [x] Si un botón existe, tiene handler (contrato `missing-handler`).
+- [x] Deshabilitado siempre con razón (title desde `describeDisabledReason`).
+- [x] 'Más' con testId estable (`designer-more-actions`).
+- [x] Zoom muestra porcentajes. Canvas scroll intacto
+      (canvas-overflow + drag-preview specs en verde).

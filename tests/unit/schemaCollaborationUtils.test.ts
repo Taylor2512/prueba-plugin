@@ -21,6 +21,8 @@ describe('schemaCollaborationUtils', () => {
   test('builds semantic state tags', () => {
     expect(buildStateTag('locked')).toEqual({ label: 'Bloqueado', color: 'error' });
     expect(buildStateTag('merged')).toEqual({ label: 'Fusionado', color: 'success' });
-    expect(buildStateTag('draft')).toEqual({ label: 'Borrador', color: 'default' });
+    // draft (y cualquier estado no bloqueado/fusionado) se muestra como disponible.
+    expect(buildStateTag('draft')).toEqual({ label: 'Disponible', color: 'warning' });
+    expect(buildStateTag(undefined)).toEqual({ label: 'Disponible', color: 'warning' });
   });
 });

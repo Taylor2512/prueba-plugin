@@ -64,3 +64,22 @@ npm run build
 ## Notas / guardrails
 
 No tocar recipients ni SnapshotAdapter. Esta tarea solo sincroniza consumo de estados.
+
+## Cierre (2026-07-15, Claude)
+
+- [x] `inspectorStatusLabel = statusLabel` e `inspectorStatusTone` derivado del
+      mismo `statusTone` (fuente única en `resolveSchemaAccessState`; se corrigió
+      además un ReferenceError de `statusTone` fuera de scope).
+- [x] `contextMenuLockLabel`: sin object lock → 'Bloquear posición'; con →
+      'Desbloquear posición'; lock mío → 'Liberar edición'; lock de otro →
+      'Bloqueado por X'. Fallback del menú contextual corregido.
+- [x] `collaborationLock === 'unknown'` → 'Bloqueo sin responsable' (interaction
+      state y access state).
+- [x] Alias legacy directos: `isObjectLocked`/`isReadonly`/`canEdit` en ambos
+      contratos.
+- [x] No aparece 'Bloqueado para edición' (grep = 0). Object lock se muestra
+      como 'Posición bloqueada'. Reasignar no se bloquea por objectLocked
+      (`canReassign` ignora objectLocked); lock de otro sí bloquea.
+- Validación: `schemaInteractionState.test.ts` (11) +
+  `schemaRuntimeAccess.test.ts` (11) + e2e
+  `schema-lock-state-consistency.spec.ts` en verde. Build exit 0.

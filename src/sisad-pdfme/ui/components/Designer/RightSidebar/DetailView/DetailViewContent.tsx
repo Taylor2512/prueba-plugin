@@ -24,6 +24,7 @@ import type { SchemaAccessState } from '../../shared/accessPolicy.js';
  */
 type DetailViewContentProps = {
   activeSchema: SchemaForUI;
+  resetToken?: string;
   schemaConfig: SchemaDesignerConfig | null;
   selectionCount?: number;
   deselectSchema: () => void;
@@ -44,6 +45,7 @@ type DetailViewContentProps = {
  */
 const DetailViewContent = ({
   activeSchema,
+  resetToken,
   schemaConfig,
   selectionCount,
   deselectSchema,
@@ -104,6 +106,7 @@ const DetailViewContent = ({
               form={form}
               widgets={widgets}
               watchHandler={watchHandler}
+              resetToken={resetToken}
               readOnly={readOnly}
             />
           ))}

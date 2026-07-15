@@ -183,6 +183,8 @@ describe('schemaInteractionState', () => {
     expect(ownLock.canReassign).toBe(true);
     expect(ownLock.contextMenuLockLabel).toBe('Liberar edición');
     expect(ownLock.contextMenuLockDisabled).toBe(false);
+    expect(ownLock.statusLabel).toBe(ownLock.inspectorStatusLabel);
+    expect(ownLock.statusTone).toBe(ownLock.inspectorStatusTone);
 
     const otherLock = resolveSchemaAccessState(
       makeInteractionSchema({ id: 'field-11', state: 'locked', lock: { lockedBy: 'actor-2' } }),
@@ -193,5 +195,28 @@ describe('schemaInteractionState', () => {
     expect(otherLock.canReassign).toBe(false);
     expect(otherLock.contextMenuLockLabel).toBe('Bloqueado por actor-2');
     expect(otherLock.contextMenuLockDisabled).toBe(true);
+  });
+
+  it('labels unknown collaboration locks explicitly', () => {
+    const schema = makeInteractionSchema({
+      id: 'field-12',
+      state: 'locked',
+      lock: { reason: 'pending-lock' },
+    });
+
+    const interactionState = resolveSchemaInteractionState(schema, {
+      collaborationContext: makeCollaborationContext(),
+    });
+    const accessState = resolveSchemaAccessState(
+      schema,
+      makeCollaborationContext(),
+      makeCollaborationContext().activeRecipient,
+    );
+
+    expect(interactionState.collaborationLock).toBe('unknown');
+    expect(interactionState.statusLabel).toBe('Bloqueo sin responsable');
+    expect(accessState.statusLabel).toBe('Bloqueo sin responsable');
+    expect(accessState.inspectorStatusLabel).toBe('Bloqueo sin responsable');
+    expect(accessState.contextMenuLockLabel).toBe('Bloquear posición');
   });
 });

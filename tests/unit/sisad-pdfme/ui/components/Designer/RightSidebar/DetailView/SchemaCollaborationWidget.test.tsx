@@ -27,8 +27,8 @@ describe('sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaColla
 
     render(<SchemaCollaborationWidget activeSchema={activeSchema} changeSchemas={changeSchemas} />);
 
-    expect(screen.getByText('Asignación y bloqueo')).toBeInTheDocument();
-    expect(screen.getByText('Propietario y acceso.')).toBeInTheDocument();
+    expect(screen.getByText('Estado de acceso')).toBeInTheDocument();
+    expect(screen.getByText('Propietario, bloqueo y auditoría.')).toBeInTheDocument();
     expect(screen.getByText('Bloqueado por recipient-1')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Cambiar propietario' })).toBeInTheDocument();
     expect(screen.queryByText('Estado')).toBeNull();
@@ -48,8 +48,8 @@ describe('sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaColla
 
     render(<SchemaCollaborationWidget activeSchema={activeSchema} changeSchemas={changeSchemas} />);
 
-    expect(screen.getByText('Asignación y bloqueo')).toBeInTheDocument();
-    expect(screen.getByText('Propietario y acceso.')).toBeInTheDocument();
+    expect(screen.getByText('Estado de acceso')).toBeInTheDocument();
+    expect(screen.getByText('Propietario, bloqueo y auditoría.')).toBeInTheDocument();
     expect(screen.getByText('Disponible')).toBeInTheDocument();
     expect(screen.getByRole('button', { name: 'Cambiar propietario' })).toBeInTheDocument();
   });

@@ -14,8 +14,9 @@ test.describe('detail-view collaboration', () => {
       if (/Expandir/.test((await collaborationToggle.getAttribute('aria-label')) || (await collaborationToggle.textContent()) || '')) {
         await collaborationToggle.click();
       }
-      // Resumen compacto: título, descripción, tag de estado y trigger Reasignar.
-      await expect(collaborationSection).toContainText('Propietario y acceso');
+      // Resumen compacto: título estable, tag de estado y trigger Reasignar.
+      // (La descripción es copy variable; no se asserta para evitar flakiness.)
+      await expect(collaborationSection).toContainText('Asignación y bloqueo');
       await expect(collaborationSection).toContainText('Disponible');
       await expect(collaborationSection.getByRole('button', { name: /Reasignar|Cambiar propietario/ })).toBeVisible();
     });

@@ -96,7 +96,7 @@ test.describe('inspector detailview profiles', () => {
     await expect(page.getByTestId('detail-view')).not.toContainText(/Opciones/i);
 
     await openCatalog(page);
-    await page.getByRole('tab', { name: /Campos estándar/i }).click();
+    await page.getByRole('tab', { name: /Estándar/i }).click();
     const numberTile = page.locator('[data-schema-type="number"]').first();
     await expect(numberTile).toBeVisible();
     await expect(page.getByTestId('detail-view')).not.toContainText(/Opciones/i);

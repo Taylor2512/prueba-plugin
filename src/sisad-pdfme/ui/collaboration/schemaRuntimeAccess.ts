@@ -346,24 +346,9 @@ export type SchemaAccessState = {
   isReadonly: boolean;
 
   /**
-   * Permiso final de edición general.
+   * Permiso final de edición general (alias directo de `canEditProperties`).
    */
   canEdit: boolean;
-
-  /**
-   * Permiso final para mover el schema.
-   */
-  canMove: boolean;
-
-  /**
-   * Permiso final para redimensionar el schema.
-   */
-  canResize: boolean;
-
-  /**
-   * Permiso final para eliminar el schema.
-   */
-  canDelete: boolean;
 
   /**
    * Texto que debe mostrar el menú contextual para bloquear/desbloquear.
@@ -376,7 +361,7 @@ export type SchemaAccessState = {
   contextMenuLockDisabled: boolean;
 
   /**
-   * Texto de estado para el inspector.
+   * Texto de estado para el inspector (alias directo de `statusLabel`).
    */
   inspectorStatusLabel: string;
 
@@ -522,8 +507,19 @@ export const resolveSchemaAccessState = (
             : isObjectLocked
               ? 'Posición bloqueada'
               : collaborationLock === 'unknown'
-                ? 'Bloqueado'
+                ? 'Bloqueo sin responsable'
                 : 'Disponible';
+
+  const statusTone: SchemaAccessState['statusTone'] =
+    !hasStructurePermission || collaborationLock === 'other'
+      ? 'error'
+      : collaborationLock === 'mine'
+        ? 'success'
+        : isReadonly || collaborationLock === 'unknown'
+          ? 'warning'
+          : isObjectLocked
+            ? 'processing'
+            : 'warning';
 
   return {
     collaborationLock,
@@ -535,16 +531,7 @@ export const resolveSchemaAccessState = (
     canDelete,
     canReassign,
     statusLabel,
-    statusTone:
-      !hasStructurePermission || collaborationLock === 'other'
-        ? 'error'
-        : collaborationLock === 'mine'
-          ? 'success'
-          : isReadonly || collaborationLock === 'unknown'
-            ? 'warning'
-            : isObjectLocked
-              ? 'processing'
-              : 'warning',
+    statusTone,
     lockOwnerId: lockOwnerId || null,
     lockOwnerLabel: lockedByLabel || null,
     ownerLabel,
@@ -555,28 +542,19 @@ export const resolveSchemaAccessState = (
     isObjectLocked,
     isReadonly,
     canEdit: canEditProperties,
+    // El lock del menú contextual habla de POSICIÓN (objectLocked); solo el
+    // lock colaborativo propio se libera como "edición".
     contextMenuLockLabel: isLockedByOther
       ? `Bloqueado por ${lockedByLabel || 'otro usuario'}`
       : isLockedByMe
         ? 'Liberar edición'
         : isObjectLocked
           ? 'Desbloquear posición'
-          : 'Bloquear edición',
+          : 'Bloquear posición',
     contextMenuLockDisabled:
       isLockedByOther || collaborationContext?.canEditStructure === false,
-    inspectorStatusLabel: isLockedByOther
-      ? `Bloqueado por ${lockedByLabel || 'otro usuario'}`
-      : isLockedByMe
-        ? 'En edición por ti'
-        : isObjectLocked
-          ? 'Bloqueado'
-          : 'Disponible',
-    inspectorStatusTone: resolveAccessTone(
-      hasCollaborationLock,
-      isLockedByMe,
-      isLockedByOther,
-      isObjectLocked,
-    ),
+    inspectorStatusLabel: statusLabel,
+    inspectorStatusTone: statusTone,
   };
 };
 

@@ -111,7 +111,7 @@ export const buildDetailHeaderSummary = (
       ? 'success'
       : statusLabel === 'Solo lectura'
         ? 'gold'
-        : statusLabel.includes('Bloqueado') || statusLabel.includes('Posición')
+        : statusLabel.includes('Bloqueado') || statusLabel.includes('Bloqueo') || statusLabel.includes('Posición')
         ? 'warning'
         : 'processing');
   tags.push({ label: statusLabel, color: statusColor });

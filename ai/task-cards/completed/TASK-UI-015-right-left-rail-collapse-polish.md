@@ -62,3 +62,16 @@ npm run build
 ## Notas / guardrails
 
 No modificar lógica de panels ni selection; solo wiring visual/accionable.
+
+## Cierre (2026-07-15, Claude)
+
+- [x] Rail colapsado solo con iconos accionables (modos visibles por config,
+      handler garantizado por construcción de `collapsedRailItems`).
+- [x] Tooltips + aria-label + `data-testid` en rail
+      (`sidebar-rail-<side>-<modo>`) y handles (`sidebar-collapse-<side>`).
+- [x] Estado activo uniforme: barra azul interna + fondo blanco + ring suave
+      (ya existente, verificado).
+- [x] Guardar no se solapa con el rail (assert de bounding boxes en spec).
+- [x] Expandir desde el rail vuelve al panel correcto (tab aria-selected).
+- Validación: `sidebar-rail-collapse-actions.spec.ts` (2 tests) +
+  `sidebar-collapse-parity.spec.ts` en verde. Build exit 0.

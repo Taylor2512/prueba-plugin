@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `css`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-15T13:45:57.441Z`
+- **Fecha generación:** `2026-07-15T15:07:03.552Z`
 - **Extensiones incluidas:** `.css, .scss, .sass, .less`
 - **Archivos candidatos incluidos:** `16`
 - **Límite por archivo:** `80 KB`
@@ -70,7 +70,7 @@ prueba-plugin
 | 7 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__sisad-pdfme-runtime.tailwind.candidate.css` | css | 443 | 14.0 | completo |
 | 8 | `reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__tokens.tailwind.candidate.css` | css | 8 | 0.2 | completo |
 | 9 | `src/features/pdfcomponent/labRoutes.css` | css | 1707 | 36.0 | completo |
-| 10 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 4208 | 195.2 | truncado 74.0 KB |
+| 10 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | css | 3960 | 184.6 | truncado 74.0 KB |
 | 11 | `src/sisad-pdfme/ui/styles/tokens.css` | css | 323 | 13.7 | completo |
 | 12 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/features__pdfcomponent__labRoutes.tailwind.candidate.css` | css | 1600 | 36.3 | completo |
 | 13 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/candidates/sisad-pdfme__ui__styles__canvas-interactions.tailwind.candidate.css` | css | 1547 | 51.0 | completo |
@@ -80,12 +80,12 @@ prueba-plugin
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1902
+- **extensión no incluida:** 1933
 - **directorio ignorado: dependencia/build/salida generada:** 8
 
 ## Totales
 
-- **KB originales candidatos:** `814.9`
+- **KB originales candidatos:** `804.3`
 - **KB incluidos en contenido:** `477.4`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
@@ -8094,9 +8094,9 @@ ner-compact-config-panel {
 ### 0010 — `src/sisad-pdfme/ui/styles/sisad-pdfme.css`
 
 - **Lenguaje:** `css`
-- **Líneas:** `4208`
-- **Tamaño original:** `195.2 KB`
-- **SHA1 corto:** `e55b38fe49`
+- **Líneas:** `3960`
+- **Tamaño original:** `184.6 KB`
+- **SHA1 corto:** `7cd0c68ae1`
 - **Estado:** `truncado 74.0 KB`
 - **Símbolos detectados:** `selector: .sisad-pdfme-root`, `selector: .sisad-pdfme-page`, `selector: .sisad-pdfme-header`, `selector: .sisad-pdfme-grid`, `selector: .sisad-pdfme-workspace`, `selector: .sisad-pdfme-canvas`, `selector: .sisad-pdfme-designer-root`, `selector: .sisad-pdfme-designer-background`, `selector: .sisad-pdfme-designer-stage`, `selector: .sisad-pdfme-designer-canvas`
 
@@ -8598,60 +8598,8 @@ ner-compact-config-panel {
       mb-[0.375rem] p-[0.3125rem_0.5rem] [border:1px_solid_var(--border-subtle)] rounded-[62.4375rem] bg-[var(--color-bg-elevated)] text-[0.59375rem]
       [font-weight:800] tracking-[0.11em] uppercase text-[var(--text-primary)];
   }
-.sisad-pdfme-designer-left-sidebar-control-band,
-.sisad-pdfme-designer-left-sidebar-search-stack {
+.sisad-pdfme-designer-left-sidebar-control-band {
     @apply grid gap-[0.25rem] mb-[0.375rem];
-  }
-.sisad-pdfme-designer-left-sidebar-tablist {
-    @apply
-      flex items-center gap-[0.125rem] w-full min-w-0 m-[0_0_0.3125rem] p-[0.125rem] list-none overflow-hidden bg-[var(--color-gray-100-60)]
-      [border:1px_solid_var(--border-subtle)] rounded-[0.75rem];
-  }
-.sisad-pdfme-designer-left-sidebar-tab {
-    @apply flex-1 min-w-0;
-  }
-.sisad-pdfme-designer-left-sidebar-tab-btn {
-    @apply
-      relative w-full min-w-0 h-[1.875rem] p-0 inline-flex items-center justify-center [border:1px_solid_transparent] rounded-[0.625rem] bg-transparent
-      text-[var(--color-gray-500)] cursor-pointer
-      [transition:background_var(--transition-fast),_color_var(--transition-fast),_border-color_var(--transition-fast),_box-shadow_var(--transition-fast)];
-  }
-.sisad-pdfme-designer-left-sidebar-tab-btn svg {
-    @apply w-[1rem] h-[1rem] [transition:color_var(--transition-fast),_transform_var(--transition-fast)];
-  }
-.sisad-pdfme-designer-left-sidebar-tab-btn:hover {
-    @apply bg-[var(--color-bg-elevated)] text-[var(--text-primary)];
-  }
-.sisad-pdfme-designer-left-sidebar-tab-btn:hover svg {
-    @apply [transform:scale(1.1)];
-  }
-.sisad-pdfme-designer-left-sidebar-tab-btn-active {
-    @apply
-      bg-[var(--color-bg-elevated)] border-[var(--color-border-14)] text-[var(--color-primary)]
-      [box-shadow:0_1px_3px_var(--color-gray-900-05),_inset_0_1px_0_var(--color-white-80)];
-  }
-.sisad-pdfme-designer-left-sidebar-tab-btn-active::after {
-    @apply
-      absolute [bottom:3px] [left:25%] [right:25%] h-[2px] rounded-[1px] bg-[var(--color-primary)]
-      [animation:rs-tab-indicator_160ms_var(--wix-ease-out)_both];
-    content: "";
-  }
-.sisad-pdfme-designer-left-sidebar-tab-label {
-    @apply hidden;
-  }
-.sisad-pdfme-designer-left-sidebar-search[data-use-default-style="true"] {
-    @apply
-      w-full min-h-[2rem] box-border [border:1px_solid_var(--color-border-28)] rounded-[0.625rem] bg-[var(--color-white)] text-[0.75rem]
-      [transition:border-color_0.15s_ease,_box-shadow_0.15s_ease];
-  }
-.sisad-pdfme-designer-left-sidebar-search[data-use-default-style="true"]:focus {
-    @apply outline-none border-[var(--color-primary-40)] [box-shadow:0_0_0_2px_var(--color-primary-08)];
-  }
-.sisad-pdfme-designer-left-sidebar-search-wrap {
-    @apply p-[0.25rem_0];
-  }
-.sisad-pdfme-designer-left-sidebar-search-stack {
-    @apply flex flex-col gap-[0.5rem];
   }
 .sisad-pdfme-designer-left-sidebar-chip-row {
     @apply flex items-center gap-[0.25rem] flex-nowrap overflow-x-auto [scrollbar-width:none] pb-[1px];
@@ -8678,45 +8626,6 @@ ner-compact-config-panel {
   }
 .sisad-pdfme-designer-left-sidebar-main::-webkit-scrollbar-thumb {
     @apply bg-[var(--color-border-35)] rounded-[0.1875rem];
-  }
-.sisad-pdfme-designer-left-sidebar-group {
-    @apply mb-[0.5rem] pb-[0.375rem] [border-bottom:1px_solid_var(--color-gray-200-90)];
-  }
-.sisad-pdfme-designer-left-sidebar-group:last-child {
-    @apply mb-[0] pb-0 [border-bottom:0];
-  }
-.sisad-pdfme-designer-left-sidebar-group-title {
-    @apply
-      flex items-center justify-between gap-[0.25rem] w-full mb-[0.25rem] p-[0.2rem_0.35rem] border-0 [border-bottom:1px_solid_var(--color-border-20)]
-      bg-transparent text-left cursor-pointer;
-  }
-.sisad-pdfme-designer-left-sidebar-group-title:hover {
-    @apply bg-[var(--color-primary-08)];
-  }
-.sisad-pdfme-designer-left-sidebar-group-title-label {
-    @apply
-      flex-1 min-w-0 overflow-hidden [text-overflow:ellipsis] whitespace-nowrap text-[0.6875rem] font-bold tracking-[0.04em] uppercase
-      text-[var(--color-gray-700)];
-  }
-.sisad-pdfme-designer-left-sidebar-group-title-count {
-    @apply
-      inline-flex items-center justify-center min-w-[1rem] h-[0.9375rem] p-[0_0.25rem] [border:1px_solid_var(--color-primary-20)] rounded-[62.4375rem]
-      bg-[var(--color-primary-200-85)] text-[var(--color-primary)] text-[0.5625rem] font-bold;
-  }
-.sisad-pdfme-designer-left-sidebar-group-items {
-    @apply grid gap-[0.25rem] items-stretch overflow-hidden;
-  }
-.sisad-pdfme-designer-left-sidebar-group-items[data-collapsed="true"] {
-    @apply hidden;
-  }
-.sisad-pdfme-designer-left-sidebar-group-items[data-catalog-layout="list"] {
-    @apply [grid-template-columns:minmax(0,_1fr)];
-  }
-.sisad-pdfme-designer-left-sidebar-group-items[data-catalog-layout="tiles"] {
-    @apply [grid-template-columns:repeat(2,_minmax(0,_1fr))] gap-[0.3125rem];
-  }
-.sisad-pdfme-designer-left-sidebar-group-items[data-catalog-layout="icons"] {
-    @apply [grid-template-columns:repeat(4,_minmax(0,_1fr))] gap-[0.25rem];
   }
 .sisad-pdfme-designer-left-sidebar-highlight {
     @apply p-[0_1px] bg-[var(--color-warning-40)] rounded-[2px];
@@ -9203,9 +9112,102 @@ ner-compact-config-panel {
 .sisad-pdfme-designer-detail-header-card-meta {
     @apply flex flex-wrap gap-[0.2rem];
   }
-.sisad-pdfme-designer-detail
+.sisad-pdfme-designer-detail-header-card-state-row {
+    @apply flex flex-wrap gap-[0.25rem] mb-[0.25rem];
+  }
+.sisad-pdfme-designer-detail-header-card-state-tag {
+    @apply [margin-inline-end:0];
+  }
+.sisad-pdfme-designer-detail-header-card-title {
+    @apply min-w-0 text-[0.8125rem] [font-weight:750] text-[var(--color-gray-900)] leading-[1.2] tracking-[-0.01em];
+  }
+.sisad-pdfme-designer-detail-header-card-tag-base,
+.sisad-pdfme-designer-detail-header-card-tag {
+    @apply [margin-inline-end:0];
+  }
+.sisad-pdfme-designer-detail-header-card-tags {
+    @apply flex flex-wrap items-center gap-[0.375rem] ml-[auto];
+  }
+.sisad-pdfme-designer-detail-header-card-stats {
+    @apply flex flex-wrap gap-[0.25rem];
+  }
+.sisad-pdfme-designer-detail-header-card-stat {
+    @apply
+      inline-flex items-center gap-[0.25rem] p-[0.1875rem_0.5rem] [border:1px_solid_var(--color-border-12)] rounded-[0.5rem]
+      [background:linear-gradient(180deg,_var(--color-gray-100-80),_var(--color-white))];
+  }
+.sisad-pdfme-designer-detail-header-card-stat-label {
+    @apply text-[0.5625rem] font-bold text-[var(--color-gray-600-78)] uppercase tracking-[0.05em];
+  }
+.sisad-pdfme-designer-detail-header-card-stat-value {
+    @apply text-[0.75rem] font-bold text-[var(--color-gray-900)];
+  }
+.sisad-pdfme-designer-detail-header-card-pos {
+    @apply ml-[auto] shrink-0 text-[0.5625rem] font-semibold text-[var(--color-gray-500)] tracking-[0.02em] cursor-default select-none;
+  }
+.sisad-pdfme-designer-detail-header-card-state-tag.is-overflow {
+    @apply [cursor:help] [opacity:0.7];
+  }
+.sisad-pdfme-designer-detail-section-card {
+    @apply mb-[0.1875rem] [border:1px_solid_var(--color-border-12)] rounded-[0.625rem] overflow-hidden bg-[var(--color-bg-elevated)];
+  }
+.sisad-pdfme-designer-detail-section-card[data-collapsed="true"] {
+    @apply mb-[1px];
+  }
+.sisad-pdfme-designer-schema-config-widget {
+    @apply
+      flex flex-col gap-[0.375rem] min-h-0 p-[0.375rem] [border:1px_solid_var(--color-border-12)] rounded-[0.75rem]
+      [background:linear-gradient(180deg,_var(--color-gray-50),_var(--color-white)_36%),_var(--color-white)];
+  }
+.sisad-pdfme-designer-detail-view-context-strip {
+    @apply flex flex-wrap gap-[0.25rem] mb-[0.25rem];
+  }
+.sisad-pdfme-designer-detail-view-context-chip {
+    @apply
+      inline-flex items-center min-h-[1.125rem] p-[0_0.4375rem] rounded-full bg-[var(--color-gray-100-80)] text-[var(--color-gray-700)] text-[0.59375rem]
+      font-bold tracking-[0.01em];
+  }
+.sisad-pdfme-designer-schema-config-header {
+    @apply flex flex-wrap items-center justify-between gap-[0.375rem] p-[0_0_0.25rem] [border-bottom:1px_solid_var(--color-border-12)];
+  }
+.sisad-pdfme-designer-schema-config-section-head {
+    @apply flex items-center justify-between gap-[0.5rem] w-full;
+  }
+.sisad-pdfme-designer-schema-config-widget-title,
+.sisad-pdfme-designer-schema-config-section-title,
+.sisad-pdfme-designer-schema-config-pair-editor-title,
+.sisad-pdfme-designer-detail-view-title {
+    @apply text-[0.75rem] [font-weight:750] text-[var(--color-gray-900)] leading-[1.2] tracking-[-0.01em];
+  }
+.sisad-pdfme-designer-schema-config-section-head-main {
+    @apply flex items-center gap-[0.375rem] min-w-0;
+  }
+.sisad-pdfme-designer-schema-config-section-icon {
+    @apply
+      inline-flex items-center justify-center flex-none w-[1.125rem] h-[1.125rem] rounded-[0.3125rem] bg-[var(--color-gray-100-80)]
+      text-[var(--color-gray-700)];
+  }
+.sisad-pdfme-designer-schema-config-tags {
+    @apply flex flex-wrap justify-end gap-[0.375rem];
+  }
+.sisad-pdfme-designer-schema-config-tags .ant-tag,
+.sisad-pdfme-designer-schema-config-summary-row .ant-tag,
+.sisad-pdfme-designer-schema-config-section-state {
+    @apply [margin-inline-end:0] [border:1px_solid_var(--color-border-12)] rounded-full text-[0.6875rem] font-bold leading-[1];
+  }
+.sisad-pdfme-designer-schema-config-tags .ant-tag {
+    @apply p-[0_0.45rem] min-h-[1.5rem] inline-flex items-center;
+  }
+.sisad-pdfme-designer-schema-config-summary-row {
+    @apply flex flex-wrap gap-[0.375rem] items-center p-0;
+  }
+.sisad-pdfme-designer-schema-config-summary-tag {
+    @apply max-w-full;
+  }
+.sisad-pdfme-designer-schema-config-help {
+    @apply mt-[0.0625rem] text-[0.625rem] leading-[1.25]
 
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 124058 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 113217 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
 
 pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-control-band {
   @apply gap-[0.45rem] [padding-inline:0.75rem];

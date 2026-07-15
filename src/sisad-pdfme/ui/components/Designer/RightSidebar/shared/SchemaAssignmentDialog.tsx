@@ -11,14 +11,24 @@
  * - Deshabilita confirmar cuando no hay un nuevo responsable elegido o cuando
  *   el elegido ya es el owner común de toda la selección ("Ya asignado").
  */
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 import { Input, Modal, Radio } from 'antd';
 import { Search, Users } from 'lucide-react';
 import type { SchemaForUI } from '@sisad-pdfme/common';
+import { OptionsContext } from '../../../../contexts.js';
 import type { CollaborationRecipientOption } from '../../../../collaborationContext.js';
 import { markInspectorInteractive, stopInspectorPointerEvent } from '../DetailView/inspectorInteractionGuards.js';
 import { resolveSchemaUid } from '../../shared/schemaAssignmentService.js';
 import { resetDesignerTransientInteractionState } from '../../shared/designerInteractionReset.js';
+
+/** Razón normalizada de cierre del modal (lifecycle único). */
+export type SchemaAssignmentCloseReason =
+  | 'cancel'
+  | 'x'
+  | 'escape'
+  | 'mask'
+  | 'confirm'
+  | 'unmount';
 
 /**
  * Props del modal de reasignación.
@@ -33,9 +43,26 @@ export type SchemaAssignmentDialogProps = {
   currentOwnerMixed?: boolean;
   /** Total de schemas seleccionados si difiere de `selectedSchemas.length`. */
   selectedCount?: number;
-  onClose: () => void;
+  onClose: (payload?: { reason: SchemaAssignmentCloseReason }) => void;
   onConfirm: (_recipientId: string) => void;
   onAfterClose?: () => void;
+};
+
+/** Distingue Cancelar / X / Escape / mask a partir del evento de antd. */
+const resolveCancelReason = (
+  event?: React.MouseEvent | React.KeyboardEvent,
+): SchemaAssignmentCloseReason => {
+  const native = (event as { nativeEvent?: Event } | undefined)?.nativeEvent;
+  if (native?.type === 'keydown' || (event as React.KeyboardEvent | undefined)?.key === 'Escape') {
+    return 'escape';
+  }
+  const target = event?.target;
+  if (target instanceof HTMLElement) {
+    if (target.closest('.ant-modal-close')) return 'x';
+    if (target.closest('[data-testid="schema-assignment-cancel"]')) return 'cancel';
+    if (target.classList.contains('ant-modal-wrap')) return 'mask';
+  }
+  return 'cancel';
 };
 
 const normalizeText = (value: unknown) => (typeof value === 'string' ? value.trim() : '');

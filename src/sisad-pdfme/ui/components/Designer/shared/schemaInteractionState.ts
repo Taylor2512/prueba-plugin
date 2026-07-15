@@ -47,6 +47,10 @@ export type SchemaInteractionState = {
   isLocked: boolean;
   isReadOnly: boolean;
   isEditable: boolean;
+  /** Alias legacy directos (no recalculan nada). */
+  isObjectLocked: boolean;
+  isReadonly: boolean;
+  canEdit: boolean;
   lockReason: 'read-only' | 'locked' | 'no-structure-permission' | null;
   owner: {
     id: string | null;
@@ -182,7 +186,7 @@ export const resolveSchemaInteractionState = (
             : objectLocked
               ? 'Posición bloqueada'
               : collaborationLock === 'unknown'
-                ? 'Bloqueado'
+                ? 'Bloqueo sin responsable'
                 : 'Disponible';
 
   const statusTone: SchemaInteractionStatusTone =
@@ -200,7 +204,7 @@ export const resolveSchemaInteractionState = (
                 ? 'warning'
                 : 'neutral';
 
-  const visibleBadge =
+  const visibleBadge: SchemaInteractionBadge | null =
     statusLabel === 'Disponible'
       ? null
       : {
@@ -242,6 +246,9 @@ export const resolveSchemaInteractionState = (
     isLocked,
     isReadOnly,
     isEditable,
+    isObjectLocked: objectLocked,
+    isReadonly: isReadOnly,
+    canEdit: canEditProperties,
     lockReason,
     owner: {
       id: collaboration.ownerRecipientId,

@@ -75,3 +75,15 @@ npm run build
 ## Notas / guardrails
 
 No crear wrappers ni nuevos menús. Esta task solo prepara inventario para la unificación.
+
+## Cierre (2026-07-15, Claude)
+
+- [x] Existe `reports/action-audit/button-action-inventory.md` (tabla cruda de
+      237 candidatos + clasificación curada por área).
+- [x] Todo botón clasificado (CONNECTED / HIDDEN_BY_CONFIG /
+      DISABLED_WITH_REASON / DUPLICATED_ACTION); MISSING_HANDLER = 0 tras
+      aplicar el contrato `missing-handler` en CtlBar y ListViewToolbar.
+- [x] Duplicados listados con acción canónica (collapse handle vs rail; zoom
+      select por densidad usa builder único).
+- [x] Sin cambios en Canvas geometry/Moveable/Selecto.
+- Validación: `node scripts/audit-buttons-actions.mjs` + `npm run build` exit 0.

@@ -1,4 +1,4 @@
-import type { SisadPdfmeVisibilityConfig } from '../../../../../config/SisadPdfmeConfig.js';
+import type { SisadPdfmeVisibilityConfig } from '../../../../config/SisadPdfmeConfig.js';
 import { asRecord } from './objectGuards.js';
 
 export type VisibilityConfigContext = {

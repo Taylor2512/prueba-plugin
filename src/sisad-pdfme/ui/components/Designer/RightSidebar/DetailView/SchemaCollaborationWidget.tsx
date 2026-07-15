@@ -196,14 +196,8 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
   const resolvedLockedByText = resolvedLockedBy ? (resolvedLockedBy.role ? `${resolvedLockedBy.name} (${resolvedLockedBy.role})` : resolvedLockedBy.name) : (lock?.lockedBy || '');
   const selectionHint = selectedCount > 1 ? ` · ${selectedCount} seleccionados` : '';
 
-  const stateLabel = accessState.inspectorStatusLabel;
-  const stateTagColor =
-    interactionState.visibleBadge?.color ||
-    (accessState.inspectorStatusTone === 'error'
-      ? 'error'
-      : accessState.inspectorStatusTone === 'success'
-        ? 'success'
-        : 'warning');
+  const stateLabel = accessState.statusLabel;
+  const stateTagColor = accessState.statusTone;
 
   return (
     <CompactConfigPanel

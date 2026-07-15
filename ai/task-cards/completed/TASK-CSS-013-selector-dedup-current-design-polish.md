@@ -73,3 +73,14 @@ del canvas, Moveable, Selecto, zoom ni coordenadas PDF.
 - Switcher derecho sin borde negro.
 - Rows del ListView con selección y owner accent separados.
 - CSS duplicado reducido de forma verificable.
+
+## Cierre (2026-07-15, Claude)
+
+- [x] Auditor `scripts/css-selector-duplicates.mjs` operativo; reporte
+      `reports/tailwind-migration/selector-duplicates-current.md` generado
+      (649 filas clasificadas MERGE_SAME_SELECTOR).
+- [x] Polish del switcher/ListView previamente commiteado y validado por specs.
+- [x] Reglas NO eliminadas en esta pasada (criterio de parada: >5 archivos por
+      slice); los merges quedan planificados por zona en el ledger.
+- Validación: `css-inventory.mjs` + `css-selector-duplicates.mjs` + build exit 0 +
+  `canvas-overflow-regression` y `drag-preview-and-canvas-scroll-regression` en verde.

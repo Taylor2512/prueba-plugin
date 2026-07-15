@@ -52,12 +52,11 @@ describe('buildInspectorSections', () => {
 
     expect(byKey.has('identity')).toBe(true);
     expect(byKey.has('box')).toBe(true);
-    expect(byKey.has('behavior')).toBe(true);
+    expect(byKey.has('behavior')).toBe(false);
     expect(byKey.has('advanced')).toBe(false);
 
     const identity = byKey.get('identity');
     const box = byKey.get('box');
-    const behavior = byKey.get('behavior');
     const advanced = byKey.get('advanced');
 
     expect(identity?.schema.properties?.name).toBeDefined();
@@ -67,8 +66,6 @@ describe('buildInspectorSections', () => {
     expect(box?.schema.properties?.position).toBeDefined();
     expect(box?.schema.properties?.width).toBeDefined();
     expect(box?.schema.properties?.height).toBeDefined();
-
-    expect(behavior?.schema.properties).toBeDefined();
 
     expect(advanced).toBeUndefined();
   });

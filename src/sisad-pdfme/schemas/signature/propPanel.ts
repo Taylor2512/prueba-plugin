@@ -653,8 +653,8 @@ export const propPanel: PropPanel<SignatureSchema> = {
   },
   inspector: createSchemaInspectorConfig('signature', {
     propertyMap: {
-    signatureMode: 'data',
-    signatureProviderKey: 'data',
+      signatureMode: 'data',
+      signatureProviderKey: 'data',
       signatureProviderStatus: 'data',
       signatureProviderDisplay: 'data',
       placeholderText: 'data',

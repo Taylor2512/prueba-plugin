@@ -45,3 +45,15 @@ npm run build
 ```
 
 ## Notas / guardrails
+
+## Cierre (2026-07-15, Claude)
+
+- [x] `ResolvedDesignerUiMap` en `Designer/shared/designerUiConfig.ts`:
+      visibility + permissions + features + overrides por acción.
+- [x] Hook `useDesignerUiConfig` (OptionsContext → mapa memoizado).
+- [x] `map.resolveAction(actionId, ctx)` delega en `resolveDesignerActionState`
+      → ActionRegistry usa el mismo mapa (un componente pregunta, no recalcula).
+- [x] Reasignar/comentarios/documentos/panels obedecen config (tests).
+- [x] Config legacy intacta (mapa solo lee options existentes; test de config
+      vacía). Adopción en componentes es progresiva por diseño de la card.
+- Validación: `npx vitest run tests/unit/sisad-pdfme/config` (7 tests) + build.

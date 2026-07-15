@@ -425,14 +425,16 @@ const DetailView = (props: DetailViewProps) => {
     validatePosition,
     visibility,
   });
+  const detailViewResetToken = schemaFingerprint(activeSchema);
 
   return (
-        <DetailViewContent
-          activeSchema={activeSchema}
-          schemaConfig={schemaConfig}
-          selectionCount={selectionCount}
-          deselectSchema={deselectSchema}
-          form={form}
+    <DetailViewContent
+      activeSchema={activeSchema}
+      resetToken={detailViewResetToken}
+      schemaConfig={schemaConfig}
+      selectionCount={selectionCount}
+      deselectSchema={deselectSchema}
+      form={form}
       sections={sections}
       widgets={widgets}
       watchHandler={handleWatch}

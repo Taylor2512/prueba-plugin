@@ -562,10 +562,10 @@ const Sidebar = (props: RightSidebarProps) => {
           data-docs-mode={documentsRailMode}
           data-panel-mode={resolvedPanelMode}>
           {showTabs || contextHeaderNode ? (
-            <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-wrap flex shrink-0 items-center justify-between gap-2 border-b border-slate-200/70 bg-slate-50/80 px-1.5 py-1.5`}>
+            <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-wrap flex shrink-0 items-center justify-between gap-2 border-b border-slate-200/70 bg-gradient-to-b from-slate-50/90 to-white/80 px-2 py-1.5`}>
               {showTabs ? (
                 <div
-                  className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher flex flex-wrap items-center gap-1 rounded-full border border-slate-200/80 bg-slate-100/80 p-1 shadow-sm`}
+                  className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher flex flex-wrap items-center gap-1 rounded-[1rem] border border-slate-200/80 bg-white/90 p-1 shadow-sm`}
                   role="tablist"
                   tabIndex={0}
                   aria-label="Panel derecho"
@@ -581,7 +581,7 @@ const Sidebar = (props: RightSidebarProps) => {
                         key={`rs-mode-${mode}`}
                         type="button"
                         disabled={disabled}
-                        className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn inline-flex min-h-7 items-center gap-1.5 rounded-full border border-transparent bg-transparent px-2.5 py-1 text-[11px] font-semibold text-slate-500 transition-colors duration-150 hover:bg-white hover:text-sky-700 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/50 focus-visible:ring-offset-1 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-45 data-[active=true]:border-sky-200 data-[active=true]:bg-white data-[active=true]:text-sky-700 data-[active=true]:shadow-sm data-[active=true]:ring-1 data-[active=true]:ring-sky-200`}
+                        className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn inline-flex min-h-7 items-center gap-1.5 rounded-full border border-transparent bg-transparent px-2.5 py-1 text-[11px] font-semibold text-slate-500 transition-[background-color,color,box-shadow,transform,border-color] duration-150 hover:border-slate-200 hover:bg-slate-50 hover:text-sky-700 hover:shadow-sm focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/50 focus-visible:ring-offset-1 focus-visible:ring-offset-white disabled:cursor-not-allowed disabled:opacity-45 data-[active=true]:border-sky-200 data-[active=true]:bg-white data-[active=true]:text-sky-700 data-[active=true]:shadow-sm data-[active=true]:ring-1 data-[active=true]:ring-sky-200`}
                         role="tab"
                         data-active={isActive ? 'true' : 'false'}
                         aria-selected={isActive ? 'true' : 'false'}
@@ -591,9 +591,9 @@ const Sidebar = (props: RightSidebarProps) => {
                         onClick={() => handleModeChange(mode)}
                       >
                         <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-content inline-flex items-center gap-1.5`}>
-                          <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-icon`}>{modeMeta.icon}</span>
+                          <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-icon inline-flex items-center justify-center text-current`}>{modeMeta.icon}</span>
                           {sidebarDensityMode === 'comfortable' ? (
-                            <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-label`}>{modeMeta.shortLabel}</span>
+                            <span className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-btn-label truncate leading-none`}>{modeMeta.shortLabel}</span>
                           ) : null}
                         </span>
                       </button>
@@ -601,7 +601,7 @@ const Sidebar = (props: RightSidebarProps) => {
                   })}
                 </div>
               ) : null}
-              <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-extra flex items-center gap-2`}>
+              <div className={`${DESIGNER_CLASSNAME}right-sidebar-panel-switcher-extra flex items-center gap-2 pl-1`}>
                 {contextHeaderNode}
                 {showCollapseButton ? (
                   <div className="ml-1 flex items-center border-l border-slate-200/60 pl-2">

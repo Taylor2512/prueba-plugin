@@ -22,6 +22,23 @@ import type { SchemaForUI } from '@sisad-pdfme/common';
 
 export type ActionPriority = 'primary' | 'secondary' | 'danger';
 
+export const DESIGNER_ACTION_ALIASES = {
+  'duplicate-schema': 'duplicate',
+  'delete-schema': 'delete',
+  'add-comment': 'addComment',
+  'hide-schema': 'toggleHidden',
+  'toggle-required': 'toggleRequired',
+  'bring-front': 'bringForward',
+  'send-back': 'sendBackward',
+  'zoom-in': 'zoomIn',
+  'zoom-out': 'zoomOut',
+  'fit-to-page': 'fitPage',
+  'open-properties': 'openDetail',
+  'lock-position': 'toggleReadOnly',
+} as const;
+
+export type DesignerActionAliasId = keyof typeof DESIGNER_ACTION_ALIASES;
+
 export type ActionPresentationMode =
   | 'inline'
   | 'popover'
@@ -94,6 +111,13 @@ export const registerActions = (definitions: SchemaActionDefinition[]): void => 
 /** Retrieve a single action definition by id, or undefined if not registered. */
 export const getAction = (id: string): SchemaActionDefinition | undefined =>
   _registry.get(id);
+
+/** Resolve an action by canonical id or by one of the designer aliases. */
+export const resolveActionDefinition = (id: string): SchemaActionDefinition | undefined =>
+  getAction(id) ?? getAction(DESIGNER_ACTION_ALIASES[id as DesignerActionAliasId] ?? '');
+
+/** Return all actions as a plain array for audits and snapshots. */
+export const listActionDefinitions = (): SchemaActionDefinition[] => Array.from(_registry.values());
 
 /** Return all registered actions, optionally filtered. */
 export const getActions = (
@@ -440,7 +464,9 @@ const CORE_ACTIONS: SchemaActionDefinition[] = [
   },
   {
     id: 'lockToggle',
-    label: 'Bloquear edición',
+    // Semántica de posición: el label contextual real (Desbloquear posición /
+    // Liberar edición / Bloqueado por X) lo resuelve `contextMenuLockLabel`.
+    label: 'Bloquear posición',
     section: 'collaboration',
     priority: 'secondary',
     presentationMode: 'hidden',

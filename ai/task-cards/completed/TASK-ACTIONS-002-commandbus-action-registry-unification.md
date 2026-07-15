@@ -81,3 +81,25 @@ npm run build
 ## Notas / guardrails
 
 No cambiar la geometría ni el comportamiento de selección. Unificar estado de acciones, no rediseñar canvas.
+
+## Cierre (2026-07-15, Claude)
+
+Implementado `designerActionState.ts`: `DesignerActionDescriptor`,
+`DesignerActionContext`, `resolveDesignerActionState(actionId, context)` sobre
+el ActionRegistry (alias kebab-case consolidados en
+`actionRegistry.DESIGNER_ACTION_ALIASES` + `resolveActionDefinition`). Acciones
+de chrome registradas (save/more/undo/redo/set-zoom/toggle-sidebars/
+switch-right-panel-*/reassign-recipient/lock-position/unlock-position/
+release-edit/select-schema/open-properties).
+
+- [x] Un botón visible sin handler no puede renderizarse (razón
+      `missing-handler`; adoptado en CtlBar y en el gating de Reasignar).
+- [x] Un botón deshabilitado muestra razón (`describeDisabledReason` → title).
+- [x] Reasignar usa el mismo action state: `resolveReassignActionState` delega
+      en `resolveDesignerActionState('reassign-recipient')`; DetailView usa el
+      mismo `canReassign`/accessState; context menu usa `contextMenuLockLabel`.
+- [x] Lock/Unlock con semántica de posición ('Bloquear posición'; registry
+      `lockToggle` corregido).
+- [x] Zoom select muestra porcentaje (ver TASK-UI-016).
+- Validación: `npx vitest run tests/unit/sisad-pdfme/ui/actions` (12 tests) +
+  build exit 0. Sin cambios de geometría/selección.

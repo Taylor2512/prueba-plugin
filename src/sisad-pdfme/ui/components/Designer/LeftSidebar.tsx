@@ -533,14 +533,14 @@ const SidebarShell = ({
       className={mergeClassNames(
         `${DESIGNER_CLASSNAME}left-sidebar-shell`,
         `${DESIGNER_CLASSNAME}sidebar-surface`,
-        'flex h-full min-h-0 flex-col overflow-hidden rounded-2xl border border-slate-200/70 bg-white/95 shadow-sm',
+        'flex h-full min-h-0 flex-col overflow-hidden rounded-[1.125rem] border border-slate-200/70 bg-white/95 shadow-sm',
       )}
       style={style}
       data-density={density}
     >
       <div className={mergeClassNames(
         `${DESIGNER_CLASSNAME}left-sidebar-dock-header`, 
-        'flex shrink-0 items-start justify-between gap-2 border-b border-slate-200/70 bg-slate-50/60 px-2 py-1.5',
+        'flex shrink-0 items-start justify-between gap-2 border-b border-slate-200/70 bg-slate-50/70 px-2 py-1.25',
         density === 'mini' ? 'hidden' : ''
       )}>
         {density !== 'compact' && (
@@ -559,8 +559,8 @@ const SidebarShell = ({
       </div>
       <div className={mergeClassNames(
         `${DESIGNER_CLASSNAME}left-sidebar-control-band`, 
-        'shrink-0 border-b border-slate-200/70 bg-slate-50/40',
-        density === 'mini' ? 'px-1 py-1 space-y-1' : 'px-2 py-1.5 space-y-1.5'
+        'shrink-0 border-b border-slate-200/70 bg-slate-50/50',
+        density === 'mini' ? 'px-1 py-1 space-y-1' : 'px-1.5 py-[0.3125rem] space-y-[0.3125rem]'
       )}>
         <LeftSidebarTabs
           tabs={tabs}
@@ -577,7 +577,7 @@ const SidebarShell = ({
         className={mergeClassNames(
           `${DESIGNER_CLASSNAME}left-sidebar-main`, 
           'min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain bg-[linear-gradient(180deg,rgba(255,255,255,0.32),rgba(248,250,252,0.7))]',
-          density === 'mini' ? 'px-1 py-1 space-y-1' : 'px-2 py-1.5 space-y-1.5'
+          density === 'mini' ? 'px-1 py-1 space-y-1' : 'px-1.5 py-[0.3125rem] space-y-[0.3125rem]'
         )}
         data-left-sidebar-scroll="true"
         data-sidebar-scroll-container="true"

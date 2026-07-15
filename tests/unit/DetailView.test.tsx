@@ -1,6 +1,6 @@
 import React from 'react';
 import { describe, expect, test, vi, beforeEach } from 'vitest';
-import { render, waitFor } from '@testing-library/react';
+import { act, render, waitFor } from '@testing-library/react';
 import type { SchemaForUI } from '@/sisad-pdfme/common/index.js';
 import type { UIOptions, PluginRegistry } from '@sisad-pdfme/common';
 import { I18nContext, OptionsContext, PluginsRegistry } from '@/sisad-pdfme/ui/contexts.js';
@@ -159,23 +159,40 @@ describe('DetailView', () => {
       errorFields: [{ name: ['name'], errors: ['duplicado'] }],
     });
 
-    const { changeSchemas } = renderDetailView();
+    vi.useFakeTimers();
+    try {
+      const { changeSchemas } = renderDetailView();
 
-    await waitFor(() => {
+      await act(async () => {
+        vi.runOnlyPendingTimers();
+        await Promise.resolve();
+        vi.runOnlyPendingTimers();
+        await Promise.resolve();
+      });
+
       expect(typeof capturedDetailProps?.watchHandler).toBe('function');
-    });
 
-    capturedDetailProps.watchHandler({
-      name: 'duplicated_name',
-      width: 90,
-    });
+      await act(async () => {
+        capturedDetailProps.watchHandler({
+          name: 'duplicated_name',
+          width: 90,
+        });
+        vi.runOnlyPendingTimers();
+        await Promise.resolve();
+      });
 
-    await waitFor(() => {
+      await act(async () => {
+        vi.runOnlyPendingTimers();
+        await Promise.resolve();
+      });
+
       expect(changeSchemas).toHaveBeenCalled();
-    });
 
-    const changes = changeSchemas.mock.calls[0][0] as Array<{ key: string; value: unknown }>;
-    expect(changes).toEqual([expect.objectContaining({ key: 'width', value: 90 })]);
+      const changes = changeSchemas.mock.calls[0][0] as Array<{ key: string; value: unknown }>;
+      expect(changes).toEqual([expect.objectContaining({ key: 'width', value: 90 })]);
+    } finally {
+      vi.useRealTimers();
+    }
   });
 
 });

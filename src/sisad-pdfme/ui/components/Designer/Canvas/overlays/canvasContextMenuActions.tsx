@@ -1599,6 +1599,7 @@ export const buildCanvasContextMenuGroups = (
 
   const hasFieldSelection = hasFormFieldSelection(selectionSchemas);
   const accessState = resolveSelectionAccessState(selectionSchemas, collaborationContext);
+  const contextMenuLockLabel = accessState?.contextMenuLockLabel || 'Bloquear posición';
 
   /**
    * Menú sobre canvas vacío:
@@ -1773,7 +1774,7 @@ export const buildCanvasContextMenuGroups = (
         items: compactItems([
           commandItem(
             'collaboration-lock',
-            accessState?.contextMenuLockLabel || 'Bloquear edición',
+            contextMenuLockLabel,
             <Lock size={14} />,
             accessState?.isLockedByMe ? commands?.clearSelection : undefined,
             {
@@ -2059,7 +2060,7 @@ export const buildCanvasContextMenuGroups = (
       items: compactItems([
         commandItem(
           'collaboration-lock-multi',
-          accessState?.contextMenuLockLabel || 'Bloquear edición',
+          contextMenuLockLabel,
           <Lock size={14} />,
           accessState?.isLockedByMe ? commands?.clearSelection : undefined,
           {

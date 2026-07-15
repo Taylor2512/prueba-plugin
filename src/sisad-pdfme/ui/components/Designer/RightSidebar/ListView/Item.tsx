@@ -322,7 +322,7 @@ const Item = React.memo(
         ref={ref}
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'list-view-item',
-          'relative overflow-hidden rounded-2xl border border-slate-200/70 bg-white/95 shadow-sm transition-[background,border-color,box-shadow,transform] duration-150 hover:border-slate-300 hover:bg-slate-50/80 data-[selected=true]:border-sky-300 data-[selected=true]:bg-sky-50/70 data-[selected=true]:shadow-[0_0_0_1px_rgba(56,189,248,0.18)]',
+          'relative overflow-hidden rounded-[1.1rem] border border-slate-200/70 bg-white/95 shadow-sm transition-[background,border-color,box-shadow,transform] duration-150 hover:-translate-y-px hover:border-slate-300 hover:bg-slate-50/80 data-[selected=true]:border-sky-300 data-[selected=true]:bg-sky-50/70 data-[selected=true]:shadow-[0_0_0_1px_rgba(56,189,248,0.18)] data-[selected=true]:ring-1 data-[selected=true]:ring-sky-200',
           className,
         )}
         style={dragStyle}
@@ -349,17 +349,17 @@ const Item = React.memo(
           }}
         />
         <div
-          className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-content', 'pointer-events-none relative z-10 flex items-start gap-3 px-3 py-2.5 pl-4 before:pointer-events-none before:absolute before:inset-y-2 before:left-2 before:w-[2px] before:rounded-full before:bg-[var(--schema-owner-color,_transparent)] before:opacity-30 before:content-[\'\']')}
+          className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-content', 'pointer-events-none relative z-10 flex items-start gap-3 px-3 py-2.5 pl-4 before:pointer-events-none before:absolute before:inset-y-2 before:left-2 before:w-[2px] before:rounded-full before:bg-[var(--schema-owner-color,_transparent)] before:opacity-35 before:content-[\'\'] data-[selected=true]:before:opacity-70')}
           {...props}
           aria-hidden="true">
           <Button
             {...listeners}
-            className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-grip', 'pointer-events-auto inline-flex h-8 w-1 items-center justify-center rounded-full border border-slate-200 bg-slate-50 text-slate-500 transition-colors hover:border-sky-200 hover:bg-sky-50 hover:text-sky-700 data-[selected=true]:border-sky-300')}
+            className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-grip', 'pointer-events-auto inline-flex h-8 w-1 items-center justify-center rounded-full border border-slate-200/80 bg-slate-50 text-slate-500 shadow-sm transition-colors hover:border-sky-200 hover:bg-sky-50 hover:text-sky-700 data-[selected=true]:border-sky-300')}
             icon={<GripVertical size={14} />} />
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-icon', 'flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200 bg-slate-50 text-slate-600 shadow-inner shadow-white/40')}>{icon}</div>
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-icon', 'flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200/80 bg-white text-slate-600 shadow-inner shadow-white/40')}>{icon}</div>
           <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-main', 'min-w-0 flex-1 space-y-0.5')}>
             <div
-              className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-value', 'block text-sm font-medium leading-tight text-slate-800')}
+              className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-value', 'block text-sm font-semibold leading-tight text-slate-800')}
               data-testid="right-sidebar-field-label"
             >
               <ItemStatusLabel
@@ -388,7 +388,7 @@ const Item = React.memo(
                 {metaBadges.map((badge) => (
                   <span
                     key={`${badge.label}-${badge.color || 'default'}`}
-                    className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-meta-badge', 'inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-medium')}
+                    className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-meta-badge', 'inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-medium shadow-[0_1px_2px_rgba(15,23,42,0.04)]')}
                     style={{
                       color: badge.color || '#667085',
                       background: badge.color ? `${badge.color}1A` : '#F2F4F7',
@@ -402,10 +402,10 @@ const Item = React.memo(
             ) : null}
           </div>
           <ItemActions
-          readOnly={readOnly}
-          required={required}
-          hidden={hidden}
-          onToggleVisibility={onToggleVisibility}
+            readOnly={readOnly}
+            required={required}
+            hidden={hidden}
+            onToggleVisibility={onToggleVisibility}
             onDelete={onDelete}
             isHovered={isHovered}
             label={valueTooltip}

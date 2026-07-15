@@ -12,16 +12,22 @@ test.describe('right sidebar visual polish', () => {
     const switcherWrap = page.locator('.sisad-pdfme-designer-right-sidebar-panel-switcher-wrap').first();
     const switcher = page.locator('.sisad-pdfme-designer-right-sidebar-panel-switcher').first();
     const activeTab = page.locator('.sisad-pdfme-designer-right-sidebar-panel-switcher-btn[data-active="true"]').first();
+    const leftSidebarShell = page.locator('.sisad-pdfme-designer-left-sidebar-shell').first();
+    const leftSidebarControlBand = page.locator('.sisad-pdfme-designer-left-sidebar-control-band').first();
 
     await expect(switcherWrap).toBeVisible();
     await expect(switcher).toBeVisible();
     await expect(activeTab).toBeVisible();
+    await expect(leftSidebarShell).toBeVisible();
+    await expect(leftSidebarControlBand).toBeVisible();
 
-    await expect(switcherWrap).toHaveClass(/bg-slate-50\/80/);
+    await expect(switcherWrap).toHaveClass(/bg-gradient-to-b/);
     await expect(switcherWrap).toHaveClass(/border-b/);
-    await expect(switcher).toHaveClass(/rounded-full/);
+    await expect(switcher).toHaveClass(/rounded-\[1rem\]/);
     await expect(activeTab).toHaveClass(/focus-visible:outline-none/);
     await expect(activeTab).toHaveClass(/focus-visible:ring-2/);
+    await expect(leftSidebarShell).toHaveClass(/rounded-\[1\.125rem\]/);
+    await expect(leftSidebarControlBand).toHaveClass(/px-1/);
 
     await activeTab.focus();
     await expect(activeTab).toBeFocused();

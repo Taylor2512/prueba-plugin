@@ -9,6 +9,7 @@ const ctx = (over: Partial<{ activeRecipientId: string | null; isGlobalView: boo
   recipientColorMap: new Map<string, string>([['r1', '#111'], ['r2', '#222']]),
   recipientNameMap: new Map<string, string>([['r1', 'Uno'], ['r2', 'Dos']]),
   activeRecipientId: 'r1' as string | null,
+  activeRecipient: null,
   isGlobalView: false,
   actorColor: '#000',
   canEditStructure: true,

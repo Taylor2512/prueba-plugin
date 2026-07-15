@@ -33,11 +33,36 @@ export const isAntDPopupTarget = (target: EventTarget | null | undefined): boole
 };
 
 /**
- * Verifica si hay algún popup de Ant Design abierto en el documento.
+ * AntD mantiene tooltips/dropdowns/modales MONTADOS pero ocultos después de
+ * cerrarlos (`ant-tooltip-hidden`, `ant-dropdown-hidden`, wrap con
+ * `display:none`). Un popup oculto NO debe contar como "abierto": si contara,
+ * el canvas quedaría congelado para siempre después del primer hover/modal
+ * (regresión TASK-INTERACTION-016).
+ */
+export const isHiddenAntDPopupElement = (element: HTMLElement): boolean => {
+  // rc-trigger marca el estado final oculto con clase `ant-*-hidden`.
+  if (/(?:^|\s)ant-[a-z-]+-hidden(?:\s|$)/.test(element.className)) return true;
+  if (element.getAttribute('aria-hidden') === 'true') return true;
+  if (element.style.display === 'none') return true;
+  // El modal cerrado deja `.ant-modal-wrap`/root con display:none inline.
+  const hiddenAncestor = element.closest<HTMLElement>(
+    '.ant-modal-wrap, .ant-modal-root, [data-designer-modal="true"]',
+  );
+  if (hiddenAncestor && hiddenAncestor.style.display === 'none') return true;
+  return false;
+};
+
+/**
+ * Verifica si hay algún popup de Ant Design VISIBLE en el documento.
+ * Los popups montados-pero-ocultos se ignoran (ver isHiddenAntDPopupElement).
  */
 export const isAntDPopupOpen = (): boolean => {
   if (typeof document === 'undefined') return false;
-  return Boolean(document.querySelector(ANTD_POPUP_SELECTOR));
+  const candidates = document.querySelectorAll<HTMLElement>(ANTD_POPUP_SELECTOR);
+  for (const candidate of candidates) {
+    if (!isHiddenAntDPopupElement(candidate)) return true;
+  }
+  return false;
 };
 
 /**

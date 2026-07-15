@@ -1,4 +1,5 @@
 import React from 'react';
+import { Tooltip } from 'antd';
 import { DESIGNER_CLASSNAME } from '../../../constants.js';
 import { mergeClassNames } from './className.js';
 
@@ -55,30 +56,32 @@ export const SidebarRail = ({
       )}
       <div className={mergeClassNames('flex min-h-0 flex-1 flex-col', density === 'mini' ? 'gap-0.5' : 'gap-[0.1875rem]')}>
         {items.map((item) => (
-          <button
-            key={item.key}
-            type="button"
-            className={mergeClassNames(
-              `${DESIGNER_CLASSNAME}sidebar-rail-btn`,
-              'group relative inline-flex items-center justify-center border border-transparent bg-transparent text-slate-500 transition-all duration-200 hover:bg-slate-100 hover:text-slate-900',
-              buttonSizeClass,
-              item.active && 'bg-white text-sky-600 shadow-md ring-1 ring-slate-200/60'
-            )}
-            disabled={item.disabled}
-            data-active={item.active ? 'true' : 'false'}
-            aria-pressed={item.active ? 'true' : 'false'}
-            aria-label={item.ariaLabel}
-            onClick={item.onClick}
-          >
-            {item.active && (
-              <span className="absolute -left-[1px] top-1.5 h-4 w-[3px] rounded-full bg-sky-500" aria-hidden="true" />
-            )}
-            <span className={`${DESIGNER_CLASSNAME}sidebar-rail-btn-icon transition-transform duration-200 group-active:scale-90`} aria-hidden="true">
-              {React.isValidElement(item.icon)
-                ? React.cloneElement(item.icon as React.ReactElement<{ size?: number }>, { size: 16 })
-                : item.icon}
-            </span>
-          </button>
+          <Tooltip key={item.key} title={item.label} placement={side === 'left' ? 'right' : 'left'}>
+            <button
+              type="button"
+              className={mergeClassNames(
+                `${DESIGNER_CLASSNAME}sidebar-rail-btn`,
+                'group relative inline-flex items-center justify-center border border-transparent bg-transparent text-slate-500 transition-all duration-200 hover:bg-slate-100 hover:text-slate-900',
+                buttonSizeClass,
+                item.active && 'bg-white text-sky-600 shadow-md ring-1 ring-slate-200/60'
+              )}
+              disabled={item.disabled}
+              data-active={item.active ? 'true' : 'false'}
+              data-testid={`sidebar-rail-${side}-${item.key}`}
+              aria-pressed={item.active ? 'true' : 'false'}
+              aria-label={item.ariaLabel}
+              onClick={item.onClick}
+            >
+              {item.active && (
+                <span className="absolute -left-[1px] top-1.5 h-4 w-[3px] rounded-full bg-sky-500" aria-hidden="true" />
+              )}
+              <span className={`${DESIGNER_CLASSNAME}sidebar-rail-btn-icon transition-transform duration-200 group-active:scale-90`} aria-hidden="true">
+                {React.isValidElement(item.icon)
+                  ? React.cloneElement(item.icon as React.ReactElement<{ size?: number }>, { size: 16 })
+                  : item.icon}
+              </span>
+            </button>
+          </Tooltip>
         ))}
       </div>
     </div>

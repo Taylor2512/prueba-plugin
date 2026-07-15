@@ -26,6 +26,10 @@ import { Button, Dropdown, Select } from 'antd';
 import { I18nContext, OptionsContext } from '../contexts.js';
 import { useMaxZoom } from '../helper.js';
 import { UI_CLASSNAME } from '../constants.js';
+import {
+  describeDisabledReason,
+  resolveDesignerActionState,
+} from './Designer/shared/designerActionState.js';
 
 /**
  * Densidad visual de la barra de control.
@@ -34,6 +38,38 @@ import { UI_CLASSNAME } from '../constants.js';
  * de más acciones en anchos reducidos.
  */
 type ToolbarDensity = 'comfortable' | 'compact' | 'minimal';
+
+/**
+ * Contrato de zoom (TASK-UI-016): la UI siempre muestra porcentaje; el estado
+ * interno usa decimal. `formatZoomPercent(0.9) === '90%'`;
+ * `parseZoomPercent('125%') === 1.25`.
+ */
+export const formatZoomPercent = (zoom: number): string =>
+  `${Math.round((Number(zoom) || 0) * 100)}%`;
+
+export const parseZoomPercent = (value: string | number): number => {
+  const numeric = Number(String(value).replace('%', '').trim());
+  if (!Number.isFinite(numeric) || numeric <= 0) return 1;
+  return numeric / 100;
+};
+
+/**
+ * Opciones del select de zoom: presets dentro de límites + el valor actual si
+ * no coincide con ningún preset, para que el trigger nunca muestre decimales.
+ */
+export const buildZoomSelectOptions = (
+  zoomLevel: number,
+  presets: number[],
+  minZoom: number,
+  maxZoom: number,
+): Array<{ value: number; label: string }> => {
+  const current = Number(zoomLevel.toFixed(2));
+  const values = presets.filter((preset) => preset >= minZoom && preset <= maxZoom);
+  if (!values.includes(current)) values.push(current);
+  return values
+    .sort((a, b) => a - b)
+    .map((preset) => ({ value: Number(preset.toFixed(2)), label: formatZoomPercent(preset) }));
+};
 
 /**
  * Props del selector de zoom embebido en la barra de control.
@@ -71,6 +107,8 @@ const Zoom = ({ zoomLevel, setZoomLevel, iconColor, density = 'comfortable' }: Z
           className={zoomButtonClassName + ' ' + UI_CLASSNAME + 'zoom-out'}
           type="text"
           title="Reducir zoom"
+          aria-label="Reducir zoom"
+          data-testid="designer-zoom-out"
           disabled={minZoom >= nextZoomOut}
           onClick={() => setZoomLevel(nextZoomOut)}
           icon={<Minus size={14} color={iconColor} />}
@@ -79,21 +117,20 @@ const Zoom = ({ zoomLevel, setZoomLevel, iconColor, density = 'comfortable' }: Z
       <Select
         size="small"
         value={Number(zoomLevel.toFixed(2))}
-        options={presets
-          .filter((preset) => preset >= minZoom && preset <= maxZoom)
-          .map((preset) => ({
-            value: Number(preset.toFixed(2)),
-            label: `${Math.round(preset * 100)}%`,
-          }))}
+        options={buildZoomSelectOptions(zoomLevel, presets, minZoom, maxZoom)}
         onChange={(value) => setZoomLevel(Number(value))}
         styles={{ popup: { root: { minWidth: 80 } } }}
         className={UI_CLASSNAME + 'zoom-select'}
+        data-testid="designer-zoom-select"
+        aria-label="Nivel de zoom"
       />
       {showStepButtons ? (
         <Button
           className={zoomButtonClassName + ' ' + UI_CLASSNAME + 'zoom-in'}
           type="text"
           title="Aumentar zoom"
+          aria-label="Aumentar zoom"
+          data-testid="designer-zoom-in"
           disabled={maxZoom < nextZoomIn}
           onClick={() => setZoomLevel(nextZoomIn)}
           icon={<Plus size={14} color={iconColor} />}
@@ -196,6 +233,12 @@ const CtlBar = (props: CtlBarProps) => {
   if (!shouldRender) return null;
 
   const zoomChangeHandler = setZoom ?? setZoomLevel;
+  // Contrato de acciones (TASK-ACTIONS-002): sin handler no se renderiza;
+  // deshabilitado siempre con razón para el tooltip.
+  const saveAction = resolveDesignerActionState('save', { hasHandler: typeof onSave === 'function' });
+  const undoAction = resolveDesignerActionState('undo', { hasHandler: typeof onUndo === 'function' });
+  const redoAction = resolveDesignerActionState('redo', { hasHandler: typeof onRedo === 'function' });
+  const fitPageAction = resolveDesignerActionState('fit-to-page', { hasHandler: typeof onFitPage === 'function' });
   const toolbarDensity: ToolbarDensity =
     size.width >= 1200 ? 'comfortable' : size.width >= 900 ? 'compact' : 'minimal';
   const showPageNavButtons = pageNum > 1 && toolbarDensity === 'comfortable';
@@ -319,47 +362,70 @@ const CtlBar = (props: CtlBarProps) => {
 
       <div className={UI_CLASSNAME + 'control-bar-cluster ' + UI_CLASSNAME + 'control-bar-cluster--top-right'}>
         <div className={UI_CLASSNAME + 'control-bar-pill rounded-full border border-slate-200/70 bg-white/95 px-2 py-1 shadow-sm'}>
-          <Button
-            className={UI_CLASSNAME + 'control-bar-text-btn'}
-            type="text"
-            onClick={onSave}
-            disabled={!onSave}
-            icon={<Save size={14} />}
-            title="Guardar"
-          >
-            {showSaveText ? 'Guardar' : null}
-          </Button>
-          <Dropdown menu={{ items: moreMenuItems, onClick: handleMoreMenuClick }} placement="bottomRight" trigger={['click']}>
-            <Button className={UI_CLASSNAME + 'control-bar-icon-btn'} type="text" title="Más acciones" icon={<Ellipsis size={16} />} />
-          </Dropdown>
+          {saveAction.visible ? (
+            <Button
+              className={UI_CLASSNAME + 'control-bar-text-btn'}
+              type="text"
+              onClick={onSave}
+              disabled={!saveAction.enabled}
+              icon={<Save size={14} />}
+              title={saveAction.enabled ? 'Guardar' : describeDisabledReason(saveAction.reason)}
+              aria-label="Guardar"
+              data-testid="designer-save"
+            >
+              {showSaveText ? 'Guardar' : null}
+            </Button>
+          ) : null}
+          {moreMenuItems.length > 0 ? (
+            <Dropdown menu={{ items: moreMenuItems, onClick: handleMoreMenuClick }} placement="bottomRight" trigger={['click']}>
+              <Button
+                className={UI_CLASSNAME + 'control-bar-icon-btn'}
+                type="text"
+                title="Más acciones"
+                aria-label="Más acciones"
+                data-testid="designer-more-actions"
+                icon={<Ellipsis size={16} />}
+              />
+            </Dropdown>
+          ) : null}
         </div>
       </div>
 
       <div className={UI_CLASSNAME + 'control-bar-cluster ' + UI_CLASSNAME + 'control-bar-cluster--bottom-right'}>
         <div className={UI_CLASSNAME + 'control-bar-pill rounded-full border border-slate-200/70 bg-white/95 px-2 py-1 shadow-sm'}>
-          <Button
-            className={UI_CLASSNAME + 'control-bar-icon-btn'}
-            type="text"
-            onClick={onUndo}
-            disabled={!onUndo}
-            icon={<Undo2 size={16} />}
-            title="Deshacer"
-          />
-          <Button
-            className={UI_CLASSNAME + 'control-bar-icon-btn'}
-            type="text"
-            onClick={onRedo}
-            disabled={!onRedo}
-            icon={<Redo2 size={16} />}
-            title="Rehacer"
-          />
-          {showFitAction ? (
+          {undoAction.visible ? (
+            <Button
+              className={UI_CLASSNAME + 'control-bar-icon-btn'}
+              type="text"
+              onClick={onUndo}
+              disabled={!undoAction.enabled}
+              icon={<Undo2 size={16} />}
+              title="Deshacer"
+              aria-label="Deshacer"
+              data-testid="designer-undo"
+            />
+          ) : null}
+          {redoAction.visible ? (
+            <Button
+              className={UI_CLASSNAME + 'control-bar-icon-btn'}
+              type="text"
+              onClick={onRedo}
+              disabled={!redoAction.enabled}
+              icon={<Redo2 size={16} />}
+              title="Rehacer"
+              aria-label="Rehacer"
+              data-testid="designer-redo"
+            />
+          ) : null}
+          {showFitAction && fitPageAction.visible ? (
             <Button
               className={UI_CLASSNAME + 'control-bar-icon-btn'}
               type="text"
               title="Ajustar página"
+              aria-label="Ajustar página"
+              data-testid="designer-fit-page"
               onClick={onFitPage}
-              disabled={!onFitPage}
+              disabled={!fitPageAction.enabled}
               icon={<Maximize2 size={15} />}
             />
           ) : null}
@@ -369,12 +435,11 @@ const CtlBar = (props: CtlBarProps) => {
             <Select
               size="small"
               value={Number(zoomLevel.toFixed(2))}
-              options={[0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 3].map((preset) => ({
-                value: Number(preset.toFixed(2)),
-                label: `${Math.round(preset * 100)}%`,
-              }))}
+              options={buildZoomSelectOptions(zoomLevel, [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 3], 0.25, 3)}
               onChange={(value) => setZoomLevel(Number(value))}
               className={UI_CLASSNAME + 'zoom-select'}
+              data-testid="designer-zoom-select"
+              aria-label="Nivel de zoom"
             />
           )}
         </div>

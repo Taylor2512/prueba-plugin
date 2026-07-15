@@ -1,4 +1,17 @@
+/**
+ * reassignActionState — estado del botón "Reasignar responsable" del ListView.
+ *
+ * Delegación (TASK-ACTIONS-002): el gating genérico (handler, visibility
+ * config, selección, permiso estructural) sale de `resolveDesignerActionState`
+ * ('reassign-recipient'), la MISMA fuente que usan las demás superficies. Aquí
+ * solo se agregan las señales propias del toolbar (recipient activo, lista de
+ * asignables y el hint de selección vacía).
+ *
+ * Semántica preservada: sin permiso estructural o sin config el botón se
+ * OCULTA (no se deshabilita); `bulkRecipientDisabled` es el único disabled.
+ */
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
+import { resolveDesignerActionState } from '../../shared/designerActionState.js';
 
 export type ReassignActionStateInput = {
   assignmentEnabled: boolean;
@@ -22,26 +35,32 @@ export function resolveReassignActionState(input: ReassignActionStateInput): Rea
   const selectedCount = Number.isFinite(input.selectedCount) ? Math.max(0, Math.trunc(input.selectedCount)) : 0;
   const hasActiveRecipient = Boolean(input.collaborationContext?.activeRecipient);
   const canEditStructure = input.collaborationContext?.canEditStructure !== false;
+  // `reassignVisible` ya incorpora assignment.enabled + visibility.actions.reassign.
+  const visibleByConfig = input.reassignVisible && input.assignmentModalVisible;
+
+  const action = resolveDesignerActionState('reassign-recipient', {
+    hasHandler: input.hasHandler,
+    selectionCount: selectedCount,
+    canEditStructure,
+    visibleByConfig,
+  });
+
   const canOpenAction =
-    input.assignmentEnabled &&
-    input.reassignVisible &&
-    input.assignmentModalVisible &&
-    hasActiveRecipient &&
-    canEditStructure &&
-    input.hasHandler &&
-    input.hasAssignableRecipients;
+    action.visible && action.enabled && hasActiveRecipient && input.hasAssignableRecipients;
+
+  // Para el hint se evalúan las mismas puertas con selección hipotética (1).
+  const gates = resolveDesignerActionState('reassign-recipient', {
+    hasHandler: input.hasHandler,
+    selectionCount: 1,
+    canEditStructure,
+    visibleByConfig,
+  });
 
   return {
-    showButton: canOpenAction && selectedCount > 0,
+    showButton: canOpenAction,
     buttonDisabled: canOpenAction && input.bulkRecipientDisabled,
     showSelectionHint:
-      selectedCount === 0 &&
-      input.assignmentEnabled &&
-      input.reassignVisible &&
-      input.assignmentModalVisible &&
-      hasActiveRecipient &&
-      canEditStructure &&
-      input.hasHandler,
+      selectedCount === 0 && gates.visible && gates.enabled && hasActiveRecipient,
     selectionHintLabel: selectedCount === 0 ? 'Selecciona campos' : null,
   };
 }

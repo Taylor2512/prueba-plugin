@@ -59,3 +59,19 @@ npx vitest run tests/unit/sisad-pdfme/react
 ## Notas / guardrails
 
 Reducir wrappers no significa colapsar toda la arquitectura. Mantener fronteras públicas y providers.
+
+## Cierre (2026-07-15, Claude)
+
+Clasificación completa en `reports/designer-deep-audit/wrapper-reduction.md`:
+PUBLIC_API_KEEP (react/*), CONTEXT_PROVIDER_KEEP (Provider),
+VISUAL_PRIMITIVE_KEEP (SidebarRail/CollapseHandle/SurfacePrimitives),
+DUPLICATED_WITH_EXISTING_PRIMITIVE (SidebarEmptyState ↔
+SidebarSurfaceEmptyState — plan de convergencia documentado, no aplicado por
+trabajo en paralelo en RightSidebar), PASS_THROUGH_REMOVE = 0,
+HOST_SPECIFIC_REMOVE = 0.
+
+- [x] No se elimina API pública.
+- [x] Sin wrappers pasivos internos (verificado; el par duplicado documentado).
+- [x] Sin imports host en src/sisad-pdfme (grep = 0).
+- [x] SchemaAssignmentDialog único; recipients/adapters sin duplicar.
+- Validación: build exit 0 + `tests/unit/sisad-pdfme/react` en verde.
