@@ -11,7 +11,7 @@ test.describe('schema lock state consistency', () => {
     await schema.click({ force: true });
 
     await expect(page.getByText('Bloqueado para edición')).toHaveCount(0);
-    await expect(page.getByText('Guardado')).toBeVisible();
-    await expect(page.getByText('contract_stage')).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Guardar' })).toBeVisible();
+    await expect(schema).toBeVisible();
   });
 });

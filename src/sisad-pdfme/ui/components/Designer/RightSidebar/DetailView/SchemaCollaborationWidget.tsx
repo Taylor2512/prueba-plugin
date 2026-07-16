@@ -10,6 +10,7 @@ import { type PropPanelWidgetProps, type SchemaForUI } from '@sisad-pdfme/common
 import { Collapse, Divider, Input, InputNumber, Select, Space } from 'antd';
 import { Users } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
+import { mergeClassNames } from '../../shared/className.js';
 import {
   buildEffectiveCollaborationContext,
   resolveSchemaCollaborationState,
@@ -27,8 +28,54 @@ import {
 } from './schemaCollaborationUtils.js';
 import { resolveSchemaAccessState } from '../../../../collaboration/schemaRuntimeAccess.js';
 import { resolveSchemaInteractionState } from '../../shared/schemaInteractionState.js';
+import { SCHEMA_CONFIG_COLLAPSE } from './SchemaConnectionsShared.js';
 
 export { joinRecipientIds, normalizeRecipientIds, resolveOwnerMode } from './schemaCollaborationUtils.js';
+
+const WIDGET_ROOT = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-collaboration-widget',
+  'flex flex-col gap-1.5 rounded-[0.95rem] border border-slate-200/70 bg-white/96 p-1.5 shadow-[0_1px_3px_rgba(15,23,42,0.04)]',
+);
+
+const GRID_2 = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-grid-2',
+  'grid grid-cols-2 gap-1 max-[820px]:grid-cols-1',
+);
+
+const FIELD = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-field',
+  'flex min-w-0 flex-col gap-0.5 text-[0.6875rem] text-slate-500 [&_.ant-select-selector]:min-h-[2rem] [&_.ant-select-selector]:rounded-md [&_.ant-select-selector]:border-slate-200 [&_.ant-select-selector]:bg-white [&_.ant-select-selector]:text-[0.6875rem] [&_.ant-select-selector]:shadow-none',
+);
+
+const FIELD_LABEL = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-field-label',
+  'inline-flex min-h-3.5 items-center font-medium text-slate-500',
+);
+
+const HELP = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-help',
+  'mt-0.5 text-[0.625rem] leading-tight text-slate-500',
+);
+
+const SUMMARY = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-summary',
+  'relative overflow-hidden rounded-lg border border-slate-200/80 bg-gradient-to-b from-slate-100/80 to-white px-2 py-1 pl-2.5',
+);
+
+const SUMMARY_TEXT = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-summary-text',
+  'text-[0.6875rem] leading-[1.35] text-slate-600',
+);
+
+const DIVIDER = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-divider',
+  'my-1.5 border-slate-200/70',
+);
+
+const NUMBER_INPUT = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-number',
+  'h-8 rounded-md border border-slate-200/80 bg-white text-[0.71875rem] shadow-none',
+);
 
 /**
  * Props del widget de colaboración del schema.
@@ -209,16 +256,16 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
       modalTriggerIcon={<Users size={14} />}
       modalTriggerAriaLabel={props.modalTitle || 'Cambiar propietario'}
     >
-      <div className={`${DESIGNER_CLASSNAME}schema-collaboration-widget`}>
+      <div className={WIDGET_ROOT}>
         {/* ── Vista normal: solo campos de negocio ─────────────────────────── */}
         <div data-testid="collaboration-normal-view">
-          <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Estado</div>
+          <div className={GRID_2}>
+            <div className={FIELD}>
+              <div className={FIELD_LABEL}>Estado</div>
               <Select id="collaboration-state" name="collaboration-state" value={state} options={STATE_OPTIONS} onChange={(value) => updateState(value)} />
             </div>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Nombre visible</div>
+            <div className={FIELD}>
+              <div className={FIELD_LABEL}>Nombre visible</div>
               <Input
                 id="collaboration-visible-name"
                 name="collaboration-visible-name"
@@ -228,8 +275,8 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
               />
             </div>
           </div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Propietario registrado</div>
+          <div className={FIELD}>
+            <div className={FIELD_LABEL}>Propietario registrado</div>
             {hasRecipientOptions ? (
               <Select
                 id="collaboration-owner"
@@ -276,19 +323,10 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
               />
             )}
           </div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Propiedad</div>
-            <div className="rounded-xl border border-slate-200 bg-slate-50 px-3 py-2">
-              <div className="truncate text-sm font-medium text-slate-900">{resolvedOwnerLabel}</div>
-              <div className="mt-0.5 truncate text-xs text-slate-500">
-                {hasRecipientOptions ? 'Usa el icono de usuarios para reasignar destinatarios.' : 'Sin usuarios registrados en este contexto.'}
-              </div>
-            </div>
-          </div>
           {hasLock ? (
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Bloqueado por</div>
-              <div className="flex h-7 items-center rounded-md border border-slate-200 bg-slate-50 px-2 text-[0.62rem] font-medium text-slate-600">
+            <div className={FIELD}>
+              <div className={FIELD_LABEL}>Bloqueado por</div>
+              <div className="flex h-7 items-center rounded-lg border border-slate-200/70 bg-white/90 px-2 text-[0.6875rem] font-medium text-slate-600 shadow-[0_1px_2px_rgba(15,23,42,0.03)]">
                 {resolvedLockedByText}
               </div>
             </div>
@@ -297,7 +335,10 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
 
         {/* ── Avanzado (colapsado): IDs, auditoría y depuración ─────────────── */}
         <Collapse
-          className={`${DESIGNER_CLASSNAME}schema-config-collapse`}
+          className={mergeClassNames(
+            SCHEMA_CONFIG_COLLAPSE,
+            'flex flex-col gap-1',
+          )}
           ghost
           defaultActiveKey={[]}
           items={[
@@ -312,13 +353,13 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
               ),
               children: (
                 <div data-testid="collaboration-advanced-view">
-                  <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>UID técnico</div>
+                  <div className={GRID_2}>
+                    <div className={FIELD}>
+                      <div className={FIELD_LABEL}>UID técnico</div>
                       <Input id="collaboration-schema-uid" name="collaboration-schema-uid" value={schemaUid || ''} disabled placeholder="UUID estable del campo" />
                     </div>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Archivo</div>
+                    <div className={FIELD}>
+                      <div className={FIELD_LABEL}>Archivo</div>
                       <Input
                         id="collaboration-file"
                         name="collaboration-file"
@@ -332,20 +373,20 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                         placeholder="file-01"
                       />
                     </div>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Página</div>
+                    <div className={FIELD}>
+                      <div className={FIELD_LABEL}>Página</div>
                       <InputNumber
                         id="collaboration-page-number"
                         name="collaboration-page-number"
-                        className={`${DESIGNER_CLASSNAME}schema-config-number`}
+                        className={NUMBER_INPUT}
                         min={1}
                         value={typeof activeSchema.pageNumber === 'number' ? activeSchema.pageNumber : collaborative.pageNumber}
                         onChange={(value) => commit({ pageNumber: typeof value === 'number' ? value : undefined })}
                       />
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>Página visible: {typeof activeSchema.pageNumber === 'number' ? activeSchema.pageNumber : collaborative.pageNumber || '—'}</div>
+                      <div className={HELP}>Página visible: {typeof activeSchema.pageNumber === 'number' ? activeSchema.pageNumber : collaborative.pageNumber || '—'}</div>
                     </div>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Modo de asignación</div>
+                    <div className={FIELD}>
+                      <div className={FIELD_LABEL}>Modo de asignación</div>
                       <Input
                         id="collaboration-owner-mode"
                         name="collaboration-owner-mode"
@@ -355,24 +396,24 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                       />
                     </div>
                     {hasLock ? (
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                        <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Fecha de bloqueo</div>
+                      <div className={FIELD}>
+                        <div className={FIELD_LABEL}>Fecha de bloqueo</div>
                         <Input
                           id="collaboration-locked-at"
                           name="collaboration-locked-at"
-                          className={`${DESIGNER_CLASSNAME}schema-config-number`}
+                          className={NUMBER_INPUT}
                           value={formatTimestampLabel(lock?.lockedAt)}
                           disabled
                           readOnly
                         />
-                        <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>Dato técnico: {typeof lock?.lockedAt === 'number' ? lock.lockedAt : '—'}</div>
+                        <div className={HELP}>Dato técnico: {typeof lock?.lockedAt === 'number' ? lock.lockedAt : '—'}</div>
                       </div>
                     ) : null}
                   </div>
 
                   {hasLock ? (
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Motivo técnico</div>
+                    <div className={FIELD}>
+                      <div className={FIELD_LABEL}>Motivo técnico</div>
                       <Input.TextArea
                         id="collaboration-lock-reason"
                         name="collaboration-lock-reason"
@@ -384,11 +425,11 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                     </div>
                   ) : null}
 
-                  <Divider className={`${DESIGNER_CLASSNAME}schema-config-divider`} />
+                  <Divider className={DIVIDER} />
 
-                  <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Creado por</div>
+                  <div className={GRID_2}>
+                    <div className={FIELD}>
+                      <div className={FIELD_LABEL}>Creado por</div>
                       {hasRecipientOptions ? (
                         <Select
                           id="collaboration-created-by"
@@ -415,8 +456,8 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                         />
                       )}
                     </div>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Modificado por</div>
+                    <div className={FIELD}>
+                      <div className={FIELD_LABEL}>Modificado por</div>
                       {hasRecipientOptions ? (
                         <Select
                           id="collaboration-modified-by"
@@ -437,32 +478,32 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                         />
                       )}
                     </div>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Creado el</div>
+                    <div className={FIELD}>
+                      <div className={FIELD_LABEL}>Creado el</div>
                       <Input
                         id="collaboration-created-at"
                         name="collaboration-created-at"
-                        className={`${DESIGNER_CLASSNAME}schema-config-number`}
+                        className={NUMBER_INPUT}
                         value={formatTimestampLabel(activeSchema.createdAt ?? collaborative.createdAt)}
                         readOnly
                         disabled
                       />
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>Dato técnico: {typeof (activeSchema.createdAt ?? collaborative.createdAt) === 'number' ? (activeSchema.createdAt ?? collaborative.createdAt) : '—'}</div>
+                      <div className={HELP}>Dato técnico: {typeof (activeSchema.createdAt ?? collaborative.createdAt) === 'number' ? (activeSchema.createdAt ?? collaborative.createdAt) : '—'}</div>
                     </div>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Actualizado el</div>
+                    <div className={FIELD}>
+                      <div className={FIELD_LABEL}>Actualizado el</div>
                       <Input
                         id="collaboration-updated-at"
                         name="collaboration-updated-at"
-                        className={`${DESIGNER_CLASSNAME}schema-config-number`}
+                        className={NUMBER_INPUT}
                         value={formatTimestampLabel(activeSchema.updatedAt ?? collaborative.updatedAt)}
                         readOnly
                         disabled
                       />
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-help`}>Dato técnico: {typeof (activeSchema.updatedAt ?? collaborative.updatedAt) === 'number' ? (activeSchema.updatedAt ?? collaborative.updatedAt) : '—'}</div>
+                      <div className={HELP}>Dato técnico: {typeof (activeSchema.updatedAt ?? collaborative.updatedAt) === 'number' ? (activeSchema.updatedAt ?? collaborative.updatedAt) : '—'}</div>
                     </div>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Color del propietario</div>
+                    <div className={FIELD}>
+                      <div className={FIELD_LABEL}>Color del propietario</div>
                       <Input
                         id="collaboration-owner-color"
                         name="collaboration-owner-color"
@@ -471,8 +512,8 @@ const SchemaCollaborationWidget = (props: CollaborationWidgetProps) => {
                         placeholder="#2563EB"
                       />
                     </div>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field-label`}>Color autor</div>
+                    <div className={FIELD}>
+                      <div className={FIELD_LABEL}>Color autor</div>
                       <Input
                         id="collaboration-author-color"
                         name="collaboration-author-color"

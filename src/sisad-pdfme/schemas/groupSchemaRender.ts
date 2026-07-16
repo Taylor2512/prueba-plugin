@@ -100,12 +100,14 @@ export const buildGroupContainer = (opts: GroupRenderOptions): HTMLDivElement =>
     border: `1px dashed ${hexAlpha(color, 0.28)}`,
     borderRadius: '4px',
     padding: '2px 3px',
-    display: 'flex',
+    display: 'inline-flex',
     flexDirection: isHorizontal ? 'row' : 'column',
     flexWrap: isHorizontal ? 'wrap' : 'nowrap',
     gap: `${Math.max(1, gap - 1)}px`,
     background: hexAlpha(color, 0.015),
     overflow: 'hidden',
+    alignItems: 'flex-start',
+    justifyContent: 'flex-start',
   });
   return el;
 };

@@ -9,7 +9,7 @@ type LeftSidebarSearchProps = {
   onChange: (value: string) => void;
   className?: string;
   useDefaultStyles?: boolean;
-  density?: 'comfortable' | 'compact' | 'mini';
+  density?: 'comfortable' | 'compact' | 'minimal';
 };
 
 const LeftSidebarSearch = ({
@@ -22,18 +22,19 @@ const LeftSidebarSearch = ({
   <Input
     size="small"
     allowClear
-    placeholder={density === 'mini' ? 'Buscar...' : 'Buscar campo...'}
-    prefix={<Search size={density === 'mini' ? 10 : 12} className="text-slate-400" />}
+    placeholder={density === 'minimal' ? 'Buscar...' : 'Buscar campo...'}
+    prefix={<Search size={density === 'minimal' ? 10 : 12} className="text-slate-400" />}
     value={value}
     onChange={(event) => onChange(event.target.value)}
     data-testid="left-sidebar-search"
     data-use-default-style={useDefaultStyles ? 'true' : 'false'}
     className={mergeUniqueClassNames(
       `${DESIGNER_CLASSNAME}left-sidebar-search`,
-      'w-full rounded-full border border-slate-200/70 bg-slate-50/70 px-2.5 shadow-sm transition-colors duration-150 hover:bg-white focus-within:border-sky-200 focus-within:bg-white focus-within:shadow-[0_0_0_1px_rgba(186,230,253,0.75)]',
-      density === 'mini' ? 'h-7 text-[10px]' : 'h-8 text-[0.72rem]',
-      density === 'mini' ? '[&_.ant-input]:text-[10px]' : '[&_.ant-input]:text-[0.72rem]',
+      'w-full rounded-full border border-slate-200/65 bg-white/90 px-2.5 shadow-[0_1px_2px_rgba(15,23,42,0.04)] transition-colors duration-150 hover:border-slate-200 hover:bg-white focus-within:border-sky-200 focus-within:bg-white focus-within:shadow-[0_0_0_1px_rgba(186,230,253,0.8)]',
+      density === 'minimal' ? 'h-7 text-[10px]' : 'h-8 text-[0.72rem]',
+      density === 'minimal' ? '[&_.ant-input]:text-[10px]' : '[&_.ant-input]:text-[0.72rem]',
       '[&_.ant-input-affix-wrapper-focused]:shadow-none',
+      '[&_.ant-input-affix-wrapper]:border-0 [&_.ant-input-affix-wrapper]:bg-transparent [&_.ant-input]:bg-transparent',
       className || '',
     )}
   />

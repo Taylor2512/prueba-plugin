@@ -80,12 +80,12 @@ const ListView = (
   const runtimeEvents = props.extensions?.events;
   const rootRef = useRef<HTMLDivElement | null>(null);
   const { mode: densityMode, width: panelWidth } = useResponsiveDensity(rootRef, {
-    comfortable: 430,
-    compact: 332,
-    mini: 252,
+    comfortable: 390,
+    compact: 318,
+    minimal: 256,
   });
-  const sidebarDensityMode: 'compact' | 'comfortable' | 'mini' =
-    densityMode === 'full' ? 'comfortable' : densityMode;
+  const sidebarDensityMode: 'compact' | 'comfortable' | 'minimal' =
+    densityMode === 'full' ? 'comfortable' : (densityMode as any);
   const [isBulkUpdateFieldNamesMode, setIsBulkUpdateFieldNamesMode] = useState(false);
   const [fieldNamesValue, setFieldNamesValue] = useState('');
   const [searchQuery, setSearchQuery] = useState('');
@@ -328,13 +328,14 @@ const ListView = (
     <SidebarFrame className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view', 'flex h-full min-h-0 flex-col', props.className)}>
       <div
         ref={rootRef}
-        className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-density-wrap', 'flex min-h-0 flex-1 flex-col')}
+        className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-density-wrap', 'flex min-h-0 w-full flex-1 flex-col')}
         data-list-density={sidebarDensityMode}
         style={{ '--list-view-panel-width': `${panelWidth}px` } as React.CSSProperties}
       >
       {showToolbar ? (
       <SidebarHeader stacked>
         <ListViewToolbar
+          densityMode={sidebarDensityMode}
           searchQuery={searchQuery}
           typeFilter={typeFilter}
           schemaTypes={schemaTypes}
@@ -361,7 +362,11 @@ const ListView = (
         />
       </SidebarHeader>
       ) : null}
-      <SidebarBody tabIndex={0} aria-label="Lista de campos del documento">
+      <SidebarBody
+        tabIndex={0}
+        aria-label="Lista de campos del documento"
+        className="flex flex-col overflow-hidden px-0 py-0"
+      >
         {isBulkUpdateFieldNamesMode ? (
           <TextArea
             wrap="off"
@@ -383,6 +388,7 @@ const ListView = (
           <SelectableSortableContainer
             allSchemas={schemas}
             visibleSchemas={filteredSchemas}
+            densityMode={sidebarDensityMode}
             hoveringSchemaId={hoveringSchemaId}
             onChangeHoveringSchemaId={onChangeHoveringSchemaId}
             onSortEnd={onSortEnd}

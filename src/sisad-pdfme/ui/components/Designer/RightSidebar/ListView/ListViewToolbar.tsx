@@ -35,6 +35,7 @@ const resolveAriaLabel = (value: React.ReactNode | undefined, fallback: string) 
  * callbacks. It does not mutate schemas directly.
  */
 type Props = {
+  densityMode?: 'compact' | 'comfortable' | 'minimal';
   searchQuery: string;
   typeFilter: string;
   schemaTypes: Option[];
@@ -70,6 +71,7 @@ type Props = {
  * collaboration assignment actions.
  */
 const ListViewToolbar = ({
+  densityMode = 'compact',
   searchQuery,
   typeFilter,
   schemaTypes,
@@ -113,6 +115,8 @@ const ListViewToolbar = ({
     return `${filteredCount} visibles`;
   })();
   const isDense = useDefaultStyles !== false;
+  const isCompactDensity = densityMode !== 'comfortable';
+  const isMinimalDensity = densityMode === 'minimal';
 
   return (
     <div
@@ -123,6 +127,7 @@ const ListViewToolbar = ({
       )}
     >
       <SidebarSurfaceHeader
+        compact={isCompactDensity}
         leading={<Layers size={14} className={DESIGNER_CLASSNAME + 'layers-auto'} />}
         title={title}
         subtitle={resolvedSubtitle || undefined}
@@ -145,7 +150,8 @@ const ListViewToolbar = ({
           showBulkAction && hasSchemas ? (
             <div className={mergeClassNames(
               DESIGNER_CLASSNAME + 'list-view-toolbar-actions',
-              'flex items-center gap-2',
+              'flex items-center',
+              isCompactDensity ? 'gap-1.5' : 'gap-2',
               isDense && 'shrink-0',
             )}>
               {reassignActionState.showButton ? (
@@ -167,7 +173,8 @@ const ListViewToolbar = ({
                     aria-label={resolveAriaLabel(bulkRecipientLabel, 'Reasignar responsable')}
                     className={mergeClassNames(
                       DESIGNER_CLASSNAME + 'bulk-assign-recipient',
-                      'inline-flex h-8 items-center gap-1.5 rounded-full border border-sky-200 bg-sky-50 px-2 text-xs font-semibold text-sky-700 shadow-sm',
+                      'inline-flex appearance-none items-center gap-1.5 rounded-full border border-sky-200 bg-sky-50 px-2 text-xs font-semibold text-sky-700 shadow-[0_1px_2px_rgba(15,23,42,0.04)]',
+                      isMinimalDensity ? 'h-7' : 'h-8',
                     )}
                   >
                     <Users size={14} />
@@ -213,7 +220,8 @@ const ListViewToolbar = ({
                     aria-label={resolveAriaLabel(bulkActionLabel, 'Más acciones')}
                     className={mergeClassNames(
                       DESIGNER_CLASSNAME + 'bulk-update',
-                      'inline-flex h-8 w-8 items-center justify-center rounded-full border-slate-200 text-slate-700 shadow-sm',
+                      'inline-flex appearance-none items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
+                      isMinimalDensity ? 'h-7 w-7' : 'h-8 w-8',
                     )}
                   >
                     <MoreHorizontal size={14} />
@@ -223,7 +231,7 @@ const ListViewToolbar = ({
             </div>
           ) : null
         }
-        compact
+        className="py-1"
       />
       <div className={mergeClassNames(
         DESIGNER_CLASSNAME + 'list-view-toolbar-controls',
@@ -241,8 +249,8 @@ const ListViewToolbar = ({
           onChange={(e) => onChangeSearch(e.target.value)}
           className={mergeClassNames(
             DESIGNER_CLASSNAME + 'input-auto',
-            'min-w-0 rounded-xl border-slate-200 bg-white text-sm shadow-sm',
-            isDense && 'h-8',
+            'min-w-0 rounded-xl border border-slate-200/80 bg-white text-sm shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
+            isDense ? 'h-8' : 'h-9',
           )}
         />
         <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-toolbar-row', 'flex items-center gap-2')}>
@@ -254,7 +262,11 @@ const ListViewToolbar = ({
               onChange={onChangeType}
               options={schemaTypes}
               popupMatchSelectWidth={false}
-              className={mergeClassNames(DESIGNER_CLASSNAME + 'select-auto', 'min-w-0 rounded-xl')}
+              className={mergeClassNames(
+                DESIGNER_CLASSNAME + 'select-auto',
+                'min-w-0 rounded-xl border-slate-200 bg-white [&_.ant-select-selector]:min-h-[2rem] [&_.ant-select-selector]:rounded-md [&_.ant-select-selector]:border-slate-200 [&_.ant-select-selector]:bg-white [&_.ant-select-selector]:text-[0.6875rem] [&_.ant-select-selector]:shadow-none',
+                isMinimalDensity ? 'h-7' : 'h-8',
+              )}
             />
           ) : null}
           {hasActiveSearch ? (
@@ -266,7 +278,8 @@ const ListViewToolbar = ({
                 aria-label={resolveAriaLabel(clearLabel, 'Limpiar filtros')}
                 className={mergeClassNames(
                   DESIGNER_CLASSNAME + 'list-view-clear-filters',
-                  'inline-flex h-8 w-8 items-center justify-center rounded-full text-slate-600',
+                  'inline-flex appearance-none items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
+                  isMinimalDensity ? 'h-7 w-7' : 'h-8 w-8',
                 )}
               >
                 <Eraser size={14} />

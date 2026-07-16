@@ -115,12 +115,30 @@ describe('exampleTemplate + bundle', () => {
     const ex = createExample({
       id: 'my-id', path: '/p', title: 'T', description: 'D', status: 'S',
       template: createTemplate([[]]),
+      collaboration: { users: [{ id: 'r1', color: '#3366ff' }], activeUserId: 'r1' },
+      runtimeOptions: {
+        uploadedDocuments: [
+          {
+            id: 'doc-1',
+            name: 'Doc 1',
+            template: createTemplate([[]]),
+          },
+        ],
+      },
     });
     const bundle = await buildExampleBundle(ex, { source: 'sisad-pdfme-lab', version: 2, getActions: () => ['open-example'] });
     expect(bundle.source).toBe('sisad-pdfme-lab');
     expect(bundle.version).toBe(2);
     expect(bundle.assetEncoding).toBe('base64-inline');
     expect(bundle.availableActions).toEqual(['open-example']);
+    expect(bundle.recipients).toHaveLength(1);
+    expect(bundle.documents).toHaveLength(1);
+    expect(bundle.config).toMatchObject({
+      runtime: { mode: 'designer' },
+      collaboration: { activeRecipientId: 'r1' },
+      documents: { mode: 'single' },
+    });
+    expect(bundle.runtimeOptions?.uploadedDocuments).toBeUndefined();
     expect(getExampleBundleFilename(ex)).toBe('my-id.json');
   });
 });

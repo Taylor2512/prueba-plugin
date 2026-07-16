@@ -33,6 +33,20 @@ const DesignerContextSummary = ({
   const pageLabel = `Pág ${pageIndex + 1}/${Math.max(1, pageCount)}`;
   const compactMode = placement === 'toolbar' && (density === 'compact' || density === 'minimal');
 
+  // Migración @apply → JSX (TASK-CSS): el JSX es la fuente ÚNICA de las clases
+  // Tailwind del componente; las reglas de element-selector del CSS (redundantes
+  // y en conflicto por orden de carga) se eliminaron. `chipClass`/`titleClass`
+  // absorben las variantes de density/placement que antes vivían como reglas
+  // descendientes `@apply` en la hoja (data-density=compact / data-placement=sidebar).
+  const chipClass = mergeClassNames(
+    'sisad-pdfme-designer-context-summary-chip inline-flex items-center rounded-full border border-slate-200 bg-slate-50 text-[11px] font-medium text-slate-600',
+    density === 'compact' ? 'px-[0.35rem] py-0' : 'px-2 py-0.5',
+  );
+  const titleClass = mergeClassNames(
+    'sisad-pdfme-designer-context-summary-title truncate font-semibold text-slate-900',
+    placement === 'sidebar' ? 'text-[0.75rem]' : 'text-sm',
+  );
+
   return (
     <div
       className={mergeClassNames(
@@ -44,7 +58,7 @@ const DesignerContextSummary = ({
       aria-label={contextLabel}
     >
       {compactMode ? (
-        <div className="sisad-pdfme-designer-context-summary-meta is-inline flex flex-wrap items-center gap-1.5">
+        <div className="sisad-pdfme-designer-context-summary-meta is-inline flex flex-wrap items-center gap-[0.18rem]">
           {density !== 'minimal' ? (
             <span
               className="sisad-pdfme-designer-context-summary-title text-[11px] font-semibold uppercase tracking-[0.14em] text-slate-500"
@@ -54,24 +68,24 @@ const DesignerContextSummary = ({
             </span>
           ) : null}
           {status ? <span className="sisad-pdfme-designer-context-summary-status-dot h-2.5 w-2.5 rounded-full bg-sky-500" aria-label={String(status)} title={String(status)} /> : null}
-          <span className="sisad-pdfme-designer-context-summary-chip inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600">{pageLabel}</span>
-          {compactSelection ? <span className="sisad-pdfme-designer-context-summary-chip inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600">{compactSelection}</span> : null}
+          <span className={chipClass}>{pageLabel}</span>
+          {compactSelection ? <span className={chipClass}>{compactSelection}</span> : null}
         </div>
       ) : (
         <>
           <div className="sisad-pdfme-designer-context-summary-top flex items-center justify-between gap-2">
-            <span className="sisad-pdfme-designer-context-summary-title truncate text-sm font-semibold text-slate-900" title={typeof resolvedDocumentName === 'string' ? resolvedDocumentName : undefined}>
+            <span className={titleClass} title={typeof resolvedDocumentName === 'string' ? resolvedDocumentName : undefined}>
               {resolvedDocumentName || 'Documento local'}
             </span>
-            {status ? <span className="sisad-pdfme-designer-context-summary-chip inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600">{status}</span> : null}
+            {status ? <span className={chipClass}>{status}</span> : null}
           </div>
           <div className="sisad-pdfme-designer-context-summary-meta flex flex-wrap items-center gap-1.5">
-            <span className="sisad-pdfme-designer-context-summary-chip inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600">Página {pageIndex + 1}/{Math.max(1, pageCount)}</span>
-            {activeUser ? <span className="sisad-pdfme-designer-context-summary-chip inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600">{activeUser}</span> : null}
+            <span className={chipClass}>Página {pageIndex + 1}/{Math.max(1, pageCount)}</span>
+            {activeUser ? <span className={chipClass}>{activeUser}</span> : null}
             {isGroupedSelection && hasSelection ? (
-              <span className="sisad-pdfme-designer-context-summary-chip inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600">Grupo · {selectionCount} campos</span>
+              <span className={chipClass}>Grupo · {selectionCount} campos</span>
             ) : hasSelection ? (
-              <span className="sisad-pdfme-designer-context-summary-chip inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[11px] font-medium text-slate-600">Selección {selectionCount}</span>
+              <span className={chipClass}>Selección {selectionCount}</span>
             ) : null}
           </div>
         </>

@@ -137,6 +137,7 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
   if (showGroupLabel && groupName) {
     const label = buildGroupLabel(groupName, color);
     label.dataset.optionGroupLabel = 'true';
+    label.style.display = 'none';
     container.appendChild(label);
   }
 
@@ -164,9 +165,11 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
       row.setAttribute('aria-label', optionAriaLabel);
     }
     applyOptionGroupRowVariant(row, { showOptionLabels: resolvedShowOptionLabels });
+    row.style.minHeight = mode === 'viewer' ? '14px' : '16px';
     if (mode === 'viewer' || mode === 'pdf' || readOnly || !rowsValueInteractive) {
       row.setAttribute('aria-disabled', 'true');
       row.disabled = true;
+      row.style.opacity = '0.85';
     }
     // Interactive rows must opt back INTO pointer events: the option-group root is
     // pointer-events:none so Moveable/Selecto can grab the schema, but that makes
@@ -292,6 +295,12 @@ export const createOptionGroupRuntime = (params: OptionGroupRuntimeParams): HTML
   });
 
   wrapper.appendChild(container);
+  if (invalid) {
+    Object.assign(wrapper.style, {
+      border: '1px solid var(--color-danger, #dc2626)',
+      borderRadius: 'var(--sisad-schema-radius)',
+    });
+  }
   return wrapper;
 };
 

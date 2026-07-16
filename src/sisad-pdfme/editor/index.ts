@@ -35,18 +35,14 @@ import { DesignerEngineBuilder } from '../ui/designerEngine.js';
  * Define variables/tokens visuales compartidos.
  *
  * sisad-pdfme.css:
- * Define estilos estructurales del runtime.
- *
- * sisad-pdfme.css:
- * Define estilos relacionados con selección, interacción visual,
- * overlays o estados del canvas.
+ * Define estilos estructurales del runtime y los estilos de selección,
+ * interacción visual, overlays y estados del canvas.
  *
  * Regla:
  * No agregar aquí CSS específico del host, StepTwo, ContentCustomForm,
  * Uanataca, workflows o pantallas externas.
  */
 import '../ui/styles/tokens.css';
-import '../ui/styles/sisad-pdfme.css';
 import '../ui/styles/sisad-pdfme.css';
 
 /**

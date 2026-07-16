@@ -1,6 +1,6 @@
 # TASK-ACTIONS-002 — Unificar ActionRegistry y CommandBus para botones
 
-- Estado: active
+- Estado: completed
 - Agente principal: interaction-agent
 - Fecha: 2026-07-15
 - Scope: `src/sisad-pdfme`

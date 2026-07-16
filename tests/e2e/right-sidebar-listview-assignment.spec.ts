@@ -20,12 +20,13 @@ const openCatalog = async (page: Page) => {
 
 test.describe('right sidebar list view — reassignment', () => {
   test('shows reassignment in the list header for a multi-selection', async ({ page }) => {
-    await page.goto('/lab/multi-document-routing');
+    await page.goto('/lab/enterprise-collaboration');
     await page.keyboard.press('Escape');
     await openCatalog(page);
 
     const listView = page.locator('.sisad-pdfme-designer-list-view');
     await expect(listView).toBeVisible();
+    await expect.poll(async () => listView.getByTestId('right-sidebar-field-item').count()).toBeGreaterThan(0);
 
     const paper = page.locator('[data-paper-page="true"]').first();
     const paperBox = await paper.boundingBox();
@@ -47,7 +48,7 @@ test.describe('right sidebar list view — reassignment', () => {
   });
 
   test('exposes rename inside the "Más" menu instead of the header', async ({ page }) => {
-    await page.goto('/lab/multi-document-routing');
+    await page.goto('/lab/enterprise-collaboration');
     await page.keyboard.press('Escape');
     await openCatalog(page);
 

@@ -1,11 +1,11 @@
 import { RefObject, useEffect, useMemo, useState } from 'react';
 
-export type DensityMode = 'full' | 'comfortable' | 'compact' | 'mini';
+export type DensityMode = 'full' | 'comfortable' | 'compact' | 'minimal';
 
 type ResponsiveDensityBreakpoints = {
   comfortable?: number;
   compact?: number;
-  mini?: number;
+  minimal?: number;
 };
 
 type UseResponsiveDensityOptions = ResponsiveDensityBreakpoints & {
@@ -15,7 +15,7 @@ type UseResponsiveDensityOptions = ResponsiveDensityBreakpoints & {
 const DEFAULT_BREAKPOINTS: Required<ResponsiveDensityBreakpoints> = {
   comfortable: 440,
   compact: 320,
-  mini: 236,
+  minimal: 236,
 };
 
 const resolveDensityMode = (
@@ -23,7 +23,7 @@ const resolveDensityMode = (
   breakpoints: Required<ResponsiveDensityBreakpoints>,
 ): DensityMode => {
   if (width <= 0) return 'comfortable';
-  if (width <= breakpoints.mini) return 'mini';
+  if (width <= breakpoints.minimal) return 'minimal';
   if (width <= breakpoints.compact) return 'compact';
   if (width <= breakpoints.comfortable) return 'comfortable';
   return 'full';
@@ -37,9 +37,9 @@ export const useResponsiveDensity = <T extends HTMLElement>(
     () => ({
       comfortable: options?.comfortable ?? DEFAULT_BREAKPOINTS.comfortable,
       compact: options?.compact ?? DEFAULT_BREAKPOINTS.compact,
-      mini: options?.mini ?? DEFAULT_BREAKPOINTS.mini,
+      minimal: options?.minimal ?? DEFAULT_BREAKPOINTS.minimal,
     }),
-    [options?.comfortable, options?.compact, options?.mini],
+    [options?.comfortable, options?.compact, options?.minimal],
   );
   const [width, setWidth] = useState(options?.initialWidth ?? 0);
 

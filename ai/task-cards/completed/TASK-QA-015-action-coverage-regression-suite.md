@@ -1,6 +1,6 @@
 # TASK-QA-015 — Suite de regresión para acciones visibles
 
-- Estado: active
+- Estado: completed
 - Agente principal: regression-tester
 - Fecha: 2026-07-15
 - Scope: `src/sisad-pdfme`

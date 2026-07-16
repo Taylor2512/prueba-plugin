@@ -56,7 +56,7 @@ export const ColorPickerWidget = ({
     <div
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'color-picker-swatches',
-        'grid [grid-template-columns:repeat(auto-fill,minmax(1.25rem,1fr))] gap-0.5 p-0.5',
+        'grid [grid-template-columns:repeat(4,_minmax(0,_1fr))] gap-[0.375rem]',
       )}
       data-sisad-inspector-interactive="true"
       data-selecto-ignore="true"
@@ -77,7 +77,7 @@ export const ColorPickerWidget = ({
             }}
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'color-picker-swatch-option',
-              'h-[1.05rem] w-[1.05rem] rounded-md border border-slate-200 shadow-sm transition hover:scale-105 hover:border-slate-400',
+              'w-[1.5rem] h-[1.5rem] rounded-full border border-slate-200 p-0 cursor-pointer transition-transform transition-shadow transition-colors hover:-translate-y-px hover:border-slate-400 hover:shadow-[0_2px_8px_rgba(15,23,42,0.12)] focus-visible:outline-none focus-visible:border-[var(--color-primary-40)] focus-visible:shadow-[0_0_0_2px_var(--color-primary-10)]',
             )}
             style={{ backgroundColor: preset }}
             aria-label={`Aplicar color ${preset}`}
@@ -89,7 +89,7 @@ export const ColorPickerWidget = ({
 
   return (
     <div
-      className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-container`, 'flex flex-wrap items-center gap-2')}
+      className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-container`, 'flex flex-wrap items-stretch gap-[0.375rem] w-full min-w-0')}
       data-sisad-inspector-interactive="true"
       data-selecto-ignore="true"
       data-moveable-ignore="true"
@@ -106,11 +106,11 @@ export const ColorPickerWidget = ({
             onPointerDown={stopInspectorPointerEvent}
             className={mergeClassNames(
               `${DESIGNER_CLASSNAME}color-picker-trigger`,
-              'inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-1.5 py-0.5 text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50',
+              'relative inline-flex items-center justify-center gap-[0.25rem] shrink-0 w-[2rem] h-[2rem] min-w-[2rem] rounded-[var(--radius-md)] border border-[var(--color-border-20)] bg-[linear-gradient(180deg,_var(--color-white),_var(--color-gray-50))] p-0 text-[var(--color-gray-700)] cursor-pointer transition-colors transition-shadow transition-[border-color,_background,_box-shadow] hover:border-[var(--color-primary-30)] hover:bg-[linear-gradient(180deg,_var(--color-primary-04),_var(--color-white))] hover:shadow-[0_2px_8px_var(--color-gray-900-10)] focus-visible:outline-none focus-visible:border-[var(--color-primary-40)] focus-visible:shadow-[0_0_0_2px_var(--color-primary-10)]',
             )}
           >
             <span
-              className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-preview`, 'h-3 w-3 rounded-full border border-slate-200')}
+              className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-preview`, 'w-[0.75rem] h-[0.75rem] rounded-full border border-[var(--color-border-20)] [box-shadow:inset_0_0_0_1px_var(--color-white-70)]')}
               style={{ backgroundColor: hex }}
               aria-hidden="true"
             />
@@ -122,13 +122,13 @@ export const ColorPickerWidget = ({
         <label
           className={mergeClassNames(
             `${DESIGNER_CLASSNAME}color-picker-trigger`,
-            'inline-flex items-center gap-1.5 rounded-lg border border-slate-200 bg-white px-1.5 py-0.5 text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50',
+            'relative inline-flex items-center justify-center gap-[0.25rem] shrink-0 w-[2rem] h-[2rem] min-w-[2rem] rounded-[var(--radius-md)] border border-[var(--color-border-20)] bg-[linear-gradient(180deg,_var(--color-white),_var(--color-gray-50))] p-0 text-[var(--color-gray-700)] cursor-pointer transition-colors transition-shadow transition-[border-color,_background,_box-shadow] hover:border-[var(--color-primary-30)] hover:bg-[linear-gradient(180deg,_var(--color-primary-04),_var(--color-white))] hover:shadow-[0_2px_8px_var(--color-gray-900-10)] focus-within:outline-none focus-within:border-[var(--color-primary-40)] focus-within:shadow-[0_0_0_2px_var(--color-primary-10)]',
           )}
           aria-label="Selector nativo de color"
           onPointerDown={stopInspectorPointerEvent}
         >
           <span
-            className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-preview`, 'h-3 w-3 rounded-full border border-slate-200')}
+            className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-preview`, 'w-[0.75rem] h-[0.75rem] rounded-full border border-[var(--color-border-20)] [box-shadow:inset_0_0_0_1px_var(--color-white-70)]')}
             style={{ backgroundColor: hex }}
             aria-hidden="true"
           />
@@ -137,7 +137,7 @@ export const ColorPickerWidget = ({
             type="color"
             id={`${DESIGNER_CLASSNAME}color-picker-native`}
             name={`${DESIGNER_CLASSNAME}color-picker-native`}
-            className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-input`, 'h-4 w-4 cursor-pointer overflow-hidden rounded-full border-0 bg-transparent p-0')}
+            className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-input`, 'absolute inset-0 w-full h-full opacity-0 cursor-pointer')}
             value={hex}
             onChange={(e) => onChange?.(e.target.value)}
             aria-label="Selector nativo de color"
@@ -147,7 +147,10 @@ export const ColorPickerWidget = ({
       <Input
         id={`${DESIGNER_CLASSNAME}color-picker-hex`}
         name={`${DESIGNER_CLASSNAME}color-picker-hex`}
-        className={mergeClassNames(`${DESIGNER_CLASSNAME}color-picker-hex`, 'min-w-[6.5rem] rounded-lg border-slate-200 shadow-sm')}
+        className={mergeClassNames(
+          `${DESIGNER_CLASSNAME}color-picker-hex`,
+          'flex-1 min-w-0 h-[1.625rem] text-[0.6875rem] [font-family:var(--font-family-mono)] tracking-[0.02em] transition-[border-color,_box-shadow] border-slate-200 shadow-sm',
+        )}
         value={currentColor}
         onChange={(e) => onChange?.(e.target.value)}
         onPointerDown={stopInspectorPointerEvent}

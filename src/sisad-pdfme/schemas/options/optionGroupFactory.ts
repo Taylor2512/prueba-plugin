@@ -212,10 +212,34 @@ export const applyOptionGroupRootRuntime = ({
   } else {
     rootElement.dataset.checkboxGroupRoot = 'true';
   }
-  // Designer/viewer: the group root is transparent to pointer events so clicks
-  // fall through to the .sisad-pdfme-ui-custom-selectable wrapper (Selecto/
-  // Moveable target). Only form makes internal option rows interactive.
-  rootElement.style.pointerEvents = mode === 'form' ? 'auto' : 'none';
+  Object.assign(rootElement.style, {
+    overflow: 'visible',
+    background: 'transparent',
+    border: '0',
+    boxShadow: 'none',
+    margin: '0',
+    padding: '0',
+  });
+
+  if (mode === 'form') {
+    Object.assign(rootElement.style, {
+      display: 'block',
+      width: '100%',
+      height: 'auto',
+      minHeight: '22px',
+      paddingRight: selectionMode === 'single' ? '22px' : '0',
+      pointerEvents: 'auto',
+      fontSize: 'var(--sisad-schema-font-size)',
+      lineHeight: 'var(--sisad-schema-line-height)',
+    });
+  } else {
+    Object.assign(rootElement.style, {
+      display: 'block',
+      width: '100%',
+      height: '100%',
+      pointerEvents: 'none',
+    });
+  }
   if (isDesigner) {
     rootElement.dataset.designerSelectionMode = 'root-only';
   }

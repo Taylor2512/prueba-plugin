@@ -344,7 +344,7 @@ const CanvasOverlayManager = (props: CanvasOverlayManagerProps) => {
   const showSelectionOverlays = canvasVisibility?.toolbar !== false && canvasVisibility?.floatingToolbar !== false;
 
   return (
-    <div className={`sisad-pdfme-ui-canvas-overlay-manager ${className || ''}`}>
+    <div className={`sisad-pdfme-ui-canvas-overlay-manager absolute inset-0 pointer-events-none z-[var(--z-overlay)] ${className || ''}`}>
       {!externalSchemaDragActive && showSelectionOverlays ? (
         <>
           {/**

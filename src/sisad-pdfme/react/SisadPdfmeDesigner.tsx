@@ -11,6 +11,7 @@
  */
 import React, { useContext, useEffect, useMemo, useRef } from 'react';
 import Designer from '../ui/Designer.js';
+import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
 import { usePdfmeRuntimeInstance } from '../runtime/usePdfmeRuntimeInstance.js';
 import { useSisadPdfmeConfig } from './useSisadPdfmeConfig.js';
 import { useSisadPdfmeController } from './useSisadPdfmeController.js';
@@ -121,6 +122,7 @@ export const SisadPdfmeDesigner = ({
         collaboration: buildCollaborationSyncFromRegistry(recipientState, {
           base: (resolvedConfig.designerEngine.collaboration || {}) as Record<string, unknown>,
           enabled: Boolean(resolvedConfig.config.collaboration.enabled),
+          isGlobalView: resolvedConfig.config.collaboration.isGlobalView === true,
         }),
         sidebars: {
           ...(resolvedConfig.designerEngine.sidebars || {}),
@@ -129,7 +131,7 @@ export const SisadPdfmeDesigner = ({
       uploadedDocuments: (Array.isArray(documents) ? documents : []).map((document) => resolvedConfig.adapters.documents.toDocument(document as unknown)),
       activeDocumentId: (Array.isArray(documents) && documents.length > 0 ? resolvedConfig.adapters.documents.toDocument(documents[0] as unknown).id : null),
     },
-    plugins: {},
+    plugins: flatSchemaPlugins,
     runtime: runtime as any,
     autoFit: 'page' as const,
   }), [documents, recipientState, resolvedConfig, runtime, template, onTemplateChange]);

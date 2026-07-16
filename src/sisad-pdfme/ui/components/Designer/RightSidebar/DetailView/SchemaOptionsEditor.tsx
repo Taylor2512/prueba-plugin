@@ -374,8 +374,8 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
   /** Clases base compartidas por botones pequeños de fila. */
   const iconButtonClass = mergeClassNames(
     DESIGNER_CLASSNAME + 'options-editor-icon-btn',
-    'inline-flex h-6 w-6 flex-none items-center justify-center rounded-md border-0 bg-transparent p-0 text-slate-400 transition-colors',
-    'hover:bg-slate-100 hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/40',
+    'inline-flex h-6 w-6 flex-none items-center justify-center rounded-md border border-transparent bg-white/90 p-0 text-slate-400 shadow-none transition-colors',
+    'hover:border-slate-200 hover:bg-slate-50 hover:text-slate-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/40',
     'disabled:cursor-not-allowed disabled:opacity-35',
   );
 
@@ -399,7 +399,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
         <div
           className={mergeClassNames(
             DESIGNER_CLASSNAME + 'options-editor-empty',
-            'rounded-lg border border-dashed border-slate-200 bg-white/70 px-2 py-3 text-center',
+            'rounded-lg border border-dashed border-slate-200 bg-white/80 px-2 py-3 text-center',
           )}
           data-testid="options-empty-state"
         >
@@ -413,7 +413,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
               key={row.key}
               className={mergeClassNames(
                 DESIGNER_CLASSNAME + 'options-editor-row',
-                'flex items-center gap-1 rounded-lg border border-slate-200/80 bg-white/90 py-0.5 pl-1.5 pr-1 shadow-sm transition-colors hover:border-slate-300',
+                'flex items-center gap-1 rounded-lg border border-slate-200/70 bg-white/96 py-0.5 pl-1.5 pr-1 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition-colors hover:border-slate-300 hover:bg-white',
               )}
               data-testid="option-row"
             >
@@ -421,7 +421,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
                 <button
                   type="button"
                   className={mergeClassNames(
-                    iconButtonClass,
+                  iconButtonClass,
                     'h-5 w-5 rounded-full border',
                     row.isDefault
                       ? 'border-sky-400 bg-sky-50 text-sky-600 hover:bg-sky-100 hover:text-sky-700'
@@ -528,7 +528,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
           data-testid="option-new-input"
           className={mergeClassNames(
             DESIGNER_CLASSNAME + 'options-editor-add-input',
-            'w-full min-w-0 flex-1 rounded-lg border border-dashed border-slate-300 bg-white/70 px-2 py-1 text-[12px] text-slate-700 outline-none placeholder:text-slate-400 focus-visible:border-solid focus-visible:ring-2 focus-visible:ring-sky-500/40',
+            'w-full min-w-0 flex-1 rounded-lg border border-dashed border-slate-300 bg-white/85 px-2 py-1 text-[12px] text-slate-700 outline-none placeholder:text-slate-400 focus-visible:border-solid focus-visible:ring-2 focus-visible:ring-sky-500/40',
             error ? 'border-rose-300 bg-rose-50/50 focus-visible:border-rose-400 focus-visible:ring-rose-500/20' : '',
           )}
           onChange={(event) => {
@@ -548,7 +548,7 @@ const SchemaOptionsEditor = ({ activeSchema, changeSchemas }: SchemaOptionsEdito
           type="button"
           className={mergeClassNames(
             DESIGNER_CLASSNAME + 'options-editor-add-btn',
-            'inline-flex h-[26px] flex-none items-center justify-center gap-1 whitespace-nowrap rounded-lg border border-sky-200 bg-sky-50 px-2.5 text-[11px] font-semibold text-sky-700 transition-colors',
+            'inline-flex h-[26px] flex-none items-center justify-center gap-1 whitespace-nowrap rounded-lg border border-sky-200 bg-sky-50 px-2.5 text-[11px] font-semibold text-sky-700 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition-colors',
             'hover:border-sky-300 hover:bg-sky-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/40',
           )}
           aria-label="Agregar opción"

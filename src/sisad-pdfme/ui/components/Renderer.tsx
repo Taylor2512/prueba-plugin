@@ -200,6 +200,22 @@ const Wrapper = ({
     : schema.required
       ? 'requerido'
       : undefined;
+  const schemaCaptionNode = schemaCaption ? (
+    <span
+      className="pointer-events-none absolute bottom-[-1px] left-0 max-w-[9rem] translate-y-full overflow-hidden text-ellipsis whitespace-nowrap rounded-[0_0_var(--radius-sm)_var(--radius-sm)] bg-[color-mix(in_srgb,var(--schema-tone)_88%,#000)] px-[0.3125rem] py-px text-[0.46875rem] font-semibold leading-[1.4] text-white"
+      aria-hidden="true"
+    >
+      {schemaCaption}
+    </span>
+  ) : null;
+  const schemaBadgeNode = schemaBadge ? (
+    <span
+      className="pointer-events-none absolute right-0 top-0 flex h-[0.875rem] min-w-[0.875rem] translate-x-[30%] -translate-y-[30%] items-center justify-center rounded-full border border-[color:rgba(255,255,255,0.9)] bg-[var(--schema-tone)] px-1 text-center text-[0.40625rem] font-bold leading-[0.875rem] text-white"
+      aria-hidden="true"
+    >
+      {schemaBadge}
+    </span>
+  ) : null;
   const schemaState = isEditing ? 'editing' : isActive ? 'active' : isHovering ? 'hover' : 'idle';
   const rotation = Number(schema.rotate);
   const wrapperGeometryStyle: React.CSSProperties = {
@@ -214,9 +230,39 @@ const Wrapper = ({
     boxSizing: 'border-box',
     outline: 'none',
   };
+  const wrapperStateStyle: React.CSSProperties = {
+    cursor: selectable ? 'pointer' : 'default',
+    transition:
+      'box-shadow var(--transition-fast), outline-color var(--transition-fast), background-color var(--transition-fast)',
+    zIndex: isEditing ? 12 : isActive ? 10 : 1,
+  };
+  if (schemaHidden) {
+    wrapperStateStyle.opacity = 0.38;
+    wrapperStateStyle.filter = 'saturate(0.6)';
+  }
+  if (!selectable) {
+    wrapperStateStyle.cursor = 'default';
+  }
+  if (schema.readOnly && (isActive || isEditing)) {
+    wrapperStateStyle.outline = '1.5px dashed var(--color-gray-300)';
+    wrapperStateStyle.outlineOffset = '1px';
+  } else if (isEditing) {
+    wrapperStateStyle.outline = '1.5px solid color-mix(in srgb, var(--schema-tone) 70%, var(--color-primary-light))';
+    wrapperStateStyle.outlineOffset = '1px';
+    wrapperStateStyle.boxShadow = 'none';
+  } else if (isActive) {
+    wrapperStateStyle.outline = '1.5px solid var(--schema-tone)';
+    wrapperStateStyle.outlineOffset = '1px';
+    wrapperStateStyle.boxShadow = 'none';
+  } else if (isHovering) {
+    wrapperStateStyle.outline = '1px solid color-mix(in srgb, var(--schema-tone) 45%, transparent)';
+    wrapperStateStyle.outlineOffset = '1px';
+    wrapperStateStyle.boxShadow = 'none';
+  }
   const wrapperStyle = {
     ...wrapperGeometryStyle,
     ...schemaStyle,
+    ...wrapperStateStyle,
     backgroundColor: isCompactChoiceSchema ? 'transparent' : schemaSurfaceTone,
     border: isCompactChoiceSchema ? '1px solid transparent' : outline || `1px solid ${schemaTone}`,
     '--schema-tone': schemaTone,
@@ -268,6 +314,8 @@ const Wrapper = ({
         onDoubleClick?.(event);
       }}>
       {children}
+      {schemaCaptionNode}
+      {schemaBadgeNode}
     </div>
   );
 };

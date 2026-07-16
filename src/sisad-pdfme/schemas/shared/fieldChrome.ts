@@ -324,8 +324,56 @@ export const applyFieldChrome = <TSchema extends SisadSchemaBase>(
   element.style.setProperty('--schema-tone', tone);
   element.style.setProperty('--schema-owner-color', tone);
 
-  // When the runtime mode is known, delegate surface/border/vars to the central
-  // policy and stamp data-render-mode so CSS can drive mode-specific chrome.
+  Object.assign(element.style, {
+    position: 'relative',
+    width: '100%',
+    height: '100%',
+    boxSizing: 'border-box',
+    fontSize: 'var(--sisad-schema-font-size)',
+    lineHeight: 'var(--sisad-schema-line-height)',
+    color: 'var(--text-primary, #1f2937)',
+    overflow: 'hidden',
+    border: '1px solid color-mix(in srgb, var(--schema-tone, #2563eb) var(--sisad-schema-border-alpha-pct, 64%), transparent)',
+    background: 'color-mix(in srgb, var(--schema-tone, #2563eb) var(--sisad-schema-surface-alpha-pct, 14%), white)',
+    borderRadius: 'var(--sisad-schema-radius)',
+  });
+
+  if (state === 'selected' && options.renderMode === 'designer') {
+    element.style.border = '1.5px solid var(--sisad-schema-selected-color, #4200ca)';
+    element.style.boxShadow = 'var(--sisad-schema-selected-shadow)';
+  }
+  if (state === 'multi-selected' && options.renderMode === 'designer') {
+    element.style.border = '1px solid var(--sisad-schema-selected-color, #4200ca)';
+  }
+  if (state === 'readonly') {
+    element.style.opacity = '0.72';
+  }
+  if (state === 'locked') {
+    element.style.cursor = 'not-allowed';
+  }
+
+  if (family === 'option-based') {
+    element.style.background = 'transparent';
+    element.style.borderStyle = 'dashed';
+  } else if (family === 'boolean') {
+    element.style.display = 'inline-flex';
+    element.style.alignItems = 'center';
+    element.style.justifyContent = 'center';
+  } else if (family === 'signing-based') {
+    element.style.background = `color-mix(in srgb, ${tone} 12%, white)`;
+  } else if (family === 'action-based') {
+    element.style.border = '0';
+    element.style.background = 'transparent';
+    element.style.borderRadius = 'var(--sisad-schema-radius)';
+    element.style.overflow = 'visible';
+  }
+
+  if (state === 'invalid') {
+    element.style.border = '1px solid var(--color-danger, #dc2626)';
+  }
+
+  // When the runtime mode is known, delegate any remaining mode-specific vars
+  // to the central policy and stamp data-render-mode for debugging/inspection.
   if (options.renderMode) {
     const policy = resolveFieldChromePolicy({
       mode: options.renderMode,
@@ -340,5 +388,29 @@ export const applyFieldChrome = <TSchema extends SisadSchemaBase>(
     Object.entries(policy.styleVars).forEach(([key, value]) => {
       element.style.setProperty(key, value);
     });
+    Object.assign(element.style, {
+      border: policy.border,
+      background: policy.surface,
+      boxShadow: policy.showViewerChrome
+        ? 'none'
+        : state === 'selected' && options.renderMode === 'designer'
+          ? 'var(--sisad-schema-selected-shadow)'
+          : 'none',
+    });
+
+    if (options.renderMode === 'viewer' || options.renderMode === 'pdf') {
+      element.style.background = 'transparent';
+      element.style.borderColor = 'transparent';
+      element.style.boxShadow = 'none';
+    }
+
+    if (options.renderMode === 'form' && (schema.readOnly || schema.readonly)) {
+      element.style.background = 'color-mix(in srgb, #94a3b8 8%, white)';
+      element.style.border = '1px solid color-mix(in srgb, #94a3b8 30%, white)';
+    }
+
+    if (state === 'invalid') {
+      element.style.border = '1px solid var(--color-danger, #dc2626)';
+    }
   }
 };

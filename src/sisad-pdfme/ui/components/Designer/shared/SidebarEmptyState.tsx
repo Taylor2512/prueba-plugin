@@ -11,7 +11,7 @@ export type SidebarEmptyStateProps = {
   actionLabel?: string;
   onAction?: () => void;
   className?: string;
-  density?: 'comfortable' | 'compact' | 'mini';
+  density?: 'comfortable' | 'compact' | 'minimal';
 };
 
 /**
@@ -26,7 +26,7 @@ export const SidebarEmptyState = ({
   className,
   density = 'comfortable',
 }: SidebarEmptyStateProps) => {
-  const isMini = density === 'mini';
+  const isMini = density === 'minimal';
 
   return (
     <div

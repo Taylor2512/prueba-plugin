@@ -67,6 +67,7 @@ const getTypeColor = (type?: string) => (type ? (SCHEMA_TYPE_COLORS[type] ?? '#8
  * metadata and action callbacks from the sortable container.
  */
 interface Props {
+  densityMode?: 'compact' | 'comfortable' | 'minimal';
   /** Content to display in the item */
   value: React.ReactNode;
   /** Schema type (used for color coding) */
@@ -96,7 +97,7 @@ interface Props {
   /** Whether the item is being dragged as an overlay */
   dragOverlay?: boolean;
   /** Click handler for the item */
-  onClick?: () => void;
+  onClick?: (_event: React.MouseEvent<HTMLButtonElement>) => void;
   /** Mouse enter handler */
   onMouseEnter?: () => void;
   /** Mouse leave handler */
@@ -209,13 +210,13 @@ const ItemActions = ({
           onClick={(e) => { e.stopPropagation(); onToggleVisibility(); }}
           title={hidden ? 'Mostrar' : 'Ocultar'}
           {...(hidden ? { 'data-testid': 'right-sidebar-field-badge', 'data-badge': 'hidden' } : {})}
-          className={mergeClassNames(DESIGNER_CLASSNAME + 'button-auto', 'pointer-events-auto inline-flex h-7 w-2 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm')}
+          className={mergeClassNames('pointer-events-auto inline-flex h-6 w-2 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-600 shadow-sm transition hover:border-slate-300 hover:bg-slate-50')}
         >
           {hidden ? <EyeOff size={13} /> : <Eye size={13} />}
         </button>
       </Tooltip>
     ) : null}
-    {onDelete && isHovered ? (
+    {onDelete ? (
       <Tooltip title="Eliminar campo" placement="top">
         <button
           type="button"
@@ -230,7 +231,9 @@ const ItemActions = ({
             onDelete();
           }}
           title="Eliminar campo"
-          className={mergeClassNames(DESIGNER_CLASSNAME + 'button-auto', 'pointer-events-auto inline-flex h-7 w-7 items-center justify-center rounded-full border border-rose-200 bg-white text-rose-600 shadow-sm')}
+          className={mergeClassNames(
+            'pointer-events-auto inline-flex h-6 w-6 items-center justify-center rounded-full border border-rose-200 bg-white text-rose-600 shadow-sm opacity-75 transition-[opacity,background-color,border-color,box-shadow,transform] duration-150 hover:border-rose-300 hover:bg-rose-50 hover:text-rose-700 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-300/60 focus-visible:ring-offset-1 group-hover:opacity-100 group-focus-within:opacity-100',
+          )}
         >
           <Trash2 size={13} />
         </button>
@@ -249,6 +252,7 @@ const ItemActions = ({
 const Item = React.memo(
   React.forwardRef<HTMLLIElement, Props>(function Item(
     {
+      densityMode = 'compact',
       icon,
       value,
       schemaType,
@@ -306,14 +310,35 @@ const Item = React.memo(
       secondaryValue ||
       normalizedValue ||
       '';
+    const isCompactDensity = densityMode === 'compact';
+    const isMinimalDensity = densityMode === 'minimal';
+    // Density is the single source for size utilities (mergeClassNames is a
+    // plain join and does NOT resolve conflicts): the row alto queda ~52/46/40px
+    // (comfortable/compact/minimal) como fila plana, no card flotante.
+    const contentDensityClass = isMinimalDensity
+      ? 'min-h-[2.125rem] gap-1 px-1.5 py-0.5'
+      : isCompactDensity
+        ? 'min-h-[2.5rem] gap-1.25 px-1.5 py-1'
+        : 'min-h-[2.875rem] gap-1.5 px-2 py-1.25';
+    const iconDensityClass = isMinimalDensity ? 'h-5 w-5' : isCompactDensity ? 'h-6 w-6' : 'h-7 w-7';
+    const gripDensityClass = isMinimalDensity ? 'h-5 w-4 min-w-4' : 'h-6 w-5 min-w-5';
+    const valueDensityClass = isMinimalDensity
+      ? 'text-[0.68rem]'
+      : isCompactDensity
+        ? 'text-[0.74rem]'
+        : 'text-[0.78rem]';
+    const metaDensityClass = densityMode === 'comfortable' ? 'flex-wrap gap-1' : 'flex-nowrap gap-1';
+    const metaBadgeDensityClass = densityMode === 'comfortable'
+      ? 'px-1.5 py-0 text-[0.64rem]'
+      : 'max-w-[7.5rem] px-1.5 py-0 text-[0.6rem]';
     const dragStyle: React.CSSProperties = {
       transform: `translate3d(${Math.round(x)}px, ${Math.round(y)}px, 0) scale(${scaleX}, ${scaleY})`,
       transition,
       ...style,
+      outline: 'none',
       '--type-accent': typeAccent,
-      // Owner accent is exposed only as a CSS variable; the subtle left border
-      // and the selection ring are drawn by CSS so real selection always wins
-      // over the owner color and both never read as the same state.
+      // Owner accent stays subtle; selection is expressed by ring/background so
+      // the row never reads like it is selected just because it has a recipient.
       ...(accentColor ? { '--schema-owner-color': accentColor } : null),
     } as React.CSSProperties;
 
@@ -322,7 +347,7 @@ const Item = React.memo(
         ref={ref}
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'list-view-item',
-          'relative overflow-hidden rounded-[1.1rem] border border-slate-200/70 bg-white/95 shadow-sm transition-[background,border-color,box-shadow,transform] duration-150 hover:-translate-y-px hover:border-slate-300 hover:bg-slate-50/80 data-[selected=true]:border-sky-300 data-[selected=true]:bg-sky-50/70 data-[selected=true]:shadow-[0_0_0_1px_rgba(56,189,248,0.18)] data-[selected=true]:ring-1 data-[selected=true]:ring-sky-200',
+          'group relative overflow-hidden rounded-lg border border-slate-200/70 bg-white shadow-[0_1px_2px_rgba(15,23,42,0.025)] transition-[background-color,border-color,box-shadow] duration-150 hover:border-slate-300 hover:bg-slate-50/70 hover:shadow-[0_2px_4px_rgba(15,23,42,0.035)] focus-within:ring-2 focus-within:ring-sky-100 data-[selected=true]:border-sky-200 data-[selected=true]:bg-sky-50/50 data-[selected=true]:ring-1 data-[selected=true]:ring-sky-100/70',
           className,
         )}
         style={dragStyle}
@@ -333,34 +358,48 @@ const Item = React.memo(
         data-hovered={hovered ? 'true' : 'false'}
         data-testid="right-sidebar-field-item"
         data-schema-type={schemaType}
-        data-schema-owner-color={accentColor || undefined}>
+        data-schema-owner-color={accentColor || undefined}
+        role="option"
+        aria-selected={selected}
+        onMouseEnter={() => {
+          setIsHovered(true);
+          onMouseEnter?.();
+        }}
+        onMouseLeave={() => {
+          setIsHovered(false);
+          onMouseLeave?.();
+        }}
+      >
         <button
           type="button"
-          className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-hit-target', 'absolute inset-0 z-0 rounded-2xl focus-visible:outline-none')}
+          className={mergeClassNames(
+            DESIGNER_CLASSNAME + 'list-view-item-hit-target',
+            'absolute inset-0 z-0 m-0 h-auto w-auto appearance-none rounded-2xl border-0 bg-transparent p-0 text-left shadow-none outline-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-300/35',
+          )}
           aria-label={valueTooltip}
-          onMouseEnter={() => { setIsHovered(true); onMouseEnter?.(); }}
-          onMouseLeave={() => { setIsHovered(false); onMouseLeave?.(); }}
           onClick={onClick}
           onKeyDown={(event) => {
             if (event.key === 'Enter' || event.key === ' ') {
               event.preventDefault();
-              onClick?.();
+              onClick?.(event as unknown as React.MouseEvent<HTMLButtonElement>);
             }
           }}
         />
         <div
-          className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-content', 'pointer-events-none relative z-10 flex items-start gap-3 px-3 py-2.5 pl-4 before:pointer-events-none before:absolute before:inset-y-2 before:left-2 before:w-[2px] before:rounded-full before:bg-[var(--schema-owner-color,_transparent)] before:opacity-35 before:content-[\'\'] data-[selected=true]:before:opacity-70')}
+          className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-content', 'pointer-events-none relative z-10 flex min-w-0 items-center before:pointer-events-none before:absolute before:inset-y-1.5 before:left-0 before:w-[3px] before:rounded-r-full before:bg-[var(--schema-owner-color,_transparent)] before:opacity-55 before:content-[\'\'] group-data-[selected=true]:before:opacity-100', contentDensityClass)}
           {...props}
           aria-hidden="true">
           <Button
             {...listeners}
-            className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-grip', 'pointer-events-auto inline-flex h-8 w-1 items-center justify-center rounded-full border border-slate-200/80 bg-slate-50 text-slate-500 shadow-sm transition-colors hover:border-sky-200 hover:bg-sky-50 hover:text-sky-700 data-[selected=true]:border-sky-300')}
+            type="text"
+            className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-grip', 'pointer-events-auto inline-flex shrink-0 items-center justify-center rounded-md border-0 bg-transparent p-0 text-slate-400 shadow-none opacity-55 transition-colors hover:bg-slate-100 hover:text-slate-700 hover:opacity-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-200 cursor-grab active:cursor-grabbing', gripDensityClass)}
             icon={<GripVertical size={14} />} />
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-icon', 'flex h-9 w-9 items-center justify-center rounded-xl border border-slate-200/80 bg-white text-slate-600 shadow-inner shadow-white/40')}>{icon}</div>
-          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-main', 'min-w-0 flex-1 space-y-0.5')}>
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-icon', 'flex shrink-0 items-center justify-center rounded-md border-0 bg-transparent text-slate-600 shadow-none', iconDensityClass)}>{icon}</div>
+          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-main', 'flex min-w-0 flex-[1_1_auto] flex-col gap-[0.125rem] mr-[0.2rem]')}>
             <div
-              className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-value', 'block text-sm font-semibold leading-tight text-slate-800')}
+              className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-value', 'block min-w-0 truncate font-semibold leading-tight text-slate-800', valueDensityClass)}
               data-testid="right-sidebar-field-label"
+              title={normalizedValue || undefined}
             >
               <ItemStatusLabel
                 value={value}
@@ -371,7 +410,7 @@ const Item = React.memo(
             </div>
             {secondaryValue || normalizedTypeLabel ? (
               <div
-                className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-secondary', 'truncate text-[11px] leading-tight text-slate-500')}
+                className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-secondary', 'truncate text-[10px] leading-tight text-slate-500')}
                 data-testid="right-sidebar-field-technical-name"
               >
                 {secondaryValue}
@@ -381,14 +420,14 @@ const Item = React.memo(
                 ) : null}
               </div>
             ) : null}
-            {Array.isArray(metaBadges) && metaBadges.length > 0 ? (
-              <div
-                className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-meta', 'flex flex-wrap gap-1.5')}
+            {!isMinimalDensity && Array.isArray(metaBadges) && metaBadges.length > 0 ? (
+                <div
+                className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-meta', 'flex min-w-0 overflow-hidden', metaDensityClass)}
               >
                 {metaBadges.map((badge) => (
                   <span
                     key={`${badge.label}-${badge.color || 'default'}`}
-                    className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-meta-badge', 'inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-medium shadow-[0_1px_2px_rgba(15,23,42,0.04)]')}
+                    className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item-meta-badge', 'inline-flex max-w-full items-center overflow-hidden text-ellipsis whitespace-nowrap rounded-full border px-2 py-0.5 text-[10px] font-medium shadow-[0_1px_2px_rgba(15,23,42,0.04)]', metaBadgeDensityClass)}
                     style={{
                       color: badge.color || '#667085',
                       background: badge.color ? `${badge.color}1A` : '#F2F4F7',

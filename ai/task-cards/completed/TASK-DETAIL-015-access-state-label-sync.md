@@ -1,6 +1,6 @@
 # TASK-DETAIL-015 — Sincronizar estados de acceso y labels del inspector
 
-- Estado: active
+- Estado: completed
 - Agente principal: inspector-agent
 - Fecha: 2026-07-15
 - Scope: `src/sisad-pdfme`

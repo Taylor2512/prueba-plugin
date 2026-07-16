@@ -26,6 +26,7 @@ import { Button, Dropdown, Select } from 'antd';
 import { I18nContext, OptionsContext } from '../contexts.js';
 import { useMaxZoom } from '../helper.js';
 import { UI_CLASSNAME } from '../constants.js';
+import { mergeClassNames } from './Designer/shared/className.js';
 import {
   describeDisabledReason,
   resolveDesignerActionState,
@@ -93,15 +94,22 @@ const Zoom = ({ zoomLevel, setZoomLevel, iconColor, density = 'comfortable' }: Z
   const minZoom = 0.25;
   const presets = [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 3];
   const zoomButtonClassName =
-    UI_CLASSNAME +
-    'zoom-button inline-flex h-5 w-5 min-w-5 items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-[var(--text-secondary)] transition-all duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50';
+    mergeClassNames(
+      UI_CLASSNAME + 'zoom-button',
+      'inline-flex h-5 w-5 min-w-5 items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-[var(--text-secondary)] transition-[background-color,color,border-color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50',
+    );
+  const zoomSelectClassName = mergeClassNames(
+    UI_CLASSNAME + 'zoom-select',
+    'min-w-[3.625rem] text-[0.6875rem] [&_.ant-select-selector]:min-w-[3.625rem] [&_.ant-select-selector]:rounded-[0.375rem] [&_.ant-select-selector]:border-[var(--border-soft)] [&_.ant-select-selector]:bg-[var(--color-gray-100)]',
+    density === 'minimal' && '[&_.ant-select-selector]:min-w-[3.5rem] [&_.ant-select-selector]:max-w-[3.5rem]',
+  );
 
   const nextZoomOut = zoomLevel - zoomStep;
   const nextZoomIn = zoomLevel + zoomStep;
   const showStepButtons = density === 'comfortable';
 
   return (
-    <div className={UI_CLASSNAME + 'zoom'}>
+    <div className={mergeClassNames(UI_CLASSNAME + 'zoom', 'inline-flex items-center gap-[0.1rem] rounded-[0.45rem] border border-[var(--border-soft)] bg-[var(--color-gray-100)] p-[0.1rem_0.2rem]')}>
       {showStepButtons ? (
         <Button
           className={zoomButtonClassName + ' ' + UI_CLASSNAME + 'zoom-out'}
@@ -114,16 +122,16 @@ const Zoom = ({ zoomLevel, setZoomLevel, iconColor, density = 'comfortable' }: Z
           icon={<Minus size={14} color={iconColor} />}
         />
       ) : null}
-      <Select
-        size="small"
-        value={Number(zoomLevel.toFixed(2))}
-        options={buildZoomSelectOptions(zoomLevel, presets, minZoom, maxZoom)}
-        onChange={(value) => setZoomLevel(Number(value))}
-        styles={{ popup: { root: { minWidth: 80 } } }}
-        className={UI_CLASSNAME + 'zoom-select'}
-        data-testid="designer-zoom-select"
-        aria-label="Nivel de zoom"
-      />
+        <Select
+          size="small"
+          value={Number(zoomLevel.toFixed(2))}
+          options={buildZoomSelectOptions(zoomLevel, presets, minZoom, maxZoom)}
+          onChange={(value) => setZoomLevel(Number(value))}
+          styles={{ popup: { root: { minWidth: 80 } } }}
+          className={zoomSelectClassName}
+          data-testid="designer-zoom-select"
+          aria-label="Nivel de zoom"
+        />
       {showStepButtons ? (
         <Button
           className={zoomButtonClassName + ' ' + UI_CLASSNAME + 'zoom-in'}
@@ -175,6 +183,7 @@ type CtlBarProps = {
   onToggleFeature?: (key: 'grid' | 'guides' | 'snapLines' | 'padding') => void;
   selectionCount?: number;
   isGroupedSelection?: boolean;
+  interactionPhase?: string;
   /**
    * Optional explicit visibility override. If provided, takes precedence over OptionsContext flags.
    * When undefined, visibility is resolved from OptionsContext.hideControlBar or OptionsContext.uxMode === 'runtime'.
@@ -216,6 +225,7 @@ const CtlBar = (props: CtlBarProps) => {
     onToggleFeature,
     selectionCount,
     isGroupedSelection,
+    interactionPhase,
     visible,
   } = props;
 
@@ -239,8 +249,21 @@ const CtlBar = (props: CtlBarProps) => {
   const undoAction = resolveDesignerActionState('undo', { hasHandler: typeof onUndo === 'function' });
   const redoAction = resolveDesignerActionState('redo', { hasHandler: typeof onRedo === 'function' });
   const fitPageAction = resolveDesignerActionState('fit-to-page', { hasHandler: typeof onFitPage === 'function' });
+  
+  const densityOption = String((options as any)?.density || '').toLowerCase();
+  // Densidad explícita del preset gana SIEMPRE (incluida 'comfortable').
+  // El fallback por ancho usa el área real del canvas (ya descontados los
+  // sidebars reservados del preset three-panel), por eso los umbrales son
+  // menores que el viewport clásico: 1000/720 en lugar de 1200/900.
   const toolbarDensity: ToolbarDensity =
-    size.width >= 1200 ? 'comfortable' : size.width >= 900 ? 'compact' : 'minimal';
+    densityOption === 'comfortable' || densityOption === 'compact' || densityOption === 'minimal'
+      ? (densityOption as ToolbarDensity)
+      : size.width >= 1000
+        ? 'comfortable'
+        : size.width >= 720
+          ? 'compact'
+          : 'minimal';
+
   const showPageNavButtons = pageNum > 1 && toolbarDensity === 'comfortable';
   const showZoomStepper = toolbarDensity === 'comfortable';
   const showSaveText = toolbarDensity === 'comfortable';
@@ -248,6 +271,8 @@ const CtlBar = (props: CtlBarProps) => {
   const statusTone = (documentStatus || '').toLowerCase().includes('edit') ? 'editing' : 'idle';
   const pageLabel = `Pág ${pageCursor + 1}/${Math.max(1, pageNum)}`;
   const summaryLabel = `Doc · ${pageLabel}${selectionCount && selectionCount > 0 ? ` · Sel ${selectionCount}` : ''}${isGroupedSelection ? ' · Grupo' : ''}`;
+  const isActiveInteractionPhase =
+    interactionPhase === 'selected-single' || interactionPhase === 'selected-multi';
 
   const pageMenuItems: MenuProps['items'] = Array.from({ length: Math.max(1, pageNum) }).map((_, index) => ({
     key: `page-${index + 1}`,
@@ -317,11 +342,15 @@ const CtlBar = (props: CtlBarProps) => {
   };
 
   return (
-    <div className={UI_CLASSNAME + 'control-bar'} data-density={toolbarDensity} data-layout="canvas-chrome">
-      <div className={UI_CLASSNAME + 'control-bar-cluster ' + UI_CLASSNAME + 'control-bar-cluster--top-left'}>
-        <div className={UI_CLASSNAME + 'control-bar-summary rounded-full border border-slate-200/70 bg-white/95 px-2.5 py-1 shadow-sm'}>
+    <div className={mergeClassNames(
+      UI_CLASSNAME + 'control-bar',
+      'absolute inset-0 z-[var(--sisad-pdfme-chrome-z,_45)] pointer-events-none bg-transparent max-[48rem]:p-[0.25rem_0.5rem]',
+      isActiveInteractionPhase && '[box-shadow:0_0_0_1px_var(--color-primary-20),0_2px_0.5rem_var(--color-primary-12)]',
+    )} data-density={toolbarDensity} data-layout="canvas-chrome">
+      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', 'absolute left-[0.5rem] top-[0.5rem] inline-flex items-center gap-[0.1875rem] pointer-events-auto')}>
+        <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-summary', 'inline-flex items-center gap-[0.125rem] min-h-[1.75rem] rounded-[0.625rem] border border-[var(--border-subtle)] bg-[linear-gradient(180deg,_var(--color-white-98),_var(--color-gray-50-90))] px-[0.3rem] py-[0.1rem] text-[0.625rem] font-semibold tracking-[0.005em] whitespace-nowrap [box-shadow:var(--shadow-gray-10)] [backdrop-filter:blur(0.625rem)] text-[var(--text-secondary)]')}>
           <span
-            className={UI_CLASSNAME + 'control-bar-status-dot'}
+            className={mergeClassNames(UI_CLASSNAME + 'control-bar-status-dot', 'h-[0.42rem] w-[0.42rem] rounded-full bg-[var(--color-success)] [box-shadow:0_0_0_2px_var(--color-white-92)]')}
             data-status={statusTone}
             title={documentStatus || 'Estado'}
             aria-label={documentStatus || 'Estado'}
@@ -330,11 +359,11 @@ const CtlBar = (props: CtlBarProps) => {
         </div>
       </div>
 
-      <div className={UI_CLASSNAME + 'control-bar-cluster ' + UI_CLASSNAME + 'control-bar-cluster--top-center'}>
-        <div className={UI_CLASSNAME + 'control-bar-pill rounded-full border border-slate-200/70 bg-white/95 px-2 py-1 shadow-sm'}>
+      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', 'absolute left-1/2 top-[0.5rem] inline-flex -translate-x-1/2 items-center gap-[0.1875rem] pointer-events-auto')}>
+        <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex items-center gap-[0.125rem] min-h-[1.75rem] rounded-[0.625rem] border border-[var(--border-subtle)] bg-[linear-gradient(180deg,_var(--color-white-98),_var(--color-gray-50-90))] px-[0.3rem] py-[0.1rem] [box-shadow:var(--shadow-gray-10)] [backdrop-filter:blur(0.625rem)]')}>
           {showPageNavButtons ? (
             <Button
-              className={UI_CLASSNAME + 'control-bar-icon-btn'}
+              className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-[1.5rem] min-h-[1.5rem] min-w-[1.5rem] w-[1.5rem] items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-[var(--text-secondary)] transition-[background-color,color,border-color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50')}
               type="text"
               disabled={pageCursor <= 0}
               onClick={() => setPageCursor((currentPage) => Math.max(0, currentPage - 1))}
@@ -349,7 +378,7 @@ const CtlBar = (props: CtlBarProps) => {
           </Dropdown>
           {showPageNavButtons ? (
             <Button
-              className={UI_CLASSNAME + 'control-bar-icon-btn'}
+              className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-[1.5rem] min-h-[1.5rem] min-w-[1.5rem] w-[1.5rem] items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-[var(--text-secondary)] transition-[background-color,color,border-color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50')}
               type="text"
               disabled={pageCursor + 1 >= pageNum}
               onClick={() => setPageCursor((currentPage) => Math.min(pageNum - 1, currentPage + 1))}
@@ -360,11 +389,11 @@ const CtlBar = (props: CtlBarProps) => {
         </div>
       </div>
 
-      <div className={UI_CLASSNAME + 'control-bar-cluster ' + UI_CLASSNAME + 'control-bar-cluster--top-right'}>
-        <div className={UI_CLASSNAME + 'control-bar-pill rounded-full border border-slate-200/70 bg-white/95 px-2 py-1 shadow-sm'}>
+      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', 'absolute right-[0.5rem] top-[0.5rem] inline-flex items-center gap-[0.1875rem] pointer-events-auto')}>
+        <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex items-center gap-[0.125rem] min-h-[1.75rem] rounded-[0.625rem] border border-[var(--border-subtle)] bg-[linear-gradient(180deg,_var(--color-white-98),_var(--color-gray-50-90))] px-[0.3rem] py-[0.1rem] [box-shadow:var(--shadow-gray-10)] [backdrop-filter:blur(0.625rem)]')}>
           {saveAction.visible ? (
             <Button
-              className={UI_CLASSNAME + 'control-bar-text-btn'}
+              className={mergeClassNames(UI_CLASSNAME + 'control-bar-text-btn', 'inline-flex h-[1.5rem] items-center rounded-md border border-transparent bg-transparent px-[0.325rem] text-[0.6875rem] text-[var(--text-secondary)] transition-[background-color,color,border-color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50')}
               type="text"
               onClick={onSave}
               disabled={!saveAction.enabled}
@@ -379,7 +408,7 @@ const CtlBar = (props: CtlBarProps) => {
           {moreMenuItems.length > 0 ? (
             <Dropdown menu={{ items: moreMenuItems, onClick: handleMoreMenuClick }} placement="bottomRight" trigger={['click']}>
               <Button
-                className={UI_CLASSNAME + 'control-bar-icon-btn'}
+                className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-[1.5rem] min-h-[1.5rem] min-w-[1.5rem] w-[1.5rem] items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-[var(--text-secondary)] transition-[background-color,color,border-color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50')}
                 type="text"
                 title="Más acciones"
                 aria-label="Más acciones"
@@ -391,11 +420,11 @@ const CtlBar = (props: CtlBarProps) => {
         </div>
       </div>
 
-      <div className={UI_CLASSNAME + 'control-bar-cluster ' + UI_CLASSNAME + 'control-bar-cluster--bottom-right'}>
-        <div className={UI_CLASSNAME + 'control-bar-pill rounded-full border border-slate-200/70 bg-white/95 px-2 py-1 shadow-sm'}>
+      <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-cluster', 'absolute bottom-[0.75rem] left-1/2 inline-flex -translate-x-1/2 items-center gap-[0.1875rem] pointer-events-auto')}>
+        <div className={mergeClassNames(UI_CLASSNAME + 'control-bar-pill', 'inline-flex items-center gap-[0.125rem] min-h-[1.75rem] rounded-[0.625rem] border border-[var(--border-subtle)] bg-[linear-gradient(180deg,_var(--color-white-98),_var(--color-gray-50-90))] px-[0.3rem] py-[0.1rem] [box-shadow:var(--shadow-gray-10)] [backdrop-filter:blur(0.625rem)]')}>
           {undoAction.visible ? (
             <Button
-              className={UI_CLASSNAME + 'control-bar-icon-btn'}
+              className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-[1.5rem] min-h-[1.5rem] min-w-[1.5rem] w-[1.5rem] items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-[var(--text-secondary)] transition-[background-color,color,border-color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50')}
               type="text"
               onClick={onUndo}
               disabled={!undoAction.enabled}
@@ -407,7 +436,7 @@ const CtlBar = (props: CtlBarProps) => {
           ) : null}
           {redoAction.visible ? (
             <Button
-              className={UI_CLASSNAME + 'control-bar-icon-btn'}
+              className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-[1.5rem] min-h-[1.5rem] min-w-[1.5rem] w-[1.5rem] items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-[var(--text-secondary)] transition-[background-color,color,border-color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50')}
               type="text"
               onClick={onRedo}
               disabled={!redoAction.enabled}
@@ -419,7 +448,7 @@ const CtlBar = (props: CtlBarProps) => {
           ) : null}
           {showFitAction && fitPageAction.visible ? (
             <Button
-              className={UI_CLASSNAME + 'control-bar-icon-btn'}
+              className={mergeClassNames(UI_CLASSNAME + 'control-bar-icon-btn', 'inline-flex h-[1.5rem] min-h-[1.5rem] min-w-[1.5rem] w-[1.5rem] items-center justify-center rounded-md border border-transparent bg-transparent p-0 text-[var(--text-secondary)] transition-[background-color,color,border-color,transform] duration-150 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--color-primary-20)] hover:border-[var(--color-primary-30)] hover:bg-[var(--color-primary-08)] hover:text-[var(--color-primary)] disabled:cursor-not-allowed disabled:opacity-50')}
               type="text"
               title="Ajustar página"
               aria-label="Ajustar página"
@@ -437,7 +466,11 @@ const CtlBar = (props: CtlBarProps) => {
               value={Number(zoomLevel.toFixed(2))}
               options={buildZoomSelectOptions(zoomLevel, [0.25, 0.5, 0.75, 1, 1.25, 1.5, 2, 3], 0.25, 3)}
               onChange={(value) => setZoomLevel(Number(value))}
-              className={UI_CLASSNAME + 'zoom-select'}
+              className={mergeClassNames(
+                UI_CLASSNAME + 'zoom-select',
+                'min-w-[3.625rem] text-[0.6875rem] [&_.ant-select-selector]:min-w-[3.625rem] [&_.ant-select-selector]:rounded-[0.375rem] [&_.ant-select-selector]:border-[var(--border-soft)] [&_.ant-select-selector]:bg-[var(--color-gray-100)]',
+                toolbarDensity === 'minimal' && '[&_.ant-select-selector]:min-w-[3.5rem] [&_.ant-select-selector]:max-w-[3.5rem]',
+              )}
               data-testid="designer-zoom-select"
               aria-label="Nivel de zoom"
             />

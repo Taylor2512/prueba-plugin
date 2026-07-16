@@ -3,6 +3,8 @@ import type { Template } from '@sisad-pdfme/common';
 import { cloneExample } from '../builders/exampleTemplate.js';
 import type { ExampleDefinition, ExampleRuntimeOptions, UploadedDocument } from '../builders/exampleTemplate.js';
 import { sanitizeIdentifier } from '../builders/schemaFactory.js';
+import type { LabHostExample } from '@/features/pdfcomponent/integration/normalizeLabHostData';
+import { normalizeLabHostData } from '@/features/pdfcomponent/integration/normalizeLabHostData';
 
 /** Inlines a template's basePdf as a base64 data string. */
 export const inlineTemplateBasePdf = async (template: Template) => {
@@ -50,9 +52,25 @@ export const getExampleBundleFilename = (example: ExampleDefinition): string =>
 export const buildExampleBundle = async (example: ExampleDefinition, options: ExampleBundleOptions = {}) => {
   const { source = 'sisad-pdfme', version = 2, getActions } = options;
   const safeExample = cloneExample(example);
-  const [template, runtimeOptions] = await Promise.all([
-    inlineTemplateBasePdf(safeExample.template),
+  const labHostExample: LabHostExample = {
+    id: safeExample.id,
+    title: safeExample.title,
+    defaultMode: safeExample.defaultMode,
+    template: safeExample.template,
+    inputs: safeExample.inputs,
+    collaboration: safeExample.collaboration,
+    runtimeOptions: safeExample.runtimeOptions,
+  };
+  const normalized = normalizeLabHostData(labHostExample);
+  const [template, runtimeOptions, documents] = await Promise.all([
+    inlineTemplateBasePdf(normalized.template),
     inlineRuntimeOptionsBasePdfs(safeExample.runtimeOptions),
+    Promise.all(
+      normalized.documents.map(async (document) => ({
+        ...document,
+        template: document.template ? await inlineTemplateBasePdf(document.template) : document.template,
+      })),
+    ),
   ]);
 
   return {
@@ -71,8 +89,32 @@ export const buildExampleBundle = async (example: ExampleDefinition, options: Ex
     },
     template,
     inputs: safeExample.inputs,
-    collaboration: safeExample.collaboration,
-    runtimeOptions,
+    recipients: normalized.recipients,
+    documents,
+    config: {
+      runtime: {
+        mode: safeExample.defaultMode || 'designer',
+      },
+      collaboration: {
+        enabled: Boolean(safeExample.collaboration?.enabled ?? normalized.recipients.length > 0),
+        activeRecipientId: normalized.activeRecipientId || null,
+        isGlobalView: Boolean(safeExample.collaboration?.isGlobalView),
+      },
+      documents: {
+        mode: documents.length > 1 ? 'multi' : 'single',
+      },
+      signatures: {
+        enabled: true,
+        defaultMode: 'draw',
+        providers: normalized.signatureProviders,
+      },
+    },
+    runtimeOptions: runtimeOptions
+      ? {
+          ...runtimeOptions,
+          uploadedDocuments: undefined,
+        }
+      : undefined,
     availableActions: getActions ? getActions(safeExample) : undefined,
   };
 };

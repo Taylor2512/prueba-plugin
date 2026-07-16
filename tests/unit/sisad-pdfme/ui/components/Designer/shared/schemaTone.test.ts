@@ -8,9 +8,11 @@ const schema = (overrides: Record<string, unknown> = {}) =>
   ({ type: 'text', ...overrides } as Parameters<typeof resolveSchemaTone>[0]);
 
 describe('resolveSchemaTone', () => {
-  it('returns userColor when set (highest priority)', () => {
+  it('prefers ownerColor over userColor (prioridad del sistema colaborativo)', () => {
+    // DEFAULT_PRIORITY en schemaOwnershipAppearance pone ownerColor primero:
+    // el color del OWNER asignado gana sobre el color del último editor.
     const s = schema({ userColor: '#FF0000', ownerColor: '#00FF00', type: 'text' });
-    expect(resolveSchemaTone(s, '#000')).toBe('#FF0000');
+    expect(resolveSchemaTone(s, '#000')).toBe('#00FF00');
   });
 
   it('returns ownerColor when userColor absent', () => {

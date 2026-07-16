@@ -22,6 +22,7 @@ import type { PropPanelWidgetProps, SchemaForUI } from '@sisad-pdfme/common';
 import { Button, Collapse, Divider, Input, InputNumber, Select, Space, Tag } from 'antd';
 import { DatabaseZap, Globe2, FileJson2 } from 'lucide-react';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
+import { mergeClassNames } from '../../shared/className.js';
 import {
   createSchemaDataRuntimeAdapter,
   resolveDesignerHttpClientConfig,
@@ -32,7 +33,7 @@ import {
   type SchemaFormJsonConfig,
   type SchemaPersistenceConfig,
 } from '../../../../designerEngine.js';
-import { PairEditor, SectionHeader } from './SchemaConnectionsShared.js';
+import { PairEditor, SectionHeader, SCHEMA_CONFIG_COLLAPSE, SCHEMA_CONFIG_NESTED_COLLAPSE } from './SchemaConnectionsShared.js';
 import { getMissingConnectionFields } from './schemaConnectionsValidation.js';
 import CompactConfigPanel from './CompactConfigPanel.js';
 import { BooleanSwitchWidget } from './InspectorPrimitives.js';
@@ -279,6 +280,73 @@ const mergeSectionPatch = <T extends Record<string, unknown>>(base: T | undefine
     ...(base || {}),
     ...patch,
   } as T);
+
+const WIDGET_ROOT = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-widget',
+  'flex min-h-0 flex-col gap-1.5 rounded-[0.95rem] border border-slate-200/70 bg-white/96 p-1.5 shadow-[0_1px_3px_rgba(15,23,42,0.04)]',
+);
+
+const SUMMARY_ROW = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-summary-row',
+  'flex flex-wrap items-center gap-1',
+);
+
+const SUMMARY_TAG = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-summary-tag',
+  'm-0 inline-flex h-5 max-w-full items-center rounded-full border border-slate-200/70 bg-white px-1.5 text-[10px] leading-none shadow-none',
+);
+
+const SUMMARY = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-summary',
+  'relative overflow-hidden rounded-lg border border-slate-200/70 bg-slate-50/80 px-2 py-1 pl-2.5',
+);
+
+const SUMMARY_TEXT = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-summary-text',
+  'text-[0.6875rem] leading-[1.35] text-slate-600',
+);
+
+const SWITCH_ROW = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-switch-row',
+  'flex min-h-7 items-center justify-between gap-2 rounded-lg border border-slate-200/70 bg-white/90 px-2 py-1 text-[0.75rem] text-slate-700 transition-colors hover:border-slate-300 hover:bg-slate-50',
+);
+
+const GRID_2 = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-grid-2',
+  'grid grid-cols-2 gap-1 max-[820px]:grid-cols-1',
+);
+
+const FIELD = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-field',
+  'flex min-w-0 flex-col gap-0.5 text-[0.6875rem] text-slate-500 [&_.ant-select-selector]:min-h-[2rem] [&_.ant-select-selector]:rounded-md [&_.ant-select-selector]:border-slate-200 [&_.ant-select-selector]:bg-white [&_.ant-select-selector]:text-[0.6875rem] [&_.ant-select-selector]:shadow-none',
+);
+
+const FIELD_LABEL = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-field-label',
+  'inline-flex min-h-3.5 items-center font-medium text-slate-500',
+);
+
+const HELP = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-help',
+  'mt-0.5 text-[0.625rem] leading-tight text-slate-500',
+);
+
+const INLINE_CHECKS = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-inline-checks',
+  'flex flex-wrap gap-x-1 gap-y-1',
+);
+
+const INLINE_CHECK = 'inline-flex items-center gap-1 rounded-full border border-slate-200/80 bg-white px-1.5 py-[0.125rem] text-[0.6875rem] text-slate-700';
+
+const DIVIDER = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-divider',
+  'my-1.5 border-slate-200/70',
+);
+
+const NUMBER_INPUT = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-number',
+  'h-8 rounded-md border border-slate-200/80 bg-white text-[0.71875rem] shadow-none',
+);
 
 /**
  * DetailView widget for configuring data/runtime connections of a schema.
@@ -562,25 +630,25 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
       ),
       children: (
         <Space direction="vertical" size={8} className="w-full">
-          <div className={`${DESIGNER_CLASSNAME}schema-config-summary`}>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-summary-text`}>{persistenceSummary}</div>
+          <div className={SUMMARY}>
+            <div className={SUMMARY_TEXT}>{persistenceSummary}</div>
           </div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
-            <span>Persistir valor</span>
+          <div className={SWITCH_ROW}>
+            <span className="font-semibold text-slate-700">Persistir valor</span>
             <BooleanSwitchWidget value={persistence.enabled} onChange={(checked) => updatePersistence({ enabled: checked })} />
           </div>
           <Collapse
             ghost
-            className={`${DESIGNER_CLASSNAME}schema-config-collapse schema-config-nested-collapse`}
+            className={SCHEMA_CONFIG_NESTED_COLLAPSE}
             defaultActiveKey={[]}
             items={[
               {
                 key: 'persistence-basic',
                 label: 'Opciones básicas',
                 children: (
-                  <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <span>Modo</span>
+                  <div className={GRID_2}>
+                    <div className={FIELD}>
+                      <span className={FIELD_LABEL}>Modo</span>
                       <Select
                         id="connections-persistence-mode"
                         name="connections-persistence-mode"
@@ -594,8 +662,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                         ]}
                       />
                     </div>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <span>Clave de almacenamiento</span>
+                    <div className={FIELD}>
+                      <span className={FIELD_LABEL}>Clave de almacenamiento</span>
                       <Input
                         id="connections-persistence-key"
                         name="connections-persistence-key"
@@ -612,14 +680,14 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                 key: 'persistence-advanced',
                 label: 'Opciones avanzadas',
                 children: (
-                  <div className={`${DESIGNER_CLASSNAME}schema-config-inline-checks`}>
+                  <div className={INLINE_CHECKS}>
                     <div>
                       <BooleanSwitchWidget value={persistence.includeHidden} onChange={(checked) => updatePersistence({ includeHidden: checked })} />
-                      <span>Incluir ocultos</span>
+                      <span className={INLINE_CHECK}>Incluir ocultos</span>
                     </div>
                     <div>
                       <BooleanSwitchWidget value={persistence.includeMeta} onChange={(checked) => updatePersistence({ includeMeta: checked })} />
-                      <span>Incluir metadatos</span>
+                      <span className={INLINE_CHECK}>Incluir metadatos</span>
                     </div>
                   </div>
                 ),
@@ -641,29 +709,29 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
       ),
       children: (
         <Space direction="vertical" size={8} className="w-full">
-          <div className={`${DESIGNER_CLASSNAME}schema-config-summary`}>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-summary-text`}>{formJsonSummary}</div>
+          <div className={SUMMARY}>
+            <div className={SUMMARY_TEXT}>{formJsonSummary}</div>
           </div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
-            <span>Activar salida JSON</span>
+          <div className={SWITCH_ROW}>
+            <span className="font-semibold text-slate-700">Activar salida JSON</span>
             <BooleanSwitchWidget value={formJson.enabled} onChange={(checked) => updateFormJson({ enabled: checked })} />
           </div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
-            <span>Recolectar valores</span>
+          <div className={SWITCH_ROW}>
+            <span className="font-semibold text-slate-700">Recolectar valores</span>
             <BooleanSwitchWidget value={formJson.collect} onChange={(checked) => updateFormJson({ collect: checked })} />
           </div>
           <Collapse
             ghost
-            className={`${DESIGNER_CLASSNAME}schema-config-collapse schema-config-nested-collapse`}
+            className={SCHEMA_CONFIG_NESTED_COLLAPSE}
             defaultActiveKey={[]}
             items={[
               {
                 key: 'form-json-basic',
                 label: 'Salida principal',
                 children: (
-                  <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <span>Formato</span>
+                  <div className={GRID_2}>
+                    <div className={FIELD}>
+                      <span className={FIELD_LABEL}>Formato</span>
                       <Select
                         id="connections-json-format"
                         name="connections-json-format"
@@ -676,8 +744,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                         ]}
                       />
                     </div>
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                      <span>Raíz JSON</span>
+                    <div className={FIELD}>
+                      <span className={FIELD_LABEL}>Raíz JSON</span>
                       <Input
                         id="connections-json-root"
                         name="connections-json-root"
@@ -694,18 +762,18 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                 key: 'form-json-advanced',
                 label: 'Opciones avanzadas',
                 children: (
-                  <div className={`${DESIGNER_CLASSNAME}schema-config-inline-checks`}>
+                  <div className={INLINE_CHECKS}>
                     <div>
                       <BooleanSwitchWidget value={formJson.includeEmpty} onChange={(checked) => updateFormJson({ includeEmpty: checked })} />
-                      <span>Incluir vacíos</span>
+                      <span className={INLINE_CHECK}>Incluir vacíos</span>
                     </div>
                     <div>
                       <BooleanSwitchWidget value={formJson.includeHidden} onChange={(checked) => updateFormJson({ includeHidden: checked })} />
-                      <span>Incluir ocultos</span>
+                      <span className={INLINE_CHECK}>Incluir ocultos</span>
                     </div>
                     <div>
                       <BooleanSwitchWidget value={formJson.includeMeta} onChange={(checked) => updateFormJson({ includeMeta: checked })} />
-                      <span>Incluir meta</span>
+                      <span className={INLINE_CHECK}>Incluir meta</span>
                     </div>
                   </div>
                 ),
@@ -727,20 +795,20 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
       ),
       children: (
         <Space direction="vertical" size={8} className="w-full">
-          <div className={`${DESIGNER_CLASSNAME}schema-config-summary`}>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-summary-text`}>{apiSummary}</div>
+          <div className={SUMMARY}>
+            <div className={SUMMARY_TEXT}>{apiSummary}</div>
           </div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
-            <span>Cargar opciones desde API</span>
+          <div className={SWITCH_ROW}>
+            <span className="font-semibold text-slate-700">Cargar opciones desde API</span>
             <BooleanSwitchWidget value={api.enabled} onChange={(checked) => updateApi({ enabled: checked })} />
           </div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-switch-row`}>
-            <span>Heredar Axios del sistema</span>
+          <div className={SWITCH_ROW}>
+            <span className="font-semibold text-slate-700">Heredar Axios del sistema</span>
             <BooleanSwitchWidget value={api.http?.inheritSystem ?? true} onChange={(checked) => updateApiHttp({ inheritSystem: checked })} />
           </div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-              <span>Endpoint</span>
+          <div className={GRID_2}>
+            <div className={FIELD}>
+              <span className={FIELD_LABEL}>Endpoint</span>
               <Input
                 id="connections-api-endpoint"
                 name="connections-api-endpoint"
@@ -750,8 +818,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                 onChange={(event) => updateApi({ endpoint: event.target.value })}
               />
             </div>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-              <span>Método</span>
+            <div className={FIELD}>
+              <span className={FIELD_LABEL}>Método</span>
               <Select
                 id="connections-api-method"
                 name="connections-api-method"
@@ -767,8 +835,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                 ]}
               />
             </div>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-              <span>Base URL</span>
+            <div className={FIELD}>
+              <span className={FIELD_LABEL}>Base URL</span>
               <Input
                 id="connections-api-base-url"
                 name="connections-api-base-url"
@@ -778,22 +846,22 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                 onChange={(event) => updateApiHttp({ baseURL: event.target.value })}
               />
             </div>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-              <span>Timeout (ms)</span>
+            <div className={FIELD}>
+              <span className={FIELD_LABEL}>Timeout (ms)</span>
               <InputNumber
                 id="connections-api-timeout"
                 name="connections-api-timeout"
                 size="small"
                 min={0}
-                className={`${DESIGNER_CLASSNAME}schema-config-number`}
+                className={NUMBER_INPUT}
                 value={typeof api.http?.timeoutMs === 'number' ? api.http.timeoutMs : undefined}
                 onChange={(value) => updateApiHttp({ timeoutMs: typeof value === 'number' ? value : undefined })}
               />
             </div>
           </div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-              <span>Modo de ejecución</span>
+          <div className={GRID_2}>
+            <div className={FIELD}>
+              <span className={FIELD_LABEL}>Modo de ejecución</span>
               <Select
                 id="connections-api-request-mode"
                 name="connections-api-request-mode"
@@ -808,8 +876,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                 ]}
               />
             </div>
-            <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-              <span>Tipo de autenticación</span>
+            <div className={FIELD}>
+              <span className={FIELD_LABEL}>Tipo de autenticación</span>
               <Select
                 id="connections-api-auth-mode"
                 name="connections-api-auth-mode"
@@ -823,25 +891,25 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
               />
             </div>
           </div>
-          <div className={`${DESIGNER_CLASSNAME}schema-config-inline-checks`}>
+          <div className={INLINE_CHECKS}>
             <div>
               <BooleanSwitchWidget value={api.http?.withCredentials} onChange={(checked) => updateApiHttp({ withCredentials: checked })} />
-              <span>Enviar credenciales</span>
+              <span className={INLINE_CHECK}>Enviar credenciales</span>
             </div>
           </div>
           {api.http?.auth?.mode === 'manual' ? (
             <Collapse
               ghost
-              className={`${DESIGNER_CLASSNAME}schema-config-collapse schema-config-nested-collapse`}
+              className={SCHEMA_CONFIG_NESTED_COLLAPSE}
               defaultActiveKey={[]}
               items={[
                 {
                   key: 'api-auth',
                   label: 'Autenticación manual',
                   children: (
-                    <div className={`${DESIGNER_CLASSNAME}schema-config-grid-2`}>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                        <span>Tipo de token</span>
+                    <div className={GRID_2}>
+                      <div className={FIELD}>
+                        <span className={FIELD_LABEL}>Tipo de token</span>
                         <Select
                           id="connections-api-auth-type"
                           name="connections-api-auth-type"
@@ -856,8 +924,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                           ]}
                         />
                       </div>
-                      <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                        <span>Nombre del header</span>
+                      <div className={FIELD}>
+                        <span className={FIELD_LABEL}>Nombre del header</span>
                         <Input
                           id="connections-api-auth-header"
                           name="connections-api-auth-header"
@@ -869,8 +937,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                       </div>
                       {(api.http?.auth?.type || 'bearer') === 'basic' ? (
                         <>
-                          <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                            <span>Usuario</span>
+                      <div className={FIELD}>
+                            <span className={FIELD_LABEL}>Usuario</span>
                             <Input
                               id="connections-api-auth-user"
                               name="connections-api-auth-user"
@@ -880,8 +948,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                               onChange={(event) => updateApiAuth({ username: event.target.value })}
                             />
                           </div>
-                          <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                            <span>Contraseña</span>
+                          <div className={FIELD}>
+                            <span className={FIELD_LABEL}>Contraseña</span>
                             <Input.Password
                               id="connections-api-auth-password"
                               name="connections-api-auth-password"
@@ -893,8 +961,8 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
                           </div>
                         </>
                       ) : (
-                        <div className={`${DESIGNER_CLASSNAME}schema-config-field`}>
-                          <span>Valor / token</span>
+                        <div className={FIELD}>
+                          <span className={FIELD_LABEL}>Valor / token</span>
                           <Input
                             id="connections-api-auth-token"
                             name="connections-api-auth-token"
@@ -917,10 +985,10 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
               ]}
             />
           ) : null}
-          <Divider className={`${DESIGNER_CLASSNAME}schema-config-divider`} />
+          <Divider className={DIVIDER} />
           <Collapse
             ghost
-            className={`${DESIGNER_CLASSNAME}schema-config-collapse schema-config-nested-collapse`}
+            className={SCHEMA_CONFIG_NESTED_COLLAPSE}
             defaultActiveKey={[]}
             items={[
               {
@@ -966,11 +1034,11 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
             ]}
           />
           {resolvedHttpClient ? (
-            <div className={`${DESIGNER_CLASSNAME}schema-config-summary`}>
-              <div className={`${DESIGNER_CLASSNAME}schema-config-summary-text`}>
-                {resolvedHttpClient.inheritSystem ? 'Usa la configuración global de Axios' : 'Usa configuración local de Axios'}
+              <div className={SUMMARY}>
+                <div className={SUMMARY_TEXT}>
+                  {resolvedHttpClient.inheritSystem ? 'Usa la configuración global de Axios' : 'Usa configuración local de Axios'}
+                </div>
               </div>
-            </div>
           ) : null}
         </Space>
       ),
@@ -994,15 +1062,15 @@ const SchemaConnectionsWidget = (props: ConfigWidgetProps) => {
       modalTitle="Configurar datos y conexión"
       modalTriggerLabel="Configurar conexión"
     >
-      <div className={`${DESIGNER_CLASSNAME}schema-config-widget`}>
-        <div className={`${DESIGNER_CLASSNAME}schema-config-summary-row`}>
+      <div className={WIDGET_ROOT}>
+        <div className={SUMMARY_ROW}>
           {runtimeStatusTags.map((tag) => (
-            <Tag key={tag.label} color={tag.color} className={`${DESIGNER_CLASSNAME}schema-config-summary-tag`}>
+            <Tag key={tag.label} color={tag.color} className={SUMMARY_TAG}>
               {tag.label}
             </Tag>
           ))}
         </div>
-        <Collapse ghost items={items} defaultActiveKey={['persistence']} className={`${DESIGNER_CLASSNAME}schema-config-collapse`} />
+        <Collapse ghost items={items} defaultActiveKey={['persistence']} className={SCHEMA_CONFIG_COLLAPSE} />
       </div>
     </CompactConfigPanel>
   );

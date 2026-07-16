@@ -145,8 +145,8 @@ export const SidebarSurfaceHeader = ({
     <div
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'sidebar-surface-header',
-        'flex items-center justify-between gap-1.5 rounded-xl border border-slate-200/70 bg-white/92 px-2 py-1.5 shadow-sm',
-        compact ? DESIGNER_CLASSNAME + 'sidebar-surface-header-compact' : '',
+        'flex justify-between gap-1.5 rounded-[0.95rem] border border-slate-200/60 bg-white/96 px-2.5 shadow-[0_1px_2px_rgba(15,23,42,0.035)] backdrop-blur-sm',
+        compact ? 'items-center py-1' : 'items-start py-1.5',
         className,
       )}
     >
@@ -177,7 +177,8 @@ export const SidebarSurfaceHeader = ({
             strong
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'sidebar-surface-header-title',
-              'block truncate text-[0.72rem] font-semibold leading-tight text-slate-900',
+              'block truncate font-semibold leading-tight text-slate-900',
+              compact ? 'text-[0.7rem]' : 'text-[0.8rem]'
             )}
           >
             {title}
@@ -188,7 +189,8 @@ export const SidebarSurfaceHeader = ({
               type="secondary"
               className={mergeClassNames(
                 DESIGNER_CLASSNAME + 'sidebar-surface-header-subtitle',
-                'block truncate text-[0.62rem] leading-tight text-slate-500',
+                'block truncate leading-tight text-slate-500',
+                compact ? 'text-[0.58rem]' : 'text-[0.64rem]'
               )}
             >
               {subtitle}
@@ -202,41 +204,31 @@ export const SidebarSurfaceHeader = ({
                 'mt-0.5 flex flex-wrap gap-1',
               )}
             >
-              {badges.map((badge, index) => (
-                badge.tooltip ? (
-                  <Tooltip key={badge.key ?? badge.tooltip ?? String(badge.label) ?? index} title={badge.tooltip} placement="top">
-                    <Tag
-                      color={badge.color}
-                      className="m-0 inline-flex h-5 items-center rounded-full border-slate-200 px-1.5 text-[10px] leading-none"
-                    >
+              {badges.map((badge, index) => {
+                const badgeClassName = mergeClassNames(
+                  'm-0 inline-flex items-center rounded-full border border-slate-200/70 bg-white leading-none shadow-none',
+                  compact ? 'h-4 px-[0.26rem] text-[0.56rem]' : 'h-5 px-1.5 text-[10px]',
+                );
+
+                const key = badge.key ?? badge.tooltip ?? String(badge.label) ?? index;
+
+                return badge.tooltip ? (
+                  <Tooltip key={key} title={badge.tooltip} placement="top">
+                    <Tag color={badge.color} className={badgeClassName}>
                       {badge.label}
                     </Tag>
                   </Tooltip>
                 ) : (
-                  <Tag
-                    key={badge.key ?? badge.tooltip ?? String(badge.label) ?? index}
-                    color={badge.color}
-                    className="m-0 inline-flex h-5 items-center rounded-full border-slate-200 px-1.5 text-[10px] leading-none"
-                  >
+                  <Tag key={key} color={badge.color} className={badgeClassName}>
                     {badge.label}
                   </Tag>
-                )
-              ))}
+                );
+              })}
             </div>
           ) : null}
         </div>
       </div>
 
-      {trailing ? (
-        <div
-          className={mergeClassNames(
-            DESIGNER_CLASSNAME + 'sidebar-surface-header-trailing',
-            'flex flex-none items-center gap-1.5',
-          )}
-        >
-          {trailing}
-        </div>
-      ) : null}
     </div>
   );
 };

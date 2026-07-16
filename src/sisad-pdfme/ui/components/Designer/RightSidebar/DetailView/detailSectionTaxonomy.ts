@@ -441,6 +441,18 @@ export function shouldRenderDetailSection(params: {
   }
 
   if (section === 'appearance') {
+    const signatureVisualKeys = new Set([
+      'signaturemode',
+      'signatureproviderkey',
+      'signatureproviderstatus',
+      'signatureproviderdisplay',
+      'signaturecapabilities',
+      'signaturedisplay',
+      'signatureproviderconfig',
+      'signatureproviderconfigaction',
+      'signaturemetadata',
+    ]);
+    const appearanceFields = entries.filter((field) => !signatureVisualKeys.has(field.key));
     const visualFields = [
       'align',
       'fontname',
@@ -462,14 +474,10 @@ export function shouldRenderDetailSection(params: {
       'headstyles',
       'bodystyles',
       'columnstyles',
-      'signaturedisplay',
-      'signaturemode',
-      'signatureproviderkey',
-      'signatureproviderconfig',
       'placeholdertext',
       'optionscontainer',
     ];
-    return Boolean(context.supportsAppearance !== false) && (hasField(entries, visualFields) || hasWidget(fields, widgetNames) || hasRenderableField(entries) || hasAnyValue(schemaObject, ['fontName', 'fontSize', 'fontColor', 'textColor', 'backgroundColor', 'strokeColor', 'borderColor', 'borderWidth', 'color', 'radius', 'barColor', 'tableStyles', 'headStyles', 'bodyStyles', 'columnStyles', 'signatureDisplay', 'signatureMode', 'signatureProviderKey', 'signatureProviderConfig', 'placeholderText', 'optionsContainer', 'opacity']));
+    return Boolean(context.supportsAppearance !== false) && (hasField(appearanceFields, visualFields) || hasWidget(appearanceFields, widgetNames) || hasRenderableField(appearanceFields) || hasAnyValue(schemaObject, ['fontName', 'fontSize', 'fontColor', 'textColor', 'backgroundColor', 'strokeColor', 'borderColor', 'borderWidth', 'color', 'radius', 'barColor', 'tableStyles', 'headStyles', 'bodyStyles', 'columnStyles', 'placeholderText', 'optionsContainer', 'opacity']));
   }
 
   if (section === 'behavior') {

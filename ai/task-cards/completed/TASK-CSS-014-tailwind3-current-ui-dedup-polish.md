@@ -1,6 +1,6 @@
 # TASK-CSS-014 — Tailwind 3: deduplicación visual actual y polish
 
-- Estado: active
+- Estado: completed
 - Agente principal: css-tailwind-agent
 - Fecha: 2026-07-15
 - Scope: `src/sisad-pdfme`

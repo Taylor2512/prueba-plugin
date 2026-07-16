@@ -126,7 +126,7 @@ const SelectionContextToolbar = ({
     <>
       <div
         ref={toolbarRef}
-        className="sisad-pdfme-ui-selection-context-toolbar rounded-2xl border border-slate-200/80 bg-white/95 p-1 shadow-[0_14px_34px_rgba(15,23,42,0.12)] backdrop-blur-md"
+        className="sisad-pdfme-ui-selection-context-toolbar pointer-events-auto absolute rounded-2xl border border-slate-200/80 bg-white/95 p-1 shadow-[0_14px_34px_rgba(15,23,42,0.12)] backdrop-blur-md [animation:toolbar-reveal_var(--wix-reveal-dur)_var(--wix-ease-out)_both]"
         role="toolbar"
         aria-label="Barra contextual de edición"
         data-schema-interactive-control="true"
@@ -161,7 +161,9 @@ const SelectionContextToolbar = ({
                 btn.onSelect?.();
               }}
               className={mergeClassNames(
-                'inline-flex min-h-8 min-w-0 items-center gap-1.5 rounded-xl border border-slate-200/80 bg-white/90 px-2.5 py-1 text-[11.5px] font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200',
+                // `border-solid` explícito: los <button> traen `border-style:
+                // outset` del UA y preflight está off (daría un borde biselado).
+                'inline-flex min-h-8 min-w-0 items-center gap-1.5 rounded-xl border border-solid border-slate-200/80 bg-white/90 px-2.5 py-1 text-[11.5px] font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200',
                 btn.danger && 'text-red-600 hover:border-red-200 hover:bg-red-50 hover:text-red-700',
                 btn.disabled && 'cursor-not-allowed opacity-50',
               )}
@@ -195,7 +197,7 @@ const SelectionContextToolbar = ({
               event.stopPropagation();
               openMoreMenu();
             }}
-            className="inline-flex min-h-8 min-w-0 items-center gap-1.5 rounded-xl border border-slate-200/80 bg-white/90 px-2.5 py-1 text-[11.5px] font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200"
+            className="inline-flex min-h-8 min-w-0 items-center gap-1.5 rounded-xl border border-solid border-slate-200/80 bg-white/90 px-2.5 py-1 text-[11.5px] font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200"
           >
             <span className="inline-flex h-[18px] w-[18px] flex-none items-center justify-center rounded-md bg-slate-50/90 text-slate-500" aria-hidden="true">
               <Ellipsis size={14} />

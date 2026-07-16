@@ -25,7 +25,10 @@ export const InspectorSelect = ({
   className,
   testId,
 }: InspectorSelectProps) => (
-  <label className={mergeClassNames('flex min-h-8 flex-col gap-1 text-[11px] text-slate-700', className)}>
+  <label className={mergeClassNames(
+    'flex min-h-8 flex-col gap-1 text-[11px] text-slate-700 [&_.ant-select-selector]:min-h-[2rem] [&_.ant-select-selector]:rounded-md [&_.ant-select-selector]:border-slate-200 [&_.ant-select-selector]:bg-[var(--color-bg-surface)] [&_.ant-select-selector]:text-[0.6875rem] [&_.ant-select-selector]:shadow-none',
+    className,
+  )}>
     {label ? <span className="font-medium text-slate-900">{label}</span> : null}
     <Select
       data-testid={testId}

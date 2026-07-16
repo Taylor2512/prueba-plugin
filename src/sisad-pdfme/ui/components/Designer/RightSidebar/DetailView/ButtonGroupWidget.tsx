@@ -91,20 +91,20 @@ const ButtonGroupWidget = (props: PropPanelWidgetProps) => {
   return (
     <Form.Item>
       <div
-        className={mergeClassNames(DESIGNER_CLASSNAME + 'button-group', 'flex flex-wrap gap-1.5')}
+        className={mergeClassNames(DESIGNER_CLASSNAME + 'button-group', 'flex flex-wrap gap-[0.125rem] gap-y-[0.125rem] w-full')}
       >
         {(schema.buttons as ButtonConfig[]).map((btn: ButtonConfig, index: number) => {
           const active = isActive(btn);
           return (
           <Tooltip key={index} title={btn.key} placement="top" mouseEnterDelay={0.35}>
             <Button
-              type={active ? 'primary' : 'default'}
+              type="text"
               onClick={() => apply(btn)}
               icon={svgIcon(btn.icon)}
               className={mergeClassNames(
-                DESIGNER_CLASSNAME + 'button-auto',
-                'inline-flex h-[1.75rem] w-[1.75rem] items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700 shadow-none transition',
-                'hover:border-slate-300 hover:bg-slate-50',
+                active
+                  ? 'inline-flex h-[1.75rem] w-[1.75rem] items-center justify-center rounded-lg border border-[var(--color-primary)] bg-[linear-gradient(180deg,_var(--color-primary-light),_var(--color-primary))] text-white shadow-[0_1px_3px_var(--color-primary-20)] transition hover:-translate-y-px hover:bg-[linear-gradient(180deg,_var(--color-primary),_var(--color-primary))] hover:shadow-[0_3px_8px_var(--color-primary-25)]'
+                  : 'inline-flex h-[1.75rem] w-[1.75rem] items-center justify-center rounded-lg border border-slate-200 bg-white text-slate-700 shadow-none transition hover:border-slate-300 hover:bg-slate-50',
               )}
             />
           </Tooltip>

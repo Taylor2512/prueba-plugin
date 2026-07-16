@@ -176,13 +176,28 @@ const CustomFieldModal = ({ open, draft, onCancel, onSave, onChange }: Props) =>
   <Modal
     open={open}
     title="Detalles de campos personalizados"
+    centered
     onCancel={onCancel}
     footer={null}
     width="min(720px, calc(100vw - 1rem))"
-    className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-modal`, 'rounded-3xl')}
+    maskClosable
+    classNames={{
+      wrapper: 'backdrop-blur-[1px]',
+      mask: 'bg-slate-950/45',
+      content:
+        'overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.16)]',
+      header: 'border-b border-slate-200/80 px-5 py-4',
+      body: 'bg-slate-50/70 p-0',
+    }}
   >
-    <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-form`, 'flex max-h-[80dvh] flex-col rounded-b-3xl bg-slate-50/70 p-3')}>
-      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-form-scroll`, 'min-h-0 flex-1 space-y-3 overflow-y-auto pr-0.5')}>
+    <div className={mergeClassNames(
+      `${DESIGNER_CLASSNAME}custom-field-form`,
+      'flex max-h-[80dvh] flex-col rounded-b-3xl bg-slate-50/70 p-3',
+    )}>
+      <div className={mergeClassNames(
+        `${DESIGNER_CLASSNAME}custom-field-form-scroll`,
+        'min-h-0 flex-1 space-y-3 overflow-y-auto pr-0.5',
+      )}>
         <Section title="Identidad">
           <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-grid`, 'grid gap-2.5 md:grid-cols-2')}>
             <TextField
@@ -249,11 +264,26 @@ const CustomFieldModal = ({ open, draft, onCancel, onSave, onChange }: Props) =>
         )}
       </div>
 
-      <div className={mergeClassNames(`${DESIGNER_CLASSNAME}custom-field-footer`, 'mt-3 flex shrink-0 items-center justify-end gap-2 border-t border-slate-200 pt-3')}>
-        <Button type="primary" onClick={onSave} disabled={!draft.name.trim()}>
+      <div
+        className={mergeClassNames(
+          `${DESIGNER_CLASSNAME}custom-field-footer`,
+          'mt-3 flex shrink-0 items-center justify-end gap-2 border-t border-slate-200 pt-3',
+        )}
+      >
+        <Button
+          type="primary"
+          onClick={onSave}
+          disabled={!draft.name.trim()}
+          className="inline-flex h-9 items-center rounded-full border border-sky-500/70 bg-sky-600 px-4 text-sm font-semibold text-white shadow-sm transition-colors hover:border-sky-400 hover:bg-sky-500 disabled:cursor-not-allowed disabled:border-slate-200 disabled:bg-slate-100 disabled:text-slate-400"
+        >
           Guardar
         </Button>
-        <Button onClick={onCancel}>Cancelar</Button>
+        <Button
+          onClick={onCancel}
+          className="inline-flex h-9 items-center rounded-full border border-slate-200 bg-white px-4 text-sm font-semibold text-slate-700 shadow-sm transition-colors hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900"
+        >
+          Cancelar
+        </Button>
       </div>
     </div>
   </Modal>

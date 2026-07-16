@@ -85,6 +85,11 @@ export type DeleteSchemasOptions = {
   clearSelection?: boolean;
 };
 
+export type SelectSchemasOptions = {
+  mode?: 'replace' | 'toggle';
+  origin?: 'keyboard' | 'toolbar' | 'context-menu' | 'field-list' | 'command';
+};
+
 export const INLINE_EDIT_REQUEST_EVENT = 'sisad-pdfme-designer-inline-edit-request';
 
 export type InlineEditTarget = 'content' | 'name';
@@ -113,6 +118,7 @@ export const emitInlineEditRequest = (request: InlineEditRequest) => {
 
 export type SelectionCommandSet = {
   canEditStructure?: boolean;
+  selectSchemasByIds?: (ids: string[], options?: SelectSchemasOptions) => void;
   deleteSelection: () => boolean;
   deleteSchemasByIds: (ids: string[], options?: DeleteSchemasOptions) => boolean;
   duplicateSelection: () => void;
@@ -164,6 +170,7 @@ export type SelectionCommandsContext = {
   onCutSelection?: () => void;
   onSelectAllVisible?: () => void;
   onClearSelection?: () => void;
+  onSelectSchemasByIds?: (ids: string[], options?: SelectSchemasOptions) => void;
   collaborationContext?: Pick<
     EffectiveCollaborationContext,
     | 'fileId'
@@ -433,6 +440,12 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
     if (shouldClearSelection) {
       context.onClearSelection?.();
     }
+  };
+
+  const selectSchemasByIds = (ids: string[], options: SelectSchemasOptions = {}) => {
+    const normalizedIds = [...new Set(ids.map((id) => String(id || '').trim()).filter(Boolean))];
+    if (!context.onSelectSchemasByIds) return;
+    context.onSelectSchemasByIds(normalizedIds, options);
   };
 
   const deleteSchemasByIds = (ids: string[], options: DeleteSchemasOptions = {}) => {
@@ -942,6 +955,7 @@ export const createSelectionCommands = (context: SelectionCommandsContext): Sele
 
   return {
     canEditStructure,
+    selectSchemasByIds,
     deleteSelection,
     deleteSchemasByIds,
     duplicateSelection,

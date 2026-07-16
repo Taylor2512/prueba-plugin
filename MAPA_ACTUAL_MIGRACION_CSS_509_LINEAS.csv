@@ -1,0 +1,17 @@
+﻿Rango actual,Dominio,Clasificación,Acción recomendada,Riesgo
+1-24,Entrypoint/imports,KEEP_GLOBAL,Mantener tokens; mover Google Fonts a estrategia de assets/app-level si se requiere portabilidad,Bajo
+25-65,Root/reset/scrollbars,KEEP_GLOBAL_PLAIN_CSS,Eliminar @apply reescribiendo CSS plano; mantener custom properties y scrollbar scoped,Bajo
+66-109,Page/header/grid/workspace/shell,MIGRATE_TO_TSX,Mover clases al nodo propietario Root/Designer; conservar solo variables runtime,Medio
+110-123,Canvas/preview background y grid,SPLIT,Canvas.tsx/Preview.tsx para skin; CSS plano para grid runtime,Alto
+124-155,Paper root/scale/page,KEEP_TECHNICAL_PLAIN_CSS,Geometría y scale en CSS plano; revisar sombra duplicada,Muy alto
+156-167,Lab runtime host y comentarios de migración,MIGRATE_OR_CLEAN,Mover host a JSX; compactar comentarios,Bajo
+168-183,Scena Guides/SnapLines/Mask,KEEP_TECHNICAL_OR_LOCAL,Descendientes externos en CSS plano; root SnapLines/Mask al componente si aplica,Alto
+184-199,LeftSidebar root/draggable,MIGRATE_TO_TSX,"Mover surface, width state y data-dragging a LeftSidebar/wrapper",Medio
+200-219,Canvas visual duplicado,SPLIT_AND_DEDUP,Unificar con 110-123; Canvas.tsx posee skin; grid técnico queda en CSS,Alto
+220-256,Empty state/page/padding/guides,MIXED,Empty state a TSX; page/padding/guides técnicos en CSS plano,Alto
+257-285,Moveable/custom selectable/options,KEEP_TECHNICAL_PLAIN_CSS,Reescribir sin @apply; no mover a React,Muy alto
+286-302,RightSidebar root y stage offsets,SPLIT,Root a RightSidebar.tsx; offsets sibling permanecen CSS plano,Alto
+303-396,Responsive sidebars/sr-only,MIGRATE_AND_KEEP,Responsive local a TSX; cross-tree offsets CSS; borrar medias vacías; sr-only a utilidad,Medio/Alto
+397-430,Root font duplicado y keyframes RS,DELETE_OR_VERIFY,Eliminar root duplicado; borrar keyframes si rg=0,Bajo
+433-474,Drag/drop/interaction states,KEEP_TECHNICAL_PLAIN_CSS,Convertir @apply a CSS plano; conservar coordinación stage→descendientes,Muy alto
+476-509,Keyframes overlays/toolbar,DELETE_OR_VERIFY,Buscar referencias exactas; eliminar si no hay consumidores,Bajo

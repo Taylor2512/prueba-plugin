@@ -69,10 +69,10 @@ const DetailHeaderCard = ({
 }: DetailHeaderCardProps) => {
   const headerRef = React.useRef<HTMLDivElement | null>(null);
   const { mode: headerDensity } = useResponsiveDensity(headerRef, {
-    comfortable: 336,
-    compact: 268,
-    mini: 216,
-    initialWidth: 336,
+    comfortable: 390,
+    compact: 318,
+    minimal: 256,
+    initialWidth: 320,
   });
   const tone = resolveSchemaTone(activeSchema, '#7c3aed');
   const headerSummary = buildDetailHeaderSummary(activeSchema, schemaConfig);
@@ -80,7 +80,7 @@ const DetailHeaderCard = ({
   const leadingColor = headerSummary.recipientColor || tone;
   const effectiveTags = tags || headerSummary.tags;
   const adaptiveMaxVisibleTags =
-    headerDensity === 'mini' ? Math.min(1, maxVisibleTags) : headerDensity === 'compact' ? Math.min(2, maxVisibleTags) : maxVisibleTags;
+    headerDensity === 'minimal' ? Math.min(1, maxVisibleTags) : headerDensity === 'compact' ? Math.min(2, maxVisibleTags) : maxVisibleTags;
   const resolvedShowStateTags = showStateTags;
   const resolvedShowPosition = showPosition;
   const visibleTags = resolvedShowStateTags ? effectiveTags.slice(0, adaptiveMaxVisibleTags) : [];
@@ -90,6 +90,8 @@ const DetailHeaderCard = ({
     typeof selectionCount === 'number' && selectionCount > 0
       ? { label: selectionCount === 1 ? '1 seleccionado' : `${selectionCount} seleccionados`, color: 'processing' as const }
       : null;
+  const showDenseMeta = headerDensity === 'comfortable';
+  const showSubtitle = headerDensity !== 'minimal';
   const resolvedSubtitle = showType
     ? [typeLabel || headerSummary.schemaType, headerSummary.contextLabel].filter(Boolean).join(' · ')
     : headerSummary.contextLabel || (positionLabel || headerSummary.positionLabel);
@@ -100,14 +102,14 @@ const DetailHeaderCard = ({
           type="button"
           className={mergeClassNames(
             `${DESIGNER_CLASSNAME}detail-header-back-btn`,
-            'inline-flex h-7 w-7 items-center justify-center rounded-full border border-slate-200/80 bg-white text-slate-600 shadow-none transition',
-            'hover:border-sky-200 hover:bg-sky-50 hover:text-sky-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/60',
+            'inline-flex h-7 w-7 appearance-none items-center justify-center rounded-full border border-slate-200/80 bg-white text-slate-600 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition',
+            'hover:border-sky-200 hover:bg-sky-50 hover:text-sky-700 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-400/55',
           )}
           onClick={onBack}
           aria-label={backTooltip}
         >
-        <ArrowLeft strokeWidth={1.5} size={14} />
-      </button>
+          <ArrowLeft strokeWidth={1.5} size={14} />
+        </button>
     </Tooltip>
   ) : null;
 
@@ -118,7 +120,7 @@ const DetailHeaderCard = ({
           color="default"
           className={mergeClassNames(
             `${DESIGNER_CLASSNAME}detail-header-card-pos`,
-            'm-0 inline-flex h-[1rem] items-center rounded-full border-slate-200 bg-white px-1.5 text-[7px] leading-none text-slate-600',
+            'm-0 inline-flex h-[1rem] items-center rounded-full border border-slate-200/70 bg-white px-1.5 text-[7px] leading-none text-slate-600',
           )}
         >
           {positionLabel || headerSummary.positionLabel}
@@ -131,7 +133,6 @@ const DetailHeaderCard = ({
   return (
     <div
       ref={headerRef}
-      data-detail-header-density={headerDensity}
       data-testid="detail-header-card"
       data-schema-owner-color={headerSummary.recipientColor || undefined}
       style={{ '--schema-owner-color': leadingColor } as React.CSSProperties}
@@ -139,13 +140,12 @@ const DetailHeaderCard = ({
       <SidebarSurfaceHeader
         className={mergeClassNames(
           `${DESIGNER_CLASSNAME}detail-header-card`,
-          'rounded-xl border-slate-200/60 bg-white/94 shadow-sm shadow-slate-900/[0.02] backdrop-blur-[2px]',
+          'relative overflow-hidden rounded-[1rem] border-slate-200/70 bg-white/96 shadow-[0_1px_3px_rgba(15,23,42,0.04)] backdrop-blur-[4px] py-1.5',
           className,
         )}
-        compact
         leading={leading || <Badge color={leadingColor} />}
         title={title || headerSummary.schemaName}
-        subtitle={resolvedSubtitle || (resolvedShowPosition ? (positionLabel || headerSummary.positionLabel) : undefined)}
+        subtitle={showSubtitle ? (resolvedSubtitle || (resolvedShowPosition ? (positionLabel || headerSummary.positionLabel) : undefined)) : undefined}
         badges={
           resolvedShowStateTags
             ? [
@@ -162,17 +162,17 @@ const DetailHeaderCard = ({
               ]
             : []
         }
-        trailing={trailingNode}
+        trailing={showSubtitle ? trailingNode : undefined}
       />
-      {headerDensity === 'comfortable' && (headerSummary.uid || headerSummary.ownerName) && (
-        <div className={mergeClassNames(`${DESIGNER_CLASSNAME}detail-header-tech-row`, 'mt-0.5 flex flex-wrap items-center gap-1 px-2 pb-0.5 pt-1')}>
+      {showDenseMeta && (headerSummary.uid || headerSummary.ownerName) && (
+        <div className={mergeClassNames(`${DESIGNER_CLASSNAME}detail-header-tech-row`, 'mt-0.5 flex flex-wrap items-center gap-1 px-2.5 pb-1 pt-1')}>
           {headerSummary.uid && (
-            <span className="inline-flex items-center rounded-full border border-slate-200 bg-slate-50 px-1.5 py-[0.0625rem] font-mono text-[6px] text-slate-500">
+            <span className="inline-flex items-center rounded-full border border-slate-200/70 bg-slate-50 px-1.5 py-[0.0625rem] font-mono text-[6px] text-slate-500">
               ID: {headerSummary.uid}
             </span>
           )}
           {headerSummary.ownerName && (
-            <span className="inline-flex items-center gap-1 rounded-full border border-slate-200 bg-white px-1.5 py-[0.0625rem] text-[6px] font-medium text-slate-500">
+            <span className="inline-flex items-center gap-1 rounded-full border border-slate-200/70 bg-white px-1.5 py-[0.0625rem] text-[6px] font-medium text-slate-500">
               <span className="h-1 w-1 rounded-full bg-slate-300" />
               {headerSummary.ownerName}
             </span>

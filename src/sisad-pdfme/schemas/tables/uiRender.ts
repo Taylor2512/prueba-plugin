@@ -333,7 +333,20 @@ export const uiRender = async (arg: UIRenderProps<TableSchema>) => {
             0,
           );
 
-          // TODO Should also remove the deleted columnStyles when deleting
+          const newColumnStyles = { ...schema.columnStyles };
+          if (newColumnStyles.alignment) {
+            const newAlignment: { [colIndex: number]: any } = {};
+            Object.keys(newColumnStyles.alignment).forEach((key) => {
+              const index = Number(key);
+              if (index < i) {
+                newAlignment[index] = newColumnStyles.alignment![index];
+              } else if (index > i) {
+                newAlignment[index - 1] = newColumnStyles.alignment![index];
+              }
+            });
+            newColumnStyles.alignment = newAlignment;
+          }
+
           onChange([
             { key: 'head', value: schema.head.filter((_, j) => j !== i) },
             {
@@ -345,6 +358,10 @@ export const uiRender = async (arg: UIRenderProps<TableSchema>) => {
             {
               key: 'content',
               value: JSON.stringify(bodyWidthRange.map((row) => row.filter((_, j) => j !== i))),
+            },
+            {
+              key: 'columnStyles',
+              value: newColumnStyles,
             },
           ]);
         },

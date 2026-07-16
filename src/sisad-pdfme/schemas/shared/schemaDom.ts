@@ -107,9 +107,22 @@ export const createActionButtonEl = (opts: ActionButtonOptions): HTMLButtonEleme
   const button = document.createElement('button');
   button.type = 'button';
   button.className = 'sisad-pdfme-action-button';
-  button.style.setProperty('--action-btn-bg', opts.bgColor);
-  button.style.setProperty('--action-btn-color', opts.textColor);
-  button.style.setProperty('--action-btn-font-size', `${opts.fontSize}px`);
+  Object.assign(button.style, {
+    width: '100%',
+    height: '100%',
+    background: opts.bgColor,
+    color: opts.textColor,
+    border: '0',
+    borderRadius: '5px',
+    fontWeight: '600',
+    fontSize: `${opts.fontSize}px`,
+    cursor: opts.isInteractive ? 'pointer' : 'default',
+    boxSizing: 'border-box',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: '4px',
+  });
   if (!opts.isInteractive) button.dataset.designerMode = 'true';
   button.innerHTML = `${opts.iconSvg}${opts.label}`;
   return button;

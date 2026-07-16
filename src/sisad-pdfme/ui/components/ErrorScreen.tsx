@@ -23,8 +23,8 @@ const ErrorScreen = ({ size, error }: { size: Size; error: Error }) => {
   void size;
 
   return (
-    <div className={UI_CLASSNAME + 'error-screen p-4'}>
-      <div className={UI_CLASSNAME + 'error-screen-body rounded-3xl border border-slate-200/70 bg-white/95 p-4 shadow-sm'}>
+    <div className={UI_CLASSNAME + 'error-screen grid h-full w-full place-items-center p-4'}>
+      <div className={UI_CLASSNAME + 'error-screen-body w-full max-w-[min(32.5rem,_calc(100%_-_1.5rem))] rounded-3xl border border-slate-200/70 bg-white/95 p-4 shadow-sm'}>
         <Result
           icon={null}
           className="m-0 px-0 py-2"

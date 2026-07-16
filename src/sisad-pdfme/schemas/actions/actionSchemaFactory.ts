@@ -40,10 +40,26 @@ export const createNoteContainerEl = (schema: NoteSchema): {
   const text = schema.noteTextColor || '#713f12';
   const fontSize = schema.fontSize ?? 10;
 
-  container.style.setProperty('--note-bg', bg);
-  container.style.setProperty('--note-border', border);
-  container.style.setProperty('--note-text', text);
-  textEl.style.setProperty('--note-font-size', `${fontSize}px`);
+  Object.assign(container.style, {
+    width: '100%',
+    height: '100%',
+    background: bg,
+    border: `1px solid ${border}`,
+    borderRadius: '4px',
+    padding: '4px 8px',
+    boxSizing: 'border-box',
+    overflow: 'hidden',
+    display: 'flex',
+    alignItems: 'flex-start',
+  });
+  Object.assign(textEl.style, {
+    color: text,
+    fontSize: `${fontSize}px`,
+    lineHeight: '1.4',
+    whiteSpace: 'pre-wrap',
+    wordBreak: 'break-word',
+    overflowWrap: 'anywhere',
+  });
 
   textEl.textContent = schema.content || 'Nota informativa';
   container.appendChild(textEl);
@@ -83,8 +99,27 @@ const createPaperclipIconEl = (): SVGSVGElement => {
 export const createAttachmentContainerEl = (schema: AttachmentSchema): HTMLDivElement => {
   const container = createSchemaPart('div', 'sisad-pdfme-attachment-container');
   applyFieldChrome(container, { schema, family: 'action-based', compact: true });
+  Object.assign(container.style, {
+    width: '100%',
+    height: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    border: '2px dashed #d1d5db',
+    borderRadius: '6px',
+    background: '#f9fafb',
+    cursor: 'pointer',
+    boxSizing: 'border-box',
+  });
 
   const label = createSchemaPart('span', 'sisad-pdfme-attachment-label');
+  Object.assign(label.style, {
+    color: '#6b7280',
+    fontSize: '12px',
+    display: 'flex',
+    alignItems: 'center',
+    gap: '6px',
+  });
   label.appendChild(createPaperclipIconEl());
   label.appendChild(document.createTextNode('Adjuntar archivo'));
 

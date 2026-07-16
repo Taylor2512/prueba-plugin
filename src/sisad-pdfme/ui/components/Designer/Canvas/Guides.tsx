@@ -61,11 +61,15 @@ const Guides = ({
   unit = 10,
   palette,
 }: GuidesProps) => {
+  // Paleta clara por defecto, consistente con el diseñador light (el corner ya
+  // usa el token `--sisad-pdfme-guides-corner-bg: #f1f5f9`). Los valores oscuros
+  // previos (#2d2d2d / bg-slate-800 + texto blanco) producían la franja negra
+  // junto a reglas/guías (regresión TASK-CANVAS-003).
   const effectivePalette: Required<GuidesPalette> = {
-    backgroundColor: palette?.backgroundColor || '#2d2d2d',
-    lineColor: palette?.lineColor || '#5b9aff',
-    textColor: palette?.textColor || 'rgba(255,255,255,0.65)',
-    cornerBackground: palette?.cornerBackground || '#2d2d2d',
+    backgroundColor: palette?.backgroundColor || '#f8fafc',
+    lineColor: palette?.lineColor || '#cbd5e1',
+    textColor: palette?.textColor || 'rgba(15,23,42,0.55)',
+    cornerBackground: palette?.cornerBackground || '#f1f5f9',
   };
 
   return (
@@ -75,9 +79,14 @@ const Guides = ({
         className={mergeClassNames(
           DESIGNER_CLASSNAME + 'guides-corner',
           className,
-          'overflow-hidden border-b border-r border-slate-700/90 bg-slate-800 shadow-sm',
+          // `border-solid` explícito: preflight está desactivado, así que las
+          // utilidades de lado (`border-b/-r`) fijan ancho pero no estilo y el
+          // borde colapsaría a 0 sin él.
+          'overflow-hidden border-b border-r border-solid border-slate-200/80 bg-slate-100',
         )}
-        style={guideStyle(0, 0, RULER_HEIGHT, RULER_HEIGHT)}
+        style={guideStyle(0, 0, RULER_HEIGHT, RULER_HEIGHT, {
+          backgroundColor: effectivePalette.cornerBackground,
+        })}
       />
       {/* Horizontal ruler (top) */}
       <GuidesComponent
@@ -85,7 +94,7 @@ const Guides = ({
           DESIGNER_CLASSNAME + 'guides-ruler',
           DESIGNER_CLASSNAME + 'guides-ruler-horizontal',
           className,
-          'overflow-hidden border-b border-slate-700/90 bg-slate-800 shadow-sm',
+          'pointer-events-none overflow-hidden border-b border-solid border-slate-200/80 bg-slate-50',
         )}
         style={guideStyle(0, RULER_HEIGHT, RULER_HEIGHT, paperSize.width)}
         zoom={ZOOM}
@@ -101,7 +110,7 @@ const Guides = ({
           DESIGNER_CLASSNAME + 'guides-ruler',
           DESIGNER_CLASSNAME + 'guides-ruler-vertical',
           className,
-          'overflow-hidden border-r border-slate-700/90 bg-slate-800 shadow-sm',
+          'pointer-events-none overflow-hidden border-r border-solid border-slate-200/80 bg-slate-50',
         )}
         style={guideStyle(RULER_HEIGHT, 0, paperSize.height, RULER_HEIGHT)}
         zoom={ZOOM}

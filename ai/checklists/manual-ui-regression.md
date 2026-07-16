@@ -2,15 +2,15 @@
 
 ## `/lab/multi-document-routing`
 
-- [ ] Header compacto.
-- [ ] Canvas protagonista.
-- [ ] LeftSidebar se parece al baseline.
-- [ ] RightSidebar se parece al baseline.
+- [x] Header compacto.
+- [x] Canvas protagonista.
+- [x] LeftSidebar se parece al baseline.
+- [x] RightSidebar se parece al baseline.
 - [ ] Drag/drop funciona.
 - [ ] Selección funciona.
 - [ ] Página 2+ funciona.
 - [ ] Multi-recipient funciona.
-- [ ] ResultsPanel no tapa toolbar.
+- [x] ResultsPanel no tapa toolbar.
 
 ## `/lab/generator-runtime`
 

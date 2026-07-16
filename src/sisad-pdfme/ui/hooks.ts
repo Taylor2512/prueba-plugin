@@ -63,6 +63,9 @@ type PreprocessedPdfCache = {
 };
 
 const MAX_PREPROCESSED_PDF_CACHE_ENTRIES = 8;
+const FALLBACK_PAGE_SIZE = { width: 595, height: 842 };
+const BLANK_PIXEL_DATA_URI =
+  'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj+P///38ACfsD/QVDRcoAAAAASUVORK5CYII=';
 
 const getBasePdfCacheKey = (basePdf: Template['basePdf']) => {
   if (typeof basePdf === 'string') return basePdf;
@@ -114,8 +117,7 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
       paperWidth = width * ZOOM;
       paperHeight = height * ZOOM;
       _backgrounds = schemas.map(
-        () =>
-          'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAAAXNSR0IArs4c6QAAAA1JREFUGFdj+P///38ACfsD/QVDRcoAAAAASUVORK5CYII=',
+        () => BLANK_PIXEL_DATA_URI,
       );
       _pageSizes = schemas.map(() => ({ width, height }));
       preprocessedCacheRef.current.clear();
@@ -128,32 +130,40 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
         paperHeight = cached.paperHeight;
         _backgrounds = cached.backgrounds;
       } else {
-        const _basePdf = await getB64BasePdf(basePdf);
+        try {
+          const _basePdf = await getB64BasePdf(basePdf);
 
-        const uint8Array = b64toUint8Array(_basePdf);
-        // Create a new ArrayBuffer copy to avoid detachment issues
-        const pdfArrayBuffer = new ArrayBuffer(uint8Array.byteLength);
-        new Uint8Array(pdfArrayBuffer).set(uint8Array);
+          const uint8Array = b64toUint8Array(_basePdf);
+          // Create a new ArrayBuffer copy to avoid detachment issues
+          const pdfArrayBuffer = new ArrayBuffer(uint8Array.byteLength);
+          new Uint8Array(pdfArrayBuffer).set(uint8Array);
 
-        const [_pages, imgBuffers] = await Promise.all([
-          pdf2size(pdfArrayBuffer),
-          pdf2img(pdfArrayBuffer.slice(), { scale: maxZoom }),
-        ]);
-        _pageSizes = _pages;
-        paperWidth = _pageSizes[0].width * ZOOM;
-        paperHeight = _pageSizes[0].height * ZOOM;
-        _backgrounds = imgBuffers.map(arrayBufferToBase64);
-        preprocessedCacheRef.current.set(cacheKey, {
-          key: basePdf,
-          maxZoom,
-          backgrounds: _backgrounds,
-          pageSizes: _pageSizes,
-          paperWidth,
-          paperHeight,
-        });
-        if (preprocessedCacheRef.current.size > MAX_PREPROCESSED_PDF_CACHE_ENTRIES) {
-          const oldestKey = preprocessedCacheRef.current.keys().next().value;
-          if (oldestKey) preprocessedCacheRef.current.delete(oldestKey);
+          const [_pages, imgBuffers] = await Promise.all([
+            pdf2size(pdfArrayBuffer),
+            pdf2img(pdfArrayBuffer.slice(), { scale: maxZoom }),
+          ]);
+          _pageSizes = _pages;
+          paperWidth = _pageSizes[0].width * ZOOM;
+          paperHeight = _pageSizes[0].height * ZOOM;
+          _backgrounds = imgBuffers.map(arrayBufferToBase64);
+          preprocessedCacheRef.current.set(cacheKey, {
+            key: basePdf,
+            maxZoom,
+            backgrounds: _backgrounds,
+            pageSizes: _pageSizes,
+            paperWidth,
+            paperHeight,
+          });
+          if (preprocessedCacheRef.current.size > MAX_PREPROCESSED_PDF_CACHE_ENTRIES) {
+            const oldestKey = preprocessedCacheRef.current.keys().next().value;
+            if (oldestKey) preprocessedCacheRef.current.delete(oldestKey);
+          }
+        } catch {
+          const fallbackPages = Math.max(1, schemas.length || 0);
+          _pageSizes = Array.from({ length: fallbackPages }, () => ({ ...FALLBACK_PAGE_SIZE }));
+          paperWidth = FALLBACK_PAGE_SIZE.width * ZOOM;
+          paperHeight = FALLBACK_PAGE_SIZE.height * ZOOM;
+          _backgrounds = Array.from({ length: fallbackPages }, () => BLANK_PIXEL_DATA_URI);
         }
       }
     }
@@ -255,7 +265,6 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
             setPaperMetrics(nextPaperMetrics);
           }
         }
-        console.error('[@sisad-pdfme/ui]', err);
       });
 
     return () => {
@@ -286,7 +295,7 @@ export const useUIPreProcessor = ({ template, size, zoomLevel, maxZoom }: UIPreP
         setPageSizes(pageSizes);
         setBackgrounds(backgrounds);
         setPaperMetrics({ paperWidth, paperHeight });
-      }),
+      }).catch(() => undefined),
   };
 };
 

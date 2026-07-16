@@ -1,38 +1,38 @@
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
-import { cloneDeep, getInputFromTemplate, validateCollaborativeSchemas } from '@sisad-pdfme/common'
-import { Designer, Form, Viewer, DesignerEngineBuilder } from '@sisad-pdfme/ui'
-import { generate } from '@sisad-pdfme/generator'
+import { cloneDeep, getInputFromTemplate } from '@sisad-pdfme/common'
 import { flatSchemaPlugins, builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
-import { pdf2img, pdf2size, img2pdf } from '@sisad-pdfme/converter'
-import { usePdfmeRuntimeInstance } from '@/sisad-pdfme/runtime/usePdfmeRuntimeInstance'
+import { SisadPdfmeDesigner, SisadPdfmeForm, SisadPdfmeViewer } from '@/sisad-pdfme/react'
 import { createObjectUrl, revokeObjectUrls } from '@/sisad-pdfme/browser/objectUrls'
-import { createDefaultTemplate } from '@/sisad-pdfme/templates/createDefaultTemplate'
 import {
   getLabExampleById,
   getLabExamples,
-} from './labs/examples/labExamples.js'
-import { defaultSisadPdfmeConfig } from '@/sisad-pdfme/config/defaultSisadPdfmeConfig'
+} from './labs/examples/labExampleRegistry.ts'
 import LabExampleDownloadButton from './LabExampleDownloadButton.jsx'
 import {
   UX_MODE_STORAGE_KEY,
   getErrorMessage,
   isValidUxMode,
   resolveInitialUxMode,
-  formatPageStatus,
 } from './domain/labState.js'
 import {
   flattenSchemasFromTemplate,
   getUniqueSchemaTypes,
   getLabCollaborationSummary,
 } from './domain/labPresentation.js'
-import { decorateCollaborationUsers } from '@/sisad-pdfme/collaboration/recipientPalette'
-import { decorateTemplateWithCollaboration } from '@/sisad-pdfme/collaboration/schemaOwnershipAppearance'
 import { cn } from '@/sisad-pdfme/ui/utils/cn'
 import PageHeader, { CompactCollaborationBar } from './PageHeader.jsx'
 import ResultsPanel from './ResultsPanel.jsx'
 import CompactControls from './CompactControls.jsx'
+import { usePdfmeLabIntegration } from './hooks/usePdfmeLabIntegration'
+import {
+  convertLabImagesToPdf,
+  convertLabPdfToImages,
+  generateLabPdf,
+  getLabPdfSizes,
+  validateLabTemplateForGeneration,
+} from './integration/labArtifactService'
 
 const fallbackExample = getLabExamples()[0]
 const sortSchemaDefinitions = (definitions) =>
@@ -48,6 +48,8 @@ const MODE_LABELS = {
 
 const schemaCatalog = sortSchemaDefinitions(builtInSchemaDefinitions)
 const resolveInitialCollaboratorId = (activeUserId, users) => activeUserId || users[0]?.id || ''
+const resolveLabInitialUxMode = ({ search = '', storedMode = '' } = {}) =>
+  resolveInitialUxMode({ search, storedMode, fallback: 'default' })
 
 const DEFAULT_SIGNATURE_PROVIDERS = [
   {
@@ -119,103 +121,24 @@ const DEFAULT_SIGNATURE_PROVIDERS = [
   },
 ]
 
-export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
-  const containerRef = useRef(null)
+export default function PdfmeLabPage({ exampleId = fallbackExample?.id, example: exampleProp = null } = {}) {
   const generatedPdfUrlRef = useRef('')
   const roundtripPdfUrlRef = useRef('')
   const imagesRef = useRef([])
+  const pendingPageSelectionRef = useRef(null)
 
   const example = useMemo(
-    () => getLabExampleById(exampleId) ?? fallbackExample,
-    [exampleId],
+    () => exampleProp || getLabExampleById(exampleId) || fallbackExample,
+    [exampleId, exampleProp],
   )
   const collaboration = example?.collaboration || null
-  const collaborationUsers = useMemo(
-    () => decorateCollaborationUsers(collaboration?.users || []),
-    [collaboration?.users],
-  )
-  const collaborationSessionId = collaboration?.sessionId || example?.id || ''
   const [activeCollaboratorId, setActiveCollaboratorId] = useState(() =>
-    resolveInitialCollaboratorId(collaboration?.activeUserId, collaborationUsers),
+    resolveInitialCollaboratorId(collaboration?.activeUserId, collaboration?.users || []),
   )
   const [isGlobalView, setIsGlobalView] = useState(() =>
     Boolean(collaboration?.isGlobalView),
   )
-  const activeCollaborator = useMemo(
-    () => collaborationUsers.find((user) => user.id === activeCollaboratorId) || collaborationUsers[0] || null,
-    [activeCollaboratorId, collaborationUsers],
-  )
-  const signatureProviders = useMemo(() => {
-    const runtimeProviders = Array.isArray(example?.runtimeOptions?.signatureProviders)
-      ? example.runtimeOptions.signatureProviders
-      : null
-    return runtimeProviders && runtimeProviders.length > 0
-      ? cloneDeep(runtimeProviders)
-      : cloneDeep(DEFAULT_SIGNATURE_PROVIDERS)
-  }, [example?.runtimeOptions?.signatureProviders])
-  const designerEngineOptions = useMemo(() => {
-    const collaborationConfig = {
-      enabled: Boolean(collaborationSessionId),
-      provider: 'yjs',
-      sessionId: collaborationSessionId,
-      actorId: activeCollaborator?.id || activeCollaboratorId || 'local',
-      actorColor: activeCollaborator?.color || null,
-      recipientOptions: collaborationUsers,
-      users: collaborationUsers,
-      activeRecipientId: activeCollaborator?.id || activeCollaboratorId || null,
-      activeUserId: activeCollaborator?.id || activeCollaboratorId || null,
-      isGlobalView,
-    }
-
-    return new DesignerEngineBuilder()
-      .withCanvasFeatureToggles({
-        guides: true,
-        snapLines: true,
-        padding: true,
-        mask: false,
-      })
-      .withSignatureProviders(signatureProviders)
-      .withSignatureDefaultProviderKey(signatureProviders[0]?.key || null)
-      .withCollaboration(collaborationConfig)
-      .buildOptions({ lang: 'es' })
-  }, [
-    activeCollaborator?.color,
-    activeCollaborator?.id,
-    collaborationSessionId,
-    collaborationUsers,
-    activeCollaboratorId,
-    isGlobalView,
-    signatureProviders,
-  ])
-  const runtimeOptions = useMemo(() => cloneDeep(example?.runtimeOptions || {}), [example?.runtimeOptions])
-  const commonOptions = useMemo(
-    () => ({
-      ...runtimeOptions,
-      assignment: runtimeOptions.assignment || defaultSisadPdfmeConfig.assignment,
-      visibility: runtimeOptions.visibility || defaultSisadPdfmeConfig.visibility,
-      ...designerEngineOptions,
-      // TASK-LAB-001 Part C — expose collaboration so Form/Viewer runtime honor
-      // recipient access (visibility/editability) e2e, not only the designer.
-      collaboration: {
-        activeRecipientId: activeCollaborator?.id || activeCollaboratorId || null,
-        isGlobalView,
-        recipients: collaborationUsers,
-      },
-    }),
-    [
-      designerEngineOptions,
-      runtimeOptions,
-      activeCollaborator?.id,
-      activeCollaboratorId,
-      isGlobalView,
-      collaborationUsers,
-    ],
-  )
-
-  const initialTemplate = useMemo(
-    () => decorateTemplateWithCollaboration(example?.template || createDefaultTemplate(), collaborationUsers),
-    [collaborationUsers, example?.template],
-  )
+  const initialTemplate = useMemo(() => cloneDeep(example?.template || { schemas: [[]] }), [example?.template])
   const initialInputs = useMemo(
     () => cloneDeep(example?.inputs || getInputFromTemplate(initialTemplate)),
     [example?.inputs, initialTemplate],
@@ -226,7 +149,10 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   const [uiState, setUiState] = useState(() => ({
     mode: example?.defaultMode || 'designer',
     schemaType: example?.initialSchemaType || 'text',
-    uxMode: 'canvas-first',
+    uxMode: resolveLabInitialUxMode({
+      search: globalThis.location?.search || '',
+      storedMode: globalThis.localStorage?.getItem(UX_MODE_STORAGE_KEY) || '',
+    }),
     busy: false,
     status: example?.status || 'Listo para probar funcionalidades de sisad-pdfme',
   }))
@@ -239,11 +165,30 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   })
   const { mode, schemaType, uxMode, busy, status } = uiState
   const { generatedPdfUrl, generatedPdfBytes, pdfSizes, images, roundtripPdfUrl } = resultsState
-  const canRunDesignerActions = mode === 'designer' && !busy
-  const hasGeneratedArtifacts = Boolean(
-    generatedPdfUrl || generatedPdfBytes || pdfSizes.length || images.length || roundtripPdfUrl,
+  const labIntegration = usePdfmeLabIntegration({
+    example,
+    template,
+    inputs,
+    activeRecipientId: isGlobalView ? null : activeCollaboratorId,
+    isGlobalView,
+    generatedPdfUrl,
+    generatedPdfBytes,
+    pdfSizes,
+    images,
+    roundtripPdfUrl,
+  })
+  const collaborationUsers = labIntegration.recipients
+  const activeCollaborator = useMemo(
+    () => collaborationUsers.find((user) => user.id === activeCollaboratorId) || collaborationUsers[0] || null,
+    [activeCollaboratorId, collaborationUsers],
   )
-
+  // Fuente controlada real del destinatario activo: cuando el registry interno
+  // del diseñador cambia el destinatario (p.ej. selector de la barra superior),
+  // sincronizamos el estado del host para que el prop controlado no lo revierta.
+  const handleActiveRecipientChange = useCallback((recipient) => {
+    setActiveCollaboratorId(recipient?.id || '')
+  }, [])
+  const canRunDesignerActions = mode === 'designer' && !busy
   const pageMetrics = useMemo(
     () => {
       const allSchemas = flattenSchemasFromTemplate(template)
@@ -313,7 +258,12 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
 
   useEffect(() => {
     const modeFromStorage = globalThis.localStorage?.getItem(UX_MODE_STORAGE_KEY)
-    setUxMode(resolveInitialUxMode({ search: globalThis.location?.search || '', storedMode: modeFromStorage }))
+    setUxMode(
+      resolveLabInitialUxMode({
+        search: globalThis.location?.search || '',
+        storedMode: modeFromStorage || '',
+      }),
+    )
   }, [setUxMode])
 
   useEffect(() => {
@@ -343,29 +293,6 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
     setRoundtripPdfUrl('')
   }
 
-  const { instanceRef } = usePdfmeRuntimeInstance({
-    containerRef,
-    mode,
-    uxMode,
-    template,
-    inputs,
-    options: commonOptions,
-    plugins: flatSchemaPlugins,
-    runtime: { Designer, Form, Viewer },
-    decorateTemplate: (nextTemplate) => decorateTemplateWithCollaboration(nextTemplate, collaborationUsers),
-    onTemplateChange: setTemplate,
-    onInputChange: ({ index, name, value }) => {
-      setInputs((prev) => {
-        const next = cloneDeep(prev)
-        if (!next[index]) next[index] = {}
-        next[index][name] = value
-        return next
-      })
-    },
-    onPageChange: (pageInfo) => setStatus(formatPageStatus(pageInfo)),
-    autoFit: 'page',
-  })
-
   useEffect(() => {
     generatedPdfUrlRef.current = generatedPdfUrl
   }, [generatedPdfUrl])
@@ -377,6 +304,14 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   useEffect(() => {
     imagesRef.current = images
   }, [images])
+
+  useEffect(() => {
+    const pendingPage = pendingPageSelectionRef.current
+    if (pendingPage == null || mode !== 'designer') return
+
+    labIntegration.controller.setPage(pendingPage)
+    pendingPageSelectionRef.current = null
+  }, [labIntegration.controller, mode, template.schemas.length])
 
   useEffect(() => {
     return () => {
@@ -394,33 +329,27 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
       nextPage = nextSchemas.length
       return { ...prev, schemas: nextSchemas }
     })
-
-    globalThis.setTimeout(() => {
-      const designer = instanceRef.current
-      if (mode === 'designer' && designer && typeof designer.setPage === 'function') {
-        designer.setPage(nextPage)
-      }
-    }, 0)
+    pendingPageSelectionRef.current = nextPage
     setStatus(`Página ${nextPage} creada`)
   }
 
   const fitToPage = () => {
-    if (!canRunDesignerActions || !instanceRef.current) return
-    instanceRef.current.fitToPage()
+    if (!canRunDesignerActions) return
+    labIntegration.controller.fitToPage()
   }
 
   const fitToWidth = () => {
-    if (!canRunDesignerActions || !instanceRef.current) return
-    instanceRef.current.fitToWidth()
+    if (!canRunDesignerActions) return
+    labIntegration.controller.fitToWidth()
   }
 
   const addSchema = () => {
-    if (!canRunDesignerActions || !instanceRef.current) return
-    instanceRef.current.addSchemaByType(schemaType)
+    if (!canRunDesignerActions) return
+    labIntegration.controller.addSchemaByType(schemaType)
   }
 
   const generatePdf = async () => {
-    const collaborationValidation = validateCollaborativeSchemas(template.schemas || [])
+    const collaborationValidation = validateLabTemplateForGeneration(template)
     if (!collaborationValidation.valid) {
       setStatus(`Faltan metadatos colaborativos: ${collaborationValidation.issues.map((issue) => `${issue.schemaUid}:${issue.reason}`).join(', ')}`)
       return
@@ -430,11 +359,7 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
     clearDerivedResults()
 
     try {
-      const pdfBytes = await generate({
-        template,
-        inputs,
-        plugins: flatSchemaPlugins,
-      })
+      const pdfBytes = await generateLabPdf({ template, inputs, plugins: flatSchemaPlugins })
 
       if (generatedPdfUrlRef.current) {
         URL.revokeObjectURL(generatedPdfUrlRef.current)
@@ -459,7 +384,7 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
     setStatus('Leyendo tamaño de páginas...')
 
     try {
-      const sizes = await pdf2size(generatedPdfBytes)
+      const sizes = await getLabPdfSizes(generatedPdfBytes)
       setPdfSizes(sizes)
       setStatus('Tamaños leídos correctamente')
     } catch (error) {
@@ -476,10 +401,7 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
     setStatus('Convirtiendo PDF a imágenes...')
 
     try {
-      const imageBuffers = await pdf2img(generatedPdfBytes, {
-        scale: 1,
-        imageType: 'png',
-      })
+      const imageBuffers = await convertLabPdfToImages(generatedPdfBytes)
 
       revokeObjectUrls(imagesRef.current)
       const imageUrls = imageBuffers.map((buffer) => createObjectUrl(buffer, 'image/png'))
@@ -506,10 +428,7 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
     try {
       const buffers = await Promise.all(images.map(async (url) => fetch(url).then((r) => r.arrayBuffer())))
 
-      const pdfBuffer = await img2pdf(buffers, {
-        margin: [10, 10, 10, 10],
-        size: { width: 210, height: 297 },
-      })
+      const pdfBuffer = await convertLabImagesToPdf({ imageBuffers: buffers })
 
       if (roundtripPdfUrlRef.current) URL.revokeObjectURL(roundtripPdfUrlRef.current)
       const nextRoundtripUrl = createObjectUrl(pdfBuffer, 'application/pdf')
@@ -531,9 +450,7 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   }
 
   const handleModeChange = useCallback((nextMode) => {
-    globalThis.setTimeout(() => {
-      setMode(nextMode)
-    }, 0)
+    setMode(nextMode)
   }, [setMode])
 
   const handleSchemaTypeChange = useCallback((event) => {
@@ -541,8 +458,14 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   }, [setSchemaType])
 
   const isCanvasFirst = uxMode === 'canvas-first'
+  const usesEmbeddedDesignerShell = isCanvasFirst || example.id === 'multi-document-routing'
+  const usesDockedResultsRail = isCanvasFirst || example.id === 'multi-document-routing'
   const headerCollaborationControls = isCanvasFirst && collaborationUsers.length > 0 ? (
-    <div className="sisad-pdfme-lab-header-collaboration" aria-label="Colaboración del ejemplo">
+    <div
+      className="sisad-pdfme-lab-header-collaboration"
+      role="region"
+      aria-label="Colaboración del ejemplo"
+    >
       <CompactCollaborationBar
         collaborationUsers={collaborationUsers}
         activeCollaborator={activeCollaborator}
@@ -557,92 +480,220 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
   return (
     <main
       className={cn(
-        'sisad-pdfme-lab-page overflow-x-clip text-slate-900',
+        [
+          'sisad-pdfme-lab-page',
+          'relative',
+          'isolate',
+          'box-border',
+          'max-w-full',
+          'overflow-x-clip',
+          'font-sans',
+          'text-slate-900',
+          'bg-[radial-gradient(circle_at_top_left,rgba(59,130,246,0.12),transparent_30%),radial-gradient(circle_at_top_right,rgba(244,114,182,0.12),transparent_28%),linear-gradient(180deg,#f8fafc_0%,#eef2ff_100%)]',
+        ].join(' '),
+        usesEmbeddedDesignerShell
+          ? [
+              'grid',
+              'h-[100dvh]',
+              'min-h-0',
+              'w-full',
+              'grid-rows-[minmax(0,1fr)]',
+              'gap-0',
+              'overflow-hidden',
+              'p-0',
+            ].join(' ')
+          : [
+              'min-h-screen',
+              'w-full',
+              'gap-[0.45rem]',
+              'p-[clamp(0.45rem,0.8vw,0.9rem)]',
+              'max-[640px]:gap-[0.35rem]',
+            ].join(' '),
       )}
       data-example-id={example.id}
       data-runtime-mode={mode}
       data-ux-mode={uxMode}
     >
-      <PageHeader
-        example={example}
-        pageMetrics={pageMetrics}
-        collaborationUsers={collaborationUsers}
-        activeCollaborator={activeCollaborator}
-        onActiveCollaboratorChange={setActiveCollaboratorId}
-        isGlobalView={isGlobalView}
-        onToggleGlobalView={setIsGlobalView}
-        status={status}
-        collaborationSummary={collaborationSummary}
-        backLink={
-          <Link className="sisad-pdfme-lab-inline-link" to="/">
-            Volver al índice
-          </Link>
-        }
-        controls={
-          <CompactControls
-            mode={mode}
-            onModeChange={handleModeChange}
-            onGenerate={generatePdf}
-            onPdf2Size={runPdf2Size}
-            onPdf2Img={runPdf2Img}
-            onImg2Pdf={runImg2Pdf}
-            onAddPage={addBlankPage}
-            onFitPage={fitToPage}
-            onFitWidth={fitToWidth}
-            onAddSchema={addSchema}
-            onReset={resetTemplate}
-            schemaCatalog={schemaCatalog}
-            schemaType={schemaType}
-            onSchemaTypeChange={handleSchemaTypeChange}
-            busy={busy}
-            hasGeneratedPdf={Boolean(generatedPdfBytes)}
-            hasImages={images.length > 0}
-            compact={isCanvasFirst}
-          />
-        }
-        downloadLink={
-          <LabExampleDownloadButton className="sisad-pdfme-lab-inline-link" example={example}>
-            Descargar plantilla
-          </LabExampleDownloadButton>
-        }
-        rightSlot={headerCollaborationControls}
-        density={uxMode === 'canvas-first' ? 'compact' : 'full'}
+      <div
+        aria-hidden="true"
+        className={[
+          'pointer-events-none',
+          'fixed',
+          'inset-0',
+          '-z-10',
+          'bg-[radial-gradient(circle_at_12%_18%,rgba(56,189,248,0.10),transparent_38%),radial-gradient(circle_at_82%_10%,rgba(249,115,22,0.08),transparent_34%)]',
+        ].join(' ')}
       />
+      {!usesEmbeddedDesignerShell ? (
+        <PageHeader
+          example={example}
+          pageMetrics={pageMetrics}
+          collaborationUsers={collaborationUsers}
+          activeCollaborator={activeCollaborator}
+          onActiveCollaboratorChange={setActiveCollaboratorId}
+          isGlobalView={isGlobalView}
+          onToggleGlobalView={setIsGlobalView}
+          status={status}
+          collaborationSummary={collaborationSummary}
+          backLink={
+            <Link className="sisad-pdfme-lab-inline-link" to="/">
+              Volver al índice
+            </Link>
+          }
+          controls={
+            <CompactControls
+              mode={mode}
+              onModeChange={handleModeChange}
+              onGenerate={generatePdf}
+              onPdf2Size={runPdf2Size}
+              onPdf2Img={runPdf2Img}
+              onImg2Pdf={runImg2Pdf}
+              onAddPage={addBlankPage}
+              onFitPage={fitToPage}
+              onFitWidth={fitToWidth}
+              onAddSchema={addSchema}
+              onReset={resetTemplate}
+              schemaCatalog={schemaCatalog}
+              schemaType={schemaType}
+              onSchemaTypeChange={handleSchemaTypeChange}
+              busy={busy}
+              hasGeneratedPdf={Boolean(generatedPdfBytes)}
+              hasImages={images.length > 0}
+              compact={isCanvasFirst}
+            />
+          }
+          downloadLink={
+            <LabExampleDownloadButton className="sisad-pdfme-lab-inline-link" example={example}>
+              Descargar plantilla
+            </LabExampleDownloadButton>
+          }
+          rightSlot={headerCollaborationControls}
+          density={usesEmbeddedDesignerShell ? 'compact' : 'full'}
+        />
+      ) : null}
 
       <section
         className={cn(
-          isCanvasFirst
-            ? 'sisad-pdfme-lab-workspace flex min-h-0 flex-1 flex-col'
-            : 'sisad-pdfme-lab-workspace flex min-h-0 flex-1 flex-col gap-2 rounded-[1.15rem] border border-slate-200/80 bg-white/90 p-2 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-md',
+          'sisad-pdfme-lab-workspace min-h-0 min-w-0',
+          usesEmbeddedDesignerShell
+            ? [
+                'grid',
+                'h-full',
+                'grid-rows-[minmax(0,1fr)]',
+                'gap-0',
+                'overflow-hidden',
+                'rounded-none',
+                'border-0',
+                'bg-transparent',
+                'p-0',
+                'shadow-none',
+                'backdrop-filter-none',
+              ].join(' ')
+            : [
+                'flex',
+                'flex-1',
+                'flex-col',
+                'gap-2',
+                'rounded-[20px]',
+                'border',
+                'border-slate-200/70',
+                'bg-white/90',
+                'p-2',
+                'shadow-[0_18px_40px_rgba(15,23,42,0.08)]',
+                'backdrop-blur-[12px]',
+              ].join(' '),
         )}
         aria-labelledby="lab-workspace-title"
         data-ux-mode={uxMode}
       >
-        <div className="sisad-pdfme-lab-section-heading" data-ux-mode={uxMode}>
+        <div className={cn('sisad-pdfme-lab-section-heading', usesEmbeddedDesignerShell && 'sr-only')} data-ux-mode={uxMode}>
           <h2 id="lab-workspace-title">Canvas</h2>
           <p>La superficie de edición se monta dentro del runtime de <code>sisad-pdfme</code>.</p>
         </div>
 
         <div
-          ref={containerRef}
           className={cn(
-            isCanvasFirst
-              ? 'sisad-pdfme-lab-canvas-shell relative block w-full flex-1'
-              : 'sisad-pdfme-lab-canvas-shell relative block min-h-[min(72vh,52rem)] w-full flex-1 overflow-hidden rounded-[1rem] border border-slate-200/80 bg-white/80 shadow-inner',
+            usesEmbeddedDesignerShell
+              ? [
+                  'sisad-pdfme-lab-canvas-shell',
+                  'relative',
+                  'h-full',
+                  'min-h-0',
+                  'min-w-0',
+                  'w-full',
+                  'overflow-hidden',
+                  'rounded-none',
+                  'border-0',
+                  'bg-transparent',
+                  'shadow-none',
+                ].join(' ')
+              : [
+                  'sisad-pdfme-lab-canvas-shell',
+                  'relative',
+                  'min-h-[min(72vh,52rem)]',
+                  'min-w-0',
+                  'w-full',
+                  'flex-1',
+                  'overflow-hidden',
+                  'rounded-[20px]',
+                  'border',
+                  'border-slate-200/70',
+                  'bg-white/90',
+                  'shadow-[0_18px_40px_rgba(15,23,42,0.08)]',
+                ].join(' '),
           )}
           data-ux-mode={uxMode}
-        />
+          style={
+            usesEmbeddedDesignerShell
+              ? undefined
+              : {
+                  background: 'rgba(255, 255, 255, 0.8)',
+                  boxShadow: 'inset 0 1px 2px rgba(15, 23, 42, 0.04)',
+                }
+          }
+        >
+          {mode === 'designer' ? (
+            <SisadPdfmeDesigner
+              config={labIntegration.config}
+              template={labIntegration.template}
+              documents={labIntegration.documents}
+              recipients={labIntegration.recipients}
+              activeRecipientId={labIntegration.activeRecipientId}
+              onActiveRecipientChange={handleActiveRecipientChange}
+              onTemplateChange={setTemplate}
+              onControllerReady={labIntegration.onControllerReady}
+            />
+          ) : mode === 'form' ? (
+            <SisadPdfmeForm
+              config={labIntegration.config}
+              template={labIntegration.template}
+              values={labIntegration.inputs}
+              documents={labIntegration.documents}
+              recipients={labIntegration.recipients}
+              activeRecipientId={labIntegration.activeRecipientId}
+              onInputChange={setInputs}
+            />
+          ) : (
+            <SisadPdfmeViewer
+              config={labIntegration.config}
+              template={labIntegration.template}
+              documents={labIntegration.documents}
+              recipients={labIntegration.recipients}
+              activeRecipientId={labIntegration.activeRecipientId}
+            />
+          )}
+        </div>
       </section>
 
       <ResultsPanel
-        key={`${uxMode}-${uxMode === 'canvas-first' ? 'drawer' : 'inline'}`}
-        generatedPdfUrl={generatedPdfUrl}
-        pdfSizes={pdfSizes}
-        images={images}
-        roundtripPdfUrl={roundtripPdfUrl}
-        hasGeneratedArtifacts={hasGeneratedArtifacts}
-        variant={uxMode === 'canvas-first' ? 'drawer' : 'inline'}
-        defaultCollapsed={uxMode === 'canvas-first'}
+        key={`${uxMode}-${usesDockedResultsRail ? 'drawer' : 'inline'}`}
+        generatedPdfUrl={labIntegration.artifacts.generatedPdfUrl}
+        pdfSizes={labIntegration.artifacts.pdfSizes}
+        images={labIntegration.artifacts.images}
+        roundtripPdfUrl={labIntegration.artifacts.roundtripPdfUrl}
+        hasGeneratedArtifacts={labIntegration.artifacts.hasGeneratedArtifacts}
+        variant={usesDockedResultsRail ? 'drawer' : 'inline'}
+        defaultCollapsed={usesDockedResultsRail}
       />
     </main>
   )
@@ -650,4 +701,12 @@ export default function PdfmeLabPage({ exampleId = fallbackExample?.id } = {}) {
 
 PdfmeLabPage.propTypes = {
   exampleId: PropTypes.string,
+  example: PropTypes.shape({
+    id: PropTypes.string,
+    title: PropTypes.string,
+    defaultMode: PropTypes.string,
+    template: PropTypes.shape({
+      schemas: PropTypes.array,
+    }),
+  }),
 }

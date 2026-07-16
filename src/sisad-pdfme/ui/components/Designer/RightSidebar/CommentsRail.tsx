@@ -145,13 +145,10 @@ const CommentPill = ({ children, tone = 'muted' }: CommentPillProps) => {
   return (
     <span
       style={{
-        borderRadius: 999,
-        padding: '2px 8px',
-        fontSize: 12,
-        fontWeight: 700,
         background: palette.background,
         color: palette.color,
       }}
+      className="inline-flex items-center rounded-full px-[0.5rem] py-[0.125rem] text-[0.75rem] font-bold leading-none"
     >
       {children}
     </span>
@@ -210,7 +207,7 @@ const CommentsRail = ({
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'comments-rail',
         DESIGNER_CLASSNAME + 'sidebar-section-surface',
-        'flex min-h-0 flex-1 flex-col gap-2 rounded-xl border border-slate-200/70 bg-white/90 p-2 shadow-sm',
+        'flex min-h-0 flex-1 flex-col gap-2 rounded-[0.9rem] border border-slate-200/70 bg-white/90 p-2 shadow-[0_1px_3px_rgba(15,23,42,0.04)]',
         className,
       )}
       style={style}
@@ -222,7 +219,13 @@ const CommentsRail = ({
         badges={items.length > 0 ? [{ label: items.length, color: 'default' }] : []}
         trailing={
           onAdd ? (
-            <Button type="text" size="small" icon={<MessageSquarePlus size={13} />} onClick={onAdd}>
+            <Button
+              type="text"
+              size="small"
+              icon={<MessageSquarePlus size={13} />}
+              onClick={onAdd}
+              className="inline-flex h-[1.5rem] items-center gap-[0.3rem] rounded-full border border-slate-200/70 bg-white/90 px-[0.5rem] text-[0.68rem] font-semibold text-slate-700 shadow-sm hover:border-slate-300 hover:bg-slate-50"
+            >
               {addLabel}
             </Button>
           ) : null
@@ -244,7 +247,7 @@ const CommentsRail = ({
             const replyCount = replies.length;
             const isActive = activeCommentId === item.id;
 
-            return (
+              return (
               <article
                 key={item.id}
                 ref={(node) => {
@@ -258,20 +261,22 @@ const CommentsRail = ({
                 className={[
                   DESIGNER_CLASSNAME + 'comments-rail-thread',
                   isActive ? DESIGNER_CLASSNAME + 'comments-rail-thread-active' : '',
+                  'flex flex-col gap-[0.25rem] rounded-[0.9rem] border border-slate-200/70 bg-white/95 px-2 py-[0.55rem] shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
+                  isActive ? 'border-sky-200 bg-sky-50/60 shadow-[0_1px_3px_rgba(59,130,246,0.08)]' : '',
                 ].filter(Boolean).join(' ')}
               >
-                <div className={DESIGNER_CLASSNAME + 'comments-rail-thread-head'}>
-                  <div className={DESIGNER_CLASSNAME + 'comments-rail-thread-author'}>
+                <div className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-thread-head', 'flex items-center justify-between gap-[8px]')}>
+                  <div className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-thread-author', 'flex min-w-0 items-center gap-[8px]')}>
                     <span
                       aria-hidden="true"
-                      className={DESIGNER_CLASSNAME + 'comments-rail-thread-dot'}
+                      className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-thread-dot', 'h-[10px] w-[10px] flex-none rounded-full')}
                       style={{ background: item.authorColor || 'var(--sisad-pdfme-border-strong)' }}
                     />
-                    <span style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--sisad-pdfme-text)' }}>
+                    <span className="truncate text-[11.5px] font-bold leading-tight text-[var(--sisad-pdfme-text)]">
                       {item.authorName || 'Autor no identificado'}
                     </span>
                   </div>
-                  <div className={DESIGNER_CLASSNAME + 'comments-rail-thread-badges'}>
+                  <div className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-thread-badges', 'flex flex-wrap items-center justify-end gap-[6px]')}>
                     {replyCount > 0 ? (
                       <CommentPill>
                         {formatCountLabel(replyCount, 'respuesta', 'respuestas')}
@@ -283,32 +288,32 @@ const CommentsRail = ({
                   </div>
                 </div>
 
-                <div style={{ fontSize: 12.5, lineHeight: 1.45, color: 'var(--sisad-pdfme-text)' }}>{item.text}</div>
+                <div className="text-[12.5px] leading-[1.45] text-[var(--sisad-pdfme-text)]">{item.text}</div>
 
-                <div className={DESIGNER_CLASSNAME + 'comments-rail-thread-meta-row'}>
-                  <span className={DESIGNER_CLASSNAME + 'comments-rail-thread-meta-pill'}>
+                <div className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-thread-meta-row', 'flex flex-wrap gap-[6px]')}>
+                  <span className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-thread-meta-pill', 'inline-flex items-center rounded-full bg-[var(--sisad-pdfme-surface-soft)] px-[8px] py-[2px] text-[12px]')}>
                     {formatCommentMeta(item)}
                   </span>
                 </div>
 
                 {replyCount > 0 ? (
-                  <div className={DESIGNER_CLASSNAME + 'comments-rail-thread-replies'}>
-                    <div style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--sisad-pdfme-text-muted)' }}>
+                  <div className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-thread-replies', 'flex flex-col gap-[10px]')}>
+                    <div className="text-[11.5px] font-bold text-[var(--sisad-pdfme-text-muted)]">
                       {replyLabel}
                     </div>
                     {replies.map((reply) => (
                       <div
                         key={reply.id}
-                        className={DESIGNER_CLASSNAME + 'comments-rail-reply'}
+                        className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-reply', 'flex flex-col gap-[0.25rem] rounded-[0.8rem] border border-slate-200/60 bg-slate-50/80 px-2 py-2 shadow-[0_1px_2px_rgba(15,23,42,0.03)]')}
                       >
-                        <div className={DESIGNER_CLASSNAME + 'comments-rail-reply-head'}>
-                          <div className={DESIGNER_CLASSNAME + 'comments-rail-reply-author'}>
+                        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-reply-head', 'flex items-center justify-between gap-[8px]')}>
+                          <div className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-reply-author', 'flex min-w-0 items-center gap-[8px]')}>
                             <span
                               aria-hidden="true"
-                              className={DESIGNER_CLASSNAME + 'comments-rail-reply-dot'}
+                              className={mergeClassNames(DESIGNER_CLASSNAME + 'comments-rail-reply-dot', 'h-[8px] w-[8px] flex-none rounded-full')}
                               style={{ background: reply.authorColor || 'var(--sisad-pdfme-border-strong)' }}
                             />
-                            <span style={{ fontSize: 11.5, fontWeight: 700, color: 'var(--sisad-pdfme-text)' }}>
+                            <span className="truncate text-[11.5px] font-bold leading-tight text-[var(--sisad-pdfme-text)]">
                               {reply.authorName || 'Autor no identificado'}
                             </span>
                           </div>
@@ -317,9 +322,9 @@ const CommentsRail = ({
                           </CommentPill>
                         </div>
 
-                        <div style={{ fontSize: 12.5, lineHeight: 1.45, color: 'var(--sisad-pdfme-text)' }}>{reply.text}</div>
+                        <div className="text-[12.5px] leading-[1.45] text-[var(--sisad-pdfme-text)]">{reply.text}</div>
 
-                        <div style={{ fontSize: 11.5, color: 'var(--sisad-pdfme-text-muted)' }}>
+                        <div className="text-[11.5px] text-[var(--sisad-pdfme-text-muted)]">
                           {formatTimestamp(reply.timestamp)}
                         </div>
                       </div>

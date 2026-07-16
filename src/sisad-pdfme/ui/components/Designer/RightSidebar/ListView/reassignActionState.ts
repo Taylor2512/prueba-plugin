@@ -33,7 +33,6 @@ export type ReassignActionState = {
 
 export function resolveReassignActionState(input: ReassignActionStateInput): ReassignActionState {
   const selectedCount = Number.isFinite(input.selectedCount) ? Math.max(0, Math.trunc(input.selectedCount)) : 0;
-  const hasActiveRecipient = Boolean(input.collaborationContext?.activeRecipient);
   const canEditStructure = input.collaborationContext?.canEditStructure !== false;
   // `reassignVisible` ya incorpora assignment.enabled + visibility.actions.reassign.
   const visibleByConfig = input.reassignVisible && input.assignmentModalVisible;
@@ -45,8 +44,7 @@ export function resolveReassignActionState(input: ReassignActionStateInput): Rea
     visibleByConfig,
   });
 
-  const canOpenAction =
-    action.visible && action.enabled && hasActiveRecipient && input.hasAssignableRecipients;
+  const canOpenAction = action.visible && action.enabled && input.hasAssignableRecipients;
 
   // Para el hint se evalúan las mismas puertas con selección hipotética (1).
   const gates = resolveDesignerActionState('reassign-recipient', {
@@ -60,7 +58,7 @@ export function resolveReassignActionState(input: ReassignActionStateInput): Rea
     showButton: canOpenAction,
     buttonDisabled: canOpenAction && input.bulkRecipientDisabled,
     showSelectionHint:
-      selectedCount === 0 && gates.visible && gates.enabled && hasActiveRecipient,
+      selectedCount === 0 && gates.visible && gates.enabled,
     selectionHintLabel: selectedCount === 0 ? 'Selecciona campos' : null,
   };
 }

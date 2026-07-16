@@ -14,9 +14,9 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `docs`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-15T15:07:02.491Z`
+- **Fecha generación:** `2026-07-16T19:39:01.521Z`
 - **Extensiones incluidas:** `.md, .mdx`
-- **Archivos candidatos incluidos:** `286`
+- **Archivos candidatos incluidos:** `334`
 - **Límite por archivo:** `120 KB`
 - **Límite total de contenido:** `1800 KB`
 
@@ -26,6 +26,9 @@
 prueba-plugin
 ├── .github
 │   └── copilot-instructions.md
+├── .serena
+│   └── memories
+│       └── memory_maintenance.md
 ├── .tailwind-migration-backups
 │   └── 20260708-111736
 │       └── reports
@@ -57,7 +60,9 @@ prueba-plugin
 │   │   ├── global-validation.md
 │   │   ├── improvement-backlog.md
 │   │   ├── manual-ui-regression.md
+│   │   ├── pdfcomponent-dynamic-integration-checklist.md
 │   │   ├── README.md
+│   │   ├── tailwind-design-continuity-validation.md
 │   │   └── tailwind-migration.md
 │   ├── context
 │   │   ├── action-map-context.md
@@ -69,6 +74,7 @@ prueba-plugin
 │   │   ├── schema-families-context.md
 │   │   ├── selection-transform-context.md
 │   │   ├── snapshot-context.md
+│   │   ├── tailwind-design-continuity-context.md
 │   │   └── visual-baseline-context.md
 │   ├── docs-migration
 │   │   └── MIGRATION_FROM_OLD_STRUCTURE.md
@@ -82,6 +88,8 @@ prueba-plugin
 │   │   ├── project-memory.md
 │   │   ├── README.md
 │   │   └── session-handoff.md
+│   ├── plans
+│   │   └── PLAN_EJECUCION_MIGRACION_TAILWIND_SISAD_PDFME.md
 │   ├── playbooks
 │   │   ├── pb-ai-docs-refactor.md
 │   │   ├── pb-canvas-multipage.md
@@ -90,6 +98,7 @@ prueba-plugin
 │   │   ├── pb-schema-families.md
 │   │   ├── pb-selection-transform.md
 │   │   ├── pb-snapshot.md
+│   │   ├── pb-tailwind-design-continuity.md
 │   │   ├── pb-visual-regression.md
 │   │   └── README.md
 │   ├── project
@@ -104,14 +113,21 @@ prueba-plugin
 │   │   ├── claude-diagnose-or-implement.md
 │   │   ├── codex-master-prompt.md
 │   │   ├── codex-next-pass-actions-ui-dedup.md
+│   │   ├── codex-pdfcomponent-dynamic-integration-refactor.md
+│   │   ├── codex-start-tailwind-design-continuity.md
 │   │   ├── copilot-task-context.md
 │   │   ├── create-task-card.md
+│   │   ├── PROMPT_MAESTRO_MIGRACION_TAILWIND_SISAD_PDFME.md
 │   │   ├── README.md
 │   │   └── update-memory.md
 │   ├── README.md
 │   ├── reports
 │   │   ├── architecture-correction-2026-07-14.md
-│   │   └── deep-ui-action-audit-2026-07-15.md
+│   │   ├── auditoria_migracion_tailwind_y_regresiones_sisad_pdfme_2026-07-15.md
+│   │   ├── deep-ui-action-audit-2026-07-15.md
+│   │   ├── pdfcomponent-integration-boundary.md
+│   │   ├── pdfcomponent-integration-deep-audit-2026-07-15.md
+│   │   └── tailwind-design-continuity-roadmap.md
 │   ├── router
 │   │   ├── CONTEXT_BUDGET.md
 │   │   ├── ROUTER.md
@@ -125,7 +141,8 @@ prueba-plugin
 │   │   ├── moveable-selecto-rules.md
 │   │   ├── README.md
 │   │   ├── schema-rules.md
-│   │   └── snapshot-rules.md
+│   │   ├── snapshot-rules.md
+│   │   └── tailwind-design-continuity-rules.md
 │   ├── skills
 │   │   ├── canvas-multipage-skill.md
 │   │   ├── inspector-skill.md
@@ -155,9 +172,15 @@ prueba-plugin
 │   │   └── tailwind-migrator.md
 │   ├── task-cards
 │   │   ├── active
-│   │   │   ├── TASK-PDFME-005-digital-agreements-runtime-adapter.md
-│   │   │   ├── TASK-PDFME-008-signature-policies-firma-sisad.md
-│   │   │   └── TASK-PDFME-009-externalforms-runner-contract.md
+│   │   │   ├── TASK-CSS-026-accelerated-tailwind-inline-decommission.md
+│   │   │   └── TASK-REGRESSION-021-shell-token-visual-recovery.md
+│   │   ├── backlog
+│   │   │   ├── TASK-CSS-021-left-sidebar-overflow-tailwind-continuity.md
+│   │   │   ├── TASK-CSS-022-left-sidebar-css-pruning.md
+│   │   │   ├── TASK-LAB-030-canvas-first-shell-style-source-unification.md
+│   │   │   ├── TASK-QA-016-tailwind-design-visual-regression.md
+│   │   │   ├── TASK-QA-017-listview-specs-docs-default-drift.md
+│   │   │   └── TASK-SCHEMA-003-action-owner-accent-continuity.md
 │   │   ├── completed
 │   │   │   ├── completed-summary.md
 │   │   │   ├── README.md
@@ -166,19 +189,43 @@ prueba-plugin
 │   │   │   ├── TASK-ARCH-003-enforce-existing-ai-folder-architecture.md
 │   │   │   ├── TASK-ARCH-004-wrapper-reduction-public-api-hardening.md
 │   │   │   ├── TASK-CANVAS-001-protect-canvas-overflow.md
+│   │   │   ├── TASK-CANVAS-003-guides-ruler-black-overlay-regression.md
 │   │   │   ├── TASK-CSS-012-inline-tailwind-css-reduction.md
 │   │   │   ├── TASK-CSS-013-selector-dedup-current-design-polish.md
 │   │   │   ├── TASK-CSS-014-tailwind3-current-ui-dedup-polish.md
+│   │   │   ├── TASK-CSS-015-lab-routes-tailwind3-dedup.md
+│   │   │   ├── TASK-CSS-018-stabilize-tailwind-cleanup.md
+│   │   │   ├── TASK-CSS-019-jsx-tsx-tailwind-migration-and-css-reduction.md
+│   │   │   ├── TASK-CSS-020-lab-routes-zero-apply.md
+│   │   │   ├── TASK-CSS-023-right-sidebar-documents-tailwind-continuity.md
+│   │   │   ├── TASK-CSS-024-right-sidebar-listview-row-flat.md
+│   │   │   ├── TASK-CSS-025-context-summary-guides-apply-to-jsx.md
 │   │   │   ├── TASK-DETAIL-015-access-state-label-sync.md
+│   │   │   ├── TASK-INTERACTION-016-assignment-modal-selection-freeze-regression.md
+│   │   │   ├── TASK-LAB-017-pdfcomponent-integration-boundary.md
+│   │   │   ├── TASK-LAB-018-use-pdfme-lab-integration-hook.md
+│   │   │   ├── TASK-LAB-019-normalize-lab-example-data-contract.md
+│   │   │   ├── TASK-LAB-020-public-runtime-wrappers-only.md
+│   │   │   ├── TASK-LAB-021-lab-action-registry-controller-contract.md
+│   │   │   ├── TASK-LAB-022-remove-compat-wrapper-reexports.md
+│   │   │   ├── TASK-LAB-023-lab-presentation-core-selectors.md
+│   │   │   ├── TASK-LAB-024-external-data-integration-e2e.md
+│   │   │   ├── TASK-LAB-025-example-bundle-normalized-export.md
+│   │   │   ├── TASK-LAB-026-restore-designer-visual-baseline-after-integration.md
+│   │   │   ├── TASK-LAB-027-lab-canvas-first-shell-jsx-handoff.md
+│   │   │   ├── TASK-LAB-028-runtime-collaboration-sync-and-form-echo.md
+│   │   │   ├── TASK-LAB-029-multidocument-right-sidebar-docs-default.md
 │   │   │   ├── TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md
 │   │   │   ├── TASK-PDFME-011-connectivity-sisad-restore.md
 │   │   │   ├── TASK-PDFME-012-global-visibility-wiring-continuity.md
 │   │   │   ├── TASK-PDFME-013-controller-real-api-no-noop.md
 │   │   │   ├── TASK-PDFME-014-rightsidebar-reassign-state-regression.md
 │   │   │   ├── TASK-QA-015-action-coverage-regression-suite.md
+│   │   │   ├── TASK-REGRESSION-020-owner-color-renderer-continuity.md
 │   │   │   ├── TASK-RUNTIME-015-config-hook-visibility-action-map.md
 │   │   │   ├── TASK-UI-015-right-left-rail-collapse-polish.md
-│   │   │   └── TASK-UI-016-zoom-toolbar-contract.md
+│   │   │   ├── TASK-UI-016-zoom-toolbar-contract.md
+│   │   │   └── TASK-UI-017-density-breakpoints-sync.md
 │   │   └── README.md
 │   ├── templates
 │   │   ├── agent-template.md
@@ -189,6 +236,7 @@ prueba-plugin
 │   │   ├── skill-template.md
 │   │   └── task-card-template.md
 │   └── tree.md
+├── ANALISIS_PROFUNDO_MIGRACION_TAILWIND_BASELINE_ANTERIOR.md
 ├── CLAUDE.md
 ├── docs
 │   ├── 00-introduccion
@@ -256,6 +304,7 @@ prueba-plugin
 │   │   ├── 04-external-forms.md
 │   │   ├── 05-global-config.md
 │   │   ├── 06-host-adapters.md
+│   │   ├── 07-pdfcomponent-lab-as-host-reference.md
 │   │   └── README.md
 │   ├── 08-api-reference
 │   │   ├── 01-designer-api.md
@@ -293,6 +342,7 @@ prueba-plugin
 │   │   ├── 01-basic-designer.md
 │   │   ├── 02-multi-document-routing.md
 │   │   ├── 03-generator-runtime.md
+│   │   ├── 04-dynamic-host-integration-examples.md
 │   │   └── README.md
 │   ├── 14-seguridad
 │   │   ├── 01-archivos.md
@@ -300,7 +350,7 @@ prueba-plugin
 │   │   └── README.md
 │   └── README.md
 ├── MANIFEST.md
-├── plan-maestro-portabilidad-sisad-pdfme-agentes.md
+├── PROMPT_FINALIZAR_MIGRACION_TAILWIND_SIN_PERDER_DISENO.md
 ├── README.md
 ├── reports
 │   ├── action-audit
@@ -311,6 +361,9 @@ prueba-plugin
 │   │   └── wrapper-reduction.md
 │   ├── jsdoc-missing-report.md
 │   └── tailwind-migration
+│       ├── accelerated
+│       │   ├── constants-contract.md
+│       │   └── migration-ledger.md
 │       ├── active-css-inventory.md
 │       ├── active-selector-duplicates.md
 │       ├── baseline-regression-audit.md
@@ -372,7 +425,7 @@ prueba-plugin
 
 | # | Ruta | Lenguaje | Líneas | KB original | Estado |
 |---:|---|---|---:|---:|---|
-| 1 | `README.md` | markdown | 69 | 3.5 | completo |
+| 1 | `README.md` | markdown | 21 | 1.0 | completo |
 | 2 | `docs/README.md` | markdown | 31 | 0.7 | completo |
 | 3 | `docs/00-introduccion/01-que-es-sisad-pdfme.md` | markdown | 27 | 0.9 | completo |
 | 4 | `docs/00-introduccion/02-para-que-sirve.md` | markdown | 24 | 0.7 | completo |
@@ -431,243 +484,291 @@ prueba-plugin
 | 57 | `docs/07-integraciones/04-external-forms.md` | markdown | 9 | 0.2 | completo |
 | 58 | `docs/07-integraciones/05-global-config.md` | markdown | 36 | 0.7 | completo |
 | 59 | `docs/07-integraciones/06-host-adapters.md` | markdown | 26 | 0.6 | completo |
-| 60 | `docs/07-integraciones/README.md` | markdown | 6 | 0.2 | completo |
-| 61 | `docs/08-api-reference/01-designer-api.md` | markdown | 10 | 0.3 | completo |
-| 62 | `docs/08-api-reference/02-form-api.md` | markdown | 9 | 0.2 | completo |
-| 63 | `docs/08-api-reference/03-viewer-api.md` | markdown | 7 | 0.1 | completo |
-| 64 | `docs/08-api-reference/04-generator-api.md` | markdown | 9 | 0.2 | completo |
-| 65 | `docs/08-api-reference/05-plugin-api.md` | markdown | 14 | 0.2 | completo |
-| 66 | `docs/08-api-reference/README.md` | markdown | 7 | 0.2 | completo |
-| 67 | `docs/09-theming/01-tokens-css.md` | markdown | 14 | 0.2 | completo |
-| 68 | `docs/09-theming/02-tailwind-bridge.md` | markdown | 10 | 0.3 | completo |
-| 69 | `docs/09-theming/03-baseline-visual.md` | markdown | 11 | 0.2 | completo |
-| 70 | `docs/09-theming/04-css-migration.md` | markdown | 11 | 0.2 | completo |
-| 71 | `docs/09-theming/05-css-reduction-tailwind-inline.md` | markdown | 35 | 0.7 | completo |
-| 72 | `docs/09-theming/06-tailwind3-selector-dedup-plan.md` | markdown | 46 | 1.0 | completo |
-| 73 | `docs/09-theming/README.md` | markdown | 6 | 0.2 | completo |
-| 74 | `docs/10-testing-qa/01-manual-checklist.md` | markdown | 26 | 0.3 | completo |
-| 75 | `docs/10-testing-qa/02-regression-matrix.md` | markdown | 10 | 0.3 | completo |
-| 76 | `docs/10-testing-qa/03-playwright.md` | markdown | 12 | 0.2 | completo |
-| 77 | `docs/10-testing-qa/04-vitest.md` | markdown | 10 | 0.2 | completo |
-| 78 | `docs/10-testing-qa/README.md` | markdown | 6 | 0.2 | completo |
-| 79 | `docs/11-migraciones/01-legacy-templates.md` | markdown | 10 | 0.3 | completo |
-| 80 | `docs/11-migraciones/02-snapshot-versioning.md` | markdown | 9 | 0.2 | completo |
-| 81 | `docs/11-migraciones/03-pdfme-upstream.md` | markdown | 12 | 0.2 | completo |
-| 82 | `docs/11-migraciones/README.md` | markdown | 5 | 0.2 | completo |
-| 83 | `docs/12-troubleshooting/01-canvas.md` | markdown | 14 | 0.3 | completo |
-| 84 | `docs/12-troubleshooting/02-pdf-worker.md` | markdown | 9 | 0.2 | completo |
-| 85 | `docs/12-troubleshooting/03-tailwind-regressions.md` | markdown | 10 | 0.3 | completo |
-| 86 | `docs/12-troubleshooting/04-runtime.md` | markdown | 16 | 0.2 | completo |
-| 87 | `docs/12-troubleshooting/README.md` | markdown | 6 | 0.2 | completo |
-| 88 | `docs/13-ejemplos/01-basic-designer.md` | markdown | 11 | 0.2 | completo |
-| 89 | `docs/13-ejemplos/02-multi-document-routing.md` | markdown | 10 | 0.2 | completo |
-| 90 | `docs/13-ejemplos/03-generator-runtime.md` | markdown | 9 | 0.1 | completo |
-| 91 | `docs/13-ejemplos/README.md` | markdown | 5 | 0.2 | completo |
-| 92 | `docs/14-seguridad/01-archivos.md` | markdown | 9 | 0.2 | completo |
-| 93 | `docs/14-seguridad/02-firma.md` | markdown | 5 | 0.2 | completo |
-| 94 | `docs/14-seguridad/README.md` | markdown | 4 | 0.1 | completo |
-| 95 | `AGENTS.md` | markdown | 26 | 0.7 | completo |
-| 96 | `CLAUDE.md` | markdown | 23 | 0.5 | completo |
-| 97 | `MANIFEST.md` | markdown | 27 | 1.0 | completo |
-| 98 | `plan-maestro-portabilidad-sisad-pdfme-agentes.md` | markdown | 843 | 22.5 | completo |
-| 99 | `.github/copilot-instructions.md` | markdown | 15 | 0.4 | completo |
-| 100 | `ai/README.md` | markdown | 38 | 0.8 | completo |
-| 101 | `ai/tree.md` | markdown | 26 | 0.4 | completo |
-| 102 | `reports/jsdoc-missing-report.md` | markdown | 2254 | 78.0 | completo |
-| 103 | `scripts/README.md` | markdown | 21 | 0.4 | completo |
-| 104 | `ai/adapters/README.md` | markdown | 3 | 0.1 | completo |
-| 105 | `ai/agents/canvas-agent.md` | markdown | 37 | 0.6 | completo |
-| 106 | `ai/agents/css-tailwind-agent.md` | markdown | 37 | 0.6 | completo |
-| 107 | `ai/agents/designer-runtime-agent.md` | markdown | 37 | 0.6 | completo |
-| 108 | `ai/agents/docs-architecture-agent.md` | markdown | 37 | 0.6 | completo |
-| 109 | `ai/agents/inspector-agent.md` | markdown | 37 | 0.6 | completo |
-| 110 | `ai/agents/interaction-agent.md` | markdown | 37 | 0.6 | completo |
-| 111 | `ai/agents/lab-shell-agent.md` | markdown | 37 | 0.6 | completo |
-| 112 | `ai/agents/README.md` | markdown | 3 | 0.1 | completo |
-| 113 | `ai/agents/registry.md` | markdown | 12 | 1.3 | completo |
-| 114 | `ai/agents/schema-agent.md` | markdown | 37 | 0.6 | completo |
-| 115 | `ai/agents/snapshot-agent.md` | markdown | 37 | 0.6 | completo |
-| 116 | `ai/agents/visual-baseline-agent.md` | markdown | 37 | 0.6 | completo |
-| 117 | `ai/baselines/img-version-baseline-protocol.md` | markdown | 29 | 0.4 | completo |
-| 118 | `ai/baselines/README.md` | markdown | 3 | 0.1 | completo |
-| 119 | `ai/checklists/button-action-contract-checklist.md` | markdown | 57 | 1.0 | completo |
-| 120 | `ai/checklists/done-vs-pending.md` | markdown | 41 | 0.7 | completo |
-| 121 | `ai/checklists/global-validation.md` | markdown | 8 | 0.2 | completo |
-| 122 | `ai/checklists/improvement-backlog.md` | markdown | 9 | 0.3 | completo |
-| 123 | `ai/checklists/manual-ui-regression.md` | markdown | 19 | 0.4 | completo |
-| 124 | `ai/checklists/README.md` | markdown | 3 | 0.1 | completo |
-| 125 | `ai/checklists/tailwind-migration.md` | markdown | 11 | 0.3 | completo |
-| 126 | `ai/context/action-map-context.md` | markdown | 70 | 1.4 | completo |
-| 127 | `ai/context/ai-docs-context.md` | markdown | 3 | 0.1 | completo |
-| 128 | `ai/context/canvas-multipage-context.md` | markdown | 9 | 0.2 | completo |
-| 129 | `ai/context/css-tailwind-context.md` | markdown | 26 | 0.6 | completo |
-| 130 | `ai/context/inspector-context.md` | markdown | 3 | 0.1 | completo |
-| 131 | `ai/context/README.md` | markdown | 3 | 0.1 | completo |
-| 132 | `ai/context/schema-families-context.md` | markdown | 5 | 0.2 | completo |
-| 133 | `ai/context/selection-transform-context.md` | markdown | 3 | 0.2 | completo |
-| 134 | `ai/context/snapshot-context.md` | markdown | 3 | 0.1 | completo |
-| 135 | `ai/context/visual-baseline-context.md` | markdown | 18 | 0.2 | completo |
-| 136 | `ai/docs-migration/MIGRATION_FROM_OLD_STRUCTURE.md` | markdown | 30 | 0.7 | completo |
-| 137 | `ai/memory/changelog.md` | markdown | 7 | 0.3 | completo |
-| 138 | `ai/memory/completed-checklist.md` | markdown | 27 | 1.3 | completo |
-| 139 | `ai/memory/decisions.md` | markdown | 21 | 0.8 | completo |
-| 140 | `ai/memory/known-risks.md` | markdown | 10 | 0.5 | completo |
-| 141 | `ai/memory/memory-update-protocol.md` | markdown | 29 | 0.6 | completo |
-| 142 | `ai/memory/pending-checklist.md` | markdown | 18 | 0.8 | completo |
-| 143 | `ai/memory/project-memory.md` | markdown | 20 | 0.8 | completo |
-| 144 | `ai/memory/README.md` | markdown | 13 | 0.4 | completo |
-| 145 | `ai/memory/session-handoff.md` | markdown | 63 | 3.3 | completo |
-| 146 | `ai/playbooks/pb-ai-docs-refactor.md` | markdown | 26 | 0.8 | completo |
-| 147 | `ai/playbooks/pb-canvas-multipage.md` | markdown | 6 | 0.2 | completo |
-| 148 | `ai/playbooks/pb-css-tailwind-migration.md` | markdown | 28 | 0.7 | completo |
-| 149 | `ai/playbooks/pb-inspector.md` | markdown | 6 | 0.1 | completo |
-| 150 | `ai/playbooks/pb-schema-families.md` | markdown | 6 | 0.2 | completo |
-| 151 | `ai/playbooks/pb-selection-transform.md` | markdown | 6 | 0.1 | completo |
-| 152 | `ai/playbooks/pb-snapshot.md` | markdown | 6 | 0.1 | completo |
-| 153 | `ai/playbooks/pb-visual-regression.md` | markdown | 8 | 0.2 | completo |
-| 154 | `ai/playbooks/README.md` | markdown | 3 | 0.1 | completo |
-| 155 | `ai/project/architecture-principles.md` | markdown | 34 | 1.0 | completo |
-| 156 | `ai/project/definition-of-done.md` | markdown | 12 | 0.4 | completo |
-| 157 | `ai/project/file-ownership-map.md` | markdown | 14 | 0.8 | completo |
-| 158 | `ai/project/glossary.md` | markdown | 16 | 0.7 | completo |
-| 159 | `ai/project/goals.md` | markdown | 24 | 0.9 | completo |
-| 160 | `ai/project/non-goals.md` | markdown | 12 | 0.3 | completo |
-| 161 | `ai/project/scope.md` | markdown | 38 | 0.6 | completo |
-| 162 | `ai/prompts/claude-diagnose-or-implement.md` | markdown | 7 | 0.2 | completo |
-| 163 | `ai/prompts/codex-master-prompt.md` | markdown | 5 | 0.3 | completo |
-| 164 | `ai/prompts/codex-next-pass-actions-ui-dedup.md` | markdown | 62 | 1.7 | completo |
-| 165 | `ai/prompts/copilot-task-context.md` | markdown | 11 | 0.2 | completo |
-| 166 | `ai/prompts/create-task-card.md` | markdown | 11 | 0.2 | completo |
-| 167 | `ai/prompts/README.md` | markdown | 3 | 0.1 | completo |
-| 168 | `ai/prompts/update-memory.md` | markdown | 3 | 0.1 | completo |
-| 169 | `ai/reports/architecture-correction-2026-07-14.md` | markdown | 28 | 1.6 | completo |
-| 170 | `ai/reports/deep-ui-action-audit-2026-07-15.md` | markdown | 169 | 5.0 | completo |
-| 171 | `ai/router/CONTEXT_BUDGET.md` | markdown | 58 | 1.2 | completo |
-| 172 | `ai/router/ROUTER.md` | markdown | 30 | 2.0 | completo |
-| 173 | `ai/router/TASK_INTAKE.md` | markdown | 35 | 0.9 | completo |
-| 174 | `ai/rules/ai-docs-rules.md` | markdown | 6 | 0.2 | completo |
-| 175 | `ai/rules/canvas-rules.md` | markdown | 3 | 0.1 | completo |
-| 176 | `ai/rules/css-migration-rules.md` | markdown | 35 | 0.8 | completo |
-| 177 | `ai/rules/global-rules.md` | markdown | 9 | 0.7 | completo |
-| 178 | `ai/rules/inspector-rules.md` | markdown | 3 | 0.1 | completo |
-| 179 | `ai/rules/moveable-selecto-rules.md` | markdown | 5 | 0.2 | completo |
-| 180 | `ai/rules/README.md` | markdown | 3 | 0.1 | completo |
-| 181 | `ai/rules/schema-rules.md` | markdown | 3 | 0.1 | completo |
-| 182 | `ai/rules/snapshot-rules.md` | markdown | 3 | 0.1 | completo |
-| 183 | `ai/skills/canvas-multipage-skill.md` | markdown | 29 | 0.4 | completo |
-| 184 | `ai/skills/inspector-skill.md` | markdown | 29 | 0.4 | completo |
-| 185 | `ai/skills/memory-update-skill.md` | markdown | 29 | 0.4 | completo |
-| 186 | `ai/skills/moveable-selecto-skill.md` | markdown | 29 | 0.4 | completo |
-| 187 | `ai/skills/option-groups-skill.md` | markdown | 29 | 0.4 | completo |
-| 188 | `ai/skills/prompting-skill.md` | markdown | 29 | 0.4 | completo |
-| 189 | `ai/skills/README.md` | markdown | 3 | 0.1 | completo |
-| 190 | `ai/skills/snapshot-safety-skill.md` | markdown | 29 | 0.4 | completo |
-| 191 | `ai/skills/tailwind-migration-skill.md` | markdown | 29 | 0.4 | completo |
-| 192 | `ai/skills/visual-regression-skill.md` | markdown | 29 | 0.4 | completo |
-| 193 | `ai/start/QUICKSTART-CLAUDE.md` | markdown | 15 | 0.4 | completo |
-| 194 | `ai/start/QUICKSTART-CODEX.md` | markdown | 34 | 0.7 | completo |
-| 195 | `ai/start/QUICKSTART-COPILOT.md` | markdown | 18 | 0.4 | completo |
-| 196 | `ai/start/START.md` | markdown | 76 | 1.2 | completo |
-| 197 | `ai/subagents/anti-hallucination-reviewer.md` | markdown | 13 | 0.3 | completo |
-| 198 | `ai/subagents/baseline-visual-critic.md` | markdown | 13 | 0.3 | completo |
-| 199 | `ai/subagents/code-docs-writer.md` | markdown | 13 | 0.3 | completo |
-| 200 | `ai/subagents/css-auditor.md` | markdown | 13 | 0.3 | completo |
-| 201 | `ai/subagents/legacy-css-guardian.md` | markdown | 13 | 0.3 | completo |
-| 202 | `ai/subagents/memory-curator.md` | markdown | 13 | 0.3 | completo |
-| 203 | `ai/subagents/prompt-engineer.md` | markdown | 13 | 0.3 | completo |
-| 204 | `ai/subagents/README.md` | markdown | 3 | 0.1 | completo |
-| 205 | `ai/subagents/regression-tester.md` | markdown | 13 | 0.3 | completo |
-| 206 | `ai/subagents/tailwind-migrator.md` | markdown | 13 | 0.3 | completo |
-| 207 | `ai/task-cards/README.md` | markdown | 11 | 0.2 | completo |
-| 208 | `ai/templates/agent-template.md` | markdown | 7 | 0.1 | completo |
-| 209 | `ai/templates/checklist-template.md` | markdown | 5 | 0.1 | completo |
-| 210 | `ai/templates/decision-template.md` | markdown | 7 | 0.1 | completo |
-| 211 | `ai/templates/memory-update-template.md` | markdown | 7 | 0.1 | completo |
-| 212 | `ai/templates/README.md` | markdown | 3 | 0.1 | completo |
-| 213 | `ai/templates/skill-template.md` | markdown | 7 | 0.1 | completo |
-| 214 | `ai/templates/task-card-template.md` | markdown | 11 | 0.2 | completo |
-| 215 | `reports/action-audit/button-action-inventory.md` | markdown | 149 | 41.7 | completo |
-| 216 | `reports/designer-deep-audit/duplication-map.md` | markdown | 24 | 1.4 | completo |
-| 217 | `reports/designer-deep-audit/risk-map.md` | markdown | 19 | 1.1 | completo |
-| 218 | `reports/designer-deep-audit/wrapper-reduction.md` | markdown | 56 | 2.7 | completo |
-| 219 | `reports/tailwind-migration/active-css-inventory.md` | markdown | 12 | 0.6 | completo |
-| 220 | `reports/tailwind-migration/active-selector-duplicates.md` | markdown | 170 | 32.3 | completo |
-| 221 | `reports/tailwind-migration/baseline-regression-audit.md` | markdown | 27 | 5.2 | completo |
-| 222 | `reports/tailwind-migration/component-migration-ledger.md` | markdown | 78 | 6.1 | completo |
-| 223 | `reports/tailwind-migration/deep-density-spacing-audit.md` | markdown | 105 | 9.6 | completo |
-| 224 | `reports/tailwind-migration/img-version-baseline-inventory.md` | markdown | 14 | 2.6 | completo |
-| 225 | `reports/tailwind-migration/line-by-line-style-audit.md` | markdown | 227 | 21.6 | completo |
-| 226 | `reports/tailwind-migration/pending-phases-progress.md` | markdown | 10 | 1.9 | completo |
-| 227 | `reports/tailwind-migration/README.md` | markdown | 76 | 4.6 | completo |
-| 228 | `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md` | markdown | 45 | 3.4 | completo |
-| 229 | `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md` | markdown | 34 | 3.2 | completo |
-| 230 | `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md` | markdown | 13 | 2.3 | completo |
-| 231 | `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md` | markdown | 20 | 1.4 | completo |
-| 232 | `reports/tailwind-migration/schema-chrome-tailwind-audit.md` | markdown | 18 | 1.3 | completo |
-| 233 | `reports/tailwind-migration/selector-duplicates-current.md` | markdown | 616 | 131.3 | truncado 110.5 KB |
-| 234 | `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md` | markdown | 45 | 2.8 | completo |
-| 235 | `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md` | markdown | 43 | 2.5 | completo |
-| 236 | `reports/tailwind-migration/tc-css-10-schemas-visual.md` | markdown | 33 | 3.7 | completo |
-| 237 | `reports/tailwind-migration/tc-css-11-lab-audit.md` | markdown | 31 | 1.2 | completo |
-| 238 | `reports/tailwind-migration/tc-css-option-group-selection-fix.md` | markdown | 38 | 4.3 | completo |
-| 239 | `reports/tailwind-migration/tc-css-ownership-color.md` | markdown | 38 | 4.0 | completo |
-| 240 | `reports/tailwind-migration/ui-styles-decommission-audit.md` | markdown | 57 | 5.6 | completo |
-| 241 | `reports/tailwind-migration/ui-styles-decommission-progress.md` | markdown | 25 | 1.6 | completo |
-| 242 | `ai/task-cards/active/TASK-PDFME-005-digital-agreements-runtime-adapter.md` | markdown | 48 | 1.8 | completo |
-| 243 | `ai/task-cards/active/TASK-PDFME-008-signature-policies-firma-sisad.md` | markdown | 48 | 1.8 | completo |
-| 244 | `ai/task-cards/active/TASK-PDFME-009-externalforms-runner-contract.md` | markdown | 53 | 1.9 | completo |
-| 245 | `ai/task-cards/completed/completed-summary.md` | markdown | 87 | 4.4 | completo |
-| 246 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
-| 247 | `ai/task-cards/completed/TASK-ACTIONS-001-button-action-contract-audit.md` | markdown | 89 | 2.6 | completo |
-| 248 | `ai/task-cards/completed/TASK-ACTIONS-002-commandbus-action-registry-unification.md` | markdown | 105 | 3.6 | completo |
-| 249 | `ai/task-cards/completed/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md` | markdown | 66 | 1.5 | completo |
-| 250 | `ai/task-cards/completed/TASK-ARCH-004-wrapper-reduction-public-api-hardening.md` | markdown | 77 | 2.5 | completo |
-| 251 | `ai/task-cards/completed/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 21 | 0.5 | completo |
-| 252 | `ai/task-cards/completed/TASK-CSS-012-inline-tailwind-css-reduction.md` | markdown | 91 | 2.7 | completo |
-| 253 | `ai/task-cards/completed/TASK-CSS-013-selector-dedup-current-design-polish.md` | markdown | 86 | 3.1 | completo |
-| 254 | `ai/task-cards/completed/TASK-CSS-014-tailwind3-current-ui-dedup-polish.md` | markdown | 85 | 2.9 | completo |
-| 255 | `ai/task-cards/completed/TASK-DETAIL-015-access-state-label-sync.md` | markdown | 85 | 3.3 | completo |
-| 256 | `ai/task-cards/completed/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md` | markdown | 40 | 1.0 | completo |
-| 257 | `ai/task-cards/completed/TASK-PDFME-011-connectivity-sisad-restore.md` | markdown | 37 | 1.0 | completo |
-| 258 | `ai/task-cards/completed/TASK-PDFME-012-global-visibility-wiring-continuity.md` | markdown | 48 | 1.4 | completo |
-| 259 | `ai/task-cards/completed/TASK-PDFME-013-controller-real-api-no-noop.md` | markdown | 37 | 1.3 | completo |
-| 260 | `ai/task-cards/completed/TASK-PDFME-014-rightsidebar-reassign-state-regression.md` | markdown | 45 | 1.2 | completo |
-| 261 | `ai/task-cards/completed/TASK-QA-015-action-coverage-regression-suite.md` | markdown | 86 | 2.4 | completo |
-| 262 | `ai/task-cards/completed/TASK-RUNTIME-015-config-hook-visibility-action-map.md` | markdown | 59 | 1.9 | completo |
-| 263 | `ai/task-cards/completed/TASK-UI-015-right-left-rail-collapse-polish.md` | markdown | 77 | 2.5 | completo |
-| 264 | `ai/task-cards/completed/TASK-UI-016-zoom-toolbar-contract.md` | markdown | 68 | 2.0 | completo |
-| 265 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 784 | 21.6 | completo |
-| 266 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
-| 267 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
-| 268 | `src/sisad-pdfme/converter/README.md` | markdown | 42 | 0.9 | completo |
-| 269 | `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md` | markdown | 151 | 4.6 | completo |
-| 270 | `src/sisad-pdfme/runtime/README.md` | markdown | 15 | 0.7 | completo |
-| 271 | `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md` | markdown | 168 | 5.7 | completo |
-| 272 | `src/sisad-pdfme/ui/README.md` | markdown | 38 | 2.2 | completo |
-| 273 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
-| 274 | `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md` | markdown | 30 | 1.6 | completo |
-| 275 | `src/sisad-pdfme/ui/components/README.md` | markdown | 28 | 1.1 | completo |
-| 276 | `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md` | markdown | 18 | 0.9 | completo |
-| 277 | `src/sisad-pdfme/ui/components/Designer/Canvas/README.md` | markdown | 24 | 1.2 | completo |
-| 278 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md` | markdown | 15 | 1.0 | completo |
-| 279 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md` | markdown | 18 | 0.7 | completo |
-| 280 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md` | markdown | 21 | 0.7 | completo |
-| 281 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md` | markdown | 35 | 1.3 | completo |
-| 282 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md` | markdown | 42 | 1.6 | completo |
-| 283 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md` | markdown | 38 | 1.4 | completo |
-| 284 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md` | markdown | 20 | 1.0 | completo |
-| 285 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md` | markdown | 31 | 1.8 | completo |
-| 286 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md` | markdown | 24 | 0.8 | completo |
+| 60 | `docs/07-integraciones/07-pdfcomponent-lab-as-host-reference.md` | markdown | 34 | 1.0 | completo |
+| 61 | `docs/07-integraciones/README.md` | markdown | 6 | 0.2 | completo |
+| 62 | `docs/08-api-reference/01-designer-api.md` | markdown | 10 | 0.3 | completo |
+| 63 | `docs/08-api-reference/02-form-api.md` | markdown | 9 | 0.2 | completo |
+| 64 | `docs/08-api-reference/03-viewer-api.md` | markdown | 7 | 0.1 | completo |
+| 65 | `docs/08-api-reference/04-generator-api.md` | markdown | 9 | 0.2 | completo |
+| 66 | `docs/08-api-reference/05-plugin-api.md` | markdown | 14 | 0.2 | completo |
+| 67 | `docs/08-api-reference/README.md` | markdown | 7 | 0.2 | completo |
+| 68 | `docs/09-theming/01-tokens-css.md` | markdown | 14 | 0.2 | completo |
+| 69 | `docs/09-theming/02-tailwind-bridge.md` | markdown | 10 | 0.3 | completo |
+| 70 | `docs/09-theming/03-baseline-visual.md` | markdown | 11 | 0.2 | completo |
+| 71 | `docs/09-theming/04-css-migration.md` | markdown | 11 | 0.2 | completo |
+| 72 | `docs/09-theming/05-css-reduction-tailwind-inline.md` | markdown | 35 | 0.7 | completo |
+| 73 | `docs/09-theming/06-tailwind3-selector-dedup-plan.md` | markdown | 46 | 1.0 | completo |
+| 74 | `docs/09-theming/README.md` | markdown | 6 | 0.2 | completo |
+| 75 | `docs/10-testing-qa/01-manual-checklist.md` | markdown | 26 | 0.3 | completo |
+| 76 | `docs/10-testing-qa/02-regression-matrix.md` | markdown | 10 | 0.3 | completo |
+| 77 | `docs/10-testing-qa/03-playwright.md` | markdown | 12 | 0.2 | completo |
+| 78 | `docs/10-testing-qa/04-vitest.md` | markdown | 10 | 0.2 | completo |
+| 79 | `docs/10-testing-qa/README.md` | markdown | 6 | 0.2 | completo |
+| 80 | `docs/11-migraciones/01-legacy-templates.md` | markdown | 10 | 0.3 | completo |
+| 81 | `docs/11-migraciones/02-snapshot-versioning.md` | markdown | 9 | 0.2 | completo |
+| 82 | `docs/11-migraciones/03-pdfme-upstream.md` | markdown | 12 | 0.2 | completo |
+| 83 | `docs/11-migraciones/README.md` | markdown | 5 | 0.2 | completo |
+| 84 | `docs/12-troubleshooting/01-canvas.md` | markdown | 14 | 0.3 | completo |
+| 85 | `docs/12-troubleshooting/02-pdf-worker.md` | markdown | 9 | 0.2 | completo |
+| 86 | `docs/12-troubleshooting/03-tailwind-regressions.md` | markdown | 10 | 0.3 | completo |
+| 87 | `docs/12-troubleshooting/04-runtime.md` | markdown | 16 | 0.2 | completo |
+| 88 | `docs/12-troubleshooting/README.md` | markdown | 6 | 0.2 | completo |
+| 89 | `docs/13-ejemplos/01-basic-designer.md` | markdown | 11 | 0.2 | completo |
+| 90 | `docs/13-ejemplos/02-multi-document-routing.md` | markdown | 10 | 0.2 | completo |
+| 91 | `docs/13-ejemplos/03-generator-runtime.md` | markdown | 9 | 0.1 | completo |
+| 92 | `docs/13-ejemplos/04-dynamic-host-integration-examples.md` | markdown | 21 | 0.6 | completo |
+| 93 | `docs/13-ejemplos/README.md` | markdown | 5 | 0.2 | completo |
+| 94 | `docs/14-seguridad/01-archivos.md` | markdown | 9 | 0.2 | completo |
+| 95 | `docs/14-seguridad/02-firma.md` | markdown | 5 | 0.2 | completo |
+| 96 | `docs/14-seguridad/README.md` | markdown | 4 | 0.1 | completo |
+| 97 | `AGENTS.md` | markdown | 26 | 0.7 | completo |
+| 98 | `ANALISIS_PROFUNDO_MIGRACION_TAILWIND_BASELINE_ANTERIOR.md` | markdown | 844 | 14.8 | completo |
+| 99 | `CLAUDE.md` | markdown | 23 | 0.5 | completo |
+| 100 | `MANIFEST.md` | markdown | 27 | 1.0 | completo |
+| 101 | `PROMPT_FINALIZAR_MIGRACION_TAILWIND_SIN_PERDER_DISENO.md` | markdown | 455 | 7.1 | completo |
+| 102 | `.github/copilot-instructions.md` | markdown | 15 | 0.4 | completo |
+| 103 | `ai/README.md` | markdown | 38 | 0.8 | completo |
+| 104 | `ai/tree.md` | markdown | 26 | 0.4 | completo |
+| 105 | `reports/jsdoc-missing-report.md` | markdown | 2254 | 78.0 | completo |
+| 106 | `scripts/README.md` | markdown | 21 | 0.4 | completo |
+| 107 | `.serena/memories/memory_maintenance.md` | markdown | 33 | 2.0 | completo |
+| 108 | `ai/adapters/README.md` | markdown | 3 | 0.1 | completo |
+| 109 | `ai/agents/canvas-agent.md` | markdown | 37 | 0.6 | completo |
+| 110 | `ai/agents/css-tailwind-agent.md` | markdown | 37 | 0.6 | completo |
+| 111 | `ai/agents/designer-runtime-agent.md` | markdown | 37 | 0.6 | completo |
+| 112 | `ai/agents/docs-architecture-agent.md` | markdown | 37 | 0.6 | completo |
+| 113 | `ai/agents/inspector-agent.md` | markdown | 37 | 0.6 | completo |
+| 114 | `ai/agents/interaction-agent.md` | markdown | 37 | 0.6 | completo |
+| 115 | `ai/agents/lab-shell-agent.md` | markdown | 37 | 0.6 | completo |
+| 116 | `ai/agents/README.md` | markdown | 3 | 0.1 | completo |
+| 117 | `ai/agents/registry.md` | markdown | 12 | 1.3 | completo |
+| 118 | `ai/agents/schema-agent.md` | markdown | 37 | 0.6 | completo |
+| 119 | `ai/agents/snapshot-agent.md` | markdown | 37 | 0.6 | completo |
+| 120 | `ai/agents/visual-baseline-agent.md` | markdown | 37 | 0.6 | completo |
+| 121 | `ai/baselines/img-version-baseline-protocol.md` | markdown | 29 | 0.4 | completo |
+| 122 | `ai/baselines/README.md` | markdown | 3 | 0.1 | completo |
+| 123 | `ai/checklists/button-action-contract-checklist.md` | markdown | 57 | 1.0 | completo |
+| 124 | `ai/checklists/done-vs-pending.md` | markdown | 41 | 0.7 | completo |
+| 125 | `ai/checklists/global-validation.md` | markdown | 8 | 0.2 | completo |
+| 126 | `ai/checklists/improvement-backlog.md` | markdown | 9 | 0.3 | completo |
+| 127 | `ai/checklists/manual-ui-regression.md` | markdown | 19 | 0.4 | completo |
+| 128 | `ai/checklists/pdfcomponent-dynamic-integration-checklist.md` | markdown | 31 | 1.4 | completo |
+| 129 | `ai/checklists/README.md` | markdown | 3 | 0.1 | completo |
+| 130 | `ai/checklists/tailwind-design-continuity-validation.md` | markdown | 16 | 1.0 | completo |
+| 131 | `ai/checklists/tailwind-migration.md` | markdown | 11 | 0.3 | completo |
+| 132 | `ai/context/action-map-context.md` | markdown | 70 | 1.4 | completo |
+| 133 | `ai/context/ai-docs-context.md` | markdown | 3 | 0.1 | completo |
+| 134 | `ai/context/canvas-multipage-context.md` | markdown | 9 | 0.2 | completo |
+| 135 | `ai/context/css-tailwind-context.md` | markdown | 26 | 0.6 | completo |
+| 136 | `ai/context/inspector-context.md` | markdown | 3 | 0.1 | completo |
+| 137 | `ai/context/README.md` | markdown | 3 | 0.1 | completo |
+| 138 | `ai/context/schema-families-context.md` | markdown | 5 | 0.2 | completo |
+| 139 | `ai/context/selection-transform-context.md` | markdown | 3 | 0.2 | completo |
+| 140 | `ai/context/snapshot-context.md` | markdown | 3 | 0.1 | completo |
+| 141 | `ai/context/tailwind-design-continuity-context.md` | markdown | 25 | 1.7 | completo |
+| 142 | `ai/context/visual-baseline-context.md` | markdown | 18 | 0.2 | completo |
+| 143 | `ai/docs-migration/MIGRATION_FROM_OLD_STRUCTURE.md` | markdown | 30 | 0.7 | completo |
+| 144 | `ai/memory/changelog.md` | markdown | 7 | 0.3 | completo |
+| 145 | `ai/memory/completed-checklist.md` | markdown | 27 | 1.3 | completo |
+| 146 | `ai/memory/decisions.md` | markdown | 21 | 0.8 | completo |
+| 147 | `ai/memory/known-risks.md` | markdown | 10 | 0.5 | completo |
+| 148 | `ai/memory/memory-update-protocol.md` | markdown | 29 | 0.6 | completo |
+| 149 | `ai/memory/pending-checklist.md` | markdown | 21 | 1.2 | completo |
+| 150 | `ai/memory/project-memory.md` | markdown | 20 | 0.8 | completo |
+| 151 | `ai/memory/README.md` | markdown | 13 | 0.4 | completo |
+| 152 | `ai/memory/session-handoff.md` | markdown | 168 | 9.6 | completo |
+| 153 | `ai/plans/PLAN_EJECUCION_MIGRACION_TAILWIND_SISAD_PDFME.md` | markdown | 679 | 11.9 | completo |
+| 154 | `ai/playbooks/pb-ai-docs-refactor.md` | markdown | 26 | 0.8 | completo |
+| 155 | `ai/playbooks/pb-canvas-multipage.md` | markdown | 6 | 0.2 | completo |
+| 156 | `ai/playbooks/pb-css-tailwind-migration.md` | markdown | 28 | 0.7 | completo |
+| 157 | `ai/playbooks/pb-inspector.md` | markdown | 6 | 0.1 | completo |
+| 158 | `ai/playbooks/pb-schema-families.md` | markdown | 6 | 0.2 | completo |
+| 159 | `ai/playbooks/pb-selection-transform.md` | markdown | 6 | 0.1 | completo |
+| 160 | `ai/playbooks/pb-snapshot.md` | markdown | 6 | 0.1 | completo |
+| 161 | `ai/playbooks/pb-tailwind-design-continuity.md` | markdown | 33 | 1.2 | completo |
+| 162 | `ai/playbooks/pb-visual-regression.md` | markdown | 8 | 0.2 | completo |
+| 163 | `ai/playbooks/README.md` | markdown | 3 | 0.1 | completo |
+| 164 | `ai/project/architecture-principles.md` | markdown | 34 | 1.0 | completo |
+| 165 | `ai/project/definition-of-done.md` | markdown | 12 | 0.4 | completo |
+| 166 | `ai/project/file-ownership-map.md` | markdown | 14 | 0.8 | completo |
+| 167 | `ai/project/glossary.md` | markdown | 16 | 0.7 | completo |
+| 168 | `ai/project/goals.md` | markdown | 24 | 0.9 | completo |
+| 169 | `ai/project/non-goals.md` | markdown | 12 | 0.3 | completo |
+| 170 | `ai/project/scope.md` | markdown | 38 | 0.6 | completo |
+| 171 | `ai/prompts/claude-diagnose-or-implement.md` | markdown | 7 | 0.2 | completo |
+| 172 | `ai/prompts/codex-master-prompt.md` | markdown | 5 | 0.3 | completo |
+| 173 | `ai/prompts/codex-next-pass-actions-ui-dedup.md` | markdown | 62 | 1.7 | completo |
+| 174 | `ai/prompts/codex-pdfcomponent-dynamic-integration-refactor.md` | markdown | 31 | 1.6 | completo |
+| 175 | `ai/prompts/codex-start-tailwind-design-continuity.md` | markdown | 13 | 0.8 | completo |
+| 176 | `ai/prompts/copilot-task-context.md` | markdown | 11 | 0.2 | completo |
+| 177 | `ai/prompts/create-task-card.md` | markdown | 11 | 0.2 | completo |
+| 178 | `ai/prompts/PROMPT_MAESTRO_MIGRACION_TAILWIND_SISAD_PDFME.md` | markdown | 804 | 14.7 | completo |
+| 179 | `ai/prompts/README.md` | markdown | 3 | 0.1 | completo |
+| 180 | `ai/prompts/update-memory.md` | markdown | 3 | 0.1 | completo |
+| 181 | `ai/reports/architecture-correction-2026-07-14.md` | markdown | 28 | 1.6 | completo |
+| 182 | `ai/reports/auditoria_migracion_tailwind_y_regresiones_sisad_pdfme_2026-07-15.md` | markdown | 198 | 11.2 | completo |
+| 183 | `ai/reports/deep-ui-action-audit-2026-07-15.md` | markdown | 169 | 5.0 | completo |
+| 184 | `ai/reports/pdfcomponent-integration-boundary.md` | markdown | 41 | 1.6 | completo |
+| 185 | `ai/reports/pdfcomponent-integration-deep-audit-2026-07-15.md` | markdown | 193 | 10.8 | completo |
+| 186 | `ai/reports/tailwind-design-continuity-roadmap.md` | markdown | 24 | 1.2 | completo |
+| 187 | `ai/router/CONTEXT_BUDGET.md` | markdown | 58 | 1.2 | completo |
+| 188 | `ai/router/ROUTER.md` | markdown | 30 | 2.0 | completo |
+| 189 | `ai/router/TASK_INTAKE.md` | markdown | 35 | 0.9 | completo |
+| 190 | `ai/rules/ai-docs-rules.md` | markdown | 6 | 0.2 | completo |
+| 191 | `ai/rules/canvas-rules.md` | markdown | 3 | 0.1 | completo |
+| 192 | `ai/rules/css-migration-rules.md` | markdown | 35 | 0.8 | completo |
+| 193 | `ai/rules/global-rules.md` | markdown | 9 | 0.7 | completo |
+| 194 | `ai/rules/inspector-rules.md` | markdown | 3 | 0.1 | completo |
+| 195 | `ai/rules/moveable-selecto-rules.md` | markdown | 5 | 0.2 | completo |
+| 196 | `ai/rules/README.md` | markdown | 3 | 0.1 | completo |
+| 197 | `ai/rules/schema-rules.md` | markdown | 3 | 0.1 | completo |
+| 198 | `ai/rules/snapshot-rules.md` | markdown | 3 | 0.1 | completo |
+| 199 | `ai/rules/tailwind-design-continuity-rules.md` | markdown | 14 | 1.3 | completo |
+| 200 | `ai/skills/canvas-multipage-skill.md` | markdown | 29 | 0.4 | completo |
+| 201 | `ai/skills/inspector-skill.md` | markdown | 29 | 0.4 | completo |
+| 202 | `ai/skills/memory-update-skill.md` | markdown | 29 | 0.4 | completo |
+| 203 | `ai/skills/moveable-selecto-skill.md` | markdown | 29 | 0.4 | completo |
+| 204 | `ai/skills/option-groups-skill.md` | markdown | 29 | 0.4 | completo |
+| 205 | `ai/skills/prompting-skill.md` | markdown | 29 | 0.4 | completo |
+| 206 | `ai/skills/README.md` | markdown | 3 | 0.1 | completo |
+| 207 | `ai/skills/snapshot-safety-skill.md` | markdown | 29 | 0.4 | completo |
+| 208 | `ai/skills/tailwind-migration-skill.md` | markdown | 29 | 0.4 | completo |
+| 209 | `ai/skills/visual-regression-skill.md` | markdown | 29 | 0.4 | completo |
+| 210 | `ai/start/QUICKSTART-CLAUDE.md` | markdown | 15 | 0.4 | completo |
+| 211 | `ai/start/QUICKSTART-CODEX.md` | markdown | 34 | 0.7 | completo |
+| 212 | `ai/start/QUICKSTART-COPILOT.md` | markdown | 18 | 0.4 | completo |
+| 213 | `ai/start/START.md` | markdown | 76 | 1.2 | completo |
+| 214 | `ai/subagents/anti-hallucination-reviewer.md` | markdown | 13 | 0.3 | completo |
+| 215 | `ai/subagents/baseline-visual-critic.md` | markdown | 13 | 0.3 | completo |
+| 216 | `ai/subagents/code-docs-writer.md` | markdown | 13 | 0.3 | completo |
+| 217 | `ai/subagents/css-auditor.md` | markdown | 13 | 0.3 | completo |
+| 218 | `ai/subagents/legacy-css-guardian.md` | markdown | 13 | 0.3 | completo |
+| 219 | `ai/subagents/memory-curator.md` | markdown | 13 | 0.3 | completo |
+| 220 | `ai/subagents/prompt-engineer.md` | markdown | 13 | 0.3 | completo |
+| 221 | `ai/subagents/README.md` | markdown | 3 | 0.1 | completo |
+| 222 | `ai/subagents/regression-tester.md` | markdown | 13 | 0.3 | completo |
+| 223 | `ai/subagents/tailwind-migrator.md` | markdown | 13 | 0.3 | completo |
+| 224 | `ai/task-cards/README.md` | markdown | 11 | 0.2 | completo |
+| 225 | `ai/templates/agent-template.md` | markdown | 7 | 0.1 | completo |
+| 226 | `ai/templates/checklist-template.md` | markdown | 5 | 0.1 | completo |
+| 227 | `ai/templates/decision-template.md` | markdown | 7 | 0.1 | completo |
+| 228 | `ai/templates/memory-update-template.md` | markdown | 7 | 0.1 | completo |
+| 229 | `ai/templates/README.md` | markdown | 3 | 0.1 | completo |
+| 230 | `ai/templates/skill-template.md` | markdown | 7 | 0.1 | completo |
+| 231 | `ai/templates/task-card-template.md` | markdown | 11 | 0.2 | completo |
+| 232 | `reports/action-audit/button-action-inventory.md` | markdown | 149 | 41.7 | completo |
+| 233 | `reports/designer-deep-audit/duplication-map.md` | markdown | 24 | 1.4 | completo |
+| 234 | `reports/designer-deep-audit/risk-map.md` | markdown | 19 | 1.1 | completo |
+| 235 | `reports/designer-deep-audit/wrapper-reduction.md` | markdown | 56 | 2.7 | completo |
+| 236 | `reports/tailwind-migration/active-css-inventory.md` | markdown | 12 | 0.6 | completo |
+| 237 | `reports/tailwind-migration/active-selector-duplicates.md` | markdown | 49 | 9.6 | completo |
+| 238 | `reports/tailwind-migration/baseline-regression-audit.md` | markdown | 27 | 5.2 | completo |
+| 239 | `reports/tailwind-migration/component-migration-ledger.md` | markdown | 126 | 9.3 | completo |
+| 240 | `reports/tailwind-migration/deep-density-spacing-audit.md` | markdown | 105 | 9.6 | completo |
+| 241 | `reports/tailwind-migration/img-version-baseline-inventory.md` | markdown | 14 | 2.6 | completo |
+| 242 | `reports/tailwind-migration/line-by-line-style-audit.md` | markdown | 227 | 21.6 | completo |
+| 243 | `reports/tailwind-migration/pending-phases-progress.md` | markdown | 10 | 1.9 | completo |
+| 244 | `reports/tailwind-migration/README.md` | markdown | 76 | 4.6 | completo |
+| 245 | `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md` | markdown | 45 | 3.4 | completo |
+| 246 | `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md` | markdown | 34 | 3.2 | completo |
+| 247 | `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md` | markdown | 13 | 2.3 | completo |
+| 248 | `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md` | markdown | 20 | 1.4 | completo |
+| 249 | `reports/tailwind-migration/schema-chrome-tailwind-audit.md` | markdown | 18 | 1.3 | completo |
+| 250 | `reports/tailwind-migration/selector-duplicates-current.md` | markdown | 61 | 10.9 | completo |
+| 251 | `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md` | markdown | 45 | 2.8 | completo |
+| 252 | `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md` | markdown | 43 | 2.5 | completo |
+| 253 | `reports/tailwind-migration/tc-css-10-schemas-visual.md` | markdown | 33 | 3.7 | completo |
+| 254 | `reports/tailwind-migration/tc-css-11-lab-audit.md` | markdown | 31 | 1.2 | completo |
+| 255 | `reports/tailwind-migration/tc-css-option-group-selection-fix.md` | markdown | 38 | 4.3 | completo |
+| 256 | `reports/tailwind-migration/tc-css-ownership-color.md` | markdown | 38 | 4.0 | completo |
+| 257 | `reports/tailwind-migration/ui-styles-decommission-audit.md` | markdown | 57 | 5.6 | completo |
+| 258 | `reports/tailwind-migration/ui-styles-decommission-progress.md` | markdown | 25 | 1.6 | completo |
+| 259 | `ai/task-cards/active/TASK-CSS-026-accelerated-tailwind-inline-decommission.md` | markdown | 109 | 7.0 | completo |
+| 260 | `ai/task-cards/active/TASK-REGRESSION-021-shell-token-visual-recovery.md` | markdown | 177 | 26.8 | completo |
+| 261 | `ai/task-cards/backlog/TASK-CSS-021-left-sidebar-overflow-tailwind-continuity.md` | markdown | 42 | 1.2 | completo |
+| 262 | `ai/task-cards/backlog/TASK-CSS-022-left-sidebar-css-pruning.md` | markdown | 39 | 0.9 | completo |
+| 263 | `ai/task-cards/backlog/TASK-LAB-030-canvas-first-shell-style-source-unification.md` | markdown | 42 | 1.2 | completo |
+| 264 | `ai/task-cards/backlog/TASK-QA-016-tailwind-design-visual-regression.md` | markdown | 42 | 1.1 | completo |
+| 265 | `ai/task-cards/backlog/TASK-QA-017-listview-specs-docs-default-drift.md` | markdown | 39 | 1.9 | completo |
+| 266 | `ai/task-cards/backlog/TASK-SCHEMA-003-action-owner-accent-continuity.md` | markdown | 42 | 1.2 | completo |
+| 267 | `ai/task-cards/completed/completed-summary.md` | markdown | 152 | 8.9 | completo |
+| 268 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
+| 269 | `ai/task-cards/completed/TASK-ACTIONS-001-button-action-contract-audit.md` | markdown | 89 | 2.6 | completo |
+| 270 | `ai/task-cards/completed/TASK-ACTIONS-002-commandbus-action-registry-unification.md` | markdown | 105 | 3.6 | completo |
+| 271 | `ai/task-cards/completed/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md` | markdown | 66 | 1.5 | completo |
+| 272 | `ai/task-cards/completed/TASK-ARCH-004-wrapper-reduction-public-api-hardening.md` | markdown | 77 | 2.5 | completo |
+| 273 | `ai/task-cards/completed/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 21 | 0.5 | completo |
+| 274 | `ai/task-cards/completed/TASK-CANVAS-003-guides-ruler-black-overlay-regression.md` | markdown | 78 | 3.0 | completo |
+| 275 | `ai/task-cards/completed/TASK-CSS-012-inline-tailwind-css-reduction.md` | markdown | 91 | 2.7 | completo |
+| 276 | `ai/task-cards/completed/TASK-CSS-013-selector-dedup-current-design-polish.md` | markdown | 86 | 3.1 | completo |
+| 277 | `ai/task-cards/completed/TASK-CSS-014-tailwind3-current-ui-dedup-polish.md` | markdown | 85 | 2.9 | completo |
+| 278 | `ai/task-cards/completed/TASK-CSS-015-lab-routes-tailwind3-dedup.md` | markdown | 14 | 0.4 | completo |
+| 279 | `ai/task-cards/completed/TASK-CSS-018-stabilize-tailwind-cleanup.md` | markdown | 41 | 1.6 | completo |
+| 280 | `ai/task-cards/completed/TASK-CSS-019-jsx-tsx-tailwind-migration-and-css-reduction.md` | markdown | 72 | 4.6 | completo |
+| 281 | `ai/task-cards/completed/TASK-CSS-020-lab-routes-zero-apply.md` | markdown | 50 | 1.5 | completo |
+| 282 | `ai/task-cards/completed/TASK-CSS-023-right-sidebar-documents-tailwind-continuity.md` | markdown | 42 | 1.1 | completo |
+| 283 | `ai/task-cards/completed/TASK-CSS-024-right-sidebar-listview-row-flat.md` | markdown | 99 | 4.6 | completo |
+| 284 | `ai/task-cards/completed/TASK-CSS-025-context-summary-guides-apply-to-jsx.md` | markdown | 116 | 6.5 | completo |
+| 285 | `ai/task-cards/completed/TASK-DETAIL-015-access-state-label-sync.md` | markdown | 85 | 3.3 | completo |
+| 286 | `ai/task-cards/completed/TASK-INTERACTION-016-assignment-modal-selection-freeze-regression.md` | markdown | 36 | 2.1 | completo |
+| 287 | `ai/task-cards/completed/TASK-LAB-017-pdfcomponent-integration-boundary.md` | markdown | 19 | 0.8 | completo |
+| 288 | `ai/task-cards/completed/TASK-LAB-018-use-pdfme-lab-integration-hook.md` | markdown | 20 | 0.8 | completo |
+| 289 | `ai/task-cards/completed/TASK-LAB-019-normalize-lab-example-data-contract.md` | markdown | 16 | 0.5 | completo |
+| 290 | `ai/task-cards/completed/TASK-LAB-020-public-runtime-wrappers-only.md` | markdown | 18 | 0.7 | completo |
+| 291 | `ai/task-cards/completed/TASK-LAB-021-lab-action-registry-controller-contract.md` | markdown | 15 | 0.5 | completo |
+| 292 | `ai/task-cards/completed/TASK-LAB-022-remove-compat-wrapper-reexports.md` | markdown | 18 | 0.7 | completo |
+| 293 | `ai/task-cards/completed/TASK-LAB-023-lab-presentation-core-selectors.md` | markdown | 14 | 0.5 | completo |
+| 294 | `ai/task-cards/completed/TASK-LAB-024-external-data-integration-e2e.md` | markdown | 19 | 0.8 | completo |
+| 295 | `ai/task-cards/completed/TASK-LAB-025-example-bundle-normalized-export.md` | markdown | 18 | 0.6 | completo |
+| 296 | `ai/task-cards/completed/TASK-LAB-026-restore-designer-visual-baseline-after-integration.md` | markdown | 97 | 4.9 | completo |
+| 297 | `ai/task-cards/completed/TASK-LAB-027-lab-canvas-first-shell-jsx-handoff.md` | markdown | 40 | 1.6 | completo |
+| 298 | `ai/task-cards/completed/TASK-LAB-028-runtime-collaboration-sync-and-form-echo.md` | markdown | 48 | 2.0 | completo |
+| 299 | `ai/task-cards/completed/TASK-LAB-029-multidocument-right-sidebar-docs-default.md` | markdown | 43 | 1.7 | completo |
+| 300 | `ai/task-cards/completed/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md` | markdown | 40 | 1.0 | completo |
+| 301 | `ai/task-cards/completed/TASK-PDFME-011-connectivity-sisad-restore.md` | markdown | 37 | 1.0 | completo |
+| 302 | `ai/task-cards/completed/TASK-PDFME-012-global-visibility-wiring-continuity.md` | markdown | 48 | 1.4 | completo |
+| 303 | `ai/task-cards/completed/TASK-PDFME-013-controller-real-api-no-noop.md` | markdown | 37 | 1.3 | completo |
+| 304 | `ai/task-cards/completed/TASK-PDFME-014-rightsidebar-reassign-state-regression.md` | markdown | 45 | 1.2 | completo |
+| 305 | `ai/task-cards/completed/TASK-QA-015-action-coverage-regression-suite.md` | markdown | 86 | 2.4 | completo |
+| 306 | `ai/task-cards/completed/TASK-REGRESSION-020-owner-color-renderer-continuity.md` | markdown | 49 | 1.9 | completo |
+| 307 | `ai/task-cards/completed/TASK-RUNTIME-015-config-hook-visibility-action-map.md` | markdown | 59 | 1.9 | completo |
+| 308 | `ai/task-cards/completed/TASK-UI-015-right-left-rail-collapse-polish.md` | markdown | 77 | 2.5 | completo |
+| 309 | `ai/task-cards/completed/TASK-UI-016-zoom-toolbar-contract.md` | markdown | 68 | 2.0 | completo |
+| 310 | `ai/task-cards/completed/TASK-UI-017-density-breakpoints-sync.md` | markdown | 37 | 1.7 | completo |
+| 311 | `reports/tailwind-migration/accelerated/constants-contract.md` | markdown | 22 | 2.1 | completo |
+| 312 | `reports/tailwind-migration/accelerated/migration-ledger.md` | markdown | 92 | 5.2 | completo |
+| 313 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 784 | 21.6 | completo |
+| 314 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
+| 315 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
+| 316 | `src/sisad-pdfme/converter/README.md` | markdown | 42 | 0.9 | completo |
+| 317 | `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md` | markdown | 151 | 4.6 | completo |
+| 318 | `src/sisad-pdfme/runtime/README.md` | markdown | 15 | 0.7 | completo |
+| 319 | `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md` | markdown | 168 | 5.7 | completo |
+| 320 | `src/sisad-pdfme/ui/README.md` | markdown | 38 | 2.2 | completo |
+| 321 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
+| 322 | `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md` | markdown | 30 | 1.6 | completo |
+| 323 | `src/sisad-pdfme/ui/components/README.md` | markdown | 28 | 1.1 | completo |
+| 324 | `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md` | markdown | 18 | 0.9 | completo |
+| 325 | `src/sisad-pdfme/ui/components/Designer/Canvas/README.md` | markdown | 24 | 1.2 | completo |
+| 326 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md` | markdown | 15 | 1.0 | completo |
+| 327 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md` | markdown | 18 | 0.7 | completo |
+| 328 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md` | markdown | 21 | 0.7 | completo |
+| 329 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md` | markdown | 35 | 1.3 | completo |
+| 330 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md` | markdown | 42 | 1.6 | completo |
+| 331 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md` | markdown | 38 | 1.4 | completo |
+| 332 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md` | markdown | 20 | 1.0 | completo |
+| 333 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md` | markdown | 31 | 1.8 | completo |
+| 334 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md` | markdown | 24 | 0.8 | completo |
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1663
+- **extensión no incluida:** 1720
 - **directorio ignorado: dependencia/build/salida generada:** 8
 
 ## Totales
 
-- **KB originales candidatos:** `602.6`
-- **KB incluidos en contenido:** `581.5`
+- **KB originales candidatos:** `623.3`
+- **KB incluidos en contenido:** `623.0`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -681,81 +782,33 @@ prueba-plugin
 ### 0001 — `README.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `69`
-- **Tamaño original:** `3.5 KB`
-- **SHA1 corto:** `baf93a73f0`
+- **Líneas:** `21`
+- **Tamaño original:** `1.0 KB`
+- **SHA1 corto:** `67e457c24a`
 - **Estado:** `completo`
 
 ```markdown
-# SISAD PDFME — Paquete de tareas: acciones, UI, duplicidad y wrappers
+# Paquete — análisis profundo `src/features/pdfcomponent`
 
-Fecha: 2026-07-15
+Este ZIP contiene un análisis y task-cards para convertir `src/features/pdfcomponent` en una referencia de integración dinámica de `sisad-pdfme`.
 
-Este paquete está organizado con la arquitectura real del repo `prueba-plugin`.
-No crea carpetas paralelas. Se puede descomprimir sobre la raíz del repositorio para revisar o copiar task-cards, reportes, prompts y scripts sugeridos.
+## Archivos principales
 
-## Diagnóstico ejecutivo
+- `ai/reports/pdfcomponent-integration-deep-audit-2026-07-15.md`
+- `ai/reports/pdfcomponent-integration-file-matrix.csv`
+- `ai/checklists/pdfcomponent-dynamic-integration-checklist.md`
+- `ai/prompts/codex-pdfcomponent-dynamic-integration-refactor.md`
+- `scripts/audit-pdfcomponent-duplication.mjs`
+- `ai/task-cards/active/TASK-LAB-017...TASK-LAB-025.md`
+- `docs/07-integraciones/07-pdfcomponent-lab-as-host-reference.md`
+- `docs/13-ejemplos/04-dynamic-host-integration-examples.md`
 
-Las capturas muestran que el core ya funciona mejor, pero quedan frentes importantes:
+## Uso recomendado
 
-1. **Rail derecho colapsado / panel switcher**
-   - El rail colapsado queda visualmente flotante y estrecho.
-   - Los iconos de panel no comunican claramente qué panel está activo.
-   - El botón Guardar se acerca demasiado al rail derecho.
-   - Hay riesgo de solapamiento con la barra lateral del navegador/app.
-
-2. **Acciones sin contrato unificado**
-   - Cada botón debe resolver: `visible`, `enabled`, `reason`, `handler`, `testId`, `analytics/event`, `permission`.
-   - Todavía hay botones que pueden mostrarse por UI aunque la acción no esté centralizada en CommandBus/ActionRegistry.
-   - El objetivo es auditar todos los botones y consolidarlos bajo un mapa único.
-
-3. **Zoom**
-   - El menú abre correctamente, pero el trigger puede mostrar `0.9` en vez de `90%`.
-   - Debe existir una conversión única entre zoom interno decimal y zoom visible porcentual.
-
-4. **RightSidebar / LeftSidebar**
-   - Se observa mejora visual, pero aún hay reglas CSS y wrappers que pueden estar duplicando skin.
-   - La migración debe ser Tailwind 3 y no tocar geometría del canvas.
-
-5. **DetailView / estados**
-   - Codex avanzó con estados explícitos; falta cerrar consumo único de labels/tones para evitar que reaparezcan estados genéricos como `Bloqueado`.
-   - El inspector debe consumir `statusLabel/statusTone` sin reconstruir labels paralelos.
-
-6. **Wrappers innecesarios**
-   - Los wrappers públicos (`SisadPdfmeDesigner`, `SisadPdfmeForm`, `SisadPdfmeViewer`) sí son necesarios.
-   - Los wrappers internos que solo reenvían props, duplican clases o esconden acciones sin aportar contrato deben ser auditados y reducidos.
-
-## Rutas incluidas
-
-``​`txt
-ai/reports/deep-ui-action-audit-2026-07-15.md
-ai/task-cards/active/TASK-ACTIONS-001-button-action-contract-audit.md
-ai/task-cards/active/TASK-ACTIONS-002-commandbus-action-registry-unification.md
-ai/task-cards/active/TASK-CSS-014-tailwind3-current-ui-dedup-polish.md
-ai/task-cards/active/TASK-UI-015-right-left-rail-collapse-polish.md
-ai/task-cards/active/TASK-DETAIL-015-access-state-label-sync.md
-ai/task-cards/active/TASK-ARCH-004-wrapper-reduction-public-api-hardening.md
-ai/task-cards/active/TASK-QA-015-action-coverage-regression-suite.md
-ai/task-cards/backlog/TASK-RUNTIME-015-config-hook-visibility-action-map.md
-ai/task-cards/backlog/TASK-UI-016-zoom-toolbar-contract.md
-ai/context/action-map-context.md
-ai/checklists/button-action-contract-checklist.md
-ai/prompts/codex-next-pass-actions-ui-dedup.md
-docs/03-designer/11-action-contract.md
-docs/09-theming/06-tailwind3-selector-dedup-plan.md
-scripts/audit-buttons-actions.mjs
-scripts/css-active-selector-audit.mjs
-``​`
-
-## Orden recomendado
-
-1. `TASK-ACTIONS-001` — inventariar botones y acciones.
-2. `TASK-ACTIONS-002` — unificar ActionRegistry/CommandBus.
-3. `TASK-UI-015` — corregir rail colapsado y botones principales.
-4. `TASK-CSS-014` — reducir CSS duplicado Tailwind 3 por componente.
-5. `TASK-DETAIL-015` — cerrar estados de acceso sin labels paralelos.
-6. `TASK-QA-015` — agregar pruebas de cobertura de botones.
-7. `TASK-ARCH-004` — reducir wrappers seguros.
+1. Descomprimir sobre la raíz del repo.
+2. Ejecutar `node scripts/audit-pdfcomponent-duplication.mjs`.
+3. Ejecutar las tareas en orden: LAB-017 → LAB-018 → LAB-020 → LAB-021 → LAB-019.
+4. No tocar `src/sisad-pdfme` salvo export público mínimo y justificado.
 ```
 
 <a id="file-0002"></a>
@@ -2482,7 +2535,54 @@ El host entrega recipients una vez. El componente los registra en `RecipientRegi
 
 <a id="file-0060"></a>
 
-### 0060 — `docs/07-integraciones/README.md`
+### 0060 — `docs/07-integraciones/07-pdfcomponent-lab-as-host-reference.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `34`
+- **Tamaño original:** `1.0 KB`
+- **SHA1 corto:** `f1994b5ee6`
+- **Estado:** `completo`
+
+```markdown
+# `pdfcomponent` como host de referencia
+
+`src/features/pdfcomponent` debe demostrar cómo un host externo integra `sisad-pdfme` sin tocar internals.
+
+## Patrón esperado
+
+``​`tsx
+const integration = usePdfmeLabIntegration(example)
+
+return (
+  <SisadPdfmeDesigner
+    config={integration.config}
+    template={integration.template}
+    documents={integration.documents}
+    recipients={integration.recipients}
+    activeRecipientId={integration.activeRecipientId}
+    onTemplateChange={integration.setTemplate}
+    onControllerReady={integration.setController}
+  />
+)
+``​`
+
+## Prohibido en ejemplos host
+
+- `DesignerEngineBuilder`
+- `usePdfmeRuntimeInstance`
+- `decorateTemplateWithCollaboration`
+- `decorateCollaborationUsers`
+- `commonOptions.collaboration` construido a mano
+- wrappers para `SchemaAssignmentDialog`, `RightSidebar`, `Canvas`, `Moveable` o `Selecto`
+
+## Datos externos
+
+El host puede traer usuarios/documentos desde API, BD o fixtures. Debe mapearlos una sola vez con adapters.
+```
+
+<a id="file-0061"></a>
+
+### 0061 — `docs/07-integraciones/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -2499,9 +2599,9 @@ El host entrega recipients una vez. El componente los registra en `RecipientRegi
 - [04-external-forms.md](./04-external-forms.md)
 ```
 
-<a id="file-0061"></a>
+<a id="file-0062"></a>
 
-### 0061 — `docs/08-api-reference/01-designer-api.md`
+### 0062 — `docs/08-api-reference/01-designer-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -2522,9 +2622,9 @@ El host entrega recipients una vez. El componente los registra en `RecipientRegi
 | onSave | function | Guardado. |
 ```
 
-<a id="file-0062"></a>
+<a id="file-0063"></a>
 
-### 0062 — `docs/08-api-reference/02-form-api.md`
+### 0063 — `docs/08-api-reference/02-form-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -2544,9 +2644,9 @@ El host entrega recipients una vez. El componente los registra en `RecipientRegi
 | readonly | Bloqueo global opcional. |
 ```
 
-<a id="file-0063"></a>
+<a id="file-0064"></a>
 
-### 0063 — `docs/08-api-reference/03-viewer-api.md`
+### 0064 — `docs/08-api-reference/03-viewer-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -2564,9 +2664,9 @@ Viewer recibe template y valores para mostrar salida readonly.
 ``​`
 ```
 
-<a id="file-0064"></a>
+<a id="file-0065"></a>
 
-### 0064 — `docs/08-api-reference/04-generator-api.md`
+### 0065 — `docs/08-api-reference/04-generator-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -2586,9 +2686,9 @@ const pdfBytes = await generate({ template, values });
 Debe usarse con snapshots válidos y assets disponibles.
 ```
 
-<a id="file-0065"></a>
+<a id="file-0066"></a>
 
-### 0065 — `docs/08-api-reference/05-plugin-api.md`
+### 0066 — `docs/08-api-reference/05-plugin-api.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -2613,9 +2713,9 @@ Un plugin de schema declara:
 - value adapter.
 ```
 
-<a id="file-0066"></a>
+<a id="file-0067"></a>
 
-### 0066 — `docs/08-api-reference/README.md`
+### 0067 — `docs/08-api-reference/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -2633,9 +2733,9 @@ Un plugin de schema declara:
 - [05-plugin-api.md](./05-plugin-api.md)
 ```
 
-<a id="file-0067"></a>
+<a id="file-0068"></a>
 
-### 0067 — `docs/09-theming/01-tokens-css.md`
+### 0068 — `docs/09-theming/01-tokens-css.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -2660,9 +2760,9 @@ No eliminar variables críticas:
 Los tokens pueden mapearse a Tailwind, pero no deben duplicarse.
 ```
 
-<a id="file-0068"></a>
+<a id="file-0069"></a>
 
-### 0068 — `docs/09-theming/02-tailwind-bridge.md`
+### 0069 — `docs/09-theming/02-tailwind-bridge.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -2683,9 +2783,9 @@ Reglas:
 - no duplicar reglas entre CSS legacy y Tailwind.
 ```
 
-<a id="file-0069"></a>
+<a id="file-0070"></a>
 
-### 0069 — `docs/09-theming/03-baseline-visual.md`
+### 0070 — `docs/09-theming/03-baseline-visual.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -2707,9 +2807,9 @@ public/img-version
 El objetivo de Tailwind es preservar la intención visual, no rediseñar sin control.
 ```
 
-<a id="file-0070"></a>
+<a id="file-0071"></a>
 
-### 0070 — `docs/09-theming/04-css-migration.md`
+### 0071 — `docs/09-theming/04-css-migration.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -2731,9 +2831,9 @@ Clasificar cada regla:
 Nunca migrar ciegamente reglas de canvas, transform, scale, paper o overlays.
 ```
 
-<a id="file-0071"></a>
+<a id="file-0072"></a>
 
-### 0071 — `docs/09-theming/05-css-reduction-tailwind-inline.md`
+### 0072 — `docs/09-theming/05-css-reduction-tailwind-inline.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -2779,9 +2879,9 @@ Cada migración debe registrar:
 - baseline visual revisada
 ```
 
-<a id="file-0072"></a>
+<a id="file-0073"></a>
 
-### 0072 — `docs/09-theming/06-tailwind3-selector-dedup-plan.md`
+### 0073 — `docs/09-theming/06-tailwind3-selector-dedup-plan.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `46`
@@ -2838,9 +2938,9 @@ Se elimina CSS solo cuando:
 4. No cambia bounding boxes del canvas.
 ```
 
-<a id="file-0073"></a>
+<a id="file-0074"></a>
 
-### 0073 — `docs/09-theming/README.md`
+### 0074 — `docs/09-theming/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -2857,9 +2957,9 @@ Se elimina CSS solo cuando:
 - [04-css-migration.md](./04-css-migration.md)
 ```
 
-<a id="file-0074"></a>
+<a id="file-0075"></a>
 
-### 0074 — `docs/10-testing-qa/01-manual-checklist.md`
+### 0075 — `docs/10-testing-qa/01-manual-checklist.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `26`
@@ -2896,9 +2996,9 @@ Se elimina CSS solo cuando:
 - Roundtrip.
 ```
 
-<a id="file-0075"></a>
+<a id="file-0076"></a>
 
-### 0075 — `docs/10-testing-qa/02-regression-matrix.md`
+### 0076 — `docs/10-testing-qa/02-regression-matrix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -2919,9 +3019,9 @@ Se elimina CSS solo cuando:
 | PDF | sin chrome de diseñador |
 ```
 
-<a id="file-0076"></a>
+<a id="file-0077"></a>
 
-### 0076 — `docs/10-testing-qa/03-playwright.md`
+### 0077 — `docs/10-testing-qa/03-playwright.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -2944,9 +3044,9 @@ Usar Playwright para:
 No reemplaza tests unitarios de contratos.
 ```
 
-<a id="file-0077"></a>
+<a id="file-0078"></a>
 
-### 0077 — `docs/10-testing-qa/04-vitest.md`
+### 0078 — `docs/10-testing-qa/04-vitest.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -2967,9 +3067,9 @@ Usar Vitest para:
 - validation rules.
 ```
 
-<a id="file-0078"></a>
+<a id="file-0079"></a>
 
-### 0078 — `docs/10-testing-qa/README.md`
+### 0079 — `docs/10-testing-qa/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -2986,9 +3086,9 @@ Usar Vitest para:
 - [04-vitest.md](./04-vitest.md)
 ```
 
-<a id="file-0079"></a>
+<a id="file-0080"></a>
 
-### 0079 — `docs/11-migraciones/01-legacy-templates.md`
+### 0080 — `docs/11-migraciones/01-legacy-templates.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -3009,9 +3109,9 @@ Reglas:
 - no mutar destructivamente sin versión.
 ```
 
-<a id="file-0080"></a>
+<a id="file-0081"></a>
 
-### 0080 — `docs/11-migraciones/02-snapshot-versioning.md`
+### 0081 — `docs/11-migraciones/02-snapshot-versioning.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -3031,9 +3131,9 @@ snapshotVersion: 'v1' | 'v2' | 'v3'
 Las migraciones deben ser puras, testeables e idempotentes.
 ```
 
-<a id="file-0081"></a>
+<a id="file-0082"></a>
 
-### 0081 — `docs/11-migraciones/03-pdfme-upstream.md`
+### 0082 — `docs/11-migraciones/03-pdfme-upstream.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -3056,9 +3156,9 @@ Las migraciones deben ser puras, testeables e idempotentes.
 - snapshot extendido.
 ```
 
-<a id="file-0082"></a>
+<a id="file-0083"></a>
 
-### 0082 — `docs/11-migraciones/README.md`
+### 0083 — `docs/11-migraciones/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -3074,9 +3174,9 @@ Las migraciones deben ser puras, testeables e idempotentes.
 - [03-pdfme-upstream.md](./03-pdfme-upstream.md)
 ```
 
-<a id="file-0083"></a>
+<a id="file-0084"></a>
 
-### 0083 — `docs/12-troubleshooting/01-canvas.md`
+### 0084 — `docs/12-troubleshooting/01-canvas.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -3101,9 +3201,9 @@ Revisar:
 Revisar `overflow` en contenedores host y canvas.
 ```
 
-<a id="file-0084"></a>
+<a id="file-0085"></a>
 
-### 0084 — `docs/12-troubleshooting/02-pdf-worker.md`
+### 0085 — `docs/12-troubleshooting/02-pdf-worker.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -3123,9 +3223,9 @@ Síntomas:
 Revisar configuración del worker y assets públicos.
 ```
 
-<a id="file-0085"></a>
+<a id="file-0086"></a>
 
-### 0085 — `docs/12-troubleshooting/03-tailwind-regressions.md`
+### 0086 — `docs/12-troubleshooting/03-tailwind-regressions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -3146,9 +3246,9 @@ Problemas comunes:
 - duplicidad entre bridge y CSS legacy.
 ```
 
-<a id="file-0086"></a>
+<a id="file-0087"></a>
 
-### 0086 — `docs/12-troubleshooting/04-runtime.md`
+### 0087 — `docs/12-troubleshooting/04-runtime.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -3175,9 +3275,9 @@ Revisar:
 Viewer nunca debe permitir edición.
 ```
 
-<a id="file-0087"></a>
+<a id="file-0088"></a>
 
-### 0087 — `docs/12-troubleshooting/README.md`
+### 0088 — `docs/12-troubleshooting/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -3194,9 +3294,9 @@ Viewer nunca debe permitir edición.
 - [04-runtime.md](./04-runtime.md)
 ```
 
-<a id="file-0088"></a>
+<a id="file-0089"></a>
 
-### 0088 — `docs/13-ejemplos/01-basic-designer.md`
+### 0089 — `docs/13-ejemplos/01-basic-designer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -3218,9 +3318,9 @@ Validar:
 - Save snapshot.
 ```
 
-<a id="file-0089"></a>
+<a id="file-0090"></a>
 
-### 0089 — `docs/13-ejemplos/02-multi-document-routing.md`
+### 0090 — `docs/13-ejemplos/02-multi-document-routing.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -3241,9 +3341,9 @@ Valida:
 - todos los schemas estándar.
 ```
 
-<a id="file-0090"></a>
+<a id="file-0091"></a>
 
-### 0090 — `docs/13-ejemplos/03-generator-runtime.md`
+### 0091 — `docs/13-ejemplos/03-generator-runtime.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -3263,9 +3363,43 @@ Valida:
 - parity de schemas.
 ```
 
-<a id="file-0091"></a>
+<a id="file-0092"></a>
 
-### 0091 — `docs/13-ejemplos/README.md`
+### 0092 — `docs/13-ejemplos/04-dynamic-host-integration-examples.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `21`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `ad5b6992da`
+- **Estado:** `completo`
+
+```markdown
+# Ejemplos dinámicos con datos externos
+
+## Contrato mínimo
+
+``​`ts
+type HostExampleInput = {
+  template: Template
+  recipients?: unknown[]
+  documents?: unknown[]
+  activeRecipientId?: string | null
+  config?: SisadPdfmeGlobalConfig
+}
+``​`
+
+## Reglas
+
+- Los recipients no se duplican en `collaboration.users` y `runtimeOptions.collaboration.recipients`.
+- Los documents no se duplican en `uploadedDocuments` y `documents` si el wrapper ya soporta `documents`.
+- El host no crea contextos internos del diseñador.
+- Toda visualización se controla desde `config.visibility`.
+- Toda acción visible viene del action registry o controller público.
+```
+
+<a id="file-0093"></a>
+
+### 0093 — `docs/13-ejemplos/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -3281,9 +3415,9 @@ Valida:
 - [03-generator-runtime.md](./03-generator-runtime.md)
 ```
 
-<a id="file-0092"></a>
+<a id="file-0094"></a>
 
-### 0092 — `docs/14-seguridad/01-archivos.md`
+### 0094 — `docs/14-seguridad/01-archivos.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -3303,9 +3437,9 @@ Validar:
 - no guardar binarios sensibles en snapshot.
 ```
 
-<a id="file-0093"></a>
+<a id="file-0095"></a>
 
-### 0093 — `docs/14-seguridad/02-firma.md`
+### 0095 — `docs/14-seguridad/02-firma.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -3321,9 +3455,9 @@ La firma se integra por providers externos.
 No guardar claves privadas, archivos P12 o secretos dentro del snapshot del diseñador.
 ```
 
-<a id="file-0094"></a>
+<a id="file-0096"></a>
 
-### 0094 — `docs/14-seguridad/README.md`
+### 0096 — `docs/14-seguridad/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `4`
@@ -3338,9 +3472,9 @@ No guardar claves privadas, archivos P12 o secretos dentro del snapshot del dise
 - [02-firma.md](./02-firma.md)
 ```
 
-<a id="file-0095"></a>
+<a id="file-0097"></a>
 
-### 0095 — `AGENTS.md`
+### 0097 — `AGENTS.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `26`
@@ -3377,9 +3511,866 @@ Antes de modificar código, un agente debe:
 `docs/` documenta el componente `sisad-pdfme`. No debe contener agentes, prompts, task-cards ni memoria de IA.
 ```
 
-<a id="file-0096"></a>
+<a id="file-0098"></a>
 
-### 0096 — `CLAUDE.md`
+### 0098 — `ANALISIS_PROFUNDO_MIGRACION_TAILWIND_BASELINE_ANTERIOR.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `844`
+- **Tamaño original:** `14.8 KB`
+- **SHA1 corto:** `e6ba5fc9b7`
+- **Estado:** `completo`
+
+```markdown
+# Análisis profundo — Migración Tailwind y recuperación del baseline visual de SISAD PDFME
+
+## 1. Resumen ejecutivo
+
+La migración ya no está en una fase inicial. El estado consolidado más reciente muestra:
+
+``​`txt
+src/sisad-pdfme/ui/styles/sisad-pdfme.css
+- 509 líneas
+- 90 apariciones de @apply
+
+src/sisad-pdfme/ui/styles/tokens.css
+- 150 líneas
+- 0 @apply
+
+src/features/pdfcomponent/labRoutes.css
+- eliminado/neutralizado
+
+src/styles/sisad-tailwind-bridge.css
+- vacío
+
+src/styles/tailwind.css
+- única fuente de @tailwind
+``​`
+
+La reducción fue grande, pero el proceso se volvió lento y alteró el diseño porque se confundieron tres objetivos distintos:
+
+1. **Mover skin visual local a JSX/TSX.**
+2. **Eliminar reglas duplicadas o huérfanas.**
+3. **Eliminar absolutamente todo CSS.**
+
+Los dos primeros son correctos. El tercero no lo es.
+
+El objetivo técnico final debe ser:
+
+``​`txt
+0 @apply en las hojas CSS
+≠
+0 líneas CSS
+``​`
+
+El CSS técnico debe continuar existiendo como CSS plano para:
+
+``​`txt
+- geometría de paper/canvas;
+- selectores descendientes de Moveable, Selecto y Scena Guides;
+- relaciones stage → canvas → sidebar;
+- pointer-events coordinados;
+- estados de drag/resize/rotate;
+- print;
+- keyframes realmente usados;
+- custom properties runtime;
+- selectores de terceros que no reciben className.
+``​`
+
+Forzar que esos contratos vivan en JSX/TSX produciría wrappers artificiales, lógica duplicada, estilos inline difíciles de mantener o regresiones en selección, scroll, zoom y multipágina.
+
+---
+
+## 2. Qué muestran las imágenes de la versión anterior
+
+Las capturas anteriores no representan una sola pantalla: documentan el contrato visual y funcional completo del editor.
+
+## 2.1 Shell principal
+
+La versión anterior conservaba:
+
+``​`txt
+- título “Multidocumento integral”;
+- selector de usuario activo visible;
+- botones “Usuario activo” y “Estado”;
+- canvas central con cuadrícula;
+- LeftSidebar estable;
+- RightSidebar estable;
+- CtlBar flotante centrado;
+- ResultsPanel en la zona inferior;
+- paginador superior centrado;
+- acción Guardar separada del RightSidebar.
+``​`
+
+El selector de usuarios no era decoración. Formaba parte de la navegación contextual del editor y permitía confirmar el usuario activo, permisos, filtros y colores.
+
+## 2.2 LeftSidebar
+
+El baseline anterior muestra:
+
+``​`txt
+- anchura compacta pero utilizable;
+- grupos Recientes, Firmas, Texto, Imagen y medios, Selecciones;
+- items neutros con borde fino;
+- iconografía consistente;
+- controles de layout visibles;
+- scroll vertical propio;
+- azul usado como acento, no como estado activo permanente.
+``​`
+
+## 2.3 Canvas
+
+El canvas anterior muestra:
+
+``​`txt
+- cuadrícula visible;
+- página claramente separada del fondo;
+- reglas superior e izquierda;
+- field chrome por propietario;
+- toolbar contextual próxima al schema seleccionado;
+- scroll multipágina;
+- zoom visible como porcentaje.
+``​`
+
+## 2.4 RightSidebar
+
+Las capturas anteriores cubren:
+
+``​`txt
+- lista de campos;
+- detalle/inspector;
+- documentos;
+- comentarios;
+- reasignación;
+- conexión/persistencia;
+- opciones de select;
+- formato;
+- reglas del archivo;
+- ubicación y tamaño.
+``​`
+
+La referencia no exige restaurar cada pixel antiguo. Sí exige preservar:
+
+``​`txt
+- jerarquía;
+- densidad;
+- navegación;
+- visibilidad de acciones;
+- distribución de espacios;
+- continuidad de tabs;
+- scroll;
+- estados activos;
+- selector de usuario.
+``​`
+
+---
+
+## 3. Qué cambió realmente
+
+No todo cambio visual se debe a Tailwind.
+
+## 3.1 Regresiones de cascada
+
+Durante la migración se retiraron reglas CSS antes de que el nodo propietario tuviera todas las clases equivalentes.
+
+Síntomas típicos:
+
+``​`txt
+- filas con borde nativo negro;
+- botones con border-style outset;
+- tabs partidos en dos líneas;
+- paneles sin ancho;
+- headers con altura incorrecta;
+- sombras/radios inconsistentes;
+- scroll perdido;
+- contenido recortado.
+``​`
+
+El proyecto usa:
+
+``​`txt
+preflight: false
+``​`
+
+Por eso clases como `border`, `border-b` o `border-r` no siempre producen el mismo resultado esperado si no se declara explícitamente:
+
+``​`txt
+border-solid
+``​`
+
+## 3.2 Cambios de estructura React
+
+Algunos cambios no son CSS:
+
+``​`txt
+- PageHeader oculto en el shell embebido;
+- selector de usuario movido a RegisteredUsersSelector/CtlBar;
+- Docs como panel inicial para multi-document;
+- RightSidebar reconstruido con rails;
+- ResultsPanel convertido en drawer/pill;
+- cambios en controlled/uncontrolled state;
+- cambio del panel mode esperado por tests.
+``​`
+
+Estos casos no se corrigen restaurando selectores CSS.
+
+## 3.3 Cambios funcionales legítimos
+
+No se debe revertir:
+
+``​`txt
+- wrappers públicos SisadPdfmeDesigner/Form/Viewer;
+- RecipientRegistry;
+- owner colors;
+- modal Reasignar corregido;
+- ListView plano;
+- Docs default en multidocumento;
+- scroll multipágina;
+- selectionPolicy;
+- CommandBus/ActionRegistry;
+- separación host/core.
+``​`
+
+La recuperación visual debe montarse sobre esta arquitectura, no reemplazarla con el DOM antiguo.
+
+---
+
+## 4. Causa principal de la lentitud
+
+El registro muestra un ciclo repetitivo:
+
+``​`txt
+1–2 selectores
+→ build completo
+→ dos pruebas Playwright
+→ actualizar task-card
+→ actualizar ledger
+→ volver a investigar
+``​`
+
+Ese patrón fue seguro al principio, pero dejó de ser eficiente.
+
+También existen dos task-cards activas sobre los mismos archivos:
+
+``​`txt
+TASK-CSS-026
+TASK-REGRESSION-021
+``​`
+
+y hubo edición paralela de:
+
+``​`txt
+sisad-pdfme.css
+RightSidebar
+DetailView
+ListView
+LeftSidebar
+CtlBar
+ResultsPanel
+``​`
+
+Eso provoca:
+
+``​`txt
+- colisiones;
+- conteos desactualizados;
+- reglas borradas mientras otro agente cambia consumidores;
+- revalidaciones repetidas;
+- decisiones contradictorias;
+- trabajo rehecho.
+``​`
+
+---
+
+## 5. Estado real de `sisad-pdfme.css`
+
+La hoja actual tiene 509 líneas y 90 `@apply`.
+
+## 5.1 Bloques globales y shell
+
+Rangos aproximados:
+
+``​`txt
+25–109
+``​`
+
+Contienen:
+
+``​`txt
+root
+box sizing
+scrollbars
+page
+header
+grid
+workspace
+designer root/background/workspace/stage
+``​`
+
+Acción:
+
+``​`txt
+- mover page/header/grid/workspace al nodo React propietario;
+- conservar root reset/scrollbar como CSS plano global;
+- conservar dimensiones runtime basadas en variables;
+- eliminar duplicaciones.
+``​`
+
+## 5.2 Canvas, preview y paper
+
+Rangos aproximados:
+
+``​`txt
+110–155
+200–274
+``​`
+
+Contienen:
+
+``​`txt
+canvas/preview scroll
+grid background
+paper root
+scale layer
+paper page geometry
+page surface
+padding
+Scena Guides
+Moveable
+``​`
+
+Acción:
+
+``​`txt
+- no migrar en bloque;
+- separar visual local de geometría;
+- canvas/paper geometry queda en CSS plano;
+- skin de Canvas/Paper puede vivir en JSX solo si el mismo nodo es dueño en Designer y Preview;
+- descendientes de Scena/Moveable quedan en CSS técnico.
+``​`
+
+## 5.3 LeftSidebar
+
+Rangos aproximados:
+
+``​`txt
+184–199
+325–327
+345–375
+451–463
+``​`
+
+Acción:
+
+``​`txt
+- root visual y estado collapsed/expanded → LeftSidebar.tsx;
+- estado draggable → wrapper del item con data variants;
+- conservar únicamente contratos cross-tree que no puedan expresarse localmente;
+- resolver duplicación de draggable-shell.
+``​`
+
+## 5.4 RightSidebar
+
+Rangos aproximados:
+
+``​`txt
+286–390
+``​`
+
+Contiene dos tipos de reglas diferentes:
+
+### Migrables
+
+``​`txt
+- root surface;
+- transform de apertura;
+- width responsive;
+- radius;
+- background;
+- shadow;
+- reduced motion.
+``​`
+
+### Técnicas/cross-tree
+
+``​`txt
+stage[data-sidebar-open] → canvas padding-right
+stage[data-sidebar-open] → control-bar right
+variant compact → canvas padding
+``​`
+
+No deben eliminarse juntas. El bloque debe dividirse:
+
+``​`txt
+RightSidebar.tsx
++
+CSS técnico de coordinación del stage
+``​`
+
+## 5.5 Drag, selección y overlays
+
+Rangos aproximados:
+
+``​`txt
+433–474
+``​`
+
+Contienen:
+
+``​`txt
+drag cursor
+drop validity
+Moveable visibility
+toolbar visibility
+inline edit visibility
+plugin drag states
+mask visibility
+option-group floating action visibility
+``​`
+
+Acción:
+
+``​`txt
+- mantener como CSS plano cuando el estado vive en stage y afecta descendientes;
+- migrar únicamente estados del nodo propietario;
+- no convertir relaciones stage→descendiente en lógica React duplicada.
+``​`
+
+## 5.6 Keyframes
+
+Rangos aproximados:
+
+``​`txt
+400–429
+476–509
+``​`
+
+Nombres:
+
+``​`txt
+rs-slide-in
+rs-panel-switch
+rs-stagger-in
+schema-drag-preview-enter
+schema-drop-commit-flash-enter
+toolbar-reveal
+``​`
+
+En el consolidado actual no aparecen referencias activas a esos nombres fuera de sus declaraciones.
+
+Acción:
+
+``​`txt
+- ejecutar búsqueda exacta en src, tests y Tailwind config;
+- si el resultado es 0, eliminar el keyframe;
+- no conservar animaciones por historial;
+- si una clase arbitraria las consume, mantener solo la animación realmente usada.
+``​`
+
+---
+
+## 6. Duplicaciones y conflictos detectados
+
+## 6.1 Root font
+
+Existe definición de fuente en el bloque raíz inicial y otra definición posterior de `.sisad-pdfme-root`.
+
+Acción:
+
+``​`txt
+dejar una sola fuente de verdad
+``​`
+
+## 6.2 Canvas background/grid
+
+El canvas aparece en bloques compartidos y específicos:
+
+``​`txt
+designer-canvas + preview-scroll
+designer-canvas
+root designer-canvas[data-grid-visible]
+``​`
+
+Esto permite que una regla posterior cambie padding, background o tamaño sin que el componente lo muestre claramente.
+
+Acción:
+
+``​`txt
+- Preview.tsx posee preview;
+- Canvas.tsx posee canvas;
+- CSS solo mantiene grid técnico si depende de data attributes;
+- no compartir skin visual entre ambos por selector compuesto.
+``​`
+
+## 6.3 Paper surface
+
+La superficie del papel se define tanto para:
+
+``​`txt
+[data-paper-page]
+``​`
+
+como para:
+
+``​`txt
+[data-canvas-page]
+``​`
+
+con radios y sombras distintas.
+
+Acción:
+
+``​`txt
+- geometría en Paper;
+- skin por runtime mode mediante className/data-render-mode;
+- una sola sombra por modo;
+- eliminar reglas que compiten por orden de cascada.
+``​`
+
+## 6.4 LeftSidebar draggable
+
+`left-sidebar-draggable-shell[data-dragging=true]` aparece en más de una zona.
+
+Acción:
+
+``​`txt
+una sola regla o, preferiblemente, data variant en el wrapper TSX
+``​`
+
+## 6.5 Media queries vacías
+
+Hay bloques media sin contenido.
+
+Acción:
+
+``​`txt
+eliminar inmediatamente
+``​`
+
+---
+
+## 7. Clasificación estimada de los 90 `@apply`
+
+La clasificación exacta debe confirmarse con el script de auditoría, pero el archivo actual permite estimar:
+
+| Destino | Estimación | Acción |
+|---|---:|---|
+| `MIGRATE_TO_TSX` | 25–32 | Skin y layout local |
+| `KEEP_AS_PLAIN_TECHNICAL_CSS` | 45–55 | Reescribir propiedades CSS sin `@apply` |
+| `DELETE_DUPLICATE_OR_ORPHAN` | 8–15 | Eliminar con evidencia |
+| `KEEP_GLOBAL_PLAIN_CSS` | 5–10 | Reset local, scrollbar, variables |
+
+El cierre correcto es:
+
+``​`txt
+0 @apply
+~220–320 líneas de CSS plano técnico
+150 líneas de tokens
+``​`
+
+No es correcto exigir:
+
+``​`txt
+0 líneas en sisad-pdfme.css
+``​`
+
+---
+
+## 8. Plan acelerado corregido
+
+## Paquete 0 — Congelar concurrencia
+
+Antes de modificar:
+
+``​`txt
+- dejar una sola task-card activa;
+- detener edición paralela de los mismos archivos;
+- hacer commit/checkpoint del estado actual;
+- medir 509 líneas / 90 @apply;
+- capturar baseline actual y baseline anterior.
+``​`
+
+## Paquete 1 — Eliminación segura
+
+Eliminar con una única validación al final:
+
+``​`txt
+- media queries vacías;
+- root font duplicado;
+- keyframes sin consumidores;
+- comentarios obsoletos;
+- reglas exactas duplicadas.
+``​`
+
+Objetivo esperado:
+
+``​`txt
+509 → ~440–460 líneas
+90 → ~80–85 @apply
+``​`
+
+## Paquete 2 — Shell y wrappers
+
+Archivos:
+
+``​`txt
+Root.tsx
+Designer/index.tsx
+Preview.tsx
+PdfmeLabPage.jsx
+RegisteredUsersSelector.tsx
+``​`
+
+Migrar:
+
+``​`txt
+page
+header
+grid
+workspace
+root/background/workspace/stage skin
+lab-runtime-host
+``​`
+
+No tocar paper geometry.
+
+## Paquete 3 — LeftSidebar
+
+Archivos:
+
+``​`txt
+LeftSidebar.tsx
+LeftSidebarTabs.tsx
+LeftSidebarSearch.tsx
+LeftSidebarGroup.tsx
+CatalogLayoutToggle.tsx
+``​`
+
+Objetivos:
+
+``​`txt
+- neutral state;
+- selected/hover/drag separados;
+- root/expanded/collapsed local;
+- draggable state local;
+- conservar scroll.
+``​`
+
+## Paquete 4 — RightSidebar
+
+Archivos:
+
+``​`txt
+RightSidebar.tsx
+layout.tsx
+SidebarRail.tsx
+SidebarCollapseHandle.tsx
+SidebarSurfacePrimitives.tsx
+``​`
+
+Migrar root visual y responsive local.
+
+Conservar CSS técnico:
+
+``​`txt
+stage → canvas padding
+stage → CtlBar offset
+cross-tree variant compact
+``​`
+
+## Paquete 5 — Canvas/Paper split
+
+No rediseñar.
+
+Separar:
+
+``​`txt
+- visual del canvas;
+- visual del preview;
+- geometría paper;
+- grid;
+- terceros.
+``​`
+
+Mover solo visual local.
+
+Convertir `@apply` técnico a CSS plano.
+
+## Paquete 6 — Drag/interaction
+
+No mover selectores cross-tree a React.
+
+Reescribir:
+
+``​`txt
+@apply cursor-copy;
+``​`
+
+como:
+
+``​`css
+cursor: copy;
+``​`
+
+y lo mismo para:
+
+``​`txt
+display
+opacity
+pointer-events
+outline
+filter
+``​`
+
+Objetivo:
+
+``​`txt
+eliminar Tailwind de CSS sin eliminar CSS técnico
+``​`
+
+## Paquete 7 — QA final
+
+Ejecutar una vez:
+
+``​`bash
+npm run build
+npx playwright test
+``​`
+
+Comparar:
+
+``​`txt
+- selector de usuario;
+- LeftSidebar;
+- lista/detalle/docs/comentarios;
+- Reasignar;
+- conexión;
+- canvas;
+- página 2+;
+- zoom;
+- ResultsPanel;
+- scroll.
+``​`
+
+---
+
+## 9. Regla de validación para acelerar
+
+Durante un paquete:
+
+``​`bash
+npx tsc --noEmit
+``​`
+
+Al cerrar el paquete:
+
+``​`bash
+npm run build
+``​`
+
+Playwright solo por dominio.
+
+No hacer:
+
+``​`txt
+selector
+→ build
+→ Playwright
+→ ledger
+``​`
+
+Hacer:
+
+``​`txt
+15–30 reglas relacionadas
+→ typecheck
+→ build
+→ pruebas de dominio
+→ ledger
+``​`
+
+---
+
+## 10. Criterios de aceptación finales
+
+## Tailwind
+
+``​`txt
+[ ] 0 @apply en sisad-pdfme.css.
+[ ] 0 @apply en tokens.css.
+[ ] labRoutes.css eliminado.
+[ ] bridge vacío o eliminado.
+[ ] una sola entrada @tailwind.
+``​`
+
+## CSS residual
+
+``​`txt
+[ ] Todo bloque residual está clasificado.
+[ ] No queda skin local trasladable.
+[ ] Geometría y terceros permanecen en CSS plano.
+[ ] No hay keyframes huérfanos.
+[ ] No hay media queries vacías.
+[ ] No hay selectores duplicados por cascada.
+``​`
+
+## Diseño
+
+``​`txt
+[ ] Selector de usuario visible.
+[ ] Header mantiene jerarquía de la versión anterior.
+[ ] LeftSidebar conserva densidad y neutral state.
+[ ] RightSidebar mantiene tabs/list/detail/docs/comments.
+[ ] CtlBar no tapa ResultsPanel.
+[ ] Papel y canvas tienen contraste correcto.
+[ ] Owner color no se confunde con selección.
+``​`
+
+## Comportamiento
+
+``​`txt
+[ ] Drag desde catálogo.
+[ ] Reorder ListView.
+[ ] Selección simple/múltiple.
+[ ] Reasignar sin freeze.
+[ ] Página 2+.
+[ ] Zoom y fit.
+[ ] Scroll independiente.
+[ ] Multi-document.
+[ ] Form/Viewer.
+``​`
+
+---
+
+## 11. Conclusión
+
+La migración está avanzada. El cuello de botella ya no es la cantidad de CSS, sino:
+
+``​`txt
+- concurrencia;
+- validación por micro-slice;
+- objetivo incorrecto de “vaciar CSS”;
+- mezcla de cambios visuales y estructurales;
+- reglas técnicas tratadas como skin;
+- cascada duplicada entre canvas/preview/paper.
+``​`
+
+La estrategia correcta permitirá terminar más rápido:
+
+``​`txt
+509 líneas / 90 @apply
+→
+0 @apply
++
+CSS técnico plano y documentado
++
+paridad visual con la versión anterior
+``​`
+```
+
+<a id="file-0099"></a>
+
+### 0099 — `CLAUDE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `23`
@@ -3413,9 +4404,9 @@ ai/memory/project-memory.md
 ``​`
 ```
 
-<a id="file-0097"></a>
+<a id="file-0100"></a>
 
-### 0097 — `MANIFEST.md`
+### 0100 — `MANIFEST.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `27`
@@ -3453,865 +4444,477 @@ ai/memory/project-memory.md
 - `ai/reports/claude-codex-handoff-2026-07-14.md`
 ```
 
-<a id="file-0098"></a>
+<a id="file-0101"></a>
 
-### 0098 — `plan-maestro-portabilidad-sisad-pdfme-agentes.md`
+### 0101 — `PROMPT_FINALIZAR_MIGRACION_TAILWIND_SIN_PERDER_DISENO.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `843`
-- **Tamaño original:** `22.5 KB`
-- **SHA1 corto:** `08714d440d`
+- **Líneas:** `455`
+- **Tamaño original:** `7.1 KB`
+- **SHA1 corto:** `07e6150512`
 - **Estado:** `completo`
 
 ```markdown
-# Plan maestro de implementación — Portabilidad, configuración global y agentes para `src/sisad-pdfme`
+# PROMPT — Finalizar la migración Tailwind sin perder el diseño anterior
 
-## 0. Decisión arquitectónica
+Actúa como arquitecto frontend senior experto en React, TypeScript, Tailwind CSS 3, Vite, Ant Design, dnd-kit, Moveable, Selecto y Playwright.
 
-`src/sisad-pdfme` debe tratarse como una librería portable. El proyecto base `prueba-plugin` no debe conocer ningún host concreto. Cualquier proyecto consumidor debe integrarlo mediante configuración, adaptadores y eventos.
-
-**Regla absoluta**
+Repositorio:
 
 ``​`txt
-src/sisad-pdfme no importa nada del host.
-El host importa src/sisad-pdfme y le entrega datos/adaptadores/configuración.
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
 ``​`
 
-Dentro del componente deben vivir únicamente contratos genéricos, configuración global, adapters base, wrappers React públicos, Designer/Form/Viewer, schema registry, command bus, snapshot, runtime options, generator, documentos y estilos aislados.
+Ruta:
 
----
+``​`txt
+http://localhost:5174/lab/multi-document-routing
+``​`
 
-## 1. Objetivo final
+## Objetivo exacto
 
-Un host externo debe poder integrar el diseñador con una API de alto nivel:
+Completar la migración de Tailwind que todavía vive dentro de hojas CSS hacia JSX/TSX sin perder el diseño ni el comportamiento de la versión anterior.
+
+La meta es:
+
+``​`txt
+0 @apply en todas las hojas CSS
+``​`
+
+La meta NO es:
+
+``​`txt
+0 líneas CSS
+``​`
+
+CSS técnico residual está permitido y debe escribirse como CSS plano.
+
+## Estado vigente
+
+Mide antes de modificar. El último consolidado reporta:
+
+``​`txt
+sisad-pdfme.css: 509 líneas / 90 @apply
+tokens.css: 150 líneas / 0 @apply
+labRoutes.css: eliminado
+bridge: vacío
+``​`
+
+No uses cifras históricas de 2000–6000 líneas.
+
+## Primera decisión obligatoria
+
+Actualmente existen dos task-cards activas:
+
+``​`txt
+TASK-CSS-026
+TASK-REGRESSION-021
+``​`
+
+Antes de editar:
+
+``​`txt
+1. determina cuál debe cerrarse;
+2. deja una sola activa;
+3. detén agentes que editen los mismos archivos;
+4. crea commit/checkpoint;
+5. no trabajes con 200 archivos dirty;
+6. no actualices dos ledgers distintos por cada microcambio.
+``​`
+
+## Baseline visual obligatorio
+
+Usa las capturas anteriores como contrato:
+
+``​`txt
+- título Multidocumento integral;
+- selector de usuario visible;
+- controles Usuario activo / Estado;
+- LeftSidebar compacto;
+- canvas con grid;
+- papel centrado;
+- RightSidebar con lista/detalle/docs/comentarios;
+- modal de conexión;
+- modal de comentarios;
+- modal Reasignar;
+- CtlBar centrado;
+- ResultsPanel inferior.
+``​`
+
+No copies el DOM antiguo. Mantén la arquitectura actual.
+
+## Diferencia entre regresión CSS y cambio estructural
+
+No intentes corregir con CSS:
+
+``​`txt
+PageHeader no montado;
+selector de usuario no montado;
+panel default cambiado;
+controlled state incorrecto;
+tabs eliminados;
+callback desconectado;
+wrapper público sin prop.
+``​`
+
+Estos casos se corrigen en React.
+
+## Clasificación de cada `@apply`
+
+Cada aparición debe terminar en una de estas categorías:
+
+### MIGRATE_TO_TSX
+
+``​`txt
+layout local
+padding/gap
+border/radius
+background
+shadow
+typography
+hover/focus/selected
+responsive local
+scroll del componente
+``​`
+
+### CONVERT_TO_PLAIN_TECHNICAL_CSS
+
+``​`txt
+paper/canvas geometry
+Moveable/Selecto/Scena descendants
+stage→canvas/sidebar coordination
+pointer-events cross-tree
+drag/resize/rotate global state
+print
+portal/third-party selectors
+``​`
+
+Ejemplo:
+
+``​`css
+/* antes */
+@apply absolute inset-0 pointer-events-none;
+
+/* después */
+position: absolute;
+inset: 0;
+pointer-events: none;
+``​`
+
+### DELETE_DUPLICATE_OR_ORPHAN
+
+Solo con:
+
+``​`txt
+0 consumidores por clase completa;
+0 consumidores por suffix concatenado;
+0 referencias en tests;
+0 referencias en Tailwind config;
+0 referencias en strings dinámicos.
+``​`
+
+### KEEP_GLOBAL_PLAIN_CSS
+
+``​`txt
+box-sizing local
+scrollbars del paquete
+font/reset local
+custom properties
+``​`
+
+## Contratos que no deben romperse
+
+Conserva:
+
+``​`ts
+DESIGNER_CLASSNAME
+UI_CLASSNAME
+SELECTABLE_CLASSNAME
+RULER_HEIGHT
+PAGE_GAP
+LEFT_SIDEBAR_WIDTH
+RIGHT_SIDEBAR_WIDTH
+BACKGROUND_COLOR
+DEFAULT_MAX_ZOOM
+``​`
+
+Nunca sustituyas:
 
 ``​`tsx
-import {
-  SisadPdfmeDesigner,
-  createSisadPdfmeConfig,
-} from './sisad-pdfme';
-
-const config = createSisadPdfmeConfig({
-  runtime: { mode: 'designer', locale: 'es' },
-  collaboration: { enabled: true, activeRecipientId: 'recipient-1' },
-  assignment: { enabled: true, allowBulk: true },
-  documents: { mode: 'multi' },
-});
-
-<SisadPdfmeDesigner
-  config={config}
-  template={template}
-  documents={documents}
-  recipients={recipients}
-  onTemplateChange={setTemplate}
-  onSave={handleSave}
-/>
+DESIGNER_CLASSNAME + 'suffix'
 ``​`
 
-El host no debe importar `Canvas`, `RightSidebar`, `DetailView`, `ListView`, `SchemaAssignmentDialog`, `selectionPolicy`, `Moveable`, `Selecto`, `schemaAssignmentService` ni internals de runtime.
+por una cadena Tailwind sin hook semántico.
 
----
+## Orden de ejecución
 
-## 2. Investigación y hallazgos
+### BATCH-01 — eliminación segura
 
-### 2.1 Base existente aprovechable
-
-El proyecto ya contiene una fachada inicial en `src/sisad-pdfme/integration`, un `DesignerEngine` configurable y módulos separados para assignments, collaboration, commands, contracts, documents, runtime, schemas, generator, converter, UI y snapshot. Esto confirma que la dirección correcta es construir una capa de configuración global sobre lo existente, no crear wrappers por host.
-
-### 2.2 Dolor actual
-
-La integración hoy exige que el host conozca demasiados detalles internos:
+Audita y elimina en un solo lote:
 
 ``​`txt
-recipients
-activeRecipient
-collaborationContext
-canEditStructure
-ownerRecipientId
-recipientId
-ownerColor
-selected schemas
-assignment dialog
-runtime options
-designerEngine
-sidebars
-canvas feature toggles
-signature providers
-documents
+media queries vacías
+root font duplicado
+keyframes sin consumidores
+comentarios obsoletos
+reglas exactas duplicadas
+``​`
+
+Buscar:
+
+``​`bash
+rg -n "rs-slide-in|rs-panel-switch|rs-stagger-in|schema-drag-preview-enter|schema-drop-commit-flash-enter|toolbar-reveal" src tests tailwind.config.js
+``​`
+
+No ejecutes build por cada keyframe.
+
+### BATCH-02 — root y shell
+
+Archivos máximos:
+
+``​`txt
+Root.tsx
+Designer/index.tsx
+Preview.tsx
+PdfmeLabPage.jsx
+RegisteredUsersSelector.tsx
+``​`
+
+Migrar:
+
+``​`txt
+page
+header
+grid
+workspace
+designer root/background/workspace/stage skin
+lab-runtime-host
+``​`
+
+No tocar paper geometry.
+
+### BATCH-03 — LeftSidebar
+
+Archivos:
+
+``​`txt
+LeftSidebar.tsx
+LeftSidebarTabs.tsx
+LeftSidebarSearch.tsx
+LeftSidebarGroup.tsx
+CatalogLayoutToggle.tsx
+``​`
+
+Restaurar:
+
+``​`txt
+neutral state
+hover
+focus
+drag
+selected
+densidad
+scroll
+layout list/tiles/icons
+``​`
+
+No pintar todos los schemas con borde azul.
+
+### BATCH-04 — RightSidebar
+
+Archivos:
+
+``​`txt
+RightSidebar.tsx
+layout.tsx
+SidebarRail.tsx
+SidebarCollapseHandle.tsx
+SidebarSurfacePrimitives.tsx
+``​`
+
+Migrar root surface y responsive local.
+
+Mantener como CSS técnico plano:
+
+``​`txt
+stage[data-sidebar-open] canvas padding-right
+stage[data-sidebar-open] control-bar right
+compact variant cross-tree offsets
+``​`
+
+### BATCH-05 — Canvas/Preview/Paper
+
+Separar fuentes de verdad:
+
+``​`txt
+Canvas.tsx → visual del canvas
+Preview.tsx → visual del preview
+Paper.tsx → nodos paper
+CSS plano → geometry/scale/grid/third-party
+``​`
+
+Resolver duplicaciones de:
+
+``​`txt
+designer-canvas
+data-grid-visible
+data-paper-page
+data-canvas-page
+``​`
+
+No cambiar coordenadas.
+
+### BATCH-06 — interacción técnica
+
+Convertir `@apply` a CSS plano en:
+
+``​`txt
+dragging
+drop-valid
+Moveable visibility
+selection toolbar visibility
+inline edit visibility
+mask visibility
+option group actions
+plugin drag state
+``​`
+
+No duplicar estado React para evitar CSS.
+
+### BATCH-07 — QA final
+
+Ejecutar:
+
+``​`bash
+npm run build
+npx playwright test
+``​`
+
+Validar manualmente:
+
+``​`txt
+usuario activo
+global view
+LeftSidebar
+list/detail/docs/comments
+connection modal
+comment modal
+reassign modal
+drag/drop
+selection
+page 2+
+zoom
+ResultsPanel
+Form/Viewer
+``​`
+
+## Ritmo de validación
+
+Durante batch:
+
+``​`bash
+npx tsc --noEmit
+``​`
+
+Al cerrar batch:
+
+``​`bash
+npm run build
+``​`
+
+Playwright una vez por dominio.
+
+Prohibido repetir:
+
+``​`txt
+1 selector → build → Playwright → ledger
+``​`
+
+Mínimo por batch:
+
+``​`txt
+10–25 reglas relacionadas
+o
+3–5 componentes
+``​`
+
+## Áreas protegidas
+
+No modificar salvo regresión demostrada:
+
+``​`txt
+Moveable.tsx
+Selecto.tsx
+coordinateMath.ts
+designerCoordinateService.ts
 snapshot
-commands
+generator
+pdf-lib
+zoom math
+document routing
+schema persistence
 ``​`
 
-Eso causa integraciones frágiles: el laboratorio funciona, pero al copiar a otro proyecto se rompen reasignación, selección, estilos, runtime, sidebars y permisos.
+## `preflight: false`
 
-### 2.3 Riesgos visuales
-
-Los estilos ya fueron consolidados hacia `src/sisad-pdfme/ui/styles/sisad-pdfme.css` y `tokens.css`. Aun así, Moveable, Selecto, zoom, geometría de paper/canvas, z-index crítico, scroll y print/PDF deben seguir protegidos. No se debe migrar ciegamente todo a JSX/Tailwind si toca geometría.
-
----
-
-## 3. Arquitectura objetivo
+En JSX/TSX:
 
 ``​`txt
-src/sisad-pdfme
-├── adapters
-│   ├── documentsAdapter.ts
-│   ├── eventsAdapter.ts
-│   ├── permissionsAdapter.ts
-│   ├── persistenceAdapter.ts
-│   ├── recipientsAdapter.ts
-│   ├── signatureProviderAdapter.ts
-│   └── index.ts
-├── config
-│   ├── SisadPdfmeConfig.ts
-│   ├── createSisadPdfmeConfig.ts
-│   ├── defaultSisadPdfmeConfig.ts
-│   ├── resolveSisadPdfmeConfig.ts
-│   └── index.ts
-├── react
-│   ├── SisadPdfmeDesigner.tsx
-│   ├── SisadPdfmeForm.tsx
-│   ├── SisadPdfmeProvider.tsx
-│   ├── SisadPdfmeViewer.tsx
-│   ├── useSisadPdfmeConfig.ts
-│   ├── useSisadPdfmeController.ts
-│   └── index.ts
-├── integration
-│   ├── index.ts
-│   └── schemaController.ts
-└── ui / schemas / runtime / documents / generator / commands / collaboration
+usar border-solid cuando se define borde;
+usar appearance-none en botones/selects que lo requieran;
+no agregar reset global;
+no habilitar preflight.
 ``​`
 
----
-
-## 4. Contrato global propuesto
-
-Crear `src/sisad-pdfme/config/SisadPdfmeConfig.ts`.
-
-``​`ts
-export type SisadPdfmeGlobalConfig = {
-  app?: {
-    id?: string;
-    name?: string;
-    locale?: string;
-    environment?: 'development' | 'test' | 'production' | string;
-  };
-
-  runtime?: {
-    mode?: 'designer' | 'form' | 'viewer';
-    readonly?: boolean;
-    isolateDomEvents?: boolean;
-    preserveSelectionOnModalClose?: boolean;
-  };
-
-  theme?: {
-    strategy?: 'tailwind';
-    cssEntry?: 'sisad-pdfme.css';
-    density?: 'comfortable' | 'compact' | 'mini';
-    classNamePrefix?: string;
-    tokens?: Record<string, string | number>;
-  };
-
-  canvas?: {
-    enabled?: boolean;
-    selecto?: boolean;
-    moveable?: boolean;
-    snapLines?: boolean;
-    guides?: boolean;
-    emptyClickClearsSelection?: boolean;
-    multiSelect?: boolean;
-    platformSelection?: 'auto' | 'mac' | 'windows' | 'linux';
-    suspendWhenModalOpen?: boolean;
-    resetInteractionOnModalClose?: boolean;
-  };
-
-  sidebars?: {
-    left?: {
-      enabled?: boolean;
-      defaultOpen?: boolean;
-      catalogLayout?: 'list' | 'tiles' | 'icons';
-      allowCustomFields?: boolean;
-    };
-    right?: {
-      enabled?: boolean;
-      defaultPanel?: 'fields' | 'detail' | 'comments' | 'documents';
-      panels?: Array<'fields' | 'detail' | 'comments' | 'documents'>;
-      density?: 'comfortable' | 'compact' | 'mini';
-      showCollapsedButton?: boolean;
-    };
-  };
-
-  schemas?: {
-    enabledTypes?: string[];
-    autoAttachIdentity?: boolean;
-    validateUniqueNames?: boolean;
-    defaultOwnerStrategy?: 'none' | 'active-recipient' | 'first-recipient';
-    plugins?: unknown[];
-  };
-
-  collaboration?: {
-    enabled?: boolean;
-    activeRecipientId?: string | null;
-    canEditStructure?: boolean;
-    ownerColorStrategy?: 'recipient' | 'schema' | 'theme';
-  };
-
-  assignment?: {
-    enabled?: boolean;
-    allowSingle?: boolean;
-    allowBulk?: boolean;
-    preserveLockState?: boolean;
-    showCurrentRecipient?: boolean;
-    searchable?: boolean;
-    closeOnCancel?: boolean;
-    closeOnConfirm?: boolean;
-  };
-
-  documents?: {
-    mode?: 'single' | 'multi';
-    preserveDocumentSchemaRouting?: boolean;
-    activeDocumentStrategy?: 'internal' | 'host';
-  };
-
-  signatures?: {
-    enabled?: boolean;
-    defaultMode?: 'draw' | 'image' | 'p12' | 'provider';
-    providers?: Array<{
-      key: string;
-      label: string;
-      capabilities?: Record<string, boolean>;
-      metadata?: Record<string, unknown>;
-    }>;
-  };
-
-  persistence?: {
-    mode?: 'none' | 'local' | 'host';
-    autosave?: boolean;
-    serializeSnapshot?: boolean;
-  };
-
-  events?: {
-    onReady?: 'host' | false;
-    onChange?: 'host' | false;
-    onSave?: 'host' | false;
-    onError?: 'host' | false;
-    onSelectionChange?: 'host' | false;
-    onAssignmentChange?: 'host' | false;
-    onDocumentChange?: 'host' | false;
-  };
-
-  debug?: {
-    enabled?: boolean;
-    showTechnicalInspector?: boolean;
-    logEvents?: boolean;
-  };
-};
-``​`
-
----
-
-## 5. Cambios por fases
-
-### Fase 0 — Auditoría de frontera y baseline
-
-**Agente responsable:** `docs-architecture-agent`
-**Subagentes:** `anti-hallucination-reviewer`, `code-docs-writer`
-
-Tareas:
+## Criterios de cierre
 
 ``​`txt
-[ ] Ejecutar git status --short.
-[ ] Mapear imports dentro de src/sisad-pdfme.
-[ ] Detectar cualquier import hacia src/features, src/modules, APIs o rutas de host.
-[ ] Confirmar que sisad-pdfme compila dentro del laboratorio sin depender de host.
-[ ] Registrar baseline visual de Designer, Form y Viewer.
-[ ] Crear reports/portability-boundary-audit.md.
+[ ] sisad-pdfme.css tiene 0 @apply.
+[ ] tokens.css tiene 0 @apply.
+[ ] CSS residual es plano y técnico.
+[ ] no hay keyframes huérfanos.
+[ ] no hay media queries vacías.
+[ ] no hay duplicación canvas/preview/paper.
+[ ] selector de usuario visible.
+[ ] baseline visual comparable.
+[ ] build pasa.
+[ ] suite pasa.
 ``​`
 
-Comandos sugeridos:
+## Formato de salida
 
-``​`bash
-rg "from ['\"](\.\./)*features|from ['\"](\.\./)*modules|DigitalAgreements|Uanataca|Workflow|Documentary|axiosClient|/private/" src/sisad-pdfme
-rg "SchemaAssignmentDialog|onBulkAssignRecipient|collaborationContext|activeRecipient|recipientOptions" src/sisad-pdfme
-rg "DesignerEngine|runtimeOptions|buildDesignerRuntimeOptions|createSchemaController" src/sisad-pdfme
+``​`md
+# Batch cerrado
+
+## Métricas
+- líneas antes/después
+- @apply antes/después
+
+## Migrado a TSX
+- ...
+
+## Convertido a CSS técnico plano
+- ...
+
+## Eliminado
+- ...
+
+## Validación
+- typecheck
+- build
+- Playwright
+- capturas
+
+## Siguiente batch
+- ...
 ``​`
 
-Criterio de cierre:
-
-``​`txt
-No hay dependencia del host dentro de src/sisad-pdfme.
-El reporte enumera todos los puntos de integración actuales.
-``​`
-
----
-
-### Fase 1 — Contrato de configuración global
-
-**Agente responsable:** `designer-runtime-agent`
-**Subagentes:** `api-contract-agent`, `anti-hallucination-reviewer`
-
-Crear:
-
-``​`txt
-src/sisad-pdfme/config/SisadPdfmeConfig.ts
-src/sisad-pdfme/config/defaultSisadPdfmeConfig.ts
-src/sisad-pdfme/config/resolveSisadPdfmeConfig.ts
-src/sisad-pdfme/config/createSisadPdfmeConfig.ts
-src/sisad-pdfme/config/index.ts
-``​`
-
-Tareas:
-
-``​`txt
-[ ] Definir SisadPdfmeGlobalConfig.
-[ ] Definir ResolvedSisadPdfmeConfig.
-[ ] Crear defaultSisadPdfmeConfig con modo designer funcional sin config.
-[ ] Crear merge seguro con defaults.
-[ ] Mapear config a runtimeOptions.
-[ ] Mapear config a DesignerEngine.
-[ ] Exportar desde integration/index.ts.
-[ ] Agregar pruebas unitarias del resolver.
-``​`
-
-Criterios:
-
-``​`txt
-createSisadPdfmeConfig() sin argumentos devuelve config funcional.
-No rompe props legacy de Designer/Form/Viewer.
-No importa nada del host.
-``​`
-
----
-
-### Fase 2 — Adapters genéricos
-
-**Agente responsable:** `api-contract-agent`
-**Subagentes:** `schema-agent`, `snapshot-agent`
-
-Crear:
-
-``​`txt
-src/sisad-pdfme/adapters/recipientsAdapter.ts
-src/sisad-pdfme/adapters/documentsAdapter.ts
-src/sisad-pdfme/adapters/persistenceAdapter.ts
-src/sisad-pdfme/adapters/signatureProviderAdapter.ts
-src/sisad-pdfme/adapters/permissionsAdapter.ts
-src/sisad-pdfme/adapters/eventsAdapter.ts
-src/sisad-pdfme/adapters/index.ts
-``​`
-
-Contratos mínimos:
-
-``​`ts
-export type SisadPdfmeRecipient = {
-  id: string;
-  label: string;
-  role?: string;
-  email?: string;
-  color?: string;
-  metadata?: Record<string, unknown>;
-};
-
-export type SisadPdfmeRecipientsAdapter<THostUser = unknown> = {
-  toRecipient(input: THostUser): SisadPdfmeRecipient;
-  toRecipients(input: THostUser[]): SisadPdfmeRecipient[];
-};
-``​`
-
-Tareas:
-
-``​`txt
-[ ] Adaptador de recipients.
-[ ] Adaptador de documents.
-[ ] Adaptador de persistence.
-[ ] Adaptador de signature providers.
-[ ] Adaptador de permissions.
-[ ] Adaptador de event bus.
-[ ] Tests con datos genéricos, no SISAD-WEB.
-``​`
-
-Criterio:
-
-``​`txt
-Cualquier host puede mapear sus usuarios/documentos/firmas sin modificar el core.
-``​`
-
----
-
-### Fase 3 — React Provider y wrappers públicos
-
-**Agente responsable:** `designer-runtime-agent`
-**Subagentes:** `interaction-agent`, `inspector-agent`
-
-Crear:
-
-``​`txt
-src/sisad-pdfme/react/SisadPdfmeProvider.tsx
-src/sisad-pdfme/react/SisadPdfmeDesigner.tsx
-src/sisad-pdfme/react/SisadPdfmeForm.tsx
-src/sisad-pdfme/react/SisadPdfmeViewer.tsx
-src/sisad-pdfme/react/useSisadPdfmeConfig.ts
-src/sisad-pdfme/react/useSisadPdfmeController.ts
-src/sisad-pdfme/react/index.ts
-``​`
-
-Tareas:
-
-``​`txt
-[ ] Provider resuelve config, adapters, runtimeOptions y designerEngine.
-[ ] SisadPdfmeDesigner envuelve Designer actual.
-[ ] SisadPdfmeForm envuelve Form actual.
-[ ] SisadPdfmeViewer envuelve Viewer actual.
-[ ] Mantener compatibilidad con props legacy.
-[ ] El host no abre manualmente SchemaAssignmentDialog.
-[ ] El host no importa RightSidebar/ListView/Canvas.
-``​`
-
-Criterios:
-
-``​`txt
-<SisadPdfmeDesigner template={template} documents={documents} />
-funciona sin config.
-``​`
-
----
-
-### Fase 4 — Reasignación responsable autoconfigurable
-
-**Agente responsable:** `interaction-agent`
-**Subagentes:** `canvas-agent`, `inspector-agent`, `regression-tester`
-
-Tareas:
-
-``​`txt
-[ ] Mover orquestación de SchemaAssignmentDialog al wrapper público.
-[ ] Activar botón por config.assignment.enabled.
-[ ] Reasignar desde selección simple o múltiple.
-[ ] Preservar locked/readOnly/objectLocked/collaborationLock.
-[ ] Actualizar ownerRecipientId, recipientId, ownerColor, recipientColor, userColor.
-[ ] Emitir onAssignmentChange.
-[ ] Resetear interacción transitoria al cerrar modal.
-[ ] No borrar selección al cancelar.
-``​`
-
-Pruebas:
-
-``​`txt
-[ ] Abrir modal con 1 schema.
-[ ] Abrir modal con N schemas.
-[ ] Cancelar y seguir seleccionando.
-[ ] Confirmar y actualizar owner/color.
-[ ] Reasignar no cambia lock/readOnly.
-``​`
-
----
-
-### Fase 5 — Interacción canvas/sidebar/modal centralizada
-
-**Agente responsable:** `interaction-agent`
-**Subagentes:** `canvas-agent`, `moveable-selecto-skill`, `regression-tester`
-
-Tareas:
-
-``​`txt
-[ ] Crear/usar DesignerInteractionController.
-[ ] Centralizar modos: idle, selecting, regionSelecting, draggingSchema, resizingSchema, modalOpen, editingField.
-[ ] Garantizar que modales/toolbars/dropdowns usan data-interaction-exclusion.
-[ ] Reemplazar decisiones sueltas por selectionPolicy.
-[ ] Cmd en Mac y Ctrl en Windows/Linux para selección aditiva.
-[ ] Shift no debe romper resize/keepRatio.
-[ ] Click vacío limpia selección si no hay modal.
-``​`
-
-Pruebas:
-
-``​`txt
-[ ] Cancelar modal no rompe selección.
-[ ] Doble click en Reasignar no abre dos veces.
-[ ] Modal no dispara Selecto debajo.
-[ ] Toolbar contextual no inicia drag.
-``​`
-
----
-
-### Fase 6 — Schema registry, DetailView e inspector por contrato
-
-**Agente responsable:** `inspector-agent`
-**Subagentes:** `schema-agent`, `option-groups-skill`, `anti-hallucination-reviewer`
-
-Tareas:
-
-``​`txt
-[ ] Consolidar InspectorWidgetContract.
-[ ] Cada widget visible tiene read/write/visibleWhen/disabledWhen/validate.
-[ ] Cada schema define inspector profile.
-[ ] Firma muestra provider solo cuando signatureMode === provider.
-[ ] Capacidades de firma son derivadas o avanzadas.
-[ ] Opciones select/radio/checkboxGroup usan editor común.
-[ ] Ubicación/tamaño no corta inputs.
-[ ] Formato muestra solo controles aplicables.
-``​`
-
-Criterio:
-
-``​`txt
-No existe control visible sin persistencia real.
-``​`
-
----
-
-### Fase 7 — Documentos, snapshot y runtime portable
-
-**Agente responsable:** `snapshot-agent`
-**Subagentes:** `designer-runtime-agent`, `schema-agent`
-
-Tareas:
-
-``​`txt
-[ ] DocumentsAdapter soporta single/multi.
-[ ] Preservar documentId/fileId/pageNumber/pageIndex.
-[ ] Snapshot incluye template, docs, recipients, active document y config version.
-[ ] Restore snapshot no pierde owner/colors/groups/options.
-[ ] Form runtime filtra campos por activeRecipient si config lo pide.
-[ ] Viewer readonly no carga sidebars ni Moveable/Selecto.
-``​`
-
-Pruebas:
-
-``​`txt
-[ ] Snapshot roundtrip.
-[ ] Multi-document routing.
-[ ] Form con activeRecipient.
-[ ] Viewer readonly.
-``​`
-
----
-
-### Fase 8 — Firma y providers genéricos
-
-**Agente responsable:** `schema-agent`
-**Subagentes:** `api-contract-agent`, `inspector-agent`
-
-Tareas:
-
-``​`txt
-[ ] Mover providers a config.signatures.providers.
-[ ] El core no llama APIs reales de firma.
-[ ] Provider externo se solicita por evento/adaptador.
-[ ] Modes: draw, image, p12, provider.
-[ ] DetailView cambia campos visibles por mode.
-[ ] Validar signature schema antes de export/save.
-``​`
-
-Criterio:
-
-``​`txt
-Cualquier host registra sus proveedores sin tocar schemas/signature internals.
-``​`
-
----
-
-### Fase 9 — CSS, Tailwind y aislamiento visual
-
-**Agente responsable:** `css-tailwind-agent`
-**Subagentes:** `css-auditor`, `legacy-css-guardian`, `visual-baseline-critic`
-
-Tareas:
-
-``​`txt
-[ ] Mantener único entrypoint src/sisad-pdfme/ui/styles/sisad-pdfme.css.
-[ ] Mantener tokens.css separado.
-[ ] Prohibir doble emisión de Tailwind.
-[ ] No tocar Moveable/Selecto/geometría/zoom con migración agresiva.
-[ ] Permitir className Tailwind en wrappers públicos.
-[ ] Crear smoke test visual de Designer/Form/Viewer.
-``​`
-
-Criterios:
-
-``​`txt
-El host solo importa sisad-pdfme.css.
-No hay dependencia del CSS global del host.
-``​`
-
----
-
-### Fase 10 — Documentación, task-cards y ejemplos
-
-**Agente responsable:** `docs-architecture-agent`
-**Subagentes:** `code-docs-writer`, `prompt-engineer`, `memory-curator`
-
-Crear documentación:
-
-``​`txt
-docs/07-integraciones/05-global-config.md
-docs/07-integraciones/06-host-adapters.md
-docs/13-ejemplos/04-basic-host-config.md
-docs/13-ejemplos/05-host-with-recipients.md
-docs/13-ejemplos/06-host-multi-document.md
-docs/13-ejemplos/07-form-viewer-host.md
-docs/08-api-reference/06-global-config-api.md
-docs/12-troubleshooting/05-integration-portability.md
-``​`
-
-Crear task-cards:
-
-``​`txt
-ai/task-cards/active/TASK-PORT-001-global-config.md
-ai/task-cards/active/TASK-PORT-002-adapters.md
-ai/task-cards/active/TASK-PORT-003-react-wrappers.md
-ai/task-cards/active/TASK-ASSIGN-001-reassignment-autoconfig.md
-ai/task-cards/active/TASK-INTERACTION-001-modal-lifecycle.md
-ai/task-cards/active/TASK-SCHEMA-002-inspector-contract.md
-ai/task-cards/active/TASK-SNAPSHOT-002-portable-runtime.md
-ai/task-cards/active/TASK-CSS-002-portable-entrypoint.md
-``​`
-
----
-
-## 6. Orquestación por agentes paralelos
-
-### Oleada A — Contratos y frontera
-
-Puede ejecutarse en paralelo:
-
-``​`txt
-Agent A1 — Boundary Auditor
-  Produce reports/portability-boundary-audit.md.
-
-Agent A2 — Config Architect
-  Crea config types, defaults y resolver.
-
-Agent A3 — Adapter Architect
-  Crea adapters genéricos.
-
-Agent A4 — Docs Architect
-  Crea docs y task-cards base.
-``​`
-
-Bloqueos: A2 y A3 no deben editar Designer internals todavía.
-
-### Oleada B — Wrappers y runtime
-
-``​`txt
-Agent B1 — React Public API
-  Crea Provider/Designer/Form/Viewer públicos.
-
-Agent B2 — Runtime Mapper
-  Conecta config a runtimeOptions y DesignerEngine.
-
-Agent B3 — Assignment Flow
-  Mueve reasignación al wrapper público.
-
-Agent B4 — Event Hub
-  Centraliza onReady/onSave/onError/onAssignmentChange.
-``​`
-
-Bloqueos: B3 depende de A2/A3; B1 depende de A2.
-
-### Oleada C — Interacción y schema behavior
-
-``​`txt
-Agent C1 — Interaction Controller
-  Modal lifecycle, selectionPolicy, transient reset.
-
-Agent C2 — Inspector Contracts
-  Widget contract, visibility, signature mode, options.
-
-Agent C3 — Snapshot Runtime
-  Snapshot roundtrip, multi-document, form/viewer.
-
-Agent C4 — Visual/CSS
-  Entry CSS único y baseline.
-``​`
-
-Bloqueos: C1 debe coordinar con B3; C2 coordina con B2.
-
-### Oleada D — Validación y release
-
-``​`txt
-Agent D1 — Regression Tester
-  Playwright/Vitest.
-
-Agent D2 — Anti-Hallucination Reviewer
-  Verifica que no se inventaron APIs.
-
-Agent D3 — Boundary Reviewer
-  Verifica que no hay host imports.
-
-Agent D4 — Documentation Finalizer
-  Actualiza README, ejemplos y troubleshooting.
-``​`
-
----
-
-## 7. Prompts por agente
-
-### Prompt maestro
-
-``​`txt
-Actúa como arquitecto frontend senior. El objetivo es convertir src/sisad-pdfme en una librería portable, aislada y configurable para React/Vite.
-
-Reglas:
-- src/sisad-pdfme no conoce ningún host concreto.
-- Prohibido importar desde src/features, src/modules, APIs de host, rutas privadas o lógica de negocio externa.
-- Mantener compatibilidad con Designer/Form/Viewer existentes.
-- No modificar pdf-lib/generator salvo exports públicos necesarios.
-- No modificar Moveable/Selecto ni geometría crítica salvo tarea explícita.
-- Usar src/sisad-pdfme/ui/styles/sisad-pdfme.css como único entrypoint visual.
-- Crear cambios pequeños, testeables y documentados.
-``​`
-
-### Prompt para Config Architect
-
-``​`txt
-Tarea:
-Crear la capa src/sisad-pdfme/config con SisadPdfmeGlobalConfig, defaults, resolver y createSisadPdfmeConfig.
-
-Debes mapear config hacia runtimeOptions y DesignerEngine sin cambiar internals pesados.
-
-Archivos permitidos:
-- src/sisad-pdfme/config/**
-- src/sisad-pdfme/integration/index.ts
-- tests unitarios nuevos
-
-No tocar Canvas, Moveable, Selecto, generator, pdf-lib.
-``​`
-
-### Prompt para Adapter Architect
-
-``​`txt
-Tarea:
-Crear adapters genéricos para recipients, documents, persistence, signatures, permissions y events.
-
-Los adapters solo declaran contratos y helpers puros. No deben llamar APIs reales.
-
-Archivos permitidos:
-- src/sisad-pdfme/adapters/**
-- src/sisad-pdfme/integration/index.ts
-- docs/07-integraciones/06-host-adapters.md
-``​`
-
-### Prompt para Assignment Flow
-
-``​`txt
-Tarea:
-Hacer que la reasignación de responsable funcione con config.assignment.enabled y recipients genéricos, sin que el host importe SchemaAssignmentDialog.
-
-Reglas:
-- Reasignar no cambia locked/readOnly/objectLocked/collaborationLock.
-- Cancelar modal conserva selección y limpia estado transitorio.
-- Confirmar emite onAssignmentChange.
-- Doble click no abre dos modales.
-
-Archivos probables:
-- src/sisad-pdfme/react/SisadPdfmeDesigner.tsx
-- src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SchemaAssignmentDialog.tsx
-- src/sisad-pdfme/ui/components/Designer/shared/schemaAssignmentService.ts
-- src/sisad-pdfme/ui/components/Designer/shared/designerInteractionReset.ts
-``​`
-
-### Prompt para Interaction Controller
-
-``​`txt
-Tarea:
-Centralizar lifecycle de interacción canvas/sidebar/modal.
-
-Reglas:
-- Modal abierto suspende Selecto/Moveable/shortcuts.
-- Modal cerrado restablece interacción transitoria sin borrar selección.
-- Cmd/Ctrl click agrega/quita selección según plataforma.
-- Shift no reemplaza al policy de selección.
-
-Archivos probables:
-- src/sisad-pdfme/ui/components/Designer/shared/interactionState.ts
-- src/sisad-pdfme/ui/components/Designer/shared/interactionExclusions.ts
-- src/sisad-pdfme/ui/components/Designer/shared/selectionPolicy.ts
-- src/sisad-pdfme/ui/components/Designer/Canvas/Canvas.tsx
-- src/sisad-pdfme/ui/components/Designer/Canvas/Selecto.tsx
-``​`
-
----
-
-## 8. Tests obligatorios
-
-### Unitarios
-
-``​`txt
-[ ] createSisadPdfmeConfig merges defaults.
-[ ] resolve config to DesignerEngine.
-[ ] recipientsAdapter maps host users.
-[ ] documentsAdapter maps host docs.
-[ ] assignment preserves lock/readOnly.
-[ ] signature providers from config.
-``​`
-
-### Playwright
-
-``​`txt
-[ ] Designer sin config renderiza.
-[ ] Designer con recipients muestra Reasignar al seleccionar.
-[ ] Reasignar abre modal interno.
-[ ] Cancelar modal no rompe selección.
-[ ] Confirmar cambia owner/color.
-[ ] Multi-document mantiene documentId/pageNumber.
-[ ] Form no muestra Moveable/Selecto.
-[ ] Viewer readonly no muestra sidebars.
-``​`
-
-### Boundary tests
-
-``​`bash
-rg "DigitalAgreements|StepOne|StepTwo|Uanataca|Workflow|Documentary|axiosClient|src/features|src/modules" src/sisad-pdfme && exit 1 || exit 0
-``​`
-
----
-
-## 9. Criterios de aceptación finales
-
-``​`txt
-[ ] src/sisad-pdfme se puede copiar a otro React/Vite project.
-[ ] Solo se importa sisad-pdfme.css.
-[ ] Designer funciona sin config.
-[ ] Designer funciona con config mínima.
-[ ] Reasignar funciona con config + recipients sin código custom.
-[ ] Form y Viewer funcionan sin Designer.
-[ ] El host no importa internals.
-[ ] No hay imports hacia host.
-[ ] Signature providers se registran por config.
-[ ] Schemas custom se registran por config/registry.
-[ ] Snapshot roundtrip preserva metadata crítica.
-[ ] Multi-document preserva documentId/fileId/pageNumber.
-[ ] Cancelar modal no rompe canvas.
-[ ] Tests unitarios y Playwright pasan.
-``​`
-
----
-
-## 10. Entrega esperada
-
-1. Código:
-   - `src/sisad-pdfme/config/**`
-   - `src/sisad-pdfme/adapters/**`
-   - `src/sisad-pdfme/react/**`
-   - exports en `src/sisad-pdfme/integration/index.ts`
-
-2. Docs:
-   - integración por configuración global;
-   - adapters de host;
-   - ejemplos básicos;
-   - troubleshooting de portabilidad.
-
-3. QA:
-   - reportes de frontera;
-   - pruebas unitarias;
-   - pruebas e2e;
-   - baseline visual.
+No declares que la migración terminó solo porque bajaron las líneas. Termina cuando `@apply = 0`, el residual técnico está documentado y el baseline funcional/visual pasa.
 ```
 
-<a id="file-0099"></a>
+<a id="file-0102"></a>
 
-### 0099 — `.github/copilot-instructions.md`
+### 0102 — `.github/copilot-instructions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -4337,9 +4940,9 @@ Copilot debe seguir estas reglas mínimas:
 - Preferir cambios pequeños y focalizados.
 ```
 
-<a id="file-0100"></a>
+<a id="file-0103"></a>
 
-### 0100 — `ai/README.md`
+### 0103 — `ai/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -4388,9 +4991,9 @@ Esta carpeta centraliza todo lo que un asistente necesita para trabajar sin aluc
 ``​`
 ```
 
-<a id="file-0101"></a>
+<a id="file-0104"></a>
 
-### 0101 — `ai/tree.md`
+### 0104 — `ai/tree.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `26`
@@ -4427,9 +5030,9 @@ ai/
 ``​`
 ```
 
-<a id="file-0102"></a>
+<a id="file-0105"></a>
 
-### 0102 — `reports/jsdoc-missing-report.md`
+### 0105 — `reports/jsdoc-missing-report.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `2254`
@@ -6694,9 +7297,9 @@ ai/
 - Línea 103: `type` `DesignerRuntimeApi`
 ```
 
-<a id="file-0103"></a>
+<a id="file-0106"></a>
 
-### 0103 — `scripts/README.md`
+### 0106 — `scripts/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -6728,9 +7331,55 @@ bash scripts/clean-empty-dirs.sh /ruta/proyecto --confirm
 ``​`
 ```
 
-<a id="file-0104"></a>
+<a id="file-0107"></a>
 
-### 0104 — `ai/adapters/README.md`
+### 0107 — `.serena/memories/memory_maintenance.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `33`
+- **Tamaño original:** `2.0 KB`
+- **SHA1 corto:** `d8be20e859`
+- **Estado:** `completo`
+
+```markdown
+# Memory Maintenance
+
+## Discovery Model
+
+- Core principle: progressive discovery through references, building a graph of memories.
+- Initially, agents are provided with the list of all memories (names only).
+- Agents should read `mem:core` as the top-level entry point (graph root).
+  This memory should contain references to other memories covering major project domains.
+  The referenced memories shall, in turn, shall contain references to even more specific memories, and so on.
+  The depth of the graph shall depend on the project complexity.
+- Use topics/folders to group related memories in order to make the content structure explicit.
+  Folders can mirror project structure (e.g. modules like frontend/backend) or topics like debugging, architecture, etc.
+- Memory references must use a mem: prefix inside backticks, e.g. `mem:frontend/core`.
+  The surrounding text should clearly indicate when to read the memory/which content to expect.
+  The text should provide more precise guidance than the memory name alone,
+  i.e. avoid a reference like "frontend debugging: `mem:frontend/debugging` and instead make clear which aspects of frontend debugging are covered.
+- Memories themselves should not contain information about when to read them; this is the responsibility of the referring memory.
+
+## Style
+
+Dense agent notes, not prose docs. Prefer invariants, terse bullets.
+Avoid obvious context, rationale, and examples unless they prevent likely mistakes.
+Keep guidance durable and generalizable, not task-local.
+
+## Add/update threshold
+
+Add or update memories only with stable, non-obvious project conventions that avoid complex rediscovery in the future.
+Do not add: quick-read facts; generic language/framework knowledge; one-off task notes; volatile line-level details; behavior likely to change soon.
+
+## Maintenance Actions
+
+- Renaming memories: References are updated automatically if handled via Serena's memory rename tool.
+- Checking for stale memories (e.g. after deletion): Call `serena memories check` for a report.
+```
+
+<a id="file-0108"></a>
+
+### 0108 — `ai/adapters/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -6744,9 +7393,9 @@ bash scripts/clean-empty-dirs.sh /ruta/proyecto --confirm
 Adaptadores para herramientas. Los archivos raíz deben ser copias delgadas de estos o apuntar a `ai/start/START.md`.
 ```
 
-<a id="file-0105"></a>
+<a id="file-0109"></a>
 
-### 0105 — `ai/agents/canvas-agent.md`
+### 0109 — `ai/agents/canvas-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -6794,9 +7443,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0106"></a>
+<a id="file-0110"></a>
 
-### 0106 — `ai/agents/css-tailwind-agent.md`
+### 0110 — `ai/agents/css-tailwind-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -6844,9 +7493,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0107"></a>
+<a id="file-0111"></a>
 
-### 0107 — `ai/agents/designer-runtime-agent.md`
+### 0111 — `ai/agents/designer-runtime-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -6894,9 +7543,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0108"></a>
+<a id="file-0112"></a>
 
-### 0108 — `ai/agents/docs-architecture-agent.md`
+### 0112 — `ai/agents/docs-architecture-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -6944,9 +7593,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0109"></a>
+<a id="file-0113"></a>
 
-### 0109 — `ai/agents/inspector-agent.md`
+### 0113 — `ai/agents/inspector-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -6994,9 +7643,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0110"></a>
+<a id="file-0114"></a>
 
-### 0110 — `ai/agents/interaction-agent.md`
+### 0114 — `ai/agents/interaction-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -7044,9 +7693,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0111"></a>
+<a id="file-0115"></a>
 
-### 0111 — `ai/agents/lab-shell-agent.md`
+### 0115 — `ai/agents/lab-shell-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -7094,9 +7743,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0112"></a>
+<a id="file-0116"></a>
 
-### 0112 — `ai/agents/README.md`
+### 0116 — `ai/agents/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7110,9 +7759,9 @@ playbook del dominio
 Cada agente representa un dominio principal. Un agente no debe cambiar de dominio durante una task-card.
 ```
 
-<a id="file-0113"></a>
+<a id="file-0117"></a>
 
-### 0113 — `ai/agents/registry.md`
+### 0117 — `ai/agents/registry.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -7135,9 +7784,9 @@ Cada agente representa un dominio principal. Un agente no debe cambiar de domini
 - `docs-architecture-agent.md` — Docs Architecture Agent: Mantiene ai/ sin duplicidad, memoria, reglas, prompts y task-cards.
 ```
 
-<a id="file-0114"></a>
+<a id="file-0118"></a>
 
-### 0114 — `ai/agents/schema-agent.md`
+### 0118 — `ai/agents/schema-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -7185,9 +7834,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0115"></a>
+<a id="file-0119"></a>
 
-### 0115 — `ai/agents/snapshot-agent.md`
+### 0119 — `ai/agents/snapshot-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -7235,9 +7884,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0116"></a>
+<a id="file-0120"></a>
 
-### 0116 — `ai/agents/visual-baseline-agent.md`
+### 0120 — `ai/agents/visual-baseline-agent.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -7285,9 +7934,9 @@ playbook del dominio
 ``​`
 ```
 
-<a id="file-0117"></a>
+<a id="file-0121"></a>
 
-### 0117 — `ai/baselines/img-version-baseline-protocol.md`
+### 0121 — `ai/baselines/img-version-baseline-protocol.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -7327,9 +7976,9 @@ Evaluar:
 - consistencia.
 ```
 
-<a id="file-0118"></a>
+<a id="file-0122"></a>
 
-### 0118 — `ai/baselines/README.md`
+### 0122 — `ai/baselines/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7343,9 +7992,9 @@ Evaluar:
 Protocolos de referencia visual y funcional.
 ```
 
-<a id="file-0119"></a>
+<a id="file-0123"></a>
 
-### 0119 — `ai/checklists/button-action-contract-checklist.md`
+### 0123 — `ai/checklists/button-action-contract-checklist.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `57`
@@ -7413,9 +8062,9 @@ Protocolos de referencia visual y funcional.
 - [ ] Zoom in
 ```
 
-<a id="file-0120"></a>
+<a id="file-0124"></a>
 
-### 0120 — `ai/checklists/done-vs-pending.md`
+### 0124 — `ai/checklists/done-vs-pending.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `41`
@@ -7467,9 +8116,9 @@ Antes de implementar:
 No usar `completed/**` como fuente de tareas pendientes.
 ```
 
-<a id="file-0121"></a>
+<a id="file-0125"></a>
 
-### 0121 — `ai/checklists/global-validation.md`
+### 0125 — `ai/checklists/global-validation.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -7488,9 +8137,9 @@ No usar `completed/**` como fuente de tareas pendientes.
 - [ ] Nueva memoria si hubo decisión.
 ```
 
-<a id="file-0122"></a>
+<a id="file-0126"></a>
 
-### 0122 — `ai/checklists/improvement-backlog.md`
+### 0126 — `ai/checklists/improvement-backlog.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -7510,14 +8159,14 @@ No usar `completed/**` como fuente de tareas pendientes.
 | Media | Mejorar LeftSidebar truncation | Pendiente |
 ```
 
-<a id="file-0123"></a>
+<a id="file-0127"></a>
 
-### 0123 — `ai/checklists/manual-ui-regression.md`
+### 0127 — `ai/checklists/manual-ui-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
 - **Tamaño original:** `0.4 KB`
-- **SHA1 corto:** `8477f3209e`
+- **SHA1 corto:** `ddd3d785d4`
 - **Estado:** `completo`
 
 ```markdown
@@ -7525,15 +8174,15 @@ No usar `completed/**` como fuente de tareas pendientes.
 
 ## `/lab/multi-document-routing`
 
-- [ ] Header compacto.
-- [ ] Canvas protagonista.
-- [ ] LeftSidebar se parece al baseline.
-- [ ] RightSidebar se parece al baseline.
+- [x] Header compacto.
+- [x] Canvas protagonista.
+- [x] LeftSidebar se parece al baseline.
+- [x] RightSidebar se parece al baseline.
 - [ ] Drag/drop funciona.
 - [ ] Selección funciona.
 - [ ] Página 2+ funciona.
 - [ ] Multi-recipient funciona.
-- [ ] ResultsPanel no tapa toolbar.
+- [x] ResultsPanel no tapa toolbar.
 
 ## `/lab/generator-runtime`
 
@@ -7542,9 +8191,53 @@ No usar `completed/**` como fuente de tareas pendientes.
 - [ ] PDF sin chrome.
 ```
 
-<a id="file-0124"></a>
+<a id="file-0128"></a>
 
-### 0124 — `ai/checklists/README.md`
+### 0128 — `ai/checklists/pdfcomponent-dynamic-integration-checklist.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `31`
+- **Tamaño original:** `1.4 KB`
+- **SHA1 corto:** `dc1c6ee073`
+- **Estado:** `completo`
+
+```markdown
+# Checklist — integración dinámica `src/features/pdfcomponent`
+
+## Frontera con core
+
+- [ ] No importar `DesignerEngineBuilder` desde ejemplos.
+- [ ] No importar `usePdfmeRuntimeInstance` desde ejemplos.
+- [ ] No construir `designerEngineOptions` manualmente en `PdfmeLabPage.jsx`.
+- [ ] No construir `commonOptions.collaboration` manualmente en host.
+- [ ] No decorar template con collaboration fuera del core/wrapper salvo fixture legacy explícito.
+
+## Datos únicos
+
+- [ ] Recipients existen solo en `example.recipients` o `props.recipients`.
+- [ ] Active recipient existe solo como `activeRecipientId`.
+- [ ] Documents existen solo en `example.documents` o `props.documents`.
+- [ ] Signature providers existen solo en `config.signatures.providers`.
+- [ ] Visibility/actions existen solo en `config.visibility` + action registry.
+
+## Acciones
+
+- [ ] Cada botón visible tiene `id`, `label`, `enabled`, `disabledReason`, `run`, `testId`.
+- [ ] `CompactControls` renderiza acciones, no las inventa.
+- [ ] Las acciones de generator/converter viven en `labArtifactService`.
+- [ ] Las acciones del designer usan controller público.
+
+## Pruebas mínimas
+
+- [ ] Cambiar recipient actual actualiza Designer/Form/Viewer sin doble registro.
+- [ ] Multi-document routing usa `documents` normalizados una sola vez.
+- [ ] Generator/converter funcionan leyendo template/inputs desde el hook.
+- [ ] Export bundle conserva recipients/documents/config sin duplicarlos.
+```
+
+<a id="file-0129"></a>
+
+### 0129 — `ai/checklists/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7558,9 +8251,38 @@ No usar `completed/**` como fuente de tareas pendientes.
 Checklists vivos para validar tareas y controlar pendientes.
 ```
 
-<a id="file-0125"></a>
+<a id="file-0130"></a>
 
-### 0125 — `ai/checklists/tailwind-migration.md`
+### 0130 — `ai/checklists/tailwind-design-continuity-validation.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `16`
+- **Tamaño original:** `1.0 KB`
+- **SHA1 corto:** `6b36ba0bc4`
+- **Estado:** `completo`
+
+```markdown
+# Checklist — continuidad visual y Tailwind
+
+- [ ] Hay exactamente una tarjeta activa.
+- [ ] Se respetaron 8 archivos abiertos y 5 modificados por pasada.
+- [ ] Se registró baseline antes del cambio.
+- [ ] No se introdujeron clases Tailwind construidas dinámicamente.
+- [ ] `tokens.css` mantiene tokens y contratos compartidos.
+- [ ] No cambió geometría, selección, drag/resize, snapshot ni PDF fuera de alcance.
+- [ ] Estados normal, hover, focus-visible, disabled, activo y colapsado fueron revisados.
+- [ ] Cambiar de usuario actualiza el borde/fondo/acento exterior del schema según propietario.
+- [ ] No hay solapamiento de controles en sidebars ni clipping accidental.
+- [ ] Las guías/reglas no producen bloques negros o capas opacas.
+- [ ] Typecheck, lint y pruebas focalizadas pasan.
+- [ ] La ruta `/lab/multi-document-routing` fue comparada a viewport fijo.
+- [ ] Se registraron conteos finales de `@apply`, inline styles y selectores eliminados.
+- [ ] La tarjeta contiene evidencia y criterio de parada satisfecho.
+```
+
+<a id="file-0131"></a>
+
+### 0131 — `ai/checklists/tailwind-migration.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -7582,9 +8304,9 @@ Checklists vivos para validar tareas y controlar pendientes.
 - [ ] PDF final sin chrome no deseado.
 ```
 
-<a id="file-0126"></a>
+<a id="file-0132"></a>
 
-### 0126 — `ai/context/action-map-context.md`
+### 0132 — `ai/context/action-map-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `70`
@@ -7665,9 +8387,9 @@ type DesignerActionId =
 - Botón que depende de recipient local cuando existe RecipientRegistry.
 ```
 
-<a id="file-0127"></a>
+<a id="file-0133"></a>
 
-### 0127 — `ai/context/ai-docs-context.md`
+### 0133 — `ai/context/ai-docs-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7681,9 +8403,9 @@ type DesignerActionId =
 La carpeta `ai/` es fuente de verdad. Documentación antigua puede migrarse, pero no duplicarse.
 ```
 
-<a id="file-0128"></a>
+<a id="file-0134"></a>
 
-### 0128 — `ai/context/canvas-multipage-context.md`
+### 0134 — `ai/context/canvas-multipage-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -7703,9 +8425,9 @@ event → page target → coordinate conversion → schema metadata → render p
 Validar siempre página 2+.
 ```
 
-<a id="file-0129"></a>
+<a id="file-0135"></a>
 
-### 0129 — `ai/context/css-tailwind-context.md`
+### 0135 — `ai/context/css-tailwind-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `26`
@@ -7742,9 +8464,9 @@ Migrar clases visuales a JSX/TSX, pero conservar CSS crítico:
 tokens, geometry, zoom, transforms, Moveable, Selecto, print/PDF, canvas/paper, pseudo-elementos complejos.
 ```
 
-<a id="file-0130"></a>
+<a id="file-0136"></a>
 
-### 0130 — `ai/context/inspector-context.md`
+### 0136 — `ai/context/inspector-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7758,9 +8480,9 @@ tokens, geometry, zoom, transforms, Moveable, Selecto, print/PDF, canvas/paper, 
 Inspector usa secciones declarativas. Widgets actualizan schema por command/update centralizado, no por mutación directa.
 ```
 
-<a id="file-0131"></a>
+<a id="file-0137"></a>
 
-### 0131 — `ai/context/README.md`
+### 0137 — `ai/context/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7774,9 +8496,9 @@ Inspector usa secciones declarativas. Widgets actualizan schema por command/upda
 Contextos focales. Cargar solo uno por task-card.
 ```
 
-<a id="file-0132"></a>
+<a id="file-0138"></a>
 
-### 0132 — `ai/context/schema-families-context.md`
+### 0138 — `ai/context/schema-families-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -7792,9 +8514,9 @@ Familias: text-like, boolean, option-based, signing-based, action-based, media, 
 Cada familia define render, inspector, value adapter y compatibilidad Form/Viewer/PDF.
 ```
 
-<a id="file-0133"></a>
+<a id="file-0139"></a>
 
-### 0133 — `ai/context/selection-transform-context.md`
+### 0139 — `ai/context/selection-transform-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7808,9 +8530,9 @@ Cada familia define render, inspector, value adapter y compatibilidad Form/Viewe
 Selecto selecciona roots con `data-schema-id`. Moveable transforma roots. Excluir option internals, botón +, toolbar, inputs, contenteditable y overlays.
 ```
 
-<a id="file-0134"></a>
+<a id="file-0140"></a>
 
-### 0134 — `ai/context/snapshot-context.md`
+### 0140 — `ai/context/snapshot-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -7824,9 +8546,47 @@ Selecto selecciona roots con `data-schema-id`. Moveable transforma roots. Exclui
 Snapshot preserva document/page, geometry, ownership, options, selected values y `__designer`.
 ```
 
-<a id="file-0135"></a>
+<a id="file-0141"></a>
 
-### 0135 — `ai/context/visual-baseline-context.md`
+### 0141 — `ai/context/tailwind-design-continuity-context.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `1.7 KB`
+- **SHA1 corto:** `c96685dd03`
+- **Estado:** `completo`
+
+```markdown
+# Contexto — continuidad visual y migración Tailwind
+
+## Evidencia disponible
+
+- Ruta objetivo: `/lab/multi-document-routing`.
+- CSS objetivo: `src/sisad-pdfme/ui/styles/sisad-pdfme.css`, `src/features/pdfcomponent/labRoutes.css` y `src/sisad-pdfme/ui/styles/tokens.css`.
+- Constantes relevantes: `src/sisad-pdfme/ui/constants.ts`; sus clases concatenadas deben conservarse o transformarse en mapas estáticos detectables por Tailwind.
+- La captura de 2026-07-15 evidencia solapamientos en el sidebar izquierdo, densidad inconsistente, rail derecho estrecho y una superficie negra/anómala junto a reglas o guías.
+- La auditoría detectó una doble fuente de tono: `Renderer.tsx` calcula `ownerColor`, mientras el chrome exterior puede usar `schemaTone`. El cambio de usuario debe colorear el exterior del schema con el color del propietario real.
+
+## Restricciones
+
+- `tokens.css` conserva variables, temas, resets mínimos y contratos compartidos; no debe vaciarse por una meta numérica.
+- Migrar primero utilidades estructurales a `className`; conservar en CSS pseudoestados, selectores complejos, portales, keyframes, variables y contratos de terceros.
+- No construir nombres Tailwind dinámicos como `bg-${color}-500`. Usar mapas completos, `clsx`, `cn` o variantes estáticas.
+- No alterar geometría, coordenadas, zoom, drag/resize, selección, snapshots ni PDF durante una tarjeta CSS.
+- Cada corrección debe demostrar equivalencia funcional y visual antes de eliminar CSS.
+
+## Orden
+
+1. Restaurar color por propietario.
+2. Unificar la fuente de estilos del shell del lab.
+3. Reducir `@apply` por regiones pequeñas.
+4. Aislar la regresión de guías/reglas del canvas.
+5. Cerrar con validación visual y ledger cuantitativo.
+```
+
+<a id="file-0142"></a>
+
+### 0142 — `ai/context/visual-baseline-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -7855,9 +8615,9 @@ Comparar intención visual, no pixel-perfect:
 - canvas-first.
 ```
 
-<a id="file-0136"></a>
+<a id="file-0143"></a>
 
-### 0136 — `ai/docs-migration/MIGRATION_FROM_OLD_STRUCTURE.md`
+### 0143 — `ai/docs-migration/MIGRATION_FROM_OLD_STRUCTURE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -7898,9 +8658,9 @@ AGENTS.md/CLAUDE.md si existen
 | `reports/*` | conservar como evidencia, no cargar por defecto |
 ```
 
-<a id="file-0137"></a>
+<a id="file-0144"></a>
 
-### 0137 — `ai/memory/changelog.md`
+### 0144 — `ai/memory/changelog.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -7918,9 +8678,9 @@ AGENTS.md/CLAUDE.md si existen
 - Se agregan adaptadores para Codex, Claude y GitHub Copilot.
 ```
 
-<a id="file-0138"></a>
+<a id="file-0145"></a>
 
-### 0138 — `ai/memory/completed-checklist.md`
+### 0145 — `ai/memory/completed-checklist.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `27`
@@ -7958,9 +8718,9 @@ AGENTS.md/CLAUDE.md si existen
 - No convertir reports/completed en contexto activo.
 ```
 
-<a id="file-0139"></a>
+<a id="file-0146"></a>
 
-### 0139 — `ai/memory/decisions.md`
+### 0146 — `ai/memory/decisions.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -7992,9 +8752,9 @@ Las imágenes de `public/img-version` son referencia de intención visual previa
 Paper, transform, zoom, x/y/width/height, Moveable/Selecto y z-index crítico permanecen en CSS/tokens o inline controlado.
 ```
 
-<a id="file-0140"></a>
+<a id="file-0147"></a>
 
-### 0140 — `ai/memory/known-risks.md`
+### 0147 — `ai/memory/known-risks.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -8015,9 +8775,9 @@ Paper, transform, zoom, x/y/width/height, Moveable/Selecto y z-index crítico pe
 | Agentes duplican reglas | Alucinaciones/inconsistencias | Adaptadores delgados |
 ```
 
-<a id="file-0141"></a>
+<a id="file-0148"></a>
 
-### 0141 — `ai/memory/memory-update-protocol.md`
+### 0148 — `ai/memory/memory-update-protocol.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -8057,14 +8817,14 @@ Actualizar memoria solo si ocurrió una decisión estable o cambio relevante.
 ``​`
 ```
 
-<a id="file-0142"></a>
+<a id="file-0149"></a>
 
-### 0142 — `ai/memory/pending-checklist.md`
+### 0149 — `ai/memory/pending-checklist.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `18`
-- **Tamaño original:** `0.8 KB`
-- **SHA1 corto:** `7a567614ef`
+- **Líneas:** `21`
+- **Tamaño original:** `1.2 KB`
+- **SHA1 corto:** `21e1600af9`
 - **Estado:** `completo`
 
 ```markdown
@@ -8074,11 +8834,14 @@ Este archivo contiene solo trabajo pendiente o continuidad. Las tareas completad
 
 ## Active existente
 
-- [ ] `TASK-PDFME-005-digital-agreements-runtime-adapter.md`
-- [ ] `TASK-PDFME-008-signature-policies-firma-sisad.md`
-- [ ] `TASK-PDFME-009-externalforms-runner-contract.md`
+- [ ] `TASK-REGRESSION-021-shell-token-visual-recovery.md`
+- `TASK-CSS-019-jsx-tsx-tailwind-migration-and-css-reduction.md` ya vive en `ai/task-cards/completed/`.
 
 ## Backlog / continuidad
+
+- `TASK-PDFME-005-digital-agreements-runtime-adapter.md` - fuera de este repo; el core equivalente ya está cubierto en `src/sisad-pdfme`.
+- `TASK-PDFME-008-signature-policies-firma-sisad.md` - fuera de este repo; el core ya expone políticas técnicas y el negocio vive en el host.
+- `TASK-PDFME-009-externalforms-runner-contract.md` - fuera de este repo; el runner core ya existe en `src/sisad-pdfme/externalForms`.
 
 
 ## Pendientes transversales
@@ -8088,9 +8851,9 @@ Este archivo contiene solo trabajo pendiente o continuidad. Las tareas completad
 - [x] Confirmar que el CSS migrado a Tailwind inline no rompe geometry, zoom, canvas, paper, Moveable, Selecto o print/PDF.
 ```
 
-<a id="file-0143"></a>
+<a id="file-0150"></a>
 
-### 0143 — `ai/memory/project-memory.md`
+### 0150 — `ai/memory/project-memory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -8121,9 +8884,9 @@ El proyecto `sisad-pdfme` es un diseñador PDF con laboratorios bajo `src/featur
 La migración Tailwind puede romper layout por doble fuente de verdad: Tailwind JSX + bridge + CSS legacy. Corregir por capas.
 ```
 
-<a id="file-0144"></a>
+<a id="file-0151"></a>
 
-### 0144 — `ai/memory/README.md`
+### 0151 — `ai/memory/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -8147,14 +8910,14 @@ La memoria evita repetir decisiones y reduce tokens. Debe mantenerse corta, obje
 - `pending-checklist.md`: pendientes priorizados.
 ```
 
-<a id="file-0145"></a>
+<a id="file-0152"></a>
 
-### 0145 — `ai/memory/session-handoff.md`
+### 0152 — `ai/memory/session-handoff.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `63`
-- **Tamaño original:** `3.3 KB`
-- **SHA1 corto:** `2dc731dfe0`
+- **Líneas:** `168`
+- **Tamaño original:** `9.6 KB`
+- **SHA1 corto:** `a4ae0d4ca7`
 - **Estado:** `completo`
 
 ```markdown
@@ -8221,11 +8984,808 @@ designerUiConfig, duplicados de SchemaAccessState, badge type y ctx de tests).
 - El copy del DetailView es inestable; los specs nuevos asertan títulos
   estables/testids, no descripciones.
 - No usar git stash (4 stashes ajenos).
+
+## Sesión 2026-07-15 (tarde) — TASK-INTERACTION-016 + seguimiento LAB-026
+
+**INTERACTION-016 (freeze tras modal Reasignar) — CERRADA.** Causa raíz:
+`isAntDPopupOpen()` contaba popups AntD montados-pero-ocultos (tooltip del
+botón Reasignar, dropdowns `ant-*-hidden`) → Selecto/shortcuts congelados para
+siempre. Fix: detección consciente de visibilidad + lifecycle único
+`requestClose(reason)` + reset transitorio extendido (keepSelection,
+releaseModalLock, blur solo con foco huérfano) + Escape a nivel documento.
+Spec `assignment-modal-selection-freeze-regression` (4 tests) en verde.
+
+**LAB-026 seguimiento — CERRADO.** Cadena de regresiones del preset resuelta:
+CSS base importado en `react/index.ts`; adapter de documentos unificado
+(la copia local del resolver PERDÍA `template` → canvas empty_page);
+preset como estado inicial (no controlado); `--sisad-pdfme-rs-width` publicado
+con el ancho real JS; CtlBar honra density explícito; shell del lab sin
+overflow; reparado `@layer components` sin `@tailwind` que tiraba 500.
+Bonus: shift-click acumulativo (selectionPolicy) — el par unit+e2e ahora
+concuerda.
+
+Estado final: 26 tests e2e en verde en el barrido completo, 288+ unit de las
+suites tocadas (solo quedaba schemaTone desactualizado, ya alineado), build
+exit 0.
+
+**Deuda conocida**: los specs asumen ahora el contrato multi-página (17 papers,
+máscaras por página no activa por diseño); si el routing multi-doc cambia a
+"solo páginas del documento activo", revisar canvas-interactions y checkbox.
+Codex sigue editando en paralelo: HUBO 3 colisiones reparadas aquí (statusTone
+fuera de scope, duplicados en SchemaAccessState, @layer sin @tailwind).
+
+## Sesión 2026-07-15 (noche) — ListView plano + reglas claras + estados
+
+- TASK-CSS-024 (fila plana del ListView, Item.tsx) — completada.
+- TASK-CANVAS-003 (bloque negro de reglas/guías) — completada: la regresión era
+  el default oscuro `#2d2d2d`/`bg-slate-800` en `Guides.tsx`; migrado a paleta
+  light (`#f8fafc`/`#f1f5f9`, texto slate legible). Verificado por color
+  computado + captura + specs de canvas.
+- TASK-CSS-020 (labRoutes zero-apply) — completada (labRoutes.css ya era no-op,
+  0 @apply).
+- Reconciliado: eliminado duplicado de TASK-REGRESSION-020 en backlog.
+- Abierta TASK-QA-017 (deriva de specs por panel Docs default de LAB-029).
+
+### Migración @apply de sisad-pdfme.css (directiva del usuario) — NO ejecutada en bloque
+
+Motivo: `sisad-pdfme.css` tiene 588 `@apply` en 2486 líneas y su distribución es
+~60% geometría de canvas/stage (prohibida) + DetailView/RightSidebar (zona activa
+de Copilot, colisión) + reglas de layout sidebar↔canvas. La card activa
+TASK-REGRESSION-021 (de Copilot) marca ese CSS PROHIBIDO y explícitamente veta
+la migración masiva de @apply hasta probar paridad visual. Migrar en bloque
+rompería visuales y chocaría con dos agentes. Debe hacerse por componente, en
+slices, coordinado, cuando REGRESSION-021 cierre. Backlog CSS-021/022 (left
+sidebar) son los siguientes slices seguros cuando el LeftSidebar no esté en
+edición paralela.
+
+## Migración @apply CSS→JSX — pase 1 (2026-07-15) — TASK-CSS-025
+
+- Migrados a JSX (fuente única) y eliminados del CSS: skin de `context-summary`
+  (DesignerContextSummary.tsx, componente sin montar) y base de `guides` corner/
+  ruler (Guides.tsx). `@apply` en sisad-pdfme.css: 588 → 574.
+- Se conservan en CSS solo reglas no expresables como className: descendientes
+  `.scena-guides-*` (elementos de la librería) y variantes acopladas al `.stage`.
+- HALLAZGO CLAVE (afecta toda migración futura): `preflight: false` →
+  `border-b`/`border-r` NO fijan `border-style` y el borde colapsa a 0; usar
+  `border-X border-solid`. La utilidad `border` (todos los lados) sí rinde solid.
+- El grueso restante (574) es geometría/stage (prohibida) o zona activa de
+  Copilot; requiere pases por componente coordinados.
+
+## Migración @apply — pase 2 (2026-07-15) — ErrorScreen + muro de contención
+
+- Migrado `ErrorScreen.tsx` (grid centering, width, skin) → JSX; eliminadas
+  reglas element + padding en conflicto. `@apply` acumulado: 588 → 571.
+- MURO DE CONTENCIÓN: git status muestra TODO el designer UI dirty (LeftSidebar*,
+  PluginIcon, DetailView/*, RightSidebar*, ListView*, index.tsx, CtlBar,
+  Canvas...) por edición paralela de Codex/Copilot. El resto del skin migrable
+  está en esos componentes o es geometría de canvas/stage (prohibida). No es
+  seguro seguir migrando sisad-pdfme.css hasta que el trabajo paralelo haga
+  commit. URGENTE: commitear y coordinar antes del siguiente pase.
+
+## Migración @apply — pase 3 (2026-07-15) — SelectionContextToolbar
+- Eliminado el bloque CSS muerto/redundante de `.selection-context-toolbar*`
+  (≈46 reglas): el componente se reescribió a estructura mínima inline. Migrado
+  al JSX solo `absolute`/`pointer-events-auto`/animación. `@apply` 588 → 525.
+- 2º matiz border-solid: los <button> tienen `border-style: outset` del UA →
+  requieren `border-solid` (los <div> son `none`). Regla para toda la migración.
+
+## Migración @apply — pase 4 (2026-07-15) — reglas muertas
+- Borradas reglas de clases sin render (verificado 0 refs con las 3 formas de
+  construcción): context-menu, list-view-empty/-title/-hint/-counter/-subtitle.
+  @apply acumulado: 588 → 514. Build OK, riesgo cero (nada las monta).
+- Copilot edita el CSS en paralelo (conteo baja solo). Regla: solo migrar .tsx
+  no-dirty o borrar reglas muertas verificadas; NO bulk-delete por detector
+  ingenuo (falsos positivos como `stage` que es live vía template literal).
+
+## Migración @apply — pase 5 (2026-07-15) — límite seguro alcanzado
+- Borrada regla muerta `.back-button` (base/hover/active, 0 refs verificadas).
+  @apply acumulado: 588 → 511.
+- Detector FIABLE (3 formas de grep + child-prefix) sobre 114 reglas single-class:
+  36 muertas, pero SOLO 1 (back-button) fuera de la zona de Copilot. Las otras 35
+  muertas son DetailView/control-bar/custom-field/sidebar → NO tocar: sus .tsx
+  están dirty (mid-edit por Copilot), donde incluso "muerto" es inseguro (el
+  snapshot puede no reflejar el estado final) y editar el mismo CSS arriesga clobber.
+- CONCLUSIÓN: la superficie segura para este agente está agotada. El resto del
+  skin/dead CSS vive en componentes que Copilot reescribe AHORA (mismo archivo).
+  Próximo avance real = commit/land de Copilot, luego retomar DetailView/control-bar
+  con las reglas de border-solid.
 ```
 
-<a id="file-0146"></a>
+<a id="file-0153"></a>
 
-### 0146 — `ai/playbooks/pb-ai-docs-refactor.md`
+### 0153 — `ai/plans/PLAN_EJECUCION_MIGRACION_TAILWIND_SISAD_PDFME.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `679`
+- **Tamaño original:** `11.9 KB`
+- **SHA1 corto:** `9ddcfe148c`
+- **Estado:** `completo`
+
+```markdown
+# PLAN DE EJECUCIÓN — Migración total de Tailwind desde CSS hacia JSX/TSX
+
+## 1. Propósito
+
+Completar la migración visual de SISAD PDFME sin repetir análisis ya cerrados, sin ejecutar validaciones costosas después de cada microcambio y sin eliminar CSS técnico necesario.
+
+Este plan parte del estado más reciente disponible:
+
+| Archivo | Estado aproximado reportado |
+|---|---:|
+| `src/features/pdfcomponent/labRoutes.css` | 5 líneas |
+| `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | 2484 líneas |
+| `src/sisad-pdfme/ui/styles/tokens.css` | 323 líneas |
+| `src/styles/sisad-tailwind-bridge.css` | vacío |
+| `src/style.css` | neutralizado |
+| `src/styles/tailwind.css` | fuente única de Tailwind |
+
+Estas cifras deben volver a medirse al comenzar porque el repositorio puede haber cambiado.
+
+## 2. Diagnóstico del retraso
+
+El proceso anterior está demorando por cuatro razones:
+
+1. Se trabaja en componentes individuales o pares de componentes.
+2. Se ejecutan build y las mismas pruebas después de cada microcambio.
+3. Se vuelve a cargar contexto y documentación en cada turno.
+4. Se actualizan task-cards y memoria después de cambios demasiado pequeños.
+
+La solución será trabajar con:
+
+``​`txt
+1 task-card activa
+→ paquetes funcionales
+→ subpases de máximo 5 archivos
+→ validación única al final del paquete
+→ actualización documental única
+``​`
+
+## 3. Restricciones del repositorio
+
+La arquitectura IA actual exige:
+
+``​`txt
+una sola task-card activa;
+máximo 2 búsquedas globales por subpase;
+máximo 8 archivos abiertos;
+máximo 5 archivos modificados;
+no tocar geometría protegida sin tarea explícita.
+``​`
+
+El plan no elimina estos guardrails. Los usa así:
+
+``​`txt
+Paquete funcional
+├── Subpase A: hasta 5 archivos
+├── Subpase B: hasta 5 archivos
+├── Subpase C: hasta 5 archivos
+└── Gate de validación único
+``​`
+
+## 4. Preparación
+
+### 4.1 Cerrar o delimitar la tarea activa
+
+Revisar:
+
+``​`txt
+ai/task-cards/active/TASK-REGRESSION-021-shell-token-visual-recovery.md
+``​`
+
+Decisión:
+
+- Si aún contiene regresiones visuales abiertas, terminar únicamente esos criterios.
+- Si el baseline visual ya está recuperado, moverla a completadas.
+- Crear una sola tarea activa nueva:
+
+``​`txt
+ai/task-cards/active/TASK-CSS-024-accelerated-tailwind-inline-decommission.md
+``​`
+
+No mantener `TASK-REGRESSION-021` y `TASK-CSS-024` activas simultáneamente.
+
+### 4.2 Crear evidencia inicial
+
+Generar:
+
+``​`txt
+reports/tailwind-migration/accelerated/
+├── css-lines-before.txt
+├── apply-before.txt
+├── selector-inventory.txt
+├── constants-consumers.txt
+├── migration-map.csv
+└── migration-ledger.md
+``​`
+
+### 4.3 Ejecutar inventarios existentes
+
+``​`bash
+node scripts/css-inventory.mjs
+node scripts/css-selector-duplicates.mjs
+node scripts/css-active-selector-audit.mjs
+``​`
+
+Revisar el script:
+
+``​`txt
+scripts/migrate-design-to-tailwind.mjs
+``​`
+
+Usarlo únicamente si posee modo seguro de reporte o generación de candidatos. No permitir reemplazos automáticos no revisados.
+
+## 5. Matriz de decisión
+
+| Tipo de regla | Destino |
+|---|---|
+| Flex, grid, gap, padding, skin | JSX/TSX |
+| Hover, focus, selected local | JSX/TSX |
+| Responsive local | JSX/TSX |
+| Token compartido | `tokens.css` |
+| Variable consumida por JS | `tokens.css` o constante |
+| Ant Design descendant selector | CSS técnico |
+| Moveable/Selecto | CSS técnico |
+| Canvas/paper geometry | CSS técnico |
+| Print/keyframes | CSS técnico |
+| Selector sin consumidor | eliminar con evidencia |
+
+## 6. Fases y paquetes
+
+---
+
+## FASE A — Inventario y cierre del baseline
+
+### A1. Medición
+
+Ejecutar:
+
+``​`bash
+wc -l \
+  src/sisad-pdfme/ui/styles/sisad-pdfme.css \
+  src/features/pdfcomponent/labRoutes.css \
+  src/sisad-pdfme/ui/styles/tokens.css
+
+rg -c "@apply" \
+  src/sisad-pdfme/ui/styles/sisad-pdfme.css \
+  src/features/pdfcomponent/labRoutes.css \
+  src/sisad-pdfme/ui/styles/tokens.css
+``​`
+
+### A2. Auditoría de constantes
+
+Auditar consumidores de:
+
+``​`txt
+DESIGNER_CLASSNAME
+UI_CLASSNAME
+SELECTABLE_CLASSNAME
+RULER_HEIGHT
+PAGE_GAP
+LEFT_SIDEBAR_WIDTH
+RIGHT_SIDEBAR_WIDTH
+BACKGROUND_COLOR
+DEFAULT_MAX_ZOOM
+``​`
+
+Resultado:
+
+``​`txt
+reports/tailwind-migration/accelerated/constants-contract.md
+``​`
+
+Debe indicar para cada constante:
+
+``​`txt
+tipo
+consumidores
+si afecta geometría
+si puede migrarse
+si debe conservarse
+riesgo
+``​`
+
+### A3. Gate
+
+No modificar UI en esta fase.
+
+Entregable:
+
+``​`txt
+mapa completo priorizado
+``​`
+
+---
+
+## FASE B — RightSidebar residual
+
+El registro muestra que ya se han trabajado:
+
+``​`txt
+SidebarSurfacePrimitives
+DocumentsRail
+ListViewToolbar
+DetailHeaderCard
+InspectorPrimitives
+CompactConfigPanel
+SchemaConnectionsWidget
+SchemaOptionsEditor
+InspectorDefinitionList
+SchemaCollaborationWidget
+SchemaConnectionsShared
+``​`
+
+Por tanto, esta fase no debe repetir el diseño de esos componentes. Debe buscar únicamente:
+
+``​`txt
+selectores CSS todavía activos;
+media queries asociadas;
+duplicados;
+descendientes AntD;
+componentes no migrados;
+regresiones visibles.
+``​`
+
+### B1. ListView
+
+Archivos candidatos:
+
+``​`txt
+RightSidebar/ListView/ListView.tsx
+RightSidebar/ListView/Item.tsx
+RightSidebar/ListView/SelectableSortableContainer.tsx
+RightSidebar/ListView/ListViewDragOverlay.tsx
+RightSidebar/ListView/ListViewToolbar.tsx
+``​`
+
+Objetivos:
+
+``​`txt
+fila plana
+sin borde negro
+sin card anidada
+acciones estables
+badges compactos
+scroll correcto
+overlay consistente
+``​`
+
+### B2. DetailView residual
+
+Trabajar por grupos de hasta 5 archivos:
+
+``​`txt
+DetailViewContent
+DetailFormSection
+detail widgets restantes
+primitives no migradas
+headers y context strips residuales
+``​`
+
+### B3. Poda CSS del paquete
+
+Eliminar únicamente selectores trasladados o huérfanos demostrados.
+
+### B4. Gate
+
+``​`bash
+npm run build
+
+npx playwright test \
+  tests/playwright/right-sidebar-visual-polish.spec.ts \
+  tests/playwright/right-sidebar-docs-tab.spec.ts
+``​`
+
+Criterio de salida:
+
+``​`txt
+RightSidebar visualmente estable;
+sin selectores visuales duplicados conocidos;
+scroll y tabs intactos.
+``​`
+
+---
+
+## FASE C — LeftSidebar
+
+Esta fase absorbe los pendientes equivalentes a CSS-021 y CSS-022.
+
+### C1. Separar conceptos
+
+No mezclar:
+
+``​`txt
+catalog layout: list / tiles / icons
+density: comfortable / compact / minimal
+sidebar width
+collapsed state
+``​`
+
+### C2. Componentes
+
+Subpase 1:
+
+``​`txt
+LeftSidebar.tsx
+LeftSidebarTabs.tsx
+LeftSidebarSearch.tsx
+LeftSidebarGroup.tsx
+CatalogLayoutToggle.tsx
+``​`
+
+Subpase 2:
+
+``​`txt
+LeftSidebarCustomPanel.tsx
+LeftSidebarCustomFieldModal.tsx
+useLeftSidebarCatalogState.ts
+SidebarRail.tsx
+SidebarCollapseHandle.tsx
+``​`
+
+### C3. Riesgos
+
+Validar:
+
+``​`txt
+scroll durante drag
+botón collapse recortado
+overflow horizontal
+vista compact convertida en una columna
+tarjetas anidadas
+modo icon-only
+persistencia de layout elegido
+``​`
+
+### C4. Gate
+
+``​`bash
+npm run build
+``​`
+
+Ejecutar specs existentes de LeftSidebar y una validación visual de:
+
+``​`txt
+abierto
+colapsado
+list
+tiles
+icons
+drag activo
+``​`
+
+---
+
+## FASE D — Toolbar, topbar, zoom y rails
+
+### D1. Componentes
+
+``​`txt
+CtlBar.tsx
+Designer/index.tsx
+UnitPager.tsx
+SidebarRail.tsx
+SidebarCollapseHandle.tsx
+``​`
+
+### D2. Contratos
+
+No reemplazar ciegamente:
+
+``​`txt
+RULER_HEIGHT
+PAGE_GAP
+LEFT_SIDEBAR_WIDTH
+RIGHT_SIDEBAR_WIDTH
+DEFAULT_MAX_ZOOM
+``​`
+
+### D3. Validaciones
+
+``​`txt
+zoom visible en porcentaje
+botones compactos
+tooltips
+tabs
+collapse
+navegación de página
+preservación del centro del PDF
+``​`
+
+### D4. Gate ampliado
+
+``​`bash
+npm run build
+npx playwright test
+``​`
+
+Usar suite amplia porque esta fase toca controles transversales.
+
+---
+
+## FASE E — Lab host
+
+El inventario más reciente reporta `labRoutes.css` con aproximadamente 5 líneas. Por ello esta fase es de verificación, no de refactor grande.
+
+### E1. Comprobar contenido real
+
+``​`bash
+cat src/features/pdfcomponent/labRoutes.css
+rg -n "@apply|sisad-pdfme-lab-" src/features/pdfcomponent/labRoutes.css
+``​`
+
+### E2. Decisión
+
+- Si contiene únicamente comentarios: eliminar archivo e import.
+- Si contiene reglas residuales: moverlas al componente propietario.
+- Si contiene un contrato técnico: documentarlo y conservarlo.
+
+### E3. Componentes
+
+``​`txt
+PdfmeLabPage.jsx
+PageHeader.jsx
+ResultsPanel.jsx
+CompactControls.jsx
+PopoverMenu.jsx
+CaseCard.jsx
+LabLandingPage.jsx
+``​`
+
+### E4. Gate
+
+``​`bash
+npm run build
+
+npx playwright test \
+  tests/playwright/multi-document-routing-design.spec.ts \
+  tests/playwright/lab-designer-visual-baseline-regression.spec.ts
+``​`
+
+---
+
+## FASE F — Form y Viewer
+
+### F1. Archivos
+
+``​`txt
+Form.tsx
+Viewer.tsx
+Preview.tsx
+RuntimeFormPanel.tsx
+Root.tsx
+ErrorScreen.tsx
+Spinner.tsx
+UnitPager.tsx
+``​`
+
+### F2. No tocar
+
+``​`txt
+input mapping
+recipient filtering
+schema access
+validation
+snapshot
+PDF generation
+``​`
+
+### F3. Validar
+
+``​`txt
+form editable
+viewer readonly
+required
+hidden
+readonly
+owner filtering
+multi-document
+responsive
+``​`
+
+### F4. Gate ampliado
+
+``​`bash
+npm run build
+npx playwright test
+``​`
+
+---
+
+## FASE G — Poda técnica de `sisad-pdfme.css`
+
+### G1. Auditoría final
+
+Clasificar cada bloque residual:
+
+``​`txt
+ANTD
+CANVAS
+PAPER
+MOVEABLE
+SELECTO
+DRAG
+PRINT
+KEYFRAMES
+RUNTIME_GLOBAL
+ORPHAN
+``​`
+
+### G2. Reorganización
+
+Ordenar el archivo y agregar encabezados claros.
+
+### G3. Prohibición
+
+No mover CSS técnico a JSX solo para reducir líneas.
+
+### G4. Resultado esperado
+
+``​`txt
+sisad-pdfme.css ya no contiene cards, headers, toolbar, sidebars o widgets visuales trasladables;
+cada bloque residual tiene una justificación técnica.
+``​`
+
+---
+
+## FASE H — Tokens
+
+### H1. Auditoría de consumidores
+
+Por cada variable:
+
+``​`bash
+rg -n --fixed-strings -- "--token-name" src
+``​`
+
+### H2. Clasificación
+
+``​`txt
+ACTIVE_SHARED
+ACTIVE_RUNTIME
+ALIAS_REQUIRED
+DEPRECATED_WITH_CONSUMERS
+ORPHAN
+``​`
+
+### H3. Acción
+
+- Mantener las tres primeras.
+- Migrar consumidores antes de eliminar deprecated.
+- Eliminar orphan.
+- No reemplazar owner colors dinámicos por paleta estática.
+
+---
+
+## FASE I — Cierre y regresión
+
+### I1. Métricas finales
+
+Generar:
+
+``​`txt
+css-lines-after.txt
+apply-after.txt
+selector-inventory-after.txt
+constants-contract-final.md
+residual-css-justification.md
+migration-summary.md
+``​`
+
+### I2. Comparación
+
+Reportar:
+
+``​`txt
+líneas antes/después
+@apply antes/después
+selectores eliminados
+selectores conservados
+componentes migrados
+tokens eliminados
+CSS técnico residual
+``​`
+
+### I3. QA final
+
+``​`bash
+npm run build
+npx playwright test
+``​`
+
+### I4. Revisión manual
+
+Validar en:
+
+``​`txt
+http://localhost:5174/lab/multi-document-routing
+``​`
+
+Escenarios:
+
+``​`txt
+LeftSidebar abierto/colapsado
+RightSidebar abierto/colapsado
+Campos
+Detalle
+Docs
+Comentarios
+selección simple
+selección múltiple
+drag list
+drag canvas
+scroll multipágina
+zoom
+Form
+Viewer
+ResultsPanel
+``​`
+
+## 7. Criterios de éxito
+
+### Funcionales
+
+``​`txt
+sin regresiones de selección;
+sin regresiones de drag;
+sin pérdida de scroll;
+sin pérdida de acciones;
+sin cambios en snapshot;
+sin cambios en generator;
+``​`
+
+### Visuales
+
+``​`txt
+densidad consistente;
+sin bordes negros inesperados;
+sin cards anidadas;
+sin iconos recortados;
+sin headers duplicados;
+sin botones flotantes incoherentes;
+``​`
+
+### Técnicos
+
+``​`txt
+labRoutes.css sin @apply;
+sisad-pdfme.css solo con residual técnico;
+tokens.css solo con tokens activos;
+hooks DESIGNER_CLASSNAME/UI_CLASSNAME conservados;
+sin !important nuevo;
+sin wrappers decorativos nuevos;
+``​`
+
+## 8. Estimación por paquetes
+
+| Paquete | Subpases estimados | Gate |
+|---|---:|---|
+| Baseline e inventario | 1 | reportes |
+| RightSidebar | 2–3 | build + 2 specs |
+| LeftSidebar | 2 | build + specs del dominio |
+| Toolbar/zoom | 1–2 | build + suite amplia |
+| Lab host | 1 | build + 2 specs |
+| Form/Viewer | 1–2 | build + suite amplia |
+| Poda CSS | 2 | build |
+| Tokens | 1 | build |
+| QA final | 1 | suite completa |
+
+## 9. Regla de continuidad
+
+Después de cada paquete, actualizar una sola vez:
+
+``​`txt
+reports/tailwind-migration/accelerated/migration-ledger.md
+ai/task-cards/active/TASK-CSS-024-accelerated-tailwind-inline-decommission.md
+``​`
+
+No actualizar cinco documentos distintos.
+
+No volver a abrir un paquete cerrado salvo que una prueba demuestre una regresión.
+```
+
+<a id="file-0154"></a>
+
+### 0154 — `ai/playbooks/pb-ai-docs-refactor.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `26`
@@ -8262,9 +9822,9 @@ Modificar documentación o archivos IA respetando la estructura real del reposit
 - No se duplican prompts operativos dentro de `docs/**`.
 ```
 
-<a id="file-0147"></a>
+<a id="file-0155"></a>
 
-### 0147 — `ai/playbooks/pb-canvas-multipage.md`
+### 0155 — `ai/playbooks/pb-canvas-multipage.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -8281,9 +9841,9 @@ Modificar documentación o archivos IA respetando la estructura real del reposit
 4. Validar snapshot.
 ```
 
-<a id="file-0148"></a>
+<a id="file-0156"></a>
 
-### 0148 — `ai/playbooks/pb-css-tailwind-migration.md`
+### 0156 — `ai/playbooks/pb-css-tailwind-migration.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -8322,9 +9882,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 - No se rompe canvas ni runtime.
 ```
 
-<a id="file-0149"></a>
+<a id="file-0157"></a>
 
-### 0149 — `ai/playbooks/pb-inspector.md`
+### 0157 — `ai/playbooks/pb-inspector.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -8341,9 +9901,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 4. Validar ListView/DetailView.
 ```
 
-<a id="file-0150"></a>
+<a id="file-0158"></a>
 
-### 0150 — `ai/playbooks/pb-schema-families.md`
+### 0158 — `ai/playbooks/pb-schema-families.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -8360,9 +9920,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 4. Validar snapshot.
 ```
 
-<a id="file-0151"></a>
+<a id="file-0159"></a>
 
-### 0151 — `ai/playbooks/pb-selection-transform.md`
+### 0159 — `ai/playbooks/pb-selection-transform.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -8379,9 +9939,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 4. Validar Moveable root-only.
 ```
 
-<a id="file-0152"></a>
+<a id="file-0160"></a>
 
-### 0152 — `ai/playbooks/pb-snapshot.md`
+### 0160 — `ai/playbooks/pb-snapshot.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -8398,9 +9958,55 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 4. No tocar generator salvo task explícita.
 ```
 
-<a id="file-0153"></a>
+<a id="file-0161"></a>
 
-### 0153 — `ai/playbooks/pb-visual-regression.md`
+### 0161 — `ai/playbooks/pb-tailwind-design-continuity.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `33`
+- **Tamaño original:** `1.2 KB`
+- **SHA1 corto:** `647705c7bf`
+- **Estado:** `completo`
+
+```markdown
+# Playbook — continuidad visual y migración Tailwind
+
+## 1. Intake
+
+- Confirmar una sola tarjeta activa.
+- Cargar contexto, regla principal y checklist de este paquete.
+- Anotar baseline de `@apply`, estilos inline y selectores de la región.
+
+## 2. Trazabilidad
+
+- Ubicar componente, constantes, CSS y pruebas de la región.
+- Construir una tabla selector → consumidor → estado → reemplazo JSX/TSX.
+- Identificar contratos que deben permanecer en CSS.
+
+## 3. Cambio mínimo
+
+- Mover utilidades estáticas al elemento propietario.
+- Sustituir concatenaciones inseguras por mapas de clases completas.
+- Mantener estilos calculados por runtime como valores dinámicos.
+- Eliminar solamente reglas sin consumidores comprobados.
+
+## 4. Validación
+
+- Ejecutar `scripts/tailwind-continuity-audit.sh`.
+- Ejecutar typecheck, lint y pruebas focalizadas disponibles.
+- Verificar `/lab/multi-document-routing` en los estados definidos por la tarjeta.
+- Comparar baseline y capturas a viewport fijo.
+
+## 5. Cierre
+
+- Registrar archivos, conteos y evidencia.
+- Si pasa, mover la tarjeta a `completed/` y activar una sola dependencia lista.
+- Si falla, conservar la tarjeta activa y documentar el bloqueo sin encadenar arreglos ajenos.
+```
+
+<a id="file-0162"></a>
+
+### 0162 — `ai/playbooks/pb-visual-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -8419,9 +10025,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 6. Corregir por componente.
 ```
 
-<a id="file-0154"></a>
+<a id="file-0163"></a>
 
-### 0154 — `ai/playbooks/README.md`
+### 0163 — `ai/playbooks/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -8435,9 +10041,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 Procedimientos. Cargar uno por task-card.
 ```
 
-<a id="file-0155"></a>
+<a id="file-0164"></a>
 
-### 0155 — `ai/project/architecture-principles.md`
+### 0164 — `ai/project/architecture-principles.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -8482,9 +10088,9 @@ Las instrucciones dependen de contratos (`task-card`, `rules`, `context`) y no d
 No duplicar reglas en `AGENTS.md`, `CLAUDE.md` y Copilot. Esos archivos solo apuntan a `ai/start/START.md`.
 ```
 
-<a id="file-0156"></a>
+<a id="file-0165"></a>
 
-### 0156 — `ai/project/definition-of-done.md`
+### 0165 — `ai/project/definition-of-done.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -8507,9 +10113,9 @@ Una task-card se considera completa cuando:
 - Se propuso nueva task-card si quedó trabajo fuera de alcance.
 ```
 
-<a id="file-0157"></a>
+<a id="file-0166"></a>
 
-### 0157 — `ai/project/file-ownership-map.md`
+### 0166 — `ai/project/file-ownership-map.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -8534,9 +10140,9 @@ Una task-card se considera completa cuando:
 | AI docs | `ai/**` | docs-architecture-agent |
 ```
 
-<a id="file-0158"></a>
+<a id="file-0167"></a>
 
-### 0158 — `ai/project/glossary.md`
+### 0167 — `ai/project/glossary.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -8563,9 +10169,9 @@ Una task-card se considera completa cuando:
 | Bridge Tailwind | CSS con `@apply` que conserva classNames existentes |
 ```
 
-<a id="file-0159"></a>
+<a id="file-0168"></a>
 
-### 0159 — `ai/project/goals.md`
+### 0168 — `ai/project/goals.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -8600,9 +10206,9 @@ Construir y estabilizar `sisad-pdfme` como componente diseñador PDF reutilizabl
 - Dividir tareas grandes en pasos verificables.
 ```
 
-<a id="file-0160"></a>
+<a id="file-0169"></a>
 
-### 0160 — `ai/project/non-goals.md`
+### 0169 — `ai/project/non-goals.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -8625,9 +10231,9 @@ No hacer por defecto:
 - Resolver permisos con CSS.
 ```
 
-<a id="file-0161"></a>
+<a id="file-0170"></a>
 
-### 0161 — `ai/project/scope.md`
+### 0170 — `ai/project/scope.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -8676,9 +10282,9 @@ infra backend
 Form/Viewer/Generator no son foco principal, pero no deben romperse. Cualquier cambio en Designer debe preservar metadata y render compatible.
 ```
 
-<a id="file-0162"></a>
+<a id="file-0171"></a>
 
-### 0162 — `ai/prompts/claude-diagnose-or-implement.md`
+### 0171 — `ai/prompts/claude-diagnose-or-implement.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -8696,9 +10302,9 @@ Modo implementación: modificar solo archivos de la task-card, validar y reporta
 Siempre respetar contexto budget.
 ```
 
-<a id="file-0163"></a>
+<a id="file-0172"></a>
 
-### 0163 — `ai/prompts/codex-master-prompt.md`
+### 0172 — `ai/prompts/codex-master-prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -8714,9 +10320,9 @@ Lee `ai/start/START.md`. Enruta con `ai/router/ROUTER.md`. Usa presupuesto de `a
 Trabaja una sola task-card. Antes de editar, declara Router decision. No hagas auditoría global salvo que la task lo pida.
 ```
 
-<a id="file-0164"></a>
+<a id="file-0173"></a>
 
-### 0164 — `ai/prompts/codex-next-pass-actions-ui-dedup.md`
+### 0173 — `ai/prompts/codex-next-pass-actions-ui-dedup.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `62`
@@ -8789,9 +10395,79 @@ Criterio:
 No puede quedar ningún botón visible sin handler real, aria-label, testId y estado de acción.
 ```
 
-<a id="file-0165"></a>
+<a id="file-0174"></a>
 
-### 0165 — `ai/prompts/copilot-task-context.md`
+### 0174 — `ai/prompts/codex-pdfcomponent-dynamic-integration-refactor.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `31`
+- **Tamaño original:** `1.6 KB`
+- **SHA1 corto:** `33cac9bcee`
+- **Estado:** `completo`
+
+```markdown
+Objetivo:
+Refactorizar `src/features/pdfcomponent` para que sea una referencia de integración dinámica de `sisad-pdfme`, consumiendo API pública, config, adapters, recipients registry y controller, sin duplicar lógica de negocio del core.
+
+Proyecto:
+~/Documents/Taylor/frontend/prueba-plugin
+
+Reglas:
+- No modificar `src/sisad-pdfme` salvo que falte un export público mínimo justificado.
+- No tocar Canvas/Moveable/Selecto/zoom/geometría.
+- No crear wrappers para internals.
+- No registrar recipients dos veces.
+- No decorar templates con collaboration en el host.
+- No usar `DesignerEngineBuilder` en `src/features/pdfcomponent`.
+- No usar `usePdfmeRuntimeInstance` en `src/features/pdfcomponent`.
+- No usar `setTimeout` para sincronizar modo/página.
+
+Pasos:
+1. Ejecutar `node scripts/audit-pdfcomponent-duplication.mjs`.
+2. Crear `src/features/pdfcomponent/integration/*` y `hooks/usePdfmeLabIntegration.ts`.
+3. Migrar `PdfmeLabPage.jsx` para consumir el hook y wrappers públicos.
+4. Partir `labs/examples/labExamples.js` en data declarativa + registry.
+5. Cambiar `CompactControls.jsx` para recibir action descriptors.
+6. Cambiar `PageHeader.jsx` para recibir viewModel, no calcular recipients/counters.
+7. Cambiar `domain/labPresentation.js` para usar selectors públicos del core.
+8. Deprecar wrappers de un archivo tras `rg` de imports.
+9. Agregar Playwright de integración dinámica.
+
+Validación:
+- `rg "DesignerEngineBuilder|usePdfmeRuntimeInstance|decorateTemplateWithCollaboration|decorateCollaborationUsers" src/features/pdfcomponent`
+- `npm run build`
+- `npx playwright test tests/playwright/pdfcomponent-dynamic-integration.spec.ts`
+```
+
+<a id="file-0175"></a>
+
+### 0175 — `ai/prompts/codex-start-tailwind-design-continuity.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `13`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `864057999a`
+- **Estado:** `completo`
+
+```markdown
+# Inicio Codex — continuidad visual y Tailwind
+
+Después del arranque base del repositorio:
+
+1. Carga `ai/context/tailwind-design-continuity-context.md`.
+2. Carga `ai/rules/tailwind-design-continuity-rules.md` como regla principal.
+3. Carga `ai/playbooks/pb-tailwind-design-continuity.md`.
+4. Carga `ai/checklists/tailwind-design-continuity-validation.md`.
+5. Selecciona exclusivamente la tarjeta en `ai/task-cards/active/`.
+6. Presenta diagnóstico, máximo 5 archivos candidatos, archivos prohibidos, comandos de validación y criterio de parada.
+7. Espera una contradicción explícita del usuario solo si la tarjeta requiere ampliar alcance; en otro caso, implementa, valida y documenta.
+
+No conviertas el roadmap completo en una sola ejecución. Las tarjetas de `backlog/` representan trabajo futuro y no autorizan cambios todavía.
+```
+
+<a id="file-0176"></a>
+
+### 0176 — `ai/prompts/copilot-task-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -8813,9 +10489,9 @@ Cambios pequeños y focalizados.
 ``​`
 ```
 
-<a id="file-0166"></a>
+<a id="file-0177"></a>
 
-### 0166 — `ai/prompts/create-task-card.md`
+### 0177 — `ai/prompts/create-task-card.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -8837,9 +10513,826 @@ Convierte la petición del usuario en una task-card cerrada con:
 - criterio de parada.
 ```
 
-<a id="file-0167"></a>
+<a id="file-0178"></a>
 
-### 0167 — `ai/prompts/README.md`
+### 0178 — `ai/prompts/PROMPT_MAESTRO_MIGRACION_TAILWIND_SISAD_PDFME.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `804`
+- **Tamaño original:** `14.7 KB`
+- **SHA1 corto:** `ba92acc842`
+- **Estado:** `completo`
+
+```markdown
+# PROMPT MAESTRO — Migración acelerada de Tailwind desde CSS hacia JSX/TSX en SISAD PDFME
+
+## Rol
+
+Actúa como arquitecto frontend senior especializado en React, TypeScript, Tailwind CSS 3, Vite, Ant Design, dnd-kit, Moveable, Selecto y pruebas visuales con Playwright.
+
+Trabaja directamente en:
+
+``​`txt
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
+``​`
+
+Ruta visual principal:
+
+``​`txt
+http://localhost:5174/lab/multi-document-routing
+``​`
+
+## Estado real del proyecto que debes respetar
+
+El proyecto ya avanzó considerablemente en la migración:
+
+``​`txt
+src/features/pdfcomponent/labRoutes.css
+- se encuentra prácticamente neutralizado;
+- el inventario más reciente reporta aproximadamente 5 líneas;
+- no debe reabrirse como una migración grande sin medir primero su contenido actual.
+
+src/sisad-pdfme/ui/styles/sisad-pdfme.css
+- sigue siendo la principal hoja residual;
+- el inventario más reciente reporta aproximadamente 2484 líneas;
+- contiene mezcla de skin visual, integración con Ant Design, estados, pseudo-elementos y CSS técnico.
+
+src/sisad-pdfme/ui/styles/tokens.css
+- el inventario más reciente reporta aproximadamente 323 líneas;
+- debe conservar tokens globales realmente compartidos;
+- no debe vaciarse por obligación.
+
+src/styles/sisad-tailwind-bridge.css
+- se encuentra vacío.
+
+src/style.css
+- está neutralizado para evitar doble emisión de Tailwind.
+
+src/styles/tailwind.css
+- es la fuente única de:
+  @tailwind base;
+  @tailwind components;
+  @tailwind utilities;
+``​`
+
+Las tareas CSS anteriores `TASK-CSS-012` a `TASK-CSS-019` figuran como completadas. No debes reabrirlas ni repetir sus análisis. La tarea activa más reciente es `TASK-REGRESSION-021-shell-token-visual-recovery`, y existen pendientes específicos de LeftSidebar y poda CSS. Usa lo completado como guardrail y continúa desde el estado actual.
+
+## Objetivo
+
+Migrar a JSX/TSX toda utilidad Tailwind y todo skin visual que todavía pueda vivir correctamente en el nodo React propietario, reduciendo `@apply` y selectores visuales duplicados sin romper:
+
+``​`txt
+canvas
+páginas
+scroll
+zoom
+drag and drop
+Moveable
+Selecto
+selección
+multi-selección
+colaboración
+owner color
+assignments
+Form
+Viewer
+snapshot
+generator
+pdf-lib
+Ant Design portals
+impresión
+``​`
+
+La meta no es dejar cero CSS a cualquier costo.
+
+La meta correcta es:
+
+``​`txt
+JSX/TSX:
+- layout de componentes;
+- skin;
+- densidad;
+- estados visuales locales;
+- hover/focus/selected/disabled;
+- responsive local;
+- badges, cards, toolbar y sidebars.
+
+CSS:
+- tokens globales;
+- geometría;
+- integración de terceros;
+- portales;
+- pseudo-elementos técnicos;
+- keyframes;
+- print;
+- Moveable/Selecto;
+- estados globales imposibles de expresar limpiamente en el nodo.
+``​`
+
+## Arquitectura IA obligatoria
+
+Lee una sola vez:
+
+``​`txt
+PROMPT_ARRANQUE_CODEX.md
+ai/start/START.md
+ai/router/ROUTER.md
+ai/router/CONTEXT_BUDGET.md
+ai/rules/css-migration-rules.md
+ai/context/css-tailwind-context.md
+ai/playbooks/pb-css-tailwind-migration.md
+ai/memory/known-risks.md
+ai/task-cards/active/TASK-REGRESSION-021-shell-token-visual-recovery.md
+ai/task-cards/completed/completed-summary.md
+``​`
+
+No cargues de forma masiva:
+
+``​`txt
+ai/task-cards/completed/TASK-*.md
+reports completos
+backups
+dist
+test-results
+candidates completos
+``​`
+
+Respeta el presupuesto vigente por subpase:
+
+``​`txt
+máximo 2 búsquedas globales;
+máximo 8 archivos abiertos;
+máximo 5 archivos modificados;
+una sola task-card activa;
+no tocar geometría protegida sin task-card explícita.
+``​`
+
+### Cómo acelerar sin violar el presupuesto
+
+Trabaja en **paquetes funcionales**.
+
+Cada paquete puede contener entre 2 y 4 subpases. Cada subpase respeta el límite de 5 archivos modificados, pero:
+
+``​`txt
+- no ejecutes build completo después de cada archivo;
+- no ejecutes Playwright después de cada subpase;
+- no actualices memoria después de cada microcambio;
+- valida el paquete completo una sola vez al final;
+- actualiza task-card y ledger una sola vez al cerrar el paquete.
+``​`
+
+## Contrato de `src/sisad-pdfme/ui/constants.ts`
+
+Debes analizar todos los consumidores de:
+
+``​`ts
+SELECTABLE_CLASSNAME
+RULER_HEIGHT
+PAGE_GAP
+LEFT_SIDEBAR_WIDTH
+RIGHT_SIDEBAR_WIDTH
+BACKGROUND_COLOR
+DEFAULT_MAX_ZOOM
+DESIGNER_CLASSNAME
+UI_CLASSNAME
+``​`
+
+No trates todas estas constantes como clases CSS:
+
+``​`txt
+DESIGNER_CLASSNAME y UI_CLASSNAME:
+- generan hooks semánticos;
+- se concatenan con sufijos;
+- deben conservarse.
+
+SELECTABLE_CLASSNAME:
+- forma parte de selección/interacción;
+- no eliminar ni renombrar sin auditoría explícita.
+
+RULER_HEIGHT, PAGE_GAP, LEFT_SIDEBAR_WIDTH, RIGHT_SIDEBAR_WIDTH:
+- son dimensiones runtime;
+- no convertir ciegamente a utilidades Tailwind;
+- conservar si participan en cálculos JS, geometría o layout coordinado.
+
+BACKGROUND_COLOR:
+- es un token runtime;
+- conservar su semántica.
+
+DEFAULT_MAX_ZOOM:
+- es lógica;
+- no pertenece a esta migración visual.
+``​`
+
+Patrón obligatorio:
+
+``​`tsx
+className={mergeClassNames(
+  DESIGNER_CLASSNAME + 'list-view-item',
+  'relative flex min-w-0 items-center rounded-lg border border-slate-200 bg-white',
+)}
+``​`
+
+No reemplazarlo por:
+
+``​`tsx
+className="relative flex min-w-0 items-center rounded-lg border border-slate-200 bg-white"
+``​`
+
+Los nombres semánticos pueden ser usados por:
+
+``​`txt
+CSS técnico residual
+tests
+plugins
+hosts externos
+querySelector
+data collection
+depuración
+compatibilidad
+``​`
+
+## Fase 0 — Línea base
+
+Ejecuta:
+
+``​`bash
+cd /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
+
+git status --short
+git rev-parse --abbrev-ref HEAD
+
+mkdir -p reports/tailwind-migration/accelerated
+``​`
+
+Mide el estado real, sin confiar solo en cifras históricas:
+
+``​`bash
+wc -l \
+  src/sisad-pdfme/ui/styles/sisad-pdfme.css \
+  src/features/pdfcomponent/labRoutes.css \
+  src/sisad-pdfme/ui/styles/tokens.css \
+  > reports/tailwind-migration/accelerated/css-lines-before.txt
+
+rg -n "@apply" \
+  src/sisad-pdfme/ui/styles/sisad-pdfme.css \
+  src/features/pdfcomponent/labRoutes.css \
+  src/sisad-pdfme/ui/styles/tokens.css \
+  > reports/tailwind-migration/accelerated/apply-before.txt
+
+node scripts/css-inventory.mjs
+node scripts/css-selector-duplicates.mjs
+node scripts/css-active-selector-audit.mjs
+``​`
+
+No ejecutes automáticamente `migrate-design-to-tailwind.mjs` hasta leer su contrato y confirmar que no sobrescribe archivos. Úsalo solo si ofrece un modo de reporte o dry-run seguro.
+
+## Fase 1 — Crear el mapa de migración
+
+Genera:
+
+``​`txt
+reports/tailwind-migration/accelerated/migration-map.csv
+reports/tailwind-migration/accelerated/migration-ledger.md
+``​`
+
+Columnas del CSV:
+
+``​`txt
+package
+subpass
+selector
+css_file
+line
+semantic_suffix
+consumer_file
+constant_prefix
+classification
+action
+risk
+validation
+status
+``​`
+
+Busca consumidores por sufijo:
+
+``​`bash
+rg -n "list-view-item" src/sisad-pdfme/ui
+rg -n "detail-section-card" src/sisad-pdfme/ui
+rg -n "left-sidebar" src/sisad-pdfme/ui
+``​`
+
+No dependas únicamente de la cadena completa porque muchas clases se forman mediante:
+
+``​`ts
+DESIGNER_CLASSNAME + '...'
+UI_CLASSNAME + '...'
+``​`
+
+## Clasificación obligatoria
+
+### MIGRATE_TO_TSX
+
+Migrar al componente propietario:
+
+``​`txt
+display
+flex/grid
+gap
+padding/margin
+min/max size visual
+border visual
+radius
+background
+text
+font
+shadow
+truncate
+hover
+focus
+selected
+disabled
+responsive local
+overflow de panel normal
+data-state simple
+``​`
+
+### KEEP_AS_TOKEN
+
+Mantener en `tokens.css`:
+
+``​`txt
+custom properties globales
+paleta compartida
+owner/recipient colors
+z-index contractuales
+tipografía global
+dimensiones compartidas por varios componentes
+variables consumidas por JS
+``​`
+
+### KEEP_AS_TECHNICAL_CSS
+
+Mantener en CSS:
+
+``​`txt
+Moveable
+Selecto
+paper/page geometry
+zoom y transforms
+@keyframes
+@media print
+Ant Design descendant selectors
+portals
+pseudo-elementos técnicos
+drag/drop global
+pointer-events coordinados
+selectores que dependen de varios ancestros
+``​`
+
+### DELETE_AS_ORPHAN
+
+Eliminar solo si demuestras que:
+
+``​`txt
+no existe consumidor;
+no se forma mediante constante;
+no aparece en tests;
+no lo usa un plugin;
+no lo usa un host;
+no es selector de portal;
+no es contrato técnico.
+``​`
+
+## Paquetes de ejecución
+
+### PACKAGE-01 — Cierre del RightSidebar residual
+
+No repitas componentes ya migrados sin evidencia de CSS residual.
+
+Audita y completa:
+
+``​`txt
+RightSidebar/ListView
+RightSidebar/DetailView
+DocumentsRail
+CommentsRail
+SidebarSurfacePrimitives
+layout.tsx
+RightSidebar.tsx
+``​`
+
+Objetivos:
+
+``​`txt
+eliminar cards anidadas;
+eliminar borde negro;
+reducir sombras;
+unificar densidades;
+conservar scroll interno;
+conservar acciones;
+eliminar selectores visuales ya duplicados en TSX.
+``​`
+
+### PACKAGE-02 — LeftSidebar y catálogo
+
+Integra pendientes equivalentes a:
+
+``​`txt
+TASK-CSS-021-left-sidebar-overflow-tailwind-continuity
+TASK-CSS-022-left-sidebar-css-pruning
+``​`
+
+Audita:
+
+``​`txt
+LeftSidebar.tsx
+LeftSidebarGroup.tsx
+LeftSidebarSearch.tsx
+LeftSidebarTabs.tsx
+LeftSidebarCustomPanel.tsx
+CatalogLayoutToggle.tsx
+useLeftSidebarCatalogState.ts
+``​`
+
+No mezclar:
+
+``​`txt
+layout elegido por usuario
+densidad responsive
+ancho real del panel
+``​`
+
+### PACKAGE-03 — Toolbar, shell y navegación
+
+Audita:
+
+``​`txt
+CtlBar.tsx
+Designer/index.tsx
+UnitPager.tsx
+SidebarRail.tsx
+SidebarCollapseHandle.tsx
+``​`
+
+Conserva cálculos basados en:
+
+``​`txt
+RULER_HEIGHT
+PAGE_GAP
+LEFT_SIDEBAR_WIDTH
+RIGHT_SIDEBAR_WIDTH
+``​`
+
+### PACKAGE-04 — Lab host
+
+El inventario reciente indica que `labRoutes.css` está prácticamente vacío. Por ello:
+
+``​`txt
+1. mide;
+2. verifica si contiene solo comentarios/import residual;
+3. no inventes una migración grande;
+4. migra cualquier regla visual restante al componente correspondiente;
+5. elimina el import solo si el archivo queda realmente vacío y la build pasa.
+``​`
+
+Audita:
+
+``​`txt
+PdfmeLabPage.jsx
+PageHeader.jsx
+ResultsPanel.jsx
+CompactControls.jsx
+PopoverMenu.jsx
+CaseCard.jsx
+LabLandingPage.jsx
+``​`
+
+### PACKAGE-05 — Form y Viewer
+
+Audita skin visual en:
+
+``​`txt
+Form.tsx
+Viewer.tsx
+Preview.tsx
+RuntimeFormPanel.tsx
+Root.tsx
+ErrorScreen.tsx
+Spinner.tsx
+UnitPager.tsx
+``​`
+
+No modificar contratos de inputs, valores, recipient filtering ni generación.
+
+### PACKAGE-06 — Poda final de `sisad-pdfme.css`
+
+Después de migrar componentes:
+
+``​`txt
+- elimina duplicados;
+- elimina selectores huérfanos demostrados;
+- conserva secciones técnicas claramente comentadas;
+- no persigas cero líneas;
+- persigue cero skin visual trasladable.
+``​`
+
+Ordena el residual por secciones:
+
+``​`txt
+1. Ant Design integration
+2. Canvas/Paper geometry
+3. Moveable/Selecto
+4. Drag/selection technical states
+5. Print
+6. Keyframes
+7. Runtime cross-component contracts
+``​`
+
+### PACKAGE-07 — Auditoría de `tokens.css`
+
+Clasifica cada token:
+
+``​`txt
+ACTIVE_SHARED
+ACTIVE_RUNTIME
+ALIAS_REQUIRED
+DEPRECATED_WITH_CONSUMERS
+ORPHAN
+``​`
+
+Solo elimina `ORPHAN`.
+
+No reemplaces colores dinámicos por utilidades Tailwind estáticas cuando dependen de:
+
+``​`txt
+owner
+recipient
+theme
+runtime config
+host config
+CSS variables
+``​`
+
+## Reglas de diseño
+
+Puedes corregir durante la migración:
+
+``​`txt
+doble superficie
+cards demasiado grandes
+bordes oscuros
+radios excesivos
+sombras permanentes
+acciones que cambian el ancho
+iconos recortados
+headers duplicados
+badges en demasiadas líneas
+scroll bloqueado
+densidad inconsistente
+``​`
+
+No rediseñes completamente el flujo ni cambies comportamiento de negocio.
+
+## Reglas de interacción
+
+No cambies accidentalmente:
+
+``​`txt
+onClick
+onPointerDown
+onMouseDown
+onDoubleClick
+listeners de dnd-kit
+attributes
+data-testid
+aria-label
+tabIndex
+focus management
+propagation guards
+``​`
+
+Cuando migres un botón o acción:
+
+``​`txt
+- conserva type="button";
+- conserva stopPropagation si existe;
+- conserva preventDefault si existe;
+- conserva disabled;
+- conserva test id;
+- conserva tooltip;
+- conserva permiso.
+``​`
+
+## Estilos inline
+
+No uses `style` para propiedades estáticas.
+
+`style` se permite para:
+
+``​`txt
+transform de dnd
+coordenadas
+zoom
+rotation
+owner color
+type color
+CSS variables dinámicas
+dimensiones calculadas
+``​`
+
+## Ant Design
+
+No borres selectores de:
+
+``​`txt
+.ant-collapse-*
+.ant-select-*
+.ant-input-*
+.ant-input-number-*
+.ant-modal-*
+.ant-tooltip-*
+.ant-dropdown-*
+``​`
+
+hasta demostrar que el componente puede controlarse de forma estable mediante props/className y sin `!important`.
+
+No agregues `!important`.
+
+## Áreas protegidas
+
+No modificar durante esta tarea:
+
+``​`txt
+Moveable.tsx
+Selecto.tsx
+coordinateMath.ts
+designerCoordinateService.ts
+Paper.tsx, salvo skin externo demostrado
+snapshotAdapter
+generator
+pdf-lib
+schema persistence
+document routing
+zoom math
+``​`
+
+## Validación acelerada
+
+### Por subpase
+
+Ejecuta solo:
+
+``​`bash
+npx tsc --noEmit
+``​`
+
+o la verificación rápida equivalente.
+
+### Al cerrar cada paquete
+
+Ejecuta:
+
+``​`bash
+npm run build
+``​`
+
+y únicamente las pruebas del dominio.
+
+RightSidebar:
+
+``​`bash
+npx playwright test \
+  tests/playwright/right-sidebar-visual-polish.spec.ts \
+  tests/playwright/right-sidebar-docs-tab.spec.ts
+``​`
+
+Lab:
+
+``​`bash
+npx playwright test \
+  tests/playwright/multi-document-routing-design.spec.ts \
+  tests/playwright/lab-designer-visual-baseline-regression.spec.ts
+``​`
+
+Antes de Playwright:
+
+``​`bash
+curl -I http://localhost:5174/lab/multi-document-routing
+``​`
+
+Si el servidor está caído, reinícialo una sola vez:
+
+``​`bash
+npm run dev -- --host 0.0.0.0
+``​`
+
+No diagnostiques una regresión de código cuando el fallo es conexión rechazada.
+
+### Suite amplia
+
+Ejecuta la suite amplia únicamente después de:
+
+``​`txt
+PACKAGE-03
+PACKAGE-05
+PACKAGE-07
+``​`
+
+## Métricas por paquete
+
+Registra:
+
+``​`txt
+archivos abiertos
+archivos modificados
+selectores evaluados
+selectores migrados
+selectores eliminados
+selectores conservados
+@apply antes/después
+líneas CSS antes/después
+tests ejecutados
+regresiones encontradas
+residuales justificados
+``​`
+
+## Criterios de cierre
+
+### `labRoutes.css`
+
+``​`txt
+- cero @apply;
+- archivo eliminado o residual mínimo justificado;
+- no reintroducir skin del core.
+``​`
+
+### `sisad-pdfme.css`
+
+``​`txt
+- cero skin visual trasladable;
+- solo CSS técnico, integración externa y contratos globales;
+- cada bloque residual documentado.
+``​`
+
+### `tokens.css`
+
+``​`txt
+- solo tokens activos;
+- sin duplicados;
+- sin aliases huérfanos;
+- variables runtime conservadas.
+``​`
+
+### Componentes
+
+``​`txt
+- conservan DESIGNER_CLASSNAME/UI_CLASSNAME;
+- Tailwind vive en el nodo propietario;
+- no hay wrappers nuevos solo para estilizar;
+- no hay clases conflictivas;
+- comportamiento intacto.
+``​`
+
+## Formato de entrega por paquete
+
+No narres cada microedición.
+
+Al cerrar un paquete responde:
+
+``​`txt
+PACKAGE cerrado: <nombre>
+
+Archivos modificados:
+- ...
+
+Migración:
+- selectores evaluados:
+- migrados:
+- eliminados:
+- conservados:
+
+Métricas:
+- @apply antes/después:
+- líneas CSS antes/después:
+
+Validación:
+- typecheck:
+- build:
+- Playwright:
+
+Residual:
+- ...
+
+Siguiente paquete:
+- ...
+``​`
+
+Continúa con el siguiente paquete automáticamente mientras no exista una regresión funcional, una ambigüedad arquitectónica o un selector técnico de alto riesgo.
+```
+
+<a id="file-0179"></a>
+
+### 0179 — `ai/prompts/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -8853,9 +11346,9 @@ Convierte la petición del usuario en una task-card cerrada con:
 Prompts reutilizables. No reemplazan task-cards.
 ```
 
-<a id="file-0168"></a>
+<a id="file-0180"></a>
 
-### 0168 — `ai/prompts/update-memory.md`
+### 0180 — `ai/prompts/update-memory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -8869,9 +11362,9 @@ Prompts reutilizables. No reemplazan task-cards.
 Actualiza memoria solo si hubo decisión estable. Usa `ai/memory/memory-update-protocol.md`.
 ```
 
-<a id="file-0169"></a>
+<a id="file-0181"></a>
 
-### 0169 — `ai/reports/architecture-correction-2026-07-14.md`
+### 0181 — `ai/reports/architecture-correction-2026-07-14.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -8910,9 +11403,220 @@ Se encontraron referencias de documentación IA que apuntaban a una arquitectura
 - No se tocaron archivos fuera del alcance de docs/IA, por lo que el contenido público y el código fuente permanecen intactos.
 ```
 
-<a id="file-0170"></a>
+<a id="file-0182"></a>
 
-### 0170 — `ai/reports/deep-ui-action-audit-2026-07-15.md`
+### 0182 — `ai/reports/auditoria_migracion_tailwind_y_regresiones_sisad_pdfme_2026-07-15.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `198`
+- **Tamaño original:** `11.2 KB`
+- **SHA1 corto:** `fbd2187a02`
+- **Estado:** `completo`
+
+```markdown
+# Auditoría de migración Tailwind y regresiones — SISAD PDFME
+
+Fecha: 2026-07-15
+Ruta objetivo: `http://localhost:5174/lab/multi-document-routing`
+
+## Resultado ejecutivo
+
+La migración avanzó, pero no está terminada ni visualmente estable. Los paquetes muestran que:
+
+- `labRoutes.css` bajó de 485 a 116 líneas (`-76.1%`).
+- `sisad-pdfme.css` bajó de 3822 a 2574 líneas (`-32.7%`).
+- `tokens.css` permanece en 323 líneas y no contiene un `@apply` real; debe conservarse como fuente de variables.
+- La task activa del proyecto registra 615 `@apply` restantes en `sisad-pdfme.css`. El adjunto de estilos está truncado y permite verificar directamente 392 de ellos, más 23 en `labRoutes.css`.
+- El reporte activo todavía enumera 144 selectores duplicados; varios afectan sidebars, control bar, cards del inspector y estados del canvas.
+
+La captura actual contradice reportes históricos que marcaban las barras laterales como “estables”: hay solapamiento de encabezados y controles en el panel izquierdo, controles de catálogo recortados, rail de documentos apretado y una capa oscura de guías/reglas que invade el PDF.
+
+## Restricción de esta ejecución
+
+No existe un checkout editable del proyecto en el workspace: solo están los paquetes Markdown consolidados y la imagen. Tampoco hay un proceso escuchando en el puerto 5174; la navegación a localhost no pudo realizarse. Por eso esta auditoría no afirma que aplicó parches, ejecutó build ni validó Playwright.
+
+## Hallazgos confirmados
+
+### 1. El shell del laboratorio tiene tres fuentes de estilo en conflicto
+
+En `src/features/pdfcomponent/PdfmeLabPage.jsx` el `<main>` combina:
+
+- clases Tailwind inline;
+- `LAB_PAGE_ROOT_STYLE` con `padding`, `minHeight`, `background` y `overflowX` inline;
+- reglas de `labRoutes.css` para `[data-ux-mode='canvas-first']`.
+
+Consecuencias confirmadas por lectura de código:
+
+- El CSS intenta `p-0`, pero el `padding` inline de `LAB_PAGE_ROOT_STYLE` tiene prioridad.
+- JSX define `grid-rows-[44px_minmax(0,1fr)]`, mientras `labRoutes.css` define `48px`; quedan dos fuentes de verdad.
+- Las reglas `.sisad-pdfme-lab-page[data-density='compact']` no coinciden con el `<main>`, porque este no publica `data-density`.
+- El selector `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-page h1` exige una segunda `.sisad-pdfme-lab-page` descendiente y es, en la composición observada, inalcanzable.
+
+Esto explica por qué reducir CSS sin retirar estilos inline/duplicados no estabiliza el header.
+
+### 2. La cadena de color por propietario no converge en un único tono
+
+El flujo esperado existe:
+
+`recipients → decorateTemplateWithCollaboration → ownerColor → Renderer/fieldChrome → --schema-owner-color`.
+
+Sin embargo, `src/sisad-pdfme/ui/components/Renderer.tsx` hace dos resoluciones distintas:
+
+- `schemaOwnerColor` usa `resolveSchemaOwnerColorValue(schema)`;
+- `schemaTone` usa `resolveSchemaTone(schema, fallback)`.
+
+Luego el wrapper pinta borde, superficie, outline, caption y badge con `schemaTone` / `--schema-tone`, mientras el color de owner queda en `--schema-owner-color`. El CSS de selección también usa principalmente `--schema-tone`. Por tanto, incluso con owner correcto, el chrome exterior puede mostrar un tono semántico o de fallback en vez del propietario.
+
+Además, `data-schema-owner-id` solo consulta `__designer.collaboration.recipientId` y `__designer.recipientId`; omite `schema.ownerRecipientId` y `schema.ownerRecipientIds[0]`.
+
+El fixture actual de `multiDocumentRouting.ts` sí declara owners y recipients azul/magenta/naranja. Un reporte histórico indica que, durante una validación anterior, los schemas visibles llegaron sin metadata de ownership. Esa contradicción obliga a probar el objeto final que recibe `Renderer`, no solo el fixture de origen.
+
+### 3. Los schemas `action-based` ocultan el color de owner por diseño CSS
+
+El reporte `tc-css-ownership-color.md` confirma que `approve`, `decline`, `attachment` y `note` usan chrome `border-0 bg-transparent`. Aunque exista `--schema-owner-color`, el acento no es visible. Se requiere un borde, barra o ring explícito basado en esa variable sin sustituir los colores semánticos de éxito/peligro.
+
+### 4. El ancho de las barras laterales tiene demasiados resolutores
+
+El ancho se decide simultáneamente en:
+
+- `tokens.css`: `--sisad-pdfme-ls-width` y `--sisad-pdfme-rs-width`;
+- media queries de `sisad-pdfme.css`;
+- cálculo responsive de `Designer/index.tsx`;
+- variantes `panel` / `compact`, densidad y atributos `data-*`.
+
+El inventario documenta seis apariciones del selector de right sidebar y cuatro bloques responsive del left sidebar compacto. Esta cascada múltiple es consistente con los recortes/solapamientos de la captura.
+
+### 5. La capa negra del canvas es un riesgo de geometría, no una skin común
+
+La forma observada coincide con una capa de regla/guía (`scena-guides` o ruler) alrededor de una región. La causa exacta no puede confirmarse sin DOM/computed styles. Debe investigarse sin migrar a ciegas:
+
+- dimensiones del manager de guías;
+- background de corner/rulers;
+- transform/scale del paper;
+- clipping del canvas y z-index;
+- montaje por página frente a montaje por schema.
+
+Mover estas reglas a Tailwind antes de medirlas puede romper hit-testing, Moveable, Selecto o zoom.
+
+## Clasificación de migración
+
+| Dominio | Acción | Motivo |
+|---|---|---|
+| `tokens.css` | Conservar completo | Variables compartidas, geometría y tonos runtime; 0 `@apply` real |
+| Lab header, chips, controles, resultados | Migrar a JSX/TSX | Skins y layout estático con owner claro |
+| LeftSidebar tabs/search/groups/cards | Migrar a TSX | Responsable directo del overflow visible |
+| RightSidebar switcher/cards/DocumentsRail | Migrar a TSX | Skin y densidad con owner claro |
+| CtlBar pills/botones | Migrar skin; conservar anclaje | Posición absoluta pertenece al chrome del canvas |
+| Inspector/cards/modales | Migrar wrappers; revisar Ant | Los descendientes `.ant-*` pueden requerir CSS scoped |
+| Paper/zoom/transform/páginas | Mantener CSS técnico | Geometría medida por runtime |
+| Moveable/Selecto/guides/rulers | Mantener CSS técnico | Hit-testing, overlays y coordenadas |
+| Pseudo-elementos, keyframes, print | Mantener CSS | No tienen owner JSX directo o dependen de estado runtime |
+| `data-*` de interacción | Mantener o migrar solo con variante local | No eliminar hasta tener paridad funcional demostrada |
+
+## Orden de implementación recomendado
+
+### Slice 0 — reparar regresiones funcionales antes de podar CSS
+
+1. En `Renderer.tsx`, hacer que el tono de owner sea la primera fuente del chrome exterior y dejar el tono semántico solo como fallback.
+2. Resolver `data-schema-owner-id` desde campos top-level y `__designer`.
+3. Añadir acento owner-visible a `action-based` sin eliminar colores semánticos.
+4. Verificar que cambio de usuario actualiza visibilidad y que cada schema conserva el color de su owner.
+5. Diagnosticar la capa negra con computed styles antes de tocar guides/rulers.
+
+### Slice 1 — eliminar `labRoutes.css`
+
+Los 23 `@apply` actuales son migrables a `PdfmeLabPage.jsx`, `PageHeader.jsx` y componentes de laboratorio usando variantes `max-[900px]:*`, `max-[640px]:*` y condiciones React. Antes de borrar el archivo:
+
+- retirar `LAB_PAGE_ROOT_STYLE` o hacerlo condicional por `uxMode`;
+- escoger una sola altura de topbar (44 o 48 px);
+- publicar `data-density` si se mantiene como contrato, o eliminar esos selectores;
+- trasladar `max-w-full`, `min-w-0`, `box-border`, gaps y grids al elemento dueño;
+- eliminar el import solo cuando `rg` no encuentre consumers exclusivos.
+
+Meta: `labRoutes.css` con 0 `@apply`; idealmente eliminado si no queda regla técnica.
+
+### Slice 2 — LeftSidebar
+
+Destinos principales:
+
+- `LeftSidebar.tsx`
+- `LeftSidebarTabs.tsx`
+- `LeftSidebarSearch.tsx`
+- `LeftSidebarGroup.tsx`
+- `shared/CatalogLayoutToggle.tsx`
+- `shared/SidebarRail.tsx`
+- `shared/SidebarCollapseHandle.tsx`
+
+Conservar los hooks construidos con `DESIGNER_CLASSNAME`, pero añadir utilidades estáticas en el mismo `className`. Retirar del CSS solo las skins con paridad exacta. Mantener drag state, ancho colapsado y scroll técnico hasta validar.
+
+### Slice 3 — RightSidebar y DocumentsRail
+
+Migrar superficies, tabs, títulos, cards, badges, rows y estados hover. Mantener temporalmente scrollbars scoped y overrides Ant Design. Unificar el ancho en una sola fuente: cálculo JS publicado en `--sisad-pdfme-rs-width` o token, pero no ambos con media queries competidoras.
+
+### Slice 4 — CtlBar e inspector
+
+Migrar tipografía, borders, radius, shadows y botones. Mantener clusters absolutos, offsets y z-index del canvas. Consolidar selectores duplicados después de probar cada densidad.
+
+### Slice 5 — limpieza final
+
+- Eliminar reglas huérfanas con búsqueda de consumer y prueba DOM.
+- Consolidar duplicados legítimos por media/state.
+- No mover CSS técnico a otra hoja “bridge”; eso solo cambia la ubicación del problema.
+- Objetivo inicial razonable: bajar de 615 a 250–350 `@apply` en `sisad-pdfme.css`, sujeto a inventario completo y pruebas.
+
+## Patrón para prefijos dinámicos
+
+Correcto:
+
+``​`tsx
+className={cn(
+  `${DESIGNER_CLASSNAME}left-sidebar`,
+  'relative flex h-full min-h-0 flex-col overflow-hidden',
+  collapsed && 'w-9 max-w-9',
+)}
+``​`
+
+Mantener el hook dinámico para runtime/E2E y las utilidades como literales detectables por Tailwind. No construir utilidades con interpolación (`w-[${width}px]`, `bg-${tone}`); usar mapas de clases estáticas o variables CSS/`style` para valores runtime.
+
+## Matriz mínima de validación
+
+| Prueba | Criterio |
+|---|---|
+| Build | `npm run build` sin errores |
+| Lint/types | Sin errores nuevos |
+| Tailwind | Una sola entrada y `preflight:false` |
+| 1920×1080 | Sin solapamiento ni overflow horizontal en sidebars |
+| 1440×900 | Catálogo, toolbar y documentos legibles |
+| 1024×768 | Presentación overlay/docked coherente |
+| Usuario Cliente Principal | Schemas propios visibles y `--schema-owner-color:#2563EB` |
+| Usuario Avalista | Schemas propios visibles y `--schema-owner-color:#D946EF` |
+| Vista global | Ambos owners conservan sus colores simultáneamente |
+| Schema nuevo | Hereda color del recipient activo |
+| Reasignación | Actualiza owner id, color, ListView, canvas y snapshot |
+| Action-based | Owner visible sin perder verde/rojo semántico |
+| Guides/rulers | Sin bloque negro fuera de su área |
+| Drag/resize/rotate | Sin regresión de Moveable/Selecto |
+| Página 2+ | Paper, overlays y selección conservan coordenadas |
+| Docs rail | Cards no se recortan; delete permanece anclado |
+
+## Comandos de cierre
+
+``​`bash
+rg -n "@apply" src/features/pdfcomponent/labRoutes.css src/sisad-pdfme/ui/styles/sisad-pdfme.css src/sisad-pdfme/ui/styles/tokens.css
+rg -n "DESIGNER_CLASSNAME|UI_CLASSNAME|SELECTABLE_CLASSNAME" src/sisad-pdfme/ui
+npm run build
+npm run lint
+npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/canvas-overflow-regression.spec.ts tests/playwright/drag-preview-and-canvas-scroll-regression.spec.ts
+``​`
+
+## Condición para continuar la implementación
+
+Sincronizar el checkout real del repositorio (incluyendo `package.json`, `src/`, tests y configuración) en el workspace, o proporcionar repositorio y rama. Los paquetes Markdown son suficientes para auditar, pero no para aplicar cambios seguros ni validar el comportamiento actual.
+```
+
+<a id="file-0183"></a>
+
+### 0183 — `ai/reports/deep-ui-action-audit-2026-07-15.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `169`
@@ -9092,9 +11796,306 @@ Prohibido tocar en esta pasada:
 - CSS visual repetido se desplaza a Tailwind 3 en TSX, no a otra hoja CSS.
 ```
 
-<a id="file-0171"></a>
+<a id="file-0184"></a>
 
-### 0171 — `ai/router/CONTEXT_BUDGET.md`
+### 0184 — `ai/reports/pdfcomponent-integration-boundary.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `41`
+- **Tamaño original:** `1.6 KB`
+- **SHA1 corto:** `847c893c82`
+- **Estado:** `completo`
+
+```markdown
+# PDFComponent integration boundary audit
+
+Date: 2026-07-15
+
+## Scope
+
+Audited `src/features/pdfcomponent` as the lab host layer that must render through the public `sisad-pdfme` API.
+
+## Public imports accepted in the host render path
+
+- `SisadPdfmeDesigner`
+- `SisadPdfmeForm`
+- `SisadPdfmeViewer`
+- `usePdfmeLabIntegration`
+- `createLabPdfmeConfig`
+- `normalizeLabHostData`
+- `getLabExampleById`
+- `getLabExamples`
+
+## Internals that must not be used by the host render path
+
+- `usePdfmeRuntimeInstance`
+- `DesignerEngineBuilder`
+- direct runtime instance wiring
+- manual `commonOptions` assembly
+
+## Findings
+
+1. `PdfmeLabPage.jsx` now renders the lab through `SisadPdfmeDesigner`, `SisadPdfmeForm`, and `SisadPdfmeViewer`.
+2. `PdfmeLabPage.jsx` no longer imports `usePdfmeRuntimeInstance`.
+3. The lab integration hook centralizes host normalization and config generation.
+4. Example/data-preparation files still use collaboration decoration helpers to build fixtures and normalized host examples. That is acceptable only in the data-prep layer, not in the render host path.
+5. `setTimeout` is still used for deferred UI state updates inside the lab page. It is not a runtime-core dependency, but it should remain isolated to the host shell only.
+
+## Boundary rule
+
+If a change affects the render host path, it must go through public wrappers and integration helpers. If it only prepares example data or fixtures, it must stay outside the runtime host path and not introduce direct runtime internals.
+
+## Status
+
+Host render boundary satisfied for the current task-card criteria. Future regressions should create a new `continuity` or `regression` card instead of reopening this one.
+```
+
+<a id="file-0185"></a>
+
+### 0185 — `ai/reports/pdfcomponent-integration-deep-audit-2026-07-15.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `193`
+- **Tamaño original:** `10.8 KB`
+- **SHA1 corto:** `e329f492c3`
+- **Estado:** `completo`
+
+```markdown
+# Auditoría profunda — `src/features/pdfcomponent` como integración dinámica de `sisad-pdfme`
+
+Fecha: 2026-07-15
+Scope: `src/features/pdfcomponent/**`
+Objetivo: que los ejemplos de integración demuestren el uso público de `sisad-pdfme` sin lógica de negocio duplicada, sin wrappers innecesarios y sin registrar dos veces los mismos datos.
+
+## Hallazgo central
+
+`src/features/pdfcomponent` dejó de ser solo una carpeta de ejemplos y se convirtió en un mini-host con lógica propia de runtime, collaboration, recipients, documents, providers, generator, converter, artefactos, presentación y acciones. Eso hace que cualquier integración real copie patrones incorrectos: construir `collaborationContext`, decorar templates manualmente, registrar recipients dos veces y usar internals como `DesignerEngineBuilder` o `usePdfmeRuntimeInstance`.
+
+La solución no es agregar más wrappers: es convertir esta carpeta en una referencia de host **data-driven** que consume únicamente la API pública del componente.
+
+## Problemas críticos detectados
+
+### P0 — `PdfmeLabPage.jsx` concentra demasiada responsabilidad
+
+- Importa `Designer`, `Form`, `Viewer`, `DesignerEngineBuilder`, `usePdfmeRuntimeInstance`, `generate`, `pdf2img`, `pdf2size`, `img2pdf`, decorators de colaboración y config defaults.
+- Construye manualmente `collaborationUsers`, `activeCollaborator`, `designerEngineOptions`, `runtimeOptions`, `commonOptions`, `initialTemplate`, `initialInputs`, `template`, `inputs`, `uiState`, `resultsState`.
+- Duplica lo que ya debería resolver `createSisadPdfmeConfig`, `RecipientRegistry`, adapters y wrappers públicos.
+- Usa `setTimeout` para sincronizar page/mode; esto es frágil y puede reactivar bugs de estado.
+
+**Riesgo:** las integraciones externas aprenderán a usar internals en vez de usar `SisadPdfmeDesigner`, `SisadPdfmeForm`, `SisadPdfmeViewer`, config, adapters y controller.
+
+### P0 — recipients/collaboration se registran en más de un lugar
+
+Actualmente el mismo dato de usuario puede vivir en:
+
+1. `example.collaboration.users`
+2. `decorateCollaborationUsers(...)`
+3. `designerEngineOptions.collaboration.recipientOptions`
+4. `designerEngineOptions.collaboration.users`
+5. `commonOptions.collaboration.recipients`
+6. schemas decorados por `decorateTemplateWithCollaboration`
+7. uploadedDocuments decorados dentro de `createExample`
+
+Esto contradice la arquitectura deseada: el host entrega recipients una sola vez y el core los normaliza en `RecipientRegistry`.
+
+### P0 — templates se decoran antes de llegar al core
+
+`createExample` y `PdfmeLabPage` decoran templates con colaboración. Eso fue útil para el laboratorio, pero en una integración portable debe pasar lo contrario:
+
+- El ejemplo entrega datos crudos: template, documents, recipients, activeRecipientId, config patch.
+- El wrapper público/core decide ownership, colores, activeRecipient y filtros.
+
+### P1 — `labPresentation.js` duplica reglas de acceso
+
+`getLabCollaborationSummary` calcula visible/editable/locked con lógica propia. Esa lógica puede divergir de `schemaRuntimeAccess`, `RecipientRegistry`, `resolveSchemaOwnerAppearance` y reglas de lock/readOnly/canReassign. Debe migrar a selectors públicos del core.
+
+### P1 — `CompactControls.jsx` define acciones localmente
+
+Las acciones del lab (`Generar PDF`, `Leer tamaños`, `PDF → imágenes`, `Agregar página`, `Ajustar`, `Agregar schema`, `Reset`) se modelan como arrays internos. Para integraciones profundas, todo botón debe ser un descriptor de acción:
+
+``​`ts
+type HostAction = {
+  id: string;
+  label: string;
+  visible: boolean;
+  enabled: boolean;
+  disabledReason?: string;
+  run(): Promise<void> | void;
+  testId: string;
+}
+``​`
+
+### P1 — `labExamples.js` es un catálogo monolítico
+
+Tiene datos, factories, schemas concretos, acciones, PDFs, recipients y export helpers. Debe partirse en:
+
+- `labs/examples/catalog/*.ts`: data declarativa.
+- `labs/examples/createLabExample.ts`: normalizador.
+- `labs/examples/labExampleRegistry.ts`: lookup por id/path.
+- `labs/examples/fixtures/*`: PDFs, recipients, schemas.
+
+### P2 — wrappers/re-exports que aumentan ruido
+
+Candidatos a deprecar tras buscar imports reales:
+
+- `CaseGrid.jsx`
+- `Hero.jsx`
+- `IconButton.jsx`
+- `template.js`
+- `domain/collaborationAppearance.js`
+- `utils/binary.js`
+
+## Arquitectura objetivo
+
+``​`text
+src/features/pdfcomponent
+├── PdfmeLabPage.jsx                  # shell fino, sin internals
+├── hooks
+│   └── usePdfmeLabIntegration.ts     # único orquestador de datos externos
+├── integration
+│   ├── labHostDataTypes.ts
+│   ├── normalizeLabHostData.ts
+│   ├── createLabPdfmeConfig.ts
+│   ├── labActionRegistry.ts
+│   └── labArtifactService.ts
+├── labs
+│   ├── examples
+│   │   ├── catalog
+│   │   │   ├── basicDesigner.ts
+│   │   │   ├── multiDocumentRouting.ts
+│   │   │   └── generatorRuntime.ts
+│   │   ├── createLabExample.ts
+│   │   └── labExampleRegistry.ts
+│   ├── builders
+│   │   ├── exampleTemplate.ts
+│   │   ├── schemaFactory.ts
+│   │   └── schemaShowcase.ts
+│   └── export
+│       ├── buildExampleBundle.ts
+│       └── downloadExampleBundle.ts
+├── PageHeader.jsx                    # UI, recibe viewModel
+├── CompactControls.jsx               # UI, consume action descriptors
+├── ResultsPanel.jsx                  # UI, consume artifact state
+└── ui/primitives.jsx                 # UI pura
+``​`
+
+## Contrato de datos propuesto
+
+``​`ts
+export type LabHostExample = {
+  id: string;
+  path: string;
+  title: string;
+  description?: string;
+  defaultMode?: 'designer' | 'form' | 'viewer';
+  initialSchemaType?: string;
+
+  template: Template;
+  inputs?: Record<string, unknown>[];
+  documents?: SisadPdfmeDocument[];
+  recipients?: SisadPdfmeRecipient[];
+  activeRecipientId?: string | null;
+
+  config?: SisadPdfmeGlobalConfig;
+  artifacts?: { generatedPdfBytes?: ArrayBuffer | null };
+  metadata?: Record<string, unknown>;
+};
+``​`
+
+## Regla de oro
+
+Los datos se registran una vez:
+
+``​`text
+host data → normalizeLabHostData → createSisadPdfmeConfig + recipients + documents + template + inputs
+``​`
+
+Nunca:
+
+``​`text
+example.collaboration.users + runtimeOptions.collaboration.recipients + designerEngine.collaboration.users + schema decoration manual
+``​`
+
+## Matriz por archivo
+
+| Archivo | Riesgo | Acción recomendada |
+|---|---|---|
+| `src/features/pdfcomponent/CaseCard.jsx` | bajo | Mantener como UI/servicio, conectar a contratos normalizados. |
+| `src/features/pdfcomponent/CaseGrid.jsx` | wrapper/re-export prescindible | Mantener como UI/servicio, conectar a contratos normalizados. |
+| `src/features/pdfcomponent/CompactControls.jsx` | muchas acciones locales | Reemplazar listas locales por LabActionRegistry con action descriptors. |
+| `src/features/pdfcomponent/Hero.jsx` | wrapper/re-export prescindible | Mantener como UI/servicio, conectar a contratos normalizados. |
+| `src/features/pdfcomponent/IconButton.jsx` | wrapper/re-export prescindible | Mantener como UI/servicio, conectar a contratos normalizados. |
+| `src/features/pdfcomponent/LabExampleDownloadButton.jsx` | acoplamiento moderado a core | Mantener como UI/servicio, conectar a contratos normalizados. |
+| `src/features/pdfcomponent/LabLandingPage.jsx` | bajo | Mantener como UI/servicio, conectar a contratos normalizados. |
+| `src/features/pdfcomponent/PageHeader.jsx` | acoplamiento moderado a core; muchas acciones locales; alto CSS legacy | Recibir viewModel de header/recipients; no calcular counters/recipients internamente. |
+| `src/features/pdfcomponent/PdfmeLabPage.jsx` | alto acoplamiento a internals/core; usa DesignerEngineBuilder directo; usa runtime instance directo; decora recipients/template fuera del registry; usa setTimeout para sincronización; clonado/estado duplicado; muchas acciones locales | Extraer usePdfmeLabIntegration y reemplazar runtime interno por wrappers públicos/config/controller. |
+| `src/features/pdfcomponent/PopoverMenu.jsx` | bajo | Mantener como UI/servicio, conectar a contratos normalizados. |
+| `src/features/pdfcomponent/ResultsPanel.jsx` | acoplamiento moderado a core; alto CSS legacy | Mantener como UI/servicio, conectar a contratos normalizados. |
+| `src/features/pdfcomponent/domain/collaborationAppearance.js` | wrapper/re-export prescindible | Mantener como UI/servicio, conectar a contratos normalizados. |
+| `src/features/pdfcomponent/domain/labPresentation.js` | acoplamiento moderado a core | Eliminar lógica propia de owner/lock; consumir selectors públicos del core. |
+| `src/features/pdfcomponent/domain/labState.js` | acoplamiento moderado a core | Mantener como UI/servicio, conectar a contratos normalizados. |
+| `src/features/pdfcomponent/labs/builders/exampleTemplate.ts` | alto acoplamiento a internals/core; decora recipients/template fuera del registry; clonado/estado duplicado | Mantener como builder, pero hacerlo data-driven e inyectable. |
+| `src/features/pdfcomponent/labs/builders/schemaFactory.ts` | acoplamiento moderado a core | Mantener como builder, pero hacerlo data-driven e inyectable. |
+| `src/features/pdfcomponent/labs/builders/schemaShowcase.ts` | acoplamiento moderado a core | Mantener como builder, pero hacerlo data-driven e inyectable. |
+| `src/features/pdfcomponent/labs/examples/labExamples.js` | acoplamiento moderado a core; muchas acciones locales | Dividir catálogo en data + factories; recipients/documents se registran una vez. |
+| `src/features/pdfcomponent/labs/export/buildExampleBundle.ts` | acoplamiento moderado a core | Mantener como UI/servicio, conectar a contratos normalizados. |
+| `src/features/pdfcomponent/labs/export/downloadExampleBundle.ts` | acoplamiento moderado a core | Mantener como UI/servicio, conectar a contratos normalizados. |
+| `src/features/pdfcomponent/template.js` | acoplamiento moderado a core; wrapper/re-export prescindible | Mantener como UI/servicio, conectar a contratos normalizados. |
+| `src/features/pdfcomponent/ui/primitives.jsx` | bajo | Mantener como UI/servicio, conectar a contratos normalizados. |
+| `src/features/pdfcomponent/utils/binary.js` | acoplamiento moderado a core; wrapper/re-export prescindible | Mantener como UI/servicio, conectar a contratos normalizados. |
+
+
+## Validación requerida
+
+- `rg "DesignerEngineBuilder|usePdfmeRuntimeInstance|decorateTemplateWithCollaboration|decorateCollaborationUsers" src/features/pdfcomponent` debe quedar vacío o limitado a builders/legacy tests.
+- `PdfmeLabPage.jsx` debe renderizar wrappers públicos o un hook público de integración, no internals.
+- `recipients` se pasa una vez al wrapper/controlador.
+- `documents` se pasa una vez al wrapper/controlador.
+- `CompactControls` no decide la lógica de negocio; solo renderiza action descriptors.
+- `labPresentation` no implementa reglas de acceso; usa selectors públicos del core.
+- `labExamples` se parte en catálogo declarativo y builders.
+```
+
+<a id="file-0186"></a>
+
+### 0186 — `ai/reports/tailwind-design-continuity-roadmap.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `24`
+- **Tamaño original:** `1.2 KB`
+- **SHA1 corto:** `7890cdd788`
+- **Estado:** `completo`
+
+```markdown
+# Roadmap — continuidad visual y migración Tailwind
+
+| Orden | Tarjeta | Prioridad | Dependencia | Resultado |
+|---:|---|---|---|---|
+| 1 | TASK-REGRESSION-020 | P0 | ninguna | Color exterior cambia con propietario |
+| 2 | TASK-SCHEMA-003 | P1 | REGRESSION-020 | Owner y acción no compiten |
+| 3 | TASK-LAB-030 | P0 | REGRESSION-020 | Shell con una fuente de estilos |
+| 4 | TASK-CSS-020 | P1 | LAB-030 | `labRoutes.css` sin `@apply` migrable |
+| 5 | TASK-CSS-021 | P0 | LAB-030 | Sidebar izquierdo sin solapamientos |
+| 6 | TASK-CSS-022 | P1 | CSS-021 | CSS izquierdo legado retirado |
+| 7 | TASK-CSS-023 | P1 | LAB-030 | Rail de documentos estable |
+| 8 | TASK-CANVAS-003 | P0 | LAB-030 | Sin bloque negro en reglas/guías |
+| 9 | TASK-QA-016 | P0 | todas | Evidencia y ledger final |
+
+## Condición de avance
+
+Solo una tarjeta puede estar activa. Una dependencia se considera satisfecha cuando su tarjeta está en `completed/`, sus validaciones pasan y la evidencia está registrada.
+
+## Resultado esperado
+
+- Funcionalidad restaurada antes de optimizar CSS.
+- `@apply` reducido por consumidores comprobados, no por reemplazo masivo.
+- `tokens.css` preservado como contrato semántico.
+- Regresiones visuales convertidas en pruebas reproducibles.
+```
+
+<a id="file-0187"></a>
+
+### 0187 — `ai/router/CONTEXT_BUDGET.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `58`
@@ -9163,9 +12164,9 @@ tsconfig.tsbuildinfo
 - No modificar `pdf-lib`, `generator`, `Moveable`, `Selecto`, `snapshotAdapter` o geometría sin task-card explícita.
 ```
 
-<a id="file-0172"></a>
+<a id="file-0188"></a>
 
-### 0172 — `ai/router/ROUTER.md`
+### 0188 — `ai/router/ROUTER.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -9206,9 +12207,9 @@ tsconfig.tsbuildinfo
 - Si una tarea menciona CSS, primero revisar `reports/tailwind-migration/**` y luego modificar `src/**`.
 ```
 
-<a id="file-0173"></a>
+<a id="file-0189"></a>
 
-### 0173 — `ai/router/TASK_INTAKE.md`
+### 0189 — `ai/router/TASK_INTAKE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -9254,9 +12255,9 @@ scripts
 - Documentar cada regla que se elimina.
 ```
 
-<a id="file-0174"></a>
+<a id="file-0190"></a>
 
-### 0174 — `ai/rules/ai-docs-rules.md`
+### 0190 — `ai/rules/ai-docs-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -9273,9 +12274,9 @@ scripts
 - Cada archivo Markdown tiene única responsabilidad.
 ```
 
-<a id="file-0175"></a>
+<a id="file-0191"></a>
 
-### 0175 — `ai/rules/canvas-rules.md`
+### 0191 — `ai/rules/canvas-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -9289,9 +12290,9 @@ scripts
 No usar `pages[0]`, `pageNumber || 1`, ni query selector del primer paper para operaciones multipágina. Siempre resolver página real.
 ```
 
-<a id="file-0176"></a>
+<a id="file-0192"></a>
 
-### 0176 — `ai/rules/css-migration-rules.md`
+### 0192 — `ai/rules/css-migration-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -9337,9 +12338,9 @@ src/styles/tailwind.css -> importado por src/main.jsx
 5. Comparar baseline visual.
 ```
 
-<a id="file-0177"></a>
+<a id="file-0193"></a>
 
-### 0177 — `ai/rules/global-rules.md`
+### 0193 — `ai/rules/global-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -9359,9 +12360,9 @@ src/styles/tailwind.css -> importado por src/main.jsx
 - Cualquier regresión de una tarea completada debe tener una nueva task-card de regression/continuity.
 ```
 
-<a id="file-0178"></a>
+<a id="file-0194"></a>
 
-### 0178 — `ai/rules/inspector-rules.md`
+### 0194 — `ai/rules/inspector-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -9375,9 +12376,9 @@ src/styles/tailwind.css -> importado por src/main.jsx
 Widgets no mutan schemas directamente. Usar command/update centralizado.
 ```
 
-<a id="file-0179"></a>
+<a id="file-0195"></a>
 
-### 0179 — `ai/rules/moveable-selecto-rules.md`
+### 0195 — `ai/rules/moveable-selecto-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -9393,9 +12394,9 @@ Widgets no mutan schemas directamente. Usar command/update centralizado.
 - No resolver hit-testing con z-index.
 ```
 
-<a id="file-0180"></a>
+<a id="file-0196"></a>
 
-### 0180 — `ai/rules/README.md`
+### 0196 — `ai/rules/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -9409,9 +12410,9 @@ Widgets no mutan schemas directamente. Usar command/update centralizado.
 Reglas duras. Cargar solo la regla principal de la task-card.
 ```
 
-<a id="file-0181"></a>
+<a id="file-0197"></a>
 
-### 0181 — `ai/rules/schema-rules.md`
+### 0197 — `ai/rules/schema-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -9425,9 +12426,9 @@ Reglas duras. Cargar solo la regla principal de la task-card.
 Preservar schemaUid, documentId, pageNumber, ownerRecipientId, colors, groupId, optionId, selected values, options y `__designer`.
 ```
 
-<a id="file-0182"></a>
+<a id="file-0198"></a>
 
-### 0182 — `ai/rules/snapshot-rules.md`
+### 0198 — `ai/rules/snapshot-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -9441,9 +12442,36 @@ Preservar schemaUid, documentId, pageNumber, ownerRecipientId, colors, groupId, 
 No crear snapshot paralelo. No perder metadata. Todo roundtrip debe conservar el modelo.
 ```
 
-<a id="file-0183"></a>
+<a id="file-0199"></a>
 
-### 0183 — `ai/skills/canvas-multipage-skill.md`
+### 0199 — `ai/rules/tailwind-design-continuity-rules.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `14`
+- **Tamaño original:** `1.3 KB`
+- **SHA1 corto:** `ccea96f7a9`
+- **Estado:** `completo`
+
+```markdown
+# Reglas — continuidad visual y Tailwind
+
+1. Una tarjeta por ejecución; una región visual o un contrato funcional por tarjeta.
+2. Máximo 8 archivos abiertos y 5 archivos de producto modificados por pasada.
+3. Inventariar selectores, consumidores y estados antes de eliminar una regla.
+4. No cambiar el DOM, orden de capas, `z-index`, `overflow`, `position` o medidas del canvas sin una tarjeta de canvas.
+5. `tokens.css` es una capa semántica permitida; no convertir tokens en clases duplicadas.
+6. Las clases procedentes de `constants.ts` deben ser cadenas completas y detectables por Tailwind; evitar concatenación parcial.
+7. Los estilos calculados por datos (`left`, `top`, `width`, `height`, transformaciones y color de propietario) pueden permanecer en `style` si no admiten clase estática.
+8. No retirar CSS hasta verificar estado normal, hover, focus-visible, disabled, activo, colapsado y responsive aplicables.
+9. Prohibido usar `!important` nuevo salvo contrato documentado de tercero.
+10. Registrar conteos antes/después de `@apply`, estilos inline y selectores eliminados.
+11. Si aparece una regresión fuera del alcance, crear tarjeta nueva; no ampliar silenciosamente la activa.
+12. Todo cambio termina con typecheck, lint focalizado, tests focalizados y evidencia visual en la ruta objetivo.
+```
+
+<a id="file-0200"></a>
+
+### 0200 — `ai/skills/canvas-multipage-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -9483,9 +12511,9 @@ Validar drop, selección, move, resize y snapshot en páginas 2+.
 ``​`
 ```
 
-<a id="file-0184"></a>
+<a id="file-0201"></a>
 
-### 0184 — `ai/skills/inspector-skill.md`
+### 0201 — `ai/skills/inspector-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -9525,9 +12553,9 @@ Mejorar DetailView/ListView sin romper CommandBus.
 ``​`
 ```
 
-<a id="file-0185"></a>
+<a id="file-0202"></a>
 
-### 0185 — `ai/skills/memory-update-skill.md`
+### 0202 — `ai/skills/memory-update-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -9567,9 +12595,9 @@ Actualizar memoria con decisiones útiles.
 ``​`
 ```
 
-<a id="file-0186"></a>
+<a id="file-0203"></a>
 
-### 0186 — `ai/skills/moveable-selecto-skill.md`
+### 0203 — `ai/skills/moveable-selecto-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -9609,9 +12637,9 @@ Proteger targets, guards, overlays y shortcuts.
 ``​`
 ```
 
-<a id="file-0187"></a>
+<a id="file-0204"></a>
 
-### 0187 — `ai/skills/option-groups-skill.md`
+### 0204 — `ai/skills/option-groups-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -9651,9 +12679,9 @@ Gestionar checkboxGroup/radioGroup/select y botón +.
 ``​`
 ```
 
-<a id="file-0188"></a>
+<a id="file-0205"></a>
 
-### 0188 — `ai/skills/prompting-skill.md`
+### 0205 — `ai/skills/prompting-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -9693,9 +12721,9 @@ Diseñar prompts/task-cards de bajo consumo de tokens.
 ``​`
 ```
 
-<a id="file-0189"></a>
+<a id="file-0206"></a>
 
-### 0189 — `ai/skills/README.md`
+### 0206 — `ai/skills/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -9709,9 +12737,9 @@ Diseñar prompts/task-cards de bajo consumo de tokens.
 Skills son procedimientos reutilizables. Cada skill describe entradas, pasos y salida esperada.
 ```
 
-<a id="file-0190"></a>
+<a id="file-0207"></a>
 
-### 0190 — `ai/skills/snapshot-safety-skill.md`
+### 0207 — `ai/skills/snapshot-safety-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -9751,9 +12779,9 @@ Preservar metadata en import/export/roundtrip.
 ``​`
 ```
 
-<a id="file-0191"></a>
+<a id="file-0208"></a>
 
-### 0191 — `ai/skills/tailwind-migration-skill.md`
+### 0208 — `ai/skills/tailwind-migration-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -9793,9 +12821,9 @@ Migrar CSS puro a Tailwind por capas sin afectar geometría.
 ``​`
 ```
 
-<a id="file-0192"></a>
+<a id="file-0209"></a>
 
-### 0192 — `ai/skills/visual-regression-skill.md`
+### 0209 — `ai/skills/visual-regression-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -9835,9 +12863,9 @@ Usar public/img-version como baseline y comparar visualmente.
 ``​`
 ```
 
-<a id="file-0193"></a>
+<a id="file-0210"></a>
 
-### 0193 — `ai/start/QUICKSTART-CLAUDE.md`
+### 0210 — `ai/start/QUICKSTART-CLAUDE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -9863,9 +12891,9 @@ Usar `ai/prompts/claude-diagnose-or-implement.md` en modo `diagnose-only` cuando
 Usar una sola task-card. No mezclar Tailwind, schemas, canvas, runtime y snapshot en la misma pasada.
 ```
 
-<a id="file-0194"></a>
+<a id="file-0211"></a>
 
-### 0194 — `ai/start/QUICKSTART-CODEX.md`
+### 0211 — `ai/start/QUICKSTART-CODEX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -9910,9 +12938,9 @@ No revises todo. Enruta, selecciona task-card, inspecciona con rg y modifica poc
 ``​`
 ```
 
-<a id="file-0195"></a>
+<a id="file-0212"></a>
 
-### 0195 — `ai/start/QUICKSTART-COPILOT.md`
+### 0212 — `ai/start/QUICKSTART-COPILOT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -9941,9 +12969,9 @@ Preservar metadata de schemas.
 `.github/copilot-instructions.md` solo debe apuntar a esta carpeta y contener restricciones mínimas.
 ```
 
-<a id="file-0196"></a>
+<a id="file-0213"></a>
 
-### 0196 — `ai/start/START.md`
+### 0213 — `ai/start/START.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -10030,9 +13058,9 @@ Detente si necesitas:
 - resolver por CSS un problema de permisos, metadata o geometría.
 ```
 
-<a id="file-0197"></a>
+<a id="file-0214"></a>
 
-### 0197 — `ai/subagents/anti-hallucination-reviewer.md`
+### 0214 — `ai/subagents/anti-hallucination-reviewer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -10056,9 +13084,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0198"></a>
+<a id="file-0215"></a>
 
-### 0198 — `ai/subagents/baseline-visual-critic.md`
+### 0215 — `ai/subagents/baseline-visual-critic.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -10082,9 +13110,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0199"></a>
+<a id="file-0216"></a>
 
-### 0199 — `ai/subagents/code-docs-writer.md`
+### 0216 — `ai/subagents/code-docs-writer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -10108,9 +13136,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0200"></a>
+<a id="file-0217"></a>
 
-### 0200 — `ai/subagents/css-auditor.md`
+### 0217 — `ai/subagents/css-auditor.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -10134,9 +13162,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0201"></a>
+<a id="file-0218"></a>
 
-### 0201 — `ai/subagents/legacy-css-guardian.md`
+### 0218 — `ai/subagents/legacy-css-guardian.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -10160,9 +13188,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0202"></a>
+<a id="file-0219"></a>
 
-### 0202 — `ai/subagents/memory-curator.md`
+### 0219 — `ai/subagents/memory-curator.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -10186,9 +13214,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0203"></a>
+<a id="file-0220"></a>
 
-### 0203 — `ai/subagents/prompt-engineer.md`
+### 0220 — `ai/subagents/prompt-engineer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -10212,9 +13240,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0204"></a>
+<a id="file-0221"></a>
 
-### 0204 — `ai/subagents/README.md`
+### 0221 — `ai/subagents/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -10228,9 +13256,9 @@ No modificar código por sí solo. Debe apoyar al agente principal.
 Los subagentes son apoyo especializado. No son dueños de procesos completos.
 ```
 
-<a id="file-0205"></a>
+<a id="file-0222"></a>
 
-### 0205 — `ai/subagents/regression-tester.md`
+### 0222 — `ai/subagents/regression-tester.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -10254,9 +13282,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0206"></a>
+<a id="file-0223"></a>
 
-### 0206 — `ai/subagents/tailwind-migrator.md`
+### 0223 — `ai/subagents/tailwind-migrator.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -10280,9 +13308,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0207"></a>
+<a id="file-0224"></a>
 
-### 0207 — `ai/task-cards/README.md`
+### 0224 — `ai/task-cards/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -10304,9 +13332,9 @@ completed/  tareas completadas
 ``​`
 ```
 
-<a id="file-0208"></a>
+<a id="file-0225"></a>
 
-### 0208 — `ai/templates/agent-template.md`
+### 0225 — `ai/templates/agent-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -10324,9 +13352,9 @@ completed/  tareas completadas
 ## Salida esperada
 ```
 
-<a id="file-0209"></a>
+<a id="file-0226"></a>
 
-### 0209 — `ai/templates/checklist-template.md`
+### 0226 — `ai/templates/checklist-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -10342,9 +13370,9 @@ completed/  tareas completadas
 - [ ] Validación
 ```
 
-<a id="file-0210"></a>
+<a id="file-0227"></a>
 
-### 0210 — `ai/templates/decision-template.md`
+### 0227 — `ai/templates/decision-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -10362,9 +13390,9 @@ completed/  tareas completadas
 ## Consecuencias
 ```
 
-<a id="file-0211"></a>
+<a id="file-0228"></a>
 
-### 0211 — `ai/templates/memory-update-template.md`
+### 0228 — `ai/templates/memory-update-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -10382,9 +13410,9 @@ completed/  tareas completadas
 - Próxima acción:
 ```
 
-<a id="file-0212"></a>
+<a id="file-0229"></a>
 
-### 0212 — `ai/templates/README.md`
+### 0229 — `ai/templates/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -10398,9 +13426,9 @@ completed/  tareas completadas
 Plantillas para extender la arquitectura sin duplicar estilo.
 ```
 
-<a id="file-0213"></a>
+<a id="file-0230"></a>
 
-### 0213 — `ai/templates/skill-template.md`
+### 0230 — `ai/templates/skill-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -10418,9 +13446,9 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 ## Salida
 ```
 
-<a id="file-0214"></a>
+<a id="file-0231"></a>
 
-### 0214 — `ai/templates/task-card-template.md`
+### 0231 — `ai/templates/task-card-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -10442,9 +13470,9 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 ## Entrega final
 ```
 
-<a id="file-0215"></a>
+<a id="file-0232"></a>
 
-### 0215 — `reports/action-audit/button-action-inventory.md`
+### 0232 — `reports/action-audit/button-action-inventory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `149`
@@ -10604,9 +13632,9 @@ Total candidates: 131
 | `src/features/pdfcomponent/ui/primitives.jsx` | 23-32 | DISABLED_WITH_REASON | — | `label` | yes | yes | yes | `<button type="button" className={classNameList} aria-label={label} title={title \|\| label} aria-haspopup={ariaHasPopup} aria-expanded={ariaExpanded} onClick={onClick} disabled={disabled} >` |
 ```
 
-<a id="file-0216"></a>
+<a id="file-0233"></a>
 
-### 0216 — `reports/designer-deep-audit/duplication-map.md`
+### 0233 — `reports/designer-deep-audit/duplication-map.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -10641,9 +13669,9 @@ Total candidates: 131
 - **Fuente única propuesta:** Centralizar en `sidebarPanelContract.ts` y tokens de Tailwind.
 ```
 
-<a id="file-0217"></a>
+<a id="file-0234"></a>
 
-### 0217 — `reports/designer-deep-audit/risk-map.md`
+### 0234 — `reports/designer-deep-audit/risk-map.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -10673,9 +13701,9 @@ Total candidates: 131
 - **Impacto:** Medio.
 ```
 
-<a id="file-0218"></a>
+<a id="file-0235"></a>
 
-### 0218 — `reports/designer-deep-audit/wrapper-reduction.md`
+### 0235 — `reports/designer-deep-audit/wrapper-reduction.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `56`
@@ -10742,14 +13770,14 @@ de `src/sisad-pdfme` = 0 resultados.
 - `npm run build` exit 0; `npx vitest run tests/unit/sisad-pdfme/react` (runtime-modes) en verde.
 ```
 
-<a id="file-0219"></a>
+<a id="file-0236"></a>
 
-### 0219 — `reports/tailwind-migration/active-css-inventory.md`
+### 0236 — `reports/tailwind-migration/active-css-inventory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
 - **Tamaño original:** `0.6 KB`
-- **SHA1 corto:** `a1592505e0`
+- **SHA1 corto:** `d27a26896c`
 - **Estado:** `completo`
 
 ```markdown
@@ -10760,199 +13788,78 @@ de `src/sisad-pdfme` = 0 resultados.
 | `src/styles/tailwind.css` | 5 | 0.1 | fuente única Tailwind |
 | `src/style.css` | 12 | 0.5 | mantener neutralizado |
 | `src/styles/sisad-tailwind-bridge.css` | 1 | 0.0 | revisar |
-| `src/features/pdfcomponent/labRoutes.css` | 1708 | 36.0 | migrar lab UI por componentes |
-| `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | 4209 | 195.2 | migrar solo reglas visuales seguras |
-| `src/sisad-pdfme/ui/styles/tokens.css` | 324 | 13.7 | conservar tokens |
+| `src/features/pdfcomponent/labRoutes.css` | 0 | 0 | no existe |
+| `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | 1565 | 70.1 | migrar solo reglas visuales seguras |
+| `src/sisad-pdfme/ui/styles/tokens.css` | 151 | 6.0 | conservar tokens |
 
 No incluir `reports/**` ni `.tailwind-migration-backups/**` como CSS activo.
 ```
 
-<a id="file-0220"></a>
+<a id="file-0237"></a>
 
-### 0220 — `reports/tailwind-migration/active-selector-duplicates.md`
+### 0237 — `reports/tailwind-migration/active-selector-duplicates.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `170`
-- **Tamaño original:** `32.3 KB`
-- **SHA1 corto:** `c2b8ca1402`
+- **Líneas:** `49`
+- **Tamaño original:** `9.6 KB`
+- **SHA1 corto:** `576f01059d`
 - **Estado:** `completo`
 
 ```markdown
 # Active Selector Duplicates
 
-Files scanned: src/features/pdfcomponent/labRoutes.css, src/sisad-pdfme/ui/styles/sisad-pdfme.css, src/styles/sisad-tailwind-bridge.css
-Duplicate selectors: 163
+Files scanned: src/sisad-pdfme/ui/styles/sisad-pdfme.css, src/styles/sisad-tailwind-bridge.css
+Duplicate selectors: 42
 
 | Selector | Count | Locations | Suggested class |
 |---|---:|---|---|
-| `to` | 18 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2942`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2952`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2962`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2972`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2982`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2992`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3002`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3012`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3031`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3059`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3069`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3405`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3414`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3437`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3449`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3459`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3465`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3476` | REVIEW |
-| `from` | 16 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2937`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2948`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2958`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2968`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2978`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2988`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2998`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3008`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3055`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3065`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3401`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3410`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3429`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3443`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3454`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3470` | REVIEW |
-| `.sisad-pdfme-designer-right-sidebar` | 5 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:827`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1298`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1304`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1413`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1575` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar-layout-body` | 5 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:929`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2397`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2618`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2621`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2930` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-lab-page-metrics` | 4 | `src/features/pdfcomponent/labRoutes.css:455`<br>`src/features/pdfcomponent/labRoutes.css:473`<br>`src/features/pdfcomponent/labRoutes.css:1305`<br>`src/features/pdfcomponent/labRoutes.css:1408` | REVIEW |
-| `.sisad-pdfme-lab-card-secondary` | 4 | `src/features/pdfcomponent/labRoutes.css:842`<br>`src/features/pdfcomponent/labRoutes.css:861`<br>`src/features/pdfcomponent/labRoutes.css:871`<br>`src/features/pdfcomponent/labRoutes.css:1434` | REVIEW |
-| `.sisad-pdfme-designer-detail-section-card` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1048`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1314`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2171`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2539` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-schema-config-switch-row` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1119`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1244`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2359`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2601` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-designer-left-sidebar-compact[data-sidebar-collapsed="false"]` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1597`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1643`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1657`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1671` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1647`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1661`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1675`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1750` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"][data-sidebar-open="true"] .sisad-pdfme-designer-canvas` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1651`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1665`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1679`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1753` | KEEP_GEOMETRY_REVIEW |
-| `100%` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:3025`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3039`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3050`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3421` | REVIEW |
-| `.sisad-pdfme-lab-page` | 3 | `src/features/pdfcomponent/labRoutes.css:2`<br>`src/features/pdfcomponent/labRoutes.css:41`<br>`src/features/pdfcomponent/labRoutes.css:1393` | REVIEW |
-| `.sisad-pdfme-lab-header-collaboration .sisad-pdfme-popover-button` | 3 | `src/features/pdfcomponent/labRoutes.css:200`<br>`src/features/pdfcomponent/labRoutes.css:220`<br>`src/features/pdfcomponent/labRoutes.css:267` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-collaboration-select` | 3 | `src/features/pdfcomponent/labRoutes.css:234`<br>`src/features/pdfcomponent/labRoutes.css:246`<br>`src/features/pdfcomponent/labRoutes.css:261` | REVIEW |
-| `.sisad-pdfme-lab-page-actions` | 3 | `src/features/pdfcomponent/labRoutes.css:387`<br>`src/features/pdfcomponent/labRoutes.css:1348`<br>`src/features/pdfcomponent/labRoutes.css:1412` | REVIEW |
-| `.sisad-pdfme-lab-collaboration-summary` | 3 | `src/features/pdfcomponent/labRoutes.css:547`<br>`src/features/pdfcomponent/labRoutes.css:560`<br>`src/features/pdfcomponent/labRoutes.css:1425` | REVIEW |
-| `.sisad-pdfme-lab-toolbar-grid` | 3 | `src/features/pdfcomponent/labRoutes.css:770`<br>`src/features/pdfcomponent/labRoutes.css:1288`<br>`src/features/pdfcomponent/labRoutes.css:1309` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:85`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:107`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:726` | REVIEW |
-| `.sisad-pdfme-ui-control-bar` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:170`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1563`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2414` | REVIEW |
-| `.sisad-pdfme-ui-control-bar-text-btn` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:327`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:352`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2418` | REVIEW |
-| `.sisad-pdfme-designer-left-sidebar-draggable-shell[data-dragging="true"]` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:535`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3095`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3102` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar-layout-header` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:911`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2058`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2607` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-detail-header-card` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:997`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2074`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2505` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-detail-header-card-state-tag` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1015`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2114`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2524` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-detail-header-card-title` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1018`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2091`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2511` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-detail-header-card-stat` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1031`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2096`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2530` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-detail-header-card-stat-label` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1036`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2111`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2536` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-detail-header-card-stat-value` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1039`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2108`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2533` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-schema-config-widget` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1054`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1240`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2324` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-designer-detail-view-title` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1076`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1294`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2613` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-schema-config-section-icon` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1082`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1219`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2344` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-designer-schema-config-section-state[data-active="true"]` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1227`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2339`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2463` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-designer-detail-section-card-head` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1249`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2197`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2542` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-detail-section-card-body[data-collapsed="false"]` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1291`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2215`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2545` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-list-view-item:hover` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1869`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2442`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2472` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-compact-config-panel` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2130`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2579`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2638` | REVIEW |
-| `.sisad-pdfme-designer-compact-config-panel-actions` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2156`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2478`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2597` | REVIEW |
-| `0%` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:3018`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3036`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3044` | REVIEW |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-view-toggle-btn` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:3576`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3579`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3955` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-lab-landing::after` | 2 | `src/features/pdfcomponent/labRoutes.css:21`<br>`src/features/pdfcomponent/labRoutes.css:35` | REVIEW |
-| `.sisad-pdfme-lab-result-card` | 2 | `src/features/pdfcomponent/labRoutes.css:101`<br>`src/features/pdfcomponent/labRoutes.css:705` | REVIEW |
-| `.sisad-pdfme-lab-hero` | 2 | `src/features/pdfcomponent/labRoutes.css:114`<br>`src/features/pdfcomponent/labRoutes.css:1313` | REVIEW |
-| `.sisad-pdfme-lab-header-collaboration` | 2 | `src/features/pdfcomponent/labRoutes.css:170`<br>`src/features/pdfcomponent/labRoutes.css:257` | REVIEW |
-| `.sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-collaboration-select-label` | 2 | `src/features/pdfcomponent/labRoutes.css:194`<br>`src/features/pdfcomponent/labRoutes.css:251` | REVIEW |
-| `.sisad-pdfme-lab-page h1` | 2 | `src/features/pdfcomponent/labRoutes.css:317`<br>`src/features/pdfcomponent/labRoutes.css:1322` | REVIEW |
-| `.sisad-pdfme-lab-page-copy` | 2 | `src/features/pdfcomponent/labRoutes.css:357`<br>`src/features/pdfcomponent/labRoutes.css:1317` | REVIEW |
-| `.sisad-pdfme-lab-page-rail` | 2 | `src/features/pdfcomponent/labRoutes.css:371`<br>`src/features/pdfcomponent/labRoutes.css:1301` | REVIEW |
-| `.sisad-pdfme-lab-page-linkRow` | 2 | `src/features/pdfcomponent/labRoutes.css:406`<br>`src/features/pdfcomponent/labRoutes.css:1340` | REVIEW |
-| `.sisad-pdfme-lab-page-controls` | 2 | `src/features/pdfcomponent/labRoutes.css:412`<br>`src/features/pdfcomponent/labRoutes.css:1344` | REVIEW |
-| `.sisad-pdfme-lab-section-heading p` | 2 | `src/features/pdfcomponent/labRoutes.css:446`<br>`src/features/pdfcomponent/labRoutes.css:1328` | REVIEW |
-| `.sisad-pdfme-lab-page-metric` | 2 | `src/features/pdfcomponent/labRoutes.css:479`<br>`src/features/pdfcomponent/labRoutes.css:1336` | REVIEW |
-| `.sisad-pdfme-lab-collaboration-disclosure` | 2 | `src/features/pdfcomponent/labRoutes.css:506`<br>`src/features/pdfcomponent/labRoutes.css:1421` | REVIEW |
-| `.sisad-pdfme-lab-collaboration-bar` | 2 | `src/features/pdfcomponent/labRoutes.css:517`<br>`src/features/pdfcomponent/labRoutes.css:1292` | REVIEW |
-| `.sisad-pdfme-lab-collaboration-controls` | 2 | `src/features/pdfcomponent/labRoutes.css:554`<br>`src/features/pdfcomponent/labRoutes.css:1296` | REVIEW |
-| `.sisad-pdfme-lab-collaboration-select-wrap` | 2 | `src/features/pdfcomponent/labRoutes.css:601`<br>`src/features/pdfcomponent/labRoutes.css:1401` | REVIEW |
-| `.sisad-pdfme-lab-collaboration-select` | 2 | `src/features/pdfcomponent/labRoutes.css:616`<br>`src/features/pdfcomponent/labRoutes.css:1397` | REVIEW |
-| `.sisad-pdfme-lab-card-grid` | 2 | `src/features/pdfcomponent/labRoutes.css:689`<br>`src/features/pdfcomponent/labRoutes.css:1360` | REVIEW |
-| `.sisad-pdfme-lab-results-grid` | 2 | `src/features/pdfcomponent/labRoutes.css:698`<br>`src/features/pdfcomponent/labRoutes.css:1353` | REVIEW |
-| `.sisad-pdfme-lab-toolbar-heading` | 2 | `src/features/pdfcomponent/labRoutes.css:755`<br>`src/features/pdfcomponent/labRoutes.css:765` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-lab-card-actions` | 2 | `src/features/pdfcomponent/labRoutes.css:833`<br>`src/features/pdfcomponent/labRoutes.css:1429` | REVIEW |
-| `.sisad-pdfme-lab-toolbar` | 2 | `src/features/pdfcomponent/labRoutes.css:882`<br>`src/features/pdfcomponent/labRoutes.css:1374` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-popover-panel` | 2 | `src/features/pdfcomponent/labRoutes.css:929`<br>`src/features/pdfcomponent/labRoutes.css:1387` | REVIEW |
-| `.sisad-pdfme-lab-button` | 2 | `src/features/pdfcomponent/labRoutes.css:1101`<br>`src/features/pdfcomponent/labRoutes.css:1113` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-lab-select` | 2 | `src/features/pdfcomponent/labRoutes.css:1109`<br>`src/features/pdfcomponent/labRoutes.css:1379` | REVIEW |
-| `.sisad-pdfme-lab-runtime-host` | 2 | `src/features/pdfcomponent/labRoutes.css:1195`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:161` | REVIEW |
-| `.sisad-pdfme-lab-results-summary` | 2 | `src/features/pdfcomponent/labRoutes.css:1214`<br>`src/features/pdfcomponent/labRoutes.css:1364` | REVIEW |
-| `.sisad-pdfme-lab-advanced-tools` | 2 | `src/features/pdfcomponent/labRoutes.css:1256`<br>`src/features/pdfcomponent/labRoutes.css:1383` | REVIEW |
-| `.sisad-pdfme-lab-advanced-tools-summary` | 2 | `src/features/pdfcomponent/labRoutes.css:1264`<br>`src/features/pdfcomponent/labRoutes.css:1417` | REVIEW |
-| `.sisad-pdfme-lab-results-drawer-panel` | 2 | `src/features/pdfcomponent/labRoutes.css:1554`<br>`src/features/pdfcomponent/labRoutes.css:1576` | REVIEW |
-| `.sisad-pdfme-root` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:25`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2920` | REVIEW |
-| `.sisad-pdfme-designer-canvas` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:95`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:729` | KEEP_GEOMETRY_REVIEW |
+| `to` | 18 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1477`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1487`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1497`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1507`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1517`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1527`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1537`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1547`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1566`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1594`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1604`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1801`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1810`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1833`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1845`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1855`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1861`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1872` | REVIEW |
+| `from` | 16 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1472`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1483`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1493`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1503`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1513`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1523`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1533`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1543`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1590`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1600`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1797`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1806`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1825`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1839`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1850`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1866` | REVIEW |
+| `.sisad-pdfme-designer-right-sidebar` | 5 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:492`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:616`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:622`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:701`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:863` | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:886`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:900`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:914`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:923` | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"][data-sidebar-open="true"] .sisad-pdfme-designer-canvas` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:890`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:904`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:918`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:926` | KEEP_GEOMETRY_REVIEW |
+| `.sisad-pdfme-designer-color-picker-trigger` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1014`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1132`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1162`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1182` | REVIEW |
+| `100%` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1560`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1574`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1585`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1817` | REVIEW |
+| `.sisad-pdfme-designer-stage` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:85`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:107`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:391` | REVIEW |
+| `.sisad-pdfme-ui-control-bar` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:166`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:851`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1097` | REVIEW |
+| `.sisad-pdfme-ui-control-bar-summary` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:192`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:199`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1468` | REVIEW |
+| `.sisad-pdfme-ui-control-bar-text-btn` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:249`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:274`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1101` | REVIEW |
+| `.sisad-pdfme-designer-left-sidebar-draggable-shell[data-dragging="true"]` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:388`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1630`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1637` | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar-toggle-btn` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:518`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:876`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1092` | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar-compact[data-sidebar-collapsed="false"]` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:882`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:896`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:910` | MIGRATE_TO_TSX |
+| `0%` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1553`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1571`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1579` | REVIEW |
+| `.sisad-pdfme-root` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:25`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1464` | REVIEW |
+| `.sisad-pdfme-designer-canvas` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:95`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:394` | KEEP_GEOMETRY_REVIEW |
 | `.sisad-pdfme-ui-preview-scroll [data-paper-root="true"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:125`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:146` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-ui-error-screen-body` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:167`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2933` | REVIEW |
-| `.sisad-pdfme-ui-control-bar-summary` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:196`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:203` | REVIEW |
-| `.sisad-pdfme-ui-control-bar-text-btn:hover:not(:disabled)` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:420`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2422` | REVIEW |
-| `.sisad-pdfme-designer-snap-label` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:452`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:458` | REVIEW |
-| `.sisad-pdfme-designer-left-sidebar` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:464`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1567` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-chip-row` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:501`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1589` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:544`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3590` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-plugin-btn[data-catalog-layout="list"]:hover` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:579`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2433` | REVIEW |
-| `.sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:584`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2430` | REVIEW |
-| `.sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"]:hover` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:631`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2436` | REVIEW |
-| `.sisad-pdfme-designer-plugin-btn[data-catalog-layout="list"] .sisad-pdfme-designer-plugin-btn-label-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:685`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:697` | REVIEW |
-| `.sisad-pdfme-designer-canvas-empty-state-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:761`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1928` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-designer-canvas-empty-state-hint` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:764`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1931` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-designer-right-sidebar-content` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:843`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1308` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar-content.sisad-pdfme-designer-sidebar-surface` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:846`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2041` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-toggle-btn` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:858`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2409` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar-panel-switcher-wrap` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:885`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2483` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar-panel-switcher` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:888`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2489` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar-panel-switcher-btn` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:891`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2492` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar-layout-frame` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:908`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2055` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar-layout-header-divider` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:926`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2610` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar-layout-body::-webkit-scrollbar` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:934`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2400` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar-layout-body::-webkit-scrollbar-thumb` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:940`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2403` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-detail-view-sections` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:951`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2168` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-list-view` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:956`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1409` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell .ant-row` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:966`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2627` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell .ant-col` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:969`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2624` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar .ant-form-item` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:972`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2548` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar .ant-input-number-input` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:982`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2369` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-detail-header-card-head` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1003`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2508` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-detail-header-card-title-wrap` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1006`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2515` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-detail-header-card-state-row` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1012`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2521` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-detail-header-card-stats` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1028`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2527` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-detail-view-context-strip` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1059`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2117` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-detail-view-context-chip` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1062`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2120` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-schema-config-section-head` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1070`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1210` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-designer-schema-config-section-head-main` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1079`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1213` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-designer-schema-config-tags` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1087`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1236` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-designer-schema-config-section-state` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1092`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1224` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-designer-schema-config-summary` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1107`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2327` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-designer-schema-config-summary::before` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1112`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2333` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-designer-schema-config-pair-row` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1171`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1232` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1187`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2353` | KEEP_GEOMETRY_REVIEW |
-| `.sisad-pdfme-designer-detail-section-card-head:hover` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1258`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2203` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-detail-section-card-head:focus-visible` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1261`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2206` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-detail-section-card-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1267`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2218` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-detail-section-card-description` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1270`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2223` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-detail-section-card-toggle` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1273`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2209` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-output-grid` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1367`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1419` | REVIEW |
-| `.sisad-pdfme-designer-custom-field-form` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1449`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1544` | REVIEW |
-| `.sisad-pdfme-designer-custom-field-section-legend` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1470`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1473` | REVIEW |
-| `.sisad-pdfme-designer-custom-field-inline-checks` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1523`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1549` | REVIEW |
-| `.sisad-pdfme-designer-custom-field-footer` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1526`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1553` | REVIEW |
-| `.sisad-pdfme-designer-custom-field-footer .ant-btn` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1531`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1557` | REVIEW |
-| `.sisad-pdfme-designer-right-sidebar[data-sidebar-open="true"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1579`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2038` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1687`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1851` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1690`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1854` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group-items[data-catalog-layout="tiles"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1699`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1857` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1702`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1719` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn-label-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1711`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1744` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"] .sisad-pdfme-designer-plugin-icon-fallback` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1732`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1741` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1782`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1791` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn-label` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1788`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1797` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-content` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1818`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1821` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-value` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1830`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1833` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-meta-badge` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1840`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1846` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-list-view-item` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1866`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2439` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-documents-rail-item-wrapper` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1990`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3910` | REVIEW |
-| `.sisad-pdfme-designer-documents-rail-item-wrapper:hover .sisad-pdfme-designer-documents-rail-delete-btn` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1996`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3931` | REVIEW |
-| `.sisad-pdfme-designer-documents-rail-item` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1999`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3913` | REVIEW |
-| `.sisad-pdfme-designer-documents-rail-item:hover` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2004`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3916` | REVIEW |
-| `.sisad-pdfme-designer-documents-rail-item-active` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2007`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3919` | REVIEW |
-| `.sisad-pdfme-designer-documents-rail-preview` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2013`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3922` | REVIEW |
-| `.sisad-pdfme-designer-compact-config-panel-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2141`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2582` | REVIEW |
-| `.sisad-pdfme-designer-compact-config-panel-description` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2144`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2586` | REVIEW |
-| `.sisad-pdfme-designer-compact-config-panel-summary` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2150`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2590` | REVIEW |
-| `.sisad-pdfme-designer-compact-config-panel-summary-text` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2153`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2593` | REVIEW |
-| `.sisad-pdfme-designer-compact-config-panel-footer` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2162`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2604` | REVIEW |
-| `.sisad-pdfme-designer-align-widget-grid` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2226`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2554` | REVIEW |
-| `.sisad-pdfme-designer-align-btn` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2229`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2557` | REVIEW |
-| `.sisad-pdfme-designer-button-group` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2250`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2561` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-button-auto` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2253`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2564` | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-color-picker-container` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2278`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2567` | REVIEW |
-| `.sisad-pdfme-designer-color-picker-trigger` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2281`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2570` | REVIEW |
-| `.sisad-pdfme-designer-color-picker-preview` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2296`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2576` | REVIEW |
-| `.sisad-pdfme-designer-color-picker-hex` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:2302`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:2573` | REVIEW |
-| `60%` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:3022`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3047` | REVIEW |
-| `.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-mode="micro"] .sisad-pdfme-ui-selection-context-toolbar-summary` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:3154`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3184` | MIGRATE_TO_TSX |
-| `55%` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:3433`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3446` | REVIEW |
-| `.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-density-wrap` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:3618`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:3737` | MIGRATE_TO_TSX |
+| `.sisad-pdfme-ui-control-bar-text-btn:hover:not(:disabled)` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:339`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1105` | REVIEW |
+| `.sisad-pdfme-designer-snap-label` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:363`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:369` | REVIEW |
+| `.sisad-pdfme-designer-left-sidebar` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:375`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:855` | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-canvas-empty-state-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:426`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:963` | KEEP_GEOMETRY_REVIEW |
+| `.sisad-pdfme-designer-canvas-empty-state-hint` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:429`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:966` | KEEP_GEOMETRY_REVIEW |
+| `.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell .ant-row` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:555`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1174` | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell .ant-col` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:558`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1171` | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-right-sidebar .ant-form-item` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:561`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1147` | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-right-sidebar .ant-input-number-input` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:571`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1064` | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:586`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1057` | KEEP_GEOMETRY_REVIEW |
+| `.sisad-pdfme-output-grid` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:675`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:707` | REVIEW |
+| `.sisad-pdfme-designer-custom-field-form` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:737`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:832` | REVIEW |
+| `.sisad-pdfme-designer-custom-field-section-legend` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:758`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:761` | REVIEW |
+| `.sisad-pdfme-designer-custom-field-inline-checks` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:811`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:837` | REVIEW |
+| `.sisad-pdfme-designer-custom-field-footer` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:814`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:841` | REVIEW |
+| `.sisad-pdfme-designer-custom-field-footer .ant-btn` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:819`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:845` | REVIEW |
+| `.sisad-pdfme-designer-right-sidebar[data-sidebar-open="true"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:867`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:969` | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-button-group` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:983`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1153` | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-button-auto` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:986`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1156` | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-color-picker-container` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1011`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1159` | REVIEW |
+| `.sisad-pdfme-designer-color-picker-preview` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1029`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1168` | REVIEW |
+| `.sisad-pdfme-designer-color-picker-hex` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1035`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1165` | REVIEW |
+| `60%` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1557`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1582` | REVIEW |
+| `55%` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:1829`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:1842` | REVIEW |
 ```
 
-<a id="file-0221"></a>
+<a id="file-0238"></a>
 
-### 0221 — `reports/tailwind-migration/baseline-regression-audit.md`
+### 0238 — `reports/tailwind-migration/baseline-regression-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `27`
@@ -10990,14 +13897,14 @@ Duplicate selectors: 163
 | Runtime Form | `public/img-version` no aporta evidencia directa | Layout de formulario limpio y protagonista | Ruta actual no se rompió | Riesgo indirecto por wrappers del host | Host lab puede influir en viewport | Validar en `/lab/generator-runtime` |
 ```
 
-<a id="file-0222"></a>
+<a id="file-0239"></a>
 
-### 0222 — `reports/tailwind-migration/component-migration-ledger.md`
+### 0239 — `reports/tailwind-migration/component-migration-ledger.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `78`
-- **Tamaño original:** `6.1 KB`
-- **SHA1 corto:** `7c80e3f203`
+- **Líneas:** `126`
+- **Tamaño original:** `9.3 KB`
+- **SHA1 corto:** `4463bdf6dc`
 - **Estado:** `completo`
 
 ```markdown
@@ -11013,11 +13920,11 @@ Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pin
 | Archivo | Estado | Última task | Tailwind JSX | Bridge | Legacy KEEP | Captura | Build | Riesgo |
 |---|---|---|---|---|---|---|---|---|
 | RightSidebar/RightSidebar.tsx | ✅ | scroll+densidad | sí | no | — | right-sidebar-detail-*, scroll-* | ✅ | bajo |
-| RightSidebar/layout.tsx | ✅ | scroll owner (`SidebarBody` overflow-y-auto) | sí | no | — | scroll-detail-* | ✅ | bajo |
-| RightSidebar/shared/SidebarSurfacePrimitives.tsx | 🟡 | densidad+textos | sí | no | font-size de header CSS-pinned | detail-* | ✅ | bajo |
+| RightSidebar/layout.tsx | ✅ | scroll owner (`SidebarBody` overflow-y-auto) + cleanup CSS | sí | no | — | scroll-detail-* | ✅ | bajo |
+| RightSidebar/shared/SidebarSurfacePrimitives.tsx | ✅ | densidad+textos inline (0.82rem title) | sí | no | — | detail-* | ✅ | bajo |
 | RightSidebar/DetailView/DetailViewContent.tsx | ✅ | densidad | sí | no | — | detail-* | ✅ | bajo |
-| RightSidebar/DetailView/DetailHeaderCard.tsx | 🟡 | densidad | sí | no | título `.stage` CSS-pinned (0.82rem) | detail-* | ✅ | bajo |
-| RightSidebar/DetailView/DetailSectionCard.tsx | 🟡 | densidad+colapso | sí | no | título/desc `[data-panel-mode=detail]` CSS-pinned | detail-* | ✅ | bajo |
+| RightSidebar/DetailView/DetailHeaderCard.tsx | ✅ | densidad+textos inline (0.82rem title) | sí | no | — | detail-* | ✅ | bajo |
+| RightSidebar/DetailView/DetailSectionCard.tsx | ✅ | densidad+textos inline (0.72rem title) | sí | no | — | detail-* | ✅ | bajo |
 | RightSidebar/DetailView/DetailFormSection.tsx | ✅ | quitar card anidada (`p-0 bg-transparent`) | sí | no | gutters de form-render | detail-* | ✅ | medio |
 | RightSidebar/DetailView/InspectorPrimitives.tsx | ✅ | densidad+textos | sí | no | — | detail-* | ✅ | bajo |
 | RightSidebar/DetailView/AlignWidget.tsx | ✅ | botones h-7 w-7 rounded-lg | sí | no | — | detail-* | ✅ | bajo |
@@ -11056,7 +13963,7 @@ Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pin
 
 - **Riesgo recurrente (@layer):** envolver un CSS importado standalone (`ui/index.ts`, `editor/index.ts`) en `@layer base/components` rompe el build (`@layer X used but no matching @tailwind X`). Fix sistémico: no envolver esos archivos en `@layer`, o enrutarlos por el entry Tailwind (`@import` tras `@tailwind base/components`).
 - Estado actual: **build ✅ (exit 0)**, **lint ✅ (0 errores, 117 warnings heredados)**.
-- Ninguna de mis ediciones tocó archivos `.css`.
+- Esta sesión sí retiró reglas duplicadas en `src/sisad-pdfme/ui/styles/sisad-pdfme.css`.
 
 ## Reportes de detalle
 - `right-sidebar-tailwind-only-density-fix.md`
@@ -11076,14 +13983,62 @@ Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pin
   selected state, rails compactos) validado por specs:
   `canvas-overflow-regression`, `drag-preview-and-canvas-scroll-regression`,
   `sidebar-collapse-parity`, `sidebar-rail-collapse-actions` — en verde.
-- Decisión: NO se eliminaron reglas en esta pasada. Los merges de
-  MERGE_SAME_SELECTOR se harán por slice (1 zona por pase, criterio CSS-014)
-  usando estos reportes como fuente, con verificación visual por zona.
+- Slice 2026-07-15: se retiraron del CSS legado los bloques duplicados de
+  `right-sidebar-layout-header`, `right-sidebar-layout-body`, `right-sidebar-layout-frame`
+  y `right-sidebar-panel-switcher*`; el shell visual quedó en TSX/Tailwind inline.
+- Slice 2026-07-15b: también se eliminaron las primitivas visuales redundantes
+  de `sidebar-surface-header` y `sidebar-surface-empty`, porque ya viven en
+  `SidebarSurfacePrimitives.tsx` con utilidades inline.
+- Slice 2026-07-15c: se retiraron del rail derecho los overrides duplicados de
+  `detail-header-card`, `detail-section-card`, `inspector-summary-card`,
+  `compact-config-panel` y `list-view-toolbar`, dejando el skin visual base en
+  JSX/TSX y conservando los bloques de densidad/scroll que aún no tienen paridad
+  completa inline.
+- Slice 2026-07-16: `ShortcutHelpPanel.tsx` absorbió la superficie del modal
+  de atajos con `Modal.classNames` y `sisad-pdfme.css` eliminó el override
+  huérfano de `.sisad-pdfme-shortcuts-panel .ant-modal-content`.
+- Slice 2026-07-16b: `sisad-pdfme.css` eliminó el bloque huérfano
+  `sisad-inspector-select-popup`, que no tenía consumidores en el código
+  activo.
+- Slice 2026-07-16c: `SchemaConnectionsWidget.tsx`, `SchemaCollaborationWidget.tsx`
+  y `detailWidgetRegistry.tsx` absorbieron el skin inline del `Divider`, y
+  `sisad-pdfme.css` eliminó el override global `.ant-divider-horizontal`.
+- Slice 2026-07-16d: `sisad-pdfme.css` eliminó el override global de
+  `ant-btn` (`.ant-btn`, `.ant-btn-default`, `.ant-btn-text` y hover), porque
+  los botones visibles ya tienen skin local en TSX; quedó pendiente revisar
+  `ant-select-selector` como contrato geométrico.
+- Slice 2026-07-16e: `InspectorSelect.tsx`, `SchemaCollaborationWidget.tsx`,
+  `SchemaConnectionsWidget.tsx` y `ListViewToolbar.tsx` absorbieron el skin
+  base del `Select` en wrappers locales, y `sisad-pdfme.css` eliminó el
+  override global `.ant-select-selector`.
+- Slice 2026-07-16f: `SchemaDropSetupModal.tsx` absorbió también el skin base
+  del `Select` del modal de configuración de campo para no depender del
+  override global eliminado.
+- Slice 2026-07-16g: `sisad-pdfme.css` consolidó la base del shell (`workspace`,
+  `canvas`, `designer-root`, `designer-background` y el centrado de
+  `paper-root`) en bloques únicos, reduciendo duplicación sin tocar geometría
+  ni scroll.
+- Slice 2026-07-16h: `sisad-pdfme.css` retiró residuos mecánicos del shell
+  (`@media` vacíos y la segunda declaración de `font-family` en
+  `.sisad-pdfme-root`) sin tocar geometría ni skin visible.
+- Slice 2026-07-16i: `RightSidebar.tsx` absorbió el skin base del rail derecho
+  (posición, ancho, borde, fondo, sombra, transición y estados open/collapsed)
+  en el propio nodo React, y `sisad-pdfme.css` eliminó el bloque raíz
+  equivalente; quedaron en CSS solo los ajustes responsivos y geométricos que
+  aún dependen de media queries.
+- Slice 2026-07-16j: `LeftSidebar.tsx` absorbió el skin base del rail izquierdo
+  (posición, ancho, borde, fondo, shrink y transición) en el nodo React, y
+  `sisad-pdfme.css` eliminó el bloque raíz equivalente; quedaron en CSS solo
+  los ajustes de catálogo/dragging y las reglas responsivas que siguen siendo
+  geométricas.
+- Decisión: continuar con merges de `MERGE_SAME_SELECTOR` por slice
+  (1 zona por pase, criterio CSS-014) usando estos reportes como fuente, con
+  verificación visual por zona.
 ```
 
-<a id="file-0223"></a>
+<a id="file-0240"></a>
 
-### 0223 — `reports/tailwind-migration/deep-density-spacing-audit.md`
+### 0240 — `reports/tailwind-migration/deep-density-spacing-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `105`
@@ -11199,9 +14154,9 @@ Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pin
 - [x] Reporte actualizado.
 ```
 
-<a id="file-0224"></a>
+<a id="file-0241"></a>
 
-### 0224 — `reports/tailwind-migration/img-version-baseline-inventory.md`
+### 0241 — `reports/tailwind-migration/img-version-baseline-inventory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -11226,9 +14181,9 @@ Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pin
 | `public/img-version/Captura de pantalla 2026-07-08 a la(s) 4.48.22 p. m..jpg` | `RIGHT_SIDEBAR_DOCUMENTS` | LeftSidebar, canvas, document list, right panel tabs | Confirma que la densidad de la barra derecha es compacta y navegable. |
 ```
 
-<a id="file-0225"></a>
+<a id="file-0242"></a>
 
-### 0225 — `reports/tailwind-migration/line-by-line-style-audit.md`
+### 0242 — `reports/tailwind-migration/line-by-line-style-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `227`
@@ -11466,9 +14421,9 @@ Clasificación por sección (comentarios reales del archivo). Contadores clave: 
 - **TC-CSS-06** — Migrar `@media` de labRoutes a breakpoints Tailwind (`sm:`/`md:`) — opcional, cosmético.
 ```
 
-<a id="file-0226"></a>
+<a id="file-0243"></a>
 
-### 0226 — `reports/tailwind-migration/pending-phases-progress.md`
+### 0243 — `reports/tailwind-migration/pending-phases-progress.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -11489,9 +14444,9 @@ Clasificación por sección (comentarios reales del archivo). Contadores clave: 
 | TC-CSS-13 Docs | pending | `docs/11-migraciones/tailwind-migration.md`, `docs/09-theming/tailwind-and-css-architecture.md` | Bajo | Documentación y reportes actualizados |
 ```
 
-<a id="file-0227"></a>
+<a id="file-0244"></a>
 
-### 0227 — `reports/tailwind-migration/README.md`
+### 0244 — `reports/tailwind-migration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -11578,9 +14533,9 @@ Migración incremental de diseños a Tailwind preservando comportamiento, canvas
 - generator/pdf-lib
 ```
 
-<a id="file-0228"></a>
+<a id="file-0245"></a>
 
-### 0228 — `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md`
+### 0245 — `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -11636,9 +14591,9 @@ SCROLL  .layout-body (SidebarBody) → min-h-0 flex-1 overflow-y-auto overflow-x
 Ninguno de los archivos `.css` prohibidos fue modificado por esta tarea. Los `.css` que aparecen en `git status` (`sisad-pdfme-global.css`, `labRoutes.css`) corresponden a trabajo externo/paralelo de la migración, no a esta tarea.
 ```
 
-<a id="file-0229"></a>
+<a id="file-0246"></a>
 
-### 0229 — `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md`
+### 0246 — `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -11683,9 +14638,9 @@ Fase: RightSidebar visual density (Tailwind JSX/TSX only). Sin CSS nuevo, sin ed
 Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provienen del `Row`/`Col` interno de `form-render` (gutter por defecto). El margen negativo y el padding se compensan a cero contra el borde del form-shell, por lo que **no** producen overflow. Al dejar el form-shell en `p-0 bg-transparent`, el contenido queda alineado al borde de la sección sin card anidada. No se fuerza cambio del gutter por CSS ni por schema data (prohibido). Queda como riesgo residual estético menor.
 ```
 
-<a id="file-0230"></a>
+<a id="file-0247"></a>
 
-### 0230 — `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md`
+### 0247 — `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -11709,9 +14664,9 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx` | Shared sidebar header primitives | Shared chrome already centralised for list/detail surfaces | `KEEP_LEGACY` | Low |
 ```
 
-<a id="file-0231"></a>
+<a id="file-0248"></a>
 
-### 0231 — `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md`
+### 0248 — `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -11742,9 +14697,9 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 - El runtime mantiene la paridad Form/Viewer y la separación clara entre chrome y contenido.
 ```
 
-<a id="file-0232"></a>
+<a id="file-0249"></a>
 
-### 0232 — `reports/tailwind-migration/schema-chrome-tailwind-audit.md`
+### 0249 — `reports/tailwind-migration/schema-chrome-tailwind-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -11773,15 +14728,15 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 - `basic-designer` continúa renderizando `field-chrome` y `action-based` sin overflow ni regresiones visibles.
 ```
 
-<a id="file-0233"></a>
+<a id="file-0250"></a>
 
-### 0233 — `reports/tailwind-migration/selector-duplicates-current.md`
+### 0250 — `reports/tailwind-migration/selector-duplicates-current.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `616`
-- **Tamaño original:** `131.3 KB`
-- **SHA1 corto:** `9fddfaf6dd`
-- **Estado:** `truncado 110.5 KB`
+- **Líneas:** `61`
+- **Tamaño original:** `10.9 KB`
+- **SHA1 corto:** `1655e666c7`
+- **Estado:** `completo`
 
 ```markdown
 # Selector duplicates current
@@ -11790,526 +14745,66 @@ Auditoría generada sobre CSS activo del proyecto.
 
 | Selector | Apariciones | Archivos | Líneas aprox. | Clasificación |
 |---|---:|---|---|---|
-| `:is(.app-shell` | 44 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:362, src/sisad-pdfme/ui/styles/sisad-pdfme.css:367, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3266, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3271, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3274, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3277, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3280, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3283, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3286, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3289, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3289, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3293, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3293, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3297, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3300, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3308, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3311, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3314, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3317, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3320, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3323, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3326, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3326, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3330, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3334, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3337, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3337, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3341, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3345, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3348, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3352, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3355, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3358, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3358, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3362, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3365, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3368, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3371, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3374, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3377, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3380, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3383, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3386, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3389 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar` | 6 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:827, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1298, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1304, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1413, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1575, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1585 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-header-card` | 5 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:997, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1312, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2074, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2452, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2505 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-section-card` | 5 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1048, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1312, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2171, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2452, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2539 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar-layout-header` | 5 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:911, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2058, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2452, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2607, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2923 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-compact-config-panel` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2130, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2452, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2579, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2634 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-header-card-stat` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1031, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2096, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2452, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2530 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-header-card-state-tag` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1015, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2114, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2452, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2524 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-section-card-body[data-collapsed="false"]` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1291, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2215, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2452, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2545 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar-compact[data-sidebar-collapsed="false"]` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1597, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1643, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1657, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1671 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar-layout-body` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:929, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2397, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2621, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2923 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-schema-config-switch-row` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1119, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1244, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2359, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2601 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-schema-config-widget` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1054, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1240, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2324, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2452 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-stage` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:81, src/sisad-pdfme/ui/styles/sisad-pdfme.css:91, src/sisad-pdfme/ui/styles/sisad-pdfme.css:107, src/sisad-pdfme/ui/styles/sisad-pdfme.css:726 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1647, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1661, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1675, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1750 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"][data-sidebar-open="true"] .sisad-pdfme-designer-canvas` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1651, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1665, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1679, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1753 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-card-secondary` | 4 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:841, src/features/pdfcomponent/labRoutes.css:861, src/features/pdfcomponent/labRoutes.css:871, src/features/pdfcomponent/labRoutes.css:1433 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-hero` | 4 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:96, src/features/pdfcomponent/labRoutes.css:114, src/features/pdfcomponent/labRoutes.css:1286, src/features/pdfcomponent/labRoutes.css:1313 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-page-metrics` | 4 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:453, src/features/pdfcomponent/labRoutes.css:473, src/features/pdfcomponent/labRoutes.css:1305, src/features/pdfcomponent/labRoutes.css:1406 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-toolbar` | 4 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:96, src/features/pdfcomponent/labRoutes.css:882, src/features/pdfcomponent/labRoutes.css:1357, src/features/pdfcomponent/labRoutes.css:1374 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-align-btn` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2229, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2557, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2634 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-background` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:81, src/sisad-pdfme/ui/styles/sisad-pdfme.css:91, src/sisad-pdfme/ui/styles/sisad-pdfme.css:101 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-button-auto` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2253, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2564, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2634 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-canvas` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:91, src/sisad-pdfme/ui/styles/sisad-pdfme.css:110, src/sisad-pdfme/ui/styles/sisad-pdfme.css:729 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-color-picker-trigger` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2281, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2570, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2634 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-compact-config-panel-actions` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2156, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2478, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2597 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-header-card-stat-label` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1036, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2111, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2536 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-header-card-stat-value` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1039, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2108, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2533 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-header-card-title` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1018, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2091, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2511 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-section-card-head` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1249, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2197, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2542 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-view-context-strip` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1059, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2117, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2452 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-view-host` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:954, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2051, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2452 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-view-title` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1073, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1294, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2613 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-view-toggle-btn` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3575, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3579, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3955 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar-draggable-shell[data-dragging="true"]` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:535, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3095, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3102 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar-toggle-btn` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:858, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1585, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2409 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-list-view-item:hover` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1869, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2442, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2467 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-plugin-btn[data-catalog-layout="list"]:hover` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:579, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2433, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2467 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"]:hover` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:631, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2436, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2467 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar-panel-switcher-btn` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:891, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2492, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2634 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar[data-sidebar-open="true"]` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1579, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2038, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2452 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-root` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:81, src/sisad-pdfme/ui/styles/sisad-pdfme.css:91, src/sisad-pdfme/ui/styles/sisad-pdfme.css:98 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-schema-config-section-icon` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1082, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1219, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2344 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-schema-config-section-state[data-active="true"]` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1227, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2339, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2452 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-schema-config-summary` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1107, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1312, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2327 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-button` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1100, src/features/pdfcomponent/labRoutes.css:1113, src/features/pdfcomponent/labRoutes.css:1378 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-card` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:96, src/features/pdfcomponent/labRoutes.css:704, src/features/pdfcomponent/labRoutes.css:709 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-card-primary` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:841, src/features/pdfcomponent/labRoutes.css:855, src/features/pdfcomponent/labRoutes.css:1433 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-collaboration-summary` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:547, src/features/pdfcomponent/labRoutes.css:560, src/features/pdfcomponent/labRoutes.css:1425 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-collaboration-select` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:234, src/features/pdfcomponent/labRoutes.css:246, src/features/pdfcomponent/labRoutes.css:261 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-select` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:199, src/features/pdfcomponent/labRoutes.css:228, src/features/pdfcomponent/labRoutes.css:266 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-header-collaboration .sisad-pdfme-popover-button` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:199, src/features/pdfcomponent/labRoutes.css:220, src/features/pdfcomponent/labRoutes.css:266 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-hero h1` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:309, src/features/pdfcomponent/labRoutes.css:316, src/features/pdfcomponent/labRoutes.css:1321 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-page` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1, src/features/pdfcomponent/labRoutes.css:41, src/features/pdfcomponent/labRoutes.css:1393 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-page h1` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:309, src/features/pdfcomponent/labRoutes.css:316, src/features/pdfcomponent/labRoutes.css:1321 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-page-actions` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:387, src/features/pdfcomponent/labRoutes.css:1348, src/features/pdfcomponent/labRoutes.css:1412 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-results` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:96, src/features/pdfcomponent/labRoutes.css:1207, src/features/pdfcomponent/labRoutes.css:1357 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-select` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1100, src/features/pdfcomponent/labRoutes.css:1109, src/features/pdfcomponent/labRoutes.css:1378 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-toolbar-grid` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:770, src/features/pdfcomponent/labRoutes.css:1286, src/features/pdfcomponent/labRoutes.css:1309 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-workspace` | 3 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:96, src/features/pdfcomponent/labRoutes.css:1172, src/features/pdfcomponent/labRoutes.css:1357 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-ui-control-bar` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:170, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1563, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2414 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-ui-control-bar-icon-btn` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:326, src/sisad-pdfme/ui/styles/sisad-pdfme.css:345, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2417 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-ui-control-bar-summary` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:195, src/sisad-pdfme/ui/styles/sisad-pdfme.css:203, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2923 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-ui-control-bar-text-btn` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:326, src/sisad-pdfme/ui/styles/sisad-pdfme.css:352, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2417 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-ui-error-screen-body` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:167, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2923, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2933 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-canvas` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:81, src/sisad-pdfme/ui/styles/sisad-pdfme.css:91 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-align-btn:hover:not(:disabled)` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2236, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2467 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-align-widget-grid` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2226, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2554 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-button-auto:hover:not(:disabled)` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2260, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2467 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-button-group` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2250, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2561 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-canvas [data-paper-root="true"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:124, src/sisad-pdfme/ui/styles/sisad-pdfme.css:149 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-canvas-empty-state-hint` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:764, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1931 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-canvas-empty-state-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:761, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1928 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-color-picker-container` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2278, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2567 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-color-picker-hex` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2302, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2573 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-color-picker-preview` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2296, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2576 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-compact-config-panel-description` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2144, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2586 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-compact-config-panel-footer` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2162, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2604 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-compact-config-panel-summary` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2150, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2590 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-compact-config-panel-summary-text` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2153, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2593 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-compact-config-panel-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2141, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2582 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-context-summary` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:212, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2923 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-custom-field-footer` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1526, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1553 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-custom-field-footer .ant-btn` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1531, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1557 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-custom-field-form` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1449, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1544 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-custom-field-grid` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1476, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1548 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-custom-field-inline-checks` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1523, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1548 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-custom-field-section-legend` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1469, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1473 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-header-card-head` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1003, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2508 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-header-card-stat:hover` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2103, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2467 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-header-card-state-row` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1012, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2521 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-header-card-stats` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1028, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2527 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-header-card-tag-base` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1021, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2518 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-header-card-title-wrap` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1006, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2515 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-section-card-description` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1270, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2223 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-section-card-head:focus-visible` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1261, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2206 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-section-card-head:hover` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1258, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2203 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-section-card-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1267, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2218 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-section-card-toggle` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1273, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2209 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-view-context-chip` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1062, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2120 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-detail-view-sections` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:951, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2168 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-documents-rail-item` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1999, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3913 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-documents-rail-item-active` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2007, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3919 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-documents-rail-item-wrapper` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1990, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3910 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-documents-rail-item-wrapper:hover .sisad-pdfme-designer-documents-rail-delete-btn` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1996, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3931 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-documents-rail-item:hover` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2004, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3916 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-documents-rail-preview` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2013, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3922 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:464, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1567 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:542, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3588 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar-chip-row` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:501, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1585 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-control-band` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1612, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1625 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1687, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1851 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group-items[data-catalog-layout="tiles"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1699, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1857 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1690, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1854 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn-label-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1711, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1744 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1702, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1719 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"] .sisad-pdfme-designer-plugin-icon-fallback` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1730, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1738 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"] > div` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1705, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1730 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"] > div svg` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1708, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1738 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-left-sidebar-plugin-wrap:hover .sisad-pdfme-designer-plugin-favorite-toggle` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:613, src/sisad-pdfme/ui/styles/sisad-pdfme.css:709 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-list-view` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:954, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1409 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-list-view-item` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1866, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2439 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-plugin-btn[data-catalog-layout="list"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:572, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2429 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-plugin-btn[data-catalog-layout="list"] .sisad-pdfme-designer-plugin-btn-label-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:685, src/sisad-pdfme/ui/styles/sisad-pdfme.css:697 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:584, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2429 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"]:active` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:660, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3108 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar .ant-form-item` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:972, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2548 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar .ant-input` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:981, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2368 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar .ant-input-number-input` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:981, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2368 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell .ant-col` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:969, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2624 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-detail-view-form-shell .ant-row` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:966, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2627 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-density-wrap` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3617, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3737 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar .sisad-pdfme-designer-list-view-toolbar` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3617, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3621 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar-content` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:843, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1308 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar-content.sisad-pdfme-designer-sidebar-surface` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:846, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2041 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar-layout-body::-webkit-scrollbar` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:934, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2400 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar-layout-body::-webkit-scrollbar-thumb` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:940, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2403 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar-layout-frame` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:908, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2055 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar-layout-header-divider` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:926, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2610 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar-panel-switcher` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:888, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2489 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar-panel-switcher-wrap` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:885, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2483 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-right-sidebar[data-panel-mode="detail"] .sisad-pdfme-designer-right-sidebar-layout-body` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1130, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2617 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-root) .sisad-pdfme-ui-custom-selectable[data-schema-active="true"]::before` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3300, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3303 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1187, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2353 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-schema-config-grid-2` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1127, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1231 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-schema-config-pair-row` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1171, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1231 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-schema-config-section-head` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1070, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1210 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-schema-config-section-head-main` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1079, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1213 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-schema-config-section-state` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1090, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1224 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-schema-config-section-title` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1073, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1216 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-schema-config-summary::before` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1112, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2333 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-schema-config-tags` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1087, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1236 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-schema-config-tags .ant-tag` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1090, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1095 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-snap-label` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:451, src/sisad-pdfme/ui/styles/sisad-pdfme.css:458 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-content` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1818, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1821 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-meta-badge` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1840, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1846 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-value` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1830, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1833 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1782, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1791 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn-label` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1788, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1797 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-advanced-tools` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1256, src/features/pdfcomponent/labRoutes.css:1383 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-advanced-tools-summary` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1264, src/features/pdfcomponent/labRoutes.css:1417 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-card-actions` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:833, src/features/pdfcomponent/labRoutes.css:1429 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-card-grid` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:689, src/features/pdfcomponent/labRoutes.css:1357 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-card-list` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:697, src/features/pdfcomponent/labRoutes.css:1352 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-card-summary` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:738, src/features/pdfcomponent/labRoutes.css:818 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-card-topline` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:753, src/features/pdfcomponent/labRoutes.css:761 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-collaboration-bar` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:517, src/features/pdfcomponent/labRoutes.css:1292 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-collaboration-controls` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:554, src/features/pdfcomponent/labRoutes.css:1296 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-collaboration-disclosure` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:506, src/features/pdfcomponent/labRoutes.css:1421 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-collaboration-select` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:616, src/features/pdfcomponent/labRoutes.css:1397 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-collaboration-select-wrap` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:601, src/features/pdfcomponent/labRoutes.css:1401 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-description` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:444, src/features/pdfcomponent/labRoutes.css:1326 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-header-collaboration` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:170, src/features/pdfcomponent/labRoutes.css:257 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-header-collaboration .sisad-pdfme-lab-collaboration-select-label` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:194, src/features/pdfcomponent/labRoutes.css:251 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-hero-metric` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:477, src/features/pdfcomponent/labRoutes.css:1334 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-hero-metrics` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:453, src/features/pdfcomponent/labRoutes.css:1406 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-hero-summary` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:453, src/features/pdfcomponent/labRoutes.css:1406 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-hero-summary > div` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:477, src/features/pdfcomponent/labRoutes.css:1334 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-hero-text` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:444, src/features/pdfcomponent/labRoutes.css:1326 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-landing` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1, src/features/pdfcomponent/labRoutes.css:15 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-landing::after` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:20, src/features/pdfcomponent/labRoutes.css:35 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-landing::before` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:20, src/features/pdfcomponent/labRoutes.css:29 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-meta` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:753, src/features/pdfcomponent/labRoutes.css:775 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-page-context` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:379, src/features/pdfcomponent/labRoutes.css:1300 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-page-controls` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:412, src/features/pdfcomponent/labRoutes.css:1344 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-page-copy` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:357, src/features/pdfcomponent/labRoutes.css:1317 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-description` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:138, src/features/pdfcomponent/labRoutes.css:1645 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-page-linkRow` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:406, src/features/pdfcomponent/labRoutes.css:1340 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-page-metric` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:477, src/features/pdfcomponent/labRoutes.css:1334 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-page-rail` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:371, src/features/pdfcomponent/labRoutes.css:1300 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-page-topbar` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:349, src/features/pdfcomponent/labRoutes.css:1286 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-result-card` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:96, src/features/pdfcomponent/labRoutes.css:704 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-results-drawer-panel` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1553, src/features/pdfcomponent/labRoutes.css:1576 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-results-grid` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:697, src/features/pdfcomponent/labRoutes.css:1352 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-results-pill` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1553, src/features/pdfcomponent/labRoutes.css:1558 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-results-summary` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1214, src/features/pdfcomponent/labRoutes.css:1364 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-runtime-host` | 2 | `src/features/pdfcomponent/labRoutes.css`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/features/pdfcomponent/labRoutes.css:1195, src/sisad-pdfme/ui/styles/sisad-pdfme.css:161 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-section-heading p` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:444, src/features/pdfcomponent/labRoutes.css:1326 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-lab-toolbar-heading` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:753, src/features/pdfcomponent/labRoutes.css:765 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-output-grid` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1367, src/sisad-pdfme/ui/styles/sisad-pdfme.css:1419 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-popover-panel` | 2 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:929, src/features/pdfcomponent/labRoutes.css:1387 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-root` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:48, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2920 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-root .sisad-pdfme-option-group-root[data-render-mode="form"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2841, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2845 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-sidebar-surface-empty` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:272, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2923 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-sidebar-surface-header` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:239, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2923 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-ui-control-bar-icon-btn:hover:not(:disabled)` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:419, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2421 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-ui-control-bar-icon-btn[data-active="true"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:341, src/sisad-pdfme/ui/styles/sisad-pdfme.css:416 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-ui-control-bar-pill` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:195, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2923 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-ui-control-bar-shortcuts-btn` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:330, src/sisad-pdfme/ui/styles/sisad-pdfme.css:336 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-ui-control-bar-text-btn:hover:not(:disabled)` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:419, src/sisad-pdfme/ui/styles/sisad-pdfme.css:2421 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-ui-preview-scroll [data-paper-root="true"]` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:124, src/sisad-pdfme/ui/styles/sisad-pdfme.css:146 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-ui-selection-context-toolbar[data-toolbar-mode="micro"] .sisad-pdfme-ui-selection-context-toolbar-summary` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3154, src/sisad-pdfme/ui/styles/sisad-pdfme.css:3184 | MERGE_SAME_SELECTOR |
-| `.sisad-pdfme-workspace` | 2 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:81, src/sisad-pdfme/ui/styles/sisad-pdfme.css:88 | MERGE_SAME_SELECTOR |
-| `.ant-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1328 | REVIEW_ANTD_OVERRIDE |
-| `.ant-btn-default:not(.sisad-pdfme-designer-left-sidebar-filter-btn)` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1331 | REVIEW_ANTD_OVERRIDE |
-| `.ant-btn-default:not(.sisad-pdfme-designer-left-sidebar-filter-btn):hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1334 | REVIEW_ANTD_OVERRIDE |
-| `.ant-btn-text` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1337 | REVIEW_ANTD_OVERRIDE |
-| `.ant-btn-text:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1340 | REVIEW_ANTD_OVERRIDE |
-| `.ant-collapse-item:hover .sisad-pdfme-designer-schema-config-section-icon` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2350 | REVIEW_ANTD_OVERRIDE |
-| `.ant-divider-horizontal` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1319 | REVIEW_ANTD_OVERRIDE |
-| `.ant-input` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1355 | REVIEW_ANTD_OVERRIDE |
-| `.ant-input-affix-wrapper` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1343 | REVIEW_ANTD_OVERRIDE |
-| `.ant-input-affix-wrapper-focused` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1351 | REVIEW_ANTD_OVERRIDE |
-| `.ant-input-affix-wrapper:focus-within` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1351 | REVIEW_ANTD_OVERRIDE |
-| `.ant-input-affix-wrapper:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1348 | REVIEW_ANTD_OVERRIDE |
-| `.ant-input::placeholder` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1358 | REVIEW_ANTD_OVERRIDE |
-| `.ant-select-selection-item` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1364 | REVIEW_ANTD_OVERRIDE |
-| `.ant-select-selector` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1361 | KEEP_GEOMETRY |
-| `.ant-typography` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1322 | REVIEW_ANTD_OVERRIDE |
-| `.ant-typography-secondary` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1325 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-inspector-select-popup .ant-select-item-option-content` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3905 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-canvas .sisad-pdfme-ui-canvas-overlay-manager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:152 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:767 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:798 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-control` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:805 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-line` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:802 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-origin` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:810 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-rotation-line` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:813 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .scena-guides-guide-origin` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:792 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .scena-guides-guide.scena-guides-adder` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:795 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .scena-guides-manager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:789 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"]>.sisad-pdfme-designer-custom-undefined` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:777 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-canvas-page="true"]>.sisad-pdfme-designer-padding` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:780 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas [data-paper-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:155 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas-empty-state` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:749 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas-empty-state-card` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:755 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas[data-grid-visible="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:116 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas[data-guides-visible="false"] [data-canvas-page="true"] .scena-guides-manager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:786 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-canvas[data-padding-visible="false"] [data-canvas-page="true"]>.sisad-pdfme-designer-padding` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:783 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-custom-field-footer .ant-btn-default` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1534 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-custom-field-footer .ant-btn-primary` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1537 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-custom-field-footer .ant-btn:disabled` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1540 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-custom-field-form-scroll` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1452 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-custom-field-form-scroll::-webkit-scrollbar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1455 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-custom-field-form-scroll::-webkit-scrollbar-thumb` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1461 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-custom-field-form-scroll::-webkit-scrollbar-track` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1458 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-custom-field-modal .ant-input` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1488 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-custom-field-modal .ant-input-focused` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1498 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-custom-field-modal .ant-input::placeholder` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1503 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-custom-field-modal .ant-input:focus` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1498 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-custom-field-modal .ant-input:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1494 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-custom-field-modal .ant-modal-body` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1446 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-custom-field-modal .ant-modal-close` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1435 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-custom-field-modal .ant-modal-close:active` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1443 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-custom-field-modal .ant-modal-close:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1440 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-custom-field-modal .ant-modal-content` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1424 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-custom-field-modal .ant-modal-header` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1429 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-custom-field-modal .ant-modal-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1432 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-detail-view-form-shell .ant-card` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3883 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-detail-view-form-shell .ant-card-body` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3899 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-detail-view-form-shell .ant-card-head` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3888 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-detail-view-form-shell .ant-card-head-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3893 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-detail-view-form-shell .ant-form` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:962 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-detail-view-form-shell .ant-form-item` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3555 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-detail-view-form-shell .ant-form-item-label > label` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3558 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-detail-view-form-shell .ant-input` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3561 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-detail-view-form-shell .ant-input-number` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3561 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-detail-view-form-shell .ant-input-number-input` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3566 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-detail-view-form-shell .ant-select-selection-item` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3569 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-detail-view-form-shell .ant-select-selector` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3561 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-documents-rail .sisad-pdfme-designer-documents-rail-meta .ant-typography` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2027 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-documents-rail-header-title .ant-typography` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1949 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-documents-rail-page-label` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2021 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-inspector-summary-card-tags .ant-tag` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3510 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-inspector-tag-list .ant-tag` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3510 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-chip-row` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3572 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-control-band` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3545 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item .sisad-pdfme-designer-left-sidebar-custom-item-icon` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3597 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item-desc` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3582 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item-label` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3593 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item-meta` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3582 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:558 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item[data-catalog-layout="list"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:548 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-custom-item[data-catalog-layout="tiles"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:548 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-dock-header` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3534 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-dock-recipient` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3540 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-dock-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3537 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-filter-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3575 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-plugin-wrap > .ant-btn.sisad-pdfme-designer-plugin-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:542 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-plugin-wrap > .sisad-pdfme-designer-plugin-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:542 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-plugin-wrap > .sisad-pdfme-designer-plugin-btn:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:558 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-plugin-wrap > .sisad-pdfme-designer-plugin-btn[data-catalog-layout="list"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:548 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-plugin-wrap > .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:548 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-search-wrap` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3548 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-search-wrap .ant-input` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3551 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-left-sidebar-search-wrap .ant-input-affix-wrapper` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3551 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn-label-desc` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3582 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn-label-meta` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3582 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn-label-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3593 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-catalog-layout="list"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3588 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-catalog-layout="list"] > div` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3597 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3588 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"] > div` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3597 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-schema-category="Selecciones"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:618 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-schema-category="Selecciones"] .sisad-pdfme-designer-plugin-btn-label-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:628 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-schema-category="Selecciones"] > div` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:623 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-schema-kind="builtin"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:676 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-btn[data-schema-kind="custom"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:679 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar .sisad-pdfme-designer-plugin-icon-fallback` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:566 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-active-recipient-dot` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:141 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-chip-row::-webkit-scrollbar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:504 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-left-sidebar-compact` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1594 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-chip-row` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1636 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-dock-header` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1603 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-dock-kicker` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1606 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-dock-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1609 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-filter-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1639 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group-title-count` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1696 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-group-title-label` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1693 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-main` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1684 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-plugin-wrap` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1714 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-search-stack` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1612 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-search-wrap` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1629 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-search-wrap .ant-input` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1632 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-search-wrap .ant-input-affix-wrapper` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1632 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-search[data-use-default-style="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1625 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-shell` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1600 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-tab-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1619 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-tab-btn svg` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1622 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-left-sidebar-tablist` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1616 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"] .sisad-pdfme-designer-plugin-icon-fallback svg` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1738 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"] > div > div` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1730 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"] > div > div svg` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1738 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-btn[data-catalog-layout="tiles"]:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1726 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-compact .sisad-pdfme-designer-plugin-favorite-toggle` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1747 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-content` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:474 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-control-band` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:498 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-dock-header` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:484 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-dock-kicker` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:487 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-dock-section-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:493 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-dock-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:490 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-draggable-shell` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:530 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-left-sidebar-draggable-shell[data-dragging="true"] .sisad-pdfme-designer-plugin-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3098 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-left-sidebar-draggable-shell[data-dragging="true"] .sisad-pdfme-designer-plugin-favorite-toggle` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3105 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-left-sidebar-filter-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:507 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-filter-btn:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:512 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-frame` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:470 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-highlight` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:527 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-main` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:515 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-left-sidebar-main::-webkit-scrollbar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:518 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-left-sidebar-main::-webkit-scrollbar-thumb` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:524 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-left-sidebar-main::-webkit-scrollbar-track` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:521 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-left-sidebar-plugin-wrap` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/s
-
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 21412 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
-
-"] .sisad-pdfme-designer-right-sidebar-panel-switcher-wrap` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3796 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar[data-right-sidebar-density="mini"] .sisad-pdfme-designer-right-sidebar-panel-switcher` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3807 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar[data-right-sidebar-density="mini"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3810 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar[data-right-sidebar-density="mini"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn-label` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3815 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar[data-right-sidebar-density="mini"] .sisad-pdfme-designer-right-sidebar-panel-switcher-extra` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3819 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-right-sidebar[data-right-sidebar-density="mini"] .sisad-pdfme-designer-right-sidebar-panel-switcher-wrap` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3796 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item > .ant-collapse-content` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1195 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item > .ant-collapse-content > .ant-collapse-content-box` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1198 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item > .ant-collapse-header` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1192 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-schema-config-collapse > .ant-collapse-item:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:2356 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-schema-config-nested-collapse > .ant-collapse-item > .ant-collapse-content > .ant-collapse-content-box` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1207 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-schema-config-nested-collapse > .ant-collapse-item > .ant-collapse-header` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1204 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-schema-config-summary-row .ant-tag` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1090 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-stage .sisad-pdfme-designer-detail-header-card .sisad-pdfme-designer-sidebar-surface-header-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3855 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage .sisad-pdfme-designer-right-sidebar-panel-switcher-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3880 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage .sisad-pdfme-designer-schema-config-field .ant-input` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3875 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-stage .sisad-pdfme-designer-schema-config-field .ant-select-selector` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3875 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage .sisad-pdfme-designer-sidebar-surface-header-subtitle` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3859 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage .sisad-pdfme-designer-sidebar-surface-header-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3855 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-interaction-phase="dragging"] .sisad-pdfme-designer-mask` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3255 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-interaction-phase="dragging"] .sisad-pdfme-ui-control-bar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3250 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-context-summary-chip` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1815 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-context-summary-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1812 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-actions .ant-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1860 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-grip` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1827 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-icon` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1824 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-list-view-item-meta` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1836 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-layout-body` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1809 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-layout-header` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1800 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn-content` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1794 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-btn-icon` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1785 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar-panel-switcher-wrap` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1779 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-sidebar-surface-header-badges .ant-tag` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1806 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-sidebar-surface-header-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1803 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1756 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-cluster--bottom-right` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1770 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-context` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3958 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-page-select` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1776 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar-text-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1773 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density="comfortable"] .sisad-pdfme-ui-control-bar-cluster--top-center` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1762 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density="comfortable"] .sisad-pdfme-ui-control-bar-cluster--top-left` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1762 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density="comfortable"] .sisad-pdfme-ui-control-bar-cluster--top-right` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1762 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density="compact"] .sisad-pdfme-ui-control-bar-cluster--top-center` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1762 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density="compact"] .sisad-pdfme-ui-control-bar-cluster--top-left` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1762 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-ui-control-bar[data-density="compact"] .sisad-pdfme-ui-control-bar-cluster--top-right` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1762 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"][data-sidebar-open="true"] .sisad-pdfme-ui-control-bar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:1759 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .moveable-control-box` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3089 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .sisad-pdfme-designer-canvas` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3080 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .sisad-pdfme-option-group-floating-action` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3395 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .sisad-pdfme-ui-inline-edit-overlay` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3089 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .sisad-pdfme-ui-selection-context-toolbar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3089 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-schema-dragging="true"][data-drop-valid="false"] [data-canvas-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3086 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-schema-dragging="true"][data-schema-over-canvas="true"] [data-canvas-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3083 | KEEP_GEOMETRY |
-| `.sisad-pdfme-designer-stage[data-sidebar-open="true"] .sisad-pdfme-designer-canvas` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:837 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-canvas-shell` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1180 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-canvas-shell > *` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1191 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-hero-metrics::-webkit-scrollbar` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:467 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-hero-summary::-webkit-scrollbar` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:467 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page .sisad-pdfme-canvas` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1203 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-actions-compact` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:400 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-actions-compact .sisad-pdfme-popover-button` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:281 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-actions-compact .sisad-pdfme-popover-button:focus-visible` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:295 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-controls .sisad-pdfme-lab-summary-label` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:421 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-details` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:322 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-details-summary` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:329 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-details-summary::-webkit-details-marker` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:339 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-details-title` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:343 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-eyebrow` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:364 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-hero[data-density='compact']` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:123 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-collaboration-chips` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1645 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-collaboration-headline` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1645 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-collaboration-summary` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1645 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page h1` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:147 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-actions` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:160 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-controls` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:166 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-copy` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:143 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-details` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1645 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-linkRow` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1645 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-rail` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:152 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-page-topbar` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:132 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-hero[data-density='compact'] .sisad-pdfme-lab-status-inline` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1645 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-metric dd` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:497 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-metrics::-webkit-scrollbar` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:467 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page-rightSlot` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:273 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page::before` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:53 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page[data-density='compact']` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1476 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-collaboration-bar-compact` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1517 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-collaboration-bar-compact .sisad-pdfme-lab-collaboration-select-wrap` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1523 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-collaboration-bar-compact .sisad-pdfme-lab-select` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1527 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-collaboration-bar-compact .sisad-pdfme-popover-button` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1532 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-page h1` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1499 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-page-actions` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1507 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-page-actions-compact` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1512 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-page-copy` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1495 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-page-hero` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1480 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-page-rail` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1503 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page[data-density='compact'] .sisad-pdfme-lab-page-topbar` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1489 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page[data-ux-mode='canvas-first']` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1442 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page[data-ux-mode='canvas-first'] .sisad-pdfme-lab-canvas-shell` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1465 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-page[data-ux-mode='canvas-first'] .sisad-pdfme-lab-workspace` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:1451 | KEEP_GEOMETRY |
-| `.sisad-pdfme-lab-workspace[data-ux-mode='canvas-first'] .sisad-pdfme-lab-section-heading` | 1 | `src/features/pdfcomponent/labRoutes.css` | src/features/pdfcomponent/labRoutes.css:432 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-right-sidebar` | 5 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:269, src/sisad-pdfme/ui/styles/sisad-pdfme.css:275, src/sisad-pdfme/ui/styles/sisad-pdfme.css:281, src/sisad-pdfme/ui/styles/sisad-pdfme.css:291, src/sisad-pdfme/ui/styles/sisad-pdfme.css:301 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"] .sisad-pdfme-designer-right-sidebar` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:311, src/sisad-pdfme/ui/styles/sisad-pdfme.css:325, src/sisad-pdfme/ui/styles/sisad-pdfme.css:339, src/sisad-pdfme/ui/styles/sisad-pdfme.css:348 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-stage[data-left-sidebar-variant="compact"][data-sidebar-open="true"] .sisad-pdfme-designer-canvas` | 4 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:315, src/sisad-pdfme/ui/styles/sisad-pdfme.css:329, src/sisad-pdfme/ui/styles/sisad-pdfme.css:343, src/sisad-pdfme/ui/styles/sisad-pdfme.css:351 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-canvas` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:84, src/sisad-pdfme/ui/styles/sisad-pdfme.css:100, src/sisad-pdfme/ui/styles/sisad-pdfme.css:176 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-compact[data-sidebar-collapsed="false"]` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:307, src/sisad-pdfme/ui/styles/sisad-pdfme.css:321, src/sisad-pdfme/ui/styles/sisad-pdfme.css:335 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-designer-left-sidebar-draggable-shell[data-dragging="true"]` | 3 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:173, src/sisad-pdfme/ui/styles/sisad-pdfme.css:408, src/sisad-pdfme/ui/styles/sisad-pdfme.css:415 | MERGE_SAME_SELECTOR |
+| `.sisad-pdfme-canvas` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:84 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas .sisad-pdfme-ui-canvas-overlay-manager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:131 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:202 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:233 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-control` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:240 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-line` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:237 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-origin` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:245 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .moveable-control-box .moveable-rotation-line` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:248 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .scena-guides-guide-origin` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:227 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .scena-guides-guide.scena-guides-adder` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:230 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"] .scena-guides-manager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:224 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"]>.sisad-pdfme-designer-custom-undefined` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:212 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-canvas-page="true"]>.sisad-pdfme-designer-padding` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:215 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-paper-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:134 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas [data-paper-root="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:114 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas-empty-state` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:196 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas[data-grid-visible="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:106 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas[data-guides-visible="false"] [data-canvas-page="true"] .scena-guides-manager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:221 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-canvas[data-padding-visible="false"] [data-canvas-page="true"]>.sisad-pdfme-designer-padding` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:218 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-left-sidebar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:287 | MIGRATE_TO_TSX |
+| `.sisad-pdfme-designer-left-sidebar-draggable-shell` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:168 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-left-sidebar-draggable-shell[data-dragging="true"] .sisad-pdfme-designer-plugin-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:411 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-left-sidebar-draggable-shell[data-dragging="true"] .sisad-pdfme-designer-plugin-favorite-toggle` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:418 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-left-sidebar-plugin-wrap[data-drag-source="true"] .sisad-pdfme-designer-plugin-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:411 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-interaction-phase="dragging"] .sisad-pdfme-designer-mask` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:421 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .moveable-control-box` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:402 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .sisad-pdfme-designer-canvas` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:393 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .sisad-pdfme-option-group-floating-action` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:428 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .sisad-pdfme-ui-inline-edit-overlay` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:402 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-schema-dragging="true"] .sisad-pdfme-ui-selection-context-toolbar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:402 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-schema-dragging="true"][data-drop-valid="false"] [data-canvas-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:399 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-schema-dragging="true"][data-schema-over-canvas="true"] [data-canvas-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:396 | KEEP_GEOMETRY |
+| `.sisad-pdfme-designer-stage[data-sidebar-open="true"] .sisad-pdfme-designer-canvas` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:262 | KEEP_GEOMETRY |
 | `.sisad-pdfme-page` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:66 | KEEP_GEOMETRY |
-| `.sisad-pdfme-paper-page` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:136 | KEEP_GEOMETRY |
-| `.sisad-pdfme-paper-root` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:128 | KEEP_GEOMETRY |
-| `.sisad-pdfme-paper-scale-layer` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:131 | KEEP_GEOMETRY |
+| `.sisad-pdfme-paper-page` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:126 | KEEP_GEOMETRY |
+| `.sisad-pdfme-paper-root` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:118 | KEEP_GEOMETRY |
+| `.sisad-pdfme-paper-scale-layer` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:121 | KEEP_GEOMETRY |
 | `.sisad-pdfme-root ::-webkit-scrollbar` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:54 | KEEP_GEOMETRY |
 | `.sisad-pdfme-root ::-webkit-scrollbar-thumb` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:60 | KEEP_GEOMETRY |
 | `.sisad-pdfme-root ::-webkit-scrollbar-thumb:hover` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:63 | KEEP_GEOMETRY |
 | `.sisad-pdfme-root ::-webkit-scrollbar-track` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:57 | KEEP_GEOMETRY |
-| `.sisad-pdfme-root .sisad-pdfme-designer-canvas[data-grid-visible="false"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:736 | KEEP_GEOMETRY |
-| `.sisad-pdfme-root .sisad-pdfme-designer-canvas[data-grid-visible="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:741 | KEEP_GEOMETRY |
-| `.sisad-pdfme-shortcuts-panel .ant-modal-content` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3392 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-sidebar-surface-header-badges` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:269 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-sidebar-surface-header-compact` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:242 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-sidebar-surface-header-compact .sisad-pdfme-sidebar-surface-header-copy` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:248 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-sidebar-surface-header-compact .sisad-pdfme-sidebar-surface-header-main` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:245 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-sidebar-surface-header-copy` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:258 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-sidebar-surface-header-leading` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:254 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-sidebar-surface-header-main` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:251 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-sidebar-surface-header-subtitle` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:266 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-sidebar-surface-header-title` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:261 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-sidebar-surface-header-trailing` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:254 | MIGRATE_TO_TSX |
-| `.sisad-pdfme-ui-canvas-overlay-manager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3077 | KEEP_GEOMETRY |
-| `.sisad-pdfme-ui-control-bar .ant-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:394 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-ui-control-bar .ant-btn:disabled` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:399 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-ui-control-bar .ant-select .ant-select-selector` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:402 | KEEP_GEOMETRY |
-| `.sisad-pdfme-ui-control-bar .ant-select-arrow` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:394 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-ui-control-bar .ant-select-selection-item` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:394 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-ui-control-bar .ant-select.sisad-pdfme-ui-control-bar-page-select .ant-select-selector` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:405 | KEEP_GEOMETRY |
-| `.sisad-pdfme-ui-control-bar .ant-typography` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:391 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-ui-control-bar-page` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:299 | KEEP_GEOMETRY |
-| `.sisad-pdfme-ui-control-bar-page-select` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:381 | KEEP_GEOMETRY |
-| `.sisad-pdfme-ui-control-bar-shortcuts-btn .ant-btn-icon` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:333 | REVIEW_ANTD_OVERRIDE |
-| `.sisad-pdfme-ui-control-bar[data-density="compact"] .sisad-pdfme-ui-control-bar-page-select` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:384 | KEEP_GEOMETRY |
-| `.sisad-pdfme-ui-control-bar[data-density="minimal"] .sisad-pdfme-ui-control-bar-page-select` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:384 | KEEP_GEOMETRY |
-| `.sisad-pdfme-ui-control-bar[data-density="minimal"] .sisad-pdfme-ui-zoom .ant-select-selector` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:412 | KEEP_GEOMETRY |
-| `.sisad-pdfme-ui-control-bar[data-density="minimal"] .sisad-pdfme-ui-zoom .sisad-pdfme-ui-zoom-select .ant-select-selector` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:412 | KEEP_GEOMETRY |
-| `.sisad-pdfme-ui-pager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:319 | KEEP_GEOMETRY |
-| `.sisad-pdfme-ui-preview-scroll` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:110 | KEEP_GEOMETRY |
-| `.sisad-pdfme-ui-preview-scroll [data-paper-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:155 | KEEP_GEOMETRY |
-| `.sisad-pdfme-ui-zoom` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:319 | KEEP_GEOMETRY |
-| `.sisad-pdfme-ui-zoom .ant-select-selector` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:408 | KEEP_GEOMETRY |
-| `.sisad-pdfme-ui-zoom .sisad-pdfme-ui-zoom-select .ant-select-selector` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:408 | KEEP_GEOMETRY |
-| `[data-detail-header-density="compact"] .sisad-pdfme-designer-sidebar-surface-header-badges .ant-tag` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3484 | REVIEW_ANTD_OVERRIDE |
-| `[data-detail-header-density="mini"] .sisad-pdfme-designer-detail-header-card .sisad-pdfme-designer-sidebar-surface-header-subtitle` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3487 | MIGRATE_TO_TSX |
-| `[data-detail-header-density="mini"] .sisad-pdfme-designer-detail-header-card .sisad-pdfme-designer-sidebar-surface-header-trailing` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3490 | MIGRATE_TO_TSX |
-| `[data-inspector-density="mini"] .sisad-pdfme-designer-inspector-action-row .ant-btn` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:3531 | REVIEW_ANTD_OVERRIDE |
+| `.sisad-pdfme-root .sisad-pdfme-designer-canvas[data-grid-visible="false"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:183 | KEEP_GEOMETRY |
+| `.sisad-pdfme-root .sisad-pdfme-designer-canvas[data-grid-visible="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:188 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-canvas-overlay-manager` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:390 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-preview-scroll` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:100 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-preview-scroll [data-paper-page="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:134 | KEEP_GEOMETRY |
+| `.sisad-pdfme-ui-preview-scroll [data-paper-root="true"]` | 1 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css` | src/sisad-pdfme/ui/styles/sisad-pdfme.css:114 | KEEP_GEOMETRY |
 
 Ignora `reports/**`, `.tailwind-migration-backups/**` y reglas de keyframes.
 ```
 
-<a id="file-0234"></a>
+<a id="file-0251"></a>
 
-### 0234 — `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md`
+### 0251 — `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -12365,9 +14860,9 @@ Ninguno `.css` fue modificado en esta card. Los `.css` que figuran en `git statu
 `reports/tailwind-migration/current-screenshots/left-sidebar-before.png`, `left-sidebar-after.png`.
 ```
 
-<a id="file-0235"></a>
+<a id="file-0252"></a>
 
-### 0235 — `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md`
+### 0252 — `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `43`
@@ -12421,9 +14916,9 @@ Ningún `.css` modificado por esta card. Los `.css` en `git status` (`sisad-pdfm
 `reports/tailwind-migration/current-screenshots/control-bar-toolbar-after.png`.
 ```
 
-<a id="file-0236"></a>
+<a id="file-0253"></a>
 
-### 0236 — `reports/tailwind-migration/tc-css-10-schemas-visual.md`
+### 0253 — `reports/tailwind-migration/tc-css-10-schemas-visual.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -12467,9 +14962,9 @@ Buena parte del spec **ya estaba implementada** por trabajo previo/paralelo:
 Canvas, Paper, Moveable, Selecto, coordenadas, x/y/width/height/rotation, snapshot, `pdf` render. Sin estilos inline nuevos (los existentes se conservan). Sin `setTimeout`.
 ```
 
-<a id="file-0237"></a>
+<a id="file-0254"></a>
 
-### 0237 — `reports/tailwind-migration/tc-css-11-lab-audit.md`
+### 0254 — `reports/tailwind-migration/tc-css-11-lab-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -12511,9 +15006,9 @@ Canvas, Paper, Moveable, Selecto, coordenadas, x/y/width/height/rotation, snapsh
 - `npm run lint`: passed with inherited warnings only
 ```
 
-<a id="file-0238"></a>
+<a id="file-0255"></a>
 
-### 0238 — `reports/tailwind-migration/tc-css-option-group-selection-fix.md`
+### 0255 — `reports/tailwind-migration/tc-css-option-group-selection-fix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -12562,9 +15057,9 @@ Validación: al seleccionar un radioGroup → `activeHasDesignerBoxes: 0`, `acti
 `global.css` lo edita una sesión paralela en vivo (cambió durante esta tarea). Reapliqué sobre el estado actual y el build pasa; si el worker reintroduce el `fit-content`, reaplicar este cambio.
 ```
 
-<a id="file-0239"></a>
+<a id="file-0256"></a>
 
-### 0239 — `reports/tailwind-migration/tc-css-ownership-color.md`
+### 0256 — `reports/tailwind-migration/tc-css-ownership-color.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -12613,9 +15108,9 @@ La prioridad #5 del spec (resolver color desde `ownerRecipientId` + `recipientCo
 Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas x/y/w/h/rotation. Sin colores hardcodeados nuevos, sin `setTimeout`, sin `!important`, sin editar `.css`.
 ```
 
-<a id="file-0240"></a>
+<a id="file-0257"></a>
 
-### 0240 — `reports/tailwind-migration/ui-styles-decommission-audit.md`
+### 0257 — `reports/tailwind-migration/ui-styles-decommission-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `57`
@@ -12683,9 +15178,9 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 | `.sisad-pdfme-ui-snap-feedback*` | `canvas-interactions.css` | El root y labels ya están en JSX | DELETE_DUPLICATE_WITH_EVIDENCE |
 ```
 
-<a id="file-0241"></a>
+<a id="file-0258"></a>
 
-### 0241 — `reports/tailwind-migration/ui-styles-decommission-progress.md`
+### 0258 — `reports/tailwind-migration/ui-styles-decommission-progress.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -12721,202 +15216,650 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 | `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | Shell, sidebars, paper, runtime layout | Cascada legacy aún compartida por múltiples vistas | TC-CSS-11 / TC-CSS-12 |
 ```
 
-<a id="file-0242"></a>
+<a id="file-0259"></a>
 
-### 0242 — `ai/task-cards/active/TASK-PDFME-005-digital-agreements-runtime-adapter.md`
+### 0259 — `ai/task-cards/active/TASK-CSS-026-accelerated-tailwind-inline-decommission.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `48`
-- **Tamaño original:** `1.8 KB`
-- **SHA1 corto:** `2e30f4ed70`
+- **Líneas:** `109`
+- **Tamaño original:** `7.0 KB`
+- **SHA1 corto:** `d701bfd505`
 - **Estado:** `completo`
 
 ```markdown
-# TASK-PDFME-005 — Adapter de runtime para DigitalAgreements
+# TASK-CSS-026 — Desmantelamiento acelerado de Tailwind inline (FASE A/E/H/G)
 
-**Estado:** active
-**Prioridad:** P1
-**Responsable sugerido:** Codex
-**Área:** `Sisad-Web-FRONTEND/src/features/DigitalAgreements/integration/pdf-designer`
+- Estado: active
+- Prioridad: Alta
+- Responsable sugerido: Claude
+- Área: `sisad-pdfme` / tokens / lab host / CSS técnico residual
+- Plan: `ai/plans/PLAN_EJECUCION_MIGRACION_TAILWIND_SISAD_PDFME.md`
+- Prompt maestro: `ai/prompts/PROMPT_MAESTRO_MIGRACION_TAILWIND_SISAD_PDFME.md`
 
-## Objetivo
+## Coexistencia con TASK-REGRESSION-021
 
-Separar la configuración runtime de DigitalAgreements en un adapter claro y comparable con el laboratorio.
+`TASK-REGRESSION-021` (responsable: Copilot) está trabajando activamente el **skin del shell,
+sidebars e inspector** dentro de `sisad-pdfme.css` (2004→1943 líneas, 445→431 `@apply` durante
+esta sesión). Para no colisionar, **esta tarjeta se limita a carriles disjuntos**:
 
-## Archivo sugerido
+- FASE A — inventario/mapa (análisis, sin UI).
+- FASE E — lab host (`labRoutes.css`, archivo distinto).
+- FASE H — tokens (`tokens.css`, archivo distinto).
+- FASE G — poda de CSS **técnico/huérfano demostrado** (no skin en disputa).
 
-`src/features/DigitalAgreements/integration/pdf-designer/pdfDesignerRuntimeConfig.js`
+No toco reglas de shell/sidebar/inspector mientras REGRESSION-021 esté activa.
 
-## Funciones sugeridas
+## Hecho en esta sesión
 
-- `buildDigitalAgreementsCollaborationConfig`
-- `buildDigitalAgreementsDesignerOptions`
-- `buildDigitalAgreementsRuntimeProps`
+- **FASE A** — Línea base + `constants-contract.md`: las 9 constantes de `constants.ts`
+  (DESIGNER_CLASSNAME, UI_CLASSNAME, SELECTABLE_CLASSNAME, RULER_HEIGHT, PAGE_GAP,
+  LEFT/RIGHT_SIDEBAR_WIDTH, BACKGROUND_COLOR, DEFAULT_MAX_ZOOM) son hooks
+  semánticos / de interacción / geometría → **todas se conservan**, ninguna migra.
+- **FASE E** — `labRoutes.css` era no-op (solo comentario) → **archivo eliminado** + import
+  removido de `src/App.jsx`. Sin referencias restantes.
+- **FASE H / PACKAGE-07** — Auditoría de 313 tokens. **175 huérfanos eliminados, 10 restaurados.**
+  El criterio inicial perdió referencias con fallback `var(--t, valor)`: 10 tokens (chrome-*,
+  root-width/height, ls-draggable-*) seguían consumidos y 2 fallbacks no igualaban el original
+  (`chrome-border`, `chrome-height`) → **regresión detectada y corregida** restaurándolos.
+  `tokens.css` 323→150 líneas. Verificado: 0 tokens borrados siguen referenciados.
+
+- **PACKAGE-06 / FASE G (parcial)** — Poda huérfana de `sisad-pdfme.css` por cirugía de regla:
+  familia `control-bar-*` (context/kicker/page/subtext/title-row/status-chip/actions/group/
+  shortcuts-btn/page-select/menu-item + stage-coupled) y `output-grid/output-card`; parciales
+  `pager` y `panel-dock/trigger`. ~100 líneas menos. Conservados vivos + AntD + tokens con fallback.
+  Lección: `ui-zoom` es vivo vía `UI_CLASSNAME + 'zoom'` → verificar por **sufijo**, no clase completa.
+
+## Gate ejecutado
+
+- `npm run build` → **exit 0** (varias veces). CSS 181.28 → **176.14 KiB**. Braces 468/468.
+- Playwright `lab-designer-visual-baseline-regression:66` (shell/layout) → **pasa**. `:4` es
+  **pre-existente** (se reproduce revirtiendo a HEAD), no introducido aquí.
+
+## Pendiente (siguientes paquetes de esta tarjeta)
+
+- FASE H bis: clasificar los ~90 tokens vivos restantes (ACTIVE_SHARED / ALIAS_REQUIRED)
+  y documentar; no eliminar deprecated con consumidores.
+- FASE G: clasificar bloques residuales de `sisad-pdfme.css` (ANTD/CANVAS/PAPER/MOVEABLE/
+  SELECTO/PRINT/KEYFRAMES/RUNTIME_GLOBAL/ORPHAN) y podar solo huérfanos demostrados **una vez
+  que REGRESSION-021 libere el archivo**.
+- FASE I: métricas finales + QA de regresión.
+
+## Registro UX/UI Canvas-First (PROMPT_MEJORA_UX_UI_CANVAS_FIRST) — 2026-07-16
+
+Scope registrado aquí (no se creó una 3ª task-card, per regla del prompt).
+
+- **Hecho:** auditoría del entrypoint — `editor/index.ts` tenía `import '../ui/styles/sisad-pdfme.css'`
+  **duplicado** (líneas 49-50). Eliminada la duplicación exacta + comentario redundante; orden
+  `tokens.css → sisad-pdfme.css` preservado. `react/index.ts` ya era correcto. `npm run build` → exit 0.
+- **BLOQUEADO (no ejecutado):** el rediseño visual de componentes (RightSidebar/LeftSidebar/CtlBar/
+  ResultsPanel — Pasos 2-5 del prompt). Razón: **REGRESSION-021 (Copilot) está reescribiendo en vivo
+  TODOS los archivos objetivo** — `sisad-pdfme.css` colapsó 1747→566 líneas esta sesión y están dirty
+  RightSidebar.tsx, layout.tsx, SidebarSurfacePrimitives, todo ListView/*, todo DetailView/*,
+  DocumentsRail, CommentsRail, LeftSidebar.tsx, CtlBar.tsx, ResultsPanel.jsx. Un overhaul visual
+  coherente requiere editar esos mismos archivos de forma coordinada → colisión garantizada con el
+  trabajo en progreso de Copilot. El propio prompt exige **una sola task-card activa** antes de
+  ejecutar; esa precondición no se cumple mientras REGRESSION-021 siga activa.
+- **Recomendación:** dejar aterrizar REGRESSION-021 y consolidar los ~200 archivos dirty en un commit;
+  sobre esa base estable ejecuto los Pasos 2-5 del overhaul (subpases A-D) con validación por paquete.
+
+## Selector de "usuario activo" en topbar embebido — 2026-07-16
+
+Bug real: en `multi-document-routing` (`usesEmbeddedDesignerShell = true`) el `PageHeader`
+externo NO se monta, así que el selector de destinatario quedó fuera del DOM.
+
+**Hallazgo arquitectónico:** `SisadPdfmeDesigner` renderiza solo `<div ref>` — el diseñador se
+monta **imperativamente** (runtime pdfme), NO como hijos React. Por tanto **la propuesta de
+`topbarRecipientSlot` como ReactNode es incompatible**: no hay padre React que lo inyecte. El
+selector debe renderizarse **dentro** del diseñador (CtlBar) desde `collaborationContext.recipientOptions`.
+
+**Hecho y validado (`npm run build` exit 0):**
+- `RegisteredUsersSelector.tsx` creado (`ui/components/`, conventions: UI_CLASSNAME, mergeClassNames,
+  `border-solid`, testid `designer-active-recipient-select`, estados sin/uno/varios usuarios + vista global).
+- `PdfmeLabPage.jsx`: round-trip controlado — `handleActiveRecipientChange` + `onActiveRecipientChange`
+  en el `<SisadPdfmeDesigner>` (antes faltaba; sin él el prop controlado revierte el cambio interno).
+  `activeRecipientId` ya era la fuente viva (`activeCollaboratorId`), verificado.
+- `RecipientRegistry.setActiveRecipient(id)` existe (recipientRegistry.ts:168) = setter interno.
+
+**Pendiente (plumbing del bridge imperativo — zona activa Copilot):** montar el selector en CtlBar:
+1. `SisadPdfmeDesigner.tsx`: inyectar `onSelectActiveRecipient: (id) => registry.setActiveRecipient(id)`
+   en `designerEngine.collaboration`.
+2. `collaborationContext.ts` (`buildEffectiveCollaborationContext`): propagar ese callback.
+3. `Designer/index.tsx`: pasar `recipientOptions` + `activeRecipient` + callback a `<CtlBar>`.
+4. `CtlBar.tsx`: nuevos props + render de `<RegisteredUsersSelector>` en la banda superior (cluster
+   top-left/center, junto a page-nav).
+No ejecutado: cruza el boundary imperativo + `Designer/index.tsx` (4000 líneas) + CtlBar, todos dirty
+y en reescritura por REGRESSION-021; un bug ahí rompe permisos/colores runtime (no lo caza el build).
 
 ## Reglas
 
-- No crecer más `useDigitalAgreementPdfDesigner.js` con lógica dispersa.
-- No crear wrappers paralelos.
-- No mover lógica SISAD a `src/components/sisad-pdfme`.
-- Mantener `uploadedDocuments`, `activeDocumentId`, callbacks, `onTemplateChange`, `schemaCreationHook`, políticas de firma y connectivityMapping.
-
-## Criterios
-
-- [ ] `useDigitalAgreementPdfDesigner` queda más legible.
-- [ ] RuntimeOptions usa el contrato equivalente al lab.
-- [ ] `withCollaboration` recibe datos completos.
-- [ ] `canEditStructure` no bloquea Reasignar.
-- [ ] `visibility.actions.reassign` no queda en false.
-- [ ] Guardar sigue usando el flujo real de StepTwo.
-- [ ] No se rompe drag/drop, scroll ni zoom.
-
-## Estado (2026-07-14, Claude)
-
-**No ejecutable en este repositorio.** El área es
-`Sisad-Web-FRONTEND/src/features/DigitalAgreements/...` (otro repo; aquí no
-existe `src/features/DigitalAgreements`). Lo que este repo ya aporta para esa
-tarea: contrato portable completo en `src/sisad-pdfme/integration`
-(`createSisadPdfmeConfig`, `SisadPdfmeDesigner`, RecipientRegistry, controller
-real) y la matriz de referencia en
-`ai/reports/lab-parity-multidocument-routing.md`. `visibility.actions.reassign`
-y `assignment.enabled` ya quedan activos por defecto en el core.
+- Preservar concatenación `DESIGNER_CLASSNAME + 'suffix'` / `UI_CLASSNAME + 'suffix'`.
+- No mover CSS técnico (AntD descendant, geometría, keyframes) a JSX solo por reducir líneas.
+- Selectores AntD descendant (`.right-sidebar .ant-*`) = CSS técnico → conservar.
+- No tocar Moveable/Selecto/coordenadas/snapshot/generator/pdf-lib/zoom.
 ```
 
-<a id="file-0243"></a>
+<a id="file-0260"></a>
 
-### 0243 — `ai/task-cards/active/TASK-PDFME-008-signature-policies-firma-sisad.md`
+### 0260 — `ai/task-cards/active/TASK-REGRESSION-021-shell-token-visual-recovery.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `48`
-- **Tamaño original:** `1.8 KB`
-- **SHA1 corto:** `a48daf00b9`
+- **Líneas:** `177`
+- **Tamaño original:** `26.8 KB`
+- **SHA1 corto:** `f671dcad3e`
 - **Estado:** `completo`
 
 ```markdown
-# TASK-PDFME-008 — Políticas de firma: Firma SISAD, Electrónica y OneShot
+# TASK-REGRESSION-021 — Recuperación visual shell/tokens antes de seguir migrando Tailwind
 
-**Estado:** active
-**Prioridad:** P1
-**Responsable sugerido:** Claude
-**Área:** `src/sisad-pdfme/schemas/signature`, host DigitalAgreements
+- Estado: active
+- Prioridad: Alta
+- Responsable sugerido: GitHub Copilot
+- Área: `sisad-pdfme` / Shell visual / Sidebars / Tokens de presentación
 
 ## Objetivo
 
-Unificar conceptos de firma sin contaminar `SIGNATURE_MODE_OPTIONS`.
+Recuperar la paridad visual del shell del laboratorio y de las superficies base del diseñador usando JSX/TSX con Tailwind, tomando como baseline el contrato visual previo definido por el CSS consolidado histórico y las capturas anteriores, antes de continuar reduciendo `@apply`.
 
-## Regla
+## Baseline usado
 
-`SIGNATURE_MODE_OPTIONS` sigue siendo técnico:
-- `draw`
-- `image`
-- `p12`
-- `provider`
+- Baseline híbrido por falta de un commit único visualmente correcto.
+- CSS/base shell: `4c40ca1` (`src/features/pdfcomponent/labRoutes.css`).
+- Header shell: `e96a7ab` (`src/features/pdfcomponent/PageHeader.jsx`).
+- LeftSidebar tabs/layout: `2404b7a` (`src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx`).
+- Referencia visual secundaria: capturas previas del usuario y `ai/baselines/multi-document-routing-2026-07-15.jpg`.
 
-DigitalAgreements debe tener políticas de negocio:
-- `sisad` → `signatureMode: "draw"`
-- `electronica` → `signatureMode: "p12"`
-- `oneshot` → `signatureMode: "provider"`, `signatureProviderKey: "oneshot"`
+## Regresiones foco de esta tarjeta
 
-## Criterios
+1. Jerarquía visual degradada del shell del lab y sidebars.
+2. Selector Lista/Tarjetas/Iconos y bandas superiores del sidebar izquierdo con densidad/espaciado inconsistentes.
+3. Cards/superficies del sidebar derecho e inspector con borde, padding y contraste distintos al baseline.
+4. Pérdida de contratos visuales que antes vivían en CSS consolidado y no fueron trasladados al nodo JSX/TSX correcto.
 
-- [ ] StepOne guarda `signaturePolicyId`.
-- [ ] Se conserva `singType` como legacy temporal.
-- [ ] StepTwo crea schemas de firma con propiedades técnicas correctas.
-- [ ] Form/Viewer detectan provider/capabilities.
-- [ ] El inspector muestra configuración de firma disponible.
-- [ ] No se agrega `sisad` como `SignatureMode`.
+## Alcance
 
-## Estado parte core (2026-07-14, Claude)
+- Restaurar shell, header, sidebars y superficies base.
+- Reubicar utilidades Tailwind faltantes al JSX/TSX correcto.
+- Mantener `tokens.css` y CSS crítico fuera del alcance.
+- No continuar la reducción masiva de `@apply` hasta demostrar paridad visual.
 
-Verificado en este repo:
-- [x] `SIGNATURE_MODE_OPTIONS` sigue siendo técnico: draw/image/p12/provider
-      (`src/sisad-pdfme/schemas/signature/types.ts:39`); no existe `sisad` como
-      `SignatureMode` en el core.
-- [x] El inspector muestra la configuración de firma disponible
-      (`schemas/signature/propPanel.ts` consume `SIGNATURE_MODE_OPTIONS`).
-- [x] El snapshot core persiste `signatureConfig.defaultMode` y
-      `providerConfig.defaultProvider/allowedProviders`
-      (ver TASK-PDFME-007, test `snapshotReassignmentPersistence.test.ts`).
+## Fuera de alcance
 
-Pendiente en Sisad-Web-FRONTEND (no ejecutable aquí): `signaturePolicyId` en
-StepOne, legacy `singType`, creación de schemas de firma en StepTwo con la
-política de negocio (sisad→draw, electronica→p12, oneshot→provider+providerKey).
+- Moveable, Selecto, geometría, zoom, guías, snapshot, generator y `pdf-lib`.
+- Correcciones funcionales de drag/drop o owner-color si exigen otra superficie.
+- Limpieza adicional de CSS por conteo.
+
+## Archivos candidatos
+
+- `src/features/pdfcomponent/PdfmeLabPage.jsx`
+- `src/features/pdfcomponent/PageHeader.jsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx`
+
+## Archivos prohibidos
+
+- `src/sisad-pdfme/ui/styles/sisad-pdfme.css`
+- `src/features/pdfcomponent/labRoutes.css`
+- `src/sisad-pdfme/ui/styles/tokens.css`
+- cualquier archivo de canvas geometry, Moveable, Selecto, snapshot o generator
+
+## Validación
+
+- `npm run build`
+- comparación visual en `/lab/multi-document-routing`
+- `npx playwright test tests/playwright/multi-document-routing-design.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`
+
+## Progreso actual
+
+- `LeftSidebarTabs.tsx` recuperó la jerarquía compacta del selector superior sin volver a CSS de hoja; se usaron pills más bajas, badges absolutos y labels cortos para evitar clipping.
+- `LeftSidebar.tsx` recuperó padding, dock header, chip recipient y superficie glass del panel izquierdo en el nodo dueño.
+- `CatalogLayoutToggle.tsx` quedó compactado para densidades/anchos estrechos, ocultando labels cuando el rail no tiene espacio suficiente y evitando el recorte del selector Lista/Tarjetas/Iconos.
+- `SchemaCollaborationWidget.tsx` eliminó el bloque redundante de `Propiedad` para que los detalles del schema de firma no repitan el resumen del owner y el bloque de colaboración quede más limpio.
+- `DetailHeaderCard.tsx`, `SidebarSurfacePrimitives.tsx`, `DetailSectionCard.tsx`, `InspectorField.tsx` y `InspectorPrimitives.tsx` suavizaron bordes, sombras y fondos del inspector para recuperar la densidad visual del baseline sin cambiar lógica ni contratos.
+- `Item.tsx` suavizó borde, sombra y estado seleccionado de las filas del ListView para separar mejor el accent del propietario del estado `selected` y bajar el ruido del row activo.
+- `Item.tsx` también desactivó la apariencia nativa del hit-target del row, eliminando el borde `2px outset` del navegador que hacía ver las cards como si tuvieran un contorno negro pesado.
+- `index.tsx` dejó explícita la precedencia de `RightSidebar` para que el modo `docs` del laboratorio multidocumento no sea pisado por props del engine al entrar a la ruta.
+- `PageHeader.jsx` y `PdfmeLabPage.jsx` absorbieron la capa visual del shell del lab con Tailwind inline; en `multi-document-routing` se reactivó el hero superior para recuperar la paridad visual con el baseline.
+- `LeftSidebarSearch.tsx`, `LeftSidebarGroup.tsx` y `LeftSidebarCustomPanel.tsx` suavizaron superficies, bordes y focus rings del rail izquierdo para mantener la densidad compacta sin perder el look del baseline.
+- `DetailHeaderCard.tsx` y `InspectorPrimitives.tsx` continuaron la limpieza de superficies del inspector con botones/Tags sin borde nativo y chips más suaves para evitar contraste duro en el resumen del schema.
+- `SidebarSurfacePrimitives.tsx`, `DocumentsRail.tsx` y `ListViewToolbar.tsx` homogeneizaron las superficies del rail derecho, los cards de documentos y los controles de lista con borde/sombra más suaves y botones sin apariencia nativa.
+- `CompactConfigPanel.tsx` y `SchemaConnectionsWidget.tsx` siguieron la misma línea visual para el inspector técnico/conexiones, bajando gradientes y elevando el contrato de tarjeta simple sobre CSS global.
+- `SchemaOptionsEditor.tsx` y `InspectorDefinitionList.tsx` suavizaron la microinteracción de opciones y definiciones para mantener el inspector denso pero limpio, con botones sin borde nativo y tarjetas menos pesadas.
+- `SchemaCollaborationWidget.tsx` migró el `Collapse` del bloque colaborativo a utilidades inline, suavizó el estado de bloqueo y eliminó la dependencia de separación duplicada en CSS.
+- `SchemaConnectionsShared.tsx` homogeneizó el editor de pares y el `SectionHeader` compartido con tarjetas más suaves, botones sin apariencia nativa y campos consistentes con el baseline del inspector.
+- `src/sisad-pdfme/ui/styles/sisad-pdfme.css` perdió dos reglas redundantes de `schema-config-collapse` y `schema-config-section-head` que ya estaban cubiertas por Tailwind en TSX.
+- `src/sisad-pdfme/ui/styles/sisad-pdfme.css` también perdió el bloque de layout de `detail-view`, `detail-view-host`, `list-view` y `detail-view-sections`, ya duplicado por clases inline en `DetailViewContent.tsx` y `ListView.tsx`.
+- `DetailHeaderCard.tsx` absorbió la densidad mínima del header en el propio componente y dejó de depender del selector `data-detail-header-density`, permitiendo borrar los overrides CSS de subtitle/trailing compactos.
+- `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó los bloques redundantes de `detail-header-card`, `detail-section-card`, `detail-view-context-strip`, `detail-view-context-chip` y `compact-config-panel`, quedando solo contratos semánticos y reglas aún activas de AntD/inspector.
+- La comparación visual manual sobre `/lab/multi-document-routing` muestra mejora clara respecto al estado degradado: desapareció la franja superior en blanco y se estabilizó la banda superior del catálogo.
+- Validado con `npm run build`, `npx playwright test tests/playwright/right-sidebar-docs-tab.spec.ts`, `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts` y `npx -y react-doctor@latest . --verbose --diff`.
+- Captura más reciente del viewport confirma que el shell sigue estable, la fila del ListView perdió el contorno negro nativo y el tab `Docs` sigue disponible/activo en la ruta multidocumento.
+- `LeftSidebar.tsx` absorbió el último skin residual del catálogo por densidad mínima en el propio nodo React: los botones de catálogo ahora resuelven min-height, padding, gap, label clamp e icon sizing por clase Tailwind, y `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó esos selectores redundantes.
+- Validado ese slice con `npm run build`, `npx playwright test tests/e2e/left-sidebar-view-modes.spec.ts` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts`; el smoke `tests/playwright/sidebar-left-right-design.spec.ts -g "DetailView"` quedó fallando en una condición ajena al cambio actual porque no encuentra `detail-view` visible.
+- `InspectorPrimitives.tsx` absorbió el skin principal del summary card, métricas y acciones del inspector: los chips ahora viven en JSX/TSX con gap, density minimal, truncado y botón compacto, y `src/sisad-pdfme/ui/styles/sisad-pdfme.css` perdió el bloque `inspector-summary-card`/`inspector-metric-*` redundante.
+- Validado ese slice con `npm run build`, `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts` y `npx playwright test tests/e2e/left-sidebar-view-modes.spec.ts`; el intento de correr `tests/playwright/detailview-inspector.spec.ts` no encontró archivo coincidente en este checkout, así que no se usó como gate.
+- `ListViewToolbar.tsx` absorbió el skin final duplicado de búsqueda/filtro/acciones masivas y `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el bloque residual de `bulk-update`, `input-auto`, `search-auto` y `layers-auto`; además se retiró el wrapper CSS de `list-view` y el override compact del título del sidebar surface porque ya viven en TSX.
+- `tests/playwright/list-view-regression.spec.ts` se alineó al contrato actual del panel derecho (`fields`) y dejó de depender de un `data-panel-mode="list"` obsoleto; la validación ahora entra al `ListView` real y pasó con `npm run build` + `npx playwright test tests/playwright/list-view-regression.spec.ts`.
+- `SelectableSortableItem.tsx` y `ListViewDragOverlay.tsx` absorbieron el skin base de `item-auto`, por lo que `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó esa regla duplicada y el row/overlay quedaron definidos por clases Tailwind locales.
+- `DetailFormSection.tsx` absorbió el skin del `detail-view-form-shell` con utilidades inline y variantes arbitrarias sobre `fr-form`, `ant-form`, `ant-row`, `ant-col`, `ant-form-item`, inputs y cards; `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó esos selectores de shell y de AntD asociados.
+- `CommentsRail.tsx` absorbió el skin completo de hilos, respuestas, pills, badges y metadatos del rail de comentarios; `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el bloque `comments-rail-*` correspondiente.
+- Validado ese slice con `npm run build`, `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos pasaron.
+- Conteo de la hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` tras este slice: 1593 líneas y 341 apariciones de `@apply`.
+- `LeftSidebarCustomFieldModal.tsx` absorbió el skin del modal de campos personalizados con `Modal.classNames` y utilidades inline para superficie, backdrop, header, body y botones; `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el bloque `custom-field-*` completo.
+- Validado ese slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos pasaron de nuevo tras la limpieza del modal.
+- Conteo actualizado de la hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css`: 1426 líneas y 294 apariciones de `@apply`.
+- `CtlBar.tsx` absorbió la skin principal de la barra de control y del zoom con utilidades inline y `mergeClassNames`, incluyendo root, clusters, pills, botones y el selector de zoom con variantes internas; el CSS correspondiente se redujo dejando solo los contratos que todavía se están revisando.
+- Validado ese slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos pasaron otra vez tras el cierre del control bar.
+- Conteo actualizado de la hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css`: 1336 líneas y 272 apariciones de `@apply`.
+- `SidebarSurfacePrimitives.tsx` absorbió el tamaño compacto de las `Tag` del header de superficies y `src/sisad-pdfme/ui/styles/sisad-pdfme.css` perdió el selector `sidebar-surface-header-badges .ant-tag`, dejando el badge sizing como contrato del componente.
+- `DetailHeaderCard.tsx` ya tenía el botón de volver completamente inline; se retiró el selector CSS `detail-header-back-btn` y el título `detail-view-title` por no tener consumidor en TSX.
+- `DetailFormSection.tsx` ya cubría la tipografía/espaciado del shell de form-render; se retiraron los bloques duplicados de `ant-form-item`, `ant-form-item-label`, `ant-input`, `ant-input-number-input` y `ant-select-selection-item` que seguían vivos en CSS.
+- Validado ese slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos volvieron a pasar.
+- Conteo actualizado de la hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css`: 1239 líneas y 244 apariciones de `@apply`.
+- `LeftSidebar.tsx` ya cubría la skin final de los botones del catálogo con transición y hover inline; se retiraron los selectores redundantes de `plugin-btn[data-catalog-layout]` y su override de `active`.
+- Validado ese slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos volvieron a pasar.
+- Conteo actualizado de la hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css`: 1195 líneas y 230 apariciones de `@apply`.
+- `SchemaOptionsEditor.tsx` y los constructores DOM de `select/index.ts` + `optionGroupEditorFactory.ts` absorbieron el skin del editor de opciones y del desplegable: header, lista, filas, inputs, botones de borrar/agregar y el plus del botón quedaron en utilidades locales, y la hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó los selectores `sisad-option-editor-*` y `sisad-option-editor-select-*` asociados.
+- Validado ese slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts`; ambos pasaron sin regresiones visibles en el panel derecho.
+- `groupSchemaRender.ts` absorbió el layout base del `option-group` runtime (`inline-flex`, alineación y justificación) y permitió retirar el último bloque CSS del body; `src/sisad-pdfme/ui/styles/sisad-pdfme.css` ya no depende de reglas para `sisad-pdfme-option-group-body`.
+- Validado ese slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts`; ambos pasaron sin regresiones visibles.
+- `actionSchemaFactory.ts` absorbió por completo el skin de `note` y `attachment` y `schemaDom.ts` absorbió el skin del botón de acción principal; `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó los bloques de `note`, `attachment` y `sisad-pdfme-action-button`.
+- Validado ese slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos pasaron sin regresiones visibles.
+- `fieldChrome.ts` absorbió el skin base del chrome de schemas, incluyendo superficie, borde, estados selected/multi-selected/readonly/locked/invalid y variantes por familia; `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó todo el bloque `field-chrome` residual.
+- `optionGroupFactory.ts` y `select/index.ts` absorbieron el skin runtime del grupo de opciones y del chevrón, incluyendo overflow, fondo, border, sizing del modo form y el padding compacto de `singleCompact`; `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el bloque `option-group-root` y `select-chevron` redundante.
+- `optionGroupRenderer.ts` absorbió la altura mínima por modo, la opacidad de estado disabled y el borde de invalidación del wrapper de option groups; `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó los selectores restantes de `option-group__option`, `option-group-invalid` y `option-group-label`.
+- `Renderer.tsx` absorbió el skin base y los estados visuales locales de `.sisad-pdfme-ui-custom-selectable` (`active`, `editing`, `hover`, `readonly`, `hidden`, `selectable=false`) para que el wrapper del schema deje de depender de la capa base de CSS; `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó la base del wrapper y sus selectores de estado equivalentes.
+- Validado ese slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos pasaron sin regresiones visibles.
+- `Renderer.tsx` también trasladó el caption y el badge del schema a nodos reales inline, de modo que `src/sisad-pdfme/ui/styles/sisad-pdfme.css` pudo eliminar el bloque `::after` residual y dejar solo los overlays base que todavía sostienen contraste e interacción.
+- `Renderer.tsx` absorbió también el tinte del estado oculto directamente en el wrapper, por lo que la hoja pudo perder el selector `data-schema-hidden` y seguir estable en la ruta `multi-document-routing`.
+- `src/sisad-pdfme/ui/styles/sisad-pdfme.css` además eliminó el bloque huérfano de `radioGroup` que ya no tenía pseudo-elementos vivos en el wrapper.
+- `CtlBar.tsx` absorbió la skin móvil y el estado de interacción seleccionado del control bar con clases inline, y `Designer/index.tsx` pasó `interactionPhase` para que `src/sisad-pdfme/ui/styles/sisad-pdfme.css` pudiera borrar el ajuste móvil del control bar y su box-shadow de selección.
+- `CanvasStateOverlay.tsx` absorbió la micro-tipografía del estado vacío del canvas en el propio nodo React; `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó las reglas duplicadas de `canvas-empty-state-title` y `canvas-empty-state-hint`.
+- `RightSidebar.tsx` absorbió la animación de apertura del rail y la transición del DetailView en el propio wrapper, permitiendo borrar los selectores `right-sidebar[data-sidebar-open="true"]` y `detail-view-host/custom-detailView` de la hoja.
+- `RightSidebar.tsx` absorbió también la línea decorativa superior del rail derecho como nodo absoluto inline, y `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el pseudo-elemento `right-sidebar-content::before`.
+- Validado ese slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos pasaron sin regresiones visibles.
+- Conteo actualizado de la hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css`: 785 líneas y 117 apariciones de `@apply`.
+- `CanvasStateOverlay.tsx` absorbió el skin completo del card de estado vacío del canvas, incluyendo ancho máximo, padding, borde dashed, gradient, tipografía y sombra; `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el selector `canvas-empty-state-card` que ya no tenía razón de vivir en CSS.
+- `CanvasStateOverlay.tsx` ya mantenía la tipografía fina del título y del hint del estado vacío, así que la limpieza dejó ese overlay enteramente resuelto por Tailwind inline.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 602 líneas y 112 apariciones de `@apply` tras la última validación.
+- Validado el slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos volvieron a pasar sin regresiones.
+- `LeftSidebar.tsx` absorbió el skin base del colapso/expansión del rail izquierdo en el propio root y en los wrappers de frame/content, incluyendo ancho expandido, rail colapsado, overflow y visibilidad, de modo que `src/sisad-pdfme/ui/styles/sisad-pdfme.css` pudo eliminar los selectores `left-sidebar[data-sidebar-collapsed="true"]`, sus children y `left-sidebar[data-expanded="true"]`.
+- El mismo slice dejó el comportamiento móvil preparado en JSX con utilidades inline para no depender del selector `data-expanded` cuando el rail entra en modo overlay.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 584 líneas y 109 apariciones de `@apply` tras la última validación.
+- Validado el slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos volvieron a pasar sin regresiones.
+- `LeftSidebar.tsx` también absorbió el fallback de `prefers-reduced-motion` para los botones del catálogo mediante variantes `motion-reduce`, y `RightSidebar.tsx` absorbió la misma cobertura para el host del detail view; la hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el bloque `prefers-reduced-motion` que neutralizaba esos transforms.
+- `scripts/css-selector-duplicates.mjs` se volvió a ejecutar y regeneró `reports/tailwind-migration/selector-duplicates-current.md` con el estado actualizado de los duplicados del CSS activo.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 576 líneas y 108 apariciones de `@apply` tras la última validación.
+- Validado el slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos volvieron a pasar sin regresiones.
+- `Canvas/SnapLines.tsx` absorbió el skin base de `snap-line` y `snap-label` para que la posición absoluta, pointer-events y la semántica de texto vivan en el componente y no en CSS; `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó esos selectores redundantes.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 569 líneas y 106 apariciones de `@apply` tras la última validación.
+- `scripts/css-selector-duplicates.mjs` se volvió a ejecutar y regeneró `reports/tailwind-migration/selector-duplicates-current.md` con el estado actualizado de los duplicados del CSS activo.
+- Validado el slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos volvieron a pasar sin regresiones.
+- `Shortcuts/ShortcutHelpPanel.tsx` absorbió el skin del modal de atajos mediante `Modal.classNames` para mover la superficie, el backdrop y el body al propio componente, y `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el override huérfano `.sisad-pdfme-shortcuts-panel .ant-modal-content`.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 563 líneas y 104 apariciones de `@apply` tras esta validación.
+- Validado este slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos pasaron.
+- `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el bloque huérfano `sisad-inspector-select-popup`, que no tenía consumidores en el código activo.
+- `SchemaConnectionsWidget.tsx`, `SchemaCollaborationWidget.tsx` y `detailWidgetRegistry.tsx` absorbieron el skin inline del `Divider`, y `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el override global `.ant-divider-horizontal`.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 545 líneas y 101 apariciones de `@apply` tras este corte.
+- Validado este slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos pasaron.
+- `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el bloque global de `ant-btn` (`.ant-btn`, `.ant-btn-default`, `.ant-btn-text` y sus hover) porque los botones visibles ya tienen skin local en TSX, dejando solo el contrato de `ant-select-selector` para una revisión posterior.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 513 líneas y 91 apariciones de `@apply` tras este corte.
+- Validado este slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos pasaron sin regresiones visibles tras retirar el override global de botones.
+- `InspectorSelect.tsx`, `SchemaCollaborationWidget.tsx`, `SchemaConnectionsWidget.tsx` y `ListViewToolbar.tsx` absorbieron el skin base del `Select` en sus wrappers locales, y `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el override global `.ant-select-selector`.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 510 líneas y 90 apariciones de `@apply` tras este corte.
+- Validado este slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos pasaron sin regresiones visibles tras retirar el override global de select.
+- `SchemaDropSetupModal.tsx` absorbió también el skin base del `Select` del modal de configuración de campo para que ese flujo no dependa del override global eliminado.
+- Validado ese ajuste con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos volvieron a pasar.
+- `src/sisad-pdfme/ui/styles/sisad-pdfme.css` consolidó la base del shell (`workspace`, `canvas`, `designer-root`, `designer-background` y el centrado de `paper-root`) en bloques únicos, reduciendo duplicación sin tocar geometría ni scroll.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 494 líneas y 87 apariciones de `@apply` tras este corte.
+- Validado este slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos pasaron sin regresiones visibles.
+- `src/sisad-pdfme/ui/styles/sisad-pdfme.css` retiró residuos mecánicos del shell: `@media` vacíos y la segunda declaración de `font-family` en `.sisad-pdfme-root`, sin tocar geometría ni el skin visible.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 488 líneas y 87 apariciones de `@apply` tras este corte.
+- Validado este slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos pasaron sin regresiones visibles.
+- `RightSidebar.tsx` absorbió el skin base del rail derecho (posición, ancho, borde, fondo, sombra, transición y estados open/collapsed) en el propio nodo React, y `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el bloque raíz equivalente; quedaron en CSS solo los ajustes responsivos y geométricos que aún dependen de media queries.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 474 líneas y 85 apariciones de `@apply` tras este corte.
+- Validado este slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos pasaron sin regresiones visibles tras mover el skin del rail derecho.
+- `LeftSidebar.tsx` absorbió el skin base del rail izquierdo (posición, ancho, borde, fondo, shrink y transición) en el nodo React, y `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó el bloque raíz equivalente; quedaron en CSS solo los ajustes de catálogo/dragging y las reglas responsivas que siguen siendo geométricas.
+- La hoja `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó en 466 líneas y 84 apariciones de `@apply` tras este corte.
+- Validado este slice con `npm run build` y `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`; ambos volvieron a pasar sin regresiones visibles tras mover el skin del rail izquierdo.
+
+## Criterio de parada
+
+Detenerse si la recuperación exige más de 5 archivos de producto o si aparece una regresión funcional fuera del shell/tokens; abrir tarjeta separada en ese caso.
 ```
 
-<a id="file-0244"></a>
+<a id="file-0261"></a>
 
-### 0244 — `ai/task-cards/active/TASK-PDFME-009-externalforms-runner-contract.md`
+### 0261 — `ai/task-cards/backlog/TASK-CSS-021-left-sidebar-overflow-tailwind-continuity.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `53`
+- **Líneas:** `42`
+- **Tamaño original:** `1.2 KB`
+- **SHA1 corto:** `dde0d4fcce`
+- **Estado:** `completo`
+
+```markdown
+# TASK-CSS-021 — Corregir overflow y densidad del sidebar izquierdo
+
+## Objetivo
+
+Eliminar solapamientos visibles en cabecera, tabs, filtros y selector de layout del sidebar izquierdo, migrando su layout estático a JSX/TSX.
+
+## Alcance
+
+- Cabecera, búsqueda, tabs, filtros y selector lista/tarjetas/iconos.
+- Overflow horizontal, truncado y focus-visible.
+- Clases estáticas en componentes propietarios.
+
+## Fuera de alcance
+
+Catálogo completo, drag al canvas, grupos internos y borrado global de CSS.
+
+## Archivos candidatos
+
+Máximo 5 componentes: `LeftSidebar.tsx`, tabs, search, filtros y layout toggle; confirmar nombres reales.
+
+## Archivos prohibidos
+
+Renderer, canvas, DocumentsRail, snapshot, generator y PDF.
+
+## Pasos
+
+1. Reproducir con ancho de la captura y breakpoint mínimo.
+2. Detectar `min-width`, nowrap y posicionamiento conflictivos.
+3. Migrar flex/grid/gap/overflow a JSX/TSX.
+4. No podar CSS global hasta una tarjeta posterior.
+
+## Validación
+
+Capturas normal/estrecha, navegación por teclado, typecheck y pruebas del sidebar.
+
+## Criterio de parada
+
+Detenerse si la corrección depende del DOM del canvas o de más de 5 componentes.
+
+## Entrega final
+
+Medidas, estados y capturas antes/después.
+```
+
+<a id="file-0262"></a>
+
+### 0262 — `ai/task-cards/backlog/TASK-CSS-022-left-sidebar-css-pruning.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `39`
+- **Tamaño original:** `0.9 KB`
+- **SHA1 corto:** `76185014cc`
+- **Estado:** `completo`
+
+```markdown
+# TASK-CSS-022 — Podar CSS legado del sidebar izquierdo
+
+## Objetivo
+
+Eliminar de `sisad-pdfme.css` únicamente las reglas del sidebar izquierdo ya sustituidas por clases JSX/TSX.
+
+## Alcance
+
+Selectores con consumidor comprobado en TASK-CSS-021 y sus estados.
+
+## Fuera de alcance
+
+RightSidebar, schemas, canvas y reglas compartidas no trazadas.
+
+## Archivos candidatos
+
+`sisad-pdfme.css`, máximo 3 consumidores afectados y una prueba visual.
+
+## Archivos prohibidos
+
+`tokens.css`, Renderer, Moveable, Selecto, snapshot y PDF.
+
+## Pasos
+
+1. Comparar ledger de TASK-CSS-021 con búsquedas de consumidores.
+2. Borrar reglas huérfanas por bloques pequeños.
+3. Validar todos los estados y breakpoints.
+
+## Validación
+
+Conteo `@apply`, búsqueda de selectores, typecheck y capturas.
+
+## Criterio de parada
+
+Detenerse si un selector tiene consumidor incierto o alcance global.
+
+## Entrega final
+
+Lista exacta de reglas retiradas y delta cuantitativo.
+```
+
+<a id="file-0263"></a>
+
+### 0263 — `ai/task-cards/backlog/TASK-LAB-030-canvas-first-shell-style-source-unification.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `42`
+- **Tamaño original:** `1.2 KB`
+- **SHA1 corto:** `d338f9eb27`
+- **Estado:** `completo`
+
+```markdown
+# TASK-LAB-030 — Unificar fuente de estilos del shell canvas-first
+
+## Objetivo
+
+Eliminar conflictos entre estilos inline, Tailwind y CSS del shell del lab, conservando el diseño canvas-first y corrigiendo alturas y densidad inconsistentes.
+
+## Alcance
+
+- Header, contenedor principal y límites de sidebars.
+- Resolver discrepancias de 44/48 px con una sola fuente.
+- Mantener responsive y colapso existentes.
+
+## Fuera de alcance
+
+Contenido interno de sidebars, schemas, guías y migración completa de `labRoutes.css`.
+
+## Archivos candidatos
+
+Máximo 5: `PdfmeLabPage.tsx`, `PageHeader.tsx`, `labRoutes.css`, `constants.ts` y una prueba del shell.
+
+## Archivos prohibidos
+
+Renderer, Moveable, Selecto, snapshots, generator y PDF.
+
+## Pasos
+
+1. Inventariar medidas y clases duplicadas.
+2. Elegir Tailwind JSX/TSX para layout estático y tokens para valores semánticos.
+3. Eliminar solo reglas duplicadas confirmadas.
+4. Verificar viewport de la captura y breakpoint estrecho.
+
+## Validación
+
+Typecheck, prueba del shell y capturas con sidebars abiertos/cerrados.
+
+## Criterio de parada
+
+Detenerse si el cambio exige alterar el contrato del canvas o más de 5 archivos.
+
+## Entrega final
+
+Mapa de fuentes de estilo antes/después y medidas finales.
+```
+
+<a id="file-0264"></a>
+
+### 0264 — `ai/task-cards/backlog/TASK-QA-016-tailwind-design-visual-regression.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `42`
+- **Tamaño original:** `1.1 KB`
+- **SHA1 corto:** `b49949b216`
+- **Estado:** `completo`
+
+```markdown
+# TASK-QA-016 — Cerrar regresión visual y ledger Tailwind
+
+## Objetivo
+
+Validar integralmente el diseño corregido y cuantificar la reducción de Tailwind en CSS sin introducir cambios de producto.
+
+## Alcance
+
+- Ruta `/lab/multi-document-routing`.
+- Usuarios/propietarios múltiples, documentos múltiples, sidebars y canvas.
+- Conteos finales de `@apply`, estilos inline y selectores.
+
+## Fuera de alcance
+
+Implementar arreglos. Cada fallo genera una tarjeta de regresión nueva.
+
+## Archivos candidatos
+
+Máximo 5 archivos de pruebas/baselines/reportes. Código de producto prohibido.
+
+## Archivos prohibidos
+
+Todo `src/**` salvo lectura.
+
+## Pasos
+
+1. Fijar viewport, datos, página y zoom.
+2. Capturar estados por propietario y sidebars.
+3. Ejecutar auditoría, typecheck, lint y suites focalizadas.
+4. Comparar con baseline y registrar excepciones.
+
+## Validación
+
+Checklist completo, cero regresiones críticas y ledger reproducible.
+
+## Criterio de parada
+
+Ante cualquier fallo funcional o visual, no editar producto: crear tarjeta nueva y dejar QA bloqueada.
+
+## Entrega final
+
+Reporte final con capturas, comandos, resultados y deuda remanente priorizada.
+```
+
+<a id="file-0265"></a>
+
+### 0265 — `ai/task-cards/backlog/TASK-QA-017-listview-specs-docs-default-drift.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `39`
 - **Tamaño original:** `1.9 KB`
-- **SHA1 corto:** `41a9625f3c`
+- **SHA1 corto:** `d262fc3213`
 - **Estado:** `completo`
 
 ```markdown
-# TASK-PDFME-009 — externalForms como Runner del snapshot sisad-pdfme
+# TASK-QA-017 — Deriva de specs: panel Docs por defecto + rename del switcher
 
-**Estado:** active
-**Prioridad:** P1
-**Responsable sugerido:** Codex
-**Área:** `Sisad-Web-FRONTEND/src/modules/externalForms`
+- Estado: backlog
+- Tipo: regression (suite de tests)
+- Origen: TASK-LAB-029 (docs default en multidocumento, completada) + rename de
+  clase del panel-switcher en RightSidebar (TASK-REGRESSION-021, activa).
+
+## Síntoma
+
+En `/lab/multi-document-routing` el panel derecho abre en **Docs** por defecto
+(`aside[data-panel-mode="docs"]`), por lo que la lista de Campos no se monta y
+tres specs quedan rojos por buscar elementos del panel Campos sin cambiar de
+pestaña primero:
+
+- `tests/playwright/list-view-regression.spec.ts` — `.sisad-pdfme-designer-list-view` no visible.
+- `tests/playwright/detail-view-options-listview.spec.ts` — `right-sidebar-field-list` / `detail-options-section` no encontrados.
+- `tests/playwright/right-sidebar-visual-polish.spec.ts` — además el switcher pasó de
+  `bg-gradient-to-b` a `bg-[linear-gradient(...)]`; la aserción `toHaveClass(/bg-gradient-to-b/)`
+  quedó desactualizada.
+
+## Causa
+
+No es regresión de producto: es deriva de la suite frente a dos cambios ya
+integrados/en curso (docs default + skin del switcher). El render de la lista y
+los testids del ListView están intactos (verificado: al seleccionar la pestaña
+"Abrir panel Campos" se montan las 11 filas con `right-sidebar-field-list`,
+`right-sidebar-field-label`, `right-sidebar-field-technical-name`).
+
+## Acción propuesta
+
+1. En las specs de ListView, seleccionar la pestaña Campos (`getByRole('tab',
+   { name: 'Abrir panel Campos' }).click()`) antes de asertar la lista.
+2. Actualizar la aserción del switcher en `right-sidebar-visual-polish` al skin
+   vigente (`bg-[linear-gradient(...)]`) — coordinar con el dueño de
+   TASK-REGRESSION-021 para congelar el contrato de clase.
+
+## Validación
+
+- `npx playwright test tests/playwright/list-view-regression.spec.ts tests/playwright/detail-view-options-listview.spec.ts tests/playwright/right-sidebar-visual-polish.spec.ts`
+```
+
+<a id="file-0266"></a>
+
+### 0266 — `ai/task-cards/backlog/TASK-SCHEMA-003-action-owner-accent-continuity.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `42`
+- **Tamaño original:** `1.2 KB`
+- **SHA1 corto:** `333c28b9c4`
+- **Estado:** `completo`
+
+```markdown
+# TASK-SCHEMA-003 — Diferenciar propietario y acción del schema
 
 ## Objetivo
 
-Reducir duplicidad y asegurar que externalForms consuma `Form`/`Viewer` de `sisad-pdfme`.
+Conservar el color del propietario como identidad exterior y añadir un acento secundario estable para la acción cuando el diseño lo requiera.
 
-## Reglas
+## Alcance
 
-- externalForms es Runner, no Builder.
-- No duplicar Form, Viewer, generator ni renderers.
-- No depender de `DigitalAgreements/core/infra/sisad-pdfme`.
-- No recrear schema rendering.
-- No regenerar PIN durante llenado.
-- No mezclar herramientas de laboratorio en UI pública.
+- Auditar `actionMap`, tono de propietario y estados del schema.
+- Definir precedencia owner → action → neutral.
+- Aplicar acento sin competir con selección, error o disabled.
 
-## Fases
+## Fuera de alcance
 
-1. Extraer `RuntimeFormPanel`.
-2. Separar snapshot adapter.
-3. Separar access policy.
-4. Separar input policy.
-5. Separar submit/PDF generation service.
-6. Reducir `Editor.jsx`.
-7. Limpiar wrappers muertos.
+Cambios a geometría, migración CSS general y nuevas acciones.
 
-## Criterios
+## Archivos candidatos
 
-- [ ] Renderiza con `Form`.
-- [ ] Modo lectura usa `Viewer`.
-- [ ] Assignments/ownership se respetan.
-- [ ] Reasignación del diseñador se refleja en runtime.
-- [ ] Inputs por documento se conservan.
-- [ ] Guardado parcial funciona.
-- [ ] PDF final se genera desde service.
+Máximo 5: `actionMap.ts`, `fieldChrome.ts`, `schemaOwnershipAppearance.ts`, `Renderer.tsx` y una prueba focalizada.
 
-## Estado parte core (2026-07-14, Claude)
+## Archivos prohibidos
 
-**El módulo objetivo (`Sisad-Web-FRONTEND/src/modules/externalForms`) no está en
-este repositorio.** Lo que el core ya ofrece para esa migración:
-- `src/sisad-pdfme/externalForms/externalFormRunner.ts`: contrato Runner
-  (FlowState, ExternalFormStorage, getSchemaVisibility con
-  editable/readonly/hidden, areAllRequiredFieldsComplete, storage en memoria).
-- `SisadPdfmeForm`/`SisadPdfmeViewer` como runtime de llenado/lectura (sin
-  renderers duplicados), con filtrado por recipient del RecipientRegistry.
-- Acceso runtime compartido (`resolveRuntimeSchemaAccess`) que respeta
-  assignments/ownership y refleja reasignaciones del diseñador (test
-  `runtimeAccessAfterReassignment.test.ts`).
-- Generación PDF vía `generator/` exportado por `integration/index.ts`.
+Canvas, Moveable, Selecto, snapshot, generator, `pdf-lib` y sidebars.
+
+## Pasos
+
+1. Enumerar acciones y tonos existentes.
+2. Definir tabla de precedencia y accesibilidad.
+3. Implementar mapas estáticos.
+4. Probar propietario distinto con misma acción y viceversa.
+
+## Validación
+
+Typecheck, test focalizado y contraste visual en estados selected/unselected.
+
+## Criterio de parada
+
+Detenerse si no existe contrato explícito de acción o si el acento reduce contraste.
+
+## Entrega final
+
+Matriz owner/action/estado y evidencia.
 ```
 
-<a id="file-0245"></a>
+<a id="file-0267"></a>
 
-### 0245 — `ai/task-cards/completed/completed-summary.md`
+### 0267 — `ai/task-cards/completed/completed-summary.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `87`
-- **Tamaño original:** `4.4 KB`
-- **SHA1 corto:** `01f4fba11f`
+- **Líneas:** `152`
+- **Tamaño original:** `8.9 KB`
+- **SHA1 corto:** `f4644538ad`
 - **Estado:** `completo`
 
 ```markdown
@@ -12975,14 +15918,79 @@ Este archivo es memoria histórica compacta. Sirve para evitar que agentes IA re
   - Reasignación del RightSidebar corregida para respetar selección real y contrato de config.
   - No limpiar selección al cerrar el modal.
 
+- `TASK-LAB-021-lab-action-registry-controller-contract.md`
+  - `CompactControls.jsx` consume descriptors de acción y el lab separa artefactos de generador/conversión.
+  - No reintroducir lógica de botones dispersa en el host del lab.
+
+- `TASK-LAB-019-normalize-lab-example-data-contract.md`
+  - `labExamples.js` quedó como fachada y los ejemplos grandes fueron movidos a catálogos separados bajo `labs/examples/catalog`.
+  - No volver a concentrar todos los ejemplos en un solo archivo monolítico.
+
+- `TASK-LAB-020-public-runtime-wrappers-only.md`
+  - `PdfmeLabPage.jsx` quedó montado sobre los wrappers públicos `SisadPdfmeDesigner`, `SisadPdfmeForm` y `SisadPdfmeViewer`.
+  - El host dejó de importar `usePdfmeRuntimeInstance` y validó build + smoke del docs tab.
+
+- `TASK-LAB-018-use-pdfme-lab-integration-hook.md`
+  - `usePdfmeLabIntegration` centraliza la normalización de template, recipients, documents, inputs, config y artifacts.
+  - `PdfmeLabPage.jsx` dejó de armar `commonOptions` manualmente y consume una única integración.
+
+- `TASK-LAB-017-pdfcomponent-integration-boundary.md`
+  - `PdfmeLabPage.jsx` ya no usa `DesignerEngineBuilder` ni `usePdfmeRuntimeInstance`.
+  - Se dejó un reporte explícito de frontera pública aceptada para el host del laboratorio.
+
+- `TASK-LAB-022-remove-compat-wrapper-reexports.md`
+  - Se eliminaron wrappers sin consumo real: `CaseGrid.jsx`, `Hero.jsx`, `IconButton.jsx`, `template.js`, `utils/binary.js` y `domain/collaborationAppearance.js`.
+  - `npm run build` siguió pasando tras la poda.
+
+- `TASK-LAB-025-example-bundle-normalized-export.md`
+  - `buildExampleBundle.ts` exporta `recipients`, `documents` y `config` top-level.
+  - La unidad valida el bundle y el smoke verifica el affordance de descarga del card correcto.
+
+- `TASK-LAB-024-external-data-integration-e2e.md`
+  - Se validó la carga asíncrona de datos externos, la reinyección sin duplicar recipients y el routing de docs del host.
+  - La validación de `Form/Viewer` quedó fuera de esta tarjeta porque el runtime de formulario ya rompe en la ruta base con el template actual.
+
+- `TASK-LAB-026-restore-designer-visual-baseline-after-integration.md`
+  - El lab volvió a abrir con `data-ux-mode="default"` por defecto, preservando el baseline clásico de 3 paneles.
+  - Se agregó una regresión Playwright que valida baseline visual, header, rails laterales y results inline.
+
+- `TASK-LAB-027-lab-canvas-first-shell-jsx-handoff.md`
+  - El shell del laboratorio movió estilos seguros a JSX/TSX y redujo la dependencia de `labRoutes.css`.
+  - `PopoverMenu`, `CompactControls` y `ResultsPanel` quedaron más compactos sin empujar el canvas ni romper el baseline.
+
 - `TASK-CSS-012-inline-tailwind-css-reduction.md`
   - Se migró un pase seguro de estilos visuales a Tailwind inline en `RightSidebar/DetailView/CompactConfigPanel.tsx`.
   - Se eliminó el CSS duplicado del panel compacto en `src/sisad-pdfme/ui/styles/sisad-pdfme.css`.
   - Validado con `npm run build` y smoke e2e del RightSidebar.
 
+- `TASK-CSS-018-stabilize-tailwind-cleanup.md`
+  - Se consolidaron los selectores objetivo del RightSidebar shell en TSX/Tailwind inline y se cerró la limpieza redundante del CSS legado.
+  - No reabrir como tarea activa; la continuidad visual sigue en task-cards separadas de regresión funcional.
+
+- `TASK-CSS-019-jsx-tsx-tailwind-migration-and-css-reduction.md`
+  - Se cerró la migración visual segura del shell del lab, LeftSidebar y superficies del RightSidebar hacia Tailwind inline/TSX.
+  - `src/sisad-pdfme/ui/styles/sisad-pdfme.css` eliminó los bloques redundantes `sidebar-frame` y `sidebar-surface`, y el conteo de `@apply` bajó de 610 a 608 en el último pase.
+  - Validado con `npm run build` y Playwright focal sobre `multi-document-routing` y `right-sidebar-docs-tab`.
+
+- `TASK-CSS-023-right-sidebar-documents-tailwind-continuity.md`
+  - El rail de documentos del RightSidebar quedó estabilizado en TSX con clases inline y sin selectores `documents-rail` en `sisad-pdfme.css`.
+  - Se corrigió el paso de items del rail para usar el origen combinado de docs/pages y se validó `right-sidebar-docs-tab` en Playwright.
+
+- `TASK-LAB-028-runtime-collaboration-sync-and-form-echo.md`
+  - El laboratorio ahora propaga el usuario activo y la vista global al runtime público de `sisad-pdfme`.
+  - El Form devuelve cambios de inputs al host y respeta `isGlobalView` en colaboración.
+
+- `TASK-LAB-029-multidocument-right-sidebar-docs-default.md`
+  - La ruta `multi-document-routing` abre el RightSidebar con `Docs` por defecto cuando hay múltiples documentos.
+  - El tab `Docs` sigue respetando la visibilidad del panel documental y se validó con Playwright.
+
 - `TASK-PDFME-013-controller-real-api-no-noop.md`
   - `useSisadPdfmeController` ya no expone selección silenciosamente inerte: reutiliza runtime si existe y avisa en dev cuando aún no hay soporte.
   - Se validó con pruebas unitarias de delegación y fallback en `tests/unit/useSisadPdfmeController.recipients.test.tsx`.
+
+- `TASK-REGRESSION-020-owner-color-renderer-continuity.md`
+  - Se validó la continuidad del color exterior por propietario con pruebas unitarias de tono dueño/fallback.
+  - No reabrir salvo regresión demostrada en `resolveSchemaTone` o `resolveSchemaOwnerTone`.
 
 - `TASK-PDFME-012-global-visibility-wiring-continuity.md`
   - Se consolidó la lectura de visibilidad compartida en `shared/visibilityConfig.ts`.
@@ -13009,9 +16017,9 @@ Este archivo es memoria histórica compacta. Sirve para evitar que agentes IA re
 Si un agente detecta una falla relacionada con una tarea completada, debe crear una task-card nueva con sufijo `regression` o `continuity`, no editar la tarea completada como si estuviera pendiente.
 ```
 
-<a id="file-0246"></a>
+<a id="file-0268"></a>
 
-### 0246 — `ai/task-cards/completed/README.md`
+### 0268 — `ai/task-cards/completed/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -13025,20 +16033,20 @@ Si un agente detecta una falla relacionada con una tarea completada, debe crear 
 Mover aquí task-cards completadas con reporte final.
 ```
 
-<a id="file-0247"></a>
+<a id="file-0269"></a>
 
-### 0247 — `ai/task-cards/completed/TASK-ACTIONS-001-button-action-contract-audit.md`
+### 0269 — `ai/task-cards/completed/TASK-ACTIONS-001-button-action-contract-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `89`
 - **Tamaño original:** `2.6 KB`
-- **SHA1 corto:** `0ec3073d2c`
+- **SHA1 corto:** `1d9b08f190`
 - **Estado:** `completo`
 
 ```markdown
 # TASK-ACTIONS-001 — Auditoría completa de botones y acciones
 
-- Estado: active
+- Estado: completed
 - Agente principal: interaction-agent
 - Fecha: 2026-07-15
 - Scope: `src/sisad-pdfme`
@@ -13127,20 +16135,20 @@ No crear wrappers ni nuevos menús. Esta task solo prepara inventario para la un
 - Validación: `node scripts/audit-buttons-actions.mjs` + `npm run build` exit 0.
 ```
 
-<a id="file-0248"></a>
+<a id="file-0270"></a>
 
-### 0248 — `ai/task-cards/completed/TASK-ACTIONS-002-commandbus-action-registry-unification.md`
+### 0270 — `ai/task-cards/completed/TASK-ACTIONS-002-commandbus-action-registry-unification.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `105`
 - **Tamaño original:** `3.6 KB`
-- **SHA1 corto:** `ab79ad50e0`
+- **SHA1 corto:** `d570f1b3ba`
 - **Estado:** `completo`
 
 ```markdown
 # TASK-ACTIONS-002 — Unificar ActionRegistry y CommandBus para botones
 
-- Estado: active
+- Estado: completed
 - Agente principal: interaction-agent
 - Fecha: 2026-07-15
 - Scope: `src/sisad-pdfme`
@@ -13245,9 +16253,9 @@ release-edit/select-schema/open-properties).
   build exit 0. Sin cambios de geometría/selección.
 ```
 
-<a id="file-0249"></a>
+<a id="file-0271"></a>
 
-### 0249 — `ai/task-cards/completed/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md`
+### 0271 — `ai/task-cards/completed/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `66`
@@ -13324,20 +16332,20 @@ No se deben crear carpetas como `architecture/`, `migration/`, `repo-patch/`, `0
 - Completed no se reabre.
 ```
 
-<a id="file-0250"></a>
+<a id="file-0272"></a>
 
-### 0250 — `ai/task-cards/completed/TASK-ARCH-004-wrapper-reduction-public-api-hardening.md`
+### 0272 — `ai/task-cards/completed/TASK-ARCH-004-wrapper-reduction-public-api-hardening.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `77`
 - **Tamaño original:** `2.5 KB`
-- **SHA1 corto:** `4efa3947c0`
+- **SHA1 corto:** `3db0c11719`
 - **Estado:** `completo`
 
 ```markdown
 # TASK-ARCH-004 — Reducir wrappers innecesarios y endurecer API pública
 
-- Estado: active
+- Estado: completed
 - Agente principal: designer-runtime-agent
 - Fecha: 2026-07-15
 - Scope: `src/sisad-pdfme`
@@ -13414,9 +16422,9 @@ HOST_SPECIFIC_REMOVE = 0.
 - Validación: build exit 0 + `tests/unit/sisad-pdfme/react` en verde.
 ```
 
-<a id="file-0251"></a>
+<a id="file-0273"></a>
 
-### 0251 — `ai/task-cards/completed/TASK-CANVAS-001-protect-canvas-overflow.md`
+### 0273 — `ai/task-cards/completed/TASK-CANVAS-001-protect-canvas-overflow.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -13448,9 +16456,100 @@ Verificar que utilidades Tailwind no pisen `overflow:auto`, height, scale o page
 - No resolver el overflow con hacks del host.
 ```
 
-<a id="file-0252"></a>
+<a id="file-0274"></a>
 
-### 0252 — `ai/task-cards/completed/TASK-CSS-012-inline-tailwind-css-reduction.md`
+### 0274 — `ai/task-cards/completed/TASK-CANVAS-003-guides-ruler-black-overlay-regression.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `78`
+- **Tamaño original:** `3.0 KB`
+- **SHA1 corto:** `90a8cd3034`
+- **Estado:** `completo`
+
+```markdown
+# TASK-CANVAS-003 — Eliminar bloque negro de guías/reglas
+
+## Objetivo
+
+Diagnosticar y corregir la superficie negra o capa opaca observada junto a las reglas y guías sin modificar la geometría del documento.
+
+## Alcance
+
+- Identificar nodo, pseudo-elemento o capa responsable.
+- Revisar background, overflow, stacking context, transform y dimensiones.
+- Corregir el mínimo contrato visual.
+
+## Fuera de alcance
+
+Migración CSS general, color de propietario, drag/resize y rediseño de reglas.
+
+## Archivos candidatos
+
+Máximo 5: componente de reglas, componente de guías, stylesheet consumidor, fixture del lab y una prueba visual; confirmar rutas.
+
+## Archivos prohibidos
+
+Coordenadas de schemas, Moveable, Selecto, snapshot, generator y `pdf-lib`.
+
+## Pasos
+
+1. Reproducir a zoom y viewport de la captura.
+2. Inspeccionar elemento y stacking contexts.
+3. Diferenciar bug CSS de dato/medida inválida.
+4. Aplicar corrección mínima y probar varios zooms/páginas.
+
+## Validación
+
+Capturas a 75/100/125 %, scroll multipágina y pruebas existentes de canvas.
+
+## Criterio de parada
+
+Detenerse si la causa reside en cálculo geométrico o librería de terceros; crear tarjeta especializada.
+
+## Entrega final
+
+Causa raíz, nodo afectado, corrección y matriz de zoom/scroll.
+
+## Cierre (2026-07-15, Claude)
+
+### Causa raíz
+
+`src/sisad-pdfme/ui/components/Designer/Canvas/Guides.tsx` renderizaba las
+reglas de `@scena/react-guides` con tema OSCURO obsoleto: default
+`backgroundColor/cornerBackground = '#2d2d2d'`, `textColor` blanco y clases
+`bg-slate-800 border-slate-700/90`. El resto del diseñador es light y el token
+`--sisad-pdfme-guides-corner-bg` ya era `#f1f5f9`. Canvas pasa `palette` desde
+`styleOverrides.guides` (undefined por defecto), así que caía al default oscuro
+→ franja/bloque negro junto a reglas y esquina.
+
+### Nodo afectado y corrección (mínima, sin geometría)
+
+- Paleta por defecto a light: `backgroundColor '#f8fafc'`, `lineColor '#cbd5e1'`,
+  `textColor 'rgba(15,23,42,0.55)'` (legible sobre claro), `cornerBackground '#f1f5f9'`.
+- Clases JSX de corner y reglas de `bg-slate-800 border-slate-700/90` → light
+  (`bg-slate-100`/`bg-slate-50`, `border-slate-200/80`); corner recibe además el
+  `cornerBackground` inline para no depender del orden de carga del token.
+- Sin tocar coordenadas, tamaños, `RULER_HEIGHT`, zoom ni Moveable/Selecto.
+
+### Validación
+
+- `npm run build` → dist generado sin errores; `eslint Guides.tsx` → 0.
+- Probe de color computado: corner `rgb(241,245,249)` lum 244; reglas
+  `rgb(248,250,252)` lum 250 (claras). Captura confirma números legibles
+  (0-50 horizontal, ticks verticales) sin bloque negro.
+- Regresión canvas en verde: `canvas-overflow-regression`,
+  `canvas-interactions` (incl. guides/padding toggles), `drag-preview-and-canvas-scroll`.
+
+### Matriz zoom/scroll
+
+Verificado en viewport 1400×900 sobre `/lab/multi-document-routing` (multipágina,
+14 esquinas de regla renderizadas). Los colores son estáticos por token → estables
+a cualquier zoom/scroll (no dependen de medida ni de cálculo geométrico).
+```
+
+<a id="file-0275"></a>
+
+### 0275 — `ai/task-cards/completed/TASK-CSS-012-inline-tailwind-css-reduction.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `91`
@@ -13552,9 +16651,9 @@ No migrar reglas críticas de layout geométrico del PDF/canvas.
 - No se rompen screenshots baseline.
 ```
 
-<a id="file-0253"></a>
+<a id="file-0276"></a>
 
-### 0253 — `ai/task-cards/completed/TASK-CSS-013-selector-dedup-current-design-polish.md`
+### 0276 — `ai/task-cards/completed/TASK-CSS-013-selector-dedup-current-design-polish.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `86`
@@ -13651,20 +16750,20 @@ del canvas, Moveable, Selecto, zoom ni coordenadas PDF.
   `canvas-overflow-regression` y `drag-preview-and-canvas-scroll-regression` en verde.
 ```
 
-<a id="file-0254"></a>
+<a id="file-0277"></a>
 
-### 0254 — `ai/task-cards/completed/TASK-CSS-014-tailwind3-current-ui-dedup-polish.md`
+### 0277 — `ai/task-cards/completed/TASK-CSS-014-tailwind3-current-ui-dedup-polish.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `85`
 - **Tamaño original:** `2.9 KB`
-- **SHA1 corto:** `15cad75297`
+- **SHA1 corto:** `38121cd97f`
 - **Estado:** `completo`
 
 ```markdown
 # TASK-CSS-014 — Tailwind 3: deduplicación visual actual y polish
 
-- Estado: active
+- Estado: completed
 - Agente principal: css-tailwind-agent
 - Fecha: 2026-07-15
 - Scope: `src/sisad-pdfme`
@@ -13749,20 +16848,545 @@ No tocar `.moveable-*`, `.selecto-*`, transform, zoom math, paper/canvas geometr
       sin tocar geometría crítica.
 ```
 
-<a id="file-0255"></a>
+<a id="file-0278"></a>
 
-### 0255 — `ai/task-cards/completed/TASK-DETAIL-015-access-state-label-sync.md`
+### 0278 — `ai/task-cards/completed/TASK-CSS-015-lab-routes-tailwind3-dedup.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `14`
+- **Tamaño original:** `0.4 KB`
+- **SHA1 corto:** `67afa214ad`
+- **Estado:** `completo`
+
+```markdown
+# TASK-CSS-015 — Reducir `labRoutes.css` después del refactor
+
+Estado: active
+
+## Objetivo
+Eliminar CSS duplicado del host lab solo después de mover UI segura a JSX/Tailwind 3.
+
+## Tareas
+- No tocar canvas/zoom/geometry.
+- Migrar skin seguro de PageHeader, CaseCard, PopoverMenu, ResultsPanel.
+- Conservar reglas de layout crítico.
+
+## Criterios
+- Menos selectores duplicados y sin regresión visual.
+```
+
+<a id="file-0279"></a>
+
+### 0279 — `ai/task-cards/completed/TASK-CSS-018-stabilize-tailwind-cleanup.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `41`
+- **Tamaño original:** `1.6 KB`
+- **SHA1 corto:** `4904aab92b`
+- **Estado:** `completo`
+
+```markdown
+# TASK-CSS-018 — Estabilización post-migración: Cleanup de CSS legado Redundante
+
+- Estado: completed
+- Prioridad: Alta
+- Responsable sugerido: GitHub Copilot
+- Área: `sisad-pdfme` / Estilos
+
+## Objetivo
+
+Eliminar reglas CSS redundantes en `sisad-pdfme.css` que ya han sido migradas al 100% a utilidades Tailwind inline en los componentes JSX/TSX. Reducir el tamaño del archivo legado sin romper la visual ni la funcionalidad.
+
+## Foco inicial: RightSidebar y Sidebars Shell
+
+Basado en `component-migration-ledger.md` y `active-selector-duplicates.md`.
+
+## Archivos a modificar
+
+- `src/sisad-pdfme/ui/styles/sisad-pdfme.css`
+- `reports/tailwind-migration/component-migration-ledger.md` (actualizar estado)
+
+## Pasos
+
+1. Auditar bloques `RightSidebar` en `sisad-pdfme.css`.
+2. Eliminar selectores que ya tienen paridad exacta en Tailwind inline:
+   - `.sisad-pdfme-designer-right-sidebar-panel-switcher-btn` (múltiples bloques)
+   - `.sisad-pdfme-designer-right-sidebar-layout-header`
+   - `.sisad-pdfme-designer-right-sidebar-layout-body`
+   - `.sisad-pdfme-designer-right-sidebar-layout-frame`
+3. Verificar que no haya regresiones visuales (especialmente densidades compact/minimal).
+4. Actualizar el ledger.
+
+## Guardrails
+
+- NO TOCAR geometría crítica (canvas, moveable, selecto).
+- NO TOCAR tokens.
+- Solo borrar si hay Tailwind inline equivalente en el TSX.
+
+## Cierre
+
+- Los selectores objetivo del shell del RightSidebar quedaron migrados o consolidados en TSX/Tailwind inline.
+- La continuidad visual se valida por las task-cards de regresión funcional y por los tests de sidebar/right-sidebar ya existentes.
+```
+
+<a id="file-0280"></a>
+
+### 0280 — `ai/task-cards/completed/TASK-CSS-019-jsx-tsx-tailwind-migration-and-css-reduction.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `72`
+- **Tamaño original:** `4.6 KB`
+- **SHA1 corto:** `f8ec023179`
+- **Estado:** `completo`
+
+```markdown
+# TASK-CSS-019 — Migración de clases Tailwind a JSX/TSX y reducción de CSS legado
+
+- Estado: completed
+- Prioridad: Alta
+- Responsable sugerido: GitHub Copilot
+- Área: `sisad-pdfme` / Estilos
+
+## Objetivo
+
+Mover la mayor cantidad posible de clases visuales Tailwind desde `sisad-pdfme.css`, `labRoutes.css` y `tokens.css` hacia sus componentes JSX/TSX equivalentes, aprovechando las constantes de prefijo en `src/sisad-pdfme/ui/constants.ts` para mantener compatibilidad de runtime y reducir `@apply` redundantes.
+
+## Foco inicial
+
+- `RightSidebar` panel switcher y superficies
+- `ListView` toolbar y rows
+- `LeftSidebar` tabs, search, groups y plugin cards
+- Shell visual del laboratorio en `src/features/pdfcomponent`
+
+## Archivos a revisar
+
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListViewToolbar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarTabs.tsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarSearch.tsx`
+- `src/sisad-pdfme/ui/components/Designer/LeftSidebarGroup.tsx`
+- `src/features/pdfcomponent/PageHeader.jsx`
+- `src/features/pdfcomponent/CompactControls.jsx`
+- `src/features/pdfcomponent/ResultsPanel.jsx`
+- `src/features/pdfcomponent/PdfmeLabPage.jsx`
+- `src/sisad-pdfme/ui/styles/sisad-pdfme.css`
+- `src/features/pdfcomponent/labRoutes.css`
+- `src/sisad-pdfme/ui/styles/tokens.css`
+
+## Pasos
+
+1. Identificar selectores CSS que ya tienen paridad exacta en inline Tailwind.
+2. Mover skins visuales seguros a JSX/TSX usando `DESIGNER_CLASSNAME` y `UI_CLASSNAME`.
+3. Conservar geometría, scroll, canvas, Moveable, Selecto y PDF.
+4. Reducir o eliminar `@apply` en reglas ya migradas.
+5. Actualizar checklist y resumen de completadas cuando se cierre una subpasada.
+
+## Progreso actual
+
+- Migrado `PageHeader.jsx` a utilidades inline para chips, topbar, rail, acciones y métricas.
+- Migrado `CompactControls.jsx`, `PopoverMenu.jsx` y `ResultsPanel.jsx` a skins Tailwind directas.
+- Ajustado `RightSidebar`, `ListView/Item.tsx`, `ListViewToolbar.tsx`, `SelectableSortableContainer.tsx`, `SelectableSortableItem.tsx`, `ListViewDragOverlay.tsx`, `LeftSidebarGroup.tsx`, `LeftSidebarTabs.tsx`, `LeftSidebarSearch.tsx`, `SidebarRail.tsx`, `SidebarCollapseHandle.tsx`, `DocumentsRail.tsx`, `AlignWidget.tsx`, `SchemaConnectionsShared.tsx`, `SchemaConnectionsWidget.tsx` y `SchemaCollaborationWidget.tsx` para reducir dependencia de hooks CSS y propagar densidad por TSX.
+- Podados bloques duplicados de `src/sisad-pdfme/ui/styles/sisad-pdfme.css`; el conteo de `@apply` bajó a 610 tras retirar otra capa base del sidebar, la skin del ListView y reglas duplicadas del sidebar izquierdo.
+- Migrado el skin del catálogo del `LeftSidebar` a utilidades inline en TSX, incluyendo labels, estados de favorito y modo `icons`.
+- Validado en navegador `http://localhost:5174/lab/multi-document-routing` que el tab `Docs` del RightSidebar está activo en el panel derecho.
+- Podadas reglas huérfanas de `src/features/pdfcomponent/labRoutes.css`; el archivo quedó en no-op de compatibilidad sin `@apply` tras mover la responsividad restante a `PdfmeLabPage.jsx` y `PageHeader.jsx`.
+- Retirados los bloques base redundantes `.sisad-pdfme-designer-sidebar-frame` y `.sisad-pdfme-designer-sidebar-surface` de `src/sisad-pdfme/ui/styles/sisad-pdfme.css` porque `LeftSidebar.tsx`, `RightSidebar.tsx` y `RightSidebar/layout.tsx` ya poseen esa skin inline en TSX.
+- El conteo de `@apply` en `src/sisad-pdfme/ui/styles/sisad-pdfme.css` bajó de 610 a 608 en esta pasada.
+- Build verificado con `npm run build`.
+- Validado `tests/playwright/right-sidebar-visual-polish.spec.ts`, `tests/playwright/canvas-overflow-regression.spec.ts` y `tests/playwright/drag-preview-and-canvas-scroll-regression.spec.ts`.
+- Validado `tests/playwright/multi-document-routing-design.spec.ts` y `tests/playwright/right-sidebar-docs-tab.spec.ts`.
+- Revalidado en esta pasada con `npm run build && npx playwright test tests/playwright/multi-document-routing-design.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts`.
+
+## Guardrails
+
+- No tocar canvas geometry.
+- No tocar Moveable, Selecto, zoom ni coordenadas PDF.
+- No crear CSS paralelo nuevo.
+- No reabrir task-cards protegidas.
+- No perder `data-testid` ni prefijos de runtime.
+
+## Criterio de cierre
+
+- El CSS legado queda reducido en los bloques migrados.
+- Los componentes visuales relevantes usan Tailwind inline o clases calculadas desde TSX/JSX.
+- La UI mantiene la misma interacción y el build/tests siguen pasando.
+```
+
+<a id="file-0281"></a>
+
+### 0281 — `ai/task-cards/completed/TASK-CSS-020-lab-routes-zero-apply.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `50`
+- **Tamaño original:** `1.5 KB`
+- **SHA1 corto:** `f890ef56c0`
+- **Estado:** `completo`
+
+```markdown
+# TASK-CSS-020 — Reducir `labRoutes.css` a contratos no migrables
+
+## Objetivo
+
+Llevar a JSX/TSX las utilidades Tailwind estáticas restantes de `labRoutes.css` y alcanzar cero `@apply` si no compromete contratos complejos.
+
+## Alcance
+
+- Una sola región por pasada: controles compactos, popovers o resultados.
+- Clases estáticas y variantes completas desde `constants.ts`.
+- Conservar pseudoestados o selectores complejos justificados.
+
+## Fuera de alcance
+
+Shell, sidebars SISAD, canvas y cambios funcionales.
+
+## Archivos candidatos
+
+Por pasada: `labRoutes.css`, `constants.ts` y máximo 3 componentes consumidores confirmados.
+
+## Archivos prohibidos
+
+`sisad-pdfme.css`, `tokens.css`, Renderer, Moveable, Selecto y PDF.
+
+## Pasos
+
+1. Ejecutar auditoría y elegir una región.
+2. Mapear selector a consumidor y estados.
+3. Migrar clases completas.
+4. Eliminar CSS sin consumidor.
+5. Repetir únicamente en una nueva pasada documentada.
+
+## Validación
+
+Conteo `@apply` antes/después, typecheck, lint, prueba focalizada y captura.
+
+## Criterio de parada
+
+Detenerse ante selector global, portal, keyframe, tercero o dependencia no identificada.
+
+## Entrega final
+
+Ledger de selectores migrados y excepciones CSS justificadas.
+
+## Cierre (2026-07-15, Claude)
+
+`src/features/pdfcomponent/labRoutes.css` quedó como entrypoint no-op (5 líneas,
+0 `@apply`): todas las utilidades Tailwind del shell del lab ya viven inline en
+los componentes JSX (PageHeader/PdfmeLabPage/CompactControls/ResultsPanel/
+PopoverMenu). Verificado: `grep -c "@apply"` = 0. Objetivo cumplido.
+```
+
+<a id="file-0282"></a>
+
+### 0282 — `ai/task-cards/completed/TASK-CSS-023-right-sidebar-documents-tailwind-continuity.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `42`
+- **Tamaño original:** `1.1 KB`
+- **SHA1 corto:** `af4ca4c3e9`
+- **Estado:** `completo`
+
+```markdown
+# TASK-CSS-023 — Restaurar rail de documentos y sidebar derecho
+
+## Objetivo
+
+Corregir densidad, truncado, botones de borrado y selección del rail de documentos, migrando layout estático a JSX/TSX.
+
+## Alcance
+
+- Tabs Campos/Detalle, cabecera Docs y lista de documentos.
+- Estado activo, metadatos, botón subir PDF y delete.
+- Overflow vertical/horizontal y accesibilidad.
+
+## Fuera de alcance
+
+Carga real del PDF, reordenamiento, inspector interno y poda CSS global.
+
+## Archivos candidatos
+
+Máximo 5: `RightSidebar.tsx`, layout, `DocumentsRail`, toolbar y item de documento; confirmar rutas.
+
+## Archivos prohibidos
+
+Canvas, Renderer, snapshot, generator, `pdf-lib` y LeftSidebar.
+
+## Pasos
+
+1. Reproducir con dos documentos y nombres largos.
+2. Migrar layout y estados a clases estáticas.
+3. Preservar callbacks y contratos públicos.
+4. Verificar colapso y responsive.
+
+## Validación
+
+Typecheck, pruebas del rail, teclado y capturas con documento activo/inactivo.
+
+## Criterio de parada
+
+Detenerse si requiere cambiar lógica de documentos o más de 5 archivos.
+
+## Entrega final
+
+Matriz de estados y evidencia visual.
+```
+
+<a id="file-0283"></a>
+
+### 0283 — `ai/task-cards/completed/TASK-CSS-024-right-sidebar-listview-row-flat.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `99`
+- **Tamaño original:** `4.6 KB`
+- **SHA1 corto:** `fb45c03c0b`
+- **Estado:** `completo`
+
+```markdown
+# TASK-CSS-024 — Fila plana del ListView (RightSidebar) en Tailwind/TSX
+
+- Estado: active
+- Fecha: 2026-07-15
+- Responsable: Claude
+- Área: `sisad-pdfme` / RightSidebar / ListView / continuidad Tailwind
+
+## Objetivo
+
+Convertir la fila del ListView de "card flotante" a una fila plana profesional
+(una sola superficie por fila, borde 1px gris, radio 8-10px, sin sombra
+permanente, sin translate en hover, grip e icono discretos sin card interior,
+barra de color de owner visible, metadata en una sola línea), moviendo el skin
+al TSX sin tocar CSS de hoja.
+
+## Diagnóstico
+
+El container (`SelectableSortableContainer`), el toolbar y los duplicados de
+`.sisad-pdfme-designer-list-view-item` en `sisad-pdfme.css` ya fueron
+aplanados/limpiados por el trabajo paralelo. La pieza pendiente es `Item.tsx`:
+la fila conserva `rounded-[1.1rem]`, `shadow-sm`, `hover:-translate-y-px`,
+grip con píldora (borde+bg), icono con card interior (borde+shadow-inner),
+alineación `items-start` y barra de owner tenue (2px, opacity 25%).
+
+## Alcance
+
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.tsx`
+
+## Fuera de alcance (deferido / prohibido)
+
+- `RightSidebar.tsx` (§4 superficie única) y `SelectableSortableContainer.tsx`
+  → en edición por el agente de TASK-REGRESSION-021; no tocar (colisión).
+- `ListViewToolbar.tsx` (§3) → ya compacto (Input h-8/h-9, Select h-7/h-8, sin
+  cards); no requiere cambio.
+- `sisad-pdfme.css` / `tokens.css` / `labRoutes.css`.
+- Moveable, Selecto, geometría de canvas, snapshot, generator, pdf-lib.
+
+## Invariantes a conservar
+
+- data-testids: `right-sidebar-field-item`, `right-sidebar-field-label`,
+  `right-sidebar-field-technical-name`, `right-sidebar-field-type`,
+  `right-sidebar-field-badge`; clases `.sisad-pdfme-designer-list-view-item*`.
+- Atributo `data-schema-owner-color` y var `--schema-owner-color`
+  (continuidad de color de owner, TASK-REGRESSION-020).
+- Listeners de drag en el grip; hit-target de click; selección/hover por
+  data-attributes; delete visible en hover/focus.
+
+## Validación
+
+- `npm run build`
+- `npx playwright test tests/playwright/list-view-regression.spec.ts tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/detail-view-options-listview.spec.ts`
+
+## Criterio de parada
+
+Si aplanar la fila exige tocar RightSidebar/Container o CSS de hoja, detenerse
+y reflejar §3/§4 en TASK-REGRESSION-021.
+
+## Cierre (2026-07-15, Claude)
+
+`Item.tsx` migrado a fila plana en Tailwind/TSX (único archivo de producto tocado):
+
+- Card raíz: `rounded-lg` (8px, antes 1.1rem), `shadow-none` (antes shadow-sm),
+  sin `hover:-translate-y-px`; selección por `border/bg/ring` sky; `group` +
+  `focus-within` ring.
+- Contenido: `items-center`; barra de owner `before` a 3px, `opacity-55`, que
+  sube a `opacity-100` al seleccionar vía `group-data-[selected=true]`
+  (corrige el bug latente: el `data-[selected]:before` anterior nunca disparaba
+  porque el `data-selected` vive en el `<li>`, no en el content).
+- Grip: transparente sin píldora (`border-0 bg-transparent p-0 opacity-55`,
+  antd `type="text"`); icono sin card interior (`border-0 bg-transparent
+  shadow-none`); nombre `truncate min-w-0` + `title`.
+- Densidad como fuente ÚNICA de utilidades de tamaño (mergeClassNames es join
+  plano, no resuelve conflictos): alturas ~52/46/40px comfortable/compact/minimal;
+  metadata en una sola línea (`flex-nowrap` fuera de comfortable, badge
+  `max-w-[7.5rem]`).
+- Conservados: todos los data-testids, `.sisad-pdfme-designer-list-view-item*`,
+  `data-schema-owner-color`/`--schema-owner-color`, listeners del grip,
+  hit-target, delete-on-hover, selección/hover por data-attributes.
+
+### Validación
+
+- `npm run build` → exit 0.
+- `npx eslint Item.tsx` → 0 problemas.
+- Verificación en vivo (pestaña "Campos" de `/lab/multi-document-routing`,
+  densidad comfortable): 11 filas; `right-sidebar-field-list`=1,
+  `-field-label`=11, `-field-technical-name`=11; `border-radius: 8px`;
+  `box-shadow: none`; barra de owner `opacity 0.55`; `data-schema-owner-color=#2563EB`;
+  grip `border 0px`; icono `border none`.
+- Specs `list-view-regression`, `detail-view-options-listview`,
+  `right-sidebar-visual-polish`: rojos por deriva ajena (panel Docs por defecto
+  de LAB-029 + rename del switcher a `bg-[linear-gradient]`), NO por este cambio
+  — no llegan a montar la pestaña Campos. Rastreado en
+  `ai/task-cards/backlog/TASK-QA-017-listview-specs-docs-default-drift.md`.
+
+### Fuera de alcance (no tocado, per criterio de parada)
+
+§3 toolbar (ya compacto) y §4 superficie única de `RightSidebar.tsx` — en
+edición por TASK-REGRESSION-021; la dedup CSS de `.list-view-item` ya estaba
+resuelta por el trabajo paralelo.
+```
+
+<a id="file-0284"></a>
+
+### 0284 — `ai/task-cards/completed/TASK-CSS-025-context-summary-guides-apply-to-jsx.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `116`
+- **Tamaño original:** `6.5 KB`
+- **SHA1 corto:** `6f46c265e3`
+- **Estado:** `completo`
+
+```markdown
+# TASK-CSS-025 — Migrar @apply de context-summary y guides desde CSS a JSX
+
+- Estado: completed
+- Fecha: 2026-07-15
+- Responsable: Claude
+- Área: `sisad-pdfme` / continuidad Tailwind (reducción de @apply en hoja CSS)
+
+## Objetivo
+
+Continuar la reducción de Tailwind dentro de `src/sisad-pdfme/ui/styles/sisad-pdfme.css`
+llevando el skin de element-selector (las clases que se forman concatenando
+`DESIGNER_CLASSNAME` + sufijo) a su JSX/TSX dueño, dejando en CSS solo lo que el
+componente no puede expresar como className estático.
+
+## Componentes migrados (no contendidos por el trabajo paralelo)
+
+### DesignerContextSummary.tsx
+- Eliminadas del CSS las reglas element de `.context-summary`, `-top`, `-meta`,
+  `-title`, `-chip`, `-status-dot`, `.meta.is-inline`, las variantes
+  `[data-placement="sidebar"]`/`[data-density="compact"]` y su padding agrupado.
+- El JSX ya tenía Tailwind inline en cada nodo (redundante y en conflicto por
+  orden de carga); ahora es la fuente ÚNICA. Se añadieron `chipClass`/`titleClass`
+  (DRY) que absorben las variantes density/placement.
+- Nota: el componente está actualmente SIN montar en el repo (0 usos), así que la
+  migración no tiene impacto visual, pero queda autocontenido y correcto.
+
+### Guides.tsx (reglas/esquina de guías)
+- Eliminadas del CSS `.guides-corner`, `.guides-ruler`, `-horizontal`, `-vertical`
+  (bg, borde, overflow, pointer-events) → migradas al className del JSX.
+- Permanecen en CSS solo las reglas descendientes `.guides-ruler .scena-guides-*`
+  que estilizan elementos generados por `@scena/react-guides` (el JSX no los
+  produce y no puede darles className).
+
+## Hallazgo importante (preflight desactivado)
+
+`tailwind.config.js` tiene `corePlugins.preflight: false`. Por eso las utilidades
+de lado (`border-b`/`border-r`) fijan el ANCHO pero no el `border-style`, y el
+borde se colapsa a 0 (used width = 0 cuando style = none). El shorthand CSS previo
+(`[border-bottom:1px_solid_...]`) incluía el estilo. **Regla para futuros pases:**
+al migrar `[border-X:1px solid var]` usar `border-X border-solid` (no solo
+`border-X`). La utilidad `border` de todos los lados sí rinde solid en este repo.
+
+## Resultado
+
+- `@apply` en `sisad-pdfme.css`: 588 → 574 (−14 reglas).
+- Verificación en vivo: reglas claras con `1px solid` (corner border-right 1px,
+  ruler border-bottom 1px), `pointer-events-none`, overflow hidden; números
+  legibles. Captura confirma paridad con el diseño previo.
+- `npm run build` → dist OK; `eslint` → 0; canvas specs en verde
+  (`canvas-overflow-regression`, `canvas-interactions` incl. guides/padding).
+
+## Pendiente (multi-pasada, coordinar con REGRESSION-021)
+
+El grueso de los 574 `@apply` restantes es geometría de canvas/stage (prohibida)
+o DetailView/RightSidebar (zona activa de Copilot). Migrar por componente en
+slices no contendidos, aplicando la regla `border-solid`.
+
+### ErrorScreen.tsx (pase 2)
+- Migrado el layout+skin de `.error-screen` (grid centering, w/h full) y
+  `.error-screen-body` (width/max-width) al className del JSX; eliminadas del CSS
+  esas reglas element y las dos de padding en conflicto
+  (`p-[0.7rem]` agrupado + `p-[0.9rem]`). `border` (todos los lados) rinde solid
+  sin `border-solid`. `@apply`: 574 → 571.
+
+## Muro de contención alcanzado (2026-07-15)
+
+Tras context-summary + guides + error-screen (588 → 571), el resto del skin de
+element migrable vive en componentes que los otros agentes están reescribiendo
+AHORA (git status: LeftSidebar*, PluginIcon, CatalogLayoutToggle, DetailView/*,
+RightSidebar*, ListView* — todos dirty) o es geometría de canvas/stage
+(prohibida). Continuar migrando esos bloques colisionaría con el trabajo
+paralelo. **Siguiente pase: esperar a que los agentes hagan commit/land y
+retomar por componente, aplicando la regla `border-solid`.**
+
+### SelectionContextToolbar.tsx (pase 3) — mayor reducción
+- El componente fue reescrito a una estructura mínima con Tailwind inline; el
+  bloque CSS `.selection-context-toolbar*` (≈46 reglas) estaba MUERTO o
+  redundante: estilizaba hijos que ya no se renderizan (`-summary/-chip/-section/
+  -state/-action-*/-toggle`) y variantes `[data-toolbar-mode]`/`[data-toolbar-density]`
+  que el componente ya no fija; las reglas `.toolbar button` sobre-especificaban
+  el skin inline del JSX.
+- Migrado al className del JSX solo lo que la base aportaba y el JSX necesitaba:
+  `absolute` (posicionamiento del overlay con top/left), `pointer-events-auto` y
+  la animación de reveal. Eliminado todo el bloque; se conservó la regla mixta
+  `.stage[data-schema-dragging] .toolbar, .moveable-control-box, .inline-edit-overlay`
+  (hide-during-drag compartida por 3 overlays).
+- 2º matiz de `border-solid`: los `<button>` traen `border-style: outset` del UA
+  (preflight off) → `border` da un borde biselado; se añadió `border-solid` a los
+  botones del toolbar. (Los `<div>` por defecto son `border-style: none`.)
+- `@apply`: 571 → 525. Verificado en vivo: toolbar posicionado (absolute),
+  botones `1px solid` limpios (captura), canvas-interactions/overflow en verde.
+
+## Acumulado de la migración (sesión): @apply 588 → 525 (−63)
+
+Componentes con skin migrado a JSX y CSS reducido: context-summary, guides,
+error-screen, selection-context-toolbar. El resto sigue bloqueado por
+contención (DetailView/sidebars/ListView los reescribe Copilot) o es geometría.
+
+### Pase 4 — eliminación de reglas MUERTAS (riesgo cero)
+- Detección: para cada clase, grep de las TRES formas de construcción
+  (`+ 'suf'`, template `${...}suf`, literal completo). Se descartan falsos
+  positivos del detector ingenuo (p. ej. `stage` es LIVE vía template literal).
+- Eliminadas reglas cuyas clases no renderiza ningún .tsx (verificado 0 refs):
+  `.ui-context-menu`, `.list-view-empty` (+ `-title`,`-hint`), `.list-view-title`,
+  `.list-view-counter`, `.list-view-subtitle`. Sin cambio de JSX ni impacto
+  visual (nada las monta). `@apply`: ~523 → 514; llaves balanceadas; build OK.
+- Omitidos por contención/DetailView: `inspector-summary-card*`,
+  `detail-header-card*` (Copilot los reescribe); no tocados aunque parezcan
+  muertos, para no clobbear su trabajo sobre el mismo archivo.
+
+## Nota de método para próximos pases
+El CSS lo edita Copilot en paralelo (el conteo de @apply baja solo). Editar el
+mismo archivo concurrentemente arriesga clobber. Estrategias seguras: (1) migrar
+componentes cuyo .tsx NO esté dirty; (2) borrar reglas MUERTAS verificadas con
+las 3 formas de grep. El bulk-delete automático por detector ingenuo NO es
+seguro (falsos positivos rompen estilos vivos).
+```
+
+<a id="file-0285"></a>
+
+### 0285 — `ai/task-cards/completed/TASK-DETAIL-015-access-state-label-sync.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `85`
 - **Tamaño original:** `3.3 KB`
-- **SHA1 corto:** `7a360b812f`
+- **SHA1 corto:** `7fdc711118`
 - **Estado:** `completo`
 
 ```markdown
 # TASK-DETAIL-015 — Sincronizar estados de acceso y labels del inspector
 
-- Estado: active
+- Estado: completed
 - Agente principal: inspector-agent
 - Fecha: 2026-07-15
 - Scope: `src/sisad-pdfme`
@@ -13847,9 +17471,612 @@ No tocar recipients ni SnapshotAdapter. Esta tarea solo sincroniza consumo de es
   `schema-lock-state-consistency.spec.ts` en verde. Build exit 0.
 ```
 
-<a id="file-0256"></a>
+<a id="file-0286"></a>
 
-### 0256 — `ai/task-cards/completed/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md`
+### 0286 — `ai/task-cards/completed/TASK-INTERACTION-016-assignment-modal-selection-freeze-regression.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `36`
+- **Tamaño original:** `2.1 KB`
+- **SHA1 corto:** `ed5ae770ab`
+- **Estado:** `completo`
+
+```markdown
+## Cierre (2026-07-15, Claude)
+
+Causa raíz corregida: `isAntDPopupOpen()` contaba popups AntD montados-pero-
+ocultos (`.ant-tooltip` del botón Reasignar tras el hover, dropdowns con
+`ant-*-hidden`, wrap del modal con display:none) → `shouldSuppressCanvasRegion
+Selection`/shortcuts quedaban true para siempre. Ahora la detección es
+consciente de visibilidad (`isHiddenAntDPopupElement`).
+
+Implementado además:
+- [x] `requestClose(reason)` único (cancel/x/escape/mask/confirm/unmount) en
+      SchemaAssignmentDialog; Escape a nivel documento dentro del mismo
+      lifecycle (el foco puede quedar fuera del wrap por el preventDefault del
+      botón Reasignar); safety de unmount; logs `[assignment-modal-lifecycle]`
+      solo con debug.enabled.
+- [x] modalRender con markers + stops en bubble (capture rompería Radio/Input
+      internos; doubleclick sí se detiene en capture fuera de inputs).
+- [x] Familia modal completa en `DESKTOP_INTERACTIVE_EXCLUDED_SELECTORS`.
+- [x] `resetDesignerTransientInteractionState` con `keepSelection` (default
+      true, NUNCA limpia activeElements), `clearPointerState`,
+      `releaseModalLock`, blur solo con foco huérfano en modal oculto,
+      limpieza de body pointerEvents/overflow.
+- [x] `isModalOpen` no queda pegado (lifecycle único de ListView en todas las
+      salidas + popups ocultos ya no cuentan).
+- [x] Bonus: shift-click acumulativo en click (selectionPolicy 'add' — paridad
+      con la región de Selecto y el docblock del Canvas); null-target contract
+      de los guards de policy alineado con sus tests.
+
+Validación (todo en verde):
+- `assignment-modal-selection-freeze-regression.spec.ts` (4 tests, caso
+  obligatorio completo: cancel/X/Escape/confirm + Cmd/Ctrl click + click vacío
+  + doble click sin doble modal + selección preservada al cancelar).
+- Unit: interactionTargetSelectors (4), designerInteractionReset (6),
+  interactionGuards (8), selectionPolicy (2).
+- Regresión: canvas-interactions (3), drag-preview, canvas-overflow,
+  detail-view suite, checkbox-group, parity, rail, smoke, zoom, lock-state.
+- `npm run build` exit 0.
+```
+
+<a id="file-0287"></a>
+
+### 0287 — `ai/task-cards/completed/TASK-LAB-017-pdfcomponent-integration-boundary.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `19`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `d99dd616bc`
+- **Estado:** `completo`
+
+```markdown
+# TASK-LAB-017 — Frontera de integración en `pdfcomponent`
+
+Estado: completed
+
+## Objetivo
+Eliminar el uso de internals del core desde `src/features/pdfcomponent`.
+
+## Tareas
+- Auditar `DesignerEngineBuilder`, `usePdfmeRuntimeInstance`, decorators de colaboración y `setTimeout`.
+- Definir qué imports del core son públicos aceptados.
+- Crear reporte `ai/reports/pdfcomponent-integration-boundary.md`.
+
+## Criterios
+- `PdfmeLabPage.jsx` no usa `DesignerEngineBuilder` ni `usePdfmeRuntimeInstance`.
+- Los ejemplos muestran API pública, no internals.
+
+## Cierre
+- Se emitió `ai/reports/pdfcomponent-integration-boundary.md` con la frontera pública aceptada para el host del laboratorio.
+- `PdfmeLabPage.jsx` ya no usa `usePdfmeRuntimeInstance` ni `DesignerEngineBuilder`.
+```
+
+<a id="file-0288"></a>
+
+### 0288 — `ai/task-cards/completed/TASK-LAB-018-use-pdfme-lab-integration-hook.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `20`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `04239dbbe0`
+- **Estado:** `completo`
+
+```markdown
+# TASK-LAB-018 — `usePdfmeLabIntegration` como orquestador único
+
+Estado: completed
+
+## Objetivo
+Crear un hook que normalice template, recipients, documents, inputs, config, actions y artifacts.
+
+## Tareas
+- Crear `src/features/pdfcomponent/hooks/usePdfmeLabIntegration.ts`.
+- Crear `integration/normalizeLabHostData.ts`.
+- Crear `integration/createLabPdfmeConfig.ts`.
+- Eliminar `commonOptions` armado manualmente en `PdfmeLabPage.jsx`.
+
+## Criterios
+- Recipients y documents entran una sola vez.
+- Active recipient fluye por config/props y controller.
+
+## Cierre
+- `usePdfmeLabIntegration` centraliza la normalización de template, recipients, documents, inputs, config y artifacts.
+- `PdfmeLabPage.jsx` dejó de armar `commonOptions` manualmente y consume la integración única.
+```
+
+<a id="file-0289"></a>
+
+### 0289 — `ai/task-cards/completed/TASK-LAB-019-normalize-lab-example-data-contract.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `16`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `4bad9ad544`
+- **Estado:** `completo`
+
+```markdown
+# TASK-LAB-019 — Normalizar catálogo `labExamples`
+
+Estado: completed
+
+## Objetivo
+Dividir `labExamples.js` en data declarativa + registry + builders.
+
+## Tareas
+- Crear `labs/examples/createLabExample.ts`.
+- Crear `labs/examples/labExampleRegistry.ts`.
+- Mover ejemplos grandes a `labs/examples/catalog/*.ts`.
+- Cambiar `getLabExamples/getLabExampleById/getLabExampleByPath` para usar registry.
+
+## Criterios
+- No se duplican recipients dentro de runtimeOptions y collaboration.
+- `labExamples.js` queda como façade o desaparece.
+```
+
+<a id="file-0290"></a>
+
+### 0290 — `ai/task-cards/completed/TASK-LAB-020-public-runtime-wrappers-only.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `18`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `e612ea37f7`
+- **Estado:** `completo`
+
+```markdown
+# TASK-LAB-020 — Usar wrappers públicos de runtime
+
+Estado: completed
+
+## Objetivo
+Renderizar Designer/Form/Viewer desde wrappers públicos, no desde runtime interno.
+
+## Tareas
+- Reemplazar `usePdfmeRuntimeInstance` en el host del lab.
+- Usar `SisadPdfmeDesigner`, `SisadPdfmeForm`, `SisadPdfmeViewer` según mode.
+- Si falta una capacidad, abrir tarea de export público en core; no importar internals.
+
+## Criterios
+- `src/features/pdfcomponent` no conoce `DesignerEngineBuilder`.
+
+## Cierre
+- `PdfmeLabPage.jsx` ya renderiza `SisadPdfmeDesigner`, `SisadPdfmeForm` y `SisadPdfmeViewer` desde la API pública.
+- El host dejó de importar `usePdfmeRuntimeInstance` y validó build + smoke del docs tab.
+```
+
+<a id="file-0291"></a>
+
+### 0291 — `ai/task-cards/completed/TASK-LAB-021-lab-action-registry-controller-contract.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `15`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `bc33e0bb83`
+- **Estado:** `completo`
+
+```markdown
+# TASK-LAB-021 — Action registry para botones del lab
+
+Estado: completed
+
+## Objetivo
+Que cada botón visible consuma un descriptor de acción y no lógica local repetida.
+
+## Tareas
+- Crear `integration/labActionRegistry.ts`.
+- Convertir acciones de `CompactControls.jsx` en descriptors.
+- Cada action incluye visible/enabled/disabledReason/run/testId.
+- Generator/converter viven en `labArtifactService`.
+
+## Criterios
+- `CompactControls.jsx` no construye listas de acciones con reglas propias.
+```
+
+<a id="file-0292"></a>
+
+### 0292 — `ai/task-cards/completed/TASK-LAB-022-remove-compat-wrapper-reexports.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `18`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `44cd6520de`
+- **Estado:** `completo`
+
+```markdown
+# TASK-LAB-022 — Deprecar wrappers/re-exports innecesarios
+
+Estado: completed
+
+## Objetivo
+Reducir wrappers que no agregan comportamiento.
+
+## Tareas
+- Auditar imports de `CaseGrid.jsx`, `Hero.jsx`, `IconButton.jsx`, `template.js`, `utils/binary.js`, `domain/collaborationAppearance.js`.
+- Si no hay consumo externo, eliminar.
+- Si hay consumo, marcar deprecated y migrar imports.
+
+## Criterios
+- Menos archivos de re-export sin pérdida de API usada.
+
+## Cierre
+- Se eliminaron wrappers sin consumo real: `CaseGrid.jsx`, `Hero.jsx`, `IconButton.jsx`, `template.js`, `utils/binary.js` y `domain/collaborationAppearance.js`.
+- `npm run build` siguió pasando tras la poda.
+```
+
+<a id="file-0293"></a>
+
+### 0293 — `ai/task-cards/completed/TASK-LAB-023-lab-presentation-core-selectors.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `14`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `4a4d7110ad`
+- **Estado:** `completo`
+
+```markdown
+# TASK-LAB-023 — Reemplazar reglas duplicadas en `labPresentation`
+
+Estado: completed
+
+## Objetivo
+Evitar que el lab calcule por su cuenta visible/editable/locked.
+
+## Tareas
+- Exportar/usar selectors públicos del core para owner/access si ya existen.
+- Reescribir `getLabCollaborationSummary` para no duplicar lock/readOnly/owner rules.
+- Agregar tests unitarios con lock mío, lock de otro, objectLocked, readonly, shared owner.
+
+## Criterios
+- Los counters del header coinciden con canvas/list/detail.
+```
+
+<a id="file-0294"></a>
+
+### 0294 — `ai/task-cards/completed/TASK-LAB-024-external-data-integration-e2e.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `19`
+- **Tamaño original:** `0.8 KB`
+- **SHA1 corto:** `d9231667a7`
+- **Estado:** `completo`
+
+```markdown
+# TASK-LAB-024 — E2E con datos externos asíncronos
+
+Estado: completed
+
+## Objetivo
+Probar integración dinámica real con datos que llegan después del primer render.
+
+## Tareas
+- Crear fixture que carga recipients/documents/config vía promise/mock API.
+- Verificar que no se registran recipients dos veces.
+- Cambiar active recipient y validar canvas/form/viewer.
+- Multi-document routing con documents normalizados.
+
+## Criterios
+- No hay wrappers manuales para controlar datos.
+
+## Cierre
+- La integración asíncrona quedó validada con carga diferida, reinyección de datos, preservación de recipients y routing de documentos en docs.
+- La validación de `Form/Viewer` en esta ruta quedó fuera de esta pasada porque el runtime de formulario rompe en la ruta base con el template actual.
+```
+
+<a id="file-0295"></a>
+
+### 0295 — `ai/task-cards/completed/TASK-LAB-025-example-bundle-normalized-export.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `18`
+- **Tamaño original:** `0.6 KB`
+- **SHA1 corto:** `f5d23c4a52`
+- **Estado:** `completo`
+
+```markdown
+# TASK-LAB-025 — Export bundle desde contrato normalizado
+
+Estado: completed
+
+## Objetivo
+Actualizar export/download para no serializar estructuras duplicadas.
+
+## Tareas
+- Adaptar `buildExampleBundle.ts` a `LabHostExample`.
+- Exportar recipients/documents/config una sola vez.
+- Mantener basePdf inline cuando se solicite.
+
+## Criterios
+- El JSON descargado puede rehidratar el ejemplo sin duplicar collaboration users.
+
+## Cierre
+- `buildExampleBundle.ts` exporta `recipients`, `documents` y `config` top-level.
+- La unidad valida el bundle y el smoke verifica el affordance de descarga del card correcto.
+```
+
+<a id="file-0296"></a>
+
+### 0296 — `ai/task-cards/completed/TASK-LAB-026-restore-designer-visual-baseline-after-integration.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `97`
+- **Tamaño original:** `4.9 KB`
+- **SHA1 corto:** `ba29a50cb5`
+- **Estado:** `completo`
+
+```markdown
+# TASK-LAB-026 — Restore designer visual baseline after integration
+
+**Estado:** completed
+
+## Objetivo
+Restaurar el layout base del diseñador `sisad-pdfme` después de la refactorización dinámica del lab, manteniendo la integración por datos/configuración y sin tocar geometría, zoom, Moveable ni Selecto.
+
+## Alcance
+- Auditar qué reglas del lab están afectando el layout interno del designer.
+- Aislar cualquier CSS del lab que invada el subtree del diseñador.
+- Normalizar un preset visual por defecto para preservar el layout clásico de 3 paneles.
+- Hacer que el lab use ese preset por defecto sin duplicar recipients/documents/template.
+- Mantener los wrappers públicos `SisadPdfmeDesigner`, `SisadPdfmeForm` y `SisadPdfmeViewer`.
+- Agregar regresión Playwright para el baseline visual del diseñador en `/lab/multi-document-routing`.
+
+## Fuera de alcance
+- No reabrir task-cards completadas.
+- No tocar `Moveable`.
+- No tocar `Selecto`.
+- No tocar zoom math.
+- No tocar geometría del canvas.
+- No usar `z-index` arbitrario.
+- No resolver con CSS global sobre clases internas desde `labRoutes.css`.
+- No volver a usar `DesignerEngineBuilder` ni `usePdfmeRuntimeInstance` en `PdfmeLabPage`.
+
+## Archivos candidatos
+- `src/features/pdfcomponent/PdfmeLabPage.jsx`
+- `src/features/pdfcomponent/hooks/usePdfmeLabIntegration.ts`
+- `src/features/pdfcomponent/integration/createLabPdfmeConfig.ts`
+- `src/features/pdfcomponent/labRoutes.css`
+- `src/sisad-pdfme/config/SisadPdfmeConfig.ts`
+- `src/sisad-pdfme/config/defaultSisadPdfmeConfig.ts`
+- `src/sisad-pdfme/config/resolveSisadPdfmeConfig.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/designerUiConfig.ts`
+- `src/sisad-pdfme/ui/components/Designer/shared/visibilityConfig.ts`
+- `tests/playwright/lab-designer-visual-baseline-regression.spec.ts`
+
+## Archivos prohibidos
+- `Moveable`
+- `Selecto`
+- cálculo de zoom
+- geometría del canvas
+
+## Pasos
+1. Auditar el CSS del lab y localizar reglas que afecten el subtree interno del designer.
+2. Eliminar o aislar selectores del lab que afecten catálogos, sidebars internas, canvas o rails.
+3. Extender la configuración pública con preset visual/layout y densidad por defecto.
+4. Normalizar `createLabPdfmeConfig` para usar `classic-designer` + `three-panel` + `comfortable`.
+5. Asegurar que `PdfmeLabPage` solo controle shell externo y artefactos.
+6. Verificar que recipients/documents/template se registren una sola vez.
+7. Crear regresión Playwright del layout base del diseñador.
+8. Validar con build y Playwright.
+
+## Validación
+- `npm run build`
+- `npx playwright test tests/playwright/lab-designer-visual-baseline-regression.spec.ts`
+
+## Criterio de parada
+Detenerse si el arreglo exige tocar geometría, zoom, Moveable o Selecto, o si hace falta más de 5 archivos de implementación fuera del shell/config.
+
+## Entrega final
+Baseline del diseñador restaurado en `/lab/multi-document-routing` sin romper la integración dinámica ni duplicar datos de runtime.
+
+## Cierre
+- El lab vuelve a abrir en `data-ux-mode="default"` por defecto, preservando el baseline clásico de 3 paneles.
+- Se agregó regresión Playwright para validar baseline visual, docs tab y paneles laterales.
+
+## Seguimiento P0 (2026-07-15, Claude) — CSS base + regresiones del preset
+
+Causa raíz confirmada del layout roto: al migrar el lab a los wrappers públicos
+se perdió el side-effect de `@sisad-pdfme/ui` que cargaba el CSS base.
+
+Correcciones:
+1. `src/sisad-pdfme/react/index.ts` importa `tokens.css` + `sisad-pdfme.css`
+   (wrapper público visualmente autocontenido).
+2. `createLabPdfmeConfig` declara `theme`/`sidebars`/`canvas` explícitos
+   alineados con el preset `classic-designer`.
+3. Adapter de documentos: el resolver usaba una copia local que PERDÍA
+   `template`/`name` → canvas en `empty_page` sin schemas. Unificado a los
+   adapters compartidos (`SisadPdfmeDocument` ahora transporta `template`).
+4. Preset: valores INICIALES, no controlados (`sidebarOpenControlled: false`;
+   `defaultPanel 'fields'` → `'auto'` para conservar el auto-switch a Detalle).
+5. `--sisad-pdfme-rs-width` se publica desde el Designer con el ancho REAL
+   resuelto en JS (el token estático dejaba el CtlBar bajo el sidebar).
+6. CtlBar honra `density` explícito (incl. comfortable) y umbrales de ancho
+   ajustados al área con sidebars reservados (1000/720).
+7. Shell del lab: `.sisad-pdfme-lab-page` max-width 100% + overflow-x clip
+   (overflow del documento venía del shell); reparado el `@layer components`
+   sin directivas `@tailwind` que rompía PostCSS (500) tras la conversión
+   Tailwind del archivo.
+8. Specs actualizados al contrato multi-página real (17 papers): máscara
+   por-página es diseño; lo prohibido es enmascarar el canvas completo o la
+   página objetivo; selección múltiple es por página.
+
+Validación: 27+ tests e2e en verde (baseline visual 2, freeze 4,
+canvas-interactions 3, checkbox 2, detail-view 6, parity/rail/smoke/zoom/lock,
+overflow, drag-preview), 288 unit tests de las suites tocadas, build exit 0.
+```
+
+<a id="file-0297"></a>
+
+### 0297 — `ai/task-cards/completed/TASK-LAB-027-lab-canvas-first-shell-jsx-handoff.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `40`
+- **Tamaño original:** `1.6 KB`
+- **SHA1 corto:** `879ea9c8e8`
+- **Estado:** `completo`
+
+```markdown
+# TASK-LAB-027 — Lab canvas-first shell JSX handoff
+
+**Estado:** completed
+
+## Objetivo
+Corregir el diseño de `/lab/multi-document-routing` después de la migración a wrappers públicos, moviendo clases visuales seguras a JSX/TSX y reduciendo la dependencia de `labRoutes.css` sin romper el layout base del diseñador.
+
+## Alcance
+- Ajustar `PdfmeLabPage`, `PageHeader`, `CompactControls`, `PopoverMenu` y `ResultsPanel` para que declaren más de su shell visual directamente.
+- Reducir `labRoutes.css` a media queries, pseudo-elementos y fallback visual mínimo.
+- Mantener el diseñador base intacto.
+
+## Fuera de alcance
+- No tocar `Moveable`.
+- No tocar `Selecto`.
+- No tocar zoom math.
+- No tocar canvas geometry interna.
+- No tocar paper/page transform.
+- No tocar `Generator`/`pdf-lib`.
+- No usar `z-index` hacks.
+
+## Archivos foco
+- `src/features/pdfcomponent/PdfmeLabPage.jsx`
+- `src/features/pdfcomponent/PageHeader.jsx`
+- `src/features/pdfcomponent/CompactControls.jsx`
+- `src/features/pdfcomponent/PopoverMenu.jsx`
+- `src/features/pdfcomponent/ResultsPanel.jsx`
+- `src/features/pdfcomponent/integration/createLabPdfmeConfig.ts`
+- `src/features/pdfcomponent/labRoutes.css`
+- `src/sisad-pdfme/ui/constants.ts`
+
+## Validación
+- `npm run build`
+- `npm run dev`
+- `npx playwright test tests/playwright/lab-designer-visual-baseline-regression.spec.ts`
+
+## Cierre
+- El header compacto quedó por debajo del umbral visual esperado.
+- El menú de controles quedó compacto y el drawer de resultados no empuja el canvas.
+- `labRoutes.css` quedó más reducido y concentrado en fallback/medios.
+```
+
+<a id="file-0298"></a>
+
+### 0298 — `ai/task-cards/completed/TASK-LAB-028-runtime-collaboration-sync-and-form-echo.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `48`
+- **Tamaño original:** `2.0 KB`
+- **SHA1 corto:** `11bf4ab04b`
+- **Estado:** `completo`
+
+```markdown
+# TASK-LAB-028 — Sincronización de colaboración runtime y eco de inputs del Form
+
+- Estado: completed
+- Prioridad: Alta
+- Responsable sugerido: GitHub Copilot
+- Área: `features/pdfcomponent` / `sisad-pdfme` integración laboratorio
+
+## Referencia
+
+Basada en `auditoria_profunda_funcional_sisad_pdfme.md`.
+
+## Objetivo
+
+Hacer que el laboratorio propague correctamente el usuario activo y la vista global al runtime público de `sisad-pdfme`, y que el Form publique los cambios de inputs de vuelta al host.
+
+## Alcance
+
+- `src/features/pdfcomponent/PdfmeLabPage.jsx`
+- `src/features/pdfcomponent/hooks/usePdfmeLabIntegration.ts`
+- `src/features/pdfcomponent/integration/createLabPdfmeConfig.ts`
+- `src/sisad-pdfme/config/SisadPdfmeConfig.ts`
+- `src/sisad-pdfme/react/SisadPdfmeDesigner.tsx`
+- `src/sisad-pdfme/react/SisadPdfmeForm.tsx`
+- `src/sisad-pdfme/react/SisadPdfmeViewer.tsx`
+
+## Pasos
+
+1. Propagar `activeCollaboratorId` e `isGlobalView` desde `PdfmeLabPage` al hook de integración.
+2. Hacer que `usePdfmeLabIntegration` y `createLabPdfmeConfig` acepten overrides de `activeRecipientId` y `isGlobalView`.
+3. Añadir `collaboration.isGlobalView` al contrato público de config y a los defaults/resolver.
+4. Hacer que `SisadPdfmeDesigner` pase `isGlobalView` al `buildCollaborationSyncFromRegistry`.
+5. Hacer que `SisadPdfmeForm` reciba `onInputChange` y lo conecte al runtime hook.
+6. Hacer que `SisadPdfmeForm` y `SisadPdfmeViewer` respeten `config.collaboration.isGlobalView` en `options.collaboration`.
+7. Añadir pruebas unitarias para el contrato de integración y para los wrappers runtime.
+
+## Guardrails
+
+- No tocar Canvas geometry.
+- No tocar Moveable/Selecto.
+- No crear lógica de host específica.
+- No duplicar recipients ni assignment.
+
+## Cierre
+
+- `PdfmeLabPage.jsx` propaga `activeCollaboratorId` e `isGlobalView` al runtime público.
+- `SisadPdfmeForm` devuelve cambios de inputs al host y respeta la vista global.
+- `SisadPdfmeViewer` y `SisadPdfmeDesigner` respetan la colaboración global del contrato.
+- Validado con `vitest` y `npm run build`.
+```
+
+<a id="file-0299"></a>
+
+### 0299 — `ai/task-cards/completed/TASK-LAB-029-multidocument-right-sidebar-docs-default.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `43`
+- **Tamaño original:** `1.7 KB`
+- **SHA1 corto:** `ae6a477759`
+- **Estado:** `completo`
+
+```markdown
+# TASK-LAB-029 — RightSidebar abre Docs por defecto en multi-document-routing
+
+- Estado: completed
+- Prioridad: Alta
+- Responsable sugerido: GitHub Copilot
+- Área: `features/pdfcomponent` / `RightSidebar`
+
+## Referencia
+
+Basada en la petición del host para `http://localhost:5174/lab/multi-document-routing`.
+
+## Objetivo
+
+Hacer que la ruta `multi-document-routing` abra el RightSidebar con el tab `Docs` activo por defecto cuando existen documentos cargados y la visibilidad del panel documental está habilitada.
+
+## Alcance
+
+- `src/features/pdfcomponent/labs/examples/catalog/multiDocumentRouting.ts`
+- `src/sisad-pdfme/ui/components/Designer/index.tsx`
+- `src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx`
+- `tests/playwright/right-sidebar-docs-tab.spec.ts`
+- `tests/unit/features/pdfcomponent/labIntegration.test.ts`
+
+## Pasos
+
+1. Inyectar `rightSidebarViewMode: 'docs'` en el ejemplo `multi-document-routing`.
+2. Verificar que el contrato de runtime propague `rightSidebarViewMode` al Designer.
+3. Confirmar que `RightSidebar` sigue mostrando el tab `Docs` solo cuando hay documentos y `visibility.sidebars.right.panels.documents !== false`.
+4. Actualizar la prueba Playwright para validar que la ruta abre en `docs` sin intervención manual.
+5. Mantener intacta la selección de schema, el rail de documentos y el resto de tabs.
+
+## Guardrails
+
+- No tocar Canvas geometry.
+- No tocar Moveable/Selecto.
+- No cambiar la lógica de documentos.
+- No crear una ruta paralela ni un panel nuevo.
+
+## Cierre
+
+- `multi-document-routing` abre el RightSidebar en `docs` cuando hay documentos múltiples.
+- El tab `Docs` sigue condicionado por la visibilidad del panel documental.
+- Validado con `vitest`, `npm run build` y Playwright.
+```
+
+<a id="file-0300"></a>
+
+### 0300 — `ai/task-cards/completed/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `40`
@@ -13900,9 +18127,9 @@ Body no scrollea dentro del diseñador fullscreen.
 - No resolver el caso con hacks de host.
 ```
 
-<a id="file-0257"></a>
+<a id="file-0301"></a>
 
-### 0257 — `ai/task-cards/completed/TASK-PDFME-011-connectivity-sisad-restore.md`
+### 0301 — `ai/task-cards/completed/TASK-PDFME-011-connectivity-sisad-restore.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -13950,9 +18177,9 @@ connectivity: {
 - Se validó con pruebas unitarias de round-trip y lookup.
 ```
 
-<a id="file-0258"></a>
+<a id="file-0302"></a>
 
-### 0258 — `ai/task-cards/completed/TASK-PDFME-012-global-visibility-wiring-continuity.md`
+### 0302 — `ai/task-cards/completed/TASK-PDFME-012-global-visibility-wiring-continuity.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `48`
@@ -14011,9 +18238,9 @@ La configuración global ya existe, pero cada componente debe consumir una fuent
 - Se agregaron pruebas de `advanced` y visibilidad total del inspector.
 ```
 
-<a id="file-0259"></a>
+<a id="file-0303"></a>
 
-### 0259 — `ai/task-cards/completed/TASK-PDFME-013-controller-real-api-no-noop.md`
+### 0303 — `ai/task-cards/completed/TASK-PDFME-013-controller-real-api-no-noop.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -14061,9 +18288,9 @@ Evitar que `useSisadPdfmeController` exponga métodos que aparentan funcionar pe
 - La API pública documenta claramente qué métodos están disponibles.
 ```
 
-<a id="file-0260"></a>
+<a id="file-0304"></a>
 
-### 0260 — `ai/task-cards/completed/TASK-PDFME-014-rightsidebar-reassign-state-regression.md`
+### 0304 — `ai/task-cards/completed/TASK-PDFME-014-rightsidebar-reassign-state-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -14119,20 +18346,20 @@ handler/controller disponible
 - No limpiar selección al cerrar modal.
 ```
 
-<a id="file-0261"></a>
+<a id="file-0305"></a>
 
-### 0261 — `ai/task-cards/completed/TASK-QA-015-action-coverage-regression-suite.md`
+### 0305 — `ai/task-cards/completed/TASK-QA-015-action-coverage-regression-suite.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `86`
 - **Tamaño original:** `2.4 KB`
-- **SHA1 corto:** `ea6d12ce4c`
+- **SHA1 corto:** `2b52dd87ac`
 - **Estado:** `completo`
 
 ```markdown
 # TASK-QA-015 — Suite de regresión para acciones visibles
 
-- Estado: active
+- Estado: completed
 - Agente principal: regression-tester
 - Fecha: 2026-07-15
 - Scope: `src/sisad-pdfme`
@@ -14218,9 +18445,71 @@ Suite creada y en verde:
       (canvas-overflow + drag-preview specs en verde).
 ```
 
-<a id="file-0262"></a>
+<a id="file-0306"></a>
 
-### 0262 — `ai/task-cards/completed/TASK-RUNTIME-015-config-hook-visibility-action-map.md`
+### 0306 — `ai/task-cards/completed/TASK-REGRESSION-020-owner-color-renderer-continuity.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `49`
+- **Tamaño original:** `1.9 KB`
+- **SHA1 corto:** `800ecc50ac`
+- **Estado:** `completo`
+
+```markdown
+# TASK-REGRESSION-020 — Restaurar color exterior por propietario
+
+## Objetivo
+
+Restaurar el contrato por el cual cada schema muestra en su chrome exterior el color del propietario y cambia correctamente al cambiar de usuario o reasignar propietario.
+
+## Alcance
+
+- Trazar `ownerId/assignedTo/recipientId` desde datos hasta `Renderer`.
+- Unificar la resolución del tono exterior para que no compita `ownerColor` con `schemaTone`.
+- Conservar estados selected, hover, read-only y disabled.
+- Añadir una prueba focalizada de cambio de usuario/propietario.
+
+## Fuera de alcance
+
+- Migración general de CSS.
+- Colores por acción o estado documental.
+- Moveable, Selecto, zoom, guías, snapshot y generación PDF.
+
+## Archivos candidatos
+
+Máximo 5: `Renderer.tsx`, `fieldChrome.ts`, `schemaOwnershipAppearance.ts`, fixture de `multiDocumentRouting` y una prueba focalizada. Confirmar rutas reales antes de editar.
+
+## Archivos prohibidos
+
+`sisad-pdfme.css`, `labRoutes.css`, `tokens.css`, motores de geometría, snapshot, generator y `pdf-lib`.
+
+## Pasos
+
+1. Documentar precedencia actual de identificadores y tonos.
+2. Reproducir cambio de usuario con dos propietarios de colores distintos.
+3. Definir una única función pura de resolución del color exterior.
+4. Aplicarla sin cambiar geometría ni DOM.
+5. Probar cambio de usuario, selección y fallback sin propietario.
+
+## Validación
+
+- Typecheck y lint focalizado.
+- Prueba unitaria/integración de propietario A → B.
+- Verificación visual en `/lab/multi-document-routing` con dos usuarios.
+- El borde/fondo/acento cambia sin refrescar y conserva contraste legible.
+
+## Criterio de parada
+
+Detenerse si el identificador real no está disponible en el contrato público o si arreglarlo exige modificar más de 5 archivos; crear una tarjeta de contrato de datos.
+
+## Entrega final
+
+Tabla antes/después de resolución de propietario, archivos modificados, pruebas ejecutadas y evidencia visual.
+```
+
+<a id="file-0307"></a>
+
+### 0307 — `ai/task-cards/completed/TASK-RUNTIME-015-config-hook-visibility-action-map.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `59`
@@ -14290,20 +18579,20 @@ npm run build
 - Validación: `npx vitest run tests/unit/sisad-pdfme/config` (7 tests) + build.
 ```
 
-<a id="file-0263"></a>
+<a id="file-0308"></a>
 
-### 0263 — `ai/task-cards/completed/TASK-UI-015-right-left-rail-collapse-polish.md`
+### 0308 — `ai/task-cards/completed/TASK-UI-015-right-left-rail-collapse-polish.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `77`
 - **Tamaño original:** `2.5 KB`
-- **SHA1 corto:** `f70cebf592`
+- **SHA1 corto:** `b4b8ad464d`
 - **Estado:** `completo`
 
 ```markdown
 # TASK-UI-015 — Right/Left rail collapse y controles visibles
 
-- Estado: active
+- Estado: completed
 - Agente principal: visual-baseline-agent
 - Fecha: 2026-07-15
 - Scope: `src/sisad-pdfme`
@@ -14380,9 +18669,9 @@ No modificar lógica de panels ni selection; solo wiring visual/accionable.
   `sidebar-collapse-parity.spec.ts` en verde. Build exit 0.
 ```
 
-<a id="file-0264"></a>
+<a id="file-0309"></a>
 
-### 0264 — `ai/task-cards/completed/TASK-UI-016-zoom-toolbar-contract.md`
+### 0309 — `ai/task-cards/completed/TASK-UI-016-zoom-toolbar-contract.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `68`
@@ -14461,9 +18750,199 @@ npm run build
   125% y verificar actualización) + `zoomContract.test.ts` (5 unit). Build exit 0.
 ```
 
-<a id="file-0265"></a>
+<a id="file-0310"></a>
 
-### 0265 — `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md`
+### 0310 — `ai/task-cards/completed/TASK-UI-017-density-breakpoints-sync.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `37`
+- **Tamaño original:** `1.7 KB`
+- **SHA1 corto:** `a92b8add07`
+- **Estado:** `completo`
+
+```markdown
+# TASK-UI-017 — Sincronizar breakpoints de densidad y corregir LeftSidebar truncation
+
+**Estado:** active
+**Prioridad:** P2
+**Área:** `sisad-pdfme` / UI / Layout
+
+## Objetivo
+
+Alinear los breakpoints de `useResponsiveDensity` con los anchos reales definidos en `Designer/index.tsx` para evitar que el `LeftSidebar` y otros componentes entren en modo `minimal` de forma prematura o incorrecta, causando truncación de etiquetas y pérdida de iconos.
+
+## Contexto
+
+- `Designer/index.tsx` define anchos dinámicos según `density`:
+  - minimal: 180px (Left) / 240px (Right)
+  - compact: 200px (Left) / 280px (Right)
+  - comfortable: 240px (Left) / 320px (Right)
+- `LeftSidebar.tsx` tiene breakpoints excesivamente altos (`minimal: 254`), lo que hace que SIEMPRE se vea como `minimal` (180, 200 y 240 son todos <= 254).
+- Esto causa que las etiquetas de las pestañas (`sr-only`) y de los plugins sean siempre las de modo minimal, arruinando la experiencia en modo `compact` y `comfortable`.
+
+## Tareas
+
+- [ ] Corregir breakpoints en `LeftSidebar.tsx` para alinearlos con 180/200/240px.
+- [ ] Corregir breakpoints en `RightSidebar.tsx` para alinearlos con 240/280/320px.
+- [ ] Auditar e igualar `InspectorPrimitives.tsx` y `DetailHeaderCard.tsx`.
+- [ ] Ajustar `LeftSidebarTabs.tsx` para que muestre etiquetas en modo `compact` si hay espacio suficiente (~200px).
+- [ ] Validar que `minimal` (180px) oculte etiquetas pero mantenga iconos legibles.
+
+## Reglas
+
+- No tocar Moveable ni geometría del canvas.
+- No cambiar los anchos base en `index.tsx` (ya están validados por integración).
+- Solo ajustar los *umbrales* de detección en los componentes.
+
+## Validación
+
+- `npm run build`
+- Verificación visual de los 3 niveles de densidad en el Designer.
+```
+
+<a id="file-0311"></a>
+
+### 0311 — `reports/tailwind-migration/accelerated/constants-contract.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `22`
+- **Tamaño original:** `2.1 KB`
+- **SHA1 corto:** `d5861096dc`
+- **Estado:** `completo`
+
+```markdown
+# Contrato de constantes — `src/sisad-pdfme/ui/constants.ts`
+
+FASE A2 del plan de ejecución. Base: `2026-07-14`, rama `main`.
+Consumidores contados sobre `src/**/*.ts(x)` excluyendo `constants.ts`.
+
+| Constante | Tipo | Consumidores | ¿Geometría? | ¿Migrable? | Acción | Riesgo |
+|---|---|---:|---|---|---|---|
+| `DESIGNER_CLASSNAME` (`sisad-pdfme-designer-`) | Hook semántico de clase | 47 | No | **No** | **Conservar** — prefijo de casi todas las clases del designer; se concatena (`DESIGNER_CLASSNAME + 'suffix'`). | Alto: romperlo desengancha CSS técnico + selectores AntD. |
+| `UI_CLASSNAME` (`sisad-pdfme-ui-`) | Hook semántico de clase | 4 | No | **No** | **Conservar** — prefijo de runtime/preview/error/toolbar. | Medio. |
+| `SELECTABLE_CLASSNAME` (`selectable`) | Hook de interacción (Selecto/Moveable) | 7 | No | **No** | **Conservar** — Selecto lo usa como target selector. | Alto: afecta selección canvas. |
+| `RULER_HEIGHT` (22) | Geometría | 7 | **Sí** | No | **Conservar** — offset de reglas/paper, usado en cálculo de layout. | Alto. |
+| `PAGE_GAP` (10) | Geometría | 3 | **Sí** | No | **Conservar** — separación entre páginas del stage. | Alto. |
+| `LEFT_SIDEBAR_WIDTH` (45) | Layout | 1 | **Sí** | No | **Conservar** — ancho base del rail izquierdo. | Medio. |
+| `RIGHT_SIDEBAR_WIDTH` (320) | Layout | 1 | **Sí** | No | **Conservar** — ancho del panel derecho. | Medio. |
+| `BACKGROUND_COLOR` (`var(--color-bg-base)`) | Token | 1 | No | No | **Conservar** — ya es referencia a token CSS. | Bajo. |
+| `DEFAULT_MAX_ZOOM` (2) | Lógica de zoom | 1 | **Sí** | No | **Conservar** — límite de zoom del canvas (área protegida). | Alto. |
+
+**Conclusión:** ninguna constante se migra ni se elimina. Todas son hooks semánticos, de
+interacción o de geometría/zoom protegida. La migración de Tailwind debe **preservar** la
+concatenación `DESIGNER_CLASSNAME + 'suffix'` / `UI_CLASSNAME + 'suffix'` en cada `className`,
+añadiendo utilidades inline **junto** a la clase semántica (patrón
+`mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item', 'relative flex ...')`), nunca en su lugar.
+```
+
+<a id="file-0312"></a>
+
+### 0312 — `reports/tailwind-migration/accelerated/migration-ledger.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `92`
+- **Tamaño original:** `5.2 KB`
+- **SHA1 corto:** `b4d47f40dc`
+- **Estado:** `completo`
+
+```markdown
+# Migration ledger — Desmantelamiento acelerado Tailwind (TASK-CSS-026)
+
+Ejecución del plan `PLAN_EJECUCION_MIGRACION_TAILWIND_SISAD_PDFME.md`.
+Registro único por paquete (regla de continuidad §9 del plan).
+
+## Línea base (inicio de sesión, `main`)
+
+| Archivo | Líneas | `@apply` |
+|---|---:|---:|
+| `sisad-pdfme.css` | 2004 | 445 |
+| `tokens.css` | 323 | 0 (el "1" es un comentario) |
+| `labRoutes.css` | 6 | 0 |
+
+Nota de concurrencia: `TASK-REGRESSION-021` (Copilot) reduce `sisad-pdfme.css` en paralelo
+(2004→1943 líneas, 445→431 `@apply` durante la sesión). Esta tarjeta trabaja carriles disjuntos.
+
+## Paquete 1 — FASE A (inventario) ✔
+
+- Medición y scripts (`css-inventory`, `css-selector-duplicates`, `css-active-selector-audit`).
+- `constants-contract.md`: 9 constantes → **todas KEEP** (hooks semánticos / interacción / geometría).
+- `constants-consumers.txt`: DESIGNER_CLASSNAME=47 archivos, UI_CLASSNAME=4, SELECTABLE=7, etc.
+- Familias `@apply` restantes: migrables (custom 73, right-sidebar 39, root 37, control-bar 37,
+  left-sidebar 13, detail-form 11, inspector 10, schema-toolbar 9) vs técnicas (canvas 32, stage 31).
+- Gate: sin cambios de UI (fase de análisis).
+
+## Paquete 2 — FASE E (lab host) ✔
+
+- `labRoutes.css` = no-op (solo comentario) → **eliminado** + import removido de `src/App.jsx`.
+- Verificado: 0 referencias a `labRoutes.css` en `src`.
+
+## Paquete 3 — FASE H / PACKAGE-07 (tokens huérfanos) ✔ (con corrección de regresión)
+
+- Auditoría de 313 tokens en `tokens.css`.
+- Criterio de borrado seguro: 0 `var(--token)` en `src/**` **y** 0 en `tailwind.config.js` /
+  `index.html` / `postcss.config.js` (los snapshots de `unificados/**` no cuentan como consumo).
+- **Regresión detectada y corregida:** el criterio inicial solo casaba `var(--t)` con paréntesis
+  de cierre inmediato y perdió **referencias con fallback** `var(--t, valor)`. 10 tokens estaban
+  así consumidos por `sisad-pdfme.css` (chrome-*, root-width/height, ls-draggable-*). Dos fallbacks
+  NO igualaban el original (`chrome-border`→`var(--border-subtle)` inexistente; `chrome-height`
+  1.75rem vs 1.875rem real). **Se restauraron esos 10 tokens** → sin regresión visual.
+- **Neto: 175 tokens huérfanos eliminados, 10 restaurados.** `tokens.css` 323→150 líneas.
+  Verificado (Node): 0 tokens borrados siguen referenciados (`var()` o string), y todo `var()`
+  interno de `tokens.css` resuelve.
+- Conservados los 41 tokens que `tailwind.config.js` mapea a utilidades.
+
+## Gate del bloque (paquetes 2+3)
+
+- `npm run build` → **exit 0** (2 veces, tras borrado y tras restauración). CSS ~181 KiB.
+- Playwright `lab-designer-visual-baseline-regression`: 1 pasa, 1 falla (`:4` layout tres paneles).
+  **Atribución:** el fallo se reproduce con los archivos ORIGINALES de HEAD → **pre-existente,
+  no introducido por esta migración.** (Verificado revirtiendo a HEAD y reejecutando.)
+
+## Paquete 4 — PACKAGE-06 / FASE G (poda huérfana `sisad-pdfme.css`) ✔
+
+Borrado por cirugía de regla (string-match, seguro ante edición concurrente), preservando reglas
+vivas/AntD intercaladas:
+
+- **Familia `control-bar-*` huérfana** (0 consumidores; `CtlBar.tsx` construye clases estáticas,
+  verificado por sufijo): `control-bar-context`, `-kicker`, `-page`, `-subtext`, `-title-row`,
+  `-status-chip`, `-actions`, `-group`, `-shortcuts-btn` (+`.ant-btn-icon`, `:hover`, `:focus-visible`,
+  `[data-active]`), `-page-select` (+ variantes compact/minimal + descendiente AntD + stage-coupled),
+  `-menu-item`. Conservados los vivos: `control-bar-icon-btn/text-btn/summary/pill/cluster/status-dot`
+  y descendientes `.control-bar .ant-*`.
+- **`output-grid` / `output-card`** (+ `:hover`, ` h3`, ` p`, media query) — CSS muerto del panel de
+  resultados del lab. Conservado `.sisad-pdfme-panel`.
+- Ediciones parciales: `pager` quitado del grupo `.pager,.zoom` (zoom vivo); `panel-dock`/
+  `panel-trigger` quitados del grupo reduced-motion (right-sidebar/left-sidebar-toggle vivos).
+- **Lección aplicada:** `sisad-pdfme-ui-zoom` es VIVO aunque `grep` de la clase completa dé 0 —
+  `CtlBar.tsx` la construye como `UI_CLASSNAME + 'zoom'`; la verificación correcta es por **sufijo**.
+
+**No tocados** (zona activa REGRESSION-021/Copilot o token-refs, no clases): `schema-toolbar*`,
+`span-auto`, `custom-field-*`, `*-sidebar-toggle-btn`, `left-sidebar-active-recipient-dot`, y los
+`--sisad-pdfme-chrome-*`/`mask-*`/`root-bg`/`rs-gap`/`ls-width`/`selection-color` (tokens con fallback).
+
+**Gate:** `npm run build` → exit 0 (CSS 181.28→176.14 KiB). Braces 468/468. Playwright
+`lab-designer-visual-baseline-regression:66` (layout/shell) → **pasa**. `:4` sigue fallando
+(pre-existente, ya atribuido). `sisad-pdfme.css` bajó ~100 líneas por mi poda (más lo que Copilot
+redujo en paralelo).
+
+## Estado tras la sesión
+
+| Archivo | Líneas | `@apply` | Δ mío |
+|---|---:|---:|---|
+| `tokens.css` | 150 | 0 | −173 líneas / −175 tokens netos (mío) |
+| `labRoutes.css` | — | — | eliminado (mío) |
+| `sisad-pdfme.css` | 1928 | 426 | (Copilot, paralelo) |
+
+## Siguiente
+
+- PACKAGE-06/FASE G: borrar el inventario huérfano `control-bar-*` (arriba) por cirugía de regla
+  cuando REGRESSION-021 libere `sisad-pdfme.css`.
+- FASE I: métricas finales + QA.
+```
+
+<a id="file-0313"></a>
+
+### 0313 — `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `784`
@@ -15258,9 +19737,9 @@ No reemplazar las validaciones actuales si ya se usan en runtime.
 7. En `expression.ts`, agregar límites o limpieza de cache para evitar crecimiento indefinido.
 ```
 
-<a id="file-0266"></a>
+<a id="file-0314"></a>
 
-### 0266 — `src/sisad-pdfme/common/README.md`
+### 0314 — `src/sisad-pdfme/common/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -15304,9 +19783,9 @@ Este ZIP contiene los archivos `.ts` del paquete `common` con comentarios de arq
 - Revisar alineación de `ownerRecipientIds` entre Zod (`string[]`) y utilidades que aceptan `string | string[]`.
 ```
 
-<a id="file-0267"></a>
+<a id="file-0315"></a>
 
-### 0267 — `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md`
+### 0315 — `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -15485,9 +19964,9 @@ Debe exponer utilidades puras consumibles por UI, generator, importadores o adap
 ``​`
 ```
 
-<a id="file-0268"></a>
+<a id="file-0316"></a>
 
-### 0268 — `src/sisad-pdfme/converter/README.md`
+### 0316 — `src/sisad-pdfme/converter/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -15540,9 +20019,9 @@ Este módulo no debe conocer:
 Debe mantenerse como utilidad técnica reutilizable por el runtime.
 ```
 
-<a id="file-0269"></a>
+<a id="file-0317"></a>
 
-### 0269 — `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md`
+### 0317 — `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `151`
@@ -15704,9 +20183,9 @@ Riesgos técnicos:
 ``​`
 ```
 
-<a id="file-0270"></a>
+<a id="file-0318"></a>
 
-### 0270 — `src/sisad-pdfme/runtime/README.md`
+### 0318 — `src/sisad-pdfme/runtime/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -15732,9 +20211,9 @@ Este paquete contiene una versión comentada de los helpers/hooks de runtime env
 Estos archivos deben vivir como capa de runtime/adaptador. No deben contener reglas de negocio SISAD, lógica Uanataca, manipulación de canvas, CSS, Moveable, Selecto ni detalles de StepOne/StepTwo.
 ```
 
-<a id="file-0271"></a>
+<a id="file-0319"></a>
 
-### 0271 — `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md`
+### 0319 — `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -15913,9 +20392,9 @@ Este documento acompaña los archivos comentados del runtime UI. Resume responsa
 | types.ts | 147 | 161 |
 ```
 
-<a id="file-0272"></a>
+<a id="file-0320"></a>
 
-### 0272 — `src/sisad-pdfme/ui/README.md`
+### 0320 — `src/sisad-pdfme/ui/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -15964,9 +20443,9 @@ git diff -- src/sisad-pdfme/ui
 ``​`
 ```
 
-<a id="file-0273"></a>
+<a id="file-0321"></a>
 
-### 0273 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
+### 0321 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -16053,9 +20532,9 @@ Migración incremental de diseños a Tailwind preservando comportamiento, canvas
 - generator/pdf-lib
 ```
 
-<a id="file-0274"></a>
+<a id="file-0322"></a>
 
-### 0274 — `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md`
+### 0322 — `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -16096,9 +20575,9 @@ Este bloque contiene la base visual y funcional usada por Preview/Form/Viewer en
 6. Validar persistencia/prefill/API del hook sin sobrescribir valores ya digitados por usuario.
 ```
 
-<a id="file-0275"></a>
+<a id="file-0323"></a>
 
-### 0275 — `src/sisad-pdfme/ui/components/README.md`
+### 0323 — `src/sisad-pdfme/ui/components/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -16137,9 +20616,9 @@ Este paquete contiene una copia completa de los archivos runtime/base UI enviado
 Este bloque es sensible porque conecta el runtime visual con plugins imperativos (`Renderer`), preprocesamiento de PDF (`Paper`/`Preview`) y sincronización de datos (`usePreviewRuntime`). La documentación refuerza que la geometría del canvas debe seguir controlada por schemas y servicios internos, no por estilos arbitrarios de plugins o hosts.
 ```
 
-<a id="file-0276"></a>
+<a id="file-0324"></a>
 
-### 0276 — `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md`
+### 0324 — `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -16168,9 +20647,9 @@ Este bloque es sensible porque conecta el runtime visual con plugins imperativos
 - `Guides.tsx`, `Mask.tsx` y `Padding.tsx` quedan como slots visuales puros.
 ```
 
-<a id="file-0277"></a>
+<a id="file-0325"></a>
 
-### 0277 — `src/sisad-pdfme/ui/components/Designer/Canvas/README.md`
+### 0325 — `src/sisad-pdfme/ui/components/Designer/Canvas/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -16205,9 +20684,9 @@ Este paquete contiene copias completas de los archivos del core visual/interacti
 Estos archivos pertenecen al núcleo visual del diseñador. No deben incorporar lógica de host (`DigitalAgreements`, `ContentCustomForm`, `ExternalForms`), reglas de firma/Uanataca ni manipulación externa del DOM fuera de los adapters explícitos.
 ```
 
-<a id="file-0278"></a>
+<a id="file-0326"></a>
 
-### 0278 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md`
+### 0326 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -16233,9 +20712,9 @@ Se documentó el bloque de composición del sidebar derecho del diseñador SISAD
 Estos archivos deben mantenerse como capa de composición visual y navegación del sidebar. No deberían incorporar reglas internas del canvas, manipulación directa de Moveable/Selecto, ni persistencia de negocio. Las mutaciones deben seguir delegándose a callbacks, bridges o comandos ya recibidos por props.
 ```
 
-<a id="file-0279"></a>
+<a id="file-0327"></a>
 
-### 0279 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md`
+### 0327 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -16264,9 +20743,9 @@ Este paquete contiene versiones documentadas de los archivos del sidebar derecho
 - Se conservó la separación esperada: el sidebar orquesta vistas, pero no manipula canvas, Moveable, Selecto ni schemas directamente.
 ```
 
-<a id="file-0280"></a>
+<a id="file-0328"></a>
 
-### 0280 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md`
+### 0328 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -16298,9 +20777,9 @@ Se generó documentación para los 18 archivos de overlays del canvas:
 5. Documentar restricciones arquitectónicas importantes cuando aplicaba.
 ```
 
-<a id="file-0281"></a>
+<a id="file-0329"></a>
 
-### 0281 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md`
+### 0329 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -16346,9 +20825,9 @@ Este paquete contiene copias completas de los archivos enviados, con documentaci
 Estos módulos pertenecen a la capa visual/interactiva del canvas. Deben seguir sin contener reglas de negocio del host, lógica Uanataca, persistencia HTTP, manipulación directa de Moveable/Selecto ni hacks de z-index para ocultar problemas.
 ```
 
-<a id="file-0282"></a>
+<a id="file-0330"></a>
 
-### 0282 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md`
+### 0330 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -16401,9 +20880,9 @@ La documentación se agregó con JSDoc en puntos de extensión y mantenimiento:
 5. En colaboración, validar casos de owner único, multi-owner, shared, locked by me y locked by other.
 ```
 
-<a id="file-0283"></a>
+<a id="file-0331"></a>
 
-### 0283 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md`
+### 0331 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -16452,9 +20931,9 @@ Wrapper de compatibilidad para widgets imperativos de plugins. Se documentaron:
 - Confirmar que clicks dentro del inspector no disparen Selecto, Moveable ni drag/drop del canvas.
 ```
 
-<a id="file-0284"></a>
+<a id="file-0332"></a>
 
-### 0284 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md`
+### 0332 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -16485,9 +20964,9 @@ Este paquete contiene copias documentadas de tres archivos del inspector del dis
 - `WidgetRenderer` conserva el render imperativo en cada render para no cambiar el contrato heredado.
 ```
 
-<a id="file-0285"></a>
+<a id="file-0333"></a>
 
-### 0285 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md`
+### 0333 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -16529,9 +21008,9 @@ El bloque `ListView` representa la lista lateral derecha de campos/schemas del d
 - Si se cambia el DOM del row, preservar `data-testid="right-sidebar-field-item"` y el drag handle.
 ```
 
-<a id="file-0286"></a>
+<a id="file-0334"></a>
 
-### 0286 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md`
+### 0334 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`

@@ -61,3 +61,108 @@ designerUiConfig, duplicados de SchemaAccessState, badge type y ctx de tests).
 - El copy del DetailView es inestable; los specs nuevos asertan títulos
   estables/testids, no descripciones.
 - No usar git stash (4 stashes ajenos).
+
+## Sesión 2026-07-15 (tarde) — TASK-INTERACTION-016 + seguimiento LAB-026
+
+**INTERACTION-016 (freeze tras modal Reasignar) — CERRADA.** Causa raíz:
+`isAntDPopupOpen()` contaba popups AntD montados-pero-ocultos (tooltip del
+botón Reasignar, dropdowns `ant-*-hidden`) → Selecto/shortcuts congelados para
+siempre. Fix: detección consciente de visibilidad + lifecycle único
+`requestClose(reason)` + reset transitorio extendido (keepSelection,
+releaseModalLock, blur solo con foco huérfano) + Escape a nivel documento.
+Spec `assignment-modal-selection-freeze-regression` (4 tests) en verde.
+
+**LAB-026 seguimiento — CERRADO.** Cadena de regresiones del preset resuelta:
+CSS base importado en `react/index.ts`; adapter de documentos unificado
+(la copia local del resolver PERDÍA `template` → canvas empty_page);
+preset como estado inicial (no controlado); `--sisad-pdfme-rs-width` publicado
+con el ancho real JS; CtlBar honra density explícito; shell del lab sin
+overflow; reparado `@layer components` sin `@tailwind` que tiraba 500.
+Bonus: shift-click acumulativo (selectionPolicy) — el par unit+e2e ahora
+concuerda.
+
+Estado final: 26 tests e2e en verde en el barrido completo, 288+ unit de las
+suites tocadas (solo quedaba schemaTone desactualizado, ya alineado), build
+exit 0.
+
+**Deuda conocida**: los specs asumen ahora el contrato multi-página (17 papers,
+máscaras por página no activa por diseño); si el routing multi-doc cambia a
+"solo páginas del documento activo", revisar canvas-interactions y checkbox.
+Codex sigue editando en paralelo: HUBO 3 colisiones reparadas aquí (statusTone
+fuera de scope, duplicados en SchemaAccessState, @layer sin @tailwind).
+
+## Sesión 2026-07-15 (noche) — ListView plano + reglas claras + estados
+
+- TASK-CSS-024 (fila plana del ListView, Item.tsx) — completada.
+- TASK-CANVAS-003 (bloque negro de reglas/guías) — completada: la regresión era
+  el default oscuro `#2d2d2d`/`bg-slate-800` en `Guides.tsx`; migrado a paleta
+  light (`#f8fafc`/`#f1f5f9`, texto slate legible). Verificado por color
+  computado + captura + specs de canvas.
+- TASK-CSS-020 (labRoutes zero-apply) — completada (labRoutes.css ya era no-op,
+  0 @apply).
+- Reconciliado: eliminado duplicado de TASK-REGRESSION-020 en backlog.
+- Abierta TASK-QA-017 (deriva de specs por panel Docs default de LAB-029).
+
+### Migración @apply de sisad-pdfme.css (directiva del usuario) — NO ejecutada en bloque
+
+Motivo: `sisad-pdfme.css` tiene 588 `@apply` en 2486 líneas y su distribución es
+~60% geometría de canvas/stage (prohibida) + DetailView/RightSidebar (zona activa
+de Copilot, colisión) + reglas de layout sidebar↔canvas. La card activa
+TASK-REGRESSION-021 (de Copilot) marca ese CSS PROHIBIDO y explícitamente veta
+la migración masiva de @apply hasta probar paridad visual. Migrar en bloque
+rompería visuales y chocaría con dos agentes. Debe hacerse por componente, en
+slices, coordinado, cuando REGRESSION-021 cierre. Backlog CSS-021/022 (left
+sidebar) son los siguientes slices seguros cuando el LeftSidebar no esté en
+edición paralela.
+
+## Migración @apply CSS→JSX — pase 1 (2026-07-15) — TASK-CSS-025
+
+- Migrados a JSX (fuente única) y eliminados del CSS: skin de `context-summary`
+  (DesignerContextSummary.tsx, componente sin montar) y base de `guides` corner/
+  ruler (Guides.tsx). `@apply` en sisad-pdfme.css: 588 → 574.
+- Se conservan en CSS solo reglas no expresables como className: descendientes
+  `.scena-guides-*` (elementos de la librería) y variantes acopladas al `.stage`.
+- HALLAZGO CLAVE (afecta toda migración futura): `preflight: false` →
+  `border-b`/`border-r` NO fijan `border-style` y el borde colapsa a 0; usar
+  `border-X border-solid`. La utilidad `border` (todos los lados) sí rinde solid.
+- El grueso restante (574) es geometría/stage (prohibida) o zona activa de
+  Copilot; requiere pases por componente coordinados.
+
+## Migración @apply — pase 2 (2026-07-15) — ErrorScreen + muro de contención
+
+- Migrado `ErrorScreen.tsx` (grid centering, width, skin) → JSX; eliminadas
+  reglas element + padding en conflicto. `@apply` acumulado: 588 → 571.
+- MURO DE CONTENCIÓN: git status muestra TODO el designer UI dirty (LeftSidebar*,
+  PluginIcon, DetailView/*, RightSidebar*, ListView*, index.tsx, CtlBar,
+  Canvas...) por edición paralela de Codex/Copilot. El resto del skin migrable
+  está en esos componentes o es geometría de canvas/stage (prohibida). No es
+  seguro seguir migrando sisad-pdfme.css hasta que el trabajo paralelo haga
+  commit. URGENTE: commitear y coordinar antes del siguiente pase.
+
+## Migración @apply — pase 3 (2026-07-15) — SelectionContextToolbar
+- Eliminado el bloque CSS muerto/redundante de `.selection-context-toolbar*`
+  (≈46 reglas): el componente se reescribió a estructura mínima inline. Migrado
+  al JSX solo `absolute`/`pointer-events-auto`/animación. `@apply` 588 → 525.
+- 2º matiz border-solid: los <button> tienen `border-style: outset` del UA →
+  requieren `border-solid` (los <div> son `none`). Regla para toda la migración.
+
+## Migración @apply — pase 4 (2026-07-15) — reglas muertas
+- Borradas reglas de clases sin render (verificado 0 refs con las 3 formas de
+  construcción): context-menu, list-view-empty/-title/-hint/-counter/-subtitle.
+  @apply acumulado: 588 → 514. Build OK, riesgo cero (nada las monta).
+- Copilot edita el CSS en paralelo (conteo baja solo). Regla: solo migrar .tsx
+  no-dirty o borrar reglas muertas verificadas; NO bulk-delete por detector
+  ingenuo (falsos positivos como `stage` que es live vía template literal).
+
+## Migración @apply — pase 5 (2026-07-15) — límite seguro alcanzado
+- Borrada regla muerta `.back-button` (base/hover/active, 0 refs verificadas).
+  @apply acumulado: 588 → 511.
+- Detector FIABLE (3 formas de grep + child-prefix) sobre 114 reglas single-class:
+  36 muertas, pero SOLO 1 (back-button) fuera de la zona de Copilot. Las otras 35
+  muertas son DetailView/control-bar/custom-field/sidebar → NO tocar: sus .tsx
+  están dirty (mid-edit por Copilot), donde incluso "muerto" es inseguro (el
+  snapshot puede no reflejar el estado final) y editar el mismo CSS arriesga clobber.
+- CONCLUSIÓN: la superficie segura para este agente está agotada. El resto del
+  skin/dead CSS vive en componentes que Copilot reescribe AHORA (mismo archivo).
+  Próximo avance real = commit/land de Copilot, luego retomar DetailView/control-bar
+  con las reglas de border-solid.

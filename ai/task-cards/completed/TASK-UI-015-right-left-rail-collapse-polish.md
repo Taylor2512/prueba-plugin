@@ -1,6 +1,6 @@
 # TASK-UI-015 — Right/Left rail collapse y controles visibles
 
-- Estado: active
+- Estado: completed
 - Agente principal: visual-baseline-agent
 - Fecha: 2026-07-15
 - Scope: `src/sisad-pdfme`

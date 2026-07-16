@@ -23,6 +23,7 @@ type Props = {
   schemas: SchemaForUI[];
   selectedSchemas: SchemaForUI[];
   renderIcon: (schema: string | SchemaForUI) => ReactNode;
+  densityMode?: 'compact' | 'comfortable' | 'minimal';
 };
 
 
@@ -32,7 +33,7 @@ type Props = {
  *
  * @returns A body-level portal containing the overlay, or null when no drag is active.
  */
-const ListViewDragOverlay = ({ activeId, schemas, selectedSchemas, renderIcon }: Props) => {
+const ListViewDragOverlay = ({ activeId, schemas, selectedSchemas, renderIcon, densityMode = 'compact' }: Props) => {
   if (typeof document === 'undefined' || !activeId) return null;
 
   const activeSchema = schemas.find((schema) => schema.id === activeId);
@@ -59,7 +60,11 @@ const ListViewDragOverlay = ({ activeId, schemas, selectedSchemas, renderIcon }:
             accentColor={activeDescriptor.ownerColor || undefined}
             metaBadges={activeDescriptor.badges}
             dragOverlay
-            className={mergeClassNames(DESIGNER_CLASSNAME + 'item-auto', 'rounded-xl')}
+            densityMode={densityMode}
+            className={mergeClassNames(
+              DESIGNER_CLASSNAME + 'item-auto',
+              'flex items-center gap-[0.5rem] p-[0.375rem] cursor-pointer rounded-xl',
+            )}
           />
         </ul>
         <ul className={mergeClassNames(DESIGNER_CLASSNAME + 'ul-auto', 'space-y-2 rounded-2xl border border-slate-200 bg-white p-2 shadow-lg')}>
@@ -75,7 +80,11 @@ const ListViewDragOverlay = ({ activeId, schemas, selectedSchemas, renderIcon }:
               accentColor={descriptor.ownerColor || undefined}
               metaBadges={descriptor.badges}
               dragOverlay
-              className={mergeClassNames(DESIGNER_CLASSNAME + 'item-auto', 'rounded-xl')}
+              densityMode={densityMode}
+              className={mergeClassNames(
+                DESIGNER_CLASSNAME + 'item-auto',
+                'flex items-center gap-[0.5rem] p-[0.375rem] cursor-pointer rounded-xl',
+              )}
             />
           ))}
         </ul>

@@ -58,6 +58,8 @@ hotkeys.unbind = function (keys: string) {
   }
 };
 
+const FALLBACK_PAGE_SIZE: Size = { width: 595, height: 842 };
+
 /** Genera ids locales para schemas y objetos UI. */
 export const uuid = () =>
   'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, (c) => {
@@ -323,11 +325,16 @@ export const template2SchemasList = async (_template: Template) => {
       height: basePdf.height,
     }));
   } else {
-    const b64BasePdf = await getB64BasePdf(basePdf);
-    // pdf2size accepts both ArrayBuffer and Uint8Array
-    const pdfArrayBuffer = b64toUint8Array(b64BasePdf);
+    try {
+      const b64BasePdf = await getB64BasePdf(basePdf);
+      // pdf2size accepts both ArrayBuffer and Uint8Array
+      const pdfArrayBuffer = b64toUint8Array(b64BasePdf);
 
-    pageSizes = await pdf2size(pdfArrayBuffer);
+      pageSizes = await pdf2size(pdfArrayBuffer);
+    } catch {
+      // PDFs de ejemplo o documentos corruptos no deben romper el runtime.
+      pageSizes = new Array(Math.max(1, schemas.length || 0)).fill(null).map(() => ({ ...FALLBACK_PAGE_SIZE }));
+    }
   }
 
   const ssl = schemasForUI.length;

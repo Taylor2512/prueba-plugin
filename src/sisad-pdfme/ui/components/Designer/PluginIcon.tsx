@@ -20,7 +20,7 @@ interface PluginIconProps {
   colorMode?: PluginIconColorMode;
   /** Optional data-testid stamped on the icon root (surface-specific, e.g. left-sidebar-schema-icon). */
   testId?: string;
-  density?: 'comfortable' | 'compact' | 'mini';
+  density?: 'comfortable' | 'compact' | 'minimal';
   'data-schema-type'?: string;
   'data-active-recipient-color'?: string;
 }
@@ -106,7 +106,7 @@ const PluginIcon = (props: PluginIconProps) => {
 
   const resolvedSize = useMemo(() => {
     if (userSize) return userSize;
-    if (density === 'mini') return 14;
+    if (density === 'minimal') return 14;
     if (density === 'compact') return 18;
     return 20;
   }, [userSize, density]);

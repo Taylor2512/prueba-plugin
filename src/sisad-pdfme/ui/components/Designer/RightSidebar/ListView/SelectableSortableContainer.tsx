@@ -8,240 +8,435 @@
  * - renders sortable rows and a body-level drag overlay;
  * - resolves plugin icons and collaboration colors for row previews.
  */
-import React, { useState, useContext, ReactNode } from 'react';
-import { useEffect, useMemo } from 'react';
+import React, {
+  useCallback,
+  useContext,
+  useMemo,
+  useState,
+  type ReactNode,
+} from 'react';
 import {
   closestCorners,
   DndContext,
   KeyboardSensor,
   PointerSensor,
-  useSensors,
   useSensor,
+  useSensors,
 } from '@dnd-kit/core';
 import {
-  SortableContext,
   arrayMove,
+  SortableContext,
   sortableKeyboardCoordinates,
   verticalListSortingStrategy,
 } from '@dnd-kit/sortable';
-import { SchemaForUI } from '@sisad-pdfme/common';
+
+import type { SchemaForUI } from '@sisad-pdfme/common';
 import type { SidebarProps } from '../../../../types.js';
-import { PluginsRegistry } from '../../../../contexts.js';
+
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
-import SelectableSortableItem from './SelectableSortableItem.js';
+import { PluginsRegistry } from '../../../../contexts.js';
 import PluginIcon from '../../PluginIcon.js';
-import ListViewDragOverlay from './ListViewDragOverlay.js';
-import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import { mergeClassNames } from '../../shared/className.js';
 import { resolveSchemaInteractionState } from '../../shared/schemaInteractionState.js';
+import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
+import ListViewDragOverlay from './ListViewDragOverlay.js';
+import SelectableSortableItem from './SelectableSortableItem.js';
 
+type DensityMode = 'compact' | 'comfortable' | 'minimal';
+
+type SelectableSortableContainerProps = Pick<
+  SidebarProps,
+  | 'onEdit'
+  | 'onSortEnd'
+  | 'hoveringSchemaId'
+  | 'onChangeHoveringSchemaId'
+  | 'collaborationContext'
+> & {
+  allSchemas: SchemaForUI[];
+  visibleSchemas: SchemaForUI[];
+  activeSchemaIds: string[];
+  densityMode?: DensityMode;
+  selectionCommands?: SelectionCommandSet;
+};
+
+const DENSITY_CLASSES: Record<
+  DensityMode,
+  {
+    body: string;
+    list: string;
+  }
+> = {
+  comfortable: {
+    body: 'px-1.5 pb-2 pt-1',
+    list: 'gap-1.5',
+  },
+  compact: {
+    body: 'px-1 pb-1.5 pt-0.5',
+    list: 'gap-1',
+  },
+  minimal: {
+    body: 'px-0.5 pb-1 pt-0.5',
+    list: 'gap-0.5',
+  },
+};
 
 /**
  * Container responsible for selectable and sortable schema rows.
  *
- * It owns local Shift-selection state while syncing external active selection
- * from the canvas through `activeSchemaIds`.
+ * Selection state is owned by Designer and provided through `activeSchemaIds`.
  */
-const SelectableSortableContainer = (
-  props: Pick<
-    SidebarProps,
-    'onEdit' | 'onSortEnd' | 'hoveringSchemaId' | 'onChangeHoveringSchemaId' | 'collaborationContext'
-  > & {
-    allSchemas: SchemaForUI[];
-    visibleSchemas: SchemaForUI[];
-    activeSchemaIds: string[];
-    selectionCommands?: SelectionCommandSet;
-  },
-) => {
-  const {
-    allSchemas,
-    visibleSchemas,
-    activeSchemaIds,
-    onEdit,
-    onSortEnd,
-    hoveringSchemaId,
-    onChangeHoveringSchemaId,
-    collaborationContext,
-    selectionCommands,
-  } = props;
-  const [selectedSchemas, setSelectedSchemas] = useState<SchemaForUI[]>([]);
+const SelectableSortableContainer = ({
+  allSchemas,
+  visibleSchemas,
+  activeSchemaIds,
+  densityMode = 'compact',
+  onEdit,
+  onSortEnd,
+  hoveringSchemaId,
+  onChangeHoveringSchemaId,
+  collaborationContext,
+  selectionCommands,
+}: SelectableSortableContainerProps) => {
   const [activeId, setActiveId] = useState<string | null>(null);
+  const [rangeAnchorId, setRangeAnchorId] = useState<string | null>(null);
+
   const pluginsRegistry = useContext(PluginsRegistry);
+  const densityClasses = DENSITY_CLASSES[densityMode];
+
   const sensors = useSensors(
-    useSensor(PointerSensor, { activationConstraint: { distance: 15 } }),
-    useSensor(KeyboardSensor, { coordinateGetter: sortableKeyboardCoordinates }),
+    useSensor(PointerSensor, {
+      activationConstraint: {
+        distance: 10,
+      },
+    }),
+    useSensor(KeyboardSensor, {
+      coordinateGetter: sortableKeyboardCoordinates,
+    }),
   );
 
-
-  /**
-   * Merges a reordered filtered/visible list back into the full schema order.
-   *
-   * Non-visible schemas preserve their original relative positions.
-   */
-  const mergeVisibleOrder = (nextVisibleOrder: SchemaForUI[]) => {
-    const visibleIdSet = new Set(visibleSchemas.map((schema) => schema.id));
-    const orderedVisible = [...nextVisibleOrder];
-
-    return allSchemas.map((schema) => {
-      if (!visibleIdSet.has(schema.id)) return schema;
-      return orderedVisible.shift() || schema;
-    });
-  };
-
-  const controlledSelectedIdSet = useMemo(() => new Set(activeSchemaIds), [activeSchemaIds]);
-  const selectedIdSet = useMemo(
-    () => new Set([...activeSchemaIds, ...selectedSchemas.map((schema) => schema.id)]),
-    [activeSchemaIds, selectedSchemas],
+  const visibleSchemaIds = useMemo(
+    () => visibleSchemas.map((schema) => schema.id),
+    [visibleSchemas],
   );
+
+  const visibleSchemaIdSet = useMemo(
+    () => new Set(visibleSchemaIds),
+    [visibleSchemaIds],
+  );
+
+  const selectedIdSet = useMemo(() => new Set(activeSchemaIds), [activeSchemaIds]);
+
+  const selectedSchemas = useMemo(
+    () => visibleSchemas.filter((schema) => selectedIdSet.has(schema.id)),
+    [selectedIdSet, visibleSchemas],
+  );
+
   const duplicateNameSet = useMemo(() => {
     const counts = new Map<string, number>();
+
     allSchemas.forEach((schema) => {
-      if (!schema.name) return;
-      counts.set(schema.name, (counts.get(schema.name) || 0) + 1);
+      const normalizedName = String(schema.name || '').trim();
+      if (!normalizedName) return;
+
+      counts.set(normalizedName, (counts.get(normalizedName) || 0) + 1);
     });
-    return new Set([...counts.entries()].filter(([, count]) => count > 1).map(([name]) => name));
+
+    return new Set(
+      [...counts.entries()]
+        .filter(([, count]) => count > 1)
+        .map(([name]) => name),
+    );
   }, [allSchemas]);
-  const isItemSelected = (itemId: string): boolean => selectedIdSet.has(itemId);
 
-  useEffect(() => {
-    if (activeId) return;
-    const externalSelected = visibleSchemas.filter((schema) => controlledSelectedIdSet.has(schema.id));
-    setSelectedSchemas(externalSelected);
-  }, [activeId, controlledSelectedIdSet, visibleSchemas]);
+  const mergeVisibleOrder = useCallback(
+    (nextVisibleOrder: SchemaForUI[]) => {
+      const orderedVisible = [...nextVisibleOrder];
 
+      return allSchemas.map((schema) => {
+        if (!visibleSchemaIdSet.has(schema.id)) return schema;
+        return orderedVisible.shift() || schema;
+      });
+    },
+    [allSchemas, visibleSchemaIdSet],
+  );
+
+  const isItemSelected = useCallback(
+    (itemId: string) => selectedIdSet.has(itemId),
+    [selectedIdSet],
+  );
 
   /**
-   * Updates local Shift-selection state for list-only multi selection.
+   * Delegates selection updates to Designer as the single source of truth.
    */
-  const onSelectionChanged = (id: string, isShiftSelect: boolean) => {
-    if (isShiftSelect) {
-      if (isItemSelected(id)) {
-        const newSelectedSchemas = selectedSchemas.filter((item) => item.id !== id);
-        setSelectedSchemas(newSelectedSchemas);
-      } else {
-        const newSelectedItem = visibleSchemas.find((schema) => schema.id === id);
-        if (!newSelectedItem) return;
-        const newSelectedSchemas = selectedSchemas.concat(newSelectedItem);
-        setSelectedSchemas(newSelectedSchemas);
-      }
-    } else {
-      setSelectedSchemas([]);
-    }
-  };
+  const handleSelectionRequested = useCallback(
+    (
+      id: string,
+      intent: { isRange: boolean; isToggle: boolean },
+    ) => {
+      if (!visibleSchemaIdSet.has(id)) return;
 
+      const anchorId =
+        rangeAnchorId && visibleSchemaIdSet.has(rangeAnchorId)
+          ? rangeAnchorId
+          : id;
+
+      if (intent.isRange) {
+        const anchorIndex = visibleSchemaIds.indexOf(anchorId);
+        const targetIndex = visibleSchemaIds.indexOf(id);
+        if (anchorIndex >= 0 && targetIndex >= 0) {
+          const [start, end] =
+            anchorIndex <= targetIndex
+              ? [anchorIndex, targetIndex]
+              : [targetIndex, anchorIndex];
+          const rangeIds = visibleSchemaIds.slice(start, end + 1);
+
+          if (selectionCommands?.selectSchemasByIds) {
+            selectionCommands.selectSchemasByIds(rangeIds, {
+              mode: intent.isToggle ? 'toggle' : 'replace',
+              origin: 'field-list',
+            });
+          } else {
+            onEdit(id);
+          }
+          return;
+        }
+      }
+
+      if (selectionCommands?.selectSchemasByIds) {
+        selectionCommands.selectSchemasByIds([id], {
+          mode: intent.isToggle ? 'toggle' : 'replace',
+          origin: 'field-list',
+        });
+        if (!intent.isToggle && !intent.isRange) {
+          setRangeAnchorId(id);
+        }
+        return;
+      }
+
+      if (!intent.isToggle && !intent.isRange) {
+        onEdit(id);
+        setRangeAnchorId(id);
+      }
+    },
+    [
+      onEdit,
+      rangeAnchorId,
+      selectionCommands,
+      visibleSchemaIdSet,
+      visibleSchemaIds,
+    ],
+  );
 
   /**
    * Resolves the plugin icon for a schema and tints it with collaboration color
    * when ownership/recipient metadata is available.
    */
-  const getPluginIcon = (inSchema: string | SchemaForUI): ReactNode => {
-    // Get schema by ID or use directly
-    const thisSchema =
-      typeof inSchema === 'string' ? allSchemas.find((schema) => schema.id === inSchema) : inSchema;
+  const getPluginIcon = useCallback(
+    (schemaOrId: string | SchemaForUI): ReactNode => {
+      const schema =
+        typeof schemaOrId === 'string'
+          ? allSchemas.find((candidate) => candidate.id === schemaOrId)
+          : schemaOrId;
 
-    if (!thisSchema) return <></>;
+      if (!schema) return null;
 
-    const [pluginLabel, activePlugin] = pluginsRegistry.findWithLabelByType(thisSchema.type);
+      const [pluginLabel, activePlugin] =
+        pluginsRegistry.findWithLabelByType(schema.type);
 
-    if (!activePlugin) {
-      return <></>;
-    }
+      if (!activePlugin) return null;
 
-    const collaborationState = resolveSchemaInteractionState(thisSchema, { collaborationContext });
-    const collaborationColor = collaborationState.ownerColor || undefined;
+      const interactionState = resolveSchemaInteractionState(schema, {
+        collaborationContext,
+      });
 
-    return (
-      <PluginIcon
-        plugin={activePlugin}
-        label={pluginLabel}
-        size={20}
-        styles={{ marginRight: '0.5rem', color: collaborationColor || undefined }}
-      />
-    );
-  };
+      return (
+        <PluginIcon
+          plugin={activePlugin}
+          label={pluginLabel}
+          size={20}
+          styles={{
+            marginRight: '0.5rem',
+            color: interactionState.ownerColor || undefined,
+          }}
+        />
+      );
+    },
+    [allSchemas, collaborationContext, pluginsRegistry],
+  );
+
+  const resetDragState = useCallback(() => {
+    setActiveId(null);
+  }, []);
 
   return (
     <DndContext
       sensors={sensors}
       collisionDetection={closestCorners}
       onDragStart={({ active }) => {
-        setActiveId(String(active.id));
+        const nextActiveId = String(active.id);
+        setActiveId(nextActiveId);
 
-        if (!isItemSelected(String(active.id))) {
-          setSelectedSchemas([]);
+        if (!isItemSelected(nextActiveId)) {
+          handleSelectionRequested(nextActiveId, {
+            isRange: false,
+            isToggle: false,
+          });
         }
       }}
       onDragEnd={({ active, over }) => {
-        const overId = over?.id || '';
+        const draggedId = String(active.id);
+        const overId = over ? String(over.id) : '';
+
         if (!overId) {
-          setActiveId(null);
+          resetDragState();
           return;
         }
 
-        const activeIndex = visibleSchemas.map((i) => i.id).indexOf(String(active.id));
-        const overIndex = visibleSchemas.map((i) => i.id).indexOf(String(overId));
+        const activeIndex = visibleSchemaIds.indexOf(draggedId);
+        const overIndex = visibleSchemaIds.indexOf(overId);
 
         if (activeIndex < 0 || overIndex < 0) {
-          setActiveId(null);
+          resetDragState();
           return;
         }
 
-        if (selectedSchemas.length) {
-          let reorderedVisible = [...visibleSchemas];
-          reorderedVisible = arrayMove(reorderedVisible, activeIndex, overIndex);
-          const selectedIds = new Set(
-            selectedSchemas.filter((item) => item.id !== activeId).map((item) => item.id),
+        if (selectedSchemas.length > 1 && selectedIdSet.has(draggedId)) {
+          let reorderedVisible = arrayMove(
+            [...visibleSchemas],
+            activeIndex,
+            overIndex,
           );
-          const trailingSelected = reorderedVisible.filter((item) => selectedIds.has(item.id));
-          reorderedVisible = reorderedVisible.filter((item) => !selectedIds.has(item.id));
+
+          const trailingSelectedIds = new Set(
+            selectedSchemas
+              .filter((schema) => schema.id !== draggedId)
+              .map((schema) => schema.id),
+          );
+
+          const trailingSelected = reorderedVisible.filter((schema) =>
+            trailingSelectedIds.has(schema.id),
+          );
+
+          reorderedVisible = reorderedVisible.filter(
+            (schema) => !trailingSelectedIds.has(schema.id),
+          );
+
           reorderedVisible.splice(
-            overIndex + 1,
+            Math.min(overIndex + 1, reorderedVisible.length),
             0,
             ...trailingSelected,
           );
+
           onSortEnd(mergeVisibleOrder(reorderedVisible));
-          setSelectedSchemas([]);
         } else if (activeIndex !== overIndex) {
-          onSortEnd(mergeVisibleOrder(arrayMove(visibleSchemas, activeIndex, overIndex)));
+          onSortEnd(
+            mergeVisibleOrder(
+              arrayMove([...visibleSchemas], activeIndex, overIndex),
+            ),
+          );
         }
 
-        setActiveId(null);
+        resetDragState();
       }}
-      onDragCancel={() => {
-        setActiveId(null);
-      }}
+      onDragCancel={resetDragState}
     >
-      <>
-        <SortableContext items={visibleSchemas} strategy={verticalListSortingStrategy}>
-          <ul className={mergeClassNames(DESIGNER_CLASSNAME + 'list-view-items-wrapper', 'space-y-2')} data-testid="right-sidebar-field-list">
-            {visibleSchemas.map((schema) => (
-              <SelectableSortableItem
-                key={schema.id}
-                schema={schema}
-                isSelected={isItemSelected(schema.id) || activeId === schema.id}
-                isHovering={schema.id === hoveringSchemaId}
-                isNameDuplicate={Boolean(schema.name && duplicateNameSet.has(schema.name))}
-                onEdit={onEdit}
-                onSelect={onSelectionChanged}
-                onMouseEnter={() => onChangeHoveringSchemaId(schema.id)}
-                onMouseLeave={() => onChangeHoveringSchemaId(null)}
-                collaborationContext={collaborationContext}
-                onDelete={
-                  selectionCommands?.canEditStructure === false
-                    ? undefined
-                    : () => selectionCommands?.deleteSchemasByIds?.([schema.id], { origin: 'field-list' })
-                }
-              />
-            ))}
-          </ul>
-        </SortableContext>
-        <ListViewDragOverlay
-          activeId={activeId}
-          schemas={allSchemas}
-          selectedSchemas={selectedSchemas}
-          renderIcon={getPluginIcon}
-        />
-      </>
+      <div
+        className={mergeClassNames(
+          DESIGNER_CLASSNAME + 'list-view-sortable-shell',
+          'flex min-h-0 flex-1 flex-col overflow-hidden bg-transparent',
+          activeId && 'cursor-grabbing',
+        )}
+        data-density={densityMode}
+        data-dragging={activeId ? 'true' : 'false'}
+      >
+        <div
+          className={mergeClassNames(
+            'min-h-0 flex-1 overflow-y-auto overscroll-contain [scrollbar-gutter:stable]',
+            densityClasses.body,
+          )}
+        >
+          {visibleSchemas.length > 0 ? (
+            <SortableContext
+              items={visibleSchemaIds}
+              strategy={verticalListSortingStrategy}
+            >
+              <ul
+                className={mergeClassNames(
+                  DESIGNER_CLASSNAME + 'list-view-items-wrapper',
+                  'grid list-none m-0 p-0',
+                  densityClasses.list,
+                )}
+                data-testid="right-sidebar-field-list"
+                aria-label="Lista de campos del documento"
+              >
+                {visibleSchemas.map((schema) => (
+                  <SelectableSortableItem
+                    key={schema.id}
+                    schema={schema}
+                    densityMode={densityMode}
+                    isSelected={
+                      isItemSelected(schema.id) || activeId === schema.id
+                    }
+                    isHovering={schema.id === hoveringSchemaId}
+                    isNameDuplicate={Boolean(
+                      schema.name && duplicateNameSet.has(schema.name),
+                    )}
+                    onSelect={handleSelectionRequested}
+                    onMouseEnter={() =>
+                      onChangeHoveringSchemaId(schema.id)
+                    }
+                    onMouseLeave={() => onChangeHoveringSchemaId(null)}
+                    collaborationContext={collaborationContext}
+                    onDelete={
+                      selectionCommands?.canEditStructure === false
+                        ? undefined
+                        : () =>
+                            selectionCommands?.deleteSchemasByIds?.(
+                              [schema.id],
+                              { origin: 'field-list' },
+                            )
+                    }
+                  />
+                ))}
+              </ul>
+            </SortableContext>
+          ) : (
+            <div
+              className="mx-1 flex min-h-32 flex-col items-center justify-center rounded-lg border border-dashed border-slate-200 bg-slate-50/45 px-4 py-6 text-center"
+              role="status"
+            >
+              <span
+                className="mb-2 inline-flex h-8 w-8 items-center justify-center rounded-full bg-white text-slate-400 shadow-sm ring-1 ring-slate-200/80"
+                aria-hidden="true"
+              >
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                >
+                  <path d="M6 7h12M6 12h12M6 17h8" strokeLinecap="round" />
+                </svg>
+              </span>
+              <p className="m-0 text-xs font-semibold text-slate-600">
+                No hay campos visibles
+              </p>
+              <p className="m-0 mt-1 max-w-48 text-[11px] leading-relaxed text-slate-400">
+                Agrega un campo o cambia los filtros.
+              </p>
+            </div>
+          )}
+        </div>
+      </div>
+
+      <ListViewDragOverlay
+        activeId={activeId}
+        schemas={allSchemas}
+        selectedSchemas={selectedSchemas}
+        renderIcon={getPluginIcon}
+        densityMode={densityMode}
+      />
     </DndContext>
   );
 };

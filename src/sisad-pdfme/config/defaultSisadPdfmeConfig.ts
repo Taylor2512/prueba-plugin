@@ -97,6 +97,10 @@ export const defaultSisadPdfmeVisibilityConfig: Required<SisadPdfmeVisibilityCon
 
 export const defaultSisadPdfmeConfig: Required<Pick<SisadPdfmeGlobalConfig, 'app' | 'runtime' | 'theme' | 'canvas' | 'sidebars' | 'schemas' | 'recipients' | 'collaboration' | 'assignment' | 'documents' | 'signatures' | 'persistence' | 'events' | 'debug'>> & {
   visibility: Required<SisadPdfmeVisibilityConfig>;
+  ui: Required<NonNullable<SisadPdfmeGlobalConfig['ui']>> & {
+    visibility: Required<SisadPdfmeVisibilityConfig>;
+    classNames: Record<string, never>;
+  };
 } = {
   app: {
     locale: 'es',
@@ -110,7 +114,7 @@ export const defaultSisadPdfmeConfig: Required<Pick<SisadPdfmeGlobalConfig, 'app
   theme: {
     cssEntry: 'sisad-pdfme.css',
     strategy: 'tailwind',
-    density: 'compact',
+    density: 'comfortable',
     classNamePrefix: 'sisad-pdfme',
     tokens: {},
   },
@@ -137,7 +141,7 @@ export const defaultSisadPdfmeConfig: Required<Pick<SisadPdfmeGlobalConfig, 'app
       enabled: true,
       defaultPanel: 'fields',
       panels: ['fields', 'detail', 'comments', 'documents'],
-      density: 'compact',
+      density: 'comfortable',
       showCollapsedButton: false,
     },
   },
@@ -161,6 +165,7 @@ export const defaultSisadPdfmeConfig: Required<Pick<SisadPdfmeGlobalConfig, 'app
   collaboration: {
     enabled: false,
     activeRecipientId: null,
+    isGlobalView: false,
     canEditStructure: true,
     ownerColorStrategy: 'recipient',
   },
@@ -198,4 +203,28 @@ export const defaultSisadPdfmeConfig: Required<Pick<SisadPdfmeGlobalConfig, 'app
     logEvents: false,
   },
   visibility: defaultSisadPdfmeVisibilityConfig,
+  ui: {
+    visualPreset: 'classic-designer',
+    layoutPreset: 'three-panel',
+    density: 'comfortable',
+    gap: '0.5rem',
+    padding: '0.5rem',
+    baseWidth: '100%',
+    baseHeight: '100%',
+    sidebars: {
+      left: {
+        defaultOpen: true,
+        catalogLayout: 'list',
+      },
+      right: {
+        defaultOpen: true,
+        defaultPanel: 'fields',
+      },
+    },
+    visibility: defaultSisadPdfmeVisibilityConfig,
+    classNames: {
+      leftSidebar: {},
+      rightSidebar: {},
+    },
+  },
 };

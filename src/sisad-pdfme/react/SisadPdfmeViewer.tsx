@@ -5,6 +5,8 @@
  * deriva del RecipientRegistry compartido, no de props sueltos.
  */
 import React, { useContext, useMemo, useRef } from 'react';
+import { cloneDeep, getInputFromTemplate } from '@sisad-pdfme/common';
+import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
 import Viewer from '../ui/Viewer.js';
 import Form from '../ui/Form.js';
 import { usePdfmeRuntimeInstance } from '../runtime/usePdfmeRuntimeInstance.js';
@@ -16,11 +18,12 @@ import type { ResolvedSisadPdfmeConfig, SisadPdfmeGlobalConfig } from '../config
 type Props = {
   config?: SisadPdfmeGlobalConfig | ResolvedSisadPdfmeConfig;
   template: unknown;
+  inputs?: unknown[];
   recipients?: unknown[];
   activeRecipientId?: string | null;
 };
 
-export const SisadPdfmeViewer = ({ config, template, recipients, activeRecipientId }: Props) => {
+export const SisadPdfmeViewer = ({ config, template, inputs = [], recipients, activeRecipientId }: Props) => {
   const containerRef = useRef<HTMLDivElement | null>(null);
   const resolvedConfig = useSisadPdfmeConfig(config);
   const providerValue = useContext(SisadPdfmeContext);
@@ -40,24 +43,25 @@ export const SisadPdfmeViewer = ({ config, template, recipients, activeRecipient
 
   const effectiveActiveRecipientId = recipientState.activeRecipientId;
   const recipientFilterEnabled = resolvedConfig.visibility.runtime?.recipientFilter !== false;
+  const isGlobalView = resolvedConfig.config.collaboration.isGlobalView === true;
 
   const runtimeConfig = useMemo(() => ({
     containerRef,
     mode: 'viewer' as const,
     template: template as any,
-    inputs: [],
+    inputs: (Array.isArray(inputs) && inputs.length > 0) ? inputs : getInputFromTemplate(template as any),
     onTemplateChange: () => undefined,
     onPageChange: () => undefined,
     options: {
       ...resolvedConfig.runtimeOptions,
       designerEngine: resolvedConfig.designerEngine,
-      ...(recipientFilterEnabled && effectiveActiveRecipientId
-        ? { collaboration: { activeRecipientId: effectiveActiveRecipientId, isGlobalView: false } }
-        : {}),
+      ...(recipientFilterEnabled && !isGlobalView && effectiveActiveRecipientId
+        ? { collaboration: { activeRecipientId: effectiveActiveRecipientId, isGlobalView } }
+        : { collaboration: { isGlobalView } }),
     },
-    plugins: {},
+    plugins: flatSchemaPlugins,
     runtime: { Designer: Viewer as any, Form: Form as any, Viewer: Viewer as any },
-  }), [resolvedConfig, template, effectiveActiveRecipientId, recipientFilterEnabled]);
+  }), [effectiveActiveRecipientId, inputs, isGlobalView, recipientFilterEnabled, resolvedConfig, template]);
   usePdfmeRuntimeInstance(runtimeConfig as any);
   return <div ref={containerRef} data-sisad-pdfme-root="viewer" />;
 };

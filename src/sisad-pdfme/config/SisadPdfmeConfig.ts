@@ -16,8 +16,16 @@ export type {
 export type SisadPdfmeDocument = {
   id: string;
   label: string;
+  /** Alias del label para consumidores legacy (UploadedPdfDocument.name). */
+  name?: string;
   pageCount?: number;
   basePdf?: unknown;
+  /**
+   * Template del documento (páginas + schemas). El Designer lo necesita para
+   * enrutar schemas por documento; el adapter DEBE preservarlo si el host lo
+   * entrega (TASK-LAB-026: perderlo deja el canvas en `empty_page`).
+   */
+  template?: unknown;
   metadata?: Record<string, unknown>;
 };
 
@@ -205,6 +213,42 @@ export type SisadPdfmeVisibilityConfig = {
   };
 };
 
+export type SisadPdfmeUiClassNamesConfig = {
+  leftSidebar?: {
+    container?: string;
+    content?: string;
+    searchInput?: string;
+  };
+  rightSidebar?: {
+    root?: string;
+    content?: string;
+    listView?: string;
+    detailView?: string;
+  };
+};
+
+export type SisadPdfmeUiConfig = {
+  visualPreset?: 'classic-designer' | string;
+  layoutPreset?: 'three-panel' | 'canvas-first' | string;
+  density?: 'comfortable' | 'compact' | 'minimal';
+  gap?: number | string;
+  padding?: number | string;
+  baseWidth?: number | string;
+  baseHeight?: number | string;
+  sidebars?: {
+    left?: {
+      defaultOpen?: boolean;
+      catalogLayout?: 'list' | 'tiles' | 'icons';
+    };
+    right?: {
+      defaultOpen?: boolean;
+      defaultPanel?: 'fields' | 'detail' | 'comments' | 'documents';
+    };
+  };
+  visibility?: SisadPdfmeVisibilityConfig;
+  classNames?: SisadPdfmeUiClassNamesConfig;
+};
+
 export type SisadPdfmeGlobalConfig = {
   app?: {
     id?: string;
@@ -221,7 +265,7 @@ export type SisadPdfmeGlobalConfig = {
   theme?: {
     cssEntry?: string;
     strategy?: 'tailwind' | string;
-    density?: 'comfortable' | 'compact' | 'mini';
+    density?: 'comfortable' | 'compact' | 'minimal';
     classNamePrefix?: string;
     tokens?: Record<string, string | number>;
   };
@@ -248,7 +292,7 @@ export type SisadPdfmeGlobalConfig = {
       enabled?: boolean;
       defaultPanel?: 'fields' | 'detail' | 'comments' | 'documents';
       panels?: Array<'fields' | 'detail' | 'comments' | 'documents'>;
-      density?: 'comfortable' | 'compact' | 'mini';
+      density?: 'comfortable' | 'compact' | 'minimal';
       showCollapsedButton?: boolean;
     };
   };
@@ -263,6 +307,7 @@ export type SisadPdfmeGlobalConfig = {
   collaboration?: {
     enabled?: boolean;
     activeRecipientId?: string | null;
+    isGlobalView?: boolean;
     canEditStructure?: boolean;
     ownerColorStrategy?: 'recipient' | 'schema' | 'theme';
   };
@@ -298,12 +343,17 @@ export type SisadPdfmeGlobalConfig = {
     logEvents?: boolean;
   };
   visibility?: SisadPdfmeVisibilityConfig;
+  ui?: SisadPdfmeUiConfig;
 };
 
 export type ResolvedSisadPdfmeConfig = {
   raw: SisadPdfmeGlobalConfig;
   config: Required<Pick<SisadPdfmeGlobalConfig, 'app' | 'runtime' | 'theme' | 'canvas' | 'sidebars' | 'schemas' | 'recipients' | 'collaboration' | 'assignment' | 'documents' | 'signatures' | 'persistence' | 'events' | 'debug'>> & {
     visibility: Required<SisadPdfmeVisibilityConfig>;
+    ui: Required<SisadPdfmeUiConfig> & {
+      visibility: Required<SisadPdfmeVisibilityConfig>;
+      classNames: Required<SisadPdfmeUiClassNamesConfig>;
+    };
   };
   visibility: Required<SisadPdfmeVisibilityConfig>;
   runtimeOptions: Record<string, unknown>;

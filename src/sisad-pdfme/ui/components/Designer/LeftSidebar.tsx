@@ -170,6 +170,33 @@ export type CatalogQuickFilter = 'all' | 'favorites' | 'recent';
 export type CatalogCapability = 'designer' | 'content' | 'layout' | 'selection' | 'prefill' | 'dynamic';
 const SHOW_ADVANCED_CATALOG_CONTROLS = false;
 
+const resolveCatalogViewTestMode = (layout: CatalogLayout): 'rich' | 'compact' | 'mini' => {
+  if (layout === 'list') return 'rich';
+  if (layout === 'tiles') return 'compact';
+  return 'mini';
+};
+
+const resolveCatalogDensityButtonSkin = (layout: CatalogLayout, density: SidebarDensity): string => {
+  if (density !== 'minimal') return '';
+  if (layout === 'tiles') {
+    return 'min-h-[3rem] gap-[0.18rem] p-[0.28rem_0.3rem]';
+  }
+  if (layout === 'icons') {
+    return 'min-h-[2.55rem] gap-[0.22rem] p-[0.22rem_0.3rem]';
+  }
+  return '';
+};
+
+const resolveCatalogDensityIconSize = (layout: CatalogLayout, density: SidebarDensity): number | undefined => {
+  if (layout === 'tiles' && density === 'minimal') return 24;
+  return undefined;
+};
+
+const resolveCatalogDensityTitleClass = (layout: CatalogLayout, density: SidebarDensity): string => {
+  if (layout !== 'tiles' || density !== 'minimal') return '';
+  return 'text-[0.54rem] [display:-webkit-box] [line-clamp:1] [-webkit-line-clamp:1] [-webkit-box-orient:vertical]';
+};
+
 
 type CatalogSchemaItem = {
   key: string;
@@ -228,7 +255,7 @@ const buildHiddenCatalogTypeSet = (values: unknown): Set<string> => {
 type SidebarButtonsProps = {
   activeTab: LeftSidebarTab;
   variant: 'compact' | 'panel';
-  sidebarDensityMode: 'comfortable' | 'compact' | 'mini';
+  sidebarDensityMode: 'comfortable' | 'compact' | 'minimal';
   groupedPlugins: Array<{ category: string; items: CatalogSchemaItem[] }>;
   recentCatalogItems: CatalogSchemaItem[];
   collapsedCategories: Record<string, boolean>;
@@ -490,7 +517,11 @@ const Draggable = (props: {
   return (
     <div ref={setNodeRef}>
       <div
-        className={DESIGNER_CLASSNAME + 'left-sidebar-draggable-shell'}
+        className={mergeClassNames(
+          DESIGNER_CLASSNAME + 'left-sidebar-draggable-shell',
+          '[opacity:var(--sisad-pdfme-left-sidebar-draggable-opacity,_1)] [transform:scale(var(--sisad-pdfme-left-sidebar-draggable-scale,_1))] [transition:opacity_120ms_ease,_transform_120ms_ease]',
+          isDragging ? '[opacity:0.36] [transform:scale(0.96)] saturate-[1.06]' : '',
+        )}
         data-dragging={isDragging ? 'true' : 'false'}
         data-drag-source={isDragging ? 'true' : 'false'}
         data-dragging-schema-type={String(baseSchema.type || '')}
@@ -526,41 +557,42 @@ const SidebarShell = ({
   activeRecipientLabel?: string | null;
   activeRecipientColor?: string | null;
   style?: React.CSSProperties;
-  density?: 'comfortable' | 'compact' | 'mini';
+  density?: 'comfortable' | 'compact' | 'minimal';
   children: React.ReactNode;
 }) => (
     <div
       className={mergeClassNames(
         `${DESIGNER_CLASSNAME}left-sidebar-shell`,
         `${DESIGNER_CLASSNAME}sidebar-surface`,
-        'flex h-full min-h-0 flex-col overflow-hidden rounded-[1.125rem] border border-slate-200/70 bg-white/95 shadow-sm',
+        'flex h-full min-h-0 flex-col overflow-hidden rounded-[0.95rem] border border-slate-200/75 bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(248,250,252,0.96))] shadow-[0_8px_24px_rgba(15,23,42,0.06)] backdrop-blur-[14px]',
+        density === 'compact' ? 'rounded-[0.72rem] p-[0.22rem_0.24rem_0.24rem]' : 'p-[0.32rem_0.3rem_0.28rem]',
       )}
       style={style}
       data-density={density}
     >
       <div className={mergeClassNames(
         `${DESIGNER_CLASSNAME}left-sidebar-dock-header`, 
-        'flex shrink-0 items-start justify-between gap-2 border-b border-slate-200/70 bg-slate-50/70 px-2 py-1.25',
-        density === 'mini' ? 'hidden' : ''
+        'flex shrink-0 flex-col items-start gap-[0.14rem] border-b border-slate-200/70 px-3 py-[0.5rem]',
+        density === 'minimal' ? 'hidden' : ''
       )}>
         {density !== 'compact' && (
-          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-kicker`, 'text-[9px] font-medium uppercase tracking-[0.18em] text-slate-400')}>
+          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-kicker`, 'text-[0.56rem] font-semibold uppercase tracking-[0.12em] text-slate-400')}>
             Diseñador
           </span>
         )}
-          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-title`, 'flex min-w-0 flex-wrap items-center gap-1.5 text-[0.72rem] font-semibold text-slate-900')}>
+          <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-title`, 'flex min-w-0 flex-wrap items-center gap-[0.35rem] text-[0.82rem] font-bold text-slate-900')}>
             <span>Campos</span>
           {activeRecipientLabel && density === 'comfortable' ? (
-            <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-recipient`, 'inline-flex max-w-[8rem] items-center overflow-hidden text-ellipsis whitespace-nowrap rounded-full border border-slate-200 bg-slate-50 px-1 py-0.5 text-[10px] text-slate-600')}>
+            <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-dock-recipient`, 'inline-flex max-w-full items-center overflow-hidden text-ellipsis whitespace-nowrap rounded-full bg-sky-50 px-[0.4rem] py-[0.06rem] text-[0.63rem] font-semibold text-sky-700')}>
               {activeRecipientLabel}
             </span>
           ) : null}
           </span>
       </div>
       <div className={mergeClassNames(
-        `${DESIGNER_CLASSNAME}left-sidebar-control-band`, 
-        'shrink-0 border-b border-slate-200/70 bg-slate-50/50',
-        density === 'mini' ? 'px-1 py-1 space-y-1' : 'px-1.5 py-[0.3125rem] space-y-[0.3125rem]'
+        `${DESIGNER_CLASSNAME}left-sidebar-control-band`,
+        'shrink-0 border-b border-slate-200/70 bg-transparent',
+        density === 'minimal' ? 'px-1 py-1 space-y-1' : 'px-3 py-[0.42rem] space-y-[0.42rem]',
       )}>
         <LeftSidebarTabs
           tabs={tabs}
@@ -575,9 +607,10 @@ const SidebarShell = ({
       </div>
       <div
         className={mergeClassNames(
-          `${DESIGNER_CLASSNAME}left-sidebar-main`, 
-          'min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain bg-[linear-gradient(180deg,rgba(255,255,255,0.32),rgba(248,250,252,0.7))]',
-          density === 'mini' ? 'px-1 py-1 space-y-1' : 'px-1.5 py-[0.3125rem] space-y-[0.3125rem]'
+          `${DESIGNER_CLASSNAME}left-sidebar-main`,
+          'min-h-0 flex-1 overflow-y-auto overflow-x-hidden overscroll-contain bg-[linear-gradient(180deg,rgba(255,255,255,0.38),rgba(248,250,252,0.8))]',
+          density === 'compact' ? 'pr-[0.125rem]' : '',
+          density === 'minimal' ? 'px-1 py-1 space-y-1' : 'px-3 py-[0.45rem] space-y-[0.35rem]'
         )}
         data-left-sidebar-scroll="true"
         data-sidebar-scroll-container="true"
@@ -1104,9 +1137,9 @@ const LeftSidebar = ({
   const sidebarRootRef = useRef<HTMLDivElement | null>(null);
   const sidebarScrollLockRef = useRef<ReturnType<typeof lockDesignerSidebarScroll> | null>(null);
   const { mode: sidebarDensityMode, width: sidebarLiveWidth } = useResponsiveDensity(sidebarRootRef, {
-    comfortable: 430,
-    compact: 330,
-    mini: 254,
+    comfortable: 260,
+    compact: 220,
+    minimal: 190,
   });
 
   useEffect(() => {
@@ -1140,7 +1173,17 @@ const LeftSidebar = ({
   const sidebarClass = mergeClassNames(
     `${DESIGNER_CLASSNAME}left-sidebar`,
     `${DESIGNER_CLASSNAME}left-sidebar-${variant}`,
-    variant === 'compact' ? `${DESIGNER_CLASSNAME}left-sidebar-compact` : '',
+    'relative flex h-full min-h-0 w-[var(--sisad-pdfme-ls-width)] max-w-[var(--sisad-pdfme-ls-width)] shrink-0 flex-col bg-[var(--color-bg-elevated)] border-r border-slate-200/70',
+    'max-[48rem]:absolute max-[48rem]:left-0 max-[48rem]:top-0 max-[48rem]:bottom-0 max-[48rem]:z-[20] max-[48rem]:w-0 max-[48rem]:overflow-hidden max-[48rem]:[transition:width_0.22s_var(--wix-ease-out)]',
+    variant === 'compact'
+      ? mergeClassNames(
+          `${DESIGNER_CLASSNAME}left-sidebar-compact`,
+          'min-w-[var(--sisad-pdfme-ls-rail-width)]',
+          sidebarExpanded
+            ? 'w-[clamp(11.5rem,_13.5vw,_13.5rem)] max-w-[clamp(11.5rem,_13.5vw,_13.5rem)] max-[48rem]:w-[15rem] max-[48rem]:overflow-visible'
+            : 'w-[var(--sisad-pdfme-ls-rail-width)] max-w-[var(--sisad-pdfme-ls-rail-width)] overflow-hidden',
+        )
+      : '',
     detached ? `${DESIGNER_CLASSNAME}left-sidebar-detached` : '',
     classNames?.container,
     className,
@@ -1151,10 +1194,63 @@ const LeftSidebar = ({
     const draggableId = item.key;
     const recipientToneKey = activeRecipientTone || 'no-tone';
     const displayLabel = getCatalogLabel(label, pluginType, item.source);
-    const buttonClass = mergeClassNames(
+    const isSelectionCategory = category === 'Selecciones';
+    const isBuiltin = item.source === 'builtin';
+    const isCustom = item.source === 'custom';
+    const baseButtonClass = mergeClassNames(
       `${DESIGNER_CLASSNAME}plugin-${pluginType}`,
       `${DESIGNER_CLASSNAME}plugin-btn`,
       `${DESIGNER_CLASSNAME}plugin-btn-${variant}`,
+      `${DESIGNER_CLASSNAME}plugin-btn-${resolvedLayout}`,
+      'cursor-grab active:cursor-grabbing',
+    );
+    const layoutButtonClass = resolvedLayout === 'list'
+      ? mergeClassNames(
+          'w-full min-h-[2.875rem] p-[0.375rem_0.5625rem] gap-[0.5rem] justify-center rounded-[0.5625rem] border border-[color:var(--color-border-20)]',
+          'bg-[linear-gradient(180deg,_var(--color-white),_var(--color-gray-50))] shadow-[inset_0_1px_0_var(--color-white-80),_0_1px_2px_var(--color-gray-900-04)]',
+          'transition-[border-color,background,box-shadow] hover:border-[color:var(--color-primary-30)] hover:bg-[linear-gradient(180deg,_var(--color-white),_var(--color-primary-100-90))] hover:shadow-[0_2px_0.375rem_var(--color-primary-08)] motion-reduce:hover:translate-y-0',
+        )
+      : resolvedLayout === 'icons'
+        ? mergeClassNames(
+          'w-full aspect-square min-h-0 items-center justify-center p-[0.25rem] rounded-[0.5rem] border border-[color:var(--color-border-18)]',
+            'bg-[linear-gradient(180deg,_var(--color-white),_var(--color-gray-50))] shadow-[inset_0_1px_0_var(--color-white-80),_0_1px_2px_var(--color-gray-900-04)] overflow-hidden text-center',
+            'transition-[border-color,background,box-shadow] hover:border-[var(--schema-owner-color,_var(--color-primary-30))] hover:shadow-[0_2px_0.375rem_var(--color-primary-08)] motion-reduce:hover:translate-y-0',
+          )
+        : mergeClassNames(
+            'w-full min-h-[2.9rem] flex flex-col items-center justify-center gap-[0.2rem] p-[0.375rem_0.25rem_0.3125rem] rounded-[0.625rem] border border-[color:var(--color-border-18)]',
+            'bg-[linear-gradient(180deg,_var(--color-white),_var(--color-gray-50))] shadow-[inset_0_1px_0_var(--color-white-80),_0_1px_3px_var(--color-gray-900-04)] overflow-hidden text-center',
+            'transition-[border-color,background,box-shadow,transform] hover:border-[var(--schema-owner-color,_var(--color-primary-30))] hover:bg-[linear-gradient(180deg,_var(--color-white),_color-mix(in_srgb,_var(--schema-owner-color,_var(--color-primary))_8%,_var(--color-white)))] hover:shadow-[0_3px_8px_color-mix(in_srgb,_var(--schema-owner-color,_var(--color-primary))_12%,_transparent)] hover:-translate-y-px hover:border-l-[3px] hover:border-l-[var(--schema-owner-color,_var(--color-primary))] motion-reduce:hover:translate-y-0',
+          );
+    const stateButtonClass = isSelectionCategory
+      ? 'border-[color-mix(in_srgb,_var(--color-primary-30)_54%,_var(--color-border-18))] bg-[linear-gradient(180deg,_var(--color-white),_color-mix(in_srgb,_var(--color-primary-100-90)_38%,_var(--color-white)))]'
+      : isBuiltin
+        ? 'shadow-[inset_0_1px_0_var(--color-white-80),_0_1px_3px_color-mix(in_srgb,_var(--color-gray-900)_6%,_transparent)]'
+        : isCustom
+          ? 'border-dashed border-[color-mix(in_srgb,_var(--color-primary-35)_48%,_var(--color-border-18))]'
+          : '';
+    const labelClass = mergeClassNames(
+      `${DESIGNER_CLASSNAME}plugin-btn-label`,
+      resolvedLayout === 'list'
+        ? 'min-w-0 flex-1 items-start justify-start'
+        : 'flex flex-col items-center justify-center gap-[1px] min-w-0 w-full',
+      resolvedLayout === 'icons' ? 'hidden' : '',
+    );
+    const titleClass = mergeClassNames(
+      `${DESIGNER_CLASSNAME}plugin-btn-label-title`,
+      resolvedLayout === 'list'
+        ? 'block truncate text-left text-[0.75rem] font-semibold text-[var(--color-gray-900)] whitespace-nowrap [word-break:normal]'
+        : 'block min-w-0 w-full overflow-hidden [display:-webkit-box] [line-clamp:2] [-webkit-line-clamp:2] [-webkit-box-orient:vertical] [text-overflow:ellipsis] [white-space:normal] text-[0.575rem] font-semibold text-[var(--color-gray-700)] capitalize text-center leading-[1.3] break-words',
+      resolveCatalogDensityTitleClass(resolvedLayout, sidebarDensityMode),
+      sidebarDensityMode === 'minimal'
+        ? 'text-[9px]'
+        : sidebarDensityMode === 'compact'
+          ? resolvedLayout === 'list'
+            ? 'text-[0.68rem]'
+            : 'text-[0.56rem]'
+          : resolvedLayout === 'list'
+            ? 'text-[0.72rem]'
+            : 'text-[0.575rem]',
+      isSelectionCategory ? 'font-bold tracking-[0.01em]' : '',
     );
     const isFavorite = favoritePlugins.has(pluginType);
     const saveFavorites = (next: Set<string>) => {
@@ -1174,6 +1270,21 @@ const LeftSidebar = ({
     };
     const pluginTone = activeRecipientTone || null;
     const pluginToneSurface = pluginTone ? `${pluginTone}18` : undefined;
+    const densitySkinClass = resolveCatalogDensityButtonSkin(resolvedLayout, sidebarDensityMode);
+    const densityGapClass = densitySkinClass
+      ? ''
+      : sidebarDensityMode === 'minimal'
+        ? 'gap-1'
+        : sidebarDensityMode === 'compact'
+          ? 'gap-1.5'
+          : resolvedLayout === 'list'
+            ? 'gap-2'
+            : 'gap-2';
+    const densityPaddingClass = densitySkinClass
+      ? ''
+      : resolvedLayout === 'list'
+        ? (sidebarDensityMode === 'minimal' ? 'px-1 py-1' : sidebarDensityMode === 'compact' ? 'px-1.5 py-1' : 'px-2 py-1.5')
+        : '';
 
     return (
       <Draggable
@@ -1188,16 +1299,22 @@ const LeftSidebar = ({
           <div
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap',
-              'group relative',
+              'group relative rounded-[0.625rem] p-[0.0625rem] bg-transparent',
             )}
             style={activeRecipientWrapStyle || activeRecipientStyles}
           >
             <Button
               className={mergeClassNames(
-                buttonClass,
-                'flex w-full items-center gap-2 rounded-xl border border-slate-200/70 bg-white/95 px-2 py-1.5 shadow-sm transition-all duration-200',
-                'hover:border-sky-200 hover:bg-slate-50/80 active:scale-[0.98]',
-                draggableActive ? 'opacity-50' : ''
+                baseButtonClass,
+                layoutButtonClass,
+                stateButtonClass,
+                densityGapClass,
+                densityPaddingClass,
+                densitySkinClass,
+                draggableActive || isDragging
+                  ? 'border-[color:var(--color-primary)] bg-[var(--color-primary-08)] [box-shadow:0_0_0_3px_var(--color-primary-08),0_8px_18px_rgba(37,99,235,0.16)]'
+                  : '',
+                draggableActive ? 'opacity-50' : '',
               )}
               data-testid="left-sidebar-schema-tile"
               data-schema-type={pluginType}
@@ -1205,6 +1322,7 @@ const LeftSidebar = ({
               data-schema-kind={item.source}
               data-schema-label={displayLabel}
               data-catalog-layout={resolvedLayout}
+              data-view-mode={resolveCatalogViewTestMode(resolvedLayout)}
               data-density={sidebarDensityMode}
               data-dragging={draggableActive ? 'true' : 'false'}
               data-is-panel={isPanel ? 'true' : 'false'}
@@ -1228,6 +1346,7 @@ const LeftSidebar = ({
                 testId="left-sidebar-schema-icon"
                 activeRecipientColor={pluginTone ?? null}
                 density={sidebarDensityMode}
+                size={resolveCatalogDensityIconSize(resolvedLayout, sidebarDensityMode)}
                 styles={
                   pluginTone
                     ? {
@@ -1238,17 +1357,17 @@ const LeftSidebar = ({
                     : undefined
                 }
               />
-              <span className={mergeClassNames(`${DESIGNER_CLASSNAME}plugin-btn-label`, 'min-w-0 flex-1 text-left')}>
-                <span className={mergeClassNames(
-                  DESIGNER_CLASSNAME + 'plugin-btn-label-title', 
-                  'block truncate font-medium text-slate-800',
-                  sidebarDensityMode === 'mini' ? 'text-[7.5px]' : sidebarDensityMode === 'compact' ? 'text-[0.68rem]' : 'text-[0.72rem]'
-                )}>
+              <span className={labelClass}>
+                <span className={titleClass}>
                   {highlightTerm(displayLabel, searchTerms)}
                 </span>
               </span>
               {isFavorite ? (
-                <span className={mergeClassNames(DESIGNER_CLASSNAME + 'plugin-favorite-indicator', 'ml-2 text-amber-500')}>
+                <span className={mergeClassNames(
+                  DESIGNER_CLASSNAME + 'plugin-favorite-indicator',
+                  'ml-2 text-amber-500',
+                  resolvedLayout === 'icons' ? 'hidden' : '',
+                )}>
                   ★
                 </span>
               ) : null}
@@ -1258,7 +1377,9 @@ const LeftSidebar = ({
               aria-label="Marcar favorito"
               className={mergeClassNames(
                 DESIGNER_CLASSNAME + 'plugin-favorite-toggle',
-                'absolute right-1 top-1/2 -translate-y-1/2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-slate-200 bg-white text-[10px] text-slate-300 shadow-sm opacity-0 transition group-hover:opacity-100',
+                'absolute right-1 top-1/2 -translate-y-1/2 inline-flex h-5 w-5 items-center justify-center rounded-full border border-slate-200 bg-white text-[10px] text-slate-300 shadow-sm opacity-0 transition-[opacity,background-color,border-color,color,transform,box-shadow] group-hover:opacity-100 group-hover:scale-110 group-hover:border-[color:var(--color-primary-30)] group-hover:bg-[var(--color-primary-200-20)] group-hover:text-[var(--color-primary)] data-[active=true]:opacity-100 data-[active=true]:pointer-events-auto data-[active=true]:bg-[var(--color-primary)] data-[active=true]:border-[var(--color-primary)] data-[active=true]:text-[var(--color-white)] data-[active=true]:shadow-[0_1px_4px_var(--color-primary-20)] data-[active=true]:hover:bg-[var(--color-primary-hover,_var(--color-primary-light))] data-[active=true]:hover:border-[var(--color-primary-light)] data-[active=true]:hover:text-[var(--color-white)]',
+                draggableActive || isDragging ? 'opacity-0 pointer-events-none' : '',
+                resolvedLayout === 'icons' ? 'hidden' : '',
               )}
               data-active={isFavorite ? 'true' : 'false'}
               style={isFavorite ? { opacity: 1, color: '#f59e0b', borderColor: '#fef3c7' } : undefined}
@@ -1294,6 +1415,21 @@ const LeftSidebar = ({
     const draggableId = `custom::${definition.id}::${definition.pluginType}`;
 
     const recipientToneKey = activeRecipientTone || 'no-tone';
+    const densitySkinClass = resolveCatalogDensityButtonSkin(resolvedLayout, sidebarDensityMode);
+    const densityGapClass = densitySkinClass
+      ? ''
+      : sidebarDensityMode === 'minimal'
+        ? 'gap-1'
+        : sidebarDensityMode === 'compact'
+          ? 'gap-1.5'
+          : resolvedLayout === 'list'
+            ? 'gap-2'
+            : 'gap-2';
+    const densityPaddingClass = densitySkinClass
+      ? ''
+      : resolvedLayout === 'list'
+        ? (sidebarDensityMode === 'minimal' ? 'px-1 py-1' : sidebarDensityMode === 'compact' ? 'px-1.5 py-1' : 'px-2 py-1.5')
+        : '';
 
     return (
       <Draggable
@@ -1309,7 +1445,7 @@ const LeftSidebar = ({
           <div
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'left-sidebar-plugin-wrap',
-              'relative rounded-xl border border-slate-200/70 bg-white/90 p-1 shadow-none transition',
+              'relative rounded-[0.625rem] p-[0.0625rem] bg-transparent transition',
             )}
             style={activeRecipientWrapStyle || activeRecipientStyles}
           >
@@ -1319,7 +1455,19 @@ const LeftSidebar = ({
                 `${DESIGNER_CLASSNAME}plugin-${definition.pluginType}`,
                 `${DESIGNER_CLASSNAME}plugin-btn`,
                 `${DESIGNER_CLASSNAME}plugin-btn-${variant}`,
-                'flex w-full items-center gap-2 rounded-xl border border-slate-200/70 bg-white/95 px-2 py-1.5 shadow-sm transition-all duration-200 hover:border-sky-200 hover:bg-slate-50/80 active:scale-[0.98]',
+                `${DESIGNER_CLASSNAME}plugin-btn-${resolvedLayout}`,
+                'cursor-grab active:cursor-grabbing',
+                densityGapClass,
+                densityPaddingClass,
+                densitySkinClass,
+                draggableActive || isDragging
+                  ? 'border-[color:var(--color-primary)] bg-[var(--color-primary-08)] [box-shadow:0_0_0_3px_var(--color-primary-08),0_8px_18px_rgba(37,99,235,0.16)]'
+                  : '',
+                resolvedLayout === 'list'
+                  ? 'flex w-full items-center gap-[0.5rem] min-h-[2.875rem] p-[0.375rem_0.5625rem] justify-center rounded-[0.5625rem] border border-[color:var(--color-border-20)] bg-[linear-gradient(180deg,_var(--color-white),_var(--color-gray-50))] shadow-[inset_0_1px_0_var(--color-white-80),_0_1px_2px_var(--color-gray-900-04)] transition-[border-color,background,box-shadow] hover:border-[color:var(--color-primary-30)] hover:bg-[linear-gradient(180deg,_var(--color-white),_var(--color-primary-100-90))] hover:shadow-[0_2px_0.375rem_var(--color-primary-08)]'
+                  : resolvedLayout === 'icons'
+                    ? 'flex w-full aspect-square min-h-0 items-center justify-center p-[0.25rem] rounded-[0.5rem] border border-[color:var(--color-border-18)] bg-[linear-gradient(180deg,_var(--color-white),_var(--color-gray-50))] shadow-[inset_0_1px_0_var(--color-white-80),_0_1px_2px_var(--color-gray-900-04)] overflow-hidden text-center transition-[border-color,background,box-shadow] hover:border-[var(--schema-owner-color,_var(--color-primary-30))] hover:shadow-[0_2px_0.375rem_var(--color-primary-08)]'
+                    : 'flex w-full flex-col items-center justify-center gap-[0.2rem] min-h-[2.9rem] p-[0.375rem_0.25rem_0.3125rem] rounded-[0.625rem] border border-[color:var(--color-border-18)] bg-[linear-gradient(180deg,_var(--color-white),_var(--color-gray-50))] shadow-[inset_0_1px_0_var(--color-white-80),_0_1px_3px_var(--color-gray-900-04)] overflow-hidden text-center transition-[border-color,background,box-shadow,transform] hover:border-[var(--schema-owner-color,_var(--color-primary-30))] hover:bg-[linear-gradient(180deg,_var(--color-white),_color-mix(in_srgb,_var(--schema-owner-color,_var(--color-primary))_8%,_var(--color-white)))] hover:shadow-[0_3px_8px_color-mix(in_srgb,_var(--schema-owner-color,_var(--color-primary))_12%,_transparent)] hover:-translate-y-px hover:border-l-[3px] hover:border-l-[var(--schema-owner-color,_var(--color-primary))]',
               )}
               data-testid="left-sidebar-schema-tile"
               data-schema-type={definition.pluginType}
@@ -1327,6 +1475,7 @@ const LeftSidebar = ({
               data-schema-kind="custom"
               data-schema-label={definition.label}
               data-catalog-layout={resolvedLayout}
+              data-view-mode={resolveCatalogViewTestMode(resolvedLayout)}
               onMouseDownCapture={() => {
                 setIsDragging(true);
               }}
@@ -1343,7 +1492,12 @@ const LeftSidebar = ({
               }}
               style={activeRecipientButtonStyle}
               >
-                <span className={`${DESIGNER_CLASSNAME}left-sidebar-custom-item-icon`}>
+                <span className={mergeClassNames(
+                  `${DESIGNER_CLASSNAME}left-sidebar-custom-item-icon`,
+                  resolvedLayout === 'list'
+                    ? 'flex h-[2rem] w-[2rem] items-center justify-center rounded-[0.5rem]'
+                    : 'inline-flex items-center justify-center',
+                )}>
                   <PluginIcon
                     plugin={plugin}
                     label={definition.label}
@@ -1361,11 +1515,25 @@ const LeftSidebar = ({
                   }
                 />
               </span>
-              <span className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-custom-item-copy`, 'min-w-0 flex-1 text-left')}>
+              <span className={mergeClassNames(
+                  `${DESIGNER_CLASSNAME}left-sidebar-custom-item-copy`,
+                  resolvedLayout === 'list' ? 'min-w-0 flex-1 text-left' : 'min-w-0 w-full text-center',
+                  resolvedLayout === 'icons' ? 'hidden' : '',
+                )}>
                 <span className={mergeClassNames(
-                  `${DESIGNER_CLASSNAME}left-sidebar-custom-item-label`, 
-                  'block truncate font-medium text-slate-800',
-                  sidebarDensityMode === 'mini' ? 'text-[7.5px]' : sidebarDensityMode === 'compact' ? 'text-[0.68rem]' : 'text-[0.72rem]'
+                  `${DESIGNER_CLASSNAME}left-sidebar-custom-item-label`,
+                  resolvedLayout === 'list'
+                    ? 'block truncate text-[0.75rem] font-semibold text-[var(--color-gray-900)] whitespace-nowrap [word-break:normal]'
+                    : 'min-w-0 w-full overflow-hidden [display:-webkit-box] [line-clamp:2] [-webkit-line-clamp:2] [-webkit-box-orient:vertical] [text-overflow:ellipsis] [white-space:normal] text-[0.575rem] font-semibold text-[var(--color-gray-700)] capitalize text-center leading-[1.3] break-words',
+                  sidebarDensityMode === 'minimal'
+                    ? 'text-[9px]'
+                    : sidebarDensityMode === 'compact'
+                      ? resolvedLayout === 'list'
+                        ? 'text-[0.68rem]'
+                        : 'text-[0.56rem]'
+                      : resolvedLayout === 'list'
+                        ? 'text-[0.72rem]'
+                        : 'text-[0.575rem]',
                 )}>
                   {definition.label}
                 </span>
@@ -1442,7 +1610,7 @@ const LeftSidebar = ({
   const searchNode = showSearchInput ? (
     <div className={mergeClassNames(
       'flex flex-col',
-      sidebarDensityMode === 'mini' ? 'gap-1' : 'gap-2',
+      sidebarDensityMode === 'minimal' ? 'gap-1' : 'gap-2',
     )}>
       <LeftSidebarSearch
         value={search}
@@ -1459,7 +1627,7 @@ const LeftSidebar = ({
         <div className={mergeClassNames(
           DESIGNER_CLASSNAME + 'left-sidebar-chip-row',
           'flex flex-wrap items-center gap-1.5 rounded-full border border-slate-200/70 bg-slate-50/50 px-1.5 py-1 shadow-sm',
-          sidebarDensityMode === 'mini' ? 'gap-1 px-1 py-0.5' : '',
+          sidebarDensityMode === 'minimal' ? 'gap-1 px-1 py-0.5' : '',
         )}>
           {Array.from(parsedQuery.capabilities).map((cap) => (
             <Button key={`facet-cap-${cap}`} size="small" type="text" className="rounded-full border border-slate-200/70 bg-white/90 px-2 text-[10px] text-slate-600 shadow-none hover:border-sky-200 hover:bg-white">
@@ -1489,7 +1657,7 @@ const LeftSidebar = ({
       <div className={mergeClassNames(
         DESIGNER_CLASSNAME + 'left-sidebar-chip-row',
         'flex flex-wrap items-center gap-1.5 rounded-full border border-slate-200/70 bg-white/85 px-1.5 py-1 shadow-sm',
-        sidebarDensityMode === 'mini' ? 'gap-1 px-1 py-0.5' : ''
+        sidebarDensityMode === 'minimal' ? 'gap-1 px-1 py-0.5' : ''
       )}>
         <Button
           className={mergeClassNames(
@@ -1497,13 +1665,13 @@ const LeftSidebar = ({
             'rounded-full border border-slate-200/70 bg-white px-2 text-[10px] font-medium text-slate-600 shadow-none hover:border-sky-200 hover:bg-slate-50',
             quickFilter === 'all' ? 'border-sky-200 bg-sky-50 text-sky-700' : '',
           )}
-          size={sidebarDensityMode === 'mini' ? 'small' : 'small'}
-          style={sidebarDensityMode === 'mini' ? { fontSize: '9px', padding: '0 4px', height: '20px' } : {}}
+          size={sidebarDensityMode === 'minimal' ? 'small' : 'small'}
+          style={sidebarDensityMode === 'minimal' ? { fontSize: '9px', padding: '0 4px', height: '20px' } : {}}
           data-testid="left-sidebar-filter-all"
           type={quickFilter === 'all' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('all')}
         >
-          {sidebarDensityMode === 'mini' ? 'Todo' : 'Todos'}
+          {sidebarDensityMode === 'minimal' ? 'Todo' : 'Todos'}
         </Button>
         <Button
           className={mergeClassNames(
@@ -1511,13 +1679,13 @@ const LeftSidebar = ({
             'rounded-full border border-slate-200/70 bg-white px-2 text-[10px] font-medium text-slate-600 shadow-none hover:border-sky-200 hover:bg-slate-50',
             quickFilter === 'favorites' ? 'border-sky-200 bg-sky-50 text-sky-700' : '',
           )}
-          size={sidebarDensityMode === 'mini' ? 'small' : 'small'}
-          style={sidebarDensityMode === 'mini' ? { fontSize: '9px', padding: '0 4px', height: '20px' } : {}}
+          size={sidebarDensityMode === 'minimal' ? 'small' : 'small'}
+          style={sidebarDensityMode === 'minimal' ? { fontSize: '9px', padding: '0 4px', height: '20px' } : {}}
           data-testid="left-sidebar-filter-favorites"
           type={quickFilter === 'favorites' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('favorites')}
         >
-          {sidebarDensityMode === 'mini' ? `★ ${favoritePlugins.size}` : `Favoritos (${favoritePlugins.size})`}
+          {sidebarDensityMode === 'minimal' ? `★ ${favoritePlugins.size}` : `Favoritos (${favoritePlugins.size})`}
         </Button>
         <Button
           className={mergeClassNames(
@@ -1525,18 +1693,19 @@ const LeftSidebar = ({
             'rounded-full border border-slate-200/70 bg-white px-2 text-[10px] font-medium text-slate-600 shadow-none hover:border-sky-200 hover:bg-slate-50',
             quickFilter === 'recent' ? 'border-sky-200 bg-sky-50 text-sky-700' : '',
           )}
-          size={sidebarDensityMode === 'mini' ? 'small' : 'small'}
-          style={sidebarDensityMode === 'mini' ? { fontSize: '9px', padding: '0 4px', height: '20px' } : {}}
+          size={sidebarDensityMode === 'minimal' ? 'small' : 'small'}
+          style={sidebarDensityMode === 'minimal' ? { fontSize: '9px', padding: '0 4px', height: '20px' } : {}}
           data-testid="left-sidebar-filter-recent"
           type={quickFilter === 'recent' ? 'primary' : 'default'}
           onClick={() => setQuickFilter('recent')}
         >
-          {sidebarDensityMode === 'mini' ? `⟳ ${recentPlugins.length}` : `Recientes (${recentPlugins.length})`}
+          {sidebarDensityMode === 'minimal' ? `⟳ ${recentPlugins.length}` : `Recientes (${recentPlugins.length})`}
         </Button>
         {showCatalogViewSwitcher && (
           <CatalogLayoutToggle
             layout={resolvedLayout}
             density={sidebarDensityMode}
+            showLabels={sidebarDensityMode === 'comfortable' && sidebarLiveWidth >= 280}
             onChange={(layout) => {
               setUserLayout(layout);
               onCatalogLayoutChange?.(layout);
@@ -1614,7 +1783,10 @@ const LeftSidebar = ({
       data-expanded={sidebarExpanded ? 'true' : 'false'}
       data-left-sidebar-density={sidebarDensityMode}
       data-sidebar-scroll-locked={isDragging ? 'true' : 'false'}
-      style={{ '--left-sidebar-live-width': `${sidebarLiveWidth}px` } as React.CSSProperties}>
+      style={{
+        '--left-sidebar-live-width': `${sidebarLiveWidth}px`,
+        transition: 'width 220ms var(--wix-ease-out), max-width 220ms var(--wix-ease-out), opacity 150ms ease, transform 220ms var(--wix-ease-out)',
+      } as React.CSSProperties}>
       <SidebarCollapseHandle
         side="left"
         expanded={sidebarExpanded}
@@ -1623,7 +1795,11 @@ const LeftSidebar = ({
         labelExpanded="Cerrar catálogo de campos"
         labelCollapsed="Abrir catálogo de campos"
         onToggle={() => setSidebarExpanded((prev) => !prev)}
-        className={`${DESIGNER_CLASSNAME}left-sidebar-toggle-btn`}
+        className={mergeClassNames(
+          'absolute right-[0.5rem] top-[0.875rem] z-[90] [transition:right_220ms_var(--wix-ease-out),_border-color_var(--transition-fast),_color_var(--transition-fast),_opacity_150ms_ease,_transform_220ms_var(--wix-ease-out)]',
+          'hover:bg-slate-50 hover:text-slate-700',
+          sidebarExpanded ? '' : 'shadow-sm',
+        )}
       />
 
       {!sidebarExpanded && (
@@ -1645,7 +1821,7 @@ const LeftSidebar = ({
         />
       )}
       {useLayoutFrame ? (
-        <SidebarFrame className={`${DESIGNER_CLASSNAME}left-sidebar-frame`}>
+        <SidebarFrame className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-frame`, 'flex h-full min-h-0 flex-col', sidebarExpanded ? '' : 'opacity-0 pointer-events-none [visibility:hidden] [transform:translateX(-0.5rem)]')}>
           <SidebarShell
             tabs={sidebarTabs}
             activeTab={activeTab}
@@ -1679,7 +1855,7 @@ const LeftSidebar = ({
         </SidebarFrame>
       ) : (
         <div
-          className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-content`, classNames?.content)}>
+          className={mergeClassNames(`${DESIGNER_CLASSNAME}left-sidebar-content`, 'flex flex-col min-h-0 w-full', sidebarExpanded ? '' : 'opacity-0 pointer-events-none [visibility:hidden] [transform:translateX(-0.5rem)]', classNames?.content)}>
           <SidebarShell
             tabs={sidebarTabs}
             activeTab={activeTab}

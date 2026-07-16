@@ -72,7 +72,7 @@ const SchemaDropSetupModal = ({
                 value: recipient.id,
                 label: recipient.name || recipient.id,
               }))}
-              className="rounded-xl"
+              className="rounded-xl [&_.ant-select-selector]:min-h-[2rem] [&_.ant-select-selector]:rounded-md [&_.ant-select-selector]:border-slate-200 [&_.ant-select-selector]:bg-white [&_.ant-select-selector]:text-[0.6875rem] [&_.ant-select-selector]:shadow-none"
             />
             {!hasRecipient ? <div className="text-sm text-amber-600">Selecciona un destinatario.</div> : null}
           </>

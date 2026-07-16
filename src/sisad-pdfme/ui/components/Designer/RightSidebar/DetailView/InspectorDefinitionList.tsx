@@ -11,15 +11,15 @@ export type InspectorDefinitionListProps = {
   items: InspectorDefinitionItem[];
   className?: string;
   testId?: string;
-  density?: 'compact' | 'default' | 'mini';
+  density?: 'compact' | 'default' | 'minimal';
 };
 
 export const InspectorDefinitionList = ({ items, className, testId, density = 'default' }: InspectorDefinitionListProps) => (
   <dl
     data-testid={testId}
     className={mergeClassNames(
-      'grid gap-x-3 gap-y-1.5 rounded-xl border border-slate-200/80 bg-white/90 p-2 shadow-none',
-      density === 'mini' ? 'grid-cols-1' : density === 'compact' ? 'grid-cols-1' : 'grid-cols-2',
+      'grid gap-x-3 gap-y-1.5 rounded-xl border border-slate-200/70 bg-white/95 p-2 shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
+      density === 'minimal' ? 'grid-cols-1' : density === 'compact' ? 'grid-cols-1' : 'grid-cols-2',
       className,
     )}
   >

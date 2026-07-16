@@ -35,6 +35,7 @@ export const PdfViewer = Viewer;
 export const PdfEditorEngineBuilder = DesignerEngineBuilder;
 
 export { Designer, Viewer, Form, DesignerEngineBuilder };
+export { RuntimeFormPanel } from './components/RuntimeFormPanel';
 export * from './designerEngine';
 export { applyCollaborationEvent, useCollaborationSync } from './collaboration';
 export { defaultSisadPdfmeConfig, createSisadPdfmeConfig } from '../config/index.js';

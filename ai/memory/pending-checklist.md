@@ -4,11 +4,14 @@ Este archivo contiene solo trabajo pendiente o continuidad. Las tareas completad
 
 ## Active existente
 
-- [ ] `TASK-PDFME-005-digital-agreements-runtime-adapter.md`
-- [ ] `TASK-PDFME-008-signature-policies-firma-sisad.md`
-- [ ] `TASK-PDFME-009-externalforms-runner-contract.md`
+- [ ] `TASK-REGRESSION-021-shell-token-visual-recovery.md`
+- `TASK-CSS-019-jsx-tsx-tailwind-migration-and-css-reduction.md` ya vive en `ai/task-cards/completed/`.
 
 ## Backlog / continuidad
+
+- `TASK-PDFME-005-digital-agreements-runtime-adapter.md` - fuera de este repo; el core equivalente ya está cubierto en `src/sisad-pdfme`.
+- `TASK-PDFME-008-signature-policies-firma-sisad.md` - fuera de este repo; el core ya expone políticas técnicas y el negocio vive en el host.
+- `TASK-PDFME-009-externalforms-runner-contract.md` - fuera de este repo; el runner core ya existe en `src/sisad-pdfme/externalForms`.
 
 
 ## Pendientes transversales

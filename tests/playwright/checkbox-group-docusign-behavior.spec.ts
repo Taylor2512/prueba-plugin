@@ -81,8 +81,23 @@ test.describe('checkboxGroup DocuSign-style behavior', () => {
       }
     }
 
-    // No dark mask is shown over the canvas while adding the field
-    await expect(page.locator('.sisad-pdfme-canvas-mask, .sisad-pdfme-designer-mask')).toHaveCount(0);
+    // La máscara por-página de páginas NO activas es diseño esperado en
+    // multi-documento; lo prohibido es enmascarar la página del grupo recién
+    // creado o el canvas completo.
+    const groupCovered = await page.evaluate(() => {
+      const group = document.querySelector('[data-schema-type="checkboxGroup"]');
+      const groupRect = group?.getBoundingClientRect();
+      if (!groupRect) return true;
+      const masks = Array.from(document.querySelectorAll<HTMLElement>('.sisad-pdfme-canvas-mask, .sisad-pdfme-designer-mask'))
+        .filter((mask) => Number(getComputedStyle(mask).opacity || '0') > 0)
+        .map((mask) => mask.getBoundingClientRect());
+      return masks.some((mask) => {
+        const ix = Math.max(0, Math.min(mask.right, groupRect.right) - Math.max(mask.left, groupRect.left));
+        const iy = Math.max(0, Math.min(mask.bottom, groupRect.bottom) - Math.max(mask.top, groupRect.top));
+        return (ix * iy) / Math.max(1, groupRect.width * groupRect.height) >= 0.5;
+      });
+    });
+    expect(groupCovered).toBeFalsy();
   });
 
   test('checkboxGroup exposes stable per-option ids and an add-option affordance', async ({ page }) => {

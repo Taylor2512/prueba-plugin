@@ -584,11 +584,13 @@ const TemplateEditor = ({
     typeof options.rightSidebarContainerSelector === 'string' ? options.rightSidebarContainerSelector : '';
   const rightSidebarDetachedClassName =
     typeof options.rightSidebarDetachedClassName === 'string' ? options.rightSidebarDetachedClassName : '';
+  const density = (options as any).density || 'comfortable';
+  const layoutPreset = (options as any).layoutPreset || 'three-panel';
   const parsedRightSidebarWidth = Number(options.rightSidebarWidth);
   const rightSidebarWidthRaw =
     Number.isFinite(parsedRightSidebarWidth) && parsedRightSidebarWidth > 0
       ? parsedRightSidebarWidth
-      : RIGHT_SIDEBAR_WIDTH;
+      : density === 'compact' ? 280 : density === 'minimal' ? 240 : RIGHT_SIDEBAR_WIDTH;
   const viewportWidth =
     Number.isFinite(size.width) && size.width > 0
       ? size.width
@@ -615,12 +617,22 @@ const TemplateEditor = ({
     220,
     Math.min(rightSidebarWidthRaw, Math.floor(viewportWidth * (viewportWidth <= 768 ? 0.86 : 0.42))),
   );
+  const compactRightSidebarWidthRaw = Math.max(
+    240,
+    Math.min(Math.floor(viewportWidth * 0.175), 276),
+  );
+  const effectiveRightSidebarWidthRaw =
+    leftSidebarVariant === 'compact'
+      ? compactRightSidebarWidthRaw
+      : responsiveRightSidebarWidthRaw;
   // Canvas-first baseline: sidebars overlay the stage unless reserveSpace is explicitly enabled.
   const shouldReserveRightSidebarSpace =
     rightSidebarReserveSpace === true && rightSidebarPresentation === 'docked';
-  const rightSidebarWidth = shouldReserveRightSidebarSpace ? responsiveRightSidebarWidthRaw : 0;
+  const rightSidebarWidth = shouldReserveRightSidebarSpace ? effectiveRightSidebarWidthRaw : 0;
   const parsedLeftSidebarWidth = Number(options.leftSidebarWidth);
-  const defaultSidebarWidth = leftSidebarVariant === 'panel' ? 240 : LEFT_SIDEBAR_WIDTH;
+  const defaultSidebarWidth = leftSidebarVariant === 'panel'
+    ? (density === 'compact' ? 200 : density === 'minimal' ? 180 : 240)
+    : LEFT_SIDEBAR_WIDTH;
   const leftSidebarWidthRawBase =
     leftSidebarVisible && Number.isFinite(parsedLeftSidebarWidth) && parsedLeftSidebarWidth > 0
       ? parsedLeftSidebarWidth
@@ -628,7 +640,7 @@ const TemplateEditor = ({
         ? defaultSidebarWidth
         : 0;
   const leftSidebarUsesExpandedLayout = leftSidebarVariant === 'panel' || leftSidebarUseLayout;
-  const leftSidebarMinWidth = leftSidebarUsesExpandedLayout ? 220 : 42;
+  const leftSidebarMinWidth = leftSidebarUsesExpandedLayout ? (density === 'compact' ? 180 : density === 'minimal' ? 160 : 220) : 42;
   const leftSidebarViewportLimit = Math.max(
     leftSidebarMinWidth,
     Math.floor(viewportWidth * (viewportWidth <= 768 ? 0.86 : leftSidebarUsesExpandedLayout ? 0.34 : 0.12)),
@@ -1593,6 +1605,73 @@ const TemplateEditor = ({
       openInlineEdit?: (inlineEditRequest: { schemaId: string; target: 'content' | 'name' }) => void;
     }) | null)?.openInlineEdit?.(request);
   }, []);
+  const selectSchemasByIds = useCallback(
+    (
+      ids: string[],
+      options?: {
+        mode?: 'replace' | 'toggle';
+      },
+    ) => {
+      const normalizedIds = [...new Set(ids.map((id) => String(id || '').trim()).filter(Boolean))];
+      const mode = options?.mode || 'replace';
+
+      const resolveElementBySchemaIdentity = (schemaIdentity: string) => {
+        const schema = schemasListRef.current
+          .flat()
+          .find(
+            (item) =>
+              item.id === schemaIdentity ||
+              String((item as { schemaUid?: string }).schemaUid || '').trim() === schemaIdentity,
+          );
+        const resolvedSchemaId = String(
+          (schema as { schemaUid?: string } | undefined)?.schemaUid || schema?.id || schemaIdentity,
+        ).trim();
+        if (!resolvedSchemaId) return null;
+
+        const selector =
+          typeof CSS !== 'undefined' && typeof CSS.escape === 'function'
+            ? `[data-schema-id="${CSS.escape(resolvedSchemaId)}"]`
+            : `[data-schema-id="${resolvedSchemaId.replace(/"/g, '\\"')}"]`;
+        return document.querySelector<HTMLElement>(selector);
+      };
+
+      const nextElements = normalizedIds
+        .map((id) => resolveElementBySchemaIdentity(id))
+        .filter((element): element is HTMLElement => Boolean(element));
+
+      if (mode === 'replace') {
+        setActiveElements((prev) => (areActiveElementsEqual(prev, nextElements) ? prev : nextElements));
+        setHoveringSchemaId(null);
+        return;
+      }
+
+      setActiveElements((prev) => {
+        const keyed = new Map<string, HTMLElement>();
+        prev.forEach((element) => {
+          const identity = resolveSchemaIdentityFromElement(element);
+          const key = String(identity.schemaUid || identity.schemaId || element.id || '').trim();
+          if (key) keyed.set(key, element);
+        });
+
+        nextElements.forEach((element) => {
+          const identity = resolveSchemaIdentityFromElement(element);
+          const key = String(identity.schemaUid || identity.schemaId || element.id || '').trim();
+          if (!key) return;
+
+          if (keyed.has(key)) {
+            keyed.delete(key);
+          } else {
+            keyed.set(key, element);
+          }
+        });
+
+        const merged = [...keyed.values()];
+        return areActiveElementsEqual(prev, merged) ? prev : merged;
+      });
+      setHoveringSchemaId(null);
+    },
+    [areActiveElementsEqual],
+  );
   const selectionCommands = useMemo(
     () =>
       createSelectionCommands({
@@ -1610,6 +1689,7 @@ const TemplateEditor = ({
         onPasteSelection: handlePasteSelection,
         onCutSelection: handleCutSelection,
         onClearSelection: () => setActiveElements([]),
+        onSelectSchemasByIds: selectSchemasByIds,
         executeCommand: (command) => {
           void commandBusRef.current.execute(command);
         },
@@ -1629,6 +1709,7 @@ const TemplateEditor = ({
       handleCopySelection,
       handlePasteSelection,
       handleCutSelection,
+      selectSchemasByIds,
     ],
   );
 
@@ -3681,11 +3762,12 @@ const TemplateEditor = ({
       setSidebarOpen={setSidebarOpen}
       collaborationContext={collaborationContext}
       extensions={designerEngine.extensions}
-      width={responsiveRightSidebarWidthRaw}
+      width={effectiveRightSidebarWidthRaw}
       detached={rightSidebarDetached}
       presentation={rightSidebarPresentation}
       responsiveBreakpoint={Number.isFinite(rightSidebarResponsiveBreakpoint) ? rightSidebarResponsiveBreakpoint : 1080}
       viewportWidth={viewportWidth}
+      {...rightSidebarResolvedProps}
       useLayoutFrame={rightSidebarUseLayout}
       documents={
         documentItems.length > 0
@@ -3759,7 +3841,6 @@ const TemplateEditor = ({
           .join(' ') || undefined
       }
       bridge={componentBridge}
-      {...rightSidebarResolvedProps}
     />
   );
   const activeDragPageIndex = activeDragData?.pageIndex ?? pageCursor;
@@ -3965,7 +4046,13 @@ const TemplateEditor = ({
           resetSchemaDragState();
         }}
       >
-        <div className={`${DESIGNER_CLASSNAME}workspace`}>
+        <div
+          className={`${DESIGNER_CLASSNAME}workspace relative flex flex-auto flex-row items-stretch min-w-0 min-h-0 w-full`}
+          style={
+            (options as any).gap !== undefined
+              ? { gap: typeof (options as any).gap === 'number' ? `${(options as any).gap}px` : (options as any).gap }
+              : undefined
+          }>
           {!leftSidebarDetached ? leftSidebarNode : null}
           <div
             className={`${DESIGNER_CLASSNAME}stage`}
@@ -3975,6 +4062,8 @@ const TemplateEditor = ({
             data-left-sidebar-detached={leftSidebarDetached ? 'true' : 'false'}
             data-left-sidebar-layout={leftSidebarUseLayout ? 'frame' : 'default'}
             data-right-sidebar-detached={rightSidebarDetached ? 'true' : 'false'}
+            data-layout-preset={layoutPreset}
+            data-density={density}
             data-sidebar-open={sidebarOpen ? 'true' : 'false'}
             data-is-dragging={isSchemaDragging ? 'true' : 'false'}
             data-schema-dragging={isSchemaDragging ? 'true' : 'false'}
@@ -3995,7 +4084,17 @@ const TemplateEditor = ({
                   : interactionState.isRotating
                     ? 'rotating'
                     : interactionState.phase
-            }>
+            }
+            style={{
+              ...((options as any).padding !== undefined
+                ? { padding: typeof (options as any).padding === 'number' ? `${(options as any).padding}px` : (options as any).padding }
+                : {}),
+              // El ancho REAL del sidebar derecho se resuelve en JS (densidad/
+              // viewport). Publicarlo en la var mantiene consistentes el padding
+              // del canvas y el offset del CtlBar (evita que los botones queden
+              // debajo del sidebar cuando el token estático difiere).
+              ['--sisad-pdfme-rs-width' as string]: `${effectiveRightSidebarWidthRaw}px`,
+            }}>
           <CtlBar
             size={sizeExcSidebars}
             pageCursor={pageCursor}
@@ -4004,6 +4103,7 @@ const TemplateEditor = ({
             zoomLevel={zoomLevel}
             setZoomLevel={setZoomLevel}
             setZoom={setZoomExternal}
+            interactionPhase={interactionState.phase}
             addPageAfter={handleAddPageAfter}
             duplicatePageAfter={handleDuplicatePageAfter}
             removePage={pageManipulation.removePage}

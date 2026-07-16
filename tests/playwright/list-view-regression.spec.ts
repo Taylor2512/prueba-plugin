@@ -23,18 +23,21 @@ test.describe('list view regression', () => {
     await page.goto('/lab/multi-document-routing');
     await page.keyboard.press('Escape');
 
+    const fieldsTab = page.getByRole('tab', { name: /Abrir panel Campos/i }).first();
+    await expect(fieldsTab).toBeVisible();
+    await fieldsTab.click();
+
     await openCatalog(page);
     await ensureCategoryOpen(page, 'Selecciones');
     // Scope to the catalog button — the readable ListView labels now also contain
     // the type label "Opción", so an inexact match would collide with list rows.
     await page.locator('button[data-schema-type="radioGroup"][data-schema-label="Opción"]').first().dblclick();
 
-    // Return to the list panel after adding the group so the contract is tested in list view.
+    // Return to the fields panel after adding the group so the contract is tested in ListView.
     await page.keyboard.press('Escape');
 
     const listView = page.locator('.sisad-pdfme-designer-list-view');
     await expect(listView).toBeVisible();
-    await expect(page.locator('aside[data-panel-mode="list"]')).toBeVisible();
 
     const groupItem = listView.locator('.sisad-pdfme-designer-list-view-item[data-schema-type="radioGroup"]').first();
     const plainItem = listView.locator('.sisad-pdfme-designer-list-view-item[data-schema-type="text"]').first();

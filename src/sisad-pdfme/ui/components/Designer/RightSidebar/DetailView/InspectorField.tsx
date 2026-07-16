@@ -8,7 +8,7 @@ export type InspectorFieldProps = {
   children?: React.ReactNode;
   className?: string;
   testId?: string;
-  density?: 'compact' | 'default' | 'mini';
+  density?: 'compact' | 'default' | 'minimal';
 };
 
 export const InspectorField = ({
@@ -23,14 +23,14 @@ export const InspectorField = ({
   <div
     data-testid={testId}
     className={mergeClassNames(
-      'rounded-xl border border-slate-200/80 bg-white/90 p-1.5 shadow-none',
-      density === 'mini' ? 'space-y-[3px]' : density === 'compact' ? 'space-y-1' : 'space-y-1.5',
+      'rounded-xl border border-slate-200/70 bg-white/96 p-1.5 shadow-[0_1px_3px_rgba(15,23,42,0.04)]',
+      density === 'minimal' ? 'space-y-[3px]' : density === 'compact' ? 'space-y-1' : 'space-y-1.5',
       className,
     )}
     style={ownerColor ? ({ '--schema-owner-color': ownerColor } as React.CSSProperties) : undefined}
   >
     <div className="min-w-0">
-      <div className="text-[10px] font-semibold leading-tight text-slate-900">{label}</div>
+      <div className="text-[9px] font-semibold uppercase tracking-[0.04em] leading-tight text-slate-600">{label}</div>
       {description ? <div className="text-[9px] leading-4 text-slate-500">{description}</div> : null}
     </div>
     {children}

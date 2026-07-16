@@ -31,7 +31,11 @@ const Mask = ({ width, height, className, style, maskColor, blur = 1 }: MaskProp
 
   return (
     <div
-      className={mergeClassNames(DESIGNER_CLASSNAME + 'mask', className, 'pointer-events-none absolute z-[100]')}
+      className={mergeClassNames(
+        DESIGNER_CLASSNAME + 'mask',
+        className,
+        'pointer-events-none absolute z-[100] bg-[var(--sisad-pdfme-mask-bg)] [backdrop-filter:blur(var(--sisad-pdfme-mask-blur))] [transition:opacity_0.2s_ease] cursor-not-allowed',
+      )}
       style={{
         top: -RULER_HEIGHT,
         left: -RULER_HEIGHT,

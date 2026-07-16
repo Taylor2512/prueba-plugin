@@ -16,7 +16,7 @@ export type SidebarRailItem = {
 export type SidebarRailProps = {
   side: 'left' | 'right';
   items: SidebarRailItem[];
-  density?: 'comfortable' | 'compact' | 'mini';
+  density?: 'comfortable' | 'compact' | 'minimal';
   className?: string;
   /** Spacer at the top to avoid overlap with toggle handles or top bars. */
   topSpacer?: boolean;
@@ -29,12 +29,12 @@ export const SidebarRail = ({
   className,
   topSpacer = true,
 }: SidebarRailProps) => {
-  const railPaddingClass = density === 'mini'
+  const railPaddingClass = density === 'minimal'
     ? 'py-1 px-0.5 gap-1'
     : density === 'compact'
       ? 'py-1.5 px-[0.1875rem] gap-[0.3125rem]'
       : 'py-2 px-1 gap-1.5';
-  const buttonSizeClass = density === 'mini'
+  const buttonSizeClass = density === 'minimal'
     ? 'h-[1.75rem] w-[1.75rem] rounded-lg'
     : density === 'compact'
       ? 'h-[1.875rem] w-[1.875rem] rounded-xl'
@@ -52,9 +52,9 @@ export const SidebarRail = ({
       data-density={density}
     >
       {topSpacer && (
-         <div className={density === 'mini' ? 'h-10 shrink-0 pointer-events-none' : 'h-12 shrink-0 pointer-events-none'} aria-hidden="true" />
+         <div className={density === 'minimal' ? 'h-10 shrink-0 pointer-events-none' : 'h-12 shrink-0 pointer-events-none'} aria-hidden="true" />
       )}
-      <div className={mergeClassNames('flex min-h-0 flex-1 flex-col', density === 'mini' ? 'gap-0.5' : 'gap-[0.1875rem]')}>
+      <div className={mergeClassNames('flex min-h-0 flex-1 flex-col', density === 'minimal' ? 'gap-0.5' : 'gap-[0.1875rem]')}>
         {items.map((item) => (
           <Tooltip key={item.key} title={item.label} placement={side === 'left' ? 'right' : 'left'}>
             <button

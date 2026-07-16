@@ -68,6 +68,10 @@ export function resolveSelectionIntent(input: SelectionPolicyInput): SelectionIn
     if (ctrlKey && shiftKey) return 'add';
   }
 
+  // 3b. Shift solo también acumula en click (paridad DocuSign/Wix y con la
+  // región de Selecto, que ya trata Shift como 'add').
+  if (shiftKey) return 'add';
+
   // 4. Doble click (por ahora lo tratamos como replace, pero podría ser edit)
   if (pointerKind === 'double-click') return 'replace';
 

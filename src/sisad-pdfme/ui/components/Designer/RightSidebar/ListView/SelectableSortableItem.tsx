@@ -15,6 +15,7 @@ import { useMountStatus } from '../../../../hooks.js';
 import PluginIcon from '../../PluginIcon.js';
 import { DESIGNER_CLASSNAME } from '../../../../constants.js';
 import { resolveListViewItemDescriptor } from './listViewItemResolver.js';
+import { mergeClassNames } from '../../shared/className.js';
 
 
 /**
@@ -37,12 +38,15 @@ const resolveDisplayLabel = (schema: SchemaForUI) => {
  * Props for a sortable schema row.
  */
 interface Props {
+  densityMode?: 'compact' | 'comfortable' | 'minimal';
   isSelected: boolean;
   isHovering?: boolean;
   isNameDuplicate?: boolean;
   style?: React.CSSProperties;
-  onSelect: (_id: string, _isShiftSelect: boolean) => void;
-  onEdit: (_id: string) => void;
+  onSelect: (
+    _id: string,
+    _intent: { isRange: boolean; isToggle: boolean },
+  ) => void;
   onDelete?: () => void;
   schema: SchemaForUI;
   onMouseEnter: () => void;
@@ -54,12 +58,12 @@ interface Props {
  * Connects one schema row to dnd-kit sorting and collaboration-aware metadata.
  */
 const SelectableSortableItem = ({
+  densityMode = 'compact',
   isSelected,
   isHovering,
   isNameDuplicate,
   style,
   onSelect,
-  onEdit,
   onDelete,
   schema,
   onMouseEnter,
@@ -72,11 +76,6 @@ const SelectableSortableItem = ({
   });
   const mounted = useMountStatus();
   const mountedWhileDragging = isDragging && !mounted;
-
-  const newListeners = {
-    ...listeners,
-    onClick: (event: React.MouseEvent) => onSelect(schema.id, event.shiftKey),
-  };
 
   const [pluginLabel, thisPlugin] = React.useMemo(
     () => pluginsRegistry.findWithLabelByType(schema.type),
@@ -104,12 +103,16 @@ const SelectableSortableItem = ({
       ref={setNodeRef}
       onMouseEnter={onMouseEnter}
       onMouseLeave={onMouseLeave}
-      onClick={() => onEdit(schema.id)}
+      onClick={(event) =>
+        onSelect(schema.id, {
+          isRange: event.shiftKey,
+          isToggle: event.metaKey || event.ctrlKey,
+        })
+      }
       value={primaryLabel}
       schemaType={schema.type}
       title={technicalName}
       typeLabel={schemaTypeLabel}
-      className={DESIGNER_CLASSNAME + 'item-auto rounded-2xl'}
       status={status}
       required={itemDescriptor.isRequired}
       readOnly={itemDescriptor.isReadOnly}
@@ -119,13 +122,18 @@ const SelectableSortableItem = ({
       transform={transform}
       selected={isSelected}
       hovered={isHovering}
+      densityMode={densityMode}
       onDelete={onDelete}
       style={style}
       fadeIn={mountedWhileDragging}
-      listeners={newListeners}
+      listeners={listeners}
       accentColor={collaborationColor}
       metaBadges={collaborationBadges}
       icon={thisPlugin && <PluginIcon plugin={thisPlugin} label={pluginLabel} size={20} styles={collaborationColor ? { color: collaborationColor } : undefined} />}
+      className={mergeClassNames(
+        DESIGNER_CLASSNAME + 'item-auto',
+        'flex items-center gap-[0.5rem] p-[0.375rem] cursor-pointer rounded-2xl',
+      )}
     />
   );
 };

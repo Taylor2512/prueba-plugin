@@ -150,11 +150,11 @@ export default function CanvasStateOverlay({
         data-block-reason={blockReason || 'none'}
         data-blocking-mask={blockingMaskVisible ? 'true' : 'false'}
       >
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'canvas-empty-state-card', 'rounded-2xl border border-dashed border-slate-200 bg-white/95 px-4 py-4 shadow-sm')}>
-          <span className={mergeClassNames(DESIGNER_CLASSNAME + 'canvas-empty-state-title', 'block text-sm font-semibold text-slate-800')}>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'canvas-empty-state-card', 'mx-auto flex max-w-[22rem] flex-col gap-2 rounded-[1rem] border-[1.5px] border-dashed border-[var(--color-primary-25)] bg-[linear-gradient(180deg,rgba(255,255,255,0.98),rgba(241,245,249,0.95))] p-[1.25rem_1.5rem_1.375rem] text-center text-[var(--text-primary)] shadow-[0_1.25rem_2.5rem_var(--color-gray-900-08),_0_0_0_4px_var(--color-primary-08)]')}>
+          <span className={mergeClassNames(DESIGNER_CLASSNAME + 'canvas-empty-state-title', 'mb-[0.25rem] block text-[0.8125rem] font-semibold leading-[1.4] text-[var(--color-text-primary)]')}>
             Esta página todavía no tiene campos
           </span>
-          <span className={mergeClassNames(DESIGNER_CLASSNAME + 'canvas-empty-state-hint', 'block text-xs leading-5 text-slate-500')}>
+          <span className={mergeClassNames(DESIGNER_CLASSNAME + 'canvas-empty-state-hint', 'block text-[0.6875rem] leading-[1.5] text-[var(--color-text-muted)]')}>
             Arrastra un campo del catálogo izquierdo para empezar a construir el documento.
           </span>
         </div>

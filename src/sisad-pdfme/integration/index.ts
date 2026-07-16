@@ -17,6 +17,7 @@ export {
   PdfEditorEngineBuilder,
   PdfFormView,
   PdfViewer,
+  RuntimeFormPanel,
   createDesignerRuntimeEventHub,
 } from '../ui/index.js';
 export {

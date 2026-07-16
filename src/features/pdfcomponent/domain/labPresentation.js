@@ -1,4 +1,8 @@
 import { builtInSchemaDefinitions } from '@sisad-pdfme/schemas'
+import {
+  resolveRuntimeSchemaAccess,
+  resolveSchemaAccessState,
+} from '@/sisad-pdfme/ui/collaboration/schemaRuntimeAccess'
 
 const LAB_MODE_LABELS = {
   designer: 'Diseñador',
@@ -46,13 +50,13 @@ const LAB_EXAMPLE_PRESENTATION = {
   },
 }
 
-const LAB_COLOR_TOKENS = {
-  '#2563eb': 'blue',
-  '#d946ef': 'fuchsia',
-  '#f97316': 'orange',
-  '#0f766e': 'teal',
-  '#ca8a04': 'amber',
-  '#7c3aed': 'violet',
+const LAB_COLOR_CLASSES = {
+  '#2563eb': 'text-blue-700 bg-[rgba(219,234,254,0.95)]',
+  '#d946ef': 'text-fuchsia-700 bg-[rgba(250,232,255,0.92)]',
+  '#f97316': 'text-orange-700 bg-[rgba(255,237,213,0.95)]',
+  '#0f766e': 'text-teal-700 bg-[rgba(204,251,241,0.95)]',
+  '#ca8a04': 'text-amber-700 bg-[rgba(254,243,199,0.95)]',
+  '#7c3aed': 'text-violet-700 bg-[rgba(237,233,254,0.95)]',
 }
 
 export const getLabModeLabel = (mode) => LAB_MODE_LABELS[mode] || String(mode || '')
@@ -78,7 +82,7 @@ export const getLabCoverageLabel = (key) => LAB_COVERAGE_LABELS[key] || key
 export const getCollaboratorToneClass = (color) => {
   const normalized = String(color || '').trim().toLowerCase()
   if (!normalized) return ''
-  return LAB_COLOR_TOKENS[normalized] ? `sisad-pdfme-lab-chip-tone-${LAB_COLOR_TOKENS[normalized]}` : ''
+  return LAB_COLOR_CLASSES[normalized] || ''
 }
 
 export const flattenSchemasFromTemplate = (template) => {
@@ -140,40 +144,33 @@ export const getLabCollaborationSummary = ({
   activeUserId = '',
   isGlobalView = false,
 } = {}) => {
-  const normalizeValue = (value) => String(value || '').trim()
-  const getOwnerIds = (schema) => {
-    const ids = []
-    if (Array.isArray(schema?.ownerRecipientIds)) ids.push(...schema.ownerRecipientIds)
-    if (schema?.ownerRecipientId) ids.push(schema.ownerRecipientId)
-    return Array.from(new Set(ids.map(normalizeValue).filter(Boolean)))
+  const collaborationContext = {
+    activeRecipientId: activeUserId || null,
+    activeRecipient: activeUserId ? { id: activeUserId, name: activeUserId } : null,
+    isGlobalView,
+    canEditStructure: true,
+    actorId: activeUserId || null,
+    actorColor: null,
+    recipientColorMap: new Map(),
+    recipientNameMap: new Map(),
   }
 
-  // Visibility/editability follow ASSIGNMENT (owner), not authorship — same rule
-  // as schemaMatchesCollaborationView so counters match the canvas. The old
-  // `schemaOwner === activeUserId` (createdBy/lastModifiedBy) clause leaked
-  // other recipients' schemas the active user authored.
-  const visibleSchemas = schemas.filter((schema) => {
-    if (isGlobalView) return true
-    const ownerIds = getOwnerIds(schema)
-    const sharedOwner = normalizeValue(schema?.ownerMode) === 'shared'
-    return ownerIds.length === 0 || ownerIds.includes(activeUserId) || sharedOwner
+  const schemaAccess = schemas.map((schema) => {
+    const runtimeAccess = resolveRuntimeSchemaAccess(schema, 'designer', collaborationContext)
+    const accessState = resolveSchemaAccessState(schema, collaborationContext)
+    return {
+      runtimeAccess,
+      accessState,
+    }
   })
 
-  const editableSchemas = visibleSchemas.filter((schema) => {
-    const ownerIds = getOwnerIds(schema)
-    const sharedOwner = normalizeValue(schema?.ownerMode) === 'shared'
-    const lockedBy = normalizeValue(schema?.lock?.lockedBy)
-    const isReadonly = Boolean(schema?.readonly || schema?.__designer?.ownership?.readonly)
-    const ownershipMatches =
-      ownerIds.length === 0 || ownerIds.includes(activeUserId) || sharedOwner
-
-    return ownershipMatches && !isReadonly && (!lockedBy || lockedBy === activeUserId)
-  })
-
-  const lockedCount = schemas.filter((schema) => {
-    const lockedBy = normalizeValue(schema?.lock?.lockedBy)
-    return Boolean(lockedBy && lockedBy !== activeUserId)
-  }).length
+  const visibleSchemas = schemaAccess.filter(({ runtimeAccess }) => runtimeAccess.visible)
+  const editableSchemas = schemaAccess.filter(
+    ({ runtimeAccess, accessState }) => runtimeAccess.visible && runtimeAccess.editable && accessState.canEditProperties,
+  )
+  const lockedCount = schemaAccess.filter(({ runtimeAccess, accessState }) =>
+    runtimeAccess.visible && (runtimeAccess.reason === 'locked' || accessState.isObjectLocked || accessState.isLockedByOther),
+  ).length
 
   const commentCount = schemas.reduce((total, schema) => {
     const inlineComments = Array.isArray(schema?.comments) ? schema.comments.length : 0

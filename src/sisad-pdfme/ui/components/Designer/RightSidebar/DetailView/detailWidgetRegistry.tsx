@@ -70,7 +70,11 @@ const buildDetailWidgets = ({
   const familyPreset = getSchemaTypeInspectorPreset(activeSchemaType);
   const widgets: Record<string, (_widgetProps: PropPanelWidgetProps) => React.JSX.Element> = {
     AlignWidget: (p) => <AlignWidget {...p} {...props} options={options} selectionCommands={props.selectionCommands} />,
-    Divider: () => <Divider className={`${DESIGNER_CLASSNAME}detail-view-divider`} />,
+    Divider: () => (
+      <Divider
+        className={`${DESIGNER_CLASSNAME}detail-view-divider my-1.5 border-slate-200/70`}
+      />
+    ),
     ButtonGroup: (p) => <ButtonGroupWidget {...p} {...props} options={options} />,
     nativeColor: (p) => <ColorPickerWidget value={p.value} onChange={p.onChange} normalizeHex={normalizeColorHex} />,
     // Unified React options editor (select/radioGroup/checkboxGroup) — replaces

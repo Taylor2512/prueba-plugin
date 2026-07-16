@@ -8,7 +8,7 @@ export type SidebarCollapseHandleProps = {
   side: 'left' | 'right';
   expanded: boolean;
   presentation: 'docked' | 'overlay';
-  density?: 'full' | 'comfortable' | 'compact' | 'mini';
+  density?: 'full' | 'comfortable' | 'compact' | 'minimal';
   labelExpanded: string;
   labelCollapsed: string;
   onToggle: () => void;
@@ -53,11 +53,11 @@ export const SidebarCollapseHandle = ({
           `${DESIGNER_CLASSNAME}sidebar-collapse-handle`,
           `${DESIGNER_CLASSNAME}sidebar-collapse-handle-${side}`,
           'inline-flex items-center justify-center rounded-full border border-slate-200/80 bg-white/95 text-slate-600 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-200',
-          density === 'mini' ? 'h-7 w-7' : 'h-8 w-8',
+          density === 'minimal' ? 'h-7 w-7' : 'h-8 w-8',
           className,
         )}
       >
-        <Icon size={density === 'mini' ? 15 : 16} strokeWidth={2.2} />
+        <Icon size={density === 'minimal' ? 15 : 16} strokeWidth={2.2} />
       </button>
     </Tooltip>
   );

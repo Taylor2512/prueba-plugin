@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import PropTypes from 'prop-types'
-import { getLabExamples } from './labs/examples/labExamples.js'
+import { getLabExamples } from './labs/examples/labExampleRegistry.ts'
 import { getLabCoverageCounts, getLabExamplePresentation, getLabExampleSchemaStats } from './domain/labPresentation.js'
 import CaseCard from './CaseCard.jsx'
 
@@ -40,6 +40,26 @@ const FILTERS = [
 ]
 
 const normalizeText = (value) => String(value || '').trim().toLowerCase()
+
+const LANDING_ROOT_STYLE = {
+  fontFamily: "var(--font-family-ui, 'DM Sans', system-ui, sans-serif)",
+  minHeight: '100vh',
+  padding: 'clamp(0.75rem, 1.4vw, 1.25rem)',
+  width: '100%',
+  overflowX: 'clip',
+  color: '#0f172a',
+  background:
+    'radial-gradient(circle at top left, rgba(59, 130, 246, 0.12), transparent 30%), radial-gradient(circle at top right, rgba(244, 114, 182, 0.12), transparent 28%), linear-gradient(180deg, #f8fafc 0%, #eef2ff 100%)',
+}
+
+const LANDING_BACKDROP_STYLE = {
+  position: 'fixed',
+  inset: 0,
+  pointerEvents: 'none',
+  zIndex: -1,
+  background:
+    'radial-gradient(circle at 8% 14%, rgba(59, 130, 246, 0.12), transparent 24%), radial-gradient(circle at 90% 18%, rgba(14, 165, 233, 0.1), transparent 20%), radial-gradient(circle at 55% 92%, rgba(99, 102, 241, 0.08), transparent 26%), radial-gradient(circle at 20% 84%, rgba(15, 118, 110, 0.06), transparent 24%)',
+}
 
 export default function LabLandingPage({ examples = defaultExamples } = {}) {
   const [search, setSearch] = useState('')
@@ -88,9 +108,11 @@ export default function LabLandingPage({ examples = defaultExamples } = {}) {
 
   return (
     <main
-      className="sisad-pdfme-lab-landing relative isolate min-h-screen bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.12),_transparent_30%),radial-gradient(circle_at_top_right,_rgba(244,114,182,0.12),_transparent_28%),linear-gradient(180deg,_#f8fafc_0%,_#eef2ff_100%)] p-[clamp(0.75rem,1.4vw,1.25rem)] font-sans text-slate-900"
+      className="sisad-pdfme-lab-landing relative isolate font-sans text-slate-900"
       data-page="landing"
+      style={LANDING_ROOT_STYLE}
     >
+      <div aria-hidden="true" style={LANDING_BACKDROP_STYLE} />
       <div className="sisad-pdfme-lab-landing-shell mx-auto flex w-full max-w-[94rem] flex-col gap-4">
         <section className="sisad-pdfme-lab-landing-hero rounded-[2rem] border border-slate-200/80 bg-white/90 p-5 shadow-[0_20px_45px_rgba(15,23,42,0.08)] backdrop-blur lg:p-6">
           <div className="grid gap-5 xl:grid-cols-[minmax(0,1.15fr)_minmax(21rem,0.92fr)] xl:items-start">

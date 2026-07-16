@@ -464,10 +464,12 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
 
   /**
    * Indica si la intención de selección actual es acumulativa (Shift/Ctrl/Cmd).
+   * Shift es acumulativo en cualquier plataforma (paridad DocuSign/Wix);
+   * Ctrl/Cmd siguen la convención por SO.
    */
   const isMultiSelectActive = useMemo(() => {
     const isMac = platform === 'mac';
-    return isMac ? modifierKeys.meta : modifierKeys.ctrl;
+    return modifierKeys.shift || (isMac ? modifierKeys.meta : modifierKeys.ctrl);
   }, [platform, modifierKeys]);
 
   /**
@@ -1532,6 +1534,13 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   const canvasInteractive = isCanvasInteractive(canvasRenderState);
   const canvasBlockReason = deriveCanvasBlockReason(canvasRenderState);
   const canvasBlockingMaskVisible = shouldDisplayBlockingMask(canvasBlockReason, interactionMode);
+  const shouldHideMaskByInteraction = [
+    'dragging',
+    'resizing',
+    'rotating',
+    'selected-single',
+    'selected-multi',
+  ].includes(interactionState.phase);
 
   useEffect(() => {
     paperRefs.current.forEach((paper, index) => {
@@ -1771,8 +1780,8 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
             ) : null}
             {moveablePageIndex !== index ? (
               feature.mask ? (
-                <MaskSlot
-                  className={classNames?.mask}
+              <MaskSlot
+                  className={shouldHideMaskByInteraction ? ['hidden', classNames?.mask].filter(Boolean).join(' ') : classNames?.mask}
                   width={paperSize.width + RULER_HEIGHT}
                   height={paperSize.height + RULER_HEIGHT}
                   maskColor={styleOverrides?.mask?.color}

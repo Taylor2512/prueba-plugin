@@ -184,6 +184,38 @@ describe('detail section visibility by type', () => {
     expect(getDetailProfile('signature').defaultOpenSections).toEqual(['identity', 'behavior', 'box', 'appearance']);
   });
 
+  it('does not treat signature-specific controls as standalone appearance content', () => {
+    const signatureDrivenSchema = {
+      type: 'signature',
+      position: { x: 0, y: 0 },
+      width: 50,
+      height: 10,
+      signatureMode: 'provider',
+      signatureDisplay: {
+        showSignerName: true,
+      },
+      signatureProviderKey: 'provider-x',
+      signatureProviderConfig: {
+        label: 'Proveedor externo',
+      },
+    } as DetailSchema;
+
+    expect(
+      shouldRenderDetailSection({
+        section: 'appearance',
+        schema: signatureDrivenSchema,
+        schemaType: 'signature',
+        fields: [
+          { key: 'signatureMode', widget: 'SignatureModeWidget' },
+          { key: 'signatureDisplay', widget: 'card' },
+          { key: 'signatureProviderKey', widget: 'SignatureProviderWidget' },
+          { key: 'signatureProviderConfig', widget: 'SignatureProviderConfigWidget' },
+        ],
+        context: { supportsAppearance: true },
+      }),
+    ).toBe(false);
+  });
+
   it('does not route checkbox fields into the option-group profile', () => {
     expect(getVisibleDetailSections('checkbox')).not.toContain('options');
     expect(getDefaultOpenSections('checkbox')).toEqual(['identity', 'validation', 'behavior']);

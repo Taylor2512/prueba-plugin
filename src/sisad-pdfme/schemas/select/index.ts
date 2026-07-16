@@ -25,7 +25,7 @@ const resolveSelectPdfValue = (value: unknown, options: string[]): string => {
 const addOptions = (props: PropPanelWidgetProps) => {
   const { rootElement, changeSchemas, activeSchema, i18n } = props;
 
-  rootElement.className = 'sisad-option-editor-select-root';
+  rootElement.className = 'sisad-option-editor-select-root w-full min-w-0';
   rootElement.setAttribute('data-testid', 'detail-options-section');
   markInspectorInteractive(rootElement);
 
@@ -44,20 +44,25 @@ const addOptions = (props: PropPanelWidgetProps) => {
   };
 
   const formContainer = document.createElement('div');
-  formContainer.className = 'sisad-option-editor-add-row';
+  formContainer.className = 'sisad-option-editor-add-row grid items-center gap-1.5 [grid-template-columns:1fr_auto]';
 
   const input = document.createElement('input');
   input.type = 'text';
   input.placeholder = i18n('schemas.select.optionPlaceholder');
-  input.className = 'sisad-option-editor-input';
+  input.className = 'sisad-option-editor-input w-full min-w-0 rounded-lg border border-dashed border-slate-300 bg-white/85 px-2 py-1 text-[12px] text-slate-700 outline-none placeholder:text-slate-400 focus-visible:border-solid focus-visible:ring-2 focus-visible:ring-sky-500/40';
   input.setAttribute('data-testid', 'option-new-input');
 
   const addButton = document.createElement('button');
   addButton.type = 'button';
-  addButton.textContent = 'Agregar opción';
-  addButton.className = 'sisad-option-editor-add-btn';
+  addButton.className = 'sisad-option-editor-add-btn inline-flex h-[26px] flex-none items-center justify-center gap-1 whitespace-nowrap rounded-lg border border-sky-200 bg-sky-50 px-2.5 text-[11px] font-semibold text-sky-700 shadow-[0_1px_2px_rgba(15,23,42,0.03)] transition-colors hover:border-sky-300 hover:bg-sky-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-500/40';
   addButton.setAttribute('data-testid', 'option-add-button');
   addButton.setAttribute('aria-label', 'Agregar opción');
+  const addIcon = document.createElement('span');
+  addIcon.textContent = '+';
+  addIcon.setAttribute('aria-hidden', 'true');
+  addIcon.className = 'text-[14px] font-bold leading-none';
+  addButton.appendChild(addIcon);
+  addButton.appendChild(document.createTextNode('Agregar opción'));
 
   const handleAddOption = (event: Event) => {
     event.preventDefault();
@@ -85,19 +90,19 @@ const addOptions = (props: PropPanelWidgetProps) => {
   formContainer.appendChild(addButton);
 
   const optionsList = document.createElement('div');
-  optionsList.className = 'sisad-option-editor-list sisad-option-editor-select-list';
+  optionsList.className = 'sisad-option-editor-list sisad-option-editor-select-list mb-2 flex max-h-[220px] flex-col gap-1.5 overflow-y-auto pr-0.5';
 
   const renderOptions = () => {
     optionsList.replaceChildren();
     currentOptions.forEach((option, index) => {
       const li = document.createElement('div');
-      li.className = 'sisad-option-editor-row sisad-option-editor-row--select sisad-option-editor-select-item';
+      li.className = 'sisad-option-editor-row sisad-option-editor-row--select sisad-option-editor-select-item grid items-center gap-1.5 rounded-lg border border-slate-200/80 bg-white/90 px-1.5 py-1 shadow-sm transition-colors hover:border-slate-300 hover:bg-white [grid-template-columns:minmax(0,1fr)_26px]';
       li.setAttribute('data-testid', 'option-row');
 
       const optionInput = document.createElement('input');
       optionInput.type = 'text';
       optionInput.value = option;
-      optionInput.className = 'sisad-option-editor-input';
+      optionInput.className = 'sisad-option-editor-input w-full min-w-0 rounded-md border-0 bg-transparent px-1.5 py-1 text-[13px] text-slate-700 outline-none placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-sky-500/40';
       optionInput.setAttribute('data-testid', 'option-label-input');
       optionInput.setAttribute('aria-label', `Opción ${index + 1}`);
 
@@ -113,7 +118,7 @@ const addOptions = (props: PropPanelWidgetProps) => {
       const removeButton = document.createElement('button');
       removeButton.type = 'button';
       removeButton.textContent = '×';
-      removeButton.className = 'sisad-option-editor-remove-btn';
+      removeButton.className = 'sisad-option-editor-remove-btn inline-flex h-[26px] w-[26px] flex-none items-center justify-center rounded-md border-0 bg-transparent p-0 text-[16px] leading-none text-slate-400 transition-colors hover:bg-rose-50 hover:text-rose-600 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-rose-500/40 disabled:cursor-not-allowed disabled:opacity-40';
       removeButton.setAttribute('data-testid', 'option-delete-button');
       removeButton.setAttribute('aria-label', `Eliminar opción ${index + 1}`);
 
@@ -165,6 +170,18 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
     rootElement.dataset.renderMode = String(mode);
     rootElement.dataset.schemaFamily = 'option-based';
     rootElement.dataset.selectionMode = 'singleCompact';
+    Object.assign(rootElement.style, {
+      overflow: 'visible',
+      background: 'transparent',
+      border: '0',
+      boxShadow: 'none',
+      margin: '0',
+      padding: mode === 'form' ? '0 22px 0 0' : '0',
+      display: 'block',
+      width: '100%',
+      height: mode === 'form' ? 'auto' : '100%',
+      minHeight: mode === 'form' ? '22px' : '0',
+    });
 
     // Chevron is decorative (pointer-events:none). Shown in every UI mode so the
     // field always reads as a dropdown; the native <select> overlay (interactive)
@@ -197,8 +214,16 @@ const schema: Plugin<Select> = createSchemaPlugin<Select>({
         border: 'none',
         height: `${buttonWidth}px`,
         width: `${buttonWidth}px`,
+        color: 'var(--schema-tone, #475569)',
       };
       Object.assign(selectButton.style, selectButtonStyle);
+      selectButton.querySelectorAll('svg').forEach((svg) => {
+        Object.assign((svg as SVGSVGElement).style, {
+          width: '12px',
+          height: '12px',
+          display: 'block',
+        });
+      });
 
       rootElement.appendChild(selectButton);
     }

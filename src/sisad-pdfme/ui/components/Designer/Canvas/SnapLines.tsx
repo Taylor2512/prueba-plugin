@@ -134,11 +134,11 @@ const SnapLines = ({
               />
               {line.label && line.label !== 'center' && (
                 <span
-                  className={mergeClassNames(
-                    `${DESIGNER_CLASSNAME}snap-label`,
-                    `${DESIGNER_CLASSNAME}snap-label-horizontal`,
-                    'pointer-events-none rounded-md border border-current bg-white/90 px-1.5 py-0.5 text-[10px] leading-none shadow-sm',
-                  )}
+                className={mergeClassNames(
+                  `${DESIGNER_CLASSNAME}snap-label`,
+                  `${DESIGNER_CLASSNAME}snap-label-horizontal`,
+                  'absolute pointer-events-none rounded-md border border-current bg-white/90 px-1.5 py-0.5 text-[10px] font-semibold leading-none whitespace-nowrap shadow-sm',
+                )}
                   style={{
                     position: 'absolute',
                     top: `${snapToDevicePixel(snappedTop - 14)}px`,
@@ -184,11 +184,11 @@ const SnapLines = ({
             />
             {line.label && line.label !== 'center' && (
               <span
-                className={mergeClassNames(
-                  `${DESIGNER_CLASSNAME}snap-label`,
-                  `${DESIGNER_CLASSNAME}snap-label-vertical`,
-                  'pointer-events-none rounded-md border border-current bg-white/90 px-1.5 py-0.5 text-[10px] leading-none shadow-sm',
-                )}
+              className={mergeClassNames(
+                `${DESIGNER_CLASSNAME}snap-label`,
+                `${DESIGNER_CLASSNAME}snap-label-vertical`,
+                'absolute pointer-events-none rounded-md border border-current bg-white/90 px-1.5 py-0.5 text-[10px] font-semibold leading-none whitespace-nowrap shadow-sm',
+              )}
               style={{
                 position: 'absolute',
                 top: 8,

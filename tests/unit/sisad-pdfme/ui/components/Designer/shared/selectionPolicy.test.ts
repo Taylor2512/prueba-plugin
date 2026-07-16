@@ -33,7 +33,9 @@ describe('selectionPolicy', () => {
         event: makeMouseEvent({ shiftKey: true }),
         pointerKind: 'click',
       }),
-    ).toBe('replace');
+      // Shift solo acumula (add), nunca toggle: paridad DocuSign/Wix y con la
+      // región de Selecto (TASK-QA-015 / canvas-interactions e2e).
+    ).toBe('add');
   });
 
   it('keeps region selection additive when modifiers request accumulation', () => {

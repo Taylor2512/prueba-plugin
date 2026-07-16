@@ -75,13 +75,13 @@ const CompactConfigPanel = ({
   }, [open]);
 
   return (
-    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel', 'flex flex-col gap-2 rounded-2xl border border-slate-200/80 bg-white/90 p-2.5 shadow-sm')}>
+    <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel', 'flex flex-col gap-2 rounded-[0.95rem] border border-slate-200/70 bg-white/96 p-2.5 shadow-[0_1px_3px_rgba(15,23,42,0.04)]')}>
       <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-head', 'flex items-start justify-between gap-2')}>
         <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-copy', 'min-w-0 flex-1')}>
           <div
             className={mergeClassNames(
               DESIGNER_CLASSNAME + 'compact-config-panel-title',
-              'min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-[0.875rem] font-bold leading-[1.2] text-[var(--color-gray-900)]',
+              'min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-[0.875rem] font-bold leading-[1.2] text-slate-900',
             )}
           >
             {title}
@@ -90,7 +90,7 @@ const CompactConfigPanel = ({
             <div
               className={mergeClassNames(
                 DESIGNER_CLASSNAME + 'compact-config-panel-description',
-                'mt-0.5 min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-[0.75rem] leading-[1.4] text-[var(--color-gray-500)]',
+                'mt-0.5 min-w-0 overflow-hidden text-ellipsis whitespace-nowrap text-[0.75rem] leading-[1.4] text-slate-500',
               )}
             >
               {description}
@@ -100,7 +100,7 @@ const CompactConfigPanel = ({
         {statusTags.length > 0 ? (
           <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-tags', 'flex flex-wrap justify-end gap-1.5')}>
             {statusTags.map((tag, index) => (
-              <Tag key={`${tag.label}-${index}`} color={tag.color} className="m-0 inline-flex h-5 items-center rounded-full border border-slate-200 px-1.5 text-[10px] leading-none">
+              <Tag key={`${tag.label}-${index}`} color={tag.color} className="m-0 inline-flex h-5 items-center rounded-full border border-slate-200/70 bg-white px-1.5 text-[10px] leading-none shadow-none">
                 {tag.label}
               </Tag>
             ))}
@@ -109,7 +109,7 @@ const CompactConfigPanel = ({
       </div>
 
       {summary ? (
-        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-summary', 'rounded-xl border border-slate-200 bg-slate-50 px-2.5 py-1.5')}>
+        <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-summary', 'rounded-xl border border-slate-200/70 bg-slate-50/80 px-2.5 py-1.5')}>
           <div className={mergeClassNames(DESIGNER_CLASSNAME + 'compact-config-panel-summary-text', 'text-[0.72rem] leading-5 text-slate-700')}>
             {summary}
           </div>
@@ -129,7 +129,7 @@ const CompactConfigPanel = ({
           onClick={() => setOpen(true)}
           aria-label={modalTriggerAriaLabel || (typeof modalTriggerLabel === 'string' ? modalTriggerLabel : modalTitle || title)}
           className={mergeClassNames(
-            'inline-flex h-[30px] items-center justify-center rounded-xl border border-slate-200/80 bg-white/90 px-3 text-[0.72rem] font-semibold text-slate-700 shadow-sm',
+            'inline-flex h-[30px] appearance-none items-center justify-center rounded-xl border border-slate-200/80 bg-white px-3 text-[0.72rem] font-semibold text-slate-700 shadow-[0_1px_2px_rgba(15,23,42,0.03)]',
             isIconOnlyTrigger ? 'w-[30px] min-w-[30px] px-0' : '',
           )}
         >

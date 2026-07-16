@@ -14,6 +14,164 @@ const CARD_CONTENT_PROP_TYPE = PropTypes.shape({
   roundtripPdfUrl: PropTypes.string,
 })
 
+const RESULTS_PANEL_STYLE = {
+  width: 'min(1400px, 100%)',
+  padding: 0,
+  overflow: 'hidden',
+  borderColor: 'rgba(59, 130, 246, 0.18)',
+}
+
+const RESULTS_BODY_STYLE = {
+  padding: '1rem',
+}
+
+const RESULTS_GRID_STYLE = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+  gap: '1.25rem',
+}
+
+const RESULT_CARD_STYLE = {
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.75rem',
+  borderRadius: '20px',
+  border: '1px solid rgba(148, 163, 184, 0.25)',
+  background: 'rgba(255, 255, 255, 0.88)',
+  padding: '1.25rem',
+  boxShadow: '0 18px 40px rgba(15,23,42,0.08)',
+  backdropFilter: 'blur(12px)',
+}
+
+const RESULTS_PANEL_CLASSES =
+  'rounded-[0.95rem] border border-sky-200/70 bg-white/90 shadow-md backdrop-blur-md'
+const RESULTS_SUMMARY_CLASSES =
+  'flex cursor-pointer list-none items-center justify-between gap-2 rounded-[0.95rem] px-2.5 py-1.5'
+const RESULTS_DRAWER_CLASSES =
+  'pointer-events-none absolute left-2 right-2 bottom-2 flex w-auto flex-col gap-1.5 rounded-[1rem] border border-slate-200/80 bg-white/92 p-1.5 shadow-[0_10px_24px_rgba(15,23,42,0.08)] backdrop-blur-md'
+const RESULTS_DRAWER_RAIL_CLASSES = 'flex flex-wrap items-center justify-between gap-2'
+const RESULTS_DRAWER_BUTTON_CLASSES =
+  'inline-flex items-center gap-2 rounded-full border border-slate-200/80 bg-white/95 px-3 py-1 text-[0.7rem] font-bold text-slate-700 shadow-sm'
+const RESULTS_DRAWER_PANEL_CLASSES =
+  'grid max-h-[min(240px,30dvh)] overflow-auto rounded-[0.9rem] border border-slate-200/80 bg-white/95 p-1.5 shadow-none backdrop-blur-md'
+const RESULTS_DRAWER_HEADER_CLASSES = 'flex items-start justify-between gap-3'
+const RESULTS_DRAWER_HEADING_CLASSES = 'grid min-w-0 gap-[0.05rem]'
+const RESULTS_DRAWER_CLOSE_CLASSES =
+  'inline-flex min-h-[1.6rem] items-center justify-center rounded-full border border-slate-200/80 bg-slate-50 px-2 py-[0.08rem] text-[0.7rem] font-bold text-slate-700'
+const RESULTS_BODY_CLASSES = 'p-4'
+const RESULTS_GRID_CLASSES = 'grid grid-cols-[repeat(auto-fill,minmax(280px,1fr))] gap-5'
+const RESULT_CARD_CLASSES =
+  'flex flex-col gap-3 rounded-[20px] border border-slate-200/70 bg-white/88 p-5 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-md'
+const RESULT_CARD_TITLE_CLASSES = 'm-0 text-[0.95rem] font-bold text-slate-800'
+const RESULT_CARD_TEXT_CLASSES = 'text-[0.72rem] leading-[1.35] text-slate-600'
+
+const RESULT_IMAGE_GRID_STYLE = {
+  display: 'grid',
+  gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
+  gap: '0.75rem',
+}
+
+const RESULT_IMAGE_CARD_STYLE = {
+  margin: 0,
+  padding: '0.5rem',
+  borderRadius: '14px',
+  background: '#fff',
+  border: '1px solid rgba(148, 163, 184, 0.18)',
+}
+
+const RESULT_IMAGE_CARD_IMG_STYLE = {
+  display: 'block',
+  width: '100%',
+  height: 'auto',
+  borderRadius: '10px',
+}
+
+const RESULT_IMAGE_CARD_FIGCAPTION_STYLE = {
+  marginTop: '0.5rem',
+  fontSize: '0.82rem',
+  color: '#475569',
+}
+
+const RESULTS_DRAWER_STYLE = {
+  position: 'absolute',
+  left: '0.5rem',
+  right: '0.5rem',
+  bottom: '0.5rem',
+  width: 'auto',
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '0.5rem',
+  borderRadius: '1rem',
+  border: '1px solid rgba(148, 163, 184, 0.22)',
+  background: 'rgba(255, 255, 255, 0.92)',
+  padding: '0.5rem',
+  boxShadow: '0 10px 24px rgba(15, 23, 42, 0.08)',
+  backdropFilter: 'blur(12px)',
+  pointerEvents: 'none',
+}
+
+const RESULTS_DRAWER_RAIL_STYLE = {
+  display: 'flex',
+  flexWrap: 'wrap',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  gap: '0.5rem',
+}
+
+const RESULTS_DRAWER_BUTTON_STYLE = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '0.5rem',
+  borderRadius: '9999px',
+  border: '1px solid rgba(148, 163, 184, 0.18)',
+  background: 'rgba(255,255,255,0.95)',
+  padding: '0.375rem 0.75rem',
+  fontSize: '0.72rem',
+  fontWeight: 700,
+  color: '#334155',
+  boxShadow: '0 1px 3px rgba(15,23,42,0.08)',
+}
+
+const RESULTS_DRAWER_PANEL_STYLE = {
+  display: 'grid',
+  maxHeight: 'min(280px, 36dvh)',
+  overflow: 'auto',
+  borderRadius: '0.9rem',
+  border: '1px solid rgba(148, 163, 184, 0.18)',
+  background: 'rgba(255,255,255,0.95)',
+  padding: '0.3125rem',
+  boxShadow: 'none',
+  backdropFilter: 'blur(12px)',
+}
+
+const RESULTS_DRAWER_HEADER_STYLE = {
+  display: 'flex',
+  alignItems: 'start',
+  justifyContent: 'space-between',
+  gap: '0.75rem',
+}
+
+const RESULTS_DRAWER_HEADING_STYLE = {
+  display: 'grid',
+  gap: '0.05rem',
+  minWidth: 0,
+}
+
+const RESULTS_DRAWER_CLOSE_STYLE = {
+  display: 'inline-flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  minHeight: '1.6rem',
+  padding: '0.08rem 0.48rem',
+  borderRadius: '9999px',
+  border: '1px solid rgba(148, 163, 184, 0.28)',
+  background: 'rgba(248, 250, 252, 0.98)',
+  color: '#334155',
+  fontSize: '0.7rem',
+  fontWeight: 700,
+  cursor: 'pointer',
+}
+
 const RESULT_CARDS = [
   {
     key: 'generated-pdf',
@@ -57,13 +215,13 @@ const RESULT_CARDS = [
         Ejecuta <strong>PDF → imágenes</strong> para obtener previsualizaciones.
       </p>
     ),
-    render: ({ images }) =>
-      images.length > 0 ? (
-        <div className="sisad-pdfme-lab-image-grid">
+      render: ({ images }) =>
+        images.length > 0 ? (
+        <div className="grid gap-3 [grid-template-columns:repeat(auto-fit,minmax(180px,1fr))]" style={RESULT_IMAGE_GRID_STYLE}>
           {images.map((url, index) => (
-            <figure key={url} className="sisad-pdfme-lab-image-card">
-              <img src={url} alt={`Vista previa generada ${index + 1}`} />
-              <figcaption>Página {index + 1}</figcaption>
+            <figure key={url} className="m-0 rounded-[14px] border border-slate-200/80 bg-white p-2" style={RESULT_IMAGE_CARD_STYLE}>
+              <img src={url} alt={`Vista previa generada ${index + 1}`} style={RESULT_IMAGE_CARD_IMG_STYLE} />
+              <figcaption style={RESULT_IMAGE_CARD_FIGCAPTION_STYLE}>Página {index + 1}</figcaption>
             </figure>
           ))}
         </div>
@@ -90,9 +248,13 @@ const ResultCard = ({ card, cardProps }) => {
   const body = card.render(cardProps)
 
   return (
-    <article className="sisad-pdfme-lab-result-card">
-      <h3 className="sisad-pdfme-lab-result-card-title">{card.title}</h3>
-      {body || card.emptyMessage}
+    <article className={RESULT_CARD_CLASSES} style={RESULT_CARD_STYLE}>
+      <h3 className={RESULT_CARD_TITLE_CLASSES}>
+        {card.title}
+      </h3>
+      <div className={RESULT_CARD_TEXT_CLASSES}>
+        {body || card.emptyMessage}
+      </div>
     </article>
   )
 }
@@ -110,8 +272,8 @@ function ResultsCards({ generatedPdfUrl, pdfSizes, images, roundtripPdfUrl }) {
   const cardProps = { generatedPdfUrl, pdfSizes, images, roundtripPdfUrl }
 
   return (
-    <div className="sisad-pdfme-lab-results-body">
-      <div className="sisad-pdfme-lab-results-grid">
+    <div className={RESULTS_BODY_CLASSES} style={RESULTS_BODY_STYLE}>
+      <div className={RESULTS_GRID_CLASSES} style={RESULTS_GRID_STYLE}>
         {RESULT_CARDS.map((card) => (
           <ResultCard key={card.key} card={card} cardProps={cardProps} />
         ))}
@@ -154,48 +316,50 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
   // Drawer: compact in-flow bar below the workspace. The closed state renders
   // no body, so it stays lightweight and never overlays the canvas.
   if (isDrawer) {
-    return (
+      return (
       <section
-        className={cn('sisad-pdfme-lab-results-drawer sisad-pdfme-lab-results flex w-full flex-col gap-2 rounded-[1rem] border border-slate-200 bg-white/92 p-2 shadow-md backdrop-blur-md')}
+        className={cn(RESULTS_DRAWER_CLASSES)}
+        style={RESULTS_DRAWER_STYLE}
         data-open={isOpen ? 'true' : 'false'}
         aria-label="Resultados"
       >
-        <div className="sisad-pdfme-lab-results-drawer-rail flex flex-wrap items-center justify-between gap-2">
+        <div className={RESULTS_DRAWER_RAIL_CLASSES} style={RESULTS_DRAWER_RAIL_STYLE}>
           <button
             type="button"
-            className={cn('sisad-pdfme-lab-results-pill inline-flex items-center gap-2 rounded-full border border-slate-200/60 bg-white/95 px-3 py-1.5 text-[0.72rem] font-bold text-slate-700 shadow-sm backdrop-blur-md transition-all hover:border-slate-300 hover:bg-white active:scale-95')}
+            className={cn(RESULTS_DRAWER_BUTTON_CLASSES)}
+            style={RESULTS_DRAWER_BUTTON_STYLE}
             aria-expanded={isOpen}
             aria-controls="sisad-pdfme-lab-results-drawer-panel"
             onClick={() => setIsOpen((v) => !v)}
           >
             <span className={cn('block h-2 w-2 rounded-full', hasGeneratedArtifacts ? 'bg-green-500 animate-pulse' : 'bg-slate-300')} />
             Resultados
-            <span className="sisad-pdfme-lab-results-badge ml-0.5 rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 font-normal text-slate-500">
+            <span className="ml-0.5 rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[0.64rem] font-normal text-slate-500">
               {hasGeneratedArtifacts ? 'Artefactos listos' : 'Sin artefactos'}
             </span>
           </button>
-          <span className="text-[0.7rem] font-medium text-slate-400">
-            {isOpen ? 'Abierto' : 'Cerrado'}
-          </span>
+          {isOpen ? <span className="text-[0.66rem] font-medium text-slate-400">Abierto</span> : null}
         </div>
         {isOpen ? (
           <div
             id="sisad-pdfme-lab-results-drawer-panel"
-            className={cn('sisad-pdfme-lab-results-drawer-panel grid max-h-[min(280px,36dvh)] overflow-auto rounded-[0.9rem] border border-slate-200 bg-white/95 p-[0.3125rem] shadow-none backdrop-blur-md')}
+            className={cn(RESULTS_DRAWER_PANEL_CLASSES, 'pointer-events-auto')}
+            style={RESULTS_DRAWER_PANEL_STYLE}
             role="dialog"
             aria-modal="false"
             aria-label="Panel de resultados"
             tabIndex={-1}
           >
-            <div className="sisad-pdfme-lab-results-drawer-header">
-              <div className="sisad-pdfme-lab-results-drawer-heading">
-                <span className="sisad-pdfme-lab-summary-label">Resultados</span>
-                <strong>Artefactos del laboratorio</strong>
+            <div className={RESULTS_DRAWER_HEADER_CLASSES} style={RESULTS_DRAWER_HEADER_STYLE}>
+        <div className={RESULTS_DRAWER_HEADING_CLASSES} style={RESULTS_DRAWER_HEADING_STYLE}>
+                <span className="text-[0.64rem] font-bold uppercase tracking-[0.08em] text-slate-500">Resultados</span>
+                <strong className="text-[0.88rem] leading-tight text-slate-900">Artefactos del laboratorio</strong>
               </div>
               <button
                 type="button"
                 ref={drawerCloseButtonRef}
-                className={cn('sisad-pdfme-lab-results-close inline-flex items-center justify-center rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[0.72rem] font-semibold text-slate-700 hover:bg-slate-100')}
+                className={cn(RESULTS_DRAWER_CLOSE_CLASSES)}
+                style={RESULTS_DRAWER_CLOSE_STYLE}
                 onKeyDown={(event) => {
                   if (event.key === 'Escape') {
                     event.preventDefault()
@@ -209,7 +373,7 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
                 Cerrar
               </button>
             </div>
-            <div className="sisad-pdfme-lab-results-drawer-body">{cards}</div>
+            <div className="mt-1.5">{cards}</div>
           </div>
         ) : null}
       </section>
@@ -218,18 +382,18 @@ export default function ResultsPanel({ generatedPdfUrl, pdfSizes = EMPTY_ARRAY, 
 
   return (
     <details
-      className={cn('sisad-pdfme-lab-results rounded-[0.95rem] border border-slate-200 bg-white/90 shadow-md backdrop-blur-md')}
+      className={cn(RESULTS_PANEL_CLASSES)}
       data-variant={variant}
       aria-labelledby="lab-results-title"
     >
       <summary
-        className={cn('sisad-pdfme-lab-results-summary flex cursor-pointer list-none items-center justify-between gap-2 rounded-[0.95rem] px-2.5 py-1.5')}
+        className={cn(RESULTS_SUMMARY_CLASSES)}
       >
-        <div className="sisad-pdfme-lab-section-heading sisad-pdfme-lab-section-heading-tight">
+        <div className="flex min-w-0 flex-col gap-0.5">
           <h2 id="lab-results-title">Resultados</h2>
           <p>{hasGeneratedArtifacts ? 'Artefactos listos para revisar o descargar.' : 'Abre esta sección para revisar salidas de generación y conversión.'}</p>
         </div>
-        <span className="sisad-pdfme-lab-results-badge">{hasGeneratedArtifacts ? 'Con artefactos' : 'Cerrado'}</span>
+        <span className="rounded-full border border-slate-200 bg-slate-50 px-2 py-0.5 text-[0.68rem] font-semibold text-slate-500">{hasGeneratedArtifacts ? 'Con artefactos' : 'Cerrado'}</span>
       </summary>
       {cards}
     </details>

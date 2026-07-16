@@ -1,6 +1,6 @@
 # TASK-ARCH-004 — Reducir wrappers innecesarios y endurecer API pública
 
-- Estado: active
+- Estado: completed
 - Agente principal: designer-runtime-agent
 - Fecha: 2026-07-15
 - Scope: `src/sisad-pdfme`

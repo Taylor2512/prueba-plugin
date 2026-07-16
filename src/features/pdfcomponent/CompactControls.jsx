@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react'
 import PropTypes from 'prop-types'
 import { Settings2 } from 'lucide-react'
 import PopoverMenu from './PopoverMenu.jsx'
+import { createLabActionRegistry } from './integration/labActionRegistry'
 
 const EMPTY_ARRAY = []
 const joinClasses = (...classes) => classes.filter(Boolean).join(' ')
@@ -17,8 +18,8 @@ const SCHEMA_DEFINITION_PROP_TYPE = PropTypes.shape({
 })
 
 const ControlSection = ({ label, children, quiet = false }) => (
-  <section className={joinClasses('sisad-pdfme-popover-section', quiet && 'sisad-pdfme-popover-section-quiet')}>
-    <span className="sisad-pdfme-popover-section-label">{label}</span>
+  <section className={joinClasses('grid gap-[0.3rem] rounded-[12px] border border-[rgba(148,163,184,0.16)] p-[0.42rem] bg-[rgba(248,250,252,0.86)]', quiet && 'bg-[rgba(255,255,255,0.86)]')}>
+    <span className="text-[0.64rem] font-bold uppercase tracking-[0.08em] text-slate-500">{label}</span>
     {children}
   </section>
 )
@@ -29,7 +30,16 @@ ControlSection.propTypes = {
   quiet: PropTypes.bool,
 }
 
-const ActionButton = ({ close = null, busy, onClick, label, disabled = false, destructive = false }) => {
+const ActionButton = ({
+  close = null,
+  busy,
+  onClick,
+  label,
+  disabled = false,
+  disabledReason = '',
+  destructive = false,
+  testId,
+}) => {
   const handleClick = () => {
     if (typeof close === 'function') close()
     if (typeof onClick === 'function') onClick()
@@ -38,8 +48,13 @@ const ActionButton = ({ close = null, busy, onClick, label, disabled = false, de
   return (
     <button
       type="button"
-      className={joinClasses('sisad-pdfme-popover-action', destructive && 'is-destructive')}
+      className={joinClasses(
+        'min-h-[2rem] cursor-pointer rounded-[10px] border border-[rgba(148,163,184,0.26)] bg-white p-[0.28rem_0.55rem] text-left font-semibold text-slate-900',
+        destructive && 'text-red-700',
+      )}
       disabled={busy || disabled}
+      data-testid={testId}
+      title={disabled && disabledReason ? disabledReason : undefined}
       onClick={handleClick}
     >
       {label}
@@ -53,40 +68,24 @@ ActionButton.propTypes = {
   onClick: PropTypes.func,
   label: PropTypes.node.isRequired,
   disabled: PropTypes.bool,
+  disabledReason: PropTypes.string,
   destructive: PropTypes.bool,
+  testId: PropTypes.string,
 }
-
-const buildActionRows = (hasGeneratedPdf, hasImages, handlers) => ({
-  pdf: [
-    { label: 'Generar PDF', onClick: handlers.onGenerate },
-    { label: 'Leer tamaños', onClick: handlers.onPdf2Size, disabled: !hasGeneratedPdf },
-    { label: 'PDF → imágenes', onClick: handlers.onPdf2Img, disabled: !hasGeneratedPdf },
-    { label: 'Imágenes → PDF', onClick: handlers.onImg2Pdf, disabled: !hasImages },
-  ],
-  canvas: [
-    { label: 'Agregar página', onClick: handlers.onAddPage },
-    { label: 'Ajustar a página', onClick: handlers.onFitPage },
-    { label: 'Ajustar al ancho', onClick: handlers.onFitWidth },
-  ],
-  schema: [
-    { label: 'Agregar schema', onClick: handlers.onAddSchema },
-  ],
-  advanced: [
-    { label: 'Reiniciar template', onClick: handlers.onReset, destructive: true },
-  ],
-})
 
 const ActionSection = ({ title, actions, close, busy }) => (
   <ControlSection label={title}>
     {actions.map((action) => (
       <ActionButton
-        key={action.label}
+        key={action.key}
         close={close}
         busy={busy}
-        onClick={action.onClick}
+        onClick={action.run}
         label={action.label}
-        disabled={action.disabled}
+        disabled={action.enabled === false}
+        disabledReason={action.disabledReason}
         destructive={action.destructive}
+        testId={action.testId}
       />
     ))}
   </ControlSection>
@@ -150,50 +149,85 @@ export default function CompactControls({
     if (typeof onModeChange === 'function') onModeChange(nextMode)
   }
 
-  const actionRows = buildActionRows(hasGeneratedPdf, hasImages, { onGenerate, onPdf2Size, onPdf2Img, onImg2Pdf, onAddPage, onFitPage, onFitWidth, onAddSchema, onReset })
+  const actionSections = useMemo(
+    () =>
+      createLabActionRegistry({
+        mode,
+        busy,
+        hasGeneratedPdf,
+        hasImages,
+        onGenerate,
+        onPdf2Size,
+        onPdf2Img,
+        onImg2Pdf,
+        onAddPage,
+        onFitPage,
+        onFitWidth,
+        onAddSchema,
+        onReset,
+      }),
+    [
+      busy,
+      hasGeneratedPdf,
+      hasImages,
+      mode,
+      onGenerate,
+      onPdf2Size,
+      onPdf2Img,
+      onImg2Pdf,
+      onAddPage,
+      onFitPage,
+      onFitWidth,
+      onAddSchema,
+      onReset,
+    ],
+  )
 
   return (
     <PopoverMenu
       // Canvas-first keeps the command center icon-only to avoid consuming
       // horizontal space in the header chrome.
       label=""
-      icon={<Settings2 size={16} />}
+      icon={<Settings2 size={compact ? 14 : 16} />}
       align="end"
-      panelClassName="sisad-pdfme-lab-command-center"
+      panelClassName="min-w-[16rem] max-w-[min(22rem,_calc(100vw_-_1rem))]"
+      triggerClassName={compact ? 'h-8 w-8 min-h-8 min-w-8 p-0' : ''}
       ariaLabel="Abrir controles"
     >
       {({ close }) => (
-        <div className="sisad-pdfme-compact-controls-panel">
+        <div className="grid gap-[0.35rem]">
           <ControlSection label="Modo">
-            <div className="sisad-pdfme-popover-grid">
+            <div className="grid grid-cols-3 gap-[0.25rem]">
               {MODE_OPTIONS.map((option) => (
                 <button
                   key={option.id}
                   type="button"
-                  className={joinClasses('sisad-pdfme-popover-action', mode === option.id && 'is-active')}
+                  className={joinClasses(
+                    'min-h-[2rem] rounded-[10px] border border-[rgba(148,163,184,0.26)] bg-white p-[0.28rem_0.55rem] text-left font-semibold text-slate-900 cursor-pointer',
+                    mode === option.id && 'border-[rgba(59,130,246,0.28)] bg-blue-50 text-blue-700',
+                  )}
                   onClick={applyMode(close, option.id)}
                 >
                   {option.label}
                 </button>
               ))}
             </div>
-            <span className="sisad-pdfme-popover-section-caption">Modo activo: {modeLabel}</span>
+            <span className="text-[0.68rem] leading-[1.3] text-slate-500">Modo activo: {modeLabel}</span>
           </ControlSection>
 
-          <ActionSection title="PDF" actions={actionRows.pdf} close={close} busy={busy} />
-
-          {mode === 'designer' ? (
-            <ActionSection title="Canvas" actions={actionRows.canvas} close={close} busy={busy} />
-          ) : null}
-
+          {actionSections
+            .filter((section) => section.visible)
+            .map((section) => (
+              <ActionSection key={section.key} title={section.title} actions={section.actions} close={close} busy={busy} />
+            ))}
           {mode === 'designer' ? (
             <ControlSection label="Schema">
-              <label className="sisad-pdfme-popover-label" htmlFor="schema-type-select-compact">
+              <label className="text-[0.72rem] font-semibold text-slate-700" htmlFor="schema-type-select-compact">
                 Tipo de schema
               </label>
               <select
                 id="schema-type-select-compact"
-                className="sisad-pdfme-popover-select"
+                className="min-h-[2rem] rounded-[10px] border border-[rgba(148,163,184,0.28)] bg-white px-[0.55rem] text-slate-900"
                 value={schemaType}
                 onChange={onSchemaTypeChange}
                 disabled={busy}
@@ -204,12 +238,7 @@ export default function CompactControls({
                   </option>
                 ))}
               </select>
-              <ActionButton
-                close={close}
-                busy={busy}
-                onClick={onAddSchema}
-                label="Agregar schema"
-              />
+              <ActionButton close={close} busy={busy} onClick={onAddSchema} label="Agregar schema" testId="lab-action-add-schema-inline" />
             </ControlSection>
           ) : null}
 
@@ -221,20 +250,21 @@ export default function CompactControls({
                   onClick={() => setResetConfirmationOpen(true)}
                   label="Reiniciar template"
                   destructive
+                  testId="lab-action-reset-template"
                 />
-                <span className="sisad-pdfme-popover-section-caption">
+                <span className="text-[0.68rem] leading-[1.3] text-slate-500">
                   Acción de riesgo. Requiere confirmación.
                 </span>
               </>
             ) : (
-              <div className="sisad-pdfme-popover-confirmation">
-                <span className="sisad-pdfme-popover-section-caption">
+              <div className="grid gap-[0.35rem]">
+                <span className="text-[0.68rem] leading-[1.3] text-slate-500">
                   Confirmar reinicio del template actual.
                 </span>
-                <div className="sisad-pdfme-popover-confirmation-actions">
+                <div className="flex flex-wrap gap-[0.3rem]">
                   <button
                     type="button"
-                    className="sisad-pdfme-popover-action is-destructive"
+                    className="min-h-[2rem] cursor-pointer rounded-[10px] border border-[rgba(148,163,184,0.26)] bg-white p-[0.28rem_0.55rem] text-left font-semibold text-red-700"
                     disabled={busy}
                     onClick={runAndClose(close, onReset)}
                   >
@@ -242,7 +272,7 @@ export default function CompactControls({
                   </button>
                   <button
                     type="button"
-                    className="sisad-pdfme-popover-action"
+                    className="min-h-[2rem] cursor-pointer rounded-[10px] border border-[rgba(148,163,184,0.26)] bg-white p-[0.28rem_0.55rem] text-left font-semibold text-slate-900"
                     disabled={busy}
                     onClick={() => setResetConfirmationOpen(false)}
                   >

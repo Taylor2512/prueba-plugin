@@ -1,6 +1,6 @@
 # TASK-ACTIONS-001 — Auditoría completa de botones y acciones
 
-- Estado: active
+- Estado: completed
 - Agente principal: interaction-agent
 - Fecha: 2026-07-15
 - Scope: `src/sisad-pdfme`

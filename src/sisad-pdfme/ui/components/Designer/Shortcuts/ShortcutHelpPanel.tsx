@@ -101,6 +101,14 @@ const ShortcutHelpPanel = ({
       centered
       title={title}
       className="sisad-pdfme-shortcuts-panel"
+      classNames={{
+        wrapper: 'backdrop-blur-[1px]',
+        mask: 'bg-slate-950/45',
+        content:
+          'overflow-hidden rounded-3xl border border-slate-200/70 bg-white shadow-[0_24px_80px_rgba(15,23,42,0.16)]',
+        header: 'border-b border-slate-200/80 px-5 py-4',
+        body: 'bg-slate-50/70 p-0',
+      }}
       destroyOnHidden
       afterClose={() => setQuery('')}
     >

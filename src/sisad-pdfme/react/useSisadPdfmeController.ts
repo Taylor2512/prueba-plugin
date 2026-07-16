@@ -33,6 +33,10 @@ type InstanceLike = {
   getSelectedSchemaIds?: () => string[];
   selectSchemas?: (ids: string[], mode?: 'replace' | 'add' | 'toggle') => void;
   clearSelection?: () => void;
+  fitToPage?: () => void;
+  fitToWidth?: () => void;
+  setPage?: (page: number) => void;
+  addSchemaByType?: (schemaType: string) => void;
 };
 
 export type SisadPdfmeControllerContext = {
@@ -61,8 +65,7 @@ export const useSisadPdfmeController = (
   context: SisadPdfmeControllerContext = {},
 ): SisadPdfmeController => {
   const { registry = null, onAssignmentChange } = context;
-
-  return useMemo<SisadPdfmeController>(() => ({
+  const controller = useMemo(() => ({
     getTemplate: () => instanceRef.current?.getTemplate?.() ?? null,
     setTemplate: (template) => {
       instanceRef.current?.updateTemplate?.(template);
@@ -113,6 +116,38 @@ export const useSisadPdfmeController = (
     updateSchema: () => warnUnsupported('updateSchema'),
     removeSchemas: () => warnUnsupported('removeSchemas'),
     duplicateSchemas: () => warnUnsupported('duplicateSchemas'),
+    fitToPage: () => {
+      const instance = getInstance(instanceRef);
+      if (typeof instance?.fitToPage === 'function') {
+        instance.fitToPage();
+        return;
+      }
+      warnUnsupported('fitToPage');
+    },
+    fitToWidth: () => {
+      const instance = getInstance(instanceRef);
+      if (typeof instance?.fitToWidth === 'function') {
+        instance.fitToWidth();
+        return;
+      }
+      warnUnsupported('fitToWidth');
+    },
+    setPage: (page) => {
+      const instance = getInstance(instanceRef);
+      if (typeof instance?.setPage === 'function') {
+        instance.setPage(page);
+        return;
+      }
+      warnUnsupported('setPage');
+    },
+    addSchemaByType: (schemaType) => {
+      const instance = getInstance(instanceRef);
+      if (typeof instance?.addSchemaByType === 'function') {
+        instance.addSchemaByType(schemaType);
+        return;
+      }
+      warnUnsupported('addSchemaByType');
+    },
 
     getRecipients: () => registry?.getRecipients() ?? [],
     setRecipients: (recipients) => {
@@ -171,4 +206,6 @@ export const useSisadPdfmeController = (
       instanceRef.current?.saveTemplate?.();
     },
   }), [instanceRef, registry, onAssignmentChange]);
+
+  return controller as SisadPdfmeController;
 };

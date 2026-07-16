@@ -94,7 +94,7 @@ const useLeftSidebarCatalogState = ({ catalogLayout }: UseLeftSidebarCatalogStat
     setInternalLayout(layout);
   }, []);
 
-  const resolvedLayout = catalogLayout ?? internalLayout;
+  const resolvedLayout = hasManualLayout ? internalLayout : (catalogLayout ?? internalLayout);
 
   const saveRecentPlugins = useCallback((next: string[]) => {
     const normalized = next.filter(Boolean).slice(0, 8);
