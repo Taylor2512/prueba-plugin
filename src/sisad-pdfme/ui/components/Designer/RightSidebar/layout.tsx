@@ -84,7 +84,7 @@ export const SidebarHeader = ({ children, className, stacked = false, ...props }
  */
 export const SidebarBody = ({ children, className, ...props }: SectionProps) => (
   <div
-    className={mergeClassNames(DESIGNER_CLASSNAME + 'right-sidebar-layout-body', 'flex min-h-0 flex-1 flex-col overflow-hidden px-2 py-2 transition-[opacity,transform] duration-180 ease-out motion-reduce:transition-none', className)}
+    className={mergeClassNames(DESIGNER_CLASSNAME + 'right-sidebar-layout-body', 'flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden overscroll-contain [scrollbar-gutter:stable] px-2 pb-3 pt-2 transition-[opacity,transform] duration-180 ease-out motion-reduce:transition-none', className)}
     {...props}
   >
     {children}
