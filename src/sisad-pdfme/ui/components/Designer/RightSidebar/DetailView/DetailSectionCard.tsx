@@ -69,14 +69,14 @@ const SectionText = ({ title, description }: SectionTextProps) => (
     <div
       className={mergeClassNames(
         DESIGNER_CLASSNAME + 'detail-section-card-title',
-        'truncate text-[0.64rem] font-semibold uppercase tracking-[0.05em] leading-tight text-slate-900',
+        'truncate text-[0.64rem] font-semibold uppercase tracking-[0.05em] leading-tight text-slate-950',
       )}
       data-has-description={description ? 'true' : 'false'}
     >
       {title}
     </div>
     {description ? (
-      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-description', 'truncate text-[0.58rem] leading-tight text-slate-500')}>
+      <div className={mergeClassNames(DESIGNER_CLASSNAME + 'detail-section-card-description', 'truncate text-[0.58rem] leading-tight text-slate-600')}>
         {description}
       </div>
     ) : null}
