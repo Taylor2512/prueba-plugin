@@ -156,6 +156,13 @@ export type CanvasContextMenuProps = {
   onClose?: () => void;
 
   /**
+   * Target de foco preferido al cerrar el menú.
+   *
+   * Cuando se provee, tiene prioridad sobre el foco capturado al abrir.
+   */
+  restoreFocusTarget?: HTMLElement | null;
+
+  /**
    * Clases adicionales para personalizar la superficie del menú.
    */
   className?: string;
@@ -209,6 +216,7 @@ const CanvasContextMenu = ({
   activeHidden = false,
   canEditStructure = true,
   onClose,
+  restoreFocusTarget,
   className = '',
 }: CanvasContextMenuProps) => {
   const options = React.useContext(OptionsContext);
@@ -224,6 +232,8 @@ const CanvasContextMenu = ({
    * - navegar entre botones con teclado.
    */
   const menuRef = useRef<HTMLDivElement | null>(null);
+  const previousOpenRef = useRef(false);
+  const restoreFocusRef = useRef<HTMLElement | null>(null);
 
   /**
    * Posición final calculada con dimensiones reales del menú.
@@ -234,6 +244,25 @@ const CanvasContextMenu = ({
     top: number;
     left: number;
   } | null>(null);
+
+  const resolveFallbackFocusTarget = React.useCallback(() => {
+    if (typeof document === 'undefined') return null;
+
+    const schemaId = selectionSchemas.find((schema) => typeof schema?.id === 'string' && schema.id.trim())?.id;
+    if (schemaId) {
+      const escapedId = typeof CSS !== 'undefined' && typeof CSS.escape === 'function'
+        ? CSS.escape(schemaId)
+        : schemaId.replace(/"/g, '\\"');
+      const schemaTarget = document.querySelector<HTMLElement>(`[data-schema-id="${escapedId}"]`);
+      if (schemaTarget) return schemaTarget;
+    }
+
+    if (mode === 'empty') {
+      return document.querySelector<HTMLElement>('[data-paper-page="true"]');
+    }
+
+    return document.querySelector<HTMLElement>('.sisad-pdfme-designer-canvas [data-paper-page="true"]');
+  }, [mode, selectionSchemas]);
 
   /**
    * Grupos de acciones visibles en el menú contextual.
@@ -272,6 +301,28 @@ const CanvasContextMenu = ({
       visibility,
     ],
   );
+
+  useEffect(() => {
+    if (open) {
+      restoreFocusRef.current = restoreFocusTarget || (document.activeElement instanceof HTMLElement ? document.activeElement : null);
+      previousOpenRef.current = true;
+      return;
+    }
+
+    if (!previousOpenRef.current) return;
+    previousOpenRef.current = false;
+
+    const fallbackFocusTarget = resolveFallbackFocusTarget();
+    const focusTarget =
+      (restoreFocusRef.current && restoreFocusRef.current.isConnected ? restoreFocusRef.current : null) ||
+      fallbackFocusTarget;
+
+    if (!focusTarget || typeof window === 'undefined') return;
+
+    window.requestAnimationFrame(() => {
+      focusTarget.focus({ preventScroll: true });
+    });
+  }, [open, restoreFocusTarget, resolveFallbackFocusTarget]);
 
   /**
    * Cierra el menú al presionar Escape.
@@ -335,7 +386,7 @@ const CanvasContextMenu = ({
     return resolveAnchoredFloatingSurfacePosition(
       position,
       estimatedSize,
-      { width: viewportWidth, height: viewportHeight },
+      { left: 0, top: 0, width: viewportWidth, height: viewportHeight },
     );
   }, [estimatedSize, position, viewportHeight, viewportWidth]);
 
@@ -361,7 +412,7 @@ const CanvasContextMenu = ({
     const nextPosition = resolveAnchoredFloatingSurfacePosition(
       position,
       measuredSize,
-      { width: window.innerWidth, height: window.innerHeight },
+      { left: 0, top: 0, width: window.innerWidth, height: window.innerHeight },
     );
 
     setResolvedPosition((current) => {
@@ -452,8 +503,11 @@ const CanvasContextMenu = ({
         data-mode={mode}
         data-selection-count={String(selectionCount)}
         data-selection-kind={selectionCount > 1 ? 'multi' : 'single'}
+        data-designer-control="true"
+        data-interaction-exclusion="true"
+        data-schema-interactive-control="true"
         className={mergeClassNames(
-          'sisad-pdfme-ui-canvas-context-menu absolute min-w-[210px] overflow-hidden rounded-2xl border border-slate-200/80 bg-white/96 p-1.5 text-[11.5px] text-slate-700 shadow-[0_16px_38px_rgba(15,23,42,0.12)] ring-1 ring-slate-100/60 backdrop-blur-md',
+          'sisad-pdfme-ui-canvas-context-menu absolute min-w-[210px] overflow-hidden rounded-[10px] border border-slate-200/80 bg-white/96 p-1.5 text-[11.5px] text-slate-700 shadow-[0_14px_30px_rgba(15,23,42,0.12)] ring-1 ring-slate-100/60 backdrop-blur-md',
           className,
         )}
         style={{
@@ -461,8 +515,8 @@ const CanvasContextMenu = ({
           left: `${menuPosition.left}px`,
         }}
         onContextMenu={(event) => event.preventDefault()}
-        onMouseDown={(event) => event.stopPropagation()}
         onPointerDownCapture={(event) => event.stopPropagation()}
+        onMouseDown={(event) => event.stopPropagation()}
         onKeyDown={(event) => {
           if (event.key === 'ArrowDown') {
             event.preventDefault();

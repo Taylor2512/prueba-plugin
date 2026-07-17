@@ -102,8 +102,8 @@ const InlineEditOverlay = ({ session, canvasSize, onCommit, onCancel }: InlineEd
     bottom: session.rect.top + session.rect.height,
   };
   const viewportSize = canvasRect
-    ? { width: Math.max(canvasRect.width, canvasSize.width), height: Math.max(canvasRect.height, canvasSize.height) }
-    : { width: canvasSize.width, height: canvasSize.height };
+    ? { left: 0, top: 0, width: Math.max(canvasRect.width, canvasSize.width), height: Math.max(canvasRect.height, canvasSize.height) }
+    : { left: 0, top: 0, width: canvasSize.width, height: canvasSize.height };
   const pos = resolveSelectionToolbarPosition(bounds, { width: surfaceWidth, height: surfaceHeight }, viewportSize);
 
   return (
