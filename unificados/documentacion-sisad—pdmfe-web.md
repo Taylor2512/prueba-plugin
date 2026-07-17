@@ -14,9 +14,9 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `docs`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-17T15:10:20.978Z`
+- **Fecha generación:** `2026-07-17T16:15:28.366Z`
 - **Extensiones incluidas:** `.md, .mdx`
-- **Archivos candidatos incluidos:** `346`
+- **Archivos candidatos incluidos:** `354`
 - **Límite por archivo:** `120 KB`
 - **Límite total de contenido:** `1800 KB`
 
@@ -77,6 +77,21 @@ prueba-plugin
 │   │   ├── snapshot-context.md
 │   │   ├── tailwind-design-continuity-context.md
 │   │   └── visual-baseline-context.md
+│   ├── coordination
+│   │   └── uxqa-20260717
+│   │       ├── handoffs
+│   │       │   ├── CLAUDE-INTEGRATION-W1-BLOCKED.md
+│   │       │   ├── CLAUDE-INTEGRATION-W1-READINESS.md
+│   │       │   ├── CLAUDE-QUARANTINE-MAIN.md
+│   │       │   ├── CLAUDE-W1-DEP-COPILOT.md
+│   │       │   ├── CLAUDE-W1.md
+│   │       │   ├── CODEX-wave1.md
+│   │       │   └── COPILOT-wave1.md
+│   │       ├── OWNERSHIP.md
+│   │       └── status
+│   │           ├── CLAUDE.md
+│   │           ├── CODEX.md
+│   │           └── COPILOT.md
 │   ├── docs-migration
 │   │   └── MIGRATION_FROM_OLD_STRUCTURE.md
 │   ├── memory
@@ -90,7 +105,8 @@ prueba-plugin
 │   │   ├── README.md
 │   │   └── session-handoff.md
 │   ├── plans
-│   │   └── PLAN_EJECUCION_MIGRACION_TAILWIND_SISAD_PDFME.md
+│   │   ├── PLAN_EJECUCION_MIGRACION_TAILWIND_SISAD_PDFME.md
+│   │   └── PLAN_MAESTRO_UX_QA_POST_TAILWIND_SISAD_PDFME_2026-07-17.md
 │   ├── playbooks
 │   │   ├── pb-ai-docs-refactor.md
 │   │   ├── pb-canvas-multipage.md
@@ -118,7 +134,9 @@ prueba-plugin
 │   │   ├── codex-start-tailwind-design-continuity.md
 │   │   ├── copilot-task-context.md
 │   │   ├── create-task-card.md
+│   │   ├── PROMPT_ARRANQUE_MULTIAGENTE_UX_QA_SISAD_PDFME_2026-07-17.md
 │   │   ├── PROMPT_MAESTRO_MIGRACION_TAILWIND_SISAD_PDFME.md
+│   │   ├── PROMPT_REALINEACION_MULTIAGENTE_WAVE1_SISAD_PDFME.md
 │   │   ├── README.md
 │   │   └── update-memory.md
 │   ├── README.md
@@ -425,19 +443,7 @@ prueba-plugin
 │           ├── documentacion-ui-runtime-sisad-pdfme.md
 │           └── README.md
 └── test-results
-    ├── tests-playwright-schema-ow-440a8-the-active-recipient-accent-chromium
-    │   └── error-context.md
-    ├── tests-playwright-schema-ow-61272-ents-from-the-same-resolver-chromium
-    │   └── error-context.md
-    ├── tests-playwright-schema-tr-c031a-cted-schema-to-page-anchors-chromium
-    │   └── error-context.md
-    ├── tests-playwright-selection-95146-focus-returns-to-the-canvas-chromium
-    │   └── error-context.md
-    ├── tests-playwright-sidebar-r-77399-ver-overlaps-the-right-rail-chromium
-    │   └── error-context.md
-    ├── tests-playwright-sidebar-r-f489a-estores-the-requested-panel-chromium
-    │   └── error-context.md
-    └── tests-playwright-standard--66ac8-s-the-expected-schema-types-chromium
+    └── tests-playwright-detail-vi-be09e-metry-and-identity-controls-chromium
         └── error-context.md
 ```
 
@@ -601,206 +607,214 @@ prueba-plugin
 | 154 | `ai/memory/README.md` | markdown | 13 | 0.4 | completo |
 | 155 | `ai/memory/session-handoff.md` | markdown | 168 | 9.6 | completo |
 | 156 | `ai/plans/PLAN_EJECUCION_MIGRACION_TAILWIND_SISAD_PDFME.md` | markdown | 679 | 12.9 | completo |
-| 157 | `ai/playbooks/pb-ai-docs-refactor.md` | markdown | 26 | 0.8 | completo |
-| 158 | `ai/playbooks/pb-canvas-multipage.md` | markdown | 6 | 0.2 | completo |
-| 159 | `ai/playbooks/pb-css-tailwind-migration.md` | markdown | 28 | 0.7 | completo |
-| 160 | `ai/playbooks/pb-inspector.md` | markdown | 6 | 0.1 | completo |
-| 161 | `ai/playbooks/pb-schema-families.md` | markdown | 6 | 0.2 | completo |
-| 162 | `ai/playbooks/pb-selection-transform.md` | markdown | 6 | 0.1 | completo |
-| 163 | `ai/playbooks/pb-snapshot.md` | markdown | 6 | 0.1 | completo |
-| 164 | `ai/playbooks/pb-tailwind-design-continuity.md` | markdown | 33 | 1.2 | completo |
-| 165 | `ai/playbooks/pb-visual-regression.md` | markdown | 8 | 0.2 | completo |
-| 166 | `ai/playbooks/README.md` | markdown | 3 | 0.1 | completo |
-| 167 | `ai/project/architecture-principles.md` | markdown | 34 | 1.0 | completo |
-| 168 | `ai/project/definition-of-done.md` | markdown | 12 | 0.4 | completo |
-| 169 | `ai/project/file-ownership-map.md` | markdown | 14 | 0.8 | completo |
-| 170 | `ai/project/glossary.md` | markdown | 16 | 0.7 | completo |
-| 171 | `ai/project/goals.md` | markdown | 24 | 0.9 | completo |
-| 172 | `ai/project/non-goals.md` | markdown | 12 | 0.3 | completo |
-| 173 | `ai/project/scope.md` | markdown | 38 | 0.6 | completo |
-| 174 | `ai/prompts/claude-diagnose-or-implement.md` | markdown | 7 | 0.2 | completo |
-| 175 | `ai/prompts/codex-master-prompt.md` | markdown | 5 | 0.3 | completo |
-| 176 | `ai/prompts/codex-next-pass-actions-ui-dedup.md` | markdown | 62 | 1.7 | completo |
-| 177 | `ai/prompts/codex-pdfcomponent-dynamic-integration-refactor.md` | markdown | 31 | 1.6 | completo |
-| 178 | `ai/prompts/codex-start-tailwind-design-continuity.md` | markdown | 13 | 0.8 | completo |
-| 179 | `ai/prompts/copilot-task-context.md` | markdown | 11 | 0.2 | completo |
-| 180 | `ai/prompts/create-task-card.md` | markdown | 11 | 0.2 | completo |
-| 181 | `ai/prompts/PROMPT_MAESTRO_MIGRACION_TAILWIND_SISAD_PDFME.md` | markdown | 804 | 14.7 | completo |
-| 182 | `ai/prompts/README.md` | markdown | 3 | 0.1 | completo |
-| 183 | `ai/prompts/update-memory.md` | markdown | 3 | 0.1 | completo |
-| 184 | `ai/reports/architecture-correction-2026-07-14.md` | markdown | 28 | 1.6 | completo |
-| 185 | `ai/reports/auditoria_migracion_tailwind_y_regresiones_sisad_pdfme_2026-07-15.md` | markdown | 198 | 11.2 | completo |
-| 186 | `ai/reports/deep-ui-action-audit-2026-07-15.md` | markdown | 169 | 5.0 | completo |
-| 187 | `ai/reports/pdfcomponent-integration-boundary.md` | markdown | 41 | 1.6 | completo |
-| 188 | `ai/reports/pdfcomponent-integration-deep-audit-2026-07-15.md` | markdown | 193 | 10.8 | completo |
-| 189 | `ai/reports/tailwind-design-continuity-roadmap.md` | markdown | 24 | 1.2 | completo |
-| 190 | `ai/router/CONTEXT_BUDGET.md` | markdown | 58 | 1.2 | completo |
-| 191 | `ai/router/ROUTER.md` | markdown | 30 | 2.0 | completo |
-| 192 | `ai/router/TASK_INTAKE.md` | markdown | 35 | 0.9 | completo |
-| 193 | `ai/rules/ai-docs-rules.md` | markdown | 6 | 0.2 | completo |
-| 194 | `ai/rules/canvas-rules.md` | markdown | 3 | 0.1 | completo |
-| 195 | `ai/rules/css-migration-rules.md` | markdown | 35 | 0.8 | completo |
-| 196 | `ai/rules/global-rules.md` | markdown | 9 | 0.7 | completo |
-| 197 | `ai/rules/inspector-rules.md` | markdown | 3 | 0.1 | completo |
-| 198 | `ai/rules/moveable-selecto-rules.md` | markdown | 5 | 0.2 | completo |
-| 199 | `ai/rules/README.md` | markdown | 3 | 0.1 | completo |
-| 200 | `ai/rules/schema-rules.md` | markdown | 3 | 0.1 | completo |
-| 201 | `ai/rules/snapshot-rules.md` | markdown | 3 | 0.1 | completo |
-| 202 | `ai/rules/tailwind-design-continuity-rules.md` | markdown | 14 | 1.3 | completo |
-| 203 | `ai/skills/canvas-multipage-skill.md` | markdown | 29 | 0.4 | completo |
-| 204 | `ai/skills/inspector-skill.md` | markdown | 29 | 0.4 | completo |
-| 205 | `ai/skills/memory-update-skill.md` | markdown | 29 | 0.4 | completo |
-| 206 | `ai/skills/moveable-selecto-skill.md` | markdown | 29 | 0.4 | completo |
-| 207 | `ai/skills/option-groups-skill.md` | markdown | 29 | 0.4 | completo |
-| 208 | `ai/skills/prompting-skill.md` | markdown | 29 | 0.4 | completo |
-| 209 | `ai/skills/README.md` | markdown | 3 | 0.1 | completo |
-| 210 | `ai/skills/snapshot-safety-skill.md` | markdown | 29 | 0.4 | completo |
-| 211 | `ai/skills/tailwind-migration-skill.md` | markdown | 29 | 0.4 | completo |
-| 212 | `ai/skills/visual-regression-skill.md` | markdown | 29 | 0.4 | completo |
-| 213 | `ai/start/QUICKSTART-CLAUDE.md` | markdown | 15 | 0.4 | completo |
-| 214 | `ai/start/QUICKSTART-CODEX.md` | markdown | 34 | 0.7 | completo |
-| 215 | `ai/start/QUICKSTART-COPILOT.md` | markdown | 18 | 0.4 | completo |
-| 216 | `ai/start/START.md` | markdown | 76 | 1.2 | completo |
-| 217 | `ai/subagents/anti-hallucination-reviewer.md` | markdown | 13 | 0.3 | completo |
-| 218 | `ai/subagents/baseline-visual-critic.md` | markdown | 13 | 0.3 | completo |
-| 219 | `ai/subagents/code-docs-writer.md` | markdown | 13 | 0.3 | completo |
-| 220 | `ai/subagents/css-auditor.md` | markdown | 13 | 0.3 | completo |
-| 221 | `ai/subagents/legacy-css-guardian.md` | markdown | 13 | 0.3 | completo |
-| 222 | `ai/subagents/memory-curator.md` | markdown | 13 | 0.3 | completo |
-| 223 | `ai/subagents/prompt-engineer.md` | markdown | 13 | 0.3 | completo |
-| 224 | `ai/subagents/README.md` | markdown | 3 | 0.1 | completo |
-| 225 | `ai/subagents/regression-tester.md` | markdown | 13 | 0.3 | completo |
-| 226 | `ai/subagents/tailwind-migrator.md` | markdown | 13 | 0.3 | completo |
-| 227 | `ai/task-cards/README.md` | markdown | 11 | 0.2 | completo |
-| 228 | `ai/templates/agent-template.md` | markdown | 7 | 0.1 | completo |
-| 229 | `ai/templates/checklist-template.md` | markdown | 5 | 0.1 | completo |
-| 230 | `ai/templates/decision-template.md` | markdown | 7 | 0.1 | completo |
-| 231 | `ai/templates/memory-update-template.md` | markdown | 7 | 0.1 | completo |
-| 232 | `ai/templates/README.md` | markdown | 3 | 0.1 | completo |
-| 233 | `ai/templates/skill-template.md` | markdown | 7 | 0.1 | completo |
-| 234 | `ai/templates/task-card-template.md` | markdown | 11 | 0.2 | completo |
-| 235 | `reports/action-audit/button-action-inventory.md` | markdown | 149 | 41.7 | completo |
-| 236 | `reports/designer-deep-audit/duplication-map.md` | markdown | 24 | 1.4 | completo |
-| 237 | `reports/designer-deep-audit/risk-map.md` | markdown | 19 | 1.1 | completo |
-| 238 | `reports/designer-deep-audit/wrapper-reduction.md` | markdown | 56 | 2.7 | completo |
-| 239 | `reports/tailwind-migration/active-css-inventory.md` | markdown | 12 | 0.6 | completo |
-| 240 | `reports/tailwind-migration/active-selector-duplicates.md` | markdown | 9 | 0.9 | completo |
-| 241 | `reports/tailwind-migration/baseline-regression-audit.md` | markdown | 27 | 5.2 | completo |
-| 242 | `reports/tailwind-migration/component-migration-ledger.md` | markdown | 212 | 19.5 | completo |
-| 243 | `reports/tailwind-migration/deep-density-spacing-audit.md` | markdown | 105 | 9.6 | completo |
-| 244 | `reports/tailwind-migration/img-version-baseline-inventory.md` | markdown | 14 | 2.6 | completo |
-| 245 | `reports/tailwind-migration/line-by-line-style-audit.md` | markdown | 227 | 21.6 | completo |
-| 246 | `reports/tailwind-migration/pending-phases-progress.md` | markdown | 10 | 1.9 | completo |
-| 247 | `reports/tailwind-migration/README.md` | markdown | 76 | 4.6 | completo |
-| 248 | `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md` | markdown | 45 | 3.4 | completo |
-| 249 | `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md` | markdown | 34 | 3.2 | completo |
-| 250 | `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md` | markdown | 13 | 2.3 | completo |
-| 251 | `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md` | markdown | 20 | 1.4 | completo |
-| 252 | `reports/tailwind-migration/schema-chrome-tailwind-audit.md` | markdown | 18 | 1.3 | completo |
-| 253 | `reports/tailwind-migration/selector-duplicates-current.md` | markdown | 37 | 5.5 | completo |
-| 254 | `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md` | markdown | 45 | 2.8 | completo |
-| 255 | `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md` | markdown | 43 | 2.5 | completo |
-| 256 | `reports/tailwind-migration/tc-css-10-schemas-visual.md` | markdown | 33 | 3.7 | completo |
-| 257 | `reports/tailwind-migration/tc-css-11-lab-audit.md` | markdown | 31 | 1.2 | completo |
-| 258 | `reports/tailwind-migration/tc-css-option-group-selection-fix.md` | markdown | 38 | 4.3 | completo |
-| 259 | `reports/tailwind-migration/tc-css-ownership-color.md` | markdown | 38 | 4.0 | completo |
-| 260 | `reports/tailwind-migration/ui-styles-decommission-audit.md` | markdown | 57 | 5.6 | completo |
-| 261 | `reports/tailwind-migration/ui-styles-decommission-progress.md` | markdown | 25 | 1.6 | completo |
-| 262 | `test-results/tests-playwright-schema-ow-440a8-the-active-recipient-accent-chromium/error-context.md` | markdown | 540 | 27.1 | completo |
-| 263 | `test-results/tests-playwright-schema-ow-61272-ents-from-the-same-resolver-chromium/error-context.md` | markdown | 540 | 27.1 | completo |
-| 264 | `test-results/tests-playwright-schema-tr-c031a-cted-schema-to-page-anchors-chromium/error-context.md` | markdown | 555 | 28.0 | completo |
-| 265 | `test-results/tests-playwright-selection-95146-focus-returns-to-the-canvas-chromium/error-context.md` | markdown | 555 | 28.0 | completo |
-| 266 | `test-results/tests-playwright-sidebar-r-77399-ver-overlaps-the-right-rail-chromium/error-context.md` | markdown | 540 | 27.1 | completo |
-| 267 | `test-results/tests-playwright-sidebar-r-f489a-estores-the-requested-panel-chromium/error-context.md` | markdown | 540 | 27.1 | completo |
-| 268 | `test-results/tests-playwright-standard--66ac8-s-the-expected-schema-types-chromium/error-context.md` | markdown | 540 | 27.1 | completo |
-| 269 | `ai/task-cards/active/TASK-CSS-026-accelerated-tailwind-inline-decommission.md` | markdown | 109 | 7.0 | completo |
-| 270 | `ai/task-cards/active/TASK-REGRESSION-021-shell-token-visual-recovery.md` | markdown | 214 | 35.7 | completo |
-| 271 | `ai/task-cards/backlog/TASK-CSS-021-left-sidebar-overflow-tailwind-continuity.md` | markdown | 42 | 1.2 | completo |
-| 272 | `ai/task-cards/backlog/TASK-CSS-022-left-sidebar-css-pruning.md` | markdown | 39 | 0.9 | completo |
-| 273 | `ai/task-cards/backlog/TASK-CSS-023-tailwind-migration-continuity-step-by-step.md` | markdown | 84 | 3.9 | completo |
-| 274 | `ai/task-cards/backlog/TASK-CSS-027-right-sidebar-constants-tailwind-scroll-polish.md` | markdown | 95 | 4.6 | completo |
-| 275 | `ai/task-cards/backlog/TASK-LAB-030-canvas-first-shell-style-source-unification.md` | markdown | 42 | 1.2 | completo |
-| 276 | `ai/task-cards/backlog/TASK-QA-016-tailwind-design-visual-regression.md` | markdown | 42 | 1.1 | completo |
-| 277 | `ai/task-cards/backlog/TASK-QA-017-listview-specs-docs-default-drift.md` | markdown | 39 | 1.9 | completo |
-| 278 | `ai/task-cards/backlog/TASK-SCHEMA-003-action-owner-accent-continuity.md` | markdown | 42 | 1.2 | completo |
-| 279 | `ai/task-cards/completed/completed-summary.md` | markdown | 152 | 8.9 | completo |
-| 280 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
-| 281 | `ai/task-cards/completed/TASK-ACTIONS-001-button-action-contract-audit.md` | markdown | 89 | 2.6 | completo |
-| 282 | `ai/task-cards/completed/TASK-ACTIONS-002-commandbus-action-registry-unification.md` | markdown | 105 | 3.6 | completo |
-| 283 | `ai/task-cards/completed/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md` | markdown | 66 | 1.5 | completo |
-| 284 | `ai/task-cards/completed/TASK-ARCH-004-wrapper-reduction-public-api-hardening.md` | markdown | 77 | 2.5 | completo |
-| 285 | `ai/task-cards/completed/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 21 | 0.5 | completo |
-| 286 | `ai/task-cards/completed/TASK-CANVAS-003-guides-ruler-black-overlay-regression.md` | markdown | 78 | 3.0 | completo |
-| 287 | `ai/task-cards/completed/TASK-CSS-012-inline-tailwind-css-reduction.md` | markdown | 91 | 2.7 | completo |
-| 288 | `ai/task-cards/completed/TASK-CSS-013-selector-dedup-current-design-polish.md` | markdown | 86 | 3.1 | completo |
-| 289 | `ai/task-cards/completed/TASK-CSS-014-tailwind3-current-ui-dedup-polish.md` | markdown | 85 | 2.9 | completo |
-| 290 | `ai/task-cards/completed/TASK-CSS-015-lab-routes-tailwind3-dedup.md` | markdown | 14 | 0.4 | completo |
-| 291 | `ai/task-cards/completed/TASK-CSS-018-stabilize-tailwind-cleanup.md` | markdown | 41 | 1.6 | completo |
-| 292 | `ai/task-cards/completed/TASK-CSS-019-jsx-tsx-tailwind-migration-and-css-reduction.md` | markdown | 72 | 4.6 | completo |
-| 293 | `ai/task-cards/completed/TASK-CSS-020-lab-routes-zero-apply.md` | markdown | 50 | 1.5 | completo |
-| 294 | `ai/task-cards/completed/TASK-CSS-023-right-sidebar-documents-tailwind-continuity.md` | markdown | 42 | 1.1 | completo |
-| 295 | `ai/task-cards/completed/TASK-CSS-024-right-sidebar-listview-row-flat.md` | markdown | 99 | 4.6 | completo |
-| 296 | `ai/task-cards/completed/TASK-CSS-025-context-summary-guides-apply-to-jsx.md` | markdown | 116 | 6.5 | completo |
-| 297 | `ai/task-cards/completed/TASK-DETAIL-015-access-state-label-sync.md` | markdown | 85 | 3.3 | completo |
-| 298 | `ai/task-cards/completed/TASK-INTERACTION-016-assignment-modal-selection-freeze-regression.md` | markdown | 36 | 2.1 | completo |
-| 299 | `ai/task-cards/completed/TASK-LAB-017-pdfcomponent-integration-boundary.md` | markdown | 19 | 0.8 | completo |
-| 300 | `ai/task-cards/completed/TASK-LAB-018-use-pdfme-lab-integration-hook.md` | markdown | 20 | 0.8 | completo |
-| 301 | `ai/task-cards/completed/TASK-LAB-019-normalize-lab-example-data-contract.md` | markdown | 16 | 0.5 | completo |
-| 302 | `ai/task-cards/completed/TASK-LAB-020-public-runtime-wrappers-only.md` | markdown | 18 | 0.7 | completo |
-| 303 | `ai/task-cards/completed/TASK-LAB-021-lab-action-registry-controller-contract.md` | markdown | 15 | 0.5 | completo |
-| 304 | `ai/task-cards/completed/TASK-LAB-022-remove-compat-wrapper-reexports.md` | markdown | 18 | 0.7 | completo |
-| 305 | `ai/task-cards/completed/TASK-LAB-023-lab-presentation-core-selectors.md` | markdown | 14 | 0.5 | completo |
-| 306 | `ai/task-cards/completed/TASK-LAB-024-external-data-integration-e2e.md` | markdown | 19 | 0.8 | completo |
-| 307 | `ai/task-cards/completed/TASK-LAB-025-example-bundle-normalized-export.md` | markdown | 18 | 0.6 | completo |
-| 308 | `ai/task-cards/completed/TASK-LAB-026-restore-designer-visual-baseline-after-integration.md` | markdown | 97 | 4.9 | completo |
-| 309 | `ai/task-cards/completed/TASK-LAB-027-lab-canvas-first-shell-jsx-handoff.md` | markdown | 40 | 1.6 | completo |
-| 310 | `ai/task-cards/completed/TASK-LAB-028-runtime-collaboration-sync-and-form-echo.md` | markdown | 48 | 2.0 | completo |
-| 311 | `ai/task-cards/completed/TASK-LAB-029-multidocument-right-sidebar-docs-default.md` | markdown | 43 | 1.7 | completo |
-| 312 | `ai/task-cards/completed/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md` | markdown | 40 | 1.0 | completo |
-| 313 | `ai/task-cards/completed/TASK-PDFME-011-connectivity-sisad-restore.md` | markdown | 37 | 1.0 | completo |
-| 314 | `ai/task-cards/completed/TASK-PDFME-012-global-visibility-wiring-continuity.md` | markdown | 48 | 1.4 | completo |
-| 315 | `ai/task-cards/completed/TASK-PDFME-013-controller-real-api-no-noop.md` | markdown | 37 | 1.3 | completo |
-| 316 | `ai/task-cards/completed/TASK-PDFME-014-rightsidebar-reassign-state-regression.md` | markdown | 45 | 1.2 | completo |
-| 317 | `ai/task-cards/completed/TASK-QA-015-action-coverage-regression-suite.md` | markdown | 86 | 2.4 | completo |
-| 318 | `ai/task-cards/completed/TASK-REGRESSION-020-owner-color-renderer-continuity.md` | markdown | 49 | 1.9 | completo |
-| 319 | `ai/task-cards/completed/TASK-RUNTIME-015-config-hook-visibility-action-map.md` | markdown | 59 | 1.9 | completo |
-| 320 | `ai/task-cards/completed/TASK-UI-015-right-left-rail-collapse-polish.md` | markdown | 77 | 2.5 | completo |
-| 321 | `ai/task-cards/completed/TASK-UI-016-zoom-toolbar-contract.md` | markdown | 68 | 2.0 | completo |
-| 322 | `ai/task-cards/completed/TASK-UI-017-density-breakpoints-sync.md` | markdown | 37 | 1.7 | completo |
-| 323 | `reports/tailwind-migration/accelerated/constants-contract.md` | markdown | 22 | 2.1 | completo |
-| 324 | `reports/tailwind-migration/accelerated/migration-ledger.md` | markdown | 92 | 5.2 | completo |
-| 325 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 784 | 21.6 | completo |
-| 326 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
-| 327 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
-| 328 | `src/sisad-pdfme/converter/README.md` | markdown | 42 | 0.9 | completo |
-| 329 | `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md` | markdown | 151 | 4.6 | completo |
-| 330 | `src/sisad-pdfme/runtime/README.md` | markdown | 15 | 0.7 | completo |
-| 331 | `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md` | markdown | 168 | 5.7 | completo |
-| 332 | `src/sisad-pdfme/ui/README.md` | markdown | 38 | 2.2 | completo |
-| 333 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
-| 334 | `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md` | markdown | 30 | 1.6 | completo |
-| 335 | `src/sisad-pdfme/ui/components/README.md` | markdown | 28 | 1.1 | completo |
-| 336 | `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md` | markdown | 18 | 0.9 | completo |
-| 337 | `src/sisad-pdfme/ui/components/Designer/Canvas/README.md` | markdown | 24 | 1.2 | completo |
-| 338 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md` | markdown | 15 | 1.0 | completo |
-| 339 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md` | markdown | 18 | 0.7 | completo |
-| 340 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md` | markdown | 21 | 0.7 | completo |
-| 341 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md` | markdown | 35 | 1.3 | completo |
-| 342 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md` | markdown | 42 | 1.6 | completo |
-| 343 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md` | markdown | 38 | 1.4 | completo |
-| 344 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md` | markdown | 20 | 1.0 | completo |
-| 345 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md` | markdown | 31 | 1.8 | completo |
-| 346 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md` | markdown | 24 | 0.8 | completo |
+| 157 | `ai/plans/PLAN_MAESTRO_UX_QA_POST_TAILWIND_SISAD_PDFME_2026-07-17.md` | markdown | 1099 | 26.0 | completo |
+| 158 | `ai/playbooks/pb-ai-docs-refactor.md` | markdown | 26 | 0.8 | completo |
+| 159 | `ai/playbooks/pb-canvas-multipage.md` | markdown | 6 | 0.2 | completo |
+| 160 | `ai/playbooks/pb-css-tailwind-migration.md` | markdown | 28 | 0.7 | completo |
+| 161 | `ai/playbooks/pb-inspector.md` | markdown | 6 | 0.1 | completo |
+| 162 | `ai/playbooks/pb-schema-families.md` | markdown | 6 | 0.2 | completo |
+| 163 | `ai/playbooks/pb-selection-transform.md` | markdown | 6 | 0.1 | completo |
+| 164 | `ai/playbooks/pb-snapshot.md` | markdown | 6 | 0.1 | completo |
+| 165 | `ai/playbooks/pb-tailwind-design-continuity.md` | markdown | 33 | 1.2 | completo |
+| 166 | `ai/playbooks/pb-visual-regression.md` | markdown | 8 | 0.2 | completo |
+| 167 | `ai/playbooks/README.md` | markdown | 3 | 0.1 | completo |
+| 168 | `ai/project/architecture-principles.md` | markdown | 34 | 1.0 | completo |
+| 169 | `ai/project/definition-of-done.md` | markdown | 12 | 0.4 | completo |
+| 170 | `ai/project/file-ownership-map.md` | markdown | 14 | 0.8 | completo |
+| 171 | `ai/project/glossary.md` | markdown | 16 | 0.7 | completo |
+| 172 | `ai/project/goals.md` | markdown | 24 | 0.9 | completo |
+| 173 | `ai/project/non-goals.md` | markdown | 12 | 0.3 | completo |
+| 174 | `ai/project/scope.md` | markdown | 38 | 0.6 | completo |
+| 175 | `ai/prompts/claude-diagnose-or-implement.md` | markdown | 7 | 0.2 | completo |
+| 176 | `ai/prompts/codex-master-prompt.md` | markdown | 5 | 0.3 | completo |
+| 177 | `ai/prompts/codex-next-pass-actions-ui-dedup.md` | markdown | 62 | 1.7 | completo |
+| 178 | `ai/prompts/codex-pdfcomponent-dynamic-integration-refactor.md` | markdown | 31 | 1.6 | completo |
+| 179 | `ai/prompts/codex-start-tailwind-design-continuity.md` | markdown | 13 | 0.8 | completo |
+| 180 | `ai/prompts/copilot-task-context.md` | markdown | 11 | 0.2 | completo |
+| 181 | `ai/prompts/create-task-card.md` | markdown | 11 | 0.2 | completo |
+| 182 | `ai/prompts/PROMPT_ARRANQUE_MULTIAGENTE_UX_QA_SISAD_PDFME_2026-07-17.md` | markdown | 1072 | 26.0 | completo |
+| 183 | `ai/prompts/PROMPT_MAESTRO_MIGRACION_TAILWIND_SISAD_PDFME.md` | markdown | 804 | 14.7 | completo |
+| 184 | `ai/prompts/PROMPT_REALINEACION_MULTIAGENTE_WAVE1_SISAD_PDFME.md` | markdown | 351 | 8.6 | completo |
+| 185 | `ai/prompts/README.md` | markdown | 3 | 0.1 | completo |
+| 186 | `ai/prompts/update-memory.md` | markdown | 3 | 0.1 | completo |
+| 187 | `ai/reports/architecture-correction-2026-07-14.md` | markdown | 28 | 1.6 | completo |
+| 188 | `ai/reports/auditoria_migracion_tailwind_y_regresiones_sisad_pdfme_2026-07-15.md` | markdown | 198 | 11.2 | completo |
+| 189 | `ai/reports/deep-ui-action-audit-2026-07-15.md` | markdown | 169 | 5.0 | completo |
+| 190 | `ai/reports/pdfcomponent-integration-boundary.md` | markdown | 41 | 1.6 | completo |
+| 191 | `ai/reports/pdfcomponent-integration-deep-audit-2026-07-15.md` | markdown | 193 | 10.8 | completo |
+| 192 | `ai/reports/tailwind-design-continuity-roadmap.md` | markdown | 24 | 1.2 | completo |
+| 193 | `ai/router/CONTEXT_BUDGET.md` | markdown | 58 | 1.2 | completo |
+| 194 | `ai/router/ROUTER.md` | markdown | 30 | 2.0 | completo |
+| 195 | `ai/router/TASK_INTAKE.md` | markdown | 35 | 0.9 | completo |
+| 196 | `ai/rules/ai-docs-rules.md` | markdown | 6 | 0.2 | completo |
+| 197 | `ai/rules/canvas-rules.md` | markdown | 3 | 0.1 | completo |
+| 198 | `ai/rules/css-migration-rules.md` | markdown | 35 | 0.8 | completo |
+| 199 | `ai/rules/global-rules.md` | markdown | 9 | 0.7 | completo |
+| 200 | `ai/rules/inspector-rules.md` | markdown | 3 | 0.1 | completo |
+| 201 | `ai/rules/moveable-selecto-rules.md` | markdown | 5 | 0.2 | completo |
+| 202 | `ai/rules/README.md` | markdown | 3 | 0.1 | completo |
+| 203 | `ai/rules/schema-rules.md` | markdown | 3 | 0.1 | completo |
+| 204 | `ai/rules/snapshot-rules.md` | markdown | 3 | 0.1 | completo |
+| 205 | `ai/rules/tailwind-design-continuity-rules.md` | markdown | 14 | 1.3 | completo |
+| 206 | `ai/skills/canvas-multipage-skill.md` | markdown | 29 | 0.4 | completo |
+| 207 | `ai/skills/inspector-skill.md` | markdown | 29 | 0.4 | completo |
+| 208 | `ai/skills/memory-update-skill.md` | markdown | 29 | 0.4 | completo |
+| 209 | `ai/skills/moveable-selecto-skill.md` | markdown | 29 | 0.4 | completo |
+| 210 | `ai/skills/option-groups-skill.md` | markdown | 29 | 0.4 | completo |
+| 211 | `ai/skills/prompting-skill.md` | markdown | 29 | 0.4 | completo |
+| 212 | `ai/skills/README.md` | markdown | 3 | 0.1 | completo |
+| 213 | `ai/skills/snapshot-safety-skill.md` | markdown | 29 | 0.4 | completo |
+| 214 | `ai/skills/tailwind-migration-skill.md` | markdown | 29 | 0.4 | completo |
+| 215 | `ai/skills/visual-regression-skill.md` | markdown | 29 | 0.4 | completo |
+| 216 | `ai/start/QUICKSTART-CLAUDE.md` | markdown | 15 | 0.4 | completo |
+| 217 | `ai/start/QUICKSTART-CODEX.md` | markdown | 34 | 0.7 | completo |
+| 218 | `ai/start/QUICKSTART-COPILOT.md` | markdown | 18 | 0.4 | completo |
+| 219 | `ai/start/START.md` | markdown | 76 | 1.2 | completo |
+| 220 | `ai/subagents/anti-hallucination-reviewer.md` | markdown | 13 | 0.3 | completo |
+| 221 | `ai/subagents/baseline-visual-critic.md` | markdown | 13 | 0.3 | completo |
+| 222 | `ai/subagents/code-docs-writer.md` | markdown | 13 | 0.3 | completo |
+| 223 | `ai/subagents/css-auditor.md` | markdown | 13 | 0.3 | completo |
+| 224 | `ai/subagents/legacy-css-guardian.md` | markdown | 13 | 0.3 | completo |
+| 225 | `ai/subagents/memory-curator.md` | markdown | 13 | 0.3 | completo |
+| 226 | `ai/subagents/prompt-engineer.md` | markdown | 13 | 0.3 | completo |
+| 227 | `ai/subagents/README.md` | markdown | 3 | 0.1 | completo |
+| 228 | `ai/subagents/regression-tester.md` | markdown | 13 | 0.3 | completo |
+| 229 | `ai/subagents/tailwind-migrator.md` | markdown | 13 | 0.3 | completo |
+| 230 | `ai/task-cards/README.md` | markdown | 11 | 0.2 | completo |
+| 231 | `ai/templates/agent-template.md` | markdown | 7 | 0.1 | completo |
+| 232 | `ai/templates/checklist-template.md` | markdown | 5 | 0.1 | completo |
+| 233 | `ai/templates/decision-template.md` | markdown | 7 | 0.1 | completo |
+| 234 | `ai/templates/memory-update-template.md` | markdown | 7 | 0.1 | completo |
+| 235 | `ai/templates/README.md` | markdown | 3 | 0.1 | completo |
+| 236 | `ai/templates/skill-template.md` | markdown | 7 | 0.1 | completo |
+| 237 | `ai/templates/task-card-template.md` | markdown | 11 | 0.2 | completo |
+| 238 | `reports/action-audit/button-action-inventory.md` | markdown | 149 | 41.7 | completo |
+| 239 | `reports/designer-deep-audit/duplication-map.md` | markdown | 24 | 1.4 | completo |
+| 240 | `reports/designer-deep-audit/risk-map.md` | markdown | 19 | 1.1 | completo |
+| 241 | `reports/designer-deep-audit/wrapper-reduction.md` | markdown | 56 | 2.7 | completo |
+| 242 | `reports/tailwind-migration/active-css-inventory.md` | markdown | 12 | 0.6 | completo |
+| 243 | `reports/tailwind-migration/active-selector-duplicates.md` | markdown | 9 | 0.9 | completo |
+| 244 | `reports/tailwind-migration/baseline-regression-audit.md` | markdown | 27 | 5.2 | completo |
+| 245 | `reports/tailwind-migration/component-migration-ledger.md` | markdown | 212 | 19.5 | completo |
+| 246 | `reports/tailwind-migration/deep-density-spacing-audit.md` | markdown | 105 | 9.6 | completo |
+| 247 | `reports/tailwind-migration/img-version-baseline-inventory.md` | markdown | 14 | 2.6 | completo |
+| 248 | `reports/tailwind-migration/line-by-line-style-audit.md` | markdown | 227 | 21.6 | completo |
+| 249 | `reports/tailwind-migration/pending-phases-progress.md` | markdown | 10 | 1.9 | completo |
+| 250 | `reports/tailwind-migration/README.md` | markdown | 76 | 4.6 | completo |
+| 251 | `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md` | markdown | 45 | 3.4 | completo |
+| 252 | `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md` | markdown | 34 | 3.2 | completo |
+| 253 | `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md` | markdown | 13 | 2.3 | completo |
+| 254 | `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md` | markdown | 20 | 1.4 | completo |
+| 255 | `reports/tailwind-migration/schema-chrome-tailwind-audit.md` | markdown | 18 | 1.3 | completo |
+| 256 | `reports/tailwind-migration/selector-duplicates-current.md` | markdown | 37 | 5.5 | completo |
+| 257 | `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md` | markdown | 45 | 2.8 | completo |
+| 258 | `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md` | markdown | 43 | 2.5 | completo |
+| 259 | `reports/tailwind-migration/tc-css-10-schemas-visual.md` | markdown | 33 | 3.7 | completo |
+| 260 | `reports/tailwind-migration/tc-css-11-lab-audit.md` | markdown | 31 | 1.2 | completo |
+| 261 | `reports/tailwind-migration/tc-css-option-group-selection-fix.md` | markdown | 38 | 4.3 | completo |
+| 262 | `reports/tailwind-migration/tc-css-ownership-color.md` | markdown | 38 | 4.0 | completo |
+| 263 | `reports/tailwind-migration/ui-styles-decommission-audit.md` | markdown | 57 | 5.6 | completo |
+| 264 | `reports/tailwind-migration/ui-styles-decommission-progress.md` | markdown | 25 | 1.6 | completo |
+| 265 | `test-results/tests-playwright-detail-vi-be09e-metry-and-identity-controls-chromium/error-context.md` | markdown | 540 | 27.1 | completo |
+| 266 | `ai/coordination/uxqa-20260717/OWNERSHIP.md` | markdown | 13 | 0.5 | completo |
+| 267 | `ai/task-cards/active/TASK-CSS-026-accelerated-tailwind-inline-decommission.md` | markdown | 109 | 7.0 | completo |
+| 268 | `ai/task-cards/active/TASK-REGRESSION-021-shell-token-visual-recovery.md` | markdown | 214 | 35.7 | completo |
+| 269 | `ai/task-cards/backlog/TASK-CSS-021-left-sidebar-overflow-tailwind-continuity.md` | markdown | 42 | 1.2 | completo |
+| 270 | `ai/task-cards/backlog/TASK-CSS-022-left-sidebar-css-pruning.md` | markdown | 39 | 0.9 | completo |
+| 271 | `ai/task-cards/backlog/TASK-CSS-023-tailwind-migration-continuity-step-by-step.md` | markdown | 84 | 3.9 | completo |
+| 272 | `ai/task-cards/backlog/TASK-CSS-027-right-sidebar-constants-tailwind-scroll-polish.md` | markdown | 95 | 4.6 | completo |
+| 273 | `ai/task-cards/backlog/TASK-LAB-030-canvas-first-shell-style-source-unification.md` | markdown | 42 | 1.2 | completo |
+| 274 | `ai/task-cards/backlog/TASK-QA-016-tailwind-design-visual-regression.md` | markdown | 42 | 1.1 | completo |
+| 275 | `ai/task-cards/backlog/TASK-QA-017-listview-specs-docs-default-drift.md` | markdown | 39 | 1.9 | completo |
+| 276 | `ai/task-cards/backlog/TASK-SCHEMA-003-action-owner-accent-continuity.md` | markdown | 42 | 1.2 | completo |
+| 277 | `ai/task-cards/completed/completed-summary.md` | markdown | 152 | 8.9 | completo |
+| 278 | `ai/task-cards/completed/README.md` | markdown | 3 | 0.1 | completo |
+| 279 | `ai/task-cards/completed/TASK-ACTIONS-001-button-action-contract-audit.md` | markdown | 89 | 2.6 | completo |
+| 280 | `ai/task-cards/completed/TASK-ACTIONS-002-commandbus-action-registry-unification.md` | markdown | 105 | 3.6 | completo |
+| 281 | `ai/task-cards/completed/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md` | markdown | 66 | 1.5 | completo |
+| 282 | `ai/task-cards/completed/TASK-ARCH-004-wrapper-reduction-public-api-hardening.md` | markdown | 77 | 2.5 | completo |
+| 283 | `ai/task-cards/completed/TASK-CANVAS-001-protect-canvas-overflow.md` | markdown | 21 | 0.5 | completo |
+| 284 | `ai/task-cards/completed/TASK-CANVAS-003-guides-ruler-black-overlay-regression.md` | markdown | 78 | 3.0 | completo |
+| 285 | `ai/task-cards/completed/TASK-CSS-012-inline-tailwind-css-reduction.md` | markdown | 91 | 2.7 | completo |
+| 286 | `ai/task-cards/completed/TASK-CSS-013-selector-dedup-current-design-polish.md` | markdown | 86 | 3.1 | completo |
+| 287 | `ai/task-cards/completed/TASK-CSS-014-tailwind3-current-ui-dedup-polish.md` | markdown | 85 | 2.9 | completo |
+| 288 | `ai/task-cards/completed/TASK-CSS-015-lab-routes-tailwind3-dedup.md` | markdown | 14 | 0.4 | completo |
+| 289 | `ai/task-cards/completed/TASK-CSS-018-stabilize-tailwind-cleanup.md` | markdown | 41 | 1.6 | completo |
+| 290 | `ai/task-cards/completed/TASK-CSS-019-jsx-tsx-tailwind-migration-and-css-reduction.md` | markdown | 72 | 4.6 | completo |
+| 291 | `ai/task-cards/completed/TASK-CSS-020-lab-routes-zero-apply.md` | markdown | 50 | 1.5 | completo |
+| 292 | `ai/task-cards/completed/TASK-CSS-023-right-sidebar-documents-tailwind-continuity.md` | markdown | 42 | 1.1 | completo |
+| 293 | `ai/task-cards/completed/TASK-CSS-024-right-sidebar-listview-row-flat.md` | markdown | 99 | 4.6 | completo |
+| 294 | `ai/task-cards/completed/TASK-CSS-025-context-summary-guides-apply-to-jsx.md` | markdown | 116 | 6.5 | completo |
+| 295 | `ai/task-cards/completed/TASK-DETAIL-015-access-state-label-sync.md` | markdown | 85 | 3.3 | completo |
+| 296 | `ai/task-cards/completed/TASK-INTERACTION-016-assignment-modal-selection-freeze-regression.md` | markdown | 36 | 2.1 | completo |
+| 297 | `ai/task-cards/completed/TASK-LAB-017-pdfcomponent-integration-boundary.md` | markdown | 19 | 0.8 | completo |
+| 298 | `ai/task-cards/completed/TASK-LAB-018-use-pdfme-lab-integration-hook.md` | markdown | 20 | 0.8 | completo |
+| 299 | `ai/task-cards/completed/TASK-LAB-019-normalize-lab-example-data-contract.md` | markdown | 16 | 0.5 | completo |
+| 300 | `ai/task-cards/completed/TASK-LAB-020-public-runtime-wrappers-only.md` | markdown | 18 | 0.7 | completo |
+| 301 | `ai/task-cards/completed/TASK-LAB-021-lab-action-registry-controller-contract.md` | markdown | 15 | 0.5 | completo |
+| 302 | `ai/task-cards/completed/TASK-LAB-022-remove-compat-wrapper-reexports.md` | markdown | 18 | 0.7 | completo |
+| 303 | `ai/task-cards/completed/TASK-LAB-023-lab-presentation-core-selectors.md` | markdown | 14 | 0.5 | completo |
+| 304 | `ai/task-cards/completed/TASK-LAB-024-external-data-integration-e2e.md` | markdown | 19 | 0.8 | completo |
+| 305 | `ai/task-cards/completed/TASK-LAB-025-example-bundle-normalized-export.md` | markdown | 18 | 0.6 | completo |
+| 306 | `ai/task-cards/completed/TASK-LAB-026-restore-designer-visual-baseline-after-integration.md` | markdown | 97 | 4.9 | completo |
+| 307 | `ai/task-cards/completed/TASK-LAB-027-lab-canvas-first-shell-jsx-handoff.md` | markdown | 40 | 1.6 | completo |
+| 308 | `ai/task-cards/completed/TASK-LAB-028-runtime-collaboration-sync-and-form-echo.md` | markdown | 48 | 2.0 | completo |
+| 309 | `ai/task-cards/completed/TASK-LAB-029-multidocument-right-sidebar-docs-default.md` | markdown | 43 | 1.7 | completo |
+| 310 | `ai/task-cards/completed/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md` | markdown | 40 | 1.0 | completo |
+| 311 | `ai/task-cards/completed/TASK-PDFME-011-connectivity-sisad-restore.md` | markdown | 37 | 1.0 | completo |
+| 312 | `ai/task-cards/completed/TASK-PDFME-012-global-visibility-wiring-continuity.md` | markdown | 48 | 1.4 | completo |
+| 313 | `ai/task-cards/completed/TASK-PDFME-013-controller-real-api-no-noop.md` | markdown | 37 | 1.3 | completo |
+| 314 | `ai/task-cards/completed/TASK-PDFME-014-rightsidebar-reassign-state-regression.md` | markdown | 45 | 1.2 | completo |
+| 315 | `ai/task-cards/completed/TASK-QA-015-action-coverage-regression-suite.md` | markdown | 86 | 2.4 | completo |
+| 316 | `ai/task-cards/completed/TASK-REGRESSION-020-owner-color-renderer-continuity.md` | markdown | 49 | 1.9 | completo |
+| 317 | `ai/task-cards/completed/TASK-RUNTIME-015-config-hook-visibility-action-map.md` | markdown | 59 | 1.9 | completo |
+| 318 | `ai/task-cards/completed/TASK-UI-015-right-left-rail-collapse-polish.md` | markdown | 77 | 2.5 | completo |
+| 319 | `ai/task-cards/completed/TASK-UI-016-zoom-toolbar-contract.md` | markdown | 68 | 2.0 | completo |
+| 320 | `ai/task-cards/completed/TASK-UI-017-density-breakpoints-sync.md` | markdown | 37 | 1.7 | completo |
+| 321 | `reports/tailwind-migration/accelerated/constants-contract.md` | markdown | 22 | 2.1 | completo |
+| 322 | `reports/tailwind-migration/accelerated/migration-ledger.md` | markdown | 92 | 5.2 | completo |
+| 323 | `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md` | markdown | 784 | 21.6 | completo |
+| 324 | `src/sisad-pdfme/common/README.md` | markdown | 33 | 1.9 | completo |
+| 325 | `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md` | markdown | 168 | 4.8 | completo |
+| 326 | `src/sisad-pdfme/converter/README.md` | markdown | 42 | 0.9 | completo |
+| 327 | `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md` | markdown | 151 | 4.6 | completo |
+| 328 | `src/sisad-pdfme/runtime/README.md` | markdown | 15 | 0.7 | completo |
+| 329 | `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md` | markdown | 168 | 5.7 | completo |
+| 330 | `src/sisad-pdfme/ui/README.md` | markdown | 38 | 2.2 | completo |
+| 331 | `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md` | markdown | 76 | 3.4 | completo |
+| 332 | `ai/coordination/uxqa-20260717/handoffs/CLAUDE-INTEGRATION-W1-BLOCKED.md` | markdown | 56 | 2.9 | completo |
+| 333 | `ai/coordination/uxqa-20260717/handoffs/CLAUDE-INTEGRATION-W1-READINESS.md` | markdown | 45 | 2.1 | completo |
+| 334 | `ai/coordination/uxqa-20260717/handoffs/CLAUDE-QUARANTINE-MAIN.md` | markdown | 32 | 1.4 | completo |
+| 335 | `ai/coordination/uxqa-20260717/handoffs/CLAUDE-W1-DEP-COPILOT.md` | markdown | 50 | 2.0 | completo |
+| 336 | `ai/coordination/uxqa-20260717/handoffs/CLAUDE-W1.md` | markdown | 94 | 4.4 | completo |
+| 337 | `ai/coordination/uxqa-20260717/handoffs/CODEX-wave1.md` | markdown | 25 | 1.4 | completo |
+| 338 | `ai/coordination/uxqa-20260717/handoffs/COPILOT-wave1.md` | markdown | 61 | 2.0 | completo |
+| 339 | `ai/coordination/uxqa-20260717/status/CLAUDE.md` | markdown | 41 | 1.7 | completo |
+| 340 | `ai/coordination/uxqa-20260717/status/CODEX.md` | markdown | 20 | 0.7 | completo |
+| 341 | `ai/coordination/uxqa-20260717/status/COPILOT.md` | markdown | 28 | 0.5 | completo |
+| 342 | `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md` | markdown | 30 | 1.6 | completo |
+| 343 | `src/sisad-pdfme/ui/components/README.md` | markdown | 28 | 1.1 | completo |
+| 344 | `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md` | markdown | 18 | 0.9 | completo |
+| 345 | `src/sisad-pdfme/ui/components/Designer/Canvas/README.md` | markdown | 24 | 1.2 | completo |
+| 346 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md` | markdown | 15 | 1.0 | completo |
+| 347 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md` | markdown | 18 | 0.7 | completo |
+| 348 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md` | markdown | 21 | 0.7 | completo |
+| 349 | `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md` | markdown | 35 | 1.3 | completo |
+| 350 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md` | markdown | 42 | 1.6 | completo |
+| 351 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md` | markdown | 38 | 1.4 | completo |
+| 352 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md` | markdown | 20 | 1.0 | completo |
+| 353 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md` | markdown | 31 | 1.8 | completo |
+| 354 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md` | markdown | 24 | 0.8 | completo |
 
 ## Resumen de exclusiones
 
-- **extensión no incluida:** 1794
+- **extensión no incluida:** 1787
 - **directorio ignorado: dependencia/build/salida generada:** 8
 
 ## Totales
 
-- **KB originales candidatos:** `852.9`
-- **KB incluidos en contenido:** `852.6`
+- **KB originales candidatos:** `768.5`
+- **KB incluidos en contenido:** `768.2`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
 - **Redacción de secretos:** `activa`
@@ -11108,7 +11122,1119 @@ No volver a abrir un paquete cerrado salvo que una prueba demuestre una regresi�
 
 <a id="file-0157"></a>
 
-### 0157 — `ai/playbooks/pb-ai-docs-refactor.md`
+### 0157 — `ai/plans/PLAN_MAESTRO_UX_QA_POST_TAILWIND_SISAD_PDFME_2026-07-17.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `1099`
+- **Tamaño original:** `26.0 KB`
+- **SHA1 corto:** `8d5e7c6aa9`
+- **Estado:** `completo`
+
+```markdown
+# Plan maestro de estabilización visual, UX y QA post‑migración Tailwind — SISAD PDFME
+
+**Fecha:** 2026-07-17
+**Ruta objetivo:** `http://localhost:5174/lab/multi-document-routing`
+**Alcance:** Designer, Canvas, LeftSidebar, RightSidebar, DetailView, ListView, DocumentsRail, rails colapsados, CtlBar, popovers, lint y pruebas.
+
+---
+
+## 1. Veredicto ejecutivo
+
+La migración visual avanzó mucho, pero el estado actual no debe considerarse todavía una versión UX estable. Las capturas muestran un diseñador funcional con estas regresiones principales:
+
+1. El botón **Guardar** invade el switcher del RightSidebar y compite con las pestañas.
+2. El **DetailView no puede desplazarse** hasta las secciones inferiores.
+3. El RightSidebar usa demasiadas superficies, bordes, radios y sombras anidadas.
+4. El LeftSidebar hace que casi todos los campos parezcan activos por el borde azul permanente.
+5. Los menús de “Más”, los selectores de validación y el selector de zoom se ven desconectados del diseño del producto.
+6. La vista documental mezcla “documentos” y “páginas”, y varias acciones quedan recortadas.
+7. El toolbar contextual del Canvas puede cubrir el schema seleccionado.
+8. El estado colapsado de los sidebars todavía se siente como controles flotantes aislados.
+9. `npm run lint` no está estable: existen **4 errores y 208 advertencias**.
+10. Hay artefactos de pruebas E2E fallidas en color de propietario, transformación, foco, rails y cobertura de tipos de schema.
+
+La prioridad correcta es:
+
+``​`txt
+P0 Integridad funcional
+→ P1 jerarquía del workspace
+→ P2 densidad y consistencia visual
+→ P3 accesibilidad y responsive
+→ P4 limpieza completa de warnings y estabilización de pruebas
+``​`
+
+No se debe seguir “decorando” antes de cerrar scroll, hooks, memoización, foco, selección y ownership.
+
+---
+
+## 2. Novedad arquitectónica importante: la migración no quedó totalmente Tailwind-only
+
+`src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó vacío, pero los estilos residuales fueron trasladados a:
+
+``​`txt
+src/sisad-pdfme/ui/runtimeStyles.ts
+``​`
+
+Ese archivo contiene CSS como string e inyecta un `<style>` desde el runtime. Por tanto:
+
+``​`txt
+CSS en archivo .css = 0
+CSS puro real = todavía existe dentro de runtimeStyles.ts
+``​`
+
+Esto no es necesariamente incorrecto para contratos técnicos imposibles o inconvenientes de expresar con clases:
+
+- geometría de stage/canvas/paper;
+- selectores de nodos generados por Moveable, Selecto o Scena Guides;
+- pseudoestados sobre DOM de terceros;
+- reglas dinámicas de impresión/PDF;
+- scrollbar técnico;
+- pointer-events de overlays;
+- variables runtime.
+
+Sí es incorrecto mantener allí skin ordinario:
+
+- colores y sombras de tarjetas;
+- padding y radio de botones;
+- apariencia de tabs;
+- cards de sidebars;
+- estados hover/focus;
+- listas del inspector;
+- chips y badges;
+- layout visual del header.
+
+### Regla de cierre
+
+`runtimeStyles.ts` debe quedar clasificado línea por línea:
+
+``​`txt
+KEEP_TECHNICAL
+MIGRATE_TO_TAILWIND
+DELETE_DEAD
+``​`
+
+No crear otro CSS global ni otro archivo de estilos inyectados.
+
+---
+
+## 3. Diagnóstico visual por superficie
+
+## 3.1 Workspace y botón Guardar
+
+### Problema
+
+Guardar está presentado como una pastilla flotante junto al menú `…`, encima del área superior derecha. En varias capturas invade el switcher `Campos / Detalle / Docs` y hace que `Detalle` aparezca recortado como “D”.
+
+Esto produce tres errores de jerarquía:
+
+- Guardar parece pertenecer al RightSidebar.
+- El switcher pierde espacio y legibilidad.
+- La posición cambia visualmente según se abre o cierra el sidebar.
+
+### Diseño objetivo
+
+Guardar debe pertenecer al **toolbar global del stage**, no al panel derecho.
+
+Estructura recomendada:
+
+``​`tsx
+<div className="grid h-11 shrink-0 grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)] items-center border-b border-solid border-slate-200/60 bg-white/90 px-3 backdrop-blur">
+  <DocumentContext className="min-w-0 justify-self-start" />
+  <UnitPager className="justify-self-center" />
+  <div className="flex items-center gap-1 justify-self-end">
+    <SaveAction />
+    <GlobalMoreMenu />
+  </div>
+</div>
+``​`
+
+### Reglas
+
+- Altura: `44–48 px`.
+- No usar posición respecto al viewport.
+- No depender del ancho del RightSidebar.
+- El stage se reduce al abrir los sidebars; Guardar permanece dentro de su columna.
+- Estado visible:
+  - `Guardado`;
+  - `Cambios sin guardar`;
+  - `Guardando…`;
+  - `Error al guardar`.
+- En ancho reducido:
+  - icono Guardar;
+  - texto ocultable;
+  - tooltip obligatorio.
+- El botón `…` global debe contener:
+  - Atajos;
+  - cuadrícula;
+  - guías;
+  - snaps;
+  - padding;
+  - insertar/duplicar página;
+  - exportar.
+
+El menú `…` del RightSidebar no debe contener configuración global del Canvas.
+
+---
+
+## 3.2 Scroll roto del DetailView
+
+### Causa raíz confirmada
+
+El contrato correcto ya había sido documentado con `SidebarBody` como propietario único del scroll. En la versión actual se cambió:
+
+``​`txt
+overflow-y-auto overflow-x-hidden overscroll-contain
+``​`
+
+por:
+
+``​`txt
+overflow-hidden
+``​`
+
+Al mismo tiempo, el nuevo `right-sidebar-panel-stack` y sus slots también usan `overflow-hidden`. El contenido largo del DetailView queda recortado y no existe un descendiente que recupere el scroll.
+
+### Contrato final
+
+``​`txt
+aside              h-full min-h-0 flex flex-col overflow-hidden
+content            min-h-0 flex-1 flex flex-col overflow-hidden
+panel switcher     shrink-0
+panel stack        min-h-0 flex-1 overflow-hidden
+active slot        min-h-0 flex-1 overflow-hidden
+detail host        min-h-0 flex-1 overflow-hidden
+sidebar frame      h-full min-h-0 flex flex-col overflow-hidden
+header             shrink-0
+body               min-h-0 flex-1 overflow-y-auto overflow-x-hidden
+footer             shrink-0
+``​`
+
+Clase recomendada para `SidebarBody`:
+
+``​`tsx
+'flex min-h-0 flex-1 flex-col overflow-y-auto overflow-x-hidden overscroll-contain [scrollbar-gutter:stable] px-2 pb-3 pt-2'
+``​`
+
+### Archivos foco
+
+``​`txt
+src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx
+src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx
+src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx
+src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/ListView.tsx
+src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx
+src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx
+``​`
+
+### Criterios
+
+- Scroll hasta `Datos y conexiones`, `Asignación y bloqueo` y `Avanzado`.
+- Cabecera del schema no se desplaza.
+- Tabs no se desplazan.
+- Sin scroll horizontal.
+- Un solo propietario de scroll por panel.
+- El scroll no se reinicia al cambiar un input.
+- Cambiar de schema puede volver arriba únicamente cuando cambia realmente `schemaUid`.
+
+---
+
+## 3.3 DetailView
+
+### Problemas
+
+- Secciones excesivamente altas aunque tengan pocos controles.
+- Radios de 18–24 px repetidos.
+- Bordes grises oscuros en cada accordion.
+- Mucho espacio vacío en Información del campo, Reglas e Interacción.
+- La jerarquía de subtítulos compite con el nombre de la sección.
+- El select de validación utiliza el desplegable nativo del sistema y rompe el lenguaje visual.
+- Inputs de ubicación pueden quedar debajo del viewport sin acceso por el fallo de scroll.
+- El header de selección usa un punto azul sin explicar owner/estado.
+
+### Diseño objetivo
+
+``​`tsx
+<section className="overflow-hidden rounded-xl border border-solid border-slate-200/70 bg-white">
+  <button className="flex min-h-11 w-full items-center justify-between gap-3 px-3 py-2 text-left hover:bg-slate-50/70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-sky-200">
+    ...
+  </button>
+
+  <div className="space-y-3 border-t border-solid border-slate-100 px-3 py-3">
+    ...
+  </div>
+</section>
+``​`
+
+### Reglas
+
+- Radio máximo recomendado: `12 px`.
+- Sin sombra permanente.
+- Separación entre secciones: `8 px`.
+- No usar `min-h-*` fijo en contenido.
+- Dos columnas solo cuando ambos controles caben con mínimo de 120 px.
+- Geometría:
+  - X/Y: dos columnas;
+  - ancho/alto: dos columnas;
+  - rotación: una fila;
+  - alineación: grilla 4×2 compacta.
+- Secciones inicialmente abiertas:
+  - Información;
+  - Reglas principales.
+- Secciones inicialmente cerradas:
+  - Datos y conexiones;
+  - Asignación;
+  - Avanzado.
+- “Editar texto” debe ser contextual:
+  - visible para schemas text-like;
+  - oculto para tipos que no soportan edición inline.
+- Evitar duplicar `Nombre del campo` + `Renombrar`; una única acción y una única persistencia.
+
+### Selectores
+
+Usar un selector controlado del sistema de componentes, no `<select>` nativo si se requiere paridad visual. El popup debe:
+
+- renderizarse en portal;
+- tener `max-height`;
+- respetar viewport;
+- no modificar altura del panel;
+- cerrarse con Escape;
+- devolver foco al trigger;
+- usar `data-interaction-exclusion`.
+
+---
+
+## 3.4 RightSidebar — switcher y cabecera
+
+### Problemas
+
+- Tabs sin espacio por Guardar.
+- “Detalle” recortado.
+- Docs y Campos compiten con acciones globales.
+- El botón colapsar no tiene patrón idéntico al LeftSidebar.
+- Context header, Reasignar, contador y menú aparecen en la misma línea aunque no caben.
+
+### Diseño objetivo
+
+Dos filas como máximo:
+
+``​`txt
+Fila 1: Tabs + collapse
+Fila 2: Contexto del panel + acciones locales
+``​`
+
+Para ListView:
+
+``​`txt
+Campos        11/11
+2 seleccionados           Reasignar   …
+``​`
+
+Para Detail:
+
+``​`txt
+contract_date
+Texto · Cliente principal
+``​`
+
+Para Docs:
+
+``​`txt
+Documentos
+2 cargados                 Subir PDF
+``​`
+
+### Reglas
+
+- El switcher es `shrink-0`.
+- Tabs con texto completo en panel abierto.
+- Rail colapsado solo iconos + tooltip.
+- Reasignar aparece únicamente con selección válida.
+- En selección simple, Reasignar puede estar en menú contextual.
+- En multiselección, aparece como acción primaria contextual.
+- No mostrar un contador de usuarios aislado sin etiqueta.
+
+---
+
+## 3.5 ListView
+
+### Problemas
+
+- El borde azul permanente hace que todos los schemas parezcan seleccionados.
+- El botón eliminar siempre visible agrega ruido.
+- El owner color y el selected state se confunden.
+- Filas altas y con demasiado espacio.
+- Nombres técnicos largos dominan el panel.
+- Lock y delete compiten en el extremo derecho.
+
+### Estado visual correcto
+
+``​`txt
+Owner:
+- barra izquierda de 3 px con ownerColor;
+- siempre visible con opacidad media.
+
+Hover:
+- fondo slate muy suave.
+
+Selected:
+- fondo sky-50/50;
+- ring sky-200;
+- owner bar a opacidad completa.
+
+Focus:
+- ring accesible, distinto de selected.
+
+Locked:
+- icono lock;
+- no bajar toda la opacidad de la fila.
+
+Delete:
+- visible en hover/focus o dentro de `…`;
+- siempre accesible por teclado.
+``​`
+
+### Densidades
+
+``​`txt
+comfortable: 56–64 px
+compact:     48–52 px
+minimal:     40–44 px
+``​`
+
+No crear tres skins diferentes; solo cambia espacio y metadata visible.
+
+---
+
+## 3.6 DocumentsRail
+
+### Problemas observados
+
+- “Subir P” aparece recortado.
+- El copy dice “Selecciona una página”, pero las filas parecen documentos.
+- Delete queda flotando fuera de la tarjeta.
+- Cards grandes con radio excesivo.
+- El segundo número del header aparece aislado.
+- Selección usa una superficie gris grande, no un estado claro.
+- No existe jerarquía visual entre documento y páginas.
+
+### Contrato recomendado
+
+``​`txt
+Documento
+ ├─ nombre
+ ├─ cantidad de páginas
+ ├─ estado activo
+ └─ acciones
+``​`
+
+Si se requiere seleccionar páginas:
+
+``​`txt
+Documento expandible
+ ├─ Página 1
+ ├─ Página 2
+ └─ ...
+``​`
+
+No mezclar ambos niveles en una misma fila.
+
+### Fila objetivo
+
+``​`tsx
+<div className="group grid min-h-14 grid-cols-[2rem_minmax(0,1fr)_auto] items-center gap-2 rounded-xl border border-solid border-slate-200/70 bg-white px-2.5 py-2 hover:bg-slate-50/70 data-[selected=true]:border-sky-200 data-[selected=true]:bg-sky-50/50">
+``​`
+
+- Delete dentro de la última columna.
+- Upload:
+  - texto completo con ancho suficiente;
+  - en panel mini, icon-only + tooltip.
+- Acción destructiva con confirmación.
+- El documento activo usa un badge compacto, no texto mezclado con el número.
+
+---
+
+## 3.7 LeftSidebar
+
+### Problemas
+
+- Todos los botones tienen borde azul fuerte y parecen seleccionados.
+- Tres niveles de superficie:
+  - grupo;
+  - wrapper;
+  - botón.
+- Sombras y radios repetidos.
+- Las estrellas tienen demasiado contraste y tamaño.
+- Las categorías ocupan altura excesiva.
+- El panel se siente más ancho por densidad que por contenido.
+
+### Diseño objetivo
+
+- Una única superficie visible por plugin.
+- Borde neutral por defecto.
+- Azul solo para:
+  - hover;
+  - focus;
+  - dragging;
+  - favorito activo como acento pequeño.
+- Altura list: `44–48 px`.
+- Icono: `20–22 px`.
+- Star: `28×28`, sin círculo morado permanente.
+- Category header: `32–36 px`.
+- Grupo con borde opcional muy sutil o sin borde.
+- El layout seleccionado por el usuario no debe cambiar cuando cambia la densidad responsive.
+
+---
+
+## 3.8 Toolbar contextual del Canvas
+
+### Problema
+
+La pastilla de dimensiones y la barra `Eliminar / Más` pueden cubrir el schema, especialmente attachment y campos cercanos a la parte superior.
+
+### Solución
+
+- Anclar al bounding box real.
+- Separación de 8 px.
+- Preferencia arriba.
+- Flip abajo si no cabe.
+- Clamp dentro del stage.
+- No usar ancho fijo grande.
+- Métricas y acciones en una única barra o en dos superficies pequeñas coordinadas.
+- El toolbar no participa en Selecto.
+- El toolbar no inicia drag.
+- `pointer-events-auto` solo en controles.
+- A 1 schema:
+  - Eliminar;
+  - Más.
+- A N schemas:
+  - alinear;
+  - distribuir;
+  - duplicar;
+  - eliminar;
+  - reasignar si aplica.
+
+---
+
+## 3.9 Menús y popovers
+
+### Error de información
+
+El menú del RightSidebar contiene acciones del Canvas:
+
+- cuadrícula;
+- guías;
+- snaps;
+- padding;
+- insertar página;
+- duplicar página;
+- exportar.
+
+Estas acciones deben estar en el menú global del stage.
+
+El menú local del RightSidebar debe contener únicamente:
+
+``​`txt
+Campos:
+- renombrar;
+- seleccionar todo;
+- ordenar;
+- densidad;
+- mostrar/ocultar metadata.
+
+Detalle:
+- copiar identificador;
+- restablecer sección;
+- expandir/colapsar secciones.
+
+Docs:
+- subir;
+- renombrar documento;
+- duplicar;
+- eliminar;
+- ordenar.
+``​`
+
+### Diseño del popover
+
+- Ancho: `208–240 px`.
+- Radio: `10–12 px`.
+- Padding: `6 px`.
+- Item: `36–40 px`.
+- Icono + label.
+- Separadores por grupo.
+- Check para toggles.
+- No usar menú nativo oscuro.
+- Portal y clamp al viewport.
+- `z-index` centralizado.
+
+---
+
+## 3.10 Zoom
+
+### Problemas
+
+- El menú nativo se ve demasiado grande y desconectado.
+- El trigger puede quedar con estilos disabled/focus inconsistentes.
+- La lista tapa schemas por encima del toolbar.
+
+### Diseño
+
+- Toolbar inferior: `40–44 px`.
+- Trigger: `72–80 px`.
+- Popup abre hacia arriba.
+- Menú: `96–112 px`.
+- Opciones: 25, 50, 75, 100, 125, 150, 200.
+- `100%` destacado.
+- `fit page` y `fit width` como acciones separadas.
+- Conversión única:
+  - interno: `1`;
+  - visible: `100%`.
+
+---
+
+## 3.11 Rails colapsados
+
+### Diseño objetivo
+
+Ambos lados deben compartir:
+
+``​`txt
+44 px de ancho
+mismo componente SidebarRail
+mismo icon button
+mismo tooltip
+mismo active indicator
+misma animación
+``​`
+
+El rail derecho debe mostrar:
+
+- Campos;
+- Detalle;
+- Comentarios;
+- Docs.
+
+Detalle disabled sin selección, con motivo en tooltip.
+
+El rail izquierdo debe mostrar:
+
+- Campos;
+- Favoritos;
+- Destinatarios o pestañas configuradas.
+
+Al abrir un panel:
+
+- no perder selección;
+- no perder scroll del Canvas;
+- no cambiar zoom;
+- no desplazar el documento de forma brusca;
+- restaurar el panel solicitado.
+
+---
+
+## 4. Errores de lint confirmados
+
+## 4.1 Error P0 — `SisadPdfmeForm.tsx`
+
+### Síntoma
+
+React Compiler no puede preservar el `useMemo` de `runtimeConfig` porque el callback consume `collaborationOptions`, pero el array de dependencias enumera sus componentes en vez del objeto usado.
+
+### Corrección recomendada
+
+``​`tsx
+const collaborationOptions = useMemo(
+  () =>
+    recipientFilterEnabled && !isGlobalView && effectiveActiveRecipientId
+      ? { activeRecipientId: effectiveActiveRecipientId, isGlobalView }
+      : { isGlobalView },
+  [effectiveActiveRecipientId, isGlobalView, recipientFilterEnabled],
+);
+
+const runtimeConfig = useMemo(
+  () => ({
+    ...
+    options: {
+      ...resolvedConfig.runtimeOptions,
+      designerEngine: resolvedConfig.designerEngine,
+      collaboration: collaborationOptions,
+    },
+  }),
+  [collaborationOptions, onInputChange, resolvedConfig, template, values],
+);
+``​`
+
+También eliminar `cloneDeep` si no se utiliza.
+
+No silenciar la regla del compiler.
+
+---
+
+## 4.2 Tres errores P0 — `SchemaDropCommitFlash.tsx`
+
+### Síntoma
+
+`useState`, `useState` y `useEffect` se ejecutan después de un early return.
+
+### Regla
+
+Todos los hooks deben ejecutarse siempre en el mismo orden.
+
+### Estructura correcta
+
+``​`tsx
+const SchemaDropCommitFlash = ({ flash }) => {
+  const [visible, setVisible] = useState(false);
+  const [renderedFlash, setRenderedFlash] = useState(flash);
+
+  useEffect(() => {
+    if (!flash) {
+      setVisible(false);
+      return;
+    }
+
+    setRenderedFlash(flash);
+    setVisible(true);
+
+    const timer = window.setTimeout(() => setVisible(false), 420);
+    return () => window.clearTimeout(timer);
+  }, [flash]);
+
+  if (!renderedFlash) return null;
+
+  return (
+    <div
+      data-visible={visible}
+      ...
+    />
+  );
+};
+``​`
+
+Evitar timers simultáneos, limpiar el timer al cambiar flash y respetar `prefers-reduced-motion`.
+
+---
+
+## 5. Estrategia para 208 warnings
+
+No corregir 208 warnings mezclando código productivo y tests generados en una sola pasada.
+
+### 5.1 Primero código de producción
+
+Objetivo:
+
+``​`txt
+src/** = 0 errores, 0 warnings
+``​`
+
+Grupos:
+
+1. Imports/constantes sin uso:
+   - `DEFAULT_SIGNATURE_PROVIDERS`;
+   - `RESULTS_PANEL_STYLE`;
+   - `normalizeText`;
+   - constantes `SUMMARY`, `HELP`, etc.
+2. Fachadas legacy con imports muertos:
+   - `labExamples.js`;
+   - catálogos separados.
+3. `no-explicit-any`:
+   - wrappers públicos;
+   - adapters;
+   - runtime config.
+4. Memoización React Compiler.
+
+### 5.2 Corregir duplicación del lint
+
+Actualmente muchas advertencias aparecen dos veces:
+
+``​`txt
+no-unused-vars
+@typescript-eslint/no-unused-vars
+``​`
+
+Config recomendada:
+
+``​`js
+{
+  files: ['**/*.{ts,tsx}'],
+  rules: {
+    'no-unused-vars': 'off',
+    '@typescript-eslint/no-unused-vars': ['error', {
+      argsIgnorePattern: '^_',
+      varsIgnorePattern: '^_',
+    }],
+  },
+}
+``​`
+
+Para JS/JSX mantener solo `no-unused-vars`.
+
+### 5.3 Tests generados
+
+Los tests generados concentran gran parte de `any`.
+
+Elegir un contrato:
+
+``​`txt
+Opción A: tiparlos correctamente.
+Opción B: excluir tests/generated del lint de producción y crear lint:generated separado.
+``​`
+
+No ocultarlos con un disable global.
+
+Scripts recomendados:
+
+``​`json
+{
+  "lint:src": "eslint src --max-warnings=0",
+  "lint:tests": "eslint tests --max-warnings=0",
+  "lint:generated": "eslint tests/**/generated",
+  "lint": "npm run lint:src && npm run lint:tests"
+}
+``​`
+
+### 5.4 Imports rotos en pruebas
+
+Hay pruebas que todavía importan rutas eliminadas:
+
+``​`txt
+@/features/pdfcomponent/template
+@/features/pdfcomponent/utils/binary
+``​`
+
+No recrear wrappers muertos para hacer pasar las pruebas. Actualizar los tests a la API canónica actual.
+
+---
+
+## 6. Pruebas fallidas detectadas y dominios a investigar
+
+Los artefactos actuales registran fallos en:
+
+``​`txt
+schema owner — active recipient accent
+schema owner — consumers from same resolver
+schema transform — selected schema to page anchors
+selection — focus returns to canvas
+sidebar rail — never overlaps right rail
+sidebar rail — restores requested panel
+standard schemas — expected schema types
+``​`
+
+### 6.1 Owner color
+
+Revisar la cadena:
+
+``​`txt
+recipient registry
+→ schema ownership metadata
+→ resolveSchemaOwnerTone
+→ Renderer
+→ fieldChrome
+→ ListView
+→ DetailHeader
+``​`
+
+El selected state no debe usar un color distinto que tape ownerColor.
+
+### 6.2 Transform/page anchors
+
+No cambiar expected hasta verificar:
+
+- documentId;
+- pageNumber;
+- pageIndex;
+- paperRef activo;
+- zoom;
+- scroll offsets;
+- rect del stage;
+- transforms.
+
+### 6.3 Focus return
+
+Después de cerrar:
+
+- popover;
+- modal Reasignar;
+- selector;
+- menú contextual;
+
+el foco debe volver a:
+
+- trigger, si sigue visible;
+- Canvas, si la acción modifica selección.
+
+No hacer `blur()` global incondicional.
+
+### 6.4 Rails
+
+Verificar:
+
+- ancho real publicado;
+- offset del stage;
+- rail persistente;
+- panel solicitado;
+- restauración después de colapsar;
+- no solapar Guardar;
+- no solapar barra externa del host.
+
+### 6.5 Tipos estándar
+
+El test debe comparar:
+
+``​`txt
+schema registry canónico
+vs.
+catálogo visible/configurado
+vs.
+bundle normalizado
+``​`
+
+No debe depender de texto traducido ni del DOM visual completo.
+
+Si un schema se oculta por configuración, el test debe conocer esa configuración; no se debe rebajar la cobertura reemplazando una verificación integral por “existe el botón de descargar”.
+
+---
+
+## 7. Plan de ejecución
+
+## Fase 0 — Congelar baseline
+
+``​`txt
+[ ] Commit de la migración terminada.
+[ ] Guardar capturas actuales.
+[ ] Registrar `git status --short`.
+[ ] Ejecutar lint, build, unit y e2e sin modificar expected.
+[ ] Crear matriz real de fallos.
+``​`
+
+Comandos:
+
+``​`bash
+npm run lint
+npm run build
+npx vitest run
+npx playwright test --project=chromium
+``​`
+
+---
+
+## Fase 1 — P0 funcional
+
+Máximo cinco archivos por pase.
+
+### Pase 1A
+
+``​`txt
+SisadPdfmeForm.tsx
+SchemaDropCommitFlash.tsx
+``​`
+
+Validar:
+
+``​`bash
+npx eslint src/sisad-pdfme/react/SisadPdfmeForm.tsx \
+  src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx
+
+npx vitest run tests/unit/sisad-pdfme/react/runtime-modes.test.tsx
+npx playwright test tests/playwright/drag-preview-and-canvas-scroll-regression.spec.ts
+``​`
+
+### Pase 1B — scroll
+
+``​`txt
+RightSidebar/layout.tsx
+RightSidebar/RightSidebar.tsx
+DetailView/DetailViewContent.tsx
+DocumentsRail.tsx
+CommentsRail.tsx
+``​`
+
+Validar scroll por panel y ausencia de overflow horizontal.
+
+---
+
+## Fase 2 — Toolbar global y Guardar
+
+Archivos:
+
+``​`txt
+src/sisad-pdfme/ui/components/CtlBar.tsx
+src/sisad-pdfme/ui/components/Designer/index.tsx
+src/sisad-pdfme/ui/components/UnitPager.tsx
+src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx
+``​`
+
+Tareas:
+
+``​`txt
+[ ] Crear topbar de stage en tres columnas.
+[ ] Sacar Guardar del área del RightSidebar.
+[ ] Mover acciones globales al menú del stage.
+[ ] Mostrar estado de persistencia.
+[ ] Mantener testId/aria-label/action registry.
+``​`
+
+---
+
+## Fase 3 — RightSidebar visual
+
+### 3A Switcher/header
+
+- tabs legibles;
+- dos filas cuando sea necesario;
+- collapse simétrico;
+- acciones locales.
+
+### 3B ListView
+
+- owner accent;
+- selected state separado;
+- delete contextual;
+- densidades.
+
+### 3C Documents
+
+- jerarquía documento/página;
+- cards compactas;
+- upload no recortado;
+- delete dentro de fila.
+
+### 3D Detail
+
+- cards compactas;
+- dropdown unificado;
+- grid adaptable;
+- secciones progresivas.
+
+---
+
+## Fase 4 — LeftSidebar, Canvas toolbar y rails
+
+``​`txt
+[ ] Reducir borde azul permanente.
+[ ] Quitar superficies anidadas.
+[ ] Rediseñar favorite.
+[ ] Clampear toolbar contextual.
+[ ] Unificar SidebarRail.
+[ ] Mantener centro visual del PDF.
+``​`
+
+---
+
+## Fase 5 — QA y pruebas
+
+Orden:
+
+``​`txt
+1. unitarios de helpers y contratos;
+2. components de sidebars;
+3. interaction/modal/focus;
+4. canvas transform;
+5. owner color;
+6. visual snapshots;
+7. barrido completo.
+``​`
+
+Specs focales:
+
+``​`bash
+npx playwright test \
+  tests/playwright/right-sidebar-visual-polish.spec.ts \
+  tests/playwright/right-sidebar-docs-tab.spec.ts \
+  tests/playwright/list-view-regression.spec.ts \
+  tests/playwright/drag-preview-and-canvas-scroll-regression.spec.ts \
+  tests/playwright/sidebar-rail-collapse-actions.spec.ts \
+  tests/playwright/sidebar-collapse-parity.spec.ts \
+  --project=chromium
+``​`
+
+Agregar o estabilizar:
+
+``​`txt
+right-sidebar-detail-scroll.spec.ts
+save-toolbar-no-overlap.spec.ts
+right-sidebar-popover-boundaries.spec.ts
+documents-rail-document-page-hierarchy.spec.ts
+detail-dropdown-focus-return.spec.ts
+``​`
+
+---
+
+## 8. Criterios de aceptación finales
+
+### Funcional
+
+``​`txt
+[ ] DetailView llega hasta la última sección.
+[ ] List, Detail, Comments y Docs tienen scroll correcto.
+[ ] Guardar nunca se solapa con tabs ni rails.
+[ ] Todos los menús cierran con Escape y devuelven foco.
+[ ] Reasignar conserva selección al cancelar.
+[ ] Owner color coincide en Canvas, ListView y DetailHeader.
+[ ] Zoom, documento, página y selección no cambian al colapsar paneles.
+[ ] Ningún botón visible carece de handler real.
+``​`
+
+### Visual
+
+``​`txt
+[ ] Una sola superficie por tarjeta o control.
+[ ] Sin borde azul permanente en todos los plugins.
+[ ] Radios entre 10 y 14 px salvo shell principal.
+[ ] Sin sombras profundas permanentes.
+[ ] Delete no domina las filas.
+[ ] Menús y selects comparten diseño.
+[ ] Documento sigue siendo protagonista.
+``​`
+
+### Calidad
+
+``​`txt
+[ ] npm run lint:src = 0 errores / 0 warnings.
+[ ] npm run lint:tests = 0 errores / 0 warnings.
+[ ] npm run build = exit 0.
+[ ] Vitest completo en verde.
+[ ] Playwright completo en verde o fallos explícitamente clasificados.
+[ ] Sin cambios de expected para ocultar regresiones.
+``​`
+
+### Tailwind-first
+
+``​`txt
+[ ] No se crea CSS global nuevo.
+[ ] Skin visual vive en JSX/TSX.
+[ ] runtimeStyles.ts conserva solo CSS técnico clasificado.
+[ ] No se usa !important salvo integración de tercero demostrada.
+[ ] No se toca geometría crítica sin spec de regresión.
+``​`
+
+---
+
+## 9. Orden recomendado de task-cards
+
+``​`txt
+TASK-P0-001 lint hooks and compiler
+TASK-P0-002 right sidebar single scroll owner
+TASK-UI-001 stage topbar and save ownership
+TASK-UI-002 right sidebar switcher hierarchy
+TASK-UI-003 list view owner/selection density
+TASK-UI-004 documents rail hierarchy
+TASK-UI-005 detail view progressive inspector
+TASK-UI-006 left sidebar neutral catalog skin
+TASK-CANVAS-001 contextual toolbar collision
+TASK-UI-007 unified rails and collapse restoration
+TASK-QA-001 repair current failed specs
+TASK-QA-002 visual and accessibility baseline
+TASK-CSS-001 classify runtimeStyles residual CSS
+``​`
+
+No ejecutar estas task-cards en paralelo si comparten `RightSidebar.tsx`, `Designer/index.tsx`, `CtlBar.tsx` o `runtimeStyles.ts`.
+```
+
+<a id="file-0158"></a>
+
+### 0158 — `ai/playbooks/pb-ai-docs-refactor.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `26`
@@ -11145,9 +12271,9 @@ Modificar documentación o archivos IA respetando la estructura real del reposit
 - No se duplican prompts operativos dentro de `docs/**`.
 ```
 
-<a id="file-0158"></a>
+<a id="file-0159"></a>
 
-### 0158 — `ai/playbooks/pb-canvas-multipage.md`
+### 0159 — `ai/playbooks/pb-canvas-multipage.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -11164,9 +12290,9 @@ Modificar documentación o archivos IA respetando la estructura real del reposit
 4. Validar snapshot.
 ```
 
-<a id="file-0159"></a>
+<a id="file-0160"></a>
 
-### 0159 — `ai/playbooks/pb-css-tailwind-migration.md`
+### 0160 — `ai/playbooks/pb-css-tailwind-migration.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -11205,9 +12331,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 - No se rompe canvas ni runtime.
 ```
 
-<a id="file-0160"></a>
+<a id="file-0161"></a>
 
-### 0160 — `ai/playbooks/pb-inspector.md`
+### 0161 — `ai/playbooks/pb-inspector.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -11224,9 +12350,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 4. Validar ListView/DetailView.
 ```
 
-<a id="file-0161"></a>
+<a id="file-0162"></a>
 
-### 0161 — `ai/playbooks/pb-schema-families.md`
+### 0162 — `ai/playbooks/pb-schema-families.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -11243,9 +12369,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 4. Validar snapshot.
 ```
 
-<a id="file-0162"></a>
+<a id="file-0163"></a>
 
-### 0162 — `ai/playbooks/pb-selection-transform.md`
+### 0163 — `ai/playbooks/pb-selection-transform.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -11262,9 +12388,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 4. Validar Moveable root-only.
 ```
 
-<a id="file-0163"></a>
+<a id="file-0164"></a>
 
-### 0163 — `ai/playbooks/pb-snapshot.md`
+### 0164 — `ai/playbooks/pb-snapshot.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -11281,9 +12407,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 4. No tocar generator salvo task explícita.
 ```
 
-<a id="file-0164"></a>
+<a id="file-0165"></a>
 
-### 0164 — `ai/playbooks/pb-tailwind-design-continuity.md`
+### 0165 — `ai/playbooks/pb-tailwind-design-continuity.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -11327,9 +12453,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 - Si falla, conservar la tarjeta activa y documentar el bloqueo sin encadenar arreglos ajenos.
 ```
 
-<a id="file-0165"></a>
+<a id="file-0166"></a>
 
-### 0165 — `ai/playbooks/pb-visual-regression.md`
+### 0166 — `ai/playbooks/pb-visual-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `8`
@@ -11348,9 +12474,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 6. Corregir por componente.
 ```
 
-<a id="file-0166"></a>
+<a id="file-0167"></a>
 
-### 0166 — `ai/playbooks/README.md`
+### 0167 — `ai/playbooks/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -11364,9 +12490,9 @@ Reducir CSS moviendo estilos seguros a JSX/TSX con Tailwind.
 Procedimientos. Cargar uno por task-card.
 ```
 
-<a id="file-0167"></a>
+<a id="file-0168"></a>
 
-### 0167 — `ai/project/architecture-principles.md`
+### 0168 — `ai/project/architecture-principles.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -11411,9 +12537,9 @@ Las instrucciones dependen de contratos (`task-card`, `rules`, `context`) y no d
 No duplicar reglas en `AGENTS.md`, `CLAUDE.md` y Copilot. Esos archivos solo apuntan a `ai/start/START.md`.
 ```
 
-<a id="file-0168"></a>
+<a id="file-0169"></a>
 
-### 0168 — `ai/project/definition-of-done.md`
+### 0169 — `ai/project/definition-of-done.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -11436,9 +12562,9 @@ Una task-card se considera completa cuando:
 - Se propuso nueva task-card si quedó trabajo fuera de alcance.
 ```
 
-<a id="file-0169"></a>
+<a id="file-0170"></a>
 
-### 0169 — `ai/project/file-ownership-map.md`
+### 0170 — `ai/project/file-ownership-map.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -11463,9 +12589,9 @@ Una task-card se considera completa cuando:
 | AI docs | `ai/**` | docs-architecture-agent |
 ```
 
-<a id="file-0170"></a>
+<a id="file-0171"></a>
 
-### 0170 — `ai/project/glossary.md`
+### 0171 — `ai/project/glossary.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -11492,9 +12618,9 @@ Una task-card se considera completa cuando:
 | Bridge Tailwind | CSS con `@apply` que conserva classNames existentes |
 ```
 
-<a id="file-0171"></a>
+<a id="file-0172"></a>
 
-### 0171 — `ai/project/goals.md`
+### 0172 — `ai/project/goals.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -11529,9 +12655,9 @@ Construir y estabilizar `sisad-pdfme` como componente diseñador PDF reutilizabl
 - Dividir tareas grandes en pasos verificables.
 ```
 
-<a id="file-0172"></a>
+<a id="file-0173"></a>
 
-### 0172 — `ai/project/non-goals.md`
+### 0173 — `ai/project/non-goals.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -11554,9 +12680,9 @@ No hacer por defecto:
 - Resolver permisos con CSS.
 ```
 
-<a id="file-0173"></a>
+<a id="file-0174"></a>
 
-### 0173 — `ai/project/scope.md`
+### 0174 — `ai/project/scope.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -11605,9 +12731,9 @@ infra backend
 Form/Viewer/Generator no son foco principal, pero no deben romperse. Cualquier cambio en Designer debe preservar metadata y render compatible.
 ```
 
-<a id="file-0174"></a>
+<a id="file-0175"></a>
 
-### 0174 — `ai/prompts/claude-diagnose-or-implement.md`
+### 0175 — `ai/prompts/claude-diagnose-or-implement.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -11625,9 +12751,9 @@ Modo implementación: modificar solo archivos de la task-card, validar y reporta
 Siempre respetar contexto budget.
 ```
 
-<a id="file-0175"></a>
+<a id="file-0176"></a>
 
-### 0175 — `ai/prompts/codex-master-prompt.md`
+### 0176 — `ai/prompts/codex-master-prompt.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -11643,9 +12769,9 @@ Lee `ai/start/START.md`. Enruta con `ai/router/ROUTER.md`. Usa presupuesto de `a
 Trabaja una sola task-card. Antes de editar, declara Router decision. No hagas auditoría global salvo que la task lo pida.
 ```
 
-<a id="file-0176"></a>
+<a id="file-0177"></a>
 
-### 0176 — `ai/prompts/codex-next-pass-actions-ui-dedup.md`
+### 0177 — `ai/prompts/codex-next-pass-actions-ui-dedup.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `62`
@@ -11718,9 +12844,9 @@ Criterio:
 No puede quedar ningún botón visible sin handler real, aria-label, testId y estado de acción.
 ```
 
-<a id="file-0177"></a>
+<a id="file-0178"></a>
 
-### 0177 — `ai/prompts/codex-pdfcomponent-dynamic-integration-refactor.md`
+### 0178 — `ai/prompts/codex-pdfcomponent-dynamic-integration-refactor.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -11762,9 +12888,9 @@ Validación:
 - `npx playwright test tests/playwright/pdfcomponent-dynamic-integration.spec.ts`
 ```
 
-<a id="file-0178"></a>
+<a id="file-0179"></a>
 
-### 0178 — `ai/prompts/codex-start-tailwind-design-continuity.md`
+### 0179 — `ai/prompts/codex-start-tailwind-design-continuity.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -11788,9 +12914,9 @@ Después del arranque base del repositorio:
 No conviertas el roadmap completo en una sola ejecución. Las tarjetas de `backlog/` representan trabajo futuro y no autorizan cambios todavía.
 ```
 
-<a id="file-0179"></a>
+<a id="file-0180"></a>
 
-### 0179 — `ai/prompts/copilot-task-context.md`
+### 0180 — `ai/prompts/copilot-task-context.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -11812,9 +12938,9 @@ Cambios pequeños y focalizados.
 ``​`
 ```
 
-<a id="file-0180"></a>
+<a id="file-0181"></a>
 
-### 0180 — `ai/prompts/create-task-card.md`
+### 0181 — `ai/prompts/create-task-card.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -11836,9 +12962,1094 @@ Convierte la petición del usuario en una task-card cerrada con:
 - criterio de parada.
 ```
 
-<a id="file-0181"></a>
+<a id="file-0182"></a>
 
-### 0181 — `ai/prompts/PROMPT_MAESTRO_MIGRACION_TAILWIND_SISAD_PDFME.md`
+### 0182 — `ai/prompts/PROMPT_ARRANQUE_MULTIAGENTE_UX_QA_SISAD_PDFME_2026-07-17.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `1072`
+- **Tamaño original:** `26.0 KB`
+- **SHA1 corto:** `9b7517863b`
+- **Estado:** `completo`
+
+```markdown
+# Prompt especializado de arranque multiagente — SISAD PDFME UX/QA post‑Tailwind
+
+## Uso
+
+Este documento contiene:
+
+1. El protocolo común obligatorio.
+2. La preparación local con `git worktree`.
+3. La asignación de responsabilidades sin colisiones.
+4. Un prompt específico para:
+   - Codex 4.5 mini.
+   - Claude 4.8 Outputs.
+   - GitHub Copilot Auto.
+5. El protocolo de integración y cierre.
+
+Proyecto:
+
+``​`txt
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
+``​`
+
+Plan autoritativo:
+
+``​`txt
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/ai/plans/PLAN_MAESTRO_UX_QA_POST_TAILWIND_SISAD_PDFME_2026-07-17.md
+``​`
+
+Ruta funcional principal:
+
+``​`txt
+http://localhost:5174/lab/multi-document-routing
+``​`
+
+---
+
+# 1. Preparación local obligatoria
+
+## 1.1. Regla de seguridad
+
+Los tres agentes **no deben trabajar en el mismo checkout**.
+
+Se deben usar worktrees y ramas locales separadas. Todo el trabajo permanece en la máquina local.
+
+No usar:
+
+``​`txt
+git stash
+git reset --hard
+git clean -fd
+git push
+git pull
+git rebase sobre trabajo no integrado
+``​`
+
+Antes de crear los worktrees, dejar el estado actual guardado en un commit local de checkpoint. No incluir cambios ajenos al proyecto.
+
+Ejemplo:
+
+``​`bash
+cd /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
+
+git status --short
+
+# Crear un checkpoint local solo después de confirmar que los cambios visibles
+# corresponden al estado actual del proyecto.
+git add -A
+git commit -m "chore: checkpoint post-tailwind before multi-agent UX QA"
+``​`
+
+## 1.2. Rama de integración
+
+El checkout principal conserva su rama actual. La rama de integración se crea
+como referencia local y se abre únicamente en el worktree de merge.
+
+``​`bash
+cd /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
+
+git branch ai/uxqa-integration-20260717
+``​`
+
+Si la rama ya existe, no la recrees:
+
+``​`bash
+git show-ref --verify --quiet refs/heads/ai/uxqa-integration-20260717
+``​`
+
+## 1.3. Crear worktrees
+
+Primero crear el worktree de integración; después las tres ramas de trabajo,
+todas basadas en el mismo commit de integración.
+
+``​`bash
+cd /Users/desarrollo1/Documents/Taylor/frontend
+
+git -C prueba-plugin worktree add \
+  prueba-plugin-merge \
+  ai/uxqa-integration-20260717
+
+git -C prueba-plugin worktree add \
+  prueba-plugin-codex \
+  -b ai/codex-uxqa-20260717 \
+  ai/uxqa-integration-20260717
+
+git -C prueba-plugin worktree add \
+  prueba-plugin-claude \
+  -b ai/claude-uxqa-20260717 \
+  ai/uxqa-integration-20260717
+
+git -C prueba-plugin worktree add \
+  prueba-plugin-copilot \
+  -b ai/copilot-uxqa-20260717 \
+  ai/uxqa-integration-20260717
+``​`
+
+Rutas:
+
+``​`txt
+Codex:
+  /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-codex
+
+Claude:
+  /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-claude
+
+Copilot:
+  /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-copilot
+
+Integración:
+  /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-merge
+``​`
+
+## 1.4. Directorio de coordinación compartida
+
+Crear en el checkout principal:
+
+``​`bash
+mkdir -p \
+  /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/ai/coordination/uxqa-20260717/{locks,handoffs,status}
+``​`
+
+Crear el archivo de propiedad:
+
+``​`txt
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/ai/coordination/uxqa-20260717/OWNERSHIP.md
+``​`
+
+Cada agente escribe únicamente su propio archivo:
+
+``​`txt
+status/CODEX.md
+status/CLAUDE.md
+status/COPILOT.md
+
+handoffs/CODEX-<wave>.md
+handoffs/CLAUDE-<wave>.md
+handoffs/COPILOT-<wave>.md
+``​`
+
+Ningún agente debe editar el archivo de estado de otro agente.
+
+---
+
+# 2. Prompt común obligatorio para los tres agentes
+
+Pega este bloque al inicio de la sesión de cada agente, seguido del bloque específico de su rol.
+
+``​`txt
+Actúa como integrante de un equipo local de tres agentes para estabilizar SISAD PDFME después de la migración CSS→Tailwind.
+
+PROYECTO
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
+
+PLAN AUTORITATIVO
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/ai/plans/PLAN_MAESTRO_UX_QA_POST_TAILWIND_SISAD_PDFME_2026-07-17.md
+
+RUTA PRINCIPAL
+http://localhost:5174/lab/multi-document-routing
+
+OBJETIVO
+Implementar el plan existente. La auditoría profunda ya fue realizada.
+No vuelvas a auditar todo el proyecto, no generes otro plan maestro y no cargues todos los Markdown.
+
+CONTEXTO MÍNIMO PERMITIDO
+1. Leer el plan autoritativo completo una sola vez.
+2. Leer AGENTS.md y las reglas estrictamente relacionadas con tu dominio.
+3. Leer el archivo OWNERSHIP.md compartido.
+4. Abrir únicamente los archivos asignados y sus tests directos.
+5. Máximo dos rondas de búsqueda `rg` por tarea.
+6. Máximo ocho archivos inspeccionados antes de comenzar a implementar.
+7. Si necesitas tocar una ruta no asignada, detente y escribe una solicitud de handoff. No la edites.
+
+REGLAS ABSOLUTAS
+- Trabaja únicamente en tu worktree y rama asignada.
+- Todo el trabajo es local. No uses web, push, pull ni servicios externos.
+- No uses git stash, reset --hard, clean -fd ni rebase destructivo.
+- No edites archivos que pertenecen a otro agente.
+- No resuelvas conflictos dentro de tu rama modificando el trabajo de otro agente.
+- No cambies expected, snapshots o assertions para ocultar una regresión.
+- No desactives reglas ESLint, React Hooks o React Compiler para hacer pasar el build.
+- No agregues CSS global nuevo.
+- No agregues `@apply`.
+- No agregues clases visuales a runtimeStyles.ts.
+- El skin visual debe vivir en JSX/TSX con Tailwind.
+- runtimeStyles.ts solo puede conservar CSS técnico demostrado:
+  geometría del stage/canvas/paper, Moveable, Selecto, Scena Guides,
+  print, nodos generados por terceros y variables runtime.
+- No uses `!important` salvo integración de un tercero demostrada y documentada.
+- Tailwind tiene `preflight: false`; usa explícitamente `border-solid`,
+  `appearance-none` y resets locales cuando sean necesarios.
+- No modifiques pdf-lib, generator, snapshot, coordinates, Moveable o Selecto
+  salvo que tu asignación lo indique de forma explícita.
+- Preserva testIds, aria-labels, CommandBus, ActionRegistry y contratos públicos.
+- Preserva selección, recipient, owner color, documentId, pageNumber, schemaUid,
+  locks y metadata.
+- No agregues wrappers decorativos ni una segunda fuente de estado.
+- Un botón visible debe tener handler real, estado enabled/disabled y razón de bloqueo.
+- No cierres una tarea únicamente porque el build pasa.
+
+PROTOCOLO DE INICIO
+1. Confirma tu worktree con `pwd`.
+2. Ejecuta `git status --short`.
+3. Lee el plan autoritativo.
+4. Lee OWNERSHIP.md.
+5. Crea un lock atómico para tu tarea:
+
+   COORD=/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/ai/coordination/uxqa-20260717
+   mkdir "$COORD/locks/<TASK-ID>.lock"
+
+   Si falla porque el directorio existe, no empieces esa tarea.
+
+6. Escribe en tu archivo status:
+   - task activa;
+   - archivos owned;
+   - hora de inicio;
+   - tests previstos.
+
+PROTOCOLO DE IMPLEMENTACIÓN
+- Implementa cambios pequeños y coherentes.
+- Máximo cinco archivos productivos por commit.
+- Los tests directos pueden ir en el mismo commit.
+- Después de cada cambio relevante ejecuta pruebas focales, no el barrido completo.
+- Haz commits atómicos con prefijo:
+  fix:
+  refactor:
+  test:
+  chore:
+- No mezcles dominios en un mismo commit.
+
+PROTOCOLO DE ENTREGA
+Al terminar una wave:
+1. Ejecuta lint focal.
+2. Ejecuta tests unitarios focales.
+3. Ejecuta Playwright focal cuando corresponda.
+4. Ejecuta build si tocaste runtime o composición principal.
+5. Escribe un handoff con:
+   - objetivo;
+   - archivos modificados;
+   - decisiones;
+   - comandos ejecutados;
+   - resultados exactos;
+   - riesgos;
+   - asuntos no resueltos;
+   - commit SHA.
+6. Elimina tu lock.
+7. No hagas merge por tu cuenta, salvo que seas el agente integrador Claude en
+   el worktree `prueba-plugin-merge`.
+
+CRITERIO DE PARADA
+Detente inmediatamente cuando:
+- el cambio requiera un archivo owned por otro agente;
+- el contrato del plan resulte ambiguo;
+- aparezca una regresión fuera del dominio asignado;
+- una prueba falle por un área que no te pertenece;
+- necesites más de cinco archivos productivos en el mismo slice.
+
+En esos casos, documenta la dependencia y continúa únicamente con trabajo no bloqueado.
+``​`
+
+---
+
+# 3. Distribución de responsabilidades
+
+## 3.1. Propiedad permanente
+
+| Agente | Dominio principal | No debe tocar |
+|---|---|---|
+| Codex 4.5 mini | P0 técnico, hooks, runtime, overlays Canvas, interacción y pruebas focales | Shell visual del RightSidebar, LeftSidebar y toolbar global |
+| Claude 4.8 Outputs | Arquitectura visual, RightSidebar, DetailView, topbar global, Guardar, DocumentsRail e integración | Limpieza masiva del host lab y archivos owned por Copilot |
+| GitHub Copilot Auto | LeftSidebar, host del laboratorio, ESLint/warnings, accesibilidad y pruebas visuales de su dominio | RightSidebar, DetailView, Canvas coordinates y runtime React |
+
+## 3.2. Propiedad de tests
+
+``​`txt
+Codex:
+- tests de runtime Form/Viewer;
+- hooks;
+- Canvas overlay;
+- selección/foco;
+- owner color y transform cuando se asigne.
+
+Claude:
+- right-sidebar-*;
+- detail-*;
+- documents-rail-*;
+- save-toolbar-*;
+- sidebar rail derecho.
+
+Copilot:
+- left-sidebar-*;
+- lab host;
+- lint;
+- visual baseline general;
+- accesibilidad del catálogo;
+- tests generated/imports legacy.
+``​`
+
+Ningún archivo de prueba puede ser editado por dos agentes en la misma wave.
+
+---
+
+# 4. Waves de ejecución paralela
+
+# WAVE 1 — Integridad funcional P0
+
+Los tres agentes trabajan en paralelo.
+
+## Codex — W1-CODEX-P0-HOOKS
+
+Owned:
+
+``​`txt
+src/sisad-pdfme/react/SisadPdfmeForm.tsx
+src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx
+tests unitarios directos de ambos módulos
+tests/playwright/drag-preview-and-canvas-scroll-regression.spec.ts
+``​`
+
+Objetivos:
+
+``​`txt
+- corregir React Compiler en runtimeConfig;
+- corregir hooks condicionales;
+- eliminar imports muertos del slice;
+- limpiar timers;
+- respetar prefers-reduced-motion;
+- no cambiar UX fuera del overlay;
+- dejar lint focal en cero.
+``​`
+
+No tocar:
+
+``​`txt
+RightSidebar/**
+LeftSidebar/**
+Designer/index.tsx
+CtlBar.tsx
+runtimeStyles.ts
+``​`
+
+## Claude — W1-CLAUDE-RS-SCROLL
+
+Owned:
+
+``​`txt
+src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx
+src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx
+src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx
+src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx
+src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx
+tests/playwright/right-sidebar-detail-scroll.spec.ts
+tests/playwright/right-sidebar-docs-tab.spec.ts
+``​`
+
+Objetivos:
+
+``​`txt
+- restablecer un solo scroll owner por panel;
+- garantizar min-h-0/overflow contract completo;
+- preservar header y tabs;
+- no reiniciar scroll por keypress;
+- eliminar overflow horizontal;
+- validar Fields, Detail, Docs y Comments;
+- no hacer todavía el rediseño profundo de cards.
+``​`
+
+No tocar:
+
+``​`txt
+Designer/index.tsx
+CtlBar.tsx
+LeftSidebar/**
+Canvas/**
+runtimeStyles.ts
+``​`
+
+## Copilot — W1-COPILOT-LINT-HOST
+
+Owned:
+
+``​`txt
+eslint.config.cjs
+src/features/pdfcomponent/**
+tests/**/generated/**
+tests que importan wrappers legacy eliminados
+``​`
+
+Exclusiones:
+
+``​`txt
+src/features/pdfcomponent/PdfmeLabPage.jsx
+``​`
+
+solo puede tocarse si el warning o import roto está en ese archivo y el cambio no
+afecta layout, configuración runtime ni comportamiento del Designer.
+
+Objetivos:
+
+``​`txt
+- eliminar imports y constantes sin uso;
+- corregir el doble reporte no-unused-vars en TS/TSX;
+- corregir any en código del host cuando tenga tipo inferible;
+- actualizar tests que importan rutas eliminadas;
+- no recrear wrappers muertos;
+- separar lint:src, lint:tests y lint:generated si el package actual lo permite
+  sin romper scripts existentes;
+- dejar su slice en cero warnings.
+``​`
+
+No tocar:
+
+``​`txt
+src/sisad-pdfme/ui/components/Designer/**
+src/sisad-pdfme/react/**
+src/sisad-pdfme/ui/runtimeStyles.ts
+``​`
+
+## Gate Wave 1
+
+Claude, actuando como integrador, usa:
+
+``​`txt
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-merge
+``​`
+
+Orden de integración:
+
+``​`bash
+git cherry-pick <CODEX-W1-SHA>
+git cherry-pick <COPILOT-W1-SHA>
+git cherry-pick <CLAUDE-W1-SHA>
+``​`
+
+Después:
+
+``​`bash
+npm run lint
+npm run build
+npx vitest run
+``​`
+
+Playwright focal:
+
+``​`bash
+npx playwright test \
+  tests/playwright/drag-preview-and-canvas-scroll-regression.spec.ts \
+  tests/playwright/right-sidebar-detail-scroll.spec.ts \
+  tests/playwright/right-sidebar-docs-tab.spec.ts \
+  --project=chromium
+``​`
+
+No iniciar Wave 2 hasta integrar Wave 1.
+
+Cada agente actualiza su rama desde la integración mediante merge local.
+Los worktrees comparten las referencias del mismo repositorio, por lo que no
+hace falta `fetch`:
+
+``​`bash
+git merge ai/uxqa-integration-20260717
+``​`
+
+No rebase.
+
+---
+
+# WAVE 2 — Jerarquía del workspace y diseño principal
+
+## Codex — W2-CODEX-CANVAS-TOOLBAR
+
+Owned:
+
+``​`txt
+src/sisad-pdfme/ui/components/Designer/Canvas/overlays/**
+src/sisad-pdfme/ui/components/Designer/shared/interactionGuards.ts
+src/sisad-pdfme/ui/components/Designer/shared/interactionTargetSelectors.ts
+tests/playwright/selection-context-toolbar.spec.ts
+tests/playwright/detail-dropdown-focus-return.spec.ts
+``​`
+
+Objetivos:
+
+``​`txt
+- evitar que toolbar y métricas cubran schemas;
+- preferir posición arriba, flip abajo y clamp;
+- excluir toolbar de Selecto;
+- no iniciar drag desde acciones;
+- restaurar foco al trigger o Canvas;
+- no tocar coordinate math, zoom ni Moveable.
+``​`
+
+No tocar:
+
+``​`txt
+Designer/index.tsx
+CtlBar.tsx
+RightSidebar/**
+LeftSidebar/**
+``​`
+
+## Claude — W2-CLAUDE-TOPBAR-SAVE
+
+Owned:
+
+``​`txt
+src/sisad-pdfme/ui/components/Designer/index.tsx
+src/sisad-pdfme/ui/components/CtlBar.tsx
+src/sisad-pdfme/ui/components/UnitPager.tsx
+src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx
+componentes directos de SaveAction/GlobalMoreMenu ya existentes
+tests/playwright/save-toolbar-no-overlap.spec.ts
+tests/playwright/right-sidebar-popover-boundaries.spec.ts
+``​`
+
+Objetivos:
+
+``​`txt
+- crear topbar global de tres columnas;
+- sacar Guardar del área del RightSidebar;
+- conservar estado Guardado/Guardando/Error;
+- mover acciones globales Canvas/documento al menú global;
+- dejar menús locales del RightSidebar con acciones locales;
+- evitar solapamiento con tabs, rail y navegador;
+- mantener CommandBus/ActionRegistry.
+``​`
+
+No crear:
+
+``​`txt
+otro header del host
+otro estado de guardado
+otro menú global paralelo
+``​`
+
+## Copilot — W2-COPILOT-LEFT-SIDEBAR
+
+Owned:
+
+``​`txt
+src/sisad-pdfme/ui/components/Designer/LeftSidebar/**
+src/sisad-pdfme/ui/components/PluginIcon.tsx
+tests/playwright/left-sidebar-*.spec.ts
+tests/playwright/drag-preview-and-canvas-scroll-regression.spec.ts
+``​`
+
+Nota:
+
+El spec de drag solo puede ser modificado por Copilot en Wave 2 después de que el
+commit de Codex Wave 1 ya esté integrado. No tocar assertions del overlay que
+pertenecen a Codex.
+
+Objetivos:
+
+``​`txt
+- una sola superficie por plugin;
+- borde neutral por defecto;
+- azul solo en hover/focus/drag;
+- reducir radio, shadow, padding y altura;
+- favoritos compactos;
+- mantener list/tiles/icons como decisión del usuario;
+- impedir scroll accidental durante drag;
+- conservar data-testid y comportamiento DnD.
+``​`
+
+No tocar:
+
+``​`txt
+RightSidebar/**
+Canvas/overlays/**
+Designer/index.tsx
+CtlBar.tsx
+``​`
+
+## Gate Wave 2
+
+Integración:
+
+``​`bash
+git cherry-pick <CODEX-W2-SHA>
+git cherry-pick <COPILOT-W2-SHA>
+git cherry-pick <CLAUDE-W2-SHA>
+``​`
+
+Pruebas focales:
+
+``​`bash
+npm run lint
+npm run build
+
+npx playwright test \
+  tests/playwright/selection-context-toolbar.spec.ts \
+  tests/playwright/detail-dropdown-focus-return.spec.ts \
+  tests/playwright/save-toolbar-no-overlap.spec.ts \
+  tests/playwright/right-sidebar-popover-boundaries.spec.ts \
+  tests/playwright/drag-preview-and-canvas-scroll-regression.spec.ts \
+  --project=chromium
+``​`
+
+---
+
+# WAVE 3 — Polish de sidebars y regresiones
+
+## Codex — W3-CODEX-OWNER-TRANSFORM-FOCUS
+
+Owned:
+
+``​`txt
+src/sisad-pdfme/recipients/recipientColorResolver.ts
+src/sisad-pdfme/collaboration/schemaOwnershipAppearance.ts
+src/sisad-pdfme/ui/components/Designer/shared/schemaInteractionState.ts
+tests de owner color
+tests de transformación/page anchors
+tests de focus return
+``​`
+
+Objetivos:
+
+``​`txt
+- una fuente de owner color;
+- no confundir owner con selected;
+- Canvas/ListView/DetailHeader deben resolver el mismo tono;
+- no cambiar coordinates para adaptar un expected;
+- clasificar transform failures antes de modificar producción;
+- reparar focus sin blur global.
+``​`
+
+Si para completar el owner color necesita tocar `ListView Item` o `DetailHeader`,
+debe solicitar handoff a Claude y no editar esos archivos.
+
+## Claude — W3-CLAUDE-RIGHT-SIDEBAR-POLISH
+
+Owned:
+
+``​`txt
+src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/**
+src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/**
+src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx
+src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/**
+tests/playwright/right-sidebar-visual-polish.spec.ts
+tests/playwright/list-view-regression.spec.ts
+tests/playwright/documents-rail-document-page-hierarchy.spec.ts
+``​`
+
+Objetivos:
+
+``​`txt
+- owner accent separado del selected state;
+- delete contextual;
+- densidades 56/48/40 aproximadas;
+- compactar DetailView;
+- radios máximos de 12 px;
+- sin min-height artificial;
+- selectores con popup controlado y focus restore;
+- jerarquía documento→páginas;
+- upload sin recorte;
+- delete dentro de fila;
+- tabs sin wrap.
+``​`
+
+No tocar:
+
+``​`txt
+recipient resolvers owned por Codex
+LeftSidebar/**
+Designer/index.tsx salvo bug demostrado de su Wave 2
+``​`
+
+## Copilot — W3-COPILOT-RAILS-A11Y-VISUAL
+
+Owned:
+
+``​`txt
+componentes de rail compartidos que NO estén dentro de RightSidebar/shared
+tests/playwright/sidebar-rail-collapse-actions.spec.ts
+tests/playwright/sidebar-collapse-parity.spec.ts
+tests/playwright/visual/**
+tests de accesibilidad LeftSidebar/lab
+src/features/pdfcomponent/**
+``​`
+
+Objetivos:
+
+``​`txt
+- rails de 44 px;
+- tooltips y aria-label;
+- active indicator común;
+- restore de panel solicitado;
+- no perder zoom/selección/página;
+- actualizar baseline visual solo después de confirmar que el cambio es intencional;
+- no modificar expected funcional.
+``​`
+
+Si el rail compartido real está dentro de `RightSidebar/shared`, Claude conserva
+ownership y Copilot se limita a tests y host.
+
+## Gate Wave 3
+
+``​`bash
+git cherry-pick <CODEX-W3-SHA>
+git cherry-pick <COPILOT-W3-SHA>
+git cherry-pick <CLAUDE-W3-SHA>
+``​`
+
+Barrido:
+
+``​`bash
+npm run lint
+npm run build
+npx vitest run
+npx playwright test --project=chromium
+``​`
+
+---
+
+# WAVE 4 — runtimeStyles y cierre
+
+Esta wave no se ejecuta en paralelo sobre el mismo archivo.
+
+## Claude — W4-CLAUDE-RUNTIME-STYLES
+
+Único owner:
+
+``​`txt
+src/sisad-pdfme/ui/runtimeStyles.ts
+``​`
+
+Apoyo de lectura:
+
+``​`txt
+Root.tsx
+componentes ya migrados
+resultados de rg
+``​`
+
+Objetivo:
+
+Clasificar cada bloque:
+
+``​`txt
+KEEP_TECHNICAL
+MIGRATE_TO_TAILWIND
+DELETE_DEAD
+``​`
+
+Reglas:
+
+``​`txt
+- no mover geometría crítica;
+- no mover selectores de nodos de terceros sin reemplazo;
+- eliminar skin visual ya expresado en TSX;
+- no crear otro archivo CSS;
+- no agregar @apply;
+- documentar cada bloque técnico que queda.
+``​`
+
+Codex y Copilot no editan código durante este archivo. Pueden ejecutar pruebas y
+reportar regresiones desde sus worktrees actualizados.
+
+---
+
+# 5. Prompt específico — Codex 4.5 mini
+
+Pega después del prompt común:
+
+``​`txt
+ROL
+Eres el ejecutor técnico focal del equipo.
+
+TU FORTALEZA EN ESTE PLAN
+- correcciones pequeñas y verificables;
+- hooks;
+- memoización;
+- overlays del Canvas;
+- interacción;
+- owner/access resolvers;
+- pruebas unitarias y Playwright focales.
+
+NO HAGAS
+- rediseño global;
+- auditoría arquitectónica;
+- refactor masivo;
+- cambios de copy o jerarquía visual no indicados;
+- edición del RightSidebar o LeftSidebar fuera de tus owned paths.
+
+MÉTODO
+1. Lee la wave activa.
+2. Reclama el lock.
+3. Abre únicamente los archivos owned y tests directos.
+4. Reproduce el fallo focal.
+5. Implementa la corrección mínima que preserve contratos.
+6. Ejecuta lint y tests focales.
+7. Crea commit atómico.
+8. Entrega handoff con SHA.
+
+PRIORIDAD
+Correctitud primero. No intentes mejorar la apariencia fuera de tu scope.
+
+Cuando una prueba revele un problema de otra área, no la adaptes: documenta el
+owner correcto y continúa.
+``​`
+
+---
+
+# 6. Prompt específico — Claude 4.8 Outputs
+
+Pega después del prompt común:
+
+``​`txt
+ROL
+Eres el arquitecto de UX, responsable del RightSidebar, DetailView, workspace
+global y también integrador local de las ramas.
+
+TU FORTALEZA EN ESTE PLAN
+- composición visual;
+- jerarquía;
+- contratos de scroll;
+- Tailwind en TSX;
+- coordinación entre paneles;
+- resolución de conflictos semánticos;
+- integración final.
+
+NO HAGAS
+- otra auditoría completa;
+- un nuevo plan;
+- reescritura del Designer;
+- cambios amplios en Canvas;
+- limpieza de archivos owned por Copilot;
+- correcciones de owner resolver owned por Codex sin handoff.
+
+MÉTODO DE IMPLEMENTACIÓN
+1. Ejecuta únicamente la wave activa.
+2. Mantén una sola fuente de scroll, acciones y estado.
+3. Usa Tailwind inline en componentes.
+4. Conserva CommandBus, ActionRegistry, testIds y contratos públicos.
+5. No crees wrappers visuales sin responsabilidad.
+6. Haz commits pequeños.
+
+MÉTODO DE INTEGRACIÓN
+Usa exclusivamente:
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-merge
+
+Antes de cherry-pick:
+- lee los tres handoffs;
+- confirma que no existen archivos modificados por dos agentes;
+- confirma tests focales.
+
+Orden:
+1. Codex.
+2. Copilot.
+3. Claude.
+
+Si aparece un conflicto:
+- no elijas automáticamente “ours” o “theirs”;
+- resuelve según ownership y plan;
+- conserva ambas correcciones cuando sean ortogonales;
+- registra la resolución en:
+  ai/coordination/uxqa-20260717/handoffs/CLAUDE-INTEGRATION-<wave>.md
+
+Después de integrar:
+- ejecuta gate completo de la wave;
+- corrige solo fallos de integración;
+- no absorbas deuda de otra wave;
+- actualiza la rama de integración;
+- informa los SHAs integrados.
+``​`
+
+---
+
+# 7. Prompt específico — GitHub Copilot Auto
+
+Pega en Copilot Chat/Agent Mode después del prompt común:
+
+``​`txt
+ROL
+Eres el pair programmer de producción para componentes acotados, limpieza de
+lint, host del laboratorio, LeftSidebar, accesibilidad y pruebas visuales.
+
+TU FORTALEZA EN ESTE PLAN
+- cambios repetitivos y consistentes;
+- Tailwind local;
+- accesibilidad;
+- limpieza de imports;
+- ajustes de tests;
+- componentes del host;
+- LeftSidebar.
+
+NO HAGAS
+- análisis de todo el repositorio;
+- refactors automáticos fuera de los archivos owned;
+- “Fix all” global;
+- edición del RightSidebar;
+- edición de Canvas coordinates;
+- edición del runtime React;
+- creación de CSS;
+- recreación de wrappers eliminados.
+
+CONFIGURACIÓN DE TRABAJO
+Abre únicamente el workspace:
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-copilot
+
+Antes de aceptar una edición sugerida:
+- verifica la ruta;
+- verifica que esté en owned paths;
+- revisa el diff;
+- rechaza cualquier cambio colateral.
+
+MÉTODO
+1. Usa instrucciones precisas por archivo.
+2. No generes cambios masivos desde Problems.
+3. Corrige warnings por familia.
+4. Ejecuta ESLint sobre los archivos modificados.
+5. Ejecuta los tests directos.
+6. Haz commit atómico.
+7. Escribe handoff con SHA.
+
+Para Tailwind:
+- una sola superficie visible;
+- baja densidad;
+- border-solid por preflight false;
+- sin shadow permanente;
+- sin clases dinámicas que Tailwind no pueda detectar;
+- usa mergeClassNames o arrays estáticos existentes.
+``​`
+
+---
+
+# 8. Formato obligatorio de handoff
+
+``​`md
+# HANDOFF — <AGENTE> — <WAVE> — <TASK-ID>
+
+## Estado
+completed | blocked | partial
+
+## Commit
+<sha>
+
+## Objetivo ejecutado
+...
+
+## Archivos modificados
+- ruta
+- ruta
+
+## Cambios funcionales
+- ...
+
+## Cambios visuales
+- ...
+
+## Contratos preservados
+- selección
+- owner
+- document routing
+- locks
+- testIds
+- CommandBus
+
+## Validación
+``​`bash
+comando
+``​`
+
+Resultado:
+``​`txt
+exit code / tests passed / tests failed
+``​`
+
+## Fallos fuera de alcance
+- archivo
+- owner recomendado
+- evidencia
+
+## Riesgos
+- ...
+
+## Próximo paso permitido
+...
+``​`
+
+---
+
+# 9. Reglas de merge sin colisiones
+
+Antes de integrar una wave:
+
+``​`bash
+git diff --name-only ai/uxqa-integration-20260717..ai/codex-uxqa-20260717
+git diff --name-only ai/uxqa-integration-20260717..ai/claude-uxqa-20260717
+git diff --name-only ai/uxqa-integration-20260717..ai/copilot-uxqa-20260717
+``​`
+
+Detectar intersecciones:
+
+``​`bash
+comm -12 \
+  <(git diff --name-only ai/uxqa-integration-20260717..ai/codex-uxqa-20260717 | sort) \
+  <(git diff --name-only ai/uxqa-integration-20260717..ai/claude-uxqa-20260717 | sort)
+``​`
+
+Repetir para los tres pares.
+
+Si existe una intersección no autorizada:
+
+``​`txt
+NO MERGE
+``​`
+
+El agente que no era owner debe revertir únicamente ese archivo en su rama y
+volver a entregar un commit limpio.
+
+---
+
+# 10. Criterio de cierre del equipo
+
+La ejecución se considera terminada únicamente cuando:
+
+``​`txt
+[ ] DetailView alcanza la última sección.
+[ ] Campos, Detalle, Docs y Comentarios tienen scroll estable.
+[ ] Guardar no se solapa con switcher ni rails.
+[ ] Menú global y menús locales están separados.
+[ ] LeftSidebar no hace parecer seleccionados todos los plugins.
+[ ] ListView separa owner, hover, selected, focus y lock.
+[ ] DocumentsRail distingue documentos y páginas.
+[ ] Toolbar contextual no cubre schemas.
+[ ] Rails restauran panel, zoom, página y selección.
+[ ] Owner color coincide en Canvas, ListView y DetailHeader.
+[ ] npm run lint no tiene errores.
+[ ] src no tiene warnings.
+[ ] build pasa.
+[ ] Vitest pasa.
+[ ] Playwright pasa o cada fallo restante tiene owner, evidencia y task-card.
+[ ] No se creó CSS visual nuevo.
+[ ] runtimeStyles.ts conserva solamente CSS técnico documentado.
+``​`
+
+---
+
+# 11. Mensaje corto de arranque para el equipo
+
+Usar este mensaje en las tres sesiones después de cargar los prompts:
+
+``​`txt
+Inicia la Wave 1 del plan multiagente.
+
+No realices auditoría ni otro plan.
+Trabaja solo en tu worktree y owned paths.
+Lee el plan autoritativo y OWNERSHIP.md.
+Crea tu lock, implementa tu tarea asignada, valida con pruebas focales, crea un
+commit atómico y entrega el handoff con SHA.
+
+No hagas merge.
+Claude integrará la wave únicamente después de recibir los tres handoffs.
+``​`
+```
+
+<a id="file-0183"></a>
+
+### 0183 — `ai/prompts/PROMPT_MAESTRO_MIGRACION_TAILWIND_SISAD_PDFME.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `804`
@@ -12653,9 +14864,373 @@ Siguiente paquete:
 Continúa con el siguiente paquete automáticamente mientras no exista una regresión funcional, una ambigüedad arquitectónica o un selector técnico de alto riesgo.
 ```
 
-<a id="file-0182"></a>
+<a id="file-0184"></a>
 
-### 0182 — `ai/prompts/README.md`
+### 0184 — `ai/prompts/PROMPT_REALINEACION_MULTIAGENTE_WAVE1_SISAD_PDFME.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `351`
+- **Tamaño original:** `8.6 KB`
+- **SHA1 corto:** `9324fe3975`
+- **Estado:** `completo`
+
+```markdown
+# Realineación multiagente — Wave 1 SISAD PDFME
+
+## Estado confirmado
+
+La Wave 1 no debe integrarse todavía.
+
+### Claude
+
+Estado válido:
+
+- Su corrección de scroll del RightSidebar está aislada y comprometida.
+- Ha detenido la integración hasta recibir ramas limpias de Codex y Copilot.
+- Debe seguir siendo el único integrador en `prueba-plugin-merge`.
+
+### Codex
+
+Estado inválido:
+
+- Trabajó en el checkout principal.
+- No ejecutó su tarea asignada:
+  - `SisadPdfmeForm.tsx`;
+  - `SchemaDropCommitFlash.tsx`.
+- Modificó archivos owned por Claude:
+  - RightSidebar;
+  - ListView;
+  - DetailView.
+- Modificó un archivo owned por Copilot:
+  - `labExamples.js`.
+- Continuó hacia slices visuales y pruebas de DetailView sin cerrar Wave 1.
+- No entregó un commit limpio en `ai/codex-uxqa-20260717`.
+
+### Copilot
+
+Estado parcialmente válido:
+
+- El commit `ab52464` está en la rama correcta.
+- Corrigió dos tests con imports legacy.
+- Su lint focal y dos tests están verdes.
+- Todavía no corrigió el bloqueo de build en `labExamples.js`.
+- Existe además una sesión que modificó `LeftSidebar.tsx` directamente en main.
+  Ese cambio debe quedar en cuarentena hasta Wave 2.
+
+---
+
+# 1. Detener trabajo paralelo
+
+No iniciar Wave 2.
+
+Cerrar o pausar:
+
+- sesión Codex que está en `prueba-plugin`;
+- sesión Copilot que está en `prueba-plugin`;
+- cualquier terminal que siga modificando main.
+
+Claude permanece detenido hasta recibir los dos handoffs limpios.
+
+---
+
+# 2. Poner en cuarentena los cambios sueltos de main
+
+Ejecutar en:
+
+``​`bash
+cd /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin
+``​`
+
+Guardar evidencia:
+
+``​`bash
+COORD=/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin/ai/coordination/uxqa-20260717
+
+git status --short > "$COORD/status/MAIN-ROGUE-STATUS.txt"
+git diff --name-only > "$COORD/status/MAIN-ROGUE-FILES.txt"
+git diff --binary > "$COORD/handoffs/MAIN-ROGUE-CHANGES.patch"
+``​`
+
+Revisar:
+
+``​`bash
+cat "$COORD/status/MAIN-ROGUE-FILES.txt"
+``​`
+
+El checkpoint `37291b2` contiene el estado anterior. No usar `reset --hard`.
+
+Restaurar únicamente los archivos tracked modificados después del checkpoint:
+
+``​`bash
+while IFS= read -r file; do
+  [ -n "$file" ] && git restore --worktree --staged -- "$file"
+done < "$COORD/status/MAIN-ROGUE-FILES.txt"
+``​`
+
+No eliminar:
+
+``​`txt
+ai/coordination/uxqa-20260717/**
+``​`
+
+Los cambios de LeftSidebar quedan preservados dentro del patch y se reconsideran
+después del gate de Wave 1.
+
+Confirmar:
+
+``​`bash
+git status --short
+``​`
+
+El checkout principal no debe contener modificaciones productivas sueltas.
+
+---
+
+# 3. Prompt correctivo para Codex
+
+Pegar literalmente en la sesión nueva de Codex:
+
+``​`txt
+REALINEACIÓN OBLIGATORIA — CODEX WAVE 1
+
+Tu ejecución anterior quedó invalidada porque trabajaste en el checkout
+principal y editaste dominios de Claude y Copilot.
+
+No continúes desde ~/Documents/Taylor/frontend/prueba-plugin.
+
+WORKTREE OBLIGATORIO
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-codex
+
+RAMA OBLIGATORIA
+ai/codex-uxqa-20260717
+
+TAREA ÚNICA
+W1-CODEX-P0-HOOKS
+
+ARCHIVOS PRODUCTIVOS OWNED
+1. src/sisad-pdfme/react/SisadPdfmeForm.tsx
+2. src/sisad-pdfme/ui/components/Designer/Canvas/overlays/SchemaDropCommitFlash.tsx
+
+TESTS DIRECTOS PERMITIDOS
+- tests unitarios directos de SisadPdfmeForm/runtime modes.
+- tests directos de SchemaDropCommitFlash.
+- tests/playwright/drag-preview-and-canvas-scroll-regression.spec.ts
+  solo si necesita una corrección estrictamente relacionada con el overlay.
+
+PROHIBIDO
+- RightSidebar/**
+- LeftSidebar/**
+- DetailView/**
+- ListView/**
+- DocumentsRail.tsx
+- labExamples.js
+- Designer/index.tsx
+- CtlBar.tsx
+- tests de inspector/sidebar
+- main
+- Wave 2
+
+PASOS
+1. `cd /Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-codex`
+2. Confirma:
+   `pwd`
+   `git branch --show-current`
+   `git status --short`
+3. La rama debe ser `ai/codex-uxqa-20260717` y debe estar limpia.
+4. Corrige el useMemo/React Compiler de SisadPdfmeForm sin desactivar reglas.
+5. Corrige el orden incondicional de hooks y timers de
+   SchemaDropCommitFlash.
+6. Ejecuta:
+   `npx eslint <los dos archivos>`
+   `npx vitest run <tests focales existentes>`
+   `npm run build`
+7. Haz un único commit atómico:
+   `fix: stabilize form memoization and drop flash hooks`
+8. Crea:
+   `ai/coordination/uxqa-20260717/handoffs/CODEX-wave1.md`
+   incluyendo SHA, archivos, comandos y resultados exactos.
+9. Libera el lock.
+10. Detente. No continúes con otro slice y no hagas merge.
+
+No reapliques el patch de main. Tu tarea debe implementarse limpiamente desde la
+rama Codex.
+``​`
+
+---
+
+# 4. Prompt correctivo para GitHub Copilot
+
+Pegar literalmente en Copilot Agent Mode:
+
+``​`txt
+REALINEACIÓN OBLIGATORIA — COPILOT WAVE 1
+
+WORKSPACE OBLIGATORIO
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-copilot
+
+RAMA
+ai/copilot-uxqa-20260717
+
+El commit `ab52464` es válido y debe conservarse.
+
+TAREA RESTANTE ÚNICA
+Corregir el bloqueo de build de
+src/features/pdfcomponent/labs/examples/labExamples.js.
+
+No supongas que `exampleTemplate.ts` exporta `cloneExample`.
+Primero encuentra la API canónica real:
+
+rg -n \
+  "export .*cloneExample|function cloneExample|const cloneExample|cloneExample" \
+  src/features/pdfcomponent
+
+Inspecciona los exports reales del módulo encontrado.
+
+REGLAS
+- No recrear wrappers eliminados.
+- No importar un símbolo que el módulo no exporta.
+- No tocar RightSidebar, DetailView, LeftSidebar, Canvas ni main.
+- No continuar Wave 2.
+- No modificar los tests ya comprometidos salvo fallo demostrado.
+- No usar un alias o helper nuevo solo para ocultar el error.
+
+VALIDACIÓN
+1. ESLint focal de `labExamples.js`.
+2. Tests directos del catálogo/export de ejemplos.
+3. `npm run build`.
+4. Si build pasa, crea un segundo commit:
+   `fix: restore canonical lab example clone import`
+5. Actualiza `COPILOT-wave1.md` con ambos SHAs:
+   - `ab52464`
+   - nuevo SHA del build blocker.
+6. Libera el lock y detente.
+
+El cambio de LeftSidebar realizado en el checkout principal no forma parte de
+Wave 1. No lo reapliques todavía.
+``​`
+
+---
+
+# 5. Prompt de espera e integración para Claude
+
+Pegar literalmente en Claude:
+
+``​`txt
+CLAUDE — INTEGRACIÓN WAVE 1
+
+Tu evaluación es correcta. No inicies Wave 2 y no continúes el polish visual.
+
+Mantén tu rama y commit de scroll sin cambios adicionales.
+
+Espera estos entregables:
+
+CODEX
+- commit en ai/codex-uxqa-20260717;
+- solo SisadPdfmeForm.tsx y SchemaDropCommitFlash.tsx;
+- handoff CODEX-wave1.md;
+- lint, tests focales y build.
+
+COPILOT
+- commit ab52464;
+- segundo commit que corrige de forma canónica labExamples.js;
+- handoff COPILOT-wave1.md actualizado;
+- build verde.
+
+Antes de integrar ejecuta:
+
+git diff --name-only \
+  ai/uxqa-integration-20260717..ai/codex-uxqa-20260717
+
+git diff --name-only \
+  ai/uxqa-integration-20260717..ai/copilot-uxqa-20260717
+
+git diff --name-only \
+  ai/uxqa-integration-20260717..ai/claude-uxqa-20260717
+
+Rechaza cualquier branch que contenga archivos fuera de ownership.
+
+INTEGRACIÓN EXCLUSIVA
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-merge
+
+ORDEN
+1. cherry-pick commit Codex.
+2. cherry-pick ab52464.
+3. cherry-pick segundo commit Copilot.
+4. cherry-pick tu commit de scroll.
+
+GATE
+npm run lint
+npm run build
+npx vitest run
+
+npx playwright test \
+  tests/playwright/drag-preview-and-canvas-scroll-regression.spec.ts \
+  tests/playwright/right-sidebar-detail-scroll.spec.ts \
+  tests/playwright/right-sidebar-docs-tab.spec.ts \
+  --project=chromium
+
+No modifiques expected ni snapshots para hacer pasar el gate.
+
+Si falla:
+- clasifica por commit/domain;
+- revierte únicamente el commit culpable si es necesario;
+- devuelve el fallo al owner;
+- no absorbas trabajo de Wave 2.
+
+Solo después del gate verde declara Wave 1 cerrada.
+``​`
+
+---
+
+# 6. Estado del cambio LeftSidebar hecho en main
+
+El cambio que midió:
+
+``​`txt
+abierto: 212 px
+colapsado: 36 px
+stage/canvas sin cambio
+``​`
+
+es potencialmente útil, pero fue ejecutado:
+
+- en el checkout principal;
+- fuera de la wave asignada;
+- sin commit de la rama Copilot Wave 2;
+- antes del gate de Wave 1.
+
+No debe perderse ni integrarse ahora.
+
+Después de cerrar Wave 1:
+
+1. Crear un lock de `W2-COPILOT-LEFT-SIDEBAR`.
+2. Extraer únicamente el diff de `LeftSidebar.tsx` desde
+   `MAIN-ROGUE-CHANGES.patch`.
+3. Aplicarlo en `prueba-plugin-copilot`.
+4. Revisar el diff.
+5. Ejecutar build y pruebas del LeftSidebar.
+6. Crear commit de Wave 2.
+
+---
+
+# 7. Criterio para reanudar
+
+No reanudar el trabajo hasta tener:
+
+``​`txt
+[ ] main sin cambios productivos sueltos;
+[ ] Codex en su worktree y con commit hooks-only;
+[ ] Copilot con ab52464 + fix canónico de labExamples.js;
+[ ] Claude con su commit de scroll intacto;
+[ ] tres handoffs completos;
+[ ] cero intersecciones no autorizadas;
+[ ] gate Wave 1 ejecutado en prueba-plugin-merge.
+``​`
+```
+
+<a id="file-0185"></a>
+
+### 0185 — `ai/prompts/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -12669,9 +15244,9 @@ Continúa con el siguiente paquete automáticamente mientras no exista una regre
 Prompts reutilizables. No reemplazan task-cards.
 ```
 
-<a id="file-0183"></a>
+<a id="file-0186"></a>
 
-### 0183 — `ai/prompts/update-memory.md`
+### 0186 — `ai/prompts/update-memory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -12685,9 +15260,9 @@ Prompts reutilizables. No reemplazan task-cards.
 Actualiza memoria solo si hubo decisión estable. Usa `ai/memory/memory-update-protocol.md`.
 ```
 
-<a id="file-0184"></a>
+<a id="file-0187"></a>
 
-### 0184 — `ai/reports/architecture-correction-2026-07-14.md`
+### 0187 — `ai/reports/architecture-correction-2026-07-14.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -12726,9 +15301,9 @@ Se encontraron referencias de documentación IA que apuntaban a una arquitectura
 - No se tocaron archivos fuera del alcance de docs/IA, por lo que el contenido público y el código fuente permanecen intactos.
 ```
 
-<a id="file-0185"></a>
+<a id="file-0188"></a>
 
-### 0185 — `ai/reports/auditoria_migracion_tailwind_y_regresiones_sisad_pdfme_2026-07-15.md`
+### 0188 — `ai/reports/auditoria_migracion_tailwind_y_regresiones_sisad_pdfme_2026-07-15.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `198`
@@ -12937,9 +15512,9 @@ npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/p
 Sincronizar el checkout real del repositorio (incluyendo `package.json`, `src/`, tests y configuración) en el workspace, o proporcionar repositorio y rama. Los paquetes Markdown son suficientes para auditar, pero no para aplicar cambios seguros ni validar el comportamiento actual.
 ```
 
-<a id="file-0186"></a>
+<a id="file-0189"></a>
 
-### 0186 — `ai/reports/deep-ui-action-audit-2026-07-15.md`
+### 0189 — `ai/reports/deep-ui-action-audit-2026-07-15.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `169`
@@ -13119,9 +15694,9 @@ Prohibido tocar en esta pasada:
 - CSS visual repetido se desplaza a Tailwind 3 en TSX, no a otra hoja CSS.
 ```
 
-<a id="file-0187"></a>
+<a id="file-0190"></a>
 
-### 0187 — `ai/reports/pdfcomponent-integration-boundary.md`
+### 0190 — `ai/reports/pdfcomponent-integration-boundary.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `41`
@@ -13173,9 +15748,9 @@ If a change affects the render host path, it must go through public wrappers and
 Host render boundary satisfied for the current task-card criteria. Future regressions should create a new `continuity` or `regression` card instead of reopening this one.
 ```
 
-<a id="file-0188"></a>
+<a id="file-0191"></a>
 
-### 0188 — `ai/reports/pdfcomponent-integration-deep-audit-2026-07-15.md`
+### 0191 — `ai/reports/pdfcomponent-integration-deep-audit-2026-07-15.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `193`
@@ -13379,9 +15954,9 @@ example.collaboration.users + runtimeOptions.collaboration.recipients + designer
 - `labExamples` se parte en catálogo declarativo y builders.
 ```
 
-<a id="file-0189"></a>
+<a id="file-0192"></a>
 
-### 0189 — `ai/reports/tailwind-design-continuity-roadmap.md`
+### 0192 — `ai/reports/tailwind-design-continuity-roadmap.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -13416,9 +15991,9 @@ Solo una tarjeta puede estar activa. Una dependencia se considera satisfecha cua
 - Regresiones visuales convertidas en pruebas reproducibles.
 ```
 
-<a id="file-0190"></a>
+<a id="file-0193"></a>
 
-### 0190 — `ai/router/CONTEXT_BUDGET.md`
+### 0193 — `ai/router/CONTEXT_BUDGET.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `58`
@@ -13487,9 +16062,9 @@ tsconfig.tsbuildinfo
 - No modificar `pdf-lib`, `generator`, `Moveable`, `Selecto`, `snapshotAdapter` o geometría sin task-card explícita.
 ```
 
-<a id="file-0191"></a>
+<a id="file-0194"></a>
 
-### 0191 — `ai/router/ROUTER.md`
+### 0194 — `ai/router/ROUTER.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -13530,9 +16105,9 @@ tsconfig.tsbuildinfo
 - Si una tarea menciona CSS, primero revisar `reports/tailwind-migration/**` y luego modificar `src/**`.
 ```
 
-<a id="file-0192"></a>
+<a id="file-0195"></a>
 
-### 0192 — `ai/router/TASK_INTAKE.md`
+### 0195 — `ai/router/TASK_INTAKE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -13578,9 +16153,9 @@ scripts
 - Documentar cada regla que se elimina.
 ```
 
-<a id="file-0193"></a>
+<a id="file-0196"></a>
 
-### 0193 — `ai/rules/ai-docs-rules.md`
+### 0196 — `ai/rules/ai-docs-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `6`
@@ -13597,9 +16172,9 @@ scripts
 - Cada archivo Markdown tiene única responsabilidad.
 ```
 
-<a id="file-0194"></a>
+<a id="file-0197"></a>
 
-### 0194 — `ai/rules/canvas-rules.md`
+### 0197 — `ai/rules/canvas-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -13613,9 +16188,9 @@ scripts
 No usar `pages[0]`, `pageNumber || 1`, ni query selector del primer paper para operaciones multipágina. Siempre resolver página real.
 ```
 
-<a id="file-0195"></a>
+<a id="file-0198"></a>
 
-### 0195 — `ai/rules/css-migration-rules.md`
+### 0198 — `ai/rules/css-migration-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -13661,9 +16236,9 @@ src/styles/tailwind.css -> importado por src/main.jsx
 5. Comparar baseline visual.
 ```
 
-<a id="file-0196"></a>
+<a id="file-0199"></a>
 
-### 0196 — `ai/rules/global-rules.md`
+### 0199 — `ai/rules/global-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -13683,9 +16258,9 @@ src/styles/tailwind.css -> importado por src/main.jsx
 - Cualquier regresión de una tarea completada debe tener una nueva task-card de regression/continuity.
 ```
 
-<a id="file-0197"></a>
+<a id="file-0200"></a>
 
-### 0197 — `ai/rules/inspector-rules.md`
+### 0200 — `ai/rules/inspector-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -13699,9 +16274,9 @@ src/styles/tailwind.css -> importado por src/main.jsx
 Widgets no mutan schemas directamente. Usar command/update centralizado.
 ```
 
-<a id="file-0198"></a>
+<a id="file-0201"></a>
 
-### 0198 — `ai/rules/moveable-selecto-rules.md`
+### 0201 — `ai/rules/moveable-selecto-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -13717,9 +16292,9 @@ Widgets no mutan schemas directamente. Usar command/update centralizado.
 - No resolver hit-testing con z-index.
 ```
 
-<a id="file-0199"></a>
+<a id="file-0202"></a>
 
-### 0199 — `ai/rules/README.md`
+### 0202 — `ai/rules/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -13733,9 +16308,9 @@ Widgets no mutan schemas directamente. Usar command/update centralizado.
 Reglas duras. Cargar solo la regla principal de la task-card.
 ```
 
-<a id="file-0200"></a>
+<a id="file-0203"></a>
 
-### 0200 — `ai/rules/schema-rules.md`
+### 0203 — `ai/rules/schema-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -13749,9 +16324,9 @@ Reglas duras. Cargar solo la regla principal de la task-card.
 Preservar schemaUid, documentId, pageNumber, ownerRecipientId, colors, groupId, optionId, selected values, options y `__designer`.
 ```
 
-<a id="file-0201"></a>
+<a id="file-0204"></a>
 
-### 0201 — `ai/rules/snapshot-rules.md`
+### 0204 — `ai/rules/snapshot-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -13765,9 +16340,9 @@ Preservar schemaUid, documentId, pageNumber, ownerRecipientId, colors, groupId, 
 No crear snapshot paralelo. No perder metadata. Todo roundtrip debe conservar el modelo.
 ```
 
-<a id="file-0202"></a>
+<a id="file-0205"></a>
 
-### 0202 — `ai/rules/tailwind-design-continuity-rules.md`
+### 0205 — `ai/rules/tailwind-design-continuity-rules.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -13792,9 +16367,9 @@ No crear snapshot paralelo. No perder metadata. Todo roundtrip debe conservar el
 12. Todo cambio termina con typecheck, lint focalizado, tests focalizados y evidencia visual en la ruta objetivo.
 ```
 
-<a id="file-0203"></a>
+<a id="file-0206"></a>
 
-### 0203 — `ai/skills/canvas-multipage-skill.md`
+### 0206 — `ai/skills/canvas-multipage-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -13834,9 +16409,9 @@ Validar drop, selección, move, resize y snapshot en páginas 2+.
 ``​`
 ```
 
-<a id="file-0204"></a>
+<a id="file-0207"></a>
 
-### 0204 — `ai/skills/inspector-skill.md`
+### 0207 — `ai/skills/inspector-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -13876,9 +16451,9 @@ Mejorar DetailView/ListView sin romper CommandBus.
 ``​`
 ```
 
-<a id="file-0205"></a>
+<a id="file-0208"></a>
 
-### 0205 — `ai/skills/memory-update-skill.md`
+### 0208 — `ai/skills/memory-update-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -13918,9 +16493,9 @@ Actualizar memoria con decisiones útiles.
 ``​`
 ```
 
-<a id="file-0206"></a>
+<a id="file-0209"></a>
 
-### 0206 — `ai/skills/moveable-selecto-skill.md`
+### 0209 — `ai/skills/moveable-selecto-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -13960,9 +16535,9 @@ Proteger targets, guards, overlays y shortcuts.
 ``​`
 ```
 
-<a id="file-0207"></a>
+<a id="file-0210"></a>
 
-### 0207 — `ai/skills/option-groups-skill.md`
+### 0210 — `ai/skills/option-groups-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -14002,9 +16577,9 @@ Gestionar checkboxGroup/radioGroup/select y botón +.
 ``​`
 ```
 
-<a id="file-0208"></a>
+<a id="file-0211"></a>
 
-### 0208 — `ai/skills/prompting-skill.md`
+### 0211 — `ai/skills/prompting-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -14044,9 +16619,9 @@ Diseñar prompts/task-cards de bajo consumo de tokens.
 ``​`
 ```
 
-<a id="file-0209"></a>
+<a id="file-0212"></a>
 
-### 0209 — `ai/skills/README.md`
+### 0212 — `ai/skills/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -14060,9 +16635,9 @@ Diseñar prompts/task-cards de bajo consumo de tokens.
 Skills son procedimientos reutilizables. Cada skill describe entradas, pasos y salida esperada.
 ```
 
-<a id="file-0210"></a>
+<a id="file-0213"></a>
 
-### 0210 — `ai/skills/snapshot-safety-skill.md`
+### 0213 — `ai/skills/snapshot-safety-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -14102,9 +16677,9 @@ Preservar metadata en import/export/roundtrip.
 ``​`
 ```
 
-<a id="file-0211"></a>
+<a id="file-0214"></a>
 
-### 0211 — `ai/skills/tailwind-migration-skill.md`
+### 0214 — `ai/skills/tailwind-migration-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -14144,9 +16719,9 @@ Migrar CSS puro a Tailwind por capas sin afectar geometría.
 ``​`
 ```
 
-<a id="file-0212"></a>
+<a id="file-0215"></a>
 
-### 0212 — `ai/skills/visual-regression-skill.md`
+### 0215 — `ai/skills/visual-regression-skill.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `29`
@@ -14186,9 +16761,9 @@ Usar public/img-version como baseline y comparar visualmente.
 ``​`
 ```
 
-<a id="file-0213"></a>
+<a id="file-0216"></a>
 
-### 0213 — `ai/start/QUICKSTART-CLAUDE.md`
+### 0216 — `ai/start/QUICKSTART-CLAUDE.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -14214,9 +16789,9 @@ Usar `ai/prompts/claude-diagnose-or-implement.md` en modo `diagnose-only` cuando
 Usar una sola task-card. No mezclar Tailwind, schemas, canvas, runtime y snapshot en la misma pasada.
 ```
 
-<a id="file-0214"></a>
+<a id="file-0217"></a>
 
-### 0214 — `ai/start/QUICKSTART-CODEX.md`
+### 0217 — `ai/start/QUICKSTART-CODEX.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -14261,9 +16836,9 @@ No revises todo. Enruta, selecciona task-card, inspecciona con rg y modifica poc
 ``​`
 ```
 
-<a id="file-0215"></a>
+<a id="file-0218"></a>
 
-### 0215 — `ai/start/QUICKSTART-COPILOT.md`
+### 0218 — `ai/start/QUICKSTART-COPILOT.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -14292,9 +16867,9 @@ Preservar metadata de schemas.
 `.github/copilot-instructions.md` solo debe apuntar a esta carpeta y contener restricciones mínimas.
 ```
 
-<a id="file-0216"></a>
+<a id="file-0219"></a>
 
-### 0216 — `ai/start/START.md`
+### 0219 — `ai/start/START.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -14381,9 +16956,9 @@ Detente si necesitas:
 - resolver por CSS un problema de permisos, metadata o geometría.
 ```
 
-<a id="file-0217"></a>
+<a id="file-0220"></a>
 
-### 0217 — `ai/subagents/anti-hallucination-reviewer.md`
+### 0220 — `ai/subagents/anti-hallucination-reviewer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -14407,9 +16982,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0218"></a>
+<a id="file-0221"></a>
 
-### 0218 — `ai/subagents/baseline-visual-critic.md`
+### 0221 — `ai/subagents/baseline-visual-critic.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -14433,9 +17008,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0219"></a>
+<a id="file-0222"></a>
 
-### 0219 — `ai/subagents/code-docs-writer.md`
+### 0222 — `ai/subagents/code-docs-writer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -14459,9 +17034,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0220"></a>
+<a id="file-0223"></a>
 
-### 0220 — `ai/subagents/css-auditor.md`
+### 0223 — `ai/subagents/css-auditor.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -14485,9 +17060,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0221"></a>
+<a id="file-0224"></a>
 
-### 0221 — `ai/subagents/legacy-css-guardian.md`
+### 0224 — `ai/subagents/legacy-css-guardian.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -14511,9 +17086,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0222"></a>
+<a id="file-0225"></a>
 
-### 0222 — `ai/subagents/memory-curator.md`
+### 0225 — `ai/subagents/memory-curator.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -14537,9 +17112,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0223"></a>
+<a id="file-0226"></a>
 
-### 0223 — `ai/subagents/prompt-engineer.md`
+### 0226 — `ai/subagents/prompt-engineer.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -14563,9 +17138,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0224"></a>
+<a id="file-0227"></a>
 
-### 0224 — `ai/subagents/README.md`
+### 0227 — `ai/subagents/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -14579,9 +17154,9 @@ No modificar código por sí solo. Debe apoyar al agente principal.
 Los subagentes son apoyo especializado. No son dueños de procesos completos.
 ```
 
-<a id="file-0225"></a>
+<a id="file-0228"></a>
 
-### 0225 — `ai/subagents/regression-tester.md`
+### 0228 — `ai/subagents/regression-tester.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -14605,9 +17180,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0226"></a>
+<a id="file-0229"></a>
 
-### 0226 — `ai/subagents/tailwind-migrator.md`
+### 0229 — `ai/subagents/tailwind-migrator.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -14631,9 +17206,9 @@ Invocar dentro de una task-card cuando el agente principal necesite validación 
 No modificar código por sí solo. Debe apoyar al agente principal.
 ```
 
-<a id="file-0227"></a>
+<a id="file-0230"></a>
 
-### 0227 — `ai/task-cards/README.md`
+### 0230 — `ai/task-cards/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -14655,9 +17230,9 @@ completed/  tareas completadas
 ``​`
 ```
 
-<a id="file-0228"></a>
+<a id="file-0231"></a>
 
-### 0228 — `ai/templates/agent-template.md`
+### 0231 — `ai/templates/agent-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -14675,9 +17250,9 @@ completed/  tareas completadas
 ## Salida esperada
 ```
 
-<a id="file-0229"></a>
+<a id="file-0232"></a>
 
-### 0229 — `ai/templates/checklist-template.md`
+### 0232 — `ai/templates/checklist-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `5`
@@ -14693,9 +17268,9 @@ completed/  tareas completadas
 - [ ] Validación
 ```
 
-<a id="file-0230"></a>
+<a id="file-0233"></a>
 
-### 0230 — `ai/templates/decision-template.md`
+### 0233 — `ai/templates/decision-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -14713,9 +17288,9 @@ completed/  tareas completadas
 ## Consecuencias
 ```
 
-<a id="file-0231"></a>
+<a id="file-0234"></a>
 
-### 0231 — `ai/templates/memory-update-template.md`
+### 0234 — `ai/templates/memory-update-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -14733,9 +17308,9 @@ completed/  tareas completadas
 - Próxima acción:
 ```
 
-<a id="file-0232"></a>
+<a id="file-0235"></a>
 
-### 0232 — `ai/templates/README.md`
+### 0235 — `ai/templates/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -14749,9 +17324,9 @@ completed/  tareas completadas
 Plantillas para extender la arquitectura sin duplicar estilo.
 ```
 
-<a id="file-0233"></a>
+<a id="file-0236"></a>
 
-### 0233 — `ai/templates/skill-template.md`
+### 0236 — `ai/templates/skill-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `7`
@@ -14769,9 +17344,9 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 ## Salida
 ```
 
-<a id="file-0234"></a>
+<a id="file-0237"></a>
 
-### 0234 — `ai/templates/task-card-template.md`
+### 0237 — `ai/templates/task-card-template.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `11`
@@ -14793,9 +17368,9 @@ Plantillas para extender la arquitectura sin duplicar estilo.
 ## Entrega final
 ```
 
-<a id="file-0235"></a>
+<a id="file-0238"></a>
 
-### 0235 — `reports/action-audit/button-action-inventory.md`
+### 0238 — `reports/action-audit/button-action-inventory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `149`
@@ -14955,9 +17530,9 @@ Total candidates: 131
 | `src/features/pdfcomponent/ui/primitives.jsx` | 23-32 | DISABLED_WITH_REASON | — | `label` | yes | yes | yes | `<button type="button" className={classNameList} aria-label={label} title={title \|\| label} aria-haspopup={ariaHasPopup} aria-expanded={ariaExpanded} onClick={onClick} disabled={disabled} >` |
 ```
 
-<a id="file-0236"></a>
+<a id="file-0239"></a>
 
-### 0236 — `reports/designer-deep-audit/duplication-map.md`
+### 0239 — `reports/designer-deep-audit/duplication-map.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -14992,9 +17567,9 @@ Total candidates: 131
 - **Fuente única propuesta:** Centralizar en `sidebarPanelContract.ts` y tokens de Tailwind.
 ```
 
-<a id="file-0237"></a>
+<a id="file-0240"></a>
 
-### 0237 — `reports/designer-deep-audit/risk-map.md`
+### 0240 — `reports/designer-deep-audit/risk-map.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -15024,9 +17599,9 @@ Total candidates: 131
 - **Impacto:** Medio.
 ```
 
-<a id="file-0238"></a>
+<a id="file-0241"></a>
 
-### 0238 — `reports/designer-deep-audit/wrapper-reduction.md`
+### 0241 — `reports/designer-deep-audit/wrapper-reduction.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `56`
@@ -15093,9 +17668,9 @@ de `src/sisad-pdfme` = 0 resultados.
 - `npm run build` exit 0; `npx vitest run tests/unit/sisad-pdfme/react` (runtime-modes) en verde.
 ```
 
-<a id="file-0239"></a>
+<a id="file-0242"></a>
 
-### 0239 — `reports/tailwind-migration/active-css-inventory.md`
+### 0242 — `reports/tailwind-migration/active-css-inventory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `12`
@@ -15118,9 +17693,9 @@ de `src/sisad-pdfme` = 0 resultados.
 No incluir `reports/**` ni `.tailwind-migration-backups/**` como CSS activo.
 ```
 
-<a id="file-0240"></a>
+<a id="file-0243"></a>
 
-### 0240 — `reports/tailwind-migration/active-selector-duplicates.md`
+### 0243 — `reports/tailwind-migration/active-selector-duplicates.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `9`
@@ -15140,9 +17715,9 @@ Duplicate selectors: 2
 | `to` | 6 | `src/sisad-pdfme/ui/styles/sisad-pdfme.css:233`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:243`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:253`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:281`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:294`<br>`src/sisad-pdfme/ui/styles/sisad-pdfme.css:305` | REVIEW |
 ```
 
-<a id="file-0241"></a>
+<a id="file-0244"></a>
 
-### 0241 — `reports/tailwind-migration/baseline-regression-audit.md`
+### 0244 — `reports/tailwind-migration/baseline-regression-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `27`
@@ -15180,9 +17755,9 @@ Duplicate selectors: 2
 | Runtime Form | `public/img-version` no aporta evidencia directa | Layout de formulario limpio y protagonista | Ruta actual no se rompió | Riesgo indirecto por wrappers del host | Host lab puede influir en viewport | Validar en `/lab/generator-runtime` |
 ```
 
-<a id="file-0242"></a>
+<a id="file-0245"></a>
 
-### 0242 — `reports/tailwind-migration/component-migration-ledger.md`
+### 0245 — `reports/tailwind-migration/component-migration-ledger.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `212`
@@ -15405,9 +17980,9 @@ Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pin
 - Slice 2026-07-17e: `src/sisad-pdfme/ui/styles/sisad-pdfme.css` quedó totalmente vaciado (0 líneas, 0 apariciones de `@apply`) y sus contratos visuales residuales se movieron a `src/sisad-pdfme/ui/runtimeStyles.ts`, que ahora se inyecta desde `Root.tsx`; `src/sisad-pdfme/ui/index.ts` dejó de importar la hoja CSS. Validado con `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/right-sidebar-docs-tab.spec.ts tests/playwright/list-view-regression.spec.ts tests/playwright/drag-preview-and-canvas-scroll-regression.spec.ts` ✅ y `npm run build` en curso/pendiente de cierre final al momento de registrar este slice.
 ```
 
-<a id="file-0243"></a>
+<a id="file-0246"></a>
 
-### 0243 — `reports/tailwind-migration/deep-density-spacing-audit.md`
+### 0246 — `reports/tailwind-migration/deep-density-spacing-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `105`
@@ -15523,9 +18098,9 @@ Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pin
 - [x] Reporte actualizado.
 ```
 
-<a id="file-0244"></a>
+<a id="file-0247"></a>
 
-### 0244 — `reports/tailwind-migration/img-version-baseline-inventory.md`
+### 0247 — `reports/tailwind-migration/img-version-baseline-inventory.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -15550,9 +18125,9 @@ Leyenda estado: ✅ migrado/estable · 🟡 parcial (skin aplicado, algo CSS-pin
 | `public/img-version/Captura de pantalla 2026-07-08 a la(s) 4.48.22 p. m..jpg` | `RIGHT_SIDEBAR_DOCUMENTS` | LeftSidebar, canvas, document list, right panel tabs | Confirma que la densidad de la barra derecha es compacta y navegable. |
 ```
 
-<a id="file-0245"></a>
+<a id="file-0248"></a>
 
-### 0245 — `reports/tailwind-migration/line-by-line-style-audit.md`
+### 0248 — `reports/tailwind-migration/line-by-line-style-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `227`
@@ -15790,9 +18365,9 @@ Clasificación por sección (comentarios reales del archivo). Contadores clave: 
 - **TC-CSS-06** — Migrar `@media` de labRoutes a breakpoints Tailwind (`sm:`/`md:`) — opcional, cosmético.
 ```
 
-<a id="file-0246"></a>
+<a id="file-0249"></a>
 
-### 0246 — `reports/tailwind-migration/pending-phases-progress.md`
+### 0249 — `reports/tailwind-migration/pending-phases-progress.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `10`
@@ -15813,9 +18388,9 @@ Clasificación por sección (comentarios reales del archivo). Contadores clave: 
 | TC-CSS-13 Docs | pending | `docs/11-migraciones/tailwind-migration.md`, `docs/09-theming/tailwind-and-css-architecture.md` | Bajo | Documentación y reportes actualizados |
 ```
 
-<a id="file-0247"></a>
+<a id="file-0250"></a>
 
-### 0247 — `reports/tailwind-migration/README.md`
+### 0250 — `reports/tailwind-migration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -15902,9 +18477,9 @@ Migración incremental de diseños a Tailwind preservando comportamiento, canvas
 - generator/pdf-lib
 ```
 
-<a id="file-0248"></a>
+<a id="file-0251"></a>
 
-### 0248 — `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md`
+### 0251 — `reports/tailwind-migration/right-sidebar-scroll-tailwind-fix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -15960,9 +18535,9 @@ SCROLL  .layout-body (SidebarBody) → min-h-0 flex-1 overflow-y-auto overflow-x
 Ninguno de los archivos `.css` prohibidos fue modificado por esta tarea. Los `.css` que aparecen en `git status` (`sisad-pdfme-global.css`, `labRoutes.css`) corresponden a trabajo externo/paralelo de la migración, no a esta tarea.
 ```
 
-<a id="file-0249"></a>
+<a id="file-0252"></a>
 
-### 0249 — `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md`
+### 0252 — `reports/tailwind-migration/right-sidebar-tailwind-only-density-fix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `34`
@@ -16007,9 +18582,9 @@ Fase: RightSidebar visual density (Tailwind JSX/TSX only). Sin CSS nuevo, sin ed
 Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provienen del `Row`/`Col` interno de `form-render` (gutter por defecto). El margen negativo y el padding se compensan a cero contra el borde del form-shell, por lo que **no** producen overflow. Al dejar el form-shell en `p-0 bg-transparent`, el contenido queda alineado al borde de la sección sin card anidada. No se fuerza cambio del gutter por CSS ni por schema data (prohibido). Queda como riesgo residual estético menor.
 ```
 
-<a id="file-0250"></a>
+<a id="file-0253"></a>
 
-### 0250 — `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md`
+### 0253 — `reports/tailwind-migration/rightsidebar-detailview-tailwind-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `13`
@@ -16033,9 +18608,9 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/shared/SidebarSurfacePrimitives.tsx` | Shared sidebar header primitives | Shared chrome already centralised for list/detail surfaces | `KEEP_LEGACY` | Low |
 ```
 
-<a id="file-0251"></a>
+<a id="file-0254"></a>
 
-### 0251 — `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md`
+### 0254 — `reports/tailwind-migration/runtime-form-viewer-tailwind-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -16066,9 +18641,9 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 - El runtime mantiene la paridad Form/Viewer y la separación clara entre chrome y contenido.
 ```
 
-<a id="file-0252"></a>
+<a id="file-0255"></a>
 
-### 0252 — `reports/tailwind-migration/schema-chrome-tailwind-audit.md`
+### 0255 — `reports/tailwind-migration/schema-chrome-tailwind-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -16097,9 +18672,9 @@ Los estilos inline `margin-left/right: -12px` + `padding-left/right: 12px` provi
 - `basic-designer` continúa renderizando `field-chrome` y `action-based` sin overflow ni regresiones visibles.
 ```
 
-<a id="file-0253"></a>
+<a id="file-0256"></a>
 
-### 0253 — `reports/tailwind-migration/selector-duplicates-current.md`
+### 0256 — `reports/tailwind-migration/selector-duplicates-current.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -16147,9 +18722,9 @@ Auditoría generada sobre CSS activo del proyecto.
 Ignora `reports/**`, `.tailwind-migration-backups/**` y reglas de keyframes.
 ```
 
-<a id="file-0254"></a>
+<a id="file-0257"></a>
 
-### 0254 — `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md`
+### 0257 — `reports/tailwind-migration/tc-css-04-left-sidebar-tailwind.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -16205,9 +18780,9 @@ Ninguno `.css` fue modificado en esta card. Los `.css` que figuran en `git statu
 `reports/tailwind-migration/current-screenshots/left-sidebar-before.png`, `left-sidebar-after.png`.
 ```
 
-<a id="file-0255"></a>
+<a id="file-0258"></a>
 
-### 0255 — `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md`
+### 0258 — `reports/tailwind-migration/tc-css-08-control-bar-toolbar-tailwind.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `43`
@@ -16261,9 +18836,9 @@ Ningún `.css` modificado por esta card. Los `.css` en `git status` (`sisad-pdfm
 `reports/tailwind-migration/current-screenshots/control-bar-toolbar-after.png`.
 ```
 
-<a id="file-0256"></a>
+<a id="file-0259"></a>
 
-### 0256 — `reports/tailwind-migration/tc-css-10-schemas-visual.md`
+### 0259 — `reports/tailwind-migration/tc-css-10-schemas-visual.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -16307,9 +18882,9 @@ Buena parte del spec **ya estaba implementada** por trabajo previo/paralelo:
 Canvas, Paper, Moveable, Selecto, coordenadas, x/y/width/height/rotation, snapshot, `pdf` render. Sin estilos inline nuevos (los existentes se conservan). Sin `setTimeout`.
 ```
 
-<a id="file-0257"></a>
+<a id="file-0260"></a>
 
-### 0257 — `reports/tailwind-migration/tc-css-11-lab-audit.md`
+### 0260 — `reports/tailwind-migration/tc-css-11-lab-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -16351,9 +18926,9 @@ Canvas, Paper, Moveable, Selecto, coordenadas, x/y/width/height/rotation, snapsh
 - `npm run lint`: passed with inherited warnings only
 ```
 
-<a id="file-0258"></a>
+<a id="file-0261"></a>
 
-### 0258 — `reports/tailwind-migration/tc-css-option-group-selection-fix.md`
+### 0261 — `reports/tailwind-migration/tc-css-option-group-selection-fix.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -16402,9 +18977,9 @@ Validación: al seleccionar un radioGroup → `activeHasDesignerBoxes: 0`, `acti
 `global.css` lo edita una sesión paralela en vivo (cambió durante esta tarea). Reapliqué sobre el estado actual y el build pasa; si el worker reintroduce el `fit-content`, reaplicar este cambio.
 ```
 
-<a id="file-0259"></a>
+<a id="file-0262"></a>
 
-### 0259 — `reports/tailwind-migration/tc-css-ownership-color.md`
+### 0262 — `reports/tailwind-migration/tc-css-ownership-color.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -16453,9 +19028,9 @@ La prioridad #5 del spec (resolver color desde `ownerRecipientId` + `recipientCo
 Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas x/y/w/h/rotation. Sin colores hardcodeados nuevos, sin `setTimeout`, sin `!important`, sin editar `.css`.
 ```
 
-<a id="file-0260"></a>
+<a id="file-0263"></a>
 
-### 0260 — `reports/tailwind-migration/ui-styles-decommission-audit.md`
+### 0263 — `reports/tailwind-migration/ui-styles-decommission-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `57`
@@ -16523,9 +19098,9 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 | `.sisad-pdfme-ui-snap-feedback*` | `canvas-interactions.css` | El root y labels ya están en JSX | DELETE_DUPLICATE_WITH_EVIDENCE |
 ```
 
-<a id="file-0261"></a>
+<a id="file-0264"></a>
 
-### 0261 — `reports/tailwind-migration/ui-styles-decommission-progress.md`
+### 0264 — `reports/tailwind-migration/ui-styles-decommission-progress.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `25`
@@ -16561,1688 +19136,14 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 | `src/sisad-pdfme/ui/styles/sisad-pdfme-global.css` | Shell, sidebars, paper, runtime layout | Cascada legacy aún compartida por múltiples vistas | TC-CSS-11 / TC-CSS-12 |
 ```
 
-<a id="file-0262"></a>
-
-### 0262 — `test-results/tests-playwright-schema-ow-440a8-the-active-recipient-accent-chromium/error-context.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `540`
-- **Tamaño original:** `27.1 KB`
-- **SHA1 corto:** `7447d15fbb`
-- **Estado:** `completo`
-
-```markdown
-# Page snapshot
-
-``​`yaml
-- main [ref=e3]:
-  - region "Canvas" [ref=e4]:
-    - generic [ref=e5]:
-      - heading "Canvas" [level=2] [ref=e6]
-      - paragraph [ref=e7]:
-        - text: La superficie de edición se monta dentro del runtime de
-        - code [ref=e8]: sisad-pdfme
-        - text: .
-    - generic [ref=e13]:
-      - generic [ref=e14]:
-        - generic [ref=e15]:
-          - button "Cerrar catálogo de campos" [expanded] [ref=e16]:
-            - img [ref=e17]
-          - generic [ref=e21]:
-            - generic [ref=e24]: Campos
-            - generic [ref=e25]:
-              - tablist "Tipos de campo" [ref=e26]:
-                - tab "Estándar" [selected] [ref=e27] [cursor=pointer]:
-                  - img [ref=e29]
-                  - generic [ref=e32]: Base
-                  - generic [ref=e33]: "38"
-                - tab "Personalizados" [ref=e34] [cursor=pointer]:
-                  - img [ref=e36]
-                  - generic [ref=e40]: Custom
-                  - generic [ref=e41]: "0"
-                - tab "Prerrellenado" [ref=e42] [cursor=pointer]:
-                  - img [ref=e44]
-                  - generic [ref=e47]: Auto
-                  - generic [ref=e48]: "0"
-              - generic [ref=e50]:
-                - generic [ref=e51]:
-                  - img [ref=e53]
-                  - textbox "Buscar campo..." [ref=e56]
-                - generic [ref=e58]:
-                  - button "Todos" [ref=e59] [cursor=pointer]:
-                    - generic [ref=e60]: Todos
-                  - button "Favoritos (0)" [ref=e61] [cursor=pointer]:
-                    - generic [ref=e62]: Favoritos (0)
-                  - button "Recientes (0)" [ref=e63] [cursor=pointer]:
-                    - generic [ref=e64]: Recientes (0)
-                  - group "Diseño del catálogo" [ref=e65]:
-                    - button "Ver como lista detallada (≡)" [pressed] [ref=e66] [cursor=pointer]:
-                      - generic [ref=e67]:
-                        - img [ref=e69]
-                        - generic [ref=e72]: Lista
-                    - button "Ver como tarjetas densas (▦)" [ref=e73] [cursor=pointer]:
-                      - generic [ref=e74]:
-                        - img [ref=e76]
-                        - generic [ref=e78]: Tarjetas
-                    - button "Ver solo iconos (⠿)" [ref=e79] [cursor=pointer]:
-                      - generic [ref=e80]:
-                        - img [ref=e82]
-                        - generic [ref=e85]: Iconos
-            - generic [ref=e86]:
-              - generic [ref=e87]:
-                - button "Alternar categoría Firmas" [expanded] [ref=e88]:
-                  - generic [ref=e89]:
-                    - img [ref=e91]
-                    - generic [ref=e93]: Firmas
-                  - generic [ref=e94]: "3"
-                - generic [ref=e95]:
-                  - generic [ref=e98]:
-                    - button "Datesigned Datesigned" [ref=e99]:
-                      - generic "Datesigned" [ref=e101]:
-                        - img [ref=e102]
-                      - generic [ref=e106]: Datesigned
-                    - button "Marcar favorito" [ref=e107]: ★
-                  - generic [ref=e110]:
-                    - button "Initials Initials" [ref=e111]:
-                      - generic "Initials" [ref=e113]:
-                        - img [ref=e114]
-                      - generic [ref=e117]: Initials
-                    - button "Marcar favorito" [ref=e118]: ★
-                  - generic [ref=e121]:
-                    - button "Firma Firma" [ref=e122]:
-                      - generic "Firma" [ref=e124]:
-                        - img [ref=e125]
-                      - generic [ref=e128]: Firma
-                    - button "Marcar favorito" [ref=e129]: ★
-              - generic [ref=e130]:
-                - button "Alternar categoría Texto" [expanded] [ref=e131]:
-                  - generic [ref=e132]:
-                    - img [ref=e134]
-                    - generic [ref=e136]: Texto
-                  - generic [ref=e137]: "2"
-                - generic [ref=e138]:
-                  - generic [ref=e141]:
-                    - button "Número" [ref=e142]:
-                      - generic [ref=e145]: Número
-                    - button "Marcar favorito" [ref=e146]: ★
-                  - generic [ref=e149]:
-                    - button "Texto Texto" [ref=e150]:
-                      - generic "Texto" [ref=e152]:
-                        - img [ref=e153]
-                      - generic [ref=e159]: Texto
-                    - button "Marcar favorito" [ref=e160]: ★
-              - generic [ref=e161]:
-                - button "Alternar categoría Imagen y medios" [expanded] [ref=e162]:
-                  - generic [ref=e163]:
-                    - img [ref=e165]
-                    - generic [ref=e167]: Imagen y medios
-                  - generic [ref=e168]: "2"
-                - generic [ref=e169]:
-                  - generic [ref=e172]:
-                    - button "Imagen Imagen" [ref=e173]:
-                      - generic "Imagen" [ref=e175]:
-                        - img [ref=e176]
-                      - generic [ref=e181]: Imagen
-                    - button "Marcar favorito" [ref=e182]: ★
-                  - generic [ref=e185]:
-                    - button "SVG SVG" [ref=e186]:
-                      - generic "SVG" [ref=e188]:
-                        - img [ref=e189]
-                      - generic [ref=e194]: SVG
-                    - button "Marcar favorito" [ref=e195]: ★
-              - generic [ref=e196]:
-                - button "Alternar categoría Selecciones" [expanded] [ref=e197]:
-                  - generic [ref=e198]:
-                    - img [ref=e200]
-                    - generic [ref=e202]: Selecciones
-                  - generic [ref=e203]: "4"
-                - generic [ref=e204]:
-                  - generic [ref=e207]:
-                    - button "Casilla Casilla" [ref=e208]:
-                      - generic "Casilla" [ref=e210]:
-                        - img [ref=e211]
-                      - generic [ref=e215]: Casilla
-                    - button "Marcar favorito" [ref=e216]: ★
-                  - generic [ref=e219]:
-                    - button "Grupo de Casillas Grupo de Casillas" [ref=e220]:
-                      - generic "Grupo de Casillas" [ref=e222]:
-                        - img [ref=e223]
-                      - generic [ref=e227]: Grupo de Casillas
-                    - button "Marcar favorito" [ref=e228]: ★
-                  - generic [ref=e231]:
-                    - button "Opción Opción" [ref=e232]:
-                      - generic "Opción" [ref=e234]:
-                        - img [ref=e235]
-                      - generic [ref=e239]: Opción
-                    - button "Marcar favorito" [ref=e240]: ★
-                  - generic [ref=e243]:
-                    - button "Lista Desplegable Lista Desplegable" [ref=e244]:
-                      - generic "Lista Desplegable" [ref=e246]:
-                        - img [ref=e247]
-                      - generic [ref=e250]: Lista Desplegable
-                    - button "Marcar favorito" [ref=e251]: ★
-              - generic [ref=e252]:
-                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e253]:
-                  - generic [ref=e254]:
-                    - img [ref=e256]
-                    - generic [ref=e258]: Fecha y Hora
-                  - generic [ref=e259]: "3"
-                - generic [ref=e260]:
-                  - generic [ref=e263]:
-                    - button "Fecha Fecha" [ref=e264]:
-                      - generic "Fecha" [ref=e266]:
-                        - img [ref=e267]
-                      - generic [ref=e270]: Fecha
-                    - button "Marcar favorito" [ref=e271]: ★
-                  - generic [ref=e274]:
-                    - button "Fecha Y Hora Fecha Y Hora" [ref=e275]:
-                      - generic "Fecha Y Hora" [ref=e277]:
-                        - img [ref=e278]
-                      - generic [ref=e283]: Fecha Y Hora
-                    - button "Marcar favorito" [ref=e284]: ★
-                  - generic [ref=e287]:
-                    - button "Hora Hora" [ref=e288]:
-                      - generic "Hora" [ref=e290]:
-                        - img [ref=e291]
-                      - generic [ref=e295]: Hora
-                    - button "Marcar favorito" [ref=e296]: ★
-              - generic [ref=e297]:
-                - button "Alternar categoría QR y Códigos" [expanded] [ref=e298]:
-                  - generic [ref=e299]:
-                    - img [ref=e301]
-                    - generic [ref=e303]: QR y Códigos
-                  - generic [ref=e304]: "12"
-                - generic [ref=e305]:
-                  - generic [ref=e308]:
-                    - button "Código de barras Código de barras" [ref=e309]:
-                      - generic "Código de barras" [ref=e311]:
-                        - img [ref=e312]
-                      - generic [ref=e314]: Código de barras
-                    - button "Marcar favorito" [ref=e315]: ★
-                  - generic [ref=e318]:
-                    - button "Código de barras Código de barras" [ref=e319]:
-                      - generic "Código de barras" [ref=e321]:
-                        - img [ref=e322]
-                      - generic [ref=e324]: Código de barras
-                    - button "Marcar favorito" [ref=e325]: ★
-                  - generic [ref=e328]:
-                    - button "Código de barras Código de barras" [ref=e329]:
-                      - generic "Código de barras" [ref=e331]:
-                        - img [ref=e332]
-                      - generic [ref=e334]: Código de barras
-                    - button "Marcar favorito" [ref=e335]: ★
-                  - generic [ref=e338]:
-                    - button "Código de barras Código de barras" [ref=e339]:
-                      - generic "Código de barras" [ref=e341]:
-                        - img [ref=e342]
-                      - generic [ref=e344]: Código de barras
-                    - button "Marcar favorito" [ref=e345]: ★
-                  - generic [ref=e348]:
-                    - button "DataMatrix DataMatrix" [ref=e349]:
-                      - generic "DataMatrix" [ref=e351]:
-                        - img [ref=e352]
-                      - generic [ref=e354]: DataMatrix
-                    - button "Marcar favorito" [ref=e355]: ★
-                  - generic [ref=e358]:
-                    - button "Código de barras Código de barras" [ref=e359]:
-                      - generic "Código de barras" [ref=e361]:
-                        - img [ref=e362]
-                      - generic [ref=e364]: Código de barras
-                    - button "Marcar favorito" [ref=e365]: ★
-                  - generic [ref=e368]:
-                    - button "Japan Post Japan Post" [ref=e369]:
-                      - generic "Japan Post" [ref=e371]:
-                        - img [ref=e372]
-                      - generic [ref=e374]: Japan Post
-                    - button "Marcar favorito" [ref=e375]: ★
-                  - generic [ref=e378]:
-                    - button "NW7 NW7" [ref=e379]:
-                      - generic "NW7" [ref=e381]:
-                        - img [ref=e382]
-                      - generic [ref=e384]: NW7
-                    - button "Marcar favorito" [ref=e385]: ★
-                  - generic [ref=e388]:
-                    - button "PDF417 PDF417" [ref=e389]:
-                      - generic "PDF417" [ref=e391]:
-                        - img [ref=e392]
-                      - generic [ref=e394]: PDF417
-                    - button "Marcar favorito" [ref=e395]: ★
-                  - generic [ref=e398]:
-                    - button "Código QR Código QR" [ref=e399]:
-                      - generic "Código QR" [ref=e401]:
-                        - img [ref=e402]
-                      - generic [ref=e409]: Código QR
-                    - button "Marcar favorito" [ref=e410]: ★
-                  - generic [ref=e413]:
-                    - button "Código de barras Código de barras" [ref=e414]:
-                      - generic "Código de barras" [ref=e416]:
-                        - img [ref=e417]
-                      - generic [ref=e419]: Código de barras
-                    - button "Marcar favorito" [ref=e420]: ★
-                  - generic [ref=e423]:
-                    - button "Código de barras Código de barras" [ref=e424]:
-                      - generic "Código de barras" [ref=e426]:
-                        - img [ref=e427]
-                      - generic [ref=e429]: Código de barras
-                    - button "Marcar favorito" [ref=e430]: ★
-              - generic [ref=e431]:
-                - button "Alternar categoría Estructura" [expanded] [ref=e432]:
-                  - generic [ref=e433]:
-                    - img [ref=e435]
-                    - generic [ref=e437]: Estructura
-                  - generic [ref=e438]: "4"
-                - generic [ref=e439]:
-                  - generic [ref=e442]:
-                    - button "Óvalo Óvalo" [ref=e443]:
-                      - generic "Óvalo" [ref=e445]:
-                        - img [ref=e446]
-                      - generic [ref=e449]: Óvalo
-                    - button "Marcar favorito" [ref=e450]: ★
-                  - generic [ref=e453]:
-                    - button "Línea Línea" [ref=e454]:
-                      - generic "Línea" [ref=e456]:
-                        - img [ref=e457]
-                      - generic [ref=e459]: Línea
-                    - button "Marcar favorito" [ref=e460]: ★
-                  - generic [ref=e463]:
-                    - button "Rectángulo Rectángulo" [ref=e464]:
-                      - generic "Rectángulo" [ref=e466]:
-                        - img [ref=e467]
-                      - generic [ref=e470]: Rectángulo
-                    - button "Marcar favorito" [ref=e471]: ★
-                  - generic [ref=e474]:
-                    - button "Tabla Tabla" [ref=e475]:
-                      - generic "Tabla" [ref=e477]:
-                        - img [ref=e478]
-                      - generic [ref=e481]: Tabla
-                    - button "Marcar favorito" [ref=e482]: ★
-              - generic [ref=e483]:
-                - button "Alternar categoría Acción" [expanded] [ref=e484]:
-                  - generic [ref=e485]:
-                    - img [ref=e487]
-                    - generic [ref=e489]: Acción
-                  - generic [ref=e490]: "4"
-                - generic [ref=e491]:
-                  - generic [ref=e494]:
-                    - button "Approve Approve" [ref=e495]:
-                      - generic "Approve" [ref=e497]:
-                        - img [ref=e498]
-                      - generic [ref=e502]: Approve
-                    - button "Marcar favorito" [ref=e503]: ★
-                  - generic [ref=e506]:
-                    - button "Attachment Attachment" [ref=e507]:
-                      - generic "Attachment" [ref=e509]:
-                        - img [ref=e510]
-                      - generic [ref=e513]: Attachment
-                    - button "Marcar favorito" [ref=e514]: ★
-                  - generic [ref=e517]:
-                    - button "Decline Decline" [ref=e518]:
-                      - generic "Decline" [ref=e520]:
-                        - img [ref=e521]
-                      - generic [ref=e526]: Decline
-                    - button "Marcar favorito" [ref=e527]: ★
-                  - generic [ref=e530]:
-                    - button "Note Note" [ref=e531]:
-                      - generic "Note" [ref=e533]:
-                        - img [ref=e534]
-                      - generic [ref=e538]: Note
-                    - button "Marcar favorito" [ref=e539]: ★
-              - generic [ref=e540]:
-                - button "Alternar categoría Destinatario" [expanded] [ref=e541]:
-                  - generic [ref=e542]:
-                    - img [ref=e544]
-                    - generic [ref=e546]: Destinatario
-                  - generic [ref=e547]: "4"
-                - generic [ref=e548]:
-                  - generic [ref=e551]:
-                    - button "Company Company" [ref=e552]:
-                      - generic "Company" [ref=e554]:
-                        - img [ref=e555]
-                      - generic [ref=e560]: Company
-                    - button "Marcar favorito" [ref=e561]: ★
-                  - generic [ref=e564]:
-                    - button "Emailaddress Emailaddress" [ref=e565]:
-                      - generic "Emailaddress" [ref=e567]:
-                        - img [ref=e568]
-                      - generic [ref=e572]: Emailaddress
-                    - button "Marcar favorito" [ref=e573]: ★
-                  - generic [ref=e576]:
-                    - button "Fullname Fullname" [ref=e577]:
-                      - generic "Fullname" [ref=e579]:
-                        - img [ref=e580]
-                      - generic [ref=e584]: Fullname
-                    - button "Marcar favorito" [ref=e585]: ★
-                  - generic [ref=e588]:
-                    - button "Title Title" [ref=e589]:
-                      - generic "Title" [ref=e591]:
-                        - img [ref=e592]
-                      - generic [ref=e596]: Title
-                    - button "Marcar favorito" [ref=e597]: ★
-        - generic [ref=e598]:
-          - generic:
-            - generic [ref=e600]:
-              - button "Página anterior" [disabled] [ref=e601]:
-                - generic:
-                  - img
-              - button "Pág 1/14" [ref=e602] [cursor=pointer]:
-                - generic [ref=e603]: Pág 1/14
-              - button "Página siguiente" [ref=e604] [cursor=pointer]:
-                - img [ref=e606]
-            - generic [ref=e609]:
-              - button "Guardar" [ref=e610] [cursor=pointer]:
-                - img [ref=e612]
-                - generic [ref=e616]: Guardar
-              - button "Más acciones" [ref=e617] [cursor=pointer]:
-                - img [ref=e619]
-            - generic [ref=e624]:
-              - button "Deshacer" [ref=e625] [cursor=pointer]:
-                - img [ref=e627]
-              - button "Rehacer" [ref=e630] [cursor=pointer]:
-                - img [ref=e632]
-              - button "Ajustar página" [ref=e635] [cursor=pointer]:
-                - img [ref=e637]
-              - generic [ref=e642]:
-                - button "Reducir zoom" [ref=e643] [cursor=pointer]:
-                  - img [ref=e645]
-                - generic "Nivel de zoom" [ref=e646] [cursor=pointer]:
-                  - generic [ref=e648]:
-                    - combobox "Nivel de zoom" [ref=e650]
-                    - generic "100%" [ref=e651]
-                  - generic:
-                    - img:
-                      - img
-                - button "Aumentar zoom" [ref=e652] [cursor=pointer]:
-                  - img [ref=e654]
-          - complementary "Panel derecho del diseñador" [ref=e655]:
-            - generic [ref=e656]:
-              - generic [ref=e657]:
-                - tablist "Panel derecho" [ref=e658]:
-                  - tab "Abrir panel Campos" [ref=e659]:
-                    - generic [ref=e660]:
-                      - img [ref=e662]
-                      - generic [ref=e666]: Campos
-                  - tab "Abrir panel Detalle" [disabled] [ref=e667]:
-                    - generic [ref=e668]:
-                      - img [ref=e670]
-                      - generic [ref=e671]: Detalle
-                  - tab "Abrir panel Docs" [selected] [ref=e672]:
-                    - generic [ref=e673]:
-                      - img [ref=e675]
-                      - generic [ref=e678]: Docs
-                - button "Ocultar panel derecho" [expanded] [ref=e681]:
-                  - img [ref=e682]
-              - generic [ref=e688]:
-                - generic [ref=e690]:
-                  - img [ref=e692]
-                  - generic [ref=e696]:
-                    - generic [ref=e697]: Documentos cargados
-                    - generic [ref=e698]: Selecciona una página
-                    - generic [ref=e700]: "2"
-                  - button "Subir PDF" [ref=e703] [cursor=pointer]:
-                    - img [ref=e705]
-                    - generic [ref=e709]: Subir PDF
-                - generic "Lista de páginas del documento" [ref=e710]:
-                  - generic [ref=e711]:
-                    - generic [ref=e712]:
-                      - button "1 Declaración de datos 1 Activo 14 paginas" [pressed] [ref=e713]:
-                        - generic [ref=e716]: "1"
-                        - generic [ref=e717]:
-                          - strong [ref=e719]: Declaración de datos
-                          - generic [ref=e720]:
-                            - generic [ref=e721]: "1"
-                            - generic [ref=e722]: Activo
-                          - generic [ref=e723]: 14 paginas
-                      - button "Eliminar Declaración de datos" [ref=e724] [cursor=pointer]:
-                        - img [ref=e726]
-                    - generic [ref=e729]:
-                      - button "2 Certificado académico 2 5 paginas" [ref=e730]:
-                        - generic [ref=e733]: "2"
-                        - generic [ref=e734]:
-                          - strong [ref=e736]: Certificado académico
-                          - generic [ref=e738]: "2"
-                          - generic [ref=e739]: 5 paginas
-                      - button "Eliminar Certificado académico" [ref=e740] [cursor=pointer]:
-                        - img [ref=e742]
-          - generic [ref=e747]:
-            - generic [ref=e748]:
-              - generic "contract_name" [ref=e750] [cursor=pointer]:
-                - generic [ref=e753]: Contrato principal
-                - generic: contract_name · text
-              - generic "contract_date" [ref=e754] [cursor=pointer]:
-                - generic [ref=e757]: 2026-05-01
-                - generic: contract_date · text
-              - generic "contract_stage" [ref=e758] [cursor=pointer]:
-                - generic [ref=e759]:
-                  - generic [ref=e761]: Pendiente
-                  - button:
-                    - img
-                - generic: contract_stage · select
-              - generic "approval_mode" [ref=e762] [cursor=pointer]:
-                - generic:
-                  - radiogroup "Modo de aprobación":
-                    - generic:
-                      - radio "Firma" [checked] [disabled]
-                      - radio "Revisión" [disabled]
-              - generic "required_documents" [ref=e763] [cursor=pointer]:
-                - generic:
-                  - group "Documentos requeridos":
-                    - generic:
-                      - checkbox "Cédula" [checked] [disabled]:
-                        - generic:
-                          - generic:
-                            - generic:
-                              - img
-                      - checkbox "RUC" [disabled]
-                      - checkbox "Contrato firmado" [checked] [disabled]:
-                        - generic:
-                          - generic:
-                            - generic:
-                              - img
-              - generic "routing-primary-showcase_attachment" [ref=e764] [cursor=pointer]:
-                - generic [ref=e767]:
-                  - img [ref=e768]
-                  - text: Adjuntar archivo
-                - generic: routing-primary-showcase_attachment · attachment
-              - generic "routing-primary-showcase_approve" [ref=e770] [cursor=pointer]:
-                - button "Aprobar" [ref=e773]:
-                  - img [ref=e774]
-                  - text: Aprobar
-                - generic: routing-primary-showcase_approve · approve
-              - generic "Solo lectura" [ref=e776] [cursor=pointer]:
-                - generic [ref=e779]: Nota informativa
-                - generic: routing-primary-showcase_note · note
-                - generic: solo lectura
-              - generic "routing-primary-showcase_decline" [ref=e780] [cursor=pointer]:
-                - button "Rechazar" [ref=e783]:
-                  - img [ref=e784]
-                  - text: Rechazar
-                - generic: routing-primary-showcase_decline · decline
-              - generic "routing-primary-showcase_title" [ref=e787] [cursor=pointer]:
-                - generic: routing-primary-showcase_title · title
-              - generic "routing-primary-showcase_emailaddress" [ref=e791] [cursor=pointer]:
-                - generic: routing-primary-showcase_emailaddress · emailAddress
-            - generic [ref=e795]:
-              - generic "routing-primary-showcase_company" [ref=e797] [cursor=pointer]:
-                - generic: routing-primary-showcase_company · company
-              - generic "routing-primary-showcase_fullname" [ref=e801] [cursor=pointer]:
-                - generic: routing-primary-showcase_fullname · fullName
-              - generic "routing-primary-showcase_table" [ref=e805] [cursor=pointer]:
-                - generic [ref=e806]:
-                  - generic [ref=e810]: Name
-                  - generic [ref=e814]: City
-                  - generic [ref=e818]: Description
-                  - generic [ref=e822]: Alice
-                  - generic [ref=e830]: New York
-                  - generic [ref=e838]: Alice is a freelance web designer and developer
-                  - generic [ref=e846]: Bob
-                  - generic [ref=e854]: Paris
-                  - generic [ref=e862]: Bob is a freelance illustrator and graphic designer
-                - generic: routing-primary-showcase_table · table
-              - generic "routing-primary-showcase_date" [ref=e867] [cursor=pointer]:
-                - generic: routing-primary-showcase_date · date
-              - generic "routing-primary-showcase_datetime" [ref=e871] [cursor=pointer]:
-                - generic: routing-primary-showcase_datetime · dateTime
-              - generic "routing-primary-showcase_time" [ref=e875] [cursor=pointer]:
-                - generic: routing-primary-showcase_time · time
-            - generic [ref=e879]:
-              - generic "Solo lectura" [ref=e881] [cursor=pointer]:
-                - generic [ref=e884]: 17/07/2026
-                - generic: routing-primary-showcase_datesigned · dateSigned
-                - generic: solo lectura
-              - generic "routing-primary-showcase_signature" [ref=e885] [cursor=pointer]:
-                - generic: routing-primary-showcase_signature · signature
-              - generic "routing-primary-showcase_initials" [ref=e888] [cursor=pointer]:
-                - generic: routing-primary-showcase_initials · initials
-              - generic "routing-primary-showcase_code128" [ref=e891] [cursor=pointer]:
-                - img [ref=e894]
-                - generic: routing-primary-showcase_code128 · code128
-              - generic "routing-primary-showcase_code39" [ref=e895] [cursor=pointer]:
-                - img [ref=e898]
-                - generic: routing-primary-showcase_code39 · code39
-              - generic "routing-primary-showcase_ean13" [ref=e899] [cursor=pointer]:
-                - img [ref=e902]
-                - generic: routing-primary-showcase_ean13 · ean13
-            - generic "routing-primary-showcase_ean8" [ref=e905] [cursor=pointer]:
-              - img [ref=e908]
-              - generic: routing-primary-showcase_ean8 · ean8
-      - status [ref=e929]
-  - region "Resultados":
-    - generic:
-      - button "Resultados Sin artefactos":
-        - text: Resultados
-        - generic: Sin artefactos
-``​`
-```
-
-<a id="file-0263"></a>
-
-### 0263 — `test-results/tests-playwright-schema-ow-61272-ents-from-the-same-resolver-chromium/error-context.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `540`
-- **Tamaño original:** `27.1 KB`
-- **SHA1 corto:** `7447d15fbb`
-- **Estado:** `completo`
-
-```markdown
-# Page snapshot
-
-``​`yaml
-- main [ref=e3]:
-  - region "Canvas" [ref=e4]:
-    - generic [ref=e5]:
-      - heading "Canvas" [level=2] [ref=e6]
-      - paragraph [ref=e7]:
-        - text: La superficie de edición se monta dentro del runtime de
-        - code [ref=e8]: sisad-pdfme
-        - text: .
-    - generic [ref=e13]:
-      - generic [ref=e14]:
-        - generic [ref=e15]:
-          - button "Cerrar catálogo de campos" [expanded] [ref=e16]:
-            - img [ref=e17]
-          - generic [ref=e21]:
-            - generic [ref=e24]: Campos
-            - generic [ref=e25]:
-              - tablist "Tipos de campo" [ref=e26]:
-                - tab "Estándar" [selected] [ref=e27] [cursor=pointer]:
-                  - img [ref=e29]
-                  - generic [ref=e32]: Base
-                  - generic [ref=e33]: "38"
-                - tab "Personalizados" [ref=e34] [cursor=pointer]:
-                  - img [ref=e36]
-                  - generic [ref=e40]: Custom
-                  - generic [ref=e41]: "0"
-                - tab "Prerrellenado" [ref=e42] [cursor=pointer]:
-                  - img [ref=e44]
-                  - generic [ref=e47]: Auto
-                  - generic [ref=e48]: "0"
-              - generic [ref=e50]:
-                - generic [ref=e51]:
-                  - img [ref=e53]
-                  - textbox "Buscar campo..." [ref=e56]
-                - generic [ref=e58]:
-                  - button "Todos" [ref=e59] [cursor=pointer]:
-                    - generic [ref=e60]: Todos
-                  - button "Favoritos (0)" [ref=e61] [cursor=pointer]:
-                    - generic [ref=e62]: Favoritos (0)
-                  - button "Recientes (0)" [ref=e63] [cursor=pointer]:
-                    - generic [ref=e64]: Recientes (0)
-                  - group "Diseño del catálogo" [ref=e65]:
-                    - button "Ver como lista detallada (≡)" [pressed] [ref=e66] [cursor=pointer]:
-                      - generic [ref=e67]:
-                        - img [ref=e69]
-                        - generic [ref=e72]: Lista
-                    - button "Ver como tarjetas densas (▦)" [ref=e73] [cursor=pointer]:
-                      - generic [ref=e74]:
-                        - img [ref=e76]
-                        - generic [ref=e78]: Tarjetas
-                    - button "Ver solo iconos (⠿)" [ref=e79] [cursor=pointer]:
-                      - generic [ref=e80]:
-                        - img [ref=e82]
-                        - generic [ref=e85]: Iconos
-            - generic [ref=e86]:
-              - generic [ref=e87]:
-                - button "Alternar categoría Firmas" [expanded] [ref=e88]:
-                  - generic [ref=e89]:
-                    - img [ref=e91]
-                    - generic [ref=e93]: Firmas
-                  - generic [ref=e94]: "3"
-                - generic [ref=e95]:
-                  - generic [ref=e98]:
-                    - button "Datesigned Datesigned" [ref=e99]:
-                      - generic "Datesigned" [ref=e101]:
-                        - img [ref=e102]
-                      - generic [ref=e106]: Datesigned
-                    - button "Marcar favorito" [ref=e107]: ★
-                  - generic [ref=e110]:
-                    - button "Initials Initials" [ref=e111]:
-                      - generic "Initials" [ref=e113]:
-                        - img [ref=e114]
-                      - generic [ref=e117]: Initials
-                    - button "Marcar favorito" [ref=e118]: ★
-                  - generic [ref=e121]:
-                    - button "Firma Firma" [ref=e122]:
-                      - generic "Firma" [ref=e124]:
-                        - img [ref=e125]
-                      - generic [ref=e128]: Firma
-                    - button "Marcar favorito" [ref=e129]: ★
-              - generic [ref=e130]:
-                - button "Alternar categoría Texto" [expanded] [ref=e131]:
-                  - generic [ref=e132]:
-                    - img [ref=e134]
-                    - generic [ref=e136]: Texto
-                  - generic [ref=e137]: "2"
-                - generic [ref=e138]:
-                  - generic [ref=e141]:
-                    - button "Número" [ref=e142]:
-                      - generic [ref=e145]: Número
-                    - button "Marcar favorito" [ref=e146]: ★
-                  - generic [ref=e149]:
-                    - button "Texto Texto" [ref=e150]:
-                      - generic "Texto" [ref=e152]:
-                        - img [ref=e153]
-                      - generic [ref=e159]: Texto
-                    - button "Marcar favorito" [ref=e160]: ★
-              - generic [ref=e161]:
-                - button "Alternar categoría Imagen y medios" [expanded] [ref=e162]:
-                  - generic [ref=e163]:
-                    - img [ref=e165]
-                    - generic [ref=e167]: Imagen y medios
-                  - generic [ref=e168]: "2"
-                - generic [ref=e169]:
-                  - generic [ref=e172]:
-                    - button "Imagen Imagen" [ref=e173]:
-                      - generic "Imagen" [ref=e175]:
-                        - img [ref=e176]
-                      - generic [ref=e181]: Imagen
-                    - button "Marcar favorito" [ref=e182]: ★
-                  - generic [ref=e185]:
-                    - button "SVG SVG" [ref=e186]:
-                      - generic "SVG" [ref=e188]:
-                        - img [ref=e189]
-                      - generic [ref=e194]: SVG
-                    - button "Marcar favorito" [ref=e195]: ★
-              - generic [ref=e196]:
-                - button "Alternar categoría Selecciones" [expanded] [ref=e197]:
-                  - generic [ref=e198]:
-                    - img [ref=e200]
-                    - generic [ref=e202]: Selecciones
-                  - generic [ref=e203]: "4"
-                - generic [ref=e204]:
-                  - generic [ref=e207]:
-                    - button "Casilla Casilla" [ref=e208]:
-                      - generic "Casilla" [ref=e210]:
-                        - img [ref=e211]
-                      - generic [ref=e215]: Casilla
-                    - button "Marcar favorito" [ref=e216]: ★
-                  - generic [ref=e219]:
-                    - button "Grupo de Casillas Grupo de Casillas" [ref=e220]:
-                      - generic "Grupo de Casillas" [ref=e222]:
-                        - img [ref=e223]
-                      - generic [ref=e227]: Grupo de Casillas
-                    - button "Marcar favorito" [ref=e228]: ★
-                  - generic [ref=e231]:
-                    - button "Opción Opción" [ref=e232]:
-                      - generic "Opción" [ref=e234]:
-                        - img [ref=e235]
-                      - generic [ref=e239]: Opción
-                    - button "Marcar favorito" [ref=e240]: ★
-                  - generic [ref=e243]:
-                    - button "Lista Desplegable Lista Desplegable" [ref=e244]:
-                      - generic "Lista Desplegable" [ref=e246]:
-                        - img [ref=e247]
-                      - generic [ref=e250]: Lista Desplegable
-                    - button "Marcar favorito" [ref=e251]: ★
-              - generic [ref=e252]:
-                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e253]:
-                  - generic [ref=e254]:
-                    - img [ref=e256]
-                    - generic [ref=e258]: Fecha y Hora
-                  - generic [ref=e259]: "3"
-                - generic [ref=e260]:
-                  - generic [ref=e263]:
-                    - button "Fecha Fecha" [ref=e264]:
-                      - generic "Fecha" [ref=e266]:
-                        - img [ref=e267]
-                      - generic [ref=e270]: Fecha
-                    - button "Marcar favorito" [ref=e271]: ★
-                  - generic [ref=e274]:
-                    - button "Fecha Y Hora Fecha Y Hora" [ref=e275]:
-                      - generic "Fecha Y Hora" [ref=e277]:
-                        - img [ref=e278]
-                      - generic [ref=e283]: Fecha Y Hora
-                    - button "Marcar favorito" [ref=e284]: ★
-                  - generic [ref=e287]:
-                    - button "Hora Hora" [ref=e288]:
-                      - generic "Hora" [ref=e290]:
-                        - img [ref=e291]
-                      - generic [ref=e295]: Hora
-                    - button "Marcar favorito" [ref=e296]: ★
-              - generic [ref=e297]:
-                - button "Alternar categoría QR y Códigos" [expanded] [ref=e298]:
-                  - generic [ref=e299]:
-                    - img [ref=e301]
-                    - generic [ref=e303]: QR y Códigos
-                  - generic [ref=e304]: "12"
-                - generic [ref=e305]:
-                  - generic [ref=e308]:
-                    - button "Código de barras Código de barras" [ref=e309]:
-                      - generic "Código de barras" [ref=e311]:
-                        - img [ref=e312]
-                      - generic [ref=e314]: Código de barras
-                    - button "Marcar favorito" [ref=e315]: ★
-                  - generic [ref=e318]:
-                    - button "Código de barras Código de barras" [ref=e319]:
-                      - generic "Código de barras" [ref=e321]:
-                        - img [ref=e322]
-                      - generic [ref=e324]: Código de barras
-                    - button "Marcar favorito" [ref=e325]: ★
-                  - generic [ref=e328]:
-                    - button "Código de barras Código de barras" [ref=e329]:
-                      - generic "Código de barras" [ref=e331]:
-                        - img [ref=e332]
-                      - generic [ref=e334]: Código de barras
-                    - button "Marcar favorito" [ref=e335]: ★
-                  - generic [ref=e338]:
-                    - button "Código de barras Código de barras" [ref=e339]:
-                      - generic "Código de barras" [ref=e341]:
-                        - img [ref=e342]
-                      - generic [ref=e344]: Código de barras
-                    - button "Marcar favorito" [ref=e345]: ★
-                  - generic [ref=e348]:
-                    - button "DataMatrix DataMatrix" [ref=e349]:
-                      - generic "DataMatrix" [ref=e351]:
-                        - img [ref=e352]
-                      - generic [ref=e354]: DataMatrix
-                    - button "Marcar favorito" [ref=e355]: ★
-                  - generic [ref=e358]:
-                    - button "Código de barras Código de barras" [ref=e359]:
-                      - generic "Código de barras" [ref=e361]:
-                        - img [ref=e362]
-                      - generic [ref=e364]: Código de barras
-                    - button "Marcar favorito" [ref=e365]: ★
-                  - generic [ref=e368]:
-                    - button "Japan Post Japan Post" [ref=e369]:
-                      - generic "Japan Post" [ref=e371]:
-                        - img [ref=e372]
-                      - generic [ref=e374]: Japan Post
-                    - button "Marcar favorito" [ref=e375]: ★
-                  - generic [ref=e378]:
-                    - button "NW7 NW7" [ref=e379]:
-                      - generic "NW7" [ref=e381]:
-                        - img [ref=e382]
-                      - generic [ref=e384]: NW7
-                    - button "Marcar favorito" [ref=e385]: ★
-                  - generic [ref=e388]:
-                    - button "PDF417 PDF417" [ref=e389]:
-                      - generic "PDF417" [ref=e391]:
-                        - img [ref=e392]
-                      - generic [ref=e394]: PDF417
-                    - button "Marcar favorito" [ref=e395]: ★
-                  - generic [ref=e398]:
-                    - button "Código QR Código QR" [ref=e399]:
-                      - generic "Código QR" [ref=e401]:
-                        - img [ref=e402]
-                      - generic [ref=e409]: Código QR
-                    - button "Marcar favorito" [ref=e410]: ★
-                  - generic [ref=e413]:
-                    - button "Código de barras Código de barras" [ref=e414]:
-                      - generic "Código de barras" [ref=e416]:
-                        - img [ref=e417]
-                      - generic [ref=e419]: Código de barras
-                    - button "Marcar favorito" [ref=e420]: ★
-                  - generic [ref=e423]:
-                    - button "Código de barras Código de barras" [ref=e424]:
-                      - generic "Código de barras" [ref=e426]:
-                        - img [ref=e427]
-                      - generic [ref=e429]: Código de barras
-                    - button "Marcar favorito" [ref=e430]: ★
-              - generic [ref=e431]:
-                - button "Alternar categoría Estructura" [expanded] [ref=e432]:
-                  - generic [ref=e433]:
-                    - img [ref=e435]
-                    - generic [ref=e437]: Estructura
-                  - generic [ref=e438]: "4"
-                - generic [ref=e439]:
-                  - generic [ref=e442]:
-                    - button "Óvalo Óvalo" [ref=e443]:
-                      - generic "Óvalo" [ref=e445]:
-                        - img [ref=e446]
-                      - generic [ref=e449]: Óvalo
-                    - button "Marcar favorito" [ref=e450]: ★
-                  - generic [ref=e453]:
-                    - button "Línea Línea" [ref=e454]:
-                      - generic "Línea" [ref=e456]:
-                        - img [ref=e457]
-                      - generic [ref=e459]: Línea
-                    - button "Marcar favorito" [ref=e460]: ★
-                  - generic [ref=e463]:
-                    - button "Rectángulo Rectángulo" [ref=e464]:
-                      - generic "Rectángulo" [ref=e466]:
-                        - img [ref=e467]
-                      - generic [ref=e470]: Rectángulo
-                    - button "Marcar favorito" [ref=e471]: ★
-                  - generic [ref=e474]:
-                    - button "Tabla Tabla" [ref=e475]:
-                      - generic "Tabla" [ref=e477]:
-                        - img [ref=e478]
-                      - generic [ref=e481]: Tabla
-                    - button "Marcar favorito" [ref=e482]: ★
-              - generic [ref=e483]:
-                - button "Alternar categoría Acción" [expanded] [ref=e484]:
-                  - generic [ref=e485]:
-                    - img [ref=e487]
-                    - generic [ref=e489]: Acción
-                  - generic [ref=e490]: "4"
-                - generic [ref=e491]:
-                  - generic [ref=e494]:
-                    - button "Approve Approve" [ref=e495]:
-                      - generic "Approve" [ref=e497]:
-                        - img [ref=e498]
-                      - generic [ref=e502]: Approve
-                    - button "Marcar favorito" [ref=e503]: ★
-                  - generic [ref=e506]:
-                    - button "Attachment Attachment" [ref=e507]:
-                      - generic "Attachment" [ref=e509]:
-                        - img [ref=e510]
-                      - generic [ref=e513]: Attachment
-                    - button "Marcar favorito" [ref=e514]: ★
-                  - generic [ref=e517]:
-                    - button "Decline Decline" [ref=e518]:
-                      - generic "Decline" [ref=e520]:
-                        - img [ref=e521]
-                      - generic [ref=e526]: Decline
-                    - button "Marcar favorito" [ref=e527]: ★
-                  - generic [ref=e530]:
-                    - button "Note Note" [ref=e531]:
-                      - generic "Note" [ref=e533]:
-                        - img [ref=e534]
-                      - generic [ref=e538]: Note
-                    - button "Marcar favorito" [ref=e539]: ★
-              - generic [ref=e540]:
-                - button "Alternar categoría Destinatario" [expanded] [ref=e541]:
-                  - generic [ref=e542]:
-                    - img [ref=e544]
-                    - generic [ref=e546]: Destinatario
-                  - generic [ref=e547]: "4"
-                - generic [ref=e548]:
-                  - generic [ref=e551]:
-                    - button "Company Company" [ref=e552]:
-                      - generic "Company" [ref=e554]:
-                        - img [ref=e555]
-                      - generic [ref=e560]: Company
-                    - button "Marcar favorito" [ref=e561]: ★
-                  - generic [ref=e564]:
-                    - button "Emailaddress Emailaddress" [ref=e565]:
-                      - generic "Emailaddress" [ref=e567]:
-                        - img [ref=e568]
-                      - generic [ref=e572]: Emailaddress
-                    - button "Marcar favorito" [ref=e573]: ★
-                  - generic [ref=e576]:
-                    - button "Fullname Fullname" [ref=e577]:
-                      - generic "Fullname" [ref=e579]:
-                        - img [ref=e580]
-                      - generic [ref=e584]: Fullname
-                    - button "Marcar favorito" [ref=e585]: ★
-                  - generic [ref=e588]:
-                    - button "Title Title" [ref=e589]:
-                      - generic "Title" [ref=e591]:
-                        - img [ref=e592]
-                      - generic [ref=e596]: Title
-                    - button "Marcar favorito" [ref=e597]: ★
-        - generic [ref=e598]:
-          - generic:
-            - generic [ref=e600]:
-              - button "Página anterior" [disabled] [ref=e601]:
-                - generic:
-                  - img
-              - button "Pág 1/14" [ref=e602] [cursor=pointer]:
-                - generic [ref=e603]: Pág 1/14
-              - button "Página siguiente" [ref=e604] [cursor=pointer]:
-                - img [ref=e606]
-            - generic [ref=e609]:
-              - button "Guardar" [ref=e610] [cursor=pointer]:
-                - img [ref=e612]
-                - generic [ref=e616]: Guardar
-              - button "Más acciones" [ref=e617] [cursor=pointer]:
-                - img [ref=e619]
-            - generic [ref=e624]:
-              - button "Deshacer" [ref=e625] [cursor=pointer]:
-                - img [ref=e627]
-              - button "Rehacer" [ref=e630] [cursor=pointer]:
-                - img [ref=e632]
-              - button "Ajustar página" [ref=e635] [cursor=pointer]:
-                - img [ref=e637]
-              - generic [ref=e642]:
-                - button "Reducir zoom" [ref=e643] [cursor=pointer]:
-                  - img [ref=e645]
-                - generic "Nivel de zoom" [ref=e646] [cursor=pointer]:
-                  - generic [ref=e648]:
-                    - combobox "Nivel de zoom" [ref=e650]
-                    - generic "100%" [ref=e651]
-                  - generic:
-                    - img:
-                      - img
-                - button "Aumentar zoom" [ref=e652] [cursor=pointer]:
-                  - img [ref=e654]
-          - complementary "Panel derecho del diseñador" [ref=e655]:
-            - generic [ref=e656]:
-              - generic [ref=e657]:
-                - tablist "Panel derecho" [ref=e658]:
-                  - tab "Abrir panel Campos" [ref=e659]:
-                    - generic [ref=e660]:
-                      - img [ref=e662]
-                      - generic [ref=e666]: Campos
-                  - tab "Abrir panel Detalle" [disabled] [ref=e667]:
-                    - generic [ref=e668]:
-                      - img [ref=e670]
-                      - generic [ref=e671]: Detalle
-                  - tab "Abrir panel Docs" [selected] [ref=e672]:
-                    - generic [ref=e673]:
-                      - img [ref=e675]
-                      - generic [ref=e678]: Docs
-                - button "Ocultar panel derecho" [expanded] [ref=e681]:
-                  - img [ref=e682]
-              - generic [ref=e688]:
-                - generic [ref=e690]:
-                  - img [ref=e692]
-                  - generic [ref=e696]:
-                    - generic [ref=e697]: Documentos cargados
-                    - generic [ref=e698]: Selecciona una página
-                    - generic [ref=e700]: "2"
-                  - button "Subir PDF" [ref=e703] [cursor=pointer]:
-                    - img [ref=e705]
-                    - generic [ref=e709]: Subir PDF
-                - generic "Lista de páginas del documento" [ref=e710]:
-                  - generic [ref=e711]:
-                    - generic [ref=e712]:
-                      - button "1 Declaración de datos 1 Activo 14 paginas" [pressed] [ref=e713]:
-                        - generic [ref=e716]: "1"
-                        - generic [ref=e717]:
-                          - strong [ref=e719]: Declaración de datos
-                          - generic [ref=e720]:
-                            - generic [ref=e721]: "1"
-                            - generic [ref=e722]: Activo
-                          - generic [ref=e723]: 14 paginas
-                      - button "Eliminar Declaración de datos" [ref=e724] [cursor=pointer]:
-                        - img [ref=e726]
-                    - generic [ref=e729]:
-                      - button "2 Certificado académico 2 5 paginas" [ref=e730]:
-                        - generic [ref=e733]: "2"
-                        - generic [ref=e734]:
-                          - strong [ref=e736]: Certificado académico
-                          - generic [ref=e738]: "2"
-                          - generic [ref=e739]: 5 paginas
-                      - button "Eliminar Certificado académico" [ref=e740] [cursor=pointer]:
-                        - img [ref=e742]
-          - generic [ref=e747]:
-            - generic [ref=e748]:
-              - generic "contract_name" [ref=e750] [cursor=pointer]:
-                - generic [ref=e753]: Contrato principal
-                - generic: contract_name · text
-              - generic "contract_date" [ref=e754] [cursor=pointer]:
-                - generic [ref=e757]: 2026-05-01
-                - generic: contract_date · text
-              - generic "contract_stage" [ref=e758] [cursor=pointer]:
-                - generic [ref=e759]:
-                  - generic [ref=e761]: Pendiente
-                  - button:
-                    - img
-                - generic: contract_stage · select
-              - generic "approval_mode" [ref=e762] [cursor=pointer]:
-                - generic:
-                  - radiogroup "Modo de aprobación":
-                    - generic:
-                      - radio "Firma" [checked] [disabled]
-                      - radio "Revisión" [disabled]
-              - generic "required_documents" [ref=e763] [cursor=pointer]:
-                - generic:
-                  - group "Documentos requeridos":
-                    - generic:
-                      - checkbox "Cédula" [checked] [disabled]:
-                        - generic:
-                          - generic:
-                            - generic:
-                              - img
-                      - checkbox "RUC" [disabled]
-                      - checkbox "Contrato firmado" [checked] [disabled]:
-                        - generic:
-                          - generic:
-                            - generic:
-                              - img
-              - generic "routing-primary-showcase_attachment" [ref=e764] [cursor=pointer]:
-                - generic [ref=e767]:
-                  - img [ref=e768]
-                  - text: Adjuntar archivo
-                - generic: routing-primary-showcase_attachment · attachment
-              - generic "routing-primary-showcase_approve" [ref=e770] [cursor=pointer]:
-                - button "Aprobar" [ref=e773]:
-                  - img [ref=e774]
-                  - text: Aprobar
-                - generic: routing-primary-showcase_approve · approve
-              - generic "Solo lectura" [ref=e776] [cursor=pointer]:
-                - generic [ref=e779]: Nota informativa
-                - generic: routing-primary-showcase_note · note
-                - generic: solo lectura
-              - generic "routing-primary-showcase_decline" [ref=e780] [cursor=pointer]:
-                - button "Rechazar" [ref=e783]:
-                  - img [ref=e784]
-                  - text: Rechazar
-                - generic: routing-primary-showcase_decline · decline
-              - generic "routing-primary-showcase_title" [ref=e787] [cursor=pointer]:
-                - generic: routing-primary-showcase_title · title
-              - generic "routing-primary-showcase_emailaddress" [ref=e791] [cursor=pointer]:
-                - generic: routing-primary-showcase_emailaddress · emailAddress
-            - generic [ref=e795]:
-              - generic "routing-primary-showcase_company" [ref=e797] [cursor=pointer]:
-                - generic: routing-primary-showcase_company · company
-              - generic "routing-primary-showcase_fullname" [ref=e801] [cursor=pointer]:
-                - generic: routing-primary-showcase_fullname · fullName
-              - generic "routing-primary-showcase_table" [ref=e805] [cursor=pointer]:
-                - generic [ref=e806]:
-                  - generic [ref=e810]: Name
-                  - generic [ref=e814]: City
-                  - generic [ref=e818]: Description
-                  - generic [ref=e822]: Alice
-                  - generic [ref=e830]: New York
-                  - generic [ref=e838]: Alice is a freelance web designer and developer
-                  - generic [ref=e846]: Bob
-                  - generic [ref=e854]: Paris
-                  - generic [ref=e862]: Bob is a freelance illustrator and graphic designer
-                - generic: routing-primary-showcase_table · table
-              - generic "routing-primary-showcase_date" [ref=e867] [cursor=pointer]:
-                - generic: routing-primary-showcase_date · date
-              - generic "routing-primary-showcase_datetime" [ref=e871] [cursor=pointer]:
-                - generic: routing-primary-showcase_datetime · dateTime
-              - generic "routing-primary-showcase_time" [ref=e875] [cursor=pointer]:
-                - generic: routing-primary-showcase_time · time
-            - generic [ref=e879]:
-              - generic "Solo lectura" [ref=e881] [cursor=pointer]:
-                - generic [ref=e884]: 17/07/2026
-                - generic: routing-primary-showcase_datesigned · dateSigned
-                - generic: solo lectura
-              - generic "routing-primary-showcase_signature" [ref=e885] [cursor=pointer]:
-                - generic: routing-primary-showcase_signature · signature
-              - generic "routing-primary-showcase_initials" [ref=e888] [cursor=pointer]:
-                - generic: routing-primary-showcase_initials · initials
-              - generic "routing-primary-showcase_code128" [ref=e891] [cursor=pointer]:
-                - img [ref=e894]
-                - generic: routing-primary-showcase_code128 · code128
-              - generic "routing-primary-showcase_code39" [ref=e895] [cursor=pointer]:
-                - img [ref=e898]
-                - generic: routing-primary-showcase_code39 · code39
-              - generic "routing-primary-showcase_ean13" [ref=e899] [cursor=pointer]:
-                - img [ref=e902]
-                - generic: routing-primary-showcase_ean13 · ean13
-            - generic "routing-primary-showcase_ean8" [ref=e905] [cursor=pointer]:
-              - img [ref=e908]
-              - generic: routing-primary-showcase_ean8 · ean8
-      - status [ref=e929]
-  - region "Resultados":
-    - generic:
-      - button "Resultados Sin artefactos":
-        - text: Resultados
-        - generic: Sin artefactos
-``​`
-```
-
-<a id="file-0264"></a>
-
-### 0264 — `test-results/tests-playwright-schema-tr-c031a-cted-schema-to-page-anchors-chromium/error-context.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `555`
-- **Tamaño original:** `28.0 KB`
-- **SHA1 corto:** `dbd72567ae`
-- **Estado:** `completo`
-
-```markdown
-# Page snapshot
-
-``​`yaml
-- main [ref=e3]:
-  - region "Canvas" [ref=e4]:
-    - generic [ref=e5]:
-      - heading "Canvas" [level=2] [ref=e6]
-      - paragraph [ref=e7]:
-        - text: La superficie de edición se monta dentro del runtime de
-        - code [ref=e8]: sisad-pdfme
-        - text: .
-    - generic [ref=e13]:
-      - generic [ref=e14]:
-        - generic [ref=e15]:
-          - button "Cerrar catálogo de campos" [expanded] [ref=e16]:
-            - img [ref=e17]
-          - generic [ref=e21]:
-            - generic [ref=e24]: Campos
-            - generic [ref=e25]:
-              - tablist "Tipos de campo" [ref=e26]:
-                - tab "Estándar" [selected] [ref=e27] [cursor=pointer]:
-                  - img [ref=e29]
-                  - generic [ref=e32]: Base
-                  - generic [ref=e33]: "38"
-                - tab "Personalizados" [ref=e34] [cursor=pointer]:
-                  - img [ref=e36]
-                  - generic [ref=e40]: Custom
-                  - generic [ref=e41]: "0"
-                - tab "Prerrellenado" [ref=e42] [cursor=pointer]:
-                  - img [ref=e44]
-                  - generic [ref=e47]: Auto
-                  - generic [ref=e48]: "0"
-              - generic [ref=e50]:
-                - generic [ref=e51]:
-                  - img [ref=e53]
-                  - textbox "Buscar campo..." [ref=e56]
-                - generic [ref=e58]:
-                  - button "Todos" [ref=e59] [cursor=pointer]:
-                    - generic [ref=e60]: Todos
-                  - button "Favoritos (0)" [ref=e61] [cursor=pointer]:
-                    - generic [ref=e62]: Favoritos (0)
-                  - button "Recientes (0)" [ref=e63] [cursor=pointer]:
-                    - generic [ref=e64]: Recientes (0)
-                  - group "Diseño del catálogo" [ref=e65]:
-                    - button "Ver como lista detallada (≡)" [pressed] [ref=e66] [cursor=pointer]:
-                      - generic [ref=e67]:
-                        - img [ref=e69]
-                        - generic [ref=e72]: Lista
-                    - button "Ver como tarjetas densas (▦)" [ref=e73] [cursor=pointer]:
-                      - generic [ref=e74]:
-                        - img [ref=e76]
-                        - generic [ref=e78]: Tarjetas
-                    - button "Ver solo iconos (⠿)" [ref=e79] [cursor=pointer]:
-                      - generic [ref=e80]:
-                        - img [ref=e82]
-                        - generic [ref=e85]: Iconos
-            - generic [ref=e86]:
-              - generic [ref=e87]:
-                - button "Alternar categoría Firmas" [expanded] [ref=e88]:
-                  - generic [ref=e89]:
-                    - img [ref=e91]
-                    - generic [ref=e93]: Firmas
-                  - generic [ref=e94]: "3"
-                - generic [ref=e95]:
-                  - generic [ref=e98]:
-                    - button "Datesigned Datesigned" [ref=e99]:
-                      - generic "Datesigned" [ref=e101]:
-                        - img [ref=e102]
-                      - generic [ref=e106]: Datesigned
-                    - button "Marcar favorito" [ref=e107]: ★
-                  - generic [ref=e110]:
-                    - button "Initials Initials" [ref=e111]:
-                      - generic "Initials" [ref=e113]:
-                        - img [ref=e114]
-                      - generic [ref=e117]: Initials
-                    - button "Marcar favorito" [ref=e118]: ★
-                  - generic [ref=e121]:
-                    - button "Firma Firma" [ref=e122]:
-                      - generic "Firma" [ref=e124]:
-                        - img [ref=e125]
-                      - generic [ref=e128]: Firma
-                    - button "Marcar favorito" [ref=e129]: ★
-              - generic [ref=e130]:
-                - button "Alternar categoría Texto" [expanded] [ref=e131]:
-                  - generic [ref=e132]:
-                    - img [ref=e134]
-                    - generic [ref=e136]: Texto
-                  - generic [ref=e137]: "2"
-                - generic [ref=e138]:
-                  - generic [ref=e141]:
-                    - button "Número" [ref=e142]:
-                      - generic [ref=e145]: Número
-                    - button "Marcar favorito" [ref=e146]: ★
-                  - generic [ref=e149]:
-                    - button "Texto Texto" [ref=e150]:
-                      - generic "Texto" [ref=e152]:
-                        - img [ref=e153]
-                      - generic [ref=e159]: Texto
-                    - button "Marcar favorito" [ref=e160]: ★
-              - generic [ref=e161]:
-                - button "Alternar categoría Imagen y medios" [expanded] [ref=e162]:
-                  - generic [ref=e163]:
-                    - img [ref=e165]
-                    - generic [ref=e167]: Imagen y medios
-                  - generic [ref=e168]: "2"
-                - generic [ref=e169]:
-                  - generic [ref=e172]:
-                    - button "Imagen Imagen" [ref=e173]:
-                      - generic "Imagen" [ref=e175]:
-                        - img [ref=e176]
-                      - generic [ref=e181]: Imagen
-                    - button "Marcar favorito" [ref=e182]: ★
-                  - generic [ref=e185]:
-                    - button "SVG SVG" [ref=e186]:
-                      - generic "SVG" [ref=e188]:
-                        - img [ref=e189]
-                      - generic [ref=e194]: SVG
-                    - button "Marcar favorito" [ref=e195]: ★
-              - generic [ref=e196]:
-                - button "Alternar categoría Selecciones" [expanded] [ref=e197]:
-                  - generic [ref=e198]:
-                    - img [ref=e200]
-                    - generic [ref=e202]: Selecciones
-                  - generic [ref=e203]: "4"
-                - generic [ref=e204]:
-                  - generic [ref=e207]:
-                    - button "Casilla Casilla" [ref=e208]:
-                      - generic "Casilla" [ref=e210]:
-                        - img [ref=e211]
-                      - generic [ref=e215]: Casilla
-                    - button "Marcar favorito" [ref=e216]: ★
-                  - generic [ref=e219]:
-                    - button "Grupo de Casillas Grupo de Casillas" [ref=e220]:
-                      - generic "Grupo de Casillas" [ref=e222]:
-                        - img [ref=e223]
-                      - generic [ref=e227]: Grupo de Casillas
-                    - button "Marcar favorito" [ref=e228]: ★
-                  - generic [ref=e231]:
-                    - button "Opción Opción" [ref=e232]:
-                      - generic "Opción" [ref=e234]:
-                        - img [ref=e235]
-                      - generic [ref=e239]: Opción
-                    - button "Marcar favorito" [ref=e240]: ★
-                  - generic [ref=e243]:
-                    - button "Lista Desplegable Lista Desplegable" [ref=e244]:
-                      - generic "Lista Desplegable" [ref=e246]:
-                        - img [ref=e247]
-                      - generic [ref=e250]: Lista Desplegable
-                    - button "Marcar favorito" [ref=e251]: ★
-              - generic [ref=e252]:
-                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e253]:
-                  - generic [ref=e254]:
-                    - img [ref=e256]
-                    - generic [ref=e258]: Fecha y Hora
-                  - generic [ref=e259]: "3"
-                - generic [ref=e260]:
-                  - generic [ref=e263]:
-                    - button "Fecha Fecha" [ref=e264]:
-                      - generic "Fecha" [ref=e266]:
-                        - img [ref=e267]
-                      - generic [ref=e270]: Fecha
-                    - button "Marcar favorito" [ref=e271]: ★
-                  - generic [ref=e274]:
-                    - button "Fecha Y Hora Fecha Y Hora" [ref=e275]:
-                      - generic "Fecha Y Hora" [ref=e277]:
-                        - img [ref=e278]
-                      - generic [ref=e283]: Fecha Y Hora
-                    - button "Marcar favorito" [ref=e284]: ★
-                  - generic [ref=e287]:
-                    - button "Hora Hora" [ref=e288]:
-                      - generic "Hora" [ref=e290]:
-                        - img [ref=e291]
-                      - generic [ref=e295]: Hora
-                    - button "Marcar favorito" [ref=e296]: ★
-              - generic [ref=e297]:
-                - button "Alternar categoría QR y Códigos" [expanded] [ref=e298]:
-                  - generic [ref=e299]:
-                    - img [ref=e301]
-                    - generic [ref=e303]: QR y Códigos
-                  - generic [ref=e304]: "12"
-                - generic [ref=e305]:
-                  - generic [ref=e308]:
-                    - button "Código de barras Código de barras" [ref=e309]:
-                      - generic "Código de barras" [ref=e311]:
-                        - img [ref=e312]
-                      - generic [ref=e314]: Código de barras
-                    - button "Marcar favorito" [ref=e315]: ★
-                  - generic [ref=e318]:
-                    - button "Código de barras Código de barras" [ref=e319]:
-                      - generic "Código de barras" [ref=e321]:
-                        - img [ref=e322]
-                      - generic [ref=e324]: Código de barras
-                    - button "Marcar favorito" [ref=e325]: ★
-                  - generic [ref=e328]:
-                    - button "Código de barras Código de barras" [ref=e329]:
-                      - generic "Código de barras" [ref=e331]:
-                        - img [ref=e332]
-                      - generic [ref=e334]: Código de barras
-                    - button "Marcar favorito" [ref=e335]: ★
-                  - generic [ref=e338]:
-                    - button "Código de barras Código de barras" [ref=e339]:
-                      - generic "Código de barras" [ref=e341]:
-                        - img [ref=e342]
-                      - generic [ref=e344]: Código de barras
-                    - button "Marcar favorito" [ref=e345]: ★
-                  - generic [ref=e348]:
-                    - button "DataMatrix DataMatrix" [ref=e349]:
-                      - generic "DataMatrix" [ref=e351]:
-                        - img [ref=e352]
-                      - generic [ref=e354]: DataMatrix
-                    - button "Marcar favorito" [ref=e355]: ★
-                  - generic [ref=e358]:
-                    - button "Código de barras Código de barras" [ref=e359]:
-                      - generic "Código de barras" [ref=e361]:
-                        - img [ref=e362]
-                      - generic [ref=e364]: Código de barras
-                    - button "Marcar favorito" [ref=e365]: ★
-                  - generic [ref=e368]:
-                    - button "Japan Post Japan Post" [ref=e369]:
-                      - generic "Japan Post" [ref=e371]:
-                        - img [ref=e372]
-                      - generic [ref=e374]: Japan Post
-                    - button "Marcar favorito" [ref=e375]: ★
-                  - generic [ref=e378]:
-                    - button "NW7 NW7" [ref=e379]:
-                      - generic "NW7" [ref=e381]:
-                        - img [ref=e382]
-                      - generic [ref=e384]: NW7
-                    - button "Marcar favorito" [ref=e385]: ★
-                  - generic [ref=e388]:
-                    - button "PDF417 PDF417" [ref=e389]:
-                      - generic "PDF417" [ref=e391]:
-                        - img [ref=e392]
-                      - generic [ref=e394]: PDF417
-                    - button "Marcar favorito" [ref=e395]: ★
-                  - generic [ref=e398]:
-                    - button "Código QR Código QR" [ref=e399]:
-                      - generic "Código QR" [ref=e401]:
-                        - img [ref=e402]
-                      - generic [ref=e409]: Código QR
-                    - button "Marcar favorito" [ref=e410]: ★
-                  - generic [ref=e413]:
-                    - button "Código de barras Código de barras" [ref=e414]:
-                      - generic "Código de barras" [ref=e416]:
-                        - img [ref=e417]
-                      - generic [ref=e419]: Código de barras
-                    - button "Marcar favorito" [ref=e420]: ★
-                  - generic [ref=e423]:
-                    - button "Código de barras Código de barras" [ref=e424]:
-                      - generic "Código de barras" [ref=e426]:
-                        - img [ref=e427]
-                      - generic [ref=e429]: Código de barras
-                    - button "Marcar favorito" [ref=e430]: ★
-              - generic [ref=e431]:
-                - button "Alternar categoría Estructura" [expanded] [ref=e432]:
-                  - generic [ref=e433]:
-                    - img [ref=e435]
-                    - generic [ref=e437]: Estructura
-                  - generic [ref=e438]: "4"
-                - generic [ref=e439]:
-                  - generic [ref=e442]:
-                    - button "Óvalo Óvalo" [ref=e443]:
-                      - generic "Óvalo" [ref=e445]:
-                        - img [ref=e446]
-                      - generic [ref=e449]: Óvalo
-                    - button "Marcar favorito" [ref=e450]: ★
-                  - generic [ref=e453]:
-                    - button "Línea Línea" [ref=e454]:
-                      - generic "Línea" [ref=e456]:
-                        - img [ref=e457]
-                      - generic [ref=e459]: Línea
-                    - button "Marcar favorito" [ref=e460]: ★
-                  - generic [ref=e463]:
-                    - button "Rectángulo Rectángulo" [ref=e464]:
-                      - generic "Rectángulo" [ref=e466]:
-                        - img [ref=e467]
-                      - generic [ref=e470]: Rectángulo
-                    - button "Marcar favorito" [ref=e471]: ★
-                  - generic [ref=e474]:
-                    - button "Tabla Tabla" [ref=e475]:
-                      - generic "Tabla" [ref=e477]:
-                        - img [ref=e478]
-                      - generic [ref=e481]: Tabla
-                    - button "Marcar favorito" [ref=e482]: ★
-              - generic [ref=e483]:
-                - button "Alternar categoría Acción" [expanded] [ref=e484]:
-                  - generic [ref=e485]:
-                    - img [ref=e487]
-                    - generic [ref=e489]: Acción
-                  - generic [ref=e490]: "4"
-                - generic [ref=e491]:
-                  - generic [ref=e494]:
-                    - button "Approve Approve" [ref=e495]:
-                      - generic "Approve" [ref=e497]:
-                        - img [ref=e498]
-                      - generic [ref=e502]: Approve
-                    - button "Marcar favorito" [ref=e503]: ★
-                  - generic [ref=e506]:
-                    - button "Attachment Attachment" [ref=e507]:
-                      - generic "Attachment" [ref=e509]:
-                        - img [ref=e510]
-                      - generic [ref=e513]: Attachment
-                    - button "Marcar favorito" [ref=e514]: ★
-                  - generic [ref=e517]:
-                    - button "Decline Decline" [ref=e518]:
-                      - generic "Decline" [ref=e520]:
-                        - img [ref=e521]
-                      - generic [ref=e526]: Decline
-                    - button "Marcar favorito" [ref=e527]: ★
-                  - generic [ref=e530]:
-                    - button "Note Note" [ref=e531]:
-                      - generic "Note" [ref=e533]:
-                        - img [ref=e534]
-                      - generic [ref=e538]: Note
-                    - button "Marcar favorito" [ref=e539]: ★
-              - generic [ref=e540]:
-                - button "Alternar categoría Destinatario" [expanded] [ref=e541]:
-                  - generic [ref=e542]:
-                    - img [ref=e544]
-                    - generic [ref=e546]: Destinatario
-                  - generic [ref=e547]: "4"
-                - generic [ref=e548]:
-                  - generic [ref=e551]:
-                    - button "Company Company" [ref=e552]:
-                      - generic "Company" [ref=e554]:
-                        - img [ref=e555]
-                      - generic [ref=e560]: Company
-                    - button "Marcar favorito" [ref=e561]: ★
-                  - generic [ref=e564]:
-                    - button "Emailaddress Emailaddress" [ref=e565]:
-                      - generic "Emailaddress" [ref=e567]:
-                        - img [ref=e568]
-                      - generic [ref=e572]: Emailaddress
-                    - button "Marcar favorito" [ref=e573]: ★
-                  - generic [ref=e576]:
-                    - button "Fullname Fullname" [ref=e577]:
-                      - generic "Fullname" [ref=e579]:
-                        - img [ref=e580]
-                      - generic [ref=e584]: Fullname
-                    - button "Marcar favorito" [ref=e585]: ★
-                  - generic [ref=e588]:
-                    - button "Title Title" [ref=e589]:
-                      - generic "Title" [ref=e591]:
-                        - img [ref=e592]
-                      - generic [ref=e596]: Title
-                    - button "Marcar favorito" [ref=e597]: ★
-        - generic [ref=e598]:
-          - generic:
-            - generic [ref=e600]:
-              - button "Página anterior" [disabled] [ref=e601]:
-                - generic:
-                  - img
-              - button "Pág 1/14" [ref=e602] [cursor=pointer]:
-                - generic [ref=e603]: Pág 1/14
-              - button "Página siguiente" [ref=e604] [cursor=pointer]:
-                - img [ref=e606]
-            - generic [ref=e609]:
-              - button "Guardar" [ref=e610] [cursor=pointer]:
-                - img [ref=e612]
-                - generic [ref=e616]: Guardar
-              - button "Más acciones" [ref=e617] [cursor=pointer]:
-                - img [ref=e619]
-            - generic [ref=e624]:
-              - button "Deshacer" [ref=e625] [cursor=pointer]:
-                - img [ref=e627]
-              - button "Rehacer" [ref=e630] [cursor=pointer]:
-                - img [ref=e632]
-              - button "Ajustar página" [ref=e635] [cursor=pointer]:
-                - img [ref=e637]
-              - generic [ref=e642]:
-                - button "Reducir zoom" [ref=e643] [cursor=pointer]:
-                  - img [ref=e645]
-                - generic "Nivel de zoom" [ref=e646] [cursor=pointer]:
-                  - generic [ref=e648]:
-                    - combobox "Nivel de zoom" [ref=e650]
-                    - generic "100%" [ref=e651]
-                  - generic:
-                    - img:
-                      - img
-                - button "Aumentar zoom" [ref=e652] [cursor=pointer]:
-                  - img [ref=e654]
-          - complementary "Panel derecho del diseñador" [ref=e655]:
-            - generic [ref=e656]:
-              - generic [ref=e657]:
-                - tablist "Panel derecho" [ref=e658]:
-                  - tab "Abrir panel Campos" [ref=e659]:
-                    - generic [ref=e660]:
-                      - img [ref=e662]
-                      - generic [ref=e666]: Campos
-                  - tab "Abrir panel Detalle" [ref=e667]:
-                    - generic [ref=e668]:
-                      - img [ref=e670]
-                      - generic [ref=e671]: Detalle
-                  - tab "Abrir panel Docs" [selected] [ref=e672]:
-                    - generic [ref=e673]:
-                      - img [ref=e675]
-                      - generic [ref=e678]: Docs
-                - button "Ocultar panel derecho" [expanded] [ref=e681]:
-                  - img [ref=e682]
-              - generic [ref=e685]:
-                - text: "* * * * *"
-                - generic [ref=e688]:
-                  - generic [ref=e690]:
-                    - img [ref=e692]
-                    - generic [ref=e696]:
-                      - generic [ref=e697]: Documentos cargados
-                      - generic [ref=e698]: Selecciona una página
-                      - generic [ref=e700]: "2"
-                    - button "Subir PDF" [ref=e703] [cursor=pointer]:
-                      - img [ref=e705]
-                      - generic [ref=e709]: Subir PDF
-                  - generic "Lista de páginas del documento" [ref=e710]:
-                    - generic [ref=e711]:
-                      - generic [ref=e712]:
-                        - button "1 Declaración de datos 1 Activo 14 paginas" [pressed] [ref=e713]:
-                          - generic [ref=e716]: "1"
-                          - generic [ref=e717]:
-                            - strong [ref=e719]: Declaración de datos
-                            - generic [ref=e720]:
-                              - generic [ref=e721]: "1"
-                              - generic [ref=e722]: Activo
-                            - generic [ref=e723]: 14 paginas
-                        - button "Eliminar Declaración de datos" [ref=e724] [cursor=pointer]:
-                          - img [ref=e726]
-                      - generic [ref=e729]:
-                        - button "2 Certificado académico 2 5 paginas" [ref=e730]:
-                          - generic [ref=e733]: "2"
-                          - generic [ref=e734]:
-                            - strong [ref=e736]: Certificado académico
-                            - generic [ref=e738]: "2"
-                            - generic [ref=e739]: 5 paginas
-                        - button "Eliminar Certificado académico" [ref=e740] [cursor=pointer]:
-                          - img [ref=e742]
-          - generic [ref=e745]:
-            - generic [ref=e747]:
-              - generic [ref=e748]:
-                - generic "contract_name" [ref=e766] [cursor=pointer]:
-                  - generic:
-                    - generic:
-                      - generic: Contrato principal
-                  - generic: contract_name · text
-                - generic "contract_date" [ref=e767] [cursor=pointer]:
-                  - generic [ref=e770]: 2026-05-01
-                  - generic: contract_date · text
-                - generic "contract_stage" [ref=e771] [cursor=pointer]:
-                  - generic [ref=e772]:
-                    - generic [ref=e774]: Pendiente
-                    - button:
-                      - img
-                  - generic: contract_stage · select
-                - generic "approval_mode" [ref=e775] [cursor=pointer]:
-                  - generic:
-                    - radiogroup "Modo de aprobación":
-                      - generic:
-                        - radio "Firma" [checked] [disabled]
-                        - radio "Revisión" [disabled]
-                - generic "required_documents" [ref=e776] [cursor=pointer]:
-                  - generic:
-                    - group "Documentos requeridos":
-                      - generic:
-                        - checkbox "Cédula" [checked] [disabled]:
-                          - generic:
-                            - generic:
-                              - generic:
-                                - img
-                        - checkbox "RUC" [disabled]
-                        - checkbox "Contrato firmado" [checked] [disabled]:
-                          - generic:
-                            - generic:
-                              - generic:
-                                - img
-                - generic "routing-primary-showcase_attachment" [ref=e777] [cursor=pointer]:
-                  - generic [ref=e780]:
-                    - img [ref=e781]
-                    - text: Adjuntar archivo
-                  - generic: routing-primary-showcase_attachment · attachment
-                - generic "routing-primary-showcase_approve" [ref=e783] [cursor=pointer]:
-                  - button "Aprobar" [ref=e786]:
-                    - img [ref=e787]
-                    - text: Aprobar
-                  - generic: routing-primary-showcase_approve · approve
-                - generic "Solo lectura" [ref=e789] [cursor=pointer]:
-                  - generic [ref=e792]: Nota informativa
-                  - generic: routing-primary-showcase_note · note
-                  - generic: solo lectura
-                - generic "routing-primary-showcase_decline" [ref=e793] [cursor=pointer]:
-                  - button "Rechazar" [ref=e796]:
-                    - img [ref=e797]
-                    - text: Rechazar
-                  - generic: routing-primary-showcase_decline · decline
-                - generic "routing-primary-showcase_title" [ref=e800] [cursor=pointer]:
-                  - generic: routing-primary-showcase_title · title
-                - generic "routing-primary-showcase_emailaddress" [ref=e804] [cursor=pointer]:
-                  - generic: routing-primary-showcase_emailaddress · emailAddress
-              - generic [ref=e808]:
-                - generic "routing-primary-showcase_company" [ref=e810] [cursor=pointer]:
-                  - generic: routing-primary-showcase_company · company
-                - generic "routing-primary-showcase_fullname" [ref=e814] [cursor=pointer]:
-                  - generic: routing-primary-showcase_fullname · fullName
-                - generic "routing-primary-showcase_table" [ref=e818] [cursor=pointer]:
-                  - generic [ref=e819]:
-                    - generic [ref=e823]: Name
-                    - generic [ref=e827]: City
-                    - generic [ref=e831]: Description
-                    - generic [ref=e835]: Alice
-                    - generic [ref=e843]: New York
-                    - generic [ref=e851]: Alice is a freelance web designer and developer
-                    - generic [ref=e859]: Bob
-                    - generic [ref=e867]: Paris
-                    - generic [ref=e875]: Bob is a freelance illustrator and graphic designer
-                  - generic: routing-primary-showcase_table · table
-                - generic "routing-primary-showcase_date" [ref=e880] [cursor=pointer]:
-                  - generic: routing-primary-showcase_date · date
-                - generic "routing-primary-showcase_datetime" [ref=e884] [cursor=pointer]:
-                  - generic: routing-primary-showcase_datetime · dateTime
-                - generic "routing-primary-showcase_time" [ref=e888] [cursor=pointer]:
-                  - generic: routing-primary-showcase_time · time
-              - generic [ref=e892]:
-                - generic "Solo lectura" [ref=e894] [cursor=pointer]:
-                  - generic [ref=e897]: 17/07/2026
-                  - generic: routing-primary-showcase_datesigned · dateSigned
-                  - generic: solo lectura
-                - generic "routing-primary-showcase_signature" [ref=e898] [cursor=pointer]:
-                  - generic: routing-primary-showcase_signature · signature
-                - generic "routing-primary-showcase_initials" [ref=e901] [cursor=pointer]:
-                  - generic: routing-primary-showcase_initials · initials
-                - generic "routing-primary-showcase_code128" [ref=e904] [cursor=pointer]:
-                  - img [ref=e907]
-                  - generic: routing-primary-showcase_code128 · code128
-                - generic "routing-primary-showcase_code39" [ref=e908] [cursor=pointer]:
-                  - img [ref=e911]
-                  - generic: routing-primary-showcase_code39 · code39
-                - generic "routing-primary-showcase_ean13" [ref=e912] [cursor=pointer]:
-                  - img [ref=e915]
-                  - generic: routing-primary-showcase_ean13 · ean13
-              - generic "routing-primary-showcase_ean8" [ref=e918] [cursor=pointer]:
-                - img [ref=e921]
-                - generic: routing-primary-showcase_ean8 · ean8
-            - generic:
-              - toolbar "Barra contextual de edición" [ref=e942]:
-                - generic [ref=e943]:
-                  - button "Eliminar" [ref=e944]:
-                    - img [ref=e946]
-                    - generic [ref=e949]: Eliminar
-                  - button "Más acciones" [ref=e950]:
-                    - img [ref=e952]
-                    - generic [ref=e956]: Más
-              - generic: 229px × 30px
-      - status [ref=e957]
-  - region "Resultados":
-    - generic:
-      - button "Resultados Sin artefactos":
-        - text: Resultados
-        - generic: Sin artefactos
-``​`
-```
-
 <a id="file-0265"></a>
 
-### 0265 — `test-results/tests-playwright-selection-95146-focus-returns-to-the-canvas-chromium/error-context.md`
+### 0265 — `test-results/tests-playwright-detail-vi-be09e-metry-and-identity-controls-chromium/error-context.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `555`
-- **Tamaño original:** `28.0 KB`
-- **SHA1 corto:** `1dc6ec1b63`
+- **Líneas:** `540`
+- **Tamaño original:** `27.1 KB`
+- **SHA1 corto:** `2ce8fbcc85`
 - **Estado:** `completo`
 
 ```markdown
@@ -18629,172 +19530,157 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
                   - img [ref=e654]
           - complementary "Panel derecho del diseñador" [ref=e655]:
             - generic [ref=e656]:
-              - generic [ref=e657]:
-                - tablist "Panel derecho" [ref=e658]:
-                  - tab "Abrir panel Campos" [ref=e659]:
-                    - generic [ref=e660]:
-                      - img [ref=e662]
-                      - generic [ref=e666]: Campos
-                  - tab "Abrir panel Detalle" [ref=e667]:
-                    - generic [ref=e668]:
-                      - img [ref=e670]
-                      - generic [ref=e671]: Detalle
-                  - tab "Abrir panel Docs" [selected] [ref=e672]:
-                    - generic [ref=e673]:
-                      - img [ref=e675]
-                      - generic [ref=e678]: Docs
+              - generic [ref=e658]:
+                - tablist "Panel derecho" [ref=e659]:
+                  - tab "Abrir panel Campos" [ref=e660]:
+                    - generic [ref=e661]:
+                      - img [ref=e663]
+                      - generic [ref=e667]: Campos
+                  - tab "Abrir panel Detalle" [disabled] [ref=e668]:
+                    - generic [ref=e669]:
+                      - img [ref=e671]
+                      - generic [ref=e672]: Detalle
+                  - tab "Abrir panel Docs" [selected] [ref=e673]:
+                    - generic [ref=e674]:
+                      - img [ref=e676]
+                      - generic [ref=e679]: Docs
                 - button "Ocultar panel derecho" [expanded] [ref=e681]:
                   - img [ref=e682]
-              - generic [ref=e685]:
-                - text: "* * * * *"
-                - generic [ref=e688]:
-                  - generic [ref=e690]:
-                    - img [ref=e692]
-                    - generic [ref=e696]:
-                      - generic [ref=e697]: Documentos cargados
-                      - generic [ref=e698]: Selecciona una página
-                      - generic [ref=e700]: "2"
-                    - button "Subir PDF" [ref=e703] [cursor=pointer]:
-                      - img [ref=e705]
-                      - generic [ref=e709]: Subir PDF
-                  - generic "Lista de páginas del documento" [ref=e710]:
-                    - generic [ref=e711]:
-                      - generic [ref=e712]:
-                        - button "1 Declaración de datos 1 Activo 14 paginas" [pressed] [ref=e713]:
-                          - generic [ref=e716]: "1"
-                          - generic [ref=e717]:
-                            - strong [ref=e719]: Declaración de datos
-                            - generic [ref=e720]:
-                              - generic [ref=e721]: "1"
-                              - generic [ref=e722]: Activo
-                            - generic [ref=e723]: 14 paginas
-                        - button "Eliminar Declaración de datos" [ref=e724] [cursor=pointer]:
-                          - img [ref=e726]
-                      - generic [ref=e729]:
-                        - button "2 Certificado académico 2 5 paginas" [ref=e730]:
-                          - generic [ref=e733]: "2"
-                          - generic [ref=e734]:
-                            - strong [ref=e736]: Certificado académico
-                            - generic [ref=e738]: "2"
-                            - generic [ref=e739]: 5 paginas
-                        - button "Eliminar Certificado académico" [ref=e740] [cursor=pointer]:
-                          - img [ref=e742]
-          - generic [ref=e745]:
-            - generic [ref=e747]:
-              - generic [ref=e748]:
-                - generic "contract_name" [active] [ref=e766] [cursor=pointer]:
-                  - generic:
+              - generic [ref=e688]:
+                - generic [ref=e690]:
+                  - img [ref=e692]
+                  - generic [ref=e696]:
+                    - generic [ref=e697]: Documentos cargados
+                    - generic [ref=e698]: Selecciona una página
+                    - generic [ref=e700]: "2"
+                  - button "Subir PDF" [ref=e703] [cursor=pointer]:
+                    - img [ref=e705]
+                    - generic [ref=e709]: Subir PDF
+                - generic "Lista de páginas del documento" [ref=e710]:
+                  - generic [ref=e711]:
+                    - generic [ref=e712]:
+                      - button "1 Declaración de datos 1 Activo 14 paginas" [pressed] [ref=e713]:
+                        - generic [ref=e716]: "1"
+                        - generic [ref=e717]:
+                          - strong [ref=e719]: Declaración de datos
+                          - generic [ref=e720]:
+                            - generic [ref=e721]: "1"
+                            - generic [ref=e722]: Activo
+                          - generic [ref=e723]: 14 paginas
+                      - button "Eliminar Declaración de datos" [ref=e724] [cursor=pointer]:
+                        - img [ref=e726]
+                    - generic [ref=e729]:
+                      - button "2 Certificado académico 2 5 paginas" [ref=e730]:
+                        - generic [ref=e733]: "2"
+                        - generic [ref=e734]:
+                          - strong [ref=e736]: Certificado académico
+                          - generic [ref=e738]: "2"
+                          - generic [ref=e739]: 5 paginas
+                      - button "Eliminar Certificado académico" [ref=e740] [cursor=pointer]:
+                        - img [ref=e742]
+          - generic [ref=e747]:
+            - generic [ref=e748]:
+              - generic "contract_name" [ref=e750] [cursor=pointer]:
+                - generic [ref=e753]: Contrato principal
+                - generic: contract_name · text
+              - generic "contract_date" [ref=e754] [cursor=pointer]:
+                - generic [ref=e757]: 2026-05-01
+                - generic: contract_date · text
+              - generic "contract_stage" [ref=e758] [cursor=pointer]:
+                - generic [ref=e759]:
+                  - generic [ref=e761]: Pendiente
+                  - button:
+                    - img
+                - generic: contract_stage · select
+              - generic "approval_mode" [ref=e762] [cursor=pointer]:
+                - generic:
+                  - radiogroup "Modo de aprobación":
                     - generic:
-                      - generic: Contrato principal
-                  - generic: contract_name · text
-                - generic "contract_date" [ref=e767] [cursor=pointer]:
-                  - generic [ref=e770]: 2026-05-01
-                  - generic: contract_date · text
-                - generic "contract_stage" [ref=e771] [cursor=pointer]:
-                  - generic [ref=e772]:
-                    - generic [ref=e774]: Pendiente
-                    - button:
-                      - img
-                  - generic: contract_stage · select
-                - generic "approval_mode" [ref=e775] [cursor=pointer]:
-                  - generic:
-                    - radiogroup "Modo de aprobación":
-                      - generic:
-                        - radio "Firma" [checked] [disabled]
-                        - radio "Revisión" [disabled]
-                - generic "required_documents" [ref=e776] [cursor=pointer]:
-                  - generic:
-                    - group "Documentos requeridos":
-                      - generic:
-                        - checkbox "Cédula" [checked] [disabled]:
+                      - radio "Firma" [checked] [disabled]
+                      - radio "Revisión" [disabled]
+              - generic "required_documents" [ref=e763] [cursor=pointer]:
+                - generic:
+                  - group "Documentos requeridos":
+                    - generic:
+                      - checkbox "Cédula" [checked] [disabled]:
+                        - generic:
                           - generic:
                             - generic:
-                              - generic:
-                                - img
-                        - checkbox "RUC" [disabled]
-                        - checkbox "Contrato firmado" [checked] [disabled]:
+                              - img
+                      - checkbox "RUC" [disabled]
+                      - checkbox "Contrato firmado" [checked] [disabled]:
+                        - generic:
                           - generic:
                             - generic:
-                              - generic:
-                                - img
-                - generic "routing-primary-showcase_attachment" [ref=e777] [cursor=pointer]:
-                  - generic [ref=e780]:
-                    - img [ref=e781]
-                    - text: Adjuntar archivo
-                  - generic: routing-primary-showcase_attachment · attachment
-                - generic "routing-primary-showcase_approve" [ref=e783] [cursor=pointer]:
-                  - button "Aprobar" [ref=e786]:
-                    - img [ref=e787]
-                    - text: Aprobar
-                  - generic: routing-primary-showcase_approve · approve
-                - generic "Solo lectura" [ref=e789] [cursor=pointer]:
-                  - generic [ref=e792]: Nota informativa
-                  - generic: routing-primary-showcase_note · note
-                  - generic: solo lectura
-                - generic "routing-primary-showcase_decline" [ref=e793] [cursor=pointer]:
-                  - button "Rechazar" [ref=e796]:
-                    - img [ref=e797]
-                    - text: Rechazar
-                  - generic: routing-primary-showcase_decline · decline
-                - generic "routing-primary-showcase_title" [ref=e800] [cursor=pointer]:
-                  - generic: routing-primary-showcase_title · title
-                - generic "routing-primary-showcase_emailaddress" [ref=e804] [cursor=pointer]:
-                  - generic: routing-primary-showcase_emailaddress · emailAddress
-              - generic [ref=e808]:
-                - generic "routing-primary-showcase_company" [ref=e810] [cursor=pointer]:
-                  - generic: routing-primary-showcase_company · company
-                - generic "routing-primary-showcase_fullname" [ref=e814] [cursor=pointer]:
-                  - generic: routing-primary-showcase_fullname · fullName
-                - generic "routing-primary-showcase_table" [ref=e818] [cursor=pointer]:
-                  - generic [ref=e819]:
-                    - generic [ref=e823]: Name
-                    - generic [ref=e827]: City
-                    - generic [ref=e831]: Description
-                    - generic [ref=e835]: Alice
-                    - generic [ref=e843]: New York
-                    - generic [ref=e851]: Alice is a freelance web designer and developer
-                    - generic [ref=e859]: Bob
-                    - generic [ref=e867]: Paris
-                    - generic [ref=e875]: Bob is a freelance illustrator and graphic designer
-                  - generic: routing-primary-showcase_table · table
-                - generic "routing-primary-showcase_date" [ref=e880] [cursor=pointer]:
-                  - generic: routing-primary-showcase_date · date
-                - generic "routing-primary-showcase_datetime" [ref=e884] [cursor=pointer]:
-                  - generic: routing-primary-showcase_datetime · dateTime
-                - generic "routing-primary-showcase_time" [ref=e888] [cursor=pointer]:
-                  - generic: routing-primary-showcase_time · time
-              - generic [ref=e892]:
-                - generic "Solo lectura" [ref=e894] [cursor=pointer]:
-                  - generic [ref=e897]: 17/07/2026
-                  - generic: routing-primary-showcase_datesigned · dateSigned
-                  - generic: solo lectura
-                - generic "routing-primary-showcase_signature" [ref=e898] [cursor=pointer]:
-                  - generic: routing-primary-showcase_signature · signature
-                - generic "routing-primary-showcase_initials" [ref=e901] [cursor=pointer]:
-                  - generic: routing-primary-showcase_initials · initials
-                - generic "routing-primary-showcase_code128" [ref=e904] [cursor=pointer]:
-                  - img [ref=e907]
-                  - generic: routing-primary-showcase_code128 · code128
-                - generic "routing-primary-showcase_code39" [ref=e908] [cursor=pointer]:
-                  - img [ref=e911]
-                  - generic: routing-primary-showcase_code39 · code39
-                - generic "routing-primary-showcase_ean13" [ref=e912] [cursor=pointer]:
-                  - img [ref=e915]
-                  - generic: routing-primary-showcase_ean13 · ean13
-              - generic "routing-primary-showcase_ean8" [ref=e918] [cursor=pointer]:
-                - img [ref=e921]
-                - generic: routing-primary-showcase_ean8 · ean8
-            - generic:
-              - toolbar "Barra contextual de edición" [ref=e942]:
-                - generic [ref=e943]:
-                  - button "Eliminar" [ref=e944]:
-                    - img [ref=e946]
-                    - generic [ref=e949]: Eliminar
-                  - button "Más acciones" [ref=e950]:
-                    - img [ref=e952]
-                    - generic [ref=e956]: Más
-              - generic: 229px × 30px
-      - status [ref=e957]
+                              - img
+              - generic "routing-primary-showcase_attachment" [ref=e764] [cursor=pointer]:
+                - generic [ref=e767]:
+                  - img [ref=e768]
+                  - text: Adjuntar archivo
+                - generic: routing-primary-showcase_attachment · attachment
+              - generic "routing-primary-showcase_approve" [ref=e770] [cursor=pointer]:
+                - button "Aprobar" [ref=e773]:
+                  - img [ref=e774]
+                  - text: Aprobar
+                - generic: routing-primary-showcase_approve · approve
+              - generic "Solo lectura" [ref=e776] [cursor=pointer]:
+                - generic [ref=e779]: Nota informativa
+                - generic: routing-primary-showcase_note · note
+                - generic: solo lectura
+              - generic "routing-primary-showcase_decline" [ref=e780] [cursor=pointer]:
+                - button "Rechazar" [ref=e783]:
+                  - img [ref=e784]
+                  - text: Rechazar
+                - generic: routing-primary-showcase_decline · decline
+              - generic "routing-primary-showcase_title" [ref=e787] [cursor=pointer]:
+                - generic: routing-primary-showcase_title · title
+              - generic "routing-primary-showcase_emailaddress" [ref=e791] [cursor=pointer]:
+                - generic: routing-primary-showcase_emailaddress · emailAddress
+            - generic [ref=e795]:
+              - generic "routing-primary-showcase_company" [ref=e797] [cursor=pointer]:
+                - generic: routing-primary-showcase_company · company
+              - generic "routing-primary-showcase_fullname" [ref=e801] [cursor=pointer]:
+                - generic: routing-primary-showcase_fullname · fullName
+              - generic "routing-primary-showcase_table" [ref=e805] [cursor=pointer]:
+                - generic [ref=e806]:
+                  - generic [ref=e810]: Name
+                  - generic [ref=e814]: City
+                  - generic [ref=e818]: Description
+                  - generic [ref=e822]: Alice
+                  - generic [ref=e830]: New York
+                  - generic [ref=e838]: Alice is a freelance web designer and developer
+                  - generic [ref=e846]: Bob
+                  - generic [ref=e854]: Paris
+                  - generic [ref=e862]: Bob is a freelance illustrator and graphic designer
+                - generic: routing-primary-showcase_table · table
+              - generic "routing-primary-showcase_date" [ref=e867] [cursor=pointer]:
+                - generic: routing-primary-showcase_date · date
+              - generic "routing-primary-showcase_datetime" [ref=e871] [cursor=pointer]:
+                - generic: routing-primary-showcase_datetime · dateTime
+              - generic "routing-primary-showcase_time" [ref=e875] [cursor=pointer]:
+                - generic: routing-primary-showcase_time · time
+            - generic [ref=e879]:
+              - generic "Solo lectura" [ref=e881] [cursor=pointer]:
+                - generic [ref=e884]: 17/07/2026
+                - generic: routing-primary-showcase_datesigned · dateSigned
+                - generic: solo lectura
+              - generic "routing-primary-showcase_signature" [ref=e885] [cursor=pointer]:
+                - generic: routing-primary-showcase_signature · signature
+              - generic "routing-primary-showcase_initials" [ref=e888] [cursor=pointer]:
+                - generic: routing-primary-showcase_initials · initials
+              - generic "routing-primary-showcase_code128" [ref=e891] [cursor=pointer]:
+                - img [ref=e894]
+                - generic: routing-primary-showcase_code128 · code128
+              - generic "routing-primary-showcase_code39" [ref=e895] [cursor=pointer]:
+                - img [ref=e898]
+                - generic: routing-primary-showcase_code39 · code39
+              - generic "routing-primary-showcase_ean13" [ref=e899] [cursor=pointer]:
+                - img [ref=e902]
+                - generic: routing-primary-showcase_ean13 · ean13
+            - generic "routing-primary-showcase_ean8" [ref=e905] [cursor=pointer]:
+              - img [ref=e908]
+              - generic: routing-primary-showcase_ean8 · ean8
+      - status [ref=e929]
   - region "Resultados":
     - generic:
       - button "Resultados Sin artefactos":
@@ -18805,1666 +19691,33 @@ Canvas, Moveable, Selecto, Paper, Snapshot, Generator, `pdf` render, coordenadas
 
 <a id="file-0266"></a>
 
-### 0266 — `test-results/tests-playwright-sidebar-r-77399-ver-overlaps-the-right-rail-chromium/error-context.md`
+### 0266 — `ai/coordination/uxqa-20260717/OWNERSHIP.md`
 
 - **Lenguaje:** `markdown`
-- **Líneas:** `540`
-- **Tamaño original:** `27.1 KB`
-- **SHA1 corto:** `7e406ff2e6`
+- **Líneas:** `13`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `8057b21180`
 - **Estado:** `completo`
 
 ```markdown
-# Page snapshot
+# OWNERSHIP — UX/QA 2026-07-17
 
-``​`yaml
-- main [ref=e3]:
-  - region "Canvas" [ref=e4]:
-    - generic [ref=e5]:
-      - heading "Canvas" [level=2] [ref=e6]
-      - paragraph [ref=e7]:
-        - text: La superficie de edición se monta dentro del runtime de
-        - code [ref=e8]: sisad-pdfme
-        - text: .
-    - generic [ref=e13]:
-      - generic [ref=e14]:
-        - generic [ref=e15]:
-          - button "Cerrar catálogo de campos" [expanded] [active] [ref=e16]:
-            - img [ref=e17]
-          - generic [ref=e21]:
-            - generic [ref=e24]: Campos
-            - generic [ref=e25]:
-              - tablist "Tipos de campo" [ref=e26]:
-                - tab "Estándar" [selected] [ref=e27] [cursor=pointer]:
-                  - img [ref=e29]
-                  - generic [ref=e32]: Base
-                  - generic [ref=e33]: "38"
-                - tab "Personalizados" [ref=e34] [cursor=pointer]:
-                  - img [ref=e36]
-                  - generic [ref=e40]: Custom
-                  - generic [ref=e41]: "0"
-                - tab "Prerrellenado" [ref=e42] [cursor=pointer]:
-                  - img [ref=e44]
-                  - generic [ref=e47]: Auto
-                  - generic [ref=e48]: "0"
-              - generic [ref=e50]:
-                - generic [ref=e51]:
-                  - img [ref=e53]
-                  - textbox "Buscar campo..." [ref=e56]
-                - generic [ref=e58]:
-                  - button "Todos" [ref=e59] [cursor=pointer]:
-                    - generic [ref=e60]: Todos
-                  - button "Favoritos (0)" [ref=e61] [cursor=pointer]:
-                    - generic [ref=e62]: Favoritos (0)
-                  - button "Recientes (0)" [ref=e63] [cursor=pointer]:
-                    - generic [ref=e64]: Recientes (0)
-                  - group "Diseño del catálogo" [ref=e65]:
-                    - button "Ver como lista detallada (≡)" [pressed] [ref=e66] [cursor=pointer]:
-                      - generic [ref=e67]:
-                        - img [ref=e69]
-                        - generic [ref=e72]: Lista
-                    - button "Ver como tarjetas densas (▦)" [ref=e73] [cursor=pointer]:
-                      - generic [ref=e74]:
-                        - img [ref=e76]
-                        - generic [ref=e78]: Tarjetas
-                    - button "Ver solo iconos (⠿)" [ref=e79] [cursor=pointer]:
-                      - generic [ref=e80]:
-                        - img [ref=e82]
-                        - generic [ref=e85]: Iconos
-            - generic [ref=e86]:
-              - generic [ref=e87]:
-                - button "Alternar categoría Firmas" [expanded] [ref=e88]:
-                  - generic [ref=e89]:
-                    - img [ref=e91]
-                    - generic [ref=e93]: Firmas
-                  - generic [ref=e94]: "3"
-                - generic [ref=e95]:
-                  - generic [ref=e98]:
-                    - button "Datesigned Datesigned" [ref=e99]:
-                      - generic "Datesigned" [ref=e101]:
-                        - img [ref=e102]
-                      - generic [ref=e106]: Datesigned
-                    - button "Marcar favorito" [ref=e107]: ★
-                  - generic [ref=e110]:
-                    - button "Initials Initials" [ref=e111]:
-                      - generic "Initials" [ref=e113]:
-                        - img [ref=e114]
-                      - generic [ref=e117]: Initials
-                    - button "Marcar favorito" [ref=e118]: ★
-                  - generic [ref=e121]:
-                    - button "Firma Firma" [ref=e122]:
-                      - generic "Firma" [ref=e124]:
-                        - img [ref=e125]
-                      - generic [ref=e128]: Firma
-                    - button "Marcar favorito" [ref=e129]: ★
-              - generic [ref=e130]:
-                - button "Alternar categoría Texto" [expanded] [ref=e131]:
-                  - generic [ref=e132]:
-                    - img [ref=e134]
-                    - generic [ref=e136]: Texto
-                  - generic [ref=e137]: "2"
-                - generic [ref=e138]:
-                  - generic [ref=e141]:
-                    - button "Número" [ref=e142]:
-                      - generic [ref=e145]: Número
-                    - button "Marcar favorito" [ref=e146]: ★
-                  - generic [ref=e149]:
-                    - button "Texto Texto" [ref=e150]:
-                      - generic "Texto" [ref=e152]:
-                        - img [ref=e153]
-                      - generic [ref=e159]: Texto
-                    - button "Marcar favorito" [ref=e160]: ★
-              - generic [ref=e161]:
-                - button "Alternar categoría Imagen y medios" [expanded] [ref=e162]:
-                  - generic [ref=e163]:
-                    - img [ref=e165]
-                    - generic [ref=e167]: Imagen y medios
-                  - generic [ref=e168]: "2"
-                - generic [ref=e169]:
-                  - generic [ref=e172]:
-                    - button "Imagen Imagen" [ref=e173]:
-                      - generic "Imagen" [ref=e175]:
-                        - img [ref=e176]
-                      - generic [ref=e181]: Imagen
-                    - button "Marcar favorito" [ref=e182]: ★
-                  - generic [ref=e185]:
-                    - button "SVG SVG" [ref=e186]:
-                      - generic "SVG" [ref=e188]:
-                        - img [ref=e189]
-                      - generic [ref=e194]: SVG
-                    - button "Marcar favorito" [ref=e195]: ★
-              - generic [ref=e196]:
-                - button "Alternar categoría Selecciones" [expanded] [ref=e197]:
-                  - generic [ref=e198]:
-                    - img [ref=e200]
-                    - generic [ref=e202]: Selecciones
-                  - generic [ref=e203]: "4"
-                - generic [ref=e204]:
-                  - generic [ref=e207]:
-                    - button "Casilla Casilla" [ref=e208]:
-                      - generic "Casilla" [ref=e210]:
-                        - img [ref=e211]
-                      - generic [ref=e215]: Casilla
-                    - button "Marcar favorito" [ref=e216]: ★
-                  - generic [ref=e219]:
-                    - button "Grupo de Casillas Grupo de Casillas" [ref=e220]:
-                      - generic "Grupo de Casillas" [ref=e222]:
-                        - img [ref=e223]
-                      - generic [ref=e227]: Grupo de Casillas
-                    - button "Marcar favorito" [ref=e228]: ★
-                  - generic [ref=e231]:
-                    - button "Opción Opción" [ref=e232]:
-                      - generic "Opción" [ref=e234]:
-                        - img [ref=e235]
-                      - generic [ref=e239]: Opción
-                    - button "Marcar favorito" [ref=e240]: ★
-                  - generic [ref=e243]:
-                    - button "Lista Desplegable Lista Desplegable" [ref=e244]:
-                      - generic "Lista Desplegable" [ref=e246]:
-                        - img [ref=e247]
-                      - generic [ref=e250]: Lista Desplegable
-                    - button "Marcar favorito" [ref=e251]: ★
-              - generic [ref=e252]:
-                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e253]:
-                  - generic [ref=e254]:
-                    - img [ref=e256]
-                    - generic [ref=e258]: Fecha y Hora
-                  - generic [ref=e259]: "3"
-                - generic [ref=e260]:
-                  - generic [ref=e263]:
-                    - button "Fecha Fecha" [ref=e264]:
-                      - generic "Fecha" [ref=e266]:
-                        - img [ref=e267]
-                      - generic [ref=e270]: Fecha
-                    - button "Marcar favorito" [ref=e271]: ★
-                  - generic [ref=e274]:
-                    - button "Fecha Y Hora Fecha Y Hora" [ref=e275]:
-                      - generic "Fecha Y Hora" [ref=e277]:
-                        - img [ref=e278]
-                      - generic [ref=e283]: Fecha Y Hora
-                    - button "Marcar favorito" [ref=e284]: ★
-                  - generic [ref=e287]:
-                    - button "Hora Hora" [ref=e288]:
-                      - generic "Hora" [ref=e290]:
-                        - img [ref=e291]
-                      - generic [ref=e295]: Hora
-                    - button "Marcar favorito" [ref=e296]: ★
-              - generic [ref=e297]:
-                - button "Alternar categoría QR y Códigos" [expanded] [ref=e298]:
-                  - generic [ref=e299]:
-                    - img [ref=e301]
-                    - generic [ref=e303]: QR y Códigos
-                  - generic [ref=e304]: "12"
-                - generic [ref=e305]:
-                  - generic [ref=e308]:
-                    - button "Código de barras Código de barras" [ref=e309]:
-                      - generic "Código de barras" [ref=e311]:
-                        - img [ref=e312]
-                      - generic [ref=e314]: Código de barras
-                    - button "Marcar favorito" [ref=e315]: ★
-                  - generic [ref=e318]:
-                    - button "Código de barras Código de barras" [ref=e319]:
-                      - generic "Código de barras" [ref=e321]:
-                        - img [ref=e322]
-                      - generic [ref=e324]: Código de barras
-                    - button "Marcar favorito" [ref=e325]: ★
-                  - generic [ref=e328]:
-                    - button "Código de barras Código de barras" [ref=e329]:
-                      - generic "Código de barras" [ref=e331]:
-                        - img [ref=e332]
-                      - generic [ref=e334]: Código de barras
-                    - button "Marcar favorito" [ref=e335]: ★
-                  - generic [ref=e338]:
-                    - button "Código de barras Código de barras" [ref=e339]:
-                      - generic "Código de barras" [ref=e341]:
-                        - img [ref=e342]
-                      - generic [ref=e344]: Código de barras
-                    - button "Marcar favorito" [ref=e345]: ★
-                  - generic [ref=e348]:
-                    - button "DataMatrix DataMatrix" [ref=e349]:
-                      - generic "DataMatrix" [ref=e351]:
-                        - img [ref=e352]
-                      - generic [ref=e354]: DataMatrix
-                    - button "Marcar favorito" [ref=e355]: ★
-                  - generic [ref=e358]:
-                    - button "Código de barras Código de barras" [ref=e359]:
-                      - generic "Código de barras" [ref=e361]:
-                        - img [ref=e362]
-                      - generic [ref=e364]: Código de barras
-                    - button "Marcar favorito" [ref=e365]: ★
-                  - generic [ref=e368]:
-                    - button "Japan Post Japan Post" [ref=e369]:
-                      - generic "Japan Post" [ref=e371]:
-                        - img [ref=e372]
-                      - generic [ref=e374]: Japan Post
-                    - button "Marcar favorito" [ref=e375]: ★
-                  - generic [ref=e378]:
-                    - button "NW7 NW7" [ref=e379]:
-                      - generic "NW7" [ref=e381]:
-                        - img [ref=e382]
-                      - generic [ref=e384]: NW7
-                    - button "Marcar favorito" [ref=e385]: ★
-                  - generic [ref=e388]:
-                    - button "PDF417 PDF417" [ref=e389]:
-                      - generic "PDF417" [ref=e391]:
-                        - img [ref=e392]
-                      - generic [ref=e394]: PDF417
-                    - button "Marcar favorito" [ref=e395]: ★
-                  - generic [ref=e398]:
-                    - button "Código QR Código QR" [ref=e399]:
-                      - generic "Código QR" [ref=e401]:
-                        - img [ref=e402]
-                      - generic [ref=e409]: Código QR
-                    - button "Marcar favorito" [ref=e410]: ★
-                  - generic [ref=e413]:
-                    - button "Código de barras Código de barras" [ref=e414]:
-                      - generic "Código de barras" [ref=e416]:
-                        - img [ref=e417]
-                      - generic [ref=e419]: Código de barras
-                    - button "Marcar favorito" [ref=e420]: ★
-                  - generic [ref=e423]:
-                    - button "Código de barras Código de barras" [ref=e424]:
-                      - generic "Código de barras" [ref=e426]:
-                        - img [ref=e427]
-                      - generic [ref=e429]: Código de barras
-                    - button "Marcar favorito" [ref=e430]: ★
-              - generic [ref=e431]:
-                - button "Alternar categoría Estructura" [expanded] [ref=e432]:
-                  - generic [ref=e433]:
-                    - img [ref=e435]
-                    - generic [ref=e437]: Estructura
-                  - generic [ref=e438]: "4"
-                - generic [ref=e439]:
-                  - generic [ref=e442]:
-                    - button "Óvalo Óvalo" [ref=e443]:
-                      - generic "Óvalo" [ref=e445]:
-                        - img [ref=e446]
-                      - generic [ref=e449]: Óvalo
-                    - button "Marcar favorito" [ref=e450]: ★
-                  - generic [ref=e453]:
-                    - button "Línea Línea" [ref=e454]:
-                      - generic "Línea" [ref=e456]:
-                        - img [ref=e457]
-                      - generic [ref=e459]: Línea
-                    - button "Marcar favorito" [ref=e460]: ★
-                  - generic [ref=e463]:
-                    - button "Rectángulo Rectángulo" [ref=e464]:
-                      - generic "Rectángulo" [ref=e466]:
-                        - img [ref=e467]
-                      - generic [ref=e470]: Rectángulo
-                    - button "Marcar favorito" [ref=e471]: ★
-                  - generic [ref=e474]:
-                    - button "Tabla Tabla" [ref=e475]:
-                      - generic "Tabla" [ref=e477]:
-                        - img [ref=e478]
-                      - generic [ref=e481]: Tabla
-                    - button "Marcar favorito" [ref=e482]: ★
-              - generic [ref=e483]:
-                - button "Alternar categoría Acción" [expanded] [ref=e484]:
-                  - generic [ref=e485]:
-                    - img [ref=e487]
-                    - generic [ref=e489]: Acción
-                  - generic [ref=e490]: "4"
-                - generic [ref=e491]:
-                  - generic [ref=e494]:
-                    - button "Approve Approve" [ref=e495]:
-                      - generic "Approve" [ref=e497]:
-                        - img [ref=e498]
-                      - generic [ref=e502]: Approve
-                    - button "Marcar favorito" [ref=e503]: ★
-                  - generic [ref=e506]:
-                    - button "Attachment Attachment" [ref=e507]:
-                      - generic "Attachment" [ref=e509]:
-                        - img [ref=e510]
-                      - generic [ref=e513]: Attachment
-                    - button "Marcar favorito" [ref=e514]: ★
-                  - generic [ref=e517]:
-                    - button "Decline Decline" [ref=e518]:
-                      - generic "Decline" [ref=e520]:
-                        - img [ref=e521]
-                      - generic [ref=e526]: Decline
-                    - button "Marcar favorito" [ref=e527]: ★
-                  - generic [ref=e530]:
-                    - button "Note Note" [ref=e531]:
-                      - generic "Note" [ref=e533]:
-                        - img [ref=e534]
-                      - generic [ref=e538]: Note
-                    - button "Marcar favorito" [ref=e539]: ★
-              - generic [ref=e540]:
-                - button "Alternar categoría Destinatario" [expanded] [ref=e541]:
-                  - generic [ref=e542]:
-                    - img [ref=e544]
-                    - generic [ref=e546]: Destinatario
-                  - generic [ref=e547]: "4"
-                - generic [ref=e548]:
-                  - generic [ref=e551]:
-                    - button "Company Company" [ref=e552]:
-                      - generic "Company" [ref=e554]:
-                        - img [ref=e555]
-                      - generic [ref=e560]: Company
-                    - button "Marcar favorito" [ref=e561]: ★
-                  - generic [ref=e564]:
-                    - button "Emailaddress Emailaddress" [ref=e565]:
-                      - generic "Emailaddress" [ref=e567]:
-                        - img [ref=e568]
-                      - generic [ref=e572]: Emailaddress
-                    - button "Marcar favorito" [ref=e573]: ★
-                  - generic [ref=e576]:
-                    - button "Fullname Fullname" [ref=e577]:
-                      - generic "Fullname" [ref=e579]:
-                        - img [ref=e580]
-                      - generic [ref=e584]: Fullname
-                    - button "Marcar favorito" [ref=e585]: ★
-                  - generic [ref=e588]:
-                    - button "Title Title" [ref=e589]:
-                      - generic "Title" [ref=e591]:
-                        - img [ref=e592]
-                      - generic [ref=e596]: Title
-                    - button "Marcar favorito" [ref=e597]: ★
-        - generic [ref=e598]:
-          - generic:
-            - generic [ref=e600]:
-              - button "Página anterior" [disabled] [ref=e601]:
-                - generic:
-                  - img
-              - button "Pág 1/14" [ref=e602] [cursor=pointer]:
-                - generic [ref=e603]: Pág 1/14
-              - button "Página siguiente" [ref=e604] [cursor=pointer]:
-                - img [ref=e606]
-            - generic [ref=e609]:
-              - button "Guardar" [ref=e610] [cursor=pointer]:
-                - img [ref=e612]
-                - generic [ref=e616]: Guardar
-              - button "Más acciones" [ref=e617] [cursor=pointer]:
-                - img [ref=e619]
-            - generic [ref=e624]:
-              - button "Deshacer" [ref=e625] [cursor=pointer]:
-                - img [ref=e627]
-              - button "Rehacer" [ref=e630] [cursor=pointer]:
-                - img [ref=e632]
-              - button "Ajustar página" [ref=e635] [cursor=pointer]:
-                - img [ref=e637]
-              - generic [ref=e642]:
-                - button "Reducir zoom" [ref=e643] [cursor=pointer]:
-                  - img [ref=e645]
-                - generic "Nivel de zoom" [ref=e646] [cursor=pointer]:
-                  - generic [ref=e648]:
-                    - combobox "Nivel de zoom" [ref=e650]
-                    - generic "100%" [ref=e651]
-                  - generic:
-                    - img:
-                      - img
-                - button "Aumentar zoom" [ref=e652] [cursor=pointer]:
-                  - img [ref=e654]
-          - complementary "Panel derecho del diseñador" [ref=e655]:
-            - generic [ref=e656]:
-              - generic [ref=e657]:
-                - tablist "Panel derecho" [ref=e658]:
-                  - tab "Abrir panel Campos" [ref=e659]:
-                    - generic [ref=e660]:
-                      - img [ref=e662]
-                      - generic [ref=e666]: Campos
-                  - tab "Abrir panel Detalle" [disabled] [ref=e667]:
-                    - generic [ref=e668]:
-                      - img [ref=e670]
-                      - generic [ref=e671]: Detalle
-                  - tab "Abrir panel Docs" [selected] [ref=e672]:
-                    - generic [ref=e673]:
-                      - img [ref=e675]
-                      - generic [ref=e678]: Docs
-                - button "Ocultar panel derecho" [expanded] [ref=e681]:
-                  - img [ref=e682]
-              - generic [ref=e688]:
-                - generic [ref=e690]:
-                  - img [ref=e692]
-                  - generic [ref=e696]:
-                    - generic [ref=e697]: Documentos cargados
-                    - generic [ref=e698]: Selecciona una página
-                    - generic [ref=e700]: "2"
-                  - button "Subir PDF" [ref=e703] [cursor=pointer]:
-                    - img [ref=e705]
-                    - generic [ref=e709]: Subir PDF
-                - generic "Lista de páginas del documento" [ref=e710]:
-                  - generic [ref=e711]:
-                    - generic [ref=e712]:
-                      - button "1 Declaración de datos 1 Activo 14 paginas" [pressed] [ref=e713]:
-                        - generic [ref=e716]: "1"
-                        - generic [ref=e717]:
-                          - strong [ref=e719]: Declaración de datos
-                          - generic [ref=e720]:
-                            - generic [ref=e721]: "1"
-                            - generic [ref=e722]: Activo
-                          - generic [ref=e723]: 14 paginas
-                      - button "Eliminar Declaración de datos" [ref=e724] [cursor=pointer]:
-                        - img [ref=e726]
-                    - generic [ref=e729]:
-                      - button "2 Certificado académico 2 5 paginas" [ref=e730]:
-                        - generic [ref=e733]: "2"
-                        - generic [ref=e734]:
-                          - strong [ref=e736]: Certificado académico
-                          - generic [ref=e738]: "2"
-                          - generic [ref=e739]: 5 paginas
-                      - button "Eliminar Certificado académico" [ref=e740] [cursor=pointer]:
-                        - img [ref=e742]
-          - generic [ref=e747]:
-            - generic [ref=e748]:
-              - generic "contract_name" [ref=e750] [cursor=pointer]:
-                - generic [ref=e753]: Contrato principal
-                - generic: contract_name · text
-              - generic "contract_date" [ref=e754] [cursor=pointer]:
-                - generic [ref=e757]: 2026-05-01
-                - generic: contract_date · text
-              - generic "contract_stage" [ref=e758] [cursor=pointer]:
-                - generic [ref=e759]:
-                  - generic [ref=e761]: Pendiente
-                  - button:
-                    - img
-                - generic: contract_stage · select
-              - generic "approval_mode" [ref=e762] [cursor=pointer]:
-                - generic:
-                  - radiogroup "Modo de aprobación":
-                    - generic:
-                      - radio "Firma" [checked] [disabled]
-                      - radio "Revisión" [disabled]
-              - generic "required_documents" [ref=e763] [cursor=pointer]:
-                - generic:
-                  - group "Documentos requeridos":
-                    - generic:
-                      - checkbox "Cédula" [checked] [disabled]:
-                        - generic:
-                          - generic:
-                            - generic:
-                              - img
-                      - checkbox "RUC" [disabled]
-                      - checkbox "Contrato firmado" [checked] [disabled]:
-                        - generic:
-                          - generic:
-                            - generic:
-                              - img
-              - generic "routing-primary-showcase_attachment" [ref=e764] [cursor=pointer]:
-                - generic [ref=e767]:
-                  - img [ref=e768]
-                  - text: Adjuntar archivo
-                - generic: routing-primary-showcase_attachment · attachment
-              - generic "routing-primary-showcase_approve" [ref=e770] [cursor=pointer]:
-                - button "Aprobar" [ref=e773]:
-                  - img [ref=e774]
-                  - text: Aprobar
-                - generic: routing-primary-showcase_approve · approve
-              - generic "Solo lectura" [ref=e776] [cursor=pointer]:
-                - generic [ref=e779]: Nota informativa
-                - generic: routing-primary-showcase_note · note
-                - generic: solo lectura
-              - generic "routing-primary-showcase_decline" [ref=e780] [cursor=pointer]:
-                - button "Rechazar" [ref=e783]:
-                  - img [ref=e784]
-                  - text: Rechazar
-                - generic: routing-primary-showcase_decline · decline
-              - generic "routing-primary-showcase_title" [ref=e787] [cursor=pointer]:
-                - generic: routing-primary-showcase_title · title
-              - generic "routing-primary-showcase_emailaddress" [ref=e791] [cursor=pointer]:
-                - generic: routing-primary-showcase_emailaddress · emailAddress
-            - generic [ref=e795]:
-              - generic "routing-primary-showcase_company" [ref=e797] [cursor=pointer]:
-                - generic: routing-primary-showcase_company · company
-              - generic "routing-primary-showcase_fullname" [ref=e801] [cursor=pointer]:
-                - generic: routing-primary-showcase_fullname · fullName
-              - generic "routing-primary-showcase_table" [ref=e805] [cursor=pointer]:
-                - generic [ref=e806]:
-                  - generic [ref=e810]: Name
-                  - generic [ref=e814]: City
-                  - generic [ref=e818]: Description
-                  - generic [ref=e822]: Alice
-                  - generic [ref=e830]: New York
-                  - generic [ref=e838]: Alice is a freelance web designer and developer
-                  - generic [ref=e846]: Bob
-                  - generic [ref=e854]: Paris
-                  - generic [ref=e862]: Bob is a freelance illustrator and graphic designer
-                - generic: routing-primary-showcase_table · table
-              - generic "routing-primary-showcase_date" [ref=e867] [cursor=pointer]:
-                - generic: routing-primary-showcase_date · date
-              - generic "routing-primary-showcase_datetime" [ref=e871] [cursor=pointer]:
-                - generic: routing-primary-showcase_datetime · dateTime
-              - generic "routing-primary-showcase_time" [ref=e875] [cursor=pointer]:
-                - generic: routing-primary-showcase_time · time
-            - generic [ref=e879]:
-              - generic "Solo lectura" [ref=e881] [cursor=pointer]:
-                - generic [ref=e884]: 17/07/2026
-                - generic: routing-primary-showcase_datesigned · dateSigned
-                - generic: solo lectura
-              - generic "routing-primary-showcase_signature" [ref=e885] [cursor=pointer]:
-                - generic: routing-primary-showcase_signature · signature
-              - generic "routing-primary-showcase_initials" [ref=e888] [cursor=pointer]:
-                - generic: routing-primary-showcase_initials · initials
-              - generic "routing-primary-showcase_code128" [ref=e891] [cursor=pointer]:
-                - img [ref=e894]
-                - generic: routing-primary-showcase_code128 · code128
-              - generic "routing-primary-showcase_code39" [ref=e895] [cursor=pointer]:
-                - img [ref=e898]
-                - generic: routing-primary-showcase_code39 · code39
-              - generic "routing-primary-showcase_ean13" [ref=e899] [cursor=pointer]:
-                - img [ref=e902]
-                - generic: routing-primary-showcase_ean13 · ean13
-            - generic "routing-primary-showcase_ean8" [ref=e905] [cursor=pointer]:
-              - img [ref=e908]
-              - generic: routing-primary-showcase_ean8 · ean8
-      - status [ref=e929]
-  - region "Resultados":
-    - generic:
-      - button "Resultados Sin artefactos":
-        - text: Resultados
-        - generic: Sin artefactos
-``​`
+## Agentes y dominios
+
+- CODEX: P0 técnico, hooks, runtime, overlays Canvas, interacción y pruebas focales.
+- CLAUDE: arquitectura visual, RightSidebar, DetailView, topbar global, Guardar, DocumentsRail e integración.
+- COPILOT: LeftSidebar, host del laboratorio, ESLint/warnings, accesibilidad y pruebas visuales de su dominio.
+
+## Reglas
+
+- Cada agente edita únicamente sus rutas owned por wave.
+- Cada agente escribe solo su propio estado y handoffs.
+- No se permiten colisiones de ownership sin handoff explícito.
 ```
 
 <a id="file-0267"></a>
 
-### 0267 — `test-results/tests-playwright-sidebar-r-f489a-estores-the-requested-panel-chromium/error-context.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `540`
-- **Tamaño original:** `27.1 KB`
-- **SHA1 corto:** `7447d15fbb`
-- **Estado:** `completo`
-
-```markdown
-# Page snapshot
-
-``​`yaml
-- main [ref=e3]:
-  - region "Canvas" [ref=e4]:
-    - generic [ref=e5]:
-      - heading "Canvas" [level=2] [ref=e6]
-      - paragraph [ref=e7]:
-        - text: La superficie de edición se monta dentro del runtime de
-        - code [ref=e8]: sisad-pdfme
-        - text: .
-    - generic [ref=e13]:
-      - generic [ref=e14]:
-        - generic [ref=e15]:
-          - button "Cerrar catálogo de campos" [expanded] [ref=e16]:
-            - img [ref=e17]
-          - generic [ref=e21]:
-            - generic [ref=e24]: Campos
-            - generic [ref=e25]:
-              - tablist "Tipos de campo" [ref=e26]:
-                - tab "Estándar" [selected] [ref=e27] [cursor=pointer]:
-                  - img [ref=e29]
-                  - generic [ref=e32]: Base
-                  - generic [ref=e33]: "38"
-                - tab "Personalizados" [ref=e34] [cursor=pointer]:
-                  - img [ref=e36]
-                  - generic [ref=e40]: Custom
-                  - generic [ref=e41]: "0"
-                - tab "Prerrellenado" [ref=e42] [cursor=pointer]:
-                  - img [ref=e44]
-                  - generic [ref=e47]: Auto
-                  - generic [ref=e48]: "0"
-              - generic [ref=e50]:
-                - generic [ref=e51]:
-                  - img [ref=e53]
-                  - textbox "Buscar campo..." [ref=e56]
-                - generic [ref=e58]:
-                  - button "Todos" [ref=e59] [cursor=pointer]:
-                    - generic [ref=e60]: Todos
-                  - button "Favoritos (0)" [ref=e61] [cursor=pointer]:
-                    - generic [ref=e62]: Favoritos (0)
-                  - button "Recientes (0)" [ref=e63] [cursor=pointer]:
-                    - generic [ref=e64]: Recientes (0)
-                  - group "Diseño del catálogo" [ref=e65]:
-                    - button "Ver como lista detallada (≡)" [pressed] [ref=e66] [cursor=pointer]:
-                      - generic [ref=e67]:
-                        - img [ref=e69]
-                        - generic [ref=e72]: Lista
-                    - button "Ver como tarjetas densas (▦)" [ref=e73] [cursor=pointer]:
-                      - generic [ref=e74]:
-                        - img [ref=e76]
-                        - generic [ref=e78]: Tarjetas
-                    - button "Ver solo iconos (⠿)" [ref=e79] [cursor=pointer]:
-                      - generic [ref=e80]:
-                        - img [ref=e82]
-                        - generic [ref=e85]: Iconos
-            - generic [ref=e86]:
-              - generic [ref=e87]:
-                - button "Alternar categoría Firmas" [expanded] [ref=e88]:
-                  - generic [ref=e89]:
-                    - img [ref=e91]
-                    - generic [ref=e93]: Firmas
-                  - generic [ref=e94]: "3"
-                - generic [ref=e95]:
-                  - generic [ref=e98]:
-                    - button "Datesigned Datesigned" [ref=e99]:
-                      - generic "Datesigned" [ref=e101]:
-                        - img [ref=e102]
-                      - generic [ref=e106]: Datesigned
-                    - button "Marcar favorito" [ref=e107]: ★
-                  - generic [ref=e110]:
-                    - button "Initials Initials" [ref=e111]:
-                      - generic "Initials" [ref=e113]:
-                        - img [ref=e114]
-                      - generic [ref=e117]: Initials
-                    - button "Marcar favorito" [ref=e118]: ★
-                  - generic [ref=e121]:
-                    - button "Firma Firma" [ref=e122]:
-                      - generic "Firma" [ref=e124]:
-                        - img [ref=e125]
-                      - generic [ref=e128]: Firma
-                    - button "Marcar favorito" [ref=e129]: ★
-              - generic [ref=e130]:
-                - button "Alternar categoría Texto" [expanded] [ref=e131]:
-                  - generic [ref=e132]:
-                    - img [ref=e134]
-                    - generic [ref=e136]: Texto
-                  - generic [ref=e137]: "2"
-                - generic [ref=e138]:
-                  - generic [ref=e141]:
-                    - button "Número" [ref=e142]:
-                      - generic [ref=e145]: Número
-                    - button "Marcar favorito" [ref=e146]: ★
-                  - generic [ref=e149]:
-                    - button "Texto Texto" [ref=e150]:
-                      - generic "Texto" [ref=e152]:
-                        - img [ref=e153]
-                      - generic [ref=e159]: Texto
-                    - button "Marcar favorito" [ref=e160]: ★
-              - generic [ref=e161]:
-                - button "Alternar categoría Imagen y medios" [expanded] [ref=e162]:
-                  - generic [ref=e163]:
-                    - img [ref=e165]
-                    - generic [ref=e167]: Imagen y medios
-                  - generic [ref=e168]: "2"
-                - generic [ref=e169]:
-                  - generic [ref=e172]:
-                    - button "Imagen Imagen" [ref=e173]:
-                      - generic "Imagen" [ref=e175]:
-                        - img [ref=e176]
-                      - generic [ref=e181]: Imagen
-                    - button "Marcar favorito" [ref=e182]: ★
-                  - generic [ref=e185]:
-                    - button "SVG SVG" [ref=e186]:
-                      - generic "SVG" [ref=e188]:
-                        - img [ref=e189]
-                      - generic [ref=e194]: SVG
-                    - button "Marcar favorito" [ref=e195]: ★
-              - generic [ref=e196]:
-                - button "Alternar categoría Selecciones" [expanded] [ref=e197]:
-                  - generic [ref=e198]:
-                    - img [ref=e200]
-                    - generic [ref=e202]: Selecciones
-                  - generic [ref=e203]: "4"
-                - generic [ref=e204]:
-                  - generic [ref=e207]:
-                    - button "Casilla Casilla" [ref=e208]:
-                      - generic "Casilla" [ref=e210]:
-                        - img [ref=e211]
-                      - generic [ref=e215]: Casilla
-                    - button "Marcar favorito" [ref=e216]: ★
-                  - generic [ref=e219]:
-                    - button "Grupo de Casillas Grupo de Casillas" [ref=e220]:
-                      - generic "Grupo de Casillas" [ref=e222]:
-                        - img [ref=e223]
-                      - generic [ref=e227]: Grupo de Casillas
-                    - button "Marcar favorito" [ref=e228]: ★
-                  - generic [ref=e231]:
-                    - button "Opción Opción" [ref=e232]:
-                      - generic "Opción" [ref=e234]:
-                        - img [ref=e235]
-                      - generic [ref=e239]: Opción
-                    - button "Marcar favorito" [ref=e240]: ★
-                  - generic [ref=e243]:
-                    - button "Lista Desplegable Lista Desplegable" [ref=e244]:
-                      - generic "Lista Desplegable" [ref=e246]:
-                        - img [ref=e247]
-                      - generic [ref=e250]: Lista Desplegable
-                    - button "Marcar favorito" [ref=e251]: ★
-              - generic [ref=e252]:
-                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e253]:
-                  - generic [ref=e254]:
-                    - img [ref=e256]
-                    - generic [ref=e258]: Fecha y Hora
-                  - generic [ref=e259]: "3"
-                - generic [ref=e260]:
-                  - generic [ref=e263]:
-                    - button "Fecha Fecha" [ref=e264]:
-                      - generic "Fecha" [ref=e266]:
-                        - img [ref=e267]
-                      - generic [ref=e270]: Fecha
-                    - button "Marcar favorito" [ref=e271]: ★
-                  - generic [ref=e274]:
-                    - button "Fecha Y Hora Fecha Y Hora" [ref=e275]:
-                      - generic "Fecha Y Hora" [ref=e277]:
-                        - img [ref=e278]
-                      - generic [ref=e283]: Fecha Y Hora
-                    - button "Marcar favorito" [ref=e284]: ★
-                  - generic [ref=e287]:
-                    - button "Hora Hora" [ref=e288]:
-                      - generic "Hora" [ref=e290]:
-                        - img [ref=e291]
-                      - generic [ref=e295]: Hora
-                    - button "Marcar favorito" [ref=e296]: ★
-              - generic [ref=e297]:
-                - button "Alternar categoría QR y Códigos" [expanded] [ref=e298]:
-                  - generic [ref=e299]:
-                    - img [ref=e301]
-                    - generic [ref=e303]: QR y Códigos
-                  - generic [ref=e304]: "12"
-                - generic [ref=e305]:
-                  - generic [ref=e308]:
-                    - button "Código de barras Código de barras" [ref=e309]:
-                      - generic "Código de barras" [ref=e311]:
-                        - img [ref=e312]
-                      - generic [ref=e314]: Código de barras
-                    - button "Marcar favorito" [ref=e315]: ★
-                  - generic [ref=e318]:
-                    - button "Código de barras Código de barras" [ref=e319]:
-                      - generic "Código de barras" [ref=e321]:
-                        - img [ref=e322]
-                      - generic [ref=e324]: Código de barras
-                    - button "Marcar favorito" [ref=e325]: ★
-                  - generic [ref=e328]:
-                    - button "Código de barras Código de barras" [ref=e329]:
-                      - generic "Código de barras" [ref=e331]:
-                        - img [ref=e332]
-                      - generic [ref=e334]: Código de barras
-                    - button "Marcar favorito" [ref=e335]: ★
-                  - generic [ref=e338]:
-                    - button "Código de barras Código de barras" [ref=e339]:
-                      - generic "Código de barras" [ref=e341]:
-                        - img [ref=e342]
-                      - generic [ref=e344]: Código de barras
-                    - button "Marcar favorito" [ref=e345]: ★
-                  - generic [ref=e348]:
-                    - button "DataMatrix DataMatrix" [ref=e349]:
-                      - generic "DataMatrix" [ref=e351]:
-                        - img [ref=e352]
-                      - generic [ref=e354]: DataMatrix
-                    - button "Marcar favorito" [ref=e355]: ★
-                  - generic [ref=e358]:
-                    - button "Código de barras Código de barras" [ref=e359]:
-                      - generic "Código de barras" [ref=e361]:
-                        - img [ref=e362]
-                      - generic [ref=e364]: Código de barras
-                    - button "Marcar favorito" [ref=e365]: ★
-                  - generic [ref=e368]:
-                    - button "Japan Post Japan Post" [ref=e369]:
-                      - generic "Japan Post" [ref=e371]:
-                        - img [ref=e372]
-                      - generic [ref=e374]: Japan Post
-                    - button "Marcar favorito" [ref=e375]: ★
-                  - generic [ref=e378]:
-                    - button "NW7 NW7" [ref=e379]:
-                      - generic "NW7" [ref=e381]:
-                        - img [ref=e382]
-                      - generic [ref=e384]: NW7
-                    - button "Marcar favorito" [ref=e385]: ★
-                  - generic [ref=e388]:
-                    - button "PDF417 PDF417" [ref=e389]:
-                      - generic "PDF417" [ref=e391]:
-                        - img [ref=e392]
-                      - generic [ref=e394]: PDF417
-                    - button "Marcar favorito" [ref=e395]: ★
-                  - generic [ref=e398]:
-                    - button "Código QR Código QR" [ref=e399]:
-                      - generic "Código QR" [ref=e401]:
-                        - img [ref=e402]
-                      - generic [ref=e409]: Código QR
-                    - button "Marcar favorito" [ref=e410]: ★
-                  - generic [ref=e413]:
-                    - button "Código de barras Código de barras" [ref=e414]:
-                      - generic "Código de barras" [ref=e416]:
-                        - img [ref=e417]
-                      - generic [ref=e419]: Código de barras
-                    - button "Marcar favorito" [ref=e420]: ★
-                  - generic [ref=e423]:
-                    - button "Código de barras Código de barras" [ref=e424]:
-                      - generic "Código de barras" [ref=e426]:
-                        - img [ref=e427]
-                      - generic [ref=e429]: Código de barras
-                    - button "Marcar favorito" [ref=e430]: ★
-              - generic [ref=e431]:
-                - button "Alternar categoría Estructura" [expanded] [ref=e432]:
-                  - generic [ref=e433]:
-                    - img [ref=e435]
-                    - generic [ref=e437]: Estructura
-                  - generic [ref=e438]: "4"
-                - generic [ref=e439]:
-                  - generic [ref=e442]:
-                    - button "Óvalo Óvalo" [ref=e443]:
-                      - generic "Óvalo" [ref=e445]:
-                        - img [ref=e446]
-                      - generic [ref=e449]: Óvalo
-                    - button "Marcar favorito" [ref=e450]: ★
-                  - generic [ref=e453]:
-                    - button "Línea Línea" [ref=e454]:
-                      - generic "Línea" [ref=e456]:
-                        - img [ref=e457]
-                      - generic [ref=e459]: Línea
-                    - button "Marcar favorito" [ref=e460]: ★
-                  - generic [ref=e463]:
-                    - button "Rectángulo Rectángulo" [ref=e464]:
-                      - generic "Rectángulo" [ref=e466]:
-                        - img [ref=e467]
-                      - generic [ref=e470]: Rectángulo
-                    - button "Marcar favorito" [ref=e471]: ★
-                  - generic [ref=e474]:
-                    - button "Tabla Tabla" [ref=e475]:
-                      - generic "Tabla" [ref=e477]:
-                        - img [ref=e478]
-                      - generic [ref=e481]: Tabla
-                    - button "Marcar favorito" [ref=e482]: ★
-              - generic [ref=e483]:
-                - button "Alternar categoría Acción" [expanded] [ref=e484]:
-                  - generic [ref=e485]:
-                    - img [ref=e487]
-                    - generic [ref=e489]: Acción
-                  - generic [ref=e490]: "4"
-                - generic [ref=e491]:
-                  - generic [ref=e494]:
-                    - button "Approve Approve" [ref=e495]:
-                      - generic "Approve" [ref=e497]:
-                        - img [ref=e498]
-                      - generic [ref=e502]: Approve
-                    - button "Marcar favorito" [ref=e503]: ★
-                  - generic [ref=e506]:
-                    - button "Attachment Attachment" [ref=e507]:
-                      - generic "Attachment" [ref=e509]:
-                        - img [ref=e510]
-                      - generic [ref=e513]: Attachment
-                    - button "Marcar favorito" [ref=e514]: ★
-                  - generic [ref=e517]:
-                    - button "Decline Decline" [ref=e518]:
-                      - generic "Decline" [ref=e520]:
-                        - img [ref=e521]
-                      - generic [ref=e526]: Decline
-                    - button "Marcar favorito" [ref=e527]: ★
-                  - generic [ref=e530]:
-                    - button "Note Note" [ref=e531]:
-                      - generic "Note" [ref=e533]:
-                        - img [ref=e534]
-                      - generic [ref=e538]: Note
-                    - button "Marcar favorito" [ref=e539]: ★
-              - generic [ref=e540]:
-                - button "Alternar categoría Destinatario" [expanded] [ref=e541]:
-                  - generic [ref=e542]:
-                    - img [ref=e544]
-                    - generic [ref=e546]: Destinatario
-                  - generic [ref=e547]: "4"
-                - generic [ref=e548]:
-                  - generic [ref=e551]:
-                    - button "Company Company" [ref=e552]:
-                      - generic "Company" [ref=e554]:
-                        - img [ref=e555]
-                      - generic [ref=e560]: Company
-                    - button "Marcar favorito" [ref=e561]: ★
-                  - generic [ref=e564]:
-                    - button "Emailaddress Emailaddress" [ref=e565]:
-                      - generic "Emailaddress" [ref=e567]:
-                        - img [ref=e568]
-                      - generic [ref=e572]: Emailaddress
-                    - button "Marcar favorito" [ref=e573]: ★
-                  - generic [ref=e576]:
-                    - button "Fullname Fullname" [ref=e577]:
-                      - generic "Fullname" [ref=e579]:
-                        - img [ref=e580]
-                      - generic [ref=e584]: Fullname
-                    - button "Marcar favorito" [ref=e585]: ★
-                  - generic [ref=e588]:
-                    - button "Title Title" [ref=e589]:
-                      - generic "Title" [ref=e591]:
-                        - img [ref=e592]
-                      - generic [ref=e596]: Title
-                    - button "Marcar favorito" [ref=e597]: ★
-        - generic [ref=e598]:
-          - generic:
-            - generic [ref=e600]:
-              - button "Página anterior" [disabled] [ref=e601]:
-                - generic:
-                  - img
-              - button "Pág 1/14" [ref=e602] [cursor=pointer]:
-                - generic [ref=e603]: Pág 1/14
-              - button "Página siguiente" [ref=e604] [cursor=pointer]:
-                - img [ref=e606]
-            - generic [ref=e609]:
-              - button "Guardar" [ref=e610] [cursor=pointer]:
-                - img [ref=e612]
-                - generic [ref=e616]: Guardar
-              - button "Más acciones" [ref=e617] [cursor=pointer]:
-                - img [ref=e619]
-            - generic [ref=e624]:
-              - button "Deshacer" [ref=e625] [cursor=pointer]:
-                - img [ref=e627]
-              - button "Rehacer" [ref=e630] [cursor=pointer]:
-                - img [ref=e632]
-              - button "Ajustar página" [ref=e635] [cursor=pointer]:
-                - img [ref=e637]
-              - generic [ref=e642]:
-                - button "Reducir zoom" [ref=e643] [cursor=pointer]:
-                  - img [ref=e645]
-                - generic "Nivel de zoom" [ref=e646] [cursor=pointer]:
-                  - generic [ref=e648]:
-                    - combobox "Nivel de zoom" [ref=e650]
-                    - generic "100%" [ref=e651]
-                  - generic:
-                    - img:
-                      - img
-                - button "Aumentar zoom" [ref=e652] [cursor=pointer]:
-                  - img [ref=e654]
-          - complementary "Panel derecho del diseñador" [ref=e655]:
-            - generic [ref=e656]:
-              - generic [ref=e657]:
-                - tablist "Panel derecho" [ref=e658]:
-                  - tab "Abrir panel Campos" [ref=e659]:
-                    - generic [ref=e660]:
-                      - img [ref=e662]
-                      - generic [ref=e666]: Campos
-                  - tab "Abrir panel Detalle" [disabled] [ref=e667]:
-                    - generic [ref=e668]:
-                      - img [ref=e670]
-                      - generic [ref=e671]: Detalle
-                  - tab "Abrir panel Docs" [selected] [ref=e672]:
-                    - generic [ref=e673]:
-                      - img [ref=e675]
-                      - generic [ref=e678]: Docs
-                - button "Ocultar panel derecho" [expanded] [ref=e681]:
-                  - img [ref=e682]
-              - generic [ref=e688]:
-                - generic [ref=e690]:
-                  - img [ref=e692]
-                  - generic [ref=e696]:
-                    - generic [ref=e697]: Documentos cargados
-                    - generic [ref=e698]: Selecciona una página
-                    - generic [ref=e700]: "2"
-                  - button "Subir PDF" [ref=e703] [cursor=pointer]:
-                    - img [ref=e705]
-                    - generic [ref=e709]: Subir PDF
-                - generic "Lista de páginas del documento" [ref=e710]:
-                  - generic [ref=e711]:
-                    - generic [ref=e712]:
-                      - button "1 Declaración de datos 1 Activo 14 paginas" [pressed] [ref=e713]:
-                        - generic [ref=e716]: "1"
-                        - generic [ref=e717]:
-                          - strong [ref=e719]: Declaración de datos
-                          - generic [ref=e720]:
-                            - generic [ref=e721]: "1"
-                            - generic [ref=e722]: Activo
-                          - generic [ref=e723]: 14 paginas
-                      - button "Eliminar Declaración de datos" [ref=e724] [cursor=pointer]:
-                        - img [ref=e726]
-                    - generic [ref=e729]:
-                      - button "2 Certificado académico 2 5 paginas" [ref=e730]:
-                        - generic [ref=e733]: "2"
-                        - generic [ref=e734]:
-                          - strong [ref=e736]: Certificado académico
-                          - generic [ref=e738]: "2"
-                          - generic [ref=e739]: 5 paginas
-                      - button "Eliminar Certificado académico" [ref=e740] [cursor=pointer]:
-                        - img [ref=e742]
-          - generic [ref=e747]:
-            - generic [ref=e748]:
-              - generic "contract_name" [ref=e750] [cursor=pointer]:
-                - generic [ref=e753]: Contrato principal
-                - generic: contract_name · text
-              - generic "contract_date" [ref=e754] [cursor=pointer]:
-                - generic [ref=e757]: 2026-05-01
-                - generic: contract_date · text
-              - generic "contract_stage" [ref=e758] [cursor=pointer]:
-                - generic [ref=e759]:
-                  - generic [ref=e761]: Pendiente
-                  - button:
-                    - img
-                - generic: contract_stage · select
-              - generic "approval_mode" [ref=e762] [cursor=pointer]:
-                - generic:
-                  - radiogroup "Modo de aprobación":
-                    - generic:
-                      - radio "Firma" [checked] [disabled]
-                      - radio "Revisión" [disabled]
-              - generic "required_documents" [ref=e763] [cursor=pointer]:
-                - generic:
-                  - group "Documentos requeridos":
-                    - generic:
-                      - checkbox "Cédula" [checked] [disabled]:
-                        - generic:
-                          - generic:
-                            - generic:
-                              - img
-                      - checkbox "RUC" [disabled]
-                      - checkbox "Contrato firmado" [checked] [disabled]:
-                        - generic:
-                          - generic:
-                            - generic:
-                              - img
-              - generic "routing-primary-showcase_attachment" [ref=e764] [cursor=pointer]:
-                - generic [ref=e767]:
-                  - img [ref=e768]
-                  - text: Adjuntar archivo
-                - generic: routing-primary-showcase_attachment · attachment
-              - generic "routing-primary-showcase_approve" [ref=e770] [cursor=pointer]:
-                - button "Aprobar" [ref=e773]:
-                  - img [ref=e774]
-                  - text: Aprobar
-                - generic: routing-primary-showcase_approve · approve
-              - generic "Solo lectura" [ref=e776] [cursor=pointer]:
-                - generic [ref=e779]: Nota informativa
-                - generic: routing-primary-showcase_note · note
-                - generic: solo lectura
-              - generic "routing-primary-showcase_decline" [ref=e780] [cursor=pointer]:
-                - button "Rechazar" [ref=e783]:
-                  - img [ref=e784]
-                  - text: Rechazar
-                - generic: routing-primary-showcase_decline · decline
-              - generic "routing-primary-showcase_title" [ref=e787] [cursor=pointer]:
-                - generic: routing-primary-showcase_title · title
-              - generic "routing-primary-showcase_emailaddress" [ref=e791] [cursor=pointer]:
-                - generic: routing-primary-showcase_emailaddress · emailAddress
-            - generic [ref=e795]:
-              - generic "routing-primary-showcase_company" [ref=e797] [cursor=pointer]:
-                - generic: routing-primary-showcase_company · company
-              - generic "routing-primary-showcase_fullname" [ref=e801] [cursor=pointer]:
-                - generic: routing-primary-showcase_fullname · fullName
-              - generic "routing-primary-showcase_table" [ref=e805] [cursor=pointer]:
-                - generic [ref=e806]:
-                  - generic [ref=e810]: Name
-                  - generic [ref=e814]: City
-                  - generic [ref=e818]: Description
-                  - generic [ref=e822]: Alice
-                  - generic [ref=e830]: New York
-                  - generic [ref=e838]: Alice is a freelance web designer and developer
-                  - generic [ref=e846]: Bob
-                  - generic [ref=e854]: Paris
-                  - generic [ref=e862]: Bob is a freelance illustrator and graphic designer
-                - generic: routing-primary-showcase_table · table
-              - generic "routing-primary-showcase_date" [ref=e867] [cursor=pointer]:
-                - generic: routing-primary-showcase_date · date
-              - generic "routing-primary-showcase_datetime" [ref=e871] [cursor=pointer]:
-                - generic: routing-primary-showcase_datetime · dateTime
-              - generic "routing-primary-showcase_time" [ref=e875] [cursor=pointer]:
-                - generic: routing-primary-showcase_time · time
-            - generic [ref=e879]:
-              - generic "Solo lectura" [ref=e881] [cursor=pointer]:
-                - generic [ref=e884]: 17/07/2026
-                - generic: routing-primary-showcase_datesigned · dateSigned
-                - generic: solo lectura
-              - generic "routing-primary-showcase_signature" [ref=e885] [cursor=pointer]:
-                - generic: routing-primary-showcase_signature · signature
-              - generic "routing-primary-showcase_initials" [ref=e888] [cursor=pointer]:
-                - generic: routing-primary-showcase_initials · initials
-              - generic "routing-primary-showcase_code128" [ref=e891] [cursor=pointer]:
-                - img [ref=e894]
-                - generic: routing-primary-showcase_code128 · code128
-              - generic "routing-primary-showcase_code39" [ref=e895] [cursor=pointer]:
-                - img [ref=e898]
-                - generic: routing-primary-showcase_code39 · code39
-              - generic "routing-primary-showcase_ean13" [ref=e899] [cursor=pointer]:
-                - img [ref=e902]
-                - generic: routing-primary-showcase_ean13 · ean13
-            - generic "routing-primary-showcase_ean8" [ref=e905] [cursor=pointer]:
-              - img [ref=e908]
-              - generic: routing-primary-showcase_ean8 · ean8
-      - status [ref=e929]
-  - region "Resultados":
-    - generic:
-      - button "Resultados Sin artefactos":
-        - text: Resultados
-        - generic: Sin artefactos
-``​`
-```
-
-<a id="file-0268"></a>
-
-### 0268 — `test-results/tests-playwright-standard--66ac8-s-the-expected-schema-types-chromium/error-context.md`
-
-- **Lenguaje:** `markdown`
-- **Líneas:** `540`
-- **Tamaño original:** `27.1 KB`
-- **SHA1 corto:** `7447d15fbb`
-- **Estado:** `completo`
-
-```markdown
-# Page snapshot
-
-``​`yaml
-- main [ref=e3]:
-  - region "Canvas" [ref=e4]:
-    - generic [ref=e5]:
-      - heading "Canvas" [level=2] [ref=e6]
-      - paragraph [ref=e7]:
-        - text: La superficie de edición se monta dentro del runtime de
-        - code [ref=e8]: sisad-pdfme
-        - text: .
-    - generic [ref=e13]:
-      - generic [ref=e14]:
-        - generic [ref=e15]:
-          - button "Cerrar catálogo de campos" [expanded] [ref=e16]:
-            - img [ref=e17]
-          - generic [ref=e21]:
-            - generic [ref=e24]: Campos
-            - generic [ref=e25]:
-              - tablist "Tipos de campo" [ref=e26]:
-                - tab "Estándar" [selected] [ref=e27] [cursor=pointer]:
-                  - img [ref=e29]
-                  - generic [ref=e32]: Base
-                  - generic [ref=e33]: "38"
-                - tab "Personalizados" [ref=e34] [cursor=pointer]:
-                  - img [ref=e36]
-                  - generic [ref=e40]: Custom
-                  - generic [ref=e41]: "0"
-                - tab "Prerrellenado" [ref=e42] [cursor=pointer]:
-                  - img [ref=e44]
-                  - generic [ref=e47]: Auto
-                  - generic [ref=e48]: "0"
-              - generic [ref=e50]:
-                - generic [ref=e51]:
-                  - img [ref=e53]
-                  - textbox "Buscar campo..." [ref=e56]
-                - generic [ref=e58]:
-                  - button "Todos" [ref=e59] [cursor=pointer]:
-                    - generic [ref=e60]: Todos
-                  - button "Favoritos (0)" [ref=e61] [cursor=pointer]:
-                    - generic [ref=e62]: Favoritos (0)
-                  - button "Recientes (0)" [ref=e63] [cursor=pointer]:
-                    - generic [ref=e64]: Recientes (0)
-                  - group "Diseño del catálogo" [ref=e65]:
-                    - button "Ver como lista detallada (≡)" [pressed] [ref=e66] [cursor=pointer]:
-                      - generic [ref=e67]:
-                        - img [ref=e69]
-                        - generic [ref=e72]: Lista
-                    - button "Ver como tarjetas densas (▦)" [ref=e73] [cursor=pointer]:
-                      - generic [ref=e74]:
-                        - img [ref=e76]
-                        - generic [ref=e78]: Tarjetas
-                    - button "Ver solo iconos (⠿)" [ref=e79] [cursor=pointer]:
-                      - generic [ref=e80]:
-                        - img [ref=e82]
-                        - generic [ref=e85]: Iconos
-            - generic [ref=e86]:
-              - generic [ref=e87]:
-                - button "Alternar categoría Firmas" [expanded] [ref=e88]:
-                  - generic [ref=e89]:
-                    - img [ref=e91]
-                    - generic [ref=e93]: Firmas
-                  - generic [ref=e94]: "3"
-                - generic [ref=e95]:
-                  - generic [ref=e98]:
-                    - button "Datesigned Datesigned" [ref=e99]:
-                      - generic "Datesigned" [ref=e101]:
-                        - img [ref=e102]
-                      - generic [ref=e106]: Datesigned
-                    - button "Marcar favorito" [ref=e107]: ★
-                  - generic [ref=e110]:
-                    - button "Initials Initials" [ref=e111]:
-                      - generic "Initials" [ref=e113]:
-                        - img [ref=e114]
-                      - generic [ref=e117]: Initials
-                    - button "Marcar favorito" [ref=e118]: ★
-                  - generic [ref=e121]:
-                    - button "Firma Firma" [ref=e122]:
-                      - generic "Firma" [ref=e124]:
-                        - img [ref=e125]
-                      - generic [ref=e128]: Firma
-                    - button "Marcar favorito" [ref=e129]: ★
-              - generic [ref=e130]:
-                - button "Alternar categoría Texto" [expanded] [ref=e131]:
-                  - generic [ref=e132]:
-                    - img [ref=e134]
-                    - generic [ref=e136]: Texto
-                  - generic [ref=e137]: "2"
-                - generic [ref=e138]:
-                  - generic [ref=e141]:
-                    - button "Número" [ref=e142]:
-                      - generic [ref=e145]: Número
-                    - button "Marcar favorito" [ref=e146]: ★
-                  - generic [ref=e149]:
-                    - button "Texto Texto" [ref=e150]:
-                      - generic "Texto" [ref=e152]:
-                        - img [ref=e153]
-                      - generic [ref=e159]: Texto
-                    - button "Marcar favorito" [ref=e160]: ★
-              - generic [ref=e161]:
-                - button "Alternar categoría Imagen y medios" [expanded] [ref=e162]:
-                  - generic [ref=e163]:
-                    - img [ref=e165]
-                    - generic [ref=e167]: Imagen y medios
-                  - generic [ref=e168]: "2"
-                - generic [ref=e169]:
-                  - generic [ref=e172]:
-                    - button "Imagen Imagen" [ref=e173]:
-                      - generic "Imagen" [ref=e175]:
-                        - img [ref=e176]
-                      - generic [ref=e181]: Imagen
-                    - button "Marcar favorito" [ref=e182]: ★
-                  - generic [ref=e185]:
-                    - button "SVG SVG" [ref=e186]:
-                      - generic "SVG" [ref=e188]:
-                        - img [ref=e189]
-                      - generic [ref=e194]: SVG
-                    - button "Marcar favorito" [ref=e195]: ★
-              - generic [ref=e196]:
-                - button "Alternar categoría Selecciones" [expanded] [ref=e197]:
-                  - generic [ref=e198]:
-                    - img [ref=e200]
-                    - generic [ref=e202]: Selecciones
-                  - generic [ref=e203]: "4"
-                - generic [ref=e204]:
-                  - generic [ref=e207]:
-                    - button "Casilla Casilla" [ref=e208]:
-                      - generic "Casilla" [ref=e210]:
-                        - img [ref=e211]
-                      - generic [ref=e215]: Casilla
-                    - button "Marcar favorito" [ref=e216]: ★
-                  - generic [ref=e219]:
-                    - button "Grupo de Casillas Grupo de Casillas" [ref=e220]:
-                      - generic "Grupo de Casillas" [ref=e222]:
-                        - img [ref=e223]
-                      - generic [ref=e227]: Grupo de Casillas
-                    - button "Marcar favorito" [ref=e228]: ★
-                  - generic [ref=e231]:
-                    - button "Opción Opción" [ref=e232]:
-                      - generic "Opción" [ref=e234]:
-                        - img [ref=e235]
-                      - generic [ref=e239]: Opción
-                    - button "Marcar favorito" [ref=e240]: ★
-                  - generic [ref=e243]:
-                    - button "Lista Desplegable Lista Desplegable" [ref=e244]:
-                      - generic "Lista Desplegable" [ref=e246]:
-                        - img [ref=e247]
-                      - generic [ref=e250]: Lista Desplegable
-                    - button "Marcar favorito" [ref=e251]: ★
-              - generic [ref=e252]:
-                - button "Alternar categoría Fecha y Hora" [expanded] [ref=e253]:
-                  - generic [ref=e254]:
-                    - img [ref=e256]
-                    - generic [ref=e258]: Fecha y Hora
-                  - generic [ref=e259]: "3"
-                - generic [ref=e260]:
-                  - generic [ref=e263]:
-                    - button "Fecha Fecha" [ref=e264]:
-                      - generic "Fecha" [ref=e266]:
-                        - img [ref=e267]
-                      - generic [ref=e270]: Fecha
-                    - button "Marcar favorito" [ref=e271]: ★
-                  - generic [ref=e274]:
-                    - button "Fecha Y Hora Fecha Y Hora" [ref=e275]:
-                      - generic "Fecha Y Hora" [ref=e277]:
-                        - img [ref=e278]
-                      - generic [ref=e283]: Fecha Y Hora
-                    - button "Marcar favorito" [ref=e284]: ★
-                  - generic [ref=e287]:
-                    - button "Hora Hora" [ref=e288]:
-                      - generic "Hora" [ref=e290]:
-                        - img [ref=e291]
-                      - generic [ref=e295]: Hora
-                    - button "Marcar favorito" [ref=e296]: ★
-              - generic [ref=e297]:
-                - button "Alternar categoría QR y Códigos" [expanded] [ref=e298]:
-                  - generic [ref=e299]:
-                    - img [ref=e301]
-                    - generic [ref=e303]: QR y Códigos
-                  - generic [ref=e304]: "12"
-                - generic [ref=e305]:
-                  - generic [ref=e308]:
-                    - button "Código de barras Código de barras" [ref=e309]:
-                      - generic "Código de barras" [ref=e311]:
-                        - img [ref=e312]
-                      - generic [ref=e314]: Código de barras
-                    - button "Marcar favorito" [ref=e315]: ★
-                  - generic [ref=e318]:
-                    - button "Código de barras Código de barras" [ref=e319]:
-                      - generic "Código de barras" [ref=e321]:
-                        - img [ref=e322]
-                      - generic [ref=e324]: Código de barras
-                    - button "Marcar favorito" [ref=e325]: ★
-                  - generic [ref=e328]:
-                    - button "Código de barras Código de barras" [ref=e329]:
-                      - generic "Código de barras" [ref=e331]:
-                        - img [ref=e332]
-                      - generic [ref=e334]: Código de barras
-                    - button "Marcar favorito" [ref=e335]: ★
-                  - generic [ref=e338]:
-                    - button "Código de barras Código de barras" [ref=e339]:
-                      - generic "Código de barras" [ref=e341]:
-                        - img [ref=e342]
-                      - generic [ref=e344]: Código de barras
-                    - button "Marcar favorito" [ref=e345]: ★
-                  - generic [ref=e348]:
-                    - button "DataMatrix DataMatrix" [ref=e349]:
-                      - generic "DataMatrix" [ref=e351]:
-                        - img [ref=e352]
-                      - generic [ref=e354]: DataMatrix
-                    - button "Marcar favorito" [ref=e355]: ★
-                  - generic [ref=e358]:
-                    - button "Código de barras Código de barras" [ref=e359]:
-                      - generic "Código de barras" [ref=e361]:
-                        - img [ref=e362]
-                      - generic [ref=e364]: Código de barras
-                    - button "Marcar favorito" [ref=e365]: ★
-                  - generic [ref=e368]:
-                    - button "Japan Post Japan Post" [ref=e369]:
-                      - generic "Japan Post" [ref=e371]:
-                        - img [ref=e372]
-                      - generic [ref=e374]: Japan Post
-                    - button "Marcar favorito" [ref=e375]: ★
-                  - generic [ref=e378]:
-                    - button "NW7 NW7" [ref=e379]:
-                      - generic "NW7" [ref=e381]:
-                        - img [ref=e382]
-                      - generic [ref=e384]: NW7
-                    - button "Marcar favorito" [ref=e385]: ★
-                  - generic [ref=e388]:
-                    - button "PDF417 PDF417" [ref=e389]:
-                      - generic "PDF417" [ref=e391]:
-                        - img [ref=e392]
-                      - generic [ref=e394]: PDF417
-                    - button "Marcar favorito" [ref=e395]: ★
-                  - generic [ref=e398]:
-                    - button "Código QR Código QR" [ref=e399]:
-                      - generic "Código QR" [ref=e401]:
-                        - img [ref=e402]
-                      - generic [ref=e409]: Código QR
-                    - button "Marcar favorito" [ref=e410]: ★
-                  - generic [ref=e413]:
-                    - button "Código de barras Código de barras" [ref=e414]:
-                      - generic "Código de barras" [ref=e416]:
-                        - img [ref=e417]
-                      - generic [ref=e419]: Código de barras
-                    - button "Marcar favorito" [ref=e420]: ★
-                  - generic [ref=e423]:
-                    - button "Código de barras Código de barras" [ref=e424]:
-                      - generic "Código de barras" [ref=e426]:
-                        - img [ref=e427]
-                      - generic [ref=e429]: Código de barras
-                    - button "Marcar favorito" [ref=e430]: ★
-              - generic [ref=e431]:
-                - button "Alternar categoría Estructura" [expanded] [ref=e432]:
-                  - generic [ref=e433]:
-                    - img [ref=e435]
-                    - generic [ref=e437]: Estructura
-                  - generic [ref=e438]: "4"
-                - generic [ref=e439]:
-                  - generic [ref=e442]:
-                    - button "Óvalo Óvalo" [ref=e443]:
-                      - generic "Óvalo" [ref=e445]:
-                        - img [ref=e446]
-                      - generic [ref=e449]: Óvalo
-                    - button "Marcar favorito" [ref=e450]: ★
-                  - generic [ref=e453]:
-                    - button "Línea Línea" [ref=e454]:
-                      - generic "Línea" [ref=e456]:
-                        - img [ref=e457]
-                      - generic [ref=e459]: Línea
-                    - button "Marcar favorito" [ref=e460]: ★
-                  - generic [ref=e463]:
-                    - button "Rectángulo Rectángulo" [ref=e464]:
-                      - generic "Rectángulo" [ref=e466]:
-                        - img [ref=e467]
-                      - generic [ref=e470]: Rectángulo
-                    - button "Marcar favorito" [ref=e471]: ★
-                  - generic [ref=e474]:
-                    - button "Tabla Tabla" [ref=e475]:
-                      - generic "Tabla" [ref=e477]:
-                        - img [ref=e478]
-                      - generic [ref=e481]: Tabla
-                    - button "Marcar favorito" [ref=e482]: ★
-              - generic [ref=e483]:
-                - button "Alternar categoría Acción" [expanded] [ref=e484]:
-                  - generic [ref=e485]:
-                    - img [ref=e487]
-                    - generic [ref=e489]: Acción
-                  - generic [ref=e490]: "4"
-                - generic [ref=e491]:
-                  - generic [ref=e494]:
-                    - button "Approve Approve" [ref=e495]:
-                      - generic "Approve" [ref=e497]:
-                        - img [ref=e498]
-                      - generic [ref=e502]: Approve
-                    - button "Marcar favorito" [ref=e503]: ★
-                  - generic [ref=e506]:
-                    - button "Attachment Attachment" [ref=e507]:
-                      - generic "Attachment" [ref=e509]:
-                        - img [ref=e510]
-                      - generic [ref=e513]: Attachment
-                    - button "Marcar favorito" [ref=e514]: ★
-                  - generic [ref=e517]:
-                    - button "Decline Decline" [ref=e518]:
-                      - generic "Decline" [ref=e520]:
-                        - img [ref=e521]
-                      - generic [ref=e526]: Decline
-                    - button "Marcar favorito" [ref=e527]: ★
-                  - generic [ref=e530]:
-                    - button "Note Note" [ref=e531]:
-                      - generic "Note" [ref=e533]:
-                        - img [ref=e534]
-                      - generic [ref=e538]: Note
-                    - button "Marcar favorito" [ref=e539]: ★
-              - generic [ref=e540]:
-                - button "Alternar categoría Destinatario" [expanded] [ref=e541]:
-                  - generic [ref=e542]:
-                    - img [ref=e544]
-                    - generic [ref=e546]: Destinatario
-                  - generic [ref=e547]: "4"
-                - generic [ref=e548]:
-                  - generic [ref=e551]:
-                    - button "Company Company" [ref=e552]:
-                      - generic "Company" [ref=e554]:
-                        - img [ref=e555]
-                      - generic [ref=e560]: Company
-                    - button "Marcar favorito" [ref=e561]: ★
-                  - generic [ref=e564]:
-                    - button "Emailaddress Emailaddress" [ref=e565]:
-                      - generic "Emailaddress" [ref=e567]:
-                        - img [ref=e568]
-                      - generic [ref=e572]: Emailaddress
-                    - button "Marcar favorito" [ref=e573]: ★
-                  - generic [ref=e576]:
-                    - button "Fullname Fullname" [ref=e577]:
-                      - generic "Fullname" [ref=e579]:
-                        - img [ref=e580]
-                      - generic [ref=e584]: Fullname
-                    - button "Marcar favorito" [ref=e585]: ★
-                  - generic [ref=e588]:
-                    - button "Title Title" [ref=e589]:
-                      - generic "Title" [ref=e591]:
-                        - img [ref=e592]
-                      - generic [ref=e596]: Title
-                    - button "Marcar favorito" [ref=e597]: ★
-        - generic [ref=e598]:
-          - generic:
-            - generic [ref=e600]:
-              - button "Página anterior" [disabled] [ref=e601]:
-                - generic:
-                  - img
-              - button "Pág 1/14" [ref=e602] [cursor=pointer]:
-                - generic [ref=e603]: Pág 1/14
-              - button "Página siguiente" [ref=e604] [cursor=pointer]:
-                - img [ref=e606]
-            - generic [ref=e609]:
-              - button "Guardar" [ref=e610] [cursor=pointer]:
-                - img [ref=e612]
-                - generic [ref=e616]: Guardar
-              - button "Más acciones" [ref=e617] [cursor=pointer]:
-                - img [ref=e619]
-            - generic [ref=e624]:
-              - button "Deshacer" [ref=e625] [cursor=pointer]:
-                - img [ref=e627]
-              - button "Rehacer" [ref=e630] [cursor=pointer]:
-                - img [ref=e632]
-              - button "Ajustar página" [ref=e635] [cursor=pointer]:
-                - img [ref=e637]
-              - generic [ref=e642]:
-                - button "Reducir zoom" [ref=e643] [cursor=pointer]:
-                  - img [ref=e645]
-                - generic "Nivel de zoom" [ref=e646] [cursor=pointer]:
-                  - generic [ref=e648]:
-                    - combobox "Nivel de zoom" [ref=e650]
-                    - generic "100%" [ref=e651]
-                  - generic:
-                    - img:
-                      - img
-                - button "Aumentar zoom" [ref=e652] [cursor=pointer]:
-                  - img [ref=e654]
-          - complementary "Panel derecho del diseñador" [ref=e655]:
-            - generic [ref=e656]:
-              - generic [ref=e657]:
-                - tablist "Panel derecho" [ref=e658]:
-                  - tab "Abrir panel Campos" [ref=e659]:
-                    - generic [ref=e660]:
-                      - img [ref=e662]
-                      - generic [ref=e666]: Campos
-                  - tab "Abrir panel Detalle" [disabled] [ref=e667]:
-                    - generic [ref=e668]:
-                      - img [ref=e670]
-                      - generic [ref=e671]: Detalle
-                  - tab "Abrir panel Docs" [selected] [ref=e672]:
-                    - generic [ref=e673]:
-                      - img [ref=e675]
-                      - generic [ref=e678]: Docs
-                - button "Ocultar panel derecho" [expanded] [ref=e681]:
-                  - img [ref=e682]
-              - generic [ref=e688]:
-                - generic [ref=e690]:
-                  - img [ref=e692]
-                  - generic [ref=e696]:
-                    - generic [ref=e697]: Documentos cargados
-                    - generic [ref=e698]: Selecciona una página
-                    - generic [ref=e700]: "2"
-                  - button "Subir PDF" [ref=e703] [cursor=pointer]:
-                    - img [ref=e705]
-                    - generic [ref=e709]: Subir PDF
-                - generic "Lista de páginas del documento" [ref=e710]:
-                  - generic [ref=e711]:
-                    - generic [ref=e712]:
-                      - button "1 Declaración de datos 1 Activo 14 paginas" [pressed] [ref=e713]:
-                        - generic [ref=e716]: "1"
-                        - generic [ref=e717]:
-                          - strong [ref=e719]: Declaración de datos
-                          - generic [ref=e720]:
-                            - generic [ref=e721]: "1"
-                            - generic [ref=e722]: Activo
-                          - generic [ref=e723]: 14 paginas
-                      - button "Eliminar Declaración de datos" [ref=e724] [cursor=pointer]:
-                        - img [ref=e726]
-                    - generic [ref=e729]:
-                      - button "2 Certificado académico 2 5 paginas" [ref=e730]:
-                        - generic [ref=e733]: "2"
-                        - generic [ref=e734]:
-                          - strong [ref=e736]: Certificado académico
-                          - generic [ref=e738]: "2"
-                          - generic [ref=e739]: 5 paginas
-                      - button "Eliminar Certificado académico" [ref=e740] [cursor=pointer]:
-                        - img [ref=e742]
-          - generic [ref=e747]:
-            - generic [ref=e748]:
-              - generic "contract_name" [ref=e750] [cursor=pointer]:
-                - generic [ref=e753]: Contrato principal
-                - generic: contract_name · text
-              - generic "contract_date" [ref=e754] [cursor=pointer]:
-                - generic [ref=e757]: 2026-05-01
-                - generic: contract_date · text
-              - generic "contract_stage" [ref=e758] [cursor=pointer]:
-                - generic [ref=e759]:
-                  - generic [ref=e761]: Pendiente
-                  - button:
-                    - img
-                - generic: contract_stage · select
-              - generic "approval_mode" [ref=e762] [cursor=pointer]:
-                - generic:
-                  - radiogroup "Modo de aprobación":
-                    - generic:
-                      - radio "Firma" [checked] [disabled]
-                      - radio "Revisión" [disabled]
-              - generic "required_documents" [ref=e763] [cursor=pointer]:
-                - generic:
-                  - group "Documentos requeridos":
-                    - generic:
-                      - checkbox "Cédula" [checked] [disabled]:
-                        - generic:
-                          - generic:
-                            - generic:
-                              - img
-                      - checkbox "RUC" [disabled]
-                      - checkbox "Contrato firmado" [checked] [disabled]:
-                        - generic:
-                          - generic:
-                            - generic:
-                              - img
-              - generic "routing-primary-showcase_attachment" [ref=e764] [cursor=pointer]:
-                - generic [ref=e767]:
-                  - img [ref=e768]
-                  - text: Adjuntar archivo
-                - generic: routing-primary-showcase_attachment · attachment
-              - generic "routing-primary-showcase_approve" [ref=e770] [cursor=pointer]:
-                - button "Aprobar" [ref=e773]:
-                  - img [ref=e774]
-                  - text: Aprobar
-                - generic: routing-primary-showcase_approve · approve
-              - generic "Solo lectura" [ref=e776] [cursor=pointer]:
-                - generic [ref=e779]: Nota informativa
-                - generic: routing-primary-showcase_note · note
-                - generic: solo lectura
-              - generic "routing-primary-showcase_decline" [ref=e780] [cursor=pointer]:
-                - button "Rechazar" [ref=e783]:
-                  - img [ref=e784]
-                  - text: Rechazar
-                - generic: routing-primary-showcase_decline · decline
-              - generic "routing-primary-showcase_title" [ref=e787] [cursor=pointer]:
-                - generic: routing-primary-showcase_title · title
-              - generic "routing-primary-showcase_emailaddress" [ref=e791] [cursor=pointer]:
-                - generic: routing-primary-showcase_emailaddress · emailAddress
-            - generic [ref=e795]:
-              - generic "routing-primary-showcase_company" [ref=e797] [cursor=pointer]:
-                - generic: routing-primary-showcase_company · company
-              - generic "routing-primary-showcase_fullname" [ref=e801] [cursor=pointer]:
-                - generic: routing-primary-showcase_fullname · fullName
-              - generic "routing-primary-showcase_table" [ref=e805] [cursor=pointer]:
-                - generic [ref=e806]:
-                  - generic [ref=e810]: Name
-                  - generic [ref=e814]: City
-                  - generic [ref=e818]: Description
-                  - generic [ref=e822]: Alice
-                  - generic [ref=e830]: New York
-                  - generic [ref=e838]: Alice is a freelance web designer and developer
-                  - generic [ref=e846]: Bob
-                  - generic [ref=e854]: Paris
-                  - generic [ref=e862]: Bob is a freelance illustrator and graphic designer
-                - generic: routing-primary-showcase_table · table
-              - generic "routing-primary-showcase_date" [ref=e867] [cursor=pointer]:
-                - generic: routing-primary-showcase_date · date
-              - generic "routing-primary-showcase_datetime" [ref=e871] [cursor=pointer]:
-                - generic: routing-primary-showcase_datetime · dateTime
-              - generic "routing-primary-showcase_time" [ref=e875] [cursor=pointer]:
-                - generic: routing-primary-showcase_time · time
-            - generic [ref=e879]:
-              - generic "Solo lectura" [ref=e881] [cursor=pointer]:
-                - generic [ref=e884]: 17/07/2026
-                - generic: routing-primary-showcase_datesigned · dateSigned
-                - generic: solo lectura
-              - generic "routing-primary-showcase_signature" [ref=e885] [cursor=pointer]:
-                - generic: routing-primary-showcase_signature · signature
-              - generic "routing-primary-showcase_initials" [ref=e888] [cursor=pointer]:
-                - generic: routing-primary-showcase_initials · initials
-              - generic "routing-primary-showcase_code128" [ref=e891] [cursor=pointer]:
-                - img [ref=e894]
-                - generic: routing-primary-showcase_code128 · code128
-              - generic "routing-primary-showcase_code39" [ref=e895] [cursor=pointer]:
-                - img [ref=e898]
-                - generic: routing-primary-showcase_code39 · code39
-              - generic "routing-primary-showcase_ean13" [ref=e899] [cursor=pointer]:
-                - img [ref=e902]
-                - generic: routing-primary-showcase_ean13 · ean13
-            - generic "routing-primary-showcase_ean8" [ref=e905] [cursor=pointer]:
-              - img [ref=e908]
-              - generic: routing-primary-showcase_ean8 · ean8
-      - status [ref=e929]
-  - region "Resultados":
-    - generic:
-      - button "Resultados Sin artefactos":
-        - text: Resultados
-        - generic: Sin artefactos
-``​`
-```
-
-<a id="file-0269"></a>
-
-### 0269 — `ai/task-cards/active/TASK-CSS-026-accelerated-tailwind-inline-decommission.md`
+### 0267 — `ai/task-cards/active/TASK-CSS-026-accelerated-tailwind-inline-decommission.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `109`
@@ -20584,9 +19837,9 @@ y en reescritura por REGRESSION-021; un bug ahí rompe permisos/colores runtime 
 - No tocar Moveable/Selecto/coordenadas/snapshot/generator/pdf-lib/zoom.
 ```
 
-<a id="file-0270"></a>
+<a id="file-0268"></a>
 
-### 0270 — `ai/task-cards/active/TASK-REGRESSION-021-shell-token-visual-recovery.md`
+### 0268 — `ai/task-cards/active/TASK-REGRESSION-021-shell-token-visual-recovery.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `214`
@@ -20811,9 +20064,9 @@ Detenerse si la recuperación exige más de 5 archivos de producto o si aparece 
 - Slice 2026-07-16z: `Item.tsx` elevó la capa de `ItemActions` y del botón `Eliminar` para que el affordance no desaparezca detrás del hit-target del row; `SidebarSurfacePrimitives.tsx` y `DetailSectionCard.tsx` subieron el contraste de los títulos y descripciones del inspector a `text-slate-950`/`text-slate-600`; `tests/playwright/list-view-regression.spec.ts` y `tests/unit/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.test.ts` quedaron como cobertura estable del row y del encabezado de sección. Validado con `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts tests/playwright/list-view-regression.spec.ts`, `npx vitest run tests/unit/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailSectionCard.test.ts tests/unit/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/Item.test.tsx` y regeneración de `reports/tailwind-migration/selector-duplicates-current.md`. El CSS activo sigue en 304 líneas y 85 apariciones de `@apply`; lo restante es contrato técnico/geométrico y no un candidato seguro para vaciar.
 ```
 
-<a id="file-0271"></a>
+<a id="file-0269"></a>
 
-### 0271 — `ai/task-cards/backlog/TASK-CSS-021-left-sidebar-overflow-tailwind-continuity.md`
+### 0269 — `ai/task-cards/backlog/TASK-CSS-021-left-sidebar-overflow-tailwind-continuity.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -20866,9 +20119,9 @@ Detenerse si la corrección depende del DOM del canvas o de más de 5 componente
 Medidas, estados y capturas antes/después.
 ```
 
-<a id="file-0272"></a>
+<a id="file-0270"></a>
 
-### 0272 — `ai/task-cards/backlog/TASK-CSS-022-left-sidebar-css-pruning.md`
+### 0270 — `ai/task-cards/backlog/TASK-CSS-022-left-sidebar-css-pruning.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -20918,9 +20171,9 @@ Detenerse si un selector tiene consumidor incierto o alcance global.
 Lista exacta de reglas retiradas y delta cuantitativo.
 ```
 
-<a id="file-0273"></a>
+<a id="file-0271"></a>
 
-### 0273 — `ai/task-cards/backlog/TASK-CSS-023-tailwind-migration-continuity-step-by-step.md`
+### 0271 — `ai/task-cards/backlog/TASK-CSS-023-tailwind-migration-continuity-step-by-step.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `84`
@@ -21015,9 +20268,9 @@ Detenerse si:
 Registro corto del slice, archivos tocados, validaciones ejecutadas y estado de CSS restante.
 ```
 
-<a id="file-0274"></a>
+<a id="file-0272"></a>
 
-### 0274 — `ai/task-cards/backlog/TASK-CSS-027-right-sidebar-constants-tailwind-scroll-polish.md`
+### 0272 — `ai/task-cards/backlog/TASK-CSS-027-right-sidebar-constants-tailwind-scroll-polish.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `95`
@@ -21123,9 +20376,9 @@ Detenerse si:
 Registro corto del slice, archivos tocados, clases migradas desde `constants.ts`, validaciones ejecutadas y CSS técnico restante.
 ```
 
-<a id="file-0275"></a>
+<a id="file-0273"></a>
 
-### 0275 — `ai/task-cards/backlog/TASK-LAB-030-canvas-first-shell-style-source-unification.md`
+### 0273 — `ai/task-cards/backlog/TASK-LAB-030-canvas-first-shell-style-source-unification.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -21178,9 +20431,9 @@ Detenerse si el cambio exige alterar el contrato del canvas o más de 5 archivos
 Mapa de fuentes de estilo antes/después y medidas finales.
 ```
 
-<a id="file-0276"></a>
+<a id="file-0274"></a>
 
-### 0276 — `ai/task-cards/backlog/TASK-QA-016-tailwind-design-visual-regression.md`
+### 0274 — `ai/task-cards/backlog/TASK-QA-016-tailwind-design-visual-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -21233,9 +20486,9 @@ Ante cualquier fallo funcional o visual, no editar producto: crear tarjeta nueva
 Reporte final con capturas, comandos, resultados y deuda remanente priorizada.
 ```
 
-<a id="file-0277"></a>
+<a id="file-0275"></a>
 
-### 0277 — `ai/task-cards/backlog/TASK-QA-017-listview-specs-docs-default-drift.md`
+### 0275 — `ai/task-cards/backlog/TASK-QA-017-listview-specs-docs-default-drift.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `39`
@@ -21285,9 +20538,9 @@ los testids del ListView están intactos (verificado: al seleccionar la pestaña
 - `npx playwright test tests/playwright/list-view-regression.spec.ts tests/playwright/detail-view-options-listview.spec.ts tests/playwright/right-sidebar-visual-polish.spec.ts`
 ```
 
-<a id="file-0278"></a>
+<a id="file-0276"></a>
 
-### 0278 — `ai/task-cards/backlog/TASK-SCHEMA-003-action-owner-accent-continuity.md`
+### 0276 — `ai/task-cards/backlog/TASK-SCHEMA-003-action-owner-accent-continuity.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -21340,9 +20593,9 @@ Detenerse si no existe contrato explícito de acción o si el acento reduce cont
 Matriz owner/action/estado y evidencia.
 ```
 
-<a id="file-0279"></a>
+<a id="file-0277"></a>
 
-### 0279 — `ai/task-cards/completed/completed-summary.md`
+### 0277 — `ai/task-cards/completed/completed-summary.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `152`
@@ -21505,9 +20758,9 @@ Este archivo es memoria histórica compacta. Sirve para evitar que agentes IA re
 Si un agente detecta una falla relacionada con una tarea completada, debe crear una task-card nueva con sufijo `regression` o `continuity`, no editar la tarea completada como si estuviera pendiente.
 ```
 
-<a id="file-0280"></a>
+<a id="file-0278"></a>
 
-### 0280 — `ai/task-cards/completed/README.md`
+### 0278 — `ai/task-cards/completed/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `3`
@@ -21521,9 +20774,9 @@ Si un agente detecta una falla relacionada con una tarea completada, debe crear 
 Mover aquí task-cards completadas con reporte final.
 ```
 
-<a id="file-0281"></a>
+<a id="file-0279"></a>
 
-### 0281 — `ai/task-cards/completed/TASK-ACTIONS-001-button-action-contract-audit.md`
+### 0279 — `ai/task-cards/completed/TASK-ACTIONS-001-button-action-contract-audit.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `89`
@@ -21623,9 +20876,9 @@ No crear wrappers ni nuevos menús. Esta task solo prepara inventario para la un
 - Validación: `node scripts/audit-buttons-actions.mjs` + `npm run build` exit 0.
 ```
 
-<a id="file-0282"></a>
+<a id="file-0280"></a>
 
-### 0282 — `ai/task-cards/completed/TASK-ACTIONS-002-commandbus-action-registry-unification.md`
+### 0280 — `ai/task-cards/completed/TASK-ACTIONS-002-commandbus-action-registry-unification.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `105`
@@ -21741,9 +20994,9 @@ release-edit/select-schema/open-properties).
   build exit 0. Sin cambios de geometría/selección.
 ```
 
-<a id="file-0283"></a>
+<a id="file-0281"></a>
 
-### 0283 — `ai/task-cards/completed/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md`
+### 0281 — `ai/task-cards/completed/TASK-ARCH-003-enforce-existing-ai-folder-architecture.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `66`
@@ -21820,9 +21073,9 @@ No se deben crear carpetas como `architecture/`, `migration/`, `repo-patch/`, `0
 - Completed no se reabre.
 ```
 
-<a id="file-0284"></a>
+<a id="file-0282"></a>
 
-### 0284 — `ai/task-cards/completed/TASK-ARCH-004-wrapper-reduction-public-api-hardening.md`
+### 0282 — `ai/task-cards/completed/TASK-ARCH-004-wrapper-reduction-public-api-hardening.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `77`
@@ -21910,9 +21163,9 @@ HOST_SPECIFIC_REMOVE = 0.
 - Validación: build exit 0 + `tests/unit/sisad-pdfme/react` en verde.
 ```
 
-<a id="file-0285"></a>
+<a id="file-0283"></a>
 
-### 0285 — `ai/task-cards/completed/TASK-CANVAS-001-protect-canvas-overflow.md`
+### 0283 — `ai/task-cards/completed/TASK-CANVAS-001-protect-canvas-overflow.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -21944,9 +21197,9 @@ Verificar que utilidades Tailwind no pisen `overflow:auto`, height, scale o page
 - No resolver el overflow con hacks del host.
 ```
 
-<a id="file-0286"></a>
+<a id="file-0284"></a>
 
-### 0286 — `ai/task-cards/completed/TASK-CANVAS-003-guides-ruler-black-overlay-regression.md`
+### 0284 — `ai/task-cards/completed/TASK-CANVAS-003-guides-ruler-black-overlay-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `78`
@@ -22035,9 +21288,9 @@ Verificado en viewport 1400×900 sobre `/lab/multi-document-routing` (multipági
 a cualquier zoom/scroll (no dependen de medida ni de cálculo geométrico).
 ```
 
-<a id="file-0287"></a>
+<a id="file-0285"></a>
 
-### 0287 — `ai/task-cards/completed/TASK-CSS-012-inline-tailwind-css-reduction.md`
+### 0285 — `ai/task-cards/completed/TASK-CSS-012-inline-tailwind-css-reduction.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `91`
@@ -22139,9 +21392,9 @@ No migrar reglas críticas de layout geométrico del PDF/canvas.
 - No se rompen screenshots baseline.
 ```
 
-<a id="file-0288"></a>
+<a id="file-0286"></a>
 
-### 0288 — `ai/task-cards/completed/TASK-CSS-013-selector-dedup-current-design-polish.md`
+### 0286 — `ai/task-cards/completed/TASK-CSS-013-selector-dedup-current-design-polish.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `86`
@@ -22238,9 +21491,9 @@ del canvas, Moveable, Selecto, zoom ni coordenadas PDF.
   `canvas-overflow-regression` y `drag-preview-and-canvas-scroll-regression` en verde.
 ```
 
-<a id="file-0289"></a>
+<a id="file-0287"></a>
 
-### 0289 — `ai/task-cards/completed/TASK-CSS-014-tailwind3-current-ui-dedup-polish.md`
+### 0287 — `ai/task-cards/completed/TASK-CSS-014-tailwind3-current-ui-dedup-polish.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `85`
@@ -22336,9 +21589,9 @@ No tocar `.moveable-*`, `.selecto-*`, transform, zoom math, paper/canvas geometr
       sin tocar geometría crítica.
 ```
 
-<a id="file-0290"></a>
+<a id="file-0288"></a>
 
-### 0290 — `ai/task-cards/completed/TASK-CSS-015-lab-routes-tailwind3-dedup.md`
+### 0288 — `ai/task-cards/completed/TASK-CSS-015-lab-routes-tailwind3-dedup.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -22363,9 +21616,9 @@ Eliminar CSS duplicado del host lab solo después de mover UI segura a JSX/Tailw
 - Menos selectores duplicados y sin regresión visual.
 ```
 
-<a id="file-0291"></a>
+<a id="file-0289"></a>
 
-### 0291 — `ai/task-cards/completed/TASK-CSS-018-stabilize-tailwind-cleanup.md`
+### 0289 — `ai/task-cards/completed/TASK-CSS-018-stabilize-tailwind-cleanup.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `41`
@@ -22417,9 +21670,9 @@ Basado en `component-migration-ledger.md` y `active-selector-duplicates.md`.
 - La continuidad visual se valida por las task-cards de regresión funcional y por los tests de sidebar/right-sidebar ya existentes.
 ```
 
-<a id="file-0292"></a>
+<a id="file-0290"></a>
 
-### 0292 — `ai/task-cards/completed/TASK-CSS-019-jsx-tsx-tailwind-migration-and-css-reduction.md`
+### 0290 — `ai/task-cards/completed/TASK-CSS-019-jsx-tsx-tailwind-migration-and-css-reduction.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `72`
@@ -22502,9 +21755,9 @@ Mover la mayor cantidad posible de clases visuales Tailwind desde `sisad-pdfme.c
 - La UI mantiene la misma interacción y el build/tests siguen pasando.
 ```
 
-<a id="file-0293"></a>
+<a id="file-0291"></a>
 
-### 0293 — `ai/task-cards/completed/TASK-CSS-020-lab-routes-zero-apply.md`
+### 0291 — `ai/task-cards/completed/TASK-CSS-020-lab-routes-zero-apply.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `50`
@@ -22565,9 +21818,9 @@ los componentes JSX (PageHeader/PdfmeLabPage/CompactControls/ResultsPanel/
 PopoverMenu). Verificado: `grep -c "@apply"` = 0. Objetivo cumplido.
 ```
 
-<a id="file-0294"></a>
+<a id="file-0292"></a>
 
-### 0294 — `ai/task-cards/completed/TASK-CSS-023-right-sidebar-documents-tailwind-continuity.md`
+### 0292 — `ai/task-cards/completed/TASK-CSS-023-right-sidebar-documents-tailwind-continuity.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -22620,9 +21873,9 @@ Detenerse si requiere cambiar lógica de documentos o más de 5 archivos.
 Matriz de estados y evidencia visual.
 ```
 
-<a id="file-0295"></a>
+<a id="file-0293"></a>
 
-### 0295 — `ai/task-cards/completed/TASK-CSS-024-right-sidebar-listview-row-flat.md`
+### 0293 — `ai/task-cards/completed/TASK-CSS-024-right-sidebar-listview-row-flat.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `99`
@@ -22732,9 +21985,9 @@ edición por TASK-REGRESSION-021; la dedup CSS de `.list-view-item` ya estaba
 resuelta por el trabajo paralelo.
 ```
 
-<a id="file-0296"></a>
+<a id="file-0294"></a>
 
-### 0296 — `ai/task-cards/completed/TASK-CSS-025-context-summary-guides-apply-to-jsx.md`
+### 0294 — `ai/task-cards/completed/TASK-CSS-025-context-summary-guides-apply-to-jsx.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `116`
@@ -22861,9 +22114,9 @@ las 3 formas de grep. El bulk-delete automático por detector ingenuo NO es
 seguro (falsos positivos rompen estilos vivos).
 ```
 
-<a id="file-0297"></a>
+<a id="file-0295"></a>
 
-### 0297 — `ai/task-cards/completed/TASK-DETAIL-015-access-state-label-sync.md`
+### 0295 — `ai/task-cards/completed/TASK-DETAIL-015-access-state-label-sync.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `85`
@@ -22959,9 +22212,9 @@ No tocar recipients ni SnapshotAdapter. Esta tarea solo sincroniza consumo de es
   `schema-lock-state-consistency.spec.ts` en verde. Build exit 0.
 ```
 
-<a id="file-0298"></a>
+<a id="file-0296"></a>
 
-### 0298 — `ai/task-cards/completed/TASK-INTERACTION-016-assignment-modal-selection-freeze-regression.md`
+### 0296 — `ai/task-cards/completed/TASK-INTERACTION-016-assignment-modal-selection-freeze-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `36`
@@ -23008,9 +22261,9 @@ Validación (todo en verde):
 - `npm run build` exit 0.
 ```
 
-<a id="file-0299"></a>
+<a id="file-0297"></a>
 
-### 0299 — `ai/task-cards/completed/TASK-LAB-017-pdfcomponent-integration-boundary.md`
+### 0297 — `ai/task-cards/completed/TASK-LAB-017-pdfcomponent-integration-boundary.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -23040,9 +22293,9 @@ Eliminar el uso de internals del core desde `src/features/pdfcomponent`.
 - `PdfmeLabPage.jsx` ya no usa `usePdfmeRuntimeInstance` ni `DesignerEngineBuilder`.
 ```
 
-<a id="file-0300"></a>
+<a id="file-0298"></a>
 
-### 0300 — `ai/task-cards/completed/TASK-LAB-018-use-pdfme-lab-integration-hook.md`
+### 0298 — `ai/task-cards/completed/TASK-LAB-018-use-pdfme-lab-integration-hook.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -23073,9 +22326,9 @@ Crear un hook que normalice template, recipients, documents, inputs, config, act
 - `PdfmeLabPage.jsx` dejó de armar `commonOptions` manualmente y consume la integración única.
 ```
 
-<a id="file-0301"></a>
+<a id="file-0299"></a>
 
-### 0301 — `ai/task-cards/completed/TASK-LAB-019-normalize-lab-example-data-contract.md`
+### 0299 — `ai/task-cards/completed/TASK-LAB-019-normalize-lab-example-data-contract.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `16`
@@ -23102,9 +22355,9 @@ Dividir `labExamples.js` en data declarativa + registry + builders.
 - `labExamples.js` queda como façade o desaparece.
 ```
 
-<a id="file-0302"></a>
+<a id="file-0300"></a>
 
-### 0302 — `ai/task-cards/completed/TASK-LAB-020-public-runtime-wrappers-only.md`
+### 0300 — `ai/task-cards/completed/TASK-LAB-020-public-runtime-wrappers-only.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -23133,9 +22386,9 @@ Renderizar Designer/Form/Viewer desde wrappers públicos, no desde runtime inter
 - El host dejó de importar `usePdfmeRuntimeInstance` y validó build + smoke del docs tab.
 ```
 
-<a id="file-0303"></a>
+<a id="file-0301"></a>
 
-### 0303 — `ai/task-cards/completed/TASK-LAB-021-lab-action-registry-controller-contract.md`
+### 0301 — `ai/task-cards/completed/TASK-LAB-021-lab-action-registry-controller-contract.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -23161,9 +22414,9 @@ Que cada botón visible consuma un descriptor de acción y no lógica local repe
 - `CompactControls.jsx` no construye listas de acciones con reglas propias.
 ```
 
-<a id="file-0304"></a>
+<a id="file-0302"></a>
 
-### 0304 — `ai/task-cards/completed/TASK-LAB-022-remove-compat-wrapper-reexports.md`
+### 0302 — `ai/task-cards/completed/TASK-LAB-022-remove-compat-wrapper-reexports.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -23192,9 +22445,9 @@ Reducir wrappers que no agregan comportamiento.
 - `npm run build` siguió pasando tras la poda.
 ```
 
-<a id="file-0305"></a>
+<a id="file-0303"></a>
 
-### 0305 — `ai/task-cards/completed/TASK-LAB-023-lab-presentation-core-selectors.md`
+### 0303 — `ai/task-cards/completed/TASK-LAB-023-lab-presentation-core-selectors.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `14`
@@ -23219,9 +22472,9 @@ Evitar que el lab calcule por su cuenta visible/editable/locked.
 - Los counters del header coinciden con canvas/list/detail.
 ```
 
-<a id="file-0306"></a>
+<a id="file-0304"></a>
 
-### 0306 — `ai/task-cards/completed/TASK-LAB-024-external-data-integration-e2e.md`
+### 0304 — `ai/task-cards/completed/TASK-LAB-024-external-data-integration-e2e.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `19`
@@ -23251,9 +22504,9 @@ Probar integración dinámica real con datos que llegan después del primer rend
 - La validación de `Form/Viewer` en esta ruta quedó fuera de esta pasada porque el runtime de formulario rompe en la ruta base con el template actual.
 ```
 
-<a id="file-0307"></a>
+<a id="file-0305"></a>
 
-### 0307 — `ai/task-cards/completed/TASK-LAB-025-example-bundle-normalized-export.md`
+### 0305 — `ai/task-cards/completed/TASK-LAB-025-example-bundle-normalized-export.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -23282,9 +22535,9 @@ Actualizar export/download para no serializar estructuras duplicadas.
 - La unidad valida el bundle y el smoke verifica el affordance de descarga del card correcto.
 ```
 
-<a id="file-0308"></a>
+<a id="file-0306"></a>
 
-### 0308 — `ai/task-cards/completed/TASK-LAB-026-restore-designer-visual-baseline-after-integration.md`
+### 0306 — `ai/task-cards/completed/TASK-LAB-026-restore-designer-visual-baseline-after-integration.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `97`
@@ -23392,9 +22645,9 @@ canvas-interactions 3, checkbox 2, detail-view 6, parity/rail/smoke/zoom/lock,
 overflow, drag-preview), 288 unit tests de las suites tocadas, build exit 0.
 ```
 
-<a id="file-0309"></a>
+<a id="file-0307"></a>
 
-### 0309 — `ai/task-cards/completed/TASK-LAB-027-lab-canvas-first-shell-jsx-handoff.md`
+### 0307 — `ai/task-cards/completed/TASK-LAB-027-lab-canvas-first-shell-jsx-handoff.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `40`
@@ -23445,9 +22698,9 @@ Corregir el diseño de `/lab/multi-document-routing` después de la migración a
 - `labRoutes.css` quedó más reducido y concentrado en fallback/medios.
 ```
 
-<a id="file-0310"></a>
+<a id="file-0308"></a>
 
-### 0310 — `ai/task-cards/completed/TASK-LAB-028-runtime-collaboration-sync-and-form-echo.md`
+### 0308 — `ai/task-cards/completed/TASK-LAB-028-runtime-collaboration-sync-and-form-echo.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `48`
@@ -23506,9 +22759,9 @@ Hacer que el laboratorio propague correctamente el usuario activo y la vista glo
 - Validado con `vitest` y `npm run build`.
 ```
 
-<a id="file-0311"></a>
+<a id="file-0309"></a>
 
-### 0311 — `ai/task-cards/completed/TASK-LAB-029-multidocument-right-sidebar-docs-default.md`
+### 0309 — `ai/task-cards/completed/TASK-LAB-029-multidocument-right-sidebar-docs-default.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `43`
@@ -23562,9 +22815,9 @@ Hacer que la ruta `multi-document-routing` abra el RightSidebar con el tab `Docs
 - Validado con `vitest`, `npm run build` y Playwright.
 ```
 
-<a id="file-0312"></a>
+<a id="file-0310"></a>
 
-### 0312 — `ai/task-cards/completed/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md`
+### 0310 — `ai/task-cards/completed/TASK-PDFME-010-drag-preview-and-canvas-scroll-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `40`
@@ -23615,9 +22868,9 @@ Body no scrollea dentro del diseñador fullscreen.
 - No resolver el caso con hacks de host.
 ```
 
-<a id="file-0313"></a>
+<a id="file-0311"></a>
 
-### 0313 — `ai/task-cards/completed/TASK-PDFME-011-connectivity-sisad-restore.md`
+### 0311 — `ai/task-cards/completed/TASK-PDFME-011-connectivity-sisad-restore.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -23665,9 +22918,9 @@ connectivity: {
 - Se validó con pruebas unitarias de round-trip y lookup.
 ```
 
-<a id="file-0314"></a>
+<a id="file-0312"></a>
 
-### 0314 — `ai/task-cards/completed/TASK-PDFME-012-global-visibility-wiring-continuity.md`
+### 0312 — `ai/task-cards/completed/TASK-PDFME-012-global-visibility-wiring-continuity.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `48`
@@ -23726,9 +22979,9 @@ La configuración global ya existe, pero cada componente debe consumir una fuent
 - Se agregaron pruebas de `advanced` y visibilidad total del inspector.
 ```
 
-<a id="file-0315"></a>
+<a id="file-0313"></a>
 
-### 0315 — `ai/task-cards/completed/TASK-PDFME-013-controller-real-api-no-noop.md`
+### 0313 — `ai/task-cards/completed/TASK-PDFME-013-controller-real-api-no-noop.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -23776,9 +23029,9 @@ Evitar que `useSisadPdfmeController` exponga métodos que aparentan funcionar pe
 - La API pública documenta claramente qué métodos están disponibles.
 ```
 
-<a id="file-0316"></a>
+<a id="file-0314"></a>
 
-### 0316 — `ai/task-cards/completed/TASK-PDFME-014-rightsidebar-reassign-state-regression.md`
+### 0314 — `ai/task-cards/completed/TASK-PDFME-014-rightsidebar-reassign-state-regression.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `45`
@@ -23834,9 +23087,9 @@ handler/controller disponible
 - No limpiar selección al cerrar modal.
 ```
 
-<a id="file-0317"></a>
+<a id="file-0315"></a>
 
-### 0317 — `ai/task-cards/completed/TASK-QA-015-action-coverage-regression-suite.md`
+### 0315 — `ai/task-cards/completed/TASK-QA-015-action-coverage-regression-suite.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `86`
@@ -23933,9 +23186,9 @@ Suite creada y en verde:
       (canvas-overflow + drag-preview specs en verde).
 ```
 
-<a id="file-0318"></a>
+<a id="file-0316"></a>
 
-### 0318 — `ai/task-cards/completed/TASK-REGRESSION-020-owner-color-renderer-continuity.md`
+### 0316 — `ai/task-cards/completed/TASK-REGRESSION-020-owner-color-renderer-continuity.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `49`
@@ -23995,9 +23248,9 @@ Detenerse si el identificador real no está disponible en el contrato público o
 Tabla antes/después de resolución de propietario, archivos modificados, pruebas ejecutadas y evidencia visual.
 ```
 
-<a id="file-0319"></a>
+<a id="file-0317"></a>
 
-### 0319 — `ai/task-cards/completed/TASK-RUNTIME-015-config-hook-visibility-action-map.md`
+### 0317 — `ai/task-cards/completed/TASK-RUNTIME-015-config-hook-visibility-action-map.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `59`
@@ -24067,9 +23320,9 @@ npm run build
 - Validación: `npx vitest run tests/unit/sisad-pdfme/config` (7 tests) + build.
 ```
 
-<a id="file-0320"></a>
+<a id="file-0318"></a>
 
-### 0320 — `ai/task-cards/completed/TASK-UI-015-right-left-rail-collapse-polish.md`
+### 0318 — `ai/task-cards/completed/TASK-UI-015-right-left-rail-collapse-polish.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `77`
@@ -24157,9 +23410,9 @@ No modificar lógica de panels ni selection; solo wiring visual/accionable.
   `sidebar-collapse-parity.spec.ts` en verde. Build exit 0.
 ```
 
-<a id="file-0321"></a>
+<a id="file-0319"></a>
 
-### 0321 — `ai/task-cards/completed/TASK-UI-016-zoom-toolbar-contract.md`
+### 0319 — `ai/task-cards/completed/TASK-UI-016-zoom-toolbar-contract.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `68`
@@ -24238,9 +23491,9 @@ npm run build
   125% y verificar actualización) + `zoomContract.test.ts` (5 unit). Build exit 0.
 ```
 
-<a id="file-0322"></a>
+<a id="file-0320"></a>
 
-### 0322 — `ai/task-cards/completed/TASK-UI-017-density-breakpoints-sync.md`
+### 0320 — `ai/task-cards/completed/TASK-UI-017-density-breakpoints-sync.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `37`
@@ -24288,9 +23541,9 @@ Alinear los breakpoints de `useResponsiveDensity` con los anchos reales definido
 - Verificación visual de los 3 niveles de densidad en el Designer.
 ```
 
-<a id="file-0323"></a>
+<a id="file-0321"></a>
 
-### 0323 — `reports/tailwind-migration/accelerated/constants-contract.md`
+### 0321 — `reports/tailwind-migration/accelerated/constants-contract.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `22`
@@ -24323,9 +23576,9 @@ añadiendo utilidades inline **junto** a la clase semántica (patrón
 `mergeClassNames(DESIGNER_CLASSNAME + 'list-view-item', 'relative flex ...')`), nunca en su lugar.
 ```
 
-<a id="file-0324"></a>
+<a id="file-0322"></a>
 
-### 0324 — `reports/tailwind-migration/accelerated/migration-ledger.md`
+### 0322 — `reports/tailwind-migration/accelerated/migration-ledger.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `92`
@@ -24428,9 +23681,9 @@ redujo en paralelo).
 - FASE I: métricas finales + QA.
 ```
 
-<a id="file-0325"></a>
+<a id="file-0323"></a>
 
-### 0325 — `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md`
+### 0323 — `src/sisad-pdfme/common/documentacion-common-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `784`
@@ -25225,9 +24478,9 @@ No reemplazar las validaciones actuales si ya se usan en runtime.
 7. En `expression.ts`, agregar límites o limpieza de cache para evitar crecimiento indefinido.
 ```
 
-<a id="file-0326"></a>
+<a id="file-0324"></a>
 
-### 0326 — `src/sisad-pdfme/common/README.md`
+### 0324 — `src/sisad-pdfme/common/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `33`
@@ -25271,9 +24524,9 @@ Este ZIP contiene los archivos `.ts` del paquete `common` con comentarios de arq
 - Revisar alineación de `ownerRecipientIds` entre Zod (`string[]`) y utilidades que aceptan `string | string[]`.
 ```
 
-<a id="file-0327"></a>
+<a id="file-0325"></a>
 
-### 0327 — `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md`
+### 0325 — `src/sisad-pdfme/converter/documentacion-converter-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -25452,9 +24705,9 @@ Debe exponer utilidades puras consumibles por UI, generator, importadores o adap
 ``​`
 ```
 
-<a id="file-0328"></a>
+<a id="file-0326"></a>
 
-### 0328 — `src/sisad-pdfme/converter/README.md`
+### 0326 — `src/sisad-pdfme/converter/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -25507,9 +24760,9 @@ Este módulo no debe conocer:
 Debe mantenerse como utilidad técnica reutilizable por el runtime.
 ```
 
-<a id="file-0329"></a>
+<a id="file-0327"></a>
 
-### 0329 — `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md`
+### 0327 — `src/sisad-pdfme/runtime/documentacion-runtime-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `151`
@@ -25671,9 +24924,9 @@ Riesgos técnicos:
 ``​`
 ```
 
-<a id="file-0330"></a>
+<a id="file-0328"></a>
 
-### 0330 — `src/sisad-pdfme/runtime/README.md`
+### 0328 — `src/sisad-pdfme/runtime/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -25699,9 +24952,9 @@ Este paquete contiene una versión comentada de los helpers/hooks de runtime env
 Estos archivos deben vivir como capa de runtime/adaptador. No deben contener reglas de negocio SISAD, lógica Uanataca, manipulación de canvas, CSS, Moveable, Selecto ni detalles de StepOne/StepTwo.
 ```
 
-<a id="file-0331"></a>
+<a id="file-0329"></a>
 
-### 0331 — `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md`
+### 0329 — `src/sisad-pdfme/ui/documentacion-ui-runtime-sisad-pdfme.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `168`
@@ -25880,9 +25133,9 @@ Este documento acompaña los archivos comentados del runtime UI. Resume responsa
 | types.ts | 147 | 161 |
 ```
 
-<a id="file-0332"></a>
+<a id="file-0330"></a>
 
-### 0332 — `src/sisad-pdfme/ui/README.md`
+### 0330 — `src/sisad-pdfme/ui/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -25931,9 +25184,9 @@ git diff -- src/sisad-pdfme/ui
 ``​`
 ```
 
-<a id="file-0333"></a>
+<a id="file-0331"></a>
 
-### 0333 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
+### 0331 — `.tailwind-migration-backups/20260708-111736/reports/tailwind-migration/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `76`
@@ -26020,9 +25273,591 @@ Migración incremental de diseños a Tailwind preservando comportamiento, canvas
 - generator/pdf-lib
 ```
 
+<a id="file-0332"></a>
+
+### 0332 — `ai/coordination/uxqa-20260717/handoffs/CLAUDE-INTEGRATION-W1-BLOCKED.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `56`
+- **Tamaño original:** `2.9 KB`
+- **SHA1 corto:** `26ea284774`
+- **Estado:** `completo`
+
+```markdown
+# INTEGRACIÓN WAVE 1 — BLOQUEADA (integrador: CLAUDE)
+
+Fecha: 2026-07-17
+
+## Veredicto
+NO MERGE (regla plan §9). No se integra Wave 1 hasta resolver la brecha de
+coordinación descrita abajo.
+
+## Estado real por rama (base = 830b27f)
+- ai/claude-uxqa-20260717: LIMPIO. 1 commit fa8221f.
+  - layout.tsx, RightSidebar.tsx, tests/playwright/right-sidebar-detail-scroll.spec.ts
+  - lint focal OK. E2E pendiente (app no carga por blocker de labExamples).
+- ai/codex-uxqa-20260717: VACÍO. Sin commits vs base. Handoff CODEX-wave1.md sin SHA.
+- ai/copilot-uxqa-20260717: 1 commit ab52464 (solo tests smoke:
+  template.test.ts, utils/binary.test.ts). NO incluye el fix de labExamples.js.
+  Sin handoff COPILOT aún.
+
+## Brecha de coordinación (crítica)
+El checkout COMPARTIDO `prueba-plugin` (rama main) tiene ediciones SIN COMMIT que
+un agente (CODEX, según CODEX-wave1.md) hizo DIRECTAMENTE en main, violando la
+regla 1 (cada agente en su worktree):
+
+``​`
+ M src/features/pdfcomponent/labs/examples/labExamples.js        (dominio COPILOT)
+ M .../RightSidebar/ListView/Item.tsx                            (ListView)
+ M .../RightSidebar/ListView/ListView.tsx                        (ListView)
+ M .../RightSidebar/ListView/SelectableSortableContainer.tsx     (ListView)
+ M .../RightSidebar/RightSidebar.tsx                             (OWNED por CLAUDE)
+ M .../RightSidebar/layout.tsx                                   (OWNED por CLAUDE)
+``​`
+
+Problemas:
+1. Trabajo en el checkout equivocado (main), no en prueba-plugin-codex.
+2. Edita archivos OWNED por Claude (RightSidebar.tsx, layout.tsx) — duplica/pisa
+   W1-CLAUDE-RS-SCROLL, que ya está resuelto y commiteado limpio en fa8221f.
+3. Hace el fix de Copilot (labExamples.js) — y encima probablemente sigue roto:
+   importa `cloneExample` desde `builders/exampleTemplate.ts`, que exporta `n`,
+   no `cloneExample`.
+4. El trabajo real de W1-CODEX-P0-HOOKS (SisadPdfmeForm.tsx compiler +
+   SchemaDropCommitFlash.tsx hooks condicionales) NO está hecho en ningún lado.
+
+## Acción del integrador
+- No se cherry-pickea nada de Codex (rama vacía).
+- No se tocan las ediciones sueltas de main (no son de Claude; revertirlas sería
+  destructivo y no es mi decisión).
+- Se espera decisión del orquestador (usuario) sobre cómo rescatar/descartar el
+  trabajo suelto de main y reencauzar a Codex a su worktree/tarea.
+
+## Camino limpio propuesto (cuando el usuario lo apruebe)
+1. Codex: mover su trabajo a prueba-plugin-codex, separado por dominio:
+   - conservar SOLO su P0 real (hooks/compiler) en su rama;
+   - descartar sus cambios de RightSidebar scroll (ya cubiertos por Claude fa8221f);
+   - pasar ListView y labExamples a los owners correctos vía handoff.
+2. Copilot: commitear el fix real de labExamples.js en su rama y entregar handoff.
+3. Recién entonces: gate Wave 1 en prueba-plugin-merge, orden CODEX → COPILOT →
+   CLAUDE, con lint + build + vitest + Playwright focal.
+```
+
+<a id="file-0333"></a>
+
+### 0333 — `ai/coordination/uxqa-20260717/handoffs/CLAUDE-INTEGRATION-W1-READINESS.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `45`
+- **Tamaño original:** `2.1 KB`
+- **SHA1 corto:** `143a9bd32f`
+- **Estado:** `completo`
+
+```markdown
+# INTEGRACIÓN WAVE 1 — READINESS (integrador: CLAUDE)
+
+Fecha: 2026-07-17 (supersede parcialmente a CLAUDE-INTEGRATION-W1-BLOCKED.md)
+
+## Estado actual por rama (base = ai/uxqa-integration-20260717 @ 830b27f)
+
+- ai/claude-uxqa-20260717 — LISTO
+  - fa8221f (scroll single-owner). Owned-only. Lint focal OK.
+- ai/copilot-uxqa-20260717 — LISTO
+  - ab52464 (smoke tests) + 14ff144 (fix canónico labExamples.js:
+    `cloneExample` desde `labs/builders/exampleTemplate`, que SÍ lo exporta —
+    línea 156). Cambia solo owned paths (labExamples.js + 2 tests). Handoff
+    COPILOT-wave1.md completo con ambos SHAs; build reportado exit 0.
+- ai/codex-uxqa-20260717 — NO LISTO
+  - Rama VACÍA (sin commits vs base). Falta W1-CODEX-P0-HOOKS real
+    (SisadPdfmeForm.tsx + SchemaDropCommitFlash.tsx). CODEX-wave1.md sigue siendo
+    el handoff inválido (describe el trabajo rogue en main, sin SHA).
+
+## Checklist §7
+- [x] main sin cambios productivos sueltos
+- [ ] Codex en su worktree con commit hooks-only
+- [x] Copilot ab52464 + fix canónico labExamples.js
+- [x] Claude commit de scroll intacto
+- [ ] tres handoffs completos (falta Codex válido)
+- [~] cero intersecciones no autorizadas (0 entre ramas commiteadas hoy; se
+      reverifica en el gate)
+- [ ] gate Wave 1 en prueba-plugin-merge
+
+## Bloqueo
+ÚNICO pendiente: commit hooks-only de Codex + handoff válido con SHA.
+
+## Plan de gate (cuando Codex entregue)
+En prueba-plugin-merge:
+1. Verificar ownership por rama:
+   git diff --name-only ai/uxqa-integration-20260717..ai/codex-uxqa-20260717
+   git diff --name-only ai/uxqa-integration-20260717..ai/copilot-uxqa-20260717
+   git diff --name-only ai/uxqa-integration-20260717..ai/claude-uxqa-20260717
+   Rechazar cualquier archivo fuera de ownership.
+2. cherry-pick: Codex → ab52464 → 14ff144 → fa8221f (Claude).
+3. Gate: npm run lint && npm run build && npx vitest run
+4. Playwright focal:
+   drag-preview-and-canvas-scroll-regression.spec.ts
+   right-sidebar-detail-scroll.spec.ts
+   right-sidebar-docs-tab.spec.ts
+5. Sin modificar expected/snapshots. Fallos → clasificar por commit/owner.
+```
+
 <a id="file-0334"></a>
 
-### 0334 — `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md`
+### 0334 — `ai/coordination/uxqa-20260717/handoffs/CLAUDE-QUARANTINE-MAIN.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `32`
+- **Tamaño original:** `1.4 KB`
+- **SHA1 corto:** `51d9fbbde2`
+- **Estado:** `completo`
+
+```markdown
+# CUARENTENA MAIN — resultado (integrador: CLAUDE)
+
+Fecha: 2026-07-17
+
+## Resultado
+Al ejecutar el paso 2 (cuarentena), el checkout principal `prueba-plugin` YA
+estaba limpio de cambios productivos sueltos. `git diff HEAD` = vacío.
+
+- HEAD de main: 37291b2 (checkpoint) — sin avanzar.
+- Sin archivos tracked modificados. Solo untracked de coordinación/prompt.
+- `labExamples.js` volvió al estado base (import roto `cloneExample` desde
+  `buildExampleBundle`), es decir, el "fix" suelto también se revirtió.
+
+Criterio §7[1] "main sin cambios productivos sueltos": CUMPLIDO.
+
+## Evidencia capturada (refleja estado YA limpio)
+- status/MAIN-ROGUE-STATUS.txt  → solo untracked
+- status/MAIN-ROGUE-FILES.txt   → VACÍO
+- handoffs/MAIN-ROGUE-CHANGES.patch → **0 bytes (VACÍO)**
+
+## ⚠️ Consecuencia para §6 (cambio LeftSidebar)
+Los cambios sueltos de main (incluida cualquier edición de `LeftSidebar.tsx`
+—212/36 px—) fueron revertidos ANTES de que yo pudiera capturarlos. Por lo tanto
+NO están preservados en `MAIN-ROGUE-CHANGES.patch` (está vacío).
+
+Si ese trabajo de LeftSidebar debe conservarse para Wave 2, hay que recuperarlo de
+la sesión/terminal que lo originó. No existe copia en este directorio de
+coordinación. Si no se recupera, deberá rehacerse limpiamente en
+`prueba-plugin-copilot` bajo W2-COPILOT-LEFT-SIDEBAR.
+
+No se ejecutó `git restore` (no había nada tracked que restaurar). No se tocó
+`ai/coordination/**`.
+```
+
+<a id="file-0335"></a>
+
+### 0335 — `ai/coordination/uxqa-20260717/handoffs/CLAUDE-W1-DEP-COPILOT.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `50`
+- **Tamaño original:** `2.0 KB`
+- **SHA1 corto:** `9769b88477`
+- **Estado:** `completo`
+
+```markdown
+# DEPENDENCIA — CLAUDE → COPILOT — WAVE 1
+
+**De:** CLAUDE (W1-CLAUDE-RS-SCROLL)
+**Para:** COPILOT (W1-COPILOT-LINT-HOST)
+**Tipo:** blocker de carga de la app (no edité tu archivo; sólo lo reporto)
+
+## Síntoma
+`vite` no puede construir el lab; la página queda en blanco y TODOS los specs de
+Playwright del RightSidebar fallan (incluido el preexistente
+`right-sidebar-docs-tab.spec.ts`).
+
+``​`
+✘ [ERROR] No matching export in
+  "src/features/pdfcomponent/labs/export/buildExampleBundle.ts"
+  for import "cloneExample"
+
+  src/features/pdfcomponent/labs/examples/labExamples.js:4:9:
+    4 │ import { cloneExample, buildExampleBundle, getExampleBundleFilename } ...
+``​`
+
+## Causa
+`labExamples.js` importa `cloneExample` desde `buildExampleBundle.ts`, pero ese
+módulo NO exporta `cloneExample`.
+
+Exports reales de `labs/export/buildExampleBundle.ts`:
+- inlineTemplateBasePdf
+- inlineRuntimeOptionsBasePdfs
+- getExampleBundleFilename
+- buildExampleBundle
+- (tipo) ExampleBundleOptions
+
+La función de clonado real es `n` en `labs/builders/exampleTemplate.ts`:
+`export const n = <T extends ExampleDefinition>(example: T): T => ({ ... })`
+(y `buildExampleBundle.ts` ya la importa internamente como `n`).
+
+## Dirección sugerida (tú decides — es tu owned path)
+Alinear el nombre en `labExamples.js` con la API canónica. Opciones:
+1. Importar y usar `n` (renombrado a algo legible en el import) en lugar de
+   `cloneExample`; o
+2. Re-exportar un alias `cloneExample` desde `buildExampleBundle.ts` si prefieres
+   conservar el nombre en la façade.
+
+Encaja con tu W1-COPILOT-LINT-HOST (plan §5.2 "fachadas legacy con imports
+muertos: labExamples.js" y §5.4 "imports rotos en pruebas → API canónica").
+
+## Impacto en integración
+Mi commit de scroll (fa8221f) es correcto por contrato y pasa lint, pero su
+verificación E2E/`vite build` está bloqueada hasta que esto se resuelva. En el
+GATE de Wave 1 el orden CODEX → COPILOT → CLAUDE deja tu fix antes que el mío, así
+que la app cargará y mi spec podrá correr.
+```
+
+<a id="file-0336"></a>
+
+### 0336 — `ai/coordination/uxqa-20260717/handoffs/CLAUDE-W1.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `94`
+- **Tamaño original:** `4.4 KB`
+- **SHA1 corto:** `4b6dc97b24`
+- **Estado:** `completo`
+
+```markdown
+# HANDOFF — CLAUDE — WAVE 1 — W1-CLAUDE-RS-SCROLL
+
+## Estado
+completed (implementación + lint) — validación E2E/build BLOQUEADA por dependencia externa (ver abajo)
+
+## Commit
+fa8221f61aa0968ba52d3f9cd86f96fea3083039  (rama ai/claude-uxqa-20260717)
+
+## Objetivo ejecutado
+Restablecer un único propietario de scroll por panel del RightSidebar (plan §3.2).
+`SidebarBody` estaba en `overflow-hidden`, por lo que DetailView/Docs/List
+recortaban el contenido largo sin recuperar scroll (no se llegaba a las secciones
+inferiores del inspector).
+
+## Archivos modificados
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx
+- tests/playwright/right-sidebar-detail-scroll.spec.ts (nuevo)
+
+## Cambios funcionales
+- `SidebarBody`: `overflow-hidden` → `overflow-y-auto overflow-x-hidden
+  overscroll-contain [scrollbar-gutter:stable]`, con `pb-3 pt-2`. Se preserva la
+  transición de panel existente (`transition-[opacity,transform] ... motion-reduce`).
+- Slots activos del panel-stack (fields/detail/comments/docs): se agrega
+  `overflow-hidden` para que el body sea el único scroll owner y los ancestros
+  (frame, panel-stack) queden recortados.
+- CommentsRail YA tiene su propio scroller interno correcto
+  (`overflow-y-auto overflow-x-hidden overscroll-contain`, línea 243): NO se tocó
+  para evitar doble scroll.
+
+## Cambios visuales
+- Ninguno de rediseño. Sólo el contrato de overflow + `pb-3/pt-2` de respiro
+  inferior. Sin CSS global, sin @apply, sin runtimeStyles.
+
+## Contratos preservados
+- selección / owner / document routing / locks / testIds: intactos.
+- data-testid="detail-view", guards de interacción del inspector, CommandBus,
+  ActionRegistry: sin cambios.
+- Header del schema y tabs: preservados (no se movieron; el header sticky es
+  refinamiento de Wave 3, ver "Fallos fuera de alcance").
+
+## Validación
+``​`bash
+# LINT FOCAL — PASA
+node_modules/.bin/eslint \
+  src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx \
+  src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx \
+  tests/playwright/right-sidebar-detail-scroll.spec.ts --max-warnings=0
+``​`
+Resultado: exit 0 (0 errores / 0 warnings).
+
+``​`bash
+# PLAYWRIGHT FOCAL — BLOQUEADO (la app no carga; ver dependencia)
+PLAYWRIGHT_BASE_URL=http://localhost:5199 node_modules/.bin/playwright test \
+  tests/playwright/right-sidebar-detail-scroll.spec.ts \
+  tests/playwright/right-sidebar-docs-tab.spec.ts --project=chromium
+``​`
+Resultado: 4 failed. CAUSA RAÍZ = error de build de la app, NO el cambio de scroll.
+El spec preexistente `right-sidebar-docs-tab.spec.ts` (que no toqué) también falla
+porque el laboratorio completo queda en blanco.
+
+## Fallos fuera de alcance (DEPENDENCIA — owner: COPILOT)
+Vite falla al cargar el lab:
+``​`
+✘ ERROR: No matching export in
+  "src/features/pdfcomponent/labs/export/buildExampleBundle.ts"
+  for import "cloneExample"
+  → src/features/pdfcomponent/labs/examples/labExamples.js:4
+``​`
+- `cloneExample` no existe en `buildExampleBundle.ts`. Los exports reales son:
+  inlineTemplateBasePdf, inlineRuntimeOptionsBasePdfs, getExampleBundleFilename,
+  buildExampleBundle (+ tipo ExampleBundleOptions).
+- La función de clonado real es `n` en `labs/builders/exampleTemplate.ts`
+  (`export const n = <T>(example) => ({...})`).
+- Este archivo (`src/features/pdfcomponent/**`, façade legacy `labExamples.js`) es
+  del dominio de COPILOT (W1-COPILOT-LINT-HOST; plan §5.2/§5.4). NO lo edité.
+- Detalle en: handoffs/CLAUDE-W1-DEP-COPILOT.md
+
+Consecuencia: hasta que Copilot corrija el import, ni Playwright ni `vite build`
+del lab pueden pasar en ninguna rama basada en 830b27f. Mi cambio queda validado
+por contrato + lint; la verificación E2E se hará en el GATE de Wave 1 (worktree
+merge) una vez integrado el commit de Copilot.
+
+## Riesgos
+- Bajo. Cambio de clases de overflow acotado al contrato documentado.
+- El spec nuevo asume que expandir todas las secciones desborda a 620px de alto;
+  si en el gate no desborda, el assert de "scrollHeight > clientHeight" habría que
+  ajustar el viewport. Se validará en el gate.
+
+## Próximo paso permitido
+- Esperar handoff de CODEX (W1-CODEX-P0-HOOKS) y COPILOT (W1-COPILOT-LINT-HOST).
+- Como integrador: en prueba-plugin-merge, cherry-pick CODEX → COPILOT → CLAUDE,
+  luego correr lint + build + vitest + Playwright focal de Wave 1. Recién ahí mi
+  spec de scroll podrá correr en verde.
+```
+
+<a id="file-0337"></a>
+
+### 0337 — `ai/coordination/uxqa-20260717/handoffs/CODEX-wave1.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `25`
+- **Tamaño original:** `1.4 KB`
+- **SHA1 corto:** `c2fc3f3d60`
+- **Estado:** `completo`
+
+```markdown
+# CODEX handoff - Wave 1
+
+## done
+- Moved the right sidebar body to a single scroll owner.
+- Removed nested overflow from the sortable list container.
+- Split the top right-sidebar rail into tabs row plus context row.
+- Kept the delete affordance above the row hit-target so it stays visible on hover.
+- Fixed the example catalog import path so build resolves again.
+
+## validated
+- `npm run build`
+- `npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts`
+- `npx playwright test tests/playwright/right-sidebar-docs-tab.spec.ts`
+
+## note
+- `tests/playwright/detail-view-options-listview.spec.ts` currently fails because it expects the ListView panel to be visible on this route, but the lab opens a different panel state. I did not change that behavior in this slice.
+- After the realignment prompt, the main checkout was quarantined/restored to the checkpoint and no additional product edits should land there for Wave 1.
+
+## next
+- If the visual pass continues, the next small slice is DetailView header/accordion contrast only.
+
+## wave-2 slice
+- Softened the inspector section cards and connection editors to reduce the gray header feel.
+- Kept the headers white, with lighter borders and shadows, and preserved all collapse/accessibility behavior.
+- `tests/playwright/detail-view-inspector.spec.ts` failed because it landed on the Docs panel in this route, not on DetailView.
+```
+
+<a id="file-0338"></a>
+
+### 0338 — `ai/coordination/uxqa-20260717/handoffs/COPILOT-wave1.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `61`
+- **Tamaño original:** `2.0 KB`
+- **SHA1 corto:** `b902693d5c`
+- **Estado:** `completo`
+
+```markdown
+# HANDOFF — COPILOT — WAVE 1 — W1-COPILOT-LINT-HOST
+
+## Estado
+completed
+
+## Commit
+- ab52464
+- 14ff144
+
+## Objetivo ejecutado
+Corregir pruebas unitarias del dominio pdfcomponent con imports legacy inexistentes y validar lint del slice owned de Copilot para Wave 1.
+
+## Archivos modificados
+- tests/unit/features/pdfcomponent/template.test.ts
+- tests/unit/features/pdfcomponent/utils/binary.test.ts
+- src/features/pdfcomponent/labs/examples/labExamples.js
+
+## Cambios funcionales
+- Reemplazo de imports legacy eliminados por módulos canónicos actuales:
+	- @/features/pdfcomponent/integration/createLabPdfmeConfig
+	- @/features/pdfcomponent/integration/normalizeLabHostData
+- Corrección canónica del import `cloneExample` en `labExamples.js`:
+	- se deja `buildExampleBundle/getExampleBundleFilename` desde `labs/export/buildExampleBundle`
+	- `cloneExample` pasa a importarse desde `labs/builders/exampleTemplate` (módulo que realmente lo exporta)
+
+## Cambios visuales
+- Ninguno.
+
+## Contratos preservados
+- selección
+- owner
+- document routing
+- locks
+- testIds
+- CommandBus
+
+## Validación
+``​`bash
+npx vitest run tests/unit/features/pdfcomponent/template.test.ts tests/unit/features/pdfcomponent/utils/binary.test.ts
+./node_modules/.bin/eslint src/features/pdfcomponent tests/**/generated/** tests/unit/features/pdfcomponent/template.test.ts tests/unit/features/pdfcomponent/utils/binary.test.ts --ext .js,.jsx,.ts,.tsx -f stylish
+./node_modules/.bin/eslint src/features/pdfcomponent/labs/examples/labExamples.js --ext .js -f stylish
+npx vitest run tests/unit/features/pdfcomponent/examples/labExamples.test.ts
+npm run build
+``​`
+
+Resultado:
+``​`txt
+Vitest: 2 passed
+ESLint (slice owned): exit 0
+Vitest (labExamples): 1 passed
+Build: exit 0
+``​`
+
+## Fallos fuera de alcance
+- Ninguno en el slice owned evaluado.
+
+## Riesgos
+- Los tests corregidos son smoke tests de importación; no amplían cobertura conductual.
+
+## Próximo paso permitido
+- Integrar commit Copilot de Wave 1 en el gate de integración (Claude integrador), luego continuar con Wave 2.
+```
+
+<a id="file-0339"></a>
+
+### 0339 — `ai/coordination/uxqa-20260717/status/CLAUDE.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `41`
+- **Tamaño original:** `1.7 KB`
+- **SHA1 corto:** `5d26deb1f9`
+- **Estado:** `completo`
+
+```markdown
+# STATUS — CLAUDE
+
+## task activa
+W1-CLAUDE-RS-SCROLL
+
+## worktree
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-claude (ai/claude-uxqa-20260717)
+
+## archivos owned (Wave 1)
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/layout.tsx
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/RightSidebar.tsx
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/DetailViewContent.tsx
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/DocumentsRail.tsx
+- src/sisad-pdfme/ui/components/Designer/RightSidebar/CommentsRail.tsx
+- tests/playwright/right-sidebar-detail-scroll.spec.ts
+- tests/playwright/right-sidebar-docs-tab.spec.ts
+
+## objetivo
+Restablecer un solo scroll owner por panel (contrato min-h-0/overflow del plan §3.2).
+Preservar header y tabs, sin reinicio de scroll por keypress, sin overflow horizontal.
+Validar Fields, Detail, Docs y Comments. NO rediseño profundo de cards todavía.
+
+## hora de inicio
+2026-07-17
+
+## tests previstos
+- npx playwright test tests/playwright/right-sidebar-detail-scroll.spec.ts --project=chromium
+- npx playwright test tests/playwright/right-sidebar-docs-tab.spec.ts --project=chromium
+- lint focal sobre archivos owned
+
+## estado
+handoff entregado (CLAUDE-W1.md) — commit fa8221f. Lock liberado.
+Rol integrador: EN ESPERA (hold) para gate Wave 1.
+
+Realineación 2026-07-17:
+- main: cuarentena OK (ya estaba limpio; patch rogue vacío) — ver CLAUDE-QUARANTINE-MAIN.md
+- Copilot: LISTO (ab52464 + 14ff144 fix canónico labExamples.js)
+- Claude: LISTO (fa8221f)
+- Codex: NO LISTO (rama vacía; falta hooks-only). ÚNICO bloqueo.
+- readiness: ver CLAUDE-INTEGRATION-W1-READINESS.md
+- No inicio Wave 2. No hago polish visual. Espero commit+handoff de Codex.
+```
+
+<a id="file-0340"></a>
+
+### 0340 — `ai/coordination/uxqa-20260717/status/CODEX.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `20`
+- **Tamaño original:** `0.7 KB`
+- **SHA1 corto:** `6a0963b22b`
+- **Estado:** `completo`
+
+```markdown
+# STATUS — CODEX
+
+## task activa
+W1-REALINEACION-PAUSADA
+
+## archivos owned
+- ai/coordination/uxqa-20260717/status/CODEX.md
+- ai/coordination/uxqa-20260717/handoffs/CODEX-wave1.md
+
+## hora de inicio
+2026-07-17 10:36:56 -0500
+
+## tests previstos
+- npm run lint
+- npm run build
+- npx playwright test tests/playwright/right-sidebar-visual-polish.spec.ts
+- npx playwright test tests/playwright/right-sidebar-docs-tab.spec.ts
+
+## nota
+Wave 1 quedó realineada a los worktrees correctos. El checkout principal fue quarantined/restored al checkpoint y no debe seguir recibiendo cambios productivos. La siguiente ejecución debe continuar en los worktrees de Claude/Copilot según ownership, no en `main`.
+```
+
+<a id="file-0341"></a>
+
+### 0341 — `ai/coordination/uxqa-20260717/status/COPILOT.md`
+
+- **Lenguaje:** `markdown`
+- **Líneas:** `28`
+- **Tamaño original:** `0.5 KB`
+- **SHA1 corto:** `88c69d4b1f`
+- **Estado:** `completo`
+
+```markdown
+# STATUS — COPILOT
+
+## task activa
+W1-COPILOT-LINT-HOST
+
+## archivos owned
+- eslint.config.cjs
+- src/features/pdfcomponent/**
+- tests/**/generated/**
+- tests que importan wrappers legacy eliminados
+
+## hora de inicio
+2026-07-17 10:34:39 -0500
+
+## tests previstos
+- npm run lint
+- pruebas focales sobre tests actualizados en este slice
+
+## estado actual
+completed (realineado)
+
+## commits wave 1
+- ab52464
+- 14ff144
+
+## cierre
+- handoff actualizado: ai/coordination/uxqa-20260717/handoffs/COPILOT-wave1.md
+- lock liberado: W1-COPILOT-LINT-HOST.lock
+```
+
+<a id="file-0342"></a>
+
+### 0342 — `src/sisad-pdfme/ui/components/documentacion-runtime-preview-base-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `30`
@@ -26063,9 +25898,9 @@ Este bloque contiene la base visual y funcional usada por Preview/Form/Viewer en
 6. Validar persistencia/prefill/API del hook sin sobrescribir valores ya digitados por usuario.
 ```
 
-<a id="file-0335"></a>
+<a id="file-0343"></a>
 
-### 0335 — `src/sisad-pdfme/ui/components/README.md`
+### 0343 — `src/sisad-pdfme/ui/components/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `28`
@@ -26104,9 +25939,9 @@ Este paquete contiene una copia completa de los archivos runtime/base UI enviado
 Este bloque es sensible porque conecta el runtime visual con plugins imperativos (`Renderer`), preprocesamiento de PDF (`Paper`/`Preview`) y sincronización de datos (`usePreviewRuntime`). La documentación refuerza que la geometría del canvas debe seguir controlada por schemas y servicios internos, no por estilos arbitrarios de plugins o hosts.
 ```
 
-<a id="file-0336"></a>
+<a id="file-0344"></a>
 
-### 0336 — `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md`
+### 0344 — `src/sisad-pdfme/ui/components/Designer/Canvas/documentacion-canvas-core-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -26135,9 +25970,9 @@ Este bloque es sensible porque conecta el runtime visual con plugins imperativos
 - `Guides.tsx`, `Mask.tsx` y `Padding.tsx` quedan como slots visuales puros.
 ```
 
-<a id="file-0337"></a>
+<a id="file-0345"></a>
 
-### 0337 — `src/sisad-pdfme/ui/components/Designer/Canvas/README.md`
+### 0345 — `src/sisad-pdfme/ui/components/Designer/Canvas/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`
@@ -26172,9 +26007,9 @@ Este paquete contiene copias completas de los archivos del core visual/interacti
 Estos archivos pertenecen al núcleo visual del diseñador. No deben incorporar lógica de host (`DigitalAgreements`, `ContentCustomForm`, `ExternalForms`), reglas de firma/Uanataca ni manipulación externa del DOM fuera de los adapters explícitos.
 ```
 
-<a id="file-0338"></a>
+<a id="file-0346"></a>
 
-### 0338 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md`
+### 0346 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/documentacion-right-sidebar-rails-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `15`
@@ -26200,9 +26035,9 @@ Se documentó el bloque de composición del sidebar derecho del diseñador SISAD
 Estos archivos deben mantenerse como capa de composición visual y navegación del sidebar. No deberían incorporar reglas internas del canvas, manipulación directa de Moveable/Selecto, ni persistencia de negocio. Las mutaciones deben seguir delegándose a callbacks, bridges o comandos ya recibidos por props.
 ```
 
-<a id="file-0339"></a>
+<a id="file-0347"></a>
 
-### 0339 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md`
+### 0347 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `18`
@@ -26231,9 +26066,9 @@ Este paquete contiene versiones documentadas de los archivos del sidebar derecho
 - Se conservó la separación esperada: el sidebar orquesta vistas, pero no manipula canvas, Moveable, Selecto ni schemas directamente.
 ```
 
-<a id="file-0340"></a>
+<a id="file-0348"></a>
 
-### 0340 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md`
+### 0348 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/documentacion-canvas-overlays-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `21`
@@ -26265,9 +26100,9 @@ Se generó documentación para los 18 archivos de overlays del canvas:
 5. Documentar restricciones arquitectónicas importantes cuando aplicaba.
 ```
 
-<a id="file-0341"></a>
+<a id="file-0349"></a>
 
-### 0341 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md`
+### 0349 — `src/sisad-pdfme/ui/components/Designer/Canvas/overlays/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `35`
@@ -26313,9 +26148,9 @@ Este paquete contiene copias completas de los archivos enviados, con documentaci
 Estos módulos pertenecen a la capa visual/interactiva del canvas. Deben seguir sin contener reglas de negocio del host, lógica Uanataca, persistencia HTTP, manipulación directa de Moveable/Selecto ni hacks de z-index para ocultar problemas.
 ```
 
-<a id="file-0342"></a>
+<a id="file-0350"></a>
 
-### 0342 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md`
+### 0350 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-inspector-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `42`
@@ -26368,9 +26203,9 @@ La documentación se agregó con JSDoc en puntos de extensión y mantenimiento:
 5. En colaboración, validar casos de owner único, multi-owner, shared, locked by me y locked by other.
 ```
 
-<a id="file-0343"></a>
+<a id="file-0351"></a>
 
-### 0343 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md`
+### 0351 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/documentacion-detailview-options-comments-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `38`
@@ -26419,9 +26254,9 @@ Wrapper de compatibilidad para widgets imperativos de plugins. Se documentaron:
 - Confirmar que clicks dentro del inspector no disparen Selecto, Moveable ni drag/drop del canvas.
 ```
 
-<a id="file-0344"></a>
+<a id="file-0352"></a>
 
-### 0344 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md`
+### 0352 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `20`
@@ -26452,9 +26287,9 @@ Este paquete contiene copias documentadas de tres archivos del inspector del dis
 - `WidgetRenderer` conserva el render imperativo en cada render para no cambiar el contrato heredado.
 ```
 
-<a id="file-0345"></a>
+<a id="file-0353"></a>
 
-### 0345 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md`
+### 0353 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/documentacion-listview-jsdoc.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `31`
@@ -26496,9 +26331,9 @@ El bloque `ListView` representa la lista lateral derecha de campos/schemas del d
 - Si se cambia el DOM del row, preservar `data-testid="right-sidebar-field-item"` y el drag handle.
 ```
 
-<a id="file-0346"></a>
+<a id="file-0354"></a>
 
-### 0346 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md`
+### 0354 — `src/sisad-pdfme/ui/components/Designer/RightSidebar/ListView/README.md`
 
 - **Lenguaje:** `markdown`
 - **Líneas:** `24`

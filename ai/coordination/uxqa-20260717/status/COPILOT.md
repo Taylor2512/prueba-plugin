@@ -15,3 +15,14 @@ W1-COPILOT-LINT-HOST
 ## tests previstos
 - npm run lint
 - pruebas focales sobre tests actualizados en este slice
+
+## estado actual
+completed (realineado)
+
+## commits wave 1
+- ab52464
+- 14ff144
+
+## cierre
+- handoff actualizado: ai/coordination/uxqa-20260717/handoffs/COPILOT-wave1.md
+- lock liberado: W1-COPILOT-LINT-HOST.lock

@@ -1,0 +1,6 @@
+?? ai/coordination/uxqa-20260717/handoffs/
+?? ai/coordination/uxqa-20260717/status/CLAUDE.md
+?? ai/coordination/uxqa-20260717/status/CODEX.md
+?? ai/coordination/uxqa-20260717/status/MAIN-ROGUE-FILES.txt
+?? ai/coordination/uxqa-20260717/status/MAIN-ROGUE-STATUS.txt
+?? ai/prompts/PROMPT_REALINEACION_MULTIAGENTE_WAVE1_SISAD_PDFME.md
