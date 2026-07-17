@@ -702,7 +702,7 @@ const Sidebar = (props: RightSidebarProps) => {
                   className={mergeClassNames(
                     DESIGNER_CLASSNAME + 'right-sidebar-panel-slot-fields',
                     resolvedPanelMode === 'list' || resolvedPanelMode === 'bulk'
-                      ? 'flex min-h-0 flex-1 flex-col'
+                      ? 'flex min-h-0 flex-1 flex-col overflow-hidden'
                       : 'hidden',
                   )}
                 >
@@ -712,7 +712,7 @@ const Sidebar = (props: RightSidebarProps) => {
                   className={mergeClassNames(
                     DESIGNER_CLASSNAME + 'right-sidebar-panel-slot-detail',
                     resolvedPanelMode === 'detail'
-                      ? 'flex min-h-0 flex-1 flex-col'
+                      ? 'flex min-h-0 flex-1 flex-col overflow-hidden'
                       : 'hidden',
                   )}
                 >
@@ -722,7 +722,7 @@ const Sidebar = (props: RightSidebarProps) => {
                   className={mergeClassNames(
                     DESIGNER_CLASSNAME + 'right-sidebar-panel-slot-comments',
                     resolvedPanelMode === 'comments'
-                      ? 'flex min-h-0 flex-1 flex-col'
+                      ? 'flex min-h-0 flex-1 flex-col overflow-hidden'
                       : 'hidden',
                   )}
                 >
@@ -732,7 +732,7 @@ const Sidebar = (props: RightSidebarProps) => {
                   className={mergeClassNames(
                     DESIGNER_CLASSNAME + 'right-sidebar-panel-slot-docs',
                     resolvedPanelMode === 'docs'
-                      ? 'flex min-h-0 flex-1 flex-col'
+                      ? 'flex min-h-0 flex-1 flex-col overflow-hidden'
                       : 'hidden',
                   )}
                 >
