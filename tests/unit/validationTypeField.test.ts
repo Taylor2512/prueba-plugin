@@ -32,10 +32,10 @@ describe('validationTypeField', () => {
   it('uses a full-width trigger and a content-sized popup so labels never clip', () => {
     const field = validationTypeField() as {
       span?: number;
-      props?: { popupMatchSelectWidth?: boolean; popupClassName?: string };
+      props?: { popupMatchSelectWidth?: boolean; classNames?: { popup?: { root?: string } } };
     };
     expect(field.span).toBe(24);
     expect(field.props?.popupMatchSelectWidth).toBe(false);
-    expect(field.props?.popupClassName).toBe('sisad-inspector-select-popup');
+    expect(field.props?.classNames?.popup?.root).toBe('sisad-inspector-select-popup');
   });
 });

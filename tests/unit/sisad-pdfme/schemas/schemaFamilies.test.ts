@@ -74,10 +74,10 @@ describe('resolveSchemaSemanticFamily', () => {
   });
 
   it('resolves action types', () => {
-    expect(resolveSchemaSemanticFamily('attachment')).toBe('text');
-    expect(resolveSchemaSemanticFamily('note')).toBe('text');
-    expect(resolveSchemaSemanticFamily('approve')).toBe('text');
-    expect(resolveSchemaSemanticFamily('decline')).toBe('text');
+    expect(resolveSchemaSemanticFamily('attachment')).toBe('action');
+    expect(resolveSchemaSemanticFamily('note')).toBe('action');
+    expect(resolveSchemaSemanticFamily('approve')).toBe('action');
+    expect(resolveSchemaSemanticFamily('decline')).toBe('action');
   });
 
   it('resolves multiVariableText', () => {

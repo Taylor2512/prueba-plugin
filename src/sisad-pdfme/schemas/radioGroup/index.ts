@@ -228,7 +228,8 @@ const schema: Plugin<RadioGroupSchema> = createSchemaPlugin<RadioGroupSchema>(
         groupNameTitle: 'Nombre del grupo',
         groupIdTitle: 'ID del grupo',
         lockedAsGroupTitle: 'Bloquear como grupo',
-        propertyMap: {},
+        // groupId es un ID técnico → sección advanced (no data).
+        propertyMap: { groupId: 'advanced' },
         widgets: { editRadioGroupOptions: RadioOptionsEditor },
         defaultSchema: {
           ...buildOptionGroupDefaultSchema({

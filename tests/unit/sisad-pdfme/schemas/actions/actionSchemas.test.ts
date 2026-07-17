@@ -39,7 +39,7 @@ describe('attachment schema', () => {
 
   it('propertyMap routes fields to correct sections', () => {
     const { propertyMap } = attachment.propPanel.inspector;
-    expect(propertyMap.required).toBe('data');
+    expect(propertyMap.required).toBe('validation');
     expect(propertyMap.tooltip).toBe('help');
     expect(propertyMap.dataLabel).toBe('connections');
     expect(propertyMap.allowedMimeTypes).toBe('data');
