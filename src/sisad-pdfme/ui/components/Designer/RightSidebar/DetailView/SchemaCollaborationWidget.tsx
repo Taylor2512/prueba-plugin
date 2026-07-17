@@ -52,6 +52,11 @@ const FIELD_LABEL = mergeClassNames(
   'inline-flex min-h-3.5 items-center font-medium text-slate-500',
 );
 
+const HELP = mergeClassNames(
+  DESIGNER_CLASSNAME + 'schema-config-help',
+  'mt-0.5 text-[0.625rem] leading-tight text-slate-500',
+);
+
 const DIVIDER = mergeClassNames(
   DESIGNER_CLASSNAME + 'schema-config-divider',
   'my-1.5 border-slate-200/70',
