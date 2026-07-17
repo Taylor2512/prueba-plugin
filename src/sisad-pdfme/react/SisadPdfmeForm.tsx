@@ -6,7 +6,7 @@
  * `activeRecipientId` es override puntual; si falta, manda el registry/config.
  */
 import { getInputFromTemplate } from '@sisad-pdfme/common';
-import React, { useContext, useRef } from 'react';
+import React, { useContext, useMemo, useRef } from 'react';
 import { flatSchemaPlugins } from '@sisad-pdfme/schemas';
 import Form from '../ui/Form.js';
 import Viewer from '../ui/Viewer.js';
@@ -29,7 +29,7 @@ type Props = {
 export const SisadPdfmeForm = ({
   config,
   template,
-  values = [],
+  values,
   recipients,
   activeRecipientId,
   onInputChange,
@@ -54,31 +54,50 @@ export const SisadPdfmeForm = ({
   const effectiveActiveRecipientId = recipientState.activeRecipientId;
   const recipientFilterEnabled = resolvedConfig.visibility.runtime?.recipientFilter !== false;
   const isGlobalView = resolvedConfig.config.collaboration.isGlobalView === true;
-  const collaborationOptions =
-    recipientFilterEnabled && !isGlobalView && effectiveActiveRecipientId
-      ? { activeRecipientId: effectiveActiveRecipientId, isGlobalView }
-      : { isGlobalView };
+  const collaborationOptions = useMemo(
+    () =>
+      recipientFilterEnabled && !isGlobalView && effectiveActiveRecipientId
+        ? { activeRecipientId: effectiveActiveRecipientId, isGlobalView }
+        : { isGlobalView },
+    [effectiveActiveRecipientId, isGlobalView, recipientFilterEnabled],
+  );
 
-  const runtimeConfig: UsePdfmeRuntimeInstanceConfig = {
-    containerRef,
-    mode: 'form',
-    template: template as UsePdfmeRuntimeInstanceConfig['template'],
-    inputs:
+  const runtimeInputs = useMemo(
+    () =>
       Array.isArray(values) && values.length > 0
         ? values
         : getInputFromTemplate(template as UsePdfmeRuntimeInstanceConfig['template']),
-    onTemplateChange: () => undefined,
-    onPageChange: () => undefined,
-    options: {
-      ...resolvedConfig.runtimeOptions,
-      designerEngine: resolvedConfig.designerEngine,
-      // Preview lee `options.collaboration` para filtrar schemas por recipient.
-      collaboration: collaborationOptions,
-    },
-    plugins: flatSchemaPlugins,
-    runtime: { Designer: Form, Form, Viewer },
-    onInputChange,
-  };
+    [template, values],
+  );
+
+  const runtimeConfig: UsePdfmeRuntimeInstanceConfig = useMemo(
+    () => ({
+      containerRef,
+      mode: 'form',
+      template: template as UsePdfmeRuntimeInstanceConfig['template'],
+      inputs: runtimeInputs,
+      onTemplateChange: () => undefined,
+      onPageChange: () => undefined,
+      options: {
+        ...resolvedConfig.runtimeOptions,
+        designerEngine: resolvedConfig.designerEngine,
+        // Preview lee `options.collaboration` para filtrar schemas por recipient.
+        collaboration: collaborationOptions,
+      },
+      plugins: flatSchemaPlugins,
+      runtime: { Designer: Form, Form, Viewer },
+      onInputChange,
+    }),
+    [
+      collaborationOptions,
+      containerRef,
+      onInputChange,
+      resolvedConfig.designerEngine,
+      resolvedConfig.runtimeOptions,
+      runtimeInputs,
+      template,
+    ],
+  );
 
   usePdfmeRuntimeInstance(runtimeConfig);
   return <div ref={containerRef} data-sisad-pdfme-root="form" />;
