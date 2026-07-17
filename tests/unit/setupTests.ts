@@ -1,4 +1,5 @@
 import '@testing-library/jest-dom';
+import { vi } from 'vitest';
 
 if (!window.matchMedia) {
 	Object.defineProperty(window, 'matchMedia', {
@@ -15,3 +16,8 @@ if (!window.matchMedia) {
 		}),
 	});
 }
+
+// Mock rc-util for scrollbar calculation
+vi.mock('rc-util/lib/getScrollBarSize', () => ({
+	default: () => 0,
+}));

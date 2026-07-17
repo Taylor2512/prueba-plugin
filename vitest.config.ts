@@ -11,6 +11,7 @@ export default defineConfig({
       '@sisad-pdfme/schemas': resolve(__dirname, 'src/sisad-pdfme/schemas'),
       '@sisad-pdfme/pdf-lib': resolve(__dirname, 'src/sisad-pdfme/pdf-lib'),
       '@sisad-pdfme/ui': resolve(__dirname, 'src/sisad-pdfme/ui'),
+      'antd/es/theme/internal': resolve(__dirname, 'node_modules/antd/es/theme/internal.js'),
     },
   },
   test: {
@@ -18,5 +19,10 @@ export default defineConfig({
     globals: true,
     setupFiles: './tests/unit/setupTests.ts',
     include: ['tests/unit/**/*.test.{ts,tsx,js,jsx}'],
+    server: {
+      deps: {
+        inline: ['antd', 'rc-util'],
+      },
+    },
   },
 });
