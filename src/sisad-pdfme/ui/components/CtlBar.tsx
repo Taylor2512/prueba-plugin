@@ -508,7 +508,6 @@ const CtlBar = (props: CtlBarProps) => {
               icon={<Save size={14} />}
               title={saveAction.enabled ? 'Guardar' : describeDisabledReason(saveAction.reason)}
               aria-label="Guardar"
-              title="Guardar"
               data-testid="designer-save"
             >
               {showSaveText ? 'Guardar' : null}
