@@ -5,7 +5,7 @@
  * la posición del paper y la conversión mm→px. No altera el modelo de datos.
  */
 
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { mergeClassNames } from '../../shared/className.js';
 
 /**
@@ -38,30 +38,94 @@ const SchemaDropCommitFlash = ({
 }: SchemaDropCommitFlashProps) => {
   const [entering, setEntering] = useState(false);
   const [exiting, setExiting] = useState(false);
+  const [prefersReducedMotion, setPrefersReducedMotion] = useState(false);
+  const timersRef = useRef<{
+    enterFrame: number | null;
+    exitTimer: number | null;
+  }>({
+    enterFrame: null,
+    exitTimer: null,
+  });
+
   useEffect(() => {
+    if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+      return undefined;
+    }
+
+    const mediaQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const updatePrefersReducedMotion = () => setPrefersReducedMotion(mediaQuery.matches);
+
+    updatePrefersReducedMotion();
+
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', updatePrefersReducedMotion);
+      return () => mediaQuery.removeEventListener('change', updatePrefersReducedMotion);
+    }
+
+    mediaQuery.addListener(updatePrefersReducedMotion);
+    return () => mediaQuery.removeListener(updatePrefersReducedMotion);
+  }, []);
+
+  useEffect(() => {
+    const { enterFrame, exitTimer } = timersRef.current;
+    if (enterFrame !== null) cancelAnimationFrame(enterFrame);
+    if (exitTimer !== null) window.clearTimeout(exitTimer);
+    timersRef.current = { enterFrame: null, exitTimer: null };
+
+    setEntering(false);
+    setExiting(false);
+
     if (!paperRect) return undefined;
-    const enterFrame = requestAnimationFrame(() => setEntering(true));
-    const exitTimer = window.setTimeout(() => setExiting(true), 110);
-    return () => {
-      cancelAnimationFrame(enterFrame);
-      window.clearTimeout(exitTimer);
+
+    const scheduleExit = () => {
+      timersRef.current.exitTimer = window.setTimeout(() => setExiting(true), 110);
     };
-  }, [paperRect]);
+
+    if (prefersReducedMotion) {
+      setEntering(true);
+      scheduleExit();
+      return () => {
+        const current = timersRef.current;
+        if (current.enterFrame !== null) cancelAnimationFrame(current.enterFrame);
+        if (current.exitTimer !== null) window.clearTimeout(current.exitTimer);
+        timersRef.current = { enterFrame: null, exitTimer: null };
+      };
+    }
+
+    const scheduledEnterFrame = window.requestAnimationFrame(() => setEntering(true));
+    timersRef.current.enterFrame = scheduledEnterFrame;
+    scheduleExit();
+    return () => {
+      const current = timersRef.current;
+      if (current.enterFrame !== null) cancelAnimationFrame(current.enterFrame);
+      if (current.exitTimer !== null) window.clearTimeout(current.exitTimer);
+      timersRef.current = { enterFrame: null, exitTimer: null };
+    };
+  }, [paperRect, prefersReducedMotion]);
 
   if (!paperRect) return null;
   const scale = Number.isFinite(zoom) && zoom > 0 ? zoom : 1;
   const left = paperRect.left + xMm * MM_TO_PX * scale;
   const top = paperRect.top + yMm * MM_TO_PX * scale;
+  const transitionClassName = prefersReducedMotion
+    ? 'transition-none'
+    : 'transition-[opacity,transform] duration-75 ease-[cubic-bezier(0.16,1,0.3,1)]';
+  const stateClassName = prefersReducedMotion
+    ? exiting
+      ? 'opacity-0 scale-100'
+      : 'opacity-100 scale-100'
+    : exiting
+      ? 'opacity-0 scale-[0.96]'
+      : entering
+        ? 'opacity-100 scale-[1.08]'
+        : 'opacity-0 scale-[0.62]';
 
   return (
     <div
       className={mergeClassNames(
-        'sisad-pdfme-schema-drop-commit-flash fixed z-[10000] pointer-events-none -translate-x-1/2 -translate-y-1/2 transition-[opacity,transform] duration-75 ease-[cubic-bezier(0.16,1,0.3,1)]',
-        exiting
-          ? 'opacity-0 scale-[0.96]'
-          : entering
-            ? 'opacity-100 scale-[1.08]'
-            : 'opacity-0 scale-[0.62]',
+        'sisad-pdfme-schema-drop-commit-flash fixed z-[10000] pointer-events-none -translate-x-1/2 -translate-y-1/2',
+        transitionClassName,
+        stateClassName,
       )}
       style={
         {
