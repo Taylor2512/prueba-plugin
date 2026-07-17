@@ -1,16 +1,46 @@
 # START — Entrada única para cualquier asistente IA
 
-Antes de modificar código, sigue este flujo.
+## 1. Valida tu topología antes de leer código
 
-## 1. Identifica el tipo de tarea
+Ejecuta:
+
+```bash
+pwd
+git branch --show-current
+git status --short
+```
+
+Compara el resultado con:
+
+```txt
+ai/project/worktree-topology.md
+```
+
+Si carpeta y rama no coinciden con tu rol, detente sin editar.
+
+## 2. Identifica la wave y task-card
+
+Lee:
+
+```txt
+ai/coordination/worktrees/WAVE-1.5.md
+ai/task-cards/active/<task>.md
+```
+
+Solo una task-card por ejecución.
+
+## 3. Enruta el dominio
 
 Usa:
 
 ```txt
 ai/router/ROUTER.md
+ai/router/TASK_INTAKE.md
 ```
 
-## 2. Aplica presupuesto
+El agente de proveedor —Codex, Claude o Copilot— ejecuta un agente lógico del dominio. No sustituye el contrato del agente lógico.
+
+## 4. Aplica presupuesto
 
 Usa:
 
@@ -18,59 +48,95 @@ Usa:
 ai/router/CONTEXT_BUDGET.md
 ```
 
-## 3. Carga memoria mínima
+Por slice:
 
-Usa:
+- máximo 2 consultas globales `rg`;
+- máximo 8 archivos inspeccionados;
+- máximo 5 archivos productivos modificados;
+- tests directos adicionales permitidos.
+
+## 5. Carga memoria mínima
 
 ```txt
 ai/memory/project-memory.md
 ai/memory/decisions.md
+ai/memory/known-risks.md
 ai/memory/session-handoff.md
 ```
 
-## 4. Selecciona solo una task-card
+## 6. Carga contexto focal
 
-Usa:
-
-```txt
-ai/task-cards/active/<task>.md
-```
-
-Si no existe, créala desde:
+La task-card debe declarar:
 
 ```txt
-ai/templates/task-card-template.md
+context
+rules
+playbook
+owned paths
+forbidden paths
+tests focales
 ```
 
-## 5. Carga contexto, regla y playbook focal
+No cargues todos los Markdown.
 
-Ejemplo para migración Tailwind visual:
+## 7. Reclama lock externo
+
+Ruta:
 
 ```txt
-context/css-tailwind-context.md
-rules/css-migration-rules.md
-playbooks/pb-css-tailwind-migration.md
+/Users/desarrollo1/Documents/Taylor/frontend/ai-coordination/sisad-pdfme/locks
 ```
 
-## 6. Declara antes de editar
+Ejemplo:
+
+```bash
+mkdir /Users/desarrollo1/Documents/Taylor/frontend/ai-coordination/sisad-pdfme/locks/<TASK-ID>.lock
+```
+
+Si existe, no comiences.
+
+## 8. Declara antes de editar
 
 ```md
 ## Router decision
+- Proveedor:
+- Worktree:
+- Rama:
+- Wave:
 - Task-card:
+- Agente lógico:
 - Contexto:
-- Regla:
+- Reglas:
 - Playbook:
-- Archivos candidatos:
-- Archivos prohibidos:
-- Presupuesto:
+- Owned paths:
+- Forbidden paths:
+- Tests focales:
 ```
 
-## 7. Criterio de parada
+## 9. Implementa y valida
 
-Detente si necesitas:
+El agente puede ejecutar:
 
-- más de 5 archivos modificados;
-- más de 8 archivos abiertos;
-- tocar un proceso distinto;
-- tocar `Moveable`, `Selecto`, snapshot, generator o pdf-lib sin task-card explícita;
-- resolver por CSS un problema de permisos, metadata o geometría.
+- ESLint focal;
+- Vitest focal;
+- Playwright focal en su puerto asignado;
+- build solo cuando la task-card lo exige y no existe otro proceso pesado.
+
+No puede ejecutar integración, merge o cambios sobre `main`.
+
+## 10. Commit y handoff
+
+- Commits atómicos en la rama del agente.
+- Máximo 5 archivos productivos por commit.
+- Escribir handoff en la coordinación externa.
+- Liberar lock.
+- Detenerse.
+
+## 11. Integración
+
+Solo el integrador sigue:
+
+```txt
+ai/start/QUICKSTART-INTEGRATOR.md
+ai/coordination/worktrees/INTEGRATION-PROTOCOL.md
+```

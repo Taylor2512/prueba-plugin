@@ -1,18 +1,47 @@
 # Quickstart — GitHub Copilot
 
-Copilot funciona mejor con reglas cortas y archivos cercanos.
-
-## Antes de usar Copilot Chat
-
-Pega este contexto mínimo:
+## Workspace obligatorio
 
 ```txt
-Fuente de verdad: ai/start/START.md.
-Tarea actual: ai/task-cards/active/<task>.md.
-No tocar Moveable/Selecto/snapshot/generator/pdf-lib.
-Preservar metadata de schemas.
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-copilot
+branch: ai/copilot
+port: 5183
 ```
 
-## Archivos puente
+## Antes de Agent Mode
 
-`.github/copilot-instructions.md` solo debe apuntar a esta carpeta y contener restricciones mínimas.
+```bash
+pwd
+git branch --show-current
+git status --short
+```
+
+Carga:
+
+```txt
+ai/start/START.md
+ai/task-cards/active/<task>.md
+```
+
+## Perfil de trabajo
+
+Copilot ejecuta preferentemente:
+
+- host `src/features/pdfcomponent/**`;
+- LeftSidebar;
+- limpieza repetitiva y tipado acotado;
+- ESLint;
+- infraestructura Vitest;
+- accesibilidad;
+- tests smoke y visuales de su dominio.
+
+## Restricciones
+
+- No usar `Fix all` global.
+- No editar un archivo fuera de owned paths aunque aparezca en Problems.
+- No parchear `node_modules`.
+- No recrear wrappers muertos para satisfacer tests stale.
+- No tocar Canvas, DetailView, schemas o pdf-lib sin task-card.
+- Revisar cada diff antes de aceptar.
+- Crear commits atómicos en `ai/copilot`.
+- Escribir handoff externo y detenerse.

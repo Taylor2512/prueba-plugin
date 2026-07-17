@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `react`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-17T16:46:45.987Z`
+- **Fecha generación:** `2026-07-17T17:55:09.326Z`
 - **Extensiones incluidas:** `.js, .jsx, .ts, .tsx, .mjs, .cjs, .json`
 - **Archivos candidatos incluidos:** `564`
 - **Límite por archivo:** `90 KB`
@@ -888,7 +888,7 @@ prueba-plugin
 | 257 | `src/sisad-pdfme/schemas/options/optionSelectionBehavior.ts` | typescript | 124 | 3.8 | completo |
 | 258 | `src/sisad-pdfme/schemas/options/optionTypes.ts` | typescript | 19 | 0.4 | completo |
 | 259 | `src/sisad-pdfme/schemas/options/optionValueAdapter.ts` | typescript | 44 | 1.7 | completo |
-| 260 | `src/sisad-pdfme/schemas/propPanel/commonInspectorFields.ts` | typescript | 345 | 9.9 | completo |
+| 260 | `src/sisad-pdfme/schemas/propPanel/commonInspectorFields.ts` | typescript | 349 | 10.0 | completo |
 | 261 | `src/sisad-pdfme/schemas/propPanel/index.ts` | typescript | 1 | 0.0 | completo |
 | 262 | `src/sisad-pdfme/schemas/radioGroup/index.ts` | typescript | 264 | 8.7 | completo |
 | 263 | `src/sisad-pdfme/schemas/select/index.ts` | typescript | 337 | 13.9 | completo |
@@ -1055,7 +1055,7 @@ prueba-plugin
 | 424 | `src/sisad-pdfme/pdf-lib/utils/elements/Segment.ts` | typescript | 81 | 2.2 | completo |
 | 425 | `src/sisad-pdfme/schemas/text/icons/index.ts` | typescript | 30 | 1.0 | completo |
 | 426 | `src/sisad-pdfme/ui/components/Designer/constants.js` | javascript | 1 | 0.0 | completo |
-| 427 | `src/sisad-pdfme/ui/components/Designer/index.tsx` | tsx | 4236 | 160.4 | truncado 49.2 KB |
+| 427 | `src/sisad-pdfme/ui/components/Designer/index.tsx` | tsx | 4236 | 160.4 | truncado 49.1 KB |
 | 428 | `src/sisad-pdfme/ui/components/Designer/LeftSidebar.tsx` | tsx | 1907 | 75.7 | truncado 3.9 KB |
 | 429 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomFieldModal.tsx` | tsx | 292 | 9.3 | omitido por presupuesto total |
 | 430 | `src/sisad-pdfme/ui/components/Designer/LeftSidebarCustomPanel.tsx` | tsx | 94 | 3.7 | omitido por presupuesto total |
@@ -1171,7 +1171,7 @@ prueba-plugin
 | 540 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSummaryCard.tsx` | tsx | 1 | 0.1 | omitido por presupuesto total |
 | 541 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/InspectorSwitch.tsx` | tsx | 47 | 1.3 | omitido por presupuesto total |
 | 542 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaCollaborationUtils.ts` | typescript | 35 | 1.4 | omitido por presupuesto total |
-| 543 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx` | tsx | 521 | 22.6 | omitido por presupuesto total |
+| 543 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaCollaborationWidget.tsx` | tsx | 526 | 22.7 | omitido por presupuesto total |
 | 544 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsShared.tsx` | tsx | 250 | 9.1 | omitido por presupuesto total |
 | 545 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/schemaConnectionsValidation.ts` | typescript | 102 | 3.0 | omitido por presupuesto total |
 | 546 | `src/sisad-pdfme/ui/components/Designer/RightSidebar/DetailView/SchemaConnectionsWidget.tsx` | tsx | 1074 | 40.1 | omitido por presupuesto total |
@@ -1206,7 +1206,7 @@ prueba-plugin
 
 ## Totales
 
-- **KB originales candidatos:** `3850.9`
+- **KB originales candidatos:** `3851.0`
 - **KB incluidos en contenido:** `2499.8`
 - **Comentarios reducidos:** `desactivada`
 - **JSON de datos en React:** `omitido por defecto`
@@ -55146,9 +55146,9 @@ export const resolveSelectedOptionId = (
 ### 0260 — `src/sisad-pdfme/schemas/propPanel/commonInspectorFields.ts`
 
 - **Lenguaje:** `typescript`
-- **Líneas:** `345`
-- **Tamaño original:** `9.9 KB`
-- **SHA1 corto:** `ccf6360ec6`
+- **Líneas:** `349`
+- **Tamaño original:** `10.0 KB`
+- **SHA1 corto:** `7918c764d6`
 - **Estado:** `completo`
 - **Símbolos detectados:** `export const: requiredField`, `export const: readOnlyField`, `export const: lockedField`, `export const: restrictChangesField`, `export const: basicsFields`, `export const: placeholderTextField`, `export const: defaultValueField`, `export const: maxLengthField`, `export const: maskedField`, `export const: fixedWidthField`, `export const: tooltipField`, `export const: helpTextField`
 
@@ -55304,7 +55304,11 @@ export const validationTypeField = (): PropPanelSchema => ({
     // Let the dropdown size to its content (≥220px via CSS) instead of matching
     // the trigger width — keeps option labels fully readable.
     popupMatchSelectWidth: false,
-    popupClassName: 'sisad-inspector-select-popup',
+    classNames: {
+      popup: {
+        root: 'sisad-inspector-select-popup',
+      },
+    },
     options: [
       { label: 'Sin validación', value: 'none' },
       { label: 'Correo electrónico', value: 'email' },
@@ -83278,7 +83282,7 @@ export * from '../../constants.ts';
 - **Líneas:** `4236`
 - **Tamaño original:** `160.4 KB`
 - **SHA1 corto:** `ba4acbb04f`
-- **Estado:** `truncado 49.2 KB`
+- **Estado:** `truncado 49.1 KB`
 - **Símbolos detectados:** `function: resolveChangedSchemaUids`, `function: handleRemovePage`, `function: handleAddPageAfter`, `component/const: DetachedHost`, `component/const: TemplateEditor`
 
 ```tsx
@@ -84237,12 +84241,11 @@ const TemplateEditor = ({
   }, [schemasList]);
 
   useEffect(() => {
-    activeBasePdfRef.current = activeBasePdf;
-  
+    activeBasePdfR
 
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 114027 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 114067 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
 
--pdfme-pdf-upload"
+-upload"
         type="file"
         accept="application/pdf,.pdf"
         multiple
@@ -84606,11 +84609,11 @@ const schemaTypeCategoryMap: Record<string, string> = {
   itf14: 'QR y Códigos',
   upca: 'QR y Códigos',
   upce: 'QR y Códigos',
-  gs1data
+  gs1da
 
-/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 73555 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
+/* ... CONTENIDO OMITIDO PARA REDUCIR PESO: 73558 caracteres. Usa --mode full o sube --max-file-kb si necesitas este archivo completo. ... */
 
-              collapsedCategories={collapsedCategories}
+             collapsedCategories={collapsedCategories}
               quickFilter={quickFilter}
               normalizedSearch={normalizedSearch}
               resolvedLayout={resolvedLayout}

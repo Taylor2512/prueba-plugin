@@ -1,5 +1,58 @@
 # Session Handoff
 
+## Estado operativo — 2026-07-17
+
+### Consolidación completada
+
+Los cambios de Wave 1 fueron incorporados a `main`:
+
+```txt
+14241ba  tests legacy pdfcomponent
+82c65e2  labExamples clone import
+c4894ac  Form memoization + drop flash hooks
+dcce6e5  RightSidebar single scroll owner
+```
+
+### Gate conocido
+
+```txt
+lint: verde
+build: verde
+Vitest:
+  482 archivos aprobados
+  27 archivos fallidos
+  1113 tests aprobados
+  17 tests fallidos
+  1 todo
+```
+
+### Próximo paso
+
+Ejecutar Wave 1.5 con worktrees reutilizables:
+
+```txt
+Codex   -> core contracts
+Claude  -> inspector contracts
+Copilot -> test infrastructure
+```
+
+No comenzar Wave 2 visual hasta cerrar el gate unitario.
+
+### Protocolo activo
+
+```txt
+ai/project/worktree-topology.md
+ai/project/git-operating-model.md
+ai/coordination/worktrees/WAVE-1.5.md
+ai/coordination/worktrees/INTEGRATION-PROTOCOL.md
+```
+
+---
+
+## Histórico previo
+
+# Session Handoff
+
 ## Último foco
 
 Ejecución completa de task-cards active + backlog (2026-07-15). Cerradas y

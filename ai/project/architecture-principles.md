@@ -1,34 +1,83 @@
 # Principios de arquitectura
 
-## SOLID aplicado a documentación y código
+## Responsabilidad única
 
-### SRP — Single Responsibility
+Cada Markdown tiene una función:
 
-Cada archivo Markdown tiene una responsabilidad:
+- `context`: qué saber;
+- `rules`: qué no romper;
+- `playbooks`: cómo ejecutar;
+- `task-cards`: qué hacer ahora;
+- `memory`: qué recordar;
+- `reports`: qué se evidenció;
+- `coordination`: cómo cooperan los worktrees;
+- `project`: contratos estables.
 
-- `context`: qué saber.
-- `rules`: qué no romper.
-- `playbooks`: cómo ejecutar.
-- `task-cards`: qué hacer ahora.
-- `memory`: qué recordar.
-- `reports`: qué se evidenció.
+## Separación de conceptos
 
-### OCP — Open/Closed
+No confundir:
 
-Agregar nuevos agentes, skills o task-cards sin editar archivos base. El router referencia categorías, no hardcodea todo.
+```txt
+Agente lógico:
+  canvas-agent, inspector-agent, schema-agent, etc.
 
-### LSP — Sustitución
+Proveedor ejecutor:
+  Codex, Claude, Copilot.
 
-Codex, Claude y Copilot deben poder usar el mismo flujo con adaptadores delgados.
+Rol Git:
+  implementador, integrador, coordinador/main.
+```
 
-### ISP — Interface Segregation
+El router selecciona dominio y agente lógico; la wave asigna proveedor y worktree.
 
-No dar a todos los agentes todo el contexto. Cada agente recibe solo el contexto necesario.
+## Aislamiento
 
-### DIP — Dependency Inversion
+Cada proveedor implementa en su worktree y rama reutilizable.
 
-Las instrucciones dependen de contratos (`task-card`, `rules`, `context`) y no de un modelo específico.
+```txt
+ai/codex
+ai/copilot
+ai/claude
+```
 
-## Principio anti-duplicidad
+Ningún agente implementador toca `main` o `ai/integration`.
 
-No duplicar reglas en `AGENTS.md`, `CLAUDE.md` y Copilot. Esos archivos solo apuntan a `ai/start/START.md`.
+## Integración como gate
+
+`ai/integration` es la única rama donde se combinan commits aceptados y se ejecuta el gate global.
+
+`main` no recibe trabajo parcial.
+
+## Main fast-forward only
+
+La publicación se realiza con:
+
+```bash
+git merge --ff-only ai/integration
+```
+
+No se crean merge commits por wave.
+
+## Ramas reutilizables
+
+Después del gate y fast-forward, las ramas de agentes se realinean con el nuevo `main` únicamente cuando:
+
+- están limpias;
+- sus commits aceptados ya están contenidos en `main`;
+- no existe trabajo pendiente;
+- lo ejecuta el coordinador.
+
+## Anti-duplicidad
+
+- No duplicar reglas en adaptadores raíz.
+- No crear otra arquitectura paralela.
+- No recrear wrappers retirados.
+- No crear otra fuente de estado.
+- No mover skin visual a CSS runtime.
+
+## Tailwind-first
+
+- JSX/TSX contiene el skin visual.
+- `runtimeStyles.ts` conserva solo CSS técnico demostrado.
+- `tokens.css` conserva tokens necesarios.
+- `preflight: false` exige resets locales explícitos.

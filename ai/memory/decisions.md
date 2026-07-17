@@ -19,3 +19,31 @@ Las imágenes de `public/img-version` son referencia de intención visual previa
 ## DEC-005 — CSS de geometría no migra a Tailwind
 
 Paper, transform, zoom, x/y/width/height, Moveable/Selecto y z-index crítico permanecen en CSS/tokens o inline controlado.
+
+## DEC-006 — Worktrees reutilizables por proveedor
+
+Codex, Claude y Copilot implementan en worktrees y ramas locales estables:
+
+```txt
+ai/codex
+ai/claude
+ai/copilot
+```
+
+## DEC-007 — Rama de integración como único gate
+
+Los commits aceptados se aplican en `ai/integration`. `main` solo avanza mediante fast-forward después de lint, build, Vitest y Playwright focal.
+
+## DEC-008 — Coordinación viva fuera del repositorio
+
+Locks, handoffs, status y gates viven en:
+
+```txt
+/Users/desarrollo1/Documents/Taylor/frontend/ai-coordination/sisad-pdfme
+```
+
+La documentación estable permanece en `ai/coordination/worktrees/**`.
+
+## DEC-009 — Agente lógico separado de proveedor
+
+`canvas-agent`, `inspector-agent`, etc. describen ownership de producto. Codex, Claude y Copilot son ejecutores asignados por wave.

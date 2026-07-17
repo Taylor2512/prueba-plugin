@@ -1,34 +1,67 @@
 # Quickstart — Codex
 
-Codex puede procesar prompts largos, pero debe trabajar con contexto controlado.
-
-## Comando mental obligatorio
+## Worktree obligatorio
 
 ```txt
-No revises todo. Enruta, selecciona task-card, inspecciona con rg y modifica poco.
+/Users/desarrollo1/Documents/Taylor/frontend/prueba-plugin-codex
+branch: ai/codex
+port: 5181
 ```
 
-## Flujo
+## Verificación
+
+```bash
+pwd
+git branch --show-current
+git status --short
+```
+
+Detente si no estás en la carpeta y rama anteriores.
+
+## Perfil de trabajo
+
+Codex ejecuta preferentemente:
+
+- lógica pura;
+- hooks;
+- adapters;
+- Canvas overlays;
+- interacción;
+- resolvers;
+- contratos de schema;
+- pruebas focales.
+
+## Método
 
 1. Leer `ai/start/START.md`.
-2. Leer `ai/router/ROUTER.md`.
-3. Leer `ai/router/CONTEXT_BUDGET.md`.
-4. Elegir una task-card.
-5. Ejecutar máximo 2-3 búsquedas `rg`.
-6. Abrir máximo 8 archivos.
-7. Modificar máximo 5 archivos.
-8. Ejecutar build/tests focales.
-9. Actualizar memoria si hubo decisión.
+2. Leer la task-card asignada.
+3. Máximo 2 búsquedas `rg`.
+4. Abrir máximo 8 archivos.
+5. Modificar máximo 5 archivos productivos por commit.
+6. Ejecutar ESLint y Vitest focales.
+7. Crear commit atómico en `ai/codex`.
+8. Escribir handoff externo.
+9. Detenerse.
 
-## Formato de entrega
+## Prohibido
+
+- trabajar en `prueba-plugin`;
+- editar `main` o `ai/integration`;
+- integrar commits;
+- continuar otra wave;
+- ampliar scope para “aprovechar” el contexto;
+- arreglar tests cambiando expected sin demostrar contrato.
+
+## Entrega
 
 ```md
-# Resultado
-## Task-card ejecutada
-## Diagnóstico
-## Archivos modificados
+# HANDOFF — CODEX — <WAVE>
+## Estado
+## Commits
+## Archivos
+## Causa raíz
 ## Cambios
 ## Validación
 ## Riesgos
-## Nueva task-card
+## Listo para integrar
 ```

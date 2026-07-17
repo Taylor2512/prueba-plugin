@@ -14,7 +14,7 @@
 - **Carpeta base:** `prueba-plugin`
 - **Perfil:** `css`
 - **Modo:** `compact`
-- **Fecha generación:** `2026-07-17T16:46:46.966Z`
+- **Fecha generación:** `2026-07-17T17:55:09.842Z`
 - **Extensiones incluidas:** `.css, .scss, .sass, .less`
 - **Archivos candidatos incluidos:** `15`
 - **Límite por archivo:** `80 KB`

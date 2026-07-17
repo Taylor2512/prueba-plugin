@@ -1,58 +1,62 @@
 # Context Budget
 
-## Objetivo
-
-Evitar que los agentes carguen demasiado contexto y reabran tareas completadas.
-
-## Carga base obligatoria por sesión
+## Carga base
 
 ```txt
-AGENTS.md o CLAUDE.md según proveedor
+adaptador del proveedor
 ai/start/START.md
+ai/project/worktree-topology.md
 ai/router/ROUTER.md
 ai/router/TASK_INTAKE.md
 ai/memory/project-memory.md
-ai/memory/pending-checklist.md
 ai/memory/known-risks.md
 ai/memory/decisions.md
 ```
 
-## Carga por tarea
-
-Cargar solo:
+## Carga por wave
 
 ```txt
+ai/coordination/worktrees/WAVE-<n>.md
 ai/task-cards/active/<task>.md
-ai/playbooks/<playbook-del-dominio>.md
-ai/rules/<reglas-del-dominio>.md
-ai/context/<contexto-del-dominio>.md
+ai/playbooks/<playbook>.md
+ai/rules/<rules>.md
+ai/context/<context>.md
 ```
 
-## Carga permitida como memoria histórica
+## Presupuesto
 
-```txt
-ai/task-cards/completed/completed-summary.md
-ai/memory/completed-checklist.md
-```
+- 1 task-card.
+- 1 agente lógico.
+- 2 consultas globales `rg`.
+- 8 archivos fuente abiertos.
+- 5 archivos productivos por commit.
+- Tests directos adicionales permitidos.
+- 1 handoff por task-card.
 
 ## No cargar por defecto
 
 ```txt
 ai/task-cards/completed/TASK-*.md
-ai/archive/**
+ai/coordination/uxqa-20260717/**
 reports/**
+unificados/**
 dist/**
 test-results/**
+node_modules/**
 .tailwind-migration-backups/**
-unificados/**
-eslint_output.json
-tsconfig.tsbuildinfo
 ```
 
-## Presupuesto por pase
+## Excepciones
 
-- Máximo 1 task-card activa.
-- Máximo 2 consultas globales `rg` antes de abrir archivos.
-- Máximo 8 archivos fuente abiertos.
-- Máximo 5 archivos modificados.
-- No modificar `pdf-lib`, `generator`, `Moveable`, `Selecto`, `snapshotAdapter` o geometría sin task-card explícita.
+`pdf-lib`, generator, Moveable, Selecto, snapshotAdapter, `runtimeStyles.ts`, configs y geometría exigen task-card explícita y ownership exclusivo.
+
+## Parada
+
+Detenerse cuando:
+
+- aparece una dependencia fuera de owned paths;
+- una prueba falla en otro dominio;
+- hacen falta más de 5 archivos productivos;
+- la task-card exige otra auditoría global;
+- el worktree no está limpio antes del commit;
+- el provider está en una rama incorrecta.
