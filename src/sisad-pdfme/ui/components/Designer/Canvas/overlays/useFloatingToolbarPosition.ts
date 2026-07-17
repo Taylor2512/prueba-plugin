@@ -26,11 +26,11 @@ type SurfaceSize = { width: number; height: number };
 /**
  * Ancho default estimado del toolbar flotante.
  */
-const TOOLBAR_WIDTH = 384;
+const TOOLBAR_WIDTH = 256;
 /**
  * Alto default estimado del toolbar flotante.
  */
-const TOOLBAR_HEIGHT = 224;
+const TOOLBAR_HEIGHT = 48;
 /**
  * Tamaño por defecto para cálculos cuando el caller no provee uno.
  */
@@ -60,10 +60,12 @@ export const useFloatingToolbarPosition = (
   const bounds = activeElements.reduce<Bounds>(
     (acc, element) => {
       const rect = element.getBoundingClientRect();
-      const top = rect.top - canvasRect.top;
-      const left = rect.left - canvasRect.left;
-      const right = rect.right - canvasRect.left;
-      const bottom = rect.bottom - canvasRect.top;
+      const scrollLeft = 'scrollLeft' in canvasRoot ? canvasRoot.scrollLeft : 0;
+      const scrollTop = 'scrollTop' in canvasRoot ? canvasRoot.scrollTop : 0;
+      const top = rect.top - canvasRect.top + scrollTop;
+      const left = rect.left - canvasRect.left + scrollLeft;
+      const right = rect.right - canvasRect.left + scrollLeft;
+      const bottom = rect.bottom - canvasRect.top + scrollTop;
       acc.top = Math.min(acc.top, top);
       acc.left = Math.min(acc.left, left);
       acc.right = Math.max(acc.right, right);
@@ -83,6 +85,8 @@ export const useFloatingToolbarPosition = (
   const safePageHeight = Number.isFinite(pageSize.height) ? Math.max(0, pageSize.height) : 0;
 
   const viewportSize = {
+    left: 'scrollLeft' in canvasRoot ? canvasRoot.scrollLeft : 0,
+    top: 'scrollTop' in canvasRoot ? canvasRoot.scrollTop : 0,
     width: Math.max(safePageWidth, canvasRect.width),
     height: Math.max(safePageHeight, canvasRect.height),
   };

@@ -501,6 +501,7 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
   const [snapLines, setSnapLines] = useState<SnapLine[]>([]);
   const snapRafRef = useRef<number | null>(null);
   const snapLinesKeyRef = useRef<string>('');
+  const suppressPaperFocusOnEscapeRef = useRef(false);
   /**
    * Flags de interacción transformacional usados por overlays y guards.
    */
@@ -658,6 +659,11 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
       ctrl: e.ctrlKey,
       meta: e.metaKey,
     });
+    if (e.key === 'Escape' || e.key === 'Esc') {
+      suppressPaperFocusOnEscapeRef.current = Boolean(
+        typeof document !== 'undefined' && document.querySelector('.sisad-pdfme-ui-canvas-context-menu'),
+      );
+    }
   };
   /**
    * Libera modificadores y cancela edición con Escape.
@@ -672,10 +678,14 @@ const Canvas = function Canvas(props: CanvasProps, ref: Ref<HTMLDivElement | nul
     if (e.key === 'Escape' || e.key === 'Esc') {
       setEditing(false);
       setInlineEditSession(null);
-      requestAnimationFrame(() => {
-        const paper = rootRef.current?.querySelector<HTMLElement>('[data-paper-page="true"]');
-        paper?.focus({ preventScroll: true });
-      });
+      const skipPaperFocus = suppressPaperFocusOnEscapeRef.current;
+      suppressPaperFocusOnEscapeRef.current = false;
+      if (!skipPaperFocus) {
+        requestAnimationFrame(() => {
+          const paper = rootRef.current?.querySelector<HTMLElement>('[data-paper-page="true"]');
+          paper?.focus({ preventScroll: true });
+        });
+      }
     }
   };
 

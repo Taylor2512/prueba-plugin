@@ -6,6 +6,8 @@
  */
 
 type ViewportSize = {
+  left: number;
+  top: number;
   width: number;
   height: number;
 };
@@ -33,6 +35,8 @@ type SelectionBounds = {
  */
 export const FLOATING_SURFACE_EDGE_GAP = 8;
 
+const clampWithin = (value: number, min: number, max: number) => Math.min(Math.max(min, value), max);
+
 /**
  * Posiciona una superficie centrada sobre la selección cuando hay espacio.
  *
@@ -44,20 +48,21 @@ export const resolveCenteredFloatingSurfacePosition = (
   surfaceSize: FloatingSurfaceSize,
   viewportSize: ViewportSize,
 ) => {
+  const gap = FLOATING_SURFACE_EDGE_GAP;
   const selectionWidth = Math.max(0, bounds.right - bounds.left);
-  const preferredTop = bounds.top - surfaceSize.height - FLOATING_SURFACE_EDGE_GAP;
-  const fallbackTop = bounds.bottom + FLOATING_SURFACE_EDGE_GAP;
+  const minTop = viewportSize.top + gap;
+  const maxTop = Math.max(minTop, viewportSize.top + viewportSize.height - surfaceSize.height - gap);
+  const minLeft = viewportSize.left + gap;
+  const maxLeft = Math.max(minLeft, viewportSize.left + viewportSize.width - surfaceSize.width - gap);
+  const preferredTop = bounds.top - surfaceSize.height - gap;
+  const fallbackTop = bounds.bottom + gap;
   const top =
-    preferredTop >= FLOATING_SURFACE_EDGE_GAP
+    preferredTop >= minTop
       ? preferredTop
-      : Math.min(
-        Math.max(FLOATING_SURFACE_EDGE_GAP, fallbackTop),
-        Math.max(FLOATING_SURFACE_EDGE_GAP, viewportSize.height - surfaceSize.height - FLOATING_SURFACE_EDGE_GAP),
-      );
+      : clampWithin(fallbackTop, minTop, maxTop);
 
-  const maxLeft = Math.max(FLOATING_SURFACE_EDGE_GAP, viewportSize.width - surfaceSize.width - FLOATING_SURFACE_EDGE_GAP);
   const centeredLeft = bounds.left + selectionWidth / 2 - surfaceSize.width / 2;
-  const left = Math.min(Math.max(FLOATING_SURFACE_EDGE_GAP, centeredLeft), maxLeft);
+  const left = clampWithin(centeredLeft, minLeft, maxLeft);
 
   return { top, left };
 };
@@ -73,35 +78,20 @@ export const resolveSelectionToolbarPosition = (
 ) => {
   const gap = FLOATING_SURFACE_EDGE_GAP;
   const selectionWidth = Math.max(0, bounds.right - bounds.left);
-  const selectionHeight = Math.max(0, bounds.bottom - bounds.top);
-  const centeredTop = bounds.top + selectionHeight / 2 - surfaceSize.height / 2;
-  const clampTop = (value: number) =>
-    Math.min(Math.max(gap, value), Math.max(gap, viewportSize.height - surfaceSize.height - gap));
-  const clampLeft = (value: number) =>
-    Math.min(Math.max(gap, value), Math.max(gap, viewportSize.width - surfaceSize.width - gap));
+  const selectionCenter = bounds.left + selectionWidth / 2;
+  const minTop = viewportSize.top + gap;
+  const maxTop = Math.max(minTop, viewportSize.top + viewportSize.height - surfaceSize.height - gap);
+  const minLeft = viewportSize.left + gap;
+  const maxLeft = Math.max(minLeft, viewportSize.left + viewportSize.width - surfaceSize.width - gap);
+  const clampTop = (value: number) => clampWithin(value, minTop, maxTop);
+  const clampLeft = (value: number) => clampWithin(value, minLeft, maxLeft);
 
-  const rightLeft = bounds.right + gap;
-  const leftLeft = bounds.left - surfaceSize.width - gap;
-  const fitsRight = rightLeft + surfaceSize.width <= viewportSize.width - gap;
-  const fitsLeft = leftLeft >= gap;
-
-  if (fitsRight) {
-    return {
-      top: clampTop(centeredTop),
-      left: clampLeft(rightLeft),
-    };
-  }
-
-  if (fitsLeft) {
-    return {
-      top: clampTop(centeredTop),
-      left: clampLeft(leftLeft),
-    };
-  }
-
-  const centeredLeft = bounds.left + selectionWidth / 2 - surfaceSize.width / 2;
+  const topCandidate = bounds.top - surfaceSize.height - gap;
+  const bottomCandidate = bounds.bottom + gap;
+  const top = topCandidate >= minTop ? topCandidate : clampTop(bottomCandidate);
+  const centeredLeft = selectionCenter - surfaceSize.width / 2;
   return {
-    top: clampTop(bounds.top - surfaceSize.height - gap >= gap ? bounds.top - surfaceSize.height - gap : bounds.bottom + gap),
+    top: clampTop(top),
     left: clampLeft(centeredLeft),
   };
 };
@@ -115,13 +105,15 @@ export const resolveAnchoredFloatingSurfacePosition = (
   surfaceSize: FloatingSurfaceSize,
   viewportSize: ViewportSize,
 ) => {
-  const maxLeft = Math.max(FLOATING_SURFACE_EDGE_GAP, viewportSize.width - surfaceSize.width - FLOATING_SURFACE_EDGE_GAP);
-  const maxTop = Math.max(FLOATING_SURFACE_EDGE_GAP, viewportSize.height - surfaceSize.height - FLOATING_SURFACE_EDGE_GAP);
-  const left = Math.min(Math.max(FLOATING_SURFACE_EDGE_GAP, anchor.x), maxLeft);
+  const minLeft = viewportSize.left + FLOATING_SURFACE_EDGE_GAP;
+  const maxLeft = Math.max(minLeft, viewportSize.left + viewportSize.width - surfaceSize.width - FLOATING_SURFACE_EDGE_GAP);
+  const minTop = viewportSize.top + FLOATING_SURFACE_EDGE_GAP;
+  const maxTop = Math.max(minTop, viewportSize.top + viewportSize.height - surfaceSize.height - FLOATING_SURFACE_EDGE_GAP);
+  const left = clampWithin(anchor.x, minLeft, maxLeft);
   const top =
-    anchor.y + surfaceSize.height + FLOATING_SURFACE_EDGE_GAP > viewportSize.height
-      ? Math.max(FLOATING_SURFACE_EDGE_GAP, anchor.y - surfaceSize.height)
-      : Math.min(Math.max(FLOATING_SURFACE_EDGE_GAP, anchor.y), maxTop);
+    anchor.y + surfaceSize.height + FLOATING_SURFACE_EDGE_GAP > viewportSize.top + viewportSize.height
+      ? clampWithin(anchor.y - surfaceSize.height, minTop, maxTop)
+      : clampWithin(anchor.y, minTop, maxTop);
 
   return { top, left };
 };

@@ -12,7 +12,7 @@ import type { SelectionCommandSet } from '../../shared/selectionCommands.js';
 import type { InteractionState } from '../../shared/interactionState.js';
 import { mergeClassNames } from '../../shared/className.js';
 import CanvasContextMenu from './CanvasContextMenu.js';
-import { resolveAnchoredFloatingSurfacePosition } from './floatingSurfaceGeometry.js';
+import { resolveSelectionToolbarPosition } from './floatingSurfaceGeometry.js';
 import type { EffectiveCollaborationContext } from '../../../../collaborationContext.js';
 import { OptionsContext } from '../../../../contexts.js';
 import { asRecord } from '../../shared/objectGuards.js';
@@ -27,6 +27,7 @@ type SelectionContextToolbarProps = {
   activeSchemas: SchemaForUI[];
   interactionState: InteractionState;
   contextMenuOpen?: boolean;
+  restoreFocusTarget?: HTMLElement | null;
   collaborationContext?: Pick<
     EffectiveCollaborationContext,
     'actorId' | 'activeRecipientId' | 'activeRecipient' | 'recipientNameMap' | 'canEditStructure'
@@ -41,6 +42,12 @@ type QuickAction = {
   disabled?: boolean;
 };
 
+type SurfaceSize = { width: number; height: number };
+type SurfacePosition = { top: number; left: number };
+type MenuPosition = { x: number; y: number };
+
+const ESTIMATED_TOOLBAR_SIZE: SurfaceSize = { width: 256, height: 36 };
+
 /**
  * Evalúa si todos los schemas seleccionados comparten un flag booleano.
  */
@@ -49,6 +56,13 @@ const getSchemaFlag = (schemas: SchemaForUI[], key: 'readOnly' | 'required' | 'h
     if (key === 'hidden') return (schema as SchemaForUI & { hidden?: boolean }).hidden === true;
     return Boolean((schema as SchemaForUI & Record<string, unknown>)[key]);
   });
+
+const getViewportRect = () => ({
+  left: 0,
+  top: 0,
+  width: typeof window !== 'undefined' ? window.innerWidth : 0,
+  height: typeof window !== 'undefined' ? window.innerHeight : 0,
+});
 
 /**
  * Renderiza acciones rápidas junto a la selección y abre el menú completo.
@@ -60,10 +74,18 @@ const SelectionContextToolbar = ({
   activeSchemas,
   interactionState,
   contextMenuOpen = false,
+  restoreFocusTarget,
   collaborationContext,
 }: SelectionContextToolbarProps) => {
   const toolbarRef = React.useRef<HTMLDivElement | null>(null);
+  const moreButtonRef = React.useRef<HTMLButtonElement | null>(null);
   const [moreMenuOpen, setMoreMenuOpen] = React.useState(false);
+  const [focusReturnTarget, setFocusReturnTarget] = React.useState<HTMLElement | null>(null);
+  const [toolbarSize, setToolbarSize] = React.useState<SurfaceSize>(ESTIMATED_TOOLBAR_SIZE);
+  const [toolbarPosition, setToolbarPosition] = React.useState<SurfacePosition>(() =>
+    position ? resolveSelectionToolbarPosition(position, ESTIMATED_TOOLBAR_SIZE, getViewportRect()) : { top: 0, left: 0 },
+  );
+  const [menuPosition, setMenuPosition] = React.useState<MenuPosition | null>(null);
   const options = React.useContext(OptionsContext);
   const actionsVisibility = asRecord(asRecord(options)?.visibility)?.actions as Record<string, boolean> | null;
 
@@ -78,9 +100,9 @@ const SelectionContextToolbar = ({
   const selectionCount = interactionState.selectionCount;
   const isMulti = selectionCount > 1;
 
-/**
- * Acciones rápidas visibles directamente en el toolbar compacto.
- */
+  /**
+   * Acciones rápidas visibles directamente en el toolbar compacto.
+   */
   const quickActions = React.useMemo(
     () =>
       ([
@@ -105,58 +127,145 @@ const SelectionContextToolbar = ({
     [actionsVisibility?.delete, actionsVisibility?.duplicate, canEditStructure, commands],
   );
 
-/**
- * Abre el menú contextual completo anclado al toolbar.
- */
+  /**
+   * Abre el menú contextual completo anclado al toolbar.
+   */
   const openMoreMenu = React.useCallback(() => {
+    const schemaId = activeSchemas.find((schema) => typeof schema?.id === 'string' && schema.id.trim())?.id;
+    if (typeof document !== 'undefined' && schemaId) {
+      const escapedId = typeof CSS !== 'undefined' && typeof CSS.escape === 'function'
+        ? CSS.escape(schemaId)
+        : schemaId.replace(/"/g, '\\"');
+      setFocusReturnTarget(document.querySelector<HTMLElement>(`[data-schema-id="${escapedId}"]`));
+    } else {
+      setFocusReturnTarget(moreButtonRef.current);
+    }
     setMoreMenuOpen(true);
-  }, []);
+  }, [activeSchemas]);
+
+  const closeMoreMenu = React.useCallback(() => {
+    setMoreMenuOpen(false);
+    requestAnimationFrame(() => (focusReturnTarget ?? moreButtonRef.current)?.focus({ preventScroll: true }));
+  }, [focusReturnTarget]);
+
+  const handleToolbarKeyDown = React.useCallback((event: React.KeyboardEvent<HTMLDivElement>) => {
+    if (event.key !== 'Escape') return;
+    if (!moreMenuOpen) return;
+    event.preventDefault();
+    event.stopPropagation();
+    closeMoreMenu();
+  }, [closeMoreMenu, moreMenuOpen]);
+
+  React.useLayoutEffect(() => {
+    const toolbarNode = toolbarRef.current;
+    if (!toolbarNode || !position) return;
+
+    const updateLayout = () => {
+      const canvasRoot = toolbarNode.closest('.sisad-pdfme-designer-canvas') as HTMLElement | null;
+      const viewportRect = canvasRoot
+        ? {
+            left: canvasRoot.scrollLeft,
+            top: canvasRoot.scrollTop,
+            width: canvasRoot.clientWidth,
+            height: canvasRoot.clientHeight,
+          }
+        : getViewportRect();
+      const nextToolbarPosition = resolveSelectionToolbarPosition(position, toolbarSize, viewportRect);
+      const anchorRect = moreButtonRef.current?.getBoundingClientRect();
+      const nextMenuPosition = moreMenuOpen
+        ? anchorRect
+          ? { x: anchorRect.left, y: anchorRect.bottom + 8 }
+          : { x: nextToolbarPosition.left, y: nextToolbarPosition.top + toolbarSize.height + 8 }
+        : null;
+
+      setToolbarPosition((current) =>
+        current.top === nextToolbarPosition.top && current.left === nextToolbarPosition.left
+          ? current
+          : nextToolbarPosition,
+      );
+      setMenuPosition((current) =>
+        current?.x === nextMenuPosition?.x && current?.y === nextMenuPosition?.y
+          ? current
+          : nextMenuPosition,
+      );
+    };
+
+    updateLayout();
+
+    if (typeof ResizeObserver === 'undefined') return undefined;
+
+    const observer = new ResizeObserver(updateLayout);
+    observer.observe(toolbarNode);
+
+    return () => observer.disconnect();
+  }, [moreMenuOpen, position, toolbarSize]);
+
+  React.useLayoutEffect(() => {
+    const toolbarNode = toolbarRef.current;
+    if (!toolbarNode) return;
+
+    const updateToolbarSize = () => {
+      const rect = toolbarNode.getBoundingClientRect();
+      const next = {
+        width: Math.max(ESTIMATED_TOOLBAR_SIZE.width, Math.ceil(rect.width)),
+        height: Math.max(ESTIMATED_TOOLBAR_SIZE.height, Math.ceil(rect.height)),
+      };
+      setToolbarSize((current) =>
+        current.width === next.width && current.height === next.height ? current : next,
+      );
+    };
+
+    updateToolbarSize();
+
+    if (typeof ResizeObserver === 'undefined') return undefined;
+
+    const observer = new ResizeObserver(updateToolbarSize);
+    observer.observe(toolbarNode);
+
+    return () => observer.disconnect();
+  }, [activeElements.length, contextMenuOpen, interactionState.phase, moreMenuOpen, quickActions.length]);
 
   if (!position || !commands || !activeElements.length) return null;
   if (['editing', 'dragging', 'resizing', 'rotating'].includes(interactionState.phase)) return null;
   if (contextMenuOpen) return null;
 
-  const menuPosition = resolveAnchoredFloatingSurfacePosition(
-    { x: position.left, y: position.top + position.height + 8 },
-    { width: 280, height: isMulti ? 424 : 392 },
-    { width: typeof window !== 'undefined' ? window.innerWidth : 0, height: typeof window !== 'undefined' ? window.innerHeight : 0 },
-  );
-
   return (
     <>
       <div
         ref={toolbarRef}
-        className="sisad-pdfme-ui-selection-context-toolbar pointer-events-auto absolute rounded-2xl border border-slate-200/80 bg-white/95 p-1 shadow-[0_14px_34px_rgba(15,23,42,0.12)] backdrop-blur-md transition-[opacity,transform] duration-[var(--wix-reveal-dur)] ease-out motion-reduce:transition-none"
+        className="sisad-pdfme-ui-selection-context-toolbar pointer-events-auto absolute inline-flex w-max min-h-[36px] rounded-[10px] border border-slate-200/80 bg-white/96 p-[3px] shadow-[0_10px_24px_rgba(15,23,42,0.08)] backdrop-blur-md transition-[opacity,transform] duration-[var(--wix-reveal-dur)] ease-out motion-reduce:transition-none"
         role="toolbar"
         aria-label="Barra contextual de edición"
+        data-designer-control="true"
+        data-interaction-exclusion="true"
         data-schema-interactive-control="true"
         data-overlay-interactive="true"
         data-selection-count={String(selectionCount)}
         data-interaction-phase={interactionState.phase}
         data-selection-kind={isMulti ? 'multi' : 'single'}
         style={{
-          top: `${position.top}px`,
-          left: `${position.left}px`,
-          width: 'min(100%, 15.75rem)',
+          top: `${toolbarPosition.top}px`,
+          left: `${toolbarPosition.left}px`,
           opacity: 1,
           transform: 'translateY(0) scale(1)',
         }}
+        onPointerDownCapture={(event) => event.stopPropagation()}
+        onMouseDownCapture={(event) => event.stopPropagation()}
+        onKeyDown={handleToolbarKeyDown}
       >
-        <div className="flex items-center gap-1">
+        <div className="flex items-center gap-0.5">
           {quickActions.map((btn) => (
             <button
               key={btn.id}
               type="button"
-              title={btn.label}
               aria-label={btn.label}
               data-active="false"
               data-danger={btn.danger ? 'true' : 'false'}
+              data-designer-control="true"
               data-schema-interactive-control="true"
               disabled={btn.disabled}
-              onMouseDown={(event) => {
-                event.preventDefault();
-                event.stopPropagation();
-              }}
+              onPointerDown={(event) => event.stopPropagation()}
+              onMouseDown={(event) => event.stopPropagation()}
               onClick={(event) => {
                 event.preventDefault();
                 event.stopPropagation();
@@ -165,7 +274,7 @@ const SelectionContextToolbar = ({
               className={mergeClassNames(
                 // `border-solid` explícito: los <button> traen `border-style:
                 // outset` del UA y preflight está off (daría un borde biselado).
-                'inline-flex min-h-8 min-w-0 items-center gap-1.5 rounded-xl border border-solid border-slate-200/80 bg-white/90 px-2.5 py-1 text-[11.5px] font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200',
+                'inline-flex min-h-7 min-w-0 items-center gap-1 rounded-lg border border-solid border-slate-200/80 bg-white/92 px-2 py-0.5 text-[11px] font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200',
                 btn.danger && 'text-red-600 hover:border-red-200 hover:bg-red-50 hover:text-red-700',
                 btn.disabled && 'cursor-not-allowed opacity-50',
               )}
@@ -183,25 +292,25 @@ const SelectionContextToolbar = ({
             </button>
           ))}
           <button
+            ref={moreButtonRef}
             type="button"
-            title="Más acciones"
             aria-label="Más acciones"
             aria-haspopup="menu"
             aria-expanded={moreMenuOpen ? 'true' : 'false'}
+            data-designer-control="true"
+            data-interaction-exclusion="true"
             data-schema-interactive-control="true"
             data-overlay-interactive="true"
-            onMouseDown={(event) => {
-              event.preventDefault();
-              event.stopPropagation();
-            }}
+            onPointerDown={(event) => event.stopPropagation()}
+            onMouseDown={(event) => event.stopPropagation()}
             onClick={(event) => {
               event.preventDefault();
               event.stopPropagation();
               openMoreMenu();
             }}
-            className="inline-flex min-h-8 min-w-0 items-center gap-1.5 rounded-xl border border-solid border-slate-200/80 bg-white/90 px-2.5 py-1 text-[11.5px] font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200"
+            className="inline-flex min-h-7 min-w-0 items-center gap-1 rounded-lg border border-solid border-slate-200/80 bg-white/92 px-2 py-0.5 text-[11px] font-semibold text-slate-700 shadow-sm transition hover:border-slate-300 hover:bg-slate-50 hover:text-slate-900 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-200"
           >
-            <span className="inline-flex h-[18px] w-[18px] flex-none items-center justify-center rounded-md bg-slate-50/90 text-slate-500" aria-hidden="true">
+            <span className="inline-flex h-[16px] w-[16px] flex-none items-center justify-center rounded-md bg-slate-50/90 text-slate-500" aria-hidden="true">
               <Ellipsis size={14} />
             </span>
             <span>Más</span>
@@ -211,7 +320,7 @@ const SelectionContextToolbar = ({
       <CanvasContextMenu
         open={moreMenuOpen}
         mode={isMulti ? 'multi' : 'single'}
-        position={moreMenuOpen ? { x: menuPosition.left, y: menuPosition.top } : null}
+        position={moreMenuOpen ? menuPosition ?? { x: toolbarPosition.left, y: toolbarPosition.top + toolbarSize.height + 8 } : null}
         commands={commands}
         hasClipboardData={false}
         selectionCount={selectionCount}
@@ -221,7 +330,8 @@ const SelectionContextToolbar = ({
         activeRequired={activeRequired}
         activeHidden={activeHidden}
         canEditStructure={canEditStructure}
-        onClose={() => setMoreMenuOpen(false)}
+        restoreFocusTarget={focusReturnTarget ?? restoreFocusTarget ?? null}
+        onClose={closeMoreMenu}
       />
     </>
   );
