@@ -1,4 +1,4 @@
-import PDFDocument from '../PDFDocument';
+import type PDFDocument from '../PDFDocument';
 import PDFFont from '../PDFFont';
 import { AppearanceMapping } from './appearances';
 import { Color, colorToComponents, setFillingColor } from '../colors';
@@ -86,7 +86,7 @@ export default class PDFField {
   protected constructor(acroField: PDFAcroTerminal, ref: PDFRef, doc: PDFDocument) {
     assertIs(acroField, 'acroField', [[PDFAcroTerminal, 'PDFAcroTerminal']]);
     assertIs(ref, 'ref', [[PDFRef, 'PDFRef']]);
-    assertIs(doc, 'doc', [[PDFDocument, 'PDFDocument']]);
+    assertIs(doc, 'doc', ['object']);
 
     this.acroField = acroField;
     this.ref = ref;

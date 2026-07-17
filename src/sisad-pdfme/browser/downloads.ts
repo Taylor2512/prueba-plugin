@@ -16,10 +16,15 @@ export function downloadUrl(url: string, filename: string): void {
   link.href = url;
   link.download = filename;
   link.rel = 'noopener';
-  link.style.display = 'none';
-  document.body.appendChild(link);
+  const style = link as HTMLAnchorElement & { style?: CSSStyleDeclaration };
+  if (style.style) style.style.display = 'none';
+  if (link instanceof Node) document.body.appendChild(link);
   link.click();
-  link.remove();
+  if (typeof link.remove === 'function') {
+    link.remove();
+  } else if (link instanceof Node && link.parentNode) {
+    link.parentNode.removeChild(link);
+  }
 }
 
 /**

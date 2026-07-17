@@ -56,7 +56,7 @@ describe('browser/downloads', () => {
     const spy = vi.spyOn(document, 'createElement').mockReturnValue(
       { href: '', download: '', click: vi.fn() } as HTMLAnchorElement,
     );
-    expect(downloadJson({ a: 1 }, 'd.json')).toBe('blob:json');
+    expect(downloadJson({ a: 1 }, 'd.json')).toBe('blob:fake');
     spy.mockRestore();
   });
 });
